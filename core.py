@@ -13,7 +13,7 @@
                         `permissions: models: read` 필요. 로컬은 PAT(models:read))
   LLM_MODEL             기본 "meta/Llama-3.3-70B-Instruct" (GitHub Models 무료 티어)
   NOTION_TOKEN          https://www.notion.so/my-integrations 에서 Internal Integration 생성
-  NOTION_DATABASE_ID    75af6a8ce3c04198acfe3bfb1f59b83b
+  NOTION_DATABASE_ID    eba32801b6b141e2849ce85f819c3ea4
                         ※ DB 페이지 우측 상단 ··· → 연결(Connections) → 통합 추가 필수
   TISTORY_ACCESS_TOKEN  티스토리 Open API Access Token
   TISTORY_BLOG_NAME     hjh1014   (hjh1014.tistory.com 의 앞부분)
@@ -84,7 +84,7 @@ LLM_ENDPOINT = "https://models.github.ai/inference/chat/completions"
 LLM_MODEL = os.getenv("LLM_MODEL", "meta/Llama-3.3-70B-Instruct")
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
-NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "75af6a8ce3c04198acfe3bfb1f59b83b")
+NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "eba32801b6b141e2849ce85f819c3ea4")
 
 TISTORY_API = "https://www.tistory.com/apis/post/write"
 TISTORY_ACCESS_TOKEN = os.getenv("TISTORY_ACCESS_TOKEN", "")
@@ -277,7 +277,7 @@ def summarize(item: dict) -> dict | None:
 def _notion() -> "NotionClient | None":
     if not (NOTION_TOKEN and NotionClient):
         return None
-    return NotionClient(auth=NOTION_TOKEN)
+    return NotionClient(auth=NOTION_TOKEN, notion_version="2022-06-28")  # properties 기반 API 고정
 
 
 NOTION_SCHEMA = {
@@ -297,7 +297,10 @@ def ensure_notion_schema(client) -> None:
     if client is None:
         return
     try:
-        props = client.databases.retrieve(database_id=NOTION_DATABASE_ID)["properties"]
+        # 스키마 변경은 최신 data source API(2025-09-03)로 해야 실제 반영된다
+        new = NotionClient(auth=NOTION_TOKEN)
+        ds_id = new.databases.retrieve(database_id=NOTION_DATABASE_ID)["data_sources"][0]["id"]
+        props = new.request(path=f"data_sources/{ds_id}", method="GET")["properties"]
         update: dict = {}
         title_name = next((n for n, p in props.items() if p["type"] == "title"), None)
         if title_name and title_name != "Name":
@@ -309,10 +312,15 @@ def ensure_notion_schema(client) -> None:
                 log.warning("Notion 속성 '%s' 타입이 %s 입니다 (필요: %s) — 직접 수정 필요",
                             name, props[name]["type"], next(iter(spec)))
         if update:
-            client.databases.update(database_id=NOTION_DATABASE_ID, properties=update)
+            new.request(path=f"data_sources/{ds_id}", method="PATCH", body={"properties": update})
             log.info("Notion DB 속성 생성/수정: %s", ", ".join(update))
     except Exception as e:
         log.error("Notion 스키마 설정 실패 (통합 연결 여부 확인): %s", e)
+
+
+def _query_db(client, body: dict) -> dict:
+    # notion-client 2.7+ 에서 databases.query 가 제거되어 REST 직접 호출
+    return client.request(path=f"databases/{NOTION_DATABASE_ID}/query", method="POST", body=body)
 
 
 def notion_existing_urls(client) -> set[str]:
@@ -320,7 +328,7 @@ def notion_existing_urls(client) -> set[str]:
     seen, cursor = set(), None
     try:
         while True:
-            res = client.databases.query(database_id=NOTION_DATABASE_ID, start_cursor=cursor, page_size=100)
+            res = _query_db(client, {"page_size": 100, **({"start_cursor": cursor} if cursor else {})})
             for p in res["results"]:
                 u = p["properties"].get("URL", {}).get("url")
                 if u:
@@ -575,8 +583,8 @@ def fetch_dashboard_rows(limit: int = 500) -> list[dict]:
     rows, cursor = [], None
     try:
         while len(rows) < limit:
-            res = client.databases.query(database_id=NOTION_DATABASE_ID, start_cursor=cursor, page_size=100,
-                                         sorts=[{"property": "CollectedAt", "direction": "descending"}])
+            res = _query_db(client, {"page_size": 100, **({"start_cursor": cursor} if cursor else {}),
+                                     "sorts": [{"property": "CollectedAt", "direction": "descending"}]})
             for p in res["results"]:
                 pr = p["properties"]
                 rows.append({
