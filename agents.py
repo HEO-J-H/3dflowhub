@@ -69,6 +69,8 @@ def propose_tasks(max_tasks: int = 3) -> list[str]:
             if l.startswith("- [x] (agent)") or l.startswith("- [ ] (agent:보류)")]
     prompt = (
         "You are the planning agent of a self-improving Python repo (news curation → Notion → Tistory).\n"
+        "Business goal: grow policy-compliant AdSense revenue on Tistory = more search traffic (SEO titles, "
+        "depth, FAQ, internal links, specific categories) x better RPM. Never add ad-click inducement.\n"
         f"Editable files: {sorted(EDITABLE)}\n"
         f"Recent lessons: {mem.get('lessons', [])[-8:]}\n"
         f"Recent run errors: {[r.get('errors') for r in mem.get('runs', [])[-5:]]}\n"
