@@ -18,13 +18,5 @@ def test_qa_flags_dangerous_and_secret(monkeypatch):
 
 
 def test_parse_edits():
-    text = "<<<FILE core.py
-<<<SEARCH
-a = 1
-    b = {}
-===
-a = 2
->>>END
-"
-    assert agents.parse_edits(text) == [{"file": "core.py", "search": "a = 1
-    b = {}", "replace": "a = 2"}]
+    text = "<<<FILE core.py\n<<<SEARCH\na = 1\n    b = {}\n===\na = 2\n>>>END\n"
+    assert agents.parse_edits(text) == [{"file": "core.py", "search": "a = 1\n    b = {}", "replace": "a = 2"}]

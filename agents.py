@@ -45,12 +45,7 @@ def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
         return {}
 
 
-EDIT_BLOCK = re.compile(r"<<<FILE (\S+)
-<<<SEARCH
-(.*?)
-===
-(.*?)
->>>END", re.S)
+EDIT_BLOCK = re.compile(r"<<<FILE (\S+)\n<<<SEARCH\n(.*?)\n===\n(.*?)\n>>>END", re.S)
 
 
 def parse_edits(text: str) -> list[dict]:
@@ -79,16 +74,8 @@ def coder(task: str, feedback: str) -> list[dict]:
     prompt = (
         f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
         f"Reviewer/Judge feedback from last iteration: {feedback or 'none'}\n\n{files}\n\n"
-        "Output ONLY edit blocks in this exact format (no JSON, no markdown fences):
-"
-        "<<<FILE path/to/file.py
-<<<SEARCH
-exact existing lines
-===
-replacement lines
->>>END
-
-"
+        "Output ONLY edit blocks in this exact format (no JSON, no markdown fences):\n"
+        "<<<FILE path/to/file.py\n<<<SEARCH\nexact existing lines\n===\nreplacement lines\n>>>END\n\n"
         "SEARCH must match the file exactly (including indentation) and occur exactly once. "
         f"Only edit these files: {sorted(EDITABLE)}. Keep changes minimal; add or update a pytest test."
     )
