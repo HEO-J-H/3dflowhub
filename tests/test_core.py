@@ -80,12 +80,13 @@ def test_register_category_limits(tmp_path, monkeypatch):
 def test_post_html_has_media_and_category(monkeypatch):
     item = {**ITEM, "category": "제작 사례", "insight": "실무 코멘트",
             "media": {"image": "https://ex.com/a.jpg", "video": "https://www.youtube.com/watch?v=abcdefghijk"}}
+    monkeypatch.setattr(core, "TISTORY_EMBED_IMAGES", True)
     out = core.build_post_html(item)
-    assert "<img" not in out  # 기본: 원문 이미지 핫링크 안 함
+    assert '<img src="https://ex.com/a.jpg"' in out and "이미지 출처" in out and "example.com" in out
     assert "youtube.com/embed/abcdefghijk" in out and "VFX › 제작 사례" in out
     assert "에디터 코멘트" in out and "실무 코멘트" in out
-    monkeypatch.setattr(core, "TISTORY_EMBED_IMAGES", True)
-    assert '<img src="https://ex.com/a.jpg"' in core.build_post_html(item)
+    monkeypatch.setattr(core, "TISTORY_EMBED_IMAGES", False)
+    assert "<img" not in core.build_post_html(item)
 
 
 def test_draft_header_roundtrip(tmp_path, monkeypatch):

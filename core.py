@@ -56,7 +56,7 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote_plus, urljoin
+from urllib.parse import quote_plus, urljoin, urlparse
 
 import feedparser
 import requests
@@ -101,7 +101,7 @@ ADSENSE_CLIENT = os.getenv("ADSENSE_CLIENT", "")
 ADSENSE_SLOT = os.getenv("ADSENSE_SLOT", "")
 AD_HTML = os.getenv("AD_HTML", "")
 AD_POSITIONS = ("top", "middle", "bottom")
-TISTORY_EMBED_IMAGES = os.getenv("TISTORY_EMBED_IMAGES", "0") == "1"  # 원문 이미지 삽입 (저작권 확인 시에만)
+TISTORY_EMBED_IMAGES = os.getenv("TISTORY_EMBED_IMAGES", "1") == "1"  # 원문 대표 이미지 + 출처 표기 (끄려면 0)
 
 HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.com/HEO-J-H/3dflowhub)"}
 
@@ -579,6 +579,18 @@ def _section_html(s: dict) -> str:
     return f"<h2>{html.escape(s['heading'])}</h2>\n<p>{html.escape(s['body'])}</p>\n"
 
 
+def image_figure(src: str, source_url: str, alt: str = "") -> str:
+    """원문 대표 이미지 + 출처 표기 캡션 (이미지는 원저작자 소유, 원문으로 링크)."""
+    site = re.sub(r"^www\.", "", urlparse(source_url).netloc) or "원문"
+    return (f'<figure style="margin:0 0 16px;text-align:center;">'
+            f'<a href="{html.escape(source_url)}" target="_blank" rel="noopener nofollow">'
+            f'<img src="{html.escape(src)}" alt="{html.escape(alt)}" referrerpolicy="no-referrer" '
+            f'style="max-width:100%;height:auto;"/></a>'
+            f'<figcaption style="color:#888;font-size:0.85em;margin-top:6px;">'
+            f'이미지 출처: <a href="{html.escape(source_url)}" target="_blank" rel="noopener nofollow">'
+            f'{html.escape(site)}</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>\n')
+
+
 def build_post_html(item: dict) -> str:
     """intro + [AD top] + part_1 + [AD middle] + part_2 + source + [AD bottom]"""
     sections = item["sections"]
@@ -588,10 +600,9 @@ def build_post_html(item: dict) -> str:
 
     media = item.get("media") or {}
     hero = ""
-    # 원문 이미지 핫링크는 저작권·핫링크 차단 위험이 있어 기본 비활성 (영상은 YouTube/Vimeo 공식 임베드라 허용)
+    # 원문 대표 이미지는 출처 표기와 원문 링크를 함께 넣는다 (TISTORY_EMBED_IMAGES=0 으로 끌 수 있음)
     if media.get("image") and TISTORY_EMBED_IMAGES:
-        hero += (f'<p style="text-align:center;"><img src="{html.escape(media["image"])}" '
-                 f'alt="{html.escape(item.get("title_ko", ""))}" style="max-width:100%;height:auto;"/></p>\n')
+        hero += image_figure(media["image"], item["url"], item.get("title_ko", ""))
     vid = VIDEO_RE.search(media.get("video", ""))
     if vid:
         src = (f"https://www.youtube.com/embed/{vid.group(1)}" if vid.group(1)
