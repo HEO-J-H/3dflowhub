@@ -231,6 +231,8 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
             except Exception as e:
                 log.warning("피드 실패 %s: %s", src, e)
                 continue
+            if not feed.entries:
+                RUN_ERRORS.append(f"empty feed: {src}")
             for e in feed.entries[:5]:
                 link = e.get("link", "")
                 if not link or url_hash(link) in seen:

@@ -39,3 +39,16 @@ def test_duplicate_publish_blocked(tmp_path, monkeypatch):
     monkeypatch.setattr(core, "TISTORY_ACCESS_TOKEN", "")
     assert core.publish_to_tistory(ITEM)["status"] == "draft_file"
     assert core.publish_to_tistory(ITEM)["status"] == "duplicate"
+
+
+def test_collect_empty_feed(monkeypatch):
+    class DummyFeed:
+        entries = []
+
+    monkeypatch.setattr(core, "generate_keywords", lambda doms, **kw: {d: ["test"] for d in doms})
+    monkeypatch.setattr(core.feedparser, "parse", lambda src, **kw: DummyFeed())
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    
+    res = core.collect(["VFX"], 5, set())
+    assert res == []
+    assert any("empty feed:" in err for err in core.RUN_ERRORS)
