@@ -30,6 +30,54 @@ MAX_EXTRA_FEEDS = 4  # 도메인별 자동 추가 피드 상한
 BLOCK_AFTER_EMPTY = 3
 
 
+# 수익화 플레이북 — 성찰 때마다 LLM 에 주입되는 '학습된 원칙' (Google 검색·애드센스 공개 가이드 기반)
+MONETIZATION_PLAYBOOK = [
+    "애드센스 수익 = 페이지뷰 × RPM. 검색 유입(구글·네이버·다음)이 핵심이므로 검색 의도에 맞는 제목·본문이 최우선",
+    "제목: 핵심 도구/제품명 + 검색 키워드를 앞쪽에 (25~45자), 낚시성 제목 금지",
+    "사람에게 도움이 되는 독창적 콘텐츠: 요약만이 아니라 실무 적용법·의견·비교를 추가 (저품질·가치 낮은 콘텐츠 거절 방지)",
+    "충분한 분량(본문 1,500자 이상)·소제목 구조·FAQ 로 체류시간과 검색 스니펫 노출을 늘린다",
+    "같은 카테고리 관련 글 내부 링크로 방문당 페이지뷰를 늘린다",
+    "고단가(CPC) 주제: 소프트웨어 출시·가격·비교, 하드웨어(GPU), 튜토리얼, 강의/교육 — 조회수 데이터와 함께 비중 조정",
+    "꾸준한 발행(하루 1~3개) 유지, 대량 자동 발행 금지",
+    "정책: 광고 클릭 유도 문구·자기 클릭·광고 옆 버튼 배치·저작권 침해 금지 (계정 정지 위험)",
+]
+
+
+def performance_table() -> dict:
+    """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 — 수익 학습의 보상 신호."""
+    client = core._notion()
+    if client is None:
+        return {}
+    res = core._query_db(client, {"page_size": 100, "filter": {"property": "Views", "number": {"is_not_empty": True}}})
+    agg: dict[str, dict] = {}
+    top = []
+    for p in res.get("results", []):
+        pr = p["properties"]
+        d = (pr["Domain"]["select"] or {}).get("name", "?")
+        c = (pr.get("Category", {}).get("select") or {}).get("name", "")
+        v = pr["Views"]["number"] or 0
+        for key in (d, f"{d}/{c}"):
+            a = agg.setdefault(key, {"posts": 0, "views": 0})
+            a["posts"] += 1
+            a["views"] += v
+        top.append((v, "".join(t["plain_text"] for t in pr["Name"]["title"])[:50]))
+    for a in agg.values():
+        a["avg"] = round(a["views"] / a["posts"], 1)
+    return {"by_group": agg, "top_posts": sorted(top, reverse=True)[:8]}
+
+
+def learn_domain_weights(perf: dict, strategy: dict) -> dict[str, float]:
+    """평균 조회수 기반 도메인 비중 (탐색을 위해 최소 15% 보장, 데이터 적으면 균등)."""
+    by = perf.get("by_group", {})
+    avgs = {d: by.get(d, {}).get("avg", 0.0) for d in core.DOMAINS}
+    if sum(by.get(d, {}).get("posts", 0) for d in core.DOMAINS) < 8:  # 표본이 적으면 학습 보류
+        return strategy.get("domain_weights") or {d: round(1 / len(core.DOMAINS), 3) for d in core.DOMAINS}
+    total = sum(avgs.values()) or 1
+    floor = 0.15
+    raw = {d: floor + (1 - floor * len(avgs)) * avgs[d] / total for d in avgs}
+    return {d: round(w, 3) for d, w in raw.items()}
+
+
 def _due(strategy: dict, key: str, every: int) -> bool:
     last = strategy.get(key)
     if not last:
@@ -60,22 +108,38 @@ def update_strategy(strategy: dict) -> dict:
             strategy["blocked_feeds"].append(url)
             changes.append(f"피드 차단: {url}")
 
-    # 2) LLM 성찰 (Reflexion: 결과를 말로 반성 → 다음 실행 컨텍스트로 주입)
+    # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습
+    try:
+        perf = performance_table()
+    except Exception as e:
+        log.warning("성과 집계 실패: %s", e)
+        perf = {}
+    weights = learn_domain_weights(perf, strategy)
+    if weights != strategy.get("domain_weights"):
+        strategy["domain_weights"] = weights
+        changes.append(f"도메인 비중: {weights}")
+
+    # 3) LLM 성찰 (Reflexion: 결과를 말로 반성 → 다음 실행 컨텍스트로 주입)
     runs = mem.get("runs", [])[-10:]
     counts = sorted(mem.get("category_counts", {}).items(), key=lambda kv: -kv[1])[:25]
     prompt = (
         "You are the strategist of an automated Korean tech-news curation blog about 3D DCC, game engines, "
-        "VFX and AI 3D. Reflect on recent runs and improve the strategy.\n"
-        f"Recent runs (stats/errors): {json.dumps(runs, ensure_ascii=False)[:3500]}\n"
+        "VFX and AI 3D. The business goal is sustainable AdSense revenue on Tistory (pageviews x RPM) while "
+        "staying fully policy-compliant. Reflect on recent runs and performance, then improve the strategy.\n"
+        f"Monetization playbook: {json.dumps(MONETIZATION_PLAYBOOK, ensure_ascii=False)}\n"
+        f"Performance (Tistory views by domain/category, top posts): {json.dumps(perf, ensure_ascii=False)[:2500]}\n"
+        f"Recent runs (stats/errors): {json.dumps(runs, ensure_ascii=False)[:3000]}\n"
         f"Category usage: {json.dumps(counts, ensure_ascii=False)}\n"
         f"Current editorial notes: {json.dumps(strategy['prompt_notes'], ensure_ascii=False)}\n"
         f"Current keyword hints: {json.dumps(strategy['keyword_hints'], ensure_ascii=False)}\n"
         f"Domains: {list(core.DOMAINS)}\n"
         "Return JSON with keys:\n"
         ' "lesson": one-sentence Korean lesson learned,\n'
-        f' "prompt_notes": up to {MAX_NOTES} short editorial rules (Korean) to improve summaries for Korean '
-        'readers, AdSense quality and category specificity (keep good existing ones),\n'
-        ' "keyword_hints": {domain: up to 4 English topics that are trending or under-covered},\n'
+        f' "prompt_notes": up to {MAX_NOTES} short editorial rules (Korean) that raise search traffic, reader value '
+        'and AdSense quality (titles, depth, structure, category specificity) — learn from what got views, '
+        'keep good existing ones,\n'
+        ' "keyword_hints": {domain: up to 4 English topics with high search demand / commercial intent that '
+        'match what performed well},\n'
         ' "feed_suggestions": up to 3 [{"domain": ..., "url": real RSS/Atom URL of a reputable source}]'
     )
     out = core._parse_json(core.llm(prompt, max_tokens=1200, json_mode=True))
@@ -89,7 +153,7 @@ def update_strategy(strategy: dict) -> dict:
         strategy["keyword_hints"] = {**strategy["keyword_hints"], **hints}
         changes.append("검색 힌트 갱신: " + ", ".join(hints))
 
-    # 3) 새 피드 후보는 실제로 파싱되는 것만 채택 (환각 URL 방지)
+    # 4) 새 피드 후보는 실제로 파싱되는 것만 채택 (환각 URL 방지)
     for sug in out.get("feed_suggestions", [])[:3]:
         d, url = sug.get("domain"), (sug.get("url") or "").strip()
         known = set(core.DOMAINS.get(d, {}).get("feeds", [])) | set(strategy["extra_feeds"].get(d, []))

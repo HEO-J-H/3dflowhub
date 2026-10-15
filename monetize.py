@@ -1,0 +1,108 @@
+"""
+3dflowhub 수익화 학습 — 성과(조회수·유입·키워드·광고수익) 수집 → 노션 기록 → evolve 가 학습
+================================================================================================
+이 PC 전용 (티스토리 로그인 세션 필요):  python monetize.py
+  1) 티스토리 관리 통계 API(/manage/v2/statistics/blog/*) 에서 글별 조회수, 검색 키워드, 유입 경로 수집
+  2) 노션 각 글의 Views(조회수) 속성 갱신 → GitHub Actions 의 evolve 가 노션에서 읽어 '보상 신호'로 학습
+  3) memory/performance.json 에 일별 스냅샷 저장 (대시보드 표시용) + 광고수익(revenue.csv)과 결합해 RPM 계산
+
+애드센스 정책 준수: 자기 광고 클릭 유도·자동 클릭·광고 근처 버튼 배치 등은 절대 하지 않는다.
+"""
+from __future__ import annotations
+
+import json
+from datetime import date, datetime, timedelta
+from pathlib import Path
+
+import pandas as pd
+
+import core
+
+PERF_PATH = core.ROOT / "memory" / "performance.json"
+REVENUE_CSV = core.ROOT / "memory" / "revenue.csv"
+STATS = f"https://{core.TISTORY_BLOG_NAME}.tistory.com/manage/v2/statistics/blog/"
+
+
+def fetch_tistory_stats(days: int = 30) -> dict:
+    """로그인된 브라우저 세션으로 티스토리 통계 JSON 수집."""
+    from playwright.sync_api import sync_playwright
+
+    import tistory_publisher as tp
+    start = date.today().replace(day=1).isoformat()
+    out: dict = {}
+    with sync_playwright() as p:
+        ctx = tp._launch(p, headless=True)
+        page = ctx.pages[0] if ctx.pages else ctx.new_page()
+        page.goto(f"https://{core.TISTORY_BLOG_NAME}.tistory.com/manage/statistics/blog", wait_until="domcontentloaded")
+        if "login" in page.url:
+            ctx.close()
+            raise SystemExit("티스토리 로그인이 필요합니다: 티스토리_로그인.bat")
+
+        def get(path: str):
+            r = ctx.request.get(STATS + path)
+            return r.json().get("data", {}).get("result") if r.ok else None
+
+        out["count"] = get("count")
+        out["inflow"] = get(f"inflow?granularity=month&metric=pv&startDate={start}")
+        out["keywords"] = get(f"keyword?granularity=month&metric=pv&startDate={start}") or []
+        # 글별 누적 조회수: 최근 N일 일간 topEntry 를 합산 (월 단위는 이번 달만 집계되므로)
+        views: dict[str, dict] = {}
+        for i in range(days):
+            day = (date.today() - timedelta(days=i)).isoformat()
+            for e in get(f"topEntry?metric=pv&startDate={day}&granularity=day") or []:
+                v = views.setdefault(e["permalink"], {"title": e["title"], "created": e["created"], "views": 0})
+                v["views"] += e.get("count", 0)
+        out["posts"] = views
+        ctx.close()
+    return out
+
+
+def revenue_summary() -> dict:
+    if not REVENUE_CSV.exists():
+        return {"total": 0.0, "last30": 0.0}
+    rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"])
+    recent = rev[rev["date"] >= pd.Timestamp(date.today() - timedelta(days=30))]
+    return {"total": float(rev["revenue"].sum()), "last30": float(recent["revenue"].sum())}
+
+
+def sync_views_to_notion(posts: dict) -> int:
+    """노션 페이지(TistoryURL 일치)의 Views 속성 갱신."""
+    client = core._notion()
+    if client is None:
+        return 0
+    n = 0
+    for url, info in posts.items():
+        res = core._query_db(client, {"page_size": 1, "filter": {"property": "TistoryURL", "url": {"equals": url}}})
+        for p in res.get("results", []):
+            client.pages.update(page_id=p["id"], properties={"Views": {"number": info["views"]}})
+            n += 1
+    return n
+
+
+def collect() -> dict:
+    stats = fetch_tistory_stats()
+    pv30 = sum(p["views"] for p in stats["posts"].values())
+    rev = revenue_summary()
+    snapshot = {
+        "at": datetime.now().isoformat(timespec="seconds"),
+        "pv_total": (stats.get("count") or {}).get("pv", {}).get("total", 0),
+        "pv_30d_posts": pv30,
+        "revenue_30d": rev["last30"],
+        "rpm_30d": round(rev["last30"] / pv30 * 1000, 1) if pv30 else 0.0,  # 1,000뷰당 수익
+        "inflow": stats.get("inflow"),
+        "keywords": stats.get("keywords")[:30],
+        "posts": stats["posts"],
+    }
+    perf = core._load_json(PERF_PATH, {"snapshots": []})
+    perf["latest"] = snapshot
+    perf["snapshots"] = (perf["snapshots"] + [{k: snapshot[k] for k in ("at", "pv_total", "pv_30d_posts",
+                                                                     "revenue_30d", "rpm_30d")}])[-120:]
+    core._save_json(PERF_PATH, perf)
+    snapshot["notion_updated"] = sync_views_to_notion(stats["posts"])
+    return snapshot
+
+
+if __name__ == "__main__":
+    s = collect()
+    print(json.dumps({k: s[k] for k in ("pv_total", "pv_30d_posts", "revenue_30d", "rpm_30d", "notion_updated")},
+                     ensure_ascii=False))

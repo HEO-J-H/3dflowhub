@@ -340,6 +340,12 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
             if not dry_run and i < len(targets) - 1:
                 time.sleep(__import__("random").uniform(*GAP_SECONDS))
         ctx.close()
+    if not dry_run:  # 발행 후 성과(조회수) 수집 → 노션 Views → evolve 수익 학습
+        try:
+            import monetize
+            print("성과 수집:", {k: v for k, v in monetize.collect().items() if k in ("pv_total", "notion_updated")})
+        except Exception as e:
+            print("성과 수집 실패:", str(e)[:200])
     return results
 
 

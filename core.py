@@ -297,6 +297,24 @@ def fetch_article_text(url: str, limit: int = 4000) -> str:
     return fetch_article(url, limit)[0]
 
 
+def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
+                    weights: dict[str, float]) -> list[dict]:
+    """조회수로 학습된 도메인 비중(evolve)대로 배분, 남는 자리는 라운드로빈으로 채움."""
+    by_dom = {d: [c for c in candidates if c["hint_domain"] == d] for d in domains}
+    total_w = sum(weights.get(d, 1.0) for d in domains) or 1
+    quota = {d: int(max_items * weights.get(d, 1.0) / total_w) for d in domains}
+    picked = []
+    for d in sorted(domains, key=lambda x: -weights.get(x, 1.0)):
+        take = by_dom[d][:quota[d]]
+        picked += take
+        by_dom[d] = by_dom[d][len(take):]
+    while len(picked) < max_items and any(by_dom.values()):
+        for d in sorted(domains, key=lambda x: -weights.get(x, 1.0)):
+            if by_dom[d] and len(picked) < max_items:
+                picked.append(by_dom[d].pop(0))
+    return picked
+
+
 def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     keywords = generate_keywords(domains)
     candidates: list[dict] = []
@@ -329,12 +347,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                 })
-    # 도메인 균형을 맞추어 max_items 개 선택 (라운드로빈)
-    picked, by_dom = [], {d: [c for c in candidates if c["hint_domain"] == d] for d in domains}
-    while len(picked) < max_items and any(by_dom.values()):
-        for d in domains:
-            if by_dom[d] and len(picked) < max_items:
-                picked.append(by_dom[d].pop(0))
+    picked = pick_by_weights(candidates, domains, max_items, load_strategy().get("domain_weights") or {})
     log.info("수집 후보 %d건 → 선택 %d건", len(candidates), len(picked))
     return picked
 
@@ -408,7 +421,8 @@ def summarize(item: dict) -> dict | None:
         f"Title: {item['title']}\nURL: {item['url']}\nContent:\n{body}\n\n"
         f"Existing categories per domain: {json.dumps(load_categories(), ensure_ascii=False)}\n"
         "Return JSON with keys:\n"
-        ' "title_ko": catchy Korean title (<=60 chars),\n'
+        ' "title_ko": search-friendly Korean title, 25-45 chars, main tool/product name + key search term first, '
+        'no clickbait,\n'
         ' "domain": one of ["3D DCC","Game Engine","VFX","AI 3D"],\n'
         ' "category": the most SPECIFIC fitting sub-category (tool / technique / product level, e.g. '
         '"Houdini 시뮬레이션", "가우시안 스플래팅", "언리얼 PCG", "Blender 지오메트리 노드"). Reuse an existing one '
@@ -417,7 +431,10 @@ def summarize(item: dict) -> dict | None:
         ' "summary": one-sentence Korean summary,\n'
         ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
         'how to apply it in practice, who should care. Do not restate the article,\n'
-        ' "sections": list of 3-5 objects {"heading": str, "body": str} in Korean (each body 2-4 sentences)'
+        ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
+        'factual, from the source),\n'
+        ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
+        'source in 1-3 sentences'
     )
     notes = load_strategy().get("prompt_notes", [])
     system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
@@ -465,6 +482,7 @@ NOTION_SCHEMA = {
                                       {"name": "Published", "color": "green"}]}},
     "TistoryURL": {"url": {}},
     "CollectedAt": {"date": {}},
+    "Views": {"number": {}},
 }
 
 
@@ -540,6 +558,14 @@ def save_to_notion(client, item: dict) -> str | None:
     for s in item["sections"]:
         children.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": _rt(s["heading"])}})
         children.append({"object": "block", "type": "paragraph", "paragraph": {"rich_text": _rt(s["body"])}})
+    faq = [f for f in item.get("faq") or [] if isinstance(f, dict) and f.get("q") and f.get("a")]
+    if faq:
+        children.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": _rt("❓ 자주 묻는 질문")}})
+        for f in faq[:3]:
+            children.append({"object": "block", "type": "toggle",
+                             "toggle": {"rich_text": _rt("Q. " + f["q"]),
+                                        "children": [{"object": "block", "type": "paragraph",
+                                                      "paragraph": {"rich_text": _rt(f["a"])}}]}})
     try:
         page = client.pages.create(
             parent={"database_id": NOTION_DATABASE_ID},
@@ -598,6 +624,32 @@ def backfill_notion(client, limit: int = 100) -> int:
         except Exception as e:
             log.warning("보강 실패 %s: %s", title[:30], e)
     return done
+
+
+def related_posts(client, item: dict, limit: int = 3) -> list[dict]:
+    """같은 세부 카테고리 → 같은 도메인 순으로 이미 발행된 글 (조회수 높은 순)."""
+    if client is None:
+        return []
+    out: list[dict] = []
+    filters = []
+    if item.get("category"):
+        filters.append({"property": "Category", "select": {"equals": item["category"]}})
+    filters.append({"property": "Domain", "select": {"equals": item["domain"]}})
+    for f in filters:
+        try:
+            res = _query_db(client, {"page_size": 10, "filter": {"and": [
+                f, {"property": "TistoryURL", "url": {"is_not_empty": True}}]},
+                "sorts": [{"property": "Views", "direction": "descending"}]})
+        except Exception as e:
+            log.debug("관련 글 조회 실패: %s", e)
+            break
+        for p in res.get("results", []):
+            url = p["properties"]["TistoryURL"]["url"]
+            if url not in [r["url"] for r in out]:
+                out.append({"url": url, "title": "".join(t["plain_text"] for t in p["properties"]["Name"]["title"])})
+        if len(out) >= limit:
+            break
+    return out[:limit]
 
 
 def mark_notion_published(client, page_id: str | None, post_url: str) -> None:
@@ -671,6 +723,14 @@ def build_post_html(item: dict) -> str:
     if item.get("insight"):
         part_2 += (f'<h2>💡 에디터 코멘트</h2>\n<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">'
                    f'{html.escape(item["insight"])}</blockquote>\n')
+    faq = [f for f in item.get("faq") or [] if isinstance(f, dict) and f.get("q") and f.get("a")]
+    if faq:  # 검색 질의형 유입·스니펫 노출용
+        part_2 += "<h2>❓ 자주 묻는 질문</h2>\n" + "".join(
+            f'<p><b>Q. {html.escape(f["q"])}</b><br/>A. {html.escape(f["a"])}</p>\n' for f in faq[:3])
+    related = [r for r in item.get("related") or [] if r.get("url") and r.get("title")]
+    if related:  # 내부 링크 → 방문당 페이지뷰 증가
+        part_2 += "<h2>📚 함께 보면 좋은 글</h2>\n<ul>" + "".join(
+            f'<li><a href="{html.escape(r["url"])}">{html.escape(r["title"])}</a></li>' for r in related[:3]) + "</ul>\n"
     source = (f'<hr/><p>원문:<a href="{html.escape(item["url"])}" target="_blank" rel="noopener nofollow">'
               f'{html.escape(item["title"])}</a></p>\n'
               f'<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>\n')
@@ -883,6 +943,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
                 continue
             page_id = save_to_notion(notion, item)
             item["notion_id"] = page_id or ""  # 브라우저 발행 후 노션 상태 갱신용
+            item["related"] = related_posts(notion, item)  # 티스토리 본문 '함께 보면 좋은 글'
             stats["saved"] += 1
             if publish:
                 res = publish_to_tistory(item)

@@ -128,3 +128,27 @@ def test_strategy_blocks_dead_feed_and_rejects_bad_suggestion(tmp_path, monkeypa
     st = evolve.update_strategy({"prompt_notes": [], "keyword_hints": {}, "extra_feeds": {}, "blocked_feeds": [], "history": []})
     assert "https://dead/feed" in st["blocked_feeds"] and st["prompt_notes"] == ["n1"]
     assert st["keyword_hints"]["VFX"] == ["houdini"] and not st["extra_feeds"]
+
+
+def test_post_html_faq_and_related():
+    item = {**ITEM, "faq": [{"q": "무료인가요?", "a": "네."}],
+            "related": [{"url": "https://hjh1014.tistory.com/3", "title": "관련글"}]}
+    out = core.build_post_html(item)
+    assert "자주 묻는 질문" in out and "Q. 무료인가요?" in out
+    assert "함께 보면 좋은 글" in out and 'href="https://hjh1014.tistory.com/3"' in out
+
+
+def test_pick_by_weights_prefers_heavy_domain():
+    cands = [{"hint_domain": d, "url": f"{d}{i}"} for d in ("VFX", "AI 3D") for i in range(10)]
+    picked = core.pick_by_weights(cands, ["VFX", "AI 3D"], 10, {"VFX": 0.8, "AI 3D": 0.2})
+    assert sum(c["hint_domain"] == "VFX" for c in picked) == 8 and len(picked) == 10
+
+
+def test_domain_weights_need_samples_and_keep_floor():
+    import evolve
+    few = {"by_group": {"VFX": {"posts": 2, "avg": 50}}}
+    assert set(evolve.learn_domain_weights(few, {}).values()) == {0.25}
+    many = {"by_group": {"VFX": {"posts": 6, "avg": 90}, "AI 3D": {"posts": 4, "avg": 10},
+                         "3D DCC": {"posts": 1, "avg": 0}, "Game Engine": {"posts": 1, "avg": 0}}}
+    w = evolve.learn_domain_weights(many, {})
+    assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.15

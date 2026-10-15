@@ -1,6 +1,7 @@
 """3dflowhub 대시보드 — 실행: streamlit run app.py"""
 from __future__ import annotations
 
+import json
 import os
 import threading
 from datetime import datetime
@@ -269,6 +270,30 @@ with t_draft:
 
 # ─────────────────────────── 광고 수익 ───────────────────────────
 with t_rev:
+    st.subheader("📈 성과 (수익 학습 보상 신호)")
+    perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+    latest = perf.get("latest", {})
+    p1, p2, p3, p4 = st.columns(4)
+    p1.metric("누적 조회수", latest.get("pv_total", 0))
+    p2.metric("최근 30일 글 조회수", latest.get("pv_30d_posts", 0))
+    p3.metric("최근 30일 수익", f"{latest.get('revenue_30d', 0):,.0f}원")
+    p4.metric("RPM (1,000뷰당)", f"{latest.get('rpm_30d', 0):,.0f}원")
+    if st.button("📊 티스토리 성과 수집 (조회수 → 노션 → AI 학습)"):
+        import subprocess, sys
+        with st.spinner("통계 수집 중…"):
+            r = subprocess.run([sys.executable, "monetize.py"], cwd=core.ROOT, capture_output=True,
+                               text=True, encoding="utf-8")
+        st.code((r.stdout + r.stderr)[-1500:] or "출력 없음")
+    if latest.get("posts"):
+        st.dataframe(pd.DataFrame([{"글": v["title"], "조회수": v["views"], "주소": k}
+                                   for k, v in latest["posts"].items()]).sort_values("조회수", ascending=False),
+                     use_container_width=True, hide_index=True,
+                     column_config={"주소": st.column_config.LinkColumn()})
+    if latest.get("inflow"):
+        st.caption("유입: " + json.dumps({k: v.get("total") for k, v in latest["inflow"].items()
+                                          if isinstance(v, dict)}, ensure_ascii=False))
+    st.caption(f"수집 시각: {latest.get('at', '-')}  ·  AI는 노션 Views 를 보고 도메인 비중·편집 가이드를 조정합니다.")
+    st.divider()
     st.caption("애드센스 API는 OAuth 앱 승인이 필요해, 일별 수익을 직접 입력/CSV 업로드하는 방식입니다.")
     rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(
         {"date": pd.to_datetime([]), "revenue": []})
