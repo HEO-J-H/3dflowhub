@@ -9,9 +9,10 @@
 ------------------------------------------------------------------------------
 환경변수 (로컬: .env / GitHub Actions: Settings → Secrets and variables → Actions)
 
-  GITHUB_TOKEN          GitHub Models 호출용 (Actions에서는 자동 제공, 워크플로에
-                        `permissions: models: read` 필요. 로컬은 PAT(models:read))
-  LLM_MODEL             기본 "meta/Llama-3.3-70B-Instruct" (GitHub Models 무료 티어)
+  LLM_API_KEY           OpenAI 호환 LLM API 키 (기본: Google AI Studio 무료 키 https://aistudio.google.com/apikey)
+  LLM_BASE_URL          기본 https://generativelanguage.googleapis.com/v1beta/openai
+                        (Groq: https://api.groq.com/openai/v1 , OpenRouter: https://openrouter.ai/api/v1)
+  LLM_MODEL             기본 "gemini-2.5-flash"
   NOTION_TOKEN          https://www.notion.so/my-integrations 에서 Internal Integration 생성
   NOTION_DATABASE_ID    eba32801b6b141e2849ce85f819c3ea4
                         ※ DB 페이지 우측 상단 ··· → 연결(Connections) → 통합 추가 필수
@@ -79,10 +80,11 @@ MEMORY_PATH = ROOT / "memory" / "memory.json"
 PUBLISHED_LOG = ROOT / "memory" / "published.json"
 DRAFT_DIR = ROOT / "output" / "tistory_drafts"
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
-LLM_ENDPOINT = "https://models.github.ai/inference/chat/completions"
-LLM_FALLBACK_ENDPOINT = "https://models.inference.ai.azure.com/chat/completions"
-LLM_MODEL = os.getenv("LLM_MODEL", "meta/Llama-3.3-70B-Instruct")
+# GitHub Models 는 2026-07-30 서비스 종료 → OpenAI 호환 무료 API 사용 (기본: Google Gemini 무료 티어)
+LLM_API_KEY = os.getenv("LLM_API_KEY", "")
+LLM_ENDPOINT = (os.getenv("LLM_BASE_URL") or
+                "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/") + "/chat/completions"
+LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-2.5-flash"  # Actions 에서 빈 변수는 "" 로 전달됨
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "eba32801b6b141e2849ce85f819c3ea4")
@@ -142,38 +144,29 @@ def load_memory() -> dict:
     return _load_json(MEMORY_PATH, {"runs": [], "good_keywords": [], "bad_keywords": [], "lessons": []})
 
 
-# ─────────────────────────── LLM (GitHub Models) ───────────────────────────
+# ─────────────────────────── LLM (OpenAI 호환) ───────────────────────────
 def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: int = 800,
         json_mode: bool = False) -> str:
-    if not GITHUB_TOKEN:
-        raise RuntimeError("GITHUB_TOKEN 미설정 — GitHub Models 호출 불가")
+    if not LLM_API_KEY:
+        raise RuntimeError("LLM_API_KEY 미설정")
     body = {
         "model": LLM_MODEL,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
         "max_tokens": max_tokens,
         "temperature": 0.4,
     }
-    if json_mode:
-        body["response_format"] = {"type": "json_object"}
-    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Content-Type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Authorization": f"Bearer {LLM_API_KEY}", "Content-Type": "application/json"}
     errors = []
-    for endpoint in (LLM_ENDPOINT, LLM_FALLBACK_ENDPOINT):
-        for use_json in ((True, False) if json_mode else (False,)):
-            payload = dict(body)
-            if not use_json:
-                payload.pop("response_format", None)
-            if endpoint == LLM_FALLBACK_ENDPOINT:  # 구 엔드포인트는 'publisher/' 접두어 없는 모델명 사용
-                payload["model"] = LLM_MODEL.split("/")[-1]
-            try:
-                r = requests.post(endpoint, json=payload, timeout=60, headers=headers)
-                data = r.json() if r.ok else None
-                if data and data.get("choices"):
-                    return (data["choices"][0]["message"].get("content") or "").strip()
-                errors.append(f"{endpoint.split('/')[2]} {r.status_code} json={use_json}: {r.text[:150]!r}")
-            except (requests.RequestException, ValueError) as e:
-                errors.append(f"{endpoint.split('/')[2]} json={use_json}: {type(e).__name__} "
-                              f"{getattr(locals().get('r'), 'text', '')[:150]!r}")
+    for use_json in ((True, False) if json_mode else (False,)):  # JSON 모드 미지원 시 일반 모드 재시도
+        payload = {**body, **({"response_format": {"type": "json_object"}} if use_json else {})}
+        try:
+            r = requests.post(LLM_ENDPOINT, json=payload, timeout=90, headers=headers)
+            data = r.json() if r.ok else None
+            if data and data.get("choices"):
+                return (data["choices"][0]["message"].get("content") or "").strip()
+            errors.append(f"{r.status_code} json={use_json}: {r.text[:200]!r}")
+        except (requests.RequestException, ValueError) as e:
+            errors.append(f"json={use_json}: {type(e).__name__} {e}"[:200])
     raise RuntimeError(" | ".join(errors))
 
 
