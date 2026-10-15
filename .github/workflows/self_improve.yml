@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: self-improve
+  group: repo-writes
   cancel-in-progress: false
 
 jobs:
@@ -42,9 +42,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python agents.py
 
-      - name: Save memory/TODO when not merged
+      - name: Save memory/TODO on main
+        if: always()
         run: |
-          if [ "$(git branch --show-current)" = "main" ]; then
-            git add memory/ TODO.md
-            git diff --cached --quiet || (git commit -m "chore(agents): record result [skip ci]" && git push)
-          fi
+          git checkout main 2>/dev/null || true
+          git add memory/ TODO.md
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(agents): record result [skip ci]"
+          for i in 1 2 3 4; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

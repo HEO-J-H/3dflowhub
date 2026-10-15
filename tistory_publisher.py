@@ -18,6 +18,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
@@ -177,13 +179,32 @@ def select_category(page: Page, domain: str, sub: str) -> str:
     page.wait_for_selector("#category-list [role=option]", timeout=5000)
     options = page.locator("#category-list [role=option]")
     labels = [options.nth(i).get_attribute("aria-label") or "" for i in range(options.count())]
-    for want in (sub, domain):
-        for i, label in enumerate(labels):
-            if want and label.strip().lstrip("-ㄴ ").strip() == want:
-                options.nth(i).click()
-                return label
+    i = pick_category_index(labels, domain, sub)
+    if i >= 0:
+        options.nth(i).click()
+        return labels[i]
     page.keyboard.press("Escape")
     return ""
+
+
+def pick_category_index(labels: list[str], domain: str, sub: str) -> int:
+    """도메인 항목 바로 아래(하위, '-' 로 시작)에서만 세부 카테고리를 찾는다 → 다른 도메인의 같은 이름 오선택 방지.
+    없으면 도메인 자체, 그것도 없으면 -1."""
+    def name(lbl: str) -> str:
+        return lbl.strip().lstrip("-ㄴ ").strip()
+
+    def is_child(lbl: str) -> bool:
+        return lbl.strip().startswith(("-", "ㄴ"))
+
+    for i, lbl in enumerate(labels):
+        if not is_child(lbl) and name(lbl) == domain:
+            for j in range(i + 1, len(labels)):
+                if not is_child(labels[j]):
+                    break
+                if sub and name(labels[j]) == sub:
+                    return j
+            return i
+    return -1
 
 
 INJECT_JS = """html => {
@@ -285,7 +306,16 @@ def shot(page: Page, name: str) -> str:
     return str(path)
 
 
+def pull_latest() -> None:
+    """GitHub Actions 가 만든 초안(drafts/)을 받아오기. 실패해도 로컬 초안으로 진행."""
+    r = subprocess.run(["git", "pull", "--rebase", "--autostash", "-q", "origin", "main"], cwd=ROOT,
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        print("git pull 실패(로컬 초안으로 진행):", (r.stderr or r.stdout)[:200])
+
+
 def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
+    pull_latest()
     drafts = sorted(core.DRAFT_DIR.glob("*.html"))[:limit] if core.DRAFT_DIR.exists() else []
     if not drafts:
         print("발행할 초안이 없습니다:", core.DRAFT_DIR)
@@ -320,19 +350,29 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
                                     "category": post.get("category_selected"), "shot": shot(page, "dry_run")})
                     print(json.dumps(results[-1], ensure_ascii=False))
                     continue
-                url = publish(page, public)
-                url = (find_post_url(post["title"]) if public else "") or url
-                if public and (m := re.search(r"tistory\.com/(\d+)", url)) and not body_ok(url):
-                    # 본문 누락 시 같은 글을 수정 모드로 다시 채워 저장
-                    fill_post(page, {**post, "tags": []}, url=f"https://{BLOG}.tistory.com/manage/newpost/{m.group(1)}?type=post")
+                try:
                     publish(page, public)
-                if post["notion_id"]:  # 노션 상태 Published + 티스토리 주소 기록
-                    core.mark_notion_published(core._notion(), post["notion_id"], url)
+                except PWTimeout:  # 발행은 됐는데 이동 대기만 실패한 경우 → RSS 로 확인
+                    if not (public and find_post_url(post["title"])):
+                        raise
+                # 발행 직후 바로 기록·이동 → 이후 단계가 실패해도 중복 발행되지 않음
                 DONE_DIR.mkdir(parents=True, exist_ok=True)
                 path.rename(DONE_DIR / path.name)
                 results.append({"title": post["title"], "status": "published",
-                                "category": post.get("category_selected"), "url": url})
+                                "category": post.get("category_selected"), "url": ""})
                 _log_publish(results[-1])
+                try:
+                    url = find_post_url(post["title"]) if public else ""  # 비공개 글은 RSS 에 없음 → 주소 없음
+                    results[-1]["url"] = url
+                    if url and (m := re.search(r"tistory\.com/(\d+)", url)) and not body_ok(url):
+                        # 본문 누락 시 같은 글을 수정 모드로 다시 채워 저장
+                        fill_post(page, {**post, "tags": []},
+                                  url=f"https://{BLOG}.tistory.com/manage/newpost/{m.group(1)}?type=post")
+                        publish(page, public)
+                    if post["notion_id"] and url:  # 공개 글만 노션 Published + 실제 주소 (관리 페이지 주소 저장 방지)
+                        core.mark_notion_published(core._notion(), post["notion_id"], url)
+                except Exception as e:
+                    results[-1]["warning"] = f"후처리 실패: {str(e)[:150]}"
             except Exception as e:  # 한 글 실패가 전체를 멈추지 않도록
                 results.append({"title": post["title"], "status": "error", "error": str(e)[:300],
                                 "shot": shot(page, "error")})
@@ -350,6 +390,11 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
 
 
 if __name__ == "__main__":
+    try:  # Windows cp949 콘솔에서 이모지·특수문자 출력 시 발행 도중 죽는 문제 방지
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except AttributeError:
+        pass
     ap = argparse.ArgumentParser()
     ap.add_argument("--login", action="store_true")
     ap.add_argument("--dry-run", action="store_true", help="에디터에 채우고 스크린샷만 (발행 안 함)")

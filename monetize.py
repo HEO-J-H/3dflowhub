@@ -50,7 +50,10 @@ def fetch_tistory_stats(days: int = 30) -> dict:
         for i in range(days):
             day = (date.today() - timedelta(days=i)).isoformat()
             for e in get(f"topEntry?metric=pv&startDate={day}&granularity=day") or []:
-                v = views.setdefault(e["permalink"], {"title": e["title"], "created": e["created"], "views": 0})
+                if not isinstance(e, dict) or not e.get("permalink"):
+                    continue
+                v = views.setdefault(e["permalink"], {"title": e.get("title", ""), "created": e.get("created", ""),
+                                                      "views": 0})
                 v["views"] += e.get("count", 0)
         out["posts"] = views
         ctx.close()

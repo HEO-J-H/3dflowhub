@@ -159,3 +159,40 @@ def test_simhash_detects_same_story_different_outlet():
     b = core.title_simhash("Epic Games releases Unreal Engine 5.8 with new PCG tools")
     c = core.title_simhash("Blender 5.3 beta adds built-in Loop Tools")
     assert core.is_near_duplicate(a, [b]) and not core.is_near_duplicate(c, [a])
+
+
+def test_strategy_survives_malformed_llm_json(tmp_path, monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    monkeypatch.setattr(evolve, "performance_table", lambda: {})
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"prompt_notes": null, "keyword_hints": {"VFX": "houdini"}, '
+                        '"feed_suggestions": ["x"], "lesson": null}')
+    st = evolve.update_strategy({"prompt_notes": [], "keyword_hints": {}, "extra_feeds": {}, "blocked_feeds": [],
+                                 "history": []})
+    assert st["keyword_hints"] == {} and "strategy_updated_at" in st
+
+
+def test_merge_cycle_does_not_hide_both(tmp_path, monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core.register_category("VFX", "A분류")
+    core.register_category("VFX", "B분류")
+    evolve.apply_merge("VFX", "A분류", "B분류")
+    evolve.apply_merge("VFX", "B분류", "A분류")
+    cats = core.load_categories()["VFX"]
+    assert "A분류" in cats and "B분류" not in cats
+
+
+def test_normalize_summary_coerces_shapes():
+    d = core.normalize_summary({"sections": ["본문만"], "category": ["X"], "domain": "?"}, {**ITEM, "hint_domain": "VFX"})
+    assert d["sections"] == [{"heading": "내용", "body": "본문만"}] and d["category"] == "X"
+    assert d["title_ko"] == "Src" and d["domain"] == "VFX"
+
+
+def test_category_index_stays_within_domain():
+    import tistory_publisher as tp
+    labels = ["카테고리 없음", "3D DCC", "- 튜토리얼", "Game Engine", "- 엔진 업데이트", "- 튜토리얼"]
+    assert tp.pick_category_index(labels, "Game Engine", "튜토리얼") == 5
+    assert tp.pick_category_index(labels, "3D DCC", "튜토리얼") == 2
+    assert tp.pick_category_index(labels, "Game Engine", "없는분류") == 3
+    assert tp.pick_category_index(labels, "VFX", "x") == -1

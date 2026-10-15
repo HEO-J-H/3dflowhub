@@ -89,10 +89,13 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def _as_list(v) -> list:
+    return v if isinstance(v, list) else []
+
+
 def feed_ok(url: str, min_entries: int = 3) -> bool:
     try:
-        d = feedparser.parse(url, request_headers=core.HTTP_HEADERS)
-        return len(d.entries) >= min_entries
+        return len(core.fetch_feed(url).entries) >= min_entries
     except Exception:
         return False
 
@@ -106,6 +109,8 @@ def update_strategy(strategy: dict) -> dict:
     for url, empty in mem.get("feed_health", {}).items():
         if empty >= BLOCK_AFTER_EMPTY and url not in strategy["blocked_feeds"]:
             strategy["blocked_feeds"].append(url)
+            for d, urls in strategy["extra_feeds"].items():  # 자동 추가 피드 자리 반납
+                strategy["extra_feeds"][d] = [u for u in urls if core.normalize_feed_url(u) != core.normalize_feed_url(url)]
             changes.append(f"피드 차단: {url}")
 
     # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습
@@ -142,28 +147,38 @@ def update_strategy(strategy: dict) -> dict:
         'match what performed well},\n'
         ' "feed_suggestions": up to 3 [{"domain": ..., "url": real RSS/Atom URL of a reputable source}]'
     )
-    out = core._parse_json(core.llm(prompt, max_tokens=1200, json_mode=True))
-    notes = [n.strip() for n in out.get("prompt_notes", []) if isinstance(n, str) and n.strip()][:MAX_NOTES]
+    try:
+        out = core._parse_json(core.llm(prompt, max_tokens=1200, json_mode=True))
+    except Exception as e:  # LLM 실패해도 타임스탬프는 갱신 → 매 실행 재시도 폭주 방지
+        log.warning("전략 성찰 LLM 실패: %s", e)
+        out = {}
+    out = out if isinstance(out, dict) else {}
+    notes = [n.strip() for n in _as_list(out.get("prompt_notes")) if isinstance(n, str) and n.strip()][:MAX_NOTES]
     if notes and notes != strategy["prompt_notes"]:
         strategy["prompt_notes"] = notes
         changes.append(f"편집 가이드 {len(notes)}개 갱신")
-    hints = {d: [h for h in v if isinstance(h, str)][:4]
-             for d, v in (out.get("keyword_hints") or {}).items() if d in core.DOMAINS}
+    raw_hints = out.get("keyword_hints") if isinstance(out.get("keyword_hints"), dict) else {}
+    hints = {d: [h for h in v if isinstance(h, str)][:4]  # 문자열이면 한 글자씩 쪼개지므로 리스트만 허용
+             for d, v in raw_hints.items() if d in core.DOMAINS and isinstance(v, list)}
     if hints:
         strategy["keyword_hints"] = {**strategy["keyword_hints"], **hints}
         changes.append("검색 힌트 갱신: " + ", ".join(hints))
 
-    # 4) 새 피드 후보는 실제로 파싱되는 것만 채택 (환각 URL 방지)
-    for sug in out.get("feed_suggestions", [])[:3]:
-        d, url = sug.get("domain"), (sug.get("url") or "").strip()
-        known = set(core.DOMAINS.get(d, {}).get("feeds", [])) | set(strategy["extra_feeds"].get(d, []))
-        if d in core.DOMAINS and url.startswith("http") and url not in known \
-                and url not in strategy["blocked_feeds"] \
+    # 4) 새 피드 후보는 실제로 파싱되는 것만 채택 (환각 URL 방지), URL 정규화로 중복 판별
+    blocked = {core.normalize_feed_url(u) for u in strategy["blocked_feeds"]}
+    for sug in _as_list(out.get("feed_suggestions"))[:3]:
+        if not isinstance(sug, dict):
+            continue
+        d, url = sug.get("domain"), str(sug.get("url") or "").strip()
+        known = {core.normalize_feed_url(u) for u in
+                 core.DOMAINS.get(d, {}).get("feeds", []) + strategy["extra_feeds"].get(d, [])}
+        n = core.normalize_feed_url(url) if url.startswith("http") else ""
+        if d in core.DOMAINS and n and n not in known and n not in blocked \
                 and len(strategy["extra_feeds"].get(d, [])) < MAX_EXTRA_FEEDS and feed_ok(url):
             strategy["extra_feeds"].setdefault(d, []).append(url)
             changes.append(f"피드 추가({d}): {url}")
 
-    lesson = (out.get("lesson") or "").strip()
+    lesson = str(out.get("lesson") or "").strip()
     if lesson:
         mem = core.load_memory()
         mem["lessons"] = (mem.get("lessons", []) + [f"{datetime.now():%Y-%m-%d} [성찰] {lesson}"])[-20:]
@@ -184,19 +199,26 @@ def apply_merge(domain: str, src: str, dst: str, notion=None) -> int:
     if dst not in cats and dst not in core.SEED_CATEGORIES.get(domain, []):
         cats.append(dst)
     merged = mem.setdefault("category_merges", {})  # 시드 카테고리도 병합되면 이후 선택지에서 제외
+    merged.pop(f"{domain}/{dst}", None)  # dst 가 예전에 병합돼 숨겨졌다면 되살림 (A→B 후 B→A 순환 방지)
     merged[f"{domain}/{src}"] = dst
+    for k, v in list(merged.items()):  # 체인 정리: X→src 였던 것은 X→dst
+        if k.startswith(f"{domain}/") and v == src:
+            merged[k] = dst
     counts = mem.setdefault("category_counts", {})
     counts[f"{domain}/{dst}"] = counts.get(f"{domain}/{dst}", 0) + counts.pop(f"{domain}/{src}", 0)
     core._save_json(core.MEMORY_PATH, mem)
     updated = 0
     if notion is not None:
-        res = core._query_db(notion, {"page_size": 50, "filter": {"and": [
-            {"property": "Domain", "select": {"equals": domain}},
-            {"property": "Category", "select": {"equals": src}}]}})
-        for p in res.get("results", []):
-            notion.pages.update(page_id=p["id"], properties={"Category": {"select": {"name": dst}}})
-            updated += 1
-            time.sleep(0.4)  # 노션 3 req/s 제한
+        flt = {"and": [{"property": "Domain", "select": {"equals": domain}},
+                       {"property": "Category", "select": {"equals": src}}]}
+        while True:  # 갱신된 페이지는 필터에서 빠지므로 결과가 없을 때까지 반복 (페이지네이션)
+            res = core._query_db(notion, {"page_size": 50, "filter": flt})
+            for p in res.get("results", []):
+                notion.pages.update(page_id=p["id"], properties={"Category": {"select": {"name": dst}}})
+                updated += 1
+                time.sleep(0.4)  # 노션 3 req/s 제한
+            if not res.get("results") or updated >= 500:
+                break
     return updated
 
 
@@ -215,18 +237,27 @@ def refine_taxonomy(strategy: dict) -> dict:
         '"splits": [{"domain": ..., "from": broad name, "into": ["specific Korean name", ...]}]} '
         "(max 8 merges, max 4 splits; empty lists if nothing to do)."
     )
-    out = core._parse_json(core.llm(prompt, max_tokens=800, json_mode=True))
+    try:
+        out = core._parse_json(core.llm(prompt, max_tokens=800, json_mode=True))
+    except Exception as e:
+        log.warning("카테고리 정제 LLM 실패: %s", e)
+        out = {}
+    out = out if isinstance(out, dict) else {}
     notion = core._notion()
     done = []
-    for m in out.get("merges", [])[:8]:
-        d, src, dst = m.get("domain"), (m.get("from") or "").strip(), (m.get("to") or "").strip()[:24]
+    for m in _as_list(out.get("merges"))[:8]:
+        if not isinstance(m, dict):
+            continue
+        d, src, dst = m.get("domain"), str(m.get("from") or "").strip(), str(m.get("to") or "").strip()[:24]
         if d in cats and src in cats[d] and dst and dst != src:
             n = apply_merge(d, src, dst, notion)
             done.append(f"{d}: {src} → {dst} (노션 {n}건)")
-    for sp in out.get("splits", [])[:4]:  # 넓은 카테고리 → 구체적 하위 선택지 추가 (기존 글은 그대로)
+    for sp in _as_list(out.get("splits"))[:4]:  # 넓은 카테고리 → 구체적 하위 선택지 추가 (기존 글은 그대로)
+        if not isinstance(sp, dict):
+            continue
         d = sp.get("domain")
         if d in cats and sp.get("from") in cats[d]:
-            added = [core.register_new_option(d, n) for n in sp.get("into", [])[:4] if isinstance(n, str)]
+            added = [core.register_new_option(d, n) for n in _as_list(sp.get("into"))[:4] if isinstance(n, str)]
             if any(added):
                 done.append(f"{d}: {sp['from']} ⇒ {', '.join(a for a in added if a)}")
     strategy["taxonomy_updated_at"] = _now()

@@ -80,7 +80,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 ROOT = Path(__file__).parent
 MEMORY_PATH = ROOT / "memory" / "memory.json"
 PUBLISHED_LOG = ROOT / "memory" / "published.json"
-DRAFT_DIR = ROOT / "output" / "tistory_drafts"
+DRAFT_DIR = ROOT / "drafts"  # 깃에 커밋됨 → CI 에서 만든 초안도 이 PC 발행기로 전달
 
 # GitHub Models 는 2026-07-30 서비스 종료 → OpenAI 호환 무료 API 사용 (기본: Google Gemini 무료 티어)
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
@@ -297,6 +297,20 @@ def fetch_article_text(url: str, limit: int = 4000) -> str:
     return fetch_article(url, limit)[0]
 
 
+def fetch_feed(url: str, timeout: int = 15):
+    """타임아웃 있는 피드 파싱 (feedparser 단독 호출은 무한 대기 가능)."""
+    r = requests.get(url, headers=HTTP_HEADERS, timeout=timeout)
+    return feedparser.parse(r.content)
+
+
+def normalize_feed_url(url: str) -> str:
+    """피드 중복 비교용 (호스트 소문자, www 제거, 끝 / 제거, 'en-us' 같은 로케일 경로 제거)."""
+    p = urlparse(url.strip())
+    host = p.netloc.lower().removeprefix("www.")
+    path = re.sub(r"^/[a-z]{2}-[a-z]{2}(?=/)", "", p.path.lower()).rstrip("/")
+    return f"{host}{path}" + (f"?{p.query}" if p.query else "")
+
+
 SIMHASH_DISTANCE = 4  # 해밍 거리 ≤4 → 같은 기사로 간주
 
 
@@ -341,12 +355,14 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     known_hashes: list[int] = list(load_memory().get("title_hashes", []))
     for d in domains:
         strategy = load_strategy()
-        blocked = set(strategy.get("blocked_feeds", []))
-        feeds = DOMAINS[d]["feeds"] + strategy.get("extra_feeds", {}).get(d, [])
-        sources = [f for f in dict.fromkeys(feeds) if f not in blocked] + [_google_news_rss(k) for k in keywords[d]]
+        blocked = {normalize_feed_url(u) for u in strategy.get("blocked_feeds", [])}
+        feeds = {}
+        for f in DOMAINS[d]["feeds"] + strategy.get("extra_feeds", {}).get(d, []):
+            feeds.setdefault(normalize_feed_url(f), f)  # 같은 피드의 다른 표기 중복 제거
+        sources = [f for n, f in feeds.items() if n not in blocked] + [_google_news_rss(k) for k in keywords[d]]
         for src in sources:
             try:
-                feed = feedparser.parse(src, request_headers=HTTP_HEADERS)
+                feed = fetch_feed(src)
             except Exception as e:
                 log.warning("피드 실패 %s: %s", src, e)
                 continue
@@ -438,6 +454,30 @@ def register_category(domain: str, category: str) -> str:
     return category
 
 
+def normalize_summary(data: dict, item: dict) -> dict:
+    """LLM JSON 형태 보정 — 누락/형식 오류로 노션 저장이 실패하지 않도록."""
+    data = data if isinstance(data, dict) else {}
+    sections = []
+    for s in data.get("sections") or []:
+        if isinstance(s, dict) and (s.get("heading") or s.get("body")):
+            sections.append({"heading": str(s.get("heading") or "").strip() or "내용",
+                             "body": str(s.get("body") or "").strip()})
+        elif isinstance(s, str) and s.strip():
+            sections.append({"heading": "내용", "body": s.strip()})
+    data["sections"] = sections
+    for key in ("title_ko", "summary", "insight"):
+        if not isinstance(data.get(key), str):
+            data[key] = "" if key != "title_ko" else ""
+    data["title_ko"] = data["title_ko"].strip() or item["title"]
+    if data.get("domain") not in DOMAINS:
+        data["domain"] = item["hint_domain"]
+    cat = data.get("category")
+    data["category"] = cat if isinstance(cat, str) else (cat[0] if isinstance(cat, list) and cat
+                                                          and isinstance(cat[0], str) else "")
+    data["faq"] = [f for f in data.get("faq") or [] if isinstance(f, dict)]
+    return data
+
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
@@ -473,13 +513,12 @@ def summarize(item: dict) -> dict | None:
         log.warning("요약 실패 %s: %s", item["url"], e)
         RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
         return None
-    if not data.get("sections"):
+    data = normalize_summary(data, item)
+    if not data["sections"]:
         log.warning("LLM 응답에 sections 없음: %s", item["url"])
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
-    if data.get("domain") not in DOMAINS:
-        data["domain"] = item["hint_domain"]
-    data["category"] = register_category(data["domain"], data.get("category", ""))
+    data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")
     if isinstance(tags, str):
         data["tags"] = [t.strip() for t in tags.split(",") if t.strip()]
@@ -915,8 +954,9 @@ def run_from_config(force: bool = False) -> dict | None:
     if not force and not should_run(cfg, state):
         log.info("주기(%s) 미도달 — 건너뜀", cfg["interval"])
         return None
-    stats = run_pipeline(cfg["max_items"], cfg["domains"], cfg["publish"])
     state["last_run"] = datetime.now(timezone.utc).isoformat()
+    _save_json(STATE_PATH, state)  # 실패해도 10분마다 재시도 폭주하지 않도록 먼저 기록
+    stats = run_pipeline(cfg["max_items"], cfg["domains"], cfg["publish"])
     send_report_email(cfg, state, stats)
     _save_json(STATE_PATH, state)
     return stats

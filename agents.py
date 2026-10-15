@@ -65,7 +65,7 @@ def next_task() -> str | None:
 def propose_tasks(max_tasks: int = 3) -> list[str]:
     """할 일이 없으면 성찰 기록(교훈·오류·전략 이력)을 바탕으로 다음 개선 과제를 스스로 만든다."""
     mem, strategy = core.load_memory(), core.load_strategy()
-    done = [l[len("- [x] (agent) "):] for l in TODO.read_text(encoding="utf-8").splitlines()
+    done = [re.sub(r"^- \[[x ]\] \(agent(:보류)?\) ", "", l) for l in TODO.read_text(encoding="utf-8").splitlines()
             if l.startswith("- [x] (agent)") or l.startswith("- [ ] (agent:보류)")]
     prompt = (
         "You are the planning agent of a self-improving Python repo (news curation → Notion → Tistory).\n"
@@ -158,22 +158,32 @@ def judge(task: str, review: dict, qa_result: dict) -> dict:
 
 
 # ─────────────────────────── PR / 머지 ───────────────────────────
-def open_and_merge_pr(task: str, body: str) -> str:
+def open_and_merge_pr(task: str, body: str) -> tuple[bool, str]:
+    """코드 + TODO 만 담은 브랜치로 PR 생성·자동 머지. 어떤 경우에도 main 으로 돌아온다.
+    (memory/ 는 PR 에 넣지 않음 → 수집 워크플로의 잦은 memory 커밋과 충돌하지 않음)"""
     token = os.getenv("GITHUB_TOKEN")
     branch = f"agent/{datetime.now(timezone.utc):%Y%m%d-%H%M%S}"
-    sh("git", "checkout", "-b", branch)
-    sh("git", "add", "-A")
-    sh("git", "commit", "-m", f"agent: {task[:60]}")
-    if not token:
-        return f"(로컬 실행) 브랜치 {branch} 에 커밋만 생성"
-    sh("git", "push", "origin", branch)
-    h = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
-    pr = requests.post(f"{GH_API}/pulls", headers=h, timeout=30,
-                       json={"title": f"agent: {task[:60]}", "head": branch, "base": "main", "body": body}).json()
-    if "number" not in pr:
-        return f"PR 생성 실패: {pr}"
-    m = requests.put(f"{GH_API}/pulls/{pr['number']}/merge", headers=h, timeout=30, json={"merge_method": "squash"})
-    return f"PR #{pr['number']} {'머지 완료' if m.ok else '머지 실패: ' + m.text[:200]}"
+    try:
+        sh("git", "checkout", "-b", branch)
+        sh("git", "add", *sorted(EDITABLE), "TODO.md")
+        sh("git", "commit", "-m", f"agent: {task[:60]}")
+        if not token:
+            return True, f"(로컬 실행) 브랜치 {branch} 에 커밋만 생성"
+        sh("git", "push", "origin", branch)
+        h = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
+        pr = requests.post(f"{GH_API}/pulls", headers=h, timeout=30,
+                           json={"title": f"agent: {task[:60]}", "head": branch, "base": "main", "body": body}).json()
+        if "number" not in pr:
+            return False, f"PR 생성 실패: {str(pr)[:200]}"
+        m = requests.put(f"{GH_API}/pulls/{pr['number']}/merge", headers=h, timeout=30,
+                         json={"merge_method": "squash"})
+        if m.ok:
+            requests.delete(f"{GH_API}/git/refs/heads/{branch}", headers=h, timeout=30)  # 브랜치 정리
+        return m.ok, f"PR #{pr['number']} {'머지 완료' if m.ok else '머지 실패: ' + m.text[:200]}"
+    except subprocess.CalledProcessError as e:
+        return False, f"git 실패: {(e.stderr or e.stdout or '')[:200]}"
+    finally:
+        sh("git", "checkout", "-f", "main", check=False)
 
 
 # ─────────────────────────── 메인 루프 ───────────────────────────
@@ -205,18 +215,19 @@ def main() -> None:
             break
         feedback = f"review issues: {review.get('issues')} / judge: {verdict['feedback']}"
 
-    mem = core.load_memory()
     lesson = verdict.get("lesson") or (verdict["feedback"][:120] if verdict["feedback"] else "")
-    mem["lessons"] = (mem.get("lessons", []) + [f"{datetime.now():%Y-%m-%d} [{task[:40]}] {lesson}"])[-20:]
+    merged, msg = False, ""
     if verdict["approve"]:
-        mark_task(task, True, "")
-        core._save_json(core.MEMORY_PATH, mem)
-        print(open_and_merge_pr(task, "\n".join(["4-에이전트 자동 작업", "", *log])))
-    else:
-        sh("git", "checkout", "--", *EDITABLE, check=False)
-        mark_task(task, False, log[-1] if log else "실패")
-        core._save_json(core.MEMORY_PATH, mem)
-        print("최대 반복 도달 — 보류 처리:\n" + "\n".join(log))
+        mark_task(task, True, "")  # PR 에 완료 표시 포함 → 머지되면 main 에 반영
+        merged, msg = open_and_merge_pr(task, "\n".join(["4-에이전트 자동 작업", "", *log]))
+        print(msg)
+    sh("git", "checkout", "--", *EDITABLE, "TODO.md", check=False)
+    if not merged:  # 반려·PR 실패 → main 에서 보류 표시 (같은 작업 무한 반복 방지)
+        mark_task(task, False, msg or (log[-1] if log else "실패"))
+        print("보류 처리:\n" + "\n".join(log))
+    mem = core.load_memory()  # 교훈은 main 의 memory 에 기록 (워크플로 마지막 단계가 커밋)
+    mem["lessons"] = (mem.get("lessons", []) + [f"{datetime.now():%Y-%m-%d} [{task[:40]}] {lesson}"])[-20:]
+    core._save_json(core.MEMORY_PATH, mem)
 
 
 if __name__ == "__main__":
