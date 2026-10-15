@@ -28,7 +28,7 @@ import core
 ROOT = Path(__file__).parent
 TODO = ROOT / "TODO.md"
 MAX_ITERATIONS = 3
-EDITABLE = {"core.py", "app.py", "tests/test_core.py"}  # 에이전트가 수정 가능한 파일 (워크플로/에이전트 자신은 보호)
+EDITABLE = {"core.py", "app.py", "evolve.py", "tests/test_core.py"}  # 에이전트가 수정 가능한 파일 (워크플로/에이전트 자신은 보호)
 DANGEROUS = re.compile(r"\b(eval|exec|os\.system|subprocess|pickle\.loads|__import__|shell=True)\b")
 SECRET = re.compile(r"(ntn_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}|AQ\.[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{30,})")
 GH_API = f"https://api.github.com/repos/{os.getenv('GITHUB_REPOSITORY', 'HEO-J-H/3dflowhub')}"
@@ -60,6 +60,30 @@ def next_task() -> str | None:
         if line.startswith("- [ ] (agent)"):
             return line[len("- [ ] (agent)"):].strip()
     return None
+
+
+def propose_tasks(max_tasks: int = 3) -> list[str]:
+    """할 일이 없으면 성찰 기록(교훈·오류·전략 이력)을 바탕으로 다음 개선 과제를 스스로 만든다."""
+    mem, strategy = core.load_memory(), core.load_strategy()
+    done = [l[len("- [x] (agent) "):] for l in TODO.read_text(encoding="utf-8").splitlines()
+            if l.startswith("- [x] (agent)") or l.startswith("- [ ] (agent:보류)")]
+    prompt = (
+        "You are the planning agent of a self-improving Python repo (news curation → Notion → Tistory).\n"
+        f"Editable files: {sorted(EDITABLE)}\n"
+        f"Recent lessons: {mem.get('lessons', [])[-8:]}\n"
+        f"Recent run errors: {[r.get('errors') for r in mem.get('runs', [])[-5:]]}\n"
+        f"Strategy history: {strategy.get('history', [])[-5:]}\n"
+        f"Already done or deferred (do not repeat): {done[-15:]}\n"
+        f"Propose up to {max_tasks} SMALL, concrete, testable code tasks (one function each, add a pytest test). "
+        "Prefer robustness, data quality, category specificity, and tests. No new dependencies, no network in tests.\n"
+        'Return JSON {"tasks": ["<function>(): <what to change> 및 테스트 추가", ...]} in Korean.'
+    )
+    tasks = [t.strip().replace("\n", " ")[:160] for t in ask_json("You are a careful tech lead.", prompt, 800)
+             .get("tasks", []) if isinstance(t, str) and t.strip()][:max_tasks]
+    if tasks:
+        with TODO.open("a", encoding="utf-8") as f:
+            f.write("".join(f"\n- [ ] (agent) {t}" for t in tasks))
+    return tasks
 
 
 def mark_task(task: str, ok: bool, note: str) -> None:
@@ -153,6 +177,9 @@ def open_and_merge_pr(task: str, body: str) -> str:
 # ─────────────────────────── 메인 루프 ───────────────────────────
 def main() -> None:
     task = next_task()
+    if not task:  # 자율 성장: 할 일이 바닥나면 다음 과제를 스스로 계획
+        print("새 과제 계획:", propose_tasks())
+        task = next_task()
     if not task:
         print("TODO.md 에 (agent) 작업이 없습니다.")
         return

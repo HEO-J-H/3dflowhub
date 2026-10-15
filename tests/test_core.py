@@ -105,3 +105,26 @@ def test_draft_header_roundtrip(tmp_path, monkeypatch):
     assert post["title"] == "제목" and post["tags"] == ["a"]
     assert post["category"] == ("VFX", "제작 사례") and post["notion_id"] == "abc123"
     assert post["html"] == "<p>x</p>"
+
+
+def test_merge_removes_seed_and_moves_counts(tmp_path, monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core.register_category("VFX", "시뮬레이션")
+    core.register_category("VFX", "Houdini 시뮬레이션")
+    evolve.apply_merge("VFX", "시뮬레이션", "Houdini 시뮬레이션")
+    cats = core.load_categories()["VFX"]
+    assert "시뮬레이션" not in cats and "Houdini 시뮬레이션" in cats
+    assert core.load_memory()["category_counts"]["VFX/Houdini 시뮬레이션"] == 2
+
+
+def test_strategy_blocks_dead_feed_and_rejects_bad_suggestion(tmp_path, monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core._save_json(core.MEMORY_PATH, {"runs": [], "feed_health": {"https://dead/feed": 3}})
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"lesson": "x", "prompt_notes": ["n1"], '
+                        '"keyword_hints": {"VFX": ["houdini"]}, "feed_suggestions": [{"domain": "VFX", "url": "https://fake"}]}')
+    monkeypatch.setattr(evolve, "feed_ok", lambda url, **k: False)
+    st = evolve.update_strategy({"prompt_notes": [], "keyword_hints": {}, "extra_feeds": {}, "blocked_feeds": [], "history": []})
+    assert "https://dead/feed" in st["blocked_feeds"] and st["prompt_notes"] == ["n1"]
+    assert st["keyword_hints"]["VFX"] == ["houdini"] and not st["extra_feeds"]

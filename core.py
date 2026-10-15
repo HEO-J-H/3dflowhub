@@ -138,8 +138,18 @@ SEED_CATEGORIES: dict[str, list[str]] = {
     "VFX": ["시뮬레이션", "컴포지팅", "모션그래픽", "제작 사례"],
     "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
 }
-MAX_CATEGORIES_PER_DOMAIN = 10  # 카테고리 난립 방지
+MAX_CATEGORIES_PER_DOMAIN = 40  # 세부 카테고리 상한 (정리는 evolve.refine_taxonomy 가 주기적으로 병합)
 MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
+
+
+STRATEGY_PATH = Path(__file__).parent / "memory" / "strategy.json"  # [5] 자동 업데이트되는 수집·요약 전략
+LAST_KEYWORDS: dict[str, list[str]] = {}  # 이번 실행에 사용한 검색 키워드
+FEED_STATS: dict[str, int] = {}  # 이번 실행의 피드별 항목 수 (피드 건강도)
+
+
+def load_strategy() -> dict:
+    return _load_json(STRATEGY_PATH, {"prompt_notes": [], "keyword_hints": {}, "extra_feeds": {},
+                                      "blocked_feeds": [], "history": []})
 
 
 # ─────────────────────────── 유틸 / 메모리 ───────────────────────────
@@ -204,16 +214,19 @@ def _parse_json(text: str) -> dict:
 def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
     """memory.json 의 성공/실패 키워드를 컨텍스트로 주입해 키워드를 조합."""
     mem = load_memory()
+    hints = load_strategy().get("keyword_hints", {})
     result: dict[str, list[str]] = {}
     for d in domains:
         seeds = DOMAINS[d]["seeds"]
         prompt = (
             f"Domain: {d}\nSeed terms: {', '.join(seeds)}\n"
+            f"Strategy hints (from self-reflection): {', '.join(hints.get(d, [])) or 'none'}\n"
             f"Keywords that worked before: {', '.join(mem['good_keywords'][-10:]) or 'none'}\n"
             f"Keywords that failed: {', '.join(mem['bad_keywords'][-10:]) or 'none'}\n"
             f"Today: {datetime.now():%Y-%m-%d}\n"
-            f"Return JSON {{\"keywords\": [...]}} with {per_domain} English search queries "
-            f"for the latest news or tutorials in this domain."
+            f"Return JSON {{\"keywords\": [...]}} with {per_domain} SHORT English news search queries "
+            f"(2-4 words each, no years, no 'tutorial/updates' filler — e.g. 'Houdini 21', 'Gaussian splatting') "
+            f"for the latest news in this domain."
         )
         try:
             kws = _parse_json(llm(prompt, max_tokens=150, json_mode=True)).get("keywords", [])
@@ -221,6 +234,8 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
             log.warning("키워드 생성 실패(%s) → 시드 사용: %s", d, e)
             kws = []
         result[d] = [k for k in kws if isinstance(k, str)][:per_domain] or seeds[:per_domain]
+    LAST_KEYWORDS.clear()
+    LAST_KEYWORDS.update(result)
     return result
 
 
@@ -286,14 +301,19 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     keywords = generate_keywords(domains)
     candidates: list[dict] = []
     for d in domains:
-        sources = DOMAINS[d]["feeds"] + [_google_news_rss(k) for k in keywords[d]]
+        strategy = load_strategy()
+        blocked = set(strategy.get("blocked_feeds", []))
+        feeds = DOMAINS[d]["feeds"] + strategy.get("extra_feeds", {}).get(d, [])
+        sources = [f for f in dict.fromkeys(feeds) if f not in blocked] + [_google_news_rss(k) for k in keywords[d]]
         for src in sources:
             try:
                 feed = feedparser.parse(src, request_headers=HTTP_HEADERS)
             except Exception as e:
                 log.warning("피드 실패 %s: %s", src, e)
                 continue
-            if not feed.entries:
+            if "news.google.com" not in src:
+                FEED_STATS[src] = len(feed.entries)
+            if not feed.entries and "news.google.com" not in src:  # 구글 뉴스 검색 0건은 정상(키워드 탓) → 오류 아님
                 RUN_ERRORS.append(f"empty feed: {src}")
             for e in feed.entries[:10]:
                 link = e.get("link", "")
@@ -330,23 +350,48 @@ RUN_ERRORS: list[str] = []  # 이번 실행의 실패 사유 (memory.json 에 �
 
 
 def load_categories() -> dict[str, list[str]]:
-    saved = load_memory().get("categories", {})
-    return {d: list(dict.fromkeys(SEED_CATEGORIES.get(d, []) + saved.get(d, []))) for d in DOMAINS}
+    mem = load_memory()
+    saved, merged = mem.get("categories", {}), mem.get("category_merges", {})
+    return {d: [c for c in dict.fromkeys(SEED_CATEGORIES.get(d, []) + saved.get(d, []))
+                if f"{d}/{c}" not in merged] for d in DOMAINS}
+
+
+def _count_category(domain: str, category: str) -> None:
+    mem = load_memory()
+    counts = mem.setdefault("category_counts", {})
+    counts[f"{domain}/{category}"] = counts.get(f"{domain}/{category}", 0) + 1
+    _save_json(MEMORY_PATH, mem)
+
+
+def register_new_option(domain: str, category: str) -> str:
+    """사용 횟수 없이 카테고리 선택지만 추가 (taxonomy split 용). 추가된 이름, 이미 있거나 실패 시 ""."""
+    category = re.sub(r"[/|<>,]", "·", (category or "").strip())
+    cats = load_categories().get(domain, [])
+    if len(category) > 24:  # 잘린 이름 방지: 길면 추가하지 않음
+        return ""
+    if not category or category in cats or len(cats) >= MAX_CATEGORIES_PER_DOMAIN:
+        return ""
+    mem = load_memory()
+    mem.setdefault("categories", {}).setdefault(domain, []).append(category)
+    _save_json(MEMORY_PATH, mem)
+    return category
 
 
 def register_category(domain: str, category: str) -> str:
     """세부 카테고리 확정. 새 이름이면 memory.json 에 추가 (도메인당 최대 개수 초과 시 첫 카테고리로 대체)."""
-    category = re.sub(r"[/|<>,]", "·", (category or "").strip())[:15]
+    category = re.sub(r"[/|<>,]", "·", (category or "").strip())[:24]
     cats = load_categories()[domain]
     if not category:
         return cats[0]
     if category in cats:
+        _count_category(domain, category)
         return category
     if len(cats) >= MAX_CATEGORIES_PER_DOMAIN:
         return cats[0]
     mem = load_memory()
     mem.setdefault("categories", {}).setdefault(domain, []).append(category)
     _save_json(MEMORY_PATH, mem)
+    _count_category(domain, category)
     log.info("새 카테고리 추가: %s / %s", domain, category)
     return category
 
@@ -365,16 +410,19 @@ def summarize(item: dict) -> dict | None:
         "Return JSON with keys:\n"
         ' "title_ko": catchy Korean title (<=60 chars),\n'
         ' "domain": one of ["3D DCC","Game Engine","VFX","AI 3D"],\n'
-        ' "category": best matching existing category of that domain; only if none fits, '
-        'a new short Korean category name (<=10 chars),\n'
+        ' "category": the most SPECIFIC fitting sub-category (tool / technique / product level, e.g. '
+        '"Houdini 시뮬레이션", "가우시안 스플래팅", "언리얼 PCG", "Blender 지오메트리 노드"). Reuse an existing one '
+        'only if it truly matches; if existing ones are too broad, create a new specific Korean name (<=14 chars),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
         ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
         'how to apply it in practice, who should care. Do not restate the article,\n'
         ' "sections": list of 3-5 objects {"heading": str, "body": str} in Korean (each body 2-4 sentences)'
     )
+    notes = load_strategy().get("prompt_notes", [])
+    system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
     try:
-        data = _parse_json(llm(prompt, system=SUMMARY_SYSTEM, max_tokens=1200, json_mode=True))
+        data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))
     except Exception as e:
         log.warning("요약 실패 %s: %s", item["url"], e)
         RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
@@ -701,6 +749,9 @@ def reflect(stats: dict, keywords_used: list[str]) -> None:
     mem["runs"] = (mem["runs"] + [stats])[-50:]
     target = "good_keywords" if stats["saved"] > 0 else "bad_keywords"
     mem[target] = list(dict.fromkeys(mem[target] + keywords_used))[-30:]
+    health = mem.setdefault("feed_health", {})  # 피드별 연속 0건 횟수 → evolve 가 차단 판단
+    for url, n in FEED_STATS.items():
+        health[url] = 0 if n else health.get(url, 0) + 1
     if stats["publish_errors"]:
         mem["lessons"] = (mem["lessons"] + [f"{stats['at']}: 발행 실패 {stats['publish_errors']}건"])[-20:]
     _save_json(MEMORY_PATH, mem)
@@ -839,13 +890,17 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
                     stats["published"] += 1
                     mark_notion_published(notion, page_id, res["url"])
                 elif res["status"] == "draft_file":
-                    stats["drafts"] += 1
-                    stats["publish_errors"] += 1
+                    stats["drafts"] += 1  # 초안 저장은 정상 경로 (브라우저 발행 대기)
         except Exception as e:  # 한 건의 실패가 전체를 죽이지 않도록
             log.exception("아이템 처리 실패 %s: %s", raw.get("url"), e)
 
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
-    reflect(stats, [raw["title"][:40] for raw in items[:5]])
+    reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
+    try:  # [4]→[5] 자아 성찰 후 전략·카테고리 체계 자동 업데이트
+        import evolve
+        evolve.evolve(stats)
+    except Exception as e:
+        log.warning("evolve 실패(다음 실행에 재시도): %s", e)
     log.info("완료: %s", stats)
     return stats
 
