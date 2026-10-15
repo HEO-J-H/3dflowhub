@@ -255,8 +255,7 @@ SUMMARY_SYSTEM = (
 def summarize(item: dict) -> dict | None:
     body = fetch_article_text(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
-        body = f"{item['title']}
-{item['rss_summary']}"
+        body = f"{item['title']}\n{item['rss_summary']}"
     if len(body) < 80:
         log.info("본문 부족으로 건너뜀: %s", item["url"])
         return None
