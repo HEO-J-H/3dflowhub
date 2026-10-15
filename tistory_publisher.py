@@ -186,20 +186,59 @@ def select_category(page: Page, domain: str, sub: str) -> str:
     return ""
 
 
-def fill_post(page: Page, post: dict) -> None:
-    page.goto(NEWPOST, wait_until="domcontentloaded")
+INJECT_JS = """html => {
+  // 기본모드(TinyMCE)와 HTML모드(CodeMirror) 양쪽에 본문을 넣어 어느 모드로 저장돼도 내용이 유지되게 한다
+  if (window.tinymce && tinymce.activeEditor) {
+    tinymce.activeEditor.setContent(html);
+    tinymce.activeEditor.save();
+    tinymce.activeEditor.fire('change');
+  }
+  for (const cm of document.querySelectorAll('.CodeMirror')) {  // HTML/마크다운 모드 편집기가 여러 개일 수 있음
+    if (cm.CodeMirror && cm.offsetParent !== null) cm.CodeMirror.setValue(html);
+  }
+  return window.tinymce && tinymce.activeEditor ? tinymce.activeEditor.getContent().length : -1;
+}"""
+
+
+def _set_body(page: Page, html_body: str) -> int:
+    """본문 주입 후 실제 키 입력으로 에디터 변경 이벤트를 발생시켜 저장 대상에 반영."""
+    cm = page.locator(".CodeMirror:visible").first
+    if not cm.count():
+        page.click(SELECTORS["mode_btn"])
+        page.click(SELECTORS["mode_html"])
+        page.wait_for_selector(".CodeMirror:visible", timeout=10000)
+    page.evaluate(INJECT_JS, html_body)
+    page.locator(".CodeMirror:visible").first.click()
+    page.keyboard.press("Control+End")
+    page.keyboard.type(" ")
+    page.keyboard.press("Backspace")
+    return page.evaluate("() => window.tinymce && tinymce.activeEditor ? tinymce.activeEditor.getContent().length : -1")
+
+
+def repair(post_no: int, draft: Path, public: bool = True) -> dict:
+    """본문이 비어 발행된 글을 초안 내용으로 다시 채워 수정 발행."""
+    post = parse_draft(draft)
+    post["tags"] = []  # 기존 태그 유지 (중복 입력 방지)
+    with sync_playwright() as p:
+        ctx = _launch(p, headless=True)
+        page = ctx.pages[0] if ctx.pages else ctx.new_page()
+        page.on("dialog", lambda d: d.accept())
+        fill_post(page, post, url=f"https://{BLOG}.tistory.com/manage/newpost/{post_no}?type=post")
+        publish(page, public)
+        ctx.close()
+    return {"post": post_no, "title": post["title"], "body_len": post["body_len"]}
+
+
+def fill_post(page: Page, post: dict, url: str = NEWPOST) -> None:
+    page.goto(url, wait_until="domcontentloaded")
     page.wait_for_selector(SELECTORS["title"], timeout=20000)
     # 이전 임시저장 글 이어쓰기 팝업이 뜨면 '취소'
     try:
         page.get_by_role("button", name="취소").click(timeout=2000)
     except PWTimeout:
         pass
-
-    # HTML 모드로 전환 후 CodeMirror 에 본문 주입
-    page.click(SELECTORS["mode_btn"])
-    page.click(SELECTORS["mode_html"])
-    page.wait_for_selector(".CodeMirror", timeout=10000)
-    page.evaluate("html => document.querySelector('.CodeMirror').CodeMirror.setValue(html)", post["html"])
+    page.wait_for_timeout(1500)
+    post["body_len"] = _set_body(page, post["html"])
 
     page.fill(SELECTORS["title"], post["title"])
     post["category_selected"] = select_category(page, *post["category"]) if any(post["category"]) else ""
@@ -215,6 +254,17 @@ def publish(page: Page, public: bool) -> str:
     page.click(SELECTORS["publish"])
     page.wait_for_url(re.compile(r"/manage/posts"), timeout=30000)
     return page.url
+
+
+def body_ok(url: str) -> bool:
+    """공개 글 페이지에 본문(원문 링크 문구)이 실제로 저장됐는지 확인."""
+    import html as _html
+    import requests
+    try:
+        h = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15).content.decode("utf-8", "ignore")
+        return "원문:" in _html.unescape(h).replace(" ", " ")
+    except Exception:
+        return False
 
 
 def find_post_url(title: str, tries: int = 3) -> str:
@@ -272,6 +322,10 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
                     continue
                 url = publish(page, public)
                 url = (find_post_url(post["title"]) if public else "") or url
+                if public and (m := re.search(r"tistory\.com/(\d+)", url)) and not body_ok(url):
+                    # 본문 누락 시 같은 글을 수정 모드로 다시 채워 저장
+                    fill_post(page, {**post, "tags": []}, url=f"https://{BLOG}.tistory.com/manage/newpost/{m.group(1)}?type=post")
+                    publish(page, public)
                 if post["notion_id"]:  # 노션 상태 Published + 티스토리 주소 기록
                     core.mark_notion_published(core._notion(), post["notion_id"], url)
                 DONE_DIR.mkdir(parents=True, exist_ok=True)
