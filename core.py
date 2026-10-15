@@ -154,9 +154,13 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
     }
     if json_mode:
         body["response_format"] = {"type": "json_object"}
-    r = requests.post(LLM_ENDPOINT, json=body, timeout=60,
-                      headers={"Authorization": f"Bearer {GITHUB_TOKEN}", "Content-Type": "application/json"})
-    r.raise_for_status()
+    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Content-Type": "application/json"}
+    r = requests.post(LLM_ENDPOINT, json=body, timeout=60, headers=headers)
+    if r.status_code == 400 and json_mode:  # JSON 모드 미지원 모델이면 일반 모드로 재시도
+        body.pop("response_format", None)
+        r = requests.post(LLM_ENDPOINT, json=body, timeout=60, headers=headers)
+    if not r.ok:
+        raise RuntimeError(f"GitHub Models {r.status_code}: {r.text[:300]}")
     return r.json()["choices"][0]["message"]["content"].strip()
 
 
@@ -249,8 +253,12 @@ SUMMARY_SYSTEM = (
 
 
 def summarize(item: dict) -> dict | None:
-    body = fetch_article_text(item["url"]) or item["rss_summary"]
-    if len(body) < 200:
+    body = fetch_article_text(item["url"])
+    if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
+        body = f"{item['title']}
+{item['rss_summary']}"
+    if len(body) < 80:
+        log.info("본문 부족으로 건너뜀: %s", item["url"])
         return None
     prompt = (
         f"Title: {item['title']}\nURL: {item['url']}\nContent:\n{body}\n\n"
@@ -267,6 +275,7 @@ def summarize(item: dict) -> dict | None:
         log.warning("요약 실패 %s: %s", item["url"], e)
         return None
     if not data.get("sections"):
+        log.warning("LLM 응답에 sections 없음: %s", item["url"])
         return None
     if data.get("domain") not in DOMAINS:
         data["domain"] = item["hint_domain"]
