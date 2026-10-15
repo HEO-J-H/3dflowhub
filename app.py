@@ -205,6 +205,30 @@ with t_auto:
     else:
         st.info("실행 기록을 불러오지 못했습니다.")
 
+    st.subheader("🧬 자율 진화 현황 (strategy.json)")
+    try:
+        strat = requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/strategy.json", timeout=10).json()
+    except Exception:
+        strat = core.load_strategy()
+    s1, s2 = st.columns(2)
+    with s1:
+        st.markdown("**AI가 스스로 만든 편집 가이드**")
+        for n in strat.get("prompt_notes", []):
+            st.markdown(f"- {n}")
+        st.markdown("**자동 추가된 피드**")
+        for d, urls in strat.get("extra_feeds", {}).items():
+            for u in urls:
+                st.markdown(f"- {d}: {u}")
+        if strat.get("blocked_feeds"):
+            st.caption("차단된 피드: " + ", ".join(strat["blocked_feeds"]))
+    with s2:
+        st.markdown("**변경 이력**")
+        for h in reversed(strat.get("history", [])[-8:]):
+            st.markdown(f"- `{h.get('at', '')[:16]}` {h.get('lesson', '')} "
+                        f"{'; '.join(h.get('changes', []) + h.get('taxonomy_merges', []))}")
+    st.markdown("**현재 세부 카테고리**")
+    st.json(core.load_categories(), expanded=False)
+
     st.subheader("에이전트 교훈 (memory.json)")
     for l in reversed(mem.get("lessons", [])[-10:]):
         st.markdown(f"- {l}")
