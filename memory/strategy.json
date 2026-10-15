@@ -1,11 +1,11 @@
 {
   "prompt_notes": [
     "제목은 핵심 도구/제품명과 검색 키워드를 앞쪽에 배치하여 25~45자 내외로 작성합니다.",
-    "단순한 정보 요약을 넘어 실무 적용법, 장단점 비교, 전문가 의견 등 독창적 가치를 추가합니다.",
+    "단순한 정보 요약을 넘어 실무 적용법, 가격/성능 비교, 전문가 의견 등 독창적 가치를 추가합니다.",
     "본문 분량은 1,500자 이상을 유지하고, 명확한 소제목 구조와 FAQ를 적용하여 체류 시간을 높입니다.",
-    "소프트웨어 출시, 가격 정책, 하드웨어(GPU), 튜토리얼 등 고단가(CPC) 주제의 비중을 높입니다.",
+    "소프트웨어 가격 정책, 하드웨어(GPU), 튜토리얼 등 고단가(CPC) 주제의 콘텐츠 비중을 집중적으로 높입니다.",
     "블로그 내 관련 카테고리 글의 내부 링크를 적극 삽입하여 방문당 페이지뷰를 극대화합니다.",
-    "기술 용어(Blender, Unreal Engine, Houdini 등)는 원문 그대로 유지하여 검색 정확도와 전문성을 높입니다."
+    "LLM 요약 과정에서 JSON 포맷 오류가 발생하지 않도록 프롬프트의 출력 제약을 엄격히 준수합니다."
   ],
   "keyword_hints": {
     "3D DCC": [
@@ -39,7 +39,8 @@
       "https://unrealengine.com/rss"
     ],
     "AI 3D": [
-      "https://news.google.com/rss/search?q=Gaussian+Splatting+updates+when:7d&hl=en-US&gl=US&ceid=US:en"
+      "https://news.google.com/rss/search?q=Gaussian+Splatting+updates+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "https://developer.nvidia.com/blog/feed/"
     ]
   },
   "blocked_feeds": [],
@@ -75,9 +76,18 @@
         "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D",
         "피드 추가(Game Engine): https://unrealengine.com/rss"
       ]
+    },
+    {
+      "at": "2026-10-15T21:36:15+00:00",
+      "lesson": "발행된 글이 0건이므로 자동 발행 파이프라인의 JSON 파싱 오류를 즉시 해결하고 초안 단계를 넘어 실제 포스팅 체제로 전환해야 합니다.",
+      "changes": [
+        "편집 가이드 6개 갱신",
+        "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D",
+        "피드 추가(AI 3D): https://developer.nvidia.com/blog/feed/"
+      ]
     }
   ],
-  "strategy_updated_at": "2026-10-15T15:11:15+00:00",
+  "strategy_updated_at": "2026-10-15T21:36:15+00:00",
   "taxonomy_updated_at": "2026-10-15T14:50:18+00:00",
   "domain_weights": {
     "3D DCC": 0.25,

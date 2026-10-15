@@ -1,0 +1,19 @@
+<!-- TITLE: RDCompGS: 3D 가우시안 스플래팅 압축을 위한 R-D 최적화 기술 | TAGS: 3DGS,가우시안 스플래팅,압축,H.265,JPEG XL | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION: 3fa94be3-beb5-819a-aab4-e609334e8bce -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://arxiv.org/abs/2610.19538v1" target="_blank" rel="noopener nofollow"><img src="https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png" alt="RDCompGS: 3D 가우시안 스플래팅 압축을 위한 R-D 최적화 기술" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://arxiv.org/abs/2610.19538v1" target="_blank" rel="noopener nofollow">arxiv.org</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — RDCompGS는 미분 가능한 코딩 레이트 추정을 통해 이미지 코덱과 결합된 3D 가우시안 스플래팅의 획기적인 레이트-왜곡(R-D) 최적화 압축을 제공합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅</p>
+<h2>연구 배경 및 3DGS 압축의 한계</h2>
+<p>3D 가우시안 스플래팅(3DGS)은 뛰어난 품질의 실시간 신규 시점 합성을 가능하게 하지만 대규모 저장 및 전송 리소스를 필요로 합니다. 가우시안 속성을 2D 표현으로 매핑하여 성숙한 이미지 코덱을 활용하는 방법이 연구되어 왔으나, 코딩 레이트의 차이에도 불구하고 유사하게 최적화되는 한계가 있었습니다. 이로 인해 압축 후 레이트-왜곡(R-D) 성능이 제한적으로 나타나는 문제점이 존재했습니다.</p>
+<h2>RDCompGS의 핵심 제안 방법론</h2>
+<p>연구팀은 이러한 한계를 극복하기 위해 후속 코딩을 고려한 전체적인 가우시안 표현의 R-D 최적화를 가능하게 하는 RDCompGS를 제안합니다. 렌더링 왜곡과 함께 미분 가능한 코딩 레이트 추정치를 R-D 최적화 과정에 직접 통합한 것이 핵심입니다. 레이트 제약 조정 모델은 다양한 압축 조건에 맞춰 R-D 균형을 효과적으로 조절합니다.</p>
+<h2>성능 평가 및 압축률 개선 효과</h2>
+<p>세 가지 벤치마크 데이터셋을 활용한 광범위한 실험을 통해 RDCompGS의 우수성이 입증되었습니다. H.265/HEVC 코덱을 사용할 경우 평균 Bjøntegaard Delta Rate가 37.84% 감소했습니다. 또한 JPEG XL 코덱을 적용했을 때는 평균 49.31%의 뛰어난 비트레이트 절감 효과를 기록했습니다.</p>
+<h2>실제 비트레이트와의 상관관계</h2>
+<p>제안된 방법에서 추정된 레이트는 다양한 압축 조건 하에서 실제 비트레이트와 매우 강력한 상관관계를 보여줍니다. 이는 압축 전 단계에서 예측한 R-D 최적화 결과가 실제 파일 크기 및 전송 효율로 신뢰성 있게 이어진다는 것을 의미합니다. 해당 논문은 IEEE Transactions on Multimedia(TMM)에 제출되어 학술적 가치를 인정받고 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 3D 가우시안 스플래팅(3DGS)은 실시간 렌더링 품질이 뛰어난 반면 방대한 저장 공간과 전송 대역폭을 요구하여 실무 도입에 큰 걸림돌이 되었습니다. 이번에 발표된 RDCompGS는 가우시안 속성을 2D로 매핑하는 과정에서 이미지 코덱의 압축 효율을 극대화하기 위해 미분 가능한 코딩 레이트 추정 방식을 도입했습니다. 이를 통해 H.265나 JPEG XL 같은 성숙한 코덱 환경에서 압축률을 대폭 끌어올려 웹 기반 뷰어나 모바일 AR/VR 서비스의 실무 적용 가능성을 크게 높여줍니다. 대규모 3D 에셋을 다루는 게임 개발사와 VFX 스튜디오의 엔지니어라면 반드시 주목해야 할 최신 연구입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. RDCompGS는 어떤 압축 코덱과 주로 호환되나요?</b><br/>A. 본 논문에서는 H.265/HEVC 및 JPEG XL 이미지 코덱을 활용하여 성능을 검증했으며, 각각 평균 37.84%와 49.31%의 비트레이트 절감 효과를 확인했습니다.</p>
+<p><b>Q. 기존 3DGS 압축 방식과 RDCompGS의 가장 큰 차이점은 무엇인가요?</b><br/>A. 기존 방식은 코딩 레이트의 차이를 고려하지 않고 가우시안을 최적화했으나, RDCompGS는 미분 가능한 코딩 레이트 추정치와 레이트 제약 조정 모델을 R-D 최적화에 직접 통합하여 압축 효율을 극대화합니다.</p>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.19538v1" target="_blank" rel="noopener nofollow">RDCompGS: Rate-Distortion Optimization for Compression of 3D Gaussian Splatting with Image Codecs</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
