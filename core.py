@@ -101,6 +101,7 @@ ADSENSE_CLIENT = os.getenv("ADSENSE_CLIENT", "")
 ADSENSE_SLOT = os.getenv("ADSENSE_SLOT", "")
 AD_HTML = os.getenv("AD_HTML", "")
 AD_POSITIONS = ("top", "middle", "bottom")
+TISTORY_EMBED_IMAGES = os.getenv("TISTORY_EMBED_IMAGES", "0") == "1"  # 원문 이미지 삽입 (저작권 확인 시에만)
 
 HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.com/HEO-J-H/3dflowhub)"}
 
@@ -108,7 +109,8 @@ HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.c
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
         "seeds": ["3ds Max", "Blender", "Maya", "V-Ray", "Corona Renderer"],
-        "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/"],
+        "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/",
+                  "https://www.blender.org/feed/", "https://code.blender.org/feed/"],
     },
     "Game Engine": {
         "seeds": ["Unreal Engine 5", "Unity 6", "Nanite", "Lumen", "Godot"],
@@ -121,7 +123,10 @@ DOMAINS: dict[str, dict] = {
     "AI 3D": {
         "seeds": ["Gaussian Splatting", "NeRF", "text-to-3D", "3D generative AI"],
         "feeds": ["https://80.lv/feed", "https://www.cgchannel.com/category/news/ai/feed/",
-                  "https://blogs.nvidia.com/blog/category/generative-ai/feed/"],
+                  "https://blogs.nvidia.com/blog/category/generative-ai/feed/",
+                  # arXiv 최신 논문 (가우시안 스플래팅 / NeRF / text-to-3D)
+                  "https://export.arxiv.org/api/query?search_query=abs:%22gaussian+splatting%22+OR+abs:%22text-to-3D%22"
+                  "+OR+abs:%22neural+radiance+field%22&sortBy=submittedDate&sortOrder=descending&max_results=15"],
     },
 }
 
@@ -174,7 +179,13 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
     for use_json in ((True, False) if json_mode else (False,)):  # JSON 모드 미지원 시 일반 모드 재시도
         payload = {**body, **({"response_format": {"type": "json_object"}} if use_json else {})}
         try:
-            r = requests.post(LLM_ENDPOINT, json=payload, timeout=60, headers=headers)
+            for attempt in range(4):  # 429/5xx(무료 한도·일시 장애)는 지수 백오프 재시도
+                r = requests.post(LLM_ENDPOINT, json=payload, timeout=60, headers=headers)
+                if r.status_code not in (429, 500, 502, 503, 504):
+                    break
+                wait = float(r.headers.get("retry-after") or 0) or 5 * 2 ** attempt
+                log.info("LLM %s — %.0f초 후 재시도", r.status_code, wait)
+                time.sleep(min(wait, 60))
             data = r.json() if r.ok else None
             if data and data.get("choices"):
                 return (data["choices"][0]["message"].get("content") or "").strip()
@@ -358,6 +369,8 @@ def summarize(item: dict) -> dict | None:
         'a new short Korean category name (<=10 chars),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
+        ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
+        'how to apply it in practice, who should care. Do not restate the article,\n'
         ' "sections": list of 3-5 objects {"heading": str, "body": str} in Korean (each body 2-4 sentences)'
     )
     try:
@@ -466,6 +479,9 @@ def save_to_notion(client, item: dict) -> str | None:
     if media.get("video"):
         children.append({"object": "block", "type": "video",
                          "video": {"type": "external", "external": {"url": media["video"]}}})
+    if item.get("insight"):
+        children.append({"object": "block", "type": "callout",
+                         "callout": {"rich_text": _rt(item["insight"]), "icon": {"type": "emoji", "emoji": "💡"}}})
     for s in item["sections"]:
         children.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": _rt(s["heading"])}})
         children.append({"object": "block", "type": "paragraph", "paragraph": {"rich_text": _rt(s["body"])}})
@@ -572,7 +588,8 @@ def build_post_html(item: dict) -> str:
 
     media = item.get("media") or {}
     hero = ""
-    if media.get("image"):
+    # 원문 이미지 핫링크는 저작권·핫링크 차단 위험이 있어 기본 비활성 (영상은 YouTube/Vimeo 공식 임베드라 허용)
+    if media.get("image") and TISTORY_EMBED_IMAGES:
         hero += (f'<p style="text-align:center;"><img src="{html.escape(media["image"])}" '
                  f'alt="{html.escape(item.get("title_ko", ""))}" style="max-width:100%;height:auto;"/></p>\n')
     vid = VIDEO_RE.search(media.get("video", ""))
@@ -585,7 +602,10 @@ def build_post_html(item: dict) -> str:
     label = item["domain"] + (f" › {item['category']}" if item.get("category") else "")
     intro = (hero + f'<p style="font-size:1.05em;"><b>한 줄 요약</b> — {html.escape(item.get("summary", ""))}</p>\n'
              f'<p style="color:#888;">분류: {html.escape(label)}</p>\n')
-    source = (f'<hr/><p>원문: <a href="{html.escape(item["url"])}" target="_blank" rel="noopener nofollow">'
+    if item.get("insight"):
+        part_2 += (f'<h2>💡 에디터 코멘트</h2>\n<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">'
+                   f'{html.escape(item["insight"])}</blockquote>\n')
+    source = (f'<hr/><p>원문:<a href="{html.escape(item["url"])}" target="_blank" rel="noopener nofollow">'
               f'{html.escape(item["title"])}</a></p>\n'
               f'<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>\n')
 
@@ -602,7 +622,7 @@ def _save_draft_file(item: dict, content: str) -> str:
     DRAFT_DIR.mkdir(parents=True, exist_ok=True)
     path = DRAFT_DIR / f"{datetime.now():%Y%m%d_%H%M%S}_{url_hash(item['url'])}.html"
     header = (f"<!-- TITLE: {item['title_ko']} | TAGS: {','.join(item.get('tags', []))} "
-              f"| CATEGORY: {item['domain']}/{item.get('category', '')} -->")
+              f"| CATEGORY: {item['domain']}/{item.get('category', '')} | NOTION: {item.get('notion_id', '')} -->")
     path.write_text(f"{header}\n{content}", encoding="utf-8")
     return str(path)
 
@@ -793,6 +813,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
             if not item:
                 continue
             page_id = save_to_notion(notion, item)
+            item["notion_id"] = page_id or ""  # 브라우저 발행 후 노션 상태 갱신용
             stats["saved"] += 1
             if publish:
                 res = publish_to_tistory(item)

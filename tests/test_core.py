@@ -77,9 +77,23 @@ def test_register_category_limits(tmp_path, monkeypatch):
     assert core.register_category("VFX", "또다른") == core.load_categories()["VFX"][0]
 
 
-def test_post_html_has_media_and_category():
-    item = {**ITEM, "category": "제작 사례",
+def test_post_html_has_media_and_category(monkeypatch):
+    item = {**ITEM, "category": "제작 사례", "insight": "실무 코멘트",
             "media": {"image": "https://ex.com/a.jpg", "video": "https://www.youtube.com/watch?v=abcdefghijk"}}
     out = core.build_post_html(item)
-    assert '<img src="https://ex.com/a.jpg"' in out and "youtube.com/embed/abcdefghijk" in out
-    assert "VFX › 제작 사례" in out
+    assert "<img" not in out  # 기본: 원문 이미지 핫링크 안 함
+    assert "youtube.com/embed/abcdefghijk" in out and "VFX › 제작 사례" in out
+    assert "에디터 코멘트" in out and "실무 코멘트" in out
+    monkeypatch.setattr(core, "TISTORY_EMBED_IMAGES", True)
+    assert '<img src="https://ex.com/a.jpg"' in core.build_post_html(item)
+
+
+def test_draft_header_roundtrip(tmp_path, monkeypatch):
+    import tistory_publisher as tp
+    monkeypatch.setattr(core, "DRAFT_DIR", tmp_path)
+    item = {**ITEM, "category": "제작 사례", "notion_id": "abc123"}
+    path = core._save_draft_file(item, "<p>x</p>")
+    post = tp.parse_draft(__import__("pathlib").Path(path))
+    assert post["title"] == "제목" and post["tags"] == ["a"]
+    assert post["category"] == ("VFX", "제작 사례") and post["notion_id"] == "abc123"
+    assert post["html"] == "<p>x</p>"

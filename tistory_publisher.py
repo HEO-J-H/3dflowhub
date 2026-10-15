@@ -33,7 +33,20 @@ SHOTS = ROOT / "output" / "tistory_shots"
 DONE_DIR = core.DRAFT_DIR / "published"
 BLOG = core.TISTORY_BLOG_NAME
 NEWPOST = f"https://{BLOG}.tistory.com/manage/newpost/?type=post"
-GAP_SECONDS = 60  # 연속 발행 간격 (스팸 판정 방지)
+GAP_SECONDS = (90, 240)  # 연속 발행 간격(초) 범위 — 일정 간격은 자동화로 보이기 쉬워 무작위
+DAILY_LIMIT = int(__import__("os").getenv("TISTORY_DAILY_LIMIT", "3"))  # 하루 최대 발행 수 (저품질 판정 예방)
+PUBLISH_LOG = ROOT / "memory" / "tistory_publish_log.json"
+
+
+def published_today() -> int:
+    today = datetime.now().strftime("%Y-%m-%d")
+    return sum(1 for r in core._load_json(PUBLISH_LOG, []) if r.get("at", "").startswith(today))
+
+
+def _log_publish(entry: dict) -> None:
+    rows = core._load_json(PUBLISH_LOG, [])
+    rows.append({**entry, "at": datetime.now().isoformat(timespec="seconds")})
+    core._save_json(PUBLISH_LOG, rows[-500:])
 
 SELECTORS = {
     "title": "#post-title-inp",
@@ -102,12 +115,13 @@ def is_logged_in(page: Page) -> bool:
 
 def parse_draft(path: Path) -> dict:
     raw = path.read_text(encoding="utf-8")
-    m = re.match(r"<!-- TITLE: (.*?) \| TAGS: (.*?)(?: \| CATEGORY: (.*?))? -->\n", raw)
+    m = re.match(r"<!-- TITLE: (.*?) \| TAGS: (.*?)(?: \| CATEGORY: (.*?))?(?: \| NOTION: (.*?))? -->\n", raw)
     if not m:
-        return {"title": path.stem, "tags": [], "category": ("", ""), "html": raw, "path": path}
+        return {"title": path.stem, "tags": [], "category": ("", ""), "notion_id": "", "html": raw, "path": path}
     domain, _, sub = (m.group(3) or "").partition("/")
     return {"title": m.group(1), "tags": [t for t in m.group(2).split(",") if t],
-            "category": (domain.strip(), sub.strip()), "html": raw[m.end():], "path": path}
+            "category": (domain.strip(), sub.strip()), "notion_id": (m.group(4) or "").strip(),
+            "html": raw[m.end():], "path": path}
 
 
 # ─────────────────────────── 카테고리 (도메인 > 세부) ───────────────────────────
@@ -201,6 +215,15 @@ def publish(page: Page, public: bool) -> str:
     page.click(SELECTORS["public"] if public else SELECTORS["private"])
     page.click(SELECTORS["publish"])
     page.wait_for_url(re.compile(r"/manage/posts"), timeout=30000)
+    page.wait_for_timeout(2000)
+    # 글 관리 목록 첫 글(방금 발행한 글)의 실제 주소
+    link = page.locator(f"a[href*='{BLOG}.tistory.com/']").filter(has_not_text="글쓰기").first
+    try:
+        href = link.get_attribute("href", timeout=5000) or ""
+        if re.search(r"tistory\.com/(\d+|entry/)", href):
+            return href
+    except PWTimeout:
+        pass
     return page.url
 
 
@@ -223,7 +246,12 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
         if not is_logged_in(page):
             ctx.close()
             raise SystemExit("로그인이 필요합니다: python tistory_publisher.py --login")
-        targets = drafts[:1] if dry_run else drafts
+        remaining = max(0, DAILY_LIMIT - published_today())
+        if not dry_run and remaining == 0:
+            ctx.close()
+            print(f"오늘 발행 한도({DAILY_LIMIT}개)에 도달했습니다. 내일 다시 실행하세요.")
+            return []
+        targets = drafts[:1] if dry_run else drafts[:remaining]
         if not dry_run:  # 필요한 카테고리 자동 생성 (테스트 모드에서는 블로그를 변경하지 않음)
             pairs = {parse_draft(pth)["category"] for pth in targets}
             try:
@@ -241,16 +269,19 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
                     print(json.dumps(results[-1], ensure_ascii=False))
                     continue
                 url = publish(page, public)
+                if post["notion_id"]:  # 노션 상태 Published + 티스토리 주소 기록
+                    core.mark_notion_published(core._notion(), post["notion_id"], url)
                 DONE_DIR.mkdir(parents=True, exist_ok=True)
                 path.rename(DONE_DIR / path.name)
                 results.append({"title": post["title"], "status": "published",
                                 "category": post.get("category_selected"), "url": url})
+                _log_publish(results[-1])
             except Exception as e:  # 한 글 실패가 전체를 멈추지 않도록
                 results.append({"title": post["title"], "status": "error", "error": str(e)[:300],
                                 "shot": shot(page, "error")})
             print(json.dumps(results[-1], ensure_ascii=False))
-            if not dry_run and i < len(drafts) - 1:
-                time.sleep(GAP_SECONDS)
+            if not dry_run and i < len(targets) - 1:
+                time.sleep(__import__("random").uniform(*GAP_SECONDS))
         ctx.close()
     return results
 
