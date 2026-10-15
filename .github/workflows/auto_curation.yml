@@ -1,0 +1,86 @@
+name: 3dflowhub auto curation
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # 10분마다 깨어나서 config.json 주기로 실행 여부 판단
+  workflow_dispatch:
+    inputs:
+      max_items:
+        description: "최대 수집 개수 (비우면 config.json)"
+        required: false
+      domains:
+        description: "도메인 (콤마 구분, 비우면 config.json)"
+        required: false
+      publish:
+        description: "티스토리 발행"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write   # memory/ 변경 커밋
+  models: read      # GitHub Models (무료 LLM)
+
+concurrency:
+  group: auto-curation
+  cancel-in-progress: false
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt pytest
+
+      - name: Unit tests
+        run: python -m pytest -q tests
+
+      - name: Run pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          TISTORY_ACCESS_TOKEN: ${{ secrets.TISTORY_ACCESS_TOKEN }}
+          TISTORY_BLOG_NAME: hjh1014
+          TISTORY_CATEGORY_MAP: ${{ vars.TISTORY_CATEGORY_MAP }}
+          ADSENSE_CLIENT: ${{ secrets.ADSENSE_CLIENT }}
+          ADSENSE_SLOT: ${{ secrets.ADSENSE_SLOT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          IN_MAX: ${{ inputs.max_items }}
+          IN_DOMAINS: ${{ inputs.domains }}
+          IN_PUBLISH: ${{ inputs.publish }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ -n "$IN_MAX" ] || [ -n "$IN_DOMAINS" ]; then
+              ARGS=""
+              [ -n "$IN_MAX" ] && ARGS="$ARGS --max-items $IN_MAX"
+              [ "$IN_PUBLISH" = "false" ] && ARGS="$ARGS --no-publish"
+              python core.py $ARGS --domains "$IN_DOMAINS"
+            else
+              python core.py --force
+            fi
+          else
+            python core.py --scheduled
+          fi
+
+      - name: Upload Tistory drafts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tistory-drafts
+          path: output/tistory_drafts/
+          if-no-files-found: ignore
+
+      - name: Commit memory
+        run: |
+          git config user.name "3dflowhub-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add memory/
+          git diff --cached --quiet || (git commit -m "chore(memory): run $(date -u +%FT%TZ) [skip ci]" && git push)
