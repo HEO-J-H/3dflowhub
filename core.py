@@ -252,12 +252,16 @@ SUMMARY_SYSTEM = (
 )
 
 
+RUN_ERRORS: list[str] = []  # 이번 실행의 실패 사유 (memory.json 에 기록)
+
+
 def summarize(item: dict) -> dict | None:
     body = fetch_article_text(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
         body = f"{item['title']}\n{item['rss_summary']}"
     if len(body) < 80:
         log.info("본문 부족으로 건너뜀: %s", item["url"])
+        RUN_ERRORS.append("short body")
         return None
     prompt = (
         f"Title: {item['title']}\nURL: {item['url']}\nContent:\n{body}\n\n"
@@ -272,9 +276,11 @@ def summarize(item: dict) -> dict | None:
         data = _parse_json(llm(prompt, system=SUMMARY_SYSTEM, max_tokens=1200, json_mode=True))
     except Exception as e:
         log.warning("요약 실패 %s: %s", item["url"], e)
+        RUN_ERRORS.append(f"summarize: {str(e)[:200]}")
         return None
     if not data.get("sections"):
         log.warning("LLM 응답에 sections 없음: %s", item["url"])
+        RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
     if data.get("domain") not in DOMAINS:
         data["domain"] = item["hint_domain"]
@@ -642,6 +648,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
         except Exception as e:  # 한 건의 실패가 전체를 죽이지 않도록
             log.exception("아이템 처리 실패 %s: %s", raw.get("url"), e)
 
+    stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [raw["title"][:40] for raw in items[:5]])
     log.info("완료: %s", stats)
     return stats
