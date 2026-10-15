@@ -81,6 +81,7 @@ DRAFT_DIR = ROOT / "output" / "tistory_drafts"
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
 LLM_ENDPOINT = "https://models.github.ai/inference/chat/completions"
+LLM_FALLBACK_ENDPOINT = "https://models.inference.ai.azure.com/chat/completions"
 LLM_MODEL = os.getenv("LLM_MODEL", "meta/Llama-3.3-70B-Instruct")
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
@@ -154,14 +155,26 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
     }
     if json_mode:
         body["response_format"] = {"type": "json_object"}
-    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Content-Type": "application/json"}
-    r = requests.post(LLM_ENDPOINT, json=body, timeout=60, headers=headers)
-    if r.status_code == 400 and json_mode:  # JSON 모드 미지원 모델이면 일반 모드로 재시도
-        body.pop("response_format", None)
-        r = requests.post(LLM_ENDPOINT, json=body, timeout=60, headers=headers)
-    if not r.ok:
-        raise RuntimeError(f"GitHub Models {r.status_code}: {r.text[:300]}")
-    return r.json()["choices"][0]["message"]["content"].strip()
+    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}", "Content-Type": "application/json",
+               "Accept": "application/json"}
+    errors = []
+    for endpoint in (LLM_ENDPOINT, LLM_FALLBACK_ENDPOINT):
+        for use_json in ((True, False) if json_mode else (False,)):
+            payload = dict(body)
+            if not use_json:
+                payload.pop("response_format", None)
+            if endpoint == LLM_FALLBACK_ENDPOINT:  # 구 엔드포인트는 'publisher/' 접두어 없는 모델명 사용
+                payload["model"] = LLM_MODEL.split("/")[-1]
+            try:
+                r = requests.post(endpoint, json=payload, timeout=60, headers=headers)
+                data = r.json() if r.ok else None
+                if data and data.get("choices"):
+                    return (data["choices"][0]["message"].get("content") or "").strip()
+                errors.append(f"{endpoint.split('/')[2]} {r.status_code} json={use_json}: {r.text[:150]!r}")
+            except (requests.RequestException, ValueError) as e:
+                errors.append(f"{endpoint.split('/')[2]} json={use_json}: {type(e).__name__} "
+                              f"{getattr(locals().get('r'), 'text', '')[:150]!r}")
+    raise RuntimeError(" | ".join(errors))
 
 
 def _parse_json(text: str) -> dict:
@@ -276,7 +289,7 @@ def summarize(item: dict) -> dict | None:
         data = _parse_json(llm(prompt, system=SUMMARY_SYSTEM, max_tokens=1200, json_mode=True))
     except Exception as e:
         log.warning("요약 실패 %s: %s", item["url"], e)
-        RUN_ERRORS.append(f"summarize: {str(e)[:200]}")
+        RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
         return None
     if not data.get("sections"):
         log.warning("LLM 응답에 sections 없음: %s", item["url"])
