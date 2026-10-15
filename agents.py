@@ -39,7 +39,22 @@ def sh(*cmd: str, check: bool = True) -> str:
 
 
 def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
-    return core._parse_json(core.llm(prompt, system=role, max_tokens=max_tokens, json_mode=True))
+    try:
+        return core._parse_json(core.llm(prompt, system=role, max_tokens=max_tokens, json_mode=True))
+    except ValueError:  # 깨진 JSON → 빈 응답으로 처리하고 다음 회차에서 재시도
+        return {}
+
+
+EDIT_BLOCK = re.compile(r"<<<FILE (\S+)
+<<<SEARCH
+(.*?)
+===
+(.*?)
+>>>END", re.S)
+
+
+def parse_edits(text: str) -> list[dict]:
+    return [{"file": f, "search": a, "replace": b} for f, a, b in EDIT_BLOCK.findall(text)]
 
 
 # ─────────────────────────── 작업 선택 ───────────────────────────
@@ -64,11 +79,21 @@ def coder(task: str, feedback: str) -> list[dict]:
     prompt = (
         f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
         f"Reviewer/Judge feedback from last iteration: {feedback or 'none'}\n\n{files}\n\n"
-        'Return JSON {"edits": [{"file": "...", "search": "exact existing text", "replace": "new text"}], '
-        '"summary": "one line"}. `search` must match the file exactly and be unique. '
+        "Output ONLY edit blocks in this exact format (no JSON, no markdown fences):
+"
+        "<<<FILE path/to/file.py
+<<<SEARCH
+exact existing lines
+===
+replacement lines
+>>>END
+
+"
+        "SEARCH must match the file exactly (including indentation) and occur exactly once. "
         f"Only edit these files: {sorted(EDITABLE)}. Keep changes minimal; add or update a pytest test."
     )
-    return ask_json("You are the Coder agent, a careful senior Python engineer.", prompt, 6000).get("edits", [])
+    text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer.", max_tokens=6000)
+    return parse_edits(text)
 
 
 def apply_edits(edits: list[dict]) -> list[str]:

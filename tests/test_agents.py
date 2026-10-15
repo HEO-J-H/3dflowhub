@@ -15,3 +15,16 @@ def test_qa_flags_dangerous_and_secret(monkeypatch):
     monkeypatch.setattr(agents.subprocess, "run", lambda *a, **k: Done())
     r = agents.qa("+++ b/core.py\n+eval(x)\n+k='ghp_" + "a" * 36 + "'")
     assert any("eval" in s for s in r["security"]) and "비밀값 하드코딩 의심" in r["security"]
+
+
+def test_parse_edits():
+    text = "<<<FILE core.py
+<<<SEARCH
+a = 1
+    b = {}
+===
+a = 2
+>>>END
+"
+    assert agents.parse_edits(text) == [{"file": "core.py", "search": "a = 1
+    b = {}", "replace": "a = 2"}]
