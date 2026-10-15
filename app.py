@@ -244,6 +244,11 @@ with t_draft:
     st.link_button("GitHub Actions 초안(Artifacts) 받기", f"https://github.com/{GH_REPO}/actions")
 
     st.markdown("**브라우저 자동 발행** (이 PC 전용 · 최초 1회 `python tistory_publisher.py --login` 필요)")
+    n_drafts = len(list(core.DRAFT_DIR.glob("*.html"))) if core.DRAFT_DIR.exists() else 0
+    if n_drafts == 0:
+        st.info("발행 대기 중인 초안이 없습니다. 위의 '🚀 지금 바로 자료 수집' 을 실행하면 새 초안이 생깁니다.")
+    else:
+        st.success(f"발행 대기 초안 {n_drafts}개 · 하루 최대 3개까지 발행됩니다.")
     b1, b2, b3 = st.columns(3)
     pub_public = b3.toggle("공개 발행", value=False, help="끄면 비공개로 발행됩니다")
 
@@ -251,8 +256,9 @@ with t_draft:
         import subprocess, sys
         with st.spinner("티스토리 작업 중… (글 사이 60초 간격)"):
             r = subprocess.run([sys.executable, "tistory_publisher.py", *args], cwd=core.ROOT,
-                               capture_output=True, text=True, encoding="utf-8")
-        st.code((r.stdout + r.stderr)[-3000:] or "출력 없음")
+                               capture_output=True, text=True, encoding="utf-8", errors="replace",
+                               env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+        st.code(((r.stdout or "") + (r.stderr or ""))[-3000:] or "출력 없음")
 
     if b1.button("🧪 테스트 (발행 안 함)"):
         _publisher("--dry-run")
@@ -282,8 +288,9 @@ with t_rev:
         import subprocess, sys
         with st.spinner("통계 수집 중…"):
             r = subprocess.run([sys.executable, "monetize.py"], cwd=core.ROOT, capture_output=True,
-                               text=True, encoding="utf-8")
-        st.code((r.stdout + r.stderr)[-1500:] or "출력 없음")
+                               text=True, encoding="utf-8", errors="replace",
+                               env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+        st.code(((r.stdout or "") + (r.stderr or ""))[-1500:] or "출력 없음")
     if latest.get("posts"):
         st.dataframe(pd.DataFrame([{"글": v["title"], "조회수": v["views"], "주소": k}
                                    for k, v in latest["posts"].items()]).sort_values("조회수", ascending=False),
