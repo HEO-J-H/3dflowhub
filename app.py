@@ -130,35 +130,44 @@ with t_home:
         m[3].metric("누적 발행", int((df["상태"] == "Published").sum()))
         a, b = st.columns(2)
         with a:
-            st.subheader("도메인별")
-            st.bar_chart(df["도메인"].value_counts(), horizontal=True)
+            st.subheader("카테고리별")
+            st.bar_chart(df.assign(분류=df["도메인"] + " › " + df["카테고리"].fillna(""))["분류"].value_counts(),
+                         horizontal=True)
         with b:
             st.subheader("일별 수집 추이")
             st.line_chart(df.groupby(df["수집일"].dt.date).size())
-        st.subheader("최근 5건")
-        for _, r in df.head(5).iterrows():
-            st.markdown(f"- **[{r['도메인']}]** [{r['제목']}]({r['원문']})  \n  <small>{r['태그']}</small>",
-                        unsafe_allow_html=True)
+        st.subheader("최근 글")
+        cols = st.columns(3)
+        for i, (_, r) in enumerate(df.head(6).iterrows()):
+            with cols[i % 3]:
+                if isinstance(r.get("이미지"), str) and r["이미지"]:
+                    st.image(r["이미지"], use_container_width=True)
+                st.markdown(f"**[{r['제목']}]({r['원문']})**  \n<small>{r['도메인']} › {r['카테고리']}</small>",
+                            unsafe_allow_html=True)
 
 # ─────────────────────────── 글 목록 ───────────────────────────
 with t_list:
     if df.empty:
         st.info("수집된 글이 없습니다.")
     else:
-        c1, c2, c3 = st.columns([2, 2, 3])
+        c1, c4, c2, c3 = st.columns([2, 2, 2, 3])
         dom = c1.multiselect("도메인", sorted(df["도메인"].dropna().unique()))
+        cat = c4.multiselect("카테고리", sorted(df["카테고리"].replace("", pd.NA).dropna().unique()))
         stat = c2.multiselect("상태", sorted(df["상태"].dropna().unique()))
         q = c3.text_input("검색 (제목·태그)")
         view = df
         if dom:
             view = view[view["도메인"].isin(dom)]
+        if cat:
+            view = view[view["카테고리"].isin(cat)]
         if stat:
             view = view[view["상태"].isin(stat)]
         if q:
             view = view[view["제목"].str.contains(q, case=False) | view["태그"].str.contains(q, case=False)]
         st.caption(f"{len(view)}건")
         st.dataframe(view, use_container_width=True, hide_index=True,
-                     column_config={"원문": st.column_config.LinkColumn(),
+                     column_config={"이미지": st.column_config.ImageColumn(width="small"),
+                                    "원문": st.column_config.LinkColumn(),
                                     "티스토리": st.column_config.LinkColumn(),
                                     "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
         st.link_button("노션 DB 열기", f"https://app.notion.com/p/{core.NOTION_DATABASE_ID}")

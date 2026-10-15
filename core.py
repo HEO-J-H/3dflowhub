@@ -46,15 +46,17 @@
 """
 from __future__ import annotations
 
+import calendar
 import hashlib
 import html
 import json
 import logging
 import os
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urljoin
 
 import feedparser
 import requests
@@ -122,6 +124,17 @@ DOMAINS: dict[str, dict] = {
                   "https://blogs.nvidia.com/blog/category/generative-ai/feed/"],
     },
 }
+
+
+# 세부 카테고리 시드 — LLM 이 새 카테고리를 제안하면 memory.json["categories"] 에 자동 추가된다
+SEED_CATEGORIES: dict[str, list[str]] = {
+    "3D DCC": ["모델링", "렌더링", "텍스처링", "애니메이션", "툴 업데이트"],
+    "Game Engine": ["엔진 업데이트", "게임 개발 사례", "튜토리얼", "신작 게임"],
+    "VFX": ["시뮬레이션", "컴포지팅", "모션그래픽", "제작 사례"],
+    "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
+}
+MAX_CATEGORIES_PER_DOMAIN = 10  # 카테고리 난립 방지
+MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
 
 
 # ─────────────────────────── 유틸 / 메모리 ───────────────────────────
@@ -205,19 +218,57 @@ def _google_news_rss(query: str) -> str:
     return f"https://news.google.com/rss/search?q={quote_plus(query)}+when:7d&hl=en-US&gl=US&ceid=US:en"
 
 
-def fetch_article_text(url: str, limit: int = 4000) -> str:
+VIDEO_RE = re.compile(r"(?:youtube\.com/(?:embed/|watch\?v=)|youtu\.be/)([\w-]{11})|player\.vimeo\.com/video/(\d+)")
+
+
+def extract_media(soup: BeautifulSoup, base_url: str) -> dict:
+    """대표 이미지(og:image)와 첫 번째 YouTube/Vimeo 영상 URL."""
+    def meta(*names: str) -> str:
+        for n in names:
+            tag = soup.find("meta", attrs={"property": n}) or soup.find("meta", attrs={"name": n})
+            if tag and tag.get("content"):
+                return tag["content"].strip()
+        return ""
+
+    image = meta("og:image", "og:image:url", "twitter:image")
+    if not image:  # 메타 태그가 없으면 본문 첫 이미지
+        img = (soup.find("article") or soup).find("img", src=True)
+        image = img["src"] if img else ""
+    image = urljoin(base_url, image) if image else ""
+    video = ""
+    candidates = [meta("og:video", "og:video:url", "twitter:player")]
+    candidates += [f.get("src", "") for f in soup.find_all("iframe")]
+    candidates += [a["href"] for a in soup.find_all("a", href=True)][:300]
+    for c in candidates:
+        m = VIDEO_RE.search(c or "")
+        if m:
+            video = (f"https://www.youtube.com/watch?v={m.group(1)}" if m.group(1)
+                     else f"https://vimeo.com/{m.group(2)}")
+            break
+    if not image.startswith("http") and video and (m := VIDEO_RE.search(video)) and m.group(1):
+        image = f"https://img.youtube.com/vi/{m.group(1)}/hqdefault.jpg"  # 대표 이미지 없으면 유튜브 썸네일
+    return {"image": image if image.startswith("http") else "", "video": video}
+
+
+def fetch_article(url: str, limit: int = 4000) -> tuple[str, dict]:
+    """본문 텍스트와 미디어(대표 이미지/영상)를 함께 수집."""
     try:
         r = requests.get(url, headers=HTTP_HEADERS, timeout=15)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
+        media = extract_media(soup, r.url)
         for t in soup(["script", "style", "nav", "footer", "header", "aside", "form"]):
             t.decompose()
         node = soup.find("article") or soup.body or soup
         text = re.sub(r"\s+", " ", node.get_text(" ", strip=True))
-        return text[:limit]
+        return text[:limit], media
     except Exception as e:
         log.debug("본문 수집 실패 %s: %s", url, e)
-        return ""
+        return "", {"image": "", "video": ""}
+
+
+def fetch_article_text(url: str, limit: int = 4000) -> str:
+    return fetch_article(url, limit)[0]
 
 
 def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
@@ -233,10 +284,13 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 continue
             if not feed.entries:
                 RUN_ERRORS.append(f"empty feed: {src}")
-            for e in feed.entries[:5]:
+            for e in feed.entries[:10]:
                 link = e.get("link", "")
                 if not link or url_hash(link) in seen:
                     continue
+                published = e.get("published_parsed") or e.get("updated_parsed")
+                if published and (time.time() - calendar.timegm(published)) > MAX_AGE_DAYS * 86400:
+                    continue  # 오래된 기사 제외
                 seen.add(url_hash(link))
                 candidates.append({
                     "title": e.get("title", "").strip(),
@@ -264,8 +318,30 @@ SUMMARY_SYSTEM = (
 RUN_ERRORS: list[str] = []  # 이번 실행의 실패 사유 (memory.json 에 기록)
 
 
+def load_categories() -> dict[str, list[str]]:
+    saved = load_memory().get("categories", {})
+    return {d: list(dict.fromkeys(SEED_CATEGORIES.get(d, []) + saved.get(d, []))) for d in DOMAINS}
+
+
+def register_category(domain: str, category: str) -> str:
+    """세부 카테고리 확정. 새 이름이면 memory.json 에 추가 (도메인당 최대 개수 초과 시 첫 카테고리로 대체)."""
+    category = re.sub(r"[/|<>,]", "·", (category or "").strip())[:15]
+    cats = load_categories()[domain]
+    if not category:
+        return cats[0]
+    if category in cats:
+        return category
+    if len(cats) >= MAX_CATEGORIES_PER_DOMAIN:
+        return cats[0]
+    mem = load_memory()
+    mem.setdefault("categories", {}).setdefault(domain, []).append(category)
+    _save_json(MEMORY_PATH, mem)
+    log.info("새 카테고리 추가: %s / %s", domain, category)
+    return category
+
+
 def summarize(item: dict) -> dict | None:
-    body = fetch_article_text(item["url"])
+    body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
         body = f"{item['title']}\n{item['rss_summary']}"
     if len(body) < 80:
@@ -274,9 +350,12 @@ def summarize(item: dict) -> dict | None:
         return None
     prompt = (
         f"Title: {item['title']}\nURL: {item['url']}\nContent:\n{body}\n\n"
+        f"Existing categories per domain: {json.dumps(load_categories(), ensure_ascii=False)}\n"
         "Return JSON with keys:\n"
         ' "title_ko": catchy Korean title (<=60 chars),\n'
         ' "domain": one of ["3D DCC","Game Engine","VFX","AI 3D"],\n'
+        ' "category": best matching existing category of that domain; only if none fits, '
+        'a new short Korean category name (<=10 chars),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
         ' "sections": list of 3-5 objects {"heading": str, "body": str} in Korean (each body 2-4 sentences)'
@@ -293,7 +372,10 @@ def summarize(item: dict) -> dict | None:
         return None
     if data.get("domain") not in DOMAINS:
         data["domain"] = item["hint_domain"]
-    return {**item, **data, "collected_at": datetime.now(timezone.utc).isoformat()}
+    data["category"] = register_category(data["domain"], data.get("category", ""))
+    if isinstance(data.get("tags"), str):
+        data["tags"] = [t.strip() for t in data["tags"].split(",") if t.strip()]
+    return {**item, **data, "media": media, "collected_at": datetime.now(timezone.utc).isoformat()}
 
 
 # ─────────────────────────── Notion ───────────────────────────
@@ -306,8 +388,11 @@ def _notion() -> "NotionClient | None":
 NOTION_SCHEMA = {
     "URL": {"url": {}},
     "Domain": {"select": {"options": [{"name": d} for d in DOMAINS]}},
+    "Category": {"select": {}},
     "Tags": {"multi_select": {}},
     "Summary": {"rich_text": {}},
+    "Thumbnail": {"files": {}},
+    "Video": {"url": {}},
     "Status": {"select": {"options": [{"name": "Collected", "color": "gray"},
                                       {"name": "Published", "color": "green"}]}},
     "TistoryURL": {"url": {}},
@@ -373,7 +458,14 @@ def save_to_notion(client, item: dict) -> str | None:
     Summary(rich_text) Status(select) TistoryURL(url) CollectedAt(date)"""
     if client is None:
         return None
+    media = item.get("media") or {}
     children = []
+    if media.get("image"):
+        children.append({"object": "block", "type": "image",
+                         "image": {"type": "external", "external": {"url": media["image"]}}})
+    if media.get("video"):
+        children.append({"object": "block", "type": "video",
+                         "video": {"type": "external", "external": {"url": media["video"]}}})
     for s in item["sections"]:
         children.append({"object": "block", "type": "heading_2", "heading_2": {"rich_text": _rt(s["heading"])}})
         children.append({"object": "block", "type": "paragraph", "paragraph": {"rich_text": _rt(s["body"])}})
@@ -384,17 +476,57 @@ def save_to_notion(client, item: dict) -> str | None:
                 "Name": {"title": _rt(item["title_ko"])},
                 "URL": {"url": item["url"]},
                 "Domain": {"select": {"name": item["domain"]}},
-                "Tags": {"multi_select": [{"name": t[:50]} for t in item.get("tags", [])]},
+                **({"Category": {"select": {"name": item["category"]}}} if item.get("category") else {}),
+                "Tags": {"multi_select": [{"name": t[:50].replace(",", " ")} for t in item.get("tags", [])]},
+                **({"Thumbnail": {"files": [{"name": "thumbnail", "type": "external",
+                                             "external": {"url": media["image"]}}]}} if media.get("image") else {}),
+                **({"Video": {"url": media["video"]}} if media.get("video") else {}),
                 "Summary": {"rich_text": _rt(item.get("summary", ""))},
                 "Status": {"select": {"name": "Collected"}},
                 "CollectedAt": {"date": {"start": item["collected_at"]}},
             },
             children=children,
+            **({"cover": {"type": "external", "external": {"url": media["image"]}}} if media.get("image") else {}),
         )
         return page["id"]
     except Exception as e:
         log.error("Notion 저장 실패 %s: %s", item["url"], e)
         return None
+
+
+def backfill_notion(client, limit: int = 100) -> int:
+    """카테고리/이미지가 없는 기존 노션 글을 보강 (원문에서 미디어 재수집, LLM 으로 세부 카테고리 분류)."""
+    done = 0
+    res = _query_db(client, {"page_size": min(limit, 100),
+                             "filter": {"property": "Category", "select": {"is_empty": True}}})
+    for p in res["results"]:
+        pr = p["properties"]
+        title = "".join(t["plain_text"] for t in pr["Name"]["title"])
+        domain = (pr["Domain"]["select"] or {}).get("name") or "3D DCC"
+        summary = "".join(t["plain_text"] for t in pr["Summary"]["rich_text"])
+        url = pr["URL"]["url"] or ""
+        try:
+            cats = load_categories()[domain]
+            out = _parse_json(llm(
+                f"Title: {title}\nSummary: {summary}\nDomain: {domain}\nCategories: {cats}\n"
+                'Return JSON {"category": "best existing category, or a new short Korean name (<=10 chars) '
+                'only if none fits"}', max_tokens=100, json_mode=True))
+            category = register_category(domain, out.get("category", ""))
+            media = fetch_article(url)[1] if url else {}
+            props = {"Category": {"select": {"name": category}}}
+            if media.get("image"):
+                props["Thumbnail"] = {"files": [{"name": "thumbnail", "type": "external",
+                                                 "external": {"url": media["image"]}}]}
+            if media.get("video"):
+                props["Video"] = {"url": media["video"]}
+            client.pages.update(page_id=p["id"], properties=props,
+                                **({"cover": {"type": "external", "external": {"url": media["image"]}}}
+                                   if media.get("image") else {}))
+            done += 1
+            log.info("보강: %s → %s", title[:30], category)
+        except Exception as e:
+            log.warning("보강 실패 %s: %s", title[:30], e)
+    return done
 
 
 def mark_notion_published(client, page_id: str | None, post_url: str) -> None:
@@ -438,8 +570,21 @@ def build_post_html(item: dict) -> str:
     part_1 = "".join(_section_html(s) for s in sections[:mid])
     part_2 = "".join(_section_html(s) for s in sections[mid:])
 
-    intro = (f'<p style="font-size:1.05em;"><b>한 줄 요약</b> — {html.escape(item.get("summary", ""))}</p>\n'
-             f'<p style="color:#888;">분류: {html.escape(item["domain"])}</p>\n')
+    media = item.get("media") or {}
+    hero = ""
+    if media.get("image"):
+        hero += (f'<p style="text-align:center;"><img src="{html.escape(media["image"])}" '
+                 f'alt="{html.escape(item.get("title_ko", ""))}" style="max-width:100%;height:auto;"/></p>\n')
+    vid = VIDEO_RE.search(media.get("video", ""))
+    if vid:
+        src = (f"https://www.youtube.com/embed/{vid.group(1)}" if vid.group(1)
+               else f"https://player.vimeo.com/video/{vid.group(2)}")
+        hero += (f'<div style="position:relative;padding-top:56.25%;margin:16px 0;">'
+                 f'<iframe src="{src}" style="position:absolute;top:0;left:0;width:100%;height:100%;" '
+                 f'frameborder="0" allowfullscreen></iframe></div>\n')
+    label = item["domain"] + (f" › {item['category']}" if item.get("category") else "")
+    intro = (hero + f'<p style="font-size:1.05em;"><b>한 줄 요약</b> — {html.escape(item.get("summary", ""))}</p>\n'
+             f'<p style="color:#888;">분류: {html.escape(label)}</p>\n')
     source = (f'<hr/><p>원문: <a href="{html.escape(item["url"])}" target="_blank" rel="noopener nofollow">'
               f'{html.escape(item["title"])}</a></p>\n'
               f'<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>\n')
@@ -456,8 +601,9 @@ def _published() -> dict:
 def _save_draft_file(item: dict, content: str) -> str:
     DRAFT_DIR.mkdir(parents=True, exist_ok=True)
     path = DRAFT_DIR / f"{datetime.now():%Y%m%d_%H%M%S}_{url_hash(item['url'])}.html"
-    path.write_text(f"<!-- TITLE: {item['title_ko']} | TAGS: {','.join(item.get('tags', []))} -->\n{content}",
-                    encoding="utf-8")
+    header = (f"<!-- TITLE: {item['title_ko']} | TAGS: {','.join(item.get('tags', []))} "
+              f"| CATEGORY: {item['domain']}/{item.get('category', '')} -->")
+    path.write_text(f"{header}\n{content}", encoding="utf-8")
     return str(path)
 
 
@@ -613,6 +759,8 @@ def fetch_dashboard_rows(limit: int = 500) -> list[dict]:
                 rows.append({
                     "제목": "".join(t["plain_text"] for t in pr["Name"]["title"]),
                     "도메인": (pr.get("Domain", {}).get("select") or {}).get("name", ""),
+                    "카테고리": (pr.get("Category", {}).get("select") or {}).get("name", ""),
+                    "이미지": ((pr.get("Thumbnail", {}).get("files") or [{}])[0].get("external") or {}).get("url"),
                     "상태": (pr.get("Status", {}).get("select") or {}).get("name", ""),
                     "태그": ", ".join(t["name"] for t in pr.get("Tags", {}).get("multi_select", [])),
                     "수집일": (pr.get("CollectedAt", {}).get("date") or {}).get("start", ""),
@@ -673,7 +821,11 @@ if __name__ == "__main__":
     p.add_argument("--setup-notion", action="store_true", help="Notion DB 속성만 생성하고 종료")
     p.add_argument("--scheduled", action="store_true", help="config.json 주기 확인 후 실행")
     p.add_argument("--force", action="store_true", help="config.json 설정으로 주기 무시하고 즉시 실행")
+    p.add_argument("--backfill", action="store_true", help="기존 노션 글에 카테고리/이미지 보강")
     a = p.parse_args()
+    if a.backfill:
+        print("보강 완료:", backfill_notion(_notion()), "건")
+        raise SystemExit(0)
     if a.setup_notion:
         ensure_notion_schema(_notion())
         raise SystemExit(0)

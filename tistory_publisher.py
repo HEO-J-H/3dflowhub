@@ -102,9 +102,74 @@ def is_logged_in(page: Page) -> bool:
 
 def parse_draft(path: Path) -> dict:
     raw = path.read_text(encoding="utf-8")
-    m = re.match(r"<!-- TITLE: (.*?) \| TAGS: (.*?) -->\n", raw)
-    title, tags = (m.group(1), [t for t in m.group(2).split(",") if t]) if m else (path.stem, [])
-    return {"title": title, "tags": tags, "html": raw[m.end():] if m else raw, "path": path}
+    m = re.match(r"<!-- TITLE: (.*?) \| TAGS: (.*?)(?: \| CATEGORY: (.*?))? -->\n", raw)
+    if not m:
+        return {"title": path.stem, "tags": [], "category": ("", ""), "html": raw, "path": path}
+    domain, _, sub = (m.group(3) or "").partition("/")
+    return {"title": m.group(1), "tags": [t for t in m.group(2).split(",") if t],
+            "category": (domain.strip(), sub.strip()), "html": raw[m.end():], "path": path}
+
+
+# ─────────────────────────── 카테고리 (도메인 > 세부) ───────────────────────────
+CATEGORY_PAGE = f"https://{BLOG}.tistory.com/manage/category"
+
+
+def _bundle(page: Page, name: str, parent=None):
+    """이름이 name 인 카테고리 묶음(.bundle_item). parent 가 있으면 그 안의 하위 항목에서 찾는다."""
+    scope = parent or page.locator("#category-app")
+    loc = scope.locator(".bundle_item").filter(
+        has=page.locator(".txt_name", has_text=re.compile(rf"^\s*{re.escape(name)}\s*$")))
+    return loc.last if loc.count() else None
+
+
+def _add_category(page: Page, name: str, parent=None) -> None:
+    if parent is None:
+        page.locator("input[value='카테고리 추가']").dispatch_event("click")
+    else:  # 상위 카테고리 행의 '추가' → 하위 카테고리
+        parent.locator(".basic_item").first.locator("a.btn_post", has_text="추가").first.dispatch_event("click")
+    page.wait_for_timeout(500)
+    form = page.locator("form.edit_item").last
+    form.locator("input.tf_blog").fill(name)
+    form.get_by_text("확인", exact=True).dispatch_event("click")
+    page.wait_for_timeout(700)
+
+
+def ensure_categories(page: Page, pairs: set[tuple[str, str]]) -> list[str]:
+    """티스토리에 '도메인 > 세부' 카테고리가 없으면 자동 생성. 생성한 이름 목록 반환."""
+    page.goto(CATEGORY_PAGE, wait_until="domcontentloaded")
+    page.wait_for_selector("#category-app", timeout=20000)
+    page.wait_for_timeout(1500)
+    created = []
+    for domain, sub in sorted(pairs):
+        if not domain:
+            continue
+        top = _bundle(page, domain)
+        if top is None:
+            _add_category(page, domain)
+            created.append(domain)
+            top = _bundle(page, domain)
+        if sub and top is not None and _bundle(page, sub, parent=top) is None:
+            _add_category(page, sub, parent=top)
+            created.append(f"{domain} > {sub}")
+    if created:
+        page.get_by_text("변경사항 저장", exact=True).first.dispatch_event("click")  # 카테고리 관리 영역 저장
+        page.wait_for_timeout(2500)
+    return created
+
+
+def select_category(page: Page, domain: str, sub: str) -> str:
+    """에디터 카테고리 드롭다운에서 세부 → 도메인 순으로 선택."""
+    page.click(SELECTORS["category_btn"])
+    page.wait_for_selector("#category-list [role=option]", timeout=5000)
+    options = page.locator("#category-list [role=option]")
+    labels = [options.nth(i).get_attribute("aria-label") or "" for i in range(options.count())]
+    for want in (sub, domain):
+        for i, label in enumerate(labels):
+            if want and label.strip().lstrip("-ㄴ ").strip() == want:
+                options.nth(i).click()
+                return label
+    page.keyboard.press("Escape")
+    return ""
 
 
 def fill_post(page: Page, post: dict) -> None:
@@ -124,6 +189,7 @@ def fill_post(page: Page, post: dict) -> None:
     page.evaluate("html => document.querySelector('.CodeMirror').CodeMirror.setValue(html)", post["html"])
 
     page.fill(SELECTORS["title"], post["title"])
+    post["category_selected"] = select_category(page, *post["category"]) if any(post["category"]) else ""
     for t in post["tags"][:10]:
         page.fill(SELECTORS["tag"], t)
         page.keyboard.press("Enter")
@@ -157,17 +223,28 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
         if not is_logged_in(page):
             ctx.close()
             raise SystemExit("로그인이 필요합니다: python tistory_publisher.py --login")
-        for i, path in enumerate(drafts[:1] if dry_run else drafts):
+        targets = drafts[:1] if dry_run else drafts
+        if not dry_run:  # 필요한 카테고리 자동 생성 (테스트 모드에서는 블로그를 변경하지 않음)
+            pairs = {parse_draft(pth)["category"] for pth in targets}
+            try:
+                created = ensure_categories(page, pairs)
+                print("카테고리 생성:", created or "없음", flush=True)
+            except Exception as e:
+                print("카테고리 생성 실패(카테고리 없이 진행):", str(e)[:200], flush=True)
+        for i, path in enumerate(targets):
             post = parse_draft(path)
             try:
                 fill_post(page, post)
                 if dry_run:
-                    results.append({"title": post["title"], "status": "dry_run", "shot": shot(page, "dry_run")})
+                    results.append({"title": post["title"], "status": "dry_run",
+                                    "category": post.get("category_selected"), "shot": shot(page, "dry_run")})
+                    print(json.dumps(results[-1], ensure_ascii=False))
                     continue
                 url = publish(page, public)
                 DONE_DIR.mkdir(parents=True, exist_ok=True)
                 path.rename(DONE_DIR / path.name)
-                results.append({"title": post["title"], "status": "published", "url": url})
+                results.append({"title": post["title"], "status": "published",
+                                "category": post.get("category_selected"), "url": url})
             except Exception as e:  # 한 글 실패가 전체를 멈추지 않도록
                 results.append({"title": post["title"], "status": "error", "error": str(e)[:300],
                                 "shot": shot(page, "error")})

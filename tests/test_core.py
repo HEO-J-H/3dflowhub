@@ -52,3 +52,34 @@ def test_collect_empty_feed(monkeypatch):
     res = core.collect(["VFX"], 5, set())
     assert res == []
     assert any("empty feed:" in err for err in core.RUN_ERRORS)
+
+
+def test_extract_media_og_and_youtube():
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup('<meta property="og:image" content="/img/a.jpg">'
+                         '<iframe src="https://www.youtube.com/embed/abcdefghijk"></iframe>', "html.parser")
+    m = core.extract_media(soup, "https://ex.com/post")
+    assert m == {"image": "https://ex.com/img/a.jpg", "video": "https://www.youtube.com/watch?v=abcdefghijk"}
+
+
+def test_extract_media_youtube_thumbnail_fallback():
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup('<a href="https://youtu.be/abcdefghijk">v</a>', "html.parser")
+    assert core.extract_media(soup, "https://ex.com")["image"].endswith("/abcdefghijk/hqdefault.jpg")
+
+
+def test_register_category_limits(tmp_path, monkeypatch):
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    assert core.register_category("VFX", "시뮬레이션") == "시뮬레이션"
+    assert core.register_category("VFX", "새분류") == "새분류"
+    assert "새분류" in core.load_categories()["VFX"]
+    monkeypatch.setattr(core, "MAX_CATEGORIES_PER_DOMAIN", 1)
+    assert core.register_category("VFX", "또다른") == core.load_categories()["VFX"][0]
+
+
+def test_post_html_has_media_and_category():
+    item = {**ITEM, "category": "제작 사례",
+            "media": {"image": "https://ex.com/a.jpg", "video": "https://www.youtube.com/watch?v=abcdefghijk"}}
+    out = core.build_post_html(item)
+    assert '<img src="https://ex.com/a.jpg"' in out and "youtube.com/embed/abcdefghijk" in out
+    assert "VFX › 제작 사례" in out
