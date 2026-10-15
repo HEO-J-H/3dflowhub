@@ -45,10 +45,12 @@ def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
         return {}
 
 
-EDIT_BLOCK = re.compile(r"<<<FILE (\S+)\n<<<SEARCH\n(.*?)\n===\n(.*?)\n>>>END", re.S)
+CRLF = "\r\n"
+EDIT_BLOCK = re.compile(r"<<<FILE (\S+)\n<<<SEARCH\n(.*?)\n={3,}\n(.*?)\n>{3,}END", re.S)
 
 
 def parse_edits(text: str) -> list[dict]:
+    text = text.replace(CRLF, "\n")
     return [{"file": f, "search": a, "replace": b} for f, a, b in EDIT_BLOCK.findall(text)]
 
 
@@ -91,11 +93,11 @@ def apply_edits(edits: list[dict]) -> list[str]:
             problems.append(f"수정 불가 파일: {f}")
             continue
         path = ROOT / f
-        src = path.read_text(encoding="utf-8")
+        src = path.read_text(encoding="utf-8").replace(CRLF, "\n")
         if src.count(e.get("search", "")) != 1 or not e.get("search"):
             problems.append(f"{f}: search 블록이 정확히 1회 일치하지 않음")
             continue
-        path.write_text(src.replace(e["search"], e.get("replace", ""), 1), encoding="utf-8")
+        path.write_text(src.replace(e["search"], e.get("replace", ""), 1), encoding="utf-8", newline="\n")
     return problems
 
 
