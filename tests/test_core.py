@@ -89,6 +89,13 @@ def test_post_html_has_media_and_category(monkeypatch):
     assert "<img" not in core.build_post_html(item)
 
 
+def test_summarize_tags_string_normalization(monkeypatch):
+    monkeypatch.setattr(core, "fetch_article", lambda url: ("본문 텍스트 충분히 길게 작성하여 통과하도록 함 " * 10, {"image": "", "video": ""}))
+    monkeypatch.setattr(core, "llm", lambda *args, **kwargs: '{"title_ko": "제목", "domain": "VFX", "category": "시뮬레이션", "tags": "tag1, tag2 , tag3", "summary": "요약", "insight": "코멘트", "sections": [{"heading": "H1", "body": "B1"}]}')
+    res = core.summarize({"title": "T", "url": "https://example.com/t", "hint_domain": "VFX", "rss_summary": ""})
+    assert res["tags"] == ["tag1", "tag2", "tag3"]
+
+
 def test_draft_header_roundtrip(tmp_path, monkeypatch):
     import tistory_publisher as tp
     monkeypatch.setattr(core, "DRAFT_DIR", tmp_path)
