@@ -12,7 +12,7 @@
   LLM_API_KEY           OpenAI 호환 LLM API 키 (기본: Google AI Studio 무료 키 https://aistudio.google.com/apikey)
   LLM_BASE_URL          기본 https://generativelanguage.googleapis.com/v1beta/openai
                         (Groq: https://api.groq.com/openai/v1 , OpenRouter: https://openrouter.ai/api/v1)
-  LLM_MODEL             기본 "gemini-2.5-flash"
+  LLM_MODEL             기본 "gemini-flash-lite-latest"
   NOTION_TOKEN          https://www.notion.so/my-integrations 에서 Internal Integration 생성
   NOTION_DATABASE_ID    eba32801b6b141e2849ce85f819c3ea4
                         ※ DB 페이지 우측 상단 ··· → 연결(Connections) → 통합 추가 필수
@@ -84,7 +84,7 @@ DRAFT_DIR = ROOT / "output" / "tistory_drafts"
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_ENDPOINT = (os.getenv("LLM_BASE_URL") or
                 "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/") + "/chat/completions"
-LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-2.5-flash"  # Actions 에서 빈 변수는 "" 로 전달됨
+LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-flash-lite-latest"  # Actions 에서 빈 변수는 "" 로 전달됨
 
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "eba32801b6b141e2849ce85f819c3ea4")
@@ -160,7 +160,7 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
     for use_json in ((True, False) if json_mode else (False,)):  # JSON 모드 미지원 시 일반 모드 재시도
         payload = {**body, **({"response_format": {"type": "json_object"}} if use_json else {})}
         try:
-            r = requests.post(LLM_ENDPOINT, json=payload, timeout=90, headers=headers)
+            r = requests.post(LLM_ENDPOINT, json=payload, timeout=60, headers=headers)
             data = r.json() if r.ok else None
             if data and data.get("choices"):
                 return (data["choices"][0]["message"].get("content") or "").strip()
