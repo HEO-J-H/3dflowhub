@@ -187,7 +187,6 @@ def select_category(page: Page, domain: str, sub: str) -> str:
 
 
 def fill_post(page: Page, post: dict) -> None:
-    page.on("dialog", lambda d: d.accept())  # 'HTML 모드로 전환' 확인창 등 자동 수락
     page.goto(NEWPOST, wait_until="domcontentloaded")
     page.wait_for_selector(SELECTORS["title"], timeout=20000)
     # 이전 임시저장 글 이어쓰기 팝업이 뜨면 '취소'
@@ -215,16 +214,18 @@ def publish(page: Page, public: bool) -> str:
     page.click(SELECTORS["public"] if public else SELECTORS["private"])
     page.click(SELECTORS["publish"])
     page.wait_for_url(re.compile(r"/manage/posts"), timeout=30000)
-    page.wait_for_timeout(2000)
-    # 글 관리 목록 첫 글(방금 발행한 글)의 실제 주소
-    link = page.locator(f"a[href*='{BLOG}.tistory.com/']").filter(has_not_text="글쓰기").first
-    try:
-        href = link.get_attribute("href", timeout=5000) or ""
-        if re.search(r"tistory\.com/(\d+|entry/)", href):
-            return href
-    except PWTimeout:
-        pass
     return page.url
+
+
+def find_post_url(title: str, tries: int = 3) -> str:
+    """블로그 RSS 에서 제목으로 실제 글 주소 찾기 (공개 글만 RSS 에 노출)."""
+    import feedparser
+    for _ in range(tries):
+        for e in feedparser.parse(f"https://{BLOG}.tistory.com/rss").entries[:20]:
+            if e.get("title", "").strip() == title.strip():
+                return e.link
+        time.sleep(3)
+    return ""
 
 
 def shot(page: Page, name: str) -> str:
@@ -243,6 +244,7 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
     with sync_playwright() as p:
         ctx = _launch(p, headless=headless)
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
+        page.on("dialog", lambda d: d.accept())  # 'HTML 모드로 전환' 확인창 등 자동 수락 (한 번만 등록)
         if not is_logged_in(page):
             ctx.close()
             raise SystemExit("로그인이 필요합니다: python tistory_publisher.py --login")
@@ -269,6 +271,7 @@ def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:
                     print(json.dumps(results[-1], ensure_ascii=False))
                     continue
                 url = publish(page, public)
+                url = (find_post_url(post["title"]) if public else "") or url
                 if post["notion_id"]:  # 노션 상태 Published + 티스토리 주소 기록
                     core.mark_notion_published(core._notion(), post["notion_id"], url)
                 DONE_DIR.mkdir(parents=True, exist_ok=True)
