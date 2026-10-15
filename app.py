@@ -184,7 +184,7 @@ with t_auto:
         k[2].metric("발행", last.get("published", 0))
         k[3].metric("초안", last.get("drafts", 0))
         st.caption(f"실행 시각(UTC): {last.get('at', '')[:19]}  ·  GitHub 최신 기록")
-        for e in last.get("errors", []):
+        for e in [x for x in last.get("errors", []) if "news.google.com" not in x]:  # 구글 뉴스 0건은 정상
             st.error(e)
     else:
         st.info("기록이 없습니다.")
