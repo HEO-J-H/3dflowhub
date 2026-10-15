@@ -80,64 +80,175 @@ elif job["result"]:
 elif job["error"]:
     st.error(job["error"])
 
-# ─────────────────────────── 현황판 ───────────────────────────
+# ─────────────────────────── 데이터 ───────────────────────────
 @st.cache_data(ttl=300)
 def load_rows() -> pd.DataFrame:
     return pd.DataFrame(core.fetch_dashboard_rows())
 
 
+@st.cache_data(ttl=120)
+def load_runs() -> list[dict]:
+    try:
+        r = requests.get(f"https://api.github.com/repos/{GH_REPO}/actions/runs?per_page=15", timeout=10)
+        return r.json().get("workflow_runs", [])
+    except Exception:
+        return []
+
+
+@st.cache_data(ttl=120)
+def load_remote_memory() -> dict:
+    """GitHub 의 최신 memory.json (클라우드 실행 결과). 실패 시 로컬 파일."""
+    try:
+        r = requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/memory.json", timeout=10)
+        r.raise_for_status()
+        return r.json()
+    except Exception:
+        return core.load_memory()
+
+
+if st.button("🔄 새로고침"):
+    st.cache_data.clear()
+    st.rerun()
+
 df = load_rows()
 today = datetime.now().strftime("%Y-%m-%d")
-if df.empty:
-    st.warning("노션 데이터가 없습니다. NOTION_TOKEN / DB 연결을 확인하세요.")
-else:
+if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
-    today_df = df[df["수집일"].dt.strftime("%Y-%m-%d") == today]
-    m = st.columns(4)
-    m[0].metric("총 수집 아티클", len(df))
-    m[1].metric("오늘 수집", len(today_df))
-    m[2].metric("오늘 발행", int((today_df["상태"] == "Published").sum()))
-    m[3].metric("누적 발행", int((df["상태"] == "Published").sum()))
 
-    st.subheader("도메인별 통계")
-    st.bar_chart(df["도메인"].value_counts())
+t_home, t_list, t_auto, t_draft, t_rev = st.tabs(["📊 현황", "📰 글 목록", "⚙️ 자동화 상태", "📝 티스토리 초안", "💰 광고 수익"])
 
-    st.subheader("최근 수집된 글")
-    st.dataframe(df.head(30), use_container_width=True, hide_index=True,
-                 column_config={"원문": st.column_config.LinkColumn(), "티스토리": st.column_config.LinkColumn()})
+# ─────────────────────────── 현황 ───────────────────────────
+with t_home:
+    if df.empty:
+        st.warning("노션 데이터가 없습니다. NOTION_TOKEN / DB 연결을 확인하세요.")
+    else:
+        today_df = df[df["수집일"].dt.strftime("%Y-%m-%d") == today]
+        m = st.columns(4)
+        m[0].metric("총 수집 아티클", len(df))
+        m[1].metric("오늘 수집", len(today_df))
+        m[2].metric("오늘 발행", int((today_df["상태"] == "Published").sum()))
+        m[3].metric("누적 발행", int((df["상태"] == "Published").sum()))
+        a, b = st.columns(2)
+        with a:
+            st.subheader("도메인별")
+            st.bar_chart(df["도메인"].value_counts(), horizontal=True)
+        with b:
+            st.subheader("일별 수집 추이")
+            st.line_chart(df.groupby(df["수집일"].dt.date).size())
+        st.subheader("최근 5건")
+        for _, r in df.head(5).iterrows():
+            st.markdown(f"- **[{r['도메인']}]** [{r['제목']}]({r['원문']})  \n  <small>{r['태그']}</small>",
+                        unsafe_allow_html=True)
+
+# ─────────────────────────── 글 목록 ───────────────────────────
+with t_list:
+    if df.empty:
+        st.info("수집된 글이 없습니다.")
+    else:
+        c1, c2, c3 = st.columns([2, 2, 3])
+        dom = c1.multiselect("도메인", sorted(df["도메인"].dropna().unique()))
+        stat = c2.multiselect("상태", sorted(df["상태"].dropna().unique()))
+        q = c3.text_input("검색 (제목·태그)")
+        view = df
+        if dom:
+            view = view[view["도메인"].isin(dom)]
+        if stat:
+            view = view[view["상태"].isin(stat)]
+        if q:
+            view = view[view["제목"].str.contains(q, case=False) | view["태그"].str.contains(q, case=False)]
+        st.caption(f"{len(view)}건")
+        st.dataframe(view, use_container_width=True, hide_index=True,
+                     column_config={"원문": st.column_config.LinkColumn(),
+                                    "티스토리": st.column_config.LinkColumn(),
+                                    "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
+        st.link_button("노션 DB 열기", f"https://app.notion.com/p/{core.NOTION_DATABASE_ID}")
+
+# ─────────────────────────── 자동화 상태 ───────────────────────────
+with t_auto:
+    mem = load_remote_memory()
+    st.subheader("마지막 수집 결과")
+    if mem.get("runs"):
+        last = mem["runs"][-1]
+        k = st.columns(4)
+        k[0].metric("수집", last.get("collected", 0))
+        k[1].metric("노션 저장", last.get("saved", 0))
+        k[2].metric("발행", last.get("published", 0))
+        k[3].metric("초안", last.get("drafts", 0))
+        st.caption(f"실행 시각(UTC): {last.get('at', '')[:19]}  ·  GitHub 최신 기록")
+        for e in last.get("errors", []):
+            st.error(e)
+    else:
+        st.info("기록이 없습니다.")
+
+    st.subheader("GitHub Actions 실행 기록")
+    runs = load_runs()
+    if runs:
+        icon = {"success": "✅", "failure": "❌", "cancelled": "⏹️", None: "⏳"}
+        rows = [{"": icon.get(r["conclusion"], "❔"),
+                 "워크플로": r["name"],
+                 "방식": {"schedule": "자동", "workflow_dispatch": "수동"}.get(r["event"], r["event"]),
+                 "시작(KST)": pd.Timestamp(r["created_at"]).tz_convert("Asia/Seoul").strftime("%m-%d %H:%M"),
+                 "링크": r["html_url"]} for r in runs]
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True,
+                     column_config={"링크": st.column_config.LinkColumn(display_text="열기")})
+        if not any(r["event"] == "schedule" for r in runs):
+            st.warning("아직 자동(스케줄) 실행 기록이 없습니다. 깃허브 크론이 시작되기까지 시간이 걸릴 수 있습니다.")
+    else:
+        st.info("실행 기록을 불러오지 못했습니다.")
+
+    st.subheader("에이전트 교훈 (memory.json)")
+    for l in reversed(mem.get("lessons", [])[-10:]):
+        st.markdown(f"- {l}")
+    with st.expander("TODO.md"):
+        st.markdown((core.ROOT / "TODO.md").read_text(encoding="utf-8"))
+
+# ─────────────────────────── 티스토리 초안 ───────────────────────────
+with t_draft:
+    st.caption("티스토리 Open API 종료로 자동 발행 대신 HTML 초안을 만듭니다. "
+               "티스토리 글쓰기 → 우측 상단 '기본모드' → **HTML** 로 바꾼 뒤 붙여넣으세요.")
+    drafts = sorted(core.DRAFT_DIR.glob("*.html"), reverse=True) if core.DRAFT_DIR.exists() else []
+    st.link_button("GitHub Actions 초안(Artifacts) 받기", f"https://github.com/{GH_REPO}/actions")
+    if not drafts:
+        st.info("이 PC에 저장된 초안이 없습니다. (클라우드 실행 초안은 위 버튼 → 실행 → Artifacts 에서 받기)")
+    for f in drafts[:30]:
+        raw = f.read_text(encoding="utf-8")
+        title = raw.split("TITLE: ", 1)[-1].split(" |", 1)[0] if raw.startswith("<!-- TITLE") else f.stem
+        with st.expander(title):
+            body = raw.split("-->\n", 1)[-1]
+            st.code(body, language="html")
+            st.download_button("HTML 다운로드", body, file_name=f.name, key=f.name)
 
 # ─────────────────────────── 광고 수익 ───────────────────────────
-st.subheader("💰 광고 수익")
-st.caption("애드센스 API는 OAuth 앱 승인이 필요해, 일별 수익을 직접 입력/CSV 업로드하는 방식입니다.")
+with t_rev:
+    st.caption("애드센스 API는 OAuth 앱 승인이 필요해, 일별 수익을 직접 입력/CSV 업로드하는 방식입니다.")
+    rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(
+        {"date": pd.to_datetime([]), "revenue": []})
 
-rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(
-    {"date": pd.to_datetime([]), "revenue": []})
+    with st.expander("수익 입력"):
+        a, b, c = st.columns([2, 2, 1])
+        d = a.date_input("날짜")
+        v = b.number_input("수익(원)", min_value=0.0, step=100.0)
+        if c.button("추가"):
+            rev = pd.concat([rev[rev["date"] != pd.Timestamp(d)],
+                             pd.DataFrame({"date": [pd.Timestamp(d)], "revenue": [v]})]).sort_values("date")
+            REVENUE_CSV.parent.mkdir(parents=True, exist_ok=True)
+            rev.to_csv(REVENUE_CSV, index=False)
+            st.rerun()
+        up = st.file_uploader("CSV 업로드 (date,revenue)", type="csv")
+        if up is not None:
+            new = pd.read_csv(up, parse_dates=["date"])[["date", "revenue"]]
+            rev = pd.concat([rev, new]).drop_duplicates("date", keep="last").sort_values("date")
+            rev.to_csv(REVENUE_CSV, index=False)
 
-with st.expander("수익 입력"):
-    a, b, c = st.columns([2, 2, 1])
-    d = a.date_input("날짜")
-    v = b.number_input("수익(원)", min_value=0.0, step=100.0)
-    if c.button("추가"):
-        rev = pd.concat([rev[rev["date"] != pd.Timestamp(d)],
-                         pd.DataFrame({"date": [pd.Timestamp(d)], "revenue": [v]})]).sort_values("date")
-        REVENUE_CSV.parent.mkdir(parents=True, exist_ok=True)
-        rev.to_csv(REVENUE_CSV, index=False)
-        st.rerun()
-    up = st.file_uploader("CSV 업로드 (date,revenue)", type="csv")
-    if up is not None:
-        new = pd.read_csv(up, parse_dates=["date"])[["date", "revenue"]]
-        rev = pd.concat([rev, new]).drop_duplicates("date", keep="last").sort_values("date")
-        rev.to_csv(REVENUE_CSV, index=False)
-
-period = st.radio("집계 단위", ["일별", "월별", "분기별", "연도별"], horizontal=True)
-if rev.empty:
-    st.info("입력된 수익 데이터가 없습니다.")
-else:
-    freq = {"일별": "D", "월별": "M", "분기별": "Q", "연도별": "Y"}[period]
-    agg = rev.set_index("date")["revenue"].resample({"M": "ME", "Q": "QE", "Y": "YE"}.get(freq, freq)).sum()
-    agg.index = agg.index.to_period(freq).astype(str)
-    k = st.columns(3)
-    k[0].metric("오늘 수익", f"{rev.loc[rev['date'] == pd.Timestamp(today), 'revenue'].sum():,.0f}원")
-    k[1].metric(f"최근 {period[:-1]}", f"{agg.iloc[-1]:,.0f}원")
-    k[2].metric("누적", f"{rev['revenue'].sum():,.0f}원")
-    st.bar_chart(agg)
+    period = st.radio("집계 단위", ["일별", "월별", "분기별", "연도별"], horizontal=True)
+    if rev.empty:
+        st.info("입력된 수익 데이터가 없습니다.")
+    else:
+        freq = {"일별": "D", "월별": "M", "분기별": "Q", "연도별": "Y"}[period]
+        agg = rev.set_index("date")["revenue"].resample({"M": "ME", "Q": "QE", "Y": "YE"}.get(freq, freq)).sum()
+        agg.index = agg.index.to_period(freq).astype(str)
+        k = st.columns(3)
+        k[0].metric("오늘 수익", f"{rev.loc[rev['date'] == pd.Timestamp(today), 'revenue'].sum():,.0f}원")
+        k[1].metric(f"최근 {period[:-1]}", f"{agg.iloc[-1]:,.0f}원")
+        k[2].metric("누적", f"{rev['revenue'].sum():,.0f}원")
+        st.bar_chart(agg)
