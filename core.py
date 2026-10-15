@@ -386,8 +386,15 @@ def summarize(item: dict) -> dict | None:
     if data.get("domain") not in DOMAINS:
         data["domain"] = item["hint_domain"]
     data["category"] = register_category(data["domain"], data.get("category", ""))
-    if isinstance(data.get("tags"), str):
-        data["tags"] = [t.strip() for t in data["tags"].split(",") if t.strip()]
+    tags = data.get("tags")
+    if isinstance(tags, str):
+        data["tags"] = [t.strip() for t in tags.split(",") if t.strip()]
+    elif isinstance(tags, list):
+        normalized = []
+        for t in tags:
+            if isinstance(t, str):
+                normalized.extend([sub.strip() for sub in t.split(",") if sub.strip()])
+        data["tags"] = normalized
     return {**item, **data, "media": media, "collected_at": datetime.now(timezone.utc).isoformat()}
 
 
