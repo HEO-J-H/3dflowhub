@@ -308,10 +308,21 @@ def shot(page: Page, name: str) -> str:
 
 def pull_latest() -> None:
     """GitHub Actions 가 만든 초안(drafts/)을 받아오기. 실패해도 로컬 초안으로 진행."""
-    r = subprocess.run(["git", "pull", "--rebase", "--autostash", "-q", "origin", "main"], cwd=ROOT,
-                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    def git(*args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
+                              encoding="utf-8", errors="replace")
+
+    # 로컬 실행과 GitHub 실행이 같은 memory/*.json 을 고치므로, 로컬본을 잠시 빼두고 받은 뒤 내용 병합
+    tracked = [f for f in git("ls-files", "memory").stdout.split() if f.endswith(".json")]
+    local = {f: core._load_json(ROOT / f, None) for f in tracked}
+    git("checkout", "--", *tracked)
+    r = git("pull", "--rebase", "--autostash", "-q", "origin", "main")
     if r.returncode != 0:
+        git("rebase", "--abort")
         print("git pull 실패(로컬 초안으로 진행):", (r.stderr or r.stdout)[:200])
+    for f, mine in local.items():
+        if mine is not None:
+            core._save_json(ROOT / f, core.merge_json(core._load_json(ROOT / f, {}), mine))
 
 
 def run(dry_run: bool, public: bool, limit: int, headless: bool) -> list[dict]:

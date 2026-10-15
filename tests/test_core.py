@@ -196,3 +196,10 @@ def test_category_index_stays_within_domain():
     assert tp.pick_category_index(labels, "3D DCC", "튜토리얼") == 2
     assert tp.pick_category_index(labels, "Game Engine", "없는분류") == 3
     assert tp.pick_category_index(labels, "VFX", "x") == -1
+
+
+def test_merge_json_unions_lists_and_keeps_max():
+    a = {"runs": [{"at": 1}], "cnt": {"x": 2}, "lessons": ["a"]}
+    b = {"runs": [{"at": 1}, {"at": 2}], "cnt": {"x": 5, "y": 1}, "lessons": ["b"]}
+    m = core.merge_json(a, b)
+    assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]

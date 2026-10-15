@@ -169,6 +169,25 @@ def url_hash(url: str) -> str:
     return hashlib.sha256(url.strip().lower().rstrip("/").encode()).hexdigest()[:16]
 
 
+def merge_json(base, other):
+    """두 메모리 사본(로컬·GitHub)을 내용 기준으로 합침 — dict 는 재귀, list 는 순서 유지 합집합, 숫자는 큰 값."""
+    if isinstance(base, dict) and isinstance(other, dict):
+        out = dict(base)
+        for k, v in other.items():
+            out[k] = merge_json(out[k], v) if k in out else v
+        return out
+    if isinstance(base, list) and isinstance(other, list):
+        out, keys = list(base), {json.dumps(x, sort_keys=True, ensure_ascii=False) for x in base}
+        for x in other:
+            if (key := json.dumps(x, sort_keys=True, ensure_ascii=False)) not in keys:
+                out.append(x)
+                keys.add(key)
+        return out
+    if isinstance(base, (int, float)) and isinstance(other, (int, float)) and not isinstance(base, bool):
+        return max(base, other)
+    return other if other not in (None, "") else base
+
+
 def load_memory() -> dict:
     return _load_json(MEMORY_PATH, {"runs": [], "good_keywords": [], "bad_keywords": [], "lessons": []})
 
