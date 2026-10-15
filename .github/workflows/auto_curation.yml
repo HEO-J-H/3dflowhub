@@ -2,7 +2,7 @@ name: 3dflowhub auto curation
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # 10분마다 깨어나서 config.json 주기로 실행 여부 판단
+    - cron: "3,13,23,33,43,53 * * * *"   # 10분 간격(정각 혼잡 회피), 실제 실행은 config.json 주기로 판단
   workflow_dispatch:
     inputs:
       max_items:

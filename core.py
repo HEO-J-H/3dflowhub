@@ -118,7 +118,8 @@ DOMAINS: dict[str, dict] = {
     },
     "AI 3D": {
         "seeds": ["Gaussian Splatting", "NeRF", "text-to-3D", "3D generative AI"],
-        "feeds": ["https://80.lv/feed"],
+        "feeds": ["https://80.lv/feed", "https://www.cgchannel.com/category/news/ai/feed/",
+                  "https://blogs.nvidia.com/blog/category/generative-ai/feed/"],
     },
 }
 
