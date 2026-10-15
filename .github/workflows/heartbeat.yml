@@ -1,0 +1,41 @@
+name: 3dflowhub heartbeat
+
+# GitHub 스케줄(cron)은 신규 저장소에서 수 시간~수 일 동안 실행되지 않거나 지연될 수 있다.
+# 이 워크플로는 한 번 수동 실행하면 약 5시간 30분 동안 10분마다 수집 워크플로를 호출하고,
+# 끝날 때 자기 자신을 다시 호출해 끊김 없이 이어간다. (GITHUB_TOKEN 의 workflow_dispatch 는 허용됨)
+# 중지: Actions → 3dflowhub heartbeat → 실행 중인 run 을 Cancel 하거나, 워크플로를 Disable.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 */6 * * *"   # 스케줄이 살아나면 6시간마다 재기동 (중복은 concurrency 로 방지)
+
+permissions:
+  actions: write
+
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+
+jobs:
+  beat:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    steps:
+      - name: Dispatch curation every 10 minutes (~5h30m)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          for i in $(seq 1 33); do
+            gh workflow run auto_curation.yml --repo "$REPO" --ref main -f scheduled=true \
+              || echo "dispatch failed ($i)"
+            sleep 600
+          done
+
+      - name: Re-arm heartbeat
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: gh workflow run heartbeat.yml --repo "$REPO" --ref main

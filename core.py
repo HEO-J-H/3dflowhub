@@ -297,6 +297,26 @@ def fetch_article_text(url: str, limit: int = 4000) -> str:
     return fetch_article(url, limit)[0]
 
 
+SIMHASH_DISTANCE = 4  # 해밍 거리 ≤4 → 같은 기사로 간주
+
+
+def title_simhash(title: str, bits: int = 64) -> int:
+    """제목 근접 중복 판별용 64bit SimHash (단어 bigram, 고정 해시라 실행 간 일관)."""
+    t = re.sub(r"\s[-–|:]\s[^-–|:]{2,30}$", "", title.lower())  # 끝의 ' - 매체명' 제거
+    words = re.findall(r"\w+", t)
+    shingles = [" ".join(p) for p in zip(words, words[1:])] or words
+    v = [0] * bits
+    for s in shingles:
+        h = int.from_bytes(hashlib.blake2b(s.encode(), digest_size=8).digest(), "big")
+        for i in range(bits):
+            v[i] += 1 if (h >> i) & 1 else -1
+    return sum(1 << i for i in range(bits) if v[i] > 0)
+
+
+def is_near_duplicate(h: int, known: list[int]) -> bool:
+    return any(bin(h ^ k).count("1") <= SIMHASH_DISTANCE for k in known)
+
+
 def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
                     weights: dict[str, float]) -> list[dict]:
     """조회수로 학습된 도메인 비중(evolve)대로 배분, 남는 자리는 라운드로빈으로 채움."""
@@ -318,6 +338,7 @@ def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
 def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     keywords = generate_keywords(domains)
     candidates: list[dict] = []
+    known_hashes: list[int] = list(load_memory().get("title_hashes", []))
     for d in domains:
         strategy = load_strategy()
         blocked = set(strategy.get("blocked_feeds", []))
@@ -341,13 +362,21 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 if published and (time.time() - calendar.timegm(published)) > MAX_AGE_DAYS * 86400:
                     continue  # 오래된 기사 제외
                 seen.add(url_hash(link))
+                sh = title_simhash(e.get("title", ""))
+                if is_near_duplicate(sh, known_hashes):  # 다른 매체의 같은 기사
+                    continue
+                known_hashes.append(sh)
                 candidates.append({
+                    "simhash": sh,
                     "title": e.get("title", "").strip(),
                     "url": link,
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                 })
     picked = pick_by_weights(candidates, domains, max_items, load_strategy().get("domain_weights") or {})
+    mem = load_memory()  # 선택된 기사 지문 저장 → 이후 실행에서도 같은 기사 재수집 방지
+    mem["title_hashes"] = (mem.get("title_hashes", []) + [c["simhash"] for c in picked])[-800:]
+    _save_json(MEMORY_PATH, mem)
     log.info("수집 후보 %d건 → 선택 %d건", len(candidates), len(picked))
     return picked
 

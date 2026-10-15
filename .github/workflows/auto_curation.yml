@@ -15,6 +15,10 @@ on:
         description: "티스토리 발행"
         type: boolean
         default: true
+      scheduled:
+        description: "heartbeat 호출 (config.json 주기 확인 후 실행)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write   # memory/ 변경 커밋
@@ -57,8 +61,11 @@ jobs:
           IN_MAX: ${{ inputs.max_items }}
           IN_DOMAINS: ${{ inputs.domains }}
           IN_PUBLISH: ${{ inputs.publish }}
+          IN_SCHEDULED: ${{ inputs.scheduled }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "$IN_SCHEDULED" = "true" ]; then
+            python core.py --scheduled
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             if [ -n "$IN_MAX" ] || [ -n "$IN_DOMAINS" ]; then
               ARGS=""
               [ -n "$IN_MAX" ] && ARGS="$ARGS --max-items $IN_MAX"

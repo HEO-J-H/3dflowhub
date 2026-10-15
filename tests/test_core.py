@@ -152,3 +152,10 @@ def test_domain_weights_need_samples_and_keep_floor():
                          "3D DCC": {"posts": 1, "avg": 0}, "Game Engine": {"posts": 1, "avg": 0}}}
     w = evolve.learn_domain_weights(many, {})
     assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.15
+
+
+def test_simhash_detects_same_story_different_outlet():
+    a = core.title_simhash("Epic Games releases Unreal Engine 5.8 with new PCG tools - 80 Level")
+    b = core.title_simhash("Epic Games releases Unreal Engine 5.8 with new PCG tools")
+    c = core.title_simhash("Blender 5.3 beta adds built-in Loop Tools")
+    assert core.is_near_duplicate(a, [b]) and not core.is_near_duplicate(c, [a])
