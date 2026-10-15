@@ -208,6 +208,22 @@ with t_draft:
                "티스토리 글쓰기 → 우측 상단 '기본모드' → **HTML** 로 바꾼 뒤 붙여넣으세요.")
     drafts = sorted(core.DRAFT_DIR.glob("*.html"), reverse=True) if core.DRAFT_DIR.exists() else []
     st.link_button("GitHub Actions 초안(Artifacts) 받기", f"https://github.com/{GH_REPO}/actions")
+
+    st.markdown("**브라우저 자동 발행** (이 PC 전용 · 최초 1회 `python tistory_publisher.py --login` 필요)")
+    b1, b2, b3 = st.columns(3)
+    pub_public = b3.toggle("공개 발행", value=False, help="끄면 비공개로 발행됩니다")
+
+    def _publisher(*args: str) -> None:
+        import subprocess, sys
+        with st.spinner("티스토리 작업 중… (글 사이 60초 간격)"):
+            r = subprocess.run([sys.executable, "tistory_publisher.py", *args], cwd=core.ROOT,
+                               capture_output=True, text=True, encoding="utf-8")
+        st.code((r.stdout + r.stderr)[-3000:] or "출력 없음")
+
+    if b1.button("🧪 테스트 (발행 안 함)"):
+        _publisher("--dry-run")
+    if b2.button("🚀 초안 발행 (최대 5개)", type="primary"):
+        _publisher("--publish", "--limit", "5", *(["--public"] if pub_public else []))
     if not drafts:
         st.info("이 PC에 저장된 초안이 없습니다. (클라우드 실행 초안은 위 버튼 → 실행 → Artifacts 에서 받기)")
     for f in drafts[:30]:
