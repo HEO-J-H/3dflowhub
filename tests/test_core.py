@@ -15,6 +15,16 @@ def test_ads_inserted_top_middle_bottom(monkeypatch):
     assert out.rindex("flowhub-ad-bottom") > out.index("원문")
 
 
+def test_single_section_ad_placement(monkeypatch):
+    monkeypatch.setattr(core, "AD_HTML", "<b>AD</b>")
+    single_item = {**ITEM, "sections": [{"heading": "Only", "body": "Body"}]}
+    out = core.build_post_html(single_item)
+    # 섹션이 1개뿐일 때, 중간 광고(middle)가 본문(part_2 / source 앞) 뒤에 한 번만 들어가므로 <b>AD</b>는 총 3번(top, middle, bottom) 포함됨
+    assert out.count("<b>AD</b>") == 3
+    # top은 본문 앞에, middle은 유일한 섹션 뒤(또는 본문 뒤), bottom은 맨 아래
+    assert out.index("flowhub-ad-top") < out.index("Only") < out.index("flowhub-ad-middle") < out.index("원문")
+
+
 def test_no_ads_when_unconfigured(monkeypatch):
     monkeypatch.setattr(core, "AD_HTML", "")
     monkeypatch.setattr(core, "ADSENSE_CLIENT", "")
