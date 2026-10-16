@@ -358,3 +358,17 @@ def test_opro_trajectory_scores_and_keeps_notes_until_evaluated(monkeypatch):
     core._save_json(core.MEMORY_PATH, {"runs": [{"strategy_ver": ver, "collected": 3, "saved": 1}] * 3})
     st = evolve.update_strategy(st)
     assert st["prompt_notes"] == ["new"]
+
+
+def test_strategy_due_is_adaptive():
+    import evolve
+    from datetime import datetime, timedelta, timezone
+    ago = lambda h: (datetime.now(timezone.utc) - timedelta(hours=h)).isoformat(timespec="seconds")  # noqa: E731
+    st = {"prompt_notes": ["n"], "strategy_updated_at": ago(2)}
+    ver = core.strategy_version(["n"])
+    core._save_json(core.MEMORY_PATH, {"runs": [{"strategy_ver": ver, "collected": 3}] * 3})
+    assert evolve.strategy_due(st) is False          # 2시간, 표본 9건 < 15
+    core._save_json(core.MEMORY_PATH, {"runs": [{"strategy_ver": ver, "collected": 5}] * 3})
+    assert evolve.strategy_due(st) is True           # 표본 15건 충족 → 6시간 안 기다림
+    assert evolve.strategy_due({**st, "strategy_updated_at": ago(0.5)}) is False  # 최소 1시간 간격
+    assert evolve.strategy_due({**st, "strategy_updated_at": ago(7)}) is True

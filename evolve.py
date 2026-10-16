@@ -23,7 +23,9 @@ import feedparser
 import core
 
 log = core.log
-STRATEGY_EVERY = 6 * 3600
+STRATEGY_EVERY = 6 * 3600      # 데이터가 적어도 최소 이 주기로는 성찰
+STRATEGY_MIN_GAP = 3600        # 데이터가 충분하면 최대 1시간마다 (10분마다는 평가 표본 부족·LLM 낭비)
+MIN_ITEMS_PER_VERSION = 15     # 가이드 한 버전을 평가하려면 최소 이만큼의 수집 글
 TAXONOMY_EVERY = 24 * 3600
 MAX_NOTES = 6
 MAX_EXTRA_FEEDS = 4  # 도메인별 자동 추가 피드 상한
@@ -130,7 +132,7 @@ def score_trajectory(runs: list[dict], versions: dict) -> list[dict]:
     out = []
     for v, a in agg.items():
         c = a["collected"] or 1
-        out.append({"ver": v, "notes": versions.get(v, [])[:6], "runs": a["runs"],
+        out.append({"ver": v, "notes": versions.get(v, [])[:6], "runs": a["runs"], "collected": a["collected"],
                     "pass_rate": round(a["saved"] / c, 2), "offtopic_rate": round(a["offtopic"] / c, 2),
                     "score": round((a["saved"] - 0.5 * a["offtopic"] - 0.5 * a["short"]) / c, 3)})
     return sorted(out, key=lambda t: t["score"])
@@ -333,13 +335,24 @@ def refine_taxonomy(strategy: dict) -> dict:
     return strategy
 
 
+def strategy_due(strategy: dict) -> bool:
+    """적응형 주기: 6시간이 지났거나, 1시간이 지났고 현재 가이드 버전의 평가 표본이 충분할 때."""
+    if _due(strategy, "strategy_updated_at", STRATEGY_EVERY):
+        return True
+    if not _due(strategy, "strategy_updated_at", STRATEGY_MIN_GAP):
+        return False
+    ver = core.strategy_version(strategy.get("prompt_notes", []))
+    cur = next((t for t in score_trajectory(core.load_memory().get("runs", []), {}) if t["ver"] == ver), None)
+    return bool(cur and cur["runs"] >= MIN_RUNS_PER_VERSION and cur["collected"] >= MIN_ITEMS_PER_VERSION)
+
+
 def evolve(stats: dict | None = None, force: bool = False) -> dict:
     strategy = core.load_strategy()
     for key in ("prompt_notes", "blocked_feeds", "history"):
         strategy.setdefault(key, [])
     for key in ("keyword_hints", "extra_feeds"):
         strategy.setdefault(key, {})
-    if force or _due(strategy, "strategy_updated_at", STRATEGY_EVERY):
+    if force or strategy_due(strategy):
         strategy = update_strategy(strategy)
         core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
