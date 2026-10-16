@@ -29,123 +29,60 @@ if (!d.querySelector('meta[name="google"]')) {
 REVENUE_CSV = Path(core.ROOT) / "memory" / "revenue.csv"
 GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)
+SITE_URL = "https://heo-j-h.github.io/3dflowhub/"
+INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}
 
-# ─────────────────────────── 사이드바 ───────────────────────────
+# 화면 스타일: 게시판 사이트와 같은 톤 (카드·여백·위계)
+st.markdown("""<style>
+[data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:16px;padding:14px 18px}
+[data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
+div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:16px}
+.status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.hdr-links a{margin-right:14px;text-decoration:none}
+section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
+</style>""", unsafe_allow_html=True)
+
 cfg = core.load_config()
-with st.sidebar:
-    st.header("⚙️ 수집 설정")
-    interval = st.selectbox("수집 주기", list(core.INTERVALS), index=list(core.INTERVALS).index(cfg["interval"]))
-    max_items = st.slider("한 번에 수집할 최대 글 수", 5, 30, int(cfg["max_items"]))
-    domains = [d for d in core.DOMAINS
-               if st.checkbox(f"{core.DOMAIN_META.get(d, {}).get('icon', '📁')} {d}", value=d in cfg["domains"], key=f"dom_{d}")]
 
-    with st.expander("➕ 수집 분야 추가 / 삭제"):
-        new_name = st.text_input("분야 이름", placeholder="예: 3D 프린팅, 모션캡처, XR·메타버스")
-        new_icon = st.text_input("아이콘 (이모지)", value="📁", max_chars=4)
-        new_about = st.text_input("설명 (AI 분류 기준)", placeholder="예: 3D printing hardware, slicers, materials")
-        new_seeds = st.text_input("검색 키워드 (쉼표로 구분, 비우면 AI 가 추천)", placeholder="Bambu Lab, Prusa, resin printer")
-        new_feeds = st.text_area("RSS 주소 (줄마다 하나, 선택)", placeholder="https://example.com/feed/", height=80)
-        if st.button("➕ 분야 추가 (GitHub 반영)"):
-            name = new_name.strip()[:30]  # core 의 이름 길이 제한과 동일 (불일치 시 수집에서 빠짐)
-            if not name:
-                st.error("분야 이름을 입력하세요.")
-            elif name in core.DOMAINS or name in core.BUILTIN_DOMAINS:
-                st.error("이미 있는 분야입니다.")
-            else:
-                seeds = [s.strip() for s in new_seeds.split(",") if s.strip()]
-                if not seeds:  # AI 가 영어 검색 키워드 추천
-                    try:
-                        seeds = core._parse_json(core.llm(
-                            f'Field: {name} ({new_about}). Return JSON {{"keywords": [5 short English news search terms]}}',
-                            max_tokens=120, json_mode=True)).get("keywords", [])[:6]
-                    except Exception as ex:
-                        st.warning(f"키워드 추천 실패 — 분야 이름으로 검색합니다: {ex}")
-                ok_feeds, bad_feeds = [], []
-                for u in [x.strip() for x in new_feeds.splitlines() if x.strip()]:
-                    try:
-                        (ok_feeds if core.fetch_feed(u).entries else bad_feeds).append(u)
-                    except Exception:
-                        bad_feeds.append(u)
-                custom = dict(cfg.get("custom_domains") or {})
-                custom[name] = {"seeds": seeds or [name], "feeds": ok_feeds, "icon": new_icon.strip() or "📁",
-                                "about": new_about.strip() or name}
-                core.save_config({**core.load_config(), "custom_domains": custom,
-                                  "domains": list(dict.fromkeys(cfg["domains"] + [name]))})
-                err = core.git_sync(["config.json"], f"chore(config): 수집 분야 추가 — {name}")
-                if bad_feeds:
-                    st.warning("읽을 수 없는 RSS 는 제외했습니다: " + ", ".join(bad_feeds))
-                st.error(err) if err else st.success(f"'{name}' 추가 완료 (키워드: {', '.join(seeds or [name])}). "
-                                                     "다음 수집부터 반영되고 사이트에 게시판이 생깁니다.")
-                st.rerun()
-        custom_names = [k for k, v in (cfg.get("custom_domains") or {}).items() if not v.get("archived")]
-        if custom_names:
-            st.divider()
-            del_name = st.selectbox("추가한 분야 삭제", ["선택…"] + custom_names)
-            if del_name != "선택…" and st.button(f"🗑️ '{del_name}' 삭제 (이미 수집된 글은 유지)"):
-                custom = dict(cfg["custom_domains"])  # 보관 처리: 수집 중단, 게시판·기존 글 주소는 유지
-                custom[del_name] = {**custom[del_name], "archived": True}
-                core.save_config({**core.load_config(), "custom_domains": custom,
-                                  "domains": [d for d in cfg["domains"] if d != del_name]})
-                err = core.git_sync(["config.json"], f"chore(config): 수집 분야 삭제 — {del_name}")
-                st.error(err) if err else st.success(f"'{del_name}' 삭제됨")
-                st.rerun()
-    publish = st.toggle("티스토리 발행", value=cfg["publish"])
 
-    st.header("✉️ 메일 알림")
-    email_to = st.text_input("받는 주소", cfg["email_to"])
-    email_per_day = st.number_input("하루 최대 수신 횟수", 0, 48, int(cfg["email_per_day"]))
+# ─────────────────────────── 데이터 ───────────────────────────
+@st.cache_data(ttl=300)
+def load_rows() -> pd.DataFrame:
+    return pd.DataFrame(core.fetch_dashboard_rows())
 
-    st.header("💾 저장 위치")
-    save_notion = st.toggle("노션에도 저장", value=bool(cfg.get("save_notion", True)),
-                            help="끄면 GitHub(게시판 사이트)에만 저장합니다. 노션 API 호출이 없어져 수집이 더 빠르고 단순해집니다.")
 
-    st.header("🧠 AI 사용량")
-    llm_budget = st.number_input("LLM 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
-                                 help="Gemini 무료 한도 보호. AI Studio(aistudio.google.com) 에서 내 프로젝트 한도를 확인해 맞추세요.")
-    burst = st.slider("'계속'·10분 모드 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
+@st.cache_data(ttl=60)
+def load_runs() -> list[dict]:
+    try:
+        r = requests.get(f"https://api.github.com/repos/{GH_REPO}/actions/runs?per_page=20", timeout=10)
+        return r.json().get("workflow_runs", [])
+    except Exception:
+        return []
 
-    # ── 소진 예측 ────────────────────────────────────────────
-    interval_min = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}.get(interval, 60)
-    items = burst if interval_min < 60 else max_items
-    per_run = items + len(domains) + (2 * interval_min / 360) + (interval_min / 1440)  # 요약 + 키워드 + 성찰·정제
-    runs_per_day = max(1, 1440 // interval_min)
-    need_day = per_run * runs_per_day
-    used = core.llm_usage_today()
-    remaining = max(0, llm_budget - used)
-    st.progress(min(1.0, used / llm_budget) if llm_budget else 1.0,
-                text=f"오늘 {used} / {llm_budget}회 사용 (남은 {remaining}회)")
-    m1, m2 = st.columns(2)
-    m1.metric("1회 실행", f"약 {per_run:.0f}회")
-    m2.metric("하루 필요", f"약 {need_day:,.0f}회")
-    if need_day <= llm_budget:
-        st.success(f"하루 한도 안에서 계속 수집 가능 (여유 {llm_budget - need_day:,.0f}회)")
-    else:
-        runs_left = int(remaining // per_run) if per_run else 0
-        mins = runs_left * interval_min
-        eta = (datetime.now() + pd.Timedelta(minutes=mins)).strftime("%H:%M")
-        st.warning(f"현재 설정이면 약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 오늘 한도 소진 → "
-                   f"이후 다음 날(오전 9시, 한국시간)까지 수집 중단")
-        st.caption(f"하루 내내 돌리려면: 한도 {need_day:,.0f}회 이상, 또는 1회 {max(1, int(llm_budget / runs_per_day - len(domains)))}건 이하")
-    st.caption("사용량은 이 PC + GitHub 합산 (마지막 동기화 기준)")
 
-    if st.button("💾 설정 저장 (GitHub 반영)", use_container_width=True):
-        core.save_config({**core.load_config(), "interval": interval, "max_items": max_items, "domains": domains,
-                          "publish": publish, "email_to": email_to, "email_per_day": email_per_day,
-                          "llm_daily_budget": llm_budget, "burst_items": burst, "save_notion": save_notion})
-        with st.spinner("GitHub 에 반영 중…"):
-            err = core.git_sync(["config.json"], f"chore(config): 대시보드 설정 변경 (주기 {interval}) [skip ci]")
-        if err:
-            st.error(f"로컬에는 저장됐지만 GitHub 반영 실패: {err}")
-        else:
-            st.success(f"저장 완료 — GitHub 자동 수집에도 반영됨 (주기: {interval}, 노션 {'저장' if save_notion else '안 함'})")
+@st.cache_data(ttl=60)
+def load_remote_memory() -> dict:
+    """GitHub 의 최신 memory.json (클라우드 실행 결과). 실패 시 로컬 파일."""
+    try:
+        r = requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/memory.json", timeout=10)
+        r.raise_for_status()
+        return r.json()
+    except Exception:
+        return core.load_memory()
 
-    st.caption("※ '계속'은 GitHub cron 최소 간격(10분)으로 실행됩니다.")
 
-# ─────────────────────────── 수동 실행 ───────────────────────────
-st.title("🧊 3dflowhub 큐레이션 현황판")
-st.markdown("🌐 **게시판 사이트(GitHub Pages)**: [heo-j-h.github.io/3dflowhub](https://heo-j-h.github.io/3dflowhub/)  ·  "
-            "📝 [티스토리](https://hjh1014.tistory.com/)  ·  🗂️ [노션 DB](https://app.notion.com/p/eba32801b6b141e2849ce85f819c3ea4)")
+def ago(ts: str) -> str:
+    """ISO 시각 → '3분 전' 같은 사람이 읽기 쉬운 표현."""
+    try:
+        t = pd.Timestamp(ts)
+        t = t.tz_localize("UTC") if t.tzinfo is None else t
+        mins = int((pd.Timestamp.now(tz="UTC") - t).total_seconds() // 60)
+    except Exception:
+        return "-"
+    return "방금" if mins < 1 else f"{mins}분 전" if mins < 60 else f"{mins // 60}시간 전" if mins < 1440 else f"{mins // 1440}일 전"
 
+
+# ─────────────────────────── 사이드바: 실시간 상태 + 빠른 실행 ───────────────────────────
 if "job" not in st.session_state:
     st.session_state.job = {"running": False, "result": None, "error": None}
 job = st.session_state.job
@@ -160,96 +97,103 @@ def _run_local(job: dict, params: dict) -> None:
         job["running"] = False
 
 
-def _dispatch_github() -> str:
-    r = requests.post(
-        f"https://api.github.com/repos/{GH_REPO}/actions/workflows/auto_curation.yml/dispatches",
-        headers={"Authorization": f"Bearer {GH_PAT}", "Accept": "application/vnd.github+json"},
-        json={"ref": "main", "inputs": {"max_items": str(max_items), "domains": ",".join(domains)}},
-        timeout=20,
-    )
-    return "GitHub Actions 실행 요청 완료" if r.status_code == 204 else f"요청 실패 {r.status_code}: {r.text[:200]}"
+@st.fragment(run_every="60s")  # 사이드바 상태만 1분마다 갱신 (전체 페이지 재실행 없음)
+def status_panel() -> None:
+    runs = load_runs()
+    mem = load_remote_memory()
+    last = (mem.get("runs") or [{}])[-1]
+    cur = [r for r in runs if r["name"].startswith("3dflowhub auto")]
+    ok = cur and cur[0]["conclusion"] in ("success", None)
+    color = "#30d158" if ok else "#ff453a"
+    st.markdown(f'<span class="status-dot" style="background:{color}"></span>**자동 수집 '
+                f'{"정상" if ok else "확인 필요"}**', unsafe_allow_html=True)
+    st.caption(f"주기 {cfg['interval']} · 마지막 수집 {ago(last.get('at', ''))} "
+               f"(수집 {last.get('collected', 0)} → 저장 {last.get('saved', 0)})")
+    used, budget = core.llm_usage_today(), int(cfg.get("llm_daily_budget", 500))
+    st.progress(min(1.0, used / budget) if budget else 1.0, text=f"AI 사용 {used}/{budget}회")
+    pages = [r for r in runs if r["name"].endswith("pages")]
+    if pages:
+        st.caption(f"사이트 배포 {ago(pages[0]['created_at'])} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
 
 
-c1, c2 = st.columns(2)
-if c1.button("🚀 지금 바로 자료 수집 및 노션 업로드 실행", type="primary", disabled=job["running"],
-             use_container_width=True):
-    job.update(running=True, result=None, error=None)
-    threading.Thread(target=_run_local, daemon=True,
-                     args=(job, {"max_items": max_items, "domains": domains, "publish": publish})).start()
-if c2.button("☁️ GitHub Actions로 실행", disabled=not GH_PAT, use_container_width=True):
-    st.info(_dispatch_github())
+with st.sidebar:
+    st.markdown("### 🧊 3dflowhub")
+    status_panel()
+    st.divider()
+    if st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"], use_container_width=True,
+                 help="이 PC에서 현재 설정으로 즉시 수집합니다 (GitHub 자동 수집과 별개)"):
+        job.update(running=True, result=None, error=None)
+        threading.Thread(target=_run_local, daemon=True,
+                         args=(job, {"max_items": cfg["max_items"], "domains": cfg["domains"],
+                                     "publish": cfg["publish"]})).start()
+    if job["running"]:
+        st.info("⏳ 수집 중… 잠시 후 새로고침하세요")
+    elif job["result"]:
+        st.success(f"완료: 저장 {job['result'].get('saved', 0)}건")
+    elif job["error"]:
+        st.error(job["error"])
+    if GH_PAT and st.button("☁️ GitHub에서 실행", use_container_width=True):
+        r = requests.post(f"https://api.github.com/repos/{GH_REPO}/actions/workflows/auto_curation.yml/dispatches",
+                          headers={"Authorization": f"Bearer {GH_PAT}", "Accept": "application/vnd.github+json"},
+                          json={"ref": "main", "inputs": {}}, timeout=20)
+        st.toast("GitHub 실행 요청 완료" if r.status_code == 204 else f"요청 실패 {r.status_code}")
+    if st.button("🔄 데이터 새로고침", use_container_width=True):
+        st.cache_data.clear()
+        st.rerun()
+    st.divider()
+    st.link_button("🌐 게시판 사이트", SITE_URL, use_container_width=True)
+    st.link_button("📝 티스토리", "https://hjh1014.tistory.com/", use_container_width=True)
+    st.link_button("⚙️ GitHub Actions", f"https://github.com/{GH_REPO}/actions", use_container_width=True)
 
-if job["running"]:
-    st.info("⏳ 백그라운드에서 수집 중… (새로고침하면 결과가 표시됩니다)")
-elif job["result"]:
-    st.success(f"완료: {job['result']}")
-elif job["error"]:
-    st.error(job["error"])
-
-# ─────────────────────────── 데이터 ───────────────────────────
-@st.cache_data(ttl=300)
-def load_rows() -> pd.DataFrame:
-    return pd.DataFrame(core.fetch_dashboard_rows())
-
-
-@st.cache_data(ttl=120)
-def load_runs() -> list[dict]:
-    try:
-        r = requests.get(f"https://api.github.com/repos/{GH_REPO}/actions/runs?per_page=15", timeout=10)
-        return r.json().get("workflow_runs", [])
-    except Exception:
-        return []
-
-
-@st.cache_data(ttl=120)
-def load_remote_memory() -> dict:
-    """GitHub 의 최신 memory.json (클라우드 실행 결과). 실패 시 로컬 파일."""
-    try:
-        r = requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/memory.json", timeout=10)
-        r.raise_for_status()
-        return r.json()
-    except Exception:
-        return core.load_memory()
-
-
-if st.button("🔄 새로고침"):
-    st.cache_data.clear()
-    st.rerun()
-
+# ─────────────────────────── 본문 ───────────────────────────
+st.title("큐레이션 현황판")
 df = load_rows()
 today = datetime.now().strftime("%Y-%m-%d")
 if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
-t_home, t_list, t_auto, t_draft, t_rev = st.tabs(["📊 현황", "📰 글 목록", "⚙️ 자동화 상태", "📝 티스토리 초안", "💰 광고 수익"])
+t_home, t_list, t_auto, t_draft, t_rev, t_set = st.tabs(
+    ["📊 개요", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "💰 수익·방문", "🛠 설정"])
 
-# ─────────────────────────── 현황 ───────────────────────────
+# ─────────────────────────── 개요 ───────────────────────────
 with t_home:
     if df.empty:
-        st.warning("노션 데이터가 없습니다. NOTION_TOKEN / DB 연결을 확인하세요.")
+        st.warning("아직 수집된 글이 없습니다.")
     else:
-        today_df = df[df["수집일"].dt.strftime("%Y-%m-%d") == today]
-        m = st.columns(4)
-        m[0].metric("총 수집 아티클", len(df))
-        m[1].metric("오늘 수집", len(today_df))
-        m[2].metric("오늘 발행", int((today_df["상태"] == "Published").sum()))
-        m[3].metric("누적 발행", int((df["상태"] == "Published").sum()))
+        day = df["수집일"].dt.strftime("%Y-%m-%d")
+        yday = (datetime.now() - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+        n_today, n_yday = int((day == today).sum()), int((day == yday).sum())
+        perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+        m = st.columns(5)
+        m[0].metric("전체 글", f"{len(df):,}", f"+{n_today} 오늘")
+        m[1].metric("오늘 수집", n_today, n_today - n_yday, help="어제 대비")
+        m[2].metric("도구·주제 게시판", df[["도메인", "카테고리"]].drop_duplicates().shape[0])
+        m[3].metric("사이트 방문 (30일)", (perf.get("pages") or {}).get("pv_30d", "미연결"))
+        m[4].metric("AI 사용 (오늘)", f"{core.llm_usage_today()}/{cfg.get('llm_daily_budget', 500)}")
+
+        with st.container(border=True):
+            st.markdown("**최근 14일 수집 추이**")
+            daily = df.assign(날짜=df["수집일"].dt.date).groupby(["날짜", "도메인"]).size().unstack(fill_value=0)
+            daily = daily[daily.index >= (datetime.now() - pd.Timedelta(days=14)).date()]
+            st.bar_chart(daily, height=220)
         a, b = st.columns(2)
-        with a:
-            st.subheader("카테고리별")
-            st.bar_chart(df.assign(분류=df["도메인"] + " › " + df["카테고리"].fillna(""))["분류"].value_counts(),
-                         horizontal=True)
-        with b:
-            st.subheader("일별 수집 추이")
-            st.line_chart(df.groupby(df["수집일"].dt.date).size())
-        st.subheader("최근 글")
+        with a, st.container(border=True):
+            st.markdown("**많이 다룬 도구 Top 10**")
+            top = (df["도메인"] + " › " + df["카테고리"].fillna("기타")).value_counts().head(10).sort_values()
+            st.bar_chart(top, horizontal=True, height=300)
+        with b, st.container(border=True):
+            st.markdown("**콘텐츠 유형 분포**")
+            if "유형" in df.columns:
+                st.bar_chart(df["유형"].replace("", "미분류").value_counts().sort_values(), horizontal=True, height=300)
+        st.markdown("**최근 글**")
         cols = st.columns(3)
         for i, (_, r) in enumerate(df.head(6).iterrows()):
-            with cols[i % 3]:
+            with cols[i % 3], st.container(border=True):
                 if isinstance(r.get("이미지"), str) and r["이미지"]:
                     st.image(r["이미지"], use_container_width=True)
-                st.markdown(f"**[{r['제목']}]({r['원문']})**  \n<small>{r['도메인']} › {r['카테고리']}</small>",
-                            unsafe_allow_html=True)
+                link = r.get("사이트") if isinstance(r.get("사이트"), str) else r["원문"]
+                st.markdown(f"**[{r['제목']}]({link})**")
+                st.caption(f"{r['도메인']} › {r['카테고리']}" + (f" · {r['유형']}" if r.get("유형") else ""))
 
 # ─────────────────────────── 글 목록 ───────────────────────────
 with t_list:
@@ -505,3 +449,105 @@ with t_rev:
         pages_rev = last30.loc[last30["channel"] == "GitHub Pages", "revenue"].sum()
         k[3].metric("Pages RPM (30일)", f"{pages_rev / pv * 1000:,.0f}원" if pv else "-")
         st.bar_chart(agg)
+
+# ─────────────────────────── 설정 (한 번에 저장하는 폼) ───────────────────────────
+with t_set:
+    st.caption("변경 후 각 영역의 **저장** 버튼을 누르면 이 PC와 GitHub 자동 수집에 함께 반영됩니다.")
+
+    def save(changes: dict, msg: str) -> None:
+        core.save_config({**core.load_config(), **changes})
+        with st.spinner("GitHub 에 반영 중…"):
+            err = core.git_sync(["config.json"], f"chore(config): {msg} [skip ci]")
+        st.error(f"로컬 저장됨, GitHub 반영 실패: {err}") if err else st.toast(f"✅ 저장됨 — {msg}")
+
+    left, right = st.columns([3, 2])
+    with left, st.form("collect"):
+        st.subheader("📥 수집")
+        c1, c2 = st.columns(2)
+        interval = c1.selectbox("수집 주기", list(core.INTERVALS), index=list(core.INTERVALS).index(cfg["interval"]))
+        max_items = c2.slider("1시간 이상 주기: 1회 수집 글 수", 5, 30, int(cfg["max_items"]))
+        burst = c2.slider("'계속'·10분 주기: 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
+        domains = c1.multiselect("수집 분야", list(core.DOMAINS), default=[d for d in cfg["domains"] if d in core.DOMAINS],
+                                 format_func=lambda d: f"{core.DOMAIN_META.get(d, {}).get('icon', '📁')} {d}")
+        c3, c4 = st.columns(2)
+        save_notion = c3.toggle("노션에도 저장", value=bool(cfg.get("save_notion", True)))
+        publish = c4.toggle("티스토리 초안 생성", value=bool(cfg["publish"]))
+        llm_budget = st.number_input("AI 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
+                                     help="Gemini 무료 한도 보호 — AI Studio 에서 내 한도를 확인해 맞추세요.")
+        if st.form_submit_button("💾 수집 설정 저장", type="primary", use_container_width=True):
+            if not domains:
+                st.error("수집 분야를 하나 이상 선택하세요.")
+            else:
+                save({"interval": interval, "max_items": max_items, "burst_items": burst, "domains": domains,
+                      "save_notion": save_notion, "publish": publish, "llm_daily_budget": llm_budget},
+                     f"수집 설정 (주기 {interval})")
+
+    with right, st.container(border=True):
+        st.subheader("🧠 AI 사용량 예측")
+        iv = INTERVAL_MIN.get(cfg["interval"], 60)
+        items = cfg.get("burst_items", 3) if iv < 60 else cfg["max_items"]
+        per_run = items + len(cfg["domains"]) + (2 * iv / 360) + (iv / 1440)
+        need_day = per_run * max(1, 1440 // iv)
+        budget, used = int(cfg.get("llm_daily_budget", 500)), core.llm_usage_today()
+        st.progress(min(1.0, used / budget) if budget else 1.0, text=f"오늘 {used} / {budget}회 (남은 {max(0, budget - used)}회)")
+        k1, k2 = st.columns(2)
+        k1.metric("1회 실행", f"≈{per_run:.0f}회")
+        k2.metric("하루 필요", f"≈{need_day:,.0f}회")
+        if need_day <= budget:
+            st.success(f"하루 한도 안에서 계속 수집 가능 (여유 {budget - need_day:,.0f}회)")
+        else:
+            mins = int(max(0, budget - used) // per_run) * iv
+            eta = (datetime.now() + pd.Timedelta(minutes=mins)).strftime("%H:%M")
+            st.warning(f"약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 오늘 한도 소진 → 다음 날 오전 9시까지 중단")
+        st.caption("저장된 설정 기준 · 사용량은 이 PC + GitHub 합산")
+
+    a, b = st.columns(2)
+    with a, st.form("mail"):
+        st.subheader("✉️ 메일 알림")
+        email_to = st.text_input("받는 주소", cfg["email_to"])
+        email_per_day = st.number_input("하루 최대 수신 횟수", 0, 48, int(cfg["email_per_day"]))
+        if st.form_submit_button("💾 메일 설정 저장", use_container_width=True):
+            save({"email_to": email_to, "email_per_day": email_per_day}, "메일 설정")
+    with b, st.form("add_domain", clear_on_submit=True):
+        st.subheader("➕ 수집 분야 추가")
+        new_name = st.text_input("분야 이름", placeholder="예: 3D 프린팅, 모션캡처, XR·메타버스")
+        n1, n2 = st.columns([1, 3])
+        new_icon = n1.text_input("아이콘", value="📁", max_chars=4)
+        new_about = n2.text_input("설명 (AI 분류 기준)", placeholder="3D printing hardware, slicers, materials")
+        new_seeds = st.text_input("검색 키워드 (쉼표, 비우면 AI 추천)", placeholder="Bambu Lab, Prusa, resin printer")
+        new_feeds = st.text_area("RSS 주소 (줄마다 하나, 선택)", height=68)
+        if st.form_submit_button("➕ 분야 추가", use_container_width=True):
+            name = new_name.strip()[:30]
+            if not name:
+                st.error("분야 이름을 입력하세요.")
+            elif name in core.DOMAINS or name in core.BUILTIN_DOMAINS:
+                st.error("이미 있는 분야입니다.")
+            else:
+                seeds = [x.strip() for x in new_seeds.split(",") if x.strip()]
+                if not seeds:
+                    try:
+                        seeds = core._parse_json(core.llm(
+                            f'Field: {name} ({new_about}). Return JSON {{"keywords": [5 short English news search terms]}}',
+                            max_tokens=120, json_mode=True)).get("keywords", [])[:6]
+                    except Exception as ex:
+                        st.warning(f"키워드 추천 실패 — 분야 이름으로 검색합니다: {ex}")
+                ok_feeds = []
+                for u in [x.strip() for x in new_feeds.splitlines() if x.strip()]:
+                    try:
+                        if core.fetch_feed(u).entries:
+                            ok_feeds.append(u)
+                    except Exception:
+                        st.warning(f"읽을 수 없는 RSS 제외: {u}")
+                custom = dict(cfg.get("custom_domains") or {})
+                custom[name] = {"seeds": seeds or [name], "feeds": ok_feeds, "icon": new_icon.strip() or "📁",
+                                "about": new_about.strip() or name}
+                save({"custom_domains": custom, "domains": list(dict.fromkeys(cfg["domains"] + [name]))}, f"분야 추가 — {name}")
+
+    custom_names = [k for k, v in (cfg.get("custom_domains") or {}).items() if not v.get("archived")]
+    if custom_names:
+        with st.expander("🗑️ 추가한 분야 보관(수집 중단, 게시판·글은 유지)"):
+            del_name = st.selectbox("분야 선택", custom_names)
+            if st.button(f"'{del_name}' 보관 처리"):
+                custom = dict(cfg["custom_domains"])
+                custom[del_name] = {**custom[del_name], "archived": True}
+                save({"custom_domains": custom, "domains": [d for d in cfg["domains"] if d != del_name]}, f"분야 보관 — {del_name}")
