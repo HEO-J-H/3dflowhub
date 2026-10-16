@@ -517,9 +517,19 @@ def fetch_article_text(url: str, limit: int = 4000) -> str:
 
 
 def fetch_feed(url: str, timeout: int = 15):
-    """타임아웃 있는 피드 파싱 (feedparser 단독 호출은 무한 대기 가능)."""
+    """타임아웃 있는 피드 파싱 (feedparser 단독 호출은 무한 대기 가능).
+    같은 사이트 연속 요청은 2초 간격(Reddit 등 429 방지), HTTP 오류는 예외로 올려 '빈 피드'로 오인하지 않게 한다."""
+    host = urlparse(url).netloc
+    wait = 2.0 - (time.time() - _LAST_HIT.get(host, 0))
+    if wait > 0:
+        time.sleep(wait)
+    _LAST_HIT[host] = time.time()
     r = requests.get(url, headers=HTTP_HEADERS, timeout=timeout)
+    r.raise_for_status()  # 403/429/5xx → 호출 측에서 '실패'로 처리 (피드 차단 카운트에 포함 안 됨)
     return feedparser.parse(r.content)
+
+
+_LAST_HIT: dict[str, float] = {}
 
 
 def normalize_feed_url(url: str) -> str:

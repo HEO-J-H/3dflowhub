@@ -14,6 +14,18 @@ import streamlit as st
 import core
 
 st.set_page_config(page_title="3dflowhub", page_icon="🧊", layout="wide")
+
+# 크롬 자동 번역이 화면을 바꾸면 Streamlit(React)이 'removeChild' 오류를 냄 → 한국어 페이지로 표시하고 번역 금지
+import streamlit.components.v1 as _components  # noqa: E402
+_components.html("""<script>
+const d = window.parent.document;
+d.documentElement.lang = "ko";
+d.documentElement.setAttribute("translate", "no");
+d.documentElement.classList.add("notranslate");
+if (!d.querySelector('meta[name="google"]')) {
+  const m = d.createElement("meta"); m.name = "google"; m.content = "notranslate"; d.head.appendChild(m);
+}
+</script>""", height=0)
 REVENUE_CSV = Path(core.ROOT) / "memory" / "revenue.csv"
 GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)

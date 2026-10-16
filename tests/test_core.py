@@ -432,3 +432,15 @@ def test_audit_terms_filters_fragments_and_brands(monkeypatch):
     core._save_json(core.POSTS_DIR / "2026-10-16-x.json", {"title_ko": "스피드트리 구글 스타", "summary": "", "sections": []})
     monkeypatch.setattr(core, "llm", lambda *a, **k: '{"terms": {"스피드트리": "SpeedTree", "구글": "Google", "스타": "Star"}}')
     assert evolve.audit_terms() == {"스피드트리": "SpeedTree"}
+
+
+def test_http_error_feed_is_not_counted_as_empty(monkeypatch):
+    class R:
+        status_code = 429
+        content = b""
+        def raise_for_status(self):
+            raise core.requests.HTTPError("429 Too Many Requests")
+    monkeypatch.setattr(core.requests, "get", lambda *a, **k: R())
+    import pytest
+    with pytest.raises(core.requests.HTTPError):
+        core.fetch_feed("https://www.reddit.com/r/Maxscript/.rss")
