@@ -108,9 +108,13 @@ HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.c
 # 도메인 매뉴얼: 시드 키워드 + 고정 RSS
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
-        "seeds": ["3ds Max", "Blender", "Maya", "V-Ray", "Corona Renderer"],
+        "seeds": ["3ds Max", "Autodesk 3ds Max", "Blender", "Maya", "V-Ray", "Corona Renderer", "ZBrush",
+                  "Cinema 4D", "Substance 3D", "Houdini"],
         "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/",
-                  "https://www.blender.org/feed/", "https://code.blender.org/feed/"],
+                  "https://www.blender.org/feed/", "https://code.blender.org/feed/",
+                  # 3ds Max · MAXScript 커뮤니티 / 3ds Max 주력 렌더러(V-Ray·Corona) 공식 블로그
+                  "https://www.reddit.com/r/3dsmax/.rss", "https://www.reddit.com/r/Maxscript/.rss",
+                  "https://blog.chaos.com/rss.xml"],
     },
     "Game Engine": {
         "seeds": ["Unreal Engine 5", "Unity 6", "Nanite", "Lumen", "Godot"],
@@ -133,7 +137,7 @@ DOMAINS: dict[str, dict] = {
 
 # 세부 카테고리 시드 — LLM 이 새 카테고리를 제안하면 memory.json["categories"] 에 자동 추가된다
 SEED_CATEGORIES: dict[str, list[str]] = {
-    "3D DCC": ["모델링", "렌더링", "텍스처링", "애니메이션", "툴 업데이트"],
+    "3D DCC": ["모델링", "렌더링", "텍스처링", "애니메이션", "툴 업데이트", "3ds Max·MAXScript"],
     "Game Engine": ["엔진 업데이트", "게임 개발 사례", "튜토리얼", "신작 게임"],
     "VFX": ["시뮬레이션", "컴포지팅", "모션그래픽", "제작 사례"],
     "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
@@ -542,6 +546,21 @@ def is_near_duplicate(h: int, known: list[int]) -> bool:
     return any(bin(h ^ k).count("1") <= SIMHASH_DISTANCE for k in known)
 
 
+def interleave_by_source(candidates: list[dict]) -> list[dict]:
+    """도메인별로 출처(사이트)를 돌아가며 한 건씩 배치 — 예: blender 사이트 3곳이 앞자리를 모두 차지하는 문제 해결."""
+    from collections import OrderedDict
+    out = []
+    for d in dict.fromkeys(c["hint_domain"] for c in candidates):
+        groups: "OrderedDict[str, list]" = OrderedDict()
+        for c in (c for c in candidates if c["hint_domain"] == d):
+            groups.setdefault(c.get("source", ""), []).append(c)
+        while any(groups.values()):
+            for g in groups.values():
+                if g:
+                    out.append(g.pop(0))
+    return out
+
+
 def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
                     weights: dict[str, float]) -> list[dict]:
     """조회수로 학습된 도메인 비중(evolve)대로 배분, 남는 자리는 라운드로빈으로 채움."""
@@ -564,13 +583,20 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     keywords = generate_keywords(domains)
     candidates: list[dict] = []
     known_hashes: list[int] = list(load_memory().get("title_hashes", []))
+    seed_rr: dict[str, int] = dict(load_memory().get("seed_rr", {}))  # 분야별 시드 순환 위치
     for d in domains:
         strategy = load_strategy()
         blocked = {normalize_feed_url(u) for u in strategy.get("blocked_feeds", [])}
         feeds = {}
         for f in DOMAINS[d]["feeds"] + strategy.get("extra_feeds", {}).get(d, []):
             feeds.setdefault(normalize_feed_url(f), f)  # 같은 피드의 다른 표기 중복 제거
-        sources = [f for n, f in feeds.items() if n not in blocked] + [_google_news_rss(k) for k in keywords[d]]
+        # 시드 순환: 실행마다 분야의 시드 도구 하나를 정확히 검색 → 특정 도구(예: Blender)만 쏠리는 것 방지
+        seeds = DOMAINS[d].get("seeds") or []
+        rr = seed_rr.get(d, 0)
+        rotated = [f'"{seeds[rr % len(seeds)]}"'] if seeds else []
+        seed_rr[d] = rr + 1
+        sources = [f for n, f in feeds.items() if n not in blocked] + \
+            [_google_news_rss(k) for k in dict.fromkeys(rotated + keywords[d])]
         for src in sources:
             try:
                 feed = fetch_feed(src)
@@ -594,12 +620,17 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     continue
                 known_hashes.append(sh)
                 candidates.append({
+                    "source": src,  # 피드 단위로 교차 (같은 사이트의 다른 피드도 구분)
                     "simhash": sh,
                     "title": e.get("title", "").strip(),
                     "url": link,
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                 })
+    candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
+    mem_rr = load_memory()
+    mem_rr["seed_rr"] = seed_rr
+    _save_json(MEMORY_PATH, mem_rr)
     picked = pick_by_weights(candidates, domains, max_items, load_strategy().get("domain_weights") or {})
     mem = load_memory()  # 선택된 기사 지문 저장 → 이후 실행에서도 같은 기사 재수집 방지
     mem["title_hashes"] = (mem.get("title_hashes", []) + [c["simhash"] for c in picked])[-800:]

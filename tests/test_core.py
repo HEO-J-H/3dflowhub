@@ -372,3 +372,10 @@ def test_strategy_due_is_adaptive():
     assert evolve.strategy_due(st) is True           # 표본 15건 충족 → 6시간 안 기다림
     assert evolve.strategy_due({**st, "strategy_updated_at": ago(0.5)}) is False  # 최소 1시간 간격
     assert evolve.strategy_due({**st, "strategy_updated_at": ago(7)}) is True
+
+
+def test_interleave_by_source_breaks_single_site_dominance():
+    c = [{"hint_domain": "3D DCC", "source": "blendernation.com", "t": i} for i in range(3)] + \
+        [{"hint_domain": "3D DCC", "source": "reddit.com", "t": 9}]
+    out = core.interleave_by_source(c)
+    assert [x["source"] for x in out[:2]] == ["blendernation.com", "reddit.com"]
