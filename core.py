@@ -773,7 +773,10 @@ def apply_glossary(data: dict) -> dict:
     for f in data.get("faq") or []:
         if isinstance(f, dict):
             f["q"], f["a"] = fix_terms(f.get("q", "")), fix_terms(f.get("a", ""))
-    tags = [fix_terms(t) for t in (data.get("tags") or []) if isinstance(t, str)]
+    raw_tags = data.get("tags") or []
+    if isinstance(raw_tags, str):  # LLM 이 "a, b, c" 문자열로 줄 때
+        raw_tags = [t.strip() for t in raw_tags.split(",") if t.strip()]
+    tags = [fix_terms(t) for t in raw_tags if isinstance(t, str)]
     blob = " ".join([data.get("title_ko", ""), data.get("summary", "")] + tags)
     data["tags"] = list(dict.fromkeys(tags + term_aliases(blob)))[:10]
     return data
