@@ -11,6 +11,8 @@
 from __future__ import annotations
 
 import json
+import os
+import re
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -82,7 +84,66 @@ def sync_views_to_notion(posts: dict) -> int:
     return n
 
 
+GC_TOKEN = os.getenv("GOATCOUNTER_TOKEN", "")
+
+
+def fetch_pages_stats(days: int = 30) -> dict | None:
+    """GitHub Pages 방문 통계 (GoatCounter API). 설정이 없으면 None. CI 에서도 동작 (로그인 불필요)."""
+    import requests
+    code = (core._load_json(core.CONFIG_PATH, {}).get("goatcounter_code") or "").strip()
+    if not (code and GC_TOKEN):
+        return None
+    api = f"https://{code}.goatcounter.com/api/v0"
+    h = {"Authorization": f"Bearer {GC_TOKEN}", "Content-Type": "application/json"}
+    start = (date.today() - timedelta(days=days)).isoformat()
+    total = requests.get(f"{api}/stats/total", params={"start": start}, headers=h, timeout=20).json()
+    hits = requests.get(f"{api}/stats/hits", params={"start": start, "limit": 100}, headers=h, timeout=20).json()
+    refs = requests.get(f"{api}/stats/toprefs", params={"start": start, "limit": 10}, headers=h, timeout=20).json()
+    posts = {}
+    for row in hits.get("hits", []):
+        m = re.search(r"/p/([^/]+)\.html$", row.get("path", ""))
+        if m:
+            posts[m.group(1)] = {"title": row.get("title", ""), "views": int(row.get("count", 0))}
+    return {"at": datetime.now().isoformat(timespec="seconds"), "pv_30d": int(total.get("total", 0)),
+            "posts": posts, "refs": [(r.get("name") or "(직접)", r.get("count", 0)) for r in refs.get("stats", [])]}
+
+
+def sync_pages_views_to_notion() -> int:
+    """GitHub Pages 조회수를 티스토리 조회수와 합쳐 노션 Views 로 기록."""
+    client = core._notion()
+    if client is None:
+        return 0
+    perf = core._load_json(PERF_PATH, {})
+    tistory_by_title = {v["title"]: v["views"] for v in (perf.get("latest") or {}).get("posts", {}).values()}
+    n = 0
+    for f in core.POSTS_DIR.glob("*.json"):
+        p = core._load_json(f, {})
+        pv = (perf.get("pages") or {}).get("posts", {}).get(f.stem, {}).get("views", 0)
+        if p.get("notion_id") and pv:
+            total = pv + tistory_by_title.get(p.get("title_ko", ""), 0)
+            client.pages.update(page_id=p["notion_id"], properties={"Views": {"number": total}})
+            n += 1
+    return n
+
+
+def collect_pages() -> dict | None:
+    """GitHub Pages 성과만 수집 (CI 의 evolve 단계에서 호출)."""
+    stats = fetch_pages_stats()
+    if stats is None:
+        return None
+    perf = core._load_json(PERF_PATH, {"snapshots": []})
+    perf["pages"] = stats
+    perf["pages_snapshots"] = (perf.get("pages_snapshots", []) + [{"at": stats["at"], "pv_30d": stats["pv_30d"]}])[-120:]
+    core._save_json(PERF_PATH, perf)
+    stats["notion_updated"] = sync_pages_views_to_notion()
+    return stats
+
+
 def collect() -> dict:
+    try:
+        collect_pages()
+    except Exception as e:  # GoatCounter 미설정·오류여도 티스토리 수집은 계속
+        print("Pages 통계 수집 실패:", str(e)[:150])
     stats = fetch_tistory_stats()
     pv30 = sum(p["views"] for p in stats["posts"].values())
     rev = revenue_summary()

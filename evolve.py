@@ -113,7 +113,14 @@ def update_strategy(strategy: dict) -> dict:
                 strategy["extra_feeds"][d] = [u for u in urls if core.normalize_feed_url(u) != core.normalize_feed_url(url)]
             changes.append(f"피드 차단: {url}")
 
-    # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습
+    # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습 (GitHub Pages 방문수도 노션 Views 에 합산)
+    try:
+        import monetize
+        pages = monetize.collect_pages()
+        if pages:
+            changes.append(f"Pages 30일 조회수 {pages['pv_30d']}")
+    except Exception as e:
+        log.warning("Pages 통계 수집 실패: %s", e)
     try:
         perf = performance_table()
     except Exception as e:

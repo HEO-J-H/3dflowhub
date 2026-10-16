@@ -293,60 +293,123 @@ with t_draft:
 
 # ─────────────────────────── 광고 수익 ───────────────────────────
 with t_rev:
-    st.subheader("📈 성과 (수익 학습 보상 신호)")
     perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+    pages_perf = perf.get("pages") or {}
     latest = perf.get("latest", {})
-    p1, p2, p3, p4 = st.columns(4)
-    p1.metric("누적 조회수", latest.get("pv_total", 0))
-    p2.metric("최근 30일 글 조회수", latest.get("pv_30d_posts", 0))
-    p3.metric("최근 30일 수익", f"{latest.get('revenue_30d', 0):,.0f}원")
-    p4.metric("RPM (1,000뷰당)", f"{latest.get('rpm_30d', 0):,.0f}원")
-    if st.button("📊 티스토리 성과 수집 (조회수 → 노션 → AI 학습)"):
-        import subprocess, sys
-        with st.spinner("통계 수집 중…"):
-            r = subprocess.run([sys.executable, "monetize.py"], cwd=core.ROOT, capture_output=True,
-                               text=True, encoding="utf-8", errors="replace",
-                               env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-        st.code(((r.stdout or "") + (r.stderr or ""))[-1500:] or "출력 없음")
-    if latest.get("posts"):
-        st.dataframe(pd.DataFrame([{"글": v["title"], "조회수": v["views"], "주소": k}
-                                   for k, v in latest["posts"].items()]).sort_values("조회수", ascending=False),
-                     use_container_width=True, hide_index=True,
-                     column_config={"주소": st.column_config.LinkColumn()})
-    if latest.get("inflow"):
-        st.caption("유입: " + json.dumps({k: v.get("total") for k, v in latest["inflow"].items()
-                                          if isinstance(v, dict)}, ensure_ascii=False))
-    st.caption(f"수집 시각: {latest.get('at', '-')}  ·  AI는 노션 Views 를 보고 도메인 비중·편집 가이드를 조정합니다.")
-    st.divider()
-    st.caption("애드센스 API는 OAuth 앱 승인이 필요해, 일별 수익을 직접 입력/CSV 업로드하는 방식입니다.")
-    rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(
-        {"date": pd.to_datetime([]), "revenue": []})
+    site_url = "https://heo-j-h.github.io/3dflowhub/"
 
+    # ── 1) 메인 채널: GitHub Pages ─────────────────────────────
+    st.subheader("🌐 GitHub Pages (메인 채널)")
+    n_posts = len(list(core.POSTS_DIR.glob("*.json")))
+    g1, g2, g3, g4 = st.columns(4)
+    g1.metric("게시 글", f"{n_posts}개")
+    g2.metric("최근 30일 방문(조회)", pages_perf.get("pv_30d", "미연결") if pages_perf else "미연결")
+    g3.metric("발행 제한", "없음")
+    g4.metric("광고", "적용됨" if cfg.get("adsense_client") else "미적용")
+    st.link_button("사이트 열기", site_url)
+    if pages_perf.get("posts"):
+        top = sorted(pages_perf["posts"].items(), key=lambda kv: -kv[1]["views"])[:15]
+        st.dataframe(pd.DataFrame([{"글": v["title"] or k, "조회수": v["views"], "주소": f"{site_url}p/{k}.html"}
+                                   for k, v in top]), use_container_width=True, hide_index=True,
+                     column_config={"주소": st.column_config.LinkColumn()})
+        if pages_perf.get("refs"):
+            st.caption("유입 경로: " + " · ".join(f"{n} {c}" for n, c in pages_perf["refs"]))
+        st.caption(f"수집: {pages_perf.get('at', '-')} (GitHub 자동 수집, 6시간마다) · 조회수는 노션 Views 에 합산되어 AI 학습에 쓰입니다.")
+
+    with st.expander("⚙️ 사이트 방문 통계·광고 연결 설정", expanded=not pages_perf):
+        st.markdown(
+            "**① 방문 통계 (무료, GoatCounter)**\n"
+            "1. [goatcounter.com](https://www.goatcounter.com/signup) 가입 → 사이트 코드 입력 (예: `3dflowhub`)\n"
+            "2. 아래 칸에 코드를 넣고 저장 → 사이트에 통계 스크립트가 자동 삽입됩니다\n"
+            "3. GoatCounter → Settings → **API** 에서 토큰 발급(권한: *Read statistics*) → "
+            "GitHub Secrets 에 `GOATCOUNTER_TOKEN` 으로 등록하면 대시보드·AI 학습에 조회수가 들어옵니다\n\n"
+            "**② 애드센스 (승인 후)** — `github.io` 주소는 승인이 어려워 **본인 도메인 연결**이 필요합니다. "
+            "승인되면 `ca-pub-...` 를 넣고 저장 → 자동 광고 스크립트와 `ads.txt` 가 생성됩니다.")
+        sc1, sc2 = st.columns(2)
+        gc_code = sc1.text_input("GoatCounter 사이트 코드", cfg.get("goatcounter_code", ""), placeholder="3dflowhub")
+        ad_client = sc2.text_input("AdSense 게시자 ID", cfg.get("adsense_client", ""), placeholder="ca-pub-0000000000000000")
+        if st.button("💾 사이트 설정 저장 (GitHub 반영 → 사이트 재배포)"):
+            core.save_config({**core.load_config(), "goatcounter_code": gc_code.strip(), "adsense_client": ad_client.strip()})
+            err = core.git_sync(["config.json"], "chore(config): 사이트 통계·광고 설정")
+            st.error(err) if err else st.success("저장됨 — 다음 사이트 배포부터 적용됩니다.")
+
+    st.markdown("**✅ GitHub Pages 수익화 체크리스트**")
+    checks = [
+        ("Google Search Console 등록·사이트맵 제출", True),
+        ("광고·제휴 문의 페이지 (/contact/)", True),
+        ("개인정보처리방침 페이지 (/privacy/) — 애드센스 필수", True),
+        ("방문 통계 연결 (GoatCounter)", bool(cfg.get("goatcounter_code"))),
+        ("본인 도메인 연결 (애드센스 승인 조건)", "github.io" not in core._load_json(core.CONFIG_PATH, {}).get("site_base_url", "github.io")),
+        ("애드센스 게시자 ID 등록", bool(cfg.get("adsense_client"))),
+        ("네이버 서치어드바이저 등록", False),
+    ]
+    for label, ok in checks:
+        st.markdown(f"{'✅' if ok else '⬜'} {label}")
+
+    st.divider()
+    # ── 2) 보조 채널: 티스토리 ─────────────────────────────────
+    with st.expander("📝 티스토리 (보조 채널 · 하루 3개 발행)"):
+        t1, t2, t3 = st.columns(3)
+        t1.metric("누적 조회수", latest.get("pv_total", 0))
+        t2.metric("최근 30일 글 조회수", latest.get("pv_30d_posts", 0))
+        t3.metric("유입(검색)", (latest.get("inflow") or {}).get("searchEngine", {}).get("total", 0)
+                  if isinstance(latest.get("inflow"), dict) else 0)
+        if st.button("📊 티스토리 + Pages 성과 수집 (이 PC · 티스토리 로그인 필요)"):
+            import subprocess, sys
+            with st.spinner("통계 수집 중…"):
+                r = subprocess.run([sys.executable, "monetize.py"], cwd=core.ROOT, capture_output=True,
+                                   text=True, encoding="utf-8", errors="replace",
+                                   env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+            st.code(((r.stdout or "") + (r.stderr or ""))[-1500:] or "출력 없음")
+        if latest.get("posts"):
+            st.dataframe(pd.DataFrame([{"글": v["title"], "조회수": v["views"], "주소": k}
+                                       for k, v in latest["posts"].items()]).sort_values("조회수", ascending=False),
+                         use_container_width=True, hide_index=True,
+                         column_config={"주소": st.column_config.LinkColumn()})
+        st.caption(f"수집: {latest.get('at', '-')}")
+
+    st.divider()
+    # ── 3) 광고 수익 (채널별) ──────────────────────────────────
+    st.subheader("💰 광고 수익")
+    st.caption("애드센스 API 는 OAuth 앱 승인이 필요해 일별 수익을 직접 입력/CSV 업로드합니다. 채널별로 기록하면 RPM 을 따로 계산합니다.")
+    rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(
+        {"date": pd.to_datetime([]), "revenue": [], "channel": []})
+    if "channel" not in rev.columns:
+        rev["channel"] = "티스토리"  # 이전 기록은 티스토리 수익
     with st.expander("수익 입력"):
-        a, b, c = st.columns([2, 2, 1])
+        a, b, ch, c = st.columns([2, 2, 2, 1])
         d = a.date_input("날짜")
         v = b.number_input("수익(원)", min_value=0.0, step=100.0)
+        channel = ch.selectbox("채널", ["GitHub Pages", "티스토리", "기타(제휴 등)"])
         if c.button("추가"):
-            rev = pd.concat([rev[rev["date"] != pd.Timestamp(d)],
-                             pd.DataFrame({"date": [pd.Timestamp(d)], "revenue": [v]})]).sort_values("date")
+            rev = pd.concat([rev[~((rev["date"] == pd.Timestamp(d)) & (rev["channel"] == channel))],
+                             pd.DataFrame({"date": [pd.Timestamp(d)], "revenue": [v], "channel": [channel]})]
+                            ).sort_values("date")
             REVENUE_CSV.parent.mkdir(parents=True, exist_ok=True)
             rev.to_csv(REVENUE_CSV, index=False)
             st.rerun()
-        up = st.file_uploader("CSV 업로드 (date,revenue)", type="csv")
+        up = st.file_uploader("CSV 업로드 (date,revenue[,channel])", type="csv")
         if up is not None:
-            new = pd.read_csv(up, parse_dates=["date"])[["date", "revenue"]]
-            rev = pd.concat([rev, new]).drop_duplicates("date", keep="last").sort_values("date")
+            new = pd.read_csv(up, parse_dates=["date"])
+            new["channel"] = new["channel"] if "channel" in new.columns else "GitHub Pages"
+            rev = pd.concat([rev, new[["date", "revenue", "channel"]]]).drop_duplicates(
+                ["date", "channel"], keep="last").sort_values("date")
             rev.to_csv(REVENUE_CSV, index=False)
 
     period = st.radio("집계 단위", ["일별", "월별", "분기별", "연도별"], horizontal=True)
     if rev.empty:
-        st.info("입력된 수익 데이터가 없습니다.")
+        st.info("입력된 수익 데이터가 없습니다. 애드센스 승인 후 입력하세요.")
     else:
         freq = {"일별": "D", "월별": "M", "분기별": "Q", "연도별": "Y"}[period]
-        agg = rev.set_index("date")["revenue"].resample({"M": "ME", "Q": "QE", "Y": "YE"}.get(freq, freq)).sum()
+        rule = {"M": "ME", "Q": "QE", "Y": "YE"}.get(freq, freq)
+        agg = rev.pivot_table(index="date", columns="channel", values="revenue", aggfunc="sum").fillna(0)             .resample(rule).sum()
         agg.index = agg.index.to_period(freq).astype(str)
-        k = st.columns(3)
+        last30 = rev[rev["date"] >= pd.Timestamp(datetime.now().date()) - pd.Timedelta(days=30)]
+        k = st.columns(4)
         k[0].metric("오늘 수익", f"{rev.loc[rev['date'] == pd.Timestamp(today), 'revenue'].sum():,.0f}원")
-        k[1].metric(f"최근 {period[:-1]}", f"{agg.iloc[-1]:,.0f}원")
+        k[1].metric(f"최근 {period[:-1]}", f"{agg.iloc[-1].sum():,.0f}원")
         k[2].metric("누적", f"{rev['revenue'].sum():,.0f}원")
+        pv = (pages_perf.get("pv_30d") or 0)
+        pages_rev = last30.loc[last30["channel"] == "GitHub Pages", "revenue"].sum()
+        k[3].metric("Pages RPM (30일)", f"{pages_rev / pv * 1000:,.0f}원" if pv else "-")
         st.bar_chart(agg)

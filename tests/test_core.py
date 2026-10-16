@@ -287,3 +287,12 @@ def test_ci_commit_merges_concurrent_memory(tmp_path, monkeypatch):
     m = core._load_json(final / "memory" / "m.json", {})
     assert m == {"runs": [1, 2, 3], "n": 5} and (final / "content" / "p.json").exists()
     assert (final / "TODO.md").read_text() == "- [x] done\n"
+
+
+def test_site_head_scripts_only_with_valid_ids():
+    import build_site
+    core._save_json(core.CONFIG_PATH, {"goatcounter_code": "3dflowhub", "adsense_client": "ca-pub-1234567890123456"})
+    h = build_site.head_scripts()
+    assert "3dflowhub.goatcounter.com/count" in h and "client=ca-pub-1234567890123456" in h
+    core._save_json(core.CONFIG_PATH, {"goatcounter_code": "x\"><script>", "adsense_client": "bad"})
+    assert build_site.head_scripts() == ""  # 잘못된 값은 삽입하지 않음 (스크립트 주입 방지)

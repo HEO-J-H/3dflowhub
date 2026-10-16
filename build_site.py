@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import shutil
 import time
@@ -37,6 +38,25 @@ SITE_DESC = "3D DCC · 게임 엔진 · VFX · AI 3D 최신 소식을 한국어�
 BASE_URL = "https://heo-j-h.github.io/3dflowhub"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
 CONTACT_EMAIL = "hjh1014@naver.com"  # 광고·제휴 문의 연락처
+
+
+def site_cfg() -> dict:
+    """config.json 의 사이트 수익화/분석 설정 (대시보드 💰 탭에서 입력 → GitHub 반영)."""
+    c = core._load_json(core.CONFIG_PATH, {})
+    return {"goatcounter": (c.get("goatcounter_code") or "").strip(),
+            "adsense": (c.get("adsense_client") or os.getenv("ADSENSE_CLIENT", "")).strip(),
+            "base_url": (c.get("site_base_url") or BASE_URL).rstrip("/")}
+
+
+def head_scripts() -> str:
+    cfg, out = site_cfg(), []
+    if re.fullmatch(r"[a-z0-9-]{2,50}", cfg["goatcounter"]):  # 방문 통계 (쿠키 없음)
+        out.append(f'<script data-goatcounter="https://{cfg["goatcounter"]}.goatcounter.com/count" '
+                   f'async src="//gc.zgo.at/count.js"></script>')
+    if re.fullmatch(r"ca-pub-\d{10,20}", cfg["adsense"]):  # 애드센스 자동 광고 (승인 후)
+        out.append(f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
+                   f'{cfg["adsense"]}" crossorigin="anonymous"></script>')
+    return "\n".join(out)
 
 
 def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의") -> str:
@@ -230,6 +250,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <title>{e(title)}</title><meta name="description" content="{e(desc[:150])}">
 {f'<link rel="canonical" href="{e(canonical)}">' if canonical else ''}
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:150])}">
+{head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}">🧊 {SITE_TITLE}</a>
@@ -237,7 +258,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <nav class="domains"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
 <main class="wrap"><div id="results" class="board" hidden style="margin-top:16px"></div>{body}</main>
 <footer>© {datetime.now():%Y} {SITE_TITLE} · 원문 저작권은 각 출처에 있습니다 · <a href="{root}feed.xml">RSS</a>
-<br>광고·제휴 문의: {mail_link()} · <a href="{root}contact/">문의 안내</a></footer>
+<br>광고·제휴 문의: {mail_link()} · <a href="{root}contact/">문의 안내</a> · <a href="{root}privacy/">개인정보처리방침</a></footer>
 <script>const ROOT="{root}";{SEARCH_JS}</script></body></html>"""
 
 
@@ -353,6 +374,25 @@ def build() -> dict:
                f"<p class=\"crumb\">회사/브랜드명, 문의 내용, 회신받을 연락처를 함께 보내주시면 빠르게 답변드리겠습니다.</p></article>")
     (OUT / "contact" / "index.html").write_text(page(f"광고·제휴 문의 - {SITE_TITLE}", contact, "../"), encoding="utf-8")
 
+    # 개인정보처리방침 (애드센스 승인 필수 페이지)
+    (OUT / "privacy").mkdir(exist_ok=True)
+    cfg = site_cfg()
+    privacy = (f"<article><h1>개인정보처리방침</h1><p>{SITE_TITLE}(이하 '사이트')는 회원가입·로그인이 없으며 "
+               f"이름·연락처 등 개인정보를 직접 수집하지 않습니다.</p>"
+               f"<h2>방문 통계</h2><p>{'방문 통계를 위해 GoatCounter 를 사용합니다. 쿠키를 사용하지 않으며 개인을 식별하지 않는 '
+                                   '집계(페이지 조회수, 유입 경로, 브라우저 종류 등)만 수집합니다.' if cfg['goatcounter'] else '현재 별도의 방문 통계 도구를 사용하지 않습니다.'}</p>"
+               f"<h2>광고</h2><p>사이트는 Google AdSense 등 제3자 광고를 게재할 수 있습니다. Google 을 비롯한 제3자 공급업체는 "
+               f"쿠키를 사용해 사용자의 이전 방문 기록을 바탕으로 광고를 게재할 수 있으며, 사용자는 "
+               f'<a href="https://adssettings.google.com" target="_blank" rel="noopener">Google 광고 설정</a>에서 '
+               f"맞춤 광고를 해제할 수 있습니다. 자세한 내용은 "
+               f'<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 광고 정책</a>을 참고하세요.</p>'
+               f"<h2>문의</h2><p>개인정보·저작권 관련 문의: {mail_link('[3dflowhub] 개인정보·저작권 문의')}</p>"
+               f"<p class=\"crumb\">시행일: 2026-10-16</p></article>")
+    (OUT / "privacy" / "index.html").write_text(page(f"개인정보처리방침 - {SITE_TITLE}", privacy, "../"), encoding="utf-8")
+    if re.fullmatch(r"ca-pub-\d{10,20}", cfg["adsense"]):  # 애드센스 판매자 인증 파일
+        (OUT / "ads.txt").write_text(f"google.com, {cfg['adsense'].replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n",
+                                     encoding="utf-8")
+
     # 글 페이지
     (OUT / "p").mkdir(exist_ok=True)
     for p in posts:
@@ -374,7 +414,7 @@ def build() -> dict:
                                   f'<atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
-    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
+    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
            [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
