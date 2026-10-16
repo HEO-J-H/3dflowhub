@@ -143,6 +143,8 @@ MIN_RELEVANCE = 5  # LLM 관련도(0~10) 이 값 미만이면 수집 제외
 MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
 
 
+LLM_USAGE_PATH = Path(__file__).parent / "memory" / "llm_usage.json"  # 일별 LLM 호출 수
+CONFIG_PATH = Path(__file__).parent / "config.json"
 STRATEGY_PATH = Path(__file__).parent / "memory" / "strategy.json"  # [5] 자동 업데이트되는 수집·요약 전략
 LAST_KEYWORDS: dict[str, list[str]] = {}  # 이번 실행에 사용한 검색 키워드
 FEED_STATS: dict[str, int] = {}  # 이번 실행의 피드별 항목 수 (피드 건강도)
@@ -189,15 +191,68 @@ def merge_json(base, other):
     return other if other not in (None, "") else base
 
 
+def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
+    """이 PC ↔ GitHub 동기화. memory/*.json 은 로컬본과 원격본을 내용 병합(충돌 없음).
+    commit_paths 가 있으면 그 파일만 커밋·푸시 (예: 대시보드 설정 config.json). 실패 메시지 반환, 성공 시 ""."""
+    import subprocess
+
+    def git(*args: str):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
+                              encoding="utf-8", errors="replace")
+
+    if commit_paths:
+        git("add", *commit_paths)
+        if git("diff", "--cached", "--quiet").returncode != 0:
+            git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *commit_paths)
+    tracked = [f for f in git("ls-files", "memory").stdout.split() if f.endswith(".json")]
+    local = {f: _load_json(ROOT / f, None) for f in tracked}
+    git("checkout", "--", *tracked)
+    r = git("pull", "--rebase", "--autostash", "-q", "origin", "main")
+    err = ""
+    if r.returncode != 0:
+        git("rebase", "--abort")
+        err = "git pull 실패: " + (r.stderr or r.stdout)[:200]
+    for f, mine in local.items():
+        if mine is not None:
+            _save_json(ROOT / f, merge_json(_load_json(ROOT / f, {}), mine))
+    if commit_paths and not err:
+        p = git("push", "-q", "origin", "main")
+        if p.returncode != 0:
+            err = "git push 실패: " + (p.stderr or p.stdout)[:200]
+    return err
+
+
 def load_memory() -> dict:
     return _load_json(MEMORY_PATH, {"runs": [], "good_keywords": [], "bad_keywords": [], "lessons": []})
 
 
 # ─────────────────────────── LLM (OpenAI 호환) ───────────────────────────
+class LLMBudgetExceeded(RuntimeError):
+    pass
+
+
+def llm_usage_today() -> int:
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")  # Gemini 일일 한도는 태평양 자정 기준이지만 UTC 로 근사
+    return _load_json(LLM_USAGE_PATH, {}).get(day, 0)
+
+
+def _consume_llm_budget() -> None:
+    """무료 티어 일일 한도 보호: 하루 호출 수가 config 의 llm_daily_budget 을 넘으면 중단."""
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    usage = _load_json(LLM_USAGE_PATH, {})
+    budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
+    if usage.get(day, 0) >= budget:
+        raise LLMBudgetExceeded(f"오늘 LLM 호출 한도({budget}회) 도달")
+    usage = {d: n for d, n in usage.items() if d >= day[:8] + "01"}  # 이번 달만 보관
+    usage[day] = usage.get(day, 0) + 1
+    _save_json(LLM_USAGE_PATH, usage)
+
+
 def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: int = 800,
         json_mode: bool = False) -> str:
     if not LLM_API_KEY:
         raise RuntimeError("LLM_API_KEY 미설정")
+    _consume_llm_budget()
     body = {
         "model": LLM_MODEL,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
@@ -942,7 +997,6 @@ def reflect(stats: dict, keywords_used: list[str]) -> None:
 
 
 # ─────────────────────────── 설정 / 스케줄 / 메일 ───────────────────────────
-CONFIG_PATH = ROOT / "config.json"
 STATE_PATH = ROOT / "memory" / "state.json"
 INTERVALS = {"계속": 0, "10분 단위": 600, "1시간 단위": 3600, "하루 단위": 86400, "1주일 단위": 604800}
 DEFAULT_CONFIG = {
@@ -952,6 +1006,8 @@ DEFAULT_CONFIG = {
     "publish": True,
     "email_to": "hjh1014@naver.com",
     "email_per_day": 1,
+    "llm_daily_budget": 500,  # Gemini 무료 티어 보호 (AI Studio 에서 확인한 내 한도에 맞게 조정)
+    "burst_items": 3,          # '계속'(10분마다) 모드에서 한 번에 처리할 글 수
 }
 
 
@@ -1012,7 +1068,11 @@ def run_from_config(force: bool = False) -> dict | None:
         return None
     state["last_run"] = datetime.now(timezone.utc).isoformat()
     _save_json(STATE_PATH, state)  # 실패해도 10분마다 재시도 폭주하지 않도록 먼저 기록
-    stats = run_pipeline(cfg["max_items"], cfg["domains"], cfg["publish"])
+    n = cfg["max_items"] if INTERVALS.get(cfg["interval"], 3600) >= 3600 else min(cfg["max_items"], cfg["burst_items"])
+    if llm_usage_today() >= int(cfg.get("llm_daily_budget", 500)):
+        log.info("오늘 LLM 한도 도달 — 수집 건너뜀")
+        return None
+    stats = run_pipeline(n, cfg["domains"], cfg["publish"])
     send_report_email(cfg, state, stats)
     _save_json(STATE_PATH, state)
     return stats
@@ -1061,7 +1121,11 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": len(items),
              "saved": 0, "published": 0, "drafts": 0, "publish_errors": 0}
 
+    budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
     for raw in items:
+        if llm_usage_today() >= budget:
+            RUN_ERRORS.append(f"LLM 일일 한도({budget}회) 도달 — 남은 {len(items) - stats['saved']}건은 다음 날")
+            break
         try:
             item = summarize(raw)
             if not item:

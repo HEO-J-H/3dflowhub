@@ -220,3 +220,18 @@ def test_offtopic_article_is_skipped(monkeypatch):
     monkeypatch.setattr(core, "llm", lambda *a, **k: '{"title_ko": "날씨", "relevance": 1, '
                         '"sections": [{"heading": "h", "body": "b"}]}')
     assert core.summarize({"title": "Weather", "url": "https://ex.com/w", "hint_domain": "VFX", "rss_summary": ""}) is None
+
+
+def test_llm_budget_blocks_after_limit(monkeypatch):
+    core._save_json(core.CONFIG_PATH, {"llm_daily_budget": 2})
+    monkeypatch.setattr(core, "LLM_API_KEY", "k")
+
+    class R:
+        ok, status_code, headers = True, 200, {}
+        def json(self): return {"choices": [{"message": {"content": "hi"}}]}
+    monkeypatch.setattr(core.requests, "post", lambda *a, **k: R())
+    assert core.llm("a") == "hi" and core.llm("b") == "hi"
+    import pytest
+    with pytest.raises(core.LLMBudgetExceeded):
+        core.llm("c")
+    assert core.llm_usage_today() == 2

@@ -11,6 +11,8 @@ def _isolate_data(tmp_path, monkeypatch):
     monkeypatch.setattr(core, "STRATEGY_PATH", tmp_path / "strategy.json")
     monkeypatch.setattr(core, "PUBLISHED_LOG", tmp_path / "published.json")
     monkeypatch.setattr(core, "STATE_PATH", tmp_path / "state.json")
+    monkeypatch.setattr(core, "LLM_USAGE_PATH", tmp_path / "llm_usage.json")
+    monkeypatch.setattr(core, "CONFIG_PATH", tmp_path / "config.json")
     monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
     monkeypatch.setattr(core, "DRAFT_DIR", tmp_path / "drafts")
     monkeypatch.setattr(core, "NOTION_TOKEN", "")  # 테스트에서 노션 호출 금지

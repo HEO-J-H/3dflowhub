@@ -31,10 +31,25 @@ with st.sidebar:
     email_to = st.text_input("받는 주소", cfg["email_to"])
     email_per_day = st.number_input("하루 최대 수신 횟수", 0, 48, int(cfg["email_per_day"]))
 
-    if st.button("💾 설정 저장", use_container_width=True):
+    st.header("🧠 AI 사용량")
+    llm_budget = st.number_input("LLM 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
+                                 help="Gemini 무료 한도 보호. AI Studio(aistudio.google.com) 에서 내 프로젝트 한도를 확인해 맞추세요.")
+    burst = st.slider("'계속' 모드 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
+    st.caption(f"오늘 이 PC 사용량: {core.llm_usage_today()}회 (GitHub 실행분은 별도 집계)")
+
+    if st.button("💾 설정 저장 (GitHub 반영)", use_container_width=True):
         core.save_config({"interval": interval, "max_items": max_items, "domains": domains,
-                          "publish": publish, "email_to": email_to, "email_per_day": email_per_day})
-        st.success("config.json 저장됨 — 깃허브에 커밋/푸시하면 클라우드 실행에도 반영됩니다.")
+                          "publish": publish, "email_to": email_to, "email_per_day": email_per_day,
+                          "llm_daily_budget": llm_budget, "burst_items": burst})
+        with st.spinner("GitHub 에 반영 중…"):
+            err = core.git_sync(["config.json"], f"chore(config): 대시보드 설정 변경 (주기 {interval}) [skip ci]")
+        if err:
+            st.error(f"로컬에는 저장됐지만 GitHub 반영 실패: {err}")
+        else:
+            st.success(f"저장 완료 — GitHub 자동 수집에도 반영됨 (주기: {interval})")
+    if interval == "계속":
+        est = 144 * (burst * 1.1 + 2)
+        st.warning(f"'계속'은 10분마다 실행됩니다. 하루 예상 LLM 호출 약 {est:,.0f}회 → 한도({llm_budget}회)에서 멈춥니다.")
 
     st.caption("※ '계속'은 GitHub cron 최소 간격(10분)으로 실행됩니다.")
 
