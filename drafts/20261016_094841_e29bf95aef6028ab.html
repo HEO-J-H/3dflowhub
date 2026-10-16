@@ -12,9 +12,9 @@
 <h2>💡 에디터 코멘트</h2>
 <blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">많은 수의 캐릭터를 화면에 동시에 뿌려야 하는 대규모 군중 씬(Crowd Scene)이나 뷰저블 유닛 제어 게임을 개발하는 인디 개발자들에게 매우 시사하는 바가 큽니다. 단순히 GPU 가속을 도입하는 것만으로는 부족하며, CPU와 GPU 간의 데이터 통신에서 발생하는 리드백 병목을 어떻게 관리하느냐가 실무 성능을 좌우합니다. 고도(Godot) 엔진으로 대규모 실시간 시뮬레이션을 구현하려는 테크니컬 디렉터와 프로그래머라면 반드시 짚고 넘어가야 할 최적화 사례입니다.</blockquote>
 <h2>❓ 자주 묻는 질문</h2>
-<p><b>Q. Godot 4에서 2,500마리 좀비 렌더링 시 가장 큰 병목은 무엇이었나요?</b><br/>A. GPU에서 처리된 데이터를 다시 CPU로 가져오는 &#x27;리드백(Readback)&#x27; 과정에서 발생하는 대역폭 병목이 가장 큰 원인이었습니다.</p>
+<p><b>Q. Godot 4에서 2,500마리 좀비 렌더링 시 가장 큰 병목은 무엇이었나요?</b><br/>A. GPU에서 처리된 데이터를 다시 CPU로 가져오는 '리드백(Readback)' 과정에서 발생하는 대역폭 병목이 가장 큰 원인이었습니다.</p>
 <p><b>Q. 이러한 GPU 리드백 병목현상을 해결하려면 어떻게 해야 하나요?</b><br/>A. CPU와 GPU 간의 데이터 왕복 횟수를 최소화하고, 연산 결과를 최대한 GPU 내부에서 처리 및 유지하는 구조로 설계해야 합니다.</p>
 <h2>📚 함께 보면 좋은 글</h2>
 <ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-16-f4912f3a38ff07fe.html">Unity 모바일 게임 마케팅: 어텐션 경제와 퍼포먼스 광고 전략</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-16-a82fd7cc6db1c5eb.html">AI 기반 어린왕자 3D 게임 제작기, 16일 만에 구현한 행성 탐험</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-16-e848730ff50c1ccc.html">사일런트 힐 타운폴 언어 엔진 게임 프로필 분석</a></li></ul>
-<hr/><p>원문:<a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQTDhJMEZkQXk3VkJ2S2hhNmRYemtrZE1DWld5ajVKalZBU1lLQ3RmdEc3bHl5LWlERzg3LWRDYXdKbzQ3Ykg5ZmNtWTZ5b29rUEtHV0c2ZTd1dEtwN055M1JNVHNNbHZlTkxhTGNIdFRjRV9oMHBJMXd4aFJ5TFRvbzBHZGt6Yl9zRHlZc0FMd2ZBaDVFdktsYzRzNm1ZNk85NDd2TS0wemNSTDFta0pNUFFOQ2U?oc=5" target="_blank" rel="noopener nofollow">Putting 2,500 zombies on the GPU in Godot 4: the bottleneck was the readback - GameDev.net</a></p>
+<hr/><p>원문:<a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQTDhJMEZkQXk3VkJ2S2hhNmRYemtrZE1DWld5ajVKalZBU1lLQ3RmdEc3bHl5LWlERzg3LWRDYXdKbzQ3Ykg5ZmNtWTZ5b29rUEtHV0c2ZTd1dEtwN055M1JNVHNNbHZlTkxhTGNIdFRjRV9oMHBJMXd4aFJ5TFRvbzBHZGt6Yl9zRHlZc0FMd2ZBaDVFdktsYzRzNm1ZNk85NDd2TS0wemNSTDFta0pNUFFOQ2U?oc=5" rel="noopener nofollow" target="_blank">Putting 2,500 zombies on the GPU in Godot 4: the bottleneck was the readback - GameDev.net</a></p>
 <p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

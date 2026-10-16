@@ -646,7 +646,10 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
 # ─────────────────────────── [3] LLM 요약·분류 ───────────────────────────
 SUMMARY_SYSTEM = (
     "You are an editor for a Korean creative-tech curation blog (3D, game engines, VFX, AI 3D and related fields). "
-    "Write in natural Korean. Never invent facts not in the source."
+    "Write in natural Korean. Never invent facts not in the source. "
+    "Keep names of software, plugins, scripting languages, APIs, file formats and product features in their OFFICIAL "
+    "English spelling — never transliterate them into Hangul (write MAXScript, MacroScript, 3ds Max, Blender, "
+    "Unreal Engine, Unity, Houdini, ZBrush, V-Ray, Geometry Nodes, Python, USD, FBX). Translate ordinary words only."
 )
 
 
@@ -715,6 +718,67 @@ def register_category(domain: str, category: str) -> str:
     return category
 
 
+# ─────────────────────────── 용어집 (오번역·음역 교정) ───────────────────────────
+# 정식 표기 → (잘못된 변형 정규식, 검색용 한글 별칭 태그). 소프트웨어·플러그인·스크립트 언어 이름은 영문 정식 표기 유지.
+GLOSSARY: dict[str, tuple[str, str]] = {
+    "MacroScript": (r"맥로\s?스크립트|매크로\s?스크립트|Macro\s?script", "매크로스크립트"),
+    "MAXScript": (r"맥스\s?스크립트|맥스크립트|Max\s?[Ss]cript|MAX\s?script|Maxscript", "맥스스크립트"),
+    "3ds Max": (r"3[Dd][Ss]\s?맥스|3D\s?스튜디오\s?맥스|3DS\s?MAX|3ds\s?max|3DsMax|3dsMax", "3ds 맥스"),
+    "Blender": (r"블렌더", "블렌더"),
+    "Unreal Engine": (r"언리얼\s?엔진", "언리얼 엔진"),
+    "Unreal": (r"언리얼(?!\s?엔진)", ""),
+    "Unity": (r"유니티", "유니티"),
+    "Houdini": (r"후디니|후디나", "후디니"),
+    "ZBrush": (r"지브러시|제트브러시|Z-?brush", "지브러시"),
+    "Cinema 4D": (r"시네마\s?4D|C4D", "시네마4D"),
+    "V-Ray": (r"브이레이|V-?ray|Vray", "브이레이"),
+    "Corona Renderer": (r"코로나\s?렌더러", "코로나 렌더러"),
+    "Substance 3D": (r"서브스턴스(?:\s?3D)?", "서브스턴스"),
+    "Geometry Nodes": (r"지오메트리\s?노드", "지오메트리 노드"),
+    "After Effects": (r"애프터\s?이펙트(?:스)?", "애프터 이펙트"),
+    "Nuke": (r"(?<![가-힣])누크(?![가-힣])", "누크"),
+    "Maya": (r"(?<![가-힣])마야(?=\s|\(|에서|의|로|는|와|에|,|\.|$)", "마야"),
+    "Godot": (r"고도\s?엔진|고닷", "고도 엔진"),
+}
+_GLOSS_RE = [(re.compile(v), k) for k, (v, _) in GLOSSARY.items()]
+
+
+def glossary_extra() -> dict[str, str]:
+    """config.json 의 glossary 로 사용자 용어 추가: {"정식표기": "변형1|변형2"}."""
+    g = _load_json(CONFIG_PATH, {}).get("glossary") or {}
+    return {k: v for k, v in g.items() if isinstance(k, str) and isinstance(v, str) and v}
+
+
+def fix_terms(text: str) -> str:
+    """음역·오번역된 도구 이름을 정식 표기로 교정하고 '정식(정식)' 같은 중복 괄호를 정리."""
+    if not isinstance(text, str) or not text:
+        return text
+    for rx, canon in _GLOSS_RE + [(re.compile(v), k) for k, v in glossary_extra().items()]:
+        text = rx.sub(canon, text)
+    # "Blender(Blender)", "MAXScript (MAXScript)" → 한 번만
+    text = re.sub(r"([A-Za-z0-9][\w\- .]{1,30}?)\s?\(\s?\1\s?\)", r"\1", text)
+    return text
+
+
+def term_aliases(text: str) -> list[str]:
+    """본문에 등장한 정식 표기의 한글 별칭 → 검색 태그 (예: Blender → 블렌더)."""
+    return [alias for canon, (_, alias) in GLOSSARY.items() if alias and canon in (text or "")]
+
+
+def apply_glossary(data: dict) -> dict:
+    for key in ("title_ko", "summary", "insight"):
+        data[key] = fix_terms(data.get(key) or "")
+    for sct in data.get("sections") or []:
+        sct["heading"], sct["body"] = fix_terms(sct.get("heading", "")), fix_terms(sct.get("body", ""))
+    for f in data.get("faq") or []:
+        if isinstance(f, dict):
+            f["q"], f["a"] = fix_terms(f.get("q", "")), fix_terms(f.get("a", ""))
+    tags = [fix_terms(t) for t in (data.get("tags") or []) if isinstance(t, str)]
+    blob = " ".join([data.get("title_ko", ""), data.get("summary", "")] + tags)
+    data["tags"] = list(dict.fromkeys(tags + term_aliases(blob)))[:10]
+    return data
+
+
 def normalize_summary(data: dict, item: dict) -> dict:
     """LLM JSON 형태 보정 — 누락/형식 오류로 노션 저장이 실패하지 않도록."""
     data = data if isinstance(data, dict) else {}
@@ -737,6 +801,7 @@ def normalize_summary(data: dict, item: dict) -> dict:
                                                           and isinstance(cat[0], str) else "")
     data["faq"] = [f for f in data.get("faq") or [] if isinstance(f, dict)]
     data["topic"] = data.get("topic") if data.get("topic") in TOPICS else DEFAULT_TOPIC
+    apply_glossary(data)
     return data
 
 

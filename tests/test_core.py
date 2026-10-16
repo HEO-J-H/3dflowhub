@@ -405,3 +405,16 @@ def test_topic_chips_use_root_relative_links(tmp_path, monkeypatch):
     build_site.build()
     html2 = (tmp_path / "site" / "c" / "3d-dcc" / "blender" / "page" / "2" / "index.html").read_text(encoding="utf-8")
     assert 'href="../../../../../c/3d-dcc/blender/tutorial/"' in html2
+
+
+def test_glossary_fixes_transliterated_tool_names():
+    assert core.fix_terms("맥로스크립트로 3DS 맥스 자동화") == "MacroScript로 3ds Max 자동화"
+    assert core.fix_terms("블렌더(Blender) 지오메트리 노드") == "Blender Geometry Nodes"
+    assert core.fix_terms("맥스 스크립트") == "MAXScript"
+    d = core.apply_glossary({"title_ko": "블렌더 튜토리얼", "summary": "", "tags": ["블렌더"], "sections": [], "faq": []})
+    assert d["title_ko"] == "Blender 튜토리얼" and "블렌더" in d["tags"] and "Blender" in d["tags"]
+
+
+def test_user_glossary_from_config():
+    core._save_json(core.CONFIG_PATH, {"glossary": {"RailClone": "레일클론|레일 클론"}})
+    assert core.fix_terms("레일 클론 플러그인") == "RailClone 플러그인"
