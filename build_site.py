@@ -13,7 +13,7 @@ content/posts/*.json (노션과 같은 내용) → _site/ 정적 사이트
   /p/<id>.html              글 (대표 이미지·영상·요약·본문·에디터 코멘트·FAQ·관련 글·원문)
   /search.json /feed.xml /sitemap.xml /robots.txt
 
-배포: .github/workflows/pages.yml (저장소 Settings → Pages → Source: GitHub Actions)
+배포: .github/workflows/pages.yml (저장소 Settings → Pages → Source: GitHub Actions, Python 3.12)
 """
 from __future__ import annotations
 
