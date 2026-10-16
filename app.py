@@ -35,7 +35,7 @@ with st.sidebar:
     llm_budget = st.number_input("LLM 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
                                  help="Gemini 무료 한도 보호. AI Studio(aistudio.google.com) 에서 내 프로젝트 한도를 확인해 맞추세요.")
     burst = st.slider("'계속' 모드 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
-    st.caption(f"오늘 이 PC 사용량: {core.llm_usage_today()}회 (GitHub 실행분은 별도 집계)")
+    st.caption(f"오늘 사용량(이 PC + GitHub 합산, 마지막 동기화 기준): {core.llm_usage_today()}회")
 
     if st.button("💾 설정 저장 (GitHub 반영)", use_container_width=True):
         core.save_config({"interval": interval, "max_items": max_items, "domains": domains,

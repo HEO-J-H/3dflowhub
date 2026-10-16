@@ -94,15 +94,7 @@ jobs:
         run: |
           git config user.name "3dflowhub-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add memory/ drafts/ content/
-          git diff --cached --quiet && exit 0
-          git commit -m "chore(memory): run $(date -u +%FT%TZ) [skip ci]"
-          for i in 1 2 3 4; do  # 다른 커밋이 먼저 들어왔으면 rebase 후 재시도 (이번 실행 기록 우선)
-            if git pull --rebase -X theirs origin main && git push; then
-              # 새 글이 있으면 GitHub Pages 재배포 (GITHUB_TOKEN push 는 push 트리거가 안 걸림)
-              git diff --name-only HEAD~1 HEAD | grep -q '^content/' && gh workflow run pages.yml --ref main || true
-              exit 0
-            fi
-            sleep $((i * 5))
-          done
-          exit 1
+          # 원격 최신본 위에 memory JSON 을 내용 병합해 커밋·푸시 (동시 실행 변경 보존), 새 글이 있으면 Pages 재배포
+          CHANGED=$(python -c "import core; print(core.ci_commit(['memory/', 'drafts/', 'content/'], 'chore(memory): run $(date -u +%FT%TZ) [skip ci]'))")
+          echo "content changed: $CHANGED"
+          if [ "$CHANGED" = "True" ]; then gh workflow run pages.yml --ref main; fi

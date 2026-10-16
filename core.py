@@ -172,23 +172,35 @@ def url_hash(url: str) -> str:
     return hashlib.sha256(url.strip().lower().rstrip("/").encode()).hexdigest()[:16]
 
 
+ISO_TS_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}")
+
+
 def merge_json(base, other):
-    """두 메모리 사본(로컬·GitHub)을 내용 기준으로 합침 — dict 는 재귀, list 는 순서 유지 합집합, 숫자는 큰 값."""
+    """원격본(base)과 로컬본(other) 병합. 원칙: 원격이 기준, 로컬에서 '새로 생긴 것'만 더한다.
+    - dict: 재귀 (원격에 없는 키는 로컬 값 추가)
+    - list: 원격 목록 + 로컬에서 '원격과 공통인 마지막 항목' 뒤에 새로 붙은 항목만
+            (원격에서 잘라내거나 지운 항목이 되살아나지 않음)
+    - 숫자: 큰 값 (사용 횟수 등) / ISO 시각 문자열: 더 최근 값 / 그 외: 원격 우선"""
     if isinstance(base, dict) and isinstance(other, dict):
         out = dict(base)
         for k, v in other.items():
             out[k] = merge_json(out[k], v) if k in out else v
         return out
     if isinstance(base, list) and isinstance(other, list):
-        out, keys = list(base), {json.dumps(x, sort_keys=True, ensure_ascii=False) for x in base}
-        for x in other:
-            if (key := json.dumps(x, sort_keys=True, ensure_ascii=False)) not in keys:
-                out.append(x)
-                keys.add(key)
-        return out
-    if isinstance(base, (int, float)) and isinstance(other, (int, float)) and not isinstance(base, bool):
+        key = lambda x: json.dumps(x, sort_keys=True, ensure_ascii=False)  # noqa: E731
+        remote = {key(x) for x in base}
+        last_common = max((i for i, x in enumerate(other) if key(x) in remote), default=-1)
+        tail = [x for x in other[last_common + 1:] if key(x) not in remote]
+        if last_common == -1 and base:  # 공통 항목이 없으면 판단 불가 → 원격 유지
+            tail = []
+        return list(base) + tail
+    if isinstance(base, bool) or isinstance(other, bool):
+        return base
+    if isinstance(base, (int, float)) and isinstance(other, (int, float)):
         return max(base, other)
-    return other if other not in (None, "") else base
+    if isinstance(base, str) and isinstance(other, str) and ISO_TS_RE.match(base) and ISO_TS_RE.match(other):
+        return max(base, other)
+    return base if base not in (None, "") else other
 
 
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
@@ -205,8 +217,12 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
         if git("diff", "--cached", "--quiet").returncode != 0:
             git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *commit_paths)
     tracked = [f for f in git("ls-files", "memory").stdout.split() if f.endswith(".json")]
-    local = {f: _load_json(ROOT / f, None) for f in tracked}
+    untracked = [f for f in git("ls-files", "-o", "--exclude-standard", "memory").stdout.split()
+                 if f.endswith(".json")]  # CI 가 같은 파일을 커밋했으면 pull 이 막히므로 잠시 치움
+    local = {f: _load_json(ROOT / f, None) for f in tracked + untracked}
     git("checkout", "--", *tracked)
+    for f in untracked:
+        (ROOT / f).unlink(missing_ok=True)
     r = git("pull", "--rebase", "--autostash", "-q", "origin", "main")
     err = ""
     if r.returncode != 0:
@@ -214,12 +230,50 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
         err = "git pull 실패: " + (r.stderr or r.stdout)[:200]
     for f, mine in local.items():
         if mine is not None:
-            _save_json(ROOT / f, merge_json(_load_json(ROOT / f, {}), mine))
+            _save_json(ROOT / f, merge_json(_load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
     if commit_paths and not err:
         p = git("push", "-q", "origin", "main")
         if p.returncode != 0:
             err = "git push 실패: " + (p.stderr or p.stdout)[:200]
     return err
+
+
+def ci_commit(paths: list[str], message: str, tries: int = 4) -> bool:
+    """GitHub Actions 전용 커밋·푸시. 다른 실행이 먼저 push 했으면 원격 최신본 위에 memory JSON 을 내용 병합해 재시도.
+    (rebase -X theirs 는 동시에 들어온 원격 변경을 버리므로 사용하지 않음). content/ 변경이 푸시되면 True."""
+    import subprocess
+    import time as _t
+
+    def git(*args: str):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
+                              encoding="utf-8", errors="replace")
+
+    ours = {f: _load_json(ROOT / f, None) for f in git("ls-files", "-mo", "--exclude-standard", "memory").stdout.split()
+            if f.endswith(".json")}
+    # 이번 실행이 실제로 바꾼 파일만 커밋 (안 바꾼 파일을 add 하면 원격의 새 변경을 옛 내용으로 되돌림)
+    touched = set(git("diff", "--name-only", "HEAD", "--", *paths).stdout.split()) | \
+        set(git("ls-files", "-o", "--exclude-standard", "--", *paths).stdout.split())
+    if not touched:
+        return False
+    paths = sorted(touched)
+    for attempt in range(tries):
+        git("fetch", "-q", "origin", "main")
+        git("reset", "-q", "--mixed", "origin/main")  # 작업 파일(새 글·초안 포함)은 유지, 기준만 최신으로
+        for f, mine in ours.items():
+            if mine is None:
+                continue
+            remote = git("show", f"origin/main:{f}")
+            base = json.loads(remote.stdout) if remote.returncode == 0 and remote.stdout.strip() else None
+            _save_json(ROOT / f, merge_json(base, mine) if base is not None else mine)
+        git("add", *paths)
+        if git("diff", "--cached", "--quiet").returncode == 0:
+            return False
+        content_changed = bool(git("diff", "--cached", "--name-only", "--", "content").stdout.strip())
+        git("commit", "-q", "-m", message)
+        if git("push", "-q", "origin", "HEAD:main").returncode == 0:
+            return content_changed
+        _t.sleep(5 * (attempt + 1))
+    raise RuntimeError("push 재시도 실패")
 
 
 def load_memory() -> dict:
@@ -231,20 +285,26 @@ class LLMBudgetExceeded(RuntimeError):
     pass
 
 
+LLM_SOURCE = "ci" if os.getenv("GITHUB_ACTIONS") else "local"  # 같은 API 키를 쓰는 실행 위치별 집계
+
+
 def llm_usage_today() -> int:
+    """오늘 전체 사용량 = GitHub 실행분 + 이 PC 실행분 (memory 병합 시 위치별로 최대값 → 합산이 정확)."""
     day = datetime.now(timezone.utc).strftime("%Y-%m-%d")  # Gemini 일일 한도는 태평양 자정 기준이지만 UTC 로 근사
-    return _load_json(LLM_USAGE_PATH, {}).get(day, 0)
+    v = _load_json(LLM_USAGE_PATH, {}).get(day, 0)
+    return sum(v.values()) if isinstance(v, dict) else int(v)
 
 
 def _consume_llm_budget() -> None:
     """무료 티어 일일 한도 보호: 하루 호출 수가 config 의 llm_daily_budget 을 넘으면 중단."""
     day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    usage = _load_json(LLM_USAGE_PATH, {})
     budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
-    if usage.get(day, 0) >= budget:
+    if llm_usage_today() >= budget:
         raise LLMBudgetExceeded(f"오늘 LLM 호출 한도({budget}회) 도달")
-    usage = {d: n for d, n in usage.items() if d >= day[:8] + "01"}  # 이번 달만 보관
-    usage[day] = usage.get(day, 0) + 1
+    usage = {d: n for d, n in _load_json(LLM_USAGE_PATH, {}).items() if d >= day[:8] + "01"}  # 이번 달만
+    today = usage.get(day) if isinstance(usage.get(day), dict) else {}
+    today[LLM_SOURCE] = today.get(LLM_SOURCE, 0) + 1
+    usage[day] = today
     _save_json(LLM_USAGE_PATH, usage)
 
 

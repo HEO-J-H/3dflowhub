@@ -210,7 +210,7 @@ def test_category_index_stays_within_domain():
 
 def test_merge_json_unions_lists_and_keeps_max():
     a = {"runs": [{"at": 1}], "cnt": {"x": 2}, "lessons": ["a"]}
-    b = {"runs": [{"at": 1}, {"at": 2}], "cnt": {"x": 5, "y": 1}, "lessons": ["b"]}
+    b = {"runs": [{"at": 1}, {"at": 2}], "cnt": {"x": 5, "y": 1}, "lessons": ["a", "b"]}
     m = core.merge_json(a, b)
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
 
@@ -235,3 +235,55 @@ def test_llm_budget_blocks_after_limit(monkeypatch):
     with pytest.raises(core.LLMBudgetExceeded):
         core.llm("c")
     assert core.llm_usage_today() == 2
+
+
+def test_merge_json_remote_wins_and_no_resurrection():
+    remote = {"runs": [2, 3, 4], "state": {"last_run": "2026-10-16T05:00:00"}, "blocked": ["b"], "name": "remote"}
+    local = {"runs": [1, 2, 3, 9], "state": {"last_run": "2026-10-16T04:00:00"}, "blocked": ["a", "b"], "name": "local"}
+    m = core.merge_json(remote, local)
+    assert m["runs"] == [2, 3, 4, 9]          # 원격이 잘라낸 1 은 되살아나지 않고, 로컬 새 항목 9 만 추가
+    assert m["state"]["last_run"] == "2026-10-16T05:00:00" and m["name"] == "remote"
+    assert m["blocked"] == ["b"]              # 원격에서 제거된 a 는 복구 안 됨
+
+
+def test_llm_usage_sums_sources():
+    day = __import__("datetime").datetime.now(__import__("datetime").timezone.utc).strftime("%Y-%m-%d")
+    core._save_json(core.LLM_USAGE_PATH, {day: {"ci": 30, "local": 5}})
+    assert core.llm_usage_today() == 35
+    merged = core.merge_json({day: {"ci": 40}}, {day: {"ci": 30, "local": 7}})
+    assert merged[day] == {"ci": 40, "local": 7}
+
+
+def test_ci_commit_merges_concurrent_memory(tmp_path, monkeypatch):
+    import subprocess
+
+    def git(cwd, *a):
+        return subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True, check=True).stdout
+
+    remote = tmp_path / "remote.git"
+    git(tmp_path, "init", "-q", "--bare", "-b", "main", str(remote))
+    seed = tmp_path / "seed"
+    git(tmp_path, "clone", "-q", str(remote), str(seed))
+    for c in (seed,):
+        git(c, "config", "user.email", "t@t"); git(c, "config", "user.name", "t")
+    (seed / "memory").mkdir()
+    core._save_json(seed / "memory" / "m.json", {"runs": [1], "n": 1})
+    (seed / "TODO.md").write_text("- [x] done\n")
+    git(seed, "add", "-A"); git(seed, "commit", "-qm", "init"); git(seed, "push", "-q", "origin", "main")
+
+    ci = tmp_path / "ci"
+    git(tmp_path, "clone", "-q", str(remote), str(ci))
+    git(ci, "config", "user.email", "t@t"); git(ci, "config", "user.name", "t")
+    # 다른 실행이 먼저 push
+    core._save_json(seed / "memory" / "m.json", {"runs": [1, 2], "n": 5})
+    git(seed, "commit", "-qam", "other"); git(seed, "push", "-q", "origin", "main")
+    # 이번 실행: 오래된 checkout 에서 memory 변경 + 새 글
+    core._save_json(ci / "memory" / "m.json", {"runs": [1, 3], "n": 2})
+    (ci / "content").mkdir(); (ci / "content" / "p.json").write_text("{}")
+    monkeypatch.setattr(core, "ROOT", ci)
+    assert core.ci_commit(["memory/", "content/", "TODO.md"], "run") is True
+    final = tmp_path / "final"
+    git(tmp_path, "clone", "-q", str(remote), str(final))
+    m = core._load_json(final / "memory" / "m.json", {})
+    assert m == {"runs": [1, 2, 3], "n": 5} and (final / "content" / "p.json").exists()
+    assert (final / "TODO.md").read_text() == "- [x] done\n"

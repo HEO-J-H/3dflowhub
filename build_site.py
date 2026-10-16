@@ -48,15 +48,44 @@ DOMAIN_ICON = {"3D DCC": "🧊", "Game Engine": "🎮", "VFX": "💥", "AI 3D": 
 e = html.escape
 
 
+def rfc822(iso: str | None) -> str:
+    from email.utils import format_datetime
+    try:
+        dt = datetime.fromisoformat((iso or "").replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            from datetime import timezone
+            dt = dt.replace(tzinfo=timezone.utc)
+        return format_datetime(dt)
+    except ValueError:
+        return format_datetime(datetime.now().astimezone())
+
+
 def slug(name: str) -> str:
     s = re.sub(r"[\s/·]+", "-", name.strip())
     s = re.sub(r"[^\w\-가-힣]", "", s)
     return s.strip("-").lower() or "etc"
 
 
+SLUG_MAP: dict[tuple[str, str], str] = {}  # (도메인, 카테고리) → 폴더명 (build 시작 때 채움)
+
+
+def assign_slugs(pairs) -> None:
+    SLUG_MAP.clear()
+    used: dict[str, set] = {}
+    for d, c in sorted(pairs):
+        base, n = slug(c), 1
+        taken = used.setdefault(d, set())
+        name = base
+        while name.lower() in taken:  # Windows 대소문자 무시 파일시스템까지 고려
+            n += 1
+            name = f"{base}-{n}"
+        taken.add(name.lower())
+        SLUG_MAP[(d, c)] = name
+
+
 def cat_url(domain: str, sub: str | None = None) -> str:
     base = f"c/{DOMAIN_SLUG.get(domain, slug(domain))}/"
-    return base + (f"{quote(slug(sub))}/" if sub else "")
+    return base + (f"{quote(SLUG_MAP.get((domain, sub)) or slug(sub))}/" if sub else "")
 
 
 # ─────────────────────────── 데이터 ───────────────────────────
@@ -66,6 +95,8 @@ def load_posts() -> list[dict]:
         p = core._load_json(f, None)
         if isinstance(p, dict) and p.get("title_ko"):
             p.setdefault("id", f.stem)
+            if p.get("domain") not in core.DOMAINS:  # 게시판이 없는 도메인 → 링크 깨짐 방지
+                p["domain"] = "3D DCC"
             posts.append(p)
     posts.sort(key=lambda p: p.get("collected_at") or "", reverse=True)
     # 여러 글이 같은 이미지를 쓰면 사이트 로고/기본 썸네일 → 숨김
@@ -182,11 +213,12 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:32px 0}
 
 SEARCH_JS = """
 const q=document.getElementById('q');let idx=null;
+const h=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
 q&&q.addEventListener('input',async()=>{const v=q.value.trim().toLowerCase();const box=document.getElementById('results');
 if(!v){box.innerHTML='';box.hidden=true;return}
 idx=idx||await (await fetch(ROOT+'search.json')).json();
 const hits=idx.filter(p=>(p.t+' '+p.c+' '+p.g).toLowerCase().includes(v)).slice(0,30);
-box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${ROOT}p/${p.i}.html"><span class="ph"></span><span><span class="t">${p.t}</span><br><span class="s">${p.c}</span></span></a>`).join(''):'<div class="row">검색 결과 없음</div>'});
+box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${ROOT}p/${encodeURIComponent(p.i)}.html"><span class="ph"></span><span><span class="t">${h(p.t)}</span><br><span class="s">${h(p.c)}</span></span></a>`).join(''):'<div class="row">검색 결과 없음</div>'});
 """
 
 
@@ -237,7 +269,7 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
 def post_html(p: dict, root: str, related: list[dict]) -> str:
     m = p.get("media") or {}
     parts = [f'<div class="crumb"><a href="{root}{cat_url(p["domain"])}">{e(p["domain"])}</a> › '
-             f'<a href="{root}{cat_url(p["domain"], p.get("category"))}">{e(p.get("category") or "기타")}</a> · '
+             f'<a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}">{e(p.get("category") or "기타")}</a> · '
              f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>']
     if m.get("image"):
         parts.append(core.image_figure(m["image"], p["url"], p["title_ko"]))
@@ -280,6 +312,7 @@ def build() -> dict:
     for p in posts:
         by_dom[p["domain"]].append(p)
         by_cat[(p["domain"], p.get("category") or "기타")].append(p)
+    assign_slugs(by_cat.keys())
 
     # 홈: 최신 글 + 도메인별 카테고리 게시판 카드
     cards = []
@@ -306,12 +339,12 @@ def build() -> dict:
         board_pages(by_dom[d], OUT / cat_url(d).rstrip("/"), "../../", d,
                     f"<h1>{DOMAIN_ICON[d]} {e(d)}</h1>" + tabs(None, "{ROOT}"), d)
         for c in cats:
-            folder = OUT / "c" / DOMAIN_SLUG[d] / slug(c)
+            folder = OUT / "c" / DOMAIN_SLUG[d] / SLUG_MAP[(d, c)]
             board_pages(by_cat[(d, c)], folder, "../../../", f"{d} › {c}",
                         f"<h1>{DOMAIN_ICON[d]} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}"), d)
 
     # 문의 안내 페이지
-    (OUT / "contact").mkdir()
+    (OUT / "contact").mkdir(exist_ok=True)
     contact = (f"<article><h1>📮 광고·제휴 문의</h1>"
                f"<p>{SITE_TITLE}는 3D DCC · 게임 엔진 · VFX · AI 3D 소식을 한국어로 정리하는 큐레이션 사이트입니다.</p>"
                f"<h2>이런 문의를 환영합니다</h2><ul><li>광고 · 스폰서 콘텐츠</li><li>제품·서비스 소개 및 리뷰 협업</li>"
@@ -321,7 +354,7 @@ def build() -> dict:
     (OUT / "contact" / "index.html").write_text(page(f"광고·제휴 문의 - {SITE_TITLE}", contact, "../"), encoding="utf-8")
 
     # 글 페이지
-    (OUT / "p").mkdir()
+    (OUT / "p").mkdir(exist_ok=True)
     for p in posts:
         related = [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
                   [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
@@ -335,14 +368,17 @@ def build() -> dict:
           "g": " ".join(p.get("tags") or [])} for p in posts], ensure_ascii=False), encoding="utf-8")
     items = "".join(f"<item><title>{e(p['title_ko'])}</title><link>{BASE_URL}/p/{p['id']}.html</link>"
                     f"<guid>{BASE_URL}/p/{p['id']}.html</guid><category>{e(p['domain'])}</category>"
+                    f"<pubDate>{rfc822(p.get('collected_at'))}</pubDate>"
                     f"<description>{e(p.get('summary') or '')}</description></item>" for p in posts[:50])
-    (OUT / "feed.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel>'
+    (OUT / "feed.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+                                  f'<atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
     urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
+           [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
-                                     'schemas/sitemap/0.9">' + "".join(f"<url><loc>{u}</loc></url>" for u in urls)
+                                     'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)
                                      + "</urlset>", encoding="utf-8")
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
     return {"posts": len(posts), "boards": len(by_cat) + len(core.DOMAINS)}
