@@ -444,3 +444,10 @@ def test_http_error_feed_is_not_counted_as_empty(monkeypatch):
     import pytest
     with pytest.raises(core.requests.HTTPError):
         core.fetch_feed("https://www.reddit.com/r/Maxscript/.rss")
+
+
+def test_generate_keywords_removes_duplicates_across_domains(monkeypatch):
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"keywords": ["Blender 4.2", "Houdini 20"]}')
+    kws = core.generate_keywords(["3D DCC", "VFX"], per_domain=2)
+    all_kws = [k.lower() for domain_list in kws.values() for k in domain_list]
+    assert len(all_kws) == len(set(all_kws))

@@ -425,6 +425,7 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
     mem = load_memory()
     hints = load_strategy().get("keyword_hints", {})
     result: dict[str, list[str]] = {}
+    seen_keywords: set[str] = set()
     for d in domains:
         seeds = DOMAINS[d]["seeds"]
         prompt = (
@@ -442,7 +443,24 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
         except Exception as e:  # LLM 실패 시 시드로 폴백
             log.warning("키워드 생성 실패(%s) → 시드 사용: %s", d, e)
             kws = []
-        result[d] = [k for k in kws if isinstance(k, str)][:per_domain] or seeds[:per_domain]
+        domain_kws = []
+        for k in kws:
+            if isinstance(k, str):
+                cleaned_k = k.strip()
+                normalized_k = cleaned_k.lower()
+                if normalized_k and normalized_k not in seen_keywords:
+                    seen_keywords.add(normalized_k)
+                    domain_kws.append(cleaned_k)
+        if not domain_kws:
+            for s in seeds:
+                cleaned_s = s.strip()
+                normalized_s = cleaned_s.lower()
+                if normalized_s not in seen_keywords:
+                    seen_keywords.add(normalized_s)
+                    domain_kws.append(cleaned_s)
+                if len(domain_kws) >= per_domain:
+                    break
+        result[d] = domain_kws[:per_domain]
     LAST_KEYWORDS.clear()
     LAST_KEYWORDS.update(result)
     return result
