@@ -196,6 +196,11 @@ LAST_KEYWORDS: dict[str, list[str]] = {}  # 이번 실행에 사용한 검색 �
 FEED_STATS: dict[str, int] = {}  # 이번 실행의 피드별 항목 수 (피드 건강도)
 
 
+def strategy_version(notes: list[str]) -> str:
+    """편집 가이드 묶음의 짧은 식별자 — 어떤 가이드로 실행했는지 기록해 성과와 연결."""
+    return hashlib.blake2b("\n".join(notes).encode(), digest_size=4).hexdigest() if notes else "none"
+
+
 def load_strategy() -> dict:
     return _load_json(STRATEGY_PATH, {"prompt_notes": [], "keyword_hints": {}, "extra_feeds": {},
                                       "blocked_feeds": [], "history": []})
@@ -1285,6 +1290,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     seen |= {url_hash(p["url"]) for f in POSTS_DIR.glob("*.json")  # GitHub 에 이미 있는 글
              if (p := _load_json(f, {})).get("url")}
 
+    RUN_ERRORS.clear()  # 같은 프로세스에서 여러 번 실행해도 이번 실행 것만 집계
     items = collect(domains, max_items, seen)
     stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": len(items),
              "saved": 0, "published": 0, "drafts": 0, "publish_errors": 0}
@@ -1313,6 +1319,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
         except Exception as e:  # 한 건의 실패가 전체를 죽이지 않도록
             log.exception("아이템 처리 실패 %s: %s", raw.get("url"), e)
 
+    stats["offtopic"] = RUN_ERRORS.count("off-topic")  # 전략 평가 지표 (OPRO 궤적용)
+    stats["short"] = RUN_ERRORS.count("short body")
+    stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
     try:  # [4]→[5] 자아 성찰 후 전략·카테고리 체계 자동 업데이트

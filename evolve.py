@@ -113,6 +113,29 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+MIN_RUNS_PER_VERSION = 3  # 가이드 한 묶음을 최소 이만큼 실행해 본 뒤 교체 (잦은 교체로 평가 불가 방지)
+
+
+def score_trajectory(runs: list[dict], versions: dict) -> list[dict]:
+    """OPRO 식 궤적: 가이드 버전별 실행 결과를 점수화해 오름차순 반환 (Yang et al., 2023)."""
+    agg: dict[str, dict] = {}
+    for r in runs:
+        v = r.get("strategy_ver")
+        if not v:
+            continue
+        a = agg.setdefault(v, {"runs": 0, "collected": 0, "saved": 0, "offtopic": 0, "short": 0})
+        a["runs"] += 1
+        for k in ("collected", "saved", "offtopic", "short"):
+            a[k] += int(r.get(k, 0) or 0)
+    out = []
+    for v, a in agg.items():
+        c = a["collected"] or 1
+        out.append({"ver": v, "notes": versions.get(v, [])[:6], "runs": a["runs"],
+                    "pass_rate": round(a["saved"] / c, 2), "offtopic_rate": round(a["offtopic"] / c, 2),
+                    "score": round((a["saved"] - 0.5 * a["offtopic"] - 0.5 * a["short"]) / c, 3)})
+    return sorted(out, key=lambda t: t["score"])
+
+
 def _as_list(v) -> list:
     return v if isinstance(v, list) else []
 
@@ -155,8 +178,14 @@ def update_strategy(strategy: dict) -> dict:
         strategy["domain_weights"] = weights
         changes.append(f"도메인 비중: {weights}")
 
-    # 3) LLM 성찰 (Reflexion: 결과를 말로 반성 → 다음 실행 컨텍스트로 주입)
+    # 3) LLM 성찰 (Reflexion: 결과를 말로 반성) + OPRO: 과거 가이드 묶음과 점수 궤적을 함께 보여줌
     runs = mem.get("runs", [])[-10:]
+    cur_ver = core.strategy_version(strategy["prompt_notes"])
+    versions = strategy.setdefault("note_versions", {})
+    versions.setdefault(cur_ver, strategy["prompt_notes"])
+    trajectory = score_trajectory(mem.get("runs", []), versions)
+    cur = next((t for t in trajectory if t["ver"] == cur_ver), {"runs": 0})
+    enough = cur["runs"] >= MIN_RUNS_PER_VERSION or not strategy["prompt_notes"]
     counts = sorted(mem.get("category_counts", {}).items(), key=lambda kv: -kv[1])[:25]
     prompt = (
         f"You are the strategist of an automated Korean tech-news curation blog about: {core.domain_topics()}. "
@@ -167,6 +196,9 @@ def update_strategy(strategy: dict) -> dict:
         f"Recent runs (stats/errors): {json.dumps(runs, ensure_ascii=False)[:3000]}\n"
         f"Category usage: {json.dumps(counts, ensure_ascii=False)}\n"
         f"Current editorial notes: {json.dumps(strategy['prompt_notes'], ensure_ascii=False)}\n"
+        "Previous editorial-note sets with measured scores (ascending; score = good posts per collected "
+        "article minus off-topic/short penalties). Write notes that should beat the best set:\n"
+        f"{json.dumps(trajectory[-6:], ensure_ascii=False)[:2500]}\n"
         f"Current keyword hints: {json.dumps(strategy['keyword_hints'], ensure_ascii=False)}\n"
         f"Domains: {list(core.DOMAINS)}\n"
         "Return JSON with keys:\n"
@@ -185,9 +217,13 @@ def update_strategy(strategy: dict) -> dict:
         out = {}
     out = out if isinstance(out, dict) else {}
     notes = [n.strip() for n in _as_list(out.get("prompt_notes")) if isinstance(n, str) and n.strip()][:MAX_NOTES]
-    if notes and notes != strategy["prompt_notes"]:
+    if notes and notes != strategy["prompt_notes"] and enough:  # 현재 가이드 평가 데이터가 쌓였을 때만 교체
         strategy["prompt_notes"] = notes
-        changes.append(f"편집 가이드 {len(notes)}개 갱신")
+        versions[core.strategy_version(notes)] = notes
+        strategy["note_versions"] = dict(list(versions.items())[-12:])
+        changes.append(f"편집 가이드 {len(notes)}개 갱신 (이전 {cur_ver}: {cur['runs']}회, 점수 {cur.get('score', '-')})")
+    elif notes and not enough:
+        changes.append(f"편집 가이드 유지 — 현재 버전 평가 중 ({cur['runs']}/{MIN_RUNS_PER_VERSION}회)")
     raw_hints = out.get("keyword_hints") if isinstance(out.get("keyword_hints"), dict) else {}
     hints = {d: [h for h in v if isinstance(h, str)][:4]  # 문자열이면 한 글자씩 쪼개지므로 리스트만 허용
              for d, v in raw_hints.items() if d in core.DOMAINS and isinstance(v, list)}

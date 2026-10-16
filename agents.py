@@ -231,4 +231,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # 하루 실행당 처리할 과제 수 (LLM 한도와 성장 속도의 균형, 환경변수로 조절)
+    for n in range(int(os.getenv("AGENT_TASKS_PER_RUN", "2"))):
+        print(f"── 과제 {n + 1} ──")
+        try:
+            main()
+        except core.LLMBudgetExceeded as ex:
+            print("LLM 한도 도달 — 다음 실행에서 계속:", ex)
+            break

@@ -341,3 +341,20 @@ def test_domain_weights_stay_positive_with_many_domains(monkeypatch):
 def test_empty_domain_selection_collects_nothing():
     stats = core.run_pipeline(3, [], publish=False)
     assert stats["collected"] == 0 and "no domains selected" in stats["errors"]
+
+
+def test_opro_trajectory_scores_and_keeps_notes_until_evaluated(monkeypatch):
+    import evolve
+    runs = [{"strategy_ver": "a", "collected": 10, "saved": 9}, {"strategy_ver": "b", "collected": 10, "saved": 4,
+                                                                  "offtopic": 4}]
+    t = evolve.score_trajectory(runs, {"a": ["n1"], "b": ["n2"]})
+    assert [x["ver"] for x in t] == ["b", "a"] and t[-1]["score"] == 0.9
+    monkeypatch.setattr(evolve, "performance_table", lambda: {})
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"prompt_notes": ["new"], "lesson": "x"}')
+    st = {"prompt_notes": ["old"], "keyword_hints": {}, "extra_feeds": {}, "blocked_feeds": [], "history": []}
+    st = evolve.update_strategy(st)
+    assert st["prompt_notes"] == ["old"]  # 현재 가이드 실행 기록 0회 → 교체 보류
+    ver = core.strategy_version(["old"])
+    core._save_json(core.MEMORY_PATH, {"runs": [{"strategy_ver": ver, "collected": 3, "saved": 1}] * 3})
+    st = evolve.update_strategy(st)
+    assert st["prompt_notes"] == ["new"]
