@@ -801,6 +801,23 @@
       "errors": [
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-10-16T22:23:31.125300+00:00",
+      "collected": 10,
+      "saved": 3,
+      "published": 0,
+      "drafts": 3,
+      "publish_errors": 0,
+      "offtopic": 1,
+      "short": 1,
+      "strategy_ver": "b5fa69cf",
+      "errors": [
+        "off-topic",
+        "summarize: 429 json=True: '[{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-' | 429 json=False: '[{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-'",
+        "short body",
+        "summarize: Expecting ',' delimiter: line 12 column 1 (char 206)"
+      ]
     }
   ],
   "good_keywords": [
@@ -924,7 +941,8 @@
     "2026-10-16 [성찰] 오프토픽 피드 유입을 엄격히 차단하고 고단가 키워드 중심의 독창적 실무 가이드를 발행해야 검색 유입과 애드센스 효율을 극대화할 수 있습니다.",
     "2026-10-16 [성찰] 오프토픽 유입을 철저히 차단하고 고단가 검색 키워드 중심의 실무 가이드와 튜토리얼 비중을 높여 검색 유입과 체류 시간을 극대화해야 합니다.",
     "2026-10-16 [성찰] 오프토픽 비율을 낮추고 고단가 검색 키워드 중심의 3D 기술 콘텐츠 집중도를 높여야 합니다.",
-    "2026-10-16 [generate_keywords(): 같은 키워드가 도메인 간 중복되면 ] Task execution is correct and meets all requirements."
+    "2026-10-16 [generate_keywords(): 같은 키워드가 도메인 간 중복되면 ] Task execution is correct and meets all requirements.",
+    "2026-10-16 [성찰] 오프토픽 유입과 JSON 파싱 오류를 최소화하기 위해 수집 단계에서 타겟 도메인(3D DCC, Game Engine, VFX, AI 3D) 필터링을 더욱 엄격히 적용해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -936,8 +954,8 @@
     "AI 3D/가우시안 스플래팅": 7,
     "VFX/스튜디오·작품": 7,
     "AI 3D/로보틱스·월드모델": 7,
-    "3D DCC/Blender": 19,
-    "Game Engine/Unreal Engine": 20,
+    "3D DCC/Blender": 20,
+    "Game Engine/Unreal Engine": 21,
     "AI 3D/기타 AI 3D": 5,
     "Game Engine/Godot": 6,
     "3D DCC/Cinema 4D": 6,
@@ -946,7 +964,7 @@
     "AI 3D/3D 생성 AI": 22,
     "VFX/Nuke": 1,
     "Game Engine/기타 엔진": 29,
-    "VFX/After Effects": 9,
+    "VFX/After Effects": 10,
     "VFX/Houdini FX": 5,
     "3D DCC/기타 DCC": 9,
     "3D DCC/Substance 3D": 3,
@@ -1264,14 +1282,24 @@
     1218981056599406907,
     728704193539410082,
     2919476369565499601,
-    17697163163623386528
+    17697163163623386528,
+    3412223013492898289,
+    4986215473040058661,
+    890667773837628358,
+    8849285218837182667,
+    8014304904053583697,
+    1235534509242994800,
+    4060630619519240479,
+    5302586251444293724,
+    2091991662717525311,
+    1658736784366078089
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 22,
-    "Game Engine": 22,
-    "VFX": 22,
-    "AI 3D": 22
+    "3D DCC": 23,
+    "Game Engine": 23,
+    "VFX": 23,
+    "AI 3D": 23
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
