@@ -386,3 +386,22 @@ def test_topic_is_normalized_to_fixed_types():
     assert d["topic"] == "튜토리얼·팁" and d["category"] == "Blender"
     d = core.normalize_summary({"sections": ["x"], "topic": "아무거나"}, {**ITEM, "hint_domain": "3D DCC"})
     assert d["topic"] == core.DEFAULT_TOPIC
+
+
+def test_tool_names_follow_merges_and_reject_topics():
+    core.register_category("Game Engine", "Unreal Engine")
+    m = core.load_memory(); m["category_merges"] = {"Game Engine/UE5": "Unreal Engine"}; core._save_json(core.MEMORY_PATH, m)
+    assert core.register_category("Game Engine", "UE5") == "Unreal Engine"
+    assert core.register_category("Game Engine", "튜토리얼·팁") == "기타 엔진"   # 유형 이름은 도구 불가 → 기타
+    assert core.register_category("3D DCC", "Substance 3D/Painter") == "Substance 3D·Painter"
+
+
+def test_topic_chips_use_root_relative_links(tmp_path, monkeypatch):
+    import build_site
+    monkeypatch.setattr(build_site, "OUT", tmp_path / "site")
+    for i in range(35):  # 페이지네이션(30개) 발생
+        core._save_json(core.POSTS_DIR / f"2026-10-16-{i:03d}.json", {"title_ko": f"t{i}", "url": f"https://e/{i}",
+                        "domain": "3D DCC", "category": "Blender", "topic": "튜토리얼·팁", "collected_at": f"2026-10-16T00:{i:02d}"})
+    build_site.build()
+    html2 = (tmp_path / "site" / "c" / "3d-dcc" / "blender" / "page" / "2" / "index.html").read_text(encoding="utf-8")
+    assert 'href="../../../../../c/3d-dcc/blender/tutorial/"' in html2

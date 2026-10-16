@@ -244,9 +244,10 @@ with t_list:
     if df.empty:
         st.info("수집된 글이 없습니다.")
     else:
-        c1, c4, c2, c3 = st.columns([2, 2, 2, 3])
+        c1, c4, c5, c2, c3 = st.columns([2, 2, 2, 2, 3])
         dom = c1.multiselect("도메인", sorted(df["도메인"].dropna().unique()))
-        cat = c4.multiselect("카테고리", sorted(df["카테고리"].replace("", pd.NA).dropna().unique()))
+        cat = c4.multiselect("도구·제품", sorted(df["카테고리"].replace("", pd.NA).dropna().unique()))
+        topic = c5.multiselect("유형", core.TOPICS) if "유형" in df.columns else []
         stat = c2.multiselect("상태", sorted(df["상태"].dropna().unique()))
         q = c3.text_input("검색 (제목·태그)")
         view = df
@@ -254,6 +255,8 @@ with t_list:
             view = view[view["도메인"].isin(dom)]
         if cat:
             view = view[view["카테고리"].isin(cat)]
+        if topic:
+            view = view[view["유형"].isin(topic)]
         if stat:
             view = view[view["상태"].isin(stat)]
         if q:

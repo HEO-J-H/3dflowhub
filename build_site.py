@@ -102,7 +102,7 @@ def assign_slugs(pairs) -> None:
     used: dict[str, set] = {}
     for d, c in sorted(pairs):
         base, n = slug(c), 1
-        taken = used.setdefault(d, set())
+        taken = used.setdefault(d, {"page"})  # 'page' 는 페이지네이션 폴더명 → 도구 슬러그로 쓰지 않음
         name = base
         while name.lower() in taken:  # Windows 대소문자 무시 파일시스템까지 고려
             n += 1
@@ -284,7 +284,11 @@ def row(p: dict, root: str) -> str:
             f'<span class="date">{(p.get("collected_at") or "")[:10]}</span></a>')
 
 
-def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header: str, domain_on: str) -> None:
+MIN_INDEXABLE = 3  # 글이 이보다 적은 하위 게시판은 noindex (얇은 페이지가 사이트 품질 평가를 떨어뜨리지 않도록)
+
+
+def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header: str, domain_on: str,
+                indexable: bool = True) -> None:
     """게시판 목록 (페이지네이션: index.html, page/2/ ...)."""
     pages = [posts[i:i + PAGE_SIZE] for i in range(0, max(len(posts), 1), PAGE_SIZE)] or [[]]
     for n, chunk in enumerate(pages, 1):
@@ -297,7 +301,9 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
             + f'</div><div class="pager">{pager}</div>'
         d = out_dir if n == 1 else out_dir / "page" / str(n)
         d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(page(f"{title} - {SITE_TITLE}", body, r, domain_on), encoding="utf-8")
+        robots = "" if indexable else '<meta name="robots" content="noindex,follow">'
+        (d / "index.html").write_text(page(f"{title} - {SITE_TITLE}", body, r, domain_on, extra_head=robots),
+                                      encoding="utf-8")
 
 
 def indexnow_submit(hours: int = 3) -> str:
@@ -434,19 +440,20 @@ def build() -> dict:
             items = by_cat[(d, c)]
             by_topic = {t: [p for p in items if p.get("topic") == t] for t in TOPIC_SLUG}
 
-            def chips(active: str | None, up: str) -> str:
+            def chips(active: str | None) -> str:
+                up = "{ROOT}" + cat_url(d, c)  # 루트 기준 → page/2/ 같은 하위 페이지에서도 링크 유지
                 base = f'<a class="{"on" if active is None else ""}" href="{up}">전체<span class="n">{len(items)}</span></a>'
                 return '<div class="tabs chips">' + base + "".join(
                     f'<a class="{"on" if t == active else ""}" href="{up}{TOPIC_SLUG[t]}/">{e(t)}'
                     f'<span class="n">{len(ps)}</span></a>' for t, ps in by_topic.items() if ps) + "</div>"
 
             board_pages(items, folder, "../../../", f"{d} › {c}",
-                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}") + chips(None, "./"), d)
+                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}") + chips(None), d)
             for t, ps in by_topic.items():
                 if ps:
                     board_pages(ps, folder / TOPIC_SLUG[t], "../../../../", f"{d} › {c} › {t}",
                                 f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)} › {e(t)}</h1>" + tabs(c, "{ROOT}")
-                                + chips(t, "../"), d)
+                                + chips(t), d, indexable=len(ps) >= MIN_INDEXABLE)
 
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)
@@ -501,7 +508,8 @@ def build() -> dict:
     urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
            [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
            [f"{BASE_URL}/{cat_url(d, c)}{TOPIC_SLUG[t]}/" for (d, c), ps in sorted(by_cat.items())
-            for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})] + \
+            for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})
+            if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)

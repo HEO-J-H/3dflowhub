@@ -667,9 +667,23 @@ def _count_category(domain: str, category: str) -> None:
     _save_json(MEMORY_PATH, mem)
 
 
+def clean_tool_name(domain: str, name: str) -> str:
+    """도구 이름 정리: 금지 문자 치환·길이 제한, 콘텐츠 유형 이름 거부, 병합된 이름은 최종 대상으로 (체인 추적)."""
+    name = re.sub(r"[/|<>,]", "·", (name or "").strip())[:24]
+    if not name or name in TOPICS:
+        return ""
+    merges = load_memory().get("category_merges", {})
+    for _ in range(10):
+        nxt = merges.get(f"{domain}/{name}")
+        if not nxt or nxt == name:
+            break
+        name = nxt
+    return name
+
+
 def register_new_option(domain: str, category: str) -> str:
     """사용 횟수 없이 카테고리 선택지만 추가 (taxonomy split 용). 추가된 이름, 이미 있거나 실패 시 ""."""
-    category = re.sub(r"[/|<>,]", "·", (category or "").strip())
+    category = clean_tool_name(domain, category)
     cats = load_categories().get(domain, [])
     if len(category) > 24:  # 잘린 이름 방지: 길면 추가하지 않음
         return ""
@@ -683,15 +697,16 @@ def register_new_option(domain: str, category: str) -> str:
 
 def register_category(domain: str, category: str) -> str:
     """세부 카테고리 확정. 새 이름이면 memory.json 에 추가 (도메인당 최대 개수 초과 시 첫 카테고리로 대체)."""
-    category = re.sub(r"[/|<>,]", "·", (category or "").strip())[:24]
+    category = clean_tool_name(domain, category)
     cats = load_categories()[domain]
+    fallback = next((c for c in cats if c.startswith("기타")), cats[0] if cats else "기타")  # 미분류는 '기타 …'
     if not category:
-        return cats[0]
+        return fallback
     if category in cats:
         _count_category(domain, category)
         return category
     if len(cats) >= MAX_CATEGORIES_PER_DOMAIN:
-        return cats[0]
+        return fallback
     mem = load_memory()
     mem.setdefault("categories", {}).setdefault(domain, []).append(category)
     _save_json(MEMORY_PATH, mem)
@@ -1272,6 +1287,7 @@ def site_rows() -> list[dict]:
             continue
         rows.append({"제목": p["title_ko"], "도메인": p.get("domain", ""), "카테고리": p.get("category", ""),
                      "이미지": (p.get("media") or {}).get("image") or None,
+                     "유형": p.get("topic", ""),
                      "상태": "Published" if tistory.get(p["title_ko"]) else "Collected",
                      "태그": ", ".join(p.get("tags") or []), "수집일": p.get("collected_at", ""),
                      "원문": p.get("url"), "티스토리": tistory.get(p["title_ko"]) or None,

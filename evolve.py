@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from datetime import datetime, timezone
 
@@ -320,7 +321,10 @@ def refine_taxonomy(strategy: dict) -> dict:
     for m in _as_list(out.get("merges"))[:8]:
         if not isinstance(m, dict):
             continue
-        d, src, dst = m.get("domain"), str(m.get("from") or "").strip(), str(m.get("to") or "").strip()[:24]
+        d, src = m.get("domain"), str(m.get("from") or "").strip()
+        dst = re.sub(r"[/|<>,]", "·", str(m.get("to") or "").strip())[:24]
+        if dst in core.TOPICS:  # 콘텐츠 유형은 도구가 될 수 없음
+            continue
         if d in cats and src in cats[d] and dst and dst != src:
             n = apply_merge(d, src, dst, notion)
             done.append(f"{d}: {src} → {dst} (노션 {n}건)")
