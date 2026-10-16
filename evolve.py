@@ -43,11 +43,34 @@ MONETIZATION_PLAYBOOK = [
 ]
 
 
+def site_performance_table() -> dict:
+    """노션 미사용 시 보상 신호: GitHub Pages 방문수(GoatCounter) + 티스토리 조회수를 content/posts 분류로 집계."""
+    perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+    pages = (perf.get("pages") or {}).get("posts", {})
+    tistory = {v.get("title"): v.get("views", 0) for v in ((perf.get("latest") or {}).get("posts") or {}).values()}
+    agg: dict[str, dict] = {}
+    top = []
+    for f in core.POSTS_DIR.glob("*.json"):
+        p = core._load_json(f, {})
+        v = pages.get(f.stem, {}).get("views", 0) + tistory.get(p.get("title_ko"), 0)
+        if not v:
+            continue
+        d, c = p.get("domain", "?"), p.get("category", "")
+        for key in (d, f"{d}/{c}"):
+            a = agg.setdefault(key, {"posts": 0, "views": 0})
+            a["posts"] += 1
+            a["views"] += v
+        top.append((v, (p.get("title_ko") or "")[:50]))
+    for a in agg.values():
+        a["avg"] = round(a["views"] / a["posts"], 1)
+    return {"by_group": agg, "top_posts": sorted(top, reverse=True)[:8]}
+
+
 def performance_table() -> dict:
     """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 — 수익 학습의 보상 신호."""
     client = core._notion()
     if client is None:
-        return {}
+        return site_performance_table()
     res = core._query_db(client, {"page_size": 100, "filter": {"property": "Views", "number": {"is_not_empty": True}}})
     agg: dict[str, dict] = {}
     top = []

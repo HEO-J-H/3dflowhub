@@ -82,25 +82,49 @@ with st.sidebar:
     email_to = st.text_input("받는 주소", cfg["email_to"])
     email_per_day = st.number_input("하루 최대 수신 횟수", 0, 48, int(cfg["email_per_day"]))
 
+    st.header("💾 저장 위치")
+    save_notion = st.toggle("노션에도 저장", value=bool(cfg.get("save_notion", True)),
+                            help="끄면 GitHub(게시판 사이트)에만 저장합니다. 노션 API 호출이 없어져 수집이 더 빠르고 단순해집니다.")
+
     st.header("🧠 AI 사용량")
     llm_budget = st.number_input("LLM 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
                                  help="Gemini 무료 한도 보호. AI Studio(aistudio.google.com) 에서 내 프로젝트 한도를 확인해 맞추세요.")
-    burst = st.slider("'계속' 모드 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
-    st.caption(f"오늘 사용량(이 PC + GitHub 합산, 마지막 동기화 기준): {core.llm_usage_today()}회")
+    burst = st.slider("'계속'·10분 모드 1회 처리 글 수", 1, 10, int(cfg.get("burst_items", 3)))
+
+    # ── 소진 예측 ────────────────────────────────────────────
+    interval_min = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}.get(interval, 60)
+    items = burst if interval_min < 60 else max_items
+    per_run = items + len(domains) + (2 * interval_min / 360) + (interval_min / 1440)  # 요약 + 키워드 + 성찰·정제
+    runs_per_day = max(1, 1440 // interval_min)
+    need_day = per_run * runs_per_day
+    used = core.llm_usage_today()
+    remaining = max(0, llm_budget - used)
+    st.progress(min(1.0, used / llm_budget) if llm_budget else 1.0,
+                text=f"오늘 {used} / {llm_budget}회 사용 (남은 {remaining}회)")
+    m1, m2 = st.columns(2)
+    m1.metric("1회 실행", f"약 {per_run:.0f}회")
+    m2.metric("하루 필요", f"약 {need_day:,.0f}회")
+    if need_day <= llm_budget:
+        st.success(f"하루 한도 안에서 계속 수집 가능 (여유 {llm_budget - need_day:,.0f}회)")
+    else:
+        runs_left = int(remaining // per_run) if per_run else 0
+        mins = runs_left * interval_min
+        eta = (datetime.now() + pd.Timedelta(minutes=mins)).strftime("%H:%M")
+        st.warning(f"현재 설정이면 약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 오늘 한도 소진 → "
+                   f"이후 다음 날(오전 9시, 한국시간)까지 수집 중단")
+        st.caption(f"하루 내내 돌리려면: 한도 {need_day:,.0f}회 이상, 또는 1회 {max(1, int(llm_budget / runs_per_day - len(domains)))}건 이하")
+    st.caption("사용량은 이 PC + GitHub 합산 (마지막 동기화 기준)")
 
     if st.button("💾 설정 저장 (GitHub 반영)", use_container_width=True):
-        core.save_config({"interval": interval, "max_items": max_items, "domains": domains,
+        core.save_config({**core.load_config(), "interval": interval, "max_items": max_items, "domains": domains,
                           "publish": publish, "email_to": email_to, "email_per_day": email_per_day,
-                          "llm_daily_budget": llm_budget, "burst_items": burst})
+                          "llm_daily_budget": llm_budget, "burst_items": burst, "save_notion": save_notion})
         with st.spinner("GitHub 에 반영 중…"):
             err = core.git_sync(["config.json"], f"chore(config): 대시보드 설정 변경 (주기 {interval}) [skip ci]")
         if err:
             st.error(f"로컬에는 저장됐지만 GitHub 반영 실패: {err}")
         else:
-            st.success(f"저장 완료 — GitHub 자동 수집에도 반영됨 (주기: {interval})")
-    if interval == "계속":
-        est = 144 * (burst * 1.1 + 2)
-        st.warning(f"'계속'은 10분마다 실행됩니다. 하루 예상 LLM 호출 약 {est:,.0f}회 → 한도({llm_budget}회)에서 멈춥니다.")
+            st.success(f"저장 완료 — GitHub 자동 수집에도 반영됨 (주기: {interval}, 노션 {'저장' if save_notion else '안 함'})")
 
     st.caption("※ '계속'은 GitHub cron 최소 간격(10분)으로 실행됩니다.")
 
@@ -237,6 +261,7 @@ with t_list:
         st.dataframe(view, use_container_width=True, hide_index=True,
                      column_config={"이미지": st.column_config.ImageColumn(width="small"),
                                     "원문": st.column_config.LinkColumn(),
+                                    "사이트": st.column_config.LinkColumn(display_text="게시판 보기"),
                                     "티스토리": st.column_config.LinkColumn(),
                                     "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
         st.link_button("노션 DB 열기", f"https://app.notion.com/p/{core.NOTION_DATABASE_ID}")

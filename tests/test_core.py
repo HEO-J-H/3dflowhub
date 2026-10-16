@@ -308,3 +308,22 @@ def test_custom_domain_is_applied_and_used_in_prompt(monkeypatch):
     assert added == ["3D 프린팅"] and core.DOMAINS["3D 프린팅"]["feeds"] == ["https://ex.com/feed"]
     assert core.DOMAIN_META["3D 프린팅"]["slug"].startswith("x-") and "3D printing" in core.domain_topics()
     assert core.DOMAINS["VFX"]["seeds"] != ["x"]
+
+
+def test_notion_off_uses_github_data(monkeypatch):
+    core._save_json(core.CONFIG_PATH, {"save_notion": False})
+    monkeypatch.setattr(core, "NOTION_TOKEN", "x")
+    assert core._notion() is None
+    core._save_json(core.POSTS_DIR / "2026-10-16-a.json", {"title_ko": "가", "url": "https://ex.com/a", "domain": "VFX",
+                                                           "category": "컴포지팅", "collected_at": "2026-10-16"})
+    rows = core.fetch_dashboard_rows()
+    assert rows[0]["제목"] == "가" and rows[0]["사이트"].endswith("/p/2026-10-16-a.html")
+    rel = core.related_posts(None, {"url": "https://ex.com/b", "domain": "VFX", "category": "컴포지팅"})
+    assert rel and rel[0]["url"].startswith(core.SITE_URL)
+
+
+def test_save_config_keeps_other_keys():
+    core.save_config({"goatcounter_code": "3dflowhub", "custom_domains": {"X": {}}})
+    core.save_config({"interval": "계속"})
+    c = core._load_json(core.CONFIG_PATH, {})
+    assert c["goatcounter_code"] == "3dflowhub" and "X" in c["custom_domains"] and c["interval"] == "계속"

@@ -731,8 +731,13 @@ def summarize(item: dict) -> dict | None:
 
 
 # ─────────────────────────── Notion ───────────────────────────
+def notion_enabled() -> bool:
+    """config.json 의 save_notion (대시보드에서 끄면 GitHub 만 사용)."""
+    return bool(_load_json(CONFIG_PATH, {}).get("save_notion", True))
+
+
 def _notion() -> "NotionClient | None":
-    if not (NOTION_TOKEN and NotionClient):
+    if not (NOTION_TOKEN and NotionClient and notion_enabled()):
         return None
     return NotionClient(auth=NOTION_TOKEN, notion_version="2022-06-28")  # properties 기반 API 고정
 
@@ -910,9 +915,20 @@ def save_post_json(item: dict) -> Path:
 
 
 def related_posts(client, item: dict, limit: int = 3) -> list[dict]:
-    """같은 세부 카테고리 → 같은 도메인 순으로 이미 발행된 글 (조회수 높은 순)."""
+    """같은 세부 카테고리 → 같은 도메인 순으로 이미 발행된 글 (조회수 높은 순).
+    노션 미사용 시: GitHub Pages 사이트의 같은 분류 글로 링크 (사이트 유입도 늘어남)."""
     if client is None:
-        return []
+        posts = [_load_json(f, {}) | {"_id": f.stem} for f in POSTS_DIR.glob("*.json")]
+        posts = [p for p in posts if p.get("title_ko") and p.get("url") != item.get("url")]
+        posts.sort(key=lambda p: p.get("collected_at") or "", reverse=True)
+        same = [p for p in posts if p.get("domain") == item.get("domain")]
+        ranked = [p for p in same if p.get("category") == item.get("category")] + same
+        out, seen_ids = [], set()
+        for p in ranked:
+            if p["_id"] not in seen_ids:
+                seen_ids.add(p["_id"])
+                out.append({"url": f"{SITE_URL}p/{p['_id']}.html", "title": p["title_ko"]})
+        return out[:limit]
     out: list[dict] = []
     filters = []
     if item.get("category"):
@@ -1120,7 +1136,8 @@ def load_config() -> dict:
 
 
 def save_config(cfg: dict) -> None:
-    _save_json(CONFIG_PATH, {**DEFAULT_CONFIG, **cfg})
+    """기존 설정 위에 덮어쓰기 (일부 키만 넘겨도 다른 설정—추가 분야·통계 코드 등—이 지워지지 않음)."""
+    _save_json(CONFIG_PATH, {**DEFAULT_CONFIG, **_load_json(CONFIG_PATH, {}), **cfg})
 
 
 def load_state() -> dict:
@@ -1183,10 +1200,32 @@ def run_from_config(force: bool = False) -> dict | None:
 
 
 # ─────────────────────────── 대시보드용 조회 ───────────────────────────
+def site_rows() -> list[dict]:
+    """GitHub(content/posts) 글 목록 — 노션을 쓰지 않을 때 대시보드 데이터 원본."""
+    tistory = {r.get("title"): r.get("url") for r in _load_json(ROOT / "memory" / "tistory_publish_log.json", [])
+               if isinstance(r, dict)}
+    rows = []
+    for f in POSTS_DIR.glob("*.json"):
+        p = _load_json(f, {})
+        if not p.get("title_ko"):
+            continue
+        rows.append({"제목": p["title_ko"], "도메인": p.get("domain", ""), "카테고리": p.get("category", ""),
+                     "이미지": (p.get("media") or {}).get("image") or None,
+                     "상태": "Published" if tistory.get(p["title_ko"]) else "Collected",
+                     "태그": ", ".join(p.get("tags") or []), "수집일": p.get("collected_at", ""),
+                     "원문": p.get("url"), "티스토리": tistory.get(p["title_ko"]) or None,
+                     "사이트": f"{SITE_URL}p/{f.stem}.html"})
+    rows.sort(key=lambda r: r["수집일"] or "", reverse=True)
+    return rows
+
+
+SITE_URL = "https://heo-j-h.github.io/3dflowhub/"
+
+
 def fetch_dashboard_rows(limit: int = 500) -> list[dict]:
     client = _notion()
     if client is None:
-        return []
+        return site_rows()[:limit]
     rows, cursor = [], None
     try:
         while len(rows) < limit:
@@ -1218,8 +1257,10 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     domains = [d for d in (domains or list(DOMAINS)) if d in DOMAINS]
     notion = _notion()
     ensure_notion_schema(notion)
-    seen =notion_existing_urls(notion) if notion else set()
+    seen = notion_existing_urls(notion) if notion else set()
     seen |= set(_published().keys())
+    seen |= {url_hash(p["url"]) for f in POSTS_DIR.glob("*.json")  # GitHub 에 이미 있는 글
+             if (p := _load_json(f, {})).get("url")}
 
     items = collect(domains, max_items, seen)
     stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": len(items),
