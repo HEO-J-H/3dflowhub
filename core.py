@@ -275,11 +275,20 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     git("checkout", "--", *tracked)
     for f in untracked:
         (ROOT / f).unlink(missing_ok=True)
+    # 로컬 실행이 만든 새 글·초안: 같은 이름이 원격에 생겼으면 pull 이 막히므로 잠시 치웠다가, 원격에 없는 것만 복원
+    parked = {f: (ROOT / f).read_bytes() for f in
+              git("ls-files", "-o", "--exclude-standard", "content", "drafts").stdout.split()}
+    for f in parked:
+        (ROOT / f).unlink(missing_ok=True)
     r = git("pull", "--rebase", "--autostash", "-q", "origin", "main")
     err = ""
     if r.returncode != 0:
         git("rebase", "--abort")
         err = "git pull 실패: " + (r.stderr or r.stdout)[:200]
+    for f, data in parked.items():
+        if not (ROOT / f).exists():
+            (ROOT / f).parent.mkdir(parents=True, exist_ok=True)
+            (ROOT / f).write_bytes(data)
     for f, mine in local.items():
         if mine is not None:
             _save_json(ROOT / f, merge_json(_load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
