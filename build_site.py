@@ -12,6 +12,8 @@ content/posts/*.json (노션과 같은 내용) → _site/ 정적 사이트
   /c/<도메인>/<세부>/       세부 카테고리 게시판
   /p/<id>.html              글 (대표 이미지·영상·요약·본문·에디터 코멘트·FAQ·관련 글·원문)
   /search.json /feed.xml /sitemap.xml /robots.txt
+
+배포: .github/workflows/pages.yml (저장소 Settings → Pages → Source: GitHub Actions)
 """
 from __future__ import annotations
 
