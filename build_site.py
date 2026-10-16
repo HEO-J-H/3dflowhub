@@ -206,38 +206,149 @@ def backfill_from_notion(limit: int = 500) -> int:
 
 # ─────────────────────────── 템플릿 ───────────────────────────
 CSS = """
-:root{--bg:#f7f7f9;--card:#fff;--text:#1d1f24;--muted:#6b7280;--line:#e5e7eb;--accent:#4f46e5;--accent-soft:#eef2ff}
-@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--text:#e7e9ee;--muted:#9aa3b2;--line:#262b36;--accent:#8b8cff;--accent-soft:#1f2240}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 -apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif}
+/* 3dflowhub — Human Interface 원칙(명료함·콘텐츠 우선·깊이)을 따른 디자인 시스템 */
+:root{
+  --bg:#f5f5f7;--surface:#ffffff;--surface-2:#fbfbfd;--text:#1d1d1f;--text-2:#424245;--muted:#6e6e73;
+  --line:rgba(0,0,0,.08);--accent:#0071e3;--accent-2:#5e5ce6;--accent-soft:rgba(0,113,227,.08);
+  --glass:rgba(255,255,255,.72);--shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.05),0 16px 40px rgba(0,0,0,.10);
+  --r-lg:20px;--r:14px;--r-sm:10px;--hero:linear-gradient(135deg,#eef4ff 0%,#f6efff 50%,#fff4ec 100%);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#000000;--surface:#1c1c1e;--surface-2:#141416;--text:#f5f5f7;--text-2:#d2d2d7;--muted:#98989d;
+  --line:rgba(255,255,255,.10);--accent:#2997ff;--accent-2:#7d7aff;--accent-soft:rgba(41,151,255,.14);
+  --glass:rgba(22,22,24,.72);--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.5),0 16px 40px rgba(0,0,0,.5);
+  --hero:linear-gradient(135deg,#0b1a33 0%,#1a1033 50%,#2a1608 100%);
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  letter-spacing:-.01em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
 a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.top{display:flex;align-items:center;gap:16px;height:60px}.logo{font-weight:800;font-size:20px}
-.search{margin-left:auto;flex:0 1 280px}.search input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)}
-nav.domains{display:flex;gap:6px;overflow-x:auto;padding:8px 0}nav.domains a{padding:6px 12px;border-radius:999px;white-space:nowrap;font-size:14px;border:1px solid var(--line)}
-nav.domains a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}.tabs a{font-size:13px;padding:4px 10px;border-radius:6px;background:var(--accent-soft)}
-.tabs a.on{background:var(--accent);color:#fff}
-.chips{margin-top:-8px}.chips a{background:transparent;border:1px solid var(--line)}.chips a.on{border-color:var(--accent)}.tabs .n{opacity:.7;margin-left:4px}
-h1{font-size:26px;margin:28px 0 8px}.desc{color:var(--muted);margin:0 0 12px}
-.board{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.row{display:grid;grid-template-columns:88px 1fr 130px 92px;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
-.row:first-child{border-top:0}.row img,.row .ph{width:88px;height:56px;object-fit:cover;border-radius:6px;background:var(--accent-soft)}
-.row .t{font-weight:600}.row .s{color:var(--muted);font-size:13px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-.badge{font-size:12px;color:var(--accent)}.date{color:var(--muted);font-size:13px;text-align:right}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:12px 0 28px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}.box h3{margin:0 0 8px;font-size:17px}
-.box ul{margin:0;padding-left:18px;font-size:14px}.box .more{display:inline-block;margin-top:8px;font-size:13px;color:var(--accent)}
-.pager{display:flex;gap:6px;justify-content:center;margin:20px 0}.pager a{padding:4px 10px;border:1px solid var(--line);border-radius:6px}.pager a.on{background:var(--accent);color:#fff}
-article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px;margin:24px 0}
-article h1{margin-top:0}article h2{font-size:20px;margin-top:28px}article img{max-width:100%;border-radius:8px}
-.crumb{font-size:13px;color:var(--muted)}.lead{background:var(--accent-soft);border-radius:8px;padding:12px 16px}
-.video{position:relative;padding-top:56.25%;margin:16px 0}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:8px}
-blockquote{border-left:4px solid var(--accent);margin:0;padding:8px 16px;background:var(--accent-soft);border-radius:0 8px 8px 0}
-figcaption{color:var(--muted);font-size:13px;text-align:center}.tags a{font-size:13px;color:var(--muted);margin-right:8px}
-details{border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0}summary{cursor:pointer;font-weight:600}
-footer{color:var(--muted);font-size:13px;text-align:center;padding:32px 0}
-@media (max-width:640px){.row{grid-template-columns:64px 1fr}.row img,.row .ph{width:64px;height:44px}.row .badge,.row .date{display:none}.search{flex-basis:140px}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px}
+img{display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--surface);padding:8px 14px;border-radius:10px;z-index:20}
+.skip:focus{left:12px}
+
+/* 헤더: 반투명 재질 (콘텐츠 우선) */
+header{position:sticky;top:0;z-index:10;background:var(--glass);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;gap:20px;height:56px}
+.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;min-height:44px}
+.topnav{display:flex;gap:4px}.topnav a{font-size:14px;color:var(--text-2);padding:10px 10px;border-radius:10px}
+.topnav a:hover,.topnav a.on{color:var(--text);background:var(--accent-soft)}
+.search{margin-left:auto;flex:0 1 280px;position:relative}
+.search input{width:100%;height:36px;padding:0 14px 0 34px;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface-2);color:var(--text);font-size:15px}
+.search:before{content:"⌕";position:absolute;left:12px;top:50%;transform:translateY(-52%);color:var(--muted);font-size:17px}
+nav.domains{display:flex;gap:8px;overflow-x:auto;padding:8px 0 12px;scrollbar-width:none}nav.domains::-webkit-scrollbar{display:none}
+nav.domains a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;white-space:nowrap;
+  font-size:14px;font-weight:500;background:var(--surface);border:1px solid var(--line)}
+nav.domains a.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* 타이포 위계 */
+h1{font-size:34px;line-height:1.15;letter-spacing:-.03em;margin:40px 0 8px;font-weight:700}
+h2.sec{font-size:24px;letter-spacing:-.02em;margin:48px 0 16px;display:flex;align-items:baseline;justify-content:space-between}
+h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
+.desc{color:var(--muted);margin:0 0 16px;font-size:17px}
+
+/* 히어로 */
+.hero{margin:24px 0 8px;padding:56px 40px;border-radius:28px;background:var(--hero);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(32px,5vw,52px);margin:0 0 12px}
+.hero p{font-size:clamp(17px,2vw,21px);color:var(--text-2);max-width:640px;margin:0 0 24px}
+.hero .stats{display:flex;gap:28px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+.hero .stats b{display:block;font-size:28px;color:var(--text);letter-spacing:-.02em}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;font-weight:600;font-size:16px}
+.btn.primary{background:var(--accent);color:#fff}.btn.primary:hover{color:#fff;filter:brightness(1.08)}
+.btn.ghost{color:var(--accent)}.hero .actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+
+/* 카드 */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);color:inherit}
+.card .img{aspect-ratio:16/9;background:var(--accent-soft);overflow:hidden}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .img.ph{display:flex;align-items:center;justify-content:center;font-size:40px;
+  background:linear-gradient(135deg,var(--accent-soft),rgba(94,92,230,.12))}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .kicker{font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--accent);text-transform:uppercase}
+.card .t{font-size:18px;font-weight:600;line-height:1.35;letter-spacing:-.015em}
+.card .s{color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{margin-top:auto;color:var(--muted);font-size:13px;padding-top:6px}
+.cards.lead-grid{grid-template-columns:2fr 1fr 1fr}.cards.lead-grid .card:first-child{grid-row:span 2}
+.cards.lead-grid .card:first-child .t{font-size:24px}
+.rank{counter-reset:r;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:4px 24px;
+  background:var(--surface);border-radius:var(--r-lg);padding:8px 20px;box-shadow:var(--shadow)}
+.rank a{counter-increment:r;display:flex;gap:14px;align-items:center;min-height:64px;padding:10px 0;border-bottom:1px solid var(--line)}
+.rank a:before{content:counter(r);font-size:22px;font-weight:700;color:var(--accent);width:24px;text-align:center;flex:none}
+.rank .t{font-weight:600;font-size:15px;line-height:1.35}.rank .k{color:var(--muted);font-size:12px}
+
+/* 도메인 타일 */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.tile{background:var(--surface);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow)}
+.tile .ic{font-size:32px}.tile h3{margin:8px 0 4px;font-size:20px;letter-spacing:-.02em}
+.tile .n{color:var(--muted);font-size:14px}.tile .tools{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
+.tile .tools a{font-size:13px;padding:6px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line)}
+
+/* 탭·칩·게시판 목록 */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tabs a{display:inline-flex;align-items:center;min-height:36px;font-size:14px;padding:0 14px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);font-weight:500}
+.tabs a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chips{margin-top:-6px}.chips a{min-height:32px;font-size:13px;background:transparent}
+.chips a.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.tabs .n{opacity:.6;margin-left:6px;font-variant-numeric:tabular-nums}
+.board{background:var(--surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:112px 1fr auto;gap:18px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);min-height:88px}
+.row:first-child{border-top:0}.row:hover{background:var(--surface-2)}
+.row img,.row .ph{width:112px;height:63px;object-fit:cover;border-radius:var(--r-sm);background:var(--accent-soft)}
+.row .t{font-weight:600;line-height:1.4}.row .s{color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.row .side{text-align:right;display:flex;flex-direction:column;gap:2px;align-items:flex-end}
+.badge{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.date{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.pager{display:flex;gap:6px;justify-content:center;margin:28px 0}
+.pager a{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.pager a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* 글 페이지: 읽기 폭 제한 */
+article{background:var(--surface);border-radius:var(--r-lg);padding:clamp(22px,4vw,48px);margin:28px auto;max-width:780px;box-shadow:var(--shadow)}
+article h1{font-size:clamp(28px,4vw,40px);margin:8px 0 20px}
+article h2{font-size:22px;letter-spacing:-.02em;margin:36px 0 10px}
+article p{color:var(--text-2);font-size:18px;line-height:1.75}
+article img{max-width:100%;border-radius:var(--r)}
+.crumb{font-size:14px;color:var(--muted)}.crumb a{color:var(--accent)}
+.lead{background:var(--accent-soft);border-radius:var(--r);padding:16px 20px;color:var(--text)!important}
+.video{position:relative;padding-top:56.25%;margin:20px 0}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:var(--r)}
+blockquote{margin:0;padding:16px 20px;background:var(--surface-2);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:var(--r)}
+figure{margin:0 0 20px}figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:8px}
+.tags a{display:inline-block;font-size:13px;color:var(--muted);margin:0 8px 6px 0}
+details{border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:10px 0;background:var(--surface-2)}
+summary{cursor:pointer;font-weight:600;min-height:28px}
+.aside{max-width:780px;margin:0 auto 40px}
+
+/* 문서형 페이지 (소개·주간 요약) */
+.doc{max-width:780px;margin:0 auto}
+.doc .pill{display:inline-block;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:16px 0}
+.step{background:var(--surface);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.step b{display:block;font-size:17px;margin:6px 0 4px}.step span{color:var(--muted);font-size:15px}
+
+footer{color:var(--muted);font-size:13px;padding:48px 0 56px;border-top:1px solid var(--line);margin-top:64px}
+footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer a{color:var(--text-2)}
+
+@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}}
+@media (max-width:640px){
+  body{font-size:16px}.wrap{padding:0 16px}.hero{padding:36px 22px;border-radius:22px}
+  .row{grid-template-columns:84px 1fr;gap:12px}.row img,.row .ph{width:84px;height:56px}.row .side{display:none}
+  .search{flex-basis:150px}h1{font-size:28px}article p{font-size:17px}
+  .hero h1{font-size:30px}.hero h1 br{display:none}.hero .stats{gap:18px}.hero .stats b{font-size:24px}
+  nav.domains a,.tabs a{min-height:44px}.btn.ghost{padding:0 4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 """
 
 SEARCH_JS = """
@@ -247,7 +358,7 @@ q&&q.addEventListener('input',async()=>{const v=q.value.trim().toLowerCase();con
 if(!v){box.innerHTML='';box.hidden=true;return}
 idx=idx||await (await fetch(ROOT+'search.json')).json();
 const hits=idx.filter(p=>(p.t+' '+p.c+' '+p.g).toLowerCase().includes(v)).slice(0,30);
-box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${ROOT}p/${encodeURIComponent(p.i)}.html"><span class="ph"></span><span><span class="t">${h(p.t)}</span><br><span class="s">${h(p.c)}</span></span></a>`).join(''):'<div class="row">검색 결과 없음</div>'});
+box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${ROOT}p/${encodeURIComponent(p.i)}.html"><span class="ph"></span><span><span class="t">${h(p.t)}</span><br><span class="s">${h(p.c)}</span></span><span></span></a>`).join(''):'<div class="row">검색 결과 없음</div>'});
 """
 
 
@@ -264,13 +375,18 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 {extra_head}
 {head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
-<header><div class="wrap"><div class="top"><a class="logo" href="{root}">🧊 {SITE_TITLE}</a>
-<div class="search"><input id="q" type="search" placeholder="제목·카테고리·태그 검색"></div></div>
-<nav class="domains"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
-<main class="wrap"><div id="results" class="board" hidden style="margin-top:16px"></div>{body}</main>
-<footer>© {datetime.now():%Y} {SITE_TITLE} · 원문 저작권은 각 출처에 있습니다 · <a href="{root}feed.xml">RSS</a>
-<br>광고·제휴 문의: {mail_link()} · <a href="{root}contact/">문의 안내</a> · <a href="{root}privacy/">개인정보처리방침</a></footer>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">🧊 {SITE_TITLE}</a>
+<nav class="topnav" aria-label="사이트"><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a></nav>
+<div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
+<main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
+<footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
+<a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
+© {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
 <script>const ROOT="{root}";{SEARCH_JS}</script></body></html>"""
 
 
@@ -279,16 +395,50 @@ def row(p: dict, root: str) -> str:
     thumb = f'<img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if img else '<span class="ph"></span>'
     return (f'<a class="row" href="{root}p/{p["id"]}.html">{thumb}<span><span class="t">{e(p["title_ko"])}</span><br>'
             f'<span class="s">{e(p.get("summary") or "")}</span></span>'
-            f'<span class="badge">{e(p.get("category") or "기타")}'
+            f'<span class="side"><span class="badge">{e(p.get("category") or "기타")}'
             f'{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
-            f'<span class="date">{(p.get("collected_at") or "")[:10]}</span></a>')
+            f'<span class="date">{(p.get("collected_at") or "")[:10]}</span></span></a>')
 
 
 MIN_INDEXABLE = 3  # 글이 이보다 적은 하위 게시판은 noindex (얇은 페이지가 사이트 품질 평가를 떨어뜨리지 않도록)
 
 
+def card(p: dict, root: str) -> str:
+    img = (p.get("media") or {}).get("image")
+    pic = (f'<div class="img"><img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>' if img
+           else f'<div class="img ph" aria-hidden="true">{e(DOMAIN_ICON.get(p["domain"], "🧊"))}</div>')
+    return (f'<a class="card" href="{root}p/{p["id"]}.html">{pic}<div class="body">'
+            f'<span class="kicker">{e(p.get("category") or p["domain"])}{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
+            f'<span class="t">{e(p["title_ko"])}</span><span class="s">{e(p.get("summary") or "")}</span>'
+            f'<span class="meta">{(p.get("collected_at") or "")[:10]}</span></div></a>')
+
+
+def page_views() -> dict[str, int]:
+    """GitHub Pages 글별 조회수 (GoatCounter → memory/performance.json)."""
+    perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+    return {k: v.get("views", 0) for k, v in ((perf.get("pages") or {}).get("posts") or {}).items()}
+
+
+def popular(posts: list[dict], n: int = 8, days: int = 30) -> list[dict]:
+    """많이 본 글: 최근 N일 조회수 순. 조회 데이터가 부족하면 이미지·요약이 있는 최신 글로 채움."""
+    views = page_views()
+    cutoff = (datetime.now() - __import__("datetime").timedelta(days=days)).strftime("%Y-%m-%d")
+    recent = [p for p in posts if (p.get("collected_at") or "") >= cutoff] or posts
+    ranked = sorted([p for p in recent if views.get(p["id"])], key=lambda p: -views[p["id"]])
+    filler = [p for p in recent if p not in ranked and (p.get("media") or {}).get("image")]
+    return (ranked + filler + [p for p in recent if p not in ranked and p not in filler])[:n]
+
+
+def iso_week(p: dict) -> str:
+    try:
+        y, w, _ = datetime.fromisoformat((p.get("collected_at") or "")[:10]).isocalendar()
+        return f"{y}-W{w:02d}"
+    except ValueError:
+        return ""
+
+
 def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header: str, domain_on: str,
-                indexable: bool = True) -> None:
+                indexable: bool = True, header_more: str | None = None) -> None:
     """게시판 목록 (페이지네이션: index.html, page/2/ ...)."""
     pages = [posts[i:i + PAGE_SIZE] for i in range(0, max(len(posts), 1), PAGE_SIZE)] or [[]]
     for n, chunk in enumerate(pages, 1):
@@ -296,7 +446,8 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         pager = "".join(f'<a class="{"on" if k == n else ""}" href="{r}{out_dir.relative_to(OUT).as_posix()}/'
                         f'{"" if k == 1 else f"page/{k}/"}">{k}</a>' for k in range(1, len(pages) + 1)) \
             if len(pages) > 1 else ""
-        body = header.replace("{ROOT}", r) + '<div class="board">' + ("".join(row(p, r) for p in chunk)
+        head = header if n == 1 or header_more is None else header_more
+        body = head.replace("{ROOT}", r) + '<div class="board">' + ("".join(row(p, r) for p in chunk)
                                                                        or '<div class="row">아직 글이 없습니다.</div>') \
             + f'</div><div class="pager">{pager}</div>'
         d = out_dir if n == 1 else out_dir / "page" / str(n)
@@ -304,6 +455,83 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         robots = "" if indexable else '<meta name="robots" content="noindex,follow">'
         (d / "index.html").write_text(page(f"{title} - {SITE_TITLE}", body, r, domain_on, extra_head=robots),
                                       encoding="utf-8")
+
+
+def build_about(posts: list[dict], by_dom: dict, by_cat: dict) -> None:
+    d = OUT / "about"
+    d.mkdir(exist_ok=True)
+    domains = "".join(
+        f'<div class="step"><span aria-hidden="true" style="font-size:28px">{e(DOMAIN_ICON[x])}</span><b>{e(x)}</b>'
+        f'<span>{e(core.DOMAIN_META.get(x, {}).get("about", ""))}</span></div>' for x in board_domains())
+    body = f"""<div class="doc"><h1>3D를 함께 배우고 나누는 곳</h1>
+<p class="desc">3dflowhub는 3D·게임 엔진·VFX·AI 3D 분야의 전 세계 소식과 학습 자료를 매일 모아 한국어로 정리하는 큐레이션 아카이브입니다.</p>
+<h2 class="sec">왜 만들었나요</h2>
+<p>좋은 3D 자료는 대부분 영어로, 여러 사이트·커뮤니티·논문에 흩어져 있습니다. 업데이트 하나, 튜토리얼 하나를 찾느라 시간을 쓰기보다
+<b>매일 한곳에서 흐름을 따라가고</b>, 관심 도구를 깊게 공부하고, 다른 분야까지 시야를 넓힐 수 있도록 이곳을 만들었습니다.</p>
+<h2 class="sec">이렇게 활용해 보세요</h2>
+<div class="steps">
+<div class="step"><span class="pill">공부</span><b>도구별 게시판</b><span>Blender, 3ds Max, 언리얼처럼 쓰는 도구를 골라 <em>튜토리얼·팁</em>만 모아 보세요.</span></div>
+<div class="step"><span class="pill">흐름</span><b>주간 요약</b><span>한 주의 핵심만 추려 둔 <a href="../weekly/">주간 요약</a>으로 업계 변화를 놓치지 마세요.</span></div>
+<div class="step"><span class="pill">확장</span><b>다른 분야 탐색</b><span>모델러라면 AI 3D를, 게임 개발자라면 VFX를 — 옆 분야에서 새로운 아이디어를 얻으세요.</span></div>
+<div class="step"><span class="pill">깊이</span><b>원문으로 이어가기</b><span>모든 글에 원문 링크가 있습니다. 요약으로 감을 잡고 원문에서 깊게 파고드세요.</span></div>
+</div>
+<h2 class="sec">다루는 분야</h2><div class="steps">{domains}</div>
+<h2 class="sec">어떻게 정리되나요</h2>
+<p>공식 블로그·전문 매체·커뮤니티·논문(arXiv)에서 새 소식을 수집하고, AI가 핵심을 한국어로 요약해 <b>분야 › 도구 › 콘텐츠 유형</b>으로 분류합니다.
+글마다 <b>에디터 코멘트</b>로 실무에서 어떻게 활용할지 덧붙이고, 주제와 무관한 글은 자동으로 걸러냅니다.
+요약은 이해를 돕기 위한 것이므로, 정확한 내용과 저작권은 항상 <b>원문</b>을 기준으로 해 주세요.</p>
+<div class="steps"><div class="step"><b>{len(posts)}</b><span>지금까지 정리된 글</span></div>
+<div class="step"><b>{len(by_cat)}</b><span>도구·주제 게시판</span></div>
+<div class="step"><b>매일</b><span>자동으로 새 소식 업데이트</span></div></div>
+<h2 class="sec">함께해요</h2>
+<p>소개하고 싶은 자료, 잘못된 요약, 원문 저작권 관련 요청은 언제든 {mail_link('[3dflowhub] 자료 제보·의견')} 으로 보내 주세요.
+<a href="../feed.xml">RSS</a>로 구독하면 새 글을 바로 받아볼 수 있습니다.</p></div>"""
+    (d / "index.html").write_text(page(f"소개 - {SITE_TITLE}", body, "../", desc="3D를 함께 배우고 나누는 큐레이션 아카이브, 3dflowhub 소개"),
+                                  encoding="utf-8")
+
+
+def build_weekly(posts: list[dict]) -> None:
+    """주간 요약: ISO 주차별로 분야·도구·유형 통계와 핵심 글을 정리 (조회수 → 이미지 → 최신 순)."""
+    root_dir = OUT / "weekly"
+    root_dir.mkdir(exist_ok=True)
+    weeks: dict[str, list] = defaultdict(list)
+    for p in posts:
+        if (w := iso_week(p)):
+            weeks[w].append(p)
+    order = sorted(weeks, reverse=True)
+    views = page_views()
+    for i, w in enumerate(order):
+        ps = weeks[w]
+        y, n = w.split("-W")
+        start = datetime.fromisocalendar(int(y), int(n), 1)
+        end = datetime.fromisocalendar(int(y), int(n), 7)
+        tools = defaultdict(int)
+        for p in ps:
+            tools[(p["domain"], p.get("category") or "기타")] += 1
+        top_tools = ", ".join(f"{c}({k})" for (_, c), k in sorted(tools.items(), key=lambda kv: -kv[1])[:5])
+        sections = []
+        for d in board_domains():
+            dps = sorted([p for p in ps if p["domain"] == d],
+                         key=lambda p: (-views.get(p["id"], 0), not (p.get("media") or {}).get("image"), p.get("collected_at") or ""))
+            if dps:
+                sections.append(f'<h2 class="sec">{e(DOMAIN_ICON[d])} {e(d)} <a href="../../{cat_url(d)}">{len(dps)}개 →</a></h2>'
+                                f'<div class="cards">{"".join(card(p, "../../") for p in dps[:6])}</div>')
+        nav = (f'<p class="crumb">' + (f'<a href="../{order[i + 1]}/">← 지난주</a>' if i + 1 < len(order) else "")
+               + (" · " if i + 1 < len(order) and i > 0 else "") + (f'<a href="../{order[i - 1]}/">다음 주 →</a>' if i > 0 else "")
+               + '</p>')
+        body = (f'<div class="doc"><span class="pill">{w}</span><h1>{start:%m월 %d일} – {end:%m월 %d일} 주간 요약</h1>'
+                f'<p class="desc">이번 주 정리된 글 {len(ps)}개 · 가장 활발했던 도구: {e(top_tools)}</p>{nav}</div>'
+                + "".join(sections))
+        (root_dir / w).mkdir(exist_ok=True)
+        (root_dir / w / "index.html").write_text(
+            page(f"{start:%Y년 %m월 %d일} 주간 3D 소식 요약 - {SITE_TITLE}", body, "../../",
+                 desc=f"{start:%m월 %d일} 주간 3D·게임엔진·VFX·AI 3D 소식 {len(ps)}개 요약"), encoding="utf-8")
+    items = "".join(
+        f'<a href="{w}/"><span><span class="t">{datetime.fromisocalendar(int(w[:4]), int(w[6:]), 1):%Y년 %m월 %d일} 주간</span>'
+        f'<br><span class="k">글 {len(weeks[w])}개</span></span></a>' for w in order)
+    body = ('<div class="doc"><h1>주간 요약</h1><p class="desc">매주 정리된 3D 소식을 분야별로 묶어 한눈에 봅니다. '
+            '바쁜 한 주, 이것만 보면 흐름을 따라갈 수 있어요.</p></div>' + f'<div class="rank">{items or "<p>준비 중</p>"}</div>')
+    (root_dir / "index.html").write_text(page(f"주간 요약 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
 def indexnow_submit(hours: int = 3) -> str:
@@ -411,17 +639,40 @@ def build() -> dict:
         by_cat[(p["domain"], p.get("category") or "기타")].append(p)
     assign_slugs(by_cat.keys())
 
-    # 홈: 최신 글 + 도메인별 카테고리 게시판 카드
-    cards = []
+    # 홈: 히어로 → 많이 본 글 → 이번 주 요약 → 분야 → 최신 글 카드 → 전체 목록
+    weeks = sorted({w for w in (iso_week(p) for p in posts) if w}, reverse=True)
+    tools_n = len({(d, c) for (d, c) in by_cat})
+    tiles = []
     for d in board_domains():
         cats = sorted({c for (dd, c) in by_cat if dd == d}, key=lambda c: -len(by_cat[(d, c)]))
-        items = "".join(f'<li><a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a> <span class="n">({len(by_cat[(d, c)])})</span></li>'
-                        for c in cats[:8])
-        cards.append(f'<div class="box"><h3>{e(DOMAIN_ICON[d])} {e(d)} <small class="n">{len(by_dom[d])}</small></h3>'
-                     f'<ul>{items or "<li>준비 중</li>"}</ul><a class="more" href="{{ROOT}}{cat_url(d)}">게시판 전체 →</a></div>')
-    home_head = (f'<h1>최신 글</h1><p class="desc">{e(SITE_DESC)} · 총 {len(posts)}개</p>'
-                 f'<div class="grid">{"".join(cards)}</div><h1>전체 글</h1>')
-    board_pages(posts, OUT, "", "전체 글", home_head, "")
+        chips_ = "".join(f'<a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a>' for c in cats[:6])
+        tiles.append(f'<div class="tile"><div class="ic" aria-hidden="true">{e(DOMAIN_ICON[d])}</div>'
+                     f'<h3><a href="{{ROOT}}{cat_url(d)}">{e(d)}</a></h3>'
+                     f'<div class="n">{e(core.DOMAIN_META.get(d, {}).get("about", ""))[:60]} · {len(by_dom[d])}개</div>'
+                     f'<div class="tools">{chips_}</div></div>')
+    pop = popular(posts, 8)
+    rank = "".join(f'<a href="{{ROOT}}p/{p["id"]}.html"><span><span class="t">{e(p["title_ko"])}</span><br>'
+                   f'<span class="k">{e(p["domain"])} › {e(p.get("category") or "")}</span></span></a>' for p in pop)
+    latest = "".join(card(p, "{ROOT}") for p in posts[:7])
+    week_card = ""
+    if weeks:
+        wk = [p for p in posts if iso_week(p) == weeks[0]]
+        week_card = (f'<h2 class="sec">이번 주 요약 <a href="{{ROOT}}weekly/{weeks[0]}/">전체 보기 →</a></h2>'
+                     f'<div class="cards">{"".join(card(p, "{ROOT}") for p in popular(wk, 3, days=10))}</div>')
+    home_head = (
+        f'<section class="hero"><h1>3D를 배우는 가장 빠른 길, <br>매일 정리되는 업계 소식</h1>'
+        f'<p>Blender·3ds Max·언리얼·유니티·VFX·AI 3D까지 — 전 세계 소식과 튜토리얼을 한국어로 요약해 '
+        f'도구별·주제별로 차곡차곡 쌓아 둡니다. 공부하고, 비교하고, 시야를 넓히세요.</p>'
+        f'<div class="actions"><a class="btn primary" href="{{ROOT}}weekly/">이번 주 요약 보기</a>'
+        f'<a class="btn ghost" href="{{ROOT}}about/">3dflowhub 소개 →</a></div>'
+        f'<div class="stats"><span><b>{len(posts)}</b>정리된 글</span><span><b>{len(board_domains())}</b>분야</span>'
+        f'<span><b>{tools_n}</b>도구·주제 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
+        f'{week_card}'
+        f'<h2 class="sec">분야별로 둘러보기</h2><div class="tiles">{"".join(tiles)}</div>'
+        f'<h2 class="sec">최신 글</h2><div class="cards lead-grid">{latest}</div>'
+        f'<h2 class="sec">전체 글</h2>')
+    board_pages(posts, OUT, "", "전체 글", home_head, "", header_more='<h1>전체 글</h1>')
 
     # 도메인 게시판 + 세부 카테고리 게시판
     for d in board_domains():
@@ -455,6 +706,11 @@ def build() -> dict:
                                 f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)} › {e(t)}</h1>" + tabs(c, "{ROOT}")
                                 + chips(t), d, indexable=len(ps) >= MIN_INDEXABLE)
 
+    # 소개 페이지
+    build_about(posts, by_dom, by_cat)
+    # 주간 요약 (매주 자동 생성)
+    build_weekly(posts)
+
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)
     contact = (f"<article><h1>📮 광고·제휴 문의</h1>"
@@ -485,12 +741,14 @@ def build() -> dict:
                                      encoding="utf-8")
 
     # 글 페이지
+    aside_html = ('<section class="aside"><h2 class="sec">많이 본 글</h2><div class="cards">'
+                  + "".join(card(q, "../") for q in popular(posts, 3)) + "</div></section>")
     (OUT / "p").mkdir(exist_ok=True)
     for p in posts:
         related = [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
                   [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
         (OUT / "p" / f"{p['id']}.html").write_text(
-            page(f"{p['title_ko']} - {SITE_TITLE}", post_html(p, "../", related), "../", p["domain"],
+            page(f"{p['title_ko']} - {SITE_TITLE}", post_html(p, "../", related) + aside_html, "../", p["domain"],
                  p.get("summary") or SITE_DESC, f"{BASE_URL}/p/{p['id']}.html", post_head(p)), encoding="utf-8")
 
     # 검색 인덱스·RSS·사이트맵
@@ -505,7 +763,8 @@ def build() -> dict:
                                   f'<atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
-    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
+    urls = [f"{BASE_URL}/", f"{BASE_URL}/about/", f"{BASE_URL}/weekly/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + \
+           [f"{BASE_URL}/weekly/{w}/" for w in sorted({w for w in (iso_week(p) for p in posts) if w})] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
            [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
            [f"{BASE_URL}/{cat_url(d, c)}{TOPIC_SLUG[t]}/" for (d, c), ps in sorted(by_cat.items())
             for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})
