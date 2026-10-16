@@ -139,6 +139,7 @@ SEED_CATEGORIES: dict[str, list[str]] = {
     "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
 }
 MAX_CATEGORIES_PER_DOMAIN = 40  # 세부 카테고리 상한 (정리는 evolve.refine_taxonomy 가 주기적으로 병합)
+MIN_RELEVANCE = 5  # LLM 관련도(0~10) 이 값 미만이면 수집 제외
 MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
 
 
@@ -532,7 +533,9 @@ def summarize(item: dict) -> dict | None:
         ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
         'factual, from the source),\n'
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
-        'source in 1-3 sentences'
+        'source in 1-3 sentences,\n'
+        ' "relevance": 0-10 how directly this is about 3D/CG creation, game engines, VFX/motion graphics or AI 3D '
+        '(weather, politics, general business, music news = 0-2)'
     )
     notes = load_strategy().get("prompt_notes", [])
     system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
@@ -541,6 +544,14 @@ def summarize(item: dict) -> dict | None:
     except Exception as e:
         log.warning("요약 실패 %s: %s", item["url"], e)
         RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
+        return None
+    try:
+        relevance = float(data.get("relevance", 10)) if isinstance(data, dict) else 10.0
+    except (TypeError, ValueError):
+        relevance = 10.0
+    if relevance < MIN_RELEVANCE:  # 주제와 무관한 기사(구글 뉴스 오검색 등) 제외
+        log.info("관련도 %.0f — 제외: %s", relevance, item["title"][:60])
+        RUN_ERRORS.append("off-topic")
         return None
     data = normalize_summary(data, item)
     if not data["sections"]:

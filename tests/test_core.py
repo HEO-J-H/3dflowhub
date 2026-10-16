@@ -213,3 +213,10 @@ def test_merge_json_unions_lists_and_keeps_max():
     b = {"runs": [{"at": 1}, {"at": 2}], "cnt": {"x": 5, "y": 1}, "lessons": ["b"]}
     m = core.merge_json(a, b)
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
+
+
+def test_offtopic_article_is_skipped(monkeypatch):
+    monkeypatch.setattr(core, "fetch_article", lambda url: ("x" * 300, {"image": "", "video": ""}))
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"title_ko": "날씨", "relevance": 1, '
+                        '"sections": [{"heading": "h", "body": "b"}]}')
+    assert core.summarize({"title": "Weather", "url": "https://ex.com/w", "hint_domain": "VFX", "rss_summary": ""}) is None
