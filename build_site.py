@@ -237,7 +237,13 @@ img{display:block}
 header{position:sticky;top:0;z-index:10;background:var(--glass);
   -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;gap:20px;height:56px}
-.logo{font-weight:700;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;min-height:44px}
+.logo{display:flex;align-items:center;gap:10px;min-height:44px}
+.logo .mark{flex:none;border-radius:8px;box-shadow:0 2px 8px rgba(94,92,230,.35);transition:transform .35s ease}
+.logo:hover .mark{transform:rotate(-8deg) scale(1.06)}
+.logo .word{font:800 21px/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard",system-ui,sans-serif;letter-spacing:-.04em}
+.logo .w3d{background:linear-gradient(135deg,#0a84ff,#5e5ce6 55%,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:1px}
+.logo .wflow{color:var(--text)}.logo .whub{color:var(--muted);font-weight:600}
+.logo:hover .wflow{color:var(--text)}
 .topnav{display:flex;gap:4px}.topnav a{font-size:14px;color:var(--text-2);padding:10px 10px;border-radius:10px}
 .topnav a:hover,.topnav a.on{color:var(--text);background:var(--accent-soft)}
 .search{margin-left:auto;flex:0 1 280px;position:relative}
@@ -366,6 +372,14 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 """
 
+LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/>
+<stop offset=".55" stop-color="#5e5ce6"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs>
+<rect width="64" height="64" rx="15" fill="url(#lg)"/>
+<ellipse class="orbit" cx="32" cy="33" rx="25" ry="10" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2.2" transform="rotate(-22 32 33)"/>
+<path d="M32 13 L48 22 L32 31 L16 22 Z" fill="#fff"/><path d="M16 22 L32 31 L32 50 L16 41 Z" fill="#fff" fill-opacity=".72"/>
+<path d="M48 22 L32 31 L32 50 L48 41 Z" fill="#fff" fill-opacity=".45"/><circle cx="54.5" cy="22.5" r="3" fill="#fff"/></svg>"""
+
 SEARCH_JS = """
 const q=document.getElementById('q');let idx=null;
 const h=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
@@ -392,9 +406,10 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
-<header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">🧊 {SITE_TITLE}</a>
+<header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
 <nav class="topnav" aria-label="사이트"><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
 <nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
