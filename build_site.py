@@ -263,6 +263,9 @@ def build() -> dict:
     (OUT / "assets").mkdir(parents=True)
     (OUT / "assets" / "style.css").write_text(CSS, encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    static = ROOT / "static"  # 검색엔진 소유확인 파일 등 그대로 복사 (예: Google Search Console html)
+    if static.exists():
+        shutil.copytree(static, OUT, dirs_exist_ok=True)
 
     by_dom: dict[str, list] = defaultdict(list)
     by_cat: dict[tuple, list] = defaultdict(list)
