@@ -193,7 +193,10 @@ def merge_json(base, other):
         tail = [x for x in other[last_common + 1:] if key(x) not in remote]
         if last_common == -1 and base:  # 공통 항목이 없으면 판단 불가 → 원격 유지
             tail = []
-        return list(base) + tail
+        out = list(base) + tail
+        if out and all(isinstance(x, dict) and isinstance(x.get("at"), str) for x in out):
+            out.sort(key=lambda x: x["at"])  # 실행 기록 등은 시간순 유지 (마지막 = 최신)
+        return out
     if isinstance(base, bool) or isinstance(other, bool):
         return base
     if isinstance(base, (int, float)) and isinstance(other, (int, float)):
