@@ -135,8 +135,8 @@ def update_strategy(strategy: dict) -> dict:
     runs = mem.get("runs", [])[-10:]
     counts = sorted(mem.get("category_counts", {}).items(), key=lambda kv: -kv[1])[:25]
     prompt = (
-        "You are the strategist of an automated Korean tech-news curation blog about 3D DCC, game engines, "
-        "VFX and AI 3D. The business goal is sustainable AdSense revenue on Tistory (pageviews x RPM) while "
+        f"You are the strategist of an automated Korean tech-news curation blog about: {core.domain_topics()}. "
+        "The business goal is sustainable AdSense revenue (GitHub Pages site + Tistory; pageviews x RPM) while "
         "staying fully policy-compliant. Reflect on recent runs and performance, then improve the strategy.\n"
         f"Monetization playbook: {json.dumps(MONETIZATION_PLAYBOOK, ensure_ascii=False)}\n"
         f"Performance (Tistory views by domain/category, top posts): {json.dumps(perf, ensure_ascii=False)[:2500]}\n"
@@ -234,7 +234,7 @@ def refine_taxonomy(strategy: dict) -> dict:
     counts = core.load_memory().get("category_counts", {})
     table = {d: {c: counts.get(f"{d}/{c}", 0) for c in cs} for d, cs in cats.items()}
     prompt = (
-        "You maintain a 2-level taxonomy (domain > specific sub-category) for a Korean 3D/VFX/game/AI-3D blog.\n"
+        f"You maintain a 2-level taxonomy (domain > specific sub-category) for a Korean blog about: {core.domain_topics()}.\n"
         f"Current sub-categories with post counts: {json.dumps(table, ensure_ascii=False)}\n"
         "1) Merge only true duplicates or near-synonyms (e.g. '렌더링' vs '렌더링 기술'). Keep specific categories "
         "(tool/technique level) — do NOT collapse specific ones into broad ones. Never merge across domains.\n"

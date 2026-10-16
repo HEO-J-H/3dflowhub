@@ -24,7 +24,58 @@ with st.sidebar:
     st.header("⚙️ 수집 설정")
     interval = st.selectbox("수집 주기", list(core.INTERVALS), index=list(core.INTERVALS).index(cfg["interval"]))
     max_items = st.slider("한 번에 수집할 최대 글 수", 5, 30, int(cfg["max_items"]))
-    domains = [d for d in core.DOMAINS if st.checkbox(d, value=d in cfg["domains"])]
+    domains = [d for d in core.DOMAINS
+               if st.checkbox(f"{core.DOMAIN_META.get(d, {}).get('icon', '📁')} {d}", value=d in cfg["domains"], key=f"dom_{d}")]
+
+    with st.expander("➕ 수집 분야 추가 / 삭제"):
+        new_name = st.text_input("분야 이름", placeholder="예: 3D 프린팅, 모션캡처, XR·메타버스")
+        new_icon = st.text_input("아이콘 (이모지)", value="📁", max_chars=4)
+        new_about = st.text_input("설명 (AI 분류 기준)", placeholder="예: 3D printing hardware, slicers, materials")
+        new_seeds = st.text_input("검색 키워드 (쉼표로 구분, 비우면 AI 가 추천)", placeholder="Bambu Lab, Prusa, resin printer")
+        new_feeds = st.text_area("RSS 주소 (줄마다 하나, 선택)", placeholder="https://example.com/feed/", height=80)
+        if st.button("➕ 분야 추가 (GitHub 반영)"):
+            name = new_name.strip()
+            if not name:
+                st.error("분야 이름을 입력하세요.")
+            elif name in core.DOMAINS:
+                st.error("이미 있는 분야입니다.")
+            else:
+                seeds = [s.strip() for s in new_seeds.split(",") if s.strip()]
+                if not seeds:  # AI 가 영어 검색 키워드 추천
+                    try:
+                        seeds = core._parse_json(core.llm(
+                            f'Field: {name} ({new_about}). Return JSON {{"keywords": [5 short English news search terms]}}',
+                            max_tokens=120, json_mode=True)).get("keywords", [])[:6]
+                    except Exception as ex:
+                        st.warning(f"키워드 추천 실패 — 분야 이름으로 검색합니다: {ex}")
+                ok_feeds, bad_feeds = [], []
+                for u in [x.strip() for x in new_feeds.splitlines() if x.strip()]:
+                    try:
+                        (ok_feeds if core.fetch_feed(u).entries else bad_feeds).append(u)
+                    except Exception:
+                        bad_feeds.append(u)
+                custom = dict(cfg.get("custom_domains") or {})
+                custom[name] = {"seeds": seeds or [name], "feeds": ok_feeds, "icon": new_icon.strip() or "📁",
+                                "about": new_about.strip() or name}
+                core.save_config({**core.load_config(), "custom_domains": custom,
+                                  "domains": list(dict.fromkeys(cfg["domains"] + [name]))})
+                err = core.git_sync(["config.json"], f"chore(config): 수집 분야 추가 — {name}")
+                if bad_feeds:
+                    st.warning("읽을 수 없는 RSS 는 제외했습니다: " + ", ".join(bad_feeds))
+                st.error(err) if err else st.success(f"'{name}' 추가 완료 (키워드: {', '.join(seeds or [name])}). "
+                                                     "다음 수집부터 반영되고 사이트에 게시판이 생깁니다.")
+                st.rerun()
+        custom_names = list((cfg.get("custom_domains") or {}).keys())
+        if custom_names:
+            st.divider()
+            del_name = st.selectbox("추가한 분야 삭제", ["선택…"] + custom_names)
+            if del_name != "선택…" and st.button(f"🗑️ '{del_name}' 삭제 (이미 수집된 글은 유지)"):
+                custom = {k: v for k, v in cfg["custom_domains"].items() if k != del_name}
+                core.save_config({**core.load_config(), "custom_domains": custom,
+                                  "domains": [d for d in cfg["domains"] if d != del_name]})
+                err = core.git_sync(["config.json"], f"chore(config): 수집 분야 삭제 — {del_name}")
+                st.error(err) if err else st.success(f"'{del_name}' 삭제됨")
+                st.rerun()
     publish = st.toggle("티스토리 발행", value=cfg["publish"])
 
     st.header("✉️ 메일 알림")

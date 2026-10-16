@@ -138,6 +138,44 @@ SEED_CATEGORIES: dict[str, list[str]] = {
     "VFX": ["시뮬레이션", "컴포지팅", "모션그래픽", "제작 사례"],
     "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
 }
+# 도메인 표시 정보 (사이트 아이콘·주소, AI 분류용 설명)
+DOMAIN_META: dict[str, dict] = {
+    "3D DCC": {"icon": "🧊", "slug": "3d-dcc", "about": "3D modeling/rendering/animation software (Blender, Maya, 3ds Max…)"},
+    "Game Engine": {"icon": "🎮", "slug": "game-engine", "about": "game engines and game development (Unreal, Unity, Godot)"},
+    "VFX": {"icon": "💥", "slug": "vfx", "about": "visual effects, compositing, motion graphics, film/TV VFX"},
+    "AI 3D": {"icon": "🤖", "slug": "ai-3d", "about": "AI for 3D: generative 3D, Gaussian splatting, NeRF, research"},
+}
+BUILTIN_DOMAINS = tuple(DOMAINS)
+
+
+def apply_custom_domains(cfg: dict | None = None) -> list[str]:
+    """config.json 의 custom_domains(대시보드에서 추가)를 DOMAINS 에 합침. 추가된 도메인 이름 목록 반환.
+    형식: {"이름": {"seeds": [...], "feeds": [...], "icon": "📁", "about": "설명"}}"""
+    if cfg is None:
+        try:
+            cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            cfg = {}
+    added = []
+    for name, spec in (cfg.get("custom_domains") or {}).items():
+        name = str(name).strip()[:30]
+        if not name or name in BUILTIN_DOMAINS or not isinstance(spec, dict):
+            continue
+        DOMAINS[name] = {"seeds": [s for s in spec.get("seeds", []) if isinstance(s, str)][:8] or [name],
+                         "feeds": [f for f in spec.get("feeds", []) if isinstance(f, str) and f.startswith("http")][:8]}
+        DOMAIN_META[name] = {"icon": str(spec.get("icon") or "📁")[:4],
+                             "slug": "x-" + hashlib.blake2b(name.encode(), digest_size=4).hexdigest(),
+                             "about": str(spec.get("about") or name)[:200]}
+        SEED_CATEGORIES.setdefault(name, [])
+        added.append(name)
+    return added
+
+
+def domain_topics() -> str:
+    """AI 프롬프트용 도메인 설명 목록."""
+    return "; ".join(f'"{d}" = {DOMAIN_META.get(d, {}).get("about", d)}' for d in DOMAINS)
+
+
 MAX_CATEGORIES_PER_DOMAIN = 40  # 세부 카테고리 상한 (정리는 evolve.refine_taxonomy 가 주기적으로 병합)
 MIN_RELEVANCE = 5  # LLM 관련도(0~10) 이 값 미만이면 수집 제외
 MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
@@ -166,6 +204,9 @@ def _load_json(path: Path, default):
 def _save_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+apply_custom_domains()  # 대시보드에서 추가한 수집 분야 반영
 
 
 def url_hash(url: str) -> str:
@@ -547,7 +588,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
 
 # ─────────────────────────── [3] LLM 요약·분류 ───────────────────────────
 SUMMARY_SYSTEM = (
-    "You are an editor for a Korean 3D/VFX/game-engine/AI-3D tech blog. "
+    "You are an editor for a Korean creative-tech curation blog (3D, game engines, VFX, AI 3D and related fields). "
     "Write in natural Korean. Never invent facts not in the source."
 )
 
@@ -640,7 +681,7 @@ def summarize(item: dict) -> dict | None:
         "Return JSON with keys:\n"
         ' "title_ko": search-friendly Korean title, 25-45 chars, main tool/product name + key search term first, '
         'no clickbait,\n'
-        ' "domain": one of ["3D DCC","Game Engine","VFX","AI 3D"],\n'
+        f' "domain": one of {json.dumps(list(DOMAINS), ensure_ascii=False)} ({domain_topics()}),\n'
         ' "category": the most SPECIFIC fitting sub-category (tool / technique / product level, e.g. '
         '"Houdini 시뮬레이션", "가우시안 스플래팅", "언리얼 PCG", "Blender 지오메트리 노드"). Reuse an existing one '
         'only if it truly matches; if existing ones are too broad, create a new specific Korean name (<=14 chars),\n'
@@ -652,7 +693,7 @@ def summarize(item: dict) -> dict | None:
         'factual, from the source),\n'
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
         'source in 1-3 sentences,\n'
-        ' "relevance": 0-10 how directly this is about 3D/CG creation, game engines, VFX/motion graphics or AI 3D '
+        f' "relevance": 0-10 how directly this is about any of these fields: {domain_topics()} '
         '(weather, politics, general business, music news = 0-2)'
     )
     notes = load_strategy().get("prompt_notes", [])

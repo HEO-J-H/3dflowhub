@@ -63,8 +63,9 @@ def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의") -> str:
     """스팸 수집기 대응: 주소를 HTML 엔티티로 인코딩한 mailto 링크 (브라우저에서는 정상 표시·클릭)."""
     enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
     return f'<a href="mailto:{enc}?subject={quote(subject)}">{enc}</a>'
-DOMAIN_SLUG = {"3D DCC": "3d-dcc", "Game Engine": "game-engine", "VFX": "vfx", "AI 3D": "ai-3d"}
-DOMAIN_ICON = {"3D DCC": "🧊", "Game Engine": "🎮", "VFX": "💥", "AI 3D": "🤖"}
+# 도메인 주소·아이콘 (대시보드에서 추가한 분야 포함 — core.DOMAIN_META)
+DOMAIN_SLUG = {d: m["slug"] for d, m in core.DOMAIN_META.items()}
+DOMAIN_ICON = {d: m["icon"] for d, m in core.DOMAIN_META.items()}
 e = html.escape
 
 
@@ -243,7 +244,7 @@ box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${R
 
 
 def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "") -> str:
-    nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{DOMAIN_ICON[d]} {e(d)}</a>'
+    nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(DOMAIN_ICON[d])} {e(d)}</a>'
                   for d in core.DOMAINS)
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -341,7 +342,7 @@ def build() -> dict:
         cats = sorted({c for (dd, c) in by_cat if dd == d}, key=lambda c: -len(by_cat[(d, c)]))
         items = "".join(f'<li><a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a> <span class="n">({len(by_cat[(d, c)])})</span></li>'
                         for c in cats[:8])
-        cards.append(f'<div class="box"><h3>{DOMAIN_ICON[d]} {e(d)} <small class="n">{len(by_dom[d])}</small></h3>'
+        cards.append(f'<div class="box"><h3>{e(DOMAIN_ICON[d])} {e(d)} <small class="n">{len(by_dom[d])}</small></h3>'
                      f'<ul>{items or "<li>준비 중</li>"}</ul><a class="more" href="{{ROOT}}{cat_url(d)}">게시판 전체 →</a></div>')
     home_head = (f'<h1>최신 글</h1><p class="desc">{e(SITE_DESC)} · 총 {len(posts)}개</p>'
                  f'<div class="grid">{"".join(cards)}</div><h1>전체 글</h1>')
@@ -358,11 +359,11 @@ def build() -> dict:
                 for c in cats) + "</div>"
 
         board_pages(by_dom[d], OUT / cat_url(d).rstrip("/"), "../../", d,
-                    f"<h1>{DOMAIN_ICON[d]} {e(d)}</h1>" + tabs(None, "{ROOT}"), d)
+                    f"<h1>{e(DOMAIN_ICON[d])} {e(d)}</h1>" + tabs(None, "{ROOT}"), d)
         for c in cats:
             folder = OUT / "c" / DOMAIN_SLUG[d] / SLUG_MAP[(d, c)]
             board_pages(by_cat[(d, c)], folder, "../../../", f"{d} › {c}",
-                        f"<h1>{DOMAIN_ICON[d]} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}"), d)
+                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}"), d)
 
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)

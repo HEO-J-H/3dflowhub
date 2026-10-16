@@ -296,3 +296,15 @@ def test_site_head_scripts_only_with_valid_ids():
     assert "3dflowhub.goatcounter.com/count" in h and "client=ca-pub-1234567890123456" in h
     core._save_json(core.CONFIG_PATH, {"goatcounter_code": "x\"><script>", "adsense_client": "bad"})
     assert build_site.head_scripts() == ""  # 잘못된 값은 삽입하지 않음 (스크립트 주입 방지)
+
+
+def test_custom_domain_is_applied_and_used_in_prompt(monkeypatch):
+    monkeypatch.setattr(core, "DOMAINS", dict(core.DOMAINS))
+    monkeypatch.setattr(core, "DOMAIN_META", dict(core.DOMAIN_META))
+    monkeypatch.setattr(core, "SEED_CATEGORIES", dict(core.SEED_CATEGORIES))
+    added = core.apply_custom_domains({"custom_domains": {
+        "3D 프린팅": {"seeds": ["Bambu Lab"], "feeds": ["https://ex.com/feed", "bad"], "icon": "🖨️", "about": "3D printing"},
+        "VFX": {"seeds": ["x"]}}})  # 기본 분야 덮어쓰기는 무시
+    assert added == ["3D 프린팅"] and core.DOMAINS["3D 프린팅"]["feeds"] == ["https://ex.com/feed"]
+    assert core.DOMAIN_META["3D 프린팅"]["slug"].startswith("x-") and "3D printing" in core.domain_topics()
+    assert core.DOMAINS["VFX"]["seeds"] != ["x"]
