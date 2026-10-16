@@ -342,6 +342,55 @@ def refine_taxonomy(strategy: dict) -> dict:
     return strategy
 
 
+TERM_AUDIT_EVERY = 24 * 3600
+TERM_STOPWORDS = {"구글", "애플", "엔비디아", "어도비", "마이크로소프트", "유튜브", "디스코드", "안드로이드", "리눅스",
+                  "아이패드", "스타일라이즈드", "그래픽카드", "테크놀로지", "파운데이션", "게임즈", "스파이더맨",
+                  "사이버펑크", "포트나이트", "스타워즈", "텔레콤"}
+
+
+def audit_terms(max_words: int = 1500, batch: int = 500) -> dict[str, str]:
+    """용어 자가 학습: 글에 자주 나오는 한글 단어 중 '음역된 고유명사(소프트웨어·플러그인·회사·기술명)'를 찾아
+    정식 영문 표기를 memory['glossary_learned'] 에 추가 → core.fix_terms 가 이후 자동 교정."""
+    import collections
+    import re as _re
+    counts = collections.Counter()
+    for f in core.POSTS_DIR.glob("*.json"):
+        p = core._load_json(f, {})
+        text = " ".join([p.get("title_ko", ""), p.get("summary", ""), *(p.get("tags") or [])] +
+                        [f'{s.get("heading", "")} {s.get("body", "")}' for s in p.get("sections") or []])
+        for w in _re.findall(r"[가-힣]{2,10}", text):
+            counts[_re.sub(r"(은|는|이|가|을|를|의|에|와|과|로|으로|에서|도|만)$", "", w)] += 1
+    known = {k for k in core.GLOSSARY} | set(core.load_memory().get("glossary_learned", {}).values())
+    words = [w for w, _ in counts.most_common(max_words)]
+    found: dict[str, str] = {}
+    for i in range(0, len(words), batch):
+        chunk = words[i:i + batch]
+        prompt = ("Below are Korean words from a Korean 3D/CG/game-engine/VFX/AI news site. Return ONLY complete words "
+                  "that are Hangul transliterations of TECHNICAL product names a Korean CG artist would normally write in "
+                  "English: software, plugins, scripting languages, APIs/SDKs, file formats, engine features "
+                  "(e.g. 맥로스크립트→MacroScript, 레일클론→RailClone, 나나이트→Nanite, 메타휴먼→MetaHuman). "
+                  "EXCLUDE: companies/brands (구글, 애플, 엔비디아, 어도비), games/films/people, words Koreans normally "
+                  "write in Hangul (유튜브, 디스코드, 파이썬 is fine to include), generic loanwords (모델링, 렌더링, "
+                  "텍스처, 플러그인, 스타일라이즈드, 그래픽카드), and FRAGMENTS of longer names (스타, 워즈, 휴먼, 게임즈, 맥스).\n"
+                  f"Words: {', '.join(chunk)}\n"
+                  'Return JSON {"terms": {"hangul": "Official English", ...}} (empty if none).')
+        try:
+            out = core._parse_json(core.llm(prompt, max_tokens=1500, json_mode=True))
+        except Exception as e:
+            log.warning("용어 점검 실패: %s", e)
+            continue
+        for k, v in (out.get("terms") or {}).items():
+            if (isinstance(k, str) and isinstance(v, str) and _re.fullmatch(r"[가-힣]{3,12}", k)
+                    and k not in TERM_STOPWORDS
+                    and _re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 .+\-]{1,30}", v) and v not in known):
+                found[k] = v.strip()
+    if found:
+        mem = core.load_memory()
+        mem["glossary_learned"] = {**mem.get("glossary_learned", {}), **found}
+        core._save_json(core.MEMORY_PATH, mem)
+    return found
+
+
 def strategy_due(strategy: dict) -> bool:
     """적응형 주기: 6시간이 지났거나, 1시간이 지났고 현재 가이드 버전의 평가 표본이 충분할 때."""
     if _due(strategy, "strategy_updated_at", STRATEGY_EVERY):
@@ -361,6 +410,14 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         strategy.setdefault(key, {})
     if force or strategy_due(strategy):
         strategy = update_strategy(strategy)
+        core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "terms_audited_at", TERM_AUDIT_EVERY):
+        try:
+            learned = audit_terms()
+            strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "glossary_learned": learned}])[-30:]
+        except Exception as e:
+            log.warning("용어 점검 실패: %s", e)
+        strategy["terms_audited_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
         strategy = refine_taxonomy(strategy)

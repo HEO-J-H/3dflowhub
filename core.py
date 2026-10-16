@@ -739,13 +739,32 @@ GLOSSARY: dict[str, tuple[str, str]] = {
     "Nuke": (r"(?<![가-힣])누크(?![가-힣])", "누크"),
     "Maya": (r"(?<![가-힣])마야(?=\s|\(|에서|의|로|는|와|에|,|\.|$)", "마야"),
     "Godot": (r"고도\s?엔진|고닷", "고도 엔진"),
+    "Marvelous Designer": (r"마블러스(?:\s?디자이너)?", "마블러스 디자이너"),
+    "MetaHuman": (r"메타\s?휴먼", "메타휴먼"),
+    "Nanite": (r"나나이트", "나나이트"),
+    "Lumen": (r"(?<![가-힣])루멘(?![가-힣])", ""),
+    "RailClone": (r"레일\s?클론", "레일클론"),
+    "Forest Pack": (r"포레스트\s?팩", "포레스트팩"),
+    "tyFlow": (r"타이\s?플로우|티와이\s?플로우|Tyflow|TyFlow", "타이플로우"),
+    "Octane Render": (r"옥테인(?:\s?렌더(?:러)?)?", "옥테인 렌더"),
+    "Redshift": (r"레드\s?시프트", "레드시프트"),
+    "Arnold": (r"아놀드\s?렌더러|아놀드(?=\s?렌더)", "아놀드 렌더러"),
+    "Quixel Megascans": (r"퀵셀\s?메가스캔|메가스캔", "메가스캔"),
+    "Python": (r"파이썬", "파이썬"),
 }
 _GLOSS_RE = [(re.compile(v), k) for k, (v, _) in GLOSSARY.items()]
 
 
 def glossary_extra() -> dict[str, str]:
     """config.json 의 glossary 로 사용자 용어 추가: {"정식표기": "변형1|변형2"}."""
-    g = _load_json(CONFIG_PATH, {}).get("glossary") or {}
+    g = dict(_load_json(CONFIG_PATH, {}).get("glossary") or {})
+    # evolve.audit_terms 가 학습한 '한글 음역 → 영문' (사용자 설정이 우선)
+    for hangul, canon in (load_memory().get("glossary_learned") or {}).items():
+        if not (isinstance(hangul, str) and isinstance(canon, str)):
+            continue
+        # 단어 전체만 교정 (앞은 한글이 아니고, 뒤는 조사·공백·문장부호) → '스타일' 같은 다른 단어 훼손 방지
+        rx = rf"(?<![가-힣]){re.escape(hangul)}(?=(?:은|는|이|가|을|를|의|에|와|과|로|으로|에서|도|만|$|[^가-힣]))"
+        g[canon] = f"{g[canon]}|{rx}" if canon in g else rx
     return {k: v for k, v in g.items() if isinstance(k, str) and isinstance(v, str) and v}
 
 

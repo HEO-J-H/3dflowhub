@@ -418,3 +418,17 @@ def test_glossary_fixes_transliterated_tool_names():
 def test_user_glossary_from_config():
     core._save_json(core.CONFIG_PATH, {"glossary": {"RailClone": "레일클론|레일 클론"}})
     assert core.fix_terms("레일 클론 플러그인") == "RailClone 플러그인"
+
+
+def test_learned_glossary_matches_whole_words_only():
+    core._save_json(core.MEMORY_PATH, {"glossary_learned": {"메타휴먼": "MetaHuman", "스타": "Star"}})
+    assert core.fix_terms("메타휴먼을 활용") == "MetaHuman을 활용"
+    assert core.fix_terms("스타일라이즈드 셰이딩") == "스타일라이즈드 셰이딩"   # 다른 단어 훼손 없음
+    assert core.fix_terms("스타 개발자") == "Star 개발자"
+
+
+def test_audit_terms_filters_fragments_and_brands(monkeypatch):
+    import evolve
+    core._save_json(core.POSTS_DIR / "2026-10-16-x.json", {"title_ko": "스피드트리 구글 스타", "summary": "", "sections": []})
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"terms": {"스피드트리": "SpeedTree", "구글": "Google", "스타": "Star"}}')
+    assert evolve.audit_terms() == {"스피드트리": "SpeedTree"}
