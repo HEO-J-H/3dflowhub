@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: write   # memory/ 변경 커밋
+  actions: write    # pages 워크플로 호출
 
 concurrency:
   group: repo-writes   # self_improve 와 같은 그룹 → main 에 동시에 push 하지 않음
@@ -88,14 +89,20 @@ jobs:
 
       - name: Commit memory & drafts
         if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "3dflowhub-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add memory/ drafts/
+          git add memory/ drafts/ content/
           git diff --cached --quiet && exit 0
           git commit -m "chore(memory): run $(date -u +%FT%TZ) [skip ci]"
           for i in 1 2 3 4; do  # 다른 커밋이 먼저 들어왔으면 rebase 후 재시도 (이번 실행 기록 우선)
-            git pull --rebase -X theirs origin main && git push && exit 0
+            if git pull --rebase -X theirs origin main && git push; then
+              # 새 글이 있으면 GitHub Pages 재배포 (GITHUB_TOKEN push 는 push 트리거가 안 걸림)
+              git diff --name-only HEAD~1 HEAD | grep -q '^content/' && gh workflow run pages.yml --ref main || true
+              exit 0
+            fi
             sleep $((i * 5))
           done
           exit 1

@@ -266,6 +266,14 @@ def _google_news_rss(query: str) -> str:
 VIDEO_RE = re.compile(r"(?:youtube\.com/(?:embed/|watch\?v=)|youtu\.be/)([\w-]{11})|player\.vimeo\.com/video/(\d+)")
 
 
+GENERIC_IMAGE_RE = re.compile(r"arxiv[^/]*logo|arxiv\.org/static|news\.google|gstatic\.com|lh3\.googleusercontent\.com/J6_coFbog"
+                              r"|/logo[^/]*\.(png|svg|jpg)|default[-_]?(og|share|thumb)|placeholder", re.I)
+
+
+def is_generic_image(url: str) -> bool:
+    return bool(url) and bool(GENERIC_IMAGE_RE.search(url))
+
+
 def extract_media(soup: BeautifulSoup, base_url: str) -> dict:
     """대표 이미지(og:image)와 첫 번째 YouTube/Vimeo 영상 URL."""
     def meta(*names: str) -> str:
@@ -290,6 +298,8 @@ def extract_media(soup: BeautifulSoup, base_url: str) -> dict:
             video = (f"https://www.youtube.com/watch?v={m.group(1)}" if m.group(1)
                      else f"https://vimeo.com/{m.group(2)}")
             break
+    if is_generic_image(image):  # 사이트 로고·기본 썸네일은 대표 이미지로 쓰지 않음
+        image = ""
     if not image.startswith("http") and video and (m := VIDEO_RE.search(video)) and m.group(1):
         image = f"https://img.youtube.com/vi/{m.group(1)}/hqdefault.jpg"  # 대표 이미지 없으면 유튜브 썸네일
     return {"image": image if image.startswith("http") else "", "video": video}
@@ -713,6 +723,22 @@ def backfill_notion(client, limit: int = 100) -> int:
     return done
 
 
+POSTS_DIR = ROOT / "content" / "posts"  # GitHub Pages 원본 데이터 (build_site.py 가 HTML 로 변환)
+POST_FIELDS = ("title_ko", "title", "url", "domain", "category", "tags", "summary", "insight",
+               "sections", "faq", "media", "collected_at", "notion_id")
+
+
+def save_post_json(item: dict) -> Path:
+    """노션과 같은 내용을 content/posts/<날짜>-<해시>.json 으로 저장 (커밋되어 Pages 로 배포)."""
+    POSTS_DIR.mkdir(parents=True, exist_ok=True)
+    day = (item.get("collected_at") or datetime.now(timezone.utc).isoformat())[:10]
+    path = POSTS_DIR / f"{day}-{url_hash(item['url'])}.json"
+    data = {k: item.get(k) for k in POST_FIELDS}
+    data["id"] = path.stem
+    _save_json(path, data)
+    return path
+
+
 def related_posts(client, item: dict, limit: int = 3) -> list[dict]:
     """같은 세부 카테고리 → 같은 도메인 순으로 이미 발행된 글 (조회수 높은 순)."""
     if client is None:
@@ -1032,6 +1058,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
             page_id = save_to_notion(notion, item)
             item["notion_id"] = page_id or ""  # 브라우저 발행 후 노션 상태 갱신용
             item["related"] = related_posts(notion, item)  # 티스토리 본문 '함께 보면 좋은 글'
+            save_post_json(item)  # GitHub Pages 게시판용 (발행 수 제한 없음)
             stats["saved"] += 1
             if publish:
                 res = publish_to_tistory(item)

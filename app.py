@@ -40,6 +40,8 @@ with st.sidebar:
 
 # ─────────────────────────── 수동 실행 ───────────────────────────
 st.title("🧊 3dflowhub 큐레이션 현황판")
+st.markdown("🌐 **게시판 사이트(GitHub Pages)**: [heo-j-h.github.io/3dflowhub](https://heo-j-h.github.io/3dflowhub/)  ·  "
+            "📝 [티스토리](https://hjh1014.tistory.com/)  ·  🗂️ [노션 DB](https://app.notion.com/p/eba32801b6b141e2849ce85f819c3ea4)")
 
 if "job" not in st.session_state:
     st.session_state.job = {"running": False, "result": None, "error": None}

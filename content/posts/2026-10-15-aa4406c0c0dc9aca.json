@@ -1,0 +1,55 @@
+{
+  "title_ko": "Unity External Dependency Manager 정식 출시와 EDM4U 마이그레이션 가이드",
+  "title": "",
+  "url": "https://unity.com/blog/external-dependency-manager",
+  "domain": "Game Engine",
+  "category": "엔진 업데이트",
+  "tags": [
+    "Unity",
+    "EDM",
+    "EDM4U",
+    "모바일개발",
+    "SDK관리"
+  ],
+  "summary": "Unity가 모바일 네이티브 의존성 관리를 위한 공식 패키지인 External Dependency Manager(EDM)를 출시했으며, 기존 구글 EDM4U의 공식 지원 종료에 따른 원활한 마이그레이션을 지원합니다.",
+  "insight": "모바일 게임 개발에서 수많은 SDK 충돌과 네이티브 라이브러리 관리는 빌드 안정성을 좌우하는 핵심 골칫거리였습니다. 이번 Unity의 공식 EDM 패키지 인수는 엔진 레벨에서 모바일 의존성 관리를 일원화한다는 점에서 실무 개발 파이프라인의 안정성을 크게 높여줍니다. 특히 Unity 2022.3 이상 버전에서 기존 XML 파일을 그대로 활용해 추가 코드 수정 없이 전환할 수 있으므로, 라이브 서비스 중인 프로젝트라면 구글 EDM4U 지원 중단 시점(2026년 10월 26일) 이전에 미리 패키지를 교체하는 것을 권장합니다. CocoaPods 및 Ruby 통합 개선 등 버그픽스도 포함되어 있어 장기적인 빌드 효율 향상에 기여할 것입니다.",
+  "sections": [
+    {
+      "heading": "Unity External Dependency Manager (EDM) 패키지 개요",
+      "body": "Unity는 안드로이드 및 iOS 네이티브 의존성을 효율적으로 관리하기 위한 공식 패키지인 External Dependency Manager(EDM)를 Unity Package Manager(UPM)를 통해 새롭게 공개했습니다. 이번 패키지는 기존에 널리 사용되던 구글의 EDM4U(External Dependency Manager for Unity)의 포크 버전을 기반으로 제작되었습니다. Unity가 직접 엔진 호환성 유지, 기능 업데이트, 버그 수정을 전담하여 관리하게 됩니다."
+    },
+    {
+      "heading": "구글 EDM4U 지원 종료 및 마이그레이션 일정",
+      "body": "구글은 2026년 10월 26일부로 EDM4U의 공식 지원을 중단할 예정입니다. 양사는 개발자와 SDK 메인테이너들이 혼란 없이 전환할 수 있도록 긴밀하게 협력해 왔습니다. 기존 프로젝트에서 사용하던 XML 의존성 파일을 그대로 읽어들이기 때문에, 별도의 코드나 설정 재작성 없이 원활한 마이그레이션이 가능합니다."
+    },
+    {
+      "heading": "게임 개발자를 위한 EDM 설치 및 전환 방법",
+      "body": "게임 개발자는 Unity Package Manager의 Unity Registry에서 'External Dependency Manager'를 검색하여 간편하게 설치할 수 있습니다. 프로젝트에 이미 EDM4U가 포함되어 있다면 Unity가 사용할 관리자를 선택하라는 프롬프트를 띄우며, 언제든지 Assets 메뉴를 통해 전환할 수 있습니다. SDK를 통해 간접적으로 포함된 EDM4U는 해당 SDK가 공식적으로 EDM을 지원할 때까지 유지해야 합니다."
+    },
+    {
+      "heading": "모바일 의존성 관리가 중요한 이유와 EDM의 해결책",
+      "body": "대다수의 모바일 게임은 광고, 분석, 수익화, 푸시 알림 등을 위해 수많은 SDK를 도입하며, 이 과정에서 네이티브 라이브러리 간의 충돌이 빈번하게 발생합니다. 수동으로 라이브러리를 통합하는 것은 오류를 유발하기 쉽습니다. EDM은 텍스트 파일을 통해 SDK가 필요한 라이브러리를 선언하고, Gradle, CocoaPods, Swift Package Manager 등을 통해 최종 빌드에 올바른 라이브러리가 포함되도록 조율합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "기존에 사용하던 구글 EDM4U를 언제까지 교체해야 하나요?",
+      "a": "구글의 EDM4U는 2026년 10월 26일에 공식 지원이 종료됩니다. 안정적인 빌드 환경 유지를 위해 그전에 Unity의 공식 EDM 패키지로 마이그레이션하는 것을 권장합니다."
+    },
+    {
+      "q": "EDM을 사용하려면 프로젝트 코드를 전부 수정해야 하나요?",
+      "a": "아니요, 기존 SDK가 사용하던 것과 동일한 XML 의존성 파일을 그대로 읽어들이기 때문에 별도의 설정 재작성 없이 전환할 수 있습니다."
+    },
+    {
+      "q": "Unity 프로젝트에서 두 매니저가 충돌하지 않나요?",
+      "a": "EDM4U가 이미 프로젝트에 있는 경우 Unity가 활성화할 관리자를 선택할 수 있도록 안내하며, Assets 메뉴를 통해 언제든 전환이 가능하므로 안전하게 교체할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.sanity.io/images/fuvbjjlp/production/e8cb5e6760b82f908aa770df056e36f2ca91e67e-3840x2160.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-10-15T15:21:00.000+00:00",
+  "notion_id": "3fa94be3-beb5-816c-901a-c33690b183bf",
+  "id": "2026-10-15-aa4406c0c0dc9aca"
+}
