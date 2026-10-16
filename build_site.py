@@ -37,6 +37,8 @@ SITE_TITLE = "3dflowhub"
 SITE_DESC = "3D DCC · 게임 엔진 · VFX · AI 3D 최신 소식을 한국어로 요약·정리합니다."
 BASE_URL = "https://heo-j-h.github.io/3dflowhub"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
+TOPIC_SLUG = {"업데이트·출시": "update", "튜토리얼·팁": "tutorial", "플러그인·스크립트": "plugin",
+              "작품·제작 사례": "showcase", "업계 소식": "news", "연구·논문": "research", "리뷰·비교": "review"}
 CONTACT_EMAIL = "hjh1014@naver.com"  # 광고·제휴 문의 연락처
 
 
@@ -215,7 +217,8 @@ header{background:var(--card);border-bottom:1px solid var(--line);position:stick
 nav.domains{display:flex;gap:6px;overflow-x:auto;padding:8px 0}nav.domains a{padding:6px 12px;border-radius:999px;white-space:nowrap;font-size:14px;border:1px solid var(--line)}
 nav.domains a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}.tabs a{font-size:13px;padding:4px 10px;border-radius:6px;background:var(--accent-soft)}
-.tabs a.on{background:var(--accent);color:#fff}.tabs .n{opacity:.7;margin-left:4px}
+.tabs a.on{background:var(--accent);color:#fff}
+.chips{margin-top:-8px}.chips a{background:transparent;border:1px solid var(--line)}.chips a.on{border-color:var(--accent)}.tabs .n{opacity:.7;margin-left:4px}
 h1{font-size:26px;margin:28px 0 8px}.desc{color:var(--muted);margin:0 0 12px}
 .board{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .row{display:grid;grid-template-columns:88px 1fr 130px 92px;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
@@ -276,7 +279,8 @@ def row(p: dict, root: str) -> str:
     thumb = f'<img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if img else '<span class="ph"></span>'
     return (f'<a class="row" href="{root}p/{p["id"]}.html">{thumb}<span><span class="t">{e(p["title_ko"])}</span><br>'
             f'<span class="s">{e(p.get("summary") or "")}</span></span>'
-            f'<span class="badge">{e(p["domain"])} › {e(p.get("category") or "기타")}</span>'
+            f'<span class="badge">{e(p.get("category") or "기타")}'
+            f'{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
             f'<span class="date">{(p.get("collected_at") or "")[:10]}</span></a>')
 
 
@@ -354,7 +358,9 @@ def post_head(p: dict) -> str:
 def post_html(p: dict, root: str, related: list[dict]) -> str:
     m = p.get("media") or {}
     parts = [f'<div class="crumb"><a href="{root}{cat_url(p["domain"])}">{e(p["domain"])}</a> › '
-             f'<a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}">{e(p.get("category") or "기타")}</a> · '
+             f'<a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}">{e(p.get("category") or "기타")}</a>'
+             + (f' › <a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}{TOPIC_SLUG[p["topic"]]}/">'
+                f'{e(p["topic"])}</a>' if p.get("topic") in TOPIC_SLUG else "") + ' · '
              f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>']
     if m.get("image"):
         parts.append(core.image_figure(m["image"], p["url"], p["title_ko"]))
@@ -425,8 +431,22 @@ def build() -> dict:
                     f"<h1>{e(DOMAIN_ICON[d])} {e(d)}</h1>" + tabs(None, "{ROOT}"), d)
         for c in cats:
             folder = OUT / "c" / DOMAIN_SLUG[d] / SLUG_MAP[(d, c)]
-            board_pages(by_cat[(d, c)], folder, "../../../", f"{d} › {c}",
-                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}"), d)
+            items = by_cat[(d, c)]
+            by_topic = {t: [p for p in items if p.get("topic") == t] for t in TOPIC_SLUG}
+
+            def chips(active: str | None, up: str) -> str:
+                base = f'<a class="{"on" if active is None else ""}" href="{up}">전체<span class="n">{len(items)}</span></a>'
+                return '<div class="tabs chips">' + base + "".join(
+                    f'<a class="{"on" if t == active else ""}" href="{up}{TOPIC_SLUG[t]}/">{e(t)}'
+                    f'<span class="n">{len(ps)}</span></a>' for t, ps in by_topic.items() if ps) + "</div>"
+
+            board_pages(items, folder, "../../../", f"{d} › {c}",
+                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}") + chips(None, "./"), d)
+            for t, ps in by_topic.items():
+                if ps:
+                    board_pages(ps, folder / TOPIC_SLUG[t], "../../../../", f"{d} › {c} › {t}",
+                                f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)} › {e(t)}</h1>" + tabs(c, "{ROOT}")
+                                + chips(t, "../"), d)
 
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)
@@ -480,6 +500,8 @@ def build() -> dict:
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
     urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
            [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
+           [f"{BASE_URL}/{cat_url(d, c)}{TOPIC_SLUG[t]}/" for (d, c), ps in sorted(by_cat.items())
+            for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)

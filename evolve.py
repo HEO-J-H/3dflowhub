@@ -296,14 +296,17 @@ def refine_taxonomy(strategy: dict) -> dict:
     counts = core.load_memory().get("category_counts", {})
     table = {d: {c: counts.get(f"{d}/{c}", 0) for c in cs} for d, cs in cats.items()}
     prompt = (
-        f"You maintain a 2-level taxonomy (domain > specific sub-category) for a Korean blog about: {core.domain_topics()}.\n"
-        f"Current sub-categories with post counts: {json.dumps(table, ensure_ascii=False)}\n"
-        "1) Merge only true duplicates or near-synonyms (e.g. '렌더링' vs '렌더링 기술'). Keep specific categories "
-        "(tool/technique level) — do NOT collapse specific ones into broad ones. Never merge across domains.\n"
-        "2) For broad or overloaded categories (e.g. '제작 사례', '툴 업데이트'), propose 2-4 more specific "
-        "sub-categories (tool/technique/product level) to use for future posts.\n"
-        'Return JSON {"merges": [{"domain": ..., "from": existing name, "to": existing or better Korean name}], '
-        '"splits": [{"domain": ..., "from": broad name, "into": ["specific Korean name", ...]}]} '
+        f"You maintain the TOOL/PRODUCT level of a 3-level taxonomy (domain > tool/product > content type) for a "
+        f"Korean blog about: {core.domain_topics()}.\n"
+        f"Current tools/products per domain with post counts: {json.dumps(table, ensure_ascii=False)}\n"
+        f"Content types are fixed and separate: {core.TOPICS} — they must NOT appear as tools.\n"
+        "1) Merge true duplicates/aliases of the same product (e.g. 'UE5' → 'Unreal Engine', 'Blender 업데이트' → 'Blender', "
+        "'툴 업데이트' or '튜토리얼' are content types → merge into the domain's '기타 …' or the right tool). "
+        "Never merge different products. Never merge across domains.\n"
+        "2) If a '기타 …' bucket is large and several posts share one product, propose that product as a new tool "
+        "(splits).\n"
+        'Return JSON {"merges": [{"domain": ..., "from": existing name, "to": existing or official product name}], '
+        '"splits": [{"domain": ..., "from": broad name, "into": ["official product name", ...]}]} '
         "(max 8 merges, max 4 splits; empty lists if nothing to do)."
     )
     try:

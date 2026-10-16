@@ -379,3 +379,10 @@ def test_interleave_by_source_breaks_single_site_dominance():
         [{"hint_domain": "3D DCC", "source": "reddit.com", "t": 9}]
     out = core.interleave_by_source(c)
     assert [x["source"] for x in out[:2]] == ["blendernation.com", "reddit.com"]
+
+
+def test_topic_is_normalized_to_fixed_types():
+    d = core.normalize_summary({"sections": ["x"], "category": "Blender", "topic": "튜토리얼·팁"}, {**ITEM, "hint_domain": "3D DCC"})
+    assert d["topic"] == "튜토리얼·팁" and d["category"] == "Blender"
+    d = core.normalize_summary({"sections": ["x"], "topic": "아무거나"}, {**ITEM, "hint_domain": "3D DCC"})
+    assert d["topic"] == core.DEFAULT_TOPIC

@@ -136,12 +136,16 @@ DOMAINS: dict[str, dict] = {
 
 
 # 세부 카테고리 시드 — LLM 이 새 카테고리를 제안하면 memory.json["categories"] 에 자동 추가된다
-SEED_CATEGORIES: dict[str, list[str]] = {
-    "3D DCC": ["모델링", "렌더링", "텍스처링", "애니메이션", "툴 업데이트", "3ds Max·MAXScript"],
-    "Game Engine": ["엔진 업데이트", "게임 개발 사례", "튜토리얼", "신작 게임"],
-    "VFX": ["시뮬레이션", "컴포지팅", "모션그래픽", "제작 사례"],
-    "AI 3D": ["3D 생성 AI", "가우시안·NeRF", "AI 도구", "연구·논문"],
+SEED_CATEGORIES: dict[str, list[str]] = {  # 2단계: 도구·제품 (분류 축 하나로 통일)
+    "3D DCC": ["Blender", "3ds Max", "Maya", "Cinema 4D", "ZBrush", "Houdini", "Substance 3D",
+               "V-Ray·Corona", "Marvelous Designer", "기타 DCC"],
+    "Game Engine": ["Unreal Engine", "Unity", "Godot", "UEFN·Fortnite", "게임 업계", "기타 엔진"],
+    "VFX": ["After Effects", "Nuke", "Houdini FX", "DaVinci Resolve", "Unreal 가상 프로덕션", "스튜디오·작품"],
+    "AI 3D": ["가우시안 스플래팅", "NeRF", "3D 생성 AI", "AI 텍스처·렌더링", "로보틱스·월드모델", "기타 AI 3D"],
 }
+# 3단계: 콘텐츠 유형 (고정) — 사이트에서 도구 게시판 안의 필터로 표시
+TOPICS = ["업데이트·출시", "튜토리얼·팁", "플러그인·스크립트", "작품·제작 사례", "업계 소식", "연구·논문", "리뷰·비교"]
+DEFAULT_TOPIC = "업계 소식"
 # 도메인 표시 정보 (사이트 아이콘·주소, AI 분류용 설명)
 DOMAIN_META: dict[str, dict] = {
     "3D DCC": {"icon": "🧊", "slug": "3d-dcc", "about": "3D modeling/rendering/animation software (Blender, Maya, 3ds Max…)"},
@@ -717,6 +721,7 @@ def normalize_summary(data: dict, item: dict) -> dict:
     data["category"] = cat if isinstance(cat, str) else (cat[0] if isinstance(cat, list) and cat
                                                           and isinstance(cat[0], str) else "")
     data["faq"] = [f for f in data.get("faq") or [] if isinstance(f, dict)]
+    data["topic"] = data.get("topic") if data.get("topic") in TOPICS else DEFAULT_TOPIC
     return data
 
 
@@ -735,9 +740,11 @@ def summarize(item: dict) -> dict | None:
         ' "title_ko": search-friendly Korean title, 25-45 chars, main tool/product name + key search term first, '
         'no clickbait,\n'
         f' "domain": one of {json.dumps(list(DOMAINS), ensure_ascii=False)} ({domain_topics()}),\n'
-        ' "category": the most SPECIFIC fitting sub-category (tool / technique / product level, e.g. '
-        '"Houdini 시뮬레이션", "가우시안 스플래팅", "언리얼 PCG", "Blender 지오메트리 노드"). Reuse an existing one '
-        'only if it truly matches; if existing ones are too broad, create a new specific Korean name (<=14 chars),\n'
+        ' "category": the main TOOL / PRODUCT / TECHNOLOGY this article is about (exact name from the existing list '
+        'of that domain, e.g. "Blender", "3ds Max", "Unreal Engine", "Unity", "Nuke", "가우시안 스플래팅"). Never put '
+        'the content type here (no "업데이트", "튜토리얼", "사례"). If a clearly different tool/product not in the list, '
+        'use its official name (<=20 chars); if no single tool, use the domain\'s "기타 …" entry,\n'
+        f' "topic": exactly one of {json.dumps(TOPICS, ensure_ascii=False)} (the content type),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
         ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
@@ -952,7 +959,7 @@ def backfill_notion(client, limit: int = 100) -> int:
 
 
 POSTS_DIR = ROOT / "content" / "posts"  # GitHub Pages 원본 데이터 (build_site.py 가 HTML 로 변환)
-POST_FIELDS = ("title_ko", "title", "url", "domain", "category", "tags", "summary", "insight",
+POST_FIELDS = ("title_ko", "title", "url", "domain", "category", "topic", "tags", "summary", "insight",
                "sections", "faq", "media", "collected_at", "notion_id")
 
 
@@ -1069,7 +1076,7 @@ def build_post_html(item: dict) -> str:
         hero += (f'<div style="position:relative;padding-top:56.25%;margin:16px 0;">'
                  f'<iframe src="{src}" style="position:absolute;top:0;left:0;width:100%;height:100%;" '
                  f'frameborder="0" allowfullscreen></iframe></div>\n')
-    label = item["domain"] + (f" › {item['category']}" if item.get("category") else "")
+    label = item["domain"] + (f" › {item['category']}" if item.get("category") else "") +         (f" › {item['topic']}" if item.get("topic") else "")
     intro = (hero + f'<p style="font-size:1.05em;"><b>한 줄 요약</b> — {html.escape(item.get("summary", ""))}</p>\n'
              f'<p style="color:#888;">분류: {html.escape(label)}</p>\n')
     if item.get("insight"):
@@ -1099,7 +1106,8 @@ def _published() -> dict:
 def _save_draft_file(item: dict, content: str) -> str:
     DRAFT_DIR.mkdir(parents=True, exist_ok=True)
     path = DRAFT_DIR / f"{datetime.now():%Y%m%d_%H%M%S}_{url_hash(item['url'])}.html"
-    header = (f"<!-- TITLE: {item['title_ko']} | TAGS: {','.join(item.get('tags', []))} "
+    tags = list(dict.fromkeys(item.get("tags", []) + ([item["topic"]] if item.get("topic") else [])))
+    header = (f"<!-- TITLE: {item['title_ko']} | TAGS: {','.join(tags)} "
               f"| CATEGORY: {item['domain']}/{item.get('category', '')} | NOTION: {item.get('notion_id', '')} -->")
     path.write_text(f"{header}\n{content}", encoding="utf-8")
     return str(path)
