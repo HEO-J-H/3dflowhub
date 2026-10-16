@@ -54,7 +54,7 @@ import logging
 import os
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote_plus, urljoin, urlparse
 
@@ -362,17 +362,45 @@ class LLMBudgetExceeded(RuntimeError):
 LLM_SOURCE = "ci" if os.getenv("GITHUB_ACTIONS") else "local"  # 같은 API 키를 쓰는 실행 위치별 집계
 
 
+LLM_QUOTA_PATH = Path(__file__).parent / "memory" / "llm_quota.json"  # 실제 429 한도 소진 기록
+
+
+def llm_day() -> str:
+    """Gemini 무료 한도는 미국 태평양 자정(한국 16~17시)에 리셋 → 그 기준의 날짜."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    except Exception:
+        return (datetime.now(timezone.utc) - timedelta(hours=8)).strftime("%Y-%m-%d")
+
+
+def llm_quota_status() -> dict:
+    """{'exhausted': bool, 'at_count': 소진 시점 호출 수, 'learned_limit': 최근 관측된 실제 한도}"""
+    q = _load_json(LLM_QUOTA_PATH, {})
+    hits = [v for v in q.values() if isinstance(v, int) and v > 0]
+    return {"exhausted": llm_day() in q, "at_count": q.get(llm_day()),
+            "learned_limit": min(hits[-7:]) if hits else None}
+
+
+def _mark_quota_exhausted() -> None:
+    q = {d: n for d, n in _load_json(LLM_QUOTA_PATH, {}).items() if d >= llm_day()[:8] + "01"}
+    q.setdefault(llm_day(), llm_usage_today())
+    _save_json(LLM_QUOTA_PATH, q)
+
+
 def llm_usage_today() -> int:
     """오늘 전체 사용량 = GitHub 실행분 + 이 PC 실행분 (memory 병합 시 위치별로 최대값 → 합산이 정확)."""
-    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")  # Gemini 일일 한도는 태평양 자정 기준이지만 UTC 로 근사
+    day = llm_day()
     v = _load_json(LLM_USAGE_PATH, {}).get(day, 0)
     return sum(v.values()) if isinstance(v, dict) else int(v)
 
 
 def _consume_llm_budget() -> None:
     """무료 티어 일일 한도 보호: 하루 호출 수가 config 의 llm_daily_budget 을 넘으면 중단."""
-    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    day = llm_day()
     budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
+    if llm_quota_status()["exhausted"]:
+        raise LLMBudgetExceeded("Gemini 실제 일일 한도 소진 (429) — 태평양 자정(한국 16~17시)에 리셋")
     if llm_usage_today() >= budget:
         raise LLMBudgetExceeded(f"오늘 LLM 호출 한도({budget}회) 도달")
     usage = {d: n for d, n in _load_json(LLM_USAGE_PATH, {}).items() if d >= day[:8] + "01"}  # 이번 달만
@@ -405,6 +433,9 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
                 wait = float(r.headers.get("retry-after") or 0) or 5 * 2 ** attempt
                 log.info("LLM %s — %.0f초 후 재시도", r.status_code, wait)
                 time.sleep(min(wait, 60))
+            if r.status_code == 429 and "quota" in r.text.lower():
+                _mark_quota_exhausted()
+                raise LLMBudgetExceeded(f"Gemini 실제 일일 한도 소진 (429, 오늘 {llm_usage_today()}회째)")
             data = r.json() if r.ok else None
             if data and data.get("choices"):
                 return (data["choices"][0]["message"].get("content") or "").strip()
@@ -415,8 +446,21 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
 
 
 def _parse_json(text: str) -> dict:
+    """LLM JSON 응답 파싱. 쉼표 누락·잘린 출력·코드펜스는 json_repair 로 복구."""
     m = re.search(r"\{.*\}", text, re.S)
-    return json.loads(m.group(0)) if m else {}
+    raw = m.group(0) if m else text
+    try:
+        return json.loads(raw) if m else {}
+    except ValueError:
+        try:
+            from json_repair import repair_json
+            out = repair_json(raw, return_objects=True)
+            if isinstance(out, dict) and out:
+                log.info("깨진 JSON 복구 성공")
+                return out
+        except ImportError:
+            pass
+        raise
 
 
 # ─────────────────────────── [1] 동적 키워드 ───────────────────────────
@@ -890,6 +934,8 @@ def summarize(item: dict) -> dict | None:
     system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
     try:
         data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))
+    except LLMBudgetExceeded:
+        raise
     except Exception as e:
         log.warning("요약 실패 %s: %s", item["url"], e)
         RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
@@ -1486,6 +1532,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
                     mark_notion_published(notion, page_id, res["url"])
                 elif res["status"] == "draft_file":
                     stats["drafts"] += 1  # 초안 저장은 정상 경로 (브라우저 발행 대기)
+        except LLMBudgetExceeded as e:
+            RUN_ERRORS.append(f"{e} — 남은 {len(items) - idx}건은 리셋 후")
+            break
         except Exception as e:  # 한 건의 실패가 전체를 죽이지 않도록
             log.exception("아이템 처리 실패 %s: %s", raw.get("url"), e)
 

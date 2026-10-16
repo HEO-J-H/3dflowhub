@@ -110,7 +110,11 @@ def status_panel() -> None:
     st.caption(f"주기 {cfg['interval']} · 마지막 수집 {ago(last.get('at', ''))} "
                f"(수집 {last.get('collected', 0)} → 저장 {last.get('saved', 0)})")
     used, budget = core.llm_usage_today(), int(cfg.get("llm_daily_budget", 500))
-    st.progress(min(1.0, used / budget) if budget else 1.0, text=f"AI 사용 {used}/{budget}회")
+    q = core.llm_quota_status()
+    st.progress(1.0 if q["exhausted"] else min(1.0, used / budget) if budget else 1.0,
+                text=f"AI 사용 {used}/{budget}회" + (" · 한도 소진(16~17시 리셋)" if q["exhausted"] else ""))
+    if q["learned_limit"] and q["learned_limit"] < budget:
+        st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
     pages = [r for r in runs if r["name"].endswith("pages")]
     if pages:
         st.caption(f"사이트 배포 {ago(pages[0]['created_at'])} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
@@ -238,8 +242,18 @@ with t_auto:
         k[2].metric("발행", last.get("published", 0))
         k[3].metric("초안", last.get("drafts", 0))
         st.caption(f"실행 시각(UTC): {last.get('at', '')[:19]}  ·  GitHub 최신 기록")
-        for e in [x for x in last.get("errors", []) if "news.google.com" not in x]:  # 구글 뉴스 0건은 정상
-            st.error(e)
+        errs = [x for x in last.get("errors", []) if "news.google.com" not in x]  # 구글 뉴스 0건은 정상
+        skips = {"short body": "본문이 너무 짧아 건너뜀", "off-topic": "주제와 무관해 건너뜀"}
+        info = {k: errs.count(k) for k in skips if k in errs}
+        if info:
+            st.info("정상 필터링 · " + " · ".join(f"{skips[k]} {n}건" for k, n in info.items()))
+        for e in dict.fromkeys(x for x in errs if x not in skips):
+            if "429" in e or "한도" in e:
+                st.warning(f"⏸ AI 일일 한도 소진 — 태평양 자정(한국 오후 4~5시)에 리셋되면 자동 재개됩니다.\n\n`{e[:160]}`")
+            elif "delimiter" in e or "Expecting" in e:
+                st.warning(f"AI 응답 JSON 형식 오류 (해당 1건만 건너뜀, 이제 자동 복구 시도) · `{e[:120]}`")
+            else:
+                st.error(e)
     else:
         st.info("기록이 없습니다.")
 
