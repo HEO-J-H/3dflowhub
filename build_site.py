@@ -36,6 +36,13 @@ SITE_TITLE = "3dflowhub"
 SITE_DESC = "3D DCC · 게임 엔진 · VFX · AI 3D 최신 소식을 한국어로 요약·정리합니다."
 BASE_URL = "https://heo-j-h.github.io/3dflowhub"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
+CONTACT_EMAIL = "hjh1014@naver.com"  # 광고·제휴 문의 연락처
+
+
+def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의") -> str:
+    """스팸 수집기 대응: 주소를 HTML 엔티티로 인코딩한 mailto 링크 (브라우저에서는 정상 표시·클릭)."""
+    enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
+    return f'<a href="mailto:{enc}?subject={quote(subject)}">{enc}</a>'
 DOMAIN_SLUG = {"3D DCC": "3d-dcc", "Game Engine": "game-engine", "VFX": "vfx", "AI 3D": "ai-3d"}
 DOMAIN_ICON = {"3D DCC": "🧊", "Game Engine": "🎮", "VFX": "💥", "AI 3D": "🤖"}
 e = html.escape
@@ -197,7 +204,8 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <div class="search"><input id="q" type="search" placeholder="제목·카테고리·태그 검색"></div></div>
 <nav class="domains"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
 <main class="wrap"><div id="results" class="board" hidden style="margin-top:16px"></div>{body}</main>
-<footer>© {datetime.now():%Y} {SITE_TITLE} · 원문 저작권은 각 출처에 있습니다 · <a href="{root}feed.xml">RSS</a></footer>
+<footer>© {datetime.now():%Y} {SITE_TITLE} · 원문 저작권은 각 출처에 있습니다 · <a href="{root}feed.xml">RSS</a>
+<br>광고·제휴 문의: {mail_link()} · <a href="{root}contact/">문의 안내</a></footer>
 <script>const ROOT="{root}";{SEARCH_JS}</script></body></html>"""
 
 
@@ -302,6 +310,16 @@ def build() -> dict:
             board_pages(by_cat[(d, c)], folder, "../../../", f"{d} › {c}",
                         f"<h1>{DOMAIN_ICON[d]} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}"), d)
 
+    # 문의 안내 페이지
+    (OUT / "contact").mkdir()
+    contact = (f"<article><h1>📮 광고·제휴 문의</h1>"
+               f"<p>{SITE_TITLE}는 3D DCC · 게임 엔진 · VFX · AI 3D 소식을 한국어로 정리하는 큐레이션 사이트입니다.</p>"
+               f"<h2>이런 문의를 환영합니다</h2><ul><li>광고 · 스폰서 콘텐츠</li><li>제품·서비스 소개 및 리뷰 협업</li>"
+               f"<li>콘텐츠 제휴 · 교육/강의 협업</li><li>저작권 관련 요청 (게시 중단·출처 수정)</li></ul>"
+               f"<h2>연락처</h2><p class=\"lead\">✉️ 이메일: {mail_link()}</p>"
+               f"<p class=\"crumb\">회사/브랜드명, 문의 내용, 회신받을 연락처를 함께 보내주시면 빠르게 답변드리겠습니다.</p></article>")
+    (OUT / "contact" / "index.html").write_text(page(f"광고·제휴 문의 - {SITE_TITLE}", contact, "../"), encoding="utf-8")
+
     # 글 페이지
     (OUT / "p").mkdir()
     for p in posts:
@@ -321,7 +339,7 @@ def build() -> dict:
     (OUT / "feed.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
-    urls = [f"{BASE_URL}/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
+    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{u}</loc></url>" for u in urls)
