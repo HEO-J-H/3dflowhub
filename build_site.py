@@ -294,6 +294,20 @@ h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
 .tile .n{color:var(--muted);font-size:14px}.tile .tools{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
 .tile .tools a{font-size:13px;padding:6px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line)}
 
+/* 분야 카드 (처음 디자인의 목록형 카드) */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.box{background:var(--surface);border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.box h3{margin:0 0 12px;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.box h3 small{margin-left:auto;font-size:14px;font-weight:500;color:var(--muted)}
+.box ul{list-style:none;margin:0;padding:0}.box li{display:flex;justify-content:space-between;align-items:center;
+  min-height:36px;border-bottom:1px solid var(--line);font-size:15px}.box li:last-child{border-bottom:0}
+.box li .n{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.box .more{margin-top:12px;font-size:14px;font-weight:600;color:var(--accent)}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.links a{background:var(--surface);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px}
+.links b{font-size:16px}.links span{color:var(--muted);font-size:14px}
+nav.domains .mob,nav.domains .sep{display:none}
+
 /* 탭·칩·게시판 목록 */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .tabs a{display:inline-flex;align-items:center;min-height:36px;font-size:14px;padding:0 14px;border-radius:999px;
@@ -340,7 +354,8 @@ summary{cursor:pointer;font-weight:600;min-height:28px}
 footer{color:var(--muted);font-size:13px;padding:48px 0 56px;border-top:1px solid var(--line);margin-top:64px}
 footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer a{color:var(--text-2)}
 
-@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}}
+@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}
+  nav.domains .mob{display:inline-flex}nav.domains .sep{display:block;flex:none;width:1px;background:var(--line);margin:6px 2px}}
 @media (max-width:640px){
   body{font-size:16px}.wrap{padding:0 16px}.hero{padding:36px 22px;border-radius:22px}
   .row{grid-template-columns:84px 1fr;gap:12px}.row img,.row .ph{width:84px;height:56px}.row .side{display:none}
@@ -380,9 +395,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">🧊 {SITE_TITLE}</a>
-<nav class="topnav" aria-label="사이트"><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -645,11 +660,12 @@ def build() -> dict:
     tiles = []
     for d in board_domains():
         cats = sorted({c for (dd, c) in by_cat if dd == d}, key=lambda c: -len(by_cat[(d, c)]))
-        chips_ = "".join(f'<a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a>' for c in cats[:6])
-        tiles.append(f'<div class="tile"><div class="ic" aria-hidden="true">{e(DOMAIN_ICON[d])}</div>'
-                     f'<h3><a href="{{ROOT}}{cat_url(d)}">{e(d)}</a></h3>'
-                     f'<div class="n">{e(core.DOMAIN_META.get(d, {}).get("about", ""))[:60]} · {len(by_dom[d])}개</div>'
-                     f'<div class="tools">{chips_}</div></div>')
+        lis = "".join(f'<li><a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a><span class="n">{len(by_cat[(d, c)])}</span></li>'
+                      for c in cats[:8])
+        tiles.append(f'<div class="box"><h3><span aria-hidden="true">{e(DOMAIN_ICON[d])}</span> '
+                     f'<a href="{{ROOT}}{cat_url(d)}">{e(d)}</a><small class="n">{len(by_dom[d])}</small></h3>'
+                     f'<ul>{lis or "<li>준비 중</li>"}</ul>'
+                     f'<a class="more" href="{{ROOT}}{cat_url(d)}">게시판 전체 →</a></div>')
     pop = popular(posts, 8)
     rank = "".join(f'<a href="{{ROOT}}p/{p["id"]}.html"><span><span class="t">{e(p["title_ko"])}</span><br>'
                    f'<span class="k">{e(p["domain"])} › {e(p.get("category") or "")}</span></span></a>' for p in pop)
@@ -667,10 +683,15 @@ def build() -> dict:
         f'<a class="btn ghost" href="{{ROOT}}about/">3dflowhub 소개 →</a></div>'
         f'<div class="stats"><span><b>{len(posts)}</b>정리된 글</span><span><b>{len(board_domains())}</b>분야</span>'
         f'<span><b>{tools_n}</b>도구·주제 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        f'<h2 class="sec">분야별 게시판</h2><div class="grid">{"".join(tiles)}</div>'
         f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
         f'{week_card}'
-        f'<h2 class="sec">분야별로 둘러보기</h2><div class="tiles">{"".join(tiles)}</div>'
         f'<h2 class="sec">최신 글</h2><div class="cards lead-grid">{latest}</div>'
+        f'<h2 class="sec">사이트 안내</h2><div class="links">'
+        f'<a href="{{ROOT}}about/"><b>📘 소개</b><span>3dflowhub는 어떤 곳인가요</span></a>'
+        f'<a href="{{ROOT}}weekly/"><b>🗓️ 주간 요약</b><span>한 주의 흐름을 한눈에</span></a>'
+        f'<a href="{{ROOT}}feed.xml"><b>📡 RSS 구독</b><span>새 글을 바로 받아보기</span></a>'
+        f'<a href="{{ROOT}}contact/"><b>✉️ 문의·제보</b><span>자료 제보·의견·저작권 요청</span></a></div>'
         f'<h2 class="sec">전체 글</h2>')
     board_pages(posts, OUT, "", "전체 글", home_head, "", header_more='<h1>전체 글</h1>')
 
