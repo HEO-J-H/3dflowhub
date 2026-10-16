@@ -343,6 +343,13 @@ def test_empty_domain_selection_collects_nothing():
     assert stats["collected"] == 0 and "no domains selected" in stats["errors"]
 
 
+def test_generate_keywords_cross_domain_deduplication(monkeypatch):
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"keywords": ["Blender 4.3", "Duplicate KW"]}')
+    kws = core.generate_keywords(["3D DCC", "Game Engine"], per_domain=2)
+    all_kws = [k.lower() for vals in kws.values() for k in vals]
+    assert len(all_kws) == len(set(all_kws)), f"Keywords contain cross-domain duplicates: {kws}"
+
+
 def test_opro_trajectory_scores_and_keeps_notes_until_evaluated(monkeypatch):
     import evolve
     runs = [{"strategy_ver": "a", "collected": 10, "saved": 9}, {"strategy_ver": "b", "collected": 10, "saved": 4,

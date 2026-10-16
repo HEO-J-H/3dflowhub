@@ -421,10 +421,11 @@ def _parse_json(text: str) -> dict:
 
 # ─────────────────────────── [1] 동적 키워드 ───────────────────────────
 def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
-    """memory.json 의 성공/실패 키워드를 컨텍스트로 주입해 키워드를 조합."""
+    """memory.json 의 성공/실패 키워드를 컨텍스트로 주입해 키워드를 조합하며, 동일 키워드가 도메인 간 중복되면 제거."""
     mem = load_memory()
     hints = load_strategy().get("keyword_hints", {})
     result: dict[str, list[str]] = {}
+    seen_keywords: set[str] = set()
     for d in domains:
         seeds = DOMAINS[d]["seeds"]
         prompt = (
@@ -442,7 +443,14 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
         except Exception as e:  # LLM 실패 시 시드로 폴백
             log.warning("키워드 생성 실패(%s) → 시드 사용: %s", d, e)
             kws = []
-        result[d] = [k for k in kws if isinstance(k, str)][:per_domain] or seeds[:per_domain]
+        raw_list = [k for k in kws if isinstance(k, str)] or seeds[:per_domain]
+        domain_unique = []
+        for kw in raw_list:
+            norm_kw = kw.strip().lower()
+            if norm_kw and norm_kw not in seen_keywords:
+                seen_keywords.add(norm_kw)
+                domain_unique.append(kw)
+        result[d] = domain_unique[:per_domain]
     LAST_KEYWORDS.clear()
     LAST_KEYWORDS.update(result)
     return result
