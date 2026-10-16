@@ -95,12 +95,24 @@ def fetch_pages_stats(days: int = 30) -> dict | None:
         return None
     api = f"https://{code}.goatcounter.com/api/v0"
     h = {"Authorization": f"Bearer {GC_TOKEN}", "Content-Type": "application/json"}
-    start = (date.today() - timedelta(days=days)).isoformat()
-    total = requests.get(f"{api}/stats/total", params={"start": start}, headers=h, timeout=20).json()
-    hits = requests.get(f"{api}/stats/hits", params={"start": start, "limit": 100}, headers=h, timeout=20).json()
-    refs = requests.get(f"{api}/stats/toprefs", params={"start": start, "limit": 10}, headers=h, timeout=20).json()
-    posts = {}
-    for row in hits.get("hits", []):
+    start = f"{date.today() - timedelta(days=days)}T00:00:00Z"  # RFC3339
+
+    def get(path: str, **params) -> dict:
+        r = requests.get(f"{api}{path}", params={"start": start, **params}, headers=h, timeout=20)
+        r.raise_for_status()  # 401/429/5xx 를 0건으로 오인해 기존 통계를 덮어쓰지 않도록
+        return r.json()
+
+    total = get("/stats/total")
+    refs = get("/stats/toprefs", limit=10)
+    posts, rows, exclude = {}, [], []
+    for _ in range(20):  # hits 는 한 번에 최대 100개 → 'more' 동안 이어받기 (최대 2,000 경로)
+        page = get("/stats/hits", limit=100, **({"exclude_paths": ",".join(map(str, exclude))} if exclude else {}))
+        batch = page.get("hits") or []
+        rows += batch
+        exclude += [r.get("path_id") for r in batch if r.get("path_id") is not None]
+        if not page.get("more") or not batch:
+            break
+    for row in rows:
         m = re.search(r"/p/([^/]+)\.html$", row.get("path", ""))
         if m:
             posts[m.group(1)] = {"title": row.get("title", ""), "views": int(row.get("count", 0))}

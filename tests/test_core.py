@@ -161,7 +161,7 @@ def test_domain_weights_need_samples_and_keep_floor():
     many = {"by_group": {"VFX": {"posts": 6, "avg": 90}, "AI 3D": {"posts": 4, "avg": 10},
                          "3D DCC": {"posts": 1, "avg": 0}, "Game Engine": {"posts": 1, "avg": 0}}}
     w = evolve.learn_domain_weights(many, {})
-    assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.15
+    assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.1 and abs(sum(w.values()) - 1) < 0.01
 
 
 def test_simhash_detects_same_story_different_outlet():
@@ -327,3 +327,17 @@ def test_save_config_keeps_other_keys():
     core.save_config({"interval": "계속"})
     c = core._load_json(core.CONFIG_PATH, {})
     assert c["goatcounter_code"] == "3dflowhub" and "X" in c["custom_domains"] and c["interval"] == "계속"
+
+
+def test_domain_weights_stay_positive_with_many_domains(monkeypatch):
+    import evolve
+    doms = {f"D{i}": {} for i in range(9)}
+    monkeypatch.setattr(core, "DOMAINS", doms)
+    perf = {"by_group": {d: {"posts": 2, "avg": (i + 1) * 10} for i, d in enumerate(doms)}}
+    w = evolve.learn_domain_weights(perf, {})
+    assert min(w.values()) > 0 and w["D8"] > w["D0"] and abs(sum(w.values()) - 1) < 0.01
+
+
+def test_empty_domain_selection_collects_nothing():
+    stats = core.run_pipeline(3, [], publish=False)
+    assert stats["collected"] == 0 and "no domains selected" in stats["errors"]

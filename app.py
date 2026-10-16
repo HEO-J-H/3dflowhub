@@ -34,10 +34,10 @@ with st.sidebar:
         new_seeds = st.text_input("검색 키워드 (쉼표로 구분, 비우면 AI 가 추천)", placeholder="Bambu Lab, Prusa, resin printer")
         new_feeds = st.text_area("RSS 주소 (줄마다 하나, 선택)", placeholder="https://example.com/feed/", height=80)
         if st.button("➕ 분야 추가 (GitHub 반영)"):
-            name = new_name.strip()
+            name = new_name.strip()[:30]  # core 의 이름 길이 제한과 동일 (불일치 시 수집에서 빠짐)
             if not name:
                 st.error("분야 이름을 입력하세요.")
-            elif name in core.DOMAINS:
+            elif name in core.DOMAINS or name in core.BUILTIN_DOMAINS:
                 st.error("이미 있는 분야입니다.")
             else:
                 seeds = [s.strip() for s in new_seeds.split(",") if s.strip()]
@@ -65,12 +65,13 @@ with st.sidebar:
                 st.error(err) if err else st.success(f"'{name}' 추가 완료 (키워드: {', '.join(seeds or [name])}). "
                                                      "다음 수집부터 반영되고 사이트에 게시판이 생깁니다.")
                 st.rerun()
-        custom_names = list((cfg.get("custom_domains") or {}).keys())
+        custom_names = [k for k, v in (cfg.get("custom_domains") or {}).items() if not v.get("archived")]
         if custom_names:
             st.divider()
             del_name = st.selectbox("추가한 분야 삭제", ["선택…"] + custom_names)
             if del_name != "선택…" and st.button(f"🗑️ '{del_name}' 삭제 (이미 수집된 글은 유지)"):
-                custom = {k: v for k, v in cfg["custom_domains"].items() if k != del_name}
+                custom = dict(cfg["custom_domains"])  # 보관 처리: 수집 중단, 게시판·기존 글 주소는 유지
+                custom[del_name] = {**custom[del_name], "archived": True}
                 core.save_config({**core.load_config(), "custom_domains": custom,
                                   "domains": [d for d in cfg["domains"] if d != del_name]})
                 err = core.git_sync(["config.json"], f"chore(config): 수집 분야 삭제 — {del_name}")

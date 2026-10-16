@@ -146,6 +146,7 @@ DOMAIN_META: dict[str, dict] = {
     "AI 3D": {"icon": "🤖", "slug": "ai-3d", "about": "AI for 3D: generative 3D, Gaussian splatting, NeRF, research"},
 }
 BUILTIN_DOMAINS = tuple(DOMAINS)
+ARCHIVED_DOMAINS: list[str] = []  # 삭제(보관)된 사용자 분야 — 게시판만 유지
 
 
 def apply_custom_domains(cfg: dict | None = None) -> list[str]:
@@ -160,6 +161,13 @@ def apply_custom_domains(cfg: dict | None = None) -> list[str]:
     for name, spec in (cfg.get("custom_domains") or {}).items():
         name = str(name).strip()[:30]
         if not name or name in BUILTIN_DOMAINS or not isinstance(spec, dict):
+            continue
+        if spec.get("archived"):  # 삭제된 분야: 수집은 멈추고 사이트 게시판·주소는 유지
+            DOMAIN_META[name] = {"icon": str(spec.get("icon") or "📁")[:4],
+                                 "slug": "x-" + hashlib.blake2b(name.encode(), digest_size=4).hexdigest(),
+                                 "about": str(spec.get("about") or name)[:200]}
+            if name not in ARCHIVED_DOMAINS:
+                ARCHIVED_DOMAINS.append(name)
             continue
         DOMAINS[name] = {"seeds": [s for s in spec.get("seeds", []) if isinstance(s, str)][:8] or [name],
                          "feeds": [f for f in spec.get("feeds", []) if isinstance(f, str) and f.startswith("http")][:8]}
@@ -1254,7 +1262,13 @@ def fetch_dashboard_rows(limit: int = 500) -> list[dict]:
 
 # ─────────────────────────── 엔트리포인트 ───────────────────────────
 def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish: bool = True) -> dict:
-    domains = [d for d in (domains or list(DOMAINS)) if d in DOMAINS]
+    if domains is None:  # 빈 목록([])은 '수집 안 함' — 전체 수집으로 바뀌지 않도록
+        domains = list(DOMAINS)
+    domains = [d for d in domains if d in DOMAINS]
+    if not domains:
+        log.info("선택된 수집 분야 없음 — 건너뜀")
+        return {"at": datetime.now(timezone.utc).isoformat(), "collected": 0, "saved": 0, "published": 0,
+                "drafts": 0, "publish_errors": 0, "errors": ["no domains selected"]}
     notion = _notion()
     ensure_notion_schema(notion)
     seen = notion_existing_urls(notion) if notion else set()
@@ -1267,9 +1281,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
              "saved": 0, "published": 0, "drafts": 0, "publish_errors": 0}
 
     budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
-    for raw in items:
+    for idx, raw in enumerate(items):
         if llm_usage_today() >= budget:
-            RUN_ERRORS.append(f"LLM 일일 한도({budget}회) 도달 — 남은 {len(items) - stats['saved']}건은 다음 날")
+            RUN_ERRORS.append(f"LLM 일일 한도({budget}회) 도달 — 남은 {len(items) - idx}건은 다음 날")
             break
         try:
             item = summarize(raw)

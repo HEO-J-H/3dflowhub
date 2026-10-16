@@ -81,6 +81,11 @@ def rfc822(iso: str | None) -> str:
         return format_datetime(datetime.now().astimezone())
 
 
+def board_domains() -> list[str]:
+    """사이트 게시판 대상: 수집 중인 분야 + 글이 남아 있는 보관 분야."""
+    return list(core.DOMAINS) + [d for d in core.ARCHIVED_DOMAINS if d not in core.DOMAINS]
+
+
 def slug(name: str) -> str:
     s = re.sub(r"[\s/·]+", "-", name.strip())
     s = re.sub(r"[^\w\-가-힣]", "", s)
@@ -116,7 +121,7 @@ def load_posts() -> list[dict]:
         p = core._load_json(f, None)
         if isinstance(p, dict) and p.get("title_ko"):
             p.setdefault("id", f.stem)
-            if p.get("domain") not in core.DOMAINS:  # 게시판이 없는 도메인 → 링크 깨짐 방지
+            if p.get("domain") not in core.DOMAIN_META:  # 정보가 전혀 없는 도메인만 대체 (보관 분야는 유지)
                 p["domain"] = "3D DCC"
             posts.append(p)
     posts.sort(key=lambda p: p.get("collected_at") or "", reverse=True)
@@ -243,14 +248,17 @@ box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${R
 """
 
 
-def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "") -> str:
+def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "",
+         extra_head: str = "") -> str:
     nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(DOMAIN_ICON[d])} {e(d)}</a>'
-                  for d in core.DOMAINS)
+                  for d in board_domains())
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(desc[:150])}">
 {f'<link rel="canonical" href="{e(canonical)}">' if canonical else ''}
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:150])}">
+<meta property="og:site_name" content="{SITE_TITLE}"><meta name="twitter:card" content="summary_large_image">
+{extra_head}
 {head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
@@ -286,6 +294,61 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         d = out_dir if n == 1 else out_dir / "page" / str(n)
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(page(f"{title} - {SITE_TITLE}", body, r, domain_on), encoding="utf-8")
+
+
+def indexnow_submit(hours: int = 3) -> str:
+    """IndexNow: 최근 N시간 내 새 글 URL 을 검색엔진(네이버·Bing·Yandex·Seznam·Yep 공유)에 즉시 알림.
+    키 파일은 static/<32자리hex>.txt 로 사이트 루트(/3dflowhub/)에 배포되어 있어야 한다."""
+    import requests
+    keys = [f.stem for f in (ROOT / "static").glob("*.txt") if re.fullmatch(r"[0-9a-f]{32}", f.stem)]
+    if not keys:
+        return "키 파일 없음"
+    cutoff = (datetime.utcnow().timestamp() - hours * 3600)
+    urls = []
+    for p in load_posts():
+        try:
+            ts = datetime.fromisoformat((p.get("collected_at") or "").replace("Z", "+00:00")).timestamp()
+        except ValueError:
+            continue
+        if ts >= cutoff:
+            urls.append(f"{BASE_URL}/p/{p['id']}.html")
+    if not urls:
+        return "새 글 없음"
+    urls += [f"{BASE_URL}/", f"{BASE_URL}/sitemap.xml"]
+    body = {"host": BASE_URL.split("/")[2], "key": keys[0], "keyLocation": f"{BASE_URL}/{keys[0]}.txt",
+            "urlList": urls[:10000]}
+    r = requests.post("https://api.indexnow.org/indexnow", json=body, timeout=20,
+                      headers={"Content-Type": "application/json; charset=utf-8"})
+    return f"{len(urls)}개 URL → HTTP {r.status_code}"
+
+
+def post_head(p: dict) -> str:
+    """글 페이지 SEO: og:image·article 메타 + JSON-LD (BlogPosting, BreadcrumbList)."""
+    url = f"{BASE_URL}/p/{p['id']}.html"
+    img = (p.get("media") or {}).get("image") or ""
+    date = (p.get("collected_at") or "")[:19]
+    ld = [{
+        "@context": "https://schema.org", "@type": "BlogPosting",
+        "headline": p["title_ko"][:110], "description": (p.get("summary") or "")[:300],
+        "datePublished": date, "dateModified": date, "inLanguage": "ko-KR",
+        "mainEntityOfPage": url, "url": url, **({"image": [img]} if img else {}),
+        "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"},
+        "publisher": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"},
+        "articleSection": f"{p['domain']} › {p.get('category') or '기타'}",
+        "keywords": ", ".join(p.get("tags") or []), "isBasedOn": p.get("url", ""),
+    }, {
+        "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": BASE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": p["domain"], "item": f"{BASE_URL}/{cat_url(p['domain'])}"},
+            {"@type": "ListItem", "position": 3, "name": p.get("category") or "기타",
+             "item": f"{BASE_URL}/{cat_url(p['domain'], p.get('category') or '기타')}"},
+            {"@type": "ListItem", "position": 4, "name": p["title_ko"][:110], "item": url}]}]
+    # </script> 탈출 방지: '<' 를 유니코드 이스케이프
+    js = json.dumps(ld, ensure_ascii=False).replace("<", "\\u003c")
+    return ((f'<meta property="og:image" content="{e(img)}">' if img else "") +
+            f'<meta property="og:type" content="article"><meta property="og:url" content="{e(url)}">'
+            f'<meta property="article:published_time" content="{e(date)}">'
+            f'<script type="application/ld+json">{js}</script>')
 
 
 def post_html(p: dict, root: str, related: list[dict]) -> str:
@@ -338,7 +401,7 @@ def build() -> dict:
 
     # 홈: 최신 글 + 도메인별 카테고리 게시판 카드
     cards = []
-    for d in core.DOMAINS:
+    for d in board_domains():
         cats = sorted({c for (dd, c) in by_cat if dd == d}, key=lambda c: -len(by_cat[(d, c)]))
         items = "".join(f'<li><a href="{{ROOT}}{cat_url(d, c)}">{e(c)}</a> <span class="n">({len(by_cat[(d, c)])})</span></li>'
                         for c in cats[:8])
@@ -349,7 +412,7 @@ def build() -> dict:
     board_pages(posts, OUT, "", "전체 글", home_head, "")
 
     # 도메인 게시판 + 세부 카테고리 게시판
-    for d in core.DOMAINS:
+    for d in board_domains():
         cats = sorted({c for (dd, c) in by_cat if dd == d}, key=lambda c: -len(by_cat[(d, c)]))
 
         def tabs(active: str | None, root: str) -> str:
@@ -401,7 +464,7 @@ def build() -> dict:
                   [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
         (OUT / "p" / f"{p['id']}.html").write_text(
             page(f"{p['title_ko']} - {SITE_TITLE}", post_html(p, "../", related), "../", p["domain"],
-                 p.get("summary") or SITE_DESC, f"{BASE_URL}/p/{p['id']}.html"), encoding="utf-8")
+                 p.get("summary") or SITE_DESC, f"{BASE_URL}/p/{p['id']}.html", post_head(p)), encoding="utf-8")
 
     # 검색 인덱스·RSS·사이트맵
     (OUT / "search.json").write_text(json.dumps(
@@ -415,7 +478,7 @@ def build() -> dict:
                                   f'<atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
-    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in core.DOMAINS] + \
+    urls = [f"{BASE_URL}/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
            [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
@@ -428,7 +491,11 @@ def build() -> dict:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--backfill", action="store_true", help="노션 글을 content/posts 로 복원")
+    ap.add_argument("--indexnow", action="store_true", help="최근 새 글을 IndexNow(네이버·Bing 등)에 알림 (배포 후)")
     a = ap.parse_args()
+    if a.indexnow:
+        print("IndexNow:", indexnow_submit())
+        raise SystemExit(0)
     if a.backfill:
         print("노션 복원:", backfill_from_notion(), "개")
     print("빌드:", build())

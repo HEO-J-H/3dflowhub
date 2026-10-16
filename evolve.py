@@ -96,9 +96,10 @@ def learn_domain_weights(perf: dict, strategy: dict) -> dict[str, float]:
     if sum(by.get(d, {}).get("posts", 0) for d in core.DOMAINS) < 8:  # 표본이 적으면 학습 보류
         return strategy.get("domain_weights") or {d: round(1 / len(core.DOMAINS), 3) for d in core.DOMAINS}
     total = sum(avgs.values()) or 1
-    floor = 0.15
+    floor = min(0.15, 0.5 / len(avgs))  # 분야가 많아도 음수·역전 없음 (최소 비중 합 ≤ 50%)
     raw = {d: floor + (1 - floor * len(avgs)) * avgs[d] / total for d in avgs}
-    return {d: round(w, 3) for d, w in raw.items()}
+    s_ = sum(raw.values()) or 1
+    return {d: round(w / s_, 3) for d, w in raw.items()}
 
 
 def _due(strategy: dict, key: str, every: int) -> bool:
@@ -137,13 +138,13 @@ def update_strategy(strategy: dict) -> dict:
             changes.append(f"피드 차단: {url}")
 
     # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습 (GitHub Pages 방문수도 노션 Views 에 합산)
-    try:
-        import monetize
-        pages = monetize.collect_pages()
-        if pages:
-            changes.append(f"Pages 30일 조회수 {pages['pv_30d']}")
-    except Exception as e:
-        log.warning("Pages 통계 수집 실패: %s", e)
+    if _due(strategy, "pages_at", 3 * 3600):  # 3시간마다만 (10분 수집마다 API 호출·기록 증가 방지)
+        try:
+            import monetize
+            if monetize.collect_pages():
+                strategy["pages_at"] = _now()
+        except Exception as e:
+            log.warning("Pages 통계 수집 실패: %s", e)
     try:
         perf = performance_table()
     except Exception as e:
