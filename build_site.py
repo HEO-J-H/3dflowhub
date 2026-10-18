@@ -422,6 +422,18 @@ a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";f
 .aiby{font-size:13px;color:var(--muted);margin:2px 0 14px}.aiby a{text-decoration:underline}.aiby .ok{color:#248a3d}
 .optip{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px 16px;margin:14px 0}
 .optip b{display:block;margin-bottom:4px}.optip p{margin:0;white-space:pre-line}
+/* 홈 '도구별 기초 배우기' — 영상 썸네일 강조 */
+.lt-hero{position:relative;display:block;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:4px 0 10px;background:#000}
+.lt-hero img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.lt-hero:hover img{transform:scale(1.03)}
+.lt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.65))}
+.lt-play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;font-size:20px;z-index:1;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.lt-cap{position:absolute;left:12px;right:12px;bottom:10px;color:#fff;font-weight:700;font-size:15px;z-index:1}
+.lt-list{list-style:none;padding:0;margin:0}.lt-list li{border-top:1px solid var(--line)}.lt-list li:first-child{border-top:0}
+.lt-list a{display:flex;align-items:center;gap:10px;padding:7px 0;min-height:44px}
+.lt-th{width:64px;height:36px;border-radius:6px;object-fit:cover;flex:none;background:var(--accent-soft)}
+.lt-ph{display:grid;place-items:center;font-size:16px}.lt-t{flex:1;min-width:0;line-height:1.35}
+.lt-v{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:2px 8px}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -972,12 +984,26 @@ def build() -> dict:
     by_tool: dict[str, list] = defaultdict(list)
     for g in learn_guides:
         by_tool[g["tool"]].append(g)
-    learn_tiles = "".join(
-        f'<div class="box"><h3><span aria-hidden="true">📚</span> <a href="{{ROOT}}learn/#{e(slug(t))}">{e(t)}</a>'
-        f'<small class="n">{len(gs)}</small></h3><ul>'
-        + "".join(f'<li><a href="{{ROOT}}{learn_url(g)}">{e(g["title"].split(" — ")[0])}</a>'
-                  f'<span class="n">{"▶" if g.get("videos") else ""}</span></li>' for g in gs[:5])
-        + f'</ul><a class="more" href="{{ROOT}}{learn_url(gs[0])}">처음부터 배우기 →</a></div>' for t, gs in by_tool.items())
+    def learn_tile(t: str, gs: list[dict]) -> str:
+        """홈 '도구별 기초 배우기' 상자: 대표 영상 썸네일(▶) + 가이드마다 작은 썸네일 — 글보다 영상을 선호하는 독자용."""
+        lead = next((g for g in gs if g.get("videos")), gs[0])
+        lv = (lead.get("videos") or [None])[0]
+        hero = (f'<a class="lt-hero" href="{{ROOT}}{learn_url(lead)}" aria-label="{e(lead["title"])} 영상 가이드">'
+                f'<img src="https://i.ytimg.com/vi/{e(lv["id"])}/mqdefault.jpg" alt="" loading="lazy">'
+                f'<span class="lt-play" aria-hidden="true">▶</span><span class="lt-cap">{e(lead["title"].split(" — ")[0])}</span></a>'
+                if lv else "")
+        rows = "".join([
+            f'<li><a href="{{ROOT}}{learn_url(g)}">'
+            + (f'<img class="lt-th" src="https://i.ytimg.com/vi/{e(g["videos"][0]["id"])}/default.jpg" alt="" loading="lazy">'
+               if g.get("videos") else '<span class="lt-th lt-ph" aria-hidden="true">📚</span>')
+            + f'<span class="lt-t">{e(g["title"].split(" — ")[0])}</span>'
+            + ('<span class="lt-v" title="영상 포함">▶ 영상</span>' if g.get("videos") else "") + '</a></li>'
+            for g in gs if g is not lead][:4])
+        return (f'<div class="box lt"><h3><span aria-hidden="true">📚</span> <a href="{{ROOT}}learn/#{e(slug(t))}">{e(t)}</a>'
+                f'<small class="n">{len(gs)}</small></h3>{hero}<ul class="lt-list">{rows}</ul>'
+                f'<a class="more" href="{{ROOT}}{learn_url(gs[0])}">처음부터 배우기 →</a></div>')
+
+    learn_tiles = "".join(learn_tile(t, gs) for t, gs in by_tool.items())
     home_head = (
         f'<section class="hero"><h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
         f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
