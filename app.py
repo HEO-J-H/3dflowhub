@@ -139,7 +139,7 @@ with st.sidebar:
     st.divider()
     left = core.llm_budget_left()
     if st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"] or left <= 0,
-                 use_container_width=True,
+                 width="stretch",
                  help="이 PC에서 현재 설정으로 즉시 수집합니다 (GitHub 자동 수집과 별개)"):
         job.update(running=True, result=None, error=None)
         threading.Thread(target=_run_local, daemon=True,
@@ -149,18 +149,18 @@ with st.sidebar:
     if left <= 0 and not job["running"]:
         st.caption(f"⏸ AI 일일 한도 소진 — {core.llm_reset_kst()}(한국시간)에 다시 켜집니다")
     job_panel()
-    if GH_PAT and st.button("☁️ GitHub에서 실행", use_container_width=True):
+    if GH_PAT and st.button("☁️ GitHub에서 실행", width="stretch"):
         r = requests.post(f"https://api.github.com/repos/{GH_REPO}/actions/workflows/auto_curation.yml/dispatches",
                           headers={"Authorization": f"Bearer {GH_PAT}", "Accept": "application/vnd.github+json"},
                           json={"ref": "main", "inputs": {}}, timeout=20)
         st.toast("GitHub 실행 요청 완료" if r.status_code == 204 else f"요청 실패 {r.status_code}")
-    if st.button("🔄 데이터 새로고침", use_container_width=True):
+    if st.button("🔄 데이터 새로고침", width="stretch"):
         st.cache_data.clear()
         st.rerun()
     st.divider()
-    st.link_button("🌐 게시판 사이트", SITE_URL, use_container_width=True)
-    st.link_button("📝 티스토리", "https://hjh1014.tistory.com/", use_container_width=True)
-    st.link_button("⚙️ GitHub Actions", f"https://github.com/{GH_REPO}/actions", use_container_width=True)
+    st.link_button("🌐 게시판 사이트", SITE_URL, width="stretch")
+    st.link_button("📝 티스토리", "https://hjh1014.tistory.com/", width="stretch")
+    st.link_button("⚙️ GitHub Actions", f"https://github.com/{GH_REPO}/actions", width="stretch")
 
 # ─────────────────────────── 본문 ───────────────────────────
 st.title("큐레이션 현황판")
@@ -207,7 +207,7 @@ with t_home:
         for i, (_, r) in enumerate(df.head(6).iterrows()):
             with cols[i % 3], st.container(border=True):
                 if isinstance(r.get("이미지"), str) and r["이미지"]:
-                    st.image(r["이미지"], use_container_width=True)
+                    st.image(r["이미지"], width="stretch")
                 link = r.get("사이트") if isinstance(r.get("사이트"), str) else r["원문"]
                 st.markdown(f"**[{r['제목']}]({link})**")
                 st.caption(f"{r['도메인']} › {r['카테고리']}" + (f" · {r['유형']}" if r.get("유형") else ""))
@@ -238,7 +238,7 @@ with t_list:
         st.caption("✅ **추천**한 글은 사이트 홈 '에디터 추천'에 올라가고, 🚫 **숨김**한 글은 사이트에서 빠집니다. "
                    "이 선택은 AI 수집 전략 학습에도 반영됩니다.")
         edited = st.data_editor(
-            view, use_container_width=True, hide_index=True, key="curate",
+            view, width="stretch", hide_index=True, key="curate",
             disabled=[c for c in view.columns if c not in ("추천", "숨김")],
             column_order=["추천", "숨김"] + [c for c in view.columns if c not in ("추천", "숨김", "ID")],
             column_config={"추천": st.column_config.CheckboxColumn("✅ 추천", width="small"),
@@ -299,7 +299,7 @@ with t_auto:
                  "방식": {"schedule": "자동", "workflow_dispatch": "수동"}.get(r["event"], r["event"]),
                  "시작(KST)": pd.Timestamp(r["created_at"]).tz_convert("Asia/Seoul").strftime("%m-%d %H:%M"),
                  "링크": r["html_url"]} for r in runs]
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True,
+        st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True,
                      column_config={"링크": st.column_config.LinkColumn(display_text="열기")})
         if not any(r["event"] == "schedule" for r in runs):
             st.warning("아직 자동(스케줄) 실행 기록이 없습니다. 깃허브 크론이 시작되기까지 시간이 걸릴 수 있습니다.")
@@ -400,7 +400,7 @@ with t_rev:
     if pages_perf.get("posts"):
         top = sorted(pages_perf["posts"].items(), key=lambda kv: -kv[1]["views"])[:15]
         st.dataframe(pd.DataFrame([{"글": v["title"] or k, "조회수": v["views"], "주소": f"{site_url}p/{k}.html"}
-                                   for k, v in top]), use_container_width=True, hide_index=True,
+                                   for k, v in top]), width="stretch", hide_index=True,
                      column_config={"주소": st.column_config.LinkColumn()})
         if pages_perf.get("refs"):
             st.caption("유입 경로: " + " · ".join(f"{n} {c}" for n, c in pages_perf["refs"]))
@@ -457,7 +457,7 @@ with t_rev:
         if latest.get("posts"):
             st.dataframe(pd.DataFrame([{"글": v["title"], "조회수": v["views"], "주소": k}
                                        for k, v in latest["posts"].items()]).sort_values("조회수", ascending=False),
-                         use_container_width=True, hide_index=True,
+                         width="stretch", hide_index=True,
                          column_config={"주소": st.column_config.LinkColumn()})
         st.caption(f"수집: {latest.get('at', '-')}")
 
@@ -534,7 +534,7 @@ with t_set:
         publish = c4.toggle("티스토리 초안 생성", value=bool(cfg["publish"]))
         llm_budget = st.number_input("AI 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
                                      help="Gemini 무료 한도 보호 — AI Studio 에서 내 한도를 확인해 맞추세요.")
-        if st.form_submit_button("💾 수집 설정 저장", type="primary", use_container_width=True):
+        if st.form_submit_button("💾 수집 설정 저장", type="primary", width="stretch"):
             if not domains:
                 st.error("수집 분야를 하나 이상 선택하세요.")
             else:
@@ -566,7 +566,7 @@ with t_set:
         st.subheader("✉️ 메일 알림")
         email_to = st.text_input("받는 주소", cfg["email_to"])
         email_per_day = st.number_input("하루 최대 수신 횟수", 0, 48, int(cfg["email_per_day"]))
-        if st.form_submit_button("💾 메일 설정 저장", use_container_width=True):
+        if st.form_submit_button("💾 메일 설정 저장", width="stretch"):
             save({"email_to": email_to, "email_per_day": email_per_day}, "메일 설정")
     with b, st.form("add_domain", clear_on_submit=True):
         st.subheader("➕ 수집 분야 추가")
@@ -576,7 +576,7 @@ with t_set:
         new_about = n2.text_input("설명 (AI 분류 기준)", placeholder="3D printing hardware, slicers, materials")
         new_seeds = st.text_input("검색 키워드 (쉼표, 비우면 AI 추천)", placeholder="Bambu Lab, Prusa, resin printer")
         new_feeds = st.text_area("RSS 주소 (줄마다 하나, 선택)", height=68)
-        if st.form_submit_button("➕ 분야 추가", use_container_width=True):
+        if st.form_submit_button("➕ 분야 추가", width="stretch"):
             name = new_name.strip()[:30]
             if not name:
                 st.error("분야 이름을 입력하세요.")
