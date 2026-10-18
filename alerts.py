@@ -114,7 +114,16 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
         pass
 
     # 6) 연결 안 된 기능
-    if not core._load_json(core.ROOT / "memory" / "search_console.json", {}).get("queries"):
+    gsc_err = core.load_strategy().get("gsc_error")
+    gsc_data = core._load_json(core.ROOT / "memory" / "search_console.json", {})
+    if gsc_err:
+        hint = (" — Search Console 사용자 및 권한에 서비스 계정 이메일이 추가됐는지 확인"
+                if "403" in gsc_err or "permission" in gsc_err.lower() else "")
+        out.append(_alert("warning", "Search Console 연결 오류", gsc_err[:160] + hint))
+    elif gsc_data.get("at") and not gsc_data.get("queries"):
+        out.append(_alert("info", "Search Console 연결됨 · 검색 데이터 쌓이는 중",
+                          "아직 검색 노출이 적어 검색어가 없습니다 (데이터는 2~3일 늦게 확정)"))
+    elif not gsc_data.get("at"):
         out.append(_alert("info", "Search Console 미연결", "연결하면 실제 검색어로 키워드·제안이 좋아집니다 (gsc.py 안내)"))
 
     # 7) 직접 등록한 기한

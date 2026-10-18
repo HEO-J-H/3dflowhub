@@ -550,14 +550,19 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         manager.review()
     except Exception as e:
         log.warning("AI 관리자 실패: %s", e)
-    if force or _due(strategy, "gsc_at", 24 * 3600):  # 검색 데이터는 하루 단위로 확정
+    import gsc
+    # 검색 데이터는 하루 단위로 확정 → 성공하면 24시간 뒤, 실패하면 3시간 뒤 재시도. 키가 없으면 기록하지 않음(등록 즉시 동작)
+    if gsc.enabled() and (force or (_due(strategy, "gsc_at", 24 * 3600) and _due(strategy, "gsc_try_at", 3 * 3600))):
+        strategy["gsc_try_at"] = _now()
         try:
-            import gsc
-            if gsc.collect():
+            if gsc.collect() is not None:
+                strategy["gsc_at"] = _now()
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "gsc": gsc.top_queries(5)}])[-30:]
         except Exception as e:
             log.warning("Search Console 수집 실패: %s", e)
-        strategy["gsc_at"] = _now()
+            strategy["gsc_error"] = str(e)[:300]
+        else:
+            strategy.pop("gsc_error", None)
         core._save_json(core.STRATEGY_PATH, strategy)
     auto = bool(core.load_config().get("auto_mode"))
     plan = {}
