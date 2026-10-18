@@ -114,6 +114,16 @@ def load_remote_memory() -> dict:
         return core.load_memory()
 
 
+def kst(ts: str) -> str:
+    """UTC ISO 시각 → 한국 시간 'YYYY-MM-DD HH:MM'."""
+    try:
+        t = pd.Timestamp(ts)
+        t = t.tz_localize("UTC") if t.tzinfo is None else t
+        return t.tz_convert("Asia/Seoul").strftime("%Y-%m-%d %H:%M")
+    except Exception:
+        return str(ts)[:16]
+
+
 def ago(ts: str) -> str:
     """ISO 시각 → '3분 전' 같은 사람이 읽기 쉬운 표현."""
     try:
@@ -343,7 +353,7 @@ with t_auto:
     k4.metric("마지막 분석", ago(rep.get("at", "")) if rep else "없음", help="AI 관리자가 마지막으로 사이트를 분석한 시각")
     if rep:
         with st.container(border=True):
-            st.markdown(f"**오늘의 진단** · {rep.get('at', '')[:10]}")
+            st.markdown(f"**오늘의 진단** · {kst(rep.get('at', ''))}")
             st.write(rep.get("text", ""))
     with st.container(border=True):
         t1, t2 = st.columns([3, 1.2])
@@ -401,7 +411,7 @@ with t_auto:
         with st.container(border=True):
             act = x.get("action") or {}
             st.caption(f"{CAT_ICON.get(x.get('category'), '•')} {x.get('category')} · 노력 {x.get('effort')} · "
-                       f"{x['at'][:10]}" + (f" · 기대 효과: {x['expected']}" if x.get("expected") else ""))
+                       f"{kst(x['at'])[:10]}" + (f" · 기대 효과: {x['expected']}" if x.get("expected") else ""))
             st.markdown(f"#### {x['title']}")
             st.markdown(f"**근거** — {x.get('evidence', '')}")
             st.markdown(f"**제안** — {x.get('proposal', '')}")
@@ -437,7 +447,7 @@ with t_auto:
                 save_manager("관리자에게 의견")
                 st.toast("보냈습니다 — 다음 분석 때 답변합니다")
         for m in mb["messages"][:10]:
-            st.markdown(f"**나** · {m['at'][:16].replace('T', ' ')}  \n{m['text']}")
+            st.markdown(f"**나** · {kst(m['at'])}  \n{m['text']}")
             st.markdown(f"> 🧭 {m['reply']}" if m["reply"] else "> ⏳ 다음 분석 때 답변 예정")
 
     st.divider()
