@@ -1,0 +1,81 @@
+{
+  "id": "maya-multi-cut-tool-1ff9",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Multi-Cut tool",
+  "title": "Multi-Cut — 엣지 자르기·루프",
+  "summary": "Multi-Cut 툴은 Maya에서 폴리곤 메시의 면을 자르고, 새로운 엣지를 추가하거나, 정점을 연결하여 토폴로지를 자유롭게 수정하는 핵심 모델링 도구입니다.",
+  "when": [
+    "하드 표면 모델링 중 특정 위치에 루프 엣지(Edge Loop)를 추가하고 싶을 때",
+    "사각형 면을 가로질러 새로운 엣지를 그어 구조를 변경할 때",
+    "불필요한 엣지를 잘라내어 면의 흐름을 정리할 때"
+  ],
+  "steps": [
+    "메시 오브젝트를 선택하고 마우스 우클릭하여 Object Mode에서 Vertex 또는 Face 모드로 전환합니다.",
+    "Modeling 툴킷(Modeling Toolkit) 패널에서 Multi-Cut 아이콘을 클릭하거나 단축키 Ctrl + Shift + X를 누릅니다.",
+    "자르고자 하는 엣지나 정점 위에서 마우스 좌클릭하여 컷팅 시작점을 지정합니다.",
+    "원하는 위치로 마우스를 이동하여 엣지나 정점을 연결하고 다시 좌클릭합니다.",
+    "Enter 키를 누르거나 마우스 우클릭을 하여 컷팅 작업을 확정(완료)합니다."
+  ],
+  "params": [
+    {
+      "name": "Ctrl (Hold)",
+      "desc": "누르고 있으면 가로지르는 전체 엣지 루프(Edge Loop)를 생성합니다."
+    },
+    {
+      "name": "Shift (Hold)",
+      "desc": "누르고 있으면 기존 엣지 중간에 정확히 50% 지점으로 스냅되어 컷팅됩니다."
+    },
+    {
+      "name": "Middle Mouse Button",
+      "desc": "클릭 시 기존 엣지의 정확히 중간 지점에 새로운 점이나 컷을 생성합니다."
+    },
+    {
+      "name": "Snapping",
+      "desc": "Vertex나 Edge에 자동으로 스냅되도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "문짝 패널 홈 파기",
+      "steps": [
+        "사각 평면 오브젝트에 Multi-Cut 툴을 활성화합니다.",
+        "Ctrl 키를 누른 채 가로/세로 방향으로 엣지 루프를 추가합니다.",
+        "추가된 엣지를 Extrude하여 안쪽으로 홈을 만듭니다."
+      ]
+    },
+    {
+      "title": "삼각형 면을 사각형으로 정리",
+      "steps": [
+        "삼각형 면(Triangle)이 발생한 곳에 Multi-Cut 툴을 켭니다.",
+        "정점과 마주보는 정점을 연결하여 쿼드(Quad) 구조로 분할합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "불필요하게 겹치는 정점이 생성됨 → Merge 툴을 사용하여 가까운 정점들을 병합합니다.",
+    "엣지가 연결되지 않고 끊김 → 반드시 정점이나 엣지 위에서 클릭이 시작되고 끝났는지 확인합니다."
+  ],
+  "related": [
+    "Connect",
+    "Insert Edge Loop Tool",
+    "Bevel",
+    "Extrude"
+  ],
+  "videos": [
+    {
+      "id": "e2onhov-uAI",
+      "title": "08 Maya Tutorial - Using the Multi-Cut Tool",
+      "author": "Josh Antonio"
+    },
+    {
+      "id": "PdbPYFv43sE",
+      "title": "Maya's Multi-Cut Tool",
+      "author": "Josh Antonio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Multi-Cut%20tool",
+  "grounded": false,
+  "at": "2026-10-18T13:57:14.935119+00:00"
+}
