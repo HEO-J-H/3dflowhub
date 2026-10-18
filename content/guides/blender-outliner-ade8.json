@@ -1,0 +1,91 @@
+{
+  "id": "blender-outliner-ade8",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "에디터",
+  "name": "Outliner",
+  "title": "아웃라이너 — 씬 정리",
+  "summary": "Blender의 Outliner는 씬(Scene)에 있는 모든 오브젝트를 계층 구조로 관리하고 제어하는 중심 허브입니다. 복잡한 3D 공간 속에서 대상을 빠르게 찾고 정리할 수 있습니다.",
+  "when": [
+    "씬에 오브젝트가 너무 많아 뷰포트에서 선택하기 어려울 때",
+    "오브젝트 간의 부모-자식(Parenting) 관계를 설정하거나 해제할 때",
+    "특정 오브젝트의 렌더링이나 뷰포트 가시성(Visibility)을 일괄적으로 끄고 켤 때"
+  ],
+  "steps": [
+    "화면 우측 상단(기본 레이아웃 기준)에 위치한 Outliner 패널을 확인합니다.",
+    "검색창에 원하는 오브젝트 이름을 입력하여 빠르게 찾습니다.",
+    "오브젝트를 드래그하여 다른 오브젝트 위로 올리면 부모-자식 관계가 형성됩니다.",
+    "목록 우측의 눈(Visibility) 아이콘이나 카메라 아이콘을 클릭해 뷰포트와 렌더링 상태를 제어합니다.",
+    "오브젝트 이름을 더블클릭하거나 F2 키를 눌러 이름을 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "View Layer",
+      "desc": "현재 뷰 레이어에 포함된 오브젝트 구조를 표시합니다."
+    },
+    {
+      "name": "Filter",
+      "desc": "컬렉션, 오브젝트 타입, 제한(Restriction) 컬럼 등을 조건별로 필터링합니다."
+    },
+    {
+      "name": "Hide in Viewport",
+      "desc": "뷰포트에서 해당 오브젝트를 숨깁니다."
+    },
+    {
+      "name": "Disable in Renders",
+      "desc": "최종 렌더링 시 해당 오브젝트를 제외합니다."
+    },
+    {
+      "name": "Selectable",
+      "desc": "뷰포트에서 마우스 클릭으로 선택되지 않도록 잠급니다."
+    },
+    {
+      "name": "Collections",
+      "desc": "오브젝트를 그룹화하여 체계적으로 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 리깅 전 파츠 정리하기",
+      "steps": [
+        "Outliner에서 빈 공간 우콘텍스트 메뉴 또는 C 키로 새 Collection을 만듭니다.",
+        "Armor, Weapon 등의 이름을 지정합니다.",
+        "해당 파츠 오브젝트들을 다중 선택해 해당 Collection으로 드래그합니다."
+      ]
+    },
+    {
+      "title": "복잡한 씬에서 오브젝트 숨기기",
+      "steps": [
+        "Outliner 상단의 Filter 메뉴를 엽니다.",
+        "Restriction Toggle 중 눈(Visibility) 아이콘과 카메라 아이콘을 활성화합니다.",
+        "무거운 배경 오브젝트의 아이콘을 클릭해 뷰포트와 렌더링에서 제외합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 안 보임 → Outliner에서 눈(Visibility) 아이콘이 꺼져 있는지 확인하고 켭니다.",
+    "부모-자식 관계가 의도치 않게 묶임 → Alt + P 키를 눌러 Parent를 Clear합니다.",
+    "검색 결과가 안 나옴 → Outliner의 필터 옵션이나 현재 View Layer 설정을 확인합니다."
+  ],
+  "related": [
+    "Viewport",
+    "Properties",
+    "Collection",
+    "Properties Panel"
+  ],
+  "videos": [
+    {
+      "id": "ph6QUXNq5aE",
+      "title": "How to Use Blender's Outliner and Collections (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "_ZzBBA_b4q4",
+      "title": "El Outliner y las colecciones en Blender | Fundamentos para principiantes",
+      "author": "Odin3D · Escuela de arte 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/outliner/index.html",
+  "grounded": true,
+  "at": "2026-10-18T12:37:10.851130+00:00"
+}

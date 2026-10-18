@@ -1,0 +1,78 @@
+{
+  "id": "blender-geometry-nodes-basics-3b93",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "에디터",
+  "name": "Geometry Nodes basics",
+  "title": "Geometry Nodes 입문",
+  "summary": "Geometry Nodes는 노드 기반의 연산으로 오브젝트의 지오메트리를 동적으로 수정하고 생성하는 시스템입니다. 철사를 구부리듯 절차적인 방식으로 형태를 자유롭게 조작할 수 있습니다.",
+  "when": [
+    "규칙적인 패턴이나 반복되는 오브젝트를 대량으로 배치할 때",
+    "파라미터 조절만으로 형태가 실시간으로 변하는 절차적 에셋을 만들 때",
+    "기존 메시나 커브를 기반으로 복잡한 구조물을 자동으로 생성할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택한 상태로 Properties 패널에서 Modifier 탭을 엽니다.",
+    "Add Modifier 메뉴에서 Geometry Nodes를 선택합니다.",
+    "Modifier 패널의 새로 만들기 버튼을 클릭하거나 Geometry Node Editor로 진입합니다.",
+    "Shift+A를 눌러 원하는 노드를 검색하고 추가합니다.",
+    "Group Input 노드와 Group Output 노드 사이에 노드들을 연결하여 지오메트리를 변형합니다."
+  ],
+  "params": [
+    {
+      "name": "Group Input",
+      "desc": "이전 모디파이어나 원본 지오메트리 데이터를 노드 그룹 안으로 받아옵니다."
+    },
+    {
+      "name": "Group Output",
+      "desc": "노드 그룹에서 연산된 최종 지오메트리 결과를 다음 모디파이어나 뷰포트로 전달합니다."
+    },
+    {
+      "name": "Modifier",
+      "desc": "오브젝트 스택에서 Geometry Nodes 그룹을 실행하고 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커브를 따라 메시 복제하기",
+      "steps": [
+        "Curve 오브젝트에 Geometry Nodes 모디파이어를 추가합니다.",
+        "Instance on Points 노드를 추가해 커브의 포인트마다 다른 메시를 배치합니다.",
+        "Realize Instances 노드로 Instance를 실제 지오메트리로 변환합니다."
+      ]
+    },
+    {
+      "title": "랜덤한 위치에 포인트 생성하기",
+      "steps": [
+        "Mesh 오브젝트에 Geometry Nodes 모디파이어를 추가합니다.",
+        "Distribute Points on Faces 노드를 연결해 표면에 무작위 점을 생성합니다.",
+        "Scale Instances 노드로 생성된 점들의 크기를 무작위로 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 미적용 → 오브젝트 모드에서 Ctrl+A를 눌러 Scale을 1로 Apply한 뒤 노드를 연결하세요.",
+    "세그먼트 부족 → 변형이나 분포가 어색하다면 원본 메시의 해상도를 높이세요."
+  ],
+  "related": [
+    "Modifier",
+    "Geometry Node Editor",
+    "Instance on Points",
+    "Distribute Points on Faces"
+  ],
+  "videos": [
+    {
+      "id": "aO0eUnu0hO0",
+      "title": "Blender Tutorial: Geometry Nodes for Beginners - Part 1",
+      "author": "Blender Guru"
+    },
+    {
+      "id": "ETOXG3qdMKg",
+      "title": "How to Understand Geometry Nodes | Blender for Beginners",
+      "author": "Yesway™"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/introduction.html",
+  "grounded": true,
+  "at": "2026-10-18T12:37:14.946960+00:00"
+}
