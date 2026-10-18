@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-material-editor-basics-ca97",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Material Editor basics",
+  "title": "머티리얼 에디터 기본",
+  "summary": "Unreal Engine의 Material Editor는 노드 기반으로 표면의 색상, 질감, 거칠기 등을 시각적으로 연결하여 3D 모델의 재질을 만드는 핵심 도구입니다.",
+  "when": [
+    "3D 모델에 나무, 금속, 유리 같은 고유의 질감과 색상을 입히고 싶을 때",
+    "표면이 빛에 반사되는 정도나 요철(Normal)을 실시간으로 조절하고 싶을 때",
+    "움직이는 텍스처나 투명한 물결 같은 특수 효과를 구현하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Material 을 선택하여 새 머티리얼을 생성합니다.",
+    "생성된 머티리얼을 더블 클릭하여 Material Editor 창을 엽니다.",
+    "그래프 창에서 우클릭 후 Constant3Vector 또는 Texture Sample 같은 필요한 노드를 검색하여 추가합니다.",
+    "노드의 출력 핀을 드래그하여 Base Color, Roughness, Metallic 등 Main Material Node의 입력 핀에 연결합니다.",
+    "상단 툴바의 Apply 버튼을 눌러 변경 사항을 저장하고 뷰포트의 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "물체의 기본 색상이나 텍스처를 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 빛의 반사광을 퍼지게 하거나 선명하게 만듭니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면이 금속인지 비금속인지 여부를 0과 1 사이의 값으로 결정합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "텍스처를 이용해 모델의 기하학적 구조를 바꾸지 않고 미세한 요철 입체감을 줍니다."
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "머티리얼이 불투명(Opaque)한지, 반투명(Translucent)한지 투명도 방식을 설정합니다."
+    },
+    {
+      "name": "Shading Model",
+      "desc": "기본 라이팅(Default Lit) 외에 서브서스펜스, 투명 유리 등 연산 방식을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질 표현하기",
+      "steps": [
+        "Material Editor를 열고 Constant3Vector 노드로 어두운 회색 Base Color를 연결합니다.",
+        "Constant 노드를 추가하고 값을 1.0으로 설정한 뒤 Metallic에 연결합니다.",
+        "다른 Constant 노드 값을 0.2로 낮추어 Roughness에 연결해 매끄러운 금속 광택을 만듭니다."
+      ]
+    },
+    {
+      "title": "텍스처 이미지 입히기",
+      "steps": [
+        "Content Browser에서 이미지를 Material Editor 그래프 창으로 드래그 앤 드롭합니다.",
+        "Texture Sample 노드의 RGB 출력 핀을 Main Material Node의 Base Color에 연결합니다.",
+        "필요시 UV 좌표를 조절하기 위해 Texture Coordinate 노드를 추가해 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노드 연결 후 결과가 반영되지 않음 → 상단 툴바의 Apply 버튼을 눌러 저장하지 않아서 발생합니다. 반드시 Apply를 누르세요.",
+    "반투명 머티리얼 뒤가 깨져 보임 → Blend Mode가 Opaque로 설정되어 있어서 발생합니다. Translucent로 변경하세요.",
+    "스태틱 메시의 텍스처가 늘어나 보임 → UV 언랩핑이 잘못되었거나 Texture Coordinate 노드의 Tiling 값이 너무 작아서 발생합니다."
+  ],
+  "related": [
+    "Texture Sample",
+    "Material Function",
+    "Instance Dynamic Material",
+    "Subsurface Scattering"
+  ],
+  "videos": [
+    {
+      "id": "SkNNkAALEA8",
+      "title": "Unreal Engine 5 Material Editor Tutorial",
+      "author": "Creativekit"
+    },
+    {
+      "id": "yfcEpVtwz4Y",
+      "title": "Materials for Beginners in Unreal Engine 5.6 - Learn How to Make PBR Materials in 20 Minutes",
+      "author": "Nafay 3D"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Material%20Editor%20basics",
+  "grounded": false,
+  "at": "2026-10-18T13:37:16.790400+00:00"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "unreal-engine-blueprint-basics-d71d",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Blueprint basics",
+  "title": "블루프린트 입문",
+  "summary": "Blueprint는 프로그래밍 코드 작성 없이 노드를 연결하여 게임 로직, 인터랙션, 애니메이션 등을 시각적으로 제작하는 Unreal Engine의 비주얼 Script 시스템입니다.",
+  "when": [
+    "플레이어가 버튼을 누르면 문이 열리거나 불이 켜지는 등의 상호작용을 만들 때",
+    "플레이어 캐릭터의 이동, 체력, 아이템 획득 같은 게임플레이 규칙을 정할 때",
+    "트랩이 작동하거나 시간에 따라 오브젝트가 움직이는 레벨 기믹을 구현할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택합니다.",
+    "부모 클래스로 Actor를 선택하여 새로운 블루프린트 에셋을 생성하고 더블 클릭해 엽니다.",
+    "상단의 Components 패널에서 + Add 버튼을 눌러 Static Mesh 등의 시각적 컴포넌트를 추가합니다.",
+    "상단 탭에서 Event Graph로 이동하여 작업 영역 빈 곳을 우클릭하고 원하는 이벤트 노드(예: Event BeginPlay)를 검색해 추가합니다.",
+    "노드의 실행 핀(Execution Pin)을 드래그하여 새로운 기능 노드(예: Print String)와 연결합니다.",
+    "상단 메뉴의 Compile 버튼을 눌러 코드를 컴파일하고 Save를 누른 뒤 뷰포트에 배치하여 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Event BeginPlay",
+      "desc": "게임이 시작되거나 레벨에 스폰된 직후 단 한 번 실행되는 시작 노드입니다."
+    },
+    {
+      "name": "Event Tick",
+      "desc": "매 프레임마다 연속으로 실행되어 지속적인 체크나 연산이 필요할 때 사용합니다."
+    },
+    {
+      "name": "Custom Event",
+      "desc": "사용자가 직접 이름을 지정하고 원하는 타이밍에 호출할 수 있는 커스텀 함수입니다."
+    },
+    {
+      "name": "Branch",
+      "desc": "조건문(True/False)에 따라 실행 흐름을 두 갈래로 나누어 처리합니다."
+    },
+    {
+      "name": "Cast To",
+      "desc": "특정 클래스의 오브젝트를 구체적인 하위 클래스로 캐스팅하여 고유 변수나 함수에 접근합니다."
+    },
+    {
+      "name": "Get Player Character",
+      "desc": "현재 레벨을 플레이 중인 플레이어 캐릭터의 참조를 가져옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "트리거 박스를 지나면 불이 켜지는 상호작용",
+      "steps": [
+        "Blueprint Class로 Actor를 만들고 Box Collision과 Point Light 컴포넌트를 추가합니다.",
+        "Event Graph에서 Box Collision을 우클릭하고 Add On Component Begin Overlap 노드를 추가합니다.",
+        "Begin Overlap의 Other Actor 핀을 Cast To Character 노드와 연결합니다.",
+        "Cast 성공(Success) 핀에서 Point Light 컴포넌트를 끌어와 Set Visibility 노드와 연결하고 새 값(New Visibility)을 체크합니다."
+      ]
+    },
+    {
+      "title": "매 프레임 오브젝트를 제자리에서 회전시키기",
+      "steps": [
+        "새로운 Actor 블루프린트를 열고 루트에 Static Mesh 컴포넌트를 배치합니다.",
+        "Event Graph에서 Event Tick 노드를 생성합니다.",
+        "Event Tick의 실행 핀을 Add Actor World Rotation 노드와 연결합니다.",
+        "Rotation 입력 핀을 우클릭하고 Make Rotator를 선택해 Z축 값에 속도(예: 1.0)를 입력합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컴파일하지 않고 뷰포트나 게임에서 결과를 테스트함 → 블루프린트 수정 후 반드시 상단의 Compile 버튼을 누르세요.",
+    "Event Tick에 무거운 연산을 매 프레임마다 실행함 → 성능 저하의 주원인이 되므로 가급적 타이머나 오버랩 이벤트로 대체하세요.",
+    "참조(Reference)가 없는 오브젝트를 가져다 쓰려다 에러 발생 → 타겟 핀에 올바른 객체 참조(Self 또는 Get Actor 등)가 연결되어 있는지 확인하세요."
+  ],
+  "related": [
+    "Behavior Tree",
+    "Material Graph",
+    "Animation Blueprint",
+    "Interface"
+  ],
+  "videos": [
+    {
+      "id": "c6qW2NP8TP4",
+      "title": "Unreal Engine 5 | Blueprint For Beginners (2026)",
+      "author": "Smart Poly"
+    },
+    {
+      "id": "dB-pS8PHALY",
+      "title": "Learn Blueprints for Unreal Engine 5 in ONE VIDEO - Beginner Tutorial",
+      "author": "Cobra Code"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Blueprint%20basics",
+  "grounded": false,
+  "at": "2026-10-18T13:37:21.717379+00:00"
+}
