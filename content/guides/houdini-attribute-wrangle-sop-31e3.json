@@ -1,0 +1,92 @@
+{
+  "id": "houdini-attribute-wrangle-sop-31e3",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Wrangle SOP",
+  "title": "Attribute Wrangle — VEX 한 줄로 속성 다루기",
+  "summary": "Houdini의 Attribute Wrangle SOP는 VEX 스니펫 코드를 작성하여 지오메트리의 어트리뷰트를 직접 제어하고 수정하는 매우 강력한 저수준 노드입니다.",
+  "when": [
+    "포인트나 Primitive의 어트리뷰트(@P, @Cd 등)를 코드로 정밀하게 조작하고 싶을 때",
+    "복잡한 로직이나 조건문을 통해 어트리뷰트를 동적으로 생성·수정할 때",
+    "기본 SOP 노드들로 해결하기 까다로운 커스텀 연산이 필요할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Attribute Wrangle을 검색하여 선택하고 배치합니다.",
+    "수정할 Geometry Nodes의 출력 단자를 Attribute Wrangle의 입력 단자에 연결합니다.",
+    "Run Over 파라미터에서 코드를 실행할 대상(Points, Primitives, Vertices 등)을 선택합니다.",
+    "VEXpression 입력창에 원하는 VEX 코드(예: @P.y += 1.0;)를 작성합니다.",
+    "노드 상태를 확인하여 에러가 없는지 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "코드를 실행할 대상 포인트의 서브셋 그룹을 지정합니다."
+    },
+    {
+      "name": "Run Over",
+      "desc": "VEX 코드를 실행할 단위(Points, Primitives, Vertices, Detail 등)를 결정합니다."
+    },
+    {
+      "name": "VEXpression",
+      "desc": "지오메트리 어트리뷰트를 조작하기 위해 작성하는 VEX 코드 스니펫입니다."
+    },
+    {
+      "name": "Attributes to Create",
+      "desc": "지정된 패턴에 일치하는 어트리뷰트만 새로 생성하도록 제한합니다."
+    },
+    {
+      "name": "Enforce Prototypes",
+      "desc": "사용 전 @ 바인딩 변수를 프로토타입으로 선언하도록 요구합니다."
+    },
+    {
+      "name": "Autobind by Name",
+      "desc": "이름을 기준으로 어트리뷰트를 파라미터에 자동으로 바인딩합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "포인트 높이(Y축) 랜덤 오프셋 주기",
+      "steps": [
+        "Attribute Wrangle 노드를 생성하고 지오메트리에 연결합니다.",
+        "Run Over를 Points로 설정합니다.",
+        "VEXpression에 @P.y += fit01(rand(@ptnum), 0.0, 2.0); 코드를 작성합니다."
+      ]
+    },
+    {
+      "title": "디스플레이 컬러(Cd) 변경하기",
+      "steps": [
+        "Attribute Wrangle 노드를 지오메트리 하단에 연결합니다.",
+        "Run Over를 Points로 설정합니다.",
+        "VEXpression에 @Cd = set(1.0, 0.5, 0.0); 코드를 입력하여 주황색으로 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프레임 변수 사용 실수 ($F 대신 @Frame 사용) → 애니메이션 시 프레임 1로 고정되는 문제를 방지하기 위해 @Frame, @Time, @TimeInc 변수를 사용합니다.",
+    "VEX 문법 오타 및 타입 불일치 → 세미콜론(;) 누락이나 vector와 float 타입 혼용 시 컴파일 에러가 발생하므로 노드 아이콘의 에러를 확인합니다.",
+    "존재하지 않는 어트리뷰트 직접 읽기 → 초기화되지 않은 어트리뷰트를 참조하면 예상치 못한 결과가 나오므로 기본값을 확인하거나 선언 후 사용합니다."
+  ],
+  "related": [
+    "Attribute Create SOP",
+    "Attribute VOP SOP",
+    "Point Wrangle SOP",
+    "Primitive Wrangle SOP"
+  ],
+  "videos": [
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    },
+    {
+      "id": "rej8HpENw3I",
+      "title": "How to learn Houdini VEX Functions Wrangler SOP Tutorial 02",
+      "author": "CARDANFX STUDIOS"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/attribwrangle.html",
+  "grounded": true,
+  "at": "2026-10-18T13:27:07.306099+00:00"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "houdini-polyextrude-sop-a251",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "PolyExtrude SOP",
+  "title": "PolyExtrude — 면 돌출",
+  "summary": "PolyExtrude SOP 노드는 선택한 폴리곤 면이나 엣지를 밀어내어 새로운 입체 구조나 두께를 만듭니다. 철사를 늘이거나 상자의 면을 뽑아내는 작업에 필수적입니다.",
+  "when": [
+    "상자나 평면에서 기둥이나 벽 같은 돌출 구조를 만들 때",
+    "면을 안쪽으로 밀어 넣거나(Inset) 회전시켜 디테일을 추가할 때",
+    "커브를 따라 파이프나 띠 모양의 형태를 연장할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Poly Extrude 노드를 검색하여 생성합니다.",
+    "Poly Extrude 노드를 지오메트리 스트림에 연결합니다.",
+    "Viewport 상단이나 파라미터 창의 Group 필드에서 돌출할 면이나 엣지를 지정합니다.",
+    "Distance 파라미터를 조절하여 돌출 거리를 설정합니다.",
+    "필요에 따라 Inset 또는 Divisions 값을 높여 디테일을 더합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "돌출시키는 거리(Houdini 단위)를 설정합니다."
+    },
+    {
+      "name": "Inset",
+      "desc": "돌출된 면의 크기를 안쪽이나 바깥쪽으로 조절합니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "돌출된 앞면을 축을 기준으로 회전시킵니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "돌출 구간에 생성될 폴리곤 세그먼트(행) 개수를 설정합니다."
+    },
+    {
+      "name": "Spine Shape",
+      "desc": "돌출 경로의 형태를 직선, 곡선, 또는 두 번째 입력 커브로 지정합니다."
+    },
+    {
+      "name": "Transform Extruded Front",
+      "desc": "돌출된 앞면에 이동, 회전, 스케일 등 전체 변환을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽 창틀 및 몰딩 제작",
+      "steps": [
+        "건물 모델의 창문이 될 면들을 선택합니다.",
+        "Poly Extrude 노드를 적용하고 Inset 값을 주어 프레임 두께를 만듭니다.",
+        "Distance 값을 음수(-)로 설정하여 창문 안쪽으로 면을 파냅니다."
+      ]
+    },
+    {
+      "title": "커브를 따라 파이프 형태 연장하기",
+      "steps": [
+        "파이프가 지나갈 경로를 커브(Curve)로 그립니다.",
+        "시작 면을 Poly Extrude로 돌출시킵니다.",
+        "Spine Shape을 Curve From Second Input으로 설정하고 커브를 두 번째 입력에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "그룹 선택 누락 → Group 필드에 올바른 프리미티브나 엣지 그룹이 지정되었는지 확인합니다.",
+    "Distance가 0인 상태에서 변화가 없음 → Distance 값을 올려 돌출 거리를 확보합니다.",
+    "Transform 적용 시 엉뚱한 방향으로 회전함 → Transform Extruded Front 활성화 시 Distance와 Twist를 0으로 초기화하고 사용합니다."
+  ],
+  "related": [
+    "Bevel SOP",
+    "Extrude SOP",
+    "Attribute Promote",
+    "Copy to Points SOP"
+  ],
+  "videos": [
+    {
+      "id": "KivxKhggdX0",
+      "title": "Zero to One: Intro to SOP – PolyExtrude & Bevel | Houdini Tutorial (M107)",
+      "author": "Think Trix"
+    },
+    {
+      "id": "jUvlyNmDN-8",
+      "title": "Houdini Modeling SOP Library PolyExtrude",
+      "author": "Learn CG"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/polyextrude.html",
+  "grounded": true,
+  "at": "2026-10-18T13:27:11.966755+00:00"
+}

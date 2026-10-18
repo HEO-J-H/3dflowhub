@@ -1,0 +1,91 @@
+{
+  "id": "houdini-copy-to-points-sop-0bb8",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Copy to Points SOP",
+  "title": "Copy to Points — 점마다 복제",
+  "summary": "첫 번째 입력의 지오메트리를 두 번째 입력의 포인트 위치마다 복제하여 배치하는 노드입니다. 숲의 나무나 건물을 채우는 작업 등에 유용합니다.",
+  "when": [
+    "지형 위에 나무나 풀을 대량으로 분산 배치할 때",
+    "구체나 박스 같은 기본 형태를 복제해 복잡한 구조물을 만들 때",
+    "포인트 속성(pscale, rot 등)을 이용해 복제된 오브젝트의 크기와 회전을 제어할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Copy to Points 를 검색하여 노드를 생성하고 배치합니다.",
+    "첫 번째 입력(Geometry to Copy)에 복제할 소스 지오메트리를 연결합니다.",
+    "두 번째 입력(Target Points to Copy to)에 대상 포인트 지오메트리를 연결합니다.",
+    "파라미터 창에서 Transform Using Point Orientations 등을 체크하여 방향을 정렬합니다."
+  ],
+  "params": [
+    {
+      "name": "Source Group",
+      "desc": "첫 번째 입력 중 복제할 소스의 서브그룹을 지정합니다."
+    },
+    {
+      "name": "Target Points",
+      "desc": "복제본을 생성할 두 번째 입력의 대상 포인트 서브그룹을 지정합니다."
+    },
+    {
+      "name": "Piece Attribute",
+      "desc": "포인트 속성을 기준으로 소스의 특정 조각을 매칭하여 복제합니다."
+    },
+    {
+      "name": "Pack and Instance",
+      "desc": "소스를 Packed Geometry로 패킹하여 메모리를 절약하고 인스턴싱합니다."
+    },
+    {
+      "name": "Transform Using Point Orientations",
+      "desc": "포인트의 법선과 어트리뷰트(N, orient 등)를 참조해 복제본을 회전시킵니다."
+    },
+    {
+      "name": "Attributes from Target",
+      "desc": "타겟 포인트의 어트리뷰트를 복제된 지오메트리로 복사합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 위에 나무 심기",
+      "steps": [
+        "Grid 노드로 바닥 지형을 만듭니다.",
+        "Scatter 노드를 연결하여 지형 위에 포인트를 무작위로 뿌립니다.",
+        "Copy to Points 노드의 첫 번째에 Tree 모델, 두 번째에 Scatter 된 포인트를 연결합니다."
+      ]
+    },
+    {
+      "title": "구체 표면에 오브젝트 배치",
+      "steps": [
+        "Platonic Solid나 Sphere 노드로 구체를 생성합니다.",
+        "복제할 소스 지오메트리를 준비합니다.",
+        "Copy to Points를 이용해 구체의 포인트마다 소스 지오메트리를 복제합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포인트가 없어 복제가 안 됨 → Scatter 노드나 Add 노드로 타겟 포인트를 먼저 생성해야 합니다.",
+    "메모리가 과도하게 부족함 → Pack and Instance 옵션을 켜서 Packed Primitive로 변환해야 합니다.",
+    "복제된 오브젝트가 한 방향만 바라봄 → Transform Using Point Orientations 옵션을 켜고 포인트에 N 또는 orient 어트리뷰트가 있는지 확인합니다."
+  ],
+  "related": [
+    "Duplicate",
+    "Copy and Transform",
+    "Scatter",
+    "For-Each Block"
+  ],
+  "videos": [
+    {
+      "id": "SNLAwyOHYoQ",
+      "title": "Copy to Points SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "r9hr3j_Qap4",
+      "title": "Houdini | Copy to Points Using Multiple Source Meshes (version 1)",
+      "author": "Pixel Fondue"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/copytopoints.html",
+  "grounded": true,
+  "at": "2026-10-18T13:27:02.875968+00:00"
+}
