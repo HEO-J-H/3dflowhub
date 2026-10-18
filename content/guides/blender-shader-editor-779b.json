@@ -1,0 +1,83 @@
+{
+  "id": "blender-shader-editor-779b",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "에디터",
+  "name": "Shader Editor",
+  "title": "셰이더 에디터 — 노드로 재질 만들기",
+  "summary": "Shader Editor는 노드 기반으로 머티리얼을 시각적으로 연결하여 렌더링 결과물을 만드는 공간입니다. Cycles와 EEVEE 엔진에서 사용하는 재질을 정교하게 제어할 때 사용합니다.",
+  "when": [
+    "오브젝트에 고유한 텍스처와 질감을 노드 방식으로 적용할 때",
+    "월드(World) 배경의 HDRI 환경광이나 대기 효과를 설정할 때",
+    "Freestyle 라인 스타일의 텍스처를 노드로 정의할 때"
+  ],
+  "steps": [
+    "Blender 상단의 워크스페이스 탭에서 Shading을 선택하거나, Editor Type을 Shader Editor로 변경합니다.",
+    "머티리얼이 없는 오브젝트라면 Properties 패널에서 New 버튼을 눌러 기본 머티리얼을 생성합니다.",
+    "Shader Editor 상단 헤더의 Shader Type에서 Object, World, Line Style 중 편집할 대상의 종류를 선택합니다.",
+    "Object 모드일 경우 Slot 메뉴와 머티리얼 슬롯을 통해 편집할 머티리얼을 지정합니다.",
+    "Shift + A 키를 눌러 Add 메뉴를 열고, 원하는 셰이더 노드를 검색하여 생성합니다.",
+    "노드의 출력(Output) 소켓과 입력(Input) 소켓을 마우스로 드래그하여 연결하고 Material Output 노드에 최종 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Shader Type",
+      "desc": "편집할 셰이더 노드의 데이터 유형(Object, World, Line Style)을 선택합니다."
+    },
+    {
+      "name": "Slot",
+      "desc": "활성 오브젝트의 머티리얼 슬롯을 선택하고 교체합니다."
+    },
+    {
+      "name": "Pinned",
+      "desc": "다른 오브젝트나 머티리얼을 선택해도 현재 선택된 머티리얼을 Editor에 고정하여 계속 표시합니다."
+    },
+    {
+      "name": "Options",
+      "desc": "Properties의 Material 탭과 동일한 렌더 엔진별 추가 설정 패널입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 유리 머티리얼 만들기",
+      "steps": [
+        "오브젝트를 선택하고 Shader Editor에서 Principled BSDF 노드의 Roughness를 낮추고 Transmission을 1로 올립니다.",
+        "Shift + A를 눌러 Glass BSDF 노드를 추가하고 Mix Shader 노드를 이용해 기존 셰이더와 혼합합니다.",
+        "Material Output 노드에 최종 결과를 연결하여 투명하고 반사되는 유리 재질을 완성합니다."
+      ]
+    },
+    {
+      "title": "HDRI 배경 환경광 설정",
+      "steps": [
+        "Shader Editor 상단 헤더의 Shader Type을 World로 변경합니다.",
+        "Shift + A를 눌러 Environment Texture 노드와 Texture Coordinate 노드, Mapping 노드를 추가합니다.",
+        "Environment Texture 노드에 HDRI 이미지를 불러온 뒤 Color 출력을 Background 노드의 Color에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "다른 오브젝트를 클릭했는데 에디터 내용이 바뀌어 버림 → Pinned 기능을 켜서 현재 머티리얼을 고정하지 않아서 발생합니다. 핀 아이콘을 클릭해 고정하세요.",
+    "노드를 연결했는데 화면에 아무 변화가 없음 → Material Output 노드에 최종 노드가 올바르게 연결되지 않았거나 뷰포트 셰이딩 모드가 Material/Rendered로 설정되지 않아서 발생합니다."
+  ],
+  "related": [
+    "Cycles",
+    "EEVEE",
+    "Material Output",
+    "Principled BSDF"
+  ],
+  "videos": [
+    {
+      "id": "3-_zyiBk0JI",
+      "title": "Every Shader Node You NEED to Know in Blender",
+      "author": "SouthernShotty"
+    },
+    {
+      "id": "J5t7gzIfTt0",
+      "title": "Introduction to Procedural Shader Nodes for Complete Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/shader_editor.html",
+  "grounded": true,
+  "at": "2026-10-18T11:37:06.822896+00:00"
+}

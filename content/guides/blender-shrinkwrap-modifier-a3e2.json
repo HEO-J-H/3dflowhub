@@ -1,0 +1,91 @@
+{
+  "id": "blender-shrinkwrap-modifier-a3e2",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Shrinkwrap modifier",
+  "title": "Shrinkwrap — 표면에 달라붙이기",
+  "summary": "Shrinkwrap modifier는 한 오브젝트를 다른 오브젝트의 표면에 달라붙게(수축) 만드는 기능입니다. 복잡한 표면을 따라 옷을 입히거나 디테일을 맞출 때 유용합니다.",
+  "when": [
+    "캐릭터에게 옷이나 갑옷을 입혀 표면에 밀착시킬 때",
+    "지형 위에 건조물이나 소품을 자연스럽게 올릴 때",
+    "곡면을 따라 로고나 텍스트를 정확히 배치할 때"
+  ],
+  "steps": [
+    "1. 대상 오브젝트를 선택하고 Properties 패널에서 Modifier 탭(렌치 아이콘)을 엽니다.",
+    "2. Add Modifier 클릭 후 Deform 분류에서 Shrinkwrap을 선택합니다.",
+    "3. Target 항목의 스포이트나 입력창을 통해 달라붙을 기준 오브젝트를 지정합니다.",
+    "4. Wrap Method를 Nearest Surface Point 등으로 설정하여 표면에 붙는 방식을 고릅니다.",
+    "5. Offset 값을 조절해 타겟 표면에서 살짝 떠있거나 파고들지 않도록 간격을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Wrap Method",
+      "desc": "타겟 표면에 정점을 맞추는 계산 방식을 결정합니다."
+    },
+    {
+      "name": "Snap Mode",
+      "desc": "정점이 타겟 포인트로 이동하는 방식을 제어합니다."
+    },
+    {
+      "name": "Target",
+      "desc": "감싸거나 달라붙을 기준이 되는 타겟 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "계산된 타겟 위치에서 일정 거리만큼 간격을 유지합니다."
+    },
+    {
+      "name": "Vertex Group",
+      "desc": "지정된 버텍스 그룹만 선택적으로 수축 효과를 적용합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "Project 모드에서 투사할 로컬 축을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 옷 입히기",
+      "steps": [
+        "1. 캐릭터 체형에 맞춰 옷 모델링 준비",
+        "2. Shrinkwrap modifier 추가 후 Target에 캐릭터 지정",
+        "3. Offset 값을 미세하게 주어 옷이 몸을 파고들지 않도록 조정"
+      ]
+    },
+    {
+      "title": "지형에 도로 배치하기",
+      "steps": [
+        "2. 평평한 도로 오브젝트에 Shrinkwrap modifier 추가",
+        "3. Target에 산악 지형 지오메트리 선택",
+        "4. Wrap Method를 Project로 바꾸고 축을 지정하여 지형을 따라가게 설정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 찌그러지고 이상하게 붙어요 → 메쉬의 해상도(Vertex 수)가 너무 부족해서 생기는 현상이니 Subdivisions를 늘리거나 세그먼트를 추가하세요.",
+    "옷이 캐릭터 몸을 뚫고 나와요 → Offset 값이 0이거나 너무 작아서 발생하므로 Offset 값을 살짝 높여주세요.",
+    "Modifier가 적용되지 않아요 → 타겟 오브젝트가 비어있거나 Target 칸에 올바른 메쉬가 지정되었는지 확인하세요."
+  ],
+  "related": [
+    "Shrinkwrap Constraint",
+    "Surface Deform",
+    "Displace",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "8vLX8e1zbY8",
+      "title": "Shrinkwrap Modifier - Blender Tutorial for Beginners - Basics",
+      "author": "in2vert"
+    },
+    {
+      "id": "YksPYPa05LM",
+      "title": "How to Use the SHRINKWRAP Modifier in Blender for Beginners!",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/shrinkwrap.html",
+  "grounded": true,
+  "at": "2026-10-18T11:36:57.662171+00:00"
+}
