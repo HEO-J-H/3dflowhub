@@ -385,7 +385,8 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
   border-bottom:13px solid transparent}
 .yt .cap{position:absolute;left:16px;right:16px;bottom:12px;z-index:1;color:#fff;font-size:14px;text-align:left;
   text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytw{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
+.ytw iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
 @media (max-width:720px){.vids.two{grid-template-columns:1fr}}
 .guide h2{font-size:21px;margin:30px 0 10px}
@@ -624,7 +625,9 @@ def build_guides(posts: list[dict], roundups: list[dict]) -> None:
 YT_JS = """<script>document.querySelectorAll('.yt').forEach(b=>b.addEventListener('click',()=>{
 const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';
 f.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';f.allowFullscreen=true;
-f.title=b.getAttribute('aria-label');b.replaceChildren(f);},{once:true}))</script>"""
+f.title=b.getAttribute('aria-label');
+// 버튼 안에 플레이어를 넣으면 클릭이 버튼에 가로채이고 썸네일 덮개가 위를 막음 → 버튼을 일반 상자로 교체
+const w=document.createElement('div');w.className='ytw';w.appendChild(f);b.replaceWith(w);f.focus();},{once:true}))</script>"""
 
 
 def yt_facade(v: dict) -> str:
