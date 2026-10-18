@@ -419,14 +419,15 @@ with t_auto:
         last = mem["runs"][-1]
         k = st.columns(4)
         k[0].metric("수집", last.get("collected", 0))
-        k[1].metric("노션 저장", last.get("saved", 0))
+        k[1].metric("저장", last.get("saved", 0))
         k[2].metric("발행", last.get("published", 0))
         k[3].metric("초안", last.get("drafts", 0))
         st.caption(f"실행 시각(UTC): {last.get('at', '')[:19]}  ·  GitHub 최신 기록")
         errs = [x for x in last.get("errors", []) if "news.google.com" not in x]  # 구글 뉴스 0건은 정상
         skips = {"short body": "본문이 너무 짧아 건너뜀", "off-topic": "주제와 무관해 건너뜀",
                  "prefiltered": "3D 관련 어휘가 없어 AI 요약 전에 제외"}
-        info = {k: errs.count(k) for k in skips if k in errs}
+        counts = {"short body": last.get("short"), "off-topic": last.get("offtopic"), "prefiltered": last.get("prefiltered")}
+        info = {k: counts[k] or errs.count(k) for k in skips if counts[k] or k in errs}  # 실제 건수(실행 통계) 우선
         if info:
             st.info("정상 필터링 · " + " · ".join(f"{skips[k]} {n}건" for k, n in info.items()))
         for e in dict.fromkeys(x for x in errs if x not in skips):
