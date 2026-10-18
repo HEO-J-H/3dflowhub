@@ -94,5 +94,112 @@
     "kind": "applied",
     "id": "p-0a163bd7c9",
     "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-18T05:37:47.883098+00:00",
+    "kind": "report",
+    "id": "r-2026-10-18T05:37",
+    "text": "현재 사이트는 7일간 286개의 Post가 수집됐지만, 30일간 방문자 수는 76명에 불과합니다. 게시물의 47%가 이미지가 없고, 오프‑토픽 오류가 30건 발생해 품질 개선이 필요합니다. AI 일일 호출량이 예산(280)을 초과해 fallback 사용이 늘고 있습니다.",
+    "allocation": {
+      "news": 0.4,
+      "guides": 0.4,
+      "roundups": 0.2
+    },
+    "allocation_reason": ""
+  },
+  {
+    "at": "2026-10-18T05:37:47.883098+00:00",
+    "kind": "proposal",
+    "id": "p-150e8fdc47",
+    "title": "도메인별 키워드 힌트 추가로 오프‑토픽 감소",
+    "category": "수집",
+    "evidence": "오프‑토픽 오류가 30건 발생했으며, 이는 전체 수집된 Post 중 상당 부분이 주제와 맞지 않음을 의미합니다.",
+    "proposal": "각 도메인(3D DCC, Game Engine, VFX, AI 3D)에 맞는 영어 검색 키워드 리스트를 제공해 피드 필터링 정확도를 높입니다.",
+    "expected": "오프‑토픽 오류를 50% 이상 감소시켜 콘텐츠 관련성을 높이고, 방문자 체류 시간을 늘릴 수 있습니다.",
+    "effort": "보통",
+    "action": {
+      "type": "keyword_hints",
+      "domain": "3D DCC",
+      "keywords": [
+        "Blender tutorial",
+        "Maya modeling",
+        "Substance Painter"
+      ]
+    }
+  },
+  {
+    "at": "2026-10-18T05:37:47.883098+00:00",
+    "kind": "proposal",
+    "id": "p-f5bd5873f3",
+    "title": "모든 기사에 이미지 필수 규칙 적용",
+    "category": "콘텐츠",
+    "evidence": "게시물의 47%가 이미지가 없어 시각적 매력이 낮고 클릭률이 저조합니다.",
+    "proposal": "새로운 Post가 생성될 때 최소 1개의 대표 이미지 자동 삽입을 요구하는 편집 규칙을 추가합니다.",
+    "expected": "이미지 포함 비율이 90% 이상으로 상승해 페이지 뷰와 평균 체류 시간이 20% 이상 증가할 것으로 예상됩니다.",
+    "effort": "높음",
+    "action": {
+      "type": "editorial_note",
+      "note": "모든 기사에 최소 1개의 고해상도 이미지(썸네일 포함)를 포함한다."
+    }
+  },
+  {
+    "at": "2026-10-18T05:37:47.883098+00:00",
+    "kind": "proposal",
+    "id": "p-2ee390db6a",
+    "title": "상위 툴 기반 영구 가이드 제작 가속",
+    "category": "콘텐츠",
+    "evidence": "기본 가이드가 13개에 불과하고, 큐에 37개가 대기 중이며, 특히 3ds Max(10개), Blender(2개) 수요가 높습니다.",
+    "proposal": "AI와 인간 검수를 결합해 3ds Max, Blender, Unreal Engine에 대한 영상 포함 가이드를 주 2회씩 발행합니다.",
+    "expected": "전문 가이드 페이지가 SEO에 기여해 검색 유입이 30% 상승하고, 사이트 신뢰도가 향상됩니다.",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "3ds Max",
+      "group": "모디파이어",
+      "name": "Modifier Stack",
+      "title_ko": "3ds Max 모디파이어 스택 사용법"
+    }
+  },
+  {
+    "at": "2026-10-18T05:37:47.914057+00:00",
+    "kind": "decision",
+    "id": "p-150e8fdc47",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-18T05:37:47.914057+00:00",
+    "kind": "decision",
+    "id": "p-f5bd5873f3",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-18T05:37:47.920036+00:00",
+    "kind": "decision",
+    "id": "p-2ee390db6a",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-18T05:37:47.930476+00:00",
+    "kind": "applied",
+    "id": "p-150e8fdc47",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-18T05:37:47.936455+00:00",
+    "kind": "applied",
+    "id": "p-f5bd5873f3",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-18T05:37:47.947450+00:00",
+    "kind": "applied",
+    "id": "p-2ee390db6a",
+    "result": "반영 완료"
   }
 ]
