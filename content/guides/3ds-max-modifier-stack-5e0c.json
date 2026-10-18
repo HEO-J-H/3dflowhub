@@ -1,0 +1,82 @@
+{
+  "id": "3ds-max-modifier-stack-5e0c",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Modifier Stack",
+  "title": "모디파이어 스택 — 순서·끄기·합치기",
+  "summary": "Modifier Stack은 3ds Max에서 오브젝트의 형태를 비파괴적으로 수정하고 히스토리를 관리하는 핵심 기능입니다.",
+  "when": [
+    "원본 지오메트리를 유지한 채 형태를 변형하고 싶을 때",
+    "여러 개의 수정 효과를 순서대로 쌓아서 적용하고 싶을 때",
+    "작업 중 언제든 이전 단계로 돌아가 수치나 옵션을 수정하고 싶을 때"
+  ],
+  "steps": [
+    "뷰포트에서 수정할 오브젝트를 선택합니다.",
+    "Command Panel의 Modify 탭(스패너 아이콘)으로 이동합니다.",
+    "Modifier List 드롭다운을 클릭하여 원하는 모디파이어를 선택합니다 (예: Bend).",
+    "Parameters 롤아웃에서 수치를 조절하여 형태를 변경합니다.",
+    "스택 내에서 모디파이어의 순서를 드래그하여 적용 순서를 바꿉니다."
+  ],
+  "params": [
+    {
+      "name": "Modifier List",
+      "desc": "적용 가능한 모든 모디파이어 목록을 표시하고 선택하는 메뉴입니다."
+    },
+    {
+      "name": "Show End Result",
+      "desc": "스택의 최상단 결과물을 현재 선택된 모디파이어 단계에서도 뷰포트에 미리 보여줍니다."
+    },
+    {
+      "name": "Make Unique",
+      "desc": "Instance로 연결된 모디파이어의 공유를 해제하여 독립적으로 만듭니다."
+    },
+    {
+      "name": "Collapse All",
+      "desc": "현재까지 쌓인 모든 모디파이어를 하나의 Editable Poly로 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 휘기",
+      "steps": [
+        "Cylinder 오브젝트를 만들고 Height Segments를 충분히 늘립니다.",
+        "Modifier List에서 Bend 모디파이어를 적용합니다.",
+        "Angle과 Direction 값을 조절하여 파이프를 자연스럽게 휘게 만듭니다."
+      ]
+    },
+    {
+      "title": "로고 입체감 주기",
+      "steps": [
+        "2D Shape으로 로고 라인을 그립니다.",
+        "Modifier List에서 Extrude 모디파이어를 적용합니다.",
+        "Amount 값을 조절하여 두께를 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모디파이어 적용 후 세그먼트 부족으로 형태가 꺾임 → 기본 오브젝트 생성 메뉴나 Edit Poly에서 Segments를 추가합니다.",
+    "원하지 않는 순서로 모디파이어가 적용됨 → 스택에서 모디파이어를 드래그하여 올바른 순서로 재배치합니다."
+  ],
+  "related": [
+    "Editable Poly",
+    "Modifier List",
+    "Sub-object Level",
+    "Collapse To"
+  ],
+  "videos": [
+    {
+      "id": "5tTrmRViCDw",
+      "title": "3ds Max Modifier Stack Explained",
+      "author": "ArchViz Explained"
+    },
+    {
+      "id": "ISjIQUiX3Kc",
+      "title": "3ds Max Getting Started - Lesson 10 - Modifiers",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Modifier%20Stack",
+  "grounded": false,
+  "at": "2026-10-18T03:36:43.872512+00:00"
+}

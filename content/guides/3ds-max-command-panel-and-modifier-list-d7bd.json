@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-command-panel-and-modifier-list-d7bd",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Command Panel and Modifier List",
+  "title": "커맨드 패널과 모디파이어 리스트 사용법",
+  "summary": "Command Panel은 3ds Max의 핵심 작업 공간으로 오브젝트 생성과 편집을 담당하며, Modifier List는 원본을 유지한 채 비파괴적으로 형태를 변형합니다.",
+  "when": [
+    "새로운 3D 지오메트리를 생성하고 기본 수치를 조절할 때",
+    "Edit Poly 등의 모디파이어를 쌓아 모델링 디테일을 추가할 때",
+    "Bend나 Twist 같은 비파괴적 효과로 형태를 왜곡할 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭(파란색 플러스 아이콘)을 클릭합니다.",
+    "Standard Primitives 등에서 원하는 오브젝트(예: Box) 버튼을 누릅니다.",
+    "뷰포트에서 드래그하여 오브젝트를 생성합니다.",
+    "Modify 탭(무지개색 아이콘)으로 이동하여 상단 이름을 확인합니다.",
+    "Modifier List 드롭다운을 열어 원하는 모디파이어(예: Bend)를 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Modifier List",
+      "desc": "오브젝트에 적용 가능한 모든 편집/효과 목록입니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "Bend 등에서 꺾이는 회전 각도를 설정합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "오브젝트의 면 분할 수를 늘려 부드러운 변형을 돕습니다."
+    },
+    {
+      "name": "Gizmo",
+      "desc": "모디파이어의 효과 범위와 위치를 뷰포트에서 직접 조절합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "오브젝트의 반지름 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 구부리기",
+      "steps": [
+        "Cylinder를 생성하고 Height Segments를 높여줍니다.",
+        "Modifier List에서 Bend를 적용합니다.",
+        "Angle 값을 조절하여 파이프를 둥글게 뜁니다."
+      ]
+    },
+    {
+      "title": "텍스트 입체화",
+      "steps": [
+        "Create 탭의 Shapes에서 Text를 생성합니다.",
+        "Modifier List에서 Extrude를 선택합니다.",
+        "Amount 값을 높여 두께감을 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모디파이어 적용 중 파란색 Create 탭을 눌러 원본이 새로 만들어짐 → 반드시 Modify 탭이 선택되어 있는지 확인 후 작업",
+    "Segments 부족으로 Bend 적용 시 각지게 꺾임 → Creation Parameter나 베이스 오브젝트에서 Segment를 늘려 해결",
+    "Gizmo가 선택된 상태에서 오브젝트 전체가 이동함 → 하위 Sub-Object(Gizmo) 모드를 해제하거나 메인 오브젝트 선택"
+  ],
+  "related": [
+    "Edit Poly",
+    "Sub-Object",
+    "Gizmo",
+    "Stack"
+  ],
+  "videos": [
+    {
+      "id": "A4267Ycb8I8",
+      "title": "#3dsMax 2024 Qt Modifier LIst",
+      "author": "Changsoo Eun"
+    },
+    {
+      "id": "KSTKEAOtHPs",
+      "title": "Create a Custom Modifier List in 3ds max 2024 | 3ds max tips & tricks@zna_studio #3dsmax #shorts",
+      "author": "ZNA Studio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Command%20Panel%20and%20Modifier%20List",
+  "grounded": false,
+  "at": "2026-10-18T03:36:39.502608+00:00"
+}

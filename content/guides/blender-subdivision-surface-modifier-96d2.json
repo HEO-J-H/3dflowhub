@@ -1,0 +1,88 @@
+{
+  "id": "blender-subdivision-surface-modifier-96d2",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Subdivision Surface modifier",
+  "title": "Subdivision Surface — 부드러운 서브디비전",
+  "summary": "Subdivision Surface modifier(Subdiv)는 저정점 메시의 면을 분할하고 부드럽게 만들어 적은 데이터로 복잡하고 유기적인 곡선을 생성합니다.",
+  "when": [
+    "캐릭터나 유기적인 형태의 부드러운 곡선을 모델링할 때",
+    "적은 폴리곤(Low-vertex)을 유지하며 디테일을 높이고 싶을 때",
+    "Displacement 맵과 함께 사용하여 미세한 표면 굴곡을 표현할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택합니다.",
+    "단축키 Ctrl + 1 (또는 Ctrl + 2, Ctrl + 3)을 눌러 Subdivision Surface Modifier를 즉시 추가합니다.",
+    "Modifier Properties 탭으로 이동합니다.",
+    "Levels Viewport와 Render 값을 조절하여 세분화 수준을 설정합니다.",
+    "메시의 각진 부분을 조절하려면 Edge Crease(Shift + E)를 사용합니다."
+  ],
+  "params": [
+    {
+      "name": "Catmull-Clark",
+      "desc": "면을 부드럽게 분할하여 유기적인 곡선 형태를 만듭니다."
+    },
+    {
+      "name": "Simple",
+      "desc": "곡선화 없이 단순하게 면을 분할합니다."
+    },
+    {
+      "name": "Levels Viewport",
+      "desc": "3D 뷰포트에서 보여질 분할 단계를 설정합니다."
+    },
+    {
+      "name": "Levels Render",
+      "desc": "최종 렌더링 시 적용될 분할 단계를 설정합니다."
+    },
+    {
+      "name": "Optimal Display",
+      "desc": "와이어프레임 렌더링 시 세분화된 내부 에지를 숨겨 가시성을 높입니다."
+    },
+    {
+      "name": "Use Limit Surface",
+      "desc": "무한 분할된 극한의 부드러운 표면 위치에 버텍스를 배치합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 캐릭터 얼굴 부드럽게 만들기",
+      "steps": [
+        "캐릭터 메쉬 선택 후 Ctrl + 2를 눌러 Subdiv 적용",
+        "Loop Cut(Ctrl + R)을 추가하여 눈과 입 주변의 각짐 조절"
+      ]
+    },
+    {
+      "title": "기계 부품의 날카로운 모서리 표현",
+      "steps": [
+        "Ctrl + 2로 Subdiv 추가",
+        "모서리 에지 선택 후 Shift + E로 Crease 값을 높여 각진 형태 유지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Viewport 레벨을 Render 레벨보다 너무 높게 설정하는 경우 → 시스템 과부하를 방지하기 위해 Viewport 레벨은 낮게, Render 레벨은 같거나 높게 설정하세요.",
+    "모든 모서리가 지나치게 둥글게 변하는 경우 → Loop Cut(Ctrl + R)으로 지오메트리를 추가하거나 Edge Crease(Shift + E)를 사용해 형태를 단단하게 잡아주세요."
+  ],
+  "related": [
+    "Multiresolution",
+    "Smooth Shading",
+    "Auto Smooth",
+    "Weighted Edge Creases"
+  ],
+  "videos": [
+    {
+      "id": "NAwf0Tuuwjw",
+      "title": "Blender Basics - Subdivision Surface Modifier Tutorial",
+      "author": "in2vert"
+    },
+    {
+      "id": "iiZbeJ_ep2k",
+      "title": "Using the SUBDIVISION SURFACE Modifier in Blender - Beginner Tutorial",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/subdivision_surface.html",
+  "grounded": true,
+  "at": "2026-10-18T03:33:32.416086+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-bend-modifier-1455",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Bend modifier",
+  "title": "Bend — 오브젝트 휘게 하기",
+  "summary": "Bend 모디파이어는 오브젝트를 특정 각도와 방향으로 휘어지게 만드는 필수적인 3D 모델링 도구입니다.",
+  "when": [
+    "파이프, 호스, 도로 등 곡선형 구조물을 만들 때",
+    "캐릭터의 팔다리나 척추를 자연스럽게 구부릴 때",
+    "평면적인 오브젝트에 입체적인 곡면 폼을 부여할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Modifier List에서 Bend를 적용합니다.",
+    "오브젝트가 부드럽게 휘어지도록 충분한 Segment를 추가합니다.",
+    "Angle 값을 조절하여 구부러지는 각도를 설정합니다.",
+    "Direction 값을 조절하여 휘어지는 방향을 회전시킵니다.",
+    "Axis 옵션(X, Y, Z)을 변경해 굽혀지는 축을 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "오브젝트가 휘어지는 총 각도를 설정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "휘어지는 방향의 회전 각도를 조절합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "벤딩이 일어날 기준 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Limits",
+      "desc": "특정 구간만 지정해서 휘어지도록 제한합니다."
+    },
+    {
+      "name": "Upper Limit",
+      "desc": "제한 범위의 상단 경계값을 설정합니다."
+    },
+    {
+      "name": "Lower Limit",
+      "desc": "제한 범위의 하단 경계값을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 구부리기",
+      "steps": [
+        "Cylinder를 생성하고 높이 세그먼트를 30 이상으로 늘립니다.",
+        "Bend 모디파이어를 적용하고 Angle을 90도로 설정합니다.",
+        "Axis를 알맞게 변경하여 원하는 방향으로 꺾이게 맞춥니다."
+      ]
+    },
+    {
+      "title": "전광판 배너 휘기",
+      "steps": [
+        "Plane을 생성하고 가세로 세그먼트를 충분히 나눕니다.",
+        "Bend 모디파이어를 적용하고 Angle을 180도로 설정합니다.",
+        "Direction을 조절해 원통형 배너 모양을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 오브젝트가 꺾이는 현상 → 오브젝트 생성 단계에서 Height Segments를 충분히 늘려줍니다.",
+    "엉뚱한 방향으로 휘어지는 현상 → Axis 축 설정을 변경하거나 Direction 값을 조절합니다."
+  ],
+  "related": [
+    "Modifier List",
+    "Twist",
+    "Taper",
+    "Gizmo"
+  ],
+  "videos": [
+    {
+      "id": "MP0iUACTy6s",
+      "title": "3ds Max Tutorial: Bend and Twist Modifiers",
+      "author": "Kory Bieg"
+    },
+    {
+      "id": "m9FrQlhVqD4",
+      "title": "How to Model a Curved Sofa Using the Bend Modifier in 3ds Max",
+      "author": "ZKAcademy"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Bend%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T03:33:26.633732+00:00"
+}

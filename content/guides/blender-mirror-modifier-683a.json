@@ -1,0 +1,91 @@
+{
+  "id": "blender-mirror-modifier-683a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Mirror modifier",
+  "title": "Mirror — 대칭 모델링",
+  "summary": "Mirror modifier는 오브젝트의 Origin 또는 다른 오브젝트를 기준으로 메시를 대칭 복사하여 실시간으로 편집할 수 있게 해주는 필수 모델링 도구입니다.",
+  "when": [
+    "캐릭터, 자동차, 가구 등 대칭 구조의 모델링을 효율적으로 제작할 때",
+    "중앙 솔기 부분의 정점을 자동으로 병합하여 틈새 없는 메시를 만들 때",
+    "대칭 UV 좌표 반전 및 버텍스 그룹을 좌우로 복사할 때"
+  ],
+  "steps": [
+    "오브젝트의 Origin(중심축)을 대칭의 기준이 될 위치로 이동합니다.",
+    "Properties Panel에서 Modifier Properties 탭을 엽니다.",
+    "Add Modifier 메뉴를 클릭하고 Mirror를 선택합니다.",
+    "축(Axis: X, Y, Z)을 선택하여 대칭 방향을 설정합니다.",
+    "Merge 옵션을 켜서 중앙 정점들이 서로 붙도록 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Axis",
+      "desc": "메시를 대칭 복사할 기준 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Bisect",
+      "desc": "대칭 기준면을 기준으로 반대편 메시를 잘라내고 한쪽만 유지합니다."
+    },
+    {
+      "name": "Flip",
+      "desc": "Bisect 활성화 시 유지되는 대칭의 방향(양수/음수)을 반전시킵니다."
+    },
+    {
+      "name": "Mirror Object",
+      "desc": "오브젝트 원점 대신 기준축으로 사용할 다른 오브젝트(예: Empty)를 지정합니다."
+    },
+    {
+      "name": "Clipping",
+      "desc": "편집 모드에서 정점이 대칭면을 넘어가는 것을 방지합니다."
+    },
+    {
+      "name": "Merge",
+      "desc": "대칭면 근처의 정점을 Merge Distance 내에서 하나로 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 헤드 베이스 모델링",
+      "steps": [
+        "얼굴의 절반만 모델링한 후 Mirror modifier를 X축으로 적용합니다.",
+        "Clipping과 Merge를 켜서 중앙 정점이 겹치거나 떨어지지 않도록 고정합니다.",
+        "한쪽을 편집하면 반대편이 실시간으로 대칭 생성됩니다."
+      ]
+    },
+    {
+      "title": "기계 부품 및 하드서페이스 대칭 디자인",
+      "steps": [
+        "오브젝트 중심에 3D Cursor를 위치시키고 Set Origin을 통해 Origin to 3D Cursor를 실행합니다.",
+        "Mirror modifier를 추가하고 필요시 두 개 이상의 축(X, Y)을 동시에 활성화합니다.",
+        "작업 완료 후 Apply를 눌러 메시를 확정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "중앙 정점이 하나로 합쳐지지 않고 벌어짐 → Merge 옵션을 켜고 Merge Distance 값을 늘려줍니다.",
+    "대칭축이 오브젝트의 엉뚱한 곳에 위치함 → Shift + S로 3D Cursor를 정렬한 뒤 Set Origin to 3D Cursor를 실행해 원점을 바로잡습니다.",
+    "정점이 대칭면을 넘어 겹쳐버림 → Clipping 옵션을 활성화하여 정점이 대칭면을 넘지 못하게 제한합니다."
+  ],
+  "related": [
+    "Solidify",
+    "Array",
+    "Subdivision Surface",
+    "Symmetry"
+  ],
+  "videos": [
+    {
+      "id": "Su0kIOCRKTc",
+      "title": "How to mirror objects in blender - Blender mirror modifier #blender",
+      "author": "Holtrix Studios"
+    },
+    {
+      "id": "-AxJTwHXul4",
+      "title": "Blender Basics - Mirroring & the Mirror Modifier Tutorial",
+      "author": "in2vert"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/mirror.html",
+  "grounded": true,
+  "at": "2026-10-18T03:36:50.657340+00:00"
+}

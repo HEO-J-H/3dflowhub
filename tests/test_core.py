@@ -575,3 +575,23 @@ def test_manager_review_decide_apply(monkeypatch, tmp_path):
     assert manager.apply_accepted() == []          # 두 번 반영하지 않음
     manager.decide(p2["id"], "rejected", "필요 없음")
     assert manager.acceptance_rate() == 0.5
+
+
+def test_guides_generate_and_render(monkeypatch, tmp_path):
+    import guides, build_site
+    monkeypatch.setattr(guides, "GUIDE_DIR", tmp_path / "guides")
+    monkeypatch.setattr(guides, "find_videos", lambda q, n=2: [{"id": "MP0iUACTy6s", "title": "Bend", "author": "K"}])
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 999)
+    fake = {"summary": "휘게 함", "when": ["파이프"], "steps": ["Modifier List 에서 Bend", "Angle 조절"],
+            "params": [{"name": "Angle", "desc": "각도"}], "examples": [{"title": "파이프", "steps": ["a"]}],
+            "mistakes": [{"mistake": "세그먼트 부족", "fix": "늘리기"}], "related": ["Twist"]}
+    monkeypatch.setattr(core, "llm", lambda *a, **k: __import__("json").dumps(fake, ensure_ascii=False))
+    monkeypatch.setattr(guides, "CATALOG", guides.CATALOG[2:3])
+    assert guides.write_guides(1) and guides.pending() == []
+    g = guides.load_all()[0]
+    assert g["mistakes"] == ["세그먼트 부족 → 늘리기"] and g["videos"][0]["id"] == "MP0iUACTy6s"
+    monkeypatch.setattr(build_site, "OUT", tmp_path / "site")
+    (tmp_path / "site").mkdir()
+    build_site.build_learn([g])
+    html = (tmp_path / "site" / "learn" / g["id"] / "index.html").read_text(encoding="utf-8")
+    assert 'data-id="MP0iUACTy6s"' in html and '"@type": "HowTo"' in html and "세그먼트 부족" in html

@@ -559,6 +559,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("Search Console 수집 실패: %s", e)
         strategy["gsc_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "guides_at", 3 * 3600):  # 기초 가이드: 3시간마다 2개씩 (AI 여유 40% 이상일 때)
+        try:
+            import guides
+            made = guides.write_guides(2)
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "guides": made}])[-30:]
+        except Exception as e:
+            log.warning("기초 가이드 생성 실패: %s", e)
+        strategy["guides_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "roundups_at", 3 * 3600):  # 3시간마다 점검, 도구별로는 주 1회 갱신
         try:
             made = write_roundups()

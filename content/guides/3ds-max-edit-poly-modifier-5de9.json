@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-edit-poly-modifier-5de9",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Edit Poly modifier",
+  "title": "Edit Poly 모디파이어 — 폴리곤 모델링의 기본",
+  "summary": "Edit Poly 모디파이어는 3ds Max에서 오브젝트의 버텍스, 엣지, 폴리곤 등 하위 요소를 유연하게 편집하여 디테일한 모델링을 완성하는 핵심 도구입니다.",
+  "when": [
+    "기본 도형(Box, Cylinder 등)을 원하는 형태의 커스텀 모델로 변환할 때",
+    "Extrude, Bevel, Connect 등을 활용해 디테일한 구조를 만들어낼 때",
+    "불필요한 면을 정리하거나 토폴로지를 수정해야 할 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 편집할 오브젝트를 선택합니다.",
+    "2. 우측 Command Panel에서 Modifier List를 엽니다.",
+    "3. 목록에서 Edit Poly 모디파이어를 찾아 적용합니다.",
+    "4. 스택(Stack)의 화살표를 열어 Vertex, Edge, Polygon 등의 Sub-Object 레벨을 선택합니다.",
+    "5. 뷰포트에서 요소를 선택하고 Move, Rotate, Scale 등의 툴로 편집합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrude",
+      "desc": "선택한 폴리곤이나 엣지를 돌출시켜 입체적인 면을 생성합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "돌출(Extrude)과 외곽 크기 조절(Outline)을 동시에 적용합니다."
+    },
+    {
+      "name": "Connect",
+      "desc": "선택한 엣지 사이에 새로운 엣지 루프를 균등하게 추가합니다."
+    },
+    {
+      "name": "Inset",
+      "desc": "폴리곤 내부로 안쪽 면을 만들어 디테일한 경계를 형성합니다."
+    },
+    {
+      "name": "Target Weld",
+      "desc": "지정한 두 버텍스를 하나로 합쳐서 정점 구조를 정리합니다."
+    },
+    {
+      "name": "Chamfer",
+      "desc": "선택한 엣지나 버텍스를 깎아 모서리를 부드럽거나 각지게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "의자 다리 만들기",
+      "steps": [
+        "Box 오브젝트에 Edit Poly 모디파이어를 적용합니다.",
+        "Polygon 레벨에서 하단 면 4개를 선택하고 Extrude로 다리 길이를 뽑아냅니다.",
+        "Scale 툴로 다리 끝부분을 모아 형태를 다듬습니다."
+      ]
+    },
+    {
+      "title": "창문 틀 구멍 뚫기",
+      "steps": [
+        "평면(Plane)이나 박스 면에 Connect로 가로세로 엣지 루프를 추가합니다.",
+        "Polygon 레벨에서 구멍을 뚫을 위치의 면을 선택합니다.",
+        "Delete 키를 눌러 면을 제거하고 Border 레벨에서 Cap으로 구멍을 막거나 두께를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Sub-Object 모드를 끄지 않고 다른 툴을 조작함 → 모디파이어 스택에서 최상위 Edit Poly 글자를 클릭해 해제",
+    "필요 없는 복잡한 면(N-Gon)이 생성됨 → Cut이나 Connect를 사용해 삼각/사각 폴리곤으로 재정렬"
+  ],
+  "related": [
+    "Editable Poly",
+    "TurboSmooth",
+    "Symmetry",
+    "Swift Loop"
+  ],
+  "videos": [
+    {
+      "id": "YVy3yUH_tH4",
+      "title": "3ds Max Tutorial: Edit Poly Modifier",
+      "author": "Kory Bieg"
+    },
+    {
+      "id": "AJK1qoEaBd8",
+      "title": "selection | edit poly | 3ds max tutorial | Tamil | SMT | part  - 1",
+      "author": "Sri Mirthun P"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Edit%20Poly%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T03:36:30.031185+00:00"
+}

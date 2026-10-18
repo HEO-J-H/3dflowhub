@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-turbosmooth-modifier-db8e",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "TurboSmooth modifier",
+  "title": "TurboSmooth — 부드러운 서브디비전",
+  "summary": "TurboSmooth 모디파이어는 로우 폴리곤 모델의 폴리곤을 부드럽게 세분화하여 고품질의 스무딩된 표면을 만드는 필수 도구입니다.",
+  "when": [
+    "하드 표면 모델링(Hard Surface Modeling)에서 모서리를 부드럽게 처리할 때",
+    "유기적인 캐릭터나 곡면 오브젝트의 폴리곤 해상도를 높여 디테일을 살릴 때",
+    "렌더링 시 거친 폴리곤 면을 매끄럽게 보정해야 할 때"
+  ],
+  "steps": [
+    "뷰포트에서 부드럽게 만들 대상 오브젝트를 선택합니다.",
+    "Modify 패널로 이동하여 Modifier List를 엽니다.",
+    "목록에서 'TurboSmooth'를 찾아 클릭해 적용합니다.",
+    "Parameters 렌더 설정에서 'Iterations' 값을 조절하여 세분화 단계를 높입니다.",
+    "필요에 따라 'Isoline Display'를 켜서 뷰포트 와이어프레임을 깔끔하게 유지합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "메쉬를 세분화하는 반복 횟수로, 값이 클수록 폴리곤 수가 급증합니다."
+    },
+    {
+      "name": "Render Iterations",
+      "desc": "뷰포트와 렌더링 시의 세분화 단계를 다르게 설정할 때 사용합니다."
+    },
+    {
+      "name": "Isoline Display",
+      "desc": "세분화된 추가 에지는 숨기고 원본 메쉬의 와이어프레임만 표시합니다."
+    },
+    {
+      "name": "Explicit Normals",
+      "desc": "스무딩 시 기존 노멀 데이터와 버텍스 노멀을 유지하거나 재계산합니다."
+    },
+    {
+      "name": "Smooth Result",
+      "desc": "마지막 분할 단계에서 스무딩 그룹을 적용하여 표면을 부드럽게 만듭니다."
+    },
+    {
+      "name": "Reset Values",
+      "desc": "모디파이어의 파라미터를 기본값으로 초기화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 모서리 부드럽게 만들기",
+      "steps": [
+        "박스 오브젝트를 생성하고 Chamfer 모디파이어로 모서리를 정리합니다.",
+        "TurboSmooth 모디파이어를 적용합니다.",
+        "Iterations 값을 2로 설정하여 부드러운 베벨 느낌을 완성합니다."
+      ]
+    },
+    {
+      "title": "로우 폴리곤 캐릭터 스무딩",
+      "steps": [
+        "로우 폴리곤 헤드 모델을 선택합니다.",
+        "TurboSmooth를 적용하고 Isoline Display를 체크합니다.",
+        "Render Iterations만 높여 뷰포트 속도를 유지하며 고품질 렌더링을 준비합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Iterations 값을 무리하게 4 이상으로 높임 → 뷰포트가 멈추거나 메모리가 부족할 수 있으니 2~3 이하로 유지하고 Render Iterations를 활용하세요.",
+    "지지 엣지(Support Edge) 없이 TurboSmooth 적용 → 형태가 물렁하게 무너짐으로, 엣지 컷(Cut/Connect)으로 형태선을 잡아주세요."
+  ],
+  "related": [
+    "MeshSmooth",
+    "Chamfer",
+    "SwiftLoop",
+    "Symmetry"
+  ],
+  "videos": [
+    {
+      "id": "y6QE38cyS-o",
+      "title": "#21 | Turbosmooth Modifier in 3ds Max | Ahsaan Rehman | Hindi",
+      "author": "Ahsaan Rehman"
+    },
+    {
+      "id": "nlm1BFQcEFA",
+      "title": "3ds Max basics of turbosmooth modifier",
+      "author": "ThePolymonger"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20TurboSmooth%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T03:36:34.909180+00:00"
+}

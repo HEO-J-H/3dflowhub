@@ -1,0 +1,91 @@
+{
+  "id": "houdini-scatter-sop-949e",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Scatter SOP",
+  "title": "Scatter — 표면에 점 뿌리기",
+  "summary": "Scatter SOP는 지오메트리 표면이나 볼륨 내부에 무작위로 포인트를 생성하는 노드입니다. 파티클 생성, Copy to Points, 파편화 작업 등에 주로 활용됩니다.",
+  "when": [
+    "지오메트리 표면 위에 풀, 돌, 나무 등을 무작위로 배치하고 싶을 때",
+    "파티클 에미터의 시작 위치(Birthing Location)를 지정할 때",
+    "지오메트리를 조각내기 위한 셀(Cell) 포인트를 생성할 때"
+  ],
+  "steps": [
+    "Scene View 우측 디스플레이 툴바에서 'Display points' 아이콘을 켭니다.",
+    "포인트를 생성할 대상 지오메트리 오브젝트를 선택합니다.",
+    "Model 탭에서 Scatter 툴을 클릭하거나 Tab 메뉴에서 Scatter SOP를 생성합니다.",
+    "포인트가 생성된 것을 확인합니다.",
+    "Parameter Editor에서 Density Scale 또는 Count를 조절하여 포인트 개수를 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "포인트를 생성할 Primitive 그룹을 지정합니다."
+    },
+    {
+      "name": "Generate",
+      "desc": "포인트 생성 방식을 By Density, Count per Primitive, In Texture Space 중에서 선택합니다."
+    },
+    {
+      "name": "Force Total Count",
+      "desc": "체크 시 설정한 개수만큼 정확히 포인트를 생성합니다."
+    },
+    {
+      "name": "Density Scale",
+      "desc": "단위 면적당 생성될 포인트의 밀도나 배수 값을 조절합니다."
+    },
+    {
+      "name": "Relax Iterations",
+      "desc": "포인트 간의 최소 거리를 유지하도록 밀어내기(Relaxation) 연산 횟수를 설정합니다."
+    },
+    {
+      "name": "Prim Num Attribute",
+      "desc": "어떤 Primitive에서 생성되었는지 판별하기 위한 어트리뷰트를 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "움직이는 지오메트리에 포인트 고정하기",
+      "steps": [
+        "정적 상태의 'Rest' 지오메트리를 Scatter SOP에 연결합니다.",
+        "Output Options에서 Prim Num Attribute와 Prim UVW Attribute를 켭니다.",
+        "Scatter SOP의 출력을 Attribute Interpolate SOP의 첫 번째 입력에 연결합니다.",
+        "변형되는(Deforming) 지오메트리를 Attribute Interpolate SOP의 두 번째 입력에 연결하여 포인트를 추적합니다."
+      ]
+    },
+    {
+      "title": "텍스처 공간을 활용해 포인트 일관성 유지하기",
+      "steps": [
+        "Generate 파라미터를 'In Texture Space'로 설정합니다.",
+        "모델이 UV를 올바르게 가지고 있는지 확인합니다.",
+        "모델이 수정되거나 잘려 나가더라도 동일한 UV 영역에서 포인트가 유지되는 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프레임마다 포인트가 무작위로 깜빡임 → Force Total Count를 켜거나 Rest 지오메트리를 이용해 Attribute Interpolate로 고정",
+    "밀도가 너무 높거나 낮음 → Density Scale 값을 모델 크기에 맞게 조절"
+  ],
+  "related": [
+    "Attribute Interpolate",
+    "Copy to Points",
+    "Scatter 2.0",
+    "Voxel"
+  ],
+  "videos": [
+    {
+      "id": "o4pzXU7CSQs",
+      "title": "Scatter SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "PDESiuGjQyo",
+      "title": "All About Scattering - 001 - Scatter SOPs Basic Parameters - Houdini Tutorial Beginners",
+      "author": "MOVFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/scatter.html",
+  "grounded": true,
+  "at": "2026-10-18T03:36:56.863444+00:00"
+}

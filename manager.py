@@ -104,6 +104,8 @@ def describe(act: dict | None) -> str:
         return f"설정 변경: {act.get('key')} → {act.get('value')} (수락 즉시 적용)"
     if t == "glossary":
         return f"용어집 추가: {act.get('variants')} → {act.get('canon')} (수락 즉시 적용)"
+    if t == "guide_topic":
+        return f"기초 가이드 주제 추가: {act.get('tool')} · {act.get('title_ko')} (영상·단계별 사용법 페이지로 자동 생성)"
     return "자동 실행 없음 — 수락하면 '직접 작업 필요' 목록에 남습니다 (Claude 에게 이 제안을 그대로 요청하면 됩니다)"
 
 
@@ -127,6 +129,9 @@ def _valid_action(act) -> dict | None:
         return {"type": t, "key": act["key"], "value": val}
     if t == "glossary" and act.get("canon") and act.get("variants"):
         return {"type": t, "canon": str(act["canon"])[:40], "variants": str(act["variants"])[:200]}
+    if t == "guide_topic" and act.get("tool") and act.get("name") and act.get("title_ko"):
+        return {"type": t, "tool": str(act["tool"])[:30], "group": str(act.get("group") or "기능")[:20],
+                "name": str(act["name"])[:60], "title_ko": str(act["title_ko"])[:60]}
     return None
 
 
@@ -146,6 +151,11 @@ def _apply(act: dict) -> str:
         hints[act["domain"]] = list(dict.fromkeys(act["keywords"] + hints.get(act["domain"], [])))[:8]
     elif t == "editorial_note":
         strategy["prompt_notes"] = (strategy.get("prompt_notes", []) + [act["note"]])[-6:]
+    elif t == "guide_topic":
+        topics = strategy.setdefault("guide_topics", [])
+        topic = [act["tool"], act["group"], act["name"], act["title_ko"], None]
+        if topic not in topics:
+            topics.append(topic)
     elif t == "add_feed":
         import evolve
         if not evolve.feed_ok(act["url"]):
@@ -163,7 +173,7 @@ def apply_accepted() -> list[str]:
     done = []
     for p in board()["proposals"]:
         act = p.get("action") or {}
-        if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note"):
+        if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note", "guide_topic"):
             result = _apply(act)
             _append({"at": _now(), "kind": "applied", "id": p["id"], "result": result})
             done.append(f"{p['title']}: {result}")
@@ -171,6 +181,16 @@ def apply_accepted() -> list[str]:
 
 
 # ─────────────────────────── 분석 ───────────────────────────
+def _guide_stats() -> dict:
+    try:
+        import guides
+        made = guides.load_all()
+        return {"published": len(made), "queued_topics": len(guides.pending()),
+                "by_tool": Counter(g["tool"] for g in made)}
+    except Exception:
+        return {}
+
+
 def snapshot() -> dict:
     """AI 관리자가 볼 지표 (숫자 근거)."""
     posts = [core._load_json(f, {}) for f in core.POSTS_DIR.glob("*.json")]
@@ -204,6 +224,7 @@ def snapshot() -> dict:
         "editor_picks": sum(v == "pick" for v in cur.values()), "editor_hidden": sum(v == "hide" for v in cur.values()),
         "reader_interest": strategy.get("tool_interest", {}), "search_console": search,
         "roundup_pages": len(list(core.ROUNDUP_DIR.glob("*.json"))) if core.ROUNDUP_DIR.exists() else 0,
+        "basics_guides": _guide_stats(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
 
@@ -240,7 +261,9 @@ def review(force: bool = False) -> dict | None:
         '{"type":"add_feed","domain":D,"url":real RSS URL} | {"type":"keyword_hints","domain":D,"keywords":[...English search terms]} | '
         '{"type":"editorial_note","note":Korean rule for article writing} | '
         f'{{"type":"set_config","key":one of {list(CONFIG_KEYS)},"value":...}} | '
-        '{"type":"glossary","canon":official name,"variants":"wrong spelling 1|wrong spelling 2"}},\n'
+        '{"type":"glossary","canon":official name,"variants":"wrong spelling 1|wrong spelling 2"} | '
+        '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
+        '"title_ko":Korean page title} (evergreen basics reference page with video)}},\n'
         ' "replies": [{"id": message id, "text": helpful Korean answer}] for each owner message.\n'
         f"Domains D: {list(core.DOMAINS)}. Only propose things supported by the metrics; be specific, not generic."
     )

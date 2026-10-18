@@ -1,0 +1,247 @@
+"""기초 가이드 — DCC 툴의 기본 기능(모디파이어·메뉴·패널·노드)을 '영상 + 단계별 사용법 + 예시'로 정리하는 상시 레퍼런스.
+
+새 소식(시간이 지나면 낡음)과 달리 오래 검색되는 에버그린 콘텐츠. 디자이너는 글보다 영상·이미지를 선호하므로
+페이지 맨 위에 튜토리얼 영상(유튜브 임베드)을 두고, 글은 '언제 쓰나 → 따라하기 → 주요 옵션 → 활용 예시 → 자주 하는 실수' 순.
+
+- 영상: 유튜브 검색(키 불필요) → oEmbed 로 임베드 가능 여부·제목·채널 확인 (원본은 유튜브에서 재생, 저작권 안전)
+- 근거: 문서 주소를 알 수 있는 툴(Blender·Houdini)은 공식 문서 본문을 AI 에 함께 보여줌, 나머지는 공식 문서 검색 링크
+- 생성: 하루 몇 개씩 (AI 한도 여유 있을 때만), content/guides/*.json → build_site 가 /learn/ 페이지로
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+from datetime import datetime, timezone
+from urllib.parse import quote
+
+import requests
+
+import core
+
+GUIDE_DIR = core.ROOT / "content" / "guides"
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36",
+      "Accept-Language": "en-US,en;q=0.9"}
+
+BL = "https://docs.blender.org/manual/en/latest/"
+HOU = "https://www.sidefx.com/docs/houdini/nodes/sop/"
+
+# (도구, 분류, 영문 이름, 한국어 제목, 공식 문서 URL 또는 None)
+CATALOG: list[tuple[str, str, str, str, str | None]] = [
+    # 3ds Max — 모디파이어
+    ("3ds Max", "모디파이어", "Edit Poly modifier", "Edit Poly 모디파이어 — 폴리곤 모델링의 기본", None),
+    ("3ds Max", "모디파이어", "TurboSmooth modifier", "TurboSmooth — 부드러운 서브디비전", None),
+    ("3ds Max", "모디파이어", "Bend modifier", "Bend — 오브젝트 휘게 하기", None),
+    ("3ds Max", "모디파이어", "Twist modifier", "Twist — 비틀기", None),
+    ("3ds Max", "모디파이어", "Taper modifier", "Taper — 끝을 좁히거나 넓히기", None),
+    ("3ds Max", "모디파이어", "FFD modifier", "FFD — 격자로 자유 변형", None),
+    ("3ds Max", "모디파이어", "Shell modifier", "Shell — 두께 만들기", None),
+    ("3ds Max", "모디파이어", "Symmetry modifier", "Symmetry — 좌우 대칭 모델링", None),
+    ("3ds Max", "모디파이어", "Chamfer modifier", "Chamfer — 모서리 깎기", None),
+    ("3ds Max", "모디파이어", "UVW Map modifier", "UVW Map — 기본 UV 매핑", None),
+    ("3ds Max", "모디파이어", "Unwrap UVW modifier", "Unwrap UVW — UV 펼치기", None),
+    ("3ds Max", "모디파이어", "Sweep modifier", "Sweep — 스플라인 따라 단면 뽑기", None),
+    ("3ds Max", "모디파이어", "Noise modifier", "Noise — 표면에 불규칙한 굴곡", None),
+    ("3ds Max", "모디파이어", "Skin modifier", "Skin — 본에 메시 연결(스키닝)", None),
+    ("3ds Max", "모디파이어", "Morpher modifier", "Morpher — 모프 타깃·표정", None),
+    ("3ds Max", "모디파이어", "ProOptimizer modifier", "ProOptimizer — 폴리곤 수 줄이기", None),
+    # 3ds Max — 메뉴·패널
+    ("3ds Max", "메뉴·패널", "Command Panel and Modifier List", "커맨드 패널과 모디파이어 리스트 사용법", None),
+    ("3ds Max", "메뉴·패널", "Modifier Stack", "모디파이어 스택 — 순서·끄기·합치기", None),
+    ("3ds Max", "메뉴·패널", "Graphite Modeling Tools ribbon", "Graphite 모델링 툴(리본)", None),
+    ("3ds Max", "메뉴·패널", "Slate Material Editor", "Slate 머티리얼 에디터", None),
+    ("3ds Max", "메뉴·패널", "Render Setup dialog", "렌더 설정(Render Setup) 창", None),
+    ("3ds Max", "메뉴·패널", "Scene Explorer and Layer Explorer", "씬 익스플로러·레이어 관리", None),
+    ("3ds Max", "스크립트", "MAXScript Listener basics", "MAXScript 리스너 — 첫 스크립트 실행", None),
+    # Blender — 모디파이어·에디터
+    ("Blender", "모디파이어", "Subdivision Surface modifier", "Subdivision Surface — 부드러운 서브디비전",
+     BL + "modeling/modifiers/generate/subdivision_surface.html"),
+    ("Blender", "모디파이어", "Mirror modifier", "Mirror — 대칭 모델링", BL + "modeling/modifiers/generate/mirror.html"),
+    ("Blender", "모디파이어", "Array modifier", "Array — 반복 복제", BL + "modeling/modifiers/generate/array.html"),
+    ("Blender", "모디파이어", "Bevel modifier", "Bevel — 모서리 둥글게", BL + "modeling/modifiers/generate/bevel.html"),
+    ("Blender", "모디파이어", "Solidify modifier", "Solidify — 두께 만들기", BL + "modeling/modifiers/generate/solidify.html"),
+    ("Blender", "모디파이어", "Boolean modifier", "Boolean — 합치기·빼기", BL + "modeling/modifiers/generate/booleans.html"),
+    ("Blender", "모디파이어", "Simple Deform modifier", "Simple Deform — 휘기·비틀기·테이퍼",
+     BL + "modeling/modifiers/deform/simple_deform.html"),
+    ("Blender", "모디파이어", "Shrinkwrap modifier", "Shrinkwrap — 표면에 달라붙이기",
+     BL + "modeling/modifiers/deform/shrinkwrap.html"),
+    ("Blender", "모디파이어", "Decimate modifier", "Decimate — 폴리곤 수 줄이기", BL + "modeling/modifiers/generate/decimate.html"),
+    ("Blender", "에디터", "Shader Editor", "셰이더 에디터 — 노드로 재질 만들기", BL + "editors/shader_editor.html"),
+    ("Blender", "에디터", "Outliner", "아웃라이너 — 씬 정리", BL + "editors/outliner/index.html"),
+    ("Blender", "에디터", "Geometry Nodes basics", "지오메트리 노드 입문", BL + "modeling/geometry_nodes/introduction.html"),
+    ("Blender", "에디터", "UV Editor unwrapping", "UV 에디터 — 펼치기 기본", BL + "editors/uv/index.html"),
+    # Houdini — SOP 노드
+    ("Houdini", "노드", "Scatter SOP", "Scatter — 표면에 점 뿌리기", HOU + "scatter.html"),
+    ("Houdini", "노드", "Copy to Points SOP", "Copy to Points — 점마다 복제", HOU + "copytopoints.html"),
+    ("Houdini", "노드", "Attribute Wrangle SOP", "Attribute Wrangle — VEX 한 줄로 속성 다루기", HOU + "attribwrangle.html"),
+    ("Houdini", "노드", "PolyExtrude SOP", "PolyExtrude — 면 돌출", HOU + "polyextrude.html"),
+    ("Houdini", "노드", "Boolean SOP", "Boolean — 합치기·빼기", HOU + "boolean.html"),
+    # Unreal Engine
+    ("Unreal Engine", "에디터", "Material Editor basics", "머티리얼 에디터 기본", None),
+    ("Unreal Engine", "에디터", "Blueprint basics", "블루프린트 입문", None),
+    ("Unreal Engine", "렌더링", "Nanite virtualized geometry", "Nanite — 고폴리곤을 그대로", None),
+    ("Unreal Engine", "렌더링", "Lumen global illumination", "Lumen — 실시간 GI 설정", None),
+    ("Unreal Engine", "에디터", "Sequencer cinematic", "시퀀서 — 시네마틱 만들기", None),
+    # Maya · ZBrush · Substance
+    ("Maya", "메뉴·패널", "Channel Box and Attribute Editor", "채널 박스·어트리뷰트 에디터", None),
+    ("Maya", "모델링", "Multi-Cut tool", "Multi-Cut — 엣지 자르기·루프", None),
+    ("ZBrush", "브러시", "ZBrush basic brushes", "ZBrush 기본 브러시", None),
+    ("Substance 3D", "페인터", "Substance Painter layers and masks", "Substance Painter 레이어·마스크", None),
+]
+
+DOC_SEARCH = {
+    "3ds Max": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query={q}",
+    "Maya": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query={q}",
+    "Unreal Engine": "https://dev.epicgames.com/community/search?query={q}",
+    "ZBrush": "https://help.maxon.net/search?q={q}",
+    "Substance 3D": "https://helpx.adobe.com/search.html#q={q}",
+}
+
+
+def slug(tool: str, name: str) -> str:
+    base = re.sub(r"[^a-z0-9]+", "-", f"{tool} {name}".lower()).strip("-")
+    return base[:60] + "-" + hashlib.md5(f"{tool}|{name}".encode()).hexdigest()[:4]
+
+
+def doc_link(tool: str, name: str, url: str | None) -> str:
+    return url or DOC_SEARCH.get(tool, "https://www.google.com/search?q={q}").format(q=quote(f"{tool} {name}"))
+
+
+def find_videos(query: str, n: int = 2) -> list[dict]:
+    """유튜브 검색 → 임베드 가능한 영상 n개 (제목·채널은 oEmbed 로 확인)."""
+    try:
+        r = requests.get("https://www.youtube.com/results", params={"search_query": query}, headers=UA, timeout=20)
+        ids = list(dict.fromkeys(re.findall(r'"videoId":"([\w-]{11})"', r.text)))[:10]
+    except requests.RequestException:
+        return []
+    out = []
+    words = [w.lower() for w in re.findall(r"[A-Za-z0-9]+", query) if len(w) > 2 and w.lower() not in ("tutorial", "modifier")]
+    for vid in ids:
+        try:
+            o = requests.get("https://www.youtube.com/oembed", timeout=15,
+                             params={"url": f"https://www.youtube.com/watch?v={vid}", "format": "json"})
+            if not o.ok:  # 임베드 금지·삭제 영상
+                continue
+            meta = o.json()
+        except (requests.RequestException, ValueError):
+            continue
+        title = meta.get("title", "")
+        if words and sum(w in title.lower() for w in words) < min(2, len(words)):
+            continue  # 주제와 덜 맞는 영상 제외
+        out.append({"id": vid, "title": title, "author": meta.get("author_name", "")})
+        if len(out) >= n:
+            break
+    return out
+
+
+def _doc_text(url: str | None) -> str:
+    if not url:
+        return ""
+    try:
+        from bs4 import BeautifulSoup
+        r = requests.get(url, headers=UA, timeout=20)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, "html.parser")
+        main = soup.find("main") or soup.find(attrs={"role": "main"}) or soup.body
+        return re.sub(r"\s+", " ", main.get_text(" ") if main else "")[:6000]
+    except Exception:
+        return ""
+
+
+def _text(x) -> str:
+    """AI 가 문자열 대신 {"mistake":..,"fix":..} 같은 객체를 줄 때 '값 → 값' 으로."""
+    if isinstance(x, dict):
+        return " → ".join(str(v) for v in x.values() if v)
+    return str(x)
+
+
+def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None) -> dict | None:
+    domain = next((d for d, cats in core.SEED_CATEGORIES.items() if any(tool in c for c in cats)), "3D DCC")
+    videos = find_videos(f"{tool} {name} tutorial")
+    doc = _doc_text(url)
+    prompt = (
+        f"Write a Korean beginner-to-intermediate reference guide for: {tool} — {name}.\n"
+        + (f"Official documentation text (ground truth, prefer it):\n{doc}\n" if doc else
+           "No documentation text available: use only well-established, version-independent facts; omit anything unsure.\n")
+        + "Readers are Korean 3D artists who prefer visuals; keep text short and practical. Keep official English "
+          "names for tools, menus and parameters (e.g. Modifier List, Segments, Angle).\nReturn JSON:\n"
+          ' "summary": 1-2 sentences — what it does,\n'
+          ' "when": 3 bullet strings — when to use it,\n'
+          ' "steps": 4-7 short step strings — how to apply it from scratch (menu path / shortcut included),\n'
+          ' "params": up to 6 {"name": English UI name, "desc": Korean one-line effect},\n'
+          ' "examples": 2-3 {"title": Korean, "steps": 2-4 short strings} — concrete use cases (e.g. bending a pipe),\n'
+          ' "mistakes": 2-3 strings, each "common mistake → how to fix",\n'
+          ' "related": up to 4 related features (English names)'
+    )
+    try:
+        out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor writing concise Korean docs.",
+                                        max_tokens=1600, json_mode=True))
+    except core.LLMBudgetExceeded:
+        raise
+    except Exception as e:
+        core.log.warning("가이드 생성 실패 %s %s: %s", tool, name, e)
+        return None
+    if not isinstance(out, dict) or not out.get("steps"):
+        return None
+    fx = core.fix_terms
+
+    def lst(key, n):
+        return [fx(_text(x)) for x in (out.get(key) or []) if x][:n]
+
+    return {
+        "id": slug(tool, name), "tool": tool, "domain": domain, "group": group, "name": name,
+        "title": fx(title_ko), "summary": fx(str(out.get("summary", ""))), "when": lst("when", 4),
+        "steps": lst("steps", 8),
+        "params": [{"name": str(p.get("name", ""))[:40], "desc": fx(str(p.get("desc", "")))[:160]}
+                   for p in (out.get("params") or []) if isinstance(p, dict) and p.get("name")][:6],
+        "examples": [{"title": fx(str(x.get("title", ""))), "steps": [fx(str(s)) for s in (x.get("steps") or [])][:5]}
+                     for x in (out.get("examples") or []) if isinstance(x, dict) and x.get("title")][:3],
+        "mistakes": lst("mistakes", 3), "related": [str(x)[:40] for x in (out.get("related") or [])][:4],
+        "videos": videos, "doc": doc_link(tool, name, url), "grounded": bool(doc),
+        "at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def extra_topics() -> list[tuple]:
+    """AI 관리자가 제안·수락된 주제 (strategy.json guide_topics)."""
+    return [tuple(t) for t in core.load_strategy().get("guide_topics", []) if isinstance(t, list) and len(t) == 5]
+
+
+def pending() -> list[tuple]:
+    have = {p.stem for p in GUIDE_DIR.glob("*.json")} if GUIDE_DIR.exists() else set()
+    return [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
+
+
+def write_guides(max_new: int = 2) -> list[str]:
+    """아직 없는 주제를 하루 몇 개씩 생성 (AI 한도 40% 이상 남았을 때만)."""
+    budget = int(core.load_config().get("llm_daily_budget", 500))
+    if core.llm_budget_left() < budget * 0.4:
+        return []
+    done = []
+    for t in pending()[:max_new]:
+        try:
+            g = make_guide(*t)
+        except core.LLMBudgetExceeded:
+            break
+        if g:
+            core._save_json(GUIDE_DIR / f"{g['id']}.json", g)
+            done.append(g["title"])
+    return done
+
+
+def load_all() -> list[dict]:
+    if not GUIDE_DIR.exists():
+        return []
+    gs = [core._load_json(f, None) for f in GUIDE_DIR.glob("*.json")]
+    order = {slug(t[0], t[2]): i for i, t in enumerate(CATALOG)}
+    for g in gs:
+        if isinstance(g, dict):
+            for k in ("when", "steps", "mistakes"):
+                g[k] = [_text(x) for x in g.get(k) or []]
+    return sorted([g for g in gs if isinstance(g, dict) and g.get("steps")],
+                  key=lambda g: (g["tool"], order.get(g["id"], 999)))
+
+
+if __name__ == "__main__":  # 수동 생성: python guides.py 3
+    import sys
+    print(json.dumps(write_guides(int(sys.argv[1]) if len(sys.argv) > 1 else 2), ensure_ascii=False))
