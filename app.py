@@ -1034,7 +1034,16 @@ with t_today:
             st.caption(f"{x.get('channel')} · {kst(x['at'])}")
             if x.get("title"):
                 st.markdown(f"**{x['title']}**")
-            st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
+            img_path = core.ROOT / x["image"] if x.get("image") else None
+            if img_path and img_path.exists():  # 디자이너가 만든 홍보 이미지
+                i1, i2 = st.columns([1, 2])
+                i1.image(str(img_path), width="stretch")
+                i1.download_button("⬇ 이미지 받기", img_path.read_bytes(), file_name=img_path.name, mime="image/png",
+                                   key=f"dl_{x['id']}")
+                with i2:
+                    st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
+            else:
+                st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
             b1, b2, _ = st.columns([1, 1, 3])
             if b1.button("✅ 게시함", key=f"post_{x['id']}", type="primary", width="stretch"):
                 _staff.set_outbox(x["id"], "posted")

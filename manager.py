@@ -385,6 +385,8 @@ def snapshot() -> dict:
                       "fallback_ai": [f["name"] for f in core.fallback_providers()]},
         "allowed_intervals": list(core.INTERVALS),
         "team": _team_stats(),
+        "staff_capabilities": {"promo": "채널별 홍보 글 초안", "proposal": "개선 제안", "note": "업무 일지",
+                               "image": "브랜드 템플릿 홍보 이미지(square/x/story) — 디자이너 직무에 적합, 사이트 디자인 정보도 받음"},
         "basics_guides": _guide_stats(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
@@ -426,7 +428,7 @@ def review(force: bool = False) -> dict | None:
         '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
         '"title_ko":Korean page title} (evergreen basics reference page with video) | '
         '{"type":"hire_role","role":{"name":"emoji + Korean job title","mission":"what this staff member does every '
-        'cycle, concretely","deliverables":["promo"|"proposal"|"note"],"every_hours":6-168,"daily_calls":1-3,'
+        'cycle, concretely","deliverables":["promo"|"proposal"|"note"|"image"],"every_hours":6-168,"daily_calls":1-3,'
         '"playbook":"5-10 Korean bullet lines: how to do this job well — methods, quality bar, what to avoid"}} — '
         'propose hiring ONLY when there is recurring work no current team member covers (see metrics.team), like a '
         'company hiring | {"type":"pause_role","id":team member id} — when a member\'s output is mostly skipped or no '

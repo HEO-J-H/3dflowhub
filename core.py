@@ -371,7 +371,7 @@ def prune_drafts(days: int = 14) -> int:
     if not DRAFT_DIR.exists():
         return 0
     cutoff = time.time() - days * 86400
-    old = [f for f in DRAFT_DIR.glob("*.html") if f.stat().st_mtime < cutoff
+    old = [f for f in list(DRAFT_DIR.glob("*.html")) + list(DRAFT_DIR.glob("promo/*.png")) if f.stat().st_mtime < cutoff
            or (re.match(r"(\d{8})_", f.name) and datetime.strptime(f.name[:8], "%Y%m%d").timestamp() < cutoff)]
     for f in old:
         f.unlink(missing_ok=True)

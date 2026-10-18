@@ -41,6 +41,8 @@ jobs:
           cache: pip
 
       - run: pip install -r requirements.txt pytest
+      - name: Korean font (홍보 이미지 렌더용)
+        run: sudo apt-get install -y -qq fonts-nanum >/dev/null || true
 
       - name: Unit tests
         run: python -m pytest -q tests

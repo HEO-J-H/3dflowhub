@@ -709,3 +709,23 @@ def test_playbooks_exist_and_load():
     t = core.playbook("common", "manager")
     assert "PLAYBOOK" in t and "북극성" in t and len(t) <= 6100
     assert core.playbook("없는교본") == ""
+
+
+def test_designer_image_deliverable(monkeypatch, tmp_path):
+    import json as _j, staff, design
+    monkeypatch.setattr(staff, "ROLES_PATH", tmp_path / "roles.json")
+    monkeypatch.setattr(staff, "OUTBOX_PATH", tmp_path / "outbox.json")
+    monkeypatch.setattr(design, "PROMO_DIR", tmp_path / "promo")
+    monkeypatch.setattr(core, "ROOT", tmp_path)
+    monkeypatch.setattr(staff, "_context", lambda role: {})
+    fake = {"image": [{"format": "square", "kicker": "3ds Max", "headline": "Bend 로 파이프 휘기", "sub": "영상과 따라 하기",
+                       "points": ["Angle", "Limits"], "theme": "3d-dcc", "channel": "인스타그램", "caption": "#3dsMax",
+                       "url": "https://heo-j-h.github.io/3dflowhub/learn/x/"}], "note": "이미지 1장"}
+    monkeypatch.setattr(core, "llm", lambda *a, **k: _j.dumps(fake, ensure_ascii=False))
+    role = {"id": "r-design", "name": "🎨 디자이너", "mission": "홍보 이미지", "deliverables": ["image"],
+            "every_hours": 24, "daily_calls": 1}
+    res = staff.run_role(role)
+    item = staff.outbox()[0]
+    assert res["image"] == 1 and item["image"].endswith(".png") and (tmp_path / item["image"]).exists()
+    from PIL import Image
+    assert Image.open(tmp_path / item["image"]).size == (1080, 1080)

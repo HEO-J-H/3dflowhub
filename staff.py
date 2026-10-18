@@ -21,7 +21,7 @@ import core
 ROLES_PATH = core.ROOT / "memory" / "roles.json"     # 역할 이벤트: hire / pause / resume / run
 OUTBOX_PATH = core.ROOT / "memory" / "outbox.json"   # 홍보 대기함 이벤트: item / status
 SITE = "https://heo-j-h.github.io/3dflowhub/"
-DELIVERABLES = ("promo", "proposal", "note")
+DELIVERABLES = ("promo", "proposal", "note", "image")
 DEFAULT_CHANNELS = ["네이버 카페 (3D 커뮤니티)", "X (트위터)", "인스타그램 캡션", "디스코드"]
 
 MARKETER = {
@@ -138,7 +138,21 @@ def _context(role: dict) -> dict:
                                 for x in mine if x["status"] == "new"],
             "recently_posted": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
                                 for x in mine if x["status"] == "posted"][:10],
-            "weekly_page": f"{SITE}weekly/"}
+            "weekly_page": f"{SITE}weekly/",
+            **({"site_design": _design_snapshot()} if _is_designer(role) else {})}
+
+
+def _is_designer(role: dict) -> bool:
+    return "image" in (role.get("deliverables") or []) or "디자인" in role.get("mission", "") \
+        or "디자이너" in role.get("name", "")
+
+
+def _design_snapshot() -> dict:
+    try:
+        import design
+        return design.site_snapshot()
+    except Exception as e:
+        return {"error": str(e)[:100]}
 
 
 def run_role(role: dict) -> dict:
@@ -163,16 +177,21 @@ def run_role(role: dict) -> dict:
         + ', "evidence": numbers in plain Korean, "proposal": what to do, "expected": effect, "effort": "낮음"|"보통"|"높음", '
         '"action": null or {"type":"guide_topic","tool":..,"group":..,"name":English feature,"title_ko":..} or '
         '{"type":"keyword_hints","domain":D,"keywords":[...]} or {"type":"editorial_note","note":..}}],\n'
+        ' "image": up to 2 promo images rendered from a brand template [{"format": "square"|"x"|"story", '
+        '"kicker": tiny label <=12 chars, "headline": the big line <=28 chars (strongest benefit), "sub": <=60 chars, '
+        '"points": up to 3 short bullets (square/story only), "theme": one of default|3d-dcc|game-engine|vfx|ai-3d|learn|dark, '
+        '"cta": <=12 chars, "channel": where it will be posted, "caption": ready-to-paste caption, "url": page to link}],\n'
         ' "note": one Korean sentence — what you did and what you plan next.'
     )
     out = core._parse_json(core.llm(prompt, system=f"You are {role['name']} on the 3dflowhub team."
-                                    + core.playbook("common", "new_staff", role["id"])
+                                    + core.playbook("common", "new_staff", role["id"],
+                                                    *(["designer"] if _is_designer(role) else []))
                                     + (f"\n\n=== YOUR JOB PLAYBOOK ===\n{role['playbook']}" if role.get("playbook") else ""),
                                     max_tokens=2200, json_mode=True))
     if not isinstance(out, dict):
         return {}
     now = _now()
-    made = {"promo": 0, "proposal": 0}
+    made = {"promo": 0, "proposal": 0, "image": 0}
     if "promo" in want:
         evs = []
         for x in (out.get("promo") or [])[:4]:
@@ -189,6 +208,30 @@ def run_role(role: dict) -> dict:
         if evs:
             _append(OUTBOX_PATH, *evs)
             made["promo"] = len(evs)
+    if "image" in want:
+        import design
+        evs = []
+        for x in (out.get("image") or [])[:2]:
+            if not (isinstance(x, dict) and x.get("headline")):
+                continue
+            iid = "o-" + hashlib.md5(f"{now}{x['headline']}".encode()).hexdigest()[:10]
+            fname = f"{datetime.now(timezone.utc):%Y%m%d}_{iid}"
+            try:
+                path = design.render_promo(x, fname)
+            except Exception as e:
+                core.log.warning("홍보 이미지 렌더 실패: %s", e)
+                continue
+            url = str(x.get("url") or SITE)
+            url = url if url.startswith(SITE) else SITE
+            ch = str(x.get("channel") or "인스타그램")[:30]
+            evs.append({"at": now, "kind": "item", "id": iid, "role": role["id"], "channel": ch,
+                        "title": core.fix_terms(str(x["headline"]))[:80],
+                        "body": core.fix_terms(str(x.get("caption") or x.get("sub") or ""))[:2000],
+                        "url": tracked(url, ch, role["id"]), "image": path.relative_to(core.ROOT).as_posix(),
+                        "format": x.get("format", "square")})
+        if evs:
+            _append(OUTBOX_PATH, *evs)
+            made["image"] = len(evs)
     if "proposal" in want:
         evs = []
         open_titles = {p["title"] for p in manager.board()["proposals"] if p["status"] in ("new", "held")}
