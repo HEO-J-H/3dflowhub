@@ -426,7 +426,8 @@ def review(force: bool = False) -> dict | None:
         '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
         '"title_ko":Korean page title} (evergreen basics reference page with video) | '
         '{"type":"hire_role","role":{"name":"emoji + Korean job title","mission":"what this staff member does every '
-        'cycle, concretely","deliverables":["promo"|"proposal"|"note"],"every_hours":6-168,"daily_calls":1-3}} — '
+        'cycle, concretely","deliverables":["promo"|"proposal"|"note"],"every_hours":6-168,"daily_calls":1-3,'
+        '"playbook":"5-10 Korean bullet lines: how to do this job well — methods, quality bar, what to avoid"}} — '
         'propose hiring ONLY when there is recurring work no current team member covers (see metrics.team), like a '
         'company hiring | {"type":"pause_role","id":team member id} — when a member\'s output is mostly skipped or no '
         'longer needed}},\n'
@@ -436,7 +437,7 @@ def review(force: bool = False) -> dict | None:
         'roundups}, plus "allocation_reason": one Korean sentence why (based on views, gaps, search demand).\n'
         f"Domains D: {list(core.DOMAINS)}. Only propose things supported by the metrics; be specific, not generic."
     )
-    out = core._parse_json(core.llm(prompt, system="You are a pragmatic product manager and SEO/content strategist.",
+    out = core._parse_json(core.llm(prompt, system="You are the AI site manager (team lead) of 3dflowhub." + core.playbook("common", "manager"),
                                      max_tokens=2000, json_mode=True))
     if not isinstance(out, dict):
         return None

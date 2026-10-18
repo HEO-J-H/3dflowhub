@@ -174,7 +174,8 @@ def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None)
           ' "related": up to 4 related features (English names)'
     )
     try:
-        out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor writing concise Korean docs.",
+        out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor writing concise Korean docs."
+                                        + core.playbook("common", "guide_writer", limit=4000),
                                         max_tokens=1600, json_mode=True))
     except core.LLMBudgetExceeded:
         raise

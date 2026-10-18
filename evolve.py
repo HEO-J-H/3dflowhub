@@ -504,7 +504,8 @@ def write_roundups(max_new: int = 3, days: int = 30, gate: bool = True) -> list[
             ' "picks": up to 5 ids most worth reading first, "why": {id: one short Korean reason}'
         )
         try:
-            out = core._parse_json(core.llm(prompt, max_tokens=1200, json_mode=True))
+            out = core._parse_json(core.llm(prompt, system="You are the editor of 3dflowhub." + core.playbook("common", "editor"),
+                                             max_tokens=1200, json_mode=True))
         except core.LLMBudgetExceeded:
             break
         except Exception as e:

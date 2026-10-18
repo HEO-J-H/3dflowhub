@@ -548,6 +548,24 @@ with t_auto:
                 staff.set_status(r["id"], r["status"] != "active")
                 core.git_sync(["memory/roles.json"], "chore(staff): 직원 상태 변경 [skip ci]")
                 st.rerun()
+    with st.expander("📖 업무 교본 — 에이전트들이 일하기 전에 읽는 매뉴얼 (직접 고칠 수 있음)"):
+        names = {"common": "공통 (모두)", "manager": "🧭 AI 관리자", "marketer": "📣 마케터", "editor": "✍️ 에디터(요약·정리)",
+                 "guide_writer": "📚 기초 가이드 작가", "dev_team": "🛠 개발팀 4대 에이전트", "new_staff": "👋 새 직원 온보딩"}
+        pick = st.selectbox("교본", list(names), format_func=lambda k: names[k], key="pb_pick")
+        pb_file = core.KNOWLEDGE_DIR / f"{pick}.md"
+        pb_text = pb_file.read_text(encoding="utf-8") if pb_file.exists() else ""
+        new_text = st.text_area("내용 (마크다운)", pb_text, height=360, key=f"pb_{pick}")
+        if new_text != pb_text and st.button("💾 교본 저장", type="primary"):
+            pb_file.write_text(new_text, encoding="utf-8")
+            err = core.git_sync([f"knowledge/{pick}.md"], f"docs(knowledge): {names[pick]} 교본 수정 [skip ci]")
+            if err:
+                st.error(err)
+            else:
+                st.toast("저장했습니다 — 다음 업무부터 이 교본대로 일합니다")
+        for r in team.values():
+            if r.get("playbook"):
+                st.markdown(f"**{r['name']} 직무 교본** (채용 때 AI 관리자가 작성)")
+                st.markdown(r["playbook"])
     with st.expander("📣 홍보 채널 설정"):
         chans = st.text_area("마케터가 글을 써 줄 채널 (한 줄에 하나)",
                              "\n".join(cfg.get("promo_channels") or staff.DEFAULT_CHANNELS), height=120,

@@ -1021,6 +1021,21 @@ SUMMARY_SYSTEM = (
 )
 
 
+KNOWLEDGE_DIR = ROOT / "knowledge"  # 역할별 업무 교본 (사람이 고쳐 쓸 수 있는 마크다운)
+
+
+def playbook(*names: str, limit: int = 6000) -> str:
+    """에이전트가 일하기 전에 읽는 교본. knowledge/<이름>.md 를 이어 붙여 system 프롬프트에 넣는다.
+    없는 교본은 건너뜀. 토큰을 아끼려고 주석 줄은 빼고 길이 제한."""
+    parts = []
+    for n in names:
+        f = KNOWLEDGE_DIR / f"{n}.md"
+        if f.exists():
+            parts.append(f.read_text(encoding="utf-8").strip())
+    text = "\n\n".join(parts)
+    return ("\n\n=== PLAYBOOK (read before working; follow it) ===\n" + text[:limit]) if text else ""
+
+
 RUN_ERRORS: list[str] = []  # 이번 실행의 실패 사유 (memory.json 에 기록)
 
 
@@ -1150,7 +1165,8 @@ def summarize(item: dict) -> dict | None:
         'news — = 0)'
     )
     notes = load_strategy().get("prompt_notes", [])
-    system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
+    system = SUMMARY_SYSTEM + playbook("editor", limit=2500) + (
+        "\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
     try:
         data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))
     except LLMBudgetExceeded:

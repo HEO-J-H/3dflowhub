@@ -76,7 +76,8 @@ def valid_role(r) -> dict | None:
         return None
     rid = "r-" + hashlib.md5(str(r["name"]).encode()).hexdigest()[:8]
     return {"id": rid, "name": str(r["name"])[:30], "mission": str(r["mission"])[:600],
-            "deliverables": deliv, "every_hours": every, "daily_calls": calls}
+            "deliverables": deliv, "every_hours": every, "daily_calls": calls,
+            "playbook": str(r.get("playbook") or "")[:1500]}  # 채용 때 팀장이 써 주는 직무 교본
 
 
 def hire(role: dict, by: str = "AI 관리자 제안 · 사람 승인") -> str:
@@ -132,7 +133,11 @@ def _context(role: dict) -> dict:
                 for x in mine if x["status"] != "new"]
     return {"site_metrics": manager.snapshot(), "basics_guides": gl, "recent_news": recent,
             "channels": core.load_config().get("promo_channels") or DEFAULT_CHANNELS,
-            "your_past_output_feedback": feedback, "still_waiting_to_post": len([x for x in mine if x["status"] == "new"]),
+            "your_past_output_feedback": feedback,
+            "waiting_to_post": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
+                                for x in mine if x["status"] == "new"],
+            "recently_posted": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
+                                for x in mine if x["status"] == "posted"][:10],
             "weekly_page": f"{SITE}weekly/"}
 
 
@@ -149,7 +154,8 @@ def run_role(role: dict) -> dict:
         "Rules: write in natural Korean; use only real URLs from the context; no false claims or fake numbers; "
         "promotional posts must be useful first (share what readers learn), not spammy; respect each channel's style "
         "and length (X: ≤240 chars, Naver cafe: title + 3-6 lines, Instagram: caption + 5-8 hashtags, Discord: short "
-        "friendly message). If many posts are still waiting to be posted, make fewer new ones.\n"
+        "friendly message). If waiting_to_post is long, make fewer new ones; never promote a page that is already in "
+        "waiting_to_post or recently_posted for the same channel. Hashtags have no spaces (#3dsMax, not #3ds Max).\n"
         f"Return JSON with keys you are allowed to produce ({want}):\n"
         ' "promo": up to 4 [{"channel": one of the channels or "뉴스레터", "title": short, "body": ready-to-paste text, '
         '"url": the page to link}],\n'
@@ -159,7 +165,9 @@ def run_role(role: dict) -> dict:
         '{"type":"keyword_hints","domain":D,"keywords":[...]} or {"type":"editorial_note","note":..}}],\n'
         ' "note": one Korean sentence — what you did and what you plan next.'
     )
-    out = core._parse_json(core.llm(prompt, system=f"You are {role['name']} on a small content-site team.",
+    out = core._parse_json(core.llm(prompt, system=f"You are {role['name']} on the 3dflowhub team."
+                                    + core.playbook("common", "new_staff", role["id"])
+                                    + (f"\n\n=== YOUR JOB PLAYBOOK ===\n{role['playbook']}" if role.get("playbook") else ""),
                                     max_tokens=2200, json_mode=True))
     if not isinstance(out, dict):
         return {}

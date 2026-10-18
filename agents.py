@@ -40,7 +40,8 @@ def sh(*cmd: str, check: bool = True) -> str:
 
 def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
     try:
-        return core._parse_json(core.llm(prompt, system=role, max_tokens=max_tokens, json_mode=True))
+        return core._parse_json(core.llm(prompt, system=role + core.playbook("dev_team"), max_tokens=max_tokens,
+                                         json_mode=True))
     except ValueError:  # 깨진 JSON → 빈 응답으로 처리하고 다음 회차에서 재시도
         return {}
 
@@ -107,7 +108,7 @@ def coder(task: str, feedback: str) -> list[dict]:
         "SEARCH must match the file exactly (including indentation) and occur exactly once. "
         f"Only edit these files: {sorted(EDITABLE)}. Keep changes minimal; add or update a pytest test."
     )
-    text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer.", max_tokens=6000)
+    text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer." + core.playbook("dev_team"), max_tokens=6000)
     return parse_edits(text)
 
 

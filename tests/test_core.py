@@ -701,3 +701,11 @@ def test_staff_marketer_outbox_and_hiring(monkeypatch, tmp_path):
     assert "채용" in manager._apply(act)
     assert any(r["name"] == "🎬 영상 큐레이터" for r in staff.roles().values())
     assert "hire_role" not in manager.SAFE_AUTO                               # 채용은 사람 승인 필요
+
+
+def test_playbooks_exist_and_load():
+    for n in ("common", "manager", "marketer", "editor", "guide_writer", "dev_team", "new_staff"):
+        assert (core.KNOWLEDGE_DIR / f"{n}.md").exists(), n
+    t = core.playbook("common", "manager")
+    assert "PLAYBOOK" in t and "북극성" in t and len(t) <= 6100
+    assert core.playbook("없는교본") == ""
