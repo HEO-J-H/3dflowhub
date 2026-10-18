@@ -44,7 +44,55 @@ def make(name, title, sub, c1, c2):
     img.save(OUT / f"{name}.png", optimize=True)
 
 
+# ── 도구별 썸네일 (대표 이미지 없는 글의 카드·공유 이미지) ─────────────────────
+DOMAIN_COLORS = {k: (v[2], v[3]) for k, v in ITEMS.items()}
+KO_FONT = next((f for f in ["C:/Windows/Fonts/malgunbd.ttf", "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf"]
+                if Path(f).exists()), None)
+
+
+def tool_slug(name: str) -> str:
+    import hashlib
+    import re
+    if not name.isascii():  # 한글 등: 영문만 남기면 서로 겹칠 수 있어 해시 사용
+        return "t-" + hashlib.md5(name.encode()).hexdigest()[:8]
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def make_tool(name: str, domain_slug: str) -> None:
+    c1, c2 = DOMAIN_COLORS.get(domain_slug, DOMAIN_COLORS["default"])
+    img = Image.new("RGB", (W, H))
+    d = ImageDraw.Draw(img)
+    for x in range(W):
+        t = x / (W - 1)
+        d.line([(x, 0), (x, H)], fill=tuple(int(a + (b - a) * t) for a, b in zip(c1, c2)))
+    big = ImageFont.truetype(KO_FONT if (KO_FONT and not name.isascii()) else FONT, 110) if FONT else ImageFont.load_default()
+    w = d.textlength(name, font=big)
+    size = 110
+    while w > W - 160 and size > 50:  # 긴 이름은 글자 크기 줄임
+        size -= 8
+        big = ImageFont.truetype(KO_FONT if (KO_FONT and not name.isascii()) else FONT, size)
+        w = d.textlength(name, font=big)
+    d.text(((W - w) / 2, H / 2 - size / 2 - 20), name, font=big, fill=(255, 255, 255))
+    d.text((90, H - 90), "3dflowhub", font=font(36), fill=(235, 240, 255))
+    img.save(OUT / f"tool-{tool_slug(name)}.png", optimize=True)
+
+
+def make_tools() -> list[str]:
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    import core
+    made = []
+    for dom, tools in core.SEED_CATEGORIES.items():
+        dslug = core.DOMAIN_META.get(dom, {}).get("slug", "default")
+        for t in tools + list(core.load_categories().get(dom, [])):
+            if t.startswith("기타") or (OUT / f"tool-{tool_slug(t)}.png").exists():
+                continue
+            make_tool(t, dslug)
+            made.append(t)
+    return made
+
+
 if __name__ == "__main__":
     for k, v in ITEMS.items():
         make(k, *v)
-    print("생성:", ", ".join(ITEMS))
+    print("생성:", ", ".join(ITEMS), "| 도구:", ", ".join(make_tools()))

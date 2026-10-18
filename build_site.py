@@ -412,6 +412,13 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .gcard .b{padding:12px 14px}.gcard .k{font-size:12px;color:var(--accent);font-weight:600}
 .gcard .t{display:block;font-weight:600;margin:3px 0 4px;line-height:1.35}.gcard .s{font-size:13px;color:var(--muted)}
 #results .row{display:block}#results .row.on{background:var(--accent-soft)}#results .row.s{font-size:13px;color:var(--muted);padding:8px 14px}
+.lpath{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}.lpath .k{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.lpath a{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
+.lpath .next{text-align:right}.lpath a:hover{border-color:var(--accent)}
+.savebtn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:99px;padding:6px 14px;
+  font:inherit;font-size:14px;cursor:pointer;margin:4px 0 10px}.savebtn[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";font-weight:400;color:var(--muted);font-size:12px}
+#saved-list .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -450,19 +457,29 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}guide/">도구별 정리</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
-<script>const ROOT="{root}";</script><script src="{root}search.js" defer></script></body></html>"""
+<script>const ROOT="{root}";</script><script src="{root}search.js" defer></script><script src="{root}user.js" defer></script></body></html>"""
+
+
+def fallback_thumb(p: dict) -> str:
+    """대표 이미지가 없는 글: 도구 이름 카드(static/og/tool-*.png, make_og.py) → 없으면 분야 카드. 사이트 루트 기준 경로."""
+    from make_og import tool_slug
+    tool = p.get("category") or ""
+    if tool and (ROOT / "static" / "og" / f"tool-{tool_slug(tool)}.png").exists():
+        return f"og/tool-{tool_slug(tool)}.png"
+    return f"og/{DOMAIN_SLUG.get(p.get('domain'), 'default')}.png"
 
 
 def row(p: dict, root: str) -> str:
     img = (p.get("media") or {}).get("image")
-    thumb = f'<img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if img else '<span class="ph"></span>'
+    thumb = (f'<img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer">' if img
+             else f'<img src="{root}{fallback_thumb(p)}" alt="" loading="lazy">')
     return (f'<a class="row" href="{root}p/{p["id"]}.html">{thumb}<span><span class="t">{e(p["title_ko"])}</span><br>'
             f'<span class="s">{e(p.get("summary") or "")}</span></span>'
             f'<span class="side"><span class="badge">{e(p.get("category") or "기타")}'
@@ -476,7 +493,7 @@ MIN_INDEXABLE = 3  # 글이 이보다 적은 하위 게시판은 noindex (얇은
 def card(p: dict, root: str) -> str:
     img = (p.get("media") or {}).get("image")
     pic = (f'<div class="img"><img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>' if img
-           else f'<div class="img ph" aria-hidden="true">{e(DOMAIN_ICON.get(p["domain"], "🧊"))}</div>')
+           else f'<div class="img"><img src="{root}{fallback_thumb(p)}" alt="" loading="lazy"></div>')
     return (f'<a class="card" href="{root}p/{p["id"]}.html">{pic}<div class="body">'
             f'<span class="kicker">{e(p.get("category") or p["domain"])}{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
             f'<span class="t">{e(p["title_ko"])}</span><span class="s">{e(p.get("summary") or "")}</span>'
@@ -654,7 +671,28 @@ def guide_card(g: dict, root: str) -> str:
             f'<span class="t">{e(g["title"])}</span><span class="s">{e(g.get("summary", "")[:70])}</span></div></a>')
 
 
-def build_learn(guides_: list[dict]) -> None:
+def related_posts_for_guide(g: dict, posts: list[dict], n: int = 3) -> list[dict]:
+    """가이드와 같은 도구의 새 소식 — 기능 이름(예: Bend)이 제목에 있으면 먼저."""
+    tool = g["tool"].lower()
+    word = g["name"].split()[0].lower()
+    same = [p for p in posts if tool in (p.get("category") or "").lower() or tool in p["title_ko"].lower()]
+    same.sort(key=lambda p: p.get("collected_at") or "", reverse=True)  # 최신 순
+    same.sort(key=lambda p: word not in (p["title_ko"] + " " + p.get("title", "")).lower())  # 기능 이름 일치 우선 (안정 정렬)
+    return same[:n]
+
+
+def guide_faq(g: dict) -> dict | None:
+    """'자주 하는 실수 → 해결' 을 FAQPage 구조화 데이터로 (검색 결과에 질문·답 펼침)."""
+    qa = []
+    for m in g.get("mistakes") or []:
+        if "→" in m:
+            q, a = [x.strip() for x in m.split("→", 1)]
+            qa.append({"@type": "Question", "name": f"{g['tool']} {g['name'].split(' modifier')[0]}: {q} 어떻게 하나요?",
+                       "acceptedAnswer": {"@type": "Answer", "text": a}})
+    return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa} if qa else None
+
+
+def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
     """기초 가이드: 도구별 기본 기능(모디파이어·메뉴·노드)을 영상 + 단계별 사용법으로."""
     root_dir = OUT / "learn"
     root_dir.mkdir(exist_ok=True)
@@ -667,7 +705,15 @@ def build_learn(guides_: list[dict]) -> None:
         params = "".join(f'<tr><td><code>{e(x["name"])}</code></td><td>{e(x["desc"])}</td></tr>' for x in g.get("params", []))
         exs = "".join(f'<div class="box"><h3>{e(x["title"])}</h3><ol>{"".join(f"<li>{e(t)}</li>" for t in x["steps"])}</ol></div>'
                       for x in g.get("examples", []))
-        same = [o for o in guides_ if o["tool"] == g["tool"] and o["id"] != g["id"]][:4]
+        path = [o for o in guides_ if o["tool"] == g["tool"]]  # 도구별 학습 순서 (목록 순)
+        i = path.index(g)
+        prv, nxt = (path[i - 1] if i > 0 else None), (path[i + 1] if i + 1 < len(path) else None)
+        same = [o for o in path if o["id"] != g["id"]][:4]
+        news = related_posts_for_guide(g, posts or [])
+        nav_path = (f'<nav class="lpath" aria-label="학습 경로"><span class="k">{e(g["tool"])} 학습 경로 {i + 1} / {len(path)}</span>'
+                    + (f'<a class="prev" href="{root}{learn_url(prv)}">← {e(prv["title"].split(" — ")[0])}</a>' if prv else "<span></span>")
+                    + (f'<a class="next" href="{root}{learn_url(nxt)}">{e(nxt["title"].split(" — ")[0])} →</a>' if nxt else "<span></span>")
+                    + "</nav>")
         how_to = {"@context": "https://schema.org", "@type": "HowTo", "name": g["title"], "description": g.get("summary", ""),
                   "inLanguage": "ko", "step": [{"@type": "HowToStep", "position": i + 1, "text": t} for i, t in enumerate(g["steps"])]}
         if vids:
@@ -689,11 +735,15 @@ def build_learn(guides_: list[dict]) -> None:
             + f'<p class="crumb">📖 <a href="{e(g["doc"])}" target="_blank" rel="noopener">{e(g["tool"])} 공식 문서에서 자세히 보기</a>'
             + (" · 영상: " + ", ".join(f'<a href="https://www.youtube.com/watch?v={e(v["id"])}" target="_blank" rel="noopener">'
                                        f'{e(v["author"])}</a>' for v in vids) if vids else "")
-            + "</p></article>"
+            + "</p></article>" + nav_path
+            + (f'<h2 class="sec">{e(g["tool"])} 관련 새 소식</h2><div class="cards">{"".join(card(q, root) for q in news)}</div>'
+               if news else "")
             + (f'<h2 class="sec">{e(g["tool"])} 기초 더 보기</h2><div class="gcards">{"".join(guide_card(o, root) for o in same)}</div>'
                if same else "")
             + YT_JS)
+        faq = guide_faq(g)
         head = f'<script type="application/ld+json">{json.dumps(how_to, ensure_ascii=False)}</script>' + (
+            f'<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>' if faq else "") + (
             f'<meta property="og:image" content="https://i.ytimg.com/vi/{e(vids[0]["id"])}/hqdefault.jpg">' if vids
             else f'<meta property="og:image" content="{BASE_URL}/og/learn.png">')
         (folder / "index.html").write_text(
@@ -806,7 +856,8 @@ def post_head(p: dict) -> str:
             {"@type": "ListItem", "position": 4, "name": p["title_ko"][:110], "item": url}]}]
     # </script> 탈출 방지: '<' 를 유니코드 이스케이프
     js = json.dumps(ld, ensure_ascii=False).replace("<", "\\u003c")
-    return ((f'<meta property="og:image" content="{e(img)}">' if img else og_default(p["domain"])) +
+    return ((f'<meta property="og:image" content="{e(img)}">' if img else
+             f'<meta property="og:image" content="{BASE_URL}/{fallback_thumb(p)}">') +
             f'<meta property="og:type" content="article"><meta property="og:url" content="{e(url)}">'
             f'<meta property="article:published_time" content="{e(date)}">'
             f'<script type="application/ld+json">{js}</script>')
@@ -877,8 +928,6 @@ def build() -> dict:
     picks = [p for p in posts if p.get("pick")]
     import guides as _guides
     learn_guides = _guides.load_all()
-    learn_sec = (f'<h2 class="sec">기초 가이드 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="gcards">'
-                 + "".join(guide_card(g, "{ROOT}") for g in learn_guides[:8]) + "</div>") if learn_guides else ""
     roundups = load_roundups(posts)
     guide_sec = (f'<h2 class="sec">도구별 정리 <a href="{{ROOT}}guide/">전체 보기 →</a></h2><div class="rank">'
                  + "".join(f'<a href="{{ROOT}}{guide_url(r["domain"], r["tool"])}"><span><span class="t">{e(r["title"])}</span>'
@@ -893,18 +942,29 @@ def build() -> dict:
         wk = [p for p in posts if iso_week(p) == weeks[0]]
         week_card = (f'<h2 class="sec">이번 주 요약 <a href="{{ROOT}}weekly/{weeks[0]}/">전체 보기 →</a></h2>'
                      f'<div class="cards">{"".join(card(p, "{ROOT}") for p in popular(wk, 3, days=10))}</div>')
+    by_tool: dict[str, list] = defaultdict(list)
+    for g in learn_guides:
+        by_tool[g["tool"]].append(g)
+    learn_tiles = "".join(
+        f'<div class="box"><h3><span aria-hidden="true">📚</span> <a href="{{ROOT}}learn/#{e(slug(t))}">{e(t)}</a>'
+        f'<small class="n">{len(gs)}</small></h3><ul>'
+        + "".join(f'<li><a href="{{ROOT}}{learn_url(g)}">{e(g["title"].split(" — ")[0])}</a>'
+                  f'<span class="n">{"▶" if g.get("videos") else ""}</span></li>' for g in gs[:5])
+        + f'</ul><a class="more" href="{{ROOT}}{learn_url(gs[0])}">처음부터 배우기 →</a></div>' for t, gs in by_tool.items())
     home_head = (
-        f'<section class="hero"><h1>3D를 배우는 가장 빠른 길, <br>매일 정리되는 업계 소식</h1>'
-        f'<p>Blender·3ds Max·언리얼·유니티·VFX·AI 3D까지 — 전 세계 소식과 튜토리얼을 한국어로 요약해 '
-        f'도구별·주제별로 차곡차곡 쌓아 둡니다. 공부하고, 비교하고, 시야를 넓히세요.</p>'
-        f'<div class="actions"><a class="btn primary" href="{{ROOT}}weekly/">이번 주 요약 보기</a>'
-        f'<a class="btn ghost" href="{{ROOT}}about/">3dflowhub 소개 →</a></div>'
-        f'<div class="stats"><span><b>{len(posts)}</b>정리된 글</span><span><b>{len(board_domains())}</b>분야</span>'
-        f'<span><b>{tools_n}</b>도구·주제 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
-        f'<h2 class="sec">분야별 게시판</h2><div class="grid">{"".join(tiles)}</div>'
+        f'<section class="hero"><h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
+        f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
+        f'전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리해 둡니다.</p>'
+        f'<div class="actions"><a class="btn primary" href="{{ROOT}}learn/">기초 가이드 시작하기</a>'
+        f'<a class="btn ghost" href="{{ROOT}}weekly/">이번 주 요약 →</a></div>'
+        f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>정리된 소식</span>'
+        f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
+           if learn_tiles else "")
         + (f'<h2 class="sec">에디터 추천</h2><div class="cards">{"".join(card(p, "{ROOT}") for p in picks[:6])}</div>'
            if picks else "") +
-        learn_sec + guide_sec +
+        f'<h2 class="sec">분야별 소식 게시판</h2><div class="grid">{"".join(tiles)}</div>' +
+        guide_sec +
         f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
         f'{week_card}'
         f'<h2 class="sec">최신 글</h2><div class="cards lead-grid">{latest}</div>'
@@ -943,8 +1003,18 @@ def build() -> dict:
 
             gd = next((r for r in roundups if (r["domain"], r["tool"]) == (d, c)), None)
             gd_link = (f'<p class="crumb"><a href="{{ROOT}}{guide_url(d, c)}">🧭 {e(gd["title"])} →</a></p>' if gd else "")
+            # 게시판 소개 2~3줄 (목록만 있는 '얇은 페이지' 방지): 도구별 정리 요약 → 없으면 유형·최근 주제로 구성
+            kinds = ", ".join(t for t, ps in sorted(by_topic.items(), key=lambda kv: -len(kv[1])) if ps)
+            tool_guides = [g for g in learn_guides if g["tool"].lower() in c.lower() or c.lower() in g["tool"].lower()]
+            intro = (gd["intro"].split(". ")[0].rstrip(".") + "." if gd else
+                     f"{c} 관련 소식 {len(items)}개를 모았습니다 ({kinds}).")
+            intro_html = (f'<p class="desc">{e(intro)} 새 글은 매일 자동으로 정리되며, 아래 유형 버튼으로 '
+                          f'업데이트·튜토리얼·플러그인만 골라 볼 수 있어요.'
+                          + (f' 처음이라면 <a href="{{ROOT}}{learn_url(tool_guides[0])}">📚 {e(c)} 기초 가이드</a>부터 보세요.'
+                             if tool_guides else "") + "</p>")
             board_pages(items, folder, "../../../", f"{d} › {c}",
-                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + gd_link + tabs(c, "{ROOT}") + chips(None), d)
+                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + intro_html + gd_link + tabs(c, "{ROOT}")
+                        + chips(None), d)
             for t, ps in by_topic.items():
                 if ps:
                     board_pages(ps, folder / TOPIC_SLUG[t], "../../../../", f"{d} › {c} › {t}",
@@ -958,7 +1028,16 @@ def build() -> dict:
     # 도구별 정리 (evolve 가 주 1회 생성한 roundup)
     build_guides(posts, roundups)
     # 기초 가이드 (영상 + 단계별 사용법)
-    build_learn(learn_guides)
+    build_learn(learn_guides, posts)
+
+    # 저장한 글 (브라우저에만 저장 — static/user.js 가 그림)
+    (OUT / "saved").mkdir(exist_ok=True)
+    (OUT / "saved" / "index.html").write_text(page(
+        f"저장한 글 - {SITE_TITLE}",
+        '<div class="doc"><h1>☆ 저장한 글</h1><p class="desc">글·기초 가이드에서 <b>☆ 저장</b>을 누르면 여기에 모입니다. '
+        '로그인 없이 <b>이 브라우저에만</b> 저장돼요 (다른 기기와는 공유되지 않음).</p></div>'
+        '<div class="board" id="saved-list"></div>', "../", extra_head='<meta name="robots" content="noindex">'),
+        encoding="utf-8")
 
     # 404 페이지 (GitHub Pages 가 없는 주소에 이 파일을 보여줌 → 어느 경로에서든 동작하도록 절대 경로)
     abs_root = "/" + BASE_URL.split("://", 1)[1].split("/", 1)[1].strip("/") + "/"
