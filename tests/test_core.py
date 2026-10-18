@@ -148,6 +148,13 @@ def test_post_html_faq_and_related():
     assert "함께 보면 좋은 글" in out and 'href="https://hjh1014.tistory.com/3"' in out
 
 
+def test_short_post_warning_and_error(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    short_item = {**ITEM, "sections": [{"heading": "Short", "body": "Too short"}]}
+    core.build_post_html(short_item)
+    assert "short post" in core.RUN_ERRORS
+
+
 def test_pick_by_weights_prefers_heavy_domain():
     cands = [{"hint_domain": d, "url": f"{d}{i}"} for d in ("VFX", "AI 3D") for i in range(10)]
     picked = core.pick_by_weights(cands, ["VFX", "AI 3D"], 10, {"VFX": 0.8, "AI 3D": 0.2})
