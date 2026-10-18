@@ -305,7 +305,8 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     for f, mine in local.items():
         if mine is not None:
             _save_json(ROOT / f, merge_json(_load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
-    if commit_paths and not err:
+    ahead = git("rev-list", "--count", "origin/main..HEAD").stdout.strip() not in ("", "0")
+    if (commit_paths or ahead) and not err:  # 미푸시 커밋이 남아 있어도 올림
         p = git("push", "-q", "origin", "main")
         if p.returncode != 0:
             err = "git push 실패: " + (p.stderr or p.stdout)[:200]
