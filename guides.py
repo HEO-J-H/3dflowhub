@@ -212,10 +212,10 @@ def pending() -> list[tuple]:
     return [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
 
 
-def write_guides(max_new: int = 2) -> list[str]:
-    """아직 없는 주제를 하루 몇 개씩 생성 (AI 한도 40% 이상 남았을 때만)."""
+def write_guides(max_new: int = 2, gate: bool = True) -> list[str]:
+    """아직 없는 주제를 생성. gate=True 면 AI 한도 40% 이상 남았을 때만 (자동 모드는 배분량으로 대신 판단)."""
     budget = int(core.load_config().get("llm_daily_budget", 500))
-    if core.llm_budget_left() < budget * 0.4:
+    if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.4):
         return []
     done = []
     for t in pending()[:max_new]:

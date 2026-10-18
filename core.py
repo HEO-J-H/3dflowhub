@@ -506,6 +506,13 @@ def llm_fallback_usage() -> dict:
     return {k: v for k, v in _load_json(LLM_FALLBACK_PATH, {}).get(llm_day(), {}).items() if not k.endswith("!")}
 
 
+def llm_capacity_left() -> int:
+    """오늘 남은 전체 AI 호출 여력 = 주 공급자 잔여 + 예비 공급자 잔여 (자동 모드 배분용)."""
+    primary = 0 if llm_quota_status()["exhausted"] else \
+        int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
+    return max(0, primary) + sum(f["left"] for f in fallback_providers())
+
+
 def llm_budget_left() -> int:
     """주 공급자 잔여 + (주 공급자가 바닥이면) 예비 공급자 잔여."""
     primary = 0 if llm_quota_status()["exhausted"] else \
@@ -1459,6 +1466,12 @@ def run_from_config(force: bool = False) -> dict | None:
     state["last_run"] = datetime.now(timezone.utc).isoformat()
     _save_json(STATE_PATH, state)  # 실패해도 10분마다 재시도 폭주하지 않도록 먼저 기록
     n = cfg["max_items"] if INTERVALS.get(cfg["interval"], 3600) >= 3600 else min(cfg["max_items"], cfg["burst_items"])
+    if cfg.get("auto_mode"):  # 자동 모드: AI 관리자가 오늘 남은 여력을 뉴스·가이드·정리에 배분
+        try:
+            import manager
+            n = manager.plan_today()["news_per_run"]
+        except Exception as e:
+            log.warning("자동 배분 실패 — 기본 수집량 사용: %s", e)
     # 한도 판단(주 AI + 예비 AI)과 실행 기록은 run_pipeline 이 담당
     stats = run_pipeline(n, cfg["domains"], cfg["publish"])
     send_report_email(cfg, state, stats)

@@ -23,6 +23,11 @@ MAX_PROPOSALS = 3
 CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익"]
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절"}
+PLAN_PATH = core.ROOT / "memory" / "plan.json"
+DEFAULT_ALLOC = {"news": 0.6, "guides": 0.3, "roundups": 0.1}
+CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
+RESERVE = 6            # AI 관리자 분석·답변용으로 남겨 둠
+SAFE_AUTO = ("keyword_hints", "editorial_note", "guide_topic", "add_feed")  # 자동 모드에서 스스로 수락해도 되는 행동
 
 
 def _now() -> str:
@@ -180,6 +185,105 @@ def apply_accepted() -> list[str]:
     return done
 
 
+# ─────────────────────────── 자동 모드: 오늘 배분 ───────────────────────────
+def auto_mode() -> bool:
+    return bool(core.load_config().get("auto_mode"))
+
+
+def _day_start_utc() -> str:
+    """Gemini 하루(태평양 자정) 시작 시각 (UTC ISO)."""
+    from zoneinfo import ZoneInfo
+    la = datetime.now(ZoneInfo("America/Los_Angeles")).replace(hour=0, minute=0, second=0, microsecond=0)
+    return la.astimezone(timezone.utc).isoformat()
+
+
+def done_today() -> dict:
+    start = _day_start_utc()
+    news = sum(1 for f in core.POSTS_DIR.glob("*.json") if (core._load_json(f, {}).get("collected_at") or "") >= start)
+    try:
+        import guides
+        g = sum(1 for x in guides.load_all() if x.get("at", "") >= start)
+    except Exception:
+        g = 0
+    r = sum(1 for f in core.ROUNDUP_DIR.glob("*.json") if core._load_json(f, {}).get("at", "") >= start) \
+        if core.ROUNDUP_DIR.exists() else 0
+    return {"news": news, "guides": g, "roundups": r}
+
+
+def _roundup_candidates() -> int:
+    try:
+        import evolve
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+        counts = Counter((p.get("domain"), p.get("category")) for p in
+                         (core._load_json(f, {}) for f in core.POSTS_DIR.glob("*.json"))
+                         if (p.get("collected_at") or "") >= cutoff and p.get("category")
+                         and not str(p["category"]).startswith("기타"))
+        fresh = (datetime.now(timezone.utc) - evolve.ROUNDUP_EVERY).isoformat()
+        return sum(1 for (d, t), n in counts.items() if n >= evolve.ROUNDUP_MIN_POSTS
+                   and core._load_json(evolve.roundup_path(d, t), {}).get("at", "") < fresh)
+    except Exception:
+        return 0
+
+
+def _share(x: float) -> int:
+    """기대값 x 를 정수로: 정수부 + 소수부 확률 (예: 0.4 → 40% 확률로 1개)."""
+    import random
+    return int(x) + (1 if random.random() < x - int(x) else 0)
+
+
+def plan_today() -> dict:
+    """오늘 남은 AI 여력을 뉴스 요약·기초 가이드·도구별 정리에 배분하고, 이번 실행 몫을 계산.
+    비율은 AI 관리자의 하루 분석(allocation)을 따르고, 만들 거리가 없는 항목은 뉴스로 돌린다."""
+    cfg = core.load_config()
+    cap = core.llm_capacity_left()
+    usable = max(0, cap - RESERVE)
+    try:
+        from zoneinfo import ZoneInfo
+        la = datetime.now(ZoneInfo("America/Los_Angeles"))
+        hours_left = 24 - la.hour - la.minute / 60
+    except Exception:
+        hours_left = 12
+    interval = core.INTERVALS.get(cfg.get("interval"), 3600) or 600
+    runs_left = max(1, int(hours_left * 3600 // interval))
+    rep = board()["report"]
+    alloc = dict(rep.get("allocation") or DEFAULT_ALLOC)
+    try:
+        import guides
+        pending_guides = len(guides.pending())
+    except Exception:
+        pending_guides = 0
+    cand = _roundup_candidates()
+    if not pending_guides:
+        alloc["news"] += alloc.pop("guides", 0); alloc["guides"] = 0
+    if not cand:
+        alloc["news"] += alloc.pop("roundups", 0); alloc["roundups"] = 0
+    tot = sum(alloc.values()) or 1
+    alloc = {k: round(v / tot, 2) for k, v in alloc.items()}
+    per_run_calls = usable / runs_left
+    plan = {
+        "day": core.llm_day(), "at": _now(), "capacity_left": cap, "runs_left": runs_left,
+        "alloc": alloc, "reason": rep.get("allocation_reason", "기본 배분 (AI 관리자 분석 전)"),
+        "news_per_run": max(1, min(15, round(per_run_calls * alloc["news"] / CALLS_PER_NEWS))) if usable else 0,
+        "guides_now": min(3, pending_guides, _share(per_run_calls * alloc["guides"])) if usable else 0,
+        "roundups_now": min(3, cand, _share(per_run_calls * alloc["roundups"])) if usable else 0,
+        "today_target": {k: int(usable * v / (CALLS_PER_NEWS if k == "news" else 1)) for k, v in alloc.items()},
+        "done": done_today(), "pending_guides": pending_guides, "roundup_candidates": cand,
+    }
+    core._save_json(PLAN_PATH, plan)
+    return plan
+
+
+def _auto_accept(new_ids: list[str]) -> list[str]:
+    """자동 모드: 위험이 낮은 행동(키워드·지침·가이드 주제·피드)만 스스로 수락. 설정 변경은 사람에게 남김."""
+    done = []
+    for p in board()["proposals"]:
+        if p["id"] in new_ids and p["status"] == "new" and (p.get("action") or {}).get("type") in SAFE_AUTO:
+            _append({"at": _now(), "kind": "decision", "id": p["id"], "v": "accepted", "note": "자동 모드: 자동 수락",
+                     "auto": True})
+            done.append(p["title"])
+    return done
+
+
 # ─────────────────────────── 분석 ───────────────────────────
 def _guide_stats() -> dict:
     try:
@@ -264,7 +368,10 @@ def review(force: bool = False) -> dict | None:
         '{"type":"glossary","canon":official name,"variants":"wrong spelling 1|wrong spelling 2"} | '
         '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
         '"title_ko":Korean page title} (evergreen basics reference page with video)}},\n'
-        ' "replies": [{"id": message id, "text": helpful Korean answer}] for each owner message.\n'
+        ' "replies": [{"id": message id, "text": helpful Korean answer}] for each owner message,\n'
+        ' "allocation": how to split today\'s remaining AI calls between content types, as fractions summing to 1: '
+        '{"news": new article summaries, "guides": evergreen basics guides with video, "roundups": monthly tool '
+        'roundups}, plus "allocation_reason": one Korean sentence why (based on views, gaps, search demand).\n'
         f"Domains D: {list(core.DOMAINS)}. Only propose things supported by the metrics; be specific, not generic."
     )
     out = core._parse_json(core.llm(prompt, system="You are a pragmatic product manager and SEO/content strategist.",
@@ -272,7 +379,14 @@ def review(force: bool = False) -> dict | None:
     if not isinstance(out, dict):
         return None
     now = _now()
-    evs = [{"at": now, "kind": "report", "id": "r-" + now[:16], "text": core.fix_terms(str(out.get("summary", "")))[:800]}]
+    alloc = out.get("allocation") if isinstance(out.get("allocation"), dict) else {}
+    try:
+        alloc = {k: max(0.0, float(alloc.get(k, 0))) for k in DEFAULT_ALLOC}
+        alloc = {k: round(v / sum(alloc.values()), 2) for k, v in alloc.items()} if sum(alloc.values()) else {}
+    except (TypeError, ValueError):
+        alloc = {}
+    evs = [{"at": now, "kind": "report", "id": "r-" + now[:16], "text": core.fix_terms(str(out.get("summary", "")))[:800],
+            "allocation": alloc or None, "allocation_reason": str(out.get("allocation_reason", ""))[:300]}]
     for p in (out.get("proposals") or [])[:MAX_PROPOSALS]:
         if not isinstance(p, dict) or not p.get("title") or p["title"] in open_titles:
             continue
@@ -289,6 +403,11 @@ def review(force: bool = False) -> dict | None:
         if isinstance(r, dict) and r.get("id") in ids and r.get("text"):
             evs.append({"at": now, "kind": "reply", "id": "y-" + r["id"], "reply_to": r["id"], "text": str(r["text"])[:1500]})
     _append(*evs)
+    if auto_mode():  # 자동 모드: 안전한 제안은 스스로 수락 → 바로 다음 실행에서 반영
+        accepted = _auto_accept([e["id"] for e in evs if e["kind"] == "proposal"])
+        if accepted:
+            core.log.info("AI 관리자 자동 수락: %s", accepted)
+            apply_accepted()
     core.log.info("AI 관리자: 제안 %d개, 답변 %d개", sum(e["kind"] == "proposal" for e in evs),
                   sum(e["kind"] == "reply" for e in evs))
     return out

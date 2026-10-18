@@ -35,6 +35,7 @@ INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 
 st.markdown("""<style>
 [data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:16px;padding:14px 18px}
 [data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
+[data-testid="stMetricValue"]{font-size:1.75rem}
 div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:16px}
 .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .hdr-links a{margin-right:14px;text-decoration:none}
@@ -311,11 +312,41 @@ with t_auto:
     k2.metric("수락률", f"{int(rate * 100)}%" if rate is not None else "-")
     k3.metric("직접 작업 필요", sum(1 for x in mb["proposals"] if x["status"] == "accepted"
                                  and not (x.get("action") or {}).get("type")))
-    k4.metric("마지막 분석", ago(rep.get("at", "")) if rep else "아직 없음")
+    k4.metric("마지막 분석", ago(rep.get("at", "")) if rep else "없음", help="AI 관리자가 마지막으로 사이트를 분석한 시각")
     if rep:
         with st.container(border=True):
             st.markdown(f"**오늘의 진단** · {rep.get('at', '')[:10]}")
             st.write(rep.get("text", ""))
+    with st.container(border=True):
+        t1, t2 = st.columns([3, 1.2])
+        t1.markdown("**🤖 자동 모드**  \n켜면 AI 관리자가 오늘 남은 AI 사용량을 뉴스 요약·기초 가이드·도구별 정리에 "
+                    "알아서 나눠 올리고, 위험이 낮은 제안(키워드·편집 지침·가이드 주제·피드)은 스스로 수락합니다. "
+                    "설정 변경 제안은 계속 여기서 결정합니다.")
+        on = t2.toggle("자동 모드", value=bool(cfg.get("auto_mode")), key="auto_mode_toggle")
+        if on != bool(cfg.get("auto_mode")):
+            core.save_config({"auto_mode": on})
+            err = core.git_sync(["config.json"], f"chore(config): 자동 모드 {'켜기' if on else '끄기'}")
+            if err:
+                st.error(f"이 PC에는 저장됐지만 GitHub 반영 실패: {err}")
+            else:
+                st.toast("🤖 자동 모드를 켰습니다 — 다음 수집부터 적용" if on else "자동 모드를 껐습니다")
+            st.rerun()
+        plan = core._load_json(manager.PLAN_PATH, {})
+        if plan.get("day") != core.llm_day():
+            plan = manager.plan_today()
+        if on or plan:
+            tg, dn = plan.get("today_target", {}), plan.get("done", {})
+            st.caption(f"오늘 남은 AI 여력 **{plan.get('capacity_left', 0)}회** · 리셋(한국 {core.llm_reset_kst()})까지 "
+                       f"수집 약 {plan.get('runs_left', 0)}회 · 배분 근거: {plan.get('reason', '')}")
+            c1, c2, c3 = st.columns(3)
+            for col, key, label, now_key in ((c1, "news", "📰 뉴스 요약", "news_per_run"),
+                                             (c2, "guides", "📚 기초 가이드", "guides_now"),
+                                             (c3, "roundups", "🧭 도구별 정리", "roundups_now")):
+                share = int((plan.get("alloc") or {}).get(key, 0) * 100)
+                done, target = dn.get(key, 0), tg.get(key, 0)
+                col.metric(f"{label} · 배분 {share}%", f"{done}건", help="오늘(태평양 자정 기준) 올린 수")
+                col.caption((f"남은 목표 약 {target}건" if target else "지금은 만들 거리 없음")
+                            + f" · 이번 실행 {plan.get(now_key, 0)}건" + ("" if on else " (자동 모드에서)"))
     a1, a2 = st.columns([1.4, 3])
     if a1.button("🔍 지금 분석 요청", help="AI 1회 사용 — 지금 지표로 바로 분석합니다", width="stretch"):
         with st.spinner("AI 관리자가 지표를 분석하는 중…"):

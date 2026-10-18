@@ -595,3 +595,33 @@ def test_guides_generate_and_render(monkeypatch, tmp_path):
     build_site.build_learn([g])
     html = (tmp_path / "site" / "learn" / g["id"] / "index.html").read_text(encoding="utf-8")
     assert 'data-id="MP0iUACTy6s"' in html and '"@type": "HowTo"' in html and "세그먼트 부족" in html
+
+
+def test_auto_plan_and_auto_accept(monkeypatch, tmp_path):
+    import manager, guides
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    monkeypatch.setattr(manager, "PLAN_PATH", tmp_path / "plan.json")
+    monkeypatch.setattr(core, "llm_capacity_left", lambda: 246)
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 246)
+    monkeypatch.setattr(manager, "_roundup_candidates", lambda: 0)          # 정리할 거리 없음 → 뉴스로
+    monkeypatch.setattr(guides, "pending", lambda: [("3ds Max", "모디파이어", "Bend modifier", "Bend", None)])
+    p = manager.plan_today()
+    assert p["alloc"]["roundups"] == 0 and p["roundups_now"] == 0
+    assert p["news_per_run"] >= 1 and p["guides_now"] <= 1
+    monkeypatch.setattr(core, "llm_capacity_left", lambda: 3)                 # 여력 없음 → 아무것도 안 함
+    p = manager.plan_today()
+    assert p["news_per_run"] == 0 and p["guides_now"] == 0
+
+    core._save_json(core.CONFIG_PATH, {"auto_mode": True})
+    fake = {"summary": "s", "allocation": {"news": 2, "guides": 1, "roundups": 1}, "allocation_reason": "가이드 조회 증가",
+            "proposals": [{"title": "키워드", "category": "수집", "evidence": "e", "proposal": "p", "effort": "낮음",
+                           "action": {"type": "keyword_hints", "domain": "3D DCC", "keywords": ["RailClone"]}},
+                          {"title": "예산", "category": "운영·비용", "evidence": "e", "proposal": "p", "effort": "낮음",
+                           "action": {"type": "set_config", "key": "max_items", "value": 20}}]}
+    monkeypatch.setattr(core, "llm", lambda *a, **k: __import__("json").dumps(fake, ensure_ascii=False))
+    manager.review(force=True)
+    b = manager.board()
+    st = {x["title"]: x["status"] for x in b["proposals"]}
+    assert st == {"키워드": "accepted", "예산": "new"}                     # 설정 변경은 사람 몫
+    assert "RailClone" in core.load_strategy()["keyword_hints"]["3D DCC"]
+    assert b["report"]["allocation"] == {"news": 0.5, "guides": 0.25, "roundups": 0.25}

@@ -466,11 +466,11 @@ def roundup_path(domain: str, tool: str):
     return core.ROUNDUP_DIR / f"{hashlib.md5(f'{domain}|{tool}'.encode()).hexdigest()[:12]}.json"
 
 
-def write_roundups(max_new: int = 3, days: int = 30) -> list[str]:
+def write_roundups(max_new: int = 3, days: int = 30, gate: bool = True) -> list[str]:
     """도구별 정리: 최근 30일 글이 4개 이상인 도구를 주 1회 LLM 으로 묶어 '흐름·핵심·먼저 볼 글' 정리.
     개별 요약보다 검색·독자 가치가 큰 2차 콘텐츠. 한도의 60% 이상 남았을 때만, 한 번에 최대 3개."""
     budget = int(core.load_config().get("llm_daily_budget", 500))
-    if core.llm_budget_left() < budget * 0.6:
+    if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.6):
         return []
     now = datetime.now(timezone.utc)
     cutoff = (now - timedelta(days=days)).isoformat()
@@ -559,19 +559,28 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("Search Console 수집 실패: %s", e)
         strategy["gsc_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
-    if force or _due(strategy, "guides_at", 3 * 3600):  # 기초 가이드: 3시간마다 2개씩 (AI 여유 40% 이상일 때)
+    auto = bool(core.load_config().get("auto_mode"))
+    plan = {}
+    if auto:  # 자동 모드: 매 실행마다 AI 관리자의 오늘 배분량만큼 생성
+        try:
+            import manager
+            plan = manager.plan_today()
+        except Exception as e:
+            log.warning("자동 배분 실패: %s", e)
+            auto = False
+    if auto or force or _due(strategy, "guides_at", 3 * 3600):  # 수동: 3시간마다 2개씩 (AI 여유 40% 이상일 때)
         try:
             import guides
-            made = guides.write_guides(2)
+            made = guides.write_guides(plan["guides_now"], gate=False) if auto else guides.write_guides(2)
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "guides": made}])[-30:]
         except Exception as e:
             log.warning("기초 가이드 생성 실패: %s", e)
         strategy["guides_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
-    if force or _due(strategy, "roundups_at", 3 * 3600):  # 3시간마다 점검, 도구별로는 주 1회 갱신
+    if auto or force or _due(strategy, "roundups_at", 3 * 3600):  # 3시간마다 점검, 도구별로는 주 1회 갱신
         try:
-            made = write_roundups()
+            made = write_roundups(plan["roundups_now"], gate=False) if auto else write_roundups()
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "roundups": made}])[-30:]
         except Exception as e:
