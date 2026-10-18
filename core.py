@@ -468,6 +468,9 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
         if mine is not None:
             _save_json(ROOT / f, merge_memory(f, _load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
     if mem_commit and not err:  # 원격 최신본과 병합된 memory 를 이제 커밋
+        # 먼저 밀려 있던 코드 커밋을 따로 푸시: '[skip ci]' 기록 커밋과 한 번에 올리면 GitHub 가 배포까지 건너뜀
+        if git("rev-list", "--count", "origin/main..HEAD").stdout.strip() not in ("", "0") and "[skip ci]" in (message or ""):
+            git("push", "-q", _push_remote(), "HEAD:main")
         git("add", *mem_commit)
         if git("diff", "--cached", "--quiet").returncode != 0:
             git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *mem_commit)
