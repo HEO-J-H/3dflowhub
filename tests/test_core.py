@@ -247,7 +247,7 @@ def test_merge_json_remote_wins_and_no_resurrection():
 
 
 def test_llm_usage_sums_sources():
-    day = __import__("datetime").datetime.now(__import__("datetime").timezone.utc).strftime("%Y-%m-%d")
+    day = core.llm_day()  # Gemini 리셋 기준(태평양 자정) 날짜
     core._save_json(core.LLM_USAGE_PATH, {day: {"ci": 30, "local": 5}})
     assert core.llm_usage_today() == 35
     merged = core.merge_json({day: {"ci": 40}}, {day: {"ci": 30, "local": 7}})
