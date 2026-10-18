@@ -1,0 +1,93 @@
+{
+  "id": "blender-geometry-nodes-basics-1c95",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본기",
+  "name": "Geometry Nodes Basics",
+  "title": "Blender Geometry Nodes 기초 가이드",
+  "summary": "Blender의 Geometry Nodes는 노드 기반으로 지오메트리를 생성하고 변형하는 강력한 절차적(Procedural) 워크플로우 도구입니다. 코딩 없이 시각적인 노드 연결만으로 복잡한 모델링과 애니메이션을 자동화합니다.",
+  "when": [
+    "반복적인 형태(예: 울타리, 계단, 파이프 라인)를 수동 작업 없이 자동으로 생성할 때",
+    "기존 메쉬 표면 위에 수많은 오브젝트(예: 풀밭, 돌맹이, 숲)를 무작위로 배치할 때",
+    "수치가 바뀔 때마다 형태가 실시간으로 유연하게 반응하는 에셋을 만들 때"
+  ],
+  "steps": [
+    "1. 작업할 베이스 오브젝트를 선택하고 Properties 패널의 Modifier 탭으로 이동합니다.",
+    "2. Add Modifier 메뉴에서 Geometry Nodes를 선택하여 모디파이어를 추가합니다.",
+    "3. New 버튼을 클릭하여 새로운 노드 트리를 생성하고 Geometry Nodes 에디터 화면을 엽니다.",
+    "4. Shift + A 키를 눌러 Add 메뉴를 열고 원하는 노드(예: Cube, Transform 등)를 검색하여 추가합니다.",
+    "5. Group Input과 Group Output 노드 사이에 새 노드를 연결하여 형태를 변형하고 제어합니다.",
+    "6. Modifier 탭에서 파라미터를 조절하여 실시간으로 변화하는 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Group Input",
+      "desc": "외부 모디파이어 패널로 값을 전달하기 위한 입력 노드입니다."
+    },
+    {
+      "name": "Group Output",
+      "desc": "최종적으로 뷰포트에 표시될 지오메트리를 내보내는 출력 노드입니다."
+    },
+    {
+      "name": "Instance on Points",
+      "desc": "포인트 위치마다 다른 오브젝트를 복제하여 배치합니다."
+    },
+    {
+      "name": "Distribute Points on Faces",
+      "desc": "메쉬 표면 위에 무작위로 포인트를 생성합니다."
+    },
+    {
+      "name": "Set Position",
+      "desc": "포인트나 버텍스의 위치를 오프셋 값만큼 이동시킵니다."
+    },
+    {
+      "name": "Join Geometry",
+      "desc": "여러 개의 지오메트리 스트림을 하나로 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "표면 위에 무작위 나무 배치하기",
+      "steps": [
+        "지형(Terrain) 메쉬에 Geometry Nodes 모디파이어를 추가합니다.",
+        "Distribute Points on Faces 노드를 연결해 지형 위에 점들을 생성합니다.",
+        "Instance on Points 노드를 추가하고 나무 메쉬를 연결합니다.",
+        "Density 파라미터를 조절하여 나무의 밀도를 맞춥니다."
+      ]
+    },
+    {
+      "title": "절차적 기둥(Column) 높이 조절하기",
+      "steps": [
+        "Curve 노드나 Cylinder 노드를 시작점으로 생성합니다.",
+        "Transform 노드를 연결하여 Z축 스케일을 조절합니다.",
+        "Group Input에 Scale 값을 연결하여 모디파이어 패널에서 실시간으로 높이를 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Ctrl + A를 누르지 않아 스케일이 틀어짐 → Object 모드에서 Ctrl + A를 누르고 Scale을 Apply(적용)합니다.",
+    "노드 연결선이 끊어져 화면에 아무것도 안 나옴 → Group Output 노드의 Geometry 소켓에 최종 노드가 올바르게 연결되어 있는지 확인합니다.",
+    "Instance 오브젝트의 중심점이 엉뚱한 곳에 있음 → Origin to Geometry 기능을 사용하여 오브젝트의 피봇을 중앙으로 재정렬합니다."
+  ],
+  "related": [
+    "Modifier",
+    "Shader Editor",
+    "Compositor",
+    "Curve"
+  ],
+  "videos": [
+    {
+      "id": "aO0eUnu0hO0",
+      "title": "Blender Tutorial: Geometry Nodes for Beginners - Part 1",
+      "author": "Blender Guru"
+    },
+    {
+      "id": "ETOXG3qdMKg",
+      "title": "How to Understand Geometry Nodes | Blender for Beginners",
+      "author": "Yesway™"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Blender%20Geometry%20Nodes%20Basics",
+  "grounded": false,
+  "at": "2026-10-18T14:17:21.829762+00:00"
+}
