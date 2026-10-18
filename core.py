@@ -268,6 +268,29 @@ def merge_json(base, other):
     return base if base not in (None, "") else other
 
 
+# ─────────────────────────── 에디터 큐레이션 (추천/숨김) ───────────────────────────
+CURATION_PATH = ROOT / "memory" / "curation.json"  # [{"at", "id", "v": "pick"|"hide"|""}] 이벤트 로그 (병합 충돌 없음)
+ROUNDUP_DIR = ROOT / "content" / "roundups"  # 도구별 정리 (evolve 가 주 1회 생성)
+
+
+def curation_state() -> dict[str, str]:
+    """글 id → 'pick' / 'hide' (마지막 이벤트 기준, 해제는 '')."""
+    state: dict[str, str] = {}
+    for ev in sorted(_load_json(CURATION_PATH, []), key=lambda x: x.get("at", "")):
+        if isinstance(ev, dict) and ev.get("id"):
+            state[ev["id"]] = ev.get("v", "")
+    return {k: v for k, v in state.items() if v}
+
+
+def set_curation(changes: dict[str, str]) -> None:
+    """{id: 'pick'|'hide'|''} 변경분만 이벤트로 추가."""
+    cur = curation_state()
+    log_ = _load_json(CURATION_PATH, [])
+    now = datetime.now(timezone.utc).isoformat()
+    log_ += [{"at": now, "id": i, "v": v} for i, v in changes.items() if cur.get(i, "") != v]
+    _save_json(CURATION_PATH, log_[-5000:])
+
+
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     """이 PC ↔ GitHub 동기화. memory/*.json 은 로컬본과 원격본을 내용 병합(충돌 없음).
     commit_paths 가 있으면 그 파일만 커밋·푸시 (예: 대시보드 설정 config.json). 실패 메시지 반환, 성공 시 ""."""
@@ -1478,6 +1501,7 @@ def site_rows() -> list[dict]:
     tistory = {r.get("title"): r.get("url") for r in _load_json(ROOT / "memory" / "tistory_publish_log.json", [])
                if isinstance(r, dict)}
     rows = []
+    cur = curation_state()
     for f in POSTS_DIR.glob("*.json"):
         p = _load_json(f, {})
         if not p.get("title_ko"):
@@ -1488,7 +1512,8 @@ def site_rows() -> list[dict]:
                      "상태": "Published" if tistory.get(p["title_ko"]) else "Collected",
                      "태그": ", ".join(p.get("tags") or []), "수집일": p.get("collected_at", ""),
                      "원문": p.get("url"), "티스토리": tistory.get(p["title_ko"]) or None,
-                     "사이트": f"{SITE_URL}p/{f.stem}.html"})
+                     "사이트": f"{SITE_URL}p/{f.stem}.html", "ID": f.stem,
+                     "추천": cur.get(f.stem) == "pick", "숨김": cur.get(f.stem) == "hide"})
     rows.sort(key=lambda r: r["수집일"] or "", reverse=True)
     return rows
 

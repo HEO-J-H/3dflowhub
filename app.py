@@ -235,13 +235,32 @@ with t_list:
         if q:
             view = view[view["제목"].str.contains(q, case=False) | view["태그"].str.contains(q, case=False)]
         st.caption(f"{len(view)}건")
-        st.dataframe(view, use_container_width=True, hide_index=True,
-                     column_config={"이미지": st.column_config.ImageColumn(width="small"),
-                                    "원문": st.column_config.LinkColumn(),
-                                    "사이트": st.column_config.LinkColumn(display_text="게시판 보기"),
-                                    "티스토리": st.column_config.LinkColumn(),
-                                    "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
-        st.link_button("노션 DB 열기", f"https://app.notion.com/p/{core.NOTION_DATABASE_ID}")
+        st.caption("✅ **추천**한 글은 사이트 홈 '에디터 추천'에 올라가고, 🚫 **숨김**한 글은 사이트에서 빠집니다. "
+                   "이 선택은 AI 수집 전략 학습에도 반영됩니다.")
+        edited = st.data_editor(
+            view, use_container_width=True, hide_index=True, key="curate",
+            disabled=[c for c in view.columns if c not in ("추천", "숨김")],
+            column_order=["추천", "숨김"] + [c for c in view.columns if c not in ("추천", "숨김", "ID")],
+            column_config={"추천": st.column_config.CheckboxColumn("✅ 추천", width="small"),
+                           "숨김": st.column_config.CheckboxColumn("🚫 숨김", width="small"),
+                           "이미지": st.column_config.ImageColumn(width="small"),
+                           "원문": st.column_config.LinkColumn(),
+                           "사이트": st.column_config.LinkColumn(display_text="게시판 보기"),
+                           "티스토리": st.column_config.LinkColumn(),
+                           "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
+        if "ID" in view.columns:
+            changes = {}
+            for (_, a), (_, b) in zip(view.iterrows(), edited.iterrows()):
+                if (a["추천"], a["숨김"]) != (b["추천"], b["숨김"]):
+                    changes[b["ID"]] = "hide" if b["숨김"] else "pick" if b["추천"] else ""
+            if changes and st.button(f"💾 선택 {len(changes)}건 저장 · 사이트에 반영", type="primary"):
+                core.set_curation(changes)
+                err = core.git_sync(["memory/curation.json"], "chore(curation): 에디터 추천/숨김")
+                if err:
+                    st.error(f"로컬 저장됨, GitHub 반영 실패: {err}")
+                else:
+                    st.toast("✅ 저장됨 — 다음 사이트 배포부터 반영됩니다")
+                st.cache_data.clear()
 
 # ─────────────────────────── 자동화 상태 ───────────────────────────
 with t_auto:

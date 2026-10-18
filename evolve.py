@@ -17,7 +17,8 @@ from __future__ import annotations
 import json
 import re
 import time
-from datetime import datetime, timezone
+import hashlib
+from datetime import datetime, timedelta, timezone
 
 import feedparser
 
@@ -198,6 +199,8 @@ def update_strategy(strategy: dict) -> dict:
         f"Performance (Tistory views by domain/category, top posts): {json.dumps(perf, ensure_ascii=False)[:2500]}\n"
         f"Recent runs (stats/errors): {json.dumps(runs, ensure_ascii=False)[:3000]}\n"
         f"Category usage: {json.dumps(counts, ensure_ascii=False)}\n"
+        f"Human editor feedback (strongest signal: collect more like PICKED, avoid what was HIDDEN): "
+        f"{json.dumps(editor_feedback(), ensure_ascii=False)[:1500]}\n"
         f"Current editorial notes: {json.dumps(strategy['prompt_notes'], ensure_ascii=False)}\n"
         "Previous editorial-note sets with measured scores (ascending; score = good posts per collected "
         "article minus off-topic/short penalties). Write notes that should beat the best set:\n"
@@ -402,6 +405,82 @@ def strategy_due(strategy: dict) -> bool:
     return bool(cur and cur["runs"] >= MIN_RUNS_PER_VERSION and cur["collected"] >= MIN_ITEMS_PER_VERSION)
 
 
+def editor_feedback(n: int = 15) -> dict:
+    """대시보드에서 사람이 추천/숨김한 글 제목·도구 (성찰 프롬프트용)."""
+    out: dict[str, list] = {"picked": [], "hidden": []}
+    for pid, v in list(core.curation_state().items())[-200:]:
+        post = core._load_json(core.POSTS_DIR / f"{pid}.json", {})
+        if post.get("title_ko"):
+            out["picked" if v == "pick" else "hidden"].append(
+                f"[{post.get('domain')}/{post.get('category')}] {post['title_ko']}")
+    return {k: v[-n:] for k, v in out.items()}
+
+
+ROUNDUP_EVERY = timedelta(days=7)
+ROUNDUP_MIN_POSTS = 4
+
+
+def roundup_path(domain: str, tool: str):
+    return core.ROUNDUP_DIR / f"{hashlib.md5(f'{domain}|{tool}'.encode()).hexdigest()[:12]}.json"
+
+
+def write_roundups(max_new: int = 3, days: int = 30) -> list[str]:
+    """도구별 정리: 최근 30일 글이 4개 이상인 도구를 주 1회 LLM 으로 묶어 '흐름·핵심·먼저 볼 글' 정리.
+    개별 요약보다 검색·독자 가치가 큰 2차 콘텐츠. 한도의 60% 이상 남았을 때만, 한 번에 최대 3개."""
+    budget = int(core.load_config().get("llm_daily_budget", 500))
+    if core.llm_budget_left() < budget * 0.6:
+        return []
+    now = datetime.now(timezone.utc)
+    cutoff = (now - timedelta(days=days)).isoformat()
+    hidden = {k for k, v in core.curation_state().items() if v == "hide"}
+    groups: dict[tuple, list] = {}
+    for f in core.POSTS_DIR.glob("*.json"):
+        p = core._load_json(f, {})
+        if (p.get("title_ko") and (p.get("collected_at") or "") >= cutoff and f.stem not in hidden
+                and p.get("category") and not str(p["category"]).startswith("기타")):
+            groups.setdefault((p.get("domain"), p["category"]), []).append({**p, "id": f.stem})
+    done: list[str] = []
+    for (domain, tool), ps in sorted(groups.items(), key=lambda kv: -len(kv[1])):
+        if len(done) >= max_new:
+            break
+        path = roundup_path(domain, tool)
+        if len(ps) < ROUNDUP_MIN_POSTS or core._load_json(path, {}).get("at", "") >= (now - ROUNDUP_EVERY).isoformat():
+            continue
+        ps.sort(key=lambda p: p.get("collected_at") or "", reverse=True)
+        items = [{"id": p["id"], "title": p["title_ko"], "type": p.get("topic", ""),
+                  "summary": (p.get("summary") or "")[:220]} for p in ps[:15]]
+        prompt = (
+            f"Tool: {tool} (field: {domain}). Below are {len(items)} recent Korean article summaries about it.\n"
+            f"{json.dumps(items, ensure_ascii=False)}\n"
+            "Write a Korean roundup page for learners and practitioners. Use only facts in the summaries; "
+            "keep official English product names (e.g. MAXScript, Geometry Nodes). Return JSON:\n"
+            ' "title": Korean page title (<=40 chars, e.g. "Blender 최근 한 달 핵심 정리"),\n'
+            ' "intro": 3-4 sentences on the overall trend this month,\n'
+            ' "points": 3-5 key takeaways (one concrete sentence each),\n'
+            ' "picks": up to 5 ids most worth reading first, "why": {id: one short Korean reason}'
+        )
+        try:
+            out = core._parse_json(core.llm(prompt, max_tokens=1200, json_mode=True))
+        except core.LLMBudgetExceeded:
+            break
+        except Exception as e:
+            log.warning("도구별 정리 실패 %s/%s: %s", domain, tool, e)
+            continue
+        if not isinstance(out, dict) or not out.get("intro"):
+            continue
+        valid = {p["id"] for p in ps}
+        core._save_json(path, {
+            "at": now.isoformat(), "domain": domain, "tool": tool,
+            "title": core.fix_terms(str(out.get("title") or f"{tool} 최근 핵심 정리"))[:60],
+            "intro": core.fix_terms(str(out["intro"])),
+            "points": [core.fix_terms(str(x)) for x in (out.get("points") or [])][:5],
+            "picks": [i for i in (out.get("picks") or []) if i in valid][:5],
+            "why": {k: core.fix_terms(str(v)) for k, v in (out.get("why") or {}).items() if k in valid},
+            "post_ids": [p["id"] for p in ps]})
+        done.append(f"{domain}/{tool}")
+    return done
+
+
 def evolve(stats: dict | None = None, force: bool = False) -> dict:
     strategy = core.load_strategy()
     for key in ("prompt_notes", "blocked_feeds", "history"):
@@ -418,6 +497,15 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         except Exception as e:
             log.warning("용어 점검 실패: %s", e)
         strategy["terms_audited_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "roundups_at", 3 * 3600):  # 3시간마다 점검, 도구별로는 주 1회 갱신
+        try:
+            made = write_roundups()
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "roundups": made}])[-30:]
+        except Exception as e:
+            log.warning("도구별 정리 실패: %s", e)
+        strategy["roundups_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
         strategy = refine_taxonomy(strategy)

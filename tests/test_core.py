@@ -461,3 +461,16 @@ def test_generate_keywords_uses_cache(monkeypatch, tmp_path):
     core.generate_keywords(["VFX"])
     core.generate_keywords(["VFX"])
     assert len(calls) == 1  # 두 번째는 캐시
+
+
+def test_curation_last_event_wins(monkeypatch, tmp_path):
+    monkeypatch.setattr(core, "CURATION_PATH", tmp_path / "cur.json")
+    core.set_curation({"a": "pick", "b": "hide"})
+    core.set_curation({"a": "", "b": "pick"})
+    assert core.curation_state() == {"b": "pick"}
+
+
+def test_roundup_skips_when_budget_low(monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 0)
+    assert evolve.write_roundups() == []

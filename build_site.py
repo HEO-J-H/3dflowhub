@@ -126,6 +126,10 @@ def load_posts() -> list[dict]:
             if p.get("domain") not in core.DOMAIN_META:  # 정보가 전혀 없는 도메인만 대체 (보관 분야는 유지)
                 p["domain"] = "3D DCC"
             posts.append(p)
+    cur = core.curation_state()  # 대시보드 에디터 선택: 숨김은 제외, 추천은 표시
+    posts = [p for p in posts if cur.get(p["id"]) != "hide"]
+    for p in posts:
+        p["pick"] = cur.get(p["id"]) == "pick"
     posts.sort(key=lambda p: p.get("collected_at") or "", reverse=True)
     # 여러 글이 같은 이미지를 쓰면 사이트 로고/기본 썸네일 → 숨김
     freq: dict[str, int] = defaultdict(int)
@@ -410,9 +414,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}guide/">도구별 정리</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -454,7 +458,8 @@ def popular(posts: list[dict], n: int = 8, days: int = 30) -> list[dict]:
     views = page_views()
     cutoff = (datetime.now() - __import__("datetime").timedelta(days=days)).strftime("%Y-%m-%d")
     recent = [p for p in posts if (p.get("collected_at") or "") >= cutoff] or posts
-    ranked = sorted([p for p in recent if views.get(p["id"])], key=lambda p: -views[p["id"]])
+    ranked = sorted([p for p in recent if views.get(p["id"]) or p.get("pick")],
+                    key=lambda p: -(views.get(p["id"], 0) + (20 if p.get("pick") else 0)))  # 추천 가산
     filler = [p for p in recent if p not in ranked and (p.get("media") or {}).get("image")]
     return (ranked + filler + [p for p in recent if p not in ranked and p not in filler])[:n]
 
@@ -518,6 +523,66 @@ def build_about(posts: list[dict], by_dom: dict, by_cat: dict) -> None:
 <a href="../feed.xml">RSS</a>로 구독하면 새 글을 바로 받아볼 수 있습니다.</p></div>"""
     (d / "index.html").write_text(page(f"소개 - {SITE_TITLE}", body, "../", desc="3D를 함께 배우고 나누는 큐레이션 아카이브, 3dflowhub 소개"),
                                   encoding="utf-8")
+
+
+def load_roundups(posts: list[dict]) -> list[dict]:
+    """content/roundups/*.json (evolve 가 주 1회 생성) → 사이트에 있는 도구만, 최신순."""
+    have = {(p["domain"], p.get("category") or "기타") for p in posts}
+    out = [r for f in core.ROUNDUP_DIR.glob("*.json") if (r := core._load_json(f, None))
+           and isinstance(r, dict) and r.get("intro") and (r.get("domain"), r.get("tool")) in have]
+    return sorted(out, key=lambda r: r.get("at", ""), reverse=True)
+
+
+def guide_url(domain: str, tool: str) -> str:
+    return "guide/" + cat_url(domain, tool)[2:]  # c/<분야>/<도구>/ → guide/<분야>/<도구>/
+
+
+def build_guides(posts: list[dict], roundups: list[dict]) -> None:
+    """도구별 정리: 이번 달 흐름 · 핵심 포인트 · 먼저 볼 글 · 유형별 전체 목록 (개별 요약을 묶은 2차 콘텐츠)."""
+    root_dir = OUT / "guide"
+    root_dir.mkdir(exist_ok=True)
+    by_id = {p["id"]: p for p in posts}
+    for r in roundups:
+        d, t = r["domain"], r["tool"]
+        folder = OUT / guide_url(d, t).rstrip("/")
+        folder.mkdir(parents=True, exist_ok=True)
+        root = "../../../"
+        ps = [by_id[i] for i in r.get("post_ids", []) if i in by_id]
+        picks = [by_id[i] for i in r.get("picks", []) if i in by_id]
+        why = r.get("why", {})
+        pick_html = "".join(
+            f'<a href="{root}p/{q["id"]}.html"><span><span class="t">{e(q["title_ko"])}</span><br>'
+            f'<span class="k">{e(why.get(q["id"], q.get("topic") or ""))}</span></span></a>' for q in picks)
+        groups = []
+        for topic in TOPIC_SLUG:
+            tp = [q for q in ps if q.get("topic") == topic]
+            if tp:
+                groups.append(f'<h2 class="sec">{e(topic)} <small class="n">{len(tp)}</small></h2>'
+                              f'<div class="cards">{"".join(card(q, root) for q in tp[:6])}</div>')
+        rest = [q for q in ps if q.get("topic") not in TOPIC_SLUG]
+        if rest:
+            groups.append(f'<h2 class="sec">기타</h2><div class="cards">{"".join(card(q, root) for q in rest[:6])}</div>')
+        body = (f'<div class="doc"><p class="crumb"><a href="{root}guide/">도구별 정리</a> › '
+                f'<a href="{root}{cat_url(d)}">{e(d)}</a> › <a href="{root}{cat_url(d, t)}">{e(t)} 게시판</a></p>'
+                f'<span class="pill">{e(r.get("at", "")[:10])} 업데이트</span><h1>{e(r["title"])}</h1>'
+                f'<p class="lead">{e(r["intro"])}</p>'
+                + (f'<h2>핵심 포인트</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in r.get("points", []))}</ul>'
+                   if r.get("points") else "")
+                + '</div>'
+                + (f'<h2 class="sec">먼저 읽어 볼 글</h2><div class="rank">{pick_html}</div>' if pick_html else "")
+                + "".join(groups)
+                + f'<p class="crumb"><a href="{root}{cat_url(d, t)}">{e(t)} 게시판 전체 보기 →</a></p>')
+        (folder / "index.html").write_text(
+            page(f"{r['title']} - {SITE_TITLE}", body, root, domain_on=d, desc=r["intro"],
+                 canonical=f"{BASE_URL}/{guide_url(d, t)}"), encoding="utf-8")
+    items = "".join(
+        f'<a href="{guide_url(r["domain"], r["tool"])[6:]}"><span><span class="t">{e(r["title"])}</span><br>'
+        f'<span class="k">{e(r["domain"])} › {e(r["tool"])} · {e(r.get("at", "")[:10])}</span></span></a>'
+        for r in roundups)
+    body = ('<div class="doc"><h1>도구별 정리</h1><p class="desc">도구마다 최근 한 달 소식을 묶어 흐름과 핵심, '
+            '먼저 읽을 글을 정리합니다. 매주 자동으로 갱신됩니다.</p></div>'
+            + f'<div class="rank">{items or "<p>준비 중입니다 — 글이 충분히 쌓인 도구부터 차례로 정리됩니다.</p>"}</div>')
+    (root_dir / "index.html").write_text(page(f"도구별 정리 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
 def build_weekly(posts: list[dict]) -> None:
@@ -681,6 +746,12 @@ def build() -> dict:
                      f'<a href="{{ROOT}}{cat_url(d)}">{e(d)}</a><small class="n">{len(by_dom[d])}</small></h3>'
                      f'<ul>{lis or "<li>준비 중</li>"}</ul>'
                      f'<a class="more" href="{{ROOT}}{cat_url(d)}">게시판 전체 →</a></div>')
+    picks = [p for p in posts if p.get("pick")]
+    roundups = load_roundups(posts)
+    guide_sec = (f'<h2 class="sec">도구별 정리 <a href="{{ROOT}}guide/">전체 보기 →</a></h2><div class="rank">'
+                 + "".join(f'<a href="{{ROOT}}{guide_url(r["domain"], r["tool"])}"><span><span class="t">{e(r["title"])}</span>'
+                           f'<br><span class="k">{e(r["domain"])} › {e(r["tool"])}</span></span></a>' for r in roundups[:6])
+                 + "</div>") if roundups else ""
     pop = popular(posts, 8)
     rank = "".join(f'<a href="{{ROOT}}p/{p["id"]}.html"><span><span class="t">{e(p["title_ko"])}</span><br>'
                    f'<span class="k">{e(p["domain"])} › {e(p.get("category") or "")}</span></span></a>' for p in pop)
@@ -699,12 +770,16 @@ def build() -> dict:
         f'<div class="stats"><span><b>{len(posts)}</b>정리된 글</span><span><b>{len(board_domains())}</b>분야</span>'
         f'<span><b>{tools_n}</b>도구·주제 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
         f'<h2 class="sec">분야별 게시판</h2><div class="grid">{"".join(tiles)}</div>'
+        + (f'<h2 class="sec">에디터 추천</h2><div class="cards">{"".join(card(p, "{ROOT}") for p in picks[:6])}</div>'
+           if picks else "") +
+        guide_sec +
         f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
         f'{week_card}'
         f'<h2 class="sec">최신 글</h2><div class="cards lead-grid">{latest}</div>'
         f'<h2 class="sec">사이트 안내</h2><div class="links">'
         f'<a href="{{ROOT}}about/"><b>📘 소개</b><span>3dflowhub는 어떤 곳인가요</span></a>'
         f'<a href="{{ROOT}}weekly/"><b>🗓️ 주간 요약</b><span>한 주의 흐름을 한눈에</span></a>'
+        f'<a href="{{ROOT}}guide/"><b>🧭 도구별 정리</b><span>도구마다 한 달 흐름과 핵심</span></a>'
         f'<a href="{{ROOT}}feed.xml"><b>📡 RSS 구독</b><span>새 글을 바로 받아보기</span></a>'
         f'<a href="{{ROOT}}contact/"><b>✉️ 문의·제보</b><span>자료 제보·의견·저작권 요청</span></a></div>'
         f'<h2 class="sec">전체 글</h2>')
@@ -734,8 +809,10 @@ def build() -> dict:
                     f'<a class="{"on" if t == active else ""}" href="{up}{TOPIC_SLUG[t]}/">{e(t)}'
                     f'<span class="n">{len(ps)}</span></a>' for t, ps in by_topic.items() if ps) + "</div>"
 
+            gd = next((r for r in roundups if (r["domain"], r["tool"]) == (d, c)), None)
+            gd_link = (f'<p class="crumb"><a href="{{ROOT}}{guide_url(d, c)}">🧭 {e(gd["title"])} →</a></p>' if gd else "")
             board_pages(items, folder, "../../../", f"{d} › {c}",
-                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + tabs(c, "{ROOT}") + chips(None), d)
+                        f"<h1>{e(DOMAIN_ICON[d])} {e(d)} › {e(c)}</h1>" + gd_link + tabs(c, "{ROOT}") + chips(None), d)
             for t, ps in by_topic.items():
                 if ps:
                     board_pages(ps, folder / TOPIC_SLUG[t], "../../../../", f"{d} › {c} › {t}",
@@ -746,6 +823,8 @@ def build() -> dict:
     build_about(posts, by_dom, by_cat)
     # 주간 요약 (매주 자동 생성)
     build_weekly(posts)
+    # 도구별 정리 (evolve 가 주 1회 생성한 roundup)
+    build_guides(posts, roundups)
 
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)
@@ -805,7 +884,7 @@ def build() -> dict:
            [f"{BASE_URL}/{cat_url(d, c)}{TOPIC_SLUG[t]}/" for (d, c), ps in sorted(by_cat.items())
             for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})
             if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
-           [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
+           [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] +            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)
                                      + "</urlset>", encoding="utf-8")
