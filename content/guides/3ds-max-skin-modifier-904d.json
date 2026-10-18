@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-skin-modifier-904d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Skin modifier",
+  "title": "Skin — 본에 메시 연결(스키닝)",
+  "summary": "Skin modifier는 메쉬를 뼈대와 연결해 리깅하고, 뼈 움직임에 따라 변형되게 합니다.",
+  "when": [
+    "복잡한 캐릭터 애니메이션을 만들 때",
+    "다중 뼈대가 하나의 메쉬를 제어해야 할 때",
+    "스킨 가중치를 직접 조정하고 싶을 때"
+  ],
+  "steps": [
+    "Skeleton(또는 Biped)을 만든 후 메쉬를 선택한다",
+    "Modifier List → Add Modifier → Skin 선택한다",
+    "Skin modifier의 Add Bones 버튼을 눌러 리깅할 뼈를 선택한다",
+    "Geometry 롤아웃에서 Envelope(Radius, Falloff) 값을 조정한다",
+    "Weight Table → Paint Weights 로 정밀 가중치를 조정한다"
+  ],
+  "params": [
+    {
+      "name": "Add Bones",
+      "desc": "선택한 뼈를 스킨에 연결"
+    },
+    {
+      "name": "Envelope",
+      "desc": "뼈 주변 영향 범위와 형태 설정"
+    },
+    {
+      "name": "Weight Table",
+      "desc": "각 뼈별 가중치 값을 수치로 확인"
+    },
+    {
+      "name": "Paint Weights",
+      "desc": "브러시로 직접 정점 가중치를 페인팅"
+    },
+    {
+      "name": "Normalize Weights",
+      "desc": "전체 가중치 합을 1로 자동 정규화"
+    },
+    {
+      "name": "Bone Settings",
+      "desc": "뼈별 옵션(예: Exclude, Mirror) 설정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인간 캐릭터 팔 리깅",
+      "steps": [
+        "팔 뼈(UpperArm, LowerArm)를 Add Bones 로 추가",
+        "Envelope 를 팔 전체에 맞게 확대",
+        "Weight Table에서 UpperArm 과 LowerArm 의 가중치를 Paint"
+      ]
+    },
+    {
+      "title": "동물 꼬리 움직임",
+      "steps": [
+        "꼬리 뼈 체인을 Add Bones 로 모두 선택",
+        "각 뼈마다 작은 Envelope 로 자연스러운 휘어짐 구현",
+        "Paint Weights 로 꼬리 끝 정점에 마지막 뼈 가중치 부여"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Envelope가 너무 작아 변형이 안 된다 → Radius 값을 늘리거나 Falloff 조정",
+    "Weight이 0으로 남아 뼈 움직임에 반응하지 않음 → Weight Table에서 Normalize Weights 실행",
+    "뼈를 추가한 뒤 Skin modifier를 재적용하지 않음 → Modifier Stack에서 Skin을 다시 선택 후 Apply 클릭"
+  ],
+  "related": [
+    "Physique",
+    "Cluster",
+    "Morpher",
+    "Biped"
+  ],
+  "videos": [
+    {
+      "id": "lE6DXlersZM",
+      "title": "Learn 3ds Max Skin Modifier Basics Easily",
+      "author": "Richard Blumenstein"
+    },
+    {
+      "id": "04W_4wdRPwo",
+      "title": "Your First 3D Character - Rigging Torso And Legs - 3ds Max CAT (Part 1/7)",
+      "author": "Miloš Černý Animation"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Skin%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T06:34:49.975810+00:00"
+}

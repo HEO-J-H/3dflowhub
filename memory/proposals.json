@@ -213,5 +213,108 @@
     "kind": "message",
     "id": "m-e5a505a766",
     "text": "테스트"
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "report",
+    "id": "r-2026-10-18T06:34",
+    "text": "현재 사이트는 최근 7일간 289개의 Post가 추가되어 콘텐츠 양은 풍부하지만, 30일간 전체 조회수는 76에 불과해 트래픽이 매우 낮습니다. 오프‑토픽 오류 28건과 이미지 미첨부 비율 47%가 높으며, AI 일일 호출 한도 280회를 이미 소진해 추가 자동 수집이 제한되고 있습니다.",
+    "allocation": {
+      "news": 0.4,
+      "guides": 0.4,
+      "roundups": 0.2
+    },
+    "allocation_reason": ""
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "proposal",
+    "id": "p-c83a4b91b6",
+    "title": "도메인별 키워드 힌트 추가",
+    "category": "수집",
+    "evidence": "오프‑토픽 오류가 28건 발생하고, 현재 검색 콘솔에 키워드 데이터가 없습니다.",
+    "proposal": "각 도메인(3D DCC, Game Engine, VFX, AI 3D)에 영어 검색어 키워드 힌트를 10개씩 정의해 AI가 관련 기사만 수집하도록 설정합니다.",
+    "expected": "오프‑토픽 비율이 30% 이상 감소하고, 검색 유입이 증가할 것으로 기대됩니다.",
+    "effort": "보통",
+    "action": {
+      "type": "keyword_hints",
+      "domain": "Game Engine",
+      "keywords": [
+        "unreal engine tutorial",
+        "unity asset store",
+        "godot 4 release",
+        "game engine comparison",
+        "real‑time rendering"
+      ]
+    }
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "proposal",
+    "id": "p-168f2eab5b",
+    "title": "이미지·대체텍스트 의무화 규칙",
+    "category": "콘텐츠",
+    "evidence": "전체 Post 중 47%가 이미지 없이 게시되고 있습니다.",
+    "proposal": "‘이미지는 반드시 포함하고, alt 텍스트를 작성한다’는 편집 규칙을 추가하고, 자동 검증 로직을 적용합니다.",
+    "expected": "시각적 매력도가 상승해 클릭률과 체류 시간이 개선될 것입니다.",
+    "effort": "낮음",
+    "action": {
+      "type": "editorial_note",
+      "note": "모든 기사에 최소 1개의 이미지와 해당 이미지의 alt 텍스트를 반드시 포함한다."
+    }
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "proposal",
+    "id": "p-07681f09c8",
+    "title": "AI 예산 절감 및 가이드 생산 확대",
+    "category": "운영·비용",
+    "evidence": "AI 일일 호출 한도가 280회에 도달했으며, 기본 가이드가 16개에 불과해 34개가 대기 중입니다.",
+    "proposal": "수집 간격을 2시간으로 늘리고(max_items 유지) 가이드 제작에 우선 순위를 두어 AI 호출을 가이드 생성에 재배치합니다.",
+    "expected": "AI 호출 낭비가 감소하고, Evergreen 가이드가 늘어나 SEO와 장기 트래픽이 상승합니다.",
+    "effort": "보통",
+    "action": null
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "reply",
+    "id": "y-m-e5a505a766",
+    "reply_to": "m-e5a505a766",
+    "text": "테스트 메시지를 확인했습니다. 추가로 궁금하신 점이나 요청이 있으면 알려 주세요."
+  },
+  {
+    "at": "2026-10-18T06:34:16.602652+00:00",
+    "kind": "reply",
+    "id": "y-m-2f4977199f",
+    "reply_to": "m-2f4977199f",
+    "text": "테스트 메시지를 확인했습니다. 필요하신 사항이 있으면 언제든 말씀해 주세요."
+  },
+  {
+    "at": "2026-10-18T06:34:16.607131+00:00",
+    "kind": "decision",
+    "id": "p-c83a4b91b6",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-18T06:34:16.607772+00:00",
+    "kind": "decision",
+    "id": "p-168f2eab5b",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-18T06:34:16.609450+00:00",
+    "kind": "applied",
+    "id": "p-c83a4b91b6",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-18T06:34:16.610744+00:00",
+    "kind": "applied",
+    "id": "p-168f2eab5b",
+    "result": "반영 완료"
   }
 ]

@@ -1,0 +1,93 @@
+{
+  "id": "3ds-max-sweep-modifier-a7e8",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Sweep modifier",
+  "title": "Sweep — 스플라인 따라 단면 뽑기",
+  "summary": "Sweep modifier는 프로파일 스플라인을 경로 스플라인에 따라 따라가게 하여 3D 형태를 생성합니다.",
+  "when": [
+    "복잡한 파이프·튜브를 만들 때",
+    "프로파일을 경로에 맞춰 회전·스케일링할 때",
+    "다양한 단면을 가진 리본·리드 형태를 만들 때"
+  ],
+  "steps": [
+    "경로가 될 Spline을 그린다 (Create → Shapes → Line)",
+    "단면이 될 프로파일 Spline을 만든다 (Create → Shapes → Circle 등)",
+    "경로 Spline을 선택하고 Modifier List → Sweep (단축키 Alt+Q)",
+    "Sweep 파라미터에서 Profile 슬롯에 프로파일 Spline을 드래그한다",
+    "필요에 따라 Segments·Twist·Scale·Cap Ends 등을 조정한다"
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "경로를 따라 생성되는 단면 수, 높을수록 부드러움"
+    },
+    {
+      "name": "Twist",
+      "desc": "경로를 따라 프로파일이 회전하는 각도"
+    },
+    {
+      "name": "Scale",
+      "desc": "경로를 따라 프로파일의 크기 비율을 조정"
+    },
+    {
+      "name": "Align",
+      "desc": "프로파일이 경로에 맞춰 회전하는 방식 선택"
+    },
+    {
+      "name": "Cap Ends",
+      "desc": "시작·끝 면을 닫을지 여부"
+    },
+    {
+      "name": "Path Steps",
+      "desc": "경로 자체의 세분화 정도"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 만들기",
+      "steps": [
+        "경로 Spline을 직선으로 그린다",
+        "프로파일을 원형 Spline으로 만든다",
+        "경로에 Sweep 적용 후 프로파일 지정",
+        "Segments를 늘리고 Cap Ends를 체크한다"
+      ]
+    },
+    {
+      "title": "리본 형태",
+      "steps": [
+        "곡선 경로 Spline을 그린다",
+        "얇은 사각형 프로파일을 만든다",
+        "Sweep 적용·프로파일 지정 후 Twist와 Scale 조정",
+        "Cap Ends를 끄고 원하는 길이까지 늘린다"
+      ]
+    }
+  ],
+  "mistakes": [
+    "프로파일이 경로와 다른 레이어에 있어 인식 안됨 → 프로파일을 같은 레이어에 두거나 레퍼런스 선택",
+    "Segments를 너무 낮게 설정 → 곡선이 거칠어짐, Segments 값을 높인다",
+    "프로파일 방향이 뒤집힘 → 프로파일을 Flip하거나 Align 옵션을 바꾼다"
+  ],
+  "related": [
+    "Extrude",
+    "Lathe",
+    "PathDeform",
+    "Boolean"
+  ],
+  "videos": [
+    {
+      "id": "OvsNODinnXU",
+      "title": "3ds Max Sweep Modifier Tutorial",
+      "author": "ArchViz Explained"
+    },
+    {
+      "id": "yn_be30SWpE",
+      "title": "How to work with SWEEP MODIFIER in 3Ds Max | Tutorial for Beginners",
+      "author": "render.camp"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Sweep%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T06:34:29.140710+00:00"
+}

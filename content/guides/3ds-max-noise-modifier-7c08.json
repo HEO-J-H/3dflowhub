@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-noise-modifier-7c08",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Noise modifier",
+  "title": "Noise — 표면에 불규칙한 굴곡",
+  "summary": "Noise modifier는 절차적인 무작위 변위를 적용해 표면에 거친 디테일을 추가합니다.",
+  "when": [
+    "자연스러운 거친 표면을 만들 때",
+    "복제된 메쉬에 변형을 주고 싶을 때",
+    "다른 변형 앞에 기본 디테일을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Create → Geometry → Plane (또는 원하는 Primitive)",
+    "Select object → Modifier List → Noise",
+    "Noise 파라미터 창 열기 (Modifier Stack에서 Noise 클릭)",
+    "Strength, Scale, Frequency 등 원하는 값으로 조정",
+    "필요 시 Turbulence·Octaves·Seed 추가 조정 후 다른 Modifier와 스택"
+  ],
+  "params": [
+    {
+      "name": "Strength",
+      "desc": "변형 강도를 결정합니다"
+    },
+    {
+      "name": "Scale",
+      "desc": "노이즈 패턴의 크기를 조절합니다"
+    },
+    {
+      "name": "Frequency",
+      "desc": "패턴 반복 빈도를 설정합니다"
+    },
+    {
+      "name": "Octaves",
+      "desc": "노이즈 레이어 수로 디테일 정도를 늘립니다"
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 시드값으로 패턴을 바꿉니다"
+    },
+    {
+      "name": "Turbulence",
+      "desc": "패턴에 흐름성을 부여합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "돌 바위 표면 만들기",
+      "steps": [
+        "Plane 생성 → Subdivision Surface 적용",
+        "Modifier List → Noise 적용 → Strength 20, Scale 5",
+        "TurboSmooth 추가 → 최종 렌더"
+      ]
+    },
+    {
+      "title": "전선에 불규칙한 굴곡 부여",
+      "steps": [
+        "Cylinder 생성 → Height 조정",
+        "Modifier List → Noise 적용 → Strength 5, Scale 2",
+        "Bend Modifier 적용 → 원하는 각도로 굽힘",
+        "필요 시 Strength 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Strength 값을 과도하게 높임 → 표면이 뒤틀림 → 값을 낮추고 Octaves로 디테일 보강",
+    "Scale을 0에 가깝게 설정 → 변형이 거의 안 보임 → 최소 0.01 이상으로 설정"
+  ],
+  "related": [
+    "Bend",
+    "Twist",
+    "FFD",
+    "Displace"
+  ],
+  "videos": [
+    {
+      "id": "7bXEoMZau6w",
+      "title": "3ds Max  12-11 Noise Modifier",
+      "author": "John Bordeau"
+    },
+    {
+      "id": "tqkLDBIX6aA",
+      "title": "How to create a landscape with Noise modifier in 3DS max | Hanora 3D",
+      "author": "Hanora 3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Noise%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T06:34:32.534764+00:00"
+}
