@@ -1,0 +1,92 @@
+{
+  "id": "3ds-max-unwrap-uvw-modifier-8734",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Unwrap UVW modifier",
+  "title": "Unwrap UVW — UV 펼치기",
+  "summary": "Unwrap UVW modifier는 3D 모델의 UV를 펼쳐 텍스처 매핑을 준비하는 도구입니다.",
+  "when": [
+    "복잡한 모델의 UV를 처음 만들 때",
+    "기존 UV를 재배치하거나 리페이스할 때",
+    "텍스처 누락을 방지하기 위해 UV 겹침을 확인할 때"
+  ],
+  "steps": [
+    "객체 선택 → Modifier List > Unwrap UVW (단축키: Alt+U)",
+    "Modifier Stack에서 Unwrap UVW를 선택하고 ‘Open UV Editor’ 클릭",
+    "UV Editor에서 ‘Select’ 툴로 펼칠 면 선택",
+    "툴바의 ‘Unwrap’ 버튼을 눌러 자동 펼치기 실행",
+    "필요시 ‘Pack’ 버튼으로 UV 섬을 자동 정렬"
+  ],
+  "params": [
+    {
+      "name": "Peel",
+      "desc": "UV를 자동으로 펼쳐 겹침을 최소화"
+    },
+    {
+      "name": "Relax",
+      "desc": "UV를 부드럽게 하여 왜곡 감소"
+    },
+    {
+      "name": "Pack",
+      "desc": "UV 섬을 자동 정렬해 UV 공간 효율 향상"
+    },
+    {
+      "name": "Scale",
+      "desc": "선택한 UV 섬의 크기를 비례적으로 조정"
+    },
+    {
+      "name": "Rotate",
+      "desc": "선택한 UV 섬을 회전"
+    },
+    {
+      "name": "Flatten Mapping",
+      "desc": "선택한 면을 평면에 투영"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 텍스처링",
+      "steps": [
+        "얼굴 메쉬 선택 → Unwrap UVW 적용",
+        "‘Select’ → 얼굴 전체 면 선택",
+        "‘Unwrap’ 실행 후 ‘Pack’으로 UV 정렬",
+        "UV Editor에서 세부 ‘Relax’로 왜곡 보정"
+      ]
+    },
+    {
+      "title": "간단한 상자 모델 UV 설정",
+      "steps": [
+        "상자 메쉬 선택 → Unwrap UVW 적용",
+        "‘Select’ → 각 면 선택 후 ‘Flatten Mapping’ 사용",
+        "‘Pack’으로 6면을 한 화면에 배치"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 겹친 상태로 렌더 → ‘Pack’으로 겹침 해제 후 재배치",
+    "UV 스케일이 너무 작아 텍스처 해상도 저하 → ‘Scale’ 파라미터로 적절히 확대",
+    "자동 펼친 뒤 왜곡이 남음 → ‘Relax’ 옵션을 여러 번 적용"
+  ],
+  "related": [
+    "UVW Mapping",
+    "UVW XForm",
+    "Material Editor",
+    "Render to Texture"
+  ],
+  "videos": [
+    {
+      "id": "F4vGYisveDU",
+      "title": "Unwrap UVW Modifier in 3ds Max | I made it simple",
+      "author": "Arch Viz Artist"
+    },
+    {
+      "id": "C95BwdM_MaE",
+      "title": "How to Unwrap UVW Modifier in 3ds Max I Advanced Unwrap for 3ds Max Tutorial #unwrap",
+      "author": "Frame Talks"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Unwrap%20UVW%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T05:56:00.359203+00:00"
+}

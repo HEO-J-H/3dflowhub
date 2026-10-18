@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-uvw-map-modifier-67b2",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "UVW Map modifier",
+  "title": "UVW Map — 기본 UV 매핑",
+  "summary": "UVW Map modifier는 객체에 UV 좌표를 자동으로 생성·변형해 텍스처 매핑을 빠르게 설정합니다.",
+  "when": [
+    "복잡한 모델에 기본 UV를 빠르게 만들 때",
+    "텍스처 타일링·스케일을 객체 단위로 조정하고 싶을 때",
+    "다른 UVW modifier와 결합해 복합적인 UV 변형을 만들 때"
+  ],
+  "steps": [
+    "객체 선택 → Modifier List → UVW Map 선택",
+    "Mapping Type을 원하는 방식(Planar, Cylindrical, Spherical 등)으로 설정",
+    "Length/Width/Height 혹은 U Tiling·V Tiling 값을 조정해 스케일 맞춤",
+    "Angle 파라미터로 회전 보정 (필요 시)",
+    "필요하면 UVW XForm 등 후속 modifier를 추가하고 스택을 정리"
+  ],
+  "params": [
+    {
+      "name": "Mapping Type",
+      "desc": "UV 생성 방식 선택 (Planar, Cylindrical 등)"
+    },
+    {
+      "name": "Length",
+      "desc": "U축 길이(Planar 등) 조정"
+    },
+    {
+      "name": "Width",
+      "desc": "V축 길이 조정"
+    },
+    {
+      "name": "Height",
+      "desc": "W축 길이(3D 매핑 시) 조정"
+    },
+    {
+      "name": "U Tiling",
+      "desc": "U축 반복 횟수"
+    },
+    {
+      "name": "V Tiling",
+      "desc": "V축 반복 횟수"
+    }
+  ],
+  "examples": [
+    {
+      "title": "텍스처 타일링 적용",
+      "steps": [
+        "객체에 UVW Map 추가 → Mapping Type을 Planar로",
+        "U Tiling·V Tiling을 4로 설정 → 타일링된 텍스처 확인"
+      ]
+    },
+    {
+      "title": "원통형 파이프에 UV 입히기",
+      "steps": [
+        "파이프 선택 → UVW Map → Mapping Type을 Cylindrical로",
+        "Length을 파이프 길이에 맞게 조정",
+        "Angle을 90° 회전시켜 텍스처 정렬"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 뒤집힘 → Modifier Stack에서 UVW Map 위에 Flip UV modifier 추가",
+    "스케일이 비정상 → Length/Width 값을 재조정하거나 Reset Transform 적용",
+    "다른 UV 채널에 적용했음에도 보이지 않음 → UVW Channel List에서 올바른 채널 선택"
+  ],
+  "related": [
+    "Unwrap UVW",
+    "UVW XForm",
+    "UVW Map (2)",
+    "UVW Channel List"
+  ],
+  "videos": [
+    {
+      "id": "F4vGYisveDU",
+      "title": "Unwrap UVW Modifier in 3ds Max | I made it simple",
+      "author": "Arch Viz Artist"
+    },
+    {
+      "id": "euhJ_G2MHA4",
+      "title": "How To Use The UVW Map Modifier in 3Ds Max (Latest Update)",
+      "author": "Jake Denham"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20UVW%20Map%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T05:55:57.136607+00:00"
+}

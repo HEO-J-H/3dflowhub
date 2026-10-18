@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-chamfer-modifier-9870",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Chamfer modifier",
+  "title": "Chamfer — 모서리 깎기",
+  "summary": "Chamfer modifier는 엣지와 폴리곤의 모서리를 둥글게 깎아 부드러운 형태를 만든다.",
+  "when": [
+    "날카로운 모서리를 부드럽게 만들 때",
+    "기계 부품의 베벨을 표현할 때",
+    "모델에 작은 디테일을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "객체를 선택하거나 새로 만든다",
+    "Modifier List → Chamfer 선택",
+    "Chamfer 파라미터 패널에서 Amount와 Segments 조정",
+    "필요시 Edge Type, Preserve Edge Flow 등 추가 설정",
+    "Apply(필요 시) 후 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Amount",
+      "desc": "베벨 깊이를 지정합니다"
+    },
+    {
+      "name": "Segments",
+      "desc": "베벨에 추가될 면 수를 정합니다"
+    },
+    {
+      "name": "Edge Type",
+      "desc": "Chamfer, Bevel, Fillet 중 선택합니다"
+    },
+    {
+      "name": "Preserve Edge Flow",
+      "desc": "엣지 흐름을 유지하면서 베벨링합니다"
+    },
+    {
+      "name": "Vertex Welding",
+      "desc": "베벨 후 겹친 정점을 자동으로 합칩니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 끝 베벨링",
+      "steps": [
+        "Cylinder → Convert to Editable Poly",
+        "Edge 선택 → Chamfer modifier 적용",
+        "Amount 0.2, Segments 2 설정"
+      ]
+    },
+    {
+      "title": "기계 부품 베벨",
+      "steps": [
+        "Box → Edit Poly → Edge 선택",
+        "Chamfer → Edge Type를 Bevel로 변경",
+        "Amount 0.1, Segments 3, Preserve Edge Flow 켜기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Amount를 너무 크게 설정 → 모서리 변형 과다 → Amount를 낮추거나 Edge Type 변경",
+    "Segments를 0으로 두면 베벨이 사라짐 → 최소 1 이상으로 설정",
+    "Vertex Welding을 켜지 않음 → 겹친 정점이 남아 비정상적인 메쉬 → Vertex Welding 활성화"
+  ],
+  "related": [
+    "Bevel modifier",
+    "TurboSmooth",
+    "Edit Poly",
+    "Shell"
+  ],
+  "videos": [
+    {
+      "id": "g1dq4FznWc0",
+      "title": "Creating Chamfer in 3ds max   ||  CHAMFER EDGE || EDIT POLY",
+      "author": "Sidhnath Creation - Online Learning"
+    },
+    {
+      "id": "I6nElggfGQQ",
+      "title": "Chamfer Modifier Explained - 3ds Max",
+      "author": "Easy Tiny Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Chamfer%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T05:55:54.210682+00:00"
+}
