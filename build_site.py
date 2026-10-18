@@ -795,7 +795,7 @@ def build() -> dict:
                     f"<guid>{BASE_URL}/p/{p['id']}.html</guid><category>{e(p['domain'])}</category>"
                     f"<pubDate>{rfc822(p.get('collected_at'))}</pubDate>"
                     f"<description>{e(p.get('summary') or '')}</description></item>" for p in posts[:50])
-    (OUT / "feed.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+    (OUT / "feed.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="feed.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
                                   f'<atom:link href="{BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>'
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
