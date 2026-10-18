@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-twist-modifier-9fbc",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Twist modifier",
+  "title": "Twist — 비틀기",
+  "summary": "Twist modifier는 선택한 메쉬를 축을 중심으로 비틀어 형태를 변형시킵니다.",
+  "when": [
+    "파이프나 케이블처럼 비틀린 형태가 필요할 때",
+    "복합적인 꼬임을 추가해 자연스러운 움직임을 만들고 싶을 때",
+    "기존 모델에 회전 변형을 비파괴적으로 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Create>Geometry>Standard Primitives(예: Cylinder)",
+    "Select 객체 → Modify panel → Modifier List → Twist",
+    "Parameters 파라미터를 조정 (Angle, Segments 등)",
+    "필요 시 Collapse To를 눌러 적용하거나 Stack에 다른 Modifier 추가"
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "비틀림 각도(도)"
+    },
+    {
+      "name": "Segments",
+      "desc": "비틀림을 나누는 세그먼트 수, 높을수록 부드러움"
+    },
+    {
+      "name": "Twist Axis",
+      "desc": "비틀림 축을 선택 (X, Y, Z)"
+    },
+    {
+      "name": "Pivot",
+      "desc": "비틀림 기준점 위치"
+    },
+    {
+      "name": "Enable Limits",
+      "desc": "비틀림 범위 제한 여부"
+    },
+    {
+      "name": "Limit Angle",
+      "desc": "제한 시 최대 각도"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프에 나선형 꼬임 만들기",
+      "steps": [
+        "Cylinder 생성 → Twist 적용",
+        "Angle을 360도로 설정",
+        "Segments를 20 이상으로 늘려 부드럽게"
+      ]
+    },
+    {
+      "title": "케이블을 자연스럽게 휘게 하기",
+      "steps": [
+        "Spline을 따라 Extrude → Twist 적용",
+        "Twist Axis를 Z로 설정",
+        "Angle을 -180도로 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Angle을 너무 크게 설정 → 메쉬가 뒤틀려 보임 → Segments를 늘리거나 Angle을 줄이기",
+    "Pivot 위치를 기본값에 두고 사용 → 비틀림 중심이 어긋남 → Pivot을 원하는 위치로 이동"
+  ],
+  "related": [
+    "Bend",
+    "FFD (Free-Form Deformation)",
+    "FFD 2D",
+    "Noise"
+  ],
+  "videos": [
+    {
+      "id": "ExfmDITmBfk",
+      "title": "Unlocking the Power of Twist Modifier: 3ds Max Tutorial #shorts #tips #3dsmax #twist",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "9uynEbmzq34",
+      "title": "3ds max modifier twist tutorial",
+      "author": "Ercan Altun"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Twist%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T03:57:36.893370+00:00"
+}

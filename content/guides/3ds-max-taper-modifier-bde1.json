@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-taper-modifier-bde1",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Taper modifier",
+  "title": "Taper — 끝을 좁히거나 넓히기",
+  "summary": "Taper modifier는 선택한 오브젝트의 한쪽 끝을 축소·확대해 형태를 점진적으로 변형시킵니다.",
+  "when": [
+    "원통형 혹은 프로파일을 한쪽으로 가늘게 만들고 싶을 때",
+    "다리·파이프·깃발 등 길이가 긴 객체에 자연스러운 굴곡을 주고 싶을 때",
+    "다른 변형(modifier)과 결합해 복합 형태를 만들고 싶을 때"
+  ],
+  "steps": [
+    "Create 또는 선택한 객체를 선택한다",
+    "Modifier List → Taper 선택한다",
+    "Select → Affect Pivot Only 로 Pivot을 변형 기준점에 이동한다",
+    "Taper 파라미터창에서 Amount와 Segments를 조정한다",
+    "필요하면 Preserve Volume을 체크한다",
+    "Apply(또는 Collapse)하여 적용한다"
+  ],
+  "params": [
+    {
+      "name": "Amount",
+      "desc": "축소·확대 비율을 지정 (음수는 반대 방향)"
+    },
+    {
+      "name": "Segments",
+      "desc": "변형을 나눌 세그먼트 수, 값이 클수록 부드러움"
+    },
+    {
+      "name": "Pivot",
+      "desc": "변형 기준점, Pivot 위치에 따라 시작·끝이 결정"
+    },
+    {
+      "name": "Preserve Volume",
+      "desc": "부피 보존을 켜면 길이가 늘어나도 두께가 유지"
+    },
+    {
+      "name": "Angle",
+      "desc": "축을 기준으로 회전 각도 지정 (선택적)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 끝을 가늘게 만들기",
+      "steps": [
+        "Cylinder를 만든다",
+        "Modifier List → Taper 적용",
+        "Pivot을 파이프 끝으로 이동",
+        "Amount를 -30%로 설정한다"
+      ]
+    },
+    {
+      "title": "깃발 형태의 플래그폴대",
+      "steps": [
+        "Box를 만든다",
+        "Taper 적용",
+        "Pivot을 바닥에 두고",
+        "Amount를 80%로, Segments를 8로 설정한다"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Pivot을 이동하지 않으면 전체가 균일하게 변형 → Pivot을 올바른 위치로 이동",
+    "Preserve Volume을 켜두면 기대한 두께 감소가 안 됨 → 필요 시 끄고 조정"
+  ],
+  "related": [
+    "FFD (Free-Form Deformation)",
+    "Bend",
+    "Twist",
+    "FFD Box"
+  ],
+  "videos": [
+    {
+      "id": "NKYop1xflTk",
+      "title": "TAPER modifier in 3dsmax  | @Quick3D",
+      "author": "Quick learn"
+    },
+    {
+      "id": "fi9mpbKNxl8",
+      "title": "3ds Max Modeling Tips - Using the Taper Modifier in 3ds Max",
+      "author": "Pluralsight Courses and Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Taper%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T03:57:47.489517+00:00"
+}
