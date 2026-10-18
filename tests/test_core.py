@@ -7,6 +7,18 @@ ITEM = {"title": "Src", "url": "https://example.com/a", "domain": "VFX", "summar
         "sections": [{"heading": f"H{i}", "body": f"B{i}"} for i in range(4)]}
 
 
+def test_short_post_warning_and_error(monkeypatch):
+    short_item = {
+        "title": "Short",
+        "title_ko": "짧은 글",
+        "url": "https://example.com/short",
+        "domain": "VFX",
+        "sections": [{"heading": "Short", "body": "Too short body"}]
+    }
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    core.build_post_html(short_item)
+    assert "short post" in core.RUN_ERRORS
+
 def test_ads_inserted_top_middle_bottom(monkeypatch):
     monkeypatch.setattr(core, "AD_HTML", "<b>AD</b>")
     out = core.build_post_html(ITEM)
