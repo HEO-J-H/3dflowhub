@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-shell-modifier-16d1",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Shell modifier",
+  "title": "Shell — 두께 만들기",
+  "summary": "Shell modifier adds uniform thickness to a mesh, creating inner and/or outer offset surfaces.",
+  "when": [
+    "두께가 필요한 단순 형태를 만들 때",
+    "속이 비어 있는 오브젝트(예: 박스, 파이프)를 만들고 싶을 때",
+    "모서리와 면에 캡을 추가해 밀폐된 형태를 만들고 싶을 때"
+  ],
+  "steps": [
+    "객체 선택 → Modify 패널 → Modifier List에서 Shell 선택",
+    "Thickness 파라미터에 원하는 두께 입력",
+    "Inner 체크를 켜면 내부 오프셋, Outer 체크를 켜면 외부 오프셋이 생성됨",
+    "Cap 옵션을 On으로 하면 열린 면이 자동으로 닫힘",
+    "필요에 따라 Segments와 Angle로 세부 형태 조정",
+    "Modifier Stack에서 Collapse To Editable Poly(선택)"
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "두께값을 지정합니다"
+    },
+    {
+      "name": "Inner",
+      "desc": "내부 오프셋을 생성합니다"
+    },
+    {
+      "name": "Outer",
+      "desc": "외부 오프셋을 생성합니다"
+    },
+    {
+      "name": "Cap",
+      "desc": "열린 면을 자동으로 닫습니다"
+    },
+    {
+      "name": "Segments",
+      "desc": "두께 영역의 세분화 정도"
+    },
+    {
+      "name": "Angle",
+      "desc": "두께 영역의 경사 각도"
+    }
+  ],
+  "examples": [
+    {
+      "title": "빈 박스 만들기",
+      "steps": [
+        "Box 생성 → Shell 적용",
+        "Thickness 10 입력, Inner 체크",
+        "Cap On으로 설정",
+        "Collapse To Editable Poly"
+      ]
+    },
+    {
+      "title": "파이프 두께 주기",
+      "steps": [
+        "Cylinder 생성 → Shell 적용",
+        "Thickness 5 입력, Outer 체크",
+        "Segments 4로 증가",
+        "Cap Off(양쪽 끝 열림)"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Inner를 켜지 않음 → 내부가 비어 있지 않음 → Inner 체크 후 재설정",
+    "Segments를 과도하게 높임 → 뷰포트가 느려짐 → 적절한 값(2~4)으로 조정",
+    "Cap을 끄고 끝을 닫지 않음 → 구멍이 남음 → Cap On으로 변경하거나 Boolean 사용"
+  ],
+  "related": [
+    "TurboSmooth",
+    "Editable Poly",
+    "Boolean",
+    "MeshSmooth"
+  ],
+  "videos": [
+    {
+      "id": "gTWn3AP65CY",
+      "title": "Shell Modifier in Autodesk 3Ds Max | 3Ds Max beginners tutorial | 3Ds Max Basics",
+      "author": "Stereopixol"
+    },
+    {
+      "id": "Ox0NVmVj99g",
+      "title": "Unveiling the Power of the Shell Modifier in 3ds Max  #modelingtips #3dsmax  #tips #shell",
+      "author": "Yurii Shevchyshyn"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Shell%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T04:56:16.398473+00:00"
+}

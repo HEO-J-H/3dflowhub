@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-ffd-modifier-2fb9",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "FFD modifier",
+  "title": "FFD — 격자로 자유 변형",
+  "summary": "FFD modifier는 객체를 격자 형태의 제어점으로 분할해 자유롭게 변형할 수 있게 합니다.",
+  "when": [
+    "복잡한 곡선 형태를 손쉽게 만들 때",
+    "기존 모델에 부드러운 변형을 추가하고 싶을 때",
+    "리깅 전 단계에서 임시 형태를 테스트할 때"
+  ],
+  "steps": [
+    "Select object → 오른쪽 클릭 → Add Modifier → FFD (Box) 선택",
+    "FFD Modifier를 선택하고 Modifier List에서 'FFD (Box)' 확인",
+    "FFD 파라미터에서 Segments 값을 원하는 격자 수(예: 4x4x4)로 설정",
+    "제어점을 선택하고 이동/회전/스케일 툴(R, W, E)로 변형",
+    "필요 시 'Angle' 파라미터로 격자 회전",
+    "변형이 끝나면 Modifier Stack에서 Collapse To 를 눌러 적용 (선택 사항)"
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "격자 세분화 수준을 정해 제어점 수를 늘립니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "FFD 격자를 회전시켜 변형 축을 맞춥니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "격자 전체 위치를 이동시켜 객체와 정렬합니다."
+    },
+    {
+      "name": "Weight",
+      "desc": "제어점의 영향력을 조절해 부드러운 변형을 만듭니다."
+    },
+    {
+      "name": "Preserve Volume",
+      "desc": "변형 시 부피 보존을 시도합니다."
+    },
+    {
+      "name": "Enable Subobject Selection",
+      "desc": "제어점 선택 모드를 켭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 굽히기",
+      "steps": [
+        "파이프 모델 선택 → FFD (Box) 추가",
+        "Segments를 6x2x2로 늘려 격자 확보",
+        "중간 제어점을 선택하고 이동 툴로 위쪽으로 끌어 올려 굽힘",
+        "Angle 파라미터로 격자 회전 후 미세 조정"
+      ]
+    },
+    {
+      "title": "캐릭터 얼굴 미세 변형",
+      "steps": [
+        "얼굴 메쉬 선택 → FFD (Box) 적용",
+        "Segments를 5x5x5로 설정",
+        "눈 주변 제어점을 선택해 스케일로 눈을 크게",
+        "코 부분 제어점을 이동해 높이 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "제어점 선택 안 함 → 변형 툴을 사용해도 움직이지 않음, Subobject Selection을 활성화",
+    "Segments를 너무 적게 설정 → 변형이 거칠어짐, Segments 값을 늘리기",
+    "Angle을 잘못 설정 → 격자 회전이 뒤틀림, Angle을 0으로 초기화 후 재조정"
+  ],
+  "related": [
+    "Bend",
+    "Twist",
+    "Lattice",
+    "Skin"
+  ],
+  "videos": [
+    {
+      "id": "elEH6n8Vvt4",
+      "title": "3ds Max Tutorial: FFD (Free-Form Deformation) Modifier",
+      "author": "Kory Bieg"
+    },
+    {
+      "id": "8jVJtd_yLNA",
+      "title": "Making a terrain with ffd modifier in Autodesk 3ds max",
+      "author": "Internet Courses"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20FFD%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T04:56:03.594599+00:00"
+}

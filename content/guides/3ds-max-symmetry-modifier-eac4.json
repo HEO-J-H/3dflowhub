@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-symmetry-modifier-eac4",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Symmetry modifier",
+  "title": "Symmetry — 좌우 대칭 모델링",
+  "summary": "Symmetry modifier는 선택한 객체를 지정한 축을 기준으로 대칭 복제해 하나의 메쉬로 결합합니다.",
+  "when": [
+    "대칭 형태를 한 번에 만들고 싶을 때",
+    "양쪽이 동일한 모델(예: 팔, 다리, 차량 바디) 작업 시",
+    "대칭 편집 후에도 하나의 Editable Mesh/Poly로 유지하고 싶을 때"
+  ],
+  "steps": [
+    "객체 선택 → Modify 패널의 Modifier List에서 \"Symmetry\" 선택",
+    "Modifier Stack에서 Axis를 X/Y/Z 중 원하는 축으로 설정",
+    "필요에 따라 Flip를 켜서 반대쪽을 뒤집고, Offset으로 간격 조정",
+    "Segments와 Angle(각도 대칭) 값을 조절해 추가 세부 구분 설정",
+    "필요하면 Edit Poly 등 하위 모디파이어를 추가해 세부 편집"
+  ],
+  "params": [
+    {
+      "name": "Axis",
+      "desc": "대칭 복제 축을 X, Y, Z 중 선택"
+    },
+    {
+      "name": "Flip",
+      "desc": "복제된 쪽을 뒤집어 원본과 동일한 방향으로 만들지 여부"
+    },
+    {
+      "name": "Offset",
+      "desc": "원본과 복제본 사이의 거리"
+    },
+    {
+      "name": "Segments",
+      "desc": "대칭 면에 추가되는 세그먼트 수"
+    },
+    {
+      "name": "Angle",
+      "desc": "각도 대칭 시 회전 각도(0~360°)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "양쪽 다리 모델링",
+      "steps": [
+        "기본 다리 메쉬를 만든 뒤 Edit Poly로 형태 잡기",
+        "Modify → Symmetry → Axis를 X로 설정, Flip 켜기",
+        "Offset을 0으로 두고 Segments를 2~3으로 늘려 다리 연결부 강화",
+        "필요 시 Edit Poly로 양쪽 다리 세부 수정"
+      ]
+    },
+    {
+      "title": "자동차 차체 좌우 대칭",
+      "steps": [
+        "차체 중앙선을 기준으로 한쪽 면만 모델링",
+        "Modify → Symmetry → Axis를 Y, Flip 켜기",
+        "Angle를 0°, Offset 0으로 설정해 완전 대칭",
+        "전체 차체를 Edit Poly로 다듬어 완성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Axis를 잘못 선택 → Modifier Stack에서 Axis를 올바른 축으로 변경",
+    "Flip를 끈 채 적용 → Flip 옵션을 켜서 복제면을 뒤집기",
+    "Offset을 크게 설정 → Offset 값을 0으로 되돌리거나 원하는 거리로 재조정"
+  ],
+  "related": [
+    "TurboSmooth",
+    "Mirror",
+    "Slice",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "4ZCsSN-nxCg",
+      "title": "✅ Symmetry Modifier in 3ds Max | Model Faster & Cleaner | Pro Tip",
+      "author": " Deepak Verma CAD Softwares"
+    },
+    {
+      "id": "KO0y4z_vPyw",
+      "title": "3ds max tips and tricks - Symmetry",
+      "author": "Archidea"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Symmetry%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T04:56:26.376842+00:00"
+}
