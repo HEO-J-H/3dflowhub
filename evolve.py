@@ -93,6 +93,33 @@ def performance_table() -> dict:
     return {"by_group": agg, "top_posts": sorted(top, reverse=True)[:8]}
 
 
+def learn_tool_interest(top_n: int = 4, prior_views: float = 1.0, prior_posts: float = 3.0,
+                        min_total_views: int = 20) -> dict[str, list[str]]:
+    """도구별 독자 관심도: 사이트 글별 조회수(GoatCounter) + 에디터 추천(+3)을 도구 단위로 모아
+    베이지안 평균(작은 표본 과대평가 방지)으로 분야별 상위 도구를 고른다. 조회수가 적으면 학습 보류({})."""
+    perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
+    views = {k: v.get("views", 0) for k, v in ((perf.get("pages") or {}).get("posts") or {}).items()}
+    if sum(views.values()) < min_total_views:
+        return {}
+    cur = core.curation_state()
+    agg: dict[tuple, list] = {}
+    for f in core.POSTS_DIR.glob("*.json"):
+        p = core._load_json(f, {})
+        tool = p.get("category") or ""
+        if not tool or tool.startswith("기타") or cur.get(f.stem) == "hide":
+            continue
+        a = agg.setdefault((p.get("domain"), tool), [0.0, 0])
+        a[0] += views.get(f.stem, 0) + (3 if cur.get(f.stem) == "pick" else 0)
+        a[1] += 1
+    prior = prior_views / prior_posts
+    score = {k: (v + prior * prior_posts) / (n + prior_posts) for k, (v, n) in agg.items()}
+    out: dict[str, list[str]] = {}
+    for (d, tool), sc in sorted(score.items(), key=lambda kv: -kv[1]):
+        if sc > prior and len(out.setdefault(d, [])) < top_n:
+            out[d].append(tool)
+    return {d: v for d, v in out.items() if v}
+
+
 def learn_domain_weights(perf: dict, strategy: dict) -> dict[str, float]:
     """평균 조회수 기반 도메인 비중 (탐색을 위해 최소 15% 보장, 데이터 적으면 균등)."""
     by = perf.get("by_group", {})
@@ -177,6 +204,10 @@ def update_strategy(strategy: dict) -> dict:
     except Exception as e:
         log.warning("성과 집계 실패: %s", e)
         perf = {}
+    interest = learn_tool_interest()
+    if interest and interest != strategy.get("tool_interest"):
+        strategy["tool_interest"] = interest
+        changes.append(f"독자 관심 도구: {interest}")
     weights = learn_domain_weights(perf, strategy)
     if weights != strategy.get("domain_weights"):
         strategy["domain_weights"] = weights
@@ -199,6 +230,8 @@ def update_strategy(strategy: dict) -> dict:
         f"Performance (Tistory views by domain/category, top posts): {json.dumps(perf, ensure_ascii=False)[:2500]}\n"
         f"Recent runs (stats/errors): {json.dumps(runs, ensure_ascii=False)[:3000]}\n"
         f"Category usage: {json.dumps(counts, ensure_ascii=False)}\n"
+        f"Reader interest by tool (most-viewed per site analytics): "
+        f"{json.dumps(strategy.get('tool_interest', {}), ensure_ascii=False)}\n"
         f"Human editor feedback (strongest signal: collect more like PICKED, avoid what was HIDDEN): "
         f"{json.dumps(editor_feedback(), ensure_ascii=False)[:1500]}\n"
         f"Current editorial notes: {json.dumps(strategy['prompt_notes'], ensure_ascii=False)}\n"

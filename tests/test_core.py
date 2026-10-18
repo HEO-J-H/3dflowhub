@@ -474,3 +474,19 @@ def test_roundup_skips_when_budget_low(monkeypatch):
     import evolve
     monkeypatch.setattr(core, "llm_budget_left", lambda: 0)
     assert evolve.write_roundups() == []
+
+
+def test_prefilter_only_filters_generic_search():
+    gn = "https://news.google.com/rss/search?q=x"
+    cands = [{"source": gn, "title": "Stock market falls on Fed news - Reuters", "rss_summary": "", "url": ""},
+             {"source": gn, "title": "Blender 5.1 adds new Geometry Nodes - CG Channel", "rss_summary": "", "url": ""},
+             {"source": "https://www.reddit.com/r/3dsmax/.rss", "title": "assign material with same name",
+              "rss_summary": "", "url": ""}]
+    kept = core.prefilter(cands)
+    assert [c["title"][:5] for c in kept] == ["Blend", "assig"]
+
+
+def test_tool_interest_needs_enough_views(monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "_load_json", lambda path, default=None: {} if "performance" in str(path) else default)
+    assert evolve.learn_tool_interest() == {}

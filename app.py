@@ -275,7 +275,8 @@ with t_auto:
         k[3].metric("초안", last.get("drafts", 0))
         st.caption(f"실행 시각(UTC): {last.get('at', '')[:19]}  ·  GitHub 최신 기록")
         errs = [x for x in last.get("errors", []) if "news.google.com" not in x]  # 구글 뉴스 0건은 정상
-        skips = {"short body": "본문이 너무 짧아 건너뜀", "off-topic": "주제와 무관해 건너뜀"}
+        skips = {"short body": "본문이 너무 짧아 건너뜀", "off-topic": "주제와 무관해 건너뜀",
+                 "prefiltered": "3D 관련 어휘가 없어 AI 요약 전에 제외"}
         info = {k: errs.count(k) for k in skips if k in errs}
         if info:
             st.info("정상 필터링 · " + " · ".join(f"{skips[k]} {n}건" for k, n in info.items()))
@@ -315,6 +316,13 @@ with t_auto:
         st.markdown("**AI가 스스로 만든 편집 가이드**")
         for n in strat.get("prompt_notes", []):
             st.markdown(f"- {n}")
+        st.markdown("**독자 관심 도구 (조회수·추천 학습)**")
+        ti = strat.get("tool_interest") or {}
+        if ti:
+            for d, tools in ti.items():
+                st.markdown(f"- {d}: {', '.join(tools)}")
+        else:
+            st.caption("조회수가 더 쌓이면 자동으로 학습됩니다 (사이트 전체 20회 이상)")
         st.markdown("**자동 추가된 피드**")
         for d, urls in strat.get("extra_feeds", {}).items():
             for u in urls:

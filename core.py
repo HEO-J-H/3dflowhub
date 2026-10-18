@@ -268,6 +268,58 @@ def merge_json(base, other):
     return base if base not in (None, "") else other
 
 
+# ─────────────────────────── AI 전 1차 거르기 ───────────────────────────
+# 캐스케이드 원칙: 싸고 결정적인 규칙을 먼저, LLM 은 통과한 것만. 규칙은 '느슨하게'(재현율 우선) —
+# 3D 관련 어휘가 하나도 없는 글만 버린다. 저장된 글로 재현율을 측정해 둔다(tests).
+GENERIC_3D_TERMS = [
+    "3d", "cgi", "vfx", "render", "shader", "texture", "modeling", "modelling", "sculpt", "rigging", "animation",
+    "animator", "mesh", "polygon", "voxel", "point cloud", "photogrammetry", "motion capture", "mocap",
+    "game engine", "game dev", "gamedev", "indie game", "level design", "procedural", "simulation", "particle",
+    "compositing", "motion graphics", "visual effects", "virtual production", "ray tracing", "path tracing",
+    "gpu", "rtx", "plugin", "add-on", "addon", "script", "splat", "nerf", "radiance field", "digital human",
+    "avatar", "metaverse", "xr", "unreal", "unity", "blender", "houdini", "maya", "zbrush", "substance",
+    "keyframe", "uv", "pbr", "hdri", "lighting", "cinematic", "previs", "world model", "robotics", "diffusion",
+    "game", "games", "gaming", "engine", "steam", "console", "material", "viewport", "fbx", "gltf", "usd", "obj",
+    "3dsmax", "workstation", "photorealistic", "digital twin", "bim", "drone", "motion-capture", "studio", "film", "trailer", "creative", "artist", "artcraft",
+    "maxon", "chaos", "autodesk", "epic games", "sidefx", "foundry", "reallusion", "meshy", "tripo", "omniverse",
+    "adobe", "nvidia", "80 level", "cg channel", "digital production", "befores & afters", "fxguide",
+    "렌더", "모델링", "애니메이션", "텍스처", "셰이더", "게임", "그래픽", "시뮬레이션", "플러그인", "스크립트",
+]
+
+
+def relevance_vocab() -> list[str]:
+    """도메인 시드·도구 카테고리·용어집·일반 3D 어휘 (소문자)."""
+    words = set(GENERIC_3D_TERMS) | {k.lower() for k in GLOSSARY}
+    for d, spec in DOMAINS.items():
+        words |= {w.lower() for w in spec.get("seeds", [])}
+    for cats in list(SEED_CATEGORIES.values()) + list(load_categories().values()):
+        for c in cats:
+            words |= {part.strip().lower() for part in re.split(r"[·/]", c) if len(part.strip()) >= 3
+                      and not part.strip().startswith("기타")}
+    return sorted(words, key=len, reverse=True)
+
+
+def prefilter_score(text: str, vocab: list[str]) -> int:
+    t = f" {text.lower()} "
+    return sum(1 for w in vocab if (re.search(rf"(?<![a-z0-9]){re.escape(w)}(?![a-z0-9])", t)
+                                    if len(w) <= 4 and w.isascii() else w in t))
+
+
+def prefilter(candidates: list[dict]) -> list[dict]:
+    """3D 관련 어휘가 제목·요약·URL 어디에도 없으면 AI 요약 전에 제외.
+    전문 피드(cgchannel·80.lv·reddit r/3dsmax 등)는 이미 주제가 맞으므로 통과 — 범용 검색(구글 뉴스)만 거름."""
+    vocab = relevance_vocab()
+    kept = []
+    for c in candidates:
+        if "news.google.com" not in c.get("source", "") or prefilter_score(f"{c.get('title', '')} {c.get('rss_summary', '')} {c.get('url', '')}", vocab):
+            kept.append(c)
+        else:
+            RUN_ERRORS.append("prefiltered")
+    if len(kept) < len(candidates):
+        log.info("1차 거르기: %d → %d건", len(candidates), len(kept))
+    return kept
+
+
 # ─────────────────────────── 에디터 큐레이션 (추천/숨김) ───────────────────────────
 CURATION_PATH = ROOT / "memory" / "curation.json"  # [{"at", "id", "v": "pick"|"hide"|""}] 이벤트 로그 (병합 충돌 없음)
 ROUNDUP_DIR = ROOT / "content" / "roundups"  # 도구별 정리 (evolve 가 주 1회 생성)
@@ -534,6 +586,8 @@ def _generate_keywords_llm(domains: list[str], per_domain: int = 2) -> dict[str,
         prompt = (
             f"Domain: {d}\nSeed terms: {', '.join(seeds)}\n"
             f"Strategy hints (from self-reflection): {', '.join(hints.get(d, [])) or 'none'}\n"
+            f"Tools readers view most (prefer queries about these): "
+            f"{', '.join(load_strategy().get('tool_interest', {}).get(d, [])) or 'none yet'}\n"
             f"Keywords that worked before: {', '.join(mem['good_keywords'][-10:]) or 'none'}\n"
             f"Keywords that failed: {', '.join(mem['bad_keywords'][-10:]) or 'none'}\n"
             f"Today: {datetime.now():%Y-%m-%d}\n"
@@ -762,6 +816,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                 })
+    candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
     mem_rr = load_memory()
     mem_rr["seed_rr"] = seed_rr
@@ -1605,6 +1660,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
 
     stats["offtopic"] = RUN_ERRORS.count("off-topic")  # 전략 평가 지표 (OPRO 궤적용)
     stats["short"] = RUN_ERRORS.count("short body")
+    stats["prefiltered"] = RUN_ERRORS.count("prefiltered")
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
