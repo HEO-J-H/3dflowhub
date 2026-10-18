@@ -552,11 +552,11 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         log.warning("AI 관리자 실패: %s", e)
     import gsc
     # 검색 데이터는 하루 단위로 확정 → 성공하면 24시간 뒤, 실패하면 3시간 뒤 재시도. 키가 없으면 기록하지 않음(등록 즉시 동작)
-    if gsc.enabled() and (force or (_due(strategy, "gsc_at", 24 * 3600) and _due(strategy, "gsc_try_at", 3 * 3600))):
+    if gsc.enabled() and (force or (_due(strategy, "gsc_ok_at", 24 * 3600) and _due(strategy, "gsc_try_at", 3 * 3600))):
         strategy["gsc_try_at"] = _now()
         try:
             if gsc.collect() is not None:
-                strategy["gsc_at"] = _now()
+                strategy["gsc_ok_at"] = _now()
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "gsc": gsc.top_queries(5)}])[-30:]
         except Exception as e:
             log.warning("Search Console 수집 실패: %s", e)
