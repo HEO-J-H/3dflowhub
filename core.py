@@ -1049,7 +1049,9 @@ def summarize(item: dict) -> dict | None:
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
         'source in 1-3 sentences,\n'
         f' "relevance": 0-10 how directly this is about any of these fields: {domain_topics()} '
-        '(weather, politics, general business, music news = 0-2)'
+        '(weather, politics, general business, music news = 0-2; a different thing that merely shares a tool name '
+        '— Harry Houdini the magician, Maya civilization, a kitchen blender, unity as a word, stock-only '
+        'news — = 0)'
     )
     notes = load_strategy().get("prompt_notes", [])
     system = SUMMARY_SYSTEM + ("\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
