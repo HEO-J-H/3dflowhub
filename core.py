@@ -1105,6 +1105,11 @@ def summarize(item: dict) -> dict | None:
         RUN_ERRORS.append("off-topic")
         return None
     data = normalize_summary(data, item)
+    if not data["sections"] and not data.get("summary"):
+        # 일부 모델(Groq 등)은 무관한 기사에 relevance 대신 빈 응답을 줌 → 오류가 아니라 주제 밖으로 집계
+        log.info("빈 요약(주제 밖으로 판단) — 제외: %s", item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
     if not data["sections"]:
         log.warning("LLM 응답에 sections 없음: %s", item["url"])
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")

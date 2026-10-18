@@ -411,6 +411,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
   padding:3px 8px;border-radius:99px}
 .gcard .b{padding:12px 14px}.gcard .k{font-size:12px;color:var(--accent);font-weight:600}
 .gcard .t{display:block;font-weight:600;margin:3px 0 4px;line-height:1.35}.gcard .s{font-size:13px;color:var(--muted)}
+#results .row.on{background:var(--accent-soft)}#results .row.s{font-size:13px;color:var(--muted);padding:8px 14px}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -421,15 +422,7 @@ LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-
 <path d="M32 13 L48 22 L32 31 L16 22 Z" fill="#fff"/><path d="M16 22 L32 31 L32 50 L16 41 Z" fill="#fff" fill-opacity=".72"/>
 <path d="M48 22 L32 31 L32 50 L48 41 Z" fill="#fff" fill-opacity=".45"/><circle cx="54.5" cy="22.5" r="3" fill="#fff"/></svg>"""
 
-SEARCH_JS = """
-const q=document.getElementById('q');let idx=null;
-const h=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
-q&&q.addEventListener('input',async()=>{const v=q.value.trim().toLowerCase();const box=document.getElementById('results');
-if(!v){box.innerHTML='';box.hidden=true;return}
-idx=idx||await (await fetch(ROOT+'search.json')).json();
-const hits=idx.filter(p=>(p.t+' '+p.c+' '+p.g).toLowerCase().includes(v)).slice(0,30);
-box.hidden=false;box.innerHTML=hits.length?hits.map(p=>`<a class="row" href="${ROOT}p/${encodeURIComponent(p.i)}.html"><span class="ph"></span><span><span class="t">${h(p.t)}</span><br><span class="s">${h(p.c)}</span></span><span></span></a>`).join(''):'<div class="row">검색 결과 없음</div>'});
-"""
+SEARCH_JS = ""  # 검색은 static/search.js (한/영 자판 변환·여러 단어·키보드 이동)
 
 
 def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "",
@@ -458,7 +451,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
-<script>const ROOT="{root}";{SEARCH_JS}</script></body></html>"""
+<script>const ROOT="{root}";</script><script src="{root}search.js" defer></script></body></html>"""
 
 
 def row(p: dict, root: str) -> str:
@@ -1000,9 +993,22 @@ def build() -> dict:
                  p.get("summary") or SITE_DESC, f"{BASE_URL}/p/{p['id']}.html", post_head(p)), encoding="utf-8")
 
     # 검색 인덱스·RSS·사이트맵
-    (OUT / "search.json").write_text(json.dumps(
-        [{"i": p["id"], "t": p["title_ko"], "c": f'{p["domain"]} › {p.get("category") or ""}',
-          "g": " ".join(p.get("tags") or [])} for p in posts], ensure_ascii=False), encoding="utf-8")
+    # 검색 인덱스: 글(p) + 기초 가이드(g) + 도구별 정리(r). o = 원문 영어 제목(영어 검색용)
+    index = [{"u": f"p/{p['id']}.html", "k": "p", "t": p["title_ko"], "o": p.get("title", "")[:120],
+              "c": f'{p["domain"]} › {p.get("category") or ""}', "g": " ".join(p.get("tags") or [])} for p in posts]
+    index += [{"u": learn_url(g), "k": "g", "t": g["title"], "o": f"{g['tool']} {g['name']}",
+               "c": f"{g['tool']} › {g['group']}", "g": " ".join(g.get("related") or [])} for g in learn_guides]
+    index += [{"u": guide_url(r["domain"], r["tool"]), "k": "r", "t": r["title"], "o": r["tool"],
+               "c": f"{r['domain']} › {r['tool']}", "g": ""} for r in roundups]
+    # 한글↔영문 도구 이름 (용어집): '블렌더' 로 찾아도 'Blender' 제목이 제목 일치로 잡히도록
+    alias: dict[str, str] = {}
+    for canon, (_rx, ko) in core.GLOSSARY.items():
+        if ko:
+            alias[ko.lower()] = canon.lower()
+            alias[ko.replace(" ", "").lower()] = canon.lower()
+            alias[canon.lower()] = ko.lower()
+    (OUT / "search.json").write_text(json.dumps({"a": alias, "i": index}, ensure_ascii=False, separators=(",", ":")),
+                                     encoding="utf-8")
     items = "".join(f"<item><title>{e(p['title_ko'])}</title><link>{BASE_URL}/p/{p['id']}.html</link>"
                     f"<guid>{BASE_URL}/p/{p['id']}.html</guid><category>{e(p['domain'])}</category>"
                     f"<pubDate>{rfc822(p.get('collected_at'))}</pubDate>"
