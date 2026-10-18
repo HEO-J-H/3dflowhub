@@ -381,7 +381,10 @@ with t_rev:
         if st.button("💾 사이트 설정 저장 (GitHub 반영 → 사이트 재배포)"):
             core.save_config({**core.load_config(), "goatcounter_code": gc_code.strip(), "adsense_client": ad_client.strip()})
             err = core.git_sync(["config.json"], "chore(config): 사이트 통계·광고 설정")
-            st.error(err) if err else st.success("저장됨 — 다음 사이트 배포부터 적용됩니다.")
+            if err:
+                st.error(err)
+            else:
+                st.success("저장됨 — 다음 사이트 배포부터 적용됩니다.")
 
     st.markdown("**✅ GitHub Pages 수익화 체크리스트**")
     checks = [
@@ -472,7 +475,10 @@ with t_set:
         core.save_config({**core.load_config(), **changes})
         with st.spinner("GitHub 에 반영 중…"):
             err = core.git_sync(["config.json"], f"chore(config): {msg} [skip ci]")
-        st.error(f"로컬 저장됨, GitHub 반영 실패: {err}") if err else st.toast(f"✅ 저장됨 — {msg}")
+        if err:
+            st.error(f"로컬 저장됨, GitHub 반영 실패: {err}")
+        else:
+            st.toast(f"✅ 저장됨 — {msg}")
 
     left, right = st.columns([3, 2])
     with left, st.form("collect"):
