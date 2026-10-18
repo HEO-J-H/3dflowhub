@@ -220,8 +220,42 @@ with st.sidebar:
     st.link_button("📝 티스토리", "https://hjh1014.tistory.com/", width="stretch")
     st.link_button("⚙️ GitHub Actions", f"https://github.com/{GH_REPO}/actions", width="stretch")
 
+# ─────────────────────────── 알림 ───────────────────────────
+@st.cache_data(ttl=6 * 3600)
+def cached_token_expiry() -> str:
+    """GH_PAT 만료일 (6시간마다 확인). 클라우드에서 알아내면 config 에 기록 → 이 PC 현황판에도 보임."""
+    import alerts
+    exp = alerts.token_expiry()
+    if exp and core.CLOUD and core.load_config().get("gh_pat_expires") != str(exp):
+        core.save_config({"gh_pat_expires": str(exp)})
+        core.git_sync(["config.json"], "chore(config): GitHub 토큰 만료일 기록 [skip ci]")
+    return str(exp) if exp else ""
+
+
+def show_alerts() -> list[dict]:
+    import alerts
+    from datetime import date as _date
+    exp = cached_token_expiry()
+    items = alerts.collect(core.load_config(), load_runs(), (load_remote_memory().get("runs") or [{}])[-1],
+                           _date.fromisoformat(exp) if exp else None)
+    urgent = [a for a in items if a["level"] in ("error", "warning")]
+    for a in urgent[:4]:
+        (st.error if a["level"] == "error" else st.warning)(f"**{a['title']}** — {a['detail']}", icon=alerts.ICON[a["level"]])
+    rest = [a for a in items if a not in urgent[:4]]
+    if rest:
+        with st.expander(f"🔔 알림 {len(items)}개" + ("" if urgent else " · 급한 일 없음")):
+            for a in rest:
+                st.markdown(f"{alerts.ICON[a['level']]} **{a['title']}**  \n<span style='opacity:.7'>{a['detail']}</span>",
+                            unsafe_allow_html=True)
+    return items
+
+
 # ─────────────────────────── 본문 ───────────────────────────
 st.title("큐레이션 현황판")
+alert_items = show_alerts()
+with st.sidebar:
+    n_urgent = sum(a["level"] != "info" for a in alert_items)
+    st.caption(f"🔔 알림 {len(alert_items)}개" + (f" · 확인 필요 {n_urgent}개" if n_urgent else ""))
 df = load_rows()
 today = datetime.now().strftime("%Y-%m-%d")
 if not df.empty:
@@ -761,20 +795,26 @@ with t_set:
         st.subheader("🧠 AI 사용량 예측")
         iv = INTERVAL_MIN.get(cfg["interval"], 60)
         items = cfg.get("burst_items", 3) if iv < 60 else cfg["max_items"]
-        per_run = items + len(cfg["domains"]) + (2 * iv / 360) + (iv / 1440)
+        # 키워드는 AI 를 쓰지 않음 → 1회 = 글 요약(+주제 밖 여유) + 가이드·정리(3시간마다 약 2~3회)
+        per_run = items * 1.3 + 4 * iv / 180
         need_day = per_run * max(1, 1440 // iv)
         budget, used = int(cfg.get("llm_daily_budget", 500)), core.llm_usage_today()
-        st.progress(min(1.0, used / budget) if budget else 1.0, text=f"오늘 {used} / {budget}회 (남은 {max(0, budget - used)}회)")
-        k1, k2 = st.columns(2)
-        k1.metric("1회 실행", f"≈{per_run:.0f}회")
-        k2.metric("하루 필요", f"≈{need_day:,.0f}회")
-        if need_day <= budget:
-            st.success(f"하루 한도 안에서 계속 수집 가능 (여유 {budget - need_day:,.0f}회)")
+        fb, cap = core.llm_fallback_usage(), core.llm_capacity_left()
+        st.progress(min(1.0, used / budget) if budget else 1.0,
+                    text=f"Gemini {used} / {budget}회" + "".join(f" · 예비 {k} {v}회" for k, v in fb.items()))
+        k1, k2, k3 = st.columns(3)
+        k1.metric("오늘 남은 여력", f"{cap}회", help="Gemini 잔여 + 예비 AI(Groq 등) 잔여")
+        k2.metric("1회 실행", f"≈{per_run:.0f}회")
+        k3.metric("하루 필요", f"≈{need_day:,.0f}회")
+        if cfg.get("auto_mode"):
+            st.success("🤖 자동 모드: AI 관리자가 남은 여력에 맞춰 수집량을 조절하므로 한도로 멈추지 않습니다")
+        elif cap >= need_day * (1 - (datetime.now().hour / 24)):
+            st.success("남은 여력 안에서 오늘 계속 수집 가능")
         else:
-            mins = int(max(0, budget - used) // per_run) * iv
+            mins = int(cap // max(per_run, 1)) * iv
             eta = (datetime.now() + pd.Timedelta(minutes=mins)).strftime("%H:%M")
-            st.warning(f"약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 오늘 한도 소진 → 다음 날 오전 9시까지 중단")
-        st.caption("저장된 설정 기준 · 사용량은 이 PC + GitHub 합산")
+            st.warning(f"약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 여력 소진 → {core.llm_reset_kst()} 리셋 후 재개")
+        st.caption(f"리셋: 매일 미국 태평양 자정 = 한국 {core.llm_reset_kst()[-5:]} · 사용량은 이 PC + GitHub 합산")
 
     a, b = st.columns(2)
     with a, st.form("mail"):
@@ -826,3 +866,31 @@ with t_set:
                 custom = dict(cfg["custom_domains"])
                 custom[del_name] = {**custom[del_name], "archived": True}
                 save({"custom_domains": custom, "domains": [d for d in cfg["domains"] if d != del_name]}, f"분야 보관 — {del_name}")
+
+    st.divider()
+    st.subheader("⏰ 기한·알림 관리")
+    st.caption("등록한 날짜가 다가오면 현황판 맨 위에 D-day 로 알려 줍니다 (14일 전부터 주황, 3일 전부터 빨강).")
+    rems = list(cfg.get("reminders") or [])
+    for i, r in enumerate(rems):
+        c1, c2 = st.columns([5, 1])
+        c1.markdown(f"**{r.get('title')}** · {r.get('date')}" + (f" · {r['note']}" if r.get("note") else ""))
+        if c2.button("삭제", key=f"rem_del_{i}"):
+            save({"reminders": rems[:i] + rems[i + 1:]}, f"기한 삭제 — {r.get('title')}")
+            st.rerun()
+    with st.form("reminder_add", clear_on_submit=True):
+        r1, r2, r3 = st.columns([2, 1, 2])
+        rt = r1.text_input("항목", placeholder="예: 도메인 갱신, 애드센스 심사, 토큰 재발급")
+        rd = r2.date_input("날짜")
+        rn = r3.text_input("메모 (선택)")
+        if st.form_submit_button("➕ 기한 추가") and rt.strip():
+            save({"reminders": rems + [{"title": rt.strip()[:40], "date": str(rd), "note": rn.strip()[:100]}]},
+                 f"기한 추가 — {rt.strip()[:20]}")
+            st.rerun()
+    with st.form("token_exp"):
+        cur_exp = cfg.get("gh_pat_expires") or ""
+        st.markdown("**GitHub 토큰(GH_PAT) 만료일** — 인터넷 현황판에서는 자동으로 알아내 기록합니다. "
+                    "이 PC 에서 직접 입력해도 됩니다.")
+        te = st.date_input("만료일", value=datetime.fromisoformat(cur_exp).date() if cur_exp else None)
+        if st.form_submit_button("저장") and te:
+            save({"gh_pat_expires": str(te)}, "GitHub 토큰 만료일")
+            st.rerun()

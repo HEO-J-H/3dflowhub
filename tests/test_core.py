@@ -634,3 +634,20 @@ def test_cloud_push_uses_token_and_hides_it(monkeypatch):
     assert "ghp_SECRET123" not in core._hide_token("fatal: could not push to https://x-access-token:ghp_SECRET123@github")
     monkeypatch.setattr(core, "CLOUD", False)
     assert core._push_remote() == "origin"            # 이 PC 는 기존 로그인 사용
+
+
+def test_alerts_dday_and_order(monkeypatch):
+    import alerts
+    from datetime import date, timedelta
+    monkeypatch.setattr(core, "llm_capacity_left", lambda: 100)
+    today = date.today()
+    cfg = {"interval": "1시간 단위", "reminders": [
+        {"title": "도메인 갱신", "date": str(today + timedelta(days=2))},
+        {"title": "애드센스", "date": str(today + timedelta(days=40))}]}
+    items = alerts.collect(cfg, runs=[{"name": "3dflowhub auto curation", "conclusion": "failure"}],
+                           last_run=None, token_exp=today + timedelta(days=10))
+    titles = [a["title"] for a in items]
+    assert titles[0] in ("자동 수집 실패", "도메인 갱신 D-2")           # 빨강이 먼저
+    assert "GitHub 토큰(GH_PAT) 만료 D-10" in titles and "애드센스 D-40" in titles
+    assert next(a for a in items if a["title"] == "도메인 갱신 D-2")["level"] == "error"
+    assert alerts.dday(-1) == "만료됨" and alerts.dday(0) == "D-DAY"
