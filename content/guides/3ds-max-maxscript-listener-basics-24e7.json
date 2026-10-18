@@ -1,0 +1,82 @@
+{
+  "id": "3ds-max-maxscript-listener-basics-24e7",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "MAXScript Listener basics",
+  "title": "MAXScript 리스너 — 첫 Script 실행",
+  "summary": "MAXScript Listener는 3ds Max의 내장 Script 콘솔로, 사용자의 모든 작업 기록을 확인하고 간단한 명령어나 자동화 Script를 즉시 실행하는 도구입니다.",
+  "when": [
+    "반복적인 씬 작업을 자동화하고 싶을 때",
+    "UI에서 수행한 작업의 내부 MAXScript 명령어를 확인할 때",
+    "선택된 오브젝트들의 정보나 에러 로그를 빠르게 점검할 때"
+  ],
+  "steps": [
+    "3ds Max 상단 메인 메뉴바에서 Scripting 툴바를 찾습니다.",
+    "Scripting 툴바에서 MAXScript → MAXScript Listener를 클릭하거나 단축키 F11을 누릅니다.",
+    "상단 Windows(Macro Recorder 영역)에서 뷰포트 조작이나 오브젝트 생성 등의 작업이 어떻게 코드로 변환되는지 확인합니다.",
+    "하단 Windows(Interactive Windows)의 흰색 입력창에 원하는 MAXScript 명령어나 표현식을 직접 입력합니다.",
+    "키보드의 Enter 키를 눌러 명령어를 실행하고 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Macro Recorder",
+      "desc": "뷰포트에서의 사용자 액션을 자동으로 MAXScript 코드로 기록해 주는 상단 영역입니다."
+    },
+    {
+      "name": "Interactive Window",
+      "desc": "명령어를 직접 입력하고 즉시 실행 결과를 확인할 수 있는 하단 입력 영역입니다."
+    },
+    {
+      "name": "Enable",
+      "desc": "Macro Recorder의 기록 기능을 켜고 끕니다."
+    },
+    {
+      "name": "Explicit Scene",
+      "desc": "씬 변경 사항을 명시적으로 기록할지 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 모든 오브젝트의 이름을 콘솔에 출력하기",
+      "steps": [
+        "F11을 눌러 MAXScript Listener를 엽니다.",
+        "하단 창에 for o in selection do print o.name 을 입력합니다.",
+        "Enter 키를 눌러 실행하고 하단에 출력되는 이름을 확인합니다."
+      ]
+    },
+    {
+      "title": "지정한 개수만큼 박스 오브젝트 일괄 생성하기",
+      "steps": [
+        "MAXScript Listener를 실행합니다.",
+        "for i in 1 to 5 do box pos:[i*30, 0, 0] 를 입력합니다.",
+        "Enter 키를 눌러 X축 방향으로 30 간격의 박스 5개를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "대소문자 오타 및 구문 오류 → 3ds Max는 변수와 명령어의 대소문자를 구분하므로 철자와 문법을 다시 확인합니다.",
+    "Macro Recorder 코드를 무조건 복사하여 실행할 때의 오류 → UI 중심의 기록 코드는 불필요한 컨텍스트가 포함될 수 있으므로 일반화된 문법으로 수정하여 사용합니다."
+  ],
+  "related": [
+    "MAXScript",
+    "Scripted Plug-ins",
+    "Parameter Wiring",
+    "Global Tracks"
+  ],
+  "videos": [
+    {
+      "id": "og36643MHLE",
+      "title": "Max script 02 Using the Script Listener and Editor",
+      "author": "crankluga"
+    },
+    {
+      "id": "ZoIY5lT6IV4",
+      "title": "Introduction to MaxScript in 3ds Max - Part 1 - Creating a Voxel Tree",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20MAXScript%20Listener%20basics",
+  "grounded": false,
+  "at": "2026-10-18T09:36:46.096000+00:00"
+}

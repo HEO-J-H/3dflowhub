@@ -1,0 +1,94 @@
+{
+  "id": "blender-array-modifier-0377",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Array modifier",
+  "title": "Array — 반복 복제",
+  "summary": "입력된 지오메트리를 선형, 원형, 또는 곡선 경로를 따라 자동으로 복제하여 정렬하는 수정자입니다. 간격과 무작위성을 정밀하게 제어할 수 있습니다.",
+  "when": [
+    "건물의 반복되는 창문이나 난간을 일정한 간격으로 배열할 때",
+    "원형 구조물 주위로 기둥이나 장식 요소를 회전 배치할 때",
+    "울타리나 체인처럼 곡선을 따라 오브젝트를 연속으로 복제할 때"
+  ],
+  "steps": [
+    "복제할 기본 오브젝트를 선택합니다.",
+    "Properties 패널에서 Modifier(렌치) 아이콘을 클릭합니다.",
+    "Add Modifier 메뉴를 엽니다.",
+    "Generate 분류에서 Array를 선택하여 적용합니다.",
+    "Count 값을 올려 복제 개수를 늘립니다.",
+    "Relative 또는 Offset 값을 조절하여 간격을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Count",
+      "desc": "생성할 복제본의 총 개수를 설정합니다."
+    },
+    {
+      "name": "Relative",
+      "desc": "오브젝트 바운딩 박스 크기를 기준으로 간격을 이동합니다."
+    },
+    {
+      "name": "Shape",
+      "desc": "복제본을 배열할 방식(Line, Circle, Curve 등)을 선택합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "Circle shape 사용 시 배치가 이루어지는 원의 반지름을 설정합니다."
+    },
+    {
+      "name": "Curve Object",
+      "desc": "Curve shape 사용 시 배열 경로로 사용할 커브 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Realize Instances",
+      "desc": "생성된 Instance를 실제 지오메트리로 변환하여 불린 등의 연산이 가능하게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "일직선으로 난간 기둥 복제하기",
+      "steps": [
+        "기둥 오브젝트에 Array 수정자를 추가합니다.",
+        "Shape를 Line으로 설정합니다.",
+        "Relative Offset의 X 값을 1.5로 지정하여 간격을 넓힙니다.",
+        "Count 값을 높여 필요한 만큼 복제합니다."
+      ]
+    },
+    {
+      "title": "원형 경기장 좌석 배치하기",
+      "steps": [
+        "좌석 오브젝트에 Array 수정자를 추가합니다.",
+        "Shape를 Circle로 변경합니다.",
+        "Radius 값을 조절하여 원의 크기를 키웁니다.",
+        "Align Rotation을 켜서 좌석이 원의 중심을 향하도록 정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "복제본이 서로 겹치거나 붙어 있음 → Relative 또는 Offset 값을 오브젝트 크기보다 작게 설정했기 때문입니다. 값과 바운딩 박스를 확인하세요.",
+    "Blender 스케일이 안 맞아서 간격이 이상함 → Object 모드에서 Ctrl+A를 누르고 Scale을 Apply(적용)하지 않아 발생합니다.",
+    "Curve 배열에서 오브젝트가 엉뚱한 곳으로 감 → Curve 오브젝트의 원점(Origin) 위치가 서로 다르기 때문입니다. 두 오브젝트의 원점을 맞추세요."
+  ],
+  "related": [
+    "Curve Modifier",
+    "Geometry Nodes",
+    "Mirror Modifier",
+    "Boolean Modifier"
+  ],
+  "videos": [
+    {
+      "id": "LgzFhgRFqVU",
+      "title": "Simply Explained - The Array Modifier - Blender Tutorial",
+      "author": "SamBam Studios"
+    },
+    {
+      "id": "g3DFxH0N7U0",
+      "title": "Using the ARRAY MODIFIER in Blender - Blender Modifier Tutorial",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/array.html",
+  "grounded": true,
+  "at": "2026-10-18T09:36:50.425429+00:00"
+}

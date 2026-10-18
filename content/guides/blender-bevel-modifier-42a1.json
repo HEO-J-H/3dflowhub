@@ -1,0 +1,91 @@
+{
+  "id": "blender-bevel-modifier-42a1",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Bevel modifier",
+  "title": "Bevel — 모서리 둥글게",
+  "summary": "메쉬의 모서리를 부드럽게 깎아내거나 둥글게 만들어 현실감을 더해주는 비파괴적 모디파이어입니다. 철사를 구부리듯 딱딱한 모서리를 자연스럽게 다듬을 때 사용합니다.",
+  "when": [
+    "기계 부품이나 가구 모델링에서 날카로운 엣지를 부드럽게 만들 때",
+    "빛 반사가 예쁘게 맺히도록 하이라이트 라인을 추가할 때",
+    "Edit Mode의 Bevel 연산과 달리 언제든 수정 가능한 상태로 유지하고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트 모드에서 대상 메쉬를 선택합니다.",
+    "Properties 패널에서 Modifier(렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier 클릭 후 Generate 카테고리에서 Bevel을 선택합니다.",
+    "Limit Method를 Angle로 설정하여 날카로운 엣지만 자동으로 지정합니다.",
+    "Width 값을 조절하여 베벨의 크기를 맞추고 Segments를 높여 부드러움을 더합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "베벨 효과의 전체적인 크기나 두께를 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "베벨 면에 추가될 엣지 루프의 개수로, 곡선의 부드러움을 결정합니다."
+    },
+    {
+      "name": "Limit Method",
+      "desc": "어떤 엣지에 베벨을 적용할지 기준(Angle, Weight 등)을 선택합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "Limit Method가 Angle일 때, 베벨이 적용될 최소 각도를 설정합니다."
+    },
+    {
+      "name": "Profile",
+      "desc": "베벨의 단면 모양을 오목하거나 볼록하게 조절합니다."
+    },
+    {
+      "name": "Miter Inner/Outer",
+      "desc": "두 개 이상의 베벨 엣지가 만나는 모서리(Miter)의 형태를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "책상 모서리 부드럽게 다듬기",
+      "steps": [
+        "책상 메쉬에 Bevel 모디파이어를 추가합니다.",
+        "Limit Method를 Angle로 설정하고 각도를 조절하여 각진 외곽만 선택되도록 합니다.",
+        "Segments를 2 또는 3으로 높여 렌더링 시 하이라이트가 부드럽게 맺히게 합니다."
+      ]
+    },
+    {
+      "title": "특정 엣지만 골라서 베벨 적용하기",
+      "steps": [
+        "Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "베벨을 적용하고 싶은 엣지를 선택한 뒤 Edge Data에서 Bevel Weight를 1.0으로 설정합니다.",
+        "Object Mode로 돌아와 Limit Method를 Weight로 변경합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 틀어짐 → Object Mode에서 Ctrl+A를 누르고 All Transforms를 적용해 스케일을 1.0으로 맞춥니다.",
+    "베벨이 의도치 않게 너무 크게 적용됨 → Width 값이 너무 크거나 오브젝트 Scale이 정수(1, 1, 1)가 아닌지 확인합니다.",
+    "모서리가 울퉁불퉁하고 꺾임 → Segments가 너무 낮거나 법선(Normals) 방향이 뒤집혀 있는지 확인하고 수정합니다."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Loop Cut",
+    "Solidify",
+    "Weighted Normal"
+  ],
+  "videos": [
+    {
+      "id": "eUiQILVhzvs",
+      "title": "How to use Blender's Bevel Modifier",
+      "author": "Blender Forge"
+    },
+    {
+      "id": "57b8L12B-NY",
+      "title": "The Bevel Modifier in Blender 3D",
+      "author": "Brandon 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html",
+  "grounded": true,
+  "at": "2026-10-18T09:36:55.119991+00:00"
+}
