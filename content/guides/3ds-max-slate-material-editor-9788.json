@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-slate-material-editor-9788",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Slate Material Editor",
+  "title": "Slate 머티리얼 에디터",
+  "summary": "Slate Material Editor는 노드 기반 인터페이스를 통해 머티리얼과 맵을 시각적으로 연결하고 관리하는 3ds Max의 에디터입니다. 복잡한 셰이더 네트워크를 직관적으로 파악하고 수정할 수 있습니다.",
+  "when": [
+    "여러 맵과 블렌딩이 포함된 복잡한 PBR 머티리얼을 구성할 때",
+    "기존 Compact Material Editor의 슬롯 개수 부족을 해결하고 싶을 때",
+    "다른 프로젝트의 머티리얼 노드 네트워크를 복사해서 가져올 때"
+  ],
+  "steps": [
+    "상단 메인 툴바에서 Slate Material Editor 아이콘을 클릭하거나 단축키 M을 누릅니다.",
+    "좌측 Material/Map Browser 패널에서 원하는 머티리얼(예: Standard 또는 Physical)을 우측의 빈 뷰(View) 영역으로 드래그합니다.",
+    "머티리얼 노드의 출력 포트(우측 점)를 드래그하여 Diffuse Color, Bump 등의 입력 포트(좌측 점)에 연결합니다.",
+    "노드 헤더를 더블 클릭하여 파라미터 팽널(Parameter Editor)을 열고 세부 값을 조절합니다.",
+    "완성된 머티리얼 노드를 선택하고 뷰포트의 오브젝트에 Assign Material to Selection 버튼으로 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Material/Map Browser",
+      "desc": "사용 가능한 모든 머티리얼과 맵의 목록을 보여주는 좌측 탐색기입니다."
+    },
+    {
+      "name": "Parameter Editor",
+      "desc": "선택한 노드의 상세 속성(컬러, 수치, 텍스처 경로 등)을 편집하는 패널입니다."
+    },
+    {
+      "name": "Active Shade",
+      "desc": "뷰포트나 전용 창에서 머티리얼 변경 사항을 실시간 렌더링으로 미리 확인합니다."
+    },
+    {
+      "name": "Assign Material to Selection",
+      "desc": "선택한 3D 오브젝트에 현재 머티리얼을 할당합니다."
+    },
+    {
+      "name": "Show Shaded Material in Viewport",
+      "desc": "뷰포트에 머티리얼과 텍스처의 뷰포트 표시 여부를 토글합니다."
+    },
+    {
+      "name": "Delete Unused Nodes",
+      "desc": "뷰 영역에서 연결되지 않고 방치된 불필요한 노드들을 일괄 정리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "텍스처 맵 연결하기",
+      "steps": [
+        "Material/Map Browser에서 General > Bitmap을 뷰 영역으로 드래그합니다.",
+        "파일 탐색기 창이 뜨면 사용할 이미지를 선택합니다.",
+        "Bitmap 노드의 출력 점을 Physical 머티리얼의 Base Color Map 입력 점에 연결합니다."
+      ]
+    },
+    {
+      "title": "여러 뷰(View)로 작업 나누기",
+      "steps": [
+        "Slate Material Editor 상단의 탭 영역에서 + 버튼을 눌러 새 뷰를 추가합니다.",
+        "뷰 이름을 우클릭하여 'Environment' 또는 'Character' 등으로 변경합니다.",
+        "목적에 맞는 머티리얼 노드들만 따로 배치하여 깔끔하게 관리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 뷰포트에 보이지 않음 → Show Shaded Material in Viewport 버튼이 꺼져 있는지 확인하고 켭니다.",
+    "노드 연결선이 꼬이고 복잡해짐 → New Tab을 생성하여 기능별로 노드를 분산시켜 정리합니다.",
+    "수정이 뷰포트에 반영되지 않음 → 대상 오브젝트가 올바르게 선택되었는지, 머티리얼이 제대로 할당되었는지 확인합니다."
+  ],
+  "related": [
+    "Compact Material Editor",
+    "Physical Material",
+    "Bitmap",
+    "Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "xGnhXQ4OUI8",
+      "title": "How to use the Slate Material Editor in 3ds Max",
+      "author": "ArchViz Explained"
+    },
+    {
+      "id": "wQcCjo9_6Ss",
+      "title": "Slate Material Editor in 3ds Max Explained",
+      "author": "Arch Viz Artist"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Slate%20Material%20Editor",
+  "grounded": false,
+  "at": "2026-10-18T08:36:34.377556+00:00"
+}

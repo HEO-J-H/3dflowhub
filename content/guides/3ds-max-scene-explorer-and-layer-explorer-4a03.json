@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-scene-explorer-and-layer-explorer-4a03",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Scene Explorer and Layer Explorer",
+  "title": "씬 익스플로러·레이어 관리",
+  "summary": "Scene Explorer와 Layer Explorer는 3ds Max에서 수많은 오브젝트와 레이어를 계층적으로 관리하고 정렬하는 핵심 도구입니다. 복잡한 씬에서 원하는 요소를 빠르게 찾고 가시성이나 선택을 통제합니다.",
+  "when": [
+    "씬에 오브젝트가 수백 개 이상 늘어나서 이름이나 그룹으로 찾기 힘들 때",
+    "캐릭터, 배경, 소품 등 카테고리별로 레이어를 나누어 관리하고 싶을 때",
+    "특정 오브젝트의 렌더링 여부나 뷰포트 표시 상태를 한눈에 끄고 켤 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Tools → Scene Explorer를 선택하거나 기본 단축키 H를 누릅니다.",
+    "씬에 있는 전체 오브젝트 목록이 나타나면 검색창에 이름을 입력해 원하는 대상을 찾습니다.",
+    "좌측 상단의 Create New Layer 아이콘을 눌러 새 레이어를 만듭니다.",
+    "정리할 오브젝트를 드래그하여 해당 레이어 위로 이동시킵니다.",
+    "레이어 패널에서 전구 아이콘(표시/숨김), 화살표 아이콘(선택 잠금)을 클릭하여 상태를 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Display By",
+      "desc": "오브젝트를 타입별, 재질별 또는 레이어별로 정렬하여 보여줍니다."
+    },
+    {
+      "name": "Name",
+      "desc": "오브젝트의 이름을 표시하며 더블클릭하여 바로 수정할 수 있습니다."
+    },
+    {
+      "name": "Hide",
+      "desc": "뷰포트와 렌더링에서 오브젝트를 숨깁니다."
+    },
+    {
+      "name": "Freeze",
+      "desc": "오브젝트를 선택 불가능한 고정 상태로 만듭니다."
+    },
+    {
+      "name": "Renderable",
+      "desc": "최종 렌더링 시 해당 오브젝트를 포함할지 여부를 결정합니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "오브젝트가 속한 레이어 그룹을 지정하고 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 씬에서 가구와 벽체 분리하기",
+      "steps": [
+        "Scene Explorer를 엽니다.",
+        "Walls와 Furniture라는 이름의 레이어를 각각 생성합니다.",
+        "벽체 관련 오브젝트를 Walls 레이어로 드래그합니다.",
+        "가구 오브젝트를 Furniture 레이어로 드래그하여 작업 편의를 높입니다."
+      ]
+    },
+    {
+      "title": "무거운 배경 오브젝트 숨겨서 작업 속도 높이기",
+      "steps": [
+        "Scene Explorer에서 배경(Background) 레이어를 찾습니다.",
+        "레이어 옆의 Hide 아이콘(전구 모양)을 클릭하여 뷰포트에서 숨깁니다.",
+        "가벼워진 상태에서 캐릭터 애니메이션이나 메인 모델링 작업에 집중합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 안 보이고 선택도 안 됨 → Scene Explorer에서 Hide나 Freeze가 켜져 있는지 확인하고 끕니다.",
+    "레이어를 삭제했는데 안에 있던 오브젝트까지 다 사라짐 → 레이어 삭제 시 'Delete Objects'가 아닌 'Keep Objects' 옵션을 선택해야 오브젝트가 남습니다."
+  ],
+  "related": [
+    "Selection Sets",
+    "Group",
+    "Asset Tracking",
+    "Layer Manager"
+  ],
+  "videos": [
+    {
+      "id": "C2H-ht5OKMU",
+      "title": "Layer Explorer in 3DS Max",
+      "author": "ArchViz Explained"
+    },
+    {
+      "id": "alBLoGPUbQc",
+      "title": "This how to use the Layer Explorer inside 3ds max to organise your work. #3dsmax #3dsmaxtutorial",
+      "author": "ZKAcademy"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Scene%20Explorer%20and%20Layer%20Explorer",
+  "grounded": false,
+  "at": "2026-10-18T08:36:42.746368+00:00"
+}
