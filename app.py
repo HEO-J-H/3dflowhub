@@ -431,8 +431,8 @@ with t_auto:
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("검토 대기", len(opened))
     k2.metric("수락률", f"{int(rate * 100)}%" if rate is not None else "-")
-    k3.metric("직접 작업 필요", sum(1 for x in mb["proposals"] if x["status"] == "accepted"
-                                 and not (x.get("action") or {}).get("type")))
+    k3.metric("직접 작업 필요", len(manager.manual_todo("3dflowhub")),
+              help="수락했지만 자동으로 처리할 수 없어 직접(또는 Claude 에게 맡겨) 해야 하는 일 — 아래 '🛠 직접 작업' 보기")
     k4.metric("마지막 분석", ago(rep.get("at", "")) if rep else "없음", help="AI 관리자가 마지막으로 사이트를 분석한 시각")
     if rep:
         with st.container(border=True):
@@ -483,8 +483,23 @@ with t_auto:
     a2.caption("자동 분석: GitHub 수집 실행 때 하루 1회 · 의견을 보내면 다음 실행 때 답변")
 
     view = st.segmented_control(
-        "보기", ["새 제안", "수락", "보류", "거절"], default="새 제안", label_visibility="collapsed", key="mgr_view")
-    want = {"새 제안": "new", "수락": "accepted", "보류": "held", "거절": "rejected"}.get(view or "새 제안", "new")
+        "보기", ["새 제안", "🛠 직접 작업", "수락", "보류", "거절", "완료"], default="새 제안",
+        label_visibility="collapsed", key="mgr_view")
+    if view == "🛠 직접 작업":
+        todo = manager.manual_todo("3dflowhub")
+        st.caption("수락했지만 자동 반영이 안 되는 일입니다. 직접 하시거나, '요청문'을 복사해 Claude 에게 맡긴 뒤 ✔ 완료를 눌러 주세요.")
+        if not todo:
+            st.success("남은 직접 작업이 없습니다")
+        for x in todo:
+            with st.container(border=True):
+                st.markdown(f"**{x['title']}** · 제안: {x.get('by') or '🧭 AI 관리자'} · 수락 {kst(x.get('decided_at', x['at']))}")
+                st.code(manager.claude_request(x), language=None, wrap_lines=True)
+                if st.button("✔ 완료", key=f"done_{x['id']}", type="primary"):
+                    manager.decide(x["id"], "done")
+                    save_manager("직접 작업 완료")
+                    st.rerun()
+    want = {"새 제안": "new", "수락": "accepted", "보류": "held", "거절": "rejected", "완료": "done",
+            "🛠 직접 작업": "_none"}.get(view or "새 제안", "new")
     items = [x for x in mb["proposals"] if x["status"] == want and (x.get("site") or "3dflowhub") == "3dflowhub"]
     if not items:
         st.info({"new": "검토할 새 제안이 없습니다. '지금 분석 요청'을 누르거나 다음 자동 분석을 기다려 주세요.",

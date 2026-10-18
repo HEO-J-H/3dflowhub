@@ -756,3 +756,17 @@ def test_regulatory_digest_and_stamp():
     assert sites.review_stamp(js) == "2026-10-16"
     d = sites.regulatory_digest(js)
     assert "600만" in d and "no korean" not in d
+
+
+def test_manual_todo_done_and_dedupe(monkeypatch, tmp_path):
+    import manager
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    manager._append({"at": "2026-10-18T00:00:00", "kind": "proposal", "id": "p1", "title": "깨진 참고 링크 2개 수정",
+                     "site": "life-after-60", "action": None, "proposal": "링크 교체"})
+    manager.decide("p1", "accepted")
+    assert [p["id"] for p in manager.manual_todo("life-after-60")] == ["p1"] and manager.manual_todo("3dflowhub") == []
+    assert manager.similar_open("깨진 링크 2개 수정", "life-after-60")          # 비슷한 제안 중복 방지
+    assert not manager.similar_open("결과표 글자 크기 키우기", "life-after-60")
+    assert "HEO-J-H/life-after-60" in manager.claude_request(manager.manual_todo()[0])
+    manager.decide("p1", "done")
+    assert manager.manual_todo() == []

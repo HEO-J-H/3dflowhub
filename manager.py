@@ -22,7 +22,7 @@ REVIEW_EVERY = timedelta(hours=24)
 MAX_PROPOSALS = 3
 CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익"]
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int}
-STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절"}
+STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
 DEFAULT_ALLOC = {"news": 0.6, "guides": 0.3, "roundups": 0.1}
 CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
@@ -66,6 +66,34 @@ def board() -> dict:
             "messages": sorted(msgs.values(), key=lambda m: m["at"], reverse=True), "report": report}
 
 
+def manual_todo(site: str | None = None) -> list[dict]:
+    """수락했지만 자동 실행 행동이 없어 사람(또는 Claude)이 직접 해야 하는 일 — 완료(done) 표시 전까지 남음."""
+    return [p for p in board()["proposals"] if p["status"] == "accepted" and not (p.get("action") or {}).get("type")
+            and (site is None or (p.get("site") or "3dflowhub") == site)]
+
+
+def claude_request(p: dict) -> str:
+    """Claude 에게 그대로 붙여넣을 작업 요청문."""
+    import sites
+    s = sites.SITES.get(p.get("site") or "3dflowhub", {})
+    return (f"[{s.get('name', '')}] {p['title']}\n저장소: {s.get('repo', '')}\n근거: {p.get('evidence', '')}\n"
+            f"할 일: {p.get('proposal', '')}" + (f"\n참고: {p['source']}" if p.get("source") else "")
+            + ("\n규칙: " + s["rules"] if s.get("rules") else ""))
+
+
+def similar_open(title: str, site: str) -> bool:
+    """같은 사이트에 비슷한 제목의 제안이 열려 있거나 처리 대기 중이면 True (직원 간 중복 제안 방지)."""
+    import re as _re
+    words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", title))
+    for p in board()["proposals"]:
+        if (p.get("site") or "3dflowhub") != site or p["status"] not in ("new", "held", "accepted"):
+            continue
+        other = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", p["title"]))
+        if words and len(words & other) / max(1, min(len(words), len(other))) >= 0.6:
+            return True
+    return False
+
+
 def acceptance_rate() -> float | None:
     decided = [p for p in board()["proposals"] if p["status"] in ("accepted", "rejected")]
     return round(sum(p["status"] == "accepted" for p in decided) / len(decided), 2) if decided else None
@@ -74,7 +102,7 @@ def acceptance_rate() -> float | None:
 # ─────────────────────────── 사람의 결정 ───────────────────────────
 def decide(pid: str, v: str, note: str = "") -> str:
     """수락/보류/거절 기록. 설정 변경류는 수락 즉시 이 PC 설정에 반영 (돌려줄 문구 반환)."""
-    assert v in ("accepted", "held", "rejected", "new")
+    assert v in ("accepted", "held", "rejected", "new", "done")  # done = 직접 작업까지 끝남
     _append({"at": _now(), "kind": "decision", "id": pid, "v": v, "note": note.strip()[:500]})
     if v != "accepted":
         return ""

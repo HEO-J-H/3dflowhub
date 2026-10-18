@@ -290,7 +290,8 @@ def run_role(role: dict) -> dict:
         evs = []
         open_titles = {p["title"] for p in manager.board()["proposals"] if p["status"] in ("new", "held")}
         for p in (out.get("proposal") or [])[:2]:
-            if isinstance(p, dict) and p.get("title") and p["title"] not in open_titles:
+            if isinstance(p, dict) and p.get("title") and p["title"] not in open_titles \
+                    and not manager.similar_open(p["title"], site_id):
                 evs.append({"at": now, "kind": "proposal",
                             "id": "p-" + hashlib.md5(f"{now}{p['title']}".encode()).hexdigest()[:10],
                             "title": str(p["title"])[:80], "by": role["name"], "site": site_id,
@@ -318,7 +319,7 @@ def _run_check(role: dict) -> dict:
     made = 0
     title = f"깨진 참고 링크 {len(sure)}개 수정 ({sites.SITES[role['site']]['name']})"
     open_titles = {p["title"] for p in manager.board()["proposals"] if p["status"] in ("new", "held")}
-    if sure and title not in open_titles:
+    if sure and title not in open_titles and not manager.similar_open(title, role["site"]):
         manager._append({"at": _now(), "kind": "proposal", "id": "p-" + hashlib.md5(f"{_now()}{title}".encode()).hexdigest()[:10],
                          "title": title, "by": role["name"], "site": role["site"], "category": "사이트·UX",
                          "evidence": "응답 404/5xx: " + ", ".join(b["url"] for b in sure[:6]),

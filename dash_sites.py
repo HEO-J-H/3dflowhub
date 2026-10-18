@@ -129,6 +129,18 @@ def render_site(site_id: str) -> None:
             st.caption(f"마지막 점검 {_kst(h['at'])} · 🔗 상태 점검 직원이 매일 확인")
         st.subheader("✅ 결정할 일")
         proposals_block(site_id, "today")
+        todo = manager.manual_todo(site_id)
+        st.subheader(f"🛠 직접 작업 ({len(todo)})")
+        st.caption("수락했지만 자동 반영이 안 되는 일 (이 사이트는 법규·코드를 사람이 직접 고침). "
+                   "요청문을 복사해 Claude 에게 맡기거나 직접 한 뒤 ✔ 완료를 눌러 주세요.")
+        for x in todo:
+            with st.container(border=True):
+                st.markdown(f"**{x['title']}** · 제안: {x.get('by') or '🧭 AI 관리자'}")
+                st.code(manager.claude_request(x), language=None, wrap_lines=True)
+                if st.button("✔ 완료", key=f"sdone_{x['id']}", type="primary"):
+                    manager.decide(x["id"], "done")
+                    _sync(["memory/proposals.json"], "직접 작업 완료")
+                    st.rerun()
     with t_reg:
         st.caption("⚖️ 규정 감시 직원이 공식 발표·보도를 사이트의 현재 기준과 비교해 [확정]/[논의] 로 올립니다. "
                    "확정 항목은 law.go.kr·국세청·국민연금공단 등 공식 출처 대조 후 regulatory-reference.js 를 직접 수정하고 "
@@ -178,6 +190,7 @@ def render_hq() -> None:
                 st.markdown(f"상태 **{'정상' if h.get('status') == 200 else '확인 필요' if h else '점검 전'}** · "
                             f"규정 검토 {h.get('review_age_days', '-')}일 전 · 문제 {len(h.get('problems') or [])}건")
             st.metric("결정 대기", sum(1 for x in board if x["status"] == "new" and _site_of(x) == sid))
+            st.metric("직접 작업", len(manager.manual_todo(sid)))
             st.metric("홍보 대기", sum(1 for x in box if x["status"] == "new" and _site_of(x) == sid))
             members = [r["name"] for r in team if r.get("site", sites.DEFAULT_SITE) == sid and r["status"] == "active"]
             st.caption("근무 중: " + (", ".join(members) or "없음"))
