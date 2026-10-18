@@ -418,10 +418,13 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     if CLOUD and not git("config", "user.email").stdout.strip():  # 클라우드 컨테이너엔 git 사용자 정보가 없음
         git("config", "user.name", "3dflowhub-dashboard")
         git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
-    if commit_paths:
-        git("add", *commit_paths)
+    # memory/*.json 은 GitHub 실행도 자주 바꾸므로 '먼저 커밋 후 pull' 하면 rebase 충돌 → pull·내용 병합 뒤에 커밋
+    mem_commit = [p for p in commit_paths or [] if p.startswith("memory/")]
+    pre_commit = [p for p in commit_paths or [] if p not in mem_commit]
+    if pre_commit:
+        git("add", *pre_commit)
         if git("diff", "--cached", "--quiet").returncode != 0:
-            git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *commit_paths)
+            git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *pre_commit)
     tracked = [f for f in git("ls-files", "memory").stdout.split() if f.endswith(".json")]
     untracked = [f for f in git("ls-files", "-o", "--exclude-standard", "memory").stdout.split()
                  if f.endswith(".json")]  # CI 가 같은 파일을 커밋했으면 pull 이 막히므로 잠시 치움
@@ -446,6 +449,10 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     for f, mine in local.items():
         if mine is not None:
             _save_json(ROOT / f, merge_memory(f, _load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
+    if mem_commit and not err:  # 원격 최신본과 병합된 memory 를 이제 커밋
+        git("add", *mem_commit)
+        if git("diff", "--cached", "--quiet").returncode != 0:
+            git("commit", "-q", "-m", message or "chore: update from local dashboard", "--", *mem_commit)
     ahead = git("rev-list", "--count", "origin/main..HEAD").stdout.strip() not in ("", "0")
     if (commit_paths or ahead) and not err:  # 미푸시 커밋이 남아 있어도 올림
         if CLOUD and _push_remote() == "origin":
