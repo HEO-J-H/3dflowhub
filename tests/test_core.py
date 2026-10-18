@@ -729,3 +729,30 @@ def test_designer_image_deliverable(monkeypatch, tmp_path):
     assert res["image"] == 1 and item["image"].endswith(".png") and (tmp_path / item["image"]).exists()
     from PIL import Image
     assert Image.open(tmp_path / item["image"]).size == (1080, 1080)
+
+
+def test_hq_site_roles_and_check(monkeypatch, tmp_path):
+    import manager, sites, staff
+    monkeypatch.setattr(staff, "ROLES_PATH", tmp_path / "roles.json")
+    monkeypatch.setattr(staff, "OUTBOX_PATH", tmp_path / "outbox.json")
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    monkeypatch.setattr(sites, "health_check", lambda site: {"problems": ["참고 링크 1개 깨짐 (404 등)"],
+                                                             "broken_links": [{"url": "https://x.example/a", "status": 404, "sure": True}]})
+    r = staff.valid_role({"name": "🔗 상태 점검", "site": "life-after-60", "deliverables": ["check"],
+                          "mission": "점검", "every_hours": 24, "daily_calls": 1})
+    assert r["site"] == "life-after-60" and r["id"] != staff.valid_role({**r, "site": "3dflowhub"})["id"]
+    staff.hire(r)
+    monkeypatch.setattr(core, "llm", lambda *a, **k: (_ for _ in ()).throw(AssertionError("점검은 AI 안 씀")))
+    res = staff.run_role(staff.roles()[r["id"]])
+    p = manager.board()["proposals"][0]
+    assert res["proposal"] == 1 and p["site"] == "life-after-60" and "x.example" in p["evidence"]
+    staff.run_role(staff.roles()[r["id"]])
+    assert len(manager.board()["proposals"]) == 1          # 같은 문제 제안 중복 안 함
+
+
+def test_regulatory_digest_and_stamp():
+    import sites
+    js = "var REVIEW_STAMP = '2026-10-16'; var A = '연금저축 연 600만·IRP 합산 900만 한도'; var B = 'no korean 123';"
+    assert sites.review_stamp(js) == "2026-10-16"
+    d = sites.regulatory_digest(js)
+    assert "600만" in d and "no korean" not in d

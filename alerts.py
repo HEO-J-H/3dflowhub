@@ -126,6 +126,19 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
     elif not gsc_data.get("at"):
         out.append(_alert("info", "Search Console 미연결", "연결하면 실제 검색어로 키워드·제안이 좋아집니다 (gsc.py 안내)"))
 
+    # 6-2) 다른 사이트(HQ) 상태 점검 결과
+    try:
+        import sites
+        for sid, info in sites.SITES.items():
+            if sid == sites.DEFAULT_SITE:
+                continue
+            h = sites.last_health(sid)
+            for prob in h.get("problems") or []:
+                level = "error" if "접속" in prob or "응답" in prob and "링크" not in prob else "warning"
+                out.append(_alert(level, f"{info['name']}: {prob}", "사이트 선택 → 해당 사이트 화면에서 확인", key=f"{sid}:{prob}"))
+    except Exception:
+        pass
+
     # 7) 직접 등록한 기한
     for r in cfg.get("reminders") or []:
         try:

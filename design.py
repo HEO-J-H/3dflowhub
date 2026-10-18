@@ -23,7 +23,9 @@ THEMES = {  # 분야별 그라데이션 (사이트 og 카드와 같은 색)
     "game-engine": ((94, 92, 230), (175, 82, 222)), "vfx": ((255, 69, 58), (255, 159, 10)),
     "ai-3d": ((48, 176, 199), (94, 92, 230)), "learn": ((52, 199, 89), (0, 113, 227)),
     "dark": ((28, 28, 30), (58, 58, 60)),
+    "navy-gold": ((5, 8, 15), (15, 30, 53)),  # life-after-60 (다크 네이비 + 골드)
 }
+ACCENT = {"navy-gold": (201, 168, 76)}  # 머리말 글자색 (기본은 그라데이션 시작색)
 KO_FONTS = ["C:/Windows/Fonts/malgunbd.ttf", "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"]
 KO_FONTS_REG = ["C:/Windows/Fonts/malgun.ttf", "/usr/share/fonts/truetype/nanum/NanumGothic.ttf",
@@ -82,7 +84,7 @@ def render_promo(spec: dict, name: str) -> Path:
         kick = str(spec["kicker"])[:30]
         kw = d.textlength(kick, font=f)
         d.rounded_rectangle([pad, y, pad + kw + 44 * scale, y + 64 * scale], radius=int(32 * scale), fill=(255, 255, 255))
-        d.text((pad + 22 * scale, y + 10 * scale), kick, font=f, fill=c1)
+        d.text((pad + 22 * scale, y + 10 * scale), kick, font=f, fill=ACCENT.get(spec.get("theme"), c1))
         y += int(110 * scale)
     size = int((92 if fmt != "x" else 70) * scale)
     f = _font(size)
@@ -109,7 +111,8 @@ def render_promo(spec: dict, name: str) -> Path:
             d.text((pad + 40 * scale, y), p, font=fp, fill=(255, 255, 255))
             y += int(64 * scale)
     fb = _font(int(34 * scale))
-    d.text((pad, H - int(110 * scale)), "3dflowhub", font=fb, fill=(255, 255, 255))
+    d.text((pad, H - int(110 * scale)), str(spec.get("brand") or "3dflowhub")[:24], font=fb,
+           fill=ACCENT.get(spec.get("theme"), (255, 255, 255)))
     cta = str(spec.get("cta") or "프로필 링크에서 보기")[:24]
     cw = d.textlength(cta, font=fb)
     d.text((W - pad - cw, H - int(110 * scale)), cta, font=fb, fill=(235, 240, 255))

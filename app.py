@@ -189,6 +189,27 @@ def job_panel() -> None:
         st.error(job["error"])
 
 
+# ─────────────────────────── 사이트 전환 (HQ: 여러 사이트를 한 현황판에서) ───────────────────────────
+import sites as _sites  # noqa: E402
+
+VIEW_LABELS = {"hq": "🏢 전체 요약", **{k: v["name"] for k, v in _sites.SITES.items()}}
+with st.sidebar:
+    view = st.selectbox("사이트", list(VIEW_LABELS), index=list(VIEW_LABELS).index("3dflowhub"),
+                        format_func=lambda k: VIEW_LABELS[k], key="site_view")
+if view != "3dflowhub":
+    import dash_sites
+    with st.sidebar:
+        st.caption("🔔 각 사이트의 결정·홍보·팀은 여기서, 수집·가이드·배포 설정은 🧊 3dflowhub 화면에서")
+        if st.button("🔄 데이터 새로고침", width="stretch", key="hq_refresh"):
+            st.cache_data.clear()
+            core.git_sync()
+            st.rerun()
+    if view == "hq":
+        dash_sites.render_hq()
+    else:
+        dash_sites.render_site(view)
+    st.stop()
+
 with st.sidebar:
     st.markdown("### 🧊 3dflowhub")
     status_panel()
@@ -405,7 +426,7 @@ with t_auto:
     st.subheader("🧭 AI 관리자")
     st.caption("AI가 하루 한 번 사이트·수집·검색·독자 지표를 분석해 개선안을 올립니다. "
                "수락·보류·거절과 그 이유를 남기면 다음 분석에서 취향을 배웁니다.")
-    opened = [x for x in mb["proposals"] if x["status"] == "new"]
+    opened = [x for x in mb["proposals"] if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     rate = manager.acceptance_rate()
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("검토 대기", len(opened))
@@ -464,7 +485,7 @@ with t_auto:
     view = st.segmented_control(
         "보기", ["새 제안", "수락", "보류", "거절"], default="새 제안", label_visibility="collapsed", key="mgr_view")
     want = {"새 제안": "new", "수락": "accepted", "보류": "held", "거절": "rejected"}.get(view or "새 제안", "new")
-    items = [x for x in mb["proposals"] if x["status"] == want]
+    items = [x for x in mb["proposals"] if x["status"] == want and (x.get("site") or "3dflowhub") == "3dflowhub"]
     if not items:
         st.info({"new": "검토할 새 제안이 없습니다. '지금 분석 요청'을 누르거나 다음 자동 분석을 기다려 주세요.",
                  "accepted": "수락한 제안이 없습니다.", "held": "보류한 제안이 없습니다.",
@@ -520,7 +541,7 @@ with t_auto:
                "직원의 결과물(홍보 글·제안)에 대한 반응을 보고 스스로 배웁니다.")
     team = staff.roles()
     box_all = staff.outbox()
-    for r in team.values():
+    for r in [r for r in team.values() if r.get("site", "3dflowhub") == "3dflowhub"]:
         with st.container(border=True):
             mine = [x for x in box_all if x.get("role") == r["id"]]
             h1, h2 = st.columns([4, 1.4])
@@ -615,8 +636,9 @@ with t_auto:
                  "링크": r.get("html_url") or f"https://github.com/{GH_REPO}/actions"} for r in runs]
         st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True,
                      column_config={"링크": st.column_config.LinkColumn(display_text="열기")})
-        if runs[0].get("event") and not any(r.get("event") == "schedule" for r in runs):
-            st.warning("아직 자동(스케줄) 실행 기록이 없습니다. 깃허브 크론이 시작되기까지 시간이 걸릴 수 있습니다.")
+        # 자동 실행은 크론(schedule) 또는 heartbeat 가 부르는 수동 실행(workflow_dispatch) 둘 다 정상
+        if not any(str(r.get("name", "")).startswith("3dflowhub auto") for r in runs):
+            st.warning("최근 자동 수집 실행 기록이 없습니다 — heartbeat 워크플로가 멈췄는지 확인해 주세요.")
     else:
         st.info("실행 기록을 불러오지 못했습니다.")
 
@@ -1001,7 +1023,7 @@ with t_today:
                   f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
 
     st.subheader("✅ 결정할 일")
-    pend = [x for x in _mgr.board()["proposals"] if x["status"] == "new"]
+    pend = [x for x in _mgr.board()["proposals"] if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     if not pend:
         st.success("검토할 AI 관리자 제안이 없습니다")
     for x in pend[:5]:
@@ -1023,7 +1045,7 @@ with t_today:
                 st.rerun()
 
     import staff as _staff
-    waiting = [x for x in _staff.outbox() if x["status"] == "new"]
+    waiting = [x for x in _staff.outbox() if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     st.subheader(f"📣 홍보 대기함 ({len(waiting)})")
     st.caption("마케터가 쓴 초안입니다. 오른쪽 위 복사 아이콘으로 복사해 해당 채널에 올린 뒤 '게시함'을 눌러 주세요. "
                "링크에는 채널 표시가 붙어 있어 어디서 방문이 왔는지 집계됩니다. (자동 게시는 하지 않습니다)")

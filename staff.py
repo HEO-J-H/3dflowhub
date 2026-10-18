@@ -21,7 +21,7 @@ import core
 ROLES_PATH = core.ROOT / "memory" / "roles.json"     # 역할 이벤트: hire / pause / resume / run
 OUTBOX_PATH = core.ROOT / "memory" / "outbox.json"   # 홍보 대기함 이벤트: item / status
 SITE = "https://heo-j-h.github.io/3dflowhub/"
-DELIVERABLES = ("promo", "proposal", "note", "image")
+DELIVERABLES = ("promo", "proposal", "note", "image", "check")
 DEFAULT_CHANNELS = ["네이버 카페 (3D 커뮤니티)", "X (트위터)", "인스타그램 캡션", "디스코드"]
 
 MARKETER = {
@@ -30,7 +30,7 @@ MARKETER = {
                 "① 채널별 홍보 글 초안(기초 가이드·도구별 정리·주목할 소식 위주, 채널 말투·길이에 맞춤, 광고 티 최소화) "
                 "② 검색 기회: 노출은 많은데 클릭이 적은 검색어 → 제목·설명 개선 제안, 사람들이 찾는데 없는 주제 → 기초 가이드 주제 제안 "
                 "③ 주 1회 뉴스레터 초안(이번 주 요약 기반)"),
-    "deliverables": ["promo", "proposal"], "every_hours": 24, "daily_calls": 4,
+    "deliverables": ["promo", "proposal"], "every_hours": 24, "daily_calls": 4, "site": "3dflowhub",
 }
 
 
@@ -74,8 +74,10 @@ def valid_role(r) -> dict | None:
         calls = min(6, max(1, int(r.get("daily_calls", 2))))
     except (TypeError, ValueError):
         return None
-    rid = "r-" + hashlib.md5(str(r["name"]).encode()).hexdigest()[:8]
-    return {"id": rid, "name": str(r["name"])[:30], "mission": str(r["mission"])[:600],
+    import sites
+    site = r.get("site") if r.get("site") in sites.SITES else sites.DEFAULT_SITE
+    rid = "r-" + hashlib.md5(f"{r['name']}|{site}".encode()).hexdigest()[:8]
+    return {"id": rid, "name": str(r["name"])[:30], "mission": str(r["mission"])[:600], "site": site,
             "deliverables": deliv, "every_hours": every, "daily_calls": calls,
             "playbook": str(r.get("playbook") or "")[:1500]}  # 채용 때 팀장이 써 주는 직무 교본
 
@@ -107,7 +109,8 @@ def set_outbox(item_id: str, v: str, note: str = "") -> None:
 
 def tracked(url: str, channel: str, role_id: str) -> str:
     """홍보 링크에 출처 표시 (GoatCounter 가 utm_source/utm_campaign 을 자동 인식 → 채널별 방문 집계)."""
-    if not url.startswith(SITE):
+    import sites
+    if not any(url.startswith(v["url"]) for v in sites.SITES.values()):
         return url
     src = {"네이버": "naver_cafe", "X": "x", "인스타": "instagram", "디스코드": "discord", "뉴스레터": "newsletter"}
     s = next((v for k, v in src.items() if k in channel), "promo")
@@ -115,8 +118,51 @@ def tracked(url: str, channel: str, role_id: str) -> str:
 
 
 # ─────────────────────────── 업무 수행 ───────────────────────────
+def _feedback(role: dict) -> dict:
+    mine = [x for x in outbox() if x.get("role") == role["id"]][:12]
+    return {"your_past_output_feedback": [{"channel": x.get("channel"), "title": x.get("title"), "result": x["status"],
+                                           "note": x.get("note", "")} for x in mine if x["status"] != "new"],
+            "waiting_to_post": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
+                                for x in mine if x["status"] == "new"],
+            "recently_posted": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
+                                for x in mine if x["status"] == "posted"][:10]}
+
+
+def _context_site(role: dict) -> dict:
+    """3dflowhub 가 아닌 사이트(예: life-after-60) 소속 직원의 자료: 사이트 정보·규칙·점검 결과 (+규정 감시 자료)."""
+    import re as _re
+    import sites
+    site = sites.SITES[role["site"]]
+    ctx: dict = {"site": {"name": site["name"], "url": site["url"], "about": site["about"], "rules": site.get("rules", "")},
+                 "health": {k: v for k, v in sites.last_health(role["site"]).items() if k != "broken_links"},
+                 **_feedback(role)}
+    try:
+        html = sites.fetch_text(site["url"])
+        ctx["site"]["title"] = (_re.search(r"<title>([^<]+)", html) or [None, ""])[1]
+        heads = _re.findall(r"<h[23][^>]*>([^<]{2,60})</h[23]>", html)
+        ctx["site"]["sections"] = list(dict.fromkeys(h.strip() for h in heads))[:25]
+    except Exception:
+        pass
+    if any(k in role.get("name", "") + role.get("mission", "") for k in ("규정", "법규", "regulatory", "감시")):
+        ctx["recent_news_headlines"] = sites.regulatory_news()  # 먼저 넣어 길이 제한에 잘리지 않게
+        try:
+            js = sites.regulatory_source(role["site"])
+            ctx["current_site_rules_summary"] = sites.regulatory_digest(js)
+            ctx["review_stamp"] = sites.review_stamp(js)
+        except Exception as e:
+            ctx["current_site_rules_summary"] = f"읽기 실패: {e}"
+    if _is_designer(role):
+        ctx["site_design_note"] = ("다크 네이비 배경(#05080f) + 골드 강조(#c9a84c), Noto Sans KR 17px, 차트·표 중심. "
+                                   "독자는 50~60대 — 큰 글자·높은 대비·단순한 흐름이 중요")
+    ctx["channels"] = core.load_config().get(f"promo_channels_{role['site']}") or \
+        ["네이버 블로그", "네이버 카페 (재테크·은퇴 준비)", "카카오톡 오픈채팅", "페이스북"]
+    return ctx
+
+
 def _context(role: dict) -> dict:
     """역할이 일할 때 보는 자료: 사이트 지표 + 최근 콘텐츠 + 사람의 반응."""
+    if role.get("site", "3dflowhub") != "3dflowhub":
+        return _context_site(role)
     import manager
     try:
         import guides
@@ -158,13 +204,19 @@ def _design_snapshot() -> dict:
 def run_role(role: dict) -> dict:
     """역할 한 번 수행: 산출물 생성 → 홍보 대기함 / 제안 보드 / 업무 일지."""
     import manager
-    ctx = _context(role)
+    import sites
+    site_id = role.get("site", "3dflowhub")
+    site = sites.SITES.get(site_id, sites.SITES["3dflowhub"])
+    base = site["url"]
     want = role.get("deliverables") or ["proposal"]
+    if want == ["check"]:
+        return _run_check(role)
+    ctx = _context(role)
     prompt = (
-        f"You are '{role['name']}', a staff member of the 3dflowhub site team (Korean 3D/game/VFX/AI-3D curation site, "
-        f"{SITE}). Your mission: {role['mission']}\n"
+        f"You are '{role['name']}', a staff member working for the site {site['name']} ({base}) — {site['about']}. "
+        f"Site rules: {site.get('rules', 'none')}. Your mission: {role['mission']}\n"
         f"Context (metrics, content, how the owner reacted to your past work — learn from it): "
-        f"{json.dumps(ctx, ensure_ascii=False, default=str)[:7000]}\n"
+        f"{json.dumps(ctx, ensure_ascii=False, default=str)[:11000]}\n"
         "Rules: write in natural Korean; use only real URLs from the context; no false claims or fake numbers; "
         "promotional posts must be useful first (share what readers learn), not spammy; respect each channel's style "
         "and length (X: ≤240 chars, Naver cafe: title + 3-6 lines, Instagram: caption + 5-8 hashtags, Discord: short "
@@ -175,16 +227,18 @@ def run_role(role: dict) -> dict:
         '"url": the page to link}],\n'
         ' "proposal": up to 2 [{"title": <=40 chars, "category": one of ' + json.dumps(manager.CATEGORIES, ensure_ascii=False)
         + ', "evidence": numbers in plain Korean, "proposal": what to do, "expected": effect, "effort": "낮음"|"보통"|"높음", '
+        '"source": link from the context backing this (news/official page) or "", '
         '"action": null or {"type":"guide_topic","tool":..,"group":..,"name":English feature,"title_ko":..} or '
         '{"type":"keyword_hints","domain":D,"keywords":[...]} or {"type":"editorial_note","note":..}}],\n'
         ' "image": up to 2 promo images rendered from a brand template [{"format": "square"|"x"|"story", '
         '"kicker": tiny label <=12 chars, "headline": the big line <=28 chars (strongest benefit), "sub": <=60 chars, '
-        '"points": up to 3 short bullets (square/story only), "theme": one of default|3d-dcc|game-engine|vfx|ai-3d|learn|dark, '
+        '"points": up to 3 short bullets (square/story only), "theme": one of default|3d-dcc|game-engine|vfx|ai-3d|learn|dark|navy-gold, '
         '"cta": <=12 chars, "channel": where it will be posted, "caption": ready-to-paste caption, "url": page to link}],\n'
         ' "note": one Korean sentence — what you did and what you plan next.'
     )
     out = core._parse_json(core.llm(prompt, system=f"You are {role['name']} on the 3dflowhub team."
-                                    + core.playbook("common", "new_staff", role["id"],
+                                    + core.playbook(*(["common"] if site_id == "3dflowhub" else [f"site_{site_id}"]),
+                                                    "new_staff", role["id"],
                                                     *(["designer"] if _is_designer(role) else []))
                                     + (f"\n\n=== YOUR JOB PLAYBOOK ===\n{role['playbook']}" if role.get("playbook") else ""),
                                     max_tokens=2200, json_mode=True))
@@ -196,14 +250,14 @@ def run_role(role: dict) -> dict:
         evs = []
         for x in (out.get("promo") or [])[:4]:
             if isinstance(x, dict) and x.get("body"):
-                url = str(x.get("url") or SITE)
-                url = url if url.startswith(SITE) else SITE
+                url = str(x.get("url") or base)
+                url = url if url.startswith(base) else base
                 ch = str(x.get("channel") or "기타")[:30]
                 # 본문에 링크를 넣었으면 빼고, 채널 표시가 붙은 링크 하나만 끝에 붙인다 (중복·추적 누락 방지)
                 body = str(x["body"]).replace(str(x.get("url") or ""), "").replace(url, "").strip() if x.get("url") \
                     else str(x["body"]).strip()
                 evs.append({"at": now, "kind": "item", "id": "o-" + hashlib.md5(f"{now}{x['body']}".encode()).hexdigest()[:10],
-                            "role": role["id"], "channel": ch, "title": core.fix_terms(str(x.get("title", "")))[:80],
+                            "role": role["id"], "site": site_id, "channel": ch, "title": core.fix_terms(str(x.get("title", "")))[:80],
                             "body": core.fix_terms(body)[:2000], "url": tracked(url, ch, role["id"])})
         if evs:
             _append(OUTBOX_PATH, *evs)
@@ -217,14 +271,14 @@ def run_role(role: dict) -> dict:
             iid = "o-" + hashlib.md5(f"{now}{x['headline']}".encode()).hexdigest()[:10]
             fname = f"{datetime.now(timezone.utc):%Y%m%d}_{iid}"
             try:
-                path = design.render_promo(x, fname)
+                path = design.render_promo({**x, "brand": site_id}, fname)  # 이미지 하단 브랜드 = 소속 사이트
             except Exception as e:
                 core.log.warning("홍보 이미지 렌더 실패: %s", e)
                 continue
-            url = str(x.get("url") or SITE)
-            url = url if url.startswith(SITE) else SITE
+            url = str(x.get("url") or base)
+            url = url if url.startswith(base) else base
             ch = str(x.get("channel") or "인스타그램")[:30]
-            evs.append({"at": now, "kind": "item", "id": iid, "role": role["id"], "channel": ch,
+            evs.append({"at": now, "kind": "item", "id": iid, "role": role["id"], "site": site_id, "channel": ch,
                         "title": core.fix_terms(str(x["headline"]))[:80],
                         "body": core.fix_terms(str(x.get("caption") or x.get("sub") or ""))[:2000],
                         "url": tracked(url, ch, role["id"]), "image": path.relative_to(core.ROOT).as_posix(),
@@ -239,7 +293,8 @@ def run_role(role: dict) -> dict:
             if isinstance(p, dict) and p.get("title") and p["title"] not in open_titles:
                 evs.append({"at": now, "kind": "proposal",
                             "id": "p-" + hashlib.md5(f"{now}{p['title']}".encode()).hexdigest()[:10],
-                            "title": str(p["title"])[:80], "by": role["name"],
+                            "title": str(p["title"])[:80], "by": role["name"], "site": site_id,
+                            "source": str(p.get("source", ""))[:300],
                             "category": p.get("category") if p.get("category") in manager.CATEGORIES else "콘텐츠",
                             "evidence": core.fix_terms(str(p.get("evidence", "")))[:600],
                             "proposal": core.fix_terms(str(p.get("proposal", "")))[:900],
@@ -254,6 +309,27 @@ def run_role(role: dict) -> dict:
     return {"role": role["name"], **made, "note": summary}
 
 
+def _run_check(role: dict) -> dict:
+    """🔗 상태 점검(AI 사용 안 함): 사이트 응답·참고 링크·규정 검토일 → 확실히 깨진 링크는 수정 제안으로."""
+    import manager
+    import sites
+    h = sites.health_check(role["site"])
+    sure = [b for b in h.get("broken_links", []) if b.get("sure")]
+    made = 0
+    title = f"깨진 참고 링크 {len(sure)}개 수정 ({sites.SITES[role['site']]['name']})"
+    open_titles = {p["title"] for p in manager.board()["proposals"] if p["status"] in ("new", "held")}
+    if sure and title not in open_titles:
+        manager._append({"at": _now(), "kind": "proposal", "id": "p-" + hashlib.md5(f"{_now()}{title}".encode()).hexdigest()[:10],
+                         "title": title, "by": role["name"], "site": role["site"], "category": "사이트·UX",
+                         "evidence": "응답 404/5xx: " + ", ".join(b["url"] for b in sure[:6]),
+                         "proposal": "regulatory-reference.js 의 해당 링크를 공식 최신 주소로 바꾸거나 삭제 (사람 검토 후 커밋)",
+                         "expected": "신뢰도 유지, 사용자 이탈 방지", "effort": "낮음", "action": None})
+        made = 1
+    summary = "이상 없음" if not h.get("problems") else " / ".join(h["problems"])
+    _append(ROLES_PATH, {"at": _now(), "kind": "run", "id": role["id"], "summary": summary[:300], "made": {"proposal": made}})
+    return {"role": role["name"], "proposal": made, "note": summary}
+
+
 def run_due(min_capacity: int = 20) -> list[dict]:
     """주기가 된 직원들이 일함 (AI 여력이 있을 때만, 하루 한도 안에서)."""
     if core.llm_capacity_left() < min_capacity:
@@ -266,7 +342,7 @@ def run_due(min_capacity: int = 20) -> list[dict]:
             continue
         if r.get("last_run") and r["last_run"] > (now - timedelta(hours=r.get("every_hours", 24))).isoformat():
             continue
-        if sum(1 for e in runs_today if e["id"] == r["id"]) >= r.get("daily_calls", 2):
+        if sum(1 for e in runs_today if e["id"] == r["id"]) >= max(1, r.get("daily_calls", 2)):
             continue
         try:
             done.append(run_role(r))
