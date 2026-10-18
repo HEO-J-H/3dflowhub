@@ -120,22 +120,35 @@ def status_panel() -> None:
         st.caption(f"사이트 배포 {ago(pages[0]['created_at'])} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
 
 
+@st.fragment(run_every="3s")  # 수집 중엔 3초마다 진행 상태 자동 갱신 (새로고침 불필요)
+def job_panel() -> None:
+    if job["running"]:
+        st.info("⏳ 수집 중… 피드 확인과 요약에 몇 분 걸립니다")
+    elif job["result"]:
+        r = job["result"]
+        st.success(f"완료: 수집 {r.get('collected', 0)} → 저장 {r.get('saved', 0)}건")
+        for e in r.get("errors", [])[:3]:
+            st.caption(f"· {e[:120]}")
+    elif job["error"]:
+        st.error(job["error"])
+
+
 with st.sidebar:
     st.markdown("### 🧊 3dflowhub")
     status_panel()
     st.divider()
-    if st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"], use_container_width=True,
+    left = core.llm_budget_left()
+    if st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"] or left <= 0,
+                 use_container_width=True,
                  help="이 PC에서 현재 설정으로 즉시 수집합니다 (GitHub 자동 수집과 별개)"):
         job.update(running=True, result=None, error=None)
         threading.Thread(target=_run_local, daemon=True,
                          args=(job, {"max_items": cfg["max_items"], "domains": cfg["domains"],
                                      "publish": cfg["publish"]})).start()
-    if job["running"]:
-        st.info("⏳ 수집 중… 잠시 후 새로고침하세요")
-    elif job["result"]:
-        st.success(f"완료: 저장 {job['result'].get('saved', 0)}건")
-    elif job["error"]:
-        st.error(job["error"])
+        st.rerun()
+    if left <= 0 and not job["running"]:
+        st.caption(f"⏸ AI 일일 한도 소진 — {core.llm_reset_kst()}(한국시간)에 다시 켜집니다")
+    job_panel()
     if GH_PAT and st.button("☁️ GitHub에서 실행", use_container_width=True):
         r = requests.post(f"https://api.github.com/repos/{GH_REPO}/actions/workflows/auto_curation.yml/dispatches",
                           headers={"Authorization": f"Bearer {GH_PAT}", "Accept": "application/vnd.github+json"},
