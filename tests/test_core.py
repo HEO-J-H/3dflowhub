@@ -770,3 +770,16 @@ def test_manual_todo_done_and_dedupe(monkeypatch, tmp_path):
     assert "HEO-J-H/life-after-60" in manager.claude_request(manager.manual_todo()[0])
     manager.decide("p1", "done")
     assert manager.manual_todo() == []
+
+
+def test_operator_tips_and_trust_labels(monkeypatch, tmp_path):
+    import build_site
+    monkeypatch.setattr(core, "TIPS_PATH", tmp_path / "tips.json")
+    core.set_tip("learn:g1", "Segments 를 넉넉히")
+    core.set_tip("p:x1", "직접 써 보니 좋아요")
+    core.set_tip("p:x1", "")                                   # 빈 값 = 삭제
+    assert core.tips() == {"learn:g1": "Segments 를 넉넉히"}
+    core.set_tip("p:x2", "팁")
+    html = build_site.post_html({"id": "x2", "title_ko": "제목", "domain": "3D DCC", "category": "Blender",
+                                 "url": "https://e.x/", "summary": "요약", "insight": "해설"}, "../", [])
+    assert "운영자 한마디" in html and "AI 해설" in html and "에디터 코멘트" not in html and "오류 제보" in html

@@ -61,10 +61,10 @@ def head_scripts() -> str:
     return "\n".join(out)
 
 
-def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의") -> str:
+def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의", text: str | None = None) -> str:
     """스팸 수집기 대응: 주소를 HTML 엔티티로 인코딩한 mailto 링크 (브라우저에서는 정상 표시·클릭)."""
     enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
-    return f'<a href="mailto:{enc}?subject={quote(subject)}">{enc}</a>'
+    return f'<a href="mailto:{enc}?subject={quote(subject)}">{e(text) if text else enc}</a>'
 # 도메인 주소·아이콘 (대시보드에서 추가한 분야 포함 — core.DOMAIN_META)
 DOMAIN_SLUG = {d: m["slug"] for d, m in core.DOMAIN_META.items()}
 DOMAIN_ICON = {d: m["icon"] for d, m in core.DOMAIN_META.items()}
@@ -419,6 +419,9 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
   font:inherit;font-size:14px;cursor:pointer;margin:4px 0 10px}.savebtn[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
 a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";font-weight:400;color:var(--muted);font-size:12px}
 #saved-list .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.aiby{font-size:13px;color:var(--muted);margin:2px 0 14px}.aiby a{text-decoration:underline}.aiby .ok{color:#248a3d}
+.optip{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px 16px;margin:14px 0}
+.optip b{display:block;margin-bottom:4px}.optip p{margin:0;white-space:pre-line}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -570,10 +573,19 @@ def build_about(posts: list[dict], by_dom: dict, by_cat: dict) -> None:
 <div class="step"><span class="pill">깊이</span><b>원문으로 이어가기</b><span>모든 글에 원문 링크가 있습니다. 요약으로 감을 잡고 원문에서 깊게 파고드세요.</span></div>
 </div>
 <h2 class="sec">다루는 분야</h2><div class="steps">{domains}</div>
-<h2 class="sec">어떻게 정리되나요</h2>
-<p>공식 블로그·전문 매체·커뮤니티·논문(arXiv)에서 새 소식을 수집하고, AI가 핵심을 한국어로 요약해 <b>분야 › 도구 › 콘텐츠 유형</b>으로 분류합니다.
-글마다 <b>에디터 코멘트</b>로 실무에서 어떻게 활용할지 덧붙이고, 주제와 무관한 글은 자동으로 걸러냅니다.
-요약은 이해를 돕기 위한 것이므로, 정확한 내용과 저작권은 항상 <b>원문</b>을 기준으로 해 주세요.</p>
+<h2 class="sec">어떻게 만들어지나요 (AI 와 사람의 역할)</h2>
+<p>공식 블로그·전문 매체·커뮤니티·논문(arXiv)에서 새 소식을 수집하고, <b>AI 가 핵심을 한국어로 요약·해설</b>해
+<b>분야 › 도구 › 콘텐츠 유형</b>으로 분류합니다. 기초 가이드는 공식 문서와 튜토리얼 영상을 바탕으로 AI 가 정리합니다.
+<b>사람(운영자)</b>은 주제와 맞지 않거나 틀린 글을 숨기고, 기초 가이드를 검토해 <b>✔ 에디터 검토 완료</b>를 표시하며,
+직접 해 본 경험은 <b>✍️ 운영자 실무 팁</b>으로 덧붙입니다. 모든 페이지 상단에 어떻게 만들어졌는지 표시합니다.</p>
+<h2 class="sec">편집 원칙</h2>
+<ul>
+<li><b>사실과 출처</b> — 원문에 없는 내용을 지어내지 않고, 모든 글에 원문 링크를 답니다. 정확한 내용과 저작권은 원문이 기준입니다.</li>
+<li><b>정식 표기</b> — 소프트웨어·메뉴·기능 이름은 공식 영문 표기를 씁니다 (MAXScript, Geometry Nodes 등).</li>
+<li><b>오류 정정</b> — 틀린 내용은 각 페이지의 <b>오류 제보</b>로 알려 주시면 확인 후 고치거나 내립니다.</li>
+<li><b>저작권</b> — 원문 전체를 옮기지 않고 요약·해설만 하며, 이미지·영상은 원본 링크·임베드로만 씁니다. 게시 중단 요청은 즉시 처리합니다.</li>
+<li><b>광고·후원</b> — 현재 유료 게재·후원 콘텐츠는 없습니다. 생기면 해당 글에 분명히 표시합니다.</li>
+</ul>
 <div class="steps"><div class="step"><b>{len(posts)}</b><span>지금까지 정리된 글</span></div>
 <div class="step"><b>{len(by_cat)}</b><span>도구·주제 게시판</span></div>
 <div class="step"><b>매일</b><span>자동으로 새 소식 업데이트</span></div></div>
@@ -723,8 +735,11 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
         body = (
             f'<article class="doc guide"><p class="crumb"><a href="{root}learn/">기초 가이드</a> › {e(g["tool"])} › {e(g["group"])}</p>'
             f'<h1>{e(g["title"])}</h1>'
-            + ('<p class="crumb">✔ 에디터 검토 완료</p>' if g.get("reviewed") else "")
+            + f'<p class="aiby">🤖 공식 문서·튜토리얼 영상을 바탕으로 AI 가 정리 · '
+            + ('<b class="ok">✔ 에디터 검토 완료</b>' if g.get("reviewed") else '에디터 검토 전')
+            + ' · ' + mail_link("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
             + f'<p class="lead">{e(g.get("summary", ""))}</p>'
+            + (f'<div class="optip"><b>✍️ 운영자 실무 팁</b><p>{e(g["tip"])}</p></div>' if g.get("tip") else "")
             + (f'<div class="vids{" two" if len(vids) > 1 else ""}">{"".join(yt_facade(v) for v in vids)}</div>' if vids else "")
             + (f'<h2>이럴 때 씁니다</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in g.get("when", []))}</ul>' if g.get("when") else "")
             + f'<h2>따라 하기</h2><ol class="steps">{steps}</ol>'
@@ -871,7 +886,10 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
              f'<a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}">{e(p.get("category") or "기타")}</a>'
              + (f' › <a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}{TOPIC_SLUG[p["topic"]]}/">'
                 f'{e(p["topic"])}</a>' if p.get("topic") in TOPIC_SLUG else "") + ' · '
-             f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>']
+             f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>',
+             f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다 · 정확한 내용은 원문 기준 · '
+             f'{mail_link("[3dflowhub] 오류 제보: " + p["title_ko"][:40], "오류 제보")}</p>']
+    tip = core.tips().get("p:" + p["id"])
     if m.get("image"):
         parts.append(core.image_figure(m["image"], p["url"], p["title_ko"]))
     if (v := core.VIDEO_RE.search(m.get("video") or "")):
@@ -879,10 +897,12 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
         parts.append(f'<div class="video"><iframe src="{src}" allowfullscreen loading="lazy"></iframe></div>')
     if p.get("summary"):
         parts.append(f'<p class="lead"><b>한 줄 요약</b> — {e(p["summary"])}</p>')
+    if tip:
+        parts.append(f'<div class="optip"><b>✍️ 운영자 한마디</b><p>{e(tip)}</p></div>')
     for s in p.get("sections") or []:
         parts.append(f'<h2>{e(s.get("heading", ""))}</h2><p>{e(s.get("body", ""))}</p>')
     if p.get("insight"):
-        parts.append(f'<h2>💡 에디터 코멘트</h2><blockquote>{e(p["insight"])}</blockquote>')
+        parts.append(f'<h2>💡 AI 해설 (실무 관점)</h2><blockquote>{e(p["insight"])}</blockquote>')
     faq = [f for f in p.get("faq") or [] if f.get("q")]
     if faq:
         parts.append("<h2>❓ 자주 묻는 질문</h2>" + "".join(
@@ -931,8 +951,10 @@ def build() -> dict:
     import guides as _guides
     gstate = core.curation_state()  # 현황판 '기초 가이드 검토': 숨김은 제외, 검토 완료는 표시
     learn_guides = [g for g in _guides.load_all() if gstate.get("learn:" + g["id"]) != "hide"]
+    tip_map = core.tips()
     for g in learn_guides:
         g["reviewed"] = gstate.get("learn:" + g["id"]) == "ok"
+        g["tip"] = tip_map.get("learn:" + g["id"], "")
     roundups = load_roundups(posts)
     guide_sec = (f'<h2 class="sec">도구별 정리 <a href="{{ROOT}}guide/">전체 보기 →</a></h2><div class="rank">'
                  + "".join(f'<a href="{{ROOT}}{guide_url(r["domain"], r["tool"])}"><span><span class="t">{e(r["title"])}</span>'

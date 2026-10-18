@@ -205,7 +205,7 @@ def domain_topics() -> str:
 
 
 MAX_CATEGORIES_PER_DOMAIN = 40  # 세부 카테고리 상한 (정리는 evolve.refine_taxonomy 가 주기적으로 병합)
-MIN_RELEVANCE = 5  # LLM 관련도(0~10) 이 값 미만이면 수집 제외
+MIN_RELEVANCE = 6  # LLM 관련도(0~10) 이 값 미만이면 수집 제외 (양보다 질: 5→6)
 MAX_AGE_DAYS = 30  # 이보다 오래된 기사는 수집하지 않음
 
 
@@ -355,6 +355,24 @@ def set_curation(changes: dict[str, str], reasons: dict[str, str] | None = None)
     log_ += [{"at": now, "id": i, "v": v, **({"reason": reasons[i][:200]} if reasons and reasons.get(i) else {})}
              for i, v in changes.items() if cur.get(i, "") != v]
     _save_json(CURATION_PATH, log_[-5000:])
+
+
+TIPS_PATH = ROOT / "memory" / "tips.json"  # 운영자 실무 팁 [{"at","id": "learn:<가이드id>"|"p:<글id>","text"}]
+
+
+def set_tip(target: str, text: str) -> None:
+    """사람(운영자)의 실무 팁 — AI 가 흉내 낼 수 없는 경험. 빈 문자열이면 삭제."""
+    log_ = _load_json(TIPS_PATH, [])
+    log_.append({"at": datetime.now(timezone.utc).isoformat(), "id": target, "text": text.strip()[:1500]})
+    _save_json(TIPS_PATH, log_[-3000:])
+
+
+def tips() -> dict[str, str]:
+    out: dict[str, str] = {}
+    for ev in sorted(_load_json(TIPS_PATH, []), key=lambda x: x.get("at", "")):
+        if isinstance(ev, dict) and ev.get("id"):
+            out[ev["id"]] = ev.get("text", "")
+    return {k: v for k, v in out.items() if v}
 
 
 def curation_reasons() -> dict[str, str]:

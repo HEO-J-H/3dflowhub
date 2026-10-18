@@ -24,7 +24,7 @@ CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·�
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
-DEFAULT_ALLOC = {"news": 0.6, "guides": 0.3, "roundups": 0.1}
+DEFAULT_ALLOC = {"news": 0.2, "guides": 0.5, "roundups": 0.3}  # 에버그린(가이드·정리) 중심 — 요약 소식은 남들도 가진 정보
 CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
 RESERVE = 6            # AI 관리자 분석·답변용으로 남겨 둠
 SAFE_AUTO = ("keyword_hints", "editorial_note", "guide_topic", "add_feed")  # 자동 모드에서 스스로 수락해도 되는 행동
@@ -304,16 +304,27 @@ def plan_today() -> dict:
     runs_left = max(1, int(hours_left * 3600 // interval))
     rep = board()["report"]
     alloc = dict(rep.get("allocation") or DEFAULT_ALLOC)
+    cap = float(cfg.get("alloc_news_cap", 0.3))  # 뉴스 상한: 차별성 낮은 요약 소식이 배분을 다 먹지 않도록
+    if alloc.get("news", 0) > cap:
+        spare = alloc["news"] - cap
+        alloc["news"] = cap
+        alloc["guides"] = alloc.get("guides", 0) + spare * 0.6
+        alloc["roundups"] = alloc.get("roundups", 0) + spare * 0.4
     try:
         import guides
         pending_guides = len(guides.pending())
     except Exception:
         pending_guides = 0
     cand = _roundup_candidates()
-    if not pending_guides:
-        alloc["news"] += alloc.pop("guides", 0); alloc["guides"] = 0
+    # 만들 거리가 없는 항목의 몫은 다른 에버그린(가이드↔정리)으로 먼저, 둘 다 없을 때만 뉴스로
     if not cand:
-        alloc["news"] += alloc.pop("roundups", 0); alloc["roundups"] = 0
+        to = "guides" if pending_guides else "news"
+        alloc[to] = alloc.get(to, 0) + alloc.pop("roundups", 0)
+        alloc["roundups"] = 0
+    if not pending_guides:
+        to = "roundups" if cand else "news"
+        alloc[to] = alloc.get(to, 0) + alloc.pop("guides", 0)
+        alloc["guides"] = 0
     tot = sum(alloc.values()) or 1
     alloc = {k: round(v / tot, 2) for k, v in alloc.items()}
     per_run_calls = usable / runs_left

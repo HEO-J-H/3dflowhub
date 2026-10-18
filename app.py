@@ -403,6 +403,36 @@ with t_list:
         if not unreviewed:
             st.success("모든 가이드를 검토했습니다")
 
+    # 운영자 실무 팁: AI 가 흉내 낼 수 없는 '직접 해 본 경험' — 사이트 차별성·신뢰의 핵심
+    with st.expander("✍️ 운영자 실무 팁 쓰기 — 사이트에 '운영자 실무 팁'으로 표시됩니다"):
+        st.caption("직접 써 보며 얻은 요령, 자주 막히는 지점, 회사에서 쓰는 방법 등 한두 줄이면 충분합니다. "
+                   "비우고 저장하면 삭제됩니다. 팁을 단 가이드는 검토 완료로도 표시돼요.")
+        tip_map = core.tips()
+        kind = st.radio("대상", ["📚 기초 가이드", "📰 소식 글"], horizontal=True, key="tip_kind")
+        if kind == "📚 기초 가이드":
+            opts = {f"learn:{g['id']}": f"{g['tool']} · {g['title']}" + (" ✍️" if tip_map.get(f"learn:{g['id']}") else "")
+                    for g in all_g}
+        else:
+            recent = df.head(60) if not df.empty and "ID" in df.columns else df
+            opts = {f"p:{r['ID']}": f"{r['카테고리']} · {r['제목']}" + (" ✍️" if tip_map.get(f"p:{r['ID']}") else "")
+                    for _, r in recent.iterrows()} if "ID" in recent.columns else {}
+        if opts:
+            target = st.selectbox("어느 글에", list(opts), format_func=lambda k: opts[k], key="tip_target")
+            text = st.text_area("실무 팁", tip_map.get(target, ""), height=120, key=f"tip_text_{target}",
+                                placeholder="예: Bend 는 Segments 를 축 방향으로 최소 20 이상 주고, Limits 로 끝만 휘게 하면 파이프 이음새가 깔끔해요.")
+            if st.button("💾 팁 저장 · 사이트 반영", type="primary", key="tip_save"):
+                core.set_tip(target, text)
+                paths = ["memory/tips.json"]
+                if target.startswith("learn:") and text.strip():
+                    core.set_curation({target: "ok"})
+                    paths.append("memory/curation.json")
+                err = core.git_sync(paths, "content(tips): 운영자 실무 팁")
+                if err:
+                    st.error(f"이 PC에는 저장됐지만 GitHub 반영 실패: {err}")
+                else:
+                    st.toast("✅ 저장 — 몇 분 뒤 사이트에 표시됩니다")
+                st.rerun()
+
 # ─────────────────────────── 자동화 상태 ───────────────────────────
 @st.cache_data(ttl=300)
 def pull_latest() -> str:
