@@ -16,3 +16,7 @@ def _isolate_data(tmp_path, monkeypatch):
     monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
     monkeypatch.setattr(core, "DRAFT_DIR", tmp_path / "drafts")
     monkeypatch.setattr(core, "NOTION_TOKEN", "")  # 테스트에서 노션 호출 금지
+    for f in core.FALLBACK_PROVIDERS:  # 실제 예비 키(.env)로 외부 호출하지 않도록
+        monkeypatch.delenv(f["key_env"], raising=False)
+    monkeypatch.setattr(core, "LLM_QUOTA_PATH", tmp_path / "llm_quota.json")
+    monkeypatch.setattr(core, "LLM_FALLBACK_PATH", tmp_path / "llm_fallback.json")

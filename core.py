@@ -1539,6 +1539,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats["offtopic"] = RUN_ERRORS.count("off-topic")  # 전략 평가 지표 (OPRO 궤적용)
     stats["short"] = RUN_ERRORS.count("short body")
     stats["prefiltered"] = RUN_ERRORS.count("prefiltered")
+    stats["llm_fallbacks"] = [f["name"] for f in fallback_providers()]  # 등록된 예비 공급자 이름 (키 값은 기록 안 함)
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
