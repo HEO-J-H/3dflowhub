@@ -355,6 +355,22 @@ def set_curation(changes: dict[str, str]) -> None:
     _save_json(CURATION_PATH, log_[-5000:])
 
 
+# 인터넷 현황판(Streamlit Community Cloud): 저장소가 /mount/src 에 복제돼 실행됨. 저장은 GH_PAT 로 GitHub 에 푸시.
+CLOUD = bool(os.getenv("DASHBOARD_CLOUD")) or Path("/mount/src").exists()
+GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
+
+
+def _push_remote() -> str:
+    """푸시 대상: 클라우드처럼 자격 증명이 없는 곳은 GH_PAT 로 인증한 주소, 이 PC 는 origin(기존 로그인)."""
+    tok = os.getenv("GH_PAT", "").strip()
+    return f"https://x-access-token:{tok}@github.com/{GH_REPO}.git" if (CLOUD and tok) else "origin"
+
+
+def _hide_token(text: str) -> str:
+    tok = os.getenv("GH_PAT", "").strip()
+    return text.replace(tok, "***") if tok else text
+
+
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     """이 PC ↔ GitHub 동기화. memory/*.json 은 로컬본과 원격본을 내용 병합(충돌 없음).
     commit_paths 가 있으면 그 파일만 커밋·푸시 (예: 대시보드 설정 config.json). 실패 메시지 반환, 성공 시 ""."""
@@ -364,6 +380,9 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
         return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
                               encoding="utf-8", errors="replace")
 
+    if CLOUD and not git("config", "user.email").stdout.strip():  # 클라우드 컨테이너엔 git 사용자 정보가 없음
+        git("config", "user.name", "3dflowhub-dashboard")
+        git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
     if commit_paths:
         git("add", *commit_paths)
         if git("diff", "--cached", "--quiet").returncode != 0:
@@ -394,10 +413,12 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
             _save_json(ROOT / f, merge_json(_load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
     ahead = git("rev-list", "--count", "origin/main..HEAD").stdout.strip() not in ("", "0")
     if (commit_paths or ahead) and not err:  # 미푸시 커밋이 남아 있어도 올림
-        p = git("push", "-q", "origin", "main")
+        if CLOUD and _push_remote() == "origin":
+            return "인터넷 현황판에서 저장하려면 Secrets 에 GH_PAT(저장소 쓰기 권한 토큰)가 필요합니다"
+        p = git("push", "-q", _push_remote(), "HEAD:main")
         if p.returncode != 0:
-            err = "git push 실패: " + (p.stderr or p.stdout)[:200]
-    return err
+            err = "git push 실패: " + _hide_token(p.stderr or p.stdout)[:200]
+    return _hide_token(err)
 
 
 def ci_commit(paths: list[str], message: str, tries: int = 4) -> bool:

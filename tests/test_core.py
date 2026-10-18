@@ -625,3 +625,12 @@ def test_auto_plan_and_auto_accept(monkeypatch, tmp_path):
     assert st == {"키워드": "accepted", "예산": "new"}                     # 설정 변경은 사람 몫
     assert "RailClone" in core.load_strategy()["keyword_hints"]["3D DCC"]
     assert b["report"]["allocation"] == {"news": 0.5, "guides": 0.25, "roundups": 0.25}
+
+
+def test_cloud_push_uses_token_and_hides_it(monkeypatch):
+    monkeypatch.setattr(core, "CLOUD", True)
+    monkeypatch.setenv("GH_PAT", "ghp_SECRET123")
+    assert core._push_remote() == "https://x-access-token:ghp_SECRET123@github.com/HEO-J-H/3dflowhub.git"
+    assert "ghp_SECRET123" not in core._hide_token("fatal: could not push to https://x-access-token:ghp_SECRET123@github")
+    monkeypatch.setattr(core, "CLOUD", False)
+    assert core._push_remote() == "origin"            # 이 PC 는 기존 로그인 사용

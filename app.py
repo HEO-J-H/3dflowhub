@@ -25,6 +25,32 @@ if (!d.querySelector('meta[name="google"]')) {
   const m = d.createElement("meta"); m.name = "google"; m.content = "notranslate"; d.head.appendChild(m);
 }
 </script>""", unsafe_allow_javascript=True)
+
+
+def password_gate() -> None:
+    """인터넷 현황판 잠금: Secrets 의 DASHBOARD_PASSWORD 와 같아야 열림 (비공개 앱 설정에 더한 2중 잠금).
+    클라우드에서 비밀번호가 설정되지 않았으면 아예 열지 않음."""
+    import hmac
+    pw = os.getenv("DASHBOARD_PASSWORD", "")
+    if not core.CLOUD and not pw:
+        return  # 이 PC 에서는 잠금 없음
+    if not pw:
+        st.error("인터넷 현황판은 Secrets 에 DASHBOARD_PASSWORD 를 설정해야 열립니다.")
+        st.stop()
+    if st.session_state.get("auth_ok"):
+        return
+    st.markdown("### 🧊 3dflowhub 현황판")
+    with st.form("login", border=True):
+        typed = st.text_input("비밀번호", type="password")
+        if st.form_submit_button("들어가기", type="primary"):
+            if hmac.compare_digest(typed.encode(), pw.encode()):
+                st.session_state.auth_ok = True
+                st.rerun()
+            st.error("비밀번호가 맞지 않습니다")
+    st.stop()
+
+
+password_gate()
 REVENUE_CSV = Path(core.ROOT) / "memory" / "revenue.csv"
 GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)
@@ -158,7 +184,9 @@ with st.sidebar:
     status_panel()
     st.divider()
     left = core.llm_budget_left()
-    if st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"] or left <= 0,
+    if core.CLOUD:
+        st.caption("인터넷 현황판에서는 아래 '☁️ GitHub에서 실행'으로 바로 수집합니다")
+    elif st.button("🚀 지금 바로 수집", type="primary", disabled=job["running"] or left <= 0,
                  width="stretch",
                  help="이 PC에서 현재 설정으로 즉시 수집합니다 (GitHub 자동 수집과 별개)"):
         job.update(running=True, result=None, error=None)
@@ -518,9 +546,11 @@ with t_draft:
                                env={**os.environ, "PYTHONIOENCODING": "utf-8"})
         st.code(((r.stdout or "") + (r.stderr or ""))[-3000:] or "출력 없음")
 
-    if b1.button("🧪 테스트 (발행 안 함)"):
+    if core.CLOUD:
+        st.info("브라우저 자동 발행은 로그인된 크롬이 있는 PC 에서만 됩니다. 아래 초안은 복사해서 직접 붙여넣을 수 있어요.")
+    if b1.button("🧪 테스트 (발행 안 함)", disabled=core.CLOUD):
         _publisher("--dry-run")
-    if b2.button("🚀 초안 발행 (최대 5개)", type="primary"):
+    if b2.button("🚀 초안 발행 (최대 5개)", type="primary", disabled=core.CLOUD):
         _publisher("--publish", "--limit", "5", *(["--public"] if pub_public else []))
     if not drafts:
         st.info("이 PC에 저장된 초안이 없습니다. (클라우드 실행 초안은 위 버튼 → 실행 → Artifacts 에서 받기)")
