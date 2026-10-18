@@ -1419,9 +1419,7 @@ def run_from_config(force: bool = False) -> dict | None:
     state["last_run"] = datetime.now(timezone.utc).isoformat()
     _save_json(STATE_PATH, state)  # 실패해도 10분마다 재시도 폭주하지 않도록 먼저 기록
     n = cfg["max_items"] if INTERVALS.get(cfg["interval"], 3600) >= 3600 else min(cfg["max_items"], cfg["burst_items"])
-    if llm_usage_today() >= int(cfg.get("llm_daily_budget", 500)):
-        log.info("오늘 LLM 한도 도달 — 수집 건너뜀")
-        return None
+    # 한도 판단(주 AI + 예비 AI)과 실행 기록은 run_pipeline 이 담당
     stats = run_pipeline(n, cfg["domains"], cfg["publish"])
     send_report_email(cfg, state, stats)
     _save_json(STATE_PATH, state)

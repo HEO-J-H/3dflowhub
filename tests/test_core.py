@@ -527,3 +527,15 @@ def test_gsc_opportunities(monkeypatch, tmp_path):
     assert [r["key"] for r in gsc.opportunities()] == ["maxscript material"]
     monkeypatch.delenv("GSC_SERVICE_ACCOUNT", raising=False)
     assert gsc.collect() is None
+
+
+def test_scheduled_run_uses_fallback_when_primary_spent(monkeypatch):
+    core._save_json(core.CONFIG_PATH, {"llm_daily_budget": 1})
+    core._save_json(core.LLM_USAGE_PATH, {core.llm_day(): {"ci": 5}})
+    monkeypatch.setenv("GROQ_API_KEY", "g")
+    called = []
+    monkeypatch.setattr(core, "run_pipeline", lambda *a, **k: called.append(1) or {"saved": 0, "published": 0})
+    monkeypatch.setattr(core, "load_config", lambda: {"interval": "1시간 단위", "max_items": 3, "burst_items": 3,
+                                                      "domains": [], "publish": False})
+    core.run_from_config(force=True)
+    assert called  # 예비 AI 가 있으면 Gemini 소진이어도 수집 진행
