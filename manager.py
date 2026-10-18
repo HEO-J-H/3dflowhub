@@ -262,7 +262,8 @@ def plan_today() -> dict:
     per_run_calls = usable / runs_left
     plan = {
         "day": core.llm_day(), "at": _now(), "capacity_left": cap, "runs_left": runs_left,
-        "alloc": alloc, "reason": rep.get("allocation_reason", "기본 배분 (AI 관리자 분석 전)"),
+        "alloc": alloc, "reason": rep.get("allocation_reason") or ("AI 관리자 분석 비율" if rep.get("allocation")
+                                                                 else "기본 배분 (AI 관리자 분석 전)"),
         "news_per_run": max(1, min(15, round(per_run_calls * alloc["news"] / CALLS_PER_NEWS))) if usable else 0,
         "guides_now": min(3, pending_guides, _share(per_run_calls * alloc["guides"])) if usable else 0,
         "roundups_now": min(3, cand, _share(per_run_calls * alloc["roundups"])) if usable else 0,
@@ -328,6 +329,7 @@ def snapshot() -> dict:
         "editor_picks": sum(v == "pick" for v in cur.values()), "editor_hidden": sum(v == "hide" for v in cur.values()),
         "reader_interest": strategy.get("tool_interest", {}), "search_console": search,
         "roundup_pages": len(list(core.ROUNDUP_DIR.glob("*.json"))) if core.ROUNDUP_DIR.exists() else 0,
+        "views_30d_by_content_type": perf.get("by_kind"),  # 뉴스·기초 가이드·도구별 정리 중 무엇이 읽히나 → 배분 근거
         "basics_guides": _guide_stats(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }

@@ -112,12 +112,25 @@ def fetch_pages_stats(days: int = 30) -> dict | None:
         exclude += [r.get("path_id") for r in batch if r.get("path_id") is not None]
         if not page.get("more") or not batch:
             break
+    learn: dict[str, dict] = {}
+    by_kind = {"news": 0, "guides": 0, "roundups": 0, "other": 0}  # 콘텐츠 종류별 조회수 (자동 모드 배분 판단용)
     for row in rows:
-        m = re.search(r"/p/([^/]+)\.html$", row.get("path", ""))
+        path, n = row.get("path", ""), int(row.get("count", 0))
+        m = re.search(r"/p/([^/]+)\.html$", path)
+        g = re.search(r"/learn/([^/]+)/?$", path)
         if m:
-            posts[m.group(1)] = {"title": row.get("title", ""), "views": int(row.get("count", 0))}
+            posts[m.group(1)] = {"title": row.get("title", ""), "views": n}
+            by_kind["news"] += n
+        elif g:
+            learn[g.group(1)] = {"title": row.get("title", ""), "views": n}
+            by_kind["guides"] += n
+        elif "/guide/" in path:
+            by_kind["roundups"] += n
+        else:
+            by_kind["other"] += n
     return {"at": datetime.now().isoformat(timespec="seconds"), "pv_30d": int(total.get("total", 0)),
-            "posts": posts, "refs": [(r.get("name") or "(직접)", r.get("count", 0)) for r in refs.get("stats", [])]}
+            "posts": posts, "learn": learn, "by_kind": by_kind,
+            "refs": [(r.get("name") or "(직접)", r.get("count", 0)) for r in refs.get("stats", [])]}
 
 
 def sync_pages_views_to_notion() -> int:

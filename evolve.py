@@ -450,11 +450,13 @@ def _gsc_hint() -> dict:
 def editor_feedback(n: int = 15) -> dict:
     """대시보드에서 사람이 추천/숨김한 글 제목·도구 (성찰 프롬프트용)."""
     out: dict[str, list] = {"picked": [], "hidden": []}
+    reasons = core.curation_reasons()
     for pid, v in list(core.curation_state().items())[-200:]:
         post = core._load_json(core.POSTS_DIR / f"{pid}.json", {})
         if post.get("title_ko"):
+            why = reasons.get(pid, "")
             out["picked" if v == "pick" else "hidden"].append(
-                f"[{post.get('domain')}/{post.get('category')}] {post['title_ko']}")
+                f"[{post.get('domain')}/{post.get('category')}] {post['title_ko']}" + (f" (사유: {why})" if why else ""))
     return {k: v[-n:] for k, v in out.items()}
 
 

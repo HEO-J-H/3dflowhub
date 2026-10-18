@@ -722,7 +722,9 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
                                "uploadDate": g.get("at", "")[:10], "description": g.get("summary", "")}
         body = (
             f'<article class="doc guide"><p class="crumb"><a href="{root}learn/">기초 가이드</a> › {e(g["tool"])} › {e(g["group"])}</p>'
-            f'<h1>{e(g["title"])}</h1><p class="lead">{e(g.get("summary", ""))}</p>'
+            f'<h1>{e(g["title"])}</h1>'
+            + ('<p class="crumb">✔ 에디터 검토 완료</p>' if g.get("reviewed") else "")
+            + f'<p class="lead">{e(g.get("summary", ""))}</p>'
             + (f'<div class="vids{" two" if len(vids) > 1 else ""}">{"".join(yt_facade(v) for v in vids)}</div>' if vids else "")
             + (f'<h2>이럴 때 씁니다</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in g.get("when", []))}</ul>' if g.get("when") else "")
             + f'<h2>따라 하기</h2><ol class="steps">{steps}</ol>'
@@ -927,7 +929,10 @@ def build() -> dict:
                      f'<a class="more" href="{{ROOT}}{cat_url(d)}">게시판 전체 →</a></div>')
     picks = [p for p in posts if p.get("pick")]
     import guides as _guides
-    learn_guides = _guides.load_all()
+    gstate = core.curation_state()  # 현황판 '기초 가이드 검토': 숨김은 제외, 검토 완료는 표시
+    learn_guides = [g for g in _guides.load_all() if gstate.get("learn:" + g["id"]) != "hide"]
+    for g in learn_guides:
+        g["reviewed"] = gstate.get("learn:" + g["id"]) == "ok"
     roundups = load_roundups(posts)
     guide_sec = (f'<h2 class="sec">도구별 정리 <a href="{{ROOT}}guide/">전체 보기 →</a></h2><div class="rank">'
                  + "".join(f'<a href="{{ROOT}}{guide_url(r["domain"], r["tool"])}"><span><span class="t">{e(r["title"])}</span>'

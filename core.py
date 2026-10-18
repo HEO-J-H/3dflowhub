@@ -346,13 +346,36 @@ def curation_state() -> dict[str, str]:
     return {k: v for k, v in state.items() if v}
 
 
-def set_curation(changes: dict[str, str]) -> None:
-    """{id: 'pick'|'hide'|''} 변경분만 이벤트로 추가."""
+def set_curation(changes: dict[str, str], reasons: dict[str, str] | None = None) -> None:
+    """{id: 'pick'|'hide'|'ok'|''} 변경분만 이벤트로 추가. reasons = 숨김(신고) 사유 → AI 관리자·전략이 학습.
+    id 가 'learn:<가이드id>' 이면 기초 가이드 검토(ok=검토 완료, hide=사이트에서 숨김)."""
     cur = curation_state()
     log_ = _load_json(CURATION_PATH, [])
     now = datetime.now(timezone.utc).isoformat()
-    log_ += [{"at": now, "id": i, "v": v} for i, v in changes.items() if cur.get(i, "") != v]
+    log_ += [{"at": now, "id": i, "v": v, **({"reason": reasons[i][:200]} if reasons and reasons.get(i) else {})}
+             for i, v in changes.items() if cur.get(i, "") != v]
     _save_json(CURATION_PATH, log_[-5000:])
+
+
+def curation_reasons() -> dict[str, str]:
+    """글 id → 마지막 숨김 사유."""
+    out: dict[str, str] = {}
+    for ev in sorted(_load_json(CURATION_PATH, []), key=lambda x: x.get("at", "")):
+        if isinstance(ev, dict) and ev.get("id") and ev.get("reason"):
+            out[ev["id"]] = ev["reason"]
+    return out
+
+
+def prune_drafts(days: int = 14) -> int:
+    """오래된 티스토리 초안 정리 (계속 쌓여 '발행 대기 278개' 처럼 의미 없어지는 것 방지)."""
+    if not DRAFT_DIR.exists():
+        return 0
+    cutoff = time.time() - days * 86400
+    old = [f for f in DRAFT_DIR.glob("*.html") if f.stat().st_mtime < cutoff
+           or (re.match(r"(\d{8})_", f.name) and datetime.strptime(f.name[:8], "%Y%m%d").timestamp() < cutoff)]
+    for f in old:
+        f.unlink(missing_ok=True)
+    return len(old)
 
 
 # 인터넷 현황판(Streamlit Community Cloud): 저장소가 /mount/src 에 복제돼 실행됨. 저장은 GH_PAT 로 GitHub 에 푸시.
@@ -369,6 +392,18 @@ def _push_remote() -> str:
 def _hide_token(text: str) -> str:
     tok = os.getenv("GH_PAT", "").strip()
     return text.replace(tok, "***") if tok else text
+
+
+SNAPSHOT_FILES = ("memory/plan.json",)  # 매 실행 새로 계산되는 스냅샷: 합치지 않고 더 최신('at') 것 사용
+
+
+def merge_memory(path: str, remote, local):
+    """memory JSON 병합. 스냅샷 파일은 숫자 '큰 값' 병합이 서로 다른 계산을 섞으므로 최신본 하나를 고른다."""
+    if any(path.replace("\\", "/").endswith(x) for x in SNAPSHOT_FILES):
+        if isinstance(remote, dict) and isinstance(local, dict):
+            return local if local.get("at", "") >= remote.get("at", "") else remote
+        return local if local is not None else remote
+    return merge_json(remote, local)
 
 
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
@@ -410,7 +445,7 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
             (ROOT / f).write_bytes(data)
     for f, mine in local.items():
         if mine is not None:
-            _save_json(ROOT / f, merge_json(_load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
+            _save_json(ROOT / f, merge_memory(f, _load_json(ROOT / f, None), mine) if (ROOT / f).exists() else mine)
     ahead = git("rev-list", "--count", "origin/main..HEAD").stdout.strip() not in ("", "0")
     if (commit_paths or ahead) and not err:  # 미푸시 커밋이 남아 있어도 올림
         if CLOUD and _push_remote() == "origin":
@@ -447,7 +482,7 @@ def ci_commit(paths: list[str], message: str, tries: int = 4) -> bool:
                 continue
             remote = git("show", f"origin/main:{f}")
             base = json.loads(remote.stdout) if remote.returncode == 0 and remote.stdout.strip() else None
-            _save_json(ROOT / f, merge_json(base, mine) if base is not None else mine)
+            _save_json(ROOT / f, merge_memory(f, base, mine) if base is not None else mine)
         git("add", *paths)
         if git("diff", "--cached", "--quiet").returncode == 0:
             return False
@@ -1507,6 +1542,7 @@ def site_rows() -> list[dict]:
                if isinstance(r, dict)}
     rows = []
     cur = curation_state()
+    why = curation_reasons()
     for f in POSTS_DIR.glob("*.json"):
         p = _load_json(f, {})
         if not p.get("title_ko"):
@@ -1518,7 +1554,8 @@ def site_rows() -> list[dict]:
                      "태그": ", ".join(p.get("tags") or []), "수집일": p.get("collected_at", ""),
                      "원문": p.get("url"), "티스토리": tistory.get(p["title_ko"]) or None,
                      "사이트": f"{SITE_URL}p/{f.stem}.html", "ID": f.stem,
-                     "추천": cur.get(f.stem) == "pick", "숨김": cur.get(f.stem) == "hide"})
+                     "추천": cur.get(f.stem) == "pick", "숨김": cur.get(f.stem) == "hide",
+                     "숨김 사유": why.get(f.stem, "")})
     rows.sort(key=lambda r: r["수집일"] or "", reverse=True)
     return rows
 
@@ -1618,6 +1655,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
+    pruned = prune_drafts()
+    if pruned:
+        log.info("오래된 티스토리 초안 %d개 정리", pruned)
     try:  # [4]→[5] 자아 성찰 후 전략·카테고리 체계 자동 업데이트
         import evolve
         evolve.evolve(stats)

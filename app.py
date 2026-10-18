@@ -261,8 +261,8 @@ today = datetime.now().strftime("%Y-%m-%d")
 if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
-t_home, t_list, t_auto, t_draft, t_rev, t_set = st.tabs(
-    ["📊 개요", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "💰 수익·방문", "🛠 설정"])
+t_today, t_home, t_list, t_auto, t_draft, t_rev, t_set = st.tabs(
+    ["🏠 오늘", "📊 개요", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "💰 수익·방문", "🛠 설정"])
 
 # ─────────────────────────── 개요 ───────────────────────────
 with t_home:
@@ -328,31 +328,59 @@ with t_list:
             view = view[view["제목"].str.contains(q, case=False) | view["태그"].str.contains(q, case=False)]
         st.caption(f"{len(view)}건")
         st.caption("✅ **추천**한 글은 사이트 홈 '에디터 추천'에 올라가고, 🚫 **숨김**한 글은 사이트에서 빠집니다. "
-                   "이 선택은 AI 수집 전략 학습에도 반영됩니다.")
+                   "숨길 때 **숨김 사유**(예: 주제와 무관, 번역 이상, 광고성)를 적으면 AI 관리자가 같은 유형을 덜 모으도록 학습합니다.")
         edited = st.data_editor(
             view, width="stretch", hide_index=True, key="curate",
-            disabled=[c for c in view.columns if c not in ("추천", "숨김")],
-            column_order=["추천", "숨김"] + [c for c in view.columns if c not in ("추천", "숨김", "ID")],
+            disabled=[c for c in view.columns if c not in ("추천", "숨김", "숨김 사유")],
+            column_order=["추천", "숨김", "숨김 사유"] + [c for c in view.columns
+                                                     if c not in ("추천", "숨김", "숨김 사유", "ID")],
             column_config={"추천": st.column_config.CheckboxColumn("✅ 추천", width="small"),
                            "숨김": st.column_config.CheckboxColumn("🚫 숨김", width="small"),
+                           "숨김 사유": st.column_config.SelectboxColumn(
+                               "숨김 사유", width="medium",
+                               options=["", "주제와 무관", "번역·용어 이상", "광고·홍보성", "중복 기사", "내용 부실", "기타"]),
                            "이미지": st.column_config.ImageColumn(width="small"),
                            "원문": st.column_config.LinkColumn(),
                            "사이트": st.column_config.LinkColumn(display_text="게시판 보기"),
                            "티스토리": st.column_config.LinkColumn(),
                            "수집일": st.column_config.DatetimeColumn(format="YYYY-MM-DD HH:mm")})
         if "ID" in view.columns:
-            changes = {}
+            changes, reasons = {}, {}
             for (_, a), (_, b) in zip(view.iterrows(), edited.iterrows()):
-                if (a["추천"], a["숨김"]) != (b["추천"], b["숨김"]):
-                    changes[b["ID"]] = "hide" if b["숨김"] else "pick" if b["추천"] else ""
+                if (a["추천"], a["숨김"], a.get("숨김 사유", "")) != (b["추천"], b["숨김"], b.get("숨김 사유", "")):
+                    changes[b["ID"]] = "hide" if b["숨김"] or b.get("숨김 사유") else "pick" if b["추천"] else ""
+                    if b.get("숨김 사유"):
+                        reasons[b["ID"]] = b["숨김 사유"]
             if changes and st.button(f"💾 선택 {len(changes)}건 저장 · 사이트에 반영", type="primary"):
-                core.set_curation(changes)
+                core.set_curation(changes, reasons)
                 err = core.git_sync(["memory/curation.json"], "chore(curation): 에디터 추천/숨김")
                 if err:
                     st.error(f"로컬 저장됨, GitHub 반영 실패: {err}")
                 else:
                     st.toast("✅ 저장됨 — 다음 사이트 배포부터 반영됩니다")
                 st.cache_data.clear()
+
+    # 기초 가이드 검토: AI 가 만든 가이드를 사람이 확인 → '검토 완료' 표시 또는 사이트에서 숨김
+    import guides as _guides
+    all_g = _guides.load_all()
+    gstate = core.curation_state()
+    unreviewed = [g for g in all_g if not gstate.get("learn:" + g["id"])]
+    with st.expander(f"📚 기초 가이드 검토 — 검토 대기 {len(unreviewed)}개 / 전체 {len(all_g)}개"):
+        st.caption("사이트에서 내용을 확인한 뒤 '검토 완료'를 누르면 가이드에 ✔ 검토됨 표시가 붙고, "
+                   "틀린 내용이 있으면 '숨김'으로 사이트에서 뺍니다.")
+        for g in unreviewed[:15]:
+            c1, c2, c3 = st.columns([5, 1, 1])
+            c1.markdown(f"[{g['tool']} · {g['title']}]({SITE_URL}learn/{g['id']}/)")
+            if c2.button("✔ 검토 완료", key=f"rev_{g['id']}"):
+                core.set_curation({"learn:" + g["id"]: "ok"})
+                core.git_sync(["memory/curation.json"], "chore(curation): 기초 가이드 검토")
+                st.rerun()
+            if c3.button("숨김", key=f"ghide_{g['id']}"):
+                core.set_curation({"learn:" + g["id"]: "hide"}, {"learn:" + g["id"]: "가이드 내용 오류"})
+                core.git_sync(["memory/curation.json"], "chore(curation): 기초 가이드 숨김")
+                st.rerun()
+        if not unreviewed:
+            st.success("모든 가이드를 검토했습니다")
 
 # ─────────────────────────── 자동화 상태 ───────────────────────────
 @st.cache_data(ttl=300)
@@ -779,7 +807,7 @@ with t_set:
         domains = c1.multiselect("수집 분야", list(core.DOMAINS), default=[d for d in cfg["domains"] if d in core.DOMAINS],
                                  format_func=lambda d: f"{core.DOMAIN_META.get(d, {}).get('icon', '📁')} {d}")
         c3, c4 = st.columns(2)
-        save_notion = c3.toggle("노션에도 저장", value=bool(cfg.get("save_notion", True)))
+        save_notion = False  # 노션 저장은 종료 (GitHub 만 사용)
         publish = c4.toggle("티스토리 초안 생성", value=bool(cfg["publish"]))
         llm_budget = st.number_input("AI 하루 최대 호출 수", 50, 5000, int(cfg.get("llm_daily_budget", 500)), step=50,
                                      help="Gemini 무료 한도 보호 — AI Studio 에서 내 한도를 확인해 맞추세요.")
@@ -894,3 +922,64 @@ with t_set:
         if st.form_submit_button("저장") and te:
             save({"gh_pat_expires": str(te)}, "GitHub 토큰 만료일")
             st.rerun()
+
+# ─────────────────────────── 오늘 (한눈에: 할 일 · 오늘 성과 · 무엇이 읽히나) ───────────────────────────
+with t_today:
+    import manager as _mgr
+    plan_t = core._load_json(_mgr.PLAN_PATH, {})
+    done_t = _mgr.done_today()
+    q1, q2, q3, q4 = st.columns(4)
+    q1.metric("오늘 올린 소식", f"{done_t['news']}건")
+    q2.metric("오늘 기초 가이드", f"{done_t['guides']}개")
+    q3.metric("오늘 도구별 정리", f"{done_t['roundups']}개")
+    q4.metric("남은 AI 여력", f"{core.llm_capacity_left()}회", help=f"리셋 {core.llm_reset_kst()} (한국 시간)")
+    st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
+               + (f" · 배분 뉴스 {int(plan_t['alloc'].get('news', 0) * 100)}% · 가이드 {int(plan_t['alloc'].get('guides', 0) * 100)}%"
+                  f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
+
+    st.subheader("✅ 결정할 일")
+    pend = [x for x in _mgr.board()["proposals"] if x["status"] == "new"]
+    if not pend:
+        st.success("검토할 AI 관리자 제안이 없습니다")
+    for x in pend[:5]:
+        with st.container(border=True):
+            st.markdown(f"**{x['title']}** · {x.get('category')} · 노력 {x.get('effort')}")
+            st.caption("수락하면: " + _mgr.describe(x.get("action")))
+            c1, c2, c3, _ = st.columns([1, 1, 1, 3])
+            if c1.button("✅ 수락", key=f"t_acc_{x['id']}", type="primary", width="stretch"):
+                _mgr.decide(x["id"], "accepted")
+                save_manager("제안 수락")
+                st.rerun()
+            if c2.button("⏸ 보류", key=f"t_hold_{x['id']}", width="stretch"):
+                _mgr.decide(x["id"], "held")
+                save_manager("제안 보류")
+                st.rerun()
+            if c3.button("✕ 거절", key=f"t_rej_{x['id']}", width="stretch"):
+                _mgr.decide(x["id"], "rejected")
+                save_manager("제안 거절")
+                st.rerun()
+
+    st.subheader("👀 무엇이 읽히나 (최근 30일)")
+    pg = core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}
+    kinds = pg.get("by_kind") or {}
+    if kinds:
+        kdf = pd.DataFrame({"조회수": {"📰 소식": kinds.get("news", 0), "📚 기초 가이드": kinds.get("guides", 0),
+                                      "🧭 도구별 정리": kinds.get("roundups", 0), "🏠 홈·기타": kinds.get("other", 0)}})
+        st.bar_chart(kdf, horizontal=True, height=200)
+    else:
+        st.caption("콘텐츠 종류별 조회수는 다음 방문 통계 수집(3시간마다) 후 표시됩니다")
+    v1, v2 = st.columns(2)
+    with v1, st.container(border=True):
+        st.markdown("**많이 읽힌 기초 가이드**")
+        top_l = sorted((pg.get("learn") or {}).values(), key=lambda v: -v["views"])[:5]
+        for v in top_l:
+            st.markdown(f"- {v['title'].replace(' - 3dflowhub', '')} · {v['views']}회")
+        if not top_l:
+            st.caption("아직 데이터 없음")
+    with v2, st.container(border=True):
+        st.markdown("**많이 읽힌 소식**")
+        top_p = sorted((pg.get("posts") or {}).values(), key=lambda v: -v["views"])[:5]
+        for v in top_p:
+            st.markdown(f"- {v['title'].replace(' - 3dflowhub', '')} · {v['views']}회")
+        if not top_p:
+            st.caption("아직 데이터 없음")

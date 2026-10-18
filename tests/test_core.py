@@ -651,3 +651,20 @@ def test_alerts_dday_and_order(monkeypatch):
     assert "GitHub 토큰(GH_PAT) 만료 D-10" in titles and "애드센스 D-40" in titles
     assert next(a for a in items if a["title"] == "도메인 갱신 D-2")["level"] == "error"
     assert alerts.dday(-1) == "만료됨" and alerts.dday(0) == "D-DAY"
+
+
+def test_curation_reasons_and_prune_drafts(monkeypatch, tmp_path):
+    monkeypatch.setattr(core, "CURATION_PATH", tmp_path / "cur.json")
+    core.set_curation({"a": "hide"}, {"a": "주제와 무관"})
+    assert core.curation_state() == {"a": "hide"} and core.curation_reasons() == {"a": "주제와 무관"}
+    core.DRAFT_DIR.mkdir(parents=True, exist_ok=True)
+    (core.DRAFT_DIR / "20200101_000000_old.html").write_text("x")
+    (core.DRAFT_DIR / f"{__import__('time').strftime('%Y%m%d')}_000000_new.html").write_text("x")
+    assert core.prune_drafts(14) == 1 and len(list(core.DRAFT_DIR.glob("*.html"))) == 1
+
+
+def test_snapshot_files_not_number_merged():
+    a = {"at": "2026-10-18T05:00:00", "alloc": {"news": 0.6, "guides": 0.2}}
+    b = {"at": "2026-10-18T06:00:00", "alloc": {"news": 0.4, "guides": 0.4}}
+    assert core.merge_memory("memory/plan.json", a, b) == b      # 최신본 그대로
+    assert core.merge_memory("memory/plan.json", b, a) == b
