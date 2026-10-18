@@ -531,10 +531,10 @@ with t_auto:
     want = {"새 제안": "new", "수락": "accepted", "보류": "held", "거절": "rejected", "완료": "done",
             "🛠 직접 작업": "_none"}.get(view or "새 제안", "new")
     items = [x for x in mb["proposals"] if x["status"] == want and (x.get("site") or "3dflowhub") == "3dflowhub"]
-    if not items:
+    if not items and want != "_none":  # '🛠 직접 작업' 보기는 위에서 따로 그림
         st.info({"new": "검토할 새 제안이 없습니다. '지금 분석 요청'을 누르거나 다음 자동 분석을 기다려 주세요.",
                  "accepted": "수락한 제안이 없습니다.", "held": "보류한 제안이 없습니다.",
-                 "rejected": "거절한 제안이 없습니다."}[want])
+                 "rejected": "거절한 제안이 없습니다.", "done": "완료한 제안이 없습니다."}.get(want, "제안이 없습니다."))
     for x in items[:10]:
         with st.container(border=True):
             act = x.get("action") or {}
