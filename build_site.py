@@ -997,7 +997,7 @@ def build() -> dict:
             + (f'<img class="lt-th" src="https://i.ytimg.com/vi/{e(g["videos"][0]["id"])}/default.jpg" alt="" loading="lazy">'
                if g.get("videos") else '<span class="lt-th lt-ph" aria-hidden="true">📚</span>')
             + f'<span class="lt-t">{e(g["title"].split(" — ")[0])}</span>'
-            + ('<span class="lt-v" title="영상 포함">▶ 영상</span>' if g.get("videos") else "") + '</a></li>'
+            + ('<span class="lt-v" title="영상 포함" aria-label="영상 포함">▶ 영상</span>' if g.get("videos") else "") + '</a></li>'
             for g in gs if g is not lead][:4])
         return (f'<div class="box lt"><h3><span aria-hidden="true">📚</span> <a href="{{ROOT}}learn/#{e(slug(t))}">{e(t)}</a>'
                 f'<small class="n">{len(gs)}</small></h3>{hero}<ul class="lt-list">{rows}</ul>'
