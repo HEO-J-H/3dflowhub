@@ -1,0 +1,85 @@
+{
+  "id": "blender-solidify-2806",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "Modifier",
+  "name": "Solidify",
+  "title": "Solidify — 두께 만들기",
+  "summary": "평면이나 열린 메시 구조에 두께를 부여하여 입체적인 3D 모델로 만들어주는 필수 모디파이어입니다. 종이 같은 얇은 오브젝트에 부피감을 줄 때 사용합니다.",
+  "when": [
+    "건축 모델링에서 두께가 없는 벽체나 창문에 입체감을 줄 때",
+    "캐릭터의 옷이나 갑옷 등 얇은 천 구조물을 만들 때",
+    "유리컵이나 컵라면 등 내부 공간이 필요한 속이 빈 오브젝트를 만들 때"
+  ],
+  "steps": [
+    "두께를 줄 오브젝트를 선택하고 Properties 패널에서 Modifier(렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier 버튼을 누르고 Generate 분류에서 Solidify를 선택합니다.",
+    "Modifier 스택에서 Thickness 값을 조절하여 원하는 두께를 설정합니다.",
+    "필요에 따라 Offset 값을 조정하여 안쪽이나 바깥쪽으로 두께가 생성되는 방향을 바꿉니다."
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "오브젝트에 부여할 전체 두께를 결정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "오브젝트의 원본 표면을 기준으로 두께가 안쪽(-1)과 바깥쪽(1) 중 어느 방향으로 쌓일지 결정합니다."
+    },
+    {
+      "name": "Even Thickness",
+      "desc": "굴곡진 표면에서 두께가 균일하게 유지되도록 보정합니다."
+    },
+    {
+      "name": "Boundary Clamp",
+      "desc": "열린 경계면이 서로 겹쳐서 깨지는 현상을 방지합니다."
+    },
+    {
+      "name": "Material Index Offset",
+      "desc": "두께로 생성된 새로운 면에 다른 머티리얼 슬롯 번호를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유리컵 만들기",
+      "steps": [
+        "Cylinder를 생성하고 위쪽 면(Top Face)을 삭제합니다.",
+        "Solidify 모디파이어를 추가하고 Thickness 값을 높여 컵 벽면 두께를 만듭니다.",
+        "Smooth By Angle과 Subdivision Surface 모디파이어를 추가해 부드럽게 다듬습니다."
+      ]
+    },
+    {
+      "title": "건축 벽체 세우기",
+      "steps": [
+        "Curve나 Plane으로 평면 벽 경로를 그립니다.",
+        "Mesh로 변환한 뒤 Solidify 모디파이어를 적용합니다.",
+        "Thickness를 조절해 실제 벽 두께를 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "두께가 이상하게 부풀거나 찌그러짐 → 오브젝트 모드에서 Ctrl+A를 누르고 Scale을 적용(Apply)하지 않아서 발생합니다.",
+    "안쪽 면이 검은색으로 깨져 보임 → Normals 방향이 뒤집혔거나 면의 방향이 잘못된 경우로, Edit Mode에서 Alt+N을 눌러 Recalculate Outside를 실행합니다."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Bevel",
+    "Extrude",
+    "Smooth By Angle"
+  ],
+  "videos": [
+    {
+      "id": "uvq3F8rOPTY",
+      "title": "Solidify Modifier - Blender Tutorial for Beginners - Basics",
+      "author": "in2vert"
+    },
+    {
+      "id": "cXIbM7uotIE",
+      "title": "Blender SOLIDIFY MODIFIER Tutorial - Adding Thickness to Objects in Blender!",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Blender%20Solidify",
+  "grounded": false,
+  "at": "2026-10-18T14:07:22.548425+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "substance-3d-substance-painter-layers-and-masks-1a99",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Substance Painter layers and masks",
+  "title": "Substance Painter 레이어·마스크",
+  "summary": "Substance Painter의 레이어와 마스크는 Photoshop의 비파괴 작업 방식처럼 텍스처를 층층이 쌓고 원하는 부분만 골라 칠하는 핵심 기능입니다. 복잡한 표면 표현과 수정 작업을 자유롭게 만들어 줍니다.",
+  "when": [
+    "금속 표면의 스크래치, 먼지, 녹 등 세부적인 디테일을 레이어별로 분리해서 칠할 때",
+    "특정 영역이나 모서리(Edge)에만 스마트 마스크를 적용하여 자연스러운 웨어(Wear) 효과를 낼 때",
+    "전체 텍스처를 손상시키지 않고 언제든지 색상이나 질감 파라미터를 수정하고 싶을 때"
+  ],
+  "steps": [
+    "Layers 패널 하단의 더하기 아이콘(Add Fill Layer 또는 Add Paint Layer)을 클릭하여 새 레이어를 만듭니다.",
+    "Properties 패널에서 Base Color, Roughness, Metallic 등의 채널을 켜거나 끄고 원하는 색상이나 머티리얼을 설정합니다.",
+    "적용할 레이어를 우클릭하고 Add Mask with Color Selection 또는 Add Black Mask를 선택합니다.",
+    "Black Mask를 선택한 경우, 툴바에서 Brush 툴을 고르고 Properties - Brush에서 자국을 남길 색상(White)과 검은색(Black)을 조절하며 뷰포트나 UV에서 마스크를 칠합니다.",
+    "더 정교한 표현을 위해 레이어를 우클릭하여 Add Generator를 추가하고 Dirt나 Edge Dust 같은 시스템을 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 색상과 알베도 맵을 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거친 정도를 조절하여 하이라이트와 반사율을 바꿉니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면을 금속 재질로 만들지 비금속으로 만들지 결정합니다."
+    },
+    {
+      "name": "Add Black Mask",
+      "desc": "레이어 효과를 완전히 숨긴 상태로 시작하며 흰색 브러시로 드러낼 곳을 칠합니다."
+    },
+    {
+      "name": "Add White Mask",
+      "desc": "레이어 효과를 전체에 적용한 상태로 시작하며 검은색 브러시로 지울 곳을 칠합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "레이어 전체의 투명도를 조절하여 효과의 세기를 부드럽게 낮춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "철제 박스 모서리 녹 표현",
+      "steps": [
+        "Fill Layer를 만들고 갈색 계열의 녹 색상과 높은 Roughness 값을 설정합니다.",
+        "레이어를 우클릭하여 Add Mask with Selection을 선택하고 박스 전체를 마스크 처리합니다.",
+        "레이어에 우클릭하여 Add Generator를 추가하고 Edge 옵션을 선택하여 모서리에만 녹이 슬도록 합니다."
+      ]
+    },
+    {
+      "title": "페인트 까짐 효과",
+      "steps": [
+        "상단에 칠해질 페인트 색상의 Fill Layer를 만듭니다.",
+        "Add Black Mask를 추가하여 효과를 숨깁니다.",
+        "마스크를 우클릭하고 Add Fill을 선택한 뒤, Grayscale 슬롯에 Grunge 맵을 넣고 레벨을 조절해 페인트가 불규칙하게 벗겨진 표현을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크를 칠했는데 아무 변화가 없음 → 현재 선택된 레이어나 마스크 아이콘이 올바른지(파란색 테두리 확인) 체크하고, Brush의 Opacity와 Flow 값이 0이 아닌지 확인합니다.",
+    "스마트 마스크나 제너레이터가 작동하지 않음 → Texture Set Settings에서 Normal, World Space Normal, Ambient Occlusion 등의 메시오픈(Mesh Maps) Baking이 완료되었는지 확인합니다."
+  ],
+  "related": [
+    "Fill Layer",
+    "Smart Mask",
+    "Generators",
+    "Bake Mesh Maps"
+  ],
+  "videos": [
+    {
+      "id": "4AKqBE3BUI0",
+      "title": "Substance Painter Layers and Masks",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "uxxliJba8m0",
+      "title": "A Beginners Guide to Substance Painter",
+      "author": "Cryptic Visionary"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Painter%20layers%20and%20masks",
+  "grounded": false,
+  "at": "2026-10-18T14:07:15.341061+00:00"
+}
