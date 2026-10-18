@@ -52,11 +52,28 @@ def load_rows() -> pd.DataFrame:
 
 @st.cache_data(ttl=60)
 def load_runs() -> list[dict]:
+    """GitHub Actions 실행 기록. 로그인 없이 API 를 부르면 시간당 60회 제한에 자주 걸리므로
+    GH_PAT 가 있으면 인증(시간당 5,000회), 실패하면 Actions 웹페이지의 상태 표시를 읽어 대체."""
+    headers = {"Authorization": f"Bearer {GH_PAT}"} if GH_PAT else {}
     try:
-        r = requests.get(f"https://api.github.com/repos/{GH_REPO}/actions/runs?per_page=20", timeout=10)
-        return r.json().get("workflow_runs", [])
+        r = requests.get(f"https://api.github.com/repos/{GH_REPO}/actions/runs?per_page=20", headers=headers, timeout=10)
+        runs = r.json().get("workflow_runs", [])
+        if runs:
+            return runs
+    except Exception:
+        pass
+    try:  # 대체: 웹페이지 aria-label "completed successfully: Run 384 of 3dflowhub auto curation."
+        import html as _html
+        import re as _re
+        t = requests.get(f"https://github.com/{GH_REPO}/actions", timeout=10).text
+        out = []
+        for state, name in _re.findall(r'aria-label="([^":]+): Run \d+ of ([^."]+)', t):
+            concl = {"completed successfully": "success", "failed": "failure", "cancelled": "cancelled"}.get(state)
+            out.append({"name": _html.unescape(name).strip(), "conclusion": concl, "created_at": ""})
+        return out
     except Exception:
         return []
+
 
 
 @st.cache_data(ttl=60)
@@ -119,7 +136,7 @@ def status_panel() -> None:
         st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
     pages = [r for r in runs if r["name"].endswith("pages")]
     if pages:
-        st.caption(f"사이트 배포 {ago(pages[0]['created_at'])} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
+        st.caption(f"사이트 배포 {ago(pages[0]['created_at']) if pages[0].get('created_at') else '최근'} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
 
 
 @st.fragment(run_every="3s")  # 수집 중엔 3초마다 진행 상태 자동 갱신 (새로고침 불필요)
@@ -397,12 +414,13 @@ with t_auto:
         icon = {"success": "✅", "failure": "❌", "cancelled": "⏹️", None: "⏳"}
         rows = [{"": icon.get(r["conclusion"], "❔"),
                  "워크플로": r["name"],
-                 "방식": {"schedule": "자동", "workflow_dispatch": "수동"}.get(r["event"], r["event"]),
-                 "시작(KST)": pd.Timestamp(r["created_at"]).tz_convert("Asia/Seoul").strftime("%m-%d %H:%M"),
-                 "링크": r["html_url"]} for r in runs]
+                 "방식": {"schedule": "자동", "workflow_dispatch": "수동", "push": "푸시"}.get(r.get("event"), r.get("event") or "-"),
+                 "시작(KST)": pd.Timestamp(r["created_at"]).tz_convert("Asia/Seoul").strftime("%m-%d %H:%M")
+                 if r.get("created_at") else "-",
+                 "링크": r.get("html_url") or f"https://github.com/{GH_REPO}/actions"} for r in runs]
         st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True,
                      column_config={"링크": st.column_config.LinkColumn(display_text="열기")})
-        if not any(r["event"] == "schedule" for r in runs):
+        if runs[0].get("event") and not any(r.get("event") == "schedule" for r in runs):
             st.warning("아직 자동(스케줄) 실행 기록이 없습니다. 깃허브 크론이 시작되기까지 시간이 걸릴 수 있습니다.")
     else:
         st.info("실행 기록을 불러오지 못했습니다.")

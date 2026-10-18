@@ -27,7 +27,7 @@ import time
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 import core
 
@@ -334,7 +334,7 @@ nav.domains .mob,nav.domains .sep{display:none}
 .row .side{text-align:right;display:flex;flex-direction:column;gap:2px;align-items:flex-end}
 .badge{font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;white-space:nowrap}
 .date{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
-.pager{display:flex;gap:6px;justify-content:center;margin:28px 0}
+.pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:28px 0}
 .pager a{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
 .pager a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 
@@ -525,7 +525,13 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         d = out_dir if n == 1 else out_dir / "page" / str(n)
         d.mkdir(parents=True, exist_ok=True)
         robots = "" if indexable else '<meta name="robots" content="noindex,follow">'
-        (d / "index.html").write_text(page(f"{title} - {SITE_TITLE}", body, r, domain_on, extra_head=robots),
+        rel = d.relative_to(OUT).as_posix()
+        if rel == "." and n == 1:  # 홈: 브랜드 + 무엇을 하는 사이트인지 (검색 결과 제목)
+            full = f"{SITE_TITLE} — 3D·게임 엔진·VFX·AI 3D 소식과 기초 가이드"
+        else:  # 2쪽 이후 제목 중복 방지
+            full = f"{title}{f' {n}페이지' if n > 1 else ''} - {SITE_TITLE}"
+        canonical = f"{BASE_URL}/" + ("" if rel == "." else quote(rel) + "/")
+        (d / "index.html").write_text(page(full, body, r, domain_on, extra_head=robots, canonical=canonical),
                                       encoding="utf-8")
 
 
@@ -581,7 +587,7 @@ def build_guides(posts: list[dict], roundups: list[dict]) -> None:
     by_id = {p["id"]: p for p in posts}
     for r in roundups:
         d, t = r["domain"], r["tool"]
-        folder = OUT / guide_url(d, t).rstrip("/")
+        folder = OUT / unquote(guide_url(d, t)).rstrip("/")  # 한글 도구명: 링크는 %인코딩, 폴더는 원래 글자
         folder.mkdir(parents=True, exist_ok=True)
         root = "../../../"
         ps = [by_id[i] for i in r.get("post_ids", []) if i in by_id]
