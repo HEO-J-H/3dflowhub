@@ -92,7 +92,7 @@ LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-flash-lite-latest"  # Actions 에�
 # 모델은 환경변수로 바꿀 수 있음 (무료 모델 목록은 각 공급자 대시보드 기준).
 FALLBACK_PROVIDERS = [
     {"name": "groq", "key_env": "GROQ_API_KEY", "model_env": "GROQ_MODEL",
-     "endpoint": "https://api.groq.com/openai/v1/chat/completions", "model": "llama-3.3-70b-versatile"},
+     "endpoint": "https://api.groq.com/openai/v1/chat/completions", "model": "openai/gpt-oss-120b"},
     {"name": "cerebras", "key_env": "CEREBRAS_API_KEY", "model_env": "CEREBRAS_MODEL",
      "endpoint": "https://api.cerebras.ai/v1/chat/completions", "model": "llama-3.3-70b"},
     {"name": "openrouter", "key_env": "OPENROUTER_API_KEY", "model_env": "OPENROUTER_MODEL",
