@@ -1,0 +1,82 @@
+{
+  "id": "unreal-engine-nanite-virtualized-geometry-49bb",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Nanite virtualized geometry",
+  "title": "Nanite — 고폴리곤을 그대로",
+  "summary": "Nanite은 수백만 개의 폴리곤을 가진 하이폴리 모델을 디테일 저하 없이 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 폴리곤 수 제한의 압박에서 벗어나 영화 수준의 에셋을 게임에 그대로 배치할 수 있습니다.",
+  "when": [
+    "영화 품질의 고도화된 하이폴리 스캔 에셋을 씬에 대량으로 배치할 때",
+    "멀리 있는 오브젝트가 작아질 때 자동으로 폴리곤을 줄여 프레임 저하를 막고 싶을 때",
+    "전통적인 노말 맵 Baking(Normal Map Baking) 작업을 생략하고 원본 지오메트리로 작업하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 Nanite를 적용할 Static Mesh 에셋을 더블클릭하여 Static Mesh Editor를 엽니다.",
+    "Details 패널에서 Nanite Settings 항목을 찾습니다.",
+    "Enable Nanite 체크박스를 활성화합니다.",
+    "Apply 버튼을 클릭하여 설정을 저장합니다.",
+    "Viewport의 View Mode를 Nanite Visualization으로 변경하여 적용 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Enable Nanite",
+      "desc": "스태틱 메시에서 Nanite 가상화 지오메트리 시스템을 활성화합니다."
+    },
+    {
+      "name": "Position Precision",
+      "desc": "버텍스 위치의 정밀도를 조절하여 메모리 사용량과 정확도를 타협합니다."
+    },
+    {
+      "name": "Normal Precision",
+      "desc": "법선 벡터의 정밀도를 설정하여 표면 라이팅 품질에 영향을 줍니다."
+    },
+    {
+      "name": "Keep Percent Triangles",
+      "desc": "Nanite가 유지할 원본 삼각형의 비율을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 수준의 숲 배경 제작",
+      "steps": [
+        "하이폴리 3D 스캔 나무 에셋들을 씬에 대량 배치합니다.",
+        "모든 나무 스태틱 메시 설정에서 Enable Nanite를 켭니다.",
+        "수백만 폴리곤의 나무가 프레임 드롭 없이 렌더링되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "클로즈업 바위 지형 연출",
+      "steps": [
+        "지형 및 바위 모델의 폴리곤 밀도를 극한으로 높인 채 임포트합니다.",
+        "Nanite를 활성화하여 노말 맵 없이도 실루엣이 유지되도록 설정합니다.",
+        "카메라를 바위에 바짝 붙여도 각진 부분 없이 매끄러운 렌더링을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스켈레탈 메시(Skeletal Mesh)에 적용 시도 → Nanite는 현재 전통적인 스켈레탈 애니메이션이 있는 캐릭터에는 제한적으로 지원되므로 주로 Static Mesh에 사용해야 합니다.",
+    "작은 소품이나 평면에 무분별한 적용 → 폴리곤이 매우 적은 단순한 오브젝트에 Nanite를 켜면 오히려 오버헤드가 발생할 수 있으므로 고폴리곤 에셋 위주로 적용합니다."
+  ],
+  "related": [
+    "Lumen",
+    "Virtual Shadow Maps",
+    "World Partition",
+    "Hierarchical Level of Detail"
+  ],
+  "videos": [
+    {
+      "id": "MVrekGSdS6Y",
+      "title": "Nanite in Unreal Engine 5 | High-Performance 3D Geometry Explained",
+      "author": "Mohammad Solei"
+    },
+    {
+      "id": "aKbdJWEKUi0",
+      "title": "Nanite Virtualized Geometry | Twinmotion 2025.2 Tutorial",
+      "author": "Twinmotion"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Nanite%20virtualized%20geometry",
+  "grounded": false,
+  "at": "2026-10-18T13:47:25.437390+00:00"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-sequencer-cinematic-9baa",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Sequencer cinematic",
+  "title": "시퀀서 — 시네마틱 만들기",
+  "summary": "Unreal Engine의 Sequencer는 카메라 컷, 캐릭터 애니메이션, Effect, 사운드를 하나의 타임라인에서 정교하게 편집하여 시네마틱 영상을 제작하는 강력한 툴입니다. 영화 세트의 감독처럼 가상 공간의 모든 요소를 시간 축에 따라 통제할 수 있습니다.",
+  "when": [
+    "게임 내 실시간 인게임 컷신이나 트레일러 영상을 제작할 때",
+    "건축 시각화 프로젝트에서 카메라 무빙이 포함된 홍보 영상을 만들 때",
+    "가상 프로덕션(Virtual Production) 환경에서 카메라와 라이트를 실시간으로 제어할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Window → Cinematics → Sequencer를 선택해 시네마틱 에디터를 엽니다.",
+    "Content Browser에서 레벨에 새 Level Sequence를 생성하고 뷰포트에 배치합니다.",
+    "Sequencer 패널의 + Track 버튼을 눌러 카메라(Cine Camera Actor)나 애니메이션할 액터를 추가합니다.",
+    "트랙 하위의 Transform 이나 Property 옆의 + 아이콘을 눌러 키프레임(Keyframe)을 생성합니다.",
+    "타임라인 스러버를 이동하며 오브젝트를 조작하고 키프레임을 추가해 애니메이션을 완성합니다.",
+    "Cinematic Viewport에서 카메라 뷰로 전환하여 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Playback Range",
+      "desc": "시네마틱 영상의 시작과 끝 구간을 지정합니다."
+    },
+    {
+      "name": "Camera Cut Track",
+      "desc": " 여러 대의 카메라 컷을 전환하며 편집하는 메인 트랙입니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "액터의 위치, 회전, 스케일 값을 시간에 따라 제어합니다."
+    },
+    {
+      "name": "Focal Length",
+      "desc": "카메라 렌즈의 화각을 조절하여 원경과 근경의 느낌을 바꿉니다."
+    },
+    {
+      "name": "Current Aperture",
+      "desc": "조광 개방값으로 피사계 심도(Depth of Field)의 아웃포커싱 정도를 조절합니다."
+    },
+    {
+      "name": "Master Audio Track",
+      "desc": "영상과 싱크를 맞출 배경음악이나 효과음 오디오 파일을 배치합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "드라마틱한 카메라 무빙과 아웃포커싱 연출",
+      "steps": [
+        "Cine Camera Actor를 배치하고 Sequencer에 트랙으로 추가합니다.",
+        "시작 지점에 카메라 위치와 Focal Length 키프레임을 잡습니다.",
+        "타임라인을 이동해 카메라를 피사체로 이동시키고 Current Aperture 값을 낮춰 아웃포커싱을 강조합니다."
+      ]
+    },
+    {
+      "title": "여러 카메라 컷을 활용한 인물 대화 씬 편집",
+      "steps": [
+        "등장인물 A와 B를 비추는 두 대의 Cine Camera Actor를 설치합니다.",
+        "Camera Cut Track에 두 카메라를 번갈아 배치하여 컷 편집을 구성합니다.",
+        "각 컷의 전환 타이밍을 타임라인에서 드래그하여 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 컷이 전환되지 않음 → Camera Cut Track에 올바른 Cine Camera Actor가 할당되어 있는지 확인하고 트랙을 활성화합니다.",
+    "애니메이션 키프레임이 저장되지 않음 → 트랙의 자동 키프레임(Auto-key) 버튼이 켜져 있는지 확인하거나 속성 옆의 + 버튼을 직접 눌러 키를 추가합니다."
+  ],
+  "related": [
+    "Cine Camera Actor",
+    "Level Sequence",
+    "Movie Render Queue",
+    "Control Rig"
+  ],
+  "videos": [
+    {
+      "id": "5jHhIah8H7U",
+      "title": "Unreal Engine 5 - How To Create Cinematics in Sequencer Tutorial",
+      "author": "Beardgames"
+    },
+    {
+      "id": "-oV3oJZptEg",
+      "title": "Camera Sequencer Tutorial - Unreal Engine 5.3 #ue5 #tutorial #cinematic",
+      "author": "Mr. Hollt"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Sequencer%20cinematic",
+  "grounded": false,
+  "at": "2026-10-18T13:47:33.779987+00:00"
+}

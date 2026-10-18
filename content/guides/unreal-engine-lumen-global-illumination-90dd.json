@@ -1,0 +1,88 @@
+{
+  "id": "unreal-engine-lumen-global-illumination-90dd",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Lumen global illumination",
+  "title": "Lumen — 실시간 GI 설정",
+  "summary": "Unreal Engine의 실시간 전역 조명(Global Illumination) 및 반사 시스템으로, 별도의 베이크(Baking) 없이 빛의 상호 반사와 부드러운 간접광을 실시간으로 계산합니다.",
+  "when": [
+    "라이트맵 베이크 시간을 줄이고 실시간으로 빛의 변화를 확인하고 싶을 때",
+    "실내와 실외를 자유롭게 오가는 오픈월드나 건축 시각화 작업을 할 때",
+    "메탈릭 표면이나 유리 등에 사실적인 실시간 반사(Reflection)를 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine에서 새 레벨을 생성하거나 기존 프로젝트를 엽니다.",
+    "메인 툴바의 Quick Add (+) 버튼 또는 Modes 패널에서 Directional Light와 Sky Light를 배치합니다.",
+    "Sky Light를 선택하고 Details 패널에서 Source를 Real Time Capture로 설정합니다.",
+    "Post 프로세스 볼륨(Post Process Volume)을 배치하고 Details 패널에서 Infinite Extent (Unbound)를 체크합니다.",
+    "Post Process Volume의 Rendering Features > Global Illumination에서 설정을 Lumen으로 변경합니다.",
+    "Reflections 설정 역시 Lumen으로 변경하여 실시간 반사를 활성화합니다."
+  ],
+  "params": [
+    {
+      "name": "Global Illumination",
+      "desc": "전역 조명 방식을 Lumen으로 설정하여 실시간 간접광을 활성화합니다."
+    },
+    {
+      "name": "Reflections",
+      "desc": "반사 방식을 Lumen으로 설정하여 스크린 공간을 넘어선 정밀한 반사를 표현합니다."
+    },
+    {
+      "name": "Final Gather Quality",
+      "desc": "간접광의 품질을 조절하며, 값을 높이면 노이즈가 줄어들지만 성능 소모가 큽니다."
+    },
+    {
+      "name": "Lighting Update Speed",
+      "desc": "조명 변화에 반응하는 속도를 조절하여 동적 라이팅의 반응성을 제어합니다."
+    },
+    {
+      "name": "Max Roughness to Reflect Indirect Lighti",
+      "desc": "간접광 반사를 계산할 표면의 최대 거칠기(Roughness) 임계값을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 창문으로 들어오는 자연광 연출",
+      "steps": [
+        "실내 공간 메시를 배치하고 창문을 뚫어둡니다.",
+        "Directional Light를 창문 방향으로 배치하여 햇빛이 들어오게 합니다.",
+        "Lumen GI를 켜서 바닥에 튕긴 햇빛이 벽면을 부드럽게 채우는지 확인합니다."
+      ]
+    },
+    {
+      "title": "야간 네온사인 간접광 표현",
+      "steps": [
+        "어두운 골목 배경에 Point Light나 Rect Light를 배치합니다.",
+        "라이트의 색상을 강한 네온 컬러로 설정합니다.",
+        "주변 벽면에 빛이 반사되어 물들어가는 색 번짐(Color Bleeding) 효과를 관찰합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Lumen이 켜져 있는데 실내가 너무 어둡거나 검게 나옴 → Post Process Volume이 없거나 Infinite Extent (Unbound)가 꺼져 있는지 확인합니다.",
+    "카메라가 빠르게 움직일 때 화면 잔상이나 빛의 지연이 발생함 → Project Settings에서 Lumen GI의 Temporal Accumulation 설정이나 Hardware Ray Tracing 활성화 여부를 점검합니다.",
+    "성능(FPS)이 급격히 떨어짐 → 하드웨어 레이 트레이싱 대신 소프트웨어 레이 트레이싱으로 변경하거나 Final Gather Quality를 낮춥니다."
+  ],
+  "related": [
+    "Nanite",
+    "Virtual Shadow Maps",
+    "Post Process Volume",
+    "Ray Tracing"
+  ],
+  "videos": [
+    {
+      "id": "ivFl0FbTJ7M",
+      "title": "Discover The Secrets Of Global Illumination In Unreal Engine 5 Using Lumen",
+      "author": "Digital Alchemy"
+    },
+    {
+      "id": "uz1sQy3oLb8",
+      "title": "Why is Lumen Global Illumination System so Game Changing? - Unreal Engine 5",
+      "author": "Tony Munoz | Game Creator Accelerator"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Lumen%20global%20illumination",
+  "grounded": false,
+  "at": "2026-10-18T13:47:29.630198+00:00"
+}
