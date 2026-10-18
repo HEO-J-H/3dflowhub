@@ -668,3 +668,36 @@ def test_snapshot_files_not_number_merged():
     b = {"at": "2026-10-18T06:00:00", "alloc": {"news": 0.4, "guides": 0.4}}
     assert core.merge_memory("memory/plan.json", a, b) == b      # 최신본 그대로
     assert core.merge_memory("memory/plan.json", b, a) == b
+
+
+def test_staff_marketer_outbox_and_hiring(monkeypatch, tmp_path):
+    import json as _j, manager, staff
+    monkeypatch.setattr(staff, "ROLES_PATH", tmp_path / "roles.json")
+    monkeypatch.setattr(staff, "OUTBOX_PATH", tmp_path / "outbox.json")
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    monkeypatch.setattr(core, "llm_capacity_left", lambda: 200)
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 200)
+    monkeypatch.setattr(staff, "_context", lambda role: {})
+    fake = {"promo": [{"channel": "X (트위터)", "title": "Bend", "body": "3ds Max Bend 정리",
+                       "url": "https://heo-j-h.github.io/3dflowhub/learn/x/"},
+                      {"channel": "디스코드", "body": "외부 링크", "url": "https://evil.example/"}],
+            "proposal": [{"title": "검색 기회: Bend", "category": "검색(SEO)", "evidence": "노출 50", "proposal": "제목 개선",
+                          "effort": "낮음", "action": None}], "note": "홍보 2건"}
+    monkeypatch.setattr(core, "llm", lambda *a, **k: _j.dumps(fake, ensure_ascii=False))
+    assert [r["role"] for r in staff.run_due()] == ["📣 마케터"]
+    box = staff.outbox()
+    by_ch = {x["channel"]: x for x in box}
+    assert len(box) == 2 and "utm_source=x" in by_ch["X (트위터)"]["url"]
+    assert by_ch["디스코드"]["url"].startswith(staff.SITE)                 # 외부 링크는 사이트 주소로 대체
+    assert staff.run_due() == []                                       # 주기 전엔 다시 안 함
+    p = manager.board()["proposals"][0]
+    assert p["by"] == "📣 마케터"
+    staff.set_outbox(box[0]["id"], "posted")
+    assert staff.outbox()[0]["status"] in ("posted", "new")
+
+    act = manager._valid_action({"type": "hire_role", "role": {"name": "🎬 영상 큐레이터", "mission": "주간 영상 모음",
+                                                               "deliverables": ["promo"], "every_hours": 2, "daily_calls": 9}})
+    assert act["role"]["every_hours"] == 6 and act["role"]["daily_calls"] == 6   # 주기·사용량 제한
+    assert "채용" in manager._apply(act)
+    assert any(r["name"] == "🎬 영상 큐레이터" for r in staff.roles().values())
+    assert "hire_role" not in manager.SAFE_AUTO                               # 채용은 사람 승인 필요

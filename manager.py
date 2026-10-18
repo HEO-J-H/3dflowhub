@@ -109,6 +109,12 @@ def describe(act: dict | None) -> str:
         return f"설정 변경: {act.get('key')} → {act.get('value')} (수락 즉시 적용)"
     if t == "glossary":
         return f"용어집 추가: {act.get('variants')} → {act.get('canon')} (수락 즉시 적용)"
+    if t == "hire_role":
+        r = act.get("role") or {}
+        return (f"AI 직원 채용: {r.get('name')} — {r.get('every_hours')}시간마다, 하루 AI 최대 {r.get('daily_calls')}회 "
+                f"(산출물: {', '.join(r.get('deliverables', []))}) · 언제든 현황판에서 쉬게 할 수 있음")
+    if t == "pause_role":
+        return f"AI 직원 쉬게 하기: {act.get('name') or act.get('id')} (다시 일하게 할 수 있음)"
     if t == "guide_topic":
         return f"기초 가이드 주제 추가: {act.get('tool')} · {act.get('title_ko')} (영상·단계별 사용법 페이지로 자동 생성)"
     return "자동 실행 없음 — 수락하면 '직접 작업 필요' 목록에 남습니다 (Claude 에게 이 제안을 그대로 요청하면 됩니다)"
@@ -134,6 +140,16 @@ def _valid_action(act) -> dict | None:
         return {"type": t, "key": act["key"], "value": val}
     if t == "glossary" and act.get("canon") and act.get("variants"):
         return {"type": t, "canon": str(act["canon"])[:40], "variants": str(act["variants"])[:200]}
+    if t == "hire_role":
+        import staff
+        role = staff.valid_role(act.get("role") or act)
+        if role and role["id"] not in staff.roles():
+            return {"type": t, "role": role}
+        return None
+    if t == "pause_role" and act.get("id"):
+        import staff
+        r = staff.roles().get(str(act["id"]))
+        return {"type": t, "id": r["id"], "name": r["name"]} if r else None
     if t == "guide_topic" and act.get("tool") and act.get("name") and act.get("title_ko"):
         return {"type": t, "tool": str(act["tool"])[:30], "group": str(act.get("group") or "기능")[:20],
                 "name": str(act["name"])[:60], "title_ko": str(act["title_ko"])[:60]}
@@ -156,6 +172,13 @@ def _apply(act: dict) -> str:
         hints[act["domain"]] = list(dict.fromkeys(act["keywords"] + hints.get(act["domain"], [])))[:8]
     elif t == "editorial_note":
         strategy["prompt_notes"] = (strategy.get("prompt_notes", []) + [act["note"]])[-6:]
+    elif t == "hire_role":
+        import staff
+        return staff.hire(act["role"])
+    elif t == "pause_role":
+        import staff
+        staff.set_status(act["id"], False)
+        return f"{act.get('name')} 쉬게 함"
     elif t == "guide_topic":
         topics = strategy.setdefault("guide_topics", [])
         topic = [act["tool"], act["group"], act["name"], act["title_ko"], None]
@@ -178,7 +201,8 @@ def apply_accepted() -> list[str]:
     done = []
     for p in board()["proposals"]:
         act = p.get("action") or {}
-        if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note", "guide_topic"):
+        if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note", "guide_topic",
+                                                                                "hire_role", "pause_role"):
             result = _apply(act)
             _append({"at": _now(), "kind": "applied", "id": p["id"], "result": result})
             done.append(f"{p['title']}: {result}")
@@ -236,7 +260,12 @@ def plan_today() -> dict:
     비율은 AI 관리자의 하루 분석(allocation)을 따르고, 만들 거리가 없는 항목은 뉴스로 돌린다."""
     cfg = core.load_config()
     cap = core.llm_capacity_left()
-    usable = max(0, cap - RESERVE)
+    try:  # AI 직원들이 쓸 몫을 먼저 떼어 둠
+        import staff
+        team_calls = sum(r.get("daily_calls", 2) for r in staff.roles().values() if r["status"] == "active")
+    except Exception:
+        team_calls = 0
+    usable = max(0, cap - RESERVE - team_calls)
     try:
         from zoneinfo import ZoneInfo
         la = datetime.now(ZoneInfo("America/Los_Angeles"))
@@ -286,6 +315,23 @@ def _auto_accept(new_ids: list[str]) -> list[str]:
 
 
 # ─────────────────────────── 분석 ───────────────────────────
+def _team_stats() -> list[dict]:
+    """AI 직원별 현황 (채용·휴식 판단 근거): 산출물 수와 사람의 반응."""
+    try:
+        import staff
+        box = staff.outbox()
+        out = []
+        for r in staff.roles().values():
+            mine = [x for x in box if x.get("role") == r["id"]]
+            out.append({"id": r["id"], "name": r["name"], "status": r["status"], "mission": r["mission"][:120],
+                        "promos": len(mine), "posted": sum(x["status"] == "posted" for x in mine),
+                        "skipped": sum(x["status"] == "skipped" for x in mine),
+                        "waiting": sum(x["status"] == "new" for x in mine), "last_note": r.get("last_summary", "")})
+        return out
+    except Exception:
+        return []
+
+
 def _guide_stats() -> dict:
     try:
         import guides
@@ -338,6 +384,7 @@ def snapshot() -> dict:
                       "today_plan": {k: core._load_json(PLAN_PATH, {}).get(k) for k in ("alloc", "done", "capacity_left")},
                       "fallback_ai": [f["name"] for f in core.fallback_providers()]},
         "allowed_intervals": list(core.INTERVALS),
+        "team": _team_stats(),
         "basics_guides": _guide_stats(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
@@ -377,7 +424,12 @@ def review(force: bool = False) -> dict | None:
         f'{{"type":"set_config","key":one of {list(CONFIG_KEYS)},"value":...}} | '
         '{"type":"glossary","canon":official name,"variants":"wrong spelling 1|wrong spelling 2"} | '
         '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
-        '"title_ko":Korean page title} (evergreen basics reference page with video)}},\n'
+        '"title_ko":Korean page title} (evergreen basics reference page with video) | '
+        '{"type":"hire_role","role":{"name":"emoji + Korean job title","mission":"what this staff member does every '
+        'cycle, concretely","deliverables":["promo"|"proposal"|"note"],"every_hours":6-168,"daily_calls":1-3}} — '
+        'propose hiring ONLY when there is recurring work no current team member covers (see metrics.team), like a '
+        'company hiring | {"type":"pause_role","id":team member id} — when a member\'s output is mostly skipped or no '
+        'longer needed}},\n'
         ' "replies": [{"id": message id, "text": helpful Korean answer}] for each owner message,\n'
         ' "allocation": how to split today\'s remaining AI calls between content types, as fractions summing to 1: '
         '{"news": new article summaries, "guides": evergreen basics guides with video, "roundups": monthly tool '

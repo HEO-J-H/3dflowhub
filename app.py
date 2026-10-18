@@ -472,7 +472,8 @@ with t_auto:
     for x in items[:10]:
         with st.container(border=True):
             act = x.get("action") or {}
-            st.caption(f"{CAT_ICON.get(x.get('category'), '•')} {x.get('category')} · 노력 {x.get('effort')} · "
+            st.caption(f"{CAT_ICON.get(x.get('category'), '•')} {x.get('category')} · 제안: {x.get('by') or '🧭 AI 관리자'} · "
+                       f"노력 {x.get('effort')} · "
                        f"{kst(x['at'])[:10]}" + (f" · 기대 효과: {x['expected']}" if x.get("expected") else ""))
             st.markdown(f"#### {x['title']}")
             st.markdown(f"**근거** — {x.get('evidence', '')}")
@@ -511,6 +512,50 @@ with t_auto:
         for m in mb["messages"][:10]:
             st.markdown(f"**나** · {kst(m['at'])}  \n{m['text']}")
             st.markdown(f"> 🧭 {m['reply']}" if m["reply"] else "> ⏳ 다음 분석 때 답변 예정")
+
+    # ── 👥 AI 팀: AI 관리자가 업무에 따라 '채용'한 직원들 ──
+    import staff
+    st.subheader("👥 AI 팀")
+    st.caption("업무가 생기면 AI 관리자가 '채용'을 제안하고, 수락하면 새 직원이 정해진 주기마다 일합니다. "
+               "직원의 결과물(홍보 글·제안)에 대한 반응을 보고 스스로 배웁니다.")
+    team = staff.roles()
+    box_all = staff.outbox()
+    for r in team.values():
+        with st.container(border=True):
+            mine = [x for x in box_all if x.get("role") == r["id"]]
+            h1, h2 = st.columns([4, 1.4])
+            h1.markdown(f"**{r['name']}** · {'🟢 근무 중' if r['status'] == 'active' else '⏸ 휴식'} · "
+                        f"{r.get('every_hours')}시간마다 · 하루 AI 최대 {r.get('daily_calls')}회")
+            h1.caption(r.get("mission", "")[:220])
+            h1.caption(f"채용: {r.get('hired_by')}{' · ' + kst(r['hired_at']) if r.get('hired_at') else ''} · "
+                       f"마지막 업무: {ago(r['last_run']) if r.get('last_run') else '아직 없음'}"
+                       + (f" — {r['last_summary']}" if r.get("last_summary") else "")
+                       + (f" · 홍보 글 {len(mine)}개 (게시 {sum(x['status'] == 'posted' for x in mine)}, "
+                          f"건너뜀 {sum(x['status'] == 'skipped' for x in mine)})" if mine else ""))
+            if h2.button("▶ 지금 일 시키기", key=f"run_{r['id']}", width="stretch", help="AI 1~2회 사용",
+                         disabled=r["status"] != "active"):
+                with st.spinner(f"{r['name']} 업무 중…"):
+                    try:
+                        res = staff.run_role(r)
+                        core.git_sync(["memory/outbox.json", "memory/roles.json", "memory/proposals.json"],
+                                      f"chore(staff): {r['name']} 업무 [skip ci]")
+                        st.toast(f"완료 — 홍보 글 {res.get('promo', 0)}개, 제안 {res.get('proposal', 0)}개")
+                    except Exception as e:
+                        st.error(f"업무 실패: {e}")
+                st.rerun()
+            if h2.button("⏸ 쉬게 하기" if r["status"] == "active" else "▶ 다시 일하게", key=f"pause_{r['id']}",
+                         width="stretch"):
+                staff.set_status(r["id"], r["status"] != "active")
+                core.git_sync(["memory/roles.json"], "chore(staff): 직원 상태 변경 [skip ci]")
+                st.rerun()
+    with st.expander("📣 홍보 채널 설정"):
+        chans = st.text_area("마케터가 글을 써 줄 채널 (한 줄에 하나)",
+                             "\n".join(cfg.get("promo_channels") or staff.DEFAULT_CHANNELS), height=120,
+                             help="예: 네이버 카페 '3D 그래픽 모임', 디스코드 '블렌더 코리아', 인스타그램")
+        if st.button("채널 저장"):
+            core.save_config({"promo_channels": [c.strip() for c in chans.splitlines() if c.strip()][:10]})
+            core.git_sync(["config.json"], "chore(config): 홍보 채널 [skip ci]")
+            st.toast("저장했습니다 — 다음 업무부터 적용")
 
     st.divider()
     mem = load_remote_memory()
@@ -957,6 +1002,29 @@ with t_today:
             if c3.button("✕ 거절", key=f"t_rej_{x['id']}", width="stretch"):
                 _mgr.decide(x["id"], "rejected")
                 save_manager("제안 거절")
+                st.rerun()
+
+    import staff as _staff
+    waiting = [x for x in _staff.outbox() if x["status"] == "new"]
+    st.subheader(f"📣 홍보 대기함 ({len(waiting)})")
+    st.caption("마케터가 쓴 초안입니다. 오른쪽 위 복사 아이콘으로 복사해 해당 채널에 올린 뒤 '게시함'을 눌러 주세요. "
+               "링크에는 채널 표시가 붙어 있어 어디서 방문이 왔는지 집계됩니다. (자동 게시는 하지 않습니다)")
+    if not waiting:
+        st.info("대기 중인 홍보 글이 없습니다. 마케터는 하루 한 번 새 초안을 씁니다.")
+    for x in waiting[:6]:
+        with st.container(border=True):
+            st.caption(f"{x.get('channel')} · {kst(x['at'])}")
+            if x.get("title"):
+                st.markdown(f"**{x['title']}**")
+            st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
+            b1, b2, _ = st.columns([1, 1, 3])
+            if b1.button("✅ 게시함", key=f"post_{x['id']}", type="primary", width="stretch"):
+                _staff.set_outbox(x["id"], "posted")
+                core.git_sync(["memory/outbox.json"], "chore(staff): 홍보 게시 [skip ci]")
+                st.rerun()
+            if b2.button("건너뛰기", key=f"skip_{x['id']}", width="stretch"):
+                _staff.set_outbox(x["id"], "skipped")
+                core.git_sync(["memory/outbox.json"], "chore(staff): 홍보 건너뜀 [skip ci]")
                 st.rerun()
 
     st.subheader("👀 무엇이 읽히나 (최근 30일)")

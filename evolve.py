@@ -550,6 +550,12 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "manager_applied": applied}])[-30:]
             core._save_json(core.STRATEGY_PATH, strategy)
         manager.review()
+        import staff  # AI 직원(마케터 등): 주기가 된 역할만 일함
+        worked = staff.run_due()
+        if worked:
+            strategy = core.load_strategy()
+            strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "staff": worked}])[-30:]
+            core._save_json(core.STRATEGY_PATH, strategy)
     except Exception as e:
         log.warning("AI 관리자 실패: %s", e)
     import gsc
