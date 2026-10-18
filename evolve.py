@@ -20,7 +20,6 @@ import time
 import hashlib
 from datetime import datetime, timedelta, timezone
 
-import feedparser
 
 import core
 
@@ -232,6 +231,8 @@ def update_strategy(strategy: dict) -> dict:
         f"Category usage: {json.dumps(counts, ensure_ascii=False)}\n"
         f"Reader interest by tool (most-viewed per site analytics): "
         f"{json.dumps(strategy.get('tool_interest', {}), ensure_ascii=False)}\n"
+        f"Google search queries that already show this site (impressions; write more for these): "
+        f"{json.dumps(_gsc_hint(), ensure_ascii=False)[:1200]}\n"
         f"Human editor feedback (strongest signal: collect more like PICKED, avoid what was HIDDEN): "
         f"{json.dumps(editor_feedback(), ensure_ascii=False)[:1500]}\n"
         f"Current editorial notes: {json.dumps(strategy['prompt_notes'], ensure_ascii=False)}\n"
@@ -438,6 +439,14 @@ def strategy_due(strategy: dict) -> bool:
     return bool(cur and cur["runs"] >= MIN_RUNS_PER_VERSION and cur["collected"] >= MIN_ITEMS_PER_VERSION)
 
 
+def _gsc_hint() -> dict:
+    try:
+        import gsc
+        return {"top": gsc.top_queries(15), "low_ctr_opportunities": [r["key"] for r in gsc.opportunities(8)]}
+    except Exception:
+        return {}
+
+
 def editor_feedback(n: int = 15) -> dict:
     """대시보드에서 사람이 추천/숨김한 글 제목·도구 (성찰 프롬프트용)."""
     out: dict[str, list] = {"picked": [], "hidden": []}
@@ -530,6 +539,15 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         except Exception as e:
             log.warning("용어 점검 실패: %s", e)
         strategy["terms_audited_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "gsc_at", 24 * 3600):  # 검색 데이터는 하루 단위로 확정
+        try:
+            import gsc
+            if gsc.collect():
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "gsc": gsc.top_queries(5)}])[-30:]
+        except Exception as e:
+            log.warning("Search Console 수집 실패: %s", e)
+        strategy["gsc_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "roundups_at", 3 * 3600):  # 3시간마다 점검, 도구별로는 주 1회 갱신
         try:

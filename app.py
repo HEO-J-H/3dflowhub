@@ -16,16 +16,15 @@ import core
 st.set_page_config(page_title="3dflowhub", page_icon="🧊", layout="wide")
 
 # 크롬 자동 번역이 화면을 바꾸면 Streamlit(React)이 'removeChild' 오류를 냄 → 한국어 페이지로 표시하고 번역 금지
-import streamlit.components.v1 as _components  # noqa: E402
-_components.html("""<script>
-const d = window.parent.document;
+st.html("""<script>
+const d = document;  // st.html 은 iframe 없이 본문에 바로 삽입됨
 d.documentElement.lang = "ko";
 d.documentElement.setAttribute("translate", "no");
 d.documentElement.classList.add("notranslate");
 if (!d.querySelector('meta[name="google"]')) {
   const m = d.createElement("meta"); m.name = "google"; m.content = "notranslate"; d.head.appendChild(m);
 }
-</script>""", height=0)
+</script>""", unsafe_allow_javascript=True)
 REVENUE_CSV = Path(core.ROOT) / "memory" / "revenue.csv"
 GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)
@@ -463,6 +462,30 @@ with t_rev:
 
     st.divider()
     # ── 3) 광고 수익 (채널별) ──────────────────────────────────
+    st.subheader("🔎 구글 검색 유입 (Search Console)")
+    import gsc
+    sc = core._load_json(gsc.GSC_PATH, {})
+    if sc.get("queries"):
+        st.caption(f"최근 {sc.get('days', 28)}일 · 갱신 {ago(sc.get('at', ''))} — AI가 이 검색어를 키워드·전략에 반영합니다")
+        g1, g2 = st.columns(2)
+        with g1:
+            st.markdown("**노출 많은 검색어**")
+            st.dataframe(pd.DataFrame(sc["queries"]).rename(columns={
+                "key": "검색어", "clicks": "클릭", "impressions": "노출", "ctr": "클릭률", "position": "평균 순위"}).head(20),
+                hide_index=True, width="stretch")
+        with g2:
+            st.markdown("**기회 검색어** (노출 많고 8~20위 — 더 좋은 글로 순위 상승 여지)")
+            opp = gsc.opportunities()
+            if opp:
+                st.dataframe(pd.DataFrame(opp).rename(columns={"key": "검색어", "impressions": "노출",
+                                                               "position": "평균 순위"})[["검색어", "노출", "평균 순위"]],
+                             hide_index=True, width="stretch")
+            else:
+                st.caption("아직 없음")
+    else:
+        st.info("아직 연결되지 않았습니다. GitHub Secret `GSC_SERVICE_ACCOUNT` 를 등록하면 하루 한 번 자동 수집됩니다 "
+                "(설정 방법은 gsc.py 맨 위 안내).")
+
     st.subheader("💰 광고 수익")
     st.caption("애드센스 API 는 OAuth 앱 승인이 필요해 일별 수익을 직접 입력/CSV 업로드합니다. 채널별로 기록하면 RPM 을 따로 계산합니다.")
     rev = pd.read_csv(REVENUE_CSV, parse_dates=["date"]) if REVENUE_CSV.exists() else pd.DataFrame(

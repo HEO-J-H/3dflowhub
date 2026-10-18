@@ -88,6 +88,18 @@ LLM_ENDPOINT = (os.getenv("LLM_BASE_URL") or
                 "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/") + "/chat/completions"
 LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-flash-lite-latest"  # Actions 에서 빈 변수는 "" 로 전달됨
 
+# 예비 LLM 공급자 (선택) — 키가 등록된 것만 사용. 주 공급자(Gemini) 한도 소진·장애 시 순서대로 넘어간다.
+# 모델은 환경변수로 바꿀 수 있음 (무료 모델 목록은 각 공급자 대시보드 기준).
+FALLBACK_PROVIDERS = [
+    {"name": "groq", "key_env": "GROQ_API_KEY", "model_env": "GROQ_MODEL",
+     "endpoint": "https://api.groq.com/openai/v1/chat/completions", "model": "llama-3.3-70b-versatile"},
+    {"name": "cerebras", "key_env": "CEREBRAS_API_KEY", "model_env": "CEREBRAS_MODEL",
+     "endpoint": "https://api.cerebras.ai/v1/chat/completions", "model": "llama-3.3-70b"},
+    {"name": "openrouter", "key_env": "OPENROUTER_API_KEY", "model_env": "OPENROUTER_MODEL",
+     "endpoint": "https://openrouter.ai/api/v1/chat/completions", "model": "meta-llama/llama-3.3-70b-instruct:free"},
+]
+FALLBACK_DAILY = 300  # 공급자별 하루 상한 (config.json 의 llm_fallback_daily 로 변경)
+
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "eba32801b6b141e2849ce85f819c3ea4")
 
@@ -464,10 +476,41 @@ def _mark_quota_exhausted() -> None:
     _save_json(LLM_QUOTA_PATH, q)
 
 
+LLM_FALLBACK_PATH = Path(__file__).parent / "memory" / "llm_fallback.json"  # {day: {공급자: 호출수, "공급자!": 소진}}
+
+
+def fallback_providers() -> list[dict]:
+    """키가 등록된 예비 공급자 (오늘 소진·상한 도달한 것 제외)."""
+    day = _load_json(LLM_FALLBACK_PATH, {}).get(llm_day(), {})
+    cap = int(_load_json(CONFIG_PATH, {}).get("llm_fallback_daily", FALLBACK_DAILY))
+    out = []
+    for f in FALLBACK_PROVIDERS:
+        key = os.getenv(f["key_env"], "")
+        if key and not day.get(f["name"] + "!") and day.get(f["name"], 0) < cap:
+            out.append({**f, "key": key, "model": os.getenv(f["model_env"]) or f["model"],
+                        "left": cap - day.get(f["name"], 0)})
+    return out
+
+
+def _fallback_count(name: str, exhausted: bool = False) -> None:
+    data = {d: v for d, v in _load_json(LLM_FALLBACK_PATH, {}).items() if d >= llm_day()[:8] + "01"}
+    day = data.setdefault(llm_day(), {})
+    if exhausted:
+        day[name + "!"] = True
+    else:
+        day[name] = day.get(name, 0) + 1
+    _save_json(LLM_FALLBACK_PATH, data)
+
+
+def llm_fallback_usage() -> dict:
+    return {k: v for k, v in _load_json(LLM_FALLBACK_PATH, {}).get(llm_day(), {}).items() if not k.endswith("!")}
+
+
 def llm_budget_left() -> int:
-    if llm_quota_status()["exhausted"]:
-        return 0
-    return int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
+    """주 공급자 잔여 + (주 공급자가 바닥이면) 예비 공급자 잔여."""
+    primary = 0 if llm_quota_status()["exhausted"] else \
+        int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
+    return primary if primary > 0 else sum(f["left"] for f in fallback_providers())
 
 
 def llm_reset_kst() -> str:
@@ -502,30 +545,63 @@ def _consume_llm_budget() -> None:
 
 def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: int = 800,
         json_mode: bool = False) -> str:
-    if not LLM_API_KEY:
+    """주 공급자(Gemini) → 한도 소진·장애 시 예비 공급자(Groq·Cerebras·OpenRouter, 키 등록 시) 순서로 시도."""
+    errors: list[str] = []
+    quota_hit = False
+    if LLM_API_KEY:
+        try:
+            _consume_llm_budget()
+            return _llm_call(LLM_ENDPOINT, LLM_API_KEY, LLM_MODEL, prompt, system, max_tokens, json_mode, primary=True)
+        except LLMBudgetExceeded as e:
+            quota_hit = True
+            errors.append(str(e))
+        except RuntimeError as e:
+            errors.append(f"gemini: {e}")
+    for f in fallback_providers():
+        try:
+            _fallback_count(f["name"])
+            out = _llm_call(f["endpoint"], f["key"], f["model"], prompt, system, max_tokens, json_mode)
+            log.info("예비 공급자 %s 사용", f["name"])
+            return out
+        except LLMBudgetExceeded as e:
+            _fallback_count(f["name"], exhausted=True)
+            errors.append(f"{f['name']}: {e}")
+        except RuntimeError as e:
+            errors.append(f"{f['name']}: {e}")
+    if not LLM_API_KEY and not errors:
         raise RuntimeError("LLM_API_KEY 미설정")
-    _consume_llm_budget()
+    if quota_hit and all("한도" in e or "429" in e for e in errors):
+        raise LLMBudgetExceeded(" | ".join(errors)[:600])
+    raise RuntimeError(" | ".join(errors)[:1200])
+
+
+def _llm_call(endpoint: str, key: str, model: str, prompt: str, system: str, max_tokens: int,
+              json_mode: bool, primary: bool = False) -> str:
     body = {
-        "model": LLM_MODEL,
+        "model": model,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
         "max_tokens": max_tokens,
         "temperature": 0.4,
     }
-    headers = {"Authorization": f"Bearer {LLM_API_KEY}", "Content-Type": "application/json"}
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     errors = []
     for use_json in ((True, False) if json_mode else (False,)):  # JSON 모드 미지원 시 일반 모드 재시도
         payload = {**body, **({"response_format": {"type": "json_object"}} if use_json else {})}
         try:
             for attempt in range(4):  # 429/5xx(무료 한도·일시 장애)는 지수 백오프 재시도
-                r = requests.post(LLM_ENDPOINT, json=payload, timeout=60, headers=headers)
+                r = requests.post(endpoint, json=payload, timeout=60, headers=headers)
                 if r.status_code not in (429, 500, 502, 503, 504):
                     break
                 wait = float(r.headers.get("retry-after") or 0) or 5 * 2 ** attempt
                 log.info("LLM %s — %.0f초 후 재시도", r.status_code, wait)
                 time.sleep(min(wait, 60))
-            if r.status_code == 429 and "quota" in r.text.lower():
-                _mark_quota_exhausted()
-                raise LLMBudgetExceeded(f"Gemini 실제 일일 한도 소진 (429, 오늘 {llm_usage_today()}회째)")
+            if r.status_code == 429:  # 재시도 후에도 429 = 오늘 한도 소진
+                if primary:
+                    if "quota" not in r.text.lower():
+                        raise RuntimeError(f"429 rate limit: {r.text[:150]!r}")
+                    _mark_quota_exhausted()
+                    raise LLMBudgetExceeded(f"Gemini 실제 일일 한도 소진 (429, 오늘 {llm_usage_today()}회째)")
+                raise LLMBudgetExceeded(f"429 한도: {r.text[:150]!r}")
             data = r.json() if r.ok else None
             if data and data.get("choices"):
                 return (data["choices"][0]["message"].get("content") or "").strip()
@@ -575,6 +651,14 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
     return out
 
 
+def _gsc_queries() -> list[str]:
+    try:
+        import gsc
+        return gsc.top_queries(10)
+    except Exception:
+        return []
+
+
 def _generate_keywords_llm(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
     """memory.json 의 성공/실패 키워드를 컨텍스트로 주입해 키워드를 조합."""
     mem = load_memory()
@@ -586,6 +670,8 @@ def _generate_keywords_llm(domains: list[str], per_domain: int = 2) -> dict[str,
         prompt = (
             f"Domain: {d}\nSeed terms: {', '.join(seeds)}\n"
             f"Strategy hints (from self-reflection): {', '.join(hints.get(d, [])) or 'none'}\n"
+            f"Google searches already bringing visitors (reuse wording if relevant): "
+            f"{', '.join(_gsc_queries()) or 'none yet'}\n"
             f"Tools readers view most (prefer queries about these): "
             f"{', '.join(load_strategy().get('tool_interest', {}).get(d, [])) or 'none yet'}\n"
             f"Keywords that worked before: {', '.join(mem['good_keywords'][-10:]) or 'none'}\n"
@@ -904,87 +990,8 @@ def register_category(domain: str, category: str) -> str:
     return category
 
 
-# ─────────────────────────── 용어집 (오번역·음역 교정) ───────────────────────────
-# 정식 표기 → (잘못된 변형 정규식, 검색용 한글 별칭 태그). 소프트웨어·플러그인·스크립트 언어 이름은 영문 정식 표기 유지.
-GLOSSARY: dict[str, tuple[str, str]] = {
-    "MacroScript": (r"맥로\s?스크립트|매크로\s?스크립트|Macro\s?script", "매크로스크립트"),
-    "MAXScript": (r"맥스\s?스크립트|맥스크립트|Max\s?[Ss]cript|MAX\s?script|Maxscript", "맥스스크립트"),
-    "3ds Max": (r"3[Dd][Ss]\s?맥스|3D\s?스튜디오\s?맥스|3DS\s?MAX|3ds\s?max|3DsMax|3dsMax", "3ds 맥스"),
-    "Blender": (r"블렌더", "블렌더"),
-    "Unreal Engine": (r"언리얼\s?엔진", "언리얼 엔진"),
-    "Unreal": (r"언리얼(?!\s?엔진)", ""),
-    "Unity": (r"유니티", "유니티"),
-    "Houdini": (r"후디니|후디나", "후디니"),
-    "ZBrush": (r"지브러시|제트브러시|Z-?brush", "지브러시"),
-    "Cinema 4D": (r"시네마\s?4D|C4D", "시네마4D"),
-    "V-Ray": (r"브이레이|V-?ray|Vray", "브이레이"),
-    "Corona Renderer": (r"코로나\s?렌더러", "코로나 렌더러"),
-    "Substance 3D": (r"서브스턴스(?:\s?3D)?", "서브스턴스"),
-    "Geometry Nodes": (r"지오메트리\s?노드", "지오메트리 노드"),
-    "After Effects": (r"애프터\s?이펙트(?:스)?", "애프터 이펙트"),
-    "Nuke": (r"(?<![가-힣])누크(?![가-힣])", "누크"),
-    "Maya": (r"(?<![가-힣])마야(?=\s|\(|에서|의|로|는|와|에|,|\.|$)", "마야"),
-    "Godot": (r"고도\s?엔진|고닷", "고도 엔진"),
-    "Marvelous Designer": (r"마블러스(?:\s?디자이너)?", "마블러스 디자이너"),
-    "MetaHuman": (r"메타\s?휴먼", "메타휴먼"),
-    "Nanite": (r"나나이트", "나나이트"),
-    "Lumen": (r"(?<![가-힣])루멘(?![가-힣])", ""),
-    "RailClone": (r"레일\s?클론", "레일클론"),
-    "Forest Pack": (r"포레스트\s?팩", "포레스트팩"),
-    "tyFlow": (r"타이\s?플로우|티와이\s?플로우|Tyflow|TyFlow", "타이플로우"),
-    "Octane Render": (r"옥테인(?:\s?렌더(?:러)?)?", "옥테인 렌더"),
-    "Redshift": (r"레드\s?시프트", "레드시프트"),
-    "Arnold": (r"아놀드\s?렌더러|아놀드(?=\s?렌더)", "아놀드 렌더러"),
-    "Quixel Megascans": (r"퀵셀\s?메가스캔|메가스캔", "메가스캔"),
-    "Python": (r"파이썬", "파이썬"),
-}
-_GLOSS_RE = [(re.compile(v), k) for k, (v, _) in GLOSSARY.items()]
-
-
-def glossary_extra() -> dict[str, str]:
-    """config.json 의 glossary 로 사용자 용어 추가: {"정식표기": "변형1|변형2"}."""
-    g = dict(_load_json(CONFIG_PATH, {}).get("glossary") or {})
-    # evolve.audit_terms 가 학습한 '한글 음역 → 영문' (사용자 설정이 우선)
-    for hangul, canon in (load_memory().get("glossary_learned") or {}).items():
-        if not (isinstance(hangul, str) and isinstance(canon, str)):
-            continue
-        # 단어 전체만 교정 (앞은 한글이 아니고, 뒤는 조사·공백·문장부호) → '스타일' 같은 다른 단어 훼손 방지
-        rx = rf"(?<![가-힣]){re.escape(hangul)}(?=(?:은|는|이|가|을|를|의|에|와|과|로|으로|에서|도|만|$|[^가-힣]))"
-        g[canon] = f"{g[canon]}|{rx}" if canon in g else rx
-    return {k: v for k, v in g.items() if isinstance(k, str) and isinstance(v, str) and v}
-
-
-def fix_terms(text: str) -> str:
-    """음역·오번역된 도구 이름을 정식 표기로 교정하고 '정식(정식)' 같은 중복 괄호를 정리."""
-    if not isinstance(text, str) or not text:
-        return text
-    for rx, canon in _GLOSS_RE + [(re.compile(v), k) for k, v in glossary_extra().items()]:
-        text = rx.sub(canon, text)
-    # "Blender(Blender)", "MAXScript (MAXScript)" → 한 번만
-    text = re.sub(r"([A-Za-z0-9][\w\- .]{1,30}?)\s?\(\s?\1\s?\)", r"\1", text)
-    return text
-
-
-def term_aliases(text: str) -> list[str]:
-    """본문에 등장한 정식 표기의 한글 별칭 → 검색 태그 (예: Blender → 블렌더)."""
-    return [alias for canon, (_, alias) in GLOSSARY.items() if alias and canon in (text or "")]
-
-
-def apply_glossary(data: dict) -> dict:
-    for key in ("title_ko", "summary", "insight"):
-        data[key] = fix_terms(data.get(key) or "")
-    for sct in data.get("sections") or []:
-        sct["heading"], sct["body"] = fix_terms(sct.get("heading", "")), fix_terms(sct.get("body", ""))
-    for f in data.get("faq") or []:
-        if isinstance(f, dict):
-            f["q"], f["a"] = fix_terms(f.get("q", "")), fix_terms(f.get("a", ""))
-    raw_tags = data.get("tags") or []
-    if isinstance(raw_tags, str):  # LLM 이 "a, b, c" 문자열로 줄 때
-        raw_tags = [t.strip() for t in raw_tags.split(",") if t.strip()]
-    tags = [fix_terms(t) for t in raw_tags if isinstance(t, str)]
-    blob = " ".join([data.get("title_ko", ""), data.get("summary", "")] + tags)
-    data["tags"] = list(dict.fromkeys(tags + term_aliases(blob)))[:10]
-    return data
+# 용어집(음역·오번역 교정)은 terms.py
+from terms import GLOSSARY, _GLOSS_RE, apply_glossary, fix_terms, glossary_extra, term_aliases  # noqa: E402,F401
 
 
 def normalize_summary(data: dict, item: dict) -> dict:
@@ -1504,7 +1511,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
 
     budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
     for idx, raw in enumerate(items):
-        if llm_usage_today() >= budget:
+        if llm_budget_left() <= 0:
             RUN_ERRORS.append(f"LLM 일일 한도({budget}회) 도달 — 남은 {len(items) - idx}건은 다음 날")
             break
         try:

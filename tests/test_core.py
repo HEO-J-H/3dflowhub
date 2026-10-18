@@ -490,3 +490,40 @@ def test_tool_interest_needs_enough_views(monkeypatch):
     import evolve
     monkeypatch.setattr(core, "_load_json", lambda path, default=None: {} if "performance" in str(path) else default)
     assert evolve.learn_tool_interest() == {}
+
+
+def test_llm_falls_back_when_primary_quota_exhausted(monkeypatch, tmp_path):
+    class R:
+        def __init__(self, code, body):
+            self.status_code, self._b, self.headers = code, body, {}
+            self.ok, self.text = code == 200, __import__("json").dumps(body)
+
+        def json(self):
+            return self._b
+
+    def fake_post(url, **kw):
+        if "groq" in url:
+            return R(200, {"choices": [{"message": {"content": "from groq"}}]})
+        return R(429, {"error": "You exceeded your current quota"})
+
+    monkeypatch.setattr(core, "LLM_API_KEY", "x")
+    monkeypatch.setattr(core, "LLM_QUOTA_PATH", tmp_path / "q.json")
+    monkeypatch.setattr(core, "LLM_FALLBACK_PATH", tmp_path / "fb.json")
+    monkeypatch.setenv("GROQ_API_KEY", "g")
+    monkeypatch.setattr(core.requests, "post", fake_post)
+    monkeypatch.setattr(core.time, "sleep", lambda s: None)
+    assert core.llm("hi") == "from groq"
+    assert core.llm_quota_status()["exhausted"]          # 주 공급자는 오늘 소진으로 기록
+    assert core.llm_fallback_usage() == {"groq": 1}
+
+
+def test_gsc_opportunities(monkeypatch, tmp_path):
+    import gsc
+    monkeypatch.setattr(gsc, "GSC_PATH", tmp_path / "g.json")
+    core._save_json(gsc.GSC_PATH, {"queries": [
+        {"key": "maxscript material", "clicks": 1, "impressions": 50, "ctr": 0.02, "position": 11.0},
+        {"key": "blender 5", "clicks": 9, "impressions": 30, "ctr": 0.3, "position": 3.0}]})
+    assert gsc.top_queries() == ["maxscript material", "blender 5"]
+    assert [r["key"] for r in gsc.opportunities()] == ["maxscript material"]
+    monkeypatch.delenv("GSC_SERVICE_ACCOUNT", raising=False)
+    assert gsc.collect() is None
