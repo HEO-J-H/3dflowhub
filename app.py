@@ -558,7 +558,7 @@ with t_auto:
                 with st.spinner(f"{r['name']} 업무 중…"):
                     try:
                         res = staff.run_role(r)
-                        core.git_sync(["memory/outbox.json", "memory/roles.json", "memory/proposals.json"],
+                        core.git_sync(["memory/outbox.json", "memory/roles.json", "memory/proposals.json", "drafts/promo"],
                                       f"chore(staff): {r['name']} 업무 [skip ci]")
                         st.toast(f"완료 — 홍보 글 {res.get('promo', 0)}개, 제안 {res.get('proposal', 0)}개")
                     except Exception as e:

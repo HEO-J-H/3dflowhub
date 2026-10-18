@@ -95,7 +95,7 @@ def team_block(site: str, key: str) -> None:
                 with st.spinner(f"{r['name']} 업무 중…"):
                     try:
                         res = staff.run_role(r)
-                        _sync(["memory/outbox.json", "memory/roles.json", "memory/proposals.json",
+                        _sync(["memory/outbox.json", "memory/roles.json", "memory/proposals.json", "drafts/promo",
                                f"memory/sites/{site}/health.json"], f"{r['name']} 업무")
                         st.toast(f"완료 — {res.get('note', '')[:60]}")
                     except Exception as e:
