@@ -1,0 +1,91 @@
+{
+  "id": "blender-solidify-modifier-442d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Solidify modifier",
+  "title": "Solidify — 두께 만들기",
+  "summary": "Solidify modifier는 얇은 표면(Mesh)에 깊이와 두께를 더해 입체적인 볼륨을 만들어 주는 필수 기능입니다. 평면 종이에 두께를 주어 상자로 만드는 것과 같습니다.",
+  "when": [
+    "건축 도면의 2D 평면 벽체에 입체적인 두께를 줄 때",
+    "캐릭터의 옷이나 갑옷 등 얇은 천 구조물을 모델링할 때",
+    "유리컵이나 그릇 같은 투명한 객체에 실제 두께감을 표현할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Properties 패널에서 Modifier(렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier 를 클릭하고 Generate 분류에서 Solidify 를 선택합니다.",
+    "Thickness 값을 조절하여 메쉬에 원하는 만큼의 두께를 부여합니다.",
+    "Offset 값을 조절하여 두께가 안쪽, 바깥쪽, 혹은 중앙 기준으로 생성될지 결정합니다.",
+    "복잡한 구조라면 Mode를 Complex로 변경하여 겹침 현상을 방지합니다."
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "생성될 두께의 깊이 값을 설정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "-1에서 1 사이의 값으로 원본 메쉬를 기준으로 안쪽 혹은 바깥쪽에 두께를 배치합니다."
+    },
+    {
+      "name": "Mode",
+      "desc": "기본적인 Simple 방식과 복잡한 구조를 처리하는 Complex 방식을 선택합니다."
+    },
+    {
+      "name": "Even Thickness",
+      "desc": "모서리가 날카로운 곳의 두께를 균일하게 유지해 줍니다."
+    },
+    {
+      "name": "Fill Rim",
+      "desc": "내외부 표면 사이의 가장자리를 메워 단면을 채웁니다."
+    },
+    {
+      "name": "Material Offset",
+      "desc": "새로 생성된 지오메트리에 적용할 머티리얼 슬롯 인덱스 오프셋을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 벽체 모델링",
+      "steps": [
+        "Plane으로 건물의 평면 라인을 그립니다.",
+        "Solidify modifier를 추가하고 Thickness를 높여 벽체 두께를 만듭니다.",
+        "Material Offset을 조절해 벽 안쪽과 바깥쪽 머티리얼을 다르게 지정합니다."
+      ]
+    },
+    {
+      "title": "컵 만들기",
+      "steps": [
+        "Cylinder 메쉬를 추가하고 윗면(Top face)을 삭제합니다.",
+        "Solidify modifier를 추가하고 Thickness를 주어 컵의 벽 두께를 만듭니다.",
+        "Subdivision Surface modifier를 추가하여 부드러운 컵 형태를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 크기가 찌그러짐(Non-uniform scale) → Object 모드에서 Ctrl+A를 누르고 Apply Scale을 실행하여 두께가 균일하게 나오도록 수정합니다.",
+    "법선(Normals)이 뒤집혀 두께가 이상하게 생성됨 → Edit 모드에서 전체 선택(A) 후 Shift+N을 눌러 Normal을 재계산합니다.",
+    "모서리가 겹치고 깨지는 현상 발생 → Mode를 Simple에서 Complex로 변경하고 Even Thickness 옵션을 조절합니다."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Extrude",
+    "Bevel",
+    "Vertex Groups"
+  ],
+  "videos": [
+    {
+      "id": "uvq3F8rOPTY",
+      "title": "Solidify Modifier - Blender Tutorial for Beginners - Basics",
+      "author": "in2vert"
+    },
+    {
+      "id": "rodbBWVMZno",
+      "title": "The Ultimate Guide to the Solidify Modifier in Blender (2025 Update)",
+      "author": "Josh - Blender Bros"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/solidify.html",
+  "grounded": true,
+  "at": "2026-10-18T10:36:58.881285+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "blender-simple-deform-modifier-483e",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Simple Deform modifier",
+  "title": "Simple Deform — 휘기·비틀기·테이퍼",
+  "summary": "Simple Deform 모디파이어는 오브젝트에 회전(Twist, Bend) 또는 스케일(Taper, Stretch) 변형을 간단하게 적용합니다. 철사를 구부리거나 고무를 당기듯 메시, 커브, 텍스트 등을 손쉽게 변형할 수 있습니다.",
+  "when": [
+    "일직선으로 곧게 뻗은 파이프나 막대를 부드럽게 구부릴 때",
+    "텍스트나 로고에 회전(Twist) 효과를 주어 입체감을 살릴 때",
+    "오브젝트의 끝부분을 뾰족하게(Taper) 하거나 고무줄처럼 늘일 때"
+  ],
+  "steps": [
+    "변형을 적용할 메시 오브젝트를 선택합니다.",
+    "Properties 패널에서 Modifier 탭(렌치 아이콘)을 클릭합니다.",
+    "Add Modifier 메뉴를 열고 Deform 분류에서 Simple Deform을 선택합니다.",
+    "Mode(Twist, Bend, Taper, Stretch 중 하나)를 선택합니다.",
+    "Deform Axis를 설정하여 변형 기준 축을 지정합니다.",
+    "Angle 또는 Factor 값을 조절하여 변형의 세기를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "변형 방식을 Twist, Bend, Taper, Stretch 중 선택합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "Twist 및 Bend 모드에서 회전 각도를 설정합니다."
+    },
+    {
+      "name": "Factor",
+      "desc": "Taper 및 Stretch 모드에서 변형의 양을 조절합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "변형이 일어날 기준 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Limits",
+      "desc": "변형이 적용될 상하한선 범위를 제한합니다."
+    },
+    {
+      "name": "Origin",
+      "desc": "변형의 중심점과 축을 정의할 외부 오브젝트(주로 Empty)를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "막대기 구부리기 (Bend)",
+      "steps": [
+        "충분한 세그먼트가 있는 실린더 오브젝트를 준비합니다.",
+        "Simple Deform 모디파이어를 추가하고 Mode를 Bend로 설정합니다.",
+        "Deform Axis를 Z축으로 설정하고 Angle 값을 조절해 막대를 둥글게 휘어줍니다."
+      ]
+    },
+    {
+      "title": "텍스트 비틀기 (Twist)",
+      "steps": [
+        "텍스트 오브젝트를 생성하고 입체감(Extrude)을 줍니다.",
+        "Simple Deform 모디파이어를 추가하고 Mode를 Twist로 설정합니다.",
+        "Angle 값을 높여 텍스트가 나선형으로 비틀어지게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(Segment) 부족 → 오브젝트가 부드럽게 휘지 않고 꺾이므로 루프 컷(Ctrl+R)을 추가해 면을 나눕니다.",
+    "오브젝트 스케일 미적용 → 변형이 찌그러져 보일 수 있으므로 3D 뷰포트에서 Ctrl+A를 눌러 Apply Scale을 실행합니다.",
+    "로컬 축 방향 혼동 → 월드 축과 로컬 축이 달라 원하지 않는 방향으로 휘어질 수 있으므로 Empty 오브젝트를 활용해 축을 제어합니다."
+  ],
+  "related": [
+    "Curve Modifier",
+    "Lattice",
+    "Displace Modifier",
+    "Proportional Editing"
+  ],
+  "videos": [
+    {
+      "id": "KgM-nWTHAJU",
+      "title": "How to Bend Objects In Blender | Simple Deform Modifier | All Settings Explained With Examples",
+      "author": "5 Minutes Blender"
+    },
+    {
+      "id": "GlLjLkPsGyk",
+      "title": "Blender Tutorial : Bend Objects in Blender with Simple Deform",
+      "author": "Digitalfix"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html",
+  "grounded": true,
+  "at": "2026-10-18T10:37:08.012032+00:00"
+}

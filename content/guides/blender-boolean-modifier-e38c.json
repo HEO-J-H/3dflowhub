@@ -1,0 +1,94 @@
+{
+  "id": "blender-boolean-modifier-e38c",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Boolean modifier",
+  "title": "Boolean — 합치기·빼기",
+  "summary": "Boolean modifier는 두 개 이상의 메쉬를 합치거나 빼서 새로운 형태를 만드는 기능입니다. 마치 찰흙을 붙이거나 도려내는 것과 같습니다.",
+  "when": [
+    "하드 표면(Hard Surface) 모델링에서 구멍을 뚫거나 홈을 파낼 때",
+    "복잡한 형태의 오브젝트 여러 개를 하나로 합칠 때",
+    "두 오브젝트가 겹치는 교차 영역만 남기고 싶을 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 대상 오브젝트를 선택합니다.",
+    "2. Properties 패널에서 Modifier(렌치) 탭을 엽니다.",
+    "3. Add Modifier를 클릭하고 Boolean을 선택합니다.",
+    "4. Operation에서 Intersect, Union, Difference 중 원하는 연산을 선택합니다.",
+    "5. Object 항목을 클릭하고 구멍을 뚫거나 더할 소스 오브젝트를 스포이트나 드롭다운으로 지정합니다.",
+    "6. 작업을 마친 후 소스 오브젝트는 숨기거나 이동하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "Intersect(교차), Union(합치기), Difference(빼기) 중 연산 방식을 선택합니다."
+    },
+    {
+      "name": "Operand Type",
+      "desc": "단일 오브젝트(Object) 또는 컬렉션(Collection) 전체를 피연산자로 지정합니다."
+    },
+    {
+      "name": "Solver",
+      "desc": "연산 알고리즘을 설정하며, 정확도가 높은 Exact와 빠른 속도의 Float 중 선택합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "Exact Solver 사용 시 새로 생성된 면에 적용할 머티리얼 매핑 방식을 설정합니다."
+    },
+    {
+      "name": "Hole Tolerant",
+      "desc": "Non-manifold 지오메트리에서 발생하는 오류를 최적화합니다."
+    },
+    {
+      "name": "Self Intersection",
+      "desc": "메쉬 자체 교차를 올바르게 처리하도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품에 원형 구멍 뚫기",
+      "steps": [
+        "1. 판 모양의 기본 메쉬를 준비합니다.",
+        "2. 실린더 메쉬를 판과 겹치도록 배치합니다.",
+        "3. 판에 Boolean modifier를 추가하고 Operation을 Difference로 설정합니다.",
+        "4. Object에 실린더를 지정하여 구멍을 완성합니다."
+      ]
+    },
+    {
+      "title": "두 메쉬 하나로 합치기 (Union)",
+      "steps": [
+        "1. 겹쳐 있는 두 개의 오브젝트를 준비합니다.",
+        "2. 메인 오브젝트에 Boolean modifier를 추가합니다.",
+        "3. Operation을 Union으로 설정합니다.",
+        "4. Object에 합칠 대상 오브젝트를 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "결과물이 깨지거나 구멍이 뚫림 → 메쉬가 Manifold(완전한 닫힌 형태) 상태인지 확인하고, Solver를 Exact로 변경합니다.",
+    "오브젝트 크기가 적용되지 않아 이상하게 뚫림 → Object 모드에서 Ctrl+A를 눌러 Scale 값을 반드시 1로 Apply(적용)합니다.",
+    "겹쳐 있는 면에서 아티팩트 발생 → Solver를 Float에서 Exact로 바꾸고 Self Intersection 옵션을 활성화합니다."
+  ],
+  "related": [
+    "Edit Mode",
+    "Bisect",
+    "Knife Tool",
+    "Mesh Analysis"
+  ],
+  "videos": [
+    {
+      "id": "CHqH5oz0DvQ",
+      "title": "How to Use the Boolean Modifier in Blender (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "PxgNIRPM2VU",
+      "title": "Blender Boolean Modifier Tutorial for union, difference, and intersect",
+      "author": "blenderian"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html",
+  "grounded": true,
+  "at": "2026-10-18T10:37:03.584655+00:00"
+}
