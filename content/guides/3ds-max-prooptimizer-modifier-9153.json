@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-prooptimizer-modifier-9153",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "ProOptimizer modifier",
+  "title": "ProOptimizer — 폴리곤 수 줄이기",
+  "summary": "ProOptimizer는 모델의 형태를 유지하면서 폴리곤(Polygon) 개수를 줄여주는 비파괴적 최적화 모디파이어입니다.",
+  "when": [
+    "하이폴리곤 모델의 폴리곤 수를 줄여 파일 용량을 최적화할 때",
+    "게임 엔진이나 실시간 렌더링을 위해 로우폴리곤 버전이 필요할 때",
+    "복잡한 CAD 데이터를 가볍게 변환하여 작업 속도를 높일 때"
+  ],
+  "steps": [
+    "뷰포트에서 최적화할 3D 오브젝트를 선택합니다.",
+    "Modifier List에서 ProOptimizer를 찾아 적용합니다.",
+    "Parameters 롤아웃에서 Calculate 버튼을 클릭하여 현재 메시를 분석합니다.",
+    "Vertex % 또는 Vertex Count 값을 조절하여 폴리곤 수를 줄입니다.",
+    "Keep Textures나 Keep Material Boundaries 등 필요한 옵션을 체크합니다."
+  ],
+  "params": [
+    {
+      "name": "Calculate",
+      "desc": "오브젝트의 버텍스와 폴리곤 구조를 분석하여 최적화 준비를 합니다."
+    },
+    {
+      "name": "Vertex %",
+      "desc": "전체 버텍스 대비 남길 비율을 백분율로 조절합니다."
+    },
+    {
+      "name": "Vertex Count",
+      "desc": "남길 버텍스의 정확한 개수를 직접 지정합니다."
+    },
+    {
+      "name": "Keep Textures",
+      "desc": "UV 매핑 좌표가 깨지지 않도록 유지하며 최적화합니다."
+    },
+    {
+      "name": "Keep Material Boundaries",
+      "desc": "재질(Material ID)이 나뉘는 경계면의 형태를 보존합니다."
+    },
+    {
+      "name": "Merge Vertices",
+      "desc": "가까운 버텍스들을 병합하여 불필요한 면을 추가로 정리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하이폴리곤 스캔 모델 최적화",
+      "steps": [
+        "스캔 받은 고용량 오브젝트를 선택하고 ProOptimizer를 적용합니다.",
+        "Calculate를 눌러 분석한 뒤, Vertex %를 30%로 낮춥니다.",
+        "Keep Textures를 켜서 UV 왜곡을 방지합니다."
+      ]
+    },
+    {
+      "title": "배경 에셋 로우폴리곤 제작",
+      "steps": [
+        "배경용 건축물 오브젝트에 ProOptimizer를 적용합니다.",
+        "Vertex Count를 낮추어 실시간 렌더링에 적합한 수준으로 맞춥니다.",
+        "Keep Material Boundaries를 켜서 매질 경계의 각을 보존합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Calculate 버튼을 누르지 않고 값을 조절함 → 반드시 Calculate를 먼저 실행한 뒤 값을 줄이세요.",
+    "텍스처 유지 옵션을 끄고 최적화함 → Keep Textures를 체크하여 UV 깨짐을 방지하세요."
+  ],
+  "related": [
+    "MultiRes",
+    "Optimize",
+    "ProBoolean",
+    "Turbosmooth"
+  ],
+  "videos": [
+    {
+      "id": "M0FWI7847nk",
+      "title": "3ds Max  12-07 ProOptimizer Modifier",
+      "author": "John Bordeau"
+    },
+    {
+      "id": "hEHm5T-_l-Y",
+      "title": "Reducing the polygons and size of 3ds max block (ProOptimizer)",
+      "author": "5d studio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20ProOptimizer%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T07:36:48.439614+00:00"
+}

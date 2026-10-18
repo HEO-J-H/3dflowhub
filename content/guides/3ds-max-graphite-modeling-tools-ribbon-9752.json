@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-graphite-modeling-tools-ribbon-9752",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Graphite Modeling Tools ribbon",
+  "title": "Graphite 모델링 툴(리본)",
+  "summary": "Graphite Modeling Tools 리본은 3ds Max에서 폴리곤 모델링 작업을 빠르고 직관적으로 수행할 수 있도록 돕는 다기능 툴바입니다.",
+  "when": [
+    "반복적인 폴리곤 편집 및 에지 루프 조작을 빠르게 처리할 때",
+    "리토폴로지나 프리폼(Freeform) 브러시로 유기적인 형태를 다듬을 때",
+    "복잡한 서브오브젝트 선택과 터널링 작업을 효율화할 때"
+  ],
+  "steps": [
+    "메인 툴바 또는 Modeling 탭에서 Graphite Modeling Tools 리본 활성화하기",
+    "Editable Poly 오브젝트를 선택하고 서브오브젝트 레벨(Polygon, Edge 등) 진입하기",
+    "리본 메뉴 내에서 Modeling 탭 또는 Polygon Modeling 패널 확장하기",
+    "Connect, SwiftLoop 등 원하는 도구 아이콘 클릭하여 적용하기",
+    "Viewport에서 드래그하거나 파라미터를 조절하여 형태 확정하기"
+  ],
+  "params": [
+    {
+      "name": "SwiftLoop",
+      "desc": "에지 루프를 클릭 한 번으로 빠르게 추가합니다."
+    },
+    {
+      "name": "Connect",
+      "desc": "선택한 에지 사이에 새로운 세그먼트를 연결합니다."
+    },
+    {
+      "name": "Extrude",
+      "desc": "선택한 폴리곤을 바깥쪽이나 안쪽으로 밀어내거나 뽑아냅니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "폴리곤을 돌출시키면서 외곽 크기를 조절합니다."
+    },
+    {
+      "name": "Ring",
+      "desc": "선택한 에지와 평행한 모든 에지 루프를 선택합니다."
+    },
+    {
+      "name": "Loop",
+      "desc": "선택한 에지와 이어지는 연속된 에지 라인을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드서페이스 패널 라인 추가",
+      "steps": [
+        "Editable Poly 오브젝트 선택 후 Edge 레벨 진입",
+        "SwiftLoop 툴을 활성화하여 원하는 위치에 에지 루프 추가",
+        "Chamfer 기능을 사용해 에지를 부드럽게 나누어 하이라이트 표현"
+      ]
+    },
+    {
+      "title": "건축물 창문 프레임 제작",
+      "steps": [
+        "벽면 폴리곤을 선택하고 Bevel 툴로 안쪽으로 깊이감 주기",
+        "Extrude를 활용해 프레임 입체감 살리기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브오브젝트 레벨이 아닌 상태에서 툴 클릭 → Edit Poly 모디파이어를 추가하거나 올바른 Sub-object 레벨(Polygon/Edge)로 진입하세요.",
+    "리본 UI가 화면 해상도 때문에 접혀서 안 보임 → 리본 우측 상단의 화살표 버튼을 클릭하여 패널을 확장하세요."
+  ],
+  "related": [
+    "Editable Poly",
+    "SwiftLoop",
+    "Freeform",
+    "Selection"
+  ],
+  "videos": [
+    {
+      "id": "KDrSk0cjRa8",
+      "title": "3DS Max 2015: Graphite Modeling Tools Ribbon Disappeared",
+      "author": "James Abell"
+    },
+    {
+      "id": "sClR1ujM2xA",
+      "title": "3ds Max Graphite Tools Conform Brush (Wrap Model)",
+      "author": "Studio3dsMax"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Graphite%20Modeling%20Tools%20ribbon",
+  "grounded": false,
+  "at": "2026-10-18T07:36:52.971999+00:00"
+}

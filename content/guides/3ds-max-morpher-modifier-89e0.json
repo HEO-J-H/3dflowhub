@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-morpher-modifier-89e0",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Morpher modifier",
+  "title": "Morpher — 모프 타깃·표정",
+  "summary": "Morpher modifier는 원본 메시의 버텍스 위치를 다른 타겟 메시의 형태로 변형하여 애니메이션하는 기능입니다.",
+  "when": [
+    "캐릭터의 눈, 입 등 얼굴 표정(Facial Expression) 애니메이션을 제작할 때",
+    "갑옷이나 의상의 형태가 변하는 모프 애니메이션을 줄 때",
+    "스킨(Skin) 웨이트만으로는 해결하기 힘든 복잡한 관절 부위의 찌그러짐을 보정할 때"
+  ],
+  "steps": [
+    "원본 오브젝트(Base Mesh)를 복제하여 원하는 모양으로 타겟 메시(Target Mesh)들을 수정합니다.",
+    "원본 오브젝트를 선택하고 Modifier List에서 Morpher 모디파이어를 적용합니다.",
+    "Modifier 패널의 Channel List에서 비어있는 채널(예: Channel 1)의 Pick Object 버튼을 클릭합니다.",
+    "뷰포트에서 해당 채널에 적용할 타겟 메스를 클릭하여 등록합니다.",
+    "Channel List의 스핀들 수치(또는 퍼센트)를 0에서 100(또는 그 이상)으로 조절하여 변형을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Channel List",
+      "desc": "타겟 채널이 나열되는 목록으로, 퍼센트 값을 조절해 변형을 제어합니다."
+    },
+    {
+      "name": "Pick Object",
+      "desc": "뷰포트에서 형태 변환을 위한 타겟 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Percentage",
+      "desc": "타겟 형태가 반영되는 강도를 0~100% 범위로 조절합니다."
+    },
+    {
+      "name": "AutoLoad Targets",
+      "desc": "지정된 타겟의 이름과 상태를 자동으로 연동합니다."
+    },
+    {
+      "name": "Global Parameters",
+      "desc": "모든 채널의 반영 비율을 일괄적으로 조절하거나 제한합니다."
+    },
+    {
+      "name": "Curve Editor",
+      "desc": "타겟 채널의 애니메이션 커브를 세밀하게 편집합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 표정 만들기 (Smile)",
+      "steps": [
+        "기본 얼굴 모델을 복제하여 입꼬리가 올라간 미소 짓는 타겟 모델을 만듭니다.",
+        "기본 얼굴에 Morpher 모디파이어를 적용하고 Channel 1에 타겟 모델을 피킹합니다.",
+        "타겟 채널의 수치를 0에서 100으로 올려 미소 짓는 애니메이션을 만듭니다."
+      ]
+    },
+    {
+      "title": "눈 감기 애니메이션 (Blink)",
+      "steps": [
+        "눈을 감은 형태의 타겟 모델을 준비합니다.",
+        "Morpher 채널에 눈 감기 타겟을 등록합니다.",
+        "타겟 수치를 조절하여 눈이 감기는 모션을 키프레임으로 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버텍스 개수나 토폴로지가 원본과 다름 → 원본 메스를 Clone(Copy)하여 타겟을 만드세요.",
+    "모프 적용 후 원본의 버텍스 순서가 깨짐 → Edit Poly 작업 시 Attach나 원소 삭제를 주의하고 수정 전 상태를 유지하세요."
+  ],
+  "related": [
+    "Skin",
+    "Editable Poly",
+    "Morph To",
+    "Skin Wrap"
+  ],
+  "videos": [
+    {
+      "id": "QMnxksgdy8s",
+      "title": "Morphing a Box into an Asteroid in 3ds Max | Morpher Modifier Tutorial",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "9siJDj6Trgw",
+      "title": "How To Work With Morpher Modifier in 3DS Max - For Beginner | Hanora 3D",
+      "author": "Hanora 3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Morpher%20modifier",
+  "grounded": false,
+  "at": "2026-10-18T07:36:43.964045+00:00"
+}
