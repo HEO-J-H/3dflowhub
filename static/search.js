@@ -7,6 +7,7 @@
   const box = document.getElementById('results');
   if (!q || !box) return;
   let idx = null, ALIAS = {};
+  const HOVER = matchMedia('(hover: hover)').matches;  // 키보드 안내는 마우스 환경에서만
   const esc = s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
 
   // ── 한글 → 영문 자판 (한글 모드로 영어를 친 경우) ─────────────────────────
@@ -97,9 +98,9 @@
     box.hidden = false;
     const note = used ? `<div class="row s">‘${esc(v)}’ 결과가 없어 <b>‘${esc(used)}’</b>(으)로 검색했어요 (한/영 자판 전환)</div>` : '';
     box.innerHTML = note + (hits.length
-      ? `<div class="row s">${hits.length}건${hits.length > 30 ? ' · 상위 30건' : ''} · Enter 첫 결과 열기 · Esc 닫기</div>` +
-        hits.slice(0, 30).map((p, i) => `<a class="row${i === sel ? ' on' : ''}" href="${ROOT}${p.u}"><span class="ph"></span><span>` +
-          `<span class="t">${esc(p.t)}</span><br><span class="s">${KIND[p.k] ? KIND[p.k] + ' · ' : ''}${esc(p.c)}</span></span><span></span></a>`).join('')
+      ? `<div class="row s">${hits.length}건${hits.length > 30 ? ' · 상위 30건' : ''}${HOVER ? ' · Enter 첫 결과 열기 · Esc 닫기' : ''}</div>` +
+        hits.slice(0, 30).map((p, i) => `<a class="row${i === sel ? ' on' : ''}" href="${ROOT}${p.u}"><span>` +
+          `<span class="t">${esc(p.t)}</span><br><span class="s">${KIND[p.k] ? KIND[p.k] + ' · ' : ''}${esc(p.c)}</span></span></a>`).join('')
       : '<div class="row">검색 결과 없음 — 도구 이름(예: Blender, 3ds Max)이나 기능 이름(예: Bend, Geometry Nodes)으로 찾아보세요</div>');
   }
 

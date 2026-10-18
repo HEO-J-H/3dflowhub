@@ -411,7 +411,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
   padding:3px 8px;border-radius:99px}
 .gcard .b{padding:12px 14px}.gcard .k{font-size:12px;color:var(--accent);font-weight:600}
 .gcard .t{display:block;font-weight:600;margin:3px 0 4px;line-height:1.35}.gcard .s{font-size:13px;color:var(--muted)}
-#results .row.on{background:var(--accent-soft)}#results .row.s{font-size:13px;color:var(--muted);padding:8px 14px}
+#results .row{display:block}#results .row.on{background:var(--accent-soft)}#results .row.s{font-size:13px;color:var(--muted);padding:8px 14px}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -425,6 +425,11 @@ LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-
 SEARCH_JS = ""  # 검색은 static/search.js (한/영 자판 변환·여러 단어·키보드 이동)
 
 
+def og_default(domain: str = "") -> str:
+    """대표 이미지가 없을 때 공유 미리보기 카드 (static/og/, make_og.py 로 생성)."""
+    return f'<meta property="og:image" content="{BASE_URL}/og/{DOMAIN_SLUG.get(domain, "default")}.png">'            '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
+
+
 def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "",
          extra_head: str = "") -> str:
     nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(DOMAIN_ICON[d])} {e(d)}</a>'
@@ -436,6 +441,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:150])}">
 <meta property="og:site_name" content="{SITE_TITLE}"><meta name="twitter:card" content="summary_large_image">
 {extra_head}
+{og_default(domain_on) if 'og:image' not in extra_head else ''}
 {head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
@@ -687,7 +693,9 @@ def build_learn(guides_: list[dict]) -> None:
             + (f'<h2 class="sec">{e(g["tool"])} 기초 더 보기</h2><div class="gcards">{"".join(guide_card(o, root) for o in same)}</div>'
                if same else "")
             + YT_JS)
-        head = f'<script type="application/ld+json">{json.dumps(how_to, ensure_ascii=False)}</script>'
+        head = f'<script type="application/ld+json">{json.dumps(how_to, ensure_ascii=False)}</script>' + (
+            f'<meta property="og:image" content="https://i.ytimg.com/vi/{e(vids[0]["id"])}/hqdefault.jpg">' if vids
+            else f'<meta property="og:image" content="{BASE_URL}/og/learn.png">')
         (folder / "index.html").write_text(
             page(f"{g['title']} | {g['tool']} 기초 - {SITE_TITLE}", body, root, desc=g.get("summary", ""),
                  canonical=f"{BASE_URL}/{learn_url(g)}", extra_head=head), encoding="utf-8")
@@ -798,7 +806,7 @@ def post_head(p: dict) -> str:
             {"@type": "ListItem", "position": 4, "name": p["title_ko"][:110], "item": url}]}]
     # </script> 탈출 방지: '<' 를 유니코드 이스케이프
     js = json.dumps(ld, ensure_ascii=False).replace("<", "\\u003c")
-    return ((f'<meta property="og:image" content="{e(img)}">' if img else "") +
+    return ((f'<meta property="og:image" content="{e(img)}">' if img else og_default(p["domain"])) +
             f'<meta property="og:type" content="article"><meta property="og:url" content="{e(url)}">'
             f'<meta property="article:published_time" content="{e(date)}">'
             f'<script type="application/ld+json">{js}</script>')
@@ -951,6 +959,16 @@ def build() -> dict:
     build_guides(posts, roundups)
     # 기초 가이드 (영상 + 단계별 사용법)
     build_learn(learn_guides)
+
+    # 404 페이지 (GitHub Pages 가 없는 주소에 이 파일을 보여줌 → 어느 경로에서든 동작하도록 절대 경로)
+    abs_root = "/" + BASE_URL.split("://", 1)[1].split("/", 1)[1].strip("/") + "/"
+    nf = (f'<div class="doc"><h1>페이지를 찾을 수 없어요</h1><p class="desc">주소가 바뀌었거나 삭제된 글일 수 있습니다. '
+          f'위 검색창에 도구 이름(예: Blender, 3ds Max)이나 기능(예: Bend)을 입력해 보세요.</p>'
+          f'<div class="actions"><a class="btn primary" href="{abs_root}">홈으로</a> '
+          f'<a class="btn ghost" href="{abs_root}learn/">기초 가이드</a> <a class="btn ghost" href="{abs_root}weekly/">주간 요약</a></div></div>'
+          f'<h2 class="sec">많이 본 글</h2><div class="cards">{"".join(card(q, abs_root) for q in popular(posts, 6))}</div>')
+    (OUT / "404.html").write_text(page(f"페이지를 찾을 수 없어요 - {SITE_TITLE}", nf, abs_root,
+                                       extra_head='<meta name="robots" content="noindex">'), encoding="utf-8")
 
     # 문의 안내 페이지
     (OUT / "contact").mkdir(exist_ok=True)
