@@ -1,0 +1,59 @@
+[
+  {
+    "at": "2026-10-18T03:25:59.792586+00:00",
+    "kind": "report",
+    "id": "r-2026-10-18T03:25",
+    "text": "사이트는 최근 7일간 282개의 Post가 추가됐지만 30일 방문자 수가 76명에 불과하고, Post의 46%가 이미지 없이 게시되었습니다. 또한 오프‑토픽 오류 28건·요약 오류 9건 등 품질 문제가 눈에 띕니다."
+  },
+  {
+    "at": "2026-10-18T03:25:59.792586+00:00",
+    "kind": "proposal",
+    "id": "p-7993806aff",
+    "title": "검색 엔진 최적화(SEO) 키워드 확대",
+    "category": "검색(SEO)",
+    "evidence": "site_views_30d=76, search_console 데이터 없음, posts_total=282",
+    "proposal": "각 도메인별 주요 영어 검색어 리스트를 생성해 메타데이터와 본문에 삽입한다.",
+    "expected": "검색 유입 30~50% 증가 예상",
+    "effort": "보통",
+    "action": {
+      "type": "keyword_hints",
+      "domain": "Game Engine",
+      "keywords": [
+        "Unreal Engine tutorial",
+        "Unity game development",
+        "Godot 3D workflow"
+      ]
+    }
+  },
+  {
+    "at": "2026-10-18T03:25:59.792586+00:00",
+    "kind": "proposal",
+    "id": "p-0a163bd7c9",
+    "title": "이미지·본문 길이·주제 가이드라인 적용",
+    "category": "콘텐츠",
+    "evidence": "posts_without_image_pct=46, error_counts(off-topic)=28, error_counts(short body)=5",
+    "proposal": "‘이미지는 반드시 1개 이상 포함, 본문 최소 300자, 주제는 3D DCC·Game Engine·VFX·AI 3D 중 하나로 제한’ 규칙을 편집 노트로 추가한다.",
+    "expected": "오프‑토픽·짧은 본문 오류 70% 감소, 사용자 체류 시간 증가",
+    "effort": "낮음",
+    "action": {
+      "type": "editorial_note",
+      "note": "각 기사에 최소 1개의 이미지 삽입, 본문 300자 이상, 도메인 주제와 일치하도록 작성"
+    }
+  },
+  {
+    "at": "2026-10-18T03:25:59.792586+00:00",
+    "kind": "proposal",
+    "id": "p-97379699dc",
+    "title": "AI 일일 예산 확대 및 실행 간격 조정",
+    "category": "운영·비용",
+    "evidence": "ai_usage_today=280, ai_budget=280, ai_fallback_today.groq=8",
+    "proposal": "LLM 일일 예산을 350으로 상향하고, 현재 1시간 간격 실행을 2시간 간격으로 조정해 급격한 사용량 급증을 방지한다.",
+    "expected": "AI 한도 초과 오류 0회, 지속적인 콘텐츠 자동화 유지",
+    "effort": "보통",
+    "action": {
+      "type": "set_config",
+      "key": "llm_daily_budget",
+      "value": 350
+    }
+  }
+]
