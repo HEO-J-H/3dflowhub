@@ -464,7 +464,28 @@ def _parse_json(text: str) -> dict:
 
 
 # ─────────────────────────── [1] 동적 키워드 ───────────────────────────
+KEYWORD_CACHE_PATH = ROOT / "memory" / "keyword_cache.json"
+KEYWORD_TTL_H = 6  # 10분마다 실행되므로 키워드는 6시간 재사용 (LLM 한도를 요약에 집중)
+
+
 def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
+    """키워드 캐시: 신선하면 재사용, 한도 70% 이상 쓴 날은 LLM 대신 시드 사용."""
+    cache = _load_json(KEYWORD_CACHE_PATH, {})
+    try:
+        age_h = (datetime.now(timezone.utc) - datetime.fromisoformat(cache.get("at", ""))).total_seconds() / 3600
+    except ValueError:
+        age_h = 1e9
+    if age_h < KEYWORD_TTL_H and set(domains) <= set(cache.get("kws", {})):
+        return {d: cache["kws"][d] for d in domains}
+    budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
+    if llm_usage_today() >= budget * 0.7 or llm_quota_status()["exhausted"]:
+        return {d: DOMAINS[d]["seeds"][:per_domain] for d in domains}
+    out = _generate_keywords_llm(domains, per_domain)
+    _save_json(KEYWORD_CACHE_PATH, {"at": datetime.now(timezone.utc).isoformat(), "kws": out})
+    return out
+
+
+def _generate_keywords_llm(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
     """memory.json 의 성공/실패 키워드를 컨텍스트로 주입해 키워드를 조합."""
     mem = load_memory()
     hints = load_strategy().get("keyword_hints", {})

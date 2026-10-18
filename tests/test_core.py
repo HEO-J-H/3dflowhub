@@ -448,6 +448,16 @@ def test_http_error_feed_is_not_counted_as_empty(monkeypatch):
 
 def test_generate_keywords_removes_duplicates_across_domains(monkeypatch):
     monkeypatch.setattr(core, "llm", lambda *a, **k: '{"keywords": ["Blender 4.2", "Houdini 20"]}')
-    kws = core.generate_keywords(["3D DCC", "VFX"], per_domain=2)
+    kws = core._generate_keywords_llm(["3D DCC", "VFX"], per_domain=2)
     all_kws = [k.lower() for domain_list in kws.values() for k in domain_list]
     assert len(all_kws) == len(set(all_kws))
+
+
+def test_generate_keywords_uses_cache(monkeypatch, tmp_path):
+    monkeypatch.setattr(core, "KEYWORD_CACHE_PATH", tmp_path / "kc.json")
+    calls = []
+    monkeypatch.setattr(core, "_generate_keywords_llm", lambda d, p=2: calls.append(1) or {x: ["k"] for x in d})
+    monkeypatch.setattr(core, "llm_usage_today", lambda: 0)
+    core.generate_keywords(["VFX"])
+    core.generate_keywords(["VFX"])
+    assert len(calls) == 1  # 두 번째는 캐시
