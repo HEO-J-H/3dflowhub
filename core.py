@@ -1379,6 +1379,12 @@ def build_post_html(item: dict) -> str:
     part_1 = "".join(_section_html(s) for s in sections[:mid])
     part_2 = "".join(_section_html(s) for s in sections[mid:])
 
+    full_text = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections)
+    text_only = BeautifulSoup(full_text, "html.parser").get_text(strip=True)
+    if len(text_only) < 1500:
+        log.warning("본문 글자 수(태그 제외)가 1,500자 미만입니다 (%d자): %s", len(text_only), item.get("title_ko", item.get("title", "")))
+        RUN_ERRORS.append("short post")
+
     media = item.get("media") or {}
     hero = ""
     # 원문 대표 이미지는 출처 표기와 원문 링크를 함께 넣는다 (TISTORY_EMBED_IMAGES=0 으로 끌 수 있음)
