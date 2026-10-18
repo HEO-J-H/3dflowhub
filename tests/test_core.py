@@ -454,6 +454,7 @@ def test_generate_keywords_removes_duplicates_across_domains(monkeypatch):
 
 
 def test_generate_keywords_uses_cache(monkeypatch, tmp_path):
+    core._save_json(core.CONFIG_PATH, {"llm_keywords": True})
     monkeypatch.setattr(core, "KEYWORD_CACHE_PATH", tmp_path / "kc.json")
     calls = []
     monkeypatch.setattr(core, "_generate_keywords_llm", lambda d, p=2: calls.append(1) or {x: ["k"] for x in d})
@@ -539,3 +540,38 @@ def test_scheduled_run_uses_fallback_when_primary_spent(monkeypatch):
                                                       "domains": [], "publish": False})
     core.run_from_config(force=True)
     assert called  # 예비 AI 가 있으면 Gemini 소진이어도 수집 진행
+
+
+def test_keywords_without_ai_rotate_and_use_interest(monkeypatch):
+    monkeypatch.setattr(core, "llm", lambda *a, **k: (_ for _ in ()).throw(AssertionError("AI 호출 금지")))
+    core._save_json(core.STRATEGY_PATH, {"tool_interest": {"3D DCC": ["3ds Max"]}})
+    a = core.generate_keywords(["3D DCC", "VFX"])
+    b = core.generate_keywords(["3D DCC", "VFX"])
+    assert a["3D DCC"][0] == "3ds Max" and len(a["VFX"]) == 2
+    assert a != b  # 실행마다 순환
+
+
+def test_manager_review_decide_apply(monkeypatch, tmp_path):
+    import manager
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 100)
+    manager.send_message("3ds Max 글이 더 많았으면 해")
+    mid = manager.board()["messages"][0]["id"]
+    fake = {"summary": "오늘 7일 저장 10건.",
+            "proposals": [{"title": "3ds Max 키워드 강화", "category": "수집", "evidence": "3ds Max 조회 1위",
+                           "proposal": "키워드 추가", "expected": "+20%", "effort": "낮음",
+                           "action": {"type": "keyword_hints", "domain": "3D DCC", "keywords": ["MAXScript plugin"]}},
+                          {"title": "주기 변경", "category": "운영·비용", "evidence": "-", "proposal": "-", "effort": "낮음",
+                           "action": {"type": "set_config", "key": "rm_rf", "value": 1}}],  # 허용 안 된 키 → 행동 제거
+            "replies": [{"id": mid, "text": "네, 키워드를 늘리겠습니다."}]}
+    monkeypatch.setattr(core, "llm", lambda *a, **k: __import__("json").dumps(fake, ensure_ascii=False))
+    manager.review(force=True)
+    b = manager.board()
+    assert b["report"]["text"] and b["messages"][0]["reply"].startswith("네")
+    p1, p2 = sorted(b["proposals"], key=lambda p: p["title"])
+    assert p2["action"] is None and p1["action"]["type"] == "keyword_hints"
+    manager.decide(p1["id"], "accepted", "좋아요")
+    assert manager.apply_accepted() and "MAXScript plugin" in core.load_strategy()["keyword_hints"]["3D DCC"]
+    assert manager.apply_accepted() == []          # 두 번 반영하지 않음
+    manager.decide(p2["id"], "rejected", "필요 없음")
+    assert manager.acceptance_rate() == 0.5

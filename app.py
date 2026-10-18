@@ -103,15 +103,18 @@ def status_panel() -> None:
     last = (mem.get("runs") or [{}])[-1]
     cur = [r for r in runs if r["name"].startswith("3dflowhub auto")]
     ok = cur and cur[0]["conclusion"] in ("success", None)
-    color = "#30d158" if ok else "#ff453a"
-    st.markdown(f'<span class="status-dot" style="background:{color}"></span>**자동 수집 '
-                f'{"정상" if ok else "확인 필요"}**', unsafe_allow_html=True)
+    color = "#8e8e93" if not runs else "#30d158" if ok else "#ff453a"
+    label = "상태 조회 불가 (GitHub 조회 제한·네트워크)" if not runs else "정상" if ok else "확인 필요"
+    st.markdown(f'<span class="status-dot" style="background:{color}"></span>**자동 수집 {label}**',
+                unsafe_allow_html=True)
     st.caption(f"주기 {cfg['interval']} · 마지막 수집 {ago(last.get('at', ''))} "
                f"(수집 {last.get('collected', 0)} → 저장 {last.get('saved', 0)})")
     used, budget = core.llm_usage_today(), int(cfg.get("llm_daily_budget", 500))
     q = core.llm_quota_status()
+    fb = core.llm_fallback_usage()
     st.progress(1.0 if q["exhausted"] else min(1.0, used / budget) if budget else 1.0,
-                text=f"AI 사용 {used}/{budget}회" + (" · 한도 소진(16~17시 리셋)" if q["exhausted"] else ""))
+                text=f"AI 사용 {used}/{budget}회" + (" · 한도 소진(16~17시 리셋)" if q["exhausted"] else "")
+                + "".join(f" · 예비 {k} {v}회" for k, v in fb.items()))
     if q["learned_limit"] and q["learned_limit"] < budget:
         st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
     pages = [r for r in runs if r["name"].endswith("pages")]
@@ -262,7 +265,106 @@ with t_list:
                 st.cache_data.clear()
 
 # ─────────────────────────── 자동화 상태 ───────────────────────────
+@st.cache_data(ttl=300)
+def pull_latest() -> str:
+    """GitHub 에서 AI 관리자 제안 등 최신 memory 를 내려받음 (5분에 한 번)."""
+    return core.git_sync() or ""
+
+
+def save_manager(msg: str) -> None:
+    err = core.git_sync(["memory/proposals.json"], f"chore(manager): {msg} [skip ci]")
+    if err:
+        st.error(f"이 PC에는 저장됐지만 GitHub 반영 실패: {err}")
+
+
+CAT_ICON = {"콘텐츠": "📝", "수집": "📥", "사이트·UX": "🎨", "검색(SEO)": "🔎", "운영·비용": "⚙️", "수익": "💰"}
+
 with t_auto:
+    import manager
+    pull_latest()
+    mb = manager.board()
+    rep = mb["report"]
+    st.subheader("🧭 AI 관리자")
+    st.caption("AI가 하루 한 번 사이트·수집·검색·독자 지표를 분석해 개선안을 올립니다. "
+               "수락·보류·거절과 그 이유를 남기면 다음 분석에서 취향을 배웁니다.")
+    opened = [x for x in mb["proposals"] if x["status"] == "new"]
+    rate = manager.acceptance_rate()
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric("검토 대기", len(opened))
+    k2.metric("수락률", f"{int(rate * 100)}%" if rate is not None else "-")
+    k3.metric("직접 작업 필요", sum(1 for x in mb["proposals"] if x["status"] == "accepted"
+                                 and not (x.get("action") or {}).get("type")))
+    k4.metric("마지막 분석", ago(rep.get("at", "")) if rep else "아직 없음")
+    if rep:
+        with st.container(border=True):
+            st.markdown(f"**오늘의 진단** · {rep.get('at', '')[:10]}")
+            st.write(rep.get("text", ""))
+    a1, a2 = st.columns([1.4, 3])
+    if a1.button("🔍 지금 분석 요청", help="AI 1회 사용 — 지금 지표로 바로 분석합니다", width="stretch"):
+        with st.spinner("AI 관리자가 지표를 분석하는 중…"):
+            try:
+                if manager.review(force=True):
+                    save_manager("AI 관리자 분석")
+                    st.toast("✅ 새 분석이 올라왔습니다")
+                else:
+                    st.warning("AI 한도가 부족해 분석하지 못했습니다")
+            except Exception as e:
+                st.error(f"분석 실패: {e}")
+        st.rerun()
+    a2.caption("자동 분석: GitHub 수집 실행 때 하루 1회 · 의견을 보내면 다음 실행 때 답변")
+
+    view = st.segmented_control(
+        "보기", ["새 제안", "수락", "보류", "거절"], default="새 제안", label_visibility="collapsed", key="mgr_view")
+    want = {"새 제안": "new", "수락": "accepted", "보류": "held", "거절": "rejected"}.get(view or "새 제안", "new")
+    items = [x for x in mb["proposals"] if x["status"] == want]
+    if not items:
+        st.info({"new": "검토할 새 제안이 없습니다. '지금 분석 요청'을 누르거나 다음 자동 분석을 기다려 주세요.",
+                 "accepted": "수락한 제안이 없습니다.", "held": "보류한 제안이 없습니다.",
+                 "rejected": "거절한 제안이 없습니다."}[want])
+    for x in items[:10]:
+        with st.container(border=True):
+            act = x.get("action") or {}
+            st.caption(f"{CAT_ICON.get(x.get('category'), '•')} {x.get('category')} · 노력 {x.get('effort')} · "
+                       f"{x['at'][:10]}" + (f" · 기대 효과: {x['expected']}" if x.get("expected") else ""))
+            st.markdown(f"#### {x['title']}")
+            st.markdown(f"**근거** — {x.get('evidence', '')}")
+            st.markdown(f"**제안** — {x.get('proposal', '')}")
+            st.caption(("⚡ " if act.get("type") else "🛠 ") + "수락하면: " + manager.describe(act))
+            if x["status"] != "new":
+                st.caption(f"결정: {manager.STATUS_KO[x['status']]}"
+                           + (f" · 사유: {x['note']}" if x.get("note") else "")
+                           + (f" · 반영 결과: {x['applied']}" if x.get("applied") else ""))
+            if x["status"] in ("new", "held"):
+                note = st.text_input("사유·메모 (선택)", key=f"note_{x['id']}", placeholder="예: 좋아요 / 비용이 커서 보류 / 방향이 달라요",
+                                     label_visibility="collapsed")
+                b1, b2, b3, _ = st.columns([1, 1, 1, 3])
+                if b1.button("✅ 수락", key=f"acc_{x['id']}", type="primary", width="stretch"):
+                    res = manager.decide(x["id"], "accepted", note)
+                    save_manager("제안 수락")
+                    st.toast("수락했습니다" + (f" — {res}" if res else ""))
+                    st.rerun()
+                if x["status"] == "new" and b2.button("⏸ 보류", key=f"hold_{x['id']}", width="stretch"):
+                    manager.decide(x["id"], "held", note)
+                    save_manager("제안 보류")
+                    st.rerun()
+                if b3.button("✕ 거절", key=f"rej_{x['id']}", width="stretch"):
+                    manager.decide(x["id"], "rejected", note)
+                    save_manager("제안 거절")
+                    st.rerun()
+
+    with st.expander(f"💬 관리자에게 의견·질문 보내기 ({len(mb['messages'])})"):
+        with st.form("mgr_msg", clear_on_submit=True, border=False):
+            txt = st.text_area("의견", placeholder="예: 3ds Max 플러그인 글을 더 모아줘 / 사이트 첫 화면이 복잡한 것 같아",
+                               label_visibility="collapsed")
+            if st.form_submit_button("보내기", type="primary") and txt.strip():
+                manager.send_message(txt)
+                save_manager("관리자에게 의견")
+                st.toast("보냈습니다 — 다음 분석 때 답변합니다")
+        for m in mb["messages"][:10]:
+            st.markdown(f"**나** · {m['at'][:16].replace('T', ' ')}  \n{m['text']}")
+            st.markdown(f"> 🧭 {m['reply']}" if m["reply"] else "> ⏳ 다음 분석 때 답변 예정")
+
+    st.divider()
     mem = load_remote_memory()
     st.subheader("마지막 수집 결과")
     if mem.get("runs"):

@@ -540,6 +540,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("용어 점검 실패: %s", e)
         strategy["terms_audited_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    try:  # AI 관리자: 수락된 제안 반영(매 실행, AI 호출 없음) + 하루 1회 분석·제안(AI 1회)
+        import manager
+        applied = manager.apply_accepted()
+        if applied:
+            strategy = core.load_strategy()
+            strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "manager_applied": applied}])[-30:]
+            core._save_json(core.STRATEGY_PATH, strategy)
+        manager.review()
+    except Exception as e:
+        log.warning("AI 관리자 실패: %s", e)
     if force or _due(strategy, "gsc_at", 24 * 3600):  # 검색 데이터는 하루 단위로 확정
         try:
             import gsc
