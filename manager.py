@@ -330,6 +330,14 @@ def snapshot() -> dict:
         "reader_interest": strategy.get("tool_interest", {}), "search_console": search,
         "roundup_pages": len(list(core.ROUNDUP_DIR.glob("*.json"))) if core.ROUNDUP_DIR.exists() else 0,
         "views_30d_by_content_type": perf.get("by_kind"),  # 뉴스·기초 가이드·도구별 정리 중 무엇이 읽히나 → 배분 근거
+        # 자동 모드 상태: 이미 하고 있는 일(배분·가이드 우선)을 다시 제안하지 않도록
+        "auto_mode": {"on": bool(core.load_config().get("auto_mode")),
+                      "note": "When on, today's AI capacity is already split automatically between news, guides and "
+                              "roundups using your 'allocation' output, and safe proposals are auto-accepted. To shift "
+                              "priorities, change 'allocation' instead of proposing interval/budget changes.",
+                      "today_plan": {k: core._load_json(PLAN_PATH, {}).get(k) for k in ("alloc", "done", "capacity_left")},
+                      "fallback_ai": [f["name"] for f in core.fallback_providers()]},
+        "allowed_intervals": list(core.INTERVALS),
         "basics_guides": _guide_stats(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
