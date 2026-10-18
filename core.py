@@ -1494,9 +1494,12 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
         return {"at": datetime.now(timezone.utc).isoformat(), "collected": 0, "saved": 0, "published": 0,
                 "drafts": 0, "publish_errors": 0, "errors": ["no domains selected"]}
     left = llm_budget_left()
-    if left <= 0:  # 한도 소진 시 피드를 몇 분씩 긁지 않고 바로 알림
-        return {"at": datetime.now(timezone.utc).isoformat(), "collected": 0, "saved": 0, "published": 0,
-                "drafts": 0, "publish_errors": 0, "errors": [f"AI 일일 한도 소진 — {llm_reset_kst()} 이후 다시 시도"]}
+    if left <= 0:  # 한도 소진 시 피드를 몇 분씩 긁지 않고 바로 알림 (실행 기록은 남김 → 대시보드에서 보임)
+        stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": 0, "saved": 0, "published": 0,
+                 "drafts": 0, "publish_errors": 0, "llm_fallbacks": [],
+                 "errors": [f"AI 일일 한도 소진 — {llm_reset_kst()} 이후 다시 시도 (예비 AI 키 없음)"]}
+        reflect(stats, [])
+        return stats
     notion = _notion()
     ensure_notion_schema(notion)
     seen = notion_existing_urls(notion) if notion else set()
