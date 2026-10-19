@@ -32,6 +32,16 @@
     {
       "heading": "BlenderNation 커뮤니티의 역사와 배경",
       "body": "본 아티클을 게시한 Bart는 초창기 Blender 튜토리얼 작성부터 Not a Number 근무, Blender 오픈소스화 크라우드펀딩까지 역사적인 과정을 함께한 인물입니다. 2006년 Blender네이션을 설립한 이후 매일 편집을 이어오며 글로벌 3D 커뮤니티의 성장을 이끌어왔습니다. 현재는 Blender 아티스트 포럼 운영 및 n8n 커뮤니티 리드로도 활동하고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Blender에서 스파이더버스 스타일의 손그림 드로잉 선을 3D 애니메이션 캐릭터에 고정하려면 먼저 캐릭터 메쉬의 토폴로지와 UV 전개 상태를 점검해야 합니다. Grease Pencil로 드로잉 라인을 그릴 때, Geometry Nodes를 이용해 메쉬 표면의 변형을 추적하도록 세팅합니다. 이 과정에서 아티스트는 캐릭터의 모션에 선이 어긋나지 않고 자연스럽게 밀착되도록 가중치와 노드 연결 구조를 조정해야 합니다. 상업 Pipeline 2D 감성을 3D에 이식할 때 핵심이 되는 워크플로우입니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 포럼의 파이프라인 관련 토론[1]에 따르면, 2D 콘셉트 단계에서 익숙한 툴(Inkscape 등)을 거쳐 3D 프로덕션으로 전환할 때 아티스트마다 자신만의 익숙한 공정을 고수하는 경향이 있습니다. 이번 Grease Pencil과 Geometry Nodes 연동 기법을 도입할 때도, 작업자가 기존에 편하게 쓰던 드로잉 습관과 3D 애니메이션의 리깅 구조가 충돌하지 않도록 파이프라인 초기 단계에서 테스트가 필요합니다. 특히 메쉬 변형이 심한 리깅 샷에서는 선이 튀는 현상을 막기 위해 노드 세팅을 세밀하게 점검해야 합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +52,14 @@
     {
       "q": "어떤 애니메이션 스타일을 구현할 수 있나요?",
       "a": "영화 스파이더버스의 Gwen의 세계관(Earth-65)에서 볼 수 있는 독특한 회화적 렌더링과 2D 잉크 라인 스타일을 구현할 수 있습니다."
+    },
+    {
+      "q": "Grease Pencil 라인이 캐릭터 메쉬 변형 시 떨어져 나가는 현상은 어떻게 해결하나요?",
+      "a": "Geometry Nodes를 활용해 Grease Pencil 스트로크가 3D 메쉬 표면에 제약(Constraint)되거나 노드 기반으로 정밀하게 추적되도록 세팅해야 합니다. 메쉬의 무게중심과 버텍스 그룹을 활용하는 방식을 검토할 수 있습니다."
+    },
+    {
+      "q": "Brushed Shading 툴은 어떤 역할인가요?",
+      "a": "저자인 Derek Flood가 제작한 툴셋으로, 3D 공간 상의 렌더링에 회화적인 붓터치 느낌과 질감을 더해 2D 손그림 특유의 시각적 스타일을 완성해 줍니다."
     }
   ],
   "media": {
@@ -50,5 +68,31 @@
   },
   "collected_at": "2026-10-19T07:30:26.834181+00:00",
   "notion_id": "",
-  "id": "2026-10-19-552ab267c57d61ae"
+  "id": "2026-10-19-552ab267c57d61ae",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Pipeline: 2d Concept (Inkscape) to 3D Production (Blender)",
+      "url": "https://blenderartists.org/t/pipeline-2d-concept-inkscape-to-3d-production-blender/1416068",
+      "excerpt": "symbols This thread is mostly about process. I’ve noticed that artists who demonstrate concepting (thumbnails, sketches, whatever) use different techniques but they all use a technique that they are totally comfortable with (no surprise as they are professional artists after all) but it seems an ...",
+      "replies": 5
+    }
+  ],
+  "videos": [
+    {
+      "id": "Vn0dsxM8d6A",
+      "title": "Sticking Hand Drawn Ink Lines to 3D Animation with Blender Grease Pencil and Geometry Nodes",
+      "author": "Derek Flood"
+    },
+    {
+      "id": "QraBYTiLDa0",
+      "title": "Creating a Game Ready Hand Painted Shield Asset in Blender (Full Tutorial)",
+      "author": "Ryan King Art"
+    }
+  ],
+  "enriched_at": "2026-10-19T13:11:31+00:00",
+  "quality": {
+    "before": 941,
+    "after": 1526
+  }
 }

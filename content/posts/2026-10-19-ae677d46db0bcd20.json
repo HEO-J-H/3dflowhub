@@ -1,0 +1,94 @@
+{
+  "title_ko": "Substance 3D Designer로 제작하는 현실적인 숲 바닥 머티리얼",
+  "title": "Making Realistic Tileable Forest Floor Material Using Substance 3D Designer's Nodes",
+  "url": "https://80.lv/articles/making-realistic-tileable-forest-floor-material-using-substance-3d-designer-s-nodes/",
+  "domain": "3D DCC",
+  "category": "Substance 3D",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Substance 3D Designer",
+    "Unreal Engine",
+    "Marmoset Toolbag",
+    "Procedural 머티리얼",
+    "환경 아티스트",
+    "언리얼 엔진",
+    "서브스턴스"
+  ],
+  "summary": "Tencent의 수석 머티리얼 아티스트 Zeqi Mu가 Substance 3D Designer의 Procedural 노드와 스플라인 생성 시스템을 활용해 스캔 수준의 숲 바닥 머티리얼을 제작하는 공정을 소개합니다.",
+  "insight": "이 인터뷰는 단순한 텍스처 제작을 넘어 타일러블 머티리얼에서 반복 패턴을 숨기고 자연스러운 계층 구조를 만드는 고급 Procedural 노드 활용법을 보여줍니다. 특히 Spline Generators와 Shape splatter v2를 결합하여 나뭇뿌리와 돌, 이끼, 낙엽을 복잡하게 적층하는 방식은 오픈월드 환경 제작 시 반복 작업의 효율을 극적으로 높여줍니다. 실무 아티스트들은 무작위성 부여와 디스플레이스먼트 최적화 기법을 주목할 필요가 있습니다.",
+  "sections": [
+    {
+      "heading": "실제 참조 분석과 초기 뿌리 형태 생성",
+      "body": "프로젝트는 실제 숲 바닥 레퍼런스를 수집하는 것으로 시작되었으며, 스캔 수준의 퀄리티를 오직 Procedural 노드만으로 구현하는 것이 목표였습니다. 초기에는 Cells 2 노드를 사용해 나무 뿌리의 주된 형태를 만들고자 했으나 자연스러운 계층 구조를 재현하기 어렵다는 한계를 발견했습니다. 이를 해결하기 위해 스플라인 생성기를 도입하여 뿌리가 보다 유기적이고 제어 가능한 방식으로 자라나도록 수정했습니다."
+    },
+    {
+      "heading": "스플라인과 노이즈를 이용한 반복 패턴 최소화",
+      "body": "Scatter Splines on Splines 기법을 적용하여 실제 나무 뿌리의 자연스러운 성장 패턴과 밀도를 정밀하게 제어했습니다. 타일러블 머티리얼 특유의 시각적 반복을 줄이기 위해 메인 뿌리의 밀도를 낮게 유지하고 여러 Gaussian noise 패턴을 높이 맵에 곱했습니다. 이를 통해 고저 차와 표면 형태에 풍부한 다양성을 부여하여 타일링 경계를 자연스럽게 숨겼습니다."
+    },
+    {
+      "heading": "Shape splatter v2를 활용한 돌과 이끼 배치",
+      "body": "뿌리 사이에는 시각적으로 두드러지는 큰 돌과 작은 돌들을 배치했습니다. 작은 돌을 만들 때는 새로운 Shape splatter v2 노드의 SDF rock 기능을 사용했으며, 랜드마크 함수 그래프를 통해 둥근 정도와 면 개수에 무작위 값을 주었습니다. 또한 동일한 Shape splatter v2 노드 내에서 이끼 노멀을 직접 생성하여 결합된 높이 맵에서 추출하는 것보다 뛰어난 결과를 얻었습니다."
+    },
+    {
+      "heading": "다층 구조의 복잡한 숲 바닥 레이어링",
+      "body": "실제 숲 바닥의 복잡성을 담아내기 위해 머티리얼은 밑에서 위로 수많은 레이어 계층으로 구축되었습니다. 바닥부터 나무 뿌리, 큰 돌, 작은 돌, 아주 작은 돌, 이끼, 마른 잎, 오래된 나뭇가지, 마이크로 스톤, 토끼풀, 지팡이, 부러진 나뭇가지, 풀, 떨어진 잎, 떨어진 나뭇가지, 추가 토끼풀 및 고사리 순으로 정교하게 쌓아 올렸습니다."
+    },
+    {
+      "heading": "Unreal Engine 5와 Marmoset Toolbag 렌더링",
+      "body": "Marmoset Toolbag에서는 스튜디오 HDRI를 활용해 통제된 조명 아래서 머티리얼을 명확하게 표현했습니다. Unreal Engine 5에서는 기본 Procedural 스카이 셋업을 조정하여 석양 분위기를 연출하고 캐릭터가 달리는 데모를 시연했습니다. 머티리얼에는 Nanite displacement를 활성화하고 토끼풀 잎에 서브서피스 스캐터링 마스크를 추가해 사실감을 극대화했습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "타일러블 머티리얼 제작 시 반복 패턴을 숨기는 작업은 매우 중요합니다. 본 공정에서는 Scatter Splines on Splines 기법으로 뿌리의 밀도를 조절하고, Gaussian noise를 높이 맵에 곱해 타일링 경계를 자연스럽게 가립니다. 또한 Shape splatter v2 노드의 SDF rock 기능과 랜드마크 함수 그래프를 조합하면 돌의 둥근 정도나 면 개수를 무작위로 제어할 수 있어 Procedural 작업의 단조로움을 효과적으로 극복할 수 있습니다. 머티리얼을 레이어링할 때는 밑바닥부터 나무 뿌리, 돌, 이끼, 나뭇가지, 풀, 고사리 순으로 세밀하게 쌓아 올리는 계층 구조를 기억해 두세요.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이 공정을 직접 학습하려면 Substance 3D Designer의 최신 Procedural 노드 시스템과 스플라인 생성 기능에 익숙해져야 합니다. 특히 Shape splatter v2 노드와 SDF 기반의 오브젝트 배치 방식을 먼저 연습하는 것이 좋습니다. 제작한 머티리얼을 실무 프로젝트에 적용할 때는 Unreal Engine 5에서 Nanite displacement를 활성화하고, 토끼풀 같은 식물 요소에는 서브서피스 스캐터링 마스크를 더해 사실감을 높이는 세팅법을 함께 익혀두면 유용합니다.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "숲 바닥 머티리얼 제작에 걸린 기간과 가장 큰 어려움은 무엇이었나요?",
+      "a": "전체 제작에는 약 일주일이 소요되었으며, 그중 처음 3일은 나무 뿌리의 스플라인 생성 시스템 개발에 할애되었습니다. 가장 큰 난제는 타일링 표면에서 눈에 띄는 반복을 피하면서 머티리얼이 자연스럽게 보이도록 뿌리 구성을 다듬는 것이었습니다."
+    },
+    {
+      "q": "뿌리의 반복적인 패턴을 줄이기 위해 어떤 노드가 사용되었나요?",
+      "a": "스플라인 생성 시스템 외에도 여러 Gaussian noise 패턴을 높이 맵에 곱하여 뿌리의 고저 차와 표면 모양에 변화를 주어 반복적인 느낌을 최소화했습니다."
+    },
+    {
+      "q": "Cells 2 노드 대신 스플라인 생성기를 사용하는 이유는 무엇인가요?",
+      "a": "Cells 2 노드는 나무 뿌리의 주된 형태를 잡기에는 자연스러운 계층 구조를 재현하는 데 한계가 있습니다. 반면 스플라인 생성기를 사용하면 뿌리가 훨씬 유기적이고 제어 가능한 방식으로 자라나도록 정밀하게 조절할 수 있습니다."
+    },
+    {
+      "q": "Unreal Engine 5에서 숲 바닥 머티리얼의 사실감을 높이려면 어떤 기능을 켜야 하나요?",
+      "a": "Nanite displacement를 활성화하여 표면의 고저 차를 입체적으로 살리고, 토끼풀 잎 등에는 서브서피스 스캐터링 마스크를 추가해 빛이 투과하는 질감을 표현하면 사실감을 극대화할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/50633/images/6acfb6609d999/contain_1200x630.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-10-19T13:11:02.588909+00:00",
+  "notion_id": "",
+  "id": "2026-10-19-ae677d46db0bcd20",
+  "refs": [],
+  "videos": [
+    {
+      "id": "97WqaD2ezhU",
+      "title": "Create Realistic Flooring Tile in Substance Designer | Full Live Tutorial",
+      "author": "B Visual"
+    },
+    {
+      "id": "z6JuEuMOA9Y",
+      "title": "Creating a Forest Ground Material - Substance Masters Vol.5",
+      "author": "FastTrack Tutorials"
+    }
+  ],
+  "enriched_at": "2026-10-19T13:11:08+00:00",
+  "quality": {
+    "before": 1189,
+    "after": 1811
+  }
+}
