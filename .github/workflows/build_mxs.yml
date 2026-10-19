@@ -1,8 +1,11 @@
 name: build mxs checker
 
-# MAXScript 문법 검사기(tools/mxs/mxs_check.cjs)를 다시 만든다. 문법 원본(HAG87/vscode-maxscript-lsp) 버전을 올릴 때만 수동 실행.
+# MAXScript 문법 검사기(tools/mxs/mxs_check.cjs)를 다시 만든다. 검사기 소스·빌드 스크립트가 바뀌면 자동 실행.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/mxs/check.ts", "tools/mxs/build.sh"]
 
 permissions:
   contents: write

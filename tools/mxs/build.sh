@@ -12,3 +12,5 @@ cp "$HERE/check.ts" src/mxs_check.ts
 npx esbuild src/mxs_check.ts --bundle --platform=node --format=cjs --minify --outfile="$HERE/mxs_check.cjs"
 cp LICENSE "$HERE/LICENSE-vscode-maxscript-lsp"
 printf 'x = 1\nfn f a = (a + 1)\n' | node "$HERE/mxs_check.cjs"
+
+# trigger
