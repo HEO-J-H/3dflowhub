@@ -1,0 +1,96 @@
+{
+  "id": "houdini-remesh-sop-9c5a",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Remesh SOP",
+  "title": "Remesh — 고른 폴리곤으로 재구성",
+  "summary": "입력된 표면의 형태를 재조합하여 정삼각형에 가까운 고품질의 삼각형 메시로 재생성하는 Geometry Nodes입니다.",
+  "when": [
+    "시뮬레이션을 위해 불규칙하거나 늘어난 폴리곤 구조를 균일하게 정리할 때",
+    "곡률에 따라 폴리곤 크기를 조절(Adaptive)하여 디테일과 용량을 최적화할 때",
+    "스캔 데이터나 부실한 모델링의 토폴로지를 빠르게 재정렬할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Remesh 검색 후 Remesh 노드를 생성하고 지오메트리 와이어를 연결합니다.",
+    "파라미터 창에서 Edge Lengths 모드를 Uniform 또는 Adaptive로 선택합니다.",
+    "Target Size 값을 조절하여 목표 삼각형 크기를 설정합니다.",
+    "필요시 Hard Edges 그룹을 지정하여 날카로운 모서리를 보존합니다."
+  ],
+  "params": [
+    {
+      "name": "Edge Lengths",
+      "desc": "균일한 크기로 나눌지(Uniform), 곡률에 따라 다르게 나눌지(Adaptive) 결정합니다."
+    },
+    {
+      "name": "Target Size",
+      "desc": "Uniform 모드에서 목표로 하는 에지의 길이를 지정합니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "메시 품질을 높이기 위한 반복 연산 횟수입니다. 보통 3~4회가 적당합니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "각 반복 단계에서 적용할 스무딩 양을 조절하여 날카로운 특징을 부드럽게 만듭니다."
+    },
+    {
+      "name": "Max Size",
+      "desc": "Adaptive 모드에서 허용되는 최대 에지 길이를 설정합니다."
+    },
+    {
+      "name": "Min Size",
+      "desc": "Adaptive 모드에서 허용되는 최소 에지 길이를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "균일한 시뮬레이션용 메시 생성",
+      "steps": [
+        "네트워크 뷰에서 Remesh 노드를 생성합니다.",
+        "Edge Lengths를 Uniform으로 설정합니다.",
+        "Target Size 값을 낮춰서 밀도가 높은 삼각형 메시를 만듭니다."
+      ]
+    },
+    {
+      "title": "모서리가 살아있는 큐브 모델링 리메시",
+      "steps": [
+        "Group Geometry SOP 등을 이용해 큐브의 모서리 에지 그룹을 생성합니다.",
+        "Remesh 노드의 Hard Edges Group에 해당 그룹을 지정합니다.",
+        "형태가 무너지지 않고 깔끔하게 삼각형으로 재정렬되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Target Size 값을 너무 작게 설정함 → 불필요하게 폴리곤 수가 폭증하여 뷰포트가 느려지므로 적당한 크기에서 시작하세요.",
+    "Hard Edges를 지정하지 않음 → 큐브 같은 날카로운 모서리가 둥글게 무너지므로 경계 그룹을 꼭 설정하세요.",
+    "Iterations 값을 과도하게 높임 → 연산 시간만 길어지고 형태나 속성에 악영향을 주므로 3~4회 내외로 유지하세요."
+  ],
+  "related": [
+    "Subdivide",
+    "PolyReduce",
+    "Peak",
+    "Group Geometry"
+  ],
+  "videos": [
+    {
+      "id": "xk6KnKWMThw",
+      "title": "Houdini - Remesh to Grid SOP - Node Bible Quick Tip",
+      "author": "CG Forge"
+    },
+    {
+      "id": "REoW1HHhRqc",
+      "title": "Remesh SOP | Houdini",
+      "author": "Divyansh Mishra"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/remesh.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Remesh"
+  ],
+  "at": "2026-10-19T11:01:20.408240+00:00"
+}

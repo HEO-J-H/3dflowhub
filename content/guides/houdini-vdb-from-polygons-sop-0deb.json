@@ -1,0 +1,93 @@
+{
+  "id": "houdini-vdb-from-polygons-sop-0deb",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "VDB from Polygons SOP",
+  "title": "VDB from Polygons — 볼륨으로 변환",
+  "summary": "폴리곤 표면이나 어트리뷰트를 OpenVDB 볼륨 Primitive로 변환하는 노드입니다. 복셀 구조를 활용해 고해상도 볼륨을 효율적으로 생성합니다.",
+  "when": [
+    "폴리곤 지오메트리를 VDB 거리 필드(SDF)나 안개(Fog) 볼륨으로 변환할 때",
+    "복잡한 모델을 기반으로 시뮬레이션의 충돌체나 소스를 만들 때",
+    "지오메트리 표면의 어트리뷰트를 볼륨 데이터로 옮겨 담을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "vdb from polygons 를 입력하고 엔터를 쳐서 노드를 생성합니다.",
+    "첫 번째 입력(Input 1)에 변환할 폴리곤 메시(Quad 또는 Triangle 메시)를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Voxel Size 값을 조절하여 볼륨의 해상도를 설정합니다.",
+    "Distance VDB 또는 Fog VDB 옵션을 켜서 원하는 볼륨 타입을 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Voxel Size",
+      "desc": "출력 VDB 볼륨의 복셀 크기를 결정합니다. 작을수록 디테일이 높아집니다."
+    },
+    {
+      "name": "Distance VDB",
+      "desc": "표면과의 거리를 저장하는 Signed Distance Field(SDF) 볼륨을 생성합니다."
+    },
+    {
+      "name": "Fog VDB",
+      "desc": "표면 주변에 밀도(Density) 필드를 생성하여 안개나 구름 같은 볼륨을 만듭니다."
+    },
+    {
+      "name": "Fill Interior",
+      "desc": "닫힌(Airtight) 표면의 내부를 빈틈없이 꽉 채운 고체 VDB로 만듭니다."
+    },
+    {
+      "name": "Unsigned Distance Field",
+      "desc": "내외부 구분 없이 표면으로부터의 거리만 측정하여 닫히지 않은 메시도 처리합니다."
+    },
+    {
+      "name": "Preserve Holes",
+      "desc": "일반화된 권선수(Generalized Winding Number)를 사용해 구멍을 유지하고 틈새를 메웁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SDF를 이용한 볼륨 Effect 소스 만들기",
+      "steps": [
+        "Test Geometry: Bunny 노드를 생성합니다.",
+        "VDB from Polygons 노드를 연결하고 Distance VDB를 활성화합니다.",
+        "Voxel Size를 조절하여 적절한 볼륨 디테일을 확보합니다."
+      ]
+    },
+    {
+      "title": "열린 메시에서 Unsigned Distance Field 추출하기",
+      "steps": [
+        "Grid 노드를 생성하여 평면 지오메트리를 만듭니다.",
+        "VDB from Polygons 노드를 연결합니다.",
+        "Unsigned Distance Field 옵션을 켜서 닫히지 않은 평면에서도 안전하게 거리 필드를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 지오메트리가 N-gon인 경우 → 자동으로 콰드나 트라이앵글 메시로 변환되지만 예상치 못한 형태가 될 수 있으므로 사전에 Divide 노드 등으로 정리하세요.",
+    "Voxel Size를 너무 작게 설정한 경우 → 메모리 사용량이 급증하고 연산이 느려지므로 작업 초기에는 넉넉한 값으로 시작하세요.",
+    "닫히지 않은(Non-airtight) 모델에서 Fill Interior를 켠 경우 → 내부 판정이 정확히 되지 않으므로 Unsigned Distance Field를 사용하거나 모델의 구멍을 메우세요."
+  ],
+  "related": [
+    "VDB",
+    "VDB from Particles",
+    "IsoOffset",
+    "VDB Combine"
+  ],
+  "videos": [
+    {
+      "id": "JMpPD4lSWFs",
+      "title": "VDB from Polygons",
+      "author": "Paul Esteves"
+    },
+    {
+      "id": "W5giDfs-Dd8",
+      "title": "Houdini | VDB Activate & VDB SOPs | CG Forge Node Bible Entry #56",
+      "author": "CG Forge"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/vdbfrompolygons.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-19T11:00:43.500234+00:00"
+}

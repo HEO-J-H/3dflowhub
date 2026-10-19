@@ -1,0 +1,93 @@
+{
+  "id": "blender-weight-paint-3fb5",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Weight Paint",
+  "title": "Weight Paint — 본 영향 칠하기",
+  "summary": "메시의 각 버텍스가 본(Bone)이나 버텍스 그룹에 얼마나 영향을 받는지 색상으로 시각화하고 칠하여 조절하는 기능입니다. 뼈대를 움직일 때 캐릭터의 관절이나 옷이 자연스럽게 휘어지도록 만듭니다.",
+  "when": [
+    "캐릭터 리깅 후 팔다리를 구부릴 때 옷이나 피부가 찌그러질 때",
+    "Particle 입자가 특정 영역에만 나타나도록 범위를 제한하고 싶을 때",
+    "여러 본이 겹치는 부위의 웨이트 분산을 세밀하게 수정할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 3D 뷰포트 상단의 모드 메뉴에서 Weight Paint 모드로 전환합니다 (또는 Ctrl+Tab).",
+    "아마추어(본)가 있는 경우, 본을 선택한 상태에서 메시를 선택하고 Ctrl+P → With Automatic Weights로 기본 웨이트를 적용합니다.",
+    "Properties 패널의 Object Data Properties(사람 모양)에서 Vertex Groups 목록 중 수정할 그룹을 선택합니다.",
+    "브러시(Draw, Blur, Smooth 등)를 선택하고 뷰포트에서 드래그하여 웨이트 값을 칠합니다 (빨강: 100%, 파랑: 0%).",
+    "필요시 상단 메뉴의 Weights에서 Normalize All이나 Smooth 등을 실행하여 웨이트를 정돈합니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "칠해질 웨이트의 강도를 결정합니다 (0.0에서 1.0 사이 값)."
+    },
+    {
+      "name": "Radius",
+      "desc": "브러시의 크기를 조절합니다 (단축키 F)."
+    },
+    {
+      "name": "Strength",
+      "desc": "브러시의 투명도 및 적용 속도를 조절합니다 (단축키 Shift+F)."
+    },
+    {
+      "name": "Auto Normalize",
+      "desc": "여러 버텍스 그룹 간의 웨이트 총합이 항상 1이 되도록 자동 유지합니다."
+    },
+    {
+      "name": "Lock",
+      "desc": "특정 버텍스 그룹이 브러시 작업이나 Normalize에 의해 변경되지 않도록 잠급니다."
+    },
+    {
+      "name": "Limit Total",
+      "desc": "하나의 버텍스가 가질 수 있는 최대 본 개수를 제한하여 성능을 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔꿈치 관절 꺾임 부드럽게 만들기",
+      "steps": [
+        "Pose 모드에서 팔을 구부려 찌그러지는 부위를 확인합니다.",
+        "Weight Paint 모드로 돌아와 어깨와 팔뚝 본의 버텍스 그룹을 확인합니다.",
+        "Smooth 브러시를 사용하여 관절 접합부의 급격한 색상 변화를 부드럽게 문질러줍니다."
+      ]
+    },
+    {
+      "title": "Gradient 툴로 자연스러운 웨이트 그라데이션 넣기",
+      "steps": [
+        "Tool 설정에서 Gradient (Linear) 툴을 선택합니다.",
+        "영향을 줄 시작 지점과 끝 지점을 드래그하여 선형으로 웨이트를 채웁니다.",
+        "본을 움직여 웨이트가 점진적으로 퍼지는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "웨이트를 칠했는데 반응이 없음 → Vertex Groups 목록에서 올바른 그룹을 선택했는지 확인합니다.",
+    "움직일 때 반대쪽 메시까지 딸려옴 → Auto Normalize를 켜거나 Lock 옵션으로 불필요한 본 그룹을 잠급니다.",
+    "스케일 변형으로 웨이트가 이상하게 작동함 → Object 모드에서 Ctrl+A → Apply Scale을 먼저 실행합니다."
+  ],
+  "related": [
+    "Vertex Groups",
+    "Armature",
+    "Pose Mode",
+    "Automatic Weights"
+  ],
+  "videos": [
+    {
+      "id": "tUIIauuXveE",
+      "title": "WEIGHT PAINTING in BLENDER | Beginner to Pro",
+      "author": "OzzO"
+    },
+    {
+      "id": "SCWZr-It1bE",
+      "title": "Weight Painting in Blender 3 👉 in 2 Minutes!",
+      "author": "Buvesa Game Development"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/index.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-19T11:00:39.004542+00:00"
+}
