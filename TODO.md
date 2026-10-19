@@ -15,3 +15,6 @@
 - [ ] (agent:보류) generate_keywords(): 같은 키워드가 도메인 간 중복되면 제거 — PR #4 머지 실패: {"message":"Pull Request has merge conflicts","documentation_url":"
 - [x] (agent) build_post_html(): 본문 글자 수(태그 제외)가 1,500자 미만이면 경고 로그를 남기고 RUN_ERRORS 에 "short post" 기록 및 테스트 추가
 - [ ] (agent:보류) evolve.performance_table(): 조회수 상위 글의 제목 길이 평균을 집계해 반환값에 title_stats 추가 및 테스트 추가 — PR #8 머지 실패: {"message":"Pull Request has merge conflicts","documentation_url":"
+
+- [x] (agent) collect(): 수집된 피드 아이템의 제목 또는 본문이 비어있거나 무관한 키워드를 포함할 경우 필터링을 강화하고 RUN_ERRORS 에 'prefiltered'를 기록하는 로직 보완 및 테스트 추가
+- [ ] (agent) core.summarize(): 요약 생성 시 본문이 1,500자 미만인 경우 경고 로그를 남기고 RUN_ERRORS 에 'short post'를 기록하는 검증 로직 및 테스트 추가

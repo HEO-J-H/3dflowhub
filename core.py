@@ -1022,21 +1022,31 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 link = e.get("link", "")
                 if not link or url_hash(link) in seen:
                     continue
+                title_val = (e.get("title") or "").strip()
+                summary_val = BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ").strip()
+                if not title_val or not summary_val:
+                    RUN_ERRORS.append("prefiltered")
+                    continue
+                irrelevant_keywords = ["부동산", "주식", "코인", "로또", "날씨", "정치", "대통령", "선거", "연예", "가십"]
+                full_text_check = f"{title_val} {summary_val}".lower()
+                if any(kw in full_text_check for kw in irrelevant_keywords):
+                    RUN_ERRORS.append("prefiltered")
+                    continue
                 published = e.get("published_parsed") or e.get("updated_parsed")
                 if published and (time.time() - calendar.timegm(published)) > MAX_AGE_DAYS * 86400:
                     continue  # 오래된 기사 제외
                 seen.add(url_hash(link))
-                sh = title_simhash(e.get("title", ""))
+                sh = title_simhash(title_val)
                 if is_near_duplicate(sh, known_hashes):  # 다른 매체의 같은 기사
                     continue
                 known_hashes.append(sh)
                 candidates.append({
                     "source": src,  # 피드 단위로 교차 (같은 사이트의 다른 피드도 구분)
                     "simhash": sh,
-                    "title": e.get("title", "").strip(),
+                    "title": title_val,
                     "url": link,
                     "hint_domain": d,
-                    "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
+                    "rss_summary": summary_val[:800],
                 })
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차

@@ -506,6 +506,31 @@ def test_prefilter_only_filters_generic_search():
     assert [c["title"][:5] for c in kept] == ["Blend", "assig"]
 
 
+def test_collect_filtering_empty_and_irrelevant(monkeypatch):
+    class DummyEntry:
+        def __init__(self, t, s, l="https://example.com/item"):
+            self._dict = {"title": t, "summary": s, "link": l}
+        def get(self, k, default=None):
+            return self._dict.get(k, default)
+
+    class DummyFeed:
+        entries = [
+            DummyEntry("", "본문"),                    # 제목 없음 -> 필터링 및 prefiltered 기록
+            DummyEntry("제목", ""),                    # 본문 없음 -> 필터링 및 prefiltered 기록
+            DummyEntry("부동산 시장 폭락", "주식 코인 전망"), # 무관한 키워드 포함 -> 필터링 및 prefiltered 기록
+            DummyEntry("Blender 5.1 Update", "New features in Blender") # 정상 아이템
+        ]
+
+    monkeypatch.setattr(core, "generate_keywords", lambda doms, **kw: {d: ["test"] for d in doms})
+    monkeypatch.setattr(core.feedparser, "parse", lambda src, **kw: DummyFeed())
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    
+    res = core.collect(["VFX"], 5, set())
+    assert len(res) == 1
+    assert res[0]["title"] == "Blender 5.1 Update"
+    assert core.RUN_ERRORS.count("prefiltered") >= 3
+
+
 def test_tool_interest_needs_enough_views(monkeypatch):
     import evolve
     monkeypatch.setattr(core, "_load_json", lambda path, default=None: {} if "performance" in str(path) else default)
