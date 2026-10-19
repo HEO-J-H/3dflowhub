@@ -174,6 +174,61 @@ def _doc_text(url: str | None) -> str:
         return ""
 
 
+DOC_IMAGE_LICENSE = {"docs.blender.org": ("Blender Manual", "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/")}
+
+
+def doc_images(url: str | None, n: int = 3) -> list[dict]:
+    """공식 문서의 그림(패널 스크린샷·예시) — 재사용이 허용된 문서(Blender 매뉴얼, CC BY-SA)만, 출처와 함께."""
+    from urllib.parse import urljoin, urlparse
+    if not url or urlparse(url).netloc not in DOC_IMAGE_LICENSE:
+        return []
+    try:
+        from bs4 import BeautifulSoup
+        r = requests.get(url, headers=UA, timeout=20)
+        r.raise_for_status()
+        r.encoding = "utf-8"  # 헤더에 charset 이 없으면 latin-1 로 읽혀 글자가 깨짐
+    except Exception:
+        return []
+    soup = BeautifulSoup(r.text, "html.parser")
+    for a in soup.select("a.headerlink"):  # 문단 고정 링크(¶) 제거
+        a.decompose()
+    main = soup.find(attrs={"role": "main"}) or soup.body
+    out = []
+    for img in main.find_all("img") if main else []:
+        src = img.get("src") or ""
+        if "_images/" not in src or src.lower().endswith(".svg"):
+            continue  # 로고·아이콘 제외
+        fig = img.find_parent("figure")
+        cap = fig.find("figcaption") if fig else None
+        out.append({"src": urljoin(url, src), "alt": (img.get("alt") or "")[:120],
+                    "caption": re.sub(r"\s+", " ", cap.get_text(" ", strip=True))[:160] if cap else "",
+                    "source": url})
+        if len(out) >= n:
+            break
+    return out
+
+
+_KEY = re.compile(r"(?:Ctrl|Shift|Alt|Tab|Enter|Esc|Space|Delete|Home|UI|OK|F\d{1,2}|[A-Z])")  # 단축키는 경로 아님
+_UI = re.compile(r"[A-Z][A-Za-z0-9]*(?:[ -][A-Z0-9][A-Za-z0-9]*)*")
+
+
+def menu_path(steps: list[str], name: str, n: int = 6) -> list[str]:
+    """단계 글에서 메뉴 경로(영문 UI 이름)를 순서대로 뽑아 도식용으로 (AI 호출 없음).
+    기능 이름이 처음 나오는 단계까지만 — 그 뒤는 옵션 조절이라 경로가 아님."""
+    key = name.split()[0].lower()
+    path: list[str] = []
+    for st in steps:
+        for m in _UI.findall(st):
+            m = m.strip()
+            if len(m) > 1 and m not in path and not _KEY.fullmatch(m):
+                path.append(m)
+        if key in st.lower():
+            break
+    else:
+        return []  # 경로 끝(기능 선택)이 안 보이면 도식 생략
+    return path[:n] if len(path) >= 2 else []
+
+
 def _text(x) -> str:
     """AI 가 문자열 대신 {"mistake":..,"fix":..} 같은 객체를 줄 때 '값 → 값' 으로."""
     if isinstance(x, dict):
@@ -225,6 +280,7 @@ def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None)
                      for x in (out.get("examples") or []) if isinstance(x, dict) and x.get("title")][:3],
         "mistakes": lst("mistakes", 3), "related": [str(x)[:40] for x in (out.get("related") or [])][:4],
         "videos": videos, "doc": doc_link(tool, name, url), "grounded": bool(doc),
+        "images": doc_images(url), "menu_path": menu_path(lst("steps", 8), name),
         "at": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -272,3 +328,17 @@ def load_all() -> list[dict]:
 if __name__ == "__main__":  # 수동 생성: python guides.py 3
     import sys
     print(json.dumps(write_guides(int(sys.argv[1]) if len(sys.argv) > 1 else 2), ensure_ascii=False))
+
+
+def backfill_visuals(force: bool = False) -> int:
+    """이미 만든 가이드에 문서 이미지·메뉴 경로 도식을 채움 (AI 호출 없음)."""
+    done = 0
+    for f in sorted(GUIDE_DIR.glob("*.json")) if GUIDE_DIR.exists() else []:
+        g = core._load_json(f, {})
+        if not g or (not force and "images" in g and "menu_path" in g):
+            continue
+        g["images"] = doc_images(g.get("doc"))
+        g["menu_path"] = menu_path(g.get("steps", []), g.get("name", ""))
+        core._save_json(f, g)
+        done += 1
+    return done

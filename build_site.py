@@ -29,6 +29,8 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote, unquote
 
+from urllib.parse import urlparse
+
 import core
 
 ROOT = Path(__file__).parent
@@ -393,6 +395,16 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:8px}
 .steps li{counter-increment:s;position:relative;padding:12px 14px 12px 50px;background:var(--surface);border:1px solid var(--line);
   border-radius:14px}
+.menupath{margin:12px 0 16px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.menupath figcaption{font-size:12px;opacity:.7;margin-bottom:8px}
+.menupath div{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.mp-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font:600 13px/1.3 ui-monospace,Consolas,monospace}
+.mp-chip.last{border-color:var(--accent,#4f8cff);color:var(--accent,#4f8cff)}
+.mp-arr{opacity:.5;font-weight:700}
+.docfigs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:14px;margin:12px 0}
+.docfig{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.docfig img{display:block;width:100%;height:auto;background:#fff}
+.docfig figcaption{padding:8px 10px;font-size:12px;line-height:1.5;opacity:.85}
 .steps li::before{content:counter(s);position:absolute;left:14px;top:11px;width:24px;height:24px;border-radius:50%;
   background:var(--accent);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
 .params{width:100%;border-collapse:separate;border-spacing:0;background:var(--surface);border:1px solid var(--line);
@@ -716,6 +728,32 @@ def guide_faq(g: dict) -> dict | None:
     return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa} if qa else None
 
 
+def menu_diagram(path: list[str]) -> str:
+    """메뉴 경로 도식: 클릭 순서대로 UI 이름을 버튼 모양으로 이어 보여줌 (이미지 파일 없이 HTML·CSS)."""
+    if len(path) < 2:
+        return ""
+    chips = '<span class="mp-arr" aria-hidden="true">›</span>'.join(
+        f'<span class="mp-chip{" last" if i == len(path) - 1 else ""}">{e(x)}</span>' for i, x in enumerate(path))
+    return f'<figure class="menupath" aria-label="메뉴 경로: {e(" > ".join(path))}"><figcaption>메뉴 경로</figcaption><div>{chips}</div></figure>'
+
+
+def doc_figures(images: list[dict]) -> str:
+    """공식 문서 그림 (출처·라이선스 표기). 원본은 공식 문서 서버에서 불러옴."""
+    if not images:
+        return ""
+    import guides
+    figs = []
+    for im in images:
+        host = urlparse(im["source"]).netloc
+        name, lic, lic_url = guides.DOC_IMAGE_LICENSE.get(host, (host, "", ""))
+        cap = im.get("caption") or im.get("alt") or ""
+        figs.append(f'<figure class="docfig"><img src="{e(im["src"])}" alt="{e(im.get("alt") or cap)}" loading="lazy">'
+                    f'<figcaption>{e(cap)}{" · " if cap else ""}출처: <a href="{e(im["source"])}" target="_blank" rel="noopener">{e(name)}</a>'
+                    + (f' (<a href="{e(lic_url)}" target="_blank" rel="noopener license">{e(lic)}</a>)' if lic else "")
+                    + "</figcaption></figure>")
+    return f'<h2>화면으로 보기</h2><div class="docfigs">{"".join(figs)}</div>'
+
+
 def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
     """기초 가이드: 도구별 기본 기능(모디파이어·메뉴·노드)을 영상 + 단계별 사용법으로."""
     root_dir = OUT / "learn"
@@ -754,7 +792,8 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + (f'<div class="optip"><b>✍️ 운영자 실무 팁</b><p>{e(g["tip"])}</p></div>' if g.get("tip") else "")
             + (f'<div class="vids{" two" if len(vids) > 1 else ""}">{"".join(yt_facade(v) for v in vids)}</div>' if vids else "")
             + (f'<h2>이럴 때 씁니다</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in g.get("when", []))}</ul>' if g.get("when") else "")
-            + f'<h2>따라 하기</h2><ol class="steps">{steps}</ol>'
+            + f'<h2>따라 하기</h2>' + menu_diagram(g.get("menu_path") or []) + f'<ol class="steps">{steps}</ol>'
+            + doc_figures(g.get("images") or [])
             + (f'<h2>주요 옵션</h2><table class="params"><thead><tr><th>옵션</th><th>효과</th></tr></thead><tbody>{params}</tbody></table>'
                if params else "")
             + (f'<h2>활용 예시</h2><div class="ex">{exs}</div>' if exs else "")
