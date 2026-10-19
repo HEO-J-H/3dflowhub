@@ -13,12 +13,19 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import os
 import re
+import shutil
+import subprocess
+import tempfile
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import core
 
 RECIPE_DIR = core.ROOT / "content" / "recipes"
+FAIL_PATH = core.ROOT / "memory" / "recipe_failures.json"  # Blender 실행 검증 실패 기록 (다음 생성 때 AI 에 알려 줌)
+MAX_FAILS = 2
 SOURCE_DOMAIN = "AI 3D"
 # 작업 툴 → (스크립트 언어, 형식 설명)
 HOSTS = {
@@ -35,6 +42,11 @@ def _now() -> datetime:
 
 def recipe_id(category: str, host: str) -> str:
     return hashlib.md5(f"{category}|{host}".encode()).hexdigest()[:10]
+
+
+def published(r: dict) -> bool:
+    """사이트에 올릴 레시피: Blender 는 실제 실행 검증을 통과한 것만, 나머지 툴은 문법 검사 통과분."""
+    return r.get("host") != "Blender" or bool((r.get("runtime") or {}).get("ok"))
 
 
 def load_all() -> list[dict]:
@@ -77,6 +89,55 @@ def check_script(lang: str, host: str, code: str) -> str:
     return ""
 
 
+# ─────────────────────────── Blender 실제 실행 검증 ───────────────────────────
+def blender_bin() -> str | None:
+    found = os.getenv("BLENDER_BIN") or shutil.which("blender")
+    if found:
+        return found
+    for exe in sorted(Path("C:/Program Files/Blender Foundation").glob("Blender */blender.exe"), reverse=True):
+        return str(exe)
+    return None
+
+
+def run_blender_check(script: str, timeout: int = 180) -> dict:
+    """화면 없는 Blender 에서 애드온 등록 → 테스트 장면에 Operator 실행 → 해제 (tools/blender_check.py)."""
+    exe = blender_bin()
+    if not exe:
+        return {"ok": None, "error": "Blender 없음"}
+    with tempfile.TemporaryDirectory() as d:
+        addon, out = Path(d) / "addon.py", Path(d) / "result.json"
+        addon.write_text(script, encoding="utf-8")
+        try:
+            subprocess.run([exe, "-b", "--factory-startup", "--python", str(core.ROOT / "tools" / "blender_check.py"),
+                            "--", str(addon), str(out)], capture_output=True, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": f"{timeout}초 안에 끝나지 않음 (무한 반복 의심)"}
+        return core._load_json(out, {"ok": False, "error": "검사 결과 없음 (Blender 가 비정상 종료)"})
+
+
+def verify_blender(limit: int = 10) -> list[str]:
+    """아직 실행 검증 안 된 Blender 레시피를 검증. 통과 → 사이트 공개, 실패 → 삭제하고 사유 기록(다음 생성 때 반영)."""
+    if not blender_bin():
+        return []
+    fails = core._load_json(FAIL_PATH, {})
+    done = []
+    for r in [r for r in load_all() if r.get("host") == "Blender" and "runtime" not in r][:limit]:
+        res = run_blender_check(r["script"])
+        path = RECIPE_DIR / f"{r['id']}.json"
+        if res.get("ok"):
+            r["runtime"] = {"ok": True, "blender": res.get("blender"), "at": _now().isoformat(timespec="seconds"),
+                            "steps": [s["name"] for s in res.get("steps", [])]}
+            r["checked"] = f"Blender {res.get('blender', '')} 에서 테스트 장면으로 실제 실행 검증 통과"
+            core._save_json(path, r)
+            done.append(f"통과: {r['title']}")
+        else:
+            fails.setdefault(r["id"], []).append(str(res.get("error", ""))[-400:])
+            path.unlink(missing_ok=True)
+            done.append(f"실패(삭제): {r['title']} — {str(res.get('error', ''))[-120:]}")
+    core._save_json(FAIL_PATH, fails)
+    return done
+
+
 # ─────────────────────────── 생성 ───────────────────────────
 def candidates(days: int = 60) -> list[tuple[str, str, list[dict]]]:
     """(AI 3D 세부 분야, 작업 툴, 근거 글) — 글이 충분하고 아직 레시피가 없는 조합, 글 많은 순."""
@@ -89,7 +150,8 @@ def candidates(days: int = 60) -> list[tuple[str, str, list[dict]]]:
                 and (p.get("collected_at") or "") >= cutoff and p.get("category")
                 and not str(p["category"]).startswith("기타")):
             groups.setdefault(p["category"], []).append({**p, "id": f.stem})
-    have = {r.get("id") for r in load_all()}
+    have = {r.get("id") for r in load_all()} | {k for k, v in core._load_json(FAIL_PATH, {}).items()
+                                                 if len(v) >= MAX_FAILS}  # 두 번 실패한 조합은 그만
     out = []
     for cat, ps in sorted(groups.items(), key=lambda kv: -len(kv[1])):
         if len(ps) < MIN_POSTS:
@@ -119,6 +181,10 @@ def make_recipe(category: str, host: str, posts: list[dict]) -> dict | None:
         ' "limits": 2-3 Korean caveats (what it does not handle),\n'
         ' "sources": up to 4 ids of the summaries this is based on'
     )
+    past = core._load_json(FAIL_PATH, {}).get(recipe_id(category, host), [])
+    if past:
+        prompt += ("\n\nA previous attempt FAILED when actually run in headless Blender on a test scene "
+                   f"(selected meshes, object mode). Error: {past[-1]}\nAvoid that mistake.")
     system = "You are a senior technical artist / pipeline TD writing reliable tools." + core.playbook("common", limit=3000)
     feedback = ""
     for _ in range(2):  # 검증 실패 시 사유를 알려 주고 한 번 더
@@ -173,3 +239,9 @@ def write_recipes(max_new: int = 1, gate: bool = True) -> list[str]:
             core._save_json(RECIPE_DIR / f"{r['id']}.json", r)
             done.append(r["title"])
     return done
+
+
+if __name__ == "__main__":
+    import sys
+    if "--verify" in sys.argv:
+        print("\n".join(verify_blender()) or "검증할 Blender 레시피 없음")

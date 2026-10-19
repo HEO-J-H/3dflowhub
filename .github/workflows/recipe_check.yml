@@ -1,0 +1,56 @@
+name: 3dflowhub recipe check (Blender)
+
+# 실무 파이프라인의 Blender 애드온을 화면 없는 Blender 로 실제 실행해 검증한다.
+# 통과 → 사이트 공개, 실패 → 삭제하고 사유를 memory/recipe_failures.json 에 기록 (다음 생성 때 AI 가 참고)
+on:
+  schedule:
+    - cron: "37 */6 * * *"   # 레시피 생성 주기(6시간)에 맞춤
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: repo-writes
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Anything to verify?
+        id: todo
+        run: |
+          N=$(python -c "import recipes; print(sum(1 for r in recipes.load_all() if r.get('host') == 'Blender' and 'runtime' not in r))")
+          echo "pending=$N" >> "$GITHUB_OUTPUT"
+          echo "검증 대기 Blender 레시피: $N"
+
+      - name: Install Blender (headless)
+        if: steps.todo.outputs.pending != '0'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq blender >/dev/null && blender --version | head -1
+
+      - name: Verify recipes in Blender
+        if: steps.todo.outputs.pending != '0'
+        run: python recipes.py --verify
+
+      - name: Commit result & redeploy
+        if: steps.todo.outputs.pending != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "3dflowhub-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          CHANGED=$(python -c "import core; print(core.ci_commit(['content/recipes/', 'memory/'], 'chore(recipes): Blender 실행 검증 [skip ci]'))")
+          echo "content changed: $CHANGED"
+          if [ "$CHANGED" = "True" ]; then gh workflow run pages.yml --ref main; fi

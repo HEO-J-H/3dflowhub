@@ -1182,7 +1182,7 @@ def build() -> dict:
     build_learn(learn_guides, posts)
     # 실무 파이프라인 (AI 3D 소식 → 작업 툴 스크립트)
     import recipes as _recipes
-    recipes_ = _recipes.load_all()
+    recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
 
     # 저장한 글 (브라우저에만 저장 — static/user.js 가 그림)

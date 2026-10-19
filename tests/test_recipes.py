@@ -32,3 +32,15 @@ def test_maxscript_brackets():
     assert recipes.check_script("maxscript", "3ds Max", ok) == ""
     assert "괄호" in recipes.check_script("maxscript", "3ds Max", ok + "(")
     assert "외부" in recipes.check_script("maxscript", "3ds Max", ok + 'DOSCommand "x"')
+
+
+def test_blender_recipe_published_only_after_runtime_ok():
+    assert not recipes.published({"host": "Blender"})
+    assert recipes.published({"host": "Blender", "runtime": {"ok": True}})
+    assert recipes.published({"host": "3ds Max"})
+
+
+def test_no_blender_means_no_verdict(monkeypatch):
+    monkeypatch.setattr(recipes, "blender_bin", lambda: None)
+    assert recipes.run_blender_check("x")["ok"] is None
+    assert recipes.verify_blender() == []
