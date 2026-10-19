@@ -192,13 +192,7 @@ def update_strategy(strategy: dict) -> dict:
             changes.append(f"피드 차단: {url}")
 
     # 2) 수익 보상 신호: 조회수 → 도메인 비중 학습 (GitHub Pages 방문수도 노션 Views 에 합산)
-    if _due(strategy, "pages_at", 3 * 3600):  # 3시간마다만 (10분 수집마다 API 호출·기록 증가 방지)
-        try:
-            import monetize
-            if monetize.collect_pages():
-                strategy["pages_at"] = _now()
-        except Exception as e:
-            log.warning("Pages 통계 수집 실패: %s", e)
+    collect_pages_due(strategy)  # 보통은 evolve() 가 이미 수집함 — 성찰 직전에 한 번 더 확인
     try:
         perf = performance_table()
     except Exception as e:
@@ -531,8 +525,24 @@ def write_roundups(max_new: int = 3, days: int = 30, gate: bool = True) -> list[
     return done
 
 
+def collect_pages_due(strategy: dict) -> bool:
+    """방문 통계(GoatCounter) 3시간마다 수집. 성찰 주기(최대 6시간)와 분리 — 현황판 날짜별 방문이 늦게 갱신되던 문제."""
+    if not _due(strategy, "pages_at", 3 * 3600):
+        return False
+    try:
+        import monetize
+        if monetize.collect_pages():
+            strategy["pages_at"] = _now()
+            return True
+    except Exception as e:
+        log.warning("Pages 통계 수집 실패: %s", e)
+    return False
+
+
 def evolve(stats: dict | None = None, force: bool = False) -> dict:
     strategy = core.load_strategy()
+    if collect_pages_due(strategy):
+        core._save_json(core.STRATEGY_PATH, strategy)
     for key in ("prompt_notes", "blocked_feeds", "history"):
         strategy.setdefault(key, [])
     for key in ("keyword_hints", "extra_feeds"):
