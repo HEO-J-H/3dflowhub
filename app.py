@@ -533,7 +533,7 @@ with t_auto:
         label_visibility="collapsed", key="mgr_view")
     if view == "🛠 직접 작업":
         todo = manager.manual_todo("3dflowhub")
-        st.caption("수락했지만 자동 반영이 안 되는 일입니다. 직접 하시거나, '요청문'을 복사해 Claude 에게 맡긴 뒤 ✔ 완료를 눌러 주세요.")
+        st.caption("수락한 일은 코딩 에이전트가 매일 03:19 자동 실행 때 코드로 처리합니다(성공하면 자동 완료). 에이전트가 보류한 것만 직접 하시거나 '요청문'을 복사해 Claude 에게 맡겨 주세요.")
         if not todo:
             st.success("남은 직접 작업이 없습니다")
         for x in todo:
@@ -1098,7 +1098,7 @@ with t_today:
 
     todo_t = _mgr.manual_todo("3dflowhub")
     if todo_t:
-        with st.expander(f"🛠 직접 작업 {len(todo_t)}건 — 요청문을 복사해 Claude 에게 맡기세요"):
+        with st.expander(f"🛠 직접 작업 {len(todo_t)}건 — 코딩 에이전트가 먼저 처리, 보류된 것만 직접"):
             for x in todo_t:
                 st.markdown(f"**{x['title']}**")
                 st.code(_mgr.claude_request(x), language=None, wrap_lines=True)

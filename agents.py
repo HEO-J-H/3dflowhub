@@ -29,6 +29,47 @@ ROOT = Path(__file__).parent
 TODO = ROOT / "TODO.md"
 MAX_ITERATIONS = 3
 EDITABLE = {"core.py", "app.py", "evolve.py", "tests/test_core.py"}  # 에이전트가 수정 가능한 파일 (워크플로/에이전트 자신은 보호)
+# AI 관리자 제안(분류별)을 처리할 때 추가로 열어 주는 파일 — 에이전트·워크플로·growth(안전장치)는 계속 보호
+CATEGORY_FILES = {"콘텐츠": {"guides.py", "evolve.py"}, "수집": {"core.py"}, "사이트·UX": {"build_site.py"},
+                  "검색(SEO)": {"build_site.py"}, "운영·비용": {"manager.py"}, "수익": {"monetize.py", "build_site.py"},
+                  "현황판": {"app.py"}}
+PROPOSAL_TAG = re.compile(r"\[(p-[0-9a-f]{10})\|([^\]]+)\]")
+
+
+def files_for(task: str) -> set[str]:
+    """작업별 수정 가능 파일: 관리자 제안이면 그 분류의 파일 + 테스트, 아니면 기본 EDITABLE."""
+    m = PROPOSAL_TAG.search(task)
+    if not m:
+        return set(EDITABLE)
+    return CATEGORY_FILES.get(m.group(2), {"core.py"}) | {"tests/test_agent_tasks.py"}
+
+
+def queue_manager_tasks() -> list[str]:
+    """수락됐지만 자동 실행 행동이 없는 AI 관리자 제안(이 저장소 몫)을 코딩 에이전트 할 일로 등록 (한 번만)."""
+    import manager
+    text = TODO.read_text(encoding="utf-8")
+    added = []
+    for p in manager.manual_todo("3dflowhub"):
+        if p["id"] in text:
+            continue
+        what = re.sub(r"\s+", " ", f"{p['title']}: {p.get('proposal', '')}")[:220]
+        added.append(f"- [ ] (agent) [{p['id']}|{p.get('category') or '운영·비용'}] {what}")
+    if added:
+        TODO.write_text(text.rstrip("\n") + "\n" + "\n".join(added) + "\n", encoding="utf-8")
+    return added
+
+
+def report_to_manager(task: str, ok: bool, msg: str) -> None:
+    """처리 결과를 현황판 제안에 남김: 머지되면 '완료', 실패면 사람이 볼 수 있게 사유 기록(제안은 남겨 둠)."""
+    m = PROPOSAL_TAG.search(task)
+    if not m:
+        return
+    import manager
+    if ok:
+        manager.decide(m.group(1), "done", f"코딩 에이전트 처리: {msg}")
+    else:
+        manager._append({"at": manager._now(), "kind": "applied", "id": m.group(1),
+                         "result": f"코딩 에이전트 보류 — 직접 처리 필요: {msg[:200]}"})
 DANGEROUS = re.compile(r"\b(eval|exec|os\.system|subprocess|pickle\.loads|__import__|shell=True)\b")
 SECRET = re.compile(r"(ntn_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}|AQ\.[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{30,})")
 GH_API = f"https://api.github.com/repos/{os.getenv('GITHUB_REPOSITORY', 'HEO-J-H/3dflowhub')}"
@@ -55,12 +96,21 @@ def parse_edits(text: str) -> list[dict]:
     return [{"file": f, "search": a, "replace": b} for f, a, b in EDIT_BLOCK.findall(text)]
 
 
+def reset_files(files: set[str]) -> None:
+    """추적 중인 파일은 되돌리고, 이번 작업이 새로 만든 파일은 지운다."""
+    tracked = set(sh("git", "ls-files", "--", *sorted(files), check=False).split())
+    sh("git", "reset", "-q", "--", *sorted(files), check=False)
+    sh("git", "checkout", "--", *sorted(tracked), check=False) if tracked else None
+    for f in files - tracked:
+        (ROOT / f).unlink(missing_ok=True)
+
+
 # ─────────────────────────── 작업 선택 ───────────────────────────
 def next_task() -> str | None:
-    for line in TODO.read_text(encoding="utf-8").splitlines():
-        if line.startswith("- [ ] (agent)"):
-            return line[len("- [ ] (agent)"):].strip()
-    return None
+    """AI 관리자 제안(사람이 수락한 일)을 먼저, 그다음 에이전트 스스로 만든 과제."""
+    tasks = [l[len("- [ ] (agent)"):].strip() for l in TODO.read_text(encoding="utf-8").splitlines()
+             if l.startswith("- [ ] (agent)")]
+    return next((t for t in tasks if PROPOSAL_TAG.search(t)), tasks[0] if tasks else None)
 
 
 def propose_tasks(max_tasks: int = 3) -> list[str]:
@@ -99,27 +149,34 @@ def mark_task(task: str, ok: bool, note: str) -> None:
 # ─────────────────────────── 에이전트 ───────────────────────────
 def coder(task: str, feedback: str) -> list[dict]:
     mem = core.load_memory()
-    files = "\n\n".join(f"### {f}\n```python\n{(ROOT / f).read_text(encoding='utf-8')}\n```" for f in sorted(EDITABLE))
+    editable = files_for(task)
+    files = "\n\n".join(f"### {f}\n```python\n{(ROOT / f).read_text(encoding='utf-8') if (ROOT / f).exists() else '# (new file)'}\n```"
+                        for f in sorted(editable))
     prompt = (
         f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
         f"Reviewer/Judge feedback from last iteration: {feedback or 'none'}\n\n{files}\n\n"
         "Output ONLY edit blocks in this exact format (no JSON, no markdown fences):\n"
         "<<<FILE path/to/file.py\n<<<SEARCH\nexact existing lines\n===\nreplacement lines\n>>>END\n\n"
         "SEARCH must match the file exactly (including indentation) and occur exactly once. "
-        f"Only edit these files: {sorted(EDITABLE)}. Keep changes minimal; add or update a pytest test."
+        f"Only edit these files: {sorted(editable)}. For a new file use an empty SEARCH block. "
+        "Keep changes minimal; add or update a pytest test."
     )
     text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer." + core.playbook("dev_team"), max_tokens=6000)
     return parse_edits(text)
 
 
-def apply_edits(edits: list[dict]) -> list[str]:
+def apply_edits(edits: list[dict], editable: set[str] | None = None) -> list[str]:
+    editable = editable or EDITABLE
     problems = []
     for e in edits:
         f = e.get("file", "")
-        if f not in EDITABLE:
+        if f not in editable:
             problems.append(f"수정 불가 파일: {f}")
             continue
         path = ROOT / f
+        if not path.exists() and not e.get("search", "").strip():  # 새 파일(테스트) 생성
+            path.write_text(e.get("replace", ""), encoding="utf-8", newline="\n")
+            continue
         src = path.read_text(encoding="utf-8").replace(CRLF, "\n")
         if src.count(e.get("search", "")) != 1 or not e.get("search"):
             problems.append(f"{f}: search 블록이 정확히 1회 일치하지 않음")
@@ -159,14 +216,14 @@ def judge(task: str, review: dict, qa_result: dict) -> dict:
 
 
 # ─────────────────────────── PR / 머지 ───────────────────────────
-def open_and_merge_pr(task: str, body: str) -> tuple[bool, str]:
+def open_and_merge_pr(task: str, body: str, editable: set[str] | None = None) -> tuple[bool, str]:
     """코드 + TODO 만 담은 브랜치로 PR 생성·자동 머지. 어떤 경우에도 main 으로 돌아온다.
     (memory/ 는 PR 에 넣지 않음 → 수집 워크플로의 잦은 memory 커밋과 충돌하지 않음)"""
     token = os.getenv("GITHUB_TOKEN")
     branch = f"agent/{datetime.now(timezone.utc):%Y%m%d-%H%M%S}"
     try:
         sh("git", "checkout", "-b", branch)
-        sh("git", "add", *sorted(EDITABLE), "TODO.md")
+        sh("git", "add", *sorted(f for f in (editable or EDITABLE) if (ROOT / f).exists()), "TODO.md")
         sh("git", "commit", "-m", f"agent: {task[:60]}")
         if not token:
             return True, f"(로컬 실행) 브랜치 {branch} 에 커밋만 생성"
@@ -189,6 +246,9 @@ def open_and_merge_pr(task: str, body: str) -> tuple[bool, str]:
 
 # ─────────────────────────── 메인 루프 ───────────────────────────
 def main() -> None:
+    queued = queue_manager_tasks()
+    if queued:
+        print("AI 관리자 제안 등록:", queued)
     task = next_task()
     if not task:  # 자율 성장: 할 일이 바닥나면 다음 과제를 스스로 계획
         print("새 과제 계획:", propose_tasks())
@@ -197,11 +257,13 @@ def main() -> None:
         print("TODO.md 에 (agent) 작업이 없습니다.")
         return
     print(f"작업: {task}")
+    editable = files_for(task)
     feedback, log, verdict = "", [], {"approve": False, "feedback": ""}
     for i in range(1, MAX_ITERATIONS + 1):
-        sh("git", "checkout", "--", *EDITABLE, check=False)  # 매 회차 깨끗한 상태에서 시작
-        problems = apply_edits(coder(task, feedback))
-        diff = sh("git", "diff", "--", *EDITABLE)
+        reset_files(editable)  # 매 회차 깨끗한 상태에서 시작
+        problems = apply_edits(coder(task, feedback), editable)
+        sh("git", "add", "-N", *sorted(f for f in editable if (ROOT / f).exists()), check=False)  # 새 파일도 diff 에
+        diff = sh("git", "diff", "--", *sorted(editable))
         if problems or not diff:
             feedback = f"패치 적용 실패: {problems or '변경 없음'}"
             log.append(f"[{i}] {feedback}")
@@ -220,12 +282,14 @@ def main() -> None:
     merged, msg = False, ""
     if verdict["approve"]:
         mark_task(task, True, "")  # PR 에 완료 표시 포함 → 머지되면 main 에 반영
-        merged, msg = open_and_merge_pr(task, "\n".join(["4-에이전트 자동 작업", "", *log]))
+        merged, msg = open_and_merge_pr(task, "\n".join(["4-에이전트 자동 작업", "", *log]), editable)
         print(msg)
-    sh("git", "checkout", "--", *EDITABLE, "TODO.md", check=False)
+    reset_files(editable)
+    sh("git", "checkout", "--", "TODO.md", check=False)
     if not merged:  # 반려·PR 실패 → main 에서 보류 표시 (같은 작업 무한 반복 방지)
         mark_task(task, False, msg or (log[-1] if log else "실패"))
         print("보류 처리:\n" + "\n".join(log))
+    report_to_manager(task, merged, msg or (log[-1] if log else "실패"))
     mem = core.load_memory()  # 교훈은 main 의 memory 에 기록 (워크플로 마지막 단계가 커밋)
     mem["lessons"] = (mem.get("lessons", []) + [f"{datetime.now():%Y-%m-%d} [{task[:40]}] {lesson}"])[-20:]
     core._save_json(core.MEMORY_PATH, mem)

@@ -145,7 +145,7 @@ def describe(act: dict | None) -> str:
         return f"AI 직원 쉬게 하기: {act.get('name') or act.get('id')} (다시 일하게 할 수 있음)"
     if t == "guide_topic":
         return f"기초 가이드 주제 추가: {act.get('tool')} · {act.get('title_ko')} (영상·단계별 사용법 페이지로 자동 생성)"
-    return "자동 실행 없음 — 수락하면 '직접 작업 필요' 목록에 남습니다 (Claude 에게 이 제안을 그대로 요청하면 됩니다)"
+    return "자동 실행 없음 — 수락하면 코딩 에이전트가 다음 자동 실행(매일 03:19)에 코드로 처리를 시도합니다 — 실패하면 '직접 작업 필요'에 남습니다"
 
 
 def _valid_action(act) -> dict | None:
