@@ -173,6 +173,19 @@ def test_pick_by_weights_prefers_heavy_domain():
     assert sum(c["hint_domain"] == "VFX" for c in picked) == 8 and len(picked) == 10
 
 
+def test_performance_table_title_stats(monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "_notion", lambda: None)
+    monkeypatch.setattr(evolve, "site_performance_table", lambda: {
+        "by_group": {},
+        "top_posts": [(100, "Short"), (50, "A Much Longer Title Here")]
+    })
+    pt = evolve.performance_table()
+    assert "title_stats" in pt
+    # lengths: "Short" (5), "A Much Longer Title Here" (24) -> avg = 14.5
+    assert pt["title_stats"]["avg_title_length"] == 14.5
+
+
 def test_domain_weights_need_samples_and_keep_floor():
     import evolve
     few = {"by_group": {"VFX": {"posts": 2, "avg": 50}}}

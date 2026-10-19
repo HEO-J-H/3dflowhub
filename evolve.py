@@ -71,10 +71,16 @@ def site_performance_table() -> dict:
 
 
 def performance_table() -> dict:
-    """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 — 수익 학습의 보상 신호."""
+    """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 및 조회수 상위 글 제목 길이 평균 집계 — 수익 학습의 보상 신호."""
     client = core._notion()
     if client is None:
-        return site_performance_table()
+        base = site_performance_table()
+        # site_performance_table 결과 또는 파일 기반에서 조회수 상위 글 제목 길이 평균 계산
+        top_posts = base.get("top_posts", [])
+        title_lengths = [len(title) for _, title in top_posts if title]
+        title_stats = {"avg_title_length": round(sum(title_lengths) / len(title_lengths), 1) if title_lengths else 0.0}
+        return {**base, "title_stats": title_stats}
+
     res = core._query_db(client, {"page_size": 100, "filter": {"property": "Views", "number": {"is_not_empty": True}}})
     agg: dict[str, dict] = {}
     top = []
@@ -87,10 +93,14 @@ def performance_table() -> dict:
             a = agg.setdefault(key, {"posts": 0, "views": 0})
             a["posts"] += 1
             a["views"] += v
-        top.append((v, "".join(t["plain_text"] for t in pr["Name"]["title"])[:50]))
+        title_text = "".join(t["plain_text"] for t in pr["Name"]["title"])
+        top.append((v, title_text[:50]))
     for a in agg.values():
         a["avg"] = round(a["views"] / a["posts"], 1)
-    return {"by_group": agg, "top_posts": sorted(top, reverse=True)[:8]}
+    sorted_top = sorted(top, reverse=True)[:8]
+    title_lengths = [len(title) for _, title in sorted_top if title]
+    title_stats = {"avg_title_length": round(sum(title_lengths) / len(title_lengths), 1) if title_lengths else 0.0}
+    return {"by_group": agg, "top_posts": sorted_top, "title_stats": title_stats}
 
 
 def learn_tool_interest(top_n: int = 4, prior_views: float = 1.0, prior_posts: float = 3.0,
