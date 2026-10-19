@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-track-view-curve-editor-d8fa",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Track View Curve Editor",
+  "title": "Track View 커브 에디터 — 애니메이션 다듬기",
+  "summary": "Track View Curve Editor는 애니메이션 커브를 시각적으로 정밀하게 제어하여 타이밍과 감도를 수정하는 도구입니다. 마치 그래프의 곡선을 그리듯 오브젝트의 움직임을 부드럽게 다듬습니다.",
+  "when": [
+    "키프레임 사이의 움직임이 너무 기계적이거나 딱딱할 때",
+    "공이 튀어 오를 때 착지 순간의 가속감을 극대화하고 싶을 때",
+    "카메라 패스 이동 시 출발과 정지가 자연스러운 부드러운 감속을 원할 때"
+  ],
+  "steps": [
+    "애니메이션 키프레임이 적용된 오브젝트를 선택합니다.",
+    "상단 메인 툴바에서 Track View - Curve Editor 아이콘을 클릭하거나, 우클릭 메뉴에서 Curve Editor를 선택합니다.",
+    "좌측 Controller 창에서 애니메이션된 트랙(Transform 등)을 확장합니다.",
+    "그래프 뷰에서 키프레임 포인트를 선택하고 Tangent(접선) 핸들을 조작하여 커브 형태를 수정합니다.",
+    "상단 툴바의 Tangent 유형 버튼(예: Smooth, Linear, Fast)을 클릭하여 전체적인 보간 방식을 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "Set Tangents to Smooth",
+      "desc": "키프레임 전후의 곡선을 부드럽게 연결합니다."
+    },
+    {
+      "name": "Set Tangents to Linear",
+      "desc": "키프레임 사이를 일정한 속도의 직선으로 연결합니다."
+    },
+    {
+      "name": "Set Tangents to Fast",
+      "desc": "빠르게 가속했다가 감속하는 탄력적인 움직임을 만듭니다."
+    },
+    {
+      "name": "Break Tangents",
+      "desc": "좌우 탄젠트 핸들의 연동을 끊어 꺾인 점(Sharp Corner)을 만듭니다."
+    },
+    {
+      "name": "Lock Tangents",
+      "desc": "좌우 탄젠트 핸들의 각도를 대칭으로 고정합니다."
+    },
+    {
+      "name": "Time to Value Ratio",
+      "desc": "그래프의 시간과 값 비율을 조절하여 세밀한 편집을 돕습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공이 튀어 오르는 애니메이션 타이밍 조절",
+      "steps": [
+        "Position Z 트랙의 최하단 키프레임을 선택합니다.",
+        "Break Tangents를 사용하여 양쪽 핸들을 분리합니다.",
+        "핸들을 위로 꺾어 바닥에 닿는 순간의 반동과 가속감을 강조합니다."
+      ]
+    },
+    {
+      "title": "카메라 회전의 부드러운 출발과 정지",
+      "steps": [
+        "Rotation 트랙의 시작과 끝 키프레임을 선택합니다.",
+        "Set Tangents to Smooth를 적용합니다.",
+        "탄젠트 핸들을 길게 늘려 천천히 출발하고 멈추는(Ease-in/Ease-out) 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "키프레임이 안 보임 → 타임슬라이더나 Controller 창에서 올바른 트랙(Position, Rotation, Scale)이 확장되었는지 확인합니다.",
+    "핸들이 같이 움직여서 꺾인 선을 못 만듦 → Lock Tangents가 켜져 있는지 확인하고 Break Tangents를 실행합니다.",
+    "곡선을 수정했는데 애니메이션에 반영이 안 됨 → Auto Key가 꺼져 있는지, 올바른 키프레임 포인트를 선택했는지 확인합니다."
+  ],
+  "related": [
+    "Dope Sheet",
+    "Auto Key",
+    "Motion Panel",
+    "Key Reducer"
+  ],
+  "videos": [
+    {
+      "id": "sW5yog10i70",
+      "title": "125   Manipulating tangents in the Curve Editor",
+      "author": "CONSTRUCTION MANAGEMENT"
+    },
+    {
+      "id": "9Blz7wvLRkM",
+      "title": "vfx 101 3dsmax the curve editor",
+      "author": "Quang Hợp Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Track%20View%20Curve%20Editor",
+  "grounded": false,
+  "at": "2026-10-19T10:31:35.539448+00:00"
+}

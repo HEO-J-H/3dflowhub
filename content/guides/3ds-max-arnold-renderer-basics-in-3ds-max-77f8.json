@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-arnold-renderer-basics-in-3ds-max-77f8",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Arnold renderer basics in 3ds Max",
+  "title": "Arnold 렌더 기초 설정",
+  "summary": "Arnold 렌더러는 3ds Max의 기본 탑재된 강력한 물리 기반(PBR) 렌더러입니다. 사실적인 빛의 반사, 굴절, 글로벌 일루미네이션(GI)을 구현합니다.",
+  "when": [
+    "영화, 광고 수준의 고품질 사실적 렌더링이 필요할 때",
+    "물리적으로 정확한 재질(Standard Surface)과 복잡한 라이팅을 구현할 때",
+    "GPU와 CPU를 모두 활용하여 효율적으로 렌더링 작업을 수행할 때"
+  ],
+  "steps": [
+    "Rendering 메뉴에서 Render Setup (F10)을 엽니다.",
+    "Common 탭 하단의 Assign Renderer에서 Production을 Arnold로 설정합니다.",
+    "Arnold Renderer 탭에서 GI(Global Illumination)와 Sampling 값을 세팅합니다.",
+    "Standard Material 대신 Arnold의 Standard Surface 재질을 적용합니다.",
+    "Arnold 전용 라이트(Physical Light 등)를 배치합니다.",
+    "Render Production (F9)을 눌러 최종 이미지를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Camera (AA)",
+      "desc": "전반적인 이미지 노이즈 품질을 결정하는 주 샘플링 값입니다."
+    },
+    {
+      "name": "Diffuse",
+      "desc": "표면의 확산 반사 노이즈 품질을 조절합니다."
+    },
+    {
+      "name": "Specular",
+      "desc": "광원의 반사 및 하이라이트 노이즈 품질을 조절합니다."
+    },
+    {
+      "name": "Transmission",
+      "desc": "유리나 물 등 투명한 재질의 굴절 노이즈 품질을 조절합니다."
+    },
+    {
+      "name": "Render Device",
+      "desc": "CPU와 GPU 중 연산에 사용할 하드웨어를 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 자연광(Daylight) 렌더링",
+      "steps": [
+        "Create → Lights → Arnold → Physical Sky를 뷰포트에 배치합니다.",
+        "Render Setup에서 GI Diffuse Depth 값을 2 이상으로 올립니다.",
+        "Camera (AA) 샘플링을 높여 그림자 영역의 노이즈를 제거합니다."
+      ]
+    },
+    {
+      "title": "투명한 유리 컵 재질 설정",
+      "steps": [
+        "Slate Material Editor를 엽니다.",
+        "Standard Surface 재질을 생성하고 모델에 적용합니다.",
+        "Transmission Weight 값을 1.0으로 올려 완전한 투명함을 만듭니다.",
+        "IOR 값을 유리 수치인 1.5로 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 심함 → Camera (AA) 샘플링 값을 무조건 올리기보다 각 라이트와 디퓨즈 샘플을 확인하여 조절합니다.",
+    "렌더링 속도가 너무 느림 → 불필요하게 높은 Max Depth 값을 낮추고 GPU 렌더링 활성화를 검토합니다."
+  ],
+  "related": [
+    "Standard Surface",
+    "Physical Sky",
+    "Arnold Light",
+    "Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "2FRu6kA8ihY",
+      "title": "Introduction of Arnold | Class 01 | Arnold for 3ds Max",
+      "author": "Curve Design Center"
+    },
+    {
+      "id": "QSBvis-Ulew",
+      "title": "Arnold Render Settings  Optimization | Class 02 |Arnold for 3ds Max",
+      "author": "Curve Design Center"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Arnold%20renderer%20basics%20in%203ds%20Max",
+  "grounded": false,
+  "at": "2026-10-19T10:31:39.282657+00:00"
+}

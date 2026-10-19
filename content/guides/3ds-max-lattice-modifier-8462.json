@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-lattice-modifier-8462",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Lattice modifier",
+  "title": "Lattice — 철골·와이어 구조 만들기",
+  "summary": "Lattice 모디파이어는 오브젝트의 세그먼트와 버텍스를 철골 구조나 거미줄 같은 뼈대 형태로 변환합니다. 기하학적 형태를 와이어프레임 모델로 빠르게 바꿀 때 사용합니다.",
+  "when": [
+    "건축 외골격(Diagrid)이나 철제 트러스 구조물을 만들 때",
+    "SF 영화 속 홀로그램이나 복잡한 기계 프레임을 표현할 때",
+    "로우폴리곤 스타일에 독특한 입체적 패턴을 부여할 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭으로 이동해 기본 도형(예: Box, Sphere)을 뷰포트에 생성합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Lattice를 선택합니다.",
+    "Parameters에서 Struts(지주)와 Joints(결합점)의 생성 여부와 형태를 설정합니다.",
+    "Radius와 Segments 값을 조절하여 굵기와 부드러움을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Struts",
+      "desc": "에지(Edge)를 따라 생성되는 기둥(막대)의 표시 여부와 옵션을 설정합니다."
+    },
+    {
+      "name": "Joints",
+      "desc": "버텍스(Vertex) 위치에 생성되는 구체나 형태의 표시 여부와 옵션을 설정합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "기둥이나 결합점의 두께를 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "원형 단면이나 구체의 원주 방향 분할 수를 조절합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "Struts와 Joints에 각각 다른 Material ID를 부여합니다."
+    },
+    {
+      "name": "Eula / Gen. Mapping Coords",
+      "desc": "텍스처 매핑 좌표를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SF 영화 속 홀로그램 돔 구조물",
+      "steps": [
+        "GeoSphere를 생성하고 Segments 값을 낮게 설정합니다.",
+        "Lattice 모디파이어를 적용하여 Struts만 활성화합니다.",
+        "Radius를 얇게 조절하고 발광(Self-Illumination) 재질을 적용합니다."
+      ]
+    },
+    {
+      "title": "건축 외골격(Diagrid) 타워",
+      "steps": [
+        "Cylinder를 생성하고 Height와 Height Segments를 올립니다.",
+        "Lattice 모디파이어를 적용해 Struts와 Joints를 모두 켭니다.",
+        "Joints를 icosahedron 형태로 설정해 로봇 공학적인 느낌을 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구조물이 너무 빽빽하게 깨져 보임 → 원본 오브젝트의 세그먼트가 너무 많아서 발생합니다. Editable Poly에서 Edge나 Segment를 줄이세요.",
+    "두께가 겹치거나 너무 두꺼움 → Radius 값이 원본 모델의 크기에 비해 너무 큽니다. Radius 값을 낮추세요.",
+    "모서리가 각져 보임 → Segments 값이 부족해서 발생합니다. Struts나 Joints의 Segments 값을 높이세요."
+  ],
+  "related": [
+    "Editable Poly",
+    "TurboSmooth",
+    "Shell",
+    "WireParameters"
+  ],
+  "videos": [
+    {
+      "id": "A-uPR9jvuO0",
+      "title": "3ds max beginner tutorial - modifier series - Lattice modifier",
+      "author": "CG Tutorials"
+    },
+    {
+      "id": "vpw-w3tjkQo",
+      "title": "Lattice modifier |3D's Max Tutorial🔥🔥",
+      "author": "3Ds Max Tricks"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Lattice%20modifier",
+  "grounded": false,
+  "at": "2026-10-19T10:31:01.002227+00:00"
+}
