@@ -1,0 +1,92 @@
+{
+  "id": "blender-screw-modifier-7e55",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Screw modifier",
+  "title": "Screw — 회전체·나선 만들기",
+  "summary": "2차원 프로파일(메시 또는 커브)을 회전축을 따라 회전시키며 나선형이나 꽈배기 같은 3D 형태를 만드는 모디파이어입니다. 철사를 나선형으로 감아 올리듯 입체적인 오브젝트를 효율적으로 생성합니다.",
+  "when": [
+    "나사산, 코일 스프링, 계단 같은 나선형 구조물을 만들 때",
+    "와인잔, 꽃병처럼 중심축을 기준으로 회전 대칭인 형태를 만들 때",
+    "곡선을 따라 회전하는 입체적인 파이프나 장식 요소를 만들 때"
+  ],
+  "steps": [
+    "1. 프로파일이 될 2D 형태(메시 또는 커브)를 준비합니다.",
+    "2. Properties 패널에서 Modifier 탭(렌치 아이콘)을 클릭합니다.",
+    "3. Add Modifier 메뉴에서 Generate 분류의 Screw를 선택합니다.",
+    "4. Axis 옵션에서 나선이 생성될 회전축(X, Y, Z)을 지정합니다.",
+    "5. Angle과 Screw 값을 조절하여 회전 각도와 높이를 설정합니다.",
+    "6. Iterations 값을 높여 나선의 반복 횟수를 늘립니다."
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "한 번의 회전(360도 기준)에 적용되는 각도입니다."
+    },
+    {
+      "name": "Screw",
+      "desc": "나선 한 바퀴가 회전할 때 진행되는 높이(축 방향 거리)입니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "나선 구조가 반복되는 총 횟수입니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "나선이 생성될 기준 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Steps",
+      "desc": "한 바퀴 회전당 생성되는 세그먼트의 세밀함(부드러움)을 조절합니다."
+    },
+    {
+      "name": "Merge",
+      "desc": "회전축에 닿는 버텍스들을 병합하여 끝부분을 메꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "나사못(Screw) 만들기",
+      "steps": [
+        "1. 정면 뷰(Numpad 1)에서 Plane을 추가하고 버텍스를 정리해 나사산 단면을 만듭니다.",
+        "2. Screw 모디파이어를 추가하고 축을 Z로 설정합니다.",
+        "3. Screw와 Iterations 값을 높여 나사산의 길이와 간격을 맞춥니다."
+      ]
+    },
+    {
+      "title": "와인잔 형태 제작",
+      "steps": [
+        "1. 2D 라인(Curve)으로 와인잔의 절반 단면을 그립니다.",
+        "2. Screw 모디파이어를 추가하고 Angle을 360도로 설정합니다.",
+        "3. Steps 값을 높여 원형 단면을 부드럽게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프로파일이 회전축과 너무 멀리 떨어져 있음 → 오브젝트 원점(Origin) 위치를 축에 맞추거나 프로파일 위치를 축 근처로 이동합니다.",
+    "메시의 법선(Normals)이 깨져서 나옴 → Normals 탭에서 Calculate Order를 체크하거나 Flip으로 방향을 뒤집습니다.",
+    "끝부분이 구멍이 뚫려 있음 → Merge 옵션을 켜고 Merge Distance 값을 조절해 축의 버텍스를 병합합니다."
+  ],
+  "related": [
+    "Spin",
+    "Lathe",
+    "Array",
+    "Curve Modifier"
+  ],
+  "videos": [
+    {
+      "id": "k1tl9jyG7n4",
+      "title": "How to Use the Blender Screw Modifier - Step by Step Tutorial",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "cLzsJiY-mNI",
+      "title": "How to Use the Screw Modifier in Blender 🔩",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/screw.html",
+  "grounded": true,
+  "at": "2026-10-19T10:40:56.447214+00:00"
+}

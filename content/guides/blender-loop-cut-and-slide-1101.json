@@ -1,0 +1,90 @@
+{
+  "id": "blender-loop-cut-and-slide-1101",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Loop Cut and Slide",
+  "title": "Loop Cut — 엣지 루프 추가",
+  "summary": "Blender의 Loop Cut and Slide 도구는 선택한 면 루프를 가로지르는 새로운 엣지 루프를 추가하고 원하는 위치로 슬라이드합니다. 마치 물체의 흐름을 따라 칼집을 내어 세그먼트를 늘리는 것과 같습니다.",
+  "when": [
+    "캐릭터나 모델링의 관절 부근에 디테일(세그먼트)을 더 추가할 때",
+    "하드 표면 모델링에서 날카로운 엣지나 형태의 흐름을 정돈할 때",
+    "기존 면의 구조를 유지하며 추가적인 엣지를 균일하게 삽입할 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Edge 툴바 메뉴에서 Loop Cut and Slide를 선택하거나 단축키 Ctrl+R을 누릅니다.",
+    "마우스를 자르고 싶은 방향과 수직인 엣지 위에 올려 노란색 미리보기 선을 확인합니다.",
+    "마우스 왼쪽 버튼(LMB)을 클릭하여 절단할 위치를 확정하고, 두 번째 단계로 넘어갑니다.",
+    "마우스를 움직여 새로운 엣지 루프의 위치를 조절한 뒤, 다시 마우스 왼쪽 버튼(LMB)을 클릭하여 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Number of Cuts",
+      "desc": "마우스 휠 스크롤이나 숫자 키로 생성할 엣지 루프의 개수를 조절합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "표면 곡률을 유지하도록 새로 생성된 엣지를 노멀 방향으로 오프셋합니다."
+    },
+    {
+      "name": "Factor",
+      "desc": "주변 엣지 루프를 기준으로 새로운 엣지의 상대적 위치를 결정합니다."
+    },
+    {
+      "name": "Even",
+      "desc": "인접한 엣지와 일정한 간격을 유지하도록 설정합니다 (단축키 E)."
+    },
+    {
+      "name": "Clamp",
+      "desc": "체크를 해제하면 새로운 엣지 루프가 면의 경계 바깥쪽으로 나갈 수 있습니다 (단축키 C)."
+    },
+    {
+      "name": "Correct UVs",
+      "desc": "비대칭으로 엣지를 배치해도 UV 맵의 왜곡을 방지하고 균일하게 분할합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 모델링 디테일 추가",
+      "steps": [
+        "원통형 메쉬의 Edit Mode로 진입합니다.",
+        "Ctrl+R을 누르고 원통 중앙에 마우스를 올립니다.",
+        "마우스 휠을 굴려 여러 개의 루프 컷을 생성하고 LMB로 확정합니다."
+      ]
+    },
+    {
+      "title": "관절 꺾임 부위 세그먼트 보강",
+      "steps": [
+        "캐릭터 팔 또는 다리 메시의 Edit Mode를 엽니다.",
+        "Ctrl+R을 눌러 관절 꺾임 부위에 엣지 루프를 추가합니다.",
+        "마우스를 슬라이드하여 원하는 위치에 정확히 배치하고 LMB로 고정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "루프 컷이 멈추는 현상 → 토폴로지가 쿼드(Quad) 구조가 아니거나 응집된 N-gon이 있어 엣지 흐름이 끊기기 때문입니다. 주변 토폴로지를 쿼드로 정리하세요.",
+    "원하지 않는 방향으로 컷이 생기는 경우 → 자르고자 하는 방향과 '수직'인 엣지에 마우스를 올리지 않았기 때문입니다. 방향을 확인하고 다시 시도하세요."
+  ],
+  "related": [
+    "Edge Slide",
+    "Knife Tool",
+    "Bevel",
+    "Bisect"
+  ],
+  "videos": [
+    {
+      "id": "6XzrvHZEMQs",
+      "title": "Loop Cut and Slide in Blender (Quick Tip)",
+      "author": "Brandon 3D"
+    },
+    {
+      "id": "oKCMzwT1iQU",
+      "title": "How to use Loop cut and slide in Blender | Blender modeling tutorials",
+      "author": "3D BlendMix "
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/loopcut_slide.html",
+  "grounded": true,
+  "at": "2026-10-19T10:40:47.536338+00:00"
+}
