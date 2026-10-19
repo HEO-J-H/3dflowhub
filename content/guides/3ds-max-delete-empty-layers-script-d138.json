@@ -1,0 +1,75 @@
+{
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "MAXScript",
+  "name": "Delete empty layers script",
+  "title": "MAXScript — 빈 레이어 한 번에 지우기",
+  "summary": "오브젝트가 하나도 없는 레이어를 MAXScript 한 줄로 정리합니다. 외부에서 받은 씬이나 여러 번 합친 씬에서 레이어가 수십 개씩 쌓일 때 유용합니다.",
+  "when": [
+    "외부 에셋·키트배시를 여러 번 머지해 빈 레이어가 쌓였을 때",
+    "납품 전 씬을 깔끔하게 정리할 때",
+    "레이어 탐색기가 너무 길어 작업이 느려질 때"
+  ],
+  "steps": [
+    "Scripting > MAXScript Listener (F11)를 엽니다.",
+    "아래 두 줄을 붙여 넣고 실행합니다: LM = layerManager / for i = (LM.count-1) to 1 by -1 where (lay = LM.getLayer i).canDelete() do LM.deleteLayerByName lay.name",
+    "레이어는 뒤에서부터(번호 큰 것부터) 지워야 번호가 밀리지 않으므로 반복을 역순으로 돕니다.",
+    "canDelete()가 참인 레이어만 지우므로 오브젝트가 있거나 현재 레이어·기본 레이어(0)는 남습니다.",
+    "Layer Explorer에서 정리된 결과를 확인하고 씬을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "layerManager.count",
+      "desc": "기본 레이어(0)를 포함한 레이어 개수"
+    },
+    {
+      "name": "getLayer i",
+      "desc": "i번째 레이어 (0이 기본 레이어)"
+    },
+    {
+      "name": "canDelete()",
+      "desc": "비어 있고 현재 레이어가 아니면 true"
+    },
+    {
+      "name": "deleteLayerByName",
+      "desc": "이름으로 레이어 삭제"
+    }
+  ],
+  "examples": [
+    {
+      "title": "머지 후 바로 정리",
+      "steps": [
+        "File > Import > Merge로 에셋을 가져옵니다.",
+        "Listener에서 위 스크립트를 실행합니다."
+      ]
+    },
+    {
+      "title": "툴바 버튼으로 만들기",
+      "steps": [
+        "스크립트를 선택해 메인 툴바로 끌어다 놓습니다.",
+        "버튼 한 번으로 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "앞에서부터(0부터) 지우는 반복을 쓰면 번호가 밀려 일부가 남음 → 반드시 역순으로",
+    "하위 레이어(중첩)에 오브젝트가 있는 부모 레이어는 지워지지 않음 → 정상 동작"
+  ],
+  "related": [
+    "Layer Explorer",
+    "Scene Explorer",
+    "MAXScript Listener"
+  ],
+  "tip": "실무에서 자주 쓰는 한 줄 스크립트입니다. 장면 사본에서 먼저 실행해 보세요. (3dflowhub MAXScript 문법 검사기 통과)",
+  "doc": "https://help.autodesk.com/view/MAXDEV/2026/ENU/",
+  "id": "3ds-max-delete-empty-layers-script-d138",
+  "grounded": false,
+  "by_operator": true,
+  "videos": [],
+  "images": [],
+  "at": "2026-10-19T13:20:00.665493+00:00",
+  "menu_path": [
+    "Scripting",
+    "MAXScript Listener"
+  ]
+}

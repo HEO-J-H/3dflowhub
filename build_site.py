@@ -492,7 +492,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
 <nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
-<footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
+<footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
 <script>const ROOT="{root}";</script><script src="{root}search.js" defer></script><script src="{root}user.js" defer></script></body></html>"""
@@ -740,6 +740,27 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
     (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
+def build_resources() -> None:
+    """추천 자료: 운영자가 실무에서 참고해 온 외부 자료 링크 모음 (내용 복사 없이 제목·출처·링크만)."""
+    d = core._load_json(core.ROOT / "content" / "resources.json", {})
+    items = d.get("items") or []
+    if not items:
+        return
+    folder = OUT / "resources"
+    folder.mkdir(exist_ok=True)
+    groups: dict[str, list] = {}
+    for it in items:
+        groups.setdefault(it["category"], []).append(it)
+    body = ('<div class="doc"><h1>추천 자료</h1><p class="desc">운영자가 실무에서 참고해 온 튜토리얼·도구·문서 모음입니다. '
+            '각 자료의 저작권은 원작자에게 있으며, 여기서는 제목과 출처, 링크만 소개합니다.</p>'
+            + "".join(f'<h2>{e(c)}</h2><ul class="refs">' + "".join(
+                f'<li><a href="{e(i["url"])}" target="_blank" rel="noopener">{e(i["title"])}</a>'
+                f' <span class="k">{e(i["source"])}</span></li>' for i in its) + "</ul>" for c, its in groups.items())
+            + '<p class="crumb">링크가 끊겼거나 원작자가 삭제를 원하면 ' + mail_link("[3dflowhub] 추천 자료 문의", "알려 주세요") + '.</p></div>')
+    (folder / "index.html").write_text(page(f"추천 자료 - {SITE_TITLE}", body, "../", desc="3D·게임 엔진 실무 추천 자료 모음",
+                                            canonical=f"{BASE_URL}/resources/"), encoding="utf-8")
+
+
 YT_JS = """<script>document.querySelectorAll('.yt').forEach(b=>b.addEventListener('click',()=>{
 const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';
 f.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';f.allowFullscreen=true;
@@ -845,7 +866,8 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
         body = (
             f'<article class="doc guide"><p class="crumb"><a href="{root}learn/">기초 가이드</a> › {e(g["tool"])} › {e(g["group"])}</p>'
             f'<h1>{e(g["title"])}</h1>'
-            + f'<p class="aiby">🤖 공식 문서·튜토리얼 영상을 바탕으로 AI 가 정리 · '
+            + ('<p class="aiby">✍️ 운영자 실무 노트를 바탕으로 정리 · ' if g.get("by_operator")
+               else '<p class="aiby">🤖 공식 문서·튜토리얼 영상을 바탕으로 AI 가 정리 · ')
             + ('<b class="ok">✔ 에디터 검토 완료</b>' if g.get("reviewed") else '에디터 검토 전')
             + ' · ' + mail_link("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
             + f'<p class="lead">{e(g.get("summary", ""))}</p>'
@@ -884,7 +906,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
     secs = "".join(f'<h2 class="sec" id="{e(slug(t))}">{e(t)}</h2><div class="gcards">{"".join(guide_card(g, "../") for g in gs)}</div>'
                    for t, gs in tools.items())
     body = ('<div class="doc"><h1>기초 가이드</h1><p class="desc">모디파이어·메뉴·패널·노드 같은 기본 기능을 '
-            '<b>영상</b>과 <b>따라 하기 단계</b>, <b>활용 예시</b>로 정리합니다. 새 소식과 달리 언제 봐도 유효한 레퍼런스예요.</p></div>'
+            '<b>영상</b>과 <b>따라 하기 단계</b>, <b>활용 예시</b>로 정리합니다. 새 소식과 달리 언제 봐도 유효한 레퍼런스예요. · <a href="../resources/">추천 자료 모음 →</a></p></div>'
             + (f'<div class="tabs chips">{nav}</div>{secs}' if guides_ else "<p>준비 중입니다 — 매일 몇 개씩 추가됩니다.</p>"))
     (root_dir / "index.html").write_text(page(f"기초 가이드 - {SITE_TITLE}", body, "../",
                                               desc="3ds Max·Blender·Houdini·Unreal 기본 기능을 영상과 단계별 사용법으로"),
@@ -1075,7 +1097,7 @@ def build() -> dict:
     tip_map = core.tips()
     for g in learn_guides:
         g["reviewed"] = gstate.get("learn:" + g["id"]) == "ok"
-        g["tip"] = tip_map.get("learn:" + g["id"], "")
+        g["tip"] = tip_map.get("learn:" + g["id"]) or g.get("tip", "")  # 현황판에서 쓴 팁이 우선, 없으면 가이드에 적힌 운영자 팁
     roundups = load_roundups(posts)
     guide_sec = (f'<h2 class="sec">도구별 정리 <a href="{{ROOT}}guide/">전체 보기 →</a></h2><div class="rank">'
                  + "".join(f'<a href="{{ROOT}}{guide_url(r["domain"], r["tool"])}"><span><span class="t">{e(r["title"])}</span>'
@@ -1195,6 +1217,7 @@ def build() -> dict:
     import recipes as _recipes
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
+    build_resources()
 
     # 저장한 글 (브라우저에만 저장 — static/user.js 가 그림)
     (OUT / "saved").mkdir(exist_ok=True)
@@ -1290,7 +1313,7 @@ def build() -> dict:
             if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
-           [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
+           [f"{BASE_URL}/resources/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)

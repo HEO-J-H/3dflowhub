@@ -1,0 +1,62 @@
+{
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "WebGL",
+  "name": "Open WebGL build locally",
+  "title": "Unity WebGL 빌드를 로컬에서 열기",
+  "summary": "Unity WebGL 빌드의 index.html을 더블클릭하면 브라우저 보안 정책 때문에 로딩이 멈추는 경우가 많습니다. 로컬 웹서버로 여는 것이 안전하고 확실합니다.",
+  "when": [
+    "빌드 결과를 업로드 전에 내 PC에서 확인할 때",
+    "index.html을 열었는데 로딩 바에서 멈출 때"
+  ],
+  "steps": [
+    "가장 쉬운 방법: Unity에서 File > Build And Run으로 빌드하면 Unity가 임시 로컬 서버로 열어 줍니다.",
+    "이미 빌드한 폴더라면 그 폴더에서 로컬 서버를 실행합니다 (예: python -m http.server 8000).",
+    "브라우저에서 http://localhost:8000 으로 접속합니다.",
+    "압축(Brotli/Gzip) 빌드가 안 열리면 Player Settings > Publishing Settings에서 Decompression Fallback을 켜거나 압축을 끄고 다시 빌드합니다."
+  ],
+  "params": [
+    {
+      "name": "Build And Run",
+      "desc": "빌드 후 Unity 내장 서버로 바로 실행"
+    },
+    {
+      "name": "Compression Format",
+      "desc": "Brotli/Gzip/Disabled — 서버 설정과 맞아야 함"
+    },
+    {
+      "name": "Decompression Fallback",
+      "desc": "서버가 압축 헤더를 못 줄 때 대비"
+    }
+  ],
+  "examples": [
+    {
+      "title": "사내 공유용 확인",
+      "steps": [
+        "Build And Run으로 확인합니다.",
+        "문제 없으면 웹서버에 업로드합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "브라우저를 --allow-file-access-from-files 옵션으로 실행해 해결 → 보안상 위험하므로 테스트 전용 별도 프로필에서만, 끝나면 반드시 닫기",
+    "압축 빌드를 헤더 설정 없는 서버에 올림 → Decompression Fallback 또는 서버 설정 필요"
+  ],
+  "related": [
+    "Player Settings",
+    "Build Profiles",
+    "WebGL template"
+  ],
+  "tip": "예전에는 Chrome을 --allow-file-access-from-files 옵션으로 실행하는 방법을 썼지만, 보안 위험이 있어 로컬 서버 방식을 권합니다.",
+  "doc": "https://docs.unity3d.com/Manual/webgl-building.html",
+  "id": "unity-open-webgl-build-locally-79d5",
+  "grounded": false,
+  "by_operator": true,
+  "videos": [],
+  "images": [],
+  "at": "2026-10-19T13:20:00.665493+00:00",
+  "menu_path": [
+    "File",
+    "Build And Run"
+  ]
+}

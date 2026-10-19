@@ -1,0 +1,62 @@
+{
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "라이팅",
+  "name": "HDRI overall mult vs render mult",
+  "title": "V-Ray HDRI — overall mult와 render mult 차이",
+  "summary": "V-Ray HDRI(VRayBitmap) 맵의 두 밝기 값은 영향을 주는 범위가 다릅니다. overall mult는 렌더와 재질 편집기 표시 모두, render mult는 렌더링에만 적용됩니다.",
+  "when": [
+    "HDRI 조명이 너무 밝거나 어두울 때",
+    "재질 편집기 미리보기는 그대로 두고 렌더 밝기만 바꾸고 싶을 때"
+  ],
+  "steps": [
+    "Environment(8) 또는 Dome Light에 연결된 VRayBitmap(HDRI) 맵을 재질 편집기로 엽니다.",
+    "overall mult: 이미지 전체 밝기 — 렌더링과 재질 편집기 표시에 모두 반영됩니다.",
+    "render mult: 렌더링할 때만 밝기를 바꾸고 재질 편집기 표시는 그대로 둡니다.",
+    "보통 overall mult로 기준 밝기를 맞추고, 최종 렌더 노출만 render mult로 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "overall mult",
+      "desc": "전체 밝기 (렌더 + 재질 편집기 표시)"
+    },
+    {
+      "name": "render mult",
+      "desc": "렌더 밝기만 (표시는 그대로)"
+    },
+    {
+      "name": "Mapping type: Spherical",
+      "desc": "일반 위경도(equirect) HDRI의 기본 매핑"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 렌더 노출 맞추기",
+      "steps": [
+        "overall mult 1로 두고 카메라 노출을 먼저 맞춥니다.",
+        "창밖이 타면 render mult만 낮춰 봅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "두 값을 함께 크게 바꿔 기준을 잃음 → 하나를 기준으로 고정",
+    "HDRI 밝기 대신 카메라 노출로 풀 문제를 맵 값으로만 해결하려 함"
+  ],
+  "related": [
+    "VRayBitmap",
+    "VRayLight Dome",
+    "VRayPhysicalCamera"
+  ],
+  "tip": "운영자 실무 노트에서 정리한 내용입니다.",
+  "doc": "https://docs.chaos.com/display/VMAX/VRayBitmap",
+  "id": "v-ray-hdri-overall-mult-vs-render-mult-9f8d",
+  "grounded": false,
+  "by_operator": true,
+  "videos": [],
+  "images": [],
+  "at": "2026-10-19T13:20:00.665493+00:00",
+  "menu_path": [
+    "Environment (8)",
+    "VRayBitmap"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처",
+  "name": "Height and Roughness from Diffuse",
+  "title": "Photoshop — 디퓨즈로 Height·Roughness 맵 빠르게 만들기",
+  "summary": "사진 한 장(디퓨즈/알베도)만 있을 때 Photoshop 조정 레이어로 Height와 Roughness 맵의 초안을 만드는 방법입니다. 정확한 측정값이 아닌 근사치라 배경·소품용으로 적합합니다.",
+  "when": [
+    "스캔 데이터 없이 사진 텍스처만 있을 때",
+    "배경 소품처럼 정밀도가 덜 중요한 재질",
+    "Substance 같은 전용 도구를 쓰기 전 빠른 시안"
+  ],
+  "steps": [
+    "디퓨즈 레이어를 복사합니다 (Ctrl+J).",
+    "Height: 복사한 레이어의 채도를 없앱니다 (Image > Adjustments > Hue/Saturation, Ctrl+U에서 Saturation -100).",
+    "Levels(Ctrl+L)나 Brightness/Contrast로 튀어나온 곳은 밝게, 들어간 곳은 어둡게 대비를 키웁니다.",
+    "Roughness: Height 레이어를 다시 복사해 Levels(Ctrl+L)로 전체를 밝게 올립니다 (밝을수록 거친 면).",
+    "각 레이어를 따로 저장(Height.png, Roughness.png)해 엔진·렌더러의 해당 슬롯에 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Hue/Saturation (Ctrl+U)",
+      "desc": "Saturation -100으로 흑백 변환"
+    },
+    {
+      "name": "Levels (Ctrl+L)",
+      "desc": "검정·흰색 지점을 옮겨 대비·밝기 조절"
+    },
+    {
+      "name": "Invert (Ctrl+I)",
+      "desc": "광택 있는 재질은 반전이 더 맞을 때가 있음"
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 사진 재질",
+      "steps": [
+        "줄눈이 어둡게 나오도록 Levels로 대비를 키웁니다.",
+        "Roughness는 전체를 밝게 해 거친 벽면으로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "그림자·하이라이트가 강한 사진을 그대로 쓰면 빛이 Height에 섞임 → 그늘진 균일 조명 사진을 사용",
+    "Roughness를 Height와 똑같이 두면 재질이 단조로움 → 밝기를 따로 조절"
+  ],
+  "related": [
+    "Normal map",
+    "Substance 3D Sampler",
+    "Materialize"
+  ],
+  "tip": "빠른 시안용 방법입니다. 실제 PBR 정확도가 필요하면 전용 도구(Substance 3D Sampler 등)를 쓰세요.",
+  "doc": "https://helpx.adobe.com/photoshop/using/levels-adjustment.html",
+  "id": "photoshop-height-and-roughness-from-diffuse-9162",
+  "grounded": false,
+  "by_operator": true,
+  "videos": [
+    {
+      "id": "DqAJz40tq5s",
+      "title": "How to easily create Height and Roughness Maps inside Photoshop",
+      "author": "Aman Naugai"
+    }
+  ],
+  "images": [],
+  "at": "2026-10-19T13:20:00.665493+00:00",
+  "menu_path": [
+    "Image",
+    "Adjustments",
+    "Hue/Saturation"
+  ]
+}
