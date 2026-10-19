@@ -62,6 +62,19 @@ st.markdown("""<style>
 [data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:16px;padding:14px 18px}
 [data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
 [data-testid="stMetricValue"]{font-size:1.75rem}
+@media (max-width: 640px){
+  .block-container{padding:3.4rem 0.75rem 3rem !important}  /* 위쪽 고정 막대에 가리지 않게 */
+  h1{font-size:1.55rem !important;padding:0.2rem 0 0.4rem !important}
+  h2,h3{font-size:1.15rem !important}
+  [data-testid="stMetricValue"]{font-size:1.3rem}
+  [data-testid="stMetric"]{padding:10px 12px}
+  /* 지표가 한 줄에 하나씩 세로로 길게 쌓이지 않도록 2열 */
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]){flex-wrap:wrap !important;gap:8px !important}
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"]{
+    flex:1 1 calc(50% - 8px) !important;min-width:calc(50% - 8px) !important;width:auto !important}
+  .stButton button,.stDownloadButton button{min-height:44px}
+  [data-testid="stTabs"] button p{font-size:0.92rem}
+}
 div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:16px}
 .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .hdr-links a{margin-right:14px;text-decoration:none}
@@ -193,9 +206,11 @@ def job_panel() -> None:
 import sites as _sites  # noqa: E402
 
 VIEW_LABELS = {"hq": "🏢 전체 요약", **{k: v["name"] for k, v in _sites.SITES.items()}}
-with st.sidebar:
-    view = st.selectbox("사이트", list(VIEW_LABELS), index=list(VIEW_LABELS).index("3dflowhub"),
-                        format_func=lambda k: VIEW_LABELS[k], key="site_view")
+# 휴대폰에서는 사이드바가 접혀 있으므로 본문 맨 위에 둠
+SHORT = {"hq": "🏢 전체", "3dflowhub": "🧊 3dflowhub", "life-after-60": "💰 은퇴계산기"}  # 휴대폰 한 줄에 들어가게
+view = st.segmented_control("사이트", list(VIEW_LABELS), default="3dflowhub",
+                            format_func=lambda k: SHORT.get(k, VIEW_LABELS[k]),
+                            key="site_view", label_visibility="collapsed") or "3dflowhub"
 if view != "3dflowhub":
     import dash_sites
     with st.sidebar:
@@ -1058,15 +1073,6 @@ with t_today:
     import manager as _mgr
     plan_t = core._load_json(_mgr.PLAN_PATH, {})
     done_t = _mgr.done_today()
-    q1, q2, q3, q4 = st.columns(4)
-    q1.metric("오늘 올린 소식", f"{done_t['news']}건")
-    q2.metric("오늘 기초 가이드", f"{done_t['guides']}개")
-    q3.metric("오늘 도구별 정리", f"{done_t['roundups']}개")
-    q4.metric("남은 AI 여력", f"{core.llm_capacity_left()}회", help=f"리셋 {core.llm_reset_kst()} (한국 시간)")
-    st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
-               + (f" · 배분 뉴스 {int(plan_t['alloc'].get('news', 0) * 100)}% · 가이드 {int(plan_t['alloc'].get('guides', 0) * 100)}%"
-                  f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
-
     st.subheader("✅ 결정할 일")
     pend = [x for x in _mgr.board()["proposals"] if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     if not pend:
@@ -1088,6 +1094,17 @@ with t_today:
                 _mgr.decide(x["id"], "rejected")
                 save_manager("제안 거절")
                 st.rerun()
+
+    todo_t = _mgr.manual_todo("3dflowhub")
+    if todo_t:
+        with st.expander(f"🛠 직접 작업 {len(todo_t)}건 — 요청문을 복사해 Claude 에게 맡기세요"):
+            for x in todo_t:
+                st.markdown(f"**{x['title']}**")
+                st.code(_mgr.claude_request(x), language=None, wrap_lines=True)
+                if st.button("✔ 완료", key=f"t_done_{x['id']}"):
+                    _mgr.decide(x["id"], "done")
+                    save_manager("직접 작업 완료")
+                    st.rerun()
 
     import staff as _staff
     waiting = [x for x in _staff.outbox() if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
@@ -1120,6 +1137,17 @@ with t_today:
                 _staff.set_outbox(x["id"], "skipped")
                 core.git_sync(["memory/outbox.json"], "chore(staff): 홍보 건너뜀 [skip ci]")
                 st.rerun()
+
+    st.subheader("📈 오늘 성과")
+    q1, q2, q3, q4 = st.columns(4)
+    q1.metric("오늘 올린 소식", f"{done_t['news']}건")
+    q2.metric("오늘 기초 가이드", f"{done_t['guides']}개")
+    q3.metric("오늘 도구별 정리", f"{done_t['roundups']}개")
+    q4.metric("남은 AI 여력", f"{core.llm_capacity_left()}회", help=f"리셋 {core.llm_reset_kst()} (한국 시간)")
+    st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
+               + (f" · 배분 뉴스 {int(plan_t['alloc'].get('news', 0) * 100)}% · 가이드 {int(plan_t['alloc'].get('guides', 0) * 100)}%"
+                  f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
+
 
     st.subheader("👀 무엇이 읽히나 (최근 30일)")
     pg = core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}
