@@ -374,7 +374,8 @@ with t_home:
                      .reindex(days, fill_value=0))
             daily.index = [f"{d:%m/%d}({'월화수목금토일'[d.weekday()]})" for d in days]
             visits_by_day = (perf.get("pages") or {}).get("daily") or {}
-            first = min(visits_by_day) if visits_by_day else ""  # 통계 수집 전 날짜는 0 이 아니라 '없음'(선 끊김)
+            # 사이트 열기 전 날짜는 0 이 아니라 '없음'(선 끊김) — 첫 방문이 있던 날부터 그림
+            first = min((k for k, v in visits_by_day.items() if v), default="")
             visits = pd.Series({lbl: (visits_by_day.get(str(d), 0) if str(d) >= first else None)
                                 for lbl, d in zip(daily.index, days)}, dtype="float") if visits_by_day else None
             vbars(daily, "수집 글", line=visits, line_title="방문")
