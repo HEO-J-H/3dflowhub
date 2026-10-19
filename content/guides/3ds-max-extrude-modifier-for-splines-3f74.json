@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-extrude-modifier-for-splines-3f74",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extrude modifier for splines",
+  "title": "Extrude — 스플라인을 입체로",
+  "summary": "2D 스플라인(Spline) 모양에 두께와 깊이를 주어 3D 입체 모델로 변환하는 가장 기초적인 모디파이어입니다. 평면적인 선을 손쉽게 볼륨감 있는 오브젝트로 바꿉니다.",
+  "when": [
+    "2D 캐드(CAD) 도면 선을 바탕으로 건물 벽체나 기둥을 세울 때",
+    "입체적인 로고나 타이포그래피(텍스트) 3D 모델링을 만들 때",
+    "창틀, 문짝, 액자 등 일정한 단면을 가진 길쭉한 구조물을 만들 때"
+  ],
+  "steps": [
+    "Top 뷰포트에서 Line 또는 Shape 도구를 이용해 2D 스플라인을 그립니다.",
+    "메인 툴바에서 Select and Move (W)를 눌러 스플라인을 선택합니다.",
+    "Command Panel의 Modify 탭으로 이동합니다.",
+    "Modifier List 드롭다운 메뉴를 열고 Extrude를 찾아 선택합니다.",
+    "Parameters rollout에서 Amount 값을 조절해 두께(높이)를 부여합니다.",
+    "필요에 따라 Segments 값을 높여 면의 분할을 추가합니다."
+  ],
+  "params": [
+    {
+      "name": "Amount",
+      "desc": "스플라인이 튀어나올 높이(두께)를 설정합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "높이 방향으로 생성되는 세로 면의 분할 개수를 조절합니다."
+    },
+    {
+      "name": "Cap Start",
+      "desc": "시작 지점에 뚜껑(면)을 생성할지 여부를 결정합니다."
+    },
+    {
+      "name": "Cap End",
+      "desc": "끝 지점에 뚜껑(면)을 생성할지 여부를 결정합니다."
+    },
+    {
+      "name": "Generate Mapping Coordinates",
+      "desc": "텍스처 맵핑을 위한 UV 좌표를 자동으로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 글자 로고 제작",
+      "steps": [
+        "Text 스플라인으로 원하는 문구를 타이핑합니다.",
+        "Modifier List에서 Extrude를 적용합니다.",
+        "Amount 값을 높여 입체적인 글자 두께를 만듭니다."
+      ]
+    },
+    {
+      "title": "건축 외벽 생성",
+      "steps": [
+        "Line 도구로 방의 평면 외곽선을 닫힌 형태(Closed Spline)로 그립니다.",
+        "Extrude 모디파이어를 적용합니다.",
+        "Amount에 천장 높이만큼 수치를 입력해 벽체를 세웁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스플라인이 닫혀있지 않아(Open Spline) 뚜껑이 안 생기는 경우 → Vertex 서브오브젝트에서 Weld를 실행하거나 Line 생성 시 Start와 End 버텍스를 연결해 닫힌 형태로 만듭니다.",
+    "Extrude 후 면이 까맣게 깨져 보이는 경우 → 노멀(Normal)이 뒤집힌 상태이므로 Normal 모디파이어를 추가하거나 Edit Poly에서 Flip을 실행합니다."
+  ],
+  "related": [
+    "Bevel",
+    "Lathe",
+    "Sweep",
+    "Edit Spline"
+  ],
+  "videos": [
+    {
+      "id": "rOzNIcC36R8",
+      "title": "Extrude Along Spline in 3Ds Max — Extend Geometry Along a Curve #shorts  #3dsmax #modeling",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "JUObIV9dUHg",
+      "title": "Quickbit - Splines and spline modifiers in 3DS Max",
+      "author": "FastTrack Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Extrude%20modifier%20for%20splines",
+  "grounded": false,
+  "at": "2026-10-19T10:20:37.990658+00:00"
+}

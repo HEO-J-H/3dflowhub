@@ -1,0 +1,92 @@
+{
+  "id": "3ds-max-line-spline-and-lathe-modifier-d126",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Line spline and Lathe modifier",
+  "title": "Line·Lathe — 회전체(컵·병) 만들기",
+  "summary": "2차원 Line 스플라인으로 반쪽 단면을 그린 뒤, Lathe 모디파이어를 적용하여 360도 회전하는 대칭형 3D 모델을 만드는 필수 기능입니다.",
+  "when": [
+    "와인잔, 컵, 화병처럼 중심축을 기준으로 대칭인 오브젝트를 만들 때",
+    "기둥, 볼트, 체스말 등 선반(Lathe) 가공 방식의 형태를 제작할 때",
+    "구(Sphere)나 원통의 정밀한 단면 프로파일을 직접 디자인하고 싶을 때"
+  ],
+  "steps": [
+    "Create 패널에서 Shapes(라인 아이콘)로 이동해 Line을 선택합니다.",
+    "Top 또는 Front 뷰포트에서 오브젝트의 단면 절반 모양을 클릭하며 그립니다.",
+    "Modify 패널에서 Vertex 서브오브젝트 모드(단축키 1)로 들어가 버텍스 위치와 곡선을 정돈합니다.",
+    "Modifier List에서 Lathe 모디파이어를 선택해 적용합니다.",
+    "Parameters 롤아웃에서 Align 버튼(Min, Center, Max)을 눌러 회전 중심축을 맞춥니다.",
+    "Segments 값을 높여 표면을 부드럽게 만들고 Weld Core를 켜서 가운데 틈을 막습니다."
+  ],
+  "params": [
+    {
+      "name": "Degrees",
+      "desc": "회전하는 각도를 설정합니다 (기본값 360도)."
+    },
+    {
+      "name": "Segments",
+      "desc": "회전 방향의 면 분할 개수를 조절하여 매끄러움 정도를 결정합니다."
+    },
+    {
+      "name": "Welding",
+      "desc": "겹치는 버텍스를 하나로 병합합니다."
+    },
+    {
+      "name": "Weld Core",
+      "desc": "회전 중심축에 생기는 버텍스들을 용접하여 구멍을 방지합니다."
+    },
+    {
+      "name": "Flip Normals",
+      "desc": "뒤집힌 면의 법선(Normal) 방향을 바깥쪽으로 바로잡습니다."
+    },
+    {
+      "name": "Direction (X, Y, Z)",
+      "desc": "회전이 일어날 기준 축을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "와인잔 제작",
+      "steps": [
+        "Front 뷰에서 와인잔의 오른쪽 단면을 Line으로 그립니다.",
+        "Lathe 모디파이어를 적용하고 Direction을 Z축으로 설정합니다.",
+        "Align에서 Min을 눌러 잔의 중심축을 맞추고 Segments를 32로 올립니다."
+      ]
+    },
+    {
+      "title": "클래식 기둥 제작",
+      "steps": [
+        "Front 뷰에서 홈이 파인 기둥의 단면 프로파일을 스플라인으로 그립니다.",
+        "Lathe를 적용하여 360도 회전 바디를 완성합니다.",
+        "Cap Start와 Cap Ends를 체크해 위아래 단면을 막습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "회전 중심축이 엉뚱한 곳에 위치하여 모델이 거대하게 왜곡됨 → Align에서 Min 또는 Max를 누르거나 Gizmo를 이동해 축을 단면 끝에 맞춥니다.",
+    "가운데 구멍이 뚫리거나 면이 검게 깨짐 → Weld Core 옵션을 체크하여 중심부 버텍스를 하나로 합칩니다.",
+    "면의 안팎이 뒤집혀서 어둡게 나옴 → Flip Normals를 체크하여 법선 방향을 반대로 뒤집습니다."
+  ],
+  "related": [
+    "Edit Spline",
+    "Extrude",
+    "Bevel",
+    "Turbosmooth"
+  ],
+  "videos": [
+    {
+      "id": "RXWt12f-rqg",
+      "title": "How to Lathe Modifier In 3ds MAX",
+      "author": "SAMS GAME"
+    },
+    {
+      "id": "QdVt__Cibic",
+      "title": "3ds Max Spline Tools - The Basics",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Line%20spline%20and%20Lathe%20modifier",
+  "grounded": false,
+  "at": "2026-10-19T10:20:31.549459+00:00"
+}
