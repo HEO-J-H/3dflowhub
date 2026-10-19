@@ -401,6 +401,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .mp-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font:600 13px/1.3 ui-monospace,Consolas,monospace}
 .mp-chip.last{border-color:var(--accent,#4f8cff);color:var(--accent,#4f8cff)}
 .mp-arr{opacity:.5;font-weight:700}
+.refs{padding-left:20px}.refs li{margin:6px 0}.refs .k{font-size:12px;opacity:.7}
 .codebar{display:flex;gap:10px;align-items:center;margin:8px 0}
 .codebar button,.codebar a{font:600 13px/1 inherit;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;text-decoration:none}
 pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;background:#0d1117;color:#e6edf3;font:13px/1.55 ui-monospace,Consolas,monospace;white-space:pre}
@@ -997,7 +998,9 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
              + (f' › <a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}{TOPIC_SLUG[p["topic"]]}/">'
                 f'{e(p["topic"])}</a>' if p.get("topic") in TOPIC_SLUG else "") + ' · '
              f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>',
-             f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다 · 정확한 내용은 원문 기준 · '
+             f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다'
+             + (' · 커뮤니티 토론·튜토리얼을 참고해 실무 내용을 보강했습니다' if p.get("refs") or p.get("videos") else "")
+             + ' · 정확한 내용은 원문 기준 · '
              f'{mail_link("[3dflowhub] 오류 제보: " + p["title_ko"][:40], "오류 제보")}</p>']
     tip = core.tips().get("p:" + p["id"])
     if m.get("image"):
@@ -1010,13 +1013,21 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
     if tip:
         parts.append(f'<div class="optip"><b>✍️ 운영자 한마디</b><p>{e(tip)}</p></div>')
     for s in p.get("sections") or []:
-        parts.append(f'<h2>{e(s.get("heading", ""))}</h2><p>{e(s.get("body", ""))}</p>')
+        parts.append(f'<h2>{e(s.get("heading", ""))}</h2><p>{e(s.get("body", ""))}</p>')  # 보강 섹션도 같은 모양
     if p.get("insight"):
         parts.append(f'<h2>💡 AI 해설 (실무 관점)</h2><blockquote>{e(p["insight"])}</blockquote>')
     faq = [f for f in p.get("faq") or [] if f.get("q")]
     if faq:
         parts.append("<h2>❓ 자주 묻는 질문</h2>" + "".join(
             f'<details><summary>Q. {e(f["q"])}</summary><p>{e(f.get("a", ""))}</p></details>' for f in faq))
+    if p.get("videos"):
+        parts.append('<h2>🎬 관련 튜토리얼</h2><div class="vids' + (" two" if len(p["videos"]) > 1 else "") + '">'
+                     + "".join(yt_facade(v) for v in p["videos"]) + "</div>" + YT_JS)
+    if p.get("refs"):
+        parts.append('<h2>🔗 참고한 커뮤니티 토론</h2><ol class="refs">' + "".join(
+            f'<li><a href="{e(r["url"])}" target="_blank" rel="noopener nofollow">{e(r["title"])}</a>'
+            f' <span class="k">{e(r["source"])}' + (f' · 답글 {r["replies"]}' if r.get("replies") else "") + '</span></li>'
+            for r in p["refs"]) + "</ol>")
     if related:
         parts.append("<h2>📚 함께 보면 좋은 글</h2><ul>" + "".join(
             f'<li><a href="{root}p/{r["id"]}.html">{e(r["title_ko"])}</a></li>' for r in related) + "</ul>")
