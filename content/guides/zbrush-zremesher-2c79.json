@@ -1,0 +1,98 @@
+{
+  "id": "zbrush-zremesher-2c79",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "ZRemesher",
+  "title": "ZRemesher — 자동 리토폴로지",
+  "summary": "ZRemesher는 하이폴리곤 스컬프팅 모델을 애니메이션과 시뮬레이션에 적합한 깔끔한 사각형(Quad) 기반의 토폴로지로 자동 재배치해 주는 기능입니다. 점토 덩어리를 찰흙 구조에 맞게 흐름을 정리하듯 메쉬를 다시 짜줍니다.",
+  "when": [
+    "다이나믹 스컬프팅(Dynamesh)으로 형태를 잡은 모델을 깨끗한 로우폴리곤으로 정리할 때",
+    "캐릭터 얼굴이나 신체처럼 리깅과 애니메이션을 위한 사각 토폴로지가 필요할 때",
+    "불규칙한 밀도의 메쉬를 균일한 폴리곤 간격으로 최적화하고 싶을 때"
+  ],
+  "steps": [
+    "서브툴(SubTool) 팔레트에서 리토폴로지할 모델을 선택합니다.",
+    "Tool 팔레트에서 Geometry 탭을 엽니다.",
+    "ZRemesher 서브 탭을 클릭하여 펼칩니다.",
+    "Target Polygons 카운트를 설정하여 목표 폴리곤 개수를 지정합니다.",
+    "ZRemesher 버튼을 클릭하여 자동 토폴로지 연산을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Target Polygons",
+      "desc": "결과물로 나올 메쉬의 목표 폴리곤 밀도를 천(k) 단위로 조절합니다."
+    },
+    {
+      "name": "Half",
+      "desc": "현재 폴리곤 개수의 절반 수준으로 ZRemesher를 실행합니다."
+    },
+    {
+      "name": "Same",
+      "desc": "현재 폴리곤 개수와 비슷한 수준을 유지하며 토폴로지를 정리합니다."
+    },
+    {
+      "name": "Double",
+      "desc": "현재 폴리곤 개수의 두 배 수준으로 디테일을 살려가며 정리합니다."
+    },
+    {
+      "name": "KeepGroups",
+      "desc": "Polygroup 경계선을 유지하면서 토폴로지를 생성합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "표면의 세부 굴곡을 부드럽게 다듬으면서 리메싱을 진행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 토폴로지 정리",
+      "steps": [
+        "Dynamesh로 스컬프팅이 끝난 얼굴 서브툴을 선택합니다.",
+        "ZRemesher guides 브러시를 사용해 눈과 입 주변의 폴리곤 흐름선을 그려줍니다.",
+        "ZRemesher 버튼을 눌러 얼굴 굴곡에 맞는 사각 메쉬를 생성합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 소품 최적화",
+      "steps": [
+        "기계 부품 형태의 스컬프팅 모델을 준비합니다.",
+        "KeepGroups 옵션을 활성화하여 파츠별 폴리그룹 경계를 보존합니다.",
+        "ZRemesher를 실행해 날카로운 모서리와 면을 정돈된 사각형 구조로 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 밀도가 너무 높거나 낮음 → Target Polygons 값을 조절하거나 Half/Double 옵션을 활용해 적정 수준을 맞춥니다.",
+    "대칭 구조가 틀어짐 → Symmetry(X축 등)를 활성화한 상태에서 ZRemesher를 실행하거나 Geometry의 Smart ReMesh를 확인합니다.",
+    "필요한 디테일이 뭉개짐 → ZRemesher Guides 브러시로 흐름을 지정하거나 Adaptive Density 옵션을 높여줍니다."
+  ],
+  "related": [
+    "Dynamesh",
+    "ZRemesher Guides",
+    "Polygroups",
+    "Decimation Master"
+  ],
+  "videos": [
+    {
+      "id": "Cho8VtS7jDE",
+      "title": "ZRemesher Guides: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "jIq9ahYOb54",
+      "title": "How to use ZREMESHER to create efficient TOPOLOGY in ZBRUSH | Tutorial",
+      "author": "Jared Chavez"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20ZRemesher",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "SubTool",
+    "Tool",
+    "Geometry",
+    "ZRemesher"
+  ],
+  "at": "2026-10-19T11:40:57.786870+00:00"
+}

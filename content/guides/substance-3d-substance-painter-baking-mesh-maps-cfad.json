@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-substance-painter-baking-mesh-maps-cfad",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Substance Painter baking mesh maps",
+  "title": "Substance Painter 맵 Baking",
+  "summary": "Substance Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 텍스처가 표면의 구부러짐이나 모서리를 인식하게 만듭니다.",
+  "when": [
+    "로우 폴리곤 모델에 하이 폴리곤의 스컬프팅 디테일을 노말 맵으로 입히고 싶을 때",
+    "Smart Materials가 모서리나 홈을 자동으로 인식해 먼지나 마모 효과를 주게 하고 싶을 때",
+    "Ambient Occlusion을 통해 모델의 틈새와 구멍에 자연스러운 음영을 넣고 싶을 때"
+  ],
+  "steps": [
+    "Substance Painter에서 프로젝트를 열고 텍스처를 적용할 로우 폴리곤 모델을 준비합니다.",
+    "Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
+    "Bake Mesh Maps 창에서 Common 탭의 Output Size(해상도)와 상단 탭에서 베이킹할 맵들을 선택합니다.",
+    "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다.",
+    "Max Front/Rear 방사 거리(Distance) 값을 조절하여 하이 폴리곤과 로우 폴리곤 간의 투영 범위를 맞춥니다.",
+    "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Output Size",
+      "desc": "생성될 맵의 해상도(텍셀 덴시티)를 결정합니다."
+    },
+    {
+      "name": "Match",
+      "desc": "하이 폴리곤과 로우 폴리곤의 매칭 방식을 설정합니다(Always, By Mesh Name 등)."
+    },
+    {
+      "name": "Max Front/Rear",
+      "desc": "하이 폴리곤 디테일을 투영할 때 레이(Ray)가 뻗어나가는 거리입니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노말 맵 Baking 시 표면의 이음새를 부드럽게 연결해 줍니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "Baking 시 뒷면의 폴리곤이 서로 간섭하는 현상을 방지합니다."
+    },
+    {
+      "name": "Dilate",
+      "desc": "UV 이음새 부분의 텍스처 빈 공간(Bleed)을 채워주는 픽셀 확장 값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 서페이스 하이 폴리곤 디테일 전사",
+      "steps": [
+        "로우 폴리곤과 볼트/나사 등의 디테일이 포함된 하이 폴리곤을 각각 준비합니다.",
+        "Mesh Names를 일치시켜(예: Box_low, Box_high) Match를 By Mesh Name으로 설정합니다.",
+        "Normal 맵과 Ambient Occlusion 맵을 체크하고 베이킹하여 볼트 자국을 입힙니다."
+      ]
+    },
+    {
+      "title": "스마트 머티리얼 적용을 위한 기본 맵 세팅",
+      "steps": [
+        "단일 로우 폴리곤 모델을 불러온 뒤 Bake Mesh Maps를 엽니다.",
+        "World Space Normal, Curvature, Position 맵을 활성화합니다.",
+        "Baking을 완료한 후 Edges 생성용 Curvature 맵이 잘 나왔는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 이름이 일치하지 않아 엉뚱한 부위에 디테일이 투영됨 → Match 옵션을 By Mesh Name으로 바꾸고 접미사 설정 확인",
+    "Baking 결과물에 검은색 노이즈나 깨짐(Cageless 이슈)이 발생함 → Max Front/Rear 거리를 조절하거나 Cage 파일을 사용",
+    "UV 이음새가 찢어져 하얗게 선이 생김 → Dilate 값을 기본값(2~4 pixel) 이상으로 높여 해결"
+  ],
+  "related": [
+    "Normal Map",
+    "Ambient Occlusion",
+    "Curvature",
+    "Smart Materials"
+  ],
+  "videos": [
+    {
+      "id": "YolnkoZNH20",
+      "title": "Bakes & Mesh Maps Explained - Substance Painter",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "QdLp8K9kL2I",
+      "title": "How to Bake Mesh Maps in Substance 3D Painter",
+      "author": "Nexttut"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Painter%20baking%20mesh%20maps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-19T11:41:02.770612+00:00"
+}
