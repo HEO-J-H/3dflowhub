@@ -570,6 +570,9 @@ def _mark_quota_exhausted() -> None:
 LLM_FALLBACK_PATH = Path(__file__).parent / "memory" / "llm_fallback.json"  # {day: {공급자: 호출수, "공급자!": 소진}}
 
 
+FALLBACK_RESERVE = 100  # 예비 공급자 비상용 보존량 (자동 배분에 쓰지 않음)
+
+
 def fallback_providers() -> list[dict]:
     """키가 등록된 예비 공급자 (오늘 소진·상한 도달한 것 제외)."""
     day = _load_json(LLM_FALLBACK_PATH, {}).get(llm_day(), {})
@@ -601,7 +604,9 @@ def llm_capacity_left() -> int:
     """오늘 남은 전체 AI 호출 여력 = 주 공급자 잔여 + 예비 공급자 잔여 (자동 모드 배분용)."""
     primary = 0 if llm_quota_status()["exhausted"] else \
         int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
-    return max(0, primary) + sum(f["left"] for f in fallback_providers())
+    # 예비 공급자는 일부(fallback_reserve, 기본 100회)를 비상용으로 남김 — 배분에서 빼고, 성찰·관리 등 필수 호출만 씀
+    reserve = int(_load_json(CONFIG_PATH, {}).get("fallback_reserve", FALLBACK_RESERVE))
+    return max(0, primary) + max(0, sum(f["left"] for f in fallback_providers()) - reserve)
 
 
 def llm_budget_left() -> int:

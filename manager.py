@@ -309,10 +309,10 @@ def plan_today() -> dict:
     runs_left = max(1, int(hours_left * 3600 // interval))
     rep = board()["report"]
     alloc = dict(rep.get("allocation") or DEFAULT_ALLOC)
-    cap = float(cfg.get("alloc_news_cap", 0.3))  # 뉴스 상한: 차별성 낮은 요약 소식이 배분을 다 먹지 않도록
-    if alloc.get("news", 0) > cap:
-        spare = alloc["news"] - cap
-        alloc["news"] = cap
+    news_cap = float(cfg.get("alloc_news_cap", 0.3))  # 뉴스 상한: 차별성 낮은 요약 소식이 배분을 다 먹지 않도록
+    if alloc.get("news", 0) > news_cap:
+        spare = alloc["news"] - news_cap
+        alloc["news"] = news_cap
         alloc["guides"] = alloc.get("guides", 0) + spare * 0.6
         alloc["roundups"] = alloc.get("roundups", 0) + spare * 0.4
     try:
@@ -399,8 +399,12 @@ def _guide_stats() -> dict:
     try:
         import guides
         made = guides.load_all()
-        return {"published": len(made), "queued_topics": len(guides.pending()),
-                "by_tool": Counter(g["tool"] for g in made)}
+        queued = len(guides.pending())
+        out = {"published": len(made), "queued_topics": queued, "by_tool": Counter(g["tool"] for g in made)}
+        if queued < 10:  # 만들 거리가 떨어지면 남는 AI 여력이 놀게 됨 → 주제 보충 요청
+            out["note"] = (f"Only {queued} guide topics queued; spare AI capacity will go unused. Propose up to 3 "
+                           "guide_topic actions for popular tools/features not yet covered.")
+        return out
     except Exception:
         return {}
 

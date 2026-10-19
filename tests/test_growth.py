@@ -56,3 +56,9 @@ def test_underperformers():
     perf = {"by_group": {"A/x": {"posts": 10, "views": 2, "avg": 0.2},
                          "A/y": {"posts": 10, "views": 200, "avg": 20.0}}}
     assert growth.underperformers(perf) == ["A/x"]
+
+
+def test_capacity_keeps_fallback_reserve(monkeypatch):
+    monkeypatch.setattr(core, "fallback_providers", lambda: [{"left": 300}])
+    monkeypatch.setattr(core, "llm_quota_status", lambda: {"exhausted": True})
+    assert core.llm_capacity_left() == 300 - core.FALLBACK_RESERVE
