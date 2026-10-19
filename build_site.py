@@ -49,7 +49,22 @@ def site_cfg() -> dict:
     c = core._load_json(core.CONFIG_PATH, {})
     return {"goatcounter": (c.get("goatcounter_code") or "").strip(),
             "adsense": (c.get("adsense_client") or os.getenv("ADSENSE_CLIENT", "")).strip(),
-            "base_url": (c.get("site_base_url") or BASE_URL).rstrip("/")}
+            "base_url": (c.get("site_base_url") or BASE_URL).rstrip("/"),
+            "newsletter": (c.get("newsletter_buttondown") or "").strip()}
+
+
+def newsletter_box(root: str = "") -> str:
+    """동의 기반 뉴스레터 구독 칸 (Buttondown, 이중 동의). 설정이 없으면 표시하지 않음."""
+    user = site_cfg()["newsletter"]
+    if not re.fullmatch(r"[A-Za-z0-9_-]{2,40}", user):
+        return ""
+    return (f'<form class="nl" action="https://buttondown.com/api/emails/embed-subscribe/{e(user)}" method="post" '
+            f'target="_blank"><b>📬 주간 3D 소식·검증된 스크립트 받아보기</b>'
+            f'<span>매주 한 번, 구독 확인한 분께만 보냅니다. 언제든 메일 하단에서 수신거부할 수 있어요.</span>'
+            f'<div><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소">'
+            f'<button type="submit">구독</button></div>'
+            f'<small>구독하면 <a href="{root}privacy/">개인정보처리방침</a>에 동의하는 것으로 봅니다 '
+            f'(수집: 이메일 · 목적: 뉴스레터 발송 · 보관: 수신거부 시까지).</small></form>')
 
 
 def head_scripts() -> str:
@@ -243,14 +258,14 @@ img{display:block}
 header{position:sticky;top:0;z-index:10;background:var(--glass);
   -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;gap:20px;height:56px}
-.logo{display:flex;align-items:center;gap:10px;min-height:44px}
+.logo{display:flex;align-items:center;gap:10px;min-height:44px;flex:none;white-space:nowrap}
 .logo .mark{flex:none;border-radius:8px;box-shadow:0 2px 8px rgba(94,92,230,.35);transition:transform .35s ease}
 .logo:hover .mark{transform:rotate(-8deg) scale(1.06)}
 .logo .word{font:800 21px/1 -apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard",system-ui,sans-serif;letter-spacing:-.04em}
 .logo .w3d{background:linear-gradient(135deg,#0a84ff,#5e5ce6 55%,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:1px}
 .logo .wflow{color:var(--text)}.logo .whub{color:var(--muted);font-weight:600}
 .logo:hover .wflow{color:var(--text)}
-.topnav{display:flex;gap:4px}.topnav a{font-size:14px;color:var(--text-2);padding:10px 10px;border-radius:10px}
+.topnav{display:flex;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none}.topnav a{white-space:nowrap;flex:none;font-size:14px;color:var(--text-2);padding:10px 10px;border-radius:10px}
 .topnav a:hover,.topnav a.on{color:var(--text);background:var(--accent-soft)}
 .search{margin-left:auto;flex:0 1 280px;position:relative}
 .search input{width:100%;height:36px;padding:0 14px 0 34px;border:1px solid var(--line);border-radius:10px;
@@ -366,6 +381,7 @@ summary{cursor:pointer;font-weight:600;min-height:28px}
 footer{color:var(--muted);font-size:13px;padding:48px 0 56px;border-top:1px solid var(--line);margin-top:64px}
 footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer a{color:var(--text-2)}
 
+@media (max-width:1100px){.topnav a{padding:10px 7px;font-size:13px}}
 @media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}
   nav.domains .mob{display:inline-flex}nav.domains .sep{display:block;flex:none;width:1px;background:var(--line);margin:6px 2px}}
 @media (max-width:640px){
@@ -402,6 +418,14 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .mp-chip.last{border-color:var(--accent,#4f8cff);color:var(--accent,#4f8cff)}
 .mp-arr{opacity:.5;font-weight:700}
 .refs{padding-left:20px}.refs li{margin:6px 0}.refs .k{font-size:12px;opacity:.7}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:14px}
+.scard{display:grid;gap:4px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);text-decoration:none}
+.scard img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--surface-2)}
+.scard .k{font-size:12px;opacity:.75}
+.nl{display:grid;gap:6px;margin:28px 0;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.nl span,.nl small{font-size:13px;opacity:.8}.nl div{display:flex;gap:8px;flex-wrap:wrap}
+.nl input{flex:1;min-width:180px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.nl button{padding:10px 16px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
 .codebar{display:flex;gap:10px;align-items:center;margin:8px 0}
 .codebar button,.codebar a{font:600 13px/1 inherit;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;text-decoration:none}
 pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;background:#0d1117;color:#e6edf3;font:13px/1.55 ui-monospace,Consolas,monospace;white-space:pre}
@@ -492,7 +516,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
 <nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
-<footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
+<footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
 <script>const ROOT="{root}";</script><script src="{root}search.js" defer></script><script src="{root}user.js" defer></script></body></html>"""
@@ -740,6 +764,26 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
     (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
+def build_showcase() -> None:
+    """이번 주 작품: 작가 허락을 받은 커뮤니티 포트폴리오만 (showcase.published)."""
+    import showcase
+    items = showcase.published()
+    folder = OUT / "showcase"
+    folder.mkdir(exist_ok=True)
+    cards = "".join(
+        f'<a class="scard" href="{e(i["url"])}" target="_blank" rel="noopener">'
+        + (f'<img src="{e(i["image"])}" alt="{e(i["title"])}" loading="lazy">' if i.get("image") else "")
+        + f'<span class="t">{e(i["title"])}</span><span class="k">{e(i["artist"])}'
+        + (f' · {e(i["note"])}' if i.get("note") else "") + "</span></a>" for i in items)
+    body = ('<div class="doc"><h1>이번 주 작품</h1><p class="desc">커뮤니티에 올라온 멋진 3D 작업을 <b>작가님 허락을 받아</b> 소개합니다. '
+            '작품을 누르면 원본 페이지로 이동합니다. 소개를 원하시거나 내리기를 원하시면 '
+            + mail_link("[3dflowhub] 이번 주 작품 문의", "알려 주세요") + '.</p></div>'
+            + (f'<div class="sgrid">{cards}</div>' if cards else '<p>첫 소개 작품을 준비하고 있습니다.</p>')
+            + newsletter_box("../"))
+    (folder / "index.html").write_text(page(f"이번 주 작품 - {SITE_TITLE}", body, "../", desc="허락을 받아 소개하는 3D 작가 작품",
+                                            canonical=f"{BASE_URL}/showcase/"), encoding="utf-8")
+
+
 def build_resources() -> None:
     """추천 자료: 운영자가 실무에서 참고해 온 외부 자료 링크 모음 (내용 복사 없이 제목·출처·링크만)."""
     d = core._load_json(core.ROOT / "content" / "resources.json", {})
@@ -944,7 +988,7 @@ def build_weekly(posts: list[dict]) -> None:
                + '</p>')
         body = (f'<div class="doc"><span class="pill">{w}</span><h1>{start:%m월 %d일} – {end:%m월 %d일} 주간 요약</h1>'
                 f'<p class="desc">이번 주 정리된 글 {len(ps)}개 · 가장 활발했던 도구: {e(top_tools)}</p>{nav}</div>'
-                + "".join(sections))
+                + "".join(sections) + newsletter_box("../../"))
         (root_dir / w).mkdir(exist_ok=True)
         (root_dir / w / "index.html").write_text(
             page(f"{start:%Y년 %m월 %d일} 주간 3D 소식 요약 - {SITE_TITLE}", body, "../../",
@@ -1053,6 +1097,7 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
     if related:
         parts.append("<h2>📚 함께 보면 좋은 글</h2><ul>" + "".join(
             f'<li><a href="{root}p/{r["id"]}.html">{e(r["title_ko"])}</a></li>' for r in related) + "</ul>")
+    parts.append(newsletter_box(root))
     tags = "".join(f'<a>#{e(t)}</a>' for t in p.get("tags") or [])
     parts.append(f'<p class="tags">{tags}</p><hr><p>원문: <a href="{e(p["url"])}" target="_blank" rel="noopener nofollow">'
                  f'{e(p.get("title") or p["url"])}</a></p><p class="crumb">본 글은 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>')
@@ -1218,6 +1263,7 @@ def build() -> dict:
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
     build_resources()
+    build_showcase()
 
     # 저장한 글 (브라우저에만 저장 — static/user.js 가 그림)
     (OUT / "saved").mkdir(exist_ok=True)
@@ -1252,7 +1298,14 @@ def build() -> dict:
     (OUT / "privacy").mkdir(exist_ok=True)
     cfg = site_cfg()
     privacy = (f"<article><h1>개인정보처리방침</h1><p>{SITE_TITLE}(이하 '사이트')는 회원가입·로그인이 없으며 "
-               f"이름·연락처 등 개인정보를 직접 수집하지 않습니다.</p>"
+               + ("이름·연락처 등 개인정보를 직접 수집하지 않습니다. 단, 뉴스레터를 구독하는 경우에만 아래와 같이 이메일 주소를 받습니다.</p>"
+                  "<h2>뉴스레터</h2><ul><li>수집 항목: 이메일 주소 (구독 시 본인이 직접 입력)</li>"
+                  "<li>목적: 주간 3D 소식·가이드 뉴스레터 발송</li><li>보관 기간: 수신거부(구독 해지) 시까지, 해지 즉시 발송 중단</li>"
+                  "<li>처리 위탁: Buttondown (뉴스레터 발송 서비스) — 구독 확인 메일을 거친 경우에만 발송</li>"
+                  "<li>수신거부: 모든 메일 하단의 구독 해지 링크 또는 아래 문의 메일</li>"
+                  "<li>다른 곳에서 수집한 이메일로는 보내지 않으며, 제3자에게 제공하지 않습니다.</li></ul><p>"
+                  if cfg.get("newsletter") else "이름·연락처 등 개인정보를 직접 수집하지 않습니다.</p><p>")
+               + "</p>"
                f"<h2>방문 통계</h2><p>{'방문 통계를 위해 GoatCounter 를 사용합니다. 쿠키를 사용하지 않으며 개인을 식별하지 않는 '
                                    '집계(페이지 조회수, 유입 경로, 브라우저 종류 등)만 수집합니다.' if cfg['goatcounter'] else '현재 별도의 방문 통계 도구를 사용하지 않습니다.'}</p>"
                f"<h2>광고</h2><p>사이트는 Google AdSense 등 제3자 광고를 게재할 수 있습니다. Google 을 비롯한 제3자 공급업체는 "
@@ -1261,7 +1314,7 @@ def build() -> dict:
                f"맞춤 광고를 해제할 수 있습니다. 자세한 내용은 "
                f'<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 광고 정책</a>을 참고하세요.</p>'
                f"<h2>문의</h2><p>개인정보·저작권 관련 문의: {mail_link('[3dflowhub] 개인정보·저작권 문의')}</p>"
-               f"<p class=\"crumb\">시행일: 2026-10-16</p></article>")
+               f"<p class=\"crumb\">시행일: 2026-10-16 · 개정: 2026-10-19 (뉴스레터 항목)</p></article>")
     (OUT / "privacy" / "index.html").write_text(page(f"개인정보처리방침 - {SITE_TITLE}", privacy, "../"), encoding="utf-8")
     if re.fullmatch(r"ca-pub-\d{10,20}", cfg["adsense"]):  # 애드센스 판매자 인증 파일
         (OUT / "ads.txt").write_text(f"google.com, {cfg['adsense'].replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n",
@@ -1313,7 +1366,7 @@ def build() -> dict:
             if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
-           [f"{BASE_URL}/resources/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
+           [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)

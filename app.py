@@ -875,11 +875,16 @@ with t_rev:
             "GitHub Secrets 에 `GOATCOUNTER_TOKEN` 으로 등록하면 대시보드·AI 학습에 조회수가 들어옵니다\n\n"
             "**② 애드센스 (승인 후)** — `github.io` 주소는 승인이 어려워 **본인 도메인 연결**이 필요합니다. "
             "승인되면 `ca-pub-...` 를 넣고 저장 → 자동 광고 스크립트와 `ads.txt` 가 생성됩니다.")
-        sc1, sc2 = st.columns(2)
+        st.markdown("**③ 뉴스레터 (구독 동의한 사람에게만)** — [buttondown.com](https://buttondown.com) 무료 가입 → "
+                    "사용자 이름을 넣고 저장하면 사이트 글·주간 요약 아래에 구독 칸이 생깁니다. "
+                    "구독 확인 메일(이중 동의)을 거친 사람만 받으며, 메일마다 수신거부 링크가 자동으로 붙습니다.")
+        sc1, sc2, sc3 = st.columns(3)
         gc_code = sc1.text_input("GoatCounter 사이트 코드", cfg.get("goatcounter_code", ""), placeholder="3dflowhub")
         ad_client = sc2.text_input("AdSense 게시자 ID", cfg.get("adsense_client", ""), placeholder="ca-pub-0000000000000000")
+        nl_user = sc3.text_input("Buttondown 사용자 이름", cfg.get("newsletter_buttondown", ""), placeholder="3dflowhub")
         if st.button("💾 사이트 설정 저장 (GitHub 반영 → 사이트 재배포)"):
-            core.save_config({**core.load_config(), "goatcounter_code": gc_code.strip(), "adsense_client": ad_client.strip()})
+            core.save_config({**core.load_config(), "goatcounter_code": gc_code.strip(), "adsense_client": ad_client.strip(),
+                              "newsletter_buttondown": nl_user.strip()})
             err = core.git_sync(["config.json"], "chore(config): 사이트 통계·광고 설정")
             if err:
                 st.error(err)
@@ -895,6 +900,7 @@ with t_rev:
         ("본인 도메인 연결 (애드센스 승인 조건)", "github.io" not in core._load_json(core.CONFIG_PATH, {}).get("site_base_url", "github.io")),
         ("애드센스 게시자 ID 등록", bool(cfg.get("adsense_client"))),
         ("네이버 서치어드바이저 등록", False),
+        ("뉴스레터 구독 칸 (Buttondown)", bool(cfg.get("newsletter_buttondown"))),
     ]
     for label, ok in checks:
         st.markdown(f"{'✅' if ok else '⬜'} {label}")
@@ -1199,6 +1205,65 @@ with t_today:
                 _staff.set_outbox(x["id"], "skipped")
                 core.git_sync(["memory/outbox.json"], "chore(staff): 홍보 건너뜀 [skip ci]")
                 st.rerun()
+
+    import showcase as _sc
+    sc_items = _sc.load()
+    sc_open = [i for i in sc_items if i["status"] in ("candidate", "asked")]
+    st.subheader(f"🎨 이번 주 작품 소개 (진행 중 {len(sc_open)} · 게시 {sum(i['status'] == 'approved' for i in sc_items)})")
+    st.caption("커뮤니티에서 좋은 포트폴리오를 찾으면 후보로 등록 → 요청문을 복사해 **작가에게 직접 1:1로** 보내고 → "
+               "허락을 받으면 '허락 받음'을 눌러 사이트에 게시합니다. 연락처는 저장하지 않고, 대량 발송은 하지 않습니다.")
+    with st.expander("➕ 후보 등록"):
+        with st.form("sc_add", clear_on_submit=True):
+            c1, c2 = st.columns(2)
+            sa, stt = c1.text_input("작가 이름(닉네임)"), c2.text_input("작품 제목")
+            su = st.text_input("작품 링크 (ArtStation·Behance·카페 글 등)")
+            sn = st.text_input("소개 한 줄 (선택)")
+            if st.form_submit_button("후보로 등록") and sa and stt and su.startswith("http"):
+                if _sc.add(sa, stt, su, sn):
+                    core.git_sync(["content/showcase.json"], "content(showcase): 작품 후보 등록 [skip ci]")
+                    st.rerun()
+                st.warning("이미 등록된 작품입니다.")
+    for it in sc_items:
+        if it["status"] == "declined":
+            continue
+        with st.container(border=True):
+            st.markdown(f"**{it['title']}** — {it['artist']} · `{_sc.STATUS[it['status']]}` · [작품 보기]({it['url']})"
+                        + (f"  \n{it['note']}" if it.get("note") else ""))
+            if it["status"] in ("candidate", "asked"):
+                lang = st.radio("요청문 언어", ["한국어", "English"], horizontal=True, key=f"sclang_{it['id']}")
+                st.code(_sc.request_message(it, "en" if lang == "English" else "ko"), language=None, wrap_lines=True)
+                consent = st.text_input("허락 받은 내용 (예: 10/20 ArtStation 메시지로 동의, 대표 이미지 사용 허락)",
+                                        key=f"scc_{it['id']}")
+                img = st.text_input("사용 허락 받은 이미지 주소 (선택)", it.get("image", ""), key=f"sci_{it['id']}")
+                b1, b2, b3 = st.columns(3)
+                if it["status"] == "candidate" and b1.button("요청 보냄", key=f"sca_{it['id']}", width="stretch"):
+                    _sc.set_status(it["id"], "asked")
+                    core.git_sync(["content/showcase.json"], "content(showcase): 허락 요청함 [skip ci]")
+                    st.rerun()
+                if b2.button("허락 받음 → 게시", key=f"scok_{it['id']}", type="primary", width="stretch"):
+                    try:
+                        if img != it.get("image", ""):
+                            items = _sc.load()
+                            for x in items:
+                                if x["id"] == it["id"]:
+                                    x["image"] = img.strip()
+                            _sc.save(items)
+                        _sc.set_status(it["id"], "approved", consent)
+                    except ValueError as ex:
+                        st.error(str(ex))
+                    else:
+                        core.git_sync(["content/showcase.json"], "content(showcase): 작품 소개 게시")
+                        st.rerun()
+                if b3.button("거절·삭제", key=f"scno_{it['id']}", width="stretch"):
+                    _sc.set_status(it["id"], "declined")
+                    core.git_sync(["content/showcase.json"], "content(showcase): 거절 [skip ci]")
+                    st.rerun()
+            elif it["status"] == "approved":
+                st.caption(f"허락: {it.get('consent', '')}")
+                if st.button("게시 내리기 (작가 요청 등)", key=f"scdown_{it['id']}"):
+                    _sc.set_status(it["id"], "declined")
+                    core.git_sync(["content/showcase.json"], "content(showcase): 게시 내림")
+                    st.rerun()
 
     st.subheader("📈 오늘 성과")
     q1, q2, q3, q4 = st.columns(4)
