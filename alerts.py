@@ -107,7 +107,10 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
         import guides
         left = len(guides.pending())
         if left == 0:
-            out.append(_alert("warning", "기초 가이드 주제 소진", "AI 관리자에게 새 주제를 요청하거나 guides.py 목록에 추가"))
+            import manager
+            made = sum(1 for g in guides.load_all() if (g.get("at") or "") >= manager._day_start_utc())
+            out.append(_alert("info", "기초 가이드 준비된 주제를 모두 작성함" + (f" (오늘 {made}개)" if made else ""),
+                              "새 주제는 AI 관리자가 다음 분석 때 자동으로 제안·추가합니다 (직접 추가: guides.py)"))
         elif left <= 5:
             out.append(_alert("info", f"기초 가이드 남은 주제 {left}개", "곧 소진 — 새 주제가 필요합니다"))
     except Exception:

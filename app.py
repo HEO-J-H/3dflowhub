@@ -180,9 +180,12 @@ def status_panel() -> None:
     used, budget = core.llm_usage_today(), int(cfg.get("llm_daily_budget", 500))
     q = core.llm_quota_status()
     fb = core.llm_fallback_usage()
-    st.progress(1.0 if q["exhausted"] else min(1.0, used / budget) if budget else 1.0,
-                text=f"AI 사용 {used}/{budget}회" + (" · 한도 소진(16~17시 리셋)" if q["exhausted"] else "")
-                + "".join(f" · 예비 {k} {v}회" for k, v in fb.items()))
+    cap = core.llm_capacity_left()  # 현황판 전체에서 같은 기준: '남은 여력' = 주 공급자 잔여 + 예비(비상용 제외)
+    st.progress(1.0 if not cap else min(1.0, used / (used + cap)),
+                text=f"AI 남은 여력 {cap}회 · 오늘 {used + sum(fb.values())}회 사용"
+                + (" · 주 한도 소진(16~17시 리셋)" if q["exhausted"] else ""))
+    st.caption(f"주 공급자 {used}/{budget}회" + "".join(f" · 예비 {k} {v}회" for k, v in fb.items())
+               + f" · 예비 {core.FALLBACK_RESERVE}회는 비상용")
     if q["learned_limit"] and q["learned_limit"] < budget:
         st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
     pages = [r for r in runs if r["name"].endswith("pages")]
@@ -212,8 +215,10 @@ import altair as alt  # noqa: E402
 DOMAIN_COLORS = {"3D DCC": "#1f5fbf", "AI 3D": "#7cc4fa", "Game Engine": "#e8423f", "VFX": "#f6a5a5"}
 
 
-def vbars(wide: pd.DataFrame, y_title: str, height: int = 220) -> None:
-    """세로 누적 막대 (행 = 가로축 글자, 열 = 색 구분). 확대·이동 없음, 마우스를 올리면 숫자."""
+def vbars(wide: pd.DataFrame, y_title: str, height: int = 220, line: pd.Series | None = None,
+          line_title: str = "") -> None:
+    """세로 누적 막대 (행 = 가로축 글자, 열 = 색 구분). 확대·이동 없음, 마우스를 올리면 숫자.
+    line 을 주면 같은 가로축에 꺾은선(오른쪽 축)을 겹쳐 그림 — 예: 수집 글(막대) + 방문(선)."""
     order = list(wide.index)
     long = wide.rename_axis("x").reset_index().melt("x", var_name="구분", value_name="값")
     cols = [c for c in wide.columns]
@@ -224,6 +229,14 @@ def vbars(wide: pd.DataFrame, y_title: str, height: int = 220) -> None:
         x=alt.X("x:N", sort=order, title=None, axis=alt.Axis(labelAngle=0)),
         y=alt.Y("sum(값):Q", title=None), color=color,  # 세로 제목은 한글이 한 글자씩 쌓여 보여 생략 (툴팁·캡션에 표시)
         tooltip=[alt.Tooltip("x:N", title="날짜"), "구분:N", alt.Tooltip("값:Q", title=y_title)])
+    if line is not None:
+        ld = pd.DataFrame({"x": order, "v": [None if pd.isna(line.get(x)) else line.get(x) for x in order]})
+        ld = ld.dropna()  # 값이 없는 날은 점·선을 그리지 않음
+        base = alt.Chart(ld).encode(x=alt.X("x:N", sort=order, title=None, axis=alt.Axis(labelAngle=0)),
+                                    y=alt.Y("v:Q", title=None, axis=alt.Axis(orient="right", titleColor="#f59e0b")),
+                                    tooltip=[alt.Tooltip("x:N", title="날짜"), alt.Tooltip("v:Q", title=line_title)])
+        trend = base.mark_line(color="#f59e0b", strokeWidth=2.5) + base.mark_point(color="#f59e0b", filled=True, size=40)
+        chart = alt.layer(chart, trend).resolve_scale(y="independent")
     st.altair_chart(chart.properties(height=height), use_container_width=True)
 
 
@@ -330,8 +343,9 @@ today = datetime.now().strftime("%Y-%m-%d")
 if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
-t_today, t_home, t_list, t_auto, t_draft, t_rev, t_set = st.tabs(
-    ["🏠 오늘", "📊 개요", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "💰 수익·방문", "🛠 설정"])
+t_today, t_home, t_list, t_auto, t_draft, t_set = st.tabs(
+    ["🏠 오늘", "📊 개요·수익", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "🛠 설정"])
+t_rev = t_home  # 탭 수를 줄이려고 '수익·방문'을 개요 아래로 합침
 
 # ─────────────────────────── 개요 ───────────────────────────
 with t_home:
@@ -347,17 +361,26 @@ with t_home:
         m[1].metric("오늘 수집", n_today, n_today - n_yday, help="어제 대비")
         m[2].metric("도구·주제 게시판", df[["도메인", "카테고리"]].drop_duplicates().shape[0])
         m[3].metric("사이트 방문 (30일)", (perf.get("pages") or {}).get("pv_30d", "미연결"))
-        m[4].metric("AI 사용 (오늘)", f"{core.llm_usage_today()}/{cfg.get('llm_daily_budget', 500)}")
+        m[4].metric("AI 남은 여력", f"{core.llm_capacity_left()}회",
+                    help=f"오늘 사용 {core.llm_usage_today() + sum(core.llm_fallback_usage().values())}회 · "
+                         f"리셋 {core.llm_reset_kst()} (한국 시간)")
 
         with st.container(border=True):
-            st.markdown("**최근 14일 수집 추이**")
+            st.markdown("**최근 14일 수집·방문 추이** <span style='color:#f59e0b'>━ 방문(오른쪽 축)</span>",
+                        unsafe_allow_html=True)
             # 날짜 단위 막대: 시간축(03 AM …)은 의미 없음 → 14일을 빠짐없이 '10/19 (월)' 글자 축으로, 수집 없는 날은 0
             days = pd.date_range(end=pd.Timestamp.now(tz="Asia/Seoul").normalize(), periods=14, freq="D").date
             daily = (df.assign(날짜=df["수집일"].dt.date).groupby(["날짜", "도메인"]).size().unstack(fill_value=0)
                      .reindex(days, fill_value=0))
             daily.index = [f"{d:%m/%d}({'월화수목금토일'[d.weekday()]})" for d in days]
-            vbars(daily, "수집 글")
-            st.caption(f"14일 합계 {int(daily.values.sum())}건 · 하루 평균 {daily.values.sum() / 14:.1f}건")
+            visits_by_day = (perf.get("pages") or {}).get("daily") or {}
+            first = min(visits_by_day) if visits_by_day else ""  # 통계 수집 전 날짜는 0 이 아니라 '없음'(선 끊김)
+            visits = pd.Series({lbl: (visits_by_day.get(str(d), 0) if str(d) >= first else None)
+                                for lbl, d in zip(daily.index, days)}, dtype="float") if visits_by_day else None
+            vbars(daily, "수집 글", line=visits, line_title="방문")
+            st.caption(f"수집 14일 합계 {int(daily.values.sum())}건 · 하루 평균 {daily.values.sum() / 14:.1f}건"
+                       + (f" · 방문 14일 합계 {int(visits.sum(skipna=True))}회" if visits is not None
+                          else " · 날짜별 방문은 다음 방문 통계 수집(3시간마다) 후 함께 표시됩니다"))
         a, b = st.columns(2)
         with a, st.container(border=True):
             st.markdown("**많이 다룬 도구 Top 10**")
@@ -818,6 +841,8 @@ with t_draft:
 
 # ─────────────────────────── 광고 수익 ───────────────────────────
 with t_rev:
+    st.divider()
+    st.header("💰 수익·방문")
     perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
     pages_perf = perf.get("pages") or {}
     latest = perf.get("latest", {})
@@ -1013,7 +1038,7 @@ with t_set:
         st.progress(min(1.0, used / budget) if budget else 1.0,
                     text=f"Gemini {used} / {budget}회" + "".join(f" · 예비 {k} {v}회" for k, v in fb.items()))
         k1, k2, k3 = st.columns(3)
-        k1.metric("오늘 남은 여력", f"{cap}회", help="Gemini 잔여 + 예비 AI(Groq 등) 잔여")
+        k1.metric("AI 남은 여력", f"{cap}회", help=f"Gemini 잔여 + 예비 AI(Groq 등) 잔여 · 예비 {core.FALLBACK_RESERVE}회는 비상용")
         k2.metric("1회 실행", f"≈{per_run:.0f}회")
         k3.metric("하루 필요", f"≈{need_day:,.0f}회")
         if cfg.get("auto_mode"):
@@ -1180,7 +1205,9 @@ with t_today:
     q1.metric("오늘 올린 소식", f"{done_t['news']}건")
     q2.metric("오늘 기초 가이드", f"{done_t['guides']}개")
     q3.metric("오늘 도구별 정리", f"{done_t['roundups']}개")
-    q4.metric("남은 AI 여력", f"{core.llm_capacity_left()}회", help=f"리셋 {core.llm_reset_kst()} (한국 시간)")
+    q4.metric("AI 남은 여력", f"{core.llm_capacity_left()}회",
+              help=f"오늘 사용 {core.llm_usage_today() + sum(core.llm_fallback_usage().values())}회 · "
+                   f"리셋 {core.llm_reset_kst()} (한국 시간)")
     st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
                + (f" · 배분 뉴스 {int(plan_t['alloc'].get('news', 0) * 100)}% · 가이드 {int(plan_t['alloc'].get('guides', 0) * 100)}%"
                   f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))

@@ -128,7 +128,9 @@ def fetch_pages_stats(days: int = 30) -> dict | None:
             by_kind["roundups"] += n
         else:
             by_kind["other"] += n
+    daily = {str(d.get("day", ""))[:10]: int(d.get("daily", 0)) for d in total.get("stats") or [] if d.get("day")}
     return {"at": datetime.now().isoformat(timespec="seconds"), "pv_30d": int(total.get("total", 0)),
+            "daily": daily,  # 날짜별 조회수 (현황판 수집 추이 차트에 함께 표시)
             "posts": posts, "learn": learn, "by_kind": by_kind,
             "refs": [(r.get("name") or "(직접)", r.get("count", 0)) for r in refs.get("stats", [])]}
 

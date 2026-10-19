@@ -368,8 +368,8 @@ def _dashboard_info() -> dict:
     return {
         "what": "운영자(사장님)가 결정·확인하는 Streamlit 앱. 로컬 + https://3dflowmanager.streamlit.app (비공개). "
                 "독자는 보지 않는다. 사이트 홈에 통계를 올리는 것은 현황판 개선이 아님.",
-        "tabs": ["🏠 오늘(결정할 일·홍보 대기함·무엇이 읽히나)", "📊 개요", "📰 글 목록(추천·숨김·가이드 검토·실무 팁)",
-                 "🧬 자동화·진화(AI 관리자·AI 팀·교본)", "📝 티스토리", "💰 수익·방문", "🛠 설정",
+        "tabs": ["🏠 오늘(결정할 일·홍보 대기함·무엇이 읽히나)", "📊 개요·수익(수집·방문 추이, 수익·방문)", "📰 글 목록(추천·숨김·가이드 검토·실무 팁)",
+                 "🧬 자동화·진화(AI 관리자·AI 팀·교본)", "📝 티스토리", "🛠 설정",
                  "사이트 전환: 🏢 전체 요약 / 🧊 3dflowhub / 💰 life-after-60"],
         "owner_load": {"waiting_decisions": sum(p["status"] == "new" for p in props),
                        "manual_todo": len(manual_todo()), "held": sum(p["status"] == "held" for p in props)},
