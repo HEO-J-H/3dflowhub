@@ -1,0 +1,117 @@
+{
+  "id": "blender-inset-faces-17a3",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Inset Faces",
+  "title": "Inset — 면 안쪽으로 면 넣기",
+  "summary": "선택한 면의 안쪽에 테두리 면을 만들고 두께와 깊이를 조절하는 도구입니다. 창문 틀이나 패널 라인 같은 디테일을 만들 때 유용합니다.",
+  "when": [
+    "건물의 창문이나 문틀 테두리를 만들 때",
+    "기계 표면에 홈이나 돌출된 패널 디테일을 추가할 때",
+    "입체적인 로고나 아이콘의 베이스를 잡을 때"
+  ],
+  "steps": [
+    "메시를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "숫자 3 키를 눌러 Face Select 모드로 바꿉니다.",
+    "인셋을 적용할 면을 선택합니다.",
+    "메뉴 경로 Face ➔ Inset Faces 또는 단축키 I 키를 누릅니다.",
+    "마우스를 움직여 테두리 두께(Thickness)를 조절하고 마우스 왼쪽 버튼을 클릭해 확정합니다.",
+    "필요시 하단 패널이나 단축키를 이용해 Depth 등을 세부 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "새로 생성되는 테두리 면의 두께를 조절합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "Ctrl 키를 누른 상태로 조절하며, 안쪽 면을 밀어 넣거나 띄우는 깊이를 설정합니다."
+    },
+    {
+      "name": "Boundary",
+      "desc": "열린 경계(Boundary Edge) 부근에서도 테두리 면을 생성할지 여부를 결정합니다."
+    },
+    {
+      "name": "Offset Even",
+      "desc": "모서리를 따라 테두리 두께를 균일하게 유지합니다."
+    },
+    {
+      "name": "Outset",
+      "desc": "O 키를 눌러 안쪽이 아닌 바깥쪽으로 테두리가 자라나도록 확장합니다."
+    },
+    {
+      "name": "Individual",
+      "desc": "I 키를 눌러 연결된 덩어리가 아니라 선택된 각 면마다 개별적으로 Inset을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 창문 프레임 만들기",
+      "steps": [
+        "벽면의 사각형 면을 선택합니다.",
+        "I 키를 눌러 안쪽으로 테두리를 만들어 창문 틀 영역을 확보합니다.",
+        "Ctrl 키를 누른 채 마우스를 밀어 창틀에 깊이감을 줍니다."
+      ]
+    },
+    {
+      "title": "SF 패널 홈(Panel Line) 파기",
+      "steps": [
+        "하드 표면 모델의 특정 면을 선택합니다.",
+        "I 키를 눌러 미세한 두께로 인셋을 적용합니다.",
+        "Alt + I 또는 Depth 옵션을 이용해 살짝 안쪽으로 파이게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 모드에서 실행함 → Tab 키를 눌러 반드시 Edit Mode에서 실행하세요.",
+    "스케일이 틀어져 테두리가 찌그러짐 → Object Mode에서 Ctrl + A ➔ Apply ➔ All Transforms를 먼저 실행하세요."
+  ],
+  "related": [
+    "Extrude Faces Along Normals",
+    "Bevel",
+    "Loop Cut",
+    "Knife"
+  ],
+  "videos": [
+    {
+      "id": "lm0paVmVTMI",
+      "title": "Tip:Inset Faces Like a Pro #blender #blender3d #blendertutorial #howto#blendertips",
+      "author": "Blender Tips"
+    },
+    {
+      "id": "8SdM9l2RHJU",
+      "title": "The INSET FACES Tool - Blender Modeling Tool Tutorial",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/inset_faces.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_inset-faces_before.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_inset-faces_before.png",
+      "caption": "Faces selected.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/inset_faces.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_inset-faces_after.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_inset-faces_after.png",
+      "caption": "First inset using only Thickness.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/inset_faces.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_inset-faces_after-2.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_inset-faces_after-2.png",
+      "caption": "Second inset using only Depth.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/inset_faces.html"
+    }
+  ],
+  "menu_path": [
+    "Edit Mode",
+    "Face Select",
+    "Face",
+    "Inset Faces"
+  ],
+  "at": "2026-10-19T13:31:28.930962+00:00"
+}

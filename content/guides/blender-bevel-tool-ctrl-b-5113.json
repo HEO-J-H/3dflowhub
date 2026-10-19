@@ -1,0 +1,115 @@
+{
+  "id": "blender-bevel-tool-ctrl-b-5113",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bevel tool (Ctrl+B)",
+  "title": "Bevel 도구 — 엣지·버텍스 챔퍼",
+  "summary": "Blender의 Bevel 도구는 모서리와 면의 각진 부분을 부드럽게 깎아 현실감 있는 빛 반사와 형태를 만듭니다.",
+  "when": [
+    "하드 표면 모델링에서 날카로운 금속 모서리를 자연스럽게 표현할 때",
+    "렌더링 시 빛이 모서리에 부드럽게 맺히도록 하이라이트를 줄 때",
+    "기계 부품이나 가구처럼 현실 세계의 사실적인 형태를 구현할 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "상단 뷰포트 헤더에서 Edge 또는 Vertex 셀렉트 모드를 선택합니다.",
+    "베벨을 적용할 모서리나 꼭짓점을 선택합니다.",
+    "단축키 Ctrl + B (모서리) 또는 Shift + Ctrl + B (꼭짓점)를 누릅니다.",
+    "마우스를 움직여 베벨 너비를 조절하고, 마우스 휠을 굴려 세그먼트(면의 개수)를 조절합니다.",
+    "마우스 왼쪽 버튼(LMB) 또는 Return 키를 눌러 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "베벨이 적용되는 크기나 반경을 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "새로 생성되는 지오메트리의 밀도(면 수)를 조절하여 부드러움을 결정합니다."
+    },
+    {
+      "name": "Profile",
+      "desc": "0과 1 사이의 값으로 베벨 단면의 형태(곡률)를 제어합니다."
+    },
+    {
+      "name": "Harden Normals",
+      "desc": "새로 생성된 면에 커스텀 스플릿 노멀을 할당해 매끄럽게 보이도록 합니다."
+    },
+    {
+      "name": "Clamp Overlap",
+      "desc": "베벨이 인접한 면을 넘어 겹치는 현상을 방지합니다."
+    },
+    {
+      "name": "Loop Slide",
+      "desc": "새로운 내부 에지의 흐름 방향을 기존 에지와 맞추거나 수직으로 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "책상 상판 모서리 부드럽게 다듬기",
+      "steps": [
+        "Tab 키를 눌러 책상 모델을 Edit Mode로 전환합니다.",
+        "Alt + 클릭으로 상판의 바깥쪽 테두리 에지 루프를 선택합니다.",
+        "Ctrl + B를 누르고 마우스를 움직여 미세한 베벨 너비를 줍니다.",
+        "마우스 휠을 한 번 굴려 Segments를 2로 올리고 클릭하여 확정합니다."
+      ]
+    },
+    {
+      "title": "sci-fi 패널 하드 표면 홈 파기",
+      "steps": [
+        "메시의 특정 에지들을 선택합니다.",
+        "Ctrl + B를 눌러 에지를 넓게 벌립니다.",
+        "마우스 휠을 굴려 충분한 세그먼트를 확보합니다.",
+        "Profile 값을 조절하여 오목하거나 볼록한 단면 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 틀어져 베벨이 찌그러짐 → Object Mode에서 Ctrl + A를 누르고 Scale을 Apply 합니다.",
+    "세그먼트가 부족해 모서리가 각져 보임 → 마우스 휠을 굴리거나 Adjust Last Operation 패널에서 Segments 값을 높여줍니다.",
+    "베벨이 서로 겹치고 꼬임 → Clamp Overlap 옵션을 활성화하거나 Width 값을 줄입니다."
+  ],
+  "related": [
+    "Bevel Modifier",
+    "Loop Cut",
+    "Subdivision Surface",
+    "Weight Normals Modifier"
+  ],
+  "videos": [
+    {
+      "id": "RQHz8lEUaNs",
+      "title": "Blender bevel selected edges with Ctrl B #blender #blendertutorial  #shorts",
+      "author": "blenderian"
+    },
+    {
+      "id": "A_4nbde8Rog",
+      "title": "Blender 3.4 - Bevel Tool",
+      "author": "Quick Tech Tips"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bevel.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bevel_cubes.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bevel_cubes.png",
+      "caption": "Cubes without and with bevel.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bevel_example-1.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bevel_example-1.png",
+      "caption": "Before beveling.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bevel_example-2.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bevel_example-2.png",
+      "caption": "Increased bevel width.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bevel.html"
+    }
+  ],
+  "menu_path": [],
+  "at": "2026-10-19T13:31:46.413365+00:00"
+}

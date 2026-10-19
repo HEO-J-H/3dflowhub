@@ -1,0 +1,107 @@
+{
+  "id": "blender-extrude-individual-faces-1075",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extrude Individual Faces",
+  "title": "Extrude Individual — 면마다 따로 밀어내기",
+  "summary": "Blender의 Extrude Individual Faces는 선택한 여러 면을 서로 연결하지 않고 각각 개별적으로 돌출시키는 기능입니다. 여러 개의 돌출된 형태를 동시에 만들 때 유용합니다.",
+  "when": [
+    "건물의 창문이나 벽돌 패턴처럼 여러 개별 요소를 동시에 돌출시킬 때",
+    "메쉬 표면에서 각 면이 독립된 방향으로 튀어나오게 만들 때",
+    "하나의 오브젝트에서 여러 개의 핀이나 기둥을 한 번에 뽑아낼 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex Select, Edge Select, Face Select 중 Face Select 모드로 전환합니다.",
+    "돌출시킬 여러 개의 면을 Shift 키를 누른 채 클릭하여 선택합니다.",
+    "3D 뷰포트 왼쪽의 Toolbar에서 Extrude 도구를 길게 눌러 Extrude Individual로 변경하거나, 단축키 Alt+E를 누릅니다.",
+    "메뉴에서 Extrude Individual Faces를 선택합니다.",
+    "마우스를 드래그하거나 수치 조절 창을 통해 돌출 두께를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrude Individual Faces",
+      "desc": "선택된 각 면의 법선(Normal) 방향을 기준으로 개별 돌출을 수행합니다."
+    },
+    {
+      "name": "Offset Even",
+      "desc": "돌출 시 두께를 균일하게 유지합니다."
+    },
+    {
+      "name": "Individual",
+      "desc": "각 면을 개별 그룹으로 인식하여 처리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽 창문틀 만들기",
+      "steps": [
+        "건물 모델의 Edit Mode에서 창문이 될 면들을 여러 개 선택합니다.",
+        "Alt+E를 누르고 Extrude Individual Faces를 실행합니다.",
+        "안쪽으로 살짝 밀어 넣은 뒤, 다시 I 키를 눌러 Inset을 적용합니다."
+      ]
+    },
+    {
+      "title": "파인아트 입체 패널 제작",
+      "steps": [
+        "평면 메쉬를 Loop Cut(Ctrl+R)로 여러 조각으로 나눕니다.",
+        "격자 무늬의 면들을 건너뛰며 선택합니다.",
+        "Extrude Individual Faces로 돌출시켜 입체적인 패턴을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Extrude Faces와 혼동하여 사용함 → 일반 Extrude는 면들이 서로 연결되어 하나의 덩어리로 늘어나므로, 독립적인 돌출이 필요할 때는 반드시 Extrude Individual Faces를 사용합니다.",
+    "Scale이 적용되지 않아 이상하게 돌출됨 → Object Mode에서 Ctrl+A를 눌러 Scale 값을 반드시 Apply(1, 1, 1)한 뒤 Edit Mode로 들어가야 올바른 방향으로 돌출됩니다."
+  ],
+  "related": [
+    "Extrude Faces",
+    "Inset",
+    "Bevel",
+    "Solidify"
+  ],
+  "videos": [
+    {
+      "id": "VncK6YEMV38",
+      "title": "How To Extrude Individual Faces in Blender (𝟮𝟬𝟮𝟲) | 100% WORKS | NO Yapping, To The Point & EASY",
+      "author": "Guide Hub (2026 WORKING GUIDES)"
+    },
+    {
+      "id": "SSc3Fffwujw",
+      "title": "Blender: Extrude Individual Faces #blender #3d #tutorial",
+      "author": "PIXXO 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/extrude_individual_faces.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_extrude-individual-faces_multi.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_extrude-individual-faces_multi.png",
+      "caption": "Before.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/extrude_individual_faces.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_extrude-individual-faces_multi-region.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_extrude-individual-faces_multi-region.png",
+      "caption": "After Extrude Faces.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/extrude_individual_faces.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_extrude-individual-faces_multi-individual.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_extrude-individual-faces_multi-individual.png",
+      "caption": "After Extrude Individual Faces.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/extrude_individual_faces.html"
+    }
+  ],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Vertex Select",
+    "Edge Select",
+    "Face Select",
+    "Toolbar"
+  ],
+  "at": "2026-10-19T13:31:40.858528+00:00"
+}
