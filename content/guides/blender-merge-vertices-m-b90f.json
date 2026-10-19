@@ -1,0 +1,98 @@
+{
+  "id": "blender-merge-vertices-m-b90f",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Merge vertices (M)",
+  "title": "Merge — 버텍스 합치기",
+  "summary": "선택한 버텍스들을 하나로 합쳐 불필요한 지오메트리를 정리하고 모델링 구조를 최적화합니다. 철판을 용접하듯 여러 점을 한 점으로 모읍니다.",
+  "when": [
+    "실수로 중복 생성되거나 떨어진 버텍스를 하나로 합칠 때",
+    "모델링 중간에 뚫린 구멍이나 엣지 부위를 깔끔하게 마무리할 때",
+    "가까운 거리에 있는 버텍스들을 한 번에 정리하여 폴리곤을 최적화할 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 전환합니다.",
+    "1 키를 눌러 Vertex 선택 모드로 변경합니다.",
+    "합치고자 하는 버텍스들을 선택합니다.",
+    "M 키를 눌러 Merge 메뉴를 엽니다.",
+    "원하는 병합 옵션(At Center, By Distance 등)을 선택합니다.",
+    "필요시 화면 좌측 하단의 Adjust Last Operation 패널에서 세부 옵션을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "At Center",
+      "desc": "선택한 버텍스들의 기하학적 중심 위치로 모든 버텍스를 합칩니다."
+    },
+    {
+      "name": "At Cursor",
+      "desc": "선택한 버텍스들을 3D Cursor 위치로 합칩니다."
+    },
+    {
+      "name": "Collapse",
+      "desc": "연결된 버텍스 그룹 각각을 평균 위치로 각각 합칩니다."
+    },
+    {
+      "name": "At First",
+      "desc": "가장 먼저 선택했던 버텍스 위치로 모두 합칩니다."
+    },
+    {
+      "name": "At Last",
+      "desc": "가장 나중에 선택했던 버텍스 위치로 모두 합칩니다."
+    },
+    {
+      "name": "By Distance",
+      "desc": "설정된 거리보다 가까이 있는 버텍스들을 자동으로 찾아 합칩니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "중복 버텍스 일괄 정리",
+      "steps": [
+        "A 키로 전체 메시를 선택합니다.",
+        "M 키를 누릅니다.",
+        "By Distance를 선택하여 겹쳐 있는 불필요한 점들을 정리합니다."
+      ]
+    },
+    {
+      "title": "중앙으로 점 모으기",
+      "steps": [
+        "끝부분의 버텍스들을 Loop Select 또는 박스 셀렉션으로 선택합니다.",
+        "M 키를 누릅니다.",
+        "At Center를 선택해 구멍을 막거나 뾰족한 끝을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 순서가 중요한 At First/At Last 사용 시 선택 모드 변경으로 순서가 초기화됨 → 선택 직후 바로 M 키를 눌러 실행하세요.",
+    "By Distance 사용 시 Merge Distance 값이 너무 큼 → 필요한 버텍스까지 합쳐져 형태가 망가지므로 값을 낮게 조절하세요.",
+    "Blender에서 스케일이 균등하지 않은 상태로 합침 → 병합 전 Ctrl+A -> All Transforms를 먼저 실행하세요."
+  ],
+  "related": [
+    "Weld Modifier",
+    "Rip Region",
+    "Vertex Connect",
+    "Dissolve"
+  ],
+  "videos": [
+    {
+      "id": "mRWZTJ_BNHg",
+      "title": "How to Merge Vertices in Blender 5.1 (Press M) | Beginner Tutorial",
+      "author": "Blender Hutz🟣"
+    },
+    {
+      "id": "Wn_3oreyk_w",
+      "title": "Blender 3.4 - Merge Vertices",
+      "author": "Quick Tech Tips"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/merge.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Vertex",
+    "Merge"
+  ],
+  "at": "2026-10-19T13:31:04.583108+00:00"
+}

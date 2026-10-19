@@ -1,0 +1,111 @@
+{
+  "id": "blender-edge-slide-gg-e56d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Edge Slide (GG)",
+  "title": "Edge Slide — 엣지 따라 버텍스 이동",
+  "summary": "Edge Slide는 선택한 엣지를 인접한 면을 따라 미끄러지듯 이동시키는 기능입니다. 메쉬의 흐름을 조절하거나 디테일을 더할 때 유용합니다.",
+  "when": [
+    "캐릭터 얼굴이나 하드서페이스 모델에서 엣지 루프의 간격을 조절할 때",
+    "기존 메쉬 구조를 유지하면서 엣지 위치만 미세하게 옮기고 싶을 때",
+    "텍스처 왜곡 없이 형태를 다듬어야 할 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Alt + 클릭으로 Edge Loop를 선택하거나 원하는 엣지를 선택합니다.",
+    "G 키를 두 번 눌러 Edge Slide 툴을 활성화합니다.",
+    "마우스를 움직여 엣지의 위치를 조절합니다.",
+    "마우스 왼쪽 버튼(LMB)을 클릭하여 확정하거나, 우클릭(RMB)으로 취소합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "인접한 엣지 방향으로 이동하는 방향과 양을 결정합니다."
+    },
+    {
+      "name": "Even",
+      "desc": "버텍스가 인접한 버텍스로부터 동일한 절대 거리를 유지하도록 정렬합니다."
+    },
+    {
+      "name": "Flipped",
+      "desc": "Even 모드 활성화 시 기준이 되는 인접 버텍스 방향을 반대로 바꿉니다."
+    },
+    {
+      "name": "Clamp",
+      "desc": "엣지가 인접한 면의 경계 외부로 벗어나는 것을 제한합니다."
+    },
+    {
+      "name": "Correct UVs",
+      "desc": "버텍스 이동 시 텍스처 왜곡을 방지하기 위해 UV 좌표를 자동으로 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "얼굴 표정 루프 간격 조정",
+      "steps": [
+        "눈매나 입술 주변의 Edge Loop를 Alt + 클릭으로 선택합니다.",
+        "G, G 키를 눌러 Edge Slide를 실행합니다.",
+        "적당한 간격으로 마우스를 움직여 굴곡을 부드럽게 만들고 클릭합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 엣지 보강",
+      "steps": [
+        "모델의 모서리 근처 엣지를 선택합니다.",
+        "G, G를 누르고 Factor 값을 조절해 베벨(Bevel) 같은 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "엣지 하나만 선택하여 이동 방향이 모호해짐 → Alt + 클릭으로 완전한 Edge Loop를 선택하거나 복수 엣지를 선택하세요.",
+    "스케일 값이 적용되지 않아 슬라이드가 왜곡됨 → Object Mode에서 Ctrl + A 후 Scale을 적용(Apply)하세요.",
+    "UV가 찌그러짐 → 옵션 패널에서 Correct UVs를 활성화하세요."
+  ],
+  "related": [
+    "Slide Vertices",
+    "Loop Cut and Slide",
+    "Bevel",
+    "Inset Faces"
+  ],
+  "videos": [
+    {
+      "id": "D7iWcHmMh_k",
+      "title": "Blender Secrets - How to use Edge Slide",
+      "author": "Blender Secrets"
+    },
+    {
+      "id": "26tNCAqSdq4",
+      "title": "How to Edge Slide With GG - Blender Basics",
+      "author": "josé_pixelsud"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_edge-slide_before.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_edge-slide_before.png",
+      "caption": "Selected edges.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_edge-slide_after.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_edge-slide_after.png",
+      "caption": "Repositioned edges.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_edge-slide_even.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_edge-slide_even.png",
+      "caption": "Even Mode enabled.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html"
+    }
+  ],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Edge Loop"
+  ],
+  "at": "2026-10-19T13:32:05.430484+00:00"
+}

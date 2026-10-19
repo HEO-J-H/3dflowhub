@@ -1,0 +1,116 @@
+{
+  "id": "blender-3d-cursor-ef9a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "3D Cursor",
+  "title": "3D 커서 — 오브젝트를 원하는 위치로",
+  "summary": "3D 공간에서 위치와 회전값을 모두 저장하는 임시 기준점입니다. 새로운 오브젝트 생성 위치나 회전/크기 조절의 피벗으로 사용합니다.",
+  "when": [
+    "새로운 오브젝트를 원하는 위치에 바로 생성하고 싶을 때",
+    "선택한 오브젝트나 버텍스 기준으로 회전 중심을 변경하고 싶을 때",
+    "정밀한 위치에 오브젝트나 뷰포트 시점을 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Toolbar 에서 Cursor 도구를 선택하거나 Shift + RMB 를 눌러 원하는 위치에 3D Cursor 를 배치합니다.",
+    "정밀한 배치를 위해 Numpad 7(Top), Numpad 1(Front) 등 직교 뷰를 활용합니다.",
+    "Sidebar 의 View 탭 내 3D Cursor 패널에서 Location 과 Rotation 값을 수치로 직접 입력합니다.",
+    "Shift + S 를 눌러 Snapping 메뉴를 열고 'Cursor to Selected' 등으로 정확히 정렬합니다.",
+    "Transform Pivot Point 를 3D Cursor 로 설정하여 기준점으로 활용합니다."
+  ],
+  "params": [
+    {
+      "name": "Location",
+      "desc": "3D Cursor 의 X, Y, Z 공간 좌표를 직접 지정합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "3D Cursor 의 회전 각도를 지정하여 커스텀 방향을 정의합니다."
+    },
+    {
+      "name": "Cursor Surface Project",
+      "desc": "마우스 포인터 아래의 지오메트리 표면에 커서가 투영되도록 설정합니다."
+    },
+    {
+      "name": "Cursor to Selected",
+      "desc": "선택한 오브젝트나 요소의 위치로 3D Cursor 를 이동합니다."
+    },
+    {
+      "name": "Cursor to World Origin",
+      "desc": "3D Cursor 를 월드 원점(0, 0, 0)으로 이동합니다."
+    },
+    {
+      "name": "Lock to 3D Cursor",
+      "desc": "뷰포트 내비게이션의 회전 중심을 3D Cursor 로 고정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원하는 위치에 새 오브젝트 생성하기",
+      "steps": [
+        "Shift + RMB 로 3D Cursor 를 원하는 위치에 놓습니다.",
+        "Shift + A 를 눌러 Mesh 메뉴를 엽니다.",
+        "원하는 오브젝트를 추가하면 3D Cursor 위치에 생성됩니다."
+      ]
+    },
+    {
+      "title": "커서 기준 회전축 변경하기",
+      "steps": [
+        "회전의 기준으로 삼을 위치에 3D Cursor 를 배치합니다.",
+        "상단 헤더에서 Transform Pivot Point 를 3D Cursor 로 변경합니다.",
+        "R 키를 눌러 오브젝트를 회전하면 커서 중심으로 회전합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원하지 않는 곳에 커서가 찍힘 → Shift + S 를 누르고 'Cursor to World Origin' 을 실행하여 원점으로 복구합니다.",
+    "커서 기준으로 회전되지 않음 → Pivot Point 가 3D Cursor 로 설정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Transform Pivot Point",
+    "Snap",
+    "Transform Orientation",
+    "Sidebar"
+  ],
+  "videos": [
+    {
+      "id": "VzyaGDWl-XU",
+      "title": "Master the 3D Cursor Tool in Blender 3D | Essential Guide for Beginners",
+      "author": "Tom mc donald"
+    },
+    {
+      "id": "2_3dynQg0gw",
+      "title": "From Beginner to Pro: Learn the 3D Cursor in Blender",
+      "author": "FlippedNormals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/3d_cursor.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_3d-cursor.png",
+      "alt": "../../_images/editors_3dview_3d-cursor.png",
+      "caption": "The 3D Cursor.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/3d_cursor.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_3d-cursor_two-view-positioning.png",
+      "alt": "../../_images/editors_3dview_3d-cursor_two-view-positioning.png",
+      "caption": "Positioning the 3D Cursor with two orthogonal views.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/3d_cursor.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_3d-cursor_panel.png",
+      "alt": "../../_images/editors_3dview_3d-cursor_panel.png",
+      "caption": "The 3D Cursor panel in the Sidebar.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/3d_cursor.html"
+    }
+  ],
+  "menu_path": [
+    "Toolbar",
+    "Cursor",
+    "RMB",
+    "D Cursor"
+  ],
+  "at": "2026-10-19T13:32:30.776474+00:00"
+}

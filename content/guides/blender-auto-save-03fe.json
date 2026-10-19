@@ -1,0 +1,107 @@
+{
+  "id": "blender-auto-save-03fe",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Auto Save",
+  "title": "자동 저장 설정",
+  "summary": "Blender의 Auto Save 기능은 작업 중인 파일을 임시 디렉토리에 주기적으로 백업하여, 프로그램 다운이나 갑작스러운 종료 시 데이터를 안전하게 복구할 수 있도록 돕습니다.",
+  "when": [
+    "복잡하고 무거운 씬을 작업하여 예기치 않은 크래시가 걱정될 때",
+    "렌더링이나 시뮬레이션 작업 중 시스템 불안정이 예상될 때",
+    "중요한 작업 도중 수동 저장(Ctrl+S)을 깜빡하는 실수를 방지하고 싶을 때"
+  ],
+  "steps": [
+    "Blender를 실행하고 상단 메뉴에서 Edit → Preferences 를 엽니다.",
+    "Preferences 창 왼쪽에서 Save & Load 탭을 선택합니다.",
+    "Auto Save 항목에 체크하여 기능을 활성화합니다.",
+    "Timer (Minutes) 옵션에서 자동 저장 간격을 분 단위로 설정합니다.",
+    "필요에 따라 Save Versions 값을 조절하여 백업 파일(.blend1, .blend2 등) 개수를 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Save",
+      "desc": "일정한 시간 간격으로 현재 파일의 임시 백업을 자동으로 생성합니다."
+    },
+    {
+      "name": "Timer (Minutes)",
+      "desc": "자동 저장이 실행되는 시간 간격을 분 단위로 지정합니다."
+    },
+    {
+      "name": "Save Versions",
+      "desc": "파일 저장 시 보관할 백업 파일(.blend1, .blend2 등)의 개수를 설정합니다."
+    },
+    {
+      "name": "Save Prompt",
+      "desc": "저장되지 않은 변경 사항이 있을 때 닫거나 새로 열 때 확인 창을 띄웁니다."
+    },
+    {
+      "name": "Save Modified Images",
+      "desc": "텍스처 등 수정된 이미지를 Blender 파일 저장 시 처리하는 방식을 결정합니다."
+    },
+    {
+      "name": "Compress File",
+      "desc": "Blender 파일 저장 시 압축을 기본값으로 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "크래시 발생 후 최근 작업 복구하기",
+      "steps": [
+        "Blender를 다시 실행합니다.",
+        "상단 메뉴에서 File → Recover → Auto Save 를 선택합니다.",
+        "임시 디렉토리에서 가장 최근에 저장된 백업 파일을 선택하여 불러옵니다."
+      ]
+    },
+    {
+      "title": "다중 버전 백업 파일 관리하기",
+      "steps": [
+        "Preferences의 Save & Load 탭에서 Save Versions 값을 3으로 설정합니다.",
+        "작업을 진행하며 수동으로 여러 번 저장(Ctrl+S)합니다.",
+        "프로젝트 폴더에서 .blend, .blend1, .blend2, .blend3 확장자의 백업 파일들이 생성된 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "자동 저장을 과도하게 짧은 시간(예: 1분)으로 설정함 → 대용량 파일에서 잦은 디스크 쓰기로 인한 일시적 끊김 현상 발생 → Timer (Minutes)를 10~15분 정도로 적절히 조절합니다.",
+    "백업 파일의 저장 위치를 모름 → 크래시 후 파일을 찾지 못함 → File → Recover → Auto Save 경로를 통해 Temporary Directory에 있는 백업본을 확인합니다.",
+    "수정된 이미지를 수동으로 저장하지 않음 → 텍스처 변경 사항 손실 → Save Modified Images 옵션을 Always Save로 설정하거나 종료 전 수동으로 이미지를 저장합니다."
+  ],
+  "related": [
+    "Recover Auto Save",
+    "Recover Last Session",
+    "Save As",
+    "File Browser"
+  ],
+  "videos": [
+    {
+      "id": "oOghBCtgMh8",
+      "title": "Recovering lost work - Auto save - #blender4 #tutorial #blender #blender3d #gamedev #blendertips",
+      "author": "Grant Abbitt (Gabbitt)"
+    },
+    {
+      "id": "cERVe-OGRt0",
+      "title": "How to Use Blender Autosave to Protect Your Work in Under 3 Minutes",
+      "author": "Tom mc donald"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/preferences/save_load.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_preferences_section_save-load.webp",
+      "alt": "../../_images/editors_preferences_section_save-load.webp",
+      "caption": "Preferences Save/Load section.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/preferences/save_load.html"
+    }
+  ],
+  "menu_path": [
+    "Blender",
+    "Edit",
+    "Preferences",
+    "Save",
+    "Load",
+    "Auto Save"
+  ],
+  "at": "2026-10-19T13:33:12.866917+00:00"
+}

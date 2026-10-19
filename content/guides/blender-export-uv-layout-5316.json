@@ -1,0 +1,112 @@
+{
+  "id": "blender-export-uv-layout-5316",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Export UV Layout",
+  "title": "UV 레이아웃 이미지로 내보내기",
+  "summary": "Blender의 UV Editor에서 펼쳐진 UV 맵을 정렬, 변형, 스냅, 병합하여 텍스처링과 페인팅 효율을 극대화합니다. 낭비되는 공간을 줄이고 픽셀 밀도를 최적화합니다.",
+  "when": [
+    "UV를 펼친 후 겹치거나 찢어진 조각들을 깔끔하게 배치할 때",
+    "대칭 모델의 한쪽 UV를 반대쪽으로 복사하거나 미러링할 때",
+    "텍스처 해상도를 효율적으로 쓰기 위해 UV Island의 크기를 조절하고 픽셀에 스냅할 때"
+  ],
+  "steps": [
+    "메인 뷰포트에서 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "상단 탭에서 UV Editing 워크스페이스로 이동하거나 UV Editor를 엽니다.",
+    "A 키를 눌러 모든 UV 버텍스를 선택합니다.",
+    "Transform 단축키 G(Move), R(Rotate), S(Scale)를 사용하여 UV를 조절합니다.",
+    "필요한 경우 UV 메뉴에서 Snap(Shift+S)이나 Merge(M)를 실행해 정렬과 병합을 마무리합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "버텍스나 엣지 슬라이드 시 이동하는 양을 결정합니다."
+    },
+    {
+      "name": "Even",
+      "desc": "슬라이드 시 주변 엣지 루프의 모양이나 절대적인 값에 맞춰 이동시킵니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "Randomize 도구에서 무작위 변형 결과값을 다르게 만드는 시드 번호를 변경합니다."
+    },
+    {
+      "name": "Mesh Axis",
+      "desc": "Copy Mirrored UV Coordinates에서 대칭 버텍스를 찾을 기준 메쉬 축을 지정합니다."
+    },
+    {
+      "name": "UV Axis",
+      "desc": "UV 좌표를 미러링할 때 기준이 되는 수평(X) 또는 수직(Y) UV 축을 지정합니다."
+    },
+    {
+      "name": "Precision",
+      "desc": "대칭 버텍스 쌍을 찾을 때 완벽한 대칭에서 약간 벗어난 위치도 매칭하는 허용 오차를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대칭 캐릭터 UV 한쪽만 작업 후 복사하기",
+      "steps": [
+        "대칭 모델의 한쪽 UV만 먼저 깔끔하게 정리합니다.",
+        "UV Editor 메뉴에서 UV → Copy Mirrored UV Coordinates를 선택합니다.",
+        "Mesh Axis를 올바른 대칭 축(예: -X to +X)으로 설정하여 반대쪽으로 UV를 복사합니다."
+      ]
+    },
+    {
+      "title": "UV 버텍스를 픽셀 그리드에 딱 맞게 정렬하기",
+      "steps": [
+        "UV Editor에서 텍스처 이미지를 미리 로드합니다.",
+        "정렬할 UV 버텍스를 선택합니다.",
+        "Shift+S를 눌러 Snap 메뉴를 띄운 후 Selected to Pixels를 선택합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지가 로드되지 않은 상태에서 픽셀 스냅 기능을 사용함 → UV Editor에 대상 텍스처 이미지를 먼저 로드해야 합니다.",
+    "대칭 복사(Copy Mirrored UV) 시 축 설정이 잘못됨 → 메쉬가 제작된 방향(예: -X to +X)과 일치하는 Mesh Axis 옵션을 선택해야 합니다.",
+    "스케일 값이 적용되지 않은 상태에서 UV 조작 → 오브젝트 모드에서 Ctrl+A를 눌러 Scale을 1.0으로 Apply한 뒤 UV를 편집해야 합니다."
+  ],
+  "related": [
+    "Unwrap",
+    "Pack Islands",
+    "Average Island Scale",
+    "Minimize Stretch"
+  ],
+  "videos": [
+    {
+      "id": "riPBFJBwAyg",
+      "title": "Export UV Layout in Blender",
+      "author": "Blender Daily Shorts"
+    },
+    {
+      "id": "kYpi77Ymo5Q",
+      "title": "Blender: Export Your UV Layouts To Other Programs",
+      "author": "PIXXO 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/editing.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_uv_tools_rip_before.png",
+      "alt": "../../../_images/modeling_meshes_uv_tools_rip_before.png",
+      "caption": "Before.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/editing.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_uv_tools_rip_after.png",
+      "alt": "../../../_images/modeling_meshes_uv_tools_rip_after.png",
+      "caption": "After.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/editing.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/addons_import-export_mesh-uv-layout_uv-editor.png",
+      "alt": "../../../_images/addons_import-export_mesh-uv-layout_uv-editor.png",
+      "caption": "A UV layout in the UV Editor.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/uv/editing.html"
+    }
+  ],
+  "menu_path": [],
+  "at": "2026-10-19T13:34:14.218692+00:00"
+}

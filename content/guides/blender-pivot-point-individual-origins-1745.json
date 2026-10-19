@@ -1,0 +1,104 @@
+{
+  "id": "blender-pivot-point-individual-origins-1745",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Pivot Point (Individual Origins)",
+  "title": "피벗 포인트 — 면·오브젝트별로 각각 스케일",
+  "summary": "Individual Origins는 여러 선택된 오브젝트나 요소를 개별의 중심점(Pivot Point)을 기준으로 회전·크기 조절 등의 변환을 수행할 때 사용하는 기능입니다.",
+  "when": [
+    "여러 개의 메시 파츠나 오브젝트를 각각 제자리에 유지한 채 동시에 회전시키고 싶을 때",
+    "큐브나 실린더 같은 여러 개체를 각자의 중심축 기준으로 스케일을 키우거나 줄이고 싶을 때",
+    "Edit Mode에서 여러 개의 페이스나 버텍스를 개별 원점을 기준으로 편집할 때"
+  ],
+  "steps": [
+    "3D Viewport 상단의 헤더(Header) 영역에서 Transform Pivot Point 메뉴를 클릭합니다.",
+    "목록에서 Individual Origins를 선택합니다 (또는 단축키 Period . 누른 뒤 툴에서 선택).",
+    "Object Mode 또는 Edit Mode에서 변환할 대상들을 여러 개 다중 선택합니다.",
+    "S 키(Scale) 또는 R 키(Rotate)를 눌러 각 개체가 개별 피벗을 기준으로 변환되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Individual Origins",
+      "desc": "선택된 각 요소가 자신의 중심점을 기준으로 변환을 수행합니다."
+    },
+    {
+      "name": "Bounding Box Center",
+      "desc": "선택된 전체 요소의 외곽 박스 정중앙을 기준으로 변환합니다."
+    },
+    {
+      "name": "Median Point",
+      "desc": "선택된 요소들의 중간 지점을 기준으로 변환합니다."
+    },
+    {
+      "name": "3D Cursor",
+      "desc": "현재 3D Cursor의 위치를 기준으로 변환합니다."
+    },
+    {
+      "name": "Active Element",
+      "desc": "마지막으로 선택된 활성화(Active) 요소를 기준으로 변환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 개의 바퀴 살(Spoke) 동시 회전",
+      "steps": [
+        "바퀴의 각 살(Spoke) 오브젝트들을 모두 선택합니다.",
+        "Transform Pivot Point를 Individual Origins로 설정합니다.",
+        "R 키를 누르고 회전하여 모든 살이 각자의 중심을 기준으로 회전하는지 확인합니다."
+      ]
+    },
+    {
+      "title": "다중 면(Face) 개별 스케일 조절",
+      "steps": [
+        "Edit Mode(Tab)로 진입한 후 여러 개의 페이스(Face)를 선택합니다.",
+        "Pivot Point를 Individual Origins로 변경합니다.",
+        "S 키를 눌러 각 면이 제자리에서 크기가 줄어들거나 커지도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Individual Origins를 켰는데 전체가 한꺼번에 움직임 → 선택된 오브젝트들의 Object Scale이 1이 아니거나 Origin이 중앙에 있는지 확인(Ctrl + A → Apply Scale)",
+    "회전 중심이 엉뚱한 곳에 찍힘 → Median Point나 3D Cursor가 선택되어 있는지 헤더 메뉴를 다시 확인"
+  ],
+  "related": [
+    "3D Cursor",
+    "Median Point",
+    "Bounding Box Center",
+    "Active Element"
+  ],
+  "videos": [
+    {
+      "id": "OwbutZmC1co",
+      "title": "Use individual origins/pivots in Blender!",
+      "author": "BlenderVitals"
+    },
+    {
+      "id": "oooH1sWyBag",
+      "title": "Blender. How to change the pivot point tutorial. Quick and easy!",
+      "author": "Kikimore "
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/pivot_point/index.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_pivot-point_index_demo.png",
+      "alt": "../../../../_images/editors_3dview_controls_pivot-point_index_demo.png",
+      "caption": "With the default “Median Point” pivot point (left) it’s tricky to bring the second wheel spoke into place, but with “3D Cursor” (right) it’s easy.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/pivot_point/index.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_pivot-point_index_popover.png",
+      "alt": "../../../../_images/editors_3dview_controls_pivot-point_index_popover.png",
+      "caption": "",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/pivot_point/index.html"
+    }
+  ],
+  "menu_path": [
+    "D Viewport",
+    "Header",
+    "Transform Pivot Point"
+  ],
+  "at": "2026-10-19T13:34:31.055227+00:00"
+}

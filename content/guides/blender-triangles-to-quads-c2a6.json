@@ -1,0 +1,110 @@
+{
+  "id": "blender-triangles-to-quads-c2a6",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Triangles to Quads",
+  "title": "Tris to Quads — 삼각면을 사각면으로",
+  "summary": "인접한 삼각형 폴리곤을 합쳐 사각형(Quad) 폴리곤으로 변환합니다. Triangulate Faces의 정반대 기능입니다.",
+  "when": [
+    "임포트한 CAD 데이터나 외부 모델의 삼각 폴리곤(Triangle) 정리가 필요할 때",
+    "서브디비전(Subdivision Surface) 적용 전 깨끗한 사각형 토폴로지를 만들고 싶을 때",
+    "스캔 데이터나 생성 AI로 얻은 메쉬를 편집하기 쉽게 바꿀 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 메쉬를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 전체 면을 선택합니다(특정 부분만 하려면 해당 면만 선택).",
+    "상단 메뉴에서 Face -> Triangles to Quads를 클릭하거나 Alt + J 단축키를 누릅니다.",
+    "필요한 경우 하단 옵션 패널에서 Max Face Angle이나 Topology Influence 값을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Max Face Angle",
+      "desc": "삼각형 노멀 간의 최대 허용 각도로, 이 값을 넘으면 병합되지 않습니다."
+    },
+    {
+      "name": "Max Shape Angle",
+      "desc": "비정사각형 쿼드에 대한 최대 허용 오차로, 0°이면 완벽한 90° 코너만 병합됩니다."
+    },
+    {
+      "name": "Topology Influence",
+      "desc": "기존 사각형 토폴로지 흐름을 얼마나 반영할지 결정합니다."
+    },
+    {
+      "name": "Compare UVs",
+      "desc": "UV 맵에서 연결되지 않은 삼각형은 병합하지 않습니다."
+    },
+    {
+      "name": "Compare Seam",
+      "desc": "UV Seam으로 지정된 경계선의 엣지는 용해하지 않습니다."
+    },
+    {
+      "name": "Deselect Joined",
+      "desc": "성공적으로 병합된 면을 선택 해제하여 남은 삼각형을 쉽게 식별합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "임포트한 삼각 메쉬 정리",
+      "steps": [
+        "Edit Mode에서 메쉬 전체를 선택합니다.",
+        "Alt + J를 눌러 트라이를 쿼드로 변환합니다.",
+        "Deselect Joined 옵션을 켜서 변환되지 않고 남은 삼각형을 확인합니다."
+      ]
+    },
+    {
+      "title": "서브디비전 적용 전 토폴로지 최적화",
+      "steps": [
+        "모델의 특정 영역만 선택합니다.",
+        "Alt + J를 실행하고 Topology Influence를 높여 기존 흐름에 맞춥니다.",
+        "남은 삼각형은 컷팅 툴로 수동 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "삼각형이 사각형으로 바뀌지 않고 그대로 남음 → Max Face Angle 값이 너무 낮거나 각도 제한에 걸린 것이므로 값을 높여줍니다.",
+    "변환 후 메쉬 표면이 울퉁불퉁해짐 → 스케일이 적용되지 않았을 수 있으므로 Object Mode에서 Ctrl + A -> Apply Scale을 먼저 실행하세요."
+  ],
+  "related": [
+    "Triangulate Faces",
+    "Subdivision Surface",
+    "Grid Fill",
+    "Merge by Distance"
+  ],
+  "videos": [
+    {
+      "id": "5JRnRJBvdOM",
+      "title": "How to Convert Triangles to Quads in Blender! #3d #3dmodeling #blender #blendertutorial",
+      "author": "Jaggu Studio"
+    },
+    {
+      "id": "kbWdbf7Mu14",
+      "title": "Perfect Quads in Blender with one click 😳| Magic trick in Blender. #blendertutorial #blendertricks",
+      "author": "Hassan Jillani"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/triangles_quads.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_triangles-quads_before.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_triangles-quads_before.png",
+      "caption": "Before converting triangles to quads.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/triangles_quads.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_face_triangles-quads_after.png",
+      "alt": "../../../../_images/modeling_meshes_editing_face_triangles-quads_after.png",
+      "caption": "After converting.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/triangles_quads.html"
+    }
+  ],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Face",
+    "Triangles",
+    "Quads"
+  ],
+  "at": "2026-10-19T13:33:44.785158+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "blender-apply-transforms-344d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "오브젝트",
+  "name": "Apply Transforms",
+  "title": "Apply — 스케일·회전 적용(리셋 엑스폼)",
+  "summary": "객체의 위치, 회전, 크기 변화를 지오메트리 데이터에 반영하여 기본값(위치 0, 회전 0, 크기 1)으로 초기화하는 기능입니다. 스케일이나 회전이 틀어졌을 때 모디파이어가 이상하게 작동하는 문제를 방지합니다.",
+  "when": [
+    "오브젝트를 키우거나 줄인 후 베벨(Bevel)이나 솔리디파이(Solidify) 모디파이어의 두께가 균일하지 않을 때",
+    "유형이 다른 툴에서 가져온 모델의 스케일 값이 1.0이 아닐 때",
+    "리깅 및 애니메이션 작업 전 변환 값을 깔끔하게 정리해야 할 때"
+  ],
+  "steps": [
+    "Object Mode 상태에서 대상 오브젝트를 선택합니다.",
+    "3D Viewport에서 Ctrl + A 단축키를 누릅니다.",
+    "팝업 메뉴에서 원하는 항목(예: All Transforms 또는 Scale)을 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Location",
+      "desc": "현재 위치를 기본값(0, 0, 0)으로 설정하고 오브젝트 원점을 월드 원점으로 이동합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "현재 회전각을 기본값(0도)으로 초기화합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "현재 크기 비율을 기본값(1.0)으로 적용하여 모디파이어 왜곡을 방지합니다."
+    },
+    {
+      "name": "Rotation & Scale",
+      "desc": "회전과 크기를 동시에 기본값으로 적용합니다."
+    },
+    {
+      "name": "Visual Transform",
+      "desc": "제약조건(Constraints)으로 인해 변형된 결과를 최종 변환값으로 적용합니다."
+    },
+    {
+      "name": "Visual Geometry to Mesh",
+      "desc": "모디파이어나 셰이프 키 등이 적용된 시각적 상태를 정적 메시 데이터로 고정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "균일하지 않은 베벨(Bevel) 수정",
+      "steps": [
+        "오브젝트 모드에서 오브젝트 크기를 임의로 조절합니다.",
+        "Ctrl + A를 누르고 Scale을 선택합니다.",
+        "Edit Mode에서 베벨(Bevel)을 적용했을 때 두께가 사방으로 균일하게 유지되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "모디파이어 적용 상태로 고정하기",
+      "steps": [
+        "모디파이어가 적용된 오브젝트를 선택합니다.",
+        "Object 메뉴에서 Apply 팝업을 엽니다.",
+        "Visual Geometry to Mesh를 선택해 모디파이어 결과를 메시 데이터로 확정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일이 1.0이 아닌 상태에서 베벨이나 섭디비전 적용 시 두께가 찌그러짐 → Object Mode에서 Ctrl + A 누른 뒤 Scale 적용",
+    "여러 오브젝트가 Object Data를 공유할 때 Apply 실행 시 에러 발생 → Prompt에서 Single User로 설정 후 다시 적용"
+  ],
+  "related": [
+    "Modifiers",
+    "Set Origin",
+    "Make Instances Real",
+    "Delta Transforms"
+  ],
+  "videos": [
+    {
+      "id": "A8byDoKfxMc",
+      "title": "Blender Tutorial - How And Why We Apply Our Transforms",
+      "author": "Blender Base Camp"
+    },
+    {
+      "id": "wBKsIPpQhIg",
+      "title": "How to Apply Transform in Blender",
+      "author": "Blend Tweaks"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/apply.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-19T13:32:47.677924+00:00"
+}

@@ -1,0 +1,116 @@
+{
+  "id": "blender-bridge-edge-loops-9a4e",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bridge Edge Loops",
+  "title": "Bridge Edge Loops — 두 구멍 잇기",
+  "summary": "선택한 두 개 이상의 엣지 루프(Edge Loop) 사이를 면으로 연결하거나 구멍을 메우는 기능입니다. 떨어진 두 구조물을 자연스럽게 이어 붙일 때 사용합니다.",
+  "when": [
+    "파이프나 터널처럼 구멍이 뚫린 두 단면을 연결할 때",
+    "캐릭터의 팔다리나 몸통 등 분리된 메시를 하나로 합칠 때",
+    "면을 지운 자리에 새로운 면과 중간 디테일(엣지)을 생성할 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Edge Select 모드(2 키)로 전환합니다.",
+    "연결하고자 하는 두 개 이상의 엣지 루프를 Alt + 클릭 또는 Shift + Alt + 클릭으로 선택합니다.",
+    "메뉴에서 Edge ‣ Bridge Edge Loops를 실행합니다.",
+    "화면 왼쪽 아래 뜨는 Operator Panel(또는 F9)에서 Number of Cuts와 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Number of Cuts",
+      "desc": "연결된 면 사이에 추가할 중간 엣지 루프의 개수입니다."
+    },
+    {
+      "name": "Interpolation",
+      "desc": "추가되는 엣지의 생성 방식을 Linear, Blend Path, Blend Surface 중 선택합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "Blend Path와 Blend Surface 사용 시 곡선의 부드러움 정도를 조절합니다."
+    },
+    {
+      "name": "Profile Factor",
+      "desc": "연결부의 두께를 조절합니다. 음수는 수축, 양수는 팽창시킵니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "연결되는 버텍스 인덱스를 틀어 튜브가 꼬이게 만듭니다."
+    },
+    {
+      "name": "Merge",
+      "desc": "면을 생성하는 대신 엣지 루프들을 하나로 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 분기점 연결하기",
+      "steps": [
+        "두 파이프의 마주보는 끝부분 엣지 루프를 선택합니다.",
+        "Bridge Edge Loops를 실행해 두 파이프를 연결합니다.",
+        "Number of Cuts를 높여 구부러질 때 부드러운 형태를 만듭니다."
+      ]
+    },
+    {
+      "title": "표면에 구멍 뚫고 연결하기",
+      "steps": [
+        "면을 삭제해 만든 두 개의 구멍 안쪽 엣지 루프를 선택합니다.",
+        "Bridge Edge Loops로 두 구멍 사이를 터널처럼 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버텍스 개수가 다를 때 비틀어지는 현상 → Twist 값을 조절하거나 정렬 상태를 확인합니다.",
+    "법선(Normal) 방향이 서로 반대여서 면이 꼬이는 현상 → Mesh ‣ Normals ‣ Recalculate Outside로 법선을 통일합니다.",
+    "스케일 값이 적용되지 않아 간격이 이상하게 벌어지는 현상 → Object Mode에서 Ctrl + A ‣ All Transforms를 실행해 스케일을 1로 맞춥니다."
+  ],
+  "related": [
+    "Grid Fill",
+    "F Key",
+    "Extrude",
+    "Loop Cut and Slide"
+  ],
+  "videos": [
+    {
+      "id": "PYx-fJS3W1A",
+      "title": "FASTEST Way to Bridge Edge Loops in Blender!",
+      "author": "Pantheon"
+    },
+    {
+      "id": "msQYY-i_XoY",
+      "title": "How to Bridge Edge Loops in Blender",
+      "author": "Blend Tweaks"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-before.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-before.png",
+      "caption": "Before bridging",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-linear.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-linear.png",
+      "caption": "Linear",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-blend-path.png",
+      "alt": "../../../../_images/modeling_meshes_editing_edge_bridge-edge-loops_interpolation-blend-path.png",
+      "caption": "Blend Path",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html"
+    }
+  ],
+  "menu_path": [
+    "Edit Mode",
+    "Edge Select",
+    "Edge",
+    "Bridge Edge Loops"
+  ],
+  "at": "2026-10-19T13:30:56.370983+00:00"
+}

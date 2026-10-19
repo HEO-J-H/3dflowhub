@@ -1,0 +1,98 @@
+{
+  "id": "blender-link-transfer-data-copy-modifiers-ea3d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "오브젝트",
+  "name": "Link/Transfer Data (copy modifiers)",
+  "title": "모디파이어를 다른 오브젝트에 복사",
+  "summary": "여러 오브젝트 사이에서 모디파이어, 메쉬 데이터, 애니메이션 등의 데이터를 빠르게 복사하고 연결하는 기능입니다. 작업 시간을 크게 단축해 줍니다.",
+  "when": [
+    "동일한 모디파이어 세팅을 여러 오브젝트에 한 번에 적용하고 싶을 때",
+    "여러 메쉬의 UV나 Vertex Groups 데이터를 일괄 공유해야 할 때",
+    "여러 오브젝트의 애니메이션 데이터(Action)를 동기화할 때"
+  ],
+  "steps": [
+    "복사할 데이터가 있는 대상(Source) 오브젝트를 먼저 선택합니다.",
+    "Shift를 누른 채 복사받을 타겟(Target) 오브젝트들을 차례대로 다중 선택합니다 (마지막 선택이 Source가 되도록 주의).",
+    "Viewport에서 Ctrl + L 단축키를 누릅니다.",
+    "팝업 메뉴(Link/Transfer Data)에서 원하는 데이터 항목(예: Modifiers)을 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Link Materials",
+      "desc": "선택한 오브젝트 간의 재질(Material) 데이터를 연결합니다."
+    },
+    {
+      "name": "Link Object Data",
+      "desc": "메쉬 데이터를 공유하여 하나의 오브젝트처럼 형태를 동기화합니다."
+    },
+    {
+      "name": "Modifiers",
+      "desc": "Source 오브젝트의 모디파이어 스택을 타겟 오브젝트에 그대로 복사합니다."
+    },
+    {
+      "name": "Animation Data",
+      "desc": "오브젝트에 적용된 애니메이션 액션을 서로 연결합니다."
+    },
+    {
+      "name": "UV Maps",
+      "desc": "오브젝트 간의 UV 맵 정보를 공유하거나 전달합니다."
+    },
+    {
+      "name": "Vertex Groups",
+      "desc": "버텍스 그룹 가중치(Weight) 데이터를 복사합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 건물 기둥에 동일한 Bevel 모디파이어 적용하기",
+      "steps": [
+        "기준이 되는 기둥 A에 Bevel 모디파이어를 설정합니다.",
+        "기둥 A를 마지막으로 하고 나머지 기둥들을 함께 다중 선택합니다.",
+        "Ctrl + L을 누르고 Modifiers를 선택하여 모디파이어를 일괄 복사합니다."
+      ]
+    },
+    {
+      "title": "군중 캐릭터들에 동일한 애니메이션 연결하기",
+      "steps": [
+        "애니메이션이 완료된 기본 캐릭터 A를 선택합니다.",
+        "나머지 캐릭터들을 Shift + 클릭으로 다중 선택합니다.",
+        "Ctrl + L을 누르고 Animation Data를 선택해 움직임을 동기화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 순서 반대로 함 (타겟을 마지막에 선택) → 원하지 않는 오브젝트의 데이터로 덮어씌워짐. 항상 복사할 원본을 마지막에 선택하세요.",
+    "메쉬 구조가 완전히 다름 → UV나 Vertex Groups 전달 시 데이터가 깨지거나 적용되지 않습니다. 토폴로지가 유사한지 확인하세요."
+  ],
+  "related": [
+    "Copy to Selected",
+    "Data Transfer",
+    "Make Single User",
+    "Join"
+  ],
+  "videos": [
+    {
+      "id": "6_B1xZK-o-8",
+      "title": "How Does The Data Transfer Modifier Really Work? (Blender Tutorial: Part 1 of 2)",
+      "author": "Game Abuse Studios"
+    },
+    {
+      "id": "oS5ew8fG2r8",
+      "title": "Blender - Link/Transfer Data",
+      "author": "CGI Blast"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/link_transfer/index.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Source",
+    "Target",
+    "Viewport",
+    "Link",
+    "Transfer Data",
+    "Modifiers"
+  ],
+  "at": "2026-10-19T13:32:56.016699+00:00"
+}

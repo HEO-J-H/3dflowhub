@@ -1,0 +1,106 @@
+{
+  "id": "blender-checker-deselect-6dca",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "선택",
+  "name": "Checker Deselect",
+  "title": "Checker Deselect — 하나 건너 선택",
+  "summary": "반복적인 패턴으로 메시 요소를 건너뛰며 선택 해제하는 도구입니다. 복잡한 선택 영역을 규칙적으로 정리할 때 사용합니다.",
+  "when": [
+    "격자 무늬 패턴으로 루프 컷이나 엣지를 건너뛰며 선택을 해제할 때",
+    "지오메트리를 균일하게 간격 두어 편집해야 할 때",
+    "전체 선택된 영역 중 일부만 남기고 빠르게 솎아낼 때"
+  ],
+  "steps": [
+    "Blender에서 3D 뷰포트의 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex, Edge, Face 중 원하는 선택 모드(1, 2, 3 키)를 활성화합니다.",
+    "메시 요소를 원하는 영역만큼 미리 선택합니다.",
+    "상단 메뉴에서 Select → Checker Deselect를 클릭합니다.",
+    "Operator 패널에서 Deselected, Selected, Offset 값을 조정하여 패턴을 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Deselected",
+      "desc": "패턴 반복 시 시작할 때 건너뛰며 해제할 요소의 개수입니다."
+    },
+    {
+      "name": "Selected",
+      "desc": "패턴 반복 시 유지할 선택된 요소의 개수입니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "첫 번째 반복 패턴에서 건너뛸 요소의 오프셋 값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "루프 컷 엣지 간격 두어 선택하기",
+      "steps": [
+        "Alt + 클릭으로 엣지 루프 전체를 선택합니다.",
+        "Select → Checker Deselect를 실행합니다.",
+        "Deselected와 Selected 값을 1로 설정하여 번갈아 가며 엣지를 해제합니다."
+      ]
+    },
+    {
+      "title": "면 패턴을 규칙적으로 솎아내기",
+      "steps": [
+        "격자 형태로 나누어진 면 전체를 선택합니다.",
+        "Checker Deselect 도구를 실행합니다.",
+        "Deselected 값을 2로 높여 더 넓은 간격으로 면을 해제합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "활성 요소가 없을 때 전체가 해제됨 → 전체 선택 상태에서 기준이 되는 요소를 마지막에 Shift + 클릭하여 활성화한 뒤 실행하세요.",
+    "분리된 아일랜드가 여러 개일 때 전체에 적용되지 않음 → Checker Desekslect는 활성 요소가 포함된 단일 아일랜드에만 적용되므로 각각 따로 실행하세요."
+  ],
+  "related": [
+    "Loop Cut",
+    "Select Similar",
+    "Checkerboard Deselect",
+    "Edge Rings"
+  ],
+  "videos": [
+    {
+      "id": "FClubtErwZg",
+      "title": "Checker Deselect - Blender Quick Tip - Blender Tutorial",
+      "author": "Blackout Creatively"
+    },
+    {
+      "id": "jlzMKx4qyFc",
+      "title": "Select faces using Checker Deselect fast Blender3D",
+      "author": "Spectrum"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/checker_deselect.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_checker-deselect-before.png",
+      "alt": "../../../_images/modeling_meshes_selecting_checker-deselect-before.png",
+      "caption": "Initial selection.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/checker_deselect.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_checker-deselect-after-1.png",
+      "alt": "../../../_images/modeling_meshes_selecting_checker-deselect-after-1.png",
+      "caption": "Running with Deselected = 1 and Selected = 1.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/checker_deselect.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_checker-deselect-after-2.png",
+      "alt": "../../../_images/modeling_meshes_selecting_checker-deselect-after-2.png",
+      "caption": "Deselected changed to 2.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/checker_deselect.html"
+    }
+  ],
+  "menu_path": [
+    "Blender",
+    "Edit Mode",
+    "Vertex",
+    "Edge",
+    "Face",
+    "Select"
+  ],
+  "at": "2026-10-19T13:31:44.536567+00:00"
+}

@@ -1,0 +1,110 @@
+{
+  "id": "blender-select-linked-ctrl-l-d6c9",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "선택",
+  "name": "Select Linked (Ctrl+L)",
+  "title": "Select Linked — 연결된 덩어리(엘리먼트) 선택",
+  "summary": "현재 선택한 요소와 직접 또는 간접적으로 연결된 모든 지오메트리를 한 번에 선택하는 기능입니다. 겹쳐 있는 독립된 파트를 분리하거나 정리할 때 매우 유용합니다.",
+  "when": [
+    "하나의 메시 오브젝트 안에 떨어져 있는 여러 개의 독립된 파트가 있을 때",
+    "마우스 호버만으로 빠르게 연결된 요소를 선택하고 싶을 때",
+    "UV Seam 이나 Sharp 에지 기준으로 선택 영역을 확장하거나 제한하고 싶을 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "선택하고자 하는 오브젝트의 구성 요소(Vertex, Edge, Face) 중 하나를 선택합니다.",
+    "마우스 커서를 원하는 파트 위에 올리고 L 키를 누르거나, Ctrl + L 단축키를 누릅니다.",
+    "필요한 경우 Adjust Last Operation 패널에서 Delimit 옵션을 설정해 선택 범위를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Delimit",
+      "desc": "특정 경계(Normal, Material, Seam, Sharp, UVs)를 만나면 선택 확장을 멈춥니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "면의 방향이 반대인 곳에서 선택을 멈춥니다."
+    },
+    {
+      "name": "Material",
+      "desc": "다른 머티리얼이 적용된 면을 만나면 선택을 멈춥니다."
+    },
+    {
+      "name": "Seam",
+      "desc": "UV Seam으로 지정된 에지에서 선택을 멈춥니다."
+    },
+    {
+      "name": "Sharp",
+      "desc": "Sharp로 지정된 에지에서 선택을 멈춥니다."
+    },
+    {
+      "name": "UVs",
+      "desc": "UV 맵의 아일랜드 경계에서 선택을 멈춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "떨어져 있는 복합 오브젝트에서 특정 파트만 분리하기",
+      "steps": [
+        "Edit Mode에서 분리할 파트의 요소를 하나 선택합니다.",
+        "Ctrl + L 키를 눌러 연결된 전체 파트를 선택합니다.",
+        "P 키를 누르고 Selection을 선택하여 독립된 오브젝트로 분리(Separate)합니다."
+      ]
+    },
+    {
+      "title": "마우스 호버로 빠르게 파트 선택하기",
+      "steps": [
+        "Edit Mode에서 대상을 향해 마우스 커서를 올립니다.",
+        "L 키를 눌러 연결된 지오메트리를 즉시 선택합니다.",
+        "Shift + L 키를 눌러 선택을 해제할 수도 있습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "연결되지 않은 파트인데 전체가 선택됨 → 메시가 실제로 연결되어 있는지(Merge되지 않았는지) 확인하고 분리(Separate) 작업을 수행하세요.",
+    "원하는 경계에서 선택이 멈추지 않음 → Adjust Last Operation 패널의 Delimit 옵션(Seam, Sharp 등)이 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Shortest Path",
+    "Linked Flat Faces",
+    "Select Similar",
+    "Checker Deselect"
+  ],
+  "videos": [
+    {
+      "id": "Uu-b0PguBzg",
+      "title": "Blender Workflow HACKS: Join (Ctrl+J), Select Linked (Ctrl+Numpad+), & Separate (P key) FAST!",
+      "author": "Pantheon"
+    },
+    {
+      "id": "9yxzi-95pXk",
+      "title": "Select Linked - Every Option Explained | Blender Secrets",
+      "author": "Blender Secrets"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_linked_shortest-path.png",
+      "alt": "../../../_images/modeling_meshes_selecting_linked_shortest-path.png",
+      "caption": "Shortest paths for vertices (left) and faces (right).",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_linked_flat-faces_before.png",
+      "alt": "../../../_images/modeling_meshes_selecting_linked_flat-faces_before.png",
+      "caption": "Initial selection.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_selecting_linked_flat-faces_after.png",
+      "alt": "../../../_images/modeling_meshes_selecting_linked_flat-faces_after.png",
+      "caption": "After running Select Linked Flat Faces.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html"
+    }
+  ],
+  "menu_path": [],
+  "at": "2026-10-19T13:31:37.279260+00:00"
+}

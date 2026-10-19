@@ -1,0 +1,93 @@
+{
+  "id": "blender-viewport-overlays-statistics-c4ca",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Viewport Overlays statistics",
+  "title": "뷰포트 오버레이 — 폴리곤 수·노멀 표시",
+  "summary": "Blender 3D Viewport의 Overlays 메뉴에서 통계 정보(Statistics) 및 다양한 가이드와 뷰어 옵션을 켜고 끄며 작업 효율을 높입니다.",
+  "when": [
+    "씬의 폴리곤 수(Vertices, Faces, Triangles)를 실시간으로 확인하고 싶을 때",
+    "선택한 오브젝트나 컬렉션의 상세 정보를 뷰포트 좌상단에서 파악하고자 할 때",
+    "그리드, 3D Cursor, 카메라 가이드 등 작업 보조 요소를 정리하고 싶을 때"
+  ],
+  "steps": [
+    "3D Viewport 헤더 우측 상단의 Overlays 아이콘(두 장의 겹쳐진 원형 아이콘)을 클릭합니다.",
+    "드롭다운 팝오버 메뉴에서 Text Info 항목이 켜져 있는지 확인합니다.",
+    "Text Info 하위의 Statistics 옵션을 체크하여 뷰포트 좌상단에 통계 정보 표시를 활성화합니다.",
+    "현재 선택한 오브젝트나 메쉬의 Vertices, Edges, Faces, Triangles 카운트를 실시간으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Statistics",
+      "desc": "오브젝트 및 지오메트리(버텍스, 면, 트라이앵글 등)의 개수를 뷰포트에 표시합니다."
+    },
+    {
+      "name": "Text Info",
+      "desc": "뷰포트 좌상단에 뷰 이름, 프레임 레이트(FPS), 오브젝트 정보 등을 표시합니다."
+    },
+    {
+      "name": "Grid",
+      "desc": "직교 뷰에서 바닥에 기준 그리드를 표시합니다."
+    },
+    {
+      "name": "3D Cursor",
+      "desc": "새로운 오브젝트 생성 및 기준점이 되는 3D Cursor를 표시합니다."
+    },
+    {
+      "name": "Outline Selected",
+      "desc": "선택된 오브젝트 주위에 외곽선(아웃라인)을 표시하여 식별을 돕습니다."
+    },
+    {
+      "name": "Wireframe",
+      "desc": "쉐이딩 위에 메쉬의 에지를 와이어프레임 형태로 겹쳐서 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "폴리곤 예산(Polygon Budget) 확인하기",
+      "steps": [
+        "Overlays 메뉴를 엽니다.",
+        "Text Info와 Statistics 옵션을 체크합니다.",
+        "오브젝트를 선택해 뷰포트 좌상단에서 Vertices와 Triangles 수를 실시간으로 모니터링합니다."
+      ]
+    },
+    {
+      "title": "스컬프팅 및 리토폴로지 중 면 수 점검",
+      "steps": [
+        "고도화된 스컬프팅 메쉬를 선택합니다.",
+        "Overlays의 Statistics를 통해 현재 하이폴리곤 메쉬의 버텍스 및 페이스 밀도를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Statistics가 보이지 않음 → Overlays 메뉴에서 Text Info 또는 Statistics 옵션이 꺼져 있는지 확인하세요.",
+    "선택한 오브젝트의 면 수가 안 나옴 → 오브젝트가 Object Mode가 아닌 상태이거나 선택되지 않았을 수 있습니다. 오브젝트를 선택하세요."
+  ],
+  "related": [
+    "Viewport Shading",
+    "Header",
+    "Viewport Preferences",
+    "Mesh Edit Mode Overlays"
+  ],
+  "videos": [
+    {
+      "id": "tQCFq33cJNE",
+      "title": "How to Use Viewport Overlays In Blender!",
+      "author": "Benix"
+    },
+    {
+      "id": "7d-Nj_AB1OI",
+      "title": "BLENDER - Lesson 04 - Layout, View, Visualize, Overlays, Statistics, Gizmos, Scene, Material, Render",
+      "author": "jbdtube"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/display/overlays.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "D Viewport",
+    "Overlays"
+  ],
+  "at": "2026-10-19T13:33:04.582685+00:00"
+}

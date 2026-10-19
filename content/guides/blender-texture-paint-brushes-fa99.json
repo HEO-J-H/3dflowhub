@@ -1,0 +1,97 @@
+{
+  "id": "blender-texture-paint-brushes-fa99",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "텍스처",
+  "name": "Texture Paint brushes",
+  "title": "텍스처 페인트 — 브러시 설정",
+  "summary": "Blender의 Texture Paint 모드에서 사용하는 브러시 설정으로, 3D 모델 표면에 직접 질감과 색상을 그려 넣습니다. 도화지에 그림을 그리듯 직관적으로 텍스처를 수정할 수 있습니다.",
+  "when": [
+    "캐릭터나 프랍의 피부, 흠집, 웨더링(노후화) 표현을 직접 그려서 넣고 싶을 때",
+    "UV 경계면이나 심(Seam) 부근의 색상 차이를 자연스럽게 블렌딩하고 싶을 때",
+    "별도의 2D 프로그램으로 넘어가기 전 빠르게 디테일한 손맵(Hand-painted) 작업을 할 때"
+  ],
+  "steps": [
+    "1. 3D 뷰포트 상단의 모드 드롭다운에서 Object Mode를 Texture Paint 모드로 전환합니다.",
+    "2. 툴바(T키) 또는 Tool Settings에서 원하는 Brush Types를 선택합니다.",
+    "3. N키를 눌러 사이드바를 열고 Tool 탭에서 브러시의 Radius(반경)와 Strength(강도)를 조절합니다.",
+    "4. Texture Slots 탭에서 그려질 이미지 텍스처가 올바르게 연결되어 있는지 확인합니다.",
+    "5. 모델의 표면을 마우스 드래그하여 직접 브러시로 색상을 칠합니다.",
+    "6. 3D 뷰포트 상단 메뉴의 Image → Save 또는 Image Save As를 눌러 수정한 이미지를 반드시 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "브러시의 크기(반경)를 조절합니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "브러시의 투명도 및 적용 강도를 조절합니다."
+    },
+    {
+      "name": "Brush Types",
+      "desc": "Draw, Soften, Smear, Clone 등 브러시의 작동 방식을 선택합니다."
+    },
+    {
+      "name": "Symmetry Options",
+      "desc": "X, Y, Z축 기준으로 대칭 페인팅을 활성화합니다."
+    },
+    {
+      "name": "Mask",
+      "desc": "특정 영역만 칠해지도록 마스크 텍스처를 적용합니다."
+    },
+    {
+      "name": "Sample Color",
+      "desc": "단축키 S로 모델 표면의 색상을 스포이트로 추출합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 표면 긁힌 자국(Scratches) 표현",
+      "steps": [
+        "1. Brush Types를 Draw로 설정하고 Radius를 작게 조절합니다.",
+        "2. 브러시 색상을 밝은 회색이나 은색으로 선택합니다.",
+        "3. 모서리나 충돌이 잦은 부위에 가벼운 선을 그려 긁힌 질감을 만듭니다."
+      ]
+    },
+    {
+      "title": "대칭 캐릭터 얼굴 페인팅",
+      "steps": [
+        "1. Symmetry Options에서 X축 대칭(Mirror X)을 활성화합니다.",
+        "2. 눈썹이나 입술 라인 등 좌우가 같은 위치에 그려질 요소를 한쪽만 칠합니다.",
+        "3. 반대편에도 동일하게 브러시 스트로크가 적용되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "작업 후 이미지가 저장되지 않음 → 3D 뷰포트 상단 Image 메뉴에서 반드시 수동으로 Save(또는 외부 에디터 저장)를 진행해야 디스크에 반영됩니다.",
+    "칠했는데 아무 반응이 없음 → Texture Slots에 이미지 텍스처가 추가되어 있거나 선택(Active)되어 있는지 확인하세요.",
+    "페인팅이 깨지거나 늘어남 → 모델의 UV Unwrapping이 올바르게 펴져 있는지, 해상도가 너무 낮지 않은지 확인하세요."
+  ],
+  "related": [
+    "Texture Slots",
+    "UV Editing",
+    "Image Editor",
+    "Brush Assets"
+  ],
+  "videos": [
+    {
+      "id": "lvc6pufQ7Gk",
+      "title": "Blender: Custom Brush Textures",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "uz03aeKQzYc",
+      "title": "Blender Secrets - Texture Painting with Custom Brushes",
+      "author": "Blender Secrets"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/sculpt_paint/texture_paint/index.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Texture Paint"
+  ],
+  "at": "2026-10-19T13:34:02.090469+00:00"
+}

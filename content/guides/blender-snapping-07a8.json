@@ -1,0 +1,119 @@
+{
+  "id": "blender-snapping-07a8",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Snapping",
+  "title": "Snapping — 스냅 설정",
+  "summary": "Blender의 Snapping 기능은 오브젝트나 메시 요소를 다른 대상에 정확히 정렬하고 맞닿게 배치할 수 있도록 돕는 필수 도구입니다. 자석 아이콘으로 켜고 끌 수 있으며 이동, 회전, 스케일 작업 시 활용됩니다.",
+  "when": [
+    "오브젝트의 바닥면을 다른 오브젝트의 표면에 정확히 붙이고 싶을 때",
+    "버텍스나 에지를 기준으로 두 개의 오브젝트를 딱 맞아떨어지게 배치할 때",
+    "리토폴로지 작업 시 다른 모델의 표면을 따라 면을 생성하거나 붙일 때"
+  ],
+  "steps": [
+    "3D Viewport 상단 헤더에 있는 자석 아이콘(Snap On/Off)을 클릭하거나 Shift + Tab 키를 눌러 Snapping을 활성화합니다.",
+    "변환(이동·회전·스케일) 중 임시로 스냅을 켜려면 Ctrl 키를 누르고 있습니다.",
+    "헤더의 드롭다운 메뉴에서 Snap Target(Vertex, Edge, Face 등)을 선택하여 스냅할 대상 유형을 지정합니다.",
+    "Shift + Ctrl + Tab 단축키를 눌러 Snap Base(Closest, Center, Median, Active)를 설정하여 기준점을 정합니다.",
+    "오브젝트를 이동(G)하면 지정한 대상에 정확히 스냅됩니다."
+  ],
+  "params": [
+    {
+      "name": "Vertex",
+      "desc": "마우스 커서에 가장 가까운 버텍스(점)에 스냅합니다."
+    },
+    {
+      "name": "Face",
+      "desc": "마우스 커서 아래의 페이스(면) 표면에 스냅합니다 (리토폴로지에 유용)."
+    },
+    {
+      "name": "Edge",
+      "desc": "마우스 커서에 가장 가까운 에지(선)에 스냅합니다."
+    },
+    {
+      "name": "Increment",
+      "desc": "뷰포트 그리드 크기 또는 지정된 단위 간격에 맞춰 이동합니다."
+    },
+    {
+      "name": "Align Rotation to Target",
+      "desc": "타겟의 법선 방향에 맞춰 오브젝트의 Z축 회전을 정렬합니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "오브젝트 내부의 볼륨 중심 깊이에 맞춰 스냅합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 바닥면을 바닥 그리드에 딱 맞추기",
+      "steps": [
+        "Object Mode에서 대상 오브젝트를 선택합니다.",
+        "Shift + Tab을 눌러 Snapping을 켭니다.",
+        "Snap Target을 Increment 또는 Grid로 설정합니다.",
+        "G 키를 누르고 Z축을 제한하여 바닥 면에 정확히 안착시킵니다."
+      ]
+    },
+    {
+      "title": "버텍스를 다른 오브젝트의 버텍스에 정확히 일치시키기",
+      "steps": [
+        "Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "Snapping을 활성화하고 Snap Target을 Vertex로 설정합니다.",
+        "이동할 버텍스를 선택하고 G 키를 누릅니다.",
+        "목표 버텍스 위로 마우스를 가져가 정확히 스냅시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅이 작동하지 않음 → 3D Viewport 상단의 자석 아이콘(Snap On)이 켜져 있는지 확인하거나 Shift + Tab을 누릅니다.",
+    "원하지 않는 지점이 스냅 기준으로 잡힘 → Snap Base 설정(Closest, Center 등)이 올바르게 되어 있는지 확인합니다.",
+    "크기나 비율이 어긋남 → 오브젝트 변환 전 Ctrl + A를 눌러 Apply Scale을 실행했는지 확인합니다."
+  ],
+  "related": [
+    "Proportional Editing",
+    "Shrinkwrap constraint / modifier",
+    "Auto Merge",
+    "Clipping"
+  ],
+  "videos": [
+    {
+      "id": "-c0Evpf8V3A",
+      "title": "How to Use Blender's Snapping Feature (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "0p06F1LzTjQ",
+      "title": "Getting Started with SNAPPING in Blender! Snapping Tools Tutorial",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/snapping.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_snapping_element-menu.png",
+      "alt": "../../../_images/editors_3dview_controls_snapping_element-menu.png",
+      "caption": "Snap menu.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/snapping.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_snapping_target-closest.png",
+      "alt": "../../../_images/editors_3dview_controls_snapping_target-closest.png",
+      "caption": "Closest.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/snapping.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_snapping_target-median.png",
+      "alt": "../../../_images/editors_3dview_controls_snapping_target-median.png",
+      "caption": "Median.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/snapping.html"
+    }
+  ],
+  "menu_path": [
+    "D Viewport",
+    "Snap On",
+    "Off",
+    "Snapping"
+  ],
+  "at": "2026-10-19T13:32:22.339483+00:00"
+}

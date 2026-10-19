@@ -1,0 +1,82 @@
+{
+  "id": "blender-show-hide-h-a2ae",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "오브젝트",
+  "name": "Show/Hide (H)",
+  "title": "숨기기·보이기 (H / Alt+H)",
+  "summary": "Blender에서 불필요한 오브젝트나 메시를 잠시 숨기거나(Hide) 다시 불러오는(Show) 기능입니다. 화면을 깔끔하게 정돈하고 작업 대상에만 집중할 수 있습니다.",
+  "when": [
+    "복잡한 씬에서 특정 오브젝트에 가려져 안쪽 작업이 어려울 때",
+    "밀도가 높은 메쉬 편집 중 뒤쪽 버텍스나 페이스를 편하게 선택하고 싶을 때",
+    "렌더링 전 임시로 지오메트리를 감추어 화면 속도를 확보할 때"
+  ],
+  "steps": [
+    "3D Viewport에서 숨기고자 할 오브젝트 또는 요소를 선택합니다.",
+    "키보드 H 키를 눌러 Hide Selected를 실행합니다.",
+    "오브젝트 모드에서 숨겨진 모든 것을 다시 보이게 하려면 Alt + H 키(Show Hidden Objects)를 누릅니다.",
+    "선택한 것만 남기고 나머지를 모두 숨기려면 Shift + H 키(Hide Unselected)를 누릅니다.",
+    "에디트 모드에서는 버텍스, 에지, 페이스 단위로 선택 후 H 키를 눌러 부분 숨김을 할 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "Hide Selected",
+      "desc": "선택한 오브젝트나 요소를 화면에서 숨깁니다 (단축키: H)."
+    },
+    {
+      "name": "Hide Unselected",
+      "desc": "선택하지 않은 나머지 씬의 모든 오브젝트를 숨깁니다 (단축키: Shift + H)."
+    },
+    {
+      "name": "Show Hidden Objects",
+      "desc": "숨겨졌던 모든 오브젝트를 다시 화면에 표시합니다 (단축키: Alt + H)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "내부 구조물 모델링하기",
+      "steps": [
+        "바깥쪽 벽면 오브젝트를 선택합니다.",
+        "H 키를 눌러 벽을 숨깁니다.",
+        "드디어 드러난 내부 가구와 파이프를 편집합니다.",
+        "작업이 끝나면 Alt + H를 눌러 벽을 다시 불러옵니다."
+      ]
+    },
+    {
+      "title": "밀집된 버텍스 정리하기",
+      "steps": [
+        "Edit Mode(Tab)로 진입합니다.",
+        "수정하기 번잡한 앞쪽 페이스들을 선택합니다.",
+        "H 키로 숨겨 뒤쪽 버텍스를 정확히 선택하고 이동합니다.",
+        "Alt + H로 숨긴 페이스를 복원합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "편집 모드(Edit Mode)에서 숨긴 요소를 개체 모드(Object Mode)에서 Alt + H로 복원하려 함 → Edit Mode로 진입 후 Alt + H를 눌러야 합니다.",
+    "오브젝트가 삭제된 줄 알고 당황함 → Outliner에서 눈(Eye) 아이콘이나 숨김 상태를 확인합니다."
+  ],
+  "related": [
+    "Local View",
+    "Global/Local Toggle",
+    "Outliner",
+    "Proportional Editing"
+  ],
+  "videos": [
+    {
+      "id": "r_rjWYEZT2M",
+      "title": "How to show hidden objects in Blender",
+      "author": "blenderian"
+    },
+    {
+      "id": "3Luk4DNPsfo",
+      "title": "Hide and Unhide Objects in Blender 3D (Micro Tip)",
+      "author": "Brandon 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/show_hide.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-19T13:33:20.845421+00:00"
+}

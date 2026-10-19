@@ -1,0 +1,123 @@
+{
+  "id": "blender-transform-orientations-de92",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Transform Orientations",
+  "title": "Transform Orientation — 기즈모를 로컬·노멀 축으로",
+  "summary": "Blender의 Transform Orientations 기능은 오브젝트나 메시를 이동, 회전, 스케일할 때 기준이 되는 축(좌표계)의 방향을 변경합니다. 기울어진 오브젝트를 자신만의 방향으로 쉽게 조작할 수 있도록 돕습니다.",
+  "when": [
+    "기울어진 오브젝트를 월드 축이 아닌 자체 방향(Local)으로 정확하게 이동하고 싶을 때",
+    "Edit Mode에서 선택한 면의 법선(Normal) 방향으로 요소를 돌출시키거나 밀어 넣고 싶을 때",
+    "독특한 각도의 구조물을 만들기 위해 나만의 커스텀 축(Custom Orientations)을 등록하고 싶을 때"
+  ],
+  "steps": [
+    "3D Viewport 상단 헤더에 있는 Transform Orientation 셀렉터(기본값 Global)를 클릭합니다.",
+    "원하는 좌표계(Local, Normal, View 등)를 목록에서 선택합니다.",
+    "단축키 쉼표(,)를 눌러 팝업 메뉴에서 빠르게 Transform Orientation을 전환합니다.",
+    "G, R, S 단축키로 변형을 시작한 뒤, 축 키(X, Y, Z)를 한 번 더 누르면 해당 방향 축으로 잠깁니다."
+  ],
+  "params": [
+    {
+      "name": "Global",
+      "desc": "월드 공간을 기준으로 변환 축을 정렬합니다."
+    },
+    {
+      "name": "Local",
+      "desc": "활성화된 오브젝트의 자체 회전 방향에 축을 맞춥니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "Edit Mode에서 선택한 요소들의 평균 법선(Normal) 방향으로 축을 정렬합니다."
+    },
+    {
+      "name": "Gimbal",
+      "desc": "오브젝트의 Rotation Mode 작동 방식을 Visualize는 축으로 정렬합니다."
+    },
+    {
+      "name": "View",
+      "desc": "현재 뷰포트 카메라 시점을 기준으로 축을 정렬합니다."
+    },
+    {
+      "name": "Cursor",
+      "desc": "3D Cursor의 위치와 회전값에 축을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기울어진 오브젝트를 로컬 축으로 이동하기",
+      "steps": [
+        "회전된 오브젝트를 선택합니다.",
+        "3D Viewport 헤더에서 Transform Orientation을 Local로 변경합니다.",
+        "G 키를 누르고 Z 키를 눌러 오브젝트가 바라보는 방향으로 이동합니다."
+      ]
+    },
+    {
+      "title": "면의 노멀 방향으로 돌출시키기",
+      "steps": [
+        "Edit Mode에서 특정 기울어진 면을 선택합니다.",
+        "Transform Orientation을 Normal로 설정합니다.",
+        "E 키를 눌러 면을 돌출시키면 해당 면 수직 방향으로 늘어납니다."
+      ]
+    },
+    {
+      "title": "커스텀 축(Custom Orientation) 생성하기",
+      "steps": [
+        "기준이 될 경사진 에이전트(면 또는 에지)를 선택합니다.",
+        "Transform Orientation 패널의 '+' 버튼을 클릭해 새로운 축을 등록합니다.",
+        "필요할 때 언제든지 목록에서 해당 커스텀 축을 선택해 변형에 사용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 회전되어 있는데 Global 축만 고집함 → Local 축으로 변경하여 해결",
+    "커스텀 축을 만들었는데 이름을 헷갈림 → 패널에서 이름을 더블클릭하여 명확하게 변경",
+    "축 잠금(Axis Locking) 중 반대 축으로 잠김 → 축 키(예: X)를 한 번 더 눌러 대안 축(Global/Local)으로 전환"
+  ],
+  "related": [
+    "3D Cursor",
+    "Proportional Editing",
+    "Snapping",
+    "Transform Pivot Point"
+  ],
+  "videos": [
+    {
+      "id": "ABayYXu7OfI",
+      "title": "How to use Transform Orientations in Blender",
+      "author": "Nik Kottmann"
+    },
+    {
+      "id": "5nGjoY_CA9c",
+      "title": "Everything You NEED to know about TRANSFORM ORIENTATION in Blender",
+      "author": "Blender University"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/orientation.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_orientation_demo.png",
+      "alt": "../../../_images/editors_3dview_controls_orientation_demo.png",
+      "caption": "With the default Global transform orientation (left) it’s tricky to move the plane in the direction it’s facing, but with Local (right) it’s easy.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/orientation.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_orientation_menu.png",
+      "alt": "../../../_images/editors_3dview_controls_orientation_menu.png",
+      "caption": "Transform Orientation selector.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/orientation.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/editors_3dview_controls_orientation_manipulator-global-1.png",
+      "alt": "../../../_images/editors_3dview_controls_orientation_manipulator-global-1.png",
+      "caption": "Default cube with Global transform orientation selected.",
+      "source": "https://docs.blender.org/manual/en/latest/editors/3dview/controls/orientation.html"
+    }
+  ],
+  "menu_path": [
+    "D Viewport",
+    "Transform Orientation",
+    "Global"
+  ],
+  "at": "2026-10-19T13:32:39.761882+00:00"
+}

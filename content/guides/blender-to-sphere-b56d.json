@@ -1,0 +1,104 @@
+{
+  "id": "blender-to-sphere-b56d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "To Sphere",
+  "title": "To Sphere — 사각 면을 원형으로",
+  "summary": "선택한 지오메트리를 구형(Sphere)에 가깝게 변형하는 도구입니다. 딱딱한 형태를 부드럽고 둥글게 만들 때 사용합니다.",
+  "when": [
+    "큐브나 각진 메쉬를 구 형태로 변형하고 싶을 때",
+    "캐릭터의 머리나 관절 등 유기적인 볼륨감을 잡을 때",
+    "하드서페이스 모델링에서 원형 디테일의 기초 형태를 만들 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "구형으로 만들고 싶은 버텍스, 엣지, 또는 페이스를 선택합니다.",
+    "Mesh 메뉴에서 Transform > To Sphere를 선택하거나 단축키 Shift + Alt + S를 누릅니다.",
+    "마우스를 좌우로 움직이거나 0에서 1 사이의 숫자를 입력하여 구형화 정도를 조절합니다.",
+    "마우스 좌클릭 또는 Return 키를 눌러 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "구형화 적용 강도를 0과 1 사이의 값으로 조절합니다."
+    },
+    {
+      "name": "Mirror Editing",
+      "desc": "대칭(Symmetry)이 켜진 상태에서 반대편 대칭 메쉬에도 함께 적용합니다."
+    },
+    {
+      "name": "Proportional Editing",
+      "desc": "변형 시 주변 영역까지 부드럽게 감쇠하여 영향을 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "큐브를 구 형태로 변형하기",
+      "steps": [
+        "Cube를 생성하고 Subdivide를 여러 번 실행해 세그먼트를 높입니다.",
+        "Edit Mode에서 전체 버텍스를 선택합니다.",
+        "Shift + Alt + S를 누르고 마우스를 오른쪽으로 밀어 구 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "실린더 끝부분 둥글게 만들기",
+      "steps": [
+        "Cylinder 메쉬의 상단 캡 페이스들을 선택합니다.",
+        "Shift + Alt + S를 실행합니다.",
+        "Factor 값을 높여 둥근 돔 형태로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(해상도)가 너무 부족함 → Loop Cut(Ctrl + R)이나 Subdivide로 면을 더 나눈 뒤 적용하세요.",
+    "스케일이 틀어져 있음 → Object Mode에서 Ctrl + A > Apply Scale을 먼저 실행하세요."
+  ],
+  "related": [
+    "Proportional Editing",
+    "Shrinkwrap",
+    "Subdivision Surface",
+    "Loop Cut"
+  ],
+  "videos": [
+    {
+      "id": "fXK16GaW_o0",
+      "title": "How to make a Quad Sphere in Blender #blender #cgian #3d #blenderian",
+      "author": "blenderian"
+    },
+    {
+      "id": "ttMRJgwUh9w",
+      "title": "Turn Any Object into a Sphere/Ball in Blender!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/transform/to_sphere.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_mesh_transform_to-sphere_suzanne-spherical.png",
+      "alt": "../../../../../_images/modeling_meshes_editing_mesh_transform_to-sphere_suzanne-spherical.png",
+      "caption": "Monkey with increasing sphericity (0%, 25%, 50%, 100%).",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/transform/to_sphere.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_mesh_transform_to-sphere_cubes-spherical.png",
+      "alt": "../../../../../_images/modeling_meshes_editing_mesh_transform_to-sphere_cubes-spherical.png",
+      "caption": "To Sphere applied to cubes with different subdivision levels.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/transform/to_sphere.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_mesh_transform_to-sphere_other-spherical.png",
+      "alt": "../../../../../_images/modeling_meshes_editing_mesh_transform_to-sphere_other-spherical.png",
+      "caption": "To Sphere applied to different selections.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/transform/to_sphere.html"
+    }
+  ],
+  "menu_path": [
+    "Edit Mode",
+    "Mesh",
+    "Transform",
+    "To Sphere"
+  ],
+  "at": "2026-10-19T13:33:29.020056+00:00"
+}

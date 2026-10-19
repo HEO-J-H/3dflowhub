@@ -1,0 +1,96 @@
+{
+  "id": "blender-connect-vertex-path-j-da30",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Connect Vertex Path (J)",
+  "title": "Connect Vertex Path — 버텍스 사이 엣지 잇기",
+  "summary": "Blender의 Connect Vertex Path(J)는 선택한 순서대로 정점 사이에 엣지를 생성하고 그에 따라 면을 분할하는 기능입니다. 두 번째로 실행하면 루프를 닫아줍니다.",
+  "when": [
+    "메시 안쪽에 원하는 경로로 새로운 엣지를 빠르게 추가하고 싶을 때",
+    "독립된 정점(다른 엣지나 면에 속하지 않은)들을 엣지로 연결하고 싶을 때",
+    "복잡한 컷팅 없이 순서대로 정점을 이어 새로운 면 분할선을 만들고 싶을 때"
+  ],
+  "steps": [
+    "Blender에서 모델링 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex Select 모드로 전환하고, 연결할 정점들을 순서대로 Shift + 클릭하여 선택합니다.",
+    "상단 메뉴에서 Vertex > Connect Vertex Path를 클릭하거나 단축키 J를 누릅니다.",
+    "선택한 순서대로 정점 사이에 엣지가 생성되며 면이 분할됩니다.",
+    "동일한 정점 상태에서 단축키 J를 한 번 더 누르면 루프가 닫힙니다."
+  ],
+  "params": [
+    {
+      "name": "Connect Vertex Path",
+      "desc": "선택한 정점 순서대로 엣지를 생성하고 면을 가로질러 분할합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 페이스 로프팅 수정",
+      "steps": [
+        "Edit Mode에서 흐름이 끊긴 인접한 정점들을 순서대로 선택합니다.",
+        "단축키 J를 눌러 정점 사이를 잇는 엣지를 생성합니다.",
+        "필요 없는 기존 엣지를 Dissolve Edges로 정리합니다."
+      ]
+    },
+    {
+      "title": "독립된 정점 연결하기",
+      "steps": [
+        "메시 외부에 있는 고립된 정점들을 순서대로 선택합니다.",
+        "단축키 J를 눌러 선형 엣지 경로를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "정점이 올바른 순서로 선택되지 않음 → 원하는 경로가 나오지 않으므로 정점 선택 순서를 확인하고 다시 J를 누릅니다.",
+    "Edit Mode가 아닌 Object Mode에서 단축키를 누름 → 기능이 작동하지 않으므로 Tab 키로 Edit Mode인지 확인합니다."
+  ],
+  "related": [
+    "Knife Topology Tool",
+    "Loop Cut and Slide",
+    "Vertex Connect",
+    "Rip Region"
+  ],
+  "videos": [
+    {
+      "id": "DDP6IpUR_4c",
+      "title": "Blender  Connect Vertex Path(J), New Edge/Face from vertices(F)",
+      "author": "NEYOVA"
+    },
+    {
+      "id": "EZ5zc_NQnIM",
+      "title": "How to connect vertices in blender tip #blender #3d #blender3d",
+      "author": "BLENDUS 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/vertex/connect_vertex_path.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-before.png",
+      "alt": "../../../../_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-before.png",
+      "caption": "Before.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/vertex/connect_vertex_path.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-after.png",
+      "alt": "../../../../_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-after.png",
+      "caption": "First execution.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/vertex/connect_vertex_path.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-loop.png",
+      "alt": "../../../../_images/modeling_meshes_editing_vertex_connect-vertex-path_multi-loop.png",
+      "caption": "Second execution.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/vertex/connect_vertex_path.html"
+    }
+  ],
+  "menu_path": [
+    "Blender",
+    "Edit Mode",
+    "Vertex Select",
+    "Vertex",
+    "Connect Vertex Path"
+  ],
+  "at": "2026-10-19T13:31:52.483763+00:00"
+}

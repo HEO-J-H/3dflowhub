@@ -1,0 +1,95 @@
+{
+  "id": "blender-set-origin-6511",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "오브젝트",
+  "name": "Set Origin",
+  "title": "Set Origin — 원하는 위치로 원점 옮기기",
+  "summary": "Blender의 Set Origin 기능은 오브젝트의 기준점(Origin) 위치를 정합하여 이동, 회전, 스케일의 중심을 제어합니다. 회전축을 맞추거나 애니메이션 기준점을 잡을 때 필수적인 기능입니다.",
+  "when": [
+    "오브젝트를 회전시킬 때 원하는 중심축이 아닌 엉뚱한 곳을 기준으로 돌 때",
+    "메시(Geometry)의 중심에 기준점(Origin)을 정확히 일치시키고 싶을 때",
+    "문짝이나 바퀴처럼 특정 지점을 기준으로 회전하는 애니메이션을 세팅할 때"
+  ],
+  "steps": [
+    "Blender에서 Object Mode 상태로 기준점을 변경할 오브젝트를 선택합니다.",
+    "상단 메뉴에서 Object ‣ Set Origin 을 클릭합니다.",
+    "원하는 기준점 설정 방식(예: Origin to Geometry)을 선택합니다.",
+    "기준점만 개별로 움직이고 싶다면 Options에서 Affect Only Origins를 체크하여 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Geometry to Origin",
+      "desc": "메시를 원점 위치로 이동시키고 오브젝트의 기준점을 중앙에 위치시킵니다."
+    },
+    {
+      "name": "Origin to Geometry",
+      "desc": "오브젝트의 기준점을 메시의 계산된 중심 위치로 이동시킵니다."
+    },
+    {
+      "name": "Origin to 3D Cursor",
+      "desc": "오브젝트의 기준점을 현재 3D Cursor의 위치로 이동시킵니다."
+    },
+    {
+      "name": "Origin to Center of Mass",
+      "desc": "밀도가 균일하다고 가정하여 메시의 계산된 질량 중심으로 기준점을 이동시킵니다."
+    },
+    {
+      "name": "Affect Only Origins",
+      "desc": "메시 형태는 건드리지 않고 오브젝트의 기준점만 독립적으로 이동시킬 수 있는 옵션입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "문짝 회전축 맞추기",
+      "steps": [
+        "문 오브젝트를 선택하고 Tab을 눌러 Edit Mode로 진입합니다.",
+        "경첩(회전해야 하는 모서리) 부분의 버텍스를 선택합니다.",
+        "Shift + S를 누르고 Cursor to Selected를 실행하여 3D Cursor를 문 모서리에 배치합니다.",
+        "Object Mode로 돌아와 Object ‣ Set Origin ‣ Origin to 3D Cursor를 실행합니다."
+      ]
+    },
+    {
+      "title": "오브젝트 중심에 기준점 정렬하기",
+      "steps": [
+        "작업 중 기준점이 엉뚱한 곳으로 이탈한 오브젝트를 선택합니다.",
+        "상단 메뉴에서 Object를 클릭합니다.",
+        "Set Origin을 선택합니다.",
+        "Origin to Geometry를 클릭하여 메시에 기준점을 딱 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "회전 중심이 이상한 곳에 있음 → Object ‣ Set Origin ‣ Origin to Geometry를 실행해 중심을 잡아주세요.",
+    "메시 전체가 움직여버림 → 기준점만 옮기고 싶을 때는 Tool Settings에서 Affect Only Origins 옵션을 켜고 이동해야 합니다.",
+    "스케일이나 회전 값이 틀어져 있음 → Set Origin 전에 Ctrl + A를 눌러 Apply Scale을 먼저 적용해 주세요."
+  ],
+  "related": [
+    "Pivot Points",
+    "3D Cursor",
+    "Snap",
+    "Apply Scale"
+  ],
+  "videos": [
+    {
+      "id": "FP34W0aUUHQ",
+      "title": "Affect Only Origins in Blender!",
+      "author": "BlenderVitals"
+    },
+    {
+      "id": "2EoZLeocmp0",
+      "title": "How to set origin to bottom in Blender #blender #cgian",
+      "author": "blenderian"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/origin.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Object Mode",
+    "Object",
+    "Set Origin"
+  ],
+  "at": "2026-10-19T13:32:13.810927+00:00"
+}

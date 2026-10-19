@@ -1,0 +1,92 @@
+{
+  "id": "blender-recalculate-normals-shift-n-072a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Recalculate Normals (Shift+N)",
+  "title": "Normals — 면 방향 뒤집기·재계산",
+  "summary": "Blender의 Recalculate Normals 기능은 선택한 면의 방향을 자동으로 정렬하여 바깥쪽(또는 안쪽)을 바라보게 만들어 주는 도구입니다. 뒤집힌 면으로 인해 렌더링이 깨지거나 조명이 어색해지는 문제를 해결합니다.",
+  "when": [
+    "임포트한 모델의 면이 뒤집혀서 검게 보거나 렌더링될 때",
+    "Extrude 작업 중 면이 안쪽을 향하게 뒤틀렸을 때",
+    "머티리얼이나 조명이 비정상적으로 어두운 면을 정리할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 모든 메시를 선택합니다(특정 면만 수정하려면 해당 면만 선택).",
+    "메뉴에서 Mesh ‣ Normals ‣ Recalculate Outside 경로를 선택하거나 단축키 Shift+N을 누릅니다.",
+    "안쪽으로 모으려면 Shift+Ctrl+N(Recalculate Inside)을 사용합니다.",
+    "필요시 하단 Adjust Last Operation 패널에서 옵션을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Recalculate Outside",
+      "desc": "선택한 면의 법선이 바깥쪽을 향하도록 정렬합니다."
+    },
+    {
+      "name": "Recalculate Inside",
+      "desc": "선택한 면의 법선이 안쪽을 향하도록 정렬합니다."
+    },
+    {
+      "name": "Flip",
+      "desc": "선택한 면의 방향을 정반대로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "뒤집힌 캐릭터 의상 수정하기",
+      "steps": [
+        "의상 오브젝트를 선택하고 Tab 키로 Edit Mode에 진입합니다.",
+        "A 키로 전체 선택 후 Shift+N을 눌러 노멀을 바깥쪽으로 정렬합니다.",
+        "Viewport Overlays에서 Face Orientation을 켜고 모든 면이 파란색인지 확인합니다."
+      ]
+    },
+    {
+      "title": "내부 공간(방 안쪽) 모델링 만들기",
+      "steps": [
+        "방 구조물 메시에 들어가서 전체 면을 선택합니다.",
+        "Shift+Ctrl+N을 눌러 Recalculate Inside를 실행합니다.",
+        "카메라가 안쪽에 있을 때 면이 올바르게 렌더링되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "면이 뒤집혔는데 수정하지 않음 → Viewport Overlays에서 Face Orientation을 켜서 파란색(정상)과 빨간색(뒤집힘)을 확인하고 Recalculate(Shift+N)를 실행하세요.",
+    "일부 면만 정렬이 안 됨 → 전체 선택(A)이 아닌 상태에서 실행했거나 메시에 구멍이나 겹친 정점이 있을 수 있으니 머지(Merge by Distance) 후 다시 시도하세요."
+  ],
+  "related": [
+    "Face Orientation",
+    "Flip",
+    "Normal Edit Modifier",
+    "Weighted Normal Modifier"
+  ],
+  "videos": [
+    {
+      "id": "lOL6qySpLl4",
+      "title": "Learn to Flip Normals in Blender!",
+      "author": "BlenderVitals"
+    },
+    {
+      "id": "-uZPU2ARjfw",
+      "title": "Blender: Fixing Broken Shadows - (Normals Reset)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_mesh_normals_average.png",
+      "alt": "../../../../_images/modeling_meshes_editing_mesh_normals_average.png",
+      "caption": "Averaging the custom normals for two vertices. The top vertex has two groups of faces separated by Sharp edges, so two separate averages are calculated. The bot",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html"
+    }
+  ],
+  "menu_path": [
+    "Edit Mode",
+    "Mesh",
+    "Normals",
+    "Recalculate Outside"
+  ],
+  "at": "2026-10-19T13:31:29.530288+00:00"
+}

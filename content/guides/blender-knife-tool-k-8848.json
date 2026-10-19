@@ -1,0 +1,84 @@
+{
+  "id": "blender-knife-tool-k-8848",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Knife tool (K)",
+  "title": "Knife — 원하는 곳에 엣지 넣기",
+  "summary": "메시 표면을 자유롭게 잘라 새로운 엣지와 면을 만드는 도구입니다. 종이에 칼집을 내듯 모델링의 구조를 세밀하게 수정할 때 사용합니다.",
+  "when": [
+    "기본 Primitive에 없는 복잡한 구멍이나 추가 엣지를 직접 그려 넣을 때",
+    "하드 서브젝트 모델링 중 특정 위치에 디테일한 컷팅 라인을 만들 때",
+    "기존 토폴로지를 유지하면서 빠르게 형태를 변형할 면을 분할할 때"
+  ],
+  "steps": [
+    "대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "키보드 K 키를 눌러 Knife tool을 활성화합니다. 커서가 메스 아이콘으로 바뀝니다.",
+    "자르고 싶은 시작 지점을 마우스 좌클릭하고, 원하는 경로를 따라 클릭하며 엣지를 만듭니다.",
+    "Enter 또는 Space 키를 눌러 컷팅 작업을 확정합니다.",
+    "필요한 경우 컷팅된 엣지를 선택해 슬라이드하거나 추가 편집을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Midpoint Snap",
+      "desc": "엣지의 정중앙(50%) 위치에 자동으로 스냅을 걸어줍니다."
+    },
+    {
+      "name": "Cut Through",
+      "desc": "체크하면 보이는 면뿐만 아니라 오브젝트 뒷면의 엣지까지 관통하며 잘라냅니다."
+    },
+    {
+      "name": "Occlude Geometry",
+      "desc": "체크 해제 시 가려진 뒷면의 엣지까지 컷팅 대상으로 인식합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "창문 틀 구멍 파기",
+      "steps": [
+        "Edit Mode에서 K 키를 눌러 Knife tool을 켭니다.",
+        "벽면 표면 위에 창문 모양의 사각형 경로를 클릭하여 그립니다.",
+        "Enter로 확정 후, 새로 생긴 사각형 면을 Face 셀렉션으로 선택하여 안쪽으로 Extrude(E) 합니다."
+      ]
+    },
+    {
+      "title": "대각선 지지대 추가하기",
+      "steps": [
+        "기둥 오브젝트의 Edit Mode에서 K 키를 누릅니다.",
+        "모서리 꼭짓점에서 반대쪽 모서리 꼭짓점으로 클릭하여 대각선 엣지를 만듭니다.",
+        "Enter 키를 눌러 엣지 생성을 완료합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컷팅 확정을 안 하고 화면을 돌림 → 작업 중에는 반드시 Enter 또는 Space 키를 눌러야 확정됩니다.",
+    "뒷면이 잘리지 않음 → 뒷면까지 자르고 싶다면 절단 시 C 키를 눌러 Cut Through 옵션을 켜야 합니다.",
+    "의도치 않은 곳에 스냅됨 → Midpoint Snap 기능이 켜져 있으면 원하는 위치에 찍히지 않으므로 필요 시 해제하세요."
+  ],
+  "related": [
+    "Loop Cut",
+    "Bisect",
+    "Poly Build",
+    "Rip"
+  ],
+  "videos": [
+    {
+      "id": "2Ci_PblFdk8",
+      "title": "The Knife Tool Trick Every Blender Beginner Misses!",
+      "author": "RenderHub 3D"
+    },
+    {
+      "id": "9N8GzwX4gpU",
+      "title": "Learn Knife Tool in Blender in 1 Minute!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Blender%20Knife%20tool%20%28K%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Knife"
+  ],
+  "at": "2026-10-19T13:31:57.793412+00:00"
+}

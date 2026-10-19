@@ -1,0 +1,105 @@
+{
+  "id": "blender-shade-smooth-and-auto-smooth-033c",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Shade Smooth and Auto Smooth",
+  "title": "스무딩 — Shade Smooth·Auto Smooth(스무딩 그룹)",
+  "summary": "Blender의 Shade Smooth와 Auto Smooth는 폴리곤의 면을 실제로 추가하지 않고 노멀(Normal)을 보간하여 매끄러운 곡면처럼 보이게 만드는 Shading 기능입니다.",
+  "when": [
+    "저해상도 모델링으로 유기적인 곡면이나 캐릭터의 부드러운 표면을 표현할 때",
+    "기계 부품처럼 평면과 날카로운 모서리(Sharp Edge)가 공존하는 표면을 정리할 때",
+    "각진 폴리곤의 실루엣을 부드러운 빛 반사로 보완하고 싶을 때"
+  ],
+  "steps": [
+    "Object Mode에서 부드럽게 만들 오브젝트를 선택합니다.",
+    "상단 메뉴에서 Object ➔ Shade Smooth를 클릭해 전체 표면을 부드럽게 바꿉니다.",
+    "모서리가 무너진다면 상단 메뉴에서 Object ➔ Shade Auto Smooth를 선택합니다.",
+    "Properties 패널의 Modifier(렌치) 탭에서 추가된 Smooth By Angle 모디위퍼를 확인합니다.",
+    "Angle 값을 조절하여 지정된 각도보다 좁은 모서리만 날카롭게 유지합니다."
+  ],
+  "params": [
+    {
+      "name": "Shade Smooth",
+      "desc": "오브젝트의 모든 면을 부드러운 곡면처럼 렌더링합니다."
+    },
+    {
+      "name": "Shade Flat",
+      "desc": "오브젝트의 Shading을 각진 상태(기본값)로 되돌립니다."
+    },
+    {
+      "name": "Shade Auto Smooth",
+      "desc": "면 사이의 각도를 기준으로 부드러운 영역과 날카로운 영역을 자동으로 설정합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "부드럽게 처리할 면 법선 사이의 최대 각도를 설정합니다."
+    },
+    {
+      "name": "Keep Sharp Edges",
+      "desc": "Shading을 바꿀 때 기존에 설정해 둔 Sharp Edge 데이터를 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 파이프의 측면 부드럽게 만들기",
+      "steps": [
+        "실린더 오브젝트를 Object Mode에서 선택합니다.",
+        "우클릭 후 Shade Smooth를 적용하여 각진 면을 부드럽게 만듭니다.",
+        "위아래 뚜껑 면까지 부드러워졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "기계 부품의 날카로운 모서리 살리기",
+      "steps": [
+        "기계 형태의 각진 오브젝트에 Object ➔ Shade Smooth를 적용합니다.",
+        "오브젝트가 너무뭉개져 보이면 Object ➔ Shade Auto Smooth를 선택합니다.",
+        "Modifier 탭의 Angle 값을 낮추어 날카로운 모서리를 복원합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 면이 너무 뭉개져서 보임 → Shade Auto Smooth를 적용하거나 Angle 값을 낮추세요.",
+    "날카로워야 할 모서리가 부드럽게 렌더링됨 → Edge를 선택한 뒤 우클릭 ➔ Mark Sharp를 적용하세요."
+  ],
+  "related": [
+    "Smooth By Angle",
+    "Mark Sharp",
+    "Weighted Normal",
+    "Subdivision Surface"
+  ],
+  "videos": [
+    {
+      "id": "OhgzJ8JRiGU",
+      "title": "How to Use Shade Smooth & Shade Auto Smooth in Blender",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "_glRlRdCm0Y",
+      "title": "Tip: Fix Smooth Shading#blender#blender3d #blendertutorial#howto",
+      "author": "Blender Tips"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/scene-layout_object_editing_shading_example-flat.png",
+      "alt": "../../../_images/scene-layout_object_editing_shading_example-flat.png",
+      "caption": "",
+      "source": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/scene-layout_object_editing_shading_example-smooth.png",
+      "alt": "../../../_images/scene-layout_object_editing_shading_example-smooth.png",
+      "caption": "",
+      "source": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html"
+    }
+  ],
+  "menu_path": [
+    "Object Mode",
+    "Object",
+    "Shade Smooth"
+  ],
+  "at": "2026-10-19T13:34:21.972460+00:00"
+}

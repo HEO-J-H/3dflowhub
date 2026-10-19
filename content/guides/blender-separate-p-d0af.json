@@ -1,0 +1,95 @@
+{
+  "id": "blender-separate-p-d0af",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Separate (P)",
+  "title": "Separate — 오브젝트 분리(디테치)",
+  "summary": "하나의 메시 객체를 선택 영역, 재질, 또는 독립된 파편 단위로 쪼개어 각각 새로운 독립된 객체로 분리하는 기능입니다. 덩어리진 모델링을 효율적으로 관리할 때 사용합니다.",
+  "when": [
+    "하나의 캐릭터 메시에서 모자와 옷을 각각 별개의 객체로 분리하고 싶을 때",
+    "여러 재질이 섞인 복잡한 모델을 머티리얼 슬롯 기준인 각 파츠로 쪼갤 때",
+    "떨어져 있는 여러 개의 파편(Loose Parts)을 개별 오브젝트로 한 번에 나눌 때"
+  ],
+  "steps": [
+    "Object Mode에서 분리할 메시에 마우스 포인터를 올립니다.",
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "나누고자 하는 면(Face), 정점(Vertex), 또는 선(Edge)을 선택합니다.",
+    "키보드 P 키를 눌러 Separate 메뉴를 띄웁니다.",
+    "Selection, By Material, By Loose Parts 중 원하는 분리 방식을 클릭합니다.",
+    "Tab 키를 눌러 Object Mode로 돌아와 분리된 객체를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Selection",
+      "desc": "선택한 지오메트리를 기존 메시에서 분리하여 새로운 오브젝트로 만듭니다."
+    },
+    {
+      "name": "By Material",
+      "desc": "메시에 할당된 머티리얼 슬롯 기준으로 전체 메시를 각각의 오브젝트로 쪼갭니다."
+    },
+    {
+      "name": "By Loose Parts",
+      "desc": "서로 연결되지 않은 독립된 덩어리(파편)들을 각각 별개의 오브젝트로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터에서 모자 분리하기",
+      "steps": [
+        "Edit Mode에서 모자 부분의 면들을 마우스로 선택합니다.",
+        "P 키를 누르고 Selection 옵션을 선택합니다.",
+        "Object Mode로 전환한 뒤 모자 오브젝트를 이동하여 배치합니다."
+      ]
+    },
+    {
+      "title": "흩어져 있는 조각 파편들을 개별 오브젝트로 나누기",
+      "steps": [
+        "Edit Mode에서 전체 메시를 선택합니다 (A 키).",
+        "P 키를 누르고 By Loose Parts를 선택합니다.",
+        "Object Mode에서 각 조각이 개별 오브젝트로 분리되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Object Mode에서 P 키를 누름 → 에디트 모드(Tab)로 진입한 후 P 키를 눌러야 메뉴가 나옵니다.",
+    "분리 후 원본 오브젝트의 피벗 포인트가 이상한 곳에 위치함 → Object 원점(Origin)을 Geometry 기준으로 재설정(Set Origin)합니다."
+  ],
+  "related": [
+    "Join",
+    "Split Selection",
+    "Edit Mode",
+    "Mesh"
+  ],
+  "videos": [
+    {
+      "id": "Uu-b0PguBzg",
+      "title": "Blender Workflow HACKS: Join (Ctrl+J), Select Linked (Ctrl+Numpad+), & Separate (P key) FAST!",
+      "author": "Pantheon"
+    },
+    {
+      "id": "DvvKvM_ml2c",
+      "title": "Separate by Loose Parts Shortcut in Blender!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/separate.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_meshes_editing_mesh_separate_example.png",
+      "alt": "../../../../_images/modeling_meshes_editing_mesh_separate_example.png",
+      "caption": "Suzanne dissected neatly.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/separate.html"
+    }
+  ],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Face",
+    "Vertex",
+    "Edge",
+    "Separate"
+  ],
+  "at": "2026-10-19T13:31:12.440592+00:00"
+}

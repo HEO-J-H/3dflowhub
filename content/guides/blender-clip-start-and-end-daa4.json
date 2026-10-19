@@ -1,0 +1,98 @@
+{
+  "id": "blender-clip-start-and-end-daa4",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Clip Start and End",
+  "title": "뷰포트 클리핑 — 가까이 가면 잘릴 때",
+  "summary": "3D Viewport의 최소 및 최대 클리핑 거리를 조절하여 화면에 표시될 지오메트리의 범위를 결정합니다.",
+  "when": [
+    "아주 거대한 월드나 미세한 소형 오브젝트를 작업할 때 면이 찢어져 보일 때",
+    "카메라 뷰나 뷰포트에서 멀리 있는 오브젝트가 잘 보이지 않을 때",
+    "화면을 확대할 때 지오메트리가 갑자기 잘려 나가는 현상이 발생할 때"
+  ],
+  "steps": [
+    "3D Viewport 우측 상단의 화살표 아이콘을 클릭하거나 단축키 N을 눌러 Sidebar를 엽니다.",
+    "Sidebar의 View 탭을 선택합니다.",
+    "View Panel 항목에서 Clip Start 및 Clip End 값을 찾습니다.",
+    "작업 중인 스케일에 맞춰 Start 값을 줄이거나 End 값을 늘려 뷰포트 가시거리를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Clip Start",
+      "desc": "오브젝트가 카메라에 렌더링되기 시작하는 최소 거리"
+    },
+    {
+      "name": "Clip End",
+      "desc": "오브젝트가 렌더링되는 최대 거리로, 너무 크면 깊이 정밀도가 떨어질 수 있음"
+    },
+    {
+      "name": "Focal Length",
+      "desc": "3D Viewport 카메라의 초점 거리를 조절"
+    },
+    {
+      "name": "Local Camera",
+      "desc": "전역 활성 카메라와 별개로 이 3D Viewport만의 카메라를 지정"
+    },
+    {
+      "name": "Lock to Object",
+      "desc": "지정한 오브젝트를 기준으로 뷰포트가 회전하고 줌인됨"
+    },
+    {
+      "name": "Lock to 3D Cursor",
+      "desc": "3D Cursor를 뷰포트의 관심 지점으로 고정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "거대한 건축물 씬 작업 시 멀리 있는 건물 보기",
+      "steps": [
+        "Sidebar의 View 탭을 엽니다.",
+        "Clip End 값을 기본값보다 훨씬 크게(예: 1000m 이상) 늘립니다.",
+        "멀리 있는 건물이 잘려 나가지 않고 화면에 표시되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "아주 작은 미세 부품(반지 등) 작업 시 면 겹침 현상 해결",
+      "steps": [
+        "Sidebar의 View 탭을 엽니다.",
+        "Clip Start 값을 아주 작게(예: 0.001m) 줄입니다.",
+        "가까이 확대했을 때 메쉬가 뚫리거나 깨지는 현상을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Clip End 값을 무조건 엄청나게 크게 설정함 → 깊이 버퍼(Depth Buffer) 정밀도가 떨어져 면이 서로 겹치는 시각적 글리치 발생. 필요한 만큼만 조절하기",
+    "너무 작은 Clip Start와 너무 큰 Clip End를 동시에 사용함 → 뷰포트 Z-fighting 및 렌더링 아티팩트 유발. 스케일에 맞게 적절히 좁은 범위 유지하기"
+  ],
+  "related": [
+    "Focal Length",
+    "Camera View",
+    "Lock to Object",
+    "3D Cursor"
+  ],
+  "videos": [
+    {
+      "id": "l3BwKR2qi3s",
+      "title": "About clip end in blender",
+      "author": "Pinakine"
+    },
+    {
+      "id": "fPzJeHcwpjc",
+      "title": "Blender NLA Strip vs.Clip frame Start and End",
+      "author": "RiggingDojo"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/sidebar.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "D Viewport",
+    "Sidebar",
+    "View",
+    "View Panel",
+    "Clip Start",
+    "Clip End"
+  ],
+  "at": "2026-10-19T13:34:44.336167+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "blender-join-ctrl-j-4bb1",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "오브젝트",
+  "name": "Join (Ctrl+J)",
+  "title": "Join — 오브젝트 합치기(어태치)",
+  "summary": "여러 개의 오브젝트를 마지막에 선택한 하나의 활성(Active) 오브젝트로 합쳐줍니다. 메모리 관리가 편해지고 하나의 메쉬처럼 다룰 수 있습니다.",
+  "when": [
+    "흩어져 있는 여러 개의 모델링 파츠를 하나의 오브젝트로 묶고 싶을 때",
+    "동일한 머티리얼을 사용하는 오브젝트들을 하나로 병합해 드로우 콜을 줄일 때",
+    "내보내기(Export) 전 여러 부품을 단일 FBX/OBJ 파일 구조로 정리할 때"
+  ],
+  "steps": [
+    "Object Mode에서 합칠 오브젝트들을 다중 선택합니다.",
+    "마지막으로 합쳐질 기준이 될 오브젝트를 Shift + 좌클릭하여 활성(Active) 상태로 만듭니다. (가장 밝은 주황색 윤곽선)",
+    "3D Viewport에서 Ctrl + J 단축키를 누릅니다.",
+    "상단 메뉴 경로를 사용할 경우: 3D Viewport 상단 메뉴에서 Object -> Join 을 선택합니다.",
+    "화면 하단이나 Outliner에서 모든 오브젝트가 마지막 활성 오브젝트 기준으로 하나로 병합되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Active Object",
+      "desc": "선택된 오브젝트들 중 병합의 기준이 되는 마지막 선택 오브젝트로, 데이터와 Origin의 기준이 됩니다."
+    },
+    {
+      "name": "Object Type",
+      "desc": "Mesh, Curve, Surface, Armature 등 동일한 타입끼리만 결합이 가능합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "합쳐지는 오브젝트들의 머티리얼 슬롯들이 활성 오브젝트로 모두 병합되어 유지됩니다."
+    },
+    {
+      "name": "Vertex Groups",
+      "desc": "각 오브젝트에 있던 버텍스 그룹들이 활성 오브젝트로 함께 병합됩니다."
+    },
+    {
+      "name": "UV and Vertex Layers",
+      "desc": "지오메트리가 합쳐지면서 기존 UV 맵과 버텍스 컬러 레이어 데이터도 유지됩니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "책상과 다리들 하나로 합치기",
+      "steps": [
+        "상판과 4개의 다리 오브젝트를 순서대로 선택합니다.",
+        "상판을 마지막으로 Shift + 클릭하여 Active 오브젝트로 지정합니다.",
+        "Ctrl + J를 눌러 하나의 책상 오브젝트로 병합합니다."
+      ]
+    },
+    {
+      "title": "여러 개의 Bezier Curve 하나로 잇기",
+      "steps": [
+        "같은 타입인 Curve 오브젝트들을 다중 선택합니다.",
+        "기준이 될 커브를 마지막에 선택합니다.",
+        "Ctrl + J를 눌러 하나의 커브 데이터로 병합합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "다른 타입(Mesh와 Curve)을 함께 선택하고 Join 시도함 → 같은 타입의 오브젝트끼리만 선택 후 다시 시도합니다.",
+    "Modifiers나 Constraints가 자동으로 적용될 줄 알았음 → Modifiers는 Join 시 무시되므로, 원한다면 미리 Apply를 한 뒤 Join을 실행합니다.",
+    "Edit Mode에서 병합하려 함 → Join은 Object Mode에서만 작동하므로 Tab 키를 눌러 Object Mode로 전환 후 실행합니다."
+  ],
+  "related": [
+    "Separate",
+    "Modifiers",
+    "Parenting",
+    "Collection"
+  ],
+  "videos": [
+    {
+      "id": "e-yYYRtZuSs",
+      "title": "ombine Objects Instantly in Blender – Ctrl+J Shortcut Tutorial",
+      "author": "Blender Visual"
+    },
+    {
+      "id": "Uu-b0PguBzg",
+      "title": "Blender Workflow HACKS: Join (Ctrl+J), Select Linked (Ctrl+Numpad+), & Separate (P key) FAST!",
+      "author": "Pantheon"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/scene_layout/object/editing/join.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Active",
+    "D Viewport",
+    "Object",
+    "Join"
+  ],
+  "at": "2026-10-19T13:31:20.674508+00:00"
+}
