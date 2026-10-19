@@ -1022,18 +1022,22 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 link = e.get("link", "")
                 if not link or url_hash(link) in seen:
                     continue
+                title = e.get("title", "").strip()
+                if not title or any(kw in title.lower() for kw in ["하드웨어", "스마트폰", "hardware", "smartphone", "phone"]):
+                    RUN_ERRORS.append("prefiltered")
+                    continue
                 published = e.get("published_parsed") or e.get("updated_parsed")
                 if published and (time.time() - calendar.timegm(published)) > MAX_AGE_DAYS * 86400:
                     continue  # 오래된 기사 제외
                 seen.add(url_hash(link))
-                sh = title_simhash(e.get("title", ""))
+                sh = title_simhash(title)
                 if is_near_duplicate(sh, known_hashes):  # 다른 매체의 같은 기사
                     continue
                 known_hashes.append(sh)
                 candidates.append({
                     "source": src,  # 피드 단위로 교차 (같은 사이트의 다른 피드도 구분)
                     "simhash": sh,
-                    "title": e.get("title", "").strip(),
+                    "title": title,
                     "url": link,
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],

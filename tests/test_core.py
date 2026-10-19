@@ -506,6 +506,30 @@ def test_prefilter_only_filters_generic_search():
     assert [c["title"][:5] for c in kept] == ["Blend", "assig"]
 
 
+def test_collect_prefilters_empty_or_irrelevant_titles(monkeypatch):
+    class DummyEntry:
+        def __init__(self, title, link="https://example.com/item"):
+            self._dict = {"title": title, "link": link}
+        def get(self, key, default=None):
+            return self._dict.get(key, default)
+
+    class DummyFeed:
+        entries = [
+            DummyEntry(""),
+            DummyEntry("New 2026 Smartphone Review and Hardware specs"),
+            DummyEntry("Blender 5.0 Release Notes")
+        ]
+
+    monkeypatch.setattr(core, "generate_keywords", lambda doms, **kw: {d: ["test"] for d in doms})
+    monkeypatch.setattr(core.feedparser, "parse", lambda src, **kw: DummyFeed())
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    
+    res = core.collect(["3D DCC"], 5, set())
+    assert len(res) == 1
+    assert "Blender" in res[0]["title"]
+    assert core.RUN_ERRORS.count("prefiltered") >= 2
+
+
 def test_tool_interest_needs_enough_views(monkeypatch):
     import evolve
     monkeypatch.setattr(core, "_load_json", lambda path, default=None: {} if "performance" in str(path) else default)
