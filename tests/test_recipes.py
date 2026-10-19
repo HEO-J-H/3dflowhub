@@ -66,3 +66,12 @@ def test_maya_unknown_command_and_flag():
     assert recipes.maya_api_errors(code) == ""
     assert "polyCleanupNotReal" in recipes.maya_api_errors(code + "        cmds.polyCleanupNotReal(o)\n")
     assert "bogus" in recipes.maya_api_errors(code + "        cmds.polyMergeVertex(o, bogus=1)\n")
+
+
+@pytest.mark.skipif(not shutil.which("node") or not recipes.MXS_CHECKER.exists(), reason="node·MAXScript 분석기 없음")
+def test_maxscript_made_up_functions():
+    code = ('fn cleanUp obj thr: = (\n  local n = polyop.getNumVerts obj\n  polyop.weldVertsByThreshold obj #all\n'
+            '  for o in selection do print o.name\n  n\n)\nrollout r "x" (button btnGo "Go")\ncleanUp $\n')
+    assert recipes.maxscript_parse_errors(code) == ""  # 실제 함수·직접 선언한 이름은 통과
+    bad = recipes.maxscript_parse_errors(code + "makeAwesome $\npolyop.weldEverythingNow $\n")
+    assert "makeAwesome" in bad and "polyop.weldEverythingNow" in bad

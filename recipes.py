@@ -124,7 +124,62 @@ def maxscript_parse_errors(code: str) -> str:
     except (subprocess.TimeoutExpired, ValueError):
         return ""
     errs = res.get("errors") or []
-    return ("MAXScript 문법 오류: " + " / ".join(f"{e['line']}행 {e['msg'][:90]}" for e in errs[:3]))[:300] if errs else ""
+    if errs:
+        return ("MAXScript 문법 오류: " + " / ".join(f"{e['line']}행 {e['msg'][:90]}" for e in errs[:3]))[:300]
+    unknown = maxscript_unknown_names(code, res.get("calls") or [], res.get("members") or [])
+    return ("MAXScript 에 없는 함수: " + ", ".join(unknown[:5]))[:300] if unknown else ""
+
+
+MXS_NAMES = core.ROOT / "tools" / "mxs" / "mxs_names.json"
+# 이름 사전(자동완성 데이터)에 빠진 기본 구문·함수 — 실제 공개 스크립트로 오탐을 확인하며 보충
+MXS_EXTRA = {"throw", "undo", "superclassof", "xform", "animate", "coordsys", "about", "at", "in", "with",
+             "redraw", "quiet", "dontcollect", "not", "return", "exit", "continue"}
+# 스크립트 안에서 새 이름을 만드는 구문 (fn·변수·반복·구조체·롤아웃 컨트롤 등)
+_MXS_DECL = re.compile(
+    r"\b(?:mapped\s+)?(?:fn|function|struct|rollout|utility|macroscript|plugin|tool|rcmenu|attributes)\s+(\w+)"
+    r"|\b(?:local|global|persistent\s+global)\s+([^\n=]+)"
+    r"|\bfor\s+(\w+)\s+(?:in|=)"
+    r"|\b(?:button|checkbox|checkbutton|spinner|edittext|label|listbox|dropdownlist|combobox|pickbutton|slider|"
+    r"radiobuttons|colorpicker|mapbutton|materialbutton|progressbar|groupbox|multilistbox|bitmap|imgtag|hyperlink|"
+    r"dotnetcontrol|timer|angle|curvecontrol|subrollout)\s+(\w+)"
+    r"|^\s*(\w+)\s*=(?!=)", re.I | re.M)
+
+
+def _mxs_declared(code: str) -> set[str]:
+    body = re.sub(r"--[^\n]*", "", re.sub(r'"(?:\\.|[^"\\])*"', '""', code))
+    out: set[str] = set()
+    for m in _MXS_DECL.finditer(body):
+        for g in m.groups():
+            if g:
+                out |= {w.lower() for w in re.findall(r"[A-Za-z_]\w*", g)}
+    # 함수 인자: fn name a b c x: y: = (...)
+    for m in re.finditer(r"\bfn\s+\w+\s+([^=\n]*)=", body, re.I):
+        out |= {w.lower() for w in re.findall(r"[A-Za-z_]\w*", m.group(1))}
+    return out
+
+
+def maxscript_unknown_names(code: str, calls: list[dict], members: list[dict]) -> list[str]:
+    """호출된 함수와 구조체.멤버를 공개 MAXScript 이름 사전과 대조 — AI 가 지어낸 함수 찾기.
+    스크립트 안에서 선언한 이름은 제외, 이름 사전이 없으면 건너뜀."""
+    names = core._load_json(MXS_NAMES, {})
+    if not names:
+        return []
+    known, structs = set(names.get("globals", [])) | MXS_EXTRA, names.get("structs", {})
+    local = _mxs_declared(code)
+    bad = []
+    for c in calls:
+        n = c["name"].lower()
+        if n not in known and n not in local and n not in structs:
+            bad.append(f"{c['name']}({c['line']}행)")
+    body = re.sub(r"--[^\n]*", "", re.sub(r'"(?:\\.|[^"\\])*"', '""', code))
+    found = [(m["obj"], m["name"], m["line"]) for m in members]
+    for i, ln in enumerate(body.splitlines(), 1):  # 구조체.멤버 는 글자로도 찾음 (파서가 한 덩어리로 읽는 경우 대비)
+        found += [(a, b, i) for a, b in re.findall(r"(?<![\w.])([A-Za-z_]\w*)\.([A-Za-z_]\w*)", ln)]
+    for obj, name, line in found:
+        o = obj.lower()
+        if o in structs and o not in local and name.lower() not in structs[o]:
+            bad.append(f"{obj}.{name}({line}행)")
+    return list(dict.fromkeys(bad))
 
 
 # ─────────────────────────── Blender 실제 실행 검증 ───────────────────────────
