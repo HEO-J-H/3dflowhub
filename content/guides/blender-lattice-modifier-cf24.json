@@ -1,0 +1,91 @@
+{
+  "id": "blender-lattice-modifier-cf24",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Lattice modifier",
+  "title": "Lattice — 격자로 형태 변형",
+  "summary": "Lattice modifier는 격자(Lattice) 오브젝트의 형태를 이용해 대상 오브젝트를 부드럽고 효율적으로 변형하는 비파괴적 수정자입니다. 수많은 버텍스를 일일이 수정하지 않고도 전체적인 실루엣을 자연스럽게 조작할 수 있습니다.",
+  "when": [
+    "폴리곤 수가 많아 Edit Mode에서 직접 수정하기 번거로운 오브젝트를 변형할 때",
+    "여러 개의 오브젝트를 하나의 격자로 동시에 제어하고 싶을 때",
+    "원형을 유지한 채 부드럽고 유기적인 곡선 변형을 주고 싶을 때"
+  ],
+  "steps": [
+    "Shift+A 를 누르고 Lattice를 추가합니다.",
+    "Lattice 오브젝트를 선택하고 S 키로 크기를 조절하여 변형할 오브젝트를 감쌉니다.",
+    "변형할 메쉬 오브젝트를 선택하고 Properties 패널의 Modifier(렌치) 탭으로 갑니다.",
+    "Add Modifier를 클릭하고 Lattice를 선택합니다.",
+    "Modifier 설정의 Object 항목에서 추가한 Lattice 오브젝트를 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "Object",
+      "desc": "변형을 제어할 Lattice 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Vertex Group",
+      "desc": "선택한 버텍스 그룹에만 변형 효과를 제한합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "지정된 버텍스 그룹의 영향력을 반전시킵니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "원본 위치와 변형된 위치 사이의 혼합 비율을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 표정 및 형태 변형",
+      "steps": [
+        "캐릭터 머리 주위에 Lattice를 배치합니다.",
+        "Lattice를 Edit Mode(Tab)로 전환하여 포인트들을 이동합니다.",
+        "캐릭터의 전체적인 인상과 실루엣을 부드럽게 수정합니다."
+      ]
+    },
+    {
+      "title": "여러 오브젝트 동시 휘기",
+      "steps": [
+        "길쭉한 여러 개의 오브젝트를 감싸는 큰 Lattice를 생성합니다.",
+        "각 오브젝트에 Lattice modifier를 추가하고 동일한 Lattice를 지정합니다.",
+        "Lattice의 형태를 변형하여 모든 오브젝트를 한 번에 휘게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 변형되지 않음 → Modifier의 Object 칸에 Lattice가 올바르게 지정되었는지 확인합니다.",
+    "Particle에 적용했는데 반응이 없음 → Modifier Stack에서 Lattice modifier를 Particle System 아래로 이동합니다."
+  ],
+  "related": [
+    "Proportional Editing",
+    "Curve Modifier",
+    "Mesh Deform",
+    "Shape Keys"
+  ],
+  "videos": [
+    {
+      "id": "70ylPbKXAF4",
+      "title": "How to Use the Lattice Modifier in Blender (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "R0o6MMrpaeI",
+      "title": "How to Use the Lattice Modifier in Blender",
+      "author": "Techtokerist"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/lattice.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_deform_lattice_panel.png",
+      "alt": "../../../_images/modeling_modifiers_deform_lattice_panel.png",
+      "caption": "The Lattice modifier.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/lattice.html"
+    }
+  ],
+  "menu_path": [],
+  "at": "2026-10-19T10:50:47.855653+00:00"
+}

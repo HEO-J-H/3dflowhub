@@ -1,0 +1,99 @@
+{
+  "id": "blender-weld-modifier-8c16",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Weld modifier",
+  "title": "Weld — 겹친 정점 합치기",
+  "summary": "Weld modifier는 설정된 거리 내에 있는 버텍스들을 찾아 하나로 병합하고 주변 지오메트리를 정리하는 기능입니다. 마치 찢어진 천이나 떨어진 면을 자연스럽게 이어붙이는 철사와 같습니다.",
+  "when": [
+    "임포트한 3D 모델의 떨어진 버텍스나 중복 버텍스를 하나로 합칠 때",
+    "Cloth 시뮬레이션 후 봉제선(Seam)을 깔끔하게 접합할 때",
+    "미러(Mirror) 모디파이어 사용 시 중앙 경계면의 버텍스가 겹쳐서 떨어져 있을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Properties 패널에서 Modifier(렌치) 탭을 엽니다.",
+    "Add Modifier 버튼을 누르고 Generate 분류에서 Weld를 선택합니다.",
+    "Distance 값을 조절하여 병합할 버텍스 간의 최대 거리를 설정합니다.",
+    "Mode를 Connected 또는 All로 변경하여 병합 범위를 지정합니다.",
+    "필요시 Vertex Group을 지정해 특정 영역만 병합되도록 제한합니다."
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "버텍스 병합 방식을 All(전체) 또는 Connected(연결된 지오메트리만) 중 선택합니다."
+    },
+    {
+      "name": "Distance",
+      "desc": "버텍스가 병합되기 위해 서로 가져야 하는 최대 거리 임계값을 설정합니다."
+    },
+    {
+      "name": "Only Loose",
+      "desc": "Connected 모드에서 면에 인접하지 않은 짧은 모서리만 병합합니다."
+    },
+    {
+      "name": "Vertex Group",
+      "desc": "가중치가 0보다 큰 버텍스만 모디파이어의 영향을 받도록 지정합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "선택한 Vertex Group의 가중치를 반전시켜 병합에서 제외할 영역을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "미러 모디파이어 중앙 봉합",
+      "steps": [
+        "Mirror 모디파이어가 적용된 오브젝트에 Weld 모디파이어를 추가합니다.",
+        "Distance 값을 살짝 높여 중앙 접합부의 벌어진 버텍스들이 서로 붙도록 합니다."
+      ]
+    },
+    {
+      "title": "Cloth 시뮬레이션 봉제선 정리",
+      "steps": [
+        "의류 시뮬레이션 메쉬에 Weld 모디파이어를 추가합니다.",
+        "Mode를 Connected로 설정하고 Only Loose 옵션을 켜서 떨어진 솔기를 붙입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Distance 값이 너무 큼 → 모델의 형태가 무너지거나 불필요한 면이 찌그러집니다. 값을 아주 작은 단위부터 서서히 올리세요.",
+    "스케일 미적용 (Unapplied Scale) → 오브젝트의 Scale 값이 1이 아닐 경우 Distance 거리가 왜곡됩니다. Object 모드에서 Ctrl+A를 눌러 Scale을 먼저 적용하세요."
+  ],
+  "related": [
+    "Mirror",
+    "Merge by Distance",
+    "Cloth",
+    "Solidify"
+  ],
+  "videos": [
+    {
+      "id": "fIzzmh6vAyk",
+      "title": "How to Use the WELD MODIFIER in Blender - Complete Tutorial!",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "AUmeRyyhyU4",
+      "title": "Stitch Your Objects Back Together With Blenders Weld Modifier",
+      "author": "Blender Base Camp"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/weld.html",
+  "grounded": true,
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_weld_panel_connected.png",
+      "alt": "../../../_images/modeling_modifiers_generate_weld_panel_connected.png",
+      "caption": "The Weld modifier.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/weld.html"
+    }
+  ],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Generate",
+    "Weld"
+  ],
+  "at": "2026-10-19T10:50:53.029295+00:00"
+}
