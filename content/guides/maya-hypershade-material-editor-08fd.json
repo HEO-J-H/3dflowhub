@@ -1,0 +1,96 @@
+{
+  "id": "maya-hypershade-material-editor-08fd",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "에디터",
+  "name": "Hypershade material editor",
+  "title": "Hypershade — 재질 만들기",
+  "summary": "Hypershade는 Maya의 노드 기반 머티리얼 에디터로, 텍스처와 Shader를 연결하여 복잡한 재질을 시각적으로 구성합니다.",
+  "when": [
+    "유리, 금속, 피부 등 정교한 PBR Shader를 직접 제작하고 연결할 때",
+    "여러 오브젝트에 동일한 머티리얼을 할당하거나 관리할 때",
+    "텍스처 노드, 2D Placement, 수학적 노드(Math Nodes)를 조합해 독특한 효과를 만들 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Windows → Rendering Editors → Hypershade 를 실행합니다.",
+    "Hypershade 창의 좌측 Create Tab(또는 마우스 우클릭)에서 원하는 Shader(예: Ai Standard Surface)를 선택해 생성합니다.",
+    "그래프 뷰(Graph Editor) 영역에서 탭(Tab) 키를 눌러 필요한 텍스처나 유틸리티 노드를 검색하고 추가합니다.",
+    "노드의 출력 포트(Out)와 입력 포트(In) 사이를 마우스 드래그하여 연결합니다.",
+    "뷰포트의 오브젝트를 우클릭하고 Assign Material to Selection을 선택하여 머티리얼을 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "머티리얼의 기본 색상이나 텍스처를 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 하이라이트의 퍼짐을 제어합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "표면의 금속성 재질 특성을 0(비금속)과 1(금속) 사이로 설정합니다."
+    },
+    {
+      "name": "Normal Camera",
+      "desc": "노멀 맵을 연결하여 입체적인 표면 디테일을 표현합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "투명도 및 알파 마스크를 조절합니다."
+    },
+    {
+      "name": "Emission Color",
+      "desc": "자체적으로 빛을 발산하는 발광 효과를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 페인트 재질 만들기",
+      "steps": [
+        "Hypershade에서 Ai Standard Surface Shader를 생성합니다.",
+        "Metalness 값을 1.0으로 올려 금속 특성을 부여합니다.",
+        "Base Color에 미세한 노이즈 텍스처를 연결하여 거친 표면을 표현합니다."
+      ]
+    },
+    {
+      "title": "투명 유리 컵 제작",
+      "steps": [
+        "Ai Standard Surface Shader를 생성하고 투명도를 높입니다.",
+        "Transmission Weight 값을 1.0으로 설정합니다.",
+        "IOR(굴절률) 값을 유리에 맞는 1.5로 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 깨지거나 반복되지 않음 → 2D Texture 노드에 Place2dTexture 노드가 올바르게 연결되어 있는지 확인",
+    "렌더러에 머티리얼이 반영되지 않음 → Maya 기본 Shader 대신 사용 중인 렌더러(예: Arnold) 전용 Shader를 사용 중인지 확인"
+  ],
+  "related": [
+    "Node Editor",
+    "Arnold Renderer",
+    "Outliner",
+    "UV Editor"
+  ],
+  "videos": [
+    {
+      "id": "epNjEMaMpQs",
+      "title": "Maya Hypershade Basics with Substance Painter Textures",
+      "author": "Cryptic Visionary"
+    },
+    {
+      "id": "NMaZiwW3Jak",
+      "title": "Maya Material Basics | Create & Assign Materials in Hypershade",
+      "author": "Vertmode"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Hypershade%20material%20editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Rendering Editors",
+    "Hypershade"
+  ],
+  "at": "2026-10-19T11:31:09.892033+00:00"
+}

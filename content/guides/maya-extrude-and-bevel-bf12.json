@@ -1,0 +1,99 @@
+{
+  "id": "maya-extrude-and-bevel-bf12",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extrude and Bevel",
+  "title": "Extrude·Bevel — 폴리곤 모델링 기본기",
+  "summary": "Maya의 Extrude는 면이나 모서리를 밀어내어 새로운 볼륨을 만들고, Bevel은 날카로운 모서리를 부드럽게 깎아내어 사실적인 빛 반사를 만듭니다.",
+  "when": [
+    "박스 형태의 기본 모델링에서 문구나 창문 등 입체적인 형태를 튀어나오게 만들 때",
+    "하드서페이스 모델링에서 날카로운 모서리에 자연스러운 하이라이트를 주고 싶을 때",
+    "파이프나 로프처럼 일정한 단면을 연장하며 모양을 잡을 때"
+  ],
+  "steps": [
+    "Maya 뷰포트에서 모델링할 오브젝트를 선택하고 마우스 우클릭하여 Face 또는 Edge 모드로 전환합니다.",
+    "Extrude할 대상 구성 요소를 선택합니다.",
+    "메뉴바에서 Edit Mesh → Extrude를 실행하거나 단축키 Ctrl + E를 누릅니다.",
+    "매니퓰레이터(Gizmo)의 화살표를 드래그하여 면을 밀어냅니다.",
+    "모서리를 부드럽게 하려면 Edge를 선택하고 Edit Mesh → Bevel을 실행합니다.",
+    "Channel Box 또는 Attribute Editor에서 옵션 값을 조정하여 형태를 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "Extrude 시 전체 두께나 Bevel의 깊이를 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "선택한 면의 안쪽이나 바깥쪽으로 크기를 조절하며 줄이거나 늘립니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "Bevel 모서리에 추가되는 세그먼트 수로, 부드러움의 정도를 결정합니다."
+    },
+    {
+      "name": "Fraction",
+      "desc": "Bevel이 적용되는 폭(너비)을 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "Extrude 과정에서 면이 나뉘는 횟수를 설정합니다."
+    },
+    {
+      "name": "Miter",
+      "desc": "모서리가 만나는 교차점의 처리 방식을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 창문 프레임 만들기",
+      "steps": [
+        "큐브의 한 면을 선택하고 Ctrl + E(Extrude)를 실행합니다.",
+        "Offset 값을 주어 안쪽에 작은 면을 만듭니다.",
+        "다시 Ctrl + E를 누르고 안쪽으로 밀어 넣어(Thickness) 창문 홈을 만듭니다."
+      ]
+    },
+    {
+      "title": "기계 부품 모서리 다듬기",
+      "steps": [
+        "하드서페이스 모델의 날카로운 모서리(Edge)들을 더블 클릭하여 루프 선택합니다.",
+        "Edit Mesh → Bevel을 실행합니다.",
+        "Fraction 값을 낮게 설정하고 Divisions를 2로 올려 빛 반사가 예쁜 모서리를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Extrude 후 면이 겹치는 현상 → Offset 값을 너무 크게 주었거나 매니퓰레이터를 반대로 밀었기 때문이며, Channel Box에서 값을 초기화하고 다시 조절하세요.",
+    "Bevel 적용 후 서브디비전 적용 시 형태가 무너짐 → 응력 분산을 위한 서포트 엣지(Support Edge)가 부족한 경우이므로 주변에 Edge를 추가하세요.",
+    "오브젝트 스케일이 틀어진 상태에서 Extrude/Bevel 실행 → 두께가 한쪽으로 치우치므로 Modify → Freeze Transformations를 먼저 실행하세요."
+  ],
+  "related": [
+    "Multi-Cut Tool",
+    "Bridge",
+    "Insert Edge Loop Tool",
+    "Merge"
+  ],
+  "videos": [
+    {
+      "id": "jC3_hnyKH2o",
+      "title": "Autodesk Maya 2018 Basics- BEVEL",
+      "author": "Bogey Studios"
+    },
+    {
+      "id": "TWiiKNtLLDo",
+      "title": "Autodesk Maya 2018 Basics- Extrude Tool",
+      "author": "Bogey Studios"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Extrude%20and%20Bevel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Face",
+    "Edge",
+    "Extrude"
+  ],
+  "at": "2026-10-19T11:30:57.586531+00:00"
+}
