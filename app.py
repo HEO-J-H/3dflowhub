@@ -264,7 +264,7 @@ def show_alerts() -> list[dict]:
         (st.error if a["level"] == "error" else st.warning)(f"**{a['title']}** — {a['detail']}", icon=alerts.ICON[a["level"]])
     rest = [a for a in items if a not in urgent[:4]]
     if rest:
-        with st.expander(f"🔔 알림 {len(items)}개" + ("" if urgent else " · 급한 일 없음")):
+        with st.expander((f"🔔 그 밖의 알림 {len(rest)}개" if urgent[:4] else f"🔔 알림 {len(rest)}개 · 급한 일 없음")):
             for a in rest:
                 st.markdown(f"{alerts.ICON[a['level']]} **{a['title']}**  \n<span style='opacity:.7'>{a['detail']}</span>",
                             unsafe_allow_html=True)

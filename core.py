@@ -412,7 +412,7 @@ def _hide_token(text: str) -> str:
     return text.replace(tok, "***") if tok else text
 
 
-SNAPSHOT_FILES = ("memory/plan.json",)  # 매 실행 새로 계산되는 스냅샷: 합치지 않고 더 최신('at') 것 사용
+SNAPSHOT_FILES = ("memory/plan.json", "health.json")  # 매번 새로 계산 → 최신본 하나만 (점검 결과가 옛 문제와 섞이지 않게)  # 매 실행 새로 계산되는 스냅샷: 합치지 않고 더 최신('at') 것 사용
 
 
 def merge_memory(path: str, remote, local):
