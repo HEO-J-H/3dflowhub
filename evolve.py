@@ -611,6 +611,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("도구별 정리 실패: %s", e)
         strategy["roundups_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "recipes_at", 6 * 3600):  # 실무 파이프라인 레시피: 6시간마다 1개 (AI 여유 50% 이상)
+        try:
+            import recipes
+            made = recipes.write_recipes(1)
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "recipes": made}])[-30:]
+        except Exception as e:
+            log.warning("파이프라인 레시피 생성 실패: %s", e)
+        strategy["recipes_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
         strategy = refine_taxonomy(strategy)
         core._save_json(core.STRATEGY_PATH, strategy)

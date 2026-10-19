@@ -401,6 +401,9 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .mp-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font:600 13px/1.3 ui-monospace,Consolas,monospace}
 .mp-chip.last{border-color:var(--accent,#4f8cff);color:var(--accent,#4f8cff)}
 .mp-arr{opacity:.5;font-weight:700}
+.codebar{display:flex;gap:10px;align-items:center;margin:8px 0}
+.codebar button,.codebar a{font:600 13px/1 inherit;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;text-decoration:none}
+pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;background:#0d1117;color:#e6edf3;font:13px/1.55 ui-monospace,Consolas,monospace;white-space:pre}
 .docfigs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:14px;margin:12px 0}
 .docfig{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
 .docfig img{display:block;width:100%;height:auto;background:#fff}
@@ -484,9 +487,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -678,6 +681,62 @@ def build_guides(posts: list[dict], roundups: list[dict]) -> None:
             '먼저 읽을 글을 정리합니다. 매주 자동으로 갱신됩니다.</p></div>'
             + f'<div class="rank">{items or "<p>준비 중입니다 — 글이 충분히 쌓인 도구부터 차례로 정리됩니다.</p>"}</div>')
     (root_dir / "index.html").write_text(page(f"도구별 정리 - {SITE_TITLE}", body, "../"), encoding="utf-8")
+
+
+COPY_JS = """<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+navigator.clipboard.writeText(document.getElementById(b.dataset.for).textContent).then(()=>{b.textContent='복사됨 ✓';
+setTimeout(()=>b.textContent='코드 복사',1500)})}))</script>"""
+EXT = {"python": "py", "maxscript": "ms"}
+
+
+def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
+    """실무 파이프라인: AI 3D 소식을 작업 툴(Blender 애드온·MAXScript·Maya)에 붙여 쓰는 방법 + 스크립트."""
+    root_dir = OUT / "recipes"
+    root_dir.mkdir(exist_ok=True)
+    by_id = {p["id"]: p for p in posts}
+    for r in recipes_:
+        folder = root_dir / r["id"]
+        folder.mkdir(exist_ok=True)
+        root = "../../"
+        fname = f"3dflowhub_{r['id']}.{EXT.get(r['lang'], 'txt')}"
+        (folder / fname).write_text(r["script"], encoding="utf-8")  # 바로 받을 수 있는 스크립트 파일
+        flow = '<span class="mp-arr" aria-hidden="true">›</span>'.join(
+            f'<span class="mp-chip{" last" if i == len(r["pipeline"]) - 1 else ""}">{e(s["tool"])}</span>'
+            for i, s in enumerate(r["pipeline"]))
+        stages = "".join(f'<li><b>{e(s["tool"])}</b> — {e(s["action"])}</li>' for s in r["pipeline"])
+        srcs = [by_id[i] for i in r.get("sources", []) if i in by_id]
+        lang = "Python" if r["lang"] == "python" else "MAXScript"
+        body = (
+            f'<article class="doc guide"><p class="crumb"><a href="{root}recipes/">실무 파이프라인</a> › '
+            f'{e(r["category"])} › {e(r["host"])}</p><h1>{e(r["title"])}</h1>'
+            f'<p class="aiby">🤖 AI 3D 게시판 소식을 바탕으로 AI 가 설계 · {e(r.get("checked", ""))} · '
+            + mail_link("[3dflowhub] 파이프라인 오류 제보: " + r["title"][:40], "오류 제보") + '</p>'
+            + f'<p class="lead">{e(r["problem"])}</p>'
+            + f'<figure class="menupath" aria-label="파이프라인"><figcaption>파이프라인</figcaption><div>{flow}</div></figure>'
+            + f'<ol class="steps">{stages}</ol>'
+            + f'<h2>스크립트 ({e(r["host"])} · {lang})</h2>'
+            + f'<div class="codebar"><button class="copy" type="button" data-for="code">코드 복사</button>'
+              f'<a href="{e(fname)}" download>파일 받기</a></div>'
+            + f'<pre class="code"><code id="code">{e(r["script"])}</code></pre>'
+            + (f'<h2>설치</h2><ol>{"".join(f"<li>{e(x)}</li>" for x in r["install"])}</ol>' if r.get("install") else "")
+            + (f'<h2>사용법</h2><ol>{"".join(f"<li>{e(x)}</li>" for x in r["usage"])}</ol>' if r.get("usage") else "")
+            + (f'<h2>한계와 주의</h2><ul class="warn">{"".join(f"<li>{e(x)}</li>" for x in r["limits"])}</ul>'
+               if r.get("limits") else "")
+            + '<p class="crumb">⚠️ 반드시 장면 사본에서 먼저 실행해 보세요.</p></article>'
+            + (f'<h2 class="sec">근거가 된 소식</h2><div class="cards">{"".join(card(q, root) for q in srcs)}</div>'
+               if srcs else "")
+            + COPY_JS)
+        (folder / "index.html").write_text(
+            page(f"{r['title']} - {SITE_TITLE}", body, root, domain_on=r.get("domain", ""), desc=r["problem"],
+                 canonical=f"{BASE_URL}/recipes/{r['id']}/"), encoding="utf-8")
+    items = "".join(f'<a href="{e(r["id"])}/"><span><span class="t">{e(r["title"])}</span><br>'
+                    f'<span class="k">{e(r["category"])} → {e(r["host"])} · {e(r.get("at", "")[:10])}</span></span></a>'
+                    for r in recipes_)
+    body = ('<div class="doc"><h1>실무 파이프라인</h1><p class="desc">AI 3D 소식을 실제 작업에 붙여 쓰는 방법을 정리하고, '
+            'Blender 애드온·MAXScript·Maya 스크립트로 바로 쓸 수 있게 제공합니다. 스크립트는 문법 검사만 거쳤으니 '
+            '장면 사본에서 먼저 실행해 보세요.</p></div>'
+            + f'<div class="rank">{items or "<p>준비 중입니다 — AI 3D 소식이 쌓인 분야부터 차례로 만들어집니다.</p>"}</div>')
+    (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
 YT_JS = """<script>document.querySelectorAll('.yt').forEach(b=>b.addEventListener('click',()=>{
@@ -1121,6 +1180,10 @@ def build() -> dict:
     build_guides(posts, roundups)
     # 기초 가이드 (영상 + 단계별 사용법)
     build_learn(learn_guides, posts)
+    # 실무 파이프라인 (AI 3D 소식 → 작업 툴 스크립트)
+    import recipes as _recipes
+    recipes_ = _recipes.load_all()
+    build_recipes(recipes_, posts)
 
     # 저장한 글 (브라우저에만 저장 — static/user.js 가 그림)
     (OUT / "saved").mkdir(exist_ok=True)
@@ -1189,6 +1252,8 @@ def build() -> dict:
                "c": f"{g['tool']} › {g['group']}", "g": " ".join(g.get("related") or [])} for g in learn_guides]
     index += [{"u": guide_url(r["domain"], r["tool"]), "k": "r", "t": r["title"], "o": r["tool"],
                "c": f"{r['domain']} › {r['tool']}", "g": ""} for r in roundups]
+    index += [{"u": f"recipes/{r['id']}/", "k": "r", "t": r["title"], "o": f"{r['host']} {r['category']}",
+               "c": f"{r['category']} → {r['host']}", "g": ""} for r in recipes_]
     # 한글↔영문 도구 이름 (용어집): '블렌더' 로 찾아도 'Blender' 제목이 제목 일치로 잡히도록
     alias: dict[str, str] = {}
     for canon, (_rx, ko) in core.GLOSSARY.items():
@@ -1214,6 +1279,7 @@ def build() -> dict:
             if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
+           [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)
