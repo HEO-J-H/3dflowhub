@@ -199,7 +199,10 @@ def _apply(act: dict) -> str:
         hints = strategy.setdefault("keyword_hints", {})
         hints[act["domain"]] = list(dict.fromkeys(act["keywords"] + hints.get(act["domain"], [])))[:8]
     elif t == "editorial_note":
-        strategy["prompt_notes"] = (strategy.get("prompt_notes", []) + [act["note"]])[-6:]
+        import growth
+        if growth.note_offtopic(act["note"]):
+            return "사이트 주제 밖 지침 — 반영 안 함"
+        growth.set_notes(strategy, strategy.get("prompt_notes", []) + [act["note"]], "관리자 제안 지침 추가")
     elif t == "hire_role":
         import staff
         return staff.hire(act["role"])
@@ -229,6 +232,8 @@ def apply_accepted() -> list[str]:
     done = []
     for p in board()["proposals"]:
         act = p.get("action") or {}
+        if (p.get("site") or "3dflowhub") != "3dflowhub":  # 다른 사이트 제안은 이 사이트 전략에 반영하지 않음
+            continue
         if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note", "guide_topic",
                                                                                 "hire_role", "pause_role"):
             result = _apply(act)
@@ -343,10 +348,12 @@ def plan_today() -> dict:
 
 
 def _auto_accept(new_ids: list[str]) -> list[str]:
-    """자동 모드: 위험이 낮은 행동(키워드·지침·가이드 주제·피드)만 스스로 수락. 설정 변경은 사람에게 남김."""
+    """자동 모드: 위험도 '낮음'(키워드·가이드 주제)만 스스로 수락. 지침·피드·설정 변경은 사람에게 남김."""
+    import growth
     done = []
     for p in board()["proposals"]:
-        if p["id"] in new_ids and p["status"] == "new" and (p.get("action") or {}).get("type") in SAFE_AUTO:
+        act = p.get("action") or {}
+        if p["id"] in new_ids and p["status"] == "new" and act.get("type") in SAFE_AUTO                 and growth.risk_of(act) == "low":  # 위험도 '낮음'만 자동 수락, 나머지는 사람 승인
             _append({"at": _now(), "kind": "decision", "id": p["id"], "v": "accepted", "note": "자동 모드: 자동 수락",
                      "auto": True})
             done.append(p["title"])
@@ -520,6 +527,8 @@ def review(force: bool = False) -> dict | None:
                     "expected": str(p.get("expected", ""))[:300],
                     "effort": p.get("effort") if p.get("effort") in ("낮음", "보통", "높음") else "보통",
                     "action": _valid_action(p.get("action"))})
+        import growth
+        evs[-1]["risk"] = growth.risk_of(evs[-1]["action"])  # 낮음=자동 수락 가능, 중간·높음=사람 승인
     ids = {m["id"] for m in pending_msgs}
     for r in out.get("replies") or []:
         if isinstance(r, dict) and r.get("id") in ids and r.get("text"):

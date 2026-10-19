@@ -421,7 +421,14 @@ def merge_memory(path: str, remote, local):
         if isinstance(remote, dict) and isinstance(local, dict):
             return local if local.get("at", "") >= remote.get("at", "") else remote
         return local if local is not None else remote
-    return merge_json(remote, local)
+    merged = merge_json(remote, local)
+    if path.replace("\\", "/").endswith("memory/strategy.json") and isinstance(merged, dict)             and isinstance(remote, dict) and isinstance(local, dict):
+        # 편집 지침은 '교체'되는 값 — 목록 병합하면 옛 지침과 새 지침이 합쳐져 계속 늘어나므로 최신 쪽 하나를 쓴다
+        newer = local if local.get("notes_updated_at", "") >= remote.get("notes_updated_at", "") else remote
+        merged["prompt_notes"] = newer.get("prompt_notes", merged.get("prompt_notes", []))
+        if newer.get("notes_updated_at"):
+            merged["notes_updated_at"] = newer["notes_updated_at"]
+    return merged
 
 
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:

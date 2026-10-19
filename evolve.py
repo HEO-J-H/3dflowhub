@@ -22,6 +22,7 @@ from datetime import datetime, timedelta, timezone
 
 
 import core
+import growth
 
 log = core.log
 STRATEGY_EVERY = 6 * 3600      # 데이터가 적어도 최소 이 주기로는 성찰
@@ -257,11 +258,15 @@ def update_strategy(strategy: dict) -> dict:
         out = {}
     out = out if isinstance(out, dict) else {}
     notes = [n.strip() for n in _as_list(out.get("prompt_notes")) if isinstance(n, str) and n.strip()][:MAX_NOTES]
-    if notes and notes != strategy["prompt_notes"] and enough:  # 현재 가이드 평가 데이터가 쌓였을 때만 교체
-        strategy["prompt_notes"] = notes
-        versions[core.strategy_version(notes)] = notes
-        strategy["note_versions"] = dict(list(versions.items())[-12:])
-        changes.append(f"편집 가이드 {len(notes)}개 갱신 (이전 {cur_ver}: {cur['runs']}회, 점수 {cur.get('score', '-')})")
+    rolled = growth.rollback_if_worse(strategy, trajectory)  # 확실히 나빠진 지침은 최고 버전으로 되돌림
+    if rolled:
+        changes.append(rolled)
+    elif notes and notes != strategy["prompt_notes"] and enough:  # 현재 가이드 평가 데이터가 쌓였을 때만 교체
+        if growth.set_notes(strategy, notes, f"성찰 갱신 (이전 {cur_ver}: {cur['runs']}회, 점수 {cur.get('score', '-')})"):
+            notes = strategy["prompt_notes"]
+            versions[core.strategy_version(notes)] = notes
+            strategy["note_versions"] = dict(list(versions.items())[-12:])
+            changes.append(f"편집 가이드 {len(notes)}개 갱신 (이전 {cur_ver}: {cur['runs']}회, 점수 {cur.get('score', '-')})")
     elif notes and not enough:
         changes.append(f"편집 가이드 유지 — 현재 버전 평가 중 ({cur['runs']}/{MIN_RUNS_PER_VERSION}회)")
     raw_hints = out.get("keyword_hints") if isinstance(out.get("keyword_hints"), dict) else {}
@@ -532,6 +537,11 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         strategy.setdefault(key, [])
     for key in ("keyword_hints", "extra_feeds"):
         strategy.setdefault(key, {})
+    cleaned = growth.clean_notes(strategy["prompt_notes"])  # 주제 밖·중복 지침 정리 (다른 사이트 지침 섞임 방지)
+    if cleaned != strategy["prompt_notes"]:
+        growth.set_notes(strategy, cleaned, "주제 밖·중복 지침 정리") if cleaned else None
+        strategy["history"] = (strategy["history"] + [{"at": _now(), "notes_cleaned": cleaned}])[-30:]
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or strategy_due(strategy):
         strategy = update_strategy(strategy)
         core._save_json(core.STRATEGY_PATH, strategy)

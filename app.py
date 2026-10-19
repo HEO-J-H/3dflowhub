@@ -12,6 +12,7 @@ import requests
 import streamlit as st
 
 import core
+from growth import RISK_KO
 
 st.set_page_config(page_title="3dflowhub", page_icon="🧊", layout="wide")
 
@@ -486,8 +487,8 @@ with t_auto:
     with st.container(border=True):
         t1, t2 = st.columns([3, 1.2])
         t1.markdown("**🤖 자동 모드**  \n켜면 AI 관리자가 오늘 남은 AI 사용량을 뉴스 요약·기초 가이드·도구별 정리에 "
-                    "알아서 나눠 올리고, 위험이 낮은 제안(키워드·편집 지침·가이드 주제·피드)은 스스로 수락합니다. "
-                    "설정 변경 제안은 계속 여기서 결정합니다.")
+                    "알아서 나눠 올리고, 위험도 '낮음' 제안(키워드·가이드 주제)만 스스로 수락합니다. "
+                    "편집 지침·피드(중간)와 설정·직원(높음) 제안은 계속 여기서 결정합니다.")
         on = t2.toggle("자동 모드", value=bool(cfg.get("auto_mode")), key="auto_mode_toggle")
         if on != bool(cfg.get("auto_mode")):
             core.save_config({"auto_mode": on})
@@ -554,7 +555,7 @@ with t_auto:
         with st.container(border=True):
             act = x.get("action") or {}
             st.caption(f"{CAT_ICON.get(x.get('category'), '•')} {x.get('category')} · 제안: {x.get('by') or '🧭 AI 관리자'} · "
-                       f"노력 {x.get('effort')} · "
+                       f"노력 {x.get('effort')} · 위험 {RISK_KO.get(x.get('risk'), '-')} · "
                        f"{kst(x['at'])[:10]}" + (f" · 기대 효과: {x['expected']}" if x.get("expected") else ""))
             st.markdown(f"#### {x['title']}")
             st.markdown(f"**근거** — {x.get('evidence', '')}")
@@ -1079,7 +1080,7 @@ with t_today:
         st.success("검토할 AI 관리자 제안이 없습니다")
     for x in pend[:5]:
         with st.container(border=True):
-            st.markdown(f"**{x['title']}** · {x.get('category')} · 노력 {x.get('effort')}")
+            st.markdown(f"**{x['title']}** · {x.get('category')} · 노력 {x.get('effort')} · 위험 {RISK_KO.get(x.get('risk'), '-')}")
             st.caption("수락하면: " + _mgr.describe(x.get("action")))
             c1, c2, c3, _ = st.columns([1, 1, 1, 3])
             if c1.button("✅ 수락", key=f"t_acc_{x['id']}", type="primary", width="stretch"):
