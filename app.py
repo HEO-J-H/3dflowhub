@@ -446,7 +446,7 @@ def save_manager(msg: str) -> None:
         st.error(f"이 PC에는 저장됐지만 GitHub 반영 실패: {err}")
 
 
-CAT_ICON = {"콘텐츠": "📝", "수집": "📥", "사이트·UX": "🎨", "검색(SEO)": "🔎", "운영·비용": "⚙️", "수익": "💰"}
+CAT_ICON = {"콘텐츠": "📝", "수집": "📥", "사이트·UX": "🎨", "검색(SEO)": "🔎", "운영·비용": "⚙️", "수익": "💰", "현황판": "🧭"}
 
 with t_auto:
     import manager

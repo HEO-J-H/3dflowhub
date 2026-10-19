@@ -20,7 +20,7 @@ import core
 PROPOSALS_PATH = core.ROOT / "memory" / "proposals.json"
 REVIEW_EVERY = timedelta(hours=24)
 MAX_PROPOSALS = 3
-CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익"]
+CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익", "현황판"]  # 현황판 = 운영자용 Streamlit 앱
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
@@ -354,6 +354,23 @@ def _auto_accept(new_ids: list[str]) -> list[str]:
 
 
 # ─────────────────────────── 분석 ───────────────────────────
+def _dashboard_info() -> dict:
+    """'큐레이션 현황판'(운영자용 Streamlit 앱, app.py) — AI 관리자의 관리 대상. 사이트(독자용)와 다름."""
+    b = board()
+    props = b["proposals"]
+    return {
+        "what": "운영자(사장님)가 결정·확인하는 Streamlit 앱. 로컬 + https://3dflowmanager.streamlit.app (비공개). "
+                "독자는 보지 않는다. 사이트 홈에 통계를 올리는 것은 현황판 개선이 아님.",
+        "tabs": ["🏠 오늘(결정할 일·홍보 대기함·무엇이 읽히나)", "📊 개요", "📰 글 목록(추천·숨김·가이드 검토·실무 팁)",
+                 "🧬 자동화·진화(AI 관리자·AI 팀·교본)", "📝 티스토리", "💰 수익·방문", "🛠 설정",
+                 "사이트 전환: 🏢 전체 요약 / 🧊 3dflowhub / 💰 life-after-60"],
+        "owner_load": {"waiting_decisions": sum(p["status"] == "new" for p in props),
+                       "manual_todo": len(manual_todo()), "held": sum(p["status"] == "held" for p in props)},
+        "how_to_improve": "category '현황판' 으로 제안 (action 없음 → 직접 작업 목록 → Claude 가 app.py 수정). "
+                          "예: 결정 대기가 쌓이면 한 번에 처리하는 방법, 휴대폰에서 보기 쉬운 배치, 자주 쓰는 것을 위로.",
+    }
+
+
 def _team_stats() -> list[dict]:
     """AI 직원별 현황 (채용·휴식 판단 근거): 산출물 수와 사람의 반응."""
     try:
@@ -424,6 +441,7 @@ def snapshot() -> dict:
                       "fallback_ai": [f["name"] for f in core.fallback_providers()]},
         "allowed_intervals": list(core.INTERVALS),
         "team": _team_stats(),
+        "dashboard": _dashboard_info(),
         "staff_capabilities": {"promo": "채널별 홍보 글 초안", "proposal": "개선 제안", "note": "업무 일지",
                                "image": "브랜드 템플릿 홍보 이미지(square/x/story) — 디자이너 직무에 적합, 사이트 디자인 정보도 받음"},
         "basics_guides": _guide_stats(),
