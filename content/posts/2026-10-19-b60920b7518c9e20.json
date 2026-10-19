@@ -1,0 +1,53 @@
+{
+  "title_ko": "NVIDIA CUDA Tile — Mamba-2 고성능 포워드 패스 커널 가속",
+  "title": "Accelerating Mamba-2 with High-Performance Forward Pass Kernels in NVIDIA CUDA Tile",
+  "url": "https://developer.nvidia.com/blog/accelerating-mamba-2-with-high-performance-forward-pass-kernels-in-nvidia-cuda-tile/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "CUDA",
+    "Mamba-2",
+    "Tensor Cores",
+    "Python",
+    "GPU 최적화",
+    "파이썬"
+  ],
+  "summary": "Jane Street 엔지니어들과 NVIDIA가 협력하여 NVIDIA CUDA Tile을 활용해 Mamba-2 상태 공간 모델의 커스텀 포워드 패스 커널을 고성능으로 구현하고 최적화한 기술입니다.",
+  "insight": "AI 기반 시퀀스 모델링과 3D·시뮬레이션 Pipeline GPU 연산 최적화는 실시간 성능 확보를 위한 핵심 과제입니다. 본문에서 다루는 NVIDIA CUDA Tile(cuTile)은 복잡한 스레드 스케줄링을 추상화하여 Python 환경에서도 Tensor Core의 성능을 극대화할 수 있는 강력한 대안을 제시합니다. 대규모 딥러닝 모델이나 실시간 월드 모델을 연구하는 개발자라면 Python 기반 고성능 커널 작성 기법을 파이프라인에 적극 도입해 볼 필요가 있습니다. 특히 수치 연산 효율을 높이는 메모리 레이아웃과 오토튜닝 접근법은 향후 커스텀 연산 가속화 설계에 훌륭한 레퍼런스가 됩니다.",
+  "sections": [
+    {
+      "heading": "NVIDIA CUDA Tile (cuTile) 개요",
+      "body": "NVIDIA CUDA Tile은 Python 기반의 DSL 및 병렬 프로그래밍 모델로, 스레드 및 워프 레벨의 스케줄링을 고수준의 타일 중심 Primitive 뒤로 추상화합니다. 이를 통해 개발자는 Python으로 GPU 커널을 작성하면서도 컴파일러 최적화를 통해 Tensor Core와 같은 고급 하드웨어 기능을 자동으로 활용할 수 있습니다. 초기 도입사인 Jane Street의 머신러닝 엔지니어들은 이 모델을 활용하여 최첨단 시퀀스 모델인 Mamba-2를 구현했습니다."
+    },
+    {
+      "heading": "시퀀스 모델링의 연산 트레이드오프",
+      "body": "전통적인 소프트맥스 어텐션은 Tensor Core 가속을 통해 빠르게 학습되지만, 추론 시 시퀀스 길이에 비례하여 연산 및 메모리 요구량이 선형적으로 증가합니다. 반면 순환 신경망(RNN)은 비동기화 문제로 학습이 느리지만 시퀀스 길이에 상관없이 고정된 메모리와 연산량을 유지합니다. Mamba-2 아키텍처는 이러한 두 방식의 장점을 결합하여 청크 단위로 효율적인 연산을 수행하도록 설계되었습니다."
+    },
+    {
+      "heading": "Mamba-2 포워드 패스 커스텀 커널",
+      "body": "Jane Street 엔지니어들과 NVIDIA는 Mamba-2의 포워드 패스를 위해 chunk_cumsum, fwd_pass_state, compute_out 등 세 가지 커스텀 커널을 최적화했습니다. chunk_cumsum 커널은 로그 공간에서 감쇠 항의 누적 합을 계산하고, fwd_pass_state 커널은 Tensor Core 행렬 곱셈을 실행하여 은닉 상태를 전진시킵니다. compute_out 커널은 상태 유도 term과 감쇠된 인원 마스크 상호작용 행렬, 스킵 커넥션을 하나의 타일드 커널로 융합합니다."
+    },
+    {
+      "heading": "성능 최적화 기법 및 오토튜너",
+      "body": "DRAM 트래픽 모델링을 위한 지연 시간 힌트, 융합된 피연산자를 Tensor Memory로 라우팅하는 연산자 스와핑, TMA 친화적 접근을 위한 전치 메모리 레이아웃 등이 적용되었습니다. 또한 각 입력 형태에 맞는 블록 크기와 점유율 파라미터를 탐색하는 오토튜너를 통해 하드웨어 성능을 한계까지 이끌어냅니다. 이를 통해 복잡한 시퀀스 모델 연산 과정에서 발생할 수 있는 병목 현상을 효과적으로 해결합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA CUDA Tile(cuTile)은 무엇인가요?",
+      "a": "Python 기반의 도메인 특화 언어(DSL)이자 병렬 프로그래밍 모델로, Python 환경에서 고수준의 타일 중심 Primitive를 사용해 Tensor Core 등 첨단 GPU 하드웨어를 타겟팅하는 도구입니다."
+    },
+    {
+      "q": "Mamba-2 포워드 패스를 위해 최적화된 커널은 어떤 것들이 있나요?",
+      "a": "청크 단위 누적 합을 계산하는 chunk_cumsum, 은닉 상태를 전진시키는 fwd_pass_state, 그리고 상호작용 행렬과 스킵 커넥션을 융합하는 compute_out 등 세 가지 커스텀 커널로 구성됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2025/11/Solving-Math-2048x1152.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-10-19T17:02:20.160599+00:00",
+  "notion_id": "",
+  "id": "2026-10-19-b60920b7518c9e20"
+}
