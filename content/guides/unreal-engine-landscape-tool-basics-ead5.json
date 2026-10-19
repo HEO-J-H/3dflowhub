@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-landscape-tool-basics-ead5",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Landscape tool basics",
+  "title": "Landscape — 지형 만들기 기초",
+  "summary": "Unreal Engine의 Landscape 툴은 대규모 지형과 자연 환경을 브러시로 직접 조각하고 텍스처를 칠해 사실적인 야외 레벨을 만드는 기능입니다.",
+  "when": [
+    "오픈월드 게임이나 광활한 야외 배경의 베이스 지형을 만들 때",
+    "산맥, 언덕, 계곡 등 자연스러운 높낮이 변화를 제작할 때",
+    "흙, 풀, 바위 등 다양한 지면 재질을 레이어 기반으로 블렌딩할 때"
+  ],
+  "steps": [
+    "Modes 패널(좌측 상단 또는 Shift + 2)에서 Landscape 모드로 진입합니다.",
+    "Manage 탭에서 New Landscape를 선택하여 지형의 크기(Resolution), 위치, 머티리얼을 설정합니다.",
+    "Create 버튼을 눌러 뷰포트에 빈 지형을 생성합니다.",
+    "Sculpt 탭에서 Sculpt 브러시를 선택하고 좌클릭 드래그로 지형을 높이거나 낮춥니다.",
+    "Paint 탭에서 Layer를 선택하고 지형 위에 머티리얼 텍스처를 브러시로 칠합니다."
+  ],
+  "params": [
+    {
+      "name": "Section Size",
+      "desc": "컴포넌트 내의 섹션 해상도로 성능과 수정 정밀도에 영향을 줍니다."
+    },
+    {
+      "name": "Tool Strength",
+      "desc": "브러시의 효과 강도를 조절하여 높낮이 변화의 속도를 제어합니다."
+    },
+    {
+      "name": "Brush Size",
+      "desc": "브러시의 물리적 크기를 조절하여 작업 영역을 넓히거나 좁힙니다."
+    },
+    {
+      "name": "Falloff",
+      "desc": "브러시 테두리의 감쇠 영역을 조절해 부드러운 경계를 만듭니다."
+    },
+    {
+      "name": "Target Layer",
+      "desc": "Paint 모드에서 칠하고자 하는 특정 지형 머티리얼 레이어를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "험준한 산맥 만들기",
+      "steps": [
+        "Landscape 모드의 Sculpt 탭에서 Raise 브러시를 선택합니다.",
+        "Brush Size와 Strength를 크게 설정하고 드래그하여 큰 산줄기를 올립니다.",
+        "Erosion 브러시를 선택해 산등성이를 쓸어내려 자연스러운 침식 효과를 줍니다."
+      ]
+    },
+    {
+      "title": "도로 부지 평탄화하기",
+      "steps": [
+        "Landscape 모드의 Sculpt 탭에서 Flatten 브러시를 선택합니다.",
+        "Ctrl + 클릭으로 기준 높이를 샘플링합니다.",
+        "지면을 드래그하여 도로가 들어설 자리를 평평하게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지형 생성 후 스케일(Scale)을 툴 외부에서 임의로 조절함 → Landscape 전용 Manage 탭의 Resize Landscape를 사용해 해상도와 스케일을 조절해야 왜곡을 막을 수 있습니다.",
+    "머티리얼 레이어 페인팅 시 타겟 레이어가 지정되지 않음 → Paint 탭에서 채울 레이어를 먼저 생성하고 Target Layer를 선택한 뒤 칠해야 합니다."
+  ],
+  "related": [
+    "Foliage",
+    "Water Plugin",
+    "Landscape Layer",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "FSsOS6M2u1s",
+      "title": "Landscape for Beginners - Unreal Engine 5 Tutorial",
+      "author": "Gorka Games"
+    },
+    {
+      "id": "1Zda6zD7LXY",
+      "title": "How to create Landscapes in Unreal Engine 5 | Beginner Tutorial",
+      "author": "Tinkr Academy"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Landscape%20tool%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modes",
+    "Landscape"
+  ],
+  "at": "2026-10-19T11:10:54.107084+00:00"
+}

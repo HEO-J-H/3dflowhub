@@ -1,0 +1,97 @@
+{
+  "id": "houdini-sweep-sop-8868",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Sweep SOP",
+  "title": "Sweep — 커브 따라 단면 뽑기",
+  "summary": "Sweep SOP는 기준이 되는 스파인(Spine) 곡선을 따라 단면(Cross-section) 곡선을 복제하고 연결하여 Procedural 서피스를 생성하는 강력한 Geometry Nodes입니다.",
+  "when": [
+    "파이프, 케이블, 튜브 형태의 메쉬를 절차적으로 생성할 때",
+    "곡선을 따라 일정한 단면을 가진 리본이나 기둥 구조물을 만들 때",
+    "입력된 곡선과 포인트 어트리뷰트를 활용해 형태를 동적으로 제어할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 sweep을 입력하고 Sweep 노드를 선택해 배치합니다.",
+    "첫 번째 입력(First Input)에 경로가 될 스파인(Spine) 곡선 지오메트리를 연결합니다.",
+    "두 번째 입력(Second Input)에 단면(Cross-section)이 될 곡선을 연결합니다 (선택 사항).",
+    "파라미터 창에서 Surface Shape을 설정하여 기본 제공 형태(Round Tube 등)를 사용하거나 단면 곡선을 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Surface Shape",
+      "desc": "두 번째 입력 곡선을 사용하거나 원형, 사각형, 선 등의 기본 단면 형태를 지정합니다."
+    },
+    {
+      "name": "Surface Type",
+      "desc": "생성될 서피스의 폴리곤 토폴로지 구조(Quadrilaterals, Triangles 등)를 결정합니다."
+    },
+    {
+      "name": "Scale Cross Sections",
+      "desc": "단면 곡선의 전체 크기를 균일하게 조절합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "Round Tube 모드에서 튜브의 반지름 크기를 설정합니다."
+    },
+    {
+      "name": "Columns",
+      "desc": "튜브나 리본 단면의 원주 방향 해상도(면 개수)를 조절합니다."
+    },
+    {
+      "name": "Roll and Yaw",
+      "desc": "스파인 곡선에 대한 단면 곡선의 방향과 회전 값을 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원형 파이프 모델링",
+      "steps": [
+        "Line 노드로 스파인 곡선 생성하기",
+        "Sweep 노드 연결하기",
+        "Surface Shape을 Round Tube로 변경하기",
+        "Radius와 Columns 값을 조절해 파이프 두께와 디테일 완성하기"
+      ]
+    },
+    {
+      "title": "단면 곡선을 이용한 커스텀 형태 생성",
+      "steps": [
+        "첫 번째 입력에 커브(Spine) 연결하기",
+        "두 번째 입력에 XY 평면에 모델링된 단면 곡선(Cross-section) 연결하기",
+        "Sweep 노드의 Surface Shape을 Second Input Cross Sections로 설정하기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "단면 곡선을 원점(Origin)의 XY 평면에 만들지 않음 → 단면 곡선은 반드시 원점의 XY 평면에 +Y 방향을 위로 하여 모델링해야 합니다.",
+    "스파인 곡선과 단면 곡선 위치 겹침 → 단면 곡선을 스파인 곡선의 시작점에 직접 모델링하지 않도록 주의합니다.",
+    "세그먼트 및 해상도 부족 → 파라미터의 Columns나 스파인 포인트 수가 부족해 면이 깨질 경우 입력 곡선과 옵션을 조정합니다."
+  ],
+  "related": [
+    "Orientation Along Curve",
+    "Transform Using Curve Point Attributes",
+    "Extrude",
+    "Skin"
+  ],
+  "videos": [
+    {
+      "id": "ooczMnTYnzo",
+      "title": "New in Houdini 18: SOPs - Sweep",
+      "author": "Entagma"
+    },
+    {
+      "id": "GUGMPUcfxHM",
+      "title": "Houdini | Sweep Geometry Node",
+      "author": "Pixel Fondue"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/sweep.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Sweep"
+  ],
+  "at": "2026-10-19T11:10:46.277938+00:00"
+}

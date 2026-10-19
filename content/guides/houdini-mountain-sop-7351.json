@@ -1,0 +1,96 @@
+{
+  "id": "houdini-mountain-sop-7351",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Mountain SOP",
+  "title": "Mountain — 노이즈로 지형·변형",
+  "summary": "프랙탈 노이즈(Fractal Noise)를 이용해 지오메트리의 점들을 법선(Normal) 방향으로 밀어내어 울퉁불퉁한 표면을 만드는 노드입니다. (현재는 Attribute Noise 노드 사용이 권장됩니다.)",
+  "when": [
+    "평평한 지형(Terrain)을 굴곡진 산맥이나 언덕으로 만들 때",
+    "바위, 절벽 등 불규칙하고 자연스러운 표면 디테일을 추가할 때",
+    "파도나 잔잔한 물결 같은 유기적인 형태를 변형할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Mountain 을 입력하고 엔터를 쳐서 Mountain 노드를 생성합니다.",
+    "변형할 Geometry Nodes 하단에 연결합니다.",
+    "파라미터 에디터(Parameter Editor)에서 Height 와 Element Size 값을 조절하여 높고 낮은 굴곡을 만듭니다.",
+    "Noise type 을 변경하여 원하는 패턴의 노이즈 질감을 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Height",
+      "desc": "노이즈가 밀어내는 높이(변형 양)를 조절합니다."
+    },
+    {
+      "name": "Element Size",
+      "desc": "가장 낮은 주파수 노이즈의 피크 사이 거리를 조절합니다."
+    },
+    {
+      "name": "Noise type",
+      "desc": "Perlin, Simplex, Worley 등 생성할 노이즈의 알고리즘을 선택합니다."
+    },
+    {
+      "name": "Max octaves",
+      "desc": "노이즈에 추가되는 디테일의 반복 횟수(옥타브)를 지정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "프랙탈 노이즈 반복 간의 스케일 증가율로, 거친 정도를 조절합니다."
+    },
+    {
+      "name": "Recompute Normals",
+      "desc": "변형된 지오메트리의 법선(Normal)을 다시 계산합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리 산맥 지형 만들기",
+      "steps": [
+        "Grid 노드를 생성하여 사이즈와 세그먼트를 충분히 늘립니다.",
+        "Grid 노드 아래에 Mountain 노드를 연결합니다.",
+        "Height 값을 높여 산의 높낮이를 극대화합니다.",
+        "Fractal Type을 Terrain으로 설정하여 계곡과 봉우리 형태를 잡습니다."
+      ]
+    },
+    {
+      "title": "바위 표면 디테일 추가",
+      "steps": [
+        "Box 또는 Sphere 노드를 생성합니다.",
+        "하단에 Mountain 노드를 연결합니다.",
+        "Element Size를 낮추고 Max octaves를 높여 미세한 바위 질감을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈 변화가 전혀 안 일어남 → 입력 지오메트리에 법선(Normal) 속성이 없거나 길이가 0인지 확인하고 Normal 노드를 먼저 추가합니다.",
+    "울퉁불퉁한 표현이 너무 깨져 보임 → 지오메트리의 세그먼트(Polygon Density)가 부족한 경우이므로 Grid나 Subdivide 노드로 면을 더 쪼개줍니다."
+  ],
+  "related": [
+    "Attribute Noise",
+    "Heightfield",
+    "VDB Smooth",
+    "Normal"
+  ],
+  "videos": [
+    {
+      "id": "rXTVT5Dhd4s",
+      "title": "Mountain SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "47ojI0W-q0g",
+      "title": "Easy MOUNTAIN RANGE creation || SideFX Houdini",
+      "author": "Tom Cowles"
+    }
+  ],
+  "doc": "https://www.sidefx.com/docs/houdini/nodes/sop/mountain.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Mountain"
+  ],
+  "at": "2026-10-19T11:10:50.269091+00:00"
+}
