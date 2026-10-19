@@ -802,3 +802,17 @@ def test_operator_tips_and_trust_labels(monkeypatch, tmp_path):
     html = build_site.post_html({"id": "x2", "title_ko": "제목", "domain": "3D DCC", "category": "Blender",
                                  "url": "https://e.x/", "summary": "요약", "insight": "해설"}, "../", [])
     assert "운영자 한마디" in html and "AI 해설" in html and "에디터 코멘트" not in html and "오류 제보" in html
+
+
+def test_performance_table_title_stats(monkeypatch):
+    import evolve
+    monkeypatch.setattr(core, "_notion", lambda: None)
+    monkeypatch.setattr(evolve, "site_performance_table", lambda: {
+        "by_group": {},
+        "top_posts": [(100, "Short"), (50, "A Much Longer Title Here")]
+    })
+    res = evolve.performance_table()
+    assert "title_stats" in res
+    assert res["title_stats"]["count"] == 2
+    # len("Short") = 5, len("A Much Longer Title Here") = 24 -> avg = (5 + 24) / 2 = 14.5
+    assert res["title_stats"]["avg_length"] == 14.5

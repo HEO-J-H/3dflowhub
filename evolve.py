@@ -71,26 +71,38 @@ def site_performance_table() -> dict:
 
 
 def performance_table() -> dict:
-    """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 — 수익 학습의 보상 신호."""
+    """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 및 상위 글 제목 길이 평균 집계 반환 — 수익 학습의 보상 신호."""
     client = core._notion()
+    perf_data = site_performance_table() if client is None else None
+    
     if client is None:
-        return site_performance_table()
-    res = core._query_db(client, {"page_size": 100, "filter": {"property": "Views", "number": {"is_not_empty": True}}})
-    agg: dict[str, dict] = {}
-    top = []
-    for p in res.get("results", []):
-        pr = p["properties"]
-        d = (pr["Domain"]["select"] or {}).get("name", "?")
-        c = (pr.get("Category", {}).get("select") or {}).get("name", "")
-        v = pr["Views"]["number"] or 0
-        for key in (d, f"{d}/{c}"):
-            a = agg.setdefault(key, {"posts": 0, "views": 0})
-            a["posts"] += 1
-            a["views"] += v
-        top.append((v, "".join(t["plain_text"] for t in pr["Name"]["title"])[:50]))
-    for a in agg.values():
-        a["avg"] = round(a["views"] / a["posts"], 1)
-    return {"by_group": agg, "top_posts": sorted(top, reverse=True)[:8]}
+        agg = perf_data["by_group"]
+        top = perf_data["top_posts"]
+    else:
+        res = core._query_db(client, {"page_size": 100, "filter": {"property": "Views", "number": {"is_not_empty": True}}})
+        agg: dict[str, dict] = {}
+        top = []
+        for p in res.get("results", []):
+            pr = p["properties"]
+            d = (pr["Domain"]["select"] or {}).get("name", "?")
+            c = (pr.get("Category", {}).get("select") or {}).get("name", "")
+            v = pr["Views"]["number"] or 0
+            for key in (d, f"{d}/{c}"):
+                a = agg.setdefault(key, {"posts": 0, "views": 0})
+                a["posts"] += 1
+                a["views"] += v
+            top.append((v, "".join(t["plain_text"] for t in pr["Name"]["title"])[:50]))
+        for a in agg.values():
+            a["avg"] = round(a["views"] / a["posts"], 1)
+        top = sorted(top, reverse=True)[:8]
+
+    # 조회수 상위 글(top_posts)의 제목 길이 평균 집계
+    title_stats = {"avg_length": 0.0, "count": len(top)}
+    if top:
+        total_len = sum(len(title) for _, title in top)
+        title_stats["avg_length"] = round(total_len / len(top), 1)
+
+    return {"by_group": agg, "top_posts": top, "title_stats": title_stats}
 
 
 def learn_tool_interest(top_n: int = 4, prior_views: float = 1.0, prior_posts: float = 3.0,
