@@ -253,7 +253,7 @@ import sites as _sites  # noqa: E402
 
 VIEW_LABELS = {"hq": "🏢 전체 요약", **{k: v["name"] for k, v in _sites.SITES.items()}}
 # 휴대폰에서는 사이드바가 접혀 있으므로 본문 맨 위에 둠
-SHORT = {"hq": "🏢 전체", "3dflowhub": "🧊 3dflowhub", "life-after-60": "💰 은퇴계산기"}  # 휴대폰 한 줄에 들어가게
+SHORT = {"hq": "🏢 전체", "3dflowhub": "🧊 3dflowhub", "life-after-60": "💰 은퇴계산기", "pix2poly": "🧱 Pix2Poly"}  # 휴대폰 한 줄에 들어가게
 view = st.segmented_control("사이트", list(VIEW_LABELS), default="3dflowhub",
                             format_func=lambda k: SHORT.get(k, VIEW_LABELS[k]),
                             key="site_view", label_visibility="collapsed") or "3dflowhub"
@@ -265,6 +265,9 @@ if view != "3dflowhub":
             st.cache_data.clear()
             core.git_sync()
             st.rerun()
+        st.divider()
+        for _sid, _s in _sites.SITES.items():  # 모든 사이트 바로가기
+            st.link_button(f"{_s['name']} 열기", _s["url"], width="stretch")
     if view == "hq":
         dash_sites.render_hq()
     else:
@@ -299,6 +302,7 @@ with st.sidebar:
         st.rerun()
     st.divider()
     st.link_button("🌐 게시판 사이트", SITE_URL, width="stretch")
+    st.link_button("🧱 Pix2Poly 웹", _sites.SITES["pix2poly"]["url"], width="stretch")
     st.link_button("📝 티스토리", "https://hjh1014.tistory.com/", width="stretch")
     st.link_button("⚙️ GitHub Actions", f"https://github.com/{GH_REPO}/actions", width="stretch")
 
