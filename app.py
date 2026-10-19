@@ -204,6 +204,38 @@ def job_panel() -> None:
 
 
 # ─────────────────────────── 사이트 전환 (HQ: 여러 사이트를 한 현황판에서) ───────────────────────────
+
+# ─────────────────────────── 차트 (Altair) ───────────────────────────
+# st.bar_chart 는 휠 스크롤이 차트 확대로 잡혀 페이지가 안 내려가고, 글자 축이 세로로 눕는다 → 고정형 차트로 통일
+import altair as alt  # noqa: E402
+
+DOMAIN_COLORS = {"3D DCC": "#1f5fbf", "AI 3D": "#7cc4fa", "Game Engine": "#e8423f", "VFX": "#f6a5a5"}
+
+
+def vbars(wide: pd.DataFrame, y_title: str, height: int = 220) -> None:
+    """세로 누적 막대 (행 = 가로축 글자, 열 = 색 구분). 확대·이동 없음, 마우스를 올리면 숫자."""
+    order = list(wide.index)
+    long = wide.rename_axis("x").reset_index().melt("x", var_name="구분", value_name="값")
+    cols = [c for c in wide.columns]
+    color = alt.Color("구분:N", legend=alt.Legend(orient="bottom", title=None),
+                      scale=alt.Scale(domain=cols, range=[DOMAIN_COLORS.get(c, "#9aa4b2") for c in cols])
+                      if all(c in DOMAIN_COLORS for c in cols) else alt.Undefined)
+    chart = alt.Chart(long).mark_bar(cornerRadiusTopLeft=2, cornerRadiusTopRight=2).encode(
+        x=alt.X("x:N", sort=order, title=None, axis=alt.Axis(labelAngle=0)),
+        y=alt.Y("sum(값):Q", title=None), color=color,  # 세로 제목은 한글이 한 글자씩 쌓여 보여 생략 (툴팁·캡션에 표시)
+        tooltip=[alt.Tooltip("x:N", title="날짜"), "구분:N", alt.Tooltip("값:Q", title=y_title)])
+    st.altair_chart(chart.properties(height=height), use_container_width=True)
+
+
+def hbars(series: pd.Series, x_title: str = "", height: int = 300) -> None:
+    """가로 막대 (긴 이름도 잘리지 않게 왼쪽 글자 폭 확보), 큰 값이 위."""
+    d = series.rename("값").rename_axis("이름").reset_index()
+    base = alt.Chart(d).encode(y=alt.Y("이름:N", sort="-x", title=None, axis=alt.Axis(labelLimit=260)),
+                               x=alt.X("값:Q", title=x_title or None),
+                               tooltip=["이름:N", alt.Tooltip("값:Q", title=x_title or "값")])
+    chart = base.mark_bar(color="#4f8cff", cornerRadiusEnd=3) + base.mark_text(align="left", dx=4).encode(text="값:Q")
+    st.altair_chart(chart.properties(height=height), use_container_width=True)
+
 import sites as _sites  # noqa: E402
 
 VIEW_LABELS = {"hq": "🏢 전체 요약", **{k: v["name"] for k, v in _sites.SITES.items()}}
@@ -319,18 +351,22 @@ with t_home:
 
         with st.container(border=True):
             st.markdown("**최근 14일 수집 추이**")
-            daily = df.assign(날짜=df["수집일"].dt.date).groupby(["날짜", "도메인"]).size().unstack(fill_value=0)
-            daily = daily[daily.index >= (datetime.now() - pd.Timedelta(days=14)).date()]
-            st.bar_chart(daily, height=220)
+            # 날짜 단위 막대: 시간축(03 AM …)은 의미 없음 → 14일을 빠짐없이 '10/19 (월)' 글자 축으로, 수집 없는 날은 0
+            days = pd.date_range(end=pd.Timestamp.now(tz="Asia/Seoul").normalize(), periods=14, freq="D").date
+            daily = (df.assign(날짜=df["수집일"].dt.date).groupby(["날짜", "도메인"]).size().unstack(fill_value=0)
+                     .reindex(days, fill_value=0))
+            daily.index = [f"{d:%m/%d}({'월화수목금토일'[d.weekday()]})" for d in days]
+            vbars(daily, "수집 글")
+            st.caption(f"14일 합계 {int(daily.values.sum())}건 · 하루 평균 {daily.values.sum() / 14:.1f}건")
         a, b = st.columns(2)
         with a, st.container(border=True):
             st.markdown("**많이 다룬 도구 Top 10**")
             top = (df["도메인"] + " › " + df["카테고리"].fillna("기타")).value_counts().head(10).sort_values()
-            st.bar_chart(top, horizontal=True, height=300)
+            hbars(top, "글 수")
         with b, st.container(border=True):
             st.markdown("**콘텐츠 유형 분포**")
             if "유형" in df.columns:
-                st.bar_chart(df["유형"].replace("", "미분류").value_counts().sort_values(), horizontal=True, height=300)
+                hbars(df["유형"].replace("", "미분류").value_counts(), "글 수")
         st.markdown("**최근 글**")
         cols = st.columns(3)
         for i, (_, r) in enumerate(df.head(6).iterrows()):
@@ -928,7 +964,7 @@ with t_rev:
         pv = (pages_perf.get("pv_30d") or 0)
         pages_rev = last30.loc[last30["channel"] == "GitHub Pages", "revenue"].sum()
         k[3].metric("Pages RPM (30일)", f"{pages_rev / pv * 1000:,.0f}원" if pv else "-")
-        st.bar_chart(agg)
+        vbars(agg, "수익(원)")
 
 # ─────────────────────────── 설정 (한 번에 저장하는 폼) ───────────────────────────
 with t_set:
@@ -1156,7 +1192,7 @@ with t_today:
     if kinds:
         kdf = pd.DataFrame({"조회수": {"📰 소식": kinds.get("news", 0), "📚 기초 가이드": kinds.get("guides", 0),
                                       "🧭 도구별 정리": kinds.get("roundups", 0), "🏠 홈·기타": kinds.get("other", 0)}})
-        st.bar_chart(kdf, horizontal=True, height=200)
+        hbars(kdf["조회수"], "조회수", height=200)
     else:
         st.caption("콘텐츠 종류별 조회수는 다음 방문 통계 수집(3시간마다) 후 표시됩니다")
     v1, v2 = st.columns(2)
