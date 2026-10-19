@@ -9,8 +9,12 @@ Coder → Reviewer → Security&QA → Judge  (최대 3회 반복, 리뷰에는 
   Judge    : 리뷰·QA 결과를 종합해 승인/재작업 판정 → 승인 시 브랜치·PR 생성 후 자동 머지,
              memory.json / TODO.md 갱신
 
-실행: python agents.py            (GitHub Actions: self_improve.yml)
+실행: python agents.py                     (이 저장소, GitHub Actions: self_improve.yml)
+      python agents.py --target pix2poly    (다른 저장소 — 그 저장소에 쓸 수 있는 토큰 PIX2POLY_TOKEN 필요)
 필요 환경변수: LLM_API_KEY, GITHUB_TOKEN(PR/머지), GITHUB_REPOSITORY
+
+다른 저장소(target)는 위험도로 나눈다: 바뀐 파일이 모두 auto_merge 경로(테스트·문서·화면)면 테스트 통과 후 자동 머지,
+그 밖(파이프라인 코드·의존성)은 PR 만 올리고 사람이 GitHub 에서 머지 — 현황판에 '승인 대기 PR' 로 보인다.
 """
 from __future__ import annotations
 
@@ -38,6 +42,9 @@ PROPOSAL_TAG = re.compile(r"\[(p-[0-9a-f]{10})\|([^\]]+)\]")
 
 def files_for(task: str) -> set[str]:
     """작업별 수정 가능 파일: 관리자 제안이면 그 분류의 파일 + 테스트, 아니면 기본 EDITABLE."""
+    if TARGET:  # 다른 저장소: 과제 글에 나온 파일(경로·이름) + 테스트, 없으면 기본 파일
+        named = {f for f in EDITABLE if f in task or Path(f).stem in task}
+        return (named or set(TARGET["default_files"])) | set(TARGET["always"])
     m = PROPOSAL_TAG.search(task)
     if not m:
         return set(EDITABLE)
@@ -49,7 +56,7 @@ def queue_manager_tasks() -> list[str]:
     import manager
     text = TODO.read_text(encoding="utf-8")
     added = []
-    for p in manager.manual_todo("3dflowhub"):
+    for p in manager.manual_todo(SITE):
         if p["id"] in text:
             continue
         what = re.sub(r"\s+", " ", f"{p['title']}: {p.get('proposal', '')}")[:220]
@@ -70,6 +77,55 @@ def report_to_manager(task: str, ok: bool, msg: str) -> None:
     else:
         manager._append({"at": manager._now(), "kind": "applied", "id": m.group(1),
                          "result": f"코딩 에이전트 보류 — 직접 처리 필요: {msg[:200]}"})
+# 다른 저장소도 같은 엔진으로 — configure_target() 이 아래 전역 값을 바꿔 끼운다
+TARGETS = {
+    "pix2poly": {
+        "repo": "HEO-J-H/Pix2Poly", "token_env": "PIX2POLY_TOKEN", "todo": ".agent/TODO.md",
+        "allowed": ("backend/app/", "backend/tests/", "backend/static/", "docs/", "README.md"),
+        "auto_merge": ("backend/tests/", "docs/", "backend/static/", "README.md", ".agent/"),
+        "always": ("backend/tests/test_core.py",), "default_files": ("backend/app/main.py",),
+        "install": ("pip", "install", "-q", "-r", "backend/requirements.txt", "pytest"),
+        "test_cmd": ("python", "-m", "pytest", "-q", "backend/tests"),
+        "plan": "Pix2Poly - a local FastAPI tool that turns images/URLs/videos into 3D meshes (OBJ/GLB/FBX) and PBR "
+                "textures (heightfield mesh on CPU by default, optional TripoSR GPU, COLMAP for video). Goal: reliability "
+                "of the CPU default path, input validation, clear errors in the web UI, tests. GPU/external tools are "
+                "optional and must never be required by tests.",
+    },
+}
+SITE = "3dflowhub"
+TEST_CMD: tuple = ("python", "-m", "pytest", "-q", "tests")
+AUTO_MERGE: tuple | None = None   # None = 이 저장소(테스트 통과 시 전부 자동 머지)
+TOKEN_ENV = "GITHUB_TOKEN"
+TARGET: dict = {}
+
+
+def configure_target(name: str) -> None:
+    """다른 저장소를 _targets/<name> 에 받아 작업 대상으로 지정 (토큰 없으면 RuntimeError)."""
+    global ROOT, TODO, EDITABLE, GH_API, SITE, TEST_CMD, AUTO_MERGE, TOKEN_ENV, TARGET
+    cfg = TARGETS[name]
+    token = os.getenv(cfg["token_env"])
+    if not token:
+        raise RuntimeError(f"{cfg['token_env']} 없음 — {cfg['repo']} 에 쓸 수 있는 토큰을 GitHub Secrets 에 등록하세요")
+    root = Path(__file__).parent / "_targets" / name
+    if not (root / ".git").exists():
+        root.parent.mkdir(exist_ok=True)
+        subprocess.run(["git", "clone", "-q", f"https://x-access-token:{token}@github.com/{cfg['repo']}.git", str(root)],
+                       check=True, capture_output=True)
+    for k, v in (("user.name", "3dflowhub-bot"), ("user.email", "41898282+github-actions[bot]@users.noreply.github.com")):
+        subprocess.run(["git", "config", k, v], cwd=root, check=False)
+    ROOT, SITE, TARGET = root, name, cfg
+    TODO = root / cfg["todo"]
+    if not TODO.exists():
+        TODO.parent.mkdir(parents=True, exist_ok=True)
+        TODO.write_text("# 코딩 에이전트 할 일 (3dflowhub 본사 엔진이 처리)\n\n"
+                        "`- [ ] (agent)` 항목을 위에서부터 처리합니다. 사람이 직접 적어도 됩니다.\n", encoding="utf-8")
+    tracked = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True).stdout.split()
+    EDITABLE = {f for f in tracked if f.startswith(cfg["allowed"]) and f.endswith((".py", ".html", ".md", ".css", ".js"))}
+    GH_API = f"https://api.github.com/repos/{cfg['repo']}"
+    TEST_CMD, AUTO_MERGE, TOKEN_ENV = cfg["test_cmd"], cfg["auto_merge"], cfg["token_env"]
+    subprocess.run(list(cfg["install"]), cwd=root, check=False, capture_output=True)
+
+
 DANGEROUS = re.compile(r"\b(eval|exec|os\.system|subprocess|pickle\.loads|__import__|shell=True)\b")
 SECRET = re.compile(r"(ntn_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{30,}|AQ\.[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{30,})")
 GH_API = f"https://api.github.com/repos/{os.getenv('GITHUB_REPOSITORY', 'HEO-J-H/3dflowhub')}"
@@ -119,10 +175,11 @@ def propose_tasks(max_tasks: int = 3) -> list[str]:
     done = [re.sub(r"^- \[[x ]\] \(agent(:보류)?\) ", "", l) for l in TODO.read_text(encoding="utf-8").splitlines()
             if l.startswith("- [x] (agent)") or l.startswith("- [ ] (agent:보류)")]
     prompt = (
-        "You are the planning agent of a self-improving Python repo (news curation → Notion → Tistory).\n"
-        "Business goal: grow policy-compliant AdSense revenue on Tistory = more search traffic (SEO titles, "
-        "depth, FAQ, internal links, specific categories) x better RPM. Never add ad-click inducement.\n"
-        f"Editable files: {sorted(EDITABLE)}\n"
+        "" + (f"You are the planning agent of a self-improving repo: {TARGET['plan']}\n" if TARGET else
+           "You are the planning agent of a self-improving Python repo (news curation → Notion → Tistory).\n"
+           "Business goal: grow policy-compliant AdSense revenue on Tistory = more search traffic (SEO titles, "
+           "depth, FAQ, internal links, specific categories) x better RPM. Never add ad-click inducement.\n")
+        + f"Editable files: {sorted(EDITABLE)}\n"
         f"Recent lessons: {mem.get('lessons', [])[-8:]}\n"
         f"Recent run errors: {[r.get('errors') for r in mem.get('runs', [])[-5:]]}\n"
         f"Strategy history: {strategy.get('history', [])[-5:]}\n"
@@ -161,7 +218,8 @@ def coder(task: str, feedback: str) -> list[dict]:
         f"Only edit these files: {sorted(editable)}. For a new file use an empty SEARCH block. "
         "Keep changes minimal; add or update a pytest test."
     )
-    text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer." + core.playbook("dev_team"), max_tokens=6000)
+    text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer."
+                    + core.playbook("dev_team", *([f"site_{SITE}"] if TARGET else [])), max_tokens=6000)
     return parse_edits(text)
 
 
@@ -195,8 +253,7 @@ def reviewer(diff: str) -> dict:
 
 
 def qa(diff: str) -> dict:
-    tests = subprocess.run(["python", "-m", "pytest", "-q", "tests"], cwd=ROOT, capture_output=True,
-                           text=True, encoding="utf-8")
+    tests = subprocess.run(list(TEST_CMD), cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
     added = "\n".join(l for l in diff.splitlines() if l.startswith("+") and not l.startswith("+++"))
     security = [f"위험 함수 사용: {m}" for m in set(DANGEROUS.findall(added))]
     security += ["비밀값 하드코딩 의심"] if SECRET.search(added) else []
@@ -219,11 +276,12 @@ def judge(task: str, review: dict, qa_result: dict) -> dict:
 def open_and_merge_pr(task: str, body: str, editable: set[str] | None = None) -> tuple[bool, str]:
     """코드 + TODO 만 담은 브랜치로 PR 생성·자동 머지. 어떤 경우에도 main 으로 돌아온다.
     (memory/ 는 PR 에 넣지 않음 → 수집 워크플로의 잦은 memory 커밋과 충돌하지 않음)"""
-    token = os.getenv("GITHUB_TOKEN")
+    token = os.getenv(TOKEN_ENV)
     branch = f"agent/{datetime.now(timezone.utc):%Y%m%d-%H%M%S}"
     try:
         sh("git", "checkout", "-b", branch)
-        sh("git", "add", *sorted(f for f in (editable or EDITABLE) if (ROOT / f).exists()), "TODO.md")
+        sh("git", "add", *sorted(f for f in (editable or EDITABLE) if (ROOT / f).exists()), str(TODO.relative_to(ROOT)))
+        changed = sh("git", "diff", "--cached", "--name-only").split()
         sh("git", "commit", "-m", f"agent: {task[:60]}")
         if not token:
             return True, f"(로컬 실행) 브랜치 {branch} 에 커밋만 생성"
@@ -233,6 +291,10 @@ def open_and_merge_pr(task: str, body: str, editable: set[str] | None = None) ->
                            json={"title": f"agent: {task[:60]}", "head": branch, "base": "main", "body": body}).json()
         if "number" not in pr:
             return False, f"PR 생성 실패: {str(pr)[:200]}"
+        if needs_approval(changed):
+            requests.post(f"{GH_API}/issues/{pr['number']}/labels", headers=h, timeout=30,
+                          json={"labels": ["agent", "needs-approval"]})
+            return False, f"PR #{pr['number']} 승인 대기 (핵심 코드 변경 — GitHub 에서 확인 후 머지): {pr.get('html_url', '')}"
         m = requests.put(f"{GH_API}/pulls/{pr['number']}/merge", headers=h, timeout=30,
                          json={"merge_method": "squash"})
         if m.ok:
@@ -242,6 +304,21 @@ def open_and_merge_pr(task: str, body: str, editable: set[str] | None = None) ->
         return False, f"git 실패: {(e.stderr or e.stdout or '')[:200]}"
     finally:
         sh("git", "checkout", "-f", "main", check=False)
+
+
+def needs_approval(changed: list[str]) -> bool:
+    """다른 저장소에서 자동 머지 경로(테스트·문서·화면) 밖을 바꿨으면 사람 승인 필요. 이 저장소는 항상 False."""
+    return AUTO_MERGE is not None and not all(f.startswith(AUTO_MERGE) for f in changed)
+
+
+def record_target_run(task: str, result: str, msg: str) -> None:
+    """다른 저장소 작업 결과를 본사 memory/sites/<site>/agent_runs.json 에 남김 (현황판 표시용)."""
+    path = Path(__file__).parent / "memory" / "sites" / SITE / "agent_runs.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    runs = core._load_json(path, [])
+    runs.append({"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "task": task[:200],
+                 "result": result, "msg": msg[:300]})
+    core._save_json(path, runs[-50:])
 
 
 # ─────────────────────────── 메인 루프 ───────────────────────────
@@ -285,10 +362,20 @@ def main() -> None:
         merged, msg = open_and_merge_pr(task, "\n".join(["4-에이전트 자동 작업", "", *log]), editable)
         print(msg)
     reset_files(editable)
-    sh("git", "checkout", "--", "TODO.md", check=False)
-    if not merged:  # 반려·PR 실패 → main 에서 보류 표시 (같은 작업 무한 반복 방지)
+    sh("git", "checkout", "--", str(TODO.relative_to(ROOT)), check=False)
+    pending = "승인 대기" in msg
+    if pending:  # 핵심 코드 PR — 사람이 머지할 때까지 같은 과제를 다시 하지 않음
+        TODO.write_text(TODO.read_text(encoding="utf-8").replace(
+            f"- [ ] (agent) {task}", f"- [ ] (agent:승인대기) {task} — {msg[:120]}", 1), encoding="utf-8")
+    elif not merged:  # 반려·PR 실패 → main 에서 보류 표시 (같은 작업 무한 반복 방지)
         mark_task(task, False, msg or (log[-1] if log else "실패"))
         print("보류 처리:\n" + "\n".join(log))
+    if TARGET:  # 다른 저장소: TODO 표시 변경을 그 저장소 main 에 바로 반영, 본사에 결과 기록
+        sh("git", "pull", "-q", "--rebase", "origin", "main", check=False)
+        sh("git", "add", str(TODO.relative_to(ROOT)), check=False)
+        sh("git", "commit", "-q", "-m", "chore(agent): 과제 상태 [skip ci]", check=False)
+        sh("git", "push", "-q", "origin", "HEAD:main", check=False)
+        record_target_run(task, "merged" if merged else "pending" if pending else "held", msg or (log[-1] if log else ""))
     report_to_manager(task, merged, msg or (log[-1] if log else "실패"))
     mem = core.load_memory()  # 교훈은 main 의 memory 에 기록 (워크플로 마지막 단계가 커밋)
     mem["lessons"] = (mem.get("lessons", []) + [f"{datetime.now():%Y-%m-%d} [{task[:40]}] {lesson}"])[-20:]
@@ -296,6 +383,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    import sys
+    if "--target" in sys.argv:
+        try:
+            configure_target(sys.argv[sys.argv.index("--target") + 1])
+        except RuntimeError as ex:
+            print("건너뜀:", ex)
+            raise SystemExit(0)
     # 하루 실행당 처리할 과제 수 (LLM 한도와 성장 속도의 균형, 환경변수로 조절)
     for n in range(int(os.getenv("AGENT_TASKS_PER_RUN", "2"))):
         print(f"── 과제 {n + 1} ──")

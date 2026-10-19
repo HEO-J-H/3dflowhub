@@ -151,6 +151,9 @@ def _context_site(role: dict) -> dict:
             ctx["review_stamp"] = sites.review_stamp(js)
         except Exception as e:
             ctx["current_site_rules_summary"] = f"읽기 실패: {e}"
+    if any(k in role.get("name", "") + role.get("mission", "") for k in ("동향", "trend")):
+        ctx["tech_trends"] = sites.tech_trends()  # GitHub 인기 저장소(별·라이선스) + arXiv 새 논문
+        ctx["project_docs"] = sites.project_digest(role["site"])
     if _is_designer(role):
         ctx["site_design_note"] = ("다크 네이비 배경(#05080f) + 골드 강조(#c9a84c), Noto Sans KR 17px, 차트·표 중심. "
                                    "독자는 50~60대 — 큰 글자·높은 대비·단순한 흐름이 중요")

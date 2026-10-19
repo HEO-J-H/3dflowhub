@@ -29,3 +29,21 @@ def test_report_marks_done(monkeypatch):
     monkeypatch.setattr(manager, "decide", lambda pid, v, note="": calls.append((pid, v)))
     agents.report_to_manager("[p-0123456789|수집] x", True, "PR #9 머지 완료")
     assert calls == [("p-0123456789", "done")]
+
+
+def test_target_risk_split_and_files(monkeypatch):
+    cfg = agents.TARGETS["pix2poly"]
+    monkeypatch.setattr(agents, "TARGET", cfg)
+    monkeypatch.setattr(agents, "AUTO_MERGE", cfg["auto_merge"])
+    monkeypatch.setattr(agents, "EDITABLE", {"backend/app/main.py", "backend/app/services/pbr_generator.py",
+                                             "backend/tests/test_core.py", "docs/system-design.md"})
+    assert not agents.needs_approval(["backend/tests/test_core.py", "docs/system-design.md"])  # 자동 머지
+    assert agents.needs_approval(["backend/app/services/pbr_generator.py", "backend/tests/test_core.py"])  # 승인 필요
+    assert agents.files_for("pbr_generator: 맵 크기 검증") == {"backend/app/services/pbr_generator.py",
+                                                            "backend/tests/test_core.py"}
+    assert agents.files_for("입력 검증 강화") == {"backend/app/main.py", "backend/tests/test_core.py"}
+
+
+def test_home_repo_never_needs_approval(monkeypatch):
+    monkeypatch.setattr(agents, "AUTO_MERGE", None)
+    assert not agents.needs_approval(["core.py"])

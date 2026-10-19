@@ -46,6 +46,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python agents.py
 
+      - name: Pix2Poly — same 4 agents on the other repo (low-risk auto-merge, core changes as PR)
+        if: always()
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          PIX2POLY_TOKEN: ${{ secrets.PIX2POLY_TOKEN }}
+          AGENT_TASKS_PER_RUN: "1"
+        run: |
+          git checkout main 2>/dev/null || true
+          python agents.py --target pix2poly
+
       - name: Save memory/TODO on main
         if: always()
         run: |

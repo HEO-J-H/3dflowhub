@@ -26,6 +26,14 @@ SITES: dict[str, dict] = {
         "rules": "법규·세무·계산식·시뮬 로직은 자동 변경 금지 — 제안 또는 PR 만, 머지는 사람. "
                  "도구 안내용이며 법률·투자 자문이 아님을 항상 유지.",
     },
+    "pix2poly": {
+        "name": "🧱 Pix2Poly", "url": "https://github.com/HEO-J-H/Pix2Poly", "repo": "HEO-J-H/Pix2Poly",
+        "kind": "tool", "about": "이미지·URL·영상으로 3D 메시와 PBR 텍스처를 만드는 로컬 웹 툴 (FastAPI, TripoSR·COLMAP 연동)",
+        "raw": "https://raw.githubusercontent.com/HEO-J-H/Pix2Poly/main/",
+        "rules": "코드 변경은 코딩 에이전트가 테스트를 통과시킨 뒤에만. 테스트·문서·화면 등 위험이 낮은 변경만 자동 머지, "
+                 "파이프라인 핵심(services·main·의존성) 변경은 PR 로 올려 사람이 승인. 외부 모델·코드 도입은 라이선스"
+                 "(상업 이용 가능 여부)와 GPU 요구사항을 반드시 확인.",
+    },
 }
 DEFAULT_SITE = "3dflowhub"
 UA = {"User-Agent": "Mozilla/5.0 (3dflowhub HQ monitor)"}
@@ -138,3 +146,58 @@ def regulatory_news(days: int = 21, per_query: int = 4) -> list[dict]:
                 out.append({"query": q, "title": t[:160], "link": e.get("link", ""), "date": e.get("published", "")[:16]})
     _ = feedparser  # fetch_feed 내부 사용
     return out
+
+
+
+# ─────────────────────────── pix2poly: 기술 동향 감시 자료 (AI 없음) ───────────────────────────
+TECH_QUERIES = ["topic:image-to-3d", "topic:3d-reconstruction", "\"image to 3D\" in:description",
+                "topic:gaussian-splatting", "topic:pbr-texture"]
+ARXIV_QUERY = 'abs:"image-to-3D" OR abs:"single-view 3D reconstruction" OR abs:"PBR material generation"'
+
+
+def tech_trends(days: int = 30, per_query: int = 5, papers: int = 8) -> dict:
+    """최근 활발한 이미지→3D 오픈소스(GitHub, 별·라이선스 포함)와 새 논문(arXiv) 목록. 이미 본 것은 표시만."""
+    from datetime import timedelta
+    from urllib.parse import quote
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).date().isoformat()
+    seen_path = site_dir("pix2poly") / "tech_seen.json"
+    seen = set(core._load_json(seen_path, []))
+    repos, out_papers = [], []
+    for q in TECH_QUERIES:
+        try:
+            r = requests.get(f"https://api.github.com/search/repositories?q={quote(q)}+pushed:>{since}"
+                             f"&sort=stars&per_page={per_query}", headers=UA, timeout=20)
+            items = r.json().get("items") or []
+        except Exception:
+            continue
+        for it in items:
+            name = it.get("full_name")
+            if name and all(x["name"] != name for x in repos):
+                repos.append({"name": name, "url": it.get("html_url"), "stars": it.get("stargazers_count", 0),
+                              "license": (it.get("license") or {}).get("spdx_id") or "없음",
+                              "about": (it.get("description") or "")[:160], "pushed": (it.get("pushed_at") or "")[:10],
+                              "seen_before": name in seen})
+    try:
+        import feedparser
+        feed = feedparser.parse(requests.get("https://export.arxiv.org/api/query", headers=UA, timeout=30, params={
+            "search_query": ARXIV_QUERY, "sortBy": "submittedDate", "sortOrder": "descending",
+            "max_results": papers}).text)
+        for e in feed.entries:
+            out_papers.append({"title": " ".join(e.get("title", "").split())[:160], "url": e.get("link", ""),
+                               "date": e.get("published", "")[:10], "summary": " ".join(e.get("summary", "").split())[:300],
+                               "seen_before": e.get("link", "") in seen})
+    except Exception:
+        pass
+    core._save_json(seen_path, sorted(seen | {r["name"] for r in repos} | {p["url"] for p in out_papers})[-500:])
+    return {"repos": sorted(repos, key=lambda r: -r["stars"])[:15], "papers": out_papers}
+
+
+def project_digest(site: str = "pix2poly", limit: int = 3500) -> str:
+    """대상 저장소 README·설계 문서 앞부분 — 동향을 '지금 Pix2Poly 에 붙일 만한지'로 판단하는 기준."""
+    out = []
+    for f in ("README.md", "docs/system-design.md", "docs/tech-research.md"):
+        try:
+            out.append(f"## {f}\n" + fetch_text(SITES[site]["raw"] + f)[:limit // 3])
+        except Exception:
+            continue
+    return "\n".join(out)[:limit]

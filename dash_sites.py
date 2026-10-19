@@ -107,9 +107,71 @@ def team_block(site: str, key: str) -> None:
                 st.rerun()
 
 
+@st.cache_data(ttl=600, show_spinner=False)
+def _gh(repo: str, path: str) -> list | dict:
+    """공개 저장소 GitHub API (토큰 없이, 10분 캐시)."""
+    import requests
+    try:
+        r = requests.get(f"https://api.github.com/repos/{repo}/{path}", timeout=15,
+                         headers={"Accept": "application/vnd.github+json"})
+        return r.json() if r.ok else []
+    except Exception:
+        return []
+
+
+def render_tool(site_id: str) -> None:
+    """코드 저장소형 사이트(예: 🧱 Pix2Poly): 코딩 에이전트 결과·승인 대기 PR·테스트 상태·기술 동향 제안."""
+    s = sites.SITES[site_id]
+    st.title(s["name"])
+    st.caption(f"{s['about']} · [저장소]({s['url']})")
+    st.info("🛡 운영 원칙: " + s.get("rules", ""))
+    prs = [p for p in _gh(s["repo"], "pulls?state=open&per_page=20") if isinstance(p, dict)]
+    waiting = [p for p in prs if any(l.get("name") == "needs-approval" for l in p.get("labels") or [])]
+    act = _gh(s["repo"], "actions/runs?per_page=5")
+    runs = act.get("workflow_runs", []) if isinstance(act, dict) else []
+    test_run = next((r for r in runs if r.get("name") == "tests"), None)
+    agent_runs = core._load_json(sites.site_dir(site_id) / "agent_runs.json", [])
+    t_today, t_trend, t_team = st.tabs(["🏠 오늘", "🔭 기술 동향", "👥 팀"])
+    with t_today:
+        m = st.columns(4)
+        m[0].metric("테스트", {"success": "✅ 통과", "failure": "❌ 실패"}.get((test_run or {}).get("conclusion"),
+                                                                       "⏳ 진행 중" if test_run else "-"))
+        m[1].metric("승인 대기 PR", len(waiting))
+        m[2].metric("결정 대기 제안", sum(1 for x in manager.board()["proposals"] if x["status"] == "new" and _site_of(x) == site_id))
+        m[3].metric("자동 처리(최근)", sum(1 for r in agent_runs[-10:] if r["result"] == "merged"))
+        if waiting:
+            st.subheader("🔀 승인 대기 PR — 파이프라인 핵심 코드 변경")
+            st.caption("테스트는 통과했지만 핵심 코드라 사람이 확인 후 GitHub 에서 머지합니다 (원하지 않으면 닫기).")
+            for p in waiting:
+                st.markdown(f"- [#{p['number']} {p['title']}]({p['html_url']}) · {_kst(p['created_at'])}")
+        st.subheader("✅ 결정할 일")
+        st.caption("수락하면 코딩 에이전트가 매일 03:19 처리합니다 — 테스트·문서·화면은 자동 머지, 핵심 코드는 위의 승인 대기 PR 로.")
+        proposals_block(site_id, "today")
+        st.subheader("🤖 코딩 에이전트 기록")
+        if not agent_runs:
+            st.caption("아직 기록이 없습니다. GitHub Secrets 에 PIX2POLY_TOKEN 이 있어야 동작합니다.")
+        for r in reversed(agent_runs[-10:]):
+            icon = {"merged": "✅", "pending": "🔀", "held": "⏸"}.get(r["result"], "•")
+            st.markdown(f"{icon} {_kst(r['at'])} · {r['task'][:90]}  \n<span style='opacity:.7'>{r['msg'][:160]}</span>",
+                        unsafe_allow_html=True)
+    with t_trend:
+        st.caption("🔭 기술 동향 직원이 매일 GitHub 인기 저장소·arXiv 새 논문을 Pix2Poly 구조와 비교해 붙일 만한 것만 제안합니다 "
+                   "(라이선스·GPU 요구·붙일 위치 포함).")
+        tr = [x for x in manager.board()["proposals"] if _site_of(x) == site_id and "동향" in (x.get("by") or "")]
+        for x in tr[:15]:
+            st.markdown(f"- **{x['title']}** · {manager.STATUS_KO[x['status']]} · {_kst(x['at'])}"
+                        + (f" · [근거]({x['source']})" if x.get("source") else ""))
+        if not tr:
+            st.caption("아직 제안이 없습니다 — 하루 한 번 올라옵니다")
+    with t_team:
+        team_block(site_id, "team")
+
+
 def render_site(site_id: str) -> None:
     """3dflowhub 외 사이트 전용 화면 (예: 💰 life-after-60)."""
     s = sites.SITES[site_id]
+    if s.get("kind") == "tool":
+        return render_tool(site_id)
     st.title(s["name"])
     st.caption(f"{s['about']} · [사이트 열기]({s['url']}) · [저장소](https://github.com/{s['repo']})")
     if s.get("rules"):
@@ -185,6 +247,10 @@ def render_hq() -> None:
                 import manager as _m
                 dn = _m.done_today()
                 st.markdown(f"오늘 소식 **{dn['news']}** · 가이드 **{dn['guides']}** · 정리 **{dn['roundups']}**")
+            elif s.get("kind") == "tool":
+                runs = core._load_json(sites.site_dir(sid) / "agent_runs.json", [])
+                st.markdown(f"코딩 에이전트 처리 **{sum(r['result'] == 'merged' for r in runs)}** · "
+                            f"승인 대기 **{sum(r['result'] == 'pending' for r in runs)}**")
             else:
                 h = sites.last_health(sid)
                 st.markdown(f"상태 **{'정상' if h.get('status') == 200 else '확인 필요' if h else '점검 전'}** · "
@@ -194,5 +260,5 @@ def render_hq() -> None:
             st.metric("홍보 대기", sum(1 for x in box if x["status"] == "new" and _site_of(x) == sid))
             members = [r["name"] for r in team if r.get("site", sites.DEFAULT_SITE) == sid and r["status"] == "active"]
             st.caption("근무 중: " + (", ".join(members) or "없음"))
-            st.link_button("사이트 열기", s["url"], width="stretch")
+            st.link_button("저장소 열기" if s.get("kind") == "tool" else "사이트 열기", s["url"], width="stretch")
     st.caption(f"AI 여력 {core.llm_capacity_left()}회 남음 (모든 사이트 공유) · 리셋 {core.llm_reset_kst()} (한국 시간)")
