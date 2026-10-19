@@ -123,7 +123,7 @@ def render_tool(site_id: str) -> None:
     """코드 저장소형 사이트(예: 🧱 Pix2Poly): 코딩 에이전트 결과·승인 대기 PR·테스트 상태·기술 동향 제안."""
     s = sites.SITES[site_id]
     st.title(s["name"])
-    st.caption(f"{s['about']} · [저장소]({s['url']})")
+    st.caption(f"{s['about']} · [웹 열기]({s['url']}) · [저장소](https://github.com/{s['repo']})")
     st.info("🛡 운영 원칙: " + s.get("rules", ""))
     prs = [p for p in _gh(s["repo"], "pulls?state=open&per_page=20") if isinstance(p, dict)]
     waiting = [p for p in prs if any(l.get("name") == "needs-approval" for l in p.get("labels") or [])]
@@ -260,5 +260,5 @@ def render_hq() -> None:
             st.metric("홍보 대기", sum(1 for x in box if x["status"] == "new" and _site_of(x) == sid))
             members = [r["name"] for r in team if r.get("site", sites.DEFAULT_SITE) == sid and r["status"] == "active"]
             st.caption("근무 중: " + (", ".join(members) or "없음"))
-            st.link_button("저장소 열기" if s.get("kind") == "tool" else "사이트 열기", s["url"], width="stretch")
+            st.link_button("사이트 열기", s["url"], width="stretch")
     st.caption(f"AI 여력 {core.llm_capacity_left()}회 남음 (모든 사이트 공유) · 리셋 {core.llm_reset_kst()} (한국 시간)")

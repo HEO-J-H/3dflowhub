@@ -27,8 +27,8 @@ SITES: dict[str, dict] = {
                  "도구 안내용이며 법률·투자 자문이 아님을 항상 유지.",
     },
     "pix2poly": {
-        "name": "🧱 Pix2Poly", "url": "https://github.com/HEO-J-H/Pix2Poly", "repo": "HEO-J-H/Pix2Poly",
-        "kind": "tool", "about": "이미지·URL·영상으로 3D 메시와 PBR 텍스처를 만드는 로컬 웹 툴 (FastAPI, TripoSR·COLMAP 연동)",
+        "name": "🧱 Pix2Poly", "url": "https://heo-j-h.github.io/Pix2Poly/", "repo": "HEO-J-H/Pix2Poly",
+        "kind": "tool", "about": "사진 한 장으로 3D 메시·PBR 텍스처를 만드는 웹 툴 (웹: 브라우저 처리 / 로컬: FastAPI·TripoSR·COLMAP)",
         "raw": "https://raw.githubusercontent.com/HEO-J-H/Pix2Poly/main/",
         "rules": "코드 변경은 코딩 에이전트가 테스트를 통과시킨 뒤에만. 테스트·문서·화면 등 위험이 낮은 변경만 자동 머지, "
                  "파이프라인 핵심(services·main·의존성) 변경은 PR 로 올려 사람이 승인. 외부 모델·코드 도입은 라이선스"

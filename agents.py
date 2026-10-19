@@ -81,12 +81,12 @@ def report_to_manager(task: str, ok: bool, msg: str) -> None:
 TARGETS = {
     "pix2poly": {
         "repo": "HEO-J-H/Pix2Poly", "token_env": "PIX2POLY_TOKEN", "todo": ".agent/TODO.md",
-        "allowed": ("backend/app/", "backend/tests/", "backend/static/", "docs/", "README.md"),
-        "auto_merge": ("backend/tests/", "docs/", "backend/static/", "README.md", ".agent/"),
+        "allowed": ("backend/app/", "backend/tests/", "backend/static/", "web/", "docs/", "README.md"),
+        "auto_merge": ("backend/tests/", "docs/", "backend/static/", "README.md", ".agent/"),  # web/ 은 공개 페이지라 승인
         "always": ("backend/tests/test_core.py",), "default_files": ("backend/app/main.py",),
         "install": ("pip", "install", "-q", "-r", "backend/requirements.txt", "pytest"),
         "test_cmd": ("python", "-m", "pytest", "-q", "backend/tests"),
-        "plan": "Pix2Poly - a local FastAPI tool that turns images/URLs/videos into 3D meshes (OBJ/GLB/FBX) and PBR "
+        "plan": "Pix2Poly - a public browser tool (web/: JS port of the heightfield mesh + PBR maps, GitHub Pages) plus a local FastAPI tool that turns images/URLs/videos into 3D meshes (OBJ/GLB/FBX) and PBR "
                 "textures (heightfield mesh on CPU by default, optional TripoSR GPU, COLMAP for video). Goal: reliability "
                 "of the CPU default path, input validation, clear errors in the web UI, tests. GPU/external tools are "
                 "optional and must never be required by tests.",
