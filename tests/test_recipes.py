@@ -30,7 +30,8 @@ def test_python_syntax_and_network_rejected():
 def test_maxscript_brackets():
     ok = 'macroScript T category:"3dflowhub" (\n  for o in selection do (\n    print o.name -- (comment\n  )\n)\n' * 2
     assert recipes.check_script("maxscript", "3ds Max", ok) == ""
-    assert "괄호" in recipes.check_script("maxscript", "3ds Max", ok + "(")
+    bad = recipes.check_script("maxscript", "3ds Max", ok + "(")
+    assert "괄호" in bad or "문법" in bad  # 문법 분석기가 있으면 먼저 잡음
     assert "외부" in recipes.check_script("maxscript", "3ds Max", ok + 'DOSCommand "x"')
 
 
@@ -44,3 +45,24 @@ def test_no_blender_means_no_verdict(monkeypatch):
     monkeypatch.setattr(recipes, "blender_bin", lambda: None)
     assert recipes.run_blender_check("x")["ok"] is None
     assert recipes.verify_blender() == []
+
+
+import shutil
+
+import pytest
+
+
+@pytest.mark.skipif(not shutil.which("node") or not recipes.MXS_CHECKER.exists(), reason="node·MAXScript 분석기 없음")
+def test_maxscript_parser_catches_grammar_error():
+    good = 'fn cleanUp objs = (\n  for o in objs do (print o.name)\n)\n' * 3
+    assert recipes.maxscript_parse_errors(good) == ""
+    assert "문법" in recipes.maxscript_parse_errors(good + "fn f a = (a + \nfor o in x do print o))\n")
+
+
+def test_maya_unknown_command_and_flag():
+    pytest.importorskip("mypy")
+    code = ('import maya.cmds as cmds\ndef run():\n    for o in cmds.ls(selection=True):\n'
+            '        cmds.makeIdentity(o, apply=True, scale=True)\n')
+    assert recipes.maya_api_errors(code) == ""
+    assert "polyCleanupNotReal" in recipes.maya_api_errors(code + "        cmds.polyCleanupNotReal(o)\n")
+    assert "bogus" in recipes.maya_api_errors(code + "        cmds.polyMergeVertex(o, bogus=1)\n")

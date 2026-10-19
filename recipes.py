@@ -71,8 +71,11 @@ def check_script(lang: str, host: str, code: str) -> str:
             return "Blender 애드온 필수 요소(bl_info, register, unregister) 누락"
         if re.search(r"\b(subprocess|os\.system|eval|exec|requests|urllib)\b", code):
             return "외부 실행·네트워크 호출 포함 (허용 안 함)"
-        return ""
-    # MAXScript: 주석·문자열을 빼고 괄호 짝 확인
+        return maya_api_errors(code) if host == "Maya" else ""
+    problem = maxscript_parse_errors(code)
+    if problem:
+        return problem
+    # MAXScript: 주석·문자열을 빼고 괄호 짝 확인 (문법 분석기가 없을 때의 최소 검사이자 이중 확인)
     body = re.sub(r"--[^\n]*", "", re.sub(r'"(?:\\.|[^"\\])*"', '""', code))
     if body.count('"') % 2:
         return "따옴표 짝이 맞지 않음"
@@ -89,6 +92,41 @@ def check_script(lang: str, host: str, code: str) -> str:
     return ""
 
 
+MAYA_CODES = ("attr-defined", "call-arg")  # 없는 maya.cmds 함수, 없는 인자 — 스텁 오류로 인한 오탐이 적은 것만
+MXS_CHECKER = core.ROOT / "tools" / "mxs" / "mxs_check.cjs"
+
+
+def maya_api_errors(code: str) -> str:
+    """maya-stubs + mypy: maya.cmds 에 없는 함수·인자를 찾는다 (Maya 없이). 도구가 없으면 건너뜀."""
+    try:
+        import mypy.api
+    except ImportError:
+        return ""
+    with tempfile.TemporaryDirectory() as d:
+        f = Path(d) / "recipe_maya.py"
+        f.write_text(code, encoding="utf-8")
+        out, _err, _rc = mypy.api.run([str(f), "--check-untyped-defs", "--ignore-missing-imports", "--no-error-summary",
+                                       "--show-error-codes", "--no-incremental", "--cache-dir", os.devnull])
+    bad = [ln.split(": error: ", 1)[1] for ln in out.splitlines()
+           if ": error: " in ln and any(f"[{c}]" in ln for c in MAYA_CODES)]
+    return ("Maya API 오류: " + " / ".join(bad[:3]))[:300] if bad else ""
+
+
+def maxscript_parse_errors(code: str) -> str:
+    """MAXScript 문법 분석 (HAG87/vscode-maxscript-lsp 문법, node 필요). 도구가 없으면 건너뜀."""
+    node = shutil.which("node")
+    if not node or not MXS_CHECKER.exists():
+        return ""
+    try:
+        r = subprocess.run([node, str(MXS_CHECKER)], input=code, capture_output=True, text=True,
+                           encoding="utf-8", timeout=60)
+        res = json.loads(r.stdout or "{}")
+    except (subprocess.TimeoutExpired, ValueError):
+        return ""
+    errs = res.get("errors") or []
+    return ("MAXScript 문법 오류: " + " / ".join(f"{e['line']}행 {e['msg'][:90]}" for e in errs[:3]))[:300] if errs else ""
+
+
 # ─────────────────────────── Blender 실제 실행 검증 ───────────────────────────
 def blender_bin() -> str | None:
     found = os.getenv("BLENDER_BIN") or shutil.which("blender")
@@ -99,7 +137,14 @@ def blender_bin() -> str | None:
     return None
 
 
-def run_blender_check(script: str, timeout: int = 180) -> dict:
+# Blender 검증에서 확인할 수 있는 기대 결과 (tools/blender_check.py EXPECT 와 같은 이름)
+EXPECT = {"transforms_applied": "rotation/scale applied (rotation 0, scale 1)",
+          "no_loose_verts": "no vertices without edges", "no_duplicate_verts": "no overlapping duplicate vertices",
+          "keeps_objects": "no mesh objects deleted", "has_material": "every mesh has a material",
+          "origin_centered": "object origin moved to geometry center", "exported_file": "writes a file to the given path"}
+
+
+def run_blender_check(script: str, timeout: int = 180, expect: list[str] | None = None) -> dict:
     """화면 없는 Blender 에서 애드온 등록 → 테스트 장면에 Operator 실행 → 해제 (tools/blender_check.py)."""
     exe = blender_bin()
     if not exe:
@@ -109,7 +154,7 @@ def run_blender_check(script: str, timeout: int = 180) -> dict:
         addon.write_text(script, encoding="utf-8")
         try:
             subprocess.run([exe, "-b", "--factory-startup", "--python", str(core.ROOT / "tools" / "blender_check.py"),
-                            "--", str(addon), str(out)], capture_output=True, timeout=timeout)
+                            "--", str(addon), str(out), ",".join(expect or [])], capture_output=True, timeout=timeout)
         except subprocess.TimeoutExpired:
             return {"ok": False, "error": f"{timeout}초 안에 끝나지 않음 (무한 반복 의심)"}
         return core._load_json(out, {"ok": False, "error": "검사 결과 없음 (Blender 가 비정상 종료)"})
@@ -122,12 +167,15 @@ def verify_blender(limit: int = 10) -> list[str]:
     fails = core._load_json(FAIL_PATH, {})
     done = []
     for r in [r for r in load_all() if r.get("host") == "Blender" and "runtime" not in r][:limit]:
-        res = run_blender_check(r["script"])
+        res = run_blender_check(r["script"], expect=r.get("expect"))
         path = RECIPE_DIR / f"{r['id']}.json"
+        if res.get("ok") and not r.get("expect"):
+            res = {"ok": False, "error": "약속한 기대 결과(expect)가 없음 — 결과를 확인할 수 없음"}
         if res.get("ok"):
             r["runtime"] = {"ok": True, "blender": res.get("blender"), "at": _now().isoformat(timespec="seconds"),
                             "steps": [s["name"] for s in res.get("steps", [])]}
-            r["checked"] = f"Blender {res.get('blender', '')} 에서 테스트 장면으로 실제 실행 검증 통과"
+            r["checked"] = (f"Blender {res.get('blender', '')} 에서 테스트 장면으로 실행 · 결과 확인 통과 "
+                            f"({', '.join(r.get('expect', []))})")
             core._save_json(path, r)
             done.append(f"통과: {r['title']}")
         else:
@@ -180,6 +228,9 @@ def make_recipe(category: str, host: str, posts: list[dict]) -> dict | None:
         ' "usage": 3-5 Korean steps to use it,\n'
         ' "limits": 2-3 Korean caveats (what it does not handle),\n'
         ' "sources": up to 4 ids of the summaries this is based on'
+        + (',\n "expect": 1-4 outcome checks the script GUARANTEES on a test scene of selected meshes '
+           '(unapplied rotation/scale, duplicate vertices, a loose vertex), chosen from '
+           f'{json.dumps(EXPECT)} — they will be verified by actually running it' if host == "Blender" else "")
     )
     past = core._load_json(FAIL_PATH, {}).get(recipe_id(category, host), [])
     if past:
@@ -218,6 +269,7 @@ def make_recipe(category: str, host: str, posts: list[dict]) -> dict | None:
         "usage": [fx(str(x)) for x in (out.get("usage") or [])][:5],
         "limits": [fx(str(x)) for x in (out.get("limits") or [])][:3],
         "sources": [i for i in (out.get("sources") or []) if i in valid][:4] or [p["id"] for p in posts[:3]],
+        "expect": [x for x in (out.get("expect") or []) if x in EXPECT][:4] if host == "Blender" else [],
         "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
         "at": _now().isoformat(timespec="seconds"),
     }
