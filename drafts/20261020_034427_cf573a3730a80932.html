@@ -1,0 +1,22 @@
+<!-- TITLE: RxGS — BRDF 분해 기반 조명 수정 가능한 Gaussian Splatting | TAGS: 3D Gaussian Splatting,NeRF,BRDF,RxGS,조명 수정,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — RxGS는 재질 반사와 조명이 융합되던 기존 3D 씬 스타일라이제이션의 한계를 극복하고, BRDF 분해를 통해 조명을 유지하면서 스타일을 변환할 수 있는 새로운 Gaussian Splatting 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>기존 3D 씬 스타일라이제이션의 한계</h2>
+<p>참조 이미지 기반의 3D 씬 스타일라이제이션은 재질 반사, 주변 조명, 시야각에 따른 음영이 결합된 단일 per-point RGB 색상을 최적화해왔습니다. 이로 인해 스타일라이제이션 과정에서 특정 조명 효과가 결과물에 완전히 고정되어 버리며, 결과적으로 완성된 씬을 다른 조명 아래서 다시 렌더링(Relighting)하는 것이 불가능했습니다. 기존 신경망 씬 모델인 NeRF와 3D Gaussian Splatting 모두 이와 같은 근본적인 제약을 공유하고 있었습니다.</p>
+<h2>RxGS의 BRDF 기반 분해 접근법</h2>
+<p>이러한 문제를 해결하기 위해 연구진은 BRDF(Bidirectional Reflectance Distribution Function) 기반의 3D Gaussian 표현을 도입한 RxGS 프레임워크를 개발했습니다. RxGS는 각 포인트의 RGB 색상을 직접 수정하는 대신, 역렌더링을 통해 복원된 디퓨즈 알베도 필드만을 타겟으로 삼아 최적화를 진행합니다. 동시에 러프니스, 메탈릭, 표면 법선(surface normals), 그리고 추정된 주변 조명 환경은 전혀 변경하지 않고 그대로 유지합니다.</p>
+<h2>물리 기반 렌더러 호환성과 조명 수정 기능</h2>
+<p>알베도 필드만 편집된 스타일라이즈드 씬은 물리 기반 렌더러(PBR)가 요구하는 모든 핵심 컴포넌트를 그대로 유지하게 됩니다. 결과적으로 기존 참조 기반 스타일링 기법들과 달리 조명을 완전히 재구성하여 다른 환경에서도 자연스럽게 렌더링할 수 있는 강점을 지닙니다. 이는 Gaussian Splatting의 시각적 품질과 가상 프로덕션에서의 조명 제어 유연성을 동시에 확보하는 핵심 기술입니다.</p>
+<h2>최적화 기법 및 손실 함수 설계</h2>
+<p>RxGS는 알베도 필드를 정교하게 최적화하기 위해 이웃 간 특징 매칭 손실(nearest-neighbour feature matching loss)과 Gaussian 중심 간의 공간적 부드러움 사전(spatial smoothness prior)을 함께 활용합니다. 또한 광학 흐름 왜곡 오류를 기반으로 하는 기하학적 일관성 비용(GCC)을 도입하여 품질을 엄격하게 평가합니다. 이러한 최적화 전략을 통해 왜곡을 최소화하면서 안정적인 스타일 전파가 가능해집니다.</p>
+<h2>성능 평가 및 벤치마크 결과</h2>
+<p>NeRF-Synthetic 벤치마크 씬에서 평가한 결과, RxGS는 평가된 모든 씬에서 가장 낮은 기하학적 일관성 비용(GCC)을 달성했습니다. 실사 촬영된 실제 씬에서도 기존 방식과 견줄 만한 경쟁력 있는 성능을 입증했습니다. 무엇보다 기존 방식들이 제공하지 못했던 조명 수정 가능한 스타일라이제이션 기능을 완벽하게 지원한다는 점에서 학술적·실무적 가치가 높습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 3D 씬 스타일라이제이션 기술은 색상 값에 조명 효과가 고정(baked)되어 스타일 변환 후에는 조명을 바꿀 수 없는 치명적인 단점이 있었습니다. 본 논문에서 제안하는 RxGS는 역렌더링을 통해 디퓨즈 알베도 필드만 최적화하고 러프니스, 메탈릭, 노멀 등의 PBR 컴포넌트를 보존합니다. 이를 통해 실무 프로덕션 환경에서 Gaussian 기반 에셋의 외형을 자유롭게 꾸미면서도 다양한 조명 환경에 적응시킬 수 있는 길을 열어줍니다. Gaussian Splatting과 물리 기반 렌더링(PBR) 파이프라인을 결합하고자 하는 기술 아티스트와 리서처에게 중요한 이정표가 될 것입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. RxGS가 기존 3D Gaussian Splatting 스타일라이제이션과 다른 핵심 차이점은 무엇인가요?</b><br/>A. 기존 방식은 RGB 색상 전체를 변환하여 조명 정보가 굳어버리지만, RxGS는 BRDF 분해를 통해 디퓨즈 알베도만 수정하고 PBR 컴포넌트는 유지하여 조명 수정(Relighting)이 가능합니다.</p>
+<p><b>Q. RxGS는 어떤 벤치마크와 데이터셋에서 성능 검증을 거쳤나요?</b><br/>A. 논문에서는 NeRF-Synthetic 씬과 실제 촬영된 실사 씬을 대상으로 평가를 진행했으며, 특히 NeRF-Synthetic 씬에서 가장 낮은 기하학적 일관성 비용(GCC)을 기록했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-56ed426787fe6a9c.html">Gaussian Splatting 3D — 희소 뷰 과적합 방지 Few-Shot 학습 연구</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-90050eca94b90c48.html">Unity SplatXR 출시 — 확장 현실을 위한 3D Gaussian Splatting 툴킷</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-740ba746f9f02ea1.html">Gaussian Splatting 시뮬레이터 기반 단안 비행 플래닝 연구</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.25681v1" target="_blank" rel="noopener nofollow">RxGS: Relightable Gaussian Stylization via BRDF Decomposition</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
