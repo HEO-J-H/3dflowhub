@@ -1390,18 +1390,94 @@ def image_figure(src: str, source_url: str, alt: str = "") -> str:
             f'{html.escape(site)}</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>\n')
 
 
+def summarize(item: dict) -> dict | None:
+    body, media = fetch_article(item["url"])
+    if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
+        body = f"{item['title']}\n{item['rss_summary']}"
+    if len(body) < 80:
+        log.info("본문 부족으로 건너뜀: %s", item["url"])
+        RUN_ERRORS.append("short body")
+        return None
+    prompt = (
+        f"Title: {item['title']}\nURL: {item['url']}\nContent:\n{body}\n\n"
+        f"Existing categories per domain: {json.dumps(load_categories(), ensure_ascii=False)}\n"
+        "Return JSON with keys:\n"
+        ' "title_ko": search-friendly Korean title, 25-45 chars, main tool/product name + key search term first, '
+        'no clickbait,\n'
+        f' "domain": one of {json.dumps(list(DOMAINS), ensure_ascii=False)} ({domain_topics()}),\n'
+        ' "category": the main TOOL / PRODUCT / TECHNOLOGY this article is about (exact name from the existing list '
+        'of that domain, e.g. "Blender", "3ds Max", "Unreal Engine", "Unity", "Nuke", "가우시안 스플래팅"). Never put '
+        'the content type here (no "업데이트", "튜토리얼", "사례"). If a clearly different tool/product not in the list, '
+        'use its official name (<=20 chars); if no single tool, use the domain\'s "기타 …" entry,\n'
+        f' "topic": exactly one of {json.dumps(TOPICS, ensure_ascii=False)} (the content type),\n'
+        ' "tags": 3-6 short tags,\n'
+        ' "summary": one-sentence Korean summary,\n'
+        ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
+        'how to apply it in practice, who should care. Do not restate the article,\n'
+        ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
+        'factual, from the source),\n'
+        ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
+        'source in 1-3 sentences,\n'
+        f' "relevance": 0-10 how directly this is about any of these fields: {domain_topics()} '
+        '(weather, politics, general business, music news = 0-2; a different thing that merely shares a tool name '
+        '— Harry Houdini the magician, Maya civilization, a kitchen blender, unity as a word, stock-only '
+        'news — = 0)'
+    )
+    notes = load_strategy().get("prompt_notes", [])
+    system = SUMMARY_SYSTEM + playbook("editor", limit=2500) + (
+        "\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
+    try:
+        data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))
+    except LLMBudgetExceeded:
+        raise
+    except Exception as e:
+        log.warning("요약 실패 %s: %s", item["url"], e)
+        RUN_ERRORS.append(f"summarize: {str(e)[:600]}")
+        return None
+    try:
+        relevance = float(data.get("relevance", 10)) if isinstance(data, dict) else 10.0
+    except (TypeError, ValueError):
+        relevance = 10.0
+    if relevance < MIN_RELEVANCE:  # 주제와 무관한 기사(구글 뉴스 오검색 등) 제외
+        log.info("관련도 %.0f — 제외: %s", relevance, item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
+    data = normalize_summary(data, item)
+    if not data["sections"] and not data.get("summary"):
+        # 일부 모델(Groq 등)은 무관한 기사에 relevance 대신 빈 응답을 줌 → 오류가 아니라 주제 밖으로 집계
+        log.info("빈 요약(주제 밖으로 판단) — 제외: %s", item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
+    if not data["sections"]:
+        log.warning("LLM 응답에 sections 없음: %s", item["url"])
+        RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
+        return None
+    
+    # 요약된 본문 글자 수(태그 제외 본문 텍스트 기준) 검증 로직 추가
+    full_text_sum = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in data["sections"])
+    if len(full_text_sum) < 1500:
+        log.warning("요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(full_text_sum), data.get("title_ko", ""))
+        RUN_ERRORS.append("short post")
+
+    data["category"] = register_category(data["domain"], data["category"])
+    tags = data.get("tags")
+    if isinstance(tags, str):
+        data["tags"] = [t.strip() for t in tags.split(",") if t.strip()]
+    elif isinstance(tags, list):
+        normalized = []
+        for t in tags:
+            if isinstance(t, str):
+                normalized.extend([sub.strip() for sub in t.split(",") if sub.strip()])
+        data["tags"] = normalized
+    return {**item, **data, "media": media, "collected_at": datetime.now(timezone.utc).isoformat()}
+
+
 def build_post_html(item: dict) -> str:
     """intro + [AD top] + part_1 + [AD middle] + part_2 + source + [AD bottom]"""
     sections = item["sections"]
     mid = max(1, len(sections) // 2)
     part_1 = "".join(_section_html(s) for s in sections[:mid])
     part_2 = "".join(_section_html(s) for s in sections[mid:])
-
-    full_text = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections)
-    text_only = BeautifulSoup(full_text, "html.parser").get_text(strip=True)
-    if len(text_only) < 1500:
-        log.warning("본문 글자 수(태그 제외)가 1,500자 미만입니다 (%d자): %s", len(text_only), item.get("title_ko", item.get("title", "")))
-        RUN_ERRORS.append("short post")
 
     media = item.get("media") or {}
     hero = ""
