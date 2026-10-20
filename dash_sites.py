@@ -170,14 +170,15 @@ AGENT_STATE = [("(agent:승인대기)", "🔀 승인 대기 PR"), ("(agent:보�
 
 def agent_todo_block(site_id: str, repo: str) -> None:
     """수락된 제안(직접 작업)과 코딩 에이전트 진행 상태 — 대상 저장소 .agent/TODO.md 기준."""
-    import requests
     todo = manager.manual_todo(site_id)
     st.subheader(f"🛠 수락한 일 ({len(todo)}) — 코딩 에이전트가 처리")
     if not todo:
         st.caption("수락한 일이 없습니다")
         return
+    import base64  # raw 주소는 CDN 캐시로 몇 분 옛 내용 → contents API (10분 캐시) 로 읽음
+    doc = _gh(repo, "contents/.agent/TODO.md")
     try:
-        lines = requests.get(f"https://raw.githubusercontent.com/{repo}/main/.agent/TODO.md", timeout=15).text.splitlines()
+        lines = base64.b64decode(doc.get("content", "")).decode("utf-8").splitlines() if isinstance(doc, dict) else []
     except Exception:
         lines = []
     for x in todo:
