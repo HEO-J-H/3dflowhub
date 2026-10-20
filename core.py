@@ -743,10 +743,25 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
     """검색 키워드를 AI 없이 조합 — AI 한도는 요약과 'AI 관리자'(manager.py)에 집중.
     재료(이미 학습된 것): 독자 관심 도구(조회수·추천) → AI 관리자/전략 키워드 힌트 → Search Console 검색어 → 시드.
     실행마다 순환해 같은 검색만 반복하지 않는다. config.json 의 llm_keywords=true 면 예전처럼 AI 로 생성.
-    생성된 키워드 리스트 내에 중복된 항목이 존재할 경우 이를 제거하여 고유 키워드만 반환하도록 정규화합니다."""
+    생성된 키워드 리스트 내에 도메인 간 중복되는 키워드가 있으면 제거(재시도)합니다."""
+    def _clean_and_dedup(res_dict: dict[str, list[str]]) -> dict[str, list[str]]:
+        seen_global = set()
+        cleaned = {}
+        for d, kws in res_dict.items():
+            unique_d = []
+            for kw in kws:
+                kw_str = str(kw).strip()
+                kw_norm = kw_str.lower()
+                if kw_norm and kw_norm not in seen_global:
+                    seen_global.add(kw_norm)
+                    unique_d.append(kw_str)
+            cleaned[d] = unique_d
+        return cleaned
+
     if _load_json(CONFIG_PATH, {}).get("llm_keywords"):
         cached_result = _generate_keywords_cached(domains, per_domain)
-        return {d: list(dict.fromkeys(kws)) for d, kws in cached_result.items()}
+        return _clean_and_dedup(cached_result)
+
     strategy = load_strategy()
     interest, hints = strategy.get("tool_interest", {}), strategy.get("keyword_hints", {})
     gsc_q = _gsc_queries()
@@ -771,7 +786,7 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
         rr[d] = start + per_domain
     mem["kw_rr"] = rr
     _save_json(MEMORY_PATH, mem)
-    return out
+    return _clean_and_dedup(out)
 
 
 def _generate_keywords_cached(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:

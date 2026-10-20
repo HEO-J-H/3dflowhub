@@ -480,6 +480,18 @@ def test_generate_keywords_unique_normalization():
         assert kw_list == list(dict.fromkeys(kw_list))
 
 
+def test_generate_keywords_removes_duplicates_between_domains_retry(monkeypatch):
+    monkeypatch.setattr(core, "DOMAINS", {
+        "3D DCC": {"seeds": ["SharedKey", "UniqueA"], "feeds": []},
+        "VFX": {"seeds": ["SharedKey", "UniqueB"], "feeds": []}
+    })
+    kws = core.generate_keywords(["3D DCC", "VFX"], per_domain=2)
+    all_flat = [kw for lst in kws.values() for kw in lst]
+    # SharedKey가 도메인 간 중복되므로 제거되어야 함
+    assert len(all_flat) == len(set(all_flat))
+    assert "SharedKey" not in kws["VFX"] or "SharedKey" not in kws["3D DCC"]
+
+
 def test_generate_keywords_uses_cache(monkeypatch, tmp_path):
     core._save_json(core.CONFIG_PATH, {"llm_keywords": True})
     monkeypatch.setattr(core, "KEYWORD_CACHE_PATH", tmp_path / "kc.json")
