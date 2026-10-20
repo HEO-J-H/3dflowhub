@@ -597,7 +597,7 @@ with t_auto:
         label_visibility="collapsed", key="mgr_view")
     if view == "🛠 직접 작업":
         todo = manager.manual_todo("3dflowhub")
-        st.caption("수락한 일은 코딩 에이전트가 매일 03:19 자동 실행 때 코드로 처리합니다(성공하면 자동 완료). 에이전트가 보류한 것만 직접 하시거나 '요청문'을 복사해 Claude 에게 맡겨 주세요.")
+        st.caption("수락한 일은 코딩 에이전트가 3시간마다 코드로 처리합니다(성공하면 자동 완료). 에이전트가 보류한 것만 직접 하시거나 '요청문'을 복사해 Claude 에게 맡겨 주세요.")
         if not todo:
             st.success("남은 직접 작업이 없습니다")
         for x in todo:

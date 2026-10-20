@@ -164,6 +164,41 @@ def pr_review_card(site_id: str, repo: str, p: dict) -> None:
                 st.rerun()
 
 
+AGENT_STATE = [("(agent:승인대기)", "🔀 승인 대기 PR"), ("(agent:보류)", "⏸ 보류 — 사람 판단 필요"),
+               ("(agent:대체됨)", "📘 가이드 단계로 대체"), ("[x] (agent)", "✅ 완료"), ("[ ] (agent)", "⏳ 에이전트 대기열")]
+
+
+def agent_todo_block(site_id: str, repo: str) -> None:
+    """수락된 제안(직접 작업)과 코딩 에이전트 진행 상태 — 대상 저장소 .agent/TODO.md 기준."""
+    import requests
+    todo = manager.manual_todo(site_id)
+    st.subheader(f"🛠 수락한 일 ({len(todo)}) — 코딩 에이전트가 처리")
+    if not todo:
+        st.caption("수락한 일이 없습니다")
+        return
+    try:
+        lines = requests.get(f"https://raw.githubusercontent.com/{repo}/main/.agent/TODO.md", timeout=15).text.splitlines()
+    except Exception:
+        lines = []
+    for x in todo:
+        mine = [l for l in lines if x["id"] in l]
+        state = next((label for key, label in AGENT_STATE if any(key in l for l in mine)),
+                     "📥 다음 실행 때 대기열에 등록")
+        guide = [l for l in lines if "[guide:" in l and "PR #" in l and l.startswith("- [ ]")]
+        with st.container(border=True):
+            st.markdown(f"**{x['title']}** · 제안: {x.get('by') or '🧭 AI 관리자'} · 상태: **{state}**")
+            if state.startswith("📘") and guide:
+                st.caption(f"남은 가이드 단계 {len(guide)}개 — 하나씩 처리 중")
+            if x.get("source"):
+                st.caption(f"근거: {x['source']}")
+            c1, c2 = st.columns([1, 3])
+            if c1.button("✔ 완료 처리", key=f"tdone_{site_id}_{x['id']}"):
+                manager.decide(x["id"], "done", "현황판에서 완료 처리")
+                _sync(["memory/proposals.json"], "수락한 일 완료")
+                st.rerun()
+            c2.caption("에이전트가 끝내면 자동으로 완료됩니다. 더는 필요 없으면 '완료 처리'로 목록에서 내리세요.")
+
+
 def render_tool(site_id: str) -> None:
     """코드 저장소형 사이트(예: 🧱 Pix2Poly): 코딩 에이전트 결과·승인 대기 PR·테스트 상태·기술 동향 제안."""
     s = sites.SITES[site_id]
@@ -191,8 +226,9 @@ def render_tool(site_id: str) -> None:
             for p in waiting:
                 pr_review_card(site_id, s["repo"], p)
         st.subheader("✅ 결정할 일")
-        st.caption("수락하면 코딩 에이전트가 매일 03:19 처리합니다 — 테스트·문서·화면은 자동 머지, 핵심 코드는 위의 승인 대기 PR 로.")
+        st.caption("수락하면 코딩 에이전트가 3시간마다 처리합니다 — 테스트·문서·화면은 자동 머지, 핵심 코드는 위의 승인 대기 PR 로.")
         proposals_block(site_id, "today")
+        agent_todo_block(site_id, s["repo"])
         st.subheader("🤖 코딩 에이전트 기록")
         if not agent_runs:
             st.caption("아직 기록이 없습니다. GitHub Secrets 에 PIX2POLY_TOKEN 이 있어야 동작합니다.")
