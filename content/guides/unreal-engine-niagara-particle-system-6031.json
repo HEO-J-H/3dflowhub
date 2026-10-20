@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-niagara-particle-system-6031",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "시각 효과",
+  "name": "Niagara Particle System",
+  "title": "Unreal Engine 나이아가라 파티큘 시스템 기초 가이드",
+  "summary": "Unreal Engine의 Niagara는 GPU 가속을 활용해 불꽃, 연기, 비 등의 복잡한 실시간 파이프라인 효과를 만드는 차세대 Particle 시스템입니다.",
+  "when": [
+    "게임 배경에 불이나 연기, 먼지 같은 대기 효과를 더할 때",
+    "캐릭터의 마법 스킬이나 무기 궤적(Trail) 시각화가 필요할 때",
+    "바닥에 떨어지는 빗방울이나 파편 같은 물리 반응형 Particle을 만들 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 FX → Niagara System을 선택합니다.",
+    "원하는 템플릿(예: New system with empty emitter or Fountain)을 선택하고 완료합니다.",
+    "생성된 Niagara System을 더블클릭하여 Niagara Editor를 엽니다.",
+    "Emitter의 Emitter Summary 및 상단 모듈 스택(Spawn, Update, Render)을 확인합니다.",
+    "Viewport 패널에서 Particle이 재생되는 모습을 실시간으로 확인합니다.",
+    "Level 뷰포트로 Niagara System 에셋을 드래그하여 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Spawn Rate",
+      "desc": "초당 생성되는 Particle의 개수를 조절합니다."
+    },
+    {
+      "name": "Lifetime",
+      "desc": "Particle이 생성된 후 유지되는 시간을 설정합니다."
+    },
+    {
+      "name": "Initial Velocity",
+      "desc": "Particle이 처음 생성될 때의 속도와 방향을 결정합니다."
+    },
+    {
+      "name": "Sprite Size",
+      "desc": "렌더링되는 2D 스프라이트 Particle의 크기를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "Particle의 색상과 투명도(Alpha)를 시간 흐름에 따라 변화시킵니다."
+    },
+    {
+      "name": "Gravity Force",
+      "desc": "Particle에 작용하는 중력의 세기를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모닥불 연기 효과 만들기",
+      "steps": [
+        "Fountain 템플릿을 기반으로 Niagara System을 생성합니다.",
+        "Initial Velocity 값을 낮추고 위쪽 방향 벡터를 강조합니다.",
+        "Sprite Size와 Color 모듈을 추가해 위로 올라갈수록 연기가 커지고 투명해지도록 커브를 설정합니다."
+      ]
+    },
+    {
+      "title": "마법진 주변 반딧불이 Particle",
+      "steps": [
+        "Empty Emitter에 Shape Location 모듈을 추가해 스폰 영역을 원형으로 바꿉니다.",
+        "Curl Noise Force 모듈을 더해 Particle이 유기적으로 흔들리며 날아다니게 만듭니다.",
+        "Sub-UV나 빛나는 Material을 Mesh/Sprite Renderer에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Particle이 보이지 않음 → Material에 적절한 시야 배율이나 파티클용 블렌드 모드가 설정되었는지 확인합니다.",
+    "성능 저하(프레임 드랍) 발생 → Spawn Rate 값이 너무 높지 않은지 확인하고 Scalability 설정을 조정합니다.",
+    "GPU 시뮬레이션 오류 → 사용 중인 플랫폼과 렌더러가 GPU Particle을 지원하는지 프로젝트 세팅을 확인합니다."
+  ],
+  "related": [
+    "Cascade",
+    "Material Editor",
+    "Niagara Scalability",
+    "VFX Spawner"
+  ],
+  "videos": [
+    {
+      "id": "hnUQiwJweeg",
+      "title": "Introduction To Niagara (Unreal Engine 5 Tutorial)",
+      "author": "Unreal University "
+    },
+    {
+      "id": "ziwNVtOyKSU",
+      "title": "Let's build this Unreal Niagara particle sim within 6 minutes",
+      "author": "sem schreuder"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Niagara%20Particle%20System",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "FX",
+    "Niagara System"
+  ],
+  "at": "2026-10-20T14:36:50.208629+00:00"
+}

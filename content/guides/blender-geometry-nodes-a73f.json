@@ -1,0 +1,101 @@
+{
+  "id": "blender-geometry-nodes-a73f",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Geometry Nodes",
+  "title": "Blender Geometry Nodes 기초 가이드",
+  "summary": "Blender의 Geometry Nodes는 노드 기반으로 지오메트리를 생성, 변형, 분산하는 강력한 절차적(Procedural) 툴입니다. 프로그래밍 없이 시각적 연결만으로 복잡한 3D 구조물을 자유자재로 만듭니다.",
+  "when": [
+    "불규칙한 지형에 나무나 바위 같은 객체를 대량으로 배치할 때",
+    "건물 외벽의 벽돌이나 파이프 라인을 절차적으로 생성할 때",
+    "기존 모델링을 비파괴(Non-destructive) 방식으로 변형하거나 애니메이션 효과를 줄 때"
+  ],
+  "steps": [
+    "작업할 3D 오브젝트를 선택하고 Properties 패널에서 Modifier 탭을 엽니다.",
+    "Add Modifier 메뉴에서 Geometry Nodes를 선택하여 추가합니다.",
+    "Modifier 창의 New 버튼을 눌러 새로운 노드 트리를 생성합니다.",
+    "상단 탭에서 Geometry Nodes 워크스페이스로 이동하여 노드 편집 화면을 엽니다.",
+    "Shift+A 키를 눌러 원하는 노드를 검색하고 추가합니다.",
+    "Group Input과 Group Output 노드 사이에 생성한 노드들을 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Density",
+      "desc": "분산 노드에서 단위 면적당 생성되는 오브젝트의 밀도를 조절합니다."
+    },
+    {
+      "name": "Selection",
+      "desc": "노드 효과가 적용될 영역이나 대상을 마스크 형태로 지정합니다."
+    },
+    {
+      "name": "Count",
+      "desc": "라인이나 곡선 따라 복제되는 오브젝트의 총 개수를 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "생성되거나 분산된 Instance 오브젝트의 크기를 조절합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "곡선이나 기본 지오메트리의 세그먼트 수와 디테일을 결정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위(Random) 배치나 효과의 난수 패턴을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 위에 나무 심기",
+      "steps": [
+        "지형 오브젝트에 Geometry Nodes 모디파이어를 추가합니다.",
+        "Distribute Points on Faces 노드를 추가해 지형 표면에 점을 만듭니다.",
+        "Instance on Points 노드를 연결하고 나무 모델을 Instance로 지정합니다.",
+        "Random Value 노드를 연결해 나무의 크기와 회전을 무작위로 만듭니다."
+      ]
+    },
+    {
+      "title": "곡선을 따라 파이프 모델링",
+      "steps": [
+        "Curve 오브젝트를 만들고 Geometry Nodes를 적용합니다.",
+        "Curve to Mesh 노드를 추가합니다.",
+        "Profile Curve에 가벼운 2D Circle 노드를 연결합니다.",
+        "Radius 파라미터를 조절해 두께가 변하는 파이프를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 틀어짐 → 뷰포트에서 Ctrl+A를 누르고 Apply Scale을 먼저 실행하세요.",
+    "노드가 적용되지 않음 → Group Input과 Group Output 노드가 바르게 연결되었는지 확인하세요.",
+    "Instance 중첩으로 인한 렉 발생 → 지오메트리 뷰에서 점 개수(Density) 값을 낮춰서 확인하세요."
+  ],
+  "related": [
+    "Modifier List",
+    "Shader Editor",
+    "Texture Paint",
+    "Weight Paint"
+  ],
+  "videos": [
+    {
+      "id": "aO0eUnu0hO0",
+      "title": "Blender Tutorial: Geometry Nodes for Beginners - Part 1",
+      "author": "Blender Guru"
+    },
+    {
+      "id": "188IeRY-ch0",
+      "title": "Geometry Nodes for Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Blender%20Geometry%20Nodes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Geometry Nodes"
+  ],
+  "at": "2026-10-20T14:37:09.541630+00:00"
+}
