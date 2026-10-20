@@ -1436,11 +1436,12 @@ def build_post_html(item: dict) -> str:
     ad = {p: (ad_banner_html(p) if p in AD_POSITIONS else "") for p in ("top", "middle", "bottom")}
     html_out = intro + ad["top"] + part_1 + ad["middle"] + part_2 + source + ad["bottom"]
     
-    # 태그를 제외한 본문 글자 수 확인 (1,500자 미만이면 경고 및 RUN_ERRORS 기록)
-    text_only = BeautifulSoup(html_out, "html.parser").get_text()
+    # 요약된 본문 글자 수(태그 제외) 검증 (1,500자 미만인 경우 short post 경고 로그 및 RUN_ERRORS 기록)
+    text_only = BeautifulSoup(html_out, "html.parser").get_text(strip=True)
     if len(text_only) < 1500:
-        log.warning("본문 글자 수(태그 제외)가 1,500자 미만입니다 (%d자)", len(text_only))
-        RUN_ERRORS.append("short post")
+        log.warning("short post: 요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(text_only), item.get("title_ko", item.get("title", "")))
+        if "short post" not in RUN_ERRORS:
+            RUN_ERRORS.append("short post")
 
     return html_out
 
