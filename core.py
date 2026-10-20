@@ -784,6 +784,18 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
                 break
         out[d] = list(dict.fromkeys(picked))
         rr[d] = start + per_domain
+
+    # 같은 키워드가 도메인 간 중복되면 제거 (재시도 및 전역 고유화)
+    seen_global: set[str] = set()
+    for d in domains:
+        unique_d = []
+        for k in out.get(d, []):
+            lk = k.lower()
+            if lk not in seen_global:
+                seen_global.add(lk)
+                unique_d.append(k)
+        out[d] = unique_d
+
     mem["kw_rr"] = rr
     _save_json(MEMORY_PATH, mem)
     return _clean_and_dedup(out)
