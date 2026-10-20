@@ -472,6 +472,14 @@ def test_generate_keywords_removes_duplicates_across_domains(monkeypatch):
     assert len(all_kws) == len(set(all_kws))
 
 
+def test_generate_keywords_unique_normalization():
+    # 중복 항목이 포함된 풀/전략 키워드가 주어졌을 때 generate_keywords가 고유 키워드만 반환하는지 테스트
+    core._save_json(core.STRATEGY_PATH, {"tool_interest": {"3D DCC": ["Blender", "Blender", "Maya"]}})
+    kws = core.generate_keywords(["3D DCC"], per_domain=5)
+    for domain, kw_list in kws.items():
+        assert kw_list == list(dict.fromkeys(kw_list))
+
+
 def test_generate_keywords_uses_cache(monkeypatch, tmp_path):
     core._save_json(core.CONFIG_PATH, {"llm_keywords": True})
     monkeypatch.setattr(core, "KEYWORD_CACHE_PATH", tmp_path / "kc.json")
