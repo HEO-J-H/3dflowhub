@@ -75,3 +75,12 @@ def test_run_records_error_without_token(monkeypatch, tmp_path):
     notify.run()
     text = (tmp_path / "telegram.json").read_text(encoding="utf-8")
     assert "RuntimeError" in text and "SECRET123" not in text  # 토큰은 기록에 남기지 않음
+
+
+def test_token_check_hints(monkeypatch):
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "bot123456789:" + "A" * 35)
+    assert "'bot'" in notify.token_check()
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "1234567890")
+    assert "숫자:문자" in notify.token_check()
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "123456789:" + "A" * 35)
+    assert "형식 정상" in notify.token_check()

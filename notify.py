@@ -28,6 +28,21 @@ def _cfg() -> tuple[str, str]:
     return os.getenv("TELEGRAM_BOT_TOKEN", "").strip(), os.getenv("TELEGRAM_CHAT_ID", "").strip()
 
 
+def token_check() -> str:
+    """토큰 값은 드러내지 않고 형식만 점검 — 404(Not Found)의 흔한 원인 찾기."""
+    import re
+    raw = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    t = raw.strip()
+    issues = []
+    if raw != t:
+        issues.append("앞뒤 공백·줄바꿈 있음(자동 제거됨)")
+    if t.lower().startswith("bot"):
+        issues.append("앞에 'bot' 이 붙어 있음 — 빼고 등록")
+    if not re.fullmatch(r"\d{6,12}:[A-Za-z0-9_-]{30,50}", t.removeprefix("bot")):
+        issues.append(f"형식이 '숫자:문자' 가 아님 (길이 {len(t)}, ':' {'있음' if ':' in t else '없음'})")
+    return "; ".join(issues) or "형식 정상 — 토큰이 폐기(/revoke)됐거나 다른 봇의 토큰일 수 있음"
+
+
 def enabled() -> bool:
     return all(_cfg())
 
@@ -213,7 +228,7 @@ def run() -> dict:
         out = _run(state)
     except Exception as e:  # 오류도 기록 (토큰 문자열은 남기지 않음)
         token, _ = _cfg()
-        out = {"error": f"{type(e).__name__}: {str(e).replace(token, '***')[:300]}"}
+        out = {"error": f"{type(e).__name__}: {str(e).replace(token, '***')[:300]}", "token_check": token_check()}
     state["last_run"] = {"at": _now(), **{k: v for k, v in out.items() if k != "received"},
                          "received": len(out.get("received", []))}
     core._save_json(STATE, state)
