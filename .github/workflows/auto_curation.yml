@@ -95,10 +95,17 @@ jobs:
           if-no-files-found: ignore
 
       - name: Apply PR decisions from the dashboard (Pix2Poly)
+        id: decisions
         if: always()
         env:
           PIX2POLY_TOKEN: ${{ secrets.PIX2POLY_TOKEN }}
         run: python agents.py --apply-decisions pix2poly || true
+
+      - name: Rework requested → run coding agents now
+        if: always() && steps.decisions.outputs.run_agents == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run self_improve.yml --ref main || true
 
       - name: Commit memory & drafts
         if: always()

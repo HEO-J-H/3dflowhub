@@ -31,7 +31,8 @@ import core
 
 ROOT = Path(__file__).parent
 TODO = ROOT / "TODO.md"
-MAX_ITERATIONS = 3
+MAX_ITERATIONS = 4
+CODE_TEMP = 0.15   # 코드·리뷰·판정은 낮은 온도 (반복성)
 EDITABLE = {"core.py", "app.py", "evolve.py", "tests/test_core.py"}  # 에이전트가 수정 가능한 파일 (워크플로/에이전트 자신은 보호)
 # AI 관리자 제안(분류별)을 처리할 때 추가로 열어 주는 파일 — 에이전트·워크플로·growth(안전장치)는 계속 보호
 CATEGORY_FILES = {"콘텐츠": {"guides.py", "evolve.py"}, "수집": {"core.py"}, "사이트·UX": {"build_site.py"},
@@ -165,7 +166,7 @@ def sh(*cmd: str, check: bool = True) -> str:
 def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
     try:
         return core._parse_json(core.llm(prompt, system=role + core.playbook("dev_team"), max_tokens=max_tokens,
-                                         json_mode=True))
+                                         json_mode=True, temperature=CODE_TEMP))
     except ValueError:  # 깨진 JSON → 빈 응답으로 처리하고 다음 회차에서 재시도
         return {}
 
@@ -240,6 +241,7 @@ def coder(task: str, feedback: str) -> list[dict]:
                         for f in sorted(editable))
     _g_rel, guide = guide_for(task)
     prompt = (
+        f"REPOSITORY MAP (file: top-level functions/classes):\n{repo_map()}\n\n" +
         (f"DESIGN GUIDE ({_g_rel}) — follow it exactly, including its '하지 말 것' and the progress log:\n{guide[:7000]}\n\n"
          if guide else "")
         + f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
@@ -251,7 +253,8 @@ def coder(task: str, feedback: str) -> list[dict]:
         "Keep changes minimal; add or update a pytest test."
     )
     text = core.llm(prompt, system="You are the Coder agent, a careful senior Python engineer."
-                    + core.playbook("dev_team", *([f"site_{SITE}"] if TARGET else [])), max_tokens=6000)
+                    + core.playbook("dev_team", *([f"site_{SITE}"] if TARGET else [])), max_tokens=6000,
+                    temperature=CODE_TEMP)
     return parse_edits(text)
 
 
@@ -302,6 +305,44 @@ def judge(task: str, review: dict, qa_result: dict) -> dict:
         800,
     )
     return {"approve": bool(out.get("approve")), "feedback": out.get("feedback", ""), "lesson": out.get("lesson", "")}
+
+
+def failure_summary(qa_result: dict) -> str:
+    """pytest 출력에서 실패 테스트 이름과 오류 줄만 뽑기 (경고·진행 표시는 버림)."""
+    out = qa_result.get("test_output", "")
+    keep = [l.strip() for l in out.splitlines()
+            if l.startswith(("FAILED", "ERROR", "E ")) or re.match(r"^\s*E\s{2,}", l) or "Error:" in l]
+    tail = out.strip().splitlines()
+    head = " / ".join(dict.fromkeys(keep))[:700] or (tail[-1][:300] if tail else "출력 없음")
+    sec = f" 보안: {qa_result['security']}" if qa_result.get("security") else ""
+    return f"테스트 실패 — {head}{sec}"
+
+
+def repo_map(limit: int = 4000) -> str:
+    """편집 가능한 Python 파일의 최상위 함수·클래스 이름 목록."""
+    import ast as _ast
+    lines = []
+    for f in sorted(EDITABLE):
+        if not f.endswith(".py") or not (ROOT / f).exists():
+            continue
+        try:
+            tree = _ast.parse((ROOT / f).read_text(encoding="utf-8"))
+        except SyntaxError:
+            continue
+        names = [n.name for n in tree.body if isinstance(n, (_ast.FunctionDef, _ast.AsyncFunctionDef, _ast.ClassDef))]
+        lines.append(f"{f}: {', '.join(names[:25])}")
+    return "\n".join(lines)[:limit]
+
+
+def retry_held() -> bool:
+    """'(agent:보류)' 과제 하나를 '(재시도)' 표시와 함께 다시 열기 — 한 과제당 한 번만 (무한 반복 방지)."""
+    text = TODO.read_text(encoding="utf-8")
+    for line in text.splitlines():
+        if line.startswith("- [ ] (agent:보류) ") and "(재시도)" not in line:
+            body = line[len("- [ ] (agent:보류) "):].split(" — ")[0]
+            TODO.write_text(text.replace(line, f"- [ ] (agent) {body} (재시도)", 1), encoding="utf-8")
+            return True
+    return False
 
 
 # ─────────────────────────── PR / 머지 ───────────────────────────
@@ -443,6 +484,8 @@ def main() -> None:
     if queued:
         print("AI 관리자 제안 등록:", queued)
     task = next_task()
+    if not task and retry_held():  # 보류 과제는 쌓인 교훈을 가지고 한 번 더
+        task = next_task()
     if not task:  # 자율 성장: 할 일이 바닥나면 다음 과제를 스스로 계획
         print("새 과제 계획:", propose_tasks())
         task = next_task()
@@ -461,8 +504,14 @@ def main() -> None:
             feedback = f"패치 적용 실패: {problems or '변경 없음'}"
             log.append(f"[{i}] {feedback}")
             continue
-        review = reviewer(diff)
         qa_result = qa(diff)
+        if not qa_result["tests_passed"] or qa_result["security"]:
+            verdict = {"approve": False, "feedback": failure_summary(qa_result)}
+            log.append(f"[{i}] tests={qa_result['tests_passed']} security={qa_result['security']} — 리뷰 생략")
+            print(log[-1])
+            feedback = verdict["feedback"]
+            continue
+        review = reviewer(diff)
         verdict = judge(task, review, qa_result)
         log.append(f"[{i}] review={review.get('verdict')} tests={qa_result['tests_passed']} "
                    f"security={qa_result['security']} approve={verdict['approve']}")
@@ -471,7 +520,7 @@ def main() -> None:
             break
         feedback = f"review issues: {review.get('issues')} / judge: {verdict['feedback']}"
 
-    lesson = verdict.get("lesson") or (verdict["feedback"][:120] if verdict["feedback"] else "")
+    lesson = verdict.get("lesson") or (verdict["feedback"][:200] if verdict["feedback"] else "")
     merged, msg = False, ""
     if verdict["approve"]:
         mark_task(task, True, "")  # PR 에 완료 표시 포함 → 머지되면 main 에 반영
@@ -486,6 +535,8 @@ def main() -> None:
     elif not merged:  # 반려·PR 실패 → main 에서 보류 표시 (같은 작업 무한 반복 방지)
         mark_task(task, False, msg or (log[-1] if log else "실패"))
         print("보류 처리:\n" + "\n".join(log))
+    if not TARGET:
+        record_target_run(task, "merged" if merged else "held", msg or (log[-1] if log else ""))
     if TARGET:  # 다른 저장소: TODO 표시 변경을 그 저장소 main 에 바로 반영, 본사에 결과 기록
         sh("git", "pull", "-q", "--rebase", "origin", "main", check=False)
         g_rel = append_guide_lesson(task, "완료" if merged else "승인대기" if pending else "보류",
@@ -505,7 +556,13 @@ def main() -> None:
 if __name__ == "__main__":
     import sys
     if "--apply-decisions" in sys.argv:  # 10분 워크플로: 사람의 PR 결정만 반영하고 끝 (AI 사용 없음)
-        print(apply_pr_decisions(sys.argv[sys.argv.index("--apply-decisions") + 1]))
+        done_ = apply_pr_decisions(sys.argv[sys.argv.index("--apply-decisions") + 1])
+        print(done_)
+        if any("과제" in d for d in done_):  # 수정 요청·충돌 재작업 → 다음 예약을 기다리지 않고 바로
+            print("::notice::RUN_AGENTS_NOW")
+            if os.getenv("GITHUB_OUTPUT"):
+                with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+                    fh.write("run_agents=1\n")
         raise SystemExit(0)
     if "--target" in sys.argv:
         try:

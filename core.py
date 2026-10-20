@@ -647,14 +647,15 @@ def _consume_llm_budget() -> None:
 
 
 def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: int = 800,
-        json_mode: bool = False) -> str:
+        json_mode: bool = False, temperature: float = 0.4) -> str:
     """주 공급자(Gemini) → 한도 소진·장애 시 예비 공급자(Groq·Cerebras·OpenRouter, 키 등록 시) 순서로 시도."""
     errors: list[str] = []
     quota_hit = False
     if LLM_API_KEY:
         try:
             _consume_llm_budget()
-            return _llm_call(LLM_ENDPOINT, LLM_API_KEY, LLM_MODEL, prompt, system, max_tokens, json_mode, primary=True)
+            return _llm_call(LLM_ENDPOINT, LLM_API_KEY, LLM_MODEL, prompt, system, max_tokens, json_mode, primary=True,
+                             temperature=temperature)
         except LLMBudgetExceeded as e:
             quota_hit = True
             errors.append(str(e))
@@ -663,7 +664,8 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
     for f in fallback_providers():
         try:
             _fallback_count(f["name"])
-            out = _llm_call(f["endpoint"], f["key"], f["model"], prompt, system, max_tokens, json_mode)
+            out = _llm_call(f["endpoint"], f["key"], f["model"], prompt, system, max_tokens, json_mode,
+                            temperature=temperature)
             log.info("예비 공급자 %s 사용", f["name"])
             return out
         except LLMBudgetExceeded as e:
@@ -679,12 +681,12 @@ def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: i
 
 
 def _llm_call(endpoint: str, key: str, model: str, prompt: str, system: str, max_tokens: int,
-              json_mode: bool, primary: bool = False) -> str:
+              json_mode: bool, primary: bool = False, temperature: float = 0.4) -> str:
     body = {
         "model": model,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
         "max_tokens": max_tokens,
-        "temperature": 0.4,
+        "temperature": temperature,
     }
     headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     errors = []

@@ -2,7 +2,7 @@ name: 3dflowhub self improve (4 agents)
 
 on:
   schedule:
-    - cron: "19 18 * * *"   # 매일 03:19 KST (Gemini 무료 한도 보호를 위해 하루 1회)
+    - cron: "19 */3 * * *"   # 3시간마다 — 남은 AI 여력이 적으면 아래 'AI budget gate' 가 건너뜀
   workflow_dispatch:
 
 permissions:
@@ -34,7 +34,20 @@ jobs:
           git config user.name "3dflowhub-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Coder → Reviewer → QA → Judge (max 3 iterations)
+      - name: AI budget gate (뉴스·가이드 몫을 남기고 여유가 있을 때만)
+        id: gate
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          LEFT=$(python -c "import core; print(core.llm_capacity_left())")
+          echo "AI 여력: $LEFT"
+          if [ "$LEFT" -ge 60 ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Coder → QA → Reviewer → Judge (max 4 iterations)
+        if: steps.gate.outputs.ok == '1'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -47,7 +60,7 @@ jobs:
         run: python agents.py
 
       - name: Pix2Poly — same 4 agents on the other repo (low-risk auto-merge, core changes as PR)
-        if: always()
+        if: always() && steps.gate.outputs.ok == '1'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -56,7 +69,7 @@ jobs:
           LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
           PIX2POLY_TOKEN: ${{ secrets.PIX2POLY_TOKEN }}
-          AGENT_TASKS_PER_RUN: "1"
+          AGENT_TASKS_PER_RUN: "2"
         run: |
           git checkout main 2>/dev/null || true
           python agents.py --target pix2poly

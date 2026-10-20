@@ -88,3 +88,38 @@ def test_guide_tasks_first(tmp_path, monkeypatch):
                     "- [ ] (agent) [guide:img2threejs] 1단계\n", encoding="utf-8")
     monkeypatch.setattr(agents, "TODO", todo)
     assert agents.next_task().startswith("[guide:img2threejs]")
+
+
+def test_failure_summary_keeps_only_failures():
+    out = ("....F.\nfastapi/testclient.py:1: StarletteDeprecationWarning: Using httpx is deprecated\n"
+           "E       AssertionError: assert 200 == 503\n"
+           "FAILED backend/tests/test_core.py::test_engine_unavailable - AssertionError: assert 200 == 503\n"
+           "1 failed, 5 passed\n")
+    s = agents.failure_summary({"test_output": out, "security": []})
+    assert "test_engine_unavailable" in s and "200 == 503" in s and "Deprecation" not in s
+    assert agents.failure_summary({"test_output": "", "security": ["위험 함수 사용: eval"]}).endswith("eval']")
+
+
+def test_retry_held_once(tmp_path, monkeypatch):
+    todo = tmp_path / "TODO.md"
+    todo.write_text("- [ ] (agent:보류) 큰 과제 — 테스트 실패\n", encoding="utf-8")
+    monkeypatch.setattr(agents, "TODO", todo)
+    assert agents.retry_held() and agents.next_task() == "큰 과제 (재시도)"
+    agents.mark_task("큰 과제 (재시도)", False, "또 실패")
+    assert not agents.retry_held()  # 두 번째 보류는 다시 열지 않음 → 사람이 봄
+
+
+def test_repo_map_lists_functions(tmp_path, monkeypatch):
+    (tmp_path / "a.py").write_text("def f():\n    pass\nclass K:\n    pass\n", encoding="utf-8")
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    monkeypatch.setattr(agents, "EDITABLE", {"a.py", "missing.py"})
+    assert agents.repo_map() == "a.py: f, K"
+
+
+def test_llm_temperature_passed(monkeypatch):
+    import core
+    seen = {}
+    monkeypatch.setattr(core, "LLM_API_KEY", "x")
+    monkeypatch.setattr(core, "_consume_llm_budget", lambda: None)
+    monkeypatch.setattr(core, "_llm_call", lambda *a, **k: seen.update(k) or "ok")
+    assert core.llm("p", temperature=0.15) == "ok" and seen["temperature"] == 0.15
