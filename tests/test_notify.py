@@ -52,3 +52,26 @@ def test_new_only_once():
 def test_disabled_without_secrets(monkeypatch):
     monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
     assert "skipped" in notify.run()
+
+
+def test_run_records_skip_reason(monkeypatch, tmp_path):
+    monkeypatch.setattr(notify, "STATE", tmp_path / "telegram.json")
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "t")
+    monkeypatch.delenv("TELEGRAM_CHAT_ID", raising=False)
+    notify.run()
+    import json
+    st = json.loads((tmp_path / "telegram.json").read_text(encoding="utf-8"))
+    assert "TELEGRAM_CHAT_ID" in st["last_run"]["skipped"] and "TELEGRAM_BOT_TOKEN" not in st["last_run"]["skipped"]
+
+
+def test_run_records_error_without_token(monkeypatch, tmp_path):
+    monkeypatch.setattr(notify, "STATE", tmp_path / "telegram.json")
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "SECRET123")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "42")
+
+    def boom(state):
+        raise RuntimeError("bad url https://api.telegram.org/botSECRET123/sendMessage")
+    monkeypatch.setattr(notify, "_run", boom)
+    notify.run()
+    text = (tmp_path / "telegram.json").read_text(encoding="utf-8")
+    assert "RuntimeError" in text and "SECRET123" not in text  # 토큰은 기록에 남기지 않음

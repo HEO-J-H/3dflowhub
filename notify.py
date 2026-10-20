@@ -200,10 +200,27 @@ def daily_summary() -> str:
 
 
 def run() -> dict:
-    """10분 워크플로에서 호출. 결과 요약 dict 반환."""
-    if not enabled():
-        return {"skipped": "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 없음"}
+    """10분 워크플로에서 호출. 결과·오류를 항상 memory/telegram.json 의 last_run 에 남긴다."""
     state = core._load_json(STATE, {})
+    if not enabled():
+        token, chat = _cfg()
+        out = {"skipped": "비밀값 없음: " + ", ".join(n for n, v in (("TELEGRAM_BOT_TOKEN", token),
+                                                                    ("TELEGRAM_CHAT_ID", chat)) if not v)}
+        state["last_run"] = {"at": _now(), **out}
+        core._save_json(STATE, state)
+        return out
+    try:
+        out = _run(state)
+    except Exception as e:  # 오류도 기록 (토큰 문자열은 남기지 않음)
+        token, _ = _cfg()
+        out = {"error": f"{type(e).__name__}: {str(e).replace(token, '***')[:300]}"}
+    state["last_run"] = {"at": _now(), **{k: v for k, v in out.items() if k != "received"},
+                         "received": len(out.get("received", []))}
+    core._save_json(STATE, state)
+    return out
+
+
+def _run(state: dict) -> dict:
     out: dict = {"received": [], "sent": 0}
     first = not state.get("hello")
     if first:
@@ -232,7 +249,6 @@ def run() -> dict:
     for r in out["received"]:
         if r and r != "상태 요청":
             send(f"👌 {esc(r)}")
-    core._save_json(STATE, state)
     return out
 
 
