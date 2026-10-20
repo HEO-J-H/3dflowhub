@@ -30,6 +30,16 @@
     {
       "heading": "정량적 평가 및 성능 비교 결과",
       "body": "5개 장면의 보류된 프레임을 평균한 결과, DaFISH는 비교 대상인 모든 방법 중에서 가장 뛰어난 성능을 기록했습니다. 평균 PSNR 38.91dB, SSIM 0.9613, LPIPS 0.0582를 달성하며 우수성을 입증했습니다. 이는 가장 강력한 기존 Gaussian Splatting 베이스라인과 가장 근접한 NeRF 기반 베이스라인 모두를 능가하는 수치입니다. 결과적으로 이전 방식들에 비해 여러 시점에서 일관되게 장면을 복원해 냅니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "DaFISH는 카메라와 조명이 동시에 움직이는 촬영 환경에서 NeRF 및 3D Gaussian Splatting 파이프라인의 플러그인 형태로 통합하여 활용할 수 있습니다. 수중 탐사, 내시경 및 복강경 의료 영상, 또는 야간 플래시 촬영처럼 카메라와 광원이 고정되어 함께 이동하는 시나리오에 적용합니다. 지점별 방출 색상을 표면 알베도와 구면 조화 함수(SH) 조명 Factor로 분리하므로, 외형 불일치 문제를 해결하고 복잡한 조명 변화 속에서도 안정적인 지오메트리 및 알베도 최적화를 수행할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "기존의 NeRF 및 3D Gaussian Splatting 기반 방식들은 시점에 따라 변하는 조명을 표면 색상으로 잘못 인코딩하여 장면에 대한 정확한 복원을 어렵게 만들었습니다. 반면 DaFISH는 닫힌 형식의 SH-to-irradiance 변환을 바탕으로 훈련 파이프라인 전체를 미분 가능하도록 설계했습니다. 이를 통해 추가적인 재훈련이나 미세 조정(Fine-tuning) 과정 없이도 임의의 카메라 포즈에 대해 조명을 해석적으로 일반화하며, 연산 효율성을 유지하면서 정량적 평가에서 뛰어난 PSNR, SSIM, LPIPS 성능을 보여줍니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +50,14 @@
     {
       "q": "기존 NeRF 파이프라인과 비교해 어떤 차별점이 있나요?",
       "a": "표면 방출 색상을 알베도와 구면 조화 함수(SH) 조명 Factor로 분리하고, 재훈련 없이도 임의의 카메라 포즈에 조명을 해석적으로 일반화할 수 있는 미분 가능 훈련 파이프라인을 제공합니다."
+    },
+    {
+      "q": "DaFISH는 어떤 촬영 환경에서 가장 효과적인가요?",
+      "a": "카메라에 능동형 광원이 단단히 부착되어 함께 이동하는 환경에서 가장 효과적입니다. 어두운 환경의 카메라 플래시, 수중 차량 조명, 의료용 내시경 및 복강경 촬영처럼 시점마다 조명 방향이 변하는 상황에 적합합니다."
+    },
+    {
+      "q": "새로운 카메라 포즈에서 조명을 적용할 때 추가 훈련이 필요한가요?",
+      "a": "아니오. DaFISH는 닫힌 형식의 SH-to-irradiance 변환을 사용하여 재훈련이나 미세 조정 과정 없이도 임의의 카메라 포즈에 대해 조명을 해석적으로 일반화할 수 있습니다."
     }
   ],
   "media": {
@@ -48,5 +66,23 @@
   },
   "collected_at": "2026-10-20T01:53:51.933377+00:00",
   "notion_id": "",
-  "id": "2026-10-20-693369b2095e984e"
+  "id": "2026-10-20-693369b2095e984e",
+  "refs": [],
+  "videos": [
+    {
+      "id": "UUVSPJlwhPg",
+      "title": "NeRFactor: Neural Factorization of Shape and Reflectance Under an Unknown Illumination",
+      "author": "Xiuming Zhang"
+    },
+    {
+      "id": "UgPQRAZ5OPI",
+      "title": "Acquiring Reflectance and Shape from Continuous Spherical Harmonic Illumination",
+      "author": "ICT Vision and Graphics Lab"
+    }
+  ],
+  "enriched_at": "2026-10-20T14:58:08+00:00",
+  "quality": {
+    "before": 1085,
+    "after": 1673
+  }
 }
