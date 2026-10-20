@@ -417,6 +417,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .mp-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font:600 13px/1.3 ui-monospace,Consolas,monospace}
 .mp-chip.last{border-color:var(--accent,#4f8cff);color:var(--accent,#4f8cff)}
 .mp-arr{opacity:.5;font-weight:700}
+.toolcard{margin:12px 0 18px}.toolcard img{width:100%;height:auto;max-height:320px;object-fit:cover;border-radius:14px;display:block}
 .refs{padding-left:20px}.refs li{margin:6px 0}.refs .k{font-size:12px;opacity:.7}
 .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:14px}
 .scard{display:grid;gap:4px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);text-decoration:none}
@@ -1036,7 +1037,7 @@ def post_head(p: dict) -> str:
         "@context": "https://schema.org", "@type": "BlogPosting",
         "headline": p["title_ko"][:110], "description": (p.get("summary") or "")[:300],
         "datePublished": date, "dateModified": date, "inLanguage": "ko-KR",
-        "mainEntityOfPage": url, "url": url, **({"image": [img]} if img else {}),
+        "mainEntityOfPage": url, "url": url, "image": [img or f"{BASE_URL}/{fallback_thumb(p)}"],
         "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"},
         "publisher": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"},
         "articleSection": f"{p['domain']} › {p.get('category') or '기타'}",
@@ -1071,6 +1072,9 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
     tip = core.tips().get("p:" + p["id"])
     if m.get("image"):
         parts.append(core.image_figure(m["image"], p["url"], p["title_ko"]))
+    elif not core.VIDEO_RE.search(m.get("video") or ""):  # 원문 이미지·영상이 없으면 도구 카드로 첫 화면을 채움
+        parts.append(f'<figure class="toolcard"><img src="{root}{fallback_thumb(p)}" '
+                     f'alt="{e(p.get("category") or p["domain"])}" width="1200" height="630"></figure>')
     if (v := core.VIDEO_RE.search(m.get("video") or "")):
         src = f"https://www.youtube.com/embed/{v.group(1)}" if v.group(1) else f"https://player.vimeo.com/video/{v.group(2)}"
         parts.append(f'<div class="video"><iframe src="{src}" allowfullscreen loading="lazy"></iframe></div>')
