@@ -30,6 +30,21 @@
     {
       "heading": "폴리스플라인 편집 및 인터페이스 정비",
       "body": "포인트 선택 모드에서의 PolySpline CV 편집 기능이 추가되어 자유로운 형태 수정이 가능해졌습니다. 메시 스냅 시각화 기능, 사용자 정의 가능한 에지 색상, 색상 조절이 가능한 맷캡이 도입되었습니다. 아웃라이너, 패널, 기즈모 전반에 걸쳐 다양한 인터페이스 개선 작업도 함께 이루어졌습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Plasticity 2026.2의 새로운 Assets 탭과 제약 시스템은 기계 하드브러시 모델링 작업 흐름을 크게 단축합니다. Outliner에서 볼트나 자주 쓰는 기계 파트를 Assets로 마킹해 두고, 뷰포트로 직접 드래그하여 배치하면 반복적인 조립 작업이 매우 빨라집니다. 다만 Studio 전용 제약 시스템은 현재 파일 저장 시 제약 조건이 유지되지 않으므로, 작업 중간에 세이브할 때 이 점을 유의하고 최종 확정 단계에서 형태를 점검해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "초기 버전부터 개발 단계에 참여한 아티스트들은 CAD 기반의 정밀함과 익숙한 폴리곤 작업 흐름의 결합에 주목하고 있습니다 [1]. 특히 향후 Blender 브리지 등의 확장 가능성에 대한 기대를 드러내고 있으며, CAD NURBS 모델링을 게임 에셋이나 하드서브스 페인팅 파이프라인에 도입하려는 실무자들의 관심이 높습니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Plasticity를 처음 접한다면 공식 튜토리얼인 'Plasticity | CAD Precision Modeling [Tutorial for Beginners]'과 'Learn Plasticity From ZERO! Beginners 3D Modeling Tutorial'을 차례로 시청하는 것이 좋습니다. 기존 폴리곤 중심의 DCC 툴과 다른 곡선 및 서피스 제어 방식을 익히고, 이번에 추가된 Edge Align과 곡률 분석 Shader 기능을 실습해 보면 Class A 스타일의 매끄러운 표면 정렬 감각을 빠르게 익힐 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +55,14 @@
     {
       "q": "새로 도입된 에셋 시스템은 어떻게 활용하나요?",
       "a": "Outliner의 새로운 Assets 탭을 통해 볼트 같은 기계 부품을 마킹하고 공유하여 뷰포트로 직접 드래그해 사용할 수 있습니다."
+    },
+    {
+      "q": "Studio 버전 전용인 제약 시스템의 제약 조건은 파일 저장 시 유지되나요?",
+      "a": "아니요, 현재 버전을 기준으로 파일 저장 시 제약 조건은 저장되지 않습니다. 따라서 작업 중에 이 점을 염두에 두고 모델링을 진행해야 합니다."
+    },
+    {
+      "q": "새로 추가된 곡률 분석 Shader는 어떤 모드들을 지원하나요?",
+      "a": "Gaussian, 평균, 최대 모드를 지원하여 모델의 표면 상태와 에지 흐름을 정밀하게 파악할 수 있도록 돕습니다."
     }
   ],
   "media": {
@@ -48,5 +71,31 @@
   },
   "collected_at": "2026-10-20T10:45:01.352013+00:00",
   "notion_id": "",
-  "id": "2026-10-20-9f211562a2f0783c"
+  "id": "2026-10-20-9f211562a2f0783c",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Plasticity CAD $ Nurbs",
+      "url": "https://blenderartists.org/t/plasticity-cad-nurbs/1458631",
+      "excerpt": "Plasticity 1.0 is finally here! https://www.youtube.com/watch Plasticity 1.0 is finally here! swatty_purple screenshot I love this software, I was beta testing it for months and Nick the developer has plans for a Plasticity/Blender bridge in the future, which you can see in the video.",
+      "replies": 211
+    }
+  ],
+  "videos": [
+    {
+      "id": "0kQJvNmcV20",
+      "title": "Plasticity | CAD Precision Modeling [Tutorial for Beginners]",
+      "author": "LearnPlasticity (by Nikita Kapustin)"
+    },
+    {
+      "id": "uxdFfrabKA4",
+      "title": "Learn Plasticity From ZERO! Beginners 3D Modeling Tutorial",
+      "author": "TAKE REFUGE 3D"
+    }
+  ],
+  "enriched_at": "2026-10-20T11:25:25+00:00",
+  "quality": {
+    "before": 869,
+    "after": 1608
+  }
 }

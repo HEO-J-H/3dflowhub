@@ -30,6 +30,16 @@
     {
       "heading": "학습 시간 정규화 전략",
       "body": "두 번째 전략으로는 학습 과정에서의 과적합을 억제하면서 동적 씬의 안정성을 보존하기 위한 모션 인식 드롭아웃(Motion-aware dropout)과 조기 종료(Early stopping) 기법을 적용했습니다. 복잡한 움직임이 포함된 Volumetric 비디오 데이터에서도 렌더링 아티팩트를 줄이고 시간적 일관성을 유지할 수 있도록 설계되었습니다. 이 정규화 기법들은 훈련 과정 전체에서 Gaussian 파라미터가 비정상적으로 발산하는 현상을 효과적으로 방지합니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "희소 뷰 기반의 3D Gaussian Splatting(3DGS) 파이프라인을 실무에 도입할 때는 카메라 센서의 제약으로 뷰가 부족한 촬영 환경에 적용할 수 있습니다. 예를 들어 스튜디오에서 다중 카메라를 촘촘하게 배치하기 어렵거나 모바일 기기로 제한된 각도에서 촬영한 데이터셋을 다룰 때 본 연구의 광학 흐름(Optical Flow) 기반 의사 뷰 합성 기법을 워크플로우에 통합해 보세요. 조인트 카메라-씬 최적화 단계를 거치면 적은 소스 이미지로도 렌더링 품질을 크게 높일 수 있으며, 모션 인식 드롭아웃과 조기 종료 설정을 통해 과적합으로 인한 아티팩트를 효과적으로 억제할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이 연구의 접근법을 3D Gaussian Splatting 학습에 응용하려면 먼저 최신 3DGS 기본 리포지토리와 PyTorch 기반의 딥러닝 학습 환경을 구축해야 합니다. 광학 흐름 추정을 위한 라이브러리와 동적 씬 처리를 위한 데이터 로더 설정을 확인하고, 퓨샷 학습 관점에서 Gaussian Primitive를 뉴런으로 다루는 정규화 파라미터를 소스 코드에서 조정해 보세요. SIGGRAPH Asia Volumetric 비디오 챌린지 윈너 페이퍼의 공식 구현체나 관련 오픈소스 벤치마크 코드를 참조하여 소스 뷰가 제한된 테스트 씬에서 직접 학습을 테스트하는 것이 가장 빠른 학습 방법입니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "실무 적용 시 어떤 분야에 유용한가요?",
       "a": "적은 수의 카메라로 고품질 3D 재구성이 필요한 AR/VR, 실시간 커뮤니케이션, Volumetric 비디오 제작 및 가상 프로덕션 파이프라인에 유용합니다."
+    },
+    {
+      "q": "희소 뷰 3D Gaussian Splatting 학습 시 가장 흔히 발생하는 문제는 무엇인가요?",
+      "a": "카메라 시점이 부족하면 3D 공간을 재구성할 때 과적합(Overfitting)과 기하학적 저하(Geometric degradation)가 발생하여 새로운 시점에서 렌더링할 때 심각한 아티팩트가 나타납니다."
+    },
+    {
+      "q": "동적 씬 데이터에서 렌더링 아티팩트를 줄이려면 어떤 정규화 기법이 필요한가요?",
+      "a": "모션 인식 드롭아웃(Motion-aware dropout)과 조기 종료(Early stopping) 기법을 함께 적용하여 훈련 과정에서 파라미터가 비정상적으로 발산하는 것을 막고 시간적 일관성을 유지할 수 있습니다."
     }
   ],
   "media": {
@@ -52,5 +70,23 @@
   },
   "collected_at": "2026-10-20T03:44:22.499744+00:00",
   "notion_id": "",
-  "id": "2026-10-20-56ed426787fe6a9c"
+  "id": "2026-10-20-56ed426787fe6a9c",
+  "refs": [],
+  "videos": [
+    {
+      "id": "j7Lb6k3dXCE",
+      "title": "[CVPR2026] TWINGS: Thin Plate Splines Warp aligned Initialization for Sparse View Gaussian Splatting",
+      "author": "Kim Hyeseong"
+    },
+    {
+      "id": "9GXaK05DBvE",
+      "title": "[CVPR] Rethinking Pose Refinement in 3D Gaussian Splatting under Two Uncertainties",
+      "author": "Mangyu Kong"
+    }
+  ],
+  "enriched_at": "2026-10-20T11:25:29+00:00",
+  "quality": {
+    "before": 1129,
+    "after": 1793
+  }
 }
