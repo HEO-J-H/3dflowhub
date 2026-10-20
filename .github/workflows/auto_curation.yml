@@ -94,6 +94,15 @@ jobs:
           path: drafts/*.html
           if-no-files-found: ignore
 
+      - name: Telegram — receive phone decisions, send new PRs/proposals/alerts, morning summary
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python notify.py || true
+
       - name: Apply PR decisions from the dashboard (Pix2Poly)
         id: decisions
         if: always()
