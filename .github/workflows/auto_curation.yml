@@ -103,6 +103,14 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python notify.py || true
 
+      - name: FSS key type check (once)
+        if: always()
+        env:
+          FSS_API_KEY: ${{ secrets.FSS_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python fss.py || true
+
       - name: Apply PR decisions from the dashboard (Pix2Poly)
         id: decisions
         if: always()
