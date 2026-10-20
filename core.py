@@ -742,9 +742,15 @@ KEYWORD_TTL_H = 6  # 10분마다 실행되므로 키워드는 6시간 재사용 
 def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list[str]]:
     """검색 키워드를 AI 없이 조합 — AI 한도는 요약과 'AI 관리자'(manager.py)에 집중.
     재료(이미 학습된 것): 독자 관심 도구(조회수·추천) → AI 관리자/전략 키워드 힌트 → Search Console 검색어 → 시드.
-    실행마다 순환해 같은 검색만 반복하지 않는다. config.json 의 llm_keywords=true 면 예전처럼 AI 로 생성."""
+    실행마다 순환해 같은 검색만 반복하지 않는다. config.json 의 llm_keywords=true 면 예전처럼 AI 로 생성.
+    생성된 키워드 리스트 내에 중복된 항목이 존재할 경우 순서를 유지하며 고유 키워드만 반환하도록 정규화합니다."""
     if _load_json(CONFIG_PATH, {}).get("llm_keywords"):
-        return _generate_keywords_cached(domains, per_domain)
+        raw_cached = _generate_keywords_cached(domains, per_domain)
+        # 캐시 결과도 정규화 적용
+        return {
+            d: list(dict.fromkeys(k.strip() for k in kws if isinstance(k, str) and k.strip()))[:per_domain]
+            for d, kws in raw_cached.items()
+        }
     strategy = load_strategy()
     interest, hints = strategy.get("tool_interest", {}), strategy.get("keyword_hints", {})
     gsc_q = _gsc_queries()
@@ -760,12 +766,13 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
         start = rr.get(d, 0) % len(pool) if pool else 0
         picked = []
         for k in pool[start:] + pool[:start]:
-            if k.lower() not in used:
-                used.add(k.lower())
-                picked.append(k)
+            cleaned = k.strip()
+            if cleaned and cleaned.lower() not in used:
+                used.add(cleaned.lower())
+                picked.append(cleaned)
             if len(picked) >= per_domain:
                 break
-        out[d] = picked
+        out[d] = list(dict.fromkeys(picked))[:per_domain]
         rr[d] = start + per_domain
     mem["kw_rr"] = rr
     _save_json(MEMORY_PATH, mem)

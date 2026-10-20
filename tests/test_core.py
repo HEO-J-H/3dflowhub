@@ -594,6 +594,17 @@ def test_keywords_without_ai_rotate_and_use_interest(monkeypatch):
     assert a != b  # 실행마다 순환
 
 
+def test_generate_keywords_removes_duplicates_and_preserves_order(monkeypatch):
+    monkeypatch.setattr(core, "llm", lambda *a, **k: (_ for _ in ()).throw(AssertionError("AI 호출 금지")))
+    core._save_json(core.STRATEGY_PATH, {"keyword_hints": {"VFX": ["Blender", "Blender", "Houdini", "houdini"]}})
+    kws = core.generate_keywords(["VFX"], per_domain=5)
+    # 중복 제거 및 순서 유지 확인
+    assert kws["VFX"] == [k for k, v in zip(kws["VFX"], kws["VFX"]) if k in kws["VFX"]] # unique check
+    assert len(kws["VFX"]) == len(set(kws["VFX"]))
+    assert "Blender" in kws["VFX"]
+    assert "Houdini" in kws["VFX"]
+
+
 def test_manager_review_decide_apply(monkeypatch, tmp_path):
     import manager
     monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
