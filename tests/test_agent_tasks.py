@@ -47,3 +47,16 @@ def test_target_risk_split_and_files(monkeypatch):
 def test_home_repo_never_needs_approval(monkeypatch):
     monkeypatch.setattr(agents, "AUTO_MERGE", None)
     assert not agents.needs_approval(["core.py"])
+
+
+def test_pr_decision_recorded_and_skipped_without_token(tmp_path, monkeypatch):
+    monkeypatch.setattr(agents, "decisions_path", lambda site: tmp_path / "pr_decisions.json")
+    monkeypatch.delenv("PIX2POLY_TOKEN", raising=False)
+    agents.record_decision("pix2poly", 1, "revise", "실제 엔진 호출까지 구현")
+    import core
+    items = core._load_json(tmp_path / "pr_decisions.json", [])
+    assert items[-1]["pr"] == 1 and items[-1]["v"] == "revise" and items[-1]["done"] is None
+    assert agents.apply_pr_decisions("pix2poly") == []  # 토큰 없으면 아무것도 안 함 (기록은 남음)
+    import pytest
+    with pytest.raises(AssertionError):
+        agents.record_decision("pix2poly", 1, "merge-now")

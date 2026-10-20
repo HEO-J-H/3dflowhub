@@ -119,6 +119,51 @@ def _gh(repo: str, path: str) -> list | dict:
         return []
 
 
+def pr_review_card(site_id: str, repo: str, p: dict) -> None:
+    """사람이 판단할 수 있게: 바뀐 파일·실제 코드·테스트·충돌 + 승인/거절/수정 요청 버튼."""
+    import agents
+    n = p["number"]
+    detail = _gh(repo, f"pulls/{n}")
+    files = [f for f in _gh(repo, f"pulls/{n}/files") if isinstance(f, dict)]
+    checks = (_gh(repo, f"commits/{p['head']['sha']}/check-runs") or {})
+    runs = checks.get("check_runs", []) if isinstance(checks, dict) else []
+    pending = [d for d in core._load_json(agents.decisions_path(site_id), []) if d["pr"] == n and not d.get("done")]
+    with st.container(border=True):
+        st.markdown(f"**[#{n}]({p['html_url']}) {p['title'].removeprefix('agent: ').strip()}**")
+        mstate = detail.get("mergeable_state") if isinstance(detail, dict) else ""
+        test_ok = [r for r in runs if r.get("name") == "pytest"]
+        c = st.columns(4)
+        c[0].metric("바뀐 파일", f"{len(files)}개")
+        c[1].metric("추가/삭제", f"+{sum(f['additions'] for f in files)} / -{sum(f['deletions'] for f in files)}")
+        c[2].metric("테스트", {"success": "✅ 통과", "failure": "❌ 실패"}.get(
+            (test_ok[0] if test_ok else {}).get("conclusion"), "⏳/없음"))
+        c[3].metric("머지 가능", {"clean": "✅ 가능", "dirty": "⚠️ 충돌", "unstable": "⚠️ 검사 실패"}.get(mstate, mstate or "-"))
+        if mstate == "dirty":
+            st.warning("main 과 충돌합니다. 승인하면 이 PR 은 닫고, 에이전트가 최신 코드 기준으로 같은 변경을 다시 만듭니다.")
+        st.markdown("**무엇이 바뀌었나**  \n" + "  \n".join(
+            f"`{f['filename']}` (+{f['additions']} / -{f['deletions']})" for f in files if not f["filename"].startswith(".agent/")))
+        with st.expander("실제 코드 변경 보기 (diff)"):
+            for f in files:
+                if f.get("patch") and not f["filename"].startswith(".agent/"):
+                    st.caption(f["filename"])
+                    st.code(f["patch"][:6000], language="diff")
+        if pending:
+            st.info(f"⏳ '{agents.DECISIONS[pending[-1]['v']]}' 결정을 기록했습니다 — 10분 안에 GitHub 에 반영됩니다.")
+            return
+        note = st.text_input("메모 (거절 사유·수정 요청 내용)", key=f"prn_{site_id}_{n}",
+                             placeholder="예: 엔진 이름만 추가됨 — 실제 img2threejs 호출과 결과 파일까지 구현해 줘")
+        b = st.columns(3)
+        for col, (v, label, kind) in zip(b, (("approve", "✅ 승인 (머지)", "primary"), ("revise", "✏️ 수정 요청", "secondary"),
+                                              ("reject", "❌ 거절 (닫기)", "secondary"))):
+            if col.button(label, key=f"pr_{v}_{site_id}_{n}", type=kind, width="stretch"):
+                if v == "revise" and not note.strip():
+                    st.error("수정 요청은 무엇을 고칠지 메모를 적어 주세요.")
+                    continue
+                agents.record_decision(site_id, n, v, note)
+                _sync([f"memory/sites/{site_id}/pr_decisions.json"], f"PR #{n} {agents.DECISIONS[v]}")
+                st.rerun()
+
+
 def render_tool(site_id: str) -> None:
     """코드 저장소형 사이트(예: 🧱 Pix2Poly): 코딩 에이전트 결과·승인 대기 PR·테스트 상태·기술 동향 제안."""
     s = sites.SITES[site_id]
@@ -140,10 +185,11 @@ def render_tool(site_id: str) -> None:
         m[2].metric("결정 대기 제안", sum(1 for x in manager.board()["proposals"] if x["status"] == "new" and _site_of(x) == site_id))
         m[3].metric("자동 처리(최근)", sum(1 for r in agent_runs[-10:] if r["result"] == "merged"))
         if waiting:
-            st.subheader("🔀 승인 대기 PR — 파이프라인 핵심 코드 변경")
-            st.caption("테스트는 통과했지만 핵심 코드라 사람이 확인 후 GitHub 에서 머지합니다 (원하지 않으면 닫기).")
+            st.subheader(f"🔀 승인 대기 PR ({len(waiting)}) — 파이프라인 핵심 코드 변경")
+            st.caption("테스트는 통과했지만 핵심 코드라 사람이 결정합니다. 아래 '무엇이 바뀌었나'를 보고 누르세요 — "
+                       "결정은 10분 안에 GitHub 에 반영됩니다 (승인=머지, 거절=닫기, 수정 요청=메모대로 에이전트가 다시 작업).")
             for p in waiting:
-                st.markdown(f"- [#{p['number']} {p['title']}]({p['html_url']}) · {_kst(p['created_at'])}")
+                pr_review_card(site_id, s["repo"], p)
         st.subheader("✅ 결정할 일")
         st.caption("수락하면 코딩 에이전트가 매일 03:19 처리합니다 — 테스트·문서·화면은 자동 머지, 핵심 코드는 위의 승인 대기 PR 로.")
         proposals_block(site_id, "today")

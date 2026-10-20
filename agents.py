@@ -321,6 +321,88 @@ def record_target_run(task: str, result: str, msg: str) -> None:
     core._save_json(path, runs[-50:])
 
 
+# ─────────────────────────── 사람의 PR 결정 반영 (현황판 → GitHub) ───────────────────────────
+DECISIONS = {"approve": "승인(머지)", "reject": "거절(닫기)", "revise": "수정 요청"}
+
+
+def decisions_path(site: str) -> Path:
+    return Path(__file__).parent / "memory" / "sites" / site / "pr_decisions.json"
+
+
+def record_decision(site: str, number: int, v: str, note: str = "") -> None:
+    """현황판에서 누른 결정을 기록만 한다 (현황판에는 GitHub 쓰기 토큰이 없음 — 실제 처리는 apply_pr_decisions)."""
+    assert v in DECISIONS
+    path = decisions_path(site)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    items = core._load_json(path, [])
+    items.append({"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "pr": int(number), "v": v,
+                  "note": note.strip()[:500], "done": None})
+    core._save_json(path, items[-100:])
+
+
+def apply_pr_decisions(site: str) -> list[str]:
+    """기록된 결정을 GitHub 에 반영: 승인 → 스쿼시 머지(충돌이면 에이전트에 다시 맡김), 거절 → 닫기,
+    수정 요청 → 메모를 새 과제로 등록하고 PR 닫기. 10분 수집 워크플로가 호출 (AI 사용 없음)."""
+    cfg = TARGETS[site]
+    token = os.getenv(cfg["token_env"])
+    path = decisions_path(site)
+    items = core._load_json(path, [])
+    todo_ = [x for x in items if not x.get("done")]
+    if not token or not todo_:
+        return []
+    api = f"https://api.github.com/repos/{cfg['repo']}"
+    h = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
+
+    def comment(n: int, text: str) -> None:
+        requests.post(f"{api}/issues/{n}/comments", headers=h, timeout=30, json={"body": text})
+
+    def close(n: int) -> bool:
+        return requests.patch(f"{api}/pulls/{n}", headers=h, timeout=30, json={"state": "closed"}).ok
+
+    def requeue(n: int, title: str, note: str) -> None:
+        r = requests.get(f"{api}/contents/{cfg['todo']}", headers=h, timeout=30)
+        if not r.ok:
+            return
+        import base64
+        cur = r.json()
+        text = base64.b64decode(cur["content"]).decode("utf-8").rstrip("\n")
+        task = re.sub(r"^agent:\s*", "", title)
+        text += f"\n- [ ] (agent) PR #{n} 다시 하기 — {task[:120]} · 사람 요청: {note[:200]}\n"
+        requests.put(f"{api}/contents/{cfg['todo']}", headers=h, timeout=30, json={
+            "message": f"chore(agent): PR #{n} 수정 요청을 과제로 [skip ci]", "sha": cur["sha"],
+            "content": base64.b64encode(text.encode("utf-8")).decode()})
+
+    done = []
+    for x in todo_:
+        n = x["pr"]
+        pr = requests.get(f"{api}/pulls/{n}", headers=h, timeout=30).json()
+        if pr.get("state") != "open":
+            x["done"], x["result"] = datetime.now(timezone.utc).isoformat(timespec="seconds"), "이미 닫힌 PR"
+            continue
+        if x["v"] == "approve":
+            m = requests.put(f"{api}/pulls/{n}/merge", headers=h, timeout=30, json={"merge_method": "squash"})
+            if m.ok:
+                requests.delete(f"{api}/git/refs/heads/{pr['head']['ref']}", headers=h, timeout=30)
+                result = "머지 완료"
+            else:  # 충돌 등 — 에이전트가 최신 main 에서 다시 만들도록
+                comment(n, f"사람이 승인했지만 머지할 수 없어 닫고 에이전트에 다시 맡깁니다: {m.text[:200]}")
+                requeue(n, pr.get("title", ""), "승인됨 — 최신 main 기준으로 같은 변경을 다시 만들기")
+                close(n)
+                result = "머지 불가(충돌) → 다시 작업 과제로"
+        elif x["v"] == "reject":
+            comment(n, "사람이 거절했습니다" + (f": {x['note']}" if x.get("note") else "."))
+            result = "닫음" if close(n) else "닫기 실패"
+        else:
+            comment(n, f"수정 요청: {x.get('note') or '(메모 없음)'} — 이 PR 은 닫고 새 과제로 다시 만듭니다.")
+            requeue(n, pr.get("title", ""), x.get("note") or "")
+            close(n)
+            result = "수정 요청 → 새 과제"
+        x["done"], x["result"] = datetime.now(timezone.utc).isoformat(timespec="seconds"), result
+        done.append(f"PR #{n} {DECISIONS[x['v']]}: {result}")
+    core._save_json(path, items)
+    return done
+
+
 # ─────────────────────────── 메인 루프 ───────────────────────────
 def main() -> None:
     queued = queue_manager_tasks()
@@ -384,6 +466,9 @@ def main() -> None:
 
 if __name__ == "__main__":
     import sys
+    if "--apply-decisions" in sys.argv:  # 10분 워크플로: 사람의 PR 결정만 반영하고 끝 (AI 사용 없음)
+        print(apply_pr_decisions(sys.argv[sys.argv.index("--apply-decisions") + 1]))
+        raise SystemExit(0)
     if "--target" in sys.argv:
         try:
             configure_target(sys.argv[sys.argv.index("--target") + 1])

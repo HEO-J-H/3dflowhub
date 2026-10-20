@@ -94,6 +94,12 @@ jobs:
           path: drafts/*.html
           if-no-files-found: ignore
 
+      - name: Apply PR decisions from the dashboard (Pix2Poly)
+        if: always()
+        env:
+          PIX2POLY_TOKEN: ${{ secrets.PIX2POLY_TOKEN }}
+        run: python agents.py --apply-decisions pix2poly || true
+
       - name: Commit memory & drafts
         if: always()
         env:
