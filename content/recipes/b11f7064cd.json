@@ -1,0 +1,54 @@
+{
+  "id": "b11f7064cd",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "host": "Blender",
+  "lang": "python",
+  "title": "AI 3D 메시 정리 및 최적화 애드온",
+  "problem": "AI 생성 3D 모델이나 외부 에셋을 가져올 때 발생하는 회전/스케일 불일치와 불필요한 데이터를 자동으로 정리합니다. 수동으로 반복해야 하는 전처리 작업을 줄여 작업 시간을 아낍니다.",
+  "pipeline": [
+    {
+      "tool": "Blender Selection",
+      "action": "선택된 메시 객체 확인"
+    },
+    {
+      "tool": "Transform Apply",
+      "action": "선택된 객체의 회전 및 스케일 적용"
+    },
+    {
+      "tool": "Mesh Cleanup",
+      "action": "고립된 정점 및 중복 데이터 제거"
+    },
+    {
+      "tool": "Origin Center",
+      "action": "객체 원점을 지오메트리 중심 이동"
+    }
+  ],
+  "script": "bl_info = {\n    \"name\": \"AI Mesh Cleanup Tool\",\n    \"author\": \"3dflowhub\",\n    \"version\": (1, 0, 0),\n    \"blender\": (3, 0, 0),\n    \"location\": \"View3D > Sidebar > 3D FlowHub\",\n    \"description\": \"Clean up and prepare AI generated meshes for production\",\n    \"category\": \"Object\",\n};\n\nimport bpy\n\nclass OBJECT_OT_ai_mesh_cleanup(bpy.types.Operator):\n    \"\"\"Apply transforms, remove loose geometry, and center origin\"\"\"\n    bl_idname = \"object.ai_mesh_cleanup\"\n    bl_label = \"Clean Up AI Meshes\"\n    bl_options = {'REGISTER', 'UNDO'}\n\n    def execute(self, context):\n        selected_objects = [obj for obj in context.selected_objects if obj.type == 'MESH']\n        \n        if not selected_objects:\n        \n            self.report({'WARNING'}, \"No mesh objects selected\")\n            return {'CANCELLED'}\n\n        for obj in selected_objects:\n            context.view_layer.objects.active = obj\n            \n            # Apply rotation and scale\n            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)\n            \n            # Switch to edit mode for mesh cleanup\n            bpy.ops.object.mode_set(mode='EDIT')\n            \n            # Remove loose geometry\n            bpy.ops.mesh.delete_loose()\n            \n            # Remove doubles (merge by distance)\n            bpy.ops.mesh.remove_doubles(threshold=0.0001)\n            \n            # Switch back to object mode\n            bpy.ops.object.mode_set(mode='OBJECT')\n            \n            # Set origin to geometry center\n            bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')\n\n        self.report({'INFO'}, f\"Successfully cleaned {len(selected_objects)} mesh(es).\")\n        return {'FINISHED'}\n\nclass VIEW3D_PT_ai_mesh_cleanup_panel(bpy.types.Panel):\n    bl_label = \"3D FlowHub Cleanup\"\n    bl_idname = \"VIEW3D_PT_ai_mesh_cleanup\"\n    bl_space_type = 'VIEW_3D'\n    bl_region_type = 'UI'\n    bl_category = \"3D FlowHub\"\n\n    def draw(self, context):\n        layout = self.layout\n        layout.operator(\"object.ai_mesh_cleanup\")\n\nclasses = (\n    OBJECT_OT_ai_mesh_cleanup,\n    VIEW3D_PT_ai_mesh_cleanup_panel,\n)\n\ndef register():\n    for cls in classes:\n        bpy.utils.register_class(cls)\n\ndef unregister():\n    for cls in classes:\n        bpy.utils.unregister_class(cls)\n\nif __name__ == \"__main__\":\n    register()",
+  "install": [
+    "위 Script 코드를 복사하여 ai_mesh_cleanup.py 파일로 저장합니다.",
+    "Blender를 실행하고 Edit > Preferences > Add-ons 메뉴로 이동합니다.",
+    "Install 버튼을 눌러 저장한 Python 파일을 선택하고 활성화합니다."
+  ],
+  "usage": [
+    "정리할 메시 객체들을 3D 뷰포트에서 선택합니다.",
+    "N 키를 눌러 사이드바를 열고 3D FlowHub 탭을 클릭합니다.",
+    "Clean Up AI Meshes 버튼을 눌러 변환 및 정리를 실행합니다."
+  ],
+  "limits": [
+    "메시 타입의 객체에만 작동하며 커브나 볼륨 데이터는 처리하지 않습니다.",
+    "네트워크나 외부 AI API 연동 없이 로컬 씬 데이터만 수정합니다."
+  ],
+  "sources": [
+    "2026-10-20-3ac4e2fb64b9cdb0",
+    "2026-10-20-117efd8a46ad65f6"
+  ],
+  "expect": [
+    "transforms_applied",
+    "no_loose_verts",
+    "no_duplicate_verts",
+    "keeps_objects"
+  ],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-20T23:08:24+00:00"
+}
