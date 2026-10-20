@@ -49,7 +49,8 @@ def test_new_only_once():
     assert notify._new(st, "pr:x:1") and not notify._new(st, "pr:x:1")
 
 
-def test_disabled_without_secrets(monkeypatch):
+def test_disabled_without_secrets(monkeypatch, tmp_path):
+    monkeypatch.setattr(notify, "STATE", tmp_path / "telegram.json")  # 실제 기록 파일은 건드리지 않음
     monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
     assert "skipped" in notify.run()
 
