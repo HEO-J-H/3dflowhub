@@ -40,11 +40,38 @@ CATEGORY_FILES = {"콘텐츠": {"guides.py", "evolve.py"}, "수집": {"core.py"}
 PROPOSAL_TAG = re.compile(r"\[(p-[0-9a-f]{10})\|([^\]]+)\]")
 
 
+GUIDE_TAG = re.compile(r"\[guide:([\w-]+)\]")
+GUIDE_DIR = "docs/agent-guides"
+
+
+def guide_for(task: str) -> tuple[str, str]:
+    """과제의 [guide:이름] → (경로, 내용). 다른 저장소(target)에서만, 없으면 ("", "")."""
+    m = GUIDE_TAG.search(task)
+    if not (TARGET and m):
+        return "", ""
+    rel = f"{GUIDE_DIR}/{m.group(1)}.md"
+    path = ROOT / rel
+    return (rel, path.read_text(encoding="utf-8")) if path.exists() else ("", "")
+
+
+def append_guide_lesson(task: str, result: str, lesson: str) -> str:
+    """가이드 맨 아래 '진행 기록·배운 점'에 한 줄 추가 — 가이드가 작업할수록 자란다. 바꾼 파일 경로 반환."""
+    rel, text = guide_for(task)
+    if not rel or not lesson.strip():
+        return ""
+    head = re.sub(r"\s+", " ", GUIDE_TAG.sub("", task)).strip()[:60]
+    line = f"- {datetime.now():%Y-%m-%d} [{result}] {head}: {re.sub(r'\s+', ' ', lesson).strip()[:200]}"
+    (ROOT / rel).write_text(text.rstrip("\n") + "\n" + line + "\n", encoding="utf-8")
+    return rel
+
+
 def files_for(task: str) -> set[str]:
     """작업별 수정 가능 파일: 관리자 제안이면 그 분류의 파일 + 테스트, 아니면 기본 EDITABLE."""
     if TARGET:  # 다른 저장소: 과제 글에 나온 파일(경로·이름) + 테스트, 없으면 기본 파일
         named = {f for f in EDITABLE if f in task or Path(f).stem in task}
-        return (named or set(TARGET["default_files"])) | set(TARGET["always"])
+        new = {p for p in re.findall(r"[\w./-]+\.(?:py|md|html|js|css)", task)
+               if p.startswith(TARGET["allowed"]) and ".." not in p}
+        return (named | new or set(TARGET["default_files"])) | set(TARGET["always"])
     m = PROPOSAL_TAG.search(task)
     if not m:
         return set(EDITABLE)
@@ -166,7 +193,9 @@ def next_task() -> str | None:
     """AI 관리자 제안(사람이 수락한 일)을 먼저, 그다음 에이전트 스스로 만든 과제."""
     tasks = [l[len("- [ ] (agent)"):].strip() for l in TODO.read_text(encoding="utf-8").splitlines()
              if l.startswith("- [ ] (agent)")]
-    return next((t for t in tasks if PROPOSAL_TAG.search(t)), tasks[0] if tasks else None)
+    # 가이드가 있는 과제(사람이 설계를 정해 둔 단계) → 사람이 수락한 제안 → 에이전트가 스스로 만든 과제
+    return next((t for t in tasks if GUIDE_TAG.search(t)),
+                next((t for t in tasks if PROPOSAL_TAG.search(t)), tasks[0] if tasks else None))
 
 
 def propose_tasks(max_tasks: int = 3) -> list[str]:
@@ -209,8 +238,11 @@ def coder(task: str, feedback: str) -> list[dict]:
     editable = files_for(task)
     files = "\n\n".join(f"### {f}\n```python\n{(ROOT / f).read_text(encoding='utf-8') if (ROOT / f).exists() else '# (new file)'}\n```"
                         for f in sorted(editable))
+    _g_rel, guide = guide_for(task)
     prompt = (
-        f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
+        (f"DESIGN GUIDE ({_g_rel}) — follow it exactly, including its '하지 말 것' and the progress log:\n{guide[:7000]}\n\n"
+         if guide else "")
+        + f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
         f"Reviewer/Judge feedback from last iteration: {feedback or 'none'}\n\n{files}\n\n"
         "Output ONLY edit blocks in this exact format (no JSON, no markdown fences):\n"
         "<<<FILE path/to/file.py\n<<<SEARCH\nexact existing lines\n===\nreplacement lines\n>>>END\n\n"
@@ -366,7 +398,9 @@ def apply_pr_decisions(site: str) -> list[str]:
         import base64
         cur = r.json()
         text = base64.b64decode(cur["content"]).decode("utf-8").rstrip("\n")
-        task = re.sub(r"^agent:\s*", "", title)
+        if re.search(rf"^- \[ \] \(agent\)[^\n]*PR #{n}\b", text, re.M):
+            return  # 사람이 이미 이 PR 을 대체하는 과제(가이드 단계 등)를 적어 둠
+        task = PROPOSAL_TAG.sub("", re.sub(r"^agent:\s*", "", title)).strip()
         text += f"\n- [ ] (agent) PR #{n} 다시 하기 — {task[:120]} · 사람 요청: {note[:200]}\n"
         requests.put(f"{api}/contents/{cfg['todo']}", headers=h, timeout=30, json={
             "message": f"chore(agent): PR #{n} 수정 요청을 과제로 [skip ci]", "sha": cur["sha"],
@@ -454,6 +488,10 @@ def main() -> None:
         print("보류 처리:\n" + "\n".join(log))
     if TARGET:  # 다른 저장소: TODO 표시 변경을 그 저장소 main 에 바로 반영, 본사에 결과 기록
         sh("git", "pull", "-q", "--rebase", "origin", "main", check=False)
+        g_rel = append_guide_lesson(task, "완료" if merged else "승인대기" if pending else "보류",
+                                    lesson or (log[-1] if log else ""))
+        if g_rel:
+            sh("git", "add", g_rel, check=False)
         sh("git", "add", str(TODO.relative_to(ROOT)), check=False)
         sh("git", "commit", "-q", "-m", "chore(agent): 과제 상태 [skip ci]", check=False)
         sh("git", "push", "-q", "origin", "HEAD:main", check=False)

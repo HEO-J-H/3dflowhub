@@ -60,3 +60,31 @@ def test_pr_decision_recorded_and_skipped_without_token(tmp_path, monkeypatch):
     import pytest
     with pytest.raises(AssertionError):
         agents.record_decision("pix2poly", 1, "merge-now")
+
+
+def test_guide_read_new_files_and_lesson_appended(tmp_path, monkeypatch):
+    cfg = agents.TARGETS["pix2poly"]
+    (tmp_path / "docs" / "agent-guides").mkdir(parents=True)
+    g = tmp_path / "docs" / "agent-guides" / "img2threejs.md"
+    g.write_text("# 가이드\n\n## 진행 기록·배운 점\n- 처음\n", encoding="utf-8")
+    monkeypatch.setattr(agents, "TARGET", cfg)
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    monkeypatch.setattr(agents, "EDITABLE", {"backend/app/main.py", "backend/tests/test_core.py"})
+    task = "[guide:img2threejs] 1단계: backend/app/services/engines.py 엔진 목록과 GET /v1/engines"
+    rel, text = agents.guide_for(task)
+    assert rel == "docs/agent-guides/img2threejs.md" and "가이드" in text
+    files = agents.files_for(task)
+    assert "backend/app/services/engines.py" in files and "backend/tests/test_core.py" in files  # 새 파일도 열림
+    assert "../secret.py" not in agents.files_for(task + " backend/app/../secret.py")
+    agents.append_guide_lesson(task, "완료", "available()는 (bool, 이유) 튜플로")
+    lines = g.read_text(encoding="utf-8").splitlines()
+    assert lines[-1].startswith("- ") and "[완료]" in lines[-1] and "튜플" in lines[-1]
+    assert agents.guide_for("guide 태그 없는 과제") == ("", "")
+
+
+def test_guide_tasks_first(tmp_path, monkeypatch):
+    todo = tmp_path / "TODO.md"
+    todo.write_text("- [ ] (agent) 스스로 만든 과제\n- [ ] (agent) [p-0123456789|수집] 수락된 제안\n"
+                    "- [ ] (agent) [guide:img2threejs] 1단계\n", encoding="utf-8")
+    monkeypatch.setattr(agents, "TODO", todo)
+    assert agents.next_task().startswith("[guide:img2threejs]")
