@@ -1,0 +1,51 @@
+{
+  "id": "045deed480",
+  "domain": "AI 3D",
+  "category": "3D 생성 AI",
+  "host": "Maya",
+  "lang": "python",
+  "title": "Maya AI 에셋 정리 및 토폴로지 준비 자동화",
+  "problem": "AI 3D 생성 도구로 만든 에셋을 Maya로 가져올 때 발생하는 스케일 왜곡, 피벗 틀어짐, 불필요한 히스토리를 한 번에 정리합니다. 실무에서 반복되는 수동 전처리 작업을 자동화해 프로토타이핑 속도를 높입니다.",
+  "pipeline": [
+    {
+      "tool": "Import",
+      "action": "선택한 디렉토리의 FBX 또는 OBJ AI 에셋 파일 Import"
+    },
+    {
+      "tool": "Transform Fix",
+      "action": "임포트된 에셋의 피벗을 중앙으로 정렬하고 트랜스폼 Freeze 수행"
+    },
+    {
+      "tool": "History Clean",
+      "action": "컨스트럭션 히스토리를 삭제하여 씬 최적화 및 노드 정리"
+    },
+    {
+      "tool": "Export Prep",
+      "action": "게임 에셋 프로토타이핑을 위한 최종 폴리곤 및 머티리얼 그룹 확인"
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_ai_asset():\n    selected_meshes = cmds.ls(selection=True, transforms=True)\n    if not selected_meshes:\n        cmds.warning(\"정리할 메시를 선택해주세요.\")\n        return\n    \n    for mesh in selected_meshes:\n        # Center pivot\n        cmds.xform(mesh, centerPivots=True)\n        # Freeze transforms safely without unsupported keyword arguments\n        cmds.makeIdentity(mesh, apply=True, translate=True, rotate=True, scale=True, normal=0)\n        # Delete construction history\n        cmds.delete(mesh, constructionHistory=True)\n        \n    cmds.inViewMessage(assistMessage=\"AI 에셋 정리가 완료되었습니다.\", fade=True)\n\ndef create_ui():\n    window_name = \"AIAssetCleanerWin\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name)\n        \n    cmds.window(window_name, title=\"AI Asset Cleaner\", widthHeight=(250, 100))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=('both', 10))\n    cmds.text(label=\"AI 생성 에셋의 피벗, 트랜스폼, 히스토리를 정리합니다.\")\n    cmds.button(label=\"에셋 정리 실행\", command=lambda *args: clean_ai_asset())\n    cmds.showWindow(window_name)\n\ncreate_ui()",
+  "install": [
+    "Maya를 실행하고 Script Editor를 엽니다.",
+    "Python 탭을 선택하고 위 Script를 붙여넣습니다.",
+    "실행 버튼을 눌러 UI 창을 엽니다."
+  ],
+  "usage": [
+    "AI 도구에서 내보낸 3D 에셋을 Maya로 가져옵니다.",
+    "정리할 3D 모델(Transform 노드)을 뷰포트에서 선택합니다.",
+    "UI 창의 '에셋 정리 실행' 버튼을 클릭합니다.",
+    "피벗 정렬 및 트랜스폼 초기화가 완료된 에셋을 확인합니다."
+  ],
+  "limits": [
+    "네트워크 API나 외부 AI 서버와 직접 통신하지 않으며 로컬 파일만 처리합니다.",
+    "자동 리토폴로지나 AI 파트 분할 세부 수정은 지원하지 않으며 기본 전처리만 수행합니다."
+  ],
+  "sources": [
+    "2026-10-19-b4e41fb28fae3782",
+    "2026-10-19-71a3504ed4827336",
+    "2026-10-17-22cddf25b693908b"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-20T17:08:05+00:00"
+}
