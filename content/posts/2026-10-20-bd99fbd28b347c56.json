@@ -30,6 +30,21 @@
     {
       "heading": "전력 효율성과 향후 과제",
       "body": "LENS는 모든 배포 작업에서 Jetson Orin NX 대비 1.9배에서 5.7배 높은 전력당 성능을 기록했으며, 소비 전력은 약 4분의 1 수준에 그쳤습니다. 위치 추정 및 Wayspots 렌더링의 절대 지연 시간 측면에서도 우수한 성능을 증명했습니다. 다만 온디바이스 학습의 경우 ACEsplat 수준의 화질에는 도달했으나 GPU의 시간 및 에너지 효율성에는 미치지 못해, 향후 학습 가속기를 위한 과제로 남겨졌습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "LENS 시스템은 데스크톱 GPU를 탑재하기 어려운 자율주행 차량이나 저전력 로봇 공학 환경에서 3D Gaussian Splatting 및 위치 추정을 수행할 때 활용됩니다. Structure-from-Motion 단계를 거치지 않는 Scene-coordinate regression과 3D Gaussian Splatting을 AMD KR260 저전력 FPGA 및 ARM 플랫폼에 올려 현장 배포가 가능합니다. 포즈 정확도를 유지하는 INT16 SCR 가속기와 고정소수점 순서화 3DGS 렌더러를 통해 전력 제약이 심한 현장에서도 실시간으로 주변 뷰를 렌더링하고 카메라 위치를 파악할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "기존의 ACEsplat 스타일 파이프라인은 GPU 중심 구조여서 에지 FPGA 환경으로 이식하기 매우 까다로웠습니다. 그러나 LENS는 Jetson Orin NX 플랫폼과 비교했을 때 모든 배포 작업에서 1.9배에서 5.7배 높은 전력당 성능을 보여주며, 소비 전력은 약 4분의 1 수준으로 낮췄습니다. 화질 측면에서도 Cambridge 데이터셋에서 기존 ACEsplat의 33.20 dB를 상회하는 34.11 dB를 달성했고, RealEstate10K 뷰 합성에서도 향상된 수치를 기록했습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "에지 환경에서 3D Gaussian Splatting과 비주얼 로컬라이제이션을 구현하고 싶다면 관련 연구인 SplatLoc이나 LENS 시스템의 아키텍처를 참고할 수 있습니다. 특히 알파 투과율을 log-sum-exp 재귀 연산으로 변환하고 불필요한 스트림 Gaussian을 제거하는 비트 정확 고정소수점 최적화 기법을 이해하는 것이 중요합니다. 온보드 렌더링과 위치 추정 알고리즘을 저전력 하드웨어 데이터 패스와 공동 설계하는 접근법을 학습해야 합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +55,14 @@
     {
       "q": "기존 GPU 기반 렌더링 방식과 비교해 어떤 성능 이점이 있나요?",
       "a": "Jetson Orin NX와 비교하여 모든 배포 작업에서 약 1.9배~5.7배 높은 전력당 성능 효율을 보여주며, 전력 소모량은 4분의 1 수준이면서도 일부 렌더링 및 위치 추정 지연 시간은 더 뛰어납니다."
+    },
+    {
+      "q": "LENS 시스템은 어떤 하드웨어 플랫폼을 기준으로 개발되었나요?",
+      "a": "LENS는 AMD KR260 저전력 FPGA 및 ARM 플랫폼을 기반으로 보드 데이터 패스와 커널을 공동 설계하여 구축되었습니다."
+    },
+    {
+      "q": "온디바이스 학습 성능은 기존 GPU와 비교했을 때 어떤 상태인가요?",
+      "a": "온디바이스 학습의 경우 ACEsplat 수준의 화질에는 도달했으나, GPU가 가진 시간 및 에너지 효율성에는 아직 미치지 못해 향후 학습 가속기 연구 과제로 남아 있습니다."
     }
   ],
   "media": {
@@ -48,5 +71,18 @@
   },
   "collected_at": "2026-10-20T03:44:39.419248+00:00",
   "notion_id": "",
-  "id": "2026-10-20-bd99fbd28b347c56"
+  "id": "2026-10-20-bd99fbd28b347c56",
+  "refs": [],
+  "videos": [
+    {
+      "id": "UJowrWOI-Oc",
+      "title": "SplatLoc: 3D Gaussian Splatting-based Visual Localization for Augmente...",
+      "author": "IEEE Virtual Reality Conference"
+    }
+  ],
+  "enriched_at": "2026-10-20T10:16:00+00:00",
+  "quality": {
+    "before": 1185,
+    "after": 2050
+  }
 }
