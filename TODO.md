@@ -19,3 +19,6 @@
 - [x] (agent) core.collect(): 수집된 피드 아이템의 제목이 비어있거나 무관한 키워드(하드웨어, 스마트폰 등)를 포함하면 'prefiltered' 오류를 기록하고 제외하도록 필터링 강화 및 테스트 추가
 - [x] (agent) core.summarize(): 요약된 본문 글자 수가 1,500자 미만인 경우 'short post' 경고 로그를 남기고 RUN_ERRORS 에 기록하는 검증 로직 추가 및 테스트 추가
 - [x] (agent) core.generate_keywords(): 생성된 키워드 리스트 내에 중복된 항목이 존재할 경우 이를 제거하여 고유 키워드만 반환하도록 정규화 로직 추가 및 테스트 추가 (재시도)
+- [x] (agent) core.filter_content_quality(): 수집된 콘텐츠 중 실무 3D 툴 및 스크립트 가이드 키워드가 포함되지 않은 항목을 엄격하게 'off-topic'으로 분류하여 필터링을 강화하고 관련 테스트 추가
+- [ ] (agent) core.validate_post_length(): 생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여하는 검증 함수를 분리하고 테스트 추가
+- [ ] (agent) evolve.analyze_run_errors(): 최근 실행 오류(RUN_ERRORS)에서 'short post' 및 'off-topic' 비율을 집계하여 전략 수정에 반영하는 통계 함수 추가 및 테스트 추가
