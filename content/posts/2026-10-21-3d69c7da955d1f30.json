@@ -30,6 +30,16 @@
     {
       "heading": "성능 평가 및 처리 속도 결과",
       "body": "제안된 방법론은 PASLCD와 CCS3D 벤치마크에서 각각 67.64%와 75.82%의 mIoU를 기록하며 최첨단(State-of-the-Art) 정확도를 달성했습니다. 특히 PASLCD 데이터셋의 전체 쿼리 시퀀스에서 초당 17.2 프레임의 속도를 기록하여 평가된 온라인 방법 중 가장 빠른 처리 성능을 보여주었습니다. 정확도와 실시간 처리 속도를 모두 만족하는 뛰어난 효율성을 입증한 결과입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "본 논문의 방법론은 3D Gaussian Splatting 기반의 씬을 다루는 실무 파이프라인에 직접 적용할 수 있습니다. 먼저 기준이 되는 3D Gaussian Splatting 모델에 자동 편집 기능을 적용하여 수동 주석 작업 없이 레이블이 지정된 학습 뷰를 생성합니다. 이후 새로운 이미지가 유입될 때 실시간 베이지안 추론을 거쳐 변화 지역을 감지하고, 폐쇄형 국소 베이즈 팩터를 통해 3D Gaussian 필드를 효율적으로 업데이트합니다. 마지막으로 객체 유도 정제 과정을 거쳐 최종 변화 마스크를 도출하므로, 대규모 3D 공간의 변화를 실시간으로 모니터링해야 하는 현장에 유용합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Gaussian Splatting 기술을 활용한 3D 모델링과 변화 감지 연구에 관심이 있다면, 먼저 기초적인 3D Gaussian Splatting의 구조와 렌더링 파이프라인을 이해해야 합니다. 관련 튜토리얼 영상인 'It's Time For Gaussian Splatting // Tutorial'이나 'How to Make 3D Models From Video (Gaussian Splatting Tutorial)' 등을 통해 비디오로부터 3D 모델을 생성하는 기본기를 익히는 것이 좋습니다. 이후 본 논문에서 다루는 PASLCD 및 CCS3D 벤치마크 데이터셋 구조와 베이지안 추론 기반의 변화 감지 알고리즘 코드를 살펴보며 학습을 확장할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +50,14 @@
     {
       "q": "실행 성능과 정확도는 기존 방식과 비교해 어떠한가요?",
       "a": "PASLCD와 CCS3D 벤치마크에서 각각 67.64%와 75.82%의 mIoU로 최고 수준의 정확도를 기록했으며, PASLCD 기준 초당 17.2 프레임으로 평가된 온라인 방법 중 가장 빠른 속도를 보였습니다."
+    },
+    {
+      "q": "수동 어노테이션 없이 어떻게 학습 데이터를 구축하나요?",
+      "a": "기준 3D Gaussian Splatting 모델에 가해지는 자동 편집 기능을 활용합니다. 이를 통해 수동 주석 작업 없이도 레이블이 지정된 학습 뷰를 생성하고, 변경되지 않은 기준 관측값과 결합하여 필요한 감독 신호를 얻습니다."
+    },
+    {
+      "q": "실시간 처리 성능은 어느 정도 수준인가요?",
+      "a": "PASLCD 데이터셋의 전체 쿼리 시퀀스에서 초당 17.2 프레임의 속도를 기록하여, 평가된 온라인 변화 감지 방법 중 가장 빠른 처리 성능을 보여줍니다."
     }
   ],
   "media": {
@@ -48,5 +66,23 @@
   },
   "collected_at": "2026-10-21T03:48:31.409058+00:00",
   "notion_id": "",
-  "id": "2026-10-21-3d69c7da955d1f30"
+  "id": "2026-10-21-3d69c7da955d1f30",
+  "refs": [],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "_K69lRIX22U",
+      "title": "How to Make 3D Models From Video (Gaussian Splatting Tutorial)",
+      "author": "VIVERSE"
+    }
+  ],
+  "enriched_at": "2026-10-21T07:29:21+00:00",
+  "quality": {
+    "before": 1051,
+    "after": 1751
+  }
 }
