@@ -743,7 +743,7 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
     """검색 키워드를 AI 없이 조합 — AI 한도는 요약과 'AI 관리자'(manager.py)에 집중.
     재료(이미 학습된 것): 독자 관심 도구(조회수·추천) → AI 관리자/전략 키워드 힌트 → Search Console 검색어 → 시드.
     실행마다 순환해 같은 검색만 반복하지 않는다. config.json 의 llm_keywords=true 면 예전처럼 AI 로 생성.
-    생성된 키워드 리스트 내에 도메인 간 중복되는 키워드가 있으면 제거(재시도)합니다."""
+    생성된 키워드 리스트 내에 중복된 항목이 존재할 경우 이를 제거하여 고유 키워드만 반환하도록 정규화."""
     def _clean_and_dedup(res_dict: dict[str, list[str]]) -> dict[str, list[str]]:
         seen_global = set()
         cleaned = {}
@@ -784,17 +784,6 @@ def generate_keywords(domains: list[str], per_domain: int = 2) -> dict[str, list
                 break
         out[d] = list(dict.fromkeys(picked))
         rr[d] = start + per_domain
-
-    # 같은 키워드가 도메인 간 중복되면 제거 (재시도 및 전역 고유화)
-    seen_global: set[str] = set()
-    for d in domains:
-        unique_d = []
-        for k in out.get(d, []):
-            lk = k.lower()
-            if lk not in seen_global:
-                seen_global.add(lk)
-                unique_d.append(k)
-        out[d] = unique_d
 
     mem["kw_rr"] = rr
     _save_json(MEMORY_PATH, mem)

@@ -478,6 +478,7 @@ def test_generate_keywords_unique_normalization():
     kws = core.generate_keywords(["3D DCC"], per_domain=5)
     for domain, kw_list in kws.items():
         assert kw_list == list(dict.fromkeys(kw_list))
+        assert len(kw_list) == len(set(kw.lower() for kw in kw_list))
 
 
 def test_generate_keywords_removes_duplicates_between_domains_retry(monkeypatch):
