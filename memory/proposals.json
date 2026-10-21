@@ -1467,5 +1467,26 @@
     "kind": "applied",
     "id": "p-64214dfc5c",
     "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-21T14:50:45.783783+00:00",
+    "kind": "proposal",
+    "id": "p-d54a5247da",
+    "title": "KoalaGS Gaussian Splatting 도입 제안",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://arxiv.org/abs/2610.28615v1",
+    "category": "수집",
+    "evidence": "arXiv 논문 'KoalaGS'는 복잡도 인지 연속 레벨 오브 디테일(LoD)을 제공하여 렌더링 부하를 줄임.",
+    "proposal": "gpu-worker.md 워커 설계에 KoalaGS(https://arxiv.org/abs/2610.28615v1)를 선택 엔진으로 추가하여 웹/로컬 렌더링 최적화",
+    "expected": "가우시안 스플래팅 렌더링 시 자원 절약 및 성능 향상",
+    "effort": "높음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "python",
+      "group": "worker",
+      "name": "koalags_integration",
+      "title_ko": "KoalaGS 레벨 오브 디테일 연동"
+    }
   }
 ]
