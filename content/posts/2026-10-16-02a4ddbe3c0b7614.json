@@ -32,6 +32,16 @@
     {
       "heading": "하드웨어 최적화와 향후 전망",
       "body": "이번 발표는 최신 RTX 하드웨어의 잠재력을 최대한 이끌어내는 소프트웨어 기술의 진화를 보여줍니다. 고사양 그래픽 리소스를 다루는 VFX 및 게임 스튜디오에게 하드웨어 투자 대비 효율을 극대화할 수 있는 기회를 제공합니다. 앞으로 출시될 관련 Driver와 SDK 업데이트에 많은 관심이 집중되고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Unreal Engine 프로젝트에서 DLSS 5를 활용하려면 먼저 RTX Spark Launch Week에서 공개된 최신 NVIDIA Driver와 RTX Spark SDK를 설치합니다. 프로젝트 설정 > Engine > Rendering > Upscaling 섹션에서 \"DLSS\"를 선택하고, \"DLSS Mode\"를 \"Performance\" 혹은 \"Balanced\"로 설정합니다. 이후 레벨 뷰포트와 게임 모드에서 실시간 프리뷰를 확인하면서 해상도와 프레임률을 비교해 최적의 설정을 찾습니다. 복잡한 씬이나 대규모 월드에서는 DLSS 5가 기존 세대 대비 렌더링 속도를 두 배로 끌어올리므로, 고해상도 텍스처와 레이 트레이싱 효과를 유지하면서도 프레임 드롭을 최소화할 수 있습니다. 작업 흐름에 맞게 라이트맵 Baking이나 Post 프로세스 볼륨을 재조정하면, 최종 결과물의 품질을 유지하면서도 전체 파이프라인 속도가 크게 향상됩니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "DLSS 5는 NVIDIA의 AI 기반 Upscaling 기술로, 기존 DLSS 4 대비 렌더링 속도가 두 배 향상된다는 점이 핵심 차별점입니다. 반면 AMD의 FidelityFX Super Resolution(FFX)와 같은 경쟁 솔루션은 하드웨어 독립적인 Upscaling을 제공하지만, AI 모델이 다르기 때문에 화질·성능 프로파일이 다릅니다. 현재 DLSS 5는 RTX Spark와 긴밀히 연동되어 Unreal Engine에서 최적화된 파이프라인을 제공하므로, NVIDIA GPU를 사용하는 스튜디오에서는 바로 적용이 용이합니다. 반면 비 NVIDIA GPU 환경에서는 FFX와 같은 대안을 검토해야 하며, 각각의 장단점을 프로젝트 요구사항에 맞춰 선택하는 것이 중요합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +52,14 @@
     {
       "q": "이번 RTX Spark Launch Week 발표는 어떤 분야에 가장 큰 영향을 주나요?",
       "a": "게임 엔진을 활용한 게임 개발, 실시간 3D 시각화, 그리고 가상 프로덕션 및 VFX 파이프라인 전반에 큰 영향을 미칠 것으로 예상됩니다."
+    },
+    {
+      "q": "DLSS 5를 Unreal Engine에서 어떻게 활성화하나요?",
+      "a": "Unreal Engine 5.4 이상에서 프로젝트 설정 > Engine > Rendering > Upscaling으로 이동해 \"DLSS\"를 선택하고, \"DLSS Mode\"를 원하는 옵션(Performance, Balanced 등)으로 설정합니다. 이후 엔진을 재시작하면 DLSS 5가 적용됩니다."
+    },
+    {
+      "q": "기존 프로젝트에 DLSS 5를 적용하려면 어떤 점을 주의해야 하나요?",
+      "a": "프로젝트에 사용된 머티리얼과 Post 프로세스가 DLSS와 호환되는지 확인하고, 라이트맵 Baking 및 레이 트레이싱 설정을 재조정합니다. 또한 최신 RTX Spark SDK와 Driver가 설치돼 있어야 하며, 적용 후 프레임률과 화질을 샘플 씬에서 검증해 최적 설정을 찾는 것이 좋습니다."
     }
   ],
   "media": {
@@ -50,5 +68,23 @@
   },
   "collected_at": "2026-10-16T22:23:53.068617+00:00",
   "notion_id": "",
-  "id": "2026-10-16-02a4ddbe3c0b7614"
+  "id": "2026-10-16-02a4ddbe3c0b7614",
+  "refs": [],
+  "videos": [
+    {
+      "id": "4XZzjY4X13A",
+      "title": "NVIDIA RTX Spark | Made to Create",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "9ada5hMtlNg",
+      "title": "Nvidia RTX Spark N1X: The Most Powerful iGPU You Can Get Right Now!",
+      "author": "ETA PRIME"
+    }
+  ],
+  "enriched_at": "2026-10-21T21:22:41+00:00",
+  "quality": {
+    "before": 798,
+    "after": 1649
+  }
 }

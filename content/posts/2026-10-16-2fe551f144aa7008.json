@@ -31,6 +31,16 @@
     {
       "heading": "개발 배경 및 출시 정보",
       "body": "리투아니아에 본사를 둔 3인조 인디 스튜디오 Elegant Horse Studios의 작품으로, 이전작인 Driving Is Hard에 이어 두 번째로 선보이는 비정상적 탈것 제어 기반의 물리 도전 게임입니다. 출시 전 Steam 데모 버전은 10만 명 이상의 플레이어와 5만 건 이상의 찜을 기록하며 큰 주목을 받았습니다. 현재 PC 플랫폼을 통해 Steam에서 정가 14.99달러로 판매되며, 출시 기념 할인 프로모션이 진행 중입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Flipping Is Hard는 Unity 물리 엔진(Rigidbody, Collider, Joint)을 활용한 3D 플랫폼 게임입니다. ① Unity Hub에서 최신 LTS 버전을 설치하고 새 3D 프로젝트를 생성합니다. ② 플리피(Flippy) 오브젝트에 Rigidbody와 Angular Drag를 설정해 회전 기반 이동을 구현합니다. ③ 회전 입력은 AddTorque를, 점프는 AddForce(ForceMode.Impulse)로 처리합니다. ④ 대포·자석·집라인 등 26가지 인터랙티브 메커니즘은 각각 Collider와 ConfigurableJoint(또는 SpringJoint)으로 연결하고, 물리 재질(Physics Material)로 마찰·반발을 조정합니다. ⑤ 멀티플레이어는 Steamworks.NET을 통해 친구 로비와 Voice Chat을 연동하고, 네트워크 동기화는 Photon Unity Networking(PUN) 등으로 구현합니다. 이렇게 단계별로 구현하면 기사에 소개된 물리 기반 클라임을 직접 재현할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Flipping Is Hard는 Getting Over It, Jump King, Only Up! 등 ‘레이지 게임’ 장르와 유사하지만, 26가지 인터랙티브 메커니즘과 멀티플레이어 지원이라는 차별점을 가집니다. Getting Over It은 물리 기반 도구(망치)와 단일 플레이어에 집중하고, Jump King은 점프와 플랫폼 설계에 초점을 둡니다. Only Up!은 절벽 등반과 자유 낙하를 강조하지만 협동 요소가 없습니다. Unity에서 비슷한 물리 퍼즐을 만들고 싶다면, ‘Physics Playground’ 에셋이나 ‘Obi Rope’ 같은 플러그인을 활용해 물리 상호작용을 빠르게 구현할 수 있습니다. 그러나 Flipping Is Hard처럼 다채로운 메커니즘을 모두 직접 코딩하면 커스터마이징과 최적화 측면에서 더 큰 자유를 얻을 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +55,14 @@
     {
       "q": "멀티플레이를 지원하나요?",
       "a": "최대 16명의 플레이어가 Steam 친구 로비와 근접 음성 채팅 기능을 통해 함께 협력하거나 경쟁하며 클라이밍을 즐길 수 있습니다."
+    },
+    {
+      "q": "플리피가 회전만으로 이동하도록 물리적으로 구현하려면 어떤 파라미터를 조정해야 하나요?",
+      "a": "플리피에 Rigidbody를 부착하고 Angular Drag를 낮게 설정합니다. 입력에 따라 Rigidbody.AddTorque를 호출해 회전 토크를 가하고, 회전축을 제한하려면 Rigidbody.constraints에 Y축 회전을 고정합니다. 회전 속도와 관성은 Mass와 Inertia Tensor를 조정해 미세하게 튜닝합니다."
+    },
+    {
+      "q": "멀티플레이어 모드에서 다른 플레이어를 돕는 헬프 빔을 구현할 때 주의할 점은?",
+      "a": "헬프 빔은 물리 힘을 적용하는 방식이므로 네트워크 동기화가 중요합니다. Photon이나 Mirror의 RPC 호출로 빔 발사 시점과 힘 벡터를 전송하고, 충돌 시 적용되는 Force를 서버에서 계산해 모든 클라이언트에 전파합니다. 또한 빔 사용 시 구조자도 튀어 오르는 물리 반응을 동일하게 적용해 게임 밸런스를 유지합니다."
     }
   ],
   "media": {
@@ -53,5 +71,23 @@
   },
   "collected_at": "2026-10-16T21:20:56.407554+00:00",
   "notion_id": "",
-  "id": "2026-10-16-2fe551f144aa7008"
+  "id": "2026-10-16-2fe551f144aa7008",
+  "refs": [],
+  "videos": [
+    {
+      "id": "UYSDX6-KxiM",
+      "title": "How I made Getting Over Goombas",
+      "author": "Newbie Indie Game Dev"
+    },
+    {
+      "id": "5afrMx-Yqyk",
+      "title": "I Recreated Nokia’s Space Impact in Unity! | Full Gameplay + Timelapse",
+      "author": "Dream Game Creations"
+    }
+  ],
+  "enriched_at": "2026-10-21T21:23:33+00:00",
+  "quality": {
+    "before": 1099,
+    "after": 2049
+  }
 }
