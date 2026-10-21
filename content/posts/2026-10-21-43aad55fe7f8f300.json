@@ -31,6 +31,16 @@
     {
       "heading": "Compositing Pipeline의 워크플로우",
       "body": "Nuke와 같은 전문 Compositing 소프트웨어에서 해당 기법을 적용할 때는 게이머나 모션 아티스트들이 스크립트나 gizmo 형태로 빌드하여 재사용성을 높일 수 있습니다. 채널별 오프셋을 조절하는 파라미터를 노드 패널에 노출시키면 숏마다 빠르게 룩을 매칭할 수 있습니다. 파이프라인 효율성을 위해 렌더 타임과 메모리 소모를 최소화하는 방향으로 노드 네트워크를 최적화하는 것이 권장됩니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Nuke에서 Advanced Radial Blur 기법을 적용할 때는 전체 이미지에 일괄적으로 적용하기보다 Script를 Gizmo 형태로 패키징하여 파이프라인 전반의 재사용성을 높이는 것이 일반적입니다. Shuffle 노드로 각 채널을 분리한 뒤, 개별 Radial Blur와 Transform 노드를 연결하고, 노드 패널에 파라미터를 노출시켜 숏마다 빠르고 일관되게 룩을 매칭합니다. 과도한 수치는 오히려 합성 결과물의 디테일을 해칠 수 있으므로, 미묘한 엣지 분리 수준에서 세밀하게 조절하여 시각적 완성도를 높이는 워크플로우를 권장합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이 기법을 Nuke 파이프라인에 도입하기 전에 먼저 기본 Radial Blur 노드의 동작 원리와 채널 연산 구조를 이해해야 합니다. Shuffle 노드를 활용해 개별 RGB 채널을 다루는 방법과, 노드 네트워크 최적화를 통해 렌더 타임과 메모리 소모를 줄이는 기초적인 Compositing 노하우를 학습하는 것이 좋습니다. 이후 Gizmo 제작 과정을 익히면 팀 단위 작업에서 스타일라이즈드 룩을 표준화하는 데 큰 도움이 됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "어떤 프로젝트와 숏에 가장 적합한가요?",
       "a": "SF 영화의 공간 왜곡, 환각적인 시퀀스, 뮤직비디오 및 역동적인 모션 그래픽 타이틀 시퀀스 등 시각적인 강렬함과 색감의 변화가 필요한 숏에 가장 적합합니다."
+    },
+    {
+      "q": "기본 Radial Blur 노드와 Advanced Radial Blur의 가장 큰 차이는 무엇인가요?",
+      "a": "기본 Radial Blur는 이미지 전체를 한 번에 흐리게 처리하지만, Advanced Radial Blur는 RGB 채널을 각각 분리하여 서로 다른 방향과 거리로 퍼지게 만듭니다. 이를 통해 독특한 색수차와 역동적인 시각적 왜곡 효과를 연출할 수 있습니다."
+    },
+    {
+      "q": "프로덕션 Pipeline 해당 효과를 효율적으로 관리하는 방법은 무엇인가요?",
+      "a": "채널별 오프셋과 블러 강도를 조절하는 주요 파라미터를 Gizmo 형태로 빌드하여 노드 패널에 노출시키면, 여러 숏에서 반복 작업 없이 빠르고 통일감 있게 룩을 매칭할 수 있습니다."
     }
   ],
   "media": {
@@ -49,5 +67,23 @@
   },
   "collected_at": "2026-10-21T16:10:59.246783+00:00",
   "notion_id": "",
-  "id": "2026-10-21-43aad55fe7f8f300"
+  "id": "2026-10-21-43aad55fe7f8f300",
+  "refs": [],
+  "videos": [
+    {
+      "id": "SGSQBHMcSfk",
+      "title": "How To Make Radial Blur in After Effects (𝟮𝟬𝟮𝟲) | 100% WORKS | NO Yapping, To The Point & EASY",
+      "author": "Guide Hub (2026 WORKING GUIDES)"
+    },
+    {
+      "id": "euJ57xxnIcs",
+      "title": "Photographic Lens Blur in Resolve Nuke and Flame — Basic Controls: Blur Radius (OFX Plugin)",
+      "author": "Academy VFX"
+    }
+  ],
+  "enriched_at": "2026-10-21T16:41:00+00:00",
+  "quality": {
+    "before": 959,
+    "after": 1504
+  }
 }
