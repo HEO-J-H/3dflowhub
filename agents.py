@@ -167,7 +167,7 @@ def ask_json(role: str, prompt: str, max_tokens: int = 4000) -> dict:
     try:
         return core._parse_json(core.llm(prompt, system=role + core.playbook("dev_team"), max_tokens=max_tokens,
                                          json_mode=True, temperature=CODE_TEMP))
-    except ValueError:  # 깨진 JSON → 빈 응답으로 처리하고 다음 회차에서 재시도
+    except (ValueError, RuntimeError):  # 깨진 JSON·AI 호출 오류 → 빈 응답으로 처리하고 다음 회차에서 재시도
         return {}
 
 
@@ -182,7 +182,8 @@ def parse_edits(text: str) -> list[dict]:
 
 def reset_files(files: set[str]) -> None:
     """추적 중인 파일은 되돌리고, 이번 작업이 새로 만든 파일은 지운다."""
-    tracked = set(sh("git", "ls-files", "--", *sorted(files), check=False).split())
+    # HEAD 기준으로 판단 ('git add -N' 한 새 파일은 ls-files 에 보여도 커밋된 적 없음 → 지워야 다음 시도가 새로 만듦)
+    tracked = set(sh("git", "ls-tree", "-r", "--name-only", "HEAD", "--", *sorted(files), check=False).split())
     sh("git", "reset", "-q", "--", *sorted(files), check=False)
     sh("git", "checkout", "--", *sorted(tracked), check=False) if tracked else None
     for f in files - tracked:
@@ -242,7 +243,7 @@ def coder(task: str, feedback: str) -> list[dict]:
     _g_rel, guide = guide_for(task)
     prompt = (
         f"REPOSITORY MAP (file: top-level functions/classes):\n{repo_map()}\n\n" +
-        (f"DESIGN GUIDE ({_g_rel}) — follow it exactly, including its '하지 말 것' and the progress log:\n{guide[:7000]}\n\n"
+        (f"DESIGN GUIDE ({_g_rel}) — follow it exactly, including its '하지 말 것' and the progress log:\n{guide[:5000]}\n\n"
          if guide else "")
         + f"TASK: {task}\n\nLessons from previous runs: {mem.get('lessons', [])[-5:]}\n"
         f"Reviewer/Judge feedback from last iteration: {feedback or 'none'}\n\n{files}\n\n"
@@ -495,9 +496,21 @@ def main() -> None:
     print(f"작업: {task}")
     editable = files_for(task)
     feedback, log, verdict = "", [], {"approve": False, "feedback": ""}
+    ai_errors = 0
     for i in range(1, MAX_ITERATIONS + 1):
         reset_files(editable)  # 매 회차 깨끗한 상태에서 시작
-        problems = apply_edits(coder(task, feedback), editable)
+        try:
+            edits = coder(task, feedback)
+        except core.LLMBudgetExceeded:
+            raise
+        except RuntimeError as e:  # 한도·요청 크기 초과 등 — 코드 문제가 아님
+            ai_errors += 1
+            log.append(f"[{i}] AI 호출 실패: {str(e)[:160]}")
+            print(log[-1])
+            if ai_errors >= 2:
+                break
+            continue
+        problems = apply_edits(edits, editable)
         sh("git", "add", "-N", *sorted(f for f in editable if (ROOT / f).exists()), check=False)  # 새 파일도 diff 에
         diff = sh("git", "diff", "--", *sorted(editable))
         if problems or not diff:
@@ -520,6 +533,11 @@ def main() -> None:
             break
         feedback = f"review issues: {review.get('issues')} / judge: {verdict['feedback']}"
 
+    if ai_errors >= 2 and not verdict["approve"]:  # AI 문제로 못 함 → 과제는 열어 두고 기록만
+        reset_files(editable)
+        record_target_run(task, "ai_error", log[-1] if log else "AI 호출 실패")
+        print("AI 호출 실패로 이번 실행 중단 — 과제는 다음 실행에서 다시")
+        return
     lesson = verdict.get("lesson") or (verdict["feedback"][:200] if verdict["feedback"] else "")
     merged, msg = False, ""
     if verdict["approve"]:
@@ -577,4 +595,9 @@ if __name__ == "__main__":
             main()
         except core.LLMBudgetExceeded as ex:
             print("LLM 한도 도달 — 다음 실행에서 계속:", ex)
+            break
+        except Exception as ex:  # 예상 못 한 오류: 기록하고 다음 실행으로 (워크플로 실패로 멈추지 않게)
+            import traceback
+            traceback.print_exc()
+            record_target_run("(실행 오류)", "error", f"{type(ex).__name__}: {str(ex)[:250]}")
             break

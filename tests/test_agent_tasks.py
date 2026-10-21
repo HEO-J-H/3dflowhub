@@ -123,3 +123,38 @@ def test_llm_temperature_passed(monkeypatch):
     monkeypatch.setattr(core, "_consume_llm_budget", lambda: None)
     monkeypatch.setattr(core, "_llm_call", lambda *a, **k: seen.update(k) or "ok")
     assert core.llm("p", temperature=0.15) == "ok" and seen["temperature"] == 0.15
+
+
+def test_reset_removes_new_file_after_intent_to_add(tmp_path, monkeypatch):
+    import subprocess
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    for k, v in (("user.name", "t"), ("user.email", "t@t")):
+        subprocess.run(["git", "config", k, v], cwd=tmp_path)
+    (tmp_path / "old.py").write_text("x = 1\n", encoding="utf-8")
+    subprocess.run(["git", "add", "old.py"], cwd=tmp_path)
+    subprocess.run(["git", "commit", "-qm", "init"], cwd=tmp_path)
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    (tmp_path / "new.py").write_text("y = 2\n", encoding="utf-8")
+    (tmp_path / "old.py").write_text("x = 99\n", encoding="utf-8")
+    agents.sh("git", "add", "-N", "new.py")  # diff 에 보이게 했던 상태
+    agents.reset_files({"old.py", "new.py"})
+    assert not (tmp_path / "new.py").exists()  # 다음 시도가 새로 만들 수 있게 지워짐
+    assert (tmp_path / "old.py").read_text(encoding="utf-8") == "x = 1\n"
+
+
+def test_ai_errors_leave_task_open(tmp_path, monkeypatch):
+    todo = tmp_path / "TODO.md"
+    todo.write_text("- [ ] (agent) 과제 A\n", encoding="utf-8")
+    monkeypatch.setattr(agents, "TODO", todo)
+    monkeypatch.setattr(agents, "queue_manager_tasks", lambda: [])
+    monkeypatch.setattr(agents, "reset_files", lambda f: None)
+    monkeypatch.setattr(agents, "files_for", lambda t: {"core.py"})
+    rec = []
+    monkeypatch.setattr(agents, "record_target_run", lambda t, r, m: rec.append(r))
+
+    def boom(task, feedback):
+        raise RuntimeError("groq: 413 Request too large")
+    monkeypatch.setattr(agents, "coder", boom)
+    agents.main()
+    assert rec == ["ai_error"]
+    assert "- [ ] (agent) 과제 A" in todo.read_text(encoding="utf-8")  # 보류로 바뀌지 않음

@@ -234,7 +234,7 @@ def render_tool(site_id: str) -> None:
         if not agent_runs:
             st.caption("아직 기록이 없습니다. GitHub Secrets 에 PIX2POLY_TOKEN 이 있어야 동작합니다.")
         for r in reversed(agent_runs[-10:]):
-            icon = {"merged": "✅", "pending": "🔀", "held": "⏸"}.get(r["result"], "•")
+            icon = {"merged": "✅", "pending": "🔀", "held": "⏸", "ai_error": "⚠️ AI 오류(다음 실행에 재시도)", "error": "❌ 실행 오류"}.get(r["result"], "•")
             st.markdown(f"{icon} {_kst(r['at'])} · {r['task'][:90]}  \n<span style='opacity:.7'>{r['msg'][:160]}</span>",
                         unsafe_allow_html=True)
     with t_trend:
