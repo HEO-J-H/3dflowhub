@@ -1,0 +1,22 @@
+<!-- TITLE: RPG Maker U2U 인터뷰 — 3D 학습 없이 HD-2D 세계 구축 | TAGS: RPG Maker,HD-2D,Game Engine,인디 게임,Lua,업계 소식 | CATEGORY: Game Engine/기타 엔진 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/interview-rpg-maker-u2u-lets-you-build-hd-2d-worlds-without-learning-3d/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/50701/images/6ad8e6f032312/contain_1200x630.jpg" alt="RPG Maker U2U 인터뷰 — 3D 학습 없이 HD-2D 세계 구축" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/interview-rpg-maker-u2u-lets-you-build-hd-2d-worlds-without-learning-3d/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/53fz8G-6X4E" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Gotcha Gotcha Games의 히로유키 이치노세 프로듀서가 3D 전문 지식 없이도 HD-2D 스타일의 깊이 있는 세계를 구축할 수 있게 해주는 RPG Maker U2U의 개발 철학과 P2D 맵 시스템을 설명합니다.</p>
+<p style="color:#888;">분류: Game Engine › 기타 엔진 › 업계 소식</p>
+<h2>3D 학습 없이 구현하는 P2D 맵 시스템</h2>
+<p>RPG Maker U2U는 전통적인 2D 맵 타일을 3D 공간에 배치되는 블록 형태로 전환하는 P2D 시스템을 도입했습니다. 사용자는 복잡한 3D 모델링 지식 없이도 블록을 조립하듯 높이와 깊이감이 있는 맵을 직관적으로 구축할 수 있습니다. 기존 RPG Maker MZ의 이벤트 생성 및 데이터베이스 편집 워크플로우를 유지하여 기존 사용자가 쉽게 적응할 수 있도록 설계되었습니다.</p>
+<h2>기존 에셋 호환성과 에디터 구조 개편</h2>
+<p>개발팀은 사용자가 기존 지식을 활용할 수 있는 영역을 최대한 보존하는 원칙을 세웠습니다. 이에 따라 RPG Maker MV 및 MZ용으로 제작된 기존 맵 타일을 U2U 환경에서도 그대로 재사용할 수 있습니다. 다만 U2U를 독립형 스팀 애플리케이션으로 구현하기 위해 초기 구현의 상당 부분을 재작성하는 과감한 결정을 내리기도 했습니다.</p>
+<h2>스팀 P2D 맵 에디터 데모 공개</h2>
+<p>Gotcha Gotcha Games는 정식 툴킷 출시 전 사용자들이 시스템을 미리 실험해 볼 수 있도록 스팀을 통해 무료 P2D 맵 에디터 데모를 공개했습니다. 현재 데모 버전은 맵 편집 기능에만 집중되어 있으며 게임 제작 기능은 포함되어 있지 않습니다. 데모에서 제작한 맵은 저장하여 향후 출시될 정식 버전으로 이전할 수 있습니다.</p>
+<h2>개발 효율을 위한 카메라 제한과 플러그인</h2>
+<p>전체 3D 환경임에도 불구하고 개발팀은 카메라를 자유롭게 회전하는 대신 시점을 고정하여 프로덕션 부담을 크게 낮췄습니다. 이는 인디 개발자들이 감당할 수 있는 제작 파이프라인을 유지하기 위한 전략적 선택입니다. 또한 새로운 플러그인 시스템으로 Luau를 채택하여 접근성과 확장성을 동시에 잡고자 했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">복잡한 3D 엔진이나 툴을 배우기 어려운 1인 개발자나 소규모 팀에게 RPG Maker U2U의 P2D(Perspective 2D) 시스템은 강력한 대안이 될 수 있습니다. 기존 MV 및 MZ 에셋을 그대로 재사용하면서도 직관적인 타일 배치 방식을 통해 깊이감 있는 비주얼을 구현할 수 있어 프로덕션 효율을 크게 높여줍니다. 특히 카메라 이동을 의도적으로 제한하여 제작 난이도를 낮춘 점은 예산과 인력이 한정된 인디 개발 환경에 매우 실용적인 접근입니다. Luau 기반의 새로운 플러그인 시스템과 독립형 스팀 애플리케이션 구조는 향후 커스텀 기능 확장성을 기대하게 만드는 핵심 요소입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. RPG Maker U2U는 기존 RPG Maker 에셋과 호환되나요?</b><br/>A. 네, RPG Maker MV 및 MZ용으로 제작된 기존 맵 타일을 U2U 환경에서 그대로 재사용할 수 있습니다.</p>
+<p><b>Q. 무료 데모 버전에서 게임 제작이 가능한가요?</b><br/>A. 아니오, 현재 스팀에 공개된 P2D 맵 에디터 데모는 맵 편집 기능만 제공하며 게임 제작 기능은 포함되어 있지 않습니다. 하지만 데모에서 만든 맵은 정식 버전으로 이전할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-80656d18d95bd586.html">Cyberpunk 2077 Update 2.5 배포와 넷플릭스 애니메이션 방영</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-b15ebbdeb2cb4c8e.html">Fallout: New Vegas RTX 패스 트레이싱 모드 개발 소식</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-19-87496e457b94cba2.html">Crimson Desert 개발 — 자체 게임 엔진 기술력 주목</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/interview-rpg-maker-u2u-lets-you-build-hd-2d-worlds-without-learning-3d/" target="_blank" rel="noopener nofollow">Interview: RPG Maker U2U Lets You Build HD-2D Worlds Without Learning 3D</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
