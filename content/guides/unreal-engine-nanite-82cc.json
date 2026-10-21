@@ -1,0 +1,90 @@
+{
+  "id": "unreal-engine-nanite-82cc",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Nanite",
+  "title": "Unreal Engine Nanite 기초 가이드",
+  "summary": "Nanite은 지오메트리 데이터를 축소하지 않고 영화 수준의 고밀도 폴리곤 에셋을 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 막대한 폴리곤 수에도 퍼포먼스 저하를 줄여줍니다.",
+  "when": [
+    "수백만 개의 폴리곤을 가진 고해상도 스컬프팅 에셋을 게임 엔진에 그대로 임포트할 때",
+    "배경 에셋의 뷰 거리(LOD) 전환 없이 먼 거리에서도 선명하고 매끄러운 디테일을 유지하고 싶을 때",
+    "트리나 바위 같은 복잡한 자연물 군집을 대규모로 배치하여 압도적인 밀도를 구현할 때"
+  ],
+  "steps": [
+    "Content Browser에서 Nanite를 적용할 Static Mesh 에셋을 더블 클릭하여 에디터를 엽니다.",
+    "Details 패널에서 Nanite Settings 섹션을 찾습니다.",
+    "Enable Nanite 체크박스를 활성화합니다.",
+    "Apply 버튼을 눌러 설정을 저장하고 창을 닫습니다.",
+    "Viewport에 에셋을 드래그 앤 드롭하여 고밀도 렌더링 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Enable Nanite",
+      "desc": "선택한 스태틱 메쉬에 Nanite 가상화 지오메트리 시스템을 활성화합니다."
+    },
+    {
+      "name": "Position Precision",
+      "desc": "메쉬 정밀도를 조절하여 메모리 사용량과 시각적 정확도의 균형을 맞춥니다."
+    },
+    {
+      "name": "Normal Precision",
+      "desc": "법선 벡터의 정밀도를 설정하여 표면의 빛 반사 품질을 유지합니다."
+    },
+    {
+      "name": "Percent Triangles",
+      "desc": "원본 삼각형 중 유지할 비율을 결정합니다 (기본값은 100%)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 수준의 하이폴리 스컬프팅 바위 배치",
+      "steps": [
+        "ZBrush에서 작업한 수백만 폴리곤의 바위 모델을 FBX로 내보냅니다.",
+        "Unreal Engine의 Content Browser로 에셋을 임포트합니다.",
+        "Static Mesh 에디터에서 Enable Nanite를 켜고 저장합니다.",
+        "레벨에 여러 개를 배치하여 프레임 드랍 없이 디테일을 확인합니다."
+      ]
+    },
+    {
+      "title": "고밀도 건축 시각화(ArchViz) 디테일 유지",
+      "steps": [
+        "복잡한 장식과 몰딩이 포함된 3ds Max 건축 모델을 준비합니다.",
+        "Datasmith 또는 FBX로 Unreal Engine에 불러옵니다.",
+        "모든 메쉬 선택 후 일괄적으로 Nanite를 활성화합니다.",
+        "카메라를 멀리 이동해도 장식의 뭉개짐 없이 선명하게 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "반투명(Translucent) 머티리얼에 Nanite 적용 → Nanite는 현재 기본적으로 오파크(Opaque) 및 마스크드(Masked) 머티리얼을 지원하므로 머티리얼 블렌드 모드를 확인하세요.",
+    "스켈레탈 메쉬(Skeletal Mesh)에 적용 시도 → Nanite는 스태틱 메쉬 전용이므로 애니메이션이 필요한 캐릭터에는 사용할 수 없습니다."
+  ],
+  "related": [
+    "Lumen",
+    "Virtual Shadow Maps",
+    "World Partition",
+    "Static Mesh"
+  ],
+  "videos": [
+    {
+      "id": "MXkWzg6hVys",
+      "title": "NANITE Full Tutorial | Unreal Engine 5",
+      "author": "Proj Prod"
+    },
+    {
+      "id": "6igUsOp8FdA",
+      "title": "An Artist’s Guide to Using Nanite Tessellation | Unreal Fest 2024",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Nanite",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Nanite",
+    "Static Mesh"
+  ],
+  "at": "2026-10-21T14:41:17.806459+00:00"
+}
