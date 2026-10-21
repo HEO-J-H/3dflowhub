@@ -31,6 +31,21 @@
     {
       "heading": "향후 출시 일정 및 개발 방향",
       "body": "구체적인 V.1.0.2 정식 배포 일정에 맞춰 다양한 부가 기능과 안정성 패치가 함께 제공될 것으로 보입니다. 크리에이터들은 관련 유튜브 채널 및 에셋 스토어 공지를 통해 세부적인 기능 Release 타임라인을 확인할 수 있습니다. 지속적인 업데이트를 통해 실무 활용도가 더욱 높아질 전망입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1. Unity 6 프로젝트를 생성하고 Asset Store에서 \"Vertex 3D Terrain V.1.0.2\"를 구매·다운로드한다. 2. Package Manager에서 Import를 선택해 Terrain Prefab와 샘플 씬을 프로젝트에 추가한다. 3. 샘플 씬을 열어 Terrain Object를 선택하고 Inspector에서 \"Enable Particle Effects\"와 \"Player Interaction\" 옵션을 켠다. 4. Particle System이 자동으로 Terrain 에 연결되며, 플레이어가 지형 위를 이동하거나 트리거 오브젝트에 닿을 때 지정된 Particle이 재생된다. 5. 필요에 따라 Script (VertexTerrainInteraction.cs)를 수정해 상호작용 범위·반응을 커스터마이즈한다. 6. 최종 빌드 전 Unity 6 Profiler로 FPS와 메모리 사용량을 확인해 최적화한다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Unity 6 환경에서 지형을 제작할 때 주로 사용되는 툴은 Gaia, Terrain Composer 2, 그리고 MapMagic 2이다. 이들 툴은 고해상도 Heightmap 생성·Splatting에 강점이 있지만, 기본 Particle 효과와 플레이어 인터랙션을 별도 플러그인으로 연결해야 한다. 반면 Vertex 3D Terrain V.1.0.2는 Unity 6에 최적화된 렌더링과 함께 내장 Particle·인터랙션 기능을 제공한다. 따라서 빠른 프로토타이핑과 작은 프로젝트에선 설정만으로 시각적 피드백을 구현할 수 있어 작업 효율이 높다. 다만 대규모 오픈월드에서는 Gaia의 고급 텍스처 스트리밍이 더 유리할 수 있다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 Unity Hub에서 최신 Unity 6 버전을 설치한다. 이후 Unity Editor를 열고 Asset Store 탭에서 \"Vertex 3D Terrain V.1.0.2\"를 검색해 구매·다운로드한다. Package Manager에서 Import를 클릭해 모든 파일을 프로젝트에 삽입하고, 제공된 SampleScene을 열어 기본 설정을 확인한다. 처음 사용할 때는 Terrain Object를 선택하고 Inspector에서 \"Particle Effects\"와 \"Player Interaction\"을 활성화한 뒤, 간단한 Player Controller와 함께 테스트해 본다. 모든 설정이 정상 작동하면 자신의 프로젝트에 맞게 지형 크기·디테일을 조정하고, 필요 시 제공된 Script를 수정한다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +56,14 @@
     {
       "q": "이번 업데이트에서 주목해야 할 핵심 기능은 무엇인가요?",
       "a": "새로운 파티클 효과와 플레이어 인터랙션 기능이 추가되어 지형의 시각적 완성도와 상호작용성이 향상될 예정입니다."
+    },
+    {
+      "q": "Particle 효과와 플레이어 인터랙션은 언제 정식으로 제공되나요?",
+      "a": "현재 V.1.0.2 버전은 Unity 6 지원이 완료된 상태이며, Particle 효과와 플레이어 인터랙션 기능은 곧 업데이트될 예정이다. 정확한 배포 일정은 Asset Store 공지와 유튜브 채널을 통해 확인할 수 있다."
+    },
+    {
+      "q": "새로운 Particle 효과가 프로젝트 성능에 미치는 영향은 어느 정도인가요?",
+      "a": "Vertex 3D Terrain은 Unity 6의 최신 렌더링 파이프라인에 최적화돼 있어 기본 Particle 사용 시 큰 성능 저하가 없지만, Particle 수와 범위에 따라 FPS가 변동될 수 있다. 빌드 전 Profiler로 테스트하고, 필요 시 Particle 수와 재생 시간을 조절해 최적화한다."
     }
   ],
   "media": {
@@ -49,5 +72,23 @@
   },
   "collected_at": "2026-10-17T01:43:26.891372+00:00",
   "notion_id": "",
-  "id": "2026-10-17-fc94a901996ff7e4"
+  "id": "2026-10-17-fc94a901996ff7e4",
+  "refs": [],
+  "videos": [
+    {
+      "id": "U7n96LSG4dg",
+      "title": "Vertex 3D Terrain v.1.0.2 Tutorial - Unity 6+",
+      "author": "DptGames"
+    },
+    {
+      "id": "rvQY8xR2WWs",
+      "title": "Vertex 3D Terrain V.1.0.2 PARTICLE EFFECTS & PLAYER INTERACTIONS! - Unity 6+",
+      "author": "DptGames"
+    }
+  ],
+  "enriched_at": "2026-10-21T17:52:20+00:00",
+  "quality": {
+    "before": 760,
+    "after": 1970
+  }
 }

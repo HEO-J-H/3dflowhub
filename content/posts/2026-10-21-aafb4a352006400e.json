@@ -35,6 +35,21 @@
     {
       "heading": "표준 지오메트리 출력 및 활용",
       "body": "Retopia는 표준 지오메트리를 사용하여 결과를 도출하므로, 생성된 결과물은 일반적인 Blender 메시가 됩니다. 따라서 아티스트는 익숙한 다른 도구들을 이용해 작업을 계속 이어 나갈 수 있습니다. Superhive에서 할인 코드를 적용하여 구매할 수 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "먼저 Blender 4.5 이상에서 스컬프팅을 완료한 뒤, Edit > Preferences > Add‑ons에서 NKZ Retopia를 활성화합니다. Retopia 패널에서 Draw 툴을 선택하고, 스컬프 표면 위에 원하는 영역을 따라 선을 그리면 자동으로 정점이 배치되고 쿼드 그리드가 생성됩니다. 밀도 슬라이더로 폴리곤 수를 조절하고, 코너를 드래그해 형태를 미세 조정합니다. 팔·손가락 등 원통형 구조는 Spine 툴으로 한 줄만 그리면 전체 링 메시가 한 번에 만들어집니다. 작업 중 Smart Symmetry 옵션을 켜면 비대칭 부분이 있더라도 중앙을 기준으로 대칭 메시가 유지됩니다. 프리뷰에서 Analysis 맵을 확인해 n‑gon·삼각형을 즉시 파악하고, 만족스러우면 Apply 버튼으로 최종 메시를 확정합니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "NKZ Retopia는 스컬프 위에 직접 그려 토폴로지를 생성하는 워크플로에 특화돼 있으며, 외부 서버 없이 로컬에서 완전 오프라인으로 동작합니다. 반면 Blender 2.80용 MESHmachine [1]은 별도 제품으로, 기존 메쉬를 기반으로 리토폴로지를 수행하고 버전 호환성이 낮아 최신 Blender 4.x와 직접 연결되지 않을 수 있습니다. 또한 Gravity Rope [2]는 물리 시뮬레이션용 애드온으로 리토폴로지와는 전혀 다른 목적을 가집니다. 따라서 Retopia는 실시간 드로잉 기반 리토폴로지를 필요로 하는 캐릭터·VR 프로젝트에 가장 적합합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Retopia를 사용하려면 먼저 Superhive에서 할인 코드를 입력해 구매합니다. 구매 후 제공되는 .zip 파일을 다운로드하고, Blender Edit > Preferences > Add‑ons > Install > 파일 선택으로 설치합니다. 설치가 끝나면 Add‑ons 리스트에서 NKZ Retopia를 체크해 활성화하고, Preferences 에서 Smart Symmetry 옵션을 기본값으로 켭니다. 기본 사용법은 Retopia 패널의 Draw, Spine, Analysis 툴을 차례대로 시험해 보는 것이 좋으며, 공식 문서와 유튜브 튜토리얼을 참고해 단축키와 파라미터를 익히면 작업 효율을 크게 높일 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +60,14 @@
     {
       "q": "원통형 구조물이나 팔 같은 형태는 어떻게 리토폴로지하나요?",
       "a": "Spine 기능을 사용하여 리토폴로지할 요소 위로 선을 하나만 그리면, 튜브를 감싸는 모든 메시 링이 한 번에 생성됩니다."
+    },
+    {
+      "q": "Retopia를 사용하려면 어떤 Blender 버전이 필요한가?",
+      "a": "현재 NKZ Retopia는 Blender 4.5 이상과 호환됩니다. 이전 3.x 버전에서는 정상 동작을 보장하지 않으니, 최신 버전을 설치한 뒤 Add‑on을 활성화하세요."
+    },
+    {
+      "q": "기존 리토폴로지 워크플로와 Retopia를 어떻게 병합하나요?",
+      "a": "기존 메쉬를 Retopia에 임포트한 뒤, Draw 툴로 추가 영역을 그리거나 Spine 툴로 손가락·다리 같은 구조를 보완합니다. 작업이 끝난 후 Apply 로 새로운 메시를 생성하고, 필요 시 기존 메쉬와 병합하거나 Boolean 연산으로 결합해 최종 모델을 완성합니다."
     }
   ],
   "media": {
@@ -53,5 +76,31 @@
   },
   "collected_at": "2026-10-21T17:00:50.574720+00:00",
   "notion_id": "",
-  "id": "2026-10-21-aafb4a352006400e"
+  "id": "2026-10-21-aafb4a352006400e",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "MESHmachine",
+      "url": "https://blenderartists.org/t/meshmachine/1102529",
+      "excerpt": "v0.6.8 for Blender 2.80 is out | https://gumroad.com/l/MESHmachine Gumroad If you are an existing MM customer on gumroad, check your email for a 100% discount. MESHmachine 0.6.8 is a separate product now. If you have not received an email, please reach out to me directily at mailto:mesh@machin3.i...",
+      "replies": 1045
+    }
+  ],
+  "videos": [
+    {
+      "id": "Teoom9gYPEE",
+      "title": "Blender: My FAVORITE UV-Mapping Addon (MIO3)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "i89WJ-ap4C4",
+      "title": "Ucupaint for Beginners! (Free Blender Texture Painting Addon) 🖌️",
+      "author": "Ryan King Art"
+    }
+  ],
+  "enriched_at": "2026-10-21T17:51:31+00:00",
+  "quality": {
+    "before": 1049,
+    "after": 2124
+  }
 }
