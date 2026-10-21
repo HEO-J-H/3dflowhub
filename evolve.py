@@ -74,7 +74,7 @@ def performance_table() -> dict:
     """노션의 글별 조회수(Views)를 도메인/카테고리별로 집계 및 상위 글 제목 길이 평균 집계 반환 — 수익 학습의 보상 신호."""
     client = core._notion()
     perf_data = site_performance_table() if client is None else None
-    
+
     if client is None:
         agg = perf_data["by_group"]
         top = perf_data["top_posts"]
