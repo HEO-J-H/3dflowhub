@@ -254,8 +254,16 @@ def _day_start_utc() -> str:
     return la.astimezone(timezone.utc).isoformat()
 
 
-def done_today() -> dict:
-    start = _day_start_utc()
+def _kst_day_start_utc() -> str:
+    """한국 날짜 0시 (UTC ISO) — 현황판 '오늘' 표시용. AI 배분은 _day_start_utc(한도 기준 태평양 자정)를 씀."""
+    from zoneinfo import ZoneInfo
+    k = datetime.now(ZoneInfo("Asia/Seoul")).replace(hour=0, minute=0, second=0, microsecond=0)
+    return k.astimezone(timezone.utc).isoformat()
+
+
+def done_today(kst: bool = False) -> dict:
+    """오늘 만든 것. kst=True 면 한국 날짜 기준(화면 표시), 기본은 AI 한도 하루 기준(배분 계산)."""
+    start = _kst_day_start_utc() if kst else _day_start_utc()
     news = sum(1 for f in core.POSTS_DIR.glob("*.json") if (core._load_json(f, {}).get("collected_at") or "") >= start)
     try:
         import guides
@@ -264,6 +272,14 @@ def done_today() -> dict:
         g = 0
     r = sum(1 for f in core.ROUNDUP_DIR.glob("*.json") if core._load_json(f, {}).get("at", "") >= start) \
         if core.ROUNDUP_DIR.exists() else 0
+    enriched = recipes_n = 0
+    if kst:  # 화면 표시용 추가 지표 (배분 계산에는 쓰지 않음)
+        for f in core.POSTS_DIR.glob("*.json"):
+            e_at = core._load_json(f, {}).get("enriched_at") or ""
+            enriched += e_at != "skip" and e_at >= start
+        rdir = core.ROOT / "content" / "recipes"
+        recipes_n = sum(1 for f in rdir.glob("*.json") if core._load_json(f, {}).get("at", "") >= start) if rdir.exists() else 0
+        return {"news": news, "guides": g, "roundups": r, "enriched": enriched, "recipes": recipes_n}
     return {"news": news, "guides": g, "roundups": r}
 
 

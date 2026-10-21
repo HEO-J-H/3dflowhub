@@ -1271,13 +1271,27 @@ with t_today:
                     st.rerun()
 
     st.subheader("📈 오늘 성과")
-    q1, q2, q3, q4 = st.columns(4)
-    q1.metric("오늘 올린 소식", f"{done_t['news']}건")
-    q2.metric("오늘 기초 가이드", f"{done_t['guides']}개")
-    q3.metric("오늘 도구별 정리", f"{done_t['roundups']}개")
-    q4.metric("AI 남은 여력", f"{core.llm_capacity_left()}회",
-              help=f"오늘 사용 {core.llm_usage_today() + sum(core.llm_fallback_usage().values())}회 · "
-                   f"리셋 {core.llm_reset_kst()} (한국 시간)")
+    from zoneinfo import ZoneInfo as _ZI
+    _today = datetime.now(_ZI("Asia/Seoul")).date()
+    done_k = _mgr.done_today(kst=True)  # 한국 날짜 0시 기준
+    _pg = (core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {})
+    _daily = _pg.get("daily") or {}
+    _v_today = _daily.get(str(_today))
+    _v_yday = _daily.get(str(_today - pd.Timedelta(days=1)))
+    v1, v2, v3 = st.columns(3)
+    v1.metric("오늘 방문 (지금까지)", f"{_v_today}회" if _v_today is not None else "집계 전",
+              help=f"GoatCounter 3시간마다 갱신 (마지막 {str(_pg.get('at', ''))[11:16] or '-'}) — 하루 중간 값이라 어제 전체와 직접 비교하지 않음")
+    v2.metric("어제 방문", f"{_v_yday}회" if _v_yday is not None else "-")
+    v3.metric("최근 30일 방문", f"{_pg.get('pv_30d', '-')}회")
+    q = st.columns(5)
+    q[0].metric("올린 소식", f"{done_k['news']}건")
+    q[1].metric("기초 가이드", f"{done_k['guides']}개",
+                help=None if done_k["guides"] else "준비된 주제가 없으면 0 — AI 관리자가 새 주제를 제안하면 다시 만듭니다")
+    q[2].metric("도구별 정리", f"{done_k['roundups']}개")
+    q[3].metric("품질 보강한 글", f"{done_k['enriched']}개")
+    q[4].metric("실무 파이프라인", f"{done_k['recipes']}개")
+    st.caption(f"한국 시간 {_today:%m/%d} 0시부터 · AI 남은 여력 {core.llm_capacity_left()}회 "
+               f"(AI 한도는 매일 {core.llm_reset_kst()[-5:]} 리셋)")
     st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
                + (f" · 배분 뉴스 {int(plan_t['alloc'].get('news', 0) * 100)}% · 가이드 {int(plan_t['alloc'].get('guides', 0) * 100)}%"
                   f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
