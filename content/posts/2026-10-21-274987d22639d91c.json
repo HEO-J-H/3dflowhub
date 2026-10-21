@@ -22,14 +22,56 @@
     {
       "heading": "비용",
       "body": "포팅 작업에 청구된 금액은 $100이었다. 이는 일반적인 외주 개발 비용에 비해 매우 낮은 수준이다. 비용은 Claude 사용에 대한 API 호출 비용과 Prompt 설계 비용을 포함한 것으로 추정된다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1. 포팅하려는 게임 프로젝트 파일을 모두 한 폴더에 정리합니다. 2. Anthropic 홈페이지에서 API 키를 발급받고, Python 또는 curl 환경을 준비합니다. 3. \"게임을 X 플랫폼(예: Windows)에서 Y 플랫폼(예: macOS)으로 포팅해줘\"와 같이 구체적인 목표와 현재 사용 엔진(예: Unity, Unreal) 정보를 Prompt에 포함합니다. 4. Claude에게 소스 코드 변환, 빌드 Script 수정, 플랫폼‑특화 API 교체 등을 단계별로 요청하고, 반환된 코드를 로컬에 저장합니다. 5. 변환된 코드를 실제 엔진에 적용해 빌드하고, 오류가 발생하면 해당 오류 메시지를 다시 Prompt에 넣어 디버깅을 반복합니다. 6. 최종 빌드가 성공하면 테스트 플레이를 진행하고, 필요 시 추가 Prompt로 UI · 그래픽 · 입력 처리 등을 다듬습니다. 전체 과정은 Claude API 호출 비용과 Prompt 설계 시간만 포함해 약 $100 정도로 마무리됩니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Claude는 Anthropic이 제공하는 대화형 LLM으로, 코드 변환과 전체 프로젝트 포팅에 특화된 Prompt 설계가 핵심입니다. GitHub Copilot은 IDE 플러그인 형태로 실시간 코드 제안을 제공하지만, 전체 프로젝트 구조를 바꾸는 작업에는 별도 Script가 필요합니다. OpenAI Codex도 비슷한 기능을 제공하지만, 현재 공개된 가격 정책이 명확하지 않아 비용 예측이 어렵습니다. 반면 Claude는 API 호출당 과금 구조가 투명하고, 이번 사례처럼 $100 수준으로 전체 포팅을 완료한 실증 사례가 있습니다. 따라서 예산이 제한된 소규모 스튜디오나 개인 개발자는 Claude를 우선 고려해볼 만합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "① Anthropic 공식 사이트(https://www.anthropic.com)에서 계정을 만들고 API 키를 발급받습니다. ② Python 환경을 구축하고, pip install anthropic 또는 curl 명령으로 API 호출 도구를 설치합니다. ③ 포팅할 게임 파일을 압축하거나 Git 레포지터리 형태로 준비하고, README에 현재 엔진·버전 정보를 명시합니다. ④ Prompt 예시(“이 Unity 프로젝트를 macOS용으로 포팅해줘”)를 작성하고, API endpoint에 POST 요청을 보냅니다. ⑤ 반환된 코드를 로컬에 저장하고, 해당 엔진에서 빌드·테스트를 진행합니다. 필요 시 오류 로그를 Prompt에 추가해 반복 수정합니다. 전체 흐름을 문서화하면 추후 다른 프로젝트에도 재사용이 용이합니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Claude를 이용해 게임 포팅을 시도하려면 어떤 사전 지식이 필요한가?",
+      "a": "기본적인 프로그래밍 개념과 사용 중인 게임 엔진(Unity·Unreal 등)의 프로젝트 구조에 대한 이해가 필요합니다. 또한 API 호출을 위한 간단한 Python 또는 curl 사용법을 알면 작업이 수월합니다."
+    },
+    {
+      "q": "$100 비용은 어떤 항목으로 구성되는가?",
+      "a": "주요 항목은 Claude API 호출에 따른 사용량 비용과, Prompt 설계·반복 테스트에 소요된 시간 비용입니다. 기사에서는 별도 라이선스 비용이나 외주 인건비가 포함되지 않았다고 명시했습니다."
+    }
+  ],
   "media": {
     "image": "",
     "video": ""
   },
   "collected_at": "2026-10-21T19:11:28.661850+00:00",
   "notion_id": "",
-  "id": "2026-10-21-274987d22639d91c"
+  "id": "2026-10-21-274987d22639d91c",
+  "refs": [],
+  "videos": [
+    {
+      "id": "BEdvaTbtQ94",
+      "title": "Claude ported my whole game for $100",
+      "author": "Tim Ruswick"
+    },
+    {
+      "id": "4ojmHWn_rxY",
+      "title": "How to make Roblox Games Using Claude",
+      "author": "Developer Dank"
+    }
+  ],
+  "enriched_at": "2026-10-21T20:12:53+00:00",
+  "quality": {
+    "before": 327,
+    "after": 1580
+  }
 }
