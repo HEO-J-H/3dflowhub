@@ -96,7 +96,6 @@ def performance_table() -> dict:
             a["avg"] = round(a["views"] / a["posts"], 1)
         top = sorted(top, reverse=True)[:8]
 
-    # 조회수 상위 글(top_posts)의 제목 길이 평균 집계
     title_stats = {"avg_length": 0.0, "count": len(top)}
     if top:
         total_len = sum(len(title) for _, title in top)
