@@ -1,0 +1,22 @@
+<!-- TITLE: NVIDIA cuDSS 정식 출시 — 엔지니어링 및 과학 시뮬레이션 가속 | TAGS: cuDSS,NVIDIA,CUDA-X,시뮬레이션,GPU 가속,업데이트·출시 | CATEGORY: VFX/기타 VFX | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://blogs.nvidia.com/blog/cudss-generally-available-engineering-scientific-simulation/" target="_blank" rel="noopener nofollow"><img src="https://blogs.nvidia.com/wp-content/uploads/2026/10/cuDSS_GTCBerlin.jpg" alt="NVIDIA cuDSS 정식 출시 — 엔지니어링 및 과학 시뮬레이션 가속" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://blogs.nvidia.com/blog/cudss-generally-available-engineering-scientific-simulation/" target="_blank" rel="noopener nofollow">blogs.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA가 엔지니어링 및 과학 시뮬레이션의 대규모 희소 시스템 연산을 가속하는 cuDSS 라이브러리를 정식 출시했습니다.</p>
+<p style="color:#888;">분류: VFX › 기타 VFX › 업데이트·출시</p>
+<h2>NVIDIA cuDSS 정식 출시 개요</h2>
+<p>NVIDIA는 엔지니어링 및 과학 시뮬레이션의 핵심 연산을 GPU로 오프로드하는 CUDA-X 라이브러리인 cuDSS를 정식 출시했습니다. 복잡한 설계의 성능을 사전에 예측하기 위한 시뮬레이션은 설계가 고도화될수록 연산 시간이 늘어나는 문제를 겪고 있습니다. cuDSS는 시뮬레이션에서 반복되며 전체 성능을 좌우하는 대규모 희소 시스템(sparse systems) 솔루션을 GPU 기반으로 가속합니다.</p>
+<h2>주요 업계 선도 기업들의 도입 효과</h2>
+<p>Applied Materials는 반도체 소재 탐색 플랫폼인 Ginestra에서 cuDSS를 활용해 CPU 단독 방식 대비 최대 10배 빠른 희소 연산 가속을 달성했습니다. COMSOL Multiphysics를 사용하는 ZEISS SMT는 EUV 리소그래피 플라즈마 시뮬레이션 벤치마크에서 4배의 속도 향상을 기록했습니다. 또한 Dassault Systèmes는 Abaqus 구조 및 전자기학 솔버에서 8~10배의 성능 향상을 보고했습니다.</p>
+<h2>다양한 시뮬레이션 및 설계 도구 지원</h2>
+<p>Cadence는 Celsius 소프트웨어에서 cuDSS를 적용해 칩 디자인의 열 및 구조 스트레스 시뮬레이션을 가속하고 있습니다. Siemens는 Simcenter STAR-CCM+의 유체-구조 상호작용 워크플로우에 cuDSS를 통합했습니다. Synopsys 역시 Sentaurus Device 시뮬레이터에서 첨단 로직 및 전력 반도체 모델링 속도를 높이는 데 이 라이브러리를 활용하고 있습니다.</p>
+<h2>확장성과 개발자 인터페이스</h2>
+<p>cuDSS는 단일 워크스테이션 환경부터 대규모 컴퓨팅 클러스터까지 별도의 복잡한 수정 없이 확장될 수 있습니다. 개발자들은 C, C++, Python, Fortran 인터페이스를 통해 기존의 엔지니어링 및 최적화 소프트웨어에 쉽게 통합할 수 있습니다. 이를 통해 엔지니어와 연구원들은 익숙한 툴 환경 그대로 강력한 GPU 가속 혜택을 누릴 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">이번 cuDSS 정식 출시는 복잡한 물리 시뮬레이션과 대규모 연산을 수행하는 3D 및 VFX 파이프라인의 병목 현상을 획기적으로 줄여줍니다. 특히 유체 역학이나 구조 해석을 다루는 테크니컬 디렉터와 시뮬레이션 엔지니어는 CPU 중심의 한계를 극복하고 작업 처리량을 극대화할 수 있습니다. 실무에서는 상용 CAE 및 DCC 도구와의 연동을 통해 복잡한 씬 계산 시간을 단축하고 디자인 탐색 범위를 넓히는 데 적극 활용해야 합니다. 대규모 클러스터 환경은 물론 워크스테이션 환경에서도 원활하게 확장되므로 시뮬레이션 중심 파이프라인의 표준 도구로 자리잡을 전망입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA cuDSS란 무엇인가요?</b><br/>A. 엔지니어링 및 과학 시뮬레이션에서 가장 연산 비중이 높은 대규모 희소 시스템(sparse systems) 연산을 GPU로 가속하여 처리 시간을 단축하는 NVIDIA CUDA-X 라이브러리입니다.</p>
+<p><b>Q. 어떤 프로그래밍 인터페이스를 지원하나요?</b><br/>A. 개발자들은 C, C++, Python, Fortran 인터페이스를 통해 기존 소프트웨어 제품군에 cuDSS를 손쉽게 통합할 수 있습니다.</p>
+<p><b>Q. 실제 시뮬레이션 속도 향상 폭은 얼마나 되나요?</b><br/>A. 업계 파트너들의 도입 사례에 따르면, 적용 분야에 따라 CPU 전용 방식 대비 최소 4배에서 최대 10배에 달하는 성능 향상을 기록하고 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-d9f1fde257b3700c.html">Nvidia RTX Mega Geometry 2.0 발표 — VRAM 1GB 절감</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-4c40a9141a6132a5.html">NVIDIA와 Adobe, 미디어 에이전틱 보안 및 영상 검색 강화</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-17-1c6721e865c58a44.html">Claude AI 기반 무료 아트크래프트 스위트, 어도비 앱 7개 대체</a></li></ul>
+<hr/><p>원문:<a href="https://blogs.nvidia.com/blog/cudss-generally-available-engineering-scientific-simulation/" target="_blank" rel="noopener nofollow">NVIDIA cuDSS Now Generally Available to Accelerate Engineering and Scientific Simulations</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
