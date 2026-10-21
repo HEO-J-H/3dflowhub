@@ -240,6 +240,13 @@ def test_offtopic_article_is_skipped(monkeypatch):
                         '"sections": [{"heading": "h", "body": "b"}]}')
     assert core.summarize({"title": "Weather", "url": "https://ex.com/w", "hint_domain": "VFX", "rss_summary": ""}) is None
 
+def test_filter_content_quality_strict(monkeypatch):
+    # 실무 3D 툴 및 스크립트 관련 키워드가 없는 일반 IT 뉴스는 엄격하게 off-topic으로 필터링되어야 함
+    monkeypatch.setattr(core, "fetch_article", lambda url: ("General smartphone hardware review without tool or script info.", {"image": "", "video": ""}))
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"title_ko": "일반 하드웨어 리뷰", "relevance": 8, "summary": "리뷰", "sections": [{"heading": "h", "body": "b"}]}')
+    assert core.summarize({"title": "Hardware Review", "url": "https://ex.com/hw", "hint_domain": "VFX", "rss_summary": ""}) is None
+    assert "off-topic" in core.RUN_ERRORS
+
 
 def test_llm_budget_blocks_after_limit(monkeypatch):
     core._save_json(core.CONFIG_PATH, {"llm_daily_budget": 2})

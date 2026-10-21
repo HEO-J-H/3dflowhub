@@ -1195,6 +1195,23 @@ def normalize_summary(data: dict, item: dict) -> dict:
     return data
 
 
+def filter_content_quality(item: dict, body: str, data: dict) -> bool:
+    """수집된 콘텐츠 중 실무 3D 툴 및 스크립트 가이드 키워드가 포함되지 않은 항목을 엄격하게 필터링합니다."""
+    text_to_check = f"{item.get('title', '')} {data.get('title_ko', '')} {data.get('summary', '')} {body}"
+    # 실무 3D 툴 및 스크립트 가이드 관련 필수 실무 키워드 확장
+    practical_keywords = [
+        "script", "plugin", "addon", "add-on", "tutorial", "guide", "workflow", "shader",
+        "rigging", "animation", "modeling", "simulation", "render", "geometry nodes", "maxscript",
+        "python", "uefn", "blueprint", "material", "lighting", "vfx", "splatting", "nerf",
+        "스크립트", "플러그인", "가이드", "튜토리얼", "워크플로우", "셰이더", "리깅", "애니메이션",
+        "모델링", "시뮬레이션", "렌더", "지오메트리 노드", "블렌더", "맥스", "마야", "후디니", "언리얼"
+    ]
+    has_practical_keyword = any(kw in text_to_check.lower() for kw in practical_keywords)
+    if not has_practical_keyword:
+        log.info("실무 3D 툴 및 스크립트 키워드 누락으로 엄격 off-topic 분류: %s", item.get("title", ""))
+        return False
+    return True
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
@@ -1251,6 +1268,9 @@ def summarize(item: dict) -> dict | None:
     if not data["sections"] and not data.get("summary"):
         # 일부 모델(Groq 등)은 무관한 기사에 relevance 대신 빈 응답을 줌 → 오류가 아니라 주제 밖으로 집계
         log.info("빈 요약(주제 밖으로 판단) — 제외: %s", item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
+    if not filter_content_quality(item, body, data):
         RUN_ERRORS.append("off-topic")
         return None
     if not data["sections"]:
