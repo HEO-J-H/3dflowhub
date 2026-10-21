@@ -1,0 +1,21 @@
+<!-- TITLE: NVIDIA Omniverse DSX Blueprint — AI 팩토리 디지털 트윈 구축 | TAGS: NVIDIA Omniverse,OpenUSD,디지털 트윈,AI 팩토리,SimReady,업데이트·출시 | CATEGORY: AI 3D/로보틱스·월드모델 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/omniverse-overall-dsx-sim-gtc-berlin-26-5796136-600x338-r2-500x282.gif" alt="NVIDIA Omniverse DSX Blueprint — AI 팩토리 디지털 트윈 구축" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA Omniverse DSX Blueprint는 OpenUSD와 AI 에이전트 기반 워크플로우를 활용해 AI 팩토리 디지털 트윈을 구축하는 레퍼런스 자산과 Script를 제공합니다.</p>
+<p style="color:#888;">분류: AI 3D › 로보틱스·월드모델 › 업데이트·출시</p>
+<h2>OpenUSD 기반 AI 팩토리 디지털 트윈 워크플로우</h2>
+<p>NVIDIA Omniverse DSX Blueprint는 개발자가 사이트 계획, 장비 자산, 엔지니어링 요구사항을 통합하여 일관된 모델로 만들 수 있는 기반을 제공합니다. OpenUSD와 NVIDIA Omniverse 라이브러리를 바탕으로 시설 및 장비 모델을 SimReady 자산과 조립합니다. 이를 통해 엔지니어링 팀은 설계 대안을 탐색하고 시뮬레이션 준비를 마칠 수 있습니다.</p>
+<h2>AI 에이전트를 활용한 씬 생성 및 레이어 관리</h2>
+<p>프론티어 AI 에이전트와 USD Content Agents를 결합하여 태양광 캐노피와 같은 지오메트리를 생성하고 건축적 참고 자료를 바탕으로 디자인을 정제할 수 있습니다. 변경 사항은 원본 자산과 분리된 가산형 USD 레이어(additive USD layers)에 저장됩니다. 이를 통해 팀 전체가 원본을 훼손하지 않고 안전하게 모델을 검토하고 수정할 수 있습니다.</p>
+<h2>전력 예산 제약 내의 용량 계획 및 비교 분석</h2>
+<p>캠퍼스 모델은 고정된 전력 예산 내에서 컴퓨팅 구성을 평가하는 용량 계획 연구를 지원합니다. NVIDIA Vera Rubin NVL72 추론과 DSX MaxLPS 간의 예시적 비교 등을 통해 전력 제약 상황에서 최적의 AI 팩토리 홀 구성을 도출합니다. 설계 반복 과정에서 엔지니어링 피드백을 실시간으로 반영하여 다음 단계를 계획할 수 있습니다.</p>
+<h2>SimReady Foundation 및 에코시스템 연동</h2>
+<p>SimReady Foundation 사양과 Hugging Face의 SimReady Central Library는 팀이 자산 데이터의 시뮬레이션 준비 상태를 평가하는 데 도움을 줍니다. Dassault Systèmes, PTC, Cadence, Siemens 등의 애플리케이션 제공업체들이 참여하여 요구사항 관리, CAD 데이터, 전산유체역학(CFD), 열 해석 시뮬레이션을 디지털 트윈 워크플로우에 연결합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">본 블루프린트는 대규모 시설 설계 및 시뮬레이션 파이프라인을 구축하는 테크니컬 디렉터와 시뮬레이션 엔지니어에게 매우 유용한 표준을 제시합니다. 에이전트 기반의 OpenUSD 레이어 분리 기법은 대규모 시설 씬을 여러 팀이 협업하여 수정할 때 발생하는 데이터 충돌을 예방하는 훌륭한 참고 사례가 됩니다. 특히 전력 및 냉각 분석을 위한 SimReady 자산 검증 워크플로우는 제조·엔지니어링 분야의 가상화 작업 효율을 극적으로 높여줍니다. 따라서 복잡한 CAD 데이터와 엔지니어링 요구사항을 통합하려는 실무 파이프라인 설계에 적극 도입할 필요가 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA Omniverse DSX Blueprint의 주된 용도는 무엇인가요?</b><br/>A. OpenUSD와 NVIDIA Omniverse 라이브러리를 활용해 AI 팩토리 디지털 트윈을 구축하기 위한 레퍼런스 자산, 샘플 Script, 워크플로우를 제공하여 시설 및 장비 모델링을 지원합니다.</p>
+<p><b>Q. AI 에이전트는 디지털 트윈 작업에서 어떤 역할을 하나요?</b><br/>A. USD Content Agents를 통해 지오메트리를 생성하고 건축적 참고 자료를 반영하여 디자인을 정제하며, 변경 사항을 가산형 USD 레이어로 분리 관리하여 협업을 돕습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-32263a4df1a56c90.html">AI 3D 연구 AEON — 비디오와 3D 월드 모델의 통합</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-a1cae0f5424be9b3.html">World2HOSI — 장기 인터랙션 생성을 위한 멀티 익스퍼트 하네스</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-3c471b8abda39883.html">NVIDIA와 독일 정부, 산업용 AI 생태계 구축 위한 협력 선언</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/" target="_blank" rel="noopener nofollow">Developing an AI Factory Digital Twin with an Agent-Assisted Workflow</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
