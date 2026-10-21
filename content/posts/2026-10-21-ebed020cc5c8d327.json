@@ -32,6 +32,21 @@
     {
       "heading": "에코시스템을 통한 제작 효율 극대화",
       "body": "이번 대회는 캐릭터 크리에이션부터 리깅, 페이셜 애니메이션에 이르는 전 과정을 아우르는 파이프라인의 유효성을 입증했습니다. 참가자들은 고품질의 캐릭터 퀄리티를 유지하면서도 제작 시간을 단축할 수 있는 다양한 에코시스템 연계 방식을 선보였습니다. 심사위원들은 아티스트들이 예술적 기량뿐만 아니라 최신 애니메이션 툴에 대한 깊은 이해도를 보여주었다고 평가했습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "수상작 제작진들은 Character Creator의 베이스 메시에 ZBrush, Blender, Marvelous Designer 등을 연동해 디테일을 높이는 방식을 주로 사용했습니다. 특히 GoZ Plus 플러그인을 활용하면 ZBrush와의 지오메트리 왕복 작업에서 세부 형태가 깨지지 않고 유지되어 효율적입니다. 또한 새로 도입된 Maya용 Auto Setup 기능을 쓰면 외부 DCC 툴에서 별도의 복잡한 세팅 없이 곧바로 표정 제작과 렌더링 파이프라인으로 넘어갈 수 있어 제작 시간을 크게 단축합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 등 커뮤니티에서는 이번 콘테스트 출품작들의 세밀한 표정 변화와 릭(Rig) 구조에 대한 토론이 이어지고 있습니다 [1]. 한 아티스트는 마우스 모핑이나 입 모양이 '귀여운 상태'에서 '공포스러운 상태'로 극적으로 변하는 연출을 위해 Shape Keys로 기본 지오메트리의 형태를 잡은 뒤, 눈·머리·턱 등 뼈대를 이용해 일반적인 방식으로 헤드 리깅을 병행하는 팁을 공유했습니다 [1]. 복잡한 표정 애니메이션을 구현할 때는 셰이프키와 본(Bone) 애니메이션의 역할을 명확히 나누어 작업하는 것이 안정적입니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Reallusion 에코시스템을 실무 파이프라인에 도입하고 싶다면 Character Creator와 iClone, 무료 리깅 툴인 AccuRIG의 기본 연동 과정부터 살펴보는 것이 좋습니다. 캐릭터의 체형을 슬라이더로 빠르게 조절하는 기본 기능과 외부 DCC(Blender, ZBrush, Maya) 간의 데이터 링크 플러그인 설치법을 먼저 익히세요. 공식 채널의 수상작 발표 영상과 메이킹 아일랜드 자료를 통해 전 세계 아티스트들이 에코시스템을 어떻게 조합해 시간을 단축했는지 확인하는 것도 큰 도움이 됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +57,14 @@
     {
       "q": "현실적 캐릭터 디자인 부문 수상자들은 어떤 장점이 있다고 평가했나요?",
       "a": "슬라이더를 통한 빠른 형태 수정, 뛰어난 HD 모프 디테일, 그리고 GoZ Plus나 Maya Auto Setup을 통한 매끄러운 외부 툴 연동이 작업 속도와 효율을 크게 높였다고 평가했습니다."
+    },
+    {
+      "q": "Character Creator와 ZBrush를 연동할 때 지오메트리 디테일이 손실되지는 않나요?",
+      "a": "GoZ Plus 등의 연동 툴을 활용하면 세부 디테일을 보존하면서 원활하게 왕복 작업을 수행할 수 있다고 수상 아티스트들은 조언합니다."
+    },
+    {
+      "q": "표정 애니메이션을 정교하게 만들 때 어떤 방식을 추천하나요?",
+      "a": "커뮤니티 사례에 따르면 Shape Keys로 기본 형태의 변형을 잡고, 눈·턱·머리 등은 본(Bone) 리깅을 함께 활용해 움직임을 주는 방식을 조합하는 것이 효과적입니다 [1]."
     }
   ],
   "media": {
@@ -50,5 +73,31 @@
   },
   "collected_at": "2026-10-21T11:09:54.303253+00:00",
   "notion_id": "",
-  "id": "2026-10-21-ebed020cc5c8d327"
+  "id": "2026-10-21-ebed020cc5c8d327",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Siren: Reallusion 3D Character Design Contest WIP",
+      "url": "https://blenderartists.org/t/siren-reallusion-3d-character-design-contest-wip/674942",
+      "excerpt": "Oooooow I would not like to meet her on a dark night! As for the mouth morphing from “cute-ish” to “Aaaaargh” I would use shapekeys to get the basic new geometry, then rig the head in the normal fashion, i.e. bones for eyes, head, jaw, etc. to animate the movement as you run the shapekeys to get ...",
+      "replies": 4
+    }
+  ],
+  "videos": [
+    {
+      "id": "0WpgX5jic04",
+      "title": "2026 Reallusion 3D Character Contest: A Stage for 3D Artists | Win $45,000 in Prizes",
+      "author": "Reallusion"
+    },
+    {
+      "id": "zhGfrHHtT7Y",
+      "title": "2026 Reallusion 3D Character Contest | Winner Announcement | Character Creator & iClone & AccuRIG",
+      "author": "Reallusion"
+    }
+  ],
+  "enriched_at": "2026-10-21T13:20:40+00:00",
+  "quality": {
+    "before": 1055,
+    "after": 1929
+  }
 }

@@ -34,6 +34,21 @@
     {
       "heading": "지원 렌더러 및 파이프라인 통합",
       "body": "각 3D 프로그램과 렌더러의 선호하는 워크플로에 맞춰 개발되었으며 외부 개발자들의 협력을 거쳐 수학적 계산과 노드 구조를 검증했습니다. Cinema 4D에서는 Redshift와 Octane을 모두 지원하며, Houdini에서는 Redshift 옵션을 제공하고 Solaris 환경에서도 작동합니다. 사용자는 실시간으로 결과물을 확인하며 직관적으로 아티스틱한 표현을 실험할 수 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "YMA Painterly Shader는 모션 그래픽이나 게임 시네마틱에서 전통적인 3D 렌더링 룩을 벗어나 회화적인 질감을 빠르게 부여할 때 유용합니다. Houdini의 Solaris 환경이나 Cinema 4D에서 Redshift, Octane 렌더러를 사용할 때 노드 네트워크를 복잡하게 구축할 필요 없이 Shader 적용만으로 스타일화된 결과를 얻을 수 있습니다. 특히 브러시 텍스처를 활용해 최대 4가지 색상을 혼합하고, 슬라이더 조절만으로 기본 지오메트리 노멀과 스타일화된 노멀을 오갈 수 있어 아트 디렉션 단계에서 시각적 실험을 빠르게 반복할 때 작업 시간을 크게 단축해 줍니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "스타일화된 3D 제작과 관련해 커뮤니티에서는 무조건 복잡한 시뮬레이션이나 사실적인 룩이 정답은 아니라는 의견이 많습니다 [1]. 특히 Pixar 스타일처럼 애니메이션이 스타일화된 경우, Marvelous Designer나 Houdini에서 얻을 수 있는 지나치게 사실적인 시뮬레이션 결과물이 오히려 의도한 연출과 맞지 않을 때가 있다고 지적합니다 [1]. 따라서 YMA Painterly Shader와 같은 툴을 도입할 때는 프로젝트의 전체적인 아트 스타일에 부합하는지 렌더러(Redshift, Octane) 환경에서 충분히 테스트를 거친 후 파이프라인에 적용하는 것이 좋습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이 Shader 세트를 사용하려면 우선 자신이 주력으로 사용하는 3D DCC(Cinema 4D 또는 Houdini)와 호환되는 렌더러 버전(Redshift 또는 Octane)을 확인해야 합니다. 제작자인 Theodore Daley가 You and Me Academy(YMA)의 일환으로 제작한 만큼, Gumroad를 통해 제공되는 패키지를 구하여 각 DCC의 Shader 노드 그래프에 불러오는 방식으로 시작합니다. Houdini 사용자의 경우 Solaris 환경에서의 워크플로를 염두에 두고 테스트하며, 브러시 텍스처 기반의 노멀 조작 슬라이더를 조절해 원하는 회화적 디테일을 찾아가는 연습부터 진행하는 것을 권장합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +59,14 @@
     {
       "q": "이 Shader 컬렉션의 핵심 기능은 무엇인가요?",
       "a": "12가지 커스텀 프리셋 페인터리 머티리얼을 제공하며, 브러시 텍스처를 바탕으로 최대 4가지 색상을 칠하고 슬라이더 조작만으로 노멀을 변형해 회화적 디테일을 더할 수 있습니다."
+    },
+    {
+      "q": "어떤 3D 프로그램과 렌더러에서 사용할 수 있나요?",
+      "a": "Cinema 4D에서는 Redshift와 Octane 렌더러를 모두 지원하며, Houdini에서는 Redshift 옵션과 Solaris 환경을 지원합니다."
+    },
+    {
+      "q": "회화적인 룩은 어떤 방식으로 만들어지나요?",
+      "a": "브러시 텍스처를 기반으로 최대 4가지 색상을 조합하며, 렌더러 내부에서 슬라이더 조절을 통해 지오메트리 노멀을 스타일화된 형태로 변환하여 회화적 디테일을 더합니다."
     }
   ],
   "media": {
@@ -52,5 +75,31 @@
   },
   "collected_at": "2026-10-21T12:59:50.406546+00:00",
   "notion_id": "",
-  "id": "2026-10-21-7a359bb34a19673a"
+  "id": "2026-10-21-7a359bb34a19673a",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "How do people make realistic cloth for film type animation?",
+      "url": "https://blenderartists.org/t/how-do-people-make-realistic-cloth-for-film-type-animation/1579526",
+      "excerpt": "Hey ! I just wanted to add that cloth sim isn't always used in movies. And in the end, what kind of animated movie we are talking about ? In a Pixar like movie since the animation is stylized, the realistic cloth sim that you would get from marvelous/houdini doesn't always work well. There are a ...",
+      "replies": 47
+    }
+  ],
+  "videos": [
+    {
+      "id": "EBW-w4wMxAI",
+      "title": "Stylized Look Development in Solaris | Magnus Møller | Annecy HIVE 2023",
+      "author": "Houdini"
+    },
+    {
+      "id": "zVn_EibTPWg",
+      "title": "Anime and stylized FX in Houdini",
+      "author": "CG Spectrum"
+    }
+  ],
+  "enriched_at": "2026-10-21T13:20:23+00:00",
+  "quality": {
+    "before": 1001,
+    "after": 2002
+  }
 }
