@@ -1,0 +1,22 @@
+<!-- TITLE: Blender Fumaris 출시 — GPU 기반 실시간 연기 시뮬레이션 | TAGS: Blender,Fumaris,VFX,시뮬레이션,GPU,블렌더,플러그인·스크립트 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/create-gpu-based-smoke-fire-simulations-directly-in-blender-with-this-extension/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/50704/images/6ad876f842d2b/contain_1200x630.jpg" alt="Blender Fumaris 출시 — GPU 기반 실시간 연기 시뮬레이션" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/create-gpu-based-smoke-fire-simulations-directly-in-blender-with-this-extension/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/2-ygtKXzNfA" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Venous FX가 개발한 Fumaris는 Blender에서 CPU Baking 대기 시간 없이 GPU 기반으로 실시간 연기 및 화염 시뮬레이션을 프리뷰하고 편집할 수 있는 확장 프로그램입니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 플러그인·스크립트</p>
+<h2>개발 배경과 실시간 GPU 솔버의 필요성</h2>
+<p>자동차 애니메이션을 주로 제작하는 개발자 Michael Venous는 기존 Blender의 Mantaflow 프레임워크가 가진 기술적 한계에 부딪혀 Fumaris를 직접 개발하게 되었습니다. 시뮬레이션 파라미터를 수정할 때마다 CPU Baking이 끝날 때까지 기다려야 하는 번거로움을 없애고, 속도와 효율성에 집중한 실시간 작업 환경을 구축하는 것이 목표였습니다. 이 확장 프로그램은 시뮬레이션 미리보기가 실행되는 동안에도 설정을 즉시 조정할 수 있는 강력한 유연성을 제공합니다.</p>
+<h2>멀티 플랫폼 GPU 가속과 아키텍처</h2>
+<p>Fumaris는 UI와 씬 수출을 담당하는 Python 애드온과 GPU에서 시뮬레이션을 처리하는 네이티브 런타임의 투 파트 구조로 설계되었습니다. Windows 및 리눅스 환경에서는 Vulkan을 통해 NVIDIA의 Flow GPU 솔버를 구동하며, 애플 실리콘 맥 기기에서는 내장된 MoltenVK와 Metal을 활용합니다. 활성 연기 주변에 스파스 그리드를 적용하여 객체 크기가 고정되지 않으며, GPU에서 레이마칭된 뷰포트 크기의 이미지만 Blender로 반환하므로 뛰어난 인터랙티브 성능을 유지합니다.</p>
+<h2>다양한 소스 연동과 에미터 지원</h2>
+<p>본 확장 프로그램은 메시, Particle, Geometry Nodes 포인트 및 OpenVDB 소스 등 작업자가 원하는 다양한 에미터를 시뮬레이션에 활용할 수 있도록 지원합니다. 속도, 온도, 다이버전스 등 다양한 속성을 통해 방출(Emission) 제어가 가능하며 자유로운 연출이 뒷받침됩니다. 또한 시뮬레이션 볼륨의 일시 정지와 재개가 가능하여 아티스트가 원하는 타이밍을 정확하게 포착할 수 있습니다.</p>
+<h2>재베이킹 없는 룩 개발과 캐시 관리</h2>
+<p>가장 큰 장점 중 하나는 시뮬레이션을 다시 베이킹하지 않고도 연기 색상, 밀도, 화염 밝기 등 시각적 파라미터를 실시간으로 조정할 수 있다는 점입니다. 마음에 드는 버전을 쉽게 비교하고 보관할 수 있도록 별도의 캐시 슬롯이 예약되어 있어 여러 시안을 테스트하기 유리합니다. Fumaris는 OpenVDB 출력을 지원하므로 Cycles 및 EEVEE의 기본 볼륨 렌더링 워크플로우와 원활하게 연동됩니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 Blender의 Mantaflow 프레임워크는 수치 수정 후 매번 CPU Baking을 거쳐야 하므로 반복 작업의 속도가 현저히 떨어졌습니다. Fumaris는 NVIDIA Flow 솔버와 Vulkan 및 Metal 백엔드를 활용해 뷰포트에서 즉각적인 피드백을 제공하므로, 시각 효과 작업의 효율성을 극적으로 끌어올려 줍니다. 특히 실시간 카 A이메이션이나 게임용 FX 프로토타이핑을 자주 진행하는 아티스트라면 워크플로우 단축을 위해 도입을 적극 고려해야 합니다. 다만 기존 Mantaflow와 파라미터가 호환되지 않는 점은 룩 개발 시 별도의 세팅 조율이 필요하므로 주의해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Fumaris는 어떤 OS와 Blender 버전에서 구동되나요?</b><br/>A. Fumaris는 Windows, Linux, macOS 환경을 지원하며, Blender 5.2 이상 버전에서 사용할 수 있습니다.</p>
+<p><b>Q. 기존 Blender의 Mantaflow 파라미터와 호환되나요?</b><br/>A. 핵심 솔버가 다르기 때문에 Mantaflow의 파라미터와 완전히 일치하지 않으며, 동일한 수치를 입력해도 똑같은 시뮬레이션 결과가 나오지는 않습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-bfb4a40b72697665.html">Blender Geometry Nodes로 구현한 Procedural 페이퍼 라인</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-2ea572dd6d14abcc.html">Blender와 Maya를 활용한 바구니 3D 모델링 및 텍스처 제작기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-20-b72a608a03881f24.html">Blender 귀여운 호박 조각 스컬프팅 튜토리얼</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/create-gpu-based-smoke-fire-simulations-directly-in-blender-with-this-extension/" target="_blank" rel="noopener nofollow">Create GPU-Based Smoke &amp; Fire Simulations Directly in Blender with This Extension</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
