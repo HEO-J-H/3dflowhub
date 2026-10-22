@@ -31,6 +31,21 @@
     {
       "heading": "공식 플러그인을 통한 주요 AI 에이전트 지원",
       "body": "Unity는 Claude Code, Codex, 최신 Grok을 위한 공식 플러그인을 제공하여 에이전트가 Unity 환경에 맞게 작동하도록 지원합니다. unity setup claude 명령어로 Claude Code 플러그인을 손쉽게 설치할 수 있으며, Cursor나 Cline 같은 비공식 플러그인 에이전트도 CLI를 통해 Unity와 연동할 수 있습니다. 미국, 일본, 한국 순으로 CLI 사용 비중이 높습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Unity CLI와 Pipeline 패키지를 설치한 뒤, MCP(Model Context Protocol) 세션을 통해 Claude Code 같은 AI 코딩 에이전트를 Unity 에디터와 연결합니다. 개발자는 초기 세팅만 직접 수행하고, 이후 씬 구성이나 에셋 제어 같은 반복 작업은 unity command 명령어를 통해 에이전트에게 위임합니다. 터미널 수동 입력 비중은 낮고 98% 이상이 자동화 및 에이전트 중심으로 구동되므로, 파이프라인 자동화 구축에 유용합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "소규모 인디 스튜디오에서는 Blender로 에셋과 애니메이션을 제작한 뒤 Unity로 가져와 게임을 개발하는 워크플로가 활발하게 공유되고 있습니다 [2]. 다만 AI 에이전트를 통한 자동화 도입 시, 에디터의 실시간 상태를 확인하는 unity status 명령어나 파이프라인 패키지 설치 상태(unity pipeline list)를 수시로 점검하며 예기치 않은 오류를 방지해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 단일 바이너리로 Unity CLI를 설치하고, 프로젝트에 Pipeline 패키지를 적용합니다. 공식 플러그인 지원을 활용해 unity setup claude 명령어로 Claude Code 등을 연동하거나, Cursor 및 Cline 같은 외부 에이전트를 CLI 기반으로 연결하여 테스트를 시작할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +56,14 @@
     {
       "q": "AI 코딩 에이전트와 Unity를 연동하려면 어떤 플러그인이 필요한가요?",
       "a": "Unity는 Claude Code, Codex, Grok 등을 위한 공식 플러그인을 제공하며, unity setup 명령어를 통해 간편하게 설치할 수 있습니다. 공식 플러그인이 없는 Cursor나 Cline 등의 에이전트도 CLI를 통해 연동 가능합니다."
+    },
+    {
+      "q": "Unity CLI 실행의 대부분은 어떤 도구에서 발생하나요?",
+      "a": "전체 CLI 실행의 약 98%가 AI 코딩 에이전트 및 기타 자동화 도구에서 발생하며, 사람이 직접 터미널에 입력하거나 CI 파이프라인을 쓰는 비중은 상대적으로 매우 낮습니다."
+    },
+    {
+      "q": "가장 많이 쓰이는 Unity CLI 명령어는 무엇인가요?",
+      "a": "연결된 에디터에서 명령을 수행하는 unity command가 전체 이벤트의 80% 이상을 차지하며 가장 많이 사용됩니다."
     }
   ],
   "media": {
@@ -49,5 +72,31 @@
   },
   "collected_at": "2026-10-22T16:15:32.292889+00:00",
   "notion_id": "",
-  "id": "2026-10-22-ee361fcf49cd0d68"
+  "id": "2026-10-22-ee361fcf49cd0d68",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Tile Tales Pirate - A Game Developed with Blender and Unity",
+      "url": "https://blenderartists.org/t/tile-tales-pirate-a-game-developed-with-blender-and-unity/1561514",
+      "excerpt": "AHOY BLENDER ARTISTS: Today I want to share with you a bit about our most recent project. It's titled \"Tile Tales: Pirate\" and it's a videogame we developed at our small independent studio NineZyme. We used Blender for assets production and animation, then everything went inside Unity to develop ...",
+      "replies": 14
+    }
+  ],
+  "videos": [
+    {
+      "id": "zObWVOv1GlE",
+      "title": "How to work with multiple scenes in Unity",
+      "author": "Unity"
+    },
+    {
+      "id": "-fYmTnFKaP4",
+      "title": "The Workplace Unity Game – Build Stronger Teams Through Real Conversations | Team-Building PDF",
+      "author": "Workplace Union Connect"
+    }
+  ],
+  "enriched_at": "2026-10-22T16:46:42+00:00",
+  "quality": {
+    "before": 904,
+    "after": 1557
+  }
 }

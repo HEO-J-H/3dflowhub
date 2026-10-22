@@ -30,6 +30,21 @@
     {
       "heading": "향후 전망 및 과제",
       "body": "NVIDIA의 이번 행보는 향후 다양한 산업군에서 AI 기반 3D 생성 기술의 표준을 정립하는 데 기여할 것으로 보입니다. 다만 실무 파이프라인에 완벽히 정착하기 위해서는 기존 레거시 CAD 소프트웨어와의 호환성 확보와 사용자 교육이 뒷받침되어야 합니다. 기술의 발전 속도에 맞춰 관련 생태계의 협업이 더욱 중요해지고 있습니다."
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "NVIDIA의 기술 발표와 관련해 커뮤니티에서는 하드웨어 의존도에 대한 다양한 의견이 오가고 있습니다. 일부 유저는 Cycles 같은 렌더링 엔진이나 고성능 연산 툴이 특정 하드웨어(NVIDIA GPU) 중심인 점에 대해 아쉬움을 표하기도 했습니다. 특히 macOS 사용자나 비NVIDIA 환경을 쓰는 작업자들은 호환성이나 최적화 측면에서 제약이 생길 수 있으므로, 실제 도입 전 자사 워크플로우의 하드웨어 구성과 파이프라인을 꼼꼼히 점검해야 한다는 목소리가 나옵니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA의 CAD 모델링 커널과 관련 기술을 실무 파이프라인에 적용할 때는 NVIDIA Omniverse 같은 에코시스템과의 연계를 고려할 수 있습니다. 예를 들어 USD 기반의 파이프라인을 구축해 CAD 데이터를 실시간 렌더링 엔진으로 가져오고, AI 보조 디자인 알고리즘을 통해 복잡한 하드 표면(Hard-surface) 에셋이나 위상 최적화 작업을 가속화합니다. 반복적인 디자인 수정은 AI에 맡기고, 디자이너는 최종 디테일과 창의적인 형상 다듬기에 집중하는 방식으로 Prototype 제작 주기를 단축할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "새로운 AI 기반 CAD 및 3D 워크플로우를 익히고 싶다면, 먼저 CAD 데이터와 USD를 연동하는 방식을 학습하는 것이 좋습니다. 'How to Build CAD to USD Workflows With NVIDIA Omniverse' 같은 공식 가이드와 튜토리얼을 참고해 기존 CAD 포맷이 실시간 3D 환경으로 어떻게 전환되는지 파악할 수 있습니다. 또한 기존 레거시 CAD 소프트웨어와의 호환성 확보 방안을 미리 검토하고, 팀 내 실무자들과 함께 소규모 Prototype 프로젝트부터 적용해 보는 것을 추천합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +55,14 @@
     {
       "q": "이 기술이 3D 프린팅 산업에 어떤 변화를 가져오나요?",
       "a": "AI 기반의 위상 최적화와 정밀한 모델링 생성이 가능해져, 3D 프린팅용 복잡한 프로토타입과 실제 출력물의 제조 효율성과 완성도를 크게 높여줍니다."
+    },
+    {
+      "q": "NVIDIA의 CAD 모델링 커널 공개는 어떤 분야에 가장 큰 도움이 되나요?",
+      "a": "3D 프린팅을 위한 위상 최적화 작업과 복잡한 하드 표면(Hard-surface) 에셋을 다루는 제조업 및 3D 그래픽 분야에서 Prototype 제작 주기 단축과 정밀한 연산에 큰 도움을 줍니다."
+    },
+    {
+      "q": "실무 도입 시 주의해야 할 점은 무엇인가요?",
+      "a": "하드웨어 가속이나 특정 GPU 환경에 대한 의존도가 높아질 수 있으며, 기존 레거시 CAD 소프트웨어와의 호환성 및 파이프라인 연동을 사전에 철저히 검토해야 합니다 [1]."
     }
   ],
   "media": {
@@ -48,5 +71,31 @@
   },
   "collected_at": "2026-10-16T16:22:38.605450+00:00",
   "notion_id": "",
-  "id": "2026-10-16-53f9fbbb63718fc3"
+  "id": "2026-10-16-53f9fbbb63718fc3",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Cycles Development Updates",
+      "url": "https://blenderartists.org/t/cycles-development-updates/1110067",
+      "excerpt": "pafurijaz: Cycles for their final renders such as for ZBrush users and CAD I did not know zbrushh uses it too Midphase: Personally at the moment I find Cycles to be far too Nvidia-heavy. I kinda agree but opencl seems not to be that great. Particularly macOS users are left out now since Nvidia do...",
+      "replies": 5357
+    }
+  ],
+  "videos": [
+    {
+      "id": "GY_vbK4sAVU",
+      "title": "How to Build CAD to USD Workflows With NVIDIA Omniverse",
+      "author": "科技小Q"
+    },
+    {
+      "id": "Uz6tQFEbC1Q",
+      "title": "How to Build CAD to USD Workflows With NVIDIA Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "enriched_at": "2026-10-22T16:47:48+00:00",
+  "quality": {
+    "before": 866,
+    "after": 1718
+  }
 }
