@@ -34,5 +34,17 @@
     "task": "[guide:img2threejs] 2단계 (PR #1 대체): backend/app/services/img2threejs_runner.py build_from_spec(spec_path, out_dir) — 검증·코드 생성 스크립트 실행, 가짜 설치로 테스트",
     "result": "held",
     "msg": "[4] tests=True security=['위험 함수 사용: subprocess'] — 리뷰 생략"
+  },
+  {
+    "at": "2026-10-22T17:18:07+00:00",
+    "task": "[guide:img2threejs] 3단계 (PR #1 대체): backend/app/main.py POST /v1/jobs/img2threejs-spec + backend/app/schemas.py JobType.img2threejs_spec, 사용 불가 503·잘못된 JSON 400 테스트",
+    "result": "held",
+    "msg": "[4] AI 호출 실패: gemini: json=False: ReadTimeout HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=60) | groq: 413 json=Fals"
+  },
+  {
+    "at": "2026-10-22T17:19:57+00:00",
+    "task": "[guide:img2threejs] 4단계 (PR #1 대체): README.md 사용법 절 + backend/static/index.html spec 업로드 칸",
+    "result": "merged",
+    "msg": "PR #2 머지 완료"
   }
 ]
