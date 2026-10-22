@@ -1,0 +1,13 @@
+<!-- TITLE: Gaussian Splatting 기반 AirPlayground — 항공 내비게이션 벤치마크 | TAGS: Aerial Navigation,Benchmark,3D Gaussian Splatting,Robotics,Simulation,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — AirPlayground는 94개의 포토리얼리스틱 3D Gaussian Splatting 환경을 활용해 항공 로봇 내비게이션 정책을 학습·평가할 수 있는 통합 벤치마크를 제공한다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>AirPlayground 개요</h2>
+<p>AirPlayground는 항공 로봇의 내비게이션 정책을 학습·평가하기 위한 통합 벤치마크이다. 94개의 포토리얼리스틱 3D Gaussian Splatting(3DGS) 환경을 구축했으며, 실내, 도시 야외, 식생 등 다양한 씬을 포함한다. 각 씬은 충돌 지오메트리와 정렬돼 있어 폐쇄 루프 평가가 가능하다.</p>
+<h2>3D Gaussian Splatting 환경 구축</h2>
+<p>연구팀은 3DGS 기술을 이용해 94개의 고품질 씬을 생성했다. 이 씬들은 사진 기반 재구성으로 만들어져 실제와 유사한 조명·재질을 재현한다. 충돌 지오메트리는 별도로 정렬돼, 드론이 물리적으로 충돌하지 않도록 지원한다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">AI 기반 3D 재구성 환경을 로봇 내비게이션에 적용하려는 연구자와 엔지니어에게 유용한 자료다. 3D Gaussian Splat팅으로 만든 실사 수준의 실내·도시·식생 씬은 기존 시뮬레이터보다 시각적 정확도가 높아 정책 학습 시 현실감 있는 피드백을 얻을 수 있다. 자동화된 전문가 비행 수집 파이프라인 덕분에 94K 데모와 46.5M 샘플을 50 Hz로 확보했으니, 대규모 오프라인 학습 데이터가 필요한 팀에 바로 활용 가능하다. 제공된 API는 다양한 정책 형태(예: 행동 예측, 강화학습 등)를 동일한 데이터셋에 적용해 비교 실험을 진행하도록 설계돼, 연구 재현성을 크게 높인다. 다만, 실제 드론에 적용하려면 충돌 지오메트리와 센서 노이즈 모델을 추가로 보강해야 할 수 있다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-22-42599ce57cfc0677.html">Gaussian Splatting 압축 혁신 — ClunoGS 논문</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-134f8f606236792d.html">Gaussian Splatting 열역학 모델 GTSM 연구 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-21-cdbb1044602ea494.html">AI 3D 연구 — 3D Gaussian Scene Representations 기반 카메라 설계 프레임워크</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.29699v1" target="_blank" rel="noopener nofollow">AirPlayground: Benchmarking Aerial Navigation across Diverse Reconstructed Environments</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

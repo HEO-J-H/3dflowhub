@@ -1,0 +1,35 @@
+{
+  "title_ko": "Gaussian Splatting 기반 AirPlayground — 항공 내비게이션 벤치마크",
+  "title": "AirPlayground: Benchmarking Aerial Navigation across Diverse Reconstructed Environments",
+  "url": "https://arxiv.org/abs/2610.29699v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Aerial Navigation",
+    "Benchmark",
+    "3D Gaussian Splatting",
+    "Robotics",
+    "Simulation"
+  ],
+  "summary": "AirPlayground는 94개의 포토리얼리스틱 3D Gaussian Splatting 환경을 활용해 항공 로봇 내비게이션 정책을 학습·평가할 수 있는 통합 벤치마크를 제공한다.",
+  "insight": "AI 기반 3D 재구성 환경을 로봇 내비게이션에 적용하려는 연구자와 엔지니어에게 유용한 자료다. 3D Gaussian Splat팅으로 만든 실사 수준의 실내·도시·식생 씬은 기존 시뮬레이터보다 시각적 정확도가 높아 정책 학습 시 현실감 있는 피드백을 얻을 수 있다. 자동화된 전문가 비행 수집 파이프라인 덕분에 94K 데모와 46.5M 샘플을 50 Hz로 확보했으니, 대규모 오프라인 학습 데이터가 필요한 팀에 바로 활용 가능하다. 제공된 API는 다양한 정책 형태(예: 행동 예측, 강화학습 등)를 동일한 데이터셋에 적용해 비교 실험을 진행하도록 설계돼, 연구 재현성을 크게 높인다. 다만, 실제 드론에 적용하려면 충돌 지오메트리와 센서 노이즈 모델을 추가로 보강해야 할 수 있다.",
+  "sections": [
+    {
+      "heading": "AirPlayground 개요",
+      "body": "AirPlayground는 항공 로봇의 내비게이션 정책을 학습·평가하기 위한 통합 벤치마크이다. 94개의 포토리얼리스틱 3D Gaussian Splatting(3DGS) 환경을 구축했으며, 실내, 도시 야외, 식생 등 다양한 씬을 포함한다. 각 씬은 충돌 지오메트리와 정렬돼 있어 폐쇄 루프 평가가 가능하다."
+    },
+    {
+      "heading": "3D Gaussian Splatting 환경 구축",
+      "body": "연구팀은 3DGS 기술을 이용해 94개의 고품질 씬을 생성했다. 이 씬들은 사진 기반 재구성으로 만들어져 실제와 유사한 조명·재질을 재현한다. 충돌 지오메트리는 별도로 정렬돼, 드론이 물리적으로 충돌하지 않도록 지원한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-22T04:56:33.981747+00:00",
+  "notion_id": "",
+  "id": "2026-10-22-2d69b1978250e55f"
+}
