@@ -1,0 +1,53 @@
+{
+  "title_ko": "Unity CLI 2억 건 돌파 — AI 코딩 에이전트와 에디터 연동",
+  "title": "Meeting you where you work: Inside 200M+ Unity CLI events",
+  "url": "https://unity.com/blog/unity-cli-usage-data-ai-coding-agents",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "업계 소식",
+  "tags": [
+    "Unity",
+    "CLI",
+    "AI 코딩 에이전트",
+    "Claude Code",
+    "개발 자동화",
+    "유니티"
+  ],
+  "summary": "Unity CLI가 출시 이후 2억 건 이상의 이벤트와 22만 명 이상의 사용자를 기록하며 AI 코딩 에이전트 기반의 에디터 제어 워크플로가 급부상하고 있습니다.",
+  "insight": "이번 지표는 게임 개발 현장에서 개발자가 직접 터미널에 명령어를 입력하기보다 AI 코딩 에이전트에게 작업을 위임하는 패턴이 주류로 자리잡았음을 명확히 보여줍니다. 특히 Claude Code나 Codex 같은 에이전트 플러그인과 Unity CLI를 파이프라인 패키지와 연동하면 반복적인 씬 설정과 에디터 제어 자동화 효율을 극대화할 수 있습니다. 국내 실무 팀에서도 AI 에이전트를 기존 Unity CI 및 빌드 파이프라인에 결합하여 작업 속도를 높이는 방안을 적극 검토해야 합니다. 단, 초기 설정 시 에디터 버전 호환성과 MCP 세션 안정성을 면밀히 테스트하는 것이 중요합니다.",
+  "sections": [
+    {
+      "heading": "Unity CLI와 2억 건의 이벤트 기록",
+      "body": "Unity CLI는 터미널에서 Unity를 단일 바이너리로 설치하고 관리할 수 있는 도구입니다. Pipeline 패키지를 통해 실행 중인 에디터와 연동되므로 Script, CI, AI 코딩 에이전트가 동일한 방식으로 Unity에 접근할 수 있습니다. 지난 7월 이후 22만 6천 명 이상의 로그인 사용자가 이를 사용했으며, 이벤트는 2억 건을 넘어섰습니다."
+    },
+    {
+      "heading": "자동화 및 AI 에이전트 중심의 사용 패턴",
+      "body": "전체 CLI 실행의 약 98%는 AI 코딩 에이전트와 기타 자동화 도구에서 발생했습니다. 반면 사람이 직접 터미널에 명령어를 입력하는 경우는 0.2%, CI 파이프라인은 0.3%에 불과했습니다. 개발자가 초기 설정과 파이프라인 패키지 설치를 마친 뒤 에이전트에게 작업을 넘기는 패턴이 정착되었습니다."
+    },
+    {
+      "heading": "실행 중인 에디터와의 연동 명령어",
+      "body": "가장 많이 사용된 명령어는 연결된 에디터에서 명령을 수행하는 unity command로 전체 이벤트의 80% 이상을 차지했습니다. 그 뒤를 이어 에디터의 실시간 상태를 보여주는 unity status와 파이프라인 패키지 설치 여부를 확인하는 unity pipeline list가 활용되었습니다. 개발자들은 MCP 세션을 통해 에이전트를 Unity와 연결하고 프로젝트를 제어하고 있습니다."
+    },
+    {
+      "heading": "공식 플러그인을 통한 주요 AI 에이전트 지원",
+      "body": "Unity는 Claude Code, Codex, 최신 Grok을 위한 공식 플러그인을 제공하여 에이전트가 Unity 환경에 맞게 작동하도록 지원합니다. unity setup claude 명령어로 Claude Code 플러그인을 손쉽게 설치할 수 있으며, Cursor나 Cline 같은 비공식 플러그인 에이전트도 CLI를 통해 Unity와 연동할 수 있습니다. 미국, 일본, 한국 순으로 CLI 사용 비중이 높습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Unity CLI는 어떤 도구이며 어떤 용도로 쓰이나요?",
+      "a": "Unity CLI는 터미널에서 Unity 에디터를 설치·관리하고 실행 중인 에디터를 제어할 수 있는 단일 바이너리 도구로, 주로 AI 코딩 에이전트와 자동화 Script에서 에디터를 조작하는 데 쓰입니다."
+    },
+    {
+      "q": "AI 코딩 에이전트와 Unity를 연동하려면 어떤 플러그인이 필요한가요?",
+      "a": "Unity는 Claude Code, Codex, Grok 등을 위한 공식 플러그인을 제공하며, unity setup 명령어를 통해 간편하게 설치할 수 있습니다. 공식 플러그인이 없는 Cursor나 Cline 등의 에이전트도 CLI를 통해 연동 가능합니다."
+    }
+  ],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-22T16:15:32.292889+00:00",
+  "notion_id": "",
+  "id": "2026-10-22-ee361fcf49cd0d68"
+}
