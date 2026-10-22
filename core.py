@@ -1077,6 +1077,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                 })
+    candidates = filter_off_topic_feeds(candidates)
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
     mem_rr = load_memory()
@@ -1208,6 +1209,24 @@ def normalize_summary(data: dict, item: dict) -> dict:
     data["topic"] = data.get("topic") if data.get("topic") in TOPICS else DEFAULT_TOPIC
     apply_glossary(data)
     return data
+
+
+def filter_off_topic_feeds(candidates: list[dict]) -> list[dict]:
+    """수집 단계에서 하드웨어, 스마트폰, 순수 게임 등 오프토픽 키워드가 포함된 아이템을 사전에 엄격히 차단합니다."""
+    off_topic_keywords = [
+        "hardware", "smartphone", "phone", "iphone", "galaxy", "console", "ps5", "xbox",
+        "nintendo", "switch", "laptop", "gpu review", "processor", "cpu", "하드웨어", "스마트폰",
+        "스마트 폰", "핸드폰", "콘솔", "그래픽카드 리뷰", "프로세서"
+    ]
+    filtered = []
+    for c in candidates:
+        text = f"{c.get('title', '')} {c.get('rss_summary', '')} {c.get('url', '')}".lower()
+        if any(kw in text for kw in off_topic_keywords):
+            log.info("오프토픽 키워드 감지로 사전 차단: %s", c.get("title", ""))
+            RUN_ERRORS.append("off-topic")
+            continue
+        filtered.append(c)
+    return filtered
 
 
 def filter_content_quality(item: dict, body: str, data: dict) -> bool:

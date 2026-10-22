@@ -252,6 +252,17 @@ def test_offtopic_article_is_skipped(monkeypatch):
                         '"sections": [{"heading": "h", "body": "b"}]}')
     assert core.summarize({"title": "Weather", "url": "https://ex.com/w", "hint_domain": "VFX", "rss_summary": ""}) is None
 
+def test_filter_off_topic_feeds():
+    cands = [
+        {"title": "Blender 5.0 Release Notes", "rss_summary": "New features", "url": "https://example.com/1"},
+        {"title": "New iPhone 17 Pro Hardware Review", "rss_summary": "Smartphone specs", "url": "https://example.com/2"},
+        {"title": "PS5 Console Gaming News", "rss_summary": "Console details", "url": "https://example.com/3"}
+    ]
+    filtered = core.filter_off_topic_feeds(cands)
+    assert len(filtered) == 1
+    assert "Blender" in filtered[0]["title"]
+
+
 def test_filter_content_quality_strict(monkeypatch):
     # 실무 3D 툴 및 스크립트 관련 키워드가 없는 일반 IT 뉴스는 엄격하게 off-topic으로 필터링되어야 함
     monkeypatch.setattr(core, "fetch_article", lambda url: ("General smartphone hardware review without tool or script info.", {"image": "", "video": ""}))
