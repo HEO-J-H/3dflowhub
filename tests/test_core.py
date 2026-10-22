@@ -179,6 +179,21 @@ def test_validate_post_length_strict(monkeypatch):
     assert "short post" not in core.RUN_ERRORS
 
 
+def test_validate_title_seo():
+    # 적절한 길이(25~45자)와 도메인/카테고리 키워드 포함 검증
+    valid_title = "Blender 4.2 Geometry Nodes 실무 튜토리얼 가이드"
+    res = core.validate_title_seo(valid_title, "3D DCC", "Blender")
+    assert res["length_valid"] is True
+    assert res["has_keyword"] is True
+    assert res["seo_passed"] is True
+
+    # 너무 짧거나 키워드가 없는 경우
+    short_title = "짧은 제목"
+    res_short = core.validate_title_seo(short_title, "3D DCC", "Maya")
+    assert res_short["length_valid"] is False
+    assert res_short["seo_passed"] is False
+
+
 def test_pick_by_weights_prefers_heavy_domain():
     cands = [{"hint_domain": d, "url": f"{d}{i}"} for d in ("VFX", "AI 3D") for i in range(10)]
     picked = core.pick_by_weights(cands, ["VFX", "AI 3D"], 10, {"VFX": 0.8, "AI 3D": 0.2})

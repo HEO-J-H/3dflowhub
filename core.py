@@ -1454,6 +1454,30 @@ def validate_post_length(data: dict) -> bool:
         return False
     return True
 
+
+def validate_title_seo(title: str, domain: str, category: str) -> dict:
+    """블로그 제목의 길이를 검증하고 SEO 최적화 키워드가 포함되었는지 확인합니다."""
+    title = (title or "").strip()
+    length = len(title)
+    # SEO 권장 길이: 25~45자
+    length_valid = 25 <= length <= 45
+
+    # SEO 최적화 키워드 포함 확인 (도메인 또는 카테고리 명칭이 제목에 포함되어 있는지)
+    keywords = [domain.lower()]
+    if category:
+        keywords.append(category.lower())
+    
+    # 주요 DCC 툴명 혹은 키워드 기본 매칭 확인
+    has_keyword = any(kw in title.lower() for kw in keywords) if keywords else True
+
+    return {
+        "title": title,
+        "length": length,
+        "length_valid": length_valid,
+        "has_keyword": has_keyword,
+        "seo_passed": length_valid and has_keyword
+    }
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체

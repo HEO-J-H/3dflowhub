@@ -22,3 +22,5 @@
 - [x] (agent) core.filter_content_quality(): 수집된 콘텐츠 중 실무 3D 툴 및 스크립트 가이드 키워드가 포함되지 않은 항목을 엄격하게 'off-topic'으로 분류하여 필터링을 강화하고 관련 테스트 추가
 - [x] (agent) core.validate_post_length(): 생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여하는 검증 함수를 분리하고 테스트 추가 (재시도)
 - [x] (agent) evolve.analyze_run_errors(): 최근 실행 오류(RUN_ERRORS)에서 'short post' 및 'off-topic' 비율을 집계하여 전략 수정에 반영하는 통계 함수 추가 및 테스트 추가
+- [x] (agent) core.validate_title_seo(): 블로그 제목의 길이를 검증하고 SEO 최적화 키워드가 포함되었는지 확인하는 함수 추가 및 테스트 추가
+- [ ] (agent) evolve.calculate_cpc_score(): 최근 수집된 콘텐츠의 고CPC 키워드 포함 비율을 계산하여 전략에 반영하는 통계 함수 추가 및 테스트 추가
