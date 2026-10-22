@@ -46,5 +46,11 @@
     "task": "core.filter_content_quality(): 하드웨어 리뷰나 범용 IT 뉴스 등의 오프토픽 키워드가 제목이나 본문에 포함될 경우 'off-topic' 오류를 RUN_ERRORS 에 기록하고 필터링하는 로직 강화 및 테스트 추가",
     "result": "held",
     "msg": "[4] 패치 적용 실패: ['core.py: search 블록이 정확히 1회 일치하지 않음']"
+  },
+  {
+    "at": "2026-10-22T11:58:17+00:00",
+    "task": "evolve.analyze_run_errors(): 최근 실행 오류(RUN_ERRORS)에서 'short post' 및 'off-topic' 비율을 집계하여 전략 수정에 반영하는 통계 함수 추가 및 테스트 추가",
+    "result": "merged",
+    "msg": "PR #23 머지 완료"
   }
 ]
