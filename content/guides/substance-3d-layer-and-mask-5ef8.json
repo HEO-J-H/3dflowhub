@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-layer-and-mask-5ef8",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "텍스처링",
+  "name": "Layer and Mask",
+  "title": "Substance 3D Painter 레이어 및 마스크 기초 가이드",
+  "summary": "Substance 3D의 Layer와 Mask는 Photoshop의 레이어 시스템처럼 텍스처를 비파괴적으로 쌓고 마스크로 영역을 조절하는 핵심 기능입니다.",
+  "when": [
+    "베이스 재질 위에 먼지, 스크래치, 녹 등의 디테일을 추가할 때",
+    "브러시나 스마트 마스크로 특정 부분만 색상이나 재질을 가리거나 드러낼 때",
+    "수정이 필요할 때 원본을 손상시키지 않고 언제든 레이어와 마스크를 수정할 때"
+  ],
+  "steps": [
+    "Layers 패널 하단의 더하기(+) 아이콘을 클릭하여 새 Fill Layer 또는 Paint Layer를 만듭니다.",
+    "만든 레이어의 Properties 패널에서 Base Color, Roughness 등의 채널을 설정합니다.",
+    "레이어를 우클릭하고 Add Mask를 선택하여 Add Black Mask 또는 Add White Mask를 추가합니다.",
+    "Mask를 선택한 상태에서 Toolbar의 Brush 툴을 선택하고 Viewport에서 그려서 영역을 조절합니다.",
+    "필요시 레이어 우클릭 후 Add Generator를 선택해 Smart Mask를 적용하여 자연스러운 웨어하우스를 표현합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "레이어 전체의 투명도를 조절합니다."
+    },
+    {
+      "name": "Blending Mode",
+      "desc": "하단 레이어와 섞이는 방식을 Normal, Multiply, Overlay 등으로 변경합니다."
+    },
+    {
+      "name": "Fill Layer",
+      "desc": "모델 전체를 채우는 타일링 가능한 재질을 생성합니다."
+    },
+    {
+      "name": "Paint Layer",
+      "desc": "브러시로 직접 그리거나 칠할 수 있는 레이어를 생성합니다."
+    },
+    {
+      "name": "Black Mask",
+      "desc": "레이어 효과를 완전히 숨긴 뒤 필요한 부분만 칠해서 드러냅니다."
+    },
+    {
+      "name": "Level",
+      "desc": "마스크의 흑백 대비를 조절하여 마스크 영역을 넓히거나 좁힙니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 모서리 까진 표현 (Edge Wear)",
+      "steps": [
+        "Fill Layer로 금속 재질을 아래에 깔아둡니다.",
+        "그 위에 페인트 또는 칠해질 페인트 레이어를 올리고 Add Black Mask를 추가합니다.",
+        "마스크를 우클릭하여 Add Generator를 선택한 뒤 Mesh_Edges generator를 적용합니다."
+      ]
+    },
+    {
+      "title": "표면 먼지 쌓인 표현",
+      "steps": [
+        "먼지 색상의 Fill Layer를 가장 위에 올립니다.",
+        "Add Black Mask를 추가한 후 Add Generator에서 Dirt를 선택합니다.",
+        "Properties에서 Level 값을 조절해 먼지의 양을 늘리거나 줄입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크를 선택하지 않고 레이어 채널을 칠함 → Layers 패널에서 마스크 썸네일(회색 박스)을 클릭했는지 확인",
+    "Black Mask인데 흰색으로 칠해도 변화가 없음 → 브러시의 Grayscale 값이 흰색(1.0)인지 확인",
+    "Generator가 작동하지 않음 → Texture Set Settings에서 Mesh Maps(Normal, Ambient Occlusion 등)가 베이크 되었는지 확인"
+  ],
+  "related": [
+    "Smart Mask",
+    "Generator",
+    "Anchor Point",
+    "Fill Effect"
+  ],
+  "videos": [
+    {
+      "id": "muu5RQKVbsc",
+      "title": "How To : Use Quick Masking in Adobe Substance 3D Painter",
+      "author": "SARKAMARI"
+    },
+    {
+      "id": "_j27AS0VQOw",
+      "title": "Substance Painter 2021 Getting Started - Part 01 - Materials & masking | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Layer%20and%20Mask",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "Fill Layer",
+    "Paint Layer"
+  ],
+  "at": "2026-10-22T14:56:00.258143+00:00"
+}

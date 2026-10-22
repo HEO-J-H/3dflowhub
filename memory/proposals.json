@@ -1541,5 +1541,78 @@
     "id": "p-1300973f6b",
     "v": "accepted",
     "note": ""
+  },
+  {
+    "at": "2026-10-22T14:55:25.132540+00:00",
+    "kind": "report",
+    "id": "r-2026-10-22T14:55",
+    "text": "최근 7일간 총 457건의 콘텐츠가 수집되었으며 AI 3D와 Game Engine 분야가 고르게 유입되고 있습니다. 다만 이미지 누락 비율이 다소 높아 시각적 몰입도를 높이기 위한 가이드 및 썸네일 보강이 지속적으로 필요합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.5,
+      "roundups": 0.3
+    },
+    "allocation_reason": "방문객 확보와 검색 유입을 강화하기 위해 에버그린 기초 가이드와 도구별 정리를 우선적으로 배분합니다."
+  },
+  {
+    "at": "2026-10-22T14:55:25.132540+00:00",
+    "kind": "proposal",
+    "id": "p-6557894238",
+    "title": "Substance 3D Painter 기초 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "3D DCC 분야 조회수와 실무자의 주요 관심 도구로 Substance 3D가 꼽히나 관련 기초 가이드 비중이 상대적으로 낮습니다.",
+    "proposal": "Substance 3D Painter의 레이어 및 마스크 기본기를 다루는 에버그린 기초 가이드 페이지를 추가합니다.",
+    "expected": "3D DCC 검색 유입 및 체류 시간 증가",
+    "effort": "낮음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Substance 3D",
+      "group": "텍스처링",
+      "name": "Layer and Mask",
+      "title_ko": "Substance 3D Painter 레이어 및 마스크 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-10-22T14:55:25.132540+00:00",
+    "kind": "proposal",
+    "id": "p-f19c2078ea",
+    "title": "현황판 모바일 하단 내비게이션 바 고정",
+    "category": "현황판",
+    "evidence": "운영자용 현황판을 모바일에서 사용할 때 주요 탭 이동과 결정 대기함 확인 과정에서 스크롤 이동이 발생합니다.",
+    "proposal": "Streamlit 앱 상단 또는 하단에 주요 탭(오늘, 글 목록, 설정)으로 즉시 이동할 수 있는 고정 퀵 내비게이션을 추가합니다.",
+    "expected": "모바일 환경에서 운영자 결정 속도 향상",
+    "effort": "보통",
+    "action": null,
+    "risk": "high"
+  },
+  {
+    "at": "2026-10-22T14:55:25.188841+00:00",
+    "kind": "decision",
+    "id": "p-6557894238",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-22T14:55:25.194184+00:00",
+    "kind": "applied",
+    "id": "p-6557894238",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-22T14:55:50.371662+00:00",
+    "kind": "proposal",
+    "id": "p-8a35f7e4cc",
+    "title": "Trellis.cpp C++ GPU 추론 도입 검토",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/pwilkin/trellis.cpp",
+    "category": "운영·비용",
+    "evidence": "별 354개, MIT 라이선스, CUDA/Vulkan 지원 C++ 서버",
+    "proposal": "Python 기반 TripoSR 외에 C++/GGML 기반 Trellis.cpp를 로컬 선택 엔진으로 추가하여 저사양 환경에서의 추론 속도 개선 및 메모리 효율화 검토",
+    "expected": "로컬 사용자(Windows/Linux)의 VRAM 부담 감소 및 3D 생성 속도 향상",
+    "effort": "높음",
+    "action": null
   }
 ]
