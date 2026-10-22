@@ -868,3 +868,18 @@ def test_performance_table_title_stats(monkeypatch):
     assert res["title_stats"]["count"] == 2
     # len("Short") = 5, len("A Much Longer Title Here") = 24 -> avg = (5 + 24) / 2 = 14.5
     assert res["title_stats"]["avg_length"] == 14.5
+
+
+def test_analyze_run_errors(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core._save_json(core.MEMORY_PATH, {
+        "runs": [
+            {"collected": 10, "short": 2, "offtopic": 1},
+            {"collected": 10, "short": 0, "offtopic": 3}
+        ]
+    })
+    stats = evolve.analyze_run_errors()
+    assert stats["total_runs"] == 2
+    assert stats["short_post_rate"] == 0.1  # 2 / 20
+    assert stats["off_topic_rate"] == 0.2  # 4 / 20
