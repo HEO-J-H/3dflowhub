@@ -1443,6 +1443,17 @@ def image_figure(src: str, source_url: str, alt: str = "") -> str:
             f'{html.escape(site)}</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>\n')
 
 
+def validate_post_length(data: dict) -> bool:
+    """생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여합니다."""
+    sections = data.get("sections", [])
+    full_text_sum = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
+    if len(full_text_sum) < 1500:
+        log.warning("short post: 요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(full_text_sum), data.get("title_ko", ""))
+        if "short post" not in RUN_ERRORS:
+            RUN_ERRORS.append("short post")
+        return False
+    return True
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
@@ -1506,11 +1517,7 @@ def summarize(item: dict) -> dict | None:
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
     
-    # 요약된 본문 글자 수(태그 제외 본문 텍스트 기준) 검증 로직 추가
-    full_text_sum = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in data["sections"])
-    if len(full_text_sum) < 1500:
-        log.warning("요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(full_text_sum), data.get("title_ko", ""))
-        RUN_ERRORS.append("short post")
+    validate_post_length(data)
 
     data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")
