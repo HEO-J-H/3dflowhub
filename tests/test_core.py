@@ -166,6 +166,18 @@ def test_short_post_warning_and_error(monkeypatch):
     core.build_post_html(short_item)
     assert "short post" in core.RUN_ERRORS
 
+def test_validate_post_length_strict(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    data_short = {"title_ko": "테스트", "sections": [{"heading": "H", "body": "짧은 내용"}]}
+    assert core.validate_post_length(data_short) is False
+    assert "short post" in core.RUN_ERRORS
+
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    long_body = "긴 내용 " * 300
+    data_long = {"title_ko": "테스트", "sections": [{"heading": "H", "body": long_body}]}
+    assert core.validate_post_length(data_long) is True
+    assert "short post" not in core.RUN_ERRORS
+
 
 def test_pick_by_weights_prefers_heavy_domain():
     cands = [{"hint_domain": d, "url": f"{d}{i}"} for d in ("VFX", "AI 3D") for i in range(10)]
