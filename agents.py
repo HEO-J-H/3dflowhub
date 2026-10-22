@@ -268,7 +268,8 @@ def apply_edits(edits: list[dict], editable: set[str] | None = None) -> list[str
             problems.append(f"수정 불가 파일: {f}")
             continue
         path = ROOT / f
-        if not path.exists() and not e.get("search", "").strip():  # 새 파일(테스트) 생성
+        if not path.exists():  # 새 파일: SEARCH 를 채워 보내도(AI 실수) 만들기 — 예전엔 FileNotFoundError 로 실행 전체가 멈춤
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(e.get("replace", ""), encoding="utf-8", newline="\n")
             continue
         src = path.read_text(encoding="utf-8").replace(CRLF, "\n")
