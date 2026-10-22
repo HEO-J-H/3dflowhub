@@ -200,12 +200,34 @@ def agent_todo_block(site_id: str, repo: str) -> None:
             c2.caption("에이전트가 끝내면 자동으로 완료됩니다. 더는 필요 없으면 '완료 처리'로 목록에서 내리세요.")
 
 
+def site_manager_block(site_id: str) -> None:
+    """이 사이트 전담 AI 관리자: 오늘 요약 · 다음에 볼 것 · 사장님 메시지와 답변."""
+    import site_manager
+    rep = site_manager.last_report(site_id)
+    with st.container(border=True):
+        st.markdown(f"**🧭 전담 AI 관리자** · " + (f"마지막 보고 {_kst(rep['at'])}" if rep.get("at") else "첫 보고 대기 중")
+                    + " · 하루 1회 (뉴스 수집 몫을 남기고 AI 여유가 있을 때)")
+        if rep.get("summary"):
+            st.write(rep["summary"])
+        if rep.get("watch"):
+            st.caption("다음에 볼 것: " + rep["watch"])
+        for m in reversed(rep.get("messages", [])[-3:]):
+            st.markdown(f"🙋 {m['text']}  \n" + (f"🧭 {m['reply']}" if m.get("reply") else "⏳ 다음 실행 때 답변"))
+        with st.form(f"smsg_{site_id}", clear_on_submit=True):
+            txt = st.text_input("관리자에게 한마디 (질문·지시)", placeholder="예: 이번 주엔 웹 버전 품질에 집중해 줘")
+            if st.form_submit_button("보내기") and txt.strip():
+                site_manager.send_message(site_id, txt)
+                _sync([f"memory/sites/{site_id}/manager_report.json"], "사이트 관리자에게 메시지")
+                st.rerun()
+
+
 def render_tool(site_id: str) -> None:
     """코드 저장소형 사이트(예: 🧱 Pix2Poly): 코딩 에이전트 결과·승인 대기 PR·테스트 상태·기술 동향 제안."""
     s = sites.SITES[site_id]
     st.title(s["name"])
     st.caption(f"{s['about']} · [웹 열기]({s['url']}) · [저장소](https://github.com/{s['repo']})")
     st.info("🛡 운영 원칙: " + s.get("rules", ""))
+    site_manager_block(site_id)
     prs = [p for p in _gh(s["repo"], "pulls?state=open&per_page=20") if isinstance(p, dict)]
     waiting = [p for p in prs if any(l.get("name") == "needs-approval" for l in p.get("labels") or [])]
     act = _gh(s["repo"], "actions/runs?per_page=5")
@@ -259,6 +281,7 @@ def render_site(site_id: str) -> None:
     st.caption(f"{s['about']} · [사이트 열기]({s['url']}) · [저장소](https://github.com/{s['repo']})")
     if s.get("rules"):
         st.info("🛡 운영 원칙: " + s["rules"])
+    site_manager_block(site_id)
     h = sites.last_health(site_id)
     t_today, t_reg, t_promo, t_team = st.tabs(["🏠 오늘", "⚖️ 규정 점검", "📣 홍보", "👥 팀"])
     with t_today:

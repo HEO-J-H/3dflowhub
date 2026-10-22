@@ -582,6 +582,12 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "manager_applied": applied}])[-30:]
             core._save_json(core.STRATEGY_PATH, strategy)
         manager.review()
+        import site_manager  # 사이트별 AI 관리자 (Pix2Poly·life-after-60): 하루 1회, 뉴스 몫을 남기고
+        site_done = site_manager.run_due()
+        if site_done:
+            strategy = core.load_strategy()
+            strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "site_managers": site_done}])[-30:]
+            core._save_json(core.STRATEGY_PATH, strategy)
         import staff  # AI 직원(마케터 등): 주기가 된 역할만 일함
         worked = staff.run_due()
         if worked:
