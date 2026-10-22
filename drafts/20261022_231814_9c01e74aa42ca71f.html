@@ -1,0 +1,22 @@
+<!-- TITLE: Unreal Engine 5 테라포밍 환경 제작기 — Blender와 ZBrush 활용법 | TAGS: Unreal Engine,Blender,ZBrush,Substance 3D,테라포밍,환경 아티스트,블렌더,언리얼 엔진,지브러시,서브스턴스,작품·제작 사례 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/50730/images/6ada1417be180/contain_1200x630.jpg" alt="Unreal Engine 5 테라포밍 환경 제작기 — Blender와 ZBrush 활용법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/ps2JWVJ3bcg" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 11 bit studios의 아티스트가 Blender, ZBrush, Unreal Engine 5를 활용해 테라포밍 전후의 행성 환경을 구현한 파이프라인을 공개했습니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 작품·제작 사례</p>
+<h2>황폐한 행성과 테라포밍의 이중 구조</h2>
+<p>The Alters: Last Variable DLC에서는 기존의 황폐하고 메마른 행성 표면이 테라포밍 액션을 통해 울창한 식생으로 뒤덮이는 과정을 그려냅니다. 아티스트 아르템 오스타프추크(Artem Ostapchuk)는 레벨이 원래의 상태와 테라포밍된 상태 모두에서 완벽하게 작동하도록 환경 파이프라인을 구축했습니다. 지형 레이어, 마스터 머티리얼, 보조 툴 등을 유기적으로 연결하여 광범위한 지역의 비주얼을 자연스럽게 전환했습니다.</p>
+<h2>Blender와 ZBrush를 활용한 외계 식생 모델링</h2>
+<p>식물 자산은 지구의 흔한 식물 형태를 피하고 기괴하면서도 설득력 있는 외계의 느낌을 주는 데 집중했습니다. 화석화된 나무와 죽은 토양에 테라포밍 액체가 닿아 폭발적으로 성장하는 컨셉을 구현하기 위해 중후한 이끼와 나뭇가지 구조, 산호 같은 식생을 디자인했습니다. 에셋 제작에는 Blender와 ZBrush가 핵심 모델링 및 스컬프팅 도구로 사용되었습니다.</p>
+<h2>성능 최적화를 위한 Nanite 컷아웃 지오메트리 전략</h2>
+<p>모든 나뭇잎과 풀잎 에셋은 투명도 마스크를 사용하는 전통적인 방식 대신 불투명한 Nanite 컷아웃 지오메트리로 제작되었습니다. 벤치마크 테스트 결과 이 방식이 마스크드 셰이더보다 훨씬 뛰어난 성능을 보여주어 채택되었습니다. 또한 정점 컬러 채널을 활용한 WPO(World Position Offset) 바람 애니메이션을 적용해 생동감을 더했습니다.</p>
+<h2>유연한 킷오프 방식과 협업 파이프라인</h2>
+<p>세 명의 환경 아티스트로 구성된 팀은 고정된 일정 없이 레벨 디자인 변화에 맞춰 즉석에서 폴리지 킷을 구축했습니다. 초기 단계에 구축한 &#x27;뷰티 코너&#x27; 테스트 씬을 통해 Shader와 지형 블렌딩을 미리 검증하여 방향성을 잡았습니다. 작업 성격에 따라 Houdini나 SpeedTree 등을 병행하고, Blender의 Geometry Nodes를 스플라인 및 가중치 기반 스폰에 활용하여 제작 효율을 높였습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">황폐한 행성과 테라포밍된 울창한 식생을 하나의 레벨에서 동시에 구현해야 하는 테크니컬 아티스트와 환경 아티스트에게 실질적인 영감을 주는 사례입니다. 알파 블렌딩 대신 Nanite 컷아웃 지오메트리를 사용하여 성능을 확보하고 마스터 머티리얼과 VHM/RVT 시스템을 결합한 방식은 대규모 오픈월드 최적화에 훌륭한 벤치마크가 됩니다. 특히 3명의 아티스트가 소규모로 유연한 킷오프 방식을 유지하며 뷰티 코너를 통해 레퍼런스를 검증한 제작 프로세스는 인디 및 중견 개발사 실무진에게 큰 시사점을 줍니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. The Alters: Last Variable에서 사용된 주된 3D 소프트웨어 스택은 무엇인가요?</b><br/>A. 모델링과 스컬프팅에는 Blender와 ZBrush를 사용했고, 텍스처링에는 Substance 3D Designer와 Painter를 활용했습니다. 엔진은 Unreal Engine 5를 기반으로 제작되었습니다.</p>
+<p><b>Q. 폴리지 성능 최적화를 위해 어떤 기술이 적용되었나요?</b><br/>A. 투명도 마스크를 사용하는 대신 모든 잎과 풀을 불투명한 Nanite 컷아웃 지오메트리로 제작하여 성능을 크게 향상시켰습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-22-f9c2fa96381e3e98.html">Unreal Engine 2026 Epic AI MegaJam 개최 및 총상금 5만 달러 안내</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-22-c7b3f9ed14ae53db.html">Unreal Engine 아포칼립스 풍경 제작 가이드</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-22-32f54cb9b7f77a9e.html">3ds Max·Unreal Engine용 Industrial Complex Kitbash 대형 킷배시</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5/" target="_blank" rel="noopener nofollow">Terraforming The Alters: Last Variable with Blender, ZBrush &amp; UE5</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
