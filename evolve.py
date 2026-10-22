@@ -158,6 +158,24 @@ def _now() -> str:
 MIN_RUNS_PER_VERSION = 3  # 가이드 한 묶음을 최소 이만큼 실행해 본 뒤 교체 (잦은 교체로 평가 불가 방지)
 
 
+def analyze_run_errors() -> dict[str, float]:
+    """최근 실행 오류(RUN_ERRORS 및 runs 기록)에서 'short post' 및 'off-topic' 비율을 집계하여 통계 반환."""
+    runs = core.load_memory().get("runs", [])
+    total_runs = len(runs)
+    if total_runs == 0:
+        return {"short_post_rate": 0.0, "off_topic_rate": 0.0, "total_runs": 0}
+
+    total_short = sum(int(r.get("short", 0) or 0) for r in runs)
+    total_offtopic = sum(int(r.get("offtopic", 0) or 0) for r in runs)
+    total_collected = sum(int(r.get("collected", 0) or 0) for r in runs) or 1
+
+    return {
+        "short_post_rate": round(total_short / total_collected, 4),
+        "off_topic_rate": round(total_offtopic / total_collected, 4),
+        "total_runs": total_runs,
+    }
+
+
 def score_trajectory(runs: list[dict], versions: dict) -> list[dict]:
     """OPRO 식 궤적: 가이드 버전별 실행 결과를 점수화해 오름차순 반환 (Yang et al., 2023)."""
     agg: dict[str, dict] = {}
