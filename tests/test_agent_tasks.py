@@ -158,3 +158,10 @@ def test_ai_errors_leave_task_open(tmp_path, monkeypatch):
     agents.main()
     assert rec == ["ai_error"]
     assert "- [ ] (agent) 과제 A" in todo.read_text(encoding="utf-8")  # 보류로 바뀌지 않음
+
+
+def test_new_file_created_even_with_search_text(tmp_path, monkeypatch):
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    edits = [{"file": "backend/app/services/engines.py", "search": "# placeholder", "replace": "X = 1\n"}]
+    assert agents.apply_edits(edits, {"backend/app/services/engines.py"}) == []
+    assert (tmp_path / "backend/app/services/engines.py").read_text(encoding="utf-8") == "X = 1\n"
