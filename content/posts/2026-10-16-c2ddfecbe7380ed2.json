@@ -31,6 +31,16 @@
     {
       "heading": "저예산 제작 환경에서의 조명과 대기 효과",
       "body": "안개, 먼지, 연기 등의 대기 효과(Atmospherics)는 괴수와 배경 사이의 거리감을 멀게 만들어 거대한 스케일을 암시하는 강력한 도구입니다. 복잡한 지오메트리 없이도 볼륨 라이팅과 포그를 적절히 배치하면 공간의 규모가 수십 배로 확장되어 보이는 효과를 줍니다. 저예산 프로젝트일수록 이러한 물리 기반 환경 요소의 활용도가 결과물의 퀄리티를 좌우합니다."
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 Unreal Engine 5(UE5)를 공식 웹사이트에서 다운로드하고 설치합니다. 설치 시 ‘Game Development’와 ‘Film, Television, Live Events’ 옵션을 선택해 필요한 플러그인(Cine Camera, Chaos, Lumen)을 자동으로 포함시킵니다. 다음으로 ‘Epic Games Launcher’에서 ‘Quixel Megascans’ 플러그인을 활성화해 고품질 모듈러 에셋을 무료로 가져옵니다. 프로젝트 설정에서 ‘Enable Lumen Global Illumination’과 ‘Enable Chaos Destruction’ 옵션을 켜고, ‘Default Pawn Class’를 비활성화해 카메라 전용 씬을 구성합니다. 기본적인 블루프린트 Script는 ‘Level Blueprint’에 ‘Begin Play’ 이벤트를 추가해 카메라와 Post 프로세스 볼륨을 자동으로 배치하도록 설정하면 됩니다. 이 정도 준비만 마치면 기사에서 제시한 저예산 카이주 연출 워크플로를 바로 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Unreal Engine은 실시간 레이 트레이싱과 Chaos 파괴 시스템을 기본 제공해 저예산 카이주 연출에 최적화돼 있습니다. Unity는 HDRP와 ‘Visual Effect Graph’를 통해 비슷한 효과를 구현할 수 있지만, 파괴 전용 툴이 별도 패키지(‘Obi’ 등)로 제공돼 추가 비용과 학습 곡선이 존재합니다. Godot 4는 ‘Voxel’ 기반 파괴와 ‘Procedural Sky’를 지원하지만, Lumen과 같은 고급 글로벌 일루미네이션이 없으며, 대규모 메쉬 처리 성능이 UE5에 비해 다소 낮습니다. 따라서 실시간 스케일감 강조와 복잡한 파괴를 동시에 요구하는 저예산 프로젝트라면 Unreal Engine이 가장 효율적인 선택이라고 할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "Unreal Engine이 저예산 카이주 제작에 어떻게 도움이 되나요?",
       "a": "실시간 렌더링과 Nanite, Lumen 등의 기술을 통해 복잡한 씬을 즉각적으로 시각화하고 후반 작업 비용과 시간을 획기적으로 줄여줍니다."
+    },
+    {
+      "q": "로우 앵글 촬영을 위한 카메라 설정은 어떻게 하나요?",
+      "a": "Cine Camera Actor를 레벨에 배치한 뒤 Height를 0.2~0.5 m 정도로 낮추고, Focal Length를 24 mm 이하로 설정합니다. 필요 시 ‘Camera Rig Rail’으로 이동 경로를 정의하고, ‘Post Process Volume’에서 ‘Depth of Field’를 조절해 배경 흐림 효과를 추가하면 저예산에서도 극적인 로우 앵글을 구현할 수 있습니다."
+    },
+    {
+      "q": "파괴 시뮬레이션으로 인한 성능 저하를 어떻게 최소화하나요?",
+      "a": "Chaos Geometry Collection을 만들 때 파괴가 필요한 영역만 선택하고, ‘Cluster Count’를 5~10 정도로 제한합니다. 또한 ‘Damage Threshold’를 높게 설정해 작은 충돌은 파괴되지 않게 하고, ‘Collision Proxy’를 사용해 물리 연산을 단순화하면 프레임당 연산량을 크게 줄일 수 있습니다."
     }
   ],
   "media": {
@@ -49,5 +67,23 @@
   },
   "collected_at": "2026-10-16T20:22:28.080677+00:00",
   "notion_id": "",
-  "id": "2026-10-16-c2ddfecbe7380ed2"
+  "id": "2026-10-16-c2ddfecbe7380ed2",
+  "refs": [],
+  "videos": [
+    {
+      "id": "L9qixi858Ag",
+      "title": "Unreal Engine 5 Beginner Tutorial 2025: Introduction",
+      "author": "Bad Decisions Studio "
+    },
+    {
+      "id": "bDUFB1ng00Q",
+      "title": "Unreal Engine 5 Beginner Tutorial Part 1: Installation and Using Templates",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "enriched_at": "2026-10-22T03:56:58+00:00",
+  "quality": {
+    "before": 800,
+    "after": 1699
+  }
 }

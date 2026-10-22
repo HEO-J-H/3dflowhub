@@ -31,6 +31,16 @@
     {
       "heading": "공중 섬 콘셉트의 시각적 연출",
       "body": "공중이라는 특수한 공간감을 살리기 위해 지형 하단부의 암석 디테일과 외곽 처리 방식에 집중합니다. 기본적인 지형 메시 작업 외에도 전반적인 분위기를 잡기 위한 배치 구도가 강조됩니다. 판타지 배경의 게임 월드를 제작하는 개발자들에게 실질적인 시각적 가이드를 제공합니다."
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Unity 내장 Terrain은 대규모 지형에 강점이 있지만, 정점 기반 편집과 섬 같은 비정형 형태를 만들 때는 제한적입니다. Vertex 3D Terrain은 정점 편집을 지원해 절벽·절단면을 자유롭게 조절할 수 있어 플로팅 아일랜드 제작에 적합합니다. 외부 툴인 Gaia나 World Machine은 노이즈 기반 지형을 빠르게 생성하지만, 결과물을 Unity에 가져와 다시 세밀하게 다듬어야 합니다. Houdini Engine은 Procedural 방식으로 복잡한 지형을 만들 수 있지만, 학습 곡선이 가파르고 라이선스 비용이 추가됩니다. 따라서 빠른 Prototype과 실시간 편집이 목표라면 Vertex 3D Terrain이 가장 효율적이며, 고품질 베이크가 필요할 경우 외부 툴과 결합해 사용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 Unity Hub에서 최신 Unity 6 버전을 설치하고, 프로젝트 생성 시 **HDRP** 템플릿을 선택합니다. 그 다음 Asset Store에 접속해 \"Vertex 3D Terrain\"을 검색·구매·임포트합니다. Import가 완료되면 메뉴 바 **Tools → Vertex 3D Terrain → Setup**를 실행해 기본 설정을 자동으로 적용합니다. 기본 브러시와 단축키는 툴바 오른쪽 상단에 표시되며, **F1** 키를 눌러 전체 단축키 목록을 확인할 수 있습니다. 튜토리얼 영상(예: \"Vertex 3D Terrain: Floating Islands Speed Build - Unity 6+\")을 시청하면서 실제 섬을 하나씩 따라 만들어 보면 빠르게 익숙해질 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "본 영상은 어떤 툴이나 에셋을 다루고 있나요?",
       "a": "Vertex 3D Terrain을 활용한 지형 스컬프팅과 공중 섬 스피드 빌드 과정을 다루고 있습니다."
+    },
+    {
+      "q": "Vertex 3D Terrain에서 절벽을 빠르게 만들려면 어떤 브러시가 좋은가요?",
+      "a": "절벽 형태는 **Sharp Edge** 브러시를 사용하고, 강도를 70~80%로 설정합니다. Ctrl 키를 누른 상태에서 브러시를 움직이면 부드러운 스무딩이 적용돼 급격한 경사와 부드러운 면을 동시에 만들 수 있습니다."
+    },
+    {
+      "q": "Speed Build 단축키는 어디서 확인하나요?",
+      "a": "툴바 오른쪽 상단에 **Help** 아이콘이 있으며, 클릭 후 **Shortcut List**를 선택하면 전체 단축키가 표시됩니다. 기본 단축키는 **Ctrl + B**(Speed Build 토글)와 **Ctrl + Z**(Undo) 등입니다."
     }
   ],
   "media": {
@@ -49,5 +67,23 @@
   },
   "collected_at": "2026-10-16T21:20:27.250146+00:00",
   "notion_id": "",
-  "id": "2026-10-16-73b3eb088173b28f"
+  "id": "2026-10-16-73b3eb088173b28f",
+  "refs": [],
+  "videos": [
+    {
+      "id": "8VVmbe_nQco",
+      "title": "Vertex 3D Terrain: Floating Islands Speed Build - Unity 6+",
+      "author": "DptGames"
+    },
+    {
+      "id": "snbeTJTjzYI",
+      "title": "Vertex 3D Terrain: Planet, Floating Island & Spline Creator for Unity 6+",
+      "author": "DptGames"
+    }
+  ],
+  "enriched_at": "2026-10-22T03:55:59+00:00",
+  "quality": {
+    "before": 725,
+    "after": 1513
+  }
 }

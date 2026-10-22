@@ -10113,6 +10113,25 @@
       "errors": [
         "AI 일일 한도 소진 — 10/22 16:00 이후 다시 시도 (예비 AI 키 없음)"
       ]
+    },
+    {
+      "at": "2026-10-22T03:53:07.753039+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "offtopic": 0,
+      "short": 0,
+      "prefiltered": 7,
+      "llm_fallbacks": [
+        "groq"
+      ],
+      "strategy_ver": "3875424f",
+      "errors": [
+        "prefiltered",
+        "short post"
+      ]
     }
   ],
   "good_keywords": [
@@ -10264,13 +10283,23 @@
     "2026-10-21 [core.filter_content_quality(): 수집된 콘텐츠 중] 콘텐츠 필터링 로직 강화 시 실무 키워드 매칭을 엄격하게 적용하여 노이즈를 줄인다.",
     "2026-10-21 [core.filter_content_quality(): 하드웨어 리뷰나 ] 테스트 실패 — E       AssertionError: assert 'off-topic' in ['short body'] / E        +  where ['short body'] = core.RUN_ERRORS / FAILED tests/test_core.py::test_filter_content_quality_off_topic_hardware -",
     "2026-10-21 [성찰] 제목에 핵심 툴명과 검색 키워드를 앞에 배치하고 1,500자 이상 깊이 있는 실무 가이드를 제공하면 조회수와 RPM이 상승한다.",
-    "2026-10-21 [성찰] 검색 의도에 맞는 구체적 툴·키워드 조합 제목과 1500자 이상 실무 중심 본문이 페이지뷰와 RPM을 동시에 끌어올린다."
+    "2026-10-21 [성찰] 검색 의도에 맞는 구체적 툴·키워드 조합 제목과 1500자 이상 실무 중심 본문이 페이지뷰와 RPM을 동시에 끌어올린다.",
+    "2026-10-22 [성찰] 검색 의도에 맞는 툴·가격·벤치마크 중심의 깊이 있는 콘텐츠가 조회수와 RPM을 동시에 끌어올린다."
   ],
   "categories": {
     "VFX": [
       "기타 VFX",
       "TheGrain",
       "V-Ray·Corona"
+    ],
+    "3D DCC": [
+      "Marmoset Toolbag",
+      "Substance Painter"
+    ],
+    "Game Engine": [
+      "CryEngine",
+      "Source Engine",
+      "RPG Maker"
     ]
   },
   "category_counts": {
@@ -10287,7 +10316,7 @@
     "Game Engine/UEFN·Fortnite": 4,
     "AI 3D/3D 생성 AI": 35,
     "VFX/Nuke": 3,
-    "Game Engine/기타 엔진": 39,
+    "Game Engine/기타 엔진": 40,
     "VFX/After Effects": 20,
     "VFX/Houdini FX": 7,
     "3D DCC/기타 DCC": 23,
@@ -11047,14 +11076,15 @@
     13854485738603020447,
     12782101420674642263,
     10753656998349934930,
-    10595846257271620482
+    10595846257271620482,
+    6931884526331925653
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 550,
-    "Game Engine": 550,
-    "VFX": 550,
-    "AI 3D": 550
+    "3D DCC": 551,
+    "Game Engine": 551,
+    "VFX": 551,
+    "AI 3D": 551
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
