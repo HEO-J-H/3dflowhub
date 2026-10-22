@@ -42,9 +42,9 @@ jobs:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          LEFT=$(python -c "import core; print(core.llm_capacity_left())")
-          echo "AI 여력: $LEFT"
-          if [ "$LEFT" -ge 60 ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; fi
+          OK=$(python -c "import core; print(int(core.background_ok(40)))")
+          echo "AI 여력: $(python -c 'import core; print(core.llm_capacity_left())') (뉴스 몫 $(python -c 'import core; print(core.NEWS_RESERVE)') 제외 후 40 이상이면 실행)"
+          if [ "$OK" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; fi
 
       - name: Coder → QA → Reviewer → Judge (max 4 iterations)
         if: steps.gate.outputs.ok == '1'

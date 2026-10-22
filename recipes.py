@@ -331,8 +331,7 @@ def make_recipe(category: str, host: str, posts: list[dict]) -> dict | None:
 
 
 def write_recipes(max_new: int = 1, gate: bool = True) -> list[str]:
-    budget = int(core.load_config().get("llm_daily_budget", 500))
-    if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.5):
+    if max_new <= 0 or (gate and not core.background_ok(max_new * 3)):  # 뉴스 수집 몫을 남기고
         return []
     done = []
     for cat, host, ps in candidates():

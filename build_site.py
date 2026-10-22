@@ -523,6 +523,20 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <script>const ROOT="{root}";</script><script src="{root}search.js" defer></script><script src="{root}user.js" defer></script></body></html>"""
 
 
+def kst_date(ts: str) -> str:
+    """수집 시각(UTC) → 한국 날짜 'YYYY-MM-DD'. 한국 0~9시에 모은 글이 전날로 보이던 문제."""
+    if not ts:
+        return ""
+    try:
+        from zoneinfo import ZoneInfo
+        d = datetime.fromisoformat(ts)
+        if d.tzinfo is None:
+            return ts[:10]
+        return d.astimezone(ZoneInfo("Asia/Seoul")).strftime("%Y-%m-%d")
+    except ValueError:
+        return ts[:10]
+
+
 def fallback_thumb(p: dict) -> str:
     """대표 이미지가 없는 글: 도구 이름 카드(static/og/tool-*.png, make_og.py) → 없으면 분야 카드. 사이트 루트 기준 경로."""
     from make_og import tool_slug
@@ -540,7 +554,7 @@ def row(p: dict, root: str) -> str:
             f'<span class="s">{e(p.get("summary") or "")}</span></span>'
             f'<span class="side"><span class="badge">{e(p.get("category") or "기타")}'
             f'{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
-            f'<span class="date">{(p.get("collected_at") or "")[:10]}</span></span></a>')
+            f'<span class="date">{kst_date(p.get("collected_at") or "")}</span></span></a>')
 
 
 MIN_INDEXABLE = 3  # 글이 이보다 적은 하위 게시판은 noindex (얇은 페이지가 사이트 품질 평가를 떨어뜨리지 않도록)
@@ -553,7 +567,7 @@ def card(p: dict, root: str) -> str:
     return (f'<a class="card" href="{root}p/{p["id"]}.html">{pic}<div class="body">'
             f'<span class="kicker">{e(p.get("category") or p["domain"])}{" · " + e(p["topic"]) if p.get("topic") else ""}</span>'
             f'<span class="t">{e(p["title_ko"])}</span><span class="s">{e(p.get("summary") or "")}</span>'
-            f'<span class="meta">{(p.get("collected_at") or "")[:10]}</span></div></a>')
+            f'<span class="meta">{kst_date(p.get("collected_at") or "")}</span></div></a>')
 
 
 def page_views() -> dict[str, int]:
@@ -575,7 +589,7 @@ def popular(posts: list[dict], n: int = 8, days: int = 30) -> list[dict]:
 
 def iso_week(p: dict) -> str:
     try:
-        y, w, _ = datetime.fromisoformat((p.get("collected_at") or "")[:10]).isocalendar()
+        y, w, _ = datetime.fromisoformat(kst_date(p.get("collected_at") or "")).isocalendar()
         return f"{y}-W{w:02d}"
     except ValueError:
         return ""
@@ -1064,7 +1078,7 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
              f'<a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}">{e(p.get("category") or "기타")}</a>'
              + (f' › <a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}{TOPIC_SLUG[p["topic"]]}/">'
                 f'{e(p["topic"])}</a>' if p.get("topic") in TOPIC_SLUG else "") + ' · '
-             f'{(p.get("collected_at") or "")[:10]}</div><h1>{e(p["title_ko"])}</h1>',
+             f'{kst_date(p.get("collected_at") or "")}</div><h1>{e(p["title_ko"])}</h1>',
              f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다'
              + (' · 커뮤니티 토론·튜토리얼을 참고해 실무 내용을 보강했습니다' if p.get("refs") or p.get("videos") else "")
              + ' · 정확한 내용은 원문 기준 · '

@@ -600,10 +600,24 @@ def llm_fallback_usage() -> dict:
     return {k: v for k, v in _load_json(LLM_FALLBACK_PATH, {}).get(llm_day(), {}).items() if not k.endswith("!")}
 
 
+NEWS_RESERVE = 40  # 뉴스 수집·요약 몫 — 코딩 에이전트·글 보강·레시피 같은 부가 작업이 이만큼은 남겨 둠
+
+
+def effective_budget() -> int:
+    """주 공급자 하루 한도: 설정값과 최근 실제로 막힌 횟수 중 작은 값 (설정 280 이어도 실제 122 에서 막히면 122)."""
+    budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
+    learned = llm_quota_status()["learned_limit"]
+    return min(budget, learned) if learned else budget
+
+
+def background_ok(need: int = 1) -> bool:
+    """부가 작업을 해도 되는지: 뉴스 수집 몫(NEWS_RESERVE)을 남기고도 need 회 이상 여력이 있을 때만."""
+    return llm_capacity_left() - NEWS_RESERVE >= need
+
+
 def llm_capacity_left() -> int:
-    """오늘 남은 전체 AI 호출 여력 = 주 공급자 잔여 + 예비 공급자 잔여 (자동 모드 배분용)."""
-    primary = 0 if llm_quota_status()["exhausted"] else \
-        int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
+    """오늘 남은 전체 AI 호출 여력 = 주 공급자 잔여(실제 한도 기준) + 예비 공급자 잔여 (자동 모드 배분용)."""
+    primary = 0 if llm_quota_status()["exhausted"] else effective_budget() - llm_usage_today()
     # 예비 공급자는 일부(fallback_reserve, 기본 100회)를 비상용으로 남김 — 배분에서 빼고, 성찰·관리 등 필수 호출만 씀
     reserve = int(_load_json(CONFIG_PATH, {}).get("fallback_reserve", FALLBACK_RESERVE))
     return max(0, primary) + max(0, sum(f["left"] for f in fallback_providers()) - reserve)
@@ -611,8 +625,7 @@ def llm_capacity_left() -> int:
 
 def llm_budget_left() -> int:
     """주 공급자 잔여 + (주 공급자가 바닥이면) 예비 공급자 잔여."""
-    primary = 0 if llm_quota_status()["exhausted"] else \
-        int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500)) - llm_usage_today()
+    primary = 0 if llm_quota_status()["exhausted"] else effective_budget() - llm_usage_today()
     return primary if primary > 0 else sum(f["left"] for f in fallback_providers())
 
 

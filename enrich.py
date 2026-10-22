@@ -210,8 +210,7 @@ def enrich_post(p: dict) -> dict | None:
 
 def enrich_weak(max_n: int = 3, gate: bool = True) -> list[str]:
     """짧은 글을 최신순으로 몇 개씩 보강 (AI 여유 50% 이상일 때만)."""
-    budget = int(core.load_config().get("llm_daily_budget", 500))
-    if max_n <= 0 or (gate and core.llm_budget_left() < budget * 0.5):
+    if max_n <= 0 or (gate and not core.background_ok(max_n * 2)):  # 뉴스 수집 몫을 남기고
         return []
     hidden = {k for k, v in core.curation_state().items() if v == "hide"}
     posts = []

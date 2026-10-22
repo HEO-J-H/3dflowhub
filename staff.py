@@ -336,7 +336,7 @@ def _run_check(role: dict) -> dict:
 
 def run_due(min_capacity: int = 20) -> list[dict]:
     """주기가 된 직원들이 일함 (AI 여력이 있을 때만, 하루 한도 안에서)."""
-    if core.llm_capacity_left() < min_capacity:
+    if not core.background_ok(min_capacity):  # 뉴스 수집 몫을 남기고
         return []
     done = []
     now = datetime.now(timezone.utc)
