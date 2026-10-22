@@ -1366,6 +1366,17 @@ def save_post_json(item: dict) -> Path:
     return path
 
 
+def validate_post_length(item: dict) -> dict:
+    """생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여합니다."""
+    sections = item.get("sections") or []
+    full_text = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
+    if len(full_text) < 1500:
+        log.warning("short post: 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(full_text), item.get("title_ko", item.get("title", "")))
+        if "short post" not in RUN_ERRORS:
+            RUN_ERRORS.append("short post")
+    return item
+
+
 def related_posts(client, item: dict, limit: int = 3) -> list[dict]:
     """같은 세부 카테고리 → 같은 도메인 순으로 이미 발행된 글 (조회수 높은 순).
     노션 미사용 시: GitHub Pages 사이트의 같은 분류 글로 링크 (사이트 유입도 늘어남)."""
@@ -1506,12 +1517,7 @@ def summarize(item: dict) -> dict | None:
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
     
-    # 요약된 본문 글자 수(태그 제외 본문 텍스트 기준) 검증 로직 추가
-    full_text_sum = "".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in data["sections"])
-    if len(full_text_sum) < 1500:
-        log.warning("요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(full_text_sum), data.get("title_ko", ""))
-        RUN_ERRORS.append("short post")
-
+    data = validate_post_length(data)
     data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")
     if isinstance(tags, str):
@@ -1565,13 +1571,7 @@ def build_post_html(item: dict) -> str:
     ad = {p: (ad_banner_html(p) if p in AD_POSITIONS else "") for p in ("top", "middle", "bottom")}
     html_out = intro + ad["top"] + part_1 + ad["middle"] + part_2 + source + ad["bottom"]
     
-    # 요약된 본문 글자 수(태그 제외) 검증 (1,500자 미만인 경우 short post 경고 로그 및 RUN_ERRORS 기록)
-    text_only = BeautifulSoup(html_out, "html.parser").get_text(strip=True)
-    if len(text_only) < 1500:
-        log.warning("short post: 요약된 본문 글자 수가 1,500자 미만입니다 (%d자): %s", len(text_only), item.get("title_ko", item.get("title", "")))
-        if "short post" not in RUN_ERRORS:
-            RUN_ERRORS.append("short post")
-
+    validate_post_length(item)
     return html_out
 
 
