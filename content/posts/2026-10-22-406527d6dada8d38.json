@@ -31,14 +31,64 @@
     {
       "heading": "연못(Pond) 제작",
       "body": "연못은 물 표면과 반사 효과를 중심으로 구현되었습니다. UE5의 물 시스템과 라이트 프로브를 사용해 실시간 반사와 파동 효과를 적용했습니다. 연못 주변의 식생과 조명 배치는 전체 씬의 분위기를 풍부하게 만들었습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1️⃣ 울타리: Static Mesh + Material을 준비한 뒤, **Spline Component**를 레벨에 배치합니다. Spline → Add Spline Mesh → Mesh와 Material을 지정하고, **Start/End Scale**을 조정해 길이에 맞게 자동 늘어나게 합니다. 필요하면 **Random UV Offset** 블루프린트를 적용해 텍스처가 반복될 때마다 무작위 회전·오프셋을 주어 자연스러운 변화를 줍니다[2]。2️⃣ 경로: NavMesh를 재생성하고, **Spline**에 **Spline Mesh**(돌/흙)와 **Collision**을 추가해 보행 가능 영역을 정의합니다. **Navigation Modifier** 볼륨을 사용해 AI가 해당 경로를 선호하도록 설정합니다.3️⃣ 연못: **Water Body** → Lake를 레벨에 드래그하고, **Water Material**의 **Surface Color**와 **Wave Height**를 조정합니다. 라이트 프로브를 배치해 반사와 간접광을 보강하고, **Post Process Volume**에서 **Screen Space Reflections**를 켜면 물 표면에 실시간 반사가 적용됩니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "Unreal Engine 포럼에서는 비슷한 프로젝트에 대해 **UV 오프셋**을 활용한 펜스 텍스처 랜덤화 방법이 공유되었습니다[2]. 이 방법은 동일한 메쉬를 여러 번 배치할 때 텍스처가 겹치는 현상을 방지하지만, 블루프린트 로직이 복잡해질 경우 퍼포먼스에 영향을 줄 수 있습니다. 따라서 대규모 레벨에서는 **Instanced Static Mesh**와 **Material Parameter Collection**을 결합해 GPU에서 처리하도록 최적화하는 것이 권장됩니다. 또한, 물 시스템을 사용할 때는 **Water Body**가 너무 큰 경우 라이트맵 해상도가 낮아 반사 품질이 떨어질 수 있으니, 필요 영역만큼만 스케일링하고 **LOD** 설정을 검토해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "1️⃣ **Unreal Engine 5** 최신 버전을 설치하고, **Starter Content**와 **Quixel Bridge** 플러그인을 활성화합니다. 2️⃣ 프로젝트 설정에서 **Enable Nanite**와 **Lumen Global Illumination**을 켜면 고해상도 메쉬와 실시간 전역광원을 바로 활용할 수 있습니다. 3️⃣ 기본 튜토리얼인 **“Level Design Basics”**를 완료한 뒤, 이번 devlog에서 소개된 **Spline Tool**(Unreal Marketplace 무료)와 **Water Body** 플러그인을 추가 설치합니다. 4️⃣ 레벨에 **Landscape**를 만든 뒤, 위 섹션에서 제시한 순서대로 울타리 → 경로 → 연못을 배치하면 실무 흐름을 그대로 재현할 수 있습니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "펜스에 랜덤 UV 오프셋을 적용하려면 어떤 블루프린트를 만들어야 하나요?",
+      "a": "먼저 **Material**에 **Texture Coordinate** 노드와 **Multiply**·**Add** 연산을 연결해 UV 오프셋 파라미터를 만들고, **Material Parameter Collection**에 **Scalar Parameter**를 정의합니다. 블루프린트에서는 **Random Float in Range**를 사용해 각 Spline Mesh Instance에 서로 다른 값을 할당하고, **Set Scalar Parameter Value**로 컬렉션에 전달하면 메쉬마다 텍스처가 무작위로 이동합니다."
+    },
+    {
+      "q": "Water Body → Lake를 사용할 때 반사 품질을 높이는 가장 쉬운 방법은?",
+      "a": "**Post Process Volume**를 레벨 전체에 배치하고, **Screen Space Reflections**와 **Ray Traced Reflections**(가능한 경우) 옵션을 켭니다. 또한 **Water Material**의 **Roughness** 값을 낮게 설정하고, 라이트 프로브를 연못 주변에 충분히 배치하면 실시간 반사와 간접광이 크게 개선됩니다."
+    }
+  ],
   "media": {
     "image": "",
     "video": ""
   },
   "collected_at": "2026-10-22T04:42:59.016232+00:00",
   "notion_id": "",
-  "id": "2026-10-22-406527d6dada8d38"
+  "id": "2026-10-22-406527d6dada8d38",
+  "refs": [
+    {
+      "source": "Unreal Engine 포럼",
+      "title": "Random UV offset for materials?",
+      "url": "https://forums.unrealengine.com/t/random-uv-offset-for-materials/99789",
+      "excerpt": "There is a way to set up a Blue Print that makes it so if you have a mesh chain, they will essentially spot pick random areas of a texture sample. In other words, say you have just a normal wood fence you would see in a backyard of a suburban house. There is a way to set up a blue print so that t...",
+      "replies": 3
+    }
+  ],
+  "videos": [
+    {
+      "id": "0hivb0obTRM",
+      "title": "Tea House Area - Fencing, Pathways, Pond Area | UE5 Devlog",
+      "author": "MT Indie Dev"
+    },
+    {
+      "id": "bih7Yg4SB10",
+      "title": "We made an easy fence SPLINE TOOL! #gamedev #unrealengine #medieval #indiedev #3dmodeling",
+      "author": "Trickbyte Games"
+    }
+  ],
+  "enriched_at": "2026-10-22T05:15:23+00:00",
+  "quality": {
+    "before": 565,
+    "after": 1964
+  }
 }
