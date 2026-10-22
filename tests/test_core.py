@@ -19,6 +19,21 @@ def test_short_post_warning_and_error(monkeypatch):
     core.build_post_html(short_item)
     assert "short post" in core.RUN_ERRORS
 
+
+def test_validate_post_length_function(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    # 1500자 미만 섹션 검증
+    short_sections = [{"heading": "H1", "body": "Short text"}]
+    assert core.validate_post_length(short_sections, "Test Title") is False
+    assert "short post" in core.RUN_ERRORS
+
+    # 1500자 이상 섹션 검증
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    long_body = "A" * 1500
+    long_sections = [{"heading": "H1", "body": long_body}]
+    assert core.validate_post_length(long_sections, "Test Title Long") is True
+    assert "short post" not in core.RUN_ERRORS
+
 def test_ads_inserted_top_middle_bottom(monkeypatch):
     monkeypatch.setattr(core, "AD_HTML", "<b>AD</b>")
     out = core.build_post_html(ITEM)
