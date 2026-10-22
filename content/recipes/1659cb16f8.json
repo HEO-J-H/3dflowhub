@@ -1,0 +1,45 @@
+{
+  "id": "1659cb16f8",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "host": "Maya",
+  "lang": "python",
+  "title": "NVIDIA Cosmos 및 AI 3D 에셋 Maya 파이프라인",
+  "problem": "AI 월드 모델과 3D 생성 기술로 만들어진 외부 에셋은 Maya로 가져올 때 스케일 불일치와 불필요한 노드가 생기는 문제가 있습니다. 이 Script는 임포트된 에셋의 단위를 맞추고 중심축을 정렬하여 파이프라인 후속 작업을 빠르게 시작할 수 있게 돕습니다.",
+  "pipeline": [
+    {
+      "tool": "FBX/OBJ 파일",
+      "action": "로컬 디스크에 저장된 AI 생성 3D 모델 파일을 Maya로 가져옵니다."
+    },
+    {
+      "tool": "Maya 스케일/오리진",
+      "action": "선택한 에셋의 단위를 센티미터 기준으로 맞추고 피벗을 바닥 중심으로 정렬합니다."
+    },
+    {
+      "tool": "클린업 프리팹",
+      "action": "사용하지 않는 빈 트랜스폼 노드와 히스토리를 정리해 가벼운 상태로 만듭니다."
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_ai_asset():\n    # Get selected objects\n    sel = cmds.ls(selection=True, long=True)\n    if not sel:\n        cmds.warning(\"정리할 오브젝트를 선택해주세요.\")\n        return\n    \n    for obj in sel:\n        # Center pivot to bottom of bounding box\n        bb = cmds.exactWorldBoundingBox(obj)\n        bottom_y = bb[1]\n        cmds.xform(obj, pivots=((bb[0]+bb[3])/2.0, bottom_y, (bb[2]+bb[5])/2.0), worldSpace=True)\n        \n        # Delete construction history\n        cmds.delete(obj, constructionHistory=True)\n    \n    # Purge unused nodes\n    cmds.optionVar(clearArray=\"HyperShadeUnusedNodes\")\n    print(\"AI 생성 에셋 정리가 완료되었습니다.\")\n\ndef create_ui():\n    window_name = \"aiAssetCleanerWin\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name)\n        \n    cmds.window(window_name, title=\"AI 3D Asset Cleaner\", widthHeight=(280, 120))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=('both', 10))\n    \n    cmds.text(label=\"AI 월드 모델 결과물 정렬 및 정리 도구\", align=\"center\")\n    cmds.button(label=\"에셋 피벗 정렬 및 클린업\", command=lambda x: clean_ai_asset())\n    cmds.button(label=\"닫기\", command=lambda x: cmds.deleteUI(window_name))\n    \n    cmds.showWindow(window_name)\n\ncreate_ui()",
+  "install": [
+    "Maya를 실행하고 Script Editor를 엽니다.",
+    "Python 탭에 제공된 Script를 붙여넣습니다.",
+    "실행하여 UI 창을 띄웁니다."
+  ],
+  "usage": [
+    "로컬에 저장된 AI 3D 모델(FBX 또는 OBJ)을 Maya에 임포트합니다.",
+    "정리할 에셋의 메시를 선택합니다.",
+    "UI 창에서 '에셋 피벗 정렬 및 클린업' 버튼을 클릭합니다."
+  ],
+  "limits": [
+    "네트워크 API나 외부 AI 서비스와 연동되지 않으며 로컬 파일만 처리합니다.",
+    "Gaussian Splatting 4D 파일 포맷은 직접 읽지 못하며 폴리곤으로 변환된 파일만 지원합니다."
+  ],
+  "sources": [
+    "2026-10-21-32263a4df1a56c90",
+    "2026-10-21-fe2b50db8dabc11e"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-22T16:06:28+00:00"
+}
