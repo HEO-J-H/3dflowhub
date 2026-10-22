@@ -62,3 +62,20 @@ def test_capacity_keeps_fallback_reserve(monkeypatch):
     monkeypatch.setattr(core, "fallback_providers", lambda: [{"left": 300}])
     monkeypatch.setattr(core, "llm_quota_status", lambda: {"exhausted": True})
     assert core.llm_capacity_left() == 300 - core.FALLBACK_RESERVE
+
+
+def test_fallback_minute_limit_not_daily(monkeypatch):
+    class R:
+        status_code = 429
+        headers = {"retry-after": "0"}
+        text = "Rate limit reached for model on tokens per minute (TPM): Limit 6000"
+        ok = False
+    monkeypatch.setattr(core.requests, "post", lambda *a, **k: R())
+    monkeypatch.setattr(core.time, "sleep", lambda s: None)
+    import pytest
+    with pytest.raises(RuntimeError) as e:
+        core._llm_call("u", "k", "m", "p", "s", 10, False)
+    assert not isinstance(e.value, core.LLMBudgetExceeded)  # 분당 제한은 '오늘 소진'이 아님
+    R.text = "Rate limit reached on requests per day (RPD): Limit 1000"
+    with pytest.raises(core.LLMBudgetExceeded):
+        core._llm_call("u", "k", "m", "p", "s", 10, False)

@@ -580,7 +580,7 @@ def fallback_providers() -> list[dict]:
     out = []
     for f in FALLBACK_PROVIDERS:
         key = os.getenv(f["key_env"], "")
-        if key and not day.get(f["name"] + "!") and day.get(f["name"], 0) < cap:
+        if key and day.get(f["name"] + "!") != "day" and day.get(f["name"], 0) < cap:  # 예전 True 표시는 분당 제한 오인 → 무시
             out.append({**f, "key": key, "model": os.getenv(f["model_env"]) or f["model"],
                         "left": cap - day.get(f["name"], 0)})
     return out
@@ -590,7 +590,7 @@ def _fallback_count(name: str, exhausted: bool = False) -> None:
     data = {d: v for d, v in _load_json(LLM_FALLBACK_PATH, {}).items() if d >= llm_day()[:8] + "01"}
     day = data.setdefault(llm_day(), {})
     if exhausted:
-        day[name + "!"] = True
+        day[name + "!"] = "day"  # 하루 한도 소진만 (분당 제한은 표시하지 않음)
     else:
         day[name] = day.get(name, 0) + 1
     _save_json(LLM_FALLBACK_PATH, data)
@@ -719,7 +719,9 @@ def _llm_call(endpoint: str, key: str, model: str, prompt: str, system: str, max
                         raise RuntimeError(f"429 rate limit: {r.text[:150]!r}")
                     _mark_quota_exhausted()
                     raise LLMBudgetExceeded(f"Gemini 실제 일일 한도 소진 (429, 오늘 {llm_usage_today()}회째)")
-                raise LLMBudgetExceeded(f"429 한도: {r.text[:150]!r}")
+                if re.search(r"per day|\(RPD\)|\(TPD\)|daily", r.text, re.I):  # 예비 공급자 '하루' 한도만 소진 처리
+                    raise LLMBudgetExceeded(f"429 하루 한도: {r.text[:150]!r}")
+                raise RuntimeError(f"429 분당 제한(잠시 후 다시): {r.text[:150]!r}")  # TPM·RPM — 오늘 끄지 않음
             data = r.json() if r.ok else None
             if data and data.get("choices"):
                 return (data["choices"][0]["message"].get("content") or "").strip()
@@ -1810,7 +1812,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     if left <= 0:  # 한도 소진 시 피드를 몇 분씩 긁지 않고 바로 알림 (실행 기록은 남김 → 대시보드에서 보임)
         stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": 0, "saved": 0, "published": 0,
                  "drafts": 0, "publish_errors": 0, "llm_fallbacks": [],
-                 "errors": [f"AI 일일 한도 소진 — {llm_reset_kst()} 이후 다시 시도 (예비 AI 키 없음)"]}
+                 "errors": [f"AI 일일 한도 소진 — {llm_reset_kst()} 이후 다시 시도 "
+                            + ("(예비 AI 도 오늘 한도 소진)" if any(os.getenv(f["key_env"]) for f in FALLBACK_PROVIDERS)
+                               else "(예비 AI 키 없음)")]}
         reflect(stats, [])
         return stats
     notion = _notion()
