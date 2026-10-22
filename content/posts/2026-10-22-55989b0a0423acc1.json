@@ -27,6 +27,16 @@
     {
       "heading": "개발진의 아쉬움과 업계 반응",
       "body": "오랫동안 BioWare에 몸담았던 Tony de Waal은 링크드인을 통해 동료들과 함께 만들었던 결과물을 세상에 선보이지 못하게 된 것에 대한 깊은 안타까움을 전했습니다. Dragon Age 시리즈의 원작 작가인 David Gaider 역시 SNS를 통해 스튜디오의 폐업 소식에 슬픔을 표명했습니다. 그는 과거 최고 전성기를 누렸던 BioWare가 업계에 남긴 발자취와 유산은 쉽게 잊히지 않을 것이라고 강조했습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "BioWare의 개발 중단 사례에서 보듯, AAA급 게임 개발에서 높은 자율성과 방대한 분기를 구현하는 작업은 철저한 파이프라인 설계가 선행되어야 합니다. Larian의 Baldur's Gate 3나 CD PROJEKT RED의 Cyberpunk 2077처럼 복잡한 내러티브와 선택지를 관리하기 위해서는 Unreal Engine 등의 게임 엔진 환경에서 대화 트리, 퀘스트 데이터, 시네마틱 컷신을 유기적으로 엮어내는 데이터 중심의 워크플로우가 필수적입니다. 특히 시네마틱 슈퍼바이저와 테크니컬 애니메이터는 에셋 제작 단계부터 Procedural 애니메이션과 모듈식 컷신 시스템을 도입해 제작 공수를 줄이고 분기별 연출 리스크를 최소화하는 방향으로 실무 파이프라인을 구축해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "최근 하드웨어 성능 발전에 따른 게임 엔진 및 렌더링 최적화 논의가 활발한 가운데, Apple Silicon M4 칩셋이 보여주는 뛰어난 연산 성능은 모바일 및 저전력 환경에서의 3D 그래픽 작업 가능성을 넓혀주고 있습니다 [1]. 커뮤니티에서는 M4 iPad Pro나 차세대 MacBook 기기들이 Octane 렌더러 등에서 기존 M2나 M3 대비 압도적인 성능 향상을 보여준다고 평가하며, 실무 작업에서의 모바일·휴대용 워크스테이션 활용도에 주목하고 있습니다 [1]. 다만 대규모 오픈월드나 방대한 내러티브 기반의 프로젝트를 진행할 때는 하드웨어의 단기 벤치마크 수치뿐만 아니라, 복잡한 씬 데이터와 대규모 에셋을 안정적으로 처리할 수 있는 종합적인 시스템 안정성과 쿨링 성능을 반드시 고려해야 합니다 [1].",
+      "added": true
     }
   ],
   "faq": [
@@ -37,6 +47,14 @@
     {
       "q": "BioWare 폐업의 원인과 배경은 무엇인가요?",
       "a": "EA의 스튜디오 폐업 결정으로 인해 결정되었으며, 최근 어려운 업계 환경과 맞물려 역사적인 게임 개발 스튜디오가 문을 닫게 되었습니다."
+    },
+    {
+      "q": "방대한 분기와 자율성을 가진 게임을 기획할 때 엔진 레벨에서 가장 먼저 고려해야 할 점은 무엇인가요?",
+      "a": "데이터 구조화와 퀘스트·내러티브 시스템의 확장성입니다. Unreal Engine 등의 엔진을 사용할 때, 수많은 선택지와 분기에 따른 대화 트리, 컷신 재생, 월드 스테이트 변경을 에디터 내에서 효율적으로 관리할 수 있는 모듈식 시스템과 데이터베이스 연동 파이프라인을 초기 단계부터 설계해야 합니다."
+    },
+    {
+      "q": "Apple Silicon 환경에서 고성능 3D 렌더링 작업을 고려할 때 주의할 점은 무엇인가요?",
+      "a": "M4 등 최신 칩셋이 Octane 렌더러 등에서 뛰어난 벤치마크 성능을 보여주고 있으나 [1], 대규모 프로젝트의 에셋 로딩, 텍스처 메모리 관리, 장시간 렌더링 시의 발열과 스로틀링 현상을 함께 점검해야 합니다."
     }
   ],
   "media": {
@@ -45,5 +63,31 @@
   },
   "collected_at": "2026-10-22T12:46:42.796620+00:00",
   "notion_id": "",
-  "id": "2026-10-22-55989b0a0423acc1"
+  "id": "2026-10-22-55989b0a0423acc1",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "The Blender macOS and general Apple thread",
+      "url": "https://blenderartists.org/t/the-blender-macos-and-general-apple-thread/1467856",
+      "excerpt": "If the current performance of M4 ipad pro is an indicator of how fast next mini/macbooks could be I strongly believe the M4 will obliterate M3 and M2… M2 ipad pro was in octane from 1/6 to about 1/4 of M3pro power if I remember correctly. So still super fast for an ipad but M4 ipad is pretty much...",
+      "replies": 4905
+    }
+  ],
+  "videos": [
+    {
+      "id": "0SenGjrw70c",
+      "title": "EA Just SHUT DOWN Bioware & Mass Effect 5 CANCELLED!",
+      "author": "Tyrone Magnus"
+    },
+    {
+      "id": "ASqPlIs6Z8U",
+      "title": "I FINALLY tried \"The Next Mass Effect\" and...",
+      "author": "MrMattyPlays"
+    }
+  ],
+  "enriched_at": "2026-10-22T13:20:21+00:00",
+  "quality": {
+    "before": 803,
+    "after": 1584
+  }
 }
