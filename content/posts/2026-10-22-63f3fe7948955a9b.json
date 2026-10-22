@@ -1,0 +1,49 @@
+{
+  "title_ko": "Blender 튜토리얼 — Voxel 리메시 후 붙어버린 지오메트리 수정",
+  "title": "Fix Merged Geometry after Voxel remeshing",
+  "url": "https://www.blendernation.com/2026/10/22/fix-merged-geometry-after-voxel-remeshing/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Blender",
+    "Voxel Remesh",
+    "Modeling",
+    "Geometry",
+    "Tutorial",
+    "블렌더"
+  ],
+  "summary": "Jan van den Hemel이 Blender에서 Voxel 리메시 작업 후 서로 붙어버린 지오메트리를 깔끔하게 분리하고 수정하는 방법을 설명합니다.",
+  "insight": "Voxel 리메시는 신속하게 유기적인 모델링 베이스를 만들 때 유용하지만, 두께가 얇은 면이나 가까운 거리의 오브젝트가 엉겨 붙는 단점이 있습니다. 이 팁은 스컬프팅이나 캐릭터 베이스 모델링 과정에서 면이 붙어 버렸을 때 수동으로 일일이 떼어내지 않고 효율적으로 정리하는 실무 워크플로를 제시합니다. 하이폴리곤 스컬프팅 Pipeline 토폴로지를 정리하며 작업하는 3D 아티스트에게 매우 유용합니다.",
+  "sections": [
+    {
+      "heading": "Voxel 리메시 작업의 한계와 문제점",
+      "body": "Blender에서 Voxel 리메시 기능을 사용하면 전체적인 볼륨을 재배치하고 균일한 토폴로지를 얻을 수 있습니다. 하지만 모델 간의 간격이 너무 좁거나 면이 얇은 경우, 원치 않게 지오메트리가 서로 엉겨 붙는 현상이 발생합니다. 이는 이후 세부 스컬프팅이나 리토폴로지 작업에서 큰 방해가 됩니다."
+    },
+    {
+      "heading": "Jan van den Hemel의 해결 방법 제시",
+      "body": "크리에이터 Jan van den Hemel은 BlenderNation에 기고한 튜토리얼을 통해 이러한 병합 문제를 해결하는 구체적인 단계를 공유했습니다. 서로 붙어버린 지오메트리를 식별하고, 이를 다시 분리하거나 정리하여 원래의 형태를 복구하는 노하우를 전달합니다. 복잡한 수작업을 줄여주는 실용적인 팁으로 구성되어 있습니다."
+    },
+    {
+      "heading": "실무 모델링 워크플로에서의 적용",
+      "body": "스컬프팅 초기 단계에서 Voxel 리메시를 자주 사용하는 아티스트라면 누구나 겪는 문제입니다. 제시된 방법을 파이프라인에 도입하면 엉킨 면을 수정하는 데 소요되는 시간을 대폭 단축할 수 있습니다. 특히 캐릭터 손가락이나 옷 주름 등 세밀한 부위의 볼륨을 다룰 때 유용하게 활용됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Blender에서 Voxel 리메시 후 면이 붙는 이유는 무엇인가요?",
+      "a": "오브젝트 간의 간격이 Voxel 크기보다 좁거나 두께가 너무 얇을 경우, 리메시 알고리즘이 두 면을 하나의 볼륨으로 인식하여 합쳐버리기 때문에 발생합니다."
+    },
+    {
+      "q": "이 튜토리얼은 어떤 아티스트에게 적합한가요?",
+      "a": "Blender에서 스컬프팅 도구를 사용해 캐릭터나 크리처, 유기적 형태를 모델링하는 3D 아티스트에게 적합합니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.blendernation.com/wp-content/uploads/2026/10/Merged-Geometry-Fix-BN-800x450.jpg.webp",
+    "video": "https://www.youtube.com/watch?v=HOxVKNRnGig"
+  },
+  "collected_at": "2026-10-22T07:23:19.733150+00:00",
+  "notion_id": "",
+  "id": "2026-10-22-63f3fe7948955a9b"
+}
