@@ -31,6 +31,16 @@
     {
       "heading": "에디트 폴리 및 모디파이어 활용법",
       "body": "문제가 되는 오브젝트에 'Edit Normals' 또는 'Turn to Mesh' 등의 모디파이어를 적절히 활용하여 내부 삼각형 구조를 수동으로 제어할 수 있습니다. 엣지의 비주얼 흐름을 바꾸거나 대각선 방향을 수동으로(Turn Edge 기능) 조정함으로써 렌더링 시 발생하는 빛의 꺾임 현상을 바로잡습니다. 실무 파이프라인에서는 이러한 수정 작업이 게임 엔진이나 외부 렌더러(V-Ray, Corona 등)로 넘어가기 전 반드시 거쳐야 할 검수 단계입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "3ds Max에서 쿼드 메쉬의 Shading 깨짐을 해결하려면 먼저 Edit Poly 모디파이어에서 Polygon 레벨로 진입한 뒤, Surface Properties 항목의 Clear All을 눌러 기존 스무딩 그룹을 완전히 초기화합니다. 그 후 모델의 형태에 맞추어 Auto Smooth를 다시 적용하거나, 명확한 하드 엣지가 필요한 부분은 테두리를 선택해 명시적으로 다른 스무딩 그룹 번호를 할당합니다. 외부 캐시나 락이 걸린 노말 데이터로 인해 문제가 계속 발생한다면 Editable Poly 상단에 Edit Normals 모디파이어를 추가하고 Reset 명령을 실행하여 노말 벡터를 기본값으로 되돌리는 것이 안전합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이와 같은 Shading 오류는 모델링 직후 뷰포트에서 미리 발견하는 것이 수정 시간을 가장 크게 아끼는 방법입니다. 3ds Max의 뷰포트 조명 설정에서 Default Lighting 대신 Scene Lights를 사용하고 고반사 재질을 임시로 적용해 보면 숨겨진 삼각형 노이즈를 쉽게 파악할 수 있습니다. 또한 V-Ray나 Corona 같은 외부 렌더러로 넘기기 전, Turn to Mesh 모디파이어나 엣지 모드에서의 Turn 기능을 익혀 내부 삼각형 분할 방향을 수동으로 제어하는 연습을 해두는 것이 좋습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "이러한 셰이딩 문제를 해결하려면 3ds Max에서 어떤 기능을 써야 하나요?",
       "a": "Editable Poly의 스무딩 그룹 재지정, Auto Smooth 실행, 또는 Edit Normals 모디파이어를 통한 법선 초기화 및 'Turn Edge'를 통한 내부 대각선 방향 변경 등이 가장 효과적인 해결책입니다."
+    },
+    {
+      "q": "토폴로지가 모두 사각형(Quad)인데도 왜 삼각형 모양의 Shading이 생기나요?",
+      "a": "3D 그래픽 렌더링 과정에서 모든 폴리곤은 최종적으로 삼각형 단위로 쪼개져 처리되기 때문입니다. 이때 메쉬 내부의 대각선 분할 방향이나 노말(Normal) 벡터 정보가 꼬이면 사각형 구조라 할지라도 빛이 꺾이는 시각적 노이즈가 표면에 드러나게 됩니다."
+    },
+    {
+      "q": "스무딩 그룹을 초기화했는데도 Shading 문제가 해결되지 않으면 어떻게 해야 하나요?",
+      "a": "오브젝트에 락(Lock)이 걸린 커스텀 노말 데이터나 오래된 캐시가 남아있을 가능성이 높습니다. Edit Normals 모디파이어를 적용하여 노말을 리셋하거나, Edit Poly에서 엣지 방향을 수동으로 비틀어주는 Turn 기능을 사용하여 내부 대각선 흐름을 직접 바로잡아 보세요."
     }
   ],
   "media": {
@@ -49,5 +67,23 @@
   },
   "collected_at": "2026-10-16T13:18:48.189806+00:00",
   "notion_id": "",
-  "id": "2026-10-16-f3f9f1122b471268"
+  "id": "2026-10-16-f3f9f1122b471268",
+  "refs": [],
+  "videos": [
+    {
+      "id": "JkWSwH7Nrvw",
+      "title": "Fix Mesh Triangulated Black Shading in 3ds Max! (30-Second Fix)",
+      "author": "Jay Aries Desalisa"
+    },
+    {
+      "id": "EVx757rgjIE",
+      "title": "Solved: 3Ds MAX Black Polygon fix.",
+      "author": "The Reflected One"
+    }
+  ],
+  "enriched_at": "2026-10-23T05:57:29+00:00",
+  "quality": {
+    "before": 998,
+    "after": 1638
+  }
 }
