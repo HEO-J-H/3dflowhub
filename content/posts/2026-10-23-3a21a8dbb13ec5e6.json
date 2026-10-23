@@ -31,6 +31,16 @@
     {
       "heading": "Grease Pencil과 독창적인 렌더링 시도",
       "body": "Blender의 강력한 툴셋인 Grease Pencil을 활용한 흑백 드로잉과 애니메이션 작업들이 소개되었다. Eevee 렌더러를 적극 활용해 실시간에 가까운 속도감 속에서도 높은 시각적 완성도를 이끌어냈다. 전통적인 3D 파이프라인을 넘어 2D 감성을 입히는 NPR(비사실적 렌더링) 실험들도 주목할 만하다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "이번 주 차 베스트 작품을 실무에 적용하려면 먼저 작품별 파이프라인을 분해한다. 하드서페이스 차량·전투기 모델링은 기본 메쉬를 Edge Loop·Subdivision으로 잡고, Bevel과 Hard‑Sharp 쉐이딩을 적용한다. 캐릭터·크리처는 Sculpt 모드에서 Dynotopology로 기본 형태를 만들고, Retopology 후 UV와 PBR 텍스처링을 진행한다. Grease Pencil을 활용한 2D‑3D 혼합은 Grease Pencil → Stroke → Fill → Modifier(Noise, Thickness) 순으로 작업하고, 최종 렌더는 Eevee의 Light Probe와 Screen Space Reflections를 켜서 실시간 감각을 살린다. 각 단계별 설정값은 Blender 공식 매뉴얼을 참고한다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "시작하려면 최신 Blender 4.x 버전을 공식 사이트에서 다운로드한다. 설치 후 Preferences → Add‑ons에서 Grease Pencil과 Eevee를 활성화한다. 기본 워크플로우를 익히기 위해 ‘How I “Cheat” Drawing Backgrounds (Blender Tutorial for Artists)’ 영상을 시청하고, Blender Artists 포럼에서 ‘Best of Blender Artists 2026’ 스레드를 구독한다. 이후 관심 분야(하드서페이스, 캐릭터, Grease Pencil)별로 작품을 선택해 리버스 엔지니어링하며 자신만의 파이프라인을 구축한다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "주간 베스트 Post에 소개된 작품들의 제작 정보를 확인할 수 있나요?",
       "a": "네, 각 작품의 제목 링크를 통해 Blender Artists 원본 포럼 페이지로 이동하면 아티스트가 공유한 와이어프레임, 사용 툴, 렌더링 엔진 정보 등 상세한 제작 과정을 확인할 수 있습니다."
+    },
+    {
+      "q": "Grease Pencil을 이용한 2D‑3D 혼합 작업은 어떻게 시작하나요?",
+      "a": "Grease Pencil을 추가하고 새 레이어를 만든 뒤 Stroke 도구로 기본 형태를 그린다. Fill 옵션으로 색을 채우고, Modifier 탭에서 Noise·Thickness 등 효과를 적용한다. 이후 3D 오브젝트와 동일 씬에 배치하고 Eevee 또는 Cycles로 렌더하면 2D‑3D 결합 결과를 얻을 수 있다."
+    },
+    {
+      "q": "하드서페이스 모델링에서 효율적인 서브디비전 전략은?",
+      "a": "먼저 Low‑Poly 베이스를 Edge Loop으로 잡고, 필요한 부분에만 Loop Cut을 추가한다. 그 후 Subdivision Surface Modifier를 적용하고, 필요 없는 영역은 Edge Crease로 샤프하게 유지한다. 마지막으로 Bevel을 사용해 모서리를 부드럽게 하면 리얼한 하드서페이스가 완성된다."
     }
   ],
   "media": {
@@ -49,5 +67,40 @@
   },
   "collected_at": "2026-10-23T08:41:12.570974+00:00",
   "notion_id": "",
-  "id": "2026-10-23-3a21a8dbb13ec5e6"
+  "id": "2026-10-23-3a21a8dbb13ec5e6",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "🎉 Get ready for the 'Best of Blender Artists 2023' Awards!",
+      "url": "https://blenderartists.org/t/get-ready-for-the-best-of-blender-artists-2023-awards/1497945",
+      "excerpt": ":tada: Get ready for the 'Best of Blender Artists 2023' Awards! Hey everyone, once again we'll celebrate the quality and diversity of our artists community by having a community election of the best artworks! Check out last year's event to get a sense of what will happen and also make sure you ta...",
+      "replies": 53
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "🎉 Get ready for the 'Best of Blender Artists 2024' Awards!",
+      "url": "https://blenderartists.org/t/get-ready-for-the-best-of-blender-artists-2024-awards/1565359",
+      "excerpt": "Hey everyone, once again we'll celebrate the quality and diversity of our artists community by having a community election of the best artworks! Check out last year's event to get a sense of what will happen and also make sure you take a look at the winners ! With your help, we'll pick the top 5 ...",
+      "replies": 44
+    },
+    {
+      "source": "BlenderArtists",
+      "title": ":tada: These are the winners of the Best of Blender Artists 2022!",
+      "url": "https://blenderartists.org/t/these-are-the-winners-of-the-best-of-blender-artists-2022/1441381",
+      "excerpt": "IT'S DONE! You have decided on the Best of Blender Artists 2022 and it is now my honor to present you the 'winners' of this year. Huge congratulations to everyone who ended up in the top 5 of their category. Special congratulations to Jörg Grubmüller @joergsla ) who made it into the top 5 of THRE...",
+      "replies": 41
+    }
+  ],
+  "videos": [
+    {
+      "id": "0eCHp4Lof7Y",
+      "title": "How I “Cheat” Drawing Backgrounds (Blender Tutorial for Artists)",
+      "author": "Ullaiin"
+    }
+  ],
+  "enriched_at": "2026-10-23T09:22:34+00:00",
+  "quality": {
+    "before": 775,
+    "after": 1515
+  }
 }

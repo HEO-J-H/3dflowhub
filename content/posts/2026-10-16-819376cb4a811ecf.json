@@ -29,6 +29,16 @@
     {
       "heading": "향후 전망 및 확장 가능성",
       "body": "물리적 AI 시장이 급성장함에 따라 고정밀 3D 데이터를 안정적으로 공급하고 처리하는 데이터 엔진의 역할은 더욱 커질 것으로 전망됩니다. 헤사이는 이번 플랫폼 런칭을 통해 단순 하드웨어 제조사를 넘어 AI 데이터 인프라 기업으로 입지를 넓히고 있습니다. 향후 다양한 로보틱스 프레임워크 및 게임 엔진 기반의 시뮬레이터와의 호환성이 확장될지 업계의 이목이 집중되고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1️⃣ LiDAR 센서(Hesai LiDAR)로 현장 점군 데이터를 수집한다. 2️⃣ Hesai 3D 데이터 엔진 SDK를 통해 원시 .pcd 또는 .bin 파일을 엔진에 로드한다. 엔진은 실시간 포맷 변환·압축을 수행해 AI 학습에 최적화된 Hesai 포맷으로 저장한다. 3️⃣ 변환된 데이터는 엔진 내 어노테이션 툴을 이용해 라벨링을 빠르게 진행한다(동적 장애물도 자동 추적 지원). 4️⃣ 완성된 라벨셋을 TensorFlow /PyTorch 용 TFRecord 또는 COCO 형식으로 내보내 모델 학습에 바로 활용한다. 5️⃣ 시뮬레이션이 필요하면 엔진이 제공하는 USD/FBX 익스포트 기능으로 Unity·Unreal 시뮬레이터에 임포트해 물리‑기반 환경을 재현한다. 이렇게 하면 데이터 전처리·시뮬레이션 구축 시간이 크게 단축된다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Hesai 3D 데이터 엔진은 자체 LiDAR 하드웨어와 긴밀히 연동돼 물리‑AI에 특화된 고성능 파이프라인을 제공한다. 기존 Velodyne VeloView 또는 Ouster SDK는 일반 점군 시각화·기본 변환에 초점이지만, AI 학습용 라벨링·시뮬레이션 자동화 기능은 제한적이다. 오픈소스 PDAL·ROS bag은 포맷 변환과 스트리밍에 강점이 있지만, 엔진 수준의 압축·동적 장애물 재구성 최적화는 제공하지 않는다. 따라서 대규모 물리‑AI 프로젝트에서는 Hesai 엔진이 데이터 관리·시뮬레이션 구축 효율을 크게 높인다.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +49,14 @@
     {
       "q": "이 데이터 엔진은 어떤 개발 분야에 유용한가요?",
       "a": "자율주행차, 휴머노이드 로봇, 스마트 모빌리티 등 실제 물리 세계를 인식하고 판단해야 하는 로보틱스 및 피지컬 AI 엔지니어링 분야에 유용합니다."
+    },
+    {
+      "q": "데이터 엔진을 Unity 시뮬레이터에 연결하려면 어떤 포맷을 사용해야 하나요?",
+      "a": "엔진은 USD·FBX 익스포트를 지원한다. 변환 후 Unity ‘Import New Asset’ 메뉴로 파일을 불러오면 물리‑기반 환경이 그대로 재현된다. 필요 시 Unity ‘USD Importer’ 패키지를 추가 설치하면 메타데이터까지 보존된다."
+    },
+    {
+      "q": "동적 장애물 라벨링을 자동화하려면 어떤 기능을 활용하나요?",
+      "a": "엔진 내부 DynamicObstacleTracker 모듈이 실시간 점군 흐름을 분석해 움직이는 객체를 자동으로 구분한다. 이를 ‘auto_label_obstacles()’ 함수에 연결하면 라벨링 단계에서 수동 작업을 크게 줄일 수 있다."
     }
   ],
   "media": {
@@ -48,5 +66,23 @@
   "collected_at": "2026-10-16T12:19:17.968648+00:00",
   "notion_id": "",
   "id": "2026-10-16-819376cb4a811ecf",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [],
+  "videos": [
+    {
+      "id": "hqDP86jq1BA",
+      "title": "Hesai launches spatial camera for AI-powered robotics #shorts",
+      "author": "TaraNews"
+    },
+    {
+      "id": "OwC1ie3lZgo",
+      "title": "How to collect and process Mobile Lidar data on the Resepi Hesai XT32 Lidar by Inertial Labs",
+      "author": "3dMappingTools"
+    }
+  ],
+  "enriched_at": "2026-10-23T09:23:19+00:00",
+  "quality": {
+    "before": 931,
+    "after": 1641
+  }
 }
