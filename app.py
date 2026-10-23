@@ -64,7 +64,7 @@ st.markdown("""<style>
 [data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
 [data-testid="stMetricValue"]{font-size:1.75rem}
 @media (max-width: 640px){
-  .block-container{padding:3.4rem 0.75rem 3rem !important}  /* 위쪽 고정 막대에 가리지 않게 */
+  .block-container{padding:3.4rem 0.75rem 4.5rem !important}  /* 모바일 하단 내비게이션 바 공간 확보 */
   h1{font-size:1.55rem !important;padding:0.2rem 0 0.4rem !important}
   h2,h3{font-size:1.15rem !important}
   [data-testid="stMetricValue"]{font-size:1.3rem}
@@ -80,7 +80,52 @@ div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:16px}
 .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .hdr-links a{margin-right:14px;text-decoration:none}
 section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
-</style>""", unsafe_allow_html=True)
+
+/* 모바일 하단 고정 퀵 내비게이션 바 */
+.mobile-quick-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  background: var(--secondary-background-color, #1e1e1e);
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999999;
+  padding: 0 4px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+.mobile-quick-nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-color, #f0f0f0);
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.mobile-quick-nav a:hover, .mobile-quick-nav a:active {
+  opacity: 0.8;
+  color: #4f8cff;
+}
+@media (max-width: 640px) {
+  .mobile-quick-nav { display: flex; }
+}
+</style>
+
+<div class="mobile-quick-nav">
+  <a href="#오늘" onclick="window.scrollTo({top:0, behavior:'smooth'});">🏠 <span>오늘</span></a>
+  <a href="#글-목록" onclick="window.scrollTo({top:0, behavior:'smooth'});">📰 <span>글 목록</span></a>
+  <a href="#설정" onclick="window.scrollTo({top:0, behavior:'smooth'});">🛠 <span>설정</span></a>
+</div>
+""", unsafe_allow_html=True)
 
 cfg = core.load_config()
 
