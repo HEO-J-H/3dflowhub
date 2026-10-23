@@ -1,0 +1,45 @@
+{
+  "id": "78c455faed",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "host": "Maya",
+  "lang": "python",
+  "title": "Maya용 AI 3D Gaussian 메쉬 일괄 정리 파이프라인",
+  "problem": "AI 3D 및 Gaussian Splatting 관련 툴에서 추출된 메쉬는 스케일이 제각각이고 불필요한 히스토리가 남아 있어 Maya 파이프라인에 곧바로 쓰기 어렵습니다. 본 Script는 로컬에 준비된 메쉬 에셋의 트랜스폼을 초기화하고 피벗을 정렬하여 수동 정리 작업을 줄여줍니다.",
+  "pipeline": [
+    {
+      "tool": "SHARE PointClouds Studio",
+      "action": "로컬 디렉토리에 3D Gaussian Splatting 기반 메쉬 에셋 내보내기"
+    },
+    {
+      "tool": "Maya",
+      "action": "내보낸 메쉬 파일(OBJ 또는 FBX)을 씬으로 가져오기"
+    },
+    {
+      "tool": "Python (maya.cmds)",
+      "action": "선택한 메쉬의 히스토리 삭제, 트랜스폼 Freeze 및 피벗 정렬 수행"
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_imported_ai_meshes(*args):\n    selected_objs = cmds.ls(selection=True, long=True)\n    if not selected_objs:\n        cmds.warning(\"정리할 메쉬를 선택해주세요.\")\n        return\n    \n    for obj in selected_objs:\n        # Delete construction history\n        cmds.delete(obj, constructionHistory=True)\n        # Freeze transformations (apply transforms to shape without t, r, s flags in cmds.makeIdentity)\n        cmds.makeIdentity(obj, apply=True, translate=True, rotate=True, scale=True, normal=0)\n        # Center pivot to bounding box\n        cmds.xform(obj, centerPivots=True)\n        \n    print(\"AI 생성 메쉬 정리 완료: \" + str(len(selected_objs)) + \"개 객체\")\n\ndef create_cleaner_ui():\n    window_name = \"AI_Mesh_Cleaner_Win\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name, window=True)\n        \n    cmds.window(window_name, title=\"AI Mesh Cleaner\", widthHeight=(250, 100))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=('both', 10))\n    cmds.text(label=\"선택한 메쉬의 히스토리 제거 및 피벗 정렬\", align=\"center\")\n    cmds.button(label=\"메쉬 일괄 정리 실행\", command=clean_imported_ai_meshes)\n    cmds.showWindow(window_name)\n\ncreate_cleaner_ui()",
+  "install": [
+    "Maya를 실행하고 Script Editor를 엽니다.",
+    "Python 탭을 선택하고 제공된 Script 코드를 붙여넣습니다.",
+    "코드를 실행하여 사용자 인터페이스 창을 띄웁니다."
+  ],
+  "usage": [
+    "로컬에 준비된 AI 생성 3D 메쉬 파일을 Maya로 임포트합니다.",
+    "씬에서 정리할 메쉬 오브젝트들을 선택합니다.",
+    "UI 창의 '메쉬 일괄 정리 실행' 버튼을 클릭하여 히스토리 삭제와 피벗 정렬을 수행합니다."
+  ],
+  "limits": [
+    "네트워크 통신이나 외부 AI API 연동 기능은 포함되어 있지 않으며, 로컬 파일만 처리합니다.",
+    "텍스처 자동 재할당이나 토폴로지 리토핑 등 고차원 작업은 지원하지 않습니다."
+  ],
+  "sources": [
+    "2026-10-23-c03b6e87006c718b",
+    "2026-10-22-c0741fc1b043dfab"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-23T04:18:55+00:00"
+}
