@@ -898,11 +898,27 @@ def test_analyze_run_errors(monkeypatch, tmp_path):
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
     core._save_json(core.MEMORY_PATH, {
         "runs": [
-            {"collected": 10, "short": 2, "offtopic": 1},
-            {"collected": 10, "short": 0, "offtopic": 3}
+            {"collected": 10, "short": 2, "offtopic": 1, "errors": ["short body", "off-topic"]},
+            {"collected": 10, "short": 0, "offtopic": 3, "errors": ["off-topic"]}
         ]
     })
     stats = evolve.analyze_run_errors()
     assert stats["total_runs"] == 2
     assert stats["short_post_rate"] == 0.1  # 2 / 20
     assert stats["off_topic_rate"] == 0.2  # 4 / 20
+
+
+def test_summarize_error_trends(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core._save_json(core.MEMORY_PATH, {
+        "runs": [
+            {"collected": 10, "short": 1, "offtopic": 0, "errors": ["short body", "429 rate limit"]}
+        ]
+    })
+    report = evolve.summarize_error_trends()
+    assert report["total_runs"] == 1
+    assert report["total_errors"] == 2
+    assert "short body" in report["error_counts_by_type"]
+    assert "LLM 한도 초과" in report["error_counts_by_type"]
+    assert "summary_report" in report

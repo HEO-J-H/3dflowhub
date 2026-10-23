@@ -176,6 +176,53 @@ def analyze_run_errors() -> dict[str, float]:
     }
 
 
+def summarize_error_trends() -> dict:
+    """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 통계를 도메인별·유형별로 집계하여 리포트 형태로 반환합니다."""
+    runs = core.load_memory().get("runs", [])
+    error_counts_by_type: dict[str, int] = {}
+    error_counts_by_domain: dict[str, int] = {}
+    total_runs = len(runs)
+    total_errors = 0
+
+    for r in runs:
+        # runs 기록 내의 오류 리스트나 카운트 집계
+        errs = r.get("errors", [])
+        for e in errs:
+            total_errors += 1
+            # 유형 판별
+            err_type = "기타"
+            if "short" in e.lower() or "short body" in e.lower():
+                err_type = "short body"
+            elif "off-topic" in e.lower() or "offtopic" in e.lower():
+                err_type = "off-topic"
+            elif "prefiltered" in e.lower():
+                err_type = "prefiltered"
+            elif "429" in e or "한도" in e:
+                err_type = "LLM 한도 초과"
+            elif "summarize" in e.lower():
+                err_type = "요약 실패"
+            error_counts_by_type[err_type] = error_counts_by_type.get(err_type, 0) + 1
+
+        # 도메인별 오류 혹은 수집 통계 반영
+        # 만약 runs에 도메인별 정보가 있다면 반영 가능하나, 일반적인 에러 통계는 유형별 및 전체 실행 횟수를 기준으로 집계
+        domain = r.get("domain", "전체")
+        if errs:
+            error_counts_by_domain[domain] = error_counts_by_domain.get(domain, 0) + len(errs)
+
+    # memory.json의 RUN_ERRORS 전역 리스트나 개별 run 항목 보완
+    analysis = analyze_run_errors()
+
+    report = {
+        "total_runs": total_runs,
+        "total_errors": total_errors,
+        "error_counts_by_type": error_counts_by_type,
+        "error_counts_by_domain": error_counts_by_domain,
+        "metrics": analysis,
+        "summary_report": f"총 {total_runs}회 실행 중 {total_errors}건의 오류 발생. 유형별 집계: {error_counts_by_type}"
+    }
+    return report
+
+
 def score_trajectory(runs: list[dict], versions: dict) -> list[dict]:
     """OPRO 식 궤적: 가이드 버전별 실행 결과를 점수화해 오름차순 반환 (Yang et al., 2023)."""
     agg: dict[str, dict] = {}
