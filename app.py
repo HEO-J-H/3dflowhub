@@ -97,21 +97,24 @@ section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
   padding: 0 4px;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
 }
-.mobile-quick-nav a {
+.mobile-quick-nav button {
   flex: 1;
+  background: transparent;
+  border: none;
   text-align: center;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
   color: var(--text-color, #f0f0f0);
-  padding: 6px 0;
+  padding: 4px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
+  cursor: pointer;
 }
-.mobile-quick-nav a:hover, .mobile-quick-nav a:active {
+.mobile-quick-nav button:hover, .mobile-quick-nav button:active {
   opacity: 0.8;
   color: #4f8cff;
 }
@@ -121,9 +124,9 @@ section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
 </style>
 
 <div class="mobile-quick-nav">
-  <a href="#오늘" onclick="window.scrollTo({top:0, behavior:'smooth'});">🏠 <span>오늘</span></a>
-  <a href="#글-목록" onclick="window.scrollTo({top:0, behavior:'smooth'});">📰 <span>글 목록</span></a>
-  <a href="#설정" onclick="window.scrollTo({top:0, behavior:'smooth'});">🛠 <span>설정</span></a>
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">🏠 <span>오늘</span></button>
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">📰 <span>글 목록</span></button>
+  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">🛠 <span>설정</span></button>
 </div>
 """, unsafe_allow_html=True)
 

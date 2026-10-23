@@ -165,3 +165,11 @@ def test_new_file_created_even_with_search_text(tmp_path, monkeypatch):
     edits = [{"file": "backend/app/services/engines.py", "search": "# placeholder", "replace": "X = 1\n"}]
     assert agents.apply_edits(edits, {"backend/app/services/engines.py"}) == []
     assert (tmp_path / "backend/app/services/engines.py").read_text(encoding="utf-8") == "X = 1\n"
+
+
+def test_mobile_quick_nav_html_present():
+    import app
+    with open(app.__file__, "r", encoding="utf-8") as f:
+        content = f.read()
+    assert "mobile-quick-nav" in content
+    assert "🏠" in content and "📰" in content and "🛠" in content
