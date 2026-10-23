@@ -30,6 +30,21 @@
     {
       "heading": "VFX 업계의 기술 트렌드와 시사점",
       "body": "최신 하드웨어 환경과 맞물려 Houdini 시뮬레이션의 연산 속도와 표현력은 나날이 향상되고 있습니다. 아티스트들은 단순히 솔버를 구동하는 것을 넘어 예술적인 디테일을 조율하는 능력이 더욱 중요해지고 있습니다. 이번 공개작은 그러한 기술과 예술의 결합을 잘 보여주는 모범 사례입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "우선 Houdini를 실행하고 Geometry 노드에 물 표면 메쉬를 로드합니다. Ocean 노드로 기본 파동을 만든 뒤, FLIP Solver를 연결해 물의 볼륨을 생성합니다. Solver 내부에서 Surface Tension 파라미터를 높이면 물방울과 거품이 자연스럽게 형성됩니다. POP Foam 노드를 추가해 미세 거품을 입히고, Particle Fluid Surface 노드로 입자 데이터를 메쉬에 재통합합니다. 마지막으로 Mantra 혹은 Karma XPU로 렌더링할 때는 Volume Density와 Refraction 값을 조정해 투명도와 반사 효과를 최적화합니다. 이 흐름은 유키 이토가 공개한 2026년형 워터 FX와 동일한 노드 기반 접근법을 그대로 적용한 예시입니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Houdini FX는 노드 기반 파이프라인으로 복잡한 유체 시뮬레이션을 단계별로 시각화하고 수정할 수 있는 점이 강점입니다. RealFlow는 주로 Lagrangian 방식의 솔버를 제공해 직관적인 UI가 장점이며, Blender의 FLIP Solver는 오픈소스이지만 기능이 Houdini에 비해 제한적입니다. Unreal Engine의 Niagara는 실시간 Particle과 물리 시뮬레이션에 특화돼 게임 시네마틱에 적합하지만, 고해상도 물리 계산에서는 Houdini가 여전히 최고 수준의 품질을 제공합니다. 따라서 대규모 영화 수준의 물 디테일이 필요할 때는 Houdini를, 실시간 인터랙티브 환경에서는 Niagara를 선택하는 것이 일반적입니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Houdini Apprentice(무료) 혹은 Indie 버전을 설치하고, 최신 GPU Driver와 SideFX Labs 플러그인을 함께 적용합니다. 기본 튜토리얼은 SideFX 공식 홈페이지와 유키 이토의 \"Houdini Water FX | 2026\" 영상에서 확인할 수 있습니다. 영상에서 사용된 Ocean, FLIP Solver, POP Foam 노드 설정을 그대로 따라해 보면 기본 워터 FX 파이프라인을 빠르게 구축할 수 있습니다. 또한, Houdini Help 문서의 Fluid Dynamics 섹션을 참고해 파라미터별 의미를 숙지하면 작업 효율이 크게 향상됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +55,14 @@
     {
       "q": "이 작업물은 어떤 툴을 기반으로 제작되었나요?",
       "a": "사이드펙트(SideFX)의 3D 애니메이션 및 VFX 소프트웨어인 Houdini를 기반으로 제작되었습니다."
+    },
+    {
+      "q": "Houdini에서 물 거품을 추가하려면 어떤 노드를 사용하나요?",
+      "a": "POP Foam 노드를 FLIP Solver 뒤에 연결하고, Birth Rate와 Size 파라미터를 조정하면 물 표면에 자연스러운 거품을 생성할 수 있습니다. 필요에 따라 POP Drag와 POP Collision을 추가해 거품의 움직임을 제어합니다."
+    },
+    {
+      "q": "실시간 렌더링을 위해 Houdini 워터 FX를 최적화하는 방법은?",
+      "a": "Karma XPU를 사용하고, Volume Density와 Refraction 값을 낮게 설정한 뒤, Adaptive Sampling을 활성화하면 GPU 메모리 사용량을 줄이면서도 품질을 유지할 수 있습니다. 또한, 시뮬레이션 해상도를 낮추고 필요 구간에만 Subdivision을 적용하는 것이 효과적입니다."
     }
   ],
   "media": {
@@ -49,5 +72,23 @@
   "collected_at": "2026-10-16T11:58:34.374221+00:00",
   "notion_id": "",
   "id": "2026-10-16-18777a717376d12c",
-  "topic": "작품·제작 사례"
+  "topic": "작품·제작 사례",
+  "refs": [],
+  "videos": [
+    {
+      "id": "33588v8GZJU",
+      "title": "YUKI ITO | Houdini Water FX | 2026",
+      "author": "Yuki Ito"
+    },
+    {
+      "id": "hsIu6ADxXDY",
+      "title": "Stream Foam | Houdini Water Simulation | VFX Breakdown",
+      "author": "Yuki Ito"
+    }
+  ],
+  "enriched_at": "2026-10-23T11:31:24+00:00",
+  "quality": {
+    "before": 722,
+    "after": 1797
+  }
 }

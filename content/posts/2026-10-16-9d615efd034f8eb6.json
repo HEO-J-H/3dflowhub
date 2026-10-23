@@ -29,6 +29,21 @@
     {
       "heading": "제조 및 프로토타이핑 워크플로우의 변화",
       "body": "Tripo AI의 이번 발표는 디자인 구상부터 실물 출력까지 걸리는 시간을 대폭 단축하는 계기가 될 것입니다. 특히 시제품 제작(프로토타이핑) 주기를 단축해야 하는 산업 현장에서 실질적인 생산성 향상으로 이어질 수 있습니다. 향후 다양한 3D 프린터 하드웨어 에코시스템과의 연동성 확대가 기대됩니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "디자인 아이디어를 스케치하거나 텍스트 Prompt로 입력하면 Tripo AI H3.1이 즉시 고품질 3D 메쉬를 생성합니다. 생성된 메쉬를 Tripo Studio에서 Segmentation v2에 전달하면 자동으로 파츠 단위로 의미 있게 분할됩니다. 분할된 파츠는 각각 STL 또는 OBJ 형식으로 내보낼 수 있어, 대형 출력물은 여러 조각으로 나누어 프린터에 적합한 크기로 저장됩니다. 이후 각 파츠를 프린터 소프트웨어에 로드해 서포트 설정을 최소화하고, 출력 후 조립하면 별도 모델링 수정 없이 바로 물리적 Prototype을 얻을 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "기존의 범용 3D 생성 AI인 OpenAI Point‑E, Google DreamFusion 등은 주로 시각적 퀄리티와 다양성에 초점을 맞추지만, 출력용 구조적 무결성이나 파츠 분할 기능은 제한적입니다. 반면 Tripo AI H3.1은 3D 프린팅에 최적화된 구조적 안정성을 학습했으며, Segmentation v2는 자동 파츠 분할을 제공해 대형 모델을 손쉽게 나눌 수 있습니다. 따라서 빠른 프로토타이핑이 필요한 산업 현장에서는 Tripo AI가 실용성이 높다고 평가됩니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "1) Tripo AI 공식 웹사이트에서 계정을 생성하고 Tripo Studio를 다운로드합니다. 2) 설치 후 로그인하고, H3.1 모델 선택 화면에서 원하는 Prompt를 입력해 메쉬를 생성합니다. 3) 생성된 메쉬를 Segmentation v2에 적용해 자동 파츠 분할을 실행합니다. 4) 각 파츠를 STL 형식으로 내보내어 사용 중인 3D 프린터 소프트웨어에 로드합니다. 5) Tripo Studio 튜토리얼 영상 \"🎥 Tripo Studio Tutorial | Intelligent Segmentation\"을 참고해 파츠 조정 및 출력 설정을 최적화합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +54,14 @@
     {
       "q": "Segmentation v2의 핵심 기능은 무엇인가요?",
       "a": "Segmentation v2는 3D 모델을 구조적으로 분석하여 3D 프린팅 시 필요한 파츠를 자동으로 정교하게 분할해 주는 기능을 제공합니다."
+    },
+    {
+      "q": "H3.1 모델이 생성한 메쉬는 어떤 파일 형식으로 저장되나요?",
+      "a": "Tripo Studio에서는 기본적으로 OBJ와 STL 형식으로 내보낼 수 있으며, 필요에 따라 FBX 형식도 선택 가능합니다."
+    },
+    {
+      "q": "Segmentation v2가 자동으로 나눈 파츠를 수동으로 수정할 수 있나요?",
+      "a": "네, Tripo Studio에서 파츠 경계를 직접 편집하거나 병합할 수 있어, 출력 전 원하는 형태로 조정이 가능합니다."
     }
   ],
   "media": {
@@ -48,5 +71,23 @@
   "collected_at": "2026-10-16T11:58:48.508012+00:00",
   "notion_id": "",
   "id": "2026-10-16-9d615efd034f8eb6",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [],
+  "videos": [
+    {
+      "id": "HI-gBjTn3Sg",
+      "title": "🎥 Tripo Studio Tutorial | Intelligent Segmentation",
+      "author": "Tripo AI"
+    },
+    {
+      "id": "HLAG7vrw7mM",
+      "title": "Edit smarter, not harder.With Tripo AI’s Smart Part Segmentation, customize every detail like a pro!",
+      "author": "Tripo AI"
+    }
+  ],
+  "enriched_at": "2026-10-23T11:31:09+00:00",
+  "quality": {
+    "before": 773,
+    "after": 1662
+  }
 }
