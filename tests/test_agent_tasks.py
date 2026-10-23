@@ -173,3 +173,5 @@ def test_mobile_quick_nav_html_present():
         content = f.read()
     assert "mobile-quick-nav" in content
     assert "🏠" in content and "📰" in content and "🛠" in content
+    assert "position: fixed;" in content
+    assert "bottom: 0;" in content
