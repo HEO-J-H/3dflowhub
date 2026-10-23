@@ -1473,6 +1473,35 @@ def validate_post_length(data: dict) -> bool:
         return False
     return True
 
+def ensure_minimum_content_depth(data: dict) -> bool:
+    """본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록합니다."""
+    sections = data.get("sections", [])
+    full_text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
+    full_text += f" {data.get('summary', '')} {data.get('insight', '')}"
+    
+    # 실무 3D DCC 및 렌더링 관련 전문 용어 집합 (영어/한글)
+    tech_terms = [
+        "blender", "3ds max", "maya", "zbrush", "cinema 4d", "houdini", "substance",
+        "unreal engine", "unity", "godot", "v-ray", "corona", "cycles", "eevee",
+        "nanite", "lumen", "geometry nodes", "maxscript", "python", "usd", "gltf",
+        "gaussian splatting", "nerf", "shader", "rigging", "animation", "mesh",
+        "polygon", "voxel", "ray tracing", "path tracing", "pbr", "hdri", "uv",
+        "블렌더", "맥스", "마야", "지브러시", "후디니", "언리얼", "유니티", "브이레이",
+        "지오메트리 노드", "셰이더", "리깅", "애니메이션", "폴리곤", "레이트레이싱"
+    ]
+    
+    text_lower = full_text.lower()
+    matches = sum(1 for term in tech_terms if term in text_lower)
+    
+    # 전문 용어 밀도 또는 출현 빈도가 기준(예: 3개 미만) 미달일 경우 'low depth' 태그 기록
+    if matches < 3:
+        log.warning("low depth: 실무 3D DCC 및 렌더링 관련 전문 용어 밀도가 부족합니다 (%d개 감지): %s", matches, data.get("title_ko", ""))
+        if "low depth" not in RUN_ERRORS:
+            RUN_ERRORS.append("low depth")
+        return False
+    return True
+
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
@@ -1537,6 +1566,7 @@ def summarize(item: dict) -> dict | None:
         return None
     
     validate_post_length(data)
+    ensure_minimum_content_depth(data)
 
     data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")

@@ -19,6 +19,26 @@ def test_short_post_warning_and_error(monkeypatch):
     core.build_post_html(short_item)
     assert "short post" in core.RUN_ERRORS
 
+
+def test_ensure_minimum_content_depth_low_and_high(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    low_data = {
+        "title_ko": "일반 소식",
+        "summary": "일반적인 이야기입니다.",
+        "sections": [{"heading": "개요", "body": "아무런 전문 용어가 없는 일반적인 내용입니다."}]
+    }
+    assert core.ensure_minimum_content_depth(low_data) is False
+    assert "low depth" in core.RUN_ERRORS
+
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    high_data = {
+        "title_ko": "Blender 3D Modeling",
+        "summary": "Blender and ZBrush 3D modeling workflow.",
+        "sections": [{"heading": "Houdini Simulation", "body": "Using Unreal Engine and Maya for ray tracing and shaders."}]
+    }
+    assert core.ensure_minimum_content_depth(high_data) is True
+    assert "low depth" not in core.RUN_ERRORS
+
 def test_ads_inserted_top_middle_bottom(monkeypatch):
     monkeypatch.setattr(core, "AD_HTML", "<b>AD</b>")
     out = core.build_post_html(ITEM)
