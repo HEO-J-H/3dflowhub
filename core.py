@@ -1473,8 +1473,9 @@ def validate_post_length(data: dict) -> bool:
         return False
     return True
 
+
 def ensure_minimum_content_depth(data: dict) -> bool:
-    """본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록합니다."""
+    """요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록한다."""
     sections = data.get("sections", [])
     full_text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
     full_text += f" {data.get('summary', '')} {data.get('insight', '')}"
@@ -1493,7 +1494,7 @@ def ensure_minimum_content_depth(data: dict) -> bool:
     text_lower = full_text.lower()
     matches = sum(1 for term in tech_terms if term in text_lower)
     
-    # 전문 용어 밀도 또는 출현 빈도가 기준(예: 3개 미만) 미달일 경우 'low depth' 태그 기록
+    # 전문 용어 밀도 또는 출현 빈도가 기준(3개 미만) 미달일 경우 'low depth' 태그 기록
     if matches < 3:
         log.warning("low depth: 실무 3D DCC 및 렌더링 관련 전문 용어 밀도가 부족합니다 (%d개 감지): %s", matches, data.get("title_ko", ""))
         if "low depth" not in RUN_ERRORS:
