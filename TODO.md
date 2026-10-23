@@ -23,5 +23,5 @@
 - [x] (agent) core.validate_post_length(): 생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여하는 검증 함수를 분리하고 테스트 추가 (재시도)
 - [x] (agent) evolve.analyze_run_errors(): 최근 실행 오류(RUN_ERRORS)에서 'short post' 및 'off-topic' 비율을 집계하여 전략 수정에 반영하는 통계 함수 추가 및 테스트 추가
 - [x] (agent) core.filter_off_topic_feeds(): 수집 단계에서 하드웨어, 스마트폰, 순수 게임 등 오프토픽 키워드가 포함된 아이템을 사전에 엄격히 차단하는 필터 함수 추가 및 테스트 추가
-- [ ] (agent) core.ensure_minimum_content_depth(): 요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록하는 함수 추가 및 테스트 추가
+- [x] (agent) core.ensure_minimum_content_depth(): 요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록하는 함수 추가 및 테스트 추가
 - [ ] (agent) evolve.summarize_error_trends(): 최근 실행 오류(RUN_ERRORS)의 빈도를 도메인별·유형별로 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가

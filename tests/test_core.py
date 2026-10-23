@@ -166,6 +166,26 @@ def test_short_post_warning_and_error(monkeypatch):
     core.build_post_html(short_item)
     assert "short post" in core.RUN_ERRORS
 
+
+def test_ensure_minimum_content_depth(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    # 전문 용어가 부족한 데이터 (low depth 감지되어야 함)
+    shallow_data = {
+        "title_ko": "일반 소식",
+        "sections": [{"heading": "Introduction", "body": "This is a very general update about computers and digital art without specific terms."}]
+    }
+    assert core.ensure_minimum_content_depth(shallow_data) is False
+    assert "low depth" in core.RUN_ERRORS
+
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    # 전문 용어가 충분한 데이터 (통과해야 함)
+    deep_data = {
+        "title_ko": "Blender Geometry Nodes 튜토리얼",
+        "sections": [{"heading": "H1", "body": "In Blender, Geometry Nodes and Cycles renderer can be used for procedural 3D modeling and shading."}]
+    }
+    assert core.ensure_minimum_content_depth(deep_data) is True
+    assert "low depth" not in core.RUN_ERRORS
+
 def test_validate_post_length_strict(monkeypatch):
     monkeypatch.setattr(core, "RUN_ERRORS", [])
     data_short = {"title_ko": "테스트", "sections": [{"heading": "H", "body": "짧은 내용"}]}

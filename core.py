@@ -1462,6 +1462,32 @@ def image_figure(src: str, source_url: str, alt: str = "") -> str:
             f'{html.escape(site)}</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>\n')
 
 
+def ensure_minimum_content_depth(data: dict) -> bool:
+    """요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록합니다."""
+    sections = data.get("sections", [])
+    full_text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
+    full_text += f" {data.get('summary', '')} {data.get('insight', '')}"
+    
+    # 실무 3D DCC, 렌더링, 테크니컬 아트 관련 전문 용어 목록
+    professional_terms = [
+        "blender", "3ds max", "maya", "cinema 4d", "zbrush", "houdini", "substance",
+        "unreal engine", "unity", "godot", "v-ray", "corona", "nanite", "lumen",
+        "gaussian splatting", "nerf", "geometry nodes", "maxscript", "python",
+        "usd", "fbx", "gltf", "pbr", "shader", "rigging", "animation", "simulation",
+        "렌더링", "모델링", "셰이더", "지오메트리 노드", "맥스스크립트", "파이프라인", "가우시안 스플래팅"
+    ]
+    
+    text_lower = full_text.lower()
+    match_count = sum(1 for term in professional_terms if term in text_lower)
+    
+    if match_count < 2:
+        log.warning("low depth: 실무 3D DCC 및 렌더링 관련 전문 용어 밀도가 부족합니다 (매칭 수: %d): %s", match_count, data.get("title_ko", ""))
+        if "low depth" not in RUN_ERRORS:
+            RUN_ERRORS.append("low depth")
+        return False
+    return True
+
+
 def validate_post_length(data: dict) -> bool:
     """생성된 본문이 1,500자 이상인지 엄격히 검증하고 미달 시 'short post' 오류 태그를 부여합니다."""
     sections = data.get("sections", [])
@@ -1537,6 +1563,7 @@ def summarize(item: dict) -> dict | None:
         return None
     
     validate_post_length(data)
+    ensure_minimum_content_depth(data)
 
     data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")
