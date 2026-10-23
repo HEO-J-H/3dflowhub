@@ -1,0 +1,52 @@
+{
+  "title_ko": "Gaussian Splatting RecallGS 연구 — 기하학 기반 시맨틱 복원",
+  "title": "RecallGS: Geometry-Grounded Recall for Online Semantic Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2610.31293v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "Semantic 3DGS",
+    "RecallGS",
+    "ScanNet",
+    "Open-Vocabulary"
+  ],
+  "summary": "추가 학습 네트워크 없이 관측 이력을 활용하여 실시간 오픈 vocab 시맨틱 3D Gaussian Splatting을 수행하는 경량형 RecallGS 기법이 발표되었습니다.",
+  "insight": "기존 시맨틱 Gaussian Splatting은 누락된 기하학적 문맥을 복원하기 위해 별도의 무거운 3D 네트워크를 추가 학습해야 하므로 연산 오버헤드가 컸습니다. 이번에 제안된 RecallGS는 과거의 관측 데이터를 파라메트릭 학습 없이 비모수적 우선순위로 활용하여 실무에서의 연산 부담을 크게 덜어줍니다. 실시간 3D 공간 이해와 로보틱스, XR 환경 구축에 적용하려는 연구원 및 개발자라면 반드시 주목해야 할 접근법입니다. 특히 추가 학습 브랜치 없이 ScanNet 및 ScanNet++에서 준수한 성능을 보여주어 파이프라인 최적화에 큰 힌트를 제공합니다.",
+  "sections": [
+    {
+      "heading": "온라인 시맨틱 3D Gaussian Splatting의 한계",
+      "body": "온라인 시맨틱 3D Gaussian Splatting(3DGS)은 스트리밍 관측 데이터를 통해 오픈 vocab 장면 이해를 가능하게 합니다. 그러나 기존 방법들은 이미지 기반 시맨틱 피처에서 누락된 기하학적 문맥을 복원하기 위해 추가적인 학습형 3D 네트워크를 사용해 왔습니다. 이로 인해 추가적인 학습 비용과 런타임 오버헤드가 발생하는 문제가 있었습니다."
+    },
+    {
+      "heading": "RecallGS의 비모수적 기하·시맨틱 프레임워크",
+      "body": "연구진은 이러한 기하학적·시맨틱 증거가 이미 에이전트의 관측 이력 내에 존재하며, 새로 학습하기보다 검색(retrieve)할 수 있다는 점에 주목했습니다. 이에 따라 과거의 관측 데이터를 비모수적 기하-시맨틱 우선순위로 취급하는 경량형 학습 프리(training-free) 메커니즘인 RecallGS를 도입했습니다."
+    },
+    {
+      "heading": "리콜-그라운드-퓨즈(Recall-Ground-Fuse) 파이프라인",
+      "body": "RecallGS는 세 단계의 파이프라인으로 작동합니다. 우선 CLIP이 관련 관측 데이터를 검색하고, 알파 합성(alpha-compositing) 가중치가 기하학적으로 지원되는 뷰를 식별합니다. 마지막으로 각 Gaussian의 렌더링된 풋프린트 위에서 시맨틱 피처들을 집계합니다."
+    },
+    {
+      "heading": "ScanNet 및 ScanNet++ 벤치마크 성능",
+      "body": "ScanNet과 ScanNet++ 데이터셋을 이용한 실험에서 RecallGS는 추가적인 학습형 3D 브랜치 없이도 강력한 시맨틱 분할 성능을 달성했습니다. 특히 초당 2.48 프레임(FPS)의 속도로 작동하여 관측 이력만으로 기하학적-시맨틱 문맥을 효과적으로 복원할 수 있음을 입증했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "RecallGS는 기존 시맨틱 Gaussian Splatting과 무엇이 다릅니까?",
+      "a": "기존 방식과 달리 추가적인 3D 학습 네트워크를 사용하지 않으며, 과거 관측 기록을 검색하여 기하-시맨틱 문맥을 복원하는 학습 프리(training-free) 방식을 사용합니다."
+    },
+    {
+      "q": "RecallGS의 핵심 파이프라인은 어떻게 구성되나요?",
+      "a": "CLIP을 이용한 관측 데이터 검색(Recall), 알파 합성 가중치를 통한 뷰 식별(Ground), 풋프린트 기반 시맨틱 피처 집계(Fuse)의 3단계로 구성됩니다."
+    }
+  ],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-23T02:50:19.703634+00:00",
+  "notion_id": "",
+  "id": "2026-10-23-e8999783ce8cfe30"
+}
