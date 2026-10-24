@@ -926,3 +926,21 @@ def test_analyze_run_errors(monkeypatch, tmp_path):
     assert stats["total_runs"] == 2
     assert stats["short_post_rate"] == 0.1  # 2 / 20
     assert stats["off_topic_rate"] == 0.2  # 4 / 20
+
+
+def test_summarize_error_trends(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
+    core._save_json(core.MEMORY_PATH, {
+        "runs": [
+            {"domain": "VFX", "short": 2, "offtopic": 3},
+            {"domain": "3D DCC", "short": 2, "errors": ["timeout"]}
+        ]
+    })
+    summary = evolve.summarize_error_trends()
+    assert "by_type" in summary
+    assert "by_domain" in summary
+    assert summary["by_type"].get("short body") == 4
+    assert summary["by_type"].get("off-topic") == 3
+    assert summary["by_domain"]["VFX"]["short body"] == 2
+    assert summary["by_domain"]["3D DCC"]["timeout"] == 1
