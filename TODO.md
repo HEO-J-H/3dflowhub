@@ -33,5 +33,5 @@
 - [x] (agent) [p-f19c2078ea|현황판] 현황판 모바일 하단 내비게이션 바 고정: Streamlit 앱 상단 또는 하단에 주요 탭(오늘, 글 목록, 설정)으로 즉시 이동할 수 있는 고정 퀵 내비게이션을 추가합니다.
 =======
 - [x] (agent) core.ensure_minimum_content_depth(): 요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록하는 함수 추가 및 테스트 추가 (재시도)
-- [ ] (agent:보류) evolve.summarize_error_trends(): 최근 실행 오류(RUN_ERRORS)의 빈도를 도메인별·유형별로 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가 — PR #31 머지 실패: {"message":"Pull Request has merge conflicts","documentation_url":
+- [ ] (agent) evolve.summarize_error_trends(): 최근 실행 오류(RUN_ERRORS)의 빈도를 도메인별·유형별로 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가 (재시도)
 >>>>>>> Stashed changes
