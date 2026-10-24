@@ -446,6 +446,47 @@ TERM_STOPWORDS = {"구글", "애플", "엔비디아", "어도비", "마이크로
                   "사이버펑크", "포트나이트", "스타워즈", "텔레콤"}
 
 
+def summarize_error_trends() -> dict[str, dict[str, int]]:
+    """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 유형들을 도메인별·유형별로 집계하여 리포트 형태로 반환."""
+    runs = core.load_memory().get("runs", [])
+    domain_type_counts: dict[str, dict[str, int]] = {}
+    
+    for r in runs:
+        errors = r.get("errors", [])
+        # runs 기록 내 통계 필드(short, offtopic 등)도 에러 유형으로 간주하여 집계
+        if int(r.get("short", 0) or 0) > 0:
+            errors.append("short body")
+        if int(r.get("offtopic", 0) or 0) > 0:
+            errors.append("off-topic")
+            
+        domain = r.get("domain", "전체")
+        if not domain or not isinstance(domain, str):
+            domain = "전체"
+            
+        if domain not in domain_type_counts:
+            domain_type_counts[domain] = {}
+            
+        for err in errors:
+            if not err or not isinstance(err, str):
+                continue
+            err_key = err.strip()
+            # 오류 메시지에서 주요 유형 추출 (예: 'short body', 'off-topic', 'prefiltered', 또는 429 등)
+            if "429" in err_key or "한도" in err_key:
+                err_type = "AI 한도 소진 (429)"
+            elif "short body" in err_key or "short post" in err_key:
+                err_type = "본문 길이 미달"
+            elif "off-topic" in err_key or "prefiltered" in err_key:
+                err_type = "주제 무관/필터링됨"
+            elif "json" in err_key.lower() or "sections" in err_key:
+                err_type = "JSON/형식 오류"
+            else:
+                err_type = "기타 오류"
+                
+            domain_type_counts[domain][err_type] = domain_type_counts[domain].get(err_type, 0) + 1
+
+    return domain_type_counts
+
+
 def audit_terms(max_words: int = 1500, batch: int = 500) -> dict[str, str]:
     """용어 자가 학습: 글에 자주 나오는 한글 단어 중 '음역된 고유명사(소프트웨어·플러그인·회사·기술명)'를 찾아
     정식 영문 표기를 memory['glossary_learned'] 에 추가 → core.fix_terms 가 이후 자동 교정."""
