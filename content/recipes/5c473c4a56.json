@@ -1,0 +1,55 @@
+{
+  "id": "5c473c4a56",
+  "domain": "AI 3D",
+  "category": "NeRF",
+  "host": "Blender",
+  "lang": "python",
+  "title": "NeRF 및 3D 데이터 정리 자동화 애드온",
+  "problem": "외부 AI 연구 결과물이나 3D 에셋을 Blender로 가져올 때 발생하는 불필요한 중복 버텍스, 스케일 왜곡, 그리고 정리 작업을 한 번에 자동화하여 실무 파이프라인의 수작업 시간을 대폭 줄여줍니다.",
+  "pipeline": [
+    {
+      "tool": "Blender Python",
+      "action": "선택된 메쉬 객체의 트랜스폼(회전 및 스케일)을 고정합니다."
+    },
+    {
+      "tool": "Blender Python",
+      "action": "메쉬 내의 중복 버텍스를 병합하여 토폴로지를 정리합니다."
+    },
+    {
+      "tool": "Blender Python",
+      "action": "연결되지 않은 고립 버텍스를 제거하여 노이즈를 청소합니다."
+    },
+    {
+      "tool": "Blender Python",
+      "action": "객체의 원점을 지오메트리 중심점으로 재설정합니다."
+    }
+  ],
+  "script": "bl_info = {\n    \"name\": \"NeRF Asset Clean Pipeline\",\n    \"author\": \"3dflowhub\",\n    \"version\": (1, 0, 0),\n    \"blender\": (4, 0, 0),\n    \"location\": \"View3D > Sidebar > 3dflowhub\",\n    \"description\": \"Cleans transforms, duplicate vertices, loose verts, and centers origins for NeRF/3D assets\",\n    \"category\": \"Object\",\n};\n\nimport bpy\n\nclass OBJECT_OT_nerf_clean_pipeline(bpy.types.Operator):\n    bl_idname = \"object.nerf_clean_pipeline\"\n    bl_label = \"Run NeRF Clean Pipeline\"\n    bl_options = {'REGISTER', 'UNDO'}\n\n    def execute(self, context):\n        selected_objects = [obj for obj in context.selected_objects if obj.type == 'MESH']\n        \n        if not selected_objects:\n            self.report({'WARNING'}, \"No mesh objects selected\")\n            return {'CANCELLED'}\n\n        for obj in selected_objects:\n            context.view_layer.objects.active = obj\n            \n            # Apply rotation and scale\n            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)\n            \n            # Switch to Edit Mode to clean mesh data\n            bpy.ops.object.mode_set(mode='EDIT')\n            \n            # Merge by distance (remove duplicates)\n            bpy.ops.mesh.select_all(action='SELECT')\n            bpy.ops.mesh.remove_doubles(threshold=0.0001)\n            \n            # Delete loose vertices\n            bpy.ops.mesh.delete_loose()\n            \n            bpy.ops.object.mode_set(mode='OBJECT')\n            \n            # Center origin to geometry\n            bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')\n\n        self.report({'INFO'}, f\"Cleaned {len(selected_objects)} mesh objects successfully.\")\n        return {'FINISHED'}\n\nclass VIEW3D_PT_nerf_clean_panel(bpy.types.Panel):\n    bl_label = \"NeRF Asset Clean Pipeline\"\n    bl_idname = \"VIEW3D_PT_nerf_clean_panel\"\n    bl_space_type = 'VIEW_3D'\n    bl_region_type = 'UI'\n    bl_category = \"3dflowhub\"\n\n    def draw(self, context):\n        layout = self.layout\n        layout.operator(\"object.nerf_clean_pipeline\")\n\ndef register():\n    bpy.utils.register_class(OBJECT_OT_nerf_clean_pipeline)\n    bpy.utils.register_class(VIEW3D_PT_nerf_clean_panel)\n\ndef unregister():\n    bpy.utils.unregister_class(VIEW3D_PT_nerf_clean_panel)\n    bpy.utils.unregister_class(OBJECT_OT_nerf_clean_pipeline)\n\nif __name__ == \"__main__\":\n    register();",
+  "install": [
+    "위 Script 코드를 복사하여 'nerf_clean_pipeline.py' 파일로 저장합니다.",
+    "Blender를 실행하고 Edit > Preferences > Add-ons 탭을 엽니다.",
+    "Install 버튼을 눌러 저장한 Python 파일을 선택하고 활성화합니다."
+  ],
+  "usage": [
+    "3D 뷰포트에서 정리가 필요한 메쉬 객체들을 선택합니다.",
+    "N키를 눌러 사이드바를 열고 '3dflowhub' 탭을 선택합니다.",
+    "'Run NeRF Clean Pipeline' 버튼을 클릭하여 정리를 실행합니다."
+  ],
+  "limits": [
+    "메쉬(MESH) 타입 객체에만 작동하며 커브나 볼륨 데이터는 처리하지 않습니다.",
+    "외부 파일 Import 경로를 직접 처리하지 않으며 씬 내에 이미 로드된 객체를 대상으로 합니다."
+  ],
+  "sources": [
+    "2026-10-22-da57f6fb15543b63",
+    "2026-10-21-f23b0a7097077bba",
+    "2026-10-20-693369b2095e984e"
+  ],
+  "expect": [
+    "transforms_applied",
+    "no_loose_verts",
+    "no_duplicate_verts",
+    "keeps_objects"
+  ],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-24T07:03:09+00:00"
+}

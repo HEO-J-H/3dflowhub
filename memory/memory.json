@@ -14278,6 +14278,25 @@
       "errors": [
         "AI 일일 한도 소진 — 10/24 16:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
       ]
+    },
+    {
+      "at": "2026-10-24T07:01:45.303102+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "offtopic": 3,
+      "short": 0,
+      "prefiltered": 8,
+      "llm_fallbacks": [
+        "groq"
+      ],
+      "strategy_ver": "e331d161",
+      "errors": [
+        "off-topic",
+        "prefiltered"
+      ]
     }
   ],
   "good_keywords": [
@@ -14464,7 +14483,8 @@
     "2026-10-23 [core.ensure_minimum_content_depth(): 요약 ] 전문 용어 밀도 검증 함수 추가 및 테스트가 성공적으로 반영됨",
     "2026-10-23 [core.ensure_minimum_content_depth(): 요약 ] 함수 추가 시 동일 파일 내에 중복 정의가 발생하지 않도록 기존 코드를 반드시 확인해야 합니다.",
     "2026-10-23 [[p-55041a0e9b|사이트·UX] img2threejs 가이드 1단] 테스트 실패 — E       assert 404 == 200 / E        +  where 404 = <Response [404 Not Found]>.status_code / FAILED backend/tests/test_core.py::test_engines_endpoint_shows_img2threejs_unavailable - assert 40",
-    "2026-10-23 [[p-55041a0e9b|사이트·UX] img2threejs 가이드 1단] 테스트 실패 — E       assert 404 == 200 / E        +  where 404 = <Response [404 Not Found]>.status_code / FAILED backend/tests/test_core.py::test_engines_endpoint_shows_img2threejs_unavailable - assert 40"
+    "2026-10-23 [[p-55041a0e9b|사이트·UX] img2threejs 가이드 1단] 테스트 실패 — E       assert 404 == 200 / E        +  where 404 = <Response [404 Not Found]>.status_code / FAILED backend/tests/test_core.py::test_engines_endpoint_shows_img2threejs_unavailable - assert 40",
+    "2026-10-24 [성찰] AI 일일 한도 소진 문제를 해결하기 위해 예비 AI 호출 로직을 보완하고, 범용 하드웨어 및 무관한 행사 뉴스를 철저히 차단하여 고CPC 및 실무 중심 콘텐츠 발행 효율을 극대화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -15396,14 +15416,15 @@
     13633268874567229048,
     5498974519633941026,
     16424495418962584400,
-    13190776884178958891
+    13190776884178958891,
+    7570197085694435432
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 702,
-    "Game Engine": 702,
-    "VFX": 702,
-    "AI 3D": 702
+    "3D DCC": 703,
+    "Game Engine": 703,
+    "VFX": 703,
+    "AI 3D": 703
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

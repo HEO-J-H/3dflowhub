@@ -30,6 +30,16 @@
     {
       "heading": "사실적인 움직임을 위한 애니메이션 팁",
       "body": "애니메이션 제작은 모든 샷에서 보드의 움직임을 먼저 설정한 뒤 캐릭터 애니메이션을 진행하는 방식으로 이루어졌습니다. 마이크로 모션을 표현하기 위해 3~5프레임마다 캐릭터의 포즈를 변경하는 세심한 작업을 거쳤습니다. 아티스트가 전하는 가장 중요한 팁은 모든 단일 본을 재조정하는 것으로, 살아있는 신체는 정지해 있는 것처럼 보여도 미세한 부분에서 미세한 위치 변화가 끊임없이 일어난다는 점을 강조했습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "스케이트보드와 캐릭터를 동시에 다루는 애니메이션에서는 오브젝트 간의 동기화가 작업 효율을 크게 좌우합니다. 이번 워크플로우처럼 보드에 Empty 오브젝트를 추가하고 위치를 복사한 뒤 스파이더맨 리그를 페어런팅하는 방식은 복잡한 상호작용 애니메이션에서 유용합니다. 또한 캐릭터 포즈를 잡을 때 3~5프레임마다 미세한 모션을 추가하여 정지된 느낌을 없애는 기법은 컷의 완성도를 높이는 실무적인 팁입니다. 모든 단일 본을 주기적으로 재조정하여 생동감을 부여하는 방식은 다른 유기체 애니메이션 작업에도 그대로 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "Blender 애니메이션 작업과 관련하여 커뮤니티에서는 소프트웨어 안정성과 버그에 대한 논의가 꾸준히 이어지고 있습니다. 일부 유저는 특정 버전에서 애니메이션 작업에 치명적인 버그가 존재한다고 지적하며 철저한 버전 관리와 사전 테스트의 필요성을 강조합니다 [1]. 특히 장기 프로젝트를 진행할 때는 프로덕션 중간에 버전을 변경하기보다 안정성이 검증된 빌드를 유지하는 것이 리스크를 줄이는 방법입니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "사실적인 움직임을 만들기 위한 핵심 팁은 무엇인가요?",
       "a": "3~5프레임마다 캐릭터의 포즈를 변경하고 모든 단일 본의 위치를 미세하게 재조정하여 살아있는 듯한 생동감을 주는 것이 핵심 팁입니다."
+    },
+    {
+      "q": "스케이트보드와 캐릭터 애니메이션을 동기화할 때 어떤 방법을 써야 하나요?",
+      "a": "보드에 Empty 오브젝트를 추가하고 위치 데이터를 복사한 뒤, 스파이더맨 리그를 해당 Empty 오브젝트에 페어런팅하여 움직임을 일치시키는 방식을 사용할 수 있습니다."
+    },
+    {
+      "q": "애니메이션에서 딱딱한 느낌을 없애려면 어떻게 해야 하나요?",
+      "a": "3~5프레임마다 캐릭터의 포즈를 미세하게 수정하여 마이크로 모션을 표현하고, 모든 단일 본을 지속적으로 재조정하여 정지된 느낌을 최소화하는 것이 좋습니다."
     }
   ],
   "media": {
@@ -53,5 +71,31 @@
   "collected_at": "2026-10-16T10:58:11.839285+00:00",
   "notion_id": "",
   "id": "2026-10-16-0c92341776f08979",
-  "topic": "튜토리얼·팁"
+  "topic": "튜토리얼·팁",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "This bug makes Blender completely useless for any animation!",
+      "url": "https://blenderartists.org/t/this-bug-makes-blender-completely-useless-for-any-animation/1255630",
+      "excerpt": "I am not part of the bughunting squad, so this goes here. Feel free to relate it to the proper authorities, but this NEEDS public attention, so I consider it an integral part of the Blender discussion, as it is, without hyperbole, a game breaker for the software’s future. Note: I use 2.79. If thi...",
+      "replies": 79
+    }
+  ],
+  "videos": [
+    {
+      "id": "PGvyBlgXHi8",
+      "title": "First Steps in Blender Animation – A Comprehensive Tutorial",
+      "author": "ProductionCrate"
+    },
+    {
+      "id": "yGU5WY-D7I0",
+      "title": "Blender 3D Animation Tutorial - 3D Viewport (Part 1)",
+      "author": "Crashsune Academy"
+    }
+  ],
+  "enriched_at": "2026-10-24T07:02:50+00:00",
+  "quality": {
+    "before": 1019,
+    "after": 1534
+  }
 }

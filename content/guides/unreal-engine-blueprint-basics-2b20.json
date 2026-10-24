@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-blueprint-basics-2b20",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "Blueprint",
+  "name": "Blueprint Basics",
+  "title": "Unreal Engine 블루프린트 기초 가이드",
+  "summary": "Unreal Engine에서 C++ 코드 없이 노드 연결만으로 게임 로직과 인터랙션을 만드는 시각적 Script 시스템입니다. 캐릭터 움직임, 문 열림, 아이템 획득 같은 기능을 구현할 때 사용합니다.",
+  "when": [
+    "플레이어가 다가가면 열리는 자동문이나 상호작용 오브젝트를 만들 때",
+    "캐릭터의 체력, 아이템 인벤토리 같은 게임 규칙과 데이터를 관리할 때",
+    "레벨 안에 배치된 소품에 애니메이션이나 반복되는 이벤트를 넣을 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택합니다.",
+    "부모 클래스로 Actor를 선택하고 블루프린트 이름을 지정합니다.",
+    "만든 블루프린트를 더블 클릭해 Blueprint Editor 창을 엽니다.",
+    "Viewport 탭에서 Add 버튼을 눌러 Static Mesh 등 시각적 요소를 추가합니다.",
+    "Event Graph 탭으로 이동해 Event BeginPlay나 OnComponentBeginOverlap 같은 이벤트를 배치합니다.",
+    "이벤트 출력 핀을 드래그해 원하는 기능 노드를 검색하고 연결합니다.",
+    "툴바의 Compile과 Save 버튼을 누른 뒤 레벨에 블루프린트를 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Event BeginPlay",
+      "desc": "게임이 시작되거나 오브젝트가 스폰될 때 딱 한 번 실행되는 시작점 노드입니다."
+    },
+    {
+      "name": "Event Tick",
+      "desc": "매 프레임마다 연속으로 실행되어 실시간 연산이나 지속적인 체크가 필요할 때 씁니다."
+    },
+    {
+      "name": "Cast To",
+      "desc": "지정한 대상이 특정 클래스(예: 플레이어 캐릭터)가 맞는지 확인하고 접근합니다."
+    },
+    {
+      "name": "Set Relative Location",
+      "desc": "오브젝트의 상대적 위치 값을 코드로 변경합니다."
+    },
+    {
+      "name": "Print String",
+      "desc": "화면 좌측 상단에 텍스트를 출력해 변수 값이나 로직 실행 여부를 확인합니다."
+    },
+    {
+      "name": "Timeline",
+      "desc": "시간 흐름에 따른 커브 값을 만들어 부드러운 움직임이나 변화를 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어 접근 시 불이 켜지는 조명",
+      "steps": [
+        "Blueprint Class로 Actor를 만들고 Point Light 컴포넌트를 추가합니다.",
+        "Components 창에서 Light 컴포넌트를 우클릭하여 Add OnComponentBeginOverlap 이벤트를 추가합니다.",
+        "이벤트의 다른 핀에서 Set Intensity 노드를 연결해 밝기 값을 높여줍니다."
+      ]
+    },
+    {
+      "title": "특정 키를 누르면 문이 열리는 상호작용",
+      "steps": [
+        "Actor 블루프린트에 Box Collision과 Door Mesh를 추가합니다.",
+        "플레이어가 Box Collision에 들어올 때 Enable Input 노드로 키 입력을 활성화합니다.",
+        "Keyboard E 노드와 Timeline 노드를 연결해 문의 회전 값을 서서히 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Compile 버튼을 누르지 않아 변경된 노드 로직이 게임에 반영되지 않음 → 수정 후 반드시 Compile과 Save를 누릅니다.",
+    "Event Tick에 무거운 연산을 매 프레임 넣어 프레임 드랍이 발생함 → Tick 대신 타이머나 오버랩 이벤트로 변경합니다.",
+    "Cast 노드 실패 시 처리(Cast Failed)를 연결하지 않아 에러가 발생함 → 실패 핀에 Print String이나 분기 처리를 추가합니다."
+  ],
+  "related": [
+    "Level Blueprint",
+    "Material Graph",
+    "Behavior Tree",
+    "Control Rig"
+  ],
+  "videos": [
+    {
+      "id": "opyV7rhKSFc",
+      "title": "Learn Blueprints in Unreal Engine 5 - Beginner Tutorial",
+      "author": "Cobra Code"
+    },
+    {
+      "id": "IipvT6aGinM",
+      "title": "Unreal Engine Blueprint Fundamentals |  Class #1",
+      "author": "Ask A Dev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Blueprint%20Basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class"
+  ],
+  "at": "2026-10-24T07:02:22.545217+00:00"
+}

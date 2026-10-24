@@ -1740,5 +1740,81 @@
     "kind": "applied",
     "id": "p-55041a0e9b",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] tests=False security=[] — 리뷰 생략"
+  },
+  {
+    "at": "2026-10-24T07:02:08.110552+00:00",
+    "kind": "report",
+    "id": "r-2026-10-24T07:02",
+    "text": "최근 7일간 총 279건의 Post가 수집되었으나 30일 방문자 수는 286명으로 유입 확대를 위한 노출 및 검색 최적화가 필요합니다. 특히 이미지 누락 Post 비율이 70%에 달해 시각 자료가 중요한 3D 아티스트 독자층을 위해 콘텐츠 품질 개선이 시급합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.6,
+      "roundups": 0.2
+    },
+    "allocation_reason": "방문자 유입을 장기적으로 견인하기 위해 검색 노출에 유리한 에버그린 기초 가이드 비중을 높입니다."
+  },
+  {
+    "at": "2026-10-24T07:02:08.110552+00:00",
+    "kind": "proposal",
+    "id": "p-607ce69161",
+    "title": "이미지 누락 포스트 대체 썸네일 보강",
+    "category": "콘텐츠",
+    "evidence": "현재 전체 Post 중 이미지가 없는 Post의 비율이 70%에 이르러 독자의 시선과 체류 시간을 붙잡기 어려운 상태입니다.",
+    "proposal": "이미지가 없는 Post에 대해 각 도구별(Blender, Unreal Engine 등) 기본 툴 아이콘 및 대표 키워드가 포함된 표준 대체 썸네일을 자동 생성하여 적용합니다.",
+    "expected": "시각적 완성도가 높아져 소셜 공유 및 검색 CTR이 향상됩니다.",
+    "effort": "보통",
+    "action": {
+      "type": "editorial_note",
+      "note": "본문 이미지 원본이 없을 경우 해당 도구의 공식 로고나 카테고리별 표준 템플릿 이미지를 기본 썸네일로 반드시 지정합니다."
+    },
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-24T07:02:08.110552+00:00",
+    "kind": "proposal",
+    "id": "p-ef6344bc51",
+    "title": "Unreal Engine 기초 가이드 콘텐츠 확대",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 Game Engine/Unreal Engine 관련 소식이 28건 수집되었으나 독자 관심도가 높은 기초 가이드 비중이 상대적으로 부족합니다.",
+    "proposal": "Unreal Engine 블루프린트 및 렌더링 세팅과 관련된 에버그린 기초 가이드 콘텐츠를 추가 발행합니다.",
+    "expected": "검색 유입과 체류 시간이 증가하여 장기적인 사이트 방문 성장에 기여합니다.",
+    "effort": "낮음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Unreal Engine",
+      "group": "Blueprint",
+      "name": "Blueprint Basics",
+      "title_ko": "언리얼 엔진 블루프린트 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-10-24T07:02:08.168187+00:00",
+    "kind": "decision",
+    "id": "p-ef6344bc51",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-24T07:02:08.172550+00:00",
+    "kind": "applied",
+    "id": "p-ef6344bc51",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-24T07:02:18.077815+00:00",
+    "kind": "proposal",
+    "id": "p-0f6b067300",
+    "title": "FlexPart 논문 파트별 3D 생성 참고",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://arxiv.org/abs/2610.31671v1",
+    "category": "콘텐츠",
+    "evidence": "arXiv 2610.31671v1 (2026-10-22 발행)",
+    "proposal": "단일 이미지 기반 파트별 3D 생성 논문 FlexPart의 가변 세분성(variable granularity) 개념을 향후 다중 파트 메쉬 출력 설계에 반영",
+    "expected": "복잡한 3D 오브젝트 생성 시 파트별 제어력 및 구조적 정합성 향상",
+    "effort": "보통",
+    "action": null
   }
 ]
