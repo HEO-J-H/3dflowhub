@@ -1,0 +1,52 @@
+{
+  "title_ko": "GameDev.net Procedural GPU 패턴 타일링 노이즈 기법",
+  "title": "Tiling Noise - Procedural GPU Patterns - GameDev.net",
+  "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9wLTZ0anZYREtQdEhiWjJmSTgwMENsdWVmb0ZVTFFDTkdCM2lxOEpYT0VnRFA3THRtSFVTZXd3dzhOMUl3dmVMYjhIazRFdUJubnNLZzgwZi1uVVBPTUhER0tnU1JzZ1ctbEV4ZkN1cG4zUExSZWc?oc=5",
+  "domain": "Game Engine",
+  "category": "기타 엔진",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Procedural",
+    "GPU",
+    "타일링노이즈",
+    "게임개발",
+    "Shader"
+  ],
+  "summary": "GameDev.net에서 GPU 기반의 Procedural 패턴 생성을 위한 타일링 노이즈 기법을 소개합니다.",
+  "insight": "게임 개발에서 반복되는 텍스처의 이음새 문제를 해결하고 실시간 성능을 확보하기 위해 Procedural GPU 노이즈 기법은 필수적입니다. 테크니컬 아티스트와 Shader 개발자는 이 방식을 활용하여 메모리 사용량을 줄이면서도 고품질의 자연스러운 지형이나 표면 질감을 구현할 수 있습니다. 특히 모바일이나 콘솔 등 하드웨어 제약이 있는 플랫폼에서 대규모 월드를 구축할 때 유용하게 적용됩니다. 텍스처 메모리를 절약하고 동적 환경을 구축하려는 실무자라면 반드시 주목해야 할 기법입니다.",
+  "sections": [
+    {
+      "heading": "Procedural GPU 패턴의 개요",
+      "body": "GPU를 활용한 Procedural 패턴 생성은 실시간 렌더링에서 반복되는 텍스처 타일링 현상을 줄이는 데 핵심적인 역할을 합니다. 디스크에 텍스처를 미리 구워두는 대신 런타임에 연산하여 메모리 대역폭을 절약할 수 있습니다. Shader 성능 최적화와 직결되므로 다양한 플랫폼에서 고르게 활용됩니다."
+    },
+    {
+      "heading": "타일링 노이즈의 작동 원리",
+      "body": "타일링 노이즈 알고리즘은 공간 좌표를 특정 주기로 나누어 반복되면서도 이음새가 눈에 띄지 않도록 블렌딩 처리를 거칩니다. 수학적 함수를 기반으로 하므로 무한한 해상도로 확장할 수 있는 장점이 있습니다. GPU의 병렬 처리 능력을 극대화하여 픽셀 Shader 내에서 효율적으로 계산됩니다."
+    },
+    {
+      "heading": "게임 엔진 적용 시 이점",
+      "body": "게임 엔진 환경에서 이러한 Procedural 노이즈를 도입하면 텍스처 자산 용량을 대폭 낮출 수 있습니다. 오픈월드 게임이나 방대한 지형을 가진 타이틀에서 디스크 공간과 로딩 시간을 최적화하는 데 기여합니다. 아티스트가 직접 수작업으로 텍스처 심을 맞추는 공수도 크게 줄어듭니다."
+    },
+    {
+      "heading": "실무 워크플로 통합 방법",
+      "body": "테크니컬 아티스트는 HLSL이나 GLSL 등 Shader 언어를 통해 커스텀 노이즈 함수를 구현하고 머티리얼 에디터에 통합할 수 있습니다. Unreal Engine이나 Unity의 비주얼 Shader 그래프를 통해서도 노드 기반으로 손쉽게 재현이 가능합니다. 프로젝트의 타겟 플랫폼 성능 사양에 맞춰 연산 부하를 조절하는 것이 중요합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Procedural 타일링 노이즈를 사용하면 어떤 장점이 있나요?",
+      "a": "메모리에 저장되는 텍스처 용량을 획기적으로 줄이고, 텍스처 반복 시 발생하는 시각적 이음새를 자연스럽게 숨길 수 있습니다."
+    },
+    {
+      "q": "어떤 게임 엔진이나 툴에서 활용할 수 있나요?",
+      "a": "Unreal Engine, Unity 등 GPU Shader를 지원하는 모든 현대적인 게임 엔진과 렌더링 Pipeline 활용 가능합니다."
+    }
+  ],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-24T09:52:01.820524+00:00",
+  "notion_id": "",
+  "id": "2026-10-24-891230cf62016fbf"
+}
