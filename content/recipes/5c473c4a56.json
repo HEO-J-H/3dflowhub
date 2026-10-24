@@ -50,6 +50,20 @@
     "no_duplicate_verts",
     "keeps_objects"
   ],
-  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
-  "at": "2026-10-24T07:03:09+00:00"
+  "checked": "Blender 4.0.2 에서 테스트 장면으로 실행 · 결과 확인 통과 (transforms_applied, no_loose_verts, no_duplicate_verts, keeps_objects)",
+  "at": "2026-10-24T07:03:09+00:00",
+  "runtime": {
+    "ok": true,
+    "blender": "4.0.2",
+    "at": "2026-10-24T11:31:19+00:00",
+    "steps": [
+      "register",
+      "object.nerf_clean_pipeline",
+      "기대:회전·스케일 적용",
+      "기대:떨어진 정점 없음",
+      "기대:겹친 정점 없음",
+      "기대:메시 개수 유지",
+      "unregister"
+    ]
+  }
 }
