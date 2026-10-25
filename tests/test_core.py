@@ -619,8 +619,9 @@ def test_llm_falls_back_when_primary_quota_exhausted(monkeypatch, tmp_path):
     def fake_post(url, **kw):
         if "groq" in url:
             return R(200, {"choices": [{"message": {"content": "from groq"}}]})
-        return R(429, {"error": "You exceeded your current quota"})
+        return R(429, {"error": "You exceeded your current quota", "quotaId": MSG[0]})
 
+    MSG = ["GenerateRequestsPerDayPerProjectPerModel-FreeTier"]
     monkeypatch.setattr(core, "LLM_API_KEY", "x")
     monkeypatch.setattr(core, "LLM_QUOTA_PATH", tmp_path / "q.json")
     monkeypatch.setattr(core, "LLM_FALLBACK_PATH", tmp_path / "fb.json")
@@ -630,6 +631,11 @@ def test_llm_falls_back_when_primary_quota_exhausted(monkeypatch, tmp_path):
     assert core.llm("hi") == "from groq"
     assert core.llm_quota_status()["exhausted"]          # 주 공급자는 오늘 소진으로 기록
     assert core.llm_fallback_usage() == {"groq": 1}
+    # 분당 제한(문구에 quota 포함)은 오늘 끄지 않음 — 10/25 3회 만에 하루 소진으로 오인
+    core._save_json(core.LLM_QUOTA_PATH, {})
+    MSG[0] = "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+    assert core.llm("hi") == "from groq"
+    assert not core.llm_quota_status()["exhausted"]
 
 
 def test_gsc_opportunities(monkeypatch, tmp_path):

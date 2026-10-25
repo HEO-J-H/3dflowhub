@@ -715,7 +715,8 @@ def _llm_call(endpoint: str, key: str, model: str, prompt: str, system: str, max
                 time.sleep(min(wait, 60))
             if r.status_code == 429:  # 재시도 후에도 429 = 오늘 한도 소진
                 if primary:
-                    if "quota" not in r.text.lower():
+                    # 분당 제한도 'quota' 문구가 들어감 → 하루(PerDay) 한도일 때만 오늘 끔 (10/25 3회 만에 꺼진 원인)
+                    if not re.search(r"PerDay|per day|daily", r.text, re.I):
                         raise RuntimeError(f"429 rate limit: {r.text[:150]!r}")
                     _mark_quota_exhausted()
                     raise LLMBudgetExceeded(f"Gemini 실제 일일 한도 소진 (429, 오늘 {llm_usage_today()}회째)")
