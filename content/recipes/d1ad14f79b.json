@@ -1,0 +1,59 @@
+{
+  "id": "d1ad14f79b",
+  "domain": "AI 3D",
+  "category": "AI 텍스처·렌더링",
+  "host": "3ds Max",
+  "lang": "maxscript",
+  "title": "AI 생성 메시 자동 정리·LOD·내보내기 파이프라인",
+  "problem": "AI 툴에서 만든 수많은 메시는 스케일·재질·LOD 설정이 안돼서 바로 사용하기 어렵습니다. 매번 수작업으로 정리하면 작업 시간이 크게 늘어납니다.",
+  "pipeline": [
+    {
+      "tool": "Import",
+      "action": "AI가 만든 .obj/.fbx/.glb 파일을 폴더에서 일괄 불러오기"
+    },
+    {
+      "tool": "Clean",
+      "action": "XForm 초기화·스택 정리·단위 변환(cm→m)"
+    },
+    {
+      "tool": "Material",
+      "action": "텍스처 폴더에서 같은 이름의 PNG를 찾아 자동 매핑"
+    },
+    {
+      "tool": "LOD",
+      "action": "ProOptimizer로 50%·25% 트라이앵글 LOD 두 단계 생성"
+    },
+    {
+      "tool": "Export",
+      "action": "선택 객체를 FBX 파일로 일괄 내보내기"
+    }
+  ],
+  "script": "macroScript AIAssetPipeline\ncategory:\"AI Tools\"\ntooltip:\"Import AI assets, clean, create LODs, assign textures, export FBX\"\n(\n    -- Choose folder containing meshes and textures\n    local assetFolder = getSavePath caption:\"AI 에셋 폴더 선택\"\n    if assetFolder == undefined then exit\n\n    -- Mesh files (obj, fbx, glb)\n    local meshFiles = getFiles (assetFolder + \"\\\\*.*\")\n    local texFolder = assetFolder + \"\\\\textures\\\\\"\n\n    for f in meshFiles do\n    (\n        local ext = getFilenameFile f\n        local lowerExt = toLower (getFilenameType f)\n        if (lowerExt == \"obj\") or (lowerExt == \"fbx\") or (lowerExt == \"glb\") then\n        (\n            importFile f #noPrompt using:Import\n            if selection.count == 0 then continue\n            local obj = selection[1]\n\n            -- Clean geometry\n            resetXForm obj\n            convertToMesh obj\n            collapseStack obj\n\n            -- Rescale (assume AI output is cm, convert to meters)\n            obj.scale = [0.01,0.01,0.01]\n\n            -- Assign material with matching texture\n            local mat = StandardMaterial name:(ext + \"_mat\")\n            local texPath = texFolder + ext + \".png\"\n            if doesFileExist texPath then\n            (\n                mat.diffuseMap = Bitmaptexture filename:texPath\n                mat.diffuseMap.coords = #uv\n            )\n            obj.material = mat\n\n            -- Create LODs (50% and 25% triangles)\n            for pct in #(50,25) do\n            (\n                local lod = copy obj\n                addModifier lod (ProOptimizer percentTriangles:pct)\n                lod.name = obj.name + \"_LOD\" + pct as string\n            )\n        )\n    )\n\n    -- Batch export\n    local exportPath = getSaveFileName caption:\"FBX 내보내기\" types:\"FBX (*.fbx)|*.fbx|\"\n    if exportPath != undefined then\n        exportFile exportPath #noPrompt selectedOnly:true using:FBXEXP\n)",
+  "install": [
+    "1. 3ds Max를 실행합니다.",
+    "2. 메뉴 ‘Scripting → New Script’를 열고 위 코드를 붙여넣습니다.",
+    "3. 파일을 ‘AIAssetPipeline.ms’ 이름으로 저장합니다.",
+    "4. ‘Scripting → Run Script’에서 저장한 파일을 실행해 매크로를 등록합니다."
+  ],
+  "usage": [
+    "1. ‘Scripting → Run Script’에서 매크로 ‘AIAssetPipeline’를 실행합니다.",
+    "2. AI 에셋이 들어있는 폴더를 선택합니다 (mesh와 textures 폴더 구조를 그대로 유지).",
+    "3. Script가 메쉬를 가져와 정리·스케일·재질·LOD를 자동 생성합니다.",
+    "4. 내보낼 FBX 파일 경로를 지정하면 모든 객체가 한 번에 저장됩니다.",
+    "5. 필요시 생성된 LOD 객체와 재질을 수동으로 미세 조정합니다."
+  ],
+  "limits": [
+    "AI가 만든 메쉬 형식이 .obj/.fbx/.glb 이외이면 자동 임포트되지 않습니다.",
+    "재질 매핑은 동일 파일명 PNG 텍스처만 자동 적용되며, 복잡한 Shader는 수동 설정이 필요합니다.",
+    "Retopology(세부 모델링)는 Script가 수행하지 않으며, LOD 생성만 ProOptimizer로 대체합니다."
+  ],
+  "sources": [
+    "2026-10-19-bee01cb90f7139d7",
+    "2026-10-19-f79339d59c494fcd",
+    "2026-10-15-489a584d3d7808d1",
+    "2026-10-16-fa8993cde7b7b297"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-25T13:46:49+00:00"
+}

@@ -30,6 +30,16 @@
     {
       "heading": "소셜 및 CTV 수준의 정교한 측정과 퍼포먼스 전환",
       "body": "과거의 게임 광고가 인지도 위주였다면, 이제는 소셜 미디어와 CTV처럼 정교한 측정과 어드레사빌리티가 도입되고 있습니다. 엔데믹 광고주뿐만 아니라 다양한 브랜드들이 데이터 기반 DSP 플랫폼을 활용하여 하단 퍼널(Lower-funnel) 거래와 실질적인 구매 전환을 이끌어내고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Unity 모바일 게임에서 어텐션 경제를 활용하려면, Unity Dashboard의 ‘Ads Performance’ 탭에서 전체 화면 ‘Full‑Screen Inventory’ 광고 위치를 설정합니다. ‘Rewarded Video’ 또는 ‘Playable Ad’를 배치하고, ‘Audience Network’와 ‘Mediation’를 활성화해 여러 광고 파트너를 한 번에 관리합니다. 광고가 재생될 때 ‘Engagement Score’와 ‘Completion Rate’를 실시간으로 확인하고, ‘Lower‑Funnel Conversion’ 지표와 연결된 ‘Unity Analytics’ 이벤트를 정의해 구매 전환까지 추적합니다. 이 과정을 통해 게임 내 ‘Participation Economy’를 구현하고, ‘CTV와 유사한 풀스크린 노출’ 효과를 극대화할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Unity Ads는 Unity Engine에 네이티브 통합을 제공해 ‘Full‑Screen Inventory’와 ‘Participation Economy’ 특성을 손쉽게 구현합니다. 반면 Google AdMob은 앱 내 배너와 전면 광고에 강점이 있지만, Unity Editor와 연동된 ‘Ads Performance’ 대시보드가 제한적입니다. IronSource와 Chartboost는 다양한 ‘Mediation’ 옵션을 제공하지만, ‘Playable Ad’ 지원이 Unity에 비해 제한적이며 ‘Lower‑Funnel Conversion’ 측정에 별도 SDK 구성이 필요합니다. 따라서 Unity Engine을 주로 사용하는 3D 아티스트·개발자는 Unity Ads를 선택해 ‘Unity Analytics’와 ‘Dashboard’ 통합된 데이터 흐름을 활용하는 것이 효율적입니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +50,14 @@
     {
       "q": "모바일 게임 인벤토리는 어떤 매체 환경과 비교될 수 있나요?",
       "a": "모바일 게임은 완전히 시청 가능하며 화면 전체를 차지한다는 점에서 프리미엄 CTV(Connected TV) 환경과 매우 유사한 장점을 지니고 있습니다."
+    },
+    {
+      "q": "모바일 게임에서 Unity Ads를 이용해 참여형 광고를 만들려면 어떤 단계가 필요한가?",
+      "a": "1) Unity Hub에서 최신 Unity 버전 설치·프로젝트 생성 2) Package Manager에서 Advertisement 패키지 추가 3) Services 창에서 Ads와 Analytics 활성화·Game ID 입력 4) Monetization > Placements에서 Rewarded Video·Playable Ad 위치 정의 5) 코드에서 Advertisement.Initialize() 호출 6) Unity Remote 또는 Play Mode로 테스트 후 Test Mode 해제·실제 광고 파트너와 매칭 7) 필요 시 Mediation에 다른 네트워크 추가."
+    },
+    {
+      "q": "광고 성과를 측정할 때 Unity Dashboard에서 확인할 수 있는 주요 지표는?",
+      "a": "‘Impressions’, ‘Completion Rate’, ‘Engagement Score’, ‘Click‑Through Rate’, ‘Revenue’, 그리고 ‘Lower‑Funnel Conversion’(구매·앱 내 행동) 등이며, 각 지표는 Unity Analytics 이벤트와 연동해 상세 흐름을 분석할 수 있습니다."
     }
   ],
   "media": {
@@ -49,5 +67,23 @@
   "collected_at": "2026-10-16T09:38:17.283782+00:00",
   "notion_id": "",
   "id": "2026-10-16-f4912f3a38ff07fe",
-  "topic": "업계 소식"
+  "topic": "업계 소식",
+  "refs": [],
+  "videos": [
+    {
+      "id": "Vt8aZDPzRjI",
+      "title": "How to Program in Unity: State Machines Explained",
+      "author": "iHeartGameDev"
+    },
+    {
+      "id": "RQd44qSaqww",
+      "title": "A Better Way to Code Your Characters in Unity | Finite State Machine | Tutorial",
+      "author": "Sasquatch B Studios"
+    }
+  ],
+  "enriched_at": "2026-10-25T13:45:18+00:00",
+  "quality": {
+    "before": 685,
+    "after": 1555
+  }
 }

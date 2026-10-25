@@ -1914,6 +1914,167 @@
     "note": "코딩 에이전트 처리: PR #10 머지 완료"
   },
   {
+    "at": "2026-10-25T13:38:20.321446+00:00",
+    "kind": "applied",
+    "id": "p-607ce69161",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-25T13:39:21.578401+00:00",
+    "kind": "report",
+    "id": "r-2026-10-25T13:39",
+    "text": "최근 30일 사이트 방문자는 288명으로 매우 낮으며, 게시물 64%가 이미지가 없어 시각적 매력이 부족합니다. 뉴스와 가이드 조회수는 각각 82·47에 불과해 콘텐츠 유형별 참여 차이가 큽니다.",
+    "allocation": {
+      "news": 0.25,
+      "guides": 0.5,
+      "roundups": 0.25
+    },
+    "allocation_reason": "가이드 조회가 낮고 이미지 부족으로 참여가 저조해 가이드 생산을 확대하고, 균형 잡힌 뉴스·라운드업 비중을 유지해야 합니다"
+  },
+  {
+    "at": "2026-10-25T13:39:21.578401+00:00",
+    "kind": "proposal",
+    "id": "p-0ad5108bb8",
+    "title": "이미지 누락 포스트 썸네일 자동 추가",
+    "category": "사이트·UX",
+    "evidence": "전체 게시물 중 64%가 이미지가 없으며, 이는 낮은 조회수와 직접 연결될 가능성이 높습니다.",
+    "proposal": "AI 기반 썸네일 자동 생성 파이프라인을 도입해 이미지가 없는 Post에 기본 썸네일을 삽입하고, 편집 가이드에 ‘이미지는 필수’ 규칙을 추가합니다.",
+    "expected": "CTR 및 평균 체류 시간이 상승하고, 특히 뉴스·가이드 포스트의 조회수가 10~15% 증가할 것으로 예상됩니다.",
+    "effort": "보통",
+    "action": {
+      "type": "editorial_note",
+      "note": "모든 포스트에 이미지 또는 자동 생성 썸네일을 반드시 포함하도록 편집 가이드에 명시"
+    },
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-25T13:39:21.578401+00:00",
+    "kind": "proposal",
+    "id": "p-06e6d51551",
+    "title": "가이드 콘텐츠 AI 할당 비중 확대",
+    "category": "콘텐츠",
+    "evidence": "현재 자동 모드에서 가이드 할당이 0%이며, 가이드 조회수는 47에 불과해 장기 성장에 부족합니다.",
+    "proposal": "AI 할당 비중을 news 0.25, guides 0.5, roundups 0.25 로 재조정해 가이드 제작에 충분한 AI 용량을 확보합니다.",
+    "expected": "에버그린 가이드 2배 이상 생산, 검색 유입 증가와 함께 30일 가이드 조회수가 30% 이상 상승할 전망입니다.",
+    "effort": "낮음",
+    "action": null,
+    "risk": "high"
+  },
+  {
+    "at": "2026-10-25T13:39:21.578401+00:00",
+    "kind": "proposal",
+    "id": "p-f824043fb4",
+    "title": "AI 3D·Game Engine SEO 키워드 힌트 제공",
+    "category": "검색(SEO)",
+    "evidence": "검색 콘솔에 상위 키워드·기회가 전혀 없어 SEO 최적화가 미비함을 확인했습니다. 특히 AI 3D와 Game Engine 분야에 신규 키워드가 필요합니다.",
+    "proposal": "AI 3D와 Game Engine 도메인에 대한 주요 영문 검색어 리스트를 생성해 편집자에게 제공하고, 해당 키워드 중심으로 콘텐츠를 기획·작성합니다.",
+    "expected": "관련 키워드 검색 유입이 20~30% 증가하고, 도메인별 페이지 뷰가 평균 15% 상승할 것으로 기대됩니다.",
+    "effort": "낮음",
+    "action": {
+      "type": "keyword_hints",
+      "domain": "AI 3D",
+      "keywords": [
+        "Gaussian Splatting",
+        "NeRF",
+        "3D Generative AI"
+      ]
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-10-25T13:39:21.583123+00:00",
+    "kind": "decision",
+    "id": "p-f824043fb4",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-25T13:39:21.586070+00:00",
+    "kind": "applied",
+    "id": "p-f824043fb4",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-25T13:40:16+00:00",
+    "kind": "proposal",
+    "id": "p-a8529c833e",
+    "title": "img2threejs 가이드 문서 블록 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs[0]에서 '[4] 패치 적용 실패: docs/agent-guides/img2threejs.md: search 블록이 정확히 1회 일치하지 않음' 오류 발생",
+    "proposal": "docs/agent-guides/img2threejs.md 파일의 검색 블록을 현재 구현된 엔진 목록과 일치하도록 수정하고, 해당 섹션에 `available()` 함수와 GET /v1/engines 엔드포인트 설명을 추가한다.",
+    "expected": "패치 적용 오류 해소 → 엔진 가이드 자동 머지 가능, 사용자 문서 일관성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-25T13:40:16+00:00",
+    "kind": "proposal",
+    "id": "p-4bbef4f094",
+    "title": "엔진 API 구현 및 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "pending_pr_decisions에 PR #1 '엔진 이름만 추가됨'이라며 실제 호출 및 오류 반환 구현 필요, agent_queue에 PR #1 대체 작업 보류 중",
+    "proposal": "backend/app/services/engines.py에 `available() -> (bool, str)` 구현, FastAPI 라우터에 GET /v1/engines 추가, backend/tests/test_core.py에 정상/오류 케이스 테스트 작성 후 PR #1 생성·자동 머지",
+    "expected": "엔진 상태 확인 API 제공 → img2threejs 등 외부 엔진 사용 시 명확한 오류 처리, 테스트 커버리지 상승",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-25T13:40:16+00:00",
+    "kind": "proposal",
+    "id": "p-8c03954852",
+    "title": "Trellis C++ GPU 추론 설계 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "PR #4 승인 대기 중이며, 핵심 파이프라인 변경이므로 PR 전 설계 가이드 필요(🧱 Pix2Poly 교본).",
+    "proposal": "docs/agent-guides/trellis_integration.md 작성: 라이선스(MIT/Apache-2.0), GPU 요구사항, 파이프라인 인터페이스(없으면 건너뛰기), 예상 성능 효과 명시 후 PR #4 재개",
+    "expected": "핵심 코드 변경 전 명확한 설계 확보 → PR 승인 속도 상승, 향후 유지보수 용이",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-25T13:41:44+00:00",
+    "kind": "proposal",
+    "id": "p-9d7db56ffc",
+    "title": "보류 중인 네이버·카카오 홍보 콘텐츠 게시",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "운영·비용",
+    "evidence": "프로모션 리스트에 5개의 ‘new’ 상태 게시물이 존재(네이버 블로그, 네이버 카페, 카카오톡 등).",
+    "proposal": "마케터가 이번 주 내에 모든 ‘new’ 게시물을 순차적으로 예약·게시하고, 각 게시물에 UTM 파라미터를 붙여 Google Analytics(또는 GA4)에서 클릭·전환 데이터를 수집한다. 게시 후 1주일간 성과를 요약해 현황판에 업데이트한다.",
+    "expected": "콘텐츠 노출 증가·신규 방문자 10~15% 상승, 홍보 효율 측정 기반 향후 마케팅 전략 수립 가능.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-25T13:42:35.364425+00:00",
+    "kind": "proposal",
+    "id": "p-50a640e33a",
+    "title": "FlexPart 파트 기반 이미지→3D 엔진 도입",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://arxiv.org/abs/2610.31671v1",
+    "category": "콘텐츠",
+    "evidence": "2026-10-22 발표, arXiv 논문 0 인용, 최신 이미지‑3D 파트 생성 프레임워크",
+    "proposal": "FlexPart을 선택 엔진으로 구현해 이미지 → 가변 입체 파트 생성 기능을 추가하고, 기존 TripoSR과 병행 선택 가능하도록 backend/app/services/flexpart_runner.py와 job 오케스트레이션에 옵션을 삽입",
+    "expected": "사용자는 파트 단위 제어가 가능해 세부 모델링 정확도와 커스터마이징 폭이 확대, 다중 파트 텍스처 매핑 자동화로 PBR 품질 향상",
+    "effort": "보통",
+    "action": null
+  },
+  {
     "at": "2026-10-25T13:43:14.058876+00:00",
     "kind": "decision",
     "id": "p-23d6c5d8c7",

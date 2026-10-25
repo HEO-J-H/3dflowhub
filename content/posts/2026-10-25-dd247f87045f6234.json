@@ -1,0 +1,74 @@
+{
+  "title_ko": "When the Wind Blows 40주년 — 하이브리드 애니메이션 제작 비하인드",
+  "title": "Meltdown Memories: ‘When The Wind Blows’ At 40",
+  "url": "https://www.cartoonbrew.com/feature-film/meltdown-memories-when-the-wind-blows-at-40-268317.html",
+  "domain": "VFX",
+  "category": "스튜디오·작품",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "When the Wind Blows",
+    "Hybrid Animation",
+    "Stereoptical",
+    "Stop‑motion",
+    "2D Cel"
+  ],
+  "summary": "1987년 제작된 ‘When the Wind Blows’는 2D 셀 애니메이션을 스톱모션 3D 배경에 겹쳐 만든 하이브리드 기법으로 큰 호평을 받았다.",
+  "insight": "이 작품은 현대 애니메이션 Pipeline도 ‘2D‑3D 혼합’ 접근법을 고민하는 팀에게 좋은 참고 사례가 된다. 특히 제한된 예산과 시간 안에서 입체감을 살리고 싶을 때, Fleischer Studios의 Stereoptical 방식을 재해석해 물리적 레이어링을 시도해 볼 만하다. 오늘날엔 Blender나 Houdini 같은 DCC 툴로 디지털 스테레오프틱 셋을 구현할 수 있어, 과거의 물리적 작업 흐름을 가상화해 효율성을 높일 수 있다. 또한, 사회적 메시지를 담은 성인 애니메이션이 상업적 성공을 거둘 수 있다는 점은, 스토리와 톤을 명확히 정의한 프로젝트라면 장르와 무관하게 관객의 공감을 이끌어낼 수 있음을 시사한다. 마지막으로, 제작진 인터뷰에서 드러난 ‘다양한 역할을 소화하는 멀티태스킹’ 문화는 작은 스튜디오가 인재를 효율적으로 활용하는 방법을 보여준다.",
+  "sections": [
+    {
+      "heading": "프로젝트 기획과 배경",
+      "body": "1983년 John Coates가 ‘Snowman Enterprises’ 명의로 1페이지 피치를 제출해 ‘When the Wind Blows’ 제작을 제안했다. 원작은 Raymond Briggs의 성인용 코믹 스트립으로, 핵 공격 후의 인간적 고통을 풍자적으로 그렸다. 피치에서는 “핵전쟁의 인간적 결과”를 정치적 입김 없이 다루겠다고 명시했다."
+    },
+    {
+      "heading": "감독 Jimmy Murakami와 제작진",
+      "body": "Jimmy T. Murakami는 ‘The Snowman’ 감독 경험과 ‘Heavy Metal’ 오프닝, ‘Battle Beyond the Stars’ 등 다양한 작업을 거친 베테랑이다. 그는 Briggs의 시나리오를 바탕으로 스토리보드를 구상하고, TVC가 3분 테스트 영상을 제작하도록 이끌었다."
+    },
+    {
+      "heading": "Stereoptical 기반 하이브리드 시각 처리",
+      "body": "Murakami는 Fleischer Studios의 ‘Stereoptical’(또는 ‘setback’) 기법을 차용해, 손으로 그린 2D 셀 애니메이션을 스톱모션으로 만든 3D 모델 배경 위에 물리적으로 겹쳤다. 이 방식은 4년 전까지는 거의 사용되지 않았던 독특한 입체감과 깊이감을 제공했다."
+    },
+    {
+      "heading": "수상과 문화적 영향",
+      "body": "‘When the Wind Blows’는 1987년 Annecy 애니메이션 페스티벌에서 Grand Prix를 수상했으며, 이후 컬트 클래식으로 자리 잡았다. 최근 TikTok에서 메모와 패러디가 퍼지며 40주년을 맞이한 작품의 인지도가 다시 상승하고 있다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "‘When the Wind Blows’가 사용한 Stereoptical(또는 setback) 방식은 2D 셀 애니메이션을 손으로 그린 뒤, 스톱모션으로 만든 3D 모델 배경 위에 물리적으로 겹치는 것이 핵심이다. 현대 작업에서는 Blender 4.x의 Grease Pencil을 이용해 2D 레이어를 그린 뒤, 동일한 카메라 뷰를 3D 씬에 적용한다. 3D 모델은 기본적인 블록 형태로 제작하고, 카메라 트랙을 미리 설정해 두면 2D 셀을 배경에 맞춰 자동 정렬할 수 있다. 렌더링 단계에서는 Grease Pencil Object와 3D 오브젝트를 각각 ‘Alpha Over’ 컴포지터 노드로 합쳐 깊이감을 유지한다. 이렇게 하면 물리적인 세트 없이도 ‘셀‑오버‑3D’ 효과를 재현할 수 있다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Stereoptical 기법과 유사한 현대 파이프라인으로는 Toon Boom Harmony + 3D Camera Tracker, Unity ‘2D‑3D Hybrid’ 워크플로, 그리고 Houdini Lop (USD) 기반의 레이어드 렌더링이 있다. Harmony는 2D 레이어를 3D 카메라에 직접 매핑해 실시간 프리뷰가 가능하고, Unity는 실시간 엔진에서 2D 스프라이트와 3D 메쉬를 동시에 배치해 인터랙티브한 씬을 만든다. Houdini는 USD Stage에 2D Plane Geometry와 3D Objects를 레이어링해 고품질 Compositing을 지원한다. 각각 장점은 비용(Blender 무료), 실시간 피드백(Toon Boom 프리뷰), 파이프라인 확장성(Houdini USD)이며, 선택은 프로젝트 규모와 팀의 툴 친숙도에 따라 달라진다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 Blender 4.x를 설치하고 Grease Pencil 애드온을 활성화한다. 기본적인 3D 모델링(예: 배경 건물·지형)은 ‘Mesh > Add’ 메뉴로 만든 뒤, ‘Camera > Match View’를 사용해 2D 셀 작업과 동일한 시점을 맞춘다. 2D 셀은 디지털 펜으로 직접 그리거나, 스캔한 손그림을 ‘Image as Plane’로 불러와 Grease Pencil Layer에 배치한다. 최종 합성은 ‘Compositor’ 창에서 ‘Alpha Over’ 노드로 두 레이어를 결합하고, ‘Render Settings’에서 ‘Film > Transparent’를 켜면 배경 투명 렌더가 가능하다. 필요에 따라 After Effects나 DaVinci Resolve에서 색보정·사운드 믹싱을 추가한다.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "물리적인 세트 없이 깊이감을 어떻게 확보하나요?",
+      "a": "3D 모델에 실제 카메라 트랙을 적용하고, Grease Pencil Layer를 동일한 카메라에 맞춰 배치하면 가상의 깊이감이 자동으로 생성됩니다. 카메라 움직임을 키프레임으로 기록하면 2D 셀도 함께 움직여 자연스러운 입체 효과를 얻을 수 있습니다."
+    },
+    {
+      "q": "2D 셀의 해상도는 어느 정도가 적당한가요?",
+      "a": "최소 4K(3840 × 2160) 해상도로 스캔하거나 디지털 그리기를 권장합니다. 고해상도일수록 확대 시 픽셀화가 적고, 최종 합성 단계에서 ‘Alpha Over’가 깨끗하게 처리됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.cartoonbrew.com/wp-content/uploads/2026/10/When-the-Wind-Blows-Head.jpg",
+    "video": "https://www.youtube.com/watch?v=9pJKdTqYijY"
+  },
+  "collected_at": "2026-10-25T13:36:32.529989+00:00",
+  "notion_id": "",
+  "id": "2026-10-25-dd247f87045f6234",
+  "refs": [],
+  "videos": [],
+  "enriched_at": "2026-10-25T13:43:27+00:00",
+  "quality": {
+    "before": 751,
+    "after": 1963
+  }
+}
