@@ -175,3 +175,12 @@ def test_mobile_quick_nav_html_present():
     assert "🏠" in content and "📰" in content and "🛠" in content
     assert "position: fixed;" in content
     assert "bottom: 0;" in content
+
+
+def test_block_marker_leak_rejected(tmp_path, monkeypatch):
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    (tmp_path / "t.py").write_text("a = 1\n", encoding="utf-8")
+    bad = [{"file": "t.py", "search": "a = 1", "replace": "a = 2\n===\nb = 3"}]
+    probs = agents.apply_edits(bad, {"t.py"})
+    assert probs and "형식 오류" in probs[0]
+    assert (tmp_path / "t.py").read_text(encoding="utf-8") == "a = 1\n"  # 파일은 그대로

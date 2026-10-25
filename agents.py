@@ -267,6 +267,10 @@ def apply_edits(edits: list[dict], editable: set[str] | None = None) -> list[str
         if f not in editable:
             problems.append(f"수정 불가 파일: {f}")
             continue
+        if re.search(r"^(={3,}|<<<SEARCH|<<<FILE|>{3,}END)\s*$", e.get("replace", ""), re.M):
+            # 블록 표시가 바꿀 내용에 섞임 (구분선이 파일에 들어가 SyntaxError 가 났던 원인) → 적용하지 않고 다시 쓰게
+            problems.append(f"{f}: 편집 블록 형식 오류 — 바꿀 내용 안에 ===/<<<SEARCH 같은 구분선이 있음, 한 블록씩 다시")
+            continue
         path = ROOT / f
         if not path.exists():  # 새 파일: SEARCH 를 채워 보내도(AI 실수) 만들기 — 예전엔 FileNotFoundError 로 실행 전체가 멈춤
             path.parent.mkdir(parents=True, exist_ok=True)
