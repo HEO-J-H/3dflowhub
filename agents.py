@@ -293,11 +293,28 @@ def reviewer(diff: str) -> dict:
     )
 
 
+CONFLICT = re.compile(r"^(<<<<<<< |>>>>>>> |=======$)", re.M)
+
+
+def conflict_files() -> list[str]:
+    """병합 충돌 표시가 남은 추적 파일 — 하나라도 있으면 절대 머지하지 않음 (10/24 테스트 파일에 남아 수집이 26시간 멈춤)."""
+    out = []
+    for f in sh("git", "ls-files", check=False).split():
+        if f.endswith((".py", ".md", ".html", ".js", ".yml", ".json", ".css")) and (ROOT / f).exists():
+            try:
+                if CONFLICT.search((ROOT / f).read_text(encoding="utf-8", errors="ignore")):
+                    out.append(f)
+            except OSError:
+                continue
+    return out
+
+
 def qa(diff: str) -> dict:
     tests = subprocess.run(list(TEST_CMD), cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
     added = "\n".join(l for l in diff.splitlines() if l.startswith("+") and not l.startswith("+++"))
     security = [f"위험 함수 사용: {m}" for m in set(DANGEROUS.findall(added))]
     security += ["비밀값 하드코딩 의심"] if SECRET.search(added) else []
+    security += [f"병합 충돌 표시가 남은 파일: {', '.join(cf[:3])}"] if (cf := conflict_files()) else []
     return {"tests_passed": tests.returncode == 0, "test_output": tests.stdout[-1500:], "security": security}
 
 

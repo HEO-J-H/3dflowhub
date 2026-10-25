@@ -102,6 +102,12 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
     except Exception:
         pass
 
+    # 4.5) 단위 테스트 실패 (수집은 계속되지만 코드가 깨졌다는 신호)
+    ts = core._load_json(core.ROOT / "memory" / "tests_status.json", {})
+    if ts and not ts.get("ok"):
+        out.append(_alert("error", "단위 테스트 실패 — 코드 확인 필요",
+                          "수집은 계속 돌지만 최근 코드 변경이 테스트를 깨뜨렸습니다: " + str(ts.get("tail", ""))[-200:]))
+
     # 5) 기초 가이드 주제
     try:
         import guides

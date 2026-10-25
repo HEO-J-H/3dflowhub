@@ -158,39 +158,6 @@ def _now() -> str:
 MIN_RUNS_PER_VERSION = 3  # 가이드 한 묶음을 최소 이만큼 실행해 본 뒤 교체 (잦은 교체로 평가 불가 방지)
 
 
-def summarize_error_trends() -> dict[str, dict[str, int]]:
-    """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 빈도를 도메인별·유형별로 집계하여 리포트 형태로 반환."""
-    runs = core.load_memory().get("runs", [])
-    domain_trends: dict[str, dict[str, int]] = {}
-    type_trends: dict[str, int] = {}
-
-    for r in runs:
-        # runs 기록에서 errors 리스트 또는 short, offtopic 등 카운트 추출
-        errs = r.get("errors", [])
-        domain = r.get("domain", "unknown")
-        
-        # 도메인별 통계 초기화
-        if domain not in domain_trends:
-            domain_trends[domain] = {}
-
-        for e in errs:
-            # 유형별 집계
-            type_trends[e] = type_trends.get(e, 0) + 1
-            domain_trends[domain][e] = domain_trends[domain].get(e, 0) + 1
-
-        # 단축 필드 (short, offtopic 등) 반영
-        if r.get("short"):
-            type_trends["short body"] = type_trends.get("short body", 0) + int(r.get("short"))
-            domain_trends[domain]["short body"] = domain_trends[domain].get("short body", 0) + int(r.get("short"))
-        if r.get("offtopic"):
-            type_trends["off-topic"] = type_trends.get("off-topic", 0) + int(r.get("offtopic"))
-            domain_trends[domain]["off-topic"] = domain_trends[domain].get("off-topic", 0) + int(r.get("offtopic"))
-
-    return {
-        "by_type": type_trends,
-        "by_domain": domain_trends
-    }
-
 def analyze_run_errors() -> dict[str, float]:
     """최근 실행 오류(RUN_ERRORS 및 runs 기록)에서 'short post' 및 'off-topic' 비율을 집계하여 통계 반환."""
     runs = core.load_memory().get("runs", [])

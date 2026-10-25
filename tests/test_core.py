@@ -933,19 +933,6 @@ def test_summarize_error_trends(monkeypatch, tmp_path):
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
     core._save_json(core.MEMORY_PATH, {
         "runs": [
-<<<<<<< Updated upstream
-            {"domain": "VFX", "short": 2, "offtopic": 3},
-            {"domain": "3D DCC", "short": 2, "errors": ["timeout"]}
-        ]
-    })
-    summary = evolve.summarize_error_trends()
-    assert "by_type" in summary
-    assert "by_domain" in summary
-    assert summary["by_type"].get("short body") == 4
-    assert summary["by_type"].get("off-topic") == 3
-    assert summary["by_domain"]["VFX"]["short body"] == 2
-    assert summary["by_domain"]["3D DCC"]["timeout"] == 1
-=======
             {"domain": "VFX", "short": 1, "errors": ["429 rate limit error"]},
             {"domain": "3D DCC", "offtopic": 2, "errors": ["short body"]}
         ]
@@ -956,4 +943,3 @@ def test_summarize_error_trends(monkeypatch, tmp_path):
     assert trends["VFX"].get("AI 한도 소진 (429)", 0) >= 1
     assert trends["3D DCC"].get("본문 길이 미달", 0) >= 1
     assert trends["3D DCC"].get("주제 무관/필터링됨", 0) >= 1
->>>>>>> Stashed changes

@@ -184,3 +184,13 @@ def test_block_marker_leak_rejected(tmp_path, monkeypatch):
     probs = agents.apply_edits(bad, {"t.py"})
     assert probs and "형식 오류" in probs[0]
     assert (tmp_path / "t.py").read_text(encoding="utf-8") == "a = 1\n"  # 파일은 그대로
+
+
+def test_conflict_markers_block_merge(tmp_path, monkeypatch):
+    import subprocess
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    (tmp_path / "a.py").write_text("x = 1\n<<<<<<< Updated upstream\ny = 2\n=======\ny = 3\n>>>>>>> Stashed changes\n",
+                                   encoding="utf-8")
+    subprocess.run(["git", "add", "a.py"], cwd=tmp_path)
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    assert agents.conflict_files() == ["a.py"]

@@ -44,8 +44,14 @@ jobs:
       - name: Korean font (홍보 이미지 렌더용)
         run: sudo apt-get install -y -qq fonts-nanum >/dev/null || true
 
-      - name: Unit tests
-        run: python -m pytest -q tests
+      - name: Unit tests (실패해도 수집은 계속 — 실패는 기록·알림)
+        id: unittests
+        continue-on-error: true
+        run: |
+          python -m pytest -q tests > pytest.log 2>&1; rc=$?
+          tail -5 pytest.log
+          python -c "import core,json,sys,datetime; p=core.ROOT/'memory'/'tests_status.json'; core._save_json(p, {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'), 'ok': $rc == 0, 'tail': open('pytest.log', encoding='utf-8', errors='ignore').read()[-800:]})"
+          exit $rc
 
       - name: Run pipeline
         env:
