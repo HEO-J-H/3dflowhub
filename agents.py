@@ -227,6 +227,25 @@ def propose_tasks(max_tasks: int = 3) -> list[str]:
     return tasks
 
 
+def _task_key(t: str) -> str:
+    return re.sub(r"\(재시도\)|\s+—.*$", "", t).strip()
+
+
+def repeat_guard(task: str) -> str:
+    """같은 일을 또 하려는지 확인 — 이미 끝낸 과제와 같거나, 같은 과제가 2번 넘게 실패했으면 그 사유."""
+    import growth
+    key = _task_key(task)
+    done = [_task_key(l[len("- [x] (agent) "):]) for l in TODO.read_text(encoding="utf-8").splitlines()
+            if l.startswith("- [x] (agent) ")]
+    if any(growth._similar(key, d) for d in done):
+        return "done:이미 끝낸 과제와 같은 일"
+    runs = core._load_json(Path(__file__).parent / "memory" / "sites" / SITE / "agent_runs.json", [])
+    fails = [r for r in runs if r.get("result") in ("held", "error") and growth._similar(key, _task_key(r.get("task", "")))]
+    if len(fails) >= 2:
+        return f"held:같은 과제 {len(fails)}회 실패 — 마지막 사유: {fails[-1].get('msg', '')[:80]}"
+    return ""
+
+
 def mark_task(task: str, ok: bool, note: str) -> None:
     text = TODO.read_text(encoding="utf-8")
     old = f"- [ ] (agent) {task}"
@@ -516,6 +535,18 @@ def main() -> None:
         print("TODO.md 에 (agent) 작업이 없습니다.")
         return
     print(f"작업: {task}")
+    guard = repeat_guard(task)
+    if guard:  # 같은 일 반복 방지 — 실행하지 않고 상태만 정리
+        kind, why = guard.split(":", 1)
+        mark_task(task, kind == "done", why)
+        record_target_run(task, "skipped", why)
+        report_to_manager(task, kind == "done", why)
+        if TARGET:
+            sh("git", "add", str(TODO.relative_to(ROOT)), check=False)
+            sh("git", "commit", "-q", "-m", "chore(agent): 반복 과제 정리 [skip ci]", check=False)
+            sh("git", "push", "-q", "origin", "HEAD:main", check=False)
+        print("건너뜀:", why)
+        return
     editable = files_for(task)
     feedback, log, verdict = "", [], {"approve": False, "feedback": ""}
     ai_errors = 0

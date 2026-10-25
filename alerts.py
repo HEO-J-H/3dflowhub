@@ -108,6 +108,16 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
         out.append(_alert("error", "단위 테스트 실패 — 코드 확인 필요",
                           "수집은 계속 돌지만 최근 코드 변경이 테스트를 깨뜨렸습니다: " + str(ts.get("tail", ""))[-200:]))
 
+    # 4.6) 자가 복구가 최근 24시간에 한 일 (되돌림·고장 발견)
+    cut = (datetime.now(timezone.utc).timestamp() - 86400)
+    for h in core._load_json(core.ROOT / "memory" / "selfheal.json", [])[-5:]:
+        try:
+            recent = datetime.fromisoformat(h["at"]).timestamp() > cut
+        except (KeyError, ValueError):
+            recent = False
+        if recent and h.get("kind") in ("heal", "probe"):
+            out.append(_alert("info" if h.get("ok") else "warning", "AI 관리자 자가 복구: " + h["text"][:60], h["text"]))
+
     # 5) 기초 가이드 주제
     try:
         import guides
