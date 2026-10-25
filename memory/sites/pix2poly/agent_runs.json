@@ -178,5 +178,17 @@
     "task": "[guide:img2threejs] 1단계 (PR #1 대체): backend/app/services/engines.py 엔진 목록(available()=(bool, 이유)) + GET /v1/engines, backend/tests/test_core.py 에 테스트 (재시도)",
     "result": "ai_error",
     "msg": "[2] AI 호출 실패: Gemini 실제 일일 한도 소진 (429) — 태평양 자정(한국 16~17시)에 리셋 | groq: 413 json=False: '{\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-120b` in organization"
+  },
+  {
+    "at": "2026-10-25T13:58:13+00:00",
+    "task": "[p-50a640e33a|콘텐츠] FlexPart 파트 기반 이미지→3D 엔진 도입: FlexPart을 선택 엔진으로 구현해 이미지 → 가변 입체 파트 생성 기능을 추가하고, 기존 TripoSR과 병행 선택 가능하도록 backend/app/services/flexpart_runner.py와 job 오케스트레이션에 옵션을 삽입",
+    "result": "held",
+    "msg": "[4] tests=True security=['위험 함수 사용: __import__'] — 리뷰 생략"
+  },
+  {
+    "at": "2026-10-25T13:59:50+00:00",
+    "task": "[p-50a640e33a|콘텐츠] FlexPart 파트 기반 이미지→3D 엔진 도입: FlexPart을 선택 엔진으로 구현해 이미지 → 가변 입체 파트 생성 기능을 추가하고, 기존 TripoSR과 병행 선택 가능하도록 backend/app/services/flexpart_runner.py와 job 오케스트레이션에 옵션을 삽입",
+    "result": "pending",
+    "msg": "PR #11 승인 대기 (핵심 코드 변경 — GitHub 에서 확인 후 머지): https://github.com/HEO-J-H/Pix2Poly/pull/11"
   }
 ]
