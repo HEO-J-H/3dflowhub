@@ -2584,5 +2584,55 @@
     "source": "",
     "action": null,
     "risk": "medium"
+  },
+  {
+    "at": "2026-10-26T13:51:28+00:00",
+    "kind": "proposal",
+    "id": "p-dc5bc474c0",
+    "title": "카카오톡 오픈채팅 신규 홍보 초안 게시 승인 검토",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "운영·비용",
+    "evidence": "promo 목록에 'ISA 만기금, 연금으로 전환할지 고민되신다면 직접 시뮬레이션해 보세요' 카카오톡 오픈채팅 초안이 new 상태로 대기 중입니다.",
+    "proposal": "카카오톡 오픈채팅방(50~60대 은퇴 재테크 커뮤니티)에 대기 중인 초안 메시지를 게시하여 신규 유입 경로를 확장합니다.",
+    "expected": "타겟 독자층의 직접적인 시뮬레이터 도구 유입 증가 및 활성화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-26T13:51:28+00:00",
+    "kind": "proposal",
+    "id": "p-de3aa97cf3",
+    "title": "규정 감시 주기(72시간) 도래에 따른 최신 세제·연금 법령 점검",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "team 목록에서 ⚖️ 규정 감시의 every_hours가 72시간으로 설정되어 있으며, 최근 규정 관련 검토가 완료되었습니다.",
+    "proposal": "국민연금 및 세법 관련 최근 확정된 고시나 시행령 개정 사항이 있는지 공식 출처(법제처 등)를 확인하고 반영 필요성을 검토합니다.",
+    "expected": "시뮬레이터 계산 로직 및 안내 문구의 정확성 및 신뢰도 유지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-26T13:52:44.989656+00:00",
+    "kind": "proposal",
+    "id": "p-1fe23a6133",
+    "title": "FlexPart 이미지-3D 파트 생성 도입 검토",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://arxiv.org/abs/2610.31671v1",
+    "category": "사이트·UX",
+    "evidence": "arXiv 논문(2610.31671v1)에서 단일 이미지 기반 variable-granularity 3D 파트 생성 프레임워크인 FlexPart 발표",
+    "proposal": "로컬 백엔드(`backend/app/services/`)에 파트별 제어가 가능한 3D 생성 선택 엔진으로 FlexPart 구조 검토",
+    "expected": "단일 이미지 입력 시 세부 파트별 수정 및 조립이 가능한 고도화된 3D 애셋 생성 기능 제공",
+    "effort": "높음",
+    "action": {
+      "type": "editorial_note",
+      "note": "FlexPart 모델 라이선스 및 요구 VRAM 확인 후 선택 엔진 설계 가이드 작성"
+    }
   }
 ]

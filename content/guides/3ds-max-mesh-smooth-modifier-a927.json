@@ -1,0 +1,93 @@
+{
+  "id": "3ds-max-mesh-smooth-modifier-a927",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Mesh Smooth modifier",
+  "title": "MeshSmooth — 부드럽게 만들기(구버전 방식)",
+  "summary": "Mesh Smooth 모디파이어는 폴리곤 오브젝트의 면을 부드럽게 세분화하여 매끄러운 곡선과 유기적인 형태를 만듭니다. 점토를 다듬듯 각진 모델을 부드럽게 감싸는 데 사용합니다.",
+  "when": [
+    "하드 표면 모델링의 모서리를 자연스럽게 둥글게 처리할 때",
+    "캐릭터나 유기적 형태의 폴리곤 면을 세분화하여 부드럽게 만들 때",
+    "로우 폴리곤 모델의 디테일을 높여 렌더링 품질을 개선할 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 부드럽게 만들 메쉬 오브젝트를 선택합니다.",
+    "2. Command Panel에서 Modify 탭으로 이동합니다.",
+    "3. Modifier List 드롭다운을 엽니다.",
+    "4. 목록에서 Mesh Smooth를 찾아 클릭하여 적용합니다.",
+    "5. Parameters rollout에서 Iterations 값을 조절해 세분화 단계를 높입니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "메쉬를 세분화하는 횟수로, 값이 클수록 폴리곤이 늘어나며 부드러워집니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "정점들이 이동할 때 적용되는 부드러움의 강도를 조절합니다."
+    },
+    {
+      "name": "Render Iterations",
+      "desc": "뷰포트와 렌더링 시의 세분화 단계를 다르게 설정하여 작업 속도를 최적화합니다."
+    },
+    {
+      "name": "Explicit Normal",
+      "desc": "메쉬가 세분화될 때 법선 벡터를 재계산하여 빛 반사를 매끄럽게 만듭니다."
+    },
+    {
+      "name": "Update Options",
+      "desc": "메쉬가 업데이트되는 시점(Always, When Rendering, Manually)을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 모서리 둥글게 만들기",
+      "steps": [
+        "1. 각진 박스 오브젝트를 준비합니다.",
+        "2. Mesh Smooth 모디파이어를 적용합니다.",
+        "3. Iterations 값을 2로 설정해 날카로운 모서리를 부드럽게 다듬습니다."
+      ]
+    },
+    {
+      "title": "로우 폴리곤 구체 매끄럽게 만들기",
+      "steps": [
+        "1. 면이 적은 구체(GeoSphere)를 생성합니다.",
+        "2. Mesh Smooth 모디파이어를 추가합니다.",
+        "3. Iterations를 높여 울퉁불퉁한 면을 매끈한 원형으로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Iterations 값을 너무 높여 폴리곤 수가 급증함 → Iterations 값을 2~3 이하로 낮추고 Render Iterations를 활용하세요.",
+    "스택 순서 오류로 인해 형태가 무너짐 → Edit Poly나 Editable Poly 상위에 Mesh Smooth가 위치하는지 확인하세요."
+  ],
+  "related": [
+    "TurboSmooth",
+    "Symmetry",
+    "Edit Poly",
+    "Subdivision Surface"
+  ],
+  "videos": [
+    {
+      "id": "d6vMfhHBqFY",
+      "title": "Smooth Modifier in 3Ds Max – Make Your Mesh Perfectly Smooth #shorts  #3dsmax #smooth",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "xdBGi0fPLqs",
+      "title": "3ds Max Tutorial: Meshsmooth and Turbosmooth Modifiers",
+      "author": "Kory Bieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Mesh%20Smooth%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Mesh Smooth"
+  ],
+  "at": "2026-10-26T13:53:46.296594+00:00"
+}
