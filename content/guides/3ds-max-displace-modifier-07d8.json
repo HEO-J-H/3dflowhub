@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-displace-modifier-07d8",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Displace modifier",
+  "title": "Displace — 이미지로 표면 높낮이",
+  "summary": "흑백 이미지의 명암(Grayscale) 정보를 높낮이 데이터로 변환하여, 평평한 지면에 울퉁불퉁한 요철이나 웅덩이를 만들어내는 모디파이어입니다. 마치 찰흙 표면을 꾹꾹 누르거나 부풀리는 것처럼 입체감을 더할 때 사용합니다.",
+  "when": [
+    "평평한 폴리곤 메쉬에 울퉁불퉁한 지형이나 돌출된 타일 바닥을 만들 때",
+    "벽돌이나 나무껍질 같은 거친 표면의 세밀한 질감을 입체적으로 표현할 때",
+    "흑백 로고나 패턴 모양대로 메쉬를 튀어나오게 가공할 때"
+  ],
+  "steps": [
+    "메쉬 오브젝트를 선택하고, 충분한 세그먼트(Segments)를 주어 폴리곤을 촘촘하게 만듭니다.",
+    "Command Panel의 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Displace 모디파이어를 선택합니다.",
+    "Parameters 롤아웃의 Image 항목에서 Bitmap 버튼을 눌러 높낮이로 사용할 흑백 이미지를 불러옵니다.",
+    "Strength 값을 조절하여 돌출되는 높이를 설정합니다.",
+    " 필요에 따라 U Tile / V Tile 값을 조절하여 텍스처 반복 횟수를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Strength",
+      "desc": "이미지의 밝고 어두운 정도에 따라 메쉬가 튀어나오거나 들어가는 전체 높낮이 강도를 조절합니다."
+    },
+    {
+      "name": "Decay",
+      "desc": "오브젝트 중심으로부터 멀어질수록 Displace 효과가 서서히 약해지게 만듭니다."
+    },
+    {
+      "name": "Map",
+      "desc": "높낮이로 사용할 흑백 이미지(Bitmap)나 Procedural 맵을 지정하는 슬롯입니다."
+    },
+    {
+      "name": "Mapping",
+      "desc": "평면(Planar), 원통형(Cylindrical), 구형(Spherical) 등 텍스처가 투영될 방식을 선택합니다."
+    },
+    {
+      "name": "Length",
+      "desc": "Z축 방향으로의 변위 적용 범위를 조절합니다."
+    },
+    {
+      "name": "U Tile / V Tile",
+      "desc": "가로(U)와 세로(V) 방향으로 텍스처 패턴이 반복되는 횟수를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "울퉁불퉁한 산악 지형 제작",
+      "steps": [
+        "Plane 오브젝트를 생성하고 Length Seg수와 Width Seg수를 100 이상으로 촘촘하게 설정합니다.",
+        "Displace 모디파이어를 적용한 뒤 Map에 흑백 그라데이션 노이즈 이미지를 불러옵니다.",
+        "Strength 값을 높여 산봉우리와 골짜기의 높낮이를 극적으로 만듭니다."
+      ]
+    },
+    {
+      "title": "입체적인 벽돌 외벽 표현",
+      "steps": [
+        "Box 또는 Plane 오브젝트에 충분한 세그먼트를 부여합니다.",
+        "Displace 모디파이어를 적용하고 벽돌 패턴의 흑백 맵을 연결합니다.",
+        "Strength를 낮게 주고, U Tile과 V Tile을 조절해 벽돌 간격을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 이미지가 깨지거나 각져 보이는 현상 → Plane이나 Box의 Segments 값을 충분히 높여 폴리곤을 촘촘하게 만듭니다.",
+    "이미지가 적용되지 않고 메쉬가 엉뚱하게 변형되는 현상 → Map 뷰포트 투영 방식(Mapping)이 Planar 등으로 올바르게 지정되었는지 확인합니다.",
+    "지나치게 날카롭거나 뾰족하게 튀어나오는 현상 → Strength 값을 낮추거나 Displace 모디파이어 아래에 Smooth 모디파이어를 추가해 부드럽게 다듬습니다."
+  ],
+  "related": [
+    "TurboSmooth",
+    "Noise",
+    "UVW Map",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "LhUse7LV0Ow",
+      "title": "3ds Max Displace Modifier Explained! 🚀 | Boost Your 3D Detailing",
+      "author": "3D Interior Studio"
+    },
+    {
+      "id": "uF3ariRp_eM",
+      "title": "3dsmax Tutorial 35 Displace modifiers | Full Course in English | Beginners Tutorial",
+      "author": "media pro"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Displace%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Segments",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Displace"
+  ],
+  "at": "2026-10-26T14:48:13.946255+00:00"
+}
