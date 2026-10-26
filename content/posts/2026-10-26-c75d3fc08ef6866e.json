@@ -32,6 +32,21 @@
     {
       "heading": "엔진 내 머테리얼 Instance 활용",
       "body": "Unreal Engine에서 머테리얼 Instance를 활용하면 텍스처의 색상이나 세부 파라미터를 실시간으로 수정할 수 있습니다. 이를 통해 레벨 디자인 단계에서 환경에 맞게 재질의 느낌을 빠르게 조절할 수 있습니다. 작업 효율성을 높이고 프로젝트 전체의 시각적 통일성을 유지하는 데 필수적인 과정입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Substance 3D Designer에서 절차적(procedural)으로 생성한 스타일라이즈드 재질은 게임 개발 Pipeline 강력한 무기가 됩니다. 높낮이나 거칠기 맵을 노드 기반으로 정교하게 제어한 뒤, Unreal Engine으로 가져와 Material Instance를 생성하면 레벨 디자인 단계에서 색상이나 세부 파라미터를 실시간으로 바꿀 수 있습니다. 아티스트가 매번 텍스처를 Photoshop에서 수정할 필요 없이 엔진 내에서 환경에 맞게 베리에이션을 빠르게 확장할 수 있어 전체적인 시각적 통일성과 작업 속도를 크게 높여줍니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "3D 아티스트 커뮤니티에서는 스타일라이즈드 수공예(hand-painted) 느낌의 텍스처를 효율적으로 제작하기 위해 다양한 자동화 도구나 텍스처 제작 워크플로우를 활발히 공유하고 있습니다. BlenderArtists 등의 토론에 따르면, 에셋 제작 자동화 툴(AssetGen 등)과 Substance 시리즈를 연동하여 스타일라이즈드 머테리얼 파이프라인을 구축하는 사례가 많습니다 [1]. 다만, 프로젝트의 아트 스타일에 맞춰 노드 그래프의 파라미터 구조를 처음부터 유연하게 설계하지 않으면 나중에 베리에이션을 확장할 때 수정 비용이 커지므로 주의해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Substance 3D Designer와 Unreal Engine을 연동한 스타일라이즈드 제작을 시작하려면 먼저 Substance 3D Designer의 기본 노드(Blend, Filter, Noise 등)와 절차적 텍스처링 개념을 익혀야 합니다. Adobe 공식 채널의 'Substance Designer Fundamentals' 같은 기초 강좌를 통해 노드 연결 방식을 먼저 학습하는 것을 권장합니다. 그 후 간단한 스타일라이즈드 패턴을 직접 만들어보고, Unreal Engine의 Material Editor로 가져와 베이스 컬러와 러프니스 맵을 연결하며 엔진 내 룩데브(Look Dev) 과정을 실습해 보세요.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +57,14 @@
     {
       "q": "스타일라이즈드 머테리얼 제작에서 가장 중요한 포인트는 무엇인가요?",
       "a": "불필요한 디테일을 과감히 생략하고 핵심 형태와 색상 대비를 강조하여 시각적인 가독성을 높이는 것이 중요합니다."
+    },
+    {
+      "q": "Substance 3D Designer에서 만든 재질을 Unreal Engine으로 가져올 때 어떤 맵을 연결해야 하나요?",
+      "a": "기본적으로 Base Color, Normal, Roughness 맵을 추출하여 Unreal Engine 머테리얼 에디터의 해당 슬롯에 연결합니다. 스타일라이즈드 룩의 완성도를 높이려면 엔진 내 Shading 모델 조정과 함께 적절한 라이팅 및 Post Processing 설정을 추가하는 것이 좋습니다."
+    },
+    {
+      "q": "Unreal Engine에서 Material Instance를 사용하는 이유는 무엇인가요?",
+      "a": "Material Instance를 사용하면 원본 머테리얼을 다시 컴파일하지 않고도 텍스처의 색상, 타일링, 세부 파라미터를 실시간으로 수정할 수 있습니다. 레벨 디자인 시 동일한 재질로 다양한 환경 베리에이션을 빠르게 만들 수 있어 작업 효율성이 크게 향상됩니다."
     }
   ],
   "media": {
@@ -50,5 +73,31 @@
   },
   "collected_at": "2026-10-26T19:11:24.478536+00:00",
   "notion_id": "",
-  "id": "2026-10-26-c75d3fc08ef6866e"
+  "id": "2026-10-26-c75d3fc08ef6866e",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "AssetGen addon (old thread)",
+      "url": "https://blenderartists.org/t/assetgen-addon-old-thread/653770",
+      "excerpt": "I have discovered it, it looks great I will watch his other videos on that. :slight_smile: For the textures baked from AssetGen you can import them in Substance Painter like for InstaLOD, but AssetGen has a material tool that automate the popular stylized (fake) hand painted textures workflow lik...",
+      "replies": 678
+    }
+  ],
+  "videos": [
+    {
+      "id": "TAwTNnxlvRM",
+      "title": "Stylized Materials with Substance Designer - Introduction | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "uc7qysekuKo",
+      "title": "Substance Designer FUNDAMENTALS YOU MUST KNOW (For beginners)",
+      "author": "JP Levels"
+    }
+  ],
+  "enriched_at": "2026-10-26T20:11:58+00:00",
+  "quality": {
+    "before": 735,
+    "after": 1697
+  }
 }
