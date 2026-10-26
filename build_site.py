@@ -25,7 +25,7 @@ import re
 import shutil
 import time
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote
 
@@ -587,6 +587,20 @@ def popular(posts: list[dict], n: int = 8, days: int = 30) -> list[dict]:
     return (ranked + filler + [p for p in recent if p not in ranked and p not in filler])[:n]
 
 
+def iso_tz(s: str) -> str:
+    """구조화 데이터용 날짜 — 시간대가 빠지면 Google 이 다르게 해석하므로 오프셋을 꼭 붙임 (없으면 UTC)."""
+    s = (s or "").strip().replace("Z", "+00:00")
+    if not s:
+        return ""
+    if len(s) == 10:
+        return s
+    try:
+        dt = datetime.fromisoformat(s)
+    except ValueError:
+        return s[:19]
+    return (dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)).isoformat(timespec="seconds")
+
+
 def iso_week(p: dict) -> str:
     try:
         y, w, _ = datetime.fromisoformat(kst_date(p.get("collected_at") or "")).isocalendar()
@@ -1046,7 +1060,7 @@ def post_head(p: dict) -> str:
     """글 페이지 SEO: og:image·article 메타 + JSON-LD (BlogPosting, BreadcrumbList)."""
     url = f"{BASE_URL}/p/{p['id']}.html"
     img = (p.get("media") or {}).get("image") or ""
-    date = (p.get("collected_at") or "")[:19]
+    date = iso_tz(p.get("collected_at") or "")
     ld = [{
         "@context": "https://schema.org", "@type": "BlogPosting",
         "headline": p["title_ko"][:110], "description": (p.get("summary") or "")[:300],
@@ -1386,8 +1400,13 @@ def build() -> dict:
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
            [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
+    # 수정일 신호: 글은 수집일, 가이드는 작성일 (Google 이 다시 크롤할 페이지를 고를 때 사용)
+    lastmod = {f"{BASE_URL}/p/{p['id']}.html": (p.get("collected_at") or "")[:10] for p in posts}
+    lastmod.update({f"{BASE_URL}/{learn_url(g)}": (g.get("at") or "")[:10] for g in learn_guides})
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
-                                     'schemas/sitemap/0.9">' + "".join(f"<url><loc>{e(u)}</loc></url>" for u in urls)
+                                     'schemas/sitemap/0.9">' + "".join(
+                                         f"<url><loc>{e(u)}</loc>" + (f"<lastmod>{lastmod[u]}</lastmod>" if lastmod.get(u) else "")
+                                         + "</url>" for u in urls)
                                      + "</urlset>", encoding="utf-8")
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
     return {"posts": len(posts), "boards": len(by_cat) + len(core.DOMAINS)}

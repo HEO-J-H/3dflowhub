@@ -79,3 +79,21 @@ def test_fallback_minute_limit_not_daily(monkeypatch):
     R.text = "Rate limit reached on requests per day (RPD): Limit 1000"
     with pytest.raises(core.LLMBudgetExceeded):
         core._llm_call("u", "k", "m", "p", "s", 10, False)
+
+
+def test_guide_quality_and_daily_cap(monkeypatch, tmp_path):
+    import guides
+    assert not guides.passes_quality({"steps": ["a"] * 4, "params": [{}], "grounded": True})
+    assert guides.passes_quality({"steps": ["a"] * 4, "params": [{}, {}], "videos": [1]})
+    monkeypatch.setattr(guides, "GUIDE_DIR", tmp_path)
+    monkeypatch.setattr(guides, "load_all", lambda: [{"at": guides.datetime.now(guides.timezone.utc).isoformat()}] * 10)
+    monkeypatch.setattr(core, "llm_budget_left", lambda: 999)
+    called = []
+    monkeypatch.setattr(guides, "make_guide", lambda *a: called.append(a))
+    assert guides.write_guides(5) == [] and not called  # 오늘 이미 10개 → 더 안 만듦
+
+
+def test_iso_tz():
+    import build_site
+    assert build_site.iso_tz("2026-10-26T14:22:52") == "2026-10-26T14:22:52+00:00"
+    assert build_site.iso_tz("2026-10-26T14:22:52.123+09:00") == "2026-10-26T14:22:52+09:00"

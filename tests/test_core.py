@@ -702,8 +702,8 @@ def test_guides_generate_and_render(monkeypatch, tmp_path):
     monkeypatch.setattr(guides, "GUIDE_DIR", tmp_path / "guides")
     monkeypatch.setattr(guides, "find_videos", lambda q, n=2: [{"id": "MP0iUACTy6s", "title": "Bend", "author": "K"}])
     monkeypatch.setattr(core, "llm_budget_left", lambda: 999)
-    fake = {"summary": "휘게 함", "when": ["파이프"], "steps": ["Modifier List 에서 Bend", "Angle 조절"],
-            "params": [{"name": "Angle", "desc": "각도"}], "examples": [{"title": "파이프", "steps": ["a"]}],
+    fake = {"summary": "휘게 함", "when": ["파이프"], "steps": ["Modifier List 에서 Bend", "Angle 조절", "Direction 조절", "Limit 설정"],
+            "params": [{"name": "Angle", "desc": "각도"}, {"name": "Direction", "desc": "방향"}], "examples": [{"title": "파이프", "steps": ["a"]}],
             "mistakes": [{"mistake": "세그먼트 부족", "fix": "늘리기"}], "related": ["Twist"]}
     monkeypatch.setattr(core, "llm", lambda *a, **k: __import__("json").dumps(fake, ensure_ascii=False))
     monkeypatch.setattr(guides, "CATALOG", guides.CATALOG[2:3])
