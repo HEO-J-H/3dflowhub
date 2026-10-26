@@ -29,6 +29,21 @@
     {
       "heading": "프로젝트 제작 시 주의해야 할 사항",
       "body": "무료로 배포되는 에셋이라 하더라도 제공처의 라이선스 규정을 꼼꼼히 확인하고 프로젝트 성격에 맞게 사용하는 것이 안전합니다. 캐릭터의 체형 비율에 따라 모션이 왜곡될 수 있으므로, 임포트 직후 루트(Root) 모션과 IK 세팅을 점검하는 과정이 필수적입니다. 블로그 내 'Blender 튜토리얼' 및 '게임 개발 사례' 카테고리를 참고하여 리타겟팅 노하우를 함께 익혀보시길 바랍니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "80 Level에서 배포한 할로윈 Motion Capture 19종은 공포 게임이나 시네마틱 제작 시 반복되는 애니메이션 수작업 공수를 크게 줄여줍니다. 다운로드한 데이터를 Blender 또는 Maya, 3ds Max로 불러와 스켈레톤 구조를 확인한 후, Unreal Engine이나 Unity로 내보내어 즉시 활용할 수 있습니다. 특히 휴머노이드 릭을 사용하는 프로젝트라면 엔진 내 리타겟팅 툴을 통해 캐릭터 체형에 맞춰 모션을 빠르게 이식할 수 있어 단기 프로젝트나 게임 잼(Game Jam) 환경에 매우 적합합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 커뮤니티에서는 할로윈 시즌을 맞아 상업 광고나 단기 이벤트를 제작하려는 제작자들이 3D 아티스트를 급히 찾거나 직접 툴을 다루며 제작 효율을 높이는 방안을 활발히 논의하고 있습니다 [1]. 무료 에셋을 현업에 적용할 때는 제공처의 라이선스 범위를 반드시 확인해야 합니다. 또한 캐릭터의 체형 비율이나 뼈대 구조에 따라 관절 왜곡이 발생할 수 있으므로, Import 직후 루트(Root) 모션과 IK 세팅을 꼼꼼히 점검하는 과정이 필수적입니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "공포 콘셉트나 언데드 캐릭터 애니메이션 작업을 시작하려면 먼저 공식 경로를 통해 19종의 Motion Capture 데이터를 다운로드합니다. 그 후 평소 사용하는 3D DCC(Blender, Maya, 3ds Max 등)에서 에셋의 릭 구조를 파악하고, 게임 엔진으로 가져와 리타겟팅을 테스트해 보는 것이 좋습니다. 사이트 내 Blender 튜토리얼이나 게임 개발 사례 카테고리를 함께 참고하면 모션 이식 노하우를 더 빠르게 익힐 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +54,14 @@
     {
       "q": "상업용 게임이나 영상 제작에도 무료로 사용할 수 있나요?",
       "a": "제공처의 라이선스 정책에 따라 일반적으로 활용 가능하나, 배포처의 정확한 이용 약관을 다운로드 페이지에서 한 번 더 확인하는 것을 권장합니다."
+    },
+    {
+      "q": "다운로드한 할로윈 Motion Capture 에셋은 상업적 프로젝트에서도 쓸 수 있나요?",
+      "a": "네, 80 Level을 통해 무료로 배포된 이번 19종 에셋은 상업 및 비상업 프로젝트 모두 활용할 수 있습니다. 다만 사용 전 제공처의 라이선스 규정을 다시 한번 확인하는 것이 안전합니다."
+    },
+    {
+      "q": "모션 에셋을 가져왔을 때 캐릭터 체형에 맞지 않고 모션이 깨지면 어떻게 해야 하나요?",
+      "a": "캐릭터의 체형 비율 차이 때문에 모션이 왜곡될 수 있습니다. 엔진으로 임포트한 직후 루트(Root) 모션 설정과 IK(Inverse Kinematics) 세팅을 점검하고, 리타겟팅 툴의 바인딩 옵션을 조정하여 해결할 수 있습니다."
     }
   ],
   "media": {
@@ -48,5 +71,31 @@
   "collected_at": "2026-10-16T05:37:09.290345+00:00",
   "notion_id": "3fb94be3-beb5-81fe-af23-fb8c4b1425df",
   "id": "2026-10-16-68ef2ddfc85d136d",
-  "topic": "튜토리얼·팁"
+  "topic": "튜토리얼·팁",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "MAKING COMMERCIAL... NEED 3D ARTIST IMMEDIATE!",
+      "url": "https://blenderartists.org/t/making-commercial-need-3d-artist-immediate/345446",
+      "excerpt": "Hello, I am a promotions producer in Medford Oregon, and I am making a commercial for our Halloween event at the nearby mall. Though, I am teaching myself Blender, I am not ready to turn out a quick 10 second animation. However if you are… I have a script and storyboard &lt; insert later &gt; and th",
+      "replies": 35
+    }
+  ],
+  "videos": [
+    {
+      "id": "TmMIE-afIG4",
+      "title": "Blender Easy Beginner Tutorial | Halloween Jack-o-Lantern Modeling | Entire Process",
+      "author": "Contradiction Tech"
+    },
+    {
+      "id": "ehGKGoP2ZDg",
+      "title": "Halloween #blendertutorial #blender #blendergame #blender3dmodelling #blenderforbegginer #blender4",
+      "author": "Grant Abbitt (Gabbitt)"
+    }
+  ],
+  "enriched_at": "2026-10-26T05:39:36+00:00",
+  "quality": {
+    "before": 929,
+    "after": 1734
+  }
 }
