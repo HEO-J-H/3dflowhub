@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-opensubdiv-modifier-d716",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "OpenSubdiv modifier",
+  "title": "OpenSubdiv — 크리스 지원 서브디비전",
+  "summary": "OpenSubdiv 모디파이어는 폴리곤 모델의 면을 부드럽게 세분화하여 매끄러운 곡면을 만드는 산업 표준 서브디비전 표면 알고리즘입니다. Pixar의 기술을 기반으로 하여 고성능 GPU 가속을 지원합니다.",
+  "when": [
+    "캐릭터나 유기적 형태의 하드스페이스 모델링을 부드럽게 다듬을 때",
+    "로우 폴리곤 베이스 메쉬를 유지하면서 렌더링 시 고해상도 곡면을 얻고 싶을 때",
+    "CAD 데이터나 정밀한 기계 부품의 곡선을 매끄럽게 표현할 때"
+  ],
+  "steps": [
+    "Viewport에서 부드럽게 만들 3D 오브젝트를 선택합니다.",
+    "Command Panel의 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 OpenSubdiv를 선택합니다.",
+    "Subdivision Iterations 값을 조절하여 세분화 단계를 높입니다.",
+    "Crease나 Edge 데이터를 활용해 각진 부분을 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Subdivision Iterations",
+      "desc": "메쉬를 세분화하는 단계를 설정하여 곡면의 부드러움을 결정합니다."
+    },
+    {
+      "name": "Render Iterations",
+      "desc": "뷰포트와 별개로 렌더링 시에만 적용될 세분화 단계를 따로 지정합니다."
+    },
+    {
+      "name": "Isoline Display",
+      "desc": "와이어프레임 표시를 간소화하여 세분화된 메쉬를 보기 쉽게 만듭니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "오브젝트의 노멀 방향을 계산하여 부드러운 음영을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑 하드서페이스 제작",
+      "steps": [
+        "Box 오브젝트를 생성하고 Edit Poly 모디파이어를 적용합니다.",
+        "Edge 챔퍼를 이용해 각진 모서리에 루프 엣지를 추가합니다.",
+        "OpenSubdiv를 적용하고 Iterations를 2로 설정합니다."
+      ]
+    },
+    {
+      "title": "기계 부품 파이프 연결부",
+      "steps": [
+        "Cylinder 오브젝트를 만들고 Height Segments를 1로 설정합니다.",
+        "OpenSubdiv 모디파이어를 추가합니다.",
+        "절단면 주변에 Edge를 추가하여 파이프 끝단의 각진 정도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(Edges)가 너무 적은 상태에서 적용해 형태가 무너짐 → 모서리 주변에 Edge를 추가(Connect 또는 SwiftLoop)하여 형태를 유지합니다.",
+    "스케일 값이 틀어져 면이 울퉁불퉁해짐 → Utilities 탭에서 Reset XForm을 실행한 후 모디파이어를 다시 적용합니다."
+  ],
+  "related": [
+    "Turbosmooth",
+    "Edit Poly",
+    "Symmetry",
+    "Chamfer"
+  ],
+  "videos": [
+    {
+      "id": "UpBbEXkqeuw",
+      "title": "Tutorial: Using OpenSubdivs and Crease Sets in 3ds Max | The Best Way To Smooth Poly Models",
+      "author": "Adam Z - Learn Archviz"
+    },
+    {
+      "id": "0Qg-IP-Y42w",
+      "title": "Arrimus 3D - 3DS Max   Open Subdiv   Part 5 OpenSubdiv Workflow",
+      "author": "Arrimus 3D Archive"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20OpenSubdiv%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "OpenSubdiv"
+  ],
+  "at": "2026-10-26T14:02:14.050211+00:00"
+}
