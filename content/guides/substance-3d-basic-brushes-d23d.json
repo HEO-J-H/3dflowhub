@@ -1,0 +1,83 @@
+{
+  "id": "substance-3d-basic-brushes-d23d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "텍스처링",
+  "name": "Basic Brushes",
+  "title": "Substance Painter 기본 브러시 활용법",
+  "summary": "Substance 3D Painter의 Basic Brushes는 모델 표면에 색상, 질감, 마스크를 직접 그려 넣는 가장 기본적인 브러시 도구입니다. 디지털 캔버스에 그림을 그리듯 직관적으로 텍스처를 제작할 수 있습니다.",
+  "when": [
+    "하드 표면 모델의 모서리에 은은한 긁힘이나 마모 표현(Wear and Tear)을 넣을 때",
+    "캐릭터나 소품의 피부 톤, 먼지, 오염 등을 수동으로 자연스럽게 레이어링할 때",
+    "스마트 머티리얼 위에 디테일한 수작업 페인팅(Hand-painted look)을 얹을 때"
+  ],
+  "steps": [
+    "Texture Set List에서 페인팅할 머티리얼을 선택합니다.",
+    "Layers 탭에서 새 Paint Layer를 생성합니다.",
+    "Tool Bar에서 Brush 도구(단축키 B)를 선택합니다.",
+    "Properties - Paint 탭의 Alpha에서 원하는 브러시 형태를 선택합니다.",
+    "Properties - Paint 탭의 Material에서 채널(Color, Roughness, Height 등)을 켜고 끕니다.",
+    "Viewport 창에서 모델 위에 마우스를 드래그하여 페인팅을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Size",
+      "desc": "브러시의 전체 크기를 조절합니다 (단축키: Ctrl + 마우스 우클릭 드래그)."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 칠해지는 속도와 농도를 조절합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "브러시 스트로크의 최대 불투명도를 조절합니다."
+    },
+    {
+      "name": "Spacing",
+      "desc": "브러시 알파 도감이 찍히는 간격을 조절하여 선의 부드러움을 결정합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "브러시 알파 이미지의 회전 각도를 조절합니다."
+    },
+    {
+      "name": "Jitter",
+      "desc": "크기, 각도, 불투명도 등에 무작위성을 부여하여 자연스러운 질감을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 모서리 까짐 표현",
+      "steps": [
+        "새 Paint Layer를 만들고 Color와 Roughness 채널만 활성화합니다.",
+        "기본 Brush를 선택하고 밝은 회색과 낮은 Roughness 값을 설정합니다.",
+        "모델의 엣지(Edge) 부분을 가볍게 터치하여 철판이 드러난 효과를 그려냅니다."
+      ]
+    },
+    {
+      "title": "구석진 곳 먼지 쌓임 표현",
+      "steps": [
+        "새 Paint Layer를 만들고 어두운 베이지색의 Roughness가 높은 머티리얼을 세팅합니다.",
+        "Size를 줄이고 Flow를 낮춰 은은하게 칠할 준비를 합니다.",
+        "오브젝트의 홈이나 틈새 사이에 브러시를 드래그하여 먼지나 이물질이 낀 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 전체가 아닌 특정 부분에만 칠하고 싶지만 배경까지 칠해짐 → → Texture Set이 올바르게 선택되었는지 확인하고, 필요시 Geometry Mask나 Polygon Fill(단축키 4)을 활용해 영역을 제한하세요.",
+    "브러시 획이 끊기거나 점선처럼 찍힘 → → Properties 패널에서 Spacing 값을 낮추고 Flow와 Jitter 설정을 점검하세요.",
+    "높이(Height)나 거칠기(Roughness) 변화가 적용되지 않음 → → Properties - Paint 탭의 Material 섹션에서 해당 채널(H, R 등) 아이콘이 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Projection Tool",
+    "Particle Brushes",
+    "Smart Masks",
+    "Polygon Fill"
+  ],
+  "videos": [],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Basic%20Brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-26T03:18:59.481044+00:00"
+}
