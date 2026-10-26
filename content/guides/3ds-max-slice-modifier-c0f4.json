@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-slice-modifier-c0f4",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Slice modifier",
+  "title": "Slice — 평면으로 자르기",
+  "summary": "Slice modifier는 오브젝트를 평면 기준으로 잘라내거나 단면에 새로운 면을 생성하는 기능입니다. 칼로 케이크를 자르듯 빠르고 깔끔하게 형태를 분할합니다.",
+  "when": [
+    "복잡한 모델링의 특정 부분을 직선으로 잘라내야 할 때",
+    "오브젝트의 내부 구조를 보여주는 단면 뷰를 만들 때",
+    "하나의 오브젝트를 두 개 이상의 파트로 분리할 때"
+  ],
+  "steps": [
+    "Viewport에서 자르고 싶은 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Slice를 선택하여 적용합니다.",
+    "Gizmo 서브오브젝트 모드를 켜고 Move나 Rotate로 절단면의 위치와 각도를 조절합니다.",
+    "필요에 따라 Split 옵션을 체크하여 면을 실제로 분할합니다."
+  ],
+  "params": [
+    {
+      "name": "Slice Plane",
+      "desc": "절단면(Gizmo)을 활성화하거나 조작합니다."
+    },
+    {
+      "name": "Remove Top",
+      "desc": "절단면 위쪽의 지오메트리를 제거합니다."
+    },
+    {
+      "name": "Remove Bottom",
+      "desc": "절단면 아래쪽의 지오메트리를 제거합니다."
+    },
+    {
+      "name": "Split",
+      "desc": "절단면을 따라 폴리곤을 실제로 쪼개어 분리합니다."
+    },
+    {
+      "name": "Cap Cross Section",
+      "desc": "잘린 단면에 새로운 폴리곤 면을 채워 막아줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 단면 모형 제작",
+      "steps": [
+        "건물 실린더나 박스 오브젝트에 Slice modifier를 적용합니다.",
+        "Gizmo를 이동해 건물의 절반 위치에 단면을 맞춥니다.",
+        "Remove Top을 체크하여 상단을 날려내고 내부 구조가 보이게 만듭니다."
+      ]
+    },
+    {
+      "title": "오브젝트 반쪽 자르기",
+      "steps": [
+        "대칭 작업을 위해 오브젝트 중앙에 Slice Plane을 배치합니다.",
+        "Split 옵션을 켜서 오브젝트를 두 조각으로 나눕니다.",
+        "Edit Poly를 추가하여 한쪽 면을 지우고 Symmetry modifier를 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘린 면이 뻥 뚫려 보임 → Cap Cross Section 옵션을 체크하거나 Edit Poly에서 Cap 홀 메우기를 실행합니다.",
+    "오브젝트가 잘리지 않음 → Gizmo가 오브젝트 위치에 있는지 확인하고 Slice Plane이 올바른 방향을 향하는지 회전시킵니다."
+  ],
+  "related": [
+    "Symmetry",
+    "Edit Poly",
+    "Cut",
+    "QuickSlice"
+  ],
+  "videos": [
+    {
+      "id": "VLES-_GtkwA",
+      "title": "3ds Max tutorial - Slice Modifier",
+      "author": "MZONE3D"
+    },
+    {
+      "id": "LU_NG7VeEMQ",
+      "title": "Mastering the Slice Modifier in 3Ds Max #shorts #tips #3dsmax #slice",
+      "author": "Yurii Shevchyshyn"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Slice%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Slice"
+  ],
+  "at": "2026-10-26T15:07:57.252135+00:00"
+}
