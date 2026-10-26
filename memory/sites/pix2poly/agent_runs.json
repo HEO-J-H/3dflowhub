@@ -190,5 +190,17 @@
     "task": "[p-50a640e33a|콘텐츠] FlexPart 파트 기반 이미지→3D 엔진 도입: FlexPart을 선택 엔진으로 구현해 이미지 → 가변 입체 파트 생성 기능을 추가하고, 기존 TripoSR과 병행 선택 가능하도록 backend/app/services/flexpart_runner.py와 job 오케스트레이션에 옵션을 삽입",
     "result": "pending",
     "msg": "PR #11 승인 대기 (핵심 코드 변경 — GitHub 에서 확인 후 머지): https://github.com/HEO-J-H/Pix2Poly/pull/11"
+  },
+  {
+    "at": "2026-10-26T13:13:12+00:00",
+    "task": "[p-a8529c833e|사이트·UX] img2threejs 가이드 문서 블록 수정: docs/agent-guides/img2threejs.md 파일의 검색 블록을 현재 구현된 엔진 목록과 일치하도록 수정하고, 해당 섹션에 `available()` 함수와 GET /v1/engines 엔드포인트 설명을 추가한다.",
+    "result": "merged",
+    "msg": "PR #12 머지 완료"
+  },
+  {
+    "at": "2026-10-26T13:15:15+00:00",
+    "task": "[p-4bbef4f094|콘텐츠] 엔진 API 구현 및 테스트 추가: backend/app/services/engines.py에 `available() -> (bool, str)` 구현, FastAPI 라우터에 GET /v1/engines 추가, backend/tests/test_core.py에 정상/오류 케이스 테스트 작성 후 PR #1 생성·자동 머지",
+    "result": "held",
+    "msg": "[4] tests=False security=[] — 리뷰 생략"
   }
 ]
