@@ -2552,5 +2552,37 @@
     "id": "p-e38ccaa0c5",
     "verdict": "agent",
     "reason": "시뮬레이터 입력 예시 및 안내 문구 추가는 코드 수정과 콘텐츠 보강을 통해 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-10-26T13:41:15+00:00",
+    "kind": "proposal",
+    "id": "p-ddee247a97",
+    "title": "PR #11 FlexPart 파트 기반 엔진 최종 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "PR #11이 승인 대기 상태이며 FlexPart 파트 기반 이미지→3D 엔진 도입 코드가 작성되어 있습니다.",
+    "proposal": "GitHub에서 PR #11의 변경 사항을 최종 검토하고 머지하여 가변 입체 파트 생성 기능을 로컬 파이프라인에 반영합니다.",
+    "expected": "단일 이미지 기반의 파트별 3D 메쉬 생성 기능이 툴에 추가되어 생성 다양성이 높아집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/11",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-26T13:41:15+00:00",
+    "kind": "proposal",
+    "id": "p-2629fb6881",
+    "title": "img2threejs 엔진 연동 구현 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "과거 [guide:img2threejs] 1단계가 AI 일일 한도 소진 등으로 보류되었으나 문서 수정(PR #12)은 완료되었습니다.",
+    "proposal": "backend/app/services/engines.py에 available() 함수와 GET /v1/engines 엔드포인트를 구현하고 관련 테스트를 작성합니다.",
+    "expected": "사용 가능한 3D 엔진 목록을 API를 통해 정확히 파악하고 동적으로 처리할 수 있습니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
   }
 ]

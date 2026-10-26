@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-edit-mesh-modifier-af91",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Edit Mesh modifier",
+  "title": "Edit Mesh — 삼각면 기반 편집",
+  "summary": "Edit Mesh는 오브젝트의 버텍스, 폴리곤 등 하위 요소를 직접 편집하는 레거시 수정자입니다. 복잡한 토폴로지를 수동으로 제어하거나 구형 에셋을 다룰 때 사용합니다.",
+  "when": [
+    "구버전 3ds Max 파일이나 오래된 에셋을 수정해야 할 때",
+    "Edit Poly보다 가볍게 폴리곤 레벨의 세부 조정을 하고 싶을 때",
+    "MAXScript를 통한 자동화 작업에서 레거시 메시 구조가 필요할 때"
+  ],
+  "steps": [
+    "1. 3ds Max에서 편집할 오브젝트를 선택합니다.",
+    "2. Command Panel의 Modify 탭으로 이동합니다.",
+    "3. Modifier List에서 Edit Mesh를 찾아 적용합니다.",
+    "4. 수정자 목록의 더하기(+) 아이콘을 눌러 Sub-Object 레벨(Vertex, Edge, Face 등)을 엽니다.",
+    "5. 숫자 키 1~5를 사용하여 원하는 서브오브젝트 모드로 빠르게 전환합니다.",
+    "6. Move, Rotate, Scale 도구를 이용해 메시를 직접 편집합니다."
+  ],
+  "params": [
+    {
+      "name": "Ignore Backfacing",
+      "desc": "선택할 때 카메라 반대 방향의 뒷면 하위 요소는 제외합니다."
+    },
+    {
+      "name": "Show Normal",
+      "desc": "선택한 면의 법선(Normal) 방향을 화면에 시각적으로 표시합니다."
+    },
+    {
+      "name": "Extrude",
+      "desc": "선택한 면이나 엣지를 바깥쪽으로 돌출시킵니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "돌출과 동시에 외곽선을 넓히거나 줄여 모서리를 다듬습니다."
+    },
+    {
+      "name": "Slice Plane",
+      "desc": "가상의 단면 평선을 생성해 메시를 자르거나 Slice 작업을 수행합니다."
+    },
+    {
+      "name": "Weld",
+      "desc": "가까운 버텍스들을 지정한 임계값(Threshold) 내에서 하나로 합칩니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 오브젝트 형태 수정",
+      "steps": [
+        "1. 박스 오브젝트에 Edit Mesh 수정자를 적용합니다.",
+        "2. 숫자 1을 눌러 Vertex 레벨로 전환합니다.",
+        "3. Select and Move 툴로 특정 버텍스를 이동해 외형을 변형합니다."
+      ]
+    },
+    {
+      "title": "면 돌출을 통한 간단한 구조물 제작",
+      "steps": [
+        "1. 평면에 Edit Mesh를 적용하고 Face 레벨(숫자 4)로 진입합니다.",
+        "2. 원하는 면을 선택합니다.",
+        "3. Extrude 버튼을 활성화하고 마우스로 드래그하여 입체감을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Edit Poly와 혼동하여 최신 토폴로지 도구를 찾음 → Edit Mesh는 구형 구조이므로 최신 기능이 필요하면 Edit Poly를 사용하세요.",
+    "백페이징 선택 해제를 잊음 → Ignore Backfacing 옵션을 켜지 않아 뒷면의 불필요한 버텍스까지 함께 수정됩니다.",
+    "스택 순서 오류로 형태가 깨짐 → 수정자 스택에서 다른 수정자 아래에 위치해 의도치 않은 결과가 발생할 경우 스택 순서를 확인하세요."
+  ],
+  "related": [
+    "Edit Poly",
+    "Editable Mesh",
+    "Editable Poly",
+    "Modifier List"
+  ],
+  "videos": [
+    {
+      "id": "rBEM5qoIerY",
+      "title": "Quick Mesh Editing in 3ds Max: Master the Edit Mesh Modifier!",
+      "author": "Jake Denham"
+    },
+    {
+      "id": "u_chmTw6FSk",
+      "title": "How to Use Editable Mesh and Editable Poly in 3ds Max | Learn 3ds Max",
+      "author": "Pebbles Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Edit%20Mesh%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Edit Mesh"
+  ],
+  "at": "2026-10-26T13:41:31.513172+00:00"
+}
