@@ -10,6 +10,8 @@ import os
 import re
 from datetime import date, datetime, timezone
 
+from zoneinfo import ZoneInfo
+
 import requests
 
 import core
@@ -52,7 +54,7 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
             token_exp: date | None = None) -> list[dict]:
     """알림 목록 (급한 순). runs = GitHub Actions 실행 기록, last_run = memory 의 마지막 수집 기록."""
     cfg = cfg or core.load_config()
-    today = datetime.now(timezone.utc).astimezone().date()
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()  # 서버(UTC)가 아닌 한국 날짜
     out: list[dict] = []
 
     # 1) GitHub 토큰 만료

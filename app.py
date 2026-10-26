@@ -5,6 +5,7 @@ import json
 import os
 import threading
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import pandas as pd
@@ -12,6 +13,8 @@ import requests
 import streamlit as st
 
 import core
+
+KST = ZoneInfo("Asia/Seoul")  # Streamlit Cloud 서버는 UTC — 날짜·시각은 모두 한국 시간으로
 from growth import RISK_KO
 
 st.set_page_config(page_title="3dflowhub", page_icon="🧊", layout="wide")
@@ -285,7 +288,7 @@ def vbars(wide: pd.DataFrame, y_title: str, height: int = 220, line: pd.Series |
                                     tooltip=[alt.Tooltip("x:N", title="날짜"), alt.Tooltip("v:Q", title=line_title)])
         trend = base.mark_line(color="#f59e0b", strokeWidth=2.5) + base.mark_point(color="#f59e0b", filled=True, size=40)
         chart = alt.layer(chart, trend).resolve_scale(y="independent")
-    st.altair_chart(chart.properties(height=height), use_container_width=True)
+    st.altair_chart(chart.properties(height=height), width="stretch")
 
 
 def hbars(series: pd.Series, x_title: str = "", height: int = 300) -> None:
@@ -295,7 +298,7 @@ def hbars(series: pd.Series, x_title: str = "", height: int = 300) -> None:
                                x=alt.X("값:Q", title=x_title or None),
                                tooltip=["이름:N", alt.Tooltip("값:Q", title=x_title or "값")])
     chart = base.mark_bar(color="#4f8cff", cornerRadiusEnd=3) + base.mark_text(align="left", dx=4).encode(text="값:Q")
-    st.altair_chart(chart.properties(height=height), use_container_width=True)
+    st.altair_chart(chart.properties(height=height), width="stretch")
 
 import sites as _sites  # noqa: E402
 
@@ -384,14 +387,42 @@ def show_alerts() -> list[dict]:
     return items
 
 
+@st.cache_data(ttl=300)
+def remote_strategy() -> dict:
+    """GitHub 의 최신 strategy.json (5분 캐시 — 탭을 열 때마다 받지 않게)."""
+    return requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/strategy.json", timeout=10).json()
+
+
+def do_now_box() -> None:
+    """맨 위 '지금 내가 할 일' — 사람만 할 수 있는 일만 모아 한눈에 (없으면 한 줄)."""
+    try:
+        import manager
+        todo = manager.manual_todo()
+    except Exception:
+        todo = []
+    if not todo:
+        st.success("✅ 지금 직접 할 일이 없습니다 — AI 관리자가 처리 중")
+        return
+    with st.container(border=True):
+        st.markdown(f"**🙋 지금 내가 할 일 {len(todo)}건**")
+        for p in todo[:5]:
+            how = str(p.get("applied") or "").removeprefix("사람 할 일 — ")
+            site = _sites.SITES.get(p.get("site") or "3dflowhub", {}).get("name", "")
+            st.markdown(f"- {site} **{p['title']}**" + (f"<br><small>{how[:160]}</small>" if how else ""),
+                        unsafe_allow_html=True)
+        if len(todo) > 5:
+            st.caption(f"외 {len(todo) - 5}건 — 사이트 탭의 '직접 작업'에서 확인")
+
+
 # ─────────────────────────── 본문 ───────────────────────────
 st.title("큐레이션 현황판")
+do_now_box()
 alert_items = show_alerts()
 with st.sidebar:
     n_urgent = sum(a["level"] != "info" for a in alert_items)
     st.caption(f"🔔 알림 {len(alert_items)}개" + (f" · 확인 필요 {n_urgent}개" if n_urgent else ""))
 df = load_rows()
-today = datetime.now().strftime("%Y-%m-%d")
+today = datetime.now(KST).strftime("%Y-%m-%d")
 if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
@@ -405,7 +436,7 @@ with t_home:
         st.warning("아직 수집된 글이 없습니다.")
     else:
         day = df["수집일"].dt.strftime("%Y-%m-%d")
-        yday = (datetime.now() - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+        yday = (datetime.now(KST) - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
         n_today, n_yday = int((day == today).sum()), int((day == yday).sum())
         perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
         m = st.columns(5)
@@ -817,7 +848,7 @@ with t_auto:
 
     st.subheader("🧬 자율 진화 현황 (strategy.json)")
     try:
-        strat = requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/strategy.json", timeout=10).json()
+        strat = remote_strategy()
     except Exception:
         strat = core.load_strategy()
     s1, s2 = st.columns(2)
@@ -1040,7 +1071,7 @@ with t_rev:
         rule = {"M": "ME", "Q": "QE", "Y": "YE"}.get(freq, freq)
         agg = rev.pivot_table(index="date", columns="channel", values="revenue", aggfunc="sum").fillna(0)             .resample(rule).sum()
         agg.index = agg.index.to_period(freq).astype(str)
-        last30 = rev[rev["date"] >= pd.Timestamp(datetime.now().date()) - pd.Timedelta(days=30)]
+        last30 = rev[rev["date"] >= pd.Timestamp(datetime.now(KST).date()) - pd.Timedelta(days=30)]
         k = st.columns(4)
         k[0].metric("오늘 수익", f"{rev.loc[rev['date'] == pd.Timestamp(today), 'revenue'].sum():,.0f}원")
         k[1].metric(f"최근 {period[:-1]}", f"{agg.iloc[-1].sum():,.0f}원")
@@ -1102,11 +1133,11 @@ with t_set:
         k3.metric("하루 필요", f"≈{need_day:,.0f}회")
         if cfg.get("auto_mode"):
             st.success("🤖 자동 모드: AI 관리자가 남은 여력에 맞춰 수집량을 조절하므로 한도로 멈추지 않습니다")
-        elif cap >= need_day * (1 - (datetime.now().hour / 24)):
+        elif cap >= need_day * (1 - (datetime.now(KST).hour / 24)):
             st.success("남은 여력 안에서 오늘 계속 수집 가능")
         else:
             mins = int(cap // max(per_run, 1)) * iv
-            eta = (datetime.now() + pd.Timedelta(minutes=mins)).strftime("%H:%M")
+            eta = (datetime.now(KST) + pd.Timedelta(minutes=mins)).strftime("%H:%M")
             st.warning(f"약 {mins // 60}시간 {mins % 60}분 뒤(≈{eta}) 여력 소진 → {core.llm_reset_kst()} 리셋 후 재개")
         st.caption(f"리셋: 매일 미국 태평양 자정 = 한국 {core.llm_reset_kst()[-5:]} · 사용량은 이 PC + GitHub 합산")
 
