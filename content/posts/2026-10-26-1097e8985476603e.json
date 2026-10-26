@@ -32,6 +32,16 @@
     {
       "heading": "Rocky Moss와 Generic Moss 제작법",
       "body": "이끼가 낀 바위 머티리얼은 Tile Sampler로 이끼를 흩뿌리고 바위 베이스의 틈새(Cavity)를 이용해 마스킹을 적용했습니다. 바위 재질은 마치 샌드위치처럼 동일한 방향성과 조화로운 겹침을 유지하며 쌓아 올리는 것이 중요합니다. Generic Moss는 나뭇잎 형태를 단순화하여 블러 처리한 뒤, 블러 처리된 노멀 맵의 좌표를 이용해 흩뿌리는 방식으로 비교적 간단하게 제작되었습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Substance 3D Designer에서 Height Extrude 노드와 Multidirectional Warp 노드를 조합하면 바위나 지형의 틈새 질감을 수작업 스컬프팅 없이 빠르게 구현할 수 있습니다. 특히 복잡한 공책이나 타일 같은 프롭(Prop) 제작 시, 외부에서 제작한 2K 알파 소스나 Photoshop에서 만든 스크랩 도형을 Slope Blur 노드에 연결하여 회화적인 모서리 노후화 표현을 극대화할 수 있습니다. Unreal Engine으로 가져가기 전, Normal 노드와 Gradient Map을 활용해 타일의 그레이스케일을 자연스러운 노멀 맵 변화로 유도하는 워크플로우는 실무에서 반복 작업 시간을 크게 줄여줍니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이와 같은 스타일라이즈드 머티리얼 제작을 시작하려면 먼저 Substance 3D Designer의 핵심 노드인 Tile Sampler, Height Extrude, Slope Blur, Multidirectional Warp의 작동 방식을 익혀야 합니다. 외부 이미지를 활용해 알파를 추출하고 텍스처로 배치하는 파이프라인을 연습한 뒤, 완성된 텍스처를 Unreal Engine으로 내보내 실시간 렌더링 환경에서 머티리얼 Instance를 세팅하는 과정을 학습하는 것이 가장 효과적입니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +52,14 @@
     {
       "q": "스타일라이즈드 머티리얼에서 깊이감을 살리는 팁은 무엇인가요?",
       "a": "노멀 맵에만 의존하기보다는 Ambient Occlusion 노드를 활용해 기본 색상 단계에서부터 풍부한 톤 베리에이션과 깊이감을 만들어내는 것이 효과적입니다."
+    },
+    {
+      "q": "Substance 3D Designer에서 외부 이미지를 가져와 머티리얼에 활용할 때 주의할 점은 무엇인가요?",
+      "a": "Google Images 등에서 가져온 소스는 Photoshop 등에서 알파를 깔끔하게 추출하여 2K 텍스처로 정리한 뒤 입력해야 노드 연산 시 깨짐 현상을 방지할 수 있습니다."
+    },
+    {
+      "q": "이끼가 낀 바위 재질을 만들 때 마스킹은 어떻게 적용하나요?",
+      "a": "Tile Sampler로 이끼 형태를 흩뿌린 뒤, 바위 베이스의 틈새(Cavity) 데이터를 마스크로 활용해 자연스럽게 엉겨 붙는 위치를 지정하면 효과적입니다."
     }
   ],
   "media": {
@@ -50,5 +68,23 @@
   },
   "collected_at": "2026-10-26T11:30:13.590619+00:00",
   "notion_id": "",
-  "id": "2026-10-26-1097e8985476603e"
+  "id": "2026-10-26-1097e8985476603e",
+  "refs": [],
+  "videos": [
+    {
+      "id": "jctA81dNFaU",
+      "title": "Stylized Muddy Ground - Substance 3D Designer",
+      "author": "Wonder Store"
+    },
+    {
+      "id": "IHCNKdG6mEQ",
+      "title": "Creating a stylized filter - part 01 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "enriched_at": "2026-10-26T12:13:45+00:00",
+  "quality": {
+    "before": 966,
+    "after": 1596
+  }
 }
