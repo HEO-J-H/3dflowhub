@@ -1,0 +1,20 @@
+<!-- TITLE: RigPAPR 논문 공개 — 정적 신경 점군 애니메이션 기법 | TAGS: RigPAPR,Neural Point Clouds,LBS,애니메이션,3D 비전,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 단일 고정 시점 비디오로부터 정적 신경 점군(Neural Point Cloud)을 오토리지하고 직접 선형 블렌드 스킨닝(LBS)으로 구동하는 RigPAPR 연구 논문이 공개되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>연구 배경 및 문제 제기</h2>
+<p>정적 신경 점군 재구성은 포즈가 지정된 이미지로부터 높은 충실도로 피사체를 캡처합니다. 이러한 재구성 결과물을 활용해 단안 고정 시점 구동 비디오에 맞춰 애니메이션을 적용하고 재포즈 가능한 3D 에셋을 복원하는 것이 본 연구의 목표입니다. 기존 방법들은 직접 선형 블렌드 스킨닝(LBS)이나 메시 프록시를 통해 Gaussian Splat를 변형해 왔으나, 프리미티브별 보정이 있더라도 관절 경계 아티팩트에 취약했습니다.</p>
+<h2>아티팩트 발생 원인과 PAPR의 접근</h2>
+<p>기존 방법의 아티팩트는 각 Splat가 정준 포즈(canonical pose)에서 이웃과 타일링되도록 보정된 개별 형태를 지니기 때문입니다. LBS 하에서는 Splat가 이동, 회전, 크기 조절은 가능하지만 휨(bending) 변형이 불가능하여 관절 경계에서 캐노니컬 타일링이 깨집니다. 반면 근접 어텐션 점 랜더링(PAPR)은 프리미티브별 형태를 가지지 않고 렌더링 시점에 변형된 Primitive 위치로부터 각 픽셀을 재구성하여 표면이 관절과 함께 자연스럽게 재형성되도록 합니다.</p>
+<h2>RigPAPR 시스템의 특징</h2>
+<p>RigPAPR은 카테고리 템플릿이나 포즈 종속 보정 네트워크 없이도 단일 고정 시점 비디오로부터 정적 PAPR 점군을 오토리지하고 직접 LBS로 구동합니다. 이 방식은 복잡한 추가 학습 네트워크 없이 효율적으로 정적 3D 데이터를 애니메이션 가능한 에셋으로 변환할 수 있습니다. 특히 관절 부근에서 발생하는 왜곡을 최소화하여 시각적으로 깔끔한 결과를 도출합니다.</p>
+<h2>성능 및 벤치마크 결과</h2>
+<p>RigPAPR은 감독된 시점(supervised view)에서 가장 강력한 베이스라인과 경쟁할 만한 성능을 보입니다. 신규 시점(novel views)에서는 합성 피사체에서 약 3dB PSNR, 실제 세계 피사체에서 약 2dB 향상된 성능을 기록했습니다. 무엇보다 관절 경계 렌더링이 기존 Splatting 및 메시 기반 베이스라인들에 비해 훨씬 깔끔하다는 장점이 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 Gaussian Splatting이나 메시 프록시 기반의 아티큘레이션 방식은 관절 경계에서 형태가 깨지는 고질적인 아티팩트가 발생했습니다. 반면 PAPR(Proximity Attention Point Rendering) 방식은 Primitive 고유의 형태를 유지하지 않고 렌더링 시점에 픽셀을 재구성하므로 관절 굽힘 시 표면이 자연스럽게 재형성됩니다. 캐릭터 애니메이션 파이프라인이나 단일 영상 기반 리깅 자동화 연구를 진행하는 실무자라면 기존 Splatting의 한계를 극복하는 대안적 표현 방식으로 주목해 볼 만합니다. 카테고리 템플릿이나 포즈 종속 보정 네트워크 없이도 뛰어난 신규 시점 렌더링 품질을 보여주어 향후 실사 기반 캐릭터 디지털 휴먼 제작 효율을 높이는 데 기여할 것입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. RigPAPR은 어떤 입력 데이터를 기반으로 작동하나요?</b><br/>A. 피사체의 정적 신경 점군 재구성 결과물과 해당 피사체의 단안 고정 시점 구동 비디오를 입력으로 사용합니다.</p>
+<p><b>Q. 기존 Gaussian Splatting 기반 변형 방식과 어떤 차이가 있나요?</b><br/>A. 기존 방식은 관절 굽힘 시 Splat 형태의 한계로 인해 관절 경계가 깨지는 아티팩트가 발생하지만, RigPAPR은 렌더링 시점에 픽셀을 재구성하는 PAPR 방식을 사용하여 표면이 관절과 함께 자연스럽게 재형성됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-23-3d28070910ebac7d.html">Gaussian Splatting 자연어 분할 연구 R4DGS 논문 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-23-1d8418a7f9babb75.html">Gaussian Splatting 연구 자동화 시스템 SplatLab 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-23-1ee770fc776e9fe6.html">Gaussian Splatting 뇌 수술 표면 재구성 — H-2DGS 기술</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2606.06685" target="_blank" rel="noopener nofollow">RigPAPR: Rig-Based Animation of Static Neural Point Clouds from a Fixed-Viewpoint Video</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
