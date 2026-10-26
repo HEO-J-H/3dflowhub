@@ -1,0 +1,51 @@
+{
+  "id": "ab54d31e1f",
+  "domain": "AI 3D",
+  "category": "AI 텍스처·렌더링",
+  "host": "Maya",
+  "lang": "python",
+  "title": "Maya AI 텍스처·메시 데이터 정리 파이프라인 Script",
+  "problem": "외부 AI 도구와 플러그인(Veras 등)에서 생성된 데이터를 가져올 때 발생하는 스케일 왜곡과 불필요한 노드를 정리합니다. Maya 실무 작업자가 로컬 파일을 안전하게 불러와 즉시 편집 가능한 상태로 만듭니다.",
+  "pipeline": [
+    {
+      "tool": "File Import",
+      "action": "로컬 3D 파일(FBX/OBJ)을 씬으로 불러옵니다."
+    },
+    {
+      "tool": "Transform Reset",
+      "action": "선택된 메시의 Freeze Transformations와 History 삭제를 수행합니다."
+    },
+    {
+      "tool": "Material Setup",
+      "action": "기본 Standard Surface Shader를 생성하고 메시에 할당합니다."
+    },
+    {
+      "tool": "Batch Export",
+      "action": "정리된 에셋을 최적화된 로컬 경로로 내보냅니다."
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_ai_mesh_pipeline(*args):\n    selected_meshes = cmds.ls(selection=True, long=True)\n    if not selected_meshes:\n        cmds.warning(\"정리할 메시를 선택해주세요.\")\n        return\n    \n    for mesh in selected_meshes:\n        # Freeze transformations safely using standard flags\n        cmds.makeIdentity(mesh, apply=True, translate=True, rotate=True, scale=True, normal=0)\n        # Delete construction history\n        cmds.delete(mesh, constructionHistory=True)\n    \n    # Create a clean standard surface shader\n    shader = cmds.shadingNode(\"aiStandardSurface\", asShader=True, name=\"AI_Clean_Shader_SG_Mat\")\n    sg = cmds.sets(renderable=True, noSurfaceShader=True, empty=True, name=\"AI_Clean_Shader_SG\")\n    cmds.connectAttr(shader + \".outColor\", sg + \".surfaceShader\", force=True)\n    \n    # Assign shader to selected meshes\n    cmds.sets(selected_meshes, edit=True, forceElement=sg)\n    print(\"AI 메시 정리가 완료되었습니다.\")\n\ndef show_ui():\n    window_name = \"AITexturePipelineWin\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name)\n    \n    cmds.window(window_name, title=\"Maya AI Mesh Pipeline\", widthHeight=(300, 120))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=[\"both\", 10])\n    \n    cmds.text(label=\"AI 생성 메시 정리 및 셰이더 할당 도구\", align=\"center\")\n    cmds.button(label=\"메시 정리 및 표준 셰이더 적용\", command=clean_ai_mesh_pipeline)\n    cmds.button(label=\"닫기\", command=lambda *args: cmds.deleteUI(window_name))\n    \n    cmds.showWindow(window_name)\n\nshow_ui()",
+  "install": [
+    "Maya를 실행하고 Script Editor를 엽니다.",
+    "Python 탭에 위 Script를 붙여넣습니다.",
+    "Script를 실행하여 UI 창을 띄웁니다."
+  ],
+  "usage": [
+    "정리할 3D 메시 오브젝트를 뷰포트에서 선택합니다.",
+    "UI 창의 '메시 정리 및 표준 Shader 적용' 버튼을 누릅니다.",
+    "트랜스포메이션이 초기화되고 히스토리가 삭제된 것을 확인합니다."
+  ],
+  "limits": [
+    "네트워크 통신이나 외부 AI API 호출 기능은 포함되어 있지 않습니다.",
+    "로컬에 저장된 표준 3D 포맷(FBX/OBJ 등) 파일만 대상으로 합니다.",
+    "복잡한 리토폴로지나 수동 UV 편집 작업은 지원하지 않습니다."
+  ],
+  "sources": [
+    "2026-10-19-bee01cb90f7139d7",
+    "2026-10-16-fa8993cde7b7b297",
+    "2026-10-15-489a584d3d7808d1"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-26T15:40:15+00:00"
+}

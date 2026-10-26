@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-cap-holes-modifier-c829",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Cap Holes modifier",
+  "title": "Cap Holes — 구멍 막기",
+  "summary": "Cap Holes 모디파이어는 3ds Max에서 열려 있는 폴리곤 메시의 구멍을 자동으로 막아 면을 생성해 주는 필수 도구입니다. 구멍의 경계선을 감지하여 삼각형 또는 다각형 면으로 깔끔하게 메워줍니다.",
+  "when": [
+    "외곽선(Border)이 열려 있는 실린더나 튜브 형태의 끝부분을 막을 때",
+    "CAD 데이터나 외부에서 가져온 헐거워진 모델링의 구멍을 빠르게 메울 때",
+    "Extrude 등으로 뚫린 단면을 막아서 솔리드(Solid) 모델로 만들 때"
+  ],
+  "steps": [
+    "구멍을 막을 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Cap Holes를 선택합니다.",
+    "필요에 따라 생성된 면의 삼각형 분할 방식을 옵션에서 조정합니다.",
+    "결과를 확인한 후 필요시 Edit Poly 등을 추가하여 후가공합니다."
+  ],
+  "params": [
+    {
+      "name": "Smooth New Faces",
+      "desc": "새로 생성된 면에 스무딩 그룹을 적용하여 부드럽게 만듭니다."
+    },
+    {
+      "name": "Select New Faces",
+      "desc": "구멍이 막히면서 새로 생성된 면들을 자동으로 선택 상태로 유지합니다."
+    },
+    {
+      "name": "All Triangles",
+      "desc": "생성된 면을 모두 삼각형(Triangle) 구조로 분할합니다."
+    },
+    {
+      "name": "Lattice",
+      "desc": "구멍을 막는 대신 격자 구조의 와이어프레임 형태로 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 끝단 막기",
+      "steps": [
+        "Cylinder 오브젝트를 생성하고 Height Segments를 올립니다.",
+        "Editable Poly로 변환 후 한쪽 끝의 Polygon 면들을 삭제하여 구멍을 냅니다.",
+        "Modifier List에서 Cap Holes를 적용해 구멍을 막습니다."
+      ]
+    },
+    {
+      "title": "단순 상자 모서리 구멍 메우기",
+      "steps": [
+        "Box 모델에서 일부 면을 지워 빈 공간을 만듭니다.",
+        "Cap Holes 모디파이어를 적용하여 열린 경계면을 메웁니다.",
+        "Smooth New Faces 옵션을 켜서 주변 면과 부드럽게 이어지게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구멍이 깨끗하게 막히지 않고 면이 꼬임 → 경계선(Border)의 버텍스가 겹쳐 있거나 꼬여 있는지 Check 후 Weld 실행",
+    "모디파이어가 작용하지 않음 → 오픈된 엣지가 두 개 이상이거나 넌매니폴드(Non-manifold) 구조인지 확인 후 수정"
+  ],
+  "related": [
+    "Edit Poly",
+    "Bridge",
+    "Cap (Poly)",
+    "Hole Filler"
+  ],
+  "videos": [
+    {
+      "id": "gk4XWXfgJ9Y",
+      "title": "3ds Max Tutorial - Cap Holes Modifier",
+      "author": "eternal3lade"
+    },
+    {
+      "id": "XoaL_gbEOv4",
+      "title": "Cap Holes Modifier in Autodesk 3Ds Max - Beginner Tutorial",
+      "author": "Stereopixol"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Cap%20Holes%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Cap Holes"
+  ],
+  "at": "2026-10-26T15:34:26.930111+00:00"
+}
