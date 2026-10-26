@@ -556,6 +556,9 @@ def llm_day() -> str:
 def llm_quota_status() -> dict:
     """{'exhausted': bool, 'at_count': 소진 시점 호출 수, 'learned_limit': 최근 관측된 실제 한도}"""
     q = _load_json(LLM_QUOTA_PATH, {})
+    # "_void": 잘못 기록된 날(분당 제한 오인) — 병합이 키 삭제를 되살리므로 지우지 않고 무효 목록으로 표시
+    void = set(q.get("_void") or [])
+    q = {d: n for d, n in q.items() if not d.startswith("_") and d not in void}
     hits = [v for v in q.values() if isinstance(v, int) and v > 0]
     return {"exhausted": llm_day() in q, "at_count": q.get(llm_day()),
             "learned_limit": min(hits[-7:]) if hits else None}
