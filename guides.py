@@ -147,7 +147,15 @@ CATALOG: list[tuple[str, str, str, str, str | None]] = [
     ("Blender", "기본 조작", "Clip Start and End", "뷰포트 클리핑 — 가까이 가면 잘릴 때", BL + "editors/3dview/sidebar.html"),
 ]
 
+# 도구마다 100개 이상 — 확장 주제 (영문 이름이 이미 있으면 제외)
+import guide_catalog  # noqa: E402
+
+_have = {(t[0], t[2].lower()) for t in CATALOG}
+CATALOG += [t for t in guide_catalog.topics() if (t[0], t[2].lower()) not in _have]
+
 DOC_SEARCH = {
+    "Blender": "https://docs.blender.org/manual/en/latest/search.html?q={q}",
+    "Houdini": "https://www.sidefx.com/search/?q={q}",
     "3ds Max": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query={q}",
     "Maya": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query={q}",
     "Unreal Engine": "https://dev.epicgames.com/community/search?query={q}",
@@ -324,7 +332,17 @@ def extra_topics() -> list[tuple]:
 
 def pending() -> list[tuple]:
     have = {p.stem for p in GUIDE_DIR.glob("*.json")} if GUIDE_DIR.exists() else set()
-    return [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
+    todo = [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
+    # 도구별로 번갈아 (한 도구만 몰아서 쓰지 않게) — 도구 안에서는 목록 순서 유지
+    by_tool: dict[str, list] = {}
+    for t in todo:
+        by_tool.setdefault(t[0], []).append(t)
+    out = []
+    while any(by_tool.values()):
+        for q in by_tool.values():
+            if q:
+                out.append(q.pop(0))
+    return out
 
 
 def write_guides(max_new: int = 2, gate: bool = True) -> list[str]:
