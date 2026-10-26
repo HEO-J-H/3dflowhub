@@ -1,0 +1,78 @@
+{
+  "id": "3ds-max-push-modifier-699a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Push modifier",
+  "title": "Push — 표면을 노멀 방향으로 부풀리기",
+  "summary": "메쉬의 법선(Normal) 방향을 따라 전체 면을 균일하게 부풀리거나 수축시키는 모디파이어입니다. 풍선처럼 볼륨감을 더할 때 유용합니다.",
+  "when": [
+    "캐릭터나 소품에 둥글고 귀여운 볼륨감을 줄 때",
+    "의상이나 갑옷의 두께감을 표현할 때",
+    "단순한 지오메트리를 자연스럽게 부풀려 유기적인 형태로 만들 때"
+  ],
+  "steps": [
+    "Viewport에서 볼륨을 조절할 3D 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List 드롭다운 메뉴를 엽니다.",
+    "Push를 찾아 선택하여 모디파이어를 적용합니다.",
+    "Parameters 롤아웃의 Push Value 값을 조절하여 부풀리는 정도를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Push Value",
+      "desc": "법선 방향으로 이동하는 거리와 방향(양수: 팽창, 음수: 수축)을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저예산 캐릭터 풍선 효과",
+      "steps": [
+        "캐릭터 메쉬를 선택합니다.",
+        "Modifier List에서 Push를 적용합니다.",
+        "Push Value를 높여 전신을 둥글게 만듭니다."
+      ]
+    },
+    {
+      "title": "로우폴리곤 쿠션 제작",
+      "steps": [
+        "Plane 오브젝트에 적당한 세그먼트를 주고 생성합니다.",
+        "Push 모디파이어를 추가합니다.",
+        "Push Value 값을 조절해 쿠션의 엠보싱 볼륨을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트가 너무 적은 경우 → 면이 찢어지거나 각이 져 보이므로 TurboSmooth나 Tessellate로 세그먼트를 늘린 후 적용합니다.",
+    "스케일 값이 왜곡된 경우 → 오브젝트 크기가 균일하지 않으면 한쪽만 쏠려 부풀려지므로 Utilities 탭에서 Reset XForm을 먼저 실행합니다."
+  ],
+  "related": [
+    "Spherify",
+    "TurboSmooth",
+    "Displace",
+    "Inflate"
+  ],
+  "videos": [
+    {
+      "id": "1CLmE5aFbO4",
+      "title": "Create the \"Push Effect\" in 3ds Max!",
+      "author": "Mesh Mastery"
+    },
+    {
+      "id": "8wPxdaSgHlc",
+      "title": "Making Objects Inflate In 3ds Max (The Push Modifier)",
+      "author": "James Abell"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Push%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Push"
+  ],
+  "at": "2026-10-26T14:24:24.542541+00:00"
+}

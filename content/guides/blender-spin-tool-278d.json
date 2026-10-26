@@ -1,0 +1,97 @@
+{
+  "id": "blender-spin-tool-278d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Spin tool",
+  "title": "Spin — 회전시켜 면 만들기",
+  "summary": "선택한 지오메트리를 지정한 축과 각도를 기준으로 회전(Revolve)시키며 새로운 면을 연속으로 생성하는 도구입니다. 팟이나 컵, 나선형 계단처럼 축 중심의 대칭 구조나 회전체를 만들 때 유용합니다.",
+  "when": [
+    "와인잔이나 항아리처럼 축을 기준으로 회전하는 대칭형 모델링을 만들 때",
+    "파이프나 손잡이 등 곡선 형태로 뻗어나가는 구조물을 만들 때",
+    "나선형 계단이나 스프링처럼 회전과 높이 변화가 동시에 필요한 형태를 만들 때"
+  ],
+  "steps": [
+    "1. 3D Viewport에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "2. Spin 도구로 회전시킬 기준점(Pivot Point)에 3D Cursor를 배치합니다 (Shift + S).",
+    "3. 도구 모음(Toolbar)에서 Spin 도구를 선택하거나 Alt + R 단축키를 누릅니다.",
+    "4. Viewport에 나타난 핸들과 파란색(또는 해당 축) 아크를 드래그하여 회전시킵니다.",
+    "5. 화면 왼쪽 아래의 F9(Adjust Last Operation) 패널을 열어 Angle과 Steps 세부 값을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Steps",
+      "desc": "회전 경로를 따라 생성될 세그먼트(면)의 개수를 설정합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "회전할 총 각도를 도(degree) 단위로 지정합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "회전의 기준이 될 축(X, Y, Z 또는 View)을 선택합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "회전 중심점의 좌표를 수치로 직접 입력하여 정밀하게 맞춥니다."
+    },
+    {
+      "name": "Use Dupli",
+      "desc": "면을 이어 붙이지 않고 선택한 요소를 복제해서 회전 배치합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "와인잔 형태 만들기",
+      "steps": [
+        "1. 정면 뷰(Numpad 1)에서 Edge 하나만 남기고 Vertices를 정리합니다.",
+        "2. 3D Cursor를 잔의 중앙 축에 배치합니다.",
+        "3. Edit Mode에서 Edge를 전체 선택 후 Alt + R로 Spin을 실행합니다.",
+        "4. Angle을 360도로 설정하여 완전한 원형 컵 모델을 완성합니다."
+      ]
+    },
+    {
+      "title": "곡선 파이프 만들기",
+      "steps": [
+        "1. 파이프 단면의 링 모형을 준비하고 Edit Mode에서 모두 선택합니다.",
+        "2. 회전 중심이 될 위치로 3D Cursor를 옮깁니다.",
+        "3. Alt + R을 누르고 Z축 기준으로 90도 회전시킵니다.",
+        "4. Steps 값을 높여 부드러운 곡선 파이프 형태로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "회전 중심이 잘못 지정됨 → 3D Cursor의 위치를 정확히 맞춘 뒤 Pivot Point를 3D Cursor로 설정하고 다시 시도하세요.",
+    "오브젝트 모드에서 실행함 → Spin 도구는 Edit Mode에서만 활성화되므로 Tab 키로 모드를 전환하세요.",
+    "면이 안쪽으로 뒤집혀 어둡게 나옴 → Spin 직후 Alt + N을 누르고 Recalculate Outside를 실행하여 법선을 정돈하세요."
+  ],
+  "related": [
+    "Spin Duplicate",
+    "Screw",
+    "Extrude",
+    "Mirror"
+  ],
+  "videos": [
+    {
+      "id": "klyAQYBNH6E",
+      "title": "How to Use The Spin Tool in Blender",
+      "author": "Lane Wallace"
+    },
+    {
+      "id": "LVHuhclIcB8",
+      "title": "How to Use the Spin Tool in Blender",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Spin%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D Viewport",
+    "Edit Mode",
+    "Spin",
+    "Pivot Point",
+    "D Cursor"
+  ],
+  "at": "2026-10-26T14:24:40.440277+00:00"
+}
