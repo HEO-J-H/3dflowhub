@@ -26,4 +26,6 @@
 - [x] (agent) core.ensure_minimum_content_depth(): 요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록하는 함수 추가 및 테스트 추가 (재시도)
 - [x] (agent) evolve.summarize_error_trends(): 최근 실행 오류(RUN_ERRORS)의 빈도를 도메인별·유형별로 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가 (재시도)
 - [x] (agent) [p-f19c2078ea|현황판] 현황판 모바일 하단 내비게이션 바 고정: Streamlit 앱 상단 또는 하단에 주요 탭(오늘, 글 목록, 설정)으로 즉시 이동할 수 있는 고정 퀵 내비게이션을 추가합니다.
-- [ ] (agent) [p-06e6d51551|콘텐츠] 가이드 콘텐츠 AI 할당 비중 확대: AI 할당 비중을 news 0.25, guides 0.5, roundups 0.25 로 재조정해 가이드 제작에 충분한 AI 용량을 확보합니다.
+- [ ] (agent:보류) [p-06e6d51551|콘텐츠] 가이드 콘텐츠 AI 할당 비중 확대: AI 할당 비중을 news 0.25, guides 0.5, roundups 0.25 로 재조정해 가이드 제작에 충분한 AI 용량을 확보합니다. — [4] 패치 적용 실패: ['수정 불가 파일: manager.py', 'tests/test_agent_tasks.py: search 블록이 정확
+- [x] (agent) [p-775d7093ae|수집] 한국 3D 커뮤니티 및 소스 수집 강화: 국내 3D 실무 및 커뮤니티 트렌드를 반영할 수 있도록 한국어 3D 정보 소스를 우선적으로 수집 목록에 보강합니다.
+- [ ] (agent) [p-c9ea239e63|운영·비용] 뉴스레터 구독 칸이 '찾을 수 없음'으로 실패: Buttondown 계정 'hjh2720' 공개 페이지가 없음(404). buttondown.com 로그인 → Settings → Basics 의 Username 을 확인하고, 가입 확인 메일 인증 → 현황판 설정 ③ 뉴스레터 칸에 그 이름 입력

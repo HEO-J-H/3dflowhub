@@ -177,6 +177,13 @@ def test_mobile_quick_nav_html_present():
     assert "bottom: 0;" in content
 
 
+def test_korean_3d_sources_boosted():
+    import core
+    dcc_seeds = core.DOMAINS["3D DCC"]["seeds"]
+    assert "블렌더" in dcc_seeds
+    assert any("arxiv.org" in f or "rss" in f for f in core.DOMAINS["3D DCC"]["feeds"])
+
+
 def test_block_marker_leak_rejected(tmp_path, monkeypatch):
     monkeypatch.setattr(agents, "ROOT", tmp_path)
     (tmp_path / "t.py").write_text("a = 1\n", encoding="utf-8")
