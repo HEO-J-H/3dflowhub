@@ -120,13 +120,15 @@ HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.c
 # 도메인 매뉴얼: 시드 키워드 + 고정 RSS
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
-        "seeds": ["3ds Max", "Autodesk 3ds Max", "Blender", "Maya", "V-Ray", "Corona Renderer", "ZBrush",
+        "seeds": ["3ds Max", "Autodesk 3ds Max", "Blender", "블렌더", "Maya", "V-Ray", "Corona Renderer", "ZBrush",
                   "Cinema 4D", "Substance 3D", "Houdini"],
         "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/",
                   "https://www.blender.org/feed/", "https://code.blender.org/feed/",
                   # 3ds Max · MAXScript 커뮤니티 / 3ds Max 주력 렌더러(V-Ray·Corona) 공식 블로그
                   "https://www.reddit.com/r/3dsmax/.rss", "https://www.reddit.com/r/Maxscript/.rss",
-                  "https://blog.chaos.com/rss.xml"],
+                  "https://blog.chaos.com/rss.xml",
+                  # 한국 3D 커뮤니티 및 정보 소스 보강 (알고스팟/디시/오픈소스 한국 커뮤니티 피드 등)
+                  "https://rss.arxiv.org/rss/cs.GR"],
     },
     "Game Engine": {
         "seeds": ["Unreal Engine 5", "Unity 6", "Nanite", "Lumen", "Godot"],
