@@ -1,0 +1,87 @@
+{
+  "id": "blender-extrude-along-normals-22bc",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extrude along normals",
+  "title": "Extrude Along Normals — 노멀 방향 돌출",
+  "summary": "Blender의 Extrude along Normals은 선택한 면들이 각자 지닌 법선(Normal) 방향으로 돌출되는 기능입니다. 뾰족한 가시를 만들거나 두께감이 있는 장갑을 제작할 때 유용합니다.",
+  "when": [
+    "동일한 평면이 아닌 여러 방향으로 향한 면들을 각각의 법선 방향으로 동시에 돌출시킬 때",
+    "건물 외벽에 창틀이나 입체적인 장식 패널을 균일한 두께로 뽑아낼 때",
+    "캐릭터의 갑옷이나 기계 표면에 돋아난 돌기, 스파이크 구조를 만들 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Face Selection 모드(숫자 3 키)로 전환한 뒤, 돌출시킬 면들을 마우스로 선택합니다.",
+    "상단 메뉴에서 Mesh > Extrude > Extrude Faces Along Normals를 클릭하거나, Alt+E 단축키를 누릅니다.",
+    "팝업 메뉴에서 Extrude Faces Along Normals를 선택합니다.",
+    "마우스를 드래그하여 돌출 거리를 조절하고, 필요하면 화면 좌측 하단의 조절 패널에서 세부 옵션을 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Offset",
+      "desc": "선택한 면들이 각 법선 방향으로 이동하는 거리와 두께를 조절합니다."
+    },
+    {
+      "name": "Corrective Perpendicular",
+      "desc": "돌출 시 모서리나 왜곡을 보정하여 직각 형태를 유지하도록 돕습니다."
+    },
+    {
+      "name": "Offset Even",
+      "desc": "복잡한 각도에서 면의 두께가 균일하게 유지되도록 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SF 장갑판 패널라인 제작",
+      "steps": [
+        "큐브를 생성하고 Edit Mode로 진입합니다.",
+        "원하는 면들을 여러 개 선택합니다.",
+        "Alt+E를 누르고 Extrude Faces Along Normals를 실행하여 안쪽으로 살짝 밀어 넣습니다."
+      ]
+    },
+    {
+      "title": "고슴도치 가시 스파이크 만들기",
+      "steps": [
+        "구체(UV Sphere)를 생성하고 Edit Mode로 전환합니다.",
+        "전체 면을 선택한 후 Alt+E > Extrude Faces Along Normals를 실행합니다.",
+        "마우스를 바깥쪽으로 드래그하여 뾰족한 돌기를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 1.0이 아닌 상태에서 사용 시 돌출 두께가 비정상적으로 됨 → Object Mode에서 Ctrl+A > Scale을 적용한 뒤 다시 시도합니다.",
+    "법선(Normal) 방향이 뒤집혀 안쪽으로 돌출됨 → Shift+N을 눌러 Normal을 재계산합니다."
+  ],
+  "related": [
+    "Extrude Region",
+    "Inset",
+    "Bevel",
+    "Solidify"
+  ],
+  "videos": [
+    {
+      "id": "bq_MMuRh7yc",
+      "title": "How to Extrude along Normal or Individual faces | Blender Tutorial",
+      "author": "Himel 356"
+    },
+    {
+      "id": "ZkcU4w1xtZg",
+      "title": "How to extrude along normals in Blender",
+      "author": "blenderian"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Extrude%20along%20normals",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Face Selection",
+    "Mesh",
+    "Extrude",
+    "Extrude Faces Along Normals"
+  ],
+  "at": "2026-10-27T00:05:20.664188+00:00"
+}

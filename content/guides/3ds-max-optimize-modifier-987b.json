@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-optimize-modifier-987b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Optimize modifier",
+  "title": "Optimize — 평면 부분 폴리곤 줄이기",
+  "summary": "Optimize modifier는 3D 모델의 외형을 유지하면서 폴리곤(삼각형) 개수를 줄여주는 기능입니다. 복잡한 고해상도 모델의 용량을 줄이고 뷰포트 성능을 최적화할 때 사용합니다.",
+  "when": [
+    "스캔 데이터나 고폴리곤 소스를 게임 엔진으로 가져가기 전 폴리곤 수를 줄여야 할 때",
+    "원거리 배경(LOD)용 오브젝트의 디테일과 용량을 낮춰야 할 때",
+    "불필요하게 면이 촘촘한 CAD 데이터를 가볍게 정리해야 할 때"
+  ],
+  "steps": [
+    "1. 폴리곤을 줄일 3D 오브젝트를 선택합니다.",
+    "2. Command Panel에서 Modify 탭으로 이동합니다.",
+    "3. Modifier List 드롭다운을 엽니다.",
+    "4. 목록에서 Optimize를 찾아 클릭해 적용합니다.",
+    "5. Parameters rollout에서 Face Thresh와 Edge Thresh 값을 조절하여 폴리곤을 줄입니다."
+  ],
+  "params": [
+    {
+      "name": "Face Thresh",
+      "desc": "인접한 면들의 각도 차이를 기준으로 병합할 면을 결정합니다. 값이 클수록 면이 많이 줄어듭니다."
+    },
+    {
+      "name": "Edge Thresh",
+      "desc": "엣지 부근의 디테일을 유지하며 폴리곤을 줄이는 기준을 설정합니다."
+    },
+    {
+      "name": "Bias",
+      "desc": "면의 형태를 유지하는 정도를 조절하여 특정 영역의 디테일을 보존합니다."
+    },
+    {
+      "name": "Auto Edge",
+      "desc": "자동으로 엣지를 감지하여 경계선이 무너지지 않도록 보호합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "서로 다른 머티리얼 ID가 만나는 경계면이 유지되도록 설정합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "면이 줄어들면서 발생하는 스무스 그룹의 충돌과 어색한 Shading을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하이폴리곤 스캔 오브젝트 경량화",
+      "steps": [
+        "1. 고해상도 스캔 모델을 선택합니다.",
+        "2. Modifier List에서 Optimize를 적용합니다.",
+        "3. Face Thresh 값을 높여가며 실루엣이 유지되는 선에서 폴리곤 수를 대폭 낮춥니다."
+      ]
+    },
+    {
+      "title": "배경용 프랍(Prop) 최적화",
+      "steps": [
+        "1. 원거리 배치용 의자 모델을 선택합니다.",
+        "2. Optimize를 적용한 뒤 Auto Edge를 켜서 외곽선 각도가 깨지지 않도록 보호합니다.",
+        "3. 뷰포트에서 폴리곤 수가 줄어든 것을 확인하고 에디트 상태를 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤이 너무 과도하게 줄어들어 실루엣이 찌그러짐 → Face Thresh 값을 낮추고 Edge Thresh를 조절하여 외곽선 디테일을 복원합니다.",
+    "적용 후 렌더링 시 면이 깨져 보임 → 스무스 그룹(Smooth) 옵션이나 Auto Edge 설정을 재조정합니다."
+  ],
+  "related": [
+    "ProOptimizer",
+    "MultiRes",
+    "TurboSmooth",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "f5A2NfREM3Q",
+      "title": "3ds Max | ProOptimizer Modifier | 020",
+      "author": "Naing Aung"
+    },
+    {
+      "id": "hEHm5T-_l-Y",
+      "title": "Reducing the polygons and size of 3ds max block (ProOptimizer)",
+      "author": "5d studio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Optimize%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Optimize"
+  ],
+  "at": "2026-10-27T00:05:17.100663+00:00"
+}

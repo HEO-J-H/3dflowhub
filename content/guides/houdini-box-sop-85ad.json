@@ -1,0 +1,92 @@
+{
+  "id": "houdini-box-sop-85ad",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Box SOP",
+  "title": "Box — 상자 만들기",
+  "summary": "Houdini에서 3차원 정육면체 또는 직육면체 기본 지오메트리를 생성하는 가장 기본적인 SOP 노드입니다. 모든 프로시이저럴 모델링의 시작점으로 활용됩니다.",
+  "when": [
+    "프로시이저럴 건물, 가구, 상자 등의 기본 형태(Blockout)를 만들 때",
+    "Particle 에미터나 시뮬레이션의 스폰 영역(Bounding Box)을 정의할 때",
+    "다른 노드에 전달할 기본 폴리곤 메쉬가 필요할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 빈 공간을 마우스 우클릭하거나 Tab 키를 누릅니다.",
+    "검색창에 Box를 입력하고 Enter를 눌러 Box SOP 노드를 생성합니다.",
+    "Box 노드를 더블클릭하여 지오메트리 내부로 들어가거나, 디스플레이 플래그(파란색 네모)를 켜서 뷰포트에서 결과를 확인합니다.",
+    "파라미터 창(Parameters)에서 Size와 Center 값을 조절해 크기와 위치를 변경합니다.",
+    "Divisions 값을 높여 메쉬의 디테일과 세그먼트를 추가합니다."
+  ],
+  "params": [
+    {
+      "name": "Primitive Type",
+      "desc": "생성할 지오메트리의 형태를 Polygons, Mesh, NURBS 등으로 설정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "X, Y, Z 축 방향의 박스 전체 크기를 결정합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "박스의 중심점 위치를 좌표계 기준으로 조절합니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "각 축 방향으로 폴리곤을 나눌 세그먼트 개수를 설정합니다."
+    },
+    {
+      "name": "BBox Output",
+      "desc": "바운딩 박스 관련 추가 어트리뷰트나 출력을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 블록아웃(Blockout) 만들기",
+      "steps": [
+        "Box SOP 노드를 생성하고 Size를 (10, 20, 10)으로 설정합니다.",
+        "Transform SOP 노드를 연결하여 건물의 위치를 배치합니다.",
+        "Copy to Points SOP 노드와 연결하여 대규모 도시 블록을 구성합니다."
+      ]
+    },
+    {
+      "title": "시뮬레이션 콜라이더(Collider) 생성",
+      "steps": [
+        "Box SOP 노드를 생성하여 장애물 크기에 맞게 Size를 조절합니다.",
+        "VDB From Polygons SOP 노드를 연결하여 SDF 볼륨으로 변환합니다.",
+        "FLIP Fluid SOP 또는 Pyro SOP의 Collision 입력에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 디포머가 꺾이지 않음 → Divisions 값을 높여 폴리곤 분할을 늘려 해결합니다.",
+    "피벗 위치가 마음에 안 듦 → Center 파라미터를 조절하거나 Transform SOP를 연결하여 피벗을 재설정합니다."
+  ],
+  "related": [
+    "Sphere SOP",
+    "Grid SOP",
+    "Tube SOP",
+    "Transform SOP"
+  ],
+  "videos": [
+    {
+      "id": "U0qm3_ZtRSY",
+      "title": "How to solve the Houdini puzzle box! (in detail)",
+      "author": "Poison4600"
+    },
+    {
+      "id": "a1aTt_2Aag8",
+      "title": "The Houdini Workflow You NEED to Learn: SOPs to COPs to Karma",
+      "author": "bubblepins"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Box%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Box",
+    "Box SOP"
+  ],
+  "at": "2026-10-27T00:05:24.579086+00:00"
+}
