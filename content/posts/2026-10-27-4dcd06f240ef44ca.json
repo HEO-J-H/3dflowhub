@@ -22,14 +22,51 @@
     {
       "heading": "Global Performance Tuner 소개",
       "body": "TensorRT 11.1에 새롭게 추가된 Global Performance Tuner는 사용자 정의 빌드 경로를 제공해 해결책 공간을 크게 확장합니다. 각 후보 엔진은 최종 정확도와 성능을 동시에 검증받으며, 가장 빠른 허용 가능한 엔진이 자동으로 선택됩니다. 이 기능은 기존의 고정된 빌드 파이프라인을 대체해 다양한 모델과 배포 환경에 유연하게 대응합니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1) 모델을 ONNX 혹은 TensorFlow SavedModel 형식으로 변환합니다. 2) Python 혹은 C++에서 TRTBuilder 객체를 생성하고, `builder.set_flag(trt.BuilderFlag.GLOBAL_PERF_TUNER)` 를 호출해 Global Performance Tuner를 활성화합니다. 3) `IBuilderConfig` 에 정확도 제한(예: `set_flag(trt.BuilderFlag.FP16)` 혹은 `set_flag(trt.BuilderFlag.INT8)`)과 목표 지연시간/처리량을 지정합니다. 4) `builder.build_engine_with_config(network, config)` 를 호출하면 튜너가 여러 빌드 경로를 자동 탐색해 각 후보 엔진을 실행해 정확도와 성능을 동시에 검증합니다. 5) 검증을 통과한 가장 빠른 엔진이 반환되면 `engine.serialize()` 로 파일에 저장하고, `runtime.deserialize_cuda_engine()` 로 로드해 추론에 사용합니다. 6) 추론 단계에서 `IExecutionContext.set_profiler()` 로 프로파일링 정보를 수집해 실제 배포 환경에서 목표를 만족하는지 확인합니다. 이 흐름을 스크립트화하면 모델마다 별도 튜닝 파라미터를 손쉽게 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "TensorRT 11.1의 Global Performance Tuner는 NVIDIA GPU에 최적화된 전용 자동 튜닝 엔진으로, FP16·INT8 양자화와 CUDA 커널 선택을 동시에 고려합니다. ONNX Runtime은 `ORTTrainer` 와 `AutoGraph` 로 일부 연산을 최적화하지만 하드웨어 종속성이 낮아 NVIDIA 전용 최적화 수준이 다소 낮습니다. OpenVINO의 Performance Advisor는 Intel 하드웨어에 특화된 튜닝을 제공하고, TVM의 AutoScheduler는 다양한 백엔드에 적용 가능하지만 설정이 복잡하고 튜닝 시간도 길어집니다. 따라서 NVIDIA GPU를 주로 사용하는 3D AI Pipeline는 TensorRT 튜너가 가장 빠른 엔진을 자동 선택해 배포 비용을 최소화합니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Global Performance Tuner는 언제 사용해야 하나요?",
+      "a": "모델마다 최적의 연산 스케줄링이 다르고, 기존 고정 빌드 파이프라인으로는 목표 정확도와 지연시간을 동시에 만족시키기 어려운 경우에 사용합니다. 특히 FP16·INT8 혼합 정밀도와 메모리 배치를 최적화하고 싶을 때 유용합니다."
+    },
+    {
+      "q": "튜너가 선택한 엔진의 정확도를 어떻게 검증하나요?",
+      "a": "튜너는 각 후보 엔진을 실행해 지정된 정확도 기준(예: Top‑1 > 99%)을 자동 검증합니다. 사용자는 `IExecutionContext` 로 추론 결과를 받아 자체 검증 Script를 추가해 최종 배포 전 정확도를 재확인할 수 있습니다."
+    }
+  ],
   "media": {
     "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/desktop-computer-overlay.webp",
     "video": ""
   },
   "collected_at": "2026-10-27T03:53:03.223471+00:00",
   "notion_id": "",
-  "id": "2026-10-27-4dcd06f240ef44ca"
+  "id": "2026-10-27-4dcd06f240ef44ca",
+  "refs": [],
+  "videos": [
+    {
+      "id": "UnIuMXGylfY",
+      "title": "Inference Optimization with NVIDIA TensorRT",
+      "author": "NCSAatIllinois"
+    },
+    {
+      "id": "TU5BMU6iYZ0",
+      "title": "Getting Started with NVIDIA Torch-TensorRT",
+      "author": "NVIDIA Developer"
+    }
+  ],
+  "enriched_at": "2026-10-27T04:15:24+00:00",
+  "quality": {
+    "before": 475,
+    "after": 1555
+  }
 }

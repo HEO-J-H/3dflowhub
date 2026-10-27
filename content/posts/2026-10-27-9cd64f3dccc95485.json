@@ -1,0 +1,40 @@
+{
+  "title_ko": "Gaussian Splatting — 동적 4D 적응 Bézier 스플라인",
+  "title": "GaussianSpline: Adaptive B\\'ezier Splines for Highly Dynamic 4D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2610.35224",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "GaussianSpline",
+    "Bézier spline",
+    "4D Gaussian splatting",
+    "동적 장면",
+    "Neural 3D Video"
+  ],
+  "summary": "GaussianSpline은 각 Gaussian을 위한 비균일 Bézier 스플라인으로 4D Gaussian Splatting의 동적 표현을 크게 향상시킨다.",
+  "insight": "동적인 장면에서 기존의 전역 변형이나 고정 차수 다항식은 움직임을 충분히 포착하지 못했지만, GaussianSpline은 가우시안마다 시간 구간을 자동으로 조절해 복잡한 움직임을 정밀하게 재현한다. 한국의 실시간 렌더링 파이프라인에 적용한다면, 특히 AR/VR 콘텐츠 제작 시 급격히 변하는 객체를 저렴한 메모리 비용으로 처리할 수 있다. 연구 결과는 Neural 3D Video와 Google Immersive 데이터셋에서 기존 4D Gaussian Splatting 대비 재구성 품질이 크게 개선된 것으로 나타났다. 다만, Bézier 제어점 학습과 구간 최적화가 추가 연산을 요구하므로, GPU 메모리와 연산량을 충분히 고려한 구현이 필요하다. 4D 동적 씬을 다루는 연구자·엔지니어, 그리고 고품질 실시간 VFX를 목표로 하는 스튜디오가 주목할 만한 기술이다.",
+  "sections": [
+    {
+      "heading": "핵심 아이디어",
+      "body": "GaussianSpline은 각 Gaussian의 움직임을 비균일하게 나뉜 다중 Bézier 스플라인으로 모델링한다. 기존 방법이 전체 씬에 동일한 시간 파라미터를 적용하던 것과 달리, 이 방식은 동적이 강한 영역에 더 많은 시간 구간을 할당한다. 이를 통해 정적 영역은 간결하게, 급변 영역은 세밀하게 표현한다."
+    },
+    {
+      "heading": "적응형 Bézier 스플라인 설계",
+      "body": "각 Gaussian은 제어점과 함께 자체적인 시간 구간을 학습한다. 비균일 Parameterization 덕분에 스플라인 길이가 자동으로 조정되어, 복잡한 움직임을 과도한 파라미터 없이도 캡처한다. 제어점과 구간 경계는 전역 최적화 과정에서 동시에 업데이트된다."
+    },
+    {
+      "heading": "연속성 보장 (G¹ 연속)",
+      "body": "연속적인 Bézier 세그먼트 사이에 G¹ 연속성을 강제하기 위해, 인접 세그먼트의 제어점을 반사 기반 제약으로 연결한다. 이 제약은 완전 미분 가능성을 유지하면서도 스플라인의 부드러운 전이를 보장한다. 결과적으로 움직임이 급격히 변해도 시각적 끊김이 최소화된다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T04:13:30.948826+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-9cd64f3dccc95485",
+  "enriched_at": "skip"
+}
