@@ -31,6 +31,16 @@
     {
       "heading": "커뮤니티 협업과 향후 개발 방향",
       "body": "이번 워크숍에는 Molecular Nodes 애드온 개발자인 브래디 존스톤(Brady Johnston)과 카르테시안 카라멜(Cartesian Caramel) 등 외부 전문가들이 초청되어 다양한 의견을 나눴습니다. Geometry Nodes는 컬렉션의 하위 객체에 접근하는 기능이나 사운드 주파수를 통한 애니메이션 제어 등 실무에 유용한 기능들을 지속적으로 흡수하고 있습니다. 개발팀은 앞으로도 복잡한 에셋의 모듈화와 사용자 경험 개선에 초점을 맞추어 개발을 이어갈 예정입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Geometry Nodes 5.1에서 추가된 볼륨 그리드 유틸리티 노드와 푸아송 솔버를 활용해 대용량 Particle 시뮬레이션을 만든다. 1) 새 Geometry Nodes 에디터를 열고 Volume Grid → Sample Volume 노드를 배치한다. 2) 푸아송 솔버 노드와 Grid to Point 노드를 연결해 입자를 배포한다. 3) 모달 노드 툴을 사용해 인터랙티브하게 입자 흐름을 조정한다(키 입력·펜 압력 지원). 4) 클로스·헤어 시뮬레이션 그룹에 베이크 버튼을 노드 내부에 노출시켜 한 번에 캐시한다. 이렇게 하면 별도 Python Script 없이도 복잡한 시뮬레이션 파이프라인을 완성할 수 있다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "커뮤니티에서는 새 기능을 활용한 다양한 실험이 공유되고 있다. BlenderArtists의 ‘Banana Tree’ Post에서는 볼륨 그리드와 모달 툴을 이용해 나뭇잎 움직임을 실시간으로 제어한 사례가 소개되며, 인터랙티브 툴의 반응성이 높다고 평가했다[1]. ‘Eyelashes’ 예제는 Geometry Nodes와 Curve Deform Modifier를 결합해 섬세한 속눈썹을 만들었으며, 베이크 UI가 없을 때는 노드 그룹 내부에서 수동으로 캐시해야 하는 불편함을 지적했다[2]. 또한 ‘Curve‑To‑Mesh Even‑Thickness’ 스레드에서는 최신 토폴로지 노드가 기존 노드보다 간결하게 두께 제어를 가능하게 해 작업 시간을 크게 단축시켰다고 언급한다[3]. 다만 모달 툴은 아직 실험 단계이므로 복잡한 프로젝트에 적용하기 전 작은 테스트 씬에서 안정성을 확인하는 것이 권장된다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "Geometry Nodes 베이크 기능은 어떻게 개선되나요?",
       "a": "기존에 노드 내부 깊숙이 숨겨져 있던 베이크 버튼과 관련 설정을 노드 그룹 및 모디파이어 UI에 직접 노출하여 사용성을 대폭 개선할 예정입니다."
+    },
+    {
+      "q": "모달 노드 툴을 사용하려면 별도 애드온이 필요한가?",
+      "a": "아니요. Blender 5.1부터 실험 기능으로 기본에 포함돼 있어 Preferences → Experimental에서 활성화하면 바로 사용할 수 있습니다."
+    },
+    {
+      "q": "베이크 버튼이 노드 그룹 내부에 보이지 않을 때는 어떻게 해야 하나요?",
+      "a": "Preferences → Experimental에서 ‘Bake UI Exposure’를 켜면 그룹 노드와 모디파이어 UI 모두에 베이크 버튼이 나타납니다. 그래도 안 보이면 해당 노드 그룹을 최신 버전으로 업데이트하거나, 베이크 전용 Modifier를 임시로 사용하면 됩니다."
     }
   ],
   "media": {
@@ -50,5 +68,45 @@
   "collected_at": "2026-10-15T19:36:00.000+00:00",
   "notion_id": "3fa94be3-beb5-81e2-85dd-d8311f1cd5e7",
   "id": "2026-10-15-ce7b4fb63f03345a",
-  "topic": "업계 소식"
+  "topic": "업계 소식",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Banana Tree - Blender Geometry Nodes",
+      "url": "https://blenderartists.org/t/banana-tree-blender-geometry-nodes/1480011",
+      "excerpt": "...guys again!!), added some options BananaV4 V5: My lastest version, with many options and animation BananaV5 Here is the video of nodes Banana Tree - Blender Geometry Nodes https://www.youtube.com/watch Banana Tree - Blender Geometry Nodes Hope you guys like it and have a nice day! Update: V6: I c",
+      "replies": 71
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "Eyelashes with the help of Geometry Node | Blender 3.1+",
+      "url": "https://blenderartists.org/t/eyelashes-with-the-help-of-geometry-node-blender-3-1/1381898",
+      "excerpt": "eyelash video_Thumbnail_02 /uploads/default/original/4X/5/8/6/58649a73fbc3de3e15604ea17bd0bf75e8c9d10e.mp4 Eyelashes. generated using Blender’s Geometry Node and controlled using Curve Deform Modifier for Blender version 3.1 or above. Download the Eyelashe’s .blend file for FREE by visiting one o...",
+      "replies": 33
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "Curve-To-Mesh with Even-Thickness Node-Group (Geometry Nodes, Blender 3.0)",
+      "url": "https://blenderartists.org/t/curve-to-mesh-with-even-thickness-node-group-geometry-nodes-blender-3-0/1359406",
+      "excerpt": "UPDATE! Much simplified with new topology nodes in version 3.4! /uploads/short-url/hWYreqGxHI6FkaAvi6g9D9tumZc.blend Curve-To-Mesh Even-Thickness(3.4)(1).blend (123.6 KB) Old Version (3.0) /uploads/short-url/qRxVwcOjPObIOBrr3k718ZxL05Q.blend Curve-To-Mesh Even-Thickness (Blender 3.0).blend (115.1...",
+      "replies": 28
+    }
+  ],
+  "videos": [
+    {
+      "id": "aO0eUnu0hO0",
+      "title": "Blender Tutorial: Geometry Nodes for Beginners - Part 1",
+      "author": "Blender Guru"
+    },
+    {
+      "id": "5cNXFqQzoOs",
+      "title": "Blender Geometry Nodes - How to Create Procedural Wicker",
+      "author": "Syn"
+    }
+  ],
+  "enriched_at": "2026-10-27T03:04:24+00:00",
+  "quality": {
+    "before": 1004,
+    "after": 1797
+  }
 }

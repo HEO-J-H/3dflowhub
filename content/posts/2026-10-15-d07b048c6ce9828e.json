@@ -35,6 +35,21 @@
     {
       "heading": "렌더링 파이프라인과 내부 코드 현대화",
       "body": "Clément Foucault는 그래픽 API 간의 파편화와 코드 중복을 해결하기 위해 도입 중인 맞춤형 셰이딩 언어 BSL의 아키텍처 진화를 설명했습니다. 아울러 Bastien Montagne은 ID 관리 리팩토링 사례를 통해 코드 및 소프트웨어 아키텍처 품질 향상을 위한 리팩토링의 중요성을 강조했습니다. 저수준의 GPU 최적화와 모듈화는 장기적으로 소프트웨어의 안정성을 높여줍니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Android용 Blender 데모 APK를 다운로드하고 기기에 설치합니다. USB 디버깅을 활성화한 뒤, Blender Desktop에서 File → Export → Android Package를 선택해 .blend 파일을 모바일에 전송합니다. 모바일에서 Blender를 실행해 터치 인터페이스로 모델링·텍스처링을 진행하고, 작업이 끝나면 File → Export → FBX/GLTF로 내보냅니다. OpenPBR 머티리얼을 적용하려면 Edit → Preferences → Add‑ons에서 \"OpenPBR\"을 활성화하고, Material → Add → OpenPBR → Principled를 선택합니다. 파라미터(roughness, metallic 등)를 실시간 뷰포트에서 조정해 다른 엔진과의 호환성을 확인합니다. Geometry Nodes 물리 시뮬레이션은 Geometry Nodes 에디터에서 \"Physics\" 카테고리 노드를 추가하고, Force, Collision, Solver 등을 연결해 시뮬레이션 트리를 구성합니다. 시뮬레이션을 Bake한 뒤, 결과를 Alembic으로 Export하면 다른 툴에서도 재사용할 수 있어 파이프라인에 바로 통합할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 포럼에서는 BCON26 발표 영상이 빠르게 공유되며 큰 관심을 받고 있습니다[1]. 다만 일부 사용자는 유튜브 임베드 방식이 불편하다고 지적했으며, 발표된 기능이 아직 베타 단계라 실제 프로젝트에 바로 적용하기엔 안정성 검증이 필요하다는 의견이 많았습니다. 특히 Android 포팅과 OpenPBR은 초기 빌드이므로, 버그 리포트와 피드백을 적극적으로 제공하는 것이 향후 개선에 도움이 됩니다. 커뮤니티는 새로운 물리 노드에 대한 튜토리얼을 요청하고 있어, 공식 문서가 업데이트될 때까지는 실험적인 워크플로우를 테스트 환경에서만 사용하는 것이 안전합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "1) 최신 Blender 4.x(Stable) 버전을 설치합니다. 2) Android 개발 환경을 준비하려면 Android Studio와 SDK Platform‑Tools를 설치하고, \"Enable USB debugging\"을 활성화합니다. 3) BCON26 발표 페이지에서 제공된 Demo APK와 OpenPBR Add‑on ZIP 파일을 다운로드합니다. 4) Blender → Preferences → Add‑ons에서 OpenPBR ZIP을 설치하고, \"Experimental Features\" 옵션을 켜서 Geometry Nodes 물리 노드를 활성화합니다. 5) 공식 BCON26 영상(YouTube)과 BlenderArtists 토론[1]을 참고해 각 기능의 사용법을 단계별로 학습합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +60,14 @@
     {
       "q": "OpenPBR 도입의 주된 목적은 무엇인가요?",
       "a": "OpenPBR은 서로 다른 애플리케이션 간에 일관된 머티리얼 외형을 유지하고 팀 간 협업을 원활하게 만들기 위해 도입되는 Blender의 차세대 표면 셰이딩 모델입니다."
+    },
+    {
+      "q": "Android에서 Blender를 사용하려면 최소 사양이 어떻게 되나요?",
+      "a": "Android 8.0(API 26) 이상, 4 GB RAM, OpenGL ES 3.2를 지원하는 GPU가 필요합니다. 복잡한 씬을 다룰 경우 6 GB 이상 메모리를 권장합니다."
+    },
+    {
+      "q": "기존 프로젝트에 OpenPBR 머티리얼을 적용하려면 어떤 절차가 필요한가요?",
+      "a": "프로젝트의 기존 머티리얼을 선택하고 Material → Convert → OpenPBR → Principled로 변환합니다. 이후 OpenPBR 파라미터를 조정해 외형을 맞추고, Viewport Shading을 \"Material Preview\"로 설정해 실시간 확인합니다."
     }
   ],
   "media": {
@@ -54,5 +77,31 @@
   "collected_at": "2026-10-15T19:36:00.000+00:00",
   "notion_id": "3fa94be3-beb5-8162-9abb-eb0920af944c",
   "id": "2026-10-15-d07b048c6ce9828e",
-  "topic": "업계 소식"
+  "topic": "업계 소식",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Blender 2026 Conference talks are dropping now",
+      "url": "https://blenderartists.org/t/blender-2026-conference-talks-are-dropping-now/1653467",
+      "excerpt": "Nobody cares which are my favorites. (Why on earth would they?) But I like to watch it all with a minimum of youtube-assholery in my face (i.e. embedded here). Wednesday, 23rd September 26 Keynote — Francesco Siddi Keynote — BCON26 https://www.youtube.com/watch Keynote — BCON26 Blendrooms | From ...",
+      "replies": 15
+    }
+  ],
+  "videos": [
+    {
+      "id": "76mdnsDFJz0",
+      "title": "OpenPBR: Road to Expressive and Interoperable Material Models — BCON26",
+      "author": "Blender"
+    },
+    {
+      "id": "8hMflOZVbSs",
+      "title": "Controlling Physics With Geometry Nodes — BCON26",
+      "author": "Blender"
+    }
+  ],
+  "enriched_at": "2026-10-27T03:03:48+00:00",
+  "quality": {
+    "before": 1055,
+    "after": 2371
+  }
 }
