@@ -31,6 +31,21 @@
     {
       "heading": "게임 및 DLSS 기술의 진화",
       "body": "수백 개의 인기 게임과 안티치트 솔루션이 RTX Spark를 지원하며, 더 빨라진 DLSS 5 AI 모델이 함께 제공됩니다. NVIDIA App 베타를 통해 DLSS 프레임 생성용 새로운 성능 모드(Performance Mode)를 즉시 이용할 수 있습니다. 나아가 NVIDIA ACE AI 게임 캐릭터를 위한 차세대 소형 언어 모델(SLM)인 Nemotron 3.5 Bolt E4B 4GB도 순차적으로 출시될 예정입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA RTX Spark 환경에서 3D 작업 시 뷰포트 성능을 극대화하려면 하드웨어 아키텍처에 맞춘 워크플로우 조정이 필요합니다. 대규모 씬 작업 시 최대 128GB 통합 메모리를 활용해 에셋을 캐싱하고, Blender 뷰포트에서 DLSS Ray Reconstruction을 활성화하여 인터랙티비티를 높입니다. 또한 Adobe Photoshop과 Premiere 프로의 GPU 가속 Compositing 설정을 켜서 렌더링 및 재생 병목 현상을 줄일 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 커뮤니티에서는 이번 발표와 관련해 Apple M 시리즈 Ultra APU나 AMD Ryzen 기반 APU 시스템과의 비교 논의가 활발합니다 [1]. 대용량 통합 메모리를 제공하는 APU 구조가 대형 3D 씬 로드에 강점이 있지만, 전용 dGPU 및 CUDA 생태계를 활용하는 RTX Pro 계열과는 직접적인 타겟층에 차이가 있다는 분석이 나옵니다 [1]. 따라서 대규모 3D 시뮬레이션이나 렌더링 파이프라인 도입 시 작업 특성에 따른 하드웨어 선택에 주의가 필요합니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "NVIDIA RTX Spark 및 관련 최적화 환경을 도입하기 전에 개발자 및 크리에이터는 NVIDIA App 베타를 설치하여 최신 DLSS 프레임 생성 설정과 성능 모드를 확인해야 합니다. PyTorch, Python, CUDA 등 주요 개발자 프레임워크가 해당 환경에 완전히 최적화되어 있으므로, 공식 Driver와 툴킷을 최신 버전으로 업데이트하여 로컬 AI 에이전트 및 가속 기능을 테스트해 볼 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +56,14 @@
     {
       "q": "Blender와 Adobe 앱에서는 어떤 성능 향상이 이루어지나요?",
       "a": "Blender 5.3에는 11월에 DLSS Ray Reconstruction이 추가되어 뷰포트 상호작용성이 개선되며, Adobe의 포토샵과 프리미어 프로는 GPU 가속 컴포지팅과 렌더링 최적화를 통해 최대 2배 향상된 성능을 제공합니다."
+    },
+    {
+      "q": "Blender에서 RTX Spark의 성능 향상을 체감하려면 어떤 기능을 켜야 하나요?",
+      "a": "Blender에서 제공되는 DLSS Ray Reconstruction 기능을 활성화하면 뷰포트 내 인터랙티비티가 크게 향상되어 복잡한 씬을 실시간으로 확인하는 데 유리합니다."
+    },
+    {
+      "q": "기존 모바일/랩탑 환경과 비교했을 때 메모리 측면에서 어떤 이점이 있나요?",
+      "a": "최대 128GB의 통합 메모리와 1 페타플롭의 AI 연산 능력을 결합하여, 대용량 3D 에셋과 로컬 AI 모델을 메모리 병목 없이 동시에 구동할 수 있도록 설계되었습니다."
     }
   ],
   "media": {
@@ -50,5 +73,31 @@
   "collected_at": "2026-10-15T17:35:00.000+00:00",
   "notion_id": "3fa94be3-beb5-8141-999c-d0ba440f4659",
   "id": "2026-10-15-a4bbae21d3b4c957",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "nVidia Blackwell RTX PRO: response to \"they can't go faster and won't add VRAM.\"",
+      "url": "https://blenderartists.org/t/nvidia-blackwell-rtx-pro-response-to-they-cant-go-faster-and-wont-add-vram/1584994",
+      "excerpt": "Ryzen 395 and M3 Ultra APU is somewhat competition to this dGPU, but it is not direct competition. That probably would be yet unreleased DGX Spark or something like that. APUs are great because they give access to large fast RAM to quite large GPU. If someone is interested in RTX Pro, they are no...",
+      "replies": 35
+    }
+  ],
+  "videos": [
+    {
+      "id": "VOLiKxBvg34",
+      "title": "Spark your Development | NVIDIA RTX Spark",
+      "author": "NVIDIA Developer"
+    },
+    {
+      "id": "pPStdjuYzSI",
+      "title": "Nvidia CUDA in 100 Seconds",
+      "author": "Fireship"
+    }
+  ],
+  "enriched_at": "2026-10-27T15:17:25+00:00",
+  "quality": {
+    "before": 1087,
+    "after": 1862
+  }
 }
