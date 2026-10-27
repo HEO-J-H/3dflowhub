@@ -1,0 +1,32 @@
+{
+  "title_ko": "CVTSplat: 적응형 Voronoi 멀티뷰 재구성 – GPU 5배 가속",
+  "title": "CVTSplat: Multi-view Reconstruction Using an Adaptive Centroidal Voronoi Tessellation",
+  "url": "https://arxiv.org/abs/2610.35347",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "CVTSplat",
+    "Voronoi",
+    "멀티뷰 재구성",
+    "GPU 가속",
+    "DTU",
+    "BlendedMVS"
+  ],
+  "summary": "CVTSplat은 적응형 Centroidal Voronoi Tessellation을 이용해 멀티뷰 이미지에서 빠르고 정확한 3D 재구성을 구현한 최신 연구이다.",
+  "insight": "멀티뷰 재구성을 GPU에서 실시간에 가깝게 수행하고 싶다면 CVTSplat의 접근법을 검토해볼 가치가 있다. 기존 Gaussian‑splatting 방식은 셀 형태가 불규칙해 연산 비용이 높았지만, CVTSplat은 셀 크기를 signed distance field에 따라 조절해 거의 정규적인 형태를 유지한다. 이는 최근 실시간 가상 프로덕션이나 AR/VR에서 대규모 포인트 클라우드 처리를 요구하는 파이프라인에 직접 적용 가능하다. 또한, 5~10배 빠른 Voronoi 구축 알고리즘은 기존 파이프라인을 GPU‑only 환경으로 전환하려는 스튜디오에 큰 도움이 될 것이다. 다만, 현재는 DTU와 BlendedMVS 같은 벤치마크에서 검증됐으므로, 복잡한 실내·실외 혼합 장면에서는 추가 튜닝이 필요할 수 있다.",
+  "sections": [
+    {
+      "heading": "배경 및 문제점",
+      "body": "멀티뷰 이미지 기반 3D 재구성에서는 공간을 효율적으로 분할하는 방법이 핵심이다. 기존 Voronoi tessellation은 셀 형태가 불규칙해 최적화 단계에서 큰 연산 비용을 초래한다. 따라서 셀의 규칙성을 유지하면서도 적응형 크기 조절이 가능한 방법이 요구된다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T05:13:18.119215+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-e269227bbe34feb0"
+}
