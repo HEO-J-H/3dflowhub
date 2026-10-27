@@ -1,0 +1,23 @@
+<!-- TITLE: NVIDIA DGX Spark에서 MoE 추론 성능을 높이는 3가지 방법 | TAGS: NVIDIA DGX Spark,MoE,추론 최적화,FP8,Speculative Decoding,연구·논문 | CATEGORY: AI 3D/기타 AI 3D | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/3-ways-to-boost-moe-inference-on-nvidia-dgx-spark/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/dgx-spark-inference-featured.webp" alt="NVIDIA DGX Spark에서 MoE 추론 성능을 높이는 3가지 방법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/3-ways-to-boost-moe-inference-on-nvidia-dgx-spark/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA DGX Spark 환경에서 Ling-3.0-flash 모델의 Mixture-of-Experts(MoE) 추론 성능을 극대화하는 세 가지 핵심 최적화 기법을 소개합니다.</p>
+<p style="color:#888;">분류: AI 3D › 기타 AI 3D › 연구·논문</p>
+<h2>Ling-3.0-flash 모델과 성능 병목 분석</h2>
+<p>Inclusion AI가 개발한 Ling-3.0-flash는 1,240억 개의 전체 파라미터와 토큰당 51억 개의 활성 파라미터를 가진 Mixture-of-Experts(MoE) 모델입니다. NVIDIA DGX Spark에서 배치 사이즈 1로 프로파일링을 진행한 결과, 디코딩 과정이 메모리 바운드 상태이며 MoE 연산과 출력층 프로젝션이 실행 시간을 주도하는 것으로 나타났습니다. 이에 따라 모델 가중치 트래픽을 줄이고 검증 라운드당 더 많은 토큰을 생성하는 최적화 전략이 수립되었습니다.</p>
+<h2>첫 번째 최적화: Humming MXFP4 MoE 백엔드</h2>
+<p>기존의 FlashInfer MXFP4 MoE 백엔드를 독립적인 커널 라이브러리인 humming 패키지로 교체하였습니다. 이를 통해 라우팅된 전문가 연산의 실행 효율이 개선되어 출력 토큰당 소요 시간이 27.71 ms에서 25.35 ms로 단축되었습니다. 결과적으로 전반적인 처리량이 9.3% 향상되는 효과를 거두었습니다.</p>
+<h2>두 번째 최적화: LM head의 온라인 FP8 양자화</h2>
+<p>모델의 어휘 전체에 걸쳐 점수를 생성하는 출력층인 LM head에 온라인 FP8 양자화를 적용하였습니다. 이 기법은 가중치 읽기 볼륨을 절반으로 줄여주며, 앞서 적용한 Humming 커널과 결합할 경우 기준선 대비 디코딩 처리량이 21.7% 향상되었습니다.</p>
+<h2>세 번째 최적화: NEXTN을 활용한 Speculative Decoding</h2>
+<p>모델에 내장된 NEXTN 레이어를 활용한 멀티 토큰 예측(MTP) Speculative Decoding 방식을 도입했습니다. 합성 워크로드 테스트에서 라운드당 평균 3.90개의 토큰을 수락하여, 기준선 대비 처리량을 185.1%나 끌어올렸습니다.</p>
+<h2>통합 최적화의 최종 성과</h2>
+<p>GSM8K 전체 테스트 세트에서 세 가지 최적화를 모두 적용한 결과, 통계적으로 유의미한 정확도 변화 없이 디코딩 처리량이 42.5% 증가하고 평균 지연 시간은 24.5% 단축되었습니다. 개발자는 Ling 쿡북의 가이드를 참고하여 DGX Spark 환경에 이러한 최적화 구성을 배포할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">대규모 MoE 언어 모델을 실무 파이프라인이나 AI 에이전트 워크플로에 통합할 때 메모리 대역폭 한계와 디코딩 지연 시간을 줄이는 것은 비용 절감의 핵심입니다. 본문에 소개된 Humming 커널, LM head의 온라인 FP8 양자화, 그리고 MTP 기반의 Speculative Decoding 조합은 실무에서 대형 모델 서빙 효율을 드라마틱하게 끌어올릴 수 있는 훌륭한 실천 지침을 제공합니다. 특히 하드웨어 자원이 제한된 환경에서 지연 시간을 최소화해야 하는 테크니컬 디렉터나 MLOps 엔지니어라면 반드시 검토해야 할 최적화 기법입니다. 단, 각 최적화 기법을 결합할 때 발생할 수 있는 통합 이슈를 대비해 철저한 벤치마크 테스트와 프로파일링을 병행해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA DGX Spark에서 Ling-3.0-flash 추론 속도를 높이기 위한 핵심 요인은 무엇인가요?</b><br/>A. 디코딩 과정의 주된 병목인 메모리 바운드 문제를 해결하기 위해 MoE 연산 최적화, LM head의 FP8 양자화, 그리고 MTP Speculative Decoding을 적용하는 것입니다.</p>
+<p><b>Q. Humming 커널과 FP8 양자화를 적용했을 때의 성능 향상 폭은 얼마나 되나요?</b><br/>A. Humming 커널을 통해 처리량이 9.3% 향상되었고, LM head의 온라인 FP8 양자화와 결합했을 때는 기준선 대비 디코딩 처리량이 21.7% 향상되었습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-b3afbcd12540a582.html">MS-COOT: Morse‑Smale 복합체 비교·Co‑Optimal Transport 적용</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-460912b50cd02ee3.html">AI 3D – Semantic-Structural Alignment 기반 그림 차트 생성</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-e269227bbe34feb0.html">CVTSplat: 적응형 Voronoi 멀티뷰 재구성 – GPU 5배 가속</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/3-ways-to-boost-moe-inference-on-nvidia-dgx-spark/" target="_blank" rel="noopener nofollow">3 Ways to Boost MoE Inference on NVIDIA DGX Spark</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
