@@ -31,6 +31,21 @@
     {
       "heading": "향후 게임 개발 및 엔진 활용에 미치는 영향",
       "body": "이번 성과는 Unreal Engine 5를 도입하려는 게임 개발사들에게 성능 최적화에 대한 자신감을 불어넣어 줍니다. Nanite와 Lumen 등 혁신적인 기능을 포기하지 않으면서도 최적화를 이뤄낸 비결에 업계의 이목이 집중되고 있습니다. 앞으로 출시될 차세대 게임들의 최적화 수준을 가늠하는 중요한 척도가 될 전망입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Unreal Engine 5로 고속 레이싱이나 액션 장르를 개발할 때는 엔진의 기본값에만 의존하지 않고 철저한 프로파일링과 아키텍처 조율이 필수적입니다. Star Wars: Galactic Racer의 사례처럼 Nanite와 Lumen 같은 고성능 기능을 사용하더라도, 드로우 콜 최적화와 Shader 컴파일 병목 현상을 미리 관리해야 비주얼과 프레임 안정성을 동시에 잡을 수 있습니다. 개발 초기 단계부터 성능 기준선을 설정하고 타겟 플랫폼의 하드웨어 한계를 고려한 리소스 배치를 진행하세요.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "Unreal Engine 포럼 등지에서는 게임 실행 시 Epic Online Services 관련 설치 요구와 함께 발생하는 크래시 문제 등이 보고되고 있습니다 [1]. Steam을 통해 타이틀을 구동할 때 초기 런처 연동이나 백그라운드 서비스 설치 과정에서 예기치 못한 충돌이 발생할 수 있으므로, 관련 플랫폼 서비스가 최신 상태로 유지되어 있는지 확인하는 것이 안전합니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Unreal Engine 5 프로젝트의 퍼포먼스를 극대화하는 방법을 배우고 싶다면 Epic Games에서 제공하는 공식 게임 프로필 및 기초 가이드 영상을 참고하는 것이 좋습니다. 'Star Wars: Galactic Racer™ | Game Profile' 및 'Star Wars Galactic Racer Made Simple - Beginners Guide' 등의 자료를 통해 대규모 프로젝트에서 엔진을 효율적으로 다루는 실무 노하우를 파악할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +56,14 @@
     {
       "q": "이번 평가가 게임 개발 업계에 주는 의미는 무엇인가요?",
       "a": "Unreal Engine 5의 고도화된 그래픽 기술을 활용하면서도 뛰어난 프레임 안정성과 최적화를 동시에 달성할 수 있음을 보여주는 모범 사례가 되었습니다."
+    },
+    {
+      "q": "Star Wars: Galactic Racer가 Unreal Engine 5 최적화 게임으로 주목받은 이유는 무엇인가요?",
+      "a": "복잡한 그래픽과 빠른 속도가 요구되는 레이싱 장르임에도 불구하고 Nanite와 Lumen 등의 고성능 기능을 포기하지 않으면서 안정적인 프레임과 비주얼 품질의 균형을 완벽하게 잡아냈기 때문입니다."
+    },
+    {
+      "q": "게임 실행 시 발생하는 크래시 문제는 어떻게 대처해야 하나요?",
+      "a": "Steam 등에서 실행할 때 Epic Online Services 설치 관련 옵션이나 런처 연동 과정에서 충돌이 발생할 수 있으므로 관련 플랫폼 및 서비스가 정상적으로 설치 및 업데이트되었는지 확인해야 합니다 [1]."
     }
   ],
   "media": {
@@ -50,5 +73,31 @@
   "collected_at": "2026-10-15T17:35:00.000+00:00",
   "notion_id": "3fa94be3-beb5-81a1-a1ea-cead97297067",
   "id": "2026-10-15-9461f72044ff1188",
-  "topic": "리뷰·비교"
+  "topic": "리뷰·비교",
+  "refs": [
+    {
+      "source": "Unreal Engine 포럼",
+      "title": "UE: Griffin Unreal Crash When Starting Star Wars Galactic Racers",
+      "url": "https://forums.unrealengine.com/t/ue-griffin-unreal-crash-when-starting-star-wars-galactic-racers/2838007",
+      "excerpt": "Is there a fix for this type of crash? I'm starting it up on Steam. The first time I started the game, it gave an option to reinstall Epic Online Services. I had never heard of that, so I downloaded the Epic Games Launcher thinking that's what the issue was. Something similar to Ubisoft games nee...",
+      "replies": 2
+    }
+  ],
+  "videos": [
+    {
+      "id": "CuOeU9pkuMg",
+      "title": "Star Wars: Galactic Racer™ | Game Profile | Unreal Engine",
+      "author": "Unreal Engine"
+    },
+    {
+      "id": "8vzt2hGwSpQ",
+      "title": "Star Wars Galactic Racer Made Simple - Beginners Guide",
+      "author": "The Matt Effect"
+    }
+  ],
+  "enriched_at": "2026-10-27T13:59:26+00:00",
+  "quality": {
+    "before": 893,
+    "after": 1641
+  }
 }
