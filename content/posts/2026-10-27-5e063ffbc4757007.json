@@ -1,0 +1,31 @@
+{
+  "title_ko": "Modular Contact Operator로 마찰 접촉 모델링",
+  "title": "Explicit Frictional Contact Modeling in Neural Garment Simulation",
+  "url": "https://arxiv.org/abs/2610.33492",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "garment simulation",
+    "friction modeling",
+    "GNN",
+    "Modular Contact Operator",
+    "physics‑based AI"
+  ],
+  "summary": "그래프 신경망 기반 의상 시뮬레이션에 명시적 마찰 접촉 연산자를 추가해 추론 시 마찰 계수를 직접 제어할 수 있게 했다.",
+  "insight": "이 논문은 기존 GNN 의상 시뮬레이터가 마찰을 암묵적으로 처리하던 한계를 넘어, 추론 단계에서 마찰 계수를 자유롭게 조정할 수 있는 방법을 제시한다. 실제 제작 Pipeline는 옷감 종류별 마찰 특성을 빠르게 테스트하고 싶을 때, 별도 재학습 없이 모듈식 연산자를 적용해 즉시 결과를 확인할 수 있다. 또한 선형화된 막 파동 전파 방식을 사용해 기존 물리 기반 솔버 대비 8배 빠른 속도를 제공하므로, 실시간 가상 피팅이나 인터랙티브 의상 디자인에 바로 활용 가능하다. 다만 연산자는 현재 정적인 몸체 삼각형에 한정돼 움직이는 캐릭터에 적용하려면 추가 연구가 필요하다.",
+  "sections": [
+    {
+      "heading": "연구 배경",
+      "body": "그래프 신경망(GNN)은 물리 기반 자기지도 학습을 통해 의상을 효율적으로 시뮬레이션하지만, 몸체와 의상 사이의 마찰을 암묵적으로 처리한다. 기존 방법은 마찰 계수 μ를 추론 단계에서 설정할 수 없으며, 계수별 재학습을 해도 성능 향상이 미미했다. 이러한 한계는 실제 의상 디자인에서 마찰 특성을 정밀하게 제어하고 싶을 때 큰 장애가 된다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T04:23:46.434396+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-5e063ffbc4757007"
+}
