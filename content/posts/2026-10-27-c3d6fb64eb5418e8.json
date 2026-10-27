@@ -1,0 +1,31 @@
+{
+  "title_ko": "NVIDIA Mission Control 2.5 — 쿠버네티스 자동 복구",
+  "title": "How NVIDIA Mission Control 2.5 Brings Autonomous Recovery to Kubernetes",
+  "url": "https://developer.nvidia.com/blog/how-nvidia-mission-control-2-5-brings-autonomous-recovery-to-kubernetes/",
+  "domain": "AI 3D",
+  "category": "NVIDIA Mission Control",
+  "topic": "업계 소식",
+  "tags": [
+    "NVIDIA",
+    "Mission Control",
+    "Kubernetes",
+    "Autonomous Recovery",
+    "AI Factory"
+  ],
+  "summary": "NVIDIA Mission Control 2.5가 Kubernetes 기반 AI 워크로드에 자동 복구 기능을 추가해 인프라 자가 치유를 지원한다.",
+  "insight": "AI 트레이닝 클러스터를 운영하는 엔지니어와 대규모 모델을 다루는 연구자는 장애 복구 시간을 크게 단축할 수 있다. 자동 복구 엔진은 작업 컨텍스트를 활용해 소프트웨어 오류와 하드웨어 결함을 구분하고, 불필요한 노드 재시작을 방지한다. 쿠버네티스 스케줄러와 연동돼 장애 노드를 격리하고 진단을 병행하므로 전체 시스템 가용성이 향상된다. 기존 Slurm 전용 기능을 확장한 만큼, Run:ai를 사용하는 팀은 별도 설정 없이 바로 적용 가능하다. 다만, 네트워크 이상 탐지와 같은 AI 기반 기능은 최신 버전의 Mission Control과 호환되는 클러스터 환경이 필요하다.",
+  "sections": [
+    {
+      "heading": "자동 복구 엔진 개요",
+      "body": "Mission Control의 자동 복구 엔진은 세 단계 제어 루프(스케줄러, 작업 복구 서비스, 하드웨어 복구 서비스)로 구성된다. Kubernetes 스케줄러가 워크로드를 배치하고, 작업 복구 서비스가 실패 유형을 판단한다. 하드웨어 복구 서비스는 결함이 의심되는 노드를 격리하고 진단을 수행한다. 이 구조는 장애 감지부터 복구까지 전체 흐름을 자동화한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/09/7_resized.webp",
+    "video": "https://www.youtube.com/watch?v=qEMTqXBa9Tw"
+  },
+  "collected_at": "2026-10-27T03:32:49.223589+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-c3d6fb64eb5418e8"
+}
