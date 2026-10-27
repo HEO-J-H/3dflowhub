@@ -1,0 +1,20 @@
+<!-- TITLE: 3ds Max Cloth Modifier와 Soft Selection 활용법 | TAGS: 3ds Max,Cloth Modifier,Soft Selection,3D Modeling,VFX,3ds 맥스,튜토리얼·팁 | CATEGORY: 3D DCC/3ds Max | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 3ds Max에서 Cloth Modifier를 적용할 때 Soft Selection을 고정된 그룹이나 버텍스로 활용하는 방법에 대한 실무 질문과 해결 방안을 다룹니다.</p>
+<p style="color:#888;">분류: 3D DCC › 3ds Max › 튜토리얼·팁</p>
+<h2>3ds Max Cloth Modifier 개요</h2>
+<p>3ds Max의 Cloth Modifier는 직물이나 천의 물리적 성질을 시뮬레이션하기 위해 사용하는 강력한 도구입니다. 중력, 바람, 충돌체와의 상호작용을 계산하여 사실적인 의상 움직임을 구현할 수 있습니다. 시뮬레이션의 정확도를 높이기 위해서는 메쉬의 구조와 버텍스 단위의 제어가 필수적입니다.</p>
+<h2>Soft Selection의 역할</h2>
+<p>Soft Selection은 선택한 버텍스 주변으로 감쇠 영역을 두어 부드러운 선택 영역을 만들어 주는 기능입니다. 모델링뿐만 아니라 다양한 수정자(Modifier) 단계에서도 가중치를 시각적으로 확인하며 작업할 수 있게 돕습니다. 이를 통해 급격한 형태 변화를 방지하고 자연스러운 그래디언트 형태의 웨이트를 부여할 수 있습니다.</p>
+<h2>Cloth 시뮬레이션과의 연계 고민</h2>
+<p>실무 작업자들은 종종 Soft Selection으로 지정한 영역을 Cloth Modifier 내에서 고정 그룹(Group)이나 버텍스(Verts)로 직접 활용할 수 있는지 궁금해합니다. 시뮬레이션 상에서 특정 부위를 고정하거나 고정점(Pin)으로 지정할 때 기존에 만든 선택 영역을 그대로 가져오면 작업 효율이 크게 높아집니다. 3ds Max의 표준 워크플로에서는 버텍스 그룹 지정을 통해 이러한 제어가 가능합니다.</p>
+<h2>그룹 및 버텍스 보존 방안</h2>
+<p>Modifier 스택 상위에서 Soft Selection을 활용한 뒤 이를 Cloth 내부의 피닝(Pinning)이나 그룹 파라미터에 반영하려면 올바른 스택 순서와 버텍스 서브 오브젝트 선택이 중요합니다. 명시적인 버텍스 그룹을 생성해 두지 않으면 시뮬레이션 계산 중 웨이트가 풀리거나 의도치 않은 움직임이 발생할 수 있습니다. 따라서 수정자 스택에서 선택 상태를 유지하거나 별도의 그룹으로 저장하는 방식을 병행해야 합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">3ds Max에서 시뮬레이션을 진행할 때 특정 영역의 웨이트나 고정점을 유지하는 작업은 캐릭터 의상이나 천 애니메이션의 품질을 결정하는 중요한 요소입니다. Soft Selection을 Cloth의 파라미터와 연계하면 불필요한 버텍스 그룹 생성을 줄이고 작업 공정을 크게 단축할 수 있습니다. 복잡한 의상 시뮬레이션을 다루는 실무 아티스트라면 웨이트 맵과 그룹 설정의 한계를 극복하기 위해 이 기능을 파악해 두는 것이 좋습니다. 다만 시뮬레이션 엔진의 특성에 따라 소프트 셀렉션의 감쇠 범위가 물리 연산에 미치는 영향을 사전에 테스트해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 3ds Max에서 Soft Selection을 Cloth Modifier와 함께 사용할 수 있나요?</b><br/>A. 네, 모델링 단계나 상위 수정자에서 지정한 Soft Selection 영역을 기반으로 버텍스를 선택한 뒤 Cloth 속성에서 그룹이나 고정점으로 지정하는 방식으로 활용할 수 있습니다.</p>
+<p><b>Q. Cloth 시뮬레이션에서 버텍스 그룹이 자꾸 풀리는 문제를 어떻게 해결하나요?</b><br/>A. Cloth Modifier 내부의 Group 탭에서 대상 버텍스를 명시적으로 그룹화하고 노드에 고정(Pin) 속성을 부여하면 시뮬레이션 중 웨이트가 유지되도록 제어할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-cdd558eada2e9f4b.html">3ds Max 에셋 관리 도구 SAGA 무료 테스트 시작</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-76bbf79df1a4891b.html">3ds Max Cloth 애니메이션 FBX/glTF 내보내기 해결</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-310099770cff7452.html">3ds Max 제품 시각화용 GPU 렌더러 비교 추천</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/3dsmax/comments/1xh2cxn/cloth_modifier_and_soft_selection/" target="_blank" rel="noopener nofollow">Cloth Modifier and Soft Selection</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
