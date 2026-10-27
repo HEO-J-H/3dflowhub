@@ -29,6 +29,16 @@
     {
       "heading": "하드웨어 스펙과 로컬 모델 구동 능력",
       "body": "RTX Spark는 최대 6,144개의 코어를 탑재한 NVIDIA Blackwell RTX GPU와 600 GB/s로 연결된 최대 20코어의 NVIDIA Grace CPU를 결합했습니다. FP4 기준 1페타플롭스의 AI 성능과 최대 128GB의 통합 메모리를 제공하여 로컬 AI 구동에 최적화되어 있습니다. 이를 통해 Qwen 3.8 Flash Next와 같은 125B 대형 모델을 클라우드 전송 없이 로컬에서 직접 실행할 수 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA Blackwell RTX GPU와 Grace CPU, 최대 128GB 통합 메모리 조합은 3D 아티스트의 로컬 작업 환경에 직접적인 변화를 줍니다. 125B 규모의 거대 모델이나 Qwen 3.8 Flash Next 같은 모델을 클라우드 전송 없이 로컬에서 직접 구동할 수 있습니다. 이를 통해 텍스처 생성, 3D Asset 캡션 자동화, 에이전트 기반 파이프라인 관리 작업을 보안이 유지되는 오프라인 환경에서도 지연 없이 수행할 수 있습니다. 대용량 씬 파일과 AI 에이전트를 동시에 백그라운드에서 실행해도 OS 제어 기반의 MXC 인프라 덕분에 시스템 안정성을 확보합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "RTX Spark 시스템을 도입하기 전에 에이서, 에이수스, 델, HP, 레노버, 마이크로소프트, MSI, 기가바이트 등 주요 제조사에서 출시하는 슬림 노트북과 컴팩트 데스크톱 라인업을 확인하세요. 노트북은 10월 16일 출시 및 사전 예약 일정에 맞춰 검토하고, 컴팩트 데스크톱은 11월 출시 일정을 고려하여 스튜디오 파이프라인에 통합할 수 있습니다. NVIDIA AI 스택과 Microsoft Execution Containers(MXC) 환경에서 로컬 모델 구동 테스트를 준비하세요.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +49,14 @@
     {
       "q": "RTX Spark 시스템의 주요 하드웨어 특징은 무엇인가요?",
       "a": "RTX Spark는 NVIDIA Blackwell RTX GPU와 최대 20코어 NVIDIA Grace CPU를 600 GB/s로 연결했으며, 최대 1페타플롭스의 FP4 AI 성능과 최대 128GB의 통합 메모리를 제공합니다."
+    },
+    {
+      "q": "RTX Spark 시스템에서 로컬로 구동할 수 있는 AI 모델의 규모는 어느 정도인가요?",
+      "a": "최대 128GB의 통합 메모리와 FP4 기준 1페타플롭스의 AI 성능을 통해 Qwen 3.8 Flash Next와 같은 125B 대형 모델을 클라우드 전송 없이 로컬에서 직접 실행할 수 있습니다."
+    },
+    {
+      "q": "백그라운드에서 AI 에이전트를 실행할 때 시스템 안정성은 어떻게 보장되나요?",
+      "a": "마이크로소프트가 발표한 OS 수준의 인프라스트럭처인 Microsoft Execution Containers(MXC)를 통해 에이전트가 OS 제어 하에 백그라운드에서 안전하고 지속적으로 실행됩니다."
     }
   ],
   "media": {
@@ -48,5 +66,23 @@
   "collected_at": "2026-10-15T18:37:00.000+00:00",
   "notion_id": "3fa94be3-beb5-8182-ac1a-f1658904afcf",
   "id": "2026-10-15-1815740c61d22b3c",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [],
+  "videos": [
+    {
+      "id": "vJvFta7e76E",
+      "title": "The Road to NVIDIA RTX Spark",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "aV81SqB6HQg",
+      "title": "NVIDIA Tried to Tell me How to Benchmark RTX Spark",
+      "author": "Linus Tech Tips"
+    }
+  ],
+  "enriched_at": "2026-10-27T11:44:49+00:00",
+  "quality": {
+    "before": 1127,
+    "after": 1728
+  }
 }
