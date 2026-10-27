@@ -20,6 +20,10 @@ def test_accepted_proposal_queued_once_and_first(tmp_path, monkeypatch):
     assert agents.files_for(task) == {"build_site.py", "tests/test_agent_tasks.py"}
 
 
+def test_manager_config_keys_buttondown_user():
+    assert "buttondown_user" in manager.CONFIG_KEYS
+
+
 def test_plain_task_keeps_default_files():
     assert agents.files_for("collect(): 무언가") == agents.EDITABLE
 
