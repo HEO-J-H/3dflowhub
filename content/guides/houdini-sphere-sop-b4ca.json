@@ -1,0 +1,93 @@
+{
+  "id": "houdini-sphere-sop-b4ca",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Sphere SOP",
+  "title": "Sphere — 구 만들기",
+  "summary": "Sphere SOP는 Houdini에서 기본 구(Sphere) 형태의 폴리곤 지오메트리를 생성하는 가장 기본적인 노드입니다. 복잡한 절차적 모델링이나 Particle 발생의 기준이 되는 뼈대 역할을 합니다.",
+  "when": [
+    "VFX 시뮬레이션에서 Particle이나 불륨의 생성 영역(Emitter)을 만들 때",
+    "절차적 모델링의 테스트용 베이스 지오메트리가 필요할 때",
+    "구 형태의 프랍이나 환경 소스를 빠르게 생성해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 빈 공간을 마우스 우클릭하거나 Tab 키를 누릅니다.",
+    "검색창에 sphere를 입력하고 Sphere 노드를 선택하여 생성합니다.",
+    "Sphere 노드를 더블클릭하여 지오메트리 내부로 진입하거나, 노드 우측의 디스플레이 플래그(Display Flag)를 켭니다.",
+    "파라미터 창(Parameter Pane)에서 Primitive Type과 Radius를 조절하여 원하는 형태를 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Primitive Type",
+      "desc": "구의 생성 방식을 Polygon, Mesh, NURBS 등으로 변경합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "X, Y, Z 축 방향으로 구의 반지름 크기를 조절합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "공간 상에서 구의 중심 위치(X, Y, Z)를 이동합니다."
+    },
+    {
+      "name": "Rows",
+      "desc": "위도 방향의 디테일(분할 수)을 결정합니다."
+    },
+    {
+      "name": "Columns",
+      "desc": "경도 방향의 디테일(분할 수)을 결정합니다."
+    },
+    {
+      "name": "Orientation",
+      "desc": "구의 기본 정렬 축을 X, Y, 중 Z 축 중 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Particle 이미터용 구체 배치하기",
+      "steps": [
+        "Sphere 노드를 생성하고 크기를 작게 조절합니다.",
+        "Location SOP 또는 Copy to Points 노드와 연결하여 Particle 소스로 활용합니다."
+      ]
+    },
+    {
+      "title": "로우폴리곤 행성 모델링",
+      "steps": [
+        "Sphere 노드의 Primitive Type을 Polygon으로 설정합니다.",
+        "Rows와 Columns 값을 낮추어 각진 로우폴리곤 구를 만듭니다.",
+        "Mountain SOP를 연결해 울퉁불퉁한 지형을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(Rows/Columns)가 너무 낮아 디테일이 깨짐 → Rows와 Columns 값을 높여 면의 분할을 늘립니다.",
+    "폴리곤 대신 NURBS나 Mesh로 생성되어 후속 노드 작업에서 에러가 남 → Primitive Type을 Polygon으로 변경합니다."
+  ],
+  "related": [
+    "Box SOP",
+    "Grid SOP",
+    "Tube SOP",
+    "Mountain SOP"
+  ],
+  "videos": [
+    {
+      "id": "NG4n4Qtz6iU",
+      "title": "Sphere SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "G32DCffkkFk",
+      "title": "#03 The Sphere Node in Houdini",
+      "author": "Mad Dog VFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Sphere%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Sphere"
+  ],
+  "at": "2026-10-27T00:33:04.742089+00:00"
+}

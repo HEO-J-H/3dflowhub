@@ -1,0 +1,87 @@
+{
+  "id": "blender-grid-fill-9b4c",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Grid Fill",
+  "title": "Grid Fill — 구멍 격자로 막기",
+  "summary": "구멍이 난 폴리곤 메시의 테두리를 선택하여 깔끔한 사각형(Quad) 중심의 면으로 채워주는 도구입니다. 복잡한 브릿지 작업 없이도 구멍을 효율적으로 막을 수 있습니다.",
+  "when": [
+    "원형이나 타원형 형태의 구멍을 쿼드(Quad) 중심의 토폴로지로 메우고 싶을 때",
+    "실린더나 구체 등의 메쉬에서 불필요한 면을 지우고 다시 매끄럽게 연결할 때",
+    "하드서페이스 모델링 중 구멍 주변의 흐름을 정리하고 싶을 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 전환합니다.",
+    "Edge Select 모드(2 키)를 활성화합니다.",
+    "Alt + 클릭으로 구멍이 난 테두리 엣지 루프(Edge Loop)를 선택합니다.",
+    "우클릭 메뉴 또는 메인 메뉴에서 Edge → Grid Fill을 실행합니다.",
+    "F9 키 또는 화면 왼쪽 아래의 조정 패널(Operator Panel)에서 옵션을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Span",
+      "desc": "그리드의 가로 방향 분할 수를 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "그리드의 연결 방향과 회전 값을 조정하여 면의 흐름을 바꿉니다."
+    },
+    {
+      "name": "Simple Blending",
+      "desc": "복잡한 보간 대신 단순한 방식으로 면을 채웁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 측면의 구멍 막기",
+      "steps": [
+        "구멍 테두리 엣지 루프를 선택합니다.",
+        "Grid Fill을 실행하여 사각형 면으로 채웁니다.",
+        "Span과 Offset 값을 조절하여 주변 토폴로지와 흐름을 맞춥니다."
+      ]
+    },
+    {
+      "title": "평면 메쉬에 사각형 구멍 채우기",
+      "steps": [
+        "구멍 주변의 엣지를 선택합니다.",
+        "Grid Fill을 실행합니다.",
+        "필요에 따라 Span 값을 높여 디테일을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "엣지가 홀수 개이거나 닫힌 루프가 아님 → 짝수 개의 엣지로 이루어진 완벽한 단일 테두리 루프를 선택해야 실행됩니다.",
+    "면이 꼬이거나 이상하게 채워짐 → F9 패널에서 Offset 값을 조절하여 그리드 방향을 재설정합니다.",
+    "스케일이 틀어져 있음 → Object Mode에서 Ctrl + A → Apply Scale을 먼저 실행한 뒤 시도합니다."
+  ],
+  "related": [
+    "Bridge Edge Loops",
+    "Fill",
+    "F3 (Search Menu)",
+    "Edge Loops"
+  ],
+  "videos": [
+    {
+      "id": "gS8MHAXKFQE",
+      "title": "Grid Fill update in Blender 4.5 LTS - Blender Secrets",
+      "author": "Blender Secrets"
+    },
+    {
+      "id": "Ds7obaT9nO0",
+      "title": "Tip: Fill Faces like a Pro #blender #blender3d #blendertutorial #howto#blendertips",
+      "author": "Blender Tips"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Grid%20Fill",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Edge Select",
+    "Edge Loop",
+    "Edge",
+    "Grid Fill"
+  ],
+  "at": "2026-10-27T00:33:01.072907+00:00"
+}

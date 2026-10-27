@@ -1,0 +1,85 @@
+{
+  "id": "3ds-max-smooth-modifier-4b6d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Smooth modifier",
+  "title": "Smooth — 스무딩 그룹 자동 지정",
+  "summary": "Smooth modifier는 모델링의 폴리곤 면들을 부드럽게 보이도록 노멀(Normal)을 재계산해 주는 기능입니다. 물리적인 지오메트리를 추가하지 않고도 매끄러운 곡면 표현이 가능합니다.",
+  "when": [
+    "하드 표면 모델링에서 각진 모서리를 시각적으로 부드럽게 처리하고 싶을 때",
+    "CAD나 외부에서 임포트한 데이터의 깨진 노멀과 면 정렬을 빠르게 정리할 때",
+    "TurboSmooth나 MeshSmooth를 쓰기 전 단계에서 가볍게 면 흐름을 제어하고 싶을 때"
+  ],
+  "steps": [
+    "Viewport에서 부드럽게 만들 3D 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Smooth를 선택하여 적용합니다.",
+    "Parameters 구간에서 Auto Smooth를 체크하거나 Threshold 값을 조절하여 부드러움을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Smooth",
+      "desc": "지정한 각도를 기준으로 자동으로 면을 그룹화하여 부드럽게 만듭니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "두 면 사이의 각도가 이 값보다 작을 때만 부드럽게 연결합니다."
+    },
+    {
+      "name": "Prevent Indirect Smoothing",
+      "desc": "불필요한 인접 면까지 부드러워지는 현상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 기계 부품 부드럽게 처리하기",
+      "steps": [
+        "각진 실린더 형태의 기계 부품 모델을 선택합니다.",
+        "Modify 탭의 Modifier List에서 Smooth를 적용합니다.",
+        "Auto Smooth를 켜고 Threshold 값을 높여가며 모서리 각도를 조절합니다."
+      ]
+    },
+    {
+      "title": "임포트한 CAD 데이터의 깨진 면 정돈하기",
+      "steps": [
+        "외부에서 불러온 각진 CAD 모델을 선택합니다.",
+        "Smooth modifier를 추가합니다.",
+        "Threshold를 낮게 설정하여 칼로 자른 듯한 날카로운 엣지는 유지하고 평면만 부드럽게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Threshold 값이 너무 높음 → 평평해야 할 모서리까지 뭉개져서 보입니다. Threshold 각도를 낮추세요.",
+    "Edit Poly의 Smoothing Groups와 충돌 → 이미 스무딩 그룹이 설정된 상태에서 Smooth를 중복 적용하면 예상치 못한 결과가 나옵니다. Editable Poly 레벨에서 먼저 Clear All을 해주세요."
+  ],
+  "related": [
+    "TurboSmooth",
+    "MeshSmooth",
+    "Edit Poly",
+    "Normal modifier"
+  ],
+  "videos": [
+    {
+      "id": "d6vMfhHBqFY",
+      "title": "Smooth Modifier in 3Ds Max – Make Your Mesh Perfectly Smooth #shorts  #3dsmax #smooth",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "xdBGi0fPLqs",
+      "title": "3ds Max Tutorial: Meshsmooth and Turbosmooth Modifiers",
+      "author": "Kory Bieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Smooth%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Smooth"
+  ],
+  "at": "2026-10-27T00:32:57.688963+00:00"
+}
