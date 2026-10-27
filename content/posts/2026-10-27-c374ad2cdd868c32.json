@@ -1,0 +1,35 @@
+{
+  "title_ko": "Gaussian Splatting 압축 혁신 — RacerGS가 150배 압축 실현",
+  "title": "RacerGS: Residual-Autoregressive Context for 3D Gaussian Splatting Compression",
+  "url": "https://arxiv.org/abs/2610.34263",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "RacerGS",
+    "3DGS",
+    "Compression",
+    "GRU",
+    "FiLM"
+  ],
+  "summary": "RacerGS는 3D Gaussian Splatting의 파라미터 규모를 크게 줄이면서도 렌더링 품질을 유지하는 압축 프레임워크이다.",
+  "insight": "3DGS를 실시간 뷰 렌더링에 활용하려는 스튜디오와 연구자는 저장·전송 비용이 큰 걸 고민한다. RacerGS는 해시 프로젝션과 FiLM‑조절 GRU를 결합해 공간적 일관성을 살린 압축을 제공하므로, 대규모 씬을 클라우드에 배포하거나 모바일 디바이스에 적용할 때 유용하다. 특히 150배 이상의 압축률은 기존 파이프라인을 크게 간소화할 수 있어, 데이터 관리 인프라 비용을 절감하고 빠른 프로토타이핑이 가능해진다. 다만 압축·복원 과정에 GRU와 엔트로피 코딩이 추가되므로, 인코딩 단계에서 약간의 연산 오버헤드가 발생한다는 점을 고려해야 한다. AI 3D 연구자와 엔지니어는 이 방식을 베이스로 자체 데이터셋에 맞춘 커스텀 압축 모델을 설계해볼 가치가 있다.",
+  "sections": [
+    {
+      "heading": "배경 및 문제점",
+      "body": "3D Gaussian Splatting(3DGS)은 빠르고 고품질의 새로운 뷰 렌더링을 가능하게 하지만, 파라미터 양이 방대해 저장·전송에 병목이 된다. 기존 연구들은 품질을 유지하면서 압축 효율을 높이는 방법을 모색했지만, 충분한 압축률을 달성하지 못했다."
+    },
+    {
+      "heading": "RacerGS 핵심 설계",
+      "body": "RacerGS는 앵커 해시 인코딩을 압축된 컨텍스트 특징으로 변환하는 해시 프로젝션 모델을 도입한다. 또한 FiLM‑modulated autoregressive GRU 컨텍스트 모델을 사용해 앵커 특징 그룹 간 인과 관계를 활용하고, 재귀적인 은닉 상태로 엔트로피 모델 파라미터를 정제한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T04:33:10.355085+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-c374ad2cdd868c32"
+}

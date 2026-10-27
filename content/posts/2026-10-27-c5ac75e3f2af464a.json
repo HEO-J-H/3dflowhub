@@ -1,0 +1,40 @@
+{
+  "title_ko": "Gaussian Splatting: VidEdit3D로 유연한 3D 편집 구현",
+  "title": "VidEdit3D: Flexible 3D Gaussian Editing with Video Diffusion",
+  "url": "https://arxiv.org/abs/2610.35756v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "VidEdit3D",
+    "3D Gaussian Splatting",
+    "Video Diffusion",
+    "Trajectory-Guided Rendering",
+    "Flow-Aligned Video Editing",
+    "Region-Selective Refinement"
+  ],
+  "summary": "VidEdit3D는 3D Gaussian Splatting 장면 편집을 영상 편집 과제로 전환해 다중 뷰 일관성을 유지하면서 구조적 변형을 자유롭게 수행합니다.",
+  "insight": "텍스트 기반 3D 편집이 2D 툴에 비해 유연성이 떨어진다는 점을 보완하려는 시도는, 특히 복잡한 카메라 경로를 가진 프로젝트에서 큰 도움이 될 수 있다. VidEdit3D는 카메라 움직임을 시간 축으로 매핑해 사전 학습된 Video Diffusion Model의 시공간 프라이어를 활용하므로, 기존 3DGS 편집보다 뷰 간 일관성을 유지하면서도 원하는 구조 변형을 적용할 수 있다. 흐름 정렬 편집(FAVE)과 Editing Consistency Guidance(ECG) 메커니즘은 별도 학습 없이도 편집된 프레임과 원본 프레임을 잠재 공간에서 비교해 편집 정확도를 높인다. 또한 RS‑GS는 목표 Primitive에만 변화를 제한해 배경 속성 누수를 방지한다. 3D 아티스트와 VFX 엔지니어는 이 프레임워크를 활용해 복잡한 씬을 영상 형태로 렌더링한 뒤, 기존 영상 편집 툴과 동일한 방식으로 수정하고 다시 3DGS에 반영함으로써 작업 흐름을 크게 단순화할 수 있다.",
+  "sections": [
+    {
+      "heading": "배경 및 기존 한계",
+      "body": "최근 텍스트 기반 3D 편집, 특히 3D Gaussian Splatting(3DGS) 분야가 활발히 연구되고 있지만, 2D 편집 툴에 비해 구조적 변형과 다중 뷰 일관성 유지에서 한계가 있다. 기존 방법은 뷰 간 일관성을 보존하려다 보니 구조적 수정이 제한되고, 비정상적인 시점에서의 편집이 어려운 문제가 있다. 이러한 문제점을 해결하기 위해 새로운 접근이 요구된다."
+    },
+    {
+      "heading": "VidEdit3D 프레임워크 개요",
+      "body": "VidEdit3D는 3D 씬 편집을 정적 장면의 카메라 움직임과 영상의 시간 흐름을 동일시하는 ‘trajectory‑based video editing’ 과제로 재구성한다. 사전 학습된 Video Diffusion Model(VDM)의 강력한 시공간 프라이어를 활용해 뷰 간 의미와 구조의 일관성을 자연스럽게 유지한다. 전체 파이프라인은 Trajectory‑Guided Rendering, Flow‑Aligned Video Editing(FAVE), Region‑Selective 3DGS Refinement(RS‑GS)로 구성된다."
+    },
+    {
+      "heading": "Trajectory‑Guided Rendering (TGR)",
+      "body": "TGR은 카메라 경로에서 정보를 가장 많이 담고 있는 키프레임을 자동으로 선택하고, VDM 입력 요구사항에 맞게 부드러운 영상 클립을 생성한다. 이렇게 만든 영상은 편집 대상 뷰를 포괄하면서도 최소한의 프레임 수로 효율성을 확보한다. 키프레임 선택 기준과 클립 생성 방식은 논문에 상세히 기술되어 있다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T04:33:36.638618+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-c5ac75e3f2af464a"
+}
