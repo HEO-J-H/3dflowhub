@@ -965,7 +965,20 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
                if same else "")
             + YT_JS)
         faq = guide_faq(g)
-        head = f'<script type="application/ld+json">{json.dumps(how_to, ensure_ascii=False)}</script>' + (
+        # TechArticle(작성일·주제) + 경로(Breadcrumb) — HowTo/FAQ 리치결과는 줄었으니 기본 기사 정보를 확실히
+        g_url = f"{BASE_URL}/{learn_url(g)}"
+        article = [{"@context": "https://schema.org", "@type": "TechArticle", "headline": g["title"][:110],
+                    "description": (g.get("summary") or "")[:300], "inLanguage": "ko-KR", "url": g_url,
+                    "mainEntityOfPage": g_url, "datePublished": iso_tz(g.get("at") or ""),
+                    "dateModified": iso_tz(g.get("at") or ""), "about": f'{g["tool"]} {g["name"]}',
+                    "proficiencyLevel": "Beginner",
+                    "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"},
+                    "publisher": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"}},
+                   {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                       {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": BASE_URL + "/"},
+                       {"@type": "ListItem", "position": 2, "name": "기초 가이드", "item": f"{BASE_URL}/learn/"},
+                       {"@type": "ListItem", "position": 3, "name": g["title"][:80], "item": g_url}]}]
+        head = f'<script type="application/ld+json">{json.dumps(article, ensure_ascii=False)}</script>' +             f'<script type="application/ld+json">{json.dumps(how_to, ensure_ascii=False)}</script>' + (
             f'<script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>' if faq else "") + (
             f'<meta property="og:image" content="https://i.ytimg.com/vi/{e(vids[0]["id"])}/hqdefault.jpg">' if vids
             else f'<meta property="og:image" content="{BASE_URL}/og/learn.png">')
