@@ -1,0 +1,35 @@
+{
+  "title_ko": "TensorRT Global Performance Tuner — 성능 최적화 팁",
+  "title": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 2",
+  "url": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-2/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "TensorRT",
+    "Global Performance Tuner",
+    "trtexec",
+    "성능 최적화",
+    "AI inference"
+  ],
+  "summary": "TensorRT 11.1의 Global Performance Tuner는 200개 이상의 컴파일러 노브를 조합해 빌드 라우트를 자동 탐색하고, 정확도 제약 하에 엔진 속도를 1.14배~1.63배 향상시킵니다.",
+  "insight": "AI 기반 3D Pipeline 추론 속도는 전체 워크플로우 효율을 좌우합니다. Global Performance Tuner는 기존 단일 빌드 경로에 머물지 않고, 노브 조합을 체계적으로 탐색해 모델별 최적화를 가능하게 합니다. 특히 trtexec의 --dryRun·--tuningCacheFile 옵션을 활용하면 빌드 비용을 크게 절감하면서 반복 실험을 이어갈 수 있습니다. 모델, 입력 형태, GPU 혹은 TensorRT 버전이 바뀔 때마다 재튜닝을 수행하면 최신 하드웨어의 잠재력을 놓치지 않을 수 있습니다. AI 엔지니어와 실시간 렌더링을 담당하는 VFX 아티스트 모두가 적용해 볼 가치가 있습니다.",
+  "sections": [
+    {
+      "heading": "Global Performance Tuner 개요",
+      "body": "TensorRT 11.1에 도입된 Global Performance Tuner는 빌드 라우트를 명시적·검색 가능한 형태로 표현합니다. 각 라우트는 컴파일러 노브의 값 조합이며, 기본 라우트는 모든 노브가 기본값을 사용합니다. 이 기능은 정확도 제약을 만족하면서 성능을 극대화하도록 설계되었습니다."
+    },
+    {
+      "heading": "빌드 라우트와 컴파일러 노브",
+      "body": "컴파일러 노브는 히어스틱, 퓨전 전략, 코드 생성 경로 등 컴파일 파이프라인의 동작을 제어하는 설정입니다. 각 노브는 제한된 값 집합과 기본값을 가지고 있어, 가능한 라우트 수는 조합에 따라 수백에서 수천 개가 됩니다. 예시로, f2 패스의 퓨전 전략을 제어하는 이진 노브 p는 p=1이면 수평 퓨전, p=0이면 수직 퓨전을 적용합니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/desktop-computer-overlay-light.webp",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T03:43:05.677979+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-1456ee151a5392db"
+}
