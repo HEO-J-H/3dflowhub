@@ -30,6 +30,21 @@
     {
       "heading": "Colormass 무료 라이브러리 접속 및 이용 방법",
       "body": "사용자는 Colormass Free Library 공식 페이지에 방문하여 브라우저를 통해 직접 에셋을 살펴볼 수 있습니다. 복잡한 인증 절차가 없기 때문에 급하게 텍스처 에셋이 필요한 실무 현장에서 즉각적인 대안이 됩니다. 제작진은 이번 에셋 공개가 아티스트들의 툴킷을 풍성하게 만드는 훌륭한 추가 자원이 되기를 기대하고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Colormass에서 다운로드한 PBR 머티리얼 스캔 데이터는 Blender의 Shader Editor에서 Principled BSDF 노드에 Albedo, Roughness, Normal, Displacement 맵을 연결하여 즉시 사용할 수 있습니다. 건축 시각화나 프롭 텍스처링 작업 시 바닥재나 벽면 같은 베이스 머티리얼을 빠르게 구성하는 데 유용합니다. 복잡한 가입 절차가 없어 급하게 텍스처 에셋이 필요한 현장에서 즉각적인 작업 시간 단축 효과를 줍니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 커뮤니티에서는 Substance 3D 등에서 내보낸 PBR Metal/Roughness 머티리얼을 Blender로 가져와 굽거나 렌더링하는 과정에 대한 논의가 활발합니다 [1]. 특히 Multires 데이터가 포함된 오브젝트에서 텍스처를 베이킹할 때 노멀 패스 관련 오류가 발생할 수 있으므로, 에셋을 가져와 Shader를 설정할 때 오브젝트의 모디파이어 상태와 UV 맵 정렬을 미리 확인하는 것이 안전합니다 [1].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Colormass Free Library 공식 웹사이트에 접속하여 브라우저 상에서 필요한 PBR 스캔 에셋을 직접 탐색하고 다운로드합니다. 다운로드한 텍스처 세트를 프로젝트 폴더에 정리한 뒤, Blender나 사용 중인 메이저 3D DCC 및 게임 엔진의 머티리얼 패널로 바로 불러와 적용해 봅니다. 상업적 프로젝트에 자유롭게 쓸 수 있으나 원본 데이터의 재판매 및 재배포는 금지되므로 라이선스 범위를 준수하며 작업합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +55,14 @@
     {
       "q": "에셋을 다운로드하려면 회원가입이나 계정이 필요한가요?",
       "a": "아니오, 회원가입이나 계정 생성 절차가 전혀 필요 없습니다. 라이브러리 페이지에 방문하여 원하는 머티리얼을 바로 탐색하고 다운로드할 수 있습니다."
+    },
+    {
+      "q": "다운로드한 PBR 머티리얼을 상업용 프로젝트에 써도 되나요?",
+      "a": "네, 제공되는 모든 머티리얼은 표준 로열티 프리 라이선스로 배포되므로 상업적 프로젝트, 프리랜서 작업, 게임 제작 등에 제약 없이 활용할 수 있습니다. 단, 에셋 데이터 자체를 재판매하거나 재배포하는 행위는 금지됩니다."
+    },
+    {
+      "q": "에셋을 받으려면 회원가입이나 계정 생성이 필요한가요?",
+      "a": "아니요, 별도의 계정 생성이나 회원가입 절차 없이 웹사이트에서 에셋을 직접 탐색하고 바로 다운로드할 수 있는 간편한 방식을 제공합니다."
     }
   ],
   "media": {
@@ -49,5 +72,31 @@
   "collected_at": "2026-10-15T18:35:00.000+00:00",
   "notion_id": "3fa94be3-beb5-815d-a9dc-f3278db3c795",
   "id": "2026-10-15-26c378db4bde42b1",
-  "topic": "튜토리얼·팁"
+  "topic": "튜토리얼·팁",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Bake Wrangler - Node based baking tool set",
+      "url": "https://blenderartists.org/t/bake-wrangler-node-based-baking-tool-set/1187732",
+      "excerpt": "When I try to bake combined I get this error: Baking NORMALS pass: Error: Multires data baking requires multi-resolution object I'm having a default pbr metal roughness material exported from substance. When I bake normal or albedo or any other pass it works without problems. After uninstalling a...",
+      "replies": 2108
+    }
+  ],
+  "videos": [
+    {
+      "id": "rQXbCmHRaBU",
+      "title": "How to use PBR Materials from Substance Designer in Blender and render them in Cycles",
+      "author": "debe3D"
+    },
+    {
+      "id": "GdfyTXHBsyE",
+      "title": "Blender 3.4 - Instantly Set Up PBR Materials",
+      "author": "Quick Tech Tips"
+    }
+  ],
+  "enriched_at": "2026-10-27T12:55:35+00:00",
+  "quality": {
+    "before": 841,
+    "after": 1585
+  }
 }
