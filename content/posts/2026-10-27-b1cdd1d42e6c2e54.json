@@ -34,6 +34,16 @@
     {
       "heading": "RIDE-Splat Dataset을 통한 압도적인 성능 검증",
       "body": "연구팀은 실제 주행 장면, 훈련 뷰의 물리적 윈드쉴드 반사, 별도로 캡처된 비반사 평가 이미지를 포함한 최초의 반사 제거 3D 재구성 벤치마크인 RIDE-Splat Dataset을 소개했습니다. RIDE-Splat Dataset을 비롯해 XLD, Wayve 데이터셋 전반에서 본 방식은 3DGS, DC-Gaussian, RobustSplat 등 기존 기법들을 모든 9가지 종합 지표에서 앞질렀습니다. 최대 3.59 dB의 PSNR 향상과 0.0876의 LPIPS 감소를 기록하며 42개 씬 비교 중 38개에서 최고 수치를 달성했습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "차량 내부 블랙박스나 스마트폰 영상으로 자율주행 데이터셋을 구축할 때 유리창 반사는 언제나 골칫거리입니다. RIDE-Splat은 클린 이미지나 별도의 마스크 없이 포즈가 지정된 주행 영상만으로 파이프라인을 구동할 수 있어 전처리 공수가 크게 줄어듭니다. 특히 두 패스 방식으로 3D 지오메트리와 반사를 분리해 낸 뒤 두 번째 패스에서 깨끗한 3D Gaussian Splatting 모델을 다시 피팅하므로, 실제 도로 환경을 기반으로 정밀한 3D 공간을 복원해야 하는 자율주행 시뮬레이션이나 도시 3D 모델링 실무에 유용하게 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이 기술을 연구나 프로젝트에 도입하려면 먼저 3D Gaussian Splatting의 기본 개념과 렌더링 파이프라인에 대한 이해가 필요합니다. 논문에서 공개된 RIDE-Splat Dataset과 비교군(DC-Gaussian, RobustSplat 등)의 벤치마크 구조를 살펴보면 실제 주행 장면에서의 반사 제거 성능 차이를 체감할 수 있습니다. 추론 단계에서는 기존 3D Gaussian Splatting 렌더링 경로와 완전히 호환되므로, 기존에 구축한 3DGS 뷰어 환경이나 파이프라인을 그대로 유지하면서 반사 제거된 결과물만 교체하여 활용하면 됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "추론 과정에서 기존 3D Gaussian Splatting 렌더링 파이프라인과 호환되나요?",
       "a": "네. 추론 시에는 학습에 사용되었던 반사 이미지를 폐기하기 때문에 표준 3D Gaussian Splatting 렌더링 경로를 그대로 유지하여 활용할 수 있습니다."
+    },
+    {
+      "q": "RIDE-Splat을 사용할 때 사전에 준비해야 할 정답(클린) 이미지가 필수인가요?",
+      "a": "아닙니다. RIDE-Splat의 가장 큰 특징은 깨끗한 이미지나 별도의 반사 마스크, 사전 학습된 네트워크 없이도 포즈가 지정된 주행 영상만으로 반사 없는 3D 재구성을 수행한다는 점입니다."
+    },
+    {
+      "q": "학습에 사용된 반사 이미지는 추론 단계에서도 계속 유지되나요?",
+      "a": "아닙니다. 추론 단계에 도달하면 학습 과정에서 사용된 반사 이미지는 폐기되며, 표준 3D Gaussian Splatting 렌더링 경로를 그대로 보존하여 최종 렌더링 결과물을 출력합니다."
     }
   ],
   "media": {
@@ -52,5 +70,23 @@
   },
   "collected_at": "2026-10-27T07:43:39.557503+00:00",
   "notion_id": "",
-  "id": "2026-10-27-b1cdd1d42e6c2e54"
+  "id": "2026-10-27-b1cdd1d42e6c2e54",
+  "refs": [],
+  "videos": [
+    {
+      "id": "ubrQTPvkJXI",
+      "title": "They got stuck on a theme park ride during a storm 😳",
+      "author": "Dylan Anderson"
+    },
+    {
+      "id": "E7y17luNAvw",
+      "title": "When you finally get to ride a Disney roller coaster 👏 @theenchantedesquire",
+      "author": "Dylan Anderson"
+    }
+  ],
+  "enriched_at": "2026-10-27T08:06:26+00:00",
+  "quality": {
+    "before": 1102,
+    "after": 1716
+  }
 }
