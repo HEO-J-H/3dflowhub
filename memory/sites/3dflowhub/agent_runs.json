@@ -220,5 +220,17 @@
     "task": "core.validate_dcc_tutorial_depth(): 수집된 콘텐츠가 Maya, 3ds Max, Blender 등 실무 3D 툴 관련 깊이 있는 튜토리얼 스크립트 구조(단계별 안내 및 코드/단축키 포함 여부)를 갖추었는지 검증하고 부족 시 'low depth' 오류 태그를 부",
     "result": "held",
     "msg": "[4] tests=False security=[] — 리뷰 생략"
+  },
+  {
+    "at": "2026-10-27T22:18:44+00:00",
+    "task": "core.filter_irrelevant_hardware_news(): 수집 단계에서 범용 하드웨어 리뷰나 도메인 관련 무관한 키워드가 포함된 아이템을 정확하게 필터링하도록 정규식 검증을 보강하고 테스트 추가",
+    "result": "held",
+    "msg": "[4] 패치 적용 실패: 변경 없음"
+  },
+  {
+    "at": "2026-10-27T22:20:47+00:00",
+    "task": "core.filter_general_hardware_news(): 수집 피드 중 범용 스마트폰, 일반 하드웨어, 스마트워치 등 3D 실무와 무관한 기기를 명시적으로 배제하는 필터 함수 추가 및 테스트 추가",
+    "result": "held",
+    "msg": "[4] tests=False security=[] — 리뷰 생략"
   }
 ]
