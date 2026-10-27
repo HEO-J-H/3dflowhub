@@ -353,12 +353,12 @@ def passes_quality(g: dict) -> bool:
     return len(g.get("steps") or []) >= 4 and len(g.get("params") or []) >= 2 and bool(g.get("grounded") or g.get("videos"))
 
 
-def write_guides(max_new: int = 2, gate: bool = True) -> list[str]:
-    """아직 없는 주제를 생성. gate=True 면 AI 한도 40% 이상 남았을 때만 (자동 모드는 배분량으로 대신 판단)."""
+def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
+    """아직 없는 주제를 생성. AI 할당 비중(guides 0.5)에 맞춰 기본 생성량 확대."""
     budget = int(core.load_config().get("llm_daily_budget", 500))
-    if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.4):
+    if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.3):
         return []
-    # 대량 생성 콘텐츠로 보이지 않게 하루 상한 (Google '대량 생성 콘텐츠 남용' 정책) — 주제는 많아도 천천히·검사 통과분만
+    # AI 할당 비중 0.5 반영하여 하루 충분한 가이드 제작 허용
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     made_today = sum(1 for g in load_all() if (g.get("at") or "").startswith(today))
     max_new = min(max_new, max(0, int(core.load_config().get("guides_daily_max", GUIDES_DAILY_MAX)) - made_today))

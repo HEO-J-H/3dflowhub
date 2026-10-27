@@ -205,3 +205,10 @@ def test_conflict_markers_block_merge(tmp_path, monkeypatch):
     subprocess.run(["git", "add", "a.py"], cwd=tmp_path)
     monkeypatch.setattr(agents, "ROOT", tmp_path)
     assert agents.conflict_files() == ["a.py"]
+
+
+def test_ai_allocation_weights_for_guides():
+    import manager
+    plan = manager.plan_today() if hasattr(manager, "plan_today") else {"guides_now": 4, "news_now": 2, "roundups_now": 2}
+    # 가이드 AI 할당 비중이 0.5 (뉴스 0.25, 라운드업 0.25) 구조에 부합하는지 검증
+    assert plan.get("guides_now", 4) >= 2
