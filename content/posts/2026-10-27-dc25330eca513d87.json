@@ -1,0 +1,52 @@
+{
+  "title_ko": "SceneAgent 논문 — 3D·4D 캡처를 시뮬레이션 환경으로 자동 변환",
+  "title": "SceneAgent: An Agentic Pipeline from 3D and 4D Captures to Simulation Environments",
+  "url": "https://arxiv.org/abs/2610.34745v1",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "연구·논문",
+  "tags": [
+    "SceneAgent",
+    "3D Gaussian Splatting",
+    "시뮬레이션",
+    "로보틱스",
+    "AI 3D"
+  ],
+  "summary": "SceneAgent는 3D Gaussian Splatting, LiDAR, 4D 비디오 등의 시각적 캡처 데이터를 객체 재구성, 물리 모델링, 검수 및 수정 과정을 거쳐 대화형 시뮬레이션 환경으로 자동 변환하는 에이전트 파이프라인을 제안합니다.",
+  "insight": "본 연구는 실제 물리 세계의 3D 및 4D 스캔 데이터를 로봇 학습과 시뮬레이션 환경에 곧바로 활용할 수 있도록 가교 역할을 수행한다는 점에서 실무적 가치가 높습니다. 특히 3D Gaussian Splatting이나 포토그래메트리 데이터를 기반으로 정교한 물리 파라미터 추정 및 관절(Articulation) 구조를 자동 생성하므로, 디지털 윈 및 로보틱스 시뮬레이션 파이프라인 구축 시간을 대폭 단축할 수 있습니다. 로봇 정책 학습이나 동적 시나리오 검증을 수행하는 엔지니어라면 주목해야 할 기술입니다. 실제 물리 상호작용과 로봇 정책 전송(Policy Transfer) 단계에서의 오차 보정 메커니즘을 유심히 살펴볼 필요가 있습니다.",
+  "sections": [
+    {
+      "heading": "SceneAgent 파이프라인의 핵심 역할",
+      "body": "시각적 캡처 데이터는 대상의 상세한 외형을 제공하지만 이를 상호작용 가능한 시뮬레이션 환경으로 바꾸려면 객체 재구성, 물리 모델링, 중간 오차의 교정 과정이 필수적입니다. SceneAgent는 시뮬레이터 기반의 시각적 검수와 수정을 통해 이러한 단계를 조율하는 에이전트 파이프라인을 제시합니다. 다양한 소스에서 유입되는 데이터를 통합하여 정밀한 시뮬레이션 공간을 구축합니다."
+    },
+    {
+      "heading": "다양한 3D 및 4D 캡처 데이터 지원",
+      "body": "이 파이프라인은 3D Gaussian Splatting, 포토그래메트리, LiDAR 캡처뿐만 아니라 AI가 생성한 3D Gaussian Splatting 씬, 그리고 동적 씬을 담은 4D 비디오까지 폭넓게 처리합니다. 객체 분할, 물리적 파라미터 추정, 파트 분해, 관절 구조화, 변형 가능한 시뮬레이션(Deformable simulation) 기능을 하나로 결합합니다."
+    },
+    {
+      "heading": "정책 학습을 위한 디지털 시스터 생성",
+      "body": "로봇의 정책 학습을 지원하기 위해 SceneAgent는 다양한 객체 변형 버전인 '디지털 시스터'와 스크립트화된 시연 데이터를 생성합니다. 이를 통해 시뮬레이션 환경에서 다양한 상호작용을 테스트하고 학습 데이터의 다양성을 확보할 수 있습니다."
+    },
+    {
+      "heading": "정량적 성능 및 시뮬레이션 정확도",
+      "body": "GraspClutter6D의 복잡한 빈 씬에서 SceneAgent는 스코어가 산출되는 모든 코딩 에이전트의 1cm 기준 F1 스코어를 크게 향상시켰으며 SimFoundry보다 뛰어난 재구성 결과를 보여주었습니다. 또한 4DCodeBench의 세 가지 동적 씬에서 Gemini 4 Argon의 평균 동적 IoU를 대폭 끌어올렸습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "SceneAgent는 어떤 입력 데이터를 처리할 수 있나요?",
+      "a": "3D Gaussian Splatting, 포토그래메트리, LiDAR 캡처, AI 생성 3D Gaussian Splatting 씬, 그리고 동적 씬의 4D 비디오 등을 처리하여 시뮬레이션 환경으로 변환합니다."
+    },
+    {
+      "q": "SceneAgent가 로보틱스 시뮬레이션에서 갖는 차별점은 무엇인가요?",
+      "a": "객체 분할, 물리 파라미터 추정, 관절 구조화, 변형 시뮬레이션을 자동화하며, 정책 학습을 위한 디지털 시스터와 시연 데이터를 생성해 기존 방식보다 훨씬 높은 F1 스코어와 동적 IoU 성능을 제공합니다."
+    }
+  ],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T07:33:40.658264+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-dc25330eca513d87"
+}
