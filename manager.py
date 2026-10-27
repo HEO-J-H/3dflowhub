@@ -21,7 +21,7 @@ PROPOSALS_PATH = core.ROOT / "memory" / "proposals.json"
 REVIEW_EVERY = timedelta(hours=24)
 MAX_PROPOSALS = 3
 CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익", "현황판"]  # 현황판 = 운영자용 Streamlit 앱
-CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int}
+CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int, "buttondown_user": str}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
 DEFAULT_ALLOC = {"news": 0.2, "guides": 0.5, "roundups": 0.3}  # 에버그린(가이드·정리) 중심 — 요약 소식은 남들도 가진 정보
