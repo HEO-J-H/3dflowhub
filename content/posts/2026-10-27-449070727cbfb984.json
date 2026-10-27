@@ -1,0 +1,88 @@
+{
+  "title_ko": "NVIDIA CUDA 13.4 쿠버네티스 GPU 파티셔닝 기술 소개",
+  "title": "Memory-Enforced GPU Sharing in Kubernetes with NVIDIA CUDA 13.4",
+  "url": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4/",
+  "domain": "AI 3D",
+  "category": "NVIDIA Mission Control",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA",
+    "CUDA",
+    "Kubernetes",
+    "GPU",
+    "MPS"
+  ],
+  "summary": "NVIDIA CUDA 13.4와 오픈소스 GPU Fractioning Operator를 통해 쿠버네티스 환경에서 파드 단위의 정밀한 GPU 메모리 할당과 공유가 가능해졌습니다.",
+  "insight": "대규모 AI 학습 및 렌더링 파이프라인을 운영하는 스튜디오와 파이프라인 엔지니어에게 GPU 자원 효율성은 프로젝트 비용을 좌우하는 핵심 요소입니다. 이번 CUDA 13.4의 메모리 강제화 및 KAI Scheduler 연동 기능은 하나의 GPU를 다수의 작업이 안전하게 나누어 쓸 수 있게 도와주며, 유휴 자원을 최소화합니다. 특히 소규모 팀이나 분산 렌더링 환경에서 인프라 구축 비용을 절감하는 실무적 대안으로 활용될 수 있습니다. 도입 시 클러스터 노드단의 MPS 설정과 오퍼레이터 버전 호환성을 면밀히 검토해야 합니다.",
+  "sections": [
+    {
+      "heading": "CUDA 13.4를 통한 정밀한 GPU 메모리 제어",
+      "body": "CUDA 13.4는 애플리케이션 투명성을 유지하면서 엄격한 메모리 경계를 강제하는 새로운 기능을 도입했습니다. 작업은 정확한 메모리 양을 요청하고 CUDA는 이를 유지하며, 할당량이 초과되면 오류를 반환합니다. 보장된 최소값과 버스트 가능한 최대값의 범위를 지정할 수 있으며, 타임 슬라이싱과 sm-sharing 연산 모드 중 선택이 가능합니다."
+    },
+    {
+      "heading": "GPU Fractioning Operator와 KAI Scheduler 통합",
+      "body": "새롭게 공개된 오픈소스 GPU Fractioning Operator는 NVIDIA GPU Operator와 함께 작동하여 각 노드에서 MPS를 설정하고 관리합니다. KAI Scheduler v0.18.0은 NvFractions GPU 공유 모드를 통해 이를 지원하며, 파드 어노테이션에 메모리 요청, 한계, 연산 모드를 지정할 수 있습니다. 관리자는 Helm 플래그를 통해 간편하게 기능을 활성화할 수 있습니다."
+    },
+    {
+      "heading": "다양한 GPU 공유 메커니즘의 활용",
+      "body": "NVIDIA GPU는 MIG, 타임 슬라이싱, MPS 등 다양한 공유 방식을 지원해 왔습니다. 이번 CUDA 13.4 업데이트를 통해 기존의 sm-sharing 연산 모드와 함께 애플리케이션에 투명한 메모리 제한 기능이 결합되었습니다. 이를 통해 플랫폼 팀은 기존 인프라로 더 많은 워크로드를 안정적으로 처리할 수 있습니다."
+    },
+    {
+      "heading": "쿠버네티스 환경에서의 노드 관리 자동화",
+      "body": "CUDA가 제공하는 메모리 강제 기능은 쿠버네티스 클러스터에서 독립적으로 작동할 수 없으므로 노드 레벨의 관리가 필수적입니다. GPU Fractioning Operator는 각 노드에서 데몬을 실행하고 감독하며, 워크로드 시작 전 메모리 제한을 적용합니다. 또한 전체 GPU가 아닌 개별 GPU 파션 단위의 사용량을 측정하여 보고합니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Kubernetes 환경에서 렌더링 파이프라인이나 AI 모델 학습·추론 워크로드를 운영할 때, CUDA 13.4의 메모리 제한 기능과 GPU Fractioning Operator를 결합하면 리소스 효율을 극대화할 수 있습니다. 파드 어노테이션에 필요한 메모리 요청량과 최대 한계치를 명시하여 특정 작업이 GPU 메모리를 독점하는 현상을 방지합니다. 관리자는 Helm을 통해 기능을 활성화하고 타임 슬라이싱 또는 sm-sharing 모드를 선택해, 제한된 GPU 인프라 위에서도 다수의 아티스트나 파이프라인 작업이 안정적으로 동시 구동되도록 인프라를 구성할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "NVIDIA CUDA 13.4 기반의 파티셔닝과 쿠버네티스 통합을 시작하려면 먼저 GPU Operator가 설치된 클러스터 환경을 준비해야 합니다. 최신 KAI Scheduler v0.18.0과 오픈소스 GPU Fractioning Operator를 클러스터에 배포하여 노드 레벨의 MPS 관리와 데몬 실행을 세팅합니다. 이후 파드 설정 파일의 어노테이션에 NvFractions GPU 공유 모드와 메모리 파라미터를 적용해 테스트 워크로드를 구동하며, 개별 GPU 파션 단위의 사용량 측정과 오류 반환 동작을 모니터링해 보세요.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "CUDA 13.4의 GPU 메모리 제어는 어떤 장점이 있나요?",
+      "a": "애플리케이션에 투명한 방식으로 정확한 메모리 할당량과 최소/최대 범위를 지정하여 자원 고갈을 방지하고 유휴 용량을 극대화합니다."
+    },
+    {
+      "q": "GPU Fractioning Operator는 어떻게 설치하나요?",
+      "a": "KAI Scheduler 설치 시 Helm 플래그를 사용하여 활성화할 수 있으며, GitHub의 오픈소스 저장소에서 상세한 설치 및 설정 가이드를 확인할 수 있습니다."
+    },
+    {
+      "q": "CUDA 13.4의 메모리 제한 기능을 초과하면 어떤 일이 발생하나요?",
+      "a": "작업이 설정된 메모리 할당량을 초과할 경우 CUDA는 즉시 오류를 반환하며, 이를 통해 다른 파드의 리소스 침해를 막고 시스템 안정성을 유지합니다."
+    },
+    {
+      "q": "어떤 연산 모드들을 선택하여 사용할 수 있나요?",
+      "a": "타임 슬라이싱(Time-slicing)과 sm-sharing 연산 모드 중 워크로드 특성에 맞게 선택하여 활용할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/CUDAMemoryKV.webp",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T22:06:20.896905+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-449070727cbfb984",
+  "refs": [],
+  "videos": [
+    {
+      "id": "pwU7G1457Yk",
+      "title": "Fractional GPU Sharing with NVIDIA KAI Scheduler on Kubernetes | Rafay",
+      "author": "Rafay Systems"
+    },
+    {
+      "id": "_F1JMRs_utM",
+      "title": "GPUs in Kubernetes… in ONE Install?! (NVIDIA GPU Operator)",
+      "author": "Salman Iqbal"
+    }
+  ],
+  "enriched_at": "2026-10-27T22:06:25+00:00",
+  "quality": {
+    "before": 890,
+    "after": 1503
+  }
+}
