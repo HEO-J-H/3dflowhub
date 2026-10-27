@@ -1,0 +1,35 @@
+{
+  "title_ko": "TensorRT 11.1 글로벌 퍼포먼스 튜너 — 빌드 경로 확장 및 최적화",
+  "title": "Scaling NVIDIA TensorRT Performance Optimization Beyond a Single Build Route with the Global Performance Tuner, Part 1",
+  "url": "https://developer.nvidia.com/blog/scaling-nvidia-tensorrt-performance-optimization-beyond-a-single-build-route-with-the-global-performance-tuner-part-1/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "업데이트·출시",
+  "tags": [
+    "TensorRT",
+    "Global Performance Tuner",
+    "AI inference",
+    "성능 최적화",
+    "빌드 경로"
+  ],
+  "summary": "TensorRT 11.1에 도입된 Global Performance Tuner가 빌드 경로를 사용자 정의해 정확도와 성능을 동시에 만족하는 최적 엔진을 자동으로 탐색합니다.",
+  "insight": "AI 기반 3D Pipeline 추론 속도는 전체 워크플로우의 병목이 되기 쉬운데, 이번 튜너는 기존 단일 빌드 전략의 한계를 넘어 다양한 스케줄링 옵션을 탐색합니다. 정확도 제약을 고려한 자동 튜닝은 모델 품질을 유지하면서도 최적의 GPU 활용을 가능하게 하므로, 실시간 렌더링이나 인터랙티브 AI 어플리케이션에 특히 유용합니다. 엔진 빌드 단계에서 여러 후보를 생성·검증하므로, 기존에 수동으로 조정하던 파라미터를 크게 줄일 수 있습니다. 다만, 튜너가 생성하는 후보 수가 많아 빌드 시간이 늘어날 수 있으니, CI/CD 파이프라인에 적절히 배치하는 것이 좋습니다.",
+  "sections": [
+    {
+      "heading": "TensorRT 빌드 과정의 복합 스케줄링",
+      "body": "TensorRT는 그래프 변환, 연산 융합, 구현 선택, 메모리 배치, 양자화 등 여러 요소를 동시에 고려해 엔진을 빌드합니다. 이러한 스케줄링 결정은 서로 의존관계가 있어 하나의 선택이 전체 성능에 큰 영향을 미칩니다. 모델마다 최적의 스케줄링이 다르기 때문에 단일 전략으로는 모든 경우에 최적화를 보장할 수 없습니다."
+    },
+    {
+      "heading": "Global Performance Tuner 소개",
+      "body": "TensorRT 11.1에 새롭게 추가된 Global Performance Tuner는 사용자 정의 빌드 경로를 제공해 해결책 공간을 크게 확장합니다. 각 후보 엔진은 최종 정확도와 성능을 동시에 검증받으며, 가장 빠른 허용 가능한 엔진이 자동으로 선택됩니다. 이 기능은 기존의 고정된 빌드 파이프라인을 대체해 다양한 모델과 배포 환경에 유연하게 대응합니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/desktop-computer-overlay.webp",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T03:53:03.223471+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-4dcd06f240ef44ca"
+}
