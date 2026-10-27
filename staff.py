@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 import json
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
@@ -92,11 +93,26 @@ def set_status(rid: str, active: bool) -> None:
 
 
 # ─────────────────────────── 홍보 대기함 ───────────────────────────
+def with_link(body: str, url: str) -> str:
+    """복사해서 바로 올릴 수 있게 본문에 링크를 넣음 — 빈 '👉'/'🔗' 자리가 있으면 그 자리에, 없으면 끝에.
+    (예전 초안은 링크를 따로 저장해 본문만 복사하면 링크가 빠졌음)"""
+    body = (body or "").rstrip()
+    if not url or url in body:
+        return body
+    lines = body.split("\n")
+    for i in range(len(lines) - 1, -1, -1):
+        t = lines[i].strip()
+        if t.startswith(("👉", "🔗")) and not re.search(r"https?://", t):
+            lines[i] = lines[i].rstrip() + " " + url
+            return "\n".join(lines)
+    return body + "\n\n👉 " + url
+
+
 def outbox() -> list[dict]:
     items: dict[str, dict] = {}
     for e in _events(OUTBOX_PATH):
         if e.get("kind") == "item":
-            items[e["id"]] = {**e, "status": "new"}
+            items[e["id"]] = {**e, "status": "new", "body": with_link(e.get("body", ""), e.get("url", ""))}
         elif e.get("kind") == "status" and e.get("id") in items:
             items[e["id"]].update(status=e.get("v", "new"), note=e.get("note", ""))
     return sorted(items.values(), key=lambda x: x["at"], reverse=True)
@@ -112,7 +128,8 @@ def tracked(url: str, channel: str, role_id: str) -> str:
     import sites
     if not any(url.startswith(v["url"]) for v in sites.SITES.values()):
         return url
-    src = {"네이버": "naver_cafe", "X": "x", "인스타": "instagram", "디스코드": "discord", "뉴스레터": "newsletter"}
+    src = {"블로그": "naver_blog", "카페": "naver_cafe", "카카오": "kakao", "페이스북": "facebook", "X": "x",
+           "인스타": "instagram", "디스코드": "discord", "뉴스레터": "newsletter"}  # 앞에서부터 처음 맞는 것
     s = next((v for k, v in src.items() if k in channel), "promo")
     return url + ("&" if "?" in url else "?") + urlencode({"utm_source": s, "utm_campaign": role_id})
 
