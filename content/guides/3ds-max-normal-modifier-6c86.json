@@ -1,0 +1,85 @@
+{
+  "id": "3ds-max-normal-modifier-6c86",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Normal modifier",
+  "title": "Normal — 면 방향 뒤집기",
+  "summary": "Normal modifier는 오브젝트의 면 방향(Face Normal)을 뒤집거나 정렬하여 깨진 Shading을 바로잡는 도구입니다. 복잡한 모델링 수정 없이 빠르게 표면의 법선 방향을 제어합니다.",
+  "when": [
+    "임포트한 3D 모델의 표면이 검게 깨지거나 Shading이 이상할 때",
+    "오브젝트의 안팎이 뒤집혀서 안쪽 면이 렌더링될 때",
+    "특정 면의 법선 방향만 반대로 뒤집고 싶을 때"
+  ],
+  "steps": [
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Normal을 선택하여 적용합니다.",
+    "Gizmo나 서브오브젝트 레벨에서 수정할 면을 선택합니다.",
+    "Parameters에서 Flip Normal을 체크해 방향을 뒤집습니다.",
+    "Unify 노말 옵션으로 인접한 면의 방향을 일관되게 정렬합니다."
+  ],
+  "params": [
+    {
+      "name": "Flip Normal",
+      "desc": "선택한 면의 법선 방향을 정반대로 뒤집습니다."
+    },
+    {
+      "name": "Unify",
+      "desc": "인접한 면들의 법선 방향을 서로 일치하도록 정리합니다."
+    },
+    {
+      "name": "Explicit Normals",
+      "desc": "메시에 수동으로 지정된 법선 데이터 유지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "뒤집힌 면 복구하기",
+      "steps": [
+        "오브젝트 선택 후 Normal modifier 적용",
+        "Parameters에서 Flip Normal 체크",
+        "안쪽으로 향하던 Shading이 바깥쪽으로 정상 출력되는지 확인"
+      ]
+    },
+    {
+      "title": "깨진 Shading 한 번에 정리하기",
+      "steps": [
+        "외부에서 불러온 모델 선택",
+        "Normal modifier 적용",
+        "Unify 버튼을 눌러 들쑥날쑥한 법선 방향 통일"
+      ]
+    }
+  ],
+  "mistakes": [
+    "법선이 뒤집힌 상태로 Edit Poly에서 수정을 계속함 → Normal modifier나 Edit Normals로 먼저 방향을 정렬한 뒤 작업하세요.",
+    "Sub-object 모드 진입 없이 전체 면을 뒤집음 → Element나 Face 서브오브젝트 레벨에서 특정 면만 선택해 수정하세요."
+  ],
+  "related": [
+    "Edit Normals",
+    "Edit Poly",
+    "Smooth",
+    "Turn to Poly"
+  ],
+  "videos": [
+    {
+      "id": "54lkOFmoW4M",
+      "title": "3ds Max  12-17 Normal Modifier",
+      "author": "John Bordeau"
+    },
+    {
+      "id": "PtsVaMtulbo",
+      "title": "3ds max 2024.1 - Edit Normal modifier - tutorial EN (2023)",
+      "author": "Szymon Warunek"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Normal%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Normal"
+  ],
+  "at": "2026-10-27T00:43:02.842500+00:00"
+}
