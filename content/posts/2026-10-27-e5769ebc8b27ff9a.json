@@ -1,0 +1,53 @@
+{
+  "title_ko": "Blender 멀티 앵글 빌보드 스프라이트 구현 기법",
+  "title": "This My Little Pony Character's Bizarre 2D/3D Look Will Break Your Brain",
+  "url": "https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Blender",
+    "Billboard",
+    "Retro",
+    "Sprite",
+    "CamKeys",
+    "블렌더"
+  ],
+  "summary": "클래식 게임의 멀티 앵글 빌보드 스프라이트 기법을 Blender와 애드온을 활용해 2D 캐릭터에 3D 입체감을 부여하는 방식을 소개합니다.",
+  "insight": "레트로 게임 감성의 2.5D 그래픽 스타일이나 독특한 비주얼을 추구하는 인디 게임 개발자 및 애니메이터에게 유용한 테크닉입니다. 완전한 3D 모델링 공정을 거치지 않고도 다각도 프리렌더링 이미지를 활용해 성능 최적화와 독창적인 아트 스타일을 동시에 잡을 수 있습니다. 특히 복잡한 리깅 없이 카메라 각도에 따라 프레임을 전환하는 방식으로 효율적인 워크플로를 구축할 수 있습니다.",
+  "sections": [
+    {
+      "heading": "멀티 앵글 빌보드 스프라이트란",
+      "body": "DOOM이나 The Elder Scrolls II: Daggerfall 같은 고전 게임에서 사용되던 렌더링 트릭입니다. 실제 3D 모델이 아니라 카메라를 항상 바라보는 평면 스프라이트에 여러 각도의 이미지를 미리 준비해 교체하는 방식입니다. 엔진이 카메라와 객체의 각도를 계산하여 가장 일치하는 이미지를 출력합니다."
+    },
+    {
+      "heading": "Blender에서의 2D 및 3D 융합",
+      "body": "Blender는 생각보다 2D 작업에 활용하기 유용한 도구입니다. BeyondDev의 CamKeys 같은 애드온을 사용하면 셰이프 키와 객체 속성을 카메라 각도에 연동할 수 있습니다. 최신 업데이트를 통해 이러한 2.5D 빌보드 에뮬레이션 트릭을 더욱 수월하게 구현할 수 있게 되었습니다."
+    },
+    {
+      "heading": "CamKeys 애드온 활용 방법",
+      "body": "상단 패널에 메시나 래티스를 추가한 뒤 Forced Perspective 기능을 활성화합니다. 이어서 동일한 패널에서 Stepped Turn Around 옵션을 켜면 스프라이트 회전 효과를 낼 수 있습니다. 해당 기능은 향후 Billboard Emulation이라는 명칭으로 변경될 예정입니다."
+    },
+    {
+      "heading": "독창적인 카메라 트릭과 활용 사례",
+      "body": "클래식 게임의 감성을 재현한 마이 리틀 포니 캐릭터나 소닉 헤드 모델처럼 다양한 시도가 이어지고 있습니다. 독립 애니메이션 쇼츠 등에서도 뷰포트와 최종 렌더링 간의 차이를 활용한 독특한 연출 기법들이 적용되고 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "멀티 앵글 빌보드 스프라이트는 어떤 원리로 작동하나요?",
+      "a": "카메라가 객체를 바라보는 각도를 감지한 뒤, 전·측·후면 등 미리 준비된 여러 각도의 평면 이미지 중 가장 알맞은 프레임을 실시간으로 전환하여 3D처럼 보이게 만듭니다."
+    },
+    {
+      "q": "Blender에서 이 기법을 쉽게 구현하려면 어떤 도구가 필요한가요?",
+      "a": "BeyondDev의 CamKeys 애드온을 활용하면 카메라 각도와 객체 속성을 연결하여 유사한 빌보드 에뮬레이션 효과를 손쉽게 구현할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/50794/images/6ae0662f48155/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=qBPuZ-1StZc"
+  },
+  "collected_at": "2026-10-27T09:44:14.014759+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-e5769ebc8b27ff9a"
+}

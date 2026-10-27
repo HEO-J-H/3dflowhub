@@ -1,0 +1,22 @@
+<!-- TITLE: Blender 멀티 앵글 빌보드 스프라이트 구현 기법 | TAGS: Blender,Billboard,Retro,Sprite,CamKeys,블렌더,튜토리얼·팁 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/50794/images/6ae0662f48155/contain_1200x630.jpg" alt="Blender 멀티 앵글 빌보드 스프라이트 구현 기법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/qBPuZ-1StZc" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 클래식 게임의 멀티 앵글 빌보드 스프라이트 기법을 Blender와 애드온을 활용해 2D 캐릭터에 3D 입체감을 부여하는 방식을 소개합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 튜토리얼·팁</p>
+<h2>멀티 앵글 빌보드 스프라이트란</h2>
+<p>DOOM이나 The Elder Scrolls II: Daggerfall 같은 고전 게임에서 사용되던 렌더링 트릭입니다. 실제 3D 모델이 아니라 카메라를 항상 바라보는 평면 스프라이트에 여러 각도의 이미지를 미리 준비해 교체하는 방식입니다. 엔진이 카메라와 객체의 각도를 계산하여 가장 일치하는 이미지를 출력합니다.</p>
+<h2>Blender에서의 2D 및 3D 융합</h2>
+<p>Blender는 생각보다 2D 작업에 활용하기 유용한 도구입니다. BeyondDev의 CamKeys 같은 애드온을 사용하면 셰이프 키와 객체 속성을 카메라 각도에 연동할 수 있습니다. 최신 업데이트를 통해 이러한 2.5D 빌보드 에뮬레이션 트릭을 더욱 수월하게 구현할 수 있게 되었습니다.</p>
+<h2>CamKeys 애드온 활용 방법</h2>
+<p>상단 패널에 메시나 래티스를 추가한 뒤 Forced Perspective 기능을 활성화합니다. 이어서 동일한 패널에서 Stepped Turn Around 옵션을 켜면 스프라이트 회전 효과를 낼 수 있습니다. 해당 기능은 향후 Billboard Emulation이라는 명칭으로 변경될 예정입니다.</p>
+<h2>독창적인 카메라 트릭과 활용 사례</h2>
+<p>클래식 게임의 감성을 재현한 마이 리틀 포니 캐릭터나 소닉 헤드 모델처럼 다양한 시도가 이어지고 있습니다. 독립 애니메이션 쇼츠 등에서도 뷰포트와 최종 렌더링 간의 차이를 활용한 독특한 연출 기법들이 적용되고 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">레트로 게임 감성의 2.5D 그래픽 스타일이나 독특한 비주얼을 추구하는 인디 게임 개발자 및 애니메이터에게 유용한 테크닉입니다. 완전한 3D 모델링 공정을 거치지 않고도 다각도 프리렌더링 이미지를 활용해 성능 최적화와 독창적인 아트 스타일을 동시에 잡을 수 있습니다. 특히 복잡한 리깅 없이 카메라 각도에 따라 프레임을 전환하는 방식으로 효율적인 워크플로를 구축할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 멀티 앵글 빌보드 스프라이트는 어떤 원리로 작동하나요?</b><br/>A. 카메라가 객체를 바라보는 각도를 감지한 뒤, 전·측·후면 등 미리 준비된 여러 각도의 평면 이미지 중 가장 알맞은 프레임을 실시간으로 전환하여 3D처럼 보이게 만듭니다.</p>
+<p><b>Q. Blender에서 이 기법을 쉽게 구현하려면 어떤 도구가 필요한가요?</b><br/>A. BeyondDev의 CamKeys 애드온을 활용하면 카메라 각도와 객체 속성을 연결하여 유사한 빌보드 에뮬레이션 효과를 손쉽게 구현할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-3a4a42efda05b24a.html">Blender 배경 제작 튜토리얼 — 컨셉 아트용 배경 만들기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-238a1ffa41e35a7d.html">Blender 인체 스컬프팅 강좌 — 해부학부터 텍스처링까지</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-26-2d455bf1084a1569.html">Blender 컨셉 아트 배경 활용법 — 2D 아티스트를 위한 3D 워크플로</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain/" target="_blank" rel="noopener nofollow">This My Little Pony Character&#x27;s Bizarre 2D/3D Look Will Break Your Brain</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
