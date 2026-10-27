@@ -1,0 +1,20 @@
+<!-- TITLE: Unreal Engine 레이어드 물 VFX 제작 기법 — 아바타 아앙의 전설 | TAGS: Unreal Engine,VFX,물 시뮬레이션,아바타,그래픽,언리얼 엔진,튜토리얼·팁 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 인기 애니메이션 아바타 아앙의 전설에서 영감을 받아 구현한 독특한 레이어드 물 VFX 제작 과정을 다룬 가이드입니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 튜토리얼·팁</p>
+<h2>아바타 아앙의 전설 스타일 물 VFX 개요</h2>
+<p>본 아티클은 유명 애니메이션 시리즈인 아바타 아앙의 전설에 등장하는 독특한 물 조작 및 흐름 연출을 실시간 3D 환경에서 재현하는 방법을 다룹니다. 기존의 사실적인 물리 시뮬레이션과 차별화된, 스타일화된 비주얼을 구현하는 데 초점을 맞추고 있습니다. 아티스트는 원작의 감성을 살리기 위해 어떤 시각적 요소를 분석해야 하는지 파악할 수 있습니다.</p>
+<h2>레이어드 구조를 활용한 물 표현</h2>
+<p>단일 셰이더나 메시가 아닌 여러 개의 레이어를 겹쳐서 입체적이고 역동적인 물의 움직임을 만들어내는 핵심 기법을 설명합니다. 각 레이어의 투명도, 굴절, 속도를 다르게 조절하여 깊이감과 풍성한 볼륨을 연출합니다. 이는 실시간 엔진에서 성능 저하를 최소화하면서도 높은 시각적 완성도를 낼 수 있는 실용적인 접근입니다.</p>
+<h2>실시간 엔진 적용 및 Shader 설정</h2>
+<p>제작된 레이어드 물 Effect를 게임 엔진 내에서 어떻게 조립하고 머티리얼 노드를 구성하는지 세부적인 팁을 제공합니다. 파라미터 조정을 통해 물의 거품, 파도, 흐름의 방향을 실시간으로 제어할 수 있는 환경을 구축합니다. 아티스트는 이를 통해 다양한 연출 상황에 유연하게 대응할 수 있는 머티리얼 시스템을 설계할 수 있습니다.</p>
+<h2>스타일화된 VFX 워크플로의 완성</h2>
+<p>전체적인 시각 효과를 다듬고 주변 환경과의 조화를 이루는 후반 작업 과정을 다룹니다. 색상 보정, 라이팅 상호작용 등을 통해 최종 결과물이 애니메이션풍의 독창적인 분위기를 온전히 담아내도록 합니다. 실무 Pipeline 비사실적 그래픽(NPR) 프로젝트를 진행할 때 참고할 수 있는 유용한 기준을 제시합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">스타일화된 애니메이션풍의 물 Effect를 실시간 엔진에서 구현해야 하는 테크니컬 아티스트와 VFX 아티스트에게 유용한 자료입니다. 단순한 물리 시뮬레이션을 넘어 레이어 구조를 활용해 시각적 매력과 최적화를 동시에 잡는 접근법을 배울 수 있습니다. 실시간 프로젝트에서 독창적인 수면 표현을 고민하는 실무자라면 제작 파이프라인에 도입해 볼 가치가 있습니다. 비사실적인(NPR) 스타일의 게임 개발이나 애니메이션풍 그래픽을 목표로 하는 팀에서 참고하기 좋습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 이 튜토리얼은 어떤 엔진을 기반으로 하나요?</b><br/>A. 본 아티클은 실시간 3D 그래픽과 VFX 제작에 널리 쓰이는 표준 게임 엔진 환경을 전제로 레이어드 물 VFX 제작법을 설명합니다.</p>
+<p><b>Q. 어떤 아티스트에게 가장 유용한가요?</b><br/>A. 애니메이션풍 스타일의 물 효과나 독창적인 레이어드 VFX를 실시간 프로젝트에 적용하고자 하는 테크니컬 아티스트 및 VFX 아티스트에게 적합합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-e73216a9095c4460.html">Unreal Engine 러브크래프트풍 게임 마을 제작기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-26-2cce2d3cea480c2c.html">Unreal Engine 5.8 Shader 프리 컴파일 제거 기능 도입</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-26-cbbffc5dfa86f9c0.html">Unreal Engine 5.8 출시 — Shader 버벅임 개선</a></li></ul>
+<hr/><p>원문:<a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxOMkJOU2g2MDAwdms1UUNfakQ5VXA0Q3I4bk01dU1DN05sRGdBOXotd2RsQmZPdXVOY18ybDIwejgzUzVMS0owZkNoQTFMRFAtOGZOSEZFOU9CQnU0SVFQV1lNZWVBUTFhdENfUWFGSWtTMHZzUUk3eHRGVjFaMUVGekRQRGdtLUdsN0NReGln?oc=5" target="_blank" rel="noopener nofollow">How to Create Layered Water VFX Inspired by Avatar: The Last Airbender - 80 Level</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

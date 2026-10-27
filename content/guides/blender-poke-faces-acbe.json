@@ -1,0 +1,86 @@
+{
+  "id": "blender-poke-faces-acbe",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Poke Faces",
+  "title": "Poke — 면 가운데 점 넣기",
+  "summary": "Poke Faces 기능은 선택한 면의 중심에 버텍스를 만들고 각 모서리를 연결하여 삼각형 구조로 쪼갭니다. 평면적인 사각형이나 다각형 면을 입체적인 피라미드 형태로 부풀리거나 로우폴리곤 스타일을 만들 때 유용합니다.",
+  "when": [
+    "로우폴리곤 스타일의 크리스탈이나 바위 같은 입체적인 다면체를 만들 때",
+    "사각형이나 N-gon 면의 중심을 기준으로 모든 모서리를 삼각형으로 분할하고 싶을 때",
+    "지오메트리를 활용해 면마다 돌출(Extrude)이나 스케일 변형을 주어 독특한 패턴을 만들 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Face Select 모드(3 키)로 전환한 뒤, 쪼개고 싶은 면을 마우스로 선택합니다.",
+    "상단 메뉴에서 Mesh를 클릭하거나 단축키 Alt+P를 누릅니다.",
+    "메뉴 목록에서 Poke Faces를 선택하여 실행합니다.",
+    "화면 왼쪽 아래(또는 F9 키)에 나타나는 Adjust Last Operation 패널에서 세부 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Offset",
+      "desc": "새로 생성된 중심 버텍스의 높낮이(깊이)를 조절하여 안쪽으로 파이거나 뾰족하게 튀어나오게 만듭니다."
+    },
+    {
+      "name": "Use Center Average",
+      "desc": "선택된 면들의 평균 중심 위치를 기준으로 버텍스를 생성합니다."
+    },
+    {
+      "name": "Even Offset",
+      "desc": "면의 크기와 상관없이 일정한 간격과 오프셋을 유지하도록 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 크리스탈 제작",
+      "steps": [
+        "Cylinder나 Cube 메쉬를 생성하고 Edit Mode로 진입합니다.",
+        "상단 캡(Cap) 면을 선택하고 Alt+P를 눌러 Poke Faces를 실행합니다.",
+        "Offset 값을 올려 뾰족한 결정 모양의 산봉우리 형태를 만듭니다."
+      ]
+    },
+    {
+      "title": "입체적인 거북이 등껍질 패턴",
+      "steps": [
+        "Plane 메쉬를 서브디비전하여 여러 개의 사각형 면을 만듭니다.",
+        "전체 면(A 키)을 선택한 뒤 Poke Faces를 적용합니다.",
+        "Offset을 살짝 주어 각 면이 볼록하게 솟아오른 엠보싱 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 메쉬가 모두 삼각형으로 깨짐 → Face 모드가 아닌 상태에서 전체 선택 후 실행했기 때문입니다. 특정 면만 선택하고 다시 시도하세요.",
+    "오프셋 조절 후 모양이 찌그러짐 → Object Mode에서 Scale 값이 1로 적용되지 않았기 때문입니다. Ctrl+A를 눌러 Apply Scale을 실행하세요."
+  ],
+  "related": [
+    "InsetCulling",
+    "Subdivide",
+    "Triangulate",
+    "Bevel"
+  ],
+  "videos": [
+    {
+      "id": "2YbCg5X6H_M",
+      "title": "Blender 🍩☕ Poke Faces",
+      "author": "Артидокс"
+    },
+    {
+      "id": "mmc_ZED99zw",
+      "title": "Blender trick Poke faces  #blenderustad",
+      "author": "Blender Ustad"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Poke%20Faces",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Face Select",
+    "Mesh",
+    "Poke Faces"
+  ],
+  "at": "2026-10-27T00:22:31.686227+00:00"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "houdini-grid-sop-6d7d",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Grid SOP",
+  "title": "Grid — 평면 격자",
+  "summary": "Grid SOP은 3차원 공간에 사각형 평면 폴리곤 지오메트리를 생성하는 가장 기본적인 노드입니다. 바닥, 지형, 텍스처 투영의 기준 면을 만들 때 사용합니다.",
+  "when": [
+    "캐릭터나 건물이 배치될 평평한 바닥(Ground)을 만들 때",
+    "지형(Terrain) 생성을 위한 고해상도 베이스 메쉬가 필요할 때",
+    "카드형 오브젝트나 2차원 UI 요소를 배치할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 grid를 입력하고 Grid 노드를 선택해 생성합니다.",
+    "Grid 노드 상단이나 우측의 Display(파란색 원형 버튼)를 켜서 뷰포트에서 평면을 확인합니다.",
+    "파라미터 창(Parameters)에서 Size와 Rows, Columns 값을 조절해 크기와 폴리곤 밀도를 설정합니다.",
+    "Transform 탭이나 이어지는 Transform SOP을 통해 위치와 회전을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Size",
+      "desc": "X축과 Y축 방향의 전체 크기를 설정합니다."
+    },
+    {
+      "name": "Rows",
+      "desc": "세로 방향의 폴리곤 분할 개수를 조절합니다."
+    },
+    {
+      "name": "Columns",
+      "desc": "가로 방향의 폴리곤 분할 개수를 조절합니다."
+    },
+    {
+      "name": "Orientation",
+      "desc": "평면이 생성될 축 방향(ZX, XY, YZ)을 선택합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "평면의 중심점을 원점에 둘지, 모서리에 둘지 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바닥 지형 베이스 만들기",
+      "steps": [
+        "Grid SOP을 생성하고 Size를 10x10으로 설정합니다.",
+        "Rows와 Columns를 50으로 높여 디테일을 추가합니다.",
+        "Noise SOP을 연결해 울퉁불퉁한 지형 모양을 만듭니다."
+      ]
+    },
+    {
+      "title": "벽면 월(Wall) 배치하기",
+      "steps": [
+        "Grid SOP을 생성합니다.",
+        "Orientation 파라미터를 XY Plane으로 변경하여 세로 방향 평면으로 만듭니다.",
+        "Transform SOP을 연결해 바닥 위로 세웁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 분할 부족(Rows/Columns가 너무 낮음) → 노이즈나 디폴메이션 적용 시 디테일이 깨지므로 Rows와 Columns 값을 높여줍니다.",
+    "축 방향 오류(바닥에 깔려야 할 평면이 세워져 있음) → Orientation 파라미터에서 올바른 축(ZX Plane 등)을 선택했는지 확인합니다."
+  ],
+  "related": [
+    "Subnet",
+    "Transform SOP",
+    "Noise SOP",
+    "Copy to Points SOP"
+  ],
+  "videos": [
+    {
+      "id": "G6ZcT6vtBzM",
+      "title": "2.1 - SOPs - Overview of SOPs in Houdini",
+      "author": "Mark Fancher"
+    },
+    {
+      "id": "xk6KnKWMThw",
+      "title": "Houdini - Remesh to Grid SOP - Node Bible Quick Tip",
+      "author": "CG Forge"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Grid%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Grid"
+  ],
+  "at": "2026-10-27T00:22:35.429524+00:00"
+}
