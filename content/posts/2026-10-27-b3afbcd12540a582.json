@@ -1,0 +1,35 @@
+{
+  "title_ko": "MS-COOT: Morse‑Smale 복합체 비교·Co‑Optimal Transport 적용",
+  "title": "MS-COOT: Comparing Morse-Smale Complexes with Co-Optimal Transport",
+  "url": "https://arxiv.org/abs/2606.08258",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "Morse‑Smale",
+    "Co‑Optimal Transport",
+    "Hypergraph",
+    "Scalar Field Visualization",
+    "Shape Classification"
+  ],
+  "summary": "MS‑COOT는 Morse‑Smale 복합체를 하이퍼그래프로 표현하고, 임계점과 영역 간 공동 최적 수송을 통해 영역‑대‑영역 매칭을 가능하게 하는 새로운 거리 측정 방법이다.",
+  "insight": "과학 시각화와 구조 비교가 필요한 연구자·엔지니어에게 유용하다. 기존 그래프 기반 매칭이 영역 간 관계를 놓치는 문제를 하이퍼그래프와 공동 최적 수송으로 보완한다. 구현 시 하이퍼네트워크와 지속성 기반 확률 측정, 임계점 속성 비용을 조합해야 하므로 파이프라인 설계에 주의가 필요하다. 2D 시뮬레이션, 3D 메쉬, 볼류메트릭 데이터 등 다양한 데이터에 적용 가능해 시뮬레이션 파라미터 탐색이나 형태 분류 작업에 바로 활용할 수 있다. 특히 영역 수준의 분할·병합 이벤트를 정량화하고 싶을 때 기존 그래프 거리보다 더 의미 있는 결과를 제공한다.",
+  "sections": [
+    {
+      "heading": "MS‑COOT 개념 소개",
+      "body": "논문에서는 Morse‑Smale 복합체를 임계점을 노드, 영역을 하이퍼엣지로 하는 하이퍼그래프로 모델링한다. 이를 기반으로 Co‑Optimal Transport 거리인 MS‑COOT를 정의해 임계점과 영역 사이의 공동 매칭을 동시에 최적화한다. 기존 방법은 임계점 매칭에만 초점을 맞추었지만, MS‑COOT는 영역‑대‑영역 매칭을 명시적으로 제공한다."
+    },
+    {
+      "heading": "핵심 구성 요소",
+      "body": "MS‑COOT는 세 가지 주요 구성 요소로 이루어진다. 첫째, 임계점과 영역 관계를 인코딩하는 하이퍼네트워크 함수가 있다. 둘째, 지속성 기반 확률 측정을 통해 각 영역의 중요도를 정량화한다. 셋째, 임계점 속성을 포함한 샘플 비용 항을 도입해 매칭 비용을 세밀하게 조정한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-27T05:33:24.828957+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-b3afbcd12540a582"
+}

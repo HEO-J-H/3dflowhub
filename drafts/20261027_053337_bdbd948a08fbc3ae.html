@@ -1,0 +1,17 @@
+<!-- TITLE: Gaussian Splatting – 복잡도 기반 정규화로 인간 디테일 재현 강화 | TAGS: Gaussian Splatting,Complexity Regularization,Human Reconstruction,Real-time,NeRF,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 복잡도 사전을 활용한 정규화 기법으로 인간 Gaussian Splatting의 세부 디테일을 실시간으로 크게 향상시킨 연구입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>배경 및 기존 한계</h2>
+<p>일반적인 인간 Gaussian Splatting은 다중 뷰 이미지를 기반으로 새로운 시점을 합성하지만, 복잡한 의복이나 미세한 기하 구조를 표현하는 데 한계가 있었습니다. 기존 방법은 Gaussian 배치 밀도에 제약을 두지 않아 복잡한 영역에서 과도하게 큰 Gaussian을 사용해 흐릿한 결과가 나타났습니다.</p>
+<h2>복잡도 사전과 정규화 설계</h2>
+<p>연구팀은 로컬 엔트로피를 이용해 기하·텍스처 복잡도를 정량화한 복잡도 사전을 구축했습니다. 이 사전은 각 픽셀의 복잡도 값을 제공하며, 정규화 단계에서 복잡도가 높은 영역에 Gaussian을 더 촘촘히 배치하도록 제약을 가합니다. 이를 통해 고복잡도 영역에서도 세밀한 구조를 유지할 수 있게 됩니다.</p>
+<h2>복잡도 기반 로컬 패치 샘플링</h2>
+<p>복잡도 사전을 활용해 학습 시 주로 복잡한 영역의 로컬 패치를 샘플링합니다. 이렇게 하면 모델이 세부 디테일에 충분히 노출되어, 복잡한 의복 주름이나 작은 기하적 특징을 정확히 재현하도록 학습됩니다. 샘플링 비율은 복잡도 값에 비례하도록 설계되었습니다.</p>
+<h2>실험 결과 및 성능</h2>
+<p>벤치마크 데이터셋에서 제안 방법은 기존 최첨단 기법 대비 PSNR·SSIM 모두 1~2% 이상 향상되었으며, 실시간 추론(30+ FPS) 속도도 유지했습니다. 특히 복잡한 의복을 입은 피사체에서 디테일 복원 품질이 눈에 띄게 개선되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">실무에서 인간 디지털 트윈을 만들 때 디테일 손실이 큰 고민거리였는데, 이 논문의 복잡도 기반 정규화는 고복잡도 영역에 Gaussian을 촘촘히 배치하도록 강제해 흐릿함을 최소화합니다. 특히 로컬 엔트로피를 이용한 복잡도 사전은 기존 방법보다 구현이 간단하면서도 효과가 뛰어나, 기존 파이프라인에 바로 적용 가능할 것입니다. 실시간 추론 속도를 유지하면서도 정밀한 텍스처와 기하 정보를 복원하므로, 인터랙티브 가상 프로덕션이나 AR/VR 인체 모델링에 바로 활용할 수 있습니다. 다만 복잡도 사전 계산 비용과 복잡도 기반 패치 샘플링 비율을 조절해야 과도한 메모리 사용을 방지할 수 있으니, 프로젝트 규모에 맞게 파라미터 튜닝이 필요합니다. AI 3D 연구·개발팀과 실시간 엔진 통합을 고민하는 엔지니어라면 반드시 검토해볼 가치가 있습니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-30eb8250ec582562.html">Gaussian Splatting: 포즈 불확실성 하 안정적 기하학 학습</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-b7da4ff6e9b07445.html">Gaussian Splatting 기반 로봇 정밀 도달 — 손목 카메라 VLA 정책</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-c5ac75e3f2af464a.html">Gaussian Splatting: VidEdit3D로 유연한 3D 편집 구현</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.35152v1" target="_blank" rel="noopener nofollow">Complexity-guided Regularization for Generalizable Human Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
