@@ -1,0 +1,59 @@
+{
+  "title_ko": "Unreal Engine 산장 제작 — 모듈식 킷과 마스터 Shader 워크플로",
+  "title": "Building a Cozy, Stylized Wooden Cabin in the Mountains Scene Using Custom Modular Kits & Shaders",
+  "url": "https://80.lv/articles/building-a-cozy-stylized-wooden-cabin-in-the-mountains-scene-using-custom-modular-kits-shaders/",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unreal Engine",
+    "Blender",
+    "환경 아티스트",
+    "모듈식 키트",
+    "마스터 Shader",
+    "스타일라이즈드",
+    "블렌더",
+    "언리얼 엔진"
+  ],
+  "summary": "아티스트 Arjun Perayil이 Unreal Engine 5를 활용해 전통 회화적 느낌의 아늑한 산장 환경을 구축한 제작 공정과 기술적 접근 방식을 소개합니다.",
+  "insight": "이 아티클은 범용적인 스타일라이즈드풍에서 벗어나 전통 회화의 채도 높은 색감과 분위기를 실시간 3D 환경에 이식하는 과정을 심도 있게 보여줍니다. 특히 3단계로 철저히 구분된 블록아웃(Proxy, Value, Color Pass)과 복잡한 표면 표현을 제어하는 마스터 Shader 구축법은 대규모 게임 환경 제작에 실질적인 영감을 줍니다. 폴리지 제작 파이프라인과 라이팅·Post 프로세싱을 체계적으로 개선하고 싶은 실무 아티스트들에게 훌륭한 레퍼런스가 됩니다.",
+  "sections": [
+    {
+      "heading": "배경 및 초기 영감",
+      "body": "인도의 3D 환경 아티스트 Arjun Perayil은 2014년 GTA 모딩과 Blender를 접하며 게임 제작에 발을 들였다. 현재 Art Bully Productions에서 Call of Duty, EA Skate 등 대형 타이틀 작업에 참여하고 있다. 이번 'Hearth and Hillside' 프로젝트는 일반적인 스타일라이즈드 장르의 외형을 탈피해 르네상스 시대 회화와 인도 전통 미술의 서정적인 색감을 실시간 3D 공간에 구현하는 것을 목표로 했다."
+    },
+    {
+      "heading": "철저한 3단계 블록아웃 공정",
+      "body": "제작의 성패를 가르는 핵심 단계인 블록아웃은 프록시, 밸류, 컬러의 3가지 세부 패스로 체계적으로 진행되었다. Primitive 형태를 통한 규모 산정(Proxy Pass)을 거쳐 명암과 그레이스케일 텍스처로 가독성을 높이고(Value Pass), 기본 색상을 입혀 전체 팔레트를 확정(Color Pass)하는 방식을 취했다. 이를 통해 초기 구성을 탄탄하게 다지고 시각적 통일성을 유지할 수 있었다."
+    },
+    {
+      "heading": "Unreal Engine 5 마스터 Shader 활용",
+      "body": "산장 구조물의 복잡한 시각적 요소를 효율적으로 제어하기 위해 Unreal Engine 5 내부에서 강력하고 유연한 마스터 Shader를 구축했다. 이를 통해 자산 전체의 일관성을 유지하면서도 세부적인 재질 표현과 디테일을 효과적으로 조절할 수 있었다. Shader 기반의 접근법은 반복 작업 시간을 줄이고 전체적인 씬의 완성도를 높이는 데 크게 기여했다."
+    },
+    {
+      "heading": "폴리지 스컬프팅과 기술적 목표",
+      "body": "이번 프로젝트의 주요 기술적 목표 중 하나는 자연스러운 수목과 식생(Foliage)을 직접 스컬프팅하고 제작하는 파이프라인을 다듬는 것이었다. 레퍼런스는 고전 회화와 실사 사진을 적절히 조합하여 과도한 복잡성을 피하고 분위기 유지에 집중했다. 이를 통해 식생 배치와 최종 라이팅·Post 프로세싱 전반의 완성도를 끌어올릴 수 있었다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 산장 환경 제작 프로젝트의 주요 시각적 영감은 어디에서 왔나요?",
+      "a": "다른 비디오 게임이 아니라 유럽 르네상스 시대 회화와 인도 전통 미술 등 전통 회화의 밝고 채도 높은 색감과 서정적인 분위기에서 영감을 받았습니다."
+    },
+    {
+      "q": "블록아웃 단계는 어떤 순서로 진행되었나요?",
+      "a": "기본 형태와 규모를 잡는 프록시 패스, 명암과 가독성을 확인하는 밸류 패스, 그리고 전체 색상 팔레트를 확정하는 컬러 패스의 3단계로 나누어 진행되었습니다."
+    },
+    {
+      "q": "어떤 툴과 엔진이 사용되었나요?",
+      "a": "초기 모델링 및 제작 과정에는 Blender가 사용되었으며, 최종 렌더링, 마스터 Shader 구축, 라이팅 및 Post 프로세싱은 Unreal Engine 5에서 진행되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/50786/images/6adf893f03fe9/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=Soo0lZ8W1Eg"
+  },
+  "collected_at": "2026-10-27T16:15:29.151072+00:00",
+  "notion_id": "",
+  "id": "2026-10-27-9dd2b3cc22026938"
+}
