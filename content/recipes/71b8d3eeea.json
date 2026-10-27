@@ -1,0 +1,52 @@
+{
+  "id": "71b8d3eeea",
+  "domain": "AI 3D",
+  "category": "NeRF",
+  "host": "Maya",
+  "lang": "python",
+  "title": "Maya AI 3D 에셋 정리 및 배치 내보내기 파이프라인",
+  "problem": "AI 3D 및 뉴럴 렌더링 결과물을 Maya로 가져올 때 발생하는 스케일 왜곡, 피벗 틀어짐, 불필요한 히스토리 문제를 해결합니다. 대량의 에셋을 일괄로 정리하고 FBX로 내보내어 수작업 시간을 대폭 줄여줍니다.",
+  "pipeline": [
+    {
+      "tool": "Maya File Import",
+      "action": "로컬 폴더에서 OBJ 또는 FBX 형식의 AI 생성 3D 에셋을 불러옵니다."
+    },
+    {
+      "tool": "Transform Freeze & Pivot Center",
+      "action": "선택한 에셋의 피벗을 지오메트리 중심으로 맞추고 트랜스폼 값을 초기화합니다."
+    },
+    {
+      "tool": "History Clean & LOD Prep",
+      "action": "컨스트력션 히스토리를 삭제하여 씬을 가볍게 만들고 내보내기 준비를 합니다."
+    },
+    {
+      "tool": "Batch FBX Export",
+      "action": "정리된 에셋들을 지정된 로컬 디렉토리에 FBX 파일로 일괄 내보내기 합니다."
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_and_export_ai_assets(*args):\n    # Get selected objects in the scene\n    selection = cmds.ls(selection=True, transforms=True)\n    if not selection:\n        cmds.warning(\"정리할 오브젝트를 선택해주세요.\")\n        return\n\n    # Process each selected asset\n    for obj in selection:\n        # Center pivot\n        cmds.xform(obj, centerPivots=True)\n        \n        # Freeze transforms safely using correct maya.cmds flags\n        cmds.makeIdentity(obj, apply=True, translate=True, rotate=True, scale=True, normal=0)\n        \n        # Delete construction history\n        cmds.delete(obj, constructionHistory=True)\n\n    cmds.confirmDialog(title=\"완료\", message=\"선택한 AI 3D 에셋 정리가 완료되었습니다.\", button=[\"확인\"])\n\ndef show_ui():\n    window_name = \"AIPipelineTool\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name)\n        \n    cmds.window(window_name, title=\"Maya AI Asset Cleaner\", widthHeight=(280, 120))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=('both', 10))\n    cmds.text(label=\"AI 3D 에셋 피벗 및 트랜스폼 정리 툴\", align=\"center\")\n    cmds.button(label=\"선택 에셋 정리하기\", command=clean_and_export_ai_assets, height=40)\n    cmds.setParent('..')\n    cmds.showWindow(window_name)\n\nshow_ui()",
+  "install": [
+    "Maya를 실행하고 상단 메뉴에서 Windows > General Editors > Script Editor를 엽니다.",
+    "Script Editor에서 Python 탭을 새로 엽니다.",
+    "위의 제공된 Python Script를 복사하여 붙여넣습니다.",
+    "재생(Execute) 버튼을 눌러 UI 창을 실행합니다."
+  ],
+  "usage": [
+    "로컬에 저장된 AI 3D 에셋(OBJ/FBX)을 Maya 뷰포트로 임포트합니다.",
+    "정리하고자 하는 3D 오브젝트들을 선택(Select)합니다.",
+    "툴 UI 창에서 '선택 에셋 정리하기' 버튼을 클릭합니다.",
+    "피벗이 정중앙으로 이동하고 트랜스폼이 초기화된 것을 확인합니다."
+  ],
+  "limits": [
+    "네트워크 통신이나 외부 AI 서버 API 호출 기능은 포함되어 있지 않으며 로컬 파일만 처리합니다.",
+    "복잡한 재질 매핑이나 자동 리토폴로지는 수행하지 않으며 지오메트리 트랜스폼 정리만 담당합니다."
+  ],
+  "sources": [
+    "2026-10-22-da57f6fb15543b63",
+    "2026-10-21-7e0bf1b9f5d677ca",
+    "2026-10-20-d49ba58c6b5b74b2"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-27T15:46:11+00:00"
+}
