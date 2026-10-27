@@ -1,0 +1,13 @@
+<!-- TITLE: Gaussian Splatting: 포즈 불확실성 하 안정적 기하학 학습 | TAGS: 3DGS,Pose-Free,FGPR,RGC,DL3DV,RealEstate10K,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — SG‑Splat은 포즈 불확실성을 고려해 3D Gaussian Splatting의 기하학 학습을 안정화하는 새로운 포즈‑프리 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>배경 및 기존 문제점</h2>
+<p>3D Gaussian Splatting(3DGS)은 실시간 뷰 합성 및 장면 재구성에 유망한 표현 방식으로 떠올랐습니다. 최근 포즈‑프리 피드포워드 3DGS가 연구됐지만, 잔여 포즈 오류에 민감해 기하학 변환이 흐트러지고 속성 학습에 잡음이 섞입니다. 이러한 오류 결합은 최종 렌더링 품질 저하로 이어집니다.</p>
+<h2>SG‑Splat 프레임워크 개요</h2>
+<p>SG‑Splat은 기하학 추정과 Gaussian 속성 예측을 각각 전용 브랜치로 분리해 포즈‑민감한 요소와 속성을 독립적으로 학습합니다. 또한, 거친‑정밀(coarse‑to‑fine) 정제 파이프라인을 도입해 초기 추정 단계에서 발생하는 오류를 단계적으로 보정합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">실무에서 포즈 추정이 불완전한 이미지들을 바로 3DGS로 변환하려면 기존 방법의 포즈 오차에 취약한 점이 큰 걸림돌이었습니다. SG‑Splat은 기하와 속성을 별도 브랜치로 분리해 오류 전이를 최소화하고, 흐름 기반 포즈 정제(FGPR)와 깊이 잔차 기반 기하 보정(RGC)으로 단계별 정밀도를 높입니다. 특히 두 경로를 혼합해 정답 포즈와 예측 포즈를 동시에 사용함으로써 학습 안정성을 크게 향상시켰습니다. DL3DV와 RealEstate10K에서의 실험 결과는 기존 포즈‑프리 방식보다 뛰어난 신시뮬레이션 품질과 포즈 추정 정확도를 보여, 포즈가 없는 데이터셋을 활용하는 프로젝트에 바로 적용할 가치가 있습니다. 3D 콘텐츠 제작 파이프라인에 이 기술을 도입하면, 촬영 현장에서 카메라 매트릭스를 정확히 잡지 못해도 빠른 3D 재구성이 가능해집니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-b7da4ff6e9b07445.html">Gaussian Splatting 기반 로봇 정밀 도달 — 손목 카메라 VLA 정책</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-c5ac75e3f2af464a.html">Gaussian Splatting: VidEdit3D로 유연한 3D 편집 구현</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-c374ad2cdd868c32.html">Gaussian Splatting 압축 혁신 — RacerGS가 150배 압축 실현</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.35361v1" target="_blank" rel="noopener nofollow">SG-Splat: Stable Geometry Learning under Pose Uncertainty for Pose-Free 3D Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
