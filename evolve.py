@@ -678,10 +678,12 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         except Exception as e:
             log.warning("자동 배분 실패: %s", e)
             auto = False
-    if auto or force or _due(strategy, "guides_at", 3 * 3600):  # 수동: 3시간마다 2개씩 (AI 여유 40% 이상일 때)
+    if auto or force or _due(strategy, "guides_at", 3 * 3600):  # 수동: 3시간마다 가이드 제작 (AI 비중 0.5 배분 고려)
         try:
             import guides
-            made = guides.write_guides(plan["guides_now"], gate=False) if auto else guides.write_guides(2)
+            # AI 할당 비중 재조정: news 0.25, guides 0.5, roundups 0.25
+            guides_count = plan.get("guides_now", 4) if auto else 4
+            made = guides.write_guides(guides_count, gate=False) if auto else guides.write_guides(4)
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "guides": made}])[-30:]
         except Exception as e:
