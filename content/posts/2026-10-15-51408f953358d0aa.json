@@ -29,6 +29,21 @@
     {
       "heading": "노르딕 지역의 Citiverse와 3D 디지털 트윈",
       "body": "북유럽 지역에서는 Younite AI가 EU의 Citiverse 이니셔티브의 일환으로 스웨덴 예테보리 시를 위한 NVIDIA Omniverse 기반의 디지털 트윈 경험을 개발하고 있습니다. 이 프로젝트는 도시가 환경 변화를 시뮬레이션하고 이벤트 입구 사전 시뮬레이션 등을 통해 접근성을 개선하는 데 초점을 맞추고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA Omniverse와 Cosmos 모델을 활용하는 3D 아티스트와 테크니컬 디렉터는 대규모 도시 모델링이나 인프라 시뮬레이션에서 USD(Universal Scene Description) 파이프라인을 구축합니다. 도시 환경의 빌딩, 도로, 가로등 같은 복잡한 에셋을 USD 포맷으로 통합하고, 물리 AI 에이전트와 연동하여 실시간 시뮬레이션 환경을 만듭니다. 실제 데이터가 부족한 위험 시나리오는 합성 데이터로 생성해 훈련 속도를 높입니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "Blender 사용자 커뮤니티에서는 Omniverse 런처를 통해 다운로드할 수 있는 NVIDIA 전용 Blender 빌드와 USD 지원에 대한 관심이 높습니다 [1]. 다만 일반 성능 향상 목적보다는 음성 및 장면 최적화 플러그인, USD 기반 워크플로우 협업에 초점이 맞춰져 있어 실제 파이프라인 도입 시 목적에 맞는 버전인지 확인이 필요합니다 [2].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "NVIDIA Omniverse 플랫폼과 USD 파이프라인의 기초를 먼저 이해해야 합니다. 공식 문서의 'NVIDIA Omniverse Explained in Under 5 Minutes'와 'How to Setup Nvidia Omniverse' 같은 튜토리얼을 통해 초기 설정과 런처 사용법을 익히고, Blender 등 기존 DCC 툴과의 USD 연동 방식을 테스트해 보는 것이 좋습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +54,14 @@
     {
       "q": "프랑스 코트도르 주는 AI 에이전트 도입으로 어떤 효과를 얻었나요?",
       "a": "Akila와 ThinkDeep이 구축한 디지털 트윈 및 운영 에이전트를 통해 500개 이상의 공공 건물에서 에너지, 안전, 규정 준수 관리를 지원하며 문서 검색 시간을 몇 주에서 몇 분으로 줄이고 운영 비용을 10% 절감했습니다."
+    },
+    {
+      "q": "일반 3D 아티스트도 물리 AI나 디지털 트윈 프로젝트에 참여할 수 있나요?",
+      "a": "네, 가능합니다. 대규모 도시 모델이나 시뮬레이션 환경에 필요한 에셋을 제작하고 USD 포맷으로 내보내는 역할을 주로 담당하게 되며, Omniverse 생태계를 활용한 협업 워크플로우 이해가 중요합니다."
+    },
+    {
+      "q": "합성 데이터는 어떤 용도로 활용되나요?",
+      "a": "안트베르펜-브뤼허 항구 사례처럼 실제 사고 데이터나 위험 데이터가 부족한 상황에서 AI 모델을 안전하게 훈련하기 위해 시뮬레이션 기반의 가상 데이터를 생성하여 활용합니다."
     }
   ],
   "media": {
@@ -48,5 +71,38 @@
   "collected_at": "2026-10-15T16:35:00.000+00:00",
   "notion_id": "3fa94be3-beb5-813b-adc3-ed0b9cf4ff7d",
   "id": "2026-10-15-51408f953358d0aa",
-  "topic": "업계 소식"
+  "topic": "업계 소식",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Cycles Development Updates",
+      "url": "https://blenderartists.org/t/cycles-development-updates/1110067",
+      "excerpt": "...-improve-workflows-for-the-creative-community Teaming Up to Improve Workflows for the Creative Community | Tangent Labs At GTC: Tangent Animation and NVIDIA Omniverse Streamline Production Workflows with USD Support for Blender Cycles",
+      "replies": 5357
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "The Blender macOS and general Apple thread",
+      "url": "https://blenderartists.org/t/the-blender-macos-and-general-apple-thread/1467856",
+      "excerpt": "You have Nvidia Blender that you can download trough Omniverse launcher . It has some useful plugins for voice and scene optimization. It is not done specifically to get performance. https://docs.omniverse.nvidia.com/con_connect/con_connect/blender.html#release-notes",
+      "replies": 4905
+    }
+  ],
+  "videos": [
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    },
+    {
+      "id": "j4_-yush6pc",
+      "title": "How to Setup Nvidia Omniverse",
+      "author": "Architecture Vanguard"
+    }
+  ],
+  "enriched_at": "2026-10-27T18:50:57+00:00",
+  "quality": {
+    "before": 1031,
+    "after": 1700
+  }
 }
