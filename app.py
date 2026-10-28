@@ -61,77 +61,47 @@ GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo:
 SITE_URL = "https://heo-j-h.github.io/3dflowhub/"
 INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}
 
-# 화면 스타일: 게시판 사이트와 같은 톤 (카드·여백·위계)
+# 화면 스타일 — 휴먼 인터페이스 원칙: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
 st.markdown("""<style>
-[data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:16px;padding:14px 18px}
+.block-container{max-width:1180px;padding-top:2.2rem !important}
+h1{font-size:1.6rem !important;letter-spacing:-.02em;padding:.1rem 0 .2rem !important}
+h2{font-size:1.25rem !important;letter-spacing:-.01em}
+h3{font-size:1.05rem !important}
+[data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:14px;padding:14px 16px}
 [data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
-[data-testid="stMetricValue"]{font-size:1.75rem}
-@media (max-width: 640px){
-  .block-container{padding:3.4rem 0.75rem 4.5rem !important}  /* 모바일 하단 내비게이션 바 공간 확보 */
-  h1{font-size:1.55rem !important;padding:0.2rem 0 0.4rem !important}
-  h2,h3{font-size:1.15rem !important}
-  [data-testid="stMetricValue"]{font-size:1.3rem}
-  [data-testid="stMetric"]{padding:10px 12px}
-  /* 지표가 한 줄에 하나씩 세로로 길게 쌓이지 않도록 2열 */
-  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]){flex-wrap:wrap !important;gap:8px !important}
-  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"]{
-    flex:1 1 calc(50% - 8px) !important;min-width:calc(50% - 8px) !important;width:auto !important}
-  .stButton button,.stDownloadButton button{min-height:44px}
-  [data-testid="stTabs"] button p{font-size:0.92rem}
-}
-div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:16px}
+[data-testid="stMetricValue"]{font-size:1.6rem;font-weight:700}
+div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:14px}
+.stButton button,.stDownloadButton button,.stLinkButton a,[data-testid="stBaseButton-secondary"],[data-testid="stBaseButton-primary"]{min-height:44px;border-radius:12px;font-weight:600}
+button:focus-visible,a:focus-visible,[role="tab"]:focus-visible{outline:3px solid #0071e3 !important;outline-offset:2px}
+/* 탭: 글자만 있는 줄 대신 누르기 쉬운 알약 모양 */
+[data-testid="stTabs"] [role="tablist"]{gap:4px;flex-wrap:wrap;border-bottom:none}
+[data-testid="stTabs"] [role="tab"]{min-height:40px;padding:0 14px;border-radius:999px;background:var(--secondary-background-color)}
+[data-testid="stTabs"] [role="tab"][aria-selected="true"]{background:#0071e3}
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] p{color:#fff}
+[data-testid="stTabs"] [data-baseweb="tab-highlight"],[data-testid="stTabs"] [data-baseweb="tab-border"]{display:none}
+/* 알림 상자는 조금 작게 — 화면을 덮지 않게 */
+[data-testid="stAlert"]{border-radius:12px}
+[data-testid="stAlert"] p{font-size:.92rem}
+.todo-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid rgba(128,128,128,.18)}
+.todo-row:first-of-type{border-top:none}
+.todo-row .ttl{font-weight:600}.todo-row small{opacity:.7;display:block;margin-top:2px}
+.glance{opacity:.75;font-size:.9rem;margin:-.4rem 0 .8rem}
 .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .hdr-links a{margin-right:14px;text-decoration:none}
 section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
-
-/* 모바일 하단 고정 퀵 내비게이션 바 */
-.mobile-quick-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 54px;
-  background: var(--secondary-background-color, #1e1e1e);
-  border-top: 1px solid rgba(128, 128, 128, 0.2);
-  display: none;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 999999;
-  padding: 0 4px;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+@media (max-width: 640px){
+  .block-container{padding:3.2rem .75rem 2rem !important}
+  h1{font-size:1.35rem !important}
+  [data-testid="stMetricValue"]{font-size:1.25rem}
+  [data-testid="stMetric"]{padding:10px 12px}
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]){flex-wrap:wrap !important;gap:8px !important}
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"]{
+    flex:1 1 calc(50% - 8px) !important;min-width:calc(50% - 8px) !important;width:auto !important}
+  [data-testid="stTabs"] [role="tab"]{padding:0 10px}
+  [data-testid="stTabs"] [role="tab"] p{font-size:.88rem}
 }
-.mobile-quick-nav button {
-  flex: 1;
-  background: transparent;
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-color, #f0f0f0);
-  padding: 4px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  cursor: pointer;
-}
-.mobile-quick-nav button:hover, .mobile-quick-nav button:active {
-  opacity: 0.8;
-  color: #4f8cff;
-}
-@media (max-width: 640px) {
-  .mobile-quick-nav { display: flex; }
-}
-</style>
-
-<div class="mobile-quick-nav">
-  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">🏠 <span>오늘</span></button>
-  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">📰 <span>글 목록</span></button>
-  <button onclick="window.scrollTo({top:0, behavior:'smooth'});">🛠 <span>설정</span></button>
-</div>
-""", unsafe_allow_html=True)
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+</style>""", unsafe_allow_html=True)
 
 cfg = core.load_config()
 
@@ -393,8 +363,15 @@ def remote_strategy() -> dict:
     return requests.get(f"https://raw.githubusercontent.com/{GH_REPO}/main/memory/strategy.json", timeout=10).json()
 
 
+def _first_line(t: str, n: int = 110) -> str:
+    """긴 안내문(번호 목록·줄바꿈 섞임)에서 첫 문장만 — 한 줄 요약."""
+    import re as _re
+    t = _re.sub(r"\s+", " ", _re.sub(r"(^|\s)\d+\.\s*", " ", str(t or ""))).strip()
+    return t if len(t) <= n else t[:n].rstrip() + "…"
+
+
 def do_now_box() -> None:
-    """맨 위 '지금 내가 할 일' — 사람만 할 수 있는 일만 모아 한눈에 (없으면 한 줄)."""
+    """맨 위 '지금 내가 할 일' — 사람만 할 수 있는 일만, 한 줄씩 (없으면 한 줄)."""
     try:
         import manager
         todo = manager.manual_todo()
@@ -403,19 +380,27 @@ def do_now_box() -> None:
     if not todo:
         st.success("✅ 지금 직접 할 일이 없습니다 — AI 관리자가 처리 중")
         return
+
+    def rows(items):
+        out = ""
+        for p in items:
+            how = _first_line(str(p.get("applied") or "").removeprefix("사람 할 일 — ") or p.get("proposal", ""))
+            site = _sites.SITES.get(p.get("site") or "3dflowhub", {}).get("name", "")
+            out += (f'<div class="todo-row"><span>{site.split(" ")[0]}</span><div><span class="ttl">{p["title"]}</span>'
+                    + (f"<small>{how}</small>" if how else "") + "</div></div>")
+        return out
     with st.container(border=True):
         st.markdown(f"**🙋 지금 내가 할 일 {len(todo)}건**")
-        for p in todo[:5]:
-            how = str(p.get("applied") or "").removeprefix("사람 할 일 — ")
-            site = _sites.SITES.get(p.get("site") or "3dflowhub", {}).get("name", "")
-            st.markdown(f"- {site} **{p['title']}**" + (f"<br><small>{how[:160]}</small>" if how else ""),
-                        unsafe_allow_html=True)
-        if len(todo) > 5:
-            st.caption(f"외 {len(todo) - 5}건 — 사이트 탭의 '직접 작업'에서 확인")
+        st.markdown(rows(todo[:3]), unsafe_allow_html=True)
+        if len(todo) > 3:
+            with st.expander(f"나머지 {len(todo) - 3}건 보기"):
+                st.markdown(rows(todo[3:]), unsafe_allow_html=True)
 
 
 # ─────────────────────────── 본문 ───────────────────────────
 st.title("큐레이션 현황판")
+st.markdown(f'<p class="glance">{datetime.now(KST):%Y년 %m월 %d일 %H:%M} 기준 · 할 일과 이상 신호를 먼저 보여 줍니다</p>',
+            unsafe_allow_html=True)
 do_now_box()
 alert_items = show_alerts()
 with st.sidebar:
