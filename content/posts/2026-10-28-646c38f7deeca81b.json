@@ -1,0 +1,39 @@
+{
+  "title_ko": "Gaussian Splatting 기반 StereoSplat, 메트릭 스케일 새로운 뷰 합성",
+  "title": "StereoSplat: Metric-Scale Novel View Synthesis via Stereo-Grounded Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2610.35902",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "StereoSplat",
+    "Gaussian Splatting",
+    "Stereo Video",
+    "Metric-Scale",
+    "Depth Estimation"
+  ],
+  "summary": "StereoSplat은 스테레오 영상 전용 3D Gaussian Splatting 아키텍처로, 메트릭 스케일의 정확한 새로운 뷰 합성을 가능하게 한다.",
+  "insight": "한국의 AR/VR 및 로봇 분야 실무자는 메트릭 스케일 깊이 정확도가 중요한 프로젝트에 StereoSplat을 적용해 볼 가치가 있다. 기존 단일 카메라 기반 Gaussian Splatting보다 스테레오 쌍을 활용해 깊이 편향을 크게 줄일 수 있다. XRStereo와 같은 대규모 합성 데이터셋으로만 학습했음에도 실제 스테레오 영상에 제로샷 전이된 점은 데이터 수집 비용을 절감하려는 팀에 큰 장점이다. 다만, per‑pixel Gaussian 출력이 중복될 경우 메모리 사용량이 급증하므로 깊이‑적응형 집계 메커니즘을 활용해 효율성을 확보해야 한다.",
+  "sections": [
+    {
+      "heading": "핵심 아이디어",
+      "body": "StereoSplat은 스테레오 영상에서 직접 3D Gaussian을 예측하는 피드포워드 모델이다. 기존 단일 이미지 기반 방법과 달리 양안 시차 정보를 원천적으로 활용한다. 이를 통해 메트릭 스케일의 깊이 정확도를 확보한다."
+    },
+    {
+      "heading": "스테레오 백본과 Gaussian 디코더",
+      "body": "모델은 스테레오 전용 백본으로 다중 스케일 특징과 시차 맵을 추출한다. 추출된 특징은 교차 시점 피처 융합과 게이트형 깊이 정제 과정을 거쳐 전용 Gaussian 디코더에 전달된다. 디코더는 픽셀당 3D Gaussian 파라미터를 직접 출력한다."
+    },
+    {
+      "heading": "깊이 적응형 집계 메커니즘",
+      "body": "중복된 픽셀 예측을 방지하기 위해 역깊이 공간에서 클러스터링하고 집계하는 학습 가능한 모듈을 도입했다. 이 과정은 세밀한 디테일을 유지하면서도 Primitive 수를 크게 감소시킨다. 결과적으로 메모리와 연산 효율이 크게 개선된다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-28T04:07:19.188100+00:00",
+  "notion_id": "",
+  "id": "2026-10-28-646c38f7deeca81b"
+}
