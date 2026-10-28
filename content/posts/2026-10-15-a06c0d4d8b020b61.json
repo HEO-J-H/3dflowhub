@@ -30,6 +30,21 @@
     {
       "heading": "스튜디오 도입 사례와 커뮤니티 기반 지원",
       "body": "mGear는 El Ranchito, Mac Guff, Unseen, Pendulo Studios 등 다양한 VFX, 애니메이션, 게임 개발 스튜디오에서 활발히 사용되고 있습니다. 이 오픈소스 툴은 기본적으로 무료로 제공되며, 리드 개발자 Miquel Campos의 회사인 mcsGear가 제공하는 상업적 지원 및 리깅 서비스를 통해 개발 자금이 조달됩니다. 정기적인 업데이트와 전문가들의 지원 체계가 맞물려 프로덕션 환경에서도 안정적으로 활용할 수 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "mGear는 Shifter 리깅 프레임워크를 기반으로 프로그래밍 지식 없이도 모듈식 캐릭터 리그를 빠르게 구축할 수 있습니다. 블루프린트 가이드 시스템을 통해 신체 부위별 컴포넌트를 배치한 뒤 리그를 생성하며, 최신 버전에서는 통합 페이셜 리거와 개편된 애니메이션 피커, 블로킹 고스트 기능이 추가되어 애니메이션 작업 흐름이 한층 수월해졌습니다. 또한 샷 스컬프팅 툴인 Crank와 BlendShape 셋업 전송 툴을 활용하면 캐릭터 메시 간의 셰이프 구성을 자동화하여 수동 정리에 소요되는 시간을 크게 단축할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "해외 아티스트들은 Maya 환경에서 캐릭터 리깅을 진행할 때 mGear의 강력한 모듈성과 제어 기능, 커스텀 컨트롤 형태 저장 및 리빌드 편의성을 높이 평가하고 있습니다 [2]. 다른 3D DCC에서 Maya와 mGear 파이프라인으로 전환하거나 혼용하는 작업자들 사이에서도 리그 조정 및 재생성 기능이 안정적이라는 평을 받고 있습니다 [3]. 다만 툴 전환 시 기존 애니메이션 파이프라인과의 호환성이나 Rigify 같은 타 DCC의 모듈식 시스템과의 차이점을 충분히 숙지하고 도입해야 합니다 [3].",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "mGear는 오픈소스 프레임워크로 기본 제공되므로 공식 채널을 통해 다운로드하여 Maya에 설치할 수 있습니다. 초보자는 기초적인 리깅 파이프라인을 익히기 위해 'Maya & Unreal: Intro to mGear Rigging for Beginners' 같은 입문용 튜토리얼 영상과 과정을 참고하는 것이 좋습니다. ueGear 브릿지 기능을 활용하면 Unreal Engine과의 연동 작업도 원활하게 구성할 수 있으므로 게임 개발 파이프라인을 구축하는 작업자에게 유용합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +59,14 @@
     {
       "q": "Brave Rabbit의 Shapes와의 호환성 문제는 해결되었나요?",
       "a": "네, mGear 5.1부터 사용자가 mGear 자체 버전의 weightDriver와 외부 버전 중 선택할 수 있게 되어 Shapes 업데이트 시 발생하던 충돌 문제가 해결되었습니다."
+    },
+    {
+      "q": "mGear를 사용하려면 프로그래밍이나 Python 지식이 필수인가요?",
+      "a": "아니오. mGear는 아티스트들이 프로그래밍 지식 없이도 모듈식 컴포넌트를 조합하여 무한한 다양성의 캐릭터 리그를 생성할 수 있도록 설계되었습니다."
+    },
+    {
+      "q": "Unreal Engine과 연동할 수 있는 기능이 있나요?",
+      "a": "네. ueGear 브릿지 기능을 통해 Unreal Engine과의 연동 기능이 지속해서 강화되고 있어 게임 제작 Pipeline도 활용할 수 있습니다."
     }
   ],
   "media": {
@@ -53,5 +76,33 @@
   "collected_at": "2026-10-15T15:19:00.000+00:00",
   "notion_id": "3fa94be3-beb5-81e3-878e-f2814372fcfb",
   "id": "2026-10-15-a06c0d4d8b020b61",
-  "topic": "플러그인·스크립트"
+  "topic": "플러그인·스크립트",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Rigify, how to adjust and reshape the controls of the rig",
+      "url": "https://blenderartists.org/t/rigify-how-to-adjust-and-reshape-the-controls-of-the-rig/1581674",
+      "excerpt": "I am familiar with Maya's mGear rigging system. It does offer the ability to resize and shape rig controls and those controls are stored so that every time you want to adjust the armature and rebuild the rig it reapplies those custom control shapes. It's a very good feature and im sure Rigify cou...",
+      "replies": 9
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "Rigify: Is it possible to have a base meta-rig that, when modified, gets updated automatically acros",
+      "url": "https://blenderartists.org/t/rigify-is-it-possible-to-have-a-base-meta-rig-that-when-modified-gets-updated-automatically-acros/1544505",
+      "excerpt": "Hello, I'm a new Blender user and have previously been using Maya, mainly for rigging. At the moment we are trying to move our rigging pipeline from Maya to Blender, but I've hit a roadblock. To give some context: We previously used mgear in Maya and are now using Rigify in Blender. They seem to ...",
+      "replies": 8
+    }
+  ],
+  "videos": [
+    {
+      "id": "aRAE-sgoCsQ",
+      "title": "Maya & Unreal: Intro to mGear Rigging for Beginners Course Trailer",
+      "author": "Class Creatives"
+    }
+  ],
+  "enriched_at": "2026-10-28T08:08:45+00:00",
+  "quality": {
+    "before": 1182,
+    "after": 2022
+  }
 }
