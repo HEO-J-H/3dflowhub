@@ -941,17 +941,28 @@ with t_rev:
         st.caption(f"수집: {pages_perf.get('at', '-')} (GitHub 자동 수집, 6시간마다) · 조회수는 노션 Views 에 합산되어 AI 학습에 쓰입니다.")
 
     with st.expander("⚙️ 사이트 방문 통계·광고 연결 설정", expanded=not pages_perf):
-        st.markdown(
-            "**① 방문 통계 (무료, GoatCounter)**\n"
-            "1. [goatcounter.com](https://www.goatcounter.com/signup) 가입 → 사이트 코드 입력 (예: `3dflowhub`)\n"
-            "2. 아래 칸에 코드를 넣고 저장 → 사이트에 통계 스크립트가 자동 삽입됩니다\n"
-            "3. GoatCounter → Settings → **API** 에서 토큰 발급(권한: *Read statistics*) → "
-            "GitHub Secrets 에 `GOATCOUNTER_TOKEN` 으로 등록하면 대시보드·AI 학습에 조회수가 들어옵니다\n\n"
-            "**② 애드센스 (승인 후)** — `github.io` 주소는 승인이 어려워 **본인 도메인 연결**이 필요합니다. "
-            "승인되면 `ca-pub-...` 를 넣고 저장 → 자동 광고 스크립트와 `ads.txt` 가 생성됩니다.")
-        st.markdown("**③ 뉴스레터 (구독 동의한 사람에게만)** — [buttondown.com](https://buttondown.com) 무료 가입 → "
-                    "사용자 이름을 넣고 저장하면 사이트 글·주간 요약 아래에 구독 칸이 생깁니다. "
-                    "구독 확인 메일(이중 동의)을 거친 사람만 받으며, 메일마다 수신거부 링크가 자동으로 붙습니다.")
+        # 먼저 '지금 상태'를 보여 주고, 아직 안 된 것만 방법을 안내 (이미 끝난 일을 처음부터 다시 하지 않게)
+        snaps = core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages_snapshots") or []
+        gc_ok, gc_token_ok = bool(cfg.get("goatcounter_code")), bool(snaps)
+        steps = [
+            ("방문 통계 (GoatCounter)", gc_ok and gc_token_ok,
+             f"연결됨 — 통계 화면: https://{cfg.get('goatcounter_code')}.goatcounter.com (로그인해서 보기만 하면 됩니다)",
+             "goatcounter.com 가입 → 아래 칸에 사이트 코드 → 저장. 그다음 GoatCounter Settings → API 에서 토큰(Read statistics) "
+             "→ GitHub Secrets `GOATCOUNTER_TOKEN` 등록" if not gc_ok else
+             "사이트 코드는 연결됨 — GoatCounter Settings → API 토큰(Read statistics)을 GitHub Secrets `GOATCOUNTER_TOKEN` 에 등록하면 조회수가 들어옵니다"),
+            ("애드센스", bool(cfg.get("adsense_client")),
+             "광고 코드·ads.txt 연결됨 — 승인 여부는 adsense.google.com → 사이트에서 확인 (승인 전엔 광고가 비어 보임)",
+             "애드센스 가입 후 게시자 ID(pub-… 또는 ca-pub-…)를 아래 칸에 넣고 저장"),
+            ("뉴스레터 (Buttondown)", bool(cfg.get("newsletter_buttondown")),
+             "사용자 이름 연결됨 — Buttondown 계정이 승인돼야 구독 칸이 동작합니다 (승인 전엔 칸을 비우면 사이트에서 숨김)",
+             "buttondown.com 가입 → 사용자 이름(Settings → General → Username)을 아래 칸에 넣고 저장"),
+            ("검색엔진 등록", bool(cfg.get("naver_site_verification") or cfg.get("google_site_verification")),
+             "구글 서치콘솔(HTML 파일)·네이버 서치어드바이저 연결됨 — 각 서비스에서 사이트맵 제출만 확인",
+             "서치콘솔·서치어드바이저의 HTML 태그를 아래 ④ 칸에 붙여넣고 저장"),
+        ]
+        for name, ok, done_txt, todo_txt in steps:
+            st.markdown(f"{'✅' if ok else '⬜'} **{name}** — {done_txt if ok else todo_txt}")
+        st.caption("값을 바꿀 때만 아래 칸을 고치고 저장하세요. 이미 ✅ 인 항목은 할 일이 없습니다.")
         sc1, sc2, sc3 = st.columns(3)
         gc_code = sc1.text_input("GoatCounter 사이트 코드", cfg.get("goatcounter_code", ""), placeholder="3dflowhub")
         ad_client = sc2.text_input("AdSense 게시자 ID", cfg.get("adsense_client", ""), placeholder="ca-pub-0000000000000000")
