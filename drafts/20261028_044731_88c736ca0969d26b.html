@@ -1,0 +1,11 @@
+<!-- TITLE: Hexels: 효율적인 3D 렌더링·재구성을 위한 육각 서펠 | TAGS: Hexels,hexagonal surfel,scene rendering,3D reconstruction,GPU 효율,연구·논문 | CATEGORY: AI 3D/Hexels | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Hexels는 육각형 평면 서펠에 1차 공간 색 필드를 결합해 메모리와 연산량을 크게 줄이면서 3D 렌더링·재구성 품질을 향상시킨 새로운 Primitive이다.</p>
+<p style="color:#888;">분류: AI 3D › Hexels › 연구·논문</p>
+<h2>Hexels 개념 및 구조</h2>
+<p>Hexels는 육각형 형태의 planar surfel에 첫 번째 차수 공간 색 필드를 부착한 Primitive이다. 평면 영역을 크게 잡아 색 변화를 연속적으로 표현함으로써 기존 점 기반 방식보다 적은 수의 Primitive로 동일한 시각 정보를 담는다. 육각형 지원은 영역·경계 효율성을 동시에 높여 메모리 사용량을 최소화한다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">이 기술은 기존 2D Gaussian Splatting(2DGS) 대비 동일 메모리에서 4.5~7.3dB 높은 PSNR를 제공하므로, 메모리 제한이 있는 모바일·AR/VR 파이프라인에 바로 적용할 수 있다. Hexels는 하나의 Primitive가 넓은 영역을 커버하면서 색 변화를 모델링하므로, 포인트 클라우드 기반 Pipeline 포인트 수를 크게 줄여 학습·추론 속도를 2배 이상 가속한다. 3D 재구성 단계에서도 DTU 스캔에서 28.9% 오류 감소, Tanks and Temples에서 최고 F1 점수를 기록해 정밀한 모델링이 필요한 문화유산 디지털화 작업에 유용하다. 기존 Image‑GS와 비교해 2D 이미지 표현에서도 품질이 개선돼, 텍스처 매핑이나 배경 이미지 합성에도 활용 가능하다. 다만, Hexels는 평면 근사에 기반하므로 급격한 기하학적 변형이 많은 씬에서는 추가적인 보정이 필요할 수 있다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-5dc042ea1367af47.html">AI 3D 애니메이션 혁신 — 영화 제작의 미래</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-b9b0a27cd0e3bf75.html">VISTA: 장기 작업 시각화를 위한 차별화 가능한 뷰포인트 플래닝</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-cf445d68251ce4f1.html">AI 텍스처·렌더링: 다중 뷰 렌더링 텍스처 통합 기법</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.37668" target="_blank" rel="noopener nofollow">Honeycomb-Surfels: Compact Hexagonal Primitives for Efficient Scene Rendering and Reconstruction</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
