@@ -3098,5 +3098,103 @@
     "id": "p-f20dc7eaa5",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 이미 2026년 기준 기초연금 기준액(단독 247만 원 등)과 모의계산 안내 기능이 반영되었습니다."
+  },
+  {
+    "at": "2026-10-28T03:29:12.957344+00:00",
+    "kind": "report",
+    "id": "r-2026-10-28T03:29",
+    "text": "최근 7일간 302개의 게시물이 생성돼 활발하지만, 전체 게시물의 67%가 이미지가 없어 체류 시간이 낮고, 가이드 조회(53건)와 플러그인·Script 주제(14건) 등 핵심 evergreen 콘텐츠가 부족합니다. 사이트 전체 방문 30일 기준 339건으로 트래픽이 제한적이며, AI 호출 여유가 남아 있어 개선 여지가 큽니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.6,
+      "roundups": 0.2
+    },
+    "allocation_reason": "가이드 조회가 가장 낮고, 검색 수요가 지속적이므로 가이드에 AI 용량을 늘립니다."
+  },
+  {
+    "at": "2026-10-28T03:29:12.957344+00:00",
+    "kind": "proposal",
+    "id": "p-e0a2d8a1d9",
+    "title": "이미지 없는 게시물 개선",
+    "category": "사이트·UX",
+    "evidence": "전체 게시물 중 67%가 이미지가 없습니다.",
+    "proposal": "AI가 관련 이미지 검색·추천하고, 편집자가 바로 삽입하도록 워크플로우와 편집 가이드라인을 추가합니다.",
+    "expected": "게시물 체류 시간 10% 상승, 클릭률 및 페이지 조회수 증가",
+    "effort": "보통",
+    "action": {
+      "type": "editorial_note",
+      "note": "모든 새·기존 게시물에 최소 1개 이미지 포함, 이미지 출처 명시"
+    },
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-28T03:29:12.957344+00:00",
+    "kind": "proposal",
+    "id": "p-a54c370215",
+    "title": "플러그인·스크립트 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "플러그인·Script 주제 게시물이 14개로 가장 적으며, 가이드 조회가 뉴스(92건)보다 낮습니다.",
+    "proposal": "핵심 플러그인·Script(V-Ray, Corona, Substance, Maya MEL, Blender Python) 에 대한 에버그린 가이드 페이지와 짧은 영상 제작을 시작합니다.",
+    "expected": "검색 유입 15% 증가, 가이드 비중 및 사용자 만족도 상승",
+    "effort": "높음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Blender",
+      "group": "Add-on",
+      "name": "Geometry Nodes",
+      "title_ko": "Blender Geometry Nodes 기초"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-10-28T03:29:12.957344+00:00",
+    "kind": "proposal",
+    "id": "p-987c999ff2",
+    "title": "SEO 키워드 힌트 제공",
+    "category": "검색(SEO)",
+    "evidence": "검색 콘솔에 상위 키워드·기회가 비어 있어 현재 검색 유입이 거의 없습니다.",
+    "proposal": "각 도구·주제별 영어 검색어 5개씩 AI가 제안하고, 메타 태그·제목에 반영하도록 편집자에게 안내합니다.",
+    "expected": "검색 클릭률 5~10% 상승, 신규 방문자 증가",
+    "effort": "낮음",
+    "action": {
+      "type": "keyword_hints",
+      "domain": "Game Engine",
+      "keywords": [
+        "Unreal Engine Nanite tutorial",
+        "Unity HDRP guide",
+        "Godot 4 performance optimization",
+        "Unreal Engine Lumen basics",
+        "Unity URP workflow"
+      ]
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-10-28T03:29:12.963350+00:00",
+    "kind": "decision",
+    "id": "p-a54c370215",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-28T03:29:12.965538+00:00",
+    "kind": "decision",
+    "id": "p-987c999ff2",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-10-28T03:29:12.969358+00:00",
+    "kind": "applied",
+    "id": "p-a54c370215",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-10-28T03:29:12.972422+00:00",
+    "kind": "applied",
+    "id": "p-987c999ff2",
+    "result": "반영 완료"
   }
 ]
