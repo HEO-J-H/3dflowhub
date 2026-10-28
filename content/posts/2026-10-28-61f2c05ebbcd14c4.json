@@ -35,6 +35,21 @@
     {
       "heading": "광범위한 Blender 버전 호환성",
       "body": "Ucupaint 3.0은 초기 Blender 버전부터 최신 버전인 Blender 5.3에 이르기까지 폭넓게 테스트되었으며 호환성을 확보했습니다. 개발자에 따르면 이번 Release의 변화와 개선 사항이 워낙 방대하여 버전 2.5를 건너뛰고 곧바로 3.0으로 버전업하게 되었다고 밝혔습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Ucupaint 3.0은 레이어 중심의 직관적인 UI 개편과 독립된 높이 및 변위(Height & Vector Displacement) 채널 분리를 통해 페인팅 작업 공정을 한층 간결하게 만듭니다. 특히 Base Layer를 통해 모든 채널의 기본값이 자동 생성되므로, 캐릭터나 하드서페이스 모델링에 곧바로 텍스처 레이어를 올리고 수정하는 반복 테스트 속도가 빨라집니다. 구형 및 원통형 데칼 타입을 활용하면 복잡한 곡면을 가진 에셋에도 왜곡 없이 자연스럽게 텍스처를 투영할 수 있어 실무 프로덕션의 수작업 부담을 크게 덜어줍니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 커뮤니티에서는 Ucupaint가 Eevee와 Cycles 환경에서 레이어 기반 텍스처 관리를 가능하게 해주는 훌륭한 도구로 평가받고 있습니다 [3]. 다만 일각에서는 기존 Blender 내부의 구조적 한계 위에 구축된 애드온인 만큼, 향후 공식적으로 도입될 수 있는 네이티브 Layered Textures나 Texture Nodes 구조와의 차이점을 염두에 두고 작업해야 한다는 의견도 존재합니다 [1]. 또한 새로운 베이크 시스템 사용 시 채널별 베이크 타겟을 올바르게 지정해야 오류 없는 결과를 얻을 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Ucupaint 3.0은 무료로 제공되는 오픈소스 애드온으로, 공식 GitHub나 위키 페이지를 통해 설치 파일과 가이드를 확인할 수 있습니다 [3]. 초보자는 YouTube의 'Ucupaint for Beginners!' 같은 기초 튜토리얼을 먼저 시청하며 레이어 추가와 Base Layer 설정법을 익히는 것이 좋습니다. 설치 후 간단한 스타일라이즈드(Stylized) 아트 에셋이나 소품 모델링에 적용해보며 조정 레이어와 독립 베이크 타겟 시스템을 테스트해보세요.",
+      "added": true
     }
   ],
   "faq": [
@@ -49,6 +64,14 @@
     {
       "q": "지원하는 Blender 버전 범위는 어떻게 되나요?",
       "a": "Ucupaint 3.0은 Blender 2.76 버전부터 최신 버전인 5.3 버전까지 호환되도록 테스트되었습니다."
+    },
+    {
+      "q": "Ucupaint 3.0은 어떤 Blender 버전에서 사용할 수 있나요?",
+      "a": "개발자에 따르면 초기 버전부터 최신 버전인 Blender에 이르기까지 폭넓게 테스트되어 호환성을 확보하고 있습니다 [3]."
+    },
+    {
+      "q": "기존 Normal 채널에 있던 설정은 어떻게 변경되었나요?",
+      "a": "Height와 Vector Displacement가 독자적인 채널로 완전히 분리되었으며, 변위 설정 토글은 Quick Displacement Setup 오퍼레이터로 변경되었습니다."
     }
   ],
   "media": {
@@ -57,5 +80,38 @@
   },
   "collected_at": "2026-10-28T10:18:14.123183+00:00",
   "notion_id": "",
-  "id": "2026-10-28-61f2c05ebbcd14c4"
+  "id": "2026-10-28-61f2c05ebbcd14c4",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "The Big Texture Paint Thread",
+      "url": "https://blenderartists.org/t/the-big-texture-paint-thread/1553031",
+      "excerpt": "Texture painting + https://code.blender.org/2022/02/layered-textures-design/ Layered Textures + Texture Nodes + Baking would be lovely. As much as Ucupaint is nice, I feel every add-on built on top of what exists currently is terribly limited by Blender's underlying structure. I guess the right o...",
+      "replies": 190
+    },
+    {
+      "source": "BlenderArtists",
+      "title": "[Addon] Ucupaint: Tool to manage texture layers for Eevee and Cycles",
+      "url": "https://blenderartists.org/t/addon-ucupaint-tool-to-manage-texture-layers-for-eevee-and-cycles/1390056",
+      "excerpt": "This is Ucupaint, an addon to manage texture layers for Eevee and Cycles. I have already worked on this for years, so it works for any blender versions started from Blender 2.76. https://github.com/ucupumar/ucupaint Ucupaint Github https://ucupumar.github.io/ucupaint-wiki/ Ucupaint Wiki You can v...",
+      "replies": 128
+    }
+  ],
+  "videos": [
+    {
+      "id": "i89WJ-ap4C4",
+      "title": "Ucupaint for Beginners! (Free Blender Texture Painting Addon) 🖌️",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "S3tEEdmZfK8",
+      "title": "2.How to Install Ucupaint in Blender — Free Layer-Based Texture Painting for Stylized Art",
+      "author": "Erin N Patt"
+    }
+  ],
+  "enriched_at": "2026-10-28T10:28:27+00:00",
+  "quality": {
+    "before": 978,
+    "after": 1841
+  }
 }
