@@ -1,0 +1,90 @@
+{
+  "id": "blender-dissolve-edges-and-vertices-8805",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Dissolve edges and vertices",
+  "title": "Dissolve — 지우되 면 유지",
+  "summary": "Blender에서 불필요한 엣지나 버텍스를 면을 지우지 않고 깔끔하게 제거하여 토폴로지를 정리합니다.",
+  "when": [
+    "루프 컷(Loop Cut)으로 생긴 불필요한 엣지를 제거하여 와이어프레임을 정리할 때",
+    "버텍스 두 개를 병합하지 않고 연결된 엣지만 부드럽게 없애고 싶을 때",
+    "모델링 리토폴로지 과정에서 복잡한 구조를 단순화할 때"
+  ],
+  "steps": [
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex 선택 모드(1) 또는 Edge 선택 모드(2)로 전환합니다.",
+    "제거할 버텍스나 엣지를 선택합니다.",
+    "X 키를 누르거나 마우스 우클릭을 합니다.",
+    "메뉴에서 Dissolve Vertices 또는 Dissolve Edges를 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Dissolve Vertices",
+      "desc": "선택한 버텍스를 제거하고 주변 면을 하나로 합칩니다."
+    },
+    {
+      "name": "Dissolve Edges",
+      "desc": "선택한 엣지를 제거하며, 남겨진 버텍스가 플로팅 상태가 되지 않도록 면을 유지합니다."
+    },
+    {
+      "name": "Dissolve Faces",
+      "desc": "인접한 면들을 병합하여 하나의 큰 면으로 만듭니다."
+    },
+    {
+      "name": "Delete",
+      "desc": "Dissolve와 달리 버텍스나 엣지뿐만 아니라 인접한 면까지 완전히 삭제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "불필요한 루프 엣지 제거",
+      "steps": [
+        "Alt + 클릭으로 지우고 싶은 엣지 루프를 선택합니다.",
+        "X 키를 누릅니다.",
+        "Dissolve Edges를 선택하여 엣지만 깔끔하게 제거합니다."
+      ]
+    },
+    {
+      "title": "끊긴 버텍스 정리",
+      "steps": [
+        "면 안쪽에 홀로 남겨진 버텍스를 선택합니다.",
+        "X 키를 누릅니다.",
+        "Dissolve Vertices를 선택해 불필요한 점을 없애고 사각형 면을 복구합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Delete 대신 Dissolve를 써야 하는데 Delete를 눌러 구멍이 뚫림 → Ctrl+Z 후 올바른 Dissolve 메뉴 사용",
+    "Edges 대신 Vertices를 잘못 선택해 의도하지 않은 면 구조가 망가짐 → 선택 모드(1, 2, 3)를 확인 후 다시 실행"
+  ],
+  "related": [
+    "Loop Cut",
+    "Merge",
+    "Bevel",
+    "Bridge Edge Loops"
+  ],
+  "videos": [
+    {
+      "id": "HKN0OR7mQOU",
+      "title": "Blender How o dissolve edges, vertices, and faces",
+      "author": "Corg"
+    },
+    {
+      "id": "PkKM4Rkc9IU",
+      "title": "Slide and Merge Edges and Vertices in Blender!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dissolve%20edges%20and%20vertices",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Vertex",
+    "Edge",
+    "Dissolve Vertices",
+    "Dissolve Edges"
+  ],
+  "at": "2026-10-28T00:16:34.739989+00:00"
+}

@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-weighted-normals-modifier-bc19",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Weighted Normals modifier",
+  "title": "Weighted Normals — 하드서피스 노멀 정리",
+  "summary": "Weighted Normals modifier는 로우폴리곤 모델의 베이스메시와 하이폴리곤 Baking 결과물 사이의 노멀 왜곡을 줄여주는 기능입니다. 넓은 면과 좁은 면의 면적 비율을 계산해 노멀 방향을 자연스럽게 정렬합니다.",
+  "when": [
+    "하드서브젝트 모델링에서 하드 테두리(Hard Edge) 주위의 빛 번짐이나 어두운 이음새를 고칠 때",
+    "게임 엔진용 에셋에서 노멀 맵(Normal Map) Baking 후 생기는 음영 오류를 보정할 때",
+    "실린더나 박스 형태의 모서리를 부드럽게 보이도록 노멀을 다듬고 싶을 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 보정할 3D 모델을 선택합니다.",
+    "2. Command Panel의 Modify 탭으로 이동합니다.",
+    "3. Modifier List에서 Weighted Normals를 찾아 적용합니다.",
+    "4. Weighting 파라미터에서 면적이나 각도 옵션을 조절하여 노멀 방향을 다듬습니다.",
+    "5. 필요에 따라 Edit Normals나 Smooth 모디파이어를 함께 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Weighting",
+      "desc": "노멀 계산 시 면적(Area), 각도(Angle), 또는 둘의 조합 중 어떤 기준으로 가중치를 둘지 결정합니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "노멀을 부드럽게 처리할 각도 임계값을 설정하여 하드 에지를 유지하거나 부드럽게 만듭니다."
+    },
+    {
+      "name": "Weight Explicit Normals",
+      "desc": "이미 수동으로 편집된 명시적 노멀에도 가중치 계산을 적용할지 여부를 선택합니다."
+    },
+    {
+      "name": "Keep Sharp Edges",
+      "desc": "지정된 각도 이상의 날카로운 모서리(Sharp Edge)는 노멀이 섞이지 않도록 보존합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임용 총기류 및 하드서브젝트 에셋 정리",
+      "steps": [
+        "1. 복잡한 파츠가 결합된 총기 모델을 선택합니다.",
+        "2. Weighted Normals 모디파이어를 추가합니다.",
+        "3. Weighting을 Area 기준으로 설정하여 넓은 평면이 어둡게 찌그러지는 현상을 방지합니다."
+      ]
+    },
+    {
+      "title": "기계 부품의 원형 실린더 모서리 보정",
+      "steps": [
+        "1. 실린더 형태의 기계 부품 모델을 선택합니다.",
+        "2. Modifier List에서 Weighted Normals를 적용합니다.",
+        "3. Threshold 값을 조절해 실린더의 세로 이음새 그림자 오류를 제거합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀이 뒤집힌 상태에서 모디파이어 적용 → Edit Normals나 Normal 모디파이어로 법선 방향을 먼저 맞춘 뒤 적용하세요.",
+    "오브젝트 스케일이 균등하지 않음(Non-uniform Scale) → Utilities 탭에서 Reset XForm을 먼저 수행한 후 모디파이어를 적용하세요."
+  ],
+  "related": [
+    "Edit Poly",
+    "TurboSmooth",
+    "Normal",
+    "Smooth"
+  ],
+  "videos": [
+    {
+      "id": "yRf-373TglA",
+      "title": "Quickbit - Weighted Normals in 3DS Max",
+      "author": "FastTrack Tutorials"
+    },
+    {
+      "id": "60E-26Ydbh8",
+      "title": "What is the Weighted Normals modifier used for?",
+      "author": "Christopher 3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Weighted%20Normals%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Weighted Normals"
+  ],
+  "at": "2026-10-28T00:16:31.282523+00:00"
+}
