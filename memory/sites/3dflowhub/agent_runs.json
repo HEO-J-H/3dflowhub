@@ -232,5 +232,17 @@
     "task": "core.filter_general_hardware_news(): 수집 피드 중 범용 스마트폰, 일반 하드웨어, 스마트워치 등 3D 실무와 무관한 기기를 명시적으로 배제하는 필터 함수 추가 및 테스트 추가",
     "result": "held",
     "msg": "[4] tests=False security=[] — 리뷰 생략"
+  },
+  {
+    "at": "2026-10-28T01:38:41+00:00",
+    "task": "core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가",
+    "result": "merged",
+    "msg": "PR #40 머지 완료"
+  },
+  {
+    "at": "2026-10-28T01:40:29+00:00",
+    "task": "core.filter_practical_3d_depth(): 수집 및 요약 단계에서 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 전문 용어가 본문 내 일정 비율 이상 포함되지 않은 경우 'low depth' 오류 태그를 부여하고 차단하는 필터 함수",
+    "result": "held",
+    "msg": "[4] tests=True security=['병합 충돌 표시가 남은 파일: TODO.md, TODO.md, TODO.md'] — 리뷰 생략"
   }
 ]

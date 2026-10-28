@@ -31,6 +31,12 @@
 - [x] (agent) [p-c9ea239e63|운영·비용] 뉴스레터 구독 칸이 '찾을 수 없음'으로 실패: Buttondown 계정 'hjh2720' 공개 페이지가 없음(404). buttondown.com 로그인 → Settings → Basics 의 Username 을 확인하고, 가입 확인 메일 인증 → 현황판 설정 ③ 뉴스레터 칸에 그 이름 입력
 - [x] (agent) [p-5ceabd3a61|운영·비용] 뉴스레터 구독 칸이 '찾을 수 없음'으로 실패: Buttondown 계정 'hjh2720' 공개 페이지가 없음(404). buttondown.com 로그인 → Settings → Basics 의 Username 을 확인하고, 가입 확인 메일 인증 → 현황판 설정 ③ 뉴스레터 칸에 그 이름 입력
 
+<<<<<<< Updated upstream
 - [x] (agent) core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가
 - [ ] (agent) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가
 - [ ] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가
+=======
+- [ ] (agent:보류) core.filter_practical_3d_depth(): 수집 및 요약 단계에서 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 전문 용어가 본문 내 일정 비율 이상 포함되지 않은 경우 'low depth' 오류 태그를 부여하고 차단하는 필터 함수 — [4] tests=True security=['병합 충돌 표시가 남은 파일: TODO.md, TODO.md, TODO.md'] — 리뷰 생략
+- [ ] (agent) evolve.calculate_cpc_score_distribution(): 최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영하는 통계 함수 추가 및 테스트 추가
+- [ ] (agent) app.render_practical_content_metrics(): Streamlit 현황판 사이드바 또는 메인 영역에 실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 시각적으로 요약해 주는 렌더링 함수 추가 및 테스트 추가
+>>>>>>> Stashed changes
