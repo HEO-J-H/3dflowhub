@@ -171,14 +171,13 @@ def test_new_file_created_even_with_search_text(tmp_path, monkeypatch):
     assert (tmp_path / "backend/app/services/engines.py").read_text(encoding="utf-8") == "X = 1\n"
 
 
-def test_mobile_quick_nav_html_present():
-    import app
-    with open(app.__file__, "r", encoding="utf-8") as f:
-        content = f.read()
-    assert "mobile-quick-nav" in content
-    assert "🏠" in content and "📰" in content and "🛠" in content
-    assert "position: fixed;" in content
-    assert "bottom: 0;" in content
+def test_dashboard_mobile_layout():
+    """모바일: 44px 버튼·지표 2열 (예전 하단 고정 버튼은 실제로 이동하지 않아 제거함)."""
+    from pathlib import Path
+    content = (Path(__file__).parent.parent / "app.py").read_text(encoding="utf-8")
+    assert "min-height:44px" in content
+    assert "@media (max-width: 640px)" in content
+    assert "mobile-quick-nav" not in content
 
 
 def test_korean_3d_sources_boosted():
