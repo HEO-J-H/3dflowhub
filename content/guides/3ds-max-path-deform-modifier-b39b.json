@@ -1,0 +1,103 @@
+{
+  "id": "3ds-max-path-deform-modifier-b39b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Path Deform modifier",
+  "title": "Path Deform — 경로 따라 휘기",
+  "summary": "오브젝트를 지정된 스라인 경로(Spline)를 따라 자연스럽게 구부리거나 배치하는 모디파이어입니다. 철사를 원하는 모양의 길이에 맞춰 휘게 만드는 작업에 유용합니다.",
+  "when": [
+    "건물의 외벽을 따라 감기는 파이프나 케이블을 제작할 때",
+    "롤러코스터 트랙처럼 곡선 경로를 따라 일정한 형태를 반복 정렬할 때",
+    "글자나 오브젝트를 특정 곡선 모양으로 왜곡시켜 배치할 때"
+  ],
+  "steps": [
+    "1. Viewport에서 경로로 사용할 Spline(Line 등)과 변형할 3D 오브젝트를 각각 준비합니다.",
+    "2. 3D 오브젝트를 선택한 뒤, Command Panel → Modify 탭으로 이동합니다.",
+    "3. Modifier List에서 Path Deform (WSM) 또는 Path Deform 을 선택하여 적용합니다.",
+    "4. Modify 패널의 Parameters 롤아웃에서 Pick Path 버튼을 클릭합니다.",
+    "5. 뷰포트에서 미리 만들어 둔 Spline 경로를 마우스로 클릭하여 지정합니다.",
+    "6. Percentage나 Stretch 값을 조절하여 경로 위에서 오브젝트의 위치와 비율을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Pick Path",
+      "desc": "오브젝트를 따라가게 할 3D 스라인 경로를 지정합니다."
+    },
+    {
+      "name": "Percentage",
+      "desc": "경로 전체 길이를 기준으로 오브젝트의 위치를 이동시킵니다."
+    },
+    {
+      "name": "Stretch",
+      "desc": "경로를 따라 오브젝트의 길이를 늘리거나 줄입니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "경로 축을 기준으로 오브젝트를 회전시킵니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "경로를 따라 진행하면서 오브젝트를 나선형으로 비틉니다."
+    },
+    {
+      "name": "Move to Path",
+      "desc": "오브젝트의 피벗을 경로의 시작점으로 즉시 이동시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "곡선 파이프 제작하기",
+      "steps": [
+        "1. Cylinder로 긴 파이프 메쉬를 만들고, 길이에 충분한 Segments를 부여합니다.",
+        "2. Line으로 파이프가 지나갈 곡선 경로를 그립니다.",
+        "3. Cylinder에 Path Deform 모디파이어를 적용하고 Pick Path로 Line을 선택합니다.",
+        "4. 필요시 Rotation과 Twist를 조절해 파이프 각도를 맞춥니다."
+      ]
+    },
+    {
+      "title": "글자를 원형 경로에 배치하기",
+      "steps": [
+        "1. Text 오브젝트로 글자를 작성하고, Circle로 원형 경로를 만듭니다.",
+        "2. Text에 Path Deform 모디파이어를 적용합니다.",
+        "3. Pick Path로 Circle을 선택해 글자를 원형으로 휘게 만듭니다.",
+        "4. Percentage 값을 조절해 원 위에서 글자의 위치를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 꺾이지 않고 뻣뻣하게 유지됨 → 대상 오브젝트의 높이/길이 방향 Segments 개수가 부족해서 발생하는 현상이므로 세그먼트를 추가합니다.",
+    "경로를 지정했는데 오브젝트가 엉뚱한 위치로 튐 → Move to Path 버튼을 눌러 피벗 위치를 경로 위로 바로 정렬합니다.",
+    "오브젝트가 경로와 다른 방향으로 휘어짐 → Path Deform 파라미터의 X/Y/Z 축(Axis) 옵션을 변경하여 올바른 축을 지정합니다."
+  ],
+  "related": [
+    "Spacing Tool",
+    "Path Deform (WSM)",
+    "Spline",
+    "Bend"
+  ],
+  "videos": [
+    {
+      "id": "l_zKOH9mxqI",
+      "title": "Modeling Curved Wall Moldings with Path Deform in 3ds Max: Full Tutorial",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "c6awddiqDmg",
+      "title": "Path Deform Modifier in Autodesk 3Ds Max - Beginner Tutorial",
+      "author": "Stereopixol"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Path%20Deform%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Spline",
+    "Line",
+    "Command Panel",
+    "Modify",
+    "Modifier List"
+  ],
+  "at": "2026-10-28T00:26:55.442150+00:00"
+}

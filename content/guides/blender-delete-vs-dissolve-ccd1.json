@@ -1,0 +1,99 @@
+{
+  "id": "blender-delete-vs-dissolve-ccd1",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Delete vs Dissolve",
+  "title": "Delete와 Dissolve 차이",
+  "summary": "Blender의 Delete와 Dissolve은 메시 요소를 제거하는 두 가지 핵심 방법입니다. Delete는 요소와 연결된 면까지 통째로 지우고, Dissolve는 요소를 부드럽게 지우며 주변 면을 병합합니다.",
+  "when": [
+    "오브젝트에 구멍을 뚫거나 불필요한 면을 완전히 제거할 때 Delete를 씁니다.",
+    "루프 컷(Loop Cut)이나 불필요한 엣지를 지우면서 면 구조를 유지할 때 Dissolve를 씁니다.",
+    "정점(Vertex) 주변의 복잡한 구조를 정리하고 N-Gon 면을 만들 때 Dissolve를 활용합니다."
+  ],
+  "steps": [
+    "Blender에서 3D 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "1, 2, 3 키를 눌러 각각 Vertex, Edge, Face 셀렉션 모드 중 하나를 선택합니다.",
+    "제거하거나 지울 요소를 마우스 우클릭 또는 X 키를 눌러 Delete/Dissolve 메뉴를 호출합니다.",
+    "상황에 맞게 Delete(면 삭제 등) 또는 Dissolve(엣지/정점 용해)를 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Vertices",
+      "desc": "선택한 정점과 연결된 모든 면과 엣지를 함께 삭제합니다."
+    },
+    {
+      "name": "Edges",
+      "desc": "선택한 엣지를 삭제하고 비어 있는 공간(구멍)을 만듭니다."
+    },
+    {
+      "name": "Faces",
+      "desc": "선택한 면만 제거하여 내부가 뚫린 상태로 만듭니다."
+    },
+    {
+      "name": "Dissolve Vertices",
+      "desc": "정점을 없애고 주변 면을 하나로 합쳐 빈 공간을 메웁니다."
+    },
+    {
+      "name": "Dissolve Edges",
+      "desc": "엣지를 제거하면서 양쪽의 면을 병합합니다."
+    },
+    {
+      "name": "Dissolve Faces",
+      "desc": "인접한 면들을 합쳐서 하나의 큰 면으로 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "불필요한 엣지 루프 정리하기",
+      "steps": [
+        "Alt + 클릭으로 지우고 싶은 Edge Loop를 선택합니다.",
+        "X 키를 누릅니다.",
+        "Dissolve Edges를 선택하여 엣지만 깔끔하게 제거하고 면을 유지합니다."
+      ]
+    },
+    {
+      "title": "오브젝트에 구멍 뚫기",
+      "steps": [
+        "Face 셀렉션 모드(3 키)로 전환합니다.",
+        "제거할 면을 선택합니다.",
+        "X 키를 누르고 Faces를 선택하여 구멍을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Delete Edges 대신 Delete Vertices를 써서 의도치 않게 주변 면까지 다 지워짐 → Ctrl+Z 후 올바른 메뉴 선택",
+    "Dissolve 대신 Delete를 써서 메시에 큰 구멍이 뚫림 → X 키 메뉴에서 Dissolve 계열 기능 사용",
+    "정점을 지웠는데 미세한 점(1-vertex)이 남아 있음 → Vertex 선택 후 Dissolve Vertices 또는 Merge(M 키)로 정리"
+  ],
+  "related": [
+    "Loop Cut",
+    "Merge",
+    "Knife Tool",
+    "Fill"
+  ],
+  "videos": [
+    {
+      "id": "p8l-PGew_rI",
+      "title": "Delete and Dissolve Explained  - What's the difference and what do they do in Blender?",
+      "author": "Artisans of Vaul"
+    },
+    {
+      "id": "UFgHlE-yrIE",
+      "title": "Delete Vs Dissolve in Blender 2.93",
+      "author": "Hakenista"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Delete%20vs%20Dissolve",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Edit Mode",
+    "Vertex",
+    "Edge",
+    "Face",
+    "Dissolve"
+  ],
+  "at": "2026-10-28T00:26:59.474468+00:00"
+}
