@@ -117,7 +117,8 @@ TARGETS = {
         "plan": "Pix2Poly - a public browser tool (web/: JS port of the heightfield mesh + PBR maps, GitHub Pages) plus a local FastAPI tool that turns images/URLs/videos into 3D meshes (OBJ/GLB/FBX) and PBR "
                 "textures (heightfield mesh on CPU by default, optional TripoSR GPU, COLMAP for video). Goal: reliability "
                 "of the CPU default path, input validation, clear errors in the web UI, tests. GPU/external tools are "
-                "optional and must never be required by tests.",
+                "optional and must never be required by tests. Never list an engine/feature as available (or add "
+                "placeholder entries) unless it is actually implemented, wired and tested — research ideas go to docs/.",
     },
 }
 SITE = "3dflowhub"
