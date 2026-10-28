@@ -1,0 +1,87 @@
+{
+  "id": "houdini-line-sop-7de9",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Line SOP",
+  "title": "Line — 직선",
+  "summary": "Line SOP은 공간 상에 시작점과 끝점을 연결하는 직선 프로시듀얼 지오메트리를 생성하는 기본 노드입니다. 복잡한 모션 그래픽이나 곡선 가이드의 뼈대를 만들 때 유용하게 쓰입니다.",
+  "when": [
+    "케이블, 로프, 전깃줄 등 직선 기반의 뼈대 모델링을 시작할 때",
+    "모션 그래픽에서 포인트(점)들을 일정한 간격으로 정렬시키고 싶을 때",
+    "지형이나 커브를 생성하기 위한 기준 가이드라인이 필요할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Line을 입력하고 Enter를 눌러 Line 노드를 생성합니다.",
+    "지오메트리 네트워크 레벨에서 Line 노드의 디스플레이 플래그(파란색 원)를 켭니다.",
+    "파라미터 창(Parameter Pane)에서 Direction과 Distance를 조절하여 선의 방향과 길이를 설정합니다.",
+    "Points 파라미터를 조절하여 선 위의 디테일(포인트 개수)을 늘리거나 줄입니다."
+  ],
+  "params": [
+    {
+      "name": "Direction",
+      "desc": "선의 방향을 X, Y, Z 벡터 값으로 지정합니다."
+    },
+    {
+      "name": "Distance",
+      "desc": "선의 전체 길이를 설정합니다."
+    },
+    {
+      "name": "Points",
+      "desc": "선 위에 생성될 포인트의 총 개수를 결정합니다."
+    },
+    {
+      "name": "Bypass",
+      "desc": "노드를 일시적으로 비활성화하여 원본 상태로 돌립니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "전봇대 사이의 전깃줄 만들기",
+      "steps": [
+        "Line SOP으로 두 지점 사이의 기본 직선을 만듭니다.",
+        "Resample SOP을 연결하여 포인트를 촘촘하게 늘립니다.",
+        "Mountain SOP을 연결해 중간이 자연스럽게 처지도록 만듭니다."
+      ]
+    },
+    {
+      "title": "계단 구조물 배치하기",
+      "steps": [
+        "Line SOP으로 높낮이가 있는 수직 선을 만듭니다.",
+        "Points 개수를 계단 개수만큼 설정합니다.",
+        "Copy to Points SOP을 사용해 각 포인트에 계단 메쉬를 복사합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포인트 개수가 부족해 곡선을 만들 때 부드럽지 않음 → Line SOP의 Points 값을 늘리거나 Resample SOP을 추가하세요.",
+    "원하는 방향으로 선이 뻗지 않음 → Direction 파라미터의 축(X, Y, Z) 값을 확인하고 수정하세요."
+  ],
+  "related": [
+    "Resample SOP",
+    "Curve SOP",
+    "Copy to Points SOP",
+    "Mountain SOP"
+  ],
+  "videos": [
+    {
+      "id": "aAbXLK26Tok",
+      "title": "Houdini Tutorial: SOPs in DOPs (Part 1)",
+      "author": "Diffuse FX"
+    },
+    {
+      "id": "e3jclvTpang",
+      "title": "Chain SOP | Adam Swaab | Houdini 18.5 HIVE",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Line%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Line"
+  ],
+  "at": "2026-10-28T00:36:44.767155+00:00"
+}
