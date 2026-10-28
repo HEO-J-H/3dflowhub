@@ -1,0 +1,15 @@
+<!-- TITLE: Gaussian Splatting 기반 SG^2SLAM — 단안 야외 내비게이션 혁신 | TAGS: SLAM,Monocular Navigation,3D Gaussian Splatting,KITTI,Waymo,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — SG^2SLAM은 3D Gaussian Splat팅과 공간 기하 정보를 결합해 단안 카메라 기반 야외 내비게이션에서 기존 SLAM보다 더 일관된 지도와 궤적을 제공한다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>배경 및 문제점</h2>
+<p>기존 단안 SLAM은 2D 픽셀을 3D 포인트와 연결하는 방식으로, 트래킹 오류가 지도에 직접 반영돼 품질이 급격히 저하된다. 이러한 구조적 한계를 극복하기 위해 연구자들은 더 풍부한 기하 정보를 활용하려는 시도를 늘려왔다. 3D Gaussian Splat팅은 연속적인 장면 표현을 제공하지만, 단일 프레임에 의존하는 매핑 방식은 여전히 문제를 안고 있다.</p>
+<h2>SG^2SLAM 핵심 아이디어</h2>
+<p>SG^2SLAM은 스트리밍 공간 기하를 도입해 프레임 간 매핑을 청크 수준 메트릭 프라이어로 전환한다. 이 메트릭 프라이어는 트래킹과 매핑을 하나의 소스에서 동시에 감독한다. 결과적으로 전체 시스템이 전역적으로 일관된 지도와 궤적을 생성한다.</p>
+<h2>Ray‑conditioned 3DGS 커널</h2>
+<p>새로운 레이‑조건 커널은 각 Gaussian primitive에 카메라 시점에 민감한 서브스페이스를 추가한다. 이를 통해 단안 카메라의 시점 변화에 따라 Gaussian의 투영이 동적으로 조정된다. 이 메커니즘은 기존의 고정된 프로젝션 방식보다 시점 적응성이 뛰어나며, 매핑 정확도를 크게 향상시킨다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">한국의 로봇·자율주행 연구팀은 단안 카메라만으로 고품질 지도를 만들기 어려운 점을 SG^2SLAM으로 극복할 수 있다. 실시간 스트리밍 기하 정보와 레이‑조건 커널을 활용하면 트래킹 오류가 지도에 누적되는 문제를 최소화한다. 특히 KITTI·Waymo와 같은 대규모 데이터셋에서 성능이 입증돼, 현장 테스트나 시뮬레이션 파이프라인에 바로 적용 가능하다. 다만 현재 코드는 아직 공개 전이므로, 초기 단계에서는 논문 구현을 참고해 자체 Prototype을 구축하는 것이 현실적이다. 연구·개발 단계에서 GPU 메모리 관리와 레이‑조건 파라미터 튜닝에 주의해야 한다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-cfc4404bd87dd1b1.html">Gaussian Splatting ClusterSplat — 3D 비주얼 그라운딩 연구</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-78bc8ebb25299178.html">Gaussian Splatting 렌더링 성능 높이는 GeoGSplat 논문</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-a911ecf7777676a2.html">Gaussian Splatting SLAM — LingGS 논문 분석</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.36312v1" target="_blank" rel="noopener nofollow">SG^2SLAM: Spatial Geometry-Informed 3D Gaussian Splatting SLAM for Monocular Outdoor Navigation</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
