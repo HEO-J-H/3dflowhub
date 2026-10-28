@@ -20,6 +20,26 @@ def test_short_post_warning_and_error(monkeypatch):
     assert "short post" in core.RUN_ERRORS
 
 
+def test_validate_practical_3d_keywords(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    no_tool_data = {
+        "title_ko": "일반 그래픽 뉴스",
+        "summary": "툴 언급이 전혀 없는 일반 뉴스입니다.",
+        "sections": [{"heading": "개요", "body": "일반적인 이야기만 포함되어 있습니다."}]
+    }
+    assert core.validate_practical_3d_keywords(no_tool_data) is False
+    assert "low 3d depth" in core.RUN_ERRORS
+
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    valid_tool_data = {
+        "title_ko": "Maya 및 Blender 실무 활용",
+        "summary": "Autodesk Maya와 Blender를 활용한 워크플로우.",
+        "sections": [{"heading": "소개", "body": "ZBrush와 3ds Max를 연동하는 방법."}]
+    }
+    assert core.validate_practical_3d_keywords(valid_tool_data) is True
+    assert "low 3d depth" not in core.RUN_ERRORS
+
+
 def test_ensure_minimum_content_depth_low_and_high(monkeypatch):
     monkeypatch.setattr(core, "RUN_ERRORS", [])
     low_data = {
