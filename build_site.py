@@ -372,6 +372,11 @@ nav.domains .mob,nav.domains .sep{display:none}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:28px 0}
 .pager a{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
 .pager a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pager{align-items:center}.pager .pg-nav{padding:0 14px}
+.pager .pg-nav.off{min-height:40px;display:inline-flex;align-items:center;padding:0 14px;opacity:.35}
+.pager .pg-gap{min-width:24px;text-align:center;color:var(--muted)}.pager .pg-count{display:none;color:var(--muted);padding:0 8px}
+.pager a:hover{border-color:var(--accent)}.pager a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(max-width:560px){.pager .pg-num,.pager .pg-gap{display:none}.pager .pg-count{display:inline}.pager{flex-wrap:nowrap}}
 
 /* 글 페이지: 읽기 폭 제한 */
 article{background:var(--surface);border-radius:var(--r-lg);padding:clamp(22px,4vw,48px);margin:28px auto;max-width:780px;box-shadow:var(--shadow)}
@@ -627,19 +632,48 @@ def iso_week(p: dict) -> str:
         return ""
 
 
+def page_window(n: int, total: int, span: int = 2) -> list:
+    """보여 줄 페이지 번호 — 처음·끝 + 현재 앞뒤 span 개, 건너뛴 곳은 None(…)."""
+    keep = sorted({1, total, *range(max(1, n - span), min(total, n + span) + 1)})
+    out: list = []
+    for k in keep:
+        if out and k - out[-1] > 1:
+            out.append(None if k - out[-1] > 2 else k - 1)  # 한 칸만 비면 … 대신 그 번호
+        out.append(k)
+    return out
+
+
+def pager_html(n: int, total: int, href) -> str:
+    """페이지 이동: ‹ 이전 · 1 … 5 6 [7] 8 9 … 24 · 다음 › (번호를 다 늘어놓지 않음, 휴대폰에선 '7 / 24')."""
+    if total <= 1:
+        return ""
+    items = [f'<a class="pg-nav" href="{href(n - 1)}" rel="prev" aria-label="이전 페이지">‹ 이전</a>' if n > 1
+             else '<span class="pg-nav off" aria-hidden="true">‹ 이전</span>']
+    for k in page_window(n, total):
+        if k is None:
+            items.append('<span class="pg-gap" aria-hidden="true">…</span>')
+        elif k == n:
+            items.append(f'<a class="pg-num on" href="{href(k)}" aria-current="page">{k}</a>')
+        else:
+            items.append(f'<a class="pg-num" href="{href(k)}" aria-label="{k}페이지">{k}</a>')
+    items.append(f'<span class="pg-count">{n} / {total}</span>')
+    items.append(f'<a class="pg-nav" href="{href(n + 1)}" rel="next" aria-label="다음 페이지">다음 ›</a>' if n < total
+                 else '<span class="pg-nav off" aria-hidden="true">다음 ›</span>')
+    return f'<nav class="pager" aria-label="페이지 이동">{"".join(items)}</nav>'
+
+
 def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header: str, domain_on: str,
                 indexable: bool = True, header_more: str | None = None) -> None:
     """게시판 목록 (페이지네이션: index.html, page/2/ ...)."""
     pages = [posts[i:i + PAGE_SIZE] for i in range(0, max(len(posts), 1), PAGE_SIZE)] or [[]]
     for n, chunk in enumerate(pages, 1):
         r = root + ("../../" if n > 1 else "")
-        pager = "".join(f'<a class="{"on" if k == n else ""}" href="{r}{out_dir.relative_to(OUT).as_posix()}/'
-                        f'{"" if k == 1 else f"page/{k}/"}">{k}</a>' for k in range(1, len(pages) + 1)) \
-            if len(pages) > 1 else ""
+        base = f"{r}{out_dir.relative_to(OUT).as_posix()}/"
+        pager = pager_html(n, len(pages), lambda k: base + ("" if k == 1 else f"page/{k}/"))
         head = header if n == 1 or header_more is None else header_more
         body = head.replace("{ROOT}", r) + '<div class="board">' + ("".join(row(p, r) for p in chunk)
                                                                        or '<div class="row">아직 글이 없습니다.</div>') \
-            + f'</div><div class="pager">{pager}</div>'
+            + f'</div>{pager}'
         d = out_dir if n == 1 else out_dir / "page" / str(n)
         d.mkdir(parents=True, exist_ok=True)
         robots = "" if indexable else '<meta name="robots" content="noindex,follow">'
