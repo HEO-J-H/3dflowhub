@@ -37,6 +37,6 @@
 - [ ] (agent:보류) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가 — [4] tests=True security=['병합 충돌 표시가 남은 파일: TODO.md'] — 리뷰 생략
 =======
 - [ ] (agent:보류) core.filter_practical_3d_depth(): 수집 및 요약 단계에서 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 전문 용어가 본문 내 일정 비율 이상 포함되지 않은 경우 'low depth' 오류 태그를 부여하고 차단하는 필터 함수 — [4] tests=True security=['병합 충돌 표시가 남은 파일: TODO.md, TODO.md, TODO.md'] — 리뷰 생략
-- [ ] (agent) evolve.calculate_cpc_score_distribution(): 최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영하는 통계 함수 추가 및 테스트 추가
+- [ ] (agent:보류) evolve.calculate_cpc_score_distribution(): 최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영하는 통계 함수 추가 및 테스트 추가 — [4] tests=True security=['병합 충돌 표시가 남은 파일: TODO.md'] — 리뷰 생략
 - [ ] (agent) app.render_practical_content_metrics(): Streamlit 현황판 사이드바 또는 메인 영역에 실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 시각적으로 요약해 주는 렌더링 함수 추가 및 테스트 추가
 >>>>>>> Stashed changes
