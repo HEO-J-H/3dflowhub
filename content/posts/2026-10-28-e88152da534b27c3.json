@@ -33,13 +33,13 @@
       "body": "Resolution Games의 Demeo와 Devs United Games의 Real VR Fishing 역시 XREAL AURA로 성공적으로 포팅되었습니다. 두 스튜디오 모두 Unity의 강력한 Cross 플랫폼 XR 파운데이션과 OpenXR 지원 덕분에 헤드셋 간 컴포넌트를 재사용하여 포팅 작업을 대폭 효율화할 수 있었다고 강조했습니다. URP 전환을 통해 필요한 혼합 현실 지원도 매끄럽게 확보할 수 있었습니다."
     },
     {
-      "heading": "실무에서 이렇게 씁니다",
-      "body": "XREAL AURA 프로젝트를 진행할 때는 사전 설정된 안드로이드 XR 빌드 프로필을 활용해 초기 설정을 생략하고 즉시 개발에 착수합니다. OpenXR과 Vulkan 표준을 채택하여 다양한 헤드셋 간 컴포넌트를 재사용하고 포팅 작업을 효율화합니다. 또한 XR Interaction Toolkit과 XR Hands를 결합하면 별도의 복잡한 구현 없이도 자연스러운 핸드 인터랙션을 빠르게 구축할 수 있습니다. 프리팹 워크플로와 커스텀 레벨 스크립팅 시스템을 함께 사용하면 긴 재컴파일 주기 없이 게임플레이와 인터랙션을 반복 수정하기에 유리합니다.",
+      "heading": "시작하려면",
+      "body": "XREAL AURA와 안드로이드 XR 환경을 위한 개발을 시작하려면 Unity 6.6 버전부터 최신 안드로이드 XR 기능을 활용할 수 있으며, 추후 Unity 6.7 LTS 버전으로 이어질 예정입니다. 개발 효율을 높이기 위해 제공되는 사전 설정된 안드로이드 XR 빌드 프로필을 활용하면 초기 설정 과정을 건너뛰고 곧바로 개발에 착수할 수 있습니다. OpenXR 및 Vulkan과 같은 개방형 표준을 채택하고, XR Interaction Toolkit과 XR Hands를 도입하여 자연스러운 핸드 인터랙션을 구현하는 것이 권장됩니다.",
       "added": true
     },
     {
-      "heading": "시작하려면",
-      "body": "먼저 최신 안드로이드 XR 기능이 포함된 Unity 6.6 버전(또는 추후 지원될 6.7 LTS)을 준비합니다. OpenXR 및 Vulkan 백엔드 설정을 프로젝트에 적용하고, URP로 전환하여 혼합 현실 지원을 위한 파이프라인을 구축합니다. XR Interaction Toolkit 패키지를 설치하여 핸드 인터랙션과 기본 XR 상호작용 구조를 세팅한 뒤, 제공되는 빌드 프로필을 통해 XREAL AURA 타겟 빌드를 테스트해 볼 수 있습니다.",
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Owlchemy Labs의 Hyper Visor 개발 사례처럼, Unity의 다중 물리 씬과 Universal Render Pipeline(URP), OpenXR 지원을 결합하면 혼합 현실 환경을 효과적으로 구축할 수 있습니다. 프리팹 워크플로와 커스텀 레벨 스크립팅 시스템을 함께 사용하면 긴 재컴파일 주기 없이도 게임플레이를 빠르게 반복 수정하며 프로토타이핑을 진행할 수 있습니다. 또한 Demeo와 Real VR Fishing의 사례처럼, Cross 플랫폼 XR 파운데이션을 활용하면 헤드셋 간 컴포넌트를 재사용하여 포팅 작업을 대폭 효율화하고 URP를 통해 혼합 현실 지원을 매끄럽게 확보할 수 있습니다.",
       "added": true
     }
   ],
@@ -53,12 +53,12 @@
       "a": "OpenXR 기반의 Cross 플랫폼 XR 파운데이션과 Unity 패키지 매니저(UPM)를 통한 재사용 가능한 컴포넌트, 그리고 사전 설정된 안드로이드 XR 빌드 프로필이 포팅 시간을 크게 단축해 줍니다."
     },
     {
-      "q": "XREAL AURA 개발 시 어떤 렌더링 파이프라인과 표준을 권장하나요?",
-      "a": "원활한 포팅과 강력한 성능을 위해 URP(Universal Render Pipeline)와 OpenXR, Vulkan과 같은 개방형 표준 채택을 권장합니다. 이를 통해 혼합 현실 지원과 Cross 플랫폼 호환성을 매끄럽게 확보할 수 있습니다."
+      "q": "XREAL AURA 개발을 위해 어떤 Unity 버전이 필요한가요?",
+      "a": "Unity 6.6 버전부터 최신 안드로이드 XR 기능과 업데이트를 지원하며, 추후 Unity 6.7 LTS 버전으로 이어질 예정입니다."
     },
     {
-      "q": "기존 XR 프로젝트를 XREAL AURA로 포팅할 때 컴포넌트 재사용이 가능한가요?",
-      "a": "네, Unity의 Cross 플랫폼 XR 파운데이션과 OpenXR 지원 덕분에 헤드셋 간 컴포넌트를 재사용하여 포팅 작업을 대폭 효율화할 수 있습니다."
+      "q": "기존 헤드셋용 게임을 XREAL AURA로 포팅할 때 유용한 기능은 무엇인가요?",
+      "a": "Unity의 Cross 플랫폼 XR 파운데이션과 OpenXR 지원을 활용하면 헤드셋 간 컴포넌트를 재사용하여 포팅 작업을 대폭 효율화할 수 있습니다. 또한 URP로 전환하여 혼합 현실 지원을 매끄럽게 확보할 수 있습니다."
     }
   ],
   "media": {
@@ -76,14 +76,14 @@
       "author": "Unity"
     },
     {
-      "id": "K7Hdxo8XMm8",
-      "title": "Getting started with XREAL Air 2 Ultra and Unity 6.5 (and fixing the annoying building bug!)",
-      "author": "FireDragonGameStudio"
+      "id": "_eTXxjdgsI0",
+      "title": "Early Look: We Put XREAL AURA to Work. Here’s What We Found.",
+      "author": "Groove Jones"
     }
   ],
-  "enriched_at": "2026-10-28T19:40:29+00:00",
+  "enriched_at": "2026-10-28T19:43:08+00:00",
   "quality": {
     "before": 951,
-    "after": 1502
+    "after": 1591
   }
 }
