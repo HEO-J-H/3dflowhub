@@ -971,9 +971,16 @@ with t_rev:
         gc_code = sc1.text_input("GoatCounter 사이트 코드", cfg.get("goatcounter_code", ""), placeholder="3dflowhub")
         ad_client = sc2.text_input("AdSense 게시자 ID", cfg.get("adsense_client", ""), placeholder="ca-pub-0000000000000000")
         nl_user = sc3.text_input("Buttondown 사용자 이름", cfg.get("newsletter_buttondown", ""), placeholder="3dflowhub")
+        st.markdown("**④ 검색엔진 등록** — 구글 서치콘솔·네이버 서치어드바이저에서 받은 **HTML 태그**(`<meta …>` 통째로 붙여넣어도 됨)")
+        sv1, sv2 = st.columns(2)
+        g_ver = sv1.text_input("구글 소유 확인 태그", cfg.get("google_site_verification", ""),
+                               placeholder='<meta name="google-site-verification" content="…">')
+        n_ver = sv2.text_input("네이버 소유 확인 태그", cfg.get("naver_site_verification", ""),
+                               placeholder='<meta name="naver-site-verification" content="…">')
         if st.button("💾 사이트 설정 저장 (GitHub 반영 → 사이트 재배포)"):
             core.save_config({**core.load_config(), "goatcounter_code": gc_code.strip(), "adsense_client": ad_client.strip(),
-                              "newsletter_buttondown": nl_user.strip()})
+                              "newsletter_buttondown": nl_user.strip(),
+                              "google_site_verification": g_ver.strip(), "naver_site_verification": n_ver.strip()})
             err = core.git_sync(["config.json"], "chore(config): 사이트 통계·광고 설정")
             if err:
                 st.error(err)

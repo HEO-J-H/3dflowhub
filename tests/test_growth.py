@@ -112,3 +112,12 @@ def test_thin_post_detection():
     thin = {"sections": [{"heading": "소식", "body": "새 기능이 나왔다."}]}
     rich = {"sections": [{"heading": "Blender", "body": "Blender 셰이더와 UV, 폴리곤 " * 40}]}
     assert build_site.is_thin(thin) and not build_site.is_thin(rich)
+
+
+def test_search_verify_and_adsense_format(monkeypatch):
+    import build_site
+    assert build_site.norm_adsense("pub-4980394869440139") == "ca-pub-4980394869440139"
+    assert build_site.verify_code('<meta name="google-site-verification" content="AbC_123-xyz987654" />') == "AbC_123-xyz987654"
+    monkeypatch.setattr(build_site, "site_cfg", lambda: {"google_verify": "AbC_123-xyz987654", "naver_verify": "",
+                                                         "goatcounter": "", "adsense": ""})
+    assert 'name="google-site-verification" content="AbC_123-xyz987654"' in build_site.head_scripts()

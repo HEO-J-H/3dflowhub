@@ -44,11 +44,25 @@ TOPIC_SLUG = {"업데이트·출시": "update", "튜토리얼·팁": "tutorial",
 CONTACT_EMAIL = "hjh1014@naver.com"  # 광고·제휴 문의 연락처
 
 
+def norm_adsense(v: str) -> str:
+    """'pub-123…' 처럼 앞의 ca- 를 빼고 넣어도 동작하게 (예전엔 광고 스크립트가 아예 안 들어갔음)."""
+    v = (v or "").strip()
+    return "ca-" + v if re.fullmatch(r"pub-\d{10,20}", v) else v
+
+
+def verify_code(v: str) -> str:
+    """서치콘솔·서치어드바이저가 주는 <meta …content="코드"> 를 통째로 붙여넣어도 코드만 꺼냄."""
+    m = re.search(r"""content=["']([^"']+)""", v or "")
+    return (m.group(1) if m else (v or "")).strip()
+
+
 def site_cfg() -> dict:
     """config.json 의 사이트 수익화/분석 설정 (대시보드 💰 탭에서 입력 → GitHub 반영)."""
     c = core._load_json(core.CONFIG_PATH, {})
     return {"goatcounter": (c.get("goatcounter_code") or "").strip(),
-            "adsense": (c.get("adsense_client") or os.getenv("ADSENSE_CLIENT", "")).strip(),
+            "adsense": norm_adsense(c.get("adsense_client") or os.getenv("ADSENSE_CLIENT", "")),
+            "google_verify": (c.get("google_site_verification") or "").strip(),
+            "naver_verify": (c.get("naver_site_verification") or "").strip(),
             "base_url": (c.get("site_base_url") or BASE_URL).rstrip("/"),
             "newsletter": (c.get("newsletter_buttondown") or "").strip()}
 
@@ -69,6 +83,10 @@ def newsletter_box(root: str = "") -> str:
 
 def head_scripts() -> str:
     cfg, out = site_cfg(), []
+    for name, key in (("google-site-verification", "google_verify"), ("naver-site-verification", "naver_verify")):
+        code = verify_code(cfg[key])
+        if re.fullmatch(r"[A-Za-z0-9_\-]{10,100}", code):  # 검색엔진 소유 확인 (구글 서치콘솔·네이버 서치어드바이저)
+            out.append(f'<meta name="{name}" content="{code}">')
     if re.fullmatch(r"[a-z0-9-]{2,50}", cfg["goatcounter"]):  # 방문 통계 (쿠키 없음)
         out.append(f'<script data-goatcounter="https://{cfg["goatcounter"]}.goatcounter.com/count" '
                    f'async src="//gc.zgo.at/count.js"></script>')
