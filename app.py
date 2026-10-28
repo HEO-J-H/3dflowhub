@@ -991,7 +991,7 @@ with t_rev:
         ("방문 통계 연결 (GoatCounter)", bool(cfg.get("goatcounter_code"))),
         ("본인 도메인 연결 (애드센스 승인 조건)", "github.io" not in core._load_json(core.CONFIG_PATH, {}).get("site_base_url", "github.io")),
         ("애드센스 게시자 ID 등록", bool(cfg.get("adsense_client"))),
-        ("네이버 서치어드바이저 등록", False),
+        ("네이버 서치어드바이저 등록", bool(cfg.get("naver_site_verification"))),
         ("뉴스레터 구독 칸 (Buttondown)", bool(cfg.get("newsletter_buttondown"))),
     ]
     for label, ok in checks:
