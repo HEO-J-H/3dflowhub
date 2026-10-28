@@ -1,0 +1,31 @@
+{
+  "title_ko": "Gaussian Splatting, DomeGS 도입으로 VR 배경 완성도 향상",
+  "title": "DomeGS: Perceptually Consistent Background Completion for Unbounded 3D Gaussian Splatting in Virtual Reality",
+  "url": "https://arxiv.org/abs/2610.37172v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "VR",
+    "DomeGS",
+    "배경 보완",
+    "실감 향상"
+  ],
+  "summary": "DomeGS는 Gaussian Splatting 기반 VR 씬에 스카이돔을 통합해 배경을 일관되게 완성, 몰입감과 실감을 크게 높인다.",
+  "insight": "VR 콘텐츠 제작 시 무한히 확장되는 야외 씬의 지평선이 비어 보이는 문제는 몰입을 저해한다. DomeGS는 기존 skybox·skydome을 별도 레이어가 아니라 Gaussian Splatting 데이터에 포함시켜 앞뒤 씬 간 시각적 불일치를 해소한다. 실험 결과 36명의 사용자에게서 공간 존재감과 현실감이 통계적으로 유의하게 상승했으며, 이는 VR 프로젝트에서 배경 처리 비용을 줄이면서 품질을 높일 수 있음을 의미한다. 특히 대규모 야외 환경을 빠르게 구축해야 하는 실시간 엔진 개발자와 VR 아티스트가 바로 적용해 볼 만하다. 다만 Gaussian Splatting 자체의 렌더링 비용을 고려해 최적화된 GPU 환경에서 사용해야 한다.",
+  "sections": [
+    {
+      "heading": "기존 배경 처리 방식의 한계",
+      "body": "무한히 확장되는 야외 씬을 Gaussian Splatting으로 재구성하면 지평선이 누락돼 배경이 비어 보인다. 전통적인 VR 시스템은 텍스처 큐브(skybox)나 구(sky dome)로 배경을 가상으로 채우지만, 재구성된 3DGS 지오메트리와 자연스럽게 블렌딩되지 않는다. 이로 인해 시각적 일관성이 깨지고 사용자의 몰입감이 감소한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-28T03:07:11.930675+00:00",
+  "notion_id": "",
+  "id": "2026-10-28-10ce1f22a67da5a4"
+}
