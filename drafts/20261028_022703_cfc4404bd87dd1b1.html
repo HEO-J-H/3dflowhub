@@ -1,0 +1,22 @@
+<!-- TITLE: Gaussian Splatting ClusterSplat — 3D 비주얼 그라운딩 연구 | TAGS: Gaussian Splatting,3D Visual Grounding,NeurIPS,3D Computer Vision,Semantic Clustering,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — ClusterSplat은 3D Gaussian Splatting에서 시맨틱 클러스터 선택을 통해 3D 비주얼 그라운딩의 정확도와 안정성을 높인 NeurIPS 2026 연구 논문입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>ClusterSplat 연구 개요 및 배경</h2>
+<p>본 논문은 3D Gaussian Splatting 환경에서 자연어 Prompt(Referring Expression)를 통해 타겟 객체를 2D 마스크와 3D Gaussian 집합으로 정확히 식별하는 3D 비주얼 그라운딩을 다룹니다. 기존 방법들은 휴리스틱 임계값이나 상위 비율 필터링을 사용하여 Primitive 단위의 관련성 점수를 추출했으나, 이는 장면과 Prompt에 따라 결과가 크게 달라지는 한계가 있었습니다. ClusterSplat은 이러한 문제를 해결하기 위해 3D 타겟 선택 방식을 장면 적응형 후보군에 대한 클러스터 단위 선택으로 재구성합니다.</p>
+<h2>장면 적응형 클러스터 후보군 생성</h2>
+<p>알고리즘은 먼저 Instance 인식 Gaussian 피처를 학습하고, 이를 바탕으로 피처 인식 시드 복셀(Seed Voxels)을 형성합니다. 이어 설명 길이 기준(Description-length Criterion)이 감소할 때 인접한 시드 복셀들을 병합하여 장면 특화된 클러스터 후보군을 생성합니다. 이 과정은 장면에 맞춰 유연하게 객체 후보군을 나누어주는 역할을 합니다.</p>
+<h2>경량화된 MLP를 활용한 쿼리 조건부 스코어링</h2>
+<p>자연어 Prompt가 주어지면, 쿼리 조건부 클러스터 스코러가 경량화된 MLP를 사용하여 클러스터 후보군들의 순위를 매깁니다. 선택된 클러스터는 명시적인 3D 타겟을 직접 정의하며, 동시에 해당 클러스터 점수가 렌더링되어 2D 마스크를 구성합니다. 이 경량화된 구조를 통해 효율적이면서도 안정적인 타겟팅이 가능해집니다.</p>
+<h2>성능 검증 및 주요 벤치마크 결과</h2>
+<p>ScanRefer 벤치마크에서 ClusterSplat은 비교 대상이 된 기존 3D Gaussian Splatting 베이스라인 중 가장 우수한 렌더링 2D 세그멘테이션 및 명시적 3D 타겟 지표를 달성했습니다. 또한 세밀한 참조 설명(Fine-grained Referring Descriptions) 환경에서도 Ref-LERF 평균 점수 기준 최고 기록을 달성했습니다. ScanNet v2 클래스 이름 쿼리 테스트에서도 강력한 2D 결과와 높은 3D 매칭 정확도를 보여주었습니다.</p>
+<h2>NeurIPS 2026 Spotlight 채택</h2>
+<p>본 연구는 학술적 우수성을 인정받아 NeurIPS 2026에서 Spotlight 논문으로 채택되었습니다. 프로젝트 페이지와 관련 소스는 공식 경로를 통해 제공되며, 향후 3D 비전 및 공간 인식 응용 프로그램의 표준 워크플로에 큰 영향을 미칠 것으로 기대됩니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 3D Gaussian Splatting 기반의 비주얼 그라운딩은 덴스 Primitive 단위의 스코어에 의존하여 Prompt와 장면에 따라 결과가 불안정했습니다. 이번에 발표된 클러스터 기반 접근 방식은 실무에서 특정 객체를 정밀하게 3D 바운딩하거나 2D 마스크로 추출해야 하는 AI 3D 파이프라인의 한계를 극복하는 데 도움을 줍니다. 특히 ScanRefer 및 ScanNet v2 데이터셋에서 우수한 성능을 입증하여 향후 AR/VR 및 로보틱스 공간 인식 기능 개발에 적극 활용될 수 있습니다. 3D 공간 데이터와 자연어 Prompt를 연동하는 연구자나 개발자라면 반드시 주목해야 할 기법입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. ClusterSplat은 어떤 문제를 해결하기 위한 기술인가요?</b><br/>A. 기존 3D Gaussian Splatting 기반 비주얼 그라운딩에서 사용하던 Primitive 단위 스코어의 불안정성과 휴리스틱 임계값 의존 문제를 해결하기 위해 고안되었습니다.</p>
+<p><b>Q. 어떤 벤치마크에서 성능이 검증되었나요?</b><br/>A. ScanRefer 및 ScanNet v2 데이터셋을 통해 검증되었으며, 렌더링 2D 세그멘테이션과 3D 타겟 정확도 모두에서 우수한 지표를 기록했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-78bc8ebb25299178.html">Gaussian Splatting 렌더링 성능 높이는 GeoGSplat 논문</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-a911ecf7777676a2.html">Gaussian Splatting SLAM — LingGS 논문 분석</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-c7d2598c2c8e51e2.html">Gaussian Splatting 기반 무선 채널 렌더링 기술 분석</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.36462v1" target="_blank" rel="noopener nofollow">ClusterSplat: Semantic Cluster Selection for 3D Visual Grounding in Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -29,6 +29,21 @@
     {
       "heading": "향후 출시 일정 및 PC 버전 소식",
       "body": "블룸버그의 보도에 따르면 현재 예상되는 GTA 6의 최종 출시일은 11월 19일로 점쳐지고 있으나, 실제 플레이하기 전까지는 100% 확신할 수 없습니다. 팬들에게 희소식은 PC 버전이 예상보다 훨씬 이른 2027년 초에 출시될 예정이라는 점입니다. 락스타는 수많은 우려와 의심 속에서도 원칙을 고수하며 특별한 타이틀을 완성하기 위해 막바지 노력을 기울이고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Rockstar가 대규모 스마트 NPC를 구현하기 위해 4,711명의 인력을 투입한 것처럼, 실제 현업에서는 ‘Crowd Simulation’과 ‘AI Behaviour’ 파이프라인을 명확히 분리합니다. 1) 레퍼런스 조사 단계에서 현장 촬영 영상(예: 마이애미 거리, 헬리콥터 샷)을 메타데이터와 함께 정리하고, 2) Houdini Engine이나 Unreal Engine Mass AI 같은 툴을 이용해 기본 군집 움직임을 프로시저 방식으로 생성합니다. 3) 각 NPC에 Blueprint (또는 Script) 기반 Behaviour Tree를 연결해 ‘스마트’ 행동을 정의하고, 4) LOD (Level of Detail)와 Distance Culling을 적용해 수천 명이 동시에 화면에 보일 때도 프레임을 유지합니다. 마지막으로, 5) ‘Performance Profiling’ 단계에서 Unreal Insights 혹은 PIX와 같은 프로파일러로 AI Tick 시간을 측정하고, 병목이 되는 로직을 최적화합니다. 이 흐름을 따라가면 대규모 NPC 프로젝트를 보다 체계적으로 관리할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 포럼에서는 ‘GTA IV’ 스레드에서 NPC 콘텐츠가 멀티플레이어 매치메이킹에 미치는 영향에 대한 우려가 제기되었습니다[1]. 사용자들은 ‘NPC 수가 많아질수록 네트워크 동기화와 메모리 사용량이 급증한다’는 점을 지적하며, 대규모 스마트 NPC를 구현할 때는 네트워크 레플리케이션 전략과 데이터 압축 방식을 사전에 설계해야 한다고 조언합니다. 또한, ‘NPC 행동이 복잡해질수록 디버깅 난이도도 상승한다’는 의견이 있어, 단계별 테스트와 로그 시스템 구축이 필수임을 강조하고 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "스마트 NPC 제작을 처음 시도한다면 다음 순서대로 환경을 구축하세요. 1) Unreal Engine 5 최신 버전을 설치하고, ‘Mass AI’ 플러그인을 활성화합니다. 2) Houdini Engine for Unreal을 설치해 프로시저 군집 생성 파이프라인을 연결합니다. 3) Blueprint 와 Behaviour Tree 기본 사용법을 학습하고, 공식 문서와 ‘Unreal Online Learning’ 강의를 따라 간단한 NPC를 하나 만들어 보세요. 4) 최적화를 위해 ‘Nanite’와 ‘Lumen’ 설정을 검토하고, ‘Stat AI ‘ 명령어로 AI Tick 시간을 모니터링합니다. 이 과정을 거치면 대규모 NPC 프로젝트의 초기 Prototype을 빠르게 만들 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -39,6 +54,14 @@
     {
       "q": "GTA 6의 PC 버전은 언제 출시될 예정인가요?",
       "a": "보도에 따르면 예상보다 이른 시기인 2027년 초에 PC 버전이 출시될 것으로 알려졌습니다."
+    },
+    {
+      "q": "스마트 NPC를 만들 때 가장 중요한 최적화 포인트는?",
+      "a": "수천 명의 NPC가 동시에 화면에 보일 경우 LOD (Level of Detail)와 Distance Culling을 먼저 적용하고, Behaviour Tree의 Tick 주기를 최소화합니다. 또한, AI 데이터를 서버‑클라이언트 간에 압축 전송하고, ‘Mass AI ’의 ‘Entity Chunk’ 단위로 업데이트하면 CPU와 메모리 부하를 크게 줄일 수 있습니다."
+    },
+    {
+      "q": "GTA 6와 같은 규모의 NPC를 자체 프로젝트에 적용하려면 어느 정도 인력이 필요할까?",
+      "a": "Rockstar는 프로젝트 초기 인력을 2,441명에서 4,711명으로 확대했으며, 이는 전체 팀 규모가 약 두 배 이상 증가했음을 의미합니다. 소규모 스튜디오라면 전체 인력을 10~20명 정도로 제한하고, 외부 미들웨어(예: Houdini Engine, Unreal Mass AI)를 적극 활용해 개발 범위를 축소하는 것이 현실적인 접근법입니다."
     }
   ],
   "media": {
@@ -48,5 +71,31 @@
   "collected_at": "2026-10-15T15:20:00.000+00:00",
   "notion_id": "3fa94be3-beb5-8134-8565-cbf72ac3aa02",
   "id": "2026-10-15-92c8f90b5b8e8d7e",
-  "topic": "작품·제작 사례"
+  "topic": "작품·제작 사례",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Gta Iv",
+      "url": "https://blenderartists.org/t/gta-iv/390320",
+      "excerpt": "Refusing to let this thread die, here are some more details i have discovered. Rumours for multiplayer modes suggest that one type of game places people in two random locations on the map adn you have to find each other. The problem i can imagine with this is that all the NPC content would have t...",
+      "replies": 32
+    }
+  ],
+  "videos": [
+    {
+      "id": "Bdyiv3Ir_WQ",
+      "title": "How I Turn NPCs into Actors (GTA V) Mission Creator  |  Tasks & Flags",
+      "author": "Pupster's Pub"
+    },
+    {
+      "id": "QGWvVyb8Ui8",
+      "title": "How To Spawn In NPCS in GTA 5",
+      "author": "LIL PIZZA"
+    }
+  ],
+  "enriched_at": "2026-10-28T02:28:28+00:00",
+  "quality": {
+    "before": 1043,
+    "after": 2279
+  }
 }

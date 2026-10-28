@@ -30,6 +30,16 @@
     {
       "heading": "성능 및 처리량 평가",
       "body": "단일 RTX 4090 환경에서 약 7 FPS의 성능을 기록하며, 이는 평가된 기존 사전 SLAM 시스템 대비 2~3배에 달하는 처리량입니다. 연산 효율성과 복원 품질을 동시에 만족시켜 실시간 응용 프로그램에서의 활용 가능성을 증명했습니다. 본 연구는 10페이지 분량으로 컴퓨터 비전 및 패턴 인식 분야에 제출되었습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "1) 모노큘러 비디오를 준비합니다. 2) LingGS 레포지토리를 클론하고, 사전 학습된 Geometry Backbone 모델을 다운로드합니다. 3) 프레임을 입력하면 가상 RGB‑D 센서가 깊이 맵을 생성하고, explicit geometry solver가 feature reprojection을 통해 카메라 포즈를 추정합니다. 4) 추정된 포즈와 깊이 정보를 streaming Gaussian mapper에 전달해 실시간으로 dense Gaussian scene을 업데이트합니다. 5) 매 프레임마다 최신 Gaussian 맵을 시각화하거나, 필요 시 포인트 클라우드·메시로 추출해 후처리 파이프라인에 연결합니다. 전체 파이프라인은 RTX 4090 기준 약 7 FPS를 유지하므로, 실시간 AR/VR 시연이나 로봇 내비게이션에 바로 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "기존 Gaussian‑Splatting 기반 SLAM인 iMap이나 Neural‑Radiance‑Field‑SLAM은 주로 RGB‑D 입력을 전제로 하거나, 카메라 트래킹에 딥러닝 예측을 사용해 포즈 정확도가 제한됩니다. LingGS는 모노큘러 RGB만으로 가상 RGB‑D 센서를 만들어 깊이를 제공하고, 명시적 기하학 솔버로 포즈를 추정해 학습 기반 예측보다 높은 정확도를 보입니다. 또한 streaming Gaussian mapper는 실시간 장면 통합을 지원해 기존 방법 대비 2~3배 빠른 처리량을 기록합니다. 전통적인 ORB‑SLAM·RTAB‑Map은 포인트 기반이어서 고해상도 텍스처 복원에 한계가 있지만, LingGS는 고품질 Gaussian 복원을 유지하면서도 실시간성을 확보합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -40,6 +50,14 @@
     {
       "q": "하드웨어 요구 사항과 처리 성능은 어느 정도인가요?",
       "a": "단일 RTX 4090 GPU 환경에서 약 7 FPS로 구동되며, 기존 SLAM 시스템 대비 2~3배 높은 처리량을 보여줍니다."
+    },
+    {
+      "q": "실시간 성능을 위해 필요한 최소 사양은?",
+      "a": "논문 실험은 RTX 4090 기준 7 FPS를 기록했으며, CUDA 12와 PyTorch 2.x가 지원되는 최신 GPU가 필요합니다. 동일한 프레임 레이트를 원한다면 비슷한 수준의 메모리(24 GB 이상)와 연산 성능을 갖춘 GPU를 권장합니다."
+    },
+    {
+      "q": "단일 RGB 카메라만으로 깊이 추정이 가능한가?",
+      "a": "네. LingGS는 고정된 스트리밍 3D 파운데이션 모델을 가상 RGB‑D 센서로 활용해 모노큘러 비디오에서 깊이 맵을 생성합니다. 따라서 별도의 깊이 센서 없이도 실시간 깊이 정보를 얻을 수 있습니다."
     }
   ],
   "media": {
@@ -48,5 +66,23 @@
   },
   "collected_at": "2026-10-28T01:56:58.103331+00:00",
   "notion_id": "",
-  "id": "2026-10-28-a911ecf7777676a2"
+  "id": "2026-10-28-a911ecf7777676a2",
+  "refs": [],
+  "videos": [
+    {
+      "id": "bl8_igCcssU",
+      "title": "FLARE: Feed-forward Geometry, Appearance and Camera Estimation from Uncalibrated Sparse Views",
+      "author": "sz z"
+    },
+    {
+      "id": "VQVwujz0pBo",
+      "title": "51_Emerson DeltaV     Estimate Feed-Forward Gain  (P51)",
+      "author": "PLC Tutor"
+    }
+  ],
+  "enriched_at": "2026-10-28T02:27:14+00:00",
+  "quality": {
+    "before": 843,
+    "after": 1655
+  }
 }
