@@ -30,3 +30,7 @@
 - [x] (agent) [p-775d7093ae|수집] 한국 3D 커뮤니티 및 소스 수집 강화: 국내 3D 실무 및 커뮤니티 트렌드를 반영할 수 있도록 한국어 3D 정보 소스를 우선적으로 수집 목록에 보강합니다.
 - [x] (agent) [p-c9ea239e63|운영·비용] 뉴스레터 구독 칸이 '찾을 수 없음'으로 실패: Buttondown 계정 'hjh2720' 공개 페이지가 없음(404). buttondown.com 로그인 → Settings → Basics 의 Username 을 확인하고, 가입 확인 메일 인증 → 현황판 설정 ③ 뉴스레터 칸에 그 이름 입력
 - [x] (agent) [p-5ceabd3a61|운영·비용] 뉴스레터 구독 칸이 '찾을 수 없음'으로 실패: Buttondown 계정 'hjh2720' 공개 페이지가 없음(404). buttondown.com 로그인 → Settings → Basics 의 Username 을 확인하고, 가입 확인 메일 인증 → 현황판 설정 ③ 뉴스레터 칸에 그 이름 입력
+
+- [x] (agent) core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가
+- [ ] (agent) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가
+- [ ] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가
