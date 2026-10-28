@@ -1,0 +1,98 @@
+{
+  "id": "3ds-max-edit-normals-modifier-36af",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Edit Normals modifier",
+  "title": "Edit Normals — 노멀 직접 다듬기",
+  "summary": "Edit Normals 모디파이어는 오브젝트의 버텍스 노멀(Vertex Normal) 방향을 수동으로 편집하여 빛의 반사나 Shading을 원하는 대로 제어하는 도구입니다. 하드 표면 모델링에서 특정 면의 음영을 매끄럽게 만들거나 각지게 표현할 때 사용합니다.",
+  "when": [
+    "임포트한 CAD 데이터나 게임 에셋의 노멀이 깨져서 이상한 음영이 생길 때",
+    "하드 표면 모델의 특정 모서리나 면의 Shading을 수동으로 고정하고 싶을 때",
+    "낮은 폴리곤 모델의 버텍스 노멀을 조작해 부드러운 곡선 느낌을 가짜로 낼 때"
+  ],
+  "steps": [
+    "Command Panel의 Create에서 원하는 3D 오브젝트를 선택합니다.",
+    "Command Panel -> Modify 탭으로 이동합니다.",
+    "Modifier List에서 Edit Normals를 선택해 적용합니다.",
+    "Modifier 스택에서 Edit Normals 하위의 노란색 Sub-Object(Vertex) 아이콘을 클릭합니다.",
+    "뷰포트에서 조작할 버텍스 노멀 라인을 선택하고 Rotate나 Move 도구로 방향을 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Specify",
+      "desc": "선택한 노멀을 수동으로 고정하고 편집 가능 상태로 만듭니다."
+    },
+    {
+      "name": "Reset",
+      "desc": "선택한 노멀을 기본 상태(스무딩 그룹 기준)로 되돌립니다."
+    },
+    {
+      "name": "Make Explicit",
+      "desc": "노멀 데이터를 명시적(Explicit) 데이터로 변환하여 유지합니다."
+    },
+    {
+      "name": "Unify",
+      "desc": "동일한 버텍스를 공유하는 노멀들의 방향을 하나로 통일합니다."
+    },
+    {
+      "name": "Break",
+      "desc": "버텍스에 연결된 여러 노멀을 분리하여 각각 따로 움직이게 합니다."
+    },
+    {
+      "name": "Display Length",
+      "desc": "뷰포트에 표시되는 노멀 선의 길이를 조절하여 보기 쉽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품의 날카로운 모서리 Shading 수정",
+      "steps": [
+        "부품 오브젝트에 Edit Normals 모디파이어를 적용합니다.",
+        "Sub-Object(Vertex) 모드에서 깨진 Shading 부근의 버텍스를 선택합니다.",
+        "노멀 선의 방향을 인접한 면의 방향과 일치시키거나 회전하여 음영을 정돈합니다."
+      ]
+    },
+    {
+      "title": "실린더 이음새의 빛 반사 부드럽게 만들기",
+      "steps": [
+        "실린더 모델에 Edit Normals를 추가합니다.",
+        "이음새 부분의 버텍스 노멀들을 선택합니다.",
+        "Unify 기능을 사용하여 노멀 방향을 맞추고 어색한 빛 꺾임을 제거합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 수정 후 Edit Poly 등을 추가하면 데이터가 꼬임 → Edit Normals는 가능한 한 스택의 최상단이나 최종 출력 직전에 적용하세요.",
+    "서브오브젝트 모드를 끄지 않고 다른 명령을 실행함 → 반드시 Sub-Object 아이콘을 다시 눌러 해제한 뒤 다른 작업으로 넘어가세요."
+  ],
+  "related": [
+    "Edit Poly",
+    "Smoothing Groups",
+    "Turn to Poly",
+    "Normal Bump"
+  ],
+  "videos": [
+    {
+      "id": "yRf-373TglA",
+      "title": "Quickbit - Weighted Normals in 3DS Max",
+      "author": "FastTrack Tutorials"
+    },
+    {
+      "id": "54lkOFmoW4M",
+      "title": "3ds Max  12-17 Normal Modifier",
+      "author": "John Bordeau"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Edit%20Normals%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Modify",
+    "Modifier List",
+    "Edit Normals"
+  ],
+  "at": "2026-10-28T00:06:37.497553+00:00"
+}

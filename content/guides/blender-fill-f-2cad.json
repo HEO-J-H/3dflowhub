@@ -1,0 +1,85 @@
+{
+  "id": "blender-fill-f-2cad",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Fill (F)",
+  "title": "Fill — 면 만들기",
+  "summary": "Blender에서 선택한 버텍스나 엣지 사이에 새로운 면(Face)을 빠르게 채워 넣는 기능입니다. 구멍 난 메쉬를 메우거나 열린 외곽선을 연결할 때 주로 사용합니다.",
+  "when": [
+    "모델링 중간에 생긴 빈 구멍을 빠르게 막아야 할 때",
+    "마주보는 버텍스나 엣지 두 개를 면이나 선으로 연결할 때",
+    "실수나 삭제로 인해 비어버린 폴리곤 면을 복구할 때"
+  ],
+  "steps": [
+    "Blender에서 대상을 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex Select(1) 또는 Edge Select(2) 모드로 전환합니다.",
+    "구멍 주변의 버텍스나 엣지를 순서대로 선택하거나, 구멍 전체의 외곽 엣지를 Alt + 클릭으로 선택합니다.",
+    "단축키 F 키를 눌러 면을 채웁니다."
+  ],
+  "params": [
+    {
+      "name": "Fill",
+      "desc": "선택한 버텍스나 엣지 루프 사이에 단일 면 또는 삼각형/사각형 면을 생성합니다."
+    },
+    {
+      "name": "Grid Fill",
+      "desc": "격자(Grid) 패턴으로 구멍을 사각형 폴리곤 메쉬로 채웁니다. (외곽 엣지 개수가 짝수일 때 유용)"
+    },
+    {
+      "name": "Beauty",
+      "desc": "Grid Fill 시 삼각형 분할을 보기 좋은 형태로 보기 좋게 정돈합니다."
+    },
+    {
+      "name": "Span",
+      "desc": "Grid Fill 시 격자의 분할 방향(회전)을 변경합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "Grid Fill 시 격자 패턴의 정렬 위치를 이동합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 끝단 구멍 메우기",
+      "steps": [
+        "실린더의 열린 상단 외곽 엣지를 Alt + 클릭으로 선택합니다.",
+        "단축키 F 키를 눌러 평평한 N-gon 면을 생성합니다."
+      ]
+    },
+    {
+      "title": "떨어진 두 버텍스 연결하기",
+      "steps": [
+        "연결하고 싶은 두 개의 버텍스를 Shift + 클릭으로 선택합니다.",
+        "단축키 F 키를 눌러 두 점 사이에 엣지를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버튼을 눌러도 면이 안 생김 → 버텍스나 엣지가 2개 이상 선택되어 있지 않은지 확인하세요.",
+    "N-gon으로 생성되어 섭디비전 시 깨짐 → F 키 대신 Grid Fill을 사용하거나 쿼드 토폴로지로 다시 정리하세요."
+  ],
+  "related": [
+    "Grid Fill",
+    "Bridge Edge Loops",
+    "Extrude",
+    "Merge"
+  ],
+  "videos": [
+    {
+      "id": "Ds7obaT9nO0",
+      "title": "Tip: Fill Faces like a Pro #blender #blender3d #blendertutorial #howto#blendertips",
+      "author": "Blender Tips"
+    },
+    {
+      "id": "YhEMwW9wjn4",
+      "title": "Blender 2.8 Modeling Series: Fill & Grid Fill Tools",
+      "author": "Steven Scott (OnlineRender)"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Fill%20%28F%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-28T00:06:41.128027+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "houdini-tube-sop-2ad7",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Tube SOP",
+  "title": "Tube — 원통",
+  "summary": "원통형 폴리곤 지오메트리를 절차적으로 생성하는 기본 SOP 노드입니다. 반지름과 높이, 캡(Cap) 구조를 파라미터로 자유롭게 제어할 수 있습니다.",
+  "when": [
+    "파이프, 기둥, 케이블 같은 원통형 기본 구조물을 빠르게 만들 때",
+    "절차적(Procedural) 방식으로 크기와 해상도가 동적으로 변하는 모델이 필요할 때",
+    "다른 노드와 조합하기 위한 베이스 지오메트리가 필요할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 tube를 입력하고 Enter를 눌러 Tube SOP 노드를 생성합니다.",
+    "노드 우측의 디스플레이(Display) 버튼을 켜서 뷰포트에서 결과를 확인합니다.",
+    "파라미터 창(Parameter Pane)에서 Radius와 Height 값을 조절해 전체 크기를 맞춥니다.",
+    "Rows와 Columns 값을 조절하여 지오메트리의 해상도를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Primitive Type",
+      "desc": "생성할 지오메트리 타입(Polygon, Mesh, NURBS 등)을 선택합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "원통의 중심점 위치(X, Y, Z)를 지정합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "원통의 전체 높이를 설정합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "원통의 상단과 하단 반지름을 조절합니다."
+    },
+    {
+      "name": "Rows",
+      "desc": "높이 방향으로 생성되는 세그먼트(Edge 루프) 개수를 결정합니다."
+    },
+    {
+      "name": "Columns",
+      "desc": "둘레 방향으로 생성되는 세그먼트 개수를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구부러진 파이프 제작",
+      "steps": [
+        "Tube SOP으로 높은 Height와 충분한 Rows를 가진 원통을 만듭니다.",
+        "Bend SOP을 연결하고 Direction과 Angle을 조절해 원통을 휘어줍니다.",
+        "PolyExtrusion SOP으로 두께감을 더해 완성합니다."
+      ]
+    },
+    {
+      "title": "속이 빈 케이블(Hollow Cable)",
+      "steps": [
+        "Tube SOP의 파라미터 창에서 Cap 탭으로 이동합니다.",
+        "Output Side와 Output Ends 옵션을 조절해 윗면 캡을 제거합니다.",
+        "PolyWire SOP이나 Thickness 노드를 연결해 두께를 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 꺾이는 현상 → Rows와 Columns 값을 높여 해상도를 충분히 확보합니다.",
+    "캡(Cap) 구조가 필요 없는데 남아있는 현상 → Cap 탭에서 End Caps 옵션을 해제합니다."
+  ],
+  "related": [
+    "Sphere SOP",
+    "Grid SOP",
+    "PolyExtrusion SOP",
+    "Bend SOP"
+  ],
+  "videos": [
+    {
+      "id": "Ej5jXsRZnHk",
+      "title": "Tube SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "2eZZ_nSuSwk",
+      "title": "Invoke Sop Tutorial - Houdini",
+      "author": "Paul Ambrosiussen"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Tube%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Tube SOP"
+  ],
+  "at": "2026-10-28T00:06:45.206735+00:00"
+}
