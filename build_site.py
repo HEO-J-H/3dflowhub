@@ -1069,9 +1069,25 @@ def indexnow_submit(hours: int = 3) -> str:
     return f"{len(urls)}개 URL → HTTP {r.status_code}"
 
 
+THIN_CHARS = 600  # 본문이 이보다 짧고 3D 전문 용어도 적으면 '얇은 글'(현재 약 15%) — 검색 노출 제외(noindex), 사이트에는 유지
+
+
+def is_thin(p: dict) -> bool:
+    """짧고(600자 미만) 얕은(3D 용어 3개 미만) 요약 — 대량 생성 콘텐츠로 보일 위험이 큰 글."""
+    text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in (p.get("sections") or []) if isinstance(s, dict))
+    if len(text) >= THIN_CHARS:
+        return False
+    low = (text + " " + (p.get("summary") or "") + " " + (p.get("insight") or "")).lower()
+    terms = ("blender", "3ds max", "maya", "zbrush", "houdini", "substance", "unreal", "unity", "cinema 4d", "maxscript",
+             "python", "usd", "gltf", "shader", "rigging", "mesh", "polygon", "uv", "pbr", "render", "gaussian",
+             "블렌더", "맥스", "마야", "지브러시", "후디니", "언리얼", "유니티", "셰이더", "리깅", "폴리곤", "렌더")
+    return sum(t in low for t in terms) < 3
+
+
 def post_head(p: dict) -> str:
     """글 페이지 SEO: og:image·article 메타 + JSON-LD (BlogPosting, BreadcrumbList)."""
     url = f"{BASE_URL}/p/{p['id']}.html"
+    thin = '<meta name="robots" content="noindex,follow">' if is_thin(p) else ""
     img = (p.get("media") or {}).get("image") or ""
     date = iso_tz(p.get("collected_at") or "")
     ld = [{
@@ -1096,7 +1112,7 @@ def post_head(p: dict) -> str:
              f'<meta property="og:image" content="{BASE_URL}/{fallback_thumb(p)}">') +
             f'<meta property="og:type" content="article"><meta property="og:url" content="{e(url)}">'
             f'<meta property="article:published_time" content="{e(date)}">'
-            f'<script type="application/ld+json">{js}</script>')
+            f'<script type="application/ld+json">{js}</script>' + thin)
 
 
 def post_html(p: dict, root: str, related: list[dict]) -> str:
@@ -1412,7 +1428,7 @@ def build() -> dict:
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
            [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
-           [f"{BASE_URL}/p/{p['id']}.html" for p in posts]
+           [f"{BASE_URL}/p/{p['id']}.html" for p in posts if not is_thin(p)]
     # 수정일 신호: 글은 수집일, 가이드는 작성일 (Google 이 다시 크롤할 페이지를 고를 때 사용)
     lastmod = {f"{BASE_URL}/p/{p['id']}.html": (p.get("collected_at") or "")[:10] for p in posts}
     lastmod.update({f"{BASE_URL}/{learn_url(g)}": (g.get("at") or "")[:10] for g in learn_guides})

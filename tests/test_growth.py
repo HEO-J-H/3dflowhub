@@ -105,3 +105,10 @@ def test_promo_body_gets_link():
     assert staff.with_link("소개합니다.\n\n👉 시뮬레이터 해보기:", u).endswith("해보기: " + u)
     assert staff.with_link("소개합니다.", u).endswith("👉 " + u)
     assert staff.with_link("링크 " + u, u).count(u) == 1
+
+
+def test_thin_post_detection():
+    import build_site
+    thin = {"sections": [{"heading": "소식", "body": "새 기능이 나왔다."}]}
+    rich = {"sections": [{"heading": "Blender", "body": "Blender 셰이더와 UV, 폴리곤 " * 40}]}
+    assert build_site.is_thin(thin) and not build_site.is_thin(rich)

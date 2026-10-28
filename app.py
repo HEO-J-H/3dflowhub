@@ -818,7 +818,12 @@ with t_auto:
         info = {k: counts[k] or errs.count(k) for k in skips if counts[k] or k in errs}  # 실제 건수(실행 통계) 우선
         if info:
             st.info("정상 필터링 · " + " · ".join(f"{skips[k]} {n}건" for k, n in info.items()))
-        for e in dict.fromkeys(x for x in errs if x not in skips):
+        quality = {"short post": "요약이 짧음(1,500자 미만)", "low depth": "3D 전문 용어가 적음",
+                   "low 3d depth": "실무 툴 이름이 없음"}
+        q = [quality[x] for x in dict.fromkeys(errs) if x in quality]
+        if q:  # 고장이 아니라 글 품질 경고 — 이런 글은 사이트에는 두되 검색 노출(noindex)·사이트맵에서 자동 제외
+            st.warning("📝 품질 경고 (오류 아님) · " + " · ".join(q) + " — 짧고 얕은 글은 검색 노출에서 자동 제외됩니다.")
+        for e in dict.fromkeys(x for x in errs if x not in skips and x not in quality):
             if "429" in e or "한도" in e:
                 st.warning(f"⏸ AI 일일 한도 소진 — 태평양 자정(한국 오후 4~5시)에 리셋되면 자동 재개됩니다.\n\n`{e[:160]}`")
             elif "delimiter" in e or "Expecting" in e:
