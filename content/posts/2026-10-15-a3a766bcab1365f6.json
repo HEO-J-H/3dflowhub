@@ -33,6 +33,21 @@
     {
       "heading": "로컬 구동 AI와 아키텍처 특징",
       "body": "소프트웨어에 탑재된 AI 모델은 사내에서 자체 개발되었으며 합성 데이터만을 학습해 사용자 기기에서 로컬로 구동됩니다. 복잡한 씬을 탐색하고 오브젝트를 숨기거나 솔로 모드로 볼 수 있는 아웃라이너 기능이 탑재되어 있습니다. 초기 버전은 아이패드 앱으로 출시되었으며 데스크탑 버전도 현재 개발 중에 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "CozyBlanket Pro는 아이패드를 활용한 모바일 3D Pipeline 특히 유용하게 작동합니다. Nomad Sculpt에서 하이폴리 모델을 제작한 뒤 본 소프트웨어로 가져와 펜슬 툴로 가이드를 그려 리토폴로지와 UV 언래핑을 빠르게 끝마칠 수 있습니다. 수백만 폴리곤의 메쉬를 뷰포트에서 지연 없이 다룰 수 있으므로, 캐릭터나 배경 에셋의 정돈 과정을 태블릿 환경에서 직관적으로 처리하고 데스크탑으로 넘기는 워크플로우에 적합합니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 등의 커뮤니티에서는 이번에 공개된 CozyBlanket Pro가 차세대 메쉬 최적화 및 클린업 툴킷으로서 지니는 가능성에 주목하고 있습니다 [1]. 기존 오리지널 버전의 정신을 이어받으면서도 AI 보조 리토폴로지와 최신 UV 툴을 기반으로 완전히 새롭게 구축되었다는 점이 기대를 모읍니다 [1]. 다만 초기 버전이 아이패드 앱으로 우선 출시되었고 데스크탑 버전은 아직 개발 중이므로, 작업 환경이 모바일 중심인지 확인하고 도입해야 합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "현재 아이패드 환경에서 CozyBlanket Pro를 설치하여 곧바로 테스트해 볼 수 있습니다. 펜슬을 이용해 엣지 가이드를 그리고 AI가 채워 넣는 방식을 연습하며, 기존 TopoGun 등 수동 가이드 방식의 지식을 적용해 보세요. 텍스처 Baking과 OBJ, glTF 포맷 내보내기 기능을 활용해 자신이 사용하는 메인 3D DCC 및 게임 엔진 파이프라인과 어떻게 연동되는지 가볍게 테스트해 보는 것을 권장합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -47,6 +62,14 @@
     {
       "q": "어떤 플랫폼에서 사용할 수 있나요?",
       "a": "현재는 아이패드(iPad) 앱으로 우선 출시되었으며, 향후 사용할 수 있는 데스크탑 버전도 현재 개발이 진행 중입니다."
+    },
+    {
+      "q": "기존 CozyBlanket과 CozyBlanket Pro는 어떤 점이 다릅니까?",
+      "a": "오리지널 CozyBlanket의 정신적 후속작이지만 코드나 아키텍처를 공유하지 않으며, 완전히 새로운 툴 시스템을 갖추고 있습니다. 전체 캐릭터와 환경을 단일 파일에서 처리하며 AI 기반 리토폴로지와 GPU 가속 UV 패킹 등이 추가되었습니다."
+    },
+    {
+      "q": "작업한 결과물은 어떤 포맷으로 내보낼 수 있습니까?",
+      "a": "리토폴로지 모델은 OBJ 또는 glTF 포맷으로 내보낼 수 있으며, 베이킹된 텍스처는 PNG, JPG, TIFF, EXR 등 다양한 이미지 포맷으로 저장 가능합니다."
     }
   ],
   "media": {
@@ -56,5 +79,31 @@
   "collected_at": "2026-10-15T15:21:00.000+00:00",
   "notion_id": "3fa94be3-beb5-8188-ba53-ea89ccfbe999",
   "id": "2026-10-15-a3a766bcab1365f6",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "General AI Discussion",
+      "url": "https://blenderartists.org/t/general-ai-discussion/1392651",
+      "excerpt": "...tps://xcancel.com/sparseal/status/2061834526255395294 Nitter https://xcancel.com/sparseal/status/2061834526255395294 Sparseal (@sparseal) Introducing CozyBlanket Pro A next-generation mesh optimization and cleanup toolkit, built from the ground up with AI-assisted retopology, cutting-edge UV tool",
+      "replies": 4164
+    }
+  ],
+  "videos": [
+    {
+      "id": "K0awUmCpELQ",
+      "title": "CozyBlanket Pro - AI Assisted Retopology, Unwrap and Bake",
+      "author": "Sparseal"
+    },
+    {
+      "id": "wL2-2FwHmOo",
+      "title": "Creating a Game Character with iPad apps [Nomad Sculpt - CozyBlanket - Procreate]",
+      "author": "Small Robot Studio"
+    }
+  ],
+  "enriched_at": "2026-10-28T01:26:56+00:00",
+  "quality": {
+    "before": 1179,
+    "after": 1918
+  }
 }

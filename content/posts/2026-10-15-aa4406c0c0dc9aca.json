@@ -30,6 +30,16 @@
     {
       "heading": "모바일 의존성 관리가 중요한 이유와 EDM의 해결책",
       "body": "대다수의 모바일 게임은 광고, 분석, 수익화, 푸시 알림 등을 위해 수많은 SDK를 도입하며, 이 과정에서 네이티브 라이브러리 간의 충돌이 빈번하게 발생합니다. 수동으로 라이브러리를 통합하는 것은 오류를 유발하기 쉽습니다. EDM은 텍스트 파일을 통해 SDK가 필요한 라이브러리를 선언하고, Gradle, CocoaPods, Swift Package Manager 등을 통해 최종 빌드에 올바른 라이브러리가 포함되도록 조율합니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Unity 프로젝트에서 광고, 분석, 수익화 SDK를 도입할 때 네이티브 라이브러리 충돌을 막으려면 External Dependency Manager(EDM)를 Unity Package Manager(UPM)에서 바로 설치하여 사용해야 합니다. 기존 구글 EDM4U를 쓰던 프로젝트라면 Unity Registry에서 패키지를 추가할 때 나타나는 Prompt 지침에 따라 관리자를 전환하세요. XML 의존성 파일 형식이 그대로 유지되므로 별도의 설정 재작성 없이 빌드 파이프라인을 안정적으로 이어갈 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 프로젝트 내 기존 EDM4U 사용 여부를 파악하고, SDK를 통해 간접적으로 포함된 버전인지 직접 도입한 버전인지 확인합니다. Unity Package Manager의 Unity Registry에서 'External Dependency Manager'를 검색해 공식 패키지를 설치합니다. 간접 포함된 EDM4U의 경우, 해당 SDK가 공식적으로 EDM을 지원할 때까지 기존 상태를 유지하고 점진적으로 마이그레이션을 진행하는 것이 안전합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "Unity 프로젝트에서 두 매니저가 충돌하지 않나요?",
       "a": "EDM4U가 이미 프로젝트에 있는 경우 Unity가 활성화할 관리자를 선택할 수 있도록 안내하며, Assets 메뉴를 통해 언제든 전환이 가능하므로 안전하게 교체할 수 있습니다."
+    },
+    {
+      "q": "기존에 작성한 XML 의존성 파일을 다시 작성해야 하나요?",
+      "a": "아니오. 새로운 Unity External Dependency Manager는 기존 구글 EDM4U의 XML 의존성 파일을 그대로 읽어들이므로 설정 파일을 재작성할 필요가 없습니다."
+    },
+    {
+      "q": "SDK에 포함된 EDM4U는 언제 전환해야 하나요?",
+      "a": "프로젝트가 의존하는 외부 SDK가 공식적으로 Unity External Dependency Manager를 지원하기 전까지는 기존 구글 EDM4U 상태를 유지해야 충돌을 방지할 수 있습니다."
     }
   ],
   "media": {
@@ -53,5 +71,18 @@
   "collected_at": "2026-10-15T15:21:00.000+00:00",
   "notion_id": "3fa94be3-beb5-816c-901a-c33690b183bf",
   "id": "2026-10-15-aa4406c0c0dc9aca",
-  "topic": "업데이트·출시"
+  "topic": "업데이트·출시",
+  "refs": [],
+  "videos": [
+    {
+      "id": "VL7A5qc7BII",
+      "title": "Unity EDM",
+      "author": "Hit Radar Global - Topic"
+    }
+  ],
+  "enriched_at": "2026-10-28T01:26:51+00:00",
+  "quality": {
+    "before": 1056,
+    "after": 1590
+  }
 }
