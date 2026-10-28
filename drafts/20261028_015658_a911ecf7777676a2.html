@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting SLAM — LingGS 논문 분석 | TAGS: Gaussian Splatting,SLAM,3D Reconstruction,Computer Vision,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — LingGS는 피드포워드 기하학 예측과 카메라 트래킹을 분리하여 모노큘러 RGB Gaussian Splatting SLAM의 고화질 복원과 실시간 성능을 크게 향상시킨 새로운 온라인 시스템입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>LingGS 시스템의 핵심 개요</h2>
+<p>본 논문에서는 제한된 최적화 예산 내에서 모노큘러 RGB Gaussian Splatting SLAM의 고품질 복원과 반응형 카메라 트래킹의 한계를 극복하는 온라인 시스템을 제안합니다. 학습된 기하학적 사전 지식과 명시적 기하학적 카메라 트래킹을 결합하여 학습 기반 카메라 예측보다 우수한 트래킹 정확도를 보여줍니다. 실내 및 실외 데이터셋을 활용한 광범위한 실험에서 기존 접근 방식 대비 복원 품질이 크게 향상되었습니다.</p>
+<h2>가상 RGB-D 센서와 기하학적 트래킹</h2>
+<p>고정된 스트리밍 3D 파운데이션 모델이 가상 RGB-D 센서 역할을 수행하여 모노큘러 비디오로부터 깊이 추정을 제공합니다. 이어서 명시적 기하학 솔버가 피처 재투영(feature reprojection)을 통해 카메라 모션을 추정합니다. 이러한 기하학적 트래킹 방식은 대표적인 스트리밍 기하학 백본 전반에서 카메라 포즈 정확도를 향상시킵니다.</p>
+<h2>스트리밍 Gaussian 맵퍼와 씬 통합</h2>
+<p>추정된 관측 결과는 스트리밍 Gaussian 맵퍼를 통해 조밀한 씬(scene) 표현으로 통합됩니다. 이 과정에서 3D 공간의 디테일이 손실되지 않도록 정교하게 처리됩니다. 복잡한 환경에서도 안정적인 실시간 장면 구축이 가능해집니다.</p>
+<h2>성능 및 처리량 평가</h2>
+<p>단일 RTX 4090 환경에서 약 7 FPS의 성능을 기록하며, 이는 평가된 기존 사전 SLAM 시스템 대비 2~3배에 달하는 처리량입니다. 연산 효율성과 복원 품질을 동시에 만족시켜 실시간 응용 프로그램에서의 활용 가능성을 증명했습니다. 본 연구는 10페이지 분량으로 컴퓨터 비전 및 패턴 인식 분야에 제출되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">이번 연구는 실시간 Gaussian Splatting SLAM 시스템에서 정확한 카메라 트래킹과 고품질 3D 복원을 동시에 달성하기 위한 효율적인 아키텍처를 제시합니다. 학습 기반 카메라 예측 대신 명시적 기하학 솔버와 스트리밍 3D 파운데이션 모델을 결합함으로써, 복잡한 실내외 환경에서도 뛰어난 포즈 정확도와 높은 처리량을 보여줍니다. 향후 실시간 공간 스캐닝, 로보틱스, 가상 프로덕션용 현장 3D 스캔 워크플로를 구축하는 엔지니어들이 주목해야 할 기술입니다. 특히 RTX 4090 환경에서 기존 대비 2~3배의 처리 속도를 달성해 실무 적용 가능성을 높였습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. LingGS 시스템은 어떤 문제를 해결하나요?</b><br/>A. 모노큘러 RGB Gaussian Splatting SLAM에서 제한된 최적화 예산으로 인해 고품질 복원과 반응형 카메라 트래킹을 동시에 달성하기 어려운 문제를 해결합니다.</p>
+<p><b>Q. 하드웨어 요구 사항과 처리 성능은 어느 정도인가요?</b><br/>A. 단일 RTX 4090 GPU 환경에서 약 7 FPS로 구동되며, 기존 SLAM 시스템 대비 2~3배 높은 처리량을 보여줍니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-c7d2598c2c8e51e2.html">Gaussian Splatting 기반 무선 채널 렌더링 기술 분석</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-801f53565cb320d8.html">Gaussian Splatting 압축 기술 CCT-GS 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-064a531db8f2f794.html">GHARP — Apple의 실시간 3D Gaussian 헤드 애니메이션 연구</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.36853v1" target="_blank" rel="noopener nofollow">LingGS: Decoupling Feed-Forward Geometry Prediction from Camera Tracking for High-Fidelity Gaussian SLAM</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
