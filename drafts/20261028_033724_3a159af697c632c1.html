@@ -1,0 +1,17 @@
+<!-- TITLE: Gaussian Splatting 물리 기반 메쉬 삽입 – GraftRay 논문 | TAGS: mesh insertion,path tracing,Gaussian Splatting,AR,shadow rendering,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — GraftRay는 Gaussian Splatting 장면에 물리적으로 일관된 메쉬 삽입과 정확한 그림자를 구현하는 새로운 방법을 제시한다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>배경 및 문제점</h2>
+<p>2D·3D Gaussian Splatting은 고품질 장면 재구성에 강점을 보이지만, 가상 객체를 삽입할 때 조명 일관성이 부족했다. 기존 방법은 이미지 공간에서 색조를 맞추어 다중 뷰 일관성을 희생하거나, 삽입 지점의 환경맵만 사용해 근거리 광원을 표현하지 못했다. 이러한 한계는 실내 AR이나 합성 데이터에서 사실적인 그림자와 반사 효과를 구현하는 데 큰 장애물이었다.</p>
+<h2>GraftRay 핵심 아이디어</h2>
+<p>GraftRay는 장면의 재질과 표면 법선을 diffusion 기반 사전 모델로 복원한다. 동시에 공간적으로 확장된 광원(예: 창문, 램프)을 닫힌 형태로 해석해 방사도를 계산한다. 복원된 재질·법선과 광원 정보를 바탕으로 하이브리드 렌더러가 Gaussian과 삽입된 메쉬를 공동으로 경로 추적한다.</p>
+<h2>재질·조명 복원 과정</h2>
+<p>복원 단계에서는 Gaussian의 밀도와 색상 정보를 이용해 각 포인트의 재질 파라미터를 추정한다. diffusion priors는 노이즈가 많은 Gaussian 데이터에서도 안정적인 법선 추정을 가능하게 한다. 광원 모델링은 근거리 영역 광원을 연속적인 방사 함수로 표현해, 기존 환경맵 방식보다 정확한 조명 분포를 제공한다.</p>
+<h2>하이브리드 렌더링 및 결과</h2>
+<p>하이브리드 렌더러는 Gaussian에 대한 특수 경로 추적과 메쉬에 대한 전통적인 경로 추적을 결합한다. 이를 통해 뷰 일관성을 유지하면서도 메쉬와 장면 사이의 상호 반사·그림자를 자연스럽게 구현한다. 실험 결과 FIPT 데이터셋에서 GraftRay는 기존 ComGS·EAG-PT 대비 렌더링 충실도와 그림자 정확도에서 새로운 최고점을 기록했다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">이 기술은 실내 AR 콘텐츠 제작이나 합성 데이터 생성 시, 기존 환경맵 기반 조명 보정의 한계를 넘어선다. 장면의 재질과 법선을 복원하고, 근거리 광원을 명시적으로 모델링해 실제 조명 효과를 재현한다. 하이브리드 경로 추적 렌더러는 Gaussian과 메쉬를 동시에 추적해 뷰 일관성을 유지하면서도 연산 효율성을 확보한다. 기존 ComGS·EAG-PT 대비 그림자 정확도와 렌더링 품질이 크게 개선돼, 고품질 AR 시뮬레이션에 바로 적용 가능하다. 특히, Gaussian Splatting 기반 파이프라인을 이미 사용 중인 연구자와 개발자는 GraftRay를 플러그인 형태로 도입해 워크플로우를 크게 바꾸지 않고도 물리 기반 삽입 기능을 얻을 수 있다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-0089f233e726d0da.html">Gaussian Splatting 프라이버시 보호 — 1초 안에 익명화 구현</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-10ce1f22a67da5a4.html">Gaussian Splatting, DomeGS 도입으로 VR 배경 완성도 향상</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-9de41337204e6228.html">Gaussian Splatting 기반 SG^2SLAM — 단안 야외 내비게이션 혁신</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.37036v1" target="_blank" rel="noopener nofollow">GraftRay: Physically Based Mesh Insertion into Gaussian Splatting Scenes via Path Tracing</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
