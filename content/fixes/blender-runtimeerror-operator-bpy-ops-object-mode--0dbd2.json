@@ -1,0 +1,46 @@
+{
+  "id": "blender-runtimeerror-operator-bpy-ops-object-mode--0dbd2",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "RuntimeError: Operator bpy.ops.object.mode_set.poll() Context missing active object",
+  "title": "mode_set.poll() Context missing active object — 편집 모드 전환이 안 될 때",
+  "summary": "Blender Python Script 실행 중 활성화된 오브젝트가 없는 상태에서 모드 전환 연산을 호출할 때 발생하는 오류입니다.",
+  "causes": [
+    "모든 오브젝트의 선택이 해제되어 활성 오브젝트(Active Object)가 존재하지 않습니다.",
+    "헤드리스(Headless) 모드나 백그라운드 Script 실행 시 뷰 레이어의 컨텍스트가 올바르게 설정되지 않았습니다.",
+    "bpy.ops.object.mode_set() 연산이 요구하는 컨텍스트 조건을 만족하지 못했습니다."
+  ],
+  "steps": [
+    "작업할 대상 오브젝트를 bpy.data.objects에서 불러옵니다.",
+    "bpy.context.view_layer.objects.active 속성에 해당 오브젝트를 할당하여 활성 오브젝트로 지정합니다.",
+    "select_set(True) 메서드를 사용해 해당 오브젝트를 선택 상태로 만듭니다.",
+    "이후 bpy.ops.object.mode_set(mode='EDIT')를 호출하여 편집 모드로 진입합니다.",
+    "필요시 작업 완료 후 bpy.ops.object.mode_set(mode='OBJECT')를 호출해 오브젝트 모드로 복귀합니다."
+  ],
+  "check": [
+    "Script 실행 시 RuntimeError가 발생하지 않고 모드가 정상적으로 전환되는지 확인합니다.",
+    "bpy.context.active_object가 올바른 오브젝트를 가리키고 있는지 출력해 확인합니다."
+  ],
+  "prevent": [
+    "bpy.ops 연산 호출 전 항상 활성 오브젝트가 지정되어 있는지 조건문으로 확인합니다.",
+    "가능한 경우 컨텍스트에 의존하는 bpy.ops 대신 데이터 블록 수준의 직접 조작 방식을 사용합니다."
+  ],
+  "keywords": [
+    "Blender Python 오류",
+    "Context missing active object",
+    "mode_set poll error",
+    "Blender Script 에러",
+    "bpy.ops.object.mode_set"
+  ],
+  "repro": {
+    "bad": "import bpy\nfor o in bpy.context.view_layer.objects: o.select_set(False)\nbpy.context.view_layer.objects.active = None\nbpy.ops.object.mode_set(mode='EDIT')",
+    "good": "import bpy\ncube = bpy.data.objects['Cube']\nbpy.context.view_layer.objects.active = cube\ncube.select_set(True)\nbpy.ops.object.mode_set(mode='EDIT')\nbpy.ops.object.mode_set(mode='OBJECT')"
+  },
+  "verified": true,
+  "at": "2026-10-29T11:00:23+00:00",
+  "verify_log": {
+    "bad": ":\n  File \"C:\\Users\\user\\AppData\\Local\\Temp\\tmpkagdo_kt\\t.py\", line 6, in <module>\n    bpy.ops.object.mode_set(mode='EDIT')\n  File \"C:\\Program Files\\Blender Foundation\\Blender 4.2\\4.2\\scripts\\modules\\bpy\\ops.py\", line 109, in __call__\n    ret = _op_call(self.idname_py(), kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Operator bpy.ops.object.mode_set.poll() Context missing active object\n",
+    "good": "Blender 4.2.16 LTS (hash 39502cae951c built 2025-11-18 01:34:37)\n\nBlender quit\n",
+    "at": "2026-10-29T11:00:36+00:00"
+  }
+}

@@ -719,6 +719,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("파이프라인 레시피 생성 실패: %s", e)
         strategy["recipes_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "refs_at", 3 * 3600):  # 오류 해결·버전별 바뀐 점: 3시간마다 조금씩 (하루 상한)
+        try:
+            import refs
+            made = refs.write(2, 1)
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "refs": made}])[-30:]
+        except Exception as e:
+            log.warning("오류 해결·바뀐 점 생성 실패: %s", e)
+        strategy["refs_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
         strategy = refine_taxonomy(strategy)
         core._save_json(core.STRATEGY_PATH, strategy)

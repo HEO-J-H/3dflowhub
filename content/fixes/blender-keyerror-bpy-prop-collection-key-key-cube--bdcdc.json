@@ -1,0 +1,44 @@
+{
+  "id": "blender-keyerror-bpy-prop-collection-key-key-cube--bdcdc",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "KeyError: 'bpy_prop_collection[key]: key \"Cube.001\" not found'",
+  "title": "bpy_prop_collection key not found — 이름으로 오브젝트를 못 찾을 때",
+  "summary": "Blender Python Script 실행 중 `bpy.data.objects` 컬렉션에 존재하지 않는 오브젝트 이름을 직접 키로 조회할 때 발생하는 KeyError입니다.",
+  "causes": [
+    "bpy.data.objects['Cube.001']와 같이 존재하지 않는 오브젝트 이름을 직접 호출했습니다.",
+    "오브젝트가 삭제되었거나 이름이 변경되어 씬 내에 더 이상 존재하지 않습니다.",
+    "다른 씬이나 파일에서 오브젝트를 가져오는 과정에서 이름이 일치하지 않습니다."
+  ],
+  "steps": [
+    "오류가 발생하는 Python Script의 해당 코드를 확인합니다.",
+    "직접 인덱싱 대신 .get() 메서드를 사용하도록 코드를 수정합니다.",
+    "수정된 예시 코드: obj = bpy.data.objects.get('Cube.001')",
+    "오브젝트가 없을 때의 예외 처리 로직을 추가합니다: print('없음' if obj is None else obj.name)",
+    "Blender의 Text Editor 또는 터미널에서 코드를 다시 실행하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "Script 실행 시 KeyError가 더 이상 발생하지 않고 지정된 조건문 분기가 정상 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "이름으로 오브젝트를 가져올 때는 항상 .get() 메서드를 사용하여 KeyError를 방지합니다."
+  ],
+  "keywords": [
+    "Blender Python 에러",
+    "KeyError bpy_prop_collection",
+    "Blender Python 오류 해결",
+    "bpy data objects get",
+    "Blender Script 예외처리"
+  ],
+  "repro": {
+    "bad": "import bpy\nprint(bpy.data.objects['Cube.001'])",
+    "good": "import bpy\nobj = bpy.data.objects.get('Cube.001')\nprint('없음' if obj is None else obj.name)"
+  },
+  "verified": true,
+  "at": "2026-10-29T11:00:33+00:00",
+  "verify_log": {
+    "bad": "Blender 4.2.16 LTS (hash 39502cae951c built 2025-11-18 01:34:37)\nTraceback (most recent call last):\n  File \"C:\\Users\\user\\AppData\\Local\\Temp\\tmpscvksplo\\t.py\", line 4, in <module>\n    print(bpy.data.objects['Cube.001'])\n          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nKeyError: 'bpy_prop_collection[key]: key \"Cube.001\" not found'\n",
+    "good": "�뾾�쓬\nBlender 4.2.16 LTS (hash 39502cae951c built 2025-11-18 01:34:37)\n\nBlender quit\n",
+    "at": "2026-10-29T11:00:36+00:00"
+  }
+}

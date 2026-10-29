@@ -1,0 +1,66 @@
+{
+  "id": "blender-5-0-89935",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "5.0",
+  "source": "https://developer.blender.org/docs/release_notes/5.0/",
+  "title": "Blender 5.0 바뀐 점 정리",
+  "summary": "Blender 5.0이 2025년 11월 18일 공식 출시되었습니다. 애니메이션 및 리깅, 에셋 관리, 컴포지터 노드 시스템 등 실무에서 체감되는 대규모 기능 개선과 UI 개편이 이루어졌습니다.",
+  "highlights": [
+    {
+      "area": "Animation & Rigging",
+      "change": "아마추어 Instance의 본 가시성과 선택 상태가 분리됨",
+      "why": "여러 아마추어 Instance를 다룰 때 서로 영향을 주지 않아 예상대로 작업할 수 있습니다."
+    },
+    {
+      "area": "Animation",
+      "change": "'Copy Global Transform' 기능이 Blender에 기본 통합됨",
+      "why": "별도 애드온 설치 없이 전역 변환 복사 기능을 바로 사용할 수 있습니다."
+    },
+    {
+      "area": "Animation",
+      "change": "새로운 'Jump Time by Delta' 연산자와 Ctrl+Left/Right Arrow 단축키 추가",
+      "why": "지정한 프레임이나 초 단위로 Timeline을 빠르게 앞뒤로 이동할 수 있습니다."
+    },
+    {
+      "area": "Shape Keys",
+      "change": "셰이프 키 리스트 다중 선택 및 드래그 앤 드롭 지원",
+      "why": "여러 셰이프 키의 속성을 한 번에 편집하고 순서를 쉽게 바꿀 수 있습니다."
+    },
+    {
+      "area": "Assets",
+      "change": "씬(Scene) 자체를 에셋으로 마킹 및 드래그 앤 드롭 Import 지원",
+      "why": "다른 Blender 파일의 씬을 에셋 브라우저에서 바로 가져와 활성 씬으로 쓸 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "Compositing 노드 트리가 독립된 데이터 블록으로 분리됨",
+      "why": "서로 다른 Blender 파일 간에 컴포지터 노드 트리를 재사용할 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "Glare 노드에 'Sun Beams' 모드 및 Jitter 입력 추가",
+      "why": "고품질의 빛줄기 효과를 훨씬 쉽게 만들고 렌더링 속도와 아티스틱한 노이즈를 제어할 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "컴포지터 노드 편집기에 에셋 쉘프(Asset Shelf) 추가",
+      "why": "색수차, 비네팅, 렌즈 노이즈 등 빌트인 컴포지터 에셋을 빠르게 적용할 수 있습니다."
+    }
+  ],
+  "breaking": [
+    "Blender 2.49 이하 버전의 애니메이션 데이터 로딩 지원이 제거되었습니다 (이전 버전 파일은 Blender 4.5로 열고 저장 권장).",
+    "빅 엔디안(Big endian) 지원 및 인텔 맥(Intel Macs) 지원이 중단되었습니다.",
+    "LZMA 또는 LZO 압축 포인트 캐시 지원이 중단되었습니다.",
+    "Blender Cycles의 최소 GPU 요구사항이 상향되었습니다 (NVIDIA compute capability sm_50 이상).",
+    "테마 API가 재작성되어 이전 버전의 커스텀 테마는 호환되지 않습니다."
+  ],
+  "keywords": [
+    "Blender 5.0",
+    "블렌더 5.0 업데이트",
+    "컴포지터 노드",
+    "애니메이션 리깅",
+    "셰이프 키"
+  ],
+  "at": "2026-10-29T11:01:03+00:00"
+}

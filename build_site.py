@@ -536,9 +536,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}fix/">오류 해결</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -1221,6 +1221,90 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
 
 
 # ─────────────────────────── 빌드 ───────────────────────────
+
+def build_refs() -> tuple[list, list]:
+    """오류 해결(/fix/)·버전별 바뀐 점(/changes/) 페이지. (fix 목록, change 목록) 반환 — 사이트맵용."""
+    import refs as _refs
+    fixes = sorted(_refs.load("fix"), key=lambda x: (x["tool"], x["title"]))
+    changes = sorted(_refs.load("change"), key=lambda x: (x["tool"], x["version"]), reverse=True)
+
+    def ld(x: dict, url: str, section: str, section_url: str) -> str:
+        data = [{"@context": "https://schema.org", "@type": "TechArticle", "headline": x["title"][:110],
+                 "description": (x.get("summary") or "")[:300], "inLanguage": "ko-KR", "url": url,
+                 "datePublished": iso_tz(x.get("at", "")), "dateModified": iso_tz(x.get("at", "")),
+                 "about": x["tool"], "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"}},
+                {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": BASE_URL + "/"},
+                    {"@type": "ListItem", "position": 2, "name": section, "item": section_url},
+                    {"@type": "ListItem", "position": 3, "name": x["title"][:80], "item": url}]}]
+        return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+    ul = lambda items: "".join(f"<li>{e(i)}</li>" for i in items)  # noqa: E731
+    (OUT / "fix").mkdir(exist_ok=True)
+    for x in fixes:
+        d = OUT / "fix" / x["id"]
+        d.mkdir(parents=True, exist_ok=True)
+        root, url = "../../", f"{BASE_URL}/fix/{x['id']}/"
+        badge = ('<b class="ok">✔ Blender 에서 오류 재현·해결 코드 실행 확인</b>' if x.get("verified")
+                 else "실행 검증 전 (일반적인 원인·해결 정리)")
+        repro = x.get("repro") if x.get("verified") else None
+        body = (f'<article class="doc guide"><p class="crumb"><a href="{root}fix/">오류 해결</a> › {e(x["tool"])}</p>'
+                f'<h1>{e(x["title"])}</h1>'
+                f'<p class="aiby">🤖 AI 가 정리 · {badge} · 작성 {e(x.get("at", "")[:10])} · '
+                + mail_link("[3dflowhub] 오류 해결 페이지 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
+                f'<pre class="code"><code>{e(x["error"])}</code></pre>'
+                f'<p class="lead">{e(x.get("summary", ""))}</p>'
+                f'<h2>원인</h2><ul>{ul(x.get("causes", []))}</ul>'
+                f'<h2>해결 순서</h2><ol class="steps">{ul(x.get("steps", []))}</ol>'
+                + (f'<h2>오류가 나는 코드와 고친 코드 (실행 확인)</h2><p>오류:</p><pre class="code"><code>{e(repro["bad"])}</code></pre>'
+                   f'<p>고친 코드:</p><pre class="code"><code>{e(repro["good"])}</code></pre>' if repro else "")
+                + (f'<h2>해결됐는지 확인</h2><ul>{ul(x["check"])}</ul>' if x.get("check") else "")
+                + (f'<h2>다시 안 생기게</h2><ul class="warn">{ul(x["prevent"])}</ul>' if x.get("prevent") else "")
+                + f'<p class="crumb"><a href="{root}fix/">← 오류 해결 전체</a> · <a href="{root}learn/">기초 가이드</a></p></article>')
+        (d / "index.html").write_text(page(f"{x['title']} | {x['tool']} 오류 해결 - {SITE_TITLE}", body, root,
+                                           desc=x.get("summary", "") or x["error"], canonical=url,
+                                           extra_head=ld(x, url, "오류 해결", f"{BASE_URL}/fix/")), encoding="utf-8")
+    by_tool: dict[str, list] = defaultdict(list)
+    for x in fixes:
+        by_tool[x["tool"]].append(x)
+    idx = "".join(f'<h2>{e(t)}</h2><ul>' + "".join(
+        f'<li><a href="{x["id"]}/">{e(x["title"])}</a>{" ✔" if x.get("verified") else ""}</li>' for x in xs) + "</ul>"
+        for t, xs in by_tool.items()) or "<p>준비 중입니다.</p>"
+    (OUT / "fix" / "index.html").write_text(page(
+        f"3D 툴 오류 해결 모음 - {SITE_TITLE}",
+        '<div class="doc"><h1>🛠 오류 해결</h1><p class="desc">Blender·3ds Max·Maya·Unreal·Houdini·Omniverse 에서 자주 보는 '
+        '오류 메시지를 원문 그대로 찾아 원인과 해결 순서를 정리했습니다. ✔ 표시는 Blender 에서 오류 재현과 해결 코드를 실제로 '
+        f'실행해 확인한 페이지입니다.</p>{idx}</div>', "../", canonical=f"{BASE_URL}/fix/",
+        desc="3D 툴 오류 메시지별 원인과 해결 방법"), encoding="utf-8")
+
+    (OUT / "changes").mkdir(exist_ok=True)
+    for x in changes:
+        d = OUT / "changes" / x["id"]
+        d.mkdir(parents=True, exist_ok=True)
+        root, url = "../../", f"{BASE_URL}/changes/{x['id']}/"
+        rows = "".join(f'<tr><td>{e(h["area"])}</td><td>{e(h["change"])}</td><td>{e(h.get("why", ""))}</td></tr>'
+                       for h in x.get("highlights", []))
+        body = (f'<article class="doc guide"><p class="crumb"><a href="{root}changes/">버전별 바뀐 점</a> › {e(x["tool"])}</p>'
+                f'<h1>{e(x["title"])}</h1>'
+                f'<p class="aiby">🤖 공식 릴리스 노트를 근거로 AI 가 정리 · 작성 {e(x.get("at", "")[:10])} · '
+                f'<a href="{e(x["source"])}" target="_blank" rel="noopener">공식 릴리스 노트 원문</a></p>'
+                f'<p class="lead">{e(x.get("summary", ""))}</p>'
+                f'<h2>주요 변경</h2><table class="params"><thead><tr><th>분야</th><th>바뀐 점</th><th>작업자에게 의미</th></tr>'
+                f'</thead><tbody>{rows}</tbody></table>'
+                + (f'<h2>예전 파일·스크립트에 영향</h2><ul class="warn">{ul(x["breaking"])}</ul>' if x.get("breaking") else "")
+                + f'<p class="crumb"><a href="{root}changes/">← 버전별 바뀐 점 전체</a></p></article>')
+        (d / "index.html").write_text(page(f"{x['title']} - {SITE_TITLE}", body, root, desc=x.get("summary", ""),
+                                           canonical=url, extra_head=ld(x, url, "버전별 바뀐 점", f"{BASE_URL}/changes/")),
+                                      encoding="utf-8")
+    idx = "<ul>" + "".join(f'<li><a href="{x["id"]}/">{e(x["title"])}</a></li>' for x in changes) + "</ul>" \
+        if changes else "<p>준비 중입니다.</p>"
+    (OUT / "changes" / "index.html").write_text(page(
+        f"3D 툴 버전별 바뀐 점 - {SITE_TITLE}",
+        '<div class="doc"><h1>🆕 버전별 바뀐 점</h1><p class="desc">공식 릴리스 노트를 근거로, 작업자에게 무엇이 달라지는지 '
+        f'한국어로 정리했습니다. 각 페이지에 원문 링크가 있습니다.</p>{idx}</div>', "../",
+        canonical=f"{BASE_URL}/changes/", desc="Blender·Houdini 등 3D 툴 버전별 변경 사항 한국어 정리"), encoding="utf-8")
+    return fixes, changes
+
 def build() -> dict:
     posts = load_posts()
     if OUT.exists():
@@ -1378,6 +1462,7 @@ def build() -> dict:
     import recipes as _recipes
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
+    ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
     build_resources()
     build_showcase()
 
@@ -1483,10 +1568,14 @@ def build() -> dict:
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
            [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
+           [f"{BASE_URL}/fix/"] + [f"{BASE_URL}/fix/{x['id']}/" for x in ref_fixes] + \
+           [f"{BASE_URL}/changes/"] + [f"{BASE_URL}/changes/{x['id']}/" for x in ref_changes] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts if not is_thin(p)]
     # 수정일 신호: 글은 수집일, 가이드는 작성일 (Google 이 다시 크롤할 페이지를 고를 때 사용)
     lastmod = {f"{BASE_URL}/p/{p['id']}.html": (p.get("collected_at") or "")[:10] for p in posts}
     lastmod.update({f"{BASE_URL}/{learn_url(g)}": (g.get("at") or "")[:10] for g in learn_guides})
+    lastmod.update({f"{BASE_URL}/fix/{x['id']}/": x.get("at", "")[:10] for x in ref_fixes})
+    lastmod.update({f"{BASE_URL}/changes/{x['id']}/": x.get("at", "")[:10] for x in ref_changes})
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(
                                          f"<url><loc>{e(u)}</loc>" + (f"<lastmod>{lastmod[u]}</lastmod>" if lastmod.get(u) else "")

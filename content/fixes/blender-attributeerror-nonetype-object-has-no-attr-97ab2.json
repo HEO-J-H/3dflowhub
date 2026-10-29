@@ -1,0 +1,45 @@
+{
+  "id": "blender-attributeerror-nonetype-object-has-no-attr-97ab2",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "AttributeError: 'NoneType' object has no attribute 'data'",
+  "title": "'NoneType' object has no attribute 'data' — 활성 오브젝트가 없을 때",
+  "summary": "Blender Python Script 실행 중 활성화된 객체가 없을 때 'NoneType' object has no attribute 'data' 오류가 발생합니다. 선택된 객체가 없는 상태에서 속성에 접근하려고 시도했기 때문입니다.",
+  "causes": [
+    "bpy.context.active_object가 None인 상태에서 .data 속성을 호출했습니다.",
+    "씬에 객체가 전혀 없거나 선택된(Active) 객체가 해제되어 있습니다.",
+    "백그라운드(Headless) 모드나 Script 자동화 중에 컨텍스트가 올바르게 설정되지 않았습니다."
+  ],
+  "steps": [
+    "Script에서 bpy.context.active_object를 호출하기 전에 객체가 존재하는지 확인합니다.",
+    "오류가 발생하는 코드를 수정하여 obj = bpy.context.active_object or bpy.data.objects.get('Cube')와 같이 예외 처리를 추가합니다.",
+    "객체 존재 여부를 검사하는 조건문(if obj is not None:)을 추가하여 안전하게 .data에 접근합니다.",
+    "Blender Python 콘솔에서 직접 코드를 실행하여 선택된 객체가 없을 때도 Script가 멈추지 않는지 테스트합니다."
+  ],
+  "check": [
+    "선택된 객체가 없는 빈 씬에서 Script를 실행했을 때 더 이상 AttributeError가 발생하지 않는지 확인합니다.",
+    "조건문이 정상적으로 동작하여 예외 상황에서도 Script가 안전하게 건너뛰거나 대체 객체를 가져오는지 확인합니다."
+  ],
+  "prevent": [
+    "bpy.context 속성을 사용할 때는 항상 객체가 None인지 확인하는 방어적 코딩(Defensive Programming) 습관을 들입니다.",
+    "하드코딩된 이름 대신 bpy.data.objects.get() 메서드를 사용하여 객체가 없을 때의 반환값을 관리합니다."
+  ],
+  "keywords": [
+    "Blender Python 오류",
+    "AttributeError NoneType",
+    "active_object data 에러",
+    "Blender Python 예외처리",
+    "bpy context 오류"
+  ],
+  "repro": {
+    "bad": "import bpy\nbpy.context.view_layer.objects.active = None\nprint(bpy.context.active_object.data)",
+    "good": "import bpy\nobj = bpy.context.active_object or bpy.data.objects.get('Cube')\nif obj is not None:\n    print(obj.data)"
+  },
+  "verified": true,
+  "at": "2026-10-29T11:00:29+00:00",
+  "verify_log": {
+    "bad": "Blender 4.2.16 LTS (hash 39502cae951c built 2025-11-18 01:34:37)\nTraceback (most recent call last):\n  File \"C:\\Users\\user\\AppData\\Local\\Temp\\tmp1ty6cu37\\t.py\", line 5, in <module>\n    print(bpy.context.active_object.data)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'data'\n",
+    "good": "<bpy_struct, Mesh(\"Cube\") at 0x000001BE2930F920>\nBlender 4.2.16 LTS (hash 39502cae951c built 2025-11-18 01:34:37)\n\nBlender quit\n",
+    "at": "2026-10-29T11:00:35+00:00"
+  }
+}
