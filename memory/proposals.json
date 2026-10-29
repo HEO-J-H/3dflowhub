@@ -3872,5 +3872,37 @@
     "id": "p-1c297c04b1",
     "v": "done",
     "note": "웹 3D 만들기: 한 장 실패해도 나머지 계속, 실패 이유 안내 (Pix2Poly web/index.html)"
+  },
+  {
+    "at": "2026-10-29T13:54:40+00:00",
+    "kind": "proposal",
+    "id": "p-7e65f03976",
+    "title": "대기 중인 PR #20 및 #22 검토 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #20과 PR #22가 승인 대기 중이며 core 파이프라인 관련 변경이 포함되어 있음",
+    "proposal": "GitHub에서 PR #20 및 #22의 변경 내용을 최종 확인하고 이상이 없으면 수동 병합 진행",
+    "expected": "three.ws 연동 검토 등 대기 중인 코드가 메인 브랜치에 반영됨",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/20",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-29T13:54:40+00:00",
+    "kind": "proposal",
+    "id": "p-61440d09bd",
+    "title": "Trellis C++ 1단계 가이드 과제 보안 리뷰 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "agent_runs에서 `[guide:trellis_integration] 1단계`가 위험 함수(subprocess) 사용으로 인해 보류(held) 상태임",
+    "proposal": "backend/app/trellis_cpp.py 내 subprocess 호출부의 안전 장치와 가짜 테스트 코드를 보완하여 안전성 검토 통과 유도",
+    "expected": "Trellis.cpp C++ GPU 추론 도입 가이드 1단계 과제 완료",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
   }
 ]

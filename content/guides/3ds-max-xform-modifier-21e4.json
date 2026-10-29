@@ -1,0 +1,81 @@
+{
+  "id": "3ds-max-xform-modifier-21e4",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "XForm modifier",
+  "title": "XForm — 스택 안에서 변형 기록",
+  "summary": "오브젝트의 크기(Scale)나 회전(Rotation)을 변형했을 때 발생하는 피벗(Pivot) 문제와 변형 오류를 깔끔하게 초기화해 주는 핵심 수정자입니다.",
+  "when": [
+    "오브젝트를 Non-uniform Scale(비균등 크기 조절)한 후, 모디파이어(Modifier)나 서브오브젝트 편집이 이상하게 작동할 때",
+    "오브젝트의 축(Pivot)이나 회전값이 꼬여서 대칭(Symmetry) 복사가 제대로 안 될 때",
+    "다른 오브젝트와 크기 기준을 통일하거나, 모델링의 기초 데이터를 깨끗하게 정리하고 싶을 때"
+  ],
+  "steps": [
+    "Command Panel에서 3D 모델링된 오브젝트를 선택합니다.",
+    "Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 XForm을 선택해 적용합니다.",
+    "Gizmo 서브오브젝트 레벨로 들어가서 이동, 회전, 스케일을 조절하여 형태를 정돈합니다.",
+    "필요시 우클릭 후 Collapse All 또는 Reset XForm 유틸리티를 통해 변환값을 완전히 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Gizmo",
+      "desc": "실제 오브젝트의 변형 상태와 분리되어 독립적으로 이동, 회전, 크기를 조절하는 제어 영역입니다."
+    },
+    {
+      "name": "Center",
+      "desc": "XForm 기즈모의 중심축 위치를 보여주며, 피벗의 기준점을 의미합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "찌그러진 박스 크기 기준 정렬하기",
+      "steps": [
+        "박스를 비균등하게 늘려 왜곡된 형태를 만듭니다.",
+        "XForm 모디파이어를 적용합니다.",
+        "Gizmo를 선택해 비율을 정확하게 맞춘 뒤 스택을 정리합니다."
+      ]
+    },
+    {
+      "title": "대칭(Symmetry) 복사가 안 될 때 해결하기",
+      "steps": [
+        "회전되거나 스케일이 틀어진 오브젝트를 준비합니다.",
+        "XForm을 적용해 축과 변환 데이터를 초기화합니다.",
+        "Symmetry 모디파이어를 추가하여 정상적으로 대칭이 복사되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 틀어진 채로 Edit Poly를 올림 → XForm을 먼저 적용한 뒤 모디파이어를 쌓아야 합니다.",
+    "Gizmo 조절 후 Collapse를 안 함 → 최종 Export 시 데이터가 꼬일 수 있으므로 상위 스택에서 Collapse 처리합니다."
+  ],
+  "related": [
+    "Reset XForm",
+    "Edit Poly",
+    "Modifier List",
+    "Symmetry"
+  ],
+  "videos": [
+    {
+      "id": "gGjjf6pOsfA",
+      "title": "3DS Max Linked Xform modifier | Hanora 3D",
+      "author": "Hanora 3D"
+    },
+    {
+      "id": "OsgTouZ7b38",
+      "title": "3ds Max Tips and Tricks - Xform vs. Scale",
+      "author": "3dsmaxtrainer"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20XForm%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "XForm"
+  ],
+  "at": "2026-10-29T13:55:24.984414+00:00"
+}

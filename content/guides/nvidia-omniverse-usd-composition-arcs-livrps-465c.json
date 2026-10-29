@@ -1,0 +1,99 @@
+{
+  "id": "nvidia-omniverse-usd-composition-arcs-livrps-465c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD composition arcs (LIVRPS)",
+  "title": "컴포지션 규칙(LIVRPS) 이해",
+  "summary": "NVIDIA Omniverse에서 USD 파일 조립과 계층 구조를 관리하는 핵심 규칙(LIVRPS)입니다. 여러 에셋을 효율적으로 조합하고 덮어쓸 수 있습니다.",
+  "when": [
+    "여러 부서의 작업물을 하나의 대형 씬으로 병합하지 않고 조합할 때",
+    "기존 에셋의 속성이나 형태를 원본 수정 없이 비파괴적으로 수정할 때",
+    "팀원 간 분업을 위해 씬을 참조(Reference) 구조로 나눌 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Create 또는 Stage 패널을 엽니다.",
+    "Stage 패널에서 Prim을 선택하고 우클릭하여 Context Menu를 엽니다.",
+    "Add 아이콘을 클릭하고 Reference 또는 Sub-layer를 선택합니다.",
+    "조립할 USD 파일을 지정하여 씬에 불러옵니다.",
+    "Layer 패널에서 LIVRPS(Load, Inherits, Variants, References, Payloads, Specialize) 순서에 맞게 레이어와 아크를 정렬합니다."
+  ],
+  "params": [
+    {
+      "name": "Load",
+      "desc": "페이로드나 에셋을 메모리에 로드할지 여부를 결정합니다."
+    },
+    {
+      "name": "Inherits",
+      "desc": "상위 Prim의 속성을 하위 Prim이 상속받도록 설정합니다."
+    },
+    {
+      "name": "Variants",
+      "desc": "에셋의 다양한 옵션(재질, 형태 등)을 선택적으로 전환합니다."
+    },
+    {
+      "name": "References",
+      "desc": "다른 USD 파일의 내용을 참조하여 내 씬에 가져옵니다."
+    },
+    {
+      "name": "Payloads",
+      "desc": "무거운 에셋의 로딩을 지연시켜 대형 씬의 성능을 최적화합니다."
+    },
+    {
+      "name": "Specialize",
+      "desc": "상속과 유사하지만 더 구체적인 오버라이드를 적용할 때 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 변형(Variant) 적용하기",
+      "steps": [
+        "Stage 패널에서 캐릭터 Prim을 선택합니다.",
+        "Property 패널에서 VariantSets 항목을 찾습니다.",
+        "의상이나 컬러 옵션을 드롭다운 메뉴에서 변경합니다."
+      ]
+    },
+    {
+      "title": "배경 씬 레퍼런스 조립하기",
+      "steps": [
+        "빈 USD 파일을 생성하고 Stage 패널을 엽니다.",
+        "우클릭 후 Add → Reference를 선택합니다.",
+        "건물과 나무 USD 파일을 각각 불러와 배치를 완료합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "아크 평가 순서 무시 → LIVRPS 순서(특히 Reference와 Inherits)를 잘못 이해하여 오버라이드가 씹히는 경우, Layer 패널에서 레이어 순서와 Composition Arcs 순서를 다시 확인합니다.",
+    "원본 파일 직접 수정 → 참조된 에셋의 속성을 원본 파일에서 수정하려다 충돌이 나는 경우, 원본을 건드리지 말고 현재 레이어(Local Layer)에서 오버라이드합니다."
+  ],
+  "related": [
+    "USD Stage",
+    "Layer Panel",
+    "Variant Sets",
+    "Payload"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "aaF0s1Y0XlQ",
+      "title": "USD Paths Tool in NVIDIA Omniverse USD Composer Tutorial",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20composition%20arcs%20%28LIVRPS%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Create",
+    "Stage",
+    "Prim",
+    "Context Menu",
+    "Add",
+    "Reference"
+  ],
+  "at": "2026-10-29T13:54:55.359712+00:00"
+}

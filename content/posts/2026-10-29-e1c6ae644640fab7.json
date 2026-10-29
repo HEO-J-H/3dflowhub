@@ -31,6 +31,21 @@
     {
       "heading": "지원 버전 및 관련 도구",
       "body": "Flattice는 표준 Blender 버전 3.6부터 5.1까지 지원하며, 자체 커스텀 NPR 기능을 탑재한 Goo Engine 버전 3.6부터 4.4까지 호환됩니다. DillonGoo Studios는 이 애드온 외에도 헤어와 의상 등을 시뮬레이션할 수 있는 커스텀 물리 솔루션인 Goo Physics 등 다양한 툴을 선보이고 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "애니메 스타일 3D 캐릭터를 제작할 때 카메라 각도에 따라 얼굴이 왜곡되는 문제를 해결하기 위해 활용합니다. 캐릭터의 얼굴이나 상체 부근에 3D 커서를 배치한 뒤 'Add Flattice'를 실행하면, 도구가 카메라를 타겟팅하는 래티스와 Driver를 자동으로 생성하여 직교 뷰 같은 느낌을 줍니다. 웨이트 페인팅이 적용된 버텍스 그룹도 자동으로 생성되므로, 수동으로 래티스 모디파이어를 설정하고 리그에 패어런팅하는 반복 작업을 줄여 애니메이션 작업 속도를 높일 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "BlenderArtists 등 커뮤니티에서는 캐릭터 얼굴의 비율과 대칭성, 그리고 스타일화된 카툰 및 애니메 표현 방식에 대한 논의가 활발합니다 [1]. 특히 애니메 스타일은 실사 비율과 달라 극단적인 각도에서 형태 유지가 까다롭기 때문에 이러한 보정 도구의 필요성이 높다는 반응입니다. 다만 개발사의 설명대로 Geometry Nodes를 통해서도 유사한 효과를 직접 구현할 수 있으므로, 복잡한 노드 세팅을 직접 커스텀하고 싶다면 노드 기반 접근과 애드온 사용 중 작업 스타일에 맞는 방식을 선택하는 것이 좋습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Flattice는 표준 Blender 버전 3.6부터 최신 5.1까지 지원하며, 자체 NPR 기능을 탑재한 Goo Engine 3.6부터 4.4 버전에서도 사용할 수 있습니다. DillonGoo Studios의 패레트에서 제공하는 Goo Physics 등 다른 커스텀 물리 솔루션과 함께 활용하면 애니메 스타일 캐릭터의 헤어와 의상 시뮬레이션 파이프라인을 더욱 일관되게 구축할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +60,14 @@
     {
       "q": "어떤 버전의 Blender에서 사용할 수 있나요?",
       "a": "Flattice는 Blender 3.6부터 최신 5.1 버전까지, 그리고 Goo Engine 3.6부터 4.4 버전까지 지원합니다."
+    },
+    {
+      "q": "Flattice는 어떤 Blender 버전에서 작동하나요?",
+      "a": "표준 Blender 3.6부터 5.1까지 지원하며, 커스텀 NPR 기능이 포함된 Goo Engine 버전 3.6부터 4.4까지 호환됩니다."
+    },
+    {
+      "q": "Geometry Nodes로 직접 만들 수 있다면 이 애드온의 장점은 무엇인가요?",
+      "a": "Geometry Nodes를 다루는 복잡한 노드 세팅 과정을 거치지 않고, 원클릭으로 래티스와 카메라 타겟팅 Driver, 버텍스 그룹을 즉시 생성하여 실무에 바로 투입할 수 있는 준비된 솔루션이라는 점이 가장 큰 장점입니다."
     }
   ],
   "media": {
@@ -53,5 +76,31 @@
   },
   "collected_at": "2026-10-29T13:33:45.499274+00:00",
   "notion_id": "",
-  "id": "2026-10-29-e1c6ae644640fab7"
+  "id": "2026-10-29-e1c6ae644640fab7",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "The big Blender Sculpt Mode thread (Part 1)",
+      "url": "https://blenderartists.org/t/the-big-blender-sculpt-mode-thread-part-1/1150731",
+      "excerpt": "Well, there can be some variation to it, since in real life beauty and ugliness are often measured by how symmetrical/asymmetrical a face is. The typical perfect ratio for beauty is one whole eye’s distance between both eyes, but it also depends on the style with cartoons and anime allowing a lot...",
+      "replies": 9990
+    }
+  ],
+  "videos": [
+    {
+      "id": "x-K6bCAl6Qs",
+      "title": "Get *PERFECT* Anime Face Shadows (Easier Way) in Blender",
+      "author": "2AM"
+    },
+    {
+      "id": "uptuXWNWpk0",
+      "title": "How to Make Anime FACE in Blender Explained! + Custom Shadows",
+      "author": "2AM"
+    }
+  ],
+  "enriched_at": "2026-10-29T13:56:03+00:00",
+  "quality": {
+    "before": 930,
+    "after": 1703
+  }
 }
