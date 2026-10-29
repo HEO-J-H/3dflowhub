@@ -1,0 +1,99 @@
+{
+  "id": "nvidia-omniverse-usdgeom-mesh-and-xform-d75c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "UsdGeom mesh and xform",
+  "title": "UsdGeom — 메시와 변환",
+  "summary": "NVIDIA Omniverse에서 USD 기반 3D 장비와 데이터를 다룰 때 가장 기본이 되는 UsdGeom(메시)과 Xform(변환) 구조를 이해하고 제어합니다.",
+  "when": [
+    "USD 스테이지(Stage)에서 여러 3D 에셋을 계층 구조로 배치하고 관리할 때",
+    "커스텀 메시 지오메트리를 생성하고 이동, 회전, 스케일(Xform) 속성을 적용할 때",
+    "Omniverse Nucleus와 DCC 툴 간의 데이터를 손실 없이 연결할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Create 또는 USD 기반 DCC 툴을 실행합니다.",
+    "Stage 창에서 우클릭 후 Create 메뉴를 엽니다.",
+    "Create → Mesh → Cube 또는 Plane을 선택하여 UsdGeom Mesh를 생성합니다.",
+    "생성된 오브젝트를 선택하고, Details 또는 Transform 패널에서 Xform 값을 확인합니다.",
+    "Translate, Rotate, Scale 필드를 직접 입력하거나 뷰포트에서 기즈모(Gizmo)를 사용하여 조작합니다."
+  ],
+  "params": [
+    {
+      "name": "Translate",
+      "desc": "X, Y, Z 축을 기준으로 오브젝트의 위치를 이동합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "오브젝트의 각도를 X, Y, Z 축 기준으로 회전합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기를 축별 또는 전체적으로 조절합니다."
+    },
+    {
+      "name": "Points",
+      "desc": "메시를 구성하는 버텍스(정점)들의 위치 배열 데이터입니다."
+    },
+    {
+      "name": "FaceVertexIndices",
+      "desc": "면을 구성하기 위해 정점들을 연결하는 인덱스 정보입니다."
+    },
+    {
+      "name": "SubdivisionScheme",
+      "desc": "메시의 세부 분할 방식을 정의합니다 (예: catmullClark)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "계층 구조(Hierarchy) 구성하기",
+      "steps": [
+        "Stage 패널에서 우클릭하여 Xform을 생성합니다.",
+        "생성한 Xform 아래로 여러 개의 UsdGeom Mesh(예: 자동차 바퀴와 차체)를 드래그하여 자식으로 넣습니다.",
+        "상위 Xform을 이동하면 하위 메시들이 함께 움직입니다."
+      ]
+    },
+    {
+      "title": "USD 메시 스케일 정렬하기",
+      "steps": [
+        "스케일이 왜곡된 UsdGeom 오브젝트를 선택합니다.",
+        "Details 패널의 Scale 값을 확인하고 필요시 1.0으로 초기화합니다.",
+        "USD 오버라이드(Over)를 통해 올바른 Xform 값을 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Xform을 거치지 않고 메시 데이터에 직접 스케일을 변형함 → 상위 Xform 노드를 추가하여 변환 값 분리",
+    "USD 계층 구조에서 상속된 Xform 값을 무시하고 위치를 잡음 → 부모 오브젝트의 Transform 피벗 위치 확인"
+  ],
+  "related": [
+    "UsdGeom Mesh",
+    "Xformable",
+    "USD Prim",
+    "Omniverse Nucleus"
+  ],
+  "videos": [
+    {
+      "id": "14UzRKcNqxg",
+      "title": "NVIDIA Omniverse Installation Guide 2026 | Step-by-Step USD Composer Setup",
+      "author": "Ram Drives"
+    },
+    {
+      "id": "OmXWyWGMaSY",
+      "title": "Making Virtual People Follow a Target in NVIDIA Omniverse",
+      "author": "SiBORG Design Lab"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20UsdGeom%20mesh%20and%20xform",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Create",
+    "USD",
+    "DCC",
+    "Stage",
+    "Create",
+    "Mesh"
+  ],
+  "at": "2026-10-29T14:44:41.033015+00:00"
+}
