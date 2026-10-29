@@ -1,0 +1,90 @@
+{
+  "id": "houdini-transform-sop-3ac0",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Transform SOP",
+  "title": "Transform — 이동·회전·크기",
+  "summary": "지오메트리의 위치, 회전, 스케일을 조작하는 가장 기본적인 SOP 노드입니다. 3D 공간에서 오브젝트를 배치하고 변형할 때 사용합니다.",
+  "when": [
+    "임포트한 모델의 위치나 방향을 처음 정렬할 때",
+    "애니메이션 전 기본 포즈를 잡거나 오프셋을 줄 때",
+    "여러 지오메트리를 각각 다른 위치로 복제·배치할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Transform 을 검색하여 선택하고 Enter 키를 눌러 노드를 생성합니다.",
+    "Geometry SOP 노드 하단에 연결합니다.",
+    "파라미터 뷰(Parameter Pane)에서 Translate, Rotate, Scale 값을 조절합니다.",
+    "뷰포트에서 직접 조작하려면 뷰포트 우측 툴바에서 Enter 키를 눌러 핸들(Handle)을 활성화합니다."
+  ],
+  "params": [
+    {
+      "name": "Translate",
+      "desc": "X, Y, Z 축을 기준으로 오브젝트를 이동합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "X, Y, Z 축을 기준으로 오브젝트를 회전합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "X, Y, Z 축 또는 전체 비율로 오브젝트의 크기를 조절합니다."
+    },
+    {
+      "name": "Pivot",
+      "desc": "회전과 스케일의 기준이 되는 피벗 포인트의 위치를 설정합니다."
+    },
+    {
+      "name": "Uniform Scale",
+      "desc": "모든 축의 스케일을 비율에 맞게 한 번에 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델 중심축 정렬 및 배치",
+      "steps": [
+        "Transform 노드를 생성하고 연결합니다.",
+        "Translate Y 값을 올려 오브젝트를 그리드 위로 올립니다.",
+        "Rotate Y 값을 변경해 원하는 방향으로 회전시킵니다."
+      ]
+    },
+    {
+      "title": "임의의 스케일 조절",
+      "steps": [
+        "Transform 노드를 선택합니다.",
+        "Uniform Scale 값을 0.5로 낮추어 전체 크기를 절반으로 줄입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 이상한 방향으로 회전합니다 → Pivot 파라미터의 위치가 지오메트리 중심에 있는지 확인하거나 바운딩 박스 기준으로 재설정하세요.",
+    "스케일 변형 후 노멀(Normal)이 뒤집혀 보입니다 → Uniform Scale에 음수(-) 값을 넣었는지 확인하고 Reverse 노드를 추가하세요."
+  ],
+  "related": [
+    "Copy to Points",
+    "Match Size",
+    "Edit SOP",
+    "Null"
+  ],
+  "videos": [
+    {
+      "id": "ohWw3e4JClQ",
+      "title": "Transform SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "tmbVwv5s9aw",
+      "title": "Transform SOP | Attributes | Node Reference",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Transform%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Transform"
+  ],
+  "at": "2026-10-29T00:20:57.257933+00:00"
+}

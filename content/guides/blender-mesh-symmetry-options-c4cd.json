@@ -1,0 +1,88 @@
+{
+  "id": "blender-mesh-symmetry-options-c4cd",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Mesh Symmetry options",
+  "title": "Mesh Symmetry — 편집 대칭",
+  "summary": "Blender의 Mesh Symmetry 옵션은 좌우 대칭 형태의 모델링을 효율적으로 작업할 수 있도록 반대쪽을 자동으로 동기화하는 기능입니다.",
+  "when": [
+    "캐릭터의 얼굴이나 몸체를 좌우 대칭으로 스컬프팅하거나 모델링할 때",
+    "하드서페이스 모델의 대칭된 구조를 한 번에 수정할 때",
+    "UV 언랩 전, 대칭 구조의 토폴로지를 균일하게 유지하고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "화면 우측 상단의 뷰포트 헤더에서 Options 메뉴(또는 상단 헤더의 Mesh 메뉴)를 엽니다.",
+    "Symmetry 항목에서 X, Y, Z 중 대칭을 적용할 축을 체크하여 활성화합니다.",
+    "버텍스, 엣지, 페이스를 편집할 때 반대편이 실시간으로 대칭 이동하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "X",
+      "desc": "X축 기준으로 좌우 대칭 편집을 활성화합니다."
+    },
+    {
+      "name": "Y",
+      "desc": "Y축 기준으로 앞뒤 대칭 편집을 활성화합니다."
+    },
+    {
+      "name": "Z",
+      "desc": "Z축 기준으로 상하 대칭 편집을 활성화합니다."
+    },
+    {
+      "name": "Radial",
+      "desc": "지정된 축을 기준으로 원형 대칭(방사형) 복제 편집을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인간형 캐릭터 얼굴 비대칭 수정",
+      "steps": [
+        "오브젝트를 Edit Mode로 전환합니다.",
+        "Options에서 X축 Symmetry를 체크합니다.",
+        "한쪽 눈두덩이나 광대 버텍스를 이동해 양쪽이 대칭으로 움직이는지 확인합니다."
+      ]
+    },
+    {
+      "title": "로봇 헬멧 하드서페이스 제작",
+      "steps": [
+        "중앙 기준으로 모델링된 헬멧 메시를 Edit Mode로 엽니다.",
+        "Symmetry 옵션에서 X축을 켭니다.",
+        "한쪽 면에 익스트루드나 컷을 넣어 양쪽 대칭 디테일을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 원점(Origin) 중심에서 벗어나 있음 → Object Mode에서 Alt+G를 눌러 위치를 리셋하거나 Set Origin을 사용해 피벗을 중앙으로 맞춥니다.",
+    "스케일 값이 틀어져 있음 → Object Mode에서 Ctrl+A를 누르고 Apply Scale을 실행해 스케일을 1.0으로 초기화합니다.",
+    "반대편 버텍스가 서로 겹치거나 뚫림 → Merge Distance 값을 확인하거나 Auto Merge 옵션을 켜서 정밀하게 병합되도록 조정합니다."
+  ],
+  "related": [
+    "Mirror Modifier",
+    "Proportional Editing",
+    "Auto Merge",
+    "Bisect"
+  ],
+  "videos": [
+    {
+      "id": "g2zRDGD_xCk",
+      "title": "Mesh Symmetry - Blender Basics",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "aayYU4EbpOg",
+      "title": "Daily Blender Secrets -  Quickly Fix Symmetry Problems",
+      "author": "Blender Secrets"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Mesh%20Symmetry%20options",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Options",
+    "Mesh"
+  ],
+  "at": "2026-10-29T00:20:53.488394+00:00"
+}

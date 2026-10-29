@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-melt-modifier-311b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Melt modifier",
+  "title": "Melt — 녹아내리는 효과",
+  "summary": "Melt 모디파이어는 오브젝트가 녹아내리거나 흘러내리는 듯한 유기적인 변형을 만드는 기능입니다. 아이스크림, 촛농, 녹은 금속 등을 표현할 때 유용합니다.",
+  "when": [
+    "뜨거운 열에 녹아내리는 금속이나 얼음을 표현할 때",
+    "촛농이 흘러내리는 디테일을 만들 때",
+    "아이스크림이나 버터처럼 부드럽게 형태가 무너지는 모양을 잡을 때"
+  ],
+  "steps": [
+    "Viewport에서 변형할 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Melt를 선택합니다.",
+    "Parameters에서 Melt Amount 값을 높여 녹아내리는 정도를 조절합니다.",
+    "Material에서 적절한 질감(Glass, Wax 등)을 주어 시각적 효과를 극대화합니다."
+  ],
+  "params": [
+    {
+      "name": "Melt Amount",
+      "desc": "오브젝트가 아래로 녹아내리는 전체 강도를 조절합니다."
+    },
+    {
+      "name": "Spread",
+      "desc": "녹으면서 바닥에 퍼지는 넓이를 조절합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "녹아내리는 기준이 되는 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Solidity",
+      "desc": "재질의 단단한 정도를 설정하여 변형의 형태를 바꿉니다."
+    },
+    {
+      "name": "Melt Table",
+      "desc": "바닥에 닿았을 때의 평평한 바닥면 크기를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "촛농 표현하기",
+      "steps": [
+        "Cylinder 오브젝트를 생성하고 높이 방향 세그먼트를 충분히 줍니다.",
+        "Modifier List에서 Melt를 적용합니다.",
+        "Axis를 Z로 맞추고 Melt Amount 값을 서서히 높여 촛농이 흘러내리듯 연출합니다."
+      ]
+    },
+    {
+      "title": "녹은 금속 덩어리 만들기",
+      "steps": [
+        "Sphere 오브젝트를 생성합니다.",
+        "Melt 모디파이어를 적용하고 Solitdity 값을 낮춰 부드럽게 무너지게 만듭니다.",
+        "Spread 값을 조절하여 바닥에 퍼지는 면적을 넓힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 오브젝트가 꺾이는 현상 → Segment(Segments)를 충분히 늘려 부드럽게 만듭니다.",
+    "녹는 방향이 이상한 방향일 때 → Axis 설정이 올바른 축(Z축 등)으로 지정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Bend",
+    "Noise",
+    "Turbulence",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "08SjiTOb7hY",
+      "title": "Melt Modifier Basics in 3ds Max | 3D Modeling Tutorial",
+      "author": "Viz Pipeline"
+    },
+    {
+      "id": "BQdvvK9YClE",
+      "title": "3DS MAX - MELT MODIFIER",
+      "author": "Learn 3d Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Melt%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Melt"
+  ],
+  "at": "2026-10-29T00:20:49.421126+00:00"
+}
