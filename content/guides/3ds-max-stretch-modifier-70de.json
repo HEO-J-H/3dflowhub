@@ -1,0 +1,98 @@
+{
+  "id": "3ds-max-stretch-modifier-70de",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Stretch modifier",
+  "title": "Stretch — 늘이며 가운데 오므리기",
+  "summary": "Stretch modifier는 오브젝트의 지정된 축을 따라 늘리거나 줄이고, 그 반대 방향으로 두께를 보정하여 자연스러운 변형을 만드는 기능입니다. 마치 고무줄을 당기거나 누르는 듯한 효과를 줍니다.",
+  "when": [
+    "애니메이션에서 캐릭터나 오브젝트가 늘어나는 툰 스타일의 스쿼시 앤 스트레치(Squash & Stretch) 표현을 할 때",
+    "파이프나 기둥 같은 길쭉한 오브젝트의 길이를 비례감 있게 조절할 때",
+    "충격이나 압력을 받는 젤리 같은 물체의 변형을 연출할 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭으로 이동하여 변형할 기본 오브젝트(예: Cylinder)를 뷰포트에 생성합니다.",
+    "Modifier List를 열고 Stretch를 선택하여 적용합니다.",
+    "Gizmo 서브오브젝트 모드로 진입하여 변형 중심점과 축의 위치를 정렬합니다.",
+    "Parameters rollout에서 Stretch 값을 조절하여 늘어나는 정도를 설정합니다.",
+    "Amplify 값을 조절하여 늘어나는 방향과 수직인 축의 두께 변화(잘록해짐 또는 두꺼워짐)를 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Stretch",
+      "desc": "선택한 축을 따라 오브젝트를 늘리거나 줄이는 주된 강도를 조절합니다."
+    },
+    {
+      "name": "Amplify",
+      "desc": "늘어나는 축의 반대 방향으로 두께가 팽창하거나 수축하는 정도를 조절합니다."
+    },
+    {
+      "name": "X / Y / Z",
+      "desc": "스트레치가 적용될 공간 축(Axis)을 선택합니다."
+    },
+    {
+      "name": "Bumper",
+      "desc": "효과가 적용되는 영역의 범위를 제한합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "변형이 시작되는 중심점의 위치를 이동합니다."
+    },
+    {
+      "name": "Gizmo",
+      "desc": "뷰포트에서 변형 영역의 위치와 크기를 직접 조작합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "말랑한 고무공 바운스 애니메이션",
+      "steps": [
+        "Sphere 오브젝트에 Stretch modifier를 적용합니다.",
+        "Z축을 기준으로 Stretch 값을 조절해 공이 바닥에 닿을 때 납작해지는 스쿼시 형태를 만듭니다.",
+        "Amplify 값으로 납작해진 만큼 옆으로 퍼지는 두께를 자연스럽게 보정합니다."
+      ]
+    },
+    {
+      "title": "금속 파이프 길이 연장",
+      "steps": [
+        "Cylinder 오브젝트에 충분한 Height Segments를 부여합니다.",
+        "Stretch modifier를 추가하고 Z축을 선택합니다.",
+        "Stretch 값을 높여 파이프의 길이를 늘리고, 세그먼트가 부족해 깨지지 않는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 오브젝트가 꺾이거나 깨짐 → 오브젝트 생성 단계나 Edit Poly에서 Segments를 충분히 늘려줍니다.",
+    "변형 방향이 이상함 → Gizmo 서브오브젝트 모드에서 회전값이나 위치가 틀어져 있는지 확인하고 Reset Gizmo를 실행합니다."
+  ],
+  "related": [
+    "Bend",
+    "Taper",
+    "Twist",
+    "Spherify"
+  ],
+  "videos": [
+    {
+      "id": "I13kE3vlM4U",
+      "title": "Stretch Modifier | 3ds Max Tutorial",
+      "author": "Pixali Art"
+    },
+    {
+      "id": "dphNQC1Ep4c",
+      "title": "Prop Modeling in 3dsmax | How to Model using Helix & Stretch Modifier #3d #3dsmax #tutorial",
+      "author": "Kayo Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Stretch%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Cylinder",
+    "Modifier List",
+    "Stretch"
+  ],
+  "at": "2026-10-29T00:31:11.211339+00:00"
+}
