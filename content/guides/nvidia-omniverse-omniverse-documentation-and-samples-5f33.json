@@ -1,0 +1,92 @@
+{
+  "id": "nvidia-omniverse-omniverse-documentation-and-samples-5f33",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse documentation and samples",
+  "title": "공식 문서·예제 찾는 법",
+  "summary": "NVIDIA Omniverse는 USD(Universal Scene Description) 기반으로 여러 3D DCC 툴의 실시간 협업과 시뮬레이션을 지원하는 플랫폼입니다. 서로 다른 작업자들이 각자의 툴에서 동시에 같은 씬을 편집할 수 있습니다.",
+  "when": [
+    "여러 3D 아티스트가 Maya, Blender, 3ds Max 등 각기 다른 툴을 사용해 하나의 씬을 동시에 협업할 때",
+    "USD 포맷을 활용하여 복잡한 파이프라인의 에셋과 레퍼런스를 효율적으로 관리할 때",
+    "RTX 기반의 실시간 패스 트레이싱(Path Tracing)과 물리 시뮬레이션을 라이브로 확인하고 싶을 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 최신 Nucleus 및 Cache 서비스를 시작합니다.",
+    "Apps 탭에서 Omniverse Create, View, 또는 Kit 기반의 커스텀 앱을 설치합니다.",
+    "Content 브라우저에서 USD 샘플 프로젝트나 튜토리얼 씬을 다운로드합니다.",
+    "Stage 패널에서 USD 계층 구조를 확인하고, 에셋을 드래그 앤 드롭으로 배치합니다.",
+    "Render Settings 패널에서 RTX Real-Time 또는 Path Tracing 모드를 선택하여 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Stage",
+      "desc": "현재 씬의 USD 계층 구조와 오브젝트 트리를 관리하는 패널"
+    },
+    {
+      "name": "Layer",
+      "desc": "비파괴 방식으로 씬을 수정하고 협업하기 위한 USD 서브레이어 관리"
+    },
+    {
+      "name": "Render Settings",
+      "desc": "RTX 실시간 렌더링 및 패스 트레이싱 품질과 해상도를 설정"
+    },
+    {
+      "name": "Content",
+      "desc": "로컬 및 Nucleus 서버의 3D 에셋과 USD 파일을 탐색하고 불러옴"
+    },
+    {
+      "name": "Properties",
+      "desc": "선택한 오브젝트의 트랜스폼, 머티리얼, 물리 속성을 확인하고 편집"
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 DCC 실시간 라이브 싱크 협업",
+      "steps": [
+        "Maya와 Blender에 Omniverse Connect 플러그인을 설치합니다.",
+        "Live Sync 모드를 활성화하고 Nucleus 서버의 세션에 접속합니다.",
+        "Maya에서 모델링을 수정하면 Blender 뷰포트에 실시간으로 반영됩니다."
+      ]
+    },
+    {
+      "title": "USD 기반 대규모 환경 씬 조립",
+      "steps": [
+        "Content 패널에서 샘플 건축물과 나무 USD 에셋을 찾습니다.",
+        "Stage 패널에 레퍼런스로 에셋을 불러와 배치를 구성합니다.",
+        "Layer 기능을 이용해 조명 레이어와 지형 레이어를 분리하여 편집합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Nucleus 서버 연결 오류 → Omniverse Launcher에서 Nucleus 서비스가 정상 구동 중인지 확인하고 로그인 상태를 점검하세요.",
+    "USD 레퍼런스 경로 깨짐 → 절대 경로 대신 상대 경로를 사용하거나 Nucleus 내부 서버 경로를 올바르게 지정하세요."
+  ],
+  "related": [
+    "Universal Scene Description",
+    "Omniverse Create",
+    "Omniverse View",
+    "Omniverse Nucleus"
+  ],
+  "videos": [
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "-vbtMxpYfC4",
+      "title": "The Power of ChatGPT, Generative AI, and Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20documentation%20and%20samples",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Nucleus",
+    "Cache"
+  ],
+  "at": "2026-10-29T12:33:31.012080+00:00"
+}
