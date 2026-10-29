@@ -1,0 +1,91 @@
+{
+  "id": "nvidia-omniverse-omniverse-licensing-for-individuals-and-ent-6cec",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse licensing for individuals and enterprise",
+  "title": "개인·기업 라이선스 차이",
+  "summary": "NVIDIA Omniverse는 실시간 협업과 USD(Universal Scene Description) 기반의 3D 워크플로우를 지원하는 플랫폼입니다. 개인 작업자와 기업 환경에 맞는 라이선스 체계를 제공합니다.",
+  "when": [
+    "여러 DCC 툴(Blender, 3ds Max, Maya 등) 간의 에셋을 실시간으로 동기화하여 협업할 때",
+    "개인 프로젝트에서 무료로 Omniverse 애플리케이션과 커넥터를 활용하여 파이프라인을 구축할 때",
+    "기업 환경에서 중앙 집중식 관리와 엔터프라이즈 지원, 대규모 렌더링을 도입할 때"
+  ],
+  "steps": [
+    "NVIDIA 공식 웹사이트에서 NVIDIA Omniverse Launcher를 다운로드하여 설치합니다.",
+    "NVIDIA 계정으로 로그인하여 Omniverse Launcher를 실행합니다.",
+    "Library 탭에서 필요한 Omniverse App(예: USD Composer, Audio2Face)을 설치합니다.",
+    "Exchange 탭에서 사용 중인 3D DCC 툴(3ds Max, Blender, Unreal Engine 등)용 Connector를 설치합니다.",
+    "Nucleus 서버를 통해 팀원들과 USD 파일을 공유하고 실시간 협업을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "NVIDIA Account",
+      "desc": "개인 라이선스 활성화 및 런처 로그인을 위한 필수 계정"
+    },
+    {
+      "name": "Nucleus",
+      "desc": "실시간 협업과 파일 저장을 담당하는 데이터베이스 및 서버 시스템"
+    },
+    {
+      "name": "Omniverse Enterprise",
+      "desc": "기업 보안, 중앙 관리, 전문 기술 지원이 포함된 유료 라이선스"
+    },
+    {
+      "name": "Connectors",
+      "desc": "외부 3D DCC와 Omniverse를 연결해 주는 플러그인 모음"
+    },
+    {
+      "name": "USD Composer",
+      "desc": "실시간 레이트레이싱과 시뮬레이션을 활용한 씬 조립 및 리뷰용 앱"
+    }
+  ],
+  "examples": [
+    {
+      "title": "개인 아티스트의 무료 파이프라인 구축",
+      "steps": [
+        "NVIDIA Omniverse Launcher를 설치하고 개인 계정으로 로그인합니다.",
+        "Exchange 탭에서 Blender Connector를 설치합니다.",
+        "Blender에서 작업 중인 에셋을 USD 형식으로 Omniverse에 실시간 라이브 싱크합니다."
+      ]
+    },
+    {
+      "title": "기업 환경에서의 Nucleus 서버 연동",
+      "steps": [
+        "IT 관리자가 사내 서버에 Nucleus를 설치하고 권한을 설정합니다.",
+        "팀원들이 Enterprise 라이선스로 인증된 Omniverse 앱에 접속합니다.",
+        "공용 USD 스테이지를 통해 여러 아티스트가 동시에 씬을 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "개인용 라이선스로 상업적 대규모 사내 서버를 구축함 → 기업용 Enterprise 라이선스와 전용 Nucleus 서버 도입 검토 필요",
+    "Connectors 버전을 DCC 툴 버전과 다르게 설치함 → 사용하는 3ds Max, Blender 등의 정확한 메이저 버전에 맞는 Connector 재설치"
+  ],
+  "related": [
+    "Universal Scene Description",
+    "Nucleus",
+    "USD Composer",
+    "RTX Renderer"
+  ],
+  "videos": [
+    {
+      "id": "14UzRKcNqxg",
+      "title": "NVIDIA Omniverse Installation Guide 2026 | Step-by-Step USD Composer Setup",
+      "author": "Ram Drives"
+    },
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20licensing%20for%20individuals%20and%20enterprise",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA",
+    "NVIDIA Omniverse Launcher"
+  ],
+  "at": "2026-10-29T12:23:23.381021+00:00"
+}
