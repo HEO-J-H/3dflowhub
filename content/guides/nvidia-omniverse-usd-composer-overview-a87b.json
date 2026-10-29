@@ -1,0 +1,92 @@
+{
+  "id": "nvidia-omniverse-usd-composer-overview-a87b",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "USD Composer overview",
+  "title": "USD Composer — 장면 조립·렌더 앱",
+  "summary": "NVIDIA Omniverse USD Composer는 여러 DCC 툴에서 제작한 3D 자산을 USD(Universal Scene Description) 기반으로 실시간 통합하고 실사 수준의 렌더링을 구현하는 협업 중심 씬 구축 앱입니다.",
+  "when": [
+    "서로 다른 3ds Max, Blender, Maya 등의 3D 자산을 하나의 대형 씬으로 실시간 병합할 때",
+    "RTX 기반 실시간 패스 트레이싱(Path Tracing)으로 고품질 시각화 프리뷰를 확인할 때",
+    "팀원들과 동일한 3D 씬에 접속해 동시 편집 및 피드백을 진행할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Apps 탭에서 USD Composer를 설치 후 실행합니다.",
+    "File 메뉴에서 New를 선택하여 빈 USD 씬을 생성하거나, Import를 눌러 FBX, OBJ, USD 파일을 불러옵니다.",
+    "Stage 패널에서 씬의 계층 구조(Hierarchy)를 확인하고 오브젝트의 위치와 속성을 정렬합니다.",
+    "Render Settings 패널에서 Real-Time 뷰포트 모드 또는 Path Tracing 모드를 선택해 렌더링 품질을 조절합니다.",
+    "Materials 패널에서 MDL(Material Definition Language) 기반의 재질을 드래그하여 오브젝트에 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Path Tracing",
+      "desc": "광선 추적을 통해 물리적으로 정확한 반사, 굴절, 그림자를 실시간으로 계산합니다."
+    },
+    {
+      "name": "Stage",
+      "desc": "현재 씬에 포함된 모든 USD Prim(오브젝트, 카메라, 라이트 등)의 계층 구조를 관리합니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "비파괴 방식으로 씬의 변경 사항을 나누어 관리하고 협업 충돌을 방지합니다."
+    },
+    {
+      "name": "MDL",
+      "desc": "다양한 렌더러에서 동일하게 표현되는 물리 기반 재질 정의 언어입니다."
+    },
+    {
+      "name": "Render Settings",
+      "desc": "해상도, 샘플링, 라이팅 등 최종 렌더링 및 뷰포트 품질 옵션을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 DCC 자산 실시간 병합",
+      "steps": [
+        "3ds Max에서 제작한 건축물 모델을 USD 포맷으로 내보냅니다.",
+        "Blender에서 제작한 가구 모델을 USD로 변환합니다.",
+        "USD Composer에서 두 파일을 불러와 Stage 패널에서 배치하고 실시간으로 조립합니다."
+      ]
+    },
+    {
+      "title": "RTX 실사 렌더링 및 라이팅 설정",
+      "steps": [
+        "Create 메뉴에서 Dome Light를 생성하고 HDR 이미지(HDRI)를 연결합니다.",
+        "Render Settings에서 Path Tracing을 활성화합니다.",
+        "Reflections와 Shadows 파라미터를 조절하여 사실적인 실내 분위기를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "USD 포맷으로 내보낼 때 스케일 단위가 맞지 않아 오브젝트가 너무 크거나 작게 나옴 → 내보내기 전 DCC 툴에서 미터(Meter) 단위 및 Scale을 1.0으로 Apply 한 뒤 USD로 재출력합니다.",
+    "레이어 잠금을 하지 않고 수정하여 협업 중 변경 사항이 덮어씌워짐 → Stage 패널에서 작업 중인 Layer를 확인하고 올바른 서브 레이어(Sub-layer)를 선택한 후 편집합니다."
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Omniverse Nucleus",
+    "MDL",
+    "Omniverse Connector"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20Composer%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Apps",
+    "USD Composer"
+  ],
+  "at": "2026-10-29T11:42:59.487397+00:00"
+}
