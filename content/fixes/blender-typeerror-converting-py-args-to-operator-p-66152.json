@@ -35,6 +35,11 @@
     "bad": "import bpy\nbpy.ops.object.select_all(action='WRONG')",
     "good": "import bpy\nbpy.ops.object.select_all(action='DESELECT')"
   },
-  "verified": null,
-  "at": "2026-10-29T11:13:07+00:00"
+  "verified": true,
+  "at": "2026-10-29T11:13:07+00:00",
+  "verify_log": {
+    "bad": "ecent call last):\n  File \"/tmp/tmp71iclc13/t.py\", line 4, in <module>\n    bpy.ops.object.select_all(action='WRONG')\n  File \"/usr/share/blender/scripts/modules/bpy/ops.py\", line 109, in __call__\n    ret = _op_call(self.idname_py(), kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: Converting py args to operator properties:  enum \"WRONG\" not found in ('TOGGLE', 'SELECT', 'DESELECT', 'INVERT')\n",
+    "good": "Blender 4.0.2\n\nBlender quit\n",
+    "at": "2026-10-29T13:39:24+00:00"
+  }
 }
