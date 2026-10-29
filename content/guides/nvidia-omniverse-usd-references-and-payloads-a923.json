@@ -1,0 +1,87 @@
+{
+  "id": "nvidia-omniverse-usd-references-and-payloads-a923",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD references and payloads",
+  "title": "Reference·Payload — 무거운 자산 불러오기",
+  "summary": "NVIDIA Omniverse에서 USD(Universal Scene Description)의 References와 Payloads는 거대한 3D 장신구를 가볍게 불러오고 메모리를 효율적으로 관리하는 핵심 기능입니다.",
+  "when": [
+    "수천 개의 오브젝트가 포함된 대형 건축 또는 자동차 조립 씬을 다룰 때",
+    "다른 아티스트가 작업 중인 에셋을 내 씬에 실시간으로 참조(Reference)해 가져올 때",
+    "무거운 모델링 데이터를 필요할 때만 메모리에 로드(Payload)하여 작업 속도를 최적화할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱(예: Omniverse Create 또는 USD Composer)을 실행합니다.",
+    "Stage 패널에서 참조를 추가할 대상 프림(Prim)을 마우스 우클릭합니다.",
+    "메뉴에서 Add -> Reference를 선택하여 외부 .usd 파일을 불러옵니다.",
+    "메이저 에셋의 메모리 점유를 줄이려면 Add -> Payload를 사용하여 필요할 때만 로드되도록 설정합니다.",
+    "Property 패널에서 불러온 USD 에셋의 트랜스폼과 속성을 확인하고 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Reference",
+      "desc": "외부 USD 파일을 현재 씬에 읽기 전용으로 참조하여 불러옵니다."
+    },
+    {
+      "name": "Payload",
+      "desc": "무거운 데이터를 기본적으로 메모리에서 제외(Unload)했다가 필요할 때만 불러옵니다."
+    },
+    {
+      "name": "Load/Unload",
+      "desc": "Payload로 지정된 에셋의 메모리 적재 여부를 수동으로 켜고 끕니다."
+    },
+    {
+      "name": "Path",
+      "desc": "참조하거나 불러올 외부 USD 파일의 저장 경로를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대규모 건축 단지 씬 구성",
+      "steps": [
+        "빈 마스터 USD 씬을 생성합니다.",
+        "각 동별 건물 USD 파일을 Stage 패널에서 Reference로 불러옵니다.",
+        "배치가 끝나면 전체적인 레이아웃을 확인합니다."
+      ]
+    },
+    {
+      "title": "팀 프로젝트 에셋 협업",
+      "steps": [
+        "동료가 업데이트한 캐릭터 USD 파일을 내 씬에 Reference로 연결합니다.",
+        "동료가 파일을 수정하면 내 씬에 실시간으로 변경 사항이 반영되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "참조된(Referenced) 에셋 내부의 요소를 직접 수정하려 함 → 원본 USD 파일을 열어서 수정하거나 SubLayer/Variant를 사용해야 합니다.",
+    "모든 무거운 에셋을 Payload 처리하지 않고 Reference로만 불러와 메모리가 부족해짐 → 거대한 에셋은 Payload로 전환하여 Unload 상태로 작업합니다."
+  ],
+  "related": [
+    "Sublayers",
+    "Variants",
+    "USD Composer",
+    "Stage"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20references%20and%20payloads",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Omniverse Create",
+    "USD Composer"
+  ],
+  "at": "2026-10-29T13:34:14.087368+00:00"
+}
