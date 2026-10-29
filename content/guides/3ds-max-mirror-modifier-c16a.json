@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-mirror-modifier-c16a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Mirror modifier",
+  "title": "Mirror — 뒤집어 복제",
+  "summary": "Mirror 모디파이어는 선택한 오브젝트나 서브오브젝트를 특정 축 기준으로 대칭 복사하여 반대편 형태를 만듭니다. 거울에 비친 것처럼 정확한 좌우 대칭 모델링을 빠르게 제작할 때 사용합니다.",
+  "when": [
+    "캐릭터나 차량의 좌우 대칭 구조를 반쪽만 만들고 복사할 때",
+    "건축물이나 프롭의 대칭형 장식을 한 번에 배치할 때",
+    "원본을 유지한 채 대칭된 형태의 추가 지오메트리를 생성할 때"
+  ],
+  "steps": [
+    "대칭 복사할 오브젝트를 선택합니다.",
+    "Command Panel의 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Mirror 모디파이어를 선택합니다.",
+    "Parameters rollout에서 Mirror Axis를 설정하여 대칭할 축(X, Y, Z)을 선택합니다.",
+    " 필요에 따라 Offset 값을 조절하여 대칭 복사본의 위치를 이동합니다."
+  ],
+  "params": [
+    {
+      "name": "Mirror Axis",
+      "desc": "대칭 기준이 될 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "기준 평면으로부터 대칭된 오브젝트의 거리를 조절합니다."
+    },
+    {
+      "name": "Copy",
+      "desc": "체크하면 원본을 유지한 채 대칭된 복사본을 생성합니다."
+    },
+    {
+      "name": "About Pivot",
+      "desc": "오브젝트의 피벗 포인트를 기준으로 대칭을 수행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 좌우 대칭 바디 제작",
+      "steps": [
+        "자동차 모델링의 절반을 Edit Poly로 완성합니다.",
+        "Modifier List에서 Mirror 모디파이어를 적용합니다.",
+        "Mirror Axis를 X축으로 설정하고 복사본을 생성합니다."
+      ]
+    },
+    {
+      "title": "건축물 기둥 복제",
+      "steps": [
+        "배치된 기둥 오브젝트에 Mirror 모디파이어를 적용합니다.",
+        "Axis를 지정하고 Offset 값을 높여 간격을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗 위치가 오브젝트 중심에 있지 않아 대칭이 엉뚱한 곳에 생김 → Hierarchy 탭에서 Center to Object를 실행하여 피벗을 중앙으로 정렬합니다.",
+    "대칭 면의 중심 버텍스가 겹치지 않고 벌어짐 → Mirror 후 Symmetry 모디파이어를 사용하거나 Weld Threshold 값을 조절합니다."
+  ],
+  "related": [
+    "Symmetry",
+    "Edit Poly",
+    "Attach",
+    "Slice Plane"
+  ],
+  "videos": [
+    {
+      "id": "6VqperqVNNM",
+      "title": "3ds Max Tutorial - Mirror Modifier",
+      "author": "eternal3lade"
+    },
+    {
+      "id": "KO0y4z_vPyw",
+      "title": "3ds max tips and tricks - Symmetry",
+      "author": "Archidea"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Mirror%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Mirror"
+  ],
+  "at": "2026-10-29T11:53:39.849892+00:00"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "nvidia-omniverse-kit-app-template-12cd",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Kit App Template",
+  "title": "Kit App Template — 나만의 Omniverse 앱 시작",
+  "summary": "NVIDIA Omniverse Kit App Template은 GPU 가속 기반의 OpenUSD 데스크톱 및 클라우드 스트리밍 애플리케이션 개발을 빠르게 시작할 수 있도록 돕는 공식 툴킷입니다.",
+  "when": [
+    "OpenUSD 기반의 커스텀 3D 데스크톱 애플리케이션을 직접 개발하고 싶을 때",
+    "NVIDIA Omniverse Kit SDK를 활용해 Prototype이나 확장 프로그램(Extension)을 만들 때",
+    "고성능 3D 시뮬레이션 및 AI 학습용 합성 데이터 생성 툴을 구축할 때"
+  ],
+  "steps": [
+    "시스템 요구사항 확인 (Windows 10/11 또는 Linux, NVIDIA RTX GPU, Driver 버전 확인)",
+    "필수 소프트웨어 설치 (Git, C++ 개발용 Microsoft Visual Studio 또는 Linux build-essential)",
+    "GitHub에서 kit-app-template 저장소 복제 (Clone) 또는 다운로드",
+    "터미널 또는 명령 Prompt에서 저장소 폴더로 이동",
+    "repo.bat (Windows) 또는 repo.sh (Linux) Script를 실행하여 초기 빌드 및 종속성 다운로드 수행",
+    "VSCode 등 선호하는 IDE를 열어 템플릿 구조 확인 및 커스텀 확장 프로그램 개발 시작"
+  ],
+  "params": [
+    {
+      "name": "templates",
+      "desc": "애플리케이션 개발을 빠르게 시작할 수 있도록 제공되는 기본 템플릿 폴더"
+    },
+    {
+      "name": "extensions",
+      "desc": "동적 UI 생성 및 OpenUSD 데이터 제어를 위한 커스텀 확장 프로그램 저장 폴더"
+    },
+    {
+      "name": "tools",
+      "desc": "빌드 및 개발 프로세스를 간소화하기 위해 제공되는 유틸리티 도구 모음"
+    },
+    {
+      "name": "premake5.lua",
+      "desc": "프로젝트 빌드 구성을 정의하는 설정 파일"
+    },
+    {
+      "name": "repo.toml",
+      "desc": "저장소 전체의 패키지 종속성과 빌드 옵션을 관리하는 설정 파일"
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 OpenUSD 뷰어 애플리케이션 빌드",
+      "steps": [
+        "kit-app-template 저장소를 로컬에 클론합니다.",
+        "repo.bat 또는 repo.sh를 실행하여 초기 환경을 설정합니다.",
+        "templates 폴더 내의 기본 뷰어 템플릿을 수정하여 USD 파일을 불러오는 로직을 작성합니다."
+      ]
+    },
+    {
+      "title": "확장 프로그램(Extension) 추가 및 테스트",
+      "steps": [
+        "extensions 폴더 아래에 새로운 커스텀 확장 폴더를 생성합니다.",
+        "Python 또는 C++을 사용하여 UI 패널과 OpenUSD 조작 코드를 작성합니다.",
+        "Kit 앱을 실행하여 확장 프로그램이 정상적으로 로드되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "그래픽 카드 Driver 버전 불일치 → NVIDIA 공식 문서에서 요구하는 최소 Driver 버전(Windows >=551.78, Linux >=550.54.15) 이상으로 업데이트합니다.",
+    "C++ 워크로드 누락 (Windows) → Visual Studio Installer에서 'Desktop development with C++' 워크로드와 Windows SDK가 설치되었는지 확인합니다.",
+    "인터넷 연결 끊김 → Kit SDK, 확장 프로그램, 툴 다운로드를 위해 빌드 중 안정적인 인터넷 연결이 필수입니다."
+  ],
+  "related": [
+    "OpenUSD",
+    "NVIDIA Omniverse Kit SDK",
+    "Visual Studio",
+    "NVIDIA Container Toolkit"
+  ],
+  "videos": [
+    {
+      "id": "asuBZhSHvL4",
+      "title": "NVIDIA Omniverse Kit App Template Overview",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "UPhgP6UKgvM",
+      "title": "Build Custom Omniverse Apps by Installing the Kit App Template",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://github.com/NVIDIA-Omniverse/kit-app-template",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Windows 10",
+    "Linux",
+    "NVIDIA RTX GPU",
+    "Driver",
+    "Git",
+    "Microsoft Visual Studio"
+  ],
+  "at": "2026-10-29T11:53:34.220578+00:00"
+}
