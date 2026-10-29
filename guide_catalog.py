@@ -601,6 +601,8 @@ UV|UV Master Control Painting|UV Master 경계 지정
 기타|Scripting with ZScript basics|ZScript 기초
 """,
 "NVIDIA Omniverse": """
+입문|Omniverse Launcher deprecation and what to use now|런처 지원 종료(2025) 이후 무엇을 쓰나
+입문|Building USD Composer from Kit App Template|Kit App Template 으로 USD Composer 빌드하기
 입문|What is NVIDIA Omniverse|Omniverse 란 — 무엇을 하는 플랫폼인가
 입문|Omniverse Kit SDK overview|Kit SDK — Omniverse 앱의 바탕
 입문|USD Composer overview|USD Composer — 장면 조립·렌더 앱
@@ -696,8 +698,6 @@ AI|Generative AI texture and asset tools in Omniverse|생성형 AI 텍스처·�
 문제 해결|Scale and axis problems on import|불러오니 크기·방향이 틀릴 때
 문제 해결|Shader compilation wait|셰이더 컴파일 대기 줄이기
 문제 해결|Memory (VRAM) out errors|VRAM 부족 오류
-입문|Omniverse Launcher deprecation and what to use now|런처 지원 종료(2025) 이후 무엇을 쓰나
-입문|Building USD Composer from Kit App Template|Kit App Template 으로 USD Composer 빌드하기
 OpenUSD|USD schemas (typed and applied)|스키마 — 형식·적용 스키마 차이
 OpenUSD|USD collections and light linking|컬렉션·라이트 링크
 연결|NVIDIA Omniverse Blender add-on and USD settings|Blender USD 내보내기 옵션 정리
@@ -806,11 +806,21 @@ OpenUSD|USD collections and light linking|컬렉션·라이트 링크
 }
 
 
+# 공식 문서 본문을 근거로 쓸 수 있는 주제 (영문 이름 → 주소). 확인된 주소만 (2026-10 본문 읽힘 확인)
+URLS = {
+    "Omniverse Launcher deprecation and what to use now": "https://developer.nvidia.com/omniverse/legacy-tools",
+    "Installing Omniverse apps without Launcher": "https://developer.nvidia.com/omniverse/legacy-tools",
+    "Building USD Composer from Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
+    "Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
+}
+FIRST = ("NVIDIA Omniverse",)  # 도구 순서에서 먼저 (운영자 요청 — 한국어 자료가 부족한 분야)
+
+
 def topics() -> list[tuple]:
     out = []
-    for tool, block in RAW.items():
+    for tool, block in sorted(RAW.items(), key=lambda kv: kv[0] not in FIRST):
         for line in block.strip().splitlines():
             parts = [p.strip() for p in line.split("|")]
             if len(parts) == 3 and parts[1] != "placeholder":
-                out.append((tool, parts[0], parts[1], parts[2], None))
+                out.append((tool, parts[0], parts[1], parts[2], URLS.get(parts[1])))
     return out

@@ -1,0 +1,89 @@
+{
+  "id": "nvidia-omniverse-omniverse-launcher-deprecation-and-what-to--7051",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse Launcher deprecation and what to use now",
+  "title": "런처 지원 종료(2025) 이후 무엇을 쓰나",
+  "summary": "NVIDIA Omniverse Launcher가 2025년 10월 1일부로 공식 종료되었습니다. 이제 주요 리소스와 애플리케이션을 GitHub 및 NVIDIA NGC에서 직접 이용하는 방법과 대체 경로를 안내합니다.",
+  "when": [
+    "기존 Omniverse Launcher가 종료되어 최신 앱과 리소스를 어디서 받아야 할지 모를 때",
+    "Blender, Unreal Engine, Autodesk Maya 등 외부 DCC 툴과 OpenUSD 워크플로우를 연동할 때",
+    "NVIDIA Isaac Sim, Audio2Face, RTX Remix 등의 개발자 툴킷과 템플릿에 접근할 때"
+  ],
+  "steps": [
+    "공식 발표 및 블로그를 통해 Omniverse Launcher 지원 종료(2025년 10월 1일) 내용을 확인합니다.",
+    "필요한 애플리케이션과 템플릿을 찾기 위해 NVIDIA NGC Catalog 또는 GitHub에 접속합니다.",
+    "GitHub에서 Omniverse Kit App Template 또는 USD Composer App Template 리포지토리를 클론합니다.",
+    "NVIDIA NGC에서 필요한 커넥터(예: Autodesk USD for 3ds Max, Autodesk USD for Maya 등)를 다운로드합니다.",
+    "애플리케이션 제작사의 네이티브 USD 지원 또는 최신 커넥터를 활용하여 워크플로우를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "NVIDIA NGC",
+      "desc": "컨테이너, AI 모델, SDK 및 3D 애플리케이션 리소스를 제공하는 허브"
+    },
+    {
+      "name": "GitHub",
+      "desc": "OpenUSD 기반 애플리케이션 개발을 위한 템플릿과 소스 코드 저장소"
+    },
+    {
+      "name": "Omniverse Kit App Template",
+      "desc": "OpenUSD 기반 앱 개발을 간소화하는 툴과 템플릿 모음"
+    },
+    {
+      "name": "NVIDIA Isaac Sim",
+      "desc": "Omniverse 기반의 오픈소스 로봇 시뮬레이션 레퍼런스 프레임워크"
+    },
+    {
+      "name": "Audio2Face",
+      "desc": "오디오 입력으로부터 실시간 생동감 있는 얼굴 애니메이션을 생성하는 AI 기술"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Blender에서 USD 브랜치 및 커넥터 사용하기",
+      "steps": [
+        "GitHub 및 NGC Catalog에서 Blender 4.2 Alpha USD Branch에 접속합니다.",
+        "Omniverse 커넥터와 애드온이 포함된 실험적 빌드를 다운로드합니다.",
+        "Blender 환경설정에서 USD 관련 애드온을 활성화하고 씬을 내보냅니다."
+      ]
+    },
+    {
+      "title": "Autodesk Maya에서 OpenUSD 워크플로우 연동",
+      "steps": [
+        "NVIDIA NGC 또는 GitHub에서 Autodesk USD for Maya 커넥터를 확인합니다.",
+        "MayaUSD 플러그인을 통해 모델 및 머티리얼 데이터를 OpenUSD 형식으로 내보냅니다.",
+        "USD Composer나 다른 뷰어에서 씬을 불러와 협업을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "종료된 Launcher 찾기 → 2025년 10월 1일부로 종료되었으므로 NVIDIA NGC와 GitHub를 직접 방문하세요.",
+    "구형 EOL 앱 사용 시도 → Omniverse Create XR, Code 등 지원이 종료된(EOL) 앱 대신 최신 App Template과 네이티브 USD 지원을 사용하세요.",
+    "서드파티 커넥터 누락 → DCC 툴 연동 시 제작사에서 제공하는 네이티브 USD 지원 또는 최신 NGC 커넥터를 우선 확인하세요."
+  ],
+  "related": [
+    "NVIDIA Isaac Sim",
+    "NVIDIA RTX Remix",
+    "Audio2Face",
+    "Omniverse Kit"
+  ],
+  "videos": [
+    {
+      "id": "Uv2zHjJhN0U",
+      "title": "NVIDIA Omniverse Launcher Deprecation: What You Need to Know",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "l6V7xPoNrdA",
+      "title": "Installation Guide: Omniverse Launcher with ActorCore | ActorCore Tutorial",
+      "author": "Reallusion"
+    }
+  ],
+  "doc": "https://developer.nvidia.com/omniverse/legacy-tools",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-29T11:05:00.999760+00:00"
+}

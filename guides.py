@@ -339,6 +339,7 @@ def pending() -> list[tuple]:
     for t in todo:
         by_tool.setdefault(t[0], []).append(t)
     out = []
+    by_tool = dict(sorted(by_tool.items(), key=lambda kv: kv[0] not in guide_catalog.FIRST))
     while any(by_tool.values()):
         for q in by_tool.values():
             if q:
