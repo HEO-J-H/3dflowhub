@@ -1,0 +1,54 @@
+{
+  "id": "blender-4-4-962de",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "4.4",
+  "source": "https://developer.blender.org/docs/release_notes/4.4/",
+  "title": "Blender 4.4 바뀐 점 정리",
+  "summary": "Blender 4.4가 2025년 3월 18일에 출시되어 애니메이션 슬롯 시스템 도입, CPU 컴포지터 전면 재작성, 포즈 라이브러리 개선 등 강력한 기능 업데이트를 선보였습니다. 구버전 파일과의 호환성 주의 사항 및 파이프라인 라이브러리 업그레이드가 포함되어 있습니다.",
+  "highlights": [
+    {
+      "area": "Animation & Rigging",
+      "change": "슬롯(Slots) 개념이 도입되어 하나의 Action에 여러 데이터의 애니메이션 저장 가능",
+      "why": "오브젝트와 형태 키(Shape Key) 등의 애니메이션을 더욱 유연하게 관리할 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "CPU 컴포지터 전면 재작성 및 정수 소켓(Integer sockets) 지원",
+      "why": "특정 노드 구성에서 성능이 크게 향상되고 메모리 사용량이 줄어듭니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "변환(Transformations) 연산이 실제 처리될 때까지 지연되어 비파괴적으로 작동",
+      "why": "이미지를 축소했다가 다시 키워도 픽셀화되지 않아 화질 저하를 방지합니다."
+    },
+    {
+      "area": "Pose Library",
+      "change": "외부 자산 라이브러리 지원 및 슬롯을 통한 다중 아마추어 포즈 저장 기능 추가",
+      "why": "포즈 에셋 워크플로우가 훨씬 부드러워지고 외부 라이브러리 관리가 편리해집니다."
+    },
+    {
+      "area": "Graph Editor",
+      "change": "F-Curve 노이즈 모디파이어 알고리즘 업데이트 (-0.5/0.5 범위를 넘지 않음)",
+      "why": "Lacunarity와 Roughness 속성이 추가되어 노이즈 제어가 더 정교해집니다."
+    },
+    {
+      "area": "Pipeline & I/O",
+      "change": "VFX 플랫폼 2025에 맞춰 MaterialX, OpenColorIO, OpenEXR 등 주요 라이브러리 업그레이드",
+      "why": "최신 산업 표준 파이프라인과의 호환성이 강화됩니다."
+    }
+  ],
+  "breaking": [
+    "구버전 Action이 슬롯 구조로 업그레이드되며, Blender 4.3 이하에서 저장 시 두 번째 이후 슬롯과 애니메이션 데이터가 유실될 수 있습니다.",
+    "파이프라인 API의 변경(Actions, 시퀀서 스트립, 서브클래싱 등)으로 인해 기존 스크립트나 애드온에 브레이킹 체인지가 발생합니다.",
+    "포즈 에셋을 외부 라이브러리로 생성할 경우 에셋당 하나의 파일로 저장되며 Blender에서 직접 열어 편집할 수 없습니다."
+  ],
+  "keywords": [
+    "Blender 4.4",
+    "블렌더 4.4 업데이트",
+    "슬롯 액션",
+    "CPU 컴포지터",
+    "포즈 라이브러리"
+  ],
+  "at": "2026-10-29T17:26:18+00:00"
+}
