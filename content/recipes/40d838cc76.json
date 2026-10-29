@@ -1,0 +1,56 @@
+{
+  "id": "40d838cc76",
+  "domain": "AI 3D",
+  "category": "NVIDIA Omniverse",
+  "host": "Blender",
+  "lang": "python",
+  "title": "Blender AI 에셋 원클릭 정리 애드온",
+  "problem": "생성형 AI와 NVIDIA Omniverse 기반 시뮬레이션 환경에서 가져온 3D 에셋은 회전/크기 값이 틀어져 있거나 불필요한 버텍스가 많아 수작업 정리가 필수적입니다. 이 애드온은 선택한 메쉬의 스케일 적용, 중복 버텍스 제거, 고립 버텍스 정리, 머티리얼 할당을 한 번에 자동화합니다.",
+  "pipeline": [
+    {
+      "tool": "Blender Python API (bpy)",
+      "action": "선택된 메쉬 객체 순회 및 편집 모드 진입"
+    },
+    {
+      "tool": "Mesh Clean-up",
+      "action": "중복 버텍스 및 고립 버텍스(Loose Vertices) 제거"
+    },
+    {
+      "tool": "Transform Apply",
+      "action": "회전 및 크기(Rotation/Scale) 값 적용"
+    },
+    {
+      "tool": "Material Assignment",
+      "action": "머티리얼이 없는 메쉬에 기본 재질 생성 및 할당"
+    }
+  ],
+  "script": "import bpy\n\nbl_info = {\n    \"name\": \"AI Asset Cleaner\",\n    \"author\": \"3dflowhub\",\n    \"version\": (1, 0, 0),\n    \"blender\": (4, 0, 0),\n    \"location\": \"View3D > Sidebar > AI Cleaner\",\n    \"description\": \"Cleans AI-generated meshes for production\",\n    \"category\": \"Object\",\n}\n\nclass AIASSET_OT_clean_mesh(bpy.types.Operator):\n    bl_idname = \"ai_asset.clean_mesh\"\n    bl_label = \"Clean Selected Meshes\"\n    bl_description = \"Applies transforms, removes loose and duplicate vertices, and ensures materials exist\"\n\n    def execute(self, context):\n        selected_objects = [obj for obj in context.selected_objects if obj.type == 'MESH']\n        if not selected_objects:\n            self.report({'WARNING'}, \"No mesh objects selected\")\n            return {'CANCELLED'}\n\n        for obj in selected_objects:\n            context.view_layer.objects.active = obj\n            \n            # Apply rotation and scale\n            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)\n            \n            # Enter edit mode to clean mesh data\n            bpy.ops.object.mode_set(mode='EDIT')\n            bpy.ops.mesh.select_all(action='SELECT')\n            \n            # Remove duplicate vertices\n            bpy.ops.mesh.remove_doubles(threshold=0.0001)\n            \n            # Delete loose vertices\n            bpy.ops.mesh.delete_loose()\n            \n            # Return to object mode\n            bpy.ops.object.mode_set(mode='OBJECT')\n            \n            # Ensure material exists\n            if len(obj.data.materials) == 0:\n                mat = bpy.data.materials.new(name=f\"{obj.name}_Mat\")\n                obj.data.materials.append(mat)\n\n        self.report({'INFO'}, f\"Cleaned {len(selected_objects)} mesh objects successfully.\")\n        return {'FINISHED'}\n\nclass AIASSET_PT_panel(bpy.types.Panel):\n    bl_label = \"AI Asset Cleaner\"\n    bl_idname = \"AIASSET_PT_panel\"\n    bl_space_type = 'VIEW_3D'\n    bl_region_type = 'UI'\n    bl_category = \"AI Cleaner\"\n\n    def draw(self, context):\n        layout = self.layout\n        layout.operator(\"ai_asset.clean_mesh\", icon='WRENCH')\n\nclasses = (\n    AIASSET_OT_clean_mesh,\n    AIASSET_PT_panel,\n)\n\ndef register():\n    for cls in classes:\n        bpy.utils.register_class(cls)\n\ndef unregister():\n    for cls in classes:\n        bpy.utils.unregister_class(cls)\n\nif __name__ == \"__main__\":\n    register()",
+  "install": [
+    "위 Script 코드를 복사하여 ai_asset_cleaner.py 파일로 저장합니다.",
+    "Blender를 실행하고 Edit > Preferences > Add-ons로 이동합니다.",
+    "Install 버튼을 눌러 저장한 py 파일을 선택하고 활성화합니다.",
+    "3D 뷰포트 우측 사이드바(N 키)에서 AI Cleaner 탭을 확인합니다."
+  ],
+  "usage": [
+    "정리할 3D 메쉬 객체들을 선택합니다.",
+    "3D 뷰포트 우측 패널의 AI Cleaner 탭을 엽니다.",
+    "'Clean Selected Meshes' 버튼을 클릭합니다.",
+    "오브젝트의 스케일과 회전, 버텍스 상태가 정리된 것을 확인합니다."
+  ],
+  "limits": [
+    "메쉬 객체 외의 캄메라, 라이트, 커브 등은 처리하지 않습니다.",
+    "네트워크나 외부 AI API와 통신하지 않고 로컬 데이터만 처리합니다."
+  ],
+  "sources": [
+    "2026-10-29-ad9436982cb0f776",
+    "2026-10-29-79428cf43613e413"
+  ],
+  "expect": [
+    "transforms_applied",
+    "no_loose_verts",
+    "no_duplicate_verts",
+    "keeps_objects"
+  ],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-29T21:55:16+00:00"
+}
