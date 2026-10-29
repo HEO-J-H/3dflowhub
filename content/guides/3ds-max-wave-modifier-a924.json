@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-wave-modifier-a924",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Wave modifier",
+  "title": "Wave — 물결 변형",
+  "summary": "Wave 모디파이어는 오브젝트의 표면에 잔잔한 물결이나 주기적인 파동 형태의 변형을 주는 도구입니다. 깃발이 바람에 날리거나 물결이 출렁이는 효과를 손쉽게 만들 수 있습니다.",
+  "when": [
+    "바람에 휘날리는 깃발이나 커튼을 표현할 때",
+    "잔잔한 물결이나 출렁이는 수면을 만들 때",
+    "애니메이션을 통해 주기적인 파동을 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Command Panel의 Create 탭에서 Plane 또는 변형할 오브젝트를 생성합니다.",
+    "오브젝트의 크기에 비해 충분한 세그먼트(Segments) 수로 나눕니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Wave를 선택합니다.",
+    "Parameters 롤아웃에서 Amplitude 1과 Amplitude 2, Wavelength 값을 조절하여 파동의 크기와 주기를 설정합니다.",
+    "Phase 값을 애니메이션하여 파도가 움직이는 효과를 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Amplitude 1",
+      "desc": "첫 번째 축 방향의 파동 높이를 조절합니다."
+    },
+    {
+      "name": "Amplitude 2",
+      "desc": "두 번째 축 방향의 파동 높이를 조절합니다."
+    },
+    {
+      "name": "Wavelength",
+      "desc": "파동의 파장(너비)을 조절하여 물결의 촘촘함을 결정합니다."
+    },
+    {
+      "name": "Phase",
+      "desc": "파동의 위상을 변경하여 애니메이션 움직임을 만듭니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "파동이 영향을 미치는 반경을 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바람에 날리는 깃발",
+      "steps": [
+        "충분한 세그먼트를 가진 Plane 오브젝트를 생성합니다.",
+        "Modifier List에서 Wave 모디파이어를 적용합니다.",
+        "Amplitude 값을 키워 파동의 높이를 올리고, Phase에 키프레임을 주어 펄럭이는 애니메이션을 만듭니다."
+      ]
+    },
+    {
+      "title": "출렁이는 수면",
+      "steps": [
+        "Top 뷰에서 세그먼트가 촘촘한 Plane을 생성합니다.",
+        "Wave 모디파이어를 적용한 뒤 Amplitude 1과 2의 값을 다르게 설정합니다.",
+        "자연스러운 교차 파동 형태의 물결을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 구부러지지 않고 꺾임 → 세그먼트(Segments)가 부족해서 발생하는 현상이므로 세그먼트를 늘려줍니다.",
+    "변형이 너무 미세함 → Amplitude 값이 너무 작기 때문이므로 값을 키워줍니다.",
+    "전체 오브젝트가 통째로 움직임 → Gizmo를 이동하거나 회전하여 파동의 중심 위치와 방향을 조절해야 합니다."
+  ],
+  "related": [
+    "Ripple",
+    "Noise",
+    "Bend",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "0KDjABmv0gs",
+      "title": "Exploring Noise, Wave, and Ripple Modifiers in 3ds Max #shorts #3dsmax #learning",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "PkmYJIW_J6I",
+      "title": "how to create wave with #3dsmax and animate #shorts #3dsmax #3dart #3dmodeling",
+      "author": "Safa Rgaieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Wave%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Plane",
+    "Segments",
+    "Modify",
+    "Modifier List"
+  ],
+  "at": "2026-10-29T00:01:06.599951+00:00"
+}

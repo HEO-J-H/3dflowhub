@@ -1,0 +1,91 @@
+{
+  "id": "houdini-circle-sop-a1a7",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Circle SOP",
+  "title": "Circle — 원",
+  "summary": "Circle SOP는 지정된 축과 반경을 가진 2D 원형이나 원호를 생성하는 기본 노드입니다. 모델링의 기준이 되는 커브나 파이프의 단면을 만들 때 철사를 구부리듯 사용합니다.",
+  "when": [
+    "원형 파이프나 케이블의 단면 프로파일을 만들 때",
+    "회전(Revolve)이나 스윕(Sweep) 노드의 기준이 되는 원형 커브가 필요할 때",
+    "원형 배열이나 가이드라인 배치를 위한 위치 좌표를 잡을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 circle을 입력하고 Circle 노드를 선택해 생성합니다.",
+    "파라미터 창(Parameter Pane)에서 Primitive Type을 Polygon이나 NURBS로 변경합니다.",
+    "Radius 파라미터로 원의 크기를 조절합니다.",
+    "Rows나 Divisons 값을 조절하여 해상도(폴리곤 수)를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Primitive Type",
+      "desc": "생성할 지오메트리의 형태(Polygon, NURBS, Primitive 등)를 결정합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "원의 X축과 Y축 반경을 조절하여 크기를 키우거나 줄입니다."
+    },
+    {
+      "name": "Rows",
+      "desc": "원형 폴리곤의 분할 수(세그먼트)를 조절하여 부드러움을 결정합니다."
+    },
+    {
+      "name": "Orientation",
+      "desc": "원이 생성되는 기준 축(XY, YZ, ZX)을 설정합니다."
+    },
+    {
+      "name": "Arc",
+      "desc": "완전한 원 대신 부채꼴 형태의 원호로 잘라냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원형 파이프 단면 만들기",
+      "steps": [
+        "Circle SOP를 생성하고 Primitive Type을 Polygon으로 설정합니다.",
+        "Radius 값을 작게(예: 0.2) 입력합니다.",
+        "Extrude SOP와 연결하여 입체적인 파이프를 만듭니다."
+      ]
+    },
+    {
+      "title": "회전체(Vase) 베이스 라인",
+      "steps": [
+        "Circle SOP로 밑면 크기의 원을 만듭니다.",
+        "Transform SOP로 위로 이동시키고 크기를 조절합니다.",
+        "Skin SOP나 Loft 방식으로 연결해 그릇 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 수가 너무 적어 원이 각져 보이는 경우 → Rows 값을 높여 세그먼트를 추가합니다.",
+    "원이 원하는 방향으로 눕지 않은 경우 → Orientation 파라미터에서 축(Axis)을 변경합니다."
+  ],
+  "related": [
+    "Tube SOP",
+    "Curve SOP",
+    "Extrude SOP",
+    "Revolve SOP"
+  ],
+  "videos": [
+    {
+      "id": "39yxtLb7UkI",
+      "title": "Circle SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "nxGoIiisNZs",
+      "title": "Houdini Circle pattern tutorial",
+      "author": "Emīls Geršinskis - Ješinskis"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Circle%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Circle"
+  ],
+  "at": "2026-10-29T00:01:14.037674+00:00"
+}

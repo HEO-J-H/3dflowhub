@@ -1,0 +1,100 @@
+{
+  "id": "blender-offset-edge-slide-9a63",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Offset Edge Slide",
+  "title": "Offset Edge Slide — 양쪽 엣지 추가",
+  "summary": "선택한 에지를 기준으로 평행한 새로운 에지를 양옆에 동시에 생성하며 이동시키는 도구입니다. 모델링의 흐름을 유지하면서 디테일을 추가할 때 유용합니다.",
+  "when": [
+    "하드 표면 모델링에서 패널라인이나 이음새를 표현할 때",
+    "서브디비전 표면의 형태를 단단하게 잡기 위해 지오메트리를 추가할 때",
+    "기존 에지 흐름을 해치지 않고 대칭적인 루프 컷을 만들고 싶을 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Edge Select 모드(숫자 2 키)로 전환합니다.",
+    "Alt + 클릭으로 에지 루프(Edge Loop)를 선택합니다.",
+    "상단 메뉴에서 Edge → Offset Edge Slide를 선택하거나 마우스 우클릭 메뉴에서 실행합니다.",
+    "마우스를 움직여 에지의 간격과 위치를 조절하고 클릭하여 확정합니다.",
+    "F 키(또는 하단 Operator Panel)를 눌러 세부 옵션을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "오프셋 에지가 이동하는 위치와 비율을 조절합니다."
+    },
+    {
+      "name": "Correction",
+      "desc": "왜곡된 UV나 메쉬 비율을 보정하며 슬라이드합니다."
+    },
+    {
+      "name": "Even",
+      "desc": "인접한 에지의 길이에 맞춰 균일한 간격을 유지합니다."
+    },
+    {
+      "name": "Mirrored",
+      "desc": "대칭 구조로 에지를 생성하고 슬라이드합니다."
+    },
+    {
+      "name": "Flip",
+      "desc": "슬라이드 방향을 반대로 뒤집습니다."
+    },
+    {
+      "name": "Clamp",
+      "desc": "다른 에지 한계를 넘어가지 않도록 이동 범위를 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 모델링 패널라인 제작",
+      "steps": [
+        "에지 루프를 선택하고 Offset Edge Slide를 실행합니다.",
+        "Factor 값을 조절하여 좁은 간격의 이음새 라인을 만듭니다.",
+        "Extrude나 Inset을 적용해 입체감을 더합니다."
+      ]
+    },
+    {
+      "title": "하드 표면 서브디비전 각 살리기",
+      "steps": [
+        "각을 세우고 싶은 모서리 근처의 에지 루프를 선택합니다.",
+        "Offset Edge Slide로 양옆에 지오메트리를 바짝 붙여 생성합니다.",
+        "Subdivision Surface 모디파이어를 적용해 단단한 모서리를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 적용되지 않아 간격이 찌그러짐 → Object Mode에서 Ctrl + A 누르고 All Transforms 적용",
+    "에지 루프가 끊어져 전체 선택이 안 됨 → Alt + 클릭 대신 Shift + Alt + 클릭으로 끊긴 구간을 연결하여 선택"
+  ],
+  "related": [
+    "Loop Cut",
+    "Edge Slide",
+    "Bevel",
+    "Inset"
+  ],
+  "videos": [
+    {
+      "id": "y7EuYx9CaTU",
+      "title": "Offset Edge Slide - Blender Secrets",
+      "author": "Blender Secrets"
+    },
+    {
+      "id": "OiDNH7CwTHQ",
+      "title": "Blender Tip: Offset Edge Slide Explained",
+      "author": "RenderHub 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Offset%20Edge%20Slide",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Edge Select",
+    "Edge Loop",
+    "Edge",
+    "Offset Edge Slide"
+  ],
+  "at": "2026-10-29T00:01:10.247013+00:00"
+}
