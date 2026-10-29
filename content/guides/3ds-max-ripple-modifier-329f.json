@@ -1,0 +1,101 @@
+{
+  "id": "3ds-max-ripple-modifier-329f",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Ripple modifier",
+  "title": "Ripple — 동심원 물결",
+  "summary": "Ripple 모디파이어는 오브젝트 표면에 물결 같은 파동 형태의 변형을 주는 도구입니다. 특정 지점을 중심으로 위아래로 출렁이는 애니메이션이나 정적인 울렁임을 만들 때 유용합니다.",
+  "when": [
+    "잔잔하거나 출렁이는 물결 표면을 표현할 때",
+    "깃발이나 천이 바람에 흔들리는 효과를 낼 때",
+    "지면이 갈라지거나 충격파가 퍼지는 효과를 만들 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭으로 이동해 Plane 등 변형할 오브젝트를 생성합니다.",
+    "Ripple 효과가 부드럽게 나타나도록 Length Segments와 Width Segments 값을 충분히 높여줍니다 (예: 30 이상).",
+    "오브젝트를 선택한 상태로 Modify 탭으로 이동합니다.",
+    "Modifier List에서 Ripple을 찾아 선택합니다.",
+    "Parameters 롤아웃에서 Amplitude 1과 Amplitude 2 값을 조절해 파동의 높낮이를 설정합니다.",
+    "Wave Length 값을 조절해 파동의 간격을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Amplitude 1",
+      "desc": "첫 번째 축 방향의 파동 높낮이를 조절합니다."
+    },
+    {
+      "name": "Amplitude 2",
+      "desc": "두 번째 축 방향의 파동 높낮이를 조절합니다."
+    },
+    {
+      "name": "Wave Length",
+      "desc": "파동과 파동 사이의 간격을 조절합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "파동이 미치는 반경을 제한합니다."
+    },
+    {
+      "name": "Phase",
+      "desc": "파동의 위치를 이동시키며, 애니메이션을 줄 때 주로 사용합니다."
+    },
+    {
+      "name": "Decay",
+      "desc": "중심에서 멀어질수록 파동의 크기가 줄어들게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물가에 떨어진 물방울 파동",
+      "steps": [
+        "Plane 오브젝트를 만들고 세그먼트를 50 이상으로 촘촘하게 설정합니다.",
+        "Ripple 모디파이어를 적용하고 Amplitude 1과 2를 적당히 높여줍니다.",
+        "Wave Length를 좁게 설정해 잔잔한 원형 파동을 만듭니다.",
+        "Phase 값을 조절해 파동이 퍼져나가는 애니메이션을 설정합니다."
+      ]
+    },
+    {
+      "title": "울렁이는 깃발 효과",
+      "steps": [
+        "세그먼트가 충분한 Plane 오브젝트를 세워 깃발 형태로 만듭니다.",
+        "Ripple 모디파이어를 적용하고 Amplitude 1 값만 높여 한쪽 방향으로 흔들리게 합니다.",
+        "Wave Length와 Phase 값을 조절해 바람에 날리는 듯한 주름을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 파동이 꺾이거나 깨짐 → Length Segments와 Width Segments 값을 높여줍니다.",
+    "효과가 너무 미미함 → Amplitude 1 또는 Amplitude 2 값을 더 크게 조절합니다."
+  ],
+  "related": [
+    "Wave",
+    "Noise",
+    "Bend",
+    "Displace"
+  ],
+  "videos": [
+    {
+      "id": "Oj8YtHnyySQ",
+      "title": "3DS Max Ripple Modifier | concentric rippling | Hanora 3D",
+      "author": "Hanora 3D"
+    },
+    {
+      "id": "yy9QdouCvcQ",
+      "title": "3ds Max Ripple & Wave Modifier Tutorial | Section Command + Parametric Design",
+      "author": "3D HUB"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Ripple%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Plane",
+    "Ripple",
+    "Length Segments",
+    "Width Segments"
+  ],
+  "at": "2026-10-29T00:11:09.970871+00:00"
+}

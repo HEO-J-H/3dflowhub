@@ -1,0 +1,98 @@
+{
+  "id": "blender-subdivide-8b54",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Subdivide",
+  "title": "Subdivide — 면 잘게 나누기",
+  "summary": "메시의 면과 모서리를 잘게 쪼개어 디테일을 높이고 세밀한 편집을 가능하게 하는 기본 기능입니다.",
+  "when": [
+    "로우 폴리곤 모델에 더 많은 폴리곤을 추가하여 디테일을 살리고 싶을 때",
+    "Sculpting 모드에서 브러시 디테일을 표현하기 위해 면을 촘촘하게 만들어야 할 때",
+    "지오메트리가 부족해서 루프 컷이나 엣지 외의 부드러운 변형이 안 될 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 전체 면을 선택하거나, 부분적으로 서브디비전할 면을 선택합니다.",
+    "Viewport 우클릭(또는 3D 뷰포트 상단 메뉴 Vertex / Edge / Face)에서 Subdivide를 선택합니다.",
+    "또는 3D 뷰포트 하단의 오퍼레이터 패널(Adjust Last Operation)에서 세부 옵션을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Number of Cuts",
+      "desc": "한 번에 쪼갤 분할 횟수를 설정합니다. 값이 클수록 폴리곤 수가 급증합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "분할 후 정점들을 주변 면과 조화롭게 부드러운 곡선 형태로 이동시킵니다."
+    },
+    {
+      "name": "Fractal",
+      "desc": "정점에 무작위 변위를 주어 울퉁불퉁한 지형이나 거친 표면을 만듭니다."
+    },
+    {
+      "name": "Along Normal",
+      "desc": "Fractal 적용 시 노멀(법선) 방향으로 밀어내는 정도를 조절합니다."
+    },
+    {
+      "name": "Quad/Triangle",
+      "desc": "사각형 폴리곤 사이에 삼각형을 섞어 분할할지 여부를 결정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "Fractal 노이즈의 무작위 패턴 시드 값을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우 폴리곤 캐릭터 얼굴 디테일 추가",
+      "steps": [
+        "Edit Mode에서 눈이나 입 주변의 폴리곤 면들을 선택합니다.",
+        "우클릭 후 Subdivide를 실행하여 면을 잘게 쪼갭니다.",
+        "Sculpting 모드로 전환하여 좁은 부위에 세밀한 주름이나 눈꺼풀 형태를 스컬프팅합니다."
+      ]
+    },
+    {
+      "title": "기본 구체(UV Sphere) 표면을 부드럽게 만들기",
+      "steps": [
+        "기본 UV Sphere를 생성하고 Edit Mode로 진입합니다.",
+        "전체 선택(A) 후 Subdivide를 실행해 Number of Cuts 값을 1~2로 높입니다.",
+        "Object Mode로 돌아와 Shade Smooth를 적용해 매끄러운 구체를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필요 이상으로 횟수를 높여 폴리곤 수가 폭발적으로 증가함 → Ctrl+Z 후 Number of Cuts 값을 낮추거나 Subsurf Modifier를 사용합니다.",
+    "Object Mode에서 Subdivide를 찾으려 함 → Subdivide는 Edit Mode의 메시 편집 기능이므로 반드시 Tab 키로 Edit Mode에 진입해야 합니다."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Loop Cut and Slide",
+    "Extrude",
+    "Bevel"
+  ],
+  "videos": [
+    {
+      "id": "55nkUw0WvMs",
+      "title": "How to subdivide in Blender",
+      "author": "blenderian"
+    },
+    {
+      "id": "DVcGkp5MpwU",
+      "title": "How to Subdivide in Blender",
+      "author": "My CG Tutor"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Subdivide",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Edit Mode",
+    "Viewport",
+    "Vertex",
+    "Edge",
+    "Face"
+  ],
+  "at": "2026-10-29T00:11:14.963042+00:00"
+}
