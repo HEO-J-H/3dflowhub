@@ -1,0 +1,56 @@
+{
+  "id": "blender-4-5-lts-59598",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "4.5 LTS",
+  "source": "https://developer.blender.org/docs/release_notes/4.5/",
+  "title": "Blender 4.5 LTS 바뀐 점 정리",
+  "summary": "Blender 4.5 LTS가 2025년 7월 15일 출시되었으며 2027년 7월까지 장기 지원됩니다. 애니메이션, 컴포지터 노드 개편, Cycles 및 EEVEE 렌더링 성능 향상과 함께 Vulkan 백엔드가 정식 지원 수준으로 도약했습니다.",
+  "highlights": [
+    {
+      "area": "Animation & Rigging",
+      "change": "Timeline 및 에디터에서 프레임, 초, 마커, 키프레임 등으로 플레이헤드를 스냅하는 기능 추가",
+      "why": ""
+    },
+    {
+      "area": "Compositor",
+      "change": "다양한 Shader/Geometry Nodes 계열(Vector Math, Clamp 등)이 컴포지터에 추가되고 옵션들이 인풋으로 노출",
+      "why": ""
+    },
+    {
+      "area": "Cycles",
+      "change": "OptiX 최소 Driver 버전이 535로 상향되었으며 범프 맵 터미네이터 보정과 커스텀 카메라(OSL) 지원",
+      "why": ""
+    },
+    {
+      "area": "EEVEE & Viewport",
+      "change": "Vulkan 백엔드가 OpenGL과 동등한 수준으로 성능이 향상되고 OpenXR, Subdivision 등 지원",
+      "why": ""
+    },
+    {
+      "area": "Core",
+      "change": "렌더 출력 경로 및 컴포지터 파일 출력에 {blend_name} 같은 템플릿 경로 표현식 도입",
+      "why": ""
+    },
+    {
+      "area": "Animation & Rigging",
+      "change": "버텍스 그룹 Assign 시 오토 노말라이제이션(자동 정규화) 체크박스 및 자동 반영 적용",
+      "why": ""
+    }
+  ],
+  "breaking": [
+    "macOS Intel 지원이 중단되며 이번 버전이 공식 Intel macOS 빌드를 제공하는 마지막 버전입니다.",
+    "Big Endian 플랫폼 및 블렌드 파일 포맷이 예고되었으며 Blender 5.0에서 제거될 예정입니다.",
+    "Collada Import/수출 기능이 이번 4.5 LTS를 끝으로 지원 종료되며 Blender 5.0에서 제거됩니다.",
+    "컴포지터의 Value, Color Ramp, Mix Color 등 주요 노드들이 v5.0에서 제거될 예정으로 Shader 노드 대체가 권장됩니다.",
+    "Cycles에서 OptiX 사용 시 최소 NVIDIA Driver 버전이 535 이상이어야 합니다."
+  ],
+  "keywords": [
+    "Blender 4.5 LTS",
+    "블렌더 4.5",
+    "Vulkan 뷰포트",
+    "컴포지터 노드 개편",
+    "Cycles 렌더링"
+  ],
+  "at": "2026-10-29T20:34:37+00:00"
+}
