@@ -1,0 +1,55 @@
+{
+  "id": "blender-4-3-c500e",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "4.3",
+  "source": "https://developer.blender.org/docs/release_notes/4.3/",
+  "title": "Blender 4.3 바뀐 점 정리",
+  "summary": "Blender 4.3 버전이 2024년 11월 19일에 정식 출시되었습니다. 이번 업데이트는 Geometry Nodes의 Grease Pencil 지원 및 Gizmo 도입, EEVEE의 라이트 링크 및 멀티패스 Compositing 추가, 그리고 Cycles의 새로운 볼륨 산란 함수 등 강력한 실무 기능들을 대거 포함하고 있습니다.",
+  "highlights": [
+    {
+      "area": "Animation & Rigging",
+      "change": "Properties 패널에 Action 선택기 추가 및 3D Viewport/Outliner 본(Bone) 스포이드 도입",
+      "why": "오브젝트와 본 설정을 훨씬 빠르고 직관적으로 제어할 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "EEVEE 멀티패스 Compositing 지원 및 GPU 컴포지터 Cryptomatte 메타데이터 지원",
+      "why": "렌더링 패스 분할과 후보정 작업의 효율이 크게 향상됩니다."
+    },
+    {
+      "area": "Cycles",
+      "change": "Volume Scattering 노드에 새로운 산란 함수(Rayleigh, Mie, Draine 등) 추가",
+      "why": "구름, 안개, 대기, 물속 등 자연스러운 볼륨 효과를 더욱 정확하게 표현할 수 있습니다."
+    },
+    {
+      "area": "EEVEE & Viewport",
+      "change": "Cycles와 동일한 수준의 Light & Shadow Linking 기능 지원",
+      "why": "물리 법칙에 얽매이지 않고 라이팅과 그림자를 정교하게 연출할 수 있습니다."
+    },
+    {
+      "area": "Geometry Nodes",
+      "change": "For Each Element 존, Grease Pencil 데이터 지원, 노드 Gizmo 도입",
+      "why": "복잡한 반복 연산과 뷰포트 직접 제어가 가능해져 작업 폭이 넓어집니다."
+    },
+    {
+      "area": "Geometry Nodes",
+      "change": "Bake 데이터의 .blend 파일 내부 패킹 지원",
+      "why": "파일 공유와 프로젝트 관리가 훨씬 간편해집니다."
+    }
+  ],
+  "breaking": [
+    "macOS의 Cycles Metal 백엔드에서 AMD 및 Intel GPU 지원이 제거되었습니다.",
+    "NVIDIA GPU의 최소 Driver 요구 버전이 OptiX 7.4 업데이트로 인해 495.89 이상으로 상향되었습니다.",
+    "Cycles AMD HIP 백엔드에서 Vega GPU 지원이 제거되었습니다.",
+    "Compositor의 Auto Render 옵션이 제거되었습니다."
+  ],
+  "keywords": [
+    "Blender 4.3",
+    "지오메트리 노드",
+    "EEVEE 라이트 링크",
+    "사이클스 볼륨",
+    "블렌더 업데이트"
+  ],
+  "at": "2026-10-29T14:15:14+00:00"
+}

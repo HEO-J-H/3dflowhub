@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-usd-time-samples-and-animation-c35c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD time samples and animation",
+  "title": "Time Sample — USD 애니메이션",
+  "summary": "NVIDIA Omniverse에서 USD(Universal Scene Description)의 Time Samples를 활용해 복잡한 애니메이션 데이터를 효율적으로 저장하고 스트리밍하는 방법입니다. 다중 소프트웨어 간 Timeline을 동기화합니다.",
+  "when": [
+    "Blender, Maya, 3ds Max 등 여러 DCC 툴에서 제작한 애니메이션을 Omniverse로 병합할 때",
+    "대규모 씬에서 무거운 애니메이션 캐시를 경량화된 USD 형태로 실시간 재생할 때",
+    "협업 중인 팀원들과 정확히 동일한 프레임 단위의 Timeline을 공유해야 할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Nucleus에 접속하여 애니메이션을 적용할 USD 스테이지를 엽니다.",
+    "Stage 패널 또는 Layer 패널에서 애니메이션 데이터를 포함할 오브젝트를 선택합니다.",
+    "Property 패널에서 Time Samples가 올바르게 기록되어 있는지 확인합니다.",
+    "Omniverse Create 또는 Viewport 하단의 Timeline 재생 버튼을 눌러 애니메이션을 재생합니다.",
+    "USD Composer 내보내기 설정을 통해 필요한 프레임 범위와 FPS를 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "TimeCodesPerSecond",
+      "desc": "초당 타임코드(프레임) 수를 정의하여 Timeline 속도를 설정합니다."
+    },
+    {
+      "name": "StartFrame",
+      "desc": "애니메이션 Timeline의 시작 프레임을 지정합니다."
+    },
+    {
+      "name": "EndFrame",
+      "desc": "애니메이션 Timeline의 마지막 프레임을 지정합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "시간 변화에 따른 트랜스폼 및 속성 값의 기록 간격을 설정합니다."
+    },
+    {
+      "name": "Interpolate",
+      "desc": "프레임 사이의 값을 부드럽게 보간하여 끊김 없는 움직임을 만듭니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "애니메이션 데이터를 원본과 분리하여 비파괴적으로 오버라이드합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 걷기 사이클 USD 내보내기",
+      "steps": [
+        "Maya 또는 Blender에서 캐릭터 리깅 및 애니메이션을 완성합니다.",
+        "USD Export 옵션에서 Animation과 Time Samples 항목을 체크합니다.",
+        "Omniverse USD Composer로 파일을 불러와 Timeline 재생으로 움직임을 확인합니다."
+      ]
+    },
+    {
+      "title": "카메라 패스 애니메이션 공유",
+      "steps": [
+        "카메라 움직임에 대한 Time Sample 키프레임을 USD 씬에 베이크합니다.",
+        "Omniverse Viewport에서 카메라 뷰로 전환하여 패스가 정확히 동기화되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "FPS 설정 불일치로 인한 재생 속도 저하 또는 빨라짐 → USD Export 설정과 Omniverse 프로젝트 설정의 FPS(TimeCodesPerSecond) 값을 동일하게 맞춥니다.",
+    "스케일 및 트랜스폼 미적용으로 인한 애니메이션 위치 오류 → DCC 툴에서 씬 내보내기 전 Freeze Transforms를 실행하여 스케일과 피벗을 초기화합니다."
+  ],
+  "related": [
+    "USD Layers",
+    "Omniverse Nucleus",
+    "USD Composer",
+    "Omniverse Cache"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "1UR5j9N76FA",
+      "title": "Exporting an Animation from Autodesk 3ds Max Connector to Omniverse USD Composer",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20time%20samples%20and%20animation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Nucleus",
+    "USD"
+  ],
+  "at": "2026-10-29T14:14:15.400738+00:00"
+}

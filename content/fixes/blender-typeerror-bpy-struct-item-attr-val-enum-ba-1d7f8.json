@@ -1,0 +1,40 @@
+{
+  "id": "blender-typeerror-bpy-struct-item-attr-val-enum-ba-1d7f8",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "TypeError: bpy_struct: item.attr = val: enum \"BADMODE\" not found in",
+  "title": "bpy_struct enum not found — 속성에 없는 값을 넣었을 때",
+  "summary": "Blender Python API에서 존재하지 않는 렌더 엔진 이름을 속성에 할당할 때 발생하는 에러입니다. 올바른 엔진 문자열로 변경하여 해결할 수 있습니다.",
+  "causes": [
+    "존재하지 않는 렌더 엔진 문자열(예: 'BADMODE')을 Script에서 직접 지정한 경우",
+    "오타나 대소문자 오류로 인해 올바르지 않은 렌더 엔진 식별자를 입력한 경우",
+    "이전 버전의 Blender API 코드를 최신 버전에서 실행하여 엔진 이름이 변경되었거나 지원이 중단된 경우"
+  ],
+  "steps": [
+    "에러가 발생하는 Script 코드를 엽니다.",
+    "문제가 되는 코드 줄인 'bpy.context.scene.render.engine = 'BADMODE''를 찾습니다.",
+    "해당 코드를 올바른 렌더 엔진 이름인 'bpy.context.scene.render.engine = 'CYCLES'' (또는 'BLENDER_EEVEE_NEXT')로 수정합니다.",
+    "Script를 다시 실행하여 에러가 발생하지 않는지 확인합니다."
+  ],
+  "check": [
+    "Script 실행 시 'TypeError'가 더 이상 발생하지 않습니다.",
+    "Blender 콘솔에서 렌더 엔진이 정상적으로 변경되었는지 확인합니다."
+  ],
+  "prevent": [
+    "Blender Python API 문서에서 지원하는 렌더 엔진 목록과 정확한 문자열을 확인합니다.",
+    "자동 완성 기능을 활용해 오타를 방지합니다."
+  ],
+  "keywords": [
+    "Blender Python 에러",
+    "TypeError 렌더 엔진",
+    "bpy_struct item attr val",
+    "render engine not found",
+    "Cycles Eevee 설정 오류"
+  ],
+  "repro": {
+    "bad": "import bpy\nbpy.context.scene.render.engine = 'BADMODE'",
+    "good": "import bpy\nbpy.context.scene.render.engine = 'CYCLES'"
+  },
+  "verified": null,
+  "at": "2026-10-29T14:14:36+00:00"
+}
