@@ -1,0 +1,99 @@
+{
+  "id": "nvidia-omniverse-usd-file-formats-usda-usdc-usdz-6ee6",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD file formats (usda, usdc, usdz)",
+  "title": "usda·usdc·usdz 차이",
+  "summary": "NVIDIA Omniverse에서 핵심으로 사용하는 Universal Scene Description(USD) 파일 포맷의 3가지 확장자(usda, usdc, usdz)의 특징과 용도를 이해합니다. 3D Pipeline 에셋을 효율적으로 교환하고 관리할 수 있습니다.",
+  "when": [
+    "여러 DCC 툴(Blender, Maya, 3ds Max 등) 간에 3D 씬과 에셋을 손실 없이 실시간으로 연동하고 싶을 때",
+    "사람 읽기가 가능한 텍스트 기반 USD 파일로 에셋의 구조와 속성을 직접 수정해야 할 때",
+    "모바일 기기나 웹에서 AR/VR 콘텐츠로 즉시 활용할 수 있는 단일 패키지 형태의 USDZ 파일이 필요할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Omniverse Create 또는 View 앱을 엽니다.",
+    "File 메뉴에서 Export 또는 Save As를 선택하여 파일 형식을 지정합니다.",
+    "저장할 USD 포맷에 따라 .usda(ASCII 텍스트), .usdc(바이너리), .usdz(압축 패키지) 중 하나를 선택합니다.",
+    "Layer 패널에서 각 USD 레이어의 구조와 참조(Reference) 관계를 확인하고 관리합니다.",
+    "Omniverse Nucleus 서버에 파일을 업로드하여 팀원들과 실시간으로 공동 작업합니다."
+  ],
+  "params": [
+    {
+      "name": ".usda",
+      "desc": "사람이 읽을 수 있는 인간 친화적 ASCII 텍스트 형식으로 디버깅과 스크립팅에 유용합니다."
+    },
+    {
+      "name": ".usdc",
+      "desc": "컴퓨터가 빠르게 읽을 수 있는 바이너리 형식으로 대용량 씬 로딩과 성능에 최적화되어 있습니다."
+    },
+    {
+      "name": ".usdz",
+      "desc": "텍스처와 지오메트리가 하나의 파일로 압축된 아카이브 형식으로 AR 미리보기에 적합합니다."
+    },
+    {
+      "name": "Sublayers",
+      "desc": "여러 USD 레이어를 순서대로 쌓아 비파괴적으로 에셋을 수정하고 병합합니다."
+    },
+    {
+      "name": "References",
+      "desc": "외부 USD 파일을 현재 씬에 가볍게 불러와서 참조 형태로 재사용합니다."
+    },
+    {
+      "name": "Payloads",
+      "desc": "무거운 에셋 데이터를 필요할 때만 로드하여 씬의 메모리 사용량을 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "텍스트 포맷(.usda)으로 애니메이션 속성값 직접 수정하기",
+      "steps": [
+        "텍스트 편집기(VS Code 등)로 .usda 파일을 엽니다.",
+        "트랜스폼(Transform)이나 머티리얼 속성 숫자를 직접 수정합니다.",
+        "파일을 저장한 뒤 Omniverse View에서 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "단일 아카이브(.usdz) 파일로 AR 뷰어용 에셋 내보내기",
+      "steps": [
+        "텍스처 경로가 상대 경로로 올바르게 지정되었는지 확인합니다.",
+        "USD 익스포터 설정에서 .usdz 확장자를 선택하고 텍스처를 포함시킵니다.",
+        "모바일 기기나 AR 뷰어에서 열어 정상적으로 출력되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "절대 경로 사용으로 인한 텍스처 유실 → 프로젝트 폴더를 기준으로 상대 경로(Relative Path)를 사용하도록 수정합니다.",
+    "대용량 바디 데이터를 .usda로 저장해 로딩이 느려짐 → 성능 최적화를 위해 바이너리 형태인 .usdc 포맷으로 변환합니다."
+  ],
+  "related": [
+    "Omniverse Nucleus",
+    "USD Composer",
+    "Live Sync",
+    "Material Graph"
+  ],
+  "videos": [
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    },
+    {
+      "id": "Cbx4EkjPe2A",
+      "title": "Learn OpenUSD: What Are the USD File Formats?",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20file%20formats%20%28usda%2C%20usdc%2C%20usdz%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Omniverse Create",
+    "View",
+    "File",
+    "Export",
+    "Save As"
+  ],
+  "at": "2026-10-29T14:24:37.040561+00:00"
+}
