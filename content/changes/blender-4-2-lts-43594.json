@@ -1,0 +1,56 @@
+{
+  "id": "blender-4-2-lts-43594",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "4.2 LTS",
+  "source": "https://developer.blender.org/docs/release_notes/4.2/",
+  "title": "Blender 4.2 LTS 바뀐 점 정리",
+  "summary": "Blender 4.2 LTS가 2024년 7월 16일 출시되었으며, 2026년 7월까지 장기 지원됩니다. GPU 가속 컴포지터 도입, Khronos PBR Neutral 톤 매퍼 추가, 애니메이션 편집기 및 본(Bone) 시스템의 대대적인 성능 향상이 포함되어 있습니다.",
+  "highlights": [
+    {
+      "area": "Animation",
+      "change": "무거운 장면에 대한 Graph Editor 성능 대폭 개선 및 새로운 'Generated' 키 타입 추가",
+      "why": "복잡한 애니메이션 작업 시 멈춤 현상 없이 실시간에 가까운 작업이 가능합니다."
+    },
+    {
+      "area": "Animation",
+      "change": "본(Bone) 분할 시 순차적 이름 지정 및 본 모양의 두께(Wire Width) 설정 추가",
+      "why": "리깅 작업의 효율성과 커스텀 본 시각화 편의성이 향상됩니다."
+    },
+    {
+      "area": "Rendering",
+      "change": "Khronos PBR Neutral 뷰 트랜스폼 추가",
+      "why": "제품 시각화 시 sRGB 색상 정확도를 높이고 PBR 소재 표현을 더 충실하게 만듭니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "최종 렌더 Compositing GPU 가속 및 CPU 백엔드 재작성으로 성능 대폭 향상",
+      "why": "Compositing 작업 속도가 빨라지고 뷰포트와 최종 렌더 결과의 일관성이 높아집니다."
+    },
+    {
+      "area": "Animation",
+      "change": "Copy Global Transform 애드온에 카메라 고정(Fix to Camera) 및 상대적 복사-붙여넣기 기능 추가",
+      "why": "카메라 기준 애니메이션 Baking과 오브젝트 정렬 작업이 더욱 쉬워집니다."
+    },
+    {
+      "area": "Core",
+      "change": "Windows 및 Linux에서 SSE4.2를 지원하는 CPU 필수화",
+      "why": "오래된 하드웨어 지원이 중단되므로 실행 전 시스템 사양 확인이 필요합니다."
+    }
+  ],
+  "breaking": [
+    "컴포지터의 GPU 가속 및 최적화로 인해 기존 Compositing 셋업은 수동 조정이 필요할 수 있습니다.",
+    "변환(Transform) 노드가 즉시 적용되도록 변경되어 이미지를 축소할 경우 해상도가 파괴적으로 줄어들 수 있습니다.",
+    "Translate 노드의 Wrapping 옵션이 패턴 반복 용도로 더 이상 작동하지 않습니다.",
+    "컴포지터의 크기 추론(Size Inference) 제거로 인해 이전 버전의 일부 편법적인 노드 구성이 작동하지 않을 수 있습니다.",
+    "Limit Rotation 제약 조건의 버그 수정으로 인해 구버전 파일은 Legacy Behavior 옵션이 활성화됩니다."
+  ],
+  "keywords": [
+    "Blender 4.2 LTS",
+    "블렌더 4.2 업데이트",
+    "블렌더 애니메이션 성능",
+    "블렌더 GPU 컴포지터",
+    "Khronos PBR Neutral"
+  ],
+  "at": "2026-10-29T11:13:16+00:00"
+}

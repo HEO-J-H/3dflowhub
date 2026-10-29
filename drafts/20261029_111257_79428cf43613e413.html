@@ -1,0 +1,22 @@
+<!-- TITLE: NVIDIA Omniverse와 AI 에이전트로 시뮬레이션 구축하기 | TAGS: NVIDIA Omniverse,AI 에이전트,NVIDIA Isaac Sim,OpenUSD,시뮬레이션,업계 소식 | CATEGORY: AI 3D/NVIDIA Omniverse | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/" target="_blank" rel="noopener nofollow"><img src="https://blogs.nvidia.com/wp-content/uploads/2026/10/Copy-of-nvidia-ov-x-astra-4up-KV-r1-press-4k-r2-1680x945.png" alt="NVIDIA Omniverse와 AI 에이전트로 시뮬레이션 구축하기" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/" target="_blank" rel="noopener nofollow">blogs.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/K2ui16FdLZw" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 개발자들이 자연어 기반의 AI 에이전트와 NVIDIA Omniverse 라이브러리를 결합하여 복잡한 3D 시뮬레이션과 로보틱스 환경을 구축하고 최적화하는 방법을 소개합니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA Omniverse › 업계 소식</p>
+<h2>자연어 기반 AI 에이전트와 NVIDIA Omniverse의 결합</h2>
+<p>시뮬레이션 아이디어를 실제 작동하는 애플리케이션으로 구현하려면 에셋 조합, 물리 및 렌더링 연결, 씬 동작 검증 등 복잡한 과정을 거쳐야 합니다. 개발자들은 최신 AI 모델과 NVIDIA Omniverse 라이브러리를 함께 활용하여 시나리오 탐색, 오류 조사, 디자인 개선 작업을 수행합니다. 개발자가 자연어 지시를 통해 AI 에이전트를 유도하고 결과를 검토하며 변경 사항을 안내하는 방식입니다. Omniverse 라이브러리는 GPU 가속 기반의 물리, 렌더링, 센서 시뮬레이션 기능을 제공합니다.</p>
+<h2>대규모 창고 시뮬레이션 스트레스 테스트</h2>
+<p>창고 시뮬레이션은 로봇 팔, 컨베이어, 상자 등 오브젝트가 늘어나도 원활하게 실행되어야 합니다. NVIDIA의 수석 엔지니어인 Bhavik Sanganee는 Astra와 NVIDIA Omniverse 라이브러리를 활용해 창고 시뮬레이션을 구축하고 복잡도를 높이며 성능 저하 원인을 분석했습니다. 씬 크기가 두 배로 커졌을 때 물리 연산, 이미지 렌더링, 비디오 준비를 병렬로 처리하여 성능을 유지하고 추가 확장을 가능하게 만들었습니다. 80개의 컨베이어와 40개의 로봇 팔, 800개의 상자가 포함된 테스트에서 풀 HD 해상도 30fps를 유지하며 로봇 팔들이 성공적으로 상자 배치 작업을 수행했습니다.</p>
+<h2>유연한 케이블 라우팅을 위한 로봇 제어 테스트</h2>
+<p>전자제품 조립 과정에서는 로봇이 유연한 케이블을 부품 주변으로 이동시켜 포트에 정확히 꽂아야 합니다. NVIDIA의 로보틱스 기술 마케팅 매니저인 Oyindamola Omotuyi는 Astra에게 NVIDIA Isaac Sim, Newton 물리 엔진, Omniverse 렌더링을 활용한 로봇 시뮬레이션 구축을 지시했습니다. Astra는 케이블 라우팅 움직임과 위치·방향 피드백, USB-C 삽입을 위한 보정 조절을 결합한 강화 학습 시스템을 개발했습니다. 이 시뮬레이션을 통해 실제 로봇 실험으로 넘어가기 전에 케이블 핸들링과 커넥터 정렬 상태를 미리 테스트할 수 있었습니다.</p>
+<h2>로봇 CAD 모델을 SimReady 에셋으로 변환</h2>
+<p>로봇이 상자를 집어 옮길 수 있는지 테스트하려면 관절이 올바르게 움직이고 물체를 잡을 수 있는 그리퍼가 포함된 시뮬레이션 모델이 필요합니다. ABB Robotics YuMi 로봇을 활용한 개발자들은 NVIDIA Omniverse 콘텐츠 라이브러리와 연동된 Astra를 사용하여 CAD 파일을 OpenUSD로 변환했습니다. 또한 로봇의 외형을 레퍼런스 이미지와 일치시키고 관절 및 충돌 지오메트리를 설정했습니다. SimReady Foundation 요구사항에 맞춰 에셋을 검증한 후 NVIDIA Isaac Sim에서 테스트를 진행하여 시뮬레이션 환경에서의 동작을 확인했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">AI 에이전트와 물리 기반 시뮬레이션 플랫폼의 결합은 복잡한 3D 월드 구축과 로봇 테스트 프로세스를 획기적으로 단축시킵니다. 테크니컬 디렉터와 테크니컬 아티스트는 자연어 명령을 통해 에셋 구성부터 성능 병목 구간 파악까지 시뮬레이션 파이프라인 전반을 효율화할 수 있습니다. 특히 대규모 물류 창고 환경이나 정밀한 케이블 라우팅이 필요한 로보틱스 프로젝트에서 작업 공수를 크게 줄여줍니다. 실무 파이프라인에 AI 기반 제어와 OpenUSD 표준을 도입하려는 개발팀에게 중요한 인사이트를 제공합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA Omniverse 라이브러리는 시뮬레이션에서 어떤 역할을 하나요?</b><br/>A. GPU 가속을 기반으로 한 물리 연산, 렌더링, 센서 시뮬레이션 기능을 제공하여 복잡한 3D 환경과 로보틱스 시뮬레이션을 원활하게 구축하고 실행할 수 있도록 지원합니다.</p>
+<p><b>Q. CAD 모델을 시뮬레이션용 에셋으로 어떻게 변환하나요?</b><br/>A. Astra와 NVIDIA Omniverse 콘텐츠 라이브러리를 활용해 CAD 파일을 OpenUSD 포맷으로 변환하고, 외형을 맞추며 관절과 충돌 지오메트리를 설정하여 SimReady 요구사항을 충족하는 방식으로 변환합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-29-7d13ce0e971c17c7.html">NVIDIA DSX AI 팩토리 플랫폼 발표 — 전력 병목 현상 해소</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-e8b17606c3cbfe78.html">기타 AI 3D 도시 디지털 트윈 동기화 엣지 IoT 프레임워크</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-8fe6e87090e355a8.html">AI 3D 생성과 워크플로 최적화의 최신 동향과 발전 방향</a></li></ul>
+<hr/><p>원문:<a href="https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/" target="_blank" rel="noopener nofollow">Into the Omniverse: How Developers Turn Ideas Into Simulations With Frontier AI Agents</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
