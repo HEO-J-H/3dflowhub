@@ -1,0 +1,60 @@
+{
+  "id": "blender-5-1-1f7b8",
+  "kind": "change",
+  "tool": "Blender",
+  "version": "5.1",
+  "source": "https://developer.blender.org/docs/release_notes/5.1/",
+  "title": "Blender 5.1 바뀐 점 정리",
+  "summary": "Blender 5.1 정식 버전이 출시되어 애니메이션 평가 성능이 크게 향상되고 EEVEE 및 뷰포트의 컴파일 속도와 렌더링 성능이 개선되었습니다. 컴포지터에 새로운 노드가 추가되었으며, 볼륨 그리드 시스템 확장과 다양한 코어 라이브러리 업그레이드가 이루어졌습니다.",
+  "highlights": [
+    {
+      "area": "Animation",
+      "change": "액션 및 셰이프키 평가 성능 대폭 향상 (최대 304% 속도 개선)",
+      "why": "본과 셰이프키가 많은 복잡한 애니메이션 작업에서 재생 및 작업 속도가 빨라집니다."
+    },
+    {
+      "area": "Animation",
+      "change": "F-Curve용 'Gaussian Smooth' 비파괴 모디파이어 추가",
+      "why": "키프레임 커브를 파괴적 방식 없이 손쉽게 부드럽게 다듬을 수 있습니다."
+    },
+    {
+      "area": "Compositor",
+      "change": "Mask To SDF 노드 및 새로운 Sequencer Strip Info 노드 추가",
+      "why": "거리 필드 연산과 시퀀서 스트립 정보 활용이 편리해집니다."
+    },
+    {
+      "area": "EEVEE",
+      "change": "Shader Raycast 노드 추가 및 재질 컴파일 속도 단축",
+      "why": "화면 공간 광선 추적과 빠른 Shader 프리컴파일로 작업 대기 시간이 줄어듭니다."
+    },
+    {
+      "area": "Cycles",
+      "change": "GPU 렌더링 성능 5-10% 향상 및 AMD GPU HIP RT 하드웨어 레이트레이싱 기본 활성화",
+      "why": "렌더링 시간이 단축되고 하드웨어 가속 효율이 높아집니다."
+    },
+    {
+      "area": "Geometry Nodes",
+      "change": "볼륨 그리드 시스템 확장 (Cube Grid Topology, Grid Dilate & Erode 등 신규 노드 추가)",
+      "why": "볼륨 데이터 조작 및 시뮬레이션 후가공이 더욱 강력해집니다."
+    },
+    {
+      "area": "Core & Pipeline",
+      "change": "VFX 플랫폼 2026 표준에 맞춰 Python 3.13, OpenColorIO 2.5 등으로 라이브러리 업그레이드",
+      "why": "최신 파이프라인 호환성과 안정성이 확보됩니다."
+    }
+  ],
+  "breaking": [
+    "노드 툴(Node Tools)에 전역 고유 idname 요구 사항이 추가되어, 5.1 버전에서 파일을 열고 저장하거나 노드 에디터 헤더에서 수동으로 설정해야 할 수 있습니다.",
+    "그리스 펜슬(Grease Pencil) 채우기 시스템이 개편되어, Geometry Nodes와 그리스 펜슬 재질을 사용한 절차적 설정은 수동 조정이 필요할 수 있습니다.",
+    "Python 사용자 사이트 디렉토리가 기본 로드되지 않아 사용자 설치 모듈이 내장 모듈을 덮어쓰지 않으며, 필요시 --python-use-user-env 인수를 사용해야 합니다.",
+    "ANIM_OT_convert_legacy_action Python 오퍼레이터가 제거되었습니다."
+  ],
+  "keywords": [
+    "Blender 5.1",
+    "블렌더 업데이트",
+    "애니메이션 성능",
+    "EEVEE Raycast",
+    "지오메트리 노드"
+  ],
+  "at": "2026-10-29T23:35:10+00:00"
+}
