@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-omniverse-use-cases-digital-twin-robotics-d-0f67",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse use cases (digital twin, robotics, design review)",
+  "title": "활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰",
+  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합합니다.",
+  "when": [
+    "여러 아티스트가 3ds Max, Blender, Unreal Engine 등 서로 다른 툴의 데이터를 실시간으로 동기화하며 작업할 때",
+    "공장 자동화, 물류 센터, 스마트 시티 등의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
+    "로보틱스 시뮬레이션을 통해 자율주행 로봇의 AI 모델을 가상 공간에서 학습시키고 검증할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Cache, Nucleus Server 등 필수 서비스를 설치합니다.",
+    "Nucleus를 통해 팀원들과 공유할 프로젝트 폴더 및 USD 기반의 협업 공간을 생성합니다.",
+    "3ds Max 또는 Blender에서 Omniverse Connect 플러그인을 활성화합니다.",
+    "DCC 툴의 뷰포트에서 Live Sync 기능을 켜고 실시간으로 데이터를 Nucleus 서버에 스트리밍합니다.",
+    "Omniverse Kit 기반 앱(예: Omniverse Create 또는 View)을 열어 통합된 씬을 확인하고 물리 엔진을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Live Sync",
+      "desc": "여러 DCC 툴과 씬 데이터를 실시간으로 동기화합니다."
+    },
+    {
+      "name": "Nucleus",
+      "desc": "USD 파일과 에셋을 공유하고 버전 관리하는 협업 허브입니다."
+    },
+    {
+      "name": "RTX Renderer",
+      "desc": "실시간 레이 트레이싱과 패스 트레이싱으로 물리적으로 정확한 빛을 계산합니다."
+    },
+    {
+      "name": "PhysX",
+      "desc": "중력, 충돌, 강체 역학 등 현실적인 물리 시뮬레이션을 적용합니다."
+    },
+    {
+      "name": "Isaac Sim",
+      "desc": "로봇 시뮬레이션 및 AI 학습을 위한 Omniverse 기반 앱입니다."
+    },
+    {
+      "name": "USD Composer",
+      "desc": "다양한 소스에서 가져온 3D 에셋을 조립하고 라이팅을 세팅합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공장 자동화 디지털 트윈 구축",
+      "steps": [
+        "CAD 데이터를 USD 형식으로 변환하여 Omniverse로 가져옵니다.",
+        "컨베이어 벨트와 로봇 팔 모델에 PhysX 물리 속성을 부여합니다.",
+        "IoT 센서 데이터를 연동하여 실제 공장 가동 상태를 실시간 시각화합니다."
+      ]
+    },
+    {
+      "title": "다중 프로그램 실시간 디자인 리뷰",
+      "steps": [
+        "3ds Max와 Blender에서 각각 건축 모델링과 소품 모델링을 진행합니다.",
+        "Live Sync를 켜서 Omniverse View에 두 모델을 실시간으로 병합합니다.",
+        "클라이언트와 함께 RTX 실시간 렌더링 화면을 보며 재질과 조명을 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "USD 포맷으로 변환하기 전 원본 툴에서 스케일이나 트랜스폼이 초기화되지 않음 → 대상을 선택하고 Apply Scale 또는 Reset Transform 실행 후 내보내기",
+    "Nucleus 서버 연결이 끊긴 상태에서 Live Sync를 시도함 → Omniverse Launcher에서 Nucleus 서비스 상태와 로그인 확인"
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Omniverse Create",
+    "Omniverse View",
+    "Isaac Sim"
+  ],
+  "videos": [
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    },
+    {
+      "id": "j-SN60Y9xQM",
+      "title": "Digital Twin of a Robotic Arm (UR10) Using NVIDIA Omniverse Isaac Sim",
+      "author": "Sanjuna Mathews - RoboTechieTips"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20use%20cases%20%28digital%20twin%2C%20robotics%2C%20design%20review%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Cache",
+    "Nucleus Server"
+  ],
+  "at": "2026-10-29T12:53:17.362189+00:00"
+}
