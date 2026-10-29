@@ -465,6 +465,7 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     for f in parked:
         (ROOT / f).unlink(missing_ok=True)
     r = git("pull", "--rebase", "--autostash", "-q", "origin", "main")
+    heal_todo(ROOT / "TODO.md")  # --autostash 되돌리기가 충돌하면 표시가 파일에 남음
     err = ""
     if r.returncode != 0:
         git("rebase", "--abort")
@@ -493,6 +494,40 @@ def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
     return _hide_token(err)
 
 
+
+CONFLICT_RE = re.compile(r"^(<<<<<<< .*|=======|>>>>>>> .*)$", re.M)
+
+
+def union_conflicts(text: str) -> str:
+    """병합 충돌 표시가 남은 목록 파일(TODO.md)을 양쪽 줄을 모두 살려 정리 — 같은 과제 줄은 한 번만.
+    (자동 저장 중 stash 충돌로 표시가 커밋되면 코딩 에이전트가 전부 보류되던 문제, 10/24·10/28 재발)"""
+    if not CONFLICT_RE.search(text):
+        return text
+    out, seen = [], set()
+    for line in text.splitlines():
+        if CONFLICT_RE.match(line):
+            continue
+        key = re.sub(r"^- \[[x ]\] \(agent(:[^)]*)?\) ", "", line).split(" — ")[0].strip()
+        if line.startswith("- [") and key in seen:
+            continue
+        if line.startswith("- ["):
+            seen.add(key)
+        out.append(line)
+    return "\n".join(out) + "\n"
+
+
+def heal_todo(path) -> bool:
+    """TODO 파일에 충돌 표시가 있으면 정리하고 True."""
+    try:
+        t = path.read_text(encoding="utf-8")
+    except OSError:
+        return False
+    fixed = union_conflicts(t)
+    if fixed != t:
+        path.write_text(fixed, encoding="utf-8")
+        return True
+    return False
+
 def ci_commit(paths: list[str], message: str, tries: int = 4) -> bool:
     """GitHub Actions 전용 커밋·푸시. 다른 실행이 먼저 push 했으면 원격 최신본 위에 memory JSON 을 내용 병합해 재시도.
     (rebase -X theirs 는 동시에 들어온 원격 변경을 버리므로 사용하지 않음). content/ 변경이 푸시되면 True."""
@@ -511,6 +546,9 @@ def ci_commit(paths: list[str], message: str, tries: int = 4) -> bool:
     if not touched:
         return False
     paths = sorted(touched)
+    for f in paths:
+        if f.endswith("TODO.md"):
+            heal_todo(ROOT / f)
     for attempt in range(tries):
         git("fetch", "-q", "origin", "main")
         git("reset", "-q", "--mixed", "origin/main")  # 작업 파일(새 글·초안 포함)은 유지, 기준만 최신으로

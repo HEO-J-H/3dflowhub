@@ -241,7 +241,8 @@ def repeat_guard(task: str) -> str:
     if any(growth._similar(key, d) for d in done):
         return "done:이미 끝낸 과제와 같은 일"
     runs = core._load_json(Path(__file__).parent / "memory" / "sites" / SITE / "agent_runs.json", [])
-    fails = [r for r in runs if r.get("result") in ("held", "error") and growth._similar(key, _task_key(r.get("task", "")))]
+    fails = [r for r in runs if r.get("result") in ("held", "error") and "병합 충돌" not in r.get("msg", "")
+             and growth._similar(key, _task_key(r.get("task", "")))]  # 충돌 표시 때문에 막힌 건 과제 탓이 아님
     if len(fails) >= 2:
         return f"held:같은 과제 {len(fails)}회 실패 — 마지막 사유: {fails[-1].get('msg', '')[:80]}"
     return ""
@@ -523,6 +524,8 @@ def apply_pr_decisions(site: str) -> list[str]:
 
 # ─────────────────────────── 메인 루프 ───────────────────────────
 def main() -> None:
+    if core.heal_todo(TODO):
+        print("TODO 의 병합 충돌 표시를 정리했습니다")
     queued = queue_manager_tasks()
     if queued:
         print("AI 관리자 제안 등록:", queued)

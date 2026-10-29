@@ -130,3 +130,11 @@ def test_pager_window():
     html = build_site.pager_html(1, 24, lambda k: f"/p{k}/")
     assert 'aria-current="page"' in html and 'rel="next"' in html and 'rel="prev"' not in html
     assert build_site.pager_html(1, 1, str) == ""
+
+
+def test_union_conflicts_keeps_both_sides():
+    import core
+    t = "# TODO\n<<<<<<< Updated upstream\n- [x] (agent) a(): 일\n- [ ] (agent) b(): 일\n=======\n- [ ] (agent:보류) b(): 일 — 사유\n- [ ] (agent) c(): 일\n>>>>>>> Stashed changes\n"
+    out = core.union_conflicts(t)
+    assert "<<<<<<<" not in out and "=======" not in out and ">>>>>>>" not in out
+    assert out.count("b(): 일") == 1 and "a(): 일" in out and "c(): 일" in out
