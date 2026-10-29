@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-omniverse-cloud-and-streaming-apps-139f",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse Cloud and streaming apps",
+  "title": "클라우드·스트리밍 앱 개념",
+  "summary": "NVIDIA Omniverse Cloud와 스트리밍 앱은 고성능 워크스테이션 없이도 클라우드를 통해 3D 애플리케이션을 원격으로 실행하고 협업할 수 있는 서비스입니다.",
+  "when": [
+    "저사양 노트북이나 모바일 기기에서 고사양 3D DCC 툴을 실행해야 할 때",
+    "여러 디자이너가 실시간으로 USD 기반 씬을 함께 검토하고 수정할 때",
+    "로컬 장비의 렌더링 부하를 줄이고 클라우드 리소스를 활용할고 싶을 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 공식 웹사이트에 접속하여 Omniverse Launcher를 다운로드하고 설치합니다.",
+    "Omniverse 계정으로 로그인한 뒤 Cloud 탭 또는 스트리밍 가능한 앱 목록을 확인합니다.",
+    "실행할 3D 애플리케이션(예: Omniverse Create, USD Composer 등)을 선택하고 Stream 버튼을 클릭합니다.",
+    "클라우드 환경에서 원격 스트리밍 방식으로 3D 뷰포트가 열리면 작업을 시작합니다.",
+    "Nucleus 서버를 통해 팀원들과 실시간 USD 파일 변경 사항을 동기화합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution / FPS",
+      "desc": "스트리밍 화면의 해상도와 초당 프레임 수를 조절합니다."
+    },
+    {
+      "name": "Streaming Quality",
+      "desc": "네트워크 대역폭에 맞춰 화질과 압축률을 최적화합니다."
+    },
+    {
+      "name": "Nucleus Server",
+      "desc": "실시간 협업을 위한 USD 파일 저장 및 동기화 서버를 연결합니다."
+    },
+    {
+      "name": "Cloud Instance",
+      "desc": "원격 구동에 사용할 GPU 및 시스템 리소스 등급을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원격 실시간 디자인 리뷰",
+      "steps": [
+        "Omniverse Cloud를 통해 프로젝트 씬을 클라우드에 로드합니다.",
+        "클라이언트나 동료에게 웹 브라우저 링크를 공유하여 접속하게 합니다.",
+        "3D 뷰포트에서 마커와 음성 채팅으로 실시간 피드백을 주고받습니다."
+      ]
+    },
+    {
+      "title": "저사양 기기에서의 USD 씬 편집",
+      "steps": [
+        "모바일 태블릿이나 저사양 노트북에서 웹 브라우저를 엽니다.",
+        "Omniverse 스트리밍 앱을 실행하여 USD Composer에 접속합니다.",
+        "클라우드 GPU 성능으로 대규모 3D 씬을 지연 없이 편집합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "네트워크 지연 발생 → 스트리밍 설정에서 Resolution을 낮추거나 안정적인 유선랜/Wi-Fi 환경으로 전환합니다.",
+    "협업 중 파일 동기화 오류 → Nucleus Server 연결 상태를 확인하고 올바른 프로젝트 권한이 부여되었는지 체크합니다.",
+    "낮은 프레임 레이트 → Streaming Quality 옵션에서 인코딩 방식을 비트레이트 우선으로 조정합니다."
+  ],
+  "related": [
+    "Omniverse USD Composer",
+    "Omniverse Nucleus",
+    "OpenUSD",
+    "Omniverse Audio2Face"
+  ],
+  "videos": [
+    {
+      "id": "T22UNLrnnvU",
+      "title": "NVIDIA Omniverse Kit App Streaming on Google Cloud",
+      "author": "Tinker Tut"
+    },
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20Cloud%20and%20streaming%20apps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Omniverse Launcher"
+  ],
+  "at": "2026-10-29T12:43:16.785876+00:00"
+}
