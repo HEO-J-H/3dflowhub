@@ -156,6 +156,7 @@ CATALOG += [t for t in guide_catalog.topics() if (t[0], t[2].lower()) not in _ha
 DOC_SEARCH = {
     "Blender": "https://docs.blender.org/manual/en/latest/search.html?q={q}",
     "Houdini": "https://www.sidefx.com/search/?q={q}",
+    "NVIDIA Omniverse": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+{q}",
     "3ds Max": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query={q}",
     "Maya": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query={q}",
     "Unreal Engine": "https://dev.epicgames.com/community/search?query={q}",
@@ -345,7 +346,7 @@ def pending() -> list[tuple]:
     return out
 
 
-GUIDES_DAILY_MAX = 10
+GUIDES_DAILY_MAX = 40  # 기초 가이드 우선 (운영자 요청) — 품질 검사 통과분만, 하루 상한으로 몰아치기 방지
 
 
 def passes_quality(g: dict) -> bool:

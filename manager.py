@@ -24,6 +24,7 @@ CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·�
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int, "buttondown_user": str}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
+GUIDES_MIN_SHARE = 0.6  # 남은 가이드 주제가 있는 동안 AI 몫의 최소 비율
 DEFAULT_ALLOC = {"news": 0.2, "guides": 0.5, "roundups": 0.3}  # 에버그린(가이드·정리) 중심 — 요약 소식은 남들도 가진 정보
 CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
 RESERVE = 6            # AI 관리자 분석·답변용으로 남겨 둠
@@ -348,6 +349,10 @@ def plan_today() -> dict:
         alloc["guides"] = 0
     tot = sum(alloc.values()) or 1
     alloc = {k: round(v / tot, 2) for k, v in alloc.items()}
+    floor = float(cfg.get("alloc_guides_min", GUIDES_MIN_SHARE))
+    if pending_guides and alloc.get("guides", 0) < floor:  # 기초 가이드 우선 (운영자 요청 — 도구마다 100개 이상)
+        rest = sum(v for k, v in alloc.items() if k != "guides") or 1
+        alloc = {k: (floor if k == "guides" else round(v / rest * (1 - floor), 2)) for k, v in alloc.items()}
     per_run_calls = usable / runs_left
     plan = {
         "day": core.llm_day(), "at": _now(), "capacity_left": cap, "runs_left": runs_left,

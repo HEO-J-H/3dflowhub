@@ -600,6 +600,108 @@ UV|UV Master Control Painting|UV Master 경계 지정
 기타|Text 3D and Vector Shapes|Text 3D
 기타|Scripting with ZScript basics|ZScript 기초
 """,
+"NVIDIA Omniverse": """
+입문|What is NVIDIA Omniverse|Omniverse 란 — 무엇을 하는 플랫폼인가
+입문|Omniverse Kit SDK overview|Kit SDK — Omniverse 앱의 바탕
+입문|USD Composer overview|USD Composer — 장면 조립·렌더 앱
+입문|Kit App Template|Kit App Template — 나만의 Omniverse 앱 시작
+입문|System requirements and RTX GPU|요구 사양과 RTX GPU
+입문|Installing Omniverse apps without Launcher|런처 없이 앱 설치·실행하기
+입문|Omniverse licensing for individuals and enterprise|개인·기업 라이선스 차이
+입문|Omniverse documentation and samples|공식 문서·예제 찾는 법
+입문|Omniverse Cloud and streaming apps|클라우드·스트리밍 앱 개념
+입문|Omniverse use cases (digital twin, robotics, design review)|활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰
+OpenUSD|OpenUSD basics|OpenUSD 기초 — 왜 USD 인가
+OpenUSD|USD stage and prims|Stage·Prim — USD 장면의 기본 단위
+OpenUSD|USD layers and sublayers|Layer·Sublayer — 여러 사람이 나눠 작업
+OpenUSD|USD references and payloads|Reference·Payload — 무거운 자산 불러오기
+OpenUSD|USD variants|Variant — 한 자산에 여러 버전
+OpenUSD|USD composition arcs (LIVRPS)|컴포지션 규칙(LIVRPS) 이해
+OpenUSD|USD attributes and properties|Attribute·Property — 값 다루기
+OpenUSD|USD time samples and animation|Time Sample — USD 애니메이션
+OpenUSD|USD file formats (usda, usdc, usdz)|usda·usdc·usdz 차이
+OpenUSD|USD units and up axis|단위·위쪽 축 맞추기 (cm·m, Y·Z up)
+OpenUSD|UsdGeom mesh and xform|UsdGeom — 메시와 변환
+OpenUSD|UsdShade materials|UsdShade — USD 재질 구조
+OpenUSD|MaterialX in USD|MaterialX — USD 재질 표준
+OpenUSD|UsdLux lights|UsdLux — USD 조명
+OpenUSD|USD cameras|USD 카메라 설정
+OpenUSD|USD instancing (point instancer)|인스턴싱 — 많은 물체를 가볍게
+OpenUSD|USD purpose and visibility|Purpose·Visibility — 보이는 것 정리
+OpenUSD|USD kinds and model hierarchy|Kind — 자산 계층 정리
+OpenUSD|USD Python API (pxr) basics|파이썬 pxr 기초 — 스크립트로 USD
+OpenUSD|usdview and usdcat tools|usdview·usdcat — 명령줄 도구
+OpenUSD|USD asset structure best practices|자산 폴더·파일 구조 모범 사례
+OpenUSD|Converting FBX and OBJ to USD|FBX·OBJ 를 USD 로 변환
+OpenUSD|Exporting glTF from USD|USD 에서 glTF 내보내기
+USD Composer|USD Composer interface|USD Composer 화면 구성
+USD Composer|Stage panel and layer panel|Stage·Layer 패널 사용법
+USD Composer|Viewport navigation in USD Composer|뷰포트 이동·단축키
+USD Composer|Importing assets in USD Composer|자산 불러오기
+USD Composer|Content browser and Asset Store|콘텐츠 브라우저·샘플 자산
+USD Composer|Materials in USD Composer (MDL)|MDL 재질 입히기
+USD Composer|OmniPBR material|OmniPBR — 기본 PBR 재질
+USD Composer|OmniGlass and OmniSurface|OmniGlass·OmniSurface 재질
+USD Composer|Lighting with dome light and HDRI|돔 라이트·HDRI 조명
+USD Composer|Sun and sky lighting|태양·하늘 조명
+USD Composer|RTX Real-Time vs Path Tracing|RTX 실시간과 패스 트레이싱 차이
+USD Composer|Render settings in RTX renderer|RTX 렌더 설정
+USD Composer|Movie Capture (rendering images and video)|Movie Capture — 이미지·영상 출력
+USD Composer|Camera animation with Sequencer|시퀀서로 카메라 애니메이션
+USD Composer|Physics simulation basics|물리 시뮬레이션 기초
+USD Composer|Rigid bodies and colliders|강체·충돌체 설정
+USD Composer|Flow (smoke and fire)|Flow — 연기·불 효과
+USD Composer|Annotations and measure tool|주석·치수 재기
+USD Composer|Snap and align tools|스냅·정렬 도구
+USD Composer|Variants switching in USD Composer|Variant 전환하기
+USD Composer|Python Script Editor in Kit|Kit 스크립트 에디터
+USD Composer|Extensions manager|확장 기능 관리자 — 기능 추가
+USD Composer|Performance tips for large scenes|큰 장면 가볍게 다루기
+USD Composer|Exporting from USD Composer|결과 내보내기
+연결|3ds Max to Omniverse (USD export)|3ds Max → Omniverse 보내기
+연결|Blender USD export to Omniverse|Blender → USD → Omniverse
+연결|Maya USD plugin|Maya USD 플러그인 기초
+연결|Unreal Engine and Omniverse USD workflow|언리얼 ↔ USD 작업 흐름
+연결|Houdini Solaris and USD|Houdini Solaris — USD 장면 구성
+연결|Revit and SketchUp to Omniverse|Revit·SketchUp → Omniverse
+연결|CAD import (STEP) to Omniverse|CAD(STEP) 불러오기
+연결|Substance materials in Omniverse|Substance 재질을 Omniverse 로
+연결|Live sync and collaboration concepts|실시간 동기화·협업 개념
+연결|Nucleus server overview|Nucleus — 자산 저장·공유 서버
+연결|Local file workflow without Nucleus|Nucleus 없이 로컬 파일로 작업
+개발|Kit extension basics|Kit 확장 만들기 기초
+개발|omni.ui basics|omni.ui — 확장 UI 만들기
+개발|Kit Python commands and undo|Kit 명령·실행 취소
+개발|Omniverse Replicator synthetic data|Replicator — 합성 데이터 만들기
+개발|Omniverse RTX sensor simulation|센서 시뮬레이션 개념
+개발|Streaming a Kit app to the browser|Kit 앱을 브라우저로 스트리밍
+개발|OpenUSD Exchange SDK|OpenUSD Exchange SDK — 다른 프로그램과 USD 주고받기
+로보틱스|Isaac Sim overview|Isaac Sim — 로봇 시뮬레이터 소개
+로보틱스|Isaac Sim installation|Isaac Sim 설치
+로보틱스|Importing robots (URDF) into Isaac Sim|URDF 로봇 불러오기
+로보틱스|Isaac Sim ROS 2 bridge|ROS 2 연결
+로보틱스|Isaac Lab reinforcement learning|Isaac Lab — 강화학습 기초
+로보틱스|Synthetic data for computer vision|비전 학습용 합성 데이터
+디지털 트윈|Digital twin basics with Omniverse|디지털 트윈 기초
+디지털 트윈|Factory layout review in Omniverse|공장 배치 검토
+디지털 트윈|Architecture visualization in Omniverse|건축 시각화
+디지털 트윈|Product configurator with variants|제품 컨피규레이터 만들기
+AI|Audio2Face basics|Audio2Face — 음성으로 얼굴 애니메이션
+AI|ACE digital humans overview|디지털 휴먼(ACE) 개념
+AI|Cosmos world foundation models overview|Cosmos — 월드 모델 개요
+AI|Generative AI texture and asset tools in Omniverse|생성형 AI 텍스처·자산 도구
+문제 해결|Omniverse app does not start (drivers)|앱이 안 켜질 때 — 드라이버 확인
+문제 해결|Black or slow viewport fixes|뷰포트가 검거나 느릴 때
+문제 해결|Missing textures after USD export|USD 내보낸 뒤 텍스처가 없을 때
+문제 해결|Scale and axis problems on import|불러오니 크기·방향이 틀릴 때
+문제 해결|Shader compilation wait|셰이더 컴파일 대기 줄이기
+문제 해결|Memory (VRAM) out errors|VRAM 부족 오류
+입문|Omniverse Launcher deprecation and what to use now|런처 지원 종료(2025) 이후 무엇을 쓰나
+입문|Building USD Composer from Kit App Template|Kit App Template 으로 USD Composer 빌드하기
+OpenUSD|USD schemas (typed and applied)|스키마 — 형식·적용 스키마 차이
+OpenUSD|USD collections and light linking|컬렉션·라이트 링크
+연결|NVIDIA Omniverse Blender add-on and USD settings|Blender USD 내보내기 옵션 정리
+""",
 "Substance 3D": """
 페인터|Substance Painter project setup|Painter 새 프로젝트 설정
 페인터|Painter interface and shelf|Painter 인터페이스·Shelf

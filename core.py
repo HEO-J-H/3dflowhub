@@ -121,8 +121,11 @@ HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.c
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
         "seeds": ["3ds Max", "Autodesk 3ds Max", "Blender", "블렌더", "Maya", "V-Ray", "Corona Renderer", "ZBrush",
-                  "Cinema 4D", "Substance 3D", "Houdini"],
+                  "Cinema 4D", "Substance 3D", "Houdini", "NVIDIA Omniverse", "OpenUSD"],
         "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/",
+                  # NVIDIA Omniverse·OpenUSD 공식 블로그 (운영자 요청, 2026-10 피드 동작 확인)
+                  "https://blogs.nvidia.com/blog/tag/omniverse/feed/",
+                  "https://blogs.nvidia.com/blog/tag/universal-scene-description/feed/",
                   "https://www.blender.org/feed/", "https://code.blender.org/feed/",
                   # 3ds Max · MAXScript 커뮤니티 / 3ds Max 주력 렌더러(V-Ray·Corona) 공식 블로그
                   "https://www.reddit.com/r/3dsmax/.rss", "https://www.reddit.com/r/Maxscript/.rss",
@@ -152,7 +155,7 @@ DOMAINS: dict[str, dict] = {
 # 세부 카테고리 시드 — LLM 이 새 카테고리를 제안하면 memory.json["categories"] 에 자동 추가된다
 SEED_CATEGORIES: dict[str, list[str]] = {  # 2단계: 도구·제품 (분류 축 하나로 통일)
     "3D DCC": ["Blender", "3ds Max", "Maya", "Cinema 4D", "ZBrush", "Houdini", "Substance 3D",
-               "V-Ray·Corona", "Marvelous Designer", "기타 DCC"],
+               "V-Ray·Corona", "Marvelous Designer", "NVIDIA Omniverse", "기타 DCC"],
     "Game Engine": ["Unreal Engine", "Unity", "Godot", "UEFN·Fortnite", "게임 업계", "기타 엔진"],
     "VFX": ["After Effects", "Nuke", "Houdini FX", "DaVinci Resolve", "Unreal 가상 프로덕션", "스튜디오·작품"],
     "AI 3D": ["가우시안 스플래팅", "NeRF", "3D 생성 AI", "AI 텍스처·렌더링", "로보틱스·월드모델", "기타 AI 3D"],

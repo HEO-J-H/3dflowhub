@@ -994,6 +994,9 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + ('<p class="aiby">✍️ 운영자 실무 노트를 바탕으로 정리 · ' if g.get("by_operator")
                else '<p class="aiby">🤖 공식 문서·튜토리얼 영상을 바탕으로 AI 가 정리 · ')
             + ('<b class="ok">✔ 에디터 검토 완료</b>' if g.get("reviewed") else '에디터 검토 전')
+            # 누가·어떻게·언제 (구글 '유용한 콘텐츠' 기준: 근거·작성일 공개)
+            + (' · 근거: 공식 문서 본문' if g.get("grounded") else ' · 근거: 공식 문서 링크·영상')
+            + (f' · 작성 {e(g["at"][:10])}' if g.get("at") else "")
             + ' · ' + mail_link("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
             + f'<p class="lead">{e(g.get("summary", ""))}</p>'
             + (f'<div class="optip"><b>✍️ 운영자 실무 팁</b><p>{e(g["tip"])}</p></div>' if g.get("tip") else "")
