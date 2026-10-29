@@ -35,6 +35,11 @@
     "bad": "import bpy\nbpy.context.scene.render.engine = 'BADMODE'",
     "good": "import bpy\nbpy.context.scene.render.engine = 'CYCLES'"
   },
-  "verified": null,
-  "at": "2026-10-29T14:14:36+00:00"
+  "verified": true,
+  "at": "2026-10-29T14:14:36+00:00",
+  "verify_log": {
+    "bad": "Blender 4.0.2\nTraceback (most recent call last):\n  File \"/tmp/tmperyn_pl4/t.py\", line 4, in <module>\n    bpy.context.scene.render.engine = 'BADMODE'\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: bpy_struct: item.attr = val: enum \"BADMODE\" not found in ('BLENDER_EEVEE', 'BLENDER_WORKBENCH', 'CYCLES')\n",
+    "good": "Blender 4.0.2\n\nBlender quit\n",
+    "at": "2026-10-29T22:57:34+00:00"
+  }
 }
