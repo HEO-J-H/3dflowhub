@@ -1,0 +1,92 @@
+{
+  "id": "nvidia-omniverse-omniverse-kit-sdk-overview-3d2b",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Omniverse Kit SDK overview",
+  "title": "Kit SDK — Omniverse 앱의 바탕",
+  "summary": "NVIDIA Omniverse Kit SDK는 강력한 확장 가능한 툴과 애플리케이션을 구축하기 위한 기본 프레임워크입니다. USD 기반의 실시간 3D 워크플로우와 커스텀 파이프라인을 개발할 때 사용합니다.",
+  "when": [
+    "사내 전용 커스텀 USD 기반 3D 앱이나 뷰어를 직접 개발하고 싶을 때",
+    "기존 DCC 툴(Blender, 3ds Max 등)과 연동되는 Omniverse 익스텐션을 만들 때",
+    "실시간 패스 트레이싱과 AI 기능이 포함된 파이프라인을 구축할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Exchange 탭에서 Kit SDK 및 개발자 도구를 설치합니다.",
+    "VS Code 또는 선호하는 IDE를 열고 Omniverse Kit SDK 샘플 프로젝트를 로드합니다.",
+    "Extensions 패널에서 필요한 USD 및 UI 익스텐션 플러그인을 활성화합니다.",
+    "Python 또는 C++ 기반으로 커스텀 로직 및 UI 인터페이스 코드를 작성합니다.",
+    "Kit App 템플릿을 실행하여 개발 중인 3D 뷰어와 애플리케이션 동작을 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "USD",
+      "desc": "오픈 소스 3D 씬 데이터 포맷으로, 모든 에셋과 애니메이션의 기준이 됩니다."
+    },
+    {
+      "name": "OmniKit",
+      "desc": "핵심 렌더링, 물리, 창 관리를 담당하는 Kit SDK의 기본 엔진 모듈입니다."
+    },
+    {
+      "name": "Extensions",
+      "desc": "모듈식 기능을 추가하고 제거할 수 있는 플러그인 시스템입니다."
+    },
+    {
+      "name": "RTX Renderer",
+      "desc": "실시간 실사 수준의 레이 트레이싱 및 패스 트레이싱을 처리합니다."
+    },
+    {
+      "name": "Python Scripting",
+      "desc": "Kit 기반 애플리케이션을 제어하고 자동화하는 Script 인터페이스입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 USD 뷰어 제작",
+      "steps": [
+        "Kit SDK 기본 템플릿 프로젝트를 생성합니다.",
+        "Stage 구조를 로드하는 Python Script를 작성합니다.",
+        "RTX Renderer 설정을 적용해 실시간 뷰포트를 활성화합니다."
+      ]
+    },
+    {
+      "title": "사내 에셋 브라우저 익스텐션 개발",
+      "steps": [
+        "UI 익스텐션 템플릿을 열고 Grid View UI를 구성합니다.",
+        "Nucleus 서버 경로와 연동하여 썸네일을 불러옵니다.",
+        "드래그 앤 드롭으로 3D 뷰포트에 에셋이 배치되도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "호환되지 않는 SDK 및 USD 버전 사용 → 공식 문서에 명시된 버전 매칭 확인 및 재설치",
+    "Nucleus 서버 연결 오류 및 권한 문제 → 방화벽 설정 해제 및 올바른 로그인 계정 확인"
+  ],
+  "related": [
+    "Universal Scene Description",
+    "Omniverse Nucleus",
+    "RTX Renderer",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "-vbtMxpYfC4",
+      "title": "The Power of ChatGPT, Generative AI, and Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20Kit%20SDK%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Exchange",
+    "Kit SDK"
+  ],
+  "at": "2026-10-29T11:34:45.361007+00:00"
+}

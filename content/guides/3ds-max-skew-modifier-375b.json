@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-skew-modifier-375b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Skew modifier",
+  "title": "Skew — 한쪽으로 기울이기",
+  "summary": "Skew modifier는 3ds Max에서 오브젝트의 형태를 기울이거나 전단(Shear) 변형을 주는 수정자입니다. 마치 바람에 밀리듯 한쪽 방향으로 밀려나는 형태를 손쉽게 만들 수 있습니다.",
+  "when": [
+    "건물의 외벽이나 기둥이 비스듬하게 기울어진 형태를 만들 때",
+    "바람을 받아 한쪽으로 쏠린 깃발이나 간판을 표현할 때",
+    "단순한 박스나 실린더를 역동적인 비대칭 형태로 변형할 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭으로 이동해 박스나 실린더 등의 오브젝트를 생성합니다.",
+    "Modifier List를 열고 Skew를 선택하여 적용합니다.",
+    "Parameters 롤아웃에서 Angle 값을 조절하여 기울어지는 정도를 설정합니다.",
+    "Axis 옵션에서 변형이 일어날 축(X, Y, Z)을 선택합니다.",
+    "Gizmo 서브오브젝트 모드로 전환하여 뷰포트에서 기즈모의 위치와 회전을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "오브젝트가 기울어지는 각도를 설정합니다."
+    },
+    {
+      "name": "Hole",
+      "desc": "기울어짐의 중심축 주변에 왜곡을 주어 구멍이 뚫리는 듯한 효과를 줍니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "기울기를 적용할 기준 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "기울어지는 방향의 각도를 회전시켜 조절합니다."
+    },
+    {
+      "name": "Limit Effect",
+      "desc": "기울기 효과가 적용되는 범위를 제한합니다."
+    },
+    {
+      "name": "Upper Limit",
+      "desc": "Limit Effect가 켜져 있을 때 효과가 미치는 상단 한계값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기울어진 모던 건축물 기둥 만들기",
+      "steps": [
+        "Height Segments가 충분히 설정된 Box 오브젝트를 생성합니다.",
+        "Modifier List에서 Skew를 적용합니다.",
+        "Angle 값을 높여 기둥 상단이 비스듬하게 쏠리도록 만듭니다."
+      ]
+    },
+    {
+      "title": "바람에 밀린 간판 표현하기",
+      "steps": [
+        "얇고 긴 Box 오브젝트를 세웁니다.",
+        "Skew modifier를 적용하고 Axis를 적절한 축으로 변경합니다.",
+        "Direction 값을 조절해 간판이 밀려나는 방향을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트의 세그먼트 부족으로 형태가 꺾이지 않고 부서져 보임 → Height Segments를 충분히 늘려줍니다.",
+    "원하는 방향으로 기울어지지 않음 → Axis나 Direction 값을 변경하거나 Gizmo를 회전시킵니다."
+  ],
+  "related": [
+    "Bend",
+    "Taper",
+    "Twist",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "nQSSq2_cecQ",
+      "title": "Skew Modifier | 3ds Max Tutorial",
+      "author": "Pixali Art"
+    },
+    {
+      "id": "9DTeSsOdUdk",
+      "title": "Session 15:  3ds Max Modifiers Explained | Bend, Twist, Taper & Skew | CompusoftEducation",
+      "author": "Compusoft Education"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Skew%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Modifier List",
+    "Skew"
+  ],
+  "at": "2026-10-29T11:34:52.017647+00:00"
+}
