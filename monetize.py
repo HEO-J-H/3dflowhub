@@ -112,6 +112,12 @@ def fetch_pages_stats(days: int = 30) -> dict | None:
         exclude += [r.get("path_id") for r in batch if r.get("path_id") is not None]
         if not page.get("more") or not batch:
             break
+    reports = [{"path": r.get("path", ""), "title": r.get("title", ""), "count": int(r.get("count", 0))}
+               for r in rows if str(r.get("path", "")).lstrip("/").startswith("report/")]
+    if reports:  # 사이트 '오류 제보' 창에서 보낸 것 — selfheal 이 현황판 할 일로 올림
+        core._save_json(core.ROOT / "memory" / "reports.json", {"at": datetime.now().isoformat(timespec="seconds"),
+                                                                 "items": reports})
+    rows = [r for r in rows if not str(r.get("path", "")).lstrip("/").startswith("report/")]
     learn: dict[str, dict] = {}
     by_kind = {"news": 0, "guides": 0, "roundups": 0, "other": 0}  # 콘텐츠 종류별 조회수 (자동 모드 배분 판단용)
     for row in rows:

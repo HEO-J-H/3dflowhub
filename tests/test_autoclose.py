@@ -27,3 +27,21 @@ def test_promo_posted_after_decision():
     assert selfheal.done_reason(p, "", set(), [{"site": "life-after-60", "at": "2026-10-05"}])
     assert not selfheal.done_reason(p, "", set(), [{"site": "life-after-60", "at": "2026-09-01"}])
     assert not selfheal.done_reason(p, "", set(), [{"site": "3dflowhub", "at": "2026-10-05"}])
+
+
+def test_visitor_report_not_auto_closed():
+    assert not selfheal.done_reason(_p(probe_key="report:abc"), "", set(), [])
+
+
+def test_reports_become_todo(tmp_path, monkeypatch):
+    import manager
+    monkeypatch.setattr(manager, "PROPOSALS_PATH", tmp_path / "p.json")
+    monkeypatch.setattr(selfheal, "LOG_PATH", tmp_path / "l.json")
+    monkeypatch.setattr(selfheal.core, "ROOT", tmp_path)
+    (tmp_path / "memory").mkdir()
+    selfheal.core._save_json(tmp_path / "memory" / "reports.json", {"items": [
+        {"path": "report/0/3dflowhub/p/x.html", "title": "내용이 틀려요 — 메뉴 이름", "count": 1}]})
+    assert selfheal.reports_to_todo() == ["방문자 오류 제보: 내용이 틀려요"]
+    assert selfheal.reports_to_todo() == []          # 같은 제보는 한 번만
+    todo = manager.manual_todo()
+    assert todo and "heo-j-h.github.io/3dflowhub/p/x.html" in todo[0]["proposal"]

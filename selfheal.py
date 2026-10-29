@@ -281,7 +281,7 @@ def done_reason(p: dict, todo_text: str, open_probe_keys: set, posted_after: lis
     import sites
     pid, site = p["id"], (p.get("site") or "3dflowhub")
     # ① 자가 점검이 등록한 고장 — 다시 점검했을 때 더 이상 고장이 아님
-    if p.get("probe_key") and p["probe_key"] not in open_probe_keys:
+    if p.get("probe_key") and not p["probe_key"].startswith("report:") and p["probe_key"] not in open_probe_keys:
         return "다시 점검해 보니 정상 동작"
     # ② 코딩 에이전트 할 일 목록에서 이미 완료([x])
     if _re.search(r"^- \[x\] \(agent\)[^\n]*\[" + _re.escape(pid) + r"\|", todo_text, _re.M):
@@ -327,6 +327,42 @@ def auto_close() -> list[str]:
     return out
 
 
+REPORT_TYPES = ["내용이 틀려요", "오래된 정보예요", "링크·영상이 안 열려요", "문장·번역이 어색해요", "기타"]
+
+
+def reports_to_todo() -> list[str]:
+    """방문자가 '오류 제보' 창으로 보낸 제보를 현황판 할 일로 (페이지 주소·종류·메모 포함)."""
+    import hashlib
+    import re as _re
+
+    import manager
+    data = core._load_json(core.ROOT / "memory" / "reports.json", {})
+    seen = {p.get("probe_key") for p in manager.board()["proposals"]}
+    evs = []
+    for r in data.get("items", []):
+        m = _re.match(r"/?report/(\d)(/.*)$", r.get("path", ""))
+        if not m:
+            continue
+        kind = REPORT_TYPES[int(m.group(1))] if int(m.group(1)) < len(REPORT_TYPES) else "기타"
+        page, note = m.group(2), str(r.get("title", ""))
+        key = "report:" + hashlib.md5(f"{page}|{note}".encode()).hexdigest()[:12]
+        if key in seen:
+            continue
+        seen.add(key)
+        url = "https://heo-j-h.github.io" + page
+        now = manager._now()
+        pid = "p-" + hashlib.md5(f"{now}{key}".encode()).hexdigest()[:10]
+        evs += [{"at": now, "kind": "proposal", "id": pid, "title": f"방문자 오류 제보: {kind}"[:80],
+                 "category": "운영·비용", "evidence": f"{url} · 제보 {r.get('count', 1)}건",
+                 "proposal": f"{note} — 페이지를 확인해 고치거나 내립니다: {url}"[:900], "expected": "신뢰도 유지",
+                 "effort": "낮음", "action": None, "risk": "낮음", "probe_key": key, "site": "3dflowhub"},
+                {"at": now, "kind": "decision", "id": pid, "v": "accepted", "note": "방문자 제보 — 확인 필요"}]
+    if evs:
+        manager._append(*evs)
+        log("report", f"방문자 오류 제보 {len(evs) // 2}건을 할 일로 등록")
+    return [e["title"] for e in evs[::2]]
+
+
 if __name__ == "__main__":
     if "--tests" in sys.argv:
         st = record_tests(int(sys.argv[sys.argv.index("--tests") + 1]))
@@ -335,6 +371,7 @@ if __name__ == "__main__":
     if "--heal" in sys.argv:
         print(heal() or "정상")
         raise SystemExit(0)
+    print("reports:", reports_to_todo())
     print("auto_close:", auto_close())
     print("probe:", report_issues(probe()))
     print("triage:", triage())

@@ -18,6 +18,7 @@ content/posts/*.json (노션과 같은 내용) → _site/ 정적 사이트
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -100,6 +101,23 @@ def mail_link(subject: str = "[3dflowhub] 광고·제휴 문의", text: str | No
     """스팸 수집기 대응: 주소를 HTML 엔티티로 인코딩한 mailto 링크 (브라우저에서는 정상 표시·클릭)."""
     enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
     return f'<a href="mailto:{enc}?subject={quote(subject)}">{e(text) if text else enc}</a>'
+
+def _asset_ver(name: str) -> str:
+    """정적 파일 내용이 바뀌면 주소 뒤 ?v= 가 바뀌어 브라우저가 예전 파일을 쓰지 않음."""
+    try:
+        return hashlib.md5((Path(__file__).parent / "static" / name).read_bytes()).hexdigest()[:8]
+    except OSError:
+        return "0"
+
+
+ASSET_VER = {n: _asset_ver(n) for n in ("search.js", "user.js")}
+
+
+def report_button(subject: str, text: str = "오류 제보") -> str:
+    """오류 제보 버튼 — 누르면 종류 선택·메모 창이 열리고 '접수됨' 안내 (static/user.js). 메일은 창 안의 보조 수단."""
+    enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
+    return (f'<button type="button" class="rep" data-subject="{e(subject)}" data-mail="{enc}">{e(text)}</button>')
+
 # 도메인 주소·아이콘 (대시보드에서 추가한 분야 포함 — core.DOMAIN_META)
 DOMAIN_SLUG = {d: m["slug"] for d, m in core.DOMAIN_META.items()}
 DOMAIN_ICON = {d: m["icon"] for d, m in core.DOMAIN_META.items()}
@@ -372,6 +390,17 @@ nav.domains .mob,nav.domains .sep{display:none}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:28px 0}
 .pager a{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
 .pager a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.rep{background:none;border:0;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline;min-height:0}
+dialog.repdlg{border:1px solid var(--line);border-radius:16px;padding:20px;max-width:420px;width:calc(100% - 32px);background:var(--surface);color:var(--text)}
+dialog.repdlg::backdrop{background:rgba(0,0,0,.45)}
+.repdlg h2{margin:0 0 6px;font-size:18px}.repdlg p{margin:0 0 12px;color:var(--muted);font-size:14px}
+.repdlg label{display:block;font-size:14px;margin:10px 0 4px}
+.repdlg select,.repdlg textarea{width:100%;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.repdlg select{min-height:44px}.repdlg textarea{min-height:90px;resize:vertical}
+.repdlg .row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.repdlg .row button,.repdlg .row a{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 15px/44px inherit;cursor:pointer;text-decoration:none}
+.repdlg .row .go{background:var(--accent);color:#fff;border-color:var(--accent)}
+.reptoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1d1d1f;color:#fff;padding:12px 18px;border-radius:12px;z-index:9999;box-shadow:0 6px 24px rgba(0,0,0,.25);max-width:calc(100% - 32px);font-size:14px}
 .pager{align-items:center}.pager .pg-nav{padding:0 14px}
 .pager .pg-nav.off{min-height:40px;display:inline-flex;align-items:center;padding:0 14px;opacity:.35}
 .pager .pg-gap{min-width:24px;text-align:center;color:var(--muted)}.pager .pg-count{display:none;color:var(--muted);padding:0 8px}
@@ -543,7 +572,7 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
-<script>const ROOT="{root}";</script><script src="{root}search.js" defer></script><script src="{root}user.js" defer></script></body></html>"""
+<script>const ROOT="{root}";</script><script src="{root}search.js?v={ASSET_VER['search.js']}" defer></script><script src="{root}user.js?v={ASSET_VER['user.js']}" defer></script></body></html>"""
 
 
 def kst_date(ts: str) -> str:
@@ -821,7 +850,7 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
             f'<article class="doc guide"><p class="crumb"><a href="{root}recipes/">실무 파이프라인</a> › '
             f'{e(r["category"])} › {e(r["host"])}</p><h1>{e(r["title"])}</h1>'
             f'<p class="aiby">🤖 AI 3D 게시판 소식을 바탕으로 AI 가 설계 · {e(r.get("checked", ""))} · '
-            + mail_link("[3dflowhub] 파이프라인 오류 제보: " + r["title"][:40], "오류 제보") + '</p>'
+            + report_button("[3dflowhub] 파이프라인 오류 제보: " + r["title"][:40], "오류 제보") + '</p>'
             + f'<p class="lead">{e(r["problem"])}</p>'
             + f'<figure class="menupath" aria-label="파이프라인"><figcaption>파이프라인</figcaption><div>{flow}</div></figure>'
             + f'<ol class="steps">{stages}</ol>'
@@ -1004,7 +1033,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             # 누가·어떻게·언제 (구글 '유용한 콘텐츠' 기준: 근거·작성일 공개)
             + (' · 근거: 공식 문서 본문' if g.get("grounded") else ' · 근거: 공식 문서 링크·영상')
             + (f' · 작성 {e(g["at"][:10])}' if g.get("at") else "")
-            + ' · ' + mail_link("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
+            + ' · ' + report_button("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
             + f'<p class="lead">{e(g.get("summary", ""))}</p>'
             + (f'<div class="optip"><b>✍️ 운영자 실무 팁</b><p>{e(g["tip"])}</p></div>' if g.get("tip") else "")
             + (f'<div class="vids{" two" if len(vids) > 1 else ""}">{"".join(yt_facade(v) for v in vids)}</div>' if vids else "")
@@ -1187,7 +1216,7 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
              f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다'
              + (' · 커뮤니티 토론·튜토리얼을 참고해 실무 내용을 보강했습니다' if p.get("refs") or p.get("videos") else "")
              + ' · 정확한 내용은 원문 기준 · '
-             f'{mail_link("[3dflowhub] 오류 제보: " + p["title_ko"][:40], "오류 제보")}</p>']
+             f'{report_button("[3dflowhub] 오류 제보: " + p["title_ko"][:40], "오류 제보")}</p>']
     tip = core.tips().get("p:" + p["id"])
     if m.get("image"):
         parts.append(core.image_figure(m["image"], p["url"], p["title_ko"]))
@@ -1258,7 +1287,7 @@ def build_refs() -> tuple[list, list]:
         body = (f'<article class="doc guide"><p class="crumb"><a href="{root}fix/">오류 해결</a> › {e(x["tool"])}</p>'
                 f'<h1>{e(x["title"])}</h1>'
                 f'<p class="aiby">🤖 AI 가 정리 · {badge} · 작성 {e(x.get("at", "")[:10])} · '
-                + mail_link("[3dflowhub] 오류 해결 페이지 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
+                + report_button("[3dflowhub] 오류 해결 페이지 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
                 f'<pre class="code"><code>{e(x["error"])}</code></pre>'
                 f'<p class="lead">{e(x.get("summary", ""))}</p>'
                 f'<h2>원인</h2><ul>{ul(x.get("causes", []))}</ul>'

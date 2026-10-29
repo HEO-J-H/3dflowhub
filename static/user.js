@@ -63,3 +63,57 @@
     });
   }
 })();
+
+
+// 3) 오류 제보 — 종류 선택 + 메모 → 방문 통계(GoatCounter) 이벤트로 접수 (개인정보 없음) → '접수됨' 안내
+//    AI 관리자가 매일 제보를 모아 현황판 '할 일'로 올린다. 자세한 설명은 창 안의 '메일로 자세히' 로.
+(function () {
+  const TYPES = ['내용이 틀려요', '오래된 정보예요', '링크·영상이 안 열려요', '문장·번역이 어색해요', '기타'];
+  let dlg;
+  function build() {
+    dlg = document.createElement('dialog');
+    dlg.className = 'repdlg';
+    dlg.setAttribute('aria-labelledby', 'rep-h');
+    dlg.innerHTML = '<form method="dialog"><h2 id="rep-h">이 페이지 오류 제보</h2>' +
+      '<p>무엇이 문제인지 알려 주세요. 확인 후 고치거나 내립니다.</p>' +
+      '<label for="rep-type">종류</label><select id="rep-type">' + TYPES.map(t => '<option>' + t + '</option>').join('') + '</select>' +
+      '<label for="rep-note">어디가 어떻게 틀렸나요? (선택, 120자)</label>' +
+      '<textarea id="rep-note" maxlength="120" placeholder="예: 3번 단계의 메뉴 이름이 실제와 달라요"></textarea>' +
+      '<div class="row"><a class="mail" href="#">메일로 자세히</a><button value="cancel">취소</button>' +
+      '<button class="go" value="send">보내기</button></div></form>';
+    document.body.appendChild(dlg);
+  }
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.className = 'reptoast'; t.setAttribute('role', 'status'); t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 4500);
+  }
+  document.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('button.rep');
+    if (!btn) return;
+    if (!dlg) build();
+    const mail = dlg.querySelector('a.mail');
+    const subject = btn.dataset.subject || '[3dflowhub] 오류 제보';
+    const holder = document.createElement('textarea'); holder.innerHTML = btn.dataset.mail || '';
+    const addr = holder.value;
+    mail.href = 'mailto:' + addr + '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent('페이지: ' + location.href + '\n\n');
+    dlg.querySelector('#rep-note').value = '';
+    dlg.onclose = () => {
+      if (dlg.returnValue !== 'send') return;
+      const type = dlg.querySelector('#rep-type').value;
+      const note = dlg.querySelector('#rep-note').value.trim().slice(0, 120);
+      const sent = !!(window.goatcounter && window.goatcounter.count);
+      if (sent) {
+        window.goatcounter.count({ path: 'report/' + TYPES.indexOf(type) + location.pathname,
+                                   title: (type + (note ? ' — ' + note : '')).slice(0, 200), event: true });
+        toast('✅ 제보가 접수됐어요. 확인 후 고치겠습니다. 고맙습니다!');
+      } else {
+        toast('⚠️ 광고·추적 차단기 때문에 바로 접수되지 않아 메일 쓰기 창을 엽니다.');
+        location.href = mail.href + encodeURIComponent('종류: ' + type + '\n내용: ' + note);
+      }
+    };
+    dlg.showModal();
+  });
+})();
