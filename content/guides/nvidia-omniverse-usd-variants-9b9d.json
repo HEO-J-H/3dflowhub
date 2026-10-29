@@ -1,0 +1,80 @@
+{
+  "id": "nvidia-omniverse-usd-variants-9b9d",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD variants",
+  "title": "Variant — 한 자산에 여러 버전",
+  "summary": "NVIDIA Omniverse의 USD Variants는 하나의 USD 파일 안에 여러 가지 버전의 형상, 재질, 속성을 저장하고 필요에 따라 실시간으로 교체하는 기능입니다.",
+  "when": [
+    "하나의 에셋에 여러 가지 색상이나 머티리얼 옵션을 적용해야 할 때",
+    "로우 폴리곤과 하이 폴리곤 모델을 가볍게 전환하며 작업할 때",
+    "클라이언트 미팅에서 가구의 디자인이나 마감재를 즉시 변경해 보여줄 때"
+  ],
+  "steps": [
+    "Stage 패널에서 variant를 적용할 Prim(오브젝트)을 선택합니다.",
+    "Property 패널 또는 Variant Sets 편집 메뉴를 엽니다.",
+    "새로운 Variant Set을 생성하고 이름을 입력합니다.",
+    "각각의 Variant 옵션(예: Variant A, Variant B)을 추가하고 원하는 씬 데이터를 연결합니다.",
+    "Viewport에서 드롭다운 메뉴를 통해 실시간으로 Variant를 전환하며 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Variant Sets",
+      "desc": "오브젝트에 포함된 모든 배리에이션 그룹의 목록입니다."
+    },
+    {
+      "name": "Add Variant Set",
+      "desc": "새로운 배리에이션 그룹을 생성합니다."
+    },
+    {
+      "name": "Edit as Prim",
+      "desc": "선택한 배리에이션 내부의 요소를 직접 수정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "의자 가죽 색상 변경",
+      "steps": [
+        "의자 에셋을 Stage에 불러옵니다.",
+        "Leather Color라는 Variant Set을 추가합니다.",
+        "Brown과 Black variants를 만들고 각각의 Material을 할당합니다."
+      ]
+    },
+    {
+      "title": "디테일 레벨(LOD) 전환",
+      "steps": [
+        "건축물 에셋을 선택합니다.",
+        "LOD라는 Variant Set을 생성합니다.",
+        "High와 Low variants에 각각 다른 폴리곤 밀도의 메쉬를 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "배리에이션 전환 시 메쉬가 깨짐 → 부모 Prim 경로와 Transform 값이 올바르게 지정되었는지 확인합니다.",
+    "수정이 저장되지 않음 → Edit as Prim 모드가 활성화된 상태에서 편집을 진행했는지 확인합니다."
+  ],
+  "related": [
+    "USD",
+    "Stage",
+    "Material Graph",
+    "References"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "A-hnRBwj_W0",
+      "title": "USD Variant Authoring - Part 2: Visibility Variants",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20variants",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-29T13:43:44.208257+00:00"
+}
