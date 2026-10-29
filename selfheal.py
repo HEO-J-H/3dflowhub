@@ -243,6 +243,90 @@ def triage(limit: int = TRIAGE_MAX) -> list[str]:
     return out
 
 
+# ─────────────────────────── 4) 끝난 직접 작업 자동 완료 표시 ───────────────────────────
+TODO_URL = {"3dflowhub": None, "pix2poly": "https://raw.githubusercontent.com/HEO-J-H/Pix2Poly/main/.agent/TODO.md"}
+
+
+def _site_todo(site: str) -> str:
+    if site == "3dflowhub":
+        try:
+            return (core.ROOT / "TODO.md").read_text(encoding="utf-8")
+        except OSError:
+            return ""
+    url = TODO_URL.get(site)
+    if not url:
+        return ""
+    try:
+        r = requests.get(url, timeout=15)
+        return r.text if r.ok else ""
+    except requests.RequestException:
+        return ""
+
+
+def _pr_state(repo: str, number: int) -> str:
+    """'merged' | 'closed' | 'open' | '' (모름)."""
+    try:
+        r = requests.get(f"https://api.github.com/repos/{repo}/pulls/{number}", timeout=15)
+        if not r.ok:
+            return ""
+        d = r.json()
+        return "merged" if d.get("merged") else d.get("state", "")
+    except (requests.RequestException, ValueError):
+        return ""
+
+
+def done_reason(p: dict, todo_text: str, open_probe_keys: set, posted_after: list) -> str:
+    """이미 끝난 직접 작업이면 그 근거(한 줄), 아니면 "". AI 를 쓰지 않는 확실한 근거만 사용."""
+    import re as _re
+    import sites
+    pid, site = p["id"], (p.get("site") or "3dflowhub")
+    # ① 자가 점검이 등록한 고장 — 다시 점검했을 때 더 이상 고장이 아님
+    if p.get("probe_key") and p["probe_key"] not in open_probe_keys:
+        return "다시 점검해 보니 정상 동작"
+    # ② 코딩 에이전트 할 일 목록에서 이미 완료([x])
+    if _re.search(r"^- \[x\] \(agent\)[^\n]*\[" + _re.escape(pid) + r"\|", todo_text, _re.M):
+        return "코딩 에이전트 할 일 목록에서 완료됨"
+    # ③ 'PR #N 검토·병합' 류 — 그 PR 이 병합되거나 닫힘
+    text = f"{p.get('title', '')} {p.get('proposal', '')} {p.get('applied', '')}"
+    repo = sites.SITES.get(site, {}).get("repo", "")
+    prs = [int(n) for n in _re.findall(r"PR\s*#(\d+)|/pull/(\d+)", text) for n in n if n] if repo else []
+    if prs:
+        states = {n: _pr_state(repo, n) for n in dict.fromkeys(prs)}
+        if all(st_ in ("merged", "closed") for st_ in states.values()):
+            return "PR " + ", ".join(f"#{n} {'병합' if st_ == 'merged' else '닫힘'}" for n, st_ in states.items())
+    # ④ 홍보 게시 — 같은 사이트 홍보 대기함 글이 이 제안 이후 '게시함'으로 표시됨
+    if _re.search(r"게시|홍보|포스팅", p.get("title", "")) and any(
+            x.get("site") == site and x.get("at", "") >= p.get("decided_at", p.get("at", "")) for x in posted_after):
+        return "홍보 대기함에서 게시함으로 표시됨"
+    return ""
+
+
+def auto_close() -> list[str]:
+    """끝난 직접 작업을 스스로 완료 표시 (사람이 일일이 누르지 않게). 근거가 확실할 때만."""
+    import manager
+    import staff
+    todo = manager.manual_todo()
+    if not todo:
+        return []
+    open_keys = {i["key"] for i in probe()}
+    site_of = {x["id"]: x.get("site") for x in staff.outbox()}
+    posted = [{"site": site_of.get(e.get("id")), "at": e.get("at", "")}  # '게시함'을 누른 시각 기준
+              for e in staff._events(staff.OUTBOX_PATH) if e.get("kind") == "status" and e.get("v") == "posted"]
+    texts: dict[str, str] = {}
+    out = []
+    for p in todo:
+        site = p.get("site") or "3dflowhub"
+        if site not in texts:
+            texts[site] = _site_todo(site)
+        why = done_reason(p, texts[site], open_keys, posted)
+        if why:
+            manager.decide(p["id"], "done", f"자동 완료 확인: {why}")
+            out.append(f"{p['title'][:40]} — {why}")
+    if out:
+        log("autoclose", "; ".join(out))
+    return out
+
+
 if __name__ == "__main__":
     if "--tests" in sys.argv:
         st = record_tests(int(sys.argv[sys.argv.index("--tests") + 1]))
@@ -251,5 +335,6 @@ if __name__ == "__main__":
     if "--heal" in sys.argv:
         print(heal() or "정상")
         raise SystemExit(0)
+    print("auto_close:", auto_close())
     print("probe:", report_issues(probe()))
     print("triage:", triage())
