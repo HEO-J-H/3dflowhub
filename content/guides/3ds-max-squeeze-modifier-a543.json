@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-squeeze-modifier-a543",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Squeeze modifier",
+  "title": "Squeeze — 눌러 찌그러뜨리기",
+  "summary": "Squeeze modifier는 오브젝트의 중심을 기준으로 볼록하게 부풀리거나 잘록하게 조이는 변형을 주는 기능입니다. 마치 고무 재질의 물체를 손으로 꽉 쥐거나 바람을 넣는 듯한 효과를 줍니다.",
+  "when": [
+    "캐릭터의 근육이나 쿠션처럼 부드러운 볼륨감을 표현할 때",
+    "허리가 잘록한 병이나 독특한 실루엣의 오브젝트를 만들 때",
+    "기둥이나 파이프 중간이 부풀어 오른 형태를 잡을 때"
+  ],
+  "steps": [
+    "Command Panel에서 Create 탭으로 이동해 오브젝트(예: Cylinder)를 생성합니다.",
+    "Modify 탭으로 이동하여 Modifier List를 엽니다.",
+    "목록에서 Squeeze를 찾아 선택합니다.",
+    "Gizmo 서브오브젝트 모드를 켜서 위치와 크기를 조절합니다.",
+    "Parameters에서 Squeeze와 Radial 값을 조절해 형태를 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Squeeze",
+      "desc": "오브젝트의 중심부를 조이거나 부풀리는 주력 수치입니다."
+    },
+    {
+      "name": "Radial",
+      "desc": "방사형 방향으로 추가적인 변형을 주어 볼륨감을 조절합니다."
+    },
+    {
+      "name": "Limits",
+      "desc": "변형이 일어나는 상하 범위를 제한합니다."
+    },
+    {
+      "name": "Upper Limit",
+      "desc": "변형이 시작되거나 끝나는 상단 경계선 위치입니다."
+    },
+    {
+      "name": "Lower Limit",
+      "desc": "변형이 시작되거나 끝나는 하단 경계선 위치입니다."
+    },
+    {
+      "name": "Effect Region",
+      "desc": "Limits 기능을 활성화하여 특정 구역에만 변형을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물병 형태 만들기",
+      "steps": [
+        "Cylinder를 생성하고 Height Segments를 30 이상으로 높입니다.",
+        "Squeeze modifier를 적용합니다.",
+        "Squeeze 값을 음수로 주어 중앙을 잘록하게 만듭니다."
+      ]
+    },
+    {
+      "title": "쿠션 볼륨감 표현하기",
+      "steps": [
+        "Box를 생성하고 세그먼트를 충분히 나눕니다.",
+        "Squeeze modifier를 적용합니다.",
+        "Radial 값을 조절해 모서리가 둥글게 부풀어 오르게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 형태가 꺾이는 현상 → Cylinder나 Box 생성 시 Height Segments를 충분히 늘려줍니다.",
+    "전체가 의도와 다르게 변형됨 → Gizmo 모드를 활성화하여 변형 축과 위치를 정확히 맞춥니다."
+  ],
+  "related": [
+    "Bend",
+    "Taper",
+    "Stretch",
+    "Twist"
+  ],
+  "videos": [
+    {
+      "id": "-qVNZL32-68",
+      "title": "3DS MAX - 29. Squeeze Modifier",
+      "author": "Build your world with AJ"
+    },
+    {
+      "id": "cp09XNTseYU",
+      "title": "3DS MaX - Squeeze modifier",
+      "author": "MIDzI"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Squeeze%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Cylinder",
+    "Modify",
+    "Modifier List",
+    "Squeeze"
+  ],
+  "at": "2026-10-29T11:02:54.001812+00:00"
+}
