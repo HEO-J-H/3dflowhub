@@ -1,0 +1,91 @@
+{
+  "id": "nvidia-omniverse-usd-stage-and-prims-c50b",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD stage and prims",
+  "title": "Stage·Prim — USD 장면의 기본 단위",
+  "summary": "NVIDIA Omniverse의 USD 스테이지와 프림(Prim)은 여러 3D 애플리케이션의 에셋을 실시간으로 불러와 계층 구조로 관리하고 협업하는 핵심 공간입니다. 3D 씬의 모든 요소를 가상 파일 시스템처럼 체계적으로 조립합니다.",
+  "when": [
+    "여러 DCC 툴(Blender, Maya, 3ds Max 등)에서 만든 에셋을 하나의 씬으로 통합할 때",
+    "아티스트 간 실시간 협업과 레이어 기반의 비파괴적 수정 작업이 필요할 때",
+    "대규모 USD Pipeline 계층 구조와 변형(Transform)을 체계적으로 관리할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Create 또는 USD 기반 어플리케이션을 실행합니다.",
+    "상단 메뉴에서 File → New를 선택하여 빈 USD 스테이지(Stage)를 생성합니다.",
+    "Stage 패널에서 우클릭 후 Create 메뉴를 열어 Mesh나 Xform 등의 기본 프림(Prim)을 생성합니다.",
+    "Property 패널에서 생성된 프림의 Transform(Translate, Rotate, Scale) 값을 조정하여 배치합니다.",
+    "Layer 패널에서 새 레이어를 추가하여 원본 에셋을 건드리지 않고 비파괴적인 수정 작업을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Stage",
+      "desc": "모든 USD 데이터와 계층 구조가 담기는 가상 캔버스"
+    },
+    {
+      "name": "Prim",
+      "desc": "USD 스테이지 안에서 개별적으로 존재하는 기본 구성 요소 (Mesh, Light, Xform 등)"
+    },
+    {
+      "name": "Xform",
+      "desc": "하위 프림들의 위치, 회전, 크기를 제어하는 그룹 형태의 트랜스폼 프림"
+    },
+    {
+      "name": "Layer",
+      "desc": "원본 데이터를 보호하고 수정 사항을 겹겹이 쌓아 관리하는 비파괴 편집 레이어"
+    },
+    {
+      "name": "Property",
+      "desc": "선택한 프림의 속성, 재질, 트랜스폼 값을 확인하고 수정하는 패널"
+    }
+  ],
+  "examples": [
+    {
+      "title": "다양한 DCC 에셋을 USD 스테이지로 불러오기",
+      "steps": [
+        "Content Browser에서 USD 파일 형식을 확인합니다.",
+        "마우스 드래그 앤 드롭으로 USD 스테이지에 에셋을 배치합니다.",
+        "Stage 패널에서 에셋의 계층 구조와 프림 이름을 확인합니다."
+      ]
+    },
+    {
+      "title": "레이어를 활용한 비파괴적 소품 수정",
+      "steps": [
+        "Layer 패널에서 Sublayer 또는 새로운 Authoring Layer를 추가합니다.",
+        "추가한 레이어를 활성화(Active) 상태로 만듭니다.",
+        "프림의 위치나 속성을 변경하여 원본에 영향을 주지 않고 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "락(Lock)이 걸린 기본 레이어에 직접 수정함 → 새 레이어(Authoring Layer)를 추가하고 그곳에서 작업합니다.",
+    "Xform 프림을 생성하지 않고 Mesh에 직접 복잡한 계층을 묶음 → 상위 Xform 프림을 만들어 트랜스폼을 관리합니다."
+  ],
+  "related": [
+    "USD Composer",
+    "Layer Panel",
+    "Content Browser",
+    "Action Graph"
+  ],
+  "videos": [
+    {
+      "id": "14UzRKcNqxg",
+      "title": "NVIDIA Omniverse Installation Guide 2026 | Step-by-Step USD Composer Setup",
+      "author": "Ram Drives"
+    },
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20stage%20and%20prims",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Create",
+    "USD"
+  ],
+  "at": "2026-10-29T13:13:25.099826+00:00"
+}
