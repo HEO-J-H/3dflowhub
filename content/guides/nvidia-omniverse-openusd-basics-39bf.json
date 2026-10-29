@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-openusd-basics-39bf",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "OpenUSD basics",
+  "title": "OpenUSD 기초 — 왜 USD 인가",
+  "summary": "NVIDIA Omniverse의 OpenUSD는 서로 다른 3D 소프트웨어의 데이터를 실시간으로 협업하고 교환하는 개방형 3D 파일 포맷이자 파이프라인 표준입니다. 거대한 3D 씬을 단절 없이 연결하는 '3D의 HTML' 역할을 합니다.",
+  "when": [
+    "3ds Max, Blender, Maya, Unreal Engine 등 여러 툴의 데이터를 하나의 씬으로 병합할 때",
+    "팀원들과 실시간으로 동일한 3D 프로젝트를 동시 편집(Live Sync)할 때",
+    "대규모 에셋과 라이팅을 초고속으로 렌더링하고 파이프라인을 구축할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 구동합니다.",
+    "Omniverse Create (또는 USD Composer)를 실행합니다.",
+    "File 메뉴에서 Export를 선택하여 기존 3ds Max나 Blender의 모델링을 .usd 또는 .usda/.usdc 형식으로 내보냅니다.",
+    "Omniverse Nucleus 서버에 파일을 업로드하거나 Stage에 USD 파일을 드래그하여 불러옵니다.",
+    "Layers 패널에서 서브레이어(Sublayers)를 추가하여 모델링, 라이팅, 재질 레이어를 분리 관리합니다."
+  ],
+  "params": [
+    {
+      "name": "Sublayers",
+      "desc": "여러 USD 파일을 비파괴적으로 겹쳐서 관리하는 레이어 시스템입니다."
+    },
+    {
+      "name": "Payloads",
+      "desc": "거대한 3D 데이터의 로딩을 지연시켜 메모리를 절약합니다."
+    },
+    {
+      "name": "References",
+      "desc": "다른 USD 파일의 에셋을 원본 수정 없이 현재 씬에 참조로 불러옵니다."
+    },
+    {
+      "name": "Variants",
+      "desc": "하나의 에셋 안에 여러 버전(색상, 형태 등)을 만들어 교체할 수 있습니다."
+    },
+    {
+      "name": "Live Sync",
+      "desc": "DCC 툴과 Omniverse 간의 변경 사항을 실시간으로 동기화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다양한 DCC 툴 에셋 합치기",
+      "steps": [
+        "3ds Max에서 건물을 USD로 내보냅니다.",
+        "Blender에서 가구 에셋을 USD로 내보냅니다.",
+        "Omniverse Composer에서 두 USD 파일을 하나의 Stage로 불러와 배치합니다."
+      ]
+    },
+    {
+      "title": "USD 레이어를 활용한 협업",
+      "steps": [
+        "Layer 패널에서 기본 배경 레이어를 생성합니다.",
+        "동료가 라이팅 전용 레이어를 추가하여 실시간으로 조명을 수정합니다.",
+        "메인 파일의 손상 없이 변경 사항을 병합합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "상대 경로 대신 절대 경로를 사용하여 다른 PC에서 에셋이 깨짐 → 파일 경로를 프로젝트 폴더 기준 상대 경로(.usd)로 수정합니다.",
+    "DCC 툴에서 스케일과 트랜스폼이 초기화되지 않음 → 3ds Max나 Blender에서 Freeze/Apply Scale을 실행한 뒤 USD로 내보냅니다."
+  ],
+  "related": [
+    "OpenUSD",
+    "Nucleus",
+    "USD Composer",
+    "Omniverse Connector"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20OpenUSD%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-29T13:03:22.028296+00:00"
+}
