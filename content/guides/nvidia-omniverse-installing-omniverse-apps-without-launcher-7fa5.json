@@ -1,0 +1,91 @@
+{
+  "id": "nvidia-omniverse-installing-omniverse-apps-without-launcher-7fa5",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Installing Omniverse apps without Launcher",
+  "title": "런처 없이 앱 설치·실행하기",
+  "summary": "NVIDIA Omniverse Launcher가 2025년 10월 1일부로 종료됨에 따라, 더 이상 런처 없이 NVIDIA NGC와 GitHub를 통해 필수 애플리케이션과 리소스를 직접 다운로드하고 관리하는 방법을 안내합니다.",
+  "when": [
+    "NVIDIA Omniverse Launcher가 공식 종료되어 개별 앱을 직접 설치해야 할 때",
+    "NVIDIA Isaac Sim, RTX Remix, Audio2Face 등의 개발자 도구를 최신 상태로 유지하고 싶을 때",
+    "Blender, Autodesk 3ds Max, Autodesk Maya, SideFX Houdini 등과 OpenUSD 기반 워크플로우를 연동할 때"
+  ],
+  "steps": [
+    "NVIDIA NGC Catalog 또는 공식 GitHub 저장소에 접속합니다.",
+    "필요한 애플리케이션(예: NVIDIA Isaac Sim, USD Composer App Template, Blender 4.2 Alpha USD Branch)을 검색합니다.",
+    "제공되는 링크를 통해 패키지나 소스 코드를 다운로드합니다.",
+    "프로젝트 환경에 맞춰 킷 템플릿(Omniverse Kit App Template) 및 관련 확장(Extensions)을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "NVIDIA NGC",
+      "desc": "컨테이너, AI 모델, OpenUSD 애플리케이션을 다운로드할 수 있는 NVIDIA의 허브입니다."
+    },
+    {
+      "name": "Omniverse Kit",
+      "desc": "OpenUSD 기반 애플리케이션과 마이크로서비스를 구축하기 위한 툴킷입니다."
+    },
+    {
+      "name": "Omniverse Kit App Template",
+      "desc": "OpenUSD 애플리케이션 개발을 간소화하는 툴과 템플릿 모음입니다."
+    },
+    {
+      "name": "NVIDIA Isaac Sim",
+      "desc": "Omniverse 기반으로 구축된 오픈소스 로봇 시뮬레이션 레퍼런스 프레임워크입니다."
+    },
+    {
+      "name": "NVIDIA RTX Remix",
+      "desc": "RTX 레이 트레이싱과 DLSS를 통해 게임 자산과 머티리얼을 고화질로 개선합니다."
+    },
+    {
+      "name": "Audio2Face",
+      "desc": "오디오 입력에서 실시간 실사형 얼굴 애니메이션을 생성하는 AI 기술입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "NVIDIA NGC에서 Isaac Sim 다운로드하기",
+      "steps": [
+        "NVIDIA NGC Catalog 웹사이트에 접속합니다.",
+        "NVIDIA Isaac Sim을 검색합니다.",
+        "제공되는 GitHub 및 문서 링크를 통해 실행 파일을 다운로드하고 시스템 요구사항을 확인합니다."
+      ]
+    },
+    {
+      "title": "Blender 4.2 USD 브랜치 연동하기",
+      "steps": [
+        "Blender GitHub 또는 NGC Catalog에서 Blender 4.2 Alpha USD Branch를 찾습니다.",
+        "Omniverse 커넥터와 애드온이 포함된 실험적 빌드를 다운로드합니다.",
+        "OpenUSD 기반 씬 데이터 교환 작업을 시작합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Omniverse Launcher를 계속 찾거나 재설치하려고 시도함 → Launcher는 2025년 10월 1일부로 종료되었으므로 공식 NGC와 GitHub를 이용해야 합니다.",
+    "시스템 요구사항을 확인하지 않고 Isaac Sim을 실행함 → Isaac Sim Compatibility Checker를 먼저 사용하여 하드웨어 호환성을 확인해야 합니다."
+  ],
+  "related": [
+    "Omniverse Kit",
+    "NVIDIA Isaac Sim",
+    "NVIDIA RTX Remix",
+    "USD Composer App Template"
+  ],
+  "videos": [
+    {
+      "id": "a9MuYruNZl0",
+      "title": "How to Install Nvidia Omniverse 2025",
+      "author": "Markom3D"
+    },
+    {
+      "id": "bp1saEhxqHw",
+      "title": "Omniverse Beginner Tutorial: Download",
+      "author": "BalloonBear"
+    }
+  ],
+  "doc": "https://developer.nvidia.com/omniverse/legacy-tools",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-29T12:13:24.858293+00:00"
+}
