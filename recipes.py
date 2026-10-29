@@ -199,7 +199,12 @@ EXPECT = {"transforms_applied": "rotation/scale applied (rotation 0, scale 1)",
           "origin_centered": "object origin moved to geometry center", "exported_file": "writes a file to the given path"}
 
 
-def run_blender_check(script: str, timeout: int = 180, expect: list[str] | None = None) -> dict:
+EXAMPLE_DIR = RECIPE_DIR / "files"   # 검증 통과한 Blender 레시피의 실행 결과 장면(.blend) — 사이트에서 내려받기
+EXAMPLE_MAX_BYTES = 5 * 1024 * 1024
+
+
+def run_blender_check(script: str, timeout: int = 180, expect: list[str] | None = None,
+                      save_as: Path | None = None) -> dict:
     """화면 없는 Blender 에서 애드온 등록 → 테스트 장면에 Operator 실행 → 해제 (tools/blender_check.py)."""
     exe = blender_bin()
     if not exe:
@@ -209,7 +214,8 @@ def run_blender_check(script: str, timeout: int = 180, expect: list[str] | None 
         addon.write_text(script, encoding="utf-8")
         try:
             subprocess.run([exe, "-b", "--factory-startup", "--python", str(core.ROOT / "tools" / "blender_check.py"),
-                            "--", str(addon), str(out), ",".join(expect or [])], capture_output=True, timeout=timeout)
+                            "--", str(addon), str(out), ",".join(expect or []), str(save_as or "")],
+                           capture_output=True, timeout=timeout)
         except subprocess.TimeoutExpired:
             return {"ok": False, "error": f"{timeout}초 안에 끝나지 않음 (무한 반복 의심)"}
         return core._load_json(out, {"ok": False, "error": "검사 결과 없음 (Blender 가 비정상 종료)"})
@@ -222,13 +228,19 @@ def verify_blender(limit: int = 10) -> list[str]:
     fails = core._load_json(FAIL_PATH, {})
     done = []
     for r in [r for r in load_all() if r.get("host") == "Blender" and "runtime" not in r][:limit]:
-        res = run_blender_check(r["script"], expect=r.get("expect"))
+        EXAMPLE_DIR.mkdir(parents=True, exist_ok=True)
+        blend = EXAMPLE_DIR / f"{r['id']}_example.blend"
+        res = run_blender_check(r["script"], expect=r.get("expect"), save_as=blend)
         path = RECIPE_DIR / f"{r['id']}.json"
         if res.get("ok") and not r.get("expect"):
             res = {"ok": False, "error": "약속한 기대 결과(expect)가 없음 — 결과를 확인할 수 없음"}
         if res.get("ok"):
             r["runtime"] = {"ok": True, "blender": res.get("blender"), "at": _now().isoformat(timespec="seconds"),
                             "steps": [s["name"] for s in res.get("steps", [])]}
+            if blend.exists() and blend.stat().st_size <= EXAMPLE_MAX_BYTES:
+                r["example"] = blend.name
+            else:
+                blend.unlink(missing_ok=True)
             r["checked"] = (f"Blender {res.get('blender', '')} 에서 테스트 장면으로 실행 · 결과 확인 통과 "
                             f"({', '.join(r.get('expect', []))})")
             core._save_json(path, r)
@@ -240,6 +252,25 @@ def verify_blender(limit: int = 10) -> list[str]:
     core._save_json(FAIL_PATH, fails)
     return done
 
+
+
+def backfill_examples(limit: int = 10) -> list[str]:
+    """이미 검증된 Blender 레시피 중 예제 장면이 없는 것: 다시 실행해 .blend 저장 (통과할 때만)."""
+    if not blender_bin():
+        return []
+    out = []
+    for r in [r for r in load_all() if r.get("host") == "Blender" and (r.get("runtime") or {}).get("ok")
+              and not r.get("example")][:limit]:
+        EXAMPLE_DIR.mkdir(parents=True, exist_ok=True)
+        blend = EXAMPLE_DIR / f"{r['id']}_example.blend"
+        res = run_blender_check(r["script"], expect=r.get("expect"), save_as=blend)
+        if res.get("ok") and blend.exists() and blend.stat().st_size <= EXAMPLE_MAX_BYTES:
+            r["example"] = blend.name
+            core._save_json(RECIPE_DIR / f"{r['id']}.json", r)
+            out.append(f"{r['title']} ({blend.stat().st_size // 1024}KB)")
+        else:
+            blend.unlink(missing_ok=True)
+    return out
 
 # ─────────────────────────── 생성 ───────────────────────────
 def candidates(days: int = 60) -> list[tuple[str, str, list[dict]]]:

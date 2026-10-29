@@ -797,6 +797,7 @@ EXT = {"python": "py", "maxscript": "ms"}
 
 def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
     """실무 파이프라인: AI 3D 소식을 작업 툴(Blender 애드온·MAXScript·Maya)에 붙여 쓰는 방법 + 스크립트."""
+    import recipes as _recipes
     root_dir = OUT / "recipes"
     root_dir.mkdir(exist_ok=True)
     by_id = {p["id"]: p for p in posts}
@@ -806,6 +807,10 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
         root = "../../"
         fname = f"3dflowhub_{r['id']}.{EXT.get(r['lang'], 'txt')}"
         (folder / fname).write_text(r["script"], encoding="utf-8")  # 바로 받을 수 있는 스크립트 파일
+        ex = _recipes.EXAMPLE_DIR / r["example"] if r.get("example") else None
+        if ex and ex.exists():
+            import shutil as _sh
+            _sh.copyfile(ex, folder / r["example"])  # Blender 에서 실제 실행한 결과 장면
         flow = '<span class="mp-arr" aria-hidden="true">›</span>'.join(
             f'<span class="mp-chip{" last" if i == len(r["pipeline"]) - 1 else ""}">{e(s["tool"])}</span>'
             for i, s in enumerate(r["pipeline"]))
@@ -822,7 +827,9 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
             + f'<ol class="steps">{stages}</ol>'
             + f'<h2>스크립트 ({e(r["host"])} · {lang})</h2>'
             + f'<div class="codebar"><button class="copy" type="button" data-for="code">코드 복사</button>'
-              f'<a href="{e(fname)}" download>파일 받기</a></div>'
+              f'<a href="{e(fname)}" download>스크립트 파일 받기</a>'
+            + (f'<a href="{e(r["example"])}" download>실행 결과 장면(.blend) 받기</a>' if ex and ex.exists() else "")
+            + '</div>'
             + f'<pre class="code"><code id="code">{e(r["script"])}</code></pre>'
             + (f'<h2>설치</h2><ol>{"".join(f"<li>{e(x)}</li>" for x in r["install"])}</ol>' if r.get("install") else "")
             + (f'<h2>사용법</h2><ol>{"".join(f"<li>{e(x)}</li>" for x in r["usage"])}</ol>' if r.get("usage") else "")

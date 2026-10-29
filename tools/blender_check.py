@@ -20,6 +20,7 @@ import bpy
 argv = sys.argv[sys.argv.index("--") + 1:]
 addon_path, out_path = Path(argv[0]), Path(argv[1])
 expect = [x for x in (argv[2] if len(argv) > 2 else "").split(",") if x]
+save_path = Path(argv[3]) if len(argv) > 3 and argv[3] else None  # 통과하면 결과 장면을 .blend 예제 파일로 저장
 result = {"ok": False, "blender": bpy.app.version_string, "steps": [], "error": ""}
 
 
@@ -124,6 +125,12 @@ def main():
             step(f"기대:{label}", bool(fn(ctx)), "" if fn(ctx) else f"실행 후에도 '{label}' 이 충족되지 않음")
         except Exception:
             step(f"기대:{label}", False, traceback.format_exc())
+    if save_path and all(s["ok"] for s in result["steps"]):
+        try:
+            bpy.ops.wm.save_as_mainfile(filepath=str(save_path), compress=True, copy=True)
+            result["example"] = save_path.name
+        except Exception:
+            result["example_error"] = traceback.format_exc()[-300:]
     try:
         mod.unregister()
         step("unregister", True)
