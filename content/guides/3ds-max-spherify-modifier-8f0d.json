@@ -1,0 +1,82 @@
+{
+  "id": "3ds-max-spherify-modifier-8f0d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Spherify modifier",
+  "title": "Spherify — 구 모양으로",
+  "summary": "Spherify 모디파이어는 선택한 오브젝트의 정점들을 바깥쪽으로 밀어내어 구(Sphere) 형태로 변환해 주는 기능입니다. 복잡한 형태의 실루엣을 부드러운 구형으로 바꿀 때 유용합니다.",
+  "when": [
+    "각진 로우폴리곤 메시를 둥근 구 형태의 베이스로 만들 때",
+    "캐릭터의 머리나 관절 등 둥근 볼륨감을 빠르게 잡고 싶을 때",
+    "불규칙한 형태의 Particle이나 오브젝트를 구형으로 모아줄 때"
+  ],
+  "steps": [
+    "Viewport에서 변형할 오브젝트를 선택합니다.",
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List를 열고 Spherify를 찾아 선택합니다.",
+    "Parameters rollout에서 Percent 값을 높여 구형으로 변환되는 정도를 조절합니다.",
+    "더 자연스러운 변형을 위해 메시의 세그먼트(Segment)가 충분한지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Percent",
+      "desc": "구형으로 변환되는 강도를 백분율(%)로 조절합니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "구화 과정에서 정점들이 뭉치지 않도록 표면을 부드럽게 펴줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "박스를 구로 변형하기",
+      "steps": [
+        "Box 오브젝트를 생성하고 Length, Width, Height Segments를 각각 16 이상으로 설정합니다.",
+        "Modifier List에서 Spherify를 적용합니다.",
+        "Percent 값을 100으로 올려 완벽한 구 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "캐릭터 머리 베이스 형태 잡기",
+      "steps": [
+        "대략적인 형태의 두상 메시를 준비합니다.",
+        "Spherify 모디파이어를 추가합니다.",
+        "Percent 값을 낮게(예: 30~50%) 주어 기존 형태를 유지하면서 전체 볼륨만 둥글게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족으로 오브젝트가 찌그러져 보임 → Edit Poly 등을 사용해 세그먼트를 추가한 뒤 Spherify를 적용하세요.",
+    "Percent 값을 100%로 올렸으나 원하는 모양이 아님 → 오브젝트의 피벗(Pivot) 위치가 중심에 있는지 확인하세요."
+  ],
+  "related": [
+    "TurboSmooth",
+    "Relax",
+    "Spherify (Mesh/Poly)",
+    "Morpher"
+  ],
+  "videos": [
+    {
+      "id": "lBJ940ZqiTg",
+      "title": "3DS Max Spherify  Modifier",
+      "author": "TALENT CAD"
+    },
+    {
+      "id": "iqL4htLtOCs",
+      "title": "3DS MAX tutorial / Helmet starting from a box and using spherify modifier and Msmooth",
+      "author": "3D Digital Drawing Turorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Spherify%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Spherify"
+  ],
+  "at": "2026-10-29T11:23:31.318749+00:00"
+}

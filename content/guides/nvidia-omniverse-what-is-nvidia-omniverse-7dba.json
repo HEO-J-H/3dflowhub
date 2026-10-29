@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-what-is-nvidia-omniverse-7dba",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "What is NVIDIA Omniverse",
+  "title": "Omniverse 란 — 무엇을 하는 플랫폼인가",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴 간 실시간 협업과 시뮬레이션을 가능하게 하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 여러 아티스트의 작업을 하나의 가상 공간에서 실시간 동기화합니다.",
+  "when": [
+    "여러 3D 아티스트가 3ds Max, Blender, Maya, Unreal Engine 등 서로 다른 툴을 사용해 동시 협업할 때",
+    "USD 기반의 파이프라인을 구축하여 에셋과 씬을 효율적으로 관리하고 공유할 때",
+    "실시간 레이 트레이싱과 물리 기반 시뮬레이션을 원활하게 테스트하고 최종 결과물을 시각화할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 최신 버전의 Nucleus와 App(예: Omniverse Create, View)을 설치합니다.",
+    "Omniverse Nucleus 서버를 로컬 또는 클라우드에 연결하여 공유 데이터베이스 공간을 만듭니다.",
+    "사용 중인 3D DCC 툴(예: 3ds Max, Blender, Maya)에서 Omniverse Connector 플러그인을 활성화합니다.",
+    "DCC 툴의 뷰포트에서 Live Sync 기능을 켜고 실시간 동기화 세션에 참여합니다.",
+    "USD 포맷으로 씬을 익스포트하거나 Live Sync를 통해 다른 작업자와 실시간으로 변경 사항을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Live Sync",
+      "desc": "여러 툴과 사용자 간의 변경 사항을 실시간으로 동기화합니다."
+    },
+    {
+      "name": "Nucleus",
+      "desc": "USD 데이터와 에셋을 저장, 버전 관리, 공유하는 데이터베이스 백엔드입니다."
+    },
+    {
+      "name": "RTX Renderer",
+      "desc": "실시간 레이 트레이싱 및 패스 트레이싱을 처리하는 렌더링 엔진입니다."
+    },
+    {
+      "name": "USD Composer",
+      "desc": "USD 씬을 조립하고 레이아웃을 편집하며 Visualize는 메인 앱입니다."
+    },
+    {
+      "name": "Connectors",
+      "desc": "외부 DCC 툴과 Omniverse를 연결해 주는 플러그인 모음입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 DCC 실시간 협업",
+      "steps": [
+        "Blender에서 캐릭터 모델을 수정하고 저장합니다.",
+        "3ds Max에서 배경 세트를 구성하고 Live Sync를 켭니다.",
+        "Omniverse View에서 두 에셋이 실시간으로 합쳐진 전체 씬을 확인합니다."
+      ]
+    },
+    {
+      "title": "USD 씬 라이팅 및 렌더링",
+      "steps": [
+        "Omniverse Composer로 USD 파일을 불러옵니다.",
+        "Physical Light를 배치하고 RTX Renderer 설정을 활성화합니다.",
+        "패스 트레이싱 모드로 전환하여 최종 결과물을 실시간으로 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 및 트랜스폼 미적용(Apply Scale/Transform) → DCC 툴에서 익스포트 전 Reset XForm 또는 Apply Scale을 수행하여 USD 상의 크기 오류를 방지하세요.",
+    "Live Sync 연결 끊김 및 포트 충돌 → 방화벽 설정과 Nucleus 서버 주소 및 포트 번호(기본 포트)가 정확한지 확인하세요."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "Omniverse View",
+    "Omniverse Create"
+  ],
+  "videos": [
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    },
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20What%20is%20NVIDIA%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-29T11:23:25.716477+00:00"
+}
