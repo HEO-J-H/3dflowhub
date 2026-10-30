@@ -1,0 +1,98 @@
+{
+  "id": "3ds-max-poly-select-modifier-548a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Poly Select modifier",
+  "title": "Poly Select — 선택만 스택에 남기기",
+  "summary": "Poly Select 수정자는 오브젝트의 변형 스택을 깨지 않고 특정 폴리곤(면·엣지·버텍스)을 선택해 이후의 수정자에만 영향을 주는 도구입니다. 복잡한 모델링 과정에서 특정 부분만 골라 제어할 때 사용합니다.",
+  "when": [
+    "전체 오브젝트가 아닌 특정 영역에만 TurboSmooth나 Bend 등의 수정자를 적용하고 싶을 때",
+    "애니메이션이나 모디파이어 스택 중간 단계에서 특정 서브오브젝트 선택을 유지해야 할 때",
+    "Edit Poly로 직접 모델링을 수정하기 전, 선택 영역을 미리 정의하고 싶을 때"
+  ],
+  "steps": [
+    "Command Panel의 Create 또는 Modify 탭에서 대상 오브젝트를 선택합니다.",
+    "Modifier List를 열고 Poly Select를 선택하여 스택에 추가합니다.",
+    "Command Panel 하단의 Selection rollout에서 Vertex(1), Edge(2), Polygon(4) 중 원하는 서브오브젝트 단축키를 누릅니다.",
+    "뷰포트에서 마우스 드래그나 클릭으로 원하는 영역을 선택합니다.",
+    "그 위에 TurboSmooth나 Noise 등 원하는 수정자를 쌓아 선택 영역에만 적용되도록 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Vertex",
+      "desc": "버텍스 단위로 선택 영역을 지정합니다."
+    },
+    {
+      "name": "Edge",
+      "desc": "엣지(선) 단위로 선택 영역을 지정합니다."
+    },
+    {
+      "name": "Polygon",
+      "desc": "폴리곤(면) 단위로 선택 영역을 지정합니다."
+    },
+    {
+      "name": "Ignore Backfacing",
+      "desc": "카메라 반대편에 있는 뒷면의 서브오브젝트가 선택되는 것을 방지합니다."
+    },
+    {
+      "name": "By Vertex",
+      "desc": "버텍스를 공유하는 모든 폴리곤이나 엣지를 한 번에 선택합니다."
+    },
+    {
+      "name": "Soft Selection",
+      "desc": "선택 영역 주변으로 부드러운 감쇠(Falloff)를 주어 자연스러운 변형을 유도합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "일부 면에만 로컬 노이즈 주기",
+      "steps": [
+        "오브젝트에 Poly Select 수정자를 적용합니다.",
+        "Polygon 모드에서 변형할 면들만 선택합니다.",
+        "그 위에 Noise 수정자를 추가해 해당 면만 울퉁불퉁하게 만듭니다."
+      ]
+    },
+    {
+      "title": "특정 영역만 부드럽게 세분화하기",
+      "steps": [
+        "오브젝트에 Poly Select 수정자를 적용합니다.",
+        "필요한 영역의 폴리곤을 선택합니다.",
+        "그 위에 TurboSmooth 수정자를 올려 선택된 면 주변만 디테일을 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Poly Select에서 아무것도 선택하지 않음 → 이후 수정자가 전체 오브젝트에 적용되므로 반드시 서브오브젝트를 먼저 선택해야 합니다.",
+    "Modifier Stack에서 위치를 잘못 배치함 → Edit Poly나 MeshSmooth 아래에 두면 선택 정보가 꼬일 수 있으므로 적용하려는 목적에 맞게 스택 순서를 확인하세요."
+  ],
+  "related": [
+    "Edit Poly",
+    "Mesh Select",
+    "TurboSmooth",
+    "Soft Selection"
+  ],
+  "videos": [
+    {
+      "id": "jNu4sDJyHMc",
+      "title": "3ds Max  12-03 Mesh Select Modifier",
+      "author": "John Bordeau"
+    },
+    {
+      "id": "1vafZeUSorU",
+      "title": "Poly Select Modifier | 3ds Max Tutorial",
+      "author": "Pixali Art"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Poly%20Select%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Create",
+    "Modify",
+    "Modifier List",
+    "Poly Select"
+  ],
+  "at": "2026-10-30T00:25:07.142816+00:00"
+}
