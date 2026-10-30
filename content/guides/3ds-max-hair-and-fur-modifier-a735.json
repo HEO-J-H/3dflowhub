@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-hair-and-fur-modifier-a735",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Hair and Fur modifier",
+  "title": "Hair and Fur — 털·잔디",
+  "summary": "3ds Max의 Hair and Fur 모디파이어는 캐릭터의 머리카락, 동물 털, 카펫 같은 섬세한 가닥 형태를 렌더링할 때 사용하는 강력한 툴입니다. 메쉬 표면에 수많은 가닥을 생성하고 스타일링할 수 있습니다.",
+  "when": [
+    "동물의 사실적인 털이나 갈기를 표현할 때",
+    "사람이나 크리처의 머리카락, 수염을 제작할 때",
+    "러그, 잔디, 카펫 같은 섬유 소재의 디테일을 더할 때"
+  ],
+  "steps": [
+    "메쉬 오브젝트를 선택하고 Command Panel -> Modify 탭으로 갑니다.",
+    "Modifier List에서 Hair and Fur (WSM) 또는 Hair and Fur를 선택해 적용합니다.",
+    "Viewport Display에서 Guides 또는 Hairs를 선택해 뷰포트 가시성을 확인합니다.",
+    "Styling 탭에서 Style Hair 버튼을 눌러 브러시 툴로 털의 모양과 방향을 빗어줍니다.",
+    "Material Parameters에서 털의 색상, 굵기, 루트와 팁의 차이를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Hairs",
+      "desc": "생성할 전체 털 가닥의 수를 조절합니다."
+    },
+    {
+      "name": "Root Thick",
+      "desc": "털의 뿌리 부분 두께를 설정합니다."
+    },
+    {
+      "name": "Tip Thick",
+      "desc": "털의 끝부분 두께를 설정하여 뾰족하게 만듭니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "털의 전체적인 길이를 조절합니다."
+    },
+    {
+      "name": "Frizz",
+      "desc": "털에 무작위적인 구불구불함을 주어 자연스럽게 만듭니다."
+    },
+    {
+      "name": "Kink",
+      "desc": "털에 일정한 파동이나 곱슬거림을 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "동물 짧은 털 표현",
+      "steps": [
+        "캐릭터 바디 메쉬에 Hair and Fur를 적용합니다.",
+        "Scale 값을 낮추고 Hairs를 높여 촘촘한 털을 만듭니다.",
+        "Frizz와 Kink를 살짝 주어 뻣뻣한 느낌을 없앱니다."
+      ]
+    },
+    {
+      "title": "카펫 제작",
+      "steps": [
+        "평면(Plane) 오브젝트를 만들고 모디파이어를 적용합니다.",
+        "Scale을 짧게 맞추고 Root Thick과 Tip Thick을 동일하게 설정합니다.",
+        "색상을 지정하고 랜더러(V-Ray 등)를 통해 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "뷰포트가 너무 느려짐 → Display 퍼센트를 낮추거나 뷰포트에서는 가이드를 숨기고 렌더 시에만 털이 보이도록 설정하세요.",
+    "털이 메쉬 내부로 파고듦 → Normal 방향이 뒤집혔는지 확인하고 Edit Normals나 Reset XForm을 적용하세요."
+  ],
+  "related": [
+    "Cloth",
+    "Garment Maker",
+    "V-Ray Fur",
+    "Skin Wrap"
+  ],
+  "videos": [
+    {
+      "id": "hGslHQdj-OE",
+      "title": "Hair & Fur tutorial de pieles Vray",
+      "author": "Adán Martín"
+    },
+    {
+      "id": "Jio35tTqCjw",
+      "title": "3ds Max Tutorial (Beginner) -- Cloth Simulation",
+      "author": "Mike Woolf"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Hair%20and%20Fur%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Hair",
+    "Fur",
+    "WSM"
+  ],
+  "at": "2026-10-30T01:06:15.994731+00:00"
+}
