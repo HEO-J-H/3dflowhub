@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-usd-composer-interface-4b36",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "USD Composer interface",
+  "title": "USD Composer 화면 구성",
+  "summary": "NVIDIA Omniverse USD Composer는 여러 DCC 툴의 에셋을 Universal Scene Description(USD) 기반으로 실시간 통합하고 실사급 렌더링을 확인하는 협업 허브입니다.",
+  "when": [
+    "여러 팀원이 만든 3ds Max, Blender, Maya 에셋을 하나의 씬으로 합쳐서 볼 때",
+    "RTX 기반 실시간 레이 트레이싱과 패스 트레이싱으로 최종 퀄리티를 미리 확인할 때",
+    "물리 기반 시뮬레이션과 USD 라이브 싱크 협업 워크플로우를 구성할 때"
+  ],
+  "steps": [
+    "Nvidia Omniverse Launcher를 실행하고 USD Composer(구 Create) 앱을 설치 후 실행합니다.",
+    "File → New 로 빈 씬을 생성하거나 기존 USD 파일을 엽니다.",
+    "Stage 패널에서 마우스 우클릭을 하거나 Create 메뉴를 통해 Light, Camera, Shape(Cube, Plane 등)를 생성합니다.",
+    "Content Browser에서 USD 에셋을 드래그하여 Viewport로 가져옵니다.",
+    "Transform 툴(단축키 W, E, R)을 사용해 오브젝트의 위치, 회전, 스케일을 조절합니다.",
+    "Render Settings 패널에서 RTX Real-Time 또는 RTX Path Traced 렌더러를 선택하여 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Stage",
+      "desc": "씬 내의 모든 USD Primitive와 계층 구조를 트리 형태로 관리하는 패널"
+    },
+    {
+      "name": "Property",
+      "desc": "선택한 오브젝트의 Transform, Material, Mesh 등 세부 속성을 수정하는 패널"
+    },
+    {
+      "name": "Content Browser",
+      "desc": "로컬 및 Nucleus 서버의 3D 에셋, 텍스처 파일을 탐색하고 불러오는 패널"
+    },
+    {
+      "name": "Render Settings",
+      "desc": "해상도, 샘플링, 레이 트레이싱 바운스 등 렌더링 품질을 설정하는 패널"
+    },
+    {
+      "name": "Materials",
+      "desc": "OpenPBR 및 MDL 기반의 재질을 생성하고 에셋에 적용하는 패널"
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 DCC 에셋 병합 및 배치",
+      "steps": [
+        "Content Browser에서 3ds Max와 Blender에서 각각 내보낸 USD 파일을 확인합니다.",
+        "마우스로 드래그하여 Stage 패널 또는 Viewport에 에셋을 가져옵니다.",
+        "Transform 툴을 이용해 오브젝트들의 상대적 위치를 정렬합니다."
+      ]
+    },
+    {
+      "title": "RTX Path Traced 조명 설정",
+      "steps": [
+        "Create 메뉴에서 Light → Dome Light 또는 Rect Light를 생성합니다.",
+        "Property 패널에서 Intensity와 Exposure 값을 조절해 밝기를 맞춥니다.",
+        "Render Settings에서 렌더러를 RTX Path Traced로 변경하여 사실적인 그림자와 반사를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일이나 회전 값이 비정상적으로 나옴 → DCC 툴에서 내보내기 전 Transform을 Apply(Freeze) 했는지 확인합니다.",
+    "텍스처 경로가 깨져서 검은색으로 보임 → 상대 경로를 사용하거나 Nucleus 서버에 에셋과 텍스처를 함께 업로드합니다."
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Omniverse Nucleus",
+    "MDL (Material Definition Language)",
+    "RTX Renderer"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "wg-jYONjljU",
+      "title": "NVIDIA Omniverse USD Composer Measure Tool Overview",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20Composer%20interface",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Nvidia Omniverse Launcher",
+    "USD Composer",
+    "Create"
+  ],
+  "at": "2026-10-30T02:15:34.130901+00:00"
+}

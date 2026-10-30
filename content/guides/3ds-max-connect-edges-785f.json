@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-connect-edges-785f",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Connect edges",
+  "title": "Connect — 엣지 사이 잇기",
+  "summary": "선택한 두 개 이상의 에지 사이에 새로운 에지를 균등하게 추가하는 기능입니다. 엣지 루프를 따라 세밀한 형태를 잡거나 서브디비전 모델링을 할 때 필수적으로 사용됩니다.",
+  "when": [
+    "하드 표면 모델링에서 모서리를 단단하게 만들기 위해 지오메트리를 추가할 때",
+    "캐릭터나 유기적 형태의 모델링 중 특정 부위에 루프를 더 넣어 형태를 다듬을 때",
+    "기존의 단일 에지 구간을 균등하게 분할하여 면을 더 나누고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Modifier List 에서 Edit Poly 또는 Editable Poly 로 변환합니다.",
+    "Sub-object Level 에서 Edge(단축키 2) 모드로 전환합니다.",
+    "연결(Connect)할 인접한 에지들을 선택하거나, Ring 버튼을 눌러 에지 루프 전체를 지정합니다.",
+    "Command Panel의 Edit Edges 세부 메뉴에서 Connect 옆의 설정 버튼(Settings)을 클릭합니다.",
+    "Segments 와 Pinch, Slide 값을 조절하여 원하는 위치와 개수의 에지를 생성합니다.",
+    "체크(OK) 버튼을 눌러 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "추가할 에지의 개수를 지정합니다. 늘릴수록 간격이 촘촘해집니다."
+    },
+    {
+      "name": "Pinch",
+      "desc": "여러 개의 에지를 추가할 때 전체 에지들 간의 간격 좁히거나 넓힙니다."
+    },
+    {
+      "name": "Slide",
+      "desc": "생성된 에지를 기존 에지 사이에서 좌우로 이동시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 표면 모서리 각 살리기",
+      "steps": [
+        "상자의 모서리 에지 루프를 Ring으로 선택합니다.",
+        "Connect 설정에서 Segments를 1로 지정합니다.",
+        "Slide 값을 조절해 메인 모서리 쪽에 가깝게 붙여줍니다."
+      ]
+    },
+    {
+      "title": "실린더 중간 형태 분할하기",
+      "steps": [
+        "실린더의 세로 에지들을 Ring으로 선택합니다.",
+        "Connect를 실행하고 Segments를 3으로 늘려 균등한 가로 분할면을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Ring 선택 없이 단일 에지 하나만 선택하고 Connect를 실행함 → Edge 모드에서 Ring 버튼을 먼저 눌러 전체 루프를 잡은 뒤 실행합니다.",
+    "스케일이 틀어진 상태에서 Connect를 사용해 간격이 한쪽으로 쏠림 → Object 레벨에서 Reset XForm을 적용한 후 다시 시도합니다."
+  ],
+  "related": [
+    "Ring",
+    "Loop",
+    "SwiftLoop",
+    "Chamfer"
+  ],
+  "videos": [
+    {
+      "id": "MzidcKzoRKk",
+      "title": "Quick Topology Fix in 3ds Max – Turn to Poly for Clean Edge Connections! #shorts #3dsmax #modeling",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "N4oROEv7C-8",
+      "title": "Instantly connect your edges by doing this",
+      "author": "3D Studio Max Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Connect%20edges",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modifier List",
+    "Edit Poly",
+    "Editable Poly",
+    "Sub",
+    "Level",
+    "Edge"
+  ],
+  "at": "2026-10-30T02:15:37.599181+00:00"
+}

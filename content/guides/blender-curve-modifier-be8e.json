@@ -1,0 +1,81 @@
+{
+  "id": "blender-curve-modifier-be8e",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Curve modifier",
+  "title": "Curve — 커브 따라 휘기",
+  "summary": "Blender의 Curve modifier는 오브젝트를 특정 Curve 패스에 따라 부드럽게 구부리거나 늘려주는 기능입니다. 마치 철사를 구부려 그 위에 형태를 올리는 것처럼 활용합니다.",
+  "when": [
+    "도로, 철도, 케이블 같은 긴 구조물을 곡선 경로를 따라 배치할 때",
+    "텍스트나 로고를 원형이나 곡선 따라 자연스럽게 휘게 만들 때",
+    "파이프, 넝쿨 등 반복되는 오브젝트를 구부러진 형태로 만들 때"
+  ],
+  "steps": [
+    "1. Shift+A 키를 눌러 굽힘 기준으로 사용할 Curve 오브젝트(예: Bezier Curve)를 생성합니다.",
+    "2. 휘게 만들 Mesh 오브젝트를 선택하고, Properties 패널에서 Modifier(렌치 아이콘) 탭을 엽니다.",
+    "3. Add Modifier 메뉴에서 Deform 분류 아래에 있는 Curve 를 선택합니다.",
+    "4. Modifier 설정창의 Curve Object 항목을 클릭하고, 방금 만든 Curve를 지정합니다.",
+    "5. Mesh의 변형 축(Deform Axis)을 확인하고, 오브젝트가 Curve를 따라 잘 정렬되도록 축 방향을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Curve Object",
+      "desc": "오브젝트를 따라가게 만들 대상 Curve를 지정합니다."
+    },
+    {
+      "name": "Deform Axis",
+      "desc": "Curve를 따라 늘어나거나 휘어질 오브젝트의 로컬 축 방향을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구부러진 파이프 제작",
+      "steps": [
+        "1. Cylinder 메쉬와 Bezier Curve를 생성합니다.",
+        "2. Cylinder에 Curve modifier를 추가하고 Curve Object로 지정합니다.",
+        "3. Curve의 모양을 편집하여 파이프의 꺾임 형태를 만듭니다.",
+        "4. Cylinder의 길이를 늘리고 Segments를 충분히 주어 꺾임이 부드럽게 보이도록 합니다."
+      ]
+    },
+    {
+      "title": "원형 경로를 따라 배치된 텍스트",
+      "steps": [
+        "1. 텍스트 오브젝트와 Circle 형태의 Curve를 준비합니다.",
+        "2. 텍스트에 Curve modifier를 적용하고 Circle을 지정합니다.",
+        "3. 텍스트가 원의 접선을 따라 원형으로 배치되는 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬가 원점(Origin)을 이탈해 엉뚱한 위치로 튀는 현상 → 오브젝트와 Curve의 Origin(원점) 위치를 3D Cursor 기준으로 일치시키거나 맞춘 후 다시 지정합니다.",
+    "곡선 구간이 꺾이거나 각지는 현상 → Mesh 오브젝트의 세그먼트(Segments / Loop Cut) 부족이 원인이므로 에디트 모드에서 엣지를 추가합니다.",
+    "오브젝트가 찌그러지거나 이상하게 늘어나는 현상 → Object 모드에서 Ctrl+A 를 눌러 Scale 값이 1.0으로 Apply(적용)되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Array",
+    "Geometry Nodes",
+    "Path Animation",
+    "Follow Path"
+  ],
+  "videos": [
+    {
+      "id": "Eo5TliAswX4",
+      "title": "Learn Curve Modifier in Blender!",
+      "author": "BlenderVitals"
+    },
+    {
+      "id": "9xNdPA65dJo",
+      "title": "Curves & Curve Modifier in Blender - Beginner Tutorial",
+      "author": "in2vert"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Curve%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Curve",
+    "Bezier Curve"
+  ],
+  "at": "2026-10-30T02:15:41.564783+00:00"
+}
