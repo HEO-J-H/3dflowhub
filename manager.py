@@ -20,7 +20,8 @@ import core
 PROPOSALS_PATH = core.ROOT / "memory" / "proposals.json"
 REVIEW_EVERY = timedelta(hours=24)
 MAX_PROPOSALS = 3
-CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익", "현황판"]  # 현황판 = 운영자용 Streamlit 앱
+CATEGORIES = ["콘텐츠", "수집", "사이트·UX", "검색(SEO)", "운영·비용", "수익", "현황판"]
+FEED_REJECT_PATTERNS = ["키친", "주방", "인테리어", "요리", "레시피", "cooking", "kitchen", "recipe", "food"]
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int, "buttondown_user": str}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
@@ -154,7 +155,10 @@ def _valid_action(act) -> dict | None:
         return None
     t = act.get("type")
     if t == "add_feed" and act.get("domain") in core.DOMAINS and str(act.get("url", "")).startswith("http"):
-        return {"type": t, "domain": act["domain"], "url": str(act["url"])[:300]}
+        url_str = str(act["url"])[:300]
+        if any(pat in url_str.lower() for pat in FEED_REJECT_PATTERNS):
+            return None
+        return {"type": t, "domain": act["domain"], "url": url_str}
     if t == "keyword_hints" and act.get("domain") in core.DOMAINS and isinstance(act.get("keywords"), list):
         return {"type": t, "domain": act["domain"], "keywords": [str(k)[:60] for k in act["keywords"][:6]]}
     if t == "editorial_note" and act.get("note"):
