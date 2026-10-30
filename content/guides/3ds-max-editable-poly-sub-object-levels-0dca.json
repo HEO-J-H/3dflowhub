@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-editable-poly-sub-object-levels-0dca",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Editable Poly sub-object levels",
+  "title": "Editable Poly — 점·선·면 편집 단계",
+  "summary": "Editable Poly는 3ds Max에서 다각형 메쉬의 정점, 면, 엣지 등을 세밀하게 편집하는 가장 핵심적인 모델링 기본 단위입니다. 점토를 빚듯 자유로운 형태를 만듭니다.",
+  "when": [
+    "원시적인 기본 도형(Box, Cylinder 등)을 원하는 형태의 캐릭터나 사물로 변형할 때",
+    "하드서페이스 모델링에서 문틈, 패널 라인, 돌출부 등의 디테일을 추가할 때",
+    "캐릭터 리깅을 위해 관절 부위의 토폴로지를 정리하고 면의 흐름을 다듬을 때"
+  ],
+  "steps": [
+    "기본 오브젝트(Box 등)를 생성한 뒤 우클릭합니다.",
+    "Convert to → Convert to Editable Poly 를 선택하여 에디터블 폴리 상태로 변환합니다.",
+    "Command Panel의 Modify 탭에서 화살표 아이콘을 눌러 서브오브젝트 메뉴를 펼칩니다.",
+    "키보드 단축키 1번부터 5번을 눌러 Vertex(정점), Edge(엣지), Border(경계), Polygon(면), Element(요소) 레벨로 전환합니다.",
+    "Move(W), Rotate(E), Scale(R) 툴을 사용하여 선택한 서브오브젝트를 편집합니다."
+  ],
+  "params": [
+    {
+      "name": "Vertex",
+      "desc": "점 단위로 선택하여 위치를 미세하게 조정합니다. (단축키 1)"
+    },
+    {
+      "name": "Edge",
+      "desc": "선 단위로 선택하여 루프를 잡거나 각을 세웁니다. (단축키 2)"
+    },
+    {
+      "name": "Border",
+      "desc": "뚫려 있는 구멍의 테두리 엣지를 통째로 선택합니다. (단축키 3)"
+    },
+    {
+      "name": "Polygon",
+      "desc": "다각형 면을 선택하여 Extrude나 Insert 등으로 입체감을 줍니다. (단축키 4)"
+    },
+    {
+      "name": "Element",
+      "desc": "서로 연결된 하나의 독립된 덩어리 전체를 선택합니다. (단축키 5)"
+    },
+    {
+      "name": "Extrude",
+      "desc": "선택한 면이나 엣지를 바깥쪽 또는 안쪽으로 밀어내어 돌출시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 기둥에 홈 파기",
+      "steps": [
+        "Cylinder를 생성하고 Height Segments를 높여줍니다.",
+        "Editable Poly로 변환 후 Edge 레벨(2)에서 홈을 파고 싶은 위치를 선택합니다.",
+        "Connect를 실행하여 새로운 엣지 루프를 추가합니다.",
+        "Polygon 레벨(4)에서 홀수 번 째 면들을 선택하고 Extrude로 안쪽으로 밀어 넣습니다."
+      ]
+    },
+    {
+      "title": "상자 모서리 부드럽게 만들기",
+      "steps": [
+        "Box 오브젝트를 Editable Poly로 변환합니다.",
+        "Edge 레벨(2)에서 모서리 엣지를 하나 선택한 뒤 Loop를 눌러 전체 모서리를 선택합니다.",
+        "Chamfer 옵션 박스를 열고 값을 조절하여 모서리에 면을 나눕니다.",
+        "TurboSmooth 모디파이어를 적용해 부드러운 형태를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브오브젝트 레벨이 켜진 상태에서 다른 오브젝트를 선택하려 함 → 수정이 풀리지 않으므로 해당 숫자 키(1~5)나 상단 아이콘을 다시 눌러 레벨을 끕니다.",
+    "면을 지웠는데 구멍이 뚫려 보임 → Border 레벨(3)에서 구멍 테두리를 잡고 Cap 버튼을 눌러 메워줍니다.",
+    "대칭(Symmetry) 작업 중 중앙 점들이 겹치지 않고 벌어짐 → Vertex 레벨에서 중앙 점들을 모두 선택한 뒤 Weld 임계값(Threshold)을 높여 하나로 합쳐줍니다."
+  ],
+  "related": [
+    "TurboSmooth",
+    "Symmetry",
+    "SwiftLoop",
+    "Bridge"
+  ],
+  "videos": [
+    {
+      "id": "YNts500qOeo",
+      "title": "3ds Max modeling for beginners - Editable Poly Edit Sub-objects",
+      "author": "Soft School"
+    },
+    {
+      "id": "RtVKO68ukiU",
+      "title": "3ds max Tutorial - #8 Editable Poly and Sub-object Levels",
+      "author": "DESIGN YOUR JOB"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Editable%20Poly%20sub-object%20levels",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Box",
+    "Convert",
+    "Editable Poly"
+  ],
+  "at": "2026-10-30T02:05:25.248744+00:00"
+}

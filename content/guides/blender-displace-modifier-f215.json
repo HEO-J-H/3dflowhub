@@ -1,0 +1,100 @@
+{
+  "id": "blender-displace-modifier-f215",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Displace modifier",
+  "title": "Displace — 텍스처로 높낮이",
+  "summary": "텍스처나 이미지의 명암 값을 이용해 오브젝트의 표면을 입체적으로 밀어내거나 변형하는 모디파이어입니다. 마치 지형의 높낮이를 조절하듯 디테일한 요소를 쉽게 표현합니다.",
+  "when": [
+    "낮은 폴리곤 모델에 바위나 벽돌 같은 거친 표면 질감을 더하고 싶을 때",
+    "흑백 이미지(Height Map)를 기반으로 지형(Terrain)이나 파도 같은 자연물을 만들 때",
+    "로그나 패턴 모양으로 메쉬 표면을 미세하게 돌출시키거나 파낼 때"
+  ],
+  "steps": [
+    "Viewport에서 변형할 메쉬 오브젝트를 선택합니다.",
+    "Properties 패널에서 Modifier (렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier를 클릭하고 Deform 분류에서 Displace를 선택합니다.",
+    "Modifier 패널 내에서 New 버튼을 눌러 새 텍스처를 생성합니다.",
+    "Texture 탭으로 이동하여 Type을 Image나 Noise 등으로 변경합니다.",
+    "다시 Modifier 탭으로 돌아와서 Strength와 Midlevel 값을 조절해 변형 세기를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Texture",
+      "desc": "변형에 사용할 이미나 절차적 텍스처를 지정합니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "텍스처에 의해 메쉬가 밀려나거나 들어가는 전체 강도를 조절합니다."
+    },
+    {
+      "name": "Midlevel",
+      "desc": "변형의 기준이 되는 흑백 값으로, 0.5일 때 변형이 없는 중간 지점이 됩니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "텍스처가 적용되는 축 방향(Normal, X, Y, Z 등)을 선택합니다."
+    },
+    {
+      "name": "UV Coordinates",
+      "desc": "텍스처가 메쉬에 매핑되는 방식(UV, Generated 등)을 결정합니다."
+    },
+    {
+      "name": "Texture Coordinates",
+      "desc": "텍스처 좌표계를 Object나 UV 등 다른 기준으로 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 지형 만들기",
+      "steps": [
+        "Plane 오브젝트를 생성하고 Edit Mode에서 우클릭 후 Subdivide를 여러 번 실행해 폴리곤을 촘촘하게 나눕니다.",
+        "Displace 모디파이어를 추가하고 New 텍스처를 연결합니다.",
+        "Texture 타입을 Clouds로 설정하고 Strength를 높여 산등성이 모양을 만듭니다."
+      ]
+    },
+    {
+      "title": "벽돌 벽 질감 표현하기",
+      "steps": [
+        "Cube 오브젝트를 생성하고 세그먼트를 충분히 나눕니다.",
+        "Displace 모디파이어를 추가하고 벽돌 패턴의 흑백 이미지를 불러와 Texture에 지정합니다.",
+        "Strength 값을 낮게 조절하여 은은한 벽돌 홈을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "표면이 찢어지거나 각져 보임 → 메쉬의 세그먼트(폴리곤 개수)가 부족해서 생기는 현상입니다. Subsurf 모디파이어를 추가하거나 Subdivide를 더 실행하세요.",
+    "적용 후 오브젝트 크기가 찌그러짐 → 오브젝트 스케일 값이 1이 아닐 때 발생합니다. Object 모드에서 Ctrl+A를 누르고 Apply Scale을 실행하세요."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Shrinkwrap",
+    "Bump Map",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "EDVXIwWeoD0",
+      "title": "How to Use the Displacement Modifier (Blender Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "XBdNZIs1U8w",
+      "title": "How to Use the DISPLACE MODIFIER In Blender! (Step by Step Tutorial)",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Displace%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Deform",
+    "Displace"
+  ],
+  "at": "2026-10-30T02:05:29.996891+00:00"
+}

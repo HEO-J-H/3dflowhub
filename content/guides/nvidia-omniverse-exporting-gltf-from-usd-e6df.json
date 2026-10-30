@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-exporting-gltf-from-usd-e6df",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "Exporting glTF from USD",
+  "title": "USD 에서 glTF 내보내기",
+  "summary": "NVIDIA Omniverse의 USD 파일을 표준 웹 및 애플리케이션 포맷인 glTF로 변환하여 내보내는 기능입니다. 다양한 3D 플랫폼과 웹 브라우저에서 USD 에셋을 가볍고 빠르게 공유할 수 있습니다.",
+  "when": [
+    "Omniverse에서 작업한 USD 에셋을 웹 뷰어에서 실시간으로 보여주고 싶을 때",
+    "다른 DCC 툴이나 게임 엔진으로 가벼운 glTF/GLB 포맷으로 전달해야 할 때",
+    "포트폴리오용 3D 모델을 웹에 임베드하거나 AR로 공유할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱(Create, USD Composer 등)을 실행하고 내보낼 USD 스테이지를 엽니다.",
+    "File 메뉴로 이동하여 Export를 선택합니다.",
+    "파일 형식 드롭다운에서 glTF 또는 GLB를 선택합니다.",
+    "Export 설정 창에서 텍스처 임베딩 및 애니메이션 포함 여부를 체크합니다.",
+    "저장할 경로를 지정하고 Save를 눌러 내보내기를 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Format",
+      "desc": "단일 파일(.glb) 또는 분할 파일(.gltf + .bin + textures) 중 선택합니다."
+    },
+    {
+      "name": "Embed Textures",
+      "desc": "텍스처를 glb 파일 내부에 포함하여 단일 파일로 관리합니다."
+    },
+    {
+      "name": "Export Animation",
+      "desc": "USD에 포함된 스켈레탈 또는 트랜스폼 애니메이션을 함께 내보냅니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "USD Preview Surface 재질을 glTF 표준 PBR 재질로 변환합니다."
+    },
+    {
+      "name": "Y-Up to Z-Up",
+      "desc": "축 방향이 다른 플랫폼과의 호환성을 위해 좌표계를 변환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹 쇼핑몰용 3D 제품 시각화",
+      "steps": [
+        "Omniverse에서 제품 USD 모델의 머티리얼을 정리합니다.",
+        "File -> Export에서 GLB 포맷을 선택합니다.",
+        "Embed Textures를 체크하고 용량을 최적화하여 내보냅니다."
+      ]
+    },
+    {
+      "title": "웹 브라우저 AR 배포",
+      "steps": [
+        "모바일 AR에 적합한 로우 폴리곤 USD 에셋을 준비합니다.",
+        "glTF 내보내기 옵션에서 애니메이션과 머티리얼을 포함합니다.",
+        "생성된 GLB 파일을 웹 서버에 업로드하여 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 경로 유실 → 내보내기 전 Textures 탭에서 Embed Textures 옵션이 켜져 있는지 확인합니다.",
+    "스케일 및 좌표계 오류 → 내보내기 설정에서 Up Axis(Y-Up/Z-Up) 방향을 대상 플랫폼과 일치시킵니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "Blender glTF Import/Export",
+    "Unreal Engine Datasmith"
+  ],
+  "videos": [
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    },
+    {
+      "id": "sWfKw2nTltE",
+      "title": "Exporting Simulations from Houdini to Nvidia Omniverse (USD Composer)",
+      "author": "edstudios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Exporting%20glTF%20from%20USD",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-30T02:05:20.532470+00:00"
+}
