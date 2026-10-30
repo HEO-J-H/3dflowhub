@@ -454,6 +454,23 @@ def summarize_error_trends() -> dict[str, dict[str, int]]:
     return domain_type_counts
 
 
+def analyze_3d_content_distribution() -> dict[str, float]:
+    """최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환."""
+    dist: dict[str, int] = {"3D DCC": 0, "Game Engine": 0, "VFX": 0, "AI 3D": 0}
+    total = 0
+    if core.POSTS_DIR.exists():
+        for f in core.POSTS_DIR.glob("*.json"):
+            p = core._load_json(f, {})
+            d = p.get("domain")
+            if d in dist:
+                dist[d] += 1
+                total += 1
+    percentages = {}
+    for k, v in dist.items():
+        percentages[k] = round((v / total) * 100, 2) if total > 0 else 0.0
+    return {"counts": dist, "total": total, "percentages": percentages}
+
+
 def audit_terms(max_words: int = 1500, batch: int = 500) -> dict[str, str]:
     """용어 자가 학습: 글에 자주 나오는 한글 단어 중 '음역된 고유명사(소프트웨어·플러그인·회사·기술명)'를 찾아
     정식 영문 표기를 memory['glossary_learned'] 에 추가 → core.fix_terms 가 이후 자동 교정."""

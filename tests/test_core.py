@@ -954,6 +954,26 @@ def test_analyze_run_errors(monkeypatch, tmp_path):
     assert stats["off_topic_rate"] == 0.2  # 4 / 20
 
 
+def test_analyze_3d_content_distribution(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+    
+    core._save_json(tmp_path / "posts" / "p1.json", {"domain": "3D DCC"})
+    core._save_json(tmp_path / "posts" / "p2.json", {"domain": "3D DCC"})
+    core._save_json(tmp_path / "posts" / "p3.json", {"domain": "VFX"})
+    core._save_json(tmp_path / "posts" / "p4.json", {"domain": "AI 3D"})
+    
+    report = evolve.analyze_3d_content_distribution()
+    assert report["total"] == 4
+    assert report["counts"]["3D DCC"] == 2
+    assert report["counts"]["VFX"] == 1
+    assert report["counts"]["AI 3D"] == 1
+    assert report["counts"]["Game Engine"] == 0
+    assert report["percentages"]["3D DCC"] == 50.0
+    assert report["percentages"]["VFX"] == 25.0
+
+
 def test_summarize_error_trends(monkeypatch, tmp_path):
     import evolve
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
