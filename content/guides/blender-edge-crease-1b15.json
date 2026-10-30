@@ -1,0 +1,88 @@
+{
+  "id": "blender-edge-crease-1b15",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Edge Crease",
+  "title": "Edge Crease — 서브디비전 모서리 세우기",
+  "summary": "Edge Crease는 Subdivision Surface 모디파이어를 사용할 때, 서브디비전의 영향을 받지 않고 특정 모서리를 날카롭게 유지하는 기능입니다. 마치 칼로 흠집을 내어 단단한 각을 만드는 것과 같습니다.",
+  "when": [
+    "하드 표면 모델링에서 별도의 서브디비전 서포트 루프(Support Loop)를 추가하지 않고 날카로운 각을 표현하고 싶을 때",
+    "기계 부품이나 전자제품 등 날카로운 모서리와 부드러운 곡면이 공존하는 모델을 제작할 때",
+    "토폴로지를 깔끔하게 유지하면서 특정 엣지만 단단하게 고정하고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Edge Select 모드(숫자 2 키)로 전환합니다.",
+    "날카롭게 만들고 싶은 엣지를 선택합니다.",
+    "Shift + E 키를 누르고 마우스를 움직여 크리즈 값을 조절합니다.",
+    "또는 Sidebar(N 키)의 Item 탭에서 Mean Crease 값을 1.0으로 직접 입력합니다."
+  ],
+  "params": [
+    {
+      "name": "Mean Crease",
+      "desc": "선택한 엣지의 날카로움 정도를 0.0에서 1.0 사이의 값으로 조절합니다."
+    },
+    {
+      "name": "Subdivision Surface",
+      "desc": "면을 부드럽게 세분화하는 모디파이어로, Edge Crease의 효과를 시각적으로 확인합니다."
+    },
+    {
+      "name": "Levels Viewport",
+      "desc": "뷰포트에서 서브디비전이 적용되는 단계를 설정합니다."
+    },
+    {
+      "name": "Render",
+      "desc": "렌더링 시 적용될 서브디비전 단계를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품의 각진 모서리 표현",
+      "steps": [
+        "Cube 오브젝트에 Subdivision Surface 모디파이어를 추가합니다.",
+        "Edit Mode에서 최상단 엣지들을 선택합니다.",
+        "Shift + E를 누르고 값을 1.0으로 올려 모서리를 날카롭게 만듭니다."
+      ]
+    },
+    {
+      "title": "패널 라인 및 홈 만들기",
+      "steps": [
+        "평면(Plane)을 세분화하고 중간 엣지를 하나 선택합니다.",
+        "Shift + E를 적용하여 해당 엣지 주변의 부드러움을 제어합니다.",
+        "세부 각도를 조절하여 단단한 홈 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브디비전 모디파이어가 없는 상태에서 크리즈를 적용함 → Subdivision Surface 모디파이어를 추가하고 뷰포트 레벨을 1 이상으로 설정하세요.",
+    "스케일 값이 적용되지 않아 크리즈가 균일하게 들어가지 않음 → Object Mode에서 Ctrl + A를 누르고 Scale을 적용(Apply)하세요.",
+    "모든 엣지에 크리즈를 1.0으로 주어 부자연스러운 결과가 나옴 → 꼭 필요한 엣지만 선택하고, 필요에 따라 값을 낮게 조절하세요."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Bevel",
+    "Edge Slide",
+    "Loop Cut"
+  ],
+  "videos": [
+    {
+      "id": "1nasBgZMd_c",
+      "title": "Edge Crease in Blender",
+      "author": "BlenderBytes "
+    },
+    {
+      "id": "RwkQjPNO6Ts",
+      "title": "Learn to Use Edge Crease in Blender!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Edge%20Crease",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Edge Select"
+  ],
+  "at": "2026-10-30T00:45:07.568253+00:00"
+}
