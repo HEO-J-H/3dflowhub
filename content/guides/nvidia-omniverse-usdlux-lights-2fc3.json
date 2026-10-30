@@ -5,75 +5,68 @@
   "group": "OpenUSD",
   "name": "UsdLux lights",
   "title": "UsdLux — USD 조명",
-  "summary": "NVIDIA Omniverse의 UsdLux는 OpenUSD 표준을 기반으로 실시간 레이트레이싱 환경에서 일관된 조명을 제공하는 조명 시스템입니다. 물리적 정확성을 바탕으로 USD 스테이지 전체에서 동일한 라이팅 결과를 보장합니다.",
+  "summary": "NVIDIA Omniverse의 UsdLux는 OpenUSD 표준을 기반으로 정밀한 물리적 조명을 설정하는 시스템입니다. 다양한 광원 타입을 조합하여 실사 같은 라이팅 환경을 구축합니다.",
   "when": [
-    "Omniverse USD 스테이지에서 물리적으로 정확한 표준 조명을 구성할 때",
-    "여러 DCC 툴과 USD 기반 파이프라인 간의 조명 데이터를 완벽하게 호환해야 할 때",
-    "RTX 렌더러를 활용해 빠르고 사실적인 실시간 조명 시뮬레이션을 구현할 때"
+    "USD 기반의 3D Pipeline 일관된 라이팅 환경을 구축할 때",
+    "Area Light, Dome Light 등 다양한 형태의 물리적 광원을 배치할 때",
+    "Omniverse Create나 Viewport에서 실시간으로 라이팅과 렌더링 품질을 확인할 때"
   ],
   "steps": [
-    "1. NVIDIA Omniverse 상단 메뉴에서 Create 메뉴를 엽니다.",
-    "2. Light 항목에서 원하는 UsdLux 조명 유형(예: Dome Light, Distant Light, Rect Light)을 선택합니다.",
-    "3. Stage 패널에서 생성된 라이트 노드를 선택합니다.",
-    "4. Details 패널에서 Intensity와 Exposure 값을 조절하여 기본 밝기를 맞춥니다.",
-    "5. Color 항목에서 라이트의 색상 온도를 설정하여 분위기를 연출합니다."
+    "Omniverse 앱을 실행하고 Stage 패널을 엽니다.",
+    "Viewport 상단의 Create 메뉴 또는 Stage 패널 우클릭을 누릅니다.",
+    "Light 항목에서 원하는 UsdLux 광원(예: DistantLight, DomeLight, RectLight)을 선택합니다.",
+    "Property 패널에서 Intensity, Exposure, Color 등의 파라미터를 조정합니다.",
+    "Transform 툴(W, E, R)을 사용하여 씬 내에서 광원의 위치와 방향을 정렬합니다."
   ],
   "params": [
     {
       "name": "Intensity",
-      "desc": "조명의 기본 광량(밝기)을 조절합니다."
+      "desc": "광원의 기본 밝기 값을 설정합니다."
     },
     {
       "name": "Exposure",
-      "desc": "조명의 노출 값을 스톱 단위로 조절하여 밝기를 직관적으로 키웁니다."
+      "desc": "조명의 노출 값을 스탑(Stop) 단위로 조절하여 밝기를 직관적으로 키웁니다."
     },
     {
       "name": "Color",
-      "desc": "조명에서 방출되는 빛의 색상을 지정합니다."
+      "desc": "광원의 색상 또는 컬러 템퍼러처(Kelvin)를 설정합니다."
     },
     {
-      "name": "Color Temperature",
-      "desc": "켈빈(K) 단위로 조명 색온도를 설정해 주광이나 백열등 느낌을 냅니다."
+      "name": "Enable Radiance",
+      "desc": "광원이 장면에 빛을 방출할지 여부를 결정합니다."
     },
     {
-      "name": "Enable Shadow",
-      "desc": "해당 조명으로 인해 그림자가 생성될지 여부를 켜고 끕니다."
-    },
-    {
-      "name": "Texture File",
-      "desc": "Dome Light 등에 HDR 이미지를 불러와 주변광 환경을 만듭니다."
+      "name": "Shaping: Cone Angle",
+      "desc": "스포트라이트 형태의 광원에서 빛이 퍼지는 각도를 조절합니다."
     }
   ],
   "examples": [
     {
-      "title": "HDRI 배경 환경 조명(Dome Light) 설정",
+      "title": "실내 스튜디오 3점 라이팅 설정",
       "steps": [
-        "1. Create → Light → Dome Light 메뉴를 선택해 환경광을 생성합니다.",
-        "2. Details 패널의 Texture File 슬롯에 준비된 HDR 이미지를 로드합니다.",
-        "3. Intensity를 조절해 전체적인 씬의 기본 노출을 맞춥니다.",
-        "4. Rotate 속성을 이용해 배경 HDR의 방향을 맞춥니다."
+        "Create -> Light -> RectLight 경로로 주 광원(Key Light)을 생성합니다.",
+        "두 번째 RectLight를 생성하여 반대편에 배치하고 Intensity를 낮춰 보조 광원(Fill Light)으로 활용합니다.",
+        "DistantLight를 추가하고 각도를 조절하여 은은한 림 라이트(Rim Light)를 더합니다."
       ]
     },
     {
-      "title": "스튜디오 3점 조명(Rect Light) 배치",
+      "title": "HDRI 환경 광원(Dome Light) 적용",
       "steps": [
-        "1. Create → Light → Rect Light를 생성하고 주광(Key Light) 위치로 이동합니다.",
-        "2. Scale 도구를 이용해 광원의 면적을 넓혀 부드러운 그림자를 만듭니다.",
-        "3. 조명을 복제하여 보조광(Fill Light)과 백라이트(Rim Light) 위치에 각각 배치합니다.",
-        "4. 각 라이트의 Intensity와 Color 값을 다르게 주어 입체감을 살립니다."
+        "Create -> Light -> DomeLight를 선택하여 씬 전체를 감싸는 돔 라이트를 생성합니다.",
+        "Property 패널의 Texture 파일 경로에서 HDR 이미지를 불러옵니다.",
+        "Rotate 파라미터를 조절해 배경 환경과 반사 맵의 방향을 맞춥니다."
       ]
     }
   ],
   "mistakes": [
-    "Intensity 값을 지나치게 높여 화면이 하얗게 날아감 → Exposure 값을 먼저 조절한 뒤 Intensity로 미세 조정하세요.",
-    "Dome Light에 HDR 이미지를 넣었는데 배경이 검게 나옴 → Texture 파일 경로가 올바르지 않거나 렌더러 설정에서 환경 표시가 꺼져 있는지 확인하세요.",
-    "그림자가 너무 날카롭게 나옴 → Rect Light 등의 광원 크기(Scale)를 키워 부드러운 소프트 샤도로 만드세요."
+    "빛이 너무 어둡거나 안 보임 → Intensity나 Exposure 값이 너무 낮게 설정되었는지 확인하고 단위를 높입니다.",
+    "HDRI 반사가 왜곡됨 → Dome Light의 투영 방식(Texture Format) 설정이 올바른지 확인합니다."
   ],
   "related": [
-    "Dome Light",
-    "Rect Light",
-    "Distant Light",
-    "MaterialGraph"
+    "OpenUSD",
+    "Path Tracing",
+    "RTX Renderer",
+    "Material Graph"
   ],
   "videos": [
     {
@@ -91,12 +84,12 @@
   "grounded": false,
   "images": [],
   "menu_path": [
-    "NVIDIA Omniverse",
+    "Omniverse",
+    "Stage",
+    "Viewport",
     "Create",
     "Light",
-    "UsdLux",
-    "Dome Light",
-    "Distant Light"
+    "UsdLux"
   ],
-  "at": "2026-10-30T00:25:03.184591+00:00"
+  "at": "2026-10-30T00:27:17.213800+00:00"
 }

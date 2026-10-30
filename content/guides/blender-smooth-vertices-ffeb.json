@@ -5,94 +5,82 @@
   "group": "모델링",
   "name": "Smooth Vertices",
   "title": "Smooth Vertices — 점 고르게",
-  "summary": "메시의 선택된 버텍스 주변을 부드럽게 완화하여 거친 울퉁불퉁함을 정돈하는 기능입니다. 클레이를 살짝 문질러 다듬듯 형태를 자연스럽게 정리할 때 사용합니다.",
+  "summary": "Smooth Vertices는 선택한 버텍스의 위치를 주변 버텍스의 평균 위치로 부드럽게 정렬하여 거친 면을 정리하는 기능입니다. 찰흙 표면을 살짝 문질러 다듬는 것처럼 지오메트리를 매끄럽게 만듭니다.",
   "when": [
-    "스컬프팅(Sculpting) 작업 후 거칠어진 버텍스 흐름을 부드럽게 다듬고 싶을 때",
-    "로우 폴리곤(Low-poly) 모델링에서 울퉁불퉁한 외곽선을 정돈할 때",
-    "하드 서페이스 모델링 중 특정 부분의 면 왜곡이나 찌그러짐을 완화할 때"
+    "스컬프팅이나 리토폴로지 작업 후 울퉁불퉁해진 버텍스 흐름을 정리할 때",
+    "하드 표면 모델링에서 불필요하게 꺾인 모서리나 면을 부드럽게 완화할 때",
+    "외부에서 가져온 메시(Mesh)의 깨진 버텍스 위치를 일괄 정리할 때"
   ],
   "steps": [
-    "Object Mode에서 대상 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
-    "부드럽게 만들 버텍스들을 Vertex Select 모드(1 키)에서 선택합니다.",
+    "Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex Select 모드(숫자 1 키)로 전환합니다.",
+    "부드럽게 다듬고 싶은 버텍스들을 선택합니다.",
     "상단 메뉴에서 Mesh → Vertices → Smooth Vertices를 클릭하거나 우클릭 메뉴에서 선택합니다.",
-    "화면 왼쪽 아래(또는 F9 키)에 나타나는 Adjust Last Operation 패널에서 옵션을 조절합니다."
+    "하단(또는 F9)에 나타나는 Adjust Last Operation 패널에서 수치를 조정합니다."
   ],
   "params": [
     {
       "name": "Factor",
-      "desc": "버텍스를 이동시킬 강도(비율)를 조절합니다. 값이 높을수록 주변 버텍스와 평균화됩니다."
+      "desc": "스무딩 적용 강도를 조절합니다. 값이 높을수록 주변 버텍스 평균 위치에 강하게 수렴합니다."
     },
     {
       "name": "Iterations",
-      "desc": "스무딩 연산을 반복할 횟수를 지정합니다. 횟수가 많을수록 더 매끄러워집니다."
+      "desc": "연산 반복 횟수를 지정합니다. 횟수가 많을수록 더 부드럽고 넓게 퍼집니다."
     },
     {
-      "name": "Axis X",
-      "desc": "X축 방향으로의 스무딩 적용 여부를 켜고 끕니다."
-    },
-    {
-      "name": "Axis Y",
-      "desc": "Y축 방향으로의 스무딩 적용 여부를 켜고 끕니다."
-    },
-    {
-      "name": "Axis Z",
-      "desc": "Z축 방향으로의 스무딩 적용 여부를 켜고 끕니다."
-    },
-    {
-      "name": "Keep Boundary",
-      "desc": "메시의 열린 경계선(Boundary) 버텍스가 움직이지 않도록 고정합니다."
+      "name": "Axes X/Y/Z",
+      "desc": "특정 축(X, Y, Z) 방향으로만 스무딩을 제한하여 적용할 수 있습니다."
     }
   ],
   "examples": [
     {
-      "title": "캐릭터 얼굴 윤곽 정돈하기",
+      "title": "울퉁불퉁한 리토폴로지 표면 정리",
       "steps": [
-        "Edit Mode에서 턱선이나 이마 주변의 울퉁불퉁한 버텍스들을 선택합니다.",
-        "Mesh → Vertices → Smooth Vertices를 실행합니다.",
-        "Factor 값을 낮게 주고 Iterations를 늘려 자연스럽게 펴줍니다."
+        "리토폴로지가 끝난 메시의 정렬이 불규칙한 부분만 선택합니다.",
+        "Smooth Vertices를 실행합니다.",
+        "Factor 값을 낮게 주고 Iterations를 2~3회 반복하여 자연스럽게 연결합니다."
       ]
     },
     {
-      "title": "파이프 접합부 외곽선 부드럽게 하기",
+      "title": "유기적 형태의 곡선부 다듬기",
       "steps": [
-        "실린더 형태 파이프의 연결 부위 엣지 주변 버텍스를 선택합니다.",
-        "Smooth Vertices를 실행하여 급격하게 꺾인 부분의 각도를 완화합니다.",
-        "Keep Boundary를 켜서 파이프 구멍의 형태가 망가지지 않도록 유지합니다."
+        "캐릭터나 생물의 관절 주변 버텍스를 선택합니다.",
+        "Smooth Vertices를 실행해 찌그러진 라인을 둥글게 폅니다."
       ]
     }
   ],
   "mistakes": [
-    "오브젝트 스케일이 적용되지 않아 스무딩이 한쪽으로 찌그러짐 → Object Mode에서 Ctrl+A를 누르고 Scale을 적용(Apply)한 뒤 다시 시도합니다.",
-    "전체 버텍스가 너무 뭉개짐 → Factor 값이 너무 높거나 Iterations가 과도함. 값을 낮추거나 필요한 부분만 선택(Vertex Group 활용)하여 적용합니다."
+    "오브젝트 모드에서 실행함 → 반드시 Tab 키를 눌러 Edit Mode에서 버텍스를 선택한 후 실행해야 합니다.",
+    "스케일이 적용되지 않아 한쪽으로 찌그러짐 → Object Mode에서 Ctrl+A를 눌러 Apply Scale을 먼저 실행한 뒤 스무딩을 적용하세요.",
+    "전체 버텍스에 과도하게 적용해 형태가 무너짐 → Factor 값을 낮게 시작하고 필요한 부분만 선택(Vertex Group 활용)하여 적용하세요."
   ],
   "related": [
-    "Laplacian Smooth",
     "Subdivision Surface",
-    "Proportional Editing",
-    "Vertex Group"
+    "Laplacian Smooth",
+    "Vertex Weight Smooth",
+    "Proportional Editing"
   ],
   "videos": [
-    {
-      "id": "q-vgIXYo8LI",
-      "title": "Daily Blender Secrets - 3 ways to Smoothen areas",
-      "author": "Blender Secrets"
-    },
     {
       "id": "EkPATGQU6mQ",
       "title": "Smooth Faces Shortcut in Blender!",
       "author": "BlenderVitals"
+    },
+    {
+      "id": "q-vgIXYo8LI",
+      "title": "Daily Blender Secrets - 3 ways to Smoothen areas",
+      "author": "Blender Secrets"
     }
   ],
   "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Smooth%20Vertices",
   "grounded": false,
   "images": [],
   "menu_path": [
-    "Object Mode",
     "Edit Mode",
     "Vertex Select",
     "Mesh",
     "Vertices",
     "Smooth Vertices"
   ],
-  "at": "2026-10-30T00:25:11.417727+00:00"
+  "at": "2026-10-30T00:27:25.220987+00:00"
 }
