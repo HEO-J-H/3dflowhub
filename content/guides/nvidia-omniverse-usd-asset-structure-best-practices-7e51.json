@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-usd-asset-structure-best-practices-7e51",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD asset structure best practices",
+  "title": "자산 폴더·파일 구조 모범 사례",
+  "summary": "NVIDIA Omniverse에서 Universal Scene Description(USD) 에셋을 효율적으로 관리하고 협업하기 위한 구조화 모범 사례입니다. 파일 참조와 계층 구조를 체계화하여 복잡한 3D 파이프라인 속도를 높입니다.",
+  "when": [
+    "여러 아티스트가 동시에 하나의 거대한 3D 환경을 구축할 때",
+    "다른 DCC 툴(Blender, Maya, 3ds Max 등)에서 제작한 에셋을 하나의 USD 스테이지로 통합할 때",
+    "에셋 수정 시 원본 데이터를 건드리지 않고 파생 버전을 만들어야 할 때"
+  ],
+  "steps": [
+    "Omniverse Nucleus 서버에 접속하여 프로젝트용 루트 폴더를 생성합니다.",
+    "에셋의 지오메트리, 머티리얼, 라이팅 데이터를 각각 독립된 USD 파일(.usd, .usda, .usdc)로 분리하여 저장합니다.",
+    "메인 스테이지(Assembly) 파일에서 File → Reference 메뉴를 열어 분리된 에셋들을 불러옵니다.",
+    "Stage 패널에서 Xform 계층 구조를 정리하고 상하 관계를 직관적으로 배치합니다.",
+    "Layer 패널에서 Sublayers와 Overrides를 활용해 비파괴적으로 수정 사항을 쌓아 올립니다."
+  ],
+  "params": [
+    {
+      "name": "References",
+      "desc": "외부 USD 파일을 다른 스테이지에 독립적인 참조 형태로 불러옵니다."
+    },
+    {
+      "name": "Sublayers",
+      "desc": "여러 레이어를 겹쳐서 비파괴적으로 데이터와 애니메이션을 합성합니다."
+    },
+    {
+      "name": "Payloads",
+      "desc": "무거운 에셋의 로딩을 지연시켜 스테이지 열기 속도를 최적화합니다."
+    },
+    {
+      "name": "Variants",
+      "desc": "하나의 에셋 안에 여러 버전(예: 색상, 형태)을 포함시켜 교체합니다."
+    },
+    {
+      "name": "Xform",
+      "desc": "오브젝트의 이동, 회전, 스케일 등 변환 정보를 담는 기본 컨테이너입니다."
+    },
+    {
+      "name": "Purpose",
+      "desc": "렌더링 목적(Render, Proxy, Guide)에 따라 에셋의 표시 여부를 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모듈형 빌딩 제작",
+      "steps": [
+        "벽, 창문, 문 에셋을 각각 개별 USD 파일로 익스포트합니다.",
+        "메인 빌딩 스테이지를 열고 References 기능을 통해 모듈들을 불러옵니다.",
+        "Stage 패널에서 Xform을 이용해 위치를 스냅하여 건물을 조립합니다."
+      ]
+    },
+    {
+      "title": "머티리얼 오버라이드 적용",
+      "steps": [
+        "기본 모델 USD 파일을 스테이지에 불러옵니다.",
+        "Sublayers 패널에 새 레이어를 추가합니다.",
+        "새 레이어에서 머티리얼만 교체하여 원본 데이터를 보호하면서 외형을 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 데이터를 하나의 거대한 USD 파일에 저장함 → 지오메트리와 머티리얼을 기능별로 분리하여 References와 Sublayers를 사용하세요.",
+    "절대 경로(Absolute Path)를 사용해 협업 시 링크가 깨짐 → 상대 경로(Relative Path) 또는 Nucleus URI를 사용하세요.",
+    "스케일과 트랜스폼이 정리되지 않은 채 에셋을 가져옴 → 루트 Xform의 트랜스폼을 초기화(Reset Transform)한 뒤 USD로 내보내세요."
+  ],
+  "related": [
+    "Nucleus",
+    "MaterialX",
+    "Hydra",
+    "Omniverse Create"
+  ],
+  "videos": [
+    {
+      "id": "YgVTS5oIJqM",
+      "title": "OpenUSD Best Practices: Key Considerations for USD Asset Structuring and Pipeline Architecture",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "ahpQQnH4xq4",
+      "title": "Constraint-Aware CAD-to-USD Pipelines in NVIDIA Omniverse",
+      "author": "Tech-Multiverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20asset%20structure%20best%20practices",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse Nucleus",
+    "USD"
+  ],
+  "at": "2026-10-30T01:45:27.704978+00:00"
+}

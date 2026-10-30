@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-conform-modifier-3aa5",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Conform modifier",
+  "title": "Conform — 다른 표면에 맞붙이기",
+  "summary": "Conform modifier는 선택한 오브젝트의 버텍스를 다른 타겟 오브젝트의 표면에 투영하여 밀착시키는 기능입니다. 마치 얇은 천을 복잡한 지형 위에 덮어씌우는 것과 같은 효과를 냅니다.",
+  "when": [
+    "울퉁불퉁한 지형 위에 도로, 발자국, 균열 등의 데칼 메시를 정확히 밀착시킬 때",
+    "캐릭터의 갑옷이나 의상을 몸체 곡선에 맞춰 자연스럽게 피팅할 때",
+    "곡면 구조물 위에 리벳이나 패널 라인 같은 디테일 오브젝트를 투영할 때"
+  ],
+  "steps": [
+    "1. 씬에서 변형할 오브젝트와 타겟(기준이 될) 오브젝트를 준비합니다.",
+    "2. 변형할 오브젝트를 선택하고 Command Panel -> Modify 탭으로 이동합니다.",
+    "3. Modifier List에서 Conform modifier를 선택하여 적용합니다.",
+    "4. Modify 패널의 Parameters 롤아웃에서 Pick Target 버튼을 클릭합니다.",
+    "5. 뷰포트에서 표면의 기준이 될 타겟 오브젝트를 클릭하여 지정합니다.",
+    "6. Stride나 Projection Direction 값을 조절하여 버텍스가 타겟에 붙는 방식을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Pick Target",
+      "desc": "버텍스를 투영시킬 기준이 되는 타겟 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Projection Direction",
+      "desc": "버텍스가 타겟을 향해 날아가는 방향(Local Axis 또는 Normal 등)을 설정합니다."
+    },
+    {
+      "name": "Stride",
+      "desc": "투영 연산 시 버텍스 간의 간격을 조절하여 결과의 정밀도를 바꿉니다."
+    },
+    {
+      "name": "U / V Limit",
+      "desc": "타겟 표면에서 버텍스가 이동할 수 있는 범위를 제한합니다."
+    },
+    {
+      "name": "Update",
+      "desc": "타겟 오브젝트가 움직였을 때 수정자를 실시간으로 갱신할지 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형에 도로 메시 밀착시키기",
+      "steps": [
+        "1. 산악 지형 위에 평평한 도로 플레인(Plane)을 배치합니다.",
+        "2. 도로 플레인에 충분한 세그먼트를 부여한 뒤 Conform modifier를 적용합니다.",
+        "3. Pick Target으로 지형 오브젝트를 지정해 도로가 지형 굴곡을 따라가게 만듭니다."
+      ]
+    },
+    {
+      "title": "캐릭터 갑옷 피팅하기",
+      "steps": [
+        "1. 캐릭터 몸통을 감싸는 얇은 셸(Shell) 형태의 갑옷 메시를 준비합니다.",
+        "2. Conform modifier를 적용하고 Pick Target으로 캐릭터 바디를 지정합니다.",
+        "3. 투영 방향을 Local Normal로 설정해 갑옷이 몸체 표면에 밀착되도록 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버텍스가 타겟을 관통하거나 엉뚱한 방향으로 붙음 → Projection Direction 축 설정을 변경하거나 타겟의 표면 법선을 확인하세요.",
+    "결과물이 너무 각지고 어색함 → 변형할 오브젝트의 Segments(세그먼트)가 부족한 경우이므로 수정을 적용하기 전에 메시를 더 촘촘하게 나누세요."
+  ],
+  "related": [
+    "Skin Wrap",
+    "Path Deform",
+    "Displace",
+    "ProOptimizer"
+  ],
+  "videos": [
+    {
+      "id": "P72YgwdoOFU",
+      "title": "3DS MAX CONFORM MODIFIER   HOW TO USE",
+      "author": "Learn 3d Tutorials"
+    },
+    {
+      "id": "gQXM76Xy0qY",
+      "title": "Introduction to the Conform Modifier in 3ds Max",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Conform%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Conform"
+  ],
+  "at": "2026-10-30T01:45:32.160272+00:00"
+}

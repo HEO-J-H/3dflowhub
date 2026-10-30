@@ -1,0 +1,98 @@
+{
+  "id": "blender-skin-modifier-c099",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Skin modifier",
+  "title": "Skin — 선으로 몸체 만들기",
+  "summary": "메쉬 구조를 거치지 않고 점(Vertex)을 연결하는 골격망을 만든 뒤 두께를 입혀 유기적인 형태를 빠르게 잡는 모디파이어입니다. 마치 철사로 뼈대를 세우고 점토를 붙이는 것처럼 활용합니다.",
+  "when": [
+    "사람이나 괴물의 대략적인 비율(베이스 맅)을 빠르게 스스캐치할 때",
+    "나무 뿌리, 나뭇가지, 덩굴처럼 뻗어나가는 유기적 형태를 모델링할 때",
+    "복잡한 파이프나 전선망의 기초 뼈대를 효율적으로 잡고 싶을 때"
+  ],
+  "steps": [
+    "1. 3D 뷰포트에서 Shift + A 키를 눌러 Single Vertex(단일 점)를 생성합니다.",
+    "2. Tab 키를 눌러 Edit Mode로 진입한 후, E 키를 눌러 점을 Extrude(돌출)하며 원하는 뼈대 형태를 만듭니다.",
+    "3. Properties 패널에서 Modifier(렌치) 탭을 엽니다.",
+    "4. Add Modifier 메뉴에서 Generate 카테고리의 Skin을 선택합니다.",
+    "5. 뷰포트에서 두께가 조절되지 않았다면, Edit Mode에서 모든 점을 선택하고(A) Ctrl + A 키를 눌러 Skin Radius를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Mean Radius",
+      "desc": "선택된 정점의 기본 두께(반지름)를 조절합니다."
+    },
+    {
+      "name": "Mark Loose",
+      "desc": "분기점이나 끝부분의 토폴로지 연결 방식을 변경합니다."
+    },
+    {
+      "name": "Smooth Shading",
+      "desc": "생성된 메쉬의 표면을 매끄럽게 보이도록 부드러운 법선을 적용합니다."
+    },
+    {
+      "name": "Branch Smoothing",
+      "desc": "가지가 갈라지는 교차점 부근의 형태를 자연스럽게 다듬습니다."
+    },
+    {
+      "name": "Use X/Y/Z Symmetry",
+      "desc": "특정 축을 기준으로 대칭 형태의 뼈대와 두께를 동시에 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "나무 뿌리 만들기",
+      "steps": [
+        "1. 단일 점을 생성하고 위에서 아래로 E 키로 여러 갈래 가지를 뻗어나가게 뼈대를 만듭니다.",
+        "2. Skin 모디파이어를 추가하여 전체적인 두께를 부여합니다.",
+        "3. 세부 가지의 끝부분은 Ctrl + A로 얇게 조절하고, 뿌리 몸통은 두껍게 만듭니다.",
+        "4. Subdivision Surface 모디파이어를 추가해 표면을 부드럽게 정리합니다."
+      ]
+    },
+    {
+      "title": "인체 베이스 메쉬(로우폴리) 스캐줄링",
+      "steps": [
+        "1. 몸통 중심선을 따라 점을 찍고 팔, 다리 방향으로 Extrude하여 인형 뼈대를 만듭니다.",
+        "2. Skin 모디파이어로 대략적인 근육 두께를 감쌉니다.",
+        "3. Object 모드에서 Apply를 눌러 모디파이어를 확정합니다.",
+        "4. Sculpt Mode로 전환하여 디테일한 인체 형태를 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "두께가 적용되지 않거나 너무 두껍게 나옴 → Edit Mode에서 모든 점을 선택(A)하고 Ctrl + A 키를 눌러 스케일(Radius)을 재조정하세요.",
+    "오브젝트 크기가 찌그러져 보임 → Object 모드에서 Ctrl + A를 누른 뒤 All Transforms를 적용하여 스케일을 1.0으로 초기화하세요.",
+    "면이 울퉁불퉁하고 거칠게 보임 → Subdivision Surface 모디파이어를 Skin 모디파이어 아래에 추가하여 표면을 부드럽게 만드세요."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Mirror",
+    "Curve",
+    "Remesh"
+  ],
+  "videos": [
+    {
+      "id": "nWHPh08KVBo",
+      "title": "How to Use the SKIN MODIFIER in Blender - Step by Step Tutorial",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "DAAwy_l4jw4",
+      "title": "Fast Character Modeling with the Skin Modifier in Blender",
+      "author": "Joey Carlino"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Skin%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Single Vertex",
+    "Edit Mode",
+    "Extrude",
+    "Properties",
+    "Modifier",
+    "Add Modifier"
+  ],
+  "at": "2026-10-30T01:45:36.763223+00:00"
+}
