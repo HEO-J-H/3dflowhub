@@ -1,0 +1,89 @@
+{
+  "id": "blender-mark-sharp-and-auto-smooth-45ca",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Mark Sharp and Auto Smooth",
+  "title": "Mark Sharp — 날카로운 모서리 표시",
+  "summary": "Mark Sharp와 Auto Smooth는 Blender에서 복잡한 하드서페이스 모델의 부드러운 음영과 날카로운 모서리를 동시에 제어하는 핵심 기능입니다.",
+  "when": [
+    "기계 부품, 하드서페이스 모델링에서 날카로운 엣지와 부드러운 곡면을 함께 표현할 때",
+    "전체 모델을 일괄적으로 Smooth 처리했을 때 생기는 어색한 음영(Shading Artifact)을 잡을 때",
+    "게임 엔진이나 실시간 렌더러로 내보내기 전 노멀(Normal) Baking을 최적화할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Alt + 클릭으로 원하는 엣지 루프를 선택하거나, 엣지 모드(2번 키)에서 모서리를 선택합니다.",
+    "우클릭(Context Menu) 후 Mark Sharp를 선택하여 해당 엣지를 날카롭게 지정합니다.",
+    "다시 Tab 키를 눌러 Object Mode로 돌아옵니다.",
+    "Properties 패널의 Object Data Properties(초록색 삼각형 아이콘)로 이동합니다.",
+    "Normals 항목을 펼치고 Auto Smooth 체크박스를 활성화한 뒤 각도를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Smooth",
+      "desc": "설정한 각도보다 완만한 엣지는 부드럽게, 급격한 엣지는 날카롭게 자동 처리합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "음영을 나눌 기준 각도를 설정합니다. 보통 기본값 30도에서 40도로 조절합니다."
+    },
+    {
+      "name": "Mark Sharp",
+      "desc": "선택한 엣지에 강제로 날카로운 절단면(Sharp) 속성을 부여합니다."
+    },
+    {
+      "name": "Clear Sharp",
+      "desc": "마킹된 Sharp 속성을 해제하고 기본 상태로 되돌립니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계식 하드서페이스 패널 홈 만들기",
+      "steps": [
+        "패널 라인을 따라 엣지를 선택합니다.",
+        "우클릭 후 Mark Sharp를 실행합니다.",
+        "Auto Smooth를 켜고 각도를 30도로 설정해 모서리를 살립니다."
+      ]
+    },
+    {
+      "title": "실린더 형태의 홀(Hole) 주변 음영 정리",
+      "steps": [
+        "원통 구멍 주변의 엣지를 루프로 선택합니다.",
+        "Mark Sharp를 적용해 구멍 주변이 찌그러져 보이는 음영 오류를 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Object Mode에서 메뉴를 찾음 → Edit Mode(Tab)로 진입한 후 우클릭해야 Mark Sharp 메뉴가 보입니다.",
+    "Auto Smooth를 켰는데도 모서리가 안 변함 → 각도(Angle) 값이 너무 높아서 모든 엣지가 부드럽게 처리된 상태이므로 각도를 낮춰보세요.",
+    "스케일이 틀어져 음영이 이상하게 나옴 → Object Mode에서 Ctrl + A 누르고 Apply Scale을 먼저 실행하세요."
+  ],
+  "related": [
+    "Weight Normal Modifier",
+    "Edge Split Modifier",
+    "Subdivision Surface",
+    "Shade Smooth"
+  ],
+  "videos": [
+    {
+      "id": "ztFiJzNbTms",
+      "title": "Sharp Edges in Blender! - Try this method🔥🔥",
+      "author": "Blender Art"
+    },
+    {
+      "id": "BzFwtfkWPlI",
+      "title": "Mark Sharp, Mean Crease, and Bevel Weight in Blender | Basic Tutorial",
+      "author": "Francesco Milanese | CG Tutorials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Mark%20Sharp%20and%20Auto%20Smooth",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Context Menu",
+    "Mark Sharp"
+  ],
+  "at": "2026-10-30T00:55:29.973347+00:00"
+}

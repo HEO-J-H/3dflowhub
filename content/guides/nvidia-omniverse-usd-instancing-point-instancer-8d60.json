@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-usd-instancing-point-instancer-8d60",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD instancing (point instancer)",
+  "title": "인스턴싱 — 많은 물체를 가볍게",
+  "summary": "NVIDIA Omniverse의 PointInstancer를 활용하여 수천 개의 3D 에셋을 퍼포먼스 저하 없이 가볍게 복제하고 배치합니다. USD 기반으로 대규모 씬을 효율적으로 관리하는 핵심 기술입니다.",
+  "when": [
+    "숲이나 도시처럼 동일한 나무나 건물이 수천 개 이상 반복될 때",
+    "Particle이나 산란(Scattering) 시스템으로 수많은 오브젝트를 뿌릴 때",
+    "메모리 부족 없이 거대한 USD 씬을 라이브 실시간으로 협업할 때"
+  ],
+  "steps": [
+    "Omniverse Create 또는 USD 호환 3D DCC에서 빈 Stage를 엽니다.",
+    "상단 메뉴 Create → PointInstancer를 선택하여 인스랜서 노드를 생성합니다.",
+    "Details 패널 또는 Layer 창에서 복제할 Prototype(원본 3D 에셋)을 지정합니다.",
+    "Points 어트리뷰트에 위치 좌표(Vector3f 배열)를 입력하여 Instance 위치를 잡습니다.",
+    "Scale, Orient 어트리뷰트를 추가하여 크기와 회전을 무작위로 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "Prototypes",
+      "desc": "복제하여 사용할 원본 3D 오브젝트들의 경로(Path) 리스트"
+    },
+    {
+      "name": "Indices",
+      "desc": "각 포인트 매듭마다 어떤 Prototype을 배치할지 지정하는 인덱스 배열"
+    },
+    {
+      "name": "Points",
+      "desc": "각 Instance가 위치할 공간 좌표(X, Y, Z) 값"
+    },
+    {
+      "name": "Orientations",
+      "desc": "Quatf 형태로 각 Instance의 회전 값을 제어"
+    },
+    {
+      "name": "Scales",
+      "desc": "각 Instance의 크기를 개별 또는 일괄 조절"
+    }
+  ],
+  "examples": [
+    {
+      "title": "숲 지형에 나무 심기",
+      "steps": [
+        "지형 메시 위에 산란할 영역을 정합니다.",
+        "나무 원본 에셋을 Prototypes 목록에 등록합니다.",
+        "Points 좌표값에 지형 표면의 산란 좌표를 입력합니다.",
+        "Scales와 Orientations에 노이즈를 주어 자연스러운 숲을 만듭니다."
+      ]
+    },
+    {
+      "title": "도시 거리의 가로등 배치",
+      "steps": [
+        "가로등 3D 모델을 Prototype으로 불러옵니다.",
+        "도로 커브 라인을 따라 포인트 좌표를 생성합니다.",
+        "Points에 좌표를 연결하고 Orientations로 도로 방향에 맞게 회전시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Prototype 경로 연결 누락 → Instance가 보이지 않으므로 Stage 구조에서 원본 경로를 다시 확인합니다.",
+    "인덱스(Indices) 배열 개수 불일치 → Points 개수와 Indices 개수가 맞지 않으면 에러가 나므로 배열 길이를 일치시킵니다."
+  ],
+  "related": [
+    "USD",
+    "Payloads",
+    "References",
+    "Scatter"
+  ],
+  "videos": [
+    {
+      "id": "03oipQNaP1U",
+      "title": "How to Create a Point Instancer Particle System with a Collider in Omniverse",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20instancing%20%28point%20instancer%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse Create",
+    "USD",
+    "D DCC",
+    "Stage"
+  ],
+  "at": "2026-10-30T00:55:21.261725+00:00"
+}
