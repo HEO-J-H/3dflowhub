@@ -1,0 +1,89 @@
+{
+  "id": "blender-metaball-basics-0a2d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Metaball basics",
+  "title": "Metaball — 말랑한 덩어리",
+  "summary": "Metaball은 마치 점토나 액체처럼 서로 가까워지면 하나로 뭉치는 유기적 형태의 오브젝트를 만드는 기능입니다. 캐릭터의 근육이나 물방울, 유기적인 덩어리 형태를 직관적으로 만들 때 유용합니다.",
+  "when": [
+    "물방울이나 액체처럼 뭉쳐지는 형태를 만들 때",
+    "캐릭터의 덩어리감 있는 베이스 모델링을 잡을 때",
+    "녹아내리는 듯한 유기적인 형태를 표현할 때"
+  ],
+  "steps": [
+    "Blender 상단 메뉴에서 Add (Shift+A)를 누릅니다.",
+    "Metaball 항목으로 이동하여 원하는 기본 형태(Ball 등)를 선택합니다.",
+    "Tab 키를 눌러 Edit Mode로 진입하여 Metaball을 추가(Shift+D)하거나 이동합니다.",
+    "서로 가까워지면 자동으로 형태가 융합되는 것을 확인합니다.",
+    "Object Mode에서 Properties 패널의 Object Data Properties(초록색 구 아이콘)에서 수치를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution Render",
+      "desc": "렌더링 시 메타볼 표면의 정밀도(폴리곤 디테일)를 결정합니다."
+    },
+    {
+      "name": "Resolution Viewport",
+      "desc": "뷰포트 상에서 보이는 메타볼 표면의 정밀도를 결정합니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "메타볼 간의 융합되는 범위와 민감도를 조절합니다."
+    },
+    {
+      "name": "Stiffness",
+      "desc": "개별 메타볼의 영향력 범위를 조절하여 뭉침의 강도를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물방울이 뭉치는 효과",
+      "steps": [
+        "Metaball(Ball)을 생성합니다.",
+        "Edit Mode에서 여러 개를 복제하여 서로 가깝게 배치합니다.",
+        "Threshold 값을 조절하여 물방울이 자연스럽게 합쳐지도록 만듭니다."
+      ]
+    },
+    {
+      "title": "유기적인 캐릭터 베이스 덩어리",
+      "steps": [
+        "Metaball을 이용해 몸통, 팔, 다리 위치에 기본 덩어리를 배치합니다.",
+        "Stiffness와 Size를 조절해 비율을 맞춥니다.",
+        "메뉴에서 Object → Convert To → Mesh를 선택해 일반 폴리곤 메시로 변환합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "뷰포트가 너무 무거워짐 → Resolution Viewport 값을 낮추어 가볍게 만듭니다.",
+    "폴리곤 수정이 안 됨 → Metaball 상태에서는 에디팅이 제한되므로 Mesh로 Convert 후 수정합니다."
+  ],
+  "related": [
+    "Sculpt Mode",
+    "Remesh",
+    "Curve",
+    "Boolean"
+  ],
+  "videos": [
+    {
+      "id": "b0wFC20du7M",
+      "title": "Getting Started with METABALLS in Blender! (Beginners Start Here!)",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "tkmejgelo4M",
+      "title": "Blender metaball tips  #blender3dmodelling #tutorial #blender3dmodeling",
+      "author": "VitoGiordy"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Metaball%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Add",
+    "Metaball",
+    "Ball"
+  ],
+  "at": "2026-10-30T01:25:46.207395+00:00"
+}

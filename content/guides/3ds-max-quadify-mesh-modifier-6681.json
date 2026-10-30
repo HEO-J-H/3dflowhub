@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-quadify-mesh-modifier-6681",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Quadify Mesh modifier",
+  "title": "Quadify Mesh — 사각면으로 정리",
+  "summary": "Quadify Mesh 모디파이어는 삼각형 폴리곤 구조를 사각형(Quad) 중심의 토폴로지로 빠르게 변환해 주는 도구입니다. 서브디비전 모델링이나 부드러운 스컬프팅 전 단계에서 유용합니다.",
+  "when": [
+    "CAD 데이터나 스캔 데이터의 삼각형(Tri) 메시를 사각형(Quad) 기반으로 정리할 때",
+    "TurboSmooth나 OpenSubdiv 적용 전에 깨끗한 흐름의 토폴로지가 필요할 때",
+    "복잡한 불린(Boolean) 연산 후 급하게 와이어프레임을 사각형으로 변환해야 할 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 삼각형 메시로 이루어진 오브젝트를 선택합니다.",
+    "2. Command Panel에서 Modify 탭으로 이동합니다.",
+    "3. Modifier List 드롭다운을 엽니다.",
+    "4. Quadify Mesh를 찾아 선택하여 적용합니다.",
+    "5. Modify 탭의 파라미터 창에서 Edge Tension과 Quad Size를 조절하여 사각형의 크기와 밀도를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Quad Size",
+      "desc": "생성되는 사각형 폴리곤의 대략적인 크기를 조절합니다."
+    },
+    {
+      "name": "Edge Tension",
+      "desc": "메시 에지의 장력을 조절하여 형태의 왜곡을 줄입니다."
+    },
+    {
+      "name": "Keep Constrained",
+      "desc": "기존의 하드 에지나 바운더리 경계선을 유지하도록 지정합니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "변환 후 버텍스 위치를 부드럽게 분산시켜 와이어를 정돈합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 스캔 데이터 토폴로지 간이 정리",
+      "steps": [
+        "1. 스캔 데이터 오브젝트를 선택합니다.",
+        "2. Quadify Mesh 모디파이어를 적용합니다.",
+        "3. Quad Size를 키워 폴리곤 개수를 적절히 줄입니다."
+      ]
+    },
+    {
+      "title": "불린(Boolean) 결과물 서브디비전 준비",
+      "steps": [
+        "1. ProBoolean 연산이 끝난 메시에 Quadify Mesh를 추가합니다.",
+        "2. Edge Tension 값을 조절해 찌그러진 면을 폅니다.",
+        "3. 위에 TurboSmooth 모디파이어를 얹어 곡면을 부드럽게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "삼각형 밀도가 너무 높은 상태에서 Quadify Mesh 적용 → Quad Size 값을 키우거나 사전에 MeshReduce로 폴리곤을 줄인 뒤 적용하세요.",
+    "스케일 값이 왜곡된 상태에서 적용하여 사각형이 찌그러짐 → 유틸리티 패널에서 Reset XForm을 먼저 수행한 뒤 적용하세요."
+  ],
+  "related": [
+    "TurboSmooth",
+    "OpenSubdiv",
+    "ProBoolean",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "n8M9c9yKGMk",
+      "title": "Using the Quadify mesh modifier in 3ds max",
+      "author": "Max it up"
+    },
+    {
+      "id": "WY6nhfXsLm8",
+      "title": "Quadify Mesh Modifier | 3ds Max Tutorial",
+      "author": "Pixali Art"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Quadify%20Mesh%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Quadify Mesh"
+  ],
+  "at": "2026-10-30T01:25:41.772272+00:00"
+}
