@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-multimaterial-and-material-id-a845",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "MultiMaterial and Material ID",
+  "title": "Material ID — 한 오브젝트에 재질 여러 개",
+  "summary": "하나의 오브젝트에 여러 개의 머티리얼을 나누어 적용할 수 있도록 면 번호를 지정하는 기능입니다. 하나의 메시로 관리하면서 구역별로 다른 질감을 표현할 때 사용합니다.",
+  "when": [
+    "건물의 외벽에 창문, 벽돌, 콘크리트 등 다양한 질감을 한 번에 넣을 때",
+    "게임 캐릭터의 의상과 피부, 장신구 머티리얼을 하나의 오브젝트에서 분리할 때",
+    "가구의 목재 프레임과 금속 손잡이를 효율적으로 텍스처링할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 마우스 우클릭 후 Convert to: Editable Poly를 선택합니다.",
+    "키보드 4를 눌러 Polygon 서브오브젝트 모드로 진입합니다.",
+    "Command Panel의 Modify 탭에서 Polygon: MaterialIDs 섹션을 찾습니다.",
+    "원하는 면들을 드래그하여 선택한 뒤, Set ID 칸에 원하는 숫자(예: 1, 2)를 입력합니다.",
+    "Material Editor에서 Multi/Sub-Object 머티리얼을 생성하고 각각의 ID에 Shader를 연결합니다.",
+    "오브젝트에 Multi/Sub-Object 머티리얼을 적용하고 뷰포트에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Set ID",
+      "desc": "선택한 폴리곤 면에 지정할 머티리얼 ID 번호를 설정합니다."
+    },
+    {
+      "name": "Select ID",
+      "desc": "입력한 번호와 일치하는 ID를 가진 폴리곤 면들을 찾아 선택합니다."
+    },
+    {
+      "name": "Multi/Sub-Object",
+      "desc": "여러 개의 서브 머티리얼을 하나의 슬롯에서 ID별로 관리하도록 묶어주는 머티리얼입니다."
+    },
+    {
+      "name": "Sub-Material",
+      "desc": "Multi/Sub-Object 내부에서 각 ID 번호에 할당되는 개별 머티리얼 슬롯입니다."
+    },
+    {
+      "name": "Show Shaded Material in Viewport",
+      "desc": "뷰포트에 여러 머티리얼이 적용된 상태를 시각적으로 미리 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스마트폰 목업 제작",
+      "steps": [
+        "폰 바디를 Editable Poly로 변환하고 화면 영역 면을 선택합니다.",
+        "Polygon: MaterialIDs에서 ID를 2로 설정합니다.",
+        "측면 버튼과 프레임 면을 선택하고 ID를 1로 설정합니다.",
+        "Multi/Sub-Object 머티리얼을 만들어 ID 1에는 금속, ID 2에는 유리 질감을 연결합니다."
+      ]
+    },
+    {
+      "title": "창틀이 포함된 벽면",
+      "steps": [
+        "벽돌 영역의 폴리곤을 선택하고 ID 1을 부여합니다.",
+        "창틀 영역의 폴리곤을 선택하고 ID 2를 부여합니다.",
+        "Multi/Sub-Object 슬롯 1번에 벽돌 텍스처, 2번에 페인트 질감을 세팅합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Material ID 번호가 1번부터 순차적으로 정렬되지 않음 → Multi/Sub-Object의 ID 번호와 오브젝트의 폴리곤 ID 값이 정확히 일치하는지 확인합니다.",
+    "오브젝트에 머티리얼이 반영되지 않음 → Standard 머티리얼 대신 반드시 Multi/Sub-Object 머티리얼을 슬롯에 적용했는지 확인합니다."
+  ],
+  "related": [
+    "Editable Poly",
+    "Material Editor",
+    "Unwrap UVW",
+    "UVW Map"
+  ],
+  "videos": [
+    {
+      "id": "XLuh_1Um3VQ",
+      "title": "3ds Max Multi Material ID Explained | Easy Step-by-Step Tutorial ! Max Multi/Sub-Object Material |",
+      "author": "Built in 3D Studio"
+    },
+    {
+      "id": "tUPlr629Ir8",
+      "title": "How to Use Material ID and Object ID Nodes (Quick & Easy)",
+      "author": "3dsmax nodal rendering"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20MultiMaterial%20and%20Material%20ID",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-30T00:05:05.696161+00:00"
+}

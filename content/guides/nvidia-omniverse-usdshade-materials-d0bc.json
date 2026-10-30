@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-usdshade-materials-d0bc",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "UsdShade materials",
+  "title": "UsdShade — USD 재질 구조",
+  "summary": "NVIDIA Omniverse의 UsdShade는 USD 표준을 기반으로 서로 다른 3D 애플리케이션 간에 머티리얼과 Shader 네트워크를 손실 없이 공유하고 관리하는 표준 머티리얼 시스템입니다.",
+  "when": [
+    "Autodesk Maya, 3ds Max, Blender, Unreal Engine 등 여러 툴에서 동일한 머티리얼을 일관되게 사용하고 싶을 때",
+    "OpenUSD Pipeline 실시간 레이트레이싱과 패스레이싱을 위한 표준 Shader 네트워크를 구성할 때",
+    "여러 아티스트가 협업하며 에셋의 외형과 텍스처 경로를 표준화된 방식으로 연결해야 할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Nucleus 또는 USD 지원 DCC 툴을 실행합니다.",
+    "Stage 창에서 머티리얼을 적용할 오브젝트를 선택합니다.",
+    "Create 메뉴에서 Material을 선택하여 새로운 UsdShade 기반 머티리얼 네트워크를 생성합니다.",
+    "Graph Editor 또는 Material Graph를 열어 Shader 노드를 추가하고 Base Color, Roughness 등의 속성을 연결합니다.",
+    "만들어진 머티리얼을 마우스 우클릭하여 Bind Material 선언을 통해 선택한 오브젝트에 할당합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "표면의 기본 색상 또는 알베도 텍스처를 지정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 하이라이트의 퍼짐 정도를 결정합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속성과 비금속성을 구분하여 반사 특성을 변경합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "노멀 맵을 연결하여 세밀한 표면 입체감을 표현합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "머티리얼의 투명도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 금속 재질 설정",
+      "steps": [
+        "Create 메뉴에서 UsdPreviewSurface Shader를 생성합니다.",
+        "Metallic 값을 1.0으로 설정하여 완전한 금속 질감으로 만듭니다.",
+        "Roughness 값을 0.2로 낮추어 매끄러운 광택을 표현합니다."
+      ]
+    },
+    {
+      "title": "텍스처 맵 연결",
+      "steps": [
+        "Material Graph에 UvTextureReader 노드를 추가합니다.",
+        "Albedo 텍스처 파일을 불러와 Base Color 입력 슬롯에 연결합니다.",
+        "Tiling 속성을 조절하여 텍스처 반복 간격을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 경로가 상대 경로가 아닌 로컬 절대 경로로 지정되어 다른 사용자에게 보이지 않음 → Nucleus 서버나 상대 경로(Relative Path)로 경로 수정",
+    "서브레이어 간 머티리얼 바인딩 충돌로 텍스처가 깨짐 → Sublayer 순서를 확인하고 Material Prim의 오버라이드 구조 정리",
+    "지원하지 않는 DCC 전용 커스텀 Shader 노드를 직접 연결함 → 표준 UsdPreviewSurface 노드 기반으로 네트워크 재구성"
+  ],
+  "related": [
+    "OpenUSD",
+    "UsdPreviewSurface",
+    "Omniverse Nucleus",
+    "MaterialX"
+  ],
+  "videos": [
+    {
+      "id": "MEXNXlM7_Z0",
+      "title": "Omniverse and UsdPreviewSurface for portable materials",
+      "author": "Ordinary Alan"
+    },
+    {
+      "id": "k9w5d7zHXPs",
+      "title": "Create Cinematic Environments in Minutes! Nvidia Omniverse USD Composer Tutorial",
+      "author": "pinkpocketTV"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20UsdShade%20materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Nucleus",
+    "USD",
+    "DCC",
+    "Stage",
+    "Create",
+    "Material"
+  ],
+  "at": "2026-10-30T00:05:01.431404+00:00"
+}
