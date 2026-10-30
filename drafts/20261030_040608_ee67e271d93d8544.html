@@ -1,0 +1,19 @@
+<!-- TITLE: Gaussian Splatting 비대칭 곡률 인식 밀도화 — ACD-GS 논문 | TAGS: 3DGS,ACD-GS,밀도화,곡률,실시간 렌더링,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — ACD-GS는 2차 깊이 응답을 활용해 비대칭 곡률 인식 밀도화를 구현, Gaussian 수를 60% 감소시키면서도 렌더링 품질을 유지합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>기존 밀도화 방식의 한계</h2>
+<p>3D Gaussian Splatting(3DGS)은 화면 공간 1차 그라디언트를 이용해 Gaussian을 복제·분할하지만, 고주파 텍스처와 노이즈를 기하학적 불연속과 구분하지 못합니다. 이로 인해 불필요한 Gaussian이 과다 생성되고, 저장 용량과 연산 비용이 증가합니다.</p>
+<h2>곡률‑인식 비대칭 밀도화 핵심 아이디어</h2>
+<p>ACD‑GS는 깊이 응답의 2차 미분(곡률)을 구조적 사전 지식으로 활용합니다. 곡률이 큰 영역에서만 복제를, 낮은 곡률에서는 분할을 억제해 비대칭적으로 밀도화를 제어합니다. 이는 실제 기하학적 경계를 더 정확히 포착하도록 돕습니다.</p>
+<h2>멀티뷰 포토메트릭 일관성 및 용량‑조절 전략</h2>
+<p>단일 뷰에서 발생하는 일시적 오류를 방지하기 위해 다중 뷰 포토메트릭 일관성 제약을 도입했습니다. 또한, 훈련 중에 Gaussian 수를 동적으로 조절하는 capacity‑aware adaptive regulation을 적용해 밀도화와 프루닝을 균형 있게 수행합니다.</p>
+<h2>실험 결과와 효율성</h2>
+<p>다양한 데이터셋에서 ACD‑GS는 Gaussian 수와 저장 용량을 약 60% 감소시키면서도 기존 방법과 동등하거나 더 높은 렌더링 품질을 유지했습니다. 이는 실시간 뷰 합성 Pipeline 메모리와 대역폭 부담을 크게 낮춰줍니다.</p>
+<h2>실무 적용 시 고려사항</h2>
+<p>2차 깊이 응답을 계산하려면 추가 연산이 필요하므로, GPU 메모리와 연산량을 사전에 평가해야 합니다. 또한, 기존 3DGS 워크플로에 ACD‑GS를 통합하려면 코드베이스에 곡률 추출 모듈을 삽입하고, 용량‑조절 파라미터를 튜닝하는 과정이 필요합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">실시간 포토리얼리즘을 목표로 하는 스튜디오와 연구자는 기존 1차 그라디언트 기반 밀도화가 텍스처와 잡음에 민감한 점을 개선할 필요가 있습니다. ACD-GS는 깊이의 2차 미분을 구조적 프라이어로 사용해 실제 기하학적 경계를 정확히 포착하므로, 불필요한 Gaussian 생성이 크게 억제됩니다. 훈련 단계에서 바로 적용 가능한 capacity‑aware adaptive regulation 전략은 모델 용량을 효율적으로 관리해 메모리와 저장 공간을 절감합니다. 따라서 대규모 씬을 다루는 VFX 파이프라인이나 메타버스 콘텐츠 제작 시, 기존 파이프라인에 최소한의 수정만으로도 비용 절감 효과를 기대할 수 있습니다. 다만, 두 번째 차수 깊이 정보를 추출하려면 추가 연산이 필요하므로, GPU 메모리 여유와 연산량을 사전에 검증해야 합니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-1177f8d33f2594fb.html">Gaussian Splatting 렌더링 효율 높이는 BudSplat 프레임워크 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-941e6e3cba7c6465.html">Gaussian Splatting 게임 에셋 파이프라인 도입 방안</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-10771ce6e4d0741e.html">Gaussian Splatting 신기술 GOFish — 180도 초과 어안렌즈와 메시 추출 지원</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.39399v1" target="_blank" rel="noopener nofollow">ACD-GS: Asymmetric Curvature-aware Densification for 3D Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
