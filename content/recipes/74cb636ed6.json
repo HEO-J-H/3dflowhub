@@ -1,0 +1,50 @@
+{
+  "id": "74cb636ed6",
+  "domain": "AI 3D",
+  "category": "NVIDIA Omniverse",
+  "host": "Maya",
+  "lang": "python",
+  "title": "NVIDIA Omniverse 연동 Maya 에셋 배치 정리기",
+  "problem": "NVIDIA Omniverse 기반 디지털 트윈 및 AI 시뮬레이션 환경에서 가져온 대량의 3D 에셋을 Maya에서 수동으로 정리하는 반복 작업을 해결합니다. 스케일 조정, 피벗 정렬, 불필요한 히스토리 삭제를 자동화하여 제작 시간을 단축합니다.",
+  "pipeline": [
+    {
+      "tool": "Maya 선택 영역 분석",
+      "action": "씬에서 선택된 다각형 오브젝트들을 안전하게 수집합니다."
+    },
+    {
+      "tool": "트랜스폼 초기화",
+      "action": "선택된 에셋들의 회전과 스케일을 정규화하여 시뮬레이션 호환성을 높입니다."
+    },
+    {
+      "tool": "히스토리 및 노드 정리",
+      "action": "불필요한 컨스트럭션 히스토리를 삭제해 뷰포트 성능을 최적화합니다."
+    },
+    {
+      "tool": "피벗 포인트 정렬",
+      "action": "오브젝트의 피벗을 바닥 중심(Bounding Box Min Y)으로 정렬합니다."
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef clean_omniverse_assets():\n    # Get currently selected mesh transforms\n    selection = cmds.ls(selection=True, long=True)\n    if not selection:\n        cmds.warning(\"정리할 오브젝트를 선택해주세요.\")\n        return\n\n    # Filter to transform nodes with mesh shapes\n    transforms = []\n    for sel in selection:\n        shapes = cmds.listRelatives(sel, shapes=True, fullPath=True) or []\n        if any(cmds.nodeType(s) == 'mesh' for s in shapes):\n            transforms.append(sel)\n\n    if not transforms:\n        cmds.warning(\"선택된 항목 중에 폴리곤 메시가 없습니다.\")\n        return\n\n    for obj in transforms:\n        # Freeze transforms safely using standard flags\n        cmds.makeIdentity(obj, apply=True, translate=0, rotate=1, scale=1, normal=0)\n        \n        # Delete construction history\n        cmds.delete(obj, constructionHistory=True)\n        \n        # Center pivot to bottom bounding box Y for clean placement\n        bbox = cmds.exactWorldBoundingBox(obj)\n        bottom_y = bbox[1]\n        current_pivot = cmds.xform(obj, query=True, worldSpace=True, rotatePivot=True)\n        cmds.move(current_pivot[0], bottom_y, current_pivot[2], f\"{obj}.scalePivot\", f\"{obj}.rotatePivot\", absolute=True)\n        \n    print(f\"[Omniverse Pipeline] 총 {len(transforms)}개의 에셋 정리가 완료되었습니다.\")\n\ndef show_ui():\n    window_name = \"OmniverseAssetCleanupUI\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name, window=True)\n        \n    cmds.window(window_name, title=\"Omniverse Asset Cleaner\", widthHeight=(300, 120), sizeable=False)\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=10, columnAttach=('both', 15))\n    \n    cmds.text(label=\"Omniverse/디지털 트윈 에셋 배치 정리 도구\", align=\"center\", font=\"boldLabelFont\")\n    cmds.separator(height=10, style=\"in\")\n    \n    cmds.button(label=\"선택 에셋 트랜스폼 및 피벗 정렬\", command=lambda *args: clean_omniverse_assets(), height=40)\n    \n    cmds.showWindow(window_name)\n\nif __name__ == \"__main__\":\n    show_ui()",
+  "install": [
+    "마야를 실행하고 Script Editor를 엽니다.",
+    "Python 탭에 위 Script를 복사하여 붙여넣습니다.",
+    "에디터에서 Script를 실행하면 UI 창이 나타납니다."
+  ],
+  "usage": [
+    "정리할 3D 에셋들을 Maya 뷰포트에서 선택합니다.",
+    "UI 창의 '선택 에셋 트랜스폼 및 피벗 정렬' 버튼을 클릭합니다.",
+    "선택된 오브젝트들의 스케일, 회전, 히스토리, 피벗이 자동으로 정리됩니다."
+  ],
+  "limits": [
+    "폴리곤 메시가 포함된 트랜스폼 노드만 처리합니다.",
+    "네트워크 파일이나 외부 API 호출 기능은 포함되어 있지 않습니다."
+  ],
+  "sources": [
+    "2026-10-29-b9009ee44e00546d",
+    "2026-10-29-414438dc832edbe1",
+    "2026-10-29-79428cf43613e413"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-30T22:19:14+00:00"
+}
