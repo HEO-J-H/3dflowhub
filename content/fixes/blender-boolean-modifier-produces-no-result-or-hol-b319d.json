@@ -1,0 +1,40 @@
+{
+  "id": "blender-boolean-modifier-produces-no-result-or-hol-b319d",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Boolean modifier produces no result or holes",
+  "title": "Boolean 모디파이어 결과가 비거나 구멍 날 때",
+  "summary": "Blender의 Boolean 모디파이어가 연산을 처리하지 못하고 결과가 사라지거나 구멍이 뚫리는 현상입니다. 주로 메쉬의 위상(Topology) 문제나 겹침 현상 때문에 발생합니다.",
+  "causes": [
+    "메쉬에 면이 겹쳐 있거나(Overlapping faces) 내부 면이 존재함",
+    "열린 모서리(Non-manifold edges)나 뚫린 구멍이 있어 볼륨이 완전히 닫히지 않음",
+    "법선(Normals) 방향이 잘못 뒤집혀 있음",
+    "두 객체의 스케일 값이 1.0으로 Apply되지 않음"
+  ],
+  "steps": [
+    "오브젝트 모드에서 대상 객체를 선택하고 Ctrl+A를 눌러 Scale을 Apply합니다.",
+    "에디트 모드(Tab)로 전환한 뒤 A키로 모든 메쉬를 선택합니다.",
+    "메뉴에서 Mesh > Clean Up > Merge by Distance를 실행해 중복 버텍스를 제거합니다.",
+    "메뉴에서 Mesh > Clean Up > Fill Holes를 실행해 열린 구멍을 막습니다.",
+    "Shift+N을 눌러 법선(Normals) 방향을 바깥쪽으로 재계산합니다.",
+    "Boolean 모디파이어의 Solver 방식을 Exact에서 Fast로(또는 그 반대로) 변경해 테스트합니다."
+  ],
+  "check": [
+    "모디파이어를 적용(Apply)했을 때 메쉬에 누락된 면 없이 온전한 볼륨이 유지되는지 확인합니다.",
+    "Viewport 오버레이에서 Face Orientation을 켜고 모든 면이 파란색(바깥쪽)인지 확인합니다."
+  ],
+  "prevent": [
+    "작업 중 주기적으로 메쉬의 Non-manifold 상태와 중복 버텍스를 정리합니다.",
+    "Booleans 연산 전에 항상 오브젝트의 Scale 값을 초기화(Apply)하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Blender 불린 오류",
+    "Boolean 모디파이어 구멍",
+    "Blender 면 안 생김",
+    "Non-manifold 해결",
+    "Boolean 안 됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T08:36:34+00:00"
+}

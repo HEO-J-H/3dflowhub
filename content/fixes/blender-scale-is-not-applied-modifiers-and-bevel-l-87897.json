@@ -1,0 +1,34 @@
+{
+  "id": "blender-scale-is-not-applied-modifiers-and-bevel-l-87897",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Scale is not applied (modifiers and bevel look wrong)",
+  "title": "베벨·모디파이어가 이상할 때 — 스케일 미적용",
+  "summary": "Blender에서 오브젝트의 스케일(Scale) 값이 1.0이 아닐 때 발생하는 문제로, Bevel 모디파이어가 찌그러지거나 두께가 균일하지 않게 나타납니다.",
+  "causes": [
+    "오브젝트 모드에서 크기를 조절한 후 스케일을 적용(Apply)하지 않음",
+    "비균등 스케일(Non-uniform Scale) 상태로 인해 모디파이어 계산이 왜곡됨"
+  ],
+  "steps": [
+    "오브젝트 모드(Object Mode)에서 문제가 있는 오브젝트를 선택합니다.",
+    "키보드 단축키 Ctrl+A를 누릅니다.",
+    "나오는 메뉴에서 Scale을 선택하여 스케일 값을 1.0으로 초기화합니다."
+  ],
+  "check": [
+    "N키를 눌러 Transform 패널을 열고 Scale의 X, Y, Z 값이 모두 1.0인지 확인합니다.",
+    "Bevel 모디파이어의 선 부드러움과 두께가 균일하게 표현되는지 확인합니다."
+  ],
+  "prevent": [
+    "오브젝트의 크기를 변경한 직후에는 습관적으로 Apply(Ctrl+A)를 실행합니다."
+  ],
+  "keywords": [
+    "Blender 스케일 적용",
+    "베벨 찌그러짐 해결",
+    "스케일 안 됨",
+    "Blender Apply Scale",
+    "모디파이어 이상"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T08:36:36+00:00"
+}
