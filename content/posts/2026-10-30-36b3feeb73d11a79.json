@@ -1,0 +1,50 @@
+{
+  "title_ko": "Blender 5.3 출시 — Gaussian Splatting 네이티브 지원 도입",
+  "title": "Splatting the Gaussians into Blender",
+  "url": "https://code.blender.org/2026/10/splatting-the-gaussians-into-blender/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Blender",
+    "Gaussian Splatting",
+    "Geometry Nodes",
+    "EEVEE",
+    "3D 스캔",
+    "블렌더",
+    "지오메트리 노드"
+  ],
+  "summary": "Blender 5.3 버전부터 3D Gaussian Splat Import, 편집, 렌더링을 네이티브로 지원하여 실사 캡처 데이터 활용이 더욱 편리해집니다.",
+  "insight": "이번 업데이트는 폴리곤 메시 변환 없이 3D 실사 캡처 데이터를 직접 다루는 워크플로가 공식 DCC 환경에 깊숙이 들어왔음을 의미합니다. 특히 Geometry Nodes와 연계하여 Splat 어트리뷰트를 제어할 수 있어, 향후 VFX 및 게임 제작 Pipeline 배경 에셋이나 스캔 데이터를 다루는 방식에 큰 변화를 줄 것입니다. 초기 버전인 만큼 EEVEE의 디더링 투명도 제어나 조명 리밸런싱의 한계를 숙지하고 실무에 도입해야 합니다.",
+  "sections": [
+    {
+      "heading": "Blender 5.3의 Gaussian Splatting 초기 지원",
+      "body": "Blender 5.3에서는 3D Gaussian Splat(gsplats)에 대한 초기 지원이 도입되어 빠른 고품질 씬 캡처본을 Import, 편집 및 렌더링할 수 있습니다. `.PLY`, `.SPZ` 포맷뿐만 아니라 USD를 통한 로딩도 지원하므로 전문 캡처 도구나 스마트폰으로 제작된 데이터도 손쉽게 불러올 수 있습니다. 뷰포트에 파일을 드래그앤드롭하는 것만으로 간단하게 씬에 배치하여 확인할 수 있습니다."
+    },
+    {
+      "heading": "Geometry Nodes 기반의 포인트 클라우드 표현",
+      "body": "Blender 내에서 Gaussian Splat는 포인트 클라우드의 일종으로 구현되었으며, 이를 다루기 위해 새로운 Pointcloud Type Geometry Nodes가 추가되었습니다. 기존 포인트 클라우드와 달리 3D 벡터 형태의 스케일링, 쿼터니언 회전, 그리고 시점 종속형 조명을 인코딩하는 구면 조화 함수(Spherical Harmonics) 데이터를 포함합니다. 사용자는 Geometry Nodes를 통해 radiance:base 및 radiance:sh 어트리뷰트를 직접 제어하거나 수정할 수 있습니다."
+    },
+    {
+      "heading": "EEVEE 및 뷰포트에서의 렌더링 방식",
+      "body": "모든 기본 렌더러가 Gaussian Splat를 지원하며, 래스터화 기반의 EEVEE와 뷰포트는 카메라를 향해 투영된 3D Gaussian을 2D 쿼드로 변환하여 처리합니다. 초기 구현에는 EEVEE의 디더링 투명도 모드가 채택되어 아키텍처와의 마찰을 줄이고 향후 컬링 구현 시 뛰어난 성능을 기대할 수 있게 합니다. 다만 초기 단계인 만큼 일부 확률적 접근 방식으로 인한 노이즈 등이 존재할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Blender에서 어떤 포맷의 Gaussian Splat 파일을 불러올 수 있나요?",
+      "a": "Blender는 `.PLY` 및 `.SPZ` 포맷의 Gaussian Splat 파일 Import를 지원하며, USD 파일 형식으로도 로드할 수 있습니다."
+    },
+    {
+      "q": "Blender 내에서 Gaussian Splat는 어떤 데이터 구조로 처리되나요?",
+      "a": "포인트 클라우드 타입의 Geometry Nodes로 구현되며, 위치, 3D 스케일링 벡터, 회전 쿼터니언, 그리고 구면 조화 함수 기반의 라이디언스(radiance) 어트리뷰트를 저장하여 표현됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://code.blender.org/wp-content/uploads/2026/10/gaussian_splat-480x270.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-10-30T13:27:14.271009+00:00",
+  "notion_id": "",
+  "id": "2026-10-30-36b3feeb73d11a79"
+}
