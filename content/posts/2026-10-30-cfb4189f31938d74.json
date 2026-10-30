@@ -34,6 +34,16 @@
     {
       "heading": "개발 환경 설정 및 필수 요구 사항",
       "body": "시작하려면 지원되는 NVIDIA 소프트웨어 스택이 탑재된 DGX Spark, NVIDIA CUDA 13, TensorRT 10.16.1.11 이상, 그리고 Python 3.10에서 3.12 버전이 필요합니다. 터미널에서 가상 환경을 생성하고 시스템 Python 패키지 접근을 허용한 상태에서 tensorrt-edgellm을 설치하여 개발을 진행할 수 있습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA DGX Spark와 TensorRT Edge-LLM 조합은 엣지 환경에 배치되는 물리 AI 애플리케이션 개발에 활용됩니다. trtedge 명령줄 인터페이스(CLI)를 통해 모델을 다운로드하고 최적화된 TensorRT 엔진을 빠르게 빌드할 수 있습니다. 개발자는 터미널에서 Nemotron-3.5 Lightning 모델과의 챗 세션을 즉시 시작하고, OpenAI 호환 API 서버를 통해 로컬 환경에서 모델을 서빙하며 프로토타이핑을 진행할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "개발을 시작하려면 지원되는 NVIDIA 소프트웨어 스택이 탑재된 DGX Spark, NVIDIA CUDA 13, TensorRT 10.16.1.11 이상, 그리고 Python 3.10에서 3.12 버전이 필요합니다. 터미널에서 가상 환경을 생성하고 시스템 Python 패키지 접근을 허용한 상태에서 tensorrt-edgellm을 설치하여 환경을 구성한 후 작업을 진행할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "trtedge CLI는 어떤 역할을 수행하나요?",
       "a": "trtedge CLI는 사용자가 선택한 모델을 다운로드하고 대상 하드웨어에 최적화된 TensorRT 엔진을 빌드하여, 챗 세션 실행 및 로컬 API 서버 구축을 몇 가지 명령어로 가능하게 합니다."
+    },
+    {
+      "q": "생성 속도를 높이기 위해 어떤 기능을 활성화할 수 있나요?",
+      "a": "3개의 드래프트 토큰을 사용하는 DSpark 스펙머티브 디코딩(speculative decoding)을 활성화하면 HumanEval Prompt 기준 평균 생성 속도를 크게 향상시킬 수 있습니다."
+    },
+    {
+      "q": "개발 환경과 실제 배포 플랫폼 간의 호환성은 어떠한가요?",
+      "a": "DGX Spark에서의 개발 환경과 Jetson Thor, DRIVE AGX Thor, IGX Thor 등의 실제 배포 플랫폼이 동일한 추론 프레임워크와 경량 C++ 추론 런타임을 공유하여 일관된 개발 경험을 제공합니다."
     }
   ],
   "media": {
@@ -52,5 +70,23 @@
   },
   "collected_at": "2026-10-30T23:38:47.856779+00:00",
   "notion_id": "",
-  "id": "2026-10-30-cfb4189f31938d74"
+  "id": "2026-10-30-cfb4189f31938d74",
+  "refs": [],
+  "videos": [
+    {
+      "id": "AV4XYBzlSyg",
+      "title": "Google AI Edge Gallery Tutorial - How To Run LLMS Locally On Your Phone",
+      "author": "TheAIGRID"
+    },
+    {
+      "id": "DwBxX9LbfFY",
+      "title": "How to Run AI Models Locally on Phone - Google AI Edge Gallery Mobile App Tutorial",
+      "author": "United Top Tech"
+    }
+  ],
+  "enriched_at": "2026-10-30T23:50:23+00:00",
+  "quality": {
+    "before": 1106,
+    "after": 1580
+  }
 }

@@ -1,0 +1,23 @@
+<!-- TITLE: NVIDIA NemoClaw 공개 — AI 에이전트 플랫폼 구축 블루프린트 | TAGS: Nvidia,NemoClaw,Nemotron,AI Agent,OpenShell,업데이트·출시 | CATEGORY: AI 3D/NVIDIA Omniverse | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/build-specialized-agents-on-a-stack-you-control-with-nvidia-nemoclaw/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/nemoclaw-featured.webp" alt="NVIDIA NemoClaw 공개 — AI 에이전트 플랫폼 구축 블루프린트" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/build-specialized-agents-on-a-stack-you-control-with-nvidia-nemoclaw/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA NemoClaw는 튜닝된 에이전트 하네스, Nemotron 모델, NeMo 최적화 도구, OpenShell 보안 런타임을 결합한 오픈 에이전트 플랫폼 블루프린트를 제공합니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA Omniverse › 업데이트·출시</p>
+<h2>NVIDIA NemoClaw 개요 및 핵심 구성</h2>
+<p>NVIDIA NemoClaw는 튜닝된 에이전트 하네스, Nemotron 모델, NeMo 최적화 도구, OpenShell 보안 런타임을 통합한 오픈 소스 기반의 풀스택 에이전트 플랫폼 블루프린트이다. 개발자는 이를 통해 자체 제어가 가능한 스택 위에서 특화된 AI 에이전트를 구축할 수 있다. 기업 시스템과 데이터에 접근하는 에이전트의 안정성과 보안을 동시에 확보하도록 설계되었다.</p>
+<h2>지원되는 에이전트 하네스 생태계</h2>
+<p>현재 NemoClaw 블루프린트는 OpenClaw, Hermes Agent, LangChain Deep Agents 등 세 가지 주요 하네스를 지원한다. OpenClaw는 파일 접근과 코드 작성, 서브 에이전트 생성을 지원하며 장기 세션과 예약 작업을 처리한다. Hermes Agent는 사용 과정에서 반복되는 워크플로 패턴을 재사용 가능한 스킬로 학습하며, LangChain Deep Agents는 복잡한 다단계 작업을 위한 계획 및 위임 기능을 제공한다.</p>
+<h2>성능 최적화와 비용 절감</h2>
+<p>LangChain은 Nemotron 3 Ultra 모델에 맞춰 Deep Agents 하네스를 튜닝하여 실행당 비용을 약 10배 낮추면서도 프론티어 급 성능에 근접한 결과를 달성했다. 해당 튜닝 모델 프로필은 GitHub를 통해 개발자들에게 공개되어 있다. 이를 통해 프로덕션 환경에서 고성능 AI 에이전트를 경제적으로 운영할 수 있는 기반이 마련되었다.</p>
+<h2>OpenShell을 통한 강력한 보안 거버넌스</h2>
+<p>OpenShell은 에이전트가 파일, 네트워크, 자격 증명, 도구에 접근하는 권한을 엄격하게 관리하는 보안 런타임이다. 에이전트의 메모리나 검색된 문맥이 의도치 않은 행동을 유도하더라도 보안 정책의 경계 안에서만 작동하도록 강제한다. 이를 통해 실무 환경에서 자율 에이전트 운영 시 발생할 수 있는 보안 리스크를 효과적으로 통제한다.</p>
+<h2>유연한 배포 환경과 학습 자료</h2>
+<p>NemoClaw 에이전트는 클라우드, 데이터센터, NVIDIA DGX Spark, NVIDIA RTX PC 및 워크스테이션 등 다양한 환경에서 실행된다. 또한 Claude, Codex, Cursor 같은 기존 프론티어 에이전트들과 병행하여 작동할 수 있다. 개발자는 NVIDIA DLI의 &#x27;Deploy Secure Agents with NemoClaw&#x27; 코스와 퀵스타트 가이드를 통해 관련 스택을 쉽게 학습하고 배포할 수 있다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">복잡한 파이프라인 자동화와 에이전트 기반 제작 워크플로를 도입하려는 3D 및 VFX 스튜디오에게 하네스 통제권과 비용 효율성은 핵심 고려 사항이다. NemoClaw는 기존의 OpenClaw, Hermes Agent, LangChain Deep Agents 등의 오케스트레이션 계층을 유지하면서도 모델 최적화와 보안 거버넌스를 결합할 수 있는 길을 열어준다. 특히 저렴한 비용으로 프론티어 급 성능에 근접하는 Nemotron 모델 프로필 활용이 가능해져, 실무 프로덕션 환경에서의 AI 에이전트 도입 장벽이 크게 낮아질 것으로 기대된다. 로컬 워크스테이션부터 클라우드까지 유연하게 배포할 수 있으므로 자체 스택 중심의 파이프라인 구축을 검토하는 테크니컬 디렉터라면 주목할 만하다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA NemoClaw는 어떤 역할을 하는 도구인가요?</b><br/>A. NemoClaw는 자체 제어 가능한 스택 위에서 특화된 AI 에이전트를 구축할 수 있도록 튜닝된 하네스, Nemotron 모델, 최적화 도구, 보안 런타임을 하나로 묶어 제공하는 오픈 블루프린트 플랫폼입니다.</p>
+<p><b>Q. 어떤 에이전트 하네스들과 호환되나요?</b><br/>A. 현재 OpenClaw, Hermes Agent, LangChain Deep Agents 등 세 가지 오케스트레이션 하네스를 공식 지원하여 개발자가 기존에 사용하던 하네스를 그대로 유지하면서 최적화와 거버넌스를 추가할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-0e8cade32065909a.html">NVIDIA Omniverse 라이브러리 도입 — TCS·Volvo, Physical AI 로보틱스 연구</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-530dfb9c6a8a9e33.html">NVIDIA Omniverse DSX Blueprint, AI 공장 실증</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-d0e3948f8552965e.html">NVIDIA Omniverse 활용, 히타치 에너지 전력 시스템 시뮬레이션 구축</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/build-specialized-agents-on-a-stack-you-control-with-nvidia-nemoclaw/" target="_blank" rel="noopener nofollow">Build Specialized Agents on a Stack You Control with NVIDIA NemoClaw</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
