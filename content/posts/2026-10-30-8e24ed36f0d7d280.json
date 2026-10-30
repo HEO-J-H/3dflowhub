@@ -31,14 +31,56 @@
     {
       "heading": "Nebraska 오페라단 배경",
       "body": "Nebraska 주는 비교적 작은 인구 규모에도 불구하고 활발한 지역 문화 예술 활동을 지원한다. 이번 공연은 지역 문화재 지원금과 협찬을 받아 준비 중이며, 지역 사회와 교육 기관과의 연계 프로그램도 함께 진행될 예정이다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Nebraska 오페라단이 ‘Cendrillon’과 ‘Maya and the Magic Ring’ 같은 현대적 오페라를 무대에 올리면서, 무대 시각 디자인에 3D 기술 활용이 늘어나고 있습니다. 3D 아티스트는 Blender 혹은 Maya를 사용해 무대 배경·소품을 모델링하고, Substance Painter로 텍스처링한 뒤, Unreal Engine의 Virtual Production 기능으로 실시간 렌더링을 적용합니다. 조명은 Unreal Engine 의 Lumen 을 이용해 실제 조명과 동일하게 시뮬레이션하고, 카메라 트랙은 Sequencer 로 사전 시뮬레이션해 감독에게 미리 보여줄 수 있습니다. 이렇게 만든 가상 무대는 현장에 투사하거나 LED 월에 매핑해 실제 무대와 결합해 관객에게 몰입감을 제공합니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "무대 시각화에 주로 쓰이는 도구는 Unreal Engine 과 Unity 이지만, 비용·학습 곡선에서 차이가 있습니다. Unreal Engine은 Nanite 와 Lumen 을 기본 제공해 고품질 실시간 렌더링을 손쉽게 구현할 수 있지만, 하드웨어 요구사항이 다소 높습니다. Unity 는 HDRP 를 통해 비슷한 품질을 낼 수 있지만, 라이트맵 설정과 Post 프로세스가 더 복잡합니다. Blender 는 무료이며 모델링·리깅·렌더링을 한 번에 할 수 있어 초기 Prototype 제작에 유리합니다. Maya 는 고급 리깅·시뮬레이션에 강점이 있지만 라이선스 비용이 높아 예산이 제한된 소규모 프로젝트에서는 Blender 와 Unreal Engine  조합이 실용적입니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "먼저 Blender (또는 Maya) 를 설치하고, 오페라 무대에 필요한 기본 모델(배경, 조명기구, 소품)을 제작합니다. 모델링이 끝나면 Substance Painter 또는 Quixel Mixer 로 PBR 텍스처를 만들고, FBX 포맷으로 Unreal Engine 에 임포트합니다. Unreal Engine 에서 Level 을 만들고 Nanite 를 활성화해 고해상도 메시에 대한 퍼포먼스를 최적화합니다. Lumen 을 켜고 조명을 배치한 뒤, Sequencer 로 카메라 움직임을 설정해 리허설 영상을 출력합니다. 마지막으로 LED 월이나 프로젝션 매핑을 위한 Media Framework 설정을 마치면 실제 무대와 가상 무대를 연동할 수 있습니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "오페라 무대에 3D 모델을 적용하려면 어떤 파일 포맷이 가장 호환성이 좋나요?",
+      "a": "가장 일반적인 포맷은 FBX 이며, 모델, 애니메이션, 머티리얼 정보를 모두 포함할 수 있어 Unreal Engine 과 Unity 에서 바로 사용할 수 있습니다."
+    },
+    {
+      "q": "실시간 렌더링을 위해 최소 사양은 어떻게 되나요?",
+      "a": "Unreal Engine 의 Nanite 와 Lumen 을 원활히 사용하려면 최소 RTX 2070 이상의 GPU와 16 GB 이상의 RAM을 권장합니다. 저사양 PC에서는 Unity 의 HDRP 모드나 Blender Eevee 를 활용해 품질을 조정할 수 있습니다."
+    }
+  ],
   "media": {
     "image": "",
     "video": ""
   },
   "collected_at": "2026-10-30T06:35:59.820026+00:00",
   "notion_id": "",
-  "id": "2026-10-30-8e24ed36f0d7d280"
+  "id": "2026-10-30-8e24ed36f0d7d280",
+  "refs": [],
+  "videos": [
+    {
+      "id": "RS-7H2BsnXA",
+      "title": "Opera McGill and McGill Symphony Orchestra | Cendrillon - January 28, 2024",
+      "author": "Schulich School of Music"
+    },
+    {
+      "id": "t_hv3Y6FE5o",
+      "title": "Massenet – Cendrillon (Complete Opera)",
+      "author": "AlexAmick"
+    }
+  ],
+  "enriched_at": "2026-10-30T06:56:11+00:00",
+  "quality": {
+    "before": 608,
+    "after": 1756
+  }
 }
