@@ -1,0 +1,22 @@
+<!-- TITLE: Gaussian Splatting 렌더링 효율 높이는 BudSplat 프레임워크 공개 | TAGS: 3D Gaussian Splatting,BudSplat,렌더링 효율,피드포워드,신경망 렌더링,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — BudSplat은 렌더링 예산 내에서 Gaussian Primitive의 중복을 줄이고 품질과 효율의 균형을 맞추는 새로운 피드포워드 3D Gaussian Splatting 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>피드포워드 3D Gaussian Splatting의 한계 극복</h2>
+<p>피드포워드 방식의 3D Gaussian Splatting은 입력 이미지로부터 Gaussian Primitive를 직접 예측하여 빠른 신규 뷰 합성을 가능하게 합니다. 그러나 희소(sparse) 입력에서 조밀한(dense) 다중 시점 입력으로 확장될 때 렌더링 효율성 병목 현상에 직면합니다. 기하학적 제약은 늘어나지만 빠르게 증가하는 후보 Gaussian 세트가 렌더링 비용을 가중시킵니다.</p>
+<h2>중복 Primitive 문제와 BudSplat의 도입</h2>
+<p>기존 솔루션은 반복적으로 관측된 영역에서 발생하는 중복 Primitive를 안정적으로 구별하지 못합니다. 이로 인해 시각적 품질 향상 없이 렌더링 비용만 증가하는 문제가 발생합니다. 연구팀은 제한된 Primitive 수 안에서 가장 가치 있는 Gaussian을 유지하는 콤팩트한 피드포워드 프레임워크인 BudSplat을 제안합니다.</p>
+<h2>디테일 인식 중요도 점수와 Voxel Fusion</h2>
+<p>BudSplat의 첫 번째 핵심 설계는 다중 레벨 시각 토큰에서 추출되는 디테일 인식 중요도 점수입니다. 이 점수는 프루닝(pruning)이 지각적 품질을 저하시킬 수 있는 영역에 대한 명시적인 단서를 제공합니다. 해당 점수는 복셀 융합(voxel fusion)에 주입되어 다중 시점 집계 과정에서 가치가 높은 로컬 기여 요소를 보존합니다.</p>
+<h2>품질 인식 Gaussian 프루닝 및 할당 최적화</h2>
+<p>두 번째 설계는 렌더링 기여도와 디테일 중요도를 공동으로 고려하여 컴팩트한 Primitive 세트를 선택하는 품질 인식 Gaussian 프루닝입니다. 이를 통해 로컬 쿼터 재분배가 가능해져 대규모 중복 영역에 Primitive가 과도하게 할당되는 것을 방지합니다. 결과적으로 시각적 품질과 연산 효율성 사이의 유리한 절묘한 균형을 찾아냅니다.</p>
+<h2>실험 결과 및 벤치마크 성능</h2>
+<p>RE10K, DL3DV, ACID 데이터셋을 활용한 실험에서 BudSplat은 렌더링 품질과 효율성 측면에서 뛰어난 성능 균형을 입증했습니다. 다양한 벤치마크 환경에서 불필요한 연산을 줄이면서도 원본의 디테일을 효과적으로 유지함을 보여주었습니다. 향후 대규모 3D 비전 및 실시간 렌더링 응용 분야에서 폭넓게 활용될 잠재력을 지니고 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">다중 시점 입력이 늘어날수록 Gaussian 렌더링 비용이 급증하는 실무적 한계를 해결하기 위한 연구입니다. 중복 영역의 Primitive 할당을 줄이면서도 디테일을 보존하는 방식은 향후 실시간 대규모 월드 구현이나 고성능 AI 3D 파이프라인 구축에 큰 도움이 됩니다. 실무에서 방대한 뷰 데이터를 다루는 엔지니어라면 효율적인 메모리 및 렌더링 최적화 대안으로 주목할 만합니다. 렌더링 리소스가 제한된 환경에서 대규모 씬을 다루는 테크니컬 아티스트들이 눈여겨봐야 할 기술입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. BudSplat은 기존 3D Gaussian Splatting과 무엇이 다른가요?</b><br/>A. 다중 시점 입력 증가 시 발생하는 중복 Primitive 문제를 해결하기 위해, 디테일 인식 중요도 점수와 품질 인식 프루닝을 도입하여 렌더링 예산 안에서 효율을 극대화합니다.</p>
+<p><b>Q. 어떤 데이터셋에서 성능이 검증되었나요?</b><br/>A. 본 프레임워크는 RE10K, DL3DV, ACID 데이터셋을 통한 실험을 거쳐 렌더링 품질과 효율성 사이의 우수한 균형을 검증받았습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-941e6e3cba7c6465.html">Gaussian Splatting 게임 에셋 파이프라인 도입 방안</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-10771ce6e4d0741e.html">Gaussian Splatting 신기술 GOFish — 180도 초과 어안렌즈와 메시 추출 지원</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-28-646c38f7deeca81b.html">Gaussian Splatting 기반 StereoSplat, 메트릭 스케일 새로운 뷰 합성</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2610.38278v1" target="_blank" rel="noopener nofollow">BudSplat: Feed-forward 3D Gaussian Splatting under a Rendering Budget</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
