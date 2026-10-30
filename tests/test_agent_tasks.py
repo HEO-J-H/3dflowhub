@@ -211,3 +211,9 @@ def test_ai_allocation_weights_for_guides():
     plan = manager.plan_today() if hasattr(manager, "plan_today") else {"guides_now": 4, "news_now": 2, "roundups_now": 2}
     # 가이드 AI 할당 비중이 0.5 (뉴스 0.25, 라운드업 0.25) 구조에 부합하는지 검증
     assert plan.get("guides_now", 4) >= 2
+
+
+def test_manager_blocks_kitchen_feed_action():
+    import manager
+    act = {"type": "add_feed", "domain": "3D DCC", "url": "https://example.com/kitchen/rss"}
+    assert manager._valid_action(act) is None
