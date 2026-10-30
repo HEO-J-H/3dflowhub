@@ -1,0 +1,38 @@
+{
+  "id": "blender-textures-are-pink-missing-image-files-84d81",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Textures are pink (missing image files)",
+  "title": "텍스처가 분홍색으로 나올 때 — 이미지 경로 끊김",
+  "summary": "텍스처가 핑크색으로 표시되는 것은 Blender가 해당 이미지 파일을 찾지 못했음을 의미합니다.",
+  "causes": [
+    "이미지 파일이 이동, 이름 변경, 삭제되었습니다.",
+    "프로젝트 폴더와 Blender 파일이 다른 위치에 있어 상대 경로가 깨졌습니다.",
+    "외부 데이터 경로가 올바르게 설정되지 않았습니다."
+  ],
+  "steps": [
+    "File > External Data > Find Missing Files 로 이동합니다.",
+    "팝업에서 현재 프로젝트 폴더(또는 이미지가 있는 폴더)를 선택하고 \"Find Missing Files\" 버튼을 클릭합니다.",
+    "이미지가 올바르게 로드되었는지 확인하려면 UV/Image Editor 또는 3D Viewport에서 머티리얼을 확인합니다.",
+    "필요 시 Image > Open으로 개별 이미지를 직접 지정합니다.",
+    "File > External Data > Pack All into .blend 을 사용해 파일을 .blend에 포함시켜 경로 문제를 방지합니다."
+  ],
+  "check": [
+    "머티리얼 미리보기가 핑크색이 아닌 실제 텍스처 이미지로 표시되는지 확인합니다.",
+    "Outliner에서 Image 데이터 블록 옆에 경고 아이콘(느낌표)이 사라졌는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 폴더 구조를 고정하고, 파일 이동 시 Blender 내부의 \"File > External Data > Find Missing Files\" 로 경로를 업데이트합니다.",
+    "작업 시작 전에 File > External Data > Pack All into .blend 로 텍스처를 패킹합니다."
+  ],
+  "keywords": [
+    "Blender 텍스처 핑크",
+    "Missing Image Files 해결",
+    "Blender 파일 경로 오류",
+    "텍스처 로드 안됨",
+    "Blender 외부 데이터 찾기"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T05:36:08+00:00"
+}

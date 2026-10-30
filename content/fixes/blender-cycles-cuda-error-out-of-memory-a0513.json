@@ -1,0 +1,42 @@
+{
+  "id": "blender-cycles-cuda-error-out-of-memory-a0513",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Cycles: CUDA error: Out of memory",
+  "title": "Cycles CUDA error: Out of memory — GPU 메모리 부족",
+  "summary": "Cycles 렌더링 중 CUDA 메모리가 부족해 렌더를 진행할 수 없다는 의미입니다.",
+  "causes": [
+    "GPU VRAM 용량을 초과한 경우",
+    "텍스처 해상도가 너무 높은 경우",
+    "폴리곤 수가 많아 씬이 복잡한 경우",
+    "다른 프로그램이 GPU 메모리를 점유하고 있는 경우"
+  ],
+  "steps": [
+    "Edit > Preferences > System 에서 CUDA 디바이스를 확인하고 필요 없는 디바이스 선택 해제",
+    "Render Properties > Performance > Tiles 에서 Tile Size를 64×64(또는 128×128)로 낮춘다",
+    "Render Properties > Dimensions 에서 Render Resolution을 낮추거나 Percentage Scale을 50% 이하로 줄인다",
+    "Properties 패널 > Render Properties > Simplify 를 활성화하고 Max Subdivisions와 Texture Size를 적절히 낮춘다",
+    "이미지 에디터에서 큰 텍스처를 선택하고 Image > Resize 로 2K 이하로 축소한다",
+    "Render Properties > Render Engine 을 Cycles 로 유지한 채 Device 를 'CPU' 로 전환하거나, 지원되는 경우 'OptiX' 로 변경한다",
+    "렌더를 다시 실행하여 오류가 사라졌는지 확인한다"
+  ],
+  "check": [
+    "Render > Render Image 를 실행했을 때 오류 메시지가 나타나지 않는다",
+    "nvidia-smi 로 현재 GPU 메모리 사용량이 정상 범위에 머무르는지 확인한다"
+  ],
+  "prevent": [
+    "작업 초기에 Simplify 와 적절한 Tile Size 를 설정한다",
+    "텍스처는 2K 이하, 필요 시 압축 포맷을 사용한다",
+    "렌더링 전에 다른 GPU 사용 프로그램을 종료하거나, 필요 시 CPU 렌더링으로 전환한다"
+  ],
+  "keywords": [
+    "Cycles CUDA 메모리 부족",
+    "Blender Out of memory",
+    "GPU VRAM 부족",
+    "Cycles 렌더링 오류",
+    "Blender 메모리 최적화"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T05:36:06+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "id": "houdini-21-9c4eb",
+  "kind": "change",
+  "tool": "Houdini",
+  "version": "21",
+  "source": "https://www.sidefx.com/docs/houdini/news/21/",
+  "title": "Houdini 21 바뀐 점 정리",
+  "summary": "Houdini 21은 APEX와 KineFX 기반의 애니메이션·리깅 워크플로를 크게 강화하고, Animation Catalog·Motion Mixer·Full‑Body IK 등 새로운 캐릭터 툴을 도입했습니다. 또한 Autorig Builder와 업데이트된 테스트 지오메트리(Otto·Electra)로 프로시저 리깅이 직관화됐으며, UI·핫키·핸들 프리퍼런스가 개선되었습니다.",
+  "highlights": [
+    {
+      "area": "Animation",
+      "change": "Animation Catalog와 Motion Mixer 도입",
+      "why": "애니메이션 클립과 포즈를 프로젝트 간에 재사용하고, Timeline에서 손쉽게 믹스할 수 있습니다"
+    },
+    {
+      "area": "Animation",
+      "change": "Full‑Body IK 도구 추가",
+      "why": "고레벨 타깃만 조정해 자연스러운 전신 포즈를 빠르게 만들 수 있습니다"
+    },
+    {
+      "area": "Animation",
+      "change": "새로운 제약 종류(lookat, multidriver, pin)와 H키 단축키",
+      "why": "제약 설정이 간편해져 복잡한 동작을 빠르게 구성합니다"
+    },
+    {
+      "area": "Rigging",
+      "change": "Autorig Builder와 새로운 테스트 지오메트리(Otto·Electra) 제공",
+      "why": "뷰포트에서 직접 리깅 컴포넌트를 적용·조정해 리깅 파이프라인을 가속화합니다"
+    },
+    {
+      "area": "Rigging",
+      "change": "APEX Graph SOP(이전 APEX Edit Graph)와 서브그래프 저장 기능",
+      "why": "리깅 그래프를 시각화·재사용해 모듈식 워크플로를 구현합니다"
+    },
+    {
+      "area": "Rigging",
+      "change": "다양한 프리빌트 리깅 컴포넌트(limb, hand, foot, neck 등) 추가",
+      "why": "표준 리깅 파트를 빠르게 삽입·커스터마이즈할 수 있습니다"
+    },
+    {
+      "area": "UI/UX",
+      "change": "핫키 확대(⌃Ctrl+A, B 등) 및 핸들 프리퍼런스 옵션 개선",
+      "why": "키보드 중심 작업으로 애니메이션 편집 속도가 상승합니다"
+    },
+    {
+      "area": "Geometry",
+      "change": "Skeleton SOP 기본 축 +X/+Z, Mirroring Style 및 Reference Vector 기본값 변경",
+      "why": "새로운 기본값에 맞춰 리깅 설정이 일관됩니다"
+    }
+  ],
+  "breaking": [
+    "APEX Rigscript Component SOP가 폐기되고 기능이 Autorig Component SOP에 통합되었습니다",
+    "APEX Autorig Component v1.0 SOP가 지원 중단되었습니다",
+    "APEX Edit Graph SOP가 APEX Graph SOP로 이름이 변경되었습니다",
+    "Skeleton SOP 기본 축이 +X/+Z로 바뀌어 기존 리깅 파이프라인에 영향이 있을 수 있습니다",
+    "Mirroring Style과 Reference Vector의 기본값이 변경되었습니다"
+  ],
+  "keywords": [
+    "Houdini 21 업데이트",
+    "APEX 리깅",
+    "애니메이션 카탈로그",
+    "풀바디 IK",
+    "Autorig Builder"
+  ],
+  "at": "2026-10-30T05:36:11+00:00"
+}
