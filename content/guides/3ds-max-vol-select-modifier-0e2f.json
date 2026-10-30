@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-vol-select-modifier-0e2f",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Vol. Select modifier",
+  "title": "Vol. Select — 영역으로 부분 선택",
+  "summary": "Vol. Select(Volume Selection) 모디파이어는 3차원 공간의 영역(구, 상자 등)을 이용해 오브젝트의 버텍스나 페이스를 직관적으로 선택하는 기능입니다. 마치 돋보기로 특정 부위를 비추듯 복잡한 모델링의 일부를 쉽게 골라낼 수 있습니다.",
+  "when": [
+    "캐릭터나 복잡한 오브젝트의 특정 부위에만 부드럽게 디포메이션(Deformation)을 주고 싶을 때",
+    "Particle이나 메시 스무스 등이 적용될 영역을 볼륨(Volume) 형태로 제한하고 싶을 때",
+    "웨이트 페인팅(Weight Painting) 작업을 하기 전, 대략적인 영향력 범위를 빠르게 지정하고 싶을 때"
+  ],
+  "steps": [
+    "Command Panel에서 Modify 탭으로 이동합니다.",
+    "Modifier List에서 Vol. Select를 선택하여 적용합니다.",
+    "Parameters 밖의 Select By에서 Vertex 또는 Face 중 원하는 선택 단위를 고릅니다.",
+    "Volume 설정을 Box, Sphere, Mesh 중 원하는 모양으로 변경합니다.",
+    "Gizmo 서브오브젝트를 활성화(5 키 또는 Gizmo 아이콘 클릭)한 뒤 Move, Rotate, Scale 도구로 선택 영역의 위치와 크기를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Vertex",
+      "desc": "버텍스 단위를 기준으로 볼륨 영역 안의 요소를 선택합니다."
+    },
+    {
+      "name": "Face",
+      "desc": "폴리곤 페이스 단위를 기준으로 볼륨 영역 안의 요소를 선택합니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "선택 영역을 결정하는 3차원 도형의 형태(Box, Sphere, Cylinder 등)를 지정합니다."
+    },
+    {
+      "name": "Soft Selection",
+      "desc": "선택된 영역 주변으로 선택값이 부드럽게 감쇄되도록(Falloff) 그라데이션을 만듭니다."
+    },
+    {
+      "name": "Level",
+      "desc": "Sub-Object 수준에서 선택을 적용할지 Object 수준에서 처리할지 결정합니다."
+    },
+    {
+      "name": "Gizmo",
+      "desc": "볼륨 영역의 위치, 회전, 스케일을 뷰포트에서 직접 조작할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 형태 파이프의 중간 부분만 부풀리기",
+      "steps": [
+        "세그먼트가 충분히 많은 Cylinder를 생성합니다.",
+        "Vol. Select 모디파이어를 적용하고 Volume을 Cylinder로 설정합니다.",
+        "Gizmo를 이동해 파이프의 원하는 중간 부위에 영역을 맞춥니다.",
+        "Soft Selection을 켜서 부드러운 감쇄를 준 뒤 Spherify나 Bend 모디파이어를 추가로 스택에 쌓습니다."
+      ]
+    },
+    {
+      "title": "지형(Plane)의 특정 구역만 높이기",
+      "steps": [
+        "세그먼트가 촘촘한 Plane을 생성합니다.",
+        "Vol. Select 모디파이어를 Vertex 모드로 적용하고 Sphere 볼륨을 선택합니다.",
+        "Gizmo를 위로 올려 지형 일부에만 영향력을 줍니다.",
+        "Displace 또는 Edit Poly(Soft Selection 활용)를 연계해 해당 부위만 위로 올립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트의 세그먼트(Segments)가 너무 부족한 경우 → 선택 영역이 각지게 잡히므로 세그먼트를 충분히 늘린 뒤 적용합니다.",
+    "Vol. Select 뒤에 모디파이어를 쌓았는데 효과가 안 나타나는 경우 → Select By가 Face 또는 Vertex로 정확히 지정되었는지, Stack 순서가 올바른지 확인합니다."
+  ],
+  "related": [
+    "Soft Selection",
+    "Edit Poly",
+    "Bend",
+    "Displace"
+  ],
+  "videos": [
+    {
+      "id": "vblUvHfu73s",
+      "title": "Parametric Selection + Modelling in 3ds Max: Volume Select",
+      "author": "Xoio"
+    },
+    {
+      "id": "rH8liei68Og",
+      "title": "3dMax volume select Tutorial",
+      "author": "Johnlew Golenia"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Vol.%20Select%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Vol",
+    "Select"
+  ],
+  "at": "2026-10-30T00:15:06.940981+00:00"
+}

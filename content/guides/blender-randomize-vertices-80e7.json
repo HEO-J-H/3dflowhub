@@ -1,0 +1,90 @@
+{
+  "id": "blender-randomize-vertices-80e7",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Randomize vertices",
+  "title": "Randomize — 점 흐트러뜨리기",
+  "summary": "Blender의 Randomize 기능을 사용하면 선택한 버텍스들의 위치를 무작위로 이동시켜 자연스러운 불규칙성을 만들 수 있습니다. 마치 지형을 울퉁불퉁하게 다듬거나 유기적인 형태를 잡을 때 유용합니다.",
+  "when": [
+    "평평한 지형이나 바닥 메쉬에 자연스러운 높낮이 변화를 줄 때",
+    "바위, 돌, 운석 등 불규칙한 유기적 형태의 모델링을 만들 때",
+    "파괴된 건물 잔해나 파편의 디테일을 무작위로 흩트릴 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Vertex Select 모드(1 키)로 전환한 뒤, 무작위로 흔들 버텍스들을 선택합니다.",
+    "상단 메뉴에서 Mesh → Vertices → Randomize 순으로 클릭합니다.",
+    "뷰포트 좌측 하단의 Redo Panel(또는 F9 키)을 열어 세부 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Amount",
+      "desc": "버텍스가 이동하는 전체적인 무작위 거리(강도)를 조절합니다."
+    },
+    {
+      "name": "Uniform",
+      "desc": "모든 축 방향으로 균일하게 무작위 변형을 적용합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "버텍스의 법선(Normal) 방향으로만 무작위 이동을 제한합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 패턴의 난수 값을 변경하여 다른 형태의 결과물을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자연스러운 저 폴리곤 지형 만들기",
+      "steps": [
+        "Grid나 Plane 오브젝트를 생성하고 Subdivide를 여러 번 적용합니다.",
+        "Edit Mode에서 전체 버텍스를 선택한 후 Randomize를 실행합니다.",
+        "Z축 방향으로만 Amount 값을 주어 울퉁불퉁한 산등성이를 만듭니다."
+      ]
+    },
+    {
+      "title": "바위와 돌덩이 형태 다듬기",
+      "steps": [
+        "Cube나 Icosphere 오브젝트를 준비하고 Edit Mode로 들어갑니다.",
+        "전체 버텍스를 선택하고 Randomize를 가볍게 적용합니다.",
+        "Seed 값을 바꿔가며 마음에 드는 바위 실루엣을 찾습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 모드에서 실행함 → 반드시 Tab 키를 눌러 Edit Mode에서 버텍스를 선택한 후 실행해야 합니다.",
+    "변형이 너무 밋밋하거나 한쪽으로 쏠림 → Object Mode에서 Ctrl+A를 눌러 Scale을 먼저 Apply(적용)한 뒤 시도하세요.",
+    "세그먼트(면)가 너무 부족함 → 버텍스 개수가 적으면 Randomize 효과가 잘 보이지 않으므로 충분히 서브디비전 후 적용하세요."
+  ],
+  "related": [
+    "Proportional Editing",
+    "Displace Modifier",
+    "Noise Texture",
+    "Vertex Weight Edit"
+  ],
+  "videos": [
+    {
+      "id": "Tg8PpgSudaM",
+      "title": "Blender Tutorial - How to randomly move vertices on the Z axis in Edit Mode",
+      "author": "Blender Study"
+    },
+    {
+      "id": "1P3v7DVnMoA",
+      "title": "How to Randomly Offset Vertices in Blender",
+      "author": "Highpoly Forehead "
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Randomize%20vertices",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Vertex Select",
+    "Mesh",
+    "Vertices",
+    "Randomize"
+  ],
+  "at": "2026-10-30T00:15:11.346067+00:00"
+}

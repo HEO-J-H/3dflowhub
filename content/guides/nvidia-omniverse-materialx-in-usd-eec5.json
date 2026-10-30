@@ -1,0 +1,100 @@
+{
+  "id": "nvidia-omniverse-materialx-in-usd-eec5",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "MaterialX in USD",
+  "title": "MaterialX — USD 재질 표준",
+  "summary": "MaterialX는 DCC 툴과 게임 엔진, USD 환경에서 재질과 Shader를 완벽하게 호환하기 위한 오픈 표준 머티리얼 포맷입니다. NVIDIA Omniverse에서 USD 파일과 함께 사용하여 플랫폼 간 일관된 룩개발을 제공합니다.",
+  "when": [
+    "Blender, Maya, Houdini 등 여러 툴에서 제작한 Shader를 NVIDIA Omniverse로 가져와 동일한 품질로 렌더링할 때",
+    "USD 기반의 Pipeline 협업하며 아티스트 간 재질 데이터를 손실 없이 공유해야 할 때",
+    "실시간 렌더러와 패스 트레이서 모두에서 호환되는 표준화된 표면 Shader를 구축할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Create 또는 USD 기반의 DCC 툴(예: Maya, Houdini)을 엽니다.",
+    "Stage 패널 또는 Material Graph에서 새로운 MaterialX Shader 네트워크를 생성합니다.",
+    "Standard Surface 또는 UsdPreviewSurface 노드를 배치하여 기본 재질 속성을 설정합니다.",
+    "Base Color, Roughness, Normal 등의 텍스처 맵을 각 입력 소켓에 연결합니다.",
+    "USD 파일로 내보내기(Export)를 진행할 때 MaterialX 포맷(.mtlx)으로 재질 데이터를 저장합니다.",
+    "Omniverse Viewport에서 결과물을 확인하고 패스 트레이싱 품질을 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "머티리얼의 기본 색상이나 알베도 텍스처를 지정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 하이라이트와 반사 확산을 제어합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면의 금속성 재질 특성을 0(비금속)과 1(금속) 사이의 값으로 설정합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "노멀 맵을 연결하여 폴리곤 추가 없이 미세한 표면 입체감을 표현합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도와 불투명한 정도를 조절합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "유리나 물 같은 투명 재질의 굴절률(Index of Refraction)을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 패널 재질 설정",
+      "steps": [
+        "Standard Surface 노드를 생성하고 Metallic 값을 1.0으로 설정합니다.",
+        "브러시드 메탈(Brushed Metal) 노멀 맵을 Normal 입력에 연결합니다.",
+        "Roughness를 조절하여 표면의 반사 광택을 거칠게 만듭니다."
+      ]
+    },
+    {
+      "title": "유리 컵 Shader 적용",
+      "steps": [
+        "Transmission 노드를 활성화하여 유리의 투명도를 높입니다.",
+        "IOR 값을 유리 표준 수치인 1.5로 입력합니다.",
+        "Omniverse에서 패스 트레이싱을 켜고 빛의 굴절과 그림자를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 경로가 상대 경로가 아닌 로컬 절대 경로로 지정됨 → USD 파일과 텍스처를 같은 프로젝트 폴더 내 relative path로 정리",
+    "지원하지 않는 커스텀 Shader 노드 사용 → Standard Surface 및 UsdPreviewSurface 등 표준 노드 세트만 활용"
+  ],
+  "related": [
+    "USD",
+    "Standard Surface",
+    "UsdPreviewSurface",
+    "Omniverse Nucleus"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20MaterialX%20in%20USD",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Create",
+    "USD",
+    "DCC",
+    "Maya",
+    "Houdini",
+    "Stage"
+  ],
+  "at": "2026-10-30T00:15:02.380532+00:00"
+}
