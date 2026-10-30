@@ -1,0 +1,59 @@
+{
+  "title_ko": "ZBrush와 Substance 3D로 로보 흉상 제작하는 실무 워크플로",
+  "title": "Sculpting & Texturing a Semi-Realistic Lobo Bust with ZBrush & Substance 3D",
+  "url": "https://80.lv/articles/sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-substance-3d/",
+  "domain": "3D DCC",
+  "category": "ZBrush",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "ZBrush",
+    "Substance 3D Painter",
+    "Maya",
+    "Marmoset Toolbag",
+    "캐릭터 아티스트",
+    "지브러시",
+    "서브스턴스",
+    "마야"
+  ],
+  "summary": "10년 경력의 캐릭터 아티스트 Eric Liu가 ZBrush, Substance 3D Painter, Marmoset Toolbag을 활용해 DC 코믹스의 안티히어로 로보(Lobo) 흉상을 세미 리얼리티 스타일로 제작한 전체 공정을 공개했습니다.",
+  "insight": "이번 아티클은 고도화된 상용 게임 그래픽 제작 환경에서 구면(Sphere) 블록아웃부터 하이폴리곤 디테일 보완, 텍스처링 베이킹까지 이어지는 정석적인 캐릭터 파이프라인을 보여줍니다. 특히 하이폴리곤 모델에 충분한 스크래치와 데미지 디테일을 넣지 못했을 때 Substance 3D Painter의 하이트 채널과 수동 페인팅으로 인위적인 깊이감을 주는 노하우는 실무에서 매우 유용합니다. 게임 캐릭터 아티스트와 텍스처러라면 대형 프로젝트 외주 작업에서 효율성을 높이는 실무 팁으로 적극 참고할 만합니다. UV 작업에 Maya를 병행하고 Marmoset Toolbag에서 실시간 라이팅을 테스트하는 과정 등 파이프라인 전반의 툴 조합을 점검하는 데 좋은 지침이 됩니다.",
+  "sections": [
+    {
+      "heading": "프로젝트 개요 및 영감",
+      "body": "Marvel Rivals와 Path of Exile 등의 상용 아트 외주 프로젝트에 참여했던 10년 경력의 캐릭터 아티스트 Eric Liu가 DC 코믹스의 안티히어로 로보를 주제로 세미 리얼리스틱 흉상을 제작했습니다. 평소 마블과 DC 코믹스, 특히 Ben Oliver의 작품에서 영감을 받아 특유의 거칠고 터프한(badass) 분위기를 캐릭터에 녹여내고자 했습니다. 작업에는 주로 Maya, ZBrush, Substance 3D Painter가 활용되었습니다."
+    },
+    {
+      "heading": "ZBrush를 활용한 스컬프팅 및 블록아웃",
+      "body": "개인 프로젝트인 만큼 반복적인 연습을 통해 근육 기억을 다지기 위해 구면(Sphere)에서부터 스컬프팅을 시작했습니다. 눈은 구체를 배치하고 잇몸은 마스크 추출 방식을 사용했으며, 의도된 형태가 완성된 후 ZRemesher를 수차례 거쳐 폴리카운트를 줄이고 엣지 플로우를 정돈했습니다. 헤드 토폴로지의 경우 ZWrap의 베이스 메시를 활용해 블록아웃의 디테일을 투영했습니다."
+    },
+    {
+      "heading": "UV 전개 및 맵 Baking 준비",
+      "body": "재토폴로지된 재킷과 티셔츠는 ZModeler를 사용해 엣지 플로우를 직접 수정했습니다. 익숙한 방식을 선호하여 UV 전개 작업은 전통적인 방식으로 Maya를 이용해 진행했습니다. 텍스처링 단계로 넘어가기 전 Marmoset Toolbag에서 곡률(Curvature), 캐비티(Cavity), 컨벡시티(Convexity), AO, 포지션, 노멀, 월드 노멀 맵 등 필요한 모든 맵을 베이킹했습니다."
+    },
+    {
+      "heading": "Substance 3D Painter 텍스처링 기법",
+      "body": "Substance 3D Painter에서는 기본 그레이스케일 레이어 세팅 위에 Gradient 필터를 얹어 기본 컬러를 잡고, 코 주변의 보스턴, 턱과 턱 주변의 녹색 톤, 이마와 볼 주변의 노란색 톤 등 다채로운 필 레이어를 얹어 피부 톤을 구성했습니다. 재킷의 경우 하이폴리곤 모델 단계에서 충분히 구현하지 못한 흠집과 스크래치를 알파 스트로크와 하이트 채널의 음수 값 조절, 수동 그림자 드로잉을 통해 가짜 깊이감을 주며 극복했습니다."
+    },
+    {
+      "heading": "Marmoset Toolbag 렌더링 및 라이팅",
+      "body": "텍스처링 작업이 절반쯤 진행되었을 때 모델을 Marmoset Toolbag으로 가져와 라이팅 세팅을 미리 진행했습니다. 모델 표면에 부드럽고 자연스러운 빛의 전환을 만들어내기 위해 키 라이트(Key light)로 스포트라이트 하나를 배치하여 값을 조절하는 방식으로 최종 렌더링을 완성했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "하이폴리곤 모델에 데미지 디테일이 부족할 때 Substance 3D Painter에서 어떻게 해결하나요?",
+      "a": "알파 스트로크를 이용해 흠집과 스크래치를 수동으로 직접 칠한 뒤, 하이트(Height) 채널에 음수(-) 값을 주어 파인 효과를 내고 수동으로 그림자를 더해 인위적인 깊이감을 만들어 해결합니다."
+    },
+    {
+      "q": "얼굴 기본 텍스처의 그레이스케일과 컬러는 어떻게 빌드업하나요?",
+      "a": "0.5 회색의 솔리드 컬러 레이어, 0.23 회색과 Multiply 블렌딩 모드의 AO 레이어, 1의 회색과 Overlay 블렌딩 모드의 라이트 레이어로 기본 그레이스케일을 잡고 그 위에 Gradient 필터와 부위별 색조 필 레이어를 얹어 완성합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/50821/images/6ae2e4cbeba23/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=H8lMXyuTY2I"
+  },
+  "collected_at": "2026-10-30T14:57:45.164685+00:00",
+  "notion_id": "",
+  "id": "2026-10-30-45aa0702336f3553"
+}
