@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-usdview-and-usdcat-tools-3689",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "usdview and usdcat tools",
+  "title": "usdview·usdcat — 명령줄 도구",
+  "summary": "NVIDIA Omniverse의 핵심 구성 요소인 usdview와 usdcat은 USD(Universal Scene Description) 파일의 구조를 빠르게 시각화하고 커맨드라인에서 검사·변환할 수 있는 강력한 툴입니다.",
+  "when": [
+    "USD 파일의 복잡한 계층 구조(Hierarchy)와 Primitive를 가볍게 미리 보고 싶을 때",
+    "대용량 USD 파일을 텍스트 형태(USDA)나 바이너리(USDC)로 변환하거나 내용을 확인할 때",
+    "파이프라인 내에서 3D 씬 데이터의 오류를 빠르게 디버깅하고 검증할 때"
+  ],
+  "steps": [
+    "터미널 또는 명령 Prompt를 엽니다.",
+    "usdview 명령어를 입력하고 뒤에 확인할 USD 파일 경로를 지정하여 실행합니다 (예: usdview scene.usda).",
+    "usdview 뷰포트에서 마우스 내비게이션을 사용하여 씬을 회전·이동하며 오브젝트를 확인합니다.",
+    "Left Sidebar의 Prim Tree에서 계층 구조를 선택하여 Inspector 패널에서 속성(Attributes)과 메타데이터를 검사합니다.",
+    "파일 변환이 필요할 때는 usdcat 명령어를 사용해 포맷을 변환합니다 (예: usdcat input.usda -o output.usdc)."
+  ],
+  "params": [
+    {
+      "name": "Prim Tree",
+      "desc": "USD 씬의 노드와 계층 구조를 트리 형태로 표시합니다."
+    },
+    {
+      "name": "Inspector",
+      "desc": "선택한 Primitive의 속성, 메타데이터, 재질 정보를 실시간으로 보여줍니다."
+    },
+    {
+      "name": "Stage",
+      "desc": "현재 로드된 USD 스테이지의 전체적인 설정을 관리합니다."
+    },
+    {
+      "name": "Renderer",
+      "desc": "usdview에서 씬을 렌더링하는 백엔드 엔진(Storm 등)을 전환합니다."
+    },
+    {
+      "name": "Time Code",
+      "desc": "애니메이션이 포함된 USD 파일의 재생 프레임을 조절합니다."
+    },
+    {
+      "name": "Output (-o)",
+      "desc": "usdcat 명령어 사용 시 변환될 결과 파일의 경로와 포맷을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "USD 파일의 구조와 프로퍼티 검사하기",
+      "steps": [
+        "터미널을 열고 usdview [파일명.usd]를 입력하여 뷰어를 실행합니다.",
+        "Prim Tree에서 특정 메쉬나 라이트 Primitive를 클릭합니다.",
+        "Inspector 패널에서 트랜스폼 값과 커스텀 속성이 올바르게 들어갔는지 확인합니다."
+      ]
+    },
+    {
+      "title": "USDA 텍스트 파일을 USDC 바이너리로 변환하기",
+      "steps": [
+        "터미널을 실행합니다.",
+        "usdcat input.usda -o output.usdc 명령어를 입력하여 실행합니다.",
+        "생성된 USDC 파일의 용량이 줄어들었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "usdview 실행 시 경로 오류 발생 → 파일 경로에 공백이나 잘못된 문자가 있는지 확인하고 절대 경로로 입력합니다.",
+    "usdcat으로 변환 시 포맷 에러 → 확장자(.usda, .usdc, .usd)가 올바르게 지정되었는지 확인합니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Create",
+    "Hydra",
+    "MaterialX"
+  ],
+  "videos": [
+    {
+      "id": "14UzRKcNqxg",
+      "title": "NVIDIA Omniverse Installation Guide 2026 | Step-by-Step USD Composer Setup",
+      "author": "Ram Drives"
+    },
+    {
+      "id": "aaF0s1Y0XlQ",
+      "title": "USD Paths Tool in NVIDIA Omniverse USD Composer Tutorial",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20usdview%20and%20usdcat%20tools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Prompt",
+    "USD"
+  ],
+  "at": "2026-10-30T01:35:21.055940+00:00"
+}
