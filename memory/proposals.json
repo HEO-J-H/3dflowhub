@@ -4374,5 +4374,37 @@
     "id": "p-d96dee4b84",
     "v": "done",
     "note": "자동 완료 확인: 코딩 에이전트 할 일 목록에서 완료됨"
+  },
+  {
+    "at": "2026-10-30T13:58:09+00:00",
+    "kind": "proposal",
+    "id": "p-c62c318064",
+    "title": "대기 중인 핵심 PR 승인 및 병합 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #23, #22, #25 등 핵심 코드 변경 사항이 승인 대기 상태로 머물러 있습니다.",
+    "proposal": "GitHub에서 PR #23, #22, #25의 변경 내용을 최종 확인하고 이상이 없으면 수동 병합 진행",
+    "expected": "밀려 있는 파이프라인 엔진 및 기능 개선 사항 반영",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/23",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-10-30T13:58:09+00:00",
+    "kind": "proposal",
+    "id": "p-f07993de6b",
+    "title": "Trellis C++ 보안 리뷰 기준 맞춤형 코드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "backend/app/trellis_cpp.py 내 subprocess 호출 시 shell=True 사용 등으로 인해 반복해서 스킵 및 보류되었습니다.",
+    "proposal": "backend/app/trellis_cpp.py에서 shell=True를 제거하고 리스트 형태의 인자 전달로 안전 장치 보완",
+    "expected": "보안 검토를 통과하고 관련 가이드 과제 정상 진행",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
   }
 ]
