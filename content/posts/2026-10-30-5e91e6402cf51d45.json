@@ -1,0 +1,49 @@
+{
+  "title_ko": "Gaussian Splatting: 희소 뷰 Cone‑Beam CT 재구성 혁신",
+  "title": "P^2-Gaussian: Prior-Driven and Projection-Guided Gaussian Splatting for Sparse-View Cone-Beam CT Reconstruction",
+  "url": "https://arxiv.org/abs/2610.39359v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Sparse-View",
+    "CBCT",
+    "Gaussian Splatting",
+    "Prior-Driven",
+    "Projection-Guided",
+    "Medical Imaging"
+  ],
+  "summary": "P²‑Gaussian은 학습된 해부학적 사전과 투영 가이드를 결합해 희소 뷰 Cone‑Beam CT 재구성을 크게 개선한다.",
+  "insight": "의료 영상 현장에서 방사선량을 낮추고 스캔 시간을 단축하려는 팀에게 유용하다. 기존 FDK 기반 초기화가 남긴 스트릭을 사전 모델인 Sparse2Prior가 5초 내에 복원해 파라미터 수를 60% 이상 줄인다. Gaussian Primitive를 조직에 맞게 적응시켜 최적화 효율을 높이므로, 제한된 뷰에서도 높은 PSNR·SSIM을 얻을 수 있다. 구현 코드를 공개했으니, 연구실이나 병원에서 자체 데이터에 바로 적용해 볼 수 있다. 다만, 가상 투영을 생성하는 단계가 추가되므로 GPU 메모리와 연산량을 사전에 검증해야 한다.",
+  "sections": [
+    {
+      "heading": "배경 및 문제점",
+      "body": "희소 뷰 Cone‑Beam CT는 방사선량 감소와 빠른 촬영을 목표로 하지만, 각도 부족으로 역문제가 심각하게 불안정해진다. 기존 3D Gaussian Splatting 방법은 FDK 재구성에서 발생하는 스트릭 아티팩트에 의존해 Gaussian 파라미터를 초기화한다. 이러한 초기화는 충분히 제약되지 않아 needle‑like 아티팩트가 발생한다."
+    },
+    {
+      "heading": "P²‑Gaussian 프레임워크 개요",
+      "body": "P²‑Gaussian은 두 단계로 구성된다. 첫 번째는 학습된 latent rectified flow 모델인 Sparse2Prior가 FDK 볼륨을 해부학적 사전으로 복원한다. 두 번째는 이 사전을 기반으로 조직‑적응형 Gaussian Primitive를 초기화하고, 측정 투영과 가상 투영을 동시에 활용해 최적화한다."
+    },
+    {
+      "heading": "Sparse2Prior 사전 복원",
+      "body": "Sparse2Prior는 5초 이내에 스트릭이 포함된 FDK 영상을 깨끗한 해부학적 형태로 변환한다. 이 과정은 사전 학습된 흐름 모델을 사용해 저해상도 입력을 고품질 볼륨으로 매핑한다. 복원된 사전은 이후 Gaussian 파라미터를 제한된 영역에 집중시켜 효율을 높인다."
+    },
+    {
+      "heading": "Gaussian Primitive 초기화와 최적화",
+      "body": "복원된 사전으로부터 조직 특성에 맞는 Gaussian Primitive를 샘플링해 전체 수를 기존 대비 62‑65% 감소시킨다. 최적화 단계에서는 측정된 투영을 목표함수의 주요 항으로 두고, 중간 각도의 가상 투영을 회전하면서 보조 신호로 활용한다. 이렇게 하면 각도 간 격차를 메우면서도 실제 측정 데이터에 과도하게 의존하지 않는다."
+    },
+    {
+      "heading": "실험 결과 및 성능",
+      "body": "5, 10, 20개의 측정 뷰에 대해 테스트했으며, 모든 경우에서 P²‑Gaussian이 최고 PSNR와 SSIM을 기록했다. 기존 최적화 기반 Gaussian 방법 대비 PSNR가 각각 5.98 dB, 4.25 dB, 2.49 dB 상승했으며, 재구성 속도는 2.6‑3.0배 빨라졌다. 이러한 결과는 사전‑기반 접근이 희소 뷰 CT에 매우 효과적임을 입증한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-30T04:35:55.739233+00:00",
+  "notion_id": "",
+  "id": "2026-10-30-5e91e6402cf51d45",
+  "enriched_at": "skip"
+}
