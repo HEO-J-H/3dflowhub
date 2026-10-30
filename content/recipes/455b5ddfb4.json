@@ -1,0 +1,51 @@
+{
+  "id": "455b5ddfb4",
+  "domain": "AI 3D",
+  "category": "NVIDIA Omniverse",
+  "host": "3ds Max",
+  "lang": "maxscript",
+  "title": "3ds Max AI 에셋 일괄 정리 및 최적화 툴",
+  "problem": "외부 AI 툴 및 NVIDIA Omniverse 연동 과정에서 들어온 다수의 3D 에셋은 피벗 위치, 스케일 단위, 불필요한 레이어가 섞여 있어 수작업 정리에 많은 시간이 소요됩니다. 본 유틸리티는 선택된 객체들의 스케일 통일, 피벗 중앙 정렬, 불필요한 접미사 정리 및 재질 초기화를 자동화하여 제작 파이프라인을 가속화합니다.",
+  "pipeline": [
+    {
+      "tool": "3ds Max",
+      "action": "선택된 에셋의 스케일 초기화 및 Transform 리셋"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "오브젝트 피벗을 지오메트리 중심(Center to Object)으로 정렬"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "표준 Standard 재질을 적용하여 뷰포트 가독성 확보"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "선택 객체 일괄 내보내기 전 불필요한 빈 노드 정리"
+    }
+  ],
+  "script": "macroscript AIAssetCleanup\ncategory:\"3DFlowHub\"\ntooltip:\"AI 에셋 일괄 정리 유틸\"\n(\n\tfn cleanUpSelectedAssets = (\n\t\tlocal sel = selection as array\n\t\tif sel.count == 0 then (\n\t\t\tmessageBox \"선택된 오브젝트가 없습니다.\" title:\"경고\"\n\t\t\treturn false\n\t\t)\n\t\t\n\t\tundo \"AI Asset Batch Cleanup\" on\n\t\t(\n\t\t\tfor obj in sel do\n\t\t\t(\n\t\t\t\t-- Reset XForm equivalent for basic transforms\n\t\t\t\ttry ( resetScale obj ) catch()\n\t\t\t\t\n\t\t\t\t-- Center pivot to object geometry\n\t\t\t\tobj.pivot = obj.center\n\t\t\t\t\n\t\t\t\t-- Apply a clean standard grey material\n\t\t\t\tif superclassof obj == GeometryClass then\n\t\t\t\t(\n\t\t\t\t\tlocal m = Standardmaterial()\n\t\t\t\t\tm.diffuse = color 128 128 128\n\t\t\t\t\tobj.material = m\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t\tmessageBox (\"총 \" + (sel.count as string) + \"개의 AI 에셋 정리가 완료되었습니다.\") title:\"완료\"\n\t)\n\t\n\trollout roAIAssetCleanup \"AI 에셋 정리 툴\" width:200 height:120\n\t(\n\t\tbutton btnClean \"선택 에셋 일괄 정리\" width:180 height:40\n\t\tlabel lblInfo \"스케일·피벗·재질 초기화\" align:#center\n\t\t\n\t\ton btnClean pressed do\n\t\t(\n\t\t\tcleanUpSelectedAssets()\n\t\t)\n\t)\n\t\n\tcreateDialog roAIAssetCleanup\n)",
+  "install": [
+    "3ds Max 상단 메뉴에서 [Scripting] > [New Script]를 엽니다.",
+    "제공된 MAXScript 코드를 복사하여 에디터 창에 붙여넣습니다.",
+    "에디터에서 [File] > [Evaluate All]을 실행하거나 파일을 저장합니다.",
+    "[Customize] > [Customize User Interface]의 Toolbars 탭에서 Category를 '3DFlowHub'로 선택하여 툴바에 배치합니다."
+  ],
+  "usage": [
+    "정리할 외부 AI 3D 에셋이나 임포트된 모델들을 뷰포트에서 선택합니다.",
+    "커스텀 툴바 또는 MacroScript 메뉴에서 'AI 에셋 일괄 정리 유틸'을 실행합니다.",
+    "열린 롤아웃 창에서 [선택 에셋 일괄 정리] 버튼을 누릅니다.",
+    "적용된 피벗 위치와 회색 표준 재질을 확인하고 후속 작업을 진행합니다."
+  ],
+  "limits": [
+    "로컬 파일 및 현재 씬 내에 로드된 지오메트리만 처리하며 외부 API나 네트워크 통신은 지원하지 않습니다.",
+    "복잡한 리깅 데이터나 애니메이션 키프레임이 포함된 오브젝트의 피벗을 강제로 변경할 경우 애니메이션이 틀어질 수 있습니다."
+  ],
+  "sources": [
+    "2026-10-29-ad9436982cb0f776",
+    "2026-10-29-79428cf43613e413"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-30T10:08:20+00:00"
+}
