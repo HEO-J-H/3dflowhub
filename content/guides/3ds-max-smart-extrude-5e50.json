@@ -1,0 +1,78 @@
+{
+  "id": "3ds-max-smart-extrude-5e50",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Smart Extrude",
+  "title": "Smart Extrude — 돌출하며 자동 정리",
+  "summary": "Smart Extrude는 3ds Max의 Edit Poly 오브젝트에서 면을 자유롭게 밀고 당기며 기존 지오메트리를 자동으로 자르고 병합하는 강력한 모델링 도구입니다. 철사를 구부리거나 복잡한 구멍을 뚫듯 직관적인 형태 수정이 가능합니다.",
+  "when": [
+    "하드서페이스 모델링 중 기존 면에서 새로운 돌출 형태를 빠르게 빼낼 때",
+    "다른 면을 완전히 관통하거나 파고드는 형태를 만들 때",
+    "복잡한 불리언(Boolean) 연산 없이 구멍이나 홈을 즉석에서 파낼 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Modifier List에서 Edit Poly 모디파이어를 적용합니다.",
+    "키보드 4를 눌러 Polygon 서브오브젝트 모드로 진입합니다.",
+    "돌출시킬 면을 선택합니다.",
+    "Shift 키를 누른 상태에서 이동(Move) 툴의 화살표를 잡고 안팎으로 드래그합니다.",
+    "완전히 관통시킬 경우, 면이 다른 면을 지나치도록 깊게 밀어 넣으면 자동으로 컷팅과 병합이 일어납니다."
+  ],
+  "params": [
+    {
+      "name": "Shift + Drag",
+      "desc": "마우스 드래그만으로 Smart Extrude를 즉시 실행하고 거리를 조절합니다."
+    },
+    {
+      "name": "Extrude Along Spline",
+      "desc": "지정된 스라인 경로를 따라 면을 스마트하게 돌출시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽면에 사각형 홈 파기",
+      "steps": [
+        "평면(Plane)에 충분한 세그먼트를 주고 Edit Poly를 적용합니다.",
+        "Polygon 모드에서 원하는 면을 선택합니다.",
+        "Shift를 누른 채 안쪽으로 드래그하여 벽면 내부로 밀어 넣습니다.",
+        "반대편 면을 뚫고 나가게 만들면 자동으로 구멍이 생성됩니다."
+      ]
+    },
+    {
+      "title": "기계 부품의 돌출 디테일 추가",
+      "steps": [
+        "박스 오브젝트의 특정 면을 선택합니다.",
+        "Shift + Drag로 바깥쪽으로 빼내어 기본 돌출을 만듭니다.",
+        "다시 한번 안쪽으로 밀어 넣어 파인 홈을 즉석에서 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 Extrude와 헷갈려 버튼을 누르려고 함 → Shift + Move 단축키를 사용해야 Smart Extrude가 발동합니다.",
+    "세그먼트가 부족해 찌그러짐 발생 → Edit Poly 적용 전 기본 오브젝트의 세그먼트를 충분히 늘려줍니다.",
+    "법선(Normal) 방향이 뒤집혀 면이 이상하게 파임 → Edit Poly에서 Normal을 확인하고 뒤집힌 경우 Flip을 실행합니다."
+  ],
+  "related": [
+    "Edit Poly",
+    "ProBoolean",
+    "Inset",
+    "Bevel"
+  ],
+  "videos": [
+    {
+      "id": "P3DkslMWRxc",
+      "title": "Smart Extrude in 3DS Max 2022 | Tutorial",
+      "author": "CADCIM Technologies"
+    },
+    {
+      "id": "B3tepMDbtIQ",
+      "title": "Smart Extrude /  3ds Max 2023",
+      "author": "Eloi Andaluz Fullà"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Smart%20Extrude",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-30T01:55:31.354985+00:00"
+}

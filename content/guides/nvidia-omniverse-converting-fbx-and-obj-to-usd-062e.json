@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-converting-fbx-and-obj-to-usd-062e",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "Converting FBX and OBJ to USD",
+  "title": "FBX·OBJ 를 USD 로 변환",
+  "summary": "NVIDIA Omniverse에서 기존 3D 에셋인 FBX와 OBJ 파일을 협업과 실시간 레이트레이싱에 최적화된 범용 USD 형식으로 변환합니다.",
+  "when": [
+    "기존 DCC 툴에서 제작한 FBX, OBJ 에셋을 Omniverse 파이프라인에 가져올 때",
+    "대규모 프로젝트에서 여러 아티스트가 USD 기반으로 실시간 협업 작업을 할 때",
+    "실시간 렌더링과 시뮬레이션을 위해 USD의 레이어 및 참조 기능을 활용하고자 할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Omniverse Create 또는 USD Composer를 엽니다.",
+    "상단 메뉴에서 File → Import를 선택하여 변환할 FBX 또는 OBJ 파일을 불러옵니다.",
+    "또는 Omniverse Nucleus Navigator나 컨텐츠 브라우저에서 마우스 우클릭 후 USD로 변환(Convert to USD)을 실행합니다.",
+    "변환 옵션 창에서 머티리얼, 스케일, 업(Up) 축 설정을 목적에 맞게 조정합니다.",
+    "Export / Save As를 통해 변환된 .usd, .usda, 또는 .usdc 파일을 지정한 경로에 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Up Axis",
+      "desc": "Z축 또는 Y축 등 3D 공간의 수직 방향 축을 설정합니다."
+    },
+    {
+      "name": "Scale / Unit",
+      "desc": "FBX/OBJ 원본의 단위 크기를 Omniverse 표준 미터법(Meters)으로 맞춥니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "기존 텍스처와 머티리얼을 USD 표준인 MaterialX 또는 MDL 형식으로 변환합니다."
+    },
+    {
+      "name": "Export Animation",
+      "desc": "FBX에 포함된 스켈레탈 및 트랜스폼 애니메이션 데이터를 USD로 함께 내보냅니다."
+    },
+    {
+      "name": "Flatten Mesh",
+      "desc": "계층 구조가 복잡한 지오메트리를 하나로 병합하여 가볍게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 외관 시각화 FBX 변환",
+      "steps": [
+        "3ds Max에서 내보낸 대형 건물 FBX 파일을 준비합니다.",
+        "Omniverse USD Composer에 파일을 불러와 Z-Up 축이 정확히 맞는지 확인합니다.",
+        "USD로 변환 저장하여 실시간 Lumen/Path Tracing 환경에서 바로 구동합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 OBJ 에셋 라이브러리 구축",
+      "steps": [
+        "ZBrush에서 제작하여 OBJ로 추출한 스컬프팅 모델을 불러옵니다.",
+        "오브젝트 표면의 폴리그룹 및 머티리얼 정보를 USD 구조로 정리합니다.",
+        "Nucleus 서버에 업로드하여 팀원들과 공유합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "축 방향(Up Axis) 불일치로 모델이 누워버림 → 변환 설정에서 Z-Up 또는 Y-Up 방향을 원본 툴과 동일하게 맞춥니다.",
+    "텍스처 경로가 깨져서 검은색으로 나옴 → 상대 경로 설정 확인 후 텍스처 폴더를 USD 파일과 동일한 디렉토리에 배치합니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "USD Composer",
+    "MaterialX"
+  ],
+  "videos": [
+    {
+      "id": "dQI0OpzfVHw",
+      "title": "Omniverse Create - Importing FBX Files | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Converting%20FBX%20and%20OBJ%20to%20USD",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-30T01:55:27.482348+00:00"
+}

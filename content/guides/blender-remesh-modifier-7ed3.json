@@ -1,0 +1,99 @@
+{
+  "id": "blender-remesh-modifier-7ed3",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Remesh modifier",
+  "title": "Remesh — 고른 면으로 재구성",
+  "summary": "Blender의 Remesh modifier는 메쉬의 형태를 유지하면서 사각형이나 육각형 기반의 균일한 토폴로지로 다시 재구성해 주는 기능입니다. 복잡한 형태를 단순화하거나 조각(Sculpting) 작업 전 깨진 구조를 정리할 때 씁니다.",
+  "when": [
+    "스컬프팅(Sculpting) 작업 후 불규칙해진 와이어프레임을 균일하게 정리할 때",
+    "불린(Boolean) 연산으로 망가진 토폴로지와 구멍 난 면을 메울 때",
+    "하이폴리곤 모델의 폴리곤 개수를 줄여 가볍게 만들고 싶을 때"
+  ],
+  "steps": [
+    "1. 대상 오브젝트를 선택하고 Properties 패널에서 Modifier(렌치 아이콘) 탭을 엽니다.",
+    "2. Add Modifier 버튼을 누르고 Generate 카테고리에서 Remesh를 선택합니다.",
+    "3. Mode 드롭다운에서 Voxel, Smooth, Sharp, Blocks 중 원하는 알고리즘을 선택합니다.",
+    "4. Voxel Size나 Octree Depth 값을 조절하여 폴리곤의 밀도를 맞춥니다.",
+    "5. 결과가 만족스러우면 Modifier 패널에서 Apply를 눌러 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "복셀, 스무스, 샤프, 블록 중 리메시 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Voxel Size",
+      "desc": "복셀 모드에서 폴리곤의 크기를 결정하며, 값이 작을수록 디테일이 살아납니다."
+    },
+    {
+      "name": "Adaptivity",
+      "desc": "디테일이 필요 없는 평면 영역의 폴리곤 개수를 줄여 최적화합니다."
+    },
+    {
+      "name": "Octree Depth",
+      "desc": "Block 또는 Smooth 모드에서 메쉬 분할의 세밀한 단계를 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "리메시 계산 시 적용되는 전반적인 스케일 크기를 조절합니다."
+    },
+    {
+      "name": "Smooth Shading",
+      "desc": "결과물에 부드러운 스무딩을 적용하여 면을 매끄럽게 보이게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스컬프팅 캐릭터 면 정리하기",
+      "steps": [
+        "1. 복잡하게 얽힌 스컬프팅 모델에 Remesh modifier를 추가합니다.",
+        "2. Voxel 모드로 설정하고 Voxel Size를 적당히 키워 면을 균일하게 만듭니다.",
+        "3. Apply를 눌러 토폴로지를 고정하고 리토폴로지 작업을 이어갑니다."
+      ]
+    },
+    {
+      "title": "불린 연산 후 깨진 메쉬 복구하기",
+      "steps": [
+        "1. 겹치거나 깨진 구멍이 있는 Boolean 결과물 오브젝트를 선택합니다.",
+        "2. Remesh modifier를 적용하고 Voxel 모드를 선택합니다.",
+        "3. 닫힌 볼륨 형태로 깨끗하게 면이 이어졌는지 확인하고 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 1이 아닐 때 밀도가 찌그러짐 → Object 모드에서 Ctrl+A를 눌러 Apply Scale을 먼저 실행합니다.",
+    "Voxel Size를 너무 작게 설정해 Blender가 멈춤(다운) → 수치를 서서히 낮추며 적정 폴리곤 밀도를 찾습니다.",
+    "얇은 두께의 면이 사라짐 → 메쉬가 너무 얇으면 복셀 계산에서 유실되므로 Solidify 모디파이어로 두께를 먼저 주거나 Voxel Size를 줄입니다."
+  ],
+  "related": [
+    "Multiresolution",
+    "Decimate",
+    "Subdivision Surface",
+    "Boolean"
+  ],
+  "videos": [
+    {
+      "id": "uthsCBuB_bc",
+      "title": "How to Use the REMESH Modifier in Blender! Step by Step Tutorial",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "ORYZqHTqZ3w",
+      "title": "Redefine Your Models With The REMESH Modifier In Blender",
+      "author": "Blender Base Camp"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Remesh%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Generate",
+    "Remesh"
+  ],
+  "at": "2026-10-30T01:55:35.856643+00:00"
+}
