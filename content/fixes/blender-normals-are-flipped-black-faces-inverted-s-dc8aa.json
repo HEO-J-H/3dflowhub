@@ -1,0 +1,37 @@
+{
+  "id": "blender-normals-are-flipped-black-faces-inverted-s-dc8aa",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Normals are flipped (black faces / inverted shading)",
+  "title": "면이 검게 보이거나 음영이 뒤집힐 때 — 노멀 뒤집힘",
+  "summary": "Blender에서 면의 방향(Normal)이 안쪽으로 뒤집혀 검게 보이거나 음영이 어색하게 깨지는 현상입니다. 라이팅과 렌더링 결과에 악영향을 줍니다.",
+  "causes": [
+    "메쉬를 미러링(Mirror)하거나 뒤집는 편집 작업",
+    "다른 소프트웨어에서 FBX나 OBJ 등의 3D 포맷을 가져오는(Import) 과정에서의 면 방향 데이터 오류",
+    "돌출(Extrude)이나 스케일 반전(Negative Scale) 작업 중 발생한 노멀 뒤집힘"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 모든 버텍스/페이스를 전체 선택합니다.",
+    "상단 메뉴에서 Mesh > Normals > Recalculate Outside (단위: Shift + N)를 실행합니다.",
+    "안쪽 면을 바깥쪽으로 뒤집어야 할 때는 Mesh > Normals > Flip을 실행합니다."
+  ],
+  "check": [
+    "Overlays 메뉴(화면 우측 상단 겹쳐진 동그라미 아이콘)에서 Face Orientation을 켜서 모든 면이 파란색으로 표시되는지 확인합니다.",
+    "레드(빨간색)로 표시되는 면은 노멀이 뒤집힌 상태이므로 파란색이 될 때까지 수정합니다."
+  ],
+  "prevent": [
+    "오브젝트 모드(Object Mode)에서 스케일 값이 틀어졌을 경우 Ctrl + A > Apply > Scale을 실행해 스케일을 정규화합니다.",
+    "모델링 과정에서 Extrude나 Scale 조절 후 노멀 방향을 수시로 Face Orientation으로 확인합니다."
+  ],
+  "keywords": [
+    "Blender 면이 검은색",
+    "Blender 노멀 뒤집힘",
+    "Blender normals flipped",
+    "페이스 오리엔테이션",
+    "검은 면 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T02:35:54+00:00"
+}

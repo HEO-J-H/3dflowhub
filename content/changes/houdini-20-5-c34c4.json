@@ -1,0 +1,52 @@
+{
+  "id": "houdini-20-5-c34c4",
+  "kind": "change",
+  "tool": "Houdini",
+  "version": "20.5",
+  "source": "https://www.sidefx.com/docs/houdini/news/20_5/",
+  "title": "Houdini 20.5 바뀐 점 정리",
+  "summary": "Houdini 20.5는 애니메이션 및 캐릭터 리깅을 위한 APEX 시스템과 Procedural 툴셋을 대폭 강화했습니다. 새롭게 추가된 APEX Add Groom을 통해 깃털과 헤어를 마스터 깃털·모어로 효율적으로 제어할 수 있으며, 렌더 타임 최적화를 위한 Crowd Procedural LOP 등이 도입되었습니다.",
+  "highlights": [
+    {
+      "area": "Animation",
+      "change": "애니메이션 레이어 및 과도기적 컨스트레인트(transient constraints) 도입",
+      "why": "원본 애니메이션을 보존하면서 여러 레벨의 애니메이션을 유연하게 제작할 수 있습니다."
+    },
+    {
+      "area": "Procedural Rigging",
+      "change": "Python 기반의 새로운 스크립팅 인터페이스 APEX Script 추가",
+      "why": "APEX 그래프를 더욱 편리하게 구축하고 스킨 및 리깅 자동화를 가속화합니다."
+    },
+    {
+      "area": "Feathers",
+      "change": "APEX Add Groom SOP 및 Feather Template Assign SOP 신설",
+      "why": "수많은 깃털을 수동으로 제어하지 않고 대표 마스터 깃털을 통해 애니메이션을 간단하게 처리할 수 있습니다."
+    },
+    {
+      "area": "Hair & Fur",
+      "change": "헤어 및 퍼를 위한 APEX Add Groom SOP 지원",
+      "why": "소수의 마스터 헤어로 전체 그룸의 거동을 제어하여 애니메이션 작업 속도를 높여줍니다."
+    },
+    {
+      "area": "Crowd",
+      "change": "새로운 Crowd Procedural LOP 추가 및 SOP Import LOP 성능 5~6배 향상",
+      "why": "대규모 군중 시뮬레이션의 메모리 사용량을 줄이고 USD Import 성능을 극대화합니다."
+    },
+    {
+      "area": "Muscles & Tissue",
+      "change": "Muscle Constraint Properties Vellum SOP 등 근육 및 조직 툴 전반의 개선",
+      "why": "글로우 외곽선 선택 하이라이팅, 축 램프 교정 등으로 근육 시뮬레이션 설정과 디버깅이 편리해집니다."
+    }
+  ],
+  "breaking": [
+    "Dem Bones Skinning Converter SOP 및 ROP에서 Frame Range와 Bind Pose Frame 파라미터가 제거되었습니다."
+  ],
+  "keywords": [
+    "Houdini 20.5",
+    "APEX",
+    "KineFX",
+    "Feather Groom",
+    "Crowd LOP"
+  ],
+  "at": "2026-10-30T02:35:57+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "blender-error-python-traceback-add-on-not-loaded-m-efd41",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Python: Traceback ... Add-on not loaded: missing bl_info or register()",
+  "title": "애드온 설치 후 켜지지 않을 때 (bl_info·register 누락)",
+  "summary": "Blender 애드온을 설치하거나 불러올 때 발생하는 오류로, 애드온 파일에 필수적인 정보나 실행 함수가 누락되어 있을 때 나타납니다.",
+  "causes": [
+    "애드온 파일 내부에 필수 딕셔너리인 bl_info가 정의되어 있지 않은 경우",
+    "Python Script에 register() 또는 unregister() 함수가 누락된 경우",
+    "구버전 Blender용 애드온을 최신 버전에서 실행하여 구조가 맞지 않는 경우",
+    "단일 Python(.py) 파일이 아닌 압축 파일(ZIP)의 내부 폴더 구조가 잘못된 경우"
+  ],
+  "steps": [
+    "문제가 되는 애드온의 Python(.py) 파일을 텍스트 편집기나 IDE로 엽니다.",
+    "코드 상단에 딕셔너리 형태의 bl_info (예: bl_info = {\"name\": \"...\", ...})가 정확히 작성되어 있는지 확인합니다.",
+    "코드 하단에 def register():와 def unregister(): 함수가 올바르게 정의되어 있는지 확인합니다.",
+    "압축 파일 형태의 애드온이라면, ZIP 내부 최상위 폴더 구조가 올바른지 확인하고 필요시 다시 압축하여 설치합니다.",
+    "Blender를 실행하고 Edit > Preferences > Add-ons에서 해당 애드온을 다시 설치합니다."
+  ],
+  "check": [
+    "Blender 환경설정의 Add-ons 메뉴에서 오류 없이 애드온이 목록에 나타나고 체크박스가 활성화되는지 확인합니다.",
+    "콘솔 창(Window > Toggle System Console)에 Python Traceback 관련 오류 문구가 더 이상 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "애드온 코드를 작성할 때 Blender 공식 문서의 Python API 템플릿 구조를 준수합니다.",
+    "타인의 애드온을 다운로드할 때는 사용하는 Blender 버전과 호환되는지 먼저 확인합니다."
+  ],
+  "keywords": [
+    "Blender 애드온 오류",
+    "bl_info 누락",
+    "register 함수 오류",
+    "Blender add-on not loaded",
+    "Python 트레이스백"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-30T02:35:52+00:00"
+}
