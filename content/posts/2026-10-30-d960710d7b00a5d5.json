@@ -1,0 +1,31 @@
+{
+  "title_ko": "Gaussian Splatting GradSplat — 전방 패스 그래디언트 정밀도 향상",
+  "title": "GradSplat: Gradients Inside the Forward Pass for Feed-Forward 3D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2610.38951v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "GradSplat",
+    "3D Gaussian Splatting",
+    "Gradient Refinement",
+    "RealEstate10K",
+    "ScanNet++"
+  ],
+  "summary": "GradSplat은 전방 패스 내에서 학습된 그래디언트 스텝을 이용해 Gaussian의 형태를 직접 정교화해 기존 피드포워드 방식보다 높은 재구성 정확도를 달성한다.",
+  "insight": "한국의 실시간 3D 재구성 파이프라인을 구축하는 팀이라면, GradSplat이 제공하는 인-패스 형태 보정 메커니즘을 활용해 사전 학습된 모델의 정확도를 크게 끌어올릴 수 있다. 특히 제한된 뷰 수(6~42)만으로도 높은 PSNR·SSIM을 유지하므로 현장 촬영 데이터가 부족한 AR/VR 프로젝트에 유용하다. 기존 Gaussian Splatting에 비해 별도의 후처리 최적화 단계가 필요 없으므로 파이프라인 복잡도가 낮아 개발 비용을 절감한다. 다만 로그-애니소트로피 보정이 일정 부피를 유지하도록 설계돼 있어, 매우 얇거나 비정형 형태의 물체에서는 추가 튜닝이 필요할 수 있다. 연구 결과가 공개된 뒤 곧 코드가 릴리즈될 예정이니, 빠르게 테스트 환경을 구축해 보는 것이 경쟁력을 확보하는 방법이다.",
+  "sections": [
+    {
+      "heading": "핵심 아이디어",
+      "body": "GradSplat은 기존 Feed‑forward 3D Gaussian Splatting이 갖는 형태(스케일·회전) 오차를 감소시키기 위해, 입력 뷰에 대한 그래디언트를 전방 패스 안에서 직접 적용한다. 로그‑애니소트로피 보정을 통해 각 Gaussian의 축 비율을 로그 공간에서 부피를 일정하게 유지하면서 조정한다. 학습된 재귀 업데이트 네트워크가 포토메트릭 손실의 그래디언트를 받아 불투명도·색상·형태를 순차적으로 업데이트한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "",
+    "video": ""
+  },
+  "collected_at": "2026-10-30T04:45:59.300856+00:00",
+  "notion_id": "",
+  "id": "2026-10-30-d960710d7b00a5d5"
+}
