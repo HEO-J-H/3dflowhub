@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-stage-panel-and-layer-panel-c97d",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Stage panel and layer panel",
+  "title": "Stage·Layer 패널 사용법",
+  "summary": "NVIDIA Omniverse의 Stage 패널과 Layer 패널은 USD(Universal Scene Description) 기반의 씬 구성과 비파괴적 협업 편집을 관리하는 핵심 도구입니다. Photoshop의 레이어처럼 오브젝트의 속성과 참조를 계층적으로 쌓아 올릴 수 있습니다.",
+  "when": [
+    "여러 아티스트가 동시에 하나의 USD 씬을 분할 편집할 때",
+    "원본 지오메트리를 수정하지 않고 오버라이드(Override) 레이어로 변형이나 재질을 덮어씌울 때",
+    "대규모 환경 씬에서 수많은 에셋의 레퍼런스(Reference) 구조를 정리할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱을 실행하고 우측 상단이나 기본 레이아웃에서 Window 메뉴를 엽니다.",
+    "Window -> Stage를 클릭하여 Stage 패널을 활성화하고 씬 내 USD Primitive 계층 구조를 확인합니다.",
+    "Window -> Layers를 클릭하여 Layer 패널을 열고 새로운 서브 레이어(Sub-layer)를 추가합니다.",
+    "Layer 패널에서 편집할 타겟 레이어를 Active 상태로 지정합니다.",
+    "Stage 패널에서 오브젝트를 선택하고 프로퍼티를 수정하여 현재 활성 레이어에 변경 사항을 기록합니다.",
+    "File -> Save를 통해 USD 층위가 반영된 씬을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Stage",
+      "desc": "씬에 존재하는 모든 USD Primitive의 계층 구조를 트리 형태로 보여줍니다."
+    },
+    {
+      "name": "Layers",
+      "desc": "USD 서브 레이어와 오버라이드 구조를 관리하여 비파괴 협업을 지원합니다."
+    },
+    {
+      "name": "Active Layer",
+      "desc": "현재 작업 중인 변경 사항이 기록될 대상 레이어를 지정합니다."
+    },
+    {
+      "name": "Lock",
+      "desc": "특정 레이어를 잠그어 실수로 데이터가 수정되는 것을 방지합니다."
+    },
+    {
+      "name": "Authoring",
+      "desc": "새로운 속성이나 레퍼런스를 추가할 때 대상 레이어의 권한을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "레이어를 이용한 파트별 협업",
+      "steps": [
+        "Layers 패널에서 모델링 레이어와 라이팅 레이어를 각각 분리해서 생성합니다.",
+        "라이팅 레이어를 Active 상태로 설정하고 조명 배치를 진행합니다.",
+        "모델링 레이어의 잠금을 유지하여 원본 형태가 실수로 변경되는 것을 막습니다."
+      ]
+    },
+    {
+      "title": "비파괴 오버라이드 적용",
+      "steps": [
+        "Stage 패널에서 에셋을 선택하고 새로운 오버라이드 서브 레이어를 추가합니다.",
+        "머티리얼이나 트랜스폼 값을 변경하여 오버라이드 레이어에 저장합니다.",
+        "레이어 순서를 조절하여 수정 사항을 켜고 끕니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "활성 레이어(Active Layer)를 확인하지 않고 수정함 → Layer 패널에서 원하던 레이어가 Active 상태인지 반드시 확인하고 편집하세요.",
+    "레퍼런스된 원본 에셋을 직접 수정하려 함 → Stage 패널에서 직접 수정하는 대신 Sub-layer나 Over 퓨처를 사용하여 오버라이드하세요."
+  ],
+  "related": [
+    "USD",
+    "Property Panel",
+    "Content Browser",
+    "Render Settings"
+  ],
+  "videos": [
+    {
+      "id": "mUsfSD241Ck",
+      "title": "Working with Layers & Deltas in Omniverse Create | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    },
+    {
+      "id": "pbwlRzjLwqc",
+      "title": "Developing a Physical AI Simulation Live With GPT-6 Astra and NVIDIA Omniverse Libraries",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Stage%20panel%20and%20layer%20panel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Window",
+    "Stage",
+    "USD Primitive"
+  ],
+  "at": "2026-10-30T02:25:30.554193+00:00"
+}

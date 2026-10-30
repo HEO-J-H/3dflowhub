@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-bridge-in-editable-poly-8887",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bridge in Editable Poly",
+  "title": "Bridge — 두 면·엣지 잇기",
+  "summary": "Bridge는 떨어져 있는 두 개의 면(Polygon)이나 테두리(Border) 사이에 새로운 면을 생성하여 연결하는 강력한 3ds Max Editable Poly 기능입니다.",
+  "when": [
+    "구멍이 난 캐릭터의 팔과 몸통을 자연스럽게 연결할 때",
+    "파이프나 터널 모델링 중 뚫린 두 단면을 이어 붙일 때",
+    "두 개의 분리된 폴리곤 면 사이에 다리(Bridge) 형태의 면을 만들 때"
+  ],
+  "steps": [
+    "3ds Max에서 오브젝트를 선택하고 Modifier List에서 Editable Poly를 적용합니다.",
+    "키보드 4번을 눌러 Polygon 서브오브젝트 모드로 진입합니다.",
+    "연결하고 싶은 첫 번째 면과 두 번째 면을 각각 선택합니다 (Ctrl 키로 다중 선택).",
+    "Command Panel의 Edit Polygons 메뉴에서 Bridge 버튼 옆의 Settings 아이콘을 클릭합니다.",
+    "Viewport에서 실시간으로 연결 상태를 확인하며 Tapes나 Segments 값을 조절합니다.",
+    "체크마크(OK) 버튼을 눌러 브리지 생성을 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "연결되는 면 사이에 생성될 세그먼트(분할) 개수를 조절합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "연결된 면의 부드러움(Smoothing Group)을 설정합니다."
+    },
+    {
+      "name": "Tension",
+      "desc": "연결 부위의 곡선 장력과 볼륨감을 조절합니다."
+    },
+    {
+      "name": "Slide 1",
+      "desc": "첫 번째 연결면의 위치를 정해진 엣지 방향으로 슬라이드합니다."
+    },
+    {
+      "name": "Slide 2",
+      "desc": "두 번째 연결면의 위치를 정해진 엣지 방향으로 슬라이드합니다."
+    },
+    {
+      "name": "Twist 1",
+      "desc": "첫 번째 연결면의 회전 값을 주어 엣지 흐름을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "끊어진 파이프 연결하기",
+      "steps": [
+        "키보드 3번을 눌러 Border 서브오브젝트 모드로 진입합니다.",
+        "마주 보는 두 개의 뚫린 테두리(Border)를 선택합니다.",
+        "Edit Borders 메뉴에서 Bridge를 클릭하여 한 번에 연결합니다."
+      ]
+    },
+    {
+      "title": "곡선 형태의 다리(Bridge) 만들기",
+      "steps": [
+        "마주 보는 두 면을 선택하고 Bridge Settings 창을 엽니다.",
+        "Segments 값을 5 이상으로 높여 충분한 면 분할을 확보합니다.",
+        "Tension과 Slide 값을 조절하여 부드러운 곡선 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "면의 방향(Normal)이 반대로 뒤집혀 꼬인 면이 생김 → Edit Poly의 Flip 기능이나 Normal 수정자로 법선을 일치시킵니다.",
+    "연결할 두 테두리의 버텍스(Vertex) 개수가 일치하지 않아 오류 발생 → Target Weld나 Connect를 사용해 버텍스 개수를 맞춘 후 브리지를 실행합니다."
+  ],
+  "related": [
+    "Connect",
+    "Collapse",
+    "Cap",
+    "Target Weld"
+  ],
+  "videos": [
+    {
+      "id": "LrYIrJsZmS0",
+      "title": "3ds Max Tutorial: Bridging Forms",
+      "author": "Kory Bieg"
+    },
+    {
+      "id": "QArbwfCkLbg",
+      "title": "3ds max Tutorial Easy Method Bridge and Attach",
+      "author": "MEG3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Bridge%20in%20Editable%20Poly",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Modifier List",
+    "Editable Poly",
+    "Polygon",
+    "Command Panel",
+    "Edit Polygons"
+  ],
+  "at": "2026-10-30T02:25:34.302877+00:00"
+}
