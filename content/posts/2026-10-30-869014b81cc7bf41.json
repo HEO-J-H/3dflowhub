@@ -34,6 +34,16 @@
     {
       "heading": "프로덕션 환경에서의 인프라 의존성 관리",
       "body": "Kubernetes에서 vLLM, SGLang, NVIDIA TensorRT LLM 등을 구동할 때 그래프 상위 레이어뿐만 아니라 하위 런타임 레이어의 안정성이 중요합니다. GPU 오퍼레이터가 노드와 일치하는 Driver 스택을 갖추었는지, 노드가 올바르게 라벨링되었는지 확인해야 합니다. 또한 예상되는 Dynamic Resource Allocation Driver를 통해 GPU가 노출되는지 철저한 검증이 필요합니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "NVIDIA AI Cluster Runtime(AICR)을 활용하면 대규모 클러스터 환경에서 분산 추론 환경을 안정적으로 구축할 수 있습니다. 먼저 클러스터 스냅샷을 생성하고 NVIDIA Dynamo 추론 레시피를 생성한 뒤, 배포 번들을 렌더링합니다. 이후 Helmfile이나 GitOps 도구를 사용하여 런타임을 배포하고, 실제 애플리케이션 워크로드를 설치하기 전에 런타임 검증 단계를 거쳐 배포 오류를 사전에 방지합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Kubernetes 환경에서 vLLM, SGLang, NVIDIA TensorRT-LLM 등을 구동하기 전 하위 런타임 레이어의 안정성을 먼저 확인해야 합니다. GPU 오퍼레이터가 노드와 일치하는 Driver 스택을 갖추었는지, 노드가 올바르게 라벨링되었는지 점검합니다. 또한 Dynamic Resource Allocation Driver를 통해 GPU가 정상적으로 노출되는지 철저히 검증한 뒤 Gateway API Inference Extension과 연동하여 프로덕션 트래픽 관리를 시작하세요.",
+      "added": true
     }
   ],
   "faq": [
@@ -44,6 +54,14 @@
     {
       "q": "Dynamo 1.4.2에서 라우팅은 어떻게 처리되나요?",
       "a": "요청 플레인에는 TCP를, KV-캐시 이벤트에는 ZMQ를 사용하여 네이티브 Frontend 라우터와 GAIE/EPP 경로 모두에서 캐시 인식 라우팅을 지원합니다."
+    },
+    {
+      "q": "NVIDIA Dynamo 1.4.2의 라우팅 아키텍처는 어떻게 구성되나요?",
+      "a": "요청 플레인에는 TCP를 사용하고 KV-캐시 이벤트에는 ZMQ를 활용하여 네이티브 Frontend 라우터와 Gateway API Inference Extension(GAIE) / Endpoint Picker Plugin(EPP) 경로 모두에서 캐시 인식 라우팅 결정을 내릴 수 있습니다."
+    },
+    {
+      "q": "AICR을 사용할 때 런타임 배포는 어떤 단계로 진행되나요?",
+      "a": "클러스터 스냅샷 생성, Dynamo 추론 레시피 생성, 배포 번들 렌더링, Helmfile 또는 GitOps를 통한 런타임 배포, 애플리케이션 워크로드 설치 전 런타임 검증의 5단계 흐름으로 진행됩니다."
     }
   ],
   "media": {
@@ -52,5 +70,23 @@
   },
   "collected_at": "2026-10-30T21:59:47.928745+00:00",
   "notion_id": "",
-  "id": "2026-10-30-869014b81cc7bf41"
+  "id": "2026-10-30-869014b81cc7bf41",
+  "refs": [],
+  "videos": [
+    {
+      "id": "qDF7ARVxbWU",
+      "title": "AI Factories That Use Less Power and Water, Built in Days | NVIDIA DSX",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "IxI_Tv_xJpw",
+      "title": "🧠 Setting Kubernetes cluster on a GPU node with NVIDIA Operator | Vast.ai GPU Cluster Demo",
+      "author": "Saujan Bohara"
+    }
+  ],
+  "enriched_at": "2026-10-30T22:40:21+00:00",
+  "quality": {
+    "before": 1199,
+    "after": 1715
+  }
 }
