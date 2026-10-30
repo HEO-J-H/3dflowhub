@@ -1,0 +1,90 @@
+{
+  "id": "blender-text-object-938a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Text object",
+  "title": "Text — 3D 글자",
+  "summary": "Blender의 Text 객체는 3D 공간에서 직접 타이포그래피를 생성하고 두께를 부여하여 로고나 타이틀을 만드는 기능입니다. 평면 텍스트를 입체적인 모델링으로 쉽게 변환할 수 있습니다.",
+  "when": [
+    "영화나 게임 타이틀의 3D 로고를 제작할 때",
+    "건축 시각화에서 건물 외벽의 간판이나 층수 표기를 만들 때",
+    "제품 패키지 디자인에 음각 또는 양각으로 글자를 넣을 때"
+  ],
+  "steps": [
+    "Shift+A 를 누르고 Text 를 선택해 3D 뷰포트에 텍스트 객체를 생성합니다.",
+    "Tab 키를 눌러 Edit Mode로 진입하고 원하는 텍스트를 입력합니다.",
+    "다시 Tab 키를 눌러 Object Mode로 전환합니다.",
+    "Properties 패널에서 Object Data Properties(초록색 a 아이콘) 탭을 엽니다.",
+    "Geometry 항목의 Extrude 값을 높여 텍스트에 입체 두께를 줍니다.",
+    "Convert to(우클릭 메뉴)를 통해 Mesh로 변환하여 디테일한 조형 수정 작업을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrude",
+      "desc": "텍스트의 두께(입체감)를 조절합니다."
+    },
+    {
+      "name": "Bevel Depth",
+      "desc": "글자 모서리를 깎아 부드러운 경사면을 만듭니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "커브 및 베벨 모서리의 곡선 디테일을 조절합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "사용할 외부 OTF/TTF 폰트 파일을 불러와 적용합니다."
+    },
+    {
+      "name": "Align",
+      "desc": "텍스트의 정렬 방식을 좌측, 우측, 중앙 등으로 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 간판 제작",
+      "steps": [
+        "Text 객체로 간판 문구를 입력하고 Extrude 값을 0으로 둡니다.",
+        "Object Data Properties에서 Bevel Depth를 올려 둥근 원통형 단면으로 만듭니다.",
+        "Convert to Mesh를 실행한 뒤 Emission Shader를 적용해 빛나게 만듭니다."
+      ]
+    },
+    {
+      "title": "입체 3D 타이틀 로고",
+      "steps": [
+        "원하는 폰트를 적용하고 Extrude로 두께를 줍니다.",
+        "Bevel Depth를 살짝 주어 빛 반사가 예쁘게 되도록 모서리를 다듬습니다.",
+        "Mesh로 변환 후 Solidify나 Displace 등의 모디파이어를 추가해 변형을 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mesh로 변환하기 전에 텍스트 수정이 안 된다고 당황함 → Tab 키를 눌러 Edit Mode로 들어가면 언제든 글자 수정이 가능합니다.",
+    "스케일을 키웠더니 두께나 베벨이 이상해짐 → 객체 선택 후 Ctrl+A 를 눌러 Scale을 반드시 Apply(적용)해야 합니다.",
+    "곡선 모서리가 너무 각지게 나옴 → Object Data Properties의 Resolution 값을 높여주면 해결됩니다."
+  ],
+  "related": [
+    "Curve",
+    "Geometry Nodes",
+    "Solidify",
+    "Convert to Mesh"
+  ],
+  "videos": [
+    {
+      "id": "lc3d0pM2fpo",
+      "title": "Engrave & Emboss Text Easily In Blender | Part 3 in Text Effects | Create 3D Text Logo In Blender",
+      "author": "5 Minutes Blender"
+    },
+    {
+      "id": "-z2efZVoWDQ",
+      "title": "Emboss Text onto Curved Object Using Blender",
+      "author": "3D Printer Academy Tutorials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Text%20object",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-30T01:15:19.027481+00:00"
+}
