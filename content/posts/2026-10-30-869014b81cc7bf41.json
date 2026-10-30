@@ -1,0 +1,56 @@
+{
+  "title_ko": "NVIDIA Dynamo — Kubernetes 런타임 구축과 검증 방법",
+  "title": "Build a Validated Kubernetes Runtime for NVIDIA Dynamo",
+  "url": "https://developer.nvidia.com/blog/build-a-validated-kubernetes-runtime-for-nvidia-dynamo/",
+  "domain": "AI 3D",
+  "category": "NVIDIA DSX",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "NVIDIA Dynamo",
+    "Kubernetes",
+    "AICR",
+    "vLLM",
+    "TensorRT LLM"
+  ],
+  "summary": "NVIDIA AI Cluster Runtime(AICR)을 활용해 분산 추론 프레임워크인 NVIDIA Dynamo를 위한 검증된 Kubernetes 런타임을 구축하고 배포하는 방법을 소개합니다.",
+  "insight": "대규모 3D 생성 AI나 실시간 AI 인프라를 구축하는 테크니컬 디렉터와 파이프라인 엔지니어라면 주목해야 할 아키텍처 가이드입니다. GPU Driver 스택부터 Dynamic Resource Allocation, 갱 스케줄링, 모니터링까지 복잡한 인프라 의존성을 재현 가능한 레시피로 관리할 수 있습니다. 특히 대규모 LLM 및 추론 모델 서빙 환경에서 안정적인 파이프라인을 구축하려는 실무 팀에 유용한 인사이트를 제공합니다. 복잡한 수동 설정 대신 선언적이고 검증된 런타임 구성을 통해 테스트와 배포 시간을 크게 단축할 수 있습니다.",
+  "sections": [
+    {
+      "heading": "NVIDIA AI Cluster Runtime (AICR) 개요",
+      "body": "NVIDIA DSX AI Factory Platform은 NVIDIA Dynamo와 지원 인프라를 검증된 레시피로 패키징하여 제공합니다. AICR은 GPU Driver 스택, Dynamic Resource Allocation, 갱 스케줄링, 노드 상태 신호 및 Prometheus 메트릭 같은 런타임 요구사항을 포착합니다. 이를 통해 고정된 컴포넌트 버전과 호환성 제약 사항이 포함된 재현 가능한 레시피를 구성할 수 있습니다."
+    },
+    {
+      "heading": "Dynamo 라우팅 및 네트워크 아키텍처",
+      "body": "Dynamo 1.4.2는 요청 플레인에 TCP를 사용하고 KV-캐시 이벤트에는 ZMQ를 활용합니다. 이를 통해 네이티브 Dynamo Frontend 라우터와 Gateway API Inference Extension(GAIE) / Endpoint Picker Plugin(EPP) 경로 모두에서 캐시 인식 라우팅 결정을 내릴 수 있습니다. Frontend 라우터 경로는 가장 작은 서빙 토폴로지를 가진 모델 전용 엔드포인트에 적합합니다."
+    },
+    {
+      "heading": "Gateway API Inference Extension 활용",
+      "body": "GAIE와 EPP 경로 원격 측정 및 라우팅은 Gateway API 리소스를 통해 관리되는 공유 Kubernetes 인그레스와 통합됩니다. 이를 통해 대규모 클러스터 환경에서 유연하고 확장 가능한 모델 서빙 트래픽 관리가 가능해집니다. 프로덕션 환경의 다양한 트래픽 요구사항을 효율적으로 처리할 수 있는 기반을 제공합니다."
+    },
+    {
+      "heading": "5단계 런타임 배포 및 검증 흐름",
+      "body": "AICR은 런타임 설정을 애플리케이션 배포와 분리하여 5단계 흐름으로 처리합니다. 클러스터 스냅샷 생성, Dynamo 추론 레시피 생성, 배포 번들 렌더링, Helmfile 또는 GitOps를 통한 런타임 배포, 그리고 애플리케이션 워크로드 설치 전 런타임 검증 순서로 진행됩니다. 이 체계적인 프로세스를 통해 배포 오류를 미연에 방지할 수 있습니다."
+    },
+    {
+      "heading": "프로덕션 환경에서의 인프라 의존성 관리",
+      "body": "Kubernetes에서 vLLM, SGLang, NVIDIA TensorRT LLM 등을 구동할 때 그래프 상위 레이어뿐만 아니라 하위 런타임 레이어의 안정성이 중요합니다. GPU 오퍼레이터가 노드와 일치하는 Driver 스택을 갖추었는지, 노드가 올바르게 라벨링되었는지 확인해야 합니다. 또한 예상되는 Dynamic Resource Allocation Driver를 통해 GPU가 노출되는지 철저한 검증이 필요합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA AICR이란 무엇이며 어떤 역할을 하나요?",
+      "a": "AICR은 NVIDIA AI Cluster Runtime의 약자로, NVIDIA Dynamo와 지원 인프라를 고정된 버전과 검증된 검사 항목이 포함된 재현 가능한 레시피로 패키징해 주는 툴입니다."
+    },
+    {
+      "q": "Dynamo 1.4.2에서 라우팅은 어떻게 처리되나요?",
+      "a": "요청 플레인에는 TCP를, KV-캐시 이벤트에는 ZMQ를 사용하여 네이티브 Frontend 라우터와 GAIE/EPP 경로 모두에서 캐시 인식 라우팅을 지원합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/inline-image-1-1.webp",
+    "video": "https://www.youtube.com/watch?v=JnsYIojzM5I"
+  },
+  "collected_at": "2026-10-30T21:59:47.928745+00:00",
+  "notion_id": "",
+  "id": "2026-10-30-869014b81cc7bf41"
+}
