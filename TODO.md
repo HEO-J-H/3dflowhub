@@ -36,7 +36,7 @@
 - [x] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가 (재시도)
 - [ ] (agent:보류) core.filter_practical_3d_depth(): 수집 및 요약 단계에서 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 전문 용어가 본문 내 일정 비율 이상 포함되지 않은 경우 'low depth' 오류 태그를 부여하고 차단하는 필터 함수 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) evolve.calculate_cpc_score_distribution(): 최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영하는 통계 함수 추가 및 테스트 추가 (재시도)
-- [ ] (agent:보류) app.render_practical_content_metrics(): Streamlit 현황판 사이드바 또는 메인 영역에 실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 시각적으로 요약해 주는 렌더링 함수 추가 및 테스트 추가 — [4] 패치 적용 실패: 변경 없음
+- [x] (agent) app.render_practical_content_metrics(): Streamlit 현황판 사이드바 또는 메인 영역에 실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 시각적으로 요약해 주는 렌더링 함수 추가 및 테스트 추가 (재시도)
 - [ ] (agent:보류) [p-79df6bfa45|수집] 이미지 미포함 게시물 필터링 강화: 이미지가 없는 원본 소스의 수집 비중을 낮추고, 썸네일이나 미디어가 확보된 콘텐츠 중심로 수집 파이프라인을 조정합니다. — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) [p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DCC, 게임 엔진, VFX, AI 3D 핵심 키워드 매칭 범위를 정교화하여 불필요한 차단을 줄이고 콘텐츠 발행 속도를 개선합니다. — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) [p-d96dee4b84|운영·비용] 방문자 오류 제보: 기타: 기타 — 블렌더 주방 내용 — 페이지를 확인해 고치거나 내립니다: https://heo-j-h.github.io/3dflowhub/p/2026-10-21-2b7ebbbab4a69d83.html
