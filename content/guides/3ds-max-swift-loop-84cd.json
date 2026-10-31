@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-swift-loop-84cd",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Swift Loop",
+  "title": "Swift Loop — 엣지 루프 넣기",
+  "summary": "Swift Loop는 Editable Poly 상태에서 에지 루프(Edge Loop)를 빠르고 직관적으로 추가할 수 있는 강력한 도구입니다. 복잡한 모델링 과정에서 메쉬의 흐름을 정리하거나 디테일을 더할 때 유용하게 쓰입니다.",
+  "when": [
+    "캐릭터나 하드서페이스 모델링 중 특정 부위에 에지(Edge)를 추가해 각을 잡고 싶을 때",
+    "터보스무스(TurboSmooth) 적용 시 모서리가 무너지지 않도록 지오메트리를 보강할 때",
+    "불필요한 세그먼트를 추가하지 않고 원하는 위치에 정확히 루프를 생성하고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 마우스 우클릭 후 Convert to: → Convert to Editable Poly를 실행합니다.",
+    "Command Panel의 Modify 탭에서 Polygon Sub-object Level(단축기 4)로 진입하거나 Edge Sub-object Level(단축기 2)을 선택합니다.",
+    "Ribbon 메뉴(Modeling 탭) 또는 Graphite Modeling Tools에서 Polygon Modeling 패널을 엽니다.",
+    "Loop 패널 또는 Edge 연산 메뉴에서 Swift Loop 버튼을 클릭하여 활성화합니다.",
+    "원하는 에지 근처에 마우스를 올리면 생성될 에지 루프의 미리보기가 표시되며, 클릭하여 배치합니다.",
+    "작업을 마치려면 마우스 우클릭을 하거나 다른 도구를 선택하여 Swift Loop 모드를 해제합니다."
+  ],
+  "params": [
+    {
+      "name": "Offset",
+      "desc": "인접한 에지로부터의 상대적인 거리 비율을 조절합니다."
+    },
+    {
+      "name": "Constraint",
+      "desc": "에지를 추가할 때 기존 메쉬의 표면이나 에지 라인을 따라 정렬되도록 제한합니다."
+    },
+    {
+      "name": "Edge",
+      "desc": "클릭한 위치를 기준으로 가로 또는 세로 방향의 에지 루프를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드서페이스 모서리 보강",
+      "steps": [
+        "박스 모델의 에지 레벨로 진입합니다.",
+        "Swift Loop를 실행하고 모서리 주변을 클릭해 에지를 추가합니다.",
+        "추가된 에지를 모서리 쪽으로 밀어내어 단단한 하이라이트를 만듭니다."
+      ]
+    },
+    {
+      "title": "실린더 형태에 디테일 추가",
+      "steps": [
+        "원기둥 형태의 Editable Poly 오브젝트를 준비합니다.",
+        "Swift Loop로 원기둥 중앙 부위에 가로 에지 루프를 추가합니다.",
+        "추가된 에지를 스케일 조절하여 볼륨감을 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Editable Poly 상태가 아님 → 반드시 오브젝트를 Editable Poly로 변환한 후 에지 레벨에서 시도하세요.",
+    "에지가 멈추는 현상 → 사각형(Quad)이 아닌 삼각 폴리곤(Triangle)이나 N-gon이 있으면 에지 루프가 끊어집니다. 토폴로지를 사각형 위주로 정리하세요."
+  ],
+  "related": [
+    "Connect",
+    "Ring",
+    "Loop",
+    "TurboSmooth"
+  ],
+  "videos": [
+    {
+      "id": "stpeYTYNq1M",
+      "title": "3ds Max 2022 - Swift Loop",
+      "author": "Rvt3D"
+    },
+    {
+      "id": "8Wuw8wgUUC8",
+      "title": "3DS Max Quick Tip - Swift Loops",
+      "author": "Jonathan Coble"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Swift%20Loop",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Convert",
+    "Editable Poly",
+    "Command Panel",
+    "Modify",
+    "Polygon Sub",
+    "Level"
+  ],
+  "at": "2026-10-31T00:29:13.136219+00:00"
+}

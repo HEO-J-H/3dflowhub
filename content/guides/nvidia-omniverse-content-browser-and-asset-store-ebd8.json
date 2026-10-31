@@ -1,0 +1,97 @@
+{
+  "id": "nvidia-omniverse-content-browser-and-asset-store-ebd8",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Content browser and Asset Store",
+  "title": "콘텐츠 브라우저·샘플 자산",
+  "summary": "NVIDIA Omniverse의 Content Browser와 Asset Store는 고품질 3D 에셋과 USD 파일을 검색하고 프로젝트에 실시간으로 불러오는 통합 허브입니다.",
+  "when": [
+    "프로젝트에 즉시 사용할 수 있는 표준화된 3D 모델이나 재질(Material)을 찾을 때",
+    "팀원들과 공유된 중앙 에셋 라이브러리(Nucleus Server)에서 USD 파일을 탐색할 때",
+    "다양한 DCC 툴에서 제작된 에셋을 Omniverse 씬으로 가져와 실시간으로 협업할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Omniverse App(예: USD Composer)을 실행합니다.",
+    "상단 메뉴의 Window 메뉴에서 Content Browser를 선택하여 패널을 엽니다.",
+    "좌측 사이드바에서 Local(로컬 드라이브) 또는 Nucleus 서버(서버 에셋)를 선택합니다.",
+    "Asset Store 탭으로 이동하여 필요한 카테고리(Characters, Props, Materials 등)를 탐색합니다.",
+    "원하는 에셋을 마우스로 드래그하여 뷰포트나 Stage 패널에 직접 배치합니다.",
+    "Details 패널에서 에셋의 속성을 확인하고 USD 구조를 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Nucleus",
+      "desc": "로컬 또는 원격 서버에서 USD 에셋을 실시간으로 공유하고 버전 관리하는 저장소 시스템"
+    },
+    {
+      "name": "Asset Store",
+      "desc": "NVIDIA 및 파트너사가 제공하는 무료/유료 3D 모델, 재질, HDR 환경 맵을 다운로드하는 마켓플레이스"
+    },
+    {
+      "name": "Stage",
+      "desc": "현재 열린 USD 씬의 계층 구조(Hierarchy)를 보여주는 패널"
+    },
+    {
+      "name": "Details",
+      "desc": "선택한 에셋의 트랜스폼, 머티리얼, 메타데이터 등 세부 속성을 편집하는 패널"
+    },
+    {
+      "name": "Search",
+      "desc": "키워드를 입력해 로컬 및 클라우드에 있는 USD 에셋을 빠르게 찾는 검색창"
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화 씬에 가구 배치하기",
+      "steps": [
+        "Content Browser의 Asset Store 탭에서 Props > Furniture 카테고리를 선택합니다.",
+        "원하는 의자 에셋을 검색하여 다운로드 아이콘을 클릭합니다.",
+        "다운로드된 USD 에셋을 뷰포트의 바닥 면으로 드래그 앤 드롭합니다.",
+        "Move 툴을 사용해 위치를 정렬하고 Details 패널에서 스케일을 조절합니다."
+      ]
+    },
+    {
+      "title": "실시간 머티리얼 적용하기",
+      "steps": [
+        "Content Browser에서 Materials 탭으로 이동합니다.",
+        "PBR 재질 중 마음에 드는 대리석(Marble) 머티리얼을 선택합니다.",
+        "해당 머티리얼을 뷰포트의 3D 오브젝트 위에 직접 드래그합니다.",
+        "Material Graph 또는 속성창에서 타일링(Tiling) 값을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "네트워크 연결 오류 및 로그인 실패 → NVIDIA Omniverse Launcher에서 계정 상태와 Nucleus 서버 연결 상태를 확인합니다.",
+    "에셋 드래그 시 씬에 나타나지 않음 → Stage 패널에서 올바른 Prim(오브젝트)이 선택되었는지, 뷰포트 카메라가 에셋 위치를 향하고 있는지 확인합니다."
+  ],
+  "related": [
+    "USD Composer",
+    "Omniverse Nucleus",
+    "Material Graph",
+    "Omniverse Launcher"
+  ],
+  "videos": [
+    {
+      "id": "JBJUlJtPLyw",
+      "title": "Partner Asset Library Integration Overview in NVIDIA Omniverse",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "Kprl5QvUNCE",
+      "title": "Omniverse Tutorial: Set up a USD scene using the Asset Store",
+      "author": "Digital Bot Lab"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Content%20browser%20and%20Asset%20Store",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Omniverse App",
+    "USD Composer",
+    "Window",
+    "Content Browser"
+  ],
+  "at": "2026-10-31T00:29:02.641181+00:00"
+}
