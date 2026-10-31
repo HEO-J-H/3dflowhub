@@ -1,0 +1,84 @@
+{
+  "id": "nvidia-omniverse-importing-assets-in-usd-composer-75e5",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Importing assets in USD Composer",
+  "title": "자산 불러오기",
+  "summary": "NVIDIA Omniverse USD Composer에서 외부 3D 에셋을 USD 포맷으로 불러와 효율적으로 조합하고 시각화합니다. 다양한 DCC 툴의 에셋을 실시간으로 통합할 때 사용합니다.",
+  "when": [
+    "3ds Max, Blender, Maya 등에서 제작한 모델링을 실시간 레이트레이싱 씬으로 가져올 때",
+    "USD 포맷을 활용해 팀원들과 3D 씬과 에셋을 협업 공유할 때",
+    "대규모 배경 씬에 다양한 소품 에셋을 라이브 싱크로 배치할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse USD Composer를 실행하고 빈 씬(Stage)을 켭니다.",
+    "상단 메뉴에서 File → Import 또는 Content 창에서 에셋 파일을 선택합니다.",
+    "지원되는 포맷(FBX, OBJ, USD 등)을 선택해 뷰포트로 드래그 앤 드롭합니다.",
+    "Stage 창에서 불러온 에셋의 계층 구조를 확인하고 정리합니다.",
+    "Transform 툴(W, E, R 키)을 사용해 에셋의 위치, 회전, 스케일을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Up Axis",
+      "desc": "씬의 수직 축 기준을 설정합니다 (Z-up 또는 Y-up)."
+    },
+    {
+      "name": "Scale",
+      "desc": "불러오는 에셋의 크기 단위를 씬에 맞게 조절합니다."
+    },
+    {
+      "name": "Instanceable",
+      "desc": "에셋을 Instance로 불러와 메모리 사용량을 줄이고 성능을 최적화합니다."
+    },
+    {
+      "name": "Create Default Prim",
+      "desc": "USD 계층 구조 내에서 기본 루트 프림(Prim) 생성 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화에 가구 에셋 배치하기",
+      "steps": [
+        "건축 기본 씬 USD 파일을 엽니다.",
+        "Content Browser에서 의자 USD 에셋을 찾습니다.",
+        "뷰포트 안으로 드래그 앤 드롭하여 배치합니다."
+      ]
+    },
+    {
+      "title": "FBX 캐릭터 에셋을 USD로 변환하여 Import",
+      "steps": [
+        "File → Import 메뉴를 엽니다.",
+        "캐릭터 FBX 파일을 선택합니다.",
+        "Import 옵션에서 Material 변환을 체크하고 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위(Unit) 설정 불일치로 에셋이 너무 작거나 크게 보임 → Import 옵션에서 Scale 값을 확인하고 수정합니다.",
+    "텍스처 경로가 깨져서 에셋이 검게 보임 → File → Package Layer 또는 텍스처 경로(Asset Path)를 상대 경로로 재지정합니다."
+  ],
+  "related": [
+    "USD (Universal Scene Description)",
+    "Omniverse Nucleus",
+    "Create Live Session",
+    "Stage Panel"
+  ],
+  "videos": [
+    {
+      "id": "4kwQ4xTGjoU",
+      "title": "Installation Guide for NVDIA Omniverse USD Composer for CC5 | Character Creator 5 Tutorial",
+      "author": "Reallusion"
+    },
+    {
+      "id": "aaF0s1Y0XlQ",
+      "title": "USD Paths Tool in NVIDIA Omniverse USD Composer Tutorial",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Importing%20assets%20in%20USD%20Composer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-31T00:19:13.454815+00:00"
+}

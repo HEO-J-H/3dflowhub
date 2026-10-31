@@ -1,0 +1,94 @@
+{
+  "id": "blender-smooth-corrective-modifier-929d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Smooth Corrective modifier",
+  "title": "Corrective Smooth — 변형 후 매끄럽게",
+  "summary": "Blender의 Smooth Corrective 모디파이어는 리깅이나 변형 과정에서 무너진 메쉬의 볼륨과 형태를 자연스럽게 복원하는 도구입니다. 관절 부위의 찌그러짐을 부드럽게 다듬어 캐릭터나 오브젝트의 변형 품질을 높여줍니다.",
+  "when": [
+    "캐릭터 리깅 후 팔꿈치나 무릎 같은 관절 부위가 꺾일 때 찌그러짐을 완화하고 싶을 때",
+    "아마추어 변형(Armature Deform)이나 다른 디포머로 인해 볼륨이 줄어든 메쉬를 보정할 때",
+    "스킨 웨이트 작업만으로는 해결하기 어려운 미세한 메쉬 왜곡을 매끄럽게 정리할 때"
+  ],
+  "steps": [
+    "오브젝트 모드에서 보정이 필요한 메쉬를 선택합니다.",
+    "Properties 패널에서 Modifier (렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier를 클릭하고 Deform 분류에서 Smooth Corrective를 선택합니다.",
+    "Modifier 스택에서 Armature 모디파이어 아래나 보정이 필요한 디포머 바로 아래에 위치하도록 순서를 배치합니다.",
+    "Factor 값을 조절하여 부드러움의 강도를 맞추고, 필요에 따라 Restrict to Rest Position 등을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "스무딩 효과의 전체적인 강도를 조절합니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "스무딩 연산을 반복하는 횟수로, 높일수록 더 부드러워집니다."
+    },
+    {
+      "name": "Smooth Type",
+      "desc": "Simple 또는 Length Area 등 스무딩 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Rest Position",
+      "desc": "변형되지 않은 기본 포즈를 기준으로 스무딩을 계산합니다."
+    },
+    {
+      "name": "Only Smooth",
+      "desc": "볼륨 보정(Volume Preservation)을 끄고 순수하게 위치만 부드럽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 팔꿈치 관절 찌그러짐 보정",
+      "steps": [
+        "캐릭터 메쉬에 Armature 모디파이어를 적용한 상태로 둡니다.",
+        "Smooth Corrective 모디파이어를 추가하고 Armature 바로 아래에 놓습니다.",
+        "팔을 굽힌 상태에서 Factor와 Iterations 값을 조절해 찌그러진 볼륨을 복원합니다."
+      ]
+    },
+    {
+      "title": "구부러진 파이프의 외곽선 다듬기",
+      "steps": [
+        "Simple Deform 모디파이어로 파이프를 휘어지게 만듭니다.",
+        "그 아래에 Smooth Corrective 모디파이어를 추가합니다.",
+        "Factor 값을 높여 꺾인 부분의 각진 면을 매끄럽게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모디파이어 스택 순서가 잘못됨 (Armature 위에 놓으면 효과가 없음) → Smooth Corrective를 Armature 모디파이어 아래로 이동하세요.",
+    "오브젝트의 스케일이 적용되지 않음 (Scale이 1이 아님) → Object 모드에서 Ctrl+A를 누르고 All Transforms를 적용한 뒤 다시 시도하세요."
+  ],
+  "related": [
+    "Armature",
+    "Smooth",
+    "Laplacian Smooth",
+    "Surface Deform"
+  ],
+  "videos": [
+    {
+      "id": "Ydo6DWXSuvw",
+      "title": "Smooth Corrective: Blender's \"Magic\" modifier",
+      "author": "CGDive (Blender Rigging Tuts)"
+    },
+    {
+      "id": "lAw4K4WvYQk",
+      "title": "The Modifier You’re Sleeping On! #blender #smooth #modifier  #tutorial #tips #art #modeling",
+      "author": "RacheleProjects"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Smooth%20Corrective%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Deform",
+    "Smooth Corrective"
+  ],
+  "at": "2026-10-31T00:19:21.219516+00:00"
+}
