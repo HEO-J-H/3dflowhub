@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-spline-boolean-and-outline-a0cd",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Spline Boolean and Outline",
+  "title": "스플라인 Outline·Boolean",
+  "summary": "Spline Boolean은 여러 개의 2차원 선을 합치거나 빼서 복잡한 모양을 만들고, Outline은 기존 선의 안쪽이나 바깥쪽에 일정한 간격의 테두리를 생성합니다.",
+  "when": [
+    "건축 평면도나 로고 그래픽처럼 복잡한 2D 외곽선을 정밀하게 가공할 때",
+    "기계 부품의 단면이나 구멍 뚫린 판재 모양의 스플라인을 그릴 때",
+    "외곽선에 두께감을 주어 입체화(Extrude) 작업의 기본 형태를 잡을 때"
+  ],
+  "steps": [
+    "Create 패널에서 Shapes(라인 아이콘)를 선택하고 뷰포트에 스플라인 2개 이상을 그립니다.",
+    "첫 번째 스플라인을 선택하고 Command Panel -> Modify 탭으로 이동합니다.",
+    "Modifier List에서 Edit Spline 또는 Editable Spline 상태로 들어갑니다.",
+    "서브오브젝트 레벨 3(Spline) 또는 4(Segment)를 활성화합니다.",
+    "Geometry 하위 메뉴에서 Attach 버튼을 눌러 다른 스플라인을 하나의 오브젝트로 병합합니다.",
+    "Boolean 버튼(Union, Subtraction, Intersection 중 선택)을 켜고 병합할 다른 스플라인을 클릭합니다.",
+    "Outline 입력 칸에 수치를 넣고 Enter를 눌러 테두리 선을 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Union",
+      "desc": "선택한 두 스플라인의 영역을 하나로 합칩니다."
+    },
+    {
+      "name": "Subtraction",
+      "desc": "먼저 선택한 스플라인에서 나중에 클릭한 스플라인 영역을 빼냅니다."
+    },
+    {
+      "name": "Intersection",
+      "desc": "두 스플라인이 겹치는 공통 영역만 남깁니다."
+    },
+    {
+      "name": "Outline",
+      "desc": "스플라인을 따라 안쪽이나 바깥쪽으로 일정한 간격의 평행선을 생성합니다."
+    },
+    {
+      "name": "Center",
+      "desc": "체크하면 Outline 생성 시 기존 선을 기준으로 양쪽으로 두께가 퍼집니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "도넛 모양(중앙에 구멍이 뚫린 판재) 만들기",
+      "steps": [
+        "큰 원과 작은 원을 각각 뷰포트에 그립니다.",
+        "큰 원을 선택한 뒤 Edit Spline 모디파이어를 적용합니다.",
+        "Geometry rollout의 Attach를 눌러 작은 원을 선택합니다.",
+        "Boolean에서 Subtraction을 활성화하고 작은 원을 클릭합니다."
+      ]
+    },
+    {
+      "title": "액자 프레임 형태의 두께감 있는 외곽선 만들기",
+      "steps": [
+        "사각형(Rectangle) 스플라인을 하나 생성합니다.",
+        "Modify 탭에서 Spline 서브오브젝트 레벨로 진입합니다.",
+        "사각형 전체 스플라인을 선택합니다.",
+        "Outline 수치 입력란에 값을 넣고 드래그하여 안쪽 테두리를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브오브젝트 레벨이 아닌 Object Level에서 Boolean을 찾음 → Edit Spline 모디파이어 안의 Spline 또는 Segment 레벨로 진입해야 활성화됩니다.",
+    "서로 다른 스플라인이 하나로 묶이지 않음(Attach 누락) → Boolean을 실행하기 전에 반드시 Attach로 두 스플라인을 하나의 오브젝트로 합쳐야 합니다.",
+    "Outline 적용 후 꺾이는 부분이 꼬임 → 스플라인의 꼭짓점(Vertex) 간격이 너무 촘촘하거나 정점 타입이 매끄럽지(Smooth) 않은지 확인하고 정리합니다."
+  ],
+  "related": [
+    "Editable Spline",
+    "Extrude",
+    "Lathe",
+    "Sweep"
+  ],
+  "videos": [
+    {
+      "id": "_co0jIvRuQo",
+      "title": "3ds Max | Spline Modeling | T Junction | Boolean",
+      "author": "eudy Maverick Mentor"
+    },
+    {
+      "id": "FwjJ9ZVuq6c",
+      "title": "Boolean on Splines in 3ds Max — Quick Tip for Clean Line Modeling #shorts  #3dsmax #boolean",
+      "author": "Yurii Shevchyshyn"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Spline%20Boolean%20and%20Outline",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Shapes",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Edit Spline"
+  ],
+  "at": "2026-10-31T02:09:37.837358+00:00"
+}

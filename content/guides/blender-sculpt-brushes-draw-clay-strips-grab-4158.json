@@ -1,0 +1,91 @@
+{
+  "id": "blender-sculpt-brushes-draw-clay-strips-grab-4158",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스컬프트",
+  "name": "Sculpt brushes (Draw, Clay Strips, Grab)",
+  "title": "주요 스컬프트 브러시",
+  "summary": "Blender의 Sculpt Mode에서 사용하는 대표적인 브러시 3가지(Draw, Clay Strips, Grab)로 유기적인 3D 형태를 직관적으로 조각합니다.",
+  "when": [
+    "캐릭터나 크리처의 얼굴, 근육 같은 유기적인 형태를 처음부터 빚어낼 때",
+    "단단한 표면이나 천의 주름, 찰흙을 붙이듯 볼륨감을 더하고 싶을 때",
+    "전체적인 실루엣을 크게 늘리거나 형태를 과감하게 변형할 때"
+  ],
+  "steps": [
+    "Viewport 상단 메뉴에서 Object Mode를 Sculpt Mode로 변경합니다 (단축키 Ctrl+Tab).",
+    "툴바(Tool Shelf)에서 Draw 브러시를 선택하거나 단축키 X를 눌러 브러시 팔레트를 엽니다.",
+    "Clay Strips 브러시를 선택해 표면에 찰흙 덩어리를 덧붙이듯 드래그하여 볼륨을 채웁니다.",
+    "Grab 브러시를 선택해 특정 영역을 넓게 잡고 끌어당겨 큰 실루엣을 수정합니다.",
+    "F 키를 눌러 브러시 크기를 조절하고, Shift 키를 누른 채 드래그하여 표면을 부드럽게 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "브러시의 전체 크기를 조절합니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "브러시가 밀어내거나 깎아내는 힘의 세기를 조절합니다."
+    },
+    {
+      "name": "Auto-Smooth",
+      "desc": "조각을 진행함과 동시에 표면을 자동으로 부드럽게 다듬어줍니다."
+    },
+    {
+      "name": "Normal Radius",
+      "desc": "표면 법선 방향의 영향을 받는 범위를 설정합니다."
+    },
+    {
+      "name": "Front Faces Only",
+      "desc": "카메라를 향하는 앞면의 메쉬에만 브러시 효과가 적용되도록 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 윤곽 잡기",
+      "steps": [
+        "Grab 브러시로 턱과 코의 큰 위치를 잡아당겨 빼냅니다.",
+        "Draw 브러시로 광대와 눈두덩이 주변에 볼륨을 더합니다.",
+        "Shift 키를 이용해 거친 경계면을 부드럽게 스무딩합니다."
+      ]
+    },
+    {
+      "title": "옷 주름 표현하기",
+      "steps": [
+        "Clay Strips 브러시로 천이 꺾이는 부위에 찰흙 띠를 쌓듯 주름을 올립니다.",
+        "Draw Sharp 브러시를 활용해 주름의 골짜기를 깊고 날카롭게 파냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트에 디테일이 부족한 상태에서 브러시가 깨지는 현상 → Dyntopo를 켜거나 Remesh를 실행해 폴리곤 밀도를 높여 해결합니다.",
+    "오브젝트 스케일이 틀어져 브러시가 한쪽으로 찌그러지는 현상 → Object Mode에서 Ctrl+A를 눌러 Scale 값을 1로 적용(Apply)합니다."
+  ],
+  "related": [
+    "Dyntopo",
+    "Remesh",
+    "Multiresolution",
+    "Mask"
+  ],
+  "videos": [
+    {
+      "id": "30cJldycSIg",
+      "title": "Sculpt Anything With These 5 Brushes - Blender Beginner Sculpting Tips",
+      "author": "Keelan Jon"
+    },
+    {
+      "id": "-OvNTNI33dw",
+      "title": "Grab Sculpt Brush (EXPLAINED) | FREE Blender for 3D Printing Course",
+      "author": "Print That Thing"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Sculpt%20brushes%20%28Draw%2C%20Clay%20Strips%2C%20Grab%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Object Mode",
+    "Sculpt Mode"
+  ],
+  "at": "2026-10-31T02:09:41.741877+00:00"
+}
