@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-viewport-navigation-in-usd-composer-1032",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Viewport navigation in USD Composer",
+  "title": "뷰포트 이동·단축키",
+  "summary": "NVIDIA Omniverse USD Composer에서 3D 씬을 효율적으로 관람하고 카메라를 조작하는 뷰포트 내비게이션 가이드입니다. USD 기반의 대규모 씬을 자유롭게 탐색할 수 있습니다.",
+  "when": [
+    "대규모 USD 3D 씬을 로드하고 전체 구조를 빠르게 파악해야 할 때",
+    "특정 오브젝트나 캐릭터 중심으로 카메라를 회전·확대하며 디테일을 확인할 때",
+    "다수의 카메라 뷰와 프레젠테이션 시점을 전환하며 시뮬레이션을 모니터링할 때"
+  ],
+  "steps": [
+    "USD Composer를 실행하고 원하는 USD 스테이지(Stage) 파일을 엽니다.",
+    "Alt + 마우스 우클릭을 누른 채 드래그하여 뷰포트 카메라를 Orbit(회전)합니다.",
+    "Alt + 마우스 중클릭을 누른 채 드래그하여 뷰포트를 Pan(이동)합니다.",
+    "마우스 휠을 스크롤하거나 Alt + 마우스 좌클릭을 누른 채 드래그하여 Dolly(줌)합니다.",
+    "오브젝트를 선택한 상태에서 F 키를 눌러 해당 오브젝트로 카메라를 포커스합니다.",
+    "Viewport 상단 메뉴나 우측의 Camera 아이콘을 통해 투영 방식(Perspective / Orthographic)을 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "Orbit",
+      "desc": "선택된 피벗(Pivot) 지점을 중심으로 카메라를 회전합니다."
+    },
+    {
+      "name": "Pan",
+      "desc": "카메라의 위치를 상하좌우 평행하게 이동합니다."
+    },
+    {
+      "name": "Dolly",
+      "desc": "오브젝트와의 거리를 가깝게 하거나 멀게 조절합니다."
+    },
+    {
+      "name": "Focus",
+      "desc": "선택한 프림(Prim)을 뷰포트 중앙으로 즉시 정렬합니다."
+    },
+    {
+      "name": "Field of View",
+      "desc": "카메라의 화각을 조절하여 원근감을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대형 건축 씬 전체 둘러보기",
+      "steps": [
+        "건축 USD 스테이지를 엽니다.",
+        "Alt + 중클릭 Pan으로 전체 대지를 파악합니다.",
+        "Alt + 우클릭 Orbit으로 건물의 외관을 입체적으로 확인합니다."
+      ]
+    },
+    {
+      "title": "특정 프림 상세 확인",
+      "steps": [
+        "Stage 패널에서 검수할 프림을 클릭합니다.",
+        "F 키를 눌러 카메라를 해당 오브젝트로 포커스합니다.",
+        "마우스 휠로 줌인하여 표면 디테일을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라가 엉뚱한 지점을 기준으로 회전하는 경우 → F 키를 눌러 올바른 오브젝트로 포커스를 맞춥니다.",
+    "씬이 너무 멀리 있거나 보이지 않는 경우 → Stage 패널에서 오브젝트를 선택하고 F 키로 시점을 재설정합니다."
+  ],
+  "related": [
+    "Stage Panel",
+    "Property Panel",
+    "Render Settings",
+    "Layout Tools"
+  ],
+  "videos": [
+    {
+      "id": "6-HpYOXyEIs",
+      "title": "Installation Guide for USD Composer with LiveSync Setup in iClone | iClone 8 Tutorial",
+      "author": "Reallusion"
+    },
+    {
+      "id": "4kwQ4xTGjoU",
+      "title": "Installation Guide for NVDIA Omniverse USD Composer for CC5 | Character Creator 5 Tutorial",
+      "author": "Reallusion"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Viewport%20navigation%20in%20USD%20Composer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "USD Composer",
+    "USD",
+    "Stage",
+    "Orbit",
+    "Pan",
+    "Dolly"
+  ],
+  "at": "2026-10-31T00:09:21.200120+00:00"
+}

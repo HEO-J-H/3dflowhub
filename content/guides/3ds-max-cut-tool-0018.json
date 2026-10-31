@@ -1,0 +1,82 @@
+{
+  "id": "3ds-max-cut-tool-0018",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Cut tool",
+  "title": "Cut — 원하는 곳 자르기",
+  "summary": "폴리곤 모델링에서 면 위에 직접 자유롭게 새로운 엣지를 그려 넣는 도구입니다. 복잡한 형태를 수정하거나 디테일을 추가할 때 사용합니다.",
+  "when": [
+    "기본 도형의 토폴로지를 수동으로 변경하고 싶을 때",
+    "특정 위치에 새로운 엣지를 연결하여 면의 흐름을 정리할 때",
+    "하드 표면 모델링 중 추가적인 서브디비전 라인을 만들 때"
+  ],
+  "steps": [
+    "Editable Poly 오브젝트를 선택하고, Modifier List 또는 Modify 탭에서 Polygon 또는 Edge 서브오브젝트 모드로 진입합니다 (단축키 4 또는 2).",
+    "Modify 패널의 Edit Geometry 루프 또는 마우스 우클릭 쿼드 메뉴에서 Cut을 클릭합니다.",
+    "첫 번째 버텍스나 엣지 위에서 마우스 왼쪽 클릭을 시작합니다.",
+    "원하는 위치로 마우스를 이동하여 선을 늘린 뒤, 목표 지점에서 다시 클릭하여 엣지를 완성합니다.",
+    "우클릭을 눌러 Cut 도구를 해제하고 모델링을 마무리합니다."
+  ],
+  "params": [
+    {
+      "name": "Vertex Snap",
+      "desc": "버텍스 근처에 마우스가 닿을 때 자동으로 스냅되어 정확한 연결을 돕습니다."
+    },
+    {
+      "name": "Edge Snap",
+      "desc": "엣지 라인 위로 스냅되어 정확히 면을 가로지르는 선을 그릴 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "창문 형태의 구멍을 만들기 위한 서브디비전 추가",
+      "steps": [
+        "사각 박스 모델의 Editable Poly 모드로 진입합니다.",
+        "Cut 도구를 활성화합니다.",
+        "앞면의 상단에서 하단으로 직선을 그려 사각형 면을 분할합니다."
+      ]
+    },
+    {
+      "title": "불필요한 삼각형 면 정리하기",
+      "steps": [
+        "잘못 연결된 엣지 근처의 버텍스들을 Cut 도구로 서로 연결합니다.",
+        "기존의 잘못된 엣지를 선택하고 Remove(Ctrl+Backspace)로 제거합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버텍스나 엣지에 정확히 스냅되지 않고 빈 공간을 클릭함 → 스냅 옵션을 켜거나 버텍스 위치를 확인 후 다시 시도합니다.",
+    "Cut 도구 사용 후 면이 깨져 보임 → n-gon(오각형 이상의 면)이 생성되었는지 확인하고 Quad(사각면) 형태로 엣지를 마저 연결합니다."
+  ],
+  "related": [
+    "QuickSlice",
+    "Connect",
+    "SwiftLoop",
+    "Target Weld"
+  ],
+  "videos": [
+    {
+      "id": "XxmIo6RtHCw",
+      "title": "🔹 3ds Max Boolean: Cutting Objects with Precision! #shorts  #3dsmax #boolean",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "YJMDjKfhZDQ",
+      "title": "Cut tool in 3Ds Max",
+      "author": "LaureateDesignLab SOD"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Cut%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Editable Poly",
+    "Modifier List",
+    "Modify",
+    "Polygon",
+    "Edge",
+    "Edit Geometry"
+  ],
+  "at": "2026-10-31T00:09:25.538661+00:00"
+}
