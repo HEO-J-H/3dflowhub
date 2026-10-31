@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-shapemerge-8493",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "ShapeMerge",
+  "title": "ShapeMerge — 표면에 스플라인 새기기",
+  "summary": "ShapeMerge는 3ds Max에서 2D 셰이프(Shape)의 형태를 3D 메시 표면 위에 투영하여 자르거나 구멍을 뚫는 합성(Compound Object) 기능입니다. 마치 스티커를 붙이듯 입체적인 표면에 정교한 엠보싱이나 패턴을 만들 때 유용합니다.",
+  "when": [
+    "평면이 아닌 곡면이나 둥근 실린더 표면 위에 글자나 로고를 새겨 넣을 때",
+    "기계 부착물이나 패널 라인처럼 3D 오브젝트 위에 복잡한 2D 컷아웃 라인을 생성할 때",
+    "입체 오브젝트 표면에 울퉁불퉁하지 않고 깔끔하게 떨어진 면 경계를 만들 때"
+  ],
+  "steps": [
+    "Create 패널에서 3D 대상 오브젝트(Mesh 또는 Poly)와 투영할 2D Shape를 각각 씬에 준비합니다.",
+    "3D 대상 오브젝트를 선택한 상태로 Create 패널의 Geometry 탭에서 드롭다운을 Compound Objects로 변경합니다.",
+    "ShapeMerge 버튼을 클릭하여 활성화합니다.",
+    "Pick Operand 버튼을 클릭하고 뷰포트에서 투영할 2D Shape를 클릭합니다.",
+    "Parameters 롤아웃에서 투영 방식(Mesh 또는 Cookie Cutter)과 축(Axis)을 설정합니다.",
+    "결과물이 마음에 들면 대상 오브젝트를 우클릭하여 Convert to: Editable Poly로 변환하여 면을 편집합니다."
+  ],
+  "params": [
+    {
+      "name": "Pick Operand",
+      "desc": "표면 위에 투영할 2D Shape(셰이프)를 선택합니다."
+    },
+    {
+      "name": "Mesh",
+      "desc": "셰이프 모양대로 대상 오브젝트의 면을 쪼개어(Edge 생성) 표면 위에 남깁니다."
+    },
+    {
+      "name": "Cookie Cutter",
+      "desc": "셰이프 모양대로 대상 오브젝트를 완전히 잘라내어 구멍을 뚫거나 분리합니다."
+    },
+    {
+      "name": "Inverse",
+      "desc": "Cookie Cutter 모드에서 잘려 나가는 영역을 반전시킵니다."
+    },
+    {
+      "name": "X / Y / Z Axis",
+      "desc": "셰이프가 투영되는 방향의 기준 축을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "헬멧 표면에 로고 각인하기",
+      "steps": [
+        "헬멧 3D 모델과 로고 2D 셰이프를 준비합니다.",
+        "헬멧을 선택하고 Compound Objects의 ShapeMerge를 실행합니다.",
+        "Pick Operand로 로고 셰이프를 지정한 뒤 Mesh 모드로 설정합니다.",
+        "Editable Poly로 변환 후, 생성된 로고 모양의 폴리곤 면만 선택해 Extrude로 살짝 튀어나오게 만듭니다."
+      ]
+    },
+    {
+      "title": "금속 판재에 원형 구멍 뚫기",
+      "steps": [
+        "평평한 박스(Box) 오브젝트와 Circle 셰이프를 준비합니다.",
+        "박스를 선택하고 ShapeMerge를 실행한 뒤 Circle 셰이프를 Pick 합니다.",
+        "Parameters에서 Cookie Cutter를 선택하여 원형 구멍을 뚫습니다.",
+        "필요시 불필요한 안쪽 면을 삭제하여 관통된 구멍을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "셰이프가 3D 오브젝트와 너무 멀리 떨어져 있음 → 셰이프를 대상 오브젝트의 표면 바깝쪽 가깝게 이동시킨 후 다시 시도합니다.",
+    "투영 결과가 찌그러지거나 다른 방향으로 감 → Parameters에서 투영 축(Axis)이 올바른 뷰나 방향(예: Z Axis)으로 설정되었는지 확인합니다.",
+    "메시가 울퉁불퉁하고 엣지가 깨짐 → 대상 3D 오브젝트의 세그먼트(Segments)가 너무 부족하므로 세그먼트를 늘리거나 스무딩 그룹을 정리합니다."
+  ],
+  "related": [
+    "ProBoolean",
+    "Boolean",
+    "Editable Poly",
+    "Project Curve"
+  ],
+  "videos": [
+    {
+      "id": "EMzzDpItBCs",
+      "title": "Creating Custom Archways with Shape Merge & Smart Extrude in 3ds Max #shorts #3dsmax #shapemerge",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "plvBmOIcWRI",
+      "title": "3DS Max - Compound Objects - ShapeMerge",
+      "author": "Miled Rizk"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20ShapeMerge",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Mesh",
+    "Poly",
+    "D Shape",
+    "Geometry",
+    "Compound Objects"
+  ],
+  "at": "2026-10-31T01:39:31.582077+00:00"
+}

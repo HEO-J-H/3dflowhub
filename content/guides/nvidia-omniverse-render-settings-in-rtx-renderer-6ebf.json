@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-render-settings-in-rtx-renderer-6ebf",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Render settings in RTX renderer",
+  "title": "RTX 렌더 설정",
+  "summary": "NVIDIA Omniverse의 RTX 렌더러 설정을 통해 실시간 패스 트레이싱과 고품질 레이 트레이싱 결과물을 빠르게 얻습니다. 물리 기반 렌더링 환경에서 시각적 품질과 성능의 균형을 맞출 수 있습니다.",
+  "when": [
+    "건축 인테리어 시각화에서 정확한 반사와 전역 조명(Global Illumination)이 필요할 때",
+    "대규모 USD 씬을 실시간 레이 트레이싱으로 부드럽게 검토할 때",
+    "최종 렌더링 출력을 위해 노이즈가 적고 선명한 패스 트레이싱 결과물을 만들 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Kit 기반 앱(예: Isaac Sim, USD Composer)을 엽니다.",
+    "상단 메뉴에서 Window > Rendering > Render Settings를 선택해 패널을 엽니다.",
+    "Renderer 드롭다운 메뉴에서 Real-Time 대신 Path Tracing 또는 RTX Real-Time 모드를 선택합니다.",
+    "Samples per Pixel 값을 조절하여 렌더링 품질과 속도를 타협합니다.",
+    "Denoiser 옵션을 활성화하여 패스 트레이싱의 노이즈를 실시간으로 줄입니다."
+  ],
+  "params": [
+    {
+      "name": "Renderer",
+      "desc": "실시간 RTX 모드와 패스 트레이싱 모드 중 렌더링 방식을 선택합니다."
+    },
+    {
+      "name": "Samples per Pixel",
+      "desc": "픽셀당 샘플 수를 조절하여 이미지의 노이즈 수준을 결정합니다."
+    },
+    {
+      "name": "Max Bounces",
+      "desc": "빛의 반사 횟수를 설정하여 유리와 거울의 투명도와 반사 품질을 바꿉니다."
+    },
+    {
+      "name": "Denoiser",
+      "desc": "AI 기반 디노이저를 켜고 꺼서 적은 샘플 수에서도 깨끗한 화면을 만듭니다."
+    },
+    {
+      "name": "Firefly Filter",
+      "desc": "패스 트레이싱 중 발생하는 반짝이는 노이즈(파이어플라이)를 제거합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 렌더링 품질 높이기",
+      "steps": [
+        "Render Settings에서 Renderer를 Path Tracing으로 변경합니다.",
+        "Max Bounces 값을 높여 빛이 방 안 구석까지 자연스럽게 닿도록 합니다.",
+        "Denoiser를 켜서 렌더링 잔상을 빠르게 정리합니다."
+      ]
+    },
+    {
+      "title": "실시간 인터랙티브 작업 속도 최적화",
+      "steps": [
+        "Renderer를 RTX Real-Time으로 설정합니다.",
+        "Reflections와 Shadows 옵션을 조절해 프레임 레이트를 확보합니다.",
+        "복잡한 라이팅 영역은 샘플링 한도를 낮춰 뷰포트 반응 속도를 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "샘플 수(Samples per Pixel)를 무조건 너무 높게 설정함 → 렌더링 속도가 지나치게 느려지므로 Denoiser와 조합하여 적정 수준을 찾습니다.",
+    "Max Bounces 값을 너무 낮게 설정함 → 유리잔이나 거울 내부의 빛 반사가 검게 렌더링되므로 반사 횟수를 늘려줍니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "DLSS",
+    "PhysX"
+  ],
+  "videos": [
+    {
+      "id": "vTGI7NXe9g0",
+      "title": "Omniverse Create - Rendering Overview | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "jKoh5e5D_-g",
+      "title": "Best Render Settings for NVIDIA Omniverse USD Composer",
+      "author": "Markom3D"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Render%20settings%20in%20RTX%20renderer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Kit",
+    "Isaac Sim",
+    "USD Composer",
+    "Window",
+    "Rendering",
+    "Render Settings"
+  ],
+  "at": "2026-10-31T01:39:26.624962+00:00"
+}
