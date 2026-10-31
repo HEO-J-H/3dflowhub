@@ -1022,3 +1022,27 @@ def test_summarize_error_trends(monkeypatch, tmp_path):
     assert trends["VFX"].get("AI 한도 소진 (429)", 0) >= 1
     assert trends["3D DCC"].get("본문 길이 미달", 0) >= 1
     assert trends["3D DCC"].get("주제 무관/필터링됨", 0) >= 1
+
+
+def test_render_practical_content_metrics(monkeypatch):
+    import app
+    monkeypatch.setattr(app, "load_runs", lambda: [{"name": "3dflowhub auto curation", "conclusion": "success"}])
+    monkeypatch.setattr(app, "load_remote_memory", lambda: {"runs": [{"collected": 10, "saved": 8, "published": 5}]})
+    
+    # st.container와 st.metric 등의 호출을 모의 처리하여 예외 없이 렌더링 함수가 동작하는지 검증
+    class DummyContainer:
+        def __enter__(self): return self
+        def __exit__(self, exc_type, exc_val, exc_tb): pass
+
+    metrics_called = []
+    monkeypatch.setattr(app.st, "container", lambda border=True: DummyContainer())
+    monkeypatch.setattr(app.st, "markdown", lambda text, **kwargs: None)
+    monkeypatch.setattr(app.st, "caption", lambda text: None)
+    monkeypatch.setattr(app.st, "columns", lambda n: [type("Col", (), {"metric": lambda self, k, v: metrics_called.append((k, v))})() for _ in range(n)])
+
+    app.render_practical_content_metrics()
+    assert len(metrics_called) == 4
+    assert metrics_called[0] == ("누적 수집", "10건")
+    assert metrics_called[1] == ("저장 완료", "8건")
+    assert metrics_called[2] == ("발행 성공률", "80.0%")
+    assert metrics_called[3] == ("티스토리 발행", "5건")

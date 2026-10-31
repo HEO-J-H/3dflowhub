@@ -415,6 +415,25 @@ t_today, t_home, t_list, t_auto, t_draft, t_set = st.tabs(
     ["🏠 오늘", "📊 개요·수익", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "🛠 설정"])
 t_rev = t_home  # 탭 수를 줄이려고 '수익·방문'을 개요 아래로 합침
 
+def render_practical_content_metrics() -> None:
+    """실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 사이드바 또는 개요 영역에 시각적으로 요약 렌더링합니다."""
+    runs = load_runs()
+    mem = load_remote_memory()
+    total_collected = sum(int(r.get("collected", 0) or 0) for r in (mem.get("runs") or []))
+    total_saved = sum(int(r.get("saved", 0) or 0) for r in (mem.get("runs") or []))
+    total_published = sum(int(r.get("published", 0) or 0) for r in (mem.get("runs") or []))
+    success_rate = (total_saved / total_collected * 100) if total_collected > 0 else 0.0
+
+    with st.container(border=True):
+        st.markdown("**🎯 실무 3D 튜토리얼 및 스크립트 콘텐츠 성과 요약**")
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("누적 수집", f"{total_collected:,}건")
+        c2.metric("저장 완료", f"{total_saved:,}건")
+        c3.metric("발행 성공률", f"{success_rate:.1f}%")
+        c4.metric("티스토리 발행", f"{total_published:,}건")
+        st.caption("실무 Maya, 3ds Max, Blender 튜토리얼 및 스크립트 활용법 중심의 고CPC 콘텐츠 수집/발행 성공 통계입니다.")
+
+
 # ─────────────────────────── 개요 ───────────────────────────
 with t_home:
     if df.empty:
@@ -432,6 +451,8 @@ with t_home:
         m[4].metric("AI 남은 여력", f"{core.llm_capacity_left()}회",
                     help=f"오늘 사용 {core.llm_usage_today() + sum(core.llm_fallback_usage().values())}회 · "
                          f"리셋 {core.llm_reset_kst()} (한국 시간)")
+        
+        render_practical_content_metrics()
 
         with st.container(border=True):
             st.markdown("**최근 14일 수집·방문 추이** <span style='color:#f59e0b'>━ 방문(오른쪽 축)</span>",
