@@ -1,0 +1,97 @@
+{
+  "id": "nvidia-omniverse-camera-animation-with-sequencer-e509",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Camera animation with Sequencer",
+  "title": "시퀀서로 카메라 애니메이션",
+  "summary": "NVIDIA Omniverse Sequencer는 여러 카메라 컷과 애니메이션 트랙을 Timeline에서 비파괴적으로 편집하고 관리하는 툴입니다. 영화 같은 컷 편집과 시네마틱 연출을 만들 때 사용합니다.",
+  "when": [
+    "다양한 카메라 앵글을 전환하며 시네마틱 영상을 연출할 때",
+    "애니메이션 트랙, 라이팅, 오디오를 하나의 Timeline에서 동기화할 때",
+    "USD 기반 씬에서 다수의 카메라 컷과 샷을 효율적으로 관리할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 상단 메뉴에서 Window → Animation → Sequencer를 선택하여 패널을 엽니다.",
+    "Sequencer 패널 빈 곳에서 마우스 우클릭하여 Add → Level Sequence를 선택해 새 시퀀스를 생성합니다.",
+    "Viewport에 카메라를 배치하고(Create → Camera), Sequencer 패널에 드래그 앤 드롭하여 트랙을 추가합니다.",
+    "Sequencer 패널에서 Camera Cut 트랙에 해당 카메라를 할당하고 Timeline 마커를 이동시킵니다.",
+    "Timeline에서 키프레임을 생성(S 키)하거나 트랙 설정을 조정하여 애니메이션을 완성합니다.",
+    "Play 버튼을 눌러 카메라 컷 전환과 애니메이션을 미리 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Level Sequence",
+      "desc": "애니메이션과 카메라 컷이 저장되는 기본 시퀀스 컨테이너입니다."
+    },
+    {
+      "name": "Camera Cut Track",
+      "desc": "Timeline 재생 시 어떤 카메라 뷰를 보여줄지 결정하는 컷 편집 트랙입니다."
+    },
+    {
+      "name": "Transform Track",
+      "desc": "카메라의 위치, 회전, 스케일 애니메이션 키프레임을 기록하는 트랙입니다."
+    },
+    {
+      "name": "Playback Range",
+      "desc": "Timeline에서 재생 및 렌더링될 시작 프레임과 끝 프레임 구간입니다."
+    },
+    {
+      "name": "Frame Rate",
+      "desc": "시퀀스의 초당 프레임 수(FPS)를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 카메라 컷 편집",
+      "steps": [
+        "카메라 A와 카메라 B를 씬에 생성합니다.",
+        "Sequencer에 두 카메라를 추가하고 Camera Cut 트랙을 나눕니다.",
+        "프레임 구간별로 Camera Cut 트랙에 각 카메라를 할당하여 컷을 전환합니다."
+      ]
+    },
+    {
+      "title": "카메라 패닝 애니메이션",
+      "steps": [
+        "Sequencer에 카메라를 추가하고 Transform 트랙을 활성화합니다.",
+        "시작 프레임에서 카메라 위치에 키프레임을 입력합니다.",
+        "이동할 프레임으로 Timeline을 옮기고 카메라를 이동시킨 뒤 자동으로 키프레임을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Camera Cut 트랙에 카메라가 할당되지 않음 → Sequencer 설정에서 Camera Cut 슬롯에 활성 카메라를 드래그하여 연결합니다.",
+    "애니메이션 키프레임이 저장되지 않음 → 오토 키(Auto Key)가 켜져 있는지 확인하거나 수동으로 S 키를 눌러 키프레임을 추가합니다.",
+    "재생 구간이 잘못 설정됨 → Playback Range 핸들을 조정하여 원하는 프레임 구간을 지정합니다."
+  ],
+  "related": [
+    "USD",
+    "Animation",
+    "Render Settings",
+    "Stage"
+  ],
+  "videos": [
+    {
+      "id": "iVkEIq6-yLA",
+      "title": "How to Use the Sequencer and Animation Graph in NVIDIA Omniverse USD Composer",
+      "author": "Markom3D"
+    },
+    {
+      "id": "cZLw_pyBQxs",
+      "title": "NVIDIA Omniverse Machinima Sequencer Tutorial",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Camera%20animation%20with%20Sequencer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Window",
+    "Animation",
+    "Sequencer",
+    "Add",
+    "Level Sequence"
+  ],
+  "at": "2026-10-31T01:59:39.633007+00:00"
+}

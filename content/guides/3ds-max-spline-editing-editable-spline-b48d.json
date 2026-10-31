@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-spline-editing-editable-spline-b48d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Spline editing (Editable Spline)",
+  "title": "Editable Spline — 점·선 편집",
+  "summary": "Editable Spline은 3ds Max에서 선(Line) 형태의 요소를 생성하고 정점과 세그먼트를 정밀하게 편집하는 기본 3D 모델링 기능입니다.",
+  "when": [
+    "건축 도면을 기반으로 벽체나 몰딩 라인을 따야 할 때",
+    "파이프, 케이블, 로프 등 곡선 형태의 오브젝트를 만들 때",
+    "Lathe나 Extrude 모디파이어를 적용하기 위한 2D 프로파일을 그릴 때"
+  ],
+  "steps": [
+    "Create 패널에서 Shapes(셰이프) 탭을 선택하고 Line 버튼을 클릭합니다.",
+    "뷰포트에서 클릭하여 포인트를 생성하고 곡선을 그리며 선을 완성합니다.",
+    "오브젝트를 선택한 뒤 Modify 탭으로 이동하여 Editable Spline으로 변환하거나 마우스 우클릭 후 Convert to: Editable Spline을 선택합니다.",
+    "숫자 1, 2, 3 키를 눌러 각각 Vertex(정점), Segment(세그먼트), Spline 서브오브젝트 레벨로 진입합니다.",
+    "Modify 패널의 Geometry 롤아웃에서 Extrude나 Outline 등의 기능을 적용해 3차원 입체로 확장합니다."
+  ],
+  "params": [
+    {
+      "name": "Interpolation",
+      "desc": "스플레인의 부드러움을 결정하는 중간 단계(Steps) 수를 조절합니다."
+    },
+    {
+      "name": "Outline",
+      "desc": "선 형태를 유지한 채 안쪽이나 바깥쪽으로 간격을 두고 복제(두께 부여)합니다."
+    },
+    {
+      "name": "Weld",
+      "desc": "지정한 임계값(Threshold) 안에 있는 두 개 이상의 정점을 하나로 합칩니다."
+    },
+    {
+      "name": "Refine",
+      "desc": "선택한 세그먼트 위에 새로운 정점을 추가합니다."
+    },
+    {
+      "name": "Fillet",
+      "desc": "날카로운 모서리(정점)를 둥글게 부드럽게 깎아냅니다."
+    },
+    {
+      "name": "Chamfer",
+      "desc": "날카로운 모서리(정점)를 대각선 직선 형태로 잘라냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구부러진 파이프 제작",
+      "steps": [
+        "Line 툴로 파이프가 지나갈 경로 곡선을 뷰포트에 그립니다.",
+        "Modify 탭에서 Editable Spline의 Vertex 레벨(1)로 진입해 모서리에 Fillet을 적용합니다.",
+        "Modifier List에서 Lathe 또는 Sweep 모디파이어를 추가하여 입체 파이프 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "건축 외벽 평면도 선 정리",
+      "steps": [
+        "CAD 도면을 불러와 Line으로 외곽선을 따라 그립니다.",
+        "끊어진 선들은 Vertex 레벨에서 Weld 기능을 사용해 하나의 완벽한 닫힌 선(Closed Spline)으로 만듭니다.",
+        "Extrude 모디파이어를 적용하여 건물의 기본 높이를 올립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선이 닫히지 않아 Extrude 시 면이 깨짐 → Vertex 레벨에서 두 끝점을 선택하고 Connect 또는 Weld를 실행합니다.",
+    "스플레인이 렌더링되지 않음 → Rendering 롤아웃에서 Enable in Viewport와 Enable in Renderer를 체크합니다."
+  ],
+  "related": [
+    "Sweep",
+    "Lathe",
+    "Extrude",
+    "Renderable Spline"
+  ],
+  "videos": [
+    {
+      "id": "xGZdnuYQLyc",
+      "title": "3dsmax Tutorial - Beginners Guide #3 - Creating and Editing Splines",
+      "author": "TopHATTwaffle"
+    },
+    {
+      "id": "W9XXPNQdzqM",
+      "title": "3ds Max Splines Tutorial | Editable Spline, Bezier Handles & Fillet Tool",
+      "author": "Cre8tiverse Academy"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Spline%20editing%20%28Editable%20Spline%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Shapes",
+    "Line",
+    "Modify",
+    "Editable Spline",
+    "Convert"
+  ],
+  "at": "2026-10-31T01:59:43.831002+00:00"
+}

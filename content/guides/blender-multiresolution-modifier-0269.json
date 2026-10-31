@@ -1,0 +1,99 @@
+{
+  "id": "blender-multiresolution-modifier-0269",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스컬프트",
+  "name": "Multiresolution modifier",
+  "title": "Multires — 단계별 조각",
+  "summary": "Multiresolution 모디파이어는 클레이를 빚듯 모델의 세밀한 주름과 피부 질감을 단계별로 조각할 수 있는 도구입니다. Subsurf와 비슷하지만 조각 모드(Sculpt Mode)에서 높은 단계의 디테일을 직접 그릴 수 있습니다.",
+  "when": [
+    "캐릭터의 얼굴 주름이나 피부 텍스처를 스컬프팅할 때",
+    "하이폴리곤 오브젝트의 세부 디테일을 단계별로 나누어 관리하고 싶을 때",
+    "Baking을 위해 고해상도 메쉬의 디테일이 필요할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Properties 탭에서 Modifier(렌치 아이콘)를 클릭합니다.",
+    "Add Modifier 메뉴에서 Generate 분류의 Multiresolution을 선택합니다.",
+    "Sculpt Mode(Tab 또는 드롭다운)로 전환합니다.",
+    "Modifier 패널에서 Subdivide 버튼을 눌러 디비전 단계를 높입니다.",
+    "다양한 브러시(Sculpt 브러시)로 세밀한 디테일을 조각합니다."
+  ],
+  "params": [
+    {
+      "name": "Subdivide",
+      "desc": "메쉬를 더 세밀하게 나누어 조각 가능한 면을 추가합니다."
+    },
+    {
+      "name": "Levels Viewport",
+      "desc": "뷰포트 화면에 표시할 세분화 단계를 조절합니다."
+    },
+    {
+      "name": "Sculpt Levels",
+      "desc": "스컬프팅 작업 시 적용될 세분화 단계를 설정합니다."
+    },
+    {
+      "name": "Render",
+      "desc": "렌더링할 때 적용할 세분화 단계를 설정합니다."
+    },
+    {
+      "name": "Subdivide UV",
+      "desc": "UV 경계면도 함께 세분화하여 왜곡을 줄입니다."
+    },
+    {
+      "name": "Save Displacements",
+      "desc": "디스플레이스먼트 데이터를 외부 파일로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 피부 주름 표현",
+      "steps": [
+        "기본 두상 모델에 Multiresolution 모디파이어를 추가합니다.",
+        "Subdivide를 3~4단계로 높여 세밀한 면을 확보합니다.",
+        "Sculpt Mode에서 Draw나 Crease 브러시로 눈가와 입가 주름을 그립니다."
+      ]
+    },
+    {
+      "title": "갑옷의 디테일한 흠집과 질감",
+      "steps": [
+        "단순한 형태의 갑옷 메쉬에 Multiresolution을 적용합니다.",
+        "Subdivide를 올려 면을 충분히 늘립니다.",
+        "Scrape이나 Clay 브러시로 금속이 찍히고 긁힌 자국을 스컬프팅합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "낮은 단계에서 과도한 디테일 조각 → Subdivide 단계를 충분히 높인 후 세부 조각을 진행하세요.",
+    "뷰포트와 렌더 단계 설정 혼동 → 컴퓨터 사양에 맞춰 Levels Viewport와 Render 단계를 다르게 조절하세요.",
+    "스케일 값 미적용 → 모디파이어 적용 전 Object 모드에서 Ctrl+A > All Transforms를 실행하세요."
+  ],
+  "related": [
+    "Subdivision Surface",
+    "Remesh",
+    "Shrinkwrap",
+    "Displace"
+  ],
+  "videos": [
+    {
+      "id": "GRIih8SMaVY",
+      "title": "How to Use the MULTIRESOLUTION Modifier in Blender",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "Ls3jzAZ3zwE",
+      "title": "Multiresolution Modifier - Blender Tutorial for Beginners - Basics",
+      "author": "in2vert"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Multiresolution%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Generate",
+    "Multiresolution"
+  ],
+  "at": "2026-10-31T01:59:47.810012+00:00"
+}
