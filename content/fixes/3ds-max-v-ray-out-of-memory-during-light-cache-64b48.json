@@ -1,0 +1,40 @@
+{
+  "id": "3ds-max-v-ray-out-of-memory-during-light-cache-64b48",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "V-Ray: Out of memory during light cache",
+  "title": "V-Ray 메모리 부족 — Light Cache 단계",
+  "summary": "V-Ray 렌더링 중 라이트 캐시(Light Cache) 단계에서 시스템 메모리(RAM)가 부족하여 렌더링이 멈추거나 중단되는 오류입니다. 복잡한 장면이나 고해상도 설정에서 주로 발생합니다.",
+  "causes": [
+    "장면에 지나치게 많은 광원(Light)이나 프록시(Proxy) 데이터가 포함되어 있음",
+    "Light Cache 계산 시 설정된 서브다이드(Subdivs)나 샘플 사이즈 값이 너무 큼",
+    "렌더링 해상도가 매우 높거나 텍스처 메모리 사용량이 시스템 RAM을 초과함",
+    "다른 백그라운드 프로그램이 시스템 RAM을 과도하게 점유하고 있음"
+  ],
+  "steps": [
+    "Render Setup 창의 V-Ray 탭에서 Indirect Illumination으로 이동합니다.",
+    "Light Cache 드롭다운 메뉴에서 Subdivs 값을 낮게 조정합니다.",
+    "Sample size 값을 약간 높여 메모리 부담을 줄입니다.",
+    "Use camera path 옵션이 켜져 있다면 해제하여 불필요한 메모리 할당을 막습니다.",
+    "장면 내 숨겨진 불필요한 지오메트리나 사용하지 않는 대형 텍스처를 정리합니다."
+  ],
+  "check": [
+    "Render Setup에서 Light Cache 설정을 변경한 후 렌더링을 다시 실행하여 멈춤 현상 없이 완료되는지 확인합니다.",
+    "작업 관리자(Task Manager)의 성능 탭에서 RAM 사용량이 100%에 도달하지 않는지 모니터링합니다."
+  ],
+  "prevent": [
+    "V-Ray Proxy나 XRef Objects를 활용하여 무거운 지오메트리 데이터를 최적화합니다.",
+    "불필요한 고해상도 텍스처는 맵 크기를 줄이거나 V-Ray HDRI 맵의 메모리 제한 기능을 활용합니다.",
+    "물리적 시스템 RAM 용량이 부족할 경우 페이징 파일(Virtual Memory) 크기를 넉넉하게 설정합니다."
+  ],
+  "keywords": [
+    "V-Ray Out of memory",
+    "라이트 캐시 메모리 부족",
+    "3ds Max V-Ray 에러",
+    "Light cache 렌더링 튕김",
+    "V-Ray 최적화"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-31T09:00:34+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "3ds-max-application-error-3ds-max-has-encountered--76a80",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Application error: 3ds Max has encountered a problem and must close",
+  "title": "3ds Max 가 강제 종료될 때 점검 순서",
+  "summary": "Application error: 3ds Max has encountered a problem and must close 메시지는 3ds Max가 예기치 않은 오류로 인해 강제 종료될 때 발생하는 일반적인 크래시 오류입니다. 손상된 환경 설정, 플러그인 충돌, 또는 메모리 부족 등이 주요 원인입니다.",
+  "causes": [
+    "장면 파일(Scene file)의 손상 또는 특정 객체의 비정상적인 데이터",
+    "손상된 3ds Max 사용자 환경 설정(ENUM폴더 및 INI 파일)",
+    "호환되지 않거나 오래된 서드파티 플러그인 및 Script 충돌",
+    "그래픽 카드 Driver 문제 또는 하드웨어 가속 충돌"
+  ],
+  "steps": [
+    "작업 중인 파일이 손상되었는지 확인하기 위해 새 씬을 열고 File > Merge 기능을 사용해 이전 작업물의 요소를 하나씩 불러옵니다.",
+    "3ds Max 사용자 환경 설정을 초기화합니다. C:\\Users\\[사용자명]\\AppData\\Local\\Autodesk\\3ds Max 폴더를 찾아 해당 버전의 폴더 이름을 변경하거나 삭제합니다.",
+    "그래픽 카드 Driver를 최신 버전으로 업데이트하고, Display Driver를 Nitrous에서 다른 Driver로 변경해 실행해 봅니다.",
+    "최근에 설치한 플러그인이나 MAXScript가 있다면 Plugins 폴더에서 잠시 제거한 후 3ds Max를 실행합니다.",
+    "Windows 제어판 또는 Autodesk Desktop App을 통해 3ds Max 최신 Update 패치와 버그픽스를 설치합니다."
+  ],
+  "check": [
+    "3ds Max가 오류 메시지 없이 정상적으로 실행되는지 확인합니다.",
+    "문제가 되었던 씬 파일을 다시 열었을 때 강제 종료 현상이 발생하지 않는지 테스트합니다."
+  ],
+  "prevent": [
+    "작업 중 정기적으로 File > Save As를 이용해 버전을 나누어 저장하고 Auto Backup 기능을 활성화합니다.",
+    "사용하는 플러그인과 3ds Max 버전을 항상 최신 안정 버전으로 유지합니다."
+  ],
+  "keywords": [
+    "3ds Max 강제종료",
+    "Application error 3ds Max",
+    "맥스 튕김 현상",
+    "3ds Max 환경설정 초기화",
+    "맥스 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-31T09:00:31+00:00"
+}
