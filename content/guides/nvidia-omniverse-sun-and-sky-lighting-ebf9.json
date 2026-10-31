@@ -1,0 +1,100 @@
+{
+  "id": "nvidia-omniverse-sun-and-sky-lighting-ebf9",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Sun and sky lighting",
+  "title": "태양·하늘 조명",
+  "summary": "NVIDIA Omniverse에서 현실적인 태양광과 하늘 분위기를 실시간으로 연출하는 라이팅 시스템입니다. 물리적으로 정확한 대기 산란을 기반으로 야외 환경을 빠르게 구축할 수 있습니다.",
+  "when": [
+    "야외 건축 시각화나 대규모 풍경 렌더링을 진행할 때",
+    "시간대별(일출, 정오, 일몰 등) 자연스러운 빛의 변화를 주고 싶을 때",
+    "HDRI 맵 없이도 디테일한 대기 효과와 그림자를 만들고 싶을 때"
+  ],
+  "steps": [
+    "Omniverse View포트 상단의 Create 메뉴를 엽니다.",
+    "Light 서브메뉴로 이동합니다.",
+    "SunLight 또는 Sun and Sky를 선택하여 씬에 추가합니다.",
+    "Stage 패널에서 생성된 SunLight를 선택합니다.",
+    "Property 패널(Details)에서 Intensity, Sun Direction, Haze 등의 파라미터를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "태양광의 전체적인 밝기와 광량을 조절합니다."
+    },
+    {
+      "name": "Sun Direction",
+      "desc": "태양의 위치와 각도를 조절하여 그림자의 방향을 바꿉니다."
+    },
+    {
+      "name": "Haze",
+      "desc": "대기 중의 안개 및 먼지 농도를 조절하여 빛의 산란 효과를 바꿉니다."
+    },
+    {
+      "name": "Albedo",
+      "desc": "대기 반사율을 조절하여 전체적인 하늘의 색감에 영향을 줍니다."
+    },
+    {
+      "name": "Ground Color",
+      "desc": "바닥에서 반사되는 빛의 색상을 설정합니다."
+    },
+    {
+      "name": "Enable",
+      "desc": "태양광과 하늘 시스템의 활성화 여부를 토글합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노을지는 석양 연출",
+      "steps": [
+        "SunLight를 생성하고 Sun Direction을 낮게 설정하여 태양을 지평선 근처로 이동시킵니다.",
+        "Haze 값을 높여 붉고 부드러운 대기 산란 효과를 만듭니다.",
+        "Intensity를 약간 낮추어 은은한 저녁 분위기를 완성합니다."
+      ]
+    },
+    {
+      "title": "한낮의 건축물 외관 라이팅",
+      "steps": [
+        "SunLight를 생성하고 Sun Direction을 머리 위 수직에 가깝게 배치합니다.",
+        "Intensity를 높여 강렬하고 선명한 정오의 직사광선을 표현합니다.",
+        "Shadow Softness를 조절해 그림자의 날카로움을 알맞게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛이 너무 강하거나 하얗게 날아감 → Intensity 값을 낮추거나 Exposure 노출 설정을 확인하세요.",
+    "그림자가 너무 딱딱하게 나옴 → 태양 크기(Angle 또는 Size) 옵션을 찾아 값을 살짝 키워 부드러운 그림자를 만드세요.",
+    "실내 씬인데 야외 태양광만 보임 → 실내에서는 Dome Light나 내부 인공 조명을 추가로 배치하고 SunLight 강도를 줄이세요."
+  ],
+  "related": [
+    "Dome Light",
+    "Physical Camera",
+    "RTX Renderer",
+    "Path Tracer"
+  ],
+  "videos": [
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    },
+    {
+      "id": "sRxqmJux7BM",
+      "title": "NVIDIA Omniverse Machinima Overview",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Sun%20and%20sky%20lighting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse View",
+    "Create",
+    "Light",
+    "SunLight",
+    "Sun",
+    "Sky"
+  ],
+  "at": "2026-10-31T01:19:27.615064+00:00"
+}

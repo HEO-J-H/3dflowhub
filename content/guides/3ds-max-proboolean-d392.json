@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-proboolean-d392",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "ProBoolean",
+  "title": "ProBoolean — 깔끔한 불리언",
+  "summary": "ProBoolean은 3ds Max에서 여러 오브젝트를 합치거나 빼고 교차 영역을 남기는 등 강력한 불리언 연산을 수행하는 복합 객체입니다. 비파괴적인 방식으로 메쉬를 깔끔하게 편집할 수 있습니다.",
+  "when": [
+    "하우징이나 기계 부품에 원형 구멍이나 슬롯을 정확히 뚫을 때",
+    "복잡한 두 오브젝트를 결합하여 하나의 매끄러운 덩어리로 만들 때",
+    "불규칙한 형태의 단면이나 교차 영역을 잘라내어 새로운 형태를 만들 때"
+  ],
+  "steps": [
+    "메인 툴바 또는 Create 패널에서 Geometry → Compound Objects를 선택합니다.",
+    "기준이 될 베이스 오브젝트를 선택합니다.",
+    "Command Panel에서 ProBoolean 버튼을 클릭합니다.",
+    "Operation(Substraction, Union, Intersection 등)을 원하는 연산 방식으로 설정합니다.",
+    "Start Boolean 버튼을 누르고 컷팅할 다른 오브젝트를 뷰포트에서 클릭합니다."
+  ],
+  "params": [
+    {
+      "name": "Union",
+      "desc": "두 오브젝트를 하나로 결합합니다."
+    },
+    {
+      "name": "Subtraction",
+      "desc": "베이스 오브젝트에서 오퍼랜드 오브젝트를 빼냅니다."
+    },
+    {
+      "name": "Intersection",
+      "desc": "두 오브젝트가 겹치는 교차 영역만 남깁니다."
+    },
+    {
+      "name": "Imprint",
+      "desc": "오브젝트가 만나는 경계면에 모서리 라인을 생성합니다."
+    },
+    {
+      "name": "Operand List",
+      "desc": "불리언 연산에 참여하는 오브젝트 목록을 관리하고 수정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 패널에 원형 구멍 뚫기",
+      "steps": [
+        "패널 메쉬와 실린더(구멍용)를 준비합니다.",
+        "패널 선택 후 Create → Compound Objects → ProBoolean을 실행합니다.",
+        "Substraction 모드를 확인하고 Start Boolean을 눌러 실린더를 클릭합니다."
+      ]
+    },
+    {
+      "title": "두 덩어리 결합하기",
+      "steps": [
+        "결합할 두 오브젝트를 교차하도록 배치합니다.",
+        "첫 번째 오브젝트를 선택하고 ProBoolean을 켭니다.",
+        "Union 모드로 설정한 뒤 두 번째 오브젝트를 클릭해 합칩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 표면이 겹쳐서 면이 깨지는 현상 → 오퍼랜드 위치를 살짝 이동하여 면이 완전히 관통하도록 수정합니다.",
+    "불리언 연산 후 폴리곤 토폴로지가 지저분해짐 → Edit Poly를 추가해 불필요한 엣지를 정리하거나 Retopology를 진행합니다."
+  ],
+  "related": [
+    "Boolean",
+    "ProCutter",
+    "Edit Poly",
+    "Slice"
+  ],
+  "videos": [
+    {
+      "id": "LTDjKt84caQ",
+      "title": "ProBoolean Basics in 3ds Max – Easy Tricks for Beginners! 🔥",
+      "author": "3D Studio Max Tutorials"
+    },
+    {
+      "id": "6g6Kw2Qiy7w",
+      "title": "How to use proboolean in 3ds max",
+      "author": "Designversity"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20ProBoolean",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "Compound Objects",
+    "Command Panel",
+    "ProBoolean"
+  ],
+  "at": "2026-10-31T01:19:31.087134+00:00"
+}

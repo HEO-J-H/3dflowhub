@@ -1,0 +1,99 @@
+{
+  "id": "blender-wave-modifier-5913",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Wave modifier",
+  "title": "Wave — 물결",
+  "summary": "Wave modifier는 오브젝트의 지오메트리를 물결처럼 주기적으로 출렁이게 만드는 디포머입니다. 잔잔한 수면의 파동이나 깃발이 바람에 날리는 효과를 절차적으로 생성할 수 있습니다.",
+  "when": [
+    "잔잔한 바다나 물가의 출렁이는 지형을 표현할 때",
+    "깃발이나 커튼이 바람에 흔들리는 모습을 만들 때",
+    "SF적인 에너지 파동이나 음파 시각화 효과를 낼 때"
+  ],
+  "steps": [
+    "출렁임을 표현할 충분한 해상도의 Plane 또는 Grid 오브젝트를 생성합니다.",
+    "Properties 패널에서 Modifier(렌치) 탭을 엽니다.",
+    "Add Modifier를 클릭하고 Deform 분류에서 Wave를 선택합니다.",
+    "Viewport와 Render의 Level 값을 조절하여 메쉬의 디테일을 맞춥니다.",
+    "Time 파라미터를 조절하거나 애니메이션 키를 주어 물결이 움직이게 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Height",
+      "desc": "물결의 높낮이 진폭을 조절합니다."
+    },
+    {
+      "name": "Width",
+      "desc": "파동의 너비와 주파수를 결정합니다."
+    },
+    {
+      "name": "Speed",
+      "desc": "시간에 따른 파동의 전파 속도를 설정합니다."
+    },
+    {
+      "name": "Narrowness",
+      "desc": "파동의 마루와 골 사이의 좁고 날카로운 정도를 조절합니다."
+    },
+    {
+      "name": "Time Offset",
+      "desc": "애니메이션 시작 시점을 시간 단위로 밀어줍니다."
+    },
+    {
+      "name": "Vertex Group",
+      "desc": "특정 버텍스 그룹에만 파동 효과를 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "잔잔한 수면 만들기",
+      "steps": [
+        "Subdivide가 충분히 된 Plane을 생성합니다.",
+        "Wave modifier를 추가하고 Height를 낮게 설정합니다.",
+        "Time 값에 #frame / 10 같은 Driver를 넣어 자동 애니메이션을 줍니다."
+      ]
+    },
+    {
+      "title": "바람에 날리는 깃발",
+      "steps": [
+        "세로로 긴 깃발 메쉬를 준비합니다.",
+        "깃발의 고정될 왼쪽 변을 Vertex Group으로 지정합니다.",
+        "Wave modifier의 Vertex Group에 해당 그룹을 연결하고 X축 방향으로 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬 세그먼트가 너무 적어 물결이 꺾이는 현상 → Edit Mode에서 Subdivide를 실행해 폴리곤을 늘려줍니다.",
+    "스케일이 틀어져 파동이 찌그러지는 현상 → Object 모드에서 Ctrl+A를 누르고 Apply Scale을 실행합니다."
+  ],
+  "related": [
+    "Displace",
+    "Ocean",
+    "Cloth",
+    "Noise"
+  ],
+  "videos": [
+    {
+      "id": "GPimysZmxD8",
+      "title": "How to Use Blender's Wave Modifier (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "kXfwEDy932E",
+      "title": "How to make a Wave Model in Blender 4.3 #blender #tutorial #b3d",
+      "author": "Pineapple Studio"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Wave%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Plane",
+    "Grid",
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Deform"
+  ],
+  "at": "2026-10-31T01:19:34.803113+00:00"
+}
