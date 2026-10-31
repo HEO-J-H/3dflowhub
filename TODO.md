@@ -41,3 +41,7 @@
 - [ ] (agent:보류) [p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DCC, 게임 엔진, VFX, AI 3D 핵심 키워드 매칭 범위를 정교화하여 불필요한 차단을 줄이고 콘텐츠 발행 속도를 개선합니다. (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) [p-d96dee4b84|운영·비용] 방문자 오류 제보: 기타: 기타 — 블렌더 주방 내용 — 페이지를 확인해 고치거나 내립니다: https://heo-j-h.github.io/3dflowhub/p/2026-10-21-2b7ebbbab4a69d83.html
 - [x] (agent) [p-999eb2ef34|콘텐츠] AI 3D 및 가우시안 스플래팅 가이드 비중 확대: AI 3D와 Gaussian Splatting 관련 실무 가이드 및 정리 콘텐츠의 제작 비율을 높입니다.
+
+- [x] (agent) core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가
+- [x] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가
+- [ ] (agent) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가
