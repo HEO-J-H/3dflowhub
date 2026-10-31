@@ -138,3 +138,18 @@ def test_union_conflicts_keeps_both_sides():
     out = core.union_conflicts(t)
     assert "<<<<<<<" not in out and "=======" not in out and ">>>>>>>" not in out
     assert out.count("b(): 일") == 1 and "a(): 일" in out and "c(): 일" in out
+
+
+def test_off_topic_is_word_based_and_3d_aware():
+    import core
+    assert core.off_topic_reason("New iPhone 18 review") == "iphone"
+    assert core.off_topic_reason("Best headphones for editing") == ""          # phone 부분 문자열 아님
+    assert core.off_topic_reason("Unreal Engine console commands for Nanite") == ""
+    assert core.off_topic_reason("Blender add-on renders on laptop GPU fast") == ""  # 3D 핵심 어휘 2개 이상
+
+
+def test_rss_image_and_priority():
+    import core
+    assert core.rss_image({"media_thumbnail": [{"url": "https://x/a.jpg"}]}) == "https://x/a.jpg"
+    assert core.rss_image({"summary": '<p><img src="https://x/b.png"></p>'}) == "https://x/b.png"
+    assert core.rss_image({}) == ""

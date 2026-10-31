@@ -1072,6 +1072,20 @@ def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
     return picked
 
 
+def rss_image(entry) -> str:
+    """RSS 항목의 대표 이미지 (media:content·media:thumbnail·enclosure·본문 첫 img)."""
+    for key in ("media_content", "media_thumbnail"):
+        for m in entry.get(key) or []:
+            u = (m or {}).get("url", "")
+            if u.startswith("http"):
+                return u
+    for enc in entry.get("enclosures") or entry.get("links") or []:
+        if str(enc.get("type", "")).startswith("image/") and str(enc.get("href", "")).startswith("http"):
+            return enc["href"]
+    m = re.search(r'<img[^>]+src=["\'](https?://[^"\']+)', entry.get("summary", "") or "")
+    return m.group(1) if m else ""
+
+
 def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     keywords = generate_keywords(domains)
     candidates: list[dict] = []
@@ -1105,7 +1119,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 if not link or url_hash(link) in seen:
                     continue
                 title = e.get("title", "").strip()
-                if not title or any(kw in title.lower() for kw in ["하드웨어", "스마트폰", "hardware", "smartphone", "phone"]):
+                if not title or off_topic_reason(title):
                     RUN_ERRORS.append("prefiltered")
                     continue
                 published = e.get("published_parsed") or e.get("updated_parsed")
@@ -1123,10 +1137,13 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "url": link,
                     "hint_domain": d,
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
+                    "rss_image": rss_image(e),
                 })
     candidates = filter_off_topic_feeds(candidates)
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
+    # 이미지 있는 글 우선 (출처 교차 순서는 유지하는 안정 정렬) — 이미지 없는 글은 클릭·체류가 낮음
+    candidates.sort(key=lambda c: not c.get("rss_image"))
     mem_rr = load_memory()
     mem_rr["seed_rr"] = seed_rr
     _save_json(MEMORY_PATH, mem_rr)
@@ -1258,18 +1275,33 @@ def normalize_summary(data: dict, item: dict) -> dict:
     return data
 
 
+OFF_TOPIC_WORDS = ["hardware", "smartphone", "phone", "iphone", "galaxy", "ps5", "xbox", "nintendo switch",
+                   "laptop", "gpu review", "cpu", "processor", "하드웨어", "스마트폰", "스마트 폰", "핸드폰",
+                   "그래픽카드 리뷰", "프로세서"]
+STRONG_3D = ["blender", "3ds max", "3dsmax", "maya", "houdini", "zbrush", "substance", "unreal", "unity", "godot",
+             "cinema 4d", "omniverse", "openusd", "render", "renderer", "shader", "modeling", "modelling", "rigging",
+             "vfx", "nanite", "lumen", "gaussian splat", "nerf", "geometry nodes", "maxscript", "3d"]
+
+
+def off_topic_reason(text: str) -> str:
+    """주제 밖 단어가 있으면 그 단어 — 단, 3D 핵심 어휘가 2개 이상이면 3D 글로 보고 통과 ("".
+    예전엔 부분 문자열이라 headphone·switching·console 명령 같은 3D 글까지 막았음)."""
+    t = f" {text.lower()} "
+    hit = next((w for w in OFF_TOPIC_WORDS if (re.search(rf"(?<![a-z0-9]){re.escape(w)}(?![a-z0-9])", t)
+                                              if w.isascii() else w in t)), "")
+    if not hit:
+        return ""
+    strong = sum(1 for w in STRONG_3D if re.search(rf"(?<![a-z0-9]){re.escape(w)}(?:s|ed|ing)?(?![a-z0-9])", t))
+    return "" if strong >= 2 else hit
+
+
 def filter_off_topic_feeds(candidates: list[dict]) -> list[dict]:
-    """수집 단계에서 하드웨어, 스마트폰, 순수 게임 등 오프토픽 키워드가 포함된 아이템을 사전에 엄격히 차단합니다."""
-    off_topic_keywords = [
-        "hardware", "smartphone", "phone", "iphone", "galaxy", "console", "ps5", "xbox",
-        "nintendo", "switch", "laptop", "gpu review", "processor", "cpu", "하드웨어", "스마트폰",
-        "스마트 폰", "핸드폰", "콘솔", "그래픽카드 리뷰", "프로세서"
-    ]
+    """수집 단계 주제 밖 차단 (하드웨어·스마트폰 리뷰 등). 3D 작업과 관련된 글은 통과."""
     filtered = []
     for c in candidates:
-        text = f"{c.get('title', '')} {c.get('rss_summary', '')} {c.get('url', '')}".lower()
-        if any(kw in text for kw in off_topic_keywords):
-            log.info("오프토픽 키워드 감지로 사전 차단: %s", c.get("title", ""))
+        why = off_topic_reason(f"{c.get('title', '')} {c.get('rss_summary', '')}")
+        if why:
+            log.info("주제 밖(%s) 사전 차단: %s", why, c.get("title", ""))
             RUN_ERRORS.append("off-topic")
             continue
         filtered.append(c)
