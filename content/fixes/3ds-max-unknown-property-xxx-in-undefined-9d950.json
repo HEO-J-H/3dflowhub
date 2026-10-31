@@ -1,0 +1,37 @@
+{
+  "id": "3ds-max-unknown-property-xxx-in-undefined-9d950",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "-- Unknown property: \"xxx\" in undefined",
+  "title": "MAXScript Unknown property in undefined — 대상이 없을 때",
+  "summary": "MAXScript 실행 중 존재하지 않거나 현재 메모리에 로드되지 않은 undefined 상태의 객체 속성에 접근하려고 할 때 발생하는 오류입니다.",
+  "causes": [
+    "변수에 할당된 3ds Max 노드가 삭제되었거나 유효하지 않은 경우",
+    "존재하지 않는 프로퍼티(Property)나 커스텀 어트리뷰트를 호출한 경우",
+    "Script 실행 시점이 노드가 생성되기 전인 경우"
+  ],
+  "steps": [
+    "MAXScript Listener(F11)를 열어 오류가 발생한 줄의 코드를 확인합니다.",
+    "속성을 호출하기 전에 해당 노드가 존재하는지 if (isValidNode obj) 문으로 확인합니다.",
+    "변수 선언부에서 객체가 올바르게 지정되었는지 확인하고,필요시 다시 선택(SelectionSet)합니다.",
+    "오타로 인해 잘못된 프로퍼티 이름을 입력하지 않았는지 영문 철자를 검토합니다."
+  ],
+  "check": [
+    "MAXScript 코드를 재실행했을 때 Listener 창에 오류 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "뷰포트에서 대상 객체가 의도한 대로 정상 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "Script 작성 시 항상 유효성 검사(Validity Check) 구문을 포함합니다.",
+    "씬 객체를 참조하는 변수는 사용 직전에 다시 한번 갱신합니다."
+  ],
+  "keywords": [
+    "MAXScript 오류",
+    "Unknown property",
+    "undefined 에러",
+    "3ds Max MAXScript",
+    "MAXScript 디버깅"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-31T02:59:36+00:00"
+}

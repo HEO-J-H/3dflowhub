@@ -1,0 +1,37 @@
+{
+  "id": "3ds-max-type-error-call-needs-function-or-class-go-64a78",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "-- Type error: Call needs function or class, got: undefined",
+  "title": "MAXScript Call needs function or class, got: undefined",
+  "summary": "MAXScript 실행 중 존재하지 않거나 선언되지 않은 함수나 클래스를 호출하려고 할 때 발생하는 타입 에러입니다.",
+  "causes": [
+    "오타로 인해 함수나 클래스의 이름이 잘못 입력되었습니다.",
+    "호출하려는 커스텀 함수나 외부 Script가 정의되기 전에 실행되었습니다.",
+    "사용하려는 플러그인이나 구조체(Struct)가 메모리에 로드되지 않았습니다."
+  ],
+  "steps": [
+    "Script Listener 창(F11)을 열어 에러가 발생한 줄의 코드를 확인합니다.",
+    "호출한 함수나 클래스의 영문 스펠링과 대소문자가 정확한지 검사합니다.",
+    "함수가 정의된 코드가 해당 호출 코드보다 앞서 위치하도록 순서를 수정합니다.",
+    "구조체나 외부 파일을 불러오는 경우 include 또는 dotNet.loadAssembly 경로와 로드 여부를 확인합니다."
+  ],
+  "check": [
+    "Script Listener에서 코드를 다시 실행했을 때 해당 에러 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "정의된 함수가 올바른 반환값을 정상적으로 출력하는지 테스트합니다."
+  ],
+  "prevent": [
+    "MAXScript 작성 시 자주 사용하는 함수는 별도의 구조체(Struct)나 라이브러리로 관리합니다.",
+    "함수 호출 전에 해당 변수나 클래스가 undefined가 아닌지 조건문으로 검사하는 예외 처리를 추가합니다."
+  ],
+  "keywords": [
+    "MAXScript 에러",
+    "Call needs function",
+    "undefined 에러",
+    "3ds Max MacroScript 오류",
+    "타입 에러 수정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-10-31T03:00:02+00:00"
+}
