@@ -413,6 +413,48 @@ TERM_STOPWORDS = {"구글", "애플", "엔비디아", "어도비", "마이크로
                   "사이버펑크", "포트나이트", "스타워즈", "텔레콤"}
 
 
+def calculate_cpc_score_distribution() -> dict[str, any]:
+    """최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영합니다."""
+    domain_counts: dict[str, int] = {}
+    keyword_cpc_scores: dict[str, float] = {}
+    total_posts = 0
+
+    if core.POSTS_DIR.exists():
+        for f in core.POSTS_DIR.glob("*.json"):
+            p = core._load_json(f, {})
+            domain = p.get("domain", "기타")
+            domain_counts[domain] = domain_counts.get(domain, 0) + 1
+            total_posts += 1
+
+            # 고CPC 키워드 가중치 부여 (소프트웨어, 하드웨어, 렌더링, 튜토리얼 등)
+            tags = p.get("tags", [])
+            if isinstance(tags, str):
+                tags = [t.strip() for t in tags.split(",") if t.strip()]
+            
+            # 본문 내용 또는 제목에 등장하는 고CPC 핵심 키워드 매칭
+            text_corpus = f"{p.get('title_ko', '')} {p.get('summary', '')} {' '.join(tags)}".lower()
+            high_cpc_keywords = ["3ds max", "maya", "v-ray", "corona", "houdini", "unreal engine", "zbrush", "substance"]
+            
+            for kw in high_cpc_keywords:
+                if kw in text_corpus:
+                    keyword_cpc_scores[kw] = keyword_cpc_scores.get(kw, 0.0) + 1.5
+                else:
+                    keyword_cpc_scores[kw] = keyword_cpc_scores.get(kw, 0.0) + 0.5
+
+    # 도메인별 잠재 고CPC 점수 산출
+    domain_scores = {}
+    for dom, count in domain_counts.items():
+        # 도메인 가중치 반영 (3D DCC, Game Engine, VFX, AI 3D 등)
+        weight = 1.2 if dom in ("3D DCC", "VFX") else 1.0
+        domain_scores[dom] = round(count * weight, 2)
+
+    return {
+        "total_analyzed": total_posts,
+        "domain_cpc_distribution": domain_scores,
+        "keyword_cpc_potential": {k: round(v, 2) for k, v in sorted(keyword_cpc_scores.items(), key=lambda item: item[1], reverse=True)}
+    }
+
+
 def summarize_error_trends() -> dict[str, dict[str, int]]:
     """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 유형들을 도메인별·유형별로 집계하여 리포트 형태로 반환."""
     runs = core.load_memory().get("runs", [])

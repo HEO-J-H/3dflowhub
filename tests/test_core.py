@@ -974,6 +974,31 @@ def test_analyze_3d_content_distribution(monkeypatch, tmp_path):
     assert report["percentages"]["VFX"] == 25.0
 
 
+def test_calculate_cpc_score_distribution(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+    
+    core._save_json(tmp_path / "posts" / "p1.json", {
+        "domain": "3D DCC",
+        "title_ko": "Autodesk 3ds Max 및 Maya 실무 튜토리얼",
+        "summary": "V-Ray 렌더링 및 ZBrush 모델링 워크플로우 가이드",
+        "tags": ["3ds max", "maya", "v-ray"]
+    })
+    core._save_json(tmp_path / "posts" / "p2.json", {
+        "domain": "Game Engine",
+        "title_ko": "Unreal Engine 5 게임 개발 가이드",
+        "summary": "기본적인 엔진 설정 방법",
+        "tags": ["unreal engine"]
+    })
+    
+    cpc_report = evolve.calculate_cpc_score_distribution()
+    assert cpc_report["total_analyzed"] == 2
+    assert "3D DCC" in cpc_report["domain_cpc_distribution"]
+    assert "3ds max" in cpc_report["keyword_cpc_potential"]
+    assert cpc_report["keyword_cpc_potential"]["3ds max"] > 0
+
+
 def test_summarize_error_trends(monkeypatch, tmp_path):
     import evolve
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
