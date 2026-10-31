@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-lighting-with-dome-light-and-hdri-cc6b",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Lighting with dome light and HDRI",
+  "title": "돔 라이트·HDRI 조명",
+  "summary": "NVIDIA Omniverse에서 Dome Light와 HDRI를 활용해 물리적으로 정확하고 자연스러운 주변광과 배경을 만드는 방법입니다. 실사와 같은 조명 환경을 빠르게 구축할 수 있습니다.",
+  "when": [
+    "실내외 씬에 자연스러운 자연광과 환경 반사를 빠르게 적용하고 싶을 때",
+    "복잡한 라이트 셋업 없이 현실적인 주변 조명(Ambient Lighting)을 만들고 싶을 때",
+    "HDRI 맵을 통해 제품이나 건축 렌더링에 사실적인 반사(Reflection)를 연출하고 싶을 때"
+  ],
+  "steps": [
+    "Omniverse Create 또는 View 탭을 엽니다.",
+    "상단 메뉴에서 Create → Light → Dome Light를 선택해 씬에 추가합니다.",
+    "Stage 패널에서 생성된 Dome Light를 선택합니다.",
+    "Details 패널에서 Intensity 값을 조절해 전체적인 밝기를 설정합니다.",
+    "Texture 파라미터에서 파일 아이콘을 눌러 준비된 HDRI 이미지를 불러옵니다.",
+    "Rotate 파라미터를 조절해 씬의 빛 방향과 그림자 위치를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "돔 라이트의 전체적인 광원 밝기를 조절합니다."
+    },
+    {
+      "name": "Texture",
+      "desc": "배경과 조명으로 사용할 HDRI(EXR, HDR 등) 이미지를 지정합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "빛의 노출 값을 EV 단위로 증감하여 밝기를 세밀하게 조정합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "광원 전체에 특정 색상을 더해 분위기를 연출합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "HDRI 배경과 빛의 방향을 회전시켜 그림자 위치를 맞춥니다."
+    },
+    {
+      "name": "Enable Tone Mapping",
+      "desc": "High Dynamic Range 이미지를 화면에 자연스럽게 압축 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 제품 렌더링 세팅",
+      "steps": [
+        "Create → Light → Dome Light를 생성합니다.",
+        "야외 풍경이 담긴 고해상도 HDRI 맵을 Texture에 로드합니다.",
+        "Rotate를 조절하여 제품 전면에 햇빛이 오도록 정렬합니다."
+      ]
+    },
+    {
+      "title": "실내 건축 시각화 조명",
+      "steps": [
+        "창가 쪽에 Dome Light를 배치합니다.",
+        "흐린 날씨나 스튜디오 느낌의 부드러운 HDRI를 적용합니다.",
+        "Intensity를 낮추고 Rect Light를 창문마다 추가해 실내 밝기를 보완합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "배경은 밝은데 모델이 어두움 → Intensity 값이 너무 낮거나 HDRI의 실제 노출이 부족한 경우이므로 Intensity 또는 Exposure를 높입니다.",
+    "그림자 방향이 어색함 → HDRI 이미지 안의 태양 위치와 3D 모델의 방향이 맞지 않는 경우이므로 Rotate 파라미터로 회전시켜 맞춥니다.",
+    "반사 표면에 화이트홀이나 노이즈가 발생함 → 저해상도 HDRI를 사용했거나 샘플링 부족 때문이므로 32비트 고해상도 EXR 맵을 사용합니다."
+  ],
+  "related": [
+    "Rect Light",
+    "Distant Light",
+    "Path Tracing",
+    "Render Settings"
+  ],
+  "videos": [
+    {
+      "id": "yjuebpxmTA0",
+      "title": "Omniverse: Domelighting Indoor",
+      "author": "TwinSim"
+    },
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Lighting%20with%20dome%20light%20and%20HDRI",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-31T01:09:20.964547+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "3ds-max-boolean-compound-object-d3d6",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Boolean compound object",
+  "title": "Boolean — 합치기·빼기(복합 오브젝트)",
+  "summary": "Boolean 컴파운드 오브젝트는 두 개 이상의 오브젝트를 합치거나 빼고 교차 영역을 남겨 복잡한 형태를 빠르게 만드는 기능입니다. 마치 찰흙을 더하고 파내는 것처럼 직관적으로 구멍을 뚫거나 결합할 때 사용합니다.",
+  "when": [
+    "박스나 원기둥에 문고리나 창문 같은 구멍을 정확하게 뚫을 때",
+    "서로 다른 형태의 메쉬를 하나로 합쳐서 새로운 구조물을 만들 때",
+    "두 오브젝트가 겹치는 교차 영역(Intersection)만 남기고 싶을 때"
+  ],
+  "steps": [
+    "Create 패널에서 Geometry(지오메트리) 탭으로 이동합니다.",
+    "드롭다운 메뉴를 StandardPrimitives에서 Compound Objects로 변경합니다.",
+    "기준이 될 첫 번째 오브젝트를 선택하고 Boolean 버튼을 클릭합니다.",
+    "Pick Operand 버튼을 누르고 뺄셈이나 덧셈을 할 두 번째 오브젝트를 뷰포트에서 클릭합니다.",
+    "Parameters에서 Operation(Union, Subtraction 등) 방식을 선택하여 결과 형태를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Union",
+      "desc": "두 오브젝트를 하나로 합쳐서 외곽선을 통합합니다."
+    },
+    {
+      "name": "Subtraction (A-B)",
+      "desc": "첫 번째 오브젝트(A)에서 두 번째 오브젝트(B)가 겹치는 부분을 빼냅니다."
+    },
+    {
+      "name": "Intersection",
+      "desc": "두 오브젝트가 서로 겹치는 교차 영역만 남깁니다."
+    },
+    {
+      "name": "Operand List",
+      "desc": "불리언 연산에 참여한 오브젝트 목록을 관리하고 수정합니다."
+    },
+    {
+      "name": "Update",
+      "desc": "연산 결과를 실시간으로 갱신하거나 수동으로 업데이트합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽에 창문 구멍 뚫기",
+      "steps": [
+        "벽 모델(A)과 창문 크기의 박스(B)를 준비합니다.",
+        "벽(A)을 선택한 뒤 Create 패널의 Compound Objects → Boolean을 실행합니다.",
+        "Pick Operand B를 누르고 창문 박스(B)를 클릭합니다.",
+        "Subtraction 옵션이 적용되어 벽에 깔끔한 구멍이 뚫립니다."
+      ]
+    },
+    {
+      "title": "기계 부품 결합하기",
+      "steps": [
+        "기본 판넬 메쉬와 돌출될 원기둥 메쉬를 배치합니다.",
+        "판넬을 선택하고 Boolean 컴파운드 오브젝트를 활성화합니다.",
+        "Union 옵션을 선택하고 원기둥을 피킹하여 하나의 오브젝트로 결합합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구멍이 뚫리지 않고 면이 깨짐 → 두 오브젝트의 면(Face)이 완전히 겹치거나 노멀(Normal) 방향이 뒤집혀 있는지 확인하고 위치를 살짝 이동합니다.",
+    "불리언 연산 후 수정이 안 됨 → Modifier 패널에서 오퍼랜드(Operand) 하위 레벨로 진입하여 개별 오브젝트의 위치와 크기를 수정할 수 있음을 기억합니다."
+  ],
+  "related": [
+    "ProBoolean",
+    "Edit Poly",
+    "Slice Plane",
+    "ProCutter"
+  ],
+  "videos": [
+    {
+      "id": "o4jS7NYQmt0",
+      "title": "058 3ds Max Boolean Compound Objects Explained: Cutting Holes in Walls the Right Way",
+      "author": "CONSTRUCTION MANAGEMENT"
+    },
+    {
+      "id": "gTF1VxXR6dw",
+      "title": "3ds Max Tutorial: Compound Objects, Boolean",
+      "author": "Kory Bieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Boolean%20compound%20object",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "StandardPrimitives",
+    "Compound Objects",
+    "Boolean"
+  ],
+  "at": "2026-10-31T01:09:24.824060+00:00"
+}

@@ -1,0 +1,98 @@
+{
+  "id": "blender-cast-modifier-2709",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Cast modifier",
+  "title": "Cast — 구·원통 모양으로",
+  "summary": "Cast modifier는 선택한 오브젝트나 정점을 구체(Sphere), 실린더(Cylinder), 또는 평면(Cuboid) 형태로 강제로 변형시키는 기능입니다. 찰흙을 특정 틀에 맞춰 꾹 눌러 형태를 잡는 것과 같습니다.",
+  "when": [
+    "각진 로우폴리곤 모델을 부드러운 원형이나 구체 형태로 바꿀 때",
+    "캐릭터나 소품의 디테일을 유지하면서 전체적인 실루엣을 둥글게 다듬을 때",
+    "여러 오브젝트를 일정한 기하학적 형태(구 또는 실린더)로 통일감 있게 맞출 때"
+  ],
+  "steps": [
+    "1. 변형할 오브젝트를 선택하고, Properties 패널에서 Modifier (렌치 아이콘) 탭을 엽니다.",
+    "2. Add Modifier 버튼을 누르고 Deform 분류에서 Cast를 선택합니다.",
+    "3. Factor 값을 조절하여 변형의 강도(0.0에서 1.0)를 설정합니다.",
+    "4. Type 드롭다운에서 Sphere, Cylinder, Cuboid 중 원하는 목표 형태를 선택합니다.",
+    "5. 필요시 Vertex Group을 지정하여 특정 영역에만 Cast 효과를 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Factor",
+      "desc": "변형이 적용되는 세기(강도)를 조절합니다. 1.0에 가까울수록 지정한 형태에 완전히 밀착됩니다."
+    },
+    {
+      "name": "Type",
+      "desc": "목표로 하는 변형 형태(Sphere, Cylinder, Cuboid)를 선택합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "캐스트가 적용될 기준 반경을 설정합니다. (0으로 설정 시 자동 계산)"
+    },
+    {
+      "name": "Size",
+      "desc": "목표 형태의 크기를 제한하거나 고정합니다."
+    },
+    {
+      "name": "Use X / Y / Z",
+      "desc": "변형을 적용할 축(Axis)을 개별적으로 켜고 끕니다."
+    },
+    {
+      "name": "Vertex Group",
+      "desc": "특정 버텍스 그룹에만 가중치를 주어 부분적으로 Cast를 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "각진 모형을 구(Sphere) 형태로 둥글게 만들기",
+      "steps": [
+        "1. 서브디비전이나 세그먼트가 충분한 큐브 오브젝트를 준비합니다.",
+        "2. Cast modifier를 추가하고 Type을 Sphere로 설정합니다.",
+        "3. Factor 값을 1.0으로 올려 완벽한 구 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "실린더 형태로 파이프 정렬하기",
+      "steps": [
+        "1. 울퉁불퉁한 파이프 형태의 메쉬를 선택합니다.",
+        "2. Cast modifier를 추가하고 Type을 Cylinder로 변경합니다.",
+        "3. Z축(또는 길쭉한 축) 체크를 해제하여 길이는 유지하고 단면만 원형으로 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 세그먼트가 부족해 오브젝트가 깨져 보임 → Edit Mode로 들어가서 Loop Cut(Ctrl+R)이나 Subdivide를 이용해 면을 더 추가합니다.",
+    "오브젝트가 의도치 않은 방향으로 찌그러짐 → Object Mode에서 Apply Scale(Ctrl+A -> Scale)을 먼저 실행해 스케일을 1.0으로 초기화합니다."
+  ],
+  "related": [
+    "Shrinkwrap",
+    "Subdivision Surface",
+    "Displace",
+    "Smooth"
+  ],
+  "videos": [
+    {
+      "id": "lKHbpvUKjrM",
+      "title": "How to Use the CAST MODIFIER in Blender!",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "Cjni-RAcfaE",
+      "title": "Blender Cast Modifier Explained",
+      "author": "Rescan"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cast%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Deform",
+    "Cast"
+  ],
+  "at": "2026-10-31T01:09:28.941476+00:00"
+}
