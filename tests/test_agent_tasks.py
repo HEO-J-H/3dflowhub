@@ -213,6 +213,13 @@ def test_ai_allocation_weights_for_guides():
     assert plan.get("guides_now", 4) >= 2
 
 
+def test_ai_3d_gaussian_splatting_catalog_included():
+    import guides
+    titles = [t[3] for t in guides.CATALOG]
+    assert any("가우시안 스플래팅" in t for t in titles)
+    assert any("AI 이미지" in t for t in titles)
+
+
 def test_manager_blocks_kitchen_feed_action():
     import manager
     act = {"type": "add_feed", "domain": "3D DCC", "url": "https://example.com/kitchen/rss"}

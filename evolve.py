@@ -768,8 +768,8 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
         try:
             import guides
             # AI 할당 비중 재조정: news 0.25, guides 0.5, roundups 0.25
-            guides_count = plan.get("guides_now", 4) if auto else 4
-            made = guides.write_guides(guides_count, gate=False) if auto else guides.write_guides(4)
+            guides_count = plan.get("guides_now", 6) if auto else 6
+            made = guides.write_guides(guides_count, gate=False) if auto else guides.write_guides(6)
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "guides": made}])[-30:]
         except Exception as e:
