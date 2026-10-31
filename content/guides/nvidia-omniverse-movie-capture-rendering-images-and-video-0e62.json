@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-movie-capture-rendering-images-and-video-0e62",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Movie Capture (rendering images and video)",
+  "title": "Movie Capture — 이미지·영상 출력",
+  "summary": "NVIDIA Omniverse Movie Capture는 뷰포트에서 실시간 레이 트레이싱 기반의 고화질 이미지와 애니메이션 영상을 렌더링하는 도구입니다. 복잡한 패스 트레이싱 결과를 빠르게 파일로 출력할 때 사용합니다.",
+  "when": [
+    "실시간 뷰포트 품질 그대로 4K 이상의 고해상도 시퀀스 영상을 추출할 때",
+    "포토 실현적인 패스 트레이싱(Path Tracing) 결과물을 이미지 시퀀스로 저장할 때",
+    "애니메이션 Timeline을 기반으로 깨끗한 프레임 단위 영상을 렌더링할 때"
+  ],
+  "steps": [
+    "Omniverse 앱 상단 메뉴에서 Window → Render → Movie Capture를 엽니다.",
+    "Capture Type에서 ImageSequence 또는 Video 형식을 선택합니다.",
+    "Output Path에서 결과물이 저장될 폴더 경로와 파일 이름을 지정합니다.",
+    "Resolution과 Framerate 등 기본 해상도와 프레임 레이트를 설정합니다.",
+    "Start Capture 버튼을 눌러 렌더링을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Capture Type",
+      "desc": "이미지 시퀀스(ImageSequence) 또는 비디오(Video) 중 출력 형식을 결정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "렌더링할 이미지나 영상의 가로세로 해상도를 설정합니다."
+    },
+    {
+      "name": "Framerate",
+      "desc": "초당 프레임 수(FPS)를 지정하여 애니메이션 재생 속도를 맞춥니다."
+    },
+    {
+      "name": "Path Tracer",
+      "desc": "활성화 시 실시간 레이 트레이싱보다 훨씬 사실적인 빛과 반사를 계산하여 렌더링합니다."
+    },
+    {
+      "name": "Accumulation Frames",
+      "desc": "프레임당 샘플링 횟수를 늘려 패스 트레이싱의 노이즈를 줄입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 인테리어 4K 정지화면 추출",
+      "steps": [
+        "Path Tracer 모드를 켜서 실내 조명과 반사를 사실적으로 맞춥니다.",
+        "Movie Capture 패널에서 Capture Type을 Image로 변경합니다.",
+        "Resolution을 3840x2160(4K)으로 설정하고 Capture Image를 누릅니다."
+      ]
+    },
+    {
+      "title": "제품 디자인 턴테이블 영상 제작",
+      "steps": [
+        "제품 회전 애니메이션 Timeline이 올바르게 재생되는지 확인합니다.",
+        "Movie Capture 패널에서 Video 형식을 선택하고 프레임 레이트를 30fps로 맞춥니다.",
+        "Start Capture를 누른 뒤 애니메이션이 끝날 때까지 대기합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 심하게 발생함 → Accumulation Frames 값을 높이거나 Path Tracer 샘플링 설정을 확인합니다.",
+    "영상이 끊기거나 속도가 이상함 → 프로젝트 Timeline의 Framerate와 Movie Capture의 Framerate 값이 일치하는지 확인합니다."
+  ],
+  "related": [
+    "Path Tracer",
+    "USD Composer",
+    "Render Settings",
+    "Time Line"
+  ],
+  "videos": [
+    {
+      "id": "sI2RA7f6VUY",
+      "title": "Omniverse Photo/Video Render Tutorial",
+      "author": "AUT0M4T1C_JACK"
+    },
+    {
+      "id": "RZtsklEJxMY",
+      "title": "NVIDIA OmniVerse Body Capture",
+      "author": "Scenegraph Studios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Movie%20Capture%20%28rendering%20images%20and%20video%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse",
+    "Window",
+    "Render",
+    "Movie Capture"
+  ],
+  "at": "2026-10-31T01:51:35.831887+00:00"
+}

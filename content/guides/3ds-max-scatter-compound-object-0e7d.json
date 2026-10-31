@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-scatter-compound-object-0e7d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Scatter compound object",
+  "title": "Scatter — 표면에 오브젝트 뿌리기",
+  "summary": "Scatter compound object는 하나의 오브젝트를 기준 표면에 무작위로 복제하여 배치하는 3ds Max의 컴파운드 기능입니다. 숲속의 나무나 바닥의 조약돌처럼 반복되는 요소를 효율적으로 채울 때 사용합니다.",
+  "when": [
+    "넓은 지형에 수많은 나무, 풀, 돌 등의 자연물을 무작위로 배치할 때",
+    "도시 배경에 가로등, 벤치, 인도 블록 등을 대량으로 깔아둘 때",
+    "캐릭터 의상이나 프랍에 단추, 리벳 같은 반복 요소를 대량 복제할 때"
+  ],
+  "steps": [
+    "Create 패널 → Geometry 탭 → 드롭다운에서 Compound Objects를 선택합니다.",
+    "배포의 기준이 될 표면(Surface) 오브젝트를 뷰포트에서 생성합니다.",
+    "배포할 개체(Scatter Object)를 따로 준비합니다.",
+    "기준 오브젝트를 선택한 상태에서 Scatter 버튼을 클릭합니다.",
+    "Pick Operand 버튼을 클릭하고 뷰포트에서 배포할 오브젝트를 클릭하여 지정합니다.",
+    "Modify 패널에서 Distributor Source와 Scatter Objects 옵션을 조절하여 개체 수와 밀도를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Distribution Object",
+      "desc": "오브젝트가 배치될 기준이 되는 표면(Surface)을 지정합니다."
+    },
+    {
+      "name": "Use Distribution Object",
+      "desc": "기준 표면의 면 전체에 걸쳐 오브젝트를 분산 배치합니다."
+    },
+    {
+      "name": "Duplicates",
+      "desc": "선택한 오브젝트를 기준 표면 위에 복제할 총 개수를 설정합니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "배치되는 오브젝트의 회전(Rotation), 크기(Scale), 이동(Translation)의 무작위 변동 값을 조절합니다."
+    },
+    {
+      "name": "Display",
+      "desc": "뷰포트에서 산란된 오브젝트를 박스 형태나 전체 메시 형태로 표시할지 결정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 배치 패턴의 시드 값을 변경하여 배치를 다채롭게 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "들판에 풀 배치하기",
+      "steps": [
+        "평면(Plane) 지형과 간단한 풀 모델을 준비합니다.",
+        "평면을 선택하고 Compound Objects의 Scatter를 적용합니다.",
+        "Pick Operand로 풀 모델을 지정한 후 Duplicates 값을 500으로 높입니다.",
+        "Transform 메뉴에서 Rotation Z값을 360도로 주어 자연스럽게 회전시킵니다."
+      ]
+    },
+    {
+      "title": "해변가 모래사장에 조약돌 깔기",
+      "steps": [
+        "지형 메시와 작은 돌 오브젝트를 각각 생성합니다.",
+        "Scatter 컴파운드로 돌을 지형 위에 배치합니다.",
+        "Transform 메뉴의 Scale에서 무작위 크기(Randomize Scale)를 활성화하여 크기 차이를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 적용되지 않아 엉뚱한 크기로 뿌려짐 → XForm 초기화(Reset XForm) 후 다시 시도합니다.",
+    "뷰포트가 너무 무거워짐 → Display 옵션에서 Mesh 대신 Box로 변경하여 가볍게 작업합니다."
+  ],
+  "related": [
+    "Spacing Tool",
+    "ProOptimizer",
+    "Particle Flow",
+    "Editable Poly"
+  ],
+  "videos": [
+    {
+      "id": "22EHYUwhTis",
+      "title": "3DS MAX 2022 Full Course .. Scatter Compound Object",
+      "author": "ANIMATION TRICKS"
+    },
+    {
+      "id": "EIASQqdFDxE",
+      "title": "Scatter Compound  Object in 3ds Max | Create Beautiful Design",
+      "author": "QUICK 3ds"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Scatter%20compound%20object",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "Compound Objects",
+    "Surface",
+    "Scatter Object"
+  ],
+  "at": "2026-10-31T01:51:40.001709+00:00"
+}

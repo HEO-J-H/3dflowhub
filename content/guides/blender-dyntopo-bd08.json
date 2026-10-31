@@ -1,0 +1,87 @@
+{
+  "id": "blender-dyntopo-bd08",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스컬프트",
+  "name": "Dyntopo",
+  "title": "Dyntopo — 동적 토폴로지",
+  "summary": "Dyntopo(Dynamic Topology)는 브러시가 닿는 부분에만 실시간으로 폴리곤을 쪼개거나 합쳐주는 스컬프팅 기능입니다. 세그먼트 밀도를 미리 고민할 필요 없이 점흙을 빚듯 자유롭게 형태를 만들 수 있습니다.",
+  "when": [
+    "컨셉 아트 단계에서 인체나 크리처의 형태를 자유롭게 스케치하듯 잡을 때",
+    "디테일한 주름이나 뿔 같은 돌출부를 기존 면의 부족함 없이 파고들고 싶을 때",
+    "블록아웃 이후 디테일 스컬프팅으로 넘어가는 과도기 과정에서"
+  ],
+  "steps": [
+    "스컬프팅할 오브젝트를 선택하고 상단 모드 메뉴에서 Sculpt Mode로 전환합니다 (단축키 Ctrl+Tab 또는 드롭다운).",
+    "상단 헤더 메뉴의 Dyntopo 체크박스를 클릭해 활성화합니다 (경고창이 뜨면 확인).",
+    "Dyntopo 드롭다운 메뉴에서 Detail Setting을 Detail Flood Fill 등으로 설정합니다.",
+    "브러시 크기(F)와 세부 밀도(Detail Size)를 조정한 뒤, 뷰포트에서 메시를 드래그하여 스컬프팅합니다.",
+    "Ctrl+R 또는 Flood Fill 버튼을 눌러 전체 메시의 디테일을 한 번에 균일하게 정리합니다."
+  ],
+  "params": [
+    {
+      "name": "Detail Type",
+      "desc": "폴리곤을 쪼개는 기준 방식을 선택합니다 (Relative Detail 권장)."
+    },
+    {
+      "name": "Detail Size",
+      "desc": "생성될 폴리곤 조각의 크기를 정합니다. 값이 작을수록 촘촘해집니다."
+    },
+    {
+      "name": "Refine Method",
+      "desc": "브러시가 지나갈 때 면을 쪼개고 합치는 연산 방식을 결정합니다."
+    },
+    {
+      "name": "Detail Flood Fill",
+      "desc": "설정된 디테일 크기 값에 맞춰 전체 오브젝트의 폴리곤 밀도를 균일하게 재배치합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "몬스터의 뿔이나 돌출부 만들기",
+      "steps": [
+        "기본 구체(Sphere)에서 Dyntopo를 켜고 Draw 브러시로 뿔의 대략적인 위치를 당겨냅니다.",
+        "Detail Size를 더 작게 낮추어 뾰족한 끝부분의 폴리곤 밀도를 높입니다.",
+        "Snake Hook 브러시로 뿔을 길게 늘리며 세부 형태를 잡습니다."
+      ]
+    },
+    {
+      "title": "얼굴 표정과 피부 주름 스컬프팅",
+      "steps": [
+        "기본 인체 모델의 Sculpt Mode에서 Dyntopo를 활성화합니다.",
+        "Crease 브러시를 이용해 눈가와 입가 주변에 깊은 선을 긋습니다.",
+        "Inflate 브러시로 광대나 볼의 볼륨감을 유기적으로 살려냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Detail Size를 너무 작게 설정해 폴리곤이 과도하게 늘어남 → Detail Size 값을 높여 적정 수준으로 유지하거나 Simplify 브러시 사용",
+    "스컬프팅 후 UV 전개나 애니메이션 리깅이 깨짐 → Dyntopo는 고밀도 비정형 메시를 만들므로 반드시 리토폴로지(Retopology) 작업 후 진행"
+  ],
+  "related": [
+    "Multiresolution",
+    "Remesh",
+    "Voxel Remesh",
+    "Sculpt Mode"
+  ],
+  "videos": [
+    {
+      "id": "m21APVQmZ2g",
+      "title": "How to Use the Dyntopo Feature in Blender's Sculpt Mode (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "EQZfgcIZ9tw",
+      "title": "Why Sculpting is Not Working in Blender (Dyntopo & Remesh)",
+      "author": "Michael Bullo"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dyntopo",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Sculpt Mode",
+    "Dyntopo"
+  ],
+  "at": "2026-10-31T01:51:44.773175+00:00"
+}
