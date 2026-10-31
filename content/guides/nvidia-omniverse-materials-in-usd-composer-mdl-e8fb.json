@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-materials-in-usd-composer-mdl-e8fb",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Materials in USD Composer (MDL)",
+  "title": "MDL 재질 입히기",
+  "summary": "NVIDIA Omniverse USD Composer에서 MDL(Material Definition Language)을 사용하여 물리적으로 정확한 재질을 적용하고 실시간으로 편집하는 방법입니다. 실제 물리 법칙을 따르는 사실적인 표면을 구현합니다.",
+  "when": [
+    "건축 시각화에서 실제와 같은 유리, 금속, 콘크리트 재질을 표현할 때",
+    "USD 기반 Pipeline 여러 3D DCC 툴 간의 재질 호환성이 필요할 때",
+    "RTX 실시간 패스 트레이싱 환경에서 물리적으로 정확한 라이팅과 반사를 보고 싶을 때"
+  ],
+  "steps": [
+    "USD Composer를 실행하고 Stage 창에서 재질을 적용할 3D 모델을 선택합니다.",
+    "Content 창 또는 Materials 탭을 열어 원하는 MDL 재질을 찾습니다.",
+    "재질을 드래그하여 뷰포트의 모델이나 상단의 Material 바인딩 영역에 드롭합니다.",
+    "Property 창에서 선택한 MDL 재질의 파라미터를 조정합니다.",
+    "Viewport 상단의 렌더러를 RTX Real-Time 또는 RTX Path Traced로 전환하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 색상이나 알베도를 설정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 반사의 선명도를 바꿉니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속성과 비금속성을 전환하여 반사 특성을 결정합니다."
+    },
+    {
+      "name": "Index of Refraction",
+      "desc": "유리나 물 같은 투명 재질의 굴절률을 설정합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "노멀 맵을 연결하여 표면의 미세한 입체감을 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 파이프 재질 적용",
+      "steps": [
+        "Materials에서 Metal 카테고리를 엽니다.",
+        "Brushed Aluminum MDL 재질을 파이프 모델에 드래그하여 적용합니다.",
+        "Property 창에서 Roughness 값을 높여 거친 금속 느낌을 냅니다."
+      ]
+    },
+    {
+      "title": "투명 유리 창문 설정",
+      "steps": [
+        "Glass 카테고리에서 Clear Glass MDL을 창문 Mesh에 드롭합니다.",
+        "Index of Refraction 값을 1.5로 맞춰 유리의 굴절을 표현합니다.",
+        "RTX Path Traced 렌더러로 전환하여 빛의 투과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "재질이 적용되었는데 회색으로 보임 → RTX Path Traced 렌더러나 라이팅 환경이 켜져 있는지 확인합니다.",
+    "텍스처 스케일이 너무 크거나 작음 → UV 좌표 스케일이나 MDL의 Tiling 파라미터를 조절합니다."
+  ],
+  "related": [
+    "USD",
+    "RTX Renderer",
+    "Substance Material",
+    "Stage"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "4kwQ4xTGjoU",
+      "title": "Installation Guide for NVDIA Omniverse USD Composer for CC5 | Character Creator 5 Tutorial",
+      "author": "Reallusion"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Materials%20in%20USD%20Composer%20%28MDL%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "USD Composer",
+    "Stage",
+    "Content",
+    "Materials",
+    "MDL"
+  ],
+  "at": "2026-10-31T00:39:09.618691+00:00"
+}

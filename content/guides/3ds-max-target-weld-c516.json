@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-target-weld-c516",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Target Weld",
+  "title": "Target Weld — 점 끌어 붙이기",
+  "summary": "Target Weld는 두 개의 버텍스를 하나로 합쳐주는 필수 편집 기능입니다. 마우스 드래그 한 번으로 버텍스를 정확히 붙일 수 있습니다.",
+  "when": [
+    "모델링 중 끊어진 버텍스를 서로 연결할 때",
+    "Extrude나 Bridge 작업 후 남은 구멍이나 틈을 메울 때",
+    "복잡한 토폴로지를 정리하고 불필요한 버텍스를 줄일 때"
+  ],
+  "steps": [
+    "3ds Max에서 오브젝트를 선택하고 Modifier List에서 Edit Poly 또는 Editable Poly를 적용합니다.",
+    "Ribbon 메뉴나 Command Panel의 Modify 탭에서 Sub-object Level을 Vertex(단축키 1)로 변경합니다.",
+    "Edit Vertices 롤아웃에서 Target Weld 버튼을 클릭하거나 단축키 Alt + W를 누릅니다.",
+    "첫 번째 버텍스를 클릭한 채 마우스를 드래그하여 붙이고자 하는 두 번째 버텍스 위에서 마우스 버튼을 놓습니다.",
+    "작업이 끝나면 Target Weld 버튼을 다시 클릭하거나 우클릭하여 해제합니다."
+  ],
+  "params": [
+    {
+      "name": "Target Weld",
+      "desc": "마우스로 드래그한 첫 번째 버텍스를 대상 버텍스로 이동시켜 하나로 합칩니다."
+    },
+    {
+      "name": "Weld (Selected)",
+      "desc": "지정된 웰드 임계값(Threshold) 내에 있는 모든 선택된 버텍스를 한 번에 합칩니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "버텍스끼리 서로 붙을 수 있는 최대 허용 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실수로 끊어진 면 연결하기",
+      "steps": [
+        "Vertex 레벨에서 끊어진 두 버텍스 중 하나를 선택합니다.",
+        "Target Weld를 활성화합니다.",
+        "첫 번째 버텍스를 드래그하여 인접한 버텍스에 붙입니다."
+      ]
+    },
+    {
+      "title": "실린더 모서리 틈새 메우기",
+      "steps": [
+        "오픈된 엣지나 버텍스 주변의 틈을 확인합니다.",
+        "Target Weld로 열려 있는 버텍스를 인접한 정렬된 버텍스로 끌어다 붙입니다.",
+        "MeshSmooth나 TurboSmooth를 적용해 표면이 매끄러운지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Target Weld가 안 먹히는 경우 → 버텍스가 서로 다른 오브젝트(Element)에 있는지 확인하고 Attach 후 시도합니다.",
+    "의도치 않은 버텍스가 붙는 경우 → 뷰포트를 확대하여 정확한 버텍스를 클릭하고 드래그했는지 확인합니다."
+  ],
+  "related": [
+    "Collapse",
+    "Connect",
+    "Bridge",
+    "Remove"
+  ],
+  "videos": [
+    {
+      "id": "K_dEX6UGf3o",
+      "title": "How Target Weld Works in 3Ds Max – Quick Tip #shorts  #3dsmax #tips",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "IhuAcya4Xbw",
+      "title": "How To Weld Vertices In 3ds Max? Vertex Target Welding / Tutorial",
+      "author": "Saintpix Studio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Target%20Weld",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Modifier List",
+    "Edit Poly",
+    "Editable Poly",
+    "Ribbon",
+    "Command Panel"
+  ],
+  "at": "2026-10-31T00:39:12.978174+00:00"
+}

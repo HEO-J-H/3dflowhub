@@ -1,0 +1,89 @@
+{
+  "id": "blender-triangulate-modifier-711c",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Triangulate modifier",
+  "title": "Triangulate — 삼각면으로",
+  "summary": "Blender의 Triangulate modifier는 사각형이나 오각형 이상의 다각형(N-gon) 메시를 삼각형으로 자동 변환합니다. 게임 엔진 내보내기 전이나 시뮬레이션의 안정성을 높일 때 주로 사용합니다.",
+  "when": [
+    "Unreal Engine이나 Unity로 3D 모델을 내보내기 전 사각 폴리곤을 삼각형으로 정리할 때",
+    "Cloth나 Fluid 같은 물리 시뮬레이션에서 계산 오류를 줄이고 싶을 때",
+    "Subdivision Surface 적용 전후로 특정 영역의 면 분할을 강제하고 싶을 때"
+  ],
+  "steps": [
+    "메시 오브젝트를 선택하고 Properties 패널에서 Modifier 탭(렌치 아이콘)을 클릭합니다.",
+    "Add Modifier 버튼을 누르고 Edit 분류에서 Triangulate를 선택합니다.",
+    "Modifier 스택에서 옵션을 조정하여 삼각형 분할 방식을 설정합니다.",
+    "필요시 Apply 버튼을 눌러 모디파이어를 메시로 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Quad Method",
+      "desc": "사각형 면을 어떤 방식으로 두 개의 삼각형으로 쪼갤지 결정합니다."
+    },
+    {
+      "name": "N-gon Method",
+      "desc": "오각형 이상의 다각형(N-gon)을 삼각형으로 변환하는 방식을 정합니다."
+    },
+    {
+      "name": "Keep Normal",
+      "desc": "삼각형화 과정에서 기존 노멀 방향이 뒤틀리지 않도록 유지합니다."
+    },
+    {
+      "name": "Min Vertices",
+      "desc": "지정한 정점 개수 이상의 다각형에만 모디파이어를 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 엔진용 최적화 모델 준비",
+      "steps": [
+        "하이폴리곤 모델에 Triangulate modifier를 추가합니다.",
+        "Quad Method를 Beauty로 설정하여 깔끔한 삼각형 흐름을 만듭니다.",
+        "FBX 형식으로 내보내기 전에 모디파이어를 적용(Apply)합니다."
+      ]
+    },
+    {
+      "title": "클로스 시뮬레이션 안정화",
+      "steps": [
+        "천 시뮬레이션을 적용할 평면(Plane) 오브젝트를 준비합니다.",
+        "Subdivide로 기본 면을 나눈 뒤 Triangulate modifier를 추가합니다.",
+        "시뮬레이션 실행 시 찢어짐 현상이 줄어드는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Subdivision Surface보다 위에 두는 실수 → Triangulate modifier는 가급적 스택 하단이나 내보내기 직전에 배치해야 와이어프레임이 깨지지 않습니다.",
+    "적용 후 UV 왜곡을 확인하지 않는 실수 → 면이 삼각형으로 쪼개지면서 기존 UV 맵에 미세한 뒤틀림이 생길 수 있으므로 텍스처를 함께 확인해야 합니다."
+  ],
+  "related": [
+    "Weighted Normal",
+    "Decimate",
+    "Subdivision Surface",
+    "Remesh"
+  ],
+  "videos": [
+    {
+      "id": "nMcnR3LjfX8",
+      "title": "How to use Triangulate Modifier In Blender Tutorial",
+      "author": "JohnCreates"
+    },
+    {
+      "id": "2osBVKTJ4Y8",
+      "title": "Why would you use the Blender TRIANGULATE Modifier? (Quick tutorial here!)",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Triangulate%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Edit",
+    "Triangulate"
+  ],
+  "at": "2026-10-31T00:39:16.866284+00:00"
+}
