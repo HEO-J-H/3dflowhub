@@ -1,0 +1,51 @@
+{
+  "id": "9f676899b4",
+  "domain": "AI 3D",
+  "category": "NVIDIA DSX",
+  "host": "3ds Max",
+  "lang": "maxscript",
+  "title": "3ds Max 디지털 트윈 데이터 정리 유틸리티",
+  "problem": "AI 생성 디지털 트윈 데이터를 가져올 때 발생하는 복잡한 오브젝트 구조와 불필요한 메타데이터를 정리합니다. 실무 Pipeline 수동으로 반복하던 씬 정리 작업을 단 한 번의 클릭으로 자동화합니다.",
+  "pipeline": [
+    {
+      "tool": "3ds Max",
+      "action": "씬 내 모든 지오메트리 오브젝트 선택 및 단일화"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "불필요한 애니메이션 키 및 커스텀 어트리뷰트 제거"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "스케일 값 통일 및 피벗 포인트 센터 정렬"
+    },
+    {
+      "tool": "3ds Max",
+      "action": "결과물 FBX 포맷 내보내기를 위한 준비 상태 구축"
+    }
+  ],
+  "script": "macroScript DigitalTwinCleanup\ncategory:\"3DFlowHub\"\ntooltip:\"디지털 트윈 씬 정리\"\n(\n\tfn cleanSceneObjects = (\n\t\tlocal allObjs = objects as array\n\t\tfor obj in allObjs do (\n\t\t\tif superclassof obj == GeometryClass then (\n\t\t\t\tselect obj\n\t\t\t\tresetTransform obj\n\t\t\t\tcollapseStack obj\n\t\t\t)\n\t\t)\n\t\tdeletetag = undefined\n\t\tmessageBox \"디지털 트윈 오브젝트 정리가 완료되었습니다.\" title:\"완료\"\n\t)\n\t\n\ton execute do (\n\t\tundo \"Digital Twin Cleanup\" on\n\t\t(\n\t\t\tcleanSceneObjects()\n\t\t)\n\t)\n)",
+  "install": [
+    "3ds Max 상단의 Script 메뉴에서 Scripting Editor를 엽니다.",
+    "새로운 MAXScript 파일(.ms)을 생성하고 제공된 코드를 붙여넣습니다.",
+    "전체 코드를 드래그하여 드롭하거나 평가(Ctrl+E)하여 메모리에 로드합니다.",
+    "Customize User Interface 메뉴에서 3DFlowHub 카테고리의 매크로를 툴바에 등록합니다."
+  ],
+  "usage": [
+    "정리할 디지털 트윈 3D 모델 파일을 3ds Max에 가져옵니다(Merge 또는 Import).",
+    "툴바에 등록된 '디지털 트윈 씬 정리' 버튼을 클릭합니다.",
+    "오브젝트의 트랜스폼 리셋과 모디파이 스택 병합이 자동으로 진행되는 것을 확인합니다."
+  ],
+  "limits": [
+    "네트워크 통신이나 외부 AI 서비스 API 호출 기능은 포함되어 있지 않습니다.",
+    "로컬 파일 및 현재 열려 있는 씬 내부의 지오메트리만 대상으로 작동합니다.",
+    "복잡한 머티리얼 네트워크나 커스텀 Shader 설정은 자동으로 변환하지 않습니다."
+  ],
+  "sources": [
+    "2026-10-30-51b3539e8d92f389",
+    "2026-10-30-10f731e87c2fa8b7"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-10-31T04:29:47+00:00"
+}
