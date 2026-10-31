@@ -413,6 +413,75 @@ TERM_STOPWORDS = {"구글", "애플", "엔비디아", "어도비", "마이크로
                   "사이버펑크", "포트나이트", "스타워즈", "텔레콤"}
 
 
+def calculate_cpc_score_distribution() -> dict:
+    """최근 발행된 콘텐츠의 도메인별·키워드별 고CPC 잠재력을 수치화하여 분석하고 전략 리포트에 반영하는 통계 함수."""
+    posts_dir = core.POSTS_DIR
+    if not posts_dir.exists():
+        return {"by_domain": {}, "high_cpc_keywords": [], "total_analyzed": 0}
+
+    # 고CPC 연관 핵심 키워드 가중치 사전 (소프트웨어 툴, 하드웨어, 렌더러, 플러그인 등)
+    high_cpc_keywords_weights = {
+        "v-ray": 1.5, "corona": 1.5, "unreal engine": 1.4, "unity": 1.3,
+        "substance": 1.3, "houdini": 1.4, "zbrush": 1.3, "3ds max": 1.4,
+        "maya": 1.4, "blender": 1.2, "gpu": 1.5, "rtx": 1.5, "plugin": 1.3,
+        "script": 1.3, "tutorial": 1.4, "workflow": 1.3, "render": 1.3
+    }
+
+    by_domain: dict[str, dict] = {}
+    keyword_scores: dict[str, float] = {}
+    total_analyzed = 0
+
+    for f in posts_dir.glob("*.json"):
+        p = core._load_json(f, {})
+        domain = p.get("domain", "기타")
+        title = p.get("title_ko", "") or p.get("title", "")
+        summary = p.get("summary", "")
+        tags = p.get("tags", [])
+        sections_text = " ".join(s.get("heading", "") + " " + s.get("body", "") for s in p.get("sections", []))
+        
+        full_text = f"{title} {summary} {' '.join(tags)} {sections_text}".lower()
+        total_analyzed += 1
+
+        # 도메인별 통계 집계 초기화
+        if domain not in by_domain:
+            by_domain[domain] = {"post_count": 0, "cumulative_cpc_score": 0.0, "avg_cpc_score": 0.0}
+        
+        domain_score = 1.0
+        for kw, weight in high_cpc_keywords_weights.items():
+            if kw in full_text:
+                domain_score *= weight
+                keyword_scores[kw] = keyword_scores.get(kw, 0.0) + weight
+
+        by_domain[domain]["post_count"] += 1
+        by_domain[domain]["cumulative_cpc_score"] += domain_score
+
+    # 평균 고CPC 잠재력 수치 계산
+    for d, stats in by_domain.items():
+        cnt = stats["post_count"]
+        if cnt > 0:
+            stats["avg_cpc_score"] = round(stats["cumulative_cpc_score"] / cnt, 2)
+
+    # 상위 고CPC 키워드 정렬 추출
+    sorted_keywords = sorted(keyword_scores.items(), key=lambda x: -x[1])
+    top_keywords = [{"keyword": kw, "score": round(score, 2)} for kw, score in sorted_keywords[:10]]
+
+    report = {
+        "by_domain": by_domain,
+        "high_cpc_keywords": top_keywords,
+        "total_analyzed": total_analyzed
+    }
+    
+    # 전략 리포트(strategy.json) 또는 전략 메모리에 고CPC 분석 결과 반영
+    try:
+        strat = core.load_strategy()
+        strat["cpc_score_distribution"] = report
+        core._save_json(core.STRATEGY_PATH, strat)
+    except Exception as e:
+        log.warning("전략 리포트에 CPC 분석 결과 반영 실패: %s", e)
+
+    return report
+
+
 def summarize_error_trends() -> dict[str, dict[str, int]]:
     """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 유형들을 도메인별·유형별로 집계하여 리포트 형태로 반환."""
     runs = core.load_memory().get("runs", [])

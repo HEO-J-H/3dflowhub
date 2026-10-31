@@ -974,6 +974,39 @@ def test_analyze_3d_content_distribution(monkeypatch, tmp_path):
     assert report["percentages"]["VFX"] == 25.0
 
 
+def test_calculate_cpc_score_distribution(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    monkeypatch.setattr(core, "STRATEGY_PATH", tmp_path / "strategy.json")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+
+    core._save_json(tmp_path / "posts" / "p1.json", {
+        "domain": "3D DCC",
+        "title_ko": "Blender와 V-Ray 렌더러를 활용한 RTX GPU 튜토리얼",
+        "summary": "V-Ray plugin workflow.",
+        "tags": ["blender", "v-ray", "gpu"],
+        "sections": [{"heading": "Intro", "body": "Using 3ds Max script and V-Ray."}]
+    })
+    core._save_json(tmp_path / "posts" / "p2.json", {
+        "domain": "Game Engine",
+        "title_ko": "Unreal Engine 5 Nanite optimization guide",
+        "summary": "UE5 guide.",
+        "tags": ["unreal engine"],
+        "sections": [{"heading": "Guide", "body": "Tutorial for blueprint."}]
+    })
+
+    dist = evolve.calculate_cpc_score_distribution()
+    assert dist["total_analyzed"] == 2
+    assert "3D DCC" in dist["by_domain"]
+    assert "Game Engine" in dist["by_domain"]
+    assert dist["by_domain"]["3D DCC"]["avg_cpc_score"] > 0
+    assert len(dist["high_cpc_keywords"]) > 0
+    
+    # 전략 리포트에 반영되었는지 확인
+    strat = core._load_json(tmp_path / "strategy.json", {})
+    assert "cpc_score_distribution" in strat
+
+
 def test_summarize_error_trends(monkeypatch, tmp_path):
     import evolve
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
