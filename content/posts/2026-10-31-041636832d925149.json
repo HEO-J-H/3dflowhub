@@ -32,6 +32,16 @@
     {
       "heading": "Blender 코어 엔진과의 결합",
       "body": "인터페이스와 작업 방식은 3ds Max를 지향하지만, 내부적으로는 Blender가 제공하는 강력한 기능들을 온전히 품고 있습니다. Cycles와 EEVEE 렌더링 엔진을 비롯해 스컬프팅, 애니메이션, Geometry Nodes 등의 고급 기능들을 그대로 활용할 수 있습니다. Max의 직관적인 모델링 UX와 Blender의 탄탄한 기능 세트가 결합된 형태입니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "기존 3ds Max 아티스트가 Blender의 Cycles 렌더러나 Geometry Nodes 같은 강력한 백엔드를 도입하고 싶을 때 유용합니다. 별도의 단축키 재배치 작업 없이 즉시 W, E, R 및 1~5번 서브 오브젝트 단축키를 활용할 수 있어 학습 곡선 없이 바로 모델링 작업을 시작할 수 있습니다. 특히 Editable Poly와 Edit Poly 수정자를 결합한 라이브 수정자 스택 구조 덕분에 Max에서 쓰던 작업 방식을 그대로 유지하면서 대형 프로젝트의 에셋 제작에 적용할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "현재 Windows 환경을 대상으로 초기 알파 0.2 버전이 공개되어 테스트를 진행하고 있습니다. 3ds Max의 쿼드 메뉴와 명령어 패널, Command Panel의 Create 및 Modify 탭 구조에 익숙한 유저라면 공식 커뮤니티나 관련 소스 페이지를 통해 알파 버전을 다운로드하여 설치할 수 있습니다. 다만 초기 빌드 단계이므로 실제 프로덕션 파이프라인에 곧바로 투입하기보다는 개인 작업이나 인터페이스 적응 테스트 용도로 먼저 시도하는 것을 권장합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -42,6 +52,14 @@
     {
       "q": "현재 어떤 버전이며 어디서 사용할 수 있나요?",
       "a": "현재 초기 알파 0.2 버전이며, Windows 운영체제 환경에서만 사용할 수 있습니다."
+    },
+    {
+      "q": "Moritz는 어떤 렌더링 엔진을 지원하나요?",
+      "a": "내부적으로 Blender의 강력한 코어 엔진을 기반으로 하고 있어, Cycles와 EEVEE 렌더링 엔진을 그대로 활용할 수 있습니다."
+    },
+    {
+      "q": "3ds Max의 수정자 스택 기능도 그대로 사용할 수 있나요?",
+      "a": "네, Editable Poly 기능과 더불어 스택 중간에 위치할 수 있는 Edit Poly 수정자를 지원하여 하단 수정자들의 라이브 상태를 유지합니다."
     }
   ],
   "media": {
@@ -50,5 +68,23 @@
   },
   "collected_at": "2026-10-31T11:51:08.308644+00:00",
   "notion_id": "",
-  "id": "2026-10-31-041636832d925149"
+  "id": "2026-10-31-041636832d925149",
+  "refs": [],
+  "videos": [
+    {
+      "id": "D7LaYg5-pB0",
+      "title": "3ds Max Getting Started - Lesson 01 - Touring the UI",
+      "author": "Autodesk 3ds Max Learning Channel"
+    },
+    {
+      "id": "74TsKdNWEaA",
+      "title": "I Rebuilt 3ds Max With AI",
+      "author": "Jake Denham"
+    }
+  ],
+  "enriched_at": "2026-10-31T12:31:11+00:00",
+  "quality": {
+    "before": 1044,
+    "after": 1582
+  }
 }
