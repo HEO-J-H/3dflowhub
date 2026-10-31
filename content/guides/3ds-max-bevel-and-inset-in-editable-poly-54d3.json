@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-bevel-and-inset-in-editable-poly-54d3",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bevel and Inset in Editable Poly",
+  "title": "Bevel·Inset — 면 안쪽 넣고 돌출",
+  "summary": "Editable Poly 모드에서 폴리곤 면을 안쪽으로 줄이거나(Inset) 입체적으로 돌출시키는(Bevel) 핵심 모델링 기능입니다. 하드서페이스 모델링과 건축 디테일 표현에 필수적입니다.",
+  "when": [
+    "창문 틀, 문짝 같은 패널의 테두리 홈을 팔 때",
+    "건물의 기둥, 로고, 버튼 등 입체적인 돌출 구조를 만들 때",
+    "부드러운 모서리나 단차를 가진 하드서페이스 형태를 잡을 때"
+  ],
+  "steps": [
+    "Object를 선택하고 Modifier List에서 Edit Poly를 적용합니다.",
+    "키보드 4를 눌러 Polygon 서브오브젝트 모드로 전환합니다.",
+    "원하는 폴리곤 면을 선택합니다.",
+    "Ribbon 메뉴나 Edit Geometry / Edit Polygons 패널에서 Inset 또는 Bevel 버튼 옆의 Settings(사각 아이콘)를 클릭합니다.",
+    "파라미터 값을 조절하여 형태를 만들고 체크(OK) 버튼을 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Inset Amount",
+      "desc": "선택한 면의 안쪽으로 새로운 면을 생성하며 간격을 조절합니다."
+    },
+    {
+      "name": "Bevel Type",
+      "desc": "By Polygon(개별 면 기준) 또는 By Group(그룹 전체 기준)으로 돌출 방식을 결정합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "Bevel 실행 시 면이 수직 방향으로 돌출되는 높이를 조절합니다."
+    },
+    {
+      "name": "Outline Amount",
+      "desc": "Bevel 실행 시 돌출되는 면의 크기를 바깥쪽이나 안쪽으로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽면 창문 틀 홈 만들기",
+      "steps": [
+        "벽 모델에 Edit Poly를 적용하고 폴리곤 면을 선택합니다.",
+        "Inset을 실행하여 창문 테두리 두께만큼 안쪽 면을 만듭니다.",
+        "Bevel을 실행하여 Height를 마이너스(-) 값으로 주어 안으로 파고드는 창틀을 표현합니다."
+      ]
+    },
+    {
+      "title": "입체적인 Sci-Fi 패널 버튼",
+      "steps": [
+        "패널 위의 작은 폴리곤 면을 선택합니다.",
+        "Inset을 살짝 주어 버튼의 테두리 경계를 만듭니다.",
+        "Bevel을 실행하여 Height를 플러스(+) 값으로 올려 튀어나온 버튼 형태를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "면을 Inset이나 Bevel한 후 겹친 정점이 생김 → Target Weld나 Remove 명령으로 불필요한 버텍스를 정리합니다.",
+    "By Group 대신 By Polygon을 써서 면들이 제각각 돌출됨 → Bevel Settings에서 Type을 By Group으로 변경합니다."
+  ],
+  "related": [
+    "Extrude",
+    "Extrude Along Spline",
+    "Chamfer",
+    "SwiftLoop"
+  ],
+  "videos": [
+    {
+      "id": "0us0Xs5iu9o",
+      "title": "Uniform chamfer in edit poly | 3ds Max",
+      "author": "3D but in Depth"
+    },
+    {
+      "id": "g1dq4FznWc0",
+      "title": "Creating Chamfer in 3ds max   ||  CHAMFER EDGE || EDIT POLY",
+      "author": "Sidhnath Creation - Online Learning"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Bevel%20and%20Inset%20in%20Editable%20Poly",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "Modifier List",
+    "Edit Poly",
+    "Polygon",
+    "Ribbon",
+    "Edit Geometry"
+  ],
+  "at": "2026-10-31T00:49:23.160469+00:00"
+}

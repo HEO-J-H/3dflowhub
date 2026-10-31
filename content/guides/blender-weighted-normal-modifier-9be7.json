@@ -1,0 +1,94 @@
+{
+  "id": "blender-weighted-normal-modifier-9be7",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Weighted Normal modifier",
+  "title": "Weighted Normal — 하드서피스 노멀",
+  "summary": "Weighted Normal modifier는 로우폴리곤 모델의 법선(Normal)을 조작하여, 편평한 면의 빛 반사 오류를 부드럽고 자연스럽게 수정해 주는 필수 기능입니다.",
+  "when": [
+    "하드서페이스 모델링에서 둥근 모서리나 베벨(Bevel) 주변의 빛 깨짐 현상을 해결할 때",
+    "게임용 로우폴리곤 에셋의 음영을 부드럽게 개선하고 싶을 때",
+    "실린더나 복잡한 기계 장치의 Shading을 깔끔하게 정리할 때"
+  ],
+  "steps": [
+    "오브젝트 모드에서 수정할 메쉬를 선택합니다.",
+    "Properties 패널에서 Modifier (렌치 아이콘) 탭을 엽니다.",
+    "Add Modifier를 클릭합니다.",
+    "Modify 분류에서 Weighted Normal을 선택합니다.",
+    "Keep Sharp 옵션이나 Weight 값을 조정하여 Shading을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "법선 계산 시 면의 크기를 반영하는 가중치 강도를 조절합니다."
+    },
+    {
+      "name": "Keep Sharp",
+      "desc": "이미 지정된 날카로운 모서리(Sharp Edge)의 Shading을 유지합니다."
+    },
+    {
+      "name": "Face Area",
+      "desc": "면의 넓이에 비례하여 법선을 계산합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "법선을 병합할 임계값 각도를 설정합니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "가중치 계산의 허용 오차 범위를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 하드서페이스 베벨 Shading 정리",
+      "steps": [
+        "오브젝트에 Bevel modifier를 적용해 모서리를 둥글게 만듭니다.",
+        "Auto Smooth가 켜져 있는지 확인합니다.",
+        "Weighted Normal modifier를 추가하여 빛이 꺾이는 현상을 부드럽게 수정합니다."
+      ]
+    },
+    {
+      "title": "원통형 파이프 모델링의 음영 개선",
+      "steps": [
+        "로우폴리곤 실린더를 생성합니다.",
+        "Weighted Normal modifier를 추가합니다.",
+        "Keep Sharp를 활성화하여 위아래 캡의 각진 면을 보호합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 틀어진 상태에서 적용 → Object 모드에서 Ctrl+A 후 Scale을 Apply한 뒤 다시 적용합니다.",
+    "Auto Smooth가 꺼져 있어 효과가 안 보임 → Object Data Properties에서 Auto Smooth를 켭니다."
+  ],
+  "related": [
+    "Bevel",
+    "Auto Smooth",
+    "Edge Split",
+    "Subdivision Surface"
+  ],
+  "videos": [
+    {
+      "id": "v_2ecoqHLe0",
+      "title": "Blender tip: using the Weighted Normal Modifier 💪 #b3d #blender3d #blendertutorial",
+      "author": "CG Cookie – Learn Blender"
+    },
+    {
+      "id": "sqGFhiP-2mc",
+      "title": "Weighted Normal | Blender 2.8x Tutorial",
+      "author": "Gleb Alexandrov"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Weighted%20Normal%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Modify",
+    "Weighted Normal"
+  ],
+  "at": "2026-10-31T00:49:26.543899+00:00"
+}
