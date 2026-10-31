@@ -1,0 +1,95 @@
+{
+  "id": "3ds-max-text-spline-620b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Text spline",
+  "title": "Text — 글자 스플라인",
+  "summary": "3ds Max의 Text spline은 타이포그래피나 로고를 3D 공간에 텍스트 형태로 생성하여 입체화나 모션 그래픽의 기본 소스로 활용하는 2D 셰이프 도구입니다.",
+  "when": [
+    "3D 로고나 브랜드 타이틀을 제작할 때",
+    "건축 시각화에서 간판이나 안내판 글씨를 만들 때",
+    "Extrude나 Bevel 등의 모디파이어를 적용해 입체적인 글자를 세울 때"
+  ],
+  "steps": [
+    "Create 패널(상단 + 아이콘)에서 Shapes(선 모양 아이콘) 탭을 선택합니다.",
+    "Object Type에서 Text 버튼을 클릭합니다.",
+    "Top 뷰포트나 Perspective 뷰포트를 클릭하여 텍스트 스플라인을 생성합니다.",
+    "Modify 패널로 이동하여 Text rollout에서 Text 입력창에 원하는 문구를 타이핑합니다.",
+    "Font 드롭다운 메뉴에서 시스템에 설치된 폰트를 선택합니다.",
+    "Size와 Kerning 값을 조절하여 글자의 크기와 자간을 정돈합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "뷰포트에 표시될 실제 텍스트 내용을 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "사용할 서체(폰트)를 선택합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "텍스트의 전체적인 크기를 조절합니다."
+    },
+    {
+      "name": "Kerning",
+      "desc": "글자 사이의 간격(자간)을 조절합니다."
+    },
+    {
+      "name": "Leading",
+      "desc": "여러 줄일 경우 행과 행 사이의 간격을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "입체 간판 로고 만들기",
+      "steps": [
+        "Text 스플라인으로 회사 이름을 입력하고 크기를 맞춥니다.",
+        "Modifier List에서 Extrude 모디파이어를 적용합니다.",
+        "Amount 값을 높여 글자에 두께를 부여합니다."
+      ]
+    },
+    {
+      "title": "입체감 있는 네온사인 글씨",
+      "steps": [
+        "Text 스플라인으로 문구를 작성합니다.",
+        "Modifier List에서 Bevel 모디파이어를 적용합니다.",
+        "Level 1과 2의 Height와 Outline을 조절해 모서리가 깎인 입체 글자를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "글자가 너무 작거나 보이지 않음 → Size 값이 너무 작거나 단위 설정 문제이므로 Size 값을 크게 높입니다.",
+    "Extrude를 적용했는데 면이 채워지지 않고 깨짐 → 폰트 자체의 교차 결함이 원인이므로 Edit Spline 서브오브젝트에서 겹친 버텍스를 정리합니다.",
+    "글자 수정이 안 됨 → Modify 탭이 아닌 Create 탭에서 새로 만들고 있거나 스택이 편집된 상태이므로 Modify 패널의 Text 롤아웃을 확인합니다."
+  ],
+  "related": [
+    "Extrude",
+    "Bevel",
+    "Edit Spline",
+    "Lathe"
+  ],
+  "videos": [
+    {
+      "id": "V3KuSU-v4rg",
+      "title": "3DS MAX Tutorial - Beginner - 6 - Shapes / 3d text / Splines",
+      "author": "CgTrainingCenter"
+    },
+    {
+      "id": "j82f7A-9jK4",
+      "title": "3ds Max  05-14 Creating a Text Spline",
+      "author": "John Bordeau"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Text%20spline",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Shapes",
+    "Object Type",
+    "Text"
+  ],
+  "at": "2026-10-31T02:19:35.124444+00:00"
+}

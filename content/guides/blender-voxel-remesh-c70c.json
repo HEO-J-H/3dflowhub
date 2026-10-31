@@ -1,0 +1,90 @@
+{
+  "id": "blender-voxel-remesh-c70c",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스컬프트",
+  "name": "Voxel Remesh",
+  "title": "Voxel Remesh — 조각용 재구성",
+  "summary": "Voxel Remesh는 모델의 토폴로지를 균일한 사각형(Quad) 또는 육면체(Voxel) 구조의 새로운 매쉬로 다시 계산해 주는 기능입니다. 복잡하게 얽힌 형태를 하나로 합치거나(Boolean 후처리) 스컬프팅 초기 베이스를 만들 때 사용합니다.",
+  "when": [
+    "여러 개의 오브젝트를 겹쳐서 하나로 합친 뒤(Boolean) 경계면을 정리할 때",
+    "스컬프팅(Sculpting)을 시작하기 전, 늘어나거나 찌그러진 면을 균일하게 재배치할 때",
+    "불필요하게 촘촘하거나 복잡한 고해상도 메쉬의 폴리곤 구조를 가볍게 정리할 때"
+  ],
+  "steps": [
+    "Object Mode에서 대상 오브젝트를 선택합니다.",
+    "Properties 패널에서 Object Data Properties(초록색 삼각형 아이콘)로 이동합니다.",
+    "Remesh 섹션을 펼치고 Voxel 항목을 확인합니다.",
+    "Leaf Size 값을 조정하여 원하는 디테일(폴리곤 크기)을 설정합니다.",
+    "Flood Fill 버튼을 누르거나 화면 하단의 Voxel Remesh를 클릭하여 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Leaf Size",
+      "desc": "복셀의 크기를 결정하며, 값이 작을수록 폴리곤이 촘촘해지고 디테일이 살아납니다."
+    },
+    {
+      "name": "Adaptivity",
+      "desc": "평평한 면의 폴리곤을 줄여 최적화하지만, 값이 너무 높으면 형태가 무너질 수 있습니다."
+    },
+    {
+      "name": "Fix Poles",
+      "desc": "특이한 폴리곤 구조(Pole)를 정리하여 사각형 중심의 깔끔한 토폴로지를 유도합니다."
+    },
+    {
+      "name": "Smooth Normals",
+      "desc": "리메시 적용 시 표면의 노멀을 부드럽게 유지하여 매끄럽게 보이도록 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 스컬프팅 베이스 만들기",
+      "steps": [
+        "기본 도형(Cube 또는 Sphere) 여러 개를 조합하여 대략적인 형태를 만듭니다.",
+        "Object Mode에서 Ctrl+J로 오브젝트를 하나로 결합합니다.",
+        "Object Data Properties에서 Voxel Remesh를 실행하여 하나의 유기적인 덩어리로 만듭니다."
+      ]
+    },
+    {
+      "title": "Boolean 결과물 정리하기",
+      "steps": [
+        "Boolean Modifier로 구멍을 뚫거나 형태를 파낸 메쉬를 준비합니다.",
+        "Modifier를 Apply(적용)하여 메쉬를 확정합니다.",
+        "Voxel Remesh를 실행하여 깨진 교차면과 지오메트리를 깨끗하게 재정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 1이 아님(Scale 미적용) → Object 모드에서 Ctrl+A를 누르고 All Transforms를 적용하여 Leaf Size가 왜곡되는 것을 방지합니다.",
+    "Leaf Size를 너무 작게 설정함 → 프로그램이 멈추거나(Crash) 메모리 부족 현상이 발생하므로, 처음에는 적당히 큰 값부터 낮춰가며 적용합니다."
+  ],
+  "related": [
+    "Remesh Modifier",
+    "Multiresolution",
+    "Decimate",
+    "Sculpt Mode"
+  ],
+  "videos": [
+    {
+      "id": "3VNiWcO1QN8",
+      "title": "Voxel and Quad Remeshing Tips for Beginners | Blender Secrets",
+      "author": "Blender Secrets"
+    },
+    {
+      "id": "oyHzUkPMRZo",
+      "title": "Daily Blender Secrets - Voxel Remesh",
+      "author": "Blender Secrets"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Voxel%20Remesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Properties",
+    "Object Data Properties",
+    "Remesh",
+    "Voxel"
+  ],
+  "at": "2026-10-31T02:19:39.330653+00:00"
+}

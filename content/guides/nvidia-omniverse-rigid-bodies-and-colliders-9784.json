@@ -1,0 +1,100 @@
+{
+  "id": "nvidia-omniverse-rigid-bodies-and-colliders-9784",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Rigid bodies and colliders",
+  "title": "강체·충돌체 설정",
+  "summary": "NVIDIA Omniverse의 Physics 기능을 활용해 3D 오브젝트에 물리 법칙(중력, 충돌, 무게 등)을 부여합니다. 서로 부딪히고 떨어지는 사실적인 시뮬레이션을 만들 수 있습니다.",
+  "when": [
+    "떨어지거나 굴러가는 소품(상자, 공 등)의 움직임을 자연스럽게 만들 때",
+    "복잡한 기계 장치나 구조물 사이의 상호작용을 테스트할 때",
+    "USD 기반 Pipeline 실시간으로 물리 인터랙션을 검증할 때"
+  ],
+  "steps": [
+    "Stage 창에서 물리 시뮬레이션을 적용할 3D 모델(Mesh)을 선택합니다.",
+    "상단 메뉴에서 Create → Physics 메뉴를 엽니다.",
+    "Rigid Body 메뉴를 선택하여 오브젝트에 강체 속성(Rigid Body API)을 추가합니다.",
+    "충돌 감지를 위해 Collider (예: Convex Hull 또는 Mesh Collider)를 추가합니다.",
+    "Timeline 패널의 Play 버튼을 눌러 시뮬레이션 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Rigid Body Enabled",
+      "desc": "오브젝트에 물리 시뮬레이션 적용 여부를 켭니다."
+    },
+    {
+      "name": "Mass",
+      "desc": "오브젝트의 질량(무게)을 설정하여 충돌 시 반응을 조절합니다."
+    },
+    {
+      "name": "Collider Type",
+      "desc": "충돌 판정을 계산할 콜라이더 형태(Box, Sphere, Convex, Mesh 등)를 선택합니다."
+    },
+    {
+      "name": "Dynamic",
+      "desc": "외부 힘과 중력에 의해 움직이는 동적 강체로 설정합니다."
+    },
+    {
+      "name": "Kinematic",
+      "desc": "물리 영향을 받지 않고 애니메이션이나 Script로 직접 제어하는 강체로 설정합니다."
+    },
+    {
+      "name": "Bounciness",
+      "desc": "충돌 시 튕겨 나가는 탄성 계수를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "테이블 위에 쏟아지는 주사위",
+      "steps": [
+        "테이블 모델에 Static Collider를 적용합니다.",
+        "여러 개의 주사위 모델에 Rigid Body와 Convex Collider를 각각 추가합니다.",
+        "주사위를 테이블 위 공중에 배치하고 Timeline Play를 눌러 자연스럽게 쌓이게 합니다."
+      ]
+    },
+    {
+      "title": "도미노 쓰러지기",
+      "steps": [
+        "바닥에 Static Collider를 설정합니다.",
+        "도미노 조각들에 Dynamic Rigid Body와 Box Collider를 적용합니다.",
+        "첫 번째 도미노를 밀어내는 애니메이션이나 초기 속도를 주어 연쇄 반응을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Collider를 누락한 경우 → Rigidbody만 설정하면 물리 충돌이 무시되므로 반드시 Collider를 함께 추가하세요.",
+    "오브젝트의 Scale이 1이 아닌 경우 → 물리 계산이 비정상적으로 튈 수 있으므로 Apply Scale을 먼저 실행하세요.",
+    "너무 복잡한 Mesh Collider를 사용해 렉이 걸리는 경우 → 성능 최적화를 위해 단순화된 Convex Hull이나 기본 도형 콜라이더로 변경하세요."
+  ],
+  "related": [
+    "PhysX",
+    "Colliders",
+    "Joints",
+    "USD Physics"
+  ],
+  "videos": [
+    {
+      "id": "gPBs9rt6Sng",
+      "title": "NVIDIA Omniverse Physics Extension - Rigging a Desk Lamp Part 2: Basic Setup and Colliders",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "pBMyCr1W1EI",
+      "title": "Omniverse Physics Extension - Kit104 - Part 6: Rigid Bodies - Kinematic Body Physics",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Rigid%20bodies%20and%20colliders",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Stage",
+    "Mesh",
+    "Create",
+    "Physics",
+    "Rigid Body",
+    "Rigid Body API"
+  ],
+  "at": "2026-10-31T02:19:31.276256+00:00"
+}
