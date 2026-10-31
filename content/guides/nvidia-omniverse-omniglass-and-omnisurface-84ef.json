@@ -1,0 +1,102 @@
+{
+  "id": "nvidia-omniverse-omniglass-and-omnisurface-84ef",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "OmniGlass and OmniSurface",
+  "title": "OmniGlass·OmniSurface 재질",
+  "summary": "NVIDIA Omniverse의 물리 기반 렌더링을 위한 차세대 재질(Material) 시스템으로, 유리와 금속·플라스틱 등 다양한 표면을 실시간으로 정확하게 표현합니다.",
+  "when": [
+    "건축 시각화에서 투명한 유리 창문이나 거울을 사실적으로 표현할 때",
+    "제품 디자인에서 자동차 도색이나 금속, 플라스틱 재질을 정밀하게 구현할 때",
+    "Omniverse USD 파이프라인 내에서 서로 다른 DCC 툴 간에 동일한 재질을 손실 없이 공유할 때"
+  ],
+  "steps": [
+    "Omniverse Create 또는 USD 기반의 DCC 툴을 실행하고 Stage 패널을 엽니다.",
+    "Create 메뉴 → Material을 선택하여 새로운 OmniGlass 또는 OmniSurface 재질을 생성합니다.",
+    "Property 패널에서 생성된 재질의 세부 파라미터 값을 조정합니다.",
+    "Viewport 내의 3D 모델(Mesh)을 드래그하여 해당 재질을 적용합니다.",
+    "RTX Renderer 설정을 활성화하여 실시간 레이 트레이싱 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 색상이나 알베도를 설정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 하이라이트와 반사의 선명도를 바꿉니다."
+    },
+    {
+      "name": "Index of Refraction (IOR)",
+      "desc": "빛의 굴절률을 설정하여 유리나 물의 투명도 왜곡 정도를 결정합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "금속성과 비금속성을 구분하여 반사 특성을 변경합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도와 불투명한 정도를 조절합니다."
+    },
+    {
+      "name": "Normal Map",
+      "desc": "텍스처를 이용해 표면의 미세한 요철과 질감을 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축물 유리 파사드 제작",
+      "steps": [
+        "건물 외벽 메쉬를 선택합니다.",
+        "OmniGlass 재질을 생성하여 적용합니다.",
+        "IOR 값을 유리의 표준값인 1.5로 설정합니다.",
+        "투명도와 미세한 틴트 컬러를 조정해 창문을 완성합니다."
+      ]
+    },
+    {
+      "title": "자동차 외장 페인트 표현",
+      "steps": [
+        "자동차 바디 메쉬를 선택합니다.",
+        "OmniSurface 재질을 생성합니다.",
+        "Base Color를 원하는 색상으로 지정하고 Metalness를 1.0으로 높입니다.",
+        "Roughness를 낮게 설정하여 광택 있는 도장면을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "유리 재질에서 투명하지 않고 검게 나옵니다 → IOR 값이나 투명도(Opacity)가 올바르게 설정되었는지 확인하고 RTX 렌더러의 투과(Transmission) 옵션을 켭니다.",
+    "메쉬에 재질을 드래그해도 변화가 없습니다 → Stage 패널에서 올바른 Material 경로가 Mesh의 Binding에 연결되었는지 확인합니다.",
+    "표면의 반사가 너무 거칠거나 뿌옇게 보입니다 → Roughness 파라미터 값이 지나치게 높게 설정되어 있지 않은지 낮춰서 확인합니다."
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "RTX Renderer",
+    "Material Graph",
+    "Substance Material"
+  ],
+  "videos": [
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    },
+    {
+      "id": "sRxqmJux7BM",
+      "title": "NVIDIA Omniverse Machinima Overview",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20OmniGlass%20and%20OmniSurface",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse Create",
+    "USD",
+    "DCC",
+    "Stage",
+    "Create",
+    "Material"
+  ],
+  "at": "2026-10-31T00:59:14.534785+00:00"
+}

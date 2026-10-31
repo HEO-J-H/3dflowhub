@@ -1,0 +1,99 @@
+{
+  "id": "blender-data-transfer-modifier-746a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Data Transfer modifier",
+  "title": "Data Transfer — 노멀·UV 옮기기",
+  "summary": "Data Transfer modifier는 다른 오브젝트의 노멀, UV, 버텍스 컬러 등의 데이터를 현재 오브젝트로 복사하거나 투영하는 기능입니다. 로우 폴리곤 모델에 하이 폴리곤의 디테일한 노멀을 입힐 때 유용합니다.",
+  "when": [
+    "로우 폴리곤 게임 모델에 하이 폴리곤의 스무딩 노멀(Normal)을 전달할 때",
+    "복잡한 메쉬의 버텍스 데이터를 인접한 다른 오브젝트로 일괄 전송할 때",
+    "Baking 없이 실시간으로 부드러운 음영을 구현하고 싶을 때"
+  ],
+  "steps": [
+    "대상 오브젝트를 선택하고 Properties 패널에서 Modifier 탭(렌치 아이콘)을 엽니다.",
+    "Add Modifier 메뉴를 클릭하고 Modify 분류에서 Data Transfer를 선택합니다.",
+    "Source 필드에서 데이터를 가져올 원본(하이 폴리곤) 오브젝트를 스포이트나 드롭다운으로 지정합니다.",
+    "복사할 데이터 종류(예: Vertex Data의 Custom Normals) 체크박스를 활성화합니다.",
+    "Mapping 방식을 설정하고 필요에 따라 Max Distance나 Ray Radius 값을 조정합니다.",
+    "Modifier 설정이 완료되면 Apply를 눌러 확정하거나 모디파이어 스택을 유지합니다."
+  ],
+  "params": [
+    {
+      "name": "Source",
+      "desc": "데이터를 가져올 원본 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Vertex Data",
+      "desc": "Custom Normals, Vertex Colors 등 버텍스 단위 데이터를 전송합니다."
+    },
+    {
+      "name": "Mapping",
+      "desc": "원본과 대상 간의 버텍스나 페이스를 매칭하는 방식을 선택합니다."
+    },
+    {
+      "name": "Max Distance",
+      "desc": "데이터 전송이 일어나는 최대 거리 제한을 설정합니다."
+    },
+    {
+      "name": "Mix Mode",
+      "desc": "기존 데이터와 원본 데이터를 섞는 방식을 지정합니다."
+    },
+    {
+      "name": "Mix Factor",
+      "desc": "데이터가 반영되는 강도를 0에서 1 사이로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우 폴리곤 건물에 하이 폴리곤 노멀 투영하기",
+      "steps": [
+        "로우 폴리곤 건물 메쉬에 Data Transfer 모디파이어를 추가합니다.",
+        "Source에 디테일이 살아있는 하이 폴리곤 건물을 지정합니다.",
+        "Custom Normals를 체크하고 Nearest Face interpolated 방식을 선택합니다."
+      ]
+    },
+    {
+      "title": "원형 심즈(Seam) 부근의 노멀 부드럽게 맞추기",
+      "steps": [
+        "완벽하게 둥근 가상의 실린더를 Source 오브젝트로 준비합니다.",
+        "각진 파이프 메쉬에 모디파이어를 적용하고 Source를 실린더로 지정합니다.",
+        "Max Distance를 조여 원하는 영역에만 노멀이 복사되도록 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 틀어져 노멀 방향이 깨짐 → Object 모드에서 Ctrl+A를 눌러 Apply Scale을 실행합니다.",
+    "Source 오브젝트가 지정되지 않아 변화가 없음 → Source 필드에 올바른 하이 폴리곤 메쉬가 선택되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Weighted Normal",
+    "Shrinkwrap",
+    "Normal Edit",
+    "Mirror"
+  ],
+  "videos": [
+    {
+      "id": "6_B1xZK-o-8",
+      "title": "How Does The Data Transfer Modifier Really Work? (Blender Tutorial: Part 1 of 2)",
+      "author": "Game Abuse Studios"
+    },
+    {
+      "id": "uTFcf_IpjI8",
+      "title": "Make your life easier with the Data Transfer Modifier! | Blender 5.0 tutorial",
+      "author": "smooth.images"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Data%20Transfer%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Modify",
+    "Data Transfer"
+  ],
+  "at": "2026-10-31T00:59:22.173162+00:00"
+}

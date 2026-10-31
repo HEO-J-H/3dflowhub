@@ -1,0 +1,85 @@
+{
+  "id": "3ds-max-shift-drag-clone-edges-8b2d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Shift-drag clone edges",
+  "title": "Shift 드래그 — 엣지 늘려 면 만들기",
+  "summary": "Edit Poly 모드에서 에지를 잡고 Shift 키를 누른 채 드래그하여 면을 실시간으로 돌출하고 연장하는 직관적인 모델링 기법입니다. 마치 점토를 잡아당기듯 빠르게 형태를 확장할 수 있습니다.",
+  "when": [
+    "캐릭터나 프롭의 하드서페이스 모델링에서 실시간으로 형태를 연장할 때",
+    "지형의 절벽이나 끊어진 면을 빠르게 이어 붙이며 확장할 때",
+    "복잡한 구조물의 베이스 메시를 빠르게 블로킹(Blocking)할 때"
+  ],
+  "steps": [
+    "3ds Max에서 오브젝트를 선택하고 마우스 우클릭 후 Convert to: → Convert to Editable Poly를 실행합니다.",
+    "Modifier List 또는 Selection에서 Edge 서브오브젝트 모드(단축키 2)로 진입합니다.",
+    "연장하고 싶은 에지(Edge)나 에지 루프를 선택합니다.",
+    "키보드의 Shift 키를 누른 상태에서 Move 툴의 축(화살표)을 클릭하고 원하는 방향으로 마우스를 드래그합니다.",
+    "새로 생성된 면의 크기와 각도를 확인하고 필요시 Scale 툴이나 Rotate 툴로 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Edge",
+      "desc": "폴리곤의 모서리 선으로, Shift-drag 시 기준이 되는 서브오브젝트입니다."
+    },
+    {
+      "name": "Move",
+      "desc": "Shift 키와 함께 사용하여 에지를 드래그하는 방향으로 면을 돌출시킵니다."
+    },
+    {
+      "name": "Ignore Backfacing",
+      "desc": "켜면 뒤쪽에 있는 에지가 선택되지 않아 실수로 불필요한 면이 늘어나는 것을 방지합니다."
+    },
+    {
+      "name": "Show End Result",
+      "desc": "TurboSmooth 등 하위 모디파이어가 적용된 상태에서 최종 결과를 보며 에지를 당길 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 지붕의 처마 연장하기",
+      "steps": [
+        "지붕 끝단 에지 루프를 Edge 모드(단축키 2)에서 선택합니다.",
+        "Shift 키를 누른 채 아래쪽 방향으로 화살표를 드래그하여 처마 면을 생성합니다.",
+        "Rotate 툴로 미세하게 각도를 조절하여 자연스러운 경사를 만듭니다."
+      ]
+    },
+    {
+      "title": "파이프 및 환풍구 구조물 제작",
+      "steps": [
+        "원통형 오브젝트의 끝단 캡 면을 지우고 테두리 에지를 선택합니다.",
+        "Shift-drag로 에지를 바깥쪽으로 빼내어 파이프 길이를 연장합니다.",
+        "필요한 구간마다 반복하여 구불구불한 파이프 라인의 기본 형태를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Shift 키를 누르지 않고 드래그하여 면이 늘어나지 않고 에지만 이동함 → Ctrl+Z로 되돌린 뒤 반드시 Shift 키를 먼저 누르고 드래그하세요.",
+    "드래그할 때 의도하지 않은 뒷면의 에지까지 함께 선택됨 → Ignore Backfacing 옵션을 켜고 작업하세요.",
+    "스케일이나 회전 값이 틀어져 면이 찌그러짐 → Reset XForm을 적용한 후 다시 시도하세요."
+  ],
+  "related": [
+    "Editable Poly",
+    "Extrude",
+    "Bridge",
+    "Swift Loop"
+  ],
+  "videos": [
+    {
+      "id": "VAjM3Phvr9I",
+      "title": "Edge Shift Drag Technique",
+      "author": "Yuzrass"
+    },
+    {
+      "id": "C4czOEq682c",
+      "title": "SHIFT + Drag Shortcut doesn't work in Editable Poly in 3ds Max 2021 and higher | English Subtitle",
+      "author": "Naing Aung"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Shift-drag%20clone%20edges",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-10-31T00:59:18.400530+00:00"
+}
