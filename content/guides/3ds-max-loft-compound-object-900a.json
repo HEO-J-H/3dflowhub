@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-loft-compound-object-900a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Loft compound object",
+  "title": "Loft — 경로 따라 단면 잇기",
+  "summary": "Loft는 2차원 Shape 두 개(Path와 Shape)를 활용하여 따라가는 경로를 따라 입체적인 3D 오브젝트를 생성하는 3ds Max의 컴파운드 오브젝트입니다. 레일(Path)을 따라 단면(Shape)을 밀어내어 복잡한 곡선형 모델링을 만들 때 씁니다.",
+  "when": [
+    "구불구불한 배관, 호스, 전선 등을 모델링할 때",
+    "건축 외장의 복잡한 몰딩이나 난간 형태를 만들 때",
+    "단면이 일정하거나 변화하는 손잡이, 검신 등의 무기를 만들 때"
+  ],
+  "steps": [
+    "Create 패널 → Shapes 탭에서 경로가 될 Line(Path)과 단면이 될 Shape(Circle, Rectangle 등)을 각각 뷰포트에 그립니다.",
+    "Path로 사용할 Line을 선택합니다.",
+    "Create 패널 → Geometry 탭 드롭다운에서 Compound Objects를 선택하고 Loft 버튼을 누릅니다.",
+    "Loft 파라미터 패널에서 Get Shape 버튼을 클릭합니다.",
+    "뷰포트에서 단면으로 사용할 Shape을 마우스로 클릭하면 Loft 오브젝트가 생성됩니다.",
+    "Modify 패널에서 Path Steps나 Shape Steps 값을 조절하여 표면의 부드러움을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Path Steps",
+      "desc": "경로(Path) 방향의 세그먼트 분할 수를 조절합니다."
+    },
+    {
+      "name": "Shape Steps",
+      "desc": "단면(Shape) 둘레의 세그먼트 분할 수를 조절합니다."
+    },
+    {
+      "name": "Get Shape",
+      "desc": "클릭한 2D Shape을 Loft의 단면으로 가져옵니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "경로를 따라 단면의 크기가 변화하는 변형 그래프를 엽니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "경로를 따라 단면이 회전(비틀림)하는 변형 그래프를 엽니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구불구불한 수도관 만들기",
+      "steps": [
+        "Line으로 관이 지나갈 3차원 경로를 그립니다.",
+        "Circle로 관의 단면 크기를 만듭니다.",
+        "Line 선택 후 Compound Objects > Loft를 실행합니다.",
+        "Get Shape을 누르고 Circle을 클릭해 파이프를 완성합니다."
+      ]
+    },
+    {
+      "title": "점점 가늘어지는 뿔 형태 만들기",
+      "steps": [
+        "직선이나 곡선 Path를 준비합니다.",
+        "Circle Shape을 이용해 Loft 오브젝트를 만듭니다.",
+        "Modify 패널의 Deformation 롤아웃에서 Scale을 엽니다.",
+        "그래프 끝점을 아래로 내려 끝이 뾰족한 뿔 모양으로 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Shape의 세그먼트나 Path Steps가 너무 낮아 각져 보임 → Modify 패널에서 Steps 값을 높여 부드럽게 만듭니다.",
+    "Path나 Shape의 Pivot(축) 위치가 엉뚱한 곳에 있어 이상하게 생성됨 → Hierarchy 탭에서 Affect Pivot Only를 켜고 축을 중앙으로 정렬합니다.",
+    "스케일이 맞지 않아 모델이 너무 크게 생성됨 → Shape과 Line 생성 시 단위를 확인하고 Reset XForm을 미리 적용합니다."
+  ],
+  "related": [
+    "Sweep",
+    "Line",
+    "Extrude",
+    "Lathe"
+  ],
+  "videos": [
+    {
+      "id": "tTHg2q01HXM",
+      "title": "3ds Max: How to Use the Loft Command (Compound Object)",
+      "author": "TUKETORIALS"
+    },
+    {
+      "id": "wbJ-voN8oRk",
+      "title": "#3DDesigner Loft command in 3Ds Max Tutorials part 14 |  || LOFT COMPOUND OBJECT IN 3DS MAX ||",
+      "author": "3D Designer"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Loft%20compound%20object",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Shapes",
+    "Line",
+    "Path",
+    "Shape",
+    "Circle"
+  ],
+  "at": "2026-10-31T01:29:48.035693+00:00"
+}

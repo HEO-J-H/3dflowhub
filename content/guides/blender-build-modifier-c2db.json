@@ -1,0 +1,94 @@
+{
+  "id": "blender-build-modifier-c2db",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "모디파이어",
+  "name": "Build modifier",
+  "title": "Build — 면이 하나씩 생기는 애니메이션",
+  "summary": "메시 오브젝트가 순서대로 나타나거나 사라지는 애니메이션을 자동으로 생성하는 모디파이어입니다. 3D 프린팅 시뮬레이션이나 물건이 조립되는 연출에 유용합니다.",
+  "when": [
+    "3D 프린터로 출력이 쌓아 올려지는 과정을 시각화할 때",
+    "부품들이 순서대로 조립되거나 완성되는 모션 그래픽을 만들 때",
+    "오브젝트가 바닥에서부터 차례대로 나타나는 마법 같은 등장 연출을 할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Properties 패널에서 Modifier 탭(렌치 아이콘)을 클릭합니다.",
+    "Add Modifier를 누르고 Generate 분류에서 Build를 선택합니다.",
+    "Timeline 패널에서 재생 버튼(Space)을 눌러 오브젝트가 생성되는 애니메이션을 확인합니다.",
+    "Modifier 패널에서 Start Frame과 Frame Duration 값을 조절하여 등장 속도와 시점을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Start Frame",
+      "desc": "오브젝트가 나타나기 시작하는 첫 프레임을 지정합니다."
+    },
+    {
+      "name": "Frame Duration",
+      "desc": "전체 메시가 완전히 나타날 때까지 걸리는 프레임 수를 결정합니다."
+    },
+    {
+      "name": "Reverse",
+      "desc": "오브젝트가 나타나는 대신 역순으로 사라지도록 만듭니다."
+    },
+    {
+      "name": "Randomize",
+      "desc": "폴리곤이 나타나는 순서를 무작위로 섞어줍니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "Randomize 활성화 시 무작위 생성 패턴의 난수를 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 프린팅 출력 효과",
+      "steps": [
+        "수직으로 길쭉한 오브젝트에 Build 모디파이어를 추가합니다.",
+        "Frame Duration 값을 조절해 천천히 위로 쌓이는 속도를 맞춥니다.",
+        "카메라를 고정하고 애니메이션을 렌더링합니다."
+      ]
+    },
+    {
+      "title": "흩어져서 모이는 조립 연출",
+      "steps": [
+        "Build 모디파이어를 추가하고 Randomize 옵션을 체크합니다.",
+        "Reverse 옵션을 켜서 완성된 상태에서 조각으로 해체되는 모션을 만듭니다.",
+        "Keyframe을 활용해 역재생하거나 속도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 한 번에 툭 나타남 → Frame Duration 값이 너무 짧거나 0으로 설정되어 발생하므로 값을 늘려줍니다.",
+    "나타나는 순서가 뒤죽박죽임 → 메시의 정점(Vertex) 인덱스 순서에 따라 생성되므로, 필요시 Randomize를 끄거나 토폴로지를 정리합니다.",
+    "애니메이션이 안 움직임 → Timeline 프레임이 Start Frame 이전이거나 애니메이션 재생을 하지 않아서 발생하므로 Space 키로 재생합니다."
+  ],
+  "related": [
+    "Geometry Nodes",
+    "Displace",
+    "Mask",
+    "Shrinkwrap"
+  ],
+  "videos": [
+    {
+      "id": "SDnr_cu66ek",
+      "title": "Everything about the BUILD modifier in 3 minutes | Blender 2.93 |",
+      "author": "Jonny Renders"
+    },
+    {
+      "id": "EI-RAyJXbGo",
+      "title": "How to Use the Build Modifier in Blender 4.1!",
+      "author": "Blender Inferno"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Build%20modifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Generate",
+    "Build"
+  ],
+  "at": "2026-10-31T01:29:51.679998+00:00"
+}

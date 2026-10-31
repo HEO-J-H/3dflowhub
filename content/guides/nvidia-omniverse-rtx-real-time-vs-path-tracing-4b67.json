@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-rtx-real-time-vs-path-tracing-4b67",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "RTX Real-Time vs Path Tracing",
+  "title": "RTX 실시간과 패스 트레이싱 차이",
+  "summary": "NVIDIA Omniverse의 렌더링 모드인 RTX Real-Time과 Path Tracing을 전환하여 실시간 작업과 최종 고품질 결과물을 비교할 수 있습니다.",
+  "when": [
+    "작업 중 신속한 인터랙션과 라이팅 확인이 필요할 때",
+    "최종 렌더링을 위해 물리적으로 정확한 빛의 반사와 굴절을 표현할 때",
+    "반사나 유리 재질이 포함된 복잡한 씬의 최종 시각화를 검토할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Kit 기반 애플리케이션(예: Create, USD Composer)을 엽니다.",
+    "뷰포트 상단의 렌더링 모드 드롭다운 메뉴(Render Setting / Viewport Menu)를 클릭합니다.",
+    "실시간 작업 시 'RTX Real-Time'을 선택하여 빠른 반응 속도를 확보합니다.",
+    "최종 품질 검토 시 'RTX Path Tracing'을 선택하여 정확한 패스 트레이싱 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Max Bounces",
+      "desc": "빛이 반사되는 최대 횟수를 조절하여 유리의 굴절이나 거울 반사의 깊이를 결정합니다."
+    },
+    {
+      "name": "Samples Per Pixel",
+      "desc": "픽셀당 샘플 수를 높여 패스 트레이싱 렌더링의 노이즈를 줄입니다."
+    },
+    {
+      "name": "Denoiser",
+      "desc": "실시간 또는 패스 트레이싱 결과의 노이즈를 AI로 제거하여 선명한 화면을 만듭니다."
+    },
+    {
+      "name": "Subsurface Scattering",
+      "desc": "피부나 대리석 등 물체 내부로 빛이 들어와 퍼지는 현상을 시뮬레이션합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 레이아웃 및 애니메이션 작업",
+      "steps": [
+        "뷰포트 렌더 모드를 RTX Real-Time으로 설정합니다.",
+        "오브젝트를 배치하고 애니메이션 키프레임을 잡으며 퍼포먼스를 유지합니다."
+      ]
+    },
+    {
+      "title": "건축 인테리어 최종 라이팅 검토",
+      "steps": [
+        "창문을 통한 자연광과 실내 조명을 세팅합니다.",
+        "뷰포트 렌더 모드를 RTX Path Tracing으로 전환하여 간접 조명과 유리 반사를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Path Tracing 모드에서 심한 노이즈 발생 → Denoiser 옵션을 활성화하거나 Samples Per Pixel 값을 높여 해결합니다.",
+    "실시간 모드에서 거울 반사가 어둡게 나옴 → Reflection 프로젝션이나 인바이런먼트 라이팅 세팅을 확인합니다."
+  ],
+  "related": [
+    "USD",
+    "Material Graph",
+    "Render Settings",
+    "DLSS"
+  ],
+  "videos": [
+    {
+      "id": "sVZfGgu5bIo",
+      "title": "NVIDIA’s Real-Time Path Tracing | Installation and Explanation",
+      "author": "TUF"
+    },
+    {
+      "id": "j488IPGeOaI",
+      "title": "Incredible Omniverse Path Trace Rendering + Real-Time RTX ~ USD Composer | RTX 6000 ADA",
+      "author": "Solomon Jagwe"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20RTX%20Real-Time%20vs%20Path%20Tracing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Kit",
+    "Create",
+    "USD Composer",
+    "Render Setting",
+    "Viewport Menu",
+    "RTX Real-Time"
+  ],
+  "at": "2026-10-31T01:29:43.981813+00:00"
+}
