@@ -28,6 +28,13 @@ HOU = "https://www.sidefx.com/docs/houdini/nodes/sop/"
 
 # (도구, 분류, 영문 이름, 한국어 제목, 공식 문서 URL 또는 None)
 CATALOG: list[tuple[str, str, str, str, str | None]] = [
+    # AI 3D 및 가우시안 스플래팅 실무 가이드 비중 확대
+    ("AI 3D", "가우시안 스플래팅", "Gaussian Splatting fundamentals", "3D 가우시안 스플래팅(3DGS) 기초와 실무 파이프라인", None),
+    ("AI 3D", "가우시안 스플래팅", "Nerfstudio and 3D Gaussian Splatting training", "Nerfstudio로 커스텀 3D 가우시안 스플래팅 학습하기", None),
+    ("AI 3D", "신경렌더링", "Instant-NGP and NeRF workflow", "Instant-NGP 기반 실시간 신경 라디언스 필드(NeRF) 구축", None),
+    ("AI 3D", "AI 메시 생성", "Tripo3D and MeshAnything", "AI 이미지 투 3D 메시 생성 툴 비교 및 실무 적용", None),
+    ("AI 3D", "가우시안 스플래팅", "Splatting to Unreal Engine workflow", "가우시안 스플래팅 데이터를 언리얼 엔진으로 임포트하는 법", None),
+    ("AI 3D", "가우시안 스플래팅", "Blender Gaussian Splatting add-ons", "Blender용 가우시안 스플래팅 애드온 활용 가이드", None),
     # 3ds Max — 모디파이어
     ("3ds Max", "모디파이어", "Edit Poly modifier", "Edit Poly 모디파이어 — 폴리곤 모델링의 기본", None),
     ("3ds Max", "모디파이어", "TurboSmooth modifier", "TurboSmooth — 부드러운 서브디비전", None),
