@@ -1,0 +1,92 @@
+{
+  "id": "nvidia-omniverse-extensions-manager-e2a4",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Extensions manager",
+  "title": "확장 기능 관리자 — 기능 추가",
+  "summary": "NVIDIA Omniverse Extensions Manager는 USD 기반 워크플로우를 확장하고 커스텀 기능을 추가하는 플러그인 관리 도구입니다. 앱의 기능을 모듈식으로 켜고 끌 수 있습니다.",
+  "when": [
+    "새로운 USD 포맷 변환기나 렌더러 플러그인을 추가하고 싶을 때",
+    "불필요한 기능을 꺼서 Omniverse 앱의 메모리와 로딩 속도를 최적화할 때",
+    "개발 중인 커스텀 Python 익스텐션을 로컬에 등록하고 테스트할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱을 실행합니다.",
+    "상단 메뉴 바에서 Window 메뉴를 엽니다.",
+    "Extensions 항목을 선택하여 Extensions Manager 창을 엽니다.",
+    "상단 검색창에 원하는 익스텐션 이름(예: exporter, render)을 입력합니다.",
+    "목록에서 해당 익스텐션을 찾아 Enable 체크박스를 켜서 활성화합니다.",
+    "필요에 따라 Auto-Load 옵션을 켜서 앱 실행 시 자동으로 로드되도록 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Enable",
+      "desc": "익스텐션을 활성화하여 현재 세션에 로드합니다."
+    },
+    {
+      "name": "Auto-Load",
+      "desc": "Omniverse 앱이 실행될 때 익스텐션을 자동으로 켭니다."
+    },
+    {
+      "name": "Search",
+      "desc": "원하는 키워드로 설치 가능한 익스텐션을 빠르게 찾습니다."
+    },
+    {
+      "name": "Settings (Gear Icon)",
+      "desc": "로컬 폴더 경로(Search Paths) 등 익스텐션 소스 폴더를 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "USD 파일 포맷 변환기 추가하기",
+      "steps": [
+        "Extensions Manager 창을 엽니다.",
+        "검색창에 'USD'를 입력합니다.",
+        "해당 변환기 익스텐션을 찾아 Enable을 체크합니다.",
+        "File 메뉴에서 새로운 포맷 내보내기 옵션이 추가되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "로컬 개발 익스텐션 불러오기",
+      "steps": [
+        "톱니바퀴 아이콘(Settings)을 클릭합니다.",
+        "Extension Search Paths에 커스텀 폴더 경로를 추가합니다.",
+        "Tabs에서 'Local' 또는 'Third-Party' 탭으로 이동합니다.",
+        "작성한 익스텐션을 검색하여 활성화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "익스텐션 의존성(Dependency) 누락 → 에러 로그를 확인하고 요구되는 선행 익스텐션을 먼저 활성화합니다.",
+    "경로 설정 오류로 익스텐션이 안 보임 → Settings에서 Search Path가 올바른 폴더를 가리키는지 확인합니다."
+  ],
+  "related": [
+    "USD Composer",
+    "Nucleus",
+    "Python Scripting",
+    "Kit App"
+  ],
+  "videos": [
+    {
+      "id": "AxYC8AA8MRA",
+      "title": "Extension Manager in Omniverse Kit - Add Extensions",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "q1itZBILlGY",
+      "title": "NVIDIA Omniverse: \"Omniverse Not showing all extensions\"",
+      "author": "TechLover"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Extensions%20manager",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Window",
+    "Extensions",
+    "Extensions Manager"
+  ],
+  "at": "2026-11-01T00:53:39.179797+00:00"
+}

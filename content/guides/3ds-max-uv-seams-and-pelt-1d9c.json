@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-uv-seams-and-pelt-1d9c",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV seams and Pelt",
+  "title": "Seam — UV 자를 곳 정하기",
+  "summary": "Pelt 맵핑과 UV Seam(심)은 3ds Max에서 복잡한 3D 모델의 표면을 찢어 왜곡 없이 펼쳐주는 강력한 언랩(Unwrap) 기능입니다.",
+  "when": [
+    "캐릭터나 유기적 형태의 모델에 텍스처를 왜곡 없이 입히고 싶을 때",
+    "기본적인 박스/실린더 투영만으로 펼치기 어려운 복잡한 유기체 형태를 작업할 때",
+    "Substance 3D Painter 등으로 넘기기 전 깔끔한 UV Seam을 정리해야 할 때"
+  ],
+  "steps": [
+    "메시 오브젝트를 선택하고 Modifier List에서 Unwrap UVW오브젝트를 적용합니다.",
+    "Edit UVWs 창을 열고, 상단 메뉴에서 Mapping → Pelt Mapping을 실행합니다.",
+    "오브젝트 표면을 펼칠 기준이 될 Seam(심)을 Edge 서브오브젝트 모드에서 선택합니다.",
+    "Pelt Map 패널에서 Pelt Seam 지정 버튼(Pick Pelt Seam)을 누르고 3D 뷰포트에서 Seam 엣지를 클릭하여 연결합니다.",
+    "Expand Pelt 버튼을 눌러 시뮬레이션하듯 UV가 사방으로 부드럽게 펼쳐지게 만듭니다.",
+    "Relax 패널에서 옵션을 조정하고 Apply를 눌러 UV의 잔여 왜곡을 정리합니다."
+  ],
+  "params": [
+    {
+      "name": "Edit Seams",
+      "desc": "UV를 잘라낼 경계선(심)을 지정하거나 수정합니다."
+    },
+    {
+      "name": "Pick Pelt Seam",
+      "desc": "선택한 엣지들을 Pelt 맵의 절단선으로 등록합니다."
+    },
+    {
+      "name": "Straighten Seam",
+      "desc": "선택한 심 라인을 일직선으로 곧게 펴줍니다."
+    },
+    {
+      "name": "Expand Pelt",
+      "desc": "고무줄을 당기듯 Pelt 맵을 바깥쪽으로 펼쳐줍니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "펼쳐진 UV Vertex 간격을 균일하게 만들고 왜곡을 줄입니다."
+    },
+    {
+      "name": "Mirror Selected",
+      "desc": "선택한 UV 아일랜드를 좌우 대칭으로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 옷이나 가죽 자켓 제작",
+      "steps": [
+        "절개선(옆구리, 어깨선 등)을 따라 Edge를 선택합니다.",
+        "Pick Pelt Seam으로 심을 등록합니다.",
+        "Expand Pelt로 옷가지를 펼치듯 평면으로 펼쳐냅니다."
+      ]
+    },
+    {
+      "title": "동물 및 괴물 유기체 모델링",
+      "steps": [
+        "등뼈와 사지 안쪽을 따라 Seam을 연결합니다.",
+        "Pelt Mapping으로 전신 스킨을 통째로 평면에 펼칩니다.",
+        "Relax를 반복 적용하여 늘어난 폴리곤 간격을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Seam 연결이 끊어져 있음 → 닫힌 루프(Loop) 형태나 의도한 시작과 끝이 완전히 이어져 있는지 Edge 선택을 다시 확인합니다.",
+    "스케일 값이 틀어짐 → Unwrap 적용 전 3D 뷰포트에서 반드시 Reset XForm을 실행해 스케일을 100으로 맞춥니다.",
+    "Pelt가 너무 꼬임 → Expand Pelt를 실행하기 전 미리 Pelt Frame(조절자)의 형태를 원형으로 보기 좋게 정렬해 둡니다."
+  ],
+  "related": [
+    "Unwrap UVW",
+    "Flatten Mapping",
+    "Relax",
+    "CheckerPattern"
+  ],
+  "videos": [
+    {
+      "id": "KyRmFSyqW-I",
+      "title": "How To Unwrap In 3dsMax",
+      "author": "Georges | 3d tutorials"
+    },
+    {
+      "id": "XWbQASP-1Go",
+      "title": "3dsMax 2022 2 - New Unfold3D Peel",
+      "author": "Changsoo Eun"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20UV%20seams%20and%20Pelt",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modifier List",
+    "Unwrap UVW"
+  ],
+  "at": "2026-11-01T00:53:55.849293+00:00"
+}
