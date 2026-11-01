@@ -1,0 +1,90 @@
+{
+  "id": "3ds-max-checker-map-for-uv-4c97",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Checker map for UV",
+  "title": "체커 맵으로 UV 늘어짐 확인",
+  "summary": "Checker map은 UV 맵핑의 왜곡 상태와 텍스처 비율을 시각적으로 확인하기 위해 사용하는 격자 무늬 패턴 텍스처입니다. 모델링 표면이 늘어나거나 찌그러진 곳을 직관적으로 찾아낼 수 있습니다.",
+  "when": [
+    "캐릭터나 배경 모델링의 UV 전개 직후 왜곡 여부를 확인할 때",
+    "텍스처가 표면에 늘어지거나 뭉치지 않고 균일하게 배치되었는지 검수할 때",
+    "타일링 텍스처를 적용하기 전 스케일과 비율을 맞출 때"
+  ],
+  "steps": [
+    "Material Editor (단축키 M)를 엽니다.",
+    "Standard 또는 Physical Material 슬롯에 Checker map을 Diffuse Color에 연결합니다.",
+    "오브젝트를 선택하고 해당 머티리얼을 적용합니다 (Assign Material to Selection).",
+    "Viewport에서 Show Shaded Material in Viewport를 켜서 격자를 활성화합니다.",
+    "UV Unwrap W르고 뷰포트에서 격자가 정사각형에 가까운지 확인하며 UV를 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "U Tiling",
+      "desc": "가로 방향으로 격자 무늬가 반복되는 횟수를 조절합니다."
+    },
+    {
+      "name": "V Tiling",
+      "desc": "세로 방향으로 격자 무늬가 반복되는 횟수를 조절합니다."
+    },
+    {
+      "name": "Color 1",
+      "desc": "격자의 첫 번째 색상을 지정합니다."
+    },
+    {
+      "name": "Color 2",
+      "desc": "격자의 두 번째 색상을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 UV 왜곡 검수",
+      "steps": [
+        "Unwrap UVW로 펴낸 캐릭터 모델에 Checker map을 적용합니다.",
+        "팔과 다리 등의 곡면 부위에서 격자가 직사각형으로 늘어난 곳을 찾습니다.",
+        "Pelpack이나 Relax 기능을 사용해 정사각형 격자에 가깝게 조정합니다."
+      ]
+    },
+    {
+      "title": "건축물 타일 벽면 비율 맞추기",
+      "steps": [
+        "외벽 모델에 Checker map을 적용합니다.",
+        "U Tiling과 V Tiling 값을 조절하여 격자 비율을 정사각형으로 맞춥니다.",
+        "실제 벽돌 텍스처를 연결하여 비율이 일치하는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Viewport에서 텍스처가 보이지 않음 → Viewport 메뉴에서 Shaded Materials 활성화 여부와 Material Editor의 Show Shaded Material 버튼을 확인합니다.",
+    "격자가 직사각형으로 일그러짐 → 오브젝트 스케일이 1:1로 Reset되지 않았거나 UV가 늘어난 상태이므로 Reset XForm과 UV Relax를 실행합니다."
+  ],
+  "related": [
+    "Unwrap UVW",
+    "UVW Map",
+    "Reset XForm",
+    "Substance Painter"
+  ],
+  "videos": [
+    {
+      "id": "XWbQASP-1Go",
+      "title": "3dsMax 2022 2 - New Unfold3D Peel",
+      "author": "Changsoo Eun"
+    },
+    {
+      "id": "jwnQwdURlqA",
+      "title": "3d Model UV Ready? In 3ds Max edit textures with UVW XForm #3d #3dsmax #autodesk #mapping",
+      "author": "Learn Corona Renderer"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Checker%20map%20for%20UV",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Standard",
+    "Physical Material",
+    "Checker",
+    "Diffuse Color"
+  ],
+  "at": "2026-11-01T01:13:28.021933+00:00"
+}

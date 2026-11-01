@@ -1,0 +1,90 @@
+{
+  "id": "nvidia-omniverse-exporting-from-usd-composer-2541",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Exporting from USD Composer",
+  "title": "결과 내보내기",
+  "summary": "NVIDIA Omniverse USD Composer에서 제작 및 편집한 3D씬과 에셋을 USD(Universal Scene Description) 포맷으로 내보내는 기능입니다. 다양한 DCC 툴과 게임 엔진 간의 협업 파이프라인을 구축합니다.",
+  "when": [
+    "Omniverse에서 작업한 최종 3D씬을 다른 DCC 툴(Blender, Maya 등)이나 Unreal Engine으로 넘길 때",
+    "USD 포맷을 활용해 팀원들과 씬 데이터 및 머티리얼을 공유할 때",
+    "복잡한 어셈블리와 라이팅 데이터가 포함된 씬을 표준화된 파일로 아카이빙할 때"
+  ],
+  "steps": [
+    "USD Composer에서 내보낼 씬이나 오브젝트를 Stage 패널에서 선택합니다.",
+    "상단 메뉴에서 File → Export를 클릭합니다.",
+    "파일 저장 창에서 저장할 폴더를 지정하고 파일 이름을 입력합니다.",
+    "파일 형식(Save as type)에서 .usd, .usda, .usdc 중 원하는 USD 확장자를 선택합니다.",
+    "Export 옵션 패널에서 참조(References)와 머티리얼 포함 여부를 설정합니다.",
+    "Save 버튼을 눌러 USD 파일을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Export Dependencies",
+      "desc": "텍스처와 외부 참조 파일을 USD 패키지에 함께 포함합니다."
+    },
+    {
+      "name": "Include Materials",
+      "desc": "오브젝트에 적용된 Material(Shader) 데이터를 USD 내부에 함께 저장합니다."
+    },
+    {
+      "name": "Flatten",
+      "desc": "참조된 외부 레이어들을 하나의 단일 파일로 병합하여 내보냅니다."
+    },
+    {
+      "name": "Save As Relative Paths",
+      "desc": "외부 파일 경로를 절대 경로가 아닌 상대 경로로 저장하여 이동성을 높입니다."
+    },
+    {
+      "name": "Up Axis",
+      "desc": "씬의 상단 축(Z-Up 또는 Y-Up)을 내보낼 타겟 프로그램에 맞춰 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine으로 에셋 전송하기",
+      "steps": [
+        "USD Composer에서 내보낼 모델과 머티리얼을 선택합니다.",
+        "File → Export를 열어 USD 포맷으로 저장합니다.",
+        "Unreal Engine의 Content Browser에서 USD Importer를 통해 파일을 불러옵니다."
+      ]
+    },
+    {
+      "title": "외부 렌더러용 단일 USD 파일 패키징",
+      "steps": [
+        "Stage 패널에서 씬 전체를 선택합니다.",
+        "Export 설정에서 Export Dependencies와 Flatten 옵션을 활성화합니다.",
+        "모든 리소스가 포함된 단일 USD 파일로 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 누락 → Export Dependencies 옵션을 켜지 않아 외부 텍스처 경로가 깨지는 실수 → 텍스처 포함(Dependencies) 옵션을 활성화하고 내보내기",
+    "축 방향 불일치 → 다른 툴로 가져왔을 때 오브젝트가 뉘어져 있는 실수 → Export 설정에서 Up Axis를 타겟 툴에 맞게 확인",
+    "경로 깨짐 → 절대 경로로 저장하여 다른 PC에서 열리지 않는 실수 → Save As Relative Paths 옵션을 사용하여 상대 경로로 저장"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "Unreal Engine",
+    "Blender"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "1UR5j9N76FA",
+      "title": "Exporting an Animation from Autodesk 3ds Max Connector to Omniverse USD Composer",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Exporting%20from%20USD%20Composer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T01:13:19.175685+00:00"
+}
