@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-isaac-sim-overview-9b7c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "로보틱스",
+  "name": "Isaac Sim overview",
+  "title": "Isaac Sim — 로봇 시뮬레이터 소개",
+  "summary": "NVIDIA Omniverse Isaac Sim은 USD(Universal Scene Description) 기반의 물리 기반 시뮬레이션 플랫폼으로, 로봇 학습과 가상 환경 테스트를 지원합니다.",
+  "when": [
+    "실제 로봇을 배치하기 전 가상 공간에서 주행 및 조작 테스트를 할 때",
+    "USD 기반 파이프라인으로 3D 에셋과 로봇 모델을 연동할 때",
+    "강화학습을 위한 대규모 센서 데이터와 물리 시뮬레이션을 생성할 때"
+  ],
+  "steps": [
+    "Nvidia Omniverse Launcher를 실행하고 Isaac Sim 앱을 설치합니다.",
+    "Isaac Sim을 실행하고 Window 메뉴에서 Simulation 창과 Stage 창을 엽니다.",
+    "Create 메뉴에서 Robot 또는 Shape을 생성하여 Stage에 배치합니다.",
+    "Details 패널에서 물리 속성(Rigid Body)과 센서(Raycast, Camera)를 추가합니다.",
+    "Timeline 하단의 Play 버튼을 눌러 시뮬레이션을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Rigid Body",
+      "desc": "오브젝트에 물리적 중력과 충돌을 적용합니다."
+    },
+    {
+      "name": "Articulation Root",
+      "desc": "로봇 관절의 계층 구조와 운동학적 중심을 정의합니다."
+    },
+    {
+      "name": "USD Stage",
+      "desc": "씬 내 모든 3D 에셋과 데이터의 계층 구조를 관리합니다."
+    },
+    {
+      "name": "Action Graph",
+      "desc": "노드 방식으로 로봇 동작과 이벤트를 시각적으로 프로그래밍합니다."
+    },
+    {
+      "name": "Render Product",
+      "desc": "카메라 센서 데이터와 렌더링 뷰포트를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 팔 픽앤플레이스 테스트",
+      "steps": [
+        "Create 메뉴에서 Franka 로봇 모델을 씬에 불러옵니다.",
+        "테이블과 타겟 오브젝트를 배치합니다.",
+        "Action Graph를 열어 관절 제어 노드를 연결합니다.",
+        "Play를 눌러 물체를 집어 올리는 시뮬레이션을 확인합니다."
+      ]
+    },
+    {
+      "title": "모바일 로봇 자율주행 환경 구성",
+      "steps": [
+        "CAD나 3D 공간 데이터를 USD 포맷으로 변환해 불러옵니다.",
+        "로봇 에셋에 LiDAR 센서를 추가합니다.",
+        "ROS2 브리지 설정을 활성화하여 외부 제어 프로그램과 연동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "물리 속성이 적용되지 않음 → Rigid Body 컴포넌트가 누락되었는지 확인하고 다시 추가합니다.",
+    "로봇 관절이 비정상적으로 꺾임 → Articulation Root 설정과 Joint 한계값이 올바른지 확인합니다.",
+    "스케일 불일치로 인한 물리 오작동 → 3D 에셋의 단위(Unit)를 미터(Meters) 기준으로 맞추고 Transform을 Apply Scale 합니다."
+  ],
+  "related": [
+    "Universal Scene Description",
+    "USD Composer",
+    "PhysX",
+    "ROS2 Bridge"
+  ],
+  "videos": [
+    {
+      "id": "3TL3ALQxQX8",
+      "title": "It's Time to Build Your Home Robot Lab | Sim-to-Real With NVIDIA Isaac",
+      "author": "Shane Reetz"
+    },
+    {
+      "id": "NFcRirGuERI",
+      "title": "How Isaac Sim relates to Isaac Lab",
+      "author": "Shane Reetz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Isaac%20Sim%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Nvidia Omniverse Launcher",
+    "Isaac Sim"
+  ],
+  "at": "2026-11-01T11:47:30.221276+00:00"
+}
