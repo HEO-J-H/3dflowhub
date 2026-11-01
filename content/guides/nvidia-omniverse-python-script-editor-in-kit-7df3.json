@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-python-script-editor-in-kit-7df3",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Python Script Editor in Kit",
+  "title": "Kit Script 에디터",
+  "summary": "NVIDIA Omniverse Kit 내부에서 Python Script를 작성하고 실행하여 반복 작업을 자동화하는 개발 도구입니다. UI 인터페이스 조작을 코드로 제어할 때 사용합니다.",
+  "when": [
+    "수백 개의 USD 프림(Prim) 속성을 한 번에 일괄 변경할 때",
+    "USD 스테이지 생성 및 애니메이션 파이프라인을 자동화할 때",
+    "Omniverse 익스텐션(Extension) 개발 및 테스트를 진행할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱 상단 메뉴에서 Window 선택",
+    "Developer tools 하위 메뉴에서 Python Script Editor 클릭",
+    "열린 패널의 텍스트 입력창에 실행할 Python 코드 작성",
+    "상단의 Run 버튼 또는 Ctrl+Enter 단축키를 눌러 Script 실행",
+    "하단 Output 창에서 실행 결과 및 에러 로그 확인"
+  ],
+  "params": [
+    {
+      "name": "Script Editor",
+      "desc": "Python 코드를 작성하고 편집하는 메인 텍스트 영역"
+    },
+    {
+      "name": "Output",
+      "desc": "코드 실행 결과와 print 문 출력, 에러 메시지를 보여주는 로그 창"
+    },
+    {
+      "name": "Run",
+      "desc": "작성한 Python 코드를 즉시 실행하는 버튼"
+    },
+    {
+      "name": "Clear",
+      "desc": "Output 창의 기록을 모두 지우는 버튼"
+    },
+    {
+      "name": "Clear History",
+      "desc": "입력한 Script 기록을 지우는 버튼"
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택된 오브젝트의 이름 일괄 출력하기",
+      "steps": [
+        "Python Script Editor 패널을 엽니다.",
+        "omni.usd 에디터 모듈을 임포트합니다.",
+        "현재 스테이지에서 선택된 프림(Prim) 목록을 가져오는 코드를 작성합니다.",
+        "for 문을 사용하여 각 프림의 경로(Path)를 print 문으로 출력하고 실행합니다."
+      ]
+    },
+    {
+      "title": "USD 스테이지에 새로운 큐브(Cube) 생성하기",
+      "steps": [
+        "Python Script Editor 패널을 엽니다.",
+        "pxr 라이브러리의 UsdGeom과 Usd를 임포트합니다.",
+        "활성 스테이지에 UsdGeom.Cube.Define 메서드를 호출하는 코드를 작성합니다.",
+        "Run 버튼을 눌러 뷰포트에 큐브가 생성되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "USD 경로(Path) 오타 발생 → Stage.GetPrimAtPath() 호출 시 경로 문자열이 정확한지 확인",
+    "Omniverse 컨텍스트 미연결 → omni.usd.get_context()를 통해 현재 스테이지를 올바르게 가져오고 있는지 확인"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Extension Manager",
+    "Omniverse Console",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "KJgszskXWV4",
+      "title": "Using the Script Editor to Create and Edit Python Scripts in Omniverse",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "y5rMjnwqGZM",
+      "title": "Omniverse, Python, and You",
+      "author": "Shane Reetz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Python%20Script%20Editor%20in%20Kit",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Window",
+    "Developer",
+    "Python Script Editor"
+  ],
+  "at": "2026-11-01T00:43:22.623610+00:00"
+}

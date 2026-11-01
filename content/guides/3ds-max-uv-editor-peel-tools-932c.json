@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-uv-editor-peel-tools-932c",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV Editor Peel tools",
+  "title": "Peel — UV 펼치기 도구",
+  "summary": "3ds Max의 UV Editor에서 Peel 툴을 사용하면 복잡한 3D 모델의 표면을 왜곡 없이 펼쳐서 2D 텍스처 좌표로 쉽게 바꿀 수 있습니다.",
+  "when": [
+    "캐릭터나 소품의 UV 심(Seam)을 정리하고 자연스럽게 펼칠 때",
+    "오픈된 실린더나 유기적 형태의 메시를 외형 손상 없이 전개할 때",
+    "텍스처 왜곡(Stretch)을 최소화하며 깔끔한 UV 맵을 얻고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Modifier List에서 Unwrap UVW 모디파이어를 적용합니다.",
+    "Modifier Stack에서 Unwrap UVW를 열고 서브오브젝트 레벨인 2(Polygon) 또는 1(Edge)을 선택합니다.",
+    "Open UV Editor 버튼을 눌러 UV Editor 창을 엽니다.",
+    "메뉴에서 Peel 모드(Quick Peel 또는 Pelt Map)를 활성화합니다.",
+    "오브젝트에 Seam(절단선)을 지정한 후 Peel 툴을 실행하여 전개합니다.",
+    "Pack UVs 기능을 이용해 UV Island들을 0-1 UV 공간 안에 정돈합니다."
+  ],
+  "params": [
+    {
+      "name": "Quick Peel",
+      "desc": "선택한 심(Seam)을 기준으로 자동으로 오브젝트를 빠르게 펼칩니다."
+    },
+    {
+      "name": "Pelt Map",
+      "desc": "가죽을 벗기듯 지정한 테두리(Pelt Stitches)를 기준으로 유연하게 전개합니다."
+    },
+    {
+      "name": "Point-to-Point Seam",
+      "desc": "점과 점을 연결하여 정밀하게 UV 절단선을 생성합니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "펼쳐진 UV의 찌그러진 폴리곤과 왜곡을 부드럽게 펴줍니다."
+    },
+    {
+      "name": "Pack UVs",
+      "desc": "여러 UV Island들이 겹치지 않도록 빈 공간에 맞춰 자동으로 정렬합니다."
+    },
+    {
+      "name": "Stitch",
+      "desc": "떨어져 있는 UV 에지를 서로 붙여줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 형태의 파이프 펴기",
+      "steps": [
+        "파이프의 길이 방향으로 에지를 선택해 Seam을 지정합니다.",
+        "Quick Peel을 실행하여 사각형 형태로 반듯하게 펼칩니다.",
+        "Relax를 살짝 적용해 텍스처 왜곡을 제거합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 헤드 모델링 전개",
+      "steps": [
+        "귀 뒤쪽과 두피 라인을 따라 Seam을 설정합니다.",
+        "Pelt Map을 적용하여 얼굴 앞면과 뒷면의 왜곡을 줄입니다.",
+        "Pack UVs로 최종 섬들을 보기 좋게 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Seam(절단선)이 완전히 연결되지 않음 → Point-to-Point Seam으로 끊어진 부분을 마저 연결합니다.",
+    "오브젝트에 스케일 값이 남아있음 → XForm 초기화(Reset XForm) 후 다시 UV를 폅니다.",
+    "UV 왜곡이 심하게 발생함 → Relax 툴의 iterations 값을 높이거나 Point-to-Point Relax를 활용합니다."
+  ],
+  "related": [
+    "Unwrap UVW",
+    "CheckerPattern",
+    "Reset XForm",
+    "Render UV Template"
+  ],
+  "videos": [
+    {
+      "id": "tqbaed2CqpY",
+      "title": "3D Max KF - Unwrap UVW(Peel)",
+      "author": "Kiknik Frost"
+    },
+    {
+      "id": "KyRmFSyqW-I",
+      "title": "How To Unwrap In 3dsMax",
+      "author": "Georges | 3d tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20UV%20Editor%20Peel%20tools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modifier List",
+    "Unwrap UVW"
+  ],
+  "at": "2026-11-01T00:43:31.323976+00:00"
+}
