@@ -1061,6 +1061,39 @@ def test_summarize_error_trends(monkeypatch, tmp_path):
     assert trends["3D DCC"].get("주제 무관/필터링됨", 0) >= 1
 
 
+def test_summarize_cpc_optimization_metrics(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    monkeypatch.setattr(core, "STRATEGY_PATH", tmp_path / "strategy.json")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+
+    core._save_json(tmp_path / "posts" / "p1.json", {
+        "domain": "3D DCC",
+        "category": "Blender",
+        "title_ko": "Blender Geometry Nodes 튜토리얼 및 파이썬 스크립트 활용",
+        "summary": "Tutorial on script.",
+        "tags": ["blender", "script"],
+        "sections": [{"heading": "Guide", "body": "Rigging and animation workflow."}]
+    })
+    core._save_json(tmp_path / "posts" / "p2.json", {
+        "domain": "Game Engine",
+        "category": "Unreal Engine",
+        "title_ko": "일반 소식",
+        "summary": "뉴스.",
+        "tags": [],
+        "sections": [{"heading": "News", "body": "일반적인 소식입니다."}]
+    })
+
+    metrics = evolve.summarize_cpc_optimization_metrics()
+    assert metrics["total_practical_posts"] == 1
+    assert "3D DCC" in metrics["domains_breakdown"]
+    assert metrics["cpc_score_avg"] > 0.0
+    assert len(metrics["top_practical_posts"]) == 1
+
+    strat = core._load_json(tmp_path / "strategy.json", {})
+    assert "cpc_optimization_metrics" in strat
+
+
 def test_render_practical_content_metrics(monkeypatch):
     import app
     monkeypatch.setattr(app, "load_runs", lambda: [{"name": "3dflowhub auto curation", "conclusion": "success"}])

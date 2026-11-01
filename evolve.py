@@ -540,6 +540,69 @@ def analyze_3d_content_distribution() -> dict[str, float]:
     return {"counts": dist, "total": total, "percentages": percentages}
 
 
+def summarize_cpc_optimization_metrics() -> dict:
+    """최근 발행된 고CPC 3D 튜토리얼 및 스크립트 콘텐츠의 성과 지표를 요약하여 리포트 데이터를 생성합니다."""
+    posts_dir = core.POSTS_DIR
+    if not posts_dir.exists():
+        return {"total_practical_posts": 0, "cpc_score_avg": 0.0, "domains_breakdown": {}, "top_practical_posts": []}
+
+    practical_keywords = [
+        "script", "plugin", "addon", "add-on", "tutorial", "guide", "workflow", "shader",
+        "rigging", "animation", "modeling", "simulation", "render", "geometry nodes", "maxscript",
+        "python", "uefn", "blueprint", "material", "lighting", "vfx", "splatting", "nerf",
+        "스크립트", "플러그인", "가이드", "튜토리얼", "워크플로우", "셰이더", "리깅", "애니메이션",
+        "모델링", "시뮬레이션", "렌더", "지오메트리 노드", "블렌더", "맥스", "마야", "후디니", "언리얼"
+    ]
+
+    total_practical = 0
+    cumulative_score = 0.0
+    domains_breakdown: dict[str, int] = {}
+    practical_posts = []
+
+    for f in posts_dir.glob("*.json"):
+        p = core._load_json(f, {})
+        title = p.get("title_ko", "") or p.get("title", "")
+        summary = p.get("summary", "")
+        tags = p.get("tags", [])
+        sections_text = " ".join(s.get("heading", "") + " " + s.get("body", "") for s in p.get("sections", []))
+        full_text = f"{title} {summary} {' '.join(tags)} {sections_text}".lower()
+
+        match_count = sum(1 for kw in practical_keywords if kw in full_text)
+        if match_count >= 1:
+            total_practical += 1
+            domain = p.get("domain", "기타")
+            domains_breakdown[domain] = domains_breakdown.get(domain, 0) + 1
+            
+            # CPC 최적화 스코어 산출 (실무 툴 및 스크립트 키워드 밀도 기반)
+            score = min(5.0, 1.0 + (match_count * 0.3))
+            cumulative_score += score
+            practical_posts.append({
+                "title": title[:50],
+                "domain": domain,
+                "category": p.get("category", ""),
+                "cpc_score": round(score, 2)
+            })
+
+    avg_score = round(cumulative_score / total_practical, 2) if total_practical > 0 else 0.0
+    practical_posts.sort(key=lambda x: -x["cpc_score"])
+
+    report = {
+        "total_practical_posts": total_practical,
+        "cpc_score_avg": avg_score,
+        "domains_breakdown": domains_breakdown,
+        "top_practical_posts": practical_posts[:10]
+    }
+
+    try:
+        strat = core.load_strategy()
+        strat["cpc_optimization_metrics"] = report
+        core._save_json(core.STRATEGY_PATH, strat)
+    except Exception as e:
+        log.warning("전략 리포트에 CPC 최적화 메트릭 반영 실패: %s", e)
+
+    return report
+
+
 def audit_terms(max_words: int = 1500, batch: int = 500) -> dict[str, str]:
     """용어 자가 학습: 글에 자주 나오는 한글 단어 중 '음역된 고유명사(소프트웨어·플러그인·회사·기술명)'를 찾아
     정식 영문 표기를 memory['glossary_learned'] 에 추가 → core.fix_terms 가 이후 자동 교정."""
