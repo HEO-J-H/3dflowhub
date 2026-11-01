@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import os
 import threading
 from datetime import datetime
@@ -377,8 +378,13 @@ def do_now_box() -> None:
         todo = manager.manual_todo()
     except Exception:
         todo = []
+    hidden = 0
+    if cfg.get("promo_paused"):  # 홍보 쉬는 중엔 '홍보 게시' 할 일로 재촉하지 않음 (보관함·이력 탭에서 관리)
+        keep = [p for p in todo if not re.search(r"홍보|게시|포스팅", p.get("title", ""))]
+        hidden, todo = len(todo) - len(keep), keep
     if not todo:
-        st.success("✅ 지금 직접 할 일이 없습니다 — AI 관리자가 처리 중")
+        st.success("✅ 지금 직접 할 일이 없습니다 — AI 관리자가 처리 중"
+                   + (f" (홍보 쉬는 중이라 홍보 게시 {hidden}건은 숨김)" if hidden else ""))
         return
 
     def rows(items):
@@ -412,7 +418,7 @@ if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
 t_today, t_home, t_list, t_auto, t_draft, t_set = st.tabs(
-    ["🏠 오늘", "📊 개요·수익", "📰 글 목록", "🧬 자동화·진화", "📝 티스토리", "🛠 설정"])
+    ["🏠 오늘", "📊 개요·수익", "📰 글 목록", "🧬 자동화·진화", "🗂 보관함·이력", "🛠 설정"])
 t_rev = t_home  # 탭 수를 줄이려고 '수익·방문'을 개요 아래로 합침
 
 def render_practical_content_metrics() -> None:
@@ -894,45 +900,93 @@ with t_auto:
     with st.expander("TODO.md"):
         st.markdown((core.ROOT / "TODO.md").read_text(encoding="utf-8"))
 
-# ─────────────────────────── 티스토리 초안 ───────────────────────────
+# ─────────────────────────── 보관함·이력 (홍보 '나중에'·건너뜀·게시 기록) ───────────────────────────
 with t_draft:
-    st.caption("티스토리 Open API 종료로 자동 발행 대신 HTML 초안을 만듭니다. "
-               "티스토리 글쓰기 → 우측 상단 '기본모드' → **HTML** 로 바꾼 뒤 붙여넣으세요.")
-    drafts = sorted(core.DRAFT_DIR.glob("*.html"), reverse=True) if core.DRAFT_DIR.exists() else []
-    st.link_button("GitHub Actions 초안(Artifacts) 받기", f"https://github.com/{GH_REPO}/actions")
+    import staff as _staff
+    import dash_sites as _ds
+    st.subheader("🗂 홍보 보관함")
+    paused = bool(cfg.get("promo_paused"))
+    new_paused = st.toggle("홍보 쉬기 — AI 직원이 새 홍보 글을 만들지 않음 (AI 사용량 절약)", value=paused,
+                           help="아직 홍보할 준비가 안 됐을 때. 끄면 다시 만듭니다. 기존 글은 그대로 남습니다.")
+    if new_paused != paused:
+        core.save_config({**core.load_config(), "promo_paused": new_paused})
+        err = core.git_sync(["config.json"], "chore(config): 홍보 쉬기 " + ("켬" if new_paused else "끔"))
+        st.toast("저장됨" if not err else err)
+        st.rerun()
+    box = _staff.outbox()
+    later = [x for x in box if x["status"] == "later"]
+    site_name = lambda x: _sites.SITES.get(_ds._site_of(x), {}).get("name", "")  # noqa: E731
+    st.caption(f"'나중에'로 옮긴 글 {len(later)}개 — 준비되면 꺼내서 올리세요. 대기함에 쌓이지 않아 AI 직원도 홍보를 덜 만듭니다.")
+    for x in later[:20]:
+        with st.container(border=True):
+            st.caption(f"{site_name(x)} · {x.get('channel')} · {_ds._kst(x['at'])}")
+            if x.get("title"):
+                st.markdown(f"**{x['title']}**")
+            st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
+            c1, c2, c3, _ = st.columns([1, 1, 1, 2])
+            if c1.button("✅ 게시함", key=f"ar_p_{x['id']}", type="primary", width="stretch"):
+                _staff.set_outbox(x["id"], "posted"); _ds._sync(["memory/outbox.json"], "홍보 게시"); st.rerun()
+            if c2.button("↩ 대기함으로", key=f"ar_n_{x['id']}", width="stretch"):
+                _staff.set_outbox(x["id"], "new"); _ds._sync(["memory/outbox.json"], "홍보 다시 대기"); st.rerun()
+            if c3.button("건너뛰기", key=f"ar_s_{x['id']}", width="stretch"):
+                _staff.set_outbox(x["id"], "skipped"); _ds._sync(["memory/outbox.json"], "홍보 건너뜀"); st.rerun()
+    if len(later) > 20:
+        st.caption(f"외 {len(later) - 20}개")
 
-    st.markdown("**브라우저 자동 발행** (이 PC 전용 · 최초 1회 `python tistory_publisher.py --login` 필요)")
-    n_drafts = len(list(core.DRAFT_DIR.glob("*.html"))) if core.DRAFT_DIR.exists() else 0
-    if n_drafts == 0:
-        st.info("발행 대기 중인 초안이 없습니다. 위의 '🚀 지금 바로 자료 수집' 을 실행하면 새 초안이 생깁니다.")
+    st.subheader("🧾 홍보 이력")
+    done = [x for x in box if x["status"] in ("posted", "skipped")]
+    if not done:
+        st.info("아직 게시하거나 건너뛴 홍보가 없습니다.")
     else:
-        st.success(f"발행 대기 초안 {n_drafts}개 · 하루 최대 3개까지 발행됩니다.")
-    b1, b2, b3 = st.columns(3)
-    pub_public = b3.toggle("공개 발행", value=False, help="끄면 비공개로 발행됩니다")
+        hist = pd.DataFrame([{"상태": "✅ 게시" if x["status"] == "posted" else "건너뜀", "사이트": site_name(x),
+                              "채널": x.get("channel", ""), "제목": x.get("title", ""), "만든 날": _ds._kst(x["at"])}
+                             for x in done[:200]])
+        st.dataframe(hist, hide_index=True, width="stretch")
+        skipped = [x for x in done if x["status"] == "skipped"]
+        if skipped:
+            pick = st.selectbox("건너뛴 글 다시 꺼내기", ["선택…"] + [f"{site_name(x)} · {x.get('title') or x['body'][:30]}" for x in skipped[:50]])
+            if pick != "선택…" and st.button("↩ 보관함으로 옮기기"):
+                x = skipped[[f"{site_name(y)} · {y.get('title') or y['body'][:30]}" for y in skipped[:50]].index(pick)]
+                _staff.set_outbox(x["id"], "later"); _ds._sync(["memory/outbox.json"], "홍보 다시 꺼냄"); st.rerun()
 
-    def _publisher(*args: str) -> None:
-        import subprocess, sys
-        with st.spinner("티스토리 작업 중… (글 사이 60초 간격)"):
-            r = subprocess.run([sys.executable, "tistory_publisher.py", *args], cwd=core.ROOT,
-                               capture_output=True, text=True, encoding="utf-8", errors="replace",
-                               env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-        st.code(((r.stdout or "") + (r.stderr or ""))[-3000:] or "출력 없음")
+    with st.expander("📝 예전 티스토리 초안 (사용 안 함)"):
+        st.caption("티스토리 Open API 종료로 자동 발행 대신 HTML 초안을 만듭니다. "
+                   "티스토리 글쓰기 → 우측 상단 '기본모드' → **HTML** 로 바꾼 뒤 붙여넣으세요.")
+        drafts = sorted(core.DRAFT_DIR.glob("*.html"), reverse=True) if core.DRAFT_DIR.exists() else []
+        st.link_button("GitHub Actions 초안(Artifacts) 받기", f"https://github.com/{GH_REPO}/actions")
 
-    if core.CLOUD:
-        st.info("브라우저 자동 발행은 로그인된 크롬이 있는 PC 에서만 됩니다. 아래 초안은 복사해서 직접 붙여넣을 수 있어요.")
-    if b1.button("🧪 테스트 (발행 안 함)", disabled=core.CLOUD):
-        _publisher("--dry-run")
-    if b2.button("🚀 초안 발행 (최대 5개)", type="primary", disabled=core.CLOUD):
-        _publisher("--publish", "--limit", "5", *(["--public"] if pub_public else []))
-    if not drafts:
-        st.info("이 PC에 저장된 초안이 없습니다. (클라우드 실행 초안은 위 버튼 → 실행 → Artifacts 에서 받기)")
-    for f in drafts[:30]:
-        raw = f.read_text(encoding="utf-8")
-        title = raw.split("TITLE: ", 1)[-1].split(" |", 1)[0] if raw.startswith("<!-- TITLE") else f.stem
-        with st.expander(title):
-            body = raw.split("-->\n", 1)[-1]
-            st.code(body, language="html")
-            st.download_button("HTML 다운로드", body, file_name=f.name, key=f.name)
+        st.markdown("**브라우저 자동 발행** (이 PC 전용 · 최초 1회 `python tistory_publisher.py --login` 필요)")
+        n_drafts = len(list(core.DRAFT_DIR.glob("*.html"))) if core.DRAFT_DIR.exists() else 0
+        if n_drafts == 0:
+            st.info("발행 대기 중인 초안이 없습니다. 위의 '🚀 지금 바로 자료 수집' 을 실행하면 새 초안이 생깁니다.")
+        else:
+            st.success(f"발행 대기 초안 {n_drafts}개 · 하루 최대 3개까지 발행됩니다.")
+        b1, b2, b3 = st.columns(3)
+        pub_public = b3.toggle("공개 발행", value=False, help="끄면 비공개로 발행됩니다")
+
+        def _publisher(*args: str) -> None:
+            import subprocess, sys
+            with st.spinner("티스토리 작업 중… (글 사이 60초 간격)"):
+                r = subprocess.run([sys.executable, "tistory_publisher.py", *args], cwd=core.ROOT,
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace",
+                                   env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+            st.code(((r.stdout or "") + (r.stderr or ""))[-3000:] or "출력 없음")
+
+        if core.CLOUD:
+            st.info("브라우저 자동 발행은 로그인된 크롬이 있는 PC 에서만 됩니다. 아래 초안은 복사해서 직접 붙여넣을 수 있어요.")
+        if b1.button("🧪 테스트 (발행 안 함)", disabled=core.CLOUD):
+            _publisher("--dry-run")
+        if b2.button("🚀 초안 발행 (최대 5개)", type="primary", disabled=core.CLOUD):
+            _publisher("--publish", "--limit", "5", *(["--public"] if pub_public else []))
+        if not drafts:
+            st.info("이 PC에 저장된 초안이 없습니다. (클라우드 실행 초안은 위 버튼 → 실행 → Artifacts 에서 받기)")
+        for f in drafts[:30]:
+            raw = f.read_text(encoding="utf-8")
+            title = raw.split("TITLE: ", 1)[-1].split(" |", 1)[0] if raw.startswith("<!-- TITLE") else f.stem
+            with st.expander(title):
+                body = raw.split("-->\n", 1)[-1]
+                st.code(body, language="html")
+                st.download_button("HTML 다운로드", body, file_name=f.name, key=f.name)
 
 # ─────────────────────────── 광고 수익 ───────────────────────────
 with t_rev:

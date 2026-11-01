@@ -119,7 +119,7 @@ def outbox() -> list[dict]:
 
 
 def set_outbox(item_id: str, v: str, note: str = "") -> None:
-    """v: posted(게시함) / skipped(건너뜀) / new"""
+    """v: posted(게시함) / later(보관 — 아직 올릴 준비 안 됨, 품질 판단 아님) / skipped(건너뜀 — 이 글은 안 씀) / new"""
     _append(OUTBOX_PATH, {"at": _now(), "kind": "status", "id": item_id, "v": v, "note": note[:200]})
 
 
@@ -142,7 +142,8 @@ def _feedback(role: dict) -> dict:
             "waiting_to_post": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
                                 for x in mine if x["status"] == "new"],
             "recently_posted": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
-                                for x in mine if x["status"] == "posted"][:10]}
+                                for x in mine if x["status"] == "posted"][:10],
+            "kept_for_later": sum(1 for x in mine if x["status"] == "later")}
 
 
 def _context_site(role: dict) -> dict:
@@ -204,6 +205,7 @@ def _context(role: dict) -> dict:
                                 for x in mine if x["status"] == "new"],
             "recently_posted": [{"channel": x.get("channel"), "page": x.get("url", "").split("?")[0]}
                                 for x in mine if x["status"] == "posted"][:10],
+            "kept_for_later": sum(1 for x in mine if x["status"] == "later"),
             "weekly_page": f"{SITE}weekly/",
             **({"site_design": _design_snapshot()} if _is_designer(role) else {})}
 
@@ -241,7 +243,9 @@ def run_role(role: dict) -> dict:
         "promotional posts must be useful first (share what readers learn), not spammy; respect each channel's style "
         "and length (X: ≤240 chars, Naver cafe: title + 3-6 lines, Instagram: caption + 5-8 hashtags, Discord: short "
         "friendly message). If waiting_to_post is long, make fewer new ones; never promote a page that is already in "
-        "waiting_to_post or recently_posted for the same channel. Hashtags have no spaces (#3dsMax, not #3ds Max).\n"
+        "waiting_to_post or recently_posted for the same channel. Hashtags have no spaces (#3dsMax, not #3ds Max). "
+        "kept_for_later = drafts the owner archived because they are not ready to post yet (NOT a quality rejection); "
+        "if kept_for_later + waiting_to_post >= 5, make at most 1 new promo and spend the effort on proposals instead.\n"
         f"Return JSON with keys you are allowed to produce ({want}):\n"
         ' "promo": up to 4 [{"channel": one of the channels or "뉴스레터", "title": short, "body": ready-to-paste text, '
         '"url": the page to link}],\n'
@@ -266,6 +270,8 @@ def run_role(role: dict) -> dict:
         return {}
     now = _now()
     made = {"promo": 0, "proposal": 0, "image": 0}
+    if "promo" in want and core.load_config().get("promo_paused"):  # 운영자가 홍보 쉬기 — AI 를 아낌
+        want = [w for w in want if w != "promo"]
     if "promo" in want:
         evs = []
         for x in (out.get("promo") or [])[:4]:

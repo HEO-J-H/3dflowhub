@@ -56,7 +56,7 @@ def proposals_block(site: str, key: str) -> None:
 
 def outbox_block(site: str, key: str) -> None:
     waiting = [x for x in staff.outbox() if x["status"] == "new" and _site_of(x) == site]
-    st.caption("복사해서 채널에 올린 뒤 '게시함'을 눌러 주세요. 자동 게시는 하지 않습니다.")
+    st.caption("복사해서 채널에 올린 뒤 '게시함'을 눌러 주세요. 아직 올릴 준비가 안 됐으면 '나중에' — 보관함·이력 탭으로 옮겨집니다.")
     if not waiting:
         st.info("대기 중인 홍보 글이 없습니다")
     for x in waiting[:6]:
@@ -72,12 +72,16 @@ def outbox_block(site: str, key: str) -> None:
                 b.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
             else:
                 st.code(f"{x['body']}\n\n{x['url']}", language=None, wrap_lines=True)
-            c1, c2, _ = st.columns([1, 1, 3])
+            c1, c2, c3, _ = st.columns([1, 1, 1, 2])
             if c1.button("✅ 게시함", key=f"{key}_p_{x['id']}", type="primary", width="stretch"):
                 staff.set_outbox(x["id"], "posted")
                 _sync(["memory/outbox.json"], "홍보 게시")
                 st.rerun()
-            if c2.button("건너뛰기", key=f"{key}_s_{x['id']}", width="stretch"):
+            if c2.button("🗂 나중에", key=f"{key}_l_{x['id']}", width="stretch", help="보관함으로 — 준비되면 다시 꺼내 쓰기"):
+                staff.set_outbox(x["id"], "later")
+                _sync(["memory/outbox.json"], "홍보 보관")
+                st.rerun()
+            if c3.button("건너뛰기", key=f"{key}_s_{x['id']}", width="stretch", help="이 글은 쓰지 않음"):
                 staff.set_outbox(x["id"], "skipped")
                 _sync(["memory/outbox.json"], "홍보 건너뜀")
                 st.rerun()
