@@ -1,0 +1,90 @@
+{
+  "id": "nvidia-omniverse-revit-and-sketchup-to-omniverse-5789",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "Revit and SketchUp to Omniverse",
+  "title": "Revit·SketchUp → Omniverse",
+  "summary": "NVIDIA Omniverse 라이브 커넥트와 전용 커넥터를 사용하여 Autodesk Revit과 SketchUp의 3D 건축 데이터를 실시간으로 시각화하고 협업하는 기능입니다.",
+  "when": [
+    "Revit이나 SketchUp으로 작업한 건축 및 인테리어 모델을 실시간으로 고품질 렌더링하고 싶을 때",
+    "다양한 부서의 팀원들이 서로 다른 CAD/BIM 툴의 변경 사항을 하나의 뷰어에서 동시에 확인할 때",
+    "USD(Universal Scene Description) 기반 파이프라인으로 복잡한 3D 씬을 통합할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Exchange 탭에서 Revit 및 SketchUp용 Omniverse Connector를 설치합니다.",
+    "Autodesk Revit 또는 SketchUp을 실행하고 상단 메뉴에서 Omniverse 탭을 엽니다.",
+    "Live Sync 기능을 활성화하여 로컬 또는 원격 Omniverse Nucleus 서버의 세션에 연결합니다.",
+    "Export 또는 Send to Omniverse 메뉴를 사용하여 현재 씬을 USD 포맷으로 변환합니다.",
+    "Omniverse Create 또는 View 앱을 열고 실시간으로 동기화된 모델을 확인하며 조명과 머티리얼을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Live Sync",
+      "desc": "CAD 툴의 변경 사항을 Omniverse 뷰어에 실시간으로 반영합니다."
+    },
+    {
+      "name": "Export USD",
+      "desc": "현재 3D 씬을 USD 파일 형식으로 내보냅니다."
+    },
+    {
+      "name": "Nucleus Server",
+      "desc": "팀원들과 실시간 협업을 위해 데이터를 공유하는 중앙 서버입니다."
+    },
+    {
+      "name": "Material Mapping",
+      "desc": "기존 CAD 머티리얼을 Omniverse PBR 머티리얼로 매핑합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revit BIM 모델의 실시간 라이팅 검토",
+      "steps": [
+        "Revit에서 건축 건물 모델을 엽니다.",
+        "Omniverse 탭에서 Live Sync를 켭니다.",
+        "Omniverse View에서 물리 기반 태양광 조명을 적용하고 인테리어 채광을 시뮬레이션합니다."
+      ]
+    },
+    {
+      "title": "SketchUp 인테리어 디자인 공유",
+      "steps": [
+        "SketchUp에서 가구와 마감재가 포함된 공간을 모델링합니다.",
+        "Connector를 통해 USD로 씬을 내보냅니다.",
+        "클라이언트와 실시간으로 접속하여 마감재 변경 사항을 즉시 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Nucleus 서버 연결 실패 → 네트워크 설정과 방화벽 상태 및 로그인 계정을 확인합니다.",
+    "머티리얼 깨짐 현상 → CAD 툴 내에서 기본 색상 및 텍스처 경로가 올바른지 확인하고 재적용합니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Create",
+    "Omniverse View",
+    "Omniverse Nucleus"
+  ],
+  "videos": [
+    {
+      "id": "4ZLbd6jaxUg",
+      "title": "NVIDIA OMNIVERSE - The Future of Rendering SketchUp Models?",
+      "author": "TheSketchUpEssentials"
+    },
+    {
+      "id": "4kwQ4xTGjoU",
+      "title": "Installation Guide for NVDIA Omniverse USD Composer for CC5 | Character Creator 5 Tutorial",
+      "author": "Reallusion"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Revit%20and%20SketchUp%20to%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Exchange",
+    "Revit",
+    "SketchUp",
+    "Omniverse Connector"
+  ],
+  "at": "2026-11-01T02:13:28.292181+00:00"
+}

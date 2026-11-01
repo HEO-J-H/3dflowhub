@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-arnold-standard-surface-8b6b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Arnold Standard Surface",
+  "title": "Standard Surface — Arnold 재질",
+  "summary": "Arnold Standard Surface는 실물 같은 물리적 재질을 표현하는 3ds Max의 표준 PBR 셔터입니다. 유리, 금속, 플라스틱 등 대부분의 현실 세계 표면을 사실적으로 렌더링합니다.",
+  "when": [
+    "건축 시각화에서 유리 창문이나 거울, 크롬 재질을 표현할 때",
+    "제품 디자인에서 유광 플라스틱이나 무광 금속 케이스를 제작할 때",
+    "VFX 및 영화 프로덕션에서 고품질 물리 기반 렌더링이 필요할 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor(M)를 엽니다.",
+    "Compact Material Editor 또는 Slate Material Editor에서 재질 슬롯을 선택합니다.",
+    "Standard (Legacy) 버튼을 클릭하거나 Material/Map Browser에서 Arnold → Surface → Standard Surface를 선택합니다.",
+    "오브젝트를 선택한 상태에서 Assign Material to Selection 버튼을 눌러 재질을 적용합니다.",
+    "Standard Surface 파라미터 창에서 Base, Specular, Transmission 값을 조절하여 원하는 표면 질감을 만듭니다.",
+    "Arnold 렌더러(Render Setup에서 Renderer를 MAXtoA로 설정)를 활성화하고 IPR(Interactive Production Rendering)을 켜서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 표면 색상을 설정합니다."
+    },
+    {
+      "name": "Base Weight",
+      "desc": "기본 색상의 전체적인 밝기와 영향력을 조절합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "0이면 비금속, 1이면 완전한 금속 재질로 변환합니다."
+    },
+    {
+      "name": "Specular Roughness",
+      "desc": "하이라이트의 거칠기를 조절하여 매끄러운 표면부터 거친 표면까지 표현합니다."
+    },
+    {
+      "name": "Transmission",
+      "desc": "유리나 물처럼 빛을 통과시키는 투명도를 조절합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "빛이 꺾이는 굴절률을 설정하여 유리나 물의 물리적 정확도를 높입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 유리 컵 만들기",
+      "steps": [
+        "Base Weight를 0으로 낮추고 Transmission을 1로 설정합니다.",
+        "IOR 값을 유리의 표준 굴절률인 1.5로 입력합니다.",
+        "Specular Roughness를 0으로 설정하여 완벽하게 매끄러운 표면을 만듭니다."
+      ]
+    },
+    {
+      "title": "금속 도구 표현하기",
+      "steps": [
+        "Metalness 값을 1로 설정하여 완전한 금속 성질을 부여합니다.",
+        "Base Color에 어두운 회색이나 원하는 금속 톤을 지정합니다.",
+        "Specular Roughness를 0.2 정도로 올려 약간의 브러시 처리된 금속 질감을 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스캔라인 렌더러(Scanline Renderer) 환경에서 Arnold 재질을 적용함 → Render Setup에서 프로덕션 렌더러를 Arnold(MAXtoA)로 변경하세요.",
+    "유리 재질을 만들었는데 검게 나옴 → Transmission뿐만 아니라 Base Weight를 0으로 낮추거나 투명도 경로를 확인하세요."
+  ],
+  "related": [
+    "Arnold Skydome Light",
+    "Slate Material Editor",
+    "Physical Material",
+    "Color Correct"
+  ],
+  "videos": [
+    {
+      "id": "sPCaJOdUA1w",
+      "title": "3ds Max Tutorial: Materials using Arnold Renderer",
+      "author": "Kory Bieg"
+    },
+    {
+      "id": "862BqTNfyag",
+      "title": "Autodesk 3Ds Max | Arnold Standard Surface",
+      "author": "Vaibhav Deshmukh Animation Mentor "
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Arnold%20Standard%20Surface",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Compact Material Editor",
+    "Slate Material Editor",
+    "Standard",
+    "Legacy",
+    "Material"
+  ],
+  "at": "2026-11-01T02:13:36.766593+00:00"
+}
