@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-importing-robots-urdf-into-isaac-sim-5248",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "로보틱스",
+  "name": "Importing robots (URDF) into Isaac Sim",
+  "title": "URDF 로봇 불러오기",
+  "summary": "NVIDIA Isaac Sim에서 URDF(Unified Robot Description Format) 파일을 불러와 물리 시뮬레이션이 가능한 로봇 자산으로 변환합니다. CAD나 ROS 환경의 로봇 모델을 가상 공간에 그대로 가져올 때 사용합니다.",
+  "when": [
+    "ROS 및 ROS 2 기반의 로봇 알고리즘을 Isaac Sim에서 테스트할 때",
+    "사용자 정의 로봇 3D 모델과 조인트 구조를 시뮬레이션 환경에 구축할 때",
+    "공장 자동화 및 로보틱스 연구를 위한 디지털 트윈 환경을 구성할 때"
+  ],
+  "steps": [
+    "NVIDIA Isaac Sim을 실행하고 새로운 Stage를 엽니다.",
+    "상단 메뉴에서 Isaac Utils 또는 Create 메뉴를 선택합니다.",
+    "URDF Importer 도구를 실행하여 파일 브라우저를 엽니다.",
+    "변환할 .urdf 파일을 선택하고 Import 설정 창을 엽니다.",
+    "Fix Base Link, Drive Mode 등 기본 물리 설정을 목적에 맞게 조정합니다.",
+    "Import 버튼을 눌러 스테이지에 로봇을 생성하고 재생(Play) 버튼으로 물리 작동을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Fix Base Link",
+      "desc": "로봇의 베이스 링크를 공간에 고정하여 중력에 의해 떨어지지 않도록 합니다."
+    },
+    {
+      "name": "Drive Mode",
+      "desc": "조인트의 구동 방식을 Position, Velocity, Effort 중 선택하여 제어합니다."
+    },
+    {
+      "name": "Import Joint Limits",
+      "desc": "URDF 파일에 정의된 조인트의 최소/최대 회전 및 이동 각도 제한을 불러옵니다."
+    },
+    {
+      "name": "Merge Fixed Joints",
+      "desc": "움직이지 않는 고정 조인트들을 하나로 병합하여 성능을 최적화합니다."
+    },
+    {
+      "name": "Self Collision",
+      "desc": "로봇의 링크 간 충돌 감지 여부를 설정합니다."
+    },
+    {
+      "name": "Scale Factor",
+      "desc": "로봇 모델의 전체 크기 단위를 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 로봇(AMR) 시뮬레이션",
+      "steps": [
+        "바퀴와 본체가 분리된 URDF 파일을 준비합니다.",
+        "URDF Importer로 파일을 불러옵니다.",
+        "Fix Base Link를 해제하고 바퀴 조인트를 Velocity 드라이브로 설정합니다.",
+        "Play 버튼을 누르고 키보드나 ROS 토픽으로 로봇을 이동시킵니다."
+      ]
+    },
+    {
+      "title": "매니퓰레이터(로봇 팔) 피킹 테스트",
+      "steps": [
+        "그리퍼가 포함된 다관절 로봇 팔 URDF를 임포트합니다.",
+        "Fix Base Link를 체크하여 로봇 베이스를 고정합니다.",
+        "Position 드라이브를 활성화하여 각 조인트의 위치를 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 파일 경로 오류로 로봇 형태가 깨지거나 보이지 않음 → URDF 파일 내부의 mesh 파일 상대 경로와 실제 폴더 구조가 일치하는지 확인합니다.",
+    "로봇이 시작하자마자 사방으로 튕겨 나감 → Fix Base Link 설정이 누락되었거나 콜라이더(Collider)가 서로 겹쳐 발생하는 충돌이므로 설정을 확인합니다."
+  ],
+  "related": [
+    "USD",
+    "PhysX",
+    "ROS 2 Bridge",
+    "Action Graph"
+  ],
+  "videos": [
+    {
+      "id": "KCHmYvYF_6c",
+      "title": "Import ANY Robot (URDF): From CAD to Isaac Sim | NVIDIA Omniverse Tutorial",
+      "author": "LycheeAI"
+    },
+    {
+      "id": "AMfEtZ4hyLY",
+      "title": "Import Your Robots From URDF to USD - Isaac Sim Tutorial",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Importing%20robots%20%28URDF%29%20into%20Isaac%20Sim",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T12:05:15.565662+00:00"
+}
