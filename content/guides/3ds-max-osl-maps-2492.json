@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-osl-maps-2492",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "OSL maps",
+  "title": "OSL 맵 — 절차적 텍스처",
+  "summary": "OSL(Open Shading Language)은 프로그래밍 지식 없이도 노드나 간단한 코드를 통해 정교하고 해상도 제약 없는 절차적 텍스처와 Shader를 만드는 3ds Max의 강력한 기능입니다. 비트맵 텍스처의 한계를 넘어 무한한 디테일과 동적인 패턴을 표현합니다.",
+  "when": [
+    "해상도 저하 없는 완벽한 타일링이 가능한 패턴이나 벽돌 텍스처를 만들 때",
+    "수학적 알고리즘 기반의 자연스러운 노이즈나 추상적인 그라데이션을 표현할 때",
+    "커스텀 셰이더나 프로시절 효과를 렌더러(Arnold 등)에 독립적으로 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Material Editor 단축키 M를 눌러 Windows를 엽니다.",
+    "Material/Map Browser에서 Maps 카테고리 내의 OSL을 찾습니다.",
+    "원하는 OSL 맵(예: Brick, Checker, Noise 등)을 슬롯으로 드래그 앤 드롭합니다.",
+    "생성된 OSL 맵 노드를 Standard 또는 Physical Material의 Base Color 등의 입력 슬롯에 연결합니다.",
+    "Parameter Editor에서 세부 수치를 조절하여 텍스처를 뷰포트나 렌더뷰로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "OSL Map",
+      "desc": "사용할 OSL 셰이더나 Script 파일을 선택하는 기본 슬롯입니다."
+    },
+    {
+      "name": "Color",
+      "desc": "패턴이나 텍스처의 기본 색상을 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "프로시절 텍스처의 전체 크기나 주기를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "노이즈나 표면 디테일의 거칠기 정도를 변경합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "랜덤 패턴의 난수 생성값을 바꿔서 다른 형태의 조합을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 외벽 표현하기",
+      "steps": [
+        "Material/Map Browser에서 OSL Brick 맵을 생성합니다.",
+        "Brick Width와 Mortar Size를 조절해 벽돌과 줄눈의 간격을 맞춥니다.",
+        "Roughness를 살짝 주어 자연스러운 표면 불규칙성을 더합니다.",
+        "Diffuse Color 슬롯에 연결하여 벽돌 재질을 완성합니다."
+      ]
+    },
+    {
+      "title": "절차적 그라데이션 배경 만들기",
+      "steps": [
+        "OSL Gradient 맵을 뷰에 생성합니다.",
+        "Type을 Radial이나 Linear로 변경합니다.",
+        "Color 1과 Color 2에 원하는 색상을 지정합니다.",
+        "Self-Illumination 슬롯에 연결해 빛나는 패널을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구형 렌더러나 일부 타사 렌더러에서 OSL이 정상 표시되지 않음 → 지원하는 렌더러(Arnold 등) 및 최신 버전 사용",
+    "Scale 값이 너무 커서 텍스처가 아예 보이지 않음 → Scale 수치를 크게 낮추거나 단위 설정 확인"
+  ],
+  "related": [
+    "Slate Material Editor",
+    "Arnold Renderer",
+    "Physical Material",
+    "Bitmap"
+  ],
+  "videos": [
+    {
+      "id": "SJZWAqlzqS8",
+      "title": "3ds Max: Introduction to OSL",
+      "author": "Autodesk 3ds Max Learning Channel"
+    },
+    {
+      "id": "tUdDAoiiM48",
+      "title": "3ds Max: OSL Basics",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20OSL%20maps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Windows",
+    "Material",
+    "Map Browser",
+    "Maps",
+    "OSL"
+  ],
+  "at": "2026-11-01T01:53:28.436667+00:00"
+}
