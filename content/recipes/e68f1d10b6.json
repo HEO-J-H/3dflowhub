@@ -1,0 +1,49 @@
+{
+  "id": "e68f1d10b6",
+  "domain": "AI 3D",
+  "category": "NVIDIA DSX",
+  "host": "Maya",
+  "lang": "python",
+  "title": "NVIDIA DSX 디지털 트윈 데이터 Maya 후처리 툴",
+  "problem": "NVIDIA DSX 디지털 트윈 솔루션으로 생성된 대규모 공장 에셋을 Maya로 가져올 때 발생하는 수동 정리 작업을 자동화합니다. 다수의 메쉬 스케일 보정, 트랜스폼 Freeze, 그리고 렌더링용 표준 Shader 할당의 번거로움을 해결합니다.",
+  "pipeline": [
+    {
+      "tool": "Maya Batch Import",
+      "action": "로컬 FBX 또는 OBJ 에셋 파일을 씬으로 일괄 불러옵니다."
+    },
+    {
+      "tool": "Transform Cleanup",
+      "action": "모든 선택 객체의 피벗을 원점으로 정렬하고 트랜스폼을 프리즈합니다."
+    },
+    {
+      "tool": "Shader Assignment",
+      "action": "디지털 트윈 검증용 표준 블린 Shader를 생성해 일괄 할당합니다."
+    },
+    {
+      "tool": "Batch Export",
+      "action": "정리된 에셋을 최적화된 이름으로 로컬 경로에 일괄 내보냅니다."
+    }
+  ],
+  "script": "import maya.cmds as cmds\n\ndef dsx_cleanup_tool():\n    window_name = \"dsxCleanupWin\"\n    if cmds.window(window_name, exists=True):\n        cmds.deleteUI(window_name, window=True)\n    \n    cmds.window(window_name, title=\"DSX Asset Cleanup for Maya\", widthHeight=(320, 180))\n    cmds.columnLayout(adjustableColumn=True, rowSpacing=8, columnAttach=('both', 10))\n    \n    cmds.text(label=\"NVIDIA DSX 디지털 트윈 에셋 후처리 도구\", align=\"center\", font=\"boldLabelFont\")\n    cmds.text(label=\"선택한 에셋의 트랜스폼 프리즈 및 표준 셰이더를 할당합니다.\", align=\"center\")\n    \n    cmds.button(label=\"1. Transform Freeze\", command=lambda *args: freeze_transforms())\n    cmds.button(label=\"2. Assign Standard Shader\", command=lambda *args: assign_standard_shader())\n    cmds.button(label=\"닫기\", command=lambda *args: cmds.deleteUI(window_name, window=True))\n    \n    cmds.showWindow(window_name)\n\ndef freeze_transforms():\n    selection = cmds.ls(selection=True, long=True)\n    if not selection:\n        cmds.warning(\"정리할 메쉬를 선택해주세요.\")\n        return\n    \n    # Fix: remove invalid keyword arguments 't', 'r', 's' for cmds.makeIdentity\n    cmds.makeIdentity(selection, apply=True, translate=True, rotate=True, scale=True, normal=0)\n    cmds.delete(selection, constructionHistory=True)\n    print(\"[DSX Pipeline] Transforms frozen and history deleted successfully.\")\n\ndef assign_standard_shader():\n    selection = cmds.ls(selection=True, long=True)\n    if not selection:\n        cmds.warning(\"셰이더를 할당할 메쉬를 선택해주세요.\")\n        return\n    \n    shader = cmds.shadingNode(\"blinn\", asShader=True, name=\"DSX_DigitalTwin_Blinn\")\n    shading_group = cmds.sets(renderable=True, noSurfaceShader=True, empty=True, name=\"DSX_DigitalTwin_SG\")\n    cmds.connectAttr(shader + \".outColor\", shading_group + \".surfaceShader\", force=True)\n    \n    for obj in selection:\n        shapes = cmds.listRelatives(obj, shapes=True, fullPath=True) or []\n        if shapes:\n            cmds.sets(shapes, edit=True, forceElement=shading_group)\n            \n    print(\"[DSX Pipeline] Standard Blinn shader assigned successfully.\")\n\nif __name__ == \"__main__\":\n    dsx_cleanup_tool()",
+  "install": [
+    "마야를 실행하고 Script Editor를 엽니다.",
+    "Python 탭에 제공된 코드를 붙여넣습니다.",
+    "코드를 실행하여 UI 창을 띄웁니다."
+  ],
+  "usage": [
+    "정리할 디지털 트윈 메쉬 에셋을 뷰포트에서 선택합니다.",
+    "UI의 '1. Transform Freeze' 버튼을 눌러 스케일과 피벗을 정리합니다.",
+    "'2. Assign Standard Shader' 버튼을 눌러 표준 Shader를 일괄 적용합니다."
+  ],
+  "limits": [
+    "로컬 파일 및 선택된 메쉬 객체만을 대상으로 작동합니다.",
+    "네트워크 통신이나 외부 AI 서비스 API 호출 기능은 포함되어 있지 않습니다."
+  ],
+  "sources": [
+    "2026-10-30-51b3539e8d92f389",
+    "2026-10-30-10f731e87c2fa8b7"
+  ],
+  "expect": [],
+  "checked": "문법 검사 통과 · 실제 툴 실행은 미검증",
+  "at": "2026-11-01T04:33:59+00:00"
+}
