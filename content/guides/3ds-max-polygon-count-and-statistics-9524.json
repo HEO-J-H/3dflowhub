@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-polygon-count-and-statistics-9524",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Polygon count and Statistics",
+  "title": "폴리곤 수 보기(Statistics)",
+  "summary": "3ds Max에서 씬 내 폴리곤 수와 프레임 레이트를 실시간으로 확인하여 최적화 상태를 점검하는 기능입니다. 게임 엔진이나 렌더링 전 성능 저하 요소를 파악할 때 사용합니다.",
+  "when": [
+    "게임 엔진이나 웹용으로 에셋을 내보내기 전 폴리곤 예산을 확인할 때",
+    "복잡한 씬에서 뷰포트가 느려질 때 원인이 되는 고폴리곤 오브젝트를 찾을 때",
+    "클라이언트나 팀에서 요구하는 폴리곤 한도(Poly Count)를 준수하고 있는지 검증할 때"
+  ],
+  "steps": [
+    "3ds Max 뷰포트 좌측 상단의 Viewport Label(예: [Standard] 또는 [Default])을 클릭합니다.",
+    "메뉴에서 Configure Viewports...를 선택합니다.",
+    "열린 창에서 Statistics 탭으로 이동합니다.",
+    "Show에 체크하여 활성화하고, Total(전체) 또는 Selected(선택) 옵션을 선택합니다.",
+    "단축키 7을 눌러 뷰포트에 폴리곤 카운트 통계를 직접 켜고 끌 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "Total",
+      "desc": "씬에 있는 모든 오브젝트의 폴리곤 및 Vertex 총합을 표시합니다."
+    },
+    {
+      "name": "Selected",
+      "desc": "현재 선택한 오브젝트의 폴리곤 및 Vertex 수만 따로 보여줍니다."
+    },
+    {
+      "name": "Polygon Count",
+      "desc": "삼각형(Triangle) 또는 사각형 기준의 폴리곤 면 개수를 집계합니다."
+    },
+    {
+      "name": "Vertex Count",
+      "desc": "모델을 구성하는 점(Vertex)의 총 개수를 표시합니다."
+    },
+    {
+      "name": "Framerate",
+      "desc": "현재 뷰포트의 초당 프레임 수(FPS)를 표시하여 성능을 가늠하게 돕습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 에셋 폴리곤 검수",
+      "steps": [
+        "캐릭터 모델링을 전체 선택(Ctrl+A)합니다.",
+        "단축키 7을 눌러 뷰포트 통계를 켭니다.",
+        "Selected 항목의 삼각형(Triangle) 개수가 게임 엔진 제한 수치 내에 있는지 확인합니다."
+      ]
+    },
+    {
+      "title": "무거운 씬에서 고폴리곤 범인 찾기",
+      "steps": [
+        "단축키 7을 켜서 전체 씬의 폴리곤 수를 확인합니다.",
+        "의심되는 오브젝트들을 하나씩 선택 해제해 봅니다.",
+        "Selected 통계를 보며 폴리곤을 과도하게 차지하는 오브젝트를 찾아냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브오브젝트 모드에서 수치가 안 맞음 → 전체 씬이나 선택된 오브젝트 기준(Total/Selected) 설정이 꺼져 있거나 올바르지 않은지 확인합니다.",
+    "Modifier 적용 전후 수치 혼동 → TurboSmooth 등의 모디파이어가 뷰포트에서 켜져 있는지(Render 값이 아닌지) 확인합니다."
+  ],
+  "related": [
+    "Polygon Counter",
+    "Level of Detail",
+    "Optimize",
+    "ProOptimizer"
+  ],
+  "videos": [
+    {
+      "id": "DlrfPcfVDlg",
+      "title": "Check Poly & Vertex Counts in 3ds Max in Under 1 Minute!",
+      "author": "Maruf Khan Ornob"
+    },
+    {
+      "id": "KXhfggBwC18",
+      "title": "3Ds max - Reducing the polygons  (high poly to low poly) (ProOptimizer) #3dsmax #tutorial",
+      "author": "Viz Pipeline"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Polygon%20count%20and%20Statistics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T00:33:08.633601+00:00"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "nvidia-omniverse-variants-switching-in-usd-composer-829c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Variants switching in USD Composer",
+  "title": "Variant 전환하기",
+  "summary": "NVIDIA Omniverse USD Composer에서 USD의 Variant Set 기능을 활용해 하나의 모델 데이터 안에서 다양한 디자인 옵션을 실시간으로 전환합니다. 여러 버전을 별개 파일로 저장하지 않고 효율적으로 관리할 수 있습니다.",
+  "when": [
+    "클라이언트 미팅에서 자동차 컬러나 휠 디자인을 실시간으로 바꿔가며 보여줄 때",
+    "건축 인테리어 시각화에서 마감재(우드, 대리석, 패브릭) 옵션을 빠르게 비교할 때",
+    "게임 캐릭터나 프롭의 파츠(무기, 갑옷 종류) 교체 버전을 한 파일로 묶어 관리할 때"
+  ],
+  "steps": [
+    "USD Composer를 실행하고 스테이지에 Variant가 포함된 USD 파일을 불러옵니다.",
+    "Stage 패널에서 Variant Set이 설정된 프림(Prim)을 선택합니다.",
+    "Properties 패널 또는 해당 프림의 속성에서 Variant Set 목록을 확인합니다.",
+    "드롭다운 메뉴에서 원하는 Variant 옵션을 선택하여 뷰포트에 즉시 반영합니다.",
+    "필요시 애니메이션 Timeline과 연동하여 프레임별로 Variant가 바뀌도록 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Variant Sets",
+      "desc": "선택한 프림에 포함된 모든 배리에이션 그룹의 목록을 관리합니다."
+    },
+    {
+      "name": "Active Variant",
+      "desc": "현재 뷰포트와 렌더링에 적용될 활성 옵션을 지정합니다."
+    },
+    {
+      "name": "Stage",
+      "desc": "USD 계층 구조와 프림을 확인하고 선택하는 패널입니다."
+    },
+    {
+      "name": "Properties",
+      "desc": "선택한 객체의 세부 속성과 메타데이터, Variant 옵션을 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 외장 컬러 및 휠 교체",
+      "steps": [
+        "Stage 패널에서 자동차 메인 바디 프림을 선택합니다.",
+        "Properties 패널의 Variant Sets에서 'PaintColor'를 찾아 'Red'에서 'Blue'로 변경합니다.",
+        "휠 프림을 선택하고 'WheelStyle' Variant를 'Sport'로 전환합니다."
+      ]
+    },
+    {
+      "title": "인테리어 가구 마감재 변경",
+      "steps": [
+        "식탁 프림을 선택하고 Variant Sets에서 'Material' 속성을 찾습니다.",
+        "옵션을 'Oak'에서 'Walnut'으로 변경하여 목재 톤을 즉시 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 프림 선택 → Stage 패널에서 Variant Set이 정의된 상위 또는 하위 정확한 프림을 선택했는지 확인합니다.",
+    "파일 저장 시 설정 유실 → USD 파일이 올바른 레이어 구조로 저장되었는지 확인하고 참조(Reference) 경로를 점검합니다."
+  ],
+  "related": [
+    "USD",
+    "Stage Panel",
+    "Layer Editor",
+    "Material Graph"
+  ],
+  "videos": [
+    {
+      "id": "0RRobfS0UgQ",
+      "title": "Animation Timeline and Curve Editor Overview in Omniverse USD Composer",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Variants%20switching%20in%20USD%20Composer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T00:32:59.974369+00:00"
+}
