@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-digital-twin-basics-with-omniverse-86c7",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "디지털 트윈",
+  "name": "Digital twin basics with Omniverse",
+  "title": "디지털 트윈 기초",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있습니다.",
+  "when": [
+    "서로 다른 3D 툴(Blender, 3ds Max, Maya 등)을 사용하는 팀원들과 실시간 협업이 필요할 때",
+    "공장, 도시, 대형 건축물 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
+    "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 로컬 또는 원격으로 시작합니다.",
+    "설치된 DCC 툴(예: 3ds Max 또는 Blender)을 열고 Omniverse Connector(Live Sync) 플러그인을 활성화합니다.",
+    "Omniverse Nucleus 서버에 새로운 프로젝트용 USD 스테이지(Stage)를 생성합니다.",
+    "각 DCC 툴에서 모델링 데이터를 수정하면 Omniverse Viewport에 실시간으로 반영되는 것을 확인합니다.",
+    "Render Settings 패널에서 RTX Renderer와 Path Tracing 모드를 켜서 고품질 결과를 확인합니다.",
+    "Physics 패널에서 강체(Rigid Body)와 충돌(Collision) 속성을 부여해 시뮬레이션을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Stage",
+      "desc": "USD 기반의 3D 씬 구조와 계층을 관리하는 작업 공간입니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "원본 데이터를 수정하지 않고 속성이나 요소를 덧씌워 비파괴적으로 협업합니다."
+    },
+    {
+      "name": "Live Sync",
+      "desc": "외부 DCC 툴의 변경 사항을 실시간으로 Omniverse 씬에 동기화합니다."
+    },
+    {
+      "name": "Path Tracing",
+      "desc": "실시간으로 물리적으로 정확한 빛의 반사와 굴절을 계산하여 렌더링합니다."
+    },
+    {
+      "name": "Rigid Body",
+      "desc": "오브젝트에 물리적 무게와 충돌 성질을 부여하여 중력이나 힘에 반응하게 합니다."
+    },
+    {
+      "name": "Connectors",
+      "desc": "외부 3D DCC 소프트웨어를 Omniverse와 연결해 주는 전용 플러그인입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 툴 실시간 협업 파이프라인 구축",
+      "steps": [
+        "Nucleus 서버에 공통 USD 루트 파일을 생성합니다.",
+        "Blender Connector를 켜고 배경 구조물을 업로드합니다.",
+        "3ds Max Connector로 소품을 추가하고 실시간 동기화 상태를 확인합니다."
+      ]
+    },
+    {
+      "title": "공장 자동화 디지털 트윈 시뮬레이션",
+      "steps": [
+        "CAD 데이터를 USD 형식으로 변환하여 Stage에 임포트합니다.",
+        "컨베이어 벨트 오브젝트에 Kinematic Rigid Body 속성을 적용합니다.",
+        "PhysX 시뮬레이션을 실행하여 제품 이동 경로와 병목 구간을 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "로컬 Nucleus 서버가 실행되지 않았는데 Live Sync를 켠 경우 → Omniverse Launcher에서 Nucleus 서비스가 정상 작동 중인지 확인하고 재연결합니다.",
+    "외부 DCC 툴에서 스케일(Scale) 값이 1이 아닌 상태로 업로드되어 물리 시뮬레이션이 어긋나는 경우 → 각 툴에서 Freeze Transforms 또는 Apply Scale을 실행한 뒤 다시 동기화합니다."
+  ],
+  "related": [
+    "Universal Scene Description",
+    "Omniverse Nucleus",
+    "Omniverse Create",
+    "PhysX"
+  ],
+  "videos": [
+    {
+      "id": "-Va2sXIHtaQ",
+      "title": "How To Build Digital Twins In Omniverse Tutorial",
+      "author": "Loupe"
+    },
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Digital%20twin%20basics%20with%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T12:45:49.356962+00:00"
+}
