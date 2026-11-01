@@ -515,6 +515,7 @@ a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";f
 .aiby{font-size:13px;color:var(--muted);margin:2px 0 14px}.aiby a{text-decoration:underline}.aiby .ok{color:#248a3d}
 .optip{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px 16px;margin:14px 0}
 .optip b{display:block;margin-bottom:4px}.optip p{margin:0;white-space:pre-line}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}.quick .btn{min-height:44px;display:inline-flex;align-items:center}
 /* 홈 '도구별 기초 배우기' — 영상 썸네일 강조 */
 .lt-hero{position:relative;display:block;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:4px 0 10px;background:#000}
 .lt-hero img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.lt-hero:hover img{transform:scale(1.03)}
@@ -1416,6 +1417,13 @@ def build() -> dict:
                 f'<a class="more" href="{{ROOT}}{learn_url(gs[0])}">처음부터 배우기 →</a></div>')
 
     learn_tiles = "".join(learn_tile(t, gs) for t, gs in by_tool.items())
+    # 인기 기초 가이드: 실제 조회수(방문 통계) 상위 → 없으면 영상 있는 최신 가이드
+    views = (core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}).get("learn") or {}
+    by_id = {g["id"]: g for g in learn_guides}
+    hot = [by_id[i] for i, _ in sorted(views.items(), key=lambda kv: -int((kv[1] or {}).get("views", 0))) if i in by_id][:6]
+    hot += [g for g in sorted(learn_guides, key=lambda g: g.get("at", ""), reverse=True)
+            if g.get("videos") and g not in hot][:6 - len(hot)]
+    hot_html = "".join(guide_card(g, "{ROOT}") for g in hot)
     home_head = (
         f'<section class="hero"><h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
         f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
@@ -1424,6 +1432,11 @@ def build() -> dict:
         f'<a class="btn ghost" href="{{ROOT}}weekly/">이번 주 요약 →</a></div>'
         f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>정리된 소식</span>'
         f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        + (f'<h2 class="sec">인기 기초 가이드 <a href="{{ROOT}}learn/">전체 {len(learn_guides)}개 →</a></h2>'
+           f'<div class="gcards">{hot_html}</div>' if hot_html else "")
+        + '<p class="quick"><a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
+          '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
+          '<a class="btn ghost" href="{ROOT}recipes/">🔧 검증된 스크립트</a></p>'
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
            if learn_tiles else "")
         + (f'<h2 class="sec">에디터 추천</h2><div class="cards">{"".join(card(p, "{ROOT}") for p in picks[:6])}</div>'

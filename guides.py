@@ -354,7 +354,7 @@ def pending() -> list[tuple]:
     return out
 
 
-GUIDES_DAILY_MAX = 40  # 기초 가이드 우선 (운영자 요청) — 품질 검사 통과분만, 하루 상한으로 몰아치기 방지
+GUIDES_DAILY_MAX = 60  # 기초 가이드 우선 (운영자 요청) — 품질 검사 통과분만, 하루 상한으로 몰아치기 방지
 
 
 def passes_quality(g: dict) -> bool:

@@ -24,7 +24,7 @@ import core
 
 FIX_DIR = core.ROOT / "content" / "fixes"
 CHANGE_DIR = core.ROOT / "content" / "changes"
-FIXES_DAILY_MAX = 6
+FIXES_DAILY_MAX = 10
 UA = {"User-Agent": "Mozilla/5.0 (3dflowhub reference builder)"}
 
 # (도구, 오류 메시지 원문, 한국어 제목, 재현 {"bad": 오류가 나는 코드, "good": 고친 코드} 또는 None)
@@ -105,6 +105,51 @@ def _now() -> str:
 def rid(*parts: str) -> str:
     base = re.sub(r"[^a-z0-9]+", "-", " ".join(parts).lower()).strip("-")[:50]
     return base + "-" + hashlib.md5("|".join(parts).encode()).hexdigest()[:5]
+
+
+TOPICS_PATH = core.ROOT / "memory" / "ref_topics.json"   # AI 가 보강한 오류 주제 (FIXES 에 더해짐)
+REFILL_BELOW = 8      # 남은 오류 주제가 이보다 적으면 새 주제를 만든다
+TOOLS = ["Blender", "3ds Max", "Maya", "Unreal Engine", "Houdini", "ZBrush", "Substance 3D", "NVIDIA Omniverse"]
+
+
+def all_fixes() -> list[tuple]:
+    extra = [tuple(x) + (None,) for x in core._load_json(TOPICS_PATH, []) if isinstance(x, list) and len(x) == 3]
+    known = {(t[0], t[1].lower()) for t in FIXES}
+    return FIXES + [t for t in extra if (t[0], t[1].lower()) not in known]
+
+
+def pending_fixes() -> list[tuple]:
+    have = {f.stem for f in FIX_DIR.glob("*.json")} if FIX_DIR.exists() else set()
+    return [t for t in all_fixes() if rid(t[0], t[1]) not in have]
+
+
+def refill_topics(n: int = 16) -> list[str]:
+    """남은 오류 주제가 적으면, 실제로 자주 보는 오류 메시지 원문을 도구별로 새로 고른다 (AI 1회).
+    원문처럼 보이지 않는 것(너무 짧거나 문장형)은 버리고, 이미 있는 것과 겹치면 뺀다."""
+    if len(pending_fixes()) >= REFILL_BELOW or not core.background_ok(2):
+        return []
+    have = [t[1] for t in all_fixes()]
+    prompt = ("List real, frequently searched error messages or symptoms 3D artists hit in these tools: "
+              + ", ".join(TOOLS) + ".\nAlready covered (do not repeat): " + json.dumps(have[-80:], ensure_ascii=False)
+              + f"\nReturn JSON {{\"items\": [{{\"tool\": one of the tools, \"error\": the exact message text as shown "
+                f"(or the precise symptom in English), \"title_ko\": Korean page title with the message first}}]}} — {n} items, "
+                "spread across tools, only messages you are confident are real.")
+    out = _ask(prompt, 1600)
+    added = []
+    cur = core._load_json(TOPICS_PATH, [])
+    seen = {x.lower() for x in have}
+    for it in out.get("items") or []:
+        if not isinstance(it, dict):
+            continue
+        tool, err, title = str(it.get("tool", "")), str(it.get("error", "")).strip(), str(it.get("title_ko", "")).strip()
+        if tool not in TOOLS or len(err) < 12 or len(title) < 6 or err.lower() in seen:
+            continue
+        seen.add(err.lower())
+        cur.append([tool, err[:200], title[:80]])
+        added.append(f"{tool}: {err[:60]}")
+    if added:
+        core._save_json(TOPICS_PATH, cur[-400:])
+    return added
 
 
 def load(kind: str) -> list[dict]:
@@ -215,11 +260,12 @@ def write(max_fixes: int = 2, max_changes: int = 1) -> list[str]:
     """아직 없는 페이지를 조금씩 (오류 해결은 하루 상한, 바뀐 점은 남은 것부터)."""
     if not core.background_ok(max_fixes + max_changes):
         return []
+    refilled = refill_topics()  # 주제가 바닥나기 전에 스스로 보강
     have = {f.stem for d in (FIX_DIR, CHANGE_DIR) if d.exists() for f in d.glob("*.json")}
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     made_today = sum(1 for x in load("fix") if x.get("at", "").startswith(today))
     done = []
-    for t in [t for t in FIXES if rid(t[0], t[1]) not in have][:max(0, min(max_fixes, FIXES_DAILY_MAX - made_today))]:
+    for t in pending_fixes()[:max(0, min(max_fixes, FIXES_DAILY_MAX - made_today))]:
         try:
             p = make_fix(*t)
         except core.LLMBudgetExceeded:
@@ -235,6 +281,8 @@ def write(max_fixes: int = 2, max_changes: int = 1) -> list[str]:
         if p:
             core._save_json(CHANGE_DIR / f"{p['id']}.json", p)
             done.append(p["title"])
+    if refilled:
+        done.append(f"오류 주제 {len(refilled)}개 보강")
     return done
 
 

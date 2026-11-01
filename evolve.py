@@ -808,7 +808,7 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
     if force or _due(strategy, "refs_at", 3 * 3600):  # 오류 해결·버전별 바뀐 점: 3시간마다 조금씩 (하루 상한)
         try:
             import refs
-            made = refs.write(2, 1)
+            made = refs.write(4, 1)
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "refs": made}])[-30:]
         except Exception as e:

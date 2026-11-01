@@ -434,6 +434,25 @@ def _guide_stats() -> dict:
         return {}
 
 
+def _content_output() -> dict:
+    """콘텐츠 생산 현황 — 관리자가 '오늘 무엇이 얼마나 나왔고, 어디가 막혔나'를 보고 판단하게."""
+    try:
+        import guides
+        import refs
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        g_today = sum(1 for g in guides.load_all() if (g.get("at") or "").startswith(today))
+        f_today = sum(1 for x in refs.load("fix") if (x.get("at") or "").startswith(today))
+        out = {"guides_today": g_today, "guides_daily_max": guides.GUIDES_DAILY_MAX,
+               "fix_pages": len(refs.load("fix")), "fix_verified": sum(1 for x in refs.load("fix") if x.get("verified")),
+               "fixes_today": f_today, "fix_topics_queued": len(refs.pending_fixes()),
+               "change_pages": len(refs.load("change"))}
+        if g_today >= guides.GUIDES_DAILY_MAX:
+            out["note"] = "Guides hit today's cap — do not propose 'more guides'; propose depth/quality or new formats instead."
+        return out
+    except Exception:
+        return {}
+
+
 def snapshot() -> dict:
     """AI 관리자가 볼 지표 (숫자 근거)."""
     posts = [core._load_json(f, {}) for f in core.POSTS_DIR.glob("*.json")]
@@ -481,6 +500,7 @@ def snapshot() -> dict:
         "staff_capabilities": {"promo": "채널별 홍보 글 초안", "proposal": "개선 제안", "note": "업무 일지",
                                "image": "브랜드 템플릿 홍보 이미지(square/x/story) — 디자이너 직무에 적합, 사이트 디자인 정보도 받음"},
         "basics_guides": _guide_stats(),
+        "content_output": _content_output(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
 
