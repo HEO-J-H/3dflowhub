@@ -1,0 +1,40 @@
+{
+  "id": "unreal-engine-failed-to-package-project-uathelper--1966d",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Failed to package project (UATHelper error)",
+  "title": "프로젝트 패키징 실패 (UATHelper) 점검",
+  "summary": "Unreal Engine 프로젝트 패키징 과정에서 UAT(Unreal Automation Tool)가 빌드 작업을 완료하지 못하고 중단되었음을 뜻합니다. 로그 파일에서 구체적인 원인 코드를 확인해야 합니다.",
+  "causes": [
+    "C++ 코드 컴파일 오류 또는 누락된 빌드 도구(Visual Studio 구성요소)",
+    "블루프린트 내부에 끊어진 노드나 잘못된 에셋 참조(Redirector 문제 등)",
+    "지원하지 않는 플랫폼 SDK 버전 또는 잘못된 프로젝트 설정",
+    "경로가 너무 길거나 특수문자/공백이 포함된 프로젝트 저장 폴더"
+  ],
+  "steps": [
+    "패키징 실패 로그 창에서 빨간색 오류 메시지와 [Output Log]를 열어 정확한 원인 코드를 파악합니다.",
+    "Visual Studio Installer를 실행하여 Unreal Engine 버전에 맞는 C++ 빌드 툴과 Windows SDK가 올바르게 설치되었는지 확인합니다.",
+    "프로젝트 폴더 내의 Intermediate, Binaries, Saved 폴더를 삭제하고 에디터를 재시작합니다.",
+    "콘텐츠 브라우저에서 빈 공간 우클릭 후 [Fix Up Redirectors in Folder]를 실행하여 깨진 레퍼런스를 정리합니다.",
+    "Project Settings의 Maps & Modes 및 Packaging 메뉴에서 누락된맵이나 잘못 설정된 항목이 없는지 점검합니다.",
+    "프로젝트를 Visual Studio에서 직접 Development Editor 또는 Development 배포 구성으로 빌드하여 구체적인 컴파일 에러를 확인합니다."
+  ],
+  "check": [
+    "패키징 과정이 오류 없이 완료되고 'Packaging Complete' 메시지가 출력되는지 확인합니다.",
+    "지정한 출력 폴더에 .exe 실행 파일과 빌드된 게임 콘텐츠가 정상적으로 생성되었는지 실행해 봅니다."
+  ],
+  "prevent": [
+    "프로젝트 경로를 영문으로만 구성하고 드라이브 루트(예: C:/Project)에 가깝게 짧게 유지합니다.",
+    "새로운 에셋이나 플러그인을 추가한 직후에 에디터 내에서 수시로 패키징 테스트를 진행합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 패키징 실패",
+    "UATHelper 오류",
+    "Unreal Engine Packaging Error",
+    "Unreal 배포 에러",
+    "프로젝트 패키지 안됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T12:25:52+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "id": "nvidia-omniverse-isaac-lab-reinforcement-learning-0d47",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "로보틱스",
+  "name": "Isaac Lab reinforcement learning",
+  "title": "Isaac Lab — 강화학습 기초",
+  "summary": "NVIDIA Omniverse Isaac Lab은 로봇 학습과 강화학습(Reinforcement Learning)을 물리 기반 시뮬레이션 환경에서 빠르고 안전하게 수행할 수 있는 모듈형 프레임워크입니다.",
+  "when": [
+    "휴머노이드나 로봇팔 등의 인공지능(AI) 보행 및 조작 제어를 학습시킬 때",
+    "실제 로봇을 배치하기 전 가상 환경에서 다양한 센서 데이터와 물리 법칙을 검증할 때",
+    "대규모 병렬 시뮬레이션을 통해 강화학습 소요 시간을 단축하고자 할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Isaac Sim 앱을 설치합니다.",
+    "Isaac Lab 공식 GitHub 저장소를 클론(Clone)하여 로컬 환경에 세팅합니다.",
+    "터미널 또는 IDE에서 Python 환경(Conda)을 활성화하고 필수 라이브러리를 설치합니다.",
+    "Provided environments 중 하나를 선택하여 VS Code 또는 터미널에서 학습 Script를 실행합니다.",
+    "Omniverse Viewport를 통해 에이전트의 강화학습 진행 상황과 물리 시뮬레이션을 실시간으로 모니터링합니다."
+  ],
+  "params": [
+    {
+      "name": "num_envs",
+      "desc": "동시에 시뮬레이션할 환경의 수로, 병렬 학습 속도에 영향을 줍니다."
+    },
+    {
+      "name": "sim_dt",
+      "desc": "물리 시뮬레이션의 시간 간격(Time Step)을 설정합니다."
+    },
+    {
+      "name": "decimation",
+      "desc": "정책 제어(Policy Control)가 적용되는 빈도 조절 값입니다."
+    },
+    {
+      "name": "max_iterations",
+      "desc": "강화학습 알고리즘의 총 반복 학습 횟수를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇팔 픽앤플레이스(Pick and Place) 학습",
+      "steps": [
+        "Isaac Lab 작업 공간에서 봇팔 에셋과 타겟 오브젝트를 불러옵니다.",
+        "Observation(관측값)과 Action(행동) 공간을 정의하는 설정 파일을 수정합니다.",
+        "학습 Script를 실행하여 로봇팔이 물체를 집어 올리는 정책을 학습합니다."
+      ]
+    },
+    {
+      "title": "사족 보행 로봇(Quadruped) 지형 적응 학습",
+      "steps": [
+        "다양한 장애물과 경사가 포함된 3D 지형(Terrain)을 생성합니다.",
+        "로봇의 관절 토크와 IMU 센서 노이즈 설정을 적용합니다.",
+        "불규칙한 지형에서 넘어지지 않고 이동하는 보행 정책을 학습시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Omniverse 버전과 Isaac Lab 버전 불일치 → 공식 호환성 매트릭스를 확인하고 버전을 일치시킵니다.",
+    "GPU VRAM 부족으로 인한 OOM(Out of Memory) 오류 발생 → num_envs 값을 낮추거나 더 높은 사양의 GPU를 사용합니다.",
+    "USD 에셋의 물리 속성(RigidBody, Collision) 누락으로 인한 로봇 추락 → Articulation Root 및 충돌 설정을 다시 확인합니다."
+  ],
+  "related": [
+    "Omniverse Isaac Sim",
+    "USD",
+    "PhysX",
+    "PyTorch"
+  ],
+  "videos": [
+    {
+      "id": "TMHkFDhVt7g",
+      "title": "Reinforcement Learning For Robots in Python: Isaac Lab Tutorial",
+      "author": "NeuralNine"
+    },
+    {
+      "id": "nxxzuDqJCzQ",
+      "title": "Reinforcement Learning Fundamentals | Isaac Lab Office Hours",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Isaac%20Lab%20reinforcement%20learning",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Isaac Sim"
+  ],
+  "at": "2026-11-01T12:25:43.610528+00:00"
+}

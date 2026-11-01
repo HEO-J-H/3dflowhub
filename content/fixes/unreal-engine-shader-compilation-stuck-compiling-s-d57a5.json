@@ -1,0 +1,39 @@
+{
+  "id": "unreal-engine-shader-compilation-stuck-compiling-s-d57a5",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Shader compilation stuck (Compiling Shaders)",
+  "title": "Shader 컴파일이 끝나지 않을 때",
+  "summary": "Unreal Engine에서 Shader 컴파일 작업이 무한 대기 상태에 빠지는 현상입니다. CPU 과부하 또는 Shader 캐시 손상으로 인해 발생합니다.",
+  "causes": [
+    "CPU 코어 점유율 과다로 인한 시스템 멈춤 또는 백그라운드 프로세스 충돌",
+    "DerivedDataCache(DDC) 폴더의 손상",
+    "대형 에셋(고해상도 텍스처, 복잡한 Material 등)을 한 번에 임포트한 경우",
+    "비정상적인 Shader 코드로 인한 무한 루프 또는 컴파일러 락"
+  ],
+  "steps": [
+    "Unreal Engine을 완전히 종료합니다.",
+    "프로젝트 폴더 내의 DerivedDataCache 폴더와 Intermediate 폴더를 삭제합니다.",
+    "작업 관리자(Ctrl+Shift+Esc)를 열어 UnrealBuildTool.exe 및 ShaderCompileWorker.exe 프로세스를 강제 종료합니다.",
+    "Unreal Engine을 다시 실행하여 Shader가 처음부터 다시 컴파일되도록 대기합니다.",
+    "문제가 지속되면, 에디터 환경 설정에서 Shader Compiler Worker의 프로세스 우선순위를 조정합니다."
+  ],
+  "check": [
+    "출력 로그(Output Log) 창에서 'Compiling shaders...' 메시지가 멈추지 않고 정상적으로 퍼센트가 올라가는지 확인합니다.",
+    "Viewport에 머티리얼이 깨지지 않고 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "무거운 에셋은 한 번에 너무 많이 임포트하지 않고 나누어 가져옵니다.",
+    "정기적으로 프로젝트의 Intermediate 및 DerivedDataCache 폴더를 정리합니다."
+  ],
+  "keywords": [
+    "Unreal Engine Shader 멈춤",
+    "Compiling Shaders 굳음",
+    "Unreal Engine Shader 컴파일 무한로딩",
+    "ShaderCompileWorker 멈춤",
+    "DerivedDataCache 삭제"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T12:25:45+00:00"
+}
