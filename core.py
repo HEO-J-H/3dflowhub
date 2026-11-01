@@ -117,6 +117,7 @@ TISTORY_EMBED_IMAGES = os.getenv("TISTORY_EMBED_IMAGES", "1") == "1"  # 원문 �
 
 HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.com/HEO-J-H/3dflowhub)"}
 
+FEED_DEPTH = 25  # 피드마다 최근 몇 개까지 볼지 (10 → 25: 새 글이 적은 날도 놓친 최근 글을 채움, 오래된 글은 MAX_AGE_DAYS 로 제외)
 # 도메인 매뉴얼: 시드 키워드 + 고정 RSS
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
@@ -130,21 +131,28 @@ DOMAINS: dict[str, dict] = {
                   # 3ds Max · MAXScript 커뮤니티 / 3ds Max 주력 렌더러(V-Ray·Corona) 공식 블로그
                   "https://www.reddit.com/r/3dsmax/.rss", "https://www.reddit.com/r/Maxscript/.rss",
                   "https://blog.chaos.com/rss.xml",
+                  # 재료 확충 (2026-11: 기존 출처의 새 글이 바닥나 하루 수집이 25건까지 떨어짐 — 동작 확인한 피드)
+                  "https://www.reddit.com/r/blender/.rss", "https://magazine.artstation.com/feed/",
+                  "https://www.creativebloq.com/feeds/tag/3d",
                   # 한국 3D 커뮤니티 및 정보 소스 보강 (알고스팟/디시/오픈소스 한국 커뮤니티 피드 등)
                   "https://rss.arxiv.org/rss/cs.GR"],
     },
     "Game Engine": {
         "seeds": ["Unreal Engine 5", "Unity 6", "Nanite", "Lumen", "Godot"],
-        "feeds": ["https://www.unrealengine.com/en-US/rss", "https://blog.unity.com/feed"],
+        "feeds": ["https://www.unrealengine.com/en-US/rss", "https://blog.unity.com/feed",
+                  "https://www.reddit.com/r/unrealengine/.rss", "https://github.com/godotengine/godot/releases.atom",
+                  "https://blogs.nvidia.com/blog/category/gaming/feed/"],
     },
     "VFX": {
         "seeds": ["After Effects", "Houdini", "Nuke", "motion graphics"],
-        "feeds": ["https://www.fxguide.com/feed/", "https://motionographer.com/feed/"],
+        "feeds": ["https://www.fxguide.com/feed/", "https://motionographer.com/feed/", "https://www.awn.com/rss.xml",
+                  "https://www.befores-and-afters.com/feed/", "https://www.reddit.com/r/vfx/.rss"],
     },
     "AI 3D": {
         "seeds": ["Gaussian Splatting", "NeRF", "text-to-3D", "3D generative AI"],
         "feeds": ["https://80.lv/feed", "https://www.cgchannel.com/category/news/ai/feed/",
                   "https://blogs.nvidia.com/blog/category/generative-ai/feed/",
+                  "https://www.reddit.com/r/GaussianSplatting/.rss",
                   # arXiv 최신 논문 (가우시안 스플래팅 / NeRF / text-to-3D)
                   "https://export.arxiv.org/api/query?search_query=abs:%22gaussian+splatting%22+OR+abs:%22text-to-3D%22"
                   "+OR+abs:%22neural+radiance+field%22&sortBy=submittedDate&sortOrder=descending&max_results=15"],
@@ -1114,7 +1122,7 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                 FEED_STATS[src] = len(feed.entries)
             if not feed.entries and "news.google.com" not in src:  # 구글 뉴스 검색 0건은 정상(키워드 탓) → 오류 아님
                 RUN_ERRORS.append(f"empty feed: {src}")
-            for e in feed.entries[:10]:
+            for e in feed.entries[:FEED_DEPTH]:
                 link = e.get("link", "")
                 if not link or url_hash(link) in seen:
                     continue
