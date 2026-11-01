@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-audio2face-basics-c98b",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "AI",
+  "name": "Audio2Face basics",
+  "title": "Audio2Face — 음성으로 얼굴 애니메이션",
+  "summary": "NVIDIA Omniverse Audio2Face는 오디오 파일만으로 3D 캐릭터의 얼굴 표정과 립싱크 애니메이션을 실시간으로 생성하는 AI 기반 툴입니다. 음성 데이터의 주파수를 분석해 자연스러운 턱, 입술, 혀의 움직임을 만들어냅니다.",
+  "when": [
+    "게임이나 영상 제작에서 대사 분량이 많아 수동 립싱크 작업 시간이 부족할 때",
+    "오디오 트랙만으로 빠르고 사실적인 얼굴 애니메이션 Prototype을 만들고 싶을 때",
+    "다국어 더빙에 맞춰 캐릭터의 입모양을 자동으로 일괄 변환해야 할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱 런처에서 Audio2Face를 실행합니다.",
+    "File 메뉴에서 지원되는 3D 캐릭터 메쉬(USD 포맷)를 임포트하거나 기본 제공되는 샘플 캐릭터를 로드합니다.",
+    "Audio 소스 패널에서 WAV 등의 오디오 파일을 로드합니다.",
+    "Audio2Face 탭에서 캐릭터의 메쉬와 오디오 트랙을 서로 연결합니다.",
+    "Blendshape 또는 Skinned Mesh 노드를 선택하고 파라미터를 조절하여 표정의 강도와 민감도를 미세 조정합니다.",
+    "Export 설정에서 USD 또는 Alembic 포맷으로 애니메이션을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Audio Track",
+      "desc": "립싱크 분석에 사용할 오디오 파일을 불러오는 슬롯입니다."
+    },
+    {
+      "name": "Max LOD",
+      "desc": "캐릭터 모델의 디테일 수준과 연산 부하를 조절합니다."
+    },
+    {
+      "name": "Emotion",
+      "desc": "기본 음성 외에 캐릭터의 감정 상태(기쁨, 슬픔 등)를 얼굴 표정에 얹어줍니다."
+    },
+    {
+      "name": "Skin Weight",
+      "desc": "오디오 반응에 따라 움직이는 얼굴 피부의 영향력을 조절합니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "입술과 턱의 떨림을 줄이고 애니메이션 움직임을 부드럽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "NPC 대사 자동 립싱크 제작",
+      "steps": [
+        "게임용 NPC USD 캐릭터 모델을 Audio2Face에 불러옵니다.",
+        "녹음된 NPC 대사 음성 파일(.wav)을 오디오 트랙에 삽입합니다.",
+        "기본 연산 결과 확인 후 Smoothing 값을 올려 떨림을 줄입니다.",
+        "Alembic 파일로 애니메이션을 내보내 Unreal Engine에 적용합니다."
+      ]
+    },
+    {
+      "title": "다국어 더빙 캐릭터 애니메이션 대응",
+      "steps": [
+        "영어, 한국어, 일본어 등 언어별 더빙 음성 파일을 각각 준비합니다.",
+        "동일한 캐릭터 메쉬에 각 언어별 오디오를 순서대로 적용합니다.",
+        "언어별 발음에 맞춰 립싱크 결과물을 개별 USD 파일로 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오디오 파일의 볼륨이 너무 작거나 노이즈가 심함 → 오디오 전처리로 볼륨을 키우고 잡음을 제거한 뒤 다시 불러옵니다.",
+    "캐릭터의 토폴로지나 웨이트가 잘못됨 → 립싱크가 찢어지거나 어색하게 움직이므로 바인딩된 스킨 웨이트를 먼저 수정합니다."
+  ],
+  "related": [
+    "Omniverse Machinima",
+    "USD (Universal Scene Description)",
+    "Unreal Engine",
+    "Blender"
+  ],
+  "videos": [
+    {
+      "id": "-l8kjQUTfQk",
+      "title": "Getting Started With NVIDIA Audio2Face-3D Open Source in Unreal Engine 5",
+      "author": "NVIDIA Game Developer"
+    },
+    {
+      "id": "071RiNWC6Bc",
+      "title": "Character Lip Sync Tutorial with Nvidia Omniverse - Audio2Face",
+      "author": "ProductionCrate"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Audio2Face%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "Audio2Face"
+  ],
+  "at": "2026-11-01T13:25:48.604933+00:00"
+}
