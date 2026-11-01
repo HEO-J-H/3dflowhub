@@ -1295,8 +1295,32 @@ def off_topic_reason(text: str) -> str:
     return "" if strong >= 2 else hit
 
 
+def filter_offtopic_news(candidates: list[dict]) -> list[dict]:
+    """이름 유사성 및 중복 할인 소스(배구, 오페라, 단순 할인 이벤트 등)를 제목 및 본문 키워드 매칭을 통해 엄격하게 감지하고 차단하는 필터 함수."""
+    blocked_keywords = [
+        "배구", "volleyball", "오페라", "opera", "할인", "sale", "coupon", "쿠폰",
+        "특가", "promotion", "프로모션", "concert", "콘서트", "축제", "festival",
+        "soccer", "축구", "baseball", "야구", "basketball", "농구", "movie", "영화",
+        "restaurant", "맛집", "recipe", "레시피", "travel", "여행"
+    ]
+    filtered = []
+    for c in candidates:
+        text = f"{c.get('title', '')} {c.get('rss_summary', '')} {c.get('url', '')}".lower()
+        matched = False
+        for kw in blocked_keywords:
+            if re.search(rf"(?<![a-z0-9]){re.escape(kw)}(?![a-z0-9])" if kw.isascii() else kw, text):
+                log.info("이름 유사성 및 중복 할인/무관 소스 차단 (키워드: %s): %s", kw, c.get("title", ""))
+                RUN_ERRORS.append("off-topic")
+                matched = True
+                break
+        if matched:
+            continue
+        filtered.append(c)
+    return filtered
+
+
 def filter_off_topic_feeds(candidates: list[dict]) -> list[dict]:
-    """수집 단계 주제 밖 차단 (하드웨어·스마트폰 리뷰 등). 3D 작업과 관련된 글은 통과."""
+    """수집 단계 주제 밖 차단 (하드웨어·스마트폰 리뷰 등 및 무관 뉴스/할인 소스). 3D 작업과 관련된 글은 통과."""
     filtered = []
     for c in candidates:
         why = off_topic_reason(f"{c.get('title', '')} {c.get('rss_summary', '')}")
@@ -1305,7 +1329,7 @@ def filter_off_topic_feeds(candidates: list[dict]) -> list[dict]:
             RUN_ERRORS.append("off-topic")
             continue
         filtered.append(c)
-    return filtered
+    return filter_offtopic_news(filtered)
 
 
 def filter_content_quality(item: dict, body: str, data: dict) -> bool:

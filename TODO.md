@@ -45,3 +45,6 @@
 - [x] (agent) core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가
 - [x] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가
 - [ ] (agent:보류) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] 패치 적용 실패: 변경 없음
+- [x] (agent) core.filter_offtopic_news(): 이름 유사성 및 중복 할인 소스(배구, 오페라, 단순 할인 이벤트 등)를 제목 및 본문 키워드 매칭을 통해 엄격하게 감지하고 차단하는 필터 함수 추가 및 테스트 추가
+- [ ] (agent) evolve.summarize_cpc_optimization_metrics(): 최근 발행된 고CPC 3D 튜토리얼 및 스크립트 콘텐츠의 성과 지표를 요약하여 리포트 데이터를 생성하는 통계 함수 추가 및 테스트 추가
+- [ ] (agent) app.render_cpc_optimization_dashboard(): Streamlit 현황판에 고CPC 실무 3D 콘텐츠 집중도와 오프토픽 차단 현황을 시각화하는 렌더링 함수 추가 및 테스트 추가
