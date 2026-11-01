@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-openusd-exchange-sdk-935e",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "OpenUSD Exchange SDK",
+  "title": "OpenUSD Exchange SDK — 다른 프로그램과 USD 주고받기",
+  "summary": "NVIDIA Omniverse OpenUSD Exchange SDK는 다양한 3D DCC 툴과 실시간 파이프라인을 연결하는 오픈소스 기반 개발 키트입니다. 서로 다른 포맷의 데이터를 Universal Scene Description(USD)으로 빠르고 정확하게 변환하고 교환합니다.",
+  "when": [
+    "3ds Max, Maya, Blender 등 여러 3D 프로그램 간에 에셋을 손실 없이 주고받을 때",
+    "파이프라인 전체를 OpenUSD 표준 기반으로 통합 구축하고 싶을 때",
+    "커스텀 3D 툴이나 플러그인에 USD Import/엑스포트 기능을 직접 연동할 때"
+  ],
+  "steps": [
+    "NVIDIA Developer 웹사이트에서 OpenUSD Exchange SDK 패키지를 다운로드합니다.",
+    "개발 환경(Python 또는 C++)에 SDK 라이브러리와 헤더 파일을 설정합니다.",
+    "Target DCC 또는 커스텀 애플리케이션에서 SDK 모듈을 임포트합니다.",
+    "USD 파일(.usd, .usda, .usdc)을 읽거나 쓰는(Import/Export) Script 로직을 작성합니다.",
+    "데이터 변환 시 머티리얼, 지오메트리, 카메라 속성이 올바르게 매핑되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "USD Stage",
+      "desc": "USD 데이터를 담고 조작하는 기본 컨테이너 구조입니다."
+    },
+    {
+      "name": "Prim",
+      "desc": "USD 스테이지 내의 모든 오브젝트(메시, 카메라, 라이트 등)를 구성하는 기본 단위입니다."
+    },
+    {
+      "name": "Attribute",
+      "desc": "Prim의 세부 속성(위치, 스케일, 색상 등)을 정의합니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "데이터를 비파괴적으로 오버라이드하고 협업할 수 있는 계층 구조입니다."
+    },
+    {
+      "name": "MaterialX",
+      "desc": "서로 다른 렌더러 간에 머티리얼을 호환되도록 전달하는 표준 Shading 포맷입니다."
+    },
+    {
+      "name": "Export Settings",
+      "desc": "애니메이션 베이크, 스케일 단위, 압축 옵션 등을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "멀티 앱 에셋 통합 파이프라인 구축",
+      "steps": [
+        "3ds Max에서 모델링한 배경 에셋을 SDK 기반 Script로 USD로 변환합니다.",
+        "변환된 USD 파일을 Omniverse Nucleus 서버에 업로드합니다.",
+        "Unreal Engine에서 해당 USD 링크를 불러와 실시간으로 렌더링합니다."
+      ]
+    },
+    {
+      "title": "대규모 씬 데이터 실시간 교환",
+      "steps": [
+        "Maya의 애니메이션 캐시를 USD 파일로 익스포트합니다.",
+        "OpenUSD Exchange SDK를 통해 레이어 병합 및 충돌을 방지합니다.",
+        "Blender에서 USD 스테이지를 참조(Reference)하여 라이팅 작업을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위(Unit) 설정 불일치로 오브젝트가 너무 크거나 작게 임포트됨 → SDK 익스포트 시 미터법(Meters) 스케일 옵션을 정확히 일치시킵니다.",
+    "머티리얼 경로 깨짐 현상 발생 → 텍스처 경로를 상대 경로(Relative Path)로 지정하거나 MaterialX 설정을 확인합니다."
+  ],
+  "related": [
+    "Universal Scene Description",
+    "Omniverse Nucleus",
+    "USD Composer",
+    "MaterialX"
+  ],
+  "videos": [
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "9y3GgDdKV3I",
+      "title": "How to Collaborate on Architectural Design and Simulation with NVIDIA Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20OpenUSD%20Exchange%20SDK",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Developer",
+    "OpenUSD Exchange SDK"
+  ],
+  "at": "2026-11-01T11:35:05.660695+00:00"
+}
