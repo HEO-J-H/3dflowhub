@@ -1,0 +1,98 @@
+{
+  "id": "nvidia-omniverse-omni-ui-basics-8df4",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "omni.ui basics",
+  "title": "omni.ui — 확장 UI 만들기",
+  "summary": "NVIDIA Omniverse의 UI 프레임워크인 omni.ui를 사용하여 강력하고 직관적인 커스텀 툴과 익스텐션을 제작하는 기초 가이드입니다. Python 기반으로 복잡한 파이프라인 도구를 시각적으로 구현합니다.",
+  "when": [
+    "자체적인 파이프라인 툴이나 맞춤형 에디터 UI를 제작해야 할 때",
+    "USD 기반의 3D 씬 데이터와 실시간으로 상호작용하는 위젯을 만들 때",
+    "Omniverse 익스텐션(Extension)을 개발하여 작업 효율을 높이고 싶을 때"
+  ],
+  "steps": [
+    "Visual Studio Code 또는 선호하는 코드 에디터를 실행합니다.",
+    "Omniverse Extension Template을 기반으로 새로운 익스텐션 폴더를 생성합니다.",
+    "extension.py 파일에서 omni.ui 모듈을 임포트합니다.",
+    "ui.Window 클래스를 호출하여 커스텀 Windows 패널을 정의합니다.",
+    "ui.VStack 또는 ui.HStack을 사용하여 UI 레이아웃 구조를 배치합니다.",
+    "ui.Button, ui.Label, ui.IntField 등의 위젯을 추가하여 기능을 연결합니다.",
+    "Omniverse 앱의 Extension Manager에서 제작한 익스텐션을 활성화하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "ui.Window",
+      "desc": "커스텀 툴이 표시될 독립된 UI 패널 Windows를 생성합니다."
+    },
+    {
+      "name": "ui.VStack",
+      "desc": "자식 위젯들을 수직(세로) 방향으로 정렬합니다."
+    },
+    {
+      "name": "ui.HStack",
+      "desc": "자식 위젯들을 수평(가로) 방향으로 정렬합니다."
+    },
+    {
+      "name": "ui.Button",
+      "desc": "클릭 시 특정 Python 함수를 실행하는 버튼 위젯을 만듭니다."
+    },
+    {
+      "name": "ui.Label",
+      "desc": "UI 패널 내에 텍스트 정보를 표시합니다."
+    },
+    {
+      "name": "ui.IntField",
+      "desc": "정수형 값을 입력받거나 조절할 수 있는 필드를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 에셋 브라우저 버튼 만들기",
+      "steps": [
+        "ui.Window 내부에 ui.HStack을 생성합니다.",
+        "ui.Button을 배치하고 텍스트를 'Load Asset'으로 지정합니다.",
+        "버튼의 clicked_fn 파라미터에 USD 파일을 불러오는 Python 함수를 연결합니다."
+      ]
+    },
+    {
+      "title": "파라미터 조절용 슬라이더 패널 제작",
+      "steps": [
+        "ui.VStack을 사용하여 수직 정렬 레이아웃을 준비합니다.",
+        "ui.Label로 슬라이더의 이름을 'Scale'로 표시합니다.",
+        "ui.FloatSlider를 추가하여 USD 프랍의 스케일 값을 실시간으로 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "ui.Window를 생성할 때 고유한 이름을 사용하지 않음 → 창이 중복 생성되거나 충돌 발생, Window 이름을 고유하게 설정하여 해결",
+    "레이아웃 컨테이너(VStack 등) 없이 위젯을 직접 나열함 → 위젯이 겹치거나 정렬이 틀어짐, 올바른 스택 구조를 감싸서 해결",
+    "익스텐션 핫 리로드(Hot Reload)를 활용하지 않음 → 코드 수정 후 매번 앱을 재시작함, Extension Manager에서 Reload 버튼을 눌러 해결"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Kit",
+    "Python",
+    "Omniverse Extension Manager"
+  ],
+  "videos": [
+    {
+      "id": "dNLFpVhBrGs",
+      "title": "How to Build Custom UI in Omniverse Code | #ExtendOmniverse Contest",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20omni.ui%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Visual Studio Code",
+    "Omniverse Extension Template"
+  ],
+  "at": "2026-11-01T10:45:03.530510+00:00"
+}
