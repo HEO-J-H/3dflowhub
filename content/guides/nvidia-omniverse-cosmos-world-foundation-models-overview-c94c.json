@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-cosmos-world-foundation-models-overview-c94c",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "AI",
+  "name": "Cosmos world foundation models overview",
+  "title": "Cosmos — 월드 모델 개요",
+  "summary": "NVIDIA Omniverse Cosmos는 물리 법칙과 시각적 현실감을 학습한 세계 기초 모델(World Foundation Models)입니다. 텍스트나 이미지를 입력하여 고품질의 3D 물리 시뮬레이션과 환경을 생성합니다.",
+  "when": [
+    "실사 수준의 복잡한 물리 시뮬레이션(유체, 파괴 등)을 빠르게 생성하고 싶을 때",
+    "컨셉트 아트를 바탕으로 3D 배경이나 환경을 자동으로 확장할 때",
+    "USD 기반 Pipeline AI 기반 생성형 3D 에셋을 활용할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Cosmos 관련 익스텐션 또는 애플리케이션을 설치합니다.",
+    "USD Composer(舊 Create)를 열고 새로운 스테이지를 생성합니다.",
+    "Content Browser에서 Cosmos 모델 패널을 엽니다.",
+    "Prompt 입력창에 생성하고자 하는 물리 현상이나 환경을 텍스트로 입력합니다.",
+    "Generate 버튼을 눌러 결과물을 생성하고 뷰포트에서 확인합니다.",
+    "Layer 패널에서 생성된 USD 에셋의 물리 속성과 파라미터를 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성할 세계나 물리 현상을 텍스트로 지시합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 생성의 기준값을 설정하여 결과물을 고정하거나 바꿉니다."
+    },
+    {
+      "name": "Guidance Scale",
+      "desc": "Prompt 지시사항을 얼마나 엄격하게 따를지 조절합니다."
+    },
+    {
+      "name": "Physics Fidelity",
+      "desc": "시뮬레이션에서 물리 법칙의 정확도와 세밀함을 설정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력되는 결과물의 해상도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 자연재해 시뮬레이션",
+      "steps": [
+        "Cosmos 패널에서 유체 및 바람 관련 프리셋을 선택합니다.",
+        "Prompt에 강풍과 폭우 환경을 입력합니다.",
+        "Generate를 실행하여 건물이 바람에 날리는 시뮬레이션을 얻습니다."
+      ]
+    },
+    {
+      "title": "SF 영화 배경 환경 생성",
+      "steps": [
+        "지형 데이터와 도시 구조물 이미지를 레퍼런스로 업로드합니다.",
+        "Prompt에 화성 기지의 외형과 대기 효과를 입력합니다.",
+        "USD 포맷으로 추출하여 Unreal Engine이나 Blender로 가져옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Prompt가 너무 모호한 경우 → 구체적인 대상, 스타일, 물리적 움직임을 상세히 적어줍니다.",
+    "USD 스케일 및 단위가 맞지 않는 경우 → Project Settings에서 기본 단위를 확인하고 스테이지 단위를 통일합니다.",
+    "하드웨어 사양 부족으로 렌더링이 멈추는 경우 → 뷰포트 해상도를 낮추고 GPU 메모리 사용량을 확인합니다."
+  ],
+  "related": [
+    "OpenUSD",
+    "USD Composer",
+    "Audio2Face",
+    "RTX Renderer"
+  ],
+  "videos": [
+    {
+      "id": "ykjQdbtDJoM",
+      "title": "NVIDIA Cosmos World Foundation Model Explained: Physical AI Robotics Development",
+      "author": "Kevin Wood | Robotics & AI"
+    },
+    {
+      "id": "9Uch931cDx8",
+      "title": "NVIDIA Cosmos: A World Foundation Model Platform for Physical AI",
+      "author": "NVIDIA"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Cosmos%20world%20foundation%20models%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Cosmos"
+  ],
+  "at": "2026-11-01T13:46:00.136251+00:00"
+}
