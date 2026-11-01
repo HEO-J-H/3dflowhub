@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-lighting-needs-to-be-rebuilt-c184d",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Lighting needs to be rebuilt",
+  "title": "Lighting needs to be rebuilt 메시지 해결",
+  "summary": "Unreal Engine에서 정적(Static) 라이팅 정보가 변경되었으나 아직 빌드되지 않았을 때 나타나는 경고 메시지입니다. 씬 내의 라이트나 스태틱 메시의 위치, 속성이 바뀌면 라이팅을 다시 계산해야 합니다.",
+  "causes": [
+    "스태틱(Static) 또는 스테이셔너리(Stationary) 라이트의 위치, 회전, 색상, 강도 등의 속성이 변경됨",
+    "레벨에 새로운 스태틱 메시나 라이트가 추가되었거나 삭제됨",
+    "오브젝트의 라이트맵 좌표(Lightmap UV)가 변경되었거나 새로 임포트됨",
+    "프로젝트 설정에서 라이팅 관련 옵션이 변경됨"
+  ],
+  "steps": [
+    "상단 메뉴에서 Build > Build Lighting Only를 클릭하여 라이팅을 즉시 빌드합니다.",
+    "빌드 품질을 변경하려면 Build > Lighting Quality에서 Production, High, Medium, Preview 중 선택합니다.",
+    "실시간 라이팅만 사용할 경우, 해당 라이트의 Mobility를 Movable로 변경하여 라이팅 빌드 필요성을 없애고 Lumen이나 동적 섀도우를 사용합니다.",
+    "레벨에 Static 라이트가 불필요하게 많다면 Mobility 설정을 점검합니다."
+  ],
+  "check": [
+    "뷰포트 화면 좌측 상단에 표시되던 'Lighting needs to be rebuilt' 텍스트 경고가 사라졌는지 확인합니다.",
+    "라이팅 빌드 완료 후 오브젝트의 그림자와 간접광이 올바르게 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "동적 조명 위주로 프로젝트를 구성하려면 주요 라이트를 Movable로 설정합니다.",
+    "개발 단계에서는 Preview 품질로 빠르게 빌드하고, 최종 패키징 시에만 High나 Production 품질로 빌드합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 라이팅 다시 빌드",
+    "Lighting needs to be rebuilt 해결",
+    "Unreal 라이트 빌드 오류",
+    "스태틱 라이트 경고",
+    "Unreal 조명 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T06:14:56+00:00"
+}

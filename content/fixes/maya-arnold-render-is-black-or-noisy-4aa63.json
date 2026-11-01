@@ -1,0 +1,39 @@
+{
+  "id": "maya-arnold-render-is-black-or-noisy-4aa63",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Arnold render is black or noisy",
+  "title": "Arnold 렌더가 검거나 노이즈가 심할 때",
+  "summary": "Maya에서 Arnold로 렌더링을 수행할 때 결과물이 완전히 검은색으로 나오거나 심한 노이즈가 발생하는 현상입니다. 주로 조명 누락, 카메라 설정, 샘플링(Sampling) 값 부족으로 인해 발생합니다.",
+  "causes": [
+    "씬 안에 활성화된 조명이 없거나 조명의 Exposure(노출) 값이 너무 낮습니다.",
+    "Arnold 렌더러의 Sampling(Camera AA, Diffuse, Specular 등) 값이 너무 낮아 노이즈가 제거되지 못했습니다.",
+    "Skydome Light에 연결된 HDR 이미지나 환경 맵 파일 경로가 끊어졌습니다.",
+    "Alpha 채널만 렌더링되고 있거나 Exposure 컨트롤이 잘못 설정되었습니다."
+  ],
+  "steps": [
+    "Render Settings 창의 Arnold Renderer 탭에서 Camera (AA) 샘플링 값을 올립니다(기본값 2에서 3~4 이상으로 조정).",
+    "Diffuse 및 Specular 샘플링 값을 각각 2 이상으로 높여 노이즈를 줄입니다.",
+    "Hypershade 또는 Attribute Editor에서 Skydome Light의 Color나 Intensity, Exposure 값을 확인하고 조명을 추가합니다.",
+    "Arnold RenderView 창의 Exposure 및 Gamma 슬라이더를 조정하여 이미지가 완전히 검은색인지 시각적으로 확인합니다.",
+    "Render Settings의 System 탭에서 Ray Depth(Diffuse, Specular) 값이 너무 낮지 않은지 확인합니다."
+  ],
+  "check": [
+    "Arnold RenderView에서 IPR(Interactive Production Rendering)을 켠 상태로 샘플링을 높였을 때 노이즈가 줄어드는지 확인합니다.",
+    "검은 화면 영역에 Arnold Light를 추가하거나 Exposure를 높였을 때 오브젝트가 정상적으로 보이는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 초기 조명 셋업 시 기본 Exposure와 Intensity 값을 표준 규격에 맞게 설정합니다.",
+    "렌더 Template(Render Preset)을 사용하여 권장되는 최소 샘플링 값(Camera AA 3 이상)을 기본값으로 유지합니다."
+  ],
+  "keywords": [
+    "아놀드 검은화면",
+    "Maya 아놀드 노이즈",
+    "Arnold render black",
+    "Maya Arnold sampling",
+    "Arnold 렌더링 안됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T06:14:49+00:00"
+}
