@@ -1,0 +1,39 @@
+{
+  "id": "maya-viewport-2-0-shows-black-or-flickering-object-a8fdb",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Viewport 2.0 shows black or flickering objects",
+  "title": "Viewport 2.0 검게·깜빡이게 보일 때",
+  "summary": "Maya의 Viewport 2.0에서 오브젝트가 검게 보이거나 깜빡이는 현상은 그래픽 카드 Driver 호환성이나 렌더링 엔진 설정 문제로 인해 발생합니다.",
+  "causes": [
+    "구버전 또는 불안정한 GPU 그래픽 카드 Driver",
+    "Viewport 2.0의 렌더링 엔진 설정(DirectX 11, OpenGL, Vulkan) 부조화",
+    "씬 내부에 잘못된 머티리얼(Material)이나 Shader 손상",
+    "오래된 설정 파일(prefs)의 손상"
+  ],
+  "steps": [
+    "Maya 우측 하단의 Viewport 2.0 렌더링 엔진을 DirectX 11에서 OpenGL(또는 반대)로 변경해 봅니다.",
+    "Windows > Settings/Preferences > Preferences > Display 메뉴에서 Rendering engine을 변경합니다.",
+    "그래픽 카드 Driver를 최신 버전으로 클린 설치합니다.",
+    "메뉴에서 Renderer > Viewport 2.0 설정 아이콘을 열어 Hardware Fog나 Anti-aliasing 옵션을 조정합니다.",
+    "문제가 지속될 경우 Maya 환경 설정 폴더(prefs)를 초기화합니다."
+  ],
+  "check": [
+    "뷰포트에서 오브젝트의 머티리얼과 텍스처가 검은색 없이 정상적으로 표시되는지 확인합니다.",
+    "카메라를 회전하거나 패닝할 때 화면이 깜빡이지 않는지 테스트합니다."
+  ],
+  "prevent": [
+    "Autodesk Maya 공식 인증(Certified) 그래픽 카드 Driver 버전을 유지합니다.",
+    "새로운 프로젝트 작업 전 Viewport 2.0 환경 설정을 사전에 점검합니다."
+  ],
+  "keywords": [
+    "Maya 뷰포트 검은색",
+    "Maya Viewport 2.0 깜빡임",
+    "Maya 화면 깨짐",
+    "Viewport 2.0 black screen",
+    "Maya 뷰포트 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T03:13:37+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "maya-error-line-1-cannot-find-procedure-0b860",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: line 1: Cannot find procedure",
+  "title": "Maya MEL Cannot find procedure",
+  "summary": "Maya에서 MEL 프로시저를 찾지 못할 때 발생하는 에러입니다. Script 경로가 잘못되었거나 필요한 파일이 누락되었음을 의미합니다.",
+  "causes": [
+    "MEL Script 파일(.mel)이 Maya의 script path에 등록되지 않은 폴더에 있습니다.",
+    "Script 파일 안의 프로시저 이름이 파일명과 일치하지 않거나 오타가 있습니다.",
+    "오래된 MEL 코드가 최신 Maya 버전에서 더 이상 지원되지 않는 경우입니다.",
+    "필요한 플러그인이 로드되지 않아 해당 프로시저를 인식하지 못합니다."
+  ],
+  "steps": [
+    "Script Editor를 열어 에러가 발생한 정확한 라인과 프로시저 이름을 확인합니다.",
+    "사용하려는 MEL 파일이 Maya Script 디렉토리 (예: Documents/maya/scripts)에 있는지 확인합니다.",
+    "Windows > Settings/Preferences > Preferences를 열고 Settings에서 Working Units 및 Script 경로를 검토합니다.",
+    "MEL 파일 안의 global proc 이름이 파일명과 정확히 일치하는지 텍스트 편집기로 엽니다.",
+    "Script 실행 전 소스 코드를 다시 불러오기 위해 source \"파일명.mel\"; 명령어를 입력합니다."
+  ],
+  "check": [
+    "Script Editor에서 해당 Script를 다시 실행했을 때 Error: Cannot find procedure 메시지가 나타나지 않는지 확인합니다.",
+    "프로시저가 정상적으로 반환값을 출력하거나 뷰포트에서 결과물이 생성되는지 확인합니다."
+  ],
+  "prevent": [
+    "사용자 정의 MEL Script는 항상 documents 폴더의 scripts 디렉토리에 모아둡니다.",
+    "MEL 대신 최신 버전 호환성이 좋은 Python으로 Script를 작성합니다."
+  ],
+  "keywords": [
+    "Maya 에러",
+    "Cannot find procedure",
+    "MEL Script 오류",
+    "Maya Script 에러",
+    "global proc 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T03:13:35+00:00"
+}
