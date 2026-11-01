@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-omniverse-rtx-sensor-simulation-eac8",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "Omniverse RTX sensor simulation",
+  "title": "센서 시뮬레이션 개념",
+  "summary": "NVIDIA Omniverse 플랫폼에서 LiDAR, 레이더(Radar), 카메라 등의 센서를 물리 기반으로 정밀 시뮬레이션하여 자율주행 및 로보틱스 알고리즘을 검증하는 기능입니다.",
+  "when": [
+    "실제 하드웨어를 제작하기 전 가상 환경에서 자율주행 센서 데이터를 수집하고 싶을 때",
+    "공장 자동화(AGV/AMR) 로봇의 LiDAR 인식률을 테스트할 때",
+    "복잡한 조명과 날씨 조건에서 카메라 센서의 물리적 반응을 검증할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 열고 Isaac Sim 또는 해당 센서 시뮬레이션 확장(Extension)을 활성화합니다.",
+    "Viewport에서 센서를 부착할 3D 로봇 또는 차량 모델의 USD 아세트를 로드합니다.",
+    "Create 메뉴나 확장 도구를 통해 LIDAR 또는 Camera 센서를 씬에 생성합니다.",
+    "센서 노드를 대상 아세트의 하위(Child) 계층으로 드래그하여 고정합니다.",
+    "Property 패널에서 센서의 세부 파라미터(해상도, 화각, 회전 속도 등)를 설정합니다.",
+    "Timeline 패널의 Play 버튼을 눌러 시뮬레이션을 시작하고 센서 데이터(점군, 이미지) 출력을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Range",
+      "desc": "센서가 감지할 수 있는 최대 측정 거리"
+    },
+    {
+      "name": "Field of View",
+      "desc": "센서의 수평 및 수직 시야각 범위"
+    },
+    {
+      "name": "Rotation Rate",
+      "desc": "LiDAR 센서의 초당 회전 속도(Hz)"
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력되는 데이터의 해상도 또는 채널 수"
+    },
+    {
+      "name": "Enable RTX",
+      "desc": "실시간 레이트레이싱을 활성화하여 정확한 빛 반사 및 센서 데이터 계산"
+    }
+  ],
+  "examples": [
+    {
+      "title": "AGV 로봇 자율주행 LiDAR 테스트",
+      "steps": [
+        "로봇 모델 상단에 LIDAR 센서 오브젝트를 배치합니다.",
+        "Range 값을 작업 환경 크기에 맞춰 10m로 설정합니다.",
+        "Timeline을 재생하여 주변 장애물이 Point Cloud로 정확히 수집되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "자율주행 차량 카메라 센서 데이터 수집",
+      "steps": [
+        "차량 전면 본넷 부근에 Camera 센서를 생성합니다.",
+        "Field of View를 실제 카메라와 동일한 90도로 지정합니다.",
+        "Raytracing을 켜고 비 오는 날씨 환경에서 이미지 왜곡과 렌즈 반사를 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "센서가 로봇 모델 내부(Mesh 내부)에 파묻혀 데이터가 안 나옴 → 센서를 로봇 표면 바깥으로 이동시키고 부모 계층(Parent)을 올바르게 설정하세요.",
+    "레이트레이싱 미적용으로 센서 결과가 비현실적임 → Render Settings에서 RTX 실시간 레이트레이싱 및 Path Tracing 옵션을 켜세요.",
+    "지나치게 높은 해상도로 프레임 레이트가 저하됨 → Resolution과 채널 수를 테스트 목적에 맞게 낮춰서 최적화하세요."
+  ],
+  "related": [
+    "Isaac Sim",
+    "USD",
+    "RTX Renderer",
+    "Action Graph"
+  ],
+  "videos": [
+    {
+      "id": "3561hc4cFGk",
+      "title": "Add RTX Rendering and Sensor Simulation to Your Physical AI App with NVIDIA Omniverse ovrtx",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "NyjD3EBjDnc",
+      "title": "3 Easy VFX to Get Started with Simulations in OMNIVERSE!",
+      "author": "ProductionCrate"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20RTX%20sensor%20simulation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Isaac Sim",
+    "Extension"
+  ],
+  "at": "2026-11-01T11:15:10.928583+00:00"
+}
