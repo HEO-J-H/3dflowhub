@@ -1,0 +1,86 @@
+{
+  "id": "nvidia-omniverse-kit-extension-basics-dbf0",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "Kit extension basics",
+  "title": "Kit 확장 만들기 기초",
+  "summary": "NVIDIA Omniverse Kit extension basics는 USD(Universal Scene Description) 기반의 Pipeline 커스텀 기능과 UI를 확장하기 위한 기본 모듈 시스템입니다. Python과 C++을 활용해 워크플로우를 자동화하고 툴을 직접 만들 수 있습니다.",
+  "when": [
+    "반복적인 3D 에셋 정리 및 Import 과정을 자동화하고 싶을 때",
+    "Omniverse 앱 내에 커스텀 UI 패널이나 툴바를 추가하고 싶을 때",
+    "USD 스테이지 데이터를 실시간으로 조작하는 익스텐션을 개발할 때"
+  ],
+  "steps": [
+    "Omniverse Launcher를 열고 Code 또는 Create 앱을 실행합니다.",
+    "상단 메뉴 Window 패널에서 Extensions를 클릭하여 Extension Manager를 엽니다.",
+    "상단의 톱니바디(Settings) 아이콘을 눌러 커스텀 익스텐션 폴더 경로를 추가합니다.",
+    "Extension Manager에서 Create 탭을 선택해 새 익스텐션 Template(Python)을 생성합니다.",
+    "VS Code 등의 에디터에서 해당 익스텐션 폴더의 extension.py 파일을 열어 코드를 수정합니다.",
+    "Extension Manager에서 새로고침(Reload) 버튼을 눌러 변경된 내용을 즉시 앱에 반영합니다."
+  ],
+  "params": [
+    {
+      "name": "Enabled",
+      "desc": "익스텐션을 활성화하여 UI와 기능을 로드합니다."
+    },
+    {
+      "name": "Autoload",
+      "desc": "앱을 실행할 때 해당 익스텐션을 자동으로 로드합니다."
+    },
+    {
+      "name": "Extension Search Path",
+      "desc": "커스텀 익스텐션을 불러올 로컬 폴더 경로를 지정합니다."
+    },
+    {
+      "name": "Hot Reload",
+      "desc": "코드 수정 시 앱을 재시작하지 않고 실시간으로 반영합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 버튼 UI 추가하기",
+      "steps": [
+        "익스텐션 Template의 UI 레이아웃 코드에 ui.Button 함수를 추가합니다.",
+        "버튼 클릭 시 실행될 콜백 함수를 Python으로 작성합니다.",
+        "Extension Manager에서 Reload를 눌러 뷰포트 상단에 버튼이 생성된 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "선택된 프림(Prim) 이름 변경 자동화",
+      "steps": [
+        "omni.usd 모듈을 임포트하여 현재 스테이지의 선택된 객체를 가져옵니다.",
+        "반복문을 통해 선택된 모든 USD Prim의 이름을 일괄 변경하는 로직을 작성합니다.",
+        "익스텐션 UI에 실행 버튼을 연결하여 원클릭으로 정리를 완료합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "익스텐션이 로드되지 않음 → Extension Manager에서 Search Path 경로가 올바르게 추가되었는지 확인",
+    "코드 에러로 앱이 멈춤 → VS Code 터미널 또는 Omniverse Console 창에서 Python Traceback 오류 로그 확인",
+    "UI가 갱신되지 않음 → 익스텐션 패널의 Reload 버튼을 클릭하거나 Hot Reload 옵션 켜기"
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Omniverse Code",
+    "Omniverse Create",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "4RkR8YH6AaE",
+      "title": "Build Your First Omniverse Extension With OpenUSD",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "iurSCfTyoB4",
+      "title": "Omniverse Physics Extension - Kit104 - Part 1:  Basics - Setting up Physics and Toolbar Overview",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Kit%20extension%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T10:34:51.876657+00:00"
+}
