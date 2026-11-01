@@ -482,6 +482,56 @@ def calculate_cpc_score_distribution() -> dict:
     return report
 
 
+def summarize_cpc_optimization_metrics() -> dict:
+    """최근 발행된 고CPC 3D 튜토리얼 및 스크립트 콘텐츠의 성과 지표를 요약하여 리포트 데이터를 생성합니다."""
+    posts_dir = core.POSTS_DIR
+    if not posts_dir.exists():
+        return {"total_practical_posts": 0, "cpc_domain_breakdown": {}, "high_value_topics": []}
+
+    practical_tags_or_categories = ["tutorial", "script", "plugin", "addon", "shader", "rigging", "animation", "시뮬레이션", "튜토리얼", "플러그인", "스크립트"]
+    total_practical = 0
+    domain_breakdown: dict[str, int] = {}
+    topic_counts: dict[str, int] = {}
+
+    for f in posts_dir.glob("*.json"):
+        p = core._load_json(f, {})
+        domain = p.get("domain", "기타")
+        category = p.get("category", "")
+        topic = p.get("topic", "")
+        tags = [t.lower() for t in p.get("tags", [])]
+        title = (p.get("title_ko", "") or "").lower()
+
+        # 실무 3D 튜토리얼/스크립트 콘텐츠 여부 판별
+        is_practical = any(
+            pt in category.lower() or pt in topic.lower() or any(pt in t for t in tags) or pt in title
+            for pt in practical_tags_or_categories
+        )
+
+        if is_practical:
+            total_practical += 1
+            domain_breakdown[domain] = domain_breakdown.get(domain, 0) + 1
+            if topic:
+                topic_counts[topic] = topic_counts.get(topic, 0) + 1
+
+    sorted_topics = [{"topic": t, "count": c} for t, c in sorted(topic_counts.items(), key=lambda x: -x[1])]
+
+    report = {
+        "total_practical_posts": total_practical,
+        "cpc_domain_breakdown": domain_breakdown,
+        "high_value_topics": sorted_topics[:5]
+    }
+
+    # 전략 리포트에 반영
+    try:
+        strat = core.load_strategy()
+        strat["cpc_optimization_metrics"] = report
+        core._save_json(core.STRATEGY_PATH, strat)
+    except Exception as e:
+        log.warning("전략 리포트에 CPC 최적화 성과 지표 반영 실패: %s", e)
+
+    return report
+
+
 def summarize_error_trends() -> dict[str, dict[str, int]]:
     """최근 실행 오류(RUN_ERRORS) 및 runs 기록의 오류 유형들을 도메인별·유형별로 집계하여 리포트 형태로 반환."""
     runs = core.load_memory().get("runs", [])
