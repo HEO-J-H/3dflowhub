@@ -515,6 +515,10 @@ a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";f
 .aiby{font-size:13px;color:var(--muted);margin:2px 0 14px}.aiby a{text-decoration:underline}.aiby .ok{color:#248a3d}
 .optip{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px 16px;margin:14px 0}
 .optip b{display:block;margin-bottom:4px}.optip p{margin:0;white-space:pre-line}
+.assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:10px 0 26px}
+.asset{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;color:inherit}
+.asset:hover{border-color:var(--accent)}.asset img,.asset .ph{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:var(--bg);display:grid;place-items:center;font-size:40px}
+.asset b{font-size:14px;line-height:1.3}.asset small{font-size:12px;color:var(--muted)}
 .quick{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}.quick .btn{min-height:44px;display:inline-flex;align-items:center}
 /* 홈 '도구별 기초 배우기' — 영상 썸네일 강조 */
 .lt-hero{position:relative;display:block;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:4px 0 10px;background:#000}
@@ -566,9 +570,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}fix/">오류 해결</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -1342,6 +1346,41 @@ def build_refs() -> tuple[list, list]:
         canonical=f"{BASE_URL}/changes/", desc="Blender·Houdini 등 3D 툴 버전별 변경 사항 한국어 정리"), encoding="utf-8")
     return fixes, changes
 
+
+def build_assets() -> int:
+    """무료 에셋 모음 (/assets/) — 새 무료 텍스처·재질·HDRI·3D 모델을 종류별 카드로. 받기는 원래 사이트에서."""
+    import assets as _assets
+    items = _assets.load()
+    d = OUT / "assets"
+    d.mkdir(exist_ok=True)
+    if not items:
+        (d / "index.html").write_text(page(f"무료 텍스처·HDRI 모음 - {SITE_TITLE}", '<div class="doc"><h1>무료 에셋 모음</h1>'
+                                           '<p>준비 중입니다.</p></div>', "../"), encoding="utf-8")
+        return 0
+    secs = ""
+    for kind, label in (("texture", "🧱 텍스처·재질"), ("hdri", "🌅 HDRI 환경맵"), ("model", "🪑 3D 모델")):
+        xs = sorted([x for x in items if x["type"] == kind], key=lambda x: not x.get("image"))[:60]  # 미리보기 있는 것 먼저
+        if not xs:
+            continue
+        cards = "".join(
+            f'<a class="asset" href="{e(x["url"])}" target="_blank" rel="noopener">'
+            + (f'<img src="{e(x["image"])}" alt="" loading="lazy" width="256" height="256">' if x.get("image")
+               else '<span class="ph" aria-hidden="true">🧱</span>')
+            + f'<b>{e(x["title"])}</b><small>{e(x["source"])} · {e(x["license"])}'
+            + (f' · {e(x["date"])}' if x.get("date") else "") + '</small></a>' for x in xs)
+        secs += f'<h2 class="sec" id="{kind}">{label} <small>{len(xs)}</small></h2><div class="assets">{cards}</div>'
+    srcs = sorted({x["source"] for x in items})
+    body = ('<div class="doc"><h1>🎁 무료 텍스처·재질·HDRI 모음</h1>'
+            '<p class="desc">상업적으로도 쓸 수 있는 무료 에셋 사이트에 <b>새로 올라온 것</b>을 매일 모아 둡니다. '
+            '카드를 누르면 원래 사이트에서 받을 수 있어요. 라이선스는 카드마다 표시된 출처 기준입니다.</p>'
+            '<p class="quick"><a class="btn ghost" href="#texture">텍스처·재질</a><a class="btn ghost" href="#hdri">HDRI</a>'
+            '<a class="btn ghost" href="#model">3D 모델</a></p></div>' + secs
+            + f'<p class="crumb">출처: {e(" · ".join(srcs))} — 이미지는 각 출처의 미리보기입니다.</p>')
+    (d / "index.html").write_text(page(f"무료 텍스처·재질·HDRI 모음 (매일 업데이트) - {SITE_TITLE}", body, "../",
+                                       desc="Poly Haven·ambientCG 등 무료 PBR 텍스처·HDRI·3D 모델 새 소식을 매일 모아 둔 페이지",
+                                       canonical=f"{BASE_URL}/assets/"), encoding="utf-8")
+    return len(items)
+
 def build() -> dict:
     posts = load_posts()
     if OUT.exists():
@@ -1436,6 +1475,7 @@ def build() -> dict:
            f'<div class="gcards">{hot_html}</div>' if hot_html else "")
         + '<p class="quick"><a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
+          '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
           '<a class="btn ghost" href="{ROOT}recipes/">🔧 검증된 스크립트</a></p>'
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
            if learn_tiles else "")
@@ -1512,6 +1552,7 @@ def build() -> dict:
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
+    n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()
     build_showcase()
 
@@ -1617,6 +1658,7 @@ def build() -> dict:
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
            [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
+           ([f"{BASE_URL}/assets/"] if n_assets else []) + \
            [f"{BASE_URL}/fix/"] + [f"{BASE_URL}/fix/{x['id']}/" for x in ref_fixes] + \
            [f"{BASE_URL}/changes/"] + [f"{BASE_URL}/changes/{x['id']}/" for x in ref_changes] + \
            [f"{BASE_URL}/p/{p['id']}.html" for p in posts if not is_thin(p)]

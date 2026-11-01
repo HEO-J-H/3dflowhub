@@ -805,6 +805,29 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("파이프라인 레시피 생성 실패: %s", e)
         strategy["recipes_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "assets_at", 6 * 3600):  # 무료 텍스처·HDRI 모음 (AI 안 씀)
+        try:
+            import assets
+            n_new = assets.collect()
+            if n_new:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "assets": n_new}])[-30:]
+        except Exception as e:
+            log.warning("무료 에셋 모음 실패: %s", e)
+        strategy["assets_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
+    runs_c = [r.get("candidates") for r in core.load_memory().get("runs", [])[-12:] if "candidates" in r]
+    starving = bool(runs_c) and sum(runs_c) / len(runs_c) < 8   # 새 글 후보가 바닥 → 출처 발굴을 당겨서
+    if force or starving and _due(strategy, "sources_at", 6 * 3600) or _due(strategy, "sources_at", 7 * 86400):
+        try:
+            import sources
+            added = sources.discover(limit=15) + [f"차단: {f}" for f in sources.prune()]
+            if added:
+                strategy = core.load_strategy()
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "sources": added[:10]}])[-30:]
+        except Exception as e:
+            log.warning("출처 발굴 실패: %s", e)
+        strategy["sources_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "refs_at", 3 * 3600):  # 오류 해결·버전별 바뀐 점: 3시간마다 조금씩 (하루 상한)
         try:
             import refs

@@ -1149,6 +1149,11 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "rss_image": rss_image(e),
                 })
     LAST_COLLECT.update(raw=len(candidates))
+    health = _load_json(ROOT / "memory" / "feed_health.json", {})  # 계속 비는 출처 → sources.prune 이 정리
+    for src, n_entries in FEED_STATS.items():
+        h = health.setdefault(src, {"empty_streak": 0})
+        h["empty_streak"] = 0 if n_entries else h.get("empty_streak", 0) + 1
+    _save_json(ROOT / "memory" / "feed_health.json", health)
     candidates = filter_off_topic_feeds(candidates)
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     LAST_COLLECT.update(passed=len(candidates))
