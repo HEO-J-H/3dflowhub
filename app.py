@@ -371,6 +371,14 @@ def _first_line(t: str, n: int = 110) -> str:
     return t if len(t) <= n else t[:n].rstrip() + "…"
 
 
+def _kst_day(ts: str):
+    try:
+        d = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+        return (d if d.tzinfo else d.replace(tzinfo=KST)).astimezone(KST).date()
+    except ValueError:
+        return None
+
+
 def do_now_box() -> None:
     """맨 위 '지금 내가 할 일' — 사람만 할 수 있는 일만, 한 줄씩 (없으면 한 줄)."""
     try:
@@ -417,9 +425,17 @@ today = datetime.now(KST).strftime("%Y-%m-%d")
 if not df.empty:
     df["수집일"] = pd.to_datetime(df["수집일"], errors="coerce", utc=True).dt.tz_convert("Asia/Seoul")
 
-t_today, t_home, t_list, t_auto, t_draft, t_set = st.tabs(
-    ["🏠 오늘", "📊 개요·수익", "📰 글 목록", "🧬 자동화·진화", "🗂 보관함·이력", "🛠 설정"])
-t_rev = t_home  # 탭 수를 줄이려고 '수익·방문'을 개요 아래로 합침
+t_home, t_list, t_auto, t_draft, t_set = st.tabs(
+    ["🏠 홈", "📰 글 목록", "🧬 자동화·진화", "🗂 보관함·이력", "🛠 설정"])
+# 홈 = 예전 '오늘' + '개요·수익' — 휴먼 인터페이스 순서: ① 결정할 일 ② 오늘 숫자 ③ 추이 ④ 무엇이 읽히나 ⑤ 나머지는 접기
+with t_home:
+    h_dec = st.container()
+    h_kpi = st.container()
+    h_trend = st.container()
+    h_read = st.container()
+    h_promo = st.expander("📣 홍보 대기함 · 🎨 이번 주 작품 소개")
+    h_detail = st.expander("📊 자세히 — 도구 분포·최근 글·방문·검색 유입·광고 수익")
+t_rev = h_detail
 
 def render_practical_content_metrics() -> None:
     """실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 사이드바 또는 개요 영역에 시각적으로 요약 렌더링합니다."""
@@ -441,7 +457,7 @@ def render_practical_content_metrics() -> None:
 
 
 # ─────────────────────────── 개요 ───────────────────────────
-with t_home:
+with h_trend:
     if df.empty:
         st.warning("아직 수집된 글이 없습니다.")
     else:
@@ -449,16 +465,6 @@ with t_home:
         yday = (datetime.now(KST) - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
         n_today, n_yday = int((day == today).sum()), int((day == yday).sum())
         perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
-        m = st.columns(5)
-        m[0].metric("전체 글", f"{len(df):,}", f"+{n_today} 오늘")
-        m[1].metric("오늘 수집", n_today, n_today - n_yday, help="어제 대비")
-        m[2].metric("도구·주제 게시판", df[["도메인", "카테고리"]].drop_duplicates().shape[0])
-        m[3].metric("사이트 방문 (30일)", (perf.get("pages") or {}).get("pv_30d", "미연결"))
-        m[4].metric("AI 남은 여력", f"{core.llm_capacity_left()}회",
-                    help=f"오늘 사용 {core.llm_usage_today() + sum(core.llm_fallback_usage().values())}회 · "
-                         f"리셋 {core.llm_reset_kst()} (한국 시간)")
-        
-        render_practical_content_metrics()
 
         with st.container(border=True):
             st.markdown("**최근 14일 수집·방문 추이** <span style='color:#f59e0b'>━ 방문(오른쪽 축)</span>",
@@ -477,24 +483,28 @@ with t_home:
             st.caption(f"수집 14일 합계 {int(daily.values.sum())}건 · 하루 평균 {daily.values.sum() / 14:.1f}건"
                        + (f" · 방문 14일 합계 {int(visits.sum(skipna=True))}회" if visits is not None
                           else " · 날짜별 방문은 다음 방문 통계 수집(3시간마다) 후 함께 표시됩니다"))
-        a, b = st.columns(2)
-        with a, st.container(border=True):
-            st.markdown("**많이 다룬 도구 Top 10**")
-            top = (df["도메인"] + " › " + df["카테고리"].fillna("기타")).value_counts().head(10).sort_values()
-            hbars(top, "글 수")
-        with b, st.container(border=True):
-            st.markdown("**콘텐츠 유형 분포**")
-            if "유형" in df.columns:
-                hbars(df["유형"].replace("", "미분류").value_counts(), "글 수")
-        st.markdown("**최근 글**")
-        cols = st.columns(3)
-        for i, (_, r) in enumerate(df.head(6).iterrows()):
-            with cols[i % 3], st.container(border=True):
-                if isinstance(r.get("이미지"), str) and r["이미지"]:
-                    st.image(r["이미지"], width="stretch")
-                link = r.get("사이트") if isinstance(r.get("사이트"), str) else r["원문"]
-                st.markdown(f"**[{r['제목']}]({link})**")
-                st.caption(f"{r['도메인']} › {r['카테고리']}" + (f" · {r['유형']}" if r.get("유형") else ""))
+        with h_detail:
+            a, b = st.columns(2)
+            with a, st.container(border=True):
+                st.markdown("**많이 다룬 도구 Top 10**")
+                top = (df["도메인"] + " › " + df["카테고리"].fillna("기타")).value_counts().head(10).sort_values()
+                hbars(top, "글 수")
+            with b, st.container(border=True):
+                st.markdown("**콘텐츠 유형 분포**")
+                if "유형" in df.columns:
+                    hbars(df["유형"].replace("", "미분류").value_counts(), "글 수")
+            st.markdown("**최근 글**")
+            cols = st.columns(3)
+            for i, (_, r) in enumerate(df.head(6).iterrows()):
+                with cols[i % 3], st.container(border=True):
+                    if isinstance(r.get("이미지"), str) and r["이미지"]:
+                        st.image(r["이미지"], width="stretch")
+                    link = r.get("사이트") if isinstance(r.get("사이트"), str) else r["원문"]
+                    st.markdown(f"**[{r['제목']}]({link})**")
+                    st.caption(f"{r['도메인']} › {r['카테고리']}" + (f" · {r['유형']}" if r.get("유형") else ""))
+        with h_detail:
+            render_practical_content_metrics()
+
 
 # ─────────────────────────── 글 목록 ───────────────────────────
 with t_list:
@@ -1304,7 +1314,7 @@ with t_set:
             st.rerun()
 
 # ─────────────────────────── 오늘 (한눈에: 할 일 · 오늘 성과 · 무엇이 읽히나) ───────────────────────────
-with t_today:
+with h_dec:
     import manager as _mgr
     plan_t = core._load_json(_mgr.PLAN_PATH, {})
     done_t = _mgr.done_today()
@@ -1341,6 +1351,7 @@ with t_today:
                     save_manager("직접 작업 완료")
                     st.rerun()
 
+with h_promo:
     import staff as _staff
     waiting = [x for x in _staff.outbox() if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     st.subheader(f"📣 홍보 대기함 ({len(waiting)})")
@@ -1432,7 +1443,8 @@ with t_today:
                     core.git_sync(["content/showcase.json"], "content(showcase): 게시 내림")
                     st.rerun()
 
-    st.subheader("📈 오늘 성과")
+with h_kpi:
+    st.subheader("📈 오늘")
     from zoneinfo import ZoneInfo as _ZI
     _today = datetime.now(_ZI("Asia/Seoul")).date()
     done_k = _mgr.done_today(kst=True)  # 한국 날짜 0시 기준
@@ -1440,18 +1452,21 @@ with t_today:
     _daily = _pg.get("daily") or {}
     _v_today = _daily.get(str(_today))
     _v_yday = _daily.get(str(_today - pd.Timedelta(days=1)))
-    v1, v2, v3 = st.columns(3)
-    v1.metric("오늘 방문 (지금까지)", f"{_v_today}회" if _v_today is not None else "집계 전",
-              help=f"GoatCounter 3시간마다 갱신 (마지막 {str(_pg.get('at', ''))[11:16] or '-'}) — 하루 중간 값이라 어제 전체와 직접 비교하지 않음")
-    v2.metric("어제 방문", f"{_v_yday}회" if _v_yday is not None else "-")
+    try:
+        import refs as _refs
+        _fx = sum(1 for x in _refs.load("fix") + _refs.load("change") if _kst_day(x.get("at", "")) == _today)
+    except Exception:
+        _fx = 0
+    _made = done_k["news"] + done_k["guides"] + done_k["roundups"] + done_k["recipes"] + _fx
+    v1, v2, v3, v4 = st.columns(4)
+    v1.metric("오늘 방문", f"{_v_today}회" if _v_today is not None else "집계 전",
+              (f"{_v_today - _v_yday:+d} 어제 대비" if (_v_today is not None and _v_yday is not None) else None),
+              help=f"GoatCounter 3시간마다 갱신 (마지막 {str(_pg.get('at', ''))[11:16] or '-'}) · 하루 중간 값")
+    v2.metric("오늘 올린 콘텐츠", f"{_made}개", help="소식 + 기초 가이드 + 도구별 정리 + 실무 파이프라인 + 오류 해결·바뀐 점")
     v3.metric("최근 30일 방문", f"{_pg.get('pv_30d', '-')}회")
-    q = st.columns(5)
-    q[0].metric("올린 소식", f"{done_k['news']}건")
-    q[1].metric("기초 가이드", f"{done_k['guides']}개",
-                help=None if done_k["guides"] else "준비된 주제가 없으면 0 — AI 관리자가 새 주제를 제안하면 다시 만듭니다")
-    q[2].metric("도구별 정리", f"{done_k['roundups']}개")
-    q[3].metric("품질 보강한 글", f"{done_k['enriched']}개")
-    q[4].metric("실무 파이프라인", f"{done_k['recipes']}개")
+    v4.metric("AI 남은 여력", f"{core.llm_capacity_left()}회", help=f"매일 {core.llm_reset_kst()[-5:]} 리셋 (한국 시간)")
+    st.caption(f"오늘 올린 것 — 소식 {done_k['news']} · 기초 가이드 {done_k['guides']} · 오류 해결·바뀐 점 {_fx} · "
+               f"도구별 정리 {done_k['roundups']} · 실무 파이프라인 {done_k['recipes']} · 품질 보강 {done_k['enriched']}")
     st.caption(f"한국 시간 {_today:%m/%d} 0시부터 · AI 남은 여력 {core.llm_capacity_left()}회 "
                f"(AI 한도는 매일 {core.llm_reset_kst()[-5:]} 리셋)")
     st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")
@@ -1459,6 +1474,7 @@ with t_today:
                   f" · 정리 {int(plan_t['alloc'].get('roundups', 0) * 100)}%" if plan_t.get("alloc") else ""))
 
 
+with h_read:
     st.subheader("👀 무엇이 읽히나 (최근 30일)")
     pg = core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}
     kinds = pg.get("by_kind") or {}
