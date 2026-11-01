@@ -1599,6 +1599,33 @@ def validate_practical_3d_keywords(data: dict) -> bool:
     return True
 
 
+def validate_practical_3d_density(data: dict) -> bool:
+    """본문 내 3D DCC 및 실무 툴 핵심 키워드 출현 빈도와 밀도를 정밀 검증하여 기준 미달 시 'low 3d density' 태그를 부여합니다."""
+    sections = data.get("sections", [])
+    full_text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
+    full_text += f" {data.get('summary', '')} {data.get('insight', '')} {data.get('title_ko', '')}"
+    
+    practical_keywords = [
+        "blender", "3ds max", "maya", "zbrush", "cinema 4d", "houdini", "substance 3d",
+        "unreal engine", "unity", "godot", "v-ray", "corona", "maxscript", "geometry nodes",
+        "블렌더", "맥스", "마야", "지브러시", "후디니", "언리얼", "유니티", "지오메트리 노드", "스크립트"
+    ]
+    
+    text_lower = full_text.lower()
+    total_chars = len(full_text)
+    match_count = sum(text_lower.count(kw) for kw in practical_keywords)
+    
+    # 빈도수 기준(최소 2회 이상) 및 밀도 검증 (본문 글자 수 대비 핵심 키워드 출현 비율)
+    density = (match_count / max(total_chars, 1)) * 1000
+    
+    if match_count < 2 or density < 0.5:
+        log.warning("low 3d density: 3D DCC 및 실무 툴 핵심 키워드 빈도/밀도가 부족합니다 (출현 횟수: %d, 밀도: %.2f): %s", 
+                    match_count, density, data.get("title_ko", ""))
+        if "low 3d density" not in RUN_ERRORS:
+            RUN_ERRORS.append("low 3d density")
+        return False
+    return True
+
 def ensure_minimum_content_depth(data: dict) -> bool:
     """요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록한다."""
     sections = data.get("sections", [])
@@ -1694,6 +1721,7 @@ def summarize(item: dict) -> dict | None:
     validate_post_length(data)
     ensure_minimum_content_depth(data)
     validate_practical_3d_keywords(data)
+    validate_practical_3d_density(data)
 
     data["category"] = register_category(data["domain"], data["category"])
     tags = data.get("tags")
