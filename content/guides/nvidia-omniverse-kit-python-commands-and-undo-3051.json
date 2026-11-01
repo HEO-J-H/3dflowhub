@@ -1,0 +1,84 @@
+{
+  "id": "nvidia-omniverse-kit-python-commands-and-undo-3051",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "Kit Python commands and undo",
+  "title": "Kit 명령·실행 취소",
+  "summary": "NVIDIA Omniverse Kit 환경에서 Python Script로 실행한 명령어를 작업 역사(History)에 기록하고 정상적으로 되돌리기(Undo/Redo)를 구현하는 방법입니다. 자동화 Script 작성 시 실수를 방지합니다.",
+  "when": [
+    "Python Script로 다수의 USD 프림(Prim)을 생성하거나 수정할 때",
+    "커스텀 툴 개발 중 Undo/Redo 기능을 지원해야 할 때",
+    "복잡한 일괄 처리 작업 후 작업을 안전하게 되돌리고 싶을 때"
+  ],
+  "steps": [
+    "Script Editor를 엽니다. (Window → Developer → Script Editor)",
+    "omni.kit.commands 모듈을 임포트합니다.",
+    "omni.kit.commands.execute() 함수를 사용하여 명령어를 실행합니다.",
+    "실행된 명령어가 Kit의 Undo Stack에 자동으로 등록되는지 확인합니다.",
+    "Ctrl+Z 단축키를 눌러 실행 취소가 정상 동작하는지 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "omni.kit.commands.execute",
+      "desc": "명령어를 실행하고 Undo 스택에 자동으로 등록하는 핵심 함수"
+    },
+    {
+      "name": "db_name",
+      "desc": "명령어 실행 시 기록될 데이터베이스 이름"
+    },
+    {
+      "name": "Undo / Redo",
+      "desc": "Kit 코어에서 관리하는 작업 실행 취소 및 재실행 스택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "USD 프림 생성 명령어 실행",
+      "steps": [
+        "Script Editor 창을 활성화합니다.",
+        "omni.kit.commands.execute('CreatePrim', prim_type='Cube') 코드를 작성합니다.",
+        "코드를 실행하여 뷰포트에 큐브를 생성하고 Undo 스택에 등록합니다."
+      ]
+    },
+    {
+      "title": "속성 변경 명령어 실행",
+      "steps": [
+        "선택한 오브젝트의 트랜스폼 값을 변경하는 Script를 작성합니다.",
+        "omni.kit.commands.execute 함수로 감싸서 실행합니다.",
+        "Ctrl+Z로 이전 위치로 돌아가는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 Python 내장 함수나 USD API를 직접 호출함 → Undo 스택에 등록되지 않으므로 항상 omni.kit.commands를 사용하세요.",
+    "커스텀 명령어 정의 시 undo/redo 메서드를 누락함 → BaseCommand 클래스를 상속받아 두 메서드를 모두 구현해야 합니다."
+  ],
+  "related": [
+    "Script Editor",
+    "USD",
+    "Python",
+    "Omniverse Kit"
+  ],
+  "videos": [
+    {
+      "id": "y5rMjnwqGZM",
+      "title": "Omniverse, Python, and You",
+      "author": "Shane Reetz"
+    },
+    {
+      "id": "-vbtMxpYfC4",
+      "title": "The Power of ChatGPT, Generative AI, and Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Kit%20Python%20commands%20and%20undo",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Script Editor",
+    "Window",
+    "Developer"
+  ],
+  "at": "2026-11-01T10:54:52.479376+00:00"
+}
