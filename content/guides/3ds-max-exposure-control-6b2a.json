@@ -1,0 +1,101 @@
+{
+  "id": "3ds-max-exposure-control-6b2a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Exposure Control",
+  "title": "노출 조절(Exposure Control)",
+  "summary": "Exposure Control은 렌더링된 이미지의 전체적인 밝기와 노출을 실제 카메라처럼 조절하는 기능입니다. 지나치게 밝거나 어두운 장면을 자연스러운 톤으로 맞춰줍니다.",
+  "when": [
+    "실내 인테리어 렌더링에서 창밖의 밝은 빛과 실내 어두운 곳의 대비가 너무 심할 때",
+    "야외 건축 시각화에서 햇빛이 너무 강해 하얗게 타버린(Overexposure) 영역을 잡고 싶을 때",
+    "V-Ray나 Arnold 등 물리적 기반의 렌더러(Physical Renderer)를 사용하여 사실적인 밝기를 구현할 때"
+  ],
+  "steps": [
+    "Rendering 메뉴에서 Environment (단축키: 8)를 클릭합니다.",
+    "Environment and Effects 대화상자에서 Environment 탭을 확인합니다.",
+    "Exposure Control 영역에서 드롭다운 메뉴를 열어 원하는 Controller(예: Photographic Exposure Control)를 선택합니다.",
+    "Active 체크박스가 켜져 있는지 확인합니다.",
+    "Parameters 하단에서 Shutter Speed, Aperture, ISO 등의 값을 조절하여 밝기를 맞춥니다.",
+    "Render Production(단축키: Shift + Q)을 실행해 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Exposure Value (EV)",
+      "desc": "장면의 전체적인 밝기 단계를 조절합니다."
+    },
+    {
+      "name": "Shutter Speed",
+      "desc": "셔터 속도를 조절하여 빛이 들어오는 시간을 결정합니다."
+    },
+    {
+      "name": "Aperture (f-stop)",
+      "desc": "조리개 개방 정도를 조절하여 빛의 양을 제어합니다."
+    },
+    {
+      "name": "ISO",
+      "desc": "센서의 빛 민감도를 조절하여 렌더링 결과물의 밝기를 높이거나 낮춥니다."
+    },
+    {
+      "name": "White Balance",
+      "desc": "광원의 색온도를 조절하여 화면의 전체적인 색감(차가운 느낌 또는 따뜻한 느낌)을 잡습니다."
+    },
+    {
+      "name": "Burn Highlights",
+      "desc": "강한 빛으로 인해 하얗게 날아가는(Clipping) 영역의 디테일을 복구합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 창가 햇빛 표현하기",
+      "steps": [
+        "Rendering → Environment (8) 창을 엽니다.",
+        "Photographic Exposure Control을 적용합니다.",
+        "ISO와 Shutter Speed를 조절하여 실내 어두운 가구 디테일을 살립니다.",
+        "Burn Highlights 값을 높여 창밖 풍경이 너무 하얗게 타는 현상을 줄입니다."
+      ]
+    },
+    {
+      "title": "야간 조명 씬 밝기 확보하기",
+      "steps": [
+        "Render Setup에서 V-Ray 또는 물리적 렌더러를 활성화합니다.",
+        "Exposure Control에서 ISO 값을 높여 어두운 야경의 전체적인 노출을 끌어올립니다.",
+        "Highlights와 Shadows 값을 미세 조정하여 가로등 빛의 대비를 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Active 체크박스를 켜지 않아 렌더링 결과에 노출 값이 반영되지 않는 경우 → Exposure Control 패널 상단의 Active를 체크합니다.",
+    "씬에 배치된 실제 라이트의 Multiplier 값을 무리하게 올리다가 노출이 깨지는 경우 → 라이트 강도를 기본값으로 두고 Exposure Control의 ISO나 EV 값으로 전체 밝기를 제어합니다."
+  ],
+  "related": [
+    "Physical Camera",
+    "Environment and Effects",
+    "Render Setup",
+    "Color Mapping"
+  ],
+  "videos": [
+    {
+      "id": "Ww9OS20h_VE",
+      "title": "3ds Max - Adjusting exposure control (Lesson 88)",
+      "author": "Advance Tutorials"
+    },
+    {
+      "id": "omhvPfIbEtM",
+      "title": "Corona Render, Exposure Control — also for V-Ray!",
+      "author": "Learn Corona Renderer"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Exposure%20Control",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Environment",
+    "Effects",
+    "Exposure Control",
+    "Controller",
+    "Photographic Exposure Control"
+  ],
+  "at": "2026-11-01T02:43:27.655408+00:00"
+}
