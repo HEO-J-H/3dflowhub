@@ -1,0 +1,87 @@
+{
+  "id": "3ds-max-uv-packing-43a6",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV packing",
+  "title": "Pack UVs — UV 배치",
+  "summary": "3ds Max의 UV 팩킹은 모델링의 텍스처 좌표(UV)를 겹치지 않게 정렬하고 빈 공간을 최소화하여 텍스처 해상도를 효율적으로 활용하는 기능입니다.",
+  "when": [
+    "캐릭터나 배경 모델링의 언랩(Unwrap) 작업 후 UV 아일랜드들을 한 텍스처 공간 안에 정리할 때",
+    "여러 개의 분리된 오브젝트의 UV를 하나의 UV 맵(UDIM 또는 싱글 맵)으로 모을 때",
+    "텍스처 맵의 픽셀 밀도(Texel Density)를 균일하게 맞추어 텍스처 깨짐을 방지할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Modifier List에서 Unwrap UVW 모디파이어를 적용합니다.",
+    "Open UV Editor 버튼을 눌러 UV 편집기 창을 엽니다.",
+    "Ctrl+A를 눌러 모든 UV 아일랜드를 선택합니다.",
+    "UV Editor 메뉴에서 Tools → Pack Islands를 클릭하거나 Pack Custom 옵션을 엽니다.",
+    "Spacing(간격)과 Rotate 옵션을 설정한 뒤 OK를 눌러 팩킹을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Spacing",
+      "desc": "UV 아일랜드 사이의 여백을 조절하여 밉맵(Mipmap) 생성 시 텍스처 번짐을 방지합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "공간 활용도를 높이기 위해 UV 아일랜드를 회전시킬지 여부와 각도를 설정합니다."
+    },
+    {
+      "name": "Fill Hole",
+      "desc": "큰 UV 아일랜드 사이의 빈 공간에 작은 아일랜드들을 채워 넣습니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "아일랜드와 테두리 사이의 간격을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "단일 프롭(소품) UV 정리",
+      "steps": [
+        "Unwrap UVW 모디파이어를 열고 모든 UV를 선택합니다.",
+        "Tools → Pack Islands를 실행합니다.",
+        "Spacing 값을 약간 높여 텍스처 겹침을 방지합니다."
+      ]
+    },
+    {
+      "title": "다중 파츠 오브젝트 팩킹",
+      "steps": [
+        "각 파츠별로 분리된 UV 아일랜드들을 대략적인 위치로 정렬합니다.",
+        "Pack Custom 옵션에서 겹침 방지(Overlap) 옵션을 확인합니다.",
+        "실행 후 빈 공간이 고르게 채워졌는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Spacing 값을 너무 작게 줌 → 밉맵 레벨에서 텍스처가 서로 겹쳐서 번져 보임 (Spacing 값을 늘려 해결)",
+    "오브젝트 스케일이 1.0이 아님 → UV 팩킹 시 텍셀 밀도가 제각각이 됨 (Reset XForm을 적용한 후 다시 Unwrap 진행)"
+  ],
+  "related": [
+    "Flatten Mapping",
+    "Relax",
+    "Stitch",
+    "Texel Density"
+  ],
+  "videos": [
+    {
+      "id": "KyRmFSyqW-I",
+      "title": "How To Unwrap In 3dsMax",
+      "author": "Georges | 3d tutorials"
+    },
+    {
+      "id": "oYW0y8y2hk0",
+      "title": "UV Unwrapping in 3ds Max - Part 1 - Introduction",
+      "author": "Autodesk 3ds Max Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20UV%20packing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modifier List",
+    "Unwrap UVW"
+  ],
+  "at": "2026-11-01T01:04:09.395331+00:00"
+}

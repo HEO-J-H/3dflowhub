@@ -1,0 +1,87 @@
+{
+  "id": "nvidia-omniverse-performance-tips-for-large-scenes-4ac3",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Performance tips for large scenes",
+  "title": "큰 장면 가볍게 다루기",
+  "summary": "NVIDIA Omniverse에서 거대한 3D 신(Scene)을 다룰 때 발생하는 병목 현상을 줄이고 실시간 성능을 최적화하는 가이드입니다. 복잡한 지오메트리와 많은 수의 Instance를 효율적으로 관리합니다.",
+  "when": [
+    "수백만 개 이상의 폴리건과 에셋이 포함된 대규모 건축/도시 시각화 신을 작업할 때",
+    "실시간 패스 트레이싱(Path Tracing)이나 뷰포트 네비게이션 시 프레임 레이트가 급격히 떨어질 때",
+    "협업 중 여러 부서에서 가져온 USD 에셋이 메모리를 과도하게 점유할 때"
+  ],
+  "steps": [
+    "Omniverse Viewport 설정에서 Display Quality를 낮추거나 필요한 렌더 패스만 활성화합니다.",
+    "Stage 패널에서 불필요한 라이트와 숨겨진 오브젝트를 비활성화하여 드로우 콜을 줄입니다.",
+    "대량의 반복 오브젝트는 Instanceable 기능을 켜서 USD Instancing으로 변환합니다.",
+    "메모리 절약을 위해 고해상도 텍스처는 UDIM을 활용하거나 압축 포맷(TX/KTX2)으로 변환하여 로드합니다."
+  ],
+  "params": [
+    {
+      "name": "Instanceable",
+      "desc": "동일한 오브젝트의 메모리 사용량을 줄이기 위해 인스턴스화합니다."
+    },
+    {
+      "name": "LOD (Level of Detail)",
+      "desc": "카메라와의 거리에 따라 폴리건 개수를 자동으로 조절합니다."
+    },
+    {
+      "name": "Path Tracing",
+      "desc": "실시간 레이 트레이싱 품질을 조절하며, 성능 확보를 위해 필요시 끄거나 샘플 수를 낮춥니다."
+    },
+    {
+      "name": "Max Bounces",
+      "desc": "빛의 반사 횟수를 제한하여 렌더링 연산 부하를 줄입니다."
+    },
+    {
+      "name": "Texture Compression",
+      "desc": "텍스처 메모리 점유율을 낮추기 위해 압축 포맷을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대규모 숲 신(Forest Scene) 최적화",
+      "steps": [
+        "Stage 패널에서 나무 에셋들을 선택합니다.",
+        "속성 창에서 Instanceable 체크박스를 활성화합니다.",
+        "카메라 거리별로 LOD 모델을 연결하여 원거리 나무의 폴리건 부하를 줄입니다."
+      ]
+    },
+    {
+      "title": "도시 건축물 신 실시간 프레임 확보",
+      "steps": [
+        "Viewport 설정에서 RTX Real-Time 모드로 전환합니다.",
+        "반사(Reflections)와 그림자(Shadows)의 최대 샘플 수를 낮춥니다.",
+        "보이지 않는 백그라운드 건물은 Visibility를 꺼서 렌더 연산에서 제외합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 에셋을 개별 지오메트리로 로드함 → Instanceable을 켜서 USD Instance 활용하기",
+    "원인 모를 렉 발생 시 텍스처 해상도 확인 안 함 → 고해상도 원본 텍스처를 압축 포맷으로 교체하기"
+  ],
+  "related": [
+    "USD Instancing",
+    "RTX Real-Time",
+    "Path Tracing",
+    "Level of Detail"
+  ],
+  "videos": [
+    {
+      "id": "Ol-bCNBgyFw",
+      "title": "How to Install NVIDIA Omniverse",
+      "author": "JSFILMZ"
+    },
+    {
+      "id": "sRxqmJux7BM",
+      "title": "NVIDIA Omniverse Machinima Overview",
+      "author": "JSFILMZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Performance%20tips%20for%20large%20scenes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T01:04:01.306253+00:00"
+}
