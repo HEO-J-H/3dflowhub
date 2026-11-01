@@ -292,6 +292,20 @@ def test_offtopic_article_is_skipped(monkeypatch):
                         '"sections": [{"heading": "h", "body": "b"}]}')
     assert core.summarize({"title": "Weather", "url": "https://ex.com/w", "hint_domain": "VFX", "rss_summary": ""}) is None
 
+def test_filter_offtopic_news():
+    cands = [
+        {"title": "Blender 5.0 Release Notes", "rss_summary": "New features", "url": "https://example.com/1"},
+        {"title": "프로배구 V리그 개막전 하이라이트", "rss_summary": "배구 경기 소식", "url": "https://example.com/volleyball"},
+        {"title": "오페라 공연 할인 이벤트 및 특가 쿠폰", "rss_summary": "할인 안내", "url": "https://example.com/sale"},
+        {"title": "Unreal Engine 5 Nanite update", "rss_summary": "3D engine updates", "url": "https://example.com/2"}
+    ]
+    filtered = core.filter_offtopic_news(cands)
+    assert len(filtered) == 2
+    titles = [c["title"] for c in filtered]
+    assert "Blender 5.0 Release Notes" in titles
+    assert "Unreal Engine 5 Nanite update" in titles
+
+
 def test_filter_off_topic_feeds():
     cands = [
         {"title": "Blender 5.0 Release Notes", "rss_summary": "New features", "url": "https://example.com/1"},
