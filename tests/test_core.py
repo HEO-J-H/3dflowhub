@@ -40,6 +40,29 @@ def test_validate_practical_3d_keywords(monkeypatch):
     assert "low 3d depth" not in core.RUN_ERRORS
 
 
+def test_validate_practical_3d_density_low_and_high(monkeypatch):
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    low_density_data = {
+        "title_ko": "일반 디자인 소식",
+        "summary": "디자인에 대한 가벼운 이야기입니다.",
+        "sections": [{"heading": "소개", "body": "툴 언급이 거의 없는 일반적인 디자인 소식으로 블렌더가 아주 가끔 언급됩니다."}]
+    }
+    assert core.validate_practical_3d_density(low_density_data) is False
+    assert "low 3d density" in core.RUN_ERRORS
+
+    monkeypatch.setattr(core, "RUN_ERRORS", [])
+    high_density_data = {
+        "title_ko": "Blender 및 3ds Max 렌더링 스크립트 워크플로우",
+        "summary": "Blender와 3ds Max를 연동하여 자산 관리 스크립트 작성하기.",
+        "sections": [
+            {"heading": "Blender 설정", "body": "Blender 지오메트리 노드와 3ds Max maxscript 활용."},
+            {"heading": "Maya 연동", "body": "Maya와 ZBrush 및 Houdini 파이프라인 통합."}
+        ]
+    }
+    assert core.validate_practical_3d_density(high_density_data) is True
+    assert "low 3d density" not in core.RUN_ERRORS
+
+
 def test_ensure_minimum_content_depth_low_and_high(monkeypatch):
     monkeypatch.setattr(core, "RUN_ERRORS", [])
     low_data = {
