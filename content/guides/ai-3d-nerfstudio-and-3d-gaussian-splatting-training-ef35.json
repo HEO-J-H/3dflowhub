@@ -1,0 +1,97 @@
+{
+  "id": "ai-3d-nerfstudio-and-3d-gaussian-splatting-training-ef35",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "가우시안 스플래팅",
+  "name": "Nerfstudio and 3D Gaussian Splatting training",
+  "title": "Nerfstudio로 커스텀 3D Gaussian Splatting 학습하기",
+  "summary": "NeRF(Neural Radiance Fields)와 3D Gaussian Splatting은 스마트폰으로 촬영한 여러 장의 사진을 분석해 실사와 가까운 3D 공간과 오브젝트를 빠르게 복원하는 AI 3D 기술입니다.",
+  "when": [
+    "실제 현장이나 건축물을 빠르게 3D 공간 스캔으로 데이터화할 때",
+    "복잡한 형태의 오브젝트를 고품질 텍스처와 함께 3D 모델로 변환할 때",
+    "게임 배경, VFX 레퍼런스, XR 콘텐츠를 위한 실사 기반 환경을 구축할 때"
+  ],
+  "steps": [
+    "1. 대상 주변을 돌며 겹치는 구간이 많도록 30장~100장 이상의 고화질 사진이나 동영상을 촬영합니다.",
+    "2. COLMAP 등의 SfM(Structure from Motion) 툴을 사용해 카메라의 위치와 포즈를 계산합니다.",
+    "3. Nerfstudio 또는 3D Gaussian Splatting 공식 오픈소스 레포지토리를 터미널에서 클론하고 가상 환경을 설정합니다.",
+    "4. 추출된 카메라 데이터셋 경로를 지정하고 학습(Training) 명령어 실행 Script를 입력합니다.",
+    "5. 학습 진행 상황을 브라우저 뷰어(Nerfstudio Viewer 등)를 통해 실시간으로 확인합니다.",
+    "6. 완성된 3D 모델을 .ply 또는 .sog 포맷으로 내보내기(Export) 하여 DCC 툴이나 Unreal Engine에서 활용합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "모델 학습 반복 횟수(높을수록 품질이 좋아지나 시간이 늘어남)"
+    },
+    {
+      "name": "Image Scale",
+      "desc": "입력 이미지의 해상도 다운스케일 비율(VRAM 부족 시 낮춤)"
+    },
+    {
+      "name": "Camera Optimizer",
+      "desc": "촬영 중 발생한 카메라 위치 오차를 학습 과정에서 보정하는 기능"
+    },
+    {
+      "name": "Opacity Reset",
+      "desc": "Gaussian Splatting 학습 중 투명도가 불필요하게 높은 점들을 제거하는 주기"
+    },
+    {
+      "name": "Densification",
+      "desc": "구조가 복잡한 영역에 새로운 3D Gaussian 점들을 생성해 디테일을 높이는 기능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 가상 투어(Virtual Tour) 제작",
+      "steps": [
+        "방 안의 중앙에서 사방을 향해 360도 연속 촬영을 진행합니다.",
+        "Nerfstudio로 데이터셋을 불러와 NeRF 기반으로 학습을 완료합니다.",
+        "웹 뷰어로 빌드하여 클라이언트에게 실시간 랜더링 공간을 공유합니다."
+      ]
+    },
+    {
+      "title": "야외 조각상 게임 배경 에셋화",
+      "steps": [
+        "조각상 주변을 하단, 중단, 상단 높이를 나누어 다각도로 촬영합니다.",
+        "3D Gaussian Splatting으로 학습하여 실시간 렌더링 가능한 .ply 데이터를 생성합니다.",
+        "Unreal Engine 플러그인을 통해 임포트하여 배경 에셋으로 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "촬영 시 사진 흔들림 및 모션 블러 발생 → 셔터스피드를 높이고 조명을 확보하여 다시 촬영합니다.",
+    "학습 중 VRAM 부족(Out of Memory) 오류 발생 → Image Scale 값을 낮추거나 배치 크기를 줄입니다.",
+    "거울이나 유리 같은 반사면 주변의 점군(Point Cloud) 왜곡 → 해당 표면을 마스킹하거나 촬영에서 제외합니다."
+  ],
+  "related": [
+    "COLMAP",
+    "Unreal Engine",
+    "Blender",
+    "Photogrammetry"
+  ],
+  "videos": [
+    {
+      "id": "cjfsxL-s31Y",
+      "title": "3D Gaussian Splats in Unreal Engine 5 Is Insane — and It’s Free",
+      "author": "Stefan 3D AI"
+    },
+    {
+      "id": "LhAa1B9CFeY",
+      "title": "How to Create Gaussian Splats with Nerfstudio",
+      "author": "Pixel Reconstruct"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Nerfstudio%20and%203D%20Gaussian%20Splatting%20training",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "COLMAP",
+    "SfM",
+    "Structure",
+    "Motion",
+    "Nerfstudio",
+    "D Gaussian Splatting"
+  ],
+  "at": "2026-11-01T00:13:21.528524+00:00"
+}

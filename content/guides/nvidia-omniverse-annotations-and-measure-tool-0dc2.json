@@ -1,0 +1,91 @@
+{
+  "id": "nvidia-omniverse-annotations-and-measure-tool-0dc2",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Annotations and measure tool",
+  "title": "주석·치수 재기",
+  "summary": "NVIDIA Omniverse의 Annotations and measure tool은 3D 씬 내의 객체 간 거리, 크기, 각도를 정확하게 측정하고 주석을 남길 수 있는 협업 도구입니다. CAD 데이터 검토나 레이아웃 검증에 유용합니다.",
+  "when": [
+    "3D 씬 내 두 객체 사이의 정확한 거리를 측정할 때",
+    "건축이나 제품 디자인 리뷰 중 특정 부위에 메모와 주석을 남길 때",
+    "여러 팀원이 참여하는 프로젝트에서 모델의 스케일을 시각적으로 확인할 때"
+  ],
+  "steps": [
+    "Omniverse View 또는 Create 앱을 실행하고 측정할 3D 씬을 엽니다.",
+    "상단 툴바(Toolbar)에서 Measure Tool 아이콘을 클릭하거나 관련 메뉴를 선택합니다.",
+    "첫 번째 측정 지점(Vertex 또는 Surface)을 마우스 클릭으로 지정합니다.",
+    "두 번째 측정 지점을 클릭하여 두 점 사이의 거리를 계산합니다.",
+    "필요한 경우 Annotations 툴을 이용해 측정 결과 옆에 텍스트 메모를 추가합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "선택한 두 지점 사이의 직선 거리를 표시합니다."
+    },
+    {
+      "name": "Unit",
+      "desc": "측정값에 사용할 단위를 미터, 센티미터, 밀리미터 등으로 설정합니다."
+    },
+    {
+      "name": "Snap",
+      "desc": "Vertex나 Edge 등 오브젝트의 특정 지점에 정확히 스냅되도록 합니다."
+    },
+    {
+      "name": "Annotation Text",
+      "desc": "측정선 주변에 표시될 메모나 코멘트 내용을 입력합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 씬 내부 통로 너비 검증",
+      "steps": [
+        "Measure Tool을 활성화합니다.",
+        "복도 양쪽 벽면의 표면을 각각 클릭합니다.",
+        "표시된 Distance 값을 확인하여 통과 가능한 너비인지 검토합니다."
+      ]
+    },
+    {
+      "title": "클라이언트 피드백을 위한 주석 작성",
+      "steps": [
+        "Annotations 툴을 선택합니다.",
+        "수정이 필요한 3D 모델 부위에 주석을 배치합니다.",
+        "텍스트 필드에 구체적인 수정 요청 사항을 입력합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅이 켜져 있지 않아 원하는 위치가 아닌 허공에 측정점이 찍힘 → Snap 옵션을 켜고 Vertex나 Edge를 정확히 클릭하세요.",
+    "단위 설정이 잘못되어 실제 크기와 다르게 보임 → Project Settings 또는 Measure 툴 옵션에서 단위를 다시 확인하세요."
+  ],
+  "related": [
+    "USD",
+    "Stage",
+    "Layers",
+    "Properties"
+  ],
+  "videos": [
+    {
+      "id": "wg-jYONjljU",
+      "title": "NVIDIA Omniverse USD Composer Measure Tool Overview",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "j4_-yush6pc",
+      "title": "How to Setup Nvidia Omniverse",
+      "author": "Architecture Vanguard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Annotations%20and%20measure%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse View",
+    "Create",
+    "Toolbar",
+    "Measure Tool",
+    "Vertex",
+    "Surface"
+  ],
+  "at": "2026-11-01T00:13:17.204197+00:00"
+}

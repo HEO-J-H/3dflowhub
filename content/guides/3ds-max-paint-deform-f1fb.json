@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-paint-deform-f1fb",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Paint Deform",
+  "title": "Paint Deform — 브러시로 밀고 당기기",
+  "summary": "브러시를 드래그하는 직관적인 방식으로 지오메트리 메쉬를 실시간으로 부풀리거나 밀어 넣는 스컬프팅 도구입니다. 자연스러운 지형이나 유기적인 형태를 빠르게 만들 때 유용합니다.",
+  "when": [
+    "자연스러운 언덕, 산등성이 등 지형(Terrain)을 빚어낼 때",
+    "캐릭터나 크리처의 옷 주름, 근육 덩어리를 유기적으로 다듬을 때",
+    "평면 패널에 자연스러운 울퉁불퉁한 굴곡을 더할 때"
+  ],
+  "steps": [
+    "Poly 곤충이나 지형 등 편집할 대상 오브젝트를 선택합니다.",
+    "Command Panel의 Modify 탭에서 Modifier List를 열고 Edit Poly 또는 Edit Mesh를 적용합니다.",
+    "Modifier List에서 Paint Deform 모디파이어를 추가하거나, Graphite Modeling Tools의 Paint Deform 리본 메뉴를 활성화합니다.",
+    "Paint Deform 패널에서 Push, Pull 등 원하는 브러시 모드를 선택합니다.",
+    "뷰포트에서 오브젝트 표면을 마우스로 드래그하여 원하는 형태를 칠하듯 변형합니다."
+  ],
+  "params": [
+    {
+      "name": "Push",
+      "desc": "브러시 중심에서 표면을 바깥쪽으로 밀어 올립니다."
+    },
+    {
+      "name": "Pull",
+      "desc": "브러시 중심에서 표면을 안쪽으로 당겨 파냅니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "정점들을 서로 가깝게 당겨 울퉁불퉁한 표면을 부드럽게 펴줍니다."
+    },
+    {
+      "name": "Brush Size",
+      "desc": "브러시의 전체 지름 크기를 조절합니다."
+    },
+    {
+      "name": "Brush Strength",
+      "desc": "브러시가 변형에 미치는 강도와 민감도를 조절합니다."
+    },
+    {
+      "name": "Keep In Surface",
+      "desc": "변형 중 Vertex가 원래 표면 방향을 유지하도록 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자연스러운 언덕 지형 만들기",
+      "steps": [
+        "충분한 세그먼트를 가진 Plane 오브젝트를 생성합니다.",
+        "Paint Deform의 Push 모드를 선택하고 브러시 크기를 키웁니다.",
+        "평면 위를 드래그하여 크고 작은 언덕 덩어리를 빚어냅니다.",
+        "Relax 브러시로 경계면을 다듬어 자연스럽게 연결합니다."
+      ]
+    },
+    {
+      "title": "유기적인 쿠션 패널 굴곡 표현",
+      "steps": [
+        "디비전이 충분한 Box 또는 Plane을 준비합니다.",
+        "Paint Deform의 Push를 이용해 쿠션의 볼륨감을 채웁니다.",
+        "경계선 근처는 브러시 크기를 줄여 정교하게 터치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(분할)가 너무 부족한 상태에서 브러시가 작동하지 않음 → TurboSmooth나 MeshSmooth를 먼저 적용해 정점 수를 늘립니다.",
+    "브러시 강도가 너무 높아 메쉬가 찢어짐 → Brush Strength 값을 낮추고 여러 번 덧칠합니다."
+  ],
+  "related": [
+    "Edit Poly",
+    "TurboSmooth",
+    "Graphite Modeling Tools",
+    "Displace"
+  ],
+  "videos": [
+    {
+      "id": "PBboQzJEATI",
+      "title": "3d Studio Max tutorial 19 soft selection paint deformation",
+      "author": "Andrea Salvi"
+    },
+    {
+      "id": "Ax11PAX_ER0",
+      "title": "Using the Paint Deform Brushes in 3ds Max",
+      "author": "Pluralsight Courses and Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Paint%20Deform",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Poly",
+    "Command Panel",
+    "Modify",
+    "Modifier List",
+    "Edit Poly",
+    "Edit Mesh"
+  ],
+  "at": "2026-11-01T00:13:25.741073+00:00"
+}

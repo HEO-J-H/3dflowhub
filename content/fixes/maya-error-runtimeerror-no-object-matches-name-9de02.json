@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-runtimeerror-no-object-matches-name-9de02",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: RuntimeError: No object matches name",
+  "title": "Maya No object matches name — 이름 불일치",
+  "summary": "Maya에서 지정한 이름을 가진 오브젝트를 찾지 못할 때 발생하는 런타임 에러입니다. 주로 MEL이나 Python Script 실행 중 잘못된 노드 이름을 참조할 때 나타납니다.",
+  "causes": [
+    "Script에서 참조하려는 노드 이름이나 경로가 실제로 존재하지 않음",
+    "오브젝트의 이름이 변경되었거나 씬에서 삭제됨",
+    "네임스페이스(Namespace)가 포함되어 있으나 Script에서 이를 누락함",
+    "DAG 경로 불일치 또는 히스토리 삭제로 인한 노드 소실"
+  ],
+  "steps": [
+    "에러 발생 시 출력된 정확한 오브젝트 이름을 Script Editor에서 확인합니다.",
+    "Outliner에서 해당 이름의 오브젝트가 실제로 존재하는지 검색합니다.",
+    "네임스페이스가 있는 경우, Script 내 경로에 네임스페이스가 올바르게 포함되었는지 확인합니다.",
+    "MEL 또는 Python 코드에서 노드 존재 여부를 확인하는 조건문(예: cmds.objExists())을 추가합니다."
+  ],
+  "check": [
+    "오류를 일으키던 Script를 다시 실행했을 때 Script Editor에 RuntimeError가 발생하지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "하드코딩된 이름 대신 변수나 선택된 오브젝트(ls(selection=True))를 활용해 Script를 작성합니다.",
+    "참조하는 노드의 이름이 변경될 가능성을 고려하여 예외 처리(Try-except) 코드를 구현합니다."
+  ],
+  "keywords": [
+    "Maya 에러",
+    "No object matches name",
+    "RuntimeError",
+    "Maya Python 에러",
+    "Script 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-01T00:13:29+00:00"
+}
