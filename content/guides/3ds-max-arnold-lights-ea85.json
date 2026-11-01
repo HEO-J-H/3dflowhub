@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-arnold-lights-ea85",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Arnold lights",
+  "title": "Arnold 조명 설정",
+  "summary": "3ds Max의 기본 렌더러인 Arnold에서 현실적인 조명과 자연스러운 빛의 감쇠를 표현하는 광원 시스템입니다. 물리적 정확성을 바탕으로 실내외 렌더링의 품질을 높여줍니다.",
+  "when": [
+    "실내 인테리어 씬에서 창문을 통해 들어오는 자연광을 연출할 때",
+    "스튜디오 환경에서 제품 디테일을 살리는 반사광과 키 라이트를 세팅할 때",
+    "HDRI 맵을 활용해 주변 환경광과 반사를 동시에 표현할 때"
+  ],
+  "steps": [
+    "메인 툴바 또는 Create 패널에서 Lights 탭으로 이동합니다.",
+    "드롭다운 메뉴에서 Arnold를 선택합니다.",
+    "원하는 광원(예: Skydome Light, Quad Light 등)을 뷰포트에 클릭하여 생성합니다.",
+    "Modify 패널에서 Intensity와 Exposure 값을 조절해 광원의 밝기를 맞춥니다.",
+    "Color 온도나 텍스처를 연결하여 빛의 성격을 디테일하게 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "광원의 기본 밝기 세기를 조절합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "노출 값을 조절해 빛의 밝기를 직관적으로 증폭합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "빛의 색상이나 온도를 지정합니다."
+    },
+    {
+      "name": "Radius / Size",
+      "desc": "광원의 크기를 키워 그림자의 부드러움(Softness)을 조절합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "빛의 품질을 높여 노이즈를 줄여줍니다."
+    },
+    {
+      "name": "Normalize",
+      "desc": "광원의 크기가 바뀌어도 총 광량(밝기)을 일정하게 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스튜디오 제품 촬영 조명",
+      "steps": [
+        "Create 패널에서 Arnold > Quad Light를 생성합니다.",
+        "제품 위쪽 전면에 배치하고 Size를 키워 부드러운 하이라이트를 만듭니다.",
+        "Exposure 값을 높여 제품 표면에 자연스러운 반사를 유도합니다."
+      ]
+    },
+    {
+      "title": "실내 창가 자연광 연출",
+      "steps": [
+        "Create 패널에서 Arnold > Skydome Light를 생성합니다.",
+        "Color 슬롯에 HDRI 이미지를 연결하여 전체적인 환경광을 만듭니다.",
+        "창문 위치에 Arnold > Mesh Light나 Quad Light를 추가해 직사광선을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 심하게 발생함 → Arnold Render Settings에서 Light Samples 값을 높여 해결합니다.",
+    "빛이 너무 밝거나 어둡지만 조절이 안 됨 → Intensity와 Exposure 값을 동시에 너무 높게 주지 말고 Exposure 위주로 미세 조정합니다.",
+    "그림자가 너무 날카로움 → Quad나 Disk 라이트의 Size 파라미터를 키워 그림자 경계를 부드럽게 만듭니다."
+  ],
+  "related": [
+    "Arnold Render Settings",
+    "Physical Material",
+    "HDRI",
+    "Light Mixer"
+  ],
+  "videos": [
+    {
+      "id": "Hu2MWg55Qcc",
+      "title": "3ds Max Lighting Tutorial With Arnold Render For Beginner",
+      "author": "Mufasu CAD"
+    },
+    {
+      "id": "2FRu6kA8ihY",
+      "title": "Introduction of Arnold | Class 01 | Arnold for 3ds Max",
+      "author": "Curve Design Center"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Arnold%20lights",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Lights",
+    "Arnold"
+  ],
+  "at": "2026-11-01T02:23:41.898528+00:00"
+}

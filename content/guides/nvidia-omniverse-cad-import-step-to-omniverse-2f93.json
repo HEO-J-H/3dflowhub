@@ -1,0 +1,102 @@
+{
+  "id": "nvidia-omniverse-cad-import-step-to-omniverse-2f93",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "CAD import (STEP) to Omniverse",
+  "title": "CAD(STEP) 불러오기",
+  "summary": "NVIDIA Omniverse로 CAD 파일(STEP)을 임포트하여 실시간으로 고품질 시각화를 구현하는 방법을 다룹니다. 복잡한 엔지니어링 데이터를 USD 포맷으로 변환하여 협업과 렌더링에 활용합니다.",
+  "when": [
+    "제조업 CAD 데이터를 Unreal Engine이나 Omniverse 기반 뷰어로 가져와 실시간 렌더링할 때",
+    "복잡한 어셈블리 구조와 메타데이터를 유지한 채 3D 신(Scene)을 구성할 때",
+    "팀원들과 대용량 CAD 데이터를 USD 포맷으로 공유하고 리뷰할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Nucleus 및 Cache 서비스를 시작합니다.",
+    "Omniverse Create 또는 USD Composer 앱을 실행하여 새 프로젝트(New Stage)를 생성합니다.",
+    "File 메뉴에서 Import를 선택하거나, CAD Importer 확장 기능을 활성화합니다.",
+    "변환할 STEP 파일을 선택하고 Tessellation(테셀레이션) 옵션을 설정합니다.",
+    "Import 버튼을 클릭하여 USD 형식으로 변환된 CAD 데이터를 뷰포트에 불러옵니다.",
+    "Materials 패널에서 PBR 머티리얼을 적용하고 Ray-Traced 렌더링으로 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tessellation Quality",
+      "desc": "CAD의 수학적 곡선을 폴리곤으로 변환하는 정밀도를 조절합니다."
+    },
+    {
+      "name": "Chord Tolerance",
+      "desc": "곡면을 폴리곤화할 때 발생하는 허용 오차 간격을 설정합니다."
+    },
+    {
+      "name": "Weld Vertices",
+      "desc": "인접한 Vertex를 결합하여 메시의 불필요한 틈을 메웁니다."
+    },
+    {
+      "name": "Up Axis",
+      "desc": "CAD 데이터의 상단 축(Z-Up 또는 Y-Up)을 Omniverse 환경에 맞게 정렬합니다."
+    },
+    {
+      "name": "Instance Merge",
+      "desc": "동일한 파트를 인스턴스화하여 파일 용량을 줄이고 성능을 최적화합니다."
+    },
+    {
+      "name": "Metadata Import",
+      "desc": "CAD 파일에 포함된 부품 번호, 이름 등 속성 정보를 함께 가져옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 어셈블리 렌더링",
+      "steps": [
+        "STEP 형식의 엔진 부품 어셈블리 파일을 준비합니다.",
+        "Omniverse CAD Importer를 통해 Up Axis를 Z-Up으로 설정하여 임포트합니다.",
+        "각 파트별로 알루미늄 및 스틸 머티리얼을 드래그 앤 드롭으로 적용합니다.",
+        "RTX Real-Time 렌더러를 켜고 금속 반사와 그림자를 확인합니다."
+      ]
+    },
+    {
+      "title": "건축/설비 CAD 도면 시각화",
+      "steps": [
+        "공장 배관 설비 STEP 데이터를 Omniverse로 불러옵니다.",
+        "Tessellation Quality를 높여 파이프 곡면의 각진 부분을 부드럽게 만듭니다.",
+        "Global Illumination을 활성화하여 내부 공간의 빛 확산 효과를 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "CAD 파일의 곡면이 지나치게 각져 보임 → Tessellation Quality를 높이거나 Chord Tolerance 값을 줄여서 다시 임포트합니다.",
+    "오브젝트의 축 방향이 잘못되어 누워 있음 → Import 설정에서 Up Axis를 Z-Up 또는 Y-Up으로 변경합니다.",
+    "Import 후 파일 용량이 너무 큼 → Instance Merge 옵션을 켜서 동일한 파트를 Instance로 처리합니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Create",
+    "Nucleus",
+    "RTX Renderer"
+  ],
+  "videos": [
+    {
+      "id": "GY_vbK4sAVU",
+      "title": "How to Build CAD to USD Workflows With NVIDIA Omniverse",
+      "author": "科技小Q"
+    },
+    {
+      "id": "KCHmYvYF_6c",
+      "title": "Import ANY Robot (URDF): From CAD to Isaac Sim | NVIDIA Omniverse Tutorial",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20CAD%20import%20%28STEP%29%20to%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Nucleus",
+    "Cache",
+    "Omniverse Create",
+    "USD Composer",
+    "New Stage"
+  ],
+  "at": "2026-11-01T02:23:32.419773+00:00"
+}
