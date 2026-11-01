@@ -1,0 +1,103 @@
+{
+  "id": "3ds-max-physical-material-6c36",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Physical Material",
+  "title": "Physical Material — 기본 PBR 재질",
+  "summary": "Physical Material은 3ds Max의 물리 기반 표준 재질(PBR)로, 실제 빛의 반사와 굴절을 정확하게 시뮬레이션하여 현실적인 재질을 표현합니다. Arnold 렌더러와 완벽하게 호환되며 다양한 실사 표면을 만듭니다.",
+  "when": [
+    "금속, 유리, 플라스틱 등 실제 세계의 물질을 물리적으로 정확하게 표현할 때",
+    "PBR 텍스처(Albedo, Roughness, Metalness)를 불러와 실사 렌더링을 할 때",
+    "건축 시각화나 제품 디자인에서 유리나 거울 같은 투명·반사 재질을 설정할 때"
+  ],
+  "steps": [
+    "키 M을 눌러 Material Editor를 엽니다.",
+    "Slate Material Editor에서 브라우저의 Materials > Arnold > Surface 또는 Standard 밑에서 Physical Material을 드래그하여 작업 영역에 놓습니다.",
+    "오브젝트를 선택한 후 Material 슬롯을 우클릭하고 Assign Material to Selection을 누릅니다.",
+    "Physical Material 노드를 더블클릭하여 Parameter Editor에서 Basic Parameters를 조절합니다.",
+    "Base Color와 Roughness, Metalness 값을 조절하여 원하는 표면 질감을 완성합니다.",
+    "F9 키를 눌러 렌더링 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 색상이나 알베도 텍스처를 지정합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "금속성을 조절합니다. 0은 비금속, 1은 순수한 금속입니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절합니다. 값이 높을수록 빛이 퍼져 매트한 표면이 됩니다."
+    },
+    {
+      "name": "Transparency",
+      "desc": "유리나 물처럼 빛을 통과시키는 투명도를 조절합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "굴절률을 설정합니다. 유리(1.5), 물(1.33) 등 실제 물질의 굴절 값을 입력합니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "노멀 맵이나 범프 맵을 연결하여 미세한 표면 요철을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "무광 플라스틱 케이스 제작",
+      "steps": [
+        "Physical Material을 생성하고 오브젝트에 적용합니다.",
+        "Base Color를 원하는 색상으로 설정합니다.",
+        "Metalness를 0으로 유지합니다.",
+        "Roughness를 0.4~0.6 사이로 높여 은은한 무광 질감을 만듭니다."
+      ]
+    },
+    {
+      "title": "거울 재질 만들기",
+      "steps": [
+        "Physical Material을 적용합니다.",
+        "Base Color를 순수한 흰색(White)으로 설정합니다.",
+        "Metalness를 1.0으로 올려 완전한 금속으로 만듭니다.",
+        "Roughness를 0으로 설정하여 완벽한 반사면을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Metalness와 Base Color를 모두 어둡게 설정함 → Metalness가 1일 때는 Base Color가 밝은 금속 색상이어야 반사가 정상적으로 보입니다.",
+    "Roughness를 너무 낮게 설정함 → 모든 플라스틱이나 금속을 Roughness 0으로 만들면 비현실적으로 번들거립니다. 적당한 거칠기를 주어야 사실적입니다.",
+    "구형 렌더러(Scanline) 전용 맵을 연결함 → Physical Material은 PBR/아놀드 체계이므로 구형 Bitmap 노드 대신 Arnold용 맵이나 표준 텍스처 슬롯을 확인해야 합니다."
+  ],
+  "related": [
+    "Slate Material Editor",
+    "Arnold Renderer",
+    "Bitmap",
+    "Standard Surface"
+  ],
+  "videos": [
+    {
+      "id": "E920CIq83Ws",
+      "title": "Corona for 3ds Max Physical Material Tutorial, Part 01 - Introduction",
+      "author": "Chaos Corona"
+    },
+    {
+      "id": "Lwlw-cmI7cg",
+      "title": "Corona for 3ds Max Physical Material Tutorial, Part 02 - Presets",
+      "author": "Chaos Corona"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Physical%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Slate Material Editor",
+    "Materials",
+    "Arnold",
+    "Surface",
+    "Standard"
+  ],
+  "at": "2026-11-01T01:23:27.670362+00:00"
+}
