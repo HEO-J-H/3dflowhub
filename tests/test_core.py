@@ -1044,6 +1044,36 @@ def test_calculate_cpc_score_distribution(monkeypatch, tmp_path):
     assert "cpc_score_distribution" in strat
 
 
+def test_summarize_cpc_optimization_metrics(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    monkeypatch.setattr(core, "STRATEGY_PATH", tmp_path / "strategy.json")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+
+    core._save_json(tmp_path / "posts" / "p1.json", {
+        "domain": "3D DCC",
+        "category": "Blender",
+        "topic": "튜토리얼·팁",
+        "tags": ["tutorial", "script"],
+        "title_ko": "Blender Python 스크립트 튜토리얼"
+    })
+    core._save_json(tmp_path / "posts" / "p2.json", {
+        "domain": "VFX",
+        "category": "업계 소식",
+        "topic": "업계 소식",
+        "tags": ["news"],
+        "title_ko": "일반 영화 시각효과 소식"
+    })
+
+    metrics = evolve.summarize_cpc_optimization_metrics()
+    assert metrics["total_practical_posts"] == 1
+    assert "3D DCC" in metrics["cpc_domain_breakdown"]
+    assert metrics["cpc_domain_breakdown"]["3D DCC"] == 1
+
+    strat = core._load_json(tmp_path / "strategy.json", {})
+    assert "cpc_optimization_metrics" in strat
+
+
 def test_summarize_error_trends(monkeypatch, tmp_path):
     import evolve
     monkeypatch.setattr(core, "MEMORY_PATH", tmp_path / "m.json")
