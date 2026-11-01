@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-graphite-swift-loop-and-flow-cc53",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Graphite Swift Loop and Flow",
+  "title": "Flow Connect — 곡률 따라 루프",
+  "summary": "Graphite Modeling Tools의 Swift Loop와 Edge Flow는 에디트 폴리 상태에서 빠르고 정확하게 엣지를 추가하거나 곡선을 매끄럽게 다듬는 필수 도구입니다.",
+  "when": [
+    "캐릭터나 하드서페이스 모델링 중 루프 엣지를 빠르게 추가해야 할 때",
+    "추가된 엣지가 기존의 곡면 흐름을 망가뜨려 부드럽게 재조정해야 할 때",
+    "복잡한 토폴로지 작업 중 구조를 유지하며 디테일을 높이고 싶을 때"
+  ],
+  "steps": [
+    "Object를 선택한 뒤 Modify Panel에서 Edit Poly 모디파이어를 적용하거나 우클릭하여 Editable Poly로 변환합니다.",
+    "Ribbon 메뉴 또는 Graphite Modeling Tools 패널을 엽니다 (단축키: 시프트+Ctrl+X).",
+    "Modeling 탭의 Polygon Modeling 패널에서 Loop 카테고리를 찾습니다.",
+    "Swift Loop 버튼을 클릭하여 활성화합니다 (또는 단축키 활용).",
+    "오브젝트 위에 마우스를 올려 미리보기 엣지를 확인하고 클릭하여 엣지를 생성합니다.",
+    "Edge 서브오브젝트 레벨(단축키: 2)에서 엣지를 선택한 후 Edge Flow 버튼을 눌러 곡선을 매끄럽게 정렬합니다."
+  ],
+  "params": [
+    {
+      "name": "Swift Loop",
+      "desc": "오브젝트 전체를 가로지르는 루프 엣지를 클릭 한 번으로 빠르게 추가합니다."
+    },
+    {
+      "name": "Edge Flow",
+      "desc": "선택한 엣지 루프의 간격을 주변 곡면에 맞춰 매끄럽게 재정렬합니다."
+    },
+    {
+      "name": "Clear Edge Flow",
+      "desc": "적용했던 Edge Flow 정렬을 해제하고 원래 상태로 되돌립니다."
+    },
+    {
+      "name": "Shift",
+      "desc": "Swift Loop 사용 시 수치를 입력하여 기존 엣지와의 간격을 정확히 조절합니다."
+    },
+    {
+      "name": "Loops",
+      "desc": "한 번에 생성할 엣지의 개수를 늘리거나 줄입니다."
+    },
+    {
+      "name": "Biasing",
+      "desc": "생성되는 엣지의 위치를 한쪽으로 치우치게 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 형태에 디테일 엣지 추가하기",
+      "steps": [
+        "실린더 오브젝트를 Editable Poly로 변환합니다.",
+        "Swift Loop를 활성화합니다.",
+        "실린더 측면을 클릭하여 원하는 높이에 가로 엣지를 추가합니다."
+      ]
+    },
+    {
+      "title": "찌그러진 곡면 엣지 흐름 정리하기",
+      "steps": [
+        "변형된 엣지 루프를 선택합니다 (더블 클릭).",
+        "Graphite Modeling Tools의 Edge Flow를 클릭합니다.",
+        "주변 곡면의 흐름에 맞춰 엣지가 원형으로 부드럽게 정렬되는 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "N-Gon이나 삼각형이 섞여 있어 루프가 끊기는 현상 → Cut 도구로 쿼드(Quad) 구조를 먼저 정리한 뒤 Swift Loop를 사용합니다.",
+    "엣지 루프 전체가 아닌 일부만 선택되어 Edge Flow가 찌그러지는 현상 → Alt 키를 이용해 불필요한 엣지를 빼고 정확히 한 줄의 루프만 선택한 뒤 다시 실행합니다."
+  ],
+  "related": [
+    "Connect",
+    "Swift Loop",
+    "Edge Flow",
+    "Target Weld"
+  ],
+  "videos": [
+    {
+      "id": "jASd0SF4f2c",
+      "title": "3ds Max 2018 Tutorial - Edge Tools - Swift Loop Tool",
+      "author": "MZONE3D"
+    },
+    {
+      "id": "6Xdgb1E3VGk",
+      "title": "The Swift-Loop Trick in  #3dsMax",
+      "author": "Mesh Mastery"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Graphite%20Swift%20Loop%20and%20Flow",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "Modify Panel",
+    "Edit Poly",
+    "Editable Poly",
+    "Ribbon",
+    "Graphite Modeling Tools"
+  ],
+  "at": "2026-11-01T00:24:07.504308+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-instant-ngp-and-nerf-workflow-27c8",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "신경렌더링",
+  "name": "Instant-NGP and NeRF workflow",
+  "title": "Instant-NGP 기반 실시간 신경 라디언스 필드(NeRF) 구축",
+  "summary": "Instant-NGP와 NeRF는 여러 각도에서 찍은 사진들을 인공지능으로 학습해 현실의 물체나 공간을 정교한 3D 공간으로 빠르게 재구성하는 기술입니다. 2D 사진만으로 실감 나는 3D 모델을 얻을 수 있습니다.",
+  "when": [
+    "실제 존재하는 복잡한 유적지나 자연물을 3D로 빠르게 복원해야 할 때",
+    "사람이나 사물의 실사 캡처 데이터를 게임 엔진이나 VFX에 활용하고 싶을 때",
+    "고가의 3D 스캐너 없이 스마트폰 사진만으로 에셋을 만들고 싶을 때"
+  ],
+  "steps": [
+    "물체를 중심으로 360도 다양한 높이에서 겹치는 구간이 많도록 사진 또는 동영상을 촬영합니다.",
+    "Colmap 등의 포토그래메트리 도구를 사용해 카메라의 위치(Camera Poses)와 스파스 포인트를 계산합니다.",
+    "Instant-NGP 또는 NeRF 학습 소프트웨어를 실행하고 데이터셋 폴더를 불러옵니다.",
+    "Training을 시작하여 신경망 가중치가 최적화되는 과정을 실시간으로 모니터링합니다.",
+    "학습이 완료된 결과물을 Mesh(OBJ/PLY) 또는 Gaussian Splatting 포맷으로 Export합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "인공지능이 모델을 학습하는 반복 횟수로, 높을수록 디테일이 좋아집니다."
+    },
+    {
+      "name": "Learning Rate",
+      "desc": "신경망이 학습하는 속도를 조절하여 수렴의 안정성을 결정합니다."
+    },
+    {
+      "name": "AABB Scale",
+      "desc": "학습 공간의 경계(Bounding Box) 크기를 설정합니다."
+    },
+    {
+      "name": "Batch Size",
+      "desc": "한 번에 처리하는 데이터 양으로, GPU 메모리 사용량에 영향을 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "문화재 및 유물 기록",
+      "steps": [
+        "유물 주변을 돌며 고해상도 사진 100장 이상 촬영하기",
+        "NeRF 학습 툴에 데이터셋 로드 후 기본 설정으로 학습 진행하기",
+        "추출된 3D 메시를 Blender로 가져와 불필요한 바닥 정리하기"
+      ]
+    },
+    {
+      "title": "야외 건축물 시각화",
+      "steps": [
+        "드론을 활용해 건물 외관을 다양한 각도에서 촬영하기",
+        "카메라 포지션 정렬 후 Instant-NGP로 즉시 3D 공간 시각화하기",
+        "Unreal Engine으로 결과물을 임포트해 배경 에셋으로 배치하기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진 개수가 너무 적거나 흔들림 → 캡처 시 최소 100장 이상 확보하고 셔터 스피드를 높여 흔들림을 방지합니다.",
+    "유리나 금속 등 반사되는 재질 포함 → 편광 필터를 사용하거나 무광 스프레이 처리를 고려합니다.",
+    "스케일과 축 방향이 틀어짐 → Export 단계에서 소프트웨어 간 단위(Unit)와 Up-Axis 설정을 확인합니다."
+  ],
+  "related": [
+    "Gaussian Splatting",
+    "Photogrammetry",
+    "Blender",
+    "Unreal Engine"
+  ],
+  "videos": [
+    {
+      "id": "ixuZaCMML1w",
+      "title": "Instant-NGP: 3D Reconstruction in Seconds with NERF Optimized",
+      "author": "Kevin Wood | Robotics & AI"
+    },
+    {
+      "id": "5rLfWVnM-Xc",
+      "title": "Visual Guide to create neural radiance fields (NeRF) model with Nvidia Instant-NGP",
+      "author": "650 AI Lab"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Instant-NGP%20and%20NeRF%20workflow",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Colmap",
+    "Camera Poses",
+    "Instant-NGP",
+    "NeRF"
+  ],
+  "at": "2026-11-01T00:24:03.500351+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-snap-and-align-tools-f273",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Snap and align tools",
+  "title": "스냅·정렬 도구",
+  "summary": "NVIDIA Omniverse에서 오브젝트 간의 위치와 방향을 정밀하게 맞추는 정렬 및 스냅 도구입니다. 복잡한 3D 장인(Scene)에서 에셋을 정확하고 빠르게 배치할 수 있습니다.",
+  "when": [
+    "여러 개의 건축 부재나 프롭을 빈틈없이 정확하게 붙여야 할 때",
+    "특정 오브젝트의 표면에 다른 오브젝트의 면이나 피벗을 정렬할 때",
+    "그리드나 다른 에셋의 기준점에 맞춰 빠르게 배치해야 할 때"
+  ],
+  "steps": [
+    "Omniverse Viewport 상단 툴바에서 Snap 및 Align 관련 아이콘을 활성화합니다.",
+    "정렬하거나 스냅할 소스(Source) 오브젝트를 선택합니다.",
+    "Alt 키를 누르거나 메뉴에서 Align 패널을 열어 정렬 기준축(X, Y, Z)을 지정합니다.",
+    "대상(Target) 오브젝트를 클릭하거나 지정하여 위치와 회전을 정확히 일치시킵니다.",
+    "필요에 따라 Grid Snap 단축키를 활용해 일정한 간격으로 이동합니다."
+  ],
+  "params": [
+    {
+      "name": "Align X/Y/Z",
+      "desc": "선택한 축을 기준으로 오브젝트의 중심점이나 경계 상자를 정렬합니다."
+    },
+    {
+      "name": "Snap to Grid",
+      "desc": "지정된 그리드 간격에 맞춰 오브젝트를 이동시킵니다."
+    },
+    {
+      "name": "Snap to Surface",
+      "desc": "다른 오브젝트의 표면 위에 대상 오브젝트를 정확히 붙입니다."
+    },
+    {
+      "name": "Bounding Box",
+      "desc": "오브젝트의 외곽 경계 상자 기준으로 정렬을 수행합니다."
+    },
+    {
+      "name": "Pivot",
+      "desc": "오브젝트의 피벗(축 중심점)을 기준으로 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽면에 액자 걸기",
+      "steps": [
+        "액자 오브젝트를 선택합니다.",
+        "Snap to Surface 기능을 활성화합니다.",
+        "벽면 오브젝트 위로 액자를 드래그하여 표면에 밀착시킵니다."
+      ]
+    },
+    {
+      "title": "건축 기둥 간격 맞추기",
+      "steps": [
+        "기준이 되는 기둥을 배치합니다.",
+        "Grid Snap 값을 원하는 간격으로 설정합니다.",
+        "Move 툴을 이용해 기둥을 그리드 선에 맞춰 복제 및 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 피벗 위치가 엉뚱한 곳에 있음 → 피벗을 중심이나 바닥으로 재설정 후 스냅 사용",
+    "스냅이 작동하지 않음 → 툴바에서 Snap 기능이 꺼져 있는지 확인하고 활성화",
+    "표면 정렬 시 에셋이 파묻힘 → Bounding Box 옵션과 Offset 값을 확인하여 조정"
+  ],
+  "related": [
+    "Transform Gizmo",
+    "Layout",
+    "USD",
+    "Stage"
+  ],
+  "videos": [
+    {
+      "id": "4oP3oQJUJ2k",
+      "title": "Accurate Object Positioning in NVIDIA Omniverse using Snap and Pivot Tool",
+      "author": "BuildAtScaleLab - Purdue University"
+    },
+    {
+      "id": "XoGa708Z-Fo",
+      "title": "Omniverse: Snapping Tool",
+      "author": "TwinSim"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Snap%20and%20align%20tools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Omniverse Viewport",
+    "Snap",
+    "Align"
+  ],
+  "at": "2026-11-01T00:23:59.554116+00:00"
+}
