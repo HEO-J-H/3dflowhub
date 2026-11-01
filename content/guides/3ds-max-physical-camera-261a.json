@@ -1,0 +1,98 @@
+{
+  "id": "3ds-max-physical-camera-261a",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Physical Camera",
+  "title": "Physical Camera — 실사 카메라",
+  "summary": "Physical Camera는 실제 카메라의 작동 방식을 그대로 시뮬레이션하여 현실감 있는 노출, 심도, 셔터 속도 등을 제어하는 3ds Max의 표준 카메라입니다.",
+  "when": [
+    "실제 사진처럼 사실적인 아웃포커싱(심도 표현)이 필요할 때",
+    "실내외 건축 시각화에서 노출 과다나 부족 문제를 실제 카메라 세팅으로 해결할 때",
+    "모션 블러(Motion Blur) 효과를 애니메이션에 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Create 패널(상단 탭)에서 Cameras 아이콘을 선택합니다.",
+    "Object Type에서 Physical을 클릭합니다.",
+    "뷰포트에서 클릭 후 드래그하여 카메라 위치와 타겟 지점을 설정합니다.",
+    "C 키를 눌러 뷰포트를 카메라 시점으로 전환합니다.",
+    "Modify 패널에서 Exposure 및 F-Number 등의 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "F-Number",
+      "desc": "조리개 값으로, 낮을수록 아웃포커싱(심도)이 강해지고 화면이 밝아집니다."
+    },
+    {
+      "name": "Shutter Speed",
+      "desc": "셔터 속도로, 값이 낮을수록(느릴수록) 빛을 많이 받아 밝아지고 모션 블러가 강해집니다."
+    },
+    {
+      "name": "ISO",
+      "desc": "센서의 빛 감도 수치로, 높을수록 화면 전체가 밝아집니다."
+    },
+    {
+      "name": "Focus Distance",
+      "desc": "초점이 맺히는 거리로, 선명하게 보일 피사체까지의 거리를 지정합니다."
+    },
+    {
+      "name": "Vignetting",
+      "desc": "렌즈 주변부 어두워짐 현상(비네팅)의 강도를 조절합니다."
+    },
+    {
+      "name": "White Balance",
+      "desc": "화이트 밸런스(색온도)를 조절하여 전체적인 톤을 따뜻하거나 차갑게 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물/제품 클로즈업 아웃포커싱",
+      "steps": [
+        "Physical Camera를 생성하고 피사체에 가깝게 배치합니다.",
+        "Modify 패널에서 Enable (Depth of Field) 옵션을 켭니다.",
+        "F-Number 값을 낮춰(예: 2.8 이하) 배경을 부드럽게 흐리게 만듭니다.",
+        "Focus Distance를 피사체 위치에 정확히 맞춥니다."
+      ]
+    },
+    {
+      "title": "어두운 실내 야간 씬 노출 밝게 조절하기",
+      "steps": [
+        "카메라 뷰에서 렌더링했을 때 너무 어두운 것을 확인합니다.",
+        "Exposure Control 항목이 활성화되어 있는지 확인합니다.",
+        "ISO 값을 높이거나(예: 400~800) Shutter Speed를 낮춰 화면을 밝게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "화면이 너무 밝거나 까맣게 나옴 → Exposure(노출) 값이 자동 노출로 되어 있거나 ISO/Shutter Speed 수치가 잘못 설정된 경우입니다. Exposure를 Manual로 바꾸고 수치를 조절하세요.",
+    "원하는 위치가 흐리게 나옴 → Focus Distance가 잘못 맞추어진 경우입니다. Pick 버튼으로 선명하게 보일 대상 오브젝트를 지정하세요."
+  ],
+  "related": [
+    "V-Ray Physical Camera",
+    "Exposure Control",
+    "Depth of Field",
+    "Motion Blur"
+  ],
+  "videos": [
+    {
+      "id": "YSDUahB9dyk",
+      "title": "how to set up a physical camera in 3ds max 2017",
+      "author": "Autodesk ANZ"
+    },
+    {
+      "id": "suDwRFn0Kp0",
+      "title": "077 3ds Max Cameras Explained | Physical vs Standard Camera Setup & Framing Basics",
+      "author": "CONSTRUCTION MANAGEMENT"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Physical%20Camera",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Cameras",
+    "Object Type",
+    "Physical"
+  ],
+  "at": "2026-11-01T02:33:40.730931+00:00"
+}

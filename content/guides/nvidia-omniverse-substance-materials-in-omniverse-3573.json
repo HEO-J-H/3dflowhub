@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-substance-materials-in-omniverse-3573",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "Substance materials in Omniverse",
+  "title": "Substance 재질을 Omniverse 로",
+  "summary": "NVIDIA Omniverse에서 Adobe Substance 3D 재질(SBSAR)을 불러와 실시간으로 실감 나는 텍스처를 적용하고 수정합니다. USD 표준을 기반으로 원본 속성을 유지하면서 협업할 수 있습니다.",
+  "when": [
+    "Substance 3D로 제작한 고품질 절차적 재질(SBSAR)을 Omniverse 씬에 바로 적용할 때",
+    "실시간 뷰포트에서 재질의 파라미터(거칠기, 타일링, 색상 등)를 즉시 조정하고 싶을 때",
+    "여러 DCC 툴과 실시간으로 연동되는 USD Pipeline 일관된 머티리얼을 쓸 때"
+  ],
+  "steps": [
+    "Omniverse Nucleus 서버 또는 로컬 드라이브에 준비된 .sbsar 파일을 확인합니다.",
+    "Omniverse Create 또는 USD 기반 앱의 Content Browser에서 .sbsar 파일을 뷰포트의 오브젝트로 드래그 앤 드롭합니다.",
+    "Stage 패널에서 해당 오브젝트를 선택하고, Details 패널(또는 Material Graph)에서 머티리얼 노드를 엽니다.",
+    "Parameters 탭에서 SBSAR 고유의 속성(Resolution, Roughness, Color 등) 값을 원하는 대로 조절합니다.",
+    "Viewport의 렌더러 모드(RTX Real-Time 또는 RTX Path Traced)를 켜서 텍스처와 라이팅 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "SBSAR File",
+      "desc": "적용할 Adobe Substance 3D 재질 파일 경로"
+    },
+    {
+      "name": "Resolution",
+      "desc": "텍스처 맵의 해상도를 동적으로 조절"
+    },
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 디퓨즈/알베도 색상 조정"
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 및 반사 광택 정도 조절"
+    },
+    {
+      "name": "Normal Scale",
+      "desc": "노멀 맵의 요철 깊이와 입체감 강도 조절"
+    },
+    {
+      "name": "Tiling",
+      "desc": "텍스처의 반복 횟수 및 스케일 조정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화용 콘크리트 바닥 만들기",
+      "steps": [
+        "바닥 메쉬를 뷰포트에 배치합니다.",
+        "Substance 콘크리트 SBSAR 파일을 드래그 앤 드롭하여 적용합니다.",
+        "Tiling 값을 조절하여 바닥 크기에 맞게 텍스처 간격을 맞춥니다.",
+        "Roughness를 높여 무광 콘크리트 느낌을 줍니다."
+      ]
+    },
+    {
+      "title": "금속 파이프 녹슨 표현 추가하기",
+      "steps": [
+        "파이프 모델을 Stage 패널에서 선택합니다.",
+        "철재 SBSAR 재질을 할당합니다.",
+        "파라미터에서 Rust Amount(녹 슬기 정도) 값을 올려 부식된 효과를 줍니다.",
+        "Normal Scale을 조절해 녹의 입체감을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 깨지거나 늘어나는 현상 → UV Mapping이 올바르지 않거나 Tiling 값이 잘못 설정되었으므로 UV를 확인하고 Tiling을 재조정합니다.",
+    "SBSAR 파라미터가 보이지 않는 경우 → 구버전 뷰어이거나 호환되지 않는 파일 형식이므로 Substance Add-on 및 Omniverse 버전을 최신으로 업데이트합니다.",
+    "실시간 렌더링 시 텍스처 로딩이 느린 경우 → Resolution 값이 너무 높게 설정되어 있으므로 해상도를 낮추고 캐시를 정리합니다."
+  ],
+  "related": [
+    "Substance 3D Extension",
+    "Material Graph",
+    "RTX Renderer",
+    "USD (Universal Scene Description)"
+  ],
+  "videos": [
+    {
+      "id": "MI5huRU1e0s",
+      "title": "Omniverse: Interior Materials",
+      "author": "TwinSim"
+    },
+    {
+      "id": "mUsfSD241Ck",
+      "title": "Working with Layers & Deltas in Omniverse Create | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Substance%20materials%20in%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T02:33:31.586633+00:00"
+}
