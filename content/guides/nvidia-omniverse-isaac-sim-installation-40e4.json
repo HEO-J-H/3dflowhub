@@ -1,0 +1,95 @@
+{
+  "id": "nvidia-omniverse-isaac-sim-installation-40e4",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "로보틱스",
+  "name": "Isaac Sim installation",
+  "title": "Isaac Sim 설치",
+  "summary": "NVIDIA Omniverse 플랫폼 기반의 로봇 시뮬레이션 및 합성 데이터 생성 도구인 Isaac Sim을 설치하고 실행하는 가이드입니다. 물리적으로 정확한 가상 환경에서 로봇을 테스트할 수 있습니다.",
+  "when": [
+    "실제 로봇을 배치하기 전 가상 공간에서 주행 및 조작 알고리즘을 테스트할 때",
+    "Machine Learning 학습을 위한 대규모 합성 이미지 및 센서 데이터를 수집할 때",
+    "USD 기반의 3D 자산과 로봇 모델을 연동하여 물리 시뮬레이션을 수행할 때"
+  ],
+  "steps": [
+    "NVIDIA 공식 웹사이트에서 NVIDIA Omniverse Launcher를 다운로드하여 설치합니다.",
+    "Omniverse Launcher의 Exchange 탭으로 이동하여 Isaac Sim을 검색합니다.",
+    "Install 버튼을 클릭하여 Isaac Sim 및 필수 의존성 패키지를 설치합니다.",
+    "설치 완료 후 Launch 버튼을 눌러 Isaac Sim을 실행합니다.",
+    "Welcome 화면에서 기본 시뮬레이션 Template(예: Carter Warehouse)을 선택하여 로딩합니다."
+  ],
+  "params": [
+    {
+      "name": "Omniverse Launcher",
+      "desc": "모든 Omniverse 앱과 커넥터를 관리하는 통합 런처입니다."
+    },
+    {
+      "name": "Isaac Sim",
+      "desc": "로봇 시뮬레이션을 위한 핵심 애플리케이션입니다."
+    },
+    {
+      "name": "Cache",
+      "desc": "로컬 및 원격 USD 자산을 효율적으로 관리하기 위한 캐시 서비스입니다."
+    },
+    {
+      "name": "Nucleus",
+      "desc": "실시간으로 3D 자산을 공유하고 협업하기 위한 데이터베이스 서버입니다."
+    },
+    {
+      "name": "Extension Manager",
+      "desc": "Isaac Sim의 기능을 확장하는 다양한 플러그인을 활성화하거나 비활성화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 창고 환경에서 모바일 로봇 주행 테스트",
+      "steps": [
+        "Isaac Sim을 실행하고 상단 메뉴에서 Environments → Warehouse를 선택합니다.",
+        "File 메뉴에서 Open을 통해 기본 로봇(예: Carter) USD 모델을 불러옵니다.",
+        "하단의 Play 버튼을 눌러 물리 시뮬레이션을 시작하고 로봇을 이동시킵니다."
+      ]
+    },
+    {
+      "title": "로봇 팔(Manipulator) 픽앤플레이스 시뮬레이션",
+      "steps": [
+        "새로운 스테이지를 생성하고 Industrial 로봇 팔 USD 자산을 임포트합니다.",
+        "Extension Manager에서 ROS/ROS2 브릿지 Extension을 활성화합니다.",
+        "외부 제어 프로그램과 연동하여 로봇 팔의 그리퍼 동작을 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "GPU Driver 버전 불일치 → NVIDIA 공식 홈페이지에서 최신 Studio 또는 Game Ready Driver로 업데이트합니다.",
+    "디스크 여유 공간 부족 → 최소 50GB 이상의 여유 공간을 확보한 후 설치를 진행합니다.",
+    "Nucleus 서버 연결 오류 → Omniverse Launcher에서 Nucleus 서비스가 정상적으로 실행 중인지 확인합니다."
+  ],
+  "related": [
+    "Omniverse Nucleus",
+    "USD",
+    "PhysX",
+    "ROS/ROS2 Bridge"
+  ],
+  "videos": [
+    {
+      "id": "SyrsAd8WbCo",
+      "title": "How to Install NVIDIA Isaac Sim",
+      "author": "Loupe"
+    },
+    {
+      "id": "3TL3ALQxQX8",
+      "title": "It's Time to Build Your Home Robot Lab | Sim-to-Real With NVIDIA Isaac",
+      "author": "Shane Reetz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Isaac%20Sim%20installation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA",
+    "NVIDIA Omniverse Launcher",
+    "Omniverse Launcher",
+    "Exchange",
+    "Isaac Sim"
+  ],
+  "at": "2026-11-01T11:55:08.586508+00:00"
+}
