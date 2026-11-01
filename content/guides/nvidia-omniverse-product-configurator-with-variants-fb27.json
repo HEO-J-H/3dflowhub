@@ -1,0 +1,90 @@
+{
+  "id": "nvidia-omniverse-product-configurator-with-variants-fb27",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "디지털 트윈",
+  "name": "Product configurator with variants",
+  "title": "제품 컨피규레이터 만들기",
+  "summary": "NVIDIA Omniverse의 USD 기반 실시간 레이 트레이싱과 Variants 기능을 활용해, 하나의 3D 자산 안에서 다양한 소재·색상 옵션을 실시간으로 전환하는 제품 configurator를 구축합니다.",
+  "when": [
+    "자동차, 가구, 의류 등 커스텀 옵션이 많은 제품을 실시간으로 보여주어야 할 때",
+    "여러 디자이너가 동시에 USD 파일과 머티리얼 변경 사항을 협업하여 검토할 때",
+    "웹 브라우저나 클라우드를 통해 클라이언트에게 다양한 디자인 베리에이션을 즉시 시연할 때"
+  ],
+  "steps": [
+    "1. 3ds Max, Blender 등에서 제작한 모델링을 USD 포맷으로 내보냅니다.",
+    "2. NVIDIA Omniverse Create 또는 View 앱을 실행하고 USD 스테이지를 엽니다.",
+    "3. Content Browser에서 서로 다른 머티리얼과 파츠를 USD Prims 구조로 정돈합니다.",
+    "4. Prim의 Properties 패널에서 Variant Sets를 생성하고 각 옵션(예: Color, Material)을 정의합니다.",
+    "5. Omniverse Kit 기반의 UI 앱 Template을 연결하거나 내장된 UI 구성을 활용해 드롭다운/버튼으로 Variant를 제어합니다.",
+    "6. RTX Renderer를 켜고 실시간 물리 기반 렌더링(PBR) 품질을 최종 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Variant Sets",
+      "desc": "하나의 오브젝트에 여러 디자인 옵션을 그룹화하여 스위치처럼 전환합니다."
+    },
+    {
+      "name": "RTX Renderer",
+      "desc": "실시간 패스 트레이싱과 레이 트레이싱으로 사진 같은 제품 질감을 표현합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "Omniverse MDL 표준을 사용하여 사실적인 페인트, 유리, 가죽 등을 적용합니다."
+    },
+    {
+      "name": "Stage",
+      "desc": "USD 계층 구조를 시각화하고 씬의 모든 요소를 관리하는 메인 공간입니다."
+    },
+    {
+      "name": "Properties",
+      "desc": "선택한 Prim의 어트리뷰트, 트랜스폼, Variant 설정을 확인하고 편집합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 외장 컬러 및 휠 커스텀 Configurator",
+      "steps": [
+        "차체 USD 메시에 Car_Color Variant Set 추가",
+        "Red, Black, White MDL 머티리얼을 각 Variant에 바인딩",
+        "휠 파츠에 Wheel_Type Variant Set 생성 후 알로이/스포크 휠 연결"
+      ]
+    },
+    {
+      "title": "가구 패브릭 및 다리 소재 변경 Configurator",
+      "steps": [
+        "소파 패브릭 메시에 Fabric_Variant Set 생성",
+        "벨벳, 린넨, 가죽 머티리얼을 옵션별로 등록",
+        "다리 오브젝트에 Wood와 Metal Variant Set 연결"
+      ]
+    }
+  ],
+  "mistakes": [
+    "USD로 내보내기 전 원본 DCC 툴에서 스케일과 피벗이 정렬되지 않음 → DCC 툴에서 Freeze Transform과 Center Pivot을 먼저 수행한 뒤 USD Export 진행",
+    "Variant 전환 시 머티리얼 경로가 깨짐 → 절대 경로 대신 USD 레이어 기반의 상대 경로 또는 Omniverse Nucleus 서버 경로 활용",
+    "실시간 렌더링 시 노이즈가 심함 → RTX Renderer 패널에서 Denoiser 설정을 활성화하여 깔끔한 화면 확보"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Create",
+    "MDL",
+    "Nucleus"
+  ],
+  "videos": [
+    {
+      "id": "LAVXuDK83iA",
+      "title": "Develop 3D Product Configurators With Generative AI and OpenUSD",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "dyciB0h-vmA",
+      "title": "Develop Next-Generation 3D Product Configurators With OpenUSD and Omniverse APIs",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Product%20configurator%20with%20variants",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-01T13:15:48.666251+00:00"
+}
