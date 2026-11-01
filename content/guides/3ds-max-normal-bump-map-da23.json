@@ -1,0 +1,99 @@
+{
+  "id": "3ds-max-normal-bump-map-da23",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Normal Bump map",
+  "title": "Normal Bump — 노멀 맵 연결",
+  "summary": "Normal Bump map은 저해상도 모델에 고해상도의 입체감을 부여하는 맵으로, 픽셀의 법선(Normal) 방향을 조작하여 빛의 반사를 가짜로 만들어냅니다. 폴리곤 추가 없이 리벳, 흠집, 봉제선 같은 세밀한 디테일을 표현할 때 씁니다.",
+  "when": [
+    "게임 배경이나 캐릭터 제작 시 폴리곤 수를 아끼면서 디테일을 살리고 싶을 때",
+    "하드서페이스 모델에 미세한 나사못, 홈, 패널 라인을 표현할 때",
+    "의류나 가죽의 미세한 직조감과 질감을 표현할 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor(단축키 M)를 엽니다.",
+    "Diffuse 맵이나 Base Color에 쓸 재질을 만들고, Bump 슬롯을 클릭합니다.",
+    "맵 목록에서 Normal Bump를 선택하고 OK를 누릅니다.",
+    "Normal 슬롯에 굽혀진 노멀 맵(보통 보라색 이미지)을 연결합니다.",
+    "Viewport에서 해당 오브젝트를 선택하고 Show Shaded Material in Viewport를 켜서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Normal",
+      "desc": "실제 입체감을 계산할 노멀 맵 이미지 파일을 연결하는 슬롯입니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "노멀 맵 외에 추가로 흑백 범프 맵을 섞어서 디테일을 더할 때 사용합니다."
+    },
+    {
+      "name": "Flip Red",
+      "desc": "노멀 맵의 빨간색(X축) 채널 방향을 반전시킵니다."
+    },
+    {
+      "name": "Flip Green",
+      "desc": "노멀 맵의 초록색(Y축) 채널 방향을 반전시켜 빛의 방향 오류를 수정합니다."
+    },
+    {
+      "name": "Swap Red and Green",
+      "desc": "DirectX와 OpenGL 노멀 맵 포맷 간의 호환성을 맞추기 위해 축을 교체합니다."
+    },
+    {
+      "name": "Multiplier",
+      "desc": "노멀 맵의 요철 깊이와 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "철판 패널 라인 표현하기",
+      "steps": [
+        "기본 박스 모델을 만들고 스탠다드 머티리얼을 적용합니다.",
+        "Bump 슬롯에 Normal Bump를 넣고 패널 라인이 그려진 노멀 맵을 연결합니다.",
+        "Multiplier 값을 높여 철판 홈의 깊이감을 조절합니다."
+      ]
+    },
+    {
+      "title": "가죽 질감 적용하기",
+      "steps": [
+        "의자 모델을 선택하고 Material Editor를 엽니다.",
+        "Normal Bump 맵을 적용하고 가죽 패턴의 노멀 맵을 불러옵니다.",
+        "UVW Map 모디파이어를 추가하여 타일링 크기를 모델에 맞게 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 맵을 일반 Bitmap 슬롯에 그대로 넣음 → 반드시 Normal Bump 맵 하위의 Normal 슬롯에 넣어야 올바르게 계산됩니다.",
+    "다른 3D 프로그램에서 가져온 노멀 맵이 반대로 파여 보임 → Flip Green 옵션을 켜거나 꺼서 빛 방향을 맞춥니다.",
+    "멀리서 보면 울퉁불퉁한데 실루엣이 너무 평평함 → 노멀 맵은 실루엣 자체를 바꾸지 못하므로 Displace 모디파이어나 지오메트리 수정이 필요합니다."
+  ],
+  "related": [
+    "Displace",
+    "Bump",
+    "Substance",
+    "Unwrap UVW"
+  ],
+  "videos": [
+    {
+      "id": "5EGG2N2beos",
+      "title": "3DsMax for Beginners: Understanding Bump Map",
+      "author": "WISI Shared"
+    },
+    {
+      "id": "9LDOZWvwbP4",
+      "title": "How To Use Normal Maps In 3DS Max (No plugins)",
+      "author": "Gaia35"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Normal%20Bump%20map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Diffuse",
+    "Base Color",
+    "Bump",
+    "Normal Bump"
+  ],
+  "at": "2026-11-01T01:43:44.144826+00:00"
+}

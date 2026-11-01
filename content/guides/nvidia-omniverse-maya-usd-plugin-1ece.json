@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-maya-usd-plugin-1ece",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "Maya USD plugin",
+  "title": "Maya USD 플러그인 기초",
+  "summary": "NVIDIA Omniverse Maya USD 플러그인은 Autodesk Maya와 USD(Universal Scene Description) 기반의 Omniverse 생태계를 실시간으로 연결합니다. 여러 아티스트가 동시에 Maya 씬을 수정하고 협업할 수 있도록 돕습니다.",
+  "when": [
+    "Maya에서 작업 중인 에셋과 씬을 Omniverse Nucleus 서버로 직접 내보내거나 불러올 때",
+    "여러 부서의 아티스트가 Maya, Houdini, Unreal Engine 간에 실시간 파이프라인 협업을 진행할 때",
+    "USD 기반의 복잡한 레이어 및 스테이지 구조를 Maya 내부에서 직접 관리해야 할 때"
+  ],
+  "steps": [
+    "Autodesk Maya를 실행하고 Windows 메뉴의 Settings/Preferences → Plug-in Manager를 엽니다.",
+    "목록에서 mayaUsdPlugin.mll 파일을 찾아 Loaded와 Always Loaded에 체크하여 활성화합니다.",
+    "상단 메뉴 바에 새로 생성된 USD 메뉴를 클릭하고 USD Stage를 생성합니다.",
+    "Outliner에서 USD Layer Editor를 열어 새로운 레이어를 추가하고 에셋을 구성합니다.",
+    "File → Export 선택 후 파일 형식에서 Universal Scene Description (.usd, .usda, .usdc)을 골라 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "USD Stage",
+      "desc": "Maya 씬 내에서 USD 데이터를 로드하고 계층 구조를 관리하는 기본 컨테이너입니다."
+    },
+    {
+      "name": "Layer Editor",
+      "desc": "비파괴 방식으로 씬을 수정하기 위해 여러 개의 USD 레이어를 쌓고 관리합니다."
+    },
+    {
+      "name": "Export Selection",
+      "desc": "선택한 오브젝트만 USD 파일 형식으로 빠르게 내보냅니다."
+    },
+    {
+      "name": "Make Prim",
+      "desc": "Maya 오브젝트를 USD Primitive(Prim) 구조로 변환합니다."
+    },
+    {
+      "name": "Variant Sets",
+      "desc": "하나의 USD 에셋 내에서 모델링이나 머티리얼의 옵션을 교체할 수 있게 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 팀 프로젝트 협업",
+      "steps": [
+        "Maya에서 모델링을 완료한 뒤 USD로 변환합니다.",
+        "Omniverse Nucleus 서버의 공용 프로젝트 경로에 파일을 업로드합니다.",
+        "다른 아티스트가 Omniverse View나 Unreal Engine에서 즉시 최신 씬을 확인합니다."
+      ]
+    },
+    {
+      "title": "USD 레이어를 활용한 비파괴 수정",
+      "steps": [
+        "USD Layer Editor에서 Sublayer를 추가합니다.",
+        "기존 원본 지오메트리를 건드리지 않고 새로운 레이어에서 배치를 수정합니다.",
+        "레이어를 병합하거나 개별적으로 수정 사항을 관리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플러그인이 로드되지 않음 → Plug-in Manager에서 mayaUsdPlugin.mll이 체크되어 있는지 확인하고 Maya 버전을 맞춥니다.",
+    "텍스처 경로가 깨짐 → USD 파일 내 아웃풋 경로가 상대 경로인지 확인하고 Nucleus 서버의 자산 위치를 점검합니다.",
+    "스케일과 축 방향이 다름 → Maya의 업-축(Y-up)과 USD/Omniverse의 업-축(Z-up) 설정을 일치시킵니다."
+  ],
+  "related": [
+    "Omniverse Nucleus",
+    "Universal Scene Description",
+    "Omniverse Create",
+    "Unreal Engine USD Importer"
+  ],
+  "videos": [
+    {
+      "id": "Ieyi-njGy0E",
+      "title": "Unleashing the Next Dimension: Exploring the Power of NVIDIA Omniverse and OpenUSD",
+      "author": "MH Tutorials"
+    },
+    {
+      "id": "A6fgvA-XQ3w",
+      "title": "Live Posing with OmniLive with Autodesk Maya (Legacy) Connector and Omniverse USD Composer",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Maya%20USD%20plugin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Autodesk Maya",
+    "Windows",
+    "Settings",
+    "Preferences",
+    "Plug",
+    "Manager"
+  ],
+  "at": "2026-11-01T01:43:35.690424+00:00"
+}
