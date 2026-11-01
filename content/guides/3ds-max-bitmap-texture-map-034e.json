@@ -1,0 +1,101 @@
+{
+  "id": "3ds-max-bitmap-texture-map-034e",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Bitmap texture map",
+  "title": "Bitmap — 이미지 텍스처 넣기",
+  "summary": "Bitmap 텍스처 맵은 이미지 파일을 3ds Max 재질(Material)에 불러와 오브젝트의 표면 색상이나 질감으로 입혀주는 가장 기본적인 맵입니다. 2D 이미지를 3D 모델에 투영하여 나무, 벽돌, 금속 등의 재질감을 표현합니다.",
+  "when": [
+    "오브젝트 표면에 나무, 철판, 콘크리트 같은 구체적인 질감을 넣고 싶을 때",
+    "컬러뿐만 아니라 울퉁불퉁한 요철(Bump)이나 광택(Roughness)을 표현할 이미지를 적용할 때",
+    "UV 좌표를 가진 모델에 브랜드 로고나 간판 이미지를 정확히 매핑할 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor(단축키 M)를 엽니다.",
+    "Compact Material Editor 또는 Slate Material Editor에서 Material/Map Browser를 엽니다.",
+    "General 카테고리에서 Bitmap을 더블 클릭하여 작업 영역에 생성합니다.",
+    "컴퓨터 저장소에서 사용할 이미지 파일을 선택하고 엽니다.",
+    "Bitmap 노드의 출력 포트를 Standard 또는 Physical Material의 Base Color Map(또는 Diffuse Color) 슬롯에 연결합니다.",
+    "재질을 뷰포트의 대상 오브젝트에 적용(Assign Material to Selection)하고 Viewport에서 Show Shaded Material in Viewport를 켭니다."
+  ],
+  "params": [
+    {
+      "name": "Bitmap",
+      "desc": "불러온 이미지 파일의 경로와 이름, 포맷 정보를 표시합니다."
+    },
+    {
+      "name": "Cropping/Placing",
+      "desc": "이미지의 특정 영역만 잘라내어 사용할 수 있습니다."
+    },
+    {
+      "name": "Coordinates",
+      "desc": "이미지의 타일링(Tiling), 오프셋(Offset), 각도(Angle)를 조절합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "이미지의 선명도를 조절하여 렌더링 시 안티앨리어싱에 의한 깨짐을 방지합니다."
+    },
+    {
+      "name": "Output",
+      "desc": "이미지의 밝기, 대비, 레벨을 맵 단계에서 직접 보정합니다."
+    },
+    {
+      "name": "Mapping",
+      "desc": "Explicit UVW 채널이나 실린더, 구형 등 매핑 방식을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽 재질 만들기",
+      "steps": [
+        "Diffuse 컬러 슬롯에 벽돌 Bitmap 맵을 연결합니다.",
+        "동일한 벽돌 이미지를 복사하여 Bump 맵 슬롯에 연결하고 입체감을 줍니다.",
+        "Coordinates 탭에서 Tiling 수치를 높여 벽돌 패턴을 촘촘하게 만듭니다."
+      ]
+    },
+    {
+      "title": "간판에 로고 이미지 입히기",
+      "steps": [
+        "로고가 있는 PNG 이미지를 Bitmap으로 불러와 Base Color에 연결합니다.",
+        "오브젝트에 UVW Map 모디파이어를 적용하여 투영 방식을 정돈합니다.",
+        "로고가 잘리지 않도록 Gizmo를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지가 안 보임 → 뷰포트에서 'Show Shaded Material in Viewport' 옵션을 켜지 않았기 때문입니다. 머티리얼 에디터에서 해당 버튼을 누르세요.",
+    "텍스처가 찌그러짐 → 오브젝트에 UVW Map 모디파이어가 없거나 UV 좌표가 정리되지 않아서 발생합니다. UVW Map을 추가하거나 언랩을 진행하세요.",
+    "경로 유실로 텍스처가 검게 나옴 → 이미지 파일이 이동되거나 삭제된 경우입니다. Asset Tracking System(Shift+T)에서 경로를 다시 지정하세요."
+  ],
+  "related": [
+    "UVW Map",
+    "Unwrap UVW",
+    "Physical Material",
+    "Standard Material"
+  ],
+  "videos": [
+    {
+      "id": "oIUJJV5iYOI",
+      "title": "Relink Bitmaps and Texture in 3ds Max - NO PLUGINS NEEDED!!!",
+      "author": "Simple or Difficult"
+    },
+    {
+      "id": "zLMv1KUy8ZQ",
+      "title": "3Ds Max - How to Texture Using Bitmap Images Tutorial",
+      "author": "Pav3DTutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Bitmap%20texture%20map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Compact Material Editor",
+    "Slate Material Editor",
+    "Material",
+    "Map Browser",
+    "General"
+  ],
+  "at": "2026-11-01T01:33:32.954663+00:00"
+}

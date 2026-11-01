@@ -1,0 +1,98 @@
+{
+  "id": "nvidia-omniverse-blender-usd-export-to-omniverse-e320",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "Blender USD export to Omniverse",
+  "title": "Blender → USD → Omniverse",
+  "summary": "NVIDIA Omniverse와 Blender 간 USD(Universal Scene Description) 포맷을 활용해 실시간 협업 및 에셋 파이프라인을 구축하는 방법입니다. 로컬 작업물을 손쉽게 USD로 변환하여 USD 기반 파이프라인에 통합할 수 있습니다.",
+  "when": [
+    "Blender에서 제작한 3D 에셋을 NVIDIA Omniverse 플랫폼으로 내보내 실시간 렌더링 및 시뮬레이션을 할 때",
+    "여러 디자이너가 동시에 같은 씬을 수정하는 실시간 공동 작업(Live Sync) 파이프라인을 구축할 때",
+    "USD 포맷을 활용해 복잡한 3D 씬 데이터와 재질을 다른 DCC 툴과 원활하게 공유할 때"
+  ],
+  "steps": [
+    "Blender를 실행하고 File 메뉴에서 Export 서브메뉴를 엽니다.",
+    "Universal Scene Description (.usd, .usda, .usdc) 옵션을 선택합니다.",
+    "Export USD 창에서 Export Path 및 파일 이름을 지정합니다.",
+    "Include 패널에서 UVs, Normals, Materials, Animation 등 필요한 데이터 옵션을 체크합니다.",
+    "오른쪽 상단의 Export USD 버튼을 클릭하여 USD 파일로 내보냅니다.",
+    "NVIDIA Omniverse 앱(예: Omniverse Create 또는 View)을 열고 File 메뉴의 Open 또는 Import를 통해 내보낸 USD 파일을 불러옵니다."
+  ],
+  "params": [
+    {
+      "name": "Export Path",
+      "desc": "저장할 USD 파일의 경로와 이름을 지정합니다."
+    },
+    {
+      "name": "UVs",
+      "desc": "오브젝트의 UV 맵 좌표 데이터를 USD 파일에 포함합니다."
+    },
+    {
+      "name": "Normals",
+      "desc": "표면 법선(Normal) 벡터 데이터를 유지하여 Shading 품질을 보존합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "Blender의 머티리얼 및 Shader 정보를 USD 프리뷰 또는 MaterialX 형식으로 변환합니다."
+    },
+    {
+      "name": "Animation",
+      "desc": "오브젝트의 키프레임 애니메이션 데이터를 내보냅니다."
+    },
+    {
+      "name": "Selected Objects",
+      "desc": "씬 전체가 아닌 현재 선택된 오브젝트만 USD로 내보냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화 에셋 전송",
+      "steps": [
+        "Blender에서 건물 모델링 및 기본 머티리얼을 세팅합니다.",
+        "File → Export → Universal Scene Description 경로로 들어갑니다.",
+        "Materials 옵션을 켠 후 USD 파일로 내보냅니다.",
+        "NVIDIA Omniverse에서 USD 파일을 열고 실시간 패스 트레이싱 렌더링을 확인합니다."
+      ]
+    },
+    {
+      "title": "실시간 라이브 싱크(Live Sync) 작업",
+      "steps": [
+        "NVIDIA Omniverse Nucleus 서버에 연결합니다.",
+        "Blender에서 USD 코어 설정을 활용해 Nucleus 서버 경로로 파일을 직접 내보냅니다.",
+        "Omniverse 뷰어에서 동시에 에셋의 변경 사항을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 찌그러져 나옴 → 에디트 모드나 오브젝트 모드에서 Ctrl+A를 눌러 Apply Scale을 실행한 후 다시 내보냅니다.",
+    "텍스처나 머티리얼이 깨짐 → USD 내보내기 설정에서 Materials 옵션이 켜져 있는지 확인하고 상대 경로 및 텍스처 포맷을 점검합니다."
+  ],
+  "related": [
+    "Universal Scene Description",
+    "NVIDIA Omniverse Nucleus",
+    "USD Composer",
+    "MaterialX"
+  ],
+  "videos": [
+    {
+      "id": "P9TU--IKScA",
+      "title": "Blender to Omniverse ~ How to Send Blender Scenes to Omniverse for Fast Rendering",
+      "author": "Solomon Jagwe"
+    },
+    {
+      "id": "4kwQ4xTGjoU",
+      "title": "Installation Guide for NVDIA Omniverse USD Composer for CC5 | Character Creator 5 Tutorial",
+      "author": "Reallusion"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Blender%20USD%20export%20to%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "File",
+    "Export"
+  ],
+  "at": "2026-11-01T01:33:23.951702+00:00"
+}
