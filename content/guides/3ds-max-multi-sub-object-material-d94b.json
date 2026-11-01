@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-multi-sub-object-material-d94b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Multi/Sub-Object material",
+  "title": "Multi/Sub-Object — 재질 ID별 재질",
+  "summary": "하나의 오브젝트에 여러 개의 머티리얼을 할당할 수 있도록 도와주는 컨테이너 머티리얼입니다. 폴리곤별로 ID를 부여해 각각 다른 재질을 입힐 때 사용합니다.",
+  "when": [
+    "하나의 캐릭터 모델링에 피부, 눈, 옷 등 여러 재질을 한 번에 적용할 때",
+    "건축 외관 모델링에서 유리, 프레임, 콘크리트 재질을 하나의 매쉬로 관리할 때",
+    "게임용 프롭에서 손잡이와 날 등 부위별로 다른 텍스처를 지정할 때"
+  ],
+  "steps": [
+    "Material Editor (M 키)를 엽니다.",
+    "Material 브라우저에서 Multi/Sub-Object를 선택해 슬롯에 가져옵니다.",
+    "Sub-Material 개수를 설정하고 각 슬롯에 Standard 또는 Physical Material을 연결합니다.",
+    "대상 오브젝트를 선택하고 Modifier List에서 Edit Poly 또는 Edit Mesh를 추가합니다.",
+    "Polygon 서브오브젝트 레벨 (4 키)에서 재질을 나눌 면들을 선택합니다.",
+    "Command Panel의 Polygon: Material IDs 항목에서 Set ID 값을 머티리얼 번호와 일치하게 입력합니다.",
+    "오브젝트에 Multi/Sub-Object 머티리얼을 적용 (Assign Material to Selection)합니다."
+  ],
+  "params": [
+    {
+      "name": "Set Number",
+      "desc": "Multi/Sub-Object 내부의 총 머티리얼 개수를 설정합니다."
+    },
+    {
+      "name": "ID",
+      "desc": "폴리곤에 부여된 Material ID와 매칭되는 번호입니다."
+    },
+    {
+      "name": "Sub-Material",
+      "desc": "각 ID 번호에 할당되는 실제 세부 머티리얼 슬롯입니다."
+    },
+    {
+      "name": "Add",
+      "desc": "서브 머티리얼 리스트의 끝에 새로운 슬롯을 추가합니다."
+    },
+    {
+      "name": "Delete",
+      "desc": "선택한 서브 머티리얼 슬롯을 제거합니다."
+    },
+    {
+      "name": "Material Name",
+      "desc": "각 서브 머티리얼의 이름을 확인하고 수정할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "책상과 서랍 손잡이 표현하기",
+      "steps": [
+        "책상 몸체 폴리곤을 선택하고 Material ID를 1번으로 지정합니다.",
+        "금속 손잡이 폴리곤을 선택하고 Material ID를 2번으로 지정합니다.",
+        "Multi/Sub-Object 1번 슬롯에 나무 재질, 2번 슬롯에 금속 재질을 연결합니다."
+      ]
+    },
+    {
+      "title": "건물 외벽과 유리 창문 분리하기",
+      "steps": [
+        "건물 콘크리트 벽면 면들을 선택해 ID 1번을 부여합니다.",
+        "창문 유리 면들을 선택해 ID 2번을 부여합니다.",
+        "Multi/Sub-Object 재질을 오브젝트에 적용하여 두 재질이 동시에 출력되도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤의 Material ID와 Multi/Sub-Object의 번호가 일치하지 않음 → Polygon 서브오브젝트에서 올바른 ID 번호로 다시 세팅합니다.",
+    "오브젝트 자체에 머티리얼이 적용되지 않고 검은색으로 나옴 → Sub-Material 슬롯에 빈 재질이 방치되어 있는지 확인하고 Standard/Physical 재질을 채워줍니다.",
+    "뷰포트에서 재질 구분이 안 됨 → Material Editor에서 Show Shaded Material in Viewport 버튼을 켭니다."
+  ],
+  "related": [
+    "Material Editor",
+    "Edit Poly",
+    "UVW Map",
+    "Physical Material"
+  ],
+  "videos": [
+    {
+      "id": "Fz-yVA78XH4",
+      "title": "MULTI SUB-OBJECT material in 3Dsmax | @Quick3D",
+      "author": "Quick learn"
+    },
+    {
+      "id": "CalfC-35JdI",
+      "title": "3ds Max Multi Sub Object material",
+      "author": "TRUSS3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Multi/Sub-Object%20material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Material",
+    "Multi",
+    "Sub-Object"
+  ],
+  "at": "2026-11-01T02:03:24.184329+00:00"
+}
