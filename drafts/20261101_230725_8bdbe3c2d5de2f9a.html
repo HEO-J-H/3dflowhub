@@ -1,0 +1,20 @@
+<!-- TITLE: Blender와 Godot으로 길티기어풍 스타일라이즈드 VFX 학습하기 | TAGS: Blender,Godot,VFX,Guilty Gear,Stylized,블렌더,고도 엔진,튜토리얼·팁 | CATEGORY: Game Engine/Godot | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Guilty Gear 시리즈처럼 독특하고 만화 같은 퀄리티의 스타일라이즈드 VFX를 Blender와 Godot 환경에서 학습하기 위한 리소스와 접근법을 논의합니다.</p>
+<p style="color:#888;">분류: Game Engine › Godot › 튜토리얼·팁</p>
+<h2>Guilty Gear 스타일 VFX의 핵심 특징</h2>
+<p>Guilty Gear 스타일은 전통적인 3D 렌더링 방식을 탈피하여 2D 셀 애니메이션의 감성을 3D 공간에 완벽하게 구현하는 것이 특징입니다. Effect 역시 단순한 Particle 나열이 아니라, 손으로 그린 듯한 드로잉 감각과 강렬한 타격감을 전달하는 타이밍 조절이 핵심입니다. 이를 구현하기 위해서는 3D 툴과 실시간 게임 엔진 간의 Shader 연동 능력이 요구됩니다.</p>
+<h2>Blender를 활용한 3D Effect 에셋 제작</h2>
+<p>Blender는 스타일라이즈드 메시와 텍스처, 그리고 간단한 Particle 시스템을 제작하는 데 매우 유용한 3D DCC 툴입니다. Geometry Nodes나 커스텀 Shader 노드를 활용해 이펙트용 매시를 가공하고, 툰 Shading에 적합한 노멀 데이터나 텍스처 맵을 베이킹할 수 있습니다. 특히 텍스처 페인팅 기능을 통해 2D 드로잉 같은 질감을 3D 모델에 직접 입히는 작업이 가능합니다.</p>
+<h2>Godot 엔진에서의 실시간 VFX 파이프라인</h2>
+<p>Godot 엔진은 최근 3D 그래픽 기능이 대폭 강화되면서 인디 개발자들 사이에서 주목받고 있는 오픈소스 게임 엔진입니다. Godot의 비주얼 Shader(Visual Shader) 시스템과 Particle 노드를 이용하면 커스텀 스타일라이즈드 Effect를 효율적으로 조립할 수 있습니다. Blender에서 제작한 에셋을 임포트하여 실시간 환경에서 애니메이션과 연동하는 워크플로 구축이 중요합니다.</p>
+<h2>학습 리소스 및 커뮤니티 접근법</h2>
+<p>애니메이션풍 3D VFX 자료는 주로 Unreal Engine이나 Unity 위주로 공유되어 있어 Blender나 Godot 사용자는 관련 자료를 응용하는 능력이 필요합니다. 커뮤니티 포럼이나 레딧 등지에서는 애니메이션 Shader 작성법, 노멀 조작 팁, 텍스처 플립북 애니메이션 제작 기법 등을 공유하는 개발자들의 조언을 찾아볼 수 있습니다. 오픈소스 커뮤니티의 특성상 직접 Shader를 뜯어보며 분석하는 학습법이 권장됩니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Guilty Gear 스타일의 애니메이션 렌더링과 VFX는 2D와 3D의 경계를 허무는 독보적인 테크닉으로 실무에서 수요가 높습니다. 상용 엔진인 Unreal Engine 중심의 자료가 많지만, 오픈소스 기반인 Blender와 Godot 조합으로 이를 구현하는 방법을 익히면 인디 게임 개발의 파이프라인 비용을 대폭 낮출 수 있습니다. Shader 그래프 구조와 노멀 조작, 그리고 타이밍 중심의 Particle 연출에 대한 깊이 있는 이해가 필수적입니다. 스타일라이즈드 Effect에 관심 있는 테크니컬 아티스트라면 오픈소스 생태계 내의 커뮤니티 공유 자료를 적극 활용하는 것이 좋습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender와 Godot으로 길티기어풍 VFX를 만드는 것이 가능한가요?</b><br/>A. 네, 가능합니다. Blender에서 이펙트용 매시와 텍스처를 제작하고 Godot의 비주얼 Shader와 Particle 시스템을 활용하면 툰 렌더링 기반의 스타일라이즈드 Effect를 구현할 수 있습니다.</p>
+<p><b>Q. 애니메이션풍 VFX 학습 시 가장 주의할 점은 무엇인가요?</b><br/>A. 대다수의 튜토리얼이 Unreal Engine이나 Unity를 기준으로 설명되어 있으므로, 개념을 이해한 뒤 Blender와 Godot의 Shader 시스템에 맞게 응용하는 능력이 필요합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-01-70a29882bf84cb7f.html">Godot 기반 ESP32-S3 게임 에디터 등장</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-f598f284342494a9.html">Godot 4.7 기반 다크 2.5D 플랫폼 게임 Hollowlight</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-29-abf46b6dc20f777d.html">Godot 4.8 beta 2 출시 — 리그레션 수정 및 주요 변경 사항</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/vfx/comments/1xjo3no/any_good_resources_for_learning_stylized_vfx_like/" target="_blank" rel="noopener nofollow">Any good resources for learning stylized vfx like guilty gear in blender/Godot?</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
