@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-streaming-a-kit-app-to-the-browser-756e",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "개발",
+  "name": "Streaming a Kit app to the browser",
+  "title": "Kit 앱을 브라우저로 스트리밍",
+  "summary": "NVIDIA Omniverse Kit 기반 앱을 웹 브라우저로 실시간 스트리밍하여, 고성능 워크스테이션 없이도 어디서나 3D 씬을 확인하고 협업할 수 있는 기능입니다.",
+  "when": [
+    "클라이언트나 팀원에게 별도의 프로그램 설치 없이 모바일이나 웹으로 실시간 3D 결과물을 보여줄 때",
+    "사양 제한이 있는 노트북에서 고사양 Omniverse Kit 기반 3D 애플리케이션을 가볍게 구동할 때",
+    "원격지에서 웹 브라우저를 통해 다중 사용자가 동시에 3D 씬을 검토하고 피드백을 주고받을 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 원하는 Kit 기반 애플리케이션을 설치합니다.",
+    "스트리밍할 3D 씬을 열고, Window 메뉴에서 Extensions 패널을 엽니다.",
+    "Extensions 검색창에서 WebRTC 또는 Streaming 관련 익스텐션을 찾아 활성화(Enabled)합니다.",
+    "Preferences 설정 또는 스트리밍 서버 패널에서 IP 주소와 포트 번호를 확인합니다.",
+    "클라이언트 PC의 웹 브라우저(Chrome, Edge 등)를 열고 해당 주소로 접속하여 3D 화면을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "브라우저로 스트리밍되는 렌더링 화면의 해상도를 조절합니다."
+    },
+    {
+      "name": "Bitrate",
+      "desc": "네트워크 환경에 맞춰 스트리밍 데이터 전송 속도와 화질을 최적화합니다."
+    },
+    {
+      "name": "Frame Rate",
+      "desc": "초당 프레임 수를 설정하여 브라우저 내 조작 반응 속도를 조절합니다."
+    },
+    {
+      "name": "Port",
+      "desc": "웹 스트리밍 통신에 사용할 네트워크 포트 번호를 지정합니다."
+    },
+    {
+      "name": "Max Clients",
+      "desc": "동시에 브라우저로 접속하여 스트리밍을 시청할 수 있는 최대 인원수를 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원격 클라이언트 실시간 디자인 리뷰",
+      "steps": [
+        "사무실 워크스테이션에서 Omniverse 씬과 스트리밍 서버를 켭니다.",
+        "클라이언트에게 웹 접속 링크를 전달합니다.",
+        "클라이언트가 브라우저로 접속해 실시간으로 카메라를 돌려보며 피드백을 줍니다."
+      ]
+    },
+    {
+      "title": "모바일 기기에서 3D 에셋 확인",
+      "steps": [
+        "Omniverse Kit 앱에서 스트리밍 설정을 활성화합니다.",
+        "태블릿이나 스마트폰의 브라우저에 접속 주소를 입력합니다.",
+        "터치 제스처로 3D 모델의 디테일과 재질을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "방화벽이나 라우터 설정 문제로 접속이 안 됨 → 포트포워딩 설정 및 방화벽 예외 허용 확인",
+    "네트워크 지연으로 화면이 끊김 → Bitrate 값을 낮추거나 해상도 조정",
+    "익스텐션 충돌로 스트리밍이 멈춤 → Extensions 패널에서 WebRTC 관련 패키지 재시작"
+  ],
+  "related": [
+    "USD",
+    "Nucleus",
+    "RTX Renderer",
+    "Omniverse View"
+  ],
+  "videos": [
+    {
+      "id": "T22UNLrnnvU",
+      "title": "NVIDIA Omniverse Kit App Streaming on Google Cloud",
+      "author": "Tinker Tut"
+    },
+    {
+      "id": "sHDtxt_eRo4",
+      "title": "Enable Powerful Streaming Capabilities With a Kit Application Layer",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Streaming%20a%20Kit%20app%20to%20the%20browser",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Kit",
+    "Window",
+    "Extensions",
+    "WebRTC",
+    "Streaming"
+  ],
+  "at": "2026-11-01T11:25:12.889804+00:00"
+}
