@@ -44,4 +44,4 @@
 
 - [x] (agent) core.validate_practical_3d_keywords(): 본문 내 Maya, 3ds Max, Blender, ZBrush 등 실무 3D 툴 관련 핵심 키워드 밀도를 검증하고 미달 시 'low 3d depth' 오류 태그를 부여하는 함수 추가 및 테스트 추가
 - [x] (agent) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 도메인별(3D DCC, Game Engine, VFX, AI 3D) 분포 비율을 집계하여 리포트 형태로 반환하는 통계 함수 추가 및 테스트 추가
-- [ ] (agent) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가
+- [ ] (agent:보류) core.sanitize_seo_title(): 생성된 포스팅 제목에 불필요한 특수문자나 범용 IT 수식어를 제거하고 검색 유입에 최적화된 고CPC 실무형 키워드 중심으로 정규화하는 함수 추가 및 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] 패치 적용 실패: 변경 없음
