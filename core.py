@@ -117,6 +117,7 @@ TISTORY_EMBED_IMAGES = os.getenv("TISTORY_EMBED_IMAGES", "1") == "1"  # 원문 �
 
 HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (3dflowhub curator; +https://github.com/HEO-J-H/3dflowhub)"}
 
+LAST_COLLECT: dict = {}  # 이번 실행의 새 글 후보 수 (재료 고갈 감지용 — 실행 기록·관리자 판단에 사용)
 FEED_DEPTH = 25  # 피드마다 최근 몇 개까지 볼지 (10 → 25: 새 글이 적은 날도 놓친 최근 글을 채움, 오래된 글은 MAX_AGE_DAYS 로 제외)
 # 도메인 매뉴얼: 시드 키워드 + 고정 RSS
 DOMAINS: dict[str, dict] = {
@@ -1147,8 +1148,10 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
                     "rss_summary": BeautifulSoup(e.get("summary", ""), "html.parser").get_text(" ")[:800],
                     "rss_image": rss_image(e),
                 })
+    LAST_COLLECT.update(raw=len(candidates))
     candidates = filter_off_topic_feeds(candidates)
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
+    LAST_COLLECT.update(passed=len(candidates))
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
     # 이미지 있는 글 우선 (출처 교차 순서는 유지하는 안정 정렬) — 이미지 없는 글은 클릭·체류가 낮음
     candidates.sort(key=lambda c: not c.get("rss_image"))
@@ -2046,7 +2049,8 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     RUN_ERRORS.clear()  # 같은 프로세스에서 여러 번 실행해도 이번 실행 것만 집계
     items = collect(domains, max_items, seen)
     stats = {"at": datetime.now(timezone.utc).isoformat(), "collected": len(items),
-             "saved": 0, "published": 0, "drafts": 0, "publish_errors": 0}
+             "saved": 0, "published": 0, "drafts": 0, "publish_errors": 0,
+             "candidates": LAST_COLLECT.get("raw", 0), "candidates_passed": LAST_COLLECT.get("passed", 0)}
 
     budget = int(_load_json(CONFIG_PATH, {}).get("llm_daily_budget", 500))
     for idx, raw in enumerate(items):

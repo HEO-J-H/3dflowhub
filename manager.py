@@ -446,6 +446,13 @@ def _content_output() -> dict:
                "fix_pages": len(refs.load("fix")), "fix_verified": sum(1 for x in refs.load("fix") if x.get("verified")),
                "fixes_today": f_today, "fix_topics_queued": len(refs.pending_fixes()),
                "change_pages": len(refs.load("change"))}
+        runs = [r for r in core.load_memory().get("runs", [])[-12:] if "candidates" in r]
+        if runs:  # 재료(새 글 후보)가 바닥나면 새 출처를 찾아야 함
+            avg = sum(r["candidates"] for r in runs) / len(runs)
+            out["new_candidates_per_run"] = round(avg, 1)
+            if avg < 8:
+                out["supply_note"] = ("Few new news candidates per run — existing feeds are exhausted. Propose add_feed "
+                                      "actions with working RSS URLs of 3D/CG news sites, forums or official blogs.")
         if g_today >= guides.GUIDES_DAILY_MAX:
             out["note"] = "Guides hit today's cap — do not propose 'more guides'; propose depth/quality or new formats instead."
         return out
