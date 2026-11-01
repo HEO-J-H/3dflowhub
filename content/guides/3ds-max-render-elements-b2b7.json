@@ -1,0 +1,96 @@
+{
+  "id": "3ds-max-render-elements-b2b7",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Render Elements",
+  "title": "Render Elements — 패스 나눠 렌더",
+  "summary": "Render Elements는 3D 렌더링 결과물을 Diffuse, Specular, Reflection 등 여러 개의 레이어로 나누어 출력하는 기능입니다. 합성 프로그램에서 세밀한 색보정과 수정이 가능하도록 돕습니다.",
+  "when": [
+    "Photoshop이나 After Effects에서 그림자나 반사광의 세기를 따로 조절하고 싶을 때",
+    "3D 렌더링 시간을 아끼며 특정 오브젝트만 골라서 후보정을 거치고 싶을 때",
+    "실무 Pipeline 합성가(Compositor)에게 명확히 분리된 패스를 전달해야 할 때"
+  ],
+  "steps": [
+    "Rendering 메뉴에서 Render Setup (F10) 창을 엽니다.",
+    "Renderer를 V-Ray, Corona 또는 Scanline 등 지원되는 엔진으로 설정합니다.",
+    "Render Setup 창의 Render Elements 탭으로 이동합니다.",
+    "Add 버튼을 클릭하여 필요한 엘리먼트(예: VRayDiffuse, VRayReflection)를 선택합니다.",
+    "Render (F9)를 실행하여 Frame Buffer에서 채널별 이미지를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Beauty",
+      "desc": "모든 레이어와 채널이 합쳐진 최종 기본 렌더링 이미지입니다."
+    },
+    {
+      "name": "Diffuse",
+      "desc": "조명 영향이 없는 오브젝트의 순수한 고유 색상(Albedo) 패스입니다."
+    },
+    {
+      "name": "Specular",
+      "desc": "광원에 의해 맺히는 하이라이트 반사 광원 정보만 추출합니다."
+    },
+    {
+      "name": "Reflection",
+      "desc": "거울이나 유리에 비치는 반사광 패스를 별도로 분리합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "오브젝트에 맺히는 그림자 영역만 흑백으로 추출합니다."
+    },
+    {
+      "name": "ZDepth",
+      "desc": "카메라와의 거리에 따른 깊이감을 그레이스케일로 표현하여 안개나 심도(DOF) 합성에 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "반사광(Reflection) 세기 조절",
+      "steps": [
+        "Render Elements 탭에서 Reflection 패스를 추가하고 렌더링합니다.",
+        "After Effects나 Photoshop으로 렌더링 결과물을 가져옵니다.",
+        "Reflection 레이어의 투명도(Opacity)나 레벨을 조절해 반사광을 강하게 혹은 약하게 수정합니다."
+      ]
+    },
+    {
+      "title": "ZDepth를 이용한 아지랑이 및 심도 표현",
+      "steps": [
+        "Render Elements에 ZDepth 패스를 추가하고 카메라 기준 Min/Max Z 거리를 설정합니다.",
+        "합성 프로그램에서 ZDepth 채널을 트랙 마스크나 Blur 효과의 소스로 연결합니다.",
+        "카메라 초점 외의 배경을 자연스럽게 흐리게 처리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "합성 프로그램에서 채널이 안 나옵니다 → 멀티채널(Multi-channel) EXR 형식이 체크되었는지 확인하거나 각 패스가 개별 파일로 저장되도록 옵션을 켭니다.",
+    "ZDepth 오브젝트가 하얗게 타버립니다 → ZDepth 파라미터의 Z Depth Max 값이 카메라와 대상 오브젝트 거리에 비해 너무 작게 설정되어 있는지 확인하고 값을 늘립니다.",
+    "패스 합쳤는데 원본 Beauty와 색이 다릅니다 → 감마(Gamma) 설정이나 레이어 블렌딩 모드(Linear Dodge/Add)가 올바르게 적용되었는지 확인합니다."
+  ],
+  "related": [
+    "Frame Buffer",
+    "ActiveShade",
+    "Arnold Renderer",
+    "V-Ray"
+  ],
+  "videos": [
+    {
+      "id": "g713P0Z6P6w",
+      "title": "What are the render elements about?",
+      "author": "Arch Viz Artist"
+    },
+    {
+      "id": "jFggSgf6q88",
+      "title": "How to use Render Elements",
+      "author": "Margarita Nikita"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Render%20Elements",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Render Setup"
+  ],
+  "at": "2026-11-01T02:53:44.830463+00:00"
+}

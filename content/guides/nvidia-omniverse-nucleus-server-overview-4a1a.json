@@ -1,0 +1,96 @@
+{
+  "id": "nvidia-omniverse-nucleus-server-overview-4a1a",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "Nucleus server overview",
+  "title": "Nucleus — 자산 저장·공유 서버",
+  "summary": "NVIDIA Omniverse Nucleus는 여러 3D 아티스트와 프로그램이 실시간으로 USD 데이터를 공유하고 협업할 수 있도록 돕는 중앙 서버 시스템입니다.",
+  "when": [
+    "여러 명의 아티스트가 동시에 하나의 USD 씬을 편집해야 할 때",
+    "3ds Max, Blender, Unreal Engine 등 서로 다른 DCC 툴 간에 실시간 에셋을 동기화할 때",
+    "프로젝트 자산과 버전을 중앙에서 안전하게 관리하고 백업할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Nucleus 탭으로 이동합니다.",
+    "Add Server 또는 로컬 설치 옵션을 통해 Nucleus 서비스(Local Nucleus)를 시작합니다.",
+    "Web UI(브라우저) 또는 Omniverse Navigator를 통해 기본 서버 주소로 로그인합니다.",
+    "Projects 또는 Users 폴더에 새로운 협업용 프로젝트 폴더를 생성합니다.",
+    "사용하는 DCC 툴(예: 3ds Max, Blender)의 Omniverse Connector 플러그인을 활성화합니다.",
+    "File → Save to Omniverse 경로를 통해 씬 파일을 Nucleus 서버에 업로드하고 공유합니다."
+  ],
+  "params": [
+    {
+      "name": "Local Nucleus",
+      "desc": "내 PC를 서버로 사용하여 로컬 환경에서 협업과 파일 동기화를 테스트합니다."
+    },
+    {
+      "name": "Live Sync",
+      "desc": "씬 내 객체의 변환(Transform) 및 속성 변경을 실시간으로 다른 사용자에게 반영합니다."
+    },
+    {
+      "name": "Check-In / Check-Out",
+      "desc": "특정 파일을 독점 편집하도록 잠그거나 수정본을 서버에 안전하게 등록합니다."
+    },
+    {
+      "name": "Versioning",
+      "desc": "파일의 이전 수정 이력을 확인하고 필요시 과거 버전으로 복원합니다."
+    },
+    {
+      "name": "Access Control",
+      "desc": "프로젝트 폴더나 파일 단위로 다른 사용자의 읽기 및 쓰기 권한을 설정합니다."
+    },
+    {
+      "name": "Connectors",
+      "desc": "외부 3D DCC 툴과 Nucleus 서버를 연결해 주는 전용 플러그인 모음입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다중 DCC 툴 실시간 레이아웃 협업",
+      "steps": [
+        "Nucleus 서버에 빈 USD 스테이지를 생성합니다.",
+        "3ds Max에서 배경 건물을 배치하고 Live Sync를 켠 뒤 서버에 저장합니다.",
+        "Blender에서 동일한 서버 경로의 USD 파일을 열고 캐릭터를 배치하여 실시간으로 확인합니다."
+      ]
+    },
+    {
+      "title": "버전 관리 기반 에셋 리뷰",
+      "steps": [
+        "아티스트가 작업한 모델링 파일을 Nucleus 서버의 프로젝트 폴더에 업로드합니다.",
+        "웹 브라우저의 Web UI에서 업로드된 파일의 버전을 확인하고 코멘트를 남깁니다.",
+        "수정 사항이 반영된 새 버전을 업로드하여 팀원들과 공유합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서버가 꺼져 있어 연결이 안 되는 경우 → Omniverse Launcher에서 Nucleus 서비스가 Running 상태인지 확인하고 재시작합니다.",
+    "실시간 동기화 중 파일 충돌이 발생하는 경우 → Live Sync 모드 대신 Check-Out 방식을 사용하여 편집 권한을 조율합니다."
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Omniverse Create",
+    "Omniverse View",
+    "Omniverse Connector"
+  ],
+  "videos": [
+    {
+      "id": "Pat03Zfk8is",
+      "title": "Nucleus in NVIDIA Omniverse Overview",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "6lioMmFFgWY",
+      "title": "NVIDIA Omniverse: Setting Up Nucleus Server for Collaboration",
+      "author": "Omniverse3D"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Nucleus%20server%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Nucleus"
+  ],
+  "at": "2026-11-01T02:53:35.910176+00:00"
+}
