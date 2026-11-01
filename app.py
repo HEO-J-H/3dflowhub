@@ -5,7 +5,7 @@ import json
 import re
 import os
 import threading
-from datetime import datetime
+from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
@@ -1321,7 +1321,20 @@ with h_dec:
     st.subheader("✅ 결정할 일")
     pend = [x for x in _mgr.board()["proposals"] if x["status"] == "new" and (x.get("site") or "3dflowhub") == "3dflowhub"]
     if not pend:
-        st.success("검토할 AI 관리자 제안이 없습니다")
+        st.success("결정할 일이 없습니다 — AI 관리자가 운영 방향에 맞춰 스스로 결정합니다")
+    auto_log = [e for e in _mgr._events() if e.get("kind") == "decision" and e.get("auto")
+                and e.get("at", "") >= (datetime.now(timezone.utc) - pd.Timedelta(days=2)).isoformat()]
+    if auto_log:
+        titles = {x["id"]: x["title"] for x in _mgr.board()["proposals"]}
+        with st.expander(f"🤖 AI 가 최근 2일 스스로 결정한 것 {len(auto_log)}건 — 틀렸으면 되돌리기"):
+            for e in reversed(auto_log[-20:]):
+                c1, c2 = st.columns([5, 1])
+                c1.markdown(f"{'✅' if e['v'] == 'accepted' else '✕'} **{titles.get(e['id'], e['id'])}**<br>"
+                            f"<small>{e.get('note', '')}</small>", unsafe_allow_html=True)
+                if c2.button("되돌리기", key=f"undo_{e['id']}_{e['at']}", width="stretch"):
+                    _mgr.decide(e["id"], "rejected" if e["v"] == "accepted" else "accepted", "운영자가 AI 결정을 되돌림")
+                    save_manager("AI 결정 되돌림")
+                    st.rerun()
     for x in pend[:5]:
         with st.container(border=True):
             st.markdown(f"**{x['title']}** · {x.get('category')} · 노력 {x.get('effort')} · 위험 {RISK_KO.get(x.get('risk'), '-')}")

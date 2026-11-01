@@ -363,6 +363,46 @@ def reports_to_todo() -> list[str]:
     return [e["title"] for e in evs[::2]]
 
 
+def auto_approve_prs(min_hours: int = 6) -> list[str]:
+    """코딩 에이전트의 '승인 대기' PR — 이미 테스트·리뷰·판정을 통과해 열린 것. 운영자가 6시간 안에 막지 않으면
+    AI 가 승인(머지) 결정을 기록한다 (실제 머지는 apply_pr_decisions). 구현 없이 '사용 가능'만 켜는 PR 은 거절."""
+    import re as _re
+
+    import agents
+    import manager
+    if not manager.auto_mode() or not core.load_config().get("auto_merge_core_prs"):  # 운영자가 켜야만 (기본 꺼짐)
+        return []
+    out = []
+    for site, repo in (("pix2poly", "HEO-J-H/Pix2Poly"),):
+        decided = {d.get("pr") for d in core._load_json(agents.decisions_path(site), [])}
+        try:
+            prs = requests.get(f"https://api.github.com/repos/{repo}/pulls?state=open&per_page=30", timeout=20).json()
+        except (requests.RequestException, ValueError):
+            continue
+        for pr in prs if isinstance(prs, list) else []:
+            labels = {l.get("name") for l in pr.get("labels") or []}
+            n = pr.get("number")
+            if "needs-approval" not in labels or n in decided:
+                continue
+            age = (_now() - _parse(pr.get("created_at", "")).replace(tzinfo=timezone.utc)).total_seconds() / 3600 \
+                if _parse(pr.get("created_at", "")) else 0
+            if age < min_hours:
+                continue
+            try:
+                files = requests.get(f"https://api.github.com/repos/{repo}/pulls/{n}/files", timeout=20).json()
+            except (requests.RequestException, ValueError):
+                continue
+            patch = "\n".join(f.get("patch") or "" for f in files if isinstance(f, dict))
+            fake = _re.search(r'^\+.*"available":\s*True', patch, _re.M) and not any(
+                f.get("status") == "added" and "/services/" in f.get("filename", "") for f in files if isinstance(f, dict))
+            v, why = ("reject", "구현 없이 '사용 가능'만 켬") if fake else ("approve", "테스트·리뷰 통과 후 6시간 이상 대기")
+            agents.record_decision(site, n, v, f"AI 자동 결정: {why}")
+            out.append(f"{site} PR #{n} {'승인' if v == 'approve' else '거절'} — {why}")
+    if out:
+        log("prs", "; ".join(out))
+    return out
+
+
 if __name__ == "__main__":
     if "--tests" in sys.argv:
         st = record_tests(int(sys.argv[sys.argv.index("--tests") + 1]))
@@ -371,6 +411,9 @@ if __name__ == "__main__":
     if "--heal" in sys.argv:
         print(heal() or "정상")
         raise SystemExit(0)
+    import manager as _m
+    print("auto_decide:", _m.auto_decide())
+    print("auto_prs:", auto_approve_prs())
     print("reports:", reports_to_todo())
     print("auto_close:", auto_close())
     print("probe:", report_issues(probe()))

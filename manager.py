@@ -385,6 +385,58 @@ def _auto_accept(new_ids: list[str]) -> list[str]:
     return done
 
 
+# ─────────────────────────── 자동 결정 (운영자에게 묻지 않기) ───────────────────────────
+# 운영자 방향(2026-11): 최소 개입 · 꾸준한 성장 · 품질·정책 안전. 이 방향에 맞으면 AI 가 스스로 수락하고,
+# 중복·주제 밖이면 스스로 거절한다. 운영자에게 남기는 건 '돈·계정·삭제·법적 판단'뿐.
+OWNER_ONLY = ("결제", "유료", "구매", "구독료", "비용 지불", "도메인 구입", "신용카드", "카드 결제", "계정 삭제", "사이트 삭제", "저장소 삭제",
+              "비밀번호", "토큰 발급", "법률 자문", "소송", "계약")
+HIGH_CONFIG_KEYS = ("llm_daily_budget", "adsense_client", "goatcounter_code", "newsletter_buttondown",
+                    "site_base_url", "google_site_verification", "naver_site_verification")
+
+
+def auto_verdict(p: dict, others: list[dict]) -> tuple[str, str]:
+    """('accepted'|'rejected'|'', 이유). '' = 운영자 몫으로 남김."""
+    import re as _re
+
+    import growth
+    text = f"{p.get('title', '')} {p.get('proposal', '')}"
+    if any(w in text for w in OWNER_ONLY):
+        return "", "돈·계정·삭제·법적 판단이 걸려 운영자 몫"
+    act = p.get("action") or {}
+    if act.get("type") == "set_config" and any(k in json.dumps(act, ensure_ascii=False) for k in HIGH_CONFIG_KEYS):
+        return "", "계정·광고·예산 설정 변경이라 운영자 몫"
+    if growth.note_offtopic(text):
+        return "rejected", "사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음"
+    words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", p.get("title", "")))
+    for o in others:
+        if o["id"] == p["id"] or (o.get("site") or "3dflowhub") != (p.get("site") or "3dflowhub"):
+            continue
+        ow = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", o.get("title", "")))
+        if words and ow and len(words & ow) / max(1, min(len(words), len(ow))) >= 0.7 \
+                and o["status"] in ("accepted", "done", "new") and o.get("at", "") < p.get("at", ""):
+            return "rejected", f"이미 있는 일과 같음: {o['title'][:40]}"
+    return "accepted", "운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음"
+
+
+def auto_decide() -> list[str]:
+    """대기 중인 제안을 모든 사이트에 대해 스스로 결정. 운영자 몫만 남긴다 (10분마다 자가 점검에서 실행)."""
+    if not auto_mode():
+        return []
+    props = board()["proposals"]
+    out = []
+    for p in [x for x in props if x["status"] == "new"]:
+        v, why = auto_verdict(p, props)
+        if not v:
+            continue
+        _append({"at": _now(), "kind": "decision", "id": p["id"], "v": v, "note": f"AI 자동 결정: {why}", "auto": True})
+        if v == "accepted":
+            act = p.get("action") or {}
+            if act.get("type") in ("set_config", "glossary"):
+                _append({"at": _now(), "kind": "applied", "id": p["id"], "result": _apply(act)})
+        out.append(f"{'수락' if v == 'accepted' else '거절'}: {p['title'][:40]}")
+    return out
+
+
 # ─────────────────────────── 분석 ───────────────────────────
 def _dashboard_info() -> dict:
     """'큐레이션 현황판'(운영자용 Streamlit 앱, app.py) — AI 관리자의 관리 대상. 사이트(독자용)와 다름."""

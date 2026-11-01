@@ -45,3 +45,13 @@ def test_reports_become_todo(tmp_path, monkeypatch):
     assert selfheal.reports_to_todo() == []          # 같은 제보는 한 번만
     todo = manager.manual_todo()
     assert todo and "heo-j-h.github.io/3dflowhub/p/x.html" in todo[0]["proposal"]
+
+
+def test_auto_verdict_rules():
+    import manager
+    base = {"id": "p-1", "title": "가이드 목차 추가", "proposal": "목차를 넣는다", "at": "2026-11-02", "status": "new"}
+    assert manager.auto_verdict(base, [base])[0] == "accepted"
+    assert manager.auto_verdict({**base, "title": "도메인 구입 검토"}, [base])[0] == ""            # 돈 → 운영자 몫
+    assert manager.auto_verdict({**base, "action": {"type": "set_config", "key": "llm_daily_budget", "value": 9}}, [])[0] == ""
+    dup = {**base, "id": "p-0", "status": "done", "at": "2026-11-01"}
+    assert manager.auto_verdict(base, [dup, base])[0] == "rejected"                              # 이미 한 일
