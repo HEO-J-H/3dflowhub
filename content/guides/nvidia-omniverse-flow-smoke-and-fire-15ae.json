@@ -1,0 +1,98 @@
+{
+  "id": "nvidia-omniverse-flow-smoke-and-fire-15ae",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "USD Composer",
+  "name": "Flow (smoke and fire)",
+  "title": "Flow — 연기·불 효과",
+  "summary": "NVIDIA Omniverse의 Flow는 GPU 기반의 실시간 볼륨 시뮬레이션 기능으로, 사실적인 연기와 불꽃을 물리 기반으로 빠르게 생성합니다. USD 표준을 기반으로 다른 DCC 툴과 원활하게 연동됩니다.",
+  "when": [
+    "장면 내에서 폭발이나 화재 같은 실시간 시각 효과가 필요할 때",
+    "모닥불이나 횃불에서 피어오르는 자연스러운 연기와 불꽃을 표현할 때",
+    "건축 시각화에서 굴뚝 연기나 화재 대피 시뮬레이션을 가볍게 연출할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Composer 또는 Create 앱을 엽니다.",
+    "Stage 창에서 우클릭 후 Create → Volume → Flow 를 선택하여 볼륨 이미터를 생성합니다.",
+    "Property 패널에서 Flow 탭을 찾아 시뮬레이션 영역과 바운딩 박스를 설정합니다.",
+    "Timeline 의 Play 버튼을 눌러 연기와 불꽃이 실시간으로 시뮬레이션되는 것을 확인합니다.",
+    "Materials 패널에서 불과 연기의 Shader 파라미터를 조정하여 색상과 밀도를 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Voxel Size",
+      "desc": "시뮬레이션의 해상도를 결정합니다. 낮을수록 디테일이 살아나지만 연산량이 증가합니다."
+    },
+    {
+      "name": "Temperature",
+      "desc": "불꽃의 온도를 조절하여 상승하는 속도와 부력을 제어합니다."
+    },
+    {
+      "name": "Fuel",
+      "desc": "불이 타오르는 연료의 양을 조절하여 화염의 지속성과 크기를 바꿉니다."
+    },
+    {
+      "name": "Buoyancy",
+      "desc": "연기와 불이 위로 떠오르는 힘을 설정합니다."
+    },
+    {
+      "name": "Vorticity",
+      "desc": "유체의 소용돌이와 난류(Turbulence)를 강화하여 더 역동적인 움직임을 만듭니다."
+    },
+    {
+      "name": "Dissipation",
+      "desc": "연기가 공기 중에서 사라지는 속도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모닥불 연출",
+      "steps": [
+        "장면 중앙에 작은 원형 영역으로 Flow 이미터를 배치합니다.",
+        "Temperature 와 Fuel 값을 높여 활활 타오르는 화염을 만듭니다.",
+        "Dissipation 값을 조절해 연기가 위로 올라가며 자연스럽게 흩어지게 만듭니다."
+      ]
+    },
+    {
+      "title": "굴뚝 연기",
+      "steps": [
+        "굴뚝 출구 모양에 맞춰 Flow 이미터의 크기를 좁게 설정합니다.",
+        "Buoyancy 를 높여 연기가 곧바로 위로 빠르게 솟구치게 합니다.",
+        "Vorticity 를 낮추어 바람이 불지 않는 차분한 연기 흐름을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Voxel Size 를 너무 낮게 설정함 → GPU 메모리 부족으로 프레임 드랍 발생 (Voxel Size 를 적절히 타협하여 최적화)",
+    "Dissipation 값이 너무 낮음 → 연기가 사라지지 않고 화면에 계속 쌓여 렌더링이 무거워짐 (Dissipation 값을 높여 적당히 소멸시킴)"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "PhysX",
+    "RTX Renderer"
+  ],
+  "videos": [
+    {
+      "id": "q1dREAHIWn8",
+      "title": "Omniverse: Flow Fire",
+      "author": "TwinSim"
+    },
+    {
+      "id": "fCLE_9SNL8M",
+      "title": "Realtime Fire Simulation and Path Tracing with NVIDIA Omniverse is INSANE !!!",
+      "author": "Anico123 | Design"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Flow%20%28smoke%20and%20fire%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Composer",
+    "Create",
+    "Stage",
+    "Volume",
+    "Flow"
+  ],
+  "at": "2026-11-01T00:03:33.601740+00:00"
+}

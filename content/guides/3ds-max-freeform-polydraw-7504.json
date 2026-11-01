@@ -1,0 +1,95 @@
+{
+  "id": "3ds-max-freeform-polydraw-7504",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Freeform PolyDraw",
+  "title": "PolyDraw — 표면 위에 그리며 모델링",
+  "summary": "Freeform PolyDraw는 3ds Max의 Graphite Modeling Tools 안에서 마우스 브러시로 폴리곤을 직접 그리거나 수정하는 리토폴로지 및 모델링 도구입니다.",
+  "when": [
+    "하이폴리곤 스캔 모델이나 스컬프팅 결과물을 로우폴리곤 게임용 에셋으로 리토폴로지할 때",
+    "기존 표면 위에 새로운 지오메트리를 자연스럽게 스냅하여 그릴 때",
+    "불규칙한 유기적 형태의 표면을 빠르게 패치하거나 수정할 때"
+  ],
+  "steps": [
+    "Ribbon 인터페이스를 엽니다 (기본 단축키 Shift+Ctrl+X).",
+    "Modeling 탭에서 Polygon Modeling 그룹을 찾습니다.",
+    "Graphite Modeling Tools에서 Freeform 탭을 클릭합니다.",
+    "PolyDraw 패널에서 New Object 또는 기존 오브젝트를 선택하고 적절한 도구(예: DrawAll, Step Build)를 선택합니다.",
+    "대상 오브젝트(Grid 또는 고정된 메쉬) 표면 위에서 마우스 드래그하여 폴리곤을 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Step Build",
+      "desc": "클릭과 드래그로 폴리곤 면을 한 땀씩 확장하며 빌드하는 도구입니다."
+    },
+    {
+      "name": "DrawAll",
+      "desc": "자유로운 곡선이나 스트로크로 표면 위에 폴리곤 스트립을 그립니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "그려진 버텍스나 에지를 표면을 따라 이동하거나 변형합니다."
+    },
+    {
+      "name": "Conform",
+      "desc": "떨어져 있는 버텍스들을 기준이 되는 하단 오브젝트 표면으로 딱 달라붙게 만듭니다."
+    },
+    {
+      "name": "Offset Edge",
+      "desc": "에지를 기준으로 새로운 에지 루프를 간격에 맞춰 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 스컬프팅 모델 리토폴로지",
+      "steps": [
+        "하이폴리곤 캐릭터 스컬프 메쉬를 준비합니다.",
+        "Freeform 탭에서 New Object를 눌러 빈 에디터블 폴리를 생성합니다.",
+        "Step Build 도구를 선택하고 캐릭터 표면을 따라 쿼드(Quad) 면을 그립니다.",
+        "Shift 키를 눌러 에지를 연장하며 얼굴이나 몸체 형태를 감쌉니다."
+      ]
+    },
+    {
+      "title": "갑옷 및 장신구 베이스 패치 제작",
+      "steps": [
+        "복잡한 곡면을 가진 오브젝트 위에 PolyDraw를 활성화합니다.",
+        "DrawAll 도구로 원하는 외곽 라인을 따라 면을 빠르게 생성합니다.",
+        "Conform을 사용하여 표면 굴곡에 완벽히 밀착시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅 대상 설정 누락 → Viewport 상단 드롭다운에서 'Draw On: Surface'를 켜고 대상 오브젝트를 지정해야 합니다.",
+    "Vertex가 서로 붙지 않음 → Tolerance 값이 너무 작거나 Auto Weld 옵션이 꺼져 있는지 확인하세요."
+  ],
+  "related": [
+    "Graphite Modeling Tools",
+    "SwiftLoop",
+    "ProOptimizer",
+    "Editable Poly"
+  ],
+  "videos": [
+    {
+      "id": "-o8NgLJ1MJ0",
+      "title": "Retopology tutorial - freeform polydraw - 3d studio max 2011",
+      "author": "Jordy Lakiere"
+    },
+    {
+      "id": "zEc4uU_pHRk",
+      "title": "Draw 3D Geometry on Any Object in 3ds Max | Freeform Modeling  #3dsmax #freeform #3dmodeling",
+      "author": "Safa Rgaieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Freeform%20PolyDraw",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Ribbon",
+    "Modeling",
+    "Polygon Modeling",
+    "Graphite Modeling Tools",
+    "Freeform"
+  ],
+  "at": "2026-11-01T00:03:42.201602+00:00"
+}

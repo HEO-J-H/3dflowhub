@@ -1,0 +1,94 @@
+{
+  "id": "ai-3d-gaussian-splatting-fundamentals-e590",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "가우시안 스플래팅",
+  "name": "Gaussian Splatting fundamentals",
+  "title": "3D Gaussian Splatting(3DGS) 기초와 실무 파이프라인",
+  "summary": "Gaussian Splatting(3D Gaussian Splatting)은 사진이나 영상에서 수많은 3D 점(Gaussian)을 추출해 실시간으로 현장을 재현하는 최신 AI 3D 기술입니다. 전통적인 포토그래메트리보다 훨씬 빠른 속도로 고화질 결과를 보여줍니다.",
+  "when": [
+    "실제 공간이나 건축물을 빠르게 3D 에셋으로 변환할 때",
+    "복잡한 유기체나 소품을 실사 수준으로 실시간 렌더링해야 할 때",
+    "VFX 배경 촬영본을 신속하게 3D 공간으로 복원할 때"
+  ],
+  "steps": [
+    "1. 피사체 주변을 일정한 간격으로 겹치게 촬영한 사진 또는 비디오 소스를 준비합니다.",
+    "2. 3D Gaussian Splatting 전용 소프트웨어(예: Luma AI, Nerfstudio 등)를 실행합니다.",
+    "3. 수집한 이미지 시퀀스를 소프트웨어에 Import합니다.",
+    "4. 카메라 포지션 추정(COLMAP 등 SfM) 과정을 거쳐 트레이닝(Train/Process)을 실행합니다.",
+    "5. 생성된 3D Gaussian 스플랫 모델을 확인하고 불필요한 배경(포인트 클라우드)을 잘라냅니다(Crop/Mask).",
+    "6. 최종 결과물을 .ply, .ksplat 등의 포맷으로 익스포트(Export)하여 Unreal Engine이나 뷰어에서 활용합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "트레이닝 반복 횟수로, 높을수록 디테일이 살아나지만 시간이 오래 걸립니다."
+    },
+    {
+      "name": "Densification",
+      "desc": "빈 공간에 Gaussian 포인트를 추가하여 표면을 더 조밀하게 메꿔줍니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "Gaussian 포인트의 투명도를 조절하여 렌더링 시 밀도를 제어합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "각 Gaussian 타원체의 크기를 조절하여 표면 부드러움을 결정합니다."
+    },
+    {
+      "name": "Bounding Box / Crop",
+      "desc": "불필요한 배경 요소를 제외하고 원하는 영역만 남깁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 가상 투어(Virtual Tour) 제작",
+      "steps": [
+        "스마트폰 카메라로 방 내부를 360도로 꼼꼼히 촬영합니다.",
+        "클라우드 기반 AI 툴에 업로드하여 3D Splatting 데이터를 생성합니다.",
+        "Unreal Engine이나 웹 뷰어로 내보내어 실시간 워크스루를 구현합니다."
+      ]
+    },
+    {
+      "title": "야외 문화재 및 오브젝트 디지털 아카이빙",
+      "steps": [
+        "드론과 카메라를 이용해 오브젝트 주변을 다각도로 하이-로우 앵글 촬영합니다.",
+        "포인트 클라우드 및 노이즈를 정리한 뒤 Gaussian 모델을 빌드합니다.",
+        "웹 포트폴리오나 VFX 배경 소스로 임포트하여 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진의 흔들림이나 모션 블러 발생 → 셔터스피드를 높이고 흔들림 없는 선명한 사진으로 다시 촬영합니다.",
+    "촬영 간격이 너무 넓음 → 인접 사진 간 60~70% 이상 겹치도록(Overlap) 촘촘하게 재촬영합니다.",
+    "반사면이나 투명한 유리 재질 포함 → 편광 필터를 사용하거나 투명/반사 오브젝트는 마스킹 처리하여 제외합니다."
+  ],
+  "related": [
+    "Photogrammetry",
+    "NeRF",
+    "COLMAP",
+    "Unreal Engine"
+  ],
+  "videos": [
+    {
+      "id": "MBVmQSA24Yk",
+      "title": "3D Gaussian Splatting | Guest Lecture for \"Computer Graphics in the AI Era\"",
+      "author": "Barney (Barnabás) Börcsök"
+    },
+    {
+      "id": "VkIJbpdTujE",
+      "title": "3D Gaussian Splatting! - Computerphile",
+      "author": "Computerphile"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Gaussian%20Splatting%20fundamentals",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D Gaussian Splatting",
+    "Luma AI",
+    "Nerfstudio"
+  ],
+  "at": "2026-11-01T00:03:38.256372+00:00"
+}
