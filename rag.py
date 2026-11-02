@@ -69,7 +69,9 @@ def site_docs() -> list[dict]:
         body = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in p.get("sections") or [] if isinstance(s, dict))
         docs.append({"id": p["id"], "kind": "post", "title": p.get("title_ko", ""), "url": f"p/{p['id']}.html",
                      "text": f"{p.get('summary', '')} {p.get('category', '')} {body[:1500]}", "tool": p.get("category", "")})
-    for g in guides.load_all():
+    import core
+    gstate = core.curation_state()  # 현황판에서 숨긴 가이드는 사이트에 없으므로 제외 (깨진 링크 방지)
+    for g in (g for g in guides.load_all() if gstate.get("learn:" + g["id"]) != "hide"):
         docs.append({"id": g["id"], "kind": "guide", "title": f"{g.get('tool', '')} {g['title']}", "url": build_site.learn_url(g),
                      "text": f"{g.get('name', '')} {g.get('summary', '')} {' '.join(g.get('steps', []))}", "tool": g.get("tool", "")})
     for x in refs.load("fix"):
