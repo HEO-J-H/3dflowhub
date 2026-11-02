@@ -6217,5 +6217,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T11:49:43+00:00",
+    "kind": "proposal",
+    "id": "p-fd4155ed3e",
+    "title": "대기 중인 백엔드 코어 PR(#40~#44) 검토 및 승인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "URL 유효성 검사 및 PBR 맵 입력 검증과 관련된 PR(#40, #41, #42, #43, #44)이 대기 중 상태입니다.",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 대기 중인 PR들의 단위 테스트 통과 여부를 확인하고 순차적으로 승인합니다.",
+    "expected": "입력값 검증 강화로 파이프라인 안정성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T11:49:43+00:00",
+    "kind": "proposal",
+    "id": "p-fb3c96da88",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "브라우저 처리 중심인 web/ 버전에서 비정상 이미지 입력이나 예외 상황 시 사용자 안내가 원활해야 합니다.",
+    "proposal": "web/ 디렉토리 내 JavaScript 에러 처리 및 Fallback 로직을 점검하고, 사용자 피드백 UI를 보완합니다.",
+    "expected": "웹 클라이언트 사용성 및 예외 대응력 개선",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T11:50:02.118083+00:00",
+    "kind": "decision",
+    "id": "p-fd4155ed3e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T11:50:02.126419+00:00",
+    "kind": "decision",
+    "id": "p-fb3c96da88",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
