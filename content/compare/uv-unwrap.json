@@ -1,0 +1,77 @@
+{
+  "id": "uv-unwrap",
+  "title": "UV 펴기",
+  "task": "UV unwrapping, seams, packing",
+  "summary": "UV 전개(Unwrapping), 심(Seam) 설정, 그리고 팩킹(Packing)은 3D 모델에 텍스처를 왜곡 없이 입히기 위해 거치는 필수적인 작업 과정입니다. 각 3D DCC 툴은 고유한 알고리즘과 인터페이스 방식을 사용하므로 파이프라인 목적에 맞는 올바른 툴 선택이 중요합니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Modifier 탭 또는 UV Editing 워크스페이스",
+      "how": "Tab 키로 Edit Mode에 진입한 뒤 U를 눌러 Unwrap 메뉴를 열고, Edge 선택 후 Mark Seam으로 심을 정의합니다. UV Editor에서 UV 패널의 Pack Islands를 실행하여 팩킹합니다.",
+      "strength": "직관적인 심 지정과 강력하고 빠른 내부 팩킹 알고리즘 제공",
+      "limit": "복잡한 고도 폴리곤 모델에서는 수동 심 작업량이 많음"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Modifier List → Unwrap UVW",
+      "how": "오브젝트에 Unwrap UVW 모디파이어를 적용한 뒤 Open UV Editor를 엽니다. Edge 하위 오브젝트 레벨에서 Peel과 Seam 기능을 이용해 펴고, Packing 메뉴에서 공간을 정리합니다.",
+      "strength": "정밀한 파츠별 분할 및 전통적인 캐드/하드서페이스 툴셋 연동 우수",
+      "limit": "초기 UI가 복잡해 보여 학습 진입 장벽이 다소 높음"
+    },
+    {
+      "tool": "Maya",
+      "where": "UV → UV Editor / Modeling 툴셋",
+      "how": "Modeling 메뉴셋의 UV 메뉴에서 Cut, Sew, Auto Unwrap 등을 활용해 심을 자르고 붙입니다. UV Editor 내의 Layout 옵션을 통해 텍스처 공간에 효율적으로 배치합니다.",
+      "strength": "업계 표준에 부합하는 정교하고 세분화된 UV 편집 기능",
+      "limit": "자동 팩킹 시 간격(Padding) 세팅을 수동으로 세밀하게 조정해야 함"
+    },
+    {
+      "tool": "Houdini",
+      "where": "Geometry 노드 내부 → UV Unwrap / UV Layout 노드",
+      "how": "네트워크 뷰에서 Tab 키로 UV Unwrap 노드를 생성해 오토 심을 만들고, 후속으로 UV Layout 노드를 연결해 자동 팩킹 및 스케일 정규화를 수행합니다.",
+      "strength": "절차적(Procedural) 방식으로 대량의 에셋이나 지형 UV를 자동 일괄 처리 가능",
+      "limit": "예술적인 수동 심 조절이나 미세한 겹침 수정은 상대적으로 번거로움"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Static Mesh Editor → Build Settings / General Settings",
+      "how": "에디터 내에서 자동 Generate Lightmap UVs를 체크하거나, 외부 DCC에서 가져온 고유 UV 채널(Channel 1 또는 2)을 라이트맵 및 텍스처 좌표용으로 지정합니다.",
+      "strength": "게임 엔진 내에서 즉시 라이트맵 및 간단한 UV 채널 관리 가능",
+      "limit": "본격적인 캐릭터 및 하드서페이스 UV 전개와 패킹은 외부 DCC 작업이 필수"
+    }
+  ],
+  "pick": [
+    {
+      "case": "빠른 속도로 하드서페이스 에셋의 UV를 펴고 정리할 때",
+      "tool": "Blender",
+      "why": "단축키 중심의 빠른 심 입력과 마우스 오버 기반 전개 기능이 매우 효율적이기 때문입니다."
+    },
+    {
+      "case": "수백 개의 서로 다른 건축 소품을 한 번에 규칙적으로 자동 처리할 때",
+      "tool": "Houdini",
+      "why": "노드 연결 한 번으로 전체 에셋의 UV 전개와 팩킹 규칙을 일괄 적용할 수 있기 때문입니다."
+    },
+    {
+      "case": "고품질 영화/게임용 캐릭터의 정교한 아일랜드 배치가 필요할 때",
+      "tool": "Maya",
+      "why": "오랜 시간 검증된 UV Editor의 자르기, 붙이기, 왜곡 최소화 툴셋이 가장 안정적이기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "FBX 또는 OBJ 포맷으로 내보낼 때 대상 툴 간 축 방향(Y-Up vs Z-Up)과 단위(Unit) 설정을 일치시킵니다.",
+    "외부 툴로 넘기기 전 반드시 오브젝트의 Scale 값을 초기화(Freeze Transformations / Apply Scale)해야 UV 왜곡을 방지할 수 있습니다.",
+    "여러 개의 UV 채널을 활용할 경우, 게임 엔진이나 셰이더가 인식하는 채널 번호(Channel 0, 1) 규칙을 사전에 정의합니다.",
+    "텍스처 픽셀 깨짐을 막기 위해 UV 아일랜드 간 최소 마진(Padding/Bleed) 값을 툴 간 이동 시 유지합니다."
+  ],
+  "apply": [
+    "Substance 3D Painter로 텍스처링을 넘기기 전 모든 UV 아일랜드가 0-1 공간 내에 겹침 없이 정렬되었는지 확인합니다.",
+    "게임 최적화를 위해 시각적으로 노출되지 않는 바닥면이나 안쪽 면은 UV 크기를 줄이거나 생략하여 중요 면적에 텍스처 해상도를 집중시킵니다.",
+    "텍스처 심(Seam) 위치를 사용자의 시선이 닿지 않는 어두운 구역이나 모델의 모서리(Hard Edge) 뒤쪽으로 배치합니다."
+  ],
+  "pitfalls": [
+    "{'mistake': 'UV가 0-1 공간을 벗어나거나 서로 겹쳐서(Overlapping) 텍스처가 깨지는 현상', 'fix': '각 툴의 UV Editor에서 Pack / Layout 기능을 실행해 모든 아일랜드를 단일 0-1 영역 내로 정렬합니다.'}",
+    "{'mistake': '스케일 값을 적용하지 않은 상태에서 UV를 펴서 텍스처 밀도가 망가지는 현상', 'fix': '오브젝트 모드에서 Scale을 1.0으로 초기화(Apply Scale)한 뒤 Unwrap을 다시 수행합니다.'}",
+    "{'mistake': '노멀맵 적용 시 심(Seam) 라인이 하얗게 벌어져서 갈라져 보이는 현상', 'fix': 'UV 패딩(Margin) 값을 충분히 주고, 하드엣지 영역과 UV 심 위치를 일치시킵니다.'}"
+  ],
+  "at": "2026-11-02T17:33:03+00:00"
+}

@@ -8012,5 +8012,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T17:31:37+00:00",
+    "kind": "proposal",
+    "id": "p-c14b7ab0a9",
+    "title": "대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "url_ingest.py 및 관련 유효성 검사 단위 테스트가 포함된 PR #40, #41, #42가 대기 중입니다.",
+    "proposal": "backend/app/services/url_ingest.py와 backend/tests/test_core.py의 테스트 통과 여부를 확인하고 사람이 직접 승인 절차를 진행하도록 안내합니다.",
+    "expected": "잘못된 URL 입력에 대한 예외 처리가 안정적으로 작동하여 서버 안정성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T17:31:37+00:00",
+    "kind": "proposal",
+    "id": "p-f9d4d56948",
+    "title": "PBR 맵 생성 검증 PR(#43, #44) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "pbr_generator.py의 입력 이미지 무결성 검증을 다루는 PR #43과 #44가 대기 상태에 있습니다.",
+    "proposal": "backend/app/services/pbr_generator.py의 예외 처리와 관련 테스트 코드를 검토하고 PR 병합을 준비합니다.",
+    "expected": "PBR 텍스처 생성 시 잘못된 이미지 포맷으로 인한 오류 예방",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T17:33:21.713731+00:00",
+    "kind": "decision",
+    "id": "p-c14b7ab0a9",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T17:33:21.720620+00:00",
+    "kind": "decision",
+    "id": "p-f9d4d56948",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
   }
 ]
