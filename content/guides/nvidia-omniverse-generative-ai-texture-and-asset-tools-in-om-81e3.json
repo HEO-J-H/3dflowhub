@@ -1,0 +1,91 @@
+{
+  "id": "nvidia-omniverse-generative-ai-texture-and-asset-tools-in-om-81e3",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "AI",
+  "name": "Generative AI texture and asset tools in Omniverse",
+  "title": "생성형 AI 텍스처·자산 도구",
+  "summary": "NVIDIA Omniverse의 생성형 AI 텍스처 및 에셋 툴은 텍스트나 간단한 이미지를 기반으로 3D 에셋과 PBR 텍스처를 빠르게 생성하여 작업 시간을 단축해 주는 도구입니다.",
+  "when": [
+    "프로젝트 초기 컨셉 단계에서 다양한 배경 에셋을 빠르게 채워야 할 때",
+    "기존 텍스처를 기반으로 타일링 가능한 PBR 머티리얼을 즉시 생성해야 할 때",
+    "숙련된 3D 아티스트가 부족한 프로토타이핑 환경에서 임시 3D 소스가 필요할 때"
+  ],
+  "steps": [
+    "Omniverse Launcher를 열고 AI 기반 텍스처링 또는 3D 제너레이터 익스텐션(Extension)을 활성화합니다.",
+    "Viewport 또는 해당 패널에서 AI Generate 메뉴를 실행합니다.",
+    "Text Prompt 입력창에 원하는 오브젝트나 텍스처의 형태를 영문으로 상세히 입력합니다.",
+    "생성(Generate) 버튼을 누르고 잠시 대기하여 AI가 결과물을 만들도록 합니다.",
+    "결과물에 Mouse 우클릭을 하여 USD 포맷으로 Export를 진행하거나 씬에 바로 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Text Prompt",
+      "desc": "생성하고자 하는 에셋이나 텍스처의 형태를 텍스트로 설명하는 입력 칸입니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성될 텍스처 또는 에셋의 Resolution를 결정합니다."
+    },
+    {
+      "name": "Seamless",
+      "desc": "텍스처가 끊김 없이 반복되는 타일링(Tiling) 형태로 생성되도록 설정합니다."
+    },
+    {
+      "name": "PBR Maps",
+      "desc": "Albedo, Normal, Roughness 등의 물리 기반 렌더링 맵을 동시에 생성합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "AI가 무작위로 결과물을 만들 때 사용하는 난수 값으로, 고정하면 유사한 형태를 다시 만들 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "타일링 가능한 벽돌 텍스처 생성",
+      "steps": [
+        "Text Prompt에 'Red brick wall, weathered, PBR'을 입력합니다.",
+        "Seamless 옵션을 활성화하여 이음새가 없도록 설정합니다.",
+        "Generate를 실행한 뒤 Albedo와 Normal 맵을 추출합니다.",
+        "USD 머티리얼로 저장하여 3D 씬의 벽면에 바로 드래그 앤 드롭합니다."
+      ]
+    },
+    {
+      "title": "배경 소품(프랍) 에셋 제작",
+      "steps": [
+        "Text Prompt에 'Sci-fi crate, low poly'를 입력합니다.",
+        "생성된 3D 프리뷰를 확인하고 마음에 드는 버전을 선택합니다.",
+        "USD 형식으로 Export를 수행합니다.",
+        "Unreal Engine이나 다른 DCC 툴로 USD 파일을 임포트하여 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "한글 Prompt 입력 → AI가 정확히 이해하지 못하므로 반드시 영문으로 작성해야 합니다.",
+    "Resolution를 무조건 최고값으로 설정 → 생성 시간이 불필요하게 길어지므로 Prototype 단계에서는 낮게 시작합니다.",
+    "스케일 및 법선(Normal) 미확인 → AI 생성 에셋의 스케일이나 노멀 방향이 어긋날 수 있으므로 씬에 넣은 뒤 확인해야 합니다."
+  ],
+  "related": [
+    "USD",
+    "Omniverse Create",
+    "Omniverse Audio2Face",
+    "NVIDIA ACE"
+  ],
+  "videos": [
+    {
+      "id": "-Va2sXIHtaQ",
+      "title": "How To Build Digital Twins In Omniverse Tutorial",
+      "author": "Loupe"
+    },
+    {
+      "id": "huVV6BejyDs",
+      "title": "NVIDIA Omniverse Explained in Under 5 Minutes",
+      "author": "LycheeAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Generative%20AI%20texture%20and%20asset%20tools%20in%20Omniverse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T00:07:42.285989+00:00"
+}
