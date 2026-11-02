@@ -1,0 +1,95 @@
+{
+  "id": "3ds-max-batch-render-d68b",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Batch Render",
+  "title": "Batch Render — 여러 카메라 한 번에",
+  "summary": "여러 뷰포트나 카메라 뷰를 한 번에 렌더링하여 작업 시간을 아껴주는 기능입니다. 퇴근 전이나 외출 전에 걸어두면 매우 유용합니다.",
+  "when": [
+    "프로젝트 마감 전 여러 카메라 뷰의 시각 자료를 한꺼번에 뽑아야 할 때",
+    "야간 렌더링을 위해 다양한 앵글을 미리 예약해 두고 싶을 때",
+    "서로 다른 해상도나 렌더러 설정을 뷰별로 자동 적용하고 싶을 때"
+  ],
+  "steps": [
+    "상단 메뉴에서 Rendering → Batch Render... 를 선택합니다.",
+    "Batch Render 창에서 Add 버튼을 눌러 새로운 렌더 큐(Queue)를 생성합니다.",
+    "Target 뷰포트 또는 카메라를 지정하고, 렌더링될 출력 파일 경로를 설정합니다.",
+    "각 큐 항목의 Scene State, Camera, Preset 등을 필요에 맞게 세팅합니다.",
+    "Queue 리스트에서 렌더링할 항목들을 체크한 뒤 Render 버튼을 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Add",
+      "desc": "새로운 렌더 작업 항목을 리스트에 추가합니다."
+    },
+    {
+      "name": "Target",
+      "desc": "렌더링에 사용할 카메라나 뷰포트를 선택합니다."
+    },
+    {
+      "name": "Output Path",
+      "desc": "결과물이 저장될 폴더 경로와 파일명을 지정합니다."
+    },
+    {
+      "name": "Scene State",
+      "desc": "특정 씬 상태(Scene State)를 뷰별로 연동하여 적용합니다."
+    },
+    {
+      "name": "Presets",
+      "desc": "렌더 셋업(Render Setup)에서 저장해 둔 프리셋을 불러옵니다."
+    },
+    {
+      "name": "Render",
+      "desc": "체크된 모든 배치 렌더 큐를 순차적으로 실행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 외관 주야간 뷰 일괄 추출",
+      "steps": [
+        "주간 카메라와 야간 카메라를 각각 배치 렌더에 등록합니다.",
+        "각 큐에 알맞은 Scene State(라이팅 세팅)를 연결합니다.",
+        "출력 경로를 각각 지정하고 배치 렌더를 실행합니다."
+      ]
+    },
+    {
+      "title": "제품 디자인 턴테이블 앵글 세트 렌더",
+      "steps": [
+        "정면, 측면, 상단 카메라를 각각 배치 렌더 큐에 추가합니다.",
+        "동일한 이미지 Resolution 프리셋을 각 큐에 적용합니다.",
+        "퇴근 전 렌더링을 걸어 아침에 결과물을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "출력 경로(Output Path)를 지정하지 않음 → 렌더링은 되지만 이미지가 저장되지 않으므로 반드시 경로와 확장자를 먼저 확인하세요.",
+    "카메라가 아닌 일반 퍼스펙티브 뷰포트를 타겟으로 지정함 → 카메라 뷰로 변경하거나 정확한 뷰포트 이름을 선택해야 의도한 화각이 나옵니다."
+  ],
+  "related": [
+    "Render Setup",
+    "Scene State",
+    "Render to Texture",
+    "ActiveShade"
+  ],
+  "videos": [
+    {
+      "id": "HK_X_RR2A_Y",
+      "title": "How To Render Multiple Cameras In 3ds Max : Batch Rendering",
+      "author": "MIMViz Studio"
+    },
+    {
+      "id": "GQT2pNKuX2Q",
+      "title": "How To Render Multiple Cameras In 3ds Max : Batch Rendering",
+      "author": "Jake Denham"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Batch%20Render",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Batch Render"
+  ],
+  "at": "2026-11-02T00:37:38.731705+00:00"
+}

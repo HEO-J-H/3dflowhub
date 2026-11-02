@@ -1,0 +1,85 @@
+{
+  "id": "nvidia-omniverse-missing-textures-after-usd-export-05fd",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "문제 해결",
+  "name": "Missing textures after USD export",
+  "title": "USD 내보낸 뒤 텍스처가 없을 때",
+  "summary": "NVIDIA Omniverse로 USD 파일을 내보낼 때 텍스처 경로가 깨지거나 보이지 않는 문제를 해결하고 상대 경로로 올바르게 묶는 방법입니다.",
+  "when": [
+    "3ds Max나 Blender에서 작업한 모델을 USD로 내보낸 후 Omniverse에서 열었을 때 핑크색(텍스처 없음)으로 나올 때",
+    "다른 작업자에게 USD 프로젝트를 전달했는데 텍스처 파일이 누락되었다는 경고가 뜰 때",
+    "외부 텍스처 소스를 사용하다가 프로젝트 폴더 구조를 정리하고 USD로 재내보내야 할 때"
+  ],
+  "steps": [
+    "3ds Max 또는 Blender의 File 메뉴에서 Export 기능을 실행합니다.",
+    "USD Export 설정 창을 엽니다.",
+    "Export Options에서 Textures 옵션을 찾아 체크합니다.",
+    "File Paths 옵션을 Absolute(절대 경로)에서 Relative(상대 경로)로 변경합니다.",
+    "저장할 경로를 프로젝트 폴더 내부로 지정하고 Export를 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Export Textures",
+      "desc": "텍스처 파일을 USD 패키지 또는 지정된 경로에 함께 내보냅니다."
+    },
+    {
+      "name": "Relative Paths",
+      "desc": "텍스처 경로를 상대 경로로 저장하여 다른 PC에서도 유실되지 않게 합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "재질 정보와 Shader 그래프를 USD Material로 함께 변환합니다."
+    },
+    {
+      "name": "Save As Asset",
+      "desc": "에셋을 단일 USD 패키지(.usdz)로 묶어 관리하기 쉽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3ds Max에서 텍스처가 포함된 USD Export",
+      "steps": [
+        "File → Export → Export Selected를 선택합니다.",
+        "파일 형식을 USD로 지정하고 설정 창을 엽니다.",
+        "Textures와 Relative Paths 옵션을 체크하고 내보냅니다."
+      ]
+    },
+    {
+      "title": "Blender에서 USD 텍스처 경로 수정하기",
+      "steps": [
+        "File → Export → Universal Scene Descriptor를 선택합니다.",
+        "Material 옵션에서 텍스처 포함(Include Materials)을 활성화합니다.",
+        "Path Mode를 Relative로 설정한 뒤 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "절대 경로로 텍스처가 지정되어 다른 PC에서 열리지 않음 → Export 설정에서 Relative Paths로 변경",
+    "텍스처 파일이 프로젝트 폴더 외부에 있어 누락됨 → 텍스처를 모델과 같은 폴더로 수동 이동 후 재내보내기",
+    "USD Export 옵션에서 Materials나 Textures 체크박스를 해제함 → Export 옵션에서 텍스처 포함 재확인"
+  ],
+  "related": [
+    "USDZ",
+    "Omniverse Nucleus",
+    "MaterialX",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "GOdyx-oSs2M",
+      "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+      "author": "NVIDIA Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Missing%20textures%20after%20USD%20export",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T00:37:29.783489+00:00"
+}
