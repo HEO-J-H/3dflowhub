@@ -627,7 +627,7 @@ SITE_MENU = [
                  ("changes/", "🆕", "버전별 바뀐 점", "새 버전에서 달라진 것")]),
     ("자료", [("assets/", "🎁", "무료 에셋", "텍스처·재질·HDRI"),
              ("resources/", "📎", "추천 자료", "강의·도구·커뮤니티")]),
-    ("소식", [("events/", "🏆", "공모전·게임 잼", "마감 임박 순 — 국내 공모전·해외 잼·챌린지"),
+    ("소식", [("events/", "🏆", "공모전·게임 잼", "공모전·게임 잼·3D 챌린지·행사 일정"),
              ("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
              ("showcase/", "🎨", "이번 주 작품", "눈여겨볼 작업물"),
              ("feed.xml", "📡", "RSS 구독", "새 글을 받아보기")]),
@@ -1582,11 +1582,20 @@ def event_card(x: dict, root: str) -> str:
     except ValueError:
         left = None
     dday = "오늘 마감" if left == 0 else (f"D-{left}" if left is not None else "")
+    if x["kind"] == "행사·컨퍼런스" and x.get("start"):  # 행사는 시작까지 남은 날
+        try:
+            left = (datetime.fromisoformat(x["start"]).date() - datetime.now(timezone(timedelta(hours=9))).date()).days
+            dday = "진행 중" if left <= 0 else f"D-{left}"
+        except ValueError:
+            pass
     hot = " hot" if left is not None and left <= 7 else ""
-    when = (f'{e(x["start"][5:].replace("-", "/"))} 시작 · ' if x.get("start") and x["start"] > kst_date(datetime.now(timezone.utc).isoformat()) else "") \
-        + f'{e(x["deadline"][5:].replace("-", "/"))} 마감'
+    if x["kind"] == "행사·컨퍼런스":  # 행사는 마감이 아니라 개최 기간
+        when = f'{e(x.get("start", "")[:10].replace("-", "/"))}–{e(x["deadline"][5:].replace("-", "/"))} 개최'
+    else:
+        when = (f'{e(x["start"][5:].replace("-", "/"))} 시작 · ' if x.get("start") and x["start"] > kst_date(datetime.now(timezone.utc).isoformat()) else "") \
+            + f'{e(x["deadline"][5:].replace("-", "/"))} 마감'
     img = (f'<div class="img"><img src="{e(x["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>'
-           if x.get("image") else f'<div class="img evph">{"🎮" if x["kind"] == "게임 잼" else "🏆"}</div>')
+           if x.get("image") else f'<div class="img evph">{"🎮" if x["kind"] == "게임 잼" else ("🎤" if x["kind"] == "행사·컨퍼런스" else "🏆")}</div>')
     extra = " · ".join(v for v in [x.get("prize", ""), f'{x["joined"]:,}명 참가' if x.get("joined") else ""] if v)
     return (f'<a class="card evcard" href="{e(x["url"])}" target="_blank" rel="noopener">{img}<div class="body">'
             f'<div class="evmeta"><span class="dd{hot}">{dday}</span><span class="pill">{e(x["kind"])} · {e(x["region"])}</span></div>'
@@ -1602,14 +1611,15 @@ def build_events() -> int:
     groups = [("⏰ 마감 임박 (7일 이내)", [x for x in xs if x["deadline"] <= (datetime.now(timezone(timedelta(hours=9))) + timedelta(days=7)).strftime("%Y-%m-%d")]),
               ("🇰🇷 국내 공모전", [x for x in xs if x["region"] == "국내"]),
               ("🎮 해외 게임 잼", [x for x in xs if x["kind"] == "게임 잼"]),
-              ("🧊 해외 3D 챌린지", [x for x in xs if x["kind"] == "3D 챌린지"])]
+              ("🧊 3D 챌린지", [x for x in xs if x["kind"] == "3D 챌린지"]),
+              ("🎤 행사·컨퍼런스", [x for x in xs if x["kind"] == "행사·컨퍼런스"])]
     body = ('<div class="doc"><h1>🏆 공모전·게임 잼</h1><p class="desc">3D·게임·애니메이션·캐릭터 작업자가 참가할 수 있는 국내 공모전과 '
             '해외 게임 잼·3D 챌린지를 마감 임박 순으로 모았습니다. 매일 갱신되고, 마감이 지나면 자동으로 빠집니다. '
             '참가 조건·일정은 반드시 원문에서 확인하세요.</p></div>'
             + "".join(f'<h2 class="sec">{e(t)} <small>{len(g)}개</small></h2><div class="cards">{"".join(event_card(x, "../") for x in g[:24])}</div>'
                       for t, g in groups if g)
             + ("" if xs else "<p>지금은 모집 중인 일정이 없습니다.</p>")
-            + '<p class="crumb">출처: 위비티(국내 공모전) · itch.io(게임 잼) · CGTrader(3D 챌린지) — 제목·마감일·링크만 모아 원문으로 연결합니다.</p>')
+            + '<p class="crumb">출처: 위비티(국내 공모전) · itch.io(게임 잼) · CGTrader·BlenderArtists(3D 챌린지) · 각 행사 공식 사이트 — 제목·날짜·링크만 모아 원문으로 연결합니다.</p>')
     (OUT / "events" / "index.html").write_text(page(
         f"3D·게임 공모전·게임 잼 일정 (마감 임박 순) - {SITE_TITLE}", body, "../", canonical=f"{BASE_URL}/events/",
         desc="3D·게임·애니메이션 공모전과 해외 게임 잼·3D 챌린지를 마감 임박 순으로 — 매일 갱신"), encoding="utf-8")

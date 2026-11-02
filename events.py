@@ -4,7 +4,9 @@
   · 위비티 (국내 공모전) — 게임/소프트웨어 전부 + 영상·디자인·예체능·건축 중 3D 관련 단어가 있는 것
   · itch.io 게임 잼 (해외) — 곧 시작·진행 중, 추천(Featured)이거나 참가 200명 이상
   · CGTrader 3D 챌린지 (해외) — 마감 전인 것만
-지난 일정은 자동으로 빠짐. AI 를 쓰지 않음. evolve 가 6시간마다 갱신.
+  · BlenderArtists 챌린지 (주간 챌린지·상금 대회) — 본문의 마감 문장에서 날짜
+  · 행사·컨퍼런스 (Blender Conference·SIGGRAPH·GDC·Annecy·FMX·Gamescom·지스타·NDC) — 공식 사이트 본문의 날짜만, 주 1회
+지난 일정은 자동으로 빠짐. AI 는 행사 날짜 읽기에만(주 1회, 본문에 날짜가 있어야 인정). evolve 가 6시간마다 갱신.
 """
 from __future__ import annotations
 
@@ -133,6 +135,110 @@ def cgtrader() -> list[dict]:
     return out
 
 
+
+# ── BlenderArtists 챌린지 (Discourse 공개 JSON) — 주간 챌린지 'Entries OPEN', 상금 대회 'Deadline: …' ──
+MONTHS = {m: i + 1 for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
+_DATE = re.compile(r"(?:(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s+)?([A-Z][a-z]{2,8})\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})")
+_CLOSE = re.compile(r"(clos\w*|deadline|until|ends?\b|submissions? close)", re.I)
+
+
+def deadline_in(text: str) -> str:
+    """'마감'을 말하는 단어 뒤 120자 안의 첫 날짜 (예: 'Entry closes on Monday ( Mon, Nov 2, 2026', 'Submissions close: October 31, 2026')."""
+    for m in _CLOSE.finditer(text):
+        d = _DATE.search(text[m.end(): m.end() + 120])
+        if d and d.group(1)[:3].lower() in MONTHS:
+            try:
+                return datetime(int(d.group(3)), MONTHS[d.group(1)[:3].lower()], int(d.group(2))).strftime("%Y-%m-%d")
+            except ValueError:
+                continue
+    return ""
+
+
+def blenderartists(days: int = 40) -> list[dict]:
+    base = "https://blenderartists.org"
+    try:
+        topics = requests.get(f"{base}/c/contests/l/latest.json", headers=UA, timeout=25).json()["topic_list"]["topics"]
+    except Exception:  # noqa: BLE001
+        return []
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    out = []
+    for tp in topics:
+        title = tp.get("title", "")
+        if tp.get("created_at", "") < cutoff or not re.search(r"OPEN|Deadline|Prize|Contest", title, re.I) or re.search(r"CLOSED", title):
+            continue
+        try:
+            d = requests.get(f"{base}/t/{tp['id']}.json", headers=UA, timeout=25).json()
+        except Exception:  # noqa: BLE001
+            continue
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", d["post_stream"]["posts"][0].get("cooked", "")))
+        dl = deadline_in(text)
+        if not dl or dl < _today():
+            continue
+        prize = re.search(r"\$\s?[\d,]+(?:\s*in prizes)?", title + " " + text, re.I)
+        out.append({"id": "b" + _id(str(tp["id"])), "kind": "3D 챌린지", "region": "해외", "title": title[:120],
+                    "org": "BlenderArtists", "fields": "Blender · 3D 아트", "deadline": dl,
+                    "prize": prize.group(0) if prize else "", "image": d.get("image_url") or "",
+                    "url": f"{base}/t/{tp['id']}", "source": "BlenderArtists"})
+        time.sleep(1)
+    return out
+
+
+# ── 행사·컨퍼런스 — 공식 사이트 본문에서 날짜를 읽음 (AI 추출 + 날짜가 본문에 실제로 있는지 확인), 주 1회 ──
+CONFERENCES = [
+    ("Blender Conference", "https://conference.blender.org/", "해외"),
+    ("SIGGRAPH 2027", "https://s2027.siggraph.org/", "해외"),
+    ("SIGGRAPH Asia 2026", "https://asia.siggraph.org/2026/", "해외"),
+    ("GDC (Game Developers Conference)", "https://gdconf.com/", "해외"),
+    ("Annecy 국제 애니메이션 페스티벌", "https://www.annecyfestival.com/", "해외"),
+    ("FMX (영화·VFX·게임 컨퍼런스)", "https://fmx.de/", "해외"),
+    ("Gamescom", "https://www.gamescom.global/", "해외"),
+    ("G-STAR (지스타)", "https://www.gstar.or.kr/", "국내"),
+    ("NDC (넥슨 개발자 컨퍼런스)", "https://ndc.nexon.com/", "국내"),
+]
+CONF_EVERY_DAYS = 7
+
+
+def conferences() -> list[dict]:
+    """공식 사이트 본문만 근거로 다음 개최일. 본문에 그 날짜(일·월)가 없으면 버림 (지어낸 날짜 방지)."""
+    import refs
+    out = []
+    for name, url, region in CONFERENCES:
+        f = DIR / f"k{_id(url)}.json"
+        old = core._load_json(f, {})
+        if old.get("checked_at", "") > (datetime.now(timezone.utc) - timedelta(days=CONF_EVERY_DAYS)).isoformat():
+            if old.get("deadline", "") >= _today():
+                out.append(old)
+            continue
+        try:
+            text = refs.page_text(url, limit=8000, follow=0)
+        except Exception:  # noqa: BLE001
+            text = ""
+        rec = {"id": f"k{_id(url)}", "kind": "행사·컨퍼런스", "region": region, "title": name, "org": "",
+               "url": url, "source": "공식 사이트", "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        if len(text) > 300:
+            try:
+                r = core._parse_json(core.llm(
+                    f"Official event website text:\n{text}\n\nToday is {_today()}. Find the NEXT edition's dates of {name} "
+                    "stated in this text. Return JSON {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\", \"city\": \"...\", "
+                    "\"quote\": exact short text from the page that states the dates}. If the page does not state future "
+                    "dates, return {\"start\": \"\"}.", system="You extract facts only from the given text.",
+                    max_tokens=200, json_mode=True))
+            except core.LLMBudgetExceeded:
+                break
+            except Exception:  # noqa: BLE001
+                r = {}
+            start, end, quote = str(r.get("start", "")), str(r.get("end") or r.get("start") or ""), str(r.get("quote", ""))
+            ok = (re.fullmatch(r"\d{4}-\d{2}-\d{2}", start or "x") and end >= _today()
+                  and quote and quote[:40].lower() in text.lower()
+                  and start[:4] in quote + text[:8000])
+            if ok:
+                rec.update({"start": start, "deadline": end, "fields": str(r.get("city", ""))[:40], "quote": quote[:200]})
+        DIR.mkdir(parents=True, exist_ok=True)
+        core._save_json(f, {**old, **rec})
+        if rec.get("deadline", "") >= _today():
+            out.append(rec)
+    return out
+
 def load_all(include_past: bool = False) -> list[dict]:
     if not DIR.exists():
         return []
@@ -145,7 +251,7 @@ def refresh() -> dict:
     """출처를 다시 읽어 저장 (같은 일정은 갱신), 지난 일정 파일은 정리."""
     got, errors = [], []
     for name, fn in (("위비티", wevity), ("itch 예정", lambda: itch("upcoming")), ("itch 진행", lambda: itch("in-progress")),
-                     ("CGTrader", cgtrader)):
+                     ("CGTrader", cgtrader), ("BlenderArtists", blenderartists), ("행사", conferences)):
         try:
             got += fn()
         except Exception as e:  # noqa: BLE001 — 출처 하나가 막혀도 나머지는 계속
