@@ -4,7 +4,7 @@ name: 3dflowhub recipe check (Blender)
 # 통과 → 사이트 공개, 실패 → 삭제하고 사유를 memory/recipe_failures.json 에 기록 (다음 생성 때 AI 가 참고)
 on:
   schedule:
-    - cron: "37 */6 * * *"   # 레시피 생성 주기(6시간)에 맞춤
+    - cron: "37 */3 * * *"   # 레시피 생성 주기(6시간)에 맞춤
   workflow_dispatch:
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
       - name: Anything to verify?
         id: todo
         run: |
-          N=$(python -c "import recipes, refs; print(sum(1 for r in recipes.load_all() if r.get('host') == 'Blender' and 'runtime' not in r) + sum(1 for x in refs.load('fix') if x.get('repro') and x.get('verified') is None))")
+          N=$(python -c "import recipes, refs, manual; print(sum(1 for r in recipes.load_all() if r.get('host') == 'Blender' and 'runtime' not in r) + sum(1 for x in refs.load('fix') if x.get('repro') and x.get('verified') is None) + sum(1 for x in manual.load_all() if x['tool'] == 'Blender' and 'shots' not in x))")
           echo "pending=$N" >> "$GITHUB_OUTPUT"
           echo "검증 대기 Blender 레시피: $N"
 
@@ -46,6 +46,15 @@ jobs:
           python recipes.py --verify
           python refs.py --verify   # 오류 해결 페이지: 오류 재현 코드·고친 코드를 실제 실행해 ✔ 표시
 
+      - name: Render option comparison images for Blender manuals (심화 매뉴얼 값 비교 그림)
+        if: steps.todo.outputs.pending != '0'
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python manual_shots.py 6 || true
+
       - name: Commit result & redeploy
         if: steps.todo.outputs.pending != '0'
         env:
@@ -53,6 +62,6 @@ jobs:
         run: |
           git config user.name "3dflowhub-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          CHANGED=$(python -c "import core; print(core.ci_commit(['content/recipes/', 'content/fixes/', 'memory/'], 'chore(recipes): Blender 실행 검증 [skip ci]'))")
+          CHANGED=$(python -c "import core; print(core.ci_commit(['content/recipes/', 'content/fixes/', 'content/manual/', 'static/manual/', 'memory/'], 'chore(recipes): Blender 실행 검증 [skip ci]'))")
           echo "content changed: $CHANGED"
           if [ "$CHANGED" = "True" ]; then gh workflow run pages.yml --ref main; fi

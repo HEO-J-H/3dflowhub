@@ -1,0 +1,230 @@
+{
+  "id": "blender-bevel-modifier-42a1",
+  "guide_id": "blender-bevel-modifier-42a1",
+  "tool": "Blender",
+  "name": "Bevel modifier",
+  "title": "Bevel — 모서리 둥글게",
+  "overview": "Blender의 Bevel modifier는 메쉬의 엣지와 Vertex를 비파괴적으로 깎아내어 현실감 있는 곡선과 빛 반사를 만들어주는 핵심 모디파이어입니다. 실제 세계의 사물처럼 완벽하게 날카로운 모서리를 부드럽게 다듬어 렌더링 시 리얼리티를 극대화합니다.",
+  "access": "Properties 패널의 Modifier(렌치 아이콘) 탭 클릭 → Add Modifier → Generate 카테고리에서 Bevel 선택",
+  "options": [
+    {
+      "name": "Width",
+      "value": "실수값 (기본값 설정됨)",
+      "effect": "베벨 효과의 전체적인 크기나 두께를 조절합니다.",
+      "tip": "스케일이 적용되지 않은 상태(Ctrl + A → Scale)에서 정확한 값이 작동합니다."
+    },
+    {
+      "name": "Segments",
+      "value": "정수값 (기본값 1)",
+      "effect": "베벨 면에 추가될 엣지 루프의 개수로, 곡선의 부드러움을 결정합니다.",
+      "tip": "지나치게 높이면 폴리곤 수가 급증하므로, 평소에는 2~3 수준으로 유지하고 Subsurface Modifier와 병행하세요."
+    },
+    {
+      "name": "Limit Method",
+      "value": "None, Angle, Weight, Vertex Group",
+      "effect": "어떤 엣지에 베벨을 적용할지 기준을 결정합니다.",
+      "tip": "대부분의 하드서페이스 작업에서는 Angle 방식을 사용하여 날카로운 모서리만 자동으로 지정합니다."
+    },
+    {
+      "name": "Angle",
+      "value": "각도 (기본 30도)",
+      "effect": "Limit Method가 Angle일 때, 베벨이 적용될 최소 각도를 설정합니다.",
+      "tip": "인접한 면의 각도가 이 값보다 작을 때만 베벨이 적용되어 평면이 깨지는 것을 막아줍니다."
+    },
+    {
+      "name": "Profile",
+      "value": "0.0 ~ 1.0 (기본 0.5)",
+      "effect": "베벨 단면의 모양을 오목하거나 볼록하게 조절합니다.",
+      "tip": "Segments가 2 이상일 때만 활성화되며, 0.5일 때 완벽한 원호 형태가 됩니다."
+    },
+    {
+      "name": "Clamp Overlap",
+      "value": "체크박스 (켜기/끄기)",
+      "effect": "베벨 너비를 제한하여 인접한 지오메트리와 겹치는 현상을 방지합니다.",
+      "tip": "좁은 간격에서 엣지가 서로 꼬이는 것을 막아주므로 가급적 켜두는 것이 안전합니다."
+    },
+    {
+      "name": "Harden Normals",
+      "value": "체크박스 (켜기/끄기)",
+      "effect": "베벨 면의 Vertex 노멀을 주변 면과 일치시켜 평평한 면을 유지합니다.",
+      "tip": "오토 스무스(Auto Smooth) 기능과 함께 사용할 때 금속 하드서페이스의 각진 면을 깔끔하게 살려줍니다."
+    },
+    {
+      "name": "Miter Outer",
+      "value": "Sharp, Patch, Arc",
+      "effect": "외부 모서리(180도 초과)가 만나는 지점의 형태를 결정합니다.",
+      "tip": "부드러운 곡선 처리가 필요할 때는 Arc를 선택하고 Spread 값을 조절합니다."
+    },
+    {
+      "name": "Miter Inner",
+      "value": "Sharp, Arc",
+      "effect": "내부 모서리(180도 미만)가 만나는 지점의 형태를 결정합니다.",
+      "tip": "안쪽으로 꺾이는 코너의 찌그러짐을 방지하고 깔끔한 토폴로지를 유지합니다."
+    },
+    {
+      "name": "Face Strength",
+      "value": "None, New, Affected, All",
+      "effect": "베벨에 연관된 면의 강도(Face Strength)를 설정하여 Weighted Normals 모디파이어와 연동합니다.",
+      "tip": "Weighted Normals 모디파이어와 함께 사용하면 노멀 왜곡 현상을 완벽하게 잡아줍니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Affect Vertices / Edges",
+      "desc": "Edges는 엣지 전체를 베벨 처리하며, Vertices는 Vertex 주변 영역만 깎아내어 독특한 모서리 디테일을 만듭니다."
+    },
+    {
+      "name": "Width Type (Offset, Width, Depth, Percent, Absolute)",
+      "desc": "베벨의 크기를 계산하는 방식을 바꿉니다. 기본값인 Offset은 원본 엣지로부터의 거리를 기준으로 계산합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "정밀한 커스텀 프로필 적용하기",
+      "steps": [
+        "오브젝트에 Bevel 모디파이어를 추가하고 Segments를 4 이상으로 올립니다.",
+        "Profile 메뉴를 Superellipse에서 Custom Profile로 변경합니다.",
+        "커스텀 프로필 위젯에서 제어점을 추가해 몰딩이나 홈이 파인 독특한 단면 모양을 디자인합니다.",
+        "Intersections 방식을 Grid Fill로 설정하여 코너 교차 지점의 면 흐름을 매끄럽게 정리합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "세그먼트(Segments) 수치와 복잡한 커스텀 프로필은 뷰포트 연산 부하를 높이므로 작업 중에는 Segments를 1~2로 낮추어 유지하세요.",
+    "밀도가 높은 고폴리곤 메쉬에 모디파이어를 직접 적용하면 다운이나 렉이 발생할 수 있으므로, 섭디비전 모디파이어와의 스택 순서(Bevel을 상단에 배치)를 확인하세요.",
+    "스케일이 균일하지 않은 상태에서 베벨을 적용하면 왜곡된 결과 연산으로 인해 성능 저하 및 시각적 오류가 생깁니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "베벨 크기가 사방으로 다르게 늘어나거나 찌그러집니다.",
+      "fix": "오브젝트 모드에서 Ctrl + A를 누르고 Scale을 적용(Apply)하여 오브젝트의 스케일을 초기화하세요."
+    },
+    {
+      "symptom": "모서리가 겹치면서 렌더링이 깨지거나 검은 아티팩트가 생깁니다.",
+      "fix": "모디파이어 옵션에서 Clamp Overlap을 켜고, Miter 옵션을 Arc로 변경해 보세요."
+    },
+    {
+      "symptom": "원하지 않는 부드러운 면까지 베벨이 적용됩니다.",
+      "fix": "Limit Method를 Angle로 변경하고 각도 값을 낮추거나, Edit Mode에서 불필요한 엣지의 베벨 웨이트(Bevel Weight)를 0으로 낮추세요."
+    },
+    {
+      "symptom": "Harden Normals를 켰는데도 표면 빛 반사가 이상합니다.",
+      "fix": "메쉬에 Weighted Normals 모디파이어가 누락되었는지 확인하고 Face Strength 설정을 확인하세요."
+    }
+  ],
+  "versions": "Blender 4.0 이상 버전부터는 향상된 커스텀 프로필 위젯 샘플링 및 세분화된 지오메트리 인터섹션 알고리즘이 적용되어 복잡한 하드서페이스 모델링 작업이 훨씬 안정적입니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html",
+  "grounded": true,
+  "at": "2026-11-02T14:24:00+00:00",
+  "shots": [
+    {
+      "option": "Width",
+      "items": [
+        {
+          "src": "blender-bevel-modifier-42a1/0-0.jpg",
+          "label": "너비 0.02"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/0-1.jpg",
+          "label": "너비 0.1"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/0-2.jpg",
+          "label": "너비 0.25"
+        }
+      ]
+    },
+    {
+      "option": "Segments",
+      "items": [
+        {
+          "src": "blender-bevel-modifier-42a1/1-0.jpg",
+          "label": "세그먼트 1"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/1-1.jpg",
+          "label": "세그먼트 3"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/1-2.jpg",
+          "label": "세그먼트 6"
+        }
+      ]
+    },
+    {
+      "option": "Profile",
+      "items": [
+        {
+          "src": "blender-bevel-modifier-42a1/2-0.jpg",
+          "label": "프로필 0.0 (오목)"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/2-1.jpg",
+          "label": "프로필 0.5 (기본)"
+        },
+        {
+          "src": "blender-bevel-modifier-42a1/2-2.jpg",
+          "label": "프로필 1.0 (볼록)"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "id": "eUiQILVhzvs",
+      "title": "How to use Blender's Bevel Modifier",
+      "author": "Blender Forge"
+    },
+    {
+      "id": "57b8L12B-NY",
+      "title": "The Bevel Modifier in Blender 3D",
+      "author": "Brandon 3D"
+    }
+  ],
+  "menu_path": [
+    "Properties",
+    "Modifier",
+    "Add Modifier",
+    "Generate",
+    "Bevel"
+  ],
+  "images": [
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_panel.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_panel.png",
+      "caption": "The Bevel modifier.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square-not.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_square-not.png",
+      "caption": "Not beveled.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_square.png",
+      "caption": "Beveled.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_cubes-vertices-only.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_cubes-vertices-only.png",
+      "caption": "Three cubes with 0.1, 0.3 and 0.5 bevel widths, with Vertices option selected.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_width-methods.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_width-methods.png",
+      "caption": "",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    },
+    {
+      "src": "https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_cubes.png",
+      "alt": "../../../_images/modeling_modifiers_generate_bevel_cubes.png",
+      "caption": "Three Cubes with 0.1, 0.3 and 0.5 bevel widths.",
+      "source": "https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html"
+    }
+  ],
+  "visuals_at": "2026-11-02T14:26:17+00:00"
+}

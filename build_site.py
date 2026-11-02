@@ -457,6 +457,11 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
   text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .ytw{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
 .ytw iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 18px}.shots figure{margin:0}
+.shots img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+.shots figcaption{text-align:center;font-size:14px;font-weight:600;margin-top:6px}
+.tvids{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin:12px 0 20px}
+.tvids h3{font-size:15px;margin:0 0 6px}.hero-img{width:100%;height:auto;border-radius:18px;margin:12px 0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
 @media (max-width:720px){.vids.two{grid-template-columns:1fr}}
 .guide h2{font-size:21px;margin:30px 0 10px}
@@ -862,7 +867,10 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
             f'{e(r["category"])} › {e(r["host"])}</p><h1>{e(r["title"])}</h1>'
             f'<p class="aiby">🤖 AI 3D 게시판 소식을 바탕으로 AI 가 설계 · {e(r.get("checked", ""))} · '
             + report_button("[3dflowhub] 파이프라인 오류 제보: " + r["title"][:40], "오류 제보") + '</p>'
+            + next((core.image_figure((q.get("media") or {})["image"], q["url"], q["title_ko"]) for q in srcs
+                    if (q.get("media") or {}).get("image")), "")
             + f'<p class="lead">{e(r["problem"])}</p>'
+            + videos_html(r.get("videos"))
             + f'<figure class="menupath" aria-label="파이프라인"><figcaption>파이프라인</figcaption><div>{flow}</div></figure>'
             + f'<ol class="steps">{stages}</ol>'
             + f'<h2>스크립트 ({e(r["host"])} · {lang})</h2>'
@@ -946,6 +954,22 @@ def yt_facade(v: dict) -> str:
     return (f'<button class="yt" data-id="{e(v["id"])}" aria-label="영상 재생: {e(v["title"])}" '
             f'style="background-image:url(https://i.ytimg.com/vi/{e(v["id"])}/hqdefault.jpg)">'
             f'<span class="play" aria-hidden="true"></span><span class="cap">▶ {e(v["title"])} · {e(v["author"])}</span></button>')
+
+
+def videos_html(vs: list[dict] | None) -> str:
+    vs = [v for v in vs or [] if isinstance(v, dict) and v.get("id")]
+    return f'<div class="vids{" two" if len(vs) > 1 else ""}">{"".join(yt_facade(v) for v in vs)}</div>' if vs else ""
+
+
+def shots_html(shots: list[dict], root: str) -> str:
+    """Blender 에서 옵션 값을 바꿔 실제로 렌더한 비교 그림 (값 3개 나란히)."""
+    out = []
+    for s in shots or []:
+        figs = "".join(f'<figure><img src="{root}manual/{e(i["src"])}" alt="{e(s["option"])} {e(i["label"])}" loading="lazy" '
+                       f'width="480" height="300"><figcaption>{e(i["label"])}</figcaption></figure>' for i in s["items"])
+        out.append(f'<h3><code>{e(s["option"])}</code> 값에 따라</h3><div class="shots">{figs}</div>')
+    return ("<h2>👀 한눈에 보기 — 값을 바꾸면 이렇게 달라집니다</h2>" + "".join(out)
+            + '<p class="crumb">Blender 에서 같은 장면을 값만 바꿔 실제로 렌더한 그림입니다.</p>') if out else ""
 
 
 def learn_url(g: dict) -> str:
@@ -1317,7 +1341,8 @@ def build_refs() -> tuple[list, list]:
                 + report_button("[3dflowhub] 오류 해결 페이지 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
                 f'<pre class="code"><code>{e(x["error"])}</code></pre>'
                 f'<p class="lead">{e(x.get("summary", ""))}</p>'
-                f'<h2>원인</h2><ul>{ul(x.get("causes", []))}</ul>'
+                + videos_html(x.get("videos"))
+                + f'<h2>원인</h2><ul>{ul(x.get("causes", []))}</ul>'
                 f'<h2>해결 순서</h2><ol class="steps">{ul(x.get("steps", []))}</ol>'
                 + (f'<h2>오류가 나는 코드와 고친 코드 (실행 확인)</h2><p>오류:</p><pre class="code"><code>{e(repro["bad"])}</code></pre>'
                    f'<p>고친 코드:</p><pre class="code"><code>{e(repro["good"])}</code></pre>' if repro else "")
@@ -1351,8 +1376,10 @@ def build_refs() -> tuple[list, list]:
                 f'<h1>{e(x["title"])}</h1>'
                 f'<p class="aiby">🤖 공식 릴리스 노트를 근거로 AI 가 정리 · 작성 {e(x.get("at", "")[:10])} · '
                 f'<a href="{e(x["source"])}" target="_blank" rel="noopener">공식 릴리스 노트 원문</a></p>'
-                f'<p class="lead">{e(x.get("summary", ""))}</p>'
-                f'<h2>주요 변경</h2><table class="params"><thead><tr><th>분야</th><th>바뀐 점</th><th>작업자에게 의미</th></tr>'
+                + (f'<img class="hero-img" src="{e(x["hero"])}" alt="{e(x["title"])}" loading="lazy">' if x.get("hero") else "")
+                + f'<p class="lead">{e(x.get("summary", ""))}</p>'
+                + videos_html(x.get("videos"))
+                + f'<h2>주요 변경</h2><table class="params"><thead><tr><th>분야</th><th>바뀐 점</th><th>작업자에게 의미</th></tr>'
                 f'</thead><tbody>{rows}</tbody></table>'
                 + (f'<h2>예전 파일·스크립트에 영향</h2><ul class="warn">{ul(x["breaking"])}</ul>' if x.get("breaking") else "")
                 + f'<p class="crumb"><a href="{root}changes/">← 버전별 바뀐 점 전체</a></p></article>')
@@ -1397,9 +1424,12 @@ def build_manual(guides_: list[dict]) -> int:
                 + report_button("[3dflowhub] 심화 매뉴얼 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
                 f'<p class="lead">{e(x["overview"])}</p>'
                 f'<p class="crumb">처음이라면 → <a href="{root}learn/{x["id"]}/">기초 가이드: {e(x["title"])}</a></p>'
-                + (f'<h2>여는 방법</h2><p>{e(x["access"])}</p>' if x.get("access") else "")
+                + videos_html(x.get("videos"))
+                + shots_html(x.get("shots") or [], root)
+                + (f'<h2>여는 방법</h2>{menu_diagram(x.get("menu_path") or [])}<p>{e(x["access"])}</p>' if x.get("access") else "")
                 + '<h2>옵션 전체</h2><div class="tblwrap"><table class="params"><thead><tr><th>옵션</th><th>값·기본값</th>'
                   f'<th>효과</th><th>실무 팁</th></tr></thead><tbody>{opts}</tbody></table></div>'
+                + doc_figures(x.get("images") or [])
                 + (f"<h2>모드별 차이</h2><ul>{modes}</ul>" if modes else "")
                 + f'<h2>응용 레시피</h2><div class="ex">{recipes}</div>'
                 + (f'<h2>무거울 때</h2><ul>{ul(x["performance"])}</ul>' if x["performance"] else "")
@@ -1448,7 +1478,10 @@ def build_compare() -> int:
                 f'<p class="aiby">🤖 AI 가 정리 · 비교 툴: {e(tools)} · 작성 {e(x.get("at", "")[:10])} · '
                 + report_button("[3dflowhub] 툴 비교 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
                 f'<p class="lead">{e(x["summary"])}</p>'
-                '<h2>툴마다 어디서·어떻게</h2><div class="tblwrap"><table class="params"><thead><tr><th>툴</th><th>메뉴·기능</th>'
+                + ('<h2>🎬 툴마다 영상으로 보기</h2><div class="tvids">' + "".join(
+                    f'<div><h3>{e(r["tool"])}</h3>{yt_facade(r["video"])}</div>' for r in x["rows"] if r.get("video")) + "</div>"
+                   if any(r.get("video") for r in x["rows"]) else "")
+                + '<h2>툴마다 어디서·어떻게</h2><div class="tblwrap"><table class="params"><thead><tr><th>툴</th><th>메뉴·기능</th>'
                 f'<th>방법</th><th>장점</th><th>한계</th></tr></thead><tbody>{rows}</tbody></table></div>'
                 + (f"<h2>상황별 추천</h2><ul>{picks}</ul>" if picks else "")
                 + (f'<h2>툴 사이에서 넘길 때</h2><ul>{ul(x["handoff"])}</ul>' if x["handoff"] else "")

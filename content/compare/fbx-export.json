@@ -9,35 +9,60 @@
       "where": "File → Export → Export Selected",
       "how": "FBX Export 설정에서 Units를 Centimeters로 맞추고 Axis Conversion에서 Up Axis를 Z-Up으로 설정합니다. Animation과 Smoothing Groups 옵션이 켜져 있는지 확인합니다.",
       "strength": "직관적인 FBX 익스포터 UI와 강력한 스무딩 그룹 제어",
-      "limit": "오브젝트에 XForm 초기화(Reset XForm)를 하지 않으면 스케일이나 회전 값이 왜곡될 수 있음"
+      "limit": "오브젝트에 XForm 초기화(Reset XForm)를 하지 않으면 스케일이나 회전 값이 왜곡될 수 있음",
+      "video": {
+        "id": "m-sU3FIDLSo",
+        "title": "Exporting FBX for unreal engine from 3ds max",
+        "author": "Hoj Dee"
+      }
     },
     {
       "tool": "Blender",
       "where": "File → Export → FBX (.fbx)",
       "how": "Export FBX 패널에서 Transform의 Forward를 -Z Forward, Up을 Y Up으로 설정합니다. Scale은 Apply Scalings 메뉴를 통해 All Local로 맞추어 내보냅니다.",
       "strength": "오픈소스 환경에서 게임 엔진용 축 변환 옵션이 세분화되어 있음",
-      "limit": "블렌더 고유의 미터법 단위를 엔진에 맞게 스케일 배율로 조정해야 하는 번거로움"
+      "limit": "블렌더 고유의 미터법 단위를 엔진에 맞게 스케일 배율로 조정해야 하는 번거로움",
+      "video": {
+        "id": "-rG4QOR_UHM",
+        "title": "Blender to Game Engine Tutorial (Unity, Unreal & Godot)",
+        "author": "Versatile Vertices"
+      }
     },
     {
       "tool": "Maya",
       "where": "File → Export Selection",
       "how": "FBX Export 옵션창에서 Axis Conversion의 Up axis를 Z로 설정합니다. Animation과 Embed Media 항목을 작업 목적에 맞게 체크합니다.",
       "strength": "업계 표준 파이프라인에 최적화된 안정적인 애니메이션 및 본 데이터 내보내기",
-      "limit": "네이티브 단위가 센티미터가 아닐 경우 씬 단위를 미리 확인하지 않으면 엔진에서 크기가 크게 달라짐"
+      "limit": "네이티브 단위가 센티미터가 아닐 경우 씬 단위를 미리 확인하지 않으면 엔진에서 크기가 크게 달라짐",
+      "video": {
+        "id": "fjSQti0gSoU",
+        "title": "How AAA Studios Export FBX Animations From Maya To Unreal Engine",
+        "author": "Libby Pete"
+      }
     },
     {
       "tool": "Houdini",
       "where": "ROP FBX Character Output 노드 또는 ROP FBX Output 노드",
       "how": "Geometry 네트웍크에서 ROP FBX 노드를 생성하고 파일 경로를 지정한 후 Export 버튼을 누릅니다. 축과 스케일은 노드 내 Parameter에서 Y Up 또는 Z Up으로 전환합니다.",
       "strength": "절차적 지오메트리와 속성, 수많은 어트리뷰트를 FBX로 대량 내보내기에 특화",
-      "limit": "아티스트가 직접 노드 네트워크에서 단위와 좌표계를 수동으로 맞춰야 하는 복잡성"
+      "limit": "아티스트가 직접 노드 네트워크에서 단위와 좌표계를 수동으로 맞춰야 하는 복잡성",
+      "video": {
+        "id": "WvEh1EI-X44",
+        "title": "Houdini Python Projects - Dynamic FBX Exporting for Game Engines",
+        "author": "Indie-Pixel"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser → Import",
       "how": "FBX 파일을 드래그하여 임포트 창을 열고, Transform 항목에서 Import Uniform Scale과 Mesh Build Settings의 Normal Import Method를 확인합니다.",
       "strength": "엔진 내부에서 자동으로 스케일과 노멀을 재계산하는 강력한 임포트 옵션 제공",
-      "limit": "DCC 툴에서 축 방향과 스케일을 잘못 맞추면 엔진 내에서 물리 시뮬레이션이나 애니메이션이 오작동함"
+      "limit": "DCC 툴에서 축 방향과 스케일을 잘못 맞추면 엔진 내에서 물리 시뮬레이션이나 애니메이션이 오작동함",
+      "video": {
+        "id": "-rG4QOR_UHM",
+        "title": "Blender to Game Engine Tutorial (Unity, Unreal & Godot)",
+        "author": "Versatile Vertices"
+      }
     }
   ],
   "pick": [
@@ -73,5 +98,6 @@
     "{'ko': '스무딩 그룹 정보가 누락되어 게임 엔진에서 면이 각져 보이는 문제', 'fix': 'FBX Export 옵션에서 Smoothing Groups 또는 Tangents and Binormals 옵션이 켜져 있는지 확인합니다.'}",
     "{'ko': '축 방향이 맞지 않아 캐릭터나 오브젝트가 누워서 임포트되는 문제', 'fix': '익스포터 설정에서 Up Axis를 대상 엔진(예: Unreal Engine은 Z-Up)에 맞게 수동으로 변경합니다.'}"
   ],
-  "at": "2026-11-02T14:10:57+00:00"
+  "at": "2026-11-02T14:10:57+00:00",
+  "visuals_at": "2026-11-02T14:26:24+00:00"
 }

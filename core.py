@@ -2221,6 +2221,11 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats["prefiltered"] = RUN_ERRORS.count("prefiltered")
     stats["llm_fallbacks"] = [f["name"] for f in fallback_providers()]  # 등록된 예비 공급자 이름 (키 값은 기록 안 함)
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
+    try:  # 그림·영상이 없는 글·참고 페이지에 붙임 — 공부하러 온 사람이 눈으로 이해하게
+        import visuals
+        stats["visuals"] = len(visuals.backfill(6)) + visuals.backfill_posts(25)
+    except Exception as e:  # noqa: BLE001
+        log.warning("그림 보강 실패(다음 실행에 재시도): %s", e)
     try:  # 수량(하루 100건)은 그대로, 내용이 빈약한 글은 보강
         stats["enriched"] = enrich_thin_posts()
     except Exception as e:  # noqa: BLE001
