@@ -1808,6 +1808,35 @@ def ensure_minimum_content_depth(data: dict) -> bool:
     return True
 
 
+UNAMBIG_3D = re.compile(r"\b(3d|cgi|vfx|render\w*|shader\w*|model(?:ing|ling|er)|rigg\w*|animat\w*|polygon\w*|mesh\w*|"
+                        r"textur\w*|sculpt\w*|game engine|game ?dev\w*|visual effects|motion graphics|gaussian splat\w*|nerf|"
+                        r"point cloud|photogrammetry|usd|gltf|fbx|digital twin|simulation|keyframe|compositing|virtual production|"
+                        r"unreal engine|geometry nodes|autodesk|foundry|sidefx|maxon|plug-?in|add-?on|script\w*|tutorial|addon)\b", re.I)
+AMBIG_NAMES = re.compile(r"\b(maya|blender|nuke|unity|houdini|katana|mari|modo|substance)\b", re.I)
+
+
+def ambiguous_name_only(item: dict) -> bool:
+    """제목의 3D 단서가 '일반 단어이기도 한 도구 이름'뿐인가 (Maya=사람, Blender=주방 기구·별명, Nuke=핵, Unity 주가…)."""
+    t = item.get("title", "")
+    return bool(AMBIG_NAMES.search(t)) and not UNAMBIG_3D.search(f"{t} {item.get('rss_summary', '')[:300]}")
+
+
+def confirm_3d(item: dict) -> bool:
+    """짧은 예/아니오 판정 — 3D 소프트웨어·제작에 관한 기사인가. 실패하면 통과(수집이 멈추지 않게)."""
+    try:
+        out = _parse_json(llm(f"Title: {item['title']}\nSnippet: {item.get('rss_summary', '')[:400]}\n"
+                              "Is this article about 3D/VFX/game-development SOFTWARE or 3D content creation (e.g. Autodesk "
+                              "Maya, Blender the 3D app, Foundry Nuke, Unity the game engine product/tools)? People named Maya, "
+                              "kitchen blenders, makeup blenders, nicknames, nuclear 'nuke', stock-price-only news, esports team "
+                              "names, Harry Houdini the magician = false. Return JSON {\"is_3d\": true/false}.",
+                              system="You are a strict topic classifier.", max_tokens=40, json_mode=True))
+        return bool(out.get("is_3d"))
+    except LLMBudgetExceeded:
+        raise
+    except Exception:  # noqa: BLE001
+        return True
+
+
 SELF_OFFTOPIC = re.compile(r"(3D|소프트웨어|실무|작업|DCC)[^.]{0,30}(무관|관련(이|성이)? 없|연관(이|성이)? 없|직접적인 (연관|관련)이 없)"
                            r"|혼동될 수 있지만|이름이 (같|동일)")
 
@@ -1882,6 +1911,10 @@ def summarize(item: dict) -> dict | None:
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
     
+    if ambiguous_name_only(item) and not confirm_3d(item):  # Maya·Blender·Nuke·Unity 가 사람·별명·주방 기구·주식일 때
+        log.info("이름만 같은 다른 이야기 — 제외: %s", item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
     if self_declared_offtopic(data):  # 요약하면서 AI 가 '3D 와 무관'이라고 써 놓고도 저장되던 글 (Maya=사람 이름 등)
         log.info("요약이 스스로 주제 밖이라고 함 — 제외: %s", item["title"][:60])
         RUN_ERRORS.append("off-topic")

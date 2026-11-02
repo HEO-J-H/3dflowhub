@@ -20,3 +20,11 @@ def test_self_declared_offtopic():
     assert core.self_declared_offtopic({"insight": "제목에 Maya가 있어 혼동될 수 있지만 3D 소프트웨어와는 무관합니다."})
     assert core.self_declared_offtopic({"sections": [{"body": "3D DCC 분야와 직접적인 연관이 없는 스포츠 소식"}]})
     assert not core.self_declared_offtopic({"summary": "Maya 2027 출시 — USD 워크플로 개선"})
+
+
+def test_ambiguous_name_needs_confirmation(monkeypatch):
+    import core
+    assert core.ambiguous_name_only({"title": "Darts: Fallon Sherrock beats 'The Nuke'"})
+    assert not core.ambiguous_name_only({"title": "Blender 4.5 adds new Geometry Nodes tools"})
+    monkeypatch.setattr(core, "llm", lambda *a, **k: '{"is_3d": false}')
+    assert core.confirm_3d({"title": "Conversations with Maya: John Pardon"}) is False
