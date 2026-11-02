@@ -6313,5 +6313,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T12:12:26+00:00",
+    "kind": "proposal",
+    "id": "p-43a220b271",
+    "title": "대기 중인 백엔드 코어 PR(#40~#44) 검토 및 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 PR #40, #41, #42, #43, #44가 백엔드 코어 변경으로 승인 대기 중 상태입니다.",
+    "proposal": "GitHub에서 PR #40~#44의 테스트 결과와 코드를 검토하고, 이상이 없다면 순차적으로 승인 및 머지합니다.",
+    "expected": "URL 및 PBR 입력 검증 기능이 안전하게 반영되어 서비스 안정성이 향상됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:12:26+00:00",
+    "kind": "proposal",
+    "id": "p-339b1fd0af",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전(브라우저 처리)은 프론트엔드 단독 동작이므로 브라우저 환경에서의 에러 처리와 Fallback 로직 보강이 유용합니다.",
+    "proposal": "web/ 디렉토리 내 JavaScript 코드에서 이미지 처리 실패나 미지원 포맷 입력 시 사용자에게 알림을 주는 에러 핸들링 및 Fallback 로직을 점검하고 보완합니다.",
+    "expected": "웹 버전 사용자 경험 및 예외 상황 대응력이 강화됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:13:25.836684+00:00",
+    "kind": "decision",
+    "id": "p-43a220b271",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T12:13:25.844726+00:00",
+    "kind": "decision",
+    "id": "p-339b1fd0af",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
