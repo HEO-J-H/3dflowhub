@@ -6361,5 +6361,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T12:19:52+00:00",
+    "kind": "proposal",
+    "id": "p-a319b9192a",
+    "title": "대기 중인 백엔드 코어 PR (#40~#44) 검토 및 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42, #43, #44 등 URL 유효성 및 PBR 맵 검증 관련 핵심 백엔드 변경 PR들이 대기 상태입니다.",
+    "proposal": "작성된 단위 테스트(backend/tests/test_core.py)의 통과 여부를 확인하고, 각 PR의 변경 사항을 검토하여 사람이 직접 승인 또는 보완 조치합니다.",
+    "expected": "입력 검증 로직이 안전하게 반영되어 서비스 안정성 향상",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:19:52+00:00",
+    "kind": "proposal",
+    "id": "p-2f2bef3860",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "브라우저 전용 웹 툴(web/) 환경에서 이미지 처리 실패 시의 사용자 안내 및 예외 처리 견고화가 필요합니다.",
+    "proposal": "web/ 디렉토리 내의 이미지 처리 및 높이맵 생성 실패 시의 에러 핸들링 로직을 점검하고 보완 코드를 작성합니다.",
+    "expected": "웹 클라이언트 환경에서의 사용자 경험 및 안정성 증대",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:20:11.794426+00:00",
+    "kind": "decision",
+    "id": "p-a319b9192a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T12:20:11.802432+00:00",
+    "kind": "decision",
+    "id": "p-2f2bef3860",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
