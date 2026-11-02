@@ -301,8 +301,27 @@ header{position:sticky;top:0;z-index:10;background:var(--glass);
 .logo .w3d{background:linear-gradient(135deg,#0a84ff,#5e5ce6 55%,#bf5af2);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:1px}
 .logo .wflow{color:var(--text)}.logo .whub{color:var(--muted);font-weight:600}
 .logo:hover .wflow{color:var(--text)}
-.topnav{display:flex;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none}.topnav a{white-space:nowrap;flex:none;font-size:14px;color:var(--text-2);padding:10px 10px;border-radius:10px}
-.topnav a:hover,.topnav a.on{color:var(--text);background:var(--accent-soft)}
+.topnav{display:flex;gap:2px;min-width:0}
+.dd{position:relative}.dd summary{list-style:none;cursor:pointer;white-space:nowrap;font-size:15px;color:var(--text-2);
+  padding:0 12px;height:40px;display:flex;align-items:center;gap:4px;border-radius:10px;user-select:none}
+.dd summary::-webkit-details-marker,.mnav summary::-webkit-details-marker{display:none}
+.dd summary:after{content:"";width:6px;height:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg) translateY(-2px);margin-left:4px;opacity:.6}
+.dd summary:hover,.dd[open] summary,.dd summary.on{color:var(--text);background:var(--accent-soft)}
+.dd summary.on{font-weight:600}
+.ddm{position:absolute;top:calc(100% + 8px);left:0;min-width:300px;padding:8px;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);z-index:50;animation:ddin .14s ease-out}
+@keyframes ddin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.ddm a,.msec a{display:flex;gap:12px;align-items:center;min-height:52px;padding:8px 12px;border-radius:10px;color:var(--text)}
+.ddm a:hover,.ddm a:focus-visible,.msec a:hover,.ddm a.on,.msec a.on{background:var(--accent-soft)}
+.mi{font-size:20px;width:28px;text-align:center;flex:none}.ddm b,.msec b{display:block;font-size:15px;font-weight:600}
+.ddm small,.msec small{display:block;font-size:13px;color:var(--muted);margin-top:1px}
+.iconbtn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;
+  font-size:19px;color:var(--text-2)}.iconbtn:hover{background:var(--accent-soft);color:var(--text)}
+.mnav{display:none}.mnav summary{list-style:none;cursor:pointer;height:40px;padding:0 12px;border-radius:10px;display:flex;
+  align-items:center;gap:6px;font-size:15px;border:1px solid var(--line);color:var(--text);white-space:nowrap}
+.mnav .sheet{position:fixed;top:56px;left:0;width:100vw;height:calc(100vh - 56px);height:calc(100dvh - 56px);background:var(--bg);z-index:60;overflow-y:auto;animation:ddin .16s ease-out}
+.sheet-in{max-width:640px;margin:0 auto;padding:12px 16px 40px}.msec{padding:8px 0;border-bottom:1px solid var(--line)}
+.msec h2{font-size:13px;color:var(--muted);font-weight:600;margin:10px 12px 4px;letter-spacing:.02em}
 .search{margin-left:auto;flex:0 1 280px;position:relative}
 .search input{width:100%;height:36px;padding:0 14px 0 34px;border:1px solid var(--line);border-radius:10px;
   background:var(--surface-2);color:var(--text);font-size:15px}
@@ -433,9 +452,8 @@ summary{cursor:pointer;font-weight:600;min-height:28px}
 footer{color:var(--muted);font-size:13px;padding:48px 0 56px;border-top:1px solid var(--line);margin-top:64px}
 footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer a{color:var(--text-2)}
 
-@media (max-width:1100px){.topnav a{padding:10px 7px;font-size:13px}}
-@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}
-  nav.domains .mob{display:inline-flex}nav.domains .sep{display:block;flex:none;width:1px;background:var(--line);margin:6px 2px}}
+@media (max-width:1100px){.dd summary{padding:0 8px;font-size:14px}}
+@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}.mnav{display:block}.top{gap:10px}}
 @media (max-width:640px){
   body{font-size:16px}.wrap{padding:0 16px}.hero{padding:36px 22px;border-radius:22px}
   .row{grid-template-columns:84px 1fr;gap:12px}.row img,.row .ph{width:84px;height:56px}.row .side{display:none}
@@ -578,14 +596,55 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}manual/">심화 매뉴얼</a><a href="{root}compare/">툴 비교</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
-<div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}manual/">📘 심화 매뉴얼</a><a class="mob" href="{root}compare/">⚖️ 툴 비교</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+{site_nav(root)[0]}
+<div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div>{nav_tail(root)}</div>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}</nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
 © {datetime.now():%Y} {SITE_TITLE} · 3D를 배우고 나누는 사람들을 위한 큐레이션 · 원문 저작권은 각 출처에 있습니다 · {mail_link()}</div></footer>
-<script>const ROOT="{root}";</script><script src="{root}search.js?v={ASSET_VER['search.js']}" defer></script><script src="{root}user.js?v={ASSET_VER['user.js']}" defer></script></body></html>"""
+<script>const ROOT="{root}";(function(){{var SECS=["learn","manual","compare","guide","fix","changes","assets","recipes","resources","weekly","showcase"];var sec=location.pathname.split("/").filter(function(x){{return SECS.indexOf(x)>-1}})[0]||"";
+document.querySelectorAll("[data-sec]").forEach(function(a){{if(a.dataset.sec===sec)a.classList.add("on")}});
+document.querySelectorAll("[data-secs]").forEach(function(s){{if(s.dataset.secs.split(" ").indexOf(sec)>-1)s.classList.add("on")}});
+var dds=document.querySelectorAll("details.dd,details.mnav");dds.forEach(function(d){{d.addEventListener("toggle",function(){{if(d.open)dds.forEach(function(o){{if(o!==d)o.open=false}})}})}});
+document.addEventListener("click",function(ev){{dds.forEach(function(d){{if(d.open&&!d.contains(ev.target))d.open=false}})}});
+document.addEventListener("keydown",function(ev){{if(ev.key==="Escape")dds.forEach(function(d){{d.open=false}})}});}})();</script><script src="{root}search.js?v={ASSET_VER['search.js']}" defer></script><script src="{root}user.js?v={ASSET_VER['user.js']}" defer></script></body></html>"""
+
+
+SITE_MENU = [
+    ("배우기", [("learn/", "📚", "기초 가이드", "기능을 처음부터 영상과 단계로"),
+               ("manual/", "📘", "심화 매뉴얼", "옵션 전체·값 비교 그림·응용"),
+               ("compare/", "⚖️", "툴 비교", "같은 작업을 툴마다 어떻게"),
+               ("guide/", "🧭", "도구별 정리", "도구별 소식·자료 한곳에")]),
+    ("문제 해결", [("fix/", "🛠", "오류 해결", "오류 메시지로 원인과 해결"),
+                 ("changes/", "🆕", "버전별 바뀐 점", "새 버전에서 달라진 것")]),
+    ("자료", [("assets/", "🎁", "무료 에셋", "텍스처·재질·HDRI"),
+             ("recipes/", "🔧", "실무 파이프라인", "바로 쓰는 검증 스크립트"),
+             ("resources/", "📎", "추천 자료", "강의·도구·커뮤니티")]),
+    ("소식", [("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
+             ("showcase/", "🎨", "이번 주 작품", "눈여겨볼 작업물"),
+             ("feed.xml", "📡", "RSS 구독", "새 글을 받아보기")]),
+]
+
+
+def site_nav(root: str) -> str:
+    """상단 메뉴: 묶음 4개 + 펼침 메뉴(데스크톱) / '메뉴' 시트(모바일). 같은 데이터로 둘 다 — 항목이 늘어도 잘리지 않음."""
+    def items(links):
+        return "".join(f'<a href="{root}{u}" data-sec="{u.split("/")[0]}"><span class="mi" aria-hidden="true">{ic}</span>'
+                       f'<span><b>{e(t)}</b><small>{e(d)}</small></span></a>' for u, ic, t, d in links)
+    desk = "".join(f'<details class="dd"><summary data-secs="{" ".join(u.split("/")[0] for u, *_ in links)}">{e(name)}'
+                   f'</summary><div class="ddm" role="menu">{items(links)}</div></details>' for name, links in SITE_MENU)
+    sheet = "".join(f'<div class="msec"><h2>{e(name)}</h2>{items(links)}</div>' for name, links in SITE_MENU)
+    return f'<nav class="topnav" aria-label="사이트">{desk}</nav>', sheet
+
+
+def nav_tail(root: str) -> str:
+    """검색창 오른쪽: 저장(아이콘) + 모바일 '메뉴' 시트."""
+    sheet = site_nav(root)[1]
+    return (f'<a class="iconbtn" href="{root}saved/" aria-label="저장한 글" title="저장한 글">☆</a>'
+            f'<details class="mnav"><summary aria-label="메뉴 열기"><span aria-hidden="true">☰</span> 메뉴</summary>'
+            f'<div class="sheet"><div class="sheet-in">{sheet}<div class="msec"><a href="{root}about/">📘 소개</a>'
+            f'<a href="{root}contact/">✉️ 문의</a></div></div></div></details>')
 
 
 def kst_date(ts: str) -> str:
