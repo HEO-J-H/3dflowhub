@@ -7120,5 +7120,53 @@
     "id": "p-d1a307157f",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 TRELLIS 관련 오픈소스 모델 검토 및 1단계 선택 엔진 구현 내용이 최근 커밋 및 끝낸 제안 목록에 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-02T14:30:41+00:00",
+    "kind": "proposal",
+    "id": "p-8ba9d76745",
+    "title": "대기 중인 백엔드 입력 검증 PR(#40~#44) 최종 점검 및 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42, #43, #44가 백엔드 입력 검증 및 PBR 맵 생성 관련으로 승인 대기 상태에 있습니다.",
+    "proposal": "GitHub에서 PR #40~#44의 테스트 통과 여부를 확인하고, 이상이 없으면 최종 승인하여 병합합니다.",
+    "expected": "백엔드 입력값 검증 및 에러 핸들링 로직이 안정적으로 반영되어 서비스 신뢰도가 높아집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T14:30:41+00:00",
+    "kind": "proposal",
+    "id": "p-a6ea5a1c37",
+    "title": "웹 버전(web/) 이미지 처리 Fallback 에러 메시지 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증이 강화됨에 따라 브라우저 단인 web/ 폴더에서도 잘못된 이미지 입력 시 사용자 피드백을 명확히 할 필요가 있습니다.",
+    "proposal": "web/script.js(또는 관련 JS 파일)에 잘못된 이미지 포맷이나 빈 입력에 대한 직관적인 alert/UI 에러 메시지 표시 로직을 보완합니다.",
+    "expected": "사용자가 브라우저에서 즉각적으로 잘못된 입력을 인지하고 올바른 파일을 업로드할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T14:31:03.483007+00:00",
+    "kind": "decision",
+    "id": "p-8ba9d76745",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T14:31:03.492525+00:00",
+    "kind": "decision",
+    "id": "p-a6ea5a1c37",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
   }
 ]
