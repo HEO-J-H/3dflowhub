@@ -27,14 +27,64 @@
     {
       "heading": "탈출술과 문화적 의미",
       "body": "Houdini의 탈출술은 단순한 쇼를 넘어 인간의 자유와 억압에 대한 은유로 해석된다. 그는 감옥, 물속, 불 속 등 극한 상황에서 탈출함으로써 관객에게 '불가능을 가능하게' 하는 메시지를 전달했다. 이러한 테마는 현대 VFX나 게임에서 플레이어에게 도전과 성취감을 주는 디자인 요소와도 연결된다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Houdini는 절차적 그래프와 VEX Script를 통해 ‘탈출’이라는 메타포를 실제 작업 흐름에 적용한다. 예를 들어 SOP 네트워크에서 ‘Escape’라는 이름의 서브넷을 만들고, Particle, 유체, 파괴 시뮬레이션을 단계별로 연결하면 복잡한 VFX를 한 번에 재현할 수 있다. PDG(Procedural Dependency Graph)를 활용하면 여러 장면을 자동으로 배치하고, 결과물을 일괄 렌더링하거나 게임 엔진으로 바로 내보낼 수 있어, Houdini의 자유로운 탈출술이 프로덕션 효율성으로 전환된다.",
+      "added": true
+    },
+    {
+      "heading": "커뮤니티 반응과 주의점",
+      "body": "최근 Houdini 20.5에서 Sculpting Nodes와 COPs가 Substance Designer와 유사하게 추가되었다는 소식이 커뮤니티에 퍼졌다[1]. 이 기능은 절차적 텍스처 제작과 디테일 스컬프팅을 한 워크플로우 안에서 가능하게 하지만, 아직 베타 단계라 GPU 메모리 사용량이 높고 일부 노드가 불안정할 수 있다. 따라서 상업 프로젝트에 바로 적용하기보다는 테스트 환경에서 충분히 검증하고, 최신 빌드를 유지하는 것이 권장된다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "1) SideFX 홈페이지에서 Houdini Apprentice(무료 비상업용) 최신 버전을 다운로드한다. 2) 설치 후 ‘Houdini Core Tools’를 활성화하고, 기본 튜토리얼인 ‘Getting Started with Houdini’를 따라 SOP와 VEX 기초를 익힌다. 3) Houdini 20.5 이상을 사용한다면 ‘Sculpting Nodes’ 메뉴가 ‘Tab → Sculpt’에 추가된 것을 확인한다. 4) SideFX 공식 유튜브 채널과 Houdini Forum에서 ‘Procedural Modeling’·‘COPs’ 사례를 찾아 실습한다. 5) 프로젝트에 적용하기 전, ‘File → Export → FBX’ 혹은 ‘USD’ 옵션으로 파이프라인 호환성을 검증한다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Houdini Apprentice에서도 최신 Sculpting Nodes를 사용할 수 있나요?",
+      "a": "네, Houdini 20.5 이상을 설치하면 Apprentice 버전에서도 Sculpting Nodes를 이용할 수 있지만, 상업적 용도로는 제한이 있으니 비상업 프로젝트에만 적용하십시오."
+    },
+    {
+      "q": "Houdini와 Blender Geometry Nodes 중 어느 것을 선택해야 할까요?",
+      "a": "Houdini는 VEX와 PDG를 통한 깊이 있는 절차적 제어와 대규모 파이프라인 연동에 강점이 있어 영화·게임 스튜디오에 적합하고, Blender는 UI가 직관적이고 완전 무료이므로 개인·소규모 프로젝트에 유리합니다. 작업 규모와 팀 환경을 고려해 선택하면 됩니다."
+    }
+  ],
   "media": {
     "image": "",
     "video": ""
   },
   "collected_at": "2026-11-02T03:08:11.170914+00:00",
   "notion_id": "",
-  "id": "2026-11-02-249ba9ce0d17c632"
+  "id": "2026-11-02-249ba9ce0d17c632",
+  "refs": [
+    {
+      "source": "BlenderArtists",
+      "title": "Houdini 20.5 is adding sculpting nodes+ COPs becoming like Substance Designer",
+      "url": "https://blenderartists.org/t/houdini-20-5-is-adding-sculpting-nodes-cops-becoming-like-substance-designer/1534480",
+      "excerpt": "deleted my first reply by mistake… The main problem with FOSS - and the one that Blender has escaped for all those years - is funds and time spend by devs. One goes obviously with the other. Devs need money to live, and FOSS normally doesn't pay (much). When it's all 'out of love' you see a lot o...",
+      "replies": 123
+    }
+  ],
+  "videos": [
+    {
+      "id": "G1-VlJ0xnx4",
+      "title": "Houdini Escape Magic Tutorial #magic #magician #houdini #houdinitutorial #cardmagic #cardmagictricks",
+      "author": "Pasteboard Expert"
+    },
+    {
+      "id": "KOX1XW_c5uo",
+      "title": "How To Finally Escape Houdini Tutorial Hell",
+      "author": "WTTR Labs"
+    }
+  ],
+  "enriched_at": "2026-11-02T03:40:47+00:00",
+  "quality": {
+    "before": 585,
+    "after": 1507
+  }
 }

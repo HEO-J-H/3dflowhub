@@ -30,14 +30,56 @@
     {
       "heading": "브랜드와의 통합 전략",
       "body": "퍼펫은 Dolmio의 레드닷 시스템에 자연스럽게 녹아들도록 설계되었다. 레드닷 안에서 단일 캐릭터가 등장하거나 전체 가족이 무대에 오를 수 있어 유연한 활용이 가능하다. 이를 통해 문화·콘텐츠·커머스 전 영역에서 일관된 브랜드 경험을 제공한다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Dolmio 퍼펫을 3D 프로젝트에 적용하려면 먼저 기존 캐릭터의 실루엣과 표정을 레퍼런스로 스캔하거나 사진을 수집합니다. 이후 Blender·Maya 등에서 베이스 메쉬를 low‑poly 형태로 모델링하고, 고해상도 디테일(옷감 질감·미세 주름)은 디스플레이스먼트와 서브디비전 스컬프팅으로 추가합니다. 텍스처는 Substance Painter로 PBR 머티리얼을 만들고, 캐릭터마다 고유한 행동 원칙을 정의해 애니메이션 레이어를 구성합니다. 마지막으로 Dolmio의 Red Dot system에 맞춰 FBX 혹은 USDZ 형식으로 익스포트하면, 브랜드 캠페인이나 인터랙티브 콘텐츠에 바로 삽입할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "비슷한 도구·대안과 비교",
+      "body": "Dolmio가 활용한 Red Dot system은 캐릭터를 단일 오브젝트 혹은 패밀리 형태로 관리해 다양한 미디어에 재사용하기 용이합니다. 이와 유사한 시스템으로는 Unity의 Prefab Variants와 Unreal Engine의 Blueprint Actor가 있습니다. Prefab Variants는 기본 모델을 공유하면서 파생 버전을 만들 수 있어 빠른 변형에 강점이 있지만, 복잡한 브랜드 연동 시 Red Dot처럼 중앙 관리가 어려울 수 있습니다. Blueprint Actor는 시각적 스크립팅으로 인터랙션을 구현하지만, 텍스처와 머티리얼 관리가 별도이므로 일관된 브랜드 경험을 제공하려면 추가 파이프라인이 필요합니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "Dolmio 퍼펫 리바이벌을 모방하려면 먼저 3D 모델링 툴(Blender, Maya 등)과 텍스처링 툴(Substance Painter) 설치가 필요합니다. 이후 Red Dot system과 호환되는 포맷(FBX, USD)으로 익스포트하는 방법을 학습하고, 브랜드 가이드라인에 맞는 색상·머티리얼 표준을 정리합니다. 마지막 단계는 프로젝트에 맞는 렌더 엔진(Arnold, V-Ray 등)을 선택해 라이트와 Shader를 설정하고, 최종 파일을 검수 후 브랜드 담당자와 공유하는 절차를 따릅니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Dolmio 퍼펫을 실시간 엔진에 적용하려면 어떤 포맷이 가장 안전한가요?",
+      "a": "Red Dot system이 FBX와 USD를 모두 지원하므로, 엔진이 지원하는 포맷 중 가장 최신 버전의 USDZ를 권장합니다. USD는 레이어와 레퍼런스 관리가 뛰어나며, 실시간 Pipeline 머티리얼과 애니메이션을 손실 없이 전달합니다."
+    },
+    {
+      "q": "퍼펫의 작은 움직임을 자연스럽게 만들려면 어떤 리깅 기법을 사용해야 하나요?",
+      "a": "각 캐릭터에 별도 Facial Rig와 Body Rig를 구성하고, Blend Shape(또는 Morph Target)으로 미세 표정 변화를 제어합니다. 또한, 디테일한 스킨 웨이트를 손으로 조정해 관절 주변의 주름 움직임을 자연스럽게 만들면 관객과의 정서적 연결이 강화됩니다."
+    }
+  ],
   "media": {
     "image": "https://cdn.mos.cms.futurecdn.net/fwuJpgdqWGZ4hSU8iNDj7K-1366-80.png",
     "video": ""
   },
   "collected_at": "2026-11-02T02:48:06.040840+00:00",
   "notion_id": "",
-  "id": "2026-11-02-e589187484fc3851"
+  "id": "2026-11-02-e589187484fc3851",
+  "refs": [],
+  "videos": [
+    {
+      "id": "GyVAbWOWRqk",
+      "title": "Double Edged Swords! More Options for VIOLENCE!!",
+      "author": "Sellsword Arts"
+    },
+    {
+      "id": "5J1rWoR4MII",
+      "title": "The Double-Edged Sword of Nostalgia #shorts",
+      "author": "mr clippertron"
+    }
+  ],
+  "enriched_at": "2026-11-02T03:41:14+00:00",
+  "quality": {
+    "before": 629,
+    "after": 1599
+  }
 }

@@ -1,0 +1,93 @@
+{
+  "id": "blender-cycles-samples-and-denoising-23c7",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Cycles samples and denoising",
+  "title": "Cycles 샘플·디노이즈",
+  "summary": "Cycles 렌더링 시 이미지 품질을 결정하는 샘플 수와 노이즈를 제거하는 Denoising 기능을 설정합니다.",
+  "when": [
+    "노이즈가 많이 보이는 저샘플 렌더링 결과를 개선하고 싶을 때",
+    "렌더 타임을 최소화하면서도 깔끔한 결과물을 얻고 싶을 때",
+    "뷰포트 실시간 렌더링에서도 빠른 피드백이 필요할 때"
+  ],
+  "steps": [
+    "Properties → Render Properties (카메라 아이콘) → Sampling 패널에서 Render → Samples 값을 원하는 수치(예: 128)로 설정",
+    "Properties → Render Properties → Sampling 패널에서 Viewport → Samples 값을 낮게(예: 32) 설정",
+    "Properties → Render Properties → Denoising 섹션에서 'Render' 체크 후 'OptiX' 또는 'OpenImageDenoise' 선택",
+    "Viewport 상단 Shading 메뉴 → Rendered 모드 → 'Denoising' 체크 (옵션이 보이면)"
+  ],
+  "params": [
+    {
+      "name": "Render Samples",
+      "desc": "최종 이미지 품질을 결정, 수치가 높을수록 노이즈 감소하지만 렌더 시간이 증가합니다"
+    },
+    {
+      "name": "Viewport Samples",
+      "desc": "뷰포트 실시간 렌더링 품질, 낮게 설정해도 충분히 빠른 피드백을 제공합니다"
+    },
+    {
+      "name": "Denoising",
+      "desc": "렌더링 후 자동으로 노이즈를 제거해 깨끗한 이미지로 변환합니다"
+    },
+    {
+      "name": "Denoising Device",
+      "desc": "CPU(OpenImageDenoise) 또는 GPU(OptiX) 선택, GPU가 일반적으로 빠릅니다"
+    },
+    {
+      "name": "Clamp Direct",
+      "desc": "직접 조명 노이즈를 제한해 밝은 영역의 잡음을 감소시킵니다"
+    },
+    {
+      "name": "Clamp Indirect",
+      "desc": "간접 조명 노이즈를 제한해 어두운 영역의 잡음을 감소시킵니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 조명 테스트 씬",
+      "steps": [
+        "Render Samples를 64로 설정",
+        "Denoising을 OptiX로 활성화",
+        "클램프 값을 0으로 두고 렌더",
+        "노이즈가 거의 없는 깨끗한 결과 확인"
+      ]
+    },
+    {
+      "title": "뷰포트에서 빠른 머티리얼 확인",
+      "steps": [
+        "Viewport Samples를 16으로 낮게 설정",
+        "Denoising을 OpenImageDenoise 활성화",
+        "렌더드 뷰에서 머티리얼 색상과 반사 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "샘플 수를 너무 낮게 설정 → 노이즈가 남아있음 → Render Samples를 2~3배 올리기",
+    "Denoising을 GPU가 아닌 CPU로 강제 → 속도 저하 → 'Denoising Device'를 OptiX 또는 CUDA로 변경",
+    "Clamp 값을 과도하게 낮게 설정 → 디테일 손실 → 기본값(0) 또는 필요 시만 조정"
+  ],
+  "related": [
+    "Light Paths",
+    "Adaptive Sampling",
+    "Film Exposure",
+    "Viewport Shading"
+  ],
+  "videos": [
+    {
+      "id": "EKb5G_Efunw",
+      "title": "Best Cycles Render Settings Explained in 3 Minutes (Blender 4.5 Tutorial)",
+      "author": "Afternoon CG"
+    },
+    {
+      "id": "yEl2c_yclKM",
+      "title": "Faster Rendering and Less Noise in Blender Cycles",
+      "author": "Ganondork"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cycles%20samples%20and%20denoising",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T03:38:29.983395+00:00"
+}

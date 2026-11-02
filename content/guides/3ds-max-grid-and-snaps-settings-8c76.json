@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-grid-and-snaps-settings-8c76",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Grid and Snaps settings",
+  "title": "스냅 설정",
+  "summary": "Grid and Snap Settings는 작업 공간의 격자와 스냅 옵션을 정의해 정밀한 이동·배치를 가능하게 합니다.",
+  "when": [
+    "정밀한 정점·에지 정렬이 필요할 때",
+    "객체를 일정 간격으로 배열하거나 바닥에 정확히 놓을 때",
+    "모델링 중 스케일·회전 기준을 일정하게 유지하고 싶을 때"
+  ],
+  "steps": [
+    "S키를 눌러 Snap을 켭니다(아이콘이 주황색으로 변함)",
+    "툴바의 Magnet 아이콘을 클릭하고 우클릭 → Grid and Snap Settings… 선택",
+    "Dialog에서 Grid Spacing·Snap Increment·Snap Angle 등 값을 설정합니다",
+    "Snap Type(Vertex, Edge, Face, Grid) 체크박스로 원하는 스냅 방식을 선택합니다",
+    "OK를 눌러 적용합니다"
+  ],
+  "params": [
+    {
+      "name": "Grid Spacing",
+      "desc": "격자 간격을 지정해 이동 기준을 설정합니다"
+    },
+    {
+      "name": "Snap Increment",
+      "desc": "스냅 간격을 정의해 정밀 이동을 제어합니다"
+    },
+    {
+      "name": "Snap Angle",
+      "desc": "각도 스냅 단위를 설정해 회전 시 일정 각도로 맞춥니다"
+    },
+    {
+      "name": "Snap Type",
+      "desc": "Vertex·Edge·Face·Grid 등 스냅 대상 종류를 선택합니다"
+    },
+    {
+      "name": "Snap Toggle",
+      "desc": "S키로 스냅 켜기·끄기 전환합니다"
+    },
+    {
+      "name": "Grid Lines",
+      "desc": "격자 라인 표시 여부를 토글합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 모델링 시 정점 정렬",
+      "steps": [
+        "S키로 Snap 켜기",
+        "Snap Increment를 0.5 units로 설정",
+        "Snap Type에서 Vertex 체크",
+        "정점을 이동해 다른 정점에 정확히 맞춤"
+      ]
+    },
+    {
+      "title": "객체를 바닥에 정확히 배치",
+      "steps": [
+        "S키로 Snap 켜기",
+        "Snap Type에서 Grid 체크",
+        "Grid Spacing을 10 units로 설정",
+        "객체를 이동하면 격자에 딱 맞게 놓인다"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Snap이 켜져 있지 않음 → S키로 Snap 토글",
+    "Snap Increment가 너무 작아 움직임이 눈에 안 띔 → 적절한 값(예: 1 unit)으로 조정",
+    "Grid와 Snap 단위가 서로 달라 정렬이 어긋남 → Grid Spacing과 Snap Increment를 동일하게 맞춤"
+  ],
+  "related": [
+    "Snap Settings",
+    "Grid Settings",
+    "Increment Snap",
+    "Alignment Tools"
+  ],
+  "videos": [
+    {
+      "id": "Y5gf152WjPM",
+      "title": "3ds max Snap settings",
+      "author": "Saad Minhas"
+    },
+    {
+      "id": "6vMF-9ELbFQ",
+      "title": "How to use Snaps in 3ds Max for architectural visualization tips and tricks",
+      "author": "ArchViz Explained"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Grid%20and%20Snaps%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Snap",
+    "Magnet",
+    "Grid",
+    "Snap Settings"
+  ],
+  "at": "2026-11-02T03:38:19.895533+00:00"
+}
