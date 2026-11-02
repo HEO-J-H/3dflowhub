@@ -1,0 +1,82 @@
+{
+  "id": "lod",
+  "title": "LOD 만들기",
+  "task": "creating LODs for real-time / game engines",
+  "summary": "게임 엔진 최적화를 위해 폴리곤 수를 줄이는 LOD(Level of Detail) 생성 작업은 각 3D DCC 툴의 고유한 리토폴로지 및 디시메이션 알고리즘에 따라 차이가 있습니다. 각 툴의 특징을 이해하면 실시간 퍼포먼스와 시각적 완성도 사이에서 최적의 균형을 찾을 수 있습니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Modifier Properties → Add Modifier → Decimate",
+      "how": "Decimate 모디파이어를 추가하고 Collapse 방식을 선택한 뒤 Ratio 값을 낮춰 폴리곤 수를 줄입니다. 버텍스 그룹을 지정해 특정 영역의 디테일을 유지할 수도 있습니다.",
+      "strength": "직관적이고 가볍게 폴리곤을 줄일 수 있음",
+      "limit": "복잡한 토폴로지의 흐름을 수동으로 제어하기는 어려움"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Modifier List → ProOptimizer",
+      "how": "ProOptimizer 모디파이어를 적용한 뒤 Calculate를 누르고 Vertex % 또는 Polygon % 값을 조절합니다. Keep Textures와 Keep UV 세팅으로 텍스처 깨짐을 방지할 수 있습니다.",
+      "strength": "원거리 오브젝트의 UV와 재질을 비교적 잘 보존함",
+      "limit": "사전 계산(Calculate) 과정이 필요하여 대량 작업 시 시간이 걸림"
+    },
+    {
+      "tool": "Maya",
+      "where": "Mesh → Reduce",
+      "how": "오브젝트를 선택한 후 Reduce 옵션 창을 열어 Percentage 또는 Triangle count를 설정합니다. Preserve borders나 Keep original constraints를 활용해 외곽 형태를 유지합니다.",
+      "strength": "메뉴 접근이 빠르고 마야 파이프라인과 완벽히 연동됨",
+      "limit": "극단적인 수치에서 노멀이나 하드엣지가 무너질 수 있음"
+    },
+    {
+      "tool": "Houdini",
+      "where": "PolyReduce SOP",
+      "how": "PolyReduce 노드를 지오메트리 네트워크에 연결하고 Percentage나 Target Polygon Count로 조절합니다. Attribute를 이용해 특정 부위의 감소율을 제어할 수 있습니다.",
+      "strength": "프로시저럴 방식으로 여러 단계의 LOD를 한 번에 자동 생성 가능",
+      "limit": "노드 기반 작업에 대한 이해가 필요함"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Static Mesh Editor → LOD Settings",
+      "how": "스태틱 메시 에디터 패널의 LOD Settings에서 Number of LODs를 설정하고 Auto Compute LODs를 체크해 엔진 내부에서 자동으로 단계별 메시를 생성합니다.",
+      "strength": "외부 툴 작업 없이 엔진 내에서 즉시 테스트 및 적용 가능",
+      "limit": "커스텀 토폴로지 제어가 외부 툴에 비해 제한적임"
+    }
+  ],
+  "pick": [
+    {
+      "case": "프로시저럴 파이프라인에서 대량의 에셋 LOD를 일괄 생성할 때",
+      "tool": "Houdini",
+      "why": "수백 개의 에셋에 동일한 규칙으로 LOD 0부터 3까지 자동으로 생성하고 바인딩할 수 있기 때문입니다."
+    },
+    {
+      "case": "게임 아트 작업 중 특정 하이폴리곤 오브젝트의 용량을 빠르게 줄여야 할 때",
+      "tool": "3ds Max",
+      "why": "ProOptimizer의 뛰어난 UV 및 머티리얼 보존 기능 덕분에 텍스처 재작업 공수와 시간을 크게 아낄 수 있기 때문입니다."
+    },
+    {
+      "case": "빠른 프로토타이핑 및 인디 게임 개발 환경에서 즉시 최적화할 때",
+      "tool": "Blender",
+      "why": "가벼운 인터페이스와 Decimate 모디파이어로 즉각적인 폴리곤 감소 결과를 확인할 수 있기 때문입니다."
+    },
+    {
+      "case": "외부 툴을 거치지 않고 게임 엔진 안에서 곧바로 단계를 확정할 때",
+      "tool": "Unreal Engine",
+      "why": "임포트 직후 엔진 내장 제너레이터로 거리별 화면 점유율에 따른 최적화를 빠르게 끝낼 수 있기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "FBX 내보내기 시 각 DCC 툴의 기본 축 방향(Blender는 Z-up, 3ds Max/Maya는 Y-up)과 단위를 일치시켜 스케일 왜곡을 방지합니다.",
+    "LOD별 메시 이름은 언리얼 엔진 컨벤션에 맞춰 _LOD0, _LOD1, _LOD2 형태로 일관되게 네이밍합니다.",
+    "머티리얼 슬롯 개수와 이름이 모든 LOD 단계에서 동일하게 유지되어야 엔진에서 텍스처가 누락되지 않습니다.",
+    "익스포트 전 트랜스폼(Transform) 값을 반드시 초기화(Freeze / Apply)하여 엔진에서의 위치 틀림을 방지합니다."
+  ],
+  "apply": [
+    "Houdini를 활용해 배경 건물 에셋들의 LOD 체인을 자동 빌드하고 USD 파이프라인으로 언리얼 엔진에 일괄 임포트합니다.",
+    "3ds Max의 ProOptimizer로 제작한 커스텀 LOD를 게임 엔진에 적용해 자동 생성 LOD와의 팝핑(Popping) 현상을 비교 검증합니다.",
+    "캐릭터 장비(Armor)나 프랍에 Decimate를 적용해 모바일 플랫폼용 저사양 빌드를 구축합니다."
+  ],
+  "pitfalls": [
+    "{'pitfall': 'LOD 전환 시 텍스처 UV가 심하게 찢어지거나 밀리는 현상', 'fix': '모디파이어 설정에서 Preserve UVs 또는 Keep Textures 옵션을 반드시 켠 후 다시 계산합니다.'}",
+    "{'pitfall': '엔진에서 LOD가 교체될 때 오브젝트 위치나 피벗이 튀는 현상', 'fix': '모든 LOD 단계의 메시가 동일한 월드 원점과 피벗 포인트를 가지도록 익스포트 전 정렬합니다.'}",
+    "{'pitfall': '지나친 폴리곤 감소로 실루엣이 무너져 시각적 이질감이 드는 현상', 'fix': '가장 낮은 LOD 단계에서는 법선(Normal) 정보를 보존하거나 셰이더 노멀 맵을 활용해 실루엣을 보완합니다.'}"
+  ],
+  "at": "2026-11-02T14:22:01+00:00"
+}
