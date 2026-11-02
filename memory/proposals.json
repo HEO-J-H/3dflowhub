@@ -5626,5 +5626,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T09:50:10+00:00",
+    "kind": "proposal",
+    "id": "p-62c8752063",
+    "title": "대기 중인 백엔드 검증 PR (#37, #38, #40) 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 backend/app/services/의 url_ingest.py 및 mesh_from_image.py 검증 로직을 담은 PR #37, #38, #40 등이 대기 상태입니다.",
+    "proposal": "GitHub에서 해당 PR들의 테스트 통과 여부를 확인하고 순차적으로 승인 및 머지합니다.",
+    "expected": "핵심 파이프라인의 입력 오류 방지 및 코드 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T09:50:10+00:00",
+    "kind": "proposal",
+    "id": "p-d53ab369db",
+    "title": "PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/app/services/pbr_generator.py의 무결성 검증 관련 PR #43과 #44가 대기 중입니다.",
+    "proposal": "PBR 생성 단계의 예외 처리 테스트 결과를 점검하고 코드를 머지합니다.",
+    "expected": "PBR 텍스처 생성 시 비정상 입력에 대한 예외 처리 강화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T09:50:58.442297+00:00",
+    "kind": "decision",
+    "id": "p-62c8752063",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T09:50:58.449642+00:00",
+    "kind": "decision",
+    "id": "p-d53ab369db",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T09:51:15.346569+00:00",
+    "kind": "triage",
+    "id": "p-d53ab369db",
+    "verdict": "done_already",
+    "reason": "PR #43과 #44 관련 PBR 맵 및 이미지 검증 작업은 이미 최근 커밋과 완료된 제안 목록에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-02T09:51:15.353367+00:00",
+    "kind": "decision",
+    "id": "p-d53ab369db",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): PR #43과 #44 관련 PBR 맵 및 이미지 검증 작업은 이미 최근 커밋과 완료된 제안 목록에 반영되었습니다."
   }
 ]
