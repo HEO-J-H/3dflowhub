@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-maxscript-rollout-handler-exception-0db71",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript Rollout Handler Exception",
+  "title": "MAXScript Rollout Handler Exception 에러 원인 및 디버깅 방법",
+  "summary": "MAXScript Rollout Handler Exception은 3ds Max의 롤아웃(Rollout) 인터페이스 내부 이벤트 처리 중 Script 코드 오류가 발생했음을 알리는 메시지입니다. 주로 사용자 정의 스크립트나 플러그인 인터페이스에서 예외 처리가 되지 않아 발생합니다.",
+  "causes": [
+    "사용자 정의 MAXScript 롤아웃 내부의 이벤트 핸들러(예: 버튼 클릭, 값 변경 등)에서 런타임 에러 발생",
+    "존재하지 않는 노드나 속성을 Script가 참조하려고 시도",
+    "이전 버전의 스크립트나 플러그인이 현재 3ds Max 버전과 호환되지 않음"
+  ],
+  "steps": [
+    "MAXScript Listener 창(F11)을 열어 정확한 에러 메시지와 발생 라인 번호를 확인합니다.",
+    "문제가 발생한 Script 파일(.ms, .mcr)을 텍스트 편집기나 MAXScript Editor로 엽니다.",
+    "에러 메시지에 언급된 라인 주변의 변수 선언과 객체 존재 여부(isValidNode 등)를 점검합니다.",
+    "에러가 발생하는 코드 블록에 try-catch 구문을 추가하여 예외 처리를 강화합니다.",
+    "수정된 Script를 재평가(Evaluate All)하거나 3ds Max를 재시작합니다."
+  ],
+  "check": [
+    "MAXScript Listener 창에 더 이상 빨간색 예외 에러 메시지가 출력되지 않는지 확인합니다.",
+    "문제가 되었던 롤아웃의 버튼이나 UI 컨트롤을 조작했을 때 정상적으로 동작하는지 테스트합니다."
+  ],
+  "prevent": [
+    "Script 작성 시 항상 try-catch 예외 처리를 포함하여 예기치 않은 중단을 방지합니다.",
+    "객체를 참조하기 전에 해당 노드가 실제로 존재하는지 확인하는 조건을 추가합니다."
+  ],
+  "keywords": [
+    "MAXScript 에러",
+    "MAXScript 롤아웃 예외",
+    "3ds Max Script 오류",
+    "롤아웃 핸들러 엑셉션",
+    "맥스 리스너 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T08:09:09+00:00"
+}

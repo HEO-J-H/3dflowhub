@@ -1,0 +1,41 @@
+{
+  "id": "3ds-max-mesh-has-duplicate-vertices-or-overlapping-3132d",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Mesh has duplicate vertices or overlapping faces",
+  "title": "Mesh has duplicate vertices or overlapping faces 경고 해결법",
+  "summary": "3ds Max에서 메시(Mesh)에 중복된 Vertex나 겹친 면(Face)이 존재할 때 발생하는 경고 및 오류 메시지입니다. 시뮬레이션, 렌더링, 언랩 작업 시 예기치 않은 오류를 유발할 수 있습니다.",
+  "causes": [
+    "Extrude나 Bevel 작업 중 실수로 동일한 위치에 면이나 Vertex가 중복 생성된 경우",
+    "Symmetry나 Mirror 수정자(Modifier) 적용 후 중심점(Center) 병합을 누락한 경우",
+    "CAD 데이터나 외부 파일(OBJ, FBX 등)을 임포트하는 과정에서 발생한 토폴로지 오류",
+    "Slice나 Cut 도구를 사용할 때 Vertex가 정확히 결합되지 않고 겹쳐진 경우"
+  ],
+  "steps": [
+    "문제가 발생하는 오브젝트를 선택하고 Modifier List에서 Edit Poly 또는 Editable Poly를 엽니다.",
+    "Sub-object Level을 Vertex(Hotkey 1)로 전환하고 전체 Vertex를 선택합니다(Ctrl+A).",
+    "Command Panel의 Edit Vertices 롤아웃에서 Weld 옆의 설정 버튼(Settings)을 클릭합니다.",
+    "Threshold 값을 적절히 낮게 설정하여 인접한 Vertex가 붙지 않도록 주의하며 Weld를 실행합니다.",
+    "Modifier List에서 STL Check 수정자를 추가하여 Check에 Overlapping Faces가 체크되어 있는지 확인합니다.",
+    "다시 Editable Poly로 돌아와 Element Level(Hotkey 5)에서 Polygon을 선택한 후 Detect Planar 또는 Explicit Normal 관련 도구를 정리합니다."
+  ],
+  "check": [
+    "STL Check 수정자를 적용했을 때 오류 메시지나 붉은색 경고 표시가 사라지는지 확인합니다.",
+    "Sub-object Level에서 Polygon을 선택하고 Shift를 눌러 움직였을 때 안쪽에 숨겨진 중복 면이 없는지 확인합니다."
+  ],
+  "prevent": [
+    "Symmetry 수정자 사용 시 Weld Seam 옵션이 활성화되어 있는지 항상 확인합니다.",
+    "외부 파일 Import 후 반드시 전체 Vertex Weld 작업을 거치는 습관을 들입니다.",
+    "modeling 과정에서 불필요하게 겹쳐진 면이 생기지 않도록 Quick Slice나 Cut 사용 후 Vertex 연결 상태를 점검합니다."
+  ],
+  "keywords": [
+    "맥스 중복 Vertex",
+    "Mesh has duplicate vertices",
+    "맥스 겹친 면 해결",
+    "Editable Poly Weld",
+    "STL Check 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T08:09:12+00:00"
+}

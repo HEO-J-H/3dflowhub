@@ -5036,5 +5036,133 @@
     "kind": "message",
     "id": "m-79ca19b4ca",
     "text": "pixyz studio 관련 자료도 올려줘"
+  },
+  {
+    "at": "2026-11-02T08:08:49.376257+00:00",
+    "kind": "report",
+    "id": "r-2026-11-02T08:08",
+    "text": "최근 7일간 총 391건의 콘텐츠가 수집 및 발행되며 활발한 유입 기반을 다지고 있으나, 30일 방문자 수(568명)에 비해 검색 및 외부 유입 다변화가 여전히 필요한 상태입니다. 오너가 요청한 Pixyz Studio 관련 자료 수집 및 가이드 확대를 반영하여 오늘 운영 계획을 조율합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.6,
+      "roundups": 0.2
+    },
+    "allocation_reason": ""
+  },
+  {
+    "at": "2026-11-02T08:08:49.376257+00:00",
+    "kind": "proposal",
+    "id": "p-8cb753088b",
+    "title": "Pixyz Studio 3D CAD 최적화 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "오너 요청 사항에서 Pixyz Studio 관련 자료 추가 요청이 접수되었으며, 현재 3D DCC 및 게임 개발용 대형 CAD 데이터 최적화 관련 가이드 수요가 높습니다.",
+    "proposal": "Pixyz Studio를 활용한 대규모 CAD 데이터 폴리곤 감축 및 실시간 엔진(Unreal Engine·Unity) 최적화 기초 가이드 2건을 제작합니다.",
+    "expected": "제조업 및 건축 시각화 분야의 실무자 검색 유입 및 체류 시간 증가",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "기타 DCC",
+      "group": "CAD 최적화",
+      "name": "Pixyz Studio Data Preparation",
+      "title_ko": "Pixyz Studio로 대형 CAD 데이터를 게임 엔진용으로 최적화하는 방법"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-02T08:08:49.376257+00:00",
+    "kind": "proposal",
+    "id": "p-c98f2f2fa7",
+    "title": "Unreal Engine 및 Blender 기초 가이드 비중 유지",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 3D DCC(113건)와 Game Engine(77건) 분야의 발행 비중이 높고 독자들의 관심이 꾸준합니다.",
+    "proposal": "에버그린 기초 가이드 제작 비율을 전체 AI 역량의 60%로 유지하여 검색 지속성을 확보합니다.",
+    "expected": "구글 및 검색 엔진을 통한 장기 에버그린 유입 15% 이상 상승",
+    "effort": "낮음",
+    "action": null,
+    "risk": "high"
+  },
+  {
+    "at": "2026-11-02T08:08:49.376257+00:00",
+    "kind": "reply",
+    "id": "y-m-79ca19b4ca",
+    "reply_to": "m-79ca19b4ca",
+    "text": "Pixyz Studio 관련 자료 요청을 반영하여, 대형 CAD 데이터 최적화 및 실시간 엔진 연동 기초 가이드 주제를 추가하고 수집 키워드에 반영했습니다."
+  },
+  {
+    "at": "2026-11-02T08:08:49.421140+00:00",
+    "kind": "decision",
+    "id": "p-8cb753088b",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:08:49.432806+00:00",
+    "kind": "applied",
+    "id": "p-8cb753088b",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-02T08:08:52+00:00",
+    "kind": "proposal",
+    "id": "p-2f148342e2",
+    "title": "대기 중인 코어 PR (#37 ~ #44) 일괄 검토 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 backend/app/services/ 및 url_ingest.py, pbr_generator.py 관련 PR(#37, #38, #40~#44)이 대기 중 상태입니다.",
+    "proposal": "GitHub에서 대기 중인 PR들의 단위 테스트 통과 여부를 확인하고 이상이 없다면 순차적으로 병합합니다.",
+    "expected": "코드 베이스 정돈 및 서비스 안정성 확보",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:08:52+00:00",
+    "kind": "proposal",
+    "id": "p-68df466543",
+    "title": "GitHub RAG 오픈소스 활용 방안 검토 (docs/tech-research.md)",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "운영자 요청: '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘'",
+    "proposal": "로컬 3D 파이프라인 문서 조회나 툴 가이드 검색 편의를 높이기 위해 가벼운 로컬 RAG(예: LangChain 기반 가이드 검색기) 적용 방안을 docs/tech-research.md에 정리합니다.",
+    "expected": "사용자 및 개발자가 3D 파이프라인 관련 정보를 빠르게 찾도록 지원",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:09:31.066434+00:00",
+    "kind": "decision",
+    "id": "p-2f148342e2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #20 및 #22 검토 및 병합",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:09:31.070801+00:00",
+    "kind": "decision",
+    "id": "p-68df466543",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:09:31.074771+00:00",
+    "kind": "decision",
+    "id": "p-c98f2f2fa7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: Unreal Engine 기초 가이드 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:09:33.103358+00:00",
+    "kind": "triage",
+    "id": "p-68df466543",
+    "verdict": "agent",
+    "reason": "로컬 3D 파이프라인 문서 조회를 위한 RAG 적용 방안을 docs/tech-research.md에 작성하는 작업은 코드 및 문서 수정으로 해결할 수 있습니다."
   }
 ]
