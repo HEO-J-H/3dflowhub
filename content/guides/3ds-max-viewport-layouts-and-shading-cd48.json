@@ -1,0 +1,95 @@
+{
+  "id": "3ds-max-viewport-layouts-and-shading-cd48",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Viewport layouts and shading",
+  "title": "뷰포트 배치·Shading",
+  "summary": "Viewport 레이아웃과 쉐이딩을 조정해 작업 화면을 효율적으로 구성하고, 모델을 실시간으로 시각화합니다.",
+  "when": [
+    "다양한 카메라 뷰를 동시에 확인하고 싶을 때",
+    "재질·조명 적용 결과를 빠르게 검토할 때",
+    "렌더링 전 최종 구도를 점검할 때"
+  ],
+  "steps": [
+    "Hotkey Alt+W 로 Viewport Configuration 창 열기",
+    "Layouts 탭에서 원하는 레이아웃 선택 후 Apply 클릭",
+    "각 Viewport 우측 상단의 Shading 아이콘 클릭 또는 F3/F4 로 Wireframe/ shaded 전환",
+    "Shading 드롭다운에서 Smooth+Lighting, Realistic 등 원하는 모드 선택",
+    "필요 시 Viewport → Configure → Display → Background 색상·Grid 조정"
+  ],
+  "params": [
+    {
+      "name": "Layouts",
+      "desc": "미리 정의된 화면 분할 방식 (1, 2, 4, 8 등)"
+    },
+    {
+      "name": "Shading",
+      "desc": "뷰포트에 표시되는 렌더링 방식"
+    },
+    {
+      "name": "Smooth+Lighting",
+      "desc": "법선 보간과 조명 적용, 기본 실시간 쉐이딩"
+    },
+    {
+      "name": "Realistic",
+      "desc": "V-Ray 등 외부 엔진과 동일한 조명·재질 표현"
+    },
+    {
+      "name": "Background Color",
+      "desc": "뷰포트 배경 색, 작업 집중도 향상"
+    },
+    {
+      "name": "Grid",
+      "desc": "바닥에 표시되는 Grid, 스냅 기준"
+    }
+  ],
+  "examples": [
+    {
+      "title": "전체 씬을 4분할로 확인",
+      "steps": [
+        "Alt+W → Layouts 탭 → 4 Viewports 선택 → Apply",
+        "각 Viewport에 카메라 뷰 할당 (Perspective → Front 등)",
+        "F3 로 Wireframe, F4 로 Shaded 전환"
+      ]
+    },
+    {
+      "title": "재질 적용 결과를 Realistic 모드로 미리 보기",
+      "steps": [
+        "Viewport 상단 Shading 아이콘 클릭 → Realistic 선택",
+        "재질 편집 후 실시간 반영 확인",
+        "필요 시 Background Color 를 검은색으로 변경"
+      ]
+    }
+  ],
+  "mistakes": [
+    "쉐이딩 모드를 Smooth+Lighting 으로만 두고 실시간 반사 확인을 놓침 → Realistic 모드로 전환해 확인",
+    "레이아웃 변경 후 카메라가 겹쳐 보임 → 각 Viewport에 적절한 카메라를 할당"
+  ],
+  "related": [
+    "Viewport Configuration",
+    "Shading",
+    "Display Options",
+    "Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "yZcJGej-pf0",
+      "title": "3ds Max Getting Started - Lesson 02 - Navigation and Viewports",
+      "author": "Autodesk 3ds Max Learning Channel"
+    },
+    {
+      "id": "AWEcIvsP9s8",
+      "title": "102   Controlling viewport material shading",
+      "author": "CONSTRUCTION MANAGEMENT"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Viewport%20layouts%20and%20shading",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hotkey Alt",
+    "Viewport Configuration"
+  ],
+  "at": "2026-11-02T03:08:21.083582+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "blender-glass-and-transmission-7f73",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Glass and Transmission",
+  "title": "유리 재질",
+  "summary": "Principled BSDF의 Transmission과 IOR을 활용해 실제와 같은 유리 재질을 만들 수 있습니다.",
+  "when": [
+    "투명한 물체(컵·병·창) 제작 시",
+    "빛이 굴절·반사되는 효과가 필요할 때",
+    "색이 섞인 유리·오팔 같은 재질을 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Shift+A → Shader → Principled BSDF 추가",
+    "Material Properties → Surface 섹션에서 Principled BSDF 선택",
+    "Transmission 값을 1.0으로, IOR을 1.45~1.50 정도로 설정",
+    "Roughness를 0~0.05로 낮추고 필요 시 Volume → Volume Absorption 추가",
+    "렌더 엔진을 Cycles 또는 Eevee 로 설정하고, Eevee일 경우 Screen Space Reflections와 Refraction Depth를 활성화"
+  ],
+  "params": [
+    {
+      "name": "Transmission",
+      "desc": "투명도, 1이면 완전 투명"
+    },
+    {
+      "name": "IOR",
+      "desc": "굴절률, 유리 기본값은 1.45~1.50"
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면 거칠기, 낮을수록 깨끗한 유리"
+    },
+    {
+      "name": "Volume Absorption",
+      "desc": "유리 내부 색상·농도 조절"
+    },
+    {
+      "name": "Thickness",
+      "desc": "두께에 따라 빛 감쇠량이 달라짐"
+    },
+    {
+      "name": "Specular",
+      "desc": "반사 강도, 기본값 0.5 유지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 물병 만들기",
+      "steps": [
+        "Sphere를 추가하고 스케일 조정",
+        "Material에 Principled BSDF 적용 → Transmission=1, IOR=1.48",
+        "Roughness=0.02, Volume Absorption 색상을 물색(파란색)으로 설정"
+      ]
+    },
+    {
+      "title": "색이 섞인 유리창 제작",
+      "steps": [
+        "Plane을 추가하고 얇게 스케일",
+        "Transmission=1, IOR=1.50, Roughness=0.01 설정",
+        "Volume Absorption 색상을 연한 녹색, Density=0.1 로 조절"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Roughness를 0으로 두면 노이즈가 심해짐 → 0.01~0.05 정도로 올려 잡음 감소",
+    "Eevee에서 Refraction이 보이지 않음 → Render Properties → Screen Space Reflections → Refraction 활성화 후 Refraction Depth 값을 늘림",
+    "두 물체가 겹쳐 있을 때 Z‑fight 발생 → 객체의 Thickness 값을 적절히 조정하거나 Backface Culling을 끔"
+  ],
+  "related": [
+    "Principled BSDF",
+    "Glass BSDF",
+    "Volume Absorption",
+    "Refraction Depth"
+  ],
+  "videos": [
+    {
+      "id": "MzIreMJRhqk",
+      "title": "Best Glass Material in Blender Tutorial",
+      "author": "Architecture Topics"
+    },
+    {
+      "id": "jzTK_ShH-9w",
+      "title": "This is the easiest way to make a glass material with the principled BSDF in blender #blendertips",
+      "author": "Machy"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Glass%20and%20Transmission",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T03:08:27.222368+00:00"
+}
