@@ -4,6 +4,7 @@ AI 를 쓰지 않음(요약할 글이 아니라 '목록'이 가치). 모두 상�
 - Poly Haven (CC0, 공개 API) — 텍스처·HDRI·모델
 - ambientCG (CC0, 공개 API) — 재질·HDRI
 - 3DTextures.me · ShareTextures (무료 PBR, 피드) — 각 사이트 라이선스 표기
+- Sketchfab (CC0 내려받기 가능 모델, 공개 API, 좋아요 2개 이상) · Kenney (CC0 게임 에셋 팩, 피드)
 이미지는 각 출처의 썸네일 주소를 그대로 링크(파일을 복사해 오지 않음), 받기는 원래 사이트에서.
 """
 from __future__ import annotations
@@ -17,7 +18,7 @@ import core
 
 PATH = core.ROOT / "content" / "assets.json"
 UA = {"User-Agent": "3dflowhub asset digest (+https://heo-j-h.github.io/3dflowhub/)"}
-KEEP = 400
+KEEP = 600  # 출처가 늘어 보관 개수도 늘림
 TYPE_KO = {"texture": "텍스처·재질", "hdri": "HDRI", "model": "3D 모델"}
 
 
@@ -60,6 +61,21 @@ def from_ambientcg(limit: int = 40) -> list[dict]:
     return out
 
 
+def from_sketchfab(count: int = 24) -> list[dict]:
+    """Sketchfab 공개 API — 내려받기 가능한 CC0(상업 사용 가능) 3D 모델: 새 모델(좋아요 2개 이상) + 인기 모델."""
+    base = f"https://api.sketchfab.com/v3/search?type=models&license=cc0&downloadable=true&count={count}"
+    newest = (_get(base + "&sort_by=-publishedAt") or {}).get("results") or []
+    popular = (_get(base + "&sort_by=-likeCount") or {}).get("results") or []  # 오래 사랑받은 고품질 CC0 (박물관 스캔 등)
+    out = []
+    for m in [m for m in newest if int(m.get("likeCount") or 0) >= 2] + popular:
+        thumbs = sorted((m.get("thumbnails") or {}).get("images") or [], key=lambda i: abs(int(i.get("width") or 0) - 256))
+        out.append({"id": f"sf-{m.get('uid')}", "source": "Sketchfab", "license": "CC0", "type": "model",
+                    "title": m.get("name", "")[:80], "url": m.get("viewerUrl") or f"https://sketchfab.com/3d-models/{m.get('uid')}",
+                    "image": thumbs[0]["url"] if thumbs else "", "tags": [t.get("name") for t in (m.get("tags") or [])][:4],
+                    "date": str(m.get("publishedAt", ""))[:10]})
+    return out
+
+
 def from_feed(url: str, source: str, license_: str) -> list[dict]:
     try:
         feed = core.fetch_feed(url)
@@ -95,7 +111,9 @@ def collect() -> int:
     have = {x["id"]: x for x in core._load_json(PATH, [])}
     items = (from_polyhaven() + from_ambientcg()
              + from_feed("https://3dtextures.me/feed/", "3DTextures.me", "무료 (사이트 라이선스)")
-             + from_feed("https://www.sharetextures.com/feed", "ShareTextures", "CC0"))
+             + from_feed("https://www.sharetextures.com/feed", "ShareTextures", "CC0")
+             + from_sketchfab()
+             + [{**x, "type": "model"} for x in from_feed("https://kenney.nl/feed", "Kenney", "CC0")])  # 게임 에셋 팩
     new = 0
     for x in items:  # 피드에 미리보기가 없으면 원래 페이지의 대표 이미지(og:image)를 한 번만 가져와 저장
         if not x.get("image") and x["id"] not in have and x.get("url"):
