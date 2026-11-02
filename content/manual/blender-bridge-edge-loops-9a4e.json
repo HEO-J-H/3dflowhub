@@ -1,0 +1,166 @@
+{
+  "id": "blender-bridge-edge-loops-9a4e",
+  "guide_id": "blender-bridge-edge-loops-9a4e",
+  "tool": "Blender",
+  "name": "Bridge Edge Loops",
+  "title": "Bridge Edge Loops — 두 구멍 잇기",
+  "overview": "Bridge Edge Loops 명령은 선택한 두 개 이상의 엣지 루프 사이에 면을 생성해 연결하거나, 옵션에 따라 루프 자체를 병합합니다. 내부적으로는 선택된 엣지를 삭제하고 새로운 폴리곤을 삽입해 매끄러운 튜브 형태를 만들며, 다양한 보간 방식을 지원합니다.",
+  "access": "Edit Mode → Edge 메뉴 → Bridge Edge Loops (또는 Shift+Alt+B) → 검색창에 “Bridge Edge Loops” 입력",
+  "options": [
+    {
+      "name": "Connect Loops",
+      "value": "",
+      "effect": "선택된 모든 루프를 한 번에 연결합니다.",
+      "tip": "여러 루프를 순차적으로 연결하려면 이 옵션을 켜세요."
+    },
+    {
+      "name": "Open Loop",
+      "value": "",
+      "effect": "마지막 루프를 첫 번째와 연결하지 않아 열린 형태를 만듭니다.",
+      "tip": "파이프 끝을 열어두고 싶을 때 사용합니다."
+    },
+    {
+      "name": "Closed Loop",
+      "value": "",
+      "effect": "마지막 루프를 첫 번째와 연결해 닫힌 형태를 만듭니다.",
+      "tip": "원형 튜브를 만들 때 기본값으로 둡니다."
+    },
+    {
+      "name": "Loop Pairs",
+      "value": "",
+      "effect": "첫 번째 루프와 두 번째 루프, 세 번째와 네 번째 루프씩 짝지어 연결합니다.",
+      "tip": "다수의 루프를 한 번에 짝지어 브릿지할 때 유용합니다."
+    },
+    {
+      "name": "Merge",
+      "value": "",
+      "effect": "새 면을 만들지 않고 루프들을 하나의 엣지 루프로 병합합니다.",
+      "tip": "메시를 단순화하고 싶을 때 선택합니다."
+    },
+    {
+      "name": "Merge Factor",
+      "value": "0~1 (기본 0)",
+      "effect": "병합 시 어느 루프에 정점이 맞춰질지 비율을 지정합니다.",
+      "tip": "0이면 첫 번째 루프에, 1이면 마지막 루프에 맞춥니다."
+    },
+    {
+      "name": "Twist",
+      "value": "",
+      "effect": "소스 정점과 타깃 정점의 매칭을 회전시켜 튜브가 꼬이게 합니다.",
+      "tip": "자연스러운 꼬임을 만들고 싶을 때 작은 값을 시도하세요."
+    },
+    {
+      "name": "Number of Cuts",
+      "value": "0~∞ (기본 0)",
+      "effect": "각 루프 쌍 사이에 추가할 중간 엣지 루프 수를 지정합니다.",
+      "tip": "부드러운 곡선을 원하면 2~4 정도가 적당합니다."
+    },
+    {
+      "name": "Interpolation",
+      "value": "Linear, Blend Path, Blend Surface (기본 Linear)",
+      "effect": "추가된 엣지 루프의 위치 계산 방식을 선택합니다.",
+      "tip": "텍스처가 있는 표면은 Blend Surface가 가장 자연스럽습니다."
+    },
+    {
+      "name": "Smoothness",
+      "value": "0~1 (기본 0)",
+      "effect": "Blend Path와 Blend Surface 보간 시 베지어 곡선의 부드러움을 조절합니다.",
+      "tip": "값을 높이면 곡선이 부드러워지지만 연산이 무거워집니다."
+    },
+    {
+      "name": "Profile Factor",
+      "value": "-∞~∞ (기본 0)",
+      "effect": "연결 구간의 두께 변화를 제어합니다. 음수는 수축, 양수는 팽창.",
+      "tip": "튜브 중간을 가늘게 하려면 -0.2 정도를 사용합니다."
+    },
+    {
+      "name": "Profile Shape",
+      "value": "Sharp, Smooth, Round, Custom (기본 Smooth)",
+      "effect": "각 구간의 두께 변화를 프로파일 형태로 지정합니다.",
+      "tip": "Round는 원통형 파이프에 적합합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Linear",
+      "desc": "새 엣지 루프를 직선으로 삽입합니다. 가장 빠르고 단순합니다."
+    },
+    {
+      "name": "Blend Path",
+      "desc": "베지어 곡선을 따라 새 루프를 배치합니다. 주변 서피스와 무관하게 곡선 형태를 만듭니다."
+    },
+    {
+      "name": "Blend Surface",
+      "desc": "주변 서피스의 노멀을 고려해 베지어 곡선으로 새 루프를 배치합니다. 텍스처가 연속되는 경우에 유리합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "동일 정점 수 루프 연결",
+      "steps": [
+        "Edit Mode에서 Edge Select(2)로 전환한다.",
+        "Alt+클릭으로 두 개의 동일 정점 수 엣지 루프를 선택한다.",
+        "Shift+Alt+B 로 Bridge Edge Loops 실행한다.",
+        "Operator Panel에서 Number of Cuts=2, Interpolation=Linear 로 설정한다."
+      ]
+    },
+    {
+      "title": "다른 정점 수 루프 연결",
+      "steps": [
+        "두 루프를 선택한다.",
+        "Bridge Edge Loops 실행 후 Loop Pairs 옵션을 켠다.",
+        "Number of Cuts=1, Interpolation=Blend Surface 로 설정한다.",
+        "Smoothness=0.5 로 조정해 부드러운 전환을 만든다."
+      ]
+    },
+    {
+      "title": "구멍 메우기와 브릿지 결합",
+      "steps": [
+        "구멍 주변 엣지 루프를 Alt+클릭으로 선택한다.",
+        "Edge → Grid Fill 로 기본 구멍을 메운다.",
+        "새로 만든 면의 외곽 엣지를 선택하고 Bridge Edge Loops 로 인접 구조와 연결한다.",
+        "필요 시 Twist와 Profile Factor 로 형태를 조정한다."
+      ]
+    },
+    {
+      "title": "트위스트 튜브 만들기",
+      "steps": [
+        "두 원형 엣지 루프를 선택한다.",
+        "Bridge Edge Loops 실행 후 Number of Cuts=3, Interpolation=Blend Path 로 설정한다.",
+        "Twist=0.25 로 회전량을 지정한다.",
+        "Profile Factor=0.1 로 튜브 두께를 약간 늘린다."
+      ]
+    }
+  ],
+  "performance": [
+    "Vertex 수가 많을수록 연산이 느려집니다. 필요 없는 정점은 먼저 Decimate하거나 Delete Edge Loops 로 정리하세요.",
+    "Number of Cuts와 Smoothness 값을 크게 하면 메모리 사용량이 급증합니다. 실시간 미리보기가 느릴 경우 값을 낮추고 최종 렌더 전에 올리세요.",
+    "Blend Surface 보간은 주변 서피스 정보를 계산하므로 복잡한 메시에선 Linear 로 먼저 시도하고 결과를 확인하세요."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "브릿지 후 면이 생성되지 않는다",
+      "fix": "선택된 엣지 루프가 닫힌 형태가 아니면 Open Loop 옵션을 켜거나, Loop Pairs 설정을 확인하세요."
+    },
+    {
+      "symptom": "생성된 튜브가 뒤틀려 보인다",
+      "fix": "Twist 값을 0으로 초기화하고, 필요 시 작은 값으로 점진적으로 조정합니다."
+    },
+    {
+      "symptom": "중간에 겹치는 정점이 생긴다",
+      "fix": "Merge 옵션을 켜고 Merge Factor를 0.5로 설정해 정점을 평균 위치로 합칩니다."
+    },
+    {
+      "symptom": "연산이 매우 느려진다",
+      "fix": "Number of Cuts와 Smoothness 값을 낮추고, 복잡한 서피스는 먼저 Triangulate 후 브릿지를 수행합니다."
+    },
+    {
+      "symptom": "텍스처가 깨진다",
+      "fix": "Interpolation을 Blend Surface 로 바꾸고, UV를 Preserve 옵션(있는 경우) 또는 UV unwrap을 다시 수행합니다."
+    }
+  ],
+  "versions": "Blender 2.80 이후 UI와 옵션은 크게 변하지 않았습니다. 최신 3.6 버전에서는 Operator Panel이 오른쪽 하단이 아닌 F9 로도 호출됩니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bridge_edge_loops.html",
+  "grounded": true,
+  "at": "2026-11-02T18:42:39+00:00"
+}
