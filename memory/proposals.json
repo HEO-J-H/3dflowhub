@@ -7604,5 +7604,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T16:11:15+00:00",
+    "kind": "proposal",
+    "id": "p-e836bfb156",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #40부터 #44까지 백엔드 입력 검증 및 PBR 맵 생성 관련 코어 파이프라인 변경 PR들이 대기 중입니다.",
+    "proposal": "GitHub 저장소에서 PR #40, #41, #42(url_ingest 검증) 및 PR #43, #44(pbr_generator 검증)의 테스트 결과를 확인하고 승인 여부를 결정합니다.",
+    "expected": "입력값 및 PBR 맵 생성 시 예외 처리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T16:11:15+00:00",
+    "kind": "proposal",
+    "id": "p-91fe42c87d",
+    "title": "웹 버전(web/) 에러 메시지 및 폴백 UI 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증이 강화됨에 따라 브라우저 측 웹 버전(web/)에서도 잘못된 입력이나 예외 상황에 대한 명확한 UI 피드백이 필요합니다.",
+    "proposal": "web/ 디렉토리의 입력 에러 처리 로직을 점검하고, 사용자에게 직관적인 경고 메시지가 표시되도록 Script를 보완합니다.",
+    "expected": "사용자 경험 향상 및 잘못된 입력으로 인한 오류 방지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T16:11:29.999347+00:00",
+    "kind": "decision",
+    "id": "p-e836bfb156",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T16:11:30.008841+00:00",
+    "kind": "decision",
+    "id": "p-91fe42c87d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
+    "auto": true
   }
 ]
