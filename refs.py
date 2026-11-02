@@ -205,7 +205,9 @@ def _ask(prompt: str, tokens: int = 1800) -> dict:
 
 
 def make_fix(tool: str, error: str, title: str, repro: dict | None) -> dict | None:
-    prompt = (
+    from guides import _site_context
+    site = _site_context(f"{tool} {error} {title}")
+    prompt = site + (
         f"Write a Korean troubleshooting page for this {tool} error message:\n{error}\n"
         + (f"Verified reproduction (Blender, headless): this code raises the error:\n{repro['bad']}\n"
            f"and this fixed code runs without error:\n{repro['good']}\nExplain using exactly this cause and fix.\n" if repro else

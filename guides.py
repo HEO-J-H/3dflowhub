@@ -284,11 +284,22 @@ def _text(x) -> str:
     return str(x)
 
 
+def _site_context(q: str) -> str:
+    """사이트에 이미 있는 관련 자료 (rag 검색) — 서로 어긋나지 않게 근거로 붙임. 실패해도 글쓰기는 계속."""
+    try:
+        import rag
+        c = rag.context_for(q, k=3)
+        return c + "\n" if c else ""
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None) -> dict | None:
     domain = next((d for d, cats in core.SEED_CATEGORIES.items() if any(tool in c for c in cats)), "3D DCC")
     videos = find_videos(f"{tool} {name} tutorial")
     doc = _doc_text(url)
-    prompt = (
+    site = _site_context(f"{tool} {name} {title_ko}")
+    prompt = (site + (
         f"Write a Korean beginner-to-intermediate reference guide for: {tool} — {name}.\n"
         + (f"Official documentation text (ground truth, prefer it):\n{doc}\n" if doc else
            "No documentation text available: use only well-established, version-independent facts; omit anything unsure.\n")
@@ -301,7 +312,7 @@ def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None)
           ' "examples": 2-3 {"title": Korean, "steps": 2-4 short strings} — concrete use cases (e.g. bending a pipe),\n'
           ' "mistakes": 2-3 strings, each "common mistake → how to fix",\n'
           ' "related": up to 4 related features (English names)'
-    )
+    ))
     try:
         out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor writing concise Korean docs."
                                         + core.playbook("common", "guide_writer", limit=4000),

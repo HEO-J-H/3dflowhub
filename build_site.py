@@ -1626,9 +1626,19 @@ def build() -> dict:
     aside_html = ('<section class="aside"><h2 class="sec">많이 본 글</h2><div class="cards">'
                   + "".join(card(q, "../") for q in popular(posts, 3)) + "</div></section>")
     (OUT / "p").mkdir(exist_ok=True)
+    try:  # 관련 글: 같은 분류가 아니라 내용이 가까운 글 (rag 검색), 실패하면 분류 기준
+        import rag
+        rix = rag.index(refresh=True)
+    except Exception:  # noqa: BLE001
+        rix = None
+    by_id = {q["id"]: q for q in posts}
     for p in posts:
-        related = [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
-                  [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
+        related = []
+        if rix:
+            hits = rix.search(f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("post",), exclude={p["id"]}, min_score=3.0)
+            related = [by_id[h["id"]] for h in hits if h["id"] in by_id]
+        related = related or [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
+            [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
         (OUT / "p" / f"{p['id']}.html").write_text(
             page(f"{p['title_ko']} - {SITE_TITLE}", post_html(p, "../", related) + aside_html, "../", p["domain"],
                  p.get("summary") or SITE_DESC, f"{BASE_URL}/p/{p['id']}.html", post_head(p)), encoding="utf-8")
