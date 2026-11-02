@@ -5344,5 +5344,81 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #20 및 #22 검토 및 병합",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T08:59:34+00:00",
+    "kind": "proposal",
+    "id": "p-ae19a215c0",
+    "title": "대기 중인 코어 PR (#37~#44) 테스트 검증 및 순차 승인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #37, #38, #40, #41, #42, #43, #44 등 backend 서비스 검증 관련 PR들이 대기 상태입니다.",
+    "proposal": "각 PR의 단위 테스트 통과 여부를 확인하고, 이상이 없다면 순차적으로 승인 및 병합을 진행합니다.",
+    "expected": "파이프라인 입력 검증 및 안정성 로직이 메인 브랜치에 반영됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:59:34+00:00",
+    "kind": "proposal",
+    "id": "p-7259e4448f",
+    "title": "GitHub RAG 오픈소스 연동 가이드 문서화 완료",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자 결정에 따라 '깃허브 RAG 오픈소스 활용 방안 검토'가 수락되었습니다.",
+    "proposal": "docs/tech-research.md에 RAG 오픈소스 활용 방안 및 코드 적용 아키텍처를 문서화합니다.",
+    "expected": "개발 및 기술 연구 참고 자료가 체계적으로 정리됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:59:55.095572+00:00",
+    "kind": "decision",
+    "id": "p-ae19a215c0",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:59:55.102840+00:00",
+    "kind": "decision",
+    "id": "p-7259e4448f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:59:56.868417+00:00",
+    "kind": "triage",
+    "id": "p-ae19a215c0",
+    "verdict": "done_already",
+    "reason": "최근 커밋 내역과 끝낸 제안 목록을 볼 때 PR #37~#44 관련 백엔드 서비스 검증 및 수정 과제들이 이미 대부분 반영되었거나 처리 중인 상태입니다."
+  },
+  {
+    "at": "2026-11-02T08:59:56.874975+00:00",
+    "kind": "decision",
+    "id": "p-ae19a215c0",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋 내역과 끝낸 제안 목록을 볼 때 PR #37~#44 관련 백엔드 서비스 검증 및 수정 과제들이 이미 대부분 반영되었거나 처리 중인 상태입니다."
+  },
+  {
+    "at": "2026-11-02T08:59:57.659729+00:00",
+    "kind": "triage",
+    "id": "p-7259e4448f",
+    "verdict": "done_already",
+    "reason": "docs/tech-research.md에 RAG 오픈소스 활용 방안과 코드 아키텍처 문서화가 완료된 상태입니다."
+  },
+  {
+    "at": "2026-11-02T08:59:57.666040+00:00",
+    "kind": "decision",
+    "id": "p-7259e4448f",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): docs/tech-research.md에 RAG 오픈소스 활용 방안과 코드 아키텍처 문서화가 완료된 상태입니다."
   }
 ]
