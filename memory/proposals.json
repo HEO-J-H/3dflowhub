@@ -7168,5 +7168,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T14:41:07+00:00",
+    "kind": "proposal",
+    "id": "p-207aa45708",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 브라우저 내 높이맵 메시·PBR 처리 과정에서 에러 발생 시 사용자 안내가 부족할 수 있음",
+    "proposal": "web/app.js 및 관련 Script에서 이미지 처리 실패 시 명확한 에러 메시지를 표시하는 Fallback UI 로직 보완",
+    "expected": "웹 버전 사용자 경험 및 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T14:41:07+00:00",
+    "kind": "proposal",
+    "id": "p-b58ee5b382",
+    "title": "대기 중인 백엔드 입력 검증 PR(#40~#44) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #40, #41, #42, #43, #44 등 코어 서비스(url_ingest, pbr_generator) 입력 검증 PR들이 대기 상태임",
+    "proposal": "작성된 단위 테스트(backend/tests/test_core.py 등)와 파이프라인 정합성을 최종 검토하여 안전하게 병합 진행",
+    "expected": "백엔드 입력 무결성 강화 및 안정적 API 운영",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T14:42:04.038395+00:00",
+    "kind": "decision",
+    "id": "p-207aa45708",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T14:42:04.048046+00:00",
+    "kind": "decision",
+    "id": "p-b58ee5b382",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
   }
 ]

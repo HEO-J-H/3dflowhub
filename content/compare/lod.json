@@ -9,35 +9,60 @@
       "where": "Modifier Properties → Add Modifier → Decimate",
       "how": "Decimate 모디파이어를 추가하고 Collapse 방식을 선택한 뒤 Ratio 값을 낮춰 폴리곤 수를 줄입니다. 버텍스 그룹을 지정해 특정 영역의 디테일을 유지할 수도 있습니다.",
       "strength": "직관적이고 가볍게 폴리곤을 줄일 수 있음",
-      "limit": "복잡한 토폴로지의 흐름을 수동으로 제어하기는 어려움"
+      "limit": "복잡한 토폴로지의 흐름을 수동으로 제어하기는 어려움",
+      "video": {
+        "id": "-rG4QOR_UHM",
+        "title": "Blender to Game Engine Tutorial (Unity, Unreal & Godot)",
+        "author": "Versatile Vertices"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Modifier List → ProOptimizer",
       "how": "ProOptimizer 모디파이어를 적용한 뒤 Calculate를 누르고 Vertex % 또는 Polygon % 값을 조절합니다. Keep Textures와 Keep UV 세팅으로 텍스처 깨짐을 방지할 수 있습니다.",
       "strength": "원거리 오브젝트의 UV와 재질을 비교적 잘 보존함",
-      "limit": "사전 계산(Calculate) 과정이 필요하여 대량 작업 시 시간이 걸림"
+      "limit": "사전 계산(Calculate) 과정이 필요하여 대량 작업 시 시간이 걸림",
+      "video": {
+        "id": "41npEDSb-YY",
+        "title": "Unreal Engine 4: How to Create Quick LOD's in 3Ds Max",
+        "author": "PaperHeroProductions"
+      }
     },
     {
       "tool": "Maya",
       "where": "Mesh → Reduce",
       "how": "오브젝트를 선택한 후 Reduce 옵션 창을 열어 Percentage 또는 Triangle count를 설정합니다. Preserve borders나 Keep original constraints를 활용해 외곽 형태를 유지합니다.",
       "strength": "메뉴 접근이 빠르고 마야 파이프라인과 완벽히 연동됨",
-      "limit": "극단적인 수치에서 노멀이나 하드엣지가 무너질 수 있음"
+      "limit": "극단적인 수치에서 노멀이나 하드엣지가 무너질 수 있음",
+      "video": {
+        "id": "ZWt-L2b9-7U",
+        "title": "Maya LODs Explained: Your Scene Performance Just Got Better",
+        "author": "Animatic Academy"
+      }
     },
     {
       "tool": "Houdini",
       "where": "PolyReduce SOP",
       "how": "PolyReduce 노드를 지오메트리 네트워크에 연결하고 Percentage나 Target Polygon Count로 조절합니다. Attribute를 이용해 특정 부위의 감소율을 제어할 수 있습니다.",
       "strength": "프로시저럴 방식으로 여러 단계의 LOD를 한 번에 자동 생성 가능",
-      "limit": "노드 기반 작업에 대한 이해가 필요함"
+      "limit": "노드 기반 작업에 대한 이해가 필요함",
+      "video": {
+        "id": "cJbF3Kdkx7E",
+        "title": "How Houdini Engine Changed Game Development",
+        "author": "InspirationTuts"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Static Mesh Editor → LOD Settings",
       "how": "스태틱 메시 에디터 패널의 LOD Settings에서 Number of LODs를 설정하고 Auto Compute LODs를 체크해 엔진 내부에서 자동으로 단계별 메시를 생성합니다.",
       "strength": "외부 툴 작업 없이 엔진 내에서 즉시 테스트 및 적용 가능",
-      "limit": "커스텀 토폴로지 제어가 외부 툴에 비해 제한적임"
+      "limit": "커스텀 토폴로지 제어가 외부 툴에 비해 제한적임",
+      "video": {
+        "id": "ngzPTqtZWo4",
+        "title": "How To Create And Use LODs In Unreal Engine 4/5 To Make Your Games Run Smoother",
+        "author": "Matt Aspland"
+      }
     }
   ],
   "pick": [
@@ -78,5 +103,6 @@
     "{'pitfall': '엔진에서 LOD가 교체될 때 오브젝트 위치나 피벗이 튀는 현상', 'fix': '모든 LOD 단계의 메시가 동일한 월드 원점과 피벗 포인트를 가지도록 익스포트 전 정렬합니다.'}",
     "{'pitfall': '지나친 폴리곤 감소로 실루엣이 무너져 시각적 이질감이 드는 현상', 'fix': '가장 낮은 LOD 단계에서는 법선(Normal) 정보를 보존하거나 셰이더 노멀 맵을 활용해 실루엣을 보완합니다.'}"
   ],
-  "at": "2026-11-02T14:22:01+00:00"
+  "at": "2026-11-02T14:22:01+00:00",
+  "visuals_at": "2026-11-02T14:40:41+00:00"
 }

@@ -9,35 +9,60 @@
       "where": "Decimate modifier (Modifier Properties -> Add Modifier -> Generate -> Decimate)",
       "how": "Collapse, Un-Subdivide, Planar 모드 중 선택하여 형태를 유지하며 버텍스와 페이스 개수를 조절합니다. 비율(Ratio) 값을 낮춰 실시간으로 폴리곤을 줄입니다.",
       "strength": "직관적인 UI와 실시간 뷰포트 피드백",
-      "limit": "UV나 웨이트가 복잡한 모델의 경우 토폴로지가 깨질 수 있음"
+      "limit": "UV나 웨이트가 복잡한 모델의 경우 토폴로지가 깨질 수 있음",
+      "video": {
+        "id": "8x1pfwkERC8",
+        "title": "5 Easy Ways to Reduce Polygons in Blender #blender #Polygons #lowpoly",
+        "author": "MR POLY"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "ProOptimizer modifier (Modifier List -> ProOptimizer) 및 Optimize modifier",
       "how": "Calculate 버튼을 눌러 메시를 분석한 뒤 Vertex % 슬라이더를 조절해 폴리곤을 줄입니다. UV 매핑 유지가 우수합니다.",
       "strength": "UV 좌표와 머티리얼 경계를 보존하는 최적화 성능이 뛰어남",
-      "limit": "ProOptimizer는 계산 과정에서 리소스가 다소 소모됨"
+      "limit": "ProOptimizer는 계산 과정에서 리소스가 다소 소모됨",
+      "video": {
+        "id": "M4N5s9DTj2M",
+        "title": "Optimize 3D Models & Create LODs in 3ds Max (Fast Tutorial!)",
+        "author": "Maruf Khan Ornob"
+      }
     },
     {
       "tool": "Maya",
       "where": "Reduce node / Polygon Reduce (Mesh -> Reduce)",
       "how": "오브젝트를 선택하고 Reduce 옵션을 열어 퍼센트(Percentage)나 삼각형 개수를 지정합니다. Keep Quads 옵션으로 사각형 폴리곤 구조를 최대한 유지할 수 있습니다.",
       "strength": "사각형 페이스 유지 기능이 강력함",
-      "limit": "밀도가 불균일한 모델에서는 국부적인 왜곡이 발생할 수 있음"
+      "limit": "밀도가 불균일한 모델에서는 국부적인 왜곡이 발생할 수 있음",
+      "video": {
+        "id": "aMLkRPY7vsg",
+        "title": "Maya's Reduce Polygons Tool",
+        "author": "Josh Antonio"
+      }
     },
     {
       "tool": "Houdini",
       "where": "PolyReduce SOP node",
       "how": "PolyReduce 노드를 연결하고 Target % 또는 Target Count를 설정합니다. 애트리뷰트(Attribute)나 웨이트를 기준으로 차등 최적화가 가능합니다.",
       "strength": "프로시저럴한 제어와 대량의 에셋 자동화 처리",
-      "limit": "노드 기반 워크플로우에 대한 이해가 필요함"
+      "limit": "노드 기반 워크플로우에 대한 이해가 필요함",
+      "video": {
+        "id": "zGLFkVJm6e8",
+        "title": "Houdini MAGIC: Insane Poly Reduction Techniques! (Mind-blowing Results)",
+        "author": "Joe Raasch"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Static Mesh Editor -> LOD Settings",
       "how": "스태틱 메시 에디터의 LOD Settings에서 Number of LODs를 설정하고 Apply Changes를 누릅니다. 자동 생성된 LOD의 화면 거리(Screen Size)를 조절합니다.",
       "strength": "게임 엔진 내에서 즉시 LOD 체계를 구축하고 테스트 가능",
-      "limit": "외부 DCC 수준의 정밀한 토폴로지 수동 제어는 어려움"
+      "limit": "외부 DCC 수준의 정밀한 토폴로지 수동 제어는 어려움",
+      "video": {
+        "id": "S7lJnSeL41M",
+        "title": "Optimization UE5 - The Power of Instanced Static Meshes with Efficient Materials",
+        "author": "PolySphere 3D"
+      }
     }
   ],
   "pick": [
@@ -78,5 +103,6 @@
     "{'mistake': 'LOD 전환 시 팝핑(Popping) 현상이 너무 심하게 눈에 띄는 문제', 'fix': 'Unreal Engine 스태틱 메시 에디터에서 각 LOD 레벨의 Screen Size 임계값(Screen Size Threshold)을 부드럽게 조정하세요.'}",
     "{'mistake': '노멀맵이나 스무딩 그룹이 깨져서 면이 각져 보이는 현상', 'fix': '내보내기 시 Normal/Tangent 출력이 켜져 있는지 확인하고, DCC에서 노멀 스무딩 각도를 재설정하세요.'}"
   ],
-  "at": "2026-11-02T14:21:55+00:00"
+  "at": "2026-11-02T14:21:55+00:00",
+  "visuals_at": "2026-11-02T14:40:45+00:00"
 }
