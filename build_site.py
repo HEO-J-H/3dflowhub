@@ -627,14 +627,57 @@ SITE_MENU = [
 ]
 
 
+_MENU_CACHE: list | None = None
+
+
+def section_count(u: str) -> int | None:
+    """메뉴 항목에 실제 콘텐츠가 몇 개인지 (모르면 None = 항상 표시). 0 이면 메뉴에서 자동으로 숨김."""
+    try:
+        if u == "manual/":
+            import manual
+            return len(manual.load_all())
+        if u == "compare/":
+            import compare
+            return len(compare.load_all())
+        if u in ("fix/", "changes/"):
+            import refs
+            return len(refs.load("fix" if u == "fix/" else "change"))
+        if u == "recipes/":
+            import recipes
+            return len(recipes.load_all())
+    except Exception:  # noqa: BLE001
+        return None
+    return None
+
+
+def site_menu() -> list:
+    """SITE_MENU + 스스로 진화: 빈 섹션은 숨기고, AI 관리자가 정한 묶음·항목 순서와 설명(config site_menu)을 반영."""
+    global _MENU_CACHE
+    if _MENU_CACHE is not None:
+        return _MENU_CACHE
+    cfg = core.load_config().get("site_menu") or {}
+    order, desc, gorder = cfg.get("order") or {}, cfg.get("desc") or {}, cfg.get("group_order") or []
+    out = []
+    for name, links in SITE_MENU:
+        links = [(u, ic, t, desc.get(u, d)) for u, ic, t, d in links if section_count(u) != 0]
+        rank = {u: i for i, u in enumerate(order.get(name, []))}
+        links.sort(key=lambda x: rank.get(x[0], 99))
+        if links:
+            out.append((name, links))
+    grank = {g: i for i, g in enumerate(gorder)}
+    out.sort(key=lambda g: grank.get(g[0], 99))
+    _MENU_CACHE = out
+    return out
+
+
 def site_nav(root: str) -> str:
     """상단 메뉴: 묶음 4개 + 펼침 메뉴(데스크톱) / '메뉴' 시트(모바일). 같은 데이터로 둘 다 — 항목이 늘어도 잘리지 않음."""
     def items(links):
         return "".join(f'<a href="{root}{u}" data-sec="{u.split("/")[0]}"><span class="mi" aria-hidden="true">{ic}</span>'
                        f'<span><b>{e(t)}</b><small>{e(d)}</small></span></a>' for u, ic, t, d in links)
     desk = "".join(f'<details class="dd"><summary data-secs="{" ".join(u.split("/")[0] for u, *_ in links)}">{e(name)}'
-                   f'</summary><div class="ddm" role="menu">{items(links)}</div></details>' for name, links in SITE_MENU)
-    sheet = "".join(f'<div class="msec"><h2>{e(name)}</h2>{items(links)}</div>' for name, links in SITE_MENU)
+                   f'</summary><div class="ddm" role="menu">{items(links)}</div></details>' for name, links in site_menu())
+    sheet = "".join(f'<div class="msec"><h2>{e(name)}</h2>{items(links)}</div>' for name, links in site_menu())
     return f'<nav class="topnav" aria-label="사이트">{desk}</nav>', sheet
 
 

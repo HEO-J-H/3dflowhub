@@ -93,7 +93,8 @@ def write(max_new: int = 2) -> list[str]:
     if not core.background_ok(max_new):
         return []
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    left = DAILY_MAX - sum(1 for x in load_all() if x.get("at", "").startswith(today))
+    import scorecard  # 하루 상한은 품질 성적표가 스스로 조절 (기본 DAILY_MAX)
+    left = scorecard.knob("compare_daily") - sum(1 for x in load_all() if x.get("at", "").startswith(today))
     done = []
     for t in pending()[:max(0, min(max_new, left))]:
         try:

@@ -1571,7 +1571,15 @@ def same_story_saved(title_ko: str, days: int = 21, summary: str = "") -> bool:
     return False
 
 
-ENRICH_DAILY_MAX = 20  # 하루에 보강하는 얇은 글 수 (AI 사용량 보호)
+ENRICH_DAILY_MAX = 20  # 하루에 보강하는 얇은 글 수 기본값 (AI 사용량 보호) — 실제 값은 품질 성적표가 조절
+
+
+def _enrich_cap() -> int:
+    try:
+        import scorecard
+        return scorecard.knob("enrich_daily")
+    except Exception:  # noqa: BLE001
+        return ENRICH_DAILY_MAX
 
 
 def enrich_thin_posts(max_n: int = 3) -> int:
@@ -1583,7 +1591,7 @@ def enrich_thin_posts(max_n: int = 3) -> int:
     done_today = sum(1 for f in files if _load_json(f, {}).get("enriched") == today)
     n = 0
     for f in files:
-        if n >= max_n or done_today + n >= ENRICH_DAILY_MAX or llm_budget_left() <= 0:
+        if n >= max_n or done_today + n >= _enrich_cap() or llm_budget_left() <= 0:
             break
         p = _load_json(f, {})
         if p.get("enriched") or not build_site.is_thin(p):
@@ -2223,7 +2231,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
     try:  # 그림·영상이 없는 글·참고 페이지에 붙임 — 공부하러 온 사람이 눈으로 이해하게
         import visuals
-        stats["visuals"] = len(visuals.backfill(6)) + visuals.backfill_posts(25)
+        import scorecard  # 속도는 품질 성적표가 스스로 조절
+        stats["visuals"] = (len(visuals.backfill(scorecard.knob("visuals_refs_per_run")))
+                            + visuals.backfill_posts(scorecard.knob("visuals_posts_per_run")))
     except Exception as e:  # noqa: BLE001
         log.warning("그림 보강 실패(다음 실행에 재시도): %s", e)
     try:  # 수량(하루 100건)은 그대로, 내용이 빈약한 글은 보강

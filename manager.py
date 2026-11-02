@@ -29,7 +29,7 @@ GUIDES_MIN_SHARE = 0.6  # 남은 가이드 주제가 있는 동안 AI 몫의 최
 DEFAULT_ALLOC = {"news": 0.2, "guides": 0.5, "roundups": 0.3}  # 에버그린(가이드·정리) 중심 — 요약 소식은 남들도 가진 정보
 CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
 RESERVE = 6            # AI 관리자 분석·답변용으로 남겨 둠
-SAFE_AUTO = ("keyword_hints", "editorial_note", "guide_topic", "add_feed")  # 자동 모드에서 스스로 수락해도 되는 행동
+SAFE_AUTO = ("keyword_hints", "editorial_note", "guide_topic", "add_feed", "site_menu")  # site_menu: 순서·설명만, 되돌리기 쉬움  # 자동 모드에서 스스로 수락해도 되는 행동
 
 
 def _now() -> str:
@@ -145,6 +145,8 @@ def describe(act: dict | None) -> str:
                 f"(산출물: {', '.join(r.get('deliverables', []))}) · 언제든 현황판에서 쉬게 할 수 있음")
     if t == "pause_role":
         return f"AI 직원 쉬게 하기: {act.get('name') or act.get('id')} (다시 일하게 할 수 있음)"
+    if t == "site_menu":
+        return "사이트 상단 메뉴 순서·설명 바꾸기 (항목 추가·삭제는 콘텐츠가 생기거나 비면 자동)"
     if t == "guide_topic":
         return f"기초 가이드 주제 추가: {act.get('tool')} · {act.get('title_ko')} (영상·단계별 사용법 페이지로 자동 생성)"
     return "자동 실행 없음 — 수락하면 코딩 에이전트가 다음 자동 실행(3시간마다)에 코드로 처리를 시도합니다 — 실패하면 '직접 작업 필요'에 남습니다"
@@ -183,6 +185,15 @@ def _valid_action(act) -> dict | None:
         import staff
         r = staff.roles().get(str(act["id"]))
         return {"type": t, "id": r["id"], "name": r["name"]} if r else None
+    if t == "site_menu":
+        import build_site
+        known = {u for _, links in build_site.SITE_MENU for u, *_ in links}
+        groups = {g for g, _ in build_site.SITE_MENU}
+        order = {g: [u for u in us if u in known] for g, us in (act.get("order") or {}).items()
+                 if g in groups and isinstance(us, list)}
+        desc = {u: str(d)[:40] for u, d in (act.get("desc") or {}).items() if u in known and d}
+        group_order = [g for g in act.get("group_order") or [] if g in groups]
+        return {"type": t, "order": order, "desc": desc, "group_order": group_order} if (order or desc or group_order) else None
     if t == "guide_topic" and act.get("tool") and act.get("name") and act.get("title_ko"):
         return {"type": t, "tool": str(act["tool"])[:30], "group": str(act.get("group") or "기능")[:20],
                 "name": str(act["name"])[:60], "title_ko": str(act["title_ko"])[:60]}
@@ -215,6 +226,11 @@ def _apply(act: dict) -> str:
         import staff
         staff.set_status(act["id"], False)
         return f"{act.get('name')} 쉬게 함"
+    elif t == "site_menu":
+        cur = dict(core.load_config().get("site_menu") or {})
+        cur.update({k: act[k] for k in ("order", "desc", "group_order") if act.get(k)})
+        core.save_config({"site_menu": cur})
+        return "상단 메뉴 순서·설명 반영 (다음 사이트 빌드부터)"
     elif t == "guide_topic":
         topics = strategy.setdefault("guide_topics", [])
         topic = [act["tool"], act["group"], act["name"], act["title_ko"], None]
@@ -240,7 +256,7 @@ def apply_accepted() -> list[str]:
         if (p.get("site") or "3dflowhub") != "3dflowhub":  # 다른 사이트 제안은 이 사이트 전략에 반영하지 않음
             continue
         if p["status"] == "accepted" and p["applied"] is None and act.get("type") in ("add_feed", "keyword_hints", "editorial_note", "guide_topic",
-                                                                                "hire_role", "pause_role"):
+                                                                                "hire_role", "pause_role", "site_menu"):
             result = _apply(act)
             _append({"at": _now(), "kind": "applied", "id": p["id"], "result": result})
             done.append(f"{p['title']}: {result}")
@@ -559,6 +575,8 @@ def snapshot() -> dict:
         "staff_capabilities": {"promo": "채널별 홍보 글 초안", "proposal": "개선 제안", "note": "업무 일지",
                                "image": "브랜드 템플릿 홍보 이미지(square/x/story) — 디자이너 직무에 적합, 사이트 디자인 정보도 받음"},
         "basics_guides": _guide_stats(),
+        # 품질 성적표 (사장님 방향: 배울 수 있는 사이트가 먼저) — gaps 가 있으면 그것이 가장 큰 병목. 속도는 이미 자동 조절됨
+        "scorecard": {k: v for k, v in core._load_json(core.ROOT / "memory" / "scorecard.json", {}).items() if k != "at"},
         "content_output": _content_output(),
         "config": {k: core.load_config().get(k) for k in ("interval", "max_items", "domains")},
     }
@@ -599,6 +617,8 @@ def review(force: bool = False) -> dict | None:
         '{"type":"glossary","canon":official name,"variants":"wrong spelling 1|wrong spelling 2"} | '
         '{"type":"guide_topic","tool":e.g. "3ds Max","group":e.g. "모디파이어","name":English feature name,'
         '"title_ko":Korean page title} (evergreen basics reference page with video) | '
+        '{"type":"site_menu","group_order":[menu group names],"order":{group:[urls in new order]},"desc":{url:"Korean one-line '
+        'description"}} (reorder/re-describe the site top menu by what readers use most; only existing groups/urls) | '
         '{"type":"hire_role","role":{"name":"emoji + Korean job title","mission":"what this staff member does every '
         'cycle, concretely","deliverables":["promo"|"proposal"|"note"|"image"],"every_hours":6-168,"daily_calls":1-3,'
         '"playbook":"5-10 Korean bullet lines: how to do this job well — methods, quality bar, what to avoid"}} — '

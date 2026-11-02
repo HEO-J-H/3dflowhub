@@ -951,6 +951,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("오류 해결·바뀐 점 생성 실패: %s", e)
         strategy["refs_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "scorecard_at", 6 * 3600):  # 품질 성적표: 모자란 지표를 찾아 속도를 스스로 조절
+        try:
+            import scorecard
+            sc = scorecard.run()
+            if sc.get("tuned"):
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "tuned": sc["tuned"]}])[-30:]
+        except Exception as e:
+            log.warning("품질 성적표 실패: %s", e)
+        strategy["scorecard_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "manual_at", 2 * 3600):  # 명령별 심화 매뉴얼: 2시간마다 2개 (하루 상한)
         try:
             import manual
