@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-auto-key-and-set-key-1045",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Auto Key and Set Key",
+  "title": "Auto Key·Set Key — 키 만들기",
+  "summary": "Timeline에서 오브젝트의 움직임을 기록하는 애니메이션 기본 도구입니다. 스톱모션처럼 키프레임을 쌓거나 특정 상태를 통째로 저장합니다.",
+  "when": [
+    "오브젝트를 이동·회전·스케일하여 간단한 모션을 만들 때",
+    "캐릭터나 기계 장치의 특정 포즈를 정확하게 저장하고 싶을 때",
+    "실시간 재생 중에 직관적으로 애니메이션을 녹화하고 싶을 때"
+  ],
+  "steps": [
+    "Timeline 슬라이더를 원하는 프레임(예: Frame 30)으로 이동합니다.",
+    "화면 하단의 Auto Key 버튼(Hotkey N)을 클릭하여 활성화합니다.",
+    "뷰포트에서 오브젝트를 이동(W), 회전(E), 스케일(R) 조작합니다.",
+    "Timeline에 빨간색 키프레임 바가 생성된 것을 확인합니다.",
+    "다시 Auto Key 버튼(Hotkey N)을 눌러 녹화 모드를 종료합니다.",
+    "Timeline의 Play 애니메이션 버튼으로 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Key",
+      "desc": "조작하는 즉시 Timeline에 키프레임을 자동으로 생성하는 실시간 녹화 모드입니다."
+    },
+    {
+      "name": "Set Key",
+      "desc": "필요한 파라미터만 선택하여 명시적으로 키프레임을 저장하는 방식입니다."
+    },
+    {
+      "name": "Key Steps",
+      "desc": "Timeline에서 이전/다음 키프레임으로 빠르게 이동하는 버튼입니다."
+    },
+    {
+      "name": "Time Slider",
+      "desc": "현재 프레임을 확인하고 이동하는 수평 바입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "단순 이동 애니메이션",
+      "steps": [
+        "Frame 0에서 Auto Key를 켭니다.",
+        "오브젝트를 왼쪽 위치에 둡니다.",
+        "Frame 30으로 이동한 뒤 오브젝트를 오른쪽으로 옮깁니다.",
+        "Auto Key를 끄고 재생하여 확인합니다."
+      ]
+    },
+    {
+      "title": "Set Key로 특정 포즈 저장",
+      "steps": [
+        "Set Key 모드를 활성화합니다.",
+        "원하는 프레임에서 회전 값을 변경합니다.",
+        "Set Keys 버튼(키보드 S)을 눌러 키를 확정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Auto Key를 켠 채로 Timeline을 이동하여 의도치 않은 키가 생성됨 → 불필요한 키프레임을 선택해 삭제(Delete 키)합니다.",
+    "프레임을 0으로 되돌리지 않고 작업해 시작 모션이 틀어짐 → Timeline 0 프레임의 초기 위치를 다시 설정하거나 키를 이동합니다."
+  ],
+  "related": [
+    "Curve Editor",
+    "Dope Sheet",
+    "Motion Panel",
+    "Time Configuration"
+  ],
+  "videos": [
+    {
+      "id": "csB5KWTUoAM",
+      "title": "3ds max tutorial using Auto key function  in animation",
+      "author": "MEG3D"
+    },
+    {
+      "id": "EOoAwrGBffI",
+      "title": "3ds max tutorial : How to use set key function in animation",
+      "author": "MEG3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Auto%20Key%20and%20Set%20Key",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Timeline",
+    "Frame 30",
+    "Auto Key",
+    "Hotkey N"
+  ],
+  "at": "2026-11-02T01:07:56.993616+00:00"
+}
