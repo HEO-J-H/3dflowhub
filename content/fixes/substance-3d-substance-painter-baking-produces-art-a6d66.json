@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-substance-painter-baking-produces-art-a6d66",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Substance Painter: baking produces artifacts or black areas",
+  "title": "Substance Painter Baking 얼룩·검은 부분",
+  "summary": "Substance 3D Painter에서 Baking을 수행할 때 노멀 맵이나 오클루전 등에 깨짐 현상이나 검은색 영역(Artifacts)이 발생하는 오류에 대한 해결 가이드입니다.",
+  "causes": [
+    "로우 폴리곤(Low Poly)과 하이 폴리곤(High Poly)의 모델링 형태나 위치가 정확히 일치하지 않습니다.",
+    "Baking 설정에서 Max Front/Back Distance 수치가 너무 작거나 크게 설정되었습니다.",
+    "UV 언랩(Unwrap) 과정에서 면이 겹치거나(Overlap) UV 시임(Seam) 처리가 잘못되었습니다.",
+    "노멀 맵 Baking 시 탄젠트 공간(Tangent Space) 방향이나 하부 메쉬의 노름값(Normal)이 왜곡되었습니다."
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭하여 Baking 창을 엽니다.",
+    "Common 탭의 Max Front와 Max Back Distance 슬라이더 수치를 조절하여 레이(Ray) 발사 거리를 최적화합니다.",
+    "Match 옵션을 Always에서 By Mesh Name으로 변경하여 동일한 이름을 가진 하이 폴리곤과 로우 폴리곤끼리만 베이킹되도록 설정합니다.",
+    "Cage 파일을 사용하는 경우, 올바른 케이지 메쉬가 지정되었는지 확인합니다.",
+    "Ignore Backface 옵션을 체크하여 내부 면이나 의도하지 않은 뒷면의 투영을 방지합니다."
+  ],
+  "check": [
+    "Baking 완료 후 Normal 맵과 Ambient Occlusion 맵에 검은색 얼룩이나 깨짐 없이 부드럽게 표현되는지 확인합니다.",
+    "Viewport에서 Smart Material을 적용해 이음새(Seam) 부분에 줄무늬나 오류가 없는지 검수합니다."
+  ],
+  "prevent": [
+    "모델링 Export 전 로우 폴리곤과 하이 폴리곤의 원점(Origin) 좌표를 동일하게 일치시킵니다.",
+    "UV 매핑 시 시임을 눈에 띄지 않는 곳에 배치하고, 섬(Island) 간의 여유 공간(Padding)을 충분히 확보합니다."
+  ],
+  "keywords": [
+    "Substance Painter Baking 오류",
+    "Substance 3D 페인터 Baking 검은점",
+    "노멀맵 깨짐 현상",
+    "Bake Mesh Maps 아티팩트",
+    "Substance 3D Max Front Distance"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T00:28:30+00:00"
+}

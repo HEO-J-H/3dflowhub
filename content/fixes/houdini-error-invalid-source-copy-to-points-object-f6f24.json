@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-invalid-source-copy-to-points-object-f6f24",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Invalid source (Copy to Points / Object Merge)",
+  "title": "Houdini Invalid source 오류",
+  "summary": "Houdini의 Copy to Points 노드나 Object Merge 노드에서 참조할 소스 지오메트리를 찾지 못하거나 잘못 지정했을 때 발생하는 오류입니다.",
+  "causes": [
+    "Copy to Points 노드의 두 번째 입력(Points) 또는 첫 번째 입력(Geometry)에 연결된 와이어가 끊어졌거나 비어 있습니다.",
+    "Object Merge 노드의 Path 파라미터에 입력한 대상 노드 경로가 잘못되었거나 존재하지 않습니다.",
+    "참조하려던 소스 노드가 삭제되었거나 Display/Render 플래그가 꺼져 있습니다."
+  ],
+  "steps": [
+    "오류가 발생한 Copy to Points 또는 Object Merge 노드를 더블 클릭하여 안쪽 네트워크를 확인합니다.",
+    "Copy to Points 노드의 경우, 1번 입력(복사할 지오메트리)과 2번 입력(포인트)에 올바른 노드가 연결되어 있는지 확인합니다.",
+    "Object Merge 노드의 Path 파라미터 우측의 대상 선택 버튼(오른쪽 화살표 아이콘)을 눌러 올바른 노드를 다시 지정합니다.",
+    "상대 경로 대신 절대 경로(예: /obj/geo1/out_mesh)를 입력하여 경로 오류를 방지합니다."
+  ],
+  "check": [
+    "노드 우측 하단의 상태 아이콘이 빨간색 오류에서 초록색 또는 회색(정상)으로 바뀐지 확인합니다.",
+    "Viewport에서 결과 지오메트리가 정상적으로 복사되거나 병합되어 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "노드 이름을 변경할 때는 Object Merge의 경로가 자동으로 업데이트되는지 확인합니다.",
+    "상대 경로 입력 시 ../ 구조가 올바른지 상위 네트워크에서 점검합니다."
+  ],
+  "keywords": [
+    "Houdini 에러",
+    "Invalid source",
+    "Copy to Points 오류",
+    "Object Merge 경로",
+    "Houdini troubleshooting"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T00:28:09+00:00"
+}

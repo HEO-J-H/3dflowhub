@@ -1,0 +1,37 @@
+{
+  "id": "zbrush-zbrush-divide-button-greyed-out-cannot-subd-6e0da",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "ZBrush: Divide button greyed out (cannot subdivide)",
+  "title": "ZBrush Divide 가 비활성일 때",
+  "summary": "ZBrush에서 Divide 버튼이 회색으로 비활성화되어 서브디비전을 추가할 수 없는 상태를 해결하는 방법입니다.",
+  "causes": [
+    "현재 선택한 SubTool에 마스크(Mask)가 칠해져 있는 경우",
+    "지오메트리에 다중 서브디비전 레벨이 이미 존재하며, 현재 최하위(Lowest)나 최상위(Highest) 레벨이 아닌 중간 레벨에 위치한 경우",
+    "ZRemesher 등으로 생성된 동적 부드러미(Dynamic Subdivision)나 폴그룹 구조의 제한이 있는 경우"
+  ],
+  "steps": [
+    "캔버스를 Ctrl + 드래그하여 마스크를 완전히 해제합니다.",
+    "Tool > Geometry > Lower Res 및 Higher Res 슬라이더를 확인하여 현재 레벨이 최하위인지 확인합니다.",
+    "Tool > Geometry > Divide 버튼을 누르기 전, 필요하다면 Reconstruct Subdiv를 실행해 기존 레벨을 복구합니다.",
+    "Tool > SubD > Dynamic Subdiv가 켜져 있다면 이를 끄거나 Apply를 눌러 정식 지오메트리로 변환합니다."
+  ],
+  "check": [
+    "Tool > Geometry > Divide 버튼이 활성화되어 클릭할 수 있는지 확인합니다.",
+    "PolyFrame(Shift + F)을 켜고 폴리곤 밀도가 정상적으로 증가하는지 확인합니다."
+  ],
+  "prevent": [
+    "작업 중 실수로 마스크가 칠해지지 않았는지 Hotkey(Ctrl + A 또는 캔버스 드래그)로 자주 확인합니다.",
+    "새로운 세부 묘사를 시작하기 전에 Dynamic Subdivision 상태인지 표준 Subdivide 상태인지 파악합니다."
+  ],
+  "keywords": [
+    "ZBrush 다이브이드 비활성화",
+    "ZBrush Divide 버튼 회색",
+    "서브디비전 안됨",
+    "ZBrush Subdivide 안 됨",
+    "ZBrush Divide 안눌림"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T00:28:36+00:00"
+}

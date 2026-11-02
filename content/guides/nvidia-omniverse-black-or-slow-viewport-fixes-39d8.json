@@ -1,0 +1,89 @@
+{
+  "id": "nvidia-omniverse-black-or-slow-viewport-fixes-39d8",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "문제 해결",
+  "name": "Black or slow viewport fixes",
+  "title": "뷰포트가 검거나 느릴 때",
+  "summary": "NVIDIA Omniverse 뷰포트가 검게 변하거나 렌더링 속도가 극도로 느려질 때, 실시간 성능을 복구하고 원활한 작업을 돕는 문제 해결 가이드입니다. 그래픽 Driver와 렌더 설정의 충돌을 빠르게 정리합니다.",
+  "when": [
+    "Omniverse Kit 앱이나 뷰포트를 실행했는데 화면이 완전히 검게 표시될 때",
+    "대규모 USD씬을 로드한 후 뷰포트 내비게이션이 심하게 끊기거나 멈출 때",
+    "RTX 실시간 레이 트레이싱 켜기/끄기 전환 중 에디터가 응답하지 않을 때"
+  ],
+  "steps": [
+    "NVIDIA GeForce Experience 또는 공식 웹사이트에서 그래픽 Driver를 최신 Studio 버전으로 업데이트합니다.",
+    "Omniverse Launcher를 실행하고 사용하는 앱(Create, View 등)의 업데이트 상태를 확인합니다.",
+    "뷰포트 상단의 Render Settings 패널을 엽니다.",
+    "Ray Tracing 옵션을 일시적으로 끄거나 Path Tracing에서 Real-Time (RTX Real-Time) 모드로 전환합니다.",
+    "스태틱 및 다이나믹 캐시(Cache)를 지우거나 디스크 공간을 확보합니다.",
+    "앱을 재시작하고 새로운 빈 USD 스테이지에서 뷰포트 반응 속도를 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Ray Tracing",
+      "desc": "실시간 패스 트레이싱을 켜고 꺼서 뷰포트 부하를 조절합니다."
+    },
+    {
+      "name": "Max Bounces",
+      "desc": "광원 반사 횟수를 낮추어 렌더링 연산 속도를 확보합니다."
+    },
+    {
+      "name": "Denoiser",
+      "desc": "노이즈 제거 필터를 켜서 저품질 실시간 뷰포트의 시인성을 높입니다."
+    },
+    {
+      "name": "Resolution Scale",
+      "desc": "뷰포트 Resolution 비율을 낮추어 프레임 레이트를 즉시 높입니다."
+    },
+    {
+      "name": "Cache Path",
+      "desc": "로컬 캐시 폴더 위치를 변경해 디스크 읽기 속도 병목을 해결합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "무거운 USD 씬 로드 후 뷰포트 멈춤 현상 해결",
+      "steps": [
+        "Render Settings 패널을 엽니다.",
+        "Ray Tracing 체크를 해제하여 기본 광원 모드로 전환합니다.",
+        "필요 없는 복잡한 메시는 임시로 Visibility를 끕니다."
+      ]
+    },
+    {
+      "title": "검은 화면(Black Screen) 출력 시 그래픽 리셋",
+      "steps": [
+        "Viewport 상단의 Draw Mode를 Wireframe 또는 Shaded로 변경합니다.",
+        "Preferences 설정에서 GPU 디바이스가 올바르게 선택되었는지 확인합니다.",
+        "앱을 완전히 종료 후 Omniverse Launcher를 통해 재실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구형 게임용(Game Ready) Driver 사용 → 최신 NVIDIA Studio Driver로 클린 설치합니다.",
+    "VRAM 용량 초과로 인한 멈춤 → 텍스처 Resolution를 낮추거나 불필요한 레이어를 숨깁니다."
+  ],
+  "related": [
+    "Render Settings",
+    "USD Composer",
+    "Omniverse Cache",
+    "RTXDI"
+  ],
+  "videos": [
+    {
+      "id": "STjGNqUL3uE",
+      "title": "Omniverse - lowering viewport resolution and quick material creation",
+      "author": "Ordinary Alan"
+    },
+    {
+      "id": "Xkxz6TbKOuw",
+      "title": "Omniverse View: Viewport Toolbar Walkthrough",
+      "author": "Paul Kind"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Black%20or%20slow%20viewport%20fixes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T00:27:40.416432+00:00"
+}
