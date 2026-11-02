@@ -1,0 +1,89 @@
+{
+  "id": "3ds-max-pivot-affect-pivot-only-a09c",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Pivot (Affect Pivot Only)",
+  "title": "피벗 옮기기(Affect Pivot Only)",
+  "summary": "Pivot (Affect Pivot Only) 옵션은 오브젝트의 피벗 위치만 이동시키고, 기존 스케일·회전 변형에는 영향을 주지 않습니다.",
+  "when": [
+    "오브젝트 회전축을 정확히 맞춰야 할 때",
+    "복잡한 애니메이션에서 회전 중심을 재설정하고 싶을 때",
+    "다른 변형을 유지한 채 피벗만 옮겨야 할 때"
+  ],
+  "steps": [
+    "오브젝트 선택",
+    "Command Panel → Hierarchy 탭 → Adjust Pivot 롤아웃 열기",
+    "Affect Pivot Only 토글 버튼 클릭 (Hotkey: 없음)",
+    "Move 툴(Ctrl+Move) 또는 gizmo 로 피벗을 원하는 위치로 이동",
+    "필요 시 Align Pivot → Center to Object 클릭",
+    "Affect Pivot Only 버튼을 다시 끄고 일반 편집으로 전환"
+  ],
+  "params": [
+    {
+      "name": "Affect Pivot Only",
+      "desc": "피벗만 이동하고 변형은 그대로 유지"
+    },
+    {
+      "name": "Align Pivot",
+      "desc": "피벗을 선택된 오브젝트의 중심이나 특정 포인트에 정렬"
+    },
+    {
+      "name": "Center to Object",
+      "desc": "피벗을 오브젝트 전체의 중심으로 이동"
+    },
+    {
+      "name": "Reset XForm",
+      "desc": "오브젝트의 변형을 초기화해 피벗 이동 후 변형 오류 방지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 끝 회전",
+      "steps": [
+        "파이프 메쉬 선택",
+        "Affect Pivot Only 켜고 파이프 끝으로 피벗 이동",
+        "Affect Pivot Only 끄고 Rotate 툴로 원하는 각도 회전"
+      ]
+    },
+    {
+      "title": "캐릭터 팔 회전축 조정",
+      "steps": [
+        "팔 메쉬 선택",
+        "Affect Pivot Only 켜고 어깨 관절 위치로 피벗 이동",
+        "Affect Pivot Only 끄고 Pose 툴로 팔 움직임 설정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗 이동 후 스케일이 변함 → Affect Pivot Only 상태에서 이동했는지 확인하고, 필요 시 Reset XForm 사용",
+    "피벗을 원점에 맞추지 않아 회전 시 어긋남 → Align Pivot → Center to Object 로 피벗을 재정렬"
+  ],
+  "related": [
+    "Hierarchy → Adjust Pivot",
+    "Freeze Transform",
+    "Reset XForm",
+    "Align Pivot"
+  ],
+  "videos": [
+    {
+      "id": "OWusTyUFwVk",
+      "title": "Precise Object Rotation in 3ds Max – Pivot Point Trick! #shorts  #3dsmax #rotation",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "HzbcgKtVo1o",
+      "title": "How to Center Pivot to Object in 3ds Max | Easy Archviz Workflow",
+      "author": "Viz Pipeline"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Pivot%20%28Affect%20Pivot%20Only%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Hierarchy",
+    "Adjust Pivot"
+  ],
+  "at": "2026-11-02T02:08:10.475030+00:00"
+}

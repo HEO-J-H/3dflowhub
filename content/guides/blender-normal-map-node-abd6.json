@@ -1,0 +1,70 @@
+{
+  "id": "blender-normal-map-node-abd6",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Normal Map node",
+  "title": "Normal Map — 노멀 맵 연결",
+  "summary": "Normal Map 노드는 텍스처의 법선 정보를 이용해 표면 디테일을 시뮬레이션합니다.",
+  "when": [
+    "실제 모델에 고해상도 디테일을 추가하고 싶을 때",
+    "게임 엔진용 저폴리 메시에 베이크된 법선을 적용할 때",
+    "렌더링 시 빛 반사를 미세하게 조정하고 싶을 때"
+  ],
+  "steps": [
+    "Shader Editor 열기 (Shift+F3)",
+    "Add → Vector → Normal Map 노드 추가",
+    "법선 텍스처 이미지 노드의 Color 출력을 Normal Map 노드의 Color 입력에 연결",
+    "Normal Map 노드의 출력을 Principled BSDF의 Normal 입력에 연결",
+    "Strength 값을 필요에 따라 조정 후 Material Preview에서 확인"
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "법선 텍스처 이미지 입력"
+    },
+    {
+      "name": "Strength",
+      "desc": "법선 효과 강도, 0~1 범위가 일반적"
+    },
+    {
+      "name": "Space",
+      "desc": "법선 텍스처의 좌표 공간, 기본값은 Tangent"
+    }
+  ],
+  "examples": [
+    {
+      "title": "저폴리 캐릭터에 디테일 추가",
+      "steps": [
+        "UV unwrap 수행",
+        "베이크된 법선 텍스처 이미지 노드 추가",
+        "Normal Map 노드에 연결 후 Strength 1.0 적용",
+        "결과를 Material Preview에서 확인"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "WJZTI3SSVBU",
+      "title": "Normal Maps in BLENDER - Instant Realism to Materials",
+      "author": "Brandon 3D"
+    },
+    {
+      "id": "GXQLpCce6l0",
+      "title": "Instantly improve textures with normal maps #blender #blender3d #3dart",
+      "author": "Pantheon"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Normal%20Map%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Shader Editor",
+    "Add",
+    "Vector",
+    "Normal Map"
+  ],
+  "at": "2026-11-02T02:08:24.127854+00:00"
+}
