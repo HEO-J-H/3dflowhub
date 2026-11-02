@@ -63,7 +63,8 @@
   ],
   "mistakes": [
     "세그먼트 부족으로 천이 꺾이거나 부자연스럽게 굳어짐 → MeshSmooth나 Tessellate를 적용하거나 생성할 때 Segments 값을 높여줍니다.",
-    "천이 충돌체(Collision) 오브젝트를 뚫고 지나감 → Object Properties에서 Collision Offset 값을 조절하거나 Subsamples를 높여줍니다."
+    "천이 충돌체(Collision) 오브젝트를 뚫고 지나감 → Object Properties에서 Collision Offset 값을 조절하거나 Subsamples를 높여줍니다.",
+    "Modifier 스택 순서 오류로 Soft Selection 가중치나 버텍스 그룹 데이터가 유실됨 → 시뮬레이션을 적용하기 전에 명시적인 Vertex Group을 생성하고 저장합니다."
   ],
   "related": [
     "Garment Maker",
@@ -94,21 +95,29 @@
     "Cloth"
   ],
   "at": "2026-10-30T00:55:25.867978+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-29-2e2a78533b504804",
-      "title": "3ds Max용 TenPix Cloth 출시 — GPU 시뮬레이션",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUlRCQUhuN0x2SFZfY3V1UEFCeFVfWDB1cGRlX0dPSVVzVjVQY0FBaDd2ZnlTVFhUdWpvcDZGVmJnZU1VZHZJX1N1ak53TUd5ZVMtbG5XaDdNNGtLZ2ZVZ3FjeUV6ZDB2RmQyMVBKa0JfQkUySi0xUzhwR2tKZU9Dcm5HWQ?oc=5"
-    },
-    {
-      "key": "p:2026-10-27-5e0e9ee23f8e796d",
-      "title": "3ds Max Cloth Modifier와 Soft Selection 활용법",
-      "url": "https://www.reddit.com/r/3dsmax/comments/1xh2cxn/cloth_modifier_and_soft_selection/"
-    },
-    {
-      "key": "p:2026-10-26-0a7f824fb556dabb",
-      "title": "3ds Max TenPix Cloth 플러그인 공식 출시",
-      "url": "https://www.reddit.com/r/3dsmax/comments/1xfzuuv/tenpix_cloth_is_finally_out/"
+      "at": "2026-11-02T15:31:08+00:00",
+      "what": "3ds Max에서 Soft Selection과 버텍스 그룹을 연동하는 실무 활용 팁과 주의할 점을 추가하여 완성도를 높였습니다.",
+      "sources": [
+        {
+          "title": "3ds Max용 TenPix Cloth 출시 — GPU 시뮬레이션",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUlRCQUhuN0x2SFZfY3V1UEFCeFVfWDB1cGRlX0dPSVVzVjVQY0FBaDd2ZnlTVFhUdWpvcDZGVmJnZU1VZHZJX1N1ak53TUd5ZVMtbG5XaDdNNGtLZ2ZVZ3FjeUV6ZDB2RmQyMVBKa0JfQkUySi0xUzhwR2tKZU9Dcm5HWQ?oc=5"
+        },
+        {
+          "title": "3ds Max Cloth Modifier와 Soft Selection 활용법",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xh2cxn/cloth_modifier_and_soft_selection/"
+        },
+        {
+          "title": "3ds Max TenPix Cloth 플러그인 공식 출시",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xfzuuv/tenpix_cloth_is_finally_out/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-29-2e2a78533b504804",
+        "p:2026-10-27-5e0e9ee23f8e796d",
+        "p:2026-10-26-0a7f824fb556dabb"
+      ]
     }
   ]
 }

@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-product-structure-tree-bd83",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "구조",
+  "name": "Product Structure (Tree)",
+  "title": "Product Structure(트리) 다루기",
+  "summary": "Pixyz Studio의 Product Structure(Tree)는 임포트한 CAD 모델의 계층 구조를 보여주는 장면 트리로, 복잡한 어셈블리를 관리하고 수정하는 데 사용합니다.",
+  "when": [
+    "대용량 CAD 어셈블리 모델의 부품 구조를 파악하고 싶을 때",
+    "특정 파트를 선택하거나 숨겨서 최적화 작업을 진행할 때",
+    "Export 전 씬의 계층 구조를 정리하고 싶을 때"
+  ],
+  "steps": [
+    "CAD 파일을 Pixyz Studio로 불러옵니다 (File > Open 또는 Drag & Drop).",
+    "화면 왼쪽의 Product Structure 패널에서 임포트된 모델의 계층 구조(Tree)를 확인합니다.",
+    "트리의 화살표를 클릭하여 상위 어셈블리와 하위 파트(Occurrences)를 펼치거나 접습니다.",
+    "원하는 부품이나 파트를 클릭하여 뷰포트에서 선택하고, Inspector 패널에서 속성을 확인합니다.",
+    "필요에 따라 트리에서 항목을 Mouse 우클릭하여 수정, 이동, 삭제 등의 작업을 수행합니다."
+  ],
+  "params": [
+    {
+      "name": "Product Structure",
+      "desc": "씬의 모든 파트와 어셈블리 계층 구조를 트리 형태로 표시하는 패널입니다."
+    },
+    {
+      "name": "Occurrences",
+      "desc": "트리 내에서 참조되거나 배치된 개별 부품 및 어셈블리 노드입니다."
+    },
+    {
+      "name": "Inspector",
+      "desc": "Product Structure에서 선택한 노드의 세부 속성과 파라미터를 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "불필요한 부품 숨기기",
+      "steps": [
+        "Product Structure 패널에서 숨길 부품의 노드를 찾습니다.",
+        "해당 노드를 우클릭하거나 눈 아이콘을 클릭하여 뷰포트에서 숨깁니다.",
+        "최적화 작업 시 보이지 않는 내부 부품을 제외하여 가볍게 만듭니다."
+      ]
+    },
+    {
+      "title": "어셈블리 구조 정리하기",
+      "steps": [
+        "Product Structure 패널에서 정리할 부품들을 확인합니다.",
+        "노드를 드래그하여 계층 구조를 재배치합니다.",
+        "Export 포맷에 맞게 트리를 깔끔하게 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하위 파트가 안 보임 → Product Structure 트리의 화살표를 클릭하여 하위 노드를 펼치지 않았기 때문입니다.",
+    "원하는 부품 선택이 안 됨 → 뷰포트 대신 Product Structure 패널에서 직접 정확한 노드를 클릭해 보세요."
+  ],
+  "related": [
+    "About Occurrences",
+    "Inspector",
+    "Scene Tree",
+    "Supported File Formats"
+  ],
+  "videos": [
+    {
+      "id": "Uq9D6CrLZ7o",
+      "title": "008. Occurrences  Product Structure Tree in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AbouttheProductStructureTree.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "CAD",
+    "Pixyz Studio",
+    "File",
+    "Open",
+    "Drag",
+    "Drop"
+  ],
+  "at": "2026-11-02T15:31:05.533965+00:00"
+}

@@ -5,11 +5,12 @@
   "group": "애니메이션",
   "name": "Biped basics",
   "title": "Biped — 바이페드 기초",
-  "summary": "Biped는 3ds Max에 내장된 인체 리깅·애니메이션 프리셋 시스템으로, 빠르게 기본 인체 골격을 만들고 모션을 적용할 수 있습니다.",
+  "summary": "Biped는 3ds Max에 내장된 인체 리깅·애니메이션 프리셋 시스템으로, 빠르게 기본 인체 골격을 만들고 모션을 적용할 수 있으며, Biped Mode Tools를 통해 세부 부위 제어와 포징 작업을 단일 패널로 통합 관리할 수 있습니다.",
   "when": [
     "간단한 캐릭터 애니메이션을 빠르게 만들 때",
     "Prototype 단계에서 인체 동작을 테스트할 때",
-    "게임 엔진용 스켈레톤을 빠르게 준비할 때"
+    "게임 엔진용 스켈레톤을 빠르게 준비할 때",
+    "크리처나 동물 캐릭터처럼 목, 척추, 날개, 꼬리 등 세부 관절 제어가 많을 때"
   ],
   "steps": [
     "Create → Systems → Biped → Biped 로 Biped 객체 생성",
@@ -17,7 +18,7 @@
     "Animation → Motion Mixer 열어 Motion Mixer 패널 표시",
     "Motion Mixer 에서 원하는 프리셋(예: Walk, Run) 선택",
     "Body 파라미터에서 Leg Length·Arm Length 등 비율 조정",
-    "필요 시 Biped 를 Convert to Editable Poly 로 변환하여 추가 디테일 편집"
+    "Biped Mode Tools 통합 패널을 활용해 목, 척추, 날개, 꼬리 등 세부 신체 부위 포징 및 충돌·웨이브 효과 제어"
   ],
   "params": [
     {
@@ -97,16 +98,24 @@
     "Biped"
   ],
   "at": "2026-11-02T02:49:49.201028+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-30-104f1f2a6ac580bd",
-      "title": "3ds Max Biped Mode Tools 출시 — 애니메이션 편의성 개선",
-      "url": "https://www.reddit.com/r/3dsmax/comments/1xjqbn4/biped_mode_tools_for_3ds_max_made_for_all_the/"
-    },
-    {
-      "key": "p:2026-10-29-8cc1e24123ba5dd0",
-      "title": "3ds Max Biped 애니메이터를 위한 새로운 제작 툴 공개",
-      "url": "https://www.reddit.com/r/3dsmax/comments/1xiv9vf/just_created_this_new_tool_for_all_souls_that/"
+      "at": "2026-11-02T15:31:11+00:00",
+      "what": "3ds Max Biped 애니메이션 작업을 단일 패널에서 제어할 수 있는 Biped Mode Tools 관련 내용을 반영하여 단계와 활용 상황을 업데이트했습니다.",
+      "sources": [
+        {
+          "title": "3ds Max Biped Mode Tools 출시 — 애니메이션 편의성 개선",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xjqbn4/biped_mode_tools_for_3ds_max_made_for_all_the/"
+        },
+        {
+          "title": "3ds Max Biped 애니메이터를 위한 새로운 제작 툴 공개",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xiv9vf/just_created_this_new_tool_for_all_souls_that/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-30-104f1f2a6ac580bd",
+        "p:2026-10-29-8cc1e24123ba5dd0"
+      ]
     }
   ]
 }
