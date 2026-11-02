@@ -491,6 +491,33 @@ def render_cpc_optimization_dashboard() -> None:
                 st.info("오류 및 차단 집계 기록이 없습니다.")
 
 
+def render_cpc_optimization_status() -> None:
+    """Streamlit 현황판 사이드바 또는 대시보드에 실무 3D 콘텐츠의 도메인별 CPC 최적화 상태와 오류 태그 현황을 시각적으로 렌더링합니다."""
+    try:
+        import evolve
+        cpc_metrics = evolve.summarize_cpc_optimization_metrics()
+        error_trends = evolve.summarize_error_trends()
+        dist_report = evolve.analyze_3d_content_distribution()
+    except Exception:
+        cpc_metrics = {"total_practical_posts": 0, "cpc_score_avg": 0.0, "domains_breakdown": {}}
+        error_trends = {}
+        dist_report = {"counts": {}}
+
+    with st.container(border=True):
+        st.markdown("**🧊 도메인별 CPC 최적화 및 오류 태그 현황**")
+        col1, col2 = st.columns(2)
+        col1.metric("실무 고CPC 콘텐츠", f"{cpc_metrics.get('total_practical_posts', 0):,}건")
+        col2.metric("평균 CPC 점수", f"{cpc_metrics.get('cpc_score_avg', 0.0):.2f}점")
+
+        st.caption("도메인별 3D 콘텐츠 집중도 및 오프토픽·품질 오류 태그 차단 현황입니다.")
+        domains_bd = cpc_metrics.get("domains_breakdown", {})
+        if domains_bd:
+            for dom, cnt in domains_bd.items():
+                st.caption(f"· {dom}: 실무 고CPC {cnt}건")
+        else:
+            st.caption("· 도메인별 집계 데이터가 아직 없습니다.")
+
+
 def render_practical_content_metrics() -> None:
     """실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 사이드바 또는 개요 영역에 시각적으로 요약 렌더링합니다."""
     runs = load_runs()
@@ -508,6 +535,7 @@ def render_practical_content_metrics() -> None:
         c3.metric("발행 성공률", f"{success_rate:.1f}%")
         c4.metric("티스토리 발행", f"{total_published:,}건")
         st.caption("실무 Maya, 3ds Max, Blender 튜토리얼 및 스크립트 활용법 중심의 고CPC 콘텐츠 수집/발행 성공 통계입니다.")
+        render_cpc_optimization_status()
 
 
 # ─────────────────────────── 개요 ───────────────────────────

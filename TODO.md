@@ -48,4 +48,4 @@
 - [x] (agent) app.render_cpc_optimization_dashboard(): Streamlit 현황판에 고CPC 실무 3D 콘텐츠 집중도와 오프토픽 차단 현황을 시각화하는 렌더링 함수 추가 및 테스트 추가
 - [x] (agent) core.validate_practical_3d_density(): 본문 내 3D DCC 및 실무 툴 핵심 키워드 출현 빈도와 밀도를 정밀 검증하여 기준 미달 시 'low 3d density' 태그를 부여하는 함수 추가 및 테스트 추가
 - [ ] (agent:보류) evolve.summarize_cpc_category_stats(): 최근 발행된 콘텐츠의 도메인별 고CPC 가중치와 성공률 통계를 집계하여 요약 리포트를 반환하는 함수 추가 및 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
-- [ ] (agent) app.render_cpc_optimization_status(): Streamlit 현황판 사이드바에 실무 3D 콘텐츠의 도메인별 CPC 최적화 상태와 오류 태그 현황을 시각적으로 렌더링하는 함수 추가 및 테스트 추가
+- [x] (agent) app.render_cpc_optimization_status(): Streamlit 현황판 사이드바에 실무 3D 콘텐츠의 도메인별 CPC 최적화 상태와 오류 태그 현황을 시각적으로 렌더링하는 함수 추가 및 테스트 추가
