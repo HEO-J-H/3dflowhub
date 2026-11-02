@@ -1386,6 +1386,17 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
         parts.append(f'<div class="video"><iframe src="{src}" allowfullscreen loading="lazy"></iframe></div>')
     if p.get("summary"):
         parts.append(f'<p class="lead"><b>한 줄 요약</b> — {e(p["summary"])}</p>')
+    if m.get("figures"):  # 논문 그림 (CC 라이선스 논문만 — 출처·라이선스 표시)
+        lic = (p.get("paper") or {}).get("license", "")
+        parts.append('<div class="shots">' + "".join(
+            f'<figure><img src="{e(f["src"])}" alt="{e(f.get("caption_ko") or f["caption"][:80])}" loading="lazy">'
+            f'<figcaption>{e(f.get("caption_ko") or f["caption"][:80])}</figcaption></figure>' for f in m["figures"][:3])
+            + f'</div><p class="crumb">그림 출처: <a href="{e(p["url"])}" target="_blank" rel="noopener">논문 원문</a>'
+            + (f' (<a href="{e(lic)}" target="_blank" rel="noopener license">라이선스</a>)' if lic else "") + "</p>")
+    if p.get("paper_v"):
+        code = (p.get("paper") or {}).get("code") or []
+        parts.append('<p class="crumb">💻 코드: ' + (" · ".join(f'<a href="{e(c)}" target="_blank" rel="noopener">{e(c.split("github.com/")[-1])}</a>'
+                                                       for c in code) if code else "논문에 공개 코드 링크 없음") + "</p>")
     if tip:
         parts.append(f'<div class="optip"><b>✍️ 운영자 한마디</b><p>{e(tip)}</p></div>')
     for s in p.get("sections") or []:

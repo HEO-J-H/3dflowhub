@@ -972,6 +972,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("기존 콘텐츠 보강 실패: %s", e)
         strategy["refresh_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "papers_at", 2 * 3600):  # 예전 방식 논문 글 다시 쓰기 (원문 전체 근거, 지어낸 워크플로 제거)
+        try:
+            import enrich
+            fixed = enrich.fix_papers(3)
+            if fixed:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "papers": fixed}])[-30:]
+        except Exception as e:
+            log.warning("논문 글 다시 쓰기 실패: %s", e)
+        strategy["papers_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "manual_at", 2 * 3600):  # 명령별 심화 매뉴얼: 2시간마다 2개 (하루 상한)
         try:
             import manual

@@ -152,8 +152,128 @@ def unsupported_numbers(text: str, source: str) -> list[str]:
     return bad
 
 
+
+# ── 연구 논문(arXiv) — 일반 보강과 다르게: 원문 전체를 근거로 정확하게, 지어낸 '실무 워크플로' 금지 ──
+# (검토 2026-11-03: 논문 글에 '실무에서 이렇게 씁니다' 가 붙어 논문에 없는 Blender·Houdini 작업 순서를 지어냈고,
+#  제목으로 찾은 영상이 종이접기 공작 영상이었음 → 논문은 이 경로로만 고친다)
+def is_paper(p: dict) -> bool:
+    return "arxiv.org" in (p.get("url") or "") or p.get("topic") == "연구·논문"
+
+
+def paper_source(url: str) -> dict:
+    """arXiv 본문(HTML판)·그림 설명·코드 링크·라이선스. 그림은 CC 라이선스 논문만 가져옴 (재사용 허락)."""
+    m = re.search(r"arxiv\.org/(?:abs|pdf|html)/([\d.]+(?:v\d+)?)", url or "")
+    if not m:
+        return {}
+    aid = m.group(1)
+    out = {"id": aid, "text": "", "figures": [], "code": [], "license": ""}
+    try:
+        from bs4 import BeautifulSoup
+        abs_html = requests.get(f"https://arxiv.org/abs/{aid}", headers=UA, timeout=20).text
+        lic = re.search(r'href="(https?://(?:creativecommons\.org|arxiv\.org/licenses)[^"]+)"', abs_html)
+        out["license"] = lic.group(1) if lic else ""
+        base = f"https://arxiv.org/html/{aid}" + ("" if re.search(r"v\d+$", aid) else "v1") + "/"
+        soup = BeautifulSoup(requests.get(base, headers=UA, timeout=30).text, "html.parser")
+        for t in soup.select(".ltx_bibliography, script, style, nav"):
+            t.decompose()
+        out["text"] = re.sub(r"\s+", " ", soup.get_text(" ", strip=True))[:16000]
+        out["code"] = sorted(set(re.findall(r"https?://github\.com/[\w.-]+/[\w.-]+", str(soup))))[:3]
+        if "creativecommons.org" in out["license"]:
+            from urllib.parse import urljoin
+            for fig in soup.find_all("figure"):
+                img, cap = fig.find("img"), fig.find("figcaption")
+                if img and img.get("src") and cap:
+                    out["figures"].append({"src": urljoin(base, img["src"]), "caption": cap.get_text(" ", strip=True)[:300]})
+                if len(out["figures"]) >= 4:
+                    break
+    except Exception as e:  # noqa: BLE001
+        core.log.warning("논문 본문 읽기 실패 %s: %s", url, e)
+    return out
+
+
+def rewrite_paper(p: dict) -> dict | None:
+    """논문 글을 원문 전체 기준으로 다시 씀 — 문제·핵심 아이디어·방법·결과(논문 수치)·한계·공개 여부."""
+    src = paper_source(p.get("url", ""))
+    if len(src.get("text", "")) < 2000:
+        return None
+    figs = src["figures"]
+    prompt = (f"Research paper full text (ground truth):\n{src['text']}\n\n"
+              f"Code links found in paper: {src['code'] or 'none'}\n"
+              + (f"Figure captions (English): {json.dumps([f['caption'] for f in figs], ensure_ascii=False)}\n" if figs else "")
+              + "Write an accurate Korean explainer for Korean 3D artists. Rules: only facts from the paper; quote the paper's "
+              "own numbers exactly; do NOT invent tool workflows, menu paths or plugins (the paper did not use Blender etc. "
+              "unless it says so); clearly separate what the paper showed vs. possible uses (mark as 가능성). Translate "
+              "terms correctly (origami = 종이접기/오리가미, never 오리기). Keep English technical terms in parentheses once.\n"
+              "Return JSON:\n"
+              ' "title_ko": 25-45 chars, what the paper does,\n'
+              ' "summary": 1 sentence,\n'
+              ' "sections": 5-6 {"heading","body"} — 무엇을 풀려는가 / 핵심 아이디어 / 방법 (단계) / 결과 (논문 수치) / '
+              'Limitations·아직 못 하는 것 / 코드·데이터 공개 여부,\n'
+              ' "insight": 2-4 sentences — what this could mean for 3D artists (가능성, not fact),\n'
+              ' "faq": 2 {"q","a"} answered from the paper only (never cite our own section names as the paper\'s),\n'
+              ' "try_it": steps only if code or demo is public (with the link), else [],\n'
+              ' "tags": 3-6 short Korean/English tags,\n'
+              + (' "figure_captions_ko": one short Korean caption per figure, same order' if figs else ""))
+    try:
+        out = core._parse_json(core.llm(prompt, system="You are a precise science editor for a Korean 3D learning site."
+                                        + core.playbook("common", "editor", limit=6000), max_tokens=3200, json_mode=True))
+    except core.LLMBudgetExceeded:
+        raise
+    except Exception as e:  # noqa: BLE001
+        core.log.warning("논문 글 다시 쓰기 실패 %s: %s", p.get("id"), e)
+        return None
+    fx = core.fix_terms
+    secs = [{"heading": fx(str(x.get("heading", "")))[:60], "body": fx(str(x.get("body", "")))[:1200]}
+            for x in out.get("sections") or [] if isinstance(x, dict) and len(str(x.get("body", ""))) >= 60]
+    bad = unsupported_numbers(" ".join(x["body"] for x in secs), src["text"])
+    if len(secs) < 4 or len(bad) > 2:  # 논문에 없는 숫자가 여럿이면 버림
+        core.log.info("논문 글 다시 쓰기 품질 미달 %s: 섹션 %d, 근거 없는 숫자 %s", p.get("id"), len(secs), bad[:5])
+        return None
+    q = dict(p)
+    q.update({"title_ko": fx(str(out.get("title_ko") or p.get("title_ko")))[:60], "summary": fx(str(out.get("summary") or "")),
+              "sections": secs, "insight": fx(str(out.get("insight") or "")),
+              "faq": [{"q": fx(str(f.get("q", ""))), "a": fx(str(f.get("a", "")))} for f in out.get("faq") or []
+                      if isinstance(f, dict) and f.get("q")][:3],
+              "try_it": [str(t) for t in out.get("try_it") or []][:4] if src["code"] else [],
+              "tags": [str(t)[:30] for t in out.get("tags") or p.get("tags") or []][:6],
+              "refs": [], "videos": [], "paper": {"code": src["code"], "license": src["license"]},
+              "paper_v": 2, "enriched_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+    caps = out.get("figure_captions_ko") or []
+    if figs:
+        q["media"] = {**(p.get("media") or {}), "figures": [{**f, "caption_ko": str(caps[i])[:120] if i < len(caps) else ""}
+                                                              for i, f in enumerate(figs)]}
+    q.pop("qa_at", None)
+    return q
+
+
+def fix_papers(max_n: int = 3) -> list[str]:
+    """예전 방식으로 보강·요약된 논문 글을 다시 씀 (최신부터, 하루 몇 개씩)."""
+    if not core.background_ok(max_n * 2):
+        return []
+    hidden = {k for k, v in core.curation_state().items() if v == "hide"}
+    done = []
+    for f in sorted(core.POSTS_DIR.glob("*.json"), reverse=True):
+        if len(done) >= max_n:
+            break
+        p = core._load_json(f, {})
+        if not is_paper(p) or p.get("paper_v") or p.get("id") in hidden or p.get("paper_tried"):
+            continue
+        try:
+            q = rewrite_paper(p)
+        except core.LLMBudgetExceeded:
+            break
+        if q:
+            core._save_json(f, q)
+            done.append(q["id"])
+        else:
+            p["paper_tried"] = True
+            core._save_json(f, p)
+    return done
+
 def enrich_post(p: dict) -> dict | None:
     """보강된 글(사본)을 돌려줌. 품질 기준 미달이면 None."""
+    if is_paper(p):  # 논문은 원문 전체 기준으로 다시 쓰기 (지어낸 실무 섹션·엉뚱한 영상 방지)
+        return rewrite_paper(p)
     refs, videos = gather(p)
     numbered = [{"n": i + 1, **{k: r[k] for k in ("source", "title", "excerpt")}} for i, r in enumerate(refs)]
     prompt = (
