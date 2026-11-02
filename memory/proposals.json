@@ -6760,5 +6760,67 @@
     "id": "p-e830c83b21",
     "v": "done",
     "note": "결과 카드 숫자 22px·휴대폰 20px 이미 반영(88ab0ef), 375px 화면에서 넘침 없음 확인"
+  },
+  {
+    "at": "2026-11-02T13:31:59+00:00",
+    "kind": "proposal",
+    "id": "p-75a5d60934",
+    "title": "대기 중인 백엔드 코어 PR(#40~#44) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #40, #41, #42, #43, #44가 승인 대기 상태로 등록되어 있음",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 대기 중인 PR들의 테스트 결과를 확인하고 최종 병합 조치 진행",
+    "expected": "입력 검증 로직이 안전하게 반영되어 서비스 안정성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:31:59+00:00",
+    "kind": "proposal",
+    "id": "p-b8813f2e1d",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 과정에서 발생할 수 있는 이미지 로드 실패 및 예외 상황 대응 필요",
+    "proposal": "web/index.html 및 관련 Script에서 잘못된 이미지 입력 시 사용자에게 직관적인 알림을 주는 예외 처리 로직 추가",
+    "expected": "클라이언트 측 사용자 경험 개선 및 오류 대응력 강화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:32:33.562155+00:00",
+    "kind": "decision",
+    "id": "p-75a5d60934",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:32:33.569144+00:00",
+    "kind": "decision",
+    "id": "p-b8813f2e1d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:32:35.967222+00:00",
+    "kind": "triage",
+    "id": "p-75a5d60934",
+    "verdict": "done_already",
+    "reason": "PR #40부터 #44까지의 백엔드 코어 점검 및 병합 관련 작업은 이미 최근 커밋과 끝낸 제안 목록에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-02T13:32:35.973723+00:00",
+    "kind": "decision",
+    "id": "p-75a5d60934",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): PR #40부터 #44까지의 백엔드 코어 점검 및 병합 관련 작업은 이미 최근 커밋과 끝낸 제안 목록에 반영되어 있습니다."
   }
 ]
