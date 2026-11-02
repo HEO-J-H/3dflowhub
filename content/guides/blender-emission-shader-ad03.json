@@ -1,0 +1,85 @@
+{
+  "id": "blender-emission-shader-ad03",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Emission shader",
+  "title": "Emission — 빛나는 재질",
+  "summary": "Emission 쉐이더는 재질이 자체적으로 빛을 방출하도록 만들어, 광원 없이도 밝게 보이게 합니다.",
+  "when": [
+    "자체 발광 효과가 필요할 때",
+    "간접 조명 없이 빛을 내는 오브젝트를 만들 때",
+    "네온 사인·스크린·불빛 등 emissive 재질을 만들 때"
+  ],
+  "steps": [
+    "Object 선택 → Shader Editor 열기 (Shift+F3)",
+    "기본 Principled BSDF 노드 삭제 (X)",
+    "Shift+A → Shader → Emission 노드 추가",
+    "Emission 노드의 Color와 Strength 설정",
+    "Emission 노드를 Material Output의 Surface 입력에 연결"
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "방출되는 빛의 색상"
+    },
+    {
+      "name": "Strength",
+      "desc": "빛의 강도, 값이 클수록 밝아짐"
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온 사인 만들기",
+      "steps": [
+        "Plane 생성 → 선택",
+        "Emission 쉐이더 적용",
+        "Color를 핑크로 설정",
+        "Strength 5로 증가"
+      ]
+    },
+    {
+      "title": "우주 배경 별빛",
+      "steps": [
+        "작은 Sphere 생성 → 선택",
+        "Emission 쉐이더 적용",
+        "Color를 흰색, Strength 10 설정",
+        "Render → Film → Bloom 활성화"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Strength 값을 0으로 두면 빛이 보이지 않는다 → 적절한 값(예: 5~10)으로 설정",
+    "Emission 노드를 Material Output의 Surface에 연결하지 않음 → Surface 입력에 연결",
+    "텍스처 없이 Color만 설정하면 색이 균일해 보인다 → Image Texture 노드와 Color를 연결"
+  ],
+  "related": [
+    "Principled BSDF",
+    "Shader Editor",
+    "Bloom",
+    "Volume Emission"
+  ],
+  "videos": [
+    {
+      "id": "B5brCvNmn8Q",
+      "title": "Blender - Stylish Emission Shader (Blender 2.93)",
+      "author": "Josh Downie"
+    },
+    {
+      "id": "kZUF5s6YUEE",
+      "title": "Stop Your Emission Shaders from Looking Flat #blender #tutorial",
+      "author": "jatenji"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Emission%20shader",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "Shader Editor",
+    "Principled BSDF",
+    "Shader",
+    "Emission"
+  ],
+  "at": "2026-11-02T02:59:08.715662+00:00"
+}

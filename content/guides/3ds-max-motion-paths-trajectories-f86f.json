@@ -1,0 +1,103 @@
+{
+  "id": "3ds-max-motion-paths-trajectories-f86f",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Motion paths (Trajectories)",
+  "title": "궤적 보기(Trajectories)",
+  "summary": "Motion Paths( Trajectories )는 객체가 지정한 스플라인을 시간에 따라 따라 움직이게 하는 애니메이션 도구입니다.",
+  "when": [
+    "카메라를 복잡한 트랙을 따라 이동시켜야 할 때",
+    "차량·캐릭터가 도로·리그를 따라 자연스럽게 움직이게 할 때",
+    "키프레임 없이 경로를 시각화해 물체의 이동 궤적을 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Create → Shapes → Line (또는 원하는 스플라인) 로 경로를 만든다.",
+    "움직일 객체를 선택한다.",
+    "Animation 메뉴 → Constraints → Path Constraint 를 선택한다.",
+    "팝업된 Path Constraint 파라미터 창에서 ‘Pick Path’ 버튼을 눌러 만든 스플라인을 클릭한다.",
+    "Percent 값을 0~100 으로 조정해 객체가 경로를 따라 이동하도록 한다.",
+    "Follow, Bank 옵션을 켜서 객체가 경로 방향을 바라보게 한다.",
+    "필요하면 Up Node 로 회전 축을 지정하고, Twist 로 회전량을 미세 조정한다."
+  ],
+  "params": [
+    {
+      "name": "Percent",
+      "desc": "경로를 따라 이동한 비율(0% 시작, 100% 끝)."
+    },
+    {
+      "name": "Follow",
+      "desc": "객체가 경로 방향을 자동으로 바라보게 함."
+    },
+    {
+      "name": "Bank",
+      "desc": "곡선 구간에서 객체가 기울어지는 정도를 제어."
+    },
+    {
+      "name": "Up Node",
+      "desc": "회전 기준이 되는 위쪽 방향을 지정."
+    },
+    {
+      "name": "Axis",
+      "desc": "객체가 어느 축을 기준으로 회전할지 선택."
+    },
+    {
+      "name": "Twist",
+      "desc": "경로 전체에 추가 회전값을 적용."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카메라가 복도 전체를 스캔",
+      "steps": [
+        "스플라인을 복도 중앙에 그린다.",
+        "Camera 객체를 선택하고 Path Constraint 를 할당한다.",
+        "Percent 를 0→100 로 키프레임을 넣어 카메라가 전체 복도를 이동하도록 한다."
+      ]
+    },
+    {
+      "title": "자동차가 도로를 따라 주행",
+      "steps": [
+        "도로 형태의 스플라인을 만든다.",
+        "자동차 모델에 Path Constraint 를 적용하고 Follow 를 켠다.",
+        "Percent 에 0~100 키프레임을 넣어 속도 변화를 그래프 에디터에서 조절한다."
+      ]
+    },
+    {
+      "title": "Particle 방출기가 곡선을 따라 움직이며 연출",
+      "steps": [
+        "스플라인을 원하는 궤적으로 만든다.",
+        "Particle System 객체를 선택 후 Path Constraint 로 연결한다.",
+        "Follow 를 켜고 Percent 를 애니메이션하면 Particle이 곡선을 따라 방출된다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Follow 를 켜지 않음 → 객체가 경로를 따라 움직이지만 방향이 고정돼 어색해진다 → Follow 옵션을 활성화한다.",
+    "스플라인 방향이 반대 → 객체가 역방향으로 이동한다 → 스플라인을 선택하고 ‘Reverse’ 버튼을 눌러 방향을 바꾼다.",
+    "객체의 스케일이 적용되지 않음 → 경로 따라 이동 시 비율이 왜곡된다 → 객체에 ‘Reset XForm’ 후 ‘Collapse To’ 로 변환한다."
+  ],
+  "related": [
+    "Path Constraint",
+    "Align",
+    "Snap",
+    "Graph Editor"
+  ],
+  "videos": [
+    {
+      "id": "6FBBbG5A4qs",
+      "title": "05 Editing position trajectories with Motion Paths",
+      "author": "Кирил Plus"
+    },
+    {
+      "id": "_IfcnuV_ivk",
+      "title": "🚗 Animate Along a Path in 3ds Max | Path Constraint Tutorial 🎬 #shorts  #3dsmax #aniamtion",
+      "author": "Yurii Shevchyshyn"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Motion%20paths%20%28Trajectories%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T02:58:57.379091+00:00"
+}
