@@ -22,6 +22,7 @@ KNOBS = {
     "enrich_daily": (20, 10, 40, 5),              # 빈약한 글 보강 (AI)
     "manual_daily": (8, 4, 16, 2),                # 심화 매뉴얼 (AI)
     "compare_daily": (4, 2, 8, 1),                # 툴 비교 (AI)
+    "refresh_daily": (6, 3, 12, 2),               # 기존 페이지 보강 (AI)
 }
 # 지표 → (목표, 모자랄 때 올릴 손잡이, AI 를 쓰는가)
 TARGETS = {

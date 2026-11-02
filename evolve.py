@@ -961,6 +961,17 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("품질 성적표 실패: %s", e)
         strategy["scorecard_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "refresh_at", 3 * 3600):  # 기존 콘텐츠 보강: 새 소식·새 버전 → 관련 가이드·매뉴얼·비교 고쳐 쓰기
+        try:
+            import refresh
+            n = refresh.find()
+            made = refresh.apply(2)
+            if made or n:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "refresh": {"found": n, "updated": made}}])[-30:]
+        except Exception as e:
+            log.warning("기존 콘텐츠 보강 실패: %s", e)
+        strategy["refresh_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "manual_at", 2 * 3600):  # 명령별 심화 매뉴얼: 2시간마다 2개 (하루 상한)
         try:
             import manual

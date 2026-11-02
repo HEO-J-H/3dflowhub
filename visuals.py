@@ -64,6 +64,13 @@ def for_change(x: dict) -> dict:
     return x
 
 
+def for_guide(x: dict) -> dict:
+    import guides
+    if not x.get("videos"):
+        x["videos"] = guides.find_videos(f"{x['tool']} {x['name']} tutorial") or guides.find_videos(f"{x['tool']} {x['name']}", n=1)
+    return x
+
+
 def for_recipe(x: dict) -> dict:
     import guides
     x["videos"] = guides.find_videos(f"{x['host']} {x['title'][:50]}", n=1) or guides.find_videos(f"{x['host']} {x.get('category', '')} tutorial", n=1)
@@ -129,13 +136,14 @@ def backfill(limit: int = 12) -> list[str]:
     """그림·영상이 아직 없는 페이지에 붙임 (한 번에 limit 개)."""
     import compare
     import manual
+    import guides
     import recipes
     import refs
     jobs = [(x, for_manual, manual.DIR) for x in manual.load_all()] + \
            [(x, for_compare, compare.DIR) for x in compare.load_all()] + \
            [(x, for_fix, refs.FIX_DIR) for x in refs.load("fix")] + \
            [(x, for_change, refs.CHANGE_DIR) for x in refs.load("change")] + \
-           [(x, for_recipe, recipes.RECIPE_DIR) for x in recipes.load_all()]
+           [(x, for_recipe, recipes.RECIPE_DIR) for x in recipes.load_all()] +            [(x, for_guide, guides.GUIDE_DIR) for x in guides.load_all() if not x.get("videos")]  # 영상 없는 기초 가이드
     done = []
     for x, fn, d in [j for j in jobs if not j[0].get("visuals_at")][:limit]:
         try:

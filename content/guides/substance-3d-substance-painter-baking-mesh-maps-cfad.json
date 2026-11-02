@@ -5,7 +5,7 @@
   "group": "페인터",
   "name": "Substance Painter baking mesh maps",
   "title": "Substance Painter 맵 Baking",
-  "summary": "Substance Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 텍스처가 표면의 구부러짐이나 모서리를 인식하게 만듭니다.",
+  "summary": "Substance Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 텍스처가 표면의 구부러짐이나 모서리를 인식하게 만듭니다. 최신 12.2 버전에서는 케이지(Cage) 기반 베이킹 오류가 수정되어 투영 정확도와 안정성이 향상되었습니다.",
   "when": [
     "로우 폴리곤 모델에 하이 폴리곤의 스컬프팅 디테일을 노말 맵으로 입히고 싶을 때",
     "Smart Materials가 모서리나 홈을 자동으로 인식해 먼지나 마모 효과를 주게 하고 싶을 때",
@@ -16,7 +16,7 @@
     "Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
     "Bake Mesh Maps 창에서 Common 탭의 Output Size(해상도)와 상단 탭에서 베이킹할 맵들을 선택합니다.",
     "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다.",
-    "Max Front/Rear 방사 거리(Distance) 값을 조절하여 하이 폴리곤과 로우 폴리곤 간의 투영 범위를 맞춥니다.",
+    "Max Front/Rear 방사 거리(Distance) 값을 조절하거나 외부 3D DCC에서 제작한 케이지(Cage)를 활용해 투영 범위를 맞춥니다.",
     "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성합니다."
   ],
   "params": [
@@ -65,7 +65,7 @@
   ],
   "mistakes": [
     "메시 이름이 일치하지 않아 엉뚱한 부위에 디테일이 투영됨 → Match 옵션을 By Mesh Name으로 바꾸고 접미사 설정 확인",
-    "Baking 결과물에 검은색 노이즈나 깨짐(Cageless 이슈)이 발생함 → Max Front/Rear 거리를 조절하거나 Cage 파일을 사용",
+    "Baking 결과물에 검은색 노이즈나 깨짐(Cageless 이슈)이 발생함 → Max Front/Rear 거리를 조절하거나 최신 버전에서 개선된 케이지 파일을 사용",
     "UV 이음새가 찢어져 하얗게 선이 생김 → Dilate 값을 기본값(2~4 pixel) 이상으로 높여 해결"
   ],
   "related": [
@@ -90,5 +90,30 @@
   "grounded": false,
   "images": [],
   "menu_path": [],
-  "at": "2026-10-19T11:41:02.770612+00:00"
+  "at": "2026-10-19T11:41:02.770612+00:00",
+  "updates": [
+    {
+      "at": "2026-11-02T15:16:45+00:00",
+      "what": "Substance 3D Painter 12.2 버전 업데이트에 따른 케이지(Cage) 기반 베이킹 오류 수정 및 투영 안정성 향상 내용을 가이드에 반영했습니다.",
+      "sources": [
+        {
+          "title": "p:2026-10-30-45aa0702336f3553",
+          "url": ""
+        },
+        {
+          "title": "p:2026-10-29-bb6cf290609d6117",
+          "url": ""
+        },
+        {
+          "title": "p:2026-10-26-613e7533b65502b1",
+          "url": ""
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-30-45aa0702336f3553",
+        "p:2026-10-29-bb6cf290609d6117",
+        "p:2026-10-26-613e7533b65502b1"
+      ]
+    }
+  ]
 }

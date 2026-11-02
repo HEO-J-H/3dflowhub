@@ -480,6 +480,8 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .shots figcaption{text-align:center;font-size:14px;font-weight:600;margin-top:6px}
 .tvids{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin:12px 0 20px}
 .tvids h3{font-size:15px;margin:0 0 6px}.hero-img{width:100%;height:auto;border-radius:18px;margin:12px 0}
+.updbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--surface)}
+.updbox ul{margin:6px 0 0;padding-left:18px}.updbox li{font-size:14px;margin:3px 0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
 @media (max-width:720px){.vids.two{grid-template-columns:1fr}}
 .guide h2{font-size:21px;margin:30px 0 10px}
@@ -1074,6 +1076,17 @@ def shots_html(shots: list[dict], root: str) -> str:
             + '<p class="crumb">Blender 에서 같은 장면을 값만 바꿔 실제로 렌더한 그림입니다.</p>') if out else ""
 
 
+def updates_html(x: dict) -> str:
+    """새 소식·새 버전으로 보강한 기록 (최근 3개) — 언제·무엇이·왜 바뀌었는지 + 근거 링크."""
+    ups = [u for u in x.get("updates") or [] if u.get("what") and not u.get("skipped")][-3:]
+    if not ups:
+        return ""
+    li = "".join(f'<li><b>{e(kst_date(u["at"]))}</b> {e(u["what"])}' + "".join(
+        f' · <a href="{e(sr["url"])}" target="_blank" rel="noopener">{e(sr["title"][:40])}</a>' for sr in u.get("sources", [])[:2]
+        if str(sr.get("url", "")).startswith("http")) + "</li>" for u in reversed(ups))
+    return f'<div class="updbox"><b>🆕 최근 보강</b><ul>{li}</ul></div>'
+
+
 def learn_url(g: dict) -> str:
     return f"learn/{g['id']}/"
 
@@ -1179,7 +1192,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + (' · 근거: 공식 문서 본문' if g.get("grounded") else ' · 근거: 공식 문서 링크·영상')
             + (f' · 작성 {e(g["at"][:10])}' if g.get("at") else "")
             + ' · ' + report_button("[3dflowhub] 가이드 오류 제보: " + g["title"][:40], "오류 제보") + '</p>'
-            + f'<p class="lead">{e(g.get("summary", ""))}</p>'
+            + f'<p class="lead">{e(g.get("summary", ""))}</p>' + updates_html(g)
             + (f'<div class="optip"><b>✍️ 운영자 실무 팁</b><p>{e(g["tip"])}</p></div>' if g.get("tip") else "")
             + (f'<div class="vids{" two" if len(vids) > 1 else ""}">{"".join(yt_facade(v) for v in vids)}</div>' if vids else "")
             + (f'<h2>이럴 때 씁니다</h2><ul>{"".join(f"<li>{e(x)}</li>" for x in g.get("when", []))}</ul>' if g.get("when") else "")
@@ -1524,8 +1537,8 @@ def build_manual(guides_: list[dict]) -> int:
                 f'<h1>{e(x["tool"])} {e(name)} — 심화 매뉴얼</h1>'
                 f'<p class="aiby">🤖 AI 가 정리 · {badge} · 작성 {e(x.get("at", "")[:10])} · '
                 + report_button("[3dflowhub] 심화 매뉴얼 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
-                f'<p class="lead">{e(x["overview"])}</p>'
-                f'<p class="crumb">처음이라면 → <a href="{root}learn/{x["id"]}/">기초 가이드: {e(x["title"])}</a></p>'
+                f'<p class="lead">{e(x["overview"])}</p>' + updates_html(x)
+                + f'<p class="crumb">처음이라면 → <a href="{root}learn/{x["id"]}/">기초 가이드: {e(x["title"])}</a></p>'
                 + videos_html(x.get("videos"))
                 + shots_html(x.get("shots") or [], root)
                 + (f'<h2>여는 방법</h2>{menu_diagram(x.get("menu_path") or [])}<p>{e(x["access"])}</p>' if x.get("access") else "")
@@ -1579,7 +1592,7 @@ def build_compare() -> int:
                 f'<h1>{e(x["title"])} — 툴별 비교</h1>'
                 f'<p class="aiby">🤖 AI 가 정리 · 비교 툴: {e(tools)} · 작성 {e(x.get("at", "")[:10])} · '
                 + report_button("[3dflowhub] 툴 비교 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
-                f'<p class="lead">{e(x["summary"])}</p>'
+                f'<p class="lead">{e(x["summary"])}</p>' + updates_html(x)
                 + ('<h2>🎬 툴마다 영상으로 보기</h2><div class="tvids">' + "".join(
                     f'<div><h3>{e(r["tool"])}</h3>{yt_facade(r["video"])}</div>' for r in x["rows"] if r.get("video")) + "</div>"
                    if any(r.get("video") for r in x["rows"]) else "")
