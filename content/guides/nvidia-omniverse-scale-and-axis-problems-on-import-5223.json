@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-scale-and-axis-problems-on-import-5223",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "문제 해결",
+  "name": "Scale and axis problems on import",
+  "title": "불러오니 크기·방향이 틀릴 때",
+  "summary": "NVIDIA Omniverse로 3D 에셋을 임포트할 때 발생하는 단위(Scale) 및 축(Axis) 불일치 문제를 해결하여, 다른 DCC 툴과 씬 크기를 통일합니다.",
+  "when": [
+    "Blender나 3ds Max에서 만든 모델을 Omniverse USD 파일로 내보냈을 때 크기가 너무 크거나 작을 때",
+    "임포트한 에셋의 상단(Up-Axis) 방향이 뒤집혀 있거나 누워 있을 때",
+    "USD Composer(Kit) 뷰포트에서 다른 파트들과 기준 단위(Meter, Centimeter)가 맞지 않을 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse (USD Composer 등) 실행 후 프로젝트 파일 오픈",
+    "Content Browser 또는 스테이지에서 문제가 있는 USD/FBX 에셋 선택",
+    "메뉴 경로 Window > Stage 또는 Property 패널 열기",
+    "Asset Import Settings 또는 Prim의 Transform 속성 확인",
+    "Up-Axis (Z-up 또는 Y-up) 및 Scale 구역에서 변환 값 조정",
+    "Save 또는 Export를 통해 변경된 설정 저장"
+  ],
+  "params": [
+    {
+      "name": "Up-Axis",
+      "desc": "월드 축의 수직 방향(Z-up 또는 Y-up)을 정의합니다."
+    },
+    {
+      "name": "Meters Per Unit",
+      "desc": "1유닛 당 몇 미터로 계산할 것인지 단위 비율을 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "전체 에셋의 크기를 배율로 조절합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "Import 시 회전 값을 보정하여 축 정렬을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Blender 캐릭터 에셋이 누워있을 때 축 변경하기",
+      "steps": [
+        "USD Composer에서 캐릭터 에셋 선택",
+        "Property 패널에서 Up-Axis 설정을 Z-up에서 Y-up(또는 그 반대)으로 변경",
+        "Rotation 값에서 X축 90도 회전 보정 적용",
+        "Stage에 정상적으로 서 있는지 확인"
+      ]
+    },
+    {
+      "title": "건축 씬에서 10배 크게 들어온 가구 크기 맞추기",
+      "steps": [
+        "문제의 가구 USD 프리미립(Prim) 선택",
+        "Property 패널의 Scale 항목 찾기",
+        "값(Scale)을 0.1 또는 0.01로 입력하여 실제 미터 단위 크기로 축소"
+      ]
+    }
+  ],
+  "mistakes": [
+    "DCC 툴에서 Apply Scale을 하지 않고 내보냄 → USD Composer에서 Scale 파라미터로도 잡기 힘든 왜곡 발생. DCC에서 Ctrl+A(Blender) 또는 Reset Scale(3ds Max) 후 재내보내기",
+    "Z-up 툴(3ds Max)과 Y-up 툴(Maya, Blender) 간의 변환 오류 무시 → Import 옵션에서 올바른 축 매핑 적용하기"
+  ],
+  "related": [
+    "USD",
+    "Stage",
+    "Property",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "dQI0OpzfVHw",
+      "title": "Omniverse Create - Importing FBX Files | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "eW_PdKB77_c",
+      "title": "NVIDIA Omniverse Training Series 005 (Import and modify an UI extension)",
+      "author": "TechLover"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Scale%20and%20axis%20problems%20on%20import",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse",
+    "USD Composer",
+    "Content Browser",
+    "USD",
+    "FBX",
+    "Window"
+  ],
+  "at": "2026-11-02T00:47:45.523678+00:00"
+}

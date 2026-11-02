@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-environment-and-hdri-7e69",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Environment and HDRI",
+  "title": "HDRI 환경 조명",
+  "summary": "Environment and HDRI 기능을 사용하면 3차원 공간 전체에 고해상도 구면 이미지를 적용해 자연스러운 조명과 반사를 만들 수 있습니다. 실제 사진 같은 리얼한 라이팅의 핵심입니다.",
+  "when": [
+    "실내 인테리어 렌더링에 창밖 자연광과 주변 환경 반사를 넣고 싶을 때",
+    "제품 디자인 렌더링 시 금속이나 유리 재질에 매끄러운 스튜디오 반사를 만들고 싶을 때",
+    "야외 배경과 3D 오브젝트의 라이팅 및 색감을 일치시키고 싶을 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Rendering → Environment (Hotkey 8)를 엽니다.",
+    "Environment and Effects 창에서 Environment 탭의 Background 항목에 있는 None 버튼을 클릭합니다.",
+    "Material/Map Browser에서 Bitmap을 선택한 뒤 준비된 HDRI 이미지를 불러옵니다.",
+    "Material Editor (Hotkey M)를 열고 Slate Material Editor 기준으로 맵 노드를 배치합니다.",
+    "Bitmap 노드 설정을 Environment로 변경하고 Mapping 타입을 Spherical Environment로 설정합니다.",
+    "Environment and Effects 창의 Environment Map 슬롯으로 방금 만든 Bitmap 노드를 Instance로 드래그 앤 드롭합니다."
+  ],
+  "params": [
+    {
+      "name": "Background",
+      "desc": "렌더링 시 카메라에 직접 보이는 배경 이미지를 지정합니다."
+    },
+    {
+      "name": "Global Lighting",
+      "desc": "장면 전체의 기본 조명 색상과 밝기를 제어합니다."
+    },
+    {
+      "name": "Bitmap",
+      "desc": "이미지 파일을 불러와 텍스처나 환경 맵으로 사용합니다."
+    },
+    {
+      "name": "Mapping",
+      "desc": "이미지가 오브젝트나 공간에 매핑되는 방식을 지정합니다 (Spherical 권장)."
+    },
+    {
+      "name": "Multiplier",
+      "desc": "이미지나 조명의 밝기 강도를 조절합니다."
+    },
+    {
+      "name": "Environment Map",
+      "desc": "장면 전체에 라이팅과 반사를 제공할 환경 맵을 연결합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스튜디오 라이팅 제품 렌더링",
+      "steps": [
+        "Rendering → Environment (8)를 엽니다.",
+        "그라데이션이나 스튜디오 조명이 담긴 HDRI를 Environment Map에 적용합니다.",
+        "V-Ray 또는 Arnold 렌더러 설정을 켜고 결과물을 확인합니다."
+      ]
+    },
+    {
+      "title": "야외 풍경 반사 맞추기",
+      "steps": [
+        "야외 태양광이 포함된 HDRI를 배경에 불러옵니다.",
+        "Rotate 파라미터를 조절하여 HDRI의 태양 위치와 실제 3D 조명 위치를 맞춥니다.",
+        "반사 표면에 주변 건물이나 나무가 자연스럽게 맺히는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "배경 이미지가 찌그러져 보임 → Mapping 타입을 Spherical Environment로 변경하지 않아서 발생합니다. 맵 설정에서 방식을 확인하세요.",
+    "반사가 너무 어둡거나 밝음 → Multiplier 값이 낮거나 높아서 발생합니다. Bitmap 또는 렌더러의 환경 라이트 밝기 값을 조절하세요."
+  ],
+  "related": [
+    "Material Editor",
+    "V-Ray Light",
+    "Arnold Light",
+    "ActiveShade"
+  ],
+  "videos": [
+    {
+      "id": "Z7GsOvxaZCg",
+      "title": "Vray HDRI Tutorial In 3ds Max In 2021 | How To Use Dome Light and HDRI In V-Ray 5",
+      "author": "Master ArchViz"
+    },
+    {
+      "id": "q_ptuzjLrgQ",
+      "title": "Tutorial HDRI Environment and Overrides in Corona Renderer for 3ds Max",
+      "author": "Chaos Corona"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Environment%20and%20HDRI",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Environment",
+    "Hotkey 8"
+  ],
+  "at": "2026-11-02T00:47:54.682539+00:00"
+}
