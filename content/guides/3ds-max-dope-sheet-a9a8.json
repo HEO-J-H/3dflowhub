@@ -1,0 +1,93 @@
+{
+  "id": "3ds-max-dope-sheet-a9a8",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Dope Sheet",
+  "title": "Dope Sheet — 키 시간 조절",
+  "summary": "Dope Sheet는 3ds Max에서 애니메이션 키프레임을 표 형식으로 확인하고 타이밍을 직관적으로 편집하는 도구입니다. 악보를 보듯 여러 오브젝트의 애니메이션 간격과 전체 흐름을 한눈에 파악합니다.",
+  "when": [
+    "여러 오브젝트의 애니메이션 타이밍과 순서를 한눈에 비교하고 수정할 때",
+    "특정 키프레임 구간 전체를 이동(Slide)하거나 스케일을 조절하여 속도를 바꿀 때",
+    "불필요한 키프레임을 빠르게 찾아서 삭제하거나 복사·붙여넣기할 때"
+  ],
+  "steps": [
+    "애니메이션이 적용된 오브젝트를 선택합니다.",
+    "메인 툴바에서 Dope Sheet 아이콘을 클릭하거나, 상단 메뉴에서 Graph Editors → Dope Sheet Edit를 선택합니다. (Hotkey: Shift+F12)",
+    "좌측 Controller 뷰에서 오브젝트 이름을 확장하여 Modified Object → Transform 트리에 접근합니다.",
+    "Timeline 영역에서 키프레임(초록색 네모 박스)을 클릭하여 선택합니다.",
+    "선택한 키프레임을 드래그하여 타이밍을 이동하거나, Shift 키를 누른 채 드래그하여 간격을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Edit Keys Mode",
+      "desc": "개별 키프레임을 선택, 이동, 복사할 수 있는 편집 모드입니다."
+    },
+    {
+      "name": "Edit Range Mode",
+      "desc": "애니메이션 구간 전체의 길이를 늘리거나 줄여서 속도를 조절합니다."
+    },
+    {
+      "name": "Global Track",
+      "desc": "씬 전체의 애니메이션 키를 통합하여 관리하는 상위 트랙입니다."
+    },
+    {
+      "name": "Assign Controller",
+      "desc": "선택한 트랙에 적용된 애니메이션 Controller(Bezier, TCB 등)를 변경합니다."
+    },
+    {
+      "name": "Add Keys",
+      "desc": "원하는 프레임 위치에 새로운 키프레임을 강제로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 오브젝트의 등장 타이밍(Stagger) 딜레이 주기",
+      "steps": [
+        "애니메이션된 여러 개의 오브젝트를 모두 선택하고 Dope Sheet를 엽니다.",
+        "Transform 트리를 펼쳐서 모든 키프레임을 박스 셀렉션으로 선택합니다.",
+        "정렬된 키프레임 블록을 우측으로 드래그하여 시작 타이밍을 순차적으로 늦춥니다."
+      ]
+    },
+    {
+      "title": "애니메이션 전체 재생 속도 조절하기",
+      "steps": [
+        "Dope Sheet 툴바에서 Edit Range Mode 버튼을 활성화합니다.",
+        "Timeline 상단의 레인지 바 끝단 범위를 Mouse로 잡습니다.",
+        "좌우로 드래그하여 애니메이션 전체 길이를 늘리거나 줄입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "키가 안 보임 → 좌측 트리에서 Transform 또는 Object 하위 항목이 접혀(Folded) 있는지 확인하고 확장하세요.",
+    "원하지 않는 키까지 같이 움직임 → Soft Selection이나 잘못된 영역 선택(Range Mode) 상태인지 확인하고 Edit Keys Mode로 전환하세요."
+  ],
+  "related": [
+    "Curve Editor",
+    "Time Slider",
+    "Motion Panel",
+    "Auto Key"
+  ],
+  "videos": [
+    {
+      "id": "VrSlGbu1VbI",
+      "title": "122   Editing keyframes in the Dope Sheet",
+      "author": "CONSTRUCTION MANAGEMENT"
+    },
+    {
+      "id": "TMeU_IO7NPA",
+      "title": "3ds Max - Editing animation in the Dope Sheet (Lesson 82)",
+      "author": "Advance Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Dope%20Sheet",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Dope Sheet",
+    "Graph Editors",
+    "Dope Sheet Edit",
+    "Hotkey"
+  ],
+  "at": "2026-11-02T01:27:58.062748+00:00"
+}

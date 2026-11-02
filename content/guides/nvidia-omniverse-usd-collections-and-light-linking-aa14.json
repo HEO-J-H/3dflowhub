@@ -1,0 +1,94 @@
+{
+  "id": "nvidia-omniverse-usd-collections-and-light-linking-aa14",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD collections and light linking",
+  "title": "컬렉션·라이트 링크",
+  "summary": "NVIDIA Omniverse에서 USD Collections와 Light Linking을 활용하면 특정 오브젝트 그룹에만 원하는 라이트를 정확히 비추어 효율적으로 레이아웃을 제어할 수 있습니다. 복잡한 씬에서 불필요한 라이트 간섭을 막아 고품질 렌더링을 완성합니다.",
+  "when": [
+    "특정 캐릭터나 프랍(Prop)에만 강조 라이트를 국부적으로 적용하고 싶을 때",
+    "복잡한 실내 건축 씬에서 방마다 독립된 라이트 세팅을 구성할 때",
+    "대규모 USD 협업 Pipeline 라이팅 아티스트가 씬 구조를 오염시키지 않고 조명을 제어할 때"
+  ],
+  "steps": [
+    "Viewport 또는 Stage 탭에서 USD Collections 창을 엽니다.",
+    "Create → Collection을 선택하여 새로운 컬렉션을 생성하고 이름을 지정합니다.",
+    "원하는 오브젝트들을 드래그하여 해당 Collection에 포함시킵니다.",
+    "Light 아티스트 창에서 조정할 Light를 선택합니다.",
+    "Property 패널의 Light Linking 섹션에서 생성한 Collection을 연결(Include/Exclude)합니다.",
+    "Raytraced 렌더러 뷰포트에서 라이트가 지정된 오브젝트에만 영향을 주는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Collection Name",
+      "desc": "컬렉션을 식별하는 고유한 이름입니다."
+    },
+    {
+      "name": "Include Targets",
+      "desc": "라이트의 영향을 받을 오브젝트 컬렉션을 지정합니다."
+    },
+    {
+      "name": "Exclude Targets",
+      "desc": "라이트의 영향에서 제외할 오브젝트 컬렉션을 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "라이트의 전체적인 밝기를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "라이트가 발산하는 색상을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 스튜디오 쇼룸 라이팅",
+      "steps": [
+        "차량 바디만 포함하는 Car_Collection USD 생성",
+        "키라이트(Key Light)의 Light Linking에 Car_Collection 연결",
+        "주변 배경은 키라이트 영향에서 제외하여 차량 강조"
+      ]
+    },
+    {
+      "title": "건축 실내 무드등 연출",
+      "steps": [
+        "거실 스탠드 조명 주변의 소품들을 Props_Collection으로 묶기",
+        "스탠드 라이트의 Include에 해당 Collection 지정",
+        "천장 메인 라이트의 Exclude에 소품들을 추가하여 간섭 방지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "경로 지정 오류로 라이팅이 적용되지 않음 → Stage 탭에서 USD Prim 경로가 올바른지 확인합니다.",
+    "Include와 Exclude를 동시에 잘못 설정하여 빛이 아예 사라짐 → 링크 모드(Include/Exclude)를 명확히 단일화합니다.",
+    "서브 프리프(Sub-prim)가 누락됨 → 부모 그룹 전체가 아닌 개별 메시(Mesh) 레벨이 포함되었는지 확인합니다."
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "Layering",
+    "Stage Manager",
+    "Path Tracing"
+  ],
+  "videos": [
+    {
+      "id": "VIN0DUQMt5s",
+      "title": "Light Linking Overview in NVIDIA Omniverse USD Composer",
+      "author": "NVIDIA Omniverse"
+    },
+    {
+      "id": "Uz6tQFEbC1Q",
+      "title": "How to Build CAD to USD Workflows With NVIDIA Omniverse",
+      "author": "NVIDIA Omniverse"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20collections%20and%20light%20linking",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Stage",
+    "USD Collections"
+  ],
+  "at": "2026-11-02T01:27:49.687182+00:00"
+}
