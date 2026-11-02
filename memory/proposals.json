@@ -5164,5 +5164,67 @@
     "id": "p-68df466543",
     "verdict": "agent",
     "reason": "로컬 3D 파이프라인 문서 조회를 위한 RAG 적용 방안을 docs/tech-research.md에 작성하는 작업은 코드 및 문서 수정으로 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-02T08:19:23+00:00",
+    "kind": "proposal",
+    "id": "p-1052c5c69c",
+    "title": "대기 중인 핵심 PR (#37~#44) 점검 및 순차 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 backend/app/services/ 및 url_ingest.py 등 코어 파이프라인과 관련된 PR #37부터 #44까지 다수의 PR이 승인 대기 상태로 쌓여 있습니다.",
+    "proposal": "PR #37~#44의 테스트 통과 여부와 변경 내용을 확인하고 순차적으로 병합합니다.",
+    "expected": "핵심 서비스의 유효성 검증 로직이 안전하게 반영되어 서비스 안정성이 높아집니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:19:23+00:00",
+    "kind": "proposal",
+    "id": "p-aee196c6f6",
+    "title": "깃허브 RAG 오픈소스 활용 방안 문서화 및 반영",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "운영자 메시지를 통해 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘'라는 요청이 수락되었습니다.",
+    "proposal": "docs/tech-research.md에 RAG 오픈소스 활용 방안을 정리하고, 개발 문서 또는 가이드에 반영합니다.",
+    "expected": "사용자가 3D 모델링 및 관련 문서/코드에 대해 쉽게 질의하고 찾을 수 있는 기반이 마련됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:19:46.094361+00:00",
+    "kind": "decision",
+    "id": "p-1052c5c69c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:19:46.101002+00:00",
+    "kind": "decision",
+    "id": "p-aee196c6f6",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:19:46.878883+00:00",
+    "kind": "decision",
+    "id": "p-1052c5c69c",
+    "v": "done",
+    "note": "자동 완료 확인: PR #37 닫힘"
+  },
+  {
+    "at": "2026-11-02T08:19:48.345436+00:00",
+    "kind": "triage",
+    "id": "p-aee196c6f6",
+    "verdict": "agent",
+    "reason": "깃허브 RAG 오픈소스 활용 방안을 문서화하고 가이드에 반영하는 작업은 코드 및 문서 수정으로 해결 가능합니다."
   }
 ]
