@@ -1,0 +1,92 @@
+{
+  "id": "nvidia-omniverse-omniverse-app-does-not-start-drivers-949d",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "문제 해결",
+  "name": "Omniverse app does not start (drivers)",
+  "title": "앱이 안 켜질 때 — Driver 확인",
+  "summary": "NVIDIA Omniverse 앱 실행 시 그래픽카드 Driver 버전 불일치나 충돌로 인해 발생하는 실행 오류를 해결하는 가이드입니다. 최신 NVIDIA Studio 또는 Game Ready Driver로 업데이트하여 정상적인 구동을 돕습니다.",
+  "when": [
+    "Omniverse Launcher 또는 개별 앱 실행 시 검은 화면이 뜨거나 즉시 꺼질 때",
+    "그래픽카드 Driver 버전이 오래되어 CUDA 또는 RTX 기능이 충돌할 때",
+    "신규 3D 아티스트가 Omniverse 환경 설정을 처음 구축할 때"
+  ],
+  "steps": [
+    "현재 사용 중인 GPU 모델명과 Driver 버전을 확인합니다.",
+    "NVIDIA 공식 웹사이트 또는 GeForce Experience를 실행합니다.",
+    "Drivers 탭에서 최신 NVIDIA Studio Driver (또는 Game Ready Driver)를 다운로드합니다.",
+    "설치 옵션에서 Clean Installation(클린 설치)을 체크하여 이전 Driver 잔여물을 제거합니다.",
+    "PC를 재부팅한 후 NVIDIA Omniverse Launcher를 다시 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Studio Driver",
+      "desc": "3D 제작 및 콘텐츠Creation Software에 최적화된 안정적인 Driver"
+    },
+    {
+      "name": "Game Ready Driver",
+      "desc": "최신 게임 및 실시간 렌더링 성능에 최적화된 Driver"
+    },
+    {
+      "name": "Clean Installation",
+      "desc": "기존 설정과 캐시를 초기화하여 Driver 충돌을 방지하는 설치 옵션"
+    },
+    {
+      "name": "GeForce Experience",
+      "desc": "Driver 업데이트와 최적의 설정 관리를 제공하는 NVIDIA 유틸리티"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Driver 클린 설치로 실행 오류 해결",
+      "steps": [
+        "GeForce Experience를 실행합니다.",
+        "Drivers 메뉴에서 최신 Studio Driver를 다운로드합니다.",
+        "Custom Installation을 선택하고 Clean Installation에 체크합니다.",
+        "설치 완료 후 시스템을 재부팅합니다."
+      ]
+    },
+    {
+      "title": "수동 Driver 업데이트",
+      "steps": [
+        "NVIDIA 공식 Driver 다운로드 페이지에 접속합니다.",
+        "본인의 GPU 시리즈와 운영체제를 선택합니다.",
+        "Driver 타입을 Studio로 선택 후 다운로드 및 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "재부팅 생략 → Driver 파일이 완전히 로드되지 않아 오류가 지속되므로 반드시 PC를 재부팅합니다.",
+    "Game Ready와 Studio Driver 혼용 → 3D 작업 안정성을 위해 가능하면 Studio Driver를 권장합니다."
+  ],
+  "related": [
+    "NVIDIA Omniverse Launcher",
+    "GeForce Experience",
+    "RTX",
+    "USD"
+  ],
+  "videos": [
+    {
+      "id": "oIWr107zebY",
+      "title": "NVIDIA App Not Opening? FIX Now!",
+      "author": "Tech Gitter Official"
+    },
+    {
+      "id": "xD5IPF_ZS4A",
+      "title": "How to fix Nvidia app not launching / crashing",
+      "author": "Moe Gaming"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20Omniverse%20app%20does%20not%20start%20%28drivers%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "GPU",
+    "Driver",
+    "NVIDIA",
+    "GeForce Experience",
+    "Drivers",
+    "NVIDIA Studio Driver"
+  ],
+  "at": "2026-11-02T00:17:45.307776+00:00"
+}
