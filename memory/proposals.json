@@ -7964,5 +7964,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T17:20:54+00:00",
+    "kind": "proposal",
+    "id": "p-c929208e9b",
+    "title": "웹 버전(web/) 에러 메시지 UI 가독성 개선",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 백엔드 입력 및 PBR 유효성 검사 로직이 강화되었으나 웹 브라우저(web/) 단에서의 사용자 피드백 메시지가 다소 단순함",
+    "proposal": "web/index.html 및 관련 JS 파일에서 입력 오류나 PBR 생성 실패 시 사용자에게 더 명확하고 시각적인 에러 토스트 메시지를 제공하도록 UI 예외 처리 보완",
+    "expected": "클라이언트 측 에러 대응력 향상 및 사용자 경험 개선",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T17:20:54+00:00",
+    "kind": "proposal",
+    "id": "p-aaea9c1c6c",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 PR(#40~#44)이 핵심 코드 변경 건으로 승인 대기 중임",
+    "proposal": "GitHub 저장소에서 PR #40부터 #44까지의 테스트 통과 여부 및 코드를 최종 검토하고 이상이 없을 경우 수동 승인 및 병합",
+    "expected": "입력 유효성 검증 기능이 메인 브랜치에 안전하게 반영되어 시스템 안정성 확보",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T17:21:11.898025+00:00",
+    "kind": "decision",
+    "id": "p-c929208e9b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T17:21:11.907780+00:00",
+    "kind": "decision",
+    "id": "p-aaea9c1c6c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
   }
 ]
