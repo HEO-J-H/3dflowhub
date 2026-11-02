@@ -28,6 +28,10 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python build_site.py
+      - name: SEO 구조 점검 (중복 제목·설명·h1, 사이트맵 누락, 고아 페이지) — 문제는 경고로 표시
+        run: |
+          python seo_audit.py > seo.json
+          python -c "import json; d=json.load(open('seo.json',encoding='utf-8')); bad={k:d[k] for k in ('dup_title_count','dup_desc_count','dup_h1_count','not_in_sitemap_count','orphan_count') if d[k]}; print('::warning::SEO 점검 문제 '+json.dumps(bad,ensure_ascii=False) if bad else 'SEO 점검 통과')"
       - name: Check internal links
         run: python check_links.py
       - uses: actions/configure-pages@v5

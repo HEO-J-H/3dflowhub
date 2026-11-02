@@ -357,6 +357,10 @@ def pending() -> list[tuple]:
 GUIDES_DAILY_MAX = 60  # 기초 가이드 우선 (운영자 요청) — 품질 검사 통과분만, 하루 상한으로 몰아치기 방지
 
 
+def _norm(t: str) -> str:
+    return re.sub(r"[^0-9a-z가-힣]", "", t.lower())
+
+
 def passes_quality(g: dict) -> bool:
     """얇은 가이드는 올리지 않음: 따라하기 4단계 이상 + 옵션 설명 2개 이상 + (공식 문서 근거 또는 영상)."""
     return len(g.get("steps") or []) >= 4 and len(g.get("params") or []) >= 2 and bool(g.get("grounded") or g.get("videos"))
@@ -372,7 +376,10 @@ def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     made_today = sum(1 for g in load_all() if (g.get("at") or "").startswith(today))
     max_new = min(max_new, max(0, int(core.load_config().get("guides_daily_max", GUIDES_DAILY_MAX)) - made_today))
     done = []
+    have_titles = {(x.get("tool"), _norm(x.get("title", ""))) for x in load_all()}
     for t in pending()[:max_new]:
+        if (t[0], _norm(t[3])) in have_titles:  # 같은 도구에 같은 제목의 가이드가 이미 있으면 만들지 않음 (중복 문서)
+            continue
         try:
             g = make_guide(*t)
         except core.LLMBudgetExceeded:

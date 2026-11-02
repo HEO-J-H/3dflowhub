@@ -125,7 +125,7 @@ def test_search_verify_and_adsense_format(monkeypatch):
 
 def test_pager_window():
     import build_site
-    assert build_site.page_window(12, 24) == [1, None, 10, 11, 12, 13, 14, None, 24]
+    assert build_site.page_window(12, 24) == [1, None, 10, 11, 12, 13, 14, None, 20, None, 24]
     assert build_site.page_window(1, 3) == [1, 2, 3]
     html = build_site.pager_html(1, 24, lambda k: f"/p{k}/")
     assert 'aria-current="page"' in html and 'rel="next"' in html and 'rel="prev"' not in html

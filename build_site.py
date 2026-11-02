@@ -554,6 +554,8 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
          extra_head: str = "") -> str:
     nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(DOMAIN_ICON[d])} {e(d)}</a>'
                   for d in board_domains())
+    if desc == SITE_DESC and root:  # 하위 페이지가 사이트 기본 설명을 그대로 쓰면 구글이 중복으로 봄 → 페이지 제목을 앞에
+        desc = f"{title.rsplit(' - ', 1)[0]} — {SITE_DESC}"
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(desc[:150])}">
@@ -668,7 +670,8 @@ def iso_week(p: dict) -> str:
 
 def page_window(n: int, total: int, span: int = 2) -> list:
     """보여 줄 페이지 번호 — 처음·끝 + 현재 앞뒤 span 개, 건너뛴 곳은 None(…)."""
-    keep = sorted({1, total, *range(max(1, n - span), min(total, n + span) + 1)})
+    # 10쪽 단위 이정표도 함께 — 오래된 쪽까지 클릭 몇 번으로 닿게 (검색 로봇의 탐색 깊이 단축)
+    keep = sorted({1, total, *range(max(1, n - span), min(total, n + span) + 1), *range(10, total, 10)})
     out: list = []
     for k in keep:
         if out and k - out[-1] > 1:
@@ -705,6 +708,8 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         base = f"{r}{out_dir.relative_to(OUT).as_posix()}/"
         pager = pager_html(n, len(pages), lambda k: base + ("" if k == 1 else f"page/{k}/"))
         head = header if n == 1 or header_more is None else header_more
+        if n > 1:
+            head = head.replace("</h1>", f' <small class="pgn">{n}쪽</small></h1>', 1)
         body = head.replace("{ROOT}", r) + '<div class="board">' + ("".join(row(p, r) for p in chunk)
                                                                        or '<div class="row">아직 글이 없습니다.</div>') \
             + f'</div>{pager}'
@@ -946,6 +951,12 @@ def learn_url(g: dict) -> str:
     return f"learn/{g['id']}/"
 
 
+def guide_h1(g: dict) -> str:
+    """가이드 h1 에 도구 이름 (다른 도구의 같은 기능 가이드와 h1 이 겹치지 않게, '블렌더 불리언' 같은 검색에도 맞게)."""
+    t, tool = g["title"], g.get("tool", "")
+    return t if not tool or t.lower().startswith(tool.lower()) else f"{tool} {t}"
+
+
 def guide_card(g: dict, root: str) -> str:
     v = (g.get("videos") or [None])[0]
     th = (f'<div class="th v" style="background-image:url(https://i.ytimg.com/vi/{e(v["id"])}/mqdefault.jpg)"></div>' if v
@@ -1031,7 +1042,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
                                "uploadDate": g.get("at", "")[:10], "description": g.get("summary", "")}
         body = (
             f'<article class="doc guide"><p class="crumb"><a href="{root}learn/">기초 가이드</a> › {e(g["tool"])} › {e(g["group"])}</p>'
-            f'<h1>{e(g["title"])}</h1>'
+            f'<h1>{e(guide_h1(g))}</h1>'
             + ('<p class="aiby">✍️ 운영자 실무 노트를 바탕으로 정리 · ' if g.get("by_operator")
                else '<p class="aiby">🤖 공식 문서·튜토리얼 영상을 바탕으로 AI 가 정리 · ')
             + ('<b class="ok">✔ 에디터 검토 완료</b>' if g.get("reviewed") else '에디터 검토 전')
@@ -1667,6 +1678,17 @@ def build() -> dict:
     lastmod.update({f"{BASE_URL}/{learn_url(g)}": (g.get("at") or "")[:10] for g in learn_guides})
     lastmod.update({f"{BASE_URL}/fix/{x['id']}/": x.get("at", "")[:10] for x in ref_fixes})
     lastmod.update({f"{BASE_URL}/changes/{x['id']}/": x.get("at", "")[:10] for x in ref_changes})
+    # 빠짐없이: 실제로 만들어진 페이지 중 검색 노출(noindex 아님)인 것은 모두 넣음 (게시판 2쪽 이후 등)
+    listed = {unquote(u) for u in urls}
+    for f in sorted(OUT.rglob("index.html")) + sorted((OUT / "p").glob("*.html")):
+        rel = f.relative_to(OUT).as_posix()
+        u = f"{BASE_URL}/{rel[:-len('index.html')] if rel.endswith('index.html') else rel}"
+        if unquote(u) in listed or f.parent.name in ("saved",):
+            continue
+        head = f.read_text(encoding="utf-8", errors="ignore")[:6000]
+        if 'name="robots" content="noindex' not in head:
+            urls.append(u)
+            listed.add(unquote(u))
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/'
                                      'schemas/sitemap/0.9">' + "".join(
                                          f"<url><loc>{e(u)}</loc>" + (f"<lastmod>{lastmod[u]}</lastmod>" if lastmod.get(u) else "")

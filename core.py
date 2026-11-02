@@ -1539,6 +1539,20 @@ POST_FIELDS = ("title_ko", "title", "url", "domain", "category", "topic", "tags"
                "sections", "faq", "media", "collected_at", "notion_id")
 
 
+def same_story_saved(title_ko: str, days: int = 21) -> bool:
+    """최근 저장한 글에 같은 한국어 제목이 있으면 True (구글 뉴스가 같은 기사를 다른 주소로 주는 경우)."""
+    key = re.sub(r"[^0-9a-z가-힣]", "", (title_ko or "").lower())
+    if not key:
+        return False
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    for f in POSTS_DIR.glob("*.json"):
+        if f.name[:10] < cutoff:
+            continue
+        if re.sub(r"[^0-9a-z가-힣]", "", str(_load_json(f, {}).get("title_ko", "")).lower()) == key:
+            return True
+    return False
+
+
 def save_post_json(item: dict) -> Path:
     """노션과 같은 내용을 content/posts/<날짜>-<해시>.json 으로 저장 (커밋되어 Pages 로 배포)."""
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -2111,6 +2125,9 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
         try:
             item = summarize(raw)
             if not item:
+                continue
+            if same_story_saved(item.get("title_ko", "")):  # 다른 주소로 들어온 같은 소식 → 같은 제목 문서 중복 방지
+                RUN_ERRORS.append("duplicate story")
                 continue
             page_id = save_to_notion(notion, item)
             item["notion_id"] = page_id or ""  # 브라우저 발행 후 노션 상태 갱신용
