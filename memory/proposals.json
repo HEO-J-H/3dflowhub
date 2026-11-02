@@ -5688,5 +5688,53 @@
     "id": "p-d53ab369db",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): PR #43과 #44 관련 PBR 맵 및 이미지 검증 작업은 이미 최근 커밋과 완료된 제안 목록에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-02T09:59:37+00:00",
+    "kind": "proposal",
+    "id": "p-d0f09a87a2",
+    "title": "대기 중인 백엔드 코어 PR (#37~#44) 순차 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #37, #38, #40, #41, #42, #43, #44 등 백엔드 유효성 검사 및 서비스 관련 PR 다수가 승인 대기(pending) 상태로 머물러 있습니다.",
+    "proposal": "GitHub 저장소에서 PR #37부터 #44까지의 테스트 통과 여부를 확인하고, 이상이 없으면 순차적으로 승인 및 머지합니다.",
+    "expected": "백엔드의 입력 검증 및 안정성 로직이 메인 브랜치에 반영되어 전체 파이프라인의 완성도가 높아집니다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T09:59:37+00:00",
+    "kind": "proposal",
+    "id": "p-66b57a6fdf",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 환경에서 CPU 기반 높이맵 메시 생성 및 PBR 처리 시 발생할 수 있는 예외 상황에 대한 사용자 피드백을 보완할 필요가 있습니다.",
+    "proposal": "web/js/ 디렉토리 내의 이미지 로딩 및 메시 변환 에러 핸들링 코드를 점검하고, 실패 시 안내 메시지 출력을 개선합니다.",
+    "expected": "사용자가 브라우저에서 이미지 처리 실패 시 명확한 원인을 파악하고 재시도할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T10:00:08.895049+00:00",
+    "kind": "decision",
+    "id": "p-d0f09a87a2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 코어 PR (#37~#44) 테스트 검증 및 순차 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T10:00:08.902206+00:00",
+    "kind": "decision",
+    "id": "p-66b57a6fdf",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
