@@ -1,0 +1,97 @@
+{
+  "id": "3ds-max-bones-and-ik-solvers-a72d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Bones and IK solvers",
+  "title": "Bone·IK — 기본 리깅",
+  "summary": "Bones와 IK Solver를 사용해 계층형 관절 구조를 만들고, 역운동학으로 자연스러운 움직임을 제어합니다.",
+  "when": [
+    "복잡한 관절 체인을 빠르게 움직여야 할 때",
+    "발·손 등 끝점 위치를 목표에 맞추어 자동으로 배치하고 싶을 때",
+    "리깅을 Script 없이 간단히 구현하고 싶을 때"
+  ],
+  "steps": [
+    "Create → Geometry → Box (또는 원하는 Primitive) → 오른쪽 클릭 → Convert To → Convert to: Bones",
+    "Command Panel → Modify 탭 → Modifier List에서 BoneTools → Add Bones 클릭 후 원하는 위치에 클릭하여 뼈대 생성",
+    "뼈대 선택 → Command Panel → Modify 탭 → Modifier List에서 IK Solver 선택",
+    "IK Solver 파라미터에서 Chain Length를 제어할 뼈 개수만큼 설정하고, Pin 옵션에 목표 오브젝트 지정"
+  ],
+  "params": [
+    {
+      "name": "Chain Length",
+      "desc": "IK가 영향을 미칠 뼈 개수를 정의합니다"
+    },
+    {
+      "name": "Pin",
+      "desc": "목표 오브젝트를 지정해 끝점이 따라가게 합니다"
+    },
+    {
+      "name": "Rotation Weight",
+      "desc": "뼈 회전 제어 강도를 조절합니다"
+    },
+    {
+      "name": "Position Weight",
+      "desc": "뼈 위치 제어 강도를 조절합니다"
+    },
+    {
+      "name": "Solver",
+      "desc": "IK Solver 종류 선택 (예: SimpleIK, AdvancedIK)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔 올리기",
+      "steps": [
+        "Shoulder Bone → Elbow Bone → Wrist Bone 순서로 Bone 생성",
+        "Wrist Bone에 목표 Empty 객체를 배치",
+        "IK Solver의 Chain Length를 2로 설정하고 Pin에 Empty 지정",
+        "목표 Empty를 이동하면 팔 전체가 자연스럽게 따라갑니다"
+      ]
+    },
+    {
+      "title": "다리 착지",
+      "steps": [
+        "Hip Bone → Knee Bone → Ankle Bone 순서로 Bone 생성",
+        "Ankle Bone에 Foot Target Empty 배치",
+        "IK Solver의 Chain Length를 2로 설정, Pin에 Foot Target 지정",
+        "Foot Target을 지면에 맞추면 다리가 자동으로 맞춰집니다"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Chain Length를 너무 짧게 설정 → 뼈가 목표를 따라가지 않음 → 올바른 뼈 수만큼 재설정",
+    "Pin에 목표 오브젝트를 지정하지 않음 → IK가 작동 안 함 → Pin 필드에 올바른 오브젝트 지정",
+    "뼈 스케일이 비정규화된 상태 → 변형 시 왜곡 발생 → Apply Scale (Ctrl+A) 후 사용"
+  ],
+  "related": [
+    "Skin",
+    "Physique",
+    "Biped",
+    "CAT"
+  ],
+  "videos": [
+    {
+      "id": "CaMMHnLycPI",
+      "title": "Autodesk 3DS Max   IK Solvers and Bone Tool rigging",
+      "author": "Vinayak Mathur | Organic Video Content Strategist"
+    },
+    {
+      "id": "xsaIxMIF0Zg",
+      "title": "Discovering IK Solvers in 3ds Max",
+      "author": "Coding Chronicles"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Bones%20and%20IK%20solvers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "Box",
+    "Primitive",
+    "Convert To",
+    "Convert"
+  ],
+  "at": "2026-11-02T02:28:06.666257+00:00"
+}

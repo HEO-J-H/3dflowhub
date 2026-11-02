@@ -1,0 +1,107 @@
+{
+  "id": "blender-noise-texture-node-19df",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Noise Texture node",
+  "title": "Noise Texture — 절차적 노이즈",
+  "summary": "Noise Texture node는 절차적 노이즈 패턴을 생성해 색상·높이·디스플레이스먼트 등에 사용할 수 있습니다.",
+  "when": [
+    "표면에 자연스러운 거친 질감을 만들고 싶을 때",
+    "디스플레이스먼트 맵으로 지형이나 물결 효과를 만들 때",
+    "색상 변화를 랜덤하게 주어 Particle이나 머티리얼에 변주를 줄 때"
+  ],
+  "steps": [
+    "Shader Editor 열기 (Shift+F3)",
+    "Add → Texture → Noise Texture (Shift+A)",
+    "Noise Texture → Principled BSDF의 Base Color 혹은 Displacement 입력에 연결",
+    "Properties 패널에서 Scale, Detail, Roughness 등 파라미터 조정",
+    "필요 시 Mapping 노드와 Texture Coordinate 노드로 좌표 변환"
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "노이즈 패턴의 전체 크기"
+    },
+    {
+      "name": "Detail",
+      "desc": "노이즈의 세부 레벨, 높을수록 복잡해짐"
+    },
+    {
+      "name": "Roughness",
+      "desc": "노이즈의 부드러움 정도"
+    },
+    {
+      "name": "Distortion",
+      "desc": "노이즈에 왜곡을 추가해 비정형 패턴 생성"
+    },
+    {
+      "name": "Dimension",
+      "desc": "노이즈 차원 (1D·2D·3D) 선택"
+    },
+    {
+      "name": "Color",
+      "desc": "노이즈 색상 출력, 색상 변형에 사용"
+    }
+  ],
+  "examples": [
+    {
+      "title": "돌 표면 거친 질감",
+      "steps": [
+        "Noise Texture 노드 추가",
+        "Color 출력 → Principled BSDF Base Color 연결",
+        "Scale 20, Detail 5 로 조정"
+      ]
+    },
+    {
+      "title": "지형 디스플레이스먼트",
+      "steps": [
+        "Noise Texture 노드 추가",
+        "Displacement 출력 → Displacement 노드 → Material Output에 연결",
+        "Scale 0.5, Detail 8, Distortion 0.2 로 설정"
+      ]
+    },
+    {
+      "title": "물결 파도 효과",
+      "steps": [
+        "Noise Texture 노드 추가",
+        "Mapping 노드로 UV 스케일 X축 2배, Y축 0.5배 설정",
+        "Displacement 출력 → Displacement 노드 연결",
+        "Strength 0.1 로 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scale 값을 너무 크게 설정 → 노이즈가 과도하게 거칠어짐 → Scale을 낮추고 Detail 증가",
+    "Detail 를 0으로 두면 노이즈가 평탄해짐 → 최소 1 이상으로 설정",
+    "좌표 변환 없이 반복 패턴이 보임 → Mapping 노드로 위치·스케일·회전 조정"
+  ],
+  "related": [
+    "Voronoi Texture",
+    "Musgrave Texture",
+    "Mapping",
+    "Texture Coordinate"
+  ],
+  "videos": [
+    {
+      "id": "TGMROCm7MMo",
+      "title": "How to Use the NOISE TEXTURE NODE in Blender! (Beginner Tutorial)",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "lUVWTAbXk1Y",
+      "title": "Noise Texture | Explaining Every Single Node in Blender #blender #b3d",
+      "author": "baeac"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Noise%20Texture%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Shader Editor",
+    "Add",
+    "Texture",
+    "Noise Texture"
+  ],
+  "at": "2026-11-02T02:28:32.634426+00:00"
+}
