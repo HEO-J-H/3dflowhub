@@ -26,7 +26,7 @@ import re
 import shutil
 import time
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote
 
@@ -524,6 +524,11 @@ pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;backgrou
 .ex .box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
 .ex .box h3{font-size:16px;margin:0 0 6px}.ex ol{margin:0;padding-left:20px}
 .warn li{margin:4px 0}
+.evcard .img{aspect-ratio:16/9;background:var(--accent-soft)}.evcard .img img{width:100%;height:100%;object-fit:cover}
+.evph{display:grid;place-items:center;font-size:42px}.evmeta{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.evmeta .dd{font-weight:700;font-size:13px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.evmeta .dd.hot{background:#e5484d;color:#fff}.evmeta .pill{font-size:12px;color:var(--muted)}
+.evcard .k{font-size:13px;color:var(--muted);margin-top:4px}
 .gcards{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
 .gcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .gcard .th{aspect-ratio:16/9;background:var(--accent-soft) center/cover no-repeat;position:relative}
@@ -622,7 +627,8 @@ SITE_MENU = [
                  ("changes/", "🆕", "버전별 바뀐 점", "새 버전에서 달라진 것")]),
     ("자료", [("assets/", "🎁", "무료 에셋", "텍스처·재질·HDRI"),
              ("resources/", "📎", "추천 자료", "강의·도구·커뮤니티")]),
-    ("소식", [("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
+    ("소식", [("events/", "🏆", "공모전·게임 잼", "마감 임박 순 — 국내 공모전·해외 잼·챌린지"),
+             ("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
              ("showcase/", "🎨", "이번 주 작품", "눈여겨볼 작업물"),
              ("feed.xml", "📡", "RSS 구독", "새 글을 받아보기")]),
 ]
@@ -637,6 +643,9 @@ def section_count(u: str) -> int | None:
         if u == "manual/":
             import manual
             return len(manual.load_all())
+        if u == "events/":
+            import events
+            return len(events.load_all())
         if u == "compare/":
             import compare
             return len(compare.load_all())
@@ -1566,6 +1575,47 @@ def build_manual(guides_: list[dict]) -> int:
     return len(items)
 
 
+def event_card(x: dict, root: str) -> str:
+    """공모전·잼 카드: 그림 · D-day · 종류 · 제목 · 주최 · 분야 (원문으로 연결)."""
+    try:
+        left = (datetime.fromisoformat(x["deadline"]).date() - datetime.now(timezone(timedelta(hours=9))).date()).days
+    except ValueError:
+        left = None
+    dday = "오늘 마감" if left == 0 else (f"D-{left}" if left is not None else "")
+    hot = " hot" if left is not None and left <= 7 else ""
+    when = (f'{e(x["start"][5:].replace("-", "/"))} 시작 · ' if x.get("start") and x["start"] > kst_date(datetime.now(timezone.utc).isoformat()) else "") \
+        + f'{e(x["deadline"][5:].replace("-", "/"))} 마감'
+    img = (f'<div class="img"><img src="{e(x["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>'
+           if x.get("image") else f'<div class="img evph">{"🎮" if x["kind"] == "게임 잼" else "🏆"}</div>')
+    extra = " · ".join(v for v in [x.get("prize", ""), f'{x["joined"]:,}명 참가' if x.get("joined") else ""] if v)
+    return (f'<a class="card evcard" href="{e(x["url"])}" target="_blank" rel="noopener">{img}<div class="body">'
+            f'<div class="evmeta"><span class="dd{hot}">{dday}</span><span class="pill">{e(x["kind"])} · {e(x["region"])}</span></div>'
+            f'<h3 class="t">{e(x["title"])}</h3><div class="s">{e(x.get("org", ""))}{" · " + e(x["fields"]) if x.get("fields") else ""}</div>'
+            f'<div class="k">{when}{" · " + e(extra) if extra else ""}</div></div></a>')
+
+
+def build_events() -> int:
+    """공모전·게임 잼·3D 챌린지 (/events/) — 마감 임박 순, 지난 일정은 자동 제외."""
+    import events as _ev
+    xs = _ev.load_all()
+    (OUT / "events").mkdir(exist_ok=True)
+    groups = [("⏰ 마감 임박 (7일 이내)", [x for x in xs if x["deadline"] <= (datetime.now(timezone(timedelta(hours=9))) + timedelta(days=7)).strftime("%Y-%m-%d")]),
+              ("🇰🇷 국내 공모전", [x for x in xs if x["region"] == "국내"]),
+              ("🎮 해외 게임 잼", [x for x in xs if x["kind"] == "게임 잼"]),
+              ("🧊 해외 3D 챌린지", [x for x in xs if x["kind"] == "3D 챌린지"])]
+    body = ('<div class="doc"><h1>🏆 공모전·게임 잼</h1><p class="desc">3D·게임·애니메이션·캐릭터 작업자가 참가할 수 있는 국내 공모전과 '
+            '해외 게임 잼·3D 챌린지를 마감 임박 순으로 모았습니다. 매일 갱신되고, 마감이 지나면 자동으로 빠집니다. '
+            '참가 조건·일정은 반드시 원문에서 확인하세요.</p></div>'
+            + "".join(f'<h2 class="sec">{e(t)} <small>{len(g)}개</small></h2><div class="cards">{"".join(event_card(x, "../") for x in g[:24])}</div>'
+                      for t, g in groups if g)
+            + ("" if xs else "<p>지금은 모집 중인 일정이 없습니다.</p>")
+            + '<p class="crumb">출처: 위비티(국내 공모전) · itch.io(게임 잼) · CGTrader(3D 챌린지) — 제목·마감일·링크만 모아 원문으로 연결합니다.</p>')
+    (OUT / "events" / "index.html").write_text(page(
+        f"3D·게임 공모전·게임 잼 일정 (마감 임박 순) - {SITE_TITLE}", body, "../", canonical=f"{BASE_URL}/events/",
+        desc="3D·게임·애니메이션 공모전과 해외 게임 잼·3D 챌린지를 마감 임박 순으로 — 매일 갱신"), encoding="utf-8")
+    return len(xs)
+
+
 def build_compare() -> int:
     """주제별 툴 비교 (/compare/) — 같은 작업을 툴마다 어디서·어떻게. 만든 페이지 수 반환."""
     import compare as _cmp
@@ -1725,6 +1775,8 @@ def build() -> dict:
                 f'<a class="more" href="{{ROOT}}{learn_url(gs[0])}">처음부터 배우기 →</a></div>')
 
     learn_tiles = "".join(learn_tile(t, gs) for t, gs in by_tool.items())
+    import events as _ev  # 홈: 마감 임박 공모전·게임 잼 4개
+    ev_cards = "".join(event_card(x, "{ROOT}") for x in _ev.load_all()[:4])
     # 인기 기초 가이드: 실제 조회수(방문 통계) 상위 → 없으면 영상 있는 최신 가이드
     views = (core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}).get("learn") or {}
     by_id = {g["id"]: g for g in learn_guides}
@@ -1745,6 +1797,8 @@ def build() -> dict:
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
           '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
           '</p>'
+        + (f'<h2 class="sec">🏆 마감 임박 공모전·게임 잼 <a href="{{ROOT}}events/">전체 보기 →</a></h2>'
+           f'<div class="cards">{ev_cards}</div>' if ev_cards else "")
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
            if learn_tiles else "")
         +
@@ -1820,6 +1874,7 @@ def build() -> dict:
     build_recipes(recipes_, posts)
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
     build_compare()  # 주제별 툴 비교
+    build_events()  # 공모전·게임 잼
     build_manual(learn_guides)  # 명령별 심화 매뉴얼
     n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()

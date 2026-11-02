@@ -918,6 +918,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("파이프라인 레시피 생성 실패: %s", e)
         strategy["recipes_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "events_at", 6 * 3600):  # 공모전·게임 잼·3D 챌린지 (AI 안 씀, 마감 지난 것 자동 정리)
+        try:
+            import events
+            r = events.refresh()
+            if r.get("errors"):
+                log.warning("공모전 수집 일부 실패: %s", r["errors"])
+        except Exception as e:
+            log.warning("공모전·잼 수집 실패: %s", e)
+        strategy["events_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "assets_at", 6 * 3600):  # 무료 텍스처·HDRI 모음 (AI 안 씀)
         try:
             import assets
