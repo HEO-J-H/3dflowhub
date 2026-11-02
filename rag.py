@@ -81,6 +81,11 @@ def site_docs() -> list[dict]:
         docs.append({"id": x["id"], "kind": "change", "title": x["title"], "url": f"changes/{x['id']}/",
                      "text": x.get("summary", "") + " " + " ".join(h.get("change", "") for h in x.get("highlights", [])),
                      "tool": x.get("tool", "")})
+    import compare
+    for x in compare.load_all():
+        docs.append({"id": x["id"], "kind": "compare", "title": f"{x['title']} 툴별 비교", "url": f"compare/{x['id']}/",
+                     "text": x.get("summary", "") + " " + " ".join(f"{r.get('tool', '')} {r.get('where', '')}" for r in x["rows"]),
+                     "tool": ""})
     return docs
 
 

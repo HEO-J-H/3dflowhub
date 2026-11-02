@@ -951,6 +951,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("오류 해결·바뀐 점 생성 실패: %s", e)
         strategy["refs_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "compare_at", 3 * 3600):  # 주제별 툴 비교: 3시간마다 조금씩 (하루 상한)
+        try:
+            import compare
+            made = compare.write(2)
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "compare": made}])[-30:]
+        except Exception as e:
+            log.warning("툴 비교 생성 실패: %s", e)
+        strategy["compare_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "taxonomy_updated_at", TAXONOMY_EVERY):
         strategy = refine_taxonomy(strategy)
         core._save_json(core.STRATEGY_PATH, strategy)

@@ -492,6 +492,7 @@ pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;backgrou
   border-radius:14px;overflow:hidden}
 .params th,.params td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 .params tr:last-child td{border-bottom:0}.params th{font-size:13px;color:var(--muted);font-weight:600}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}.tblwrap .params{min-width:640px}.tblwrap .params tbody th{color:var(--text);font-size:15px;white-space:nowrap}
 .params code{font-weight:600;color:var(--text)}
 .ex{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .ex .box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
@@ -572,9 +573,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}compare/">툴 비교</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}compare/">⚖️ 툴 비교</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -1364,6 +1365,53 @@ def build_refs() -> tuple[list, list]:
     return fixes, changes
 
 
+def build_compare() -> int:
+    """주제별 툴 비교 (/compare/) — 같은 작업을 툴마다 어디서·어떻게. 만든 페이지 수 반환."""
+    import compare as _cmp
+    items = sorted(_cmp.load_all(), key=lambda x: x["title"])
+    (OUT / "compare").mkdir(exist_ok=True)
+    ul = lambda xs: "".join(f"<li>{e(x)}</li>" for x in xs)  # noqa: E731
+    for x in items:
+        d = OUT / "compare" / x["id"]
+        d.mkdir(parents=True, exist_ok=True)
+        root, url = "../../", f"{BASE_URL}/compare/{x['id']}/"
+        tools = ", ".join(r["tool"] for r in x["rows"])
+        rows = "".join(f'<tr><th scope="row">{e(r["tool"])}</th><td><code>{e(r.get("where", ""))}</code></td>'
+                       f'<td>{e(r.get("how", ""))}</td><td>{e(r.get("strength", ""))}</td><td>{e(r.get("limit", ""))}</td></tr>'
+                       for r in x["rows"])
+        picks = "".join(f'<li><b>{e(p["case"])}</b> → {e(p.get("tool", ""))} — {e(p.get("why", ""))}</li>' for p in x["pick"])
+        ld = {"@context": "https://schema.org", "@type": "TechArticle", "headline": f"{x['title']} 툴별 비교"[:110],
+              "description": x["summary"][:300], "inLanguage": "ko-KR", "url": url, "about": tools,
+              "datePublished": iso_tz(x.get("at", "")), "dateModified": iso_tz(x.get("at", "")),
+              "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"}}
+        body = (f'<article class="doc guide"><p class="crumb"><a href="{root}compare/">툴 비교</a></p>'
+                f'<h1>{e(x["title"])} — 툴별 비교</h1>'
+                f'<p class="aiby">🤖 AI 가 정리 · 비교 툴: {e(tools)} · 작성 {e(x.get("at", "")[:10])} · '
+                + report_button("[3dflowhub] 툴 비교 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
+                f'<p class="lead">{e(x["summary"])}</p>'
+                '<h2>툴마다 어디서·어떻게</h2><div class="tblwrap"><table class="params"><thead><tr><th>툴</th><th>메뉴·기능</th>'
+                f'<th>방법</th><th>장점</th><th>한계</th></tr></thead><tbody>{rows}</tbody></table></div>'
+                + (f"<h2>상황별 추천</h2><ul>{picks}</ul>" if picks else "")
+                + (f'<h2>툴 사이에서 넘길 때</h2><ul>{ul(x["handoff"])}</ul>' if x["handoff"] else "")
+                + (f'<h2>이렇게 응용하기</h2><ul>{ul(x["apply"])}</ul>' if x["apply"] else "")
+                + (f'<h2>자주 하는 실수</h2><ul class="warn">{ul(x["pitfalls"])}</ul>' if x["pitfalls"] else "")
+                + f'<p class="crumb"><a href="{root}compare/">← 툴 비교 전체</a> · <a href="{root}learn/">기초 가이드</a> · '
+                  f'<a href="{root}fix/">오류 해결</a></p></article>')
+        (d / "index.html").write_text(page(
+            f"{x['title']} 툴별 비교 (Blender·Max·Maya·Houdini·Unreal) - {SITE_TITLE}", body, root,
+            desc=x["summary"], canonical=url,
+            extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'), encoding="utf-8")
+    idx = "<ul>" + "".join(f'<li><a href="{x["id"]}/">{e(x["title"])}</a> <span class="crumb">{e(x["summary"][:60])}…</span></li>'
+                           for x in items) + "</ul>" if items else "<p>준비 중입니다. 매일 몇 개씩 추가됩니다.</p>"
+    (OUT / "compare" / "index.html").write_text(page(
+        f"3D 툴 비교 — 작업별로 Blender·3ds Max·Maya·Houdini·Unreal - {SITE_TITLE}",
+        '<div class="doc"><h1>⚖️ 툴 비교</h1><p class="desc">최적화·UV·베이크·리깅·내보내기 같은 같은 작업을 툴마다 어디서, '
+        '어떻게 하는지 한 장으로 비교합니다. 상황별 추천과 툴 사이에서 넘길 때 주의점까지 함께 정리했습니다.</p>'
+        f'{idx}</div>', "../", canonical=f"{BASE_URL}/compare/", desc="3D 작업별 Blender·3ds Max·Maya·Houdini·Unreal 비교"),
+        encoding="utf-8")
+    return len(items)
+
+
 def build_assets() -> int:
     """무료 에셋 모음 (/assets/) — 새 무료 텍스처·재질·HDRI·3D 모델을 종류별 카드로. 받기는 원래 사이트에서."""
     import assets as _assets
@@ -1490,7 +1538,8 @@ def build() -> dict:
         f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
         + (f'<h2 class="sec">인기 기초 가이드 <a href="{{ROOT}}learn/">전체 {len(learn_guides)}개 →</a></h2>'
            f'<div class="gcards">{hot_html}</div>' if hot_html else "")
-        + '<p class="quick"><a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
+        + '<p class="quick"><a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
+          '<a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
           '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
           '<a class="btn ghost" href="{ROOT}recipes/">🔧 검증된 스크립트</a></p>'
@@ -1569,6 +1618,7 @@ def build() -> dict:
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
     build_recipes(recipes_, posts)
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
+    build_compare()  # 주제별 툴 비교
     n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()
     build_showcase()
@@ -1644,7 +1694,7 @@ def build() -> dict:
             hits = rix.search(f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("post",), exclude={p["id"]}, min_score=3.0)
             related = [by_id[h["id"]] for h in hits if h["id"] in by_id]
             p["learn"] = [{"url": h["url"], "title": h["title"]} for h in rix.search(
-                f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("guide", "fix"), min_score=4.0)]
+                f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("guide", "fix", "compare"), min_score=4.0)]
         related = related or [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
             [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
         (OUT / "p" / f"{p['id']}.html").write_text(
