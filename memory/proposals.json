@@ -5226,5 +5226,75 @@
     "id": "p-aee196c6f6",
     "verdict": "agent",
     "reason": "깃허브 RAG 오픈소스 활용 방안을 문서화하고 가이드에 반영하는 작업은 코드 및 문서 수정으로 해결 가능합니다."
+  },
+  {
+    "at": "2026-11-02T08:29:03+00:00",
+    "kind": "proposal",
+    "id": "p-3a46df5b46",
+    "title": "대기 중인 핵심 PR (#37~#44) 일괄 검토 및 순차 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #37, #38, #40, #41, #42, #43, #44 등 url_ingest.py, mesh_from_image.py, pbr_generator.py 관련 검증 로직 PR이 다수 대기 중입니다.",
+    "proposal": "대기 중인 핵심 PR들의 테스트 통과 여부를 확인하고 기능별로 순차 병합하여 파이프라인 정합성을 유지합니다.",
+    "expected": "핵심 서비스 입력 검증 로직이 메인 브랜치에 안전하게 반영됨",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T08:29:21.444690+00:00",
+    "kind": "proposal",
+    "id": "p-44d9fc11bc",
+    "title": "[확정] 기초연금 수급액 차등 인상",
+    "by": "⚖️ 규정 감시",
+    "site": "life-after-60",
+    "source": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02WDlzRmRlcFFrcDFlcHhRa2hRY0VubjFKVGFZeXdCVEdlNW9IX2lqU2NWS08yazFsYmw4cDdmQkRsVVFndHFCNWdYRUFDd1dpdWhCM20wQ1N4S1FMOWl3X1JiZlhBN3Q2VTZBZQ?oc=5",
+    "category": "콘텐츠",
+    "evidence": "내년 4월부터 소득 하위 30% 대상 기초연금 최대 38만원으로 차등 인상",
+    "proposal": "기초연금 수급액 계산식 및 반영 기준 연도(2027년) 업데이트 검토",
+    "expected": "은퇴 시뮬레이션 정확도 향상",
+    "effort": "보통",
+    "action": null
+  },
+  {
+    "at": "2026-11-02T08:29:23.677198+00:00",
+    "kind": "proposal",
+    "id": "p-06b53ab538",
+    "title": "모바일 화면 주요 입력 버튼 터치 영역 44px 이상 확보",
+    "by": "🎨 디자이너 (은퇴)",
+    "site": "life-after-60",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "category": "사이트·UX",
+    "evidence": "독자인 50~60대 사용자의 모바일 접근성을 높이기 위해 버튼과 입력 폼의 터치 영역 확대 필요",
+    "proposal": "메인 입력 폼과 계산 실행 버튼의 높이를 44px 이상으로 키우고 여백을 넓혀 터치 실수 방지",
+    "expected": "모바일 환경에서 은퇴 시뮬레이터 조작 편의성 및 가독성 향상",
+    "effort": "낮음",
+    "action": null
+  },
+  {
+    "at": "2026-11-02T08:29:46.178666+00:00",
+    "kind": "decision",
+    "id": "p-06b53ab538",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 모바일 화면에서 입력 폼 및 버튼 터치 영역 확대",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:29:46.184571+00:00",
+    "kind": "decision",
+    "id": "p-44d9fc11bc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T08:29:46.190018+00:00",
+    "kind": "decision",
+    "id": "p-3a46df5b46",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 핵심 PR (#37~#44) 점검 및 순차 머지",
+    "auto": true
   }
 ]
