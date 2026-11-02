@@ -7278,5 +7278,53 @@
     "id": "p-2290fa183e",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '웹 버전(web/) 에러 처리 로직 검토 및 보완' 등이 포함되어 있어 이미 반영된 작업입니다."
+  },
+  {
+    "at": "2026-11-02T15:01:26+00:00",
+    "kind": "proposal",
+    "id": "p-7f23e2d0fe",
+    "title": "대기 중인 백엔드 입력 검증 PR(#40~#44) 최종 승인 요청",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 PR #40부터 #44까지 핵심 코드 변경 및 테스트가 포함된 채 대기 중입니다.",
+    "proposal": "운영자가 GitHub에서 PR #40~#44의 테스트 결과 및 변경 사항을 최종 검토하고 승인·머지합니다.",
+    "expected": "입력값 검증 안정성 강화 및 잠재적 예외 상황 방지",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T15:01:26+00:00",
+    "kind": "proposal",
+    "id": "p-0ecb3ae5ff",
+    "title": "웹 버전(web/) 입력 오류 및 Fallback 피드백 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단에서 처리되는 3D 메시 및 PBR 맵 생성 시 사용자 입력 오류나 비지원 파일 형식에 대한 직관적인 UI 피드백 강화 필요",
+    "proposal": "web/index.html 및 관련 Script에서 잘못된 이미지나 파일 포맷 입력 시 사용자에게 명확한 에러 메시지 알림을 표시하는 로직 보완",
+    "expected": "웹 클라이언트 사용성 향상 및 디버깅 용이성 증대",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T15:02:30.344324+00:00",
+    "kind": "decision",
+    "id": "p-7f23e2d0fe",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T15:02:30.350120+00:00",
+    "kind": "decision",
+    "id": "p-0ecb3ae5ff",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 오류 핸들링 UI 피드백 보완",
+    "auto": true
   }
 ]
