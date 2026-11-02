@@ -1,0 +1,77 @@
+{
+  "id": "pixyz-studio-importing-point-clouds-recap-814d",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "불러오기",
+  "name": "Importing point clouds (ReCap)",
+  "title": "점구름(ReCap) 불러오기",
+  "summary": "Pixyz Studio에서 Autodesk ReCap 파일(*.rcp, *.rcs)을 불러와 대규모 점구름(Point Cloud) 데이터를 3D 시각화 및 최적화 작업에 활용합니다. ReCap SDK 연동을 통해 스캔 데이터와 360° 뷰포인트를 효율적으로 불러옵니다.",
+  "when": [
+    "실제 현장이나 건축물을 스캔한 점구름 데이터를 3D 시각화 프로젝트에 결합할 때",
+    "Autodesk ReCap 포맷의 스캔 데이터를 엔지니어링 모델과 함께 검토할 때",
+    "현장 스캔 데이터에서 360° 텍스처와 시점(Points of View) 정보를 유지하여 작업할 때"
+  ],
+  "steps": [
+    "컴퓨터에 유효한 라이선스가 포함된 Autodesk ReCap을 설치합니다.",
+    "Autodesk Developer Network에서 ReCapSDK v20.1.1을 다운로드하여 압축을 끕니다.",
+    "Pixyz Studio를 실행하고 F9 키를 누르거나 Edit 메뉴에서 Preferences를 엽니다.",
+    "Preferences 창에서 IO > Import > Recap 항목으로 이동합니다.",
+    "ReCapSDKpath 파라미터 경로를 압축 해제한 폴더 내 Bin 폴더로 지정합니다.",
+    "상단 메뉴에서 File > Import를 선택하고 *.rcp 또는 *.rcs 파일을 불러옵니다."
+  ],
+  "params": [
+    {
+      "name": "ReCapSDKpath",
+      "desc": "ReCap SDK가 포함된 Bin 폴더의 경로를 지정하여 ReCap 파일 로드를 활성화합니다."
+    },
+    {
+      "name": "RecapLoadPointOfView",
+      "desc": "True로 설정 시 ReCap 프로젝트에 포함된 360° 텍스처와 시점(Points of View) 정보를 함께 불러옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공장 현장 스캔 데이터 불러오기",
+      "steps": [
+        "Preferences에서 ReCapSDKpath가 올바른 Bin 폴더를 가리키는지 확인합니다.",
+        "File > Import를 클릭하고 공장 현장 스캔 파일(*.rcp)을 선택합니다.",
+        "뷰포트에 점구름 데이터가 로드되면 Product Structure 트리에서 확인합니다."
+      ]
+    },
+    {
+      "title": "360° 시점 정보 포함하여 로드하기",
+      "steps": [
+        "Preferences > IO > Import > Recap 메뉴로 이동합니다.",
+        "RecapLoadPointOfView 파라미터를 True로 변경합니다.",
+        "ReCap 파일을 불러와 스캐너의 메타데이터와 시점 정보를 함께 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경로 설정 오류 → ReCapSDKpath가 올바른 Bin 폴더를 지정하지 않으면 에러 메시지가 발생하므로 경로를 다시 확인합니다.",
+    "라이선스 누락 → 컴퓨터에 유효한 Autodesk ReCap 라이선스가 설치되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Importing CAD files",
+    "Importing Alias and VRED files",
+    "Supported file formats",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "gI3uGOKbMmc",
+      "title": "ReCap Tutorial - Import point cloud data",
+      "author": "LinkedIn Learning"
+    },
+    {
+      "id": "wtYPVUGUld8",
+      "title": "Point Cloud to Recap Pro and Export to RCP or RCS file",
+      "author": "Jason Porter"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportingReCapFiles.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:21:02.147707+00:00"
+}
