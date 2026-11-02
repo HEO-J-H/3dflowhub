@@ -1,0 +1,100 @@
+{
+  "id": "blender-principled-bsdf-8311",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Principled BSDF",
+  "title": "Principled BSDF — 기본 PBR 재질",
+  "summary": "Blender의 표준 머티리얼 Shader로, 금속·유리·플라스틱·가죽 등 현실 세계의 거의 모든 재질을 하나의 노드로 표현합니다. 복잡한 노드 조합 없이 물리 기반 렌더링(PBR)을 구현합니다.",
+  "when": [
+    "오브젝트에 기본적인 색상과 질감(금속, 플라스틱 등)을 부여할 때",
+    "유리나 물처럼 투명하고 굴절되는 재질을 만들 때",
+    "피부나 천 같은 복잡한 표면의 서브서스턴스 스캐터링(SSS)을 표현할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Properties 패널에서 Material Properties 탭(공 모양 아이콘)을 엽니다.",
+    "New 버튼을 클릭하여 새 머티리얼을 생성합니다.",
+    "Shading 워크스페이스로 이동하거나 Shader Editor 창을 엽니다.",
+    "기본으로 생성된 Principled BSDF 노드가 Material Output 노드의 Surface에 연결되어 있는지 확인합니다.",
+    "Base Color, Roughness, Metallic 등의 파라미터를 조절하여 원하는 질감을 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 색상이나 텍스처를 지정합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속성을 조절합니다. 0은 비금속, 1은 완전한 금속입니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절합니다. 값이 낮으면 매끄럽고 광택이 나며, 높으면 거칠고 매트합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "Index of Refraction. 투명 재질의 빛 굴절률을 설정합니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "재질의 투명도를 조절합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "노멀 맵을 연결하여 표면의 미세한 요철 입체감을 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "플라스틱 장난감 재질",
+      "steps": [
+        "Base Color에서 원하는 색상을 선택합니다.",
+        "Metallic 값을 0으로 설정합니다.",
+        "Roughness 값을 0.1~0.2 정도로 낮추어 매끄러운 광택을 줍니다."
+      ]
+    },
+    {
+      "title": "금속 파이프",
+      "steps": [
+        "Base Color에서 어두운 회색 계열을 선택합니다.",
+        "Metallic 값을 1.0으로 올려 완전한 금속으로 만듭니다.",
+        "Roughness 값을 0.3으로 설정해 은은한 반사광을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "금속 재질인데 Base Color를 어둡게 설정함 → Metallic을 1로 올릴 때 Base Color는 밝고 선명한 색상이어야 정확한 금속 반사가 일어납니다.",
+    "유리 재질에서 투명도가 적용되지 않음 → Blend Mode를 Alpha Blended로 변경하거나 Transmission 값을 1.0으로 올려야 투명해집니다.",
+    "스케일이 틀어져 Roughness나 Normal 맵이 어색해짐 → Object 모드에서 Ctrl + A를 눌러 Scale을 꼭 Apply(적용)하세요."
+  ],
+  "related": [
+    "Material Output",
+    "Image Texture",
+    "Bump",
+    "Displacement"
+  ],
+  "videos": [
+    {
+      "id": "_IjSYLt9k2A",
+      "title": "Blender 2.8 : Everything About The Principled BSDF (In 3 Minutes)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "uszW0h6bM-Q",
+      "title": "Blender 3D Modelling Series - Ep 3 - Texturing and the Principled BSDF Explained",
+      "author": "Aerial Zero"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Principled%20BSDF",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Material Properties",
+    "New",
+    "Shading",
+    "Shader Editor",
+    "Principled BSDF"
+  ],
+  "at": "2026-11-02T01:48:11.750095+00:00"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-look-at-constraint-9c85",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Look At Constraint",
+  "title": "LookAt — 바라보게 하기",
+  "summary": "타겟 오브젝트를 실시간으로 바라보도록 회전축을 고정하는 애니메이션 제약 조건입니다. 카메라가 캐릭터를 쫓아가거나 눈동자가 움직일 때 사용합니다.",
+  "when": [
+    "카메라나 조명이 특정 캐릭터나 오브젝트를 항상 향하게 만들 때",
+    "포탑이나 감시 카메라가 타겟을 실시간으로 추적할 때",
+    "캐릭터의 눈동자나 머리가 특정 지점을 바라보도록 제어할 때"
+  ],
+  "steps": [
+    "회전시킬 오브젝트를 선택합니다.",
+    "상단 메뉴에서 Animation → Constraints → Look At Constraint 를 클릭합니다.",
+    "뷰포트에서 바라보게 만들 타겟 오브젝트를 Mouse로 클릭합니다.",
+    "Motion 탭(회색 톱니바퀴 아이콘)의 Assign Controller 롤아웃에서 설정값들을 확인합니다.",
+    "Align 로테이션 옵션과 타겟 축(Look At Axis)을 조정하여 올바른 방향을 바라보도록 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Look At Target",
+      "desc": "바라보게 될 대상 오브젝트를 지정하거나 변경합니다."
+    },
+    {
+      "name": "Look At Axis",
+      "desc": "오브젝트의 어떤 축이 타겟을 바라볼지 설정합니다 (예: X, Y, Z)."
+    },
+    {
+      "name": "Upnode Source",
+      "desc": "오브젝트의 위쪽(Up) 방향을 결정하는 기준을 선택합니다."
+    },
+    {
+      "name": "Add Target",
+      "desc": "추가 타겟을 지정하여 가중치를 나눠 가질 수 있게 합니다."
+    },
+    {
+      "name": "Keep Initial Offset",
+      "desc": "제약 적용 순간의 초기 회전값과 위치 간격을 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카메라의 타겟 추적",
+      "steps": [
+        "Camera 오브젝트를 선택합니다.",
+        "Animation → Constraints → Look At Constraint를 실행합니다.",
+        "움직이는 캐릭터 메시를 타겟으로 지정합니다.",
+        "카메라가 이동해도 항상 캐릭터 중심을 바라보는지 확인합니다."
+      ]
+    },
+    {
+      "title": "포탑 회전 애니메이션",
+      "steps": [
+        "포탑의 헤드(상단 부품)를 선택합니다.",
+        "Look At Constraint를 적용하고 적 캐릭터를 타겟으로 지정합니다.",
+        "Look At Axis를 포탑의 정면 축(예: Y축)으로 설정합니다.",
+        "적 캐릭터가 움직일 때 포탑이 회전하며 조준하는 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "타겟을 지정한 뒤 오브젝트가 이상한 방향을 바라봄 → Look At Axis 설정을 다른 축(X, Y, Z)으로 변경하여 정면 축을 맞춥니다.",
+    "오브젝트가 엉뚱하게 뒤틀리거나 구부러짐 → Upnode Source 설정을 World로 바꾸거나 별도의 Upnode 오브젝트를 지정해 회전 기준을 바로잡습니다."
+  ],
+  "related": [
+    "Position Constraint",
+    "Orientation Constraint",
+    "Path Constraint",
+    "Link Constraint"
+  ],
+  "videos": [
+    {
+      "id": "YPhUbQUeUeY",
+      "title": "Look at constraints for a characters eyes in 3ds Max",
+      "author": "Dave Saxon"
+    },
+    {
+      "id": "mvQD6BwUvA8",
+      "title": "Look at constraint & motion capture in 3ds max no plugin / create game button",
+      "author": "MEG3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Look%20At%20Constraint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Animation",
+    "Constraints",
+    "Look At Constraint"
+  ],
+  "at": "2026-11-02T01:48:07.640825+00:00"
+}
