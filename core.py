@@ -1334,6 +1334,7 @@ def normalize_summary(data: dict, item: dict) -> dict:
     data["faq"] = [f for f in data.get("faq") or [] if isinstance(f, dict)]
     data["topic"] = data.get("topic") if data.get("topic") in TOPICS else DEFAULT_TOPIC
     apply_glossary(data)
+    data["try_it"] = [str(t).strip() for t in (data.get("try_it") or []) if str(t).strip()][:4] if isinstance(data.get("try_it"), list) else []
     return data
 
 
@@ -1435,6 +1436,8 @@ def summarize(item: dict) -> dict | None:
         ' "summary": one-sentence Korean summary,\n'
         ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
         'how to apply it in practice, who should care. Do not restate the article,\n'
+        ' "try_it": 2-4 short Korean action steps a Korean artist can do TODAY with this (concrete: which tool, '
+        'menu or setting to try, what to compare); [] if nothing practical,\n'
         ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
         'factual, from the source),\n'
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
@@ -1536,21 +1539,87 @@ def backfill_notion(client, limit: int = 100) -> int:
 
 POSTS_DIR = ROOT / "content" / "posts"  # GitHub Pages 원본 데이터 (build_site.py 가 HTML 로 변환)
 POST_FIELDS = ("title_ko", "title", "url", "domain", "category", "topic", "tags", "summary", "insight",
-               "sections", "faq", "media", "collected_at", "notion_id")
+               "try_it", "sections", "faq", "media", "collected_at", "notion_id")
 
 
-def same_story_saved(title_ko: str, days: int = 21) -> bool:
-    """최근 저장한 글에 같은 한국어 제목이 있으면 True (구글 뉴스가 같은 기사를 다른 주소로 주는 경우)."""
+SAME_STORY_OVERLAP = 0.6  # 제목+요약의 낱말 조각이 이만큼 겹치면 같은 소식 (다른 매체가 쓴 같은 발표 등)
+
+
+def _story_tokens(title: str, summary: str = "") -> set[str]:
+    import rag
+    return set(rag.tokens(f"{title} {summary}"))
+
+
+def same_story_saved(title_ko: str, days: int = 21, summary: str = "") -> bool:
+    """최근 저장한 글과 같은 소식이면 True — 같은 한국어 제목, 또는 제목+요약 내용이 크게 겹침
+    (구글 뉴스가 같은 기사를 다른 주소로 주거나, 여러 매체가 같은 발표를 다룬 경우 → 검색엔진이 중복으로 감점)."""
     key = re.sub(r"[^0-9a-z가-힣]", "", (title_ko or "").lower())
     if not key:
         return False
+    mine = _story_tokens(title_ko, summary) if summary else set()
     cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
     for f in POSTS_DIR.glob("*.json"):
         if f.name[:10] < cutoff:
             continue
-        if re.sub(r"[^0-9a-z가-힣]", "", str(_load_json(f, {}).get("title_ko", "")).lower()) == key:
+        p = _load_json(f, {})
+        if re.sub(r"[^0-9a-z가-힣]", "", str(p.get("title_ko", "")).lower()) == key:
             return True
+        if len(mine) >= 8:
+            other = _story_tokens(str(p.get("title_ko", "")), str(p.get("summary", "")))
+            if other and len(mine & other) / min(len(mine), len(other)) >= SAME_STORY_OVERLAP:
+                return True
     return False
+
+
+ENRICH_DAILY_MAX = 20  # 하루에 보강하는 얇은 글 수 (AI 사용량 보호)
+
+
+def enrich_thin_posts(max_n: int = 3) -> int:
+    """내용이 빈약한 최근 글을 보강 — 원문 다시 읽기 + 사이트의 관련 가이드·오류 해결을 근거로 섹션·실습 포인트 추가.
+    글 수(하루 100건)는 그대로 두고 품질을 올림. 보강한 글엔 enriched 표시 → 다시 하지 않음."""
+    import build_site
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    files = sorted(POSTS_DIR.glob("*.json"), reverse=True)[:400]
+    done_today = sum(1 for f in files if _load_json(f, {}).get("enriched") == today)
+    n = 0
+    for f in files:
+        if n >= max_n or done_today + n >= ENRICH_DAILY_MAX or llm_budget_left() <= 0:
+            break
+        p = _load_json(f, {})
+        if p.get("enriched") or not build_site.is_thin(p):
+            continue
+        body, _media = fetch_article(p.get("url", "")) if p.get("url") else ("", {})
+        try:
+            from guides import _site_context
+            site = _site_context(f"{p.get('title_ko', '')} {p.get('summary', '')}")
+        except Exception:  # noqa: BLE001
+            site = ""
+        current = json.dumps({k: p.get(k) for k in ("title_ko", "summary", "insight", "sections")}, ensure_ascii=False)
+        prompt = (site + f"Current Korean post (too thin):\n{current}\n\nSource article text:\n{body[:6000]}\n\n"
+                  "Make it genuinely useful for Korean 3D artists. Use ONLY facts from the source or the site pages "
+                  "above; never invent numbers, versions or menu paths. Return JSON:\n"
+                  ' "sections": 4-6 {"heading", "body"} in Korean (each body 3-5 sentences, keep good existing ones),\n'
+                  ' "insight": 3-5 sentences of practical Korean commentary,\n'
+                  ' "try_it": 2-4 concrete Korean action steps, [] if nothing practical')
+        try:
+            data = _parse_json(llm(prompt, system=SUMMARY_SYSTEM, max_tokens=1600, json_mode=True))
+        except LLMBudgetExceeded:
+            break
+        except Exception as e:  # noqa: BLE001
+            log.warning("얇은 글 보강 실패 %s: %s", f.name, e)
+            p["enriched"] = "failed"
+            _save_json(f, p)
+            continue
+        secs = [s for s in (data.get("sections") or []) if isinstance(s, dict) and s.get("body")]
+        if len(" ".join(s["body"] for s in secs)) > len(" ".join(s.get("body", "") for s in p.get("sections") or [] if isinstance(s, dict))):
+            p["sections"] = secs
+        for k in ("insight", "try_it"):
+            if data.get(k):
+                p[k] = data[k]
+        p["enriched"] = today
+        _save_json(f, p)
+        n += 1
+    return n
 
 
 def save_post_json(item: dict) -> Path:
@@ -2126,7 +2195,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
             item = summarize(raw)
             if not item:
                 continue
-            if same_story_saved(item.get("title_ko", "")):  # 다른 주소로 들어온 같은 소식 → 같은 제목 문서 중복 방지
+            if same_story_saved(item.get("title_ko", ""), summary=item.get("summary", "")):  # 다른 주소로 들어온 같은 소식 → 같은 제목 문서 중복 방지
                 RUN_ERRORS.append("duplicate story")
                 continue
             page_id = save_to_notion(notion, item)
@@ -2152,6 +2221,10 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     stats["prefiltered"] = RUN_ERRORS.count("prefiltered")
     stats["llm_fallbacks"] = [f["name"] for f in fallback_providers()]  # 등록된 예비 공급자 이름 (키 값은 기록 안 함)
     stats["strategy_ver"] = strategy_version(load_strategy().get("prompt_notes", []))
+    try:  # 수량(하루 100건)은 그대로, 내용이 빈약한 글은 보강
+        stats["enriched"] = enrich_thin_posts()
+    except Exception as e:  # noqa: BLE001
+        log.warning("얇은 글 보강 실패(다음 실행에 재시도): %s", e)
     stats["errors"] = list(dict.fromkeys(RUN_ERRORS))[:5]
     reflect(stats, [k for ks in LAST_KEYWORDS.values() for k in ks])
     pruned = prune_drafts()

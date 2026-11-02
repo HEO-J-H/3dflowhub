@@ -1250,6 +1250,12 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
         parts.append(f'<h2>{e(s.get("heading", ""))}</h2><p>{e(s.get("body", ""))}</p>')  # 보강 섹션도 같은 모양
     if p.get("insight"):
         parts.append(f'<h2>💡 AI 해설 (실무 관점)</h2><blockquote>{e(p["insight"])}</blockquote>')
+    tries = [t for t in (p.get("try_it") or []) if isinstance(t, str) and t.strip()]
+    if tries:
+        parts.append("<h2>🛠 직접 해 보기</h2><ol>" + "".join(f"<li>{e(t)}</li>" for t in tries) + "</ol>")
+    if p.get("learn"):
+        parts.append("<h2>🎓 이 소식과 함께 익히기</h2><ul>" + "".join(
+            f'<li><a href="{root}{e(x["url"])}">{e(x["title"])}</a></li>' for x in p["learn"]) + "</ul>")
     faq = [f for f in p.get("faq") or [] if f.get("q")]
     if faq:
         parts.append("<h2>❓ 자주 묻는 질문</h2>" + "".join(
@@ -1637,6 +1643,8 @@ def build() -> dict:
         if rix:
             hits = rix.search(f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("post",), exclude={p["id"]}, min_score=3.0)
             related = [by_id[h["id"]] for h in hits if h["id"] in by_id]
+            p["learn"] = [{"url": h["url"], "title": h["title"]} for h in rix.search(
+                f"{p['title_ko']} {p.get('summary', '')}", k=3, kinds=("guide", "fix"), min_score=4.0)]
         related = related or [r for r in by_cat[(p["domain"], p.get("category") or "기타")] if r["id"] != p["id"]][:3] or \
             [r for r in by_dom[p["domain"]] if r["id"] != p["id"]][:3]
         (OUT / "p" / f"{p['id']}.html").write_text(
