@@ -35,6 +35,8 @@ TOPICS: list[tuple[str, str, str, list[str]]] = [
     ("lighting", "조명 기본 (3점 조명·HDRI)", "lighting basics: three-point lighting and HDRI", []),
     ("render-settings", "렌더 설정·노이즈 줄이기", "render settings and noise reduction / denoising", []),
     ("instancing", "인스턴싱·스캐터 (대량 배치)", "instancing and scattering many objects", []),
+    ("cad-to-realtime", "CAD 데이터를 실시간 3D 로 (테셀레이션·경량화)", "converting CAD (STEP, CATIA, SolidWorks) into optimized "
+     "real-time meshes: tessellation, decimation, hidden part removal, export to game engines", ["Pixyz Studio", "NVIDIA Omniverse"]),
     ("scripting", "스크립트로 반복 작업 자동화", "automating repetitive tasks with scripting (Python / MAXScript / VEX / Blueprint)", []),
 ]
 
@@ -46,7 +48,7 @@ def load_all() -> list[dict]:
 
 
 def pending() -> list[tuple]:
-    have = {f.stem for f in DIR.glob("*.json")} if DIR.exists() else set()
+    have = {x["id"] for x in load_all() if not x.get("qa_redo")}  # QA 가 6점 미만이면 다시 만들기
     return [t for t in TOPICS if t[0] not in have]
 
 

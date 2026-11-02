@@ -1,0 +1,92 @@
+{
+  "id": "pixyz-studio-typical-data-preparation-workflow-7bcd",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Typical data preparation workflow",
+  "title": "데이터 준비 기본 흐름 — 불러오기부터 내보내기까지",
+  "summary": "Pixyz Studio를 사용하여 복잡한 엔지니어링 CAD 데이터를 실시간 3D 시각화와 게임 엔진에 적합한 가벼운 3D 에셋으로 최적화하는 전형적인 데이터 준비 워크플로입니다.",
+  "when": [
+    "엔지니어링 CAD 데이터를 Unreal Engine이나 실시간 3D 뷰어용으로 변환할 때",
+    "폴리곤 수가 너무 많은 고도화된 3D 모델의 구조를 단순화하고 수정을 거쳐야 할 때",
+    "실시간 협업 및 시각화를 위해 USD나 glTF 같은 표준 포맷으로 에셋을 내보낼 때"
+  ],
+  "steps": [
+    "1. Pixyz Studio를 실행하고 CAD 파일(STEP 등)을 드래그 앤 드롭하여 임포트합니다.",
+    "2. Scene 트리 구조에서 불필요한 내부 파츠나 중복된 지오메트리를 확인하고 정리합니다.",
+    "3. Defeaturing 도구를 사용하여 구멍, 필렛, 로고 등 렌더링에 불필요한 세부 형상을 제거합니다.",
+    "4. Tessellation 설정을 조절하여 CAD의 수학적 곡면을 실시간 렌더링용 폴리곤 메시로 변환합니다.",
+    "5. Polygon Optimization(데시메이션)을 적용해 시각적 품질을 유지하며 폴리곤 수를 줄입니다.",
+    "6. File 메뉴에서 Export를 선택하여 최적화된 모델을 USD, glTF 또는 FBX 포맷으로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Tessellation",
+      "desc": "CAD의 수학적 NURBS/BREP 곡면을 삼각형 폴리곤 메시로 변환합니다."
+    },
+    {
+      "name": "Sagitta",
+      "desc": "테셀레이션 시 곡면의 정확도와 폴리곤 밀도를 제어하는 허용 오차 값입니다."
+    },
+    {
+      "name": "Defeaturing",
+      "desc": "작은 구멍이나 모서리 챔퍼 등 시각적으로 중요하지 않은 세부 요소를 제거합니다."
+    },
+    {
+      "name": "Polygon Reduction",
+      "desc": "품질 손실을 최소화하면서 폴리곤 개수를 줄여 최적화합니다."
+    },
+    {
+      "name": "Orient Normals",
+      "desc": "모델의 법선 방향을 일관되게 정렬하여 렌더링 오류를 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 CAD 데이터를 Unreal Engine 에셋으로 최적화",
+      "steps": [
+        "STEP 파일 형식의 자동차 조립품을 Pixyz Studio로 임포트합니다.",
+        "엔진 내부의 보이지 않는 부품을 선택해 삭제합니다.",
+        "Tessellation과 Polygon Reduction을 거쳐 폴리곤 수를 대폭 낮춥니다.",
+        "USD 포맷으로 내보내어 Unreal Engine에 임포트합니다."
+      ]
+    },
+    {
+      "title": "건축 도면 CAD 데이터를 실시간 뷰어용으로 경량화",
+      "steps": [
+        "복잡한 건축물 CAD 데이터를 불러옵니다.",
+        "Defeaturing을 사용해 불필요한 나사산과 미세한 홈을 제거합니다.",
+        "메시 간 결합(Merge)을 통해 드로우 콜을 최적화합니다.",
+        "glTF 파일로 저장하여 웹 기반 3D 뷰어에 올립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "테셀레이션 Sagitta 값을 너무 낮게 설정함 → 폴리곤 과다 생성 및 프로그램 다운 발생. 적정 허용 오차 값을 유지하세요.",
+    "내부 파츠를 정리하지 않고 바로 내보냄 → 게임 엔진에서 불필요한 연산 부하 발생. Import 직후 트리 구조를 먼저 정리하세요.",
+    "스케일 단위 확인 누락 → 모델이 너무 크거나 작게 임포트됨. Import 옵션에서 단위(Unit) 설정을 미리 확인하세요."
+  ],
+  "related": [
+    "NVIDIA Omniverse",
+    "CAD import (STEP)",
+    "USD export",
+    "Unreal Engine"
+  ],
+  "videos": [
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    },
+    {
+      "id": "OQNlx13QqTk",
+      "title": "Pixyz Studio | Decimate Target Bake",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/TypicalDataPrepWorkflow.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:03:04.849583+00:00"
+}

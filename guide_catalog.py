@@ -600,6 +600,48 @@ UV|UV Master Control Painting|UV Master 경계 지정
 기타|Text 3D and Vector Shapes|Text 3D
 기타|Scripting with ZScript basics|ZScript 기초
 """,
+"Pixyz Studio": """
+입문|What is Pixyz Studio|Pixyz Studio 란 — CAD 를 실시간 3D 로 바꾸는 도구
+입문|Pixyz Studio installation and licensing|설치·라이선스 활성화
+입문|Pixyz Studio user interface|화면 구성 — Product Structure·Inspector·Viewer
+입문|Viewer navigation controls|뷰어 이동·회전·확대
+입문|Supported file formats|불러올 수 있는 파일 형식 (CAD·메쉬·점구름)
+입문|Typical data preparation workflow|데이터 준비 기본 흐름 — 불러오기부터 내보내기까지
+불러오기|Importing CAD files|CAD 파일 불러오기
+불러오기|Guided Import|Guided Import — 단계별 불러오기
+불러오기|Guided Import parameters|Guided Import 옵션 정리
+불러오기|Import Mode|Import Mode — 불러오기 방식 차이
+불러오기|Importing Alias and VRED files|Alias·VRED 파일 불러오기
+불러오기|Importing point clouds (ReCap)|점구름(ReCap) 불러오기
+구조|Product Structure (Tree)|Product Structure(트리) 다루기
+구조|Occurrences in Pixyz|Occurrence — Pixyz 장면의 기본 단위
+구조|Instances and prototypes|인스턴스·프로토타입 — 같은 부품 반복
+구조|Merge Parts By Regions|Merge Parts By Regions — 부품 합치기
+구조|Variants and PMI|Variants·PMI 다루기
+최적화|Tessellation of CAD models|테셀레이션 — CAD 곡면을 폴리곤으로
+최적화|Re-Tessellate|Re-Tessellate — 다시 폴리곤으로 나누기
+최적화|Decimation in Pixyz|데시메이션 — 폴리곤 줄이기 개념
+최적화|Decimate To Quality|Decimate To Quality — 품질 기준으로 줄이기
+최적화|Decimate To Target|Decimate To Target — 목표 개수로 줄이기
+최적화|Generate LOD Chain|LOD 체인 만들기
+최적화|Optimize Mesh menu|Optimize Mesh 메뉴 전체
+최적화|Repair Mesh|Repair Mesh — 깨진 메쉬 고치기
+최적화|Remove Z-fighting|Remove Z-fighting — 겹친 면 깜빡임 없애기
+최적화|Face and vertex normals|면·버텍스 노멀 바로잡기
+UV·재질|UVs in Pixyz|UV 기본 — CAD 모델의 UV
+UV·재질|Generate UV By Projection|투영으로 UV 만들기
+UV·재질|Material Editor|Material Editor — 재질 편집
+UV·재질|Pixyz PBR Material Library|PBR 재질 라이브러리 쓰기
+점구름|Tessellate Point Clouds|점구름을 메쉬로 바꾸기
+내보내기|Exporting files from Pixyz Studio|파일 내보내기 (FBX·glTF·USD)
+내보내기|Export Unity Prefab|Unity Prefab 으로 내보내기
+내보내기|Exporting GLB with Draco compression|GLB + Draco 압축 — 웹용 경량화
+내보내기|Exporting textures|텍스처 내보내기
+자동화|Python scripting in Pixyz Studio|Python 스크립트 시작하기
+자동화|Filter expressions|Filter expression — 조건으로 골라내기
+자동화|Creating a Pixyz plugin|플러그인 만들기
+문제 해결|Errors in Pixyz Studio|자주 보는 오류와 해결
+""",
 "NVIDIA Omniverse": """
 입문|Omniverse Launcher deprecation and what to use now|런처 지원 종료(2025) 이후 무엇을 쓰나
 입문|Building USD Composer from Kit App Template|Kit App Template 으로 USD Composer 빌드하기
@@ -808,12 +850,53 @@ OpenUSD|USD collections and light linking|컬렉션·라이트 링크
 
 # 공식 문서 본문을 근거로 쓸 수 있는 주제 (영문 이름 → 주소). 확인된 주소만 (2026-10 본문 읽힘 확인)
 URLS = {
+    # Pixyz Studio 공식 문서 (운영자 요청 2026-11 — 한국어 자료가 거의 없음)
+    "What is Pixyz Studio": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutPixyzStudio.html",
+    "Pixyz Studio installation and licensing": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ApplicationInstallation.html",
+    "Pixyz Studio user interface": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/UserInterface.html",
+    "Viewer navigation controls": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/NavigationControls.html",
+    "Supported file formats": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/SupportedFileFormats.html",
+    "Typical data preparation workflow": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/TypicalDataPrepWorkflow.html",
+    "Importing CAD files": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportingFiles.html",
+    "Guided Import": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GuidedImport.html",
+    "Guided Import parameters": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GuidedImportParameters.html",
+    "Import Mode": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportMode.html",
+    "Importing Alias and VRED files": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportingAliasFiles.html",
+    "Importing point clouds (ReCap)": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportingReCapFiles.html",
+    "Product Structure (Tree)": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AbouttheProductStructureTree.html",
+    "Occurrences in Pixyz": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutOccurrences.html",
+    "Instances and prototypes": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutInstancesPrototypes.html",
+    "Merge Parts By Regions": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/MergePartsByRegions.html",
+    "Variants and PMI": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/VariantsandPMI.html",
+    "Tessellation of CAD models": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutTessellation.html",
+    "Re-Tessellate": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/Re-Tessellate.html",
+    "Decimation in Pixyz": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutDecimation.html",
+    "Decimate To Quality": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/DecimateToQuality.html",
+    "Decimate To Target": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/DecimateToTarget.html",
+    "Generate LOD Chain": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GenerateLODChain1.html",
+    "Optimize Mesh menu": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/OptimizeMeshMenu.html",
+    "Repair Mesh": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/RepairMesh.html",
+    "Remove Z-fighting": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/RemoveZ-fighting.html",
+    "Face and vertex normals": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutFaceandVertexNormals.html",
+    "UVs in Pixyz": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutUVs.html",
+    "Generate UV By Projection": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GenerateUVByProjection1.html",
+    "Material Editor": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/MaterialEditor.html",
+    "Pixyz PBR Material Library": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/PixyzPBRMaterialLibrary.html",
+    "Tessellate Point Clouds": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/TessellatePointClouds.html",
+    "Exporting files from Pixyz Studio": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingFiles.html",
+    "Export Unity Prefab": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportUnityPrefab.html",
+    "Exporting GLB with Draco compression": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingGLBWithDracoCompressio1.html",
+    "Exporting textures": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingTextures.html",
+    "Python scripting in Pixyz Studio": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/script-in-python.html",
+    "Filter expressions": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/Filterexpressions.html",
+    "Creating a Pixyz plugin": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/CreatingaPlugin.html",
+    "Errors in Pixyz Studio": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ErrorsinPixyzStudio.html",
     "Omniverse Launcher deprecation and what to use now": "https://developer.nvidia.com/omniverse/legacy-tools",
     "Installing Omniverse apps without Launcher": "https://developer.nvidia.com/omniverse/legacy-tools",
     "Building USD Composer from Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
     "Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
 }
-FIRST = ("NVIDIA Omniverse",)  # 도구 순서에서 먼저 (운영자 요청 — 한국어 자료가 부족한 분야)
+FIRST = ("Pixyz Studio", "NVIDIA Omniverse")  # 도구 순서에서 먼저 (운영자 요청 — 한국어 자료가 부족한 분야)
 
 
 def topics() -> list[tuple]:

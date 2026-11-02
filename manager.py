@@ -575,6 +575,8 @@ def snapshot() -> dict:
         "staff_capabilities": {"promo": "채널별 홍보 글 초안", "proposal": "개선 제안", "note": "업무 일지",
                                "image": "브랜드 템플릿 홍보 이미지(square/x/story) — 디자이너 직무에 적합, 사이트 디자인 정보도 받음"},
         "basics_guides": _guide_stats(),
+        "qa": {k: core._load_json(core.ROOT / "memory" / "qa_report.json", {}).get(k)
+               for k in ("avg_score", "low_by_kind", "mechanical_count", "mechanical_by_problem")},
         # 품질 성적표 (사장님 방향: 배울 수 있는 사이트가 먼저) — gaps 가 있으면 그것이 가장 큰 병목. 속도는 이미 자동 조절됨
         "scorecard": {k: v for k, v in core._load_json(core.ROOT / "memory" / "scorecard.json", {}).items() if k != "at"},
         "content_output": _content_output(),

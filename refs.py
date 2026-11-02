@@ -301,7 +301,7 @@ def run_repro(code: str, timeout: int = 120) -> tuple[bool, str]:
                      + "\nexcept Exception:\n    traceback.print_exc()\n    sys.exit(3)\n", encoding="utf-8")
         try:
             r = subprocess.run([exe, "-b", "--factory-startup", "--python-exit-code", "4", "--python", str(f)],
-                               capture_output=True, text=True, timeout=timeout, errors="replace")
+                               capture_output=True, text=True, timeout=timeout, encoding="utf-8", errors="replace")
         except subprocess.TimeoutExpired:
             return False, "시간 초과"
         return r.returncode == 0, (r.stdout + r.stderr)[-1500:]

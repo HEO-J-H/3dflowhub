@@ -351,13 +351,16 @@ def extra_topics() -> list[tuple]:
 
 def pending() -> list[tuple]:
     have = {p.stem for p in GUIDE_DIR.glob("*.json")} if GUIDE_DIR.exists() else set()
+    have -= {g["id"] for g in load_all() if g.get("qa_redo")}  # QA 가 6점 미만 → 다시 만들기
     todo = [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
     # 도구별로 번갈아 (한 도구만 몰아서 쓰지 않게) — 도구 안에서는 목록 순서 유지
     by_tool: dict[str, list] = {}
     for t in todo:
         by_tool.setdefault(t[0], []).append(t)
     out = []
-    by_tool = dict(sorted(by_tool.items(), key=lambda kv: kv[0] not in guide_catalog.FIRST))
+    # 운영자가 요청한 도구(FIRST)는 남은 주제를 먼저 모두 — 번갈아 돌리면 10번에 1번꼴이라 몇 주가 걸림
+    for t in guide_catalog.FIRST:
+        out += by_tool.pop(t, [])
     while any(by_tool.values()):
         for q in by_tool.values():
             if q:
@@ -387,7 +390,7 @@ def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     made_today = sum(1 for g in load_all() if (g.get("at") or "").startswith(today))
     max_new = min(max_new, max(0, int(core.load_config().get("guides_daily_max", GUIDES_DAILY_MAX)) - made_today))
     done = []
-    have_titles = {(x.get("tool"), _norm(x.get("title", ""))) for x in load_all()}
+    have_titles = {(x.get("tool"), _norm(x.get("title", ""))) for x in load_all() if not x.get("qa_redo")}
     for t in pending()[:max_new]:
         if (t[0], _norm(t[3])) in have_titles:  # 같은 도구에 같은 제목의 가이드가 이미 있으면 만들지 않음 (중복 문서)
             continue

@@ -1,0 +1,93 @@
+{
+  "id": "pixyz-studio-guided-import-707f",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "불러오기",
+  "name": "Guided Import",
+  "title": "Guided Import — 단계별 불러오기",
+  "summary": "Pixyz Studio의 Guided Import는 복잡한 수동 데이터 준비 과정 없이 복잡한 CAD, 폴리곤, 포인트 클라우드 모델을 자동으로 최적화하여 완벽한 3D 모델로 변환해 주는 간편한 Import 기능입니다.",
+  "when": [
+    "복잡한 CAD 데이터를 수동으로 수정할 시간 없이 빠르게 렌더링용 메시로 변환해야 할 때",
+    "3D 데이터 정제(Tessellation, Repair 등)에 대한 전문 지식이 부족한 초보 사용자일 때",
+    "대용량 엔지니어링 모델을 일관된 표준 설정으로 빠르게 씬에 불러오고 싶을 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 Preference에서 Import mode를 Guided import로 설정합니다.",
+    "변환할 3D 파일을 인터페이스 화면으로 Drag and Drop 하거나, Main toolbar의 Guided import 아이콘을 클릭합니다.",
+    "상단 메뉴에서 File → Guided import를 선택하여 파일을 불러올 수도 있습니다.",
+    "나 나타나는 Guided import 옵션 창에서 Snap to ground, Center to origin, Tessellation 등의 입력 옵션을 설정합니다.",
+    "Execute 버튼을 클릭하여 자동 최적화 프로세스를 실행하고 완료될 때까지 기다립니다."
+  ],
+  "params": [
+    {
+      "name": "Snap to ground",
+      "desc": "모델의 최하단을 씬의 바닥 면(Z=0)에 자동으로 정렬합니다."
+    },
+    {
+      "name": "Center to origin",
+      "desc": "모델의 중심 피벗을 씬의 원점(0,0,0)에 자동으로 배치합니다."
+    },
+    {
+      "name": "Tessellation",
+      "desc": "CAD의 BRep 표면을 렌더링 가능한 폴리곤 메시로 변환하는 품질을 설정합니다."
+    },
+    {
+      "name": "RepairCAD",
+      "desc": "떨어져 있거나 끊어진 CAD 표면을 자동으로 수리하고 봉합합니다."
+    },
+    {
+      "name": "RepairMesh",
+      "desc": "생성된 메시의 깨진 면이나 잘못된 법선(Face orientation) 방향을 수정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "엔지니어링 CAD 파일을 실시간 시각화 툴로 가져오기",
+      "steps": [
+        "File 메뉴에서 Guided import를 선택합니다.",
+        "복잡한 STEP 형식의 CAD 파일을 선택합니다.",
+        "기본 설정 값을 유지한 채 Execute를 눌러 즉시 메시로 변환합니다."
+      ]
+    },
+    {
+      "title": "대규모 조립품 모델을 원점에 맞춰 빠르게 배치하기",
+      "steps": [
+        "Guided import 옵션 창을 엽니다.",
+        "Center to origin과 Snap to ground 옵션을 활성화합니다.",
+        "실행 후 모델이 씬 중앙 바닥에 깔끔하게 정렬된 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "자동 변환 과정이 마법처럼 완벽하지 않음 → 가져온 모델의 UV나 재질, 파츠 분할 상태를 확인하고 필요한 경우 후가공(Fine-tuning)을 진행합니다.",
+    "대용량 파일 Import 시 멈춘 것으로 오해함 → 복잡한 모델의 경우 수십 단계의 자동 최적화(Repair, Decimation 등)를 거치므로 시간이 다소 소요될 수 있습니다."
+  ],
+  "related": [
+    "Raw import",
+    "RepairCAD",
+    "RepairMesh",
+    "Decimation"
+  ],
+  "videos": [
+    {
+      "id": "FdpjkbYIWLI",
+      "title": "006. Importing Cad & 3D Files Model in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GuidedImport.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "Preference",
+    "Import",
+    "Guided"
+  ],
+  "at": "2026-11-02T15:03:27.851298+00:00"
+}

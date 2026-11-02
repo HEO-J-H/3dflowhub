@@ -1,0 +1,96 @@
+{
+  "id": "pixyz-studio-guided-import-parameters-3d33",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "불러오기",
+  "name": "Guided Import parameters",
+  "title": "Guided Import 옵션 정리",
+  "summary": "Pixyz Studio의 Guided Import 파라미터를 설정하여 CAD 데이터를 최적의 상태로 변환하고 크기, 위치, 방향을 정렬합니다.",
+  "when": [
+    "대용량 CAD 파일(STEP 등)을 3D 뷰포트로 임포트할 때",
+    "모델의 단위(Unit)나 방향(Up-axis)이 잘못 정렬되어 뉘어져 있거나 크기가 다를 때",
+    "여러 개의 분할된 CAD 파일 부품을 동시에 불러와 병합할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 File 메뉴에서 Guided Import를 선택합니다.",
+    "File(s) 파라미터에서 불러올 CAD 파일(단일 또는 다중)을 선택합니다.",
+    "Position and Scale 탭에서 Model Orientation을 설정하여 Y-up 축과 일치시킵니다.",
+    "Model scale (units)에서 단위를 확인하고 필요시 자동 또는 수동 스케일을 적용합니다.",
+    "Snap to ground 또는 Center to origin 옵션을 체크하여 모델의 초기 위치를 정렬합니다.",
+    "Tessellation quality를 설정한 후 Import 버튼을 눌러 작업을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "File(s)",
+      "desc": "임포트할 하나 또는 여러 개의 파일을 선택하여 동시에 처리합니다."
+    },
+    {
+      "name": "Model Orientation (Up-axis)",
+      "desc": "임포트된 모델의 좌표계를 Pixyz Studio 시스템(오른손 좌표계, Y축이 위)에 맞게 변환합니다."
+    },
+    {
+      "name": "Model scale (units)",
+      "desc": "모델의 단위와 스케일을 분석하여 Studio의 기본 단위(밀리미터, mm)에 맞게 조정합니다."
+    },
+    {
+      "name": "Snap to ground",
+      "desc": "임포트된 모델을 장비의 바닥(Grid, Y축 기준) 위에 자동으로 정렬합니다."
+    },
+    {
+      "name": "Center to origin",
+      "desc": "임포트된 모델의 중심점을 씬의 원점(Origin)으로 자동 이동시킵니다."
+    },
+    {
+      "name": "Tessellation quality",
+      "desc": "CAD 데이터를 3D 앱에서 사용할 수 있는 폴리곤 메시(Mesh)로 변환하는 품질을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "엔지니어링 CAD(STEP) 모델 가져오기",
+      "steps": [
+        "Guided Import 창을 엽니다.",
+        "File(s)에서 복수의 STEP 파일을 선택합니다.",
+        "Model Orientation을 Automatic orientation으로 두고 불러옵니다."
+      ]
+    },
+    {
+      "title": "단위 불일치로 크기가 작아진 모델 수정하기",
+      "steps": [
+        "Model scale (units)를 Manual scale로 전환합니다.",
+        "Scale 값을 조정하여 실제 미터(m) 또는 센티미터(cm) 단위를 밀리미터(mm)로 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 무관한 여러 파일을 한 번에 임포트함 → 단일 모델 구성 부품이 아닐 경우 개별 파일로 각각 임포트해야 합니다.",
+    "원래의 절대 위치를 유지해야 하는데 Center를 켬 → 절대 좌표가 중요한 경우 Center to origin과 Snap to ground 옵션을 끕니다."
+  ],
+  "related": [
+    "Raw import",
+    "Product Structure",
+    "Flip Up-axis",
+    "Point Cloud"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GuidedImportParameters.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "File",
+    "Guided Import"
+  ],
+  "at": "2026-11-02T15:03:37.203814+00:00"
+}

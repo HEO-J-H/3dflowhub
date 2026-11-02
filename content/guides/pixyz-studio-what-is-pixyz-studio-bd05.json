@@ -1,0 +1,90 @@
+{
+  "id": "pixyz-studio-what-is-pixyz-studio-bd05",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "What is Pixyz Studio",
+  "title": "Pixyz Studio 란 — CAD 를 실시간 3D 로 바꾸는 도구",
+  "summary": "Pixyz Studio는 엔지니어링 CAD 데이터를 게임 엔진이나 실시간 3D 시각화에 적합한 가벼운 메시(Mesh)로 변환하고 최적화해 주는 전문 데이터 전처리 툴입니다.",
+  "when": [
+    "SolidWorks, CATIA, NX 등의 무거운 CAD 데이터를 Unreal Engine이나 Unity로 가져와야 할 때",
+    "제조업 원본 CAD 파일을 시각화용 실시간 3D 에셋이나 VR/AR 콘텐츠로 가볍게 만들 때",
+    "복잡한 어셈블리 구조의 폴리곤 수를 줄이고 불필요한 내부 구조를 정리할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 File 메뉴 또는 Drag & Drop으로 원본 CAD 파일(CATIA, SolidWorks, STEP 등)을 불러옵니다.",
+    "Scene Tree 패널에서 전체 모델 구조와 파츠를 확인하고 정리합니다.",
+    "Toolbox 또는 메뉴에서 Tessellation(테셀레이션) 알고리즘을 실행하여 CAD의 수학적 곡면을 폴리곤 메시로 변환합니다.",
+    "Decimate 또는 Repair 알고리즘을 적용하여 불필요한 폴리곤을 줄이고 찢어진 면을 수정합니다.",
+    "File → Export 메뉴를 통해 최적화된 모델을 FBX, glTF, USD 등의 표준 형식으로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Tessellation",
+      "desc": "CAD의 수학적 곡면을 실시간 3D 렌더링이 가능한 폴리곤 메시로 변환합니다."
+    },
+    {
+      "name": "Decimate",
+      "desc": "시각적 품질을 유지하면서 모델의 폴리곤(Polygon) 수를 줄여 용량을 최적화합니다."
+    },
+    {
+      "name": "Repair",
+      "desc": "CAD 변환 과정에서 발생한 면의 구멍이나 뒤집힌 법선(Normal)을 자동으로 수정합니다."
+    },
+    {
+      "name": "Metadata",
+      "desc": "CAD 파일에 포함된 부품 정보, 속성 등의 메타데이터를 유지하거나 정리합니다."
+    },
+    {
+      "name": "Python Scripting",
+      "desc": "내장된 Python 콘솔을 통해 반복 작업을 Script로 자동화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 CAD 데이터를 실시간 엔진용으로 최적화",
+      "steps": [
+        "자동차 전체 CAD 어셈블리 파일을 Pixyz Studio에 불러옵니다.",
+        "Tessellation 설정을 조정하여 외관은 고품질로, 내부 보이지 않는 부품은 저품질로 변환합니다.",
+        "불필요한 내부 히든 파츠를 제거(Hidden parts removal)합니다.",
+        "최적화된 결과물을 FBX로 내보내어 Unreal Engine에 임포트합니다."
+      ]
+    },
+    {
+      "title": "건축 CAD 모델의 폴리곤 수 줄이기",
+      "steps": [
+        "대형 빌딩 CAD 데이터를 불러와 Scene Tree에서 레이어별로 확인합니다.",
+        "Decimate 기능을 적용하여 평면적인 벽면의 폴리곤 구조를 단순화합니다.",
+        "Export 메뉴를 열고 glTF 형식으로 설정하여 웹 뷰어용으로 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "CAD 파일을 변환할 때 테셀레이션 수치를 너무 낮게 설정함 → 곡면이 깨지거나 각져 보임. 사양에 맞는 적절한 Sag/Tolerance 값을 입력하세요.",
+    "내부 부품을 정리하지 않고 그대로 내보냄 → 게임 엔진에서 불필요한 드로우 콜(Draw Call)이 발생해 프레임이 떨어짐. Hidden parts removal 기능을 먼저 실행하세요.",
+    "스케일 단위를 확인하지 않고 내보냄 → 3D 공간에서 모델이 너무 크거나 작게 나타남. Import 설정에서 단위를 미리 확인하세요."
+  ],
+  "related": [
+    "Pixyz SDK",
+    "Universal Scene Description (USD)",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "3FefRon9UpQ",
+      "title": "Pixyz Studio #20  |   How to reduce a mesh using Pixyz Studio?",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutPixyzStudio.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:01:53.585348+00:00"
+}

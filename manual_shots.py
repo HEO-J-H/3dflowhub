@@ -132,7 +132,7 @@ def _render(code: str, value, out_path: Path, timeout: int = 180, mode: str = "r
                      encoding="utf-8")
         try:
             r = subprocess.run([exe, "-b", "--factory-startup", "--python-exit-code", "4", "--python", str(f)],
-                               capture_output=True, text=True, timeout=timeout, errors="replace")
+                               capture_output=True, text=True, timeout=timeout, encoding="utf-8", errors="replace")
         except subprocess.TimeoutExpired:
             return False, "시간 초과"
     return r.returncode == 0 and out_path.exists(), (r.stdout + r.stderr)[-600:]

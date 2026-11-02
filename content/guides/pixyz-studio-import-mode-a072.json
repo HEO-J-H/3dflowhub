@@ -1,0 +1,91 @@
+{
+  "id": "pixyz-studio-import-mode-a072",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "불러오기",
+  "name": "Import Mode",
+  "title": "Import Mode — 불러오기 방식 차이",
+  "summary": "Pixyz Studio에서 3D/CAD 파일을 불러올 때 사용하는 두 가지 방식(Raw import와 Guided import)을 선택하고 설정합니다. 복잡한 엔지니어링 데이터를 목적에 맞게 효율적으로 변환할 수 있습니다.",
+  "when": [
+    "Pixyz Studio를 처음 실행하여 CAD 파일을 처음 열 때",
+    "수동으로 철저하게 데이터 최적화를 하고 싶을 때 (Raw import)",
+    "자동화된 설정으로 빠르게 CAD 모델을 변환하고 싶을 때 (Guided import)"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하면 나타나는 Import Mode 창에서 원하는 모드(Raw import 또는 Guided import)의 이미지를 클릭합니다.",
+    "설정을 고정하려면 'Do not show again' 옵션을 체크하고 OK를 클릭합니다.",
+    "모드를 변경하려면 메인 툴바의 Import 아이콘 우측 화살표를 눌러 모드를 전환합니다.",
+    "세부 설정을 변경하려면 F9 키를 눌러 Preferences 창을 엽니다.",
+    "Preferences (F9) > IO > Import 또는 Studio > Import Mode 경로에서 관련 옵션을 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Raw import",
+      "desc": "추가 가공 없이 CAD 원본 데이터를 그대로 가져오며 고급 사용자가 세부 제어할 때 사용합니다."
+    },
+    {
+      "name": "Guided import",
+      "desc": "자동화된 레시피를 통해 초보자도 쉽고 빠르게 CAD 모델을 변환하고 최적화합니다."
+    },
+    {
+      "name": "Load Hidden",
+      "desc": "숨겨진 오브젝트를 함께 불러올지 여부를 결정합니다."
+    },
+    {
+      "name": "Import Animations",
+      "desc": "CAD 파일에 포함된 애니메이션 데이터를 함께 가져옵니다."
+    },
+    {
+      "name": "Do not show again",
+      "desc": "다음 실행부터 Import Mode 창을 띄우지 않고 기존 설정으로 바로 시작합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Raw import로 수동 데이터 준비하기",
+      "steps": [
+        "Import Mode 창에서 Raw import를 선택하고 OK를 누릅니다.",
+        "F9 키를 눌러 Preferences > IO > Import에서 필요한 세부 옵션을 설정합니다.",
+        "파일을 임포트한 뒤 Pixyz Studio의 다양한 도구를 사용해 수동으로 폴리곤을 정리합니다."
+      ]
+    },
+    {
+      "title": "Guided import로 빠르게 모델 변환하기",
+      "steps": [
+        "Import Mode 창에서 Guided import를 선택하고 OK를 누릅니다.",
+        "CAD 파일을 불러와 내장된 데이터 준비 레시피를 통해 자동으로 최적화된 결과를 얻습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "시작 시 Import Mode 창이 안 뜸 → Preferences (F9) > Dialogs 에서 Hide Import Mode Dialog 옵션을 해제하여 복구합니다.",
+    "잘못된 모드로 데이터가 깨짐 → 툴바의 Import 아이콘 우측 화살표를 눌러 원하는 모드로 변경 후 다시 임포트합니다."
+  ],
+  "related": [
+    "CAD import (STEP) to Omniverse",
+    "Importing robots (URDF) into Isaac Sim",
+    "Merge and XRef"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportMode.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "Import Mode",
+    "Raw",
+    "Guided"
+  ],
+  "at": "2026-11-02T15:03:44.929018+00:00"
+}

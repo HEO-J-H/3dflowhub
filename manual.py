@@ -28,7 +28,7 @@ def _official(url: str) -> bool:
 def pending(guides_: list[dict] | None = None) -> list[dict]:
     """아직 매뉴얼이 없는 가이드 — 공식 문서 근거가 있는 것 먼저, 많이 쓰는 툴 순."""
     import guides
-    have = {f.stem for f in DIR.glob("*.json")} if DIR.exists() else set()
+    have = {x["id"] for x in load_all() if not x.get("qa_redo")}  # QA 가 6점 미만이면 다시 만들기
     gstate = core.curation_state()
     gs = [g for g in (guides_ if guides_ is not None else guides.load_all())
           if g["id"] not in have and gstate.get("learn:" + g["id"]) != "hide"]

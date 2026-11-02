@@ -1,0 +1,88 @@
+{
+  "id": "pixyz-studio-importing-cad-files-dc40",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "불러오기",
+  "name": "Importing CAD files",
+  "title": "CAD 파일 불러오기",
+  "summary": "Pixyz Studio로 다양한 CAD 파일을 불러와 제품 구조, 서페이스, 메타데이터를 유지하며 시각화 및 최적화 작업을 시작합니다. 엔지니어링 데이터를 가상 제작 환경에 맞게 효율적으로 변환합니다.",
+  "when": [
+    "엔지니어링 CAD 파일(STEP, CATIA 등)을 3D 시각화 및 실시간 엔진용으로 가져올 때",
+    "대규모 조립품의 제품 구조(Hierarchy)와 메타데이터를 유지한 채 변환할 때",
+    "후속 최적화 및 데이터 준비 작업을 시작하기 전 첫 단계를 수행할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 새로운 씬(Scene)을 엽니다.",
+    "상단 메뉴에서 File → Raw import 또는 Guided import 를 선택합니다.",
+    "또는 메인 툴바(Main Toolbar)의 Raw import / Guided import 아이콘을 클릭합니다.",
+    "가져올 3D/CAD 파일을 드래그 앤 드롭(Drag and Drop)하여 인터페이스에 직접 불러옵니다.",
+    "Import 모드(Raw import 또는 Guided import)에 따라 데이터를 확인하고 뷰포트에서 모델을 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Raw import",
+      "desc": "추가 수정 없이 원본 CAD 데이터를 그대로 불러오는 모드입니다."
+    },
+    {
+      "name": "Guided import",
+      "desc": "가이드에 따라 최적화 옵션을 설정하며 모델을 불러오는 모드입니다."
+    },
+    {
+      "name": "Product Structure",
+      "desc": "원본 파일의 계층 구조와 조립 어셈블리를 유지합니다."
+    },
+    {
+      "name": "BRep / Nurbs",
+      "desc": "원본 CAD의 고정밀 곡면 및 서페이스 정보를 보존합니다."
+    },
+    {
+      "name": "Metadata",
+      "desc": "파일에 포함된 속성 정보와 메타데이터를 함께 가져옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 부품 CAD 불러오기",
+      "steps": [
+        "File → Guided import 메뉴를 선택합니다.",
+        "복잡한 어셈블리 부품 파일(STEP 등)을 선택하여 불러옵니다.",
+        "제품 구조가 유지된 상태로 뷰포트에 나타나는지 확인합니다."
+      ]
+    },
+    {
+      "title": "드래그 앤 드롭으로 신속하게 파일 열기",
+      "steps": [
+        "탐색기에서 CAD 파일을 선택합니다.",
+        "Pixyz Studio 인터페이스 안으로 파일을 드래그 앤 드롭합니다.",
+        "자동으로 Import 창이 뜨면 모드를 선택하고 로드합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지원하지 않는 파일 포맷을 직접 드래그한 경우 → Supported File Formats 문서를 참고하여 변환 가능한 포맷인지 확인합니다.",
+    "대용량 어셈블리에서 Raw import로 메모리가 부족한 경우 → Guided import를 사용하여 필요한 최적화 옵션을 적용하며 불러옵니다."
+  ],
+  "related": [
+    "Supported File Formats",
+    "Importing Alias Files",
+    "Importing VRED Files",
+    "Pixyz SDK"
+  ],
+  "videos": [
+    {
+      "id": "FdpjkbYIWLI",
+      "title": "006. Importing Cad & 3D Files Model in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ImportingFiles.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:03:18.153679+00:00"
+}

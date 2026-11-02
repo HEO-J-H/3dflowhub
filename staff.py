@@ -22,7 +22,7 @@ import core
 ROLES_PATH = core.ROOT / "memory" / "roles.json"     # 역할 이벤트: hire / pause / resume / run
 OUTBOX_PATH = core.ROOT / "memory" / "outbox.json"   # 홍보 대기함 이벤트: item / status
 SITE = "https://heo-j-h.github.io/3dflowhub/"
-DELIVERABLES = ("promo", "proposal", "note", "image", "check")
+DELIVERABLES = ("promo", "proposal", "note", "image", "check", "qa")
 DEFAULT_CHANNELS = ["네이버 카페 (3D 커뮤니티)", "X (트위터)", "인스타그램 캡션", "디스코드"]
 
 MARKETER = {
@@ -233,6 +233,8 @@ def run_role(role: dict) -> dict:
     want = role.get("deliverables") or ["proposal"]
     if want == ["check"]:
         return _run_check(role)
+    if want == ["qa"]:
+        return _run_qa(role)
     ctx = _context(role)
     prompt = (
         f"You are '{role['name']}', a staff member working for the site {site['name']} ({base}) — {site['about']}. "
@@ -334,6 +336,20 @@ def run_role(role: dict) -> dict:
     summary = str(out.get("note", ""))[:300]
     _append(ROLES_PATH, {"at": now, "kind": "run", "id": role["id"], "summary": summary, "made": made})
     return {"role": role["name"], **made, "note": summary}
+
+
+def _run_qa(role: dict) -> dict:
+    """🧪 QA: 기계 검사 전체 + AI 검수 표본 → 낮은 점수는 다시 만들기·보강 대기열, 반복 문제는 지침 제안 (qa.py)."""
+    import qa
+    r = qa.run(sample=max(1, min(qa.SAMPLE, role.get("daily_calls", 3))))
+    last = [x for x in r["reviews"][-qa.SAMPLE:]]
+    summary = (f"전체 {r['checked']}건 기계 검사: 문제 {r['mechanical_count']}건 "
+               + ", ".join(f"{p} {n}" for p, n in r["mechanical_by_problem"][:3])
+               + f" / AI 검수 평균 {r['avg_score']}점" + (f", 다시 만들기 {len(r['redo_now'])}건" if r["redo_now"] else "")
+               + ("; 최근: " + "; ".join(f"{x.get('title', '')[:24]} {x['score']}점" for x in last) if last else ""))
+    _append(ROLES_PATH, {"at": _now(), "kind": "run", "id": role["id"], "summary": summary[:300],
+                         "made": {"proposal": 0, "note": 1}})
+    return {"role": role["name"], "note": summary}
 
 
 def _run_check(role: dict) -> dict:

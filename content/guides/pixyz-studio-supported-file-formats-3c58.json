@@ -1,0 +1,93 @@
+{
+  "id": "pixyz-studio-supported-file-formats-3c58",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Supported file formats",
+  "title": "불러올 수 있는 파일 형식 (CAD·메쉬·점구름)",
+  "summary": "Pixyz Studio에서 지원하는 다양한 CAD 및 메시 파일 포맷의 Import 및 익스포트 호환성을 확인하고, 대용량 엔지니어링 데이터를 효율적으로 변환하는 가이드입니다. CATIA, SolidWorks, STEP, FBX, USD 등의 포맷을 다룹니다.",
+  "when": [
+    "복잡한 엔지니어링 CAD 데이터를 게임 엔진이나 실시간 렌더링 툴로 가져오기 전 지원 여부를 확인할 때",
+    "CATIA, SolidWorks, Creo 등 다양한 제조사 파일 포맷을 하나의 3D 파이프라인으로 통합할 때",
+    "최적화된 메시 및 USD, glTF, FBX 포맷으로 데이터를 변환하여 익스포트할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 상단 메뉴에서 File → Import를 선택합니다.",
+    "가져올 CAD 또는 메시 파일(예: STEP, CATPart, SLDPRT, FBX)을 선택합니다.",
+    "Import 옵션 창에서 Tessellation(면 분할) 및 BRep(경계 표현) 유지 여부를 설정합니다.",
+    "필요한 경우 Edit → Preferences → IO → Import에서 Prefer Alternative Importers 옵션을 조정합니다.",
+    "모델을 편집 및 최적화한 후, File → Export를 통해 원하는 포맷(예: USD, glTF, FBX)으로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Tessellated",
+      "desc": "CAD의 수학적 곡면을 폴리곤(메시) 형태로 변환하여 지원하는지 여부"
+    },
+    {
+      "name": "BRep",
+      "desc": "정밀한 수학적 경계 표현(Boundary Representation) 데이터 유지 여부"
+    },
+    {
+      "name": "PMI",
+      "desc": "제품 제조 정보(Product Manufacturing Information) 메타데이터 포함 여부"
+    },
+    {
+      "name": "Metadata",
+      "desc": "어셈블리 구조 및 속성 정보 등 메타데이터 Import 지원 여부"
+    },
+    {
+      "name": "Prefer Alternative Importers",
+      "desc": "기본 임포터 대신 대체 임포터를 사용하여 특정 포맷의 호환성 문제를 해결"
+    },
+    {
+      "name": "FbxVersion",
+      "desc": "FBX 익스포트 시 Binary 또는 ASCII 파일 형식 및 버전을 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "CATIA 및 SolidWorks CAD 파일 Import",
+      "steps": [
+        "File → Import를 클릭합니다.",
+        "CATPart 또는 SLDPRT 파일을 선택합니다.",
+        "Tessellation 설정을 조정하여 폴리곤의 밀도를 최적화합니다."
+      ]
+    },
+    {
+      "title": "USD 또는 glTF로 실시간 엔진용 에셋 익스포트",
+      "steps": [
+        "Pixyz Studio에서 최적화된 모델을 선택합니다.",
+        "File → Export를 선택합니다.",
+        "파일 형식으로 USD (USDA, USDC, USDZ) 또는 glTF를 지정하고 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "특정 CAD 포맷(예: Autodesk Alias, VRED) 로드 실패 → 해당 Software와 유효한 라이선스가 동일 PC에 설치되어 있는지 확인",
+    "BRep 데이터가 누락됨 → Import 옵션에서 BRep 지원 여부를 확인하거나 Prefer Alternative Importers 설정 변경",
+    "단위 크기가 너무 작거나 크게 깨짐 → GDS 파일 등의 스케일 배율 옵션 및 씬 단위 설정을 재확인"
+  ],
+  "related": [
+    "Universal Scene Description (USD)",
+    "NVIDIA Omniverse CAD(STEP) 불러오기",
+    "3ds Max FBX Export 설정",
+    "glTF"
+  ],
+  "videos": [
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "FdpjkbYIWLI",
+      "title": "006. Importing Cad & 3D Files Model in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/SupportedFileFormats.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:02:49.054426+00:00"
+}

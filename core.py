@@ -123,7 +123,7 @@ FEED_DEPTH = 25  # 피드마다 최근 몇 개까지 볼지 (10 → 25: 새 글�
 DOMAINS: dict[str, dict] = {
     "3D DCC": {
         "seeds": ["3ds Max", "Autodesk 3ds Max", "Blender", "블렌더", "Maya", "V-Ray", "Corona Renderer", "ZBrush",
-                  "Cinema 4D", "Substance 3D", "Houdini", "NVIDIA Omniverse", "OpenUSD"],
+                  "Cinema 4D", "Substance 3D", "Houdini", "NVIDIA Omniverse", "OpenUSD", "Pixyz", "CAD data preparation"],
         "feeds": ["https://www.cgchannel.com/feed/", "https://www.blendernation.com/feed/",
                   # NVIDIA Omniverse·OpenUSD 공식 블로그 (운영자 요청, 2026-10 피드 동작 확인)
                   "https://blogs.nvidia.com/blog/tag/omniverse/feed/",
@@ -164,7 +164,7 @@ DOMAINS: dict[str, dict] = {
 # 세부 카테고리 시드 — LLM 이 새 카테고리를 제안하면 memory.json["categories"] 에 자동 추가된다
 SEED_CATEGORIES: dict[str, list[str]] = {  # 2단계: 도구·제품 (분류 축 하나로 통일)
     "3D DCC": ["Blender", "3ds Max", "Maya", "Cinema 4D", "ZBrush", "Houdini", "Substance 3D",
-               "V-Ray·Corona", "Marvelous Designer", "NVIDIA Omniverse", "기타 DCC"],
+               "V-Ray·Corona", "Marvelous Designer", "NVIDIA Omniverse", "Pixyz Studio", "기타 DCC"],
     "Game Engine": ["Unreal Engine", "Unity", "Godot", "UEFN·Fortnite", "게임 업계", "기타 엔진"],
     "VFX": ["After Effects", "Nuke", "Houdini FX", "DaVinci Resolve", "Unreal 가상 프로덕션", "스튜디오·작품"],
     "AI 3D": ["가우시안 스플래팅", "NeRF", "3D 생성 AI", "AI 텍스처·렌더링", "로보틱스·월드모델", "기타 AI 3D"],
@@ -1594,7 +1594,7 @@ def enrich_thin_posts(max_n: int = 3) -> int:
         if n >= max_n or done_today + n >= _enrich_cap() or llm_budget_left() <= 0:
             break
         p = _load_json(f, {})
-        if p.get("enriched") or not build_site.is_thin(p):
+        if p.get("enriched") or not (build_site.is_thin(p) or p.get("qa_flag")):  # 얇은 글 + QA 가 낮게 본 글
             continue
         body, _media = fetch_article(p.get("url", "")) if p.get("url") else ("", {})
         try:

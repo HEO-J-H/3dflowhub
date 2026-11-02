@@ -1,0 +1,88 @@
+{
+  "id": "pixyz-studio-viewer-navigation-controls-6dbc",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "입문",
+  "name": "Viewer navigation controls",
+  "title": "뷰어 이동·회전·확대",
+  "summary": "Pixyz Studio 뷰포트 내비게이션은 대규모 3D CAD 데이터를 효율적으로 관람하고 카메라를 조작하는 필수 기능입니다. Standard 모드와 Catia-like 모드를 지원하여 익숙한 DCC 툴 환경으로 모델을 정밀하게 검토할 수 있습니다.",
+  "when": [
+    "대형 CAD 어셈블리 데이터를 불러와 전체 구조와 세부 부품을 확인할 때",
+    "다른 DCC 툴(Blender, Maya 등)에 익숙한 작업자가 Standard 내비게이션으로 빠르게 조작할 때",
+    "Mouse 중심의 Catia-like 방식을 선호하는 엔지니어링 환경에서 뷰를 조작할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "Preferences 창 또는 Visualization 패널의 Settings 폴더에서 원하는 내비게이션 모드(Standard 또는 Catia-like)를 선택합니다.",
+    "Standard 모드 기준 Alt + Mouse 좌클릭을 누른 채 드래그하여 카메라를 회전(Rotate)합니다.",
+    "Alt + Mouse 휠(중클릭) 드래그로 화면을 이동(Pan)하고, Alt + Mouse 우클릭 드래그로 줌(Zoom)을 조작합니다.",
+    "선택한 부품에 맞춰 카메라 뷰를 꽉 차게 조절하려면 F 키를 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Standard Navigation",
+      "desc": "Alt 키 조합을 사용하는 전통적인 DCC 툴 방식의 기본 내비게이션 모드"
+    },
+    {
+      "name": "Catia-like Navigation",
+      "desc": "Mouse 클릭 조합 위주로 구성된 캐드 엔지니어링 친화적 내비게이션 모드"
+    },
+    {
+      "name": "TrackBall",
+      "desc": "뷰포트에서 카메라 피벗(회전 중심) 위치를 시각적으로 보여주는 3D 기즈모"
+    },
+    {
+      "name": "Lock Camera Up Axis",
+      "desc": "카메라가 상단 축(Up Axis)을 기준으로 불필요하게 회전하는 것을 방지하는 파라미터"
+    },
+    {
+      "name": "Fit Camera View",
+      "desc": "선택한 파츠(또는 전체 씬)가 뷰포트 화면에 딱 맞도록 카메라를 자동 조절하는 기능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 부품으로 카메라 피벗(회전 중심) 변경하기",
+      "steps": [
+        "뷰포트에서 관찰하고 싶은 특정 파츠(Occurrence)를 Mouse로 확인합니다.",
+        "Mouse 휠(중클릭)로 해당 부품의 표면을 클릭합니다.",
+        "트랙볼(TrackBall) 기즈모가 클릭한 위치로 이동하며 해당 지점이 카메라 회전 중심이 됩니다."
+      ]
+    },
+    {
+      "title": "전체 CAD 씬을 화면에 한눈에 맞추기",
+      "steps": [
+        "뷰포트에서 아무것도 선택하지 않거나 Root 노드를 선택합니다.",
+        "키보드 F 키를 누르거나 Main Toolbar에서 Fit view 버튼을 클릭합니다.",
+        "씬 전체의 바운딩 박스에 맞춰 카메라 뷰가 자동으로 정렬됩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 회전 중심이 엉뚱한 곳에 있음 → Mouse 휠(중클릭)로 원하는 부품을 다시 클릭하여 TrackBall 피벗 위치를 재설정합니다.",
+    "내비게이션 조작 방식이 익숙하지 않음 → Preferences > Viewer > Navigation에서 본인에게 편한 Standard 모드 또는 Catia-like 모드로 변경합니다."
+  ],
+  "related": [
+    "NVIDIA Omniverse 뷰포트 이동·단축키",
+    "Visualization",
+    "Preferences",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/NavigationControls.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T15:02:39.503432+00:00"
+}
