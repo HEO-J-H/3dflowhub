@@ -6560,5 +6560,112 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T13:02:18+00:00",
+    "kind": "proposal",
+    "id": "p-1dc901d79f",
+    "title": "RAG 기반 문서 검색 API 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #45·#46 문서화 완료, 기존 검증 PR 대기 중",
+    "proposal": "backend/app/services/rag_search.py에 LangChain 기반 간단 검색 엔드포인트 구현하고, tests/test_rag_search.py 단위 테스트 추가. frontend/ui/search.html에 검색 입력 UI와 결과 표시 영역을 삽입",
+    "expected": "사용자는 도움말 검색을 통해 빠르게 문서 정보를 찾을 수 있어 UX 향상 및 페이지 체류 시간 증가",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:02:18+00:00",
+    "kind": "proposal",
+    "id": "p-0ca05c5eb5",
+    "title": "RAG 검색 UI 통합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #45·#46 문서화 완료",
+    "proposal": "frontend/web/에 검색 박스 컴포넌트 추가하고, 기존 API 호출 로직과 연결. 스타일은 기존 UI와 일관되게 적용",
+    "expected": "검색 기능 가시화로 사용자 만족도 상승",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:02:18+00:00",
+    "kind": "proposal",
+    "id": "p-e6ae9fe5ef",
+    "title": "URL·PBR 검증 PR 재검토 요청",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #40~#44 현재 승인 대기 중, 여러 차례 거절 기록",
+    "proposal": "핵심 검증 로직은 서비스 안정성에 필수이므로, 검증 PR을 재검토하고 테스트 통과 여부 확인 후 빠른 병합 추진",
+    "expected": "입력 오류 방지로 서비스 안정성 강화",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:03:32.437304+00:00",
+    "kind": "decision",
+    "id": "p-1dc901d79f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:03:32.446334+00:00",
+    "kind": "decision",
+    "id": "p-0ca05c5eb5",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:03:32.454550+00:00",
+    "kind": "decision",
+    "id": "p-e6ae9fe5ef",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:03:59.183776+00:00",
+    "kind": "triage",
+    "id": "p-1dc901d79f",
+    "verdict": "agent",
+    "reason": "백엔드 서비스 구현, 단위 테스트 추가 및 프론트엔드 UI 삽입은 코드를 수정하여 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-02T13:04:18.703167+00:00",
+    "kind": "triage",
+    "id": "p-0ca05c5eb5",
+    "verdict": "done_already",
+    "reason": "제시된 내용과 PR #45·#46 문서를 통해 이미 RAG 검색 UI 통합 작업이 완료되어 반영된 상태입니다."
+  },
+  {
+    "at": "2026-11-02T13:04:18.711052+00:00",
+    "kind": "decision",
+    "id": "p-0ca05c5eb5",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 제시된 내용과 PR #45·#46 문서를 통해 이미 RAG 검색 UI 통합 작업이 완료되어 반영된 상태입니다."
+  },
+  {
+    "at": "2026-11-02T13:04:41.420485+00:00",
+    "kind": "triage",
+    "id": "p-e6ae9fe5ef",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋에서 PBR 및 URL 검증 PR(#43, #44 등)에 대한 검토와 코드 반영이 완료되었습니다."
+  },
+  {
+    "at": "2026-11-02T13:04:41.428285+00:00",
+    "kind": "decision",
+    "id": "p-e6ae9fe5ef",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에서 PBR 및 URL 검증 PR(#43, #44 등)에 대한 검토와 코드 반영이 완료되었습니다."
   }
 ]
