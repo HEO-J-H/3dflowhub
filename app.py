@@ -498,7 +498,8 @@ def render_cpc_optimization_status() -> None:
         cpc_metrics = evolve.summarize_cpc_optimization_metrics()
         error_trends = evolve.summarize_error_trends()
         dist_report = evolve.analyze_3d_content_distribution()
-    except Exception:
+    except Exception as e:
+        log.warning("CPC 최적화 상태 렌더링 중 오류 발생: %s", e)
         cpc_metrics = {"total_practical_posts": 0, "cpc_score_avg": 0.0, "domains_breakdown": {}}
         error_trends = {}
         dist_report = {"counts": {}}
@@ -516,6 +517,16 @@ def render_cpc_optimization_status() -> None:
                 st.caption(f"· {dom}: 실무 고CPC {cnt}건")
         else:
             st.caption("· 도메인별 집계 데이터가 아직 없습니다.")
+
+        st.markdown("**🚨 오류 태그 현황 (오프토픽·품질 미달)**")
+        if error_trends:
+            total_errors = sum(sum(err_dict.values()) for err_dict in error_trends.values())
+            st.caption(f"· 누적 차단 및 오류 감지: 총 {total_errors:,}건")
+            for dom, err_dict in error_trends.items():
+                err_summary = ", ".join(f"{k} {v}건" for k, v in err_dict.items())
+                st.caption(f"  - [{dom}] {err_summary}")
+        else:
+            st.caption("· 현재 기록된 오류 태그가 없습니다.")
 
 
 def render_practical_content_metrics() -> None:
