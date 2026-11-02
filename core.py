@@ -1808,6 +1808,17 @@ def ensure_minimum_content_depth(data: dict) -> bool:
     return True
 
 
+SELF_OFFTOPIC = re.compile(r"(3D|소프트웨어|실무|작업|DCC)[^.]{0,30}(무관|관련(이|성이)? 없|연관(이|성이)? 없|직접적인 (연관|관련)이 없)"
+                           r"|혼동될 수 있지만|이름이 (같|동일)")
+
+
+def self_declared_offtopic(data: dict) -> bool:
+    """요약·해설에 '3D 와 무관', '이름만 같음' 같은 말이 있으면 주제 밖 (점수(relevance)를 높게 줘도)."""
+    t = " ".join([str(data.get("summary", "")), str(data.get("insight", ""))]
+                 + [str(x.get("body", "")) for x in data.get("sections") or [] if isinstance(x, dict)])
+    return bool(SELF_OFFTOPIC.search(t))
+
+
 def summarize(item: dict) -> dict | None:
     body, media = fetch_article(item["url"])
     if len(body) < 200:  # 본문 크롤링 실패 시 RSS 요약으로 대체
@@ -1871,6 +1882,10 @@ def summarize(item: dict) -> dict | None:
         RUN_ERRORS.append(f"no sections: {str(data)[:200]}")
         return None
     
+    if self_declared_offtopic(data):  # 요약하면서 AI 가 '3D 와 무관'이라고 써 놓고도 저장되던 글 (Maya=사람 이름 등)
+        log.info("요약이 스스로 주제 밖이라고 함 — 제외: %s", item["title"][:60])
+        RUN_ERRORS.append("off-topic")
+        return None
     validate_post_length(data)
     ensure_minimum_content_depth(data)
     validate_practical_3d_keywords(data)

@@ -13,3 +13,10 @@ def test_paper_goes_to_rewrite_not_generic_enrich(monkeypatch):
 def test_rewrite_rejects_without_paper_text(monkeypatch):
     monkeypatch.setattr(enrich, "paper_source", lambda u: {"text": "short"})
     assert enrich.rewrite_paper({"id": "x", "url": "https://arxiv.org/abs/1"}) is None
+
+
+def test_self_declared_offtopic():
+    import core
+    assert core.self_declared_offtopic({"insight": "제목에 Maya가 있어 혼동될 수 있지만 3D 소프트웨어와는 무관합니다."})
+    assert core.self_declared_offtopic({"sections": [{"body": "3D DCC 분야와 직접적인 연관이 없는 스포츠 소식"}]})
+    assert not core.self_declared_offtopic({"summary": "Maya 2027 출시 — USD 워크플로 개선"})
