@@ -5880,5 +5880,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T10:39:33+00:00",
+    "kind": "proposal",
+    "id": "p-cd9ce0c784",
+    "title": "대기 중인 백엔드 코어 PR 검토 및 승인 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #37, #38, #40~#44 등 백엔드 서비스(url_ingest, mesh_from_image, pbr_generator) 관련 PR들이 대기 중입니다.",
+    "proposal": "GitHub에서 PR #37부터 #44까지의 변경 사항과 테스트 결과를 최종 확인하고 순차적으로 승인 또는 보완 조치합니다.",
+    "expected": "백엔드 코어 파이프라인의 유효성 검증 로직이 안전하게 반영됩니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T10:39:33+00:00",
+    "kind": "proposal",
+    "id": "p-d132f199c6",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 버전(web/)에서 CPU 기반 처리 시 예외 상황에 대한 사용자 피드백 보완이 필요합니다.",
+    "proposal": "web/ 디렉토리 내의 JavaScript 로직 중 이미지 처리 실패 시나리오와 안내 메시지 출력을 점검하고 테스트합니다.",
+    "expected": "웹 사용자 경험이 더욱 안정적으로 개선됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T10:39:57.615318+00:00",
+    "kind": "decision",
+    "id": "p-cd9ce0c784",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T10:39:57.620215+00:00",
+    "kind": "decision",
+    "id": "p-d132f199c6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
