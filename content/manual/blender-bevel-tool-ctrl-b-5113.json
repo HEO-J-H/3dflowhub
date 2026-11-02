@@ -1,0 +1,120 @@
+{
+  "id": "blender-bevel-tool-ctrl-b-5113",
+  "guide_id": "blender-bevel-tool-ctrl-b-5113",
+  "tool": "Blender",
+  "name": "Bevel tool (Ctrl+B)",
+  "title": "Bevel 도구 — 엣지·버텍스 챔퍼",
+  "overview": "Blender의 Bevel 도구는 모서리와 꼭짓점에 새로운 면을 생성하여 현실 세계의 물리적 특성인 부드러운 빛 반사를 구현합니다. 내부적으로 선택된 엣지나 Vertex를 기준으로 지오메트리를 정밀하게 분할하고 오프셋을 계산하여 형태의 각진 느낌을 완화합니다.",
+  "access": "Edit Mode(Tab) 진입 후 뷰포트 상단 메뉴 Vertex ‣ Bevel Vertices 또는 Edge ‣ Bevel Edges, 또는 Hotkey Ctrl+B (Edges), Shift+Ctrl+B (Vertices)",
+  "options": [
+    {
+      "name": "Width",
+      "value": "실수형 (기본값 설정에 따라 다름)",
+      "effect": "베벨이 적용되는 전체 크기나 반경을 조절합니다.",
+      "tip": "Mouse 드래그 중 Shift 키를 누르면 세밀하게 조절할 수 있습니다."
+    },
+    {
+      "name": "Segments",
+      "value": "정수형 (기본값 1)",
+      "effect": "새로 생성되는 지오메트리의 밀도와 면 개수를 늘려 둥근 형태를 부드럽게 만듭니다.",
+      "tip": "Mouse 휠을 굴려 즉시 조절할 수 있으며, 불필요하게 높이면 폴리곤이 무거워집니다."
+    },
+    {
+      "name": "Profile",
+      "value": "0.0 ~ 1.0 (기본값 0.5)",
+      "effect": "베벨 단면의 형태와 곡률을 제어하여 볼록하거나 오목한 모양으로 바꿉니다.",
+      "tip": "값이 0에 가까우면 날카로운 홈이 생기고, 1에 가까우면 부드러운 형태가 됩니다."
+    },
+    {
+      "name": "Harden Normals",
+      "value": "체크박스 (Boolean)",
+      "effect": "새로 생성된 면에 커스텀 스플릿 노멀을 할당해 주변 모델링을 건드리지 않고 매끄럽게 렌더링되도록 합니다.",
+      "tip": "하드 서페이스 모델링에서 각진 외곽선을 유지하면서 모서리만 부드럽게 보이고 싶을 때 유용합니다."
+    },
+    {
+      "name": "Clamp Overlap",
+      "value": "체크박스 (Boolean)",
+      "effect": "베벨 폭이 인접한 면의 한계를 넘어 서로 겹치거나 뒤틀리는 현상을 방지합니다.",
+      "tip": "복잡한 메시에서 베벨이 찌그러질 때 반드시 켜두어야 하는 안전장치입니다."
+    },
+    {
+      "name": "Loop Slide",
+      "value": "체크박스 (Boolean)",
+      "effect": "새로운 내부 에지의 흐름 방향을 기존 에지와 맞추거나 수직으로 정렬합니다.",
+      "tip": "베벨 후 엣지 루프의 흐름이 깨져 서브디비전 결과가 이상해질 때 끄고 켜며 확인합니다."
+    },
+    {
+      "name": "Mark Seams",
+      "value": "체크박스 (Boolean)",
+      "effect": "베벨이 적용되는 엣지 중 UV 심(Seam)이 포함된 경우, 새로 생성된 중앙 에지에도 자동으로 Seam을 지정합니다.",
+      "tip": "하드 서페이스 텍스처링 작업을 할 때 UV 전개 편의성을 높여줍니다."
+    },
+    {
+      "name": "Sharp",
+      "value": "체크박스 (Boolean)",
+      "effect": "Mark Seams와 유사하게, 원본 엣지가 Sharp로 지정되어 있다면 새로운 에지에도 Sharp 속성을 복사합니다.",
+      "tip": "오토 스무스(Auto Smooth) 환경에서 날카로운 외곽선을 유지할 때 유용합니다."
+    },
+    {
+      "name": "Material Index",
+      "value": "정수형 (-1 이상)",
+      "effect": "새로 생성된 면에 지정할 머티리얼 슬롯 인덱스를 설정합니다.",
+      "tip": "-1로 설정하면 인접한 면의 머티리얼을 그대로 상속받습니다."
+    },
+    {
+      "name": "Profile Type",
+      "value": "Superellipse / Custom",
+      "effect": "단면의 생성 방식을 수학적 곡선(Superellipse) 또는 커스텀 곡선 위젯으로 결정합니다.",
+      "tip": "Custom을 선택하면 Adjust Last Operation 패널에서 직접 단면 모양을 정밀하게 편집할 수 있습니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Edges Mode (Ctrl+B)",
+      "desc": "선택한 엣지(모서리)를 따라 베벨을 생성하여 각진 모서리를 둥글거나 챔퍼 형태로 깎아냅니다."
+    },
+    {
+      "name": "Vertices Mode (Shift+Ctrl+B)",
+      "desc": "선택한 꼭짓점 중심 주변으로 베벨을 적용하여 다이아몬드 형태나 모서리 끊기 형태의 Vertex 챔퍼를 만듭니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "하드 서페이스 금속 패널 모서리 정리",
+      "steps": [
+        "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "Alt + 클릭으로 부드럽게 처리할 외곽 루프 엣지들을 선택합니다.",
+        "Ctrl + B를 눌러 베벨 도구를 활성화하고 Mouse를 움직여 적당한 너비를 지정합니다.",
+        "Mouse 휠을 굴려 Segments를 2 또는 3으로 높여 부드러운 곡면을 만듭니다.",
+        "작업 후 Adjust Last Operation 패널에서 Harden Normals 옵션을 켜서 빛 반사를 매끄럽게 정리합니다."
+      ]
+    },
+    {
+      "title": "서브디비전 표면 루프 서포트 엣지 생성",
+      "steps": [
+        "Subdivision Surface 모디파이어를 사용할 하드 서페이스 메스를 준비합니다.",
+        "Edit Mode에서 각지게 유지해야 할 주요 엣지들을 선택합니다.",
+        "Ctrl + B를 눌러 베벨을 실행하고, Segments를 1로 둔 채 아주 좁은 너비로 설정합니다.",
+        "확정 후 에지가 양쪽으로 나뉘며 서브디비전 적용 시 형태가 무너지지 않는 서포트 루프가 완성됩니다."
+      ]
+    }
+  ],
+  "performance": [
+    "밀도가 높은 고폴리곤 메스 전체에 베벨을 적용하면 실시간 연산이 느려질 수 있으므로, 필요한 엣지만 선택(Edge Selection) 후 적용합니다.",
+    "Segments 값을 무분별하게 높이면 폴리곤 수가 급증하므로, 렌더링 시 Normal Map이나 Subdiv 모디파이어로 대체할 수 있는지 검토합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "베벨을 적용했는데 면이 서로 겹치거나 이상하게 찌그러집니다.",
+      "fix": "오브젝트 모드에서 Ctrl + A를 눌러 Scale이 1.0으로 적용(Apply)되어 있는지 확인하고, 도구 옵션에서 Clamp Overlap을 켭니다."
+    },
+    {
+      "symptom": "베벨 폭이 모서리마다 제각각 다르게 적용됩니다.",
+      "fix": "오브젝트 모드에서 스케일 값이 균등하지(Non-uniform scale) 않은 상태이므로 Scale을 적용(Apply)한 후 다시 시도합니다."
+    }
+  ],
+  "versions": "Blender 3.x 및 4.x 최신 버전 기준 표준 인터페이스와 Hotkey를 따릅니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/bevel.html",
+  "grounded": true,
+  "at": "2026-11-02T16:31:14+00:00"
+}
