@@ -3,6 +3,9 @@
 ## 프로젝트 구조
 - core.py 수집·요약·저장·LLM·동기화 / evolve.py 자기 개선·배분 / manager.py AI 관리자 / staff.py AI 직원
 - guides.py 기초 가이드 / build_site.py 정적 사이트 / app.py Streamlit 현황판 / alerts.py 알림 / terms.py 용어집
+- refs.py 오류 해결·바뀐 점 / manual.py 심화 매뉴얼 / manual_shots.py Blender 값 비교 렌더 / compare.py 툴 비교 / assets.py 무료 에셋
+- rag.py 사이트 검색기(관련 글·글쓰기 근거) / visuals.py 그림·영상 보강 / scorecard.py 품질 성적표·속도 자동 조절 / qa.py QA 검수
+- seo_audit.py SEO 구조 점검 / sources.py 출처 발굴 / staff.py AI 직원 / knowledge/*.md 교본(모든 AI 가 읽음)
 - 데이터: content/*(글·가이드·정리 JSON), memory/*(상태·이벤트 로그 JSON), config.json(설정)
 - 실행: GitHub Actions(1시간 수집, pages 배포), 로컬·Streamlit Cloud 현황판
 
@@ -23,3 +26,16 @@
 - 보안: 위험 함수(eval/exec/shell=True), 하드코딩 비밀값, 보호 파일 수정.
 - 사용자 영향: 현황판·사이트 문구는 한국어, 깨진 링크 없음(check_links.py).
 - 작은 변경 하나에 하나의 목적. 관련 없는 리팩터링 금지.
+
+## 새 콘텐츠 종류를 만들 때 (빠뜨리면 '보이지 않는 콘텐츠'가 됨)
+1. 데이터: content/<종류>/*.json, 하루 상한은 scorecard.KNOBS 로 (스스로 조절되게).
+2. 화면: build_site 에 빌드 함수 + **SITE_MENU 항목·section_count** (메뉴 자동 표시·숨김), 그림·영상 자리부터 설계.
+3. 연결: rag.site_docs 에 추가(관련 글·글쓰기 근거), 사이트맵은 자동.
+4. 품질: qa.items 에 추가(검수 대상), scorecard TARGETS 에 범위 지표.
+5. 실행: evolve 에 _due 주기, 생성 실패해도 전체가 멈추지 않게.
+6. 운영자가 요청한 도구·주제는 guide_catalog.FIRST 처럼 우선 대기열로 — 긴 대기열 뒤에 넣으면 몇 주 동안 안 보인다.
+
+## 자주 난 사고
+- Windows 에서 subprocess 출력은 encoding="utf-8" 명시 (cp949 로 깨짐).
+- 같은 값 반복 렌더·같은 제목은 '다르다'고 착각하기 쉬움 → 눈으로 보이는 차이(화소 비율)·정규화한 제목으로 비교.
+- 정규식은 대소문자·단어 경계 주의 (Nanite 의 'NaN', Houdini 'Null' 노드 오탐).

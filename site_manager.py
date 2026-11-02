@@ -132,7 +132,7 @@ def review(site: str, force: bool = False) -> dict | None:
         ' "watch": one sentence — what you will check next time'
     )
     out = core._parse_json(core.llm(prompt, system=f"You are the dedicated AI manager of {s['name']}."
-                                    + core.playbook("common", "manager", f"site_{site}"), max_tokens=1600, json_mode=True))
+                                    + core.playbook("common", "manager", f"site_{site}", limit=12000), max_tokens=1600, json_mode=True))
     if not isinstance(out, dict):
         return None
     now = _now()

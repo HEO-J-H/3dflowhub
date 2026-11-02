@@ -1448,7 +1448,7 @@ def summarize(item: dict) -> dict | None:
         'news — = 0)'
     )
     notes = load_strategy().get("prompt_notes", [])
-    system = SUMMARY_SYSTEM + playbook("editor", limit=2500) + (
+    system = SUMMARY_SYSTEM + playbook("common", "editor", limit=6000) + (  # 공통(사장님 방향) + 에디터
         "\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
     try:
         data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))
@@ -1842,7 +1842,7 @@ def summarize(item: dict) -> dict | None:
         'news — = 0)'
     )
     notes = load_strategy().get("prompt_notes", [])
-    system = SUMMARY_SYSTEM + playbook("editor", limit=2500) + (
+    system = SUMMARY_SYSTEM + playbook("common", "editor", limit=6000) + (  # 공통(사장님 방향) + 에디터
         "\nEditorial guidelines learned from past runs:\n- " + "\n- ".join(notes) if notes else "")
     try:
         data = _parse_json(llm(prompt, system=system, max_tokens=1400, json_mode=True))

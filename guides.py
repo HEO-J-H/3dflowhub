@@ -315,7 +315,7 @@ def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None)
     ))
     try:
         out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor writing concise Korean docs."
-                                        + core.playbook("common", "guide_writer", limit=4000),
+                                        + core.playbook("common", "guide_writer", limit=6000),
                                         max_tokens=1600, json_mode=True))
     except core.LLMBudgetExceeded:
         raise

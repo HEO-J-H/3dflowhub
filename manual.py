@@ -66,7 +66,7 @@ def make(g: dict) -> dict | None:
               ' "versions": Korean note on version differences only if documented, else ""')
     try:
         out = core._parse_json(core.llm(prompt, system="You are a senior 3D technical director writing precise Korean manuals."
-                                        + core.playbook("common", "guide_writer", limit=3000), max_tokens=3200, json_mode=True))
+                                        + core.playbook("common", "guide_writer", limit=6000), max_tokens=3200, json_mode=True))
     except core.LLMBudgetExceeded:
         raise
     except Exception as e:  # noqa: BLE001

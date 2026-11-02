@@ -196,7 +196,7 @@ def page_text(url: str, limit: int = 14000, follow: int = 8) -> str:
 def _ask(prompt: str, tokens: int = 1800) -> dict:
     try:
         return core._parse_json(core.llm(prompt, system="You are a senior 3D technical director writing precise Korean help pages."
-                                         + core.playbook("common", limit=3000), max_tokens=tokens, json_mode=True))
+                                         + core.playbook("common", "guide_writer", limit=6000), max_tokens=tokens, json_mode=True))
     except core.LLMBudgetExceeded:
         raise
     except Exception as e:

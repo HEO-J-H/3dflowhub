@@ -100,7 +100,7 @@ def ai_review(it: dict) -> dict | None:
               "\"defects\": [up to 4 short Korean strings, concrete], \"fix_hint\": one Korean sentence on how the writer "
               "should avoid this next time}.")
     try:
-        out = core._parse_json(core.llm(prompt, system="You are a meticulous technical QA reviewer." + core.playbook("common", limit=2500),
+        out = core._parse_json(core.llm(prompt, system="You are a meticulous technical QA reviewer." + core.playbook("common", "qa", limit=6000),
                                         max_tokens=700, json_mode=True))
         return {"score": int(out.get("score", 10)), "defects": [str(d)[:120] for d in out.get("defects") or []][:4],
                 "fix_hint": str(out.get("fix_hint") or "")[:200]}

@@ -73,7 +73,7 @@ def make(slug: str, title: str, task: str, extra: list[str]) -> dict | None:
               ' "pitfalls": 2-4 Korean common mistakes → fix')
     try:
         data = core._parse_json(core.llm(prompt, system="You are a senior 3D technical director who uses every major DCC "
-                                         "daily, writing precise Korean comparison pages." + core.playbook("common", limit=2000),
+                                         "daily, writing precise Korean comparison pages." + core.playbook("common", "guide_writer", limit=6000),
                                          max_tokens=2600, json_mode=True))
     except core.LLMBudgetExceeded:
         raise
