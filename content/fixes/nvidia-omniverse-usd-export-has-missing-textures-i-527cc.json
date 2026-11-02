@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-omniverse-usd-export-has-missing-textures-i-527cc",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "USD export has missing textures in Omniverse",
+  "title": "USD 로 보냈더니 텍스처가 없을 때",
+  "summary": "USD export has missing textures in Omniverse는 내보낸 USD 파일을 열었을 때 텍스처가 올바르게 로드되지 않아 빈 재질로 표시되는 현상입니다.",
+  "causes": [
+    "텍스처 파일이 USD와 동일 폴더에 없거나 절대 경로로 지정돼 Nucleus에서 접근 불가",
+    "텍스처 형식이 USD가 지원하지 않는 .psd·.tga 등일 경우",
+    "Export Settings에서 “Export Materials” 옵션이 꺼져 있음",
+    "Nucleus 서버에 쓰기 권한이 없어 텍스처가 업로드되지 않음"
+  ],
+  "steps": [
+    "Omniverse Create(또는 Connect)에서 해당 USD 씬을 엽니다",
+    "텍스처 파일을 USD 파일과 동일 프로젝트 폴더에 두고, 파일 경로를 상대 경로로 설정합니다",
+    "File > Export > USD Settings 로 이동해 “Export Materials”와 필요 시 “Embed Textures”를 체크합니다",
+    "텍스처가 PNG, JPG, TIFF, EXR, BMP 등 USD가 지원하는 포맷인지 확인합니다",
+    "다시 File > Export > USD 로 내보냅니다",
+    "내보낸 USD와 텍스처 폴더를 Nucleus에 업로드하고, 해당 폴더에 쓰기 권한이 있는지 확인합니다",
+    "Omniverse Create에서 USD를 새로 고쳐 텍스처가 정상 표시되는지 확인합니다"
+  ],
+  "check": [
+    "Omniverse Create(또는 USD Viewer)에서 USD를 열었을 때 모든 재질에 텍스처가 보이며 콘솔에 “missing texture” 경고가 없습니다",
+    "파일 탐색기에서 USD와 같은 경로에 텍스처 파일이 존재함을 확인합니다"
+  ],
+  "prevent": [
+    "텍스처와 USD를 같은 프로젝트 폴더에 두고 상대 경로를 사용합니다",
+    "PNG·JPG·TIFF·EXR·BMP 등 USD가 공식 지원하는 포맷만 사용합니다",
+    "Export 전에 항상 “Export Materials”(및 필요 시 “Embed Textures”) 옵션을 활성화합니다"
+  ],
+  "keywords": [
+    "Omniverse USD 텍스처 누락",
+    "USD export missing textures",
+    "Omniverse 텍스처 경로",
+    "USD Export 텍스처 문제",
+    "Omniverse Create 텍스처 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T03:30:06+00:00"
+}

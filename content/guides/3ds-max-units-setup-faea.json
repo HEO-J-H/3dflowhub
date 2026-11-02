@@ -1,0 +1,106 @@
+{
+  "id": "3ds-max-units-setup-faea",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Units Setup",
+  "title": "Units Setup — 단위 설정",
+  "summary": "Units Setup은 3ds Max 전체 씬의 길이 단위를 정의해 모델링·수입·수출 시 일관성을 유지합니다.",
+  "when": [
+    "실제 크기로 모델링하거나 외부 파일을 가져올 때",
+    "렌더링·시뮬레이션에서 물리 단위가 필요할 때",
+    "프로젝트마다 단위 기준이 다를 때"
+  ],
+  "steps": [
+    "3ds Max 실행 후 상단 메뉴에서 Customize → Units Setup... 선택",
+    "System Unit Scale 드롭다운에서 프로젝트에 맞는 기본 단위(예: meters) 선택",
+    "Display Unit Scale 드롭다운에서 화면에 표시될 단위(예: centimeters) 선택",
+    "OK 버튼을 눌러 설정 적용"
+  ],
+  "params": [
+    {
+      "name": "System Unit Scale",
+      "desc": "씬 전체의 기본 길이 단위, 내부 계산에 사용"
+    },
+    {
+      "name": "Display Unit Scale",
+      "desc": "뷰포트와 UI에 표시되는 단위"
+    },
+    {
+      "name": "Display Precision",
+      "desc": "소수점 이하 표시 자리수"
+    },
+    {
+      "name": "Show Grid",
+      "desc": "Grid 표시 여부, 단위와 연동"
+    },
+    {
+      "name": "Snap to Grid",
+      "desc": "Grid에 정밀히 맞출지 여부"
+    },
+    {
+      "name": "Unit System (Metric/Imperial)",
+      "desc": "미터법·야드법 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 모델링 (미터 단위)",
+      "steps": [
+        "Customize → Units Setup... 선택",
+        "System Unit Scale을 meters 로 설정",
+        "Display Unit Scale을 meters 로 선택",
+        "OK 클릭"
+      ]
+    },
+    {
+      "title": "FBX 파일 가져오기 (센티미터)",
+      "steps": [
+        "파일 → Import → FBX 선택",
+        "Import Settings에서 Units Scale을 centimeters 로 확인",
+        "Customize → Units Setup...에서 Display Unit Scale을 centimeters 로 맞춤",
+        "모델 크기 확인"
+      ]
+    },
+    {
+      "title": "물리 시뮬레이션 (미터)",
+      "steps": [
+        "Customize → Units Setup...에서 System Unit을 meters 로 설정",
+        "Display Unit을 meters 로 맞춤",
+        "시뮬레이션 플러그인에서 단위 자동 연동 확인",
+        "시뮬레이션 실행"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Display Unit만 변경 → 실제 모델 크기가 변하지 않아 수입 파일이 크게 보임 → System Unit Scale도 함께 맞춘다",
+    "Units Setup을 변경한 후 기존 객체를 스케일링하지 않음 → 단위 불일치 발생 → 기존 객체를 Reset XForm 후 올바른 스케일 적용"
+  ],
+  "related": [
+    "System Unit Setup",
+    "Grid and Snap Settings",
+    "Import Settings",
+    "Scene Scale"
+  ],
+  "videos": [
+    {
+      "id": "gD9-vnohDbc",
+      "title": "How to setup Unit Scale correctly in 3DS Max with system and unit setup",
+      "author": "ArchViz Explained"
+    },
+    {
+      "id": "lCfFGOH4vBA",
+      "title": "Unit Setup in 3ds max #3dsmax",
+      "author": "Sidhnath Creation - Online Learning"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Units%20Setup",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Customize",
+    "Units Setup"
+  ],
+  "at": "2026-11-02T03:28:11.760380+00:00"
+}

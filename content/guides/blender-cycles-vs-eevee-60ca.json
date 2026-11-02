@@ -1,0 +1,100 @@
+{
+  "id": "blender-cycles-vs-eevee-60ca",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Cycles vs EEVEE",
+  "title": "Cycles와 EEVEE 차이",
+  "summary": "Cycles와 EEVEE는 Blender의 두 렌더 엔진으로, 각각 물리 기반 경로 추적과 실시간 레이 트레이싱을 제공합니다.",
+  "when": [
+    "고품질 포토리얼리즘이 필요할 때 (Cycles)",
+    "실시간 피드백이 중요한 씬이나 게임 Prototype 제작 시 (EEVEE)",
+    "GPU 메모리·시간 제약이 있을 때 두 엔진 중 적절히 선택하고 싶을 때"
+  ],
+  "steps": [
+    "Properties → Render 탭 → Render Engine 드롭다운에서 Cycles 또는 EEVEE 선택",
+    "Cycles: Sampling → Samples 섹션에서 Render와 Viewport 값을 설정 (예: 128)",
+    "EEVEE: Sampling → Render → Samples 값을 설정 (예: 64)",
+    "필요 시 Light → Light Settings 에서 Shadow Mode 등을 엔진에 맞게 조정",
+    "Render → Render Image (F12) 로 최종 이미지 출력"
+  ],
+  "params": [
+    {
+      "name": "Render Engine",
+      "desc": "Cycles는 경로 추적, EEVEE는 실시간 레이 트레이싱을 사용"
+    },
+    {
+      "name": "Samples",
+      "desc": "값이 높을수록 노이즈 감소, 렌더 시간 증가"
+    },
+    {
+      "name": "Bounces",
+      "desc": "광선 반사/굴절 횟수, Cycles 전용"
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "EEVEE에서 그림자와 접촉면 어두움을 강화"
+    },
+    {
+      "name": "Screen Space Reflections",
+      "desc": "EEVEE에서 반사 효과를 실시간으로 제공"
+    },
+    {
+      "name": "Bloom",
+      "desc": "EEVEE에서 밝은 영역 주변에 빛 번짐 효과"
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 렌더링 (Cycles)",
+      "steps": [
+        "Cycles 선택",
+        "Samples를 256으로 설정",
+        "Light → Area Light 추가 후 강도 조정",
+        "Render → Render Image (F12)"
+      ]
+    },
+    {
+      "title": "게임 레벨 프리뷰 (EEVEE)",
+      "steps": [
+        "EEVEE 선택",
+        "Screen Space Reflections 활성화",
+        "Bloom과 Ambient Occlusion 켜기",
+        "Viewport에서 실시간 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 많이 보일 때 → Samples 값을 올리거나 Denoising 사용",
+    "반사와 그림자가 사라짐 → EEVEE에서 Shadow Mode를 'Opaque' 로, Screen Space Reflections 활성화"
+  ],
+  "related": [
+    "Light Paths",
+    "Shader Nodes",
+    "Viewport Shading",
+    "Denoising"
+  ],
+  "videos": [
+    {
+      "id": "Enggo_nqDHs",
+      "title": "Eevee Vs Eevee NEXT Vs Cycles: An In-Depth Comparison",
+      "author": "The Blenderender"
+    },
+    {
+      "id": "AuJMDdDqXVs",
+      "title": "Basics of Rendering. Cycles vs. Eevee [Blender]",
+      "author": "ThreeDee"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cycles%20vs%20EEVEE",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Render",
+    "Render Engine",
+    "Cycles",
+    "EEVEE"
+  ],
+  "at": "2026-11-02T03:28:33.850092+00:00"
+}

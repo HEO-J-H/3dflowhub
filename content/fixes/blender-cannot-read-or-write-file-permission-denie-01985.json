@@ -1,0 +1,41 @@
+{
+  "id": "blender-cannot-read-or-write-file-permission-denie-01985",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Cannot read or write file (Permission denied)",
+  "title": "Cannot read or_write file (Permission denied) 오류 해결 방법",
+  "summary": "Blender가 파일을 읽거나 쓸 때 권한이 없어 작업을 수행할 수 없습니다.",
+  "causes": [
+    "파일에 현재 사용자에게 읽기·쓰기 권한이 없을 때",
+    "다른 프로그램이 파일을 잠궈 있을 때",
+    "Blender가 관리자 권한 없이 시스템 폴더(예: Program Files)에 접근하려 할 때",
+    "네트워크 드라이브·외장 디스크가 읽기 전용 모드인 경우"
+  ],
+  "steps": [
+    "파일이 저장된 폴더를 열고 파일·폴더 속성에서 Read‑only 체크를 해제하고 현재 사용자에게 Read & Write 권한을 부여한다",
+    "다른 프로그램이 파일을 사용 중이면 해당 프로그램을 종료하거나 파일을 복사해 작업한다",
+    "Blender 아이콘을 우클릭 → Run as administrator 로 실행한다",
+    "파일을 Documents 등 쓰기 가능한 위치로 이동하고 다시 열거나 저장한다",
+    "네트워크 드라이브·외장 디스크의 경우 쓰기 권한을 확인하고 필요하면 마운트 옵션을 변경한다",
+    "파일 경로에 특수 문자·너무 긴 경로가 있으면 C:\\Temp 같은 간단한 경로로 바꾼다"
+  ],
+  "check": [
+    "파일을 정상적으로 열고 저장할 수 있다",
+    "Blender 콘솔에 오류 메시지가 사라진다"
+  ],
+  "prevent": [
+    "작업 폴더를 항상 쓰기 가능한 위치(예: Documents)로 설정한다",
+    "파일을 열기 전 다른 프로그램이 사용 중인지 확인한다",
+    "필요 시 Blender를 관리자 권한으로 실행한다"
+  ],
+  "keywords": [
+    "Blender 권한 오류",
+    "Cannot read or write file Permission denied",
+    "Blender 파일 저장 안됨",
+    "Blender 파일 열기 권한",
+    "Blender 파일 읽기 쓰기 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-02T03:30:20+00:00"
+}
