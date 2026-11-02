@@ -40,12 +40,16 @@ def _today() -> str:
 
 
 def _get(url: str) -> str:
-    try:
-        r = requests.get(url, headers=UA, timeout=25)
-        r.encoding = "utf-8"  # itch.io 는 헤더에 charset 이 없어 글자가 깨짐
-        return r.text if r.ok else ""
-    except requests.RequestException:
-        return ""
+    for wait in (0, 20, 60):  # itch.io 는 연달아 부르면 429 (너무 많은 요청) → 기다렸다 다시
+        time.sleep(wait)
+        try:
+            r = requests.get(url, headers=UA, timeout=25)
+        except requests.RequestException:
+            return ""
+        if r.status_code != 429:
+            r.encoding = "utf-8"  # itch.io 는 헤더에 charset 이 없어 글자가 깨짐
+            return r.text if r.ok else ""
+    return ""
 
 
 def _og(html: str) -> str:
