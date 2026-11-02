@@ -6265,5 +6265,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T12:01:17+00:00",
+    "kind": "proposal",
+    "id": "p-ee0de7a282",
+    "title": "URL 및 PBR 입력 검증 PR(#40~#44) 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py 및 pbr_generator.py 검증 로직을 담은 PR #40부터 #44까지가 승인 대기 상태로 누적되어 있습니다.",
+    "proposal": "backend/tests/test_core.py의 테스트 결과를 확인하고 PR #40~#44의 코어 변경 사항을 순차적으로 검토 및 승인합니다.",
+    "expected": "입력 검증 및 예외 처리 로직이 반영되어 백엔드 안정성이 향상됩니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:01:17+00:00",
+    "kind": "proposal",
+    "id": "p-a29d22bebc",
+    "title": "웹 버전(web/) 에러 처리 및 Fallback 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 버전(web/)에서 이미지 로드 실패나 WebGL 지원 불가 시 예외 처리를 보완할 필요가 있습니다.",
+    "proposal": "web/index.html 및 관련 Script에서 사용자 에러 피드백 및 Fallback 안내 메시지 로직을 점검하고 보완합니다.",
+    "expected": "브라우저 환경에서의 사용자 경험과 안정성이 높아집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:03:03.254538+00:00",
+    "kind": "decision",
+    "id": "p-ee0de7a282",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T12:03:03.262322+00:00",
+    "kind": "decision",
+    "id": "p-a29d22bebc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 성능 및 에러 처리 점검",
+    "auto": true
   }
 ]
