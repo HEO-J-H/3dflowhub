@@ -1,0 +1,91 @@
+{
+  "id": "3ds-max-safe-frame-and-output-size-222e",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Safe Frame and output size",
+  "title": "Safe Frame — 출력 화면 비율",
+  "summary": "Safe Frame은 렌더링될 실제 화면 영역과 컷아웃(잘려 나가는 영역)을 뷰포트에 미리 표시해 주는 기능입니다. 최종 결과물의 구도와 비율을 정확하게 잡을 때 사용합니다.",
+  "when": [
+    "인스타그램, 유튜브 등 특정 화면 비율(1:1, 16:9 등)에 맞춰 렌더링 구도를 잡을 때",
+    "애니메이션 작업 시 캐릭터나 오브젝트가 화면 밖으로 잘려 나가지 않게 확인할 때",
+    "인쇄물이나 특정 Resolution에 맞춰 최종 렌더링 프레임을 고정해야 할 때"
+  ],
+  "steps": [
+    "메인 툴바의 Render Setup 아이콘을 클릭하거나 F10 키를 눌러 렌더 세팅 창을 엽니다.",
+    "Render Setup 창의 Common 탭에서 Output Size 항목을 확인하고 원하는 Width와 Height를 설정합니다.",
+    "퍼스펙티브 뷰포트(Perspective Viewport) 좌측 상단의 뷰포트 이름(예: [ Perspective ])을 클릭합니다.",
+    "메뉴에서 Show Safe Frames를 선택하거나 Hotkey Shift+F를 누릅니다.",
+    "뷰포트에 나타난 주황색 테두리(Live Area) 안쪽이 실제 렌더링되는 영역임을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Show Safe Frames",
+      "desc": "뷰포트에 안전 영역 가이드를 표시하거나 숨깁니다."
+    },
+    {
+      "name": "Width / Height",
+      "desc": "출력 이미지의 가로 및 세로 픽셀 Resolution를 지정합니다."
+    },
+    {
+      "name": "Image Aspect",
+      "desc": "가로와 세로의 비율(AspectRatio)을 결정합니다."
+    },
+    {
+      "name": "Pixel Aspect",
+      "desc": "픽셀의 가로세로 비를 조절하여 왜곡을 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유튜브용 16:9 영상 구도 잡기",
+      "steps": [
+        "Render Setup(F10)에서 Output Size를 1920x1080으로 설정합니다.",
+        "뷰포트에서 Shift+F를 눌러 Safe Frame을 활성화합니다.",
+        "카메라 뷰(C 키)로 전환한 뒤 16:9 프레임 안에 피사체가 들어오도록 구도를 맞춥니다."
+      ]
+    },
+    {
+      "title": "인스타그램용 1:1 정사각형 포스팅 제작",
+      "steps": [
+        "Render Setup(F10)에서 Width와 Height 값을 동일하게(예: 1080x1080) 입력합니다.",
+        "Shift+F를 눌러 정사각형 가이드를 뷰포트에 띄웁니다.",
+        "오브젝트가 정사각형 중앙에 오도록 카메라 위치를 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Shift+F를 눌렀는데도 프레임이 안 보임 → 뷰포트 옵션에서 Show Safe Frames가 꺼져 있거나 올바른 뷰포트가 활성화되지 않은 상태이므로 뷰포트 이름을 다시 클릭해 확인합니다.",
+    "렌더링 결과물이 뷰포트 화면과 다르게 나옴 → Render Setup의 비율과 뷰포트의 Safe Frame 비율이 일치하지 않는 경우이므로 Output Size 값을 재확인합니다."
+  ],
+  "related": [
+    "Render Setup",
+    "Camera",
+    "Active Shade",
+    "Render Output"
+  ],
+  "videos": [
+    {
+      "id": "CFUEKATMhaw",
+      "title": "Show Safe Frame in 3ds Max #3dsmax #safeframe",
+      "author": "3ds Max V-Ray"
+    },
+    {
+      "id": "oMbLDMwxEws",
+      "title": "080 3ds Max Render Setup: Control Output Size, Aspect Ratio & Resolution (HDTV vs SD Explained)",
+      "author": "CONSTRUCTION MANAGEMENT"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Safe%20Frame%20and%20output%20size",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "Common",
+    "Output Size",
+    "Width",
+    "Height",
+    "Perspective Viewport"
+  ],
+  "at": "2026-11-02T00:57:59.613672+00:00"
+}
