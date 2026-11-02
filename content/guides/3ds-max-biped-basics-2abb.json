@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-biped-basics-2abb",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Biped basics",
+  "title": "Biped — 바이페드 기초",
+  "summary": "Biped는 3ds Max에 내장된 인체 리깅·애니메이션 프리셋 시스템으로, 빠르게 기본 인체 골격을 만들고 모션을 적용할 수 있습니다.",
+  "when": [
+    "간단한 캐릭터 애니메이션을 빠르게 만들 때",
+    "Prototype 단계에서 인체 동작을 테스트할 때",
+    "게임 엔진용 스켈레톤을 빠르게 준비할 때"
+  ],
+  "steps": [
+    "Create → Systems → Biped → Biped 로 Biped 객체 생성",
+    "Biped 를 바닥에 맞추고 필요하면 Align 툴로 위치 조정",
+    "Animation → Motion Mixer 열어 Motion Mixer 패널 표시",
+    "Motion Mixer 에서 원하는 프리셋(예: Walk, Run) 선택",
+    "Body 파라미터에서 Leg Length·Arm Length 등 비율 조정",
+    "필요 시 Biped 를 Convert to Editable Poly 로 변환하여 추가 디테일 편집"
+  ],
+  "params": [
+    {
+      "name": "Body",
+      "desc": "전체 몸통 크기와 비율을 조정합니다"
+    },
+    {
+      "name": "Leg Length",
+      "desc": "다리 길이를 설정해 키 높이를 맞춥니다"
+    },
+    {
+      "name": "Arm Length",
+      "desc": "팔 길이를 조절해 포즈 범위를 확대합니다"
+    },
+    {
+      "name": "Foot Height",
+      "desc": "발바닥 높이로 착지 위치를 미세 조정합니다"
+    },
+    {
+      "name": "Pelvis Height",
+      "desc": "골반 높이로 몸통 중심을 이동합니다"
+    },
+    {
+      "name": "Scale",
+      "desc": "전체 Biped 스케일을 비례적으로 확대·축소합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 기본 워크 사이클",
+      "steps": [
+        "Biped 생성 → Motion Mixer 에서 Walk 프리셋 선택",
+        "Foot Height 로 착지 지점 맞춤",
+        "Loop 옵션 활성화 → 애니메이션 확인",
+        "FBX 로 Export"
+      ]
+    },
+    {
+      "title": "간단한 손 흔들기 애니메이션",
+      "steps": [
+        "Biped 생성 → Motion Mixer 에서 Wave 프리셋 선택",
+        "Arm Length 로 팔 길이 조정",
+        "Angle 파라미터로 손목 회전 보강",
+        "키프레임 확인 후 저장"
+      ]
+    }
+  ],
+  "mistakes": [
+    "뼈대가 바닥에 떠 있음 → Align 툴 또는 Position Y 값을 0 으로 맞춤",
+    "스케일 적용 안 함 → 애니메이션 전 Ctrl+A 로 Apply Scale 실행",
+    "모션이 루프되지 않음 → Motion Mixer 의 Loop 체크박스 활성화"
+  ],
+  "related": [
+    "CAT",
+    "Skin",
+    "IK Solver",
+    "Motion Mixer"
+  ],
+  "videos": [
+    {
+      "id": "_1HVom9CMKg",
+      "title": "3ds max biped rig tutorial for beginners",
+      "author": "OKTechi"
+    },
+    {
+      "id": "zJz2HtPUolk",
+      "title": "Biped Footsteps in 3ds Max",
+      "author": "Michael Brown"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Biped%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Systems",
+    "Biped"
+  ],
+  "at": "2026-11-02T02:49:49.201028+00:00"
+}
