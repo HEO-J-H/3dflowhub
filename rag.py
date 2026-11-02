@@ -81,6 +81,11 @@ def site_docs() -> list[dict]:
         docs.append({"id": x["id"], "kind": "change", "title": x["title"], "url": f"changes/{x['id']}/",
                      "text": x.get("summary", "") + " " + " ".join(h.get("change", "") for h in x.get("highlights", [])),
                      "tool": x.get("tool", "")})
+    import manual
+    for x in (m for m in manual.load_all() if gstate.get("learn:" + m["id"]) != "hide"):
+        docs.append({"id": "m-" + x["id"], "kind": "manual", "title": f"{x['tool']} {x['title']} 심화 매뉴얼",
+                     "url": f"manual/{x['id']}/", "tool": x["tool"],
+                     "text": x["overview"] + " " + " ".join(f"{o['name']} {o['effect']}" for o in x["options"])})
     import compare
     for x in compare.load_all():
         docs.append({"id": x["id"], "kind": "compare", "title": f"{x['title']} 툴별 비교", "url": f"compare/{x['id']}/",

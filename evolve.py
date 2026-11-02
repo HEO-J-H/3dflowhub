@@ -951,6 +951,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("오류 해결·바뀐 점 생성 실패: %s", e)
         strategy["refs_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "manual_at", 2 * 3600):  # 명령별 심화 매뉴얼: 2시간마다 2개 (하루 상한)
+        try:
+            import manual
+            made = manual.write(2)
+            if made:
+                strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "manual": made}])[-30:]
+        except Exception as e:
+            log.warning("심화 매뉴얼 생성 실패: %s", e)
+        strategy["manual_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "compare_at", 3 * 3600):  # 주제별 툴 비교: 3시간마다 조금씩 (하루 상한)
         try:
             import compare

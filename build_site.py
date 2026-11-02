@@ -573,9 +573,9 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
-<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}compare/">툴 비교</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
+<nav class="topnav" aria-label="사이트"><a href="{root}learn/">기초 가이드</a><a href="{root}saved/">☆ 저장</a><a href="{root}guide/">도구별 정리</a><a href="{root}recipes/">실무 파이프라인</a><a href="{root}manual/">심화 매뉴얼</a><a href="{root}compare/">툴 비교</a><a href="{root}fix/">오류 해결</a><a href="{root}assets/">무료 에셋</a><a href="{root}changes/">바뀐 점</a><a href="{root}weekly/">주간 요약</a><a href="{root}about/">소개</a><a href="{root}contact/">문의</a></nav>
 <div class="search" role="search"><input id="q" type="search" placeholder="Blender, 언리얼, 가우시안…" aria-label="사이트 검색"></div></div>
-<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}compare/">⚖️ 툴 비교</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
+<nav class="domains" aria-label="분야"><a href="{root}" class="{"on" if not domain_on else ""}">전체</a>{nav}<span class="sep mob" aria-hidden="true"></span><a class="mob" href="{root}learn/">📚 기초 가이드</a><a class="mob" href="{root}saved/">☆ 저장</a><a class="mob" href="{root}guide/">🧭 도구별 정리</a><a class="mob" href="{root}recipes/">🔧 실무 파이프라인</a><a class="mob" href="{root}manual/">📘 심화 매뉴얼</a><a class="mob" href="{root}compare/">⚖️ 툴 비교</a><a class="mob" href="{root}fix/">🛠 오류 해결</a><a class="mob" href="{root}assets/">🎁 무료 에셋</a><a class="mob" href="{root}changes/">🆕 바뀐 점</a><a class="mob" href="{root}weekly/">🗓️ 주간 요약</a><a class="mob" href="{root}about/">📘 소개</a><a class="mob" href="{root}contact/">✉️ 문의</a></nav></div></header>
 <main class="wrap" id="main"><div id="results" class="board" hidden style="margin-top:20px" aria-live="polite"></div>{body}</main>
 <footer><div class="wrap"><div class="cols"><a href="{root}about/">소개</a><a href="{root}showcase/">이번 주 작품</a><a href="{root}resources/">추천 자료</a><a href="{root}weekly/">주간 요약</a>
 <a href="{root}feed.xml">RSS 구독</a><a href="{root}contact/">문의</a><a href="{root}privacy/">개인정보처리방침</a></div>
@@ -1017,6 +1017,8 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
     """기초 가이드: 도구별 기본 기능(모디파이어·메뉴·노드)을 영상 + 단계별 사용법으로."""
     root_dir = OUT / "learn"
     root_dir.mkdir(exist_ok=True)
+    import manual as _manual
+    has_manual = {x["id"] for x in _manual.load_all()}
     for g in guides_:
         folder = root_dir / g["id"]
         folder.mkdir(exist_ok=True)
@@ -1063,6 +1065,8 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + (f'<h2>자주 하는 실수</h2><ul class="warn">{"".join(f"<li>{e(x)}</li>" for x in g.get("mistakes", []))}</ul>'
                if g.get("mistakes") else "")
             + (f'<p class="crumb">함께 알아두면 좋은 기능: {e(", ".join(g["related"]))}</p>' if g.get("related") else "")
+            + (f'<p class="quick"><a class="btn primary" href="{root}manual/{g["id"]}/">📘 심화 매뉴얼 — 옵션 전체·응용·문제 해결</a></p>'
+               if g["id"] in has_manual else "")
             + f'<p class="crumb">📖 <a href="{e(g["doc"])}" target="_blank" rel="noopener">{e(g["tool"])} 공식 문서에서 자세히 보기</a>'
             + (" · 영상: " + ", ".join(f'<a href="https://www.youtube.com/watch?v={e(v["id"])}" target="_blank" rel="noopener">'
                                        f'{e(v["author"])}</a>' for v in vids) if vids else "")
@@ -1365,6 +1369,61 @@ def build_refs() -> tuple[list, list]:
     return fixes, changes
 
 
+def build_manual(guides_: list[dict]) -> int:
+    """명령별 심화 매뉴얼 (/manual/<가이드 id>/) — 숨긴 가이드의 매뉴얼은 만들지 않음."""
+    import manual as _manual
+    visible = {g["id"]: g for g in guides_}
+    items = [x for x in _manual.load_all() if x["id"] in visible]
+    (OUT / "manual").mkdir(exist_ok=True)
+    ul = lambda xs: "".join(f"<li>{e(x)}</li>" for x in xs)  # noqa: E731
+    for x in items:
+        d = OUT / "manual" / x["id"]
+        d.mkdir(parents=True, exist_ok=True)
+        root, url = "../../", f"{BASE_URL}/manual/{x['id']}/"
+        name = x["title"].split(" — ")[0]
+        opts = "".join(f'<tr><th scope="row"><code>{e(o["name"])}</code></th><td>{e(o.get("value", ""))}</td>'
+                       f'<td>{e(o.get("effect", ""))}</td><td>{e(o.get("tip", ""))}</td></tr>' for o in x["options"])
+        recipes = "".join(f'<div><b>{e(r["title"])}</b><ol>{ul(r["steps"])}</ol></div>' for r in x["recipes"])
+        trouble = "".join(f'<li><b>{e(t["symptom"])}</b> → {e(t["fix"])}</li>' for t in x["troubleshoot"])
+        modes = "".join(f'<li><b>{e(m["name"])}</b> — {e(m["desc"])}</li>' for m in x["modes"])
+        badge = "공식 문서 본문 근거" if x.get("grounded") else "일반적으로 확인된 내용 위주"
+        ld = {"@context": "https://schema.org", "@type": "TechArticle", "headline": f"{x['tool']} {name} 심화 매뉴얼"[:110],
+              "description": x["overview"][:300], "inLanguage": "ko-KR", "url": url, "about": x["tool"],
+              "proficiencyLevel": "Expert", "datePublished": iso_tz(x.get("at", "")), "dateModified": iso_tz(x.get("at", "")),
+              "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"}}
+        body = (f'<article class="doc guide"><p class="crumb"><a href="{root}manual/">심화 매뉴얼</a> › {e(x["tool"])}</p>'
+                f'<h1>{e(x["tool"])} {e(name)} — 심화 매뉴얼</h1>'
+                f'<p class="aiby">🤖 AI 가 정리 · {badge} · 작성 {e(x.get("at", "")[:10])} · '
+                + report_button("[3dflowhub] 심화 매뉴얼 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
+                f'<p class="lead">{e(x["overview"])}</p>'
+                f'<p class="crumb">처음이라면 → <a href="{root}learn/{x["id"]}/">기초 가이드: {e(x["title"])}</a></p>'
+                + (f'<h2>여는 방법</h2><p>{e(x["access"])}</p>' if x.get("access") else "")
+                + '<h2>옵션 전체</h2><div class="tblwrap"><table class="params"><thead><tr><th>옵션</th><th>값·기본값</th>'
+                  f'<th>효과</th><th>실무 팁</th></tr></thead><tbody>{opts}</tbody></table></div>'
+                + (f"<h2>모드별 차이</h2><ul>{modes}</ul>" if modes else "")
+                + f'<h2>응용 레시피</h2><div class="ex">{recipes}</div>'
+                + (f'<h2>무거울 때</h2><ul>{ul(x["performance"])}</ul>' if x["performance"] else "")
+                + (f'<h2>증상별 문제 해결</h2><ul class="warn">{trouble}</ul>' if trouble else "")
+                + (f'<h2>버전별 차이</h2><p>{e(x["versions"])}</p>' if x.get("versions") else "")
+                + (f'<p class="crumb">📖 <a href="{e(x["doc"])}" target="_blank" rel="noopener">공식 문서</a></p>' if x.get("doc") else "")
+                + f'<p class="crumb"><a href="{root}manual/">← 심화 매뉴얼 전체</a> · <a href="{root}compare/">툴 비교</a></p></article>')
+        (d / "index.html").write_text(page(
+            f"{x['tool']} {name} 심화 매뉴얼 — 옵션·응용·문제 해결 - {SITE_TITLE}", body, root, desc=x["overview"],
+            canonical=url, extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'),
+            encoding="utf-8")
+    by_tool: dict[str, list] = defaultdict(list)
+    for x in sorted(items, key=lambda x: x["title"]):
+        by_tool[x["tool"]].append(x)
+    idx = "".join(f"<h2>{e(t)}</h2><ul>" + "".join(f'<li><a href="{x["id"]}/">{e(x["title"])}</a></li>' for x in xs) + "</ul>"
+                  for t, xs in by_tool.items()) or "<p>준비 중입니다. 매일 몇 개씩 추가됩니다.</p>"
+    (OUT / "manual" / "index.html").write_text(page(
+        f"3D 툴 명령별 심화 매뉴얼 - {SITE_TITLE}",
+        '<div class="doc"><h1>📘 심화 매뉴얼</h1><p class="desc">기초 가이드 다음 단계 — 한 명령의 옵션 전체(값·기본값·효과·팁), '
+        f'모드별 차이, 다른 기능과 조합한 응용 레시피, 증상별 문제 해결까지 매뉴얼처럼 정리했습니다.</p>{idx}</div>', "../",
+        canonical=f"{BASE_URL}/manual/", desc="Blender·3ds Max·Houdini 등 명령별 옵션 전체와 응용 레시피"), encoding="utf-8")
+    return len(items)
+
+
 def build_compare() -> int:
     """주제별 툴 비교 (/compare/) — 같은 작업을 툴마다 어디서·어떻게. 만든 페이지 수 반환."""
     import compare as _cmp
@@ -1538,7 +1597,8 @@ def build() -> dict:
         f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
         + (f'<h2 class="sec">인기 기초 가이드 <a href="{{ROOT}}learn/">전체 {len(learn_guides)}개 →</a></h2>'
            f'<div class="gcards">{hot_html}</div>' if hot_html else "")
-        + '<p class="quick"><a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
+        + '<p class="quick"><a class="btn ghost" href="{ROOT}manual/">📘 명령별 심화 매뉴얼</a>'
+          '<a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
           '<a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
           '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
@@ -1619,6 +1679,7 @@ def build() -> dict:
     build_recipes(recipes_, posts)
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
     build_compare()  # 주제별 툴 비교
+    build_manual(learn_guides)  # 명령별 심화 매뉴얼
     n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()
     build_showcase()

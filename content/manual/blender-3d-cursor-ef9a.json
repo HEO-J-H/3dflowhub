@@ -1,0 +1,124 @@
+{
+  "id": "blender-3d-cursor-ef9a",
+  "guide_id": "blender-3d-cursor-ef9a",
+  "tool": "Blender",
+  "name": "3D Cursor",
+  "title": "3D 커서 — 오브젝트를 원하는 위치로",
+  "overview": "3D Cursor는 위치와 회전값을 모두 저장하는 Blender만의 강력한 임시 기준점입니다. 단순한 생성 위치 지정을 넘어, 변환의 피벗 포인트, 사용자 정의 변환 방향, 그리고 스냅 타겟으로 활용되어 정밀한 3D 작업의 핵심 역할을 수행합니다.",
+  "access": "Toolbar에서 Cursor 도구 선택 또는 3D 뷰포트 내에서 Shift + RMB 클릭. 수치 입력은 Sidebar (N 키)의 View 탭 ‣ 3D Cursor 패널에서 가능하며, 스냅 메뉴는 Shift + S 를 눌러 호출합니다.",
+  "options": [
+    {
+      "name": "Location",
+      "value": "X, Y, Z 좌표 입력",
+      "effect": "3D Cursor의 공간 상 절대 위치를 수치로 정확하게 지정합니다.",
+      "tip": "특정 좌표로 오브젝트나 커서를 보낼 때 Sidebar에서 직접 타이핑하는 것이 가장 정확합니다."
+    },
+    {
+      "name": "Rotation",
+      "value": "X, Y, Z 각도 입력",
+      "effect": "3D Cursor의 회전 방향을 설정하여 커스텀 Transform Orientation의 기준으로 활용합니다.",
+      "tip": "기울어진 표면에 맞춰 도구를 정렬하고 싶을 때 회전값을 함께 조절합니다."
+    },
+    {
+      "name": "Cursor Surface Project",
+      "value": "체크박스 (기본 활성화)",
+      "effect": "Mouse로 클릭할 때 3D Cursor가 표면(Surface)의 지오메트리 위로 투영되도록 설정합니다.",
+      "tip": "입체적인 오브젝트의 표면에 정확히 커서를 붙이고 싶지 않다면 Preferences에서 해제할 수 있습니다."
+    },
+    {
+      "name": "Cursor to Selected",
+      "value": "단축키 Shift + S",
+      "effect": "선택한 오브젝트나 Vertex/에지/폴리곤의 중심 위치로 3D Cursor를 즉시 이동시킵니다.",
+      "tip": "오브젝트 간의 정렬이나 특정 위치를 기준으로 삼고 싶을 때 가장 자주 쓰이는 스냅 기능입니다."
+    },
+    {
+      "name": "Cursor to World Origin",
+      "value": "단축키 Shift + S",
+      "effect": "3D Cursor를 월드 좌표계의 원점인 (0, 0, 0) 위치로 이동시킵니다.",
+      "tip": "작업 중 길을 잃었거나 새로운 기준을 원점으로 잡고 싶을 때 빠르게 리셋합니다."
+    },
+    {
+      "name": "Cursor to Grid",
+      "value": "단축키 Shift + S",
+      "effect": "3D Cursor를 가장 가까운 Grid 오버레이 교차점으로 이동시킵니다.",
+      "tip": "정수 단위의 정확한 Grid 기반 모델링을 할 때 유용합니다."
+    },
+    {
+      "name": "Cursor to Active",
+      "value": "단축키 Shift + S",
+      "effect": "여러 오브젝트 중 활성화된(Active) 오브젝트의 원점 위치로 3D Cursor를 이동시킵니다.",
+      "tip": "다중 선택 상황에서 기준이 되는 오브젝트를 빠르게 타겟팅할 때 사용합니다."
+    },
+    {
+      "name": "Lock to 3D Cursor",
+      "value": "Viewport 네비게이션 설정",
+      "effect": "뷰포트 회전 및 내비게이션의 중심축을 활성 선택 영역 대신 3D Cursor 위치로 고정합니다.",
+      "tip": "특정 디테일한 부분만 집중해서 회전하며 살펴보고 싶을 때 유용한 뷰포트 앵커 역할을 합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "View Mode (직접 배치 도구 설정)",
+      "desc": "커서가 현재 뷰포트 카메라의 시점 방향과 평행하게 정렬됩니다."
+    },
+    {
+      "name": "Surface Mode (직접 배치 도구 설정)",
+      "desc": "Mouse 포인터 아래에 있는 지오메트리의 표면 법선(Normal) 방향에 맞춰 커서가 정렬됩니다."
+    },
+    {
+      "name": "Transform Orientation Mode",
+      "desc": "현재 선택된 변환 방향(Transform Orientation)을 기준으로 커서의 방향이 정렬됩니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "직교 뷰를 활용한 정밀한 3D Cursor 배치",
+      "steps": [
+        "Numpad 7(Top) 또는 Numpad 1(Front)을 눌러 직교(Orthographic) 뷰로 전환합니다.",
+        "Toolbar에서 Cursor 도구를 선택하거나 Shift + RMB로 대략적인 위치에 커서를 놓습니다.",
+        "다른 직교 뷰(예: Numpad 3 Right)로 전환하여 깊이(Depth) 축의 어긋난 위치를 Mouse로 미세 조정합니다.",
+        "필요한 경우 Sidebar의 View 탭 3D Cursor 패널에서 좌표를 소수점 단위로 정확하게 입력합니다."
+      ]
+    },
+    {
+      "title": "3D Cursor를 피벗으로 활용한 회전 및 변형",
+      "steps": [
+        "변형(회전/스케일)의 기준으로 삼을 위치에 3D Cursor를 배치합니다 (예: Shift + S ‣ Cursor to Selected).",
+        "상단 뷰포트 헤더에서 Transform Pivot Point를 3D Cursor로 변경합니다.",
+        "오브젝트를 선택하고 R 키를 눌러 회전하면 3D Cursor를 중심으로 회전하는지 확인합니다.",
+        "작업이 끝나면 피벗 포인트를 다시 Median Point나 Bounding Box Center로 원상복구합니다."
+      ]
+    },
+    {
+      "title": "선택 영역을 커서 위치로 모으고 원점 정렬하기",
+      "steps": [
+        "정렬 기준이 될 오브젝트나 요소를 선택한 뒤 Shift + S를 누릅니다.",
+        "Cursor to Selected를 실행하여 3D Cursor를 해당 위치에 가져다 놓습니다.",
+        "새롭게 생성할 오브젝트나 이동할 다른 오브젝트를 선택합니다.",
+        "다시 Shift + S를 누르고 Selection to Cursor를 실행하여 정확히 위치를 맞춥니다."
+      ]
+    }
+  ],
+  "performance": [
+    "3D Cursor 자체는 연산 부하가 거의 없는 가벼운 요소이므로 성능 저하를 유발하지 않습니다.",
+    "다만 'Lock to 3D Cursor' 옵션을 켠 상태에서 복잡한 대형 씬을 탐색할 때 뷰포트 회전 중심이 고정되어 어색할 수 있으므로 필요시에만 켭니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "원하지 않는 엉뚱한 표면이나 공간에 3D Cursor가 찍힙니다.",
+      "fix": "지오메트리 표면에 투영되는 'Cursor Surface Project' 옵션 때문일 수 있습니다. Preferences에서 해당 옵션을 끄거나 직교 뷰를 활용해 정확히 배치하세요."
+    },
+    {
+      "symptom": "오브젝트를 회전했는데 3D Cursor를 중심으로 돌지 않고 제자리에서 돕니다.",
+      "fix": "뷰포트 상단의 Transform Pivot Point가 '3D Cursor'로 올바르게 설정되어 있는지 확인하세요."
+    },
+    {
+      "symptom": "커서의 회전값이 틀어져 있어서 새로 생성되는 오브젝트가 기울어져요.",
+      "fix": "Sidebar의 View 탭 3D Cursor 패널에서 Rotation X, Y, Z 값을 모두 0으로 초기화하세요."
+    }
+  ],
+  "versions": "Blender 2.8x 이후부터 Toolbar에 전용 Cursor 도구가 추가되어 Mouse 클릭 한 번으로 위치와 방향을 직관적으로 제어할 수 있게 되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/editors/3dview/3d_cursor.html",
+  "grounded": true,
+  "at": "2026-11-02T14:15:18+00:00"
+}
