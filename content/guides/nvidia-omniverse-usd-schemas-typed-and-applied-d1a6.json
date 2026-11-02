@@ -1,0 +1,89 @@
+{
+  "id": "nvidia-omniverse-usd-schemas-typed-and-applied-d1a6",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "OpenUSD",
+  "name": "USD schemas (typed and applied)",
+  "title": "스키마 — 형식·적용 스키마 차이",
+  "summary": "NVIDIA Omniverse에서 USD(Universal Scene Description) 데이터의 구조와 속성을 정의하는 규칙입니다. Typed Schema는 기본 객체 타입을, Applied Schema는 기존 객체에 추가 기능을 덧붙이는 모듈식 속성을 제공합니다.",
+  "when": [
+    "여러 부서가 협업할 때 커스텀 메타데이터나 속성 규칙을 강제하고 싶을 때",
+    "기본 USD Primitive만으로는 표현할 수 없는 게임 엔진용 추가 데이터를 정의할 때",
+    "기존 3D 지오메트리나 라이트에 물리 속성 같은 부가 기능을 모듈식으로 장착할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Kit 기반 앱 또는 USD Composer를 실행합니다.",
+    "Layer 패널에서 새로운 USD 레이어를 생성하거나 기존 USD 파일을 엽니다.",
+    "Stage 패널에서 대상을 선택하고 Property 패널에서 속성(Attribute) 추가 메뉴를 엽니다.",
+    "스키마 정의(USD Schema)를 불러와 원하는 Typed 또는 Applied Schema를 프림(Prim)에 바인딩합니다.",
+    "Property 패널에서 스키마가 추가된 파라미터 값을 수정하고 USD 레이어에 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Kind",
+      "desc": "USD Primitive의 계층 구조와 어셈블리 상태를 정의합니다."
+    },
+    {
+      "name": "Purpose",
+      "desc": "렌더링 시 가시성 용도(Render, Proxy, Guide)를 설정합니다."
+    },
+    {
+      "name": "API schemas",
+      "desc": "프림에 동적으로 적용된 Applied Schema 목록을 관리합니다."
+    },
+    {
+      "name": "Custom Data",
+      "desc": "파이프라인 연동을 위한 사용자 정의 메타데이터를 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물리 속성(Physics) 부여하기",
+      "steps": [
+        "Stage 패널에서 3D 모델(Mesh)을 선택합니다.",
+        "Property 패널에서 Add 연산 버튼을 누릅니다.",
+        "Physics Applied Schema를 선택하여 강체(RigidBody) 속성을 추가합니다.",
+        "Mass와 Collision 값을 설정하여 시뮬레이션을 준비합니다."
+      ]
+    },
+    {
+      "title": "커스텀 메타데이터 스키마 정의",
+      "steps": [
+        "USD C++ 또는 Python API를 통해 커스텀 Schema 정의(.usda)를 작성합니다.",
+        "Omniverse 프로젝트 폴더의 Asset 루트에 스키마 파일을 로드합니다.",
+        "Stage 패널의 대상 프림에 커스텀 스키마를 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Typed Schema와 Applied Schema의 개념 혼동 → Typed Schema는 단독으로 프림 타입을 결정하지만, Applied Schema는 기존 프림에 덧붙여야 작동합니다.",
+    "스키마 이름 충돌 → 커스텀 스키마 작성 시 네임스페이스 접두사를 생략하여 기존 USD 표준 속성과 충돌이 발생합니다.",
+    "스키마 정의 파일 누락 → 다른 아티스트에게 USD를 전달할 때 커스텀 .usda/.usdc 스키마 정의를 함께 패키징하지 않아 속성이 누락됩니다."
+  ],
+  "related": [
+    "USD Prim",
+    "USD Stage",
+    "Omniverse Nucleus",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "-iCUjNk2aiA",
+      "title": "Universal Scene Description (OpenUSD): Custom Schemas",
+      "author": "NVIDIA Developer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20USD%20schemas%20%28typed%20and%20applied%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Kit",
+    "USD Composer"
+  ],
+  "at": "2026-11-02T01:17:56.585934+00:00"
+}
