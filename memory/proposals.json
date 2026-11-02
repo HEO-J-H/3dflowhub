@@ -6846,5 +6846,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T13:49:58+00:00",
+    "kind": "proposal",
+    "id": "p-a2e556301a",
+    "title": "대기 중인 백엔드 코어 PR (#40~#42) 최종 검토 및 승인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py와 관련된 PR #40, #41, #42가 승인 대기 상태로 남아 있습니다.",
+    "proposal": "GitHub에서 PR #40~#42의 테스트 통과 여부 및 validate_url_input() 유효성 검사 코드를 최종 검토한 뒤 머지합니다.",
+    "expected": "URL 입력 오류에 대한 안정적인 예외 처리 및 보안 강화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:49:58+00:00",
+    "kind": "proposal",
+    "id": "p-a3647baf0f",
+    "title": "PBR 맵 생성 입력 검증 PR (#43, #44) 최종 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/pbr_generator.py의 generate_pbr_maps() 입력 검증 관련 PR #43과 #44가 대기 중입니다.",
+    "proposal": "PR #43과 #44의 단위 테스트 코드와 ValueError 발생 로직을 확인하고 이상이 없으면 병합합니다.",
+    "expected": "잘못된 이미지 입력 시 명확한 예외 처리로 백엔드 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T13:50:21.683824+00:00",
+    "kind": "decision",
+    "id": "p-a2e556301a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 코어 PR(#40~#44) 최종 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T13:50:21.692488+00:00",
+    "kind": "decision",
+    "id": "p-a3647baf0f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
   }
 ]
