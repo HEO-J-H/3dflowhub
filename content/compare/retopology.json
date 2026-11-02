@@ -9,42 +9,72 @@
       "where": "Properties → Modifier 탭 → Add Modifier → Remesh 또는 Retopoflow(애드온)",
       "how": "QuadRemesh 애드온이나 기본 Remesh 모디파이어를 사용하여 자동 사각형 토폴로지를 생성하거나, 폴리 빌드(Poly Build) 툴로 수동 리토폴로지를 진행합니다.",
       "strength": "가벼운 네이티브 기능과 강력한 커뮤니티 애드온 생태계",
-      "limit": "기본 툴셋만으로는 복잡한 흐름 제어가 다소 제한적"
+      "limit": "기본 툴셋만으로는 복잡한 흐름 제어가 다소 제한적",
+      "video": {
+        "id": "Zxl38NpPWdo",
+        "title": "Texture Bake High Poly Details to a Low Poly Mesh (Blender Tutorial)",
+        "author": "Ryan King Art"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Command Panel → Modify 탭 → Modifier List → Retopology",
       "how": "Retopology 수정자를 적용하고 리토폴로지 알고리즘(ReForm)을 선택한 뒤 Compute 버튼을 눌러 깔끔한 토폴로지를 자동 생성합니다.",
       "strength": "별도 플러그인 없이도 안정적인 자동 사각형 메쉬 생성",
-      "limit": "폴리곤 수와 면의 흐름을 세밀하게 제어하기 위한 수동 편집 툴이 상대적으로 복잡"
+      "limit": "폴리곤 수와 면의 흐름을 세밀하게 제어하기 위한 수동 편집 툴이 상대적으로 복잡",
+      "video": {
+        "id": "AUikqN_lVPc",
+        "title": "Introduction to Retopology Tools for 3ds Max®: Retopologizing a Scanned Mesh",
+        "author": "Autodesk 3ds Max Learning Channel"
+      }
     },
     {
       "tool": "Maya",
       "where": "Modeling 툴셋 → Mesh → Retopologize",
       "how": "Mesh 드롭다운에서 Retopologize 옵션을 열어 타겟 폴리곤 수, 대칭(Symmetry) 축을 설정하고 실행하여 토폴로지를 최적화합니다.",
       "strength": "애니메이션과 리깅 파이프라인에 최적화된 매끄러운 면 흐름",
-      "limit": "고해상도 메쉬에서 연산 시간이 다소 오래 걸릴 수 있음"
+      "limit": "고해상도 메쉬에서 연산 시간이 다소 오래 걸릴 수 있음",
+      "video": {
+        "id": "R6lbqjgdzbM",
+        "title": "Auto Retopology in Maya 🧠 | Quick & Clean Mesh Optimization for Game Assets",
+        "author": "NAMAN DO 3D"
+      }
     },
     {
       "tool": "Houdini",
       "where": "네트워크 뷰 → Tab → QuadRemesh 노드 또는 Retopo 노드",
       "how": "QuadRemesh 노드를 생성하고 타겟 면 수와 가이드 곡선(Guide Curves)을 연결하여 절차적으로 토폴로지를 제어합니다.",
       "strength": "파라미터와 노드 네트워크를 통한 강력한 자동화 및 대량 처리",
-      "limit": "VEX 및 노드 구조에 대한 이해가 필요하여 러닝커브가 높음"
+      "limit": "VEX 및 노드 구조에 대한 이해가 필요하여 러닝커브가 높음",
+      "video": {
+        "id": "zGLFkVJm6e8",
+        "title": "Houdini MAGIC: Insane Poly Reduction Techniques! (Mind-blowing Results)",
+        "author": "Joe Raasch"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Modeling Mode → Remesh / Retopo 툴셋",
       "how": "엔진 내부의 Modeling Mode로 진입하여 Simplygon 기반 또는 자체 리토폴로지 툴을 사용해 게임 내에서 직접 메쉬를 정리합니다.",
       "strength": "외환 작업 없이 게임 엔진 내에서 즉시 최적화 및 확인 가능",
-      "limit": "외부 DCC 만큼 섬세한 수동 리토폴로지 및 엣지 플로우 제어는 불가"
+      "limit": "외부 DCC 만큼 섬세한 수동 리토폴로지 및 엣지 플로우 제어는 불가",
+      "video": {
+        "id": "-cSO5cavDLk",
+        "title": "Unreal Engine 5 Simplify High-Poly Models in Seconds (Built-In Tool!)",
+        "author": "EZ Unreal"
+      }
     },
     {
       "tool": "ZBrush",
       "where": "Tool 파레트 → Geometry → ZRemesher",
       "how": "ZRemesher 버튼을 클릭하여 스컬프팅 모델을 자동으로 사각형 메쉬로 변환하며, Polypaint나 ZGuideCurve로 흐름을 유도합니다.",
       "strength": "하이폴리곤 스컬프 메쉬의 형태를 완벽하게 유지하면서 빠른 재정렬",
-      "limit": "엄격한 토폴로지 흐름이나 게임용 로우폴리 최적화에는 추가 수정 필요"
+      "limit": "엄격한 토폴로지 흐름이나 게임용 로우폴리 최적화에는 추가 수정 필요",
+      "video": {
+        "id": "9kSaJ1b4QZU",
+        "title": "How to POLYGROUPIT for TOPOLOGY in Zbrush 2018 - 60 second tutorial",
+        "author": "Danny Mac 3D"
+      }
     }
   ],
   "pick": [
@@ -85,5 +115,6 @@
     "{'mistake': '너무 낮은 타겟 폴리곤 값 설정으로 인해 원본 실루엣과 디테일이 무너지는 현상', 'fix': '타겟 폴리곤 수(Target Polygon Count)를 점진적으로 높이며 테스트하고, 중요 디테일 부위는 가이드라인을 사용합니다.'}",
     "{'mistake': '법선(Normal) 방향이 뒤집혀서 리토폴로지 결과물에 구멍이 뚫리거나 면이 깨지는 현상', 'fix': '작업 전 Face Normal을 재계산(Recalculate Outside)하여 모든 면이 바깥쪽을 향하도록 정렬합니다.'}"
   ],
-  "at": "2026-11-02T17:32:31+00:00"
+  "at": "2026-11-02T17:32:31+00:00",
+  "visuals_at": "2026-11-02T17:41:10+00:00"
 }

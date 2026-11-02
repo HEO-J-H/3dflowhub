@@ -9,35 +9,60 @@
       "where": "Properties → Modifier 탭 또는 UV Editing 워크스페이스",
       "how": "Tab 키로 Edit Mode에 진입한 뒤 U를 눌러 Unwrap 메뉴를 열고, Edge 선택 후 Mark Seam으로 심을 정의합니다. UV Editor에서 UV 패널의 Pack Islands를 실행하여 팩킹합니다.",
       "strength": "직관적인 심 지정과 강력하고 빠른 내부 팩킹 알고리즘 제공",
-      "limit": "복잡한 고도 폴리곤 모델에서는 수동 심 작업량이 많음"
+      "limit": "복잡한 고도 폴리곤 모델에서는 수동 심 작업량이 많음",
+      "video": {
+        "id": "jnzhNdWoXMg",
+        "title": "The Complete Guide to UV Unwrapping for the 3D Artist - Where & Why Marking Seams",
+        "author": "Grant Abbitt (Gabbitt)"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Modifier List → Unwrap UVW",
       "how": "오브젝트에 Unwrap UVW 모디파이어를 적용한 뒤 Open UV Editor를 엽니다. Edge 하위 오브젝트 레벨에서 Peel과 Seam 기능을 이용해 펴고, Packing 메뉴에서 공간을 정리합니다.",
       "strength": "정밀한 파츠별 분할 및 전통적인 캐드/하드서페이스 툴셋 연동 우수",
-      "limit": "초기 UI가 복잡해 보여 학습 진입 장벽이 다소 높음"
+      "limit": "초기 UI가 복잡해 보여 학습 진입 장벽이 다소 높음",
+      "video": {
+        "id": "IGvY6Hx1sHQ",
+        "title": "3ds Max Unwrap UVW Basics: Seams, Peeling & Packing",
+        "author": "SAM Courses Studio EN"
+      }
     },
     {
       "tool": "Maya",
       "where": "UV → UV Editor / Modeling 툴셋",
       "how": "Modeling 메뉴셋의 UV 메뉴에서 Cut, Sew, Auto Unwrap 등을 활용해 심을 자르고 붙입니다. UV Editor 내의 Layout 옵션을 통해 텍스처 공간에 효율적으로 배치합니다.",
       "strength": "업계 표준에 부합하는 정교하고 세분화된 UV 편집 기능",
-      "limit": "자동 팩킹 시 간격(Padding) 세팅을 수동으로 세밀하게 조정해야 함"
+      "limit": "자동 팩킹 시 간격(Padding) 세팅을 수동으로 세밀하게 조정해야 함",
+      "video": {
+        "id": "8-TMjuvzZEU",
+        "title": "UV Unwrap Fast with Auto Seams in Maya Tutorial",
+        "author": "What Make Art"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Geometry 노드 내부 → UV Unwrap / UV Layout 노드",
       "how": "네트워크 뷰에서 Tab 키로 UV Unwrap 노드를 생성해 오토 심을 만들고, 후속으로 UV Layout 노드를 연결해 자동 팩킹 및 스케일 정규화를 수행합니다.",
       "strength": "절차적(Procedural) 방식으로 대량의 에셋이나 지형 UV를 자동 일괄 처리 가능",
-      "limit": "예술적인 수동 심 조절이나 미세한 겹침 수정은 상대적으로 번거로움"
+      "limit": "예술적인 수동 심 조절이나 미세한 겹침 수정은 상대적으로 번거로움",
+      "video": {
+        "id": "VNX9Qf6a5hs",
+        "title": "Houdini Unwrapping Techniques: The Basics",
+        "author": "Simon Houdini"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Static Mesh Editor → Build Settings / General Settings",
       "how": "에디터 내에서 자동 Generate Lightmap UVs를 체크하거나, 외부 DCC에서 가져온 고유 UV 채널(Channel 1 또는 2)을 라이트맵 및 텍스처 좌표용으로 지정합니다.",
       "strength": "게임 엔진 내에서 즉시 라이트맵 및 간단한 UV 채널 관리 가능",
-      "limit": "본격적인 캐릭터 및 하드서페이스 UV 전개와 패킹은 외부 DCC 작업이 필수"
+      "limit": "본격적인 캐릭터 및 하드서페이스 UV 전개와 패킹은 외부 DCC 작업이 필수",
+      "video": {
+        "id": "0uYeKj8IQ1Q",
+        "title": "UVMapping Editor Basics in Unreal Engine 5: Connecting Seams",
+        "author": "UNF Games"
+      }
     }
   ],
   "pick": [
@@ -73,5 +98,6 @@
     "{'mistake': '스케일 값을 적용하지 않은 상태에서 UV를 펴서 텍스처 밀도가 망가지는 현상', 'fix': '오브젝트 모드에서 Scale을 1.0으로 초기화(Apply Scale)한 뒤 Unwrap을 다시 수행합니다.'}",
     "{'mistake': '노멀맵 적용 시 심(Seam) 라인이 하얗게 벌어져서 갈라져 보이는 현상', 'fix': 'UV 패딩(Margin) 값을 충분히 주고, 하드엣지 영역과 UV 심 위치를 일치시킵니다.'}"
   ],
-  "at": "2026-11-02T17:33:03+00:00"
+  "at": "2026-11-02T17:33:03+00:00",
+  "visuals_at": "2026-11-02T17:41:14+00:00"
 }
