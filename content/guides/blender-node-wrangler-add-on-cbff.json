@@ -1,0 +1,103 @@
+{
+  "id": "blender-node-wrangler-add-on-cbff",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Node Wrangler add-on",
+  "title": "Node Wrangler — 노드 작업 빠르게",
+  "summary": "Node Wrangler는 Blender의 Shader Editor와 Compositor에서 노드 연결·프리뷰·텍스처 로드를 Hotkey 하나로 빠르게 할 수 있게 해 주는 공식 애드온입니다.",
+  "when": [
+    "복잡한 머티리얼을 만들 때",
+    "텍스처를 즉시 미리볼 때",
+    "노드 연결 작업을 반복할 때"
+  ],
+  "steps": [
+    "Edit Mode → Shader Editor 열기",
+    "Edit → Preferences → Add‑ons → ‘Node Wrangler’ 검색 후 체크하여 활성화",
+    "Shift + A 로 Image Texture 노드 추가 후 Ctrl + Shift + Click 으로 원하는 입력에 바로 연결",
+    "Ctrl + P 로 프리뷰(Preview) 노드 자동 생성",
+    "Ctrl + Alt + Shift + S 로 Viewer Node에 현재 노드 결과를 실시간 표시",
+    "Ctrl + Shift + L 로 선택 노드의 모든 이미지 텍스처를 한 번에 로드"
+  ],
+  "params": [
+    {
+      "name": "Lazy Connect",
+      "desc": "Ctrl + Shift + Click 으로 입력·출력을 즉시 연결"
+    },
+    {
+      "name": "Auto‑Preview",
+      "desc": "Ctrl + P 로 선택 노드에 Viewer Node를 자동으로 연결"
+    },
+    {
+      "name": "Swap Nodes",
+      "desc": "Ctrl + Shift + M 으로 두 노드의 연결을 교환"
+    },
+    {
+      "name": "Viewer Node",
+      "desc": "Ctrl + Alt + Shift + S 로 현재 노드 결과를 Viewer에 실시간 표시"
+    },
+    {
+      "name": "Add Texture Nodes",
+      "desc": "Shift + Ctrl + T 로 파일 탐색기 없이 바로 이미지 텍스처 노드 생성"
+    },
+    {
+      "name": "Clear Viewer",
+      "desc": "Ctrl + Alt + Shift + C 로 Viewer Node 연결을 해제"
+    }
+  ],
+  "examples": [
+    {
+      "title": "PBR 머티리얼에 베이스 컬러와 Roughness 연결",
+      "steps": [
+        "Shift + A → Image Texture 노드 추가",
+        "Ctrl + Shift + Click 으로 베이스 컬러 입력에 연결",
+        "Shift + A → Image Texture 노드 추가 후 같은 방법으로 Roughness 입력에 연결",
+        "Ctrl + P 로 프리뷰 노드 자동 생성 후 실시간 확인"
+      ]
+    },
+    {
+      "title": "Compositor에서 Render Layers와 Blur 연결",
+      "steps": [
+        "Shift + A → Render Layers 노드 추가",
+        "Shift + A → Blur 노드 추가",
+        "Ctrl + Shift + Click 으로 Render Layers 출력을 Blur 입력에 연결",
+        "Ctrl + Alt + Shift + S 로 Viewer Node에 결과를 바로 표시"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Ctrl + Shift + Click 으로 연결이 안 됨 → Node Wrangler가 활성화돼 있는지 Add‑ons 창에서 확인",
+    "Viewer Node가 자동 생성되지 않음 → Ctrl + P 로 강제로 프리뷰 노드 생성 후 다시 시도",
+    "이미지 텍스처가 로드되지 않음 → Shift + Ctrl + T 대신 Shift + A 로 직접 Image Texture 노드를 만든 뒤 Lazy Connect 사용"
+  ],
+  "related": [
+    "Shader Editor",
+    "Compositor",
+    "Image Texture",
+    "Viewer Node"
+  ],
+  "videos": [
+    {
+      "id": "Bya53QEvsT4",
+      "title": "Node Wrangler - The Best FREE Blender Add-On?",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "XTVWy4IIH3A",
+      "title": "How to Use the Node Wrangler for Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Node%20Wrangler%20add-on",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Mode",
+    "Shader",
+    "Editor",
+    "Preferences",
+    "Add"
+  ],
+  "at": "2026-11-02T03:18:26.137044+00:00"
+}
