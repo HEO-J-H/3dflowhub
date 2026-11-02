@@ -153,3 +153,13 @@ def test_rss_image_and_priority():
     assert core.rss_image({"media_thumbnail": [{"url": "https://x/a.jpg"}]}) == "https://x/a.jpg"
     assert core.rss_image({"summary": '<p><img src="https://x/b.png"></p>'}) == "https://x/b.png"
     assert core.rss_image({}) == ""
+
+
+def test_question_threads_and_host_caps(monkeypatch, tmp_path):
+    import core
+    assert core.is_question_thread({"url": "https://www.reddit.com/r/vfx/a", "title": "Where can I find assets?"})
+    assert not core.is_question_thread({"url": "https://www.reddit.com/r/blender/a", "title": "Environment I made"})
+    assert not core.is_question_thread({"url": "https://www.cgchannel.com/a", "title": "How Pixar lit Elio"})
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path)
+    cands = [{"url": f"https://www.reddit.com/r/blender/{i}", "title": "x"} for i in range(10)]
+    assert len(core.apply_host_caps(cands)) == 10   # 오늘 저장분이 없으면 후보는 그대로 (상한은 저장 수 기준)

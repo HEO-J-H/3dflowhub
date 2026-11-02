@@ -1081,6 +1081,50 @@ def pick_by_weights(candidates: list[dict], domains: list[str], max_items: int,
     return picked
 
 
+# 커뮤니티(포럼·reddit) 글은 작품 공유·제작기·팁은 좋지만 '질문'은 요약해도 가치가 낮다
+COMMUNITY_HOSTS = ("reddit.com", "blenderartists.org", "forums.unrealengine.com", "polycount.com")
+QUESTION_RE = re.compile(r"\?\s*$|^(how|why|what|where|which|can|is|are|does|do|should|any|help|need|looking for)\b|"
+                         r"\b(help|question|advice|recommend|beginner here|newbie)\b", re.I)
+# 출처별 하루 상한 (한국 날짜 기준) — 많이 올라오는 곳이 하루 몫을 다 차지하지 않게
+HOST_DAILY_CAP = {"reddit.com": 6, "youtube.com": 10, "news.google.com": 15, "creativebloq.com": 6}
+
+
+def _host(url: str) -> str:
+    return re.sub(r"^www\.", "", url.split("/")[2]) if "//" in url else ""
+
+
+def is_question_thread(c: dict) -> bool:
+    if not any(h in c.get("url", "") for h in COMMUNITY_HOSTS):
+        return False
+    q = bool(QUESTION_RE.search(c.get("title", "").strip()))
+    if q:
+        RUN_ERRORS.append("question thread")
+    return q
+
+
+def apply_host_caps(candidates: list[dict]) -> list[dict]:
+    kst_day = (datetime.now(timezone.utc) + timedelta(hours=9)).strftime("%Y-%m-%d")
+    used: dict[str, int] = {}
+    for f in POSTS_DIR.glob(f"{kst_day[:4]}-*.json"):
+        p = _load_json(f, {})
+        at = str(p.get("collected_at") or "")
+        try:
+            d = (datetime.fromisoformat(at.replace("Z", "+00:00")) + timedelta(hours=9)).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+        if d == kst_day:
+            h = _host(p.get("url", ""))
+            used[h] = used.get(h, 0) + 1
+    out = []
+    for c in candidates:
+        h = _host(c.get("url", "") or c.get("source", ""))
+        cap = next((v for k, v in HOST_DAILY_CAP.items() if h.endswith(k)), None)
+        if cap is not None and used.get(h, 0) >= cap:
+            continue
+        out.append(c)
+    return out
+
+
 def rss_image(entry) -> str:
     """RSS 항목의 대표 이미지 (media:content·media:thumbnail·enclosure·본문 첫 img)."""
     for key in ("media_content", "media_thumbnail"):
@@ -1157,6 +1201,8 @@ def collect(domains: list[str], max_items: int, seen: set[str]) -> list[dict]:
     candidates = filter_off_topic_feeds(candidates)
     candidates = prefilter(candidates)  # AI 요약 전 규칙 기반 1차 거르기 (한도 절약)
     LAST_COLLECT.update(passed=len(candidates))
+    candidates = [c for c in candidates if not is_question_thread(c)]  # 포럼 질문글(가치 낮음) 제외
+    candidates = apply_host_caps(candidates)  # 한 사이트가 하루 몫을 독차지하지 않게
     candidates = interleave_by_source(candidates)  # 한 출처가 상위를 독점하지 않도록 출처별 교차
     # 이미지 있는 글 우선 (출처 교차 순서는 유지하는 안정 정렬) — 이미지 없는 글은 클릭·체류가 낮음
     candidates.sort(key=lambda c: not c.get("rss_image"))
