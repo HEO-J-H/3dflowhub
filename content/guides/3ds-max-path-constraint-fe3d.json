@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-path-constraint-fe3d",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Path Constraint",
+  "title": "Path Constraint — 경로 따라 이동",
+  "summary": "오브젝트를 특정 패스(Spline)를 따라 이동하거나 회전하도록 고정하는 애니메이션 제약 조건입니다. 카메라가 곡선 경로를 따라 이동하는 컷씬이나 기차가 레일을 따라 움직이는 연출에 주로 사용합니다.",
+  "when": [
+    "카메라가 곡선 경로를 따라 부드럽게 이동하는 애니메이션을 만들 때",
+    "열차, 자동차, 비행기 등 정해진 선을 따라 움직이는 탈것을 애니메이션할 때",
+    "로프나 케이블을 따라 특정 오브젝트가 정확히 이동해야 할 때"
+  ],
+  "steps": [
+    "애니메이션할 오브젝트(예: Sphere 또는 Camera)를 선택합니다.",
+    "상단 메인 메뉴에서 Animation → Constraints → Path Constraint 를 클릭합니다.",
+    "뷰포트에서 오브젝트가 따라갈 Spline(예: Line, Circle)을 클릭하여 연결합니다.",
+    "Time Slider 를 움직여 오브젝트가 패스를 따라 이동하는지 확인합니다.",
+    "Motion 패널(파란색 아이콘)에서 Path Parameters 를 열어 세부 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Add Path",
+      "desc": "패스를 추가하거나 변경합니다."
+    },
+    {
+      "name": "Percentage",
+      "desc": "패스 전체 길이(0~100%)에서 오브젝트의 위치를 결정합니다."
+    },
+    {
+      "name": "Follow",
+      "desc": "오브젝트가 패스의 기울기에 맞춰 회전하도록 활성화합니다."
+    },
+    {
+      "name": "Bank",
+      "desc": "패스가 꺾이는 구간에서 오브젝트가 코너 안쪽으로 기울어지게 만듭니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "패스 방향과 일치시킬 오브젝트의 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Loop",
+      "desc": "패스의 끝에 도달한 애니메이션을 처음부터 반복합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "곡선 레일을 따라 이동하는 카메라 샷",
+      "steps": [
+        "Create 패널에서 Line 을 이용해 카메라 이동 경로를 그립니다.",
+        "Camera 오브젝트를 선택하고 Animation → Constraints → Path Constraint 를 적용한 뒤 Line 을 클릭합니다.",
+        "Motion 패널에서 Follow 를 체크하여 카메라 렌즈가 곡선 방향을 바라보게 합니다.",
+        "Time Slider 에서 프레임을 이동하며 Percentage 값으로 애니메이션 키를 잡습니다."
+      ]
+    },
+    {
+      "title": "곡면 위를 달리는 자동차 애니메이션",
+      "steps": [
+        "도로 모양의 Spline 패스를 탑 뷰에서 그립니다.",
+        "자동차 모델의 피벗 포인트를 바닥 중앙에 맞춘 뒤 Path Constraint 로 패스에 연결합니다.",
+        "Axis 옵션을 조절하여 자동차가 전진 방향(예: Y축)으로 바르게 향하도록 정렬합니다.",
+        "Percentage 애니메이션을 주어 도로를 완주하도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 엉뚱한 방향으로 이동합니다 → Motion 패널의 Path Parameters 에서 Axis 설정을 다른 축으로 변경하세요.",
+    "패스에 연결하자마자 오브젝트가 엉뚱한 위치로 튑니다 → 제약 조건을 걸기 전 오브젝트의 Transform 좌표(Position)를 (0,0,0)으로 리셋하거나 Align 기능을 사용하세요."
+  ],
+  "related": [
+    "Look At Constraint",
+    "Position Constraint",
+    "Line",
+    "Motion Path"
+  ],
+  "videos": [
+    {
+      "id": "_IfcnuV_ivk",
+      "title": "🚗 Animate Along a Path in 3ds Max | Path Constraint Tutorial 🎬 #shorts  #3dsmax #aniamtion",
+      "author": "Yurii Shevchyshyn"
+    },
+    {
+      "id": "_hqS5-2ruoE",
+      "title": "3DS Max Path Constraint Tutorial",
+      "author": "3ds Max Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Path%20Constraint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Sphere",
+    "Camera",
+    "Animation",
+    "Constraints",
+    "Path Constraint"
+  ],
+  "at": "2026-11-02T01:37:52.801989+00:00"
+}

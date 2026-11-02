@@ -1,0 +1,93 @@
+{
+  "id": "nvidia-omniverse-nvidia-omniverse-blender-add-on-and-usd-set-ae75",
+  "tool": "NVIDIA Omniverse",
+  "domain": "3D DCC",
+  "group": "연결",
+  "name": "NVIDIA Omniverse Blender add-on and USD settings",
+  "title": "Blender USD Export 옵션 정리",
+  "summary": "NVIDIA Omniverse Blender 애드온을 활용하여 Blender 씬과 모델을 USD(Universal Scene Description) 포맷으로 옴니버스 생태계에 실시간 동기화합니다. 서로 다른 3D Software 간 원활한 협업과 라이브 링크 작업을 가능하게 합니다.",
+  "when": [
+    "Blender에서 작업 중인 에셋을 Omniverse 플랫폼으로 실시간 라이브 스트리밍하고 싶을 때",
+    "USD 포맷을 활용해 다른 DCC 툴과 씬 데이터를 손쉽게 공유할 때",
+    "실시간 레이트레이싱과 협업 파이프라인(Omniverse Create, View 등)을 구축할 때"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 Blender Connector(애드온)를 설치합니다.",
+    "Blender를 실행한 뒤 Edit Preferences 메뉴로 이동합니다.",
+    "Add-ons 탭에서 NVIDIA Omniverse 애드온을 검색하여 활성화(Enable)합니다.",
+    "3D Viewport 우측의 N 패널(사이드바)에서 Omniverse 탭을 엽니다.",
+    "Omniverse 서버에 로그인하고 연결(Connect) 버튼을 눌러 Nucleus 서버에 접속합니다.",
+    "Export USD 또는 Live Sync 기능을 켜서 실시간 동기화를 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Live Sync",
+      "desc": "Blender의 변경 사항을 Omniverse Nucleus 서버에 실시간으로 반영합니다."
+    },
+    {
+      "name": "Export USD",
+      "desc": "현재 씬이나 선택한 오브젝트를 표준 USD 파일 형식으로 내보냅니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "Blender Shader를 Omniverse Material(MDL/USD Preview Surface)로 변환합니다."
+    },
+    {
+      "name": "Up Axis",
+      "desc": "USD 파일의 상단 축 기준(Z-Up 또는 Y-Up)을 설정합니다."
+    },
+    {
+      "name": "Textures",
+      "desc": "텍스처 파일을 내보낼 때 경로 설정 및 패키징 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Blender에서 모델링 후 Omniverse View로 실시간 확인하기",
+      "steps": [
+        "Blender에서 오브젝트를 배치합니다.",
+        "Omniverse 탭에서 Live Sync를 활성화합니다.",
+        "Omniverse View를 열어 실시간으로 렌더링 결과물을 확인합니다."
+      ]
+    },
+    {
+      "title": "USD 포맷으로 캐릭터 에셋 Export",
+      "steps": [
+        "캐릭터 메시와 본을 선택합니다.",
+        "File 메뉴에서 Export → USD(.usd/.usda/.usdc)를 선택합니다.",
+        "애니메이션 데이터 포함 여부를 체크하고 파일을 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일과 회전값이 적용되지 않음 (Unapplied Transform) → Object 모드에서 Ctrl+A를 눌러 Apply All Transforms 실행",
+    "텍스처 경로가 깨짐 (Broken Textures) → 에드온 설정에서 텍스처 패스 옵션 확인 후 상대 경로 대신 절대 경로 또는 서버 경로 지정",
+    "Up Axis 불일치로 인한 회전 오류 → Blender와 Omniverse 간 Z-Up/Y-Up 설정이 일치하는지 확인"
+  ],
+  "related": [
+    "USD",
+    "Omniverse Nucleus",
+    "Omniverse View",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "vFxytzQlOEs",
+      "title": "Five Things to Know About USD | NVIDIA Omniverse Tutorials",
+      "author": "NVIDIA"
+    },
+    {
+      "id": "Qbx1Y_I_Vkc",
+      "title": "Fastest Blender 3.6 to Unreal engine 5.2 workflow with Nvidia Omniverse",
+      "author": "Dirk Teucher"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=site%3Adocs.omniverse.nvidia.com+NVIDIA%20Omniverse%20NVIDIA%20Omniverse%20Blender%20add-on%20and%20USD%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "NVIDIA Omniverse Launcher",
+    "Blender Connector"
+  ],
+  "at": "2026-11-02T01:37:42.857940+00:00"
+}
