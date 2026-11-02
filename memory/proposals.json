@@ -6114,5 +6114,60 @@
     "id": "p-68df466543",
     "v": "done",
     "note": "코딩 에이전트 처리: PR #46 머지 완료"
+  },
+  {
+    "at": "2026-11-02T11:19:58+00:00",
+    "kind": "proposal",
+    "id": "p-7ab1acee26",
+    "title": "URL 유효성 검사 PR(#40~#42) 테스트 확인 후 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py 및 test_core.py 관련 PR #40, #41, #42가 승인 대기 중입니다.",
+    "proposal": "대기 중인 URL 유효성 검사 관련 PR들의 테스트 결과를 최종 확인하고 사람의 승인을 받아 백엔드에 반영합니다.",
+    "expected": "잘못된 URL 입력 예외 처리가 안정적으로 적용되어 입력 보안성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T11:19:58+00:00",
+    "kind": "proposal",
+    "id": "p-ffced82cc7",
+    "title": "PBR 맵 생성 입력 검증 PR(#43, #44) 검토 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/pbr_generator.py의 generate_pbr_maps() 입력 검증 PR #43과 #44가 대기 중입니다.",
+    "proposal": "PBR 맵 생성 서비스의 입력 무결성 검증 테스트를 검토하고 순차적으로 승인합니다.",
+    "expected": "잘못된 이미지 포맷이나 빈 입력에 대한 견고한 예외 처리 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T11:20:45.087672+00:00",
+    "kind": "decision",
+    "id": "p-7ab1acee26",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T11:20:45.094703+00:00",
+    "kind": "decision",
+    "id": "p-ffced82cc7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T11:20:49.924459+00:00",
+    "kind": "triage",
+    "id": "p-7ab1acee26",
+    "verdict": "agent",
+    "reason": "대기 중인 PR #40~#42의 테스트 결과 확인 및 백엔드 반영은 에이전트가 코드를 검증하고 머지 작업을 자동화하여 처리할 수 있습니다."
   }
 ]
