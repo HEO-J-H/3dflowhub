@@ -908,7 +908,7 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("글 보강 실패: %s", e)
         strategy["enrich_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
-    if force or _due(strategy, "recipes_at", 6 * 3600):  # 실무 파이프라인 레시피: 6시간마다 1개 (AI 여유 50% 이상)
+    if False and _due(strategy, "recipes_at", 6 * 3600):  # 실무 파이프라인: 생성 중단(사장님 2026-11-03 — 다른 AI 로 쉽게 만들 수 있어 차별성 없음). AI 몫은 가이드 심화·툴 비교로
         try:
             import recipes
             made = recipes.write_recipes(1)

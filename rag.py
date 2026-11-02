@@ -84,7 +84,7 @@ def site_docs() -> list[dict]:
     import manual
     for x in (m for m in manual.load_all() if gstate.get("learn:" + m["id"]) != "hide"):
         docs.append({"id": "m-" + x["id"], "kind": "manual", "title": f"{x['tool']} {x['title']} 심화 매뉴얼",
-                     "url": f"manual/{x['id']}/", "tool": x["tool"],
+                     "url": f"learn/{x['id']}/#deep", "tool": x["tool"],
                      "text": x["overview"] + " " + " ".join(f"{o['name']} {o['effect']}" for o in x["options"])})
     import compare
     for x in compare.load_all():

@@ -480,6 +480,7 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .shots figcaption{text-align:center;font-size:14px;font-weight:600;margin-top:6px}
 .tvids{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin:12px 0 20px}
 .tvids h3{font-size:15px;margin:0 0 6px}.hero-img{width:100%;height:auto;border-radius:18px;margin:12px 0}
+.deep{margin-top:28px;padding-top:8px;border-top:2px solid var(--line)}.deep h3{font-size:18px;margin:22px 0 8px}
 .updbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--surface)}
 .updbox ul{margin:6px 0 0;padding-left:18px}.updbox li{font-size:14px;margin:3px 0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
@@ -614,14 +615,12 @@ document.addEventListener("keydown",function(ev){{if(ev.key==="Escape")dds.forEa
 
 
 SITE_MENU = [
-    ("배우기", [("learn/", "📚", "기초 가이드", "기능을 처음부터 영상과 단계로"),
-               ("manual/", "📘", "심화 매뉴얼", "옵션 전체·값 비교 그림·응용"),
+    ("배우기", [("learn/", "📚", "기초 가이드", "영상·단계부터 옵션 전체·값 비교까지"),
                ("compare/", "⚖️", "툴 비교", "같은 작업을 툴마다 어떻게"),
                ("guide/", "🧭", "도구별 정리", "도구별 소식·자료 한곳에")]),
     ("문제 해결", [("fix/", "🛠", "오류 해결", "오류 메시지로 원인과 해결"),
                  ("changes/", "🆕", "버전별 바뀐 점", "새 버전에서 달라진 것")]),
     ("자료", [("assets/", "🎁", "무료 에셋", "텍스처·재질·HDRI"),
-             ("recipes/", "🔧", "실무 파이프라인", "바로 쓰는 검증 스크립트"),
              ("resources/", "📎", "추천 자료", "강의·도구·커뮤니티")]),
     ("소식", [("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
              ("showcase/", "🎨", "이번 주 작품", "눈여겨볼 작업물"),
@@ -993,7 +992,7 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
             + COPY_JS)
         (folder / "index.html").write_text(
             page(f"{r['title']} - {SITE_TITLE}", body, root, domain_on=r.get("domain", ""), desc=r["problem"],
-                 canonical=f"{BASE_URL}/recipes/{r['id']}/"), encoding="utf-8")
+                 canonical=f"{BASE_URL}/recipes/{r['id']}/", extra_head='<meta name="robots" content="noindex,follow">'), encoding="utf-8")  # 생성 중단·메뉴 제외 → 검색 노출 제외
     items = "".join(f'<a href="{e(r["id"])}/"><span><span class="t">{e(r["title"])}</span><br>'
                     f'<span class="k">{e(r["category"])} → {e(r["host"])} · {e(r.get("at", "")[:10])}</span></span></a>'
                     for r in recipes_)
@@ -1001,7 +1000,7 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
             'Blender 애드온·MAXScript·Maya 스크립트로 바로 쓸 수 있게 제공합니다. 스크립트는 문법 검사만 거쳤으니 '
             '장면 사본에서 먼저 실행해 보세요.</p></div>'
             + f'<div class="rank">{items or "<p>준비 중입니다 — AI 3D 소식이 쌓인 분야부터 차례로 만들어집니다.</p>"}</div>')
-    (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../"), encoding="utf-8")
+    (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../", extra_head='<meta name="robots" content="noindex,follow">'), encoding="utf-8")
 
 
 def build_showcase() -> None:
@@ -1157,7 +1156,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
     root_dir = OUT / "learn"
     root_dir.mkdir(exist_ok=True)
     import manual as _manual
-    has_manual = {x["id"] for x in _manual.load_all()}
+    manuals = {x["id"]: x for x in _manual.load_all()}
     for g in guides_:
         folder = root_dir / g["id"]
         folder.mkdir(exist_ok=True)
@@ -1204,8 +1203,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + (f'<h2>자주 하는 실수</h2><ul class="warn">{"".join(f"<li>{e(x)}</li>" for x in g.get("mistakes", []))}</ul>'
                if g.get("mistakes") else "")
             + (f'<p class="crumb">함께 알아두면 좋은 기능: {e(", ".join(g["related"]))}</p>' if g.get("related") else "")
-            + (f'<p class="quick"><a class="btn primary" href="{root}manual/{g["id"]}/">📘 심화 매뉴얼 — 옵션 전체·응용·문제 해결</a></p>'
-               if g["id"] in has_manual else "")
+            + (manual_section(manuals[g["id"]], root) if g["id"] in manuals else "")
             + f'<p class="crumb">📖 <a href="{e(g["doc"])}" target="_blank" rel="noopener">{e(g["tool"])} 공식 문서에서 자세히 보기</a>'
             + (" · 영상: " + ", ".join(f'<a href="https://www.youtube.com/watch?v={e(v["id"])}" target="_blank" rel="noopener">'
                                        f'{e(v["author"])}</a>' for v in vids) if vids else "")
@@ -1511,61 +1509,49 @@ def build_refs() -> tuple[list, list]:
     return fixes, changes
 
 
+def manual_section(x: dict, root: str) -> str:
+    """심화 내용(옵션 전체·값 비교 그림·응용·문제 해결) — 기초 가이드 페이지 아래 '📘 더 깊이' 로 붙임 (사장님: 따로 뺄 필요 없음)."""
+    ul = lambda xs: "".join(f"<li>{e(v)}</li>" for v in xs)  # noqa: E731
+    opts = "".join(f'<tr><th scope="row"><code>{e(o["name"])}</code></th><td>{e(o.get("value", ""))}</td>'
+                   f'<td>{e(o.get("effect", ""))}</td><td>{e(o.get("tip", ""))}</td></tr>' for o in x["options"])
+    recipes = "".join(f'<div class="box"><h3>{e(r["title"])}</h3><ol>{ul(r["steps"])}</ol></div>' for r in x["recipes"])
+    trouble = "".join(f'<li><b>{e(t["symptom"])}</b> → {e(t["fix"])}</li>' for t in x["troubleshoot"])
+    modes = "".join(f'<li><b>{e(m["name"])}</b> — {e(m["desc"])}</li>' for m in x["modes"])
+    badge = "공식 문서 본문 근거" if x.get("grounded") else "일반적으로 확인된 내용 위주"
+    return (f'<section id="deep" class="deep"><h2>📘 더 깊이 — 옵션 전체·응용·문제 해결</h2>'
+            f'<p class="aiby">{badge} · 작성 {e(x.get("at", "")[:10])}</p><p>{e(x["overview"])}</p>' + updates_html(x)
+            + shots_html(x.get("shots") or [], root)
+            + (f'<h3>여는 방법</h3><p>{e(x["access"])}</p>' if x.get("access") else "")
+            + '<h3>옵션 전체</h3><div class="tblwrap"><table class="params"><thead><tr><th>옵션</th><th>값·기본값</th>'
+              f'<th>효과</th><th>실무 팁</th></tr></thead><tbody>{opts}</tbody></table></div>'
+            + doc_figures(x.get("images") or [])
+            + (f"<h3>모드별 차이</h3><ul>{modes}</ul>" if modes else "")
+            + (f'<h3>응용 레시피</h3><div class="ex">{recipes}</div>' if recipes else "")
+            + (f'<h3>무거울 때</h3><ul>{ul(x["performance"])}</ul>' if x["performance"] else "")
+            + (f'<h3>증상별 문제 해결</h3><ul class="warn">{trouble}</ul>' if trouble else "")
+            + (f'<h3>버전별 차이</h3><p>{e(x["versions"])}</p>' if x.get("versions") else "")
+            + "</section>")
+
+
+def redirect_page(target: str, title: str) -> str:
+    """옛 주소 → 새 주소 (검색 결과·외부 링크가 깨지지 않게). 검색 노출 제외, canonical 은 새 주소."""
+    return (f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>{e(title)}</title>'
+            f'<meta name="robots" content="noindex"><link rel="canonical" href="{e(target)}">'
+            f'<meta http-equiv="refresh" content="0; url={e(target)}"></head>'
+            f'<body><p><a href="{e(target)}">{e(title)} 페이지로 이동</a></p></body></html>')
+
+
 def build_manual(guides_: list[dict]) -> int:
-    """명령별 심화 매뉴얼 (/manual/<가이드 id>/) — 숨긴 가이드의 매뉴얼은 만들지 않음."""
+    """옛 /manual/ 주소 → 기초 가이드의 '더 깊이' 로 이동 (심화 매뉴얼은 가이드 페이지에 합쳐짐)."""
     import manual as _manual
     visible = {g["id"]: g for g in guides_}
     items = [x for x in _manual.load_all() if x["id"] in visible]
     (OUT / "manual").mkdir(exist_ok=True)
-    ul = lambda xs: "".join(f"<li>{e(x)}</li>" for x in xs)  # noqa: E731
     for x in items:
         d = OUT / "manual" / x["id"]
         d.mkdir(parents=True, exist_ok=True)
-        root, url = "../../", f"{BASE_URL}/manual/{x['id']}/"
-        name = x["title"].split(" — ")[0]
-        opts = "".join(f'<tr><th scope="row"><code>{e(o["name"])}</code></th><td>{e(o.get("value", ""))}</td>'
-                       f'<td>{e(o.get("effect", ""))}</td><td>{e(o.get("tip", ""))}</td></tr>' for o in x["options"])
-        recipes = "".join(f'<div><b>{e(r["title"])}</b><ol>{ul(r["steps"])}</ol></div>' for r in x["recipes"])
-        trouble = "".join(f'<li><b>{e(t["symptom"])}</b> → {e(t["fix"])}</li>' for t in x["troubleshoot"])
-        modes = "".join(f'<li><b>{e(m["name"])}</b> — {e(m["desc"])}</li>' for m in x["modes"])
-        badge = "공식 문서 본문 근거" if x.get("grounded") else "일반적으로 확인된 내용 위주"
-        ld = {"@context": "https://schema.org", "@type": "TechArticle", "headline": f"{x['tool']} {name} 심화 매뉴얼"[:110],
-              "description": x["overview"][:300], "inLanguage": "ko-KR", "url": url, "about": x["tool"],
-              "proficiencyLevel": "Expert", "datePublished": iso_tz(x.get("at", "")), "dateModified": iso_tz(x.get("at", "")),
-              "author": {"@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/"}}
-        body = (f'<article class="doc guide"><p class="crumb"><a href="{root}manual/">심화 매뉴얼</a> › {e(x["tool"])}</p>'
-                f'<h1>{e(x["tool"])} {e(name)} — 심화 매뉴얼</h1>'
-                f'<p class="aiby">🤖 AI 가 정리 · {badge} · 작성 {e(x.get("at", "")[:10])} · '
-                + report_button("[3dflowhub] 심화 매뉴얼 제보: " + x["title"][:40], "틀린 내용 제보") + '</p>'
-                f'<p class="lead">{e(x["overview"])}</p>' + updates_html(x)
-                + f'<p class="crumb">처음이라면 → <a href="{root}learn/{x["id"]}/">기초 가이드: {e(x["title"])}</a></p>'
-                + videos_html(x.get("videos"))
-                + shots_html(x.get("shots") or [], root)
-                + (f'<h2>여는 방법</h2>{menu_diagram(x.get("menu_path") or [])}<p>{e(x["access"])}</p>' if x.get("access") else "")
-                + '<h2>옵션 전체</h2><div class="tblwrap"><table class="params"><thead><tr><th>옵션</th><th>값·기본값</th>'
-                  f'<th>효과</th><th>실무 팁</th></tr></thead><tbody>{opts}</tbody></table></div>'
-                + doc_figures(x.get("images") or [])
-                + (f"<h2>모드별 차이</h2><ul>{modes}</ul>" if modes else "")
-                + f'<h2>응용 레시피</h2><div class="ex">{recipes}</div>'
-                + (f'<h2>무거울 때</h2><ul>{ul(x["performance"])}</ul>' if x["performance"] else "")
-                + (f'<h2>증상별 문제 해결</h2><ul class="warn">{trouble}</ul>' if trouble else "")
-                + (f'<h2>버전별 차이</h2><p>{e(x["versions"])}</p>' if x.get("versions") else "")
-                + (f'<p class="crumb">📖 <a href="{e(x["doc"])}" target="_blank" rel="noopener">공식 문서</a></p>' if x.get("doc") else "")
-                + f'<p class="crumb"><a href="{root}manual/">← 심화 매뉴얼 전체</a> · <a href="{root}compare/">툴 비교</a></p></article>')
-        (d / "index.html").write_text(page(
-            f"{x['tool']} {name} 심화 매뉴얼 — 옵션·응용·문제 해결 - {SITE_TITLE}", body, root, desc=x["overview"],
-            canonical=url, extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'),
-            encoding="utf-8")
-    by_tool: dict[str, list] = defaultdict(list)
-    for x in sorted(items, key=lambda x: x["title"]):
-        by_tool[x["tool"]].append(x)
-    idx = "".join(f"<h2>{e(t)}</h2><ul>" + "".join(f'<li><a href="{x["id"]}/">{e(x["title"])}</a></li>' for x in xs) + "</ul>"
-                  for t, xs in by_tool.items()) or "<p>준비 중입니다. 매일 몇 개씩 추가됩니다.</p>"
-    (OUT / "manual" / "index.html").write_text(page(
-        f"3D 툴 명령별 심화 매뉴얼 - {SITE_TITLE}",
-        '<div class="doc"><h1>📘 심화 매뉴얼</h1><p class="desc">기초 가이드 다음 단계 — 한 명령의 옵션 전체(값·기본값·효과·팁), '
-        f'모드별 차이, 다른 기능과 조합한 응용 레시피, 증상별 문제 해결까지 매뉴얼처럼 정리했습니다.</p>{idx}</div>', "../",
-        canonical=f"{BASE_URL}/manual/", desc="Blender·3ds Max·Houdini 등 명령별 옵션 전체와 응용 레시피"), encoding="utf-8")
+        (d / "index.html").write_text(redirect_page(f"{BASE_URL}/learn/{x['id']}/#deep", x["title"]), encoding="utf-8")
+    (OUT / "manual" / "index.html").write_text(redirect_page(f"{BASE_URL}/learn/", "기초 가이드"), encoding="utf-8")
     return len(items)
 
 
@@ -1743,18 +1729,14 @@ def build() -> dict:
         f'<a class="btn ghost" href="{{ROOT}}weekly/">이번 주 요약 →</a></div>'
         f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>정리된 소식</span>'
         f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
-        + (f'<h2 class="sec">인기 기초 가이드 <a href="{{ROOT}}learn/">전체 {len(learn_guides)}개 →</a></h2>'
-           f'<div class="gcards">{hot_html}</div>' if hot_html else "")
-        + '<p class="quick"><a class="btn ghost" href="{ROOT}manual/">📘 명령별 심화 매뉴얼</a>'
-          '<a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
+        + '<p class="quick"><a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
           '<a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
           '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
-          '<a class="btn ghost" href="{ROOT}recipes/">🔧 검증된 스크립트</a></p>'
+          '</p>'
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
            if learn_tiles else "")
-        + (f'<h2 class="sec">에디터 추천</h2><div class="cards">{"".join(card(p, "{ROOT}") for p in picks[:6])}</div>'
-           if picks else "") +
+        +
         f'<h2 class="sec">분야별 소식 게시판</h2><div class="grid">{"".join(tiles)}</div>' +
         guide_sec +
         f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
@@ -1945,7 +1927,7 @@ def build() -> dict:
             if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
-           [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + [f"{BASE_URL}/recipes/"] + [f"{BASE_URL}/recipes/{r['id']}/" for r in recipes_] + \
+           [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + \
            ([f"{BASE_URL}/assets/"] if n_assets else []) + \
            [f"{BASE_URL}/fix/"] + [f"{BASE_URL}/fix/{x['id']}/" for x in ref_fixes] + \
            [f"{BASE_URL}/changes/"] + [f"{BASE_URL}/changes/{x['id']}/" for x in ref_changes] + \

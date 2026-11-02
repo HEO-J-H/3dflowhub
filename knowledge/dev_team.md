@@ -3,7 +3,7 @@
 ## 프로젝트 구조
 - core.py 수집·요약·저장·LLM·동기화 / evolve.py 자기 개선·배분 / manager.py AI 관리자 / staff.py AI 직원
 - guides.py 기초 가이드 / build_site.py 정적 사이트 / app.py Streamlit 현황판 / alerts.py 알림 / terms.py 용어집
-- refs.py 오류 해결·바뀐 점 / manual.py 심화 매뉴얼 / manual_shots.py Blender 값 비교 렌더 / compare.py 툴 비교 / assets.py 무료 에셋
+- refs.py 오류 해결·바뀐 점 / manual.py 심화 매뉴얼(별도 페이지 없이 기초 가이드 아래 "📘 더 깊이"로 표시, /manual/ 은 이동 주소) / manual_shots.py Blender 값 비교 렌더 / compare.py 툴 비교 / assets.py 무료 에셋
 - rag.py 사이트 검색기(관련 글·글쓰기 근거) / visuals.py 그림·영상 보강 / scorecard.py 품질 성적표·속도 자동 조절 / qa.py QA 검수
 - seo_audit.py SEO 구조 점검 / sources.py 출처 발굴 / staff.py AI 직원 / knowledge/*.md 교본(모든 AI 가 읽음)
 - 데이터: content/*(글·가이드·정리 JSON), memory/*(상태·이벤트 로그 JSON), config.json(설정)
@@ -39,3 +39,4 @@
 - Windows 에서 subprocess 출력은 encoding="utf-8" 명시 (cp949 로 깨짐).
 - 같은 값 반복 렌더·같은 제목은 '다르다'고 착각하기 쉬움 → 눈으로 보이는 차이(화소 비율)·정규화한 제목으로 비교.
 - 정규식은 대소문자·단어 경계 주의 (Nanite 의 'NaN', Houdini 'Null' 노드 오탐).
+- 실무 파이프라인(recipes)은 생성 중단 (2026-11-03 사장님: 다른 AI 로 쉽게 만들 수 있어 차별성 없음). 기존 페이지는 주소만 유지, 메뉴에서 뺌.
