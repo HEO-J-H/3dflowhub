@@ -437,6 +437,60 @@ with t_home:
     h_detail = st.expander("📊 자세히 — 도구 분포·최근 글·방문·검색 유입·광고 수익")
 t_rev = h_detail
 
+def render_cpc_optimization_dashboard() -> None:
+    """Streamlit 현황판에 고CPC 실무 3D 콘텐츠 집중도와 오프토픽 차단 현황을 시각화하는 렌더링 함수."""
+    try:
+        import evolve
+        cpc_metrics = evolve.summarize_cpc_optimization_metrics()
+        dist_report = evolve.analyze_3d_content_distribution()
+        error_trends = evolve.summarize_error_trends()
+        cpc_scores = evolve.calculate_cpc_score_distribution()
+    except Exception:
+        cpc_metrics = {"total_practical_posts": 0, "cpc_score_avg": 0.0, "domains_breakdown": {}, "top_practical_posts": []}
+        dist_report = {"counts": {}, "percentages": {}, "total": 0}
+        error_trends = {}
+        cpc_scores = {"high_cpc_keywords": []}
+
+    with st.container(border=True):
+        st.markdown("### 🎯 고CPC 실무 3D 콘텐츠 집중도 및 오프토픽 차단 대시보드")
+        st.caption("Maya, 3ds Max, Blender 등 실무 검색 유입 및 고CPC 튜토리얼·스크립트 콘텐츠 집중도와 오프토픽 필터링 현황을 시각화합니다.")
+
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("실무 고CPC 콘텐츠 수", f"{cpc_metrics.get('total_practical_posts', 0):,}건")
+        col2.metric("평균 CPC 최적화 점수", f"{cpc_metrics.get('cpc_score_avg', 0.0):.2f}점")
+        col3.metric("전체 분석 콘텐츠", f"{dist_report.get('total', 0):,}건")
+        offtopic_total = sum(d.get("주제 무관/필터링됨", 0) for d in error_trends.values())
+        col4.metric("오프토픽 차단 건수", f"{offtopic_total:,}건")
+
+        tabs_sub = st.tabs(["📊 도메인별 3D 콘텐츠 집중도", "💰 고CPC 핵심 키워드 및 점수", "🚫 오프토픽 및 오류 차단 현황"])
+
+        with tabs_sub[0]:
+            st.markdown("**도메인별 3D 콘텐츠 분포 비율 (%)**")
+            percentages = dist_report.get("percentages", {})
+            if percentages:
+                s_pct = pd.Series(percentages)
+                hbars(s_pct, "비율 (%)", height=200)
+            else:
+                st.info("분포 데이터가 아직 없습니다.")
+
+        with tabs_sub[1]:
+            st.markdown("**고CPC 실무 키워드 가중치 Top 10**")
+            kw_list = cpc_scores.get("high_cpc_keywords", [])
+            if kw_list:
+                df_kw = pd.DataFrame(kw_list).set_index("keyword")["score"]
+                hbars(df_kw, "가중치 점수", height=250)
+            else:
+                st.info("고CPC 키워드 집계 데이터가 없습니다.")
+
+        with tabs_sub[2]:
+            st.markdown("**오프토픽 및 품질 미달 차단 추이**")
+            if error_trends:
+                df_err = pd.DataFrame(error_trends).fillna(0)
+                st.dataframe(df_err, width="stretch")
+            else:
+                st.info("오류 및 차단 집계 기록이 없습니다.")
+
+
 def render_practical_content_metrics() -> None:
     """실무 3D 튜토리얼 및 스크립트 콘텐츠의 수집/발행 성공률 통계를 사이드바 또는 개요 영역에 시각적으로 요약 렌더링합니다."""
     runs = load_runs()
@@ -504,6 +558,7 @@ with h_trend:
                     st.caption(f"{r['도메인']} › {r['카테고리']}" + (f" · {r['유형']}" if r.get("유형") else ""))
         with h_detail:
             render_practical_content_metrics()
+            render_cpc_optimization_dashboard()
 
 
 # ─────────────────────────── 글 목록 ───────────────────────────
