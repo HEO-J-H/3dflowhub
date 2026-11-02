@@ -1,0 +1,80 @@
+{
+  "id": "3ds-max-selection-sets-and-isolate-83dd",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Selection sets and Isolate",
+  "title": "선택 세트·Isolate",
+  "summary": "Selection Sets는 복잡한 씬에서 자주 쓰는 오브젝트 그룹을 이름으로 저장해 빠르게 선택하고, Isolate는 선택한 오브젝트만 남기고 나머지를 숨겨 작업 집중도를 높여줍니다.",
+  "when": [
+    "수백 개의 오브젝트가 얽힌 대형 씬에서 특정 파트만 골라 작업할 때",
+    "캐릭터 리깅이나 소품 배치 중 간섭을 피하기 위해 주변 요소를 숨기고 싶을 때",
+    "반복해서 선택해야 하는 오브젝트 조합을 실수 없이 한 번에 지정하고 싶을 때"
+  ],
+  "steps": [
+    "상단 메인 툴바의 Selection Sets 입력창을 클릭하여 새 그룹 이름을 입력하고 Enter를 누릅니다.",
+    "Isolate 기능을 쓰려면 원하는 오브젝트를 선택하고 Alt + Q Hotkey를 누릅니다.",
+    "Isolate 모드에 진입하면 뷰포트 하단의 노란색 Isolate Toggle 버튼이 활성화됩니다.",
+    "작업을 마치면 뷰포트 하단의 Exit Isolate Mode 버튼을 누르거나 Alt + Q를 다시 눌러 원래 씬으로 돌아옵니다.",
+    "저장된 Selection Sets를 불러오려면 메인 툴바의 드롭다운 목록에서 저장한 이름을 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "Selection Sets",
+      "desc": "선택한 오브젝트 그룹에 이름을 지정하여 저장하고 드롭다운으로 재선택합니다."
+    },
+    {
+      "name": "Edit Selection Sets",
+      "desc": "저장된 세트의 오브젝트 추가, 제거, 이름 변경 등 세부 관리를 수행합니다."
+    },
+    {
+      "name": "Isolate Toggle",
+      "desc": "선택된 오브젝트 외의 다른 요소를 임시로 숨기거나 해제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "밀집된 건축 인테리어에서 가구 그룹 수정하기",
+      "steps": [
+        "거실의 의자와 테이블 오브젝트들을 함께 선택합니다.",
+        "Selection Sets 창에 'Living_Furniture'를 입력하고 저장합니다.",
+        "다른 곳을 작업하다가 이 세트를 불러와 위치나 재질을 일괄 수정합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 얼굴 디테일 수정 중 주변 몸체 숨기기",
+      "steps": [
+        "캐릭터 모델링의 헤드 파츠만 Mouse로 선택합니다.",
+        "Alt + Q를 눌러 Isolate 모드로 진입합니다.",
+        "방해받지 않고 얼굴 폴리곤을 편집한 뒤 Alt + Q를 눌러 전체 몸체를 복원합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Selection Sets에 이름을 입력하고 Enter를 누르지 않아 그룹이 저장되지 않음 → 이름을 치고 반드시 Enter 키를 누르세요.",
+    "Isolate 모드에서 다른 오브젝트를 새로 선택하고 싶어 취소하다가 씬 전체가 리셋됨 → Isolate 상태에서는 추가 선택이 제한되므로 Exit 후 재선택하거나 Layer/Hide 기능을 함께 쓰세요."
+  ],
+  "related": [
+    "Named Selection Sets",
+    "Hide Selection",
+    "Unhide All",
+    "Layers"
+  ],
+  "videos": [
+    {
+      "id": "K0JJ8EjCiS0",
+      "title": "3DS Max Quick Tip - Selection Sets",
+      "author": "Jonathan Coble"
+    },
+    {
+      "id": "WA3Mp-EOQdM",
+      "title": "3DS MAX Select and Link Tutorial",
+      "author": "Dynamic Modelling of Cities"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Selection%20sets%20and%20Isolate",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-02T08:50:14.095491+00:00"
+}
