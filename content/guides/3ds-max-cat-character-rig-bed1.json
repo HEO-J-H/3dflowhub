@@ -1,0 +1,100 @@
+{
+  "id": "3ds-max-cat-character-rig-bed1",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "CAT character rig",
+  "title": "CAT — 캐릭터 리그",
+  "summary": "CAT (Character Animation Toolkit)은 3ds Max에서 캐릭터를 위한 뼈대와 스킨을 빠르게 만들고 애니메이션을 적용할 수 있는 리깅 시스템입니다.",
+  "when": [
+    "다양한 형태의 인간·동물 캐릭터를 직접 리깅하고 싶을 때",
+    "스키닝과 물리 시뮬레이션을 동시에 제어해야 할 때",
+    "기존 Biped 로는 복잡한 구조를 만들기 어려운 경우"
+  ],
+  "steps": [
+    "Create 패널 → Geometry → CAT → CATObject 클릭",
+    "Modify 패널 → CATObject 선택 → Create CAT Root 버튼 클릭",
+    "Create CAT Bone 버튼을 눌러 필요한 뼈대(예: Spine, Arm, Leg) 추가",
+    "뼈대들을 원하는 위치에 배치하고, Connect 버튼으로 계층 연결",
+    "리깅할 메쉬 선택 → Modifier List에서 Skin 추가 → Add Bones 로 뼈대 지정",
+    "CAT Motion 패널에서 키프레임을 설정해 애니메이션 제작"
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "뼈대의 세그먼트 수, 많을수록 부드러운 변형 가능"
+    },
+    {
+      "name": "Angle",
+      "desc": "뼈대가 회전할 최대 각도 제한"
+    },
+    {
+      "name": "Twist",
+      "desc": "뼈대 회전 시 트위스트 보정값"
+    },
+    {
+      "name": "Length",
+      "desc": "뼈대 길이, 스케일 적용 시 자동 업데이트"
+    },
+    {
+      "name": "Mass",
+      "desc": "물리 시뮬레이션 시 무게값"
+    },
+    {
+      "name": "Stiffness",
+      "desc": "뼈대의 강성, 높은 값일수록 변형 저항"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인간 캐릭터 팔 리깅",
+      "steps": [
+        "CATObject 생성 → Create CAT Bone 로 UpperArm, LowerArm, Hand 추가",
+        "뼈대 위치를 팔 길이에 맞게 배치 후 Connect 로 계층 연결",
+        "메쉬에 Skin 적용 → UpperArm, LowerArm, Hand을 Influence 로 지정",
+        "CAT Motion에서 팔 휘두르기 키프레임 설정"
+      ]
+    },
+    {
+      "title": "동물 꼬리 애니메이션",
+      "steps": [
+        "CATObject 생성 → Create CAT Bone 로 TailRoot, TailMid, TailTip 추가",
+        "뼈대들을 꼬리 형태로 배치하고 Connect 로 연결",
+        "Skin에 꼬리 메쉬를 추가하고 세 뼈대 모두 Influence 지정",
+        "CAT Motion에서 TailMid와 TailTip에 회전 키프레임을 넣어 흔들림 구현"
+      ]
+    }
+  ],
+  "mistakes": [
+    "뼈대가 올바르게 연결되지 않음 → Connect 버튼 대신 Parent 로 연결하면 계층이 깨집니다. 다시 Connect 로 재연결하세요",
+    "Skin 가중치가 0%로 남음 → Add Bones 후 Skin 파라미터의 'Bone List'에 뼈대를 추가하고 'Weight Tool'으로 가중치를 할당합니다"
+  ],
+  "related": [
+    "Biped",
+    "Skin",
+    "Physique",
+    "Motion Mixer"
+  ],
+  "videos": [
+    {
+      "id": "04W_4wdRPwo",
+      "title": "Your First 3D Character - Rigging Torso And Legs - 3ds Max CAT (Part 1/7)",
+      "author": "Miloš Černý Animation"
+    },
+    {
+      "id": "OrTCSXQ66fA",
+      "title": "Your First 3D Character - Rigging Head and Arms - 3ds Max CAT (Part 2/7)",
+      "author": "Miloš Černý Animation"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20CAT%20character%20rig",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "CAT",
+    "CATObject"
+  ],
+  "at": "2026-11-02T02:38:15.312076+00:00"
+}

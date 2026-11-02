@@ -1,0 +1,89 @@
+{
+  "id": "blender-color-ramp-node-ab1d",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Color Ramp node",
+  "title": "Color Ramp — 값을 색으로",
+  "summary": "Color Ramp 노드는 입력된 Factor 값을 기반으로 색상을 구간별로 매핑해 색상 그라데이션을 만들 수 있는 노드입니다.",
+  "when": [
+    "텍스처의 높이값을 색상으로 변환하고 싶을 때",
+    "다양한 색상 변화를 단계별로 제어하고 싶을 때",
+    "머티리얼에 맞춤형 색상 그라데이션을 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Shader Editor에서 Shift+A → Converter → Color Ramp 선택",
+    "Factor 입력에 텍스처 좌표·Noise 등 0‑1 범위 노드를 연결",
+    "Color Ramp 패널에서 Color 스톱을 클릭·드래그해 색상과 위치 조정",
+    "Interpolation 옵션을 필요에 따라 Linear·Constant·Ease 등으로 설정",
+    "Color 출력(또는 Alpha 출력)을 Principled BSDF·Emission 등 원하는 쉐이더에 연결"
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "색상 스톱 리스트; 각 스톱의 색과 위치를 정의합니다"
+    },
+    {
+      "name": "Interpolation",
+      "desc": "스톱 사이 색 변화 방식 (Linear, Constant, Ease, B‑Spline, Cardinal)"
+    },
+    {
+      "name": "Factor",
+      "desc": "0‑1 범위 입력; 스톱 위치에 따라 색을 선택합니다"
+    },
+    {
+      "name": "Alpha",
+      "desc": "스톱에 지정된 알파값을 출력합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 높이에 따라 색상 매핑",
+      "steps": [
+        "Noise Texture → Color Ramp Factor에 연결",
+        "Color Ramp에 저지대·중지대·고지대 색 스톱 추가",
+        "Color 출력 → Principled BSDF Base Color에 연결"
+      ]
+    },
+    {
+      "title": "헤어 색상 그라데이션",
+      "steps": [
+        "Hair Particle → Attribute 노드(‘color’) → Color Ramp Factor에 연결",
+        "Color Ramp에 밝은 색→어두운 색 스톱 배치",
+        "Color 출력 → Hair BSDF Color에 연결"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스톱이 너무 적어 색 변화가 거칠어짐 → 스톱을 추가하고 위치를 미세 조정",
+    "Interpolation을 Constant으로 남겨 부드러운 그라데이션이 안 됨 → Linear·Ease 등 부드러운 옵션으로 변경",
+    "Factor 입력이 0‑1 범위를 벗어남 → Map Range 노드로 정규화 후 연결"
+  ],
+  "related": [
+    "MixRGB",
+    "Hue Saturation Value",
+    "Mapping",
+    "Texture Coordinate"
+  ],
+  "videos": [
+    {
+      "id": "X3mNSPHbsB4",
+      "title": "How to Use the COLOR RAMP Node in Blender! (Beginner Tutorial)",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "ViqfL0LOwUM",
+      "title": "Blender Basics - Gradient Materials | Color Ramp Node",
+      "author": "InfiniteDigital"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Color%20Ramp%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Shader Editor",
+    "Converter",
+    "Color Ramp"
+  ],
+  "at": "2026-11-02T02:38:19.305377+00:00"
+}
