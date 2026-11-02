@@ -1,0 +1,98 @@
+{
+  "id": "blender-texture-coordinate-and-mapping-2e82",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Texture Coordinate and Mapping",
+  "title": "Mapping — 텍스처 위치·크기",
+  "summary": "Texture Coordinate와 Mapping 노드는 쉐이더에서 텍스처 좌표를 선택·변환해 UV, Object, Generated 등 다양한 기준으로 텍스처를 배치합니다.",
+  "when": [
+    "UV가 없거나 재배치가 필요할 때",
+    "텍스처를 객체 공간에 맞추고 싶을 때",
+    "텍스처의 반복·스케일·오프셋을 자유롭게 조정하고 싶을 때"
+  ],
+  "steps": [
+    "Shader Editor 열기 (Shift+F3)",
+    "Shift+A → Input → Texture Coordinate 추가",
+    "Shift+A → Vector → Mapping 추가",
+    "Mapping 노드의 Vector 입력에 Texture Coordinate의 원하는 출력(예: UV) 연결",
+    "Mapping 노드의 Location·Rotation·Scale 값을 조정",
+    "Mapping 출력 → Image Texture 노드의 Vector 입력에 연결"
+  ],
+  "params": [
+    {
+      "name": "Location",
+      "desc": "텍스처를 X/Y/Z 축으로 이동시켜 오프셋을 조정합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "텍스처를 지정 축을 중심으로 회전시킵니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "텍스처의 크기와 반복 횟수를 조절합니다."
+    },
+    {
+      "name": "Vector (Texture Coordinate output)",
+      "desc": "UV, Object, Generated 등 좌표 원천을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "객체 전체에 동일한 텍스처 반복 적용",
+      "steps": [
+        "Texture Coordinate → Generated 연결",
+        "Mapping Scale X/Y를 5로 설정",
+        "Image Texture 노드에 Mapping 출력 연결"
+      ]
+    },
+    {
+      "title": "UV가 없는 기본 큐브에 텍스처 맞추기",
+      "steps": [
+        "Texture Coordinate → Object 연결",
+        "Mapping Rotation Z를 90°로 설정",
+        "Mapping 출력 → Image Texture의 Vector 입력에 연결"
+      ]
+    },
+    {
+      "title": "텍스처 일부만 이동시키기",
+      "steps": [
+        "Texture Coordinate → UV 연결",
+        "Mapping Location X를 0.2, Y를 -0.1로 설정",
+        "Image Texture에 연결 후 결과 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 출력 대신 Generated 사용 → 텍스처가 왜곡됨 → 올바른 출력(예: UV)으로 교체",
+    "Scale 값을 0으로 설정 → 텍스처가 사라짐 → 1 이상의 값으로 조정",
+    "Mapping 노드와 Image Texture 사이에 다른 노드를 삽입했지만 Vector 입력을 연결하지 않음 → 좌표 변환이 적용되지 않음 → Mapping 출력 → 다음 노드에 정확히 연결"
+  ],
+  "related": [
+    "UV Map",
+    "Vector Math",
+    "Normal Map",
+    "Image Texture"
+  ],
+  "videos": [
+    {
+      "id": "RrtGmzkp-CA",
+      "title": "Texture Coordinate Node | Blender Tutorial",
+      "author": "MK Graphics"
+    },
+    {
+      "id": "8od3pGdiRG8",
+      "title": "Understanding Texture Coordinates - Getting Started with Blender Nodes",
+      "author": "Erindale"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Texture%20Coordinate%20and%20Mapping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Shader Editor",
+    "Input",
+    "Texture Coordinate"
+  ],
+  "at": "2026-11-02T02:18:38.480084+00:00"
+}

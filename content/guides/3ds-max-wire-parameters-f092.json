@@ -1,0 +1,101 @@
+{
+  "id": "3ds-max-wire-parameters-f092",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Wire Parameters",
+  "title": "Wire Parameters — 값 연결",
+  "summary": "Wire Modifier는 선택한 객체를 실선 형태의 와이어프레임 메쉬로 변환해, 파이프나 전선 같은 구조물을 빠르게 만들 수 있습니다.",
+  "when": [
+    "복잡한 모델을 와이어 형태로 단순화하고 싶을 때",
+    "전선·파이프·케이블 등 실물과 비슷한 원통형 구조를 만들 때",
+    "리깅·시뮬레이션용 가시적인 가이드라인이 필요할 때"
+  ],
+  "steps": [
+    "Create → Geometry → Standard Primitives 중 원하는 기본 형태(예: Cylinder)를 만든다",
+    "Modify 패널 → Modifier List 에서 Wire 를 선택한다",
+    "Parameters 롤아웃에서 원하는 Segments 와 Angle 값을 설정한다",
+    "Thickness 를 조정해 와이어 두께를 지정한다",
+    "필요하면 Cap Type 을 End Cap 으로 바꾸어 끝을 닫는다",
+    "Apply 를 눌러 변환을 완료한다"
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "와이어를 구성할 원형 단면의 분할 수, 높을수록 원형에 가깝게"
+    },
+    {
+      "name": "Angle",
+      "desc": "와이어 단면의 회전 각도, 기본값 0°"
+    },
+    {
+      "name": "Thickness",
+      "desc": "와이어의 두께"
+    },
+    {
+      "name": "Cap Type",
+      "desc": "와이어 끝 부분 처리 방식 (None, End Cap)"
+    },
+    {
+      "name": "Material ID",
+      "desc": "와이어에 할당할 재질 ID"
+    },
+    {
+      "name": "Preserve Original",
+      "desc": "원본 객체를 유지하고 와이어 복제본을 생성"
+    }
+  ],
+  "examples": [
+    {
+      "title": "전선 만들기",
+      "steps": [
+        "Cylinder 를 만든 뒤 Height 를 100, Radius 를 2 로 설정",
+        "Wire Modifier 적용 → Segments 를 12, Thickness 를 0.5 로 조정",
+        "Cap Type 을 End Cap 으로 선택해 양쪽 끝을 닫는다"
+      ]
+    },
+    {
+      "title": "파이프형 와이어 프레임",
+      "steps": [
+        "Pipe (Boolean) 로 두 개의 Cylinder 를 결합",
+        "Wire Modifier 적용 → Segments 를 16, Thickness 를 0.3 로 설정",
+        "Angle 을 45° 로 회전해 비스듬한 파이프 효과 부여"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Segments 가 너무 적으면 원형이 사각형처럼 보인다 → Segments 를 12 이상으로 늘린다",
+    "Thickness 가 0이면 보이지 않는다 → 적절한 값(0.2~1)으로 설정한다",
+    "Cap Type 을 None 으로 두면 끝이 열린 채로 남는다 → End Cap 으로 변경한다"
+  ],
+  "related": [
+    "Editable Poly",
+    "TurboSmooth",
+    "Shell Modifier",
+    "Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "NiD3-63jkMw",
+      "title": "3DS Max Wire Parameters",
+      "author": "Games Defined"
+    },
+    {
+      "id": "bzNO5ywo7hM",
+      "title": "Tutorial on wire parameters in 3dsmax.",
+      "author": "Kayo Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Wire%20Parameters",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "Standard Primitives",
+    "Cylinder",
+    "Modify",
+    "Modifier List"
+  ],
+  "at": "2026-11-02T02:18:34.396446+00:00"
+}
