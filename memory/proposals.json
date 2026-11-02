@@ -8060,5 +8060,104 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T18:11:44+00:00",
+    "kind": "proposal",
+    "id": "p-a8822a30fe",
+    "title": "경량 로컬 RAG 검색 엔드포인트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #45·#46에 RAG 오픈소스 활용 방안이 문서화됨. 현재 코드베이스에 RAG 서비스가 없음.",
+    "proposal": "1) backend/app/services/rag_search.py 파일에 LangChain + Llama.cpp(또는 GPT4All) 기반 검색 서비스 구현 (docs/tech-research.md와 README.md를 인덱싱). 2) main.py에 /api/rag-search POST 엔드포인트 추가. 3) backend/tests/test_rag_search.py 단위 테스트 작성 (질문-답변 매핑 검증). 4) web/ui/search.html에 ‘Help’ 버튼 추가 및 fetch 호출 구현.",
+    "expected": "사용자는 UI에서 질문을 입력해 문서 기반 즉시 답변을 받을 수 있어 UX가 향상되고, 검색 유입이 증가할 것으로 예상됩니다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T18:11:44+00:00",
+    "kind": "proposal",
+    "id": "p-96926c72df",
+    "title": "RAG 서비스 배포용 Dockerfile 업데이트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "RAG 기능 추가 시 필요한 런타임 의존성(예: llama.cpp)과 모델 파일을 포함해야 함.",
+    "proposal": "backend/Dockerfile에 llama.cpp 바이너리와 모델 파일(예: ggml‑model‑q4_0.bin) 다운로드 단계 추가. 환경변수 MODEL_PATH 지정. CI에 이미지 빌드 테스트 포함.",
+    "expected": "로컬 및 클라우드 배포 시 RAG 서비스가 자동으로 포함돼 별도 설정 없이 동작, 운영 복잡도 감소.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T18:11:44+00:00",
+    "kind": "proposal",
+    "id": "p-a663239bae",
+    "title": "RAG 사용 가이드와 예시 콘텐츠 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "PR #45·#46에 문서화만 이루어졌으며, 실제 사용 예시가 부족함.",
+    "proposal": "docs/user-guide.md에 ‘AI 도우미 사용법’ 섹션 추가: 질문 예시, 응답 형식, 제한 사항 명시. 웹 UI에 툴팁과 샘플 질문 제공.",
+    "expected": "사용자 이해도 상승 및 문의 감소, 검색 엔진 최적화(FAQ) 효과.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T18:14:30.765755+00:00",
+    "kind": "decision",
+    "id": "p-a8822a30fe",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T18:14:30.772913+00:00",
+    "kind": "decision",
+    "id": "p-96926c72df",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T18:14:30.779462+00:00",
+    "kind": "decision",
+    "id": "p-a663239bae",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T18:14:42.908688+00:00",
+    "kind": "triage",
+    "id": "p-a8822a30fe",
+    "verdict": "agent",
+    "reason": "최근 커밋과 끝낸 제안에 RAG 검색 UI와 문서화는 포함되지만, 실제 백엔드 서비스 구현·엔드포인트·테스트·UI 버튼 추가는 아직 반영되지 않음"
+  },
+  {
+    "at": "2026-11-02T18:15:03.272497+00:00",
+    "kind": "triage",
+    "id": "p-96926c72df",
+    "verdict": "agent",
+    "reason": "Dockerfile 및 CI 설정 변경은 코드 수정으로 해결 가능"
+  },
+  {
+    "at": "2026-11-02T18:15:45.438923+00:00",
+    "kind": "triage",
+    "id": "p-a663239bae",
+    "verdict": "human",
+    "reason": "문서와 UI 툴팁 추가는 코드와 디자인 검토가 필요하며, 현재 커밋·완료된 제안에 포함되지 않음"
+  },
+  {
+    "at": "2026-11-02T18:15:45.445763+00:00",
+    "kind": "applied",
+    "id": "p-a663239bae",
+    "result": "사람 할 일 — 1. docs/user-guide.md 파일을 열고 ‘AI 도우미 사용법’ 섹션을 작성한다.\n   - 질문 예시, 응답 형식, 제한 사항을 명시한다.\n2. 웹 UI(예: src/components/HelpTooltip.vue 또는 해당 React/TS 파일)에서 툴팁 컴포넌트를 추가하거나 기존 컴포넌트를 수정한다.\n   - 샘플 질문을 표시하도록 UI 텍스트와 스타일을 적용한다.\n3. 변경 사항을 로컬에서 테스트하고, Storybook 또는 직접 UI에서 툴팁이 정상 동작하는지 확인한다.\n4. PR을 생성하고 리뷰어에게 문서와 UI 변경을 설명한다.\n5. 리뷰가 통과되면 main 브랜치에 머지하고 CI가 성공하는지 확인한다."
   }
 ]
