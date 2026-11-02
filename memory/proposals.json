@@ -6512,5 +6512,53 @@
     "id": "p-e682ec7024",
     "v": "done",
     "note": "자동 완료 확인: PR #40 닫힘"
+  },
+  {
+    "at": "2026-11-02T12:49:40+00:00",
+    "kind": "proposal",
+    "id": "p-e82bee1515",
+    "title": "대기 중인 백엔드 코어 PR (#40~#42) 최종 승인 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42 등 URL 유효성 검사 관련 핵심 코드 변경 PR들이 승인 대기 상태로 머지되지 않고 있습니다.",
+    "proposal": "GitHub에서 해당 PR들의 단위 테스트 통과 여부를 검토한 뒤 백엔드 코어 변경 건을 승인하여 반영합니다.",
+    "expected": "입력 URL 유효성 검사 로직이 안정적으로 적용되어 서비스 신뢰도가 높아집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:49:40+00:00",
+    "kind": "proposal",
+    "id": "p-9921bd882b",
+    "title": "PBR 맵 생성 입력 검증 PR (#43, #44) 검토 및 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/pbr_generator.py의 입력 이미지 무결성 검증과 관련된 PR #43, #44가 대기 중입니다.",
+    "proposal": "PBR 맵 입력 검증 함수 및 관련 테스트 코드를 확인하고 이상이 없을 시 승인 처리를 진행합니다.",
+    "expected": "잘못된 이미지 형식 입력 시 발생하는 예외 처리가 안정화됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T12:50:01.657975+00:00",
+    "kind": "decision",
+    "id": "p-e82bee1515",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 코어 PR(#40~#42) 테스트 확인 후 병합 요청",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T12:50:01.663464+00:00",
+    "kind": "decision",
+    "id": "p-9921bd882b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
   }
 ]
