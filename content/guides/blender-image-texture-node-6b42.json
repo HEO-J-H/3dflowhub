@@ -1,0 +1,99 @@
+{
+  "id": "blender-image-texture-node-6b42",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Image Texture node",
+  "title": "Image Texture — 이미지 텍스처 연결",
+  "summary": "Image Texture 노드는 이미지 파일을 텍스처로 불러와 쉐이더에 연결해 색상·디스플레이스먼트 등을 적용합니다.",
+  "when": [
+    "UV가 펼쳐진 메쉬에 사진을 입히고 싶을 때",
+    "디스플레이스먼트·노멀맵 등 이미지 기반 효과를 적용할 때",
+    "프로시저 텍스처와 혼합해 디테일을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Shift+A → Texture → Image Texture (Shader Editor)",
+    "Image Texture 노드 선택 후 Open 클릭, 이미지 파일 선택",
+    "UV Map(또는 Texture Coordinate) 노드와 Color 입력에 연결",
+    "Mapping 노드로 스케일·오프셋을 조정"
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "텍스처 색상이 적용되는 입력"
+    },
+    {
+      "name": "Alpha",
+      "desc": "투명도 채널을 사용"
+    },
+    {
+      "name": "Vector",
+      "desc": "텍스처 좌표 입력, UV/Generated 등 선택"
+    },
+    {
+      "name": "Projection",
+      "desc": "텍스처 투영 방식 (Flat, Box 등)"
+    },
+    {
+      "name": "Interpolation",
+      "desc": "보간 방식 (Linear, Closest, Cubic)"
+    },
+    {
+      "name": "Extension",
+      "desc": "텍스처 경계 처리 (Repeat, Extend, Clip)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽면에 사진 텍스처 입히기",
+      "steps": [
+        "Smart UV Project로 UV 펼치기",
+        "Image Texture 노드에 사진 열기",
+        "Base Color에 연결",
+        "렌더링에서 확인"
+      ]
+    },
+    {
+      "title": "디스플레이스먼트로 지형 디테일 추가",
+      "steps": [
+        "흑백 높이맵 이미지 준비",
+        "Image Texture 노드에 연결",
+        "Displacement 노드에 연결",
+        "Material Output → Displacement에 연결",
+        "Mapping 노드에서 Scale 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지가 회색조로 보인다 → Color Space를 'Non-Color'로 변경",
+    "텍스처가 메쉬에 맞지 않는다 → UV가 올바르게 언랩되지 않음, UV 재언랩 또는 UV Map 노드 사용",
+    "스케일이 과도하게 커 보인다 → Mapping 노드에서 Scale 값을 조정"
+  ],
+  "related": [
+    "UV Map",
+    "Texture Coordinate",
+    "Mapping",
+    "Shader Editor"
+  ],
+  "videos": [
+    {
+      "id": "TJtiyQI6J-Q",
+      "title": "How to move, rotate, scale image texture in Blender using mapping node and UV layout",
+      "author": "blenderian"
+    },
+    {
+      "id": "mURA2g1rOSc",
+      "title": "Add A Texture to An Object - Blender Tutorial",
+      "author": "TutsByKai"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Image%20Texture%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture",
+    "Image Texture",
+    "Shader Editor"
+  ],
+  "at": "2026-11-02T01:58:29.016708+00:00"
+}
