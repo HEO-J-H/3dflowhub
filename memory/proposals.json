@@ -5468,5 +5468,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-02T09:20:30+00:00",
+    "kind": "proposal",
+    "id": "p-e1fc85f2f3",
+    "title": "대기 중인 코어 PR (#37~#44) 최종 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #37, #38, #40, #41, #42, #43, #44 등 백엔드 서비스 입력 검증 및 테스트 관련 코어 PR 다수가 대기 중",
+    "proposal": "GitHub에서 PR #37부터 #44까지의 변경 사항과 테스트 통과 여부를 일괄 확인한 뒤 순차적으로 병합합니다.",
+    "expected": "핵심 파이프라인의 입력 유무결성 검증 로직이 메인 브랜치에 반영되어 안정성 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T09:20:30+00:00",
+    "kind": "proposal",
+    "id": "p-33f56d0cf0",
+    "title": "웹 버전(web/) 성능 및 에러 처리 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 코어 PR이 다수 병합 대기 중이며 웹 버전 사용자 경험 안정화 필요",
+    "proposal": "web/ 디렉토리 내 브라우저 기반 높이맵 메시 생성 및 PBR 처리 시 예외 상황에 대한 사용자 안내 문구와 에러 핸들링을 보완합니다.",
+    "expected": "클라이언트 사이드 예외 상황에서의 사용자 이탈 방지 및 사용성 개선",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-02T09:21:30.334175+00:00",
+    "kind": "decision",
+    "id": "p-e1fc85f2f3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T09:21:30.341369+00:00",
+    "kind": "decision",
+    "id": "p-33f56d0cf0",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-02T09:22:06.168986+00:00",
+    "kind": "triage",
+    "id": "p-33f56d0cf0",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋 내역에 웹 버전 성능 및 에러 처리 점검과 관련된 작업이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-02T09:22:06.175668+00:00",
+    "kind": "decision",
+    "id": "p-33f56d0cf0",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 내역에 웹 버전 성능 및 에러 처리 점검과 관련된 작업이 반영되어 있습니다."
   }
 ]
