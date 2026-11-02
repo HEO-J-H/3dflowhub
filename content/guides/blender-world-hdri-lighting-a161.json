@@ -1,0 +1,96 @@
+{
+  "id": "blender-world-hdri-lighting-a161",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "World HDRI lighting",
+  "title": "HDRI 월드 조명",
+  "summary": "World HDRI lighting은 환경 텍스처를 사용해 씬 전체에 자연광과 배경을 제공하는 기능입니다.",
+  "when": [
+    "실제 조명과 반사 효과가 필요한 실내·실외 씬",
+    "렌더링에 배경 이미지가 필요할 때",
+    "리얼리즘을 높이기 위해 전역 조명을 간단히 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Properties → World 탭 클릭",
+    "Color 옆 점 아이콘 → Environment Texture 선택",
+    "Open 버튼을 눌러 HDRI 파일을 불러오기",
+    "Viewport Shading을 Rendered 모드로 전환 (Z, 8)",
+    "Strength 값을 조정해 조명 강도 맞추기"
+  ],
+  "params": [
+    {
+      "name": "Strength",
+      "desc": "조명 강도를 배수로 조정"
+    },
+    {
+      "name": "Rotation",
+      "desc": "HDRI 이미지 회전으로 빛 방향 변경"
+    },
+    {
+      "name": "Color",
+      "desc": "전체 색조를 곱해 분위기 보정"
+    },
+    {
+      "name": "Exposure",
+      "desc": "노출값으로 밝기 미세 조정"
+    },
+    {
+      "name": "Visibility",
+      "desc": "렌더링에만 적용하거나 뷰포트에만 적용 선택"
+    },
+    {
+      "name": "Use Nodes",
+      "desc": "노드 편집기로 복합 설정 가능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실외 풍경에 일몰 조명 적용",
+      "steps": [
+        "HDRI 파일 'sunset.hdr' 로드",
+        "Strength 1.5 로 증가",
+        "Rotation 45° 로 회전"
+      ]
+    },
+    {
+      "title": "실내 스튜디오 배경 설정",
+      "steps": [
+        "HDRI 'studio.hdr' 로드",
+        "Strength 0.8 로 낮춤",
+        "Color에 약간의 파란색 곱하기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "HDRI가 회색으로 보임 → Strength 값을 올리거나 Viewport Shading을 Rendered 로 전환",
+    "배경이 보이지 않음 → World → Use Nodes 체크 후 Background 노드에 연결",
+    "렌더링 시 노이즈 증가 → Strength 대신 Exposure 조정 후 노이즈 감소"
+  ],
+  "related": [
+    "Environment Texture",
+    "Background node",
+    "Light Probe",
+    "World Settings"
+  ],
+  "videos": [
+    {
+      "id": "rMm3e49IYj0",
+      "title": "Setup a HDRI in Under 20 Seconds in Blender!",
+      "author": "BlenderVitals"
+    },
+    {
+      "id": "QNr7lwhW0h4",
+      "title": "How to Light your Scenes with HDRIs in Blender",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20World%20HDRI%20lighting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "World"
+  ],
+  "at": "2026-11-02T03:48:23.486507+00:00"
+}

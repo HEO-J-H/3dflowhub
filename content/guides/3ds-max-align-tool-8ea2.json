@@ -1,0 +1,94 @@
+{
+  "id": "3ds-max-align-tool-8ea2",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Align tool",
+  "title": "Align — 오브젝트 정렬",
+  "summary": "Align tool은 선택한 객체들을 기준 객체의 위치·회전·스케일에 맞춰 정렬해 줍니다.",
+  "when": [
+    "여러 개의 오브젝트를 같은 높이·위치에 배치하고 싶을 때",
+    "문·창 등 반복적인 요소를 정확히 맞출 때",
+    "카메라나 라이트를 특정 오브젝트와 동일한 축에 맞출 때"
+  ],
+  "steps": [
+    "Tools 메뉴 → Align... 선택 (Hotkey Alt+A)",
+    "정렬 기준이 될 오브젝트를 먼저 클릭하여 Reference 로 지정",
+    "다음에 정렬할 오브젝트들을 차례로 클릭 (또는 Shift 로 다중 선택)",
+    "Align 창에서 Align Position, Align Rotation, Align Scale 중 필요한 항목 체크 후 Apply 클릭"
+  ],
+  "params": [
+    {
+      "name": "Align Position X",
+      "desc": "X축 위치를 기준 객체와 동일하게 맞춤"
+    },
+    {
+      "name": "Align Position Y",
+      "desc": "Y축 위치를 기준 객체와 동일하게 맞춤"
+    },
+    {
+      "name": "Align Position Z",
+      "desc": "Z축 위치를 기준 객체와 동일하게 맞춤"
+    },
+    {
+      "name": "Align Rotation X",
+      "desc": "X축 회전을 기준 객체와 동일하게 맞춤"
+    },
+    {
+      "name": "Align Rotation Y",
+      "desc": "Y축 회전을 기준 객체와 동일하게 맞춤"
+    },
+    {
+      "name": "Align Rotation Z",
+      "desc": "Z축 회전을 기준 객체와 동일하게 맞춤"
+    }
+  ],
+  "examples": [
+    {
+      "title": "문틀에 문을 정확히 맞추기",
+      "steps": [
+        "문틀을 먼저 선택 → Alt+A → Align Position X/Y/Z 체크 → Apply",
+        "문을 선택 후 동일 절차 실행 → 문이 문틀 중심에 정렬"
+      ]
+    },
+    {
+      "title": "같은 높이의 조명 배열",
+      "steps": [
+        "첫 번째 라이트를 Reference 로 지정 → Alt+A → Align Position Z 체크 → Apply",
+        "다른 라이트들을 선택 후 같은 절차 반복 → 모든 라이트가 동일 높이 유지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Reference 객체를 먼저 선택하지 않음 → 먼저 기준 오브젝트를 클릭하고 그 다음 정렬 대상 선택",
+    "Pivot 위치가 객체 중심이 아니어서 정렬이 어긋남 → Hierarchy > Affect Pivot Only 로 Pivot을 중앙으로 이동 후 Align 수행",
+    "다른 로컬 축을 가진 객체를 회전 정렬했을 때 방향이 뒤틀림 → Align 창에서 'World' 옵션을 사용하거나 객체의 로컬 축을 동일하게 맞춘 후 정렬"
+  ],
+  "related": [
+    "Snap",
+    "Pivot",
+    "Group",
+    "Array"
+  ],
+  "videos": [
+    {
+      "id": "jj2yTzdQ9l8",
+      "title": "Align tool basics in 3DS Max",
+      "author": "David Pearson"
+    },
+    {
+      "id": "HkNNd7k8cH8",
+      "title": "3ds Max 2023 Tutorial: Align tool",
+      "author": "AEC Zone "
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Align%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tools",
+    "Align",
+    "Hotkey Alt"
+  ],
+  "at": "2026-11-02T03:48:19.926699+00:00"
+}
