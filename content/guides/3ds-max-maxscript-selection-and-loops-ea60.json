@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-maxscript-selection-and-loops-ea60",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "MAXScript selection and loops",
+  "title": "MAXScript — 선택·반복",
+  "summary": "MAXScript의 선택(Selection)과 반복문(Loops)을 활용해 뷰포트의 오브젝트들을 조건별로 빠르게 제어하고 자동화 작업을 수행합니다. 반복적인 수작업을 코드로 단 몇 초 만에 처리할 수 있습니다.",
+  "when": [
+    "씬 안에 수많은 오브젝트가 있을 때 이름이나 조건에 맞는 것만 골라야 할 때",
+    "선택된 모든 오브젝트의 속성(이름, 위치, 머티리얼 등)을 한 번에 변경해야 할 때",
+    "특정 규칙에 따라 오브젝트들을 일괄 정렬하거나 배치해야 할 때"
+  ],
+  "steps": [
+    "상단 메인 메뉴 바에서 Scripting 툴바를 찾습니다.",
+    "Scripting → MAXScript Listener를 클릭하거나 Hotkey F11을 눌러 리스너 창을 엽니다.",
+    "하단 미니 리스너 창이나 상단 대형 창의 입력 칸에 selection(선택된 오브젝트 제어)이나 for 문 구문을 작성합니다.",
+    "예시로 'for o in selection do o.wirecolor = color 255 0 0'을 입력하고 Enter를 누릅니다.",
+    "뷰포트에서 현재 선택된 모든 오브젝트의 와이어프레임 색상이 빨간색으로 변경된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "selection",
+      "desc": "현재 뷰포트에서 선택된 오브젝트들의 집합을 반환하거나 제어합니다."
+    },
+    {
+      "name": "objects",
+      "desc": "씬에 존재하는 모든 오브젝트의 전체 집합을 가리킵니다."
+    },
+    {
+      "name": "for ... do",
+      "desc": "지정한 컬렉션이나 범위만큼 반복 작업을 수행하는 루프문입니다."
+    },
+    {
+      "name": "in",
+      "desc": "반복문에서 집합 내부의 각 요소를 순회할 때 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택된 모든 오브젝트 이름 뒤에 특정 접미사 붙이기",
+      "steps": [
+        "Scripting > MAXScript Listener (F11)를 엽니다.",
+        "코드 입력창에 'for o in selection do o.name += \"_LOD01\"'을 입력합니다.",
+        "Enter를 눌러 실행하고, Modify 패널에서 이름이 변경되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "선택된 오브젝트들의 Z축 위치를 모두 0으로 초기화하기",
+      "steps": [
+        "오브젝트 여러 개를 드래그하여 선택합니다.",
+        "MAXScript Listener 창을 엽니다.",
+        "'for o in selection do o.pos.z = 0'을 입력하고 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오타나 문법 오류 발생 시 'Runtime Error'가 뜸 → 대소문자와 띄어쓰기 규칙을 다시 확인하고 올바른 변수명을 사용합니다.",
+    "씬 전체 대상 반복문 실행 시 멈춤 현상 발생 → 'objects' 대신 필요한 조건이나 'selection' 범위 내에서만 먼저 테스트합니다."
+  ],
+  "related": [
+    "MAXScript Listener",
+    "MAXScript MacroRecorder",
+    "Array",
+    "Node"
+  ],
+  "videos": [
+    {
+      "id": "9pQxo-Cgri4",
+      "title": "Dot Loop Selection in 3ds max , a quick tips for easy selections",
+      "author": "ZKAcademy"
+    },
+    {
+      "id": "OJ5IWKB3owY",
+      "title": "3ds max Tips & Tricks Tutorial 2 | Modify Selection - Dot Loop - Dot Ring Selection Tools",
+      "author": "SWK Insights"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20MAXScript%20selection%20and%20loops",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Scripting",
+    "MAXScript Listener",
+    "Hotkey F11"
+  ],
+  "at": "2026-11-03T14:46:32.779312+00:00"
+}
