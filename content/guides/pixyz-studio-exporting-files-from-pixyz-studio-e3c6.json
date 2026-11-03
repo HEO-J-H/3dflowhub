@@ -1,0 +1,93 @@
+{
+  "id": "pixyz-studio-exporting-files-from-pixyz-studio-e3c6",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Exporting files from Pixyz Studio",
+  "title": "파일 Export (FBX·glTF·USD)",
+  "summary": "Pixyz Studio에서 최적화 및 준비가 끝난 3D/CAD 모델을 FBX, glTF, USDZ 등 산업 표준 파일 포맷으로 내보내는 기능입니다. 게임 엔진, 웹, 시각화 툴과의 원활한 파이프라인 연계를 지원합니다.",
+  "when": [
+    "복잡한 CAD 데이터를 최적화한 후 Unreal Engine이나 Unity 등 게임 엔진으로 가져갈 때",
+    "웹 및 모바일 환경에서 가볍게 로드할 수 있는 glTF/glb 포맷으로 변환할 때",
+    "다른 3D DCC 툴이나 USD 기반 파이프라인으로 씬 데이터를 전달할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 3D/CAD 모델을 불러와 최적화 작업을 완료합니다.",
+    "상단 메뉴 바에서 File > Export Scene을 선택하거나 Hotkey Ctrl + E를 누릅니다.",
+    "대화상자에서 저장할 파일 포맷을 선택하고 파일 이름을 지정합니다.",
+    "필요한 경우 Preferences (F9) > IO > Export에서 Up-Axis, 애니메이션, 메타데이터 포함 여부를 설정합니다.",
+    "Save를 눌러 Export를 완료하고 뷰포트와 대상 폴더에서 정상 생성 여부를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Export Scene",
+      "desc": "현재 씬 전체를 지원되는 파일 포맷으로 내보냅니다."
+    },
+    {
+      "name": "Export Selection",
+      "desc": "Product Structure(트리)에서 선택한 오커런스만 골라서 내보냅니다."
+    },
+    {
+      "name": "UpAxis",
+      "desc": "Export 시 파일의 상향 축을 정의하며 FBX와 USD 포맷에 적용됩니다."
+    },
+    {
+      "name": "ExportHiddenParts",
+      "desc": "비활성화(숨김)된 파츠를 숨김 상태 그대로 함께 내보냅니다."
+    },
+    {
+      "name": "ExportAnimation",
+      "desc": "애니메이션을 지원하는 포맷에 한해 애니메이션 데이터를 함께 내보냅니다."
+    },
+    {
+      "name": "ExportMetadata",
+      "desc": "오커런스에 포함된 메타데이터를 함께 내보냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unity 엔진으로 최적화 모델 Export",
+      "steps": [
+        "File > Export Scene (Ctrl + E)을 실행합니다.",
+        "glTF 포맷을 선택하여 .glb 파일로 바이너리 Export를 진행합니다.",
+        "Unity Editor에서 glTFast 플러그인을 사용하여 최적화된 에셋을 불러옵니다."
+      ]
+    },
+    {
+      "title": "선택한 파츠만 FBX로 Export",
+      "steps": [
+        "Product Structure 트리에서 내보낼 특정 파츠를 선택합니다.",
+        "Hotkey Ctrl + Shift + E를 눌러 Export Selection을 실행합니다.",
+        "포맷을 FBX로 설정하고 원하는 경로에 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오프젝트가 누락됨 → Export Scene 대신 일부만 선택된 상태에서 Export Selection을 실행했기 때문입니다. 트리를 전체 선택하거나 Export Scene을 사용하세요.",
+    "축 방향이 뒤틀림 → 뷰포트 상향 축 설정이 일치하지 않는 경우입니다. Preferences > IO > Export의 UpAxis 설정을 확인하세요.",
+    "메타데이터나 애니메이션이 유실됨 → 선택한 파일 포맷이 해당 데이터를 지원하지 않거나 Export 옵션이 꺼져 있기 때문입니다. 포맷 지원 여부와 Export 옵션을 확인하세요."
+  ],
+  "related": [
+    "Export Scene",
+    "Export Selection",
+    "Save Project As",
+    "Preferences"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingFiles.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T11:03:55.141355+00:00"
+}
