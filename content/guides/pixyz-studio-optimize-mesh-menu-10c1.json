@@ -1,0 +1,99 @@
+{
+  "id": "pixyz-studio-optimize-mesh-menu-10c1",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Optimize Mesh menu",
+  "title": "Optimize Mesh 메뉴 전체",
+  "summary": "Pixyz Studio의 Optimize Mesh 메뉴는 CAD 모델의 폴리곤 밀도를 줄이고 불필요한 면을 정리하여 실시간 엔진과 웹 환경에 최적화된 가벼운 메시로 변환하는 고급 최적화 도구 모음입니다.",
+  "when": [
+    "복잡한 CAD 조립품을 게임 엔진이나 실시간 렌더링에 맞게 경량화할 때",
+    "보이지 않는 내부 지오메트리나 구멍을 제거하여 렌더링 부하를 줄일 때",
+    "LOD(Level of Detail) 체인이나 프록시 메시를 자동 생성하여 성능을 높일 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 최적화할 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure(Scene Tree) 패널에서 최적화할 파츠나 어셈블리를 선택합니다.",
+    "상단 메뉴 바에서 Optimize Mesh 메뉴를 클릭합니다.",
+    "원하는 최적화 알고리즘(예: Decimate To Target, Remove Holes 등)을 선택합니다.",
+    "열리는 대화 상자에서 세부 파라미터 값을 설정하고 Execute를 클릭합니다.",
+    "오른쪽 Inspector 패널에서 결과물의 폴리곤 수와 구조를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Decimate To Target",
+      "desc": "사용자가 지정한 삼각형 개수나 비율에 맞춰 메시 폴리곤 밀도를 정확하게 줄입니다."
+    },
+    {
+      "name": "Generate LOD Chain",
+      "desc": "선택한 모델에 대한 3단계 LOD(Level of Detail)를 자동으로 생성합니다."
+    },
+    {
+      "name": "Remove Occluded Geometries",
+      "desc": "구면 상에 배치된 가상 카메라 시점에서 보이지 않는 파츠나 폴리곤을 자동으로 삭제합니다."
+    },
+    {
+      "name": "Proxy Mesh",
+      "desc": "현재 선택 영역을 기반으로 리메싱된 단순화된 프록시 메시를 자동으로 생성합니다."
+    },
+    {
+      "name": "Voxelize",
+      "desc": "선택한 파츠의 외부 외피를 기반으로 복셀(Voxel) 표현을 자동으로 생성합니다."
+    },
+    {
+      "name": "Bake Texture Maps",
+      "desc": "노멀 맵, 디퓨즈 맵 등을 베이킹하여 디테일을 유지하면서 최적화된 텍스처를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 엔진용 폴리곤 대폭 감축",
+      "steps": [
+        "Product Structure 패널에서 고밀도 CAD 파츠 선택",
+        "Optimize Mesh 메뉴에서 Decimate To Target 선택",
+        "목표 폴리곤 수(Polycount) 입력 후 Execute 실행"
+      ]
+    },
+    {
+      "title": "보이지 않는 내부 구조 자동 정리",
+      "steps": [
+        "최적화할 전체 어셈블리 모델 선택",
+        "Optimize Mesh 메뉴에서 Remove Occluded Geometries 실행",
+        "외부에서 보이지 않는 내부 파츠 및 폴리곤 자동 제거 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "원본 CAD 품질 손상 → 데시메이션 전 Remove Holes나 Repair Mesh로 틈새를 먼저 메운 뒤 최적화 진행",
+    "지나친 폴리곤 감축으로 외곽선 깨짐 → Decimate To Target 사용 시 비율을 단계적으로 낮추며 시각적 품질 확인"
+  ],
+  "related": [
+    "Decimate To Target",
+    "Decimate To Quality",
+    "Generate LOD Chain",
+    "Remove Occluded Geometries"
+  ],
+  "videos": [
+    {
+      "id": "3FefRon9UpQ",
+      "title": "Pixyz Studio #20  |   How to reduce a mesh using Pixyz Studio?",
+      "author": "Pixyz"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/OptimizeMeshMenu.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Scene Tree",
+    "Optimize Mesh"
+  ],
+  "at": "2026-11-03T09:23:39.040408+00:00"
+}

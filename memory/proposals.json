@@ -8655,5 +8655,84 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T09:23:34+00:00",
+    "kind": "proposal",
+    "id": "p-d2c0ea8a08",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 backend/app/services/url_ingest.py 및 pbr_generator.py 검증과 관련된 PR #40부터 #44까지 총 5개의 핵심 코드 변경 PR이 승인 대기 상태로 머물러 있습니다.",
+    "proposal": "GitHub 저장소에서 PR #40, #41, #42, #43, #44의 테스트 결과와 코드를 확인하고 파이프라인 안정성을 점검하여 최종 승인 또는 피드백을 진행합니다.",
+    "expected": "입력값 및 PBR 맵 생성의 안정성이 높아지고 백엔드 예외 처리가 견고해집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T09:23:34+00:00",
+    "kind": "proposal",
+    "id": "p-5713bf8186",
+    "title": "웹 버전(web/) 입력 에러 메시지 UI 가독성 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단에서 실행되는 툴 특성상 사용자 입력 오류 시각적 피드백이 중요하나 최근 관련 UI 피드백 점검 제안이 반복되었습니다.",
+    "proposal": "web/index.html 및 관련 JS Script에서 잘못된 이미지나 파일 형식 입력 시 표시되는 에러 메시지의 UI 가독성과 스타일을 직관적으로 개선합니다.",
+    "expected": "사용자가 브라우저 버전 사용 중 오류 원인을 즉시 파악하고 대응할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T09:23:34+00:00",
+    "kind": "proposal",
+    "id": "p-cf7ecf2d8c",
+    "title": "로컬 RAG 가이드(docs/tech-research.md) 기반 검색 프로토타입 설계",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "최근 PR #45, #46을 통해 깃허브 RAG 오픈소스 활용 방안이 docs/tech-research.md에 성공적으로 정리 및 반영되었습니다.",
+    "proposal": "docs/tech-research.md에 정리된 내용을 바탕으로 가벼운 로컬 문서/가이드 검색 Prototype의 구체적인 구현 단계와 필요한 Script 구조를 작성합니다.",
+    "expected": "로컬 3D 파이프라인 문서 및 툴 가이드 접근성이 향상됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T09:23:59.601345+00:00",
+    "kind": "decision",
+    "id": "p-d2c0ea8a08",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T09:23:59.608503+00:00",
+    "kind": "decision",
+    "id": "p-5713bf8186",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T09:23:59.614736+00:00",
+    "kind": "decision",
+    "id": "p-cf7ecf2d8c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T09:24:02.108604+00:00",
+    "kind": "triage",
+    "id": "p-cf7ecf2d8c",
+    "verdict": "agent",
+    "reason": "docs/tech-research.md 기반의 로컬 RAG 검색 프로토타입 구현 및 스크립트 구조 작성은 코드로 직접 해결할 수 있는 작업입니다."
   }
 ]
