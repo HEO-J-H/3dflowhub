@@ -1,0 +1,88 @@
+{
+  "id": "3ds-max-maxscript-modifiers-via-script-f932",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "MAXScript modifiers via script",
+  "title": "MAXScript — 모디파이어 일괄 추가",
+  "summary": "3ds Max에서 MAXScript를 사용하여 오브젝트에 모디파이어를 동적으로 생성하고 적용하는 방법입니다. 반복적인 작업이나 대량의 오브젝트 제어 시간을 크게 단축해 줍니다.",
+  "when": [
+    "수십 개가 넘는 오브젝트에 동일한 모디파이어를 한 번에 추가해야 할 때",
+    "파라미터 값을 Script로 정밀하게 제어하거나 자동화할 때",
+    "반복되는 모델링 파이프라인 프로세스를 Script로 구축할 때"
+  ],
+  "steps": [
+    "Scripting 메뉴에서 MAXScript Listener를 엽니다 (Hotkey F11).",
+    "MAXScript Listener 창에서 새 Script 탭을 열거나 직접 코드를 입력할 준비를 합니다.",
+    "적용할 오브젝트를 뷰포트에서 선택합니다 ($ 변수 또는 selection 배열 사용).",
+    "모디파이어 추가 명령어를 입력합니다 (예: addModifier $ (Bend())).",
+    "리스터 창에서 엔터를 눌러 Script를 실행하고 뷰포트 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "addModifier",
+      "desc": "선택한 오브젝트에 지정한 모디파이어를 스택에 추가합니다."
+    },
+    {
+      "name": "modifiers",
+      "desc": "오브젝트에 적용된 모디파이어 스택에 접근하거나 배열로 관리합니다."
+    },
+    {
+      "name": "angle",
+      "desc": "Bend 등의 모디파이어에서 휘어지는 각도를 설정합니다."
+    },
+    {
+      "name": "direction",
+      "desc": "모디파이어가 적용되는 방향 벡터나 각도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 모든 오브젝트에 Bend 모디파이어 일괄 추가",
+      "steps": [
+        "MAXScript Listener 창을 엽니다 (F11).",
+        "for obj in selection do addModifier obj (Bend()) 코드를 입력합니다.",
+        "엔터를 눌러 실행하고 모디파이어 스택에 추가되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "Script로 모디파이어 파라미터 값 변경",
+      "steps": [
+        "오브젝트에 이미 적용된 Bend 모디파이어에 접근합니다 ($Box001.modifiers[#Bend].angle).",
+        "원하는 각도 값으로 대입합니다 ($Box001.modifiers[#Bend].angle = 45).",
+        "뷰포트에서 오브젝트가 45도 휘어졌는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트를 선택하지 않고 Script를 실행함 → 뷰포트에서 대상 오브젝트를 먼저 선택하거나 코드 내에서 명시해야 합니다.",
+    "모디파이어 클래스 이름을 잘못 입력함 → 정확한 영문 클래스 이름(예: Bend, Edit_Poly)을 사용해야 합니다."
+  ],
+  "related": [
+    "MAXScript Listener",
+    "MacroScript",
+    "Modifier List",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "Dz9i4y7NqW0",
+      "title": "Coding In 3Ds Max - Maxscript",
+      "author": "Shirzad Bahrami"
+    },
+    {
+      "id": "MCYHgWow5Ao",
+      "title": "How to Install & Use Copitor Script in 3ds Max | Step-by-Step Tutorial #3dsmax #3dtutorial #script",
+      "author": "Safa Rgaieg"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20MAXScript%20modifiers%20via%20script",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Scripting",
+    "MAXScript Listener",
+    "Hotkey F11"
+  ],
+  "at": "2026-11-03T14:55:52.532645+00:00"
+}
