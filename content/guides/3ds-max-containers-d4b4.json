@@ -1,0 +1,92 @@
+{
+  "id": "3ds-max-containers-d4b4",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Containers",
+  "title": "Container — 묶어 관리",
+  "summary": "Containers는 3ds Max에서 복잡한 씬을 여러 파일로 분할하고 팀원과 함께 협업할 수 있도록 관리하는 기능입니다. 무거운 오브젝트를 외부로 참조시켜 씬의 부담을 줄입니다.",
+  "when": [
+    "대규모 건축 시각화나 게임 배경에서 여러 아티스트가 동시에 작업할 때",
+    "폴리곤이 많은 배경 오브젝트를 메인 씬에 가볍게 불러와 배치할 때",
+    "외부에 있는 원본 에셋이 수정되었을 때 메인 씬에 실시간으로 반영되도록 관리할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Tools -> Containers -> Create Container를 선택합니다.",
+    "뷰포트에서 컨테이너로 묶을 오브젝트들을 선택하고 방금 만든 Container 바운딩 박스 안으로 배치합니다.",
+    "상단 메뉴 바에서 Tools -> Containers -> Container Explorer를 열어 계층 구조와 권한을 확인합니다.",
+    "컨테이너를 우클릭하여 Save Container를 선택해 외부 .maxc 파일로 저장합니다.",
+    "필요에 따라 Closed 상태로 전환하여 메인 씬의 부하를 줄이고 안전하게 보호합니다."
+  ],
+  "params": [
+    {
+      "name": "Closed",
+      "desc": "컨테이너 내부 오브젝트의 편집을 잠그고 외부 참조 상태로 유지합니다."
+    },
+    {
+      "name": "Open",
+      "desc": "컨테이너 내부의 오브젝트를 수정할 수 있도록 임시로 엽니다."
+    },
+    {
+      "name": "Save Container",
+      "desc": "컨테이너 설정을 외부 .maxc 파일로 저장합니다."
+    },
+    {
+      "name": "Reload",
+      "desc": "외부 파일에 저장된 최신 상태를 불러와 씬에 반영합니다."
+    },
+    {
+      "name": "Inherit",
+      "desc": "상위 컨테이너의 권한과 규칙을 그대로 상속받습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "도시 배경 건물 분할 관리",
+      "steps": [
+        "건물별로 오브젝트를 선택해 각각 Container로 만듭니다.",
+        "각 건물을 개별 .maxc 파일로 저장합니다.",
+        "메인 씬에서는 컨테이너를 닫아두고 가볍게 배치 작업을 진행합니다."
+      ]
+    },
+    {
+      "title": "협업 작업에서 파트별 분할",
+      "steps": [
+        "실내 가구 배치를 담당하는 파트와 구조물을 담당하는 파트로 나눕니다.",
+        "각 파트별로 Container를 생성하고 파일 권한을 설정합니다.",
+        "수정된 컨테이너 파일을 덮어쓰고 씬에서 Reload하여 최신 상태를 동기화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컨테이너를 연(Open) 상태로 저장하지 않고 파일을 닫음 → 닫힌 상태(Closed)에서 수정한 내용은 외부 파일에 반영되지 않으므로 반드시 Open 후 수정하고 저장하세요.",
+    "경로를 상대 경로가 아닌 절대 경로로 지정함 → 팀원과 파일을 공유할 때 경로가 깨지므로 프로젝트 폴더 설정을 확인하세요."
+  ],
+  "related": [
+    "Scene Explorer",
+    "Layer Explorer",
+    "XRef Objects",
+    "XRef Scenes"
+  ],
+  "videos": [
+    {
+      "id": "LXcoWMxPDrs",
+      "title": "Scene Management in 3ds Max - Part 1 - Using Containers",
+      "author": "Autodesk 3ds Max Learning Channel"
+    },
+    {
+      "id": "5sKSuTkFG24",
+      "title": "3ds Max tutorial Shipping container modeling - p1",
+      "author": "FBX"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Containers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tools",
+    "Containers",
+    "Create Container"
+  ],
+  "at": "2026-11-03T14:07:11.022185+00:00"
+}
