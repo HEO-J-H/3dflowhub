@@ -1,41 +1,101 @@
 {
-  "title_ko": "AI 텍스처·렌더링: 다중 뷰 렌더링 텍스처 통합 기법",
+  "title_ko": "Texture Consolidation: 생성된 멀티뷰 렌더링 텍스처 통합 시스템",
   "title": "Texture Consolidation of Generated Multi-View Renderings",
   "url": "https://arxiv.org/abs/2610.36098",
   "domain": "AI 3D",
   "category": "AI 텍스처·렌더링",
   "topic": "연구·논문",
   "tags": [
-    "texture consolidation",
-    "multi-view rendering",
-    "optical flow",
-    "gradient-domain stitching",
-    "generative models"
+    "Texture Consolidation",
+    "Multi-View",
+    "Diffusion Models",
+    "Optical Flow",
+    "Gradient-Domain Stitching",
+    "Mesh Texturing"
   ],
-  "summary": "다중 뷰 렌더링을 하나의 일관된 텍스처 이미지로 합치는 새로운 파이프라인을 제안한다.",
-  "insight": "이 논문은 기존 이미지 생성 모델이 뷰 간 일관성을 놓치는 문제를 mesh 기반 흐름 정렬과 gradient‑domain 스티칭으로 보완한다. 텍스처 아틀라스를 이미 보유한 스튜디오라면, 생성된 뷰들을 바로 백프로젝션해 색상과 신뢰도를 정규화한 뒤 자동 정렬을 적용해 작업 시간을 크게 단축할 수 있다. 특히, 신뢰도 가중치를 활용해 노이즈가 많은 영역을 자동 억제하므로 품질 관리에 드는 인력을 절감한다. 다만, 흐름 필드 최적화 단계가 계산량이 크므로 GPU 가속이 가능한 환경에서 사용해야 한다. 연구 단계이므로 상용 파이프라인에 바로 적용하기보단 Prototype이나 내부 툴에 시험 적용해 보는 것이 바람직하다.",
+  "summary": "본 논문은 생성형 모델이 만든 일관성 없는 멀티뷰 렌더링들을 하나의 완벽한 텍스처 이미지로 결합하는 신뢰도 기반 파이프라인을 제안합니다.",
+  "insight": "이 연구는 AI 기반 멀티뷰 생성 결과물의 고질적인 문제인 뷰 간 텍스처 불일치를 해결하여, 3D 아티스트들이 생성형 모델의 결과물을 실무 파이프라인에 더 안정적으로 통합할 수 있는 가능성을 보여줍니다. 특히 수동으로 텍스처를 수정하거나 심(seam)을 지우는 작업을 줄여주어 에셋 제작 시간을 크게 단축할 수 있을 것으로 기대됩니다. (가능성)",
   "sections": [
     {
-      "heading": "연구 배경",
-      "body": "현대 이미지 생성 파이프라인은 개별 뷰에서 매우 사실적인 결과를 만들지만, 여러 뷰를 동시에 고려하면 색상·구조 일관성이 떨어진다. 이러한 문제는 텍스처 매핑 단계에서 눈에 띄는 아티팩트를 유발한다. 따라서 다중 뷰 렌더링을 하나의 일관된 텍스처로 통합하는 기술이 필요하게 되었다."
+      "heading": "무엇을 풀려는가",
+      "body": "최근 확산 모델(Diffusion model) 기반의 3D 생성 기술은 다양한 멀티뷰 이미지를 만들지만, 뷰 간 일관성이 부족해 3D 지오메트리에 매핑할 때 시각적 불일치(ghosting 등)가 발생합니다. 논문은 텍스처-아틀라스가 적용된 삼각형 메시와 카메라 파라미터가 주어졌을 때 이를 전역적으로 일관된 단일 텍스처 이미지로 통합하는 문제를 해결합니다."
     },
     {
-      "heading": "핵심 방법론 개요",
-      "body": "제안된 시스템은 (1) 렌더링을 메쉬에 백프로젝션해 정규화된 색상과 신뢰도 맵을 만든다. (2) 메쉬 표면 위에서 흐름 필드를 계산해 색상을 서로 정렬한다. (3) 정렬된 색상을 gradient‑domain 스티칭으로 하나의 텍스처 이미지로 융합한다. 각 단계는 신뢰도 정보를 활용해 불확실한 영역을 억제한다."
+      "heading": "핵심 아이디어",
+      "body": "기존 RGB-D 캡처용 방법들은 생성형 이미지의 희소한 뷰 샘플링과 기하학적 불일치에 취약합니다. 본 시스템은 렌더링을 메시로 역투영(back-projecting)한 뒤, 표면 도메인(surface domain)에서 신뢰도(confidence)를 고려한 광학 흐름(optical flow)과 그라디언트-도메인 스티칭(gradient-domain stitching)을 수행하여 이 문제를 극복합니다."
     },
     {
-      "heading": "메쉬 기반 흐름 정렬",
-      "body": "백프로젝션 후 얻은 텍스처 공간에서 optical flow를 풀어 색상 간 변위를 추정한다. 이때 각 픽셀의 신뢰도 가중치를 포함해 흐름 최적화 문제를 정의한다. 결과적으로 서로 다른 뷰에서 나온 색상이 메쉬 표면 위에서 자연스럽게 맞춰진다."
+      "heading": "방법 (단계)",
+      "body": "파이프라인은 (1) 렌더링을 메시에 역투영하여 정규화된 색상과 신뢰도 이미지를 얻고, (2) 색상을 서로 정렬하기 위한 메시 상의 플로우 필드(flow-fields)를 계산하며, (3) 신뢰도를 반영한 그라디언트-도메인 스티칭을 통해 단일 텍스처 이미지로 융합하는 3단계로 구성됩니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "논문은 기존 RGB-D용 등록 방법들이 뷰 구를 희소하게 샘플링하는 생성형 입력에서 성능이 저하되는 반면, 제안하는 프레임워크가 고품질의 텍스처 이미지를 생성함을 실험적으로 입증했습니다."
+    },
+    {
+      "heading": "Limitations · 아직 못 하는 것",
+      "body": "생성형 멀티뷰 렌더링들이 근본적으로 가지는 심각한 기하학적·광도학적 모순이나 극단적인 시점 간 불일치는 완벽하게 해결하기 어려울 수 있으며, 파이프라인 내 각 최적화 단계에서 추가적인 계산 비용이 발생합니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "코드는 공식 GitHub 저장소(https://github.com/hliuw/TextureConsolidation)를 통해 공개되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "입력 데이터로 어떤 것들이 필요한가요?",
+      "a": "텍스처-아틀라스가 적용된 매니폴드 삼각형 메시(manifold triangle mesh)와 카메라 파라미터가 포함된 멀티뷰 렌더링 세트가 필요합니다."
+    },
+    {
+      "q": "텍스처 통합 과정에서 고스트(ghosting) 현상은 어떻게 해결하나요?",
+      "a": "색상 피처 정렬을 위해 메시 표면 상에서 광학 흐름(optical flow)을 계산하여 피처를 정렬하고, 신뢰도(confidence)를 고려한 그라디언트-도메인 스티칭을 수행하여 해결합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.36098/2610.36098v1/teaser4.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.36098v1/2610.36098v1/ot_diagram_new.cgf.png",
+        "caption": "Figure 1 : Starting with a texture-atlased mesh and multi-view renderings with associated camera parameters ( ℳ \\mathcal{M} and { Y i , C i } \\{Y_{i},C_{i}\\} ), we back-project the renderings onto the mesh to get initial texture color and confidence images ( { I i } \\{I_{i}\\} and { w i } \\{w_{i}\\} )",
+        "caption_ko": "그림 1: 텍스처-아틀라스 메시와 카메라 파라미터가 있는 멀티뷰 렌더링을 메시로 역투영하여 초기 텍스처 색상 및 신뢰도 이미지를 얻는 과정"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36098v1/2610.36098v1/figures/pipeline_comparison/helmet/unregistered_crop.jpg",
+        "caption": "blended",
+        "caption_ko": "그림 2: 신뢰도 가중 블렌딩(왼쪽), 광학 흐름 정렬(가운데), 그라디언트-도메인 스티칭을 통한 최종 이음새 없는 텍스처(오른쪽) 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36098v1/2610.36098v1/figures/pipeline_comparison/helmet/unregistered_crop_crop.jpg",
+        "caption": "blended",
+        "caption_ko": ""
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36098v1/2610.36098v1/figures/pipeline_comparison/helmet/registered_crop_crop.jpg",
+        "caption": "registered & blended",
+        "caption_ko": ""
+      }
+    ]
   },
   "collected_at": "2026-10-28T04:17:44.494548+00:00",
   "notion_id": "",
   "id": "2026-10-28-cf445d68251ce4f1",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-03T10:14:50+00:00",
+  "img_tried": true,
+  "try_it": [
+    "공식 저장소 방문: https://github.com/hliuw/TextureConsolidation",
+    "제공된 소스 코드를 클론하고 텍스처-아틀라스 메시와 멀티뷰 렌더링 입력 데이터를 준비합니다.",
+    "문서에 따라 역투영, 광학 흐름 계산, 그라디언트-도메인 스티칭 단계를 실행하여 결과 텍스처를 확인합니다."
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/hliuw/TextureConsolidation"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2
 }

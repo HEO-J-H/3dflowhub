@@ -1,0 +1,97 @@
+{
+  "id": "pixyz-studio-generate-uv-by-projection-d586",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "UV·재질",
+  "name": "Generate UV By Projection",
+  "title": "투영으로 UV 만들기",
+  "summary": "Pixyz Studio의 Generate UV By Projection(Map UV On AABB)은 선택한 부품의 축 정렬 경계 상자(AABB)를 기반으로 텍스처 좌표(UV)를 빠르고 간편하게 생성하는 기능입니다.",
+  "when": [
+    "CAD 모델에 기본 텍스처나 라이트맵을 입히기 위해 빠르게 UV를 생성해야 할 때",
+    "복잡한 전개 과정 없이 기하학적 투영 방식으로 UV 좌표를 일괄 부여할 때",
+    "기존에 잘못 생성된 UV를 새로운 투영 방식으로 덮어씌워 정리할 채널을 준비할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "왼쪽 Product Structure 패널에서 UV를 생성할 대상 파츠나 메시를 선택합니다.",
+    "상단 메뉴 바에서 UVs 관련 메뉴를 엽니다.",
+    "Generate UV By Projection(Map UV On AABB) 옵션을 클릭하여 실행합니다.",
+    "대화 상자에서 3D Size, Channel, Use Local AABB 등의 파라미터를 설정하고 확인을 누릅니다.",
+    "오른쪽 Inspector 패널에서 생성된 UV 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Use Local AABB",
+      "desc": "씬 전체 기준이 아닌 각 메시의 로컬 경계 상자를 기준으로 UV를 투영합니다."
+    },
+    {
+      "name": "UV 3D Size",
+      "desc": "UV 공간에서 투영된 텍스처의 목표 크기와 스케일을 정의합니다."
+    },
+    {
+      "name": "Channel",
+      "desc": "결과물로 생성된 UV 좌표가 저장될 채널 번호를 지정합니다."
+    },
+    {
+      "name": "Override Existing UVs",
+      "desc": "지정된 채널에 이미 존재하는 기존 UV를 삭제하고 새 UV로 교체합니다."
+    },
+    {
+      "name": "Ignore Scale",
+      "desc": "Local AABB 사용 시 각 파츠의 로컬 스케일 변환 값을 무시하고 계산합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품에 텍스처 맵핑용 UV 생성하기",
+      "steps": [
+        "Product Structure에서 단일 기계 부품을 선택합니다.",
+        "UVs 메뉴에서 Generate UV By Projection을 실행합니다.",
+        "Use Local AABB를 활성화하여 부품 형태에 맞게 투영을 최적화합니다.",
+        "Inspector 패널에서 UV가 올바르게 입혀졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "기존 UV를 덮어쓰고 새 채널에 투영하기",
+      "steps": [
+        "수정이 필요한 파츠를 Product Structure에서 선택합니다.",
+        "Generate UV By Projection 창을 엽니다.",
+        "Channel 값을 변경하고 Override Existing UVs를 켜서 기존 데이터를 교체합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 채널 선택으로 기존 라이트맵 UV가 지워짐 → Channel 번호를 확인하고 작업 전 백업 또는 다른 채널 지정",
+    "전체 씬 기준으로 박스가 잡혀 UV가 크게 늘어남 → Use Local AABB 옵션을 켜서 개별 부품 크기에 맞춤"
+  ],
+  "related": [
+    "UVs in Pixyz",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "bdCXYGCMp3k",
+      "title": "UV Unwrapping and Mapping in Pixyz Studio",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "s3NCkXKhqpk",
+      "title": "Pixyz Studio | UV Projection Tool",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GenerateUVByProjection1.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "UV",
+    "UVs",
+    "Generate UV By Projection"
+  ],
+  "at": "2026-11-03T10:14:10.445243+00:00"
+}

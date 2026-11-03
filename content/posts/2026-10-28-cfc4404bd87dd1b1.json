@@ -1,49 +1,53 @@
 {
-  "title_ko": "Gaussian Splatting ClusterSplat — 3D 비주얼 그라운딩 연구",
+  "title_ko": "ClusterSplat: 3D Gaussian Splatting의 시맨틱 클러스터 선택",
   "title": "ClusterSplat: Semantic Cluster Selection for 3D Visual Grounding in Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.36462v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
+    "3D Gaussian Splatting",
     "3D Visual Grounding",
-    "NeurIPS",
-    "3D Computer Vision",
-    "Semantic Clustering"
+    "Clustering",
+    "Open-Vocabulary",
+    "ScanRefer"
   ],
-  "summary": "ClusterSplat은 3D Gaussian Splatting에서 시맨틱 클러스터 선택을 통해 3D 비주얼 그라운딩의 정확도와 안정성을 높인 NeurIPS 2026 연구 논문입니다.",
-  "insight": "기존 3D Gaussian Splatting 기반의 비주얼 그라운딩은 덴스 Primitive 단위의 스코어에 의존하여 Prompt와 장면에 따라 결과가 불안정했습니다. 이번에 발표된 클러스터 기반 접근 방식은 실무에서 특정 객체를 정밀하게 3D 바운딩하거나 2D 마스크로 추출해야 하는 AI 3D 파이프라인의 한계를 극복하는 데 도움을 줍니다. 특히 ScanRefer 및 ScanNet v2 데이터셋에서 우수한 성능을 입증하여 향후 AR/VR 및 로보틱스 공간 인식 기능 개발에 적극 활용될 수 있습니다. 3D 공간 데이터와 자연어 Prompt를 연동하는 연구자나 개발자라면 반드시 주목해야 할 기법입니다.",
+  "summary": "3D Gaussian Splatting(3DGS)에서 텍스트 질의(Referring Expression)에 대응하는 3D 객체를 안정적으로 추출하기 위해, 개별 Primitive 수준의 필터링 대신 장면 적응형 클러스터 선택 방식을 제안합니다.",
+  "insight": "이 기술이 발전하면 텍스트 명령어만으로 3D Gaussian Splatting 장면 속 특정 오브젝트를 오차 없이 정밀하게 분리해 내는 에디팅 도구가 현업에 도입될 가능성이 큽니다. 특히 복잡한 실내 스캔 데이터에서 수동 마스킹이나 임계값 조절 없이 자연어만으로 3D 객체를 정확히 타겟팅하는 작업 흐름에 기여할 수 있습니다. (가능성)",
   "sections": [
     {
-      "heading": "ClusterSplat 연구 개요 및 배경",
-      "body": "본 논문은 3D Gaussian Splatting 환경에서 자연어 Prompt(Referring Expression)를 통해 타겟 객체를 2D 마스크와 3D Gaussian 집합으로 정확히 식별하는 3D 비주얼 그라운딩을 다룹니다. 기존 방법들은 휴리스틱 임계값이나 상위 비율 필터링을 사용하여 Primitive 단위의 관련성 점수를 추출했으나, 이는 장면과 Prompt에 따라 결과가 크게 달라지는 한계가 있었습니다. ClusterSplat은 이러한 문제를 해결하기 위해 3D 타겟 선택 방식을 장면 적응형 후보군에 대한 클러스터 단위 선택으로 재구성합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 3DGS 언어 징검다리(Language Grounding) 방법들은 밀집된 Primitive(primitive)별 관련도 점수에 임계값이나 상위 비율 필터링 같은 수치적 규칙을 적용했습니다. 하지만 이 점수 분포는 장면과 Prompt에 따라 크게 달라져 대상이 누락되거나 주변 방해물과 섞이는 등 불안정한 결과를 낳았습니다."
     },
     {
-      "heading": "장면 적응형 클러스터 후보군 생성",
-      "body": "알고리즘은 먼저 Instance 인식 Gaussian 피처를 학습하고, 이를 바탕으로 피처 인식 시드 복셀(Seed Voxels)을 형성합니다. 이어 설명 길이 기준(Description-length Criterion)이 감소할 때 인접한 시드 복셀들을 병합하여 장면 특화된 클러스터 후보군을 생성합니다. 이 과정은 장면에 맞춰 유연하게 객체 후보군을 나누어주는 역할을 합니다."
+      "heading": "핵심 아이디어",
+      "body": "개별 Primitive 단위의 불안정한 점수 필터링 대신, 장면 구조와 객체 크기에 맞춰 적응하는 '클러스터 수준'의 선택 문제로 재정의합니다. 이를 통해 언어 징검다리에서 단일 대상 3D 객체를 일관되게 분할할 수 있습니다."
     },
     {
-      "heading": "경량화된 MLP를 활용한 쿼리 조건부 스코어링",
-      "body": "자연어 Prompt가 주어지면, 쿼리 조건부 클러스터 스코러가 경량화된 MLP를 사용하여 클러스터 후보군들의 순위를 매깁니다. 선택된 클러스터는 명시적인 3D 타겟을 직접 정의하며, 동시에 해당 클러스터 점수가 렌더링되어 2D 마스크를 구성합니다. 이 경량화된 구조를 통해 효율적이면서도 안정적인 타겟팅이 가능해집니다."
+      "heading": "방법 (단계)",
+      "body": "1단계에서는 Instance 인식 Gaussian feature를 학습하고 feature 기반 시드 복셀(seed voxel)을 생성한 뒤, 설명 길이(description-length) 기준에 따라 인접 요소를 병합하여 장면에 특화된 클러스터 후보군을 만듭니다. 2단계에서는 텍스트 질의 조건부 클러스터 스코어러(query-conditioned cluster scorer)가 경량 MLP를 이용해 후보를 순위 매겨 최종 3D 타겟 클러스터를 결정합니다."
     },
     {
-      "heading": "성능 검증 및 주요 벤치마크 결과",
-      "body": "ScanRefer 벤치마크에서 ClusterSplat은 비교 대상이 된 기존 3D Gaussian Splatting 베이스라인 중 가장 우수한 렌더링 2D 세그멘테이션 및 명시적 3D 타겟 지표를 달성했습니다. 또한 세밀한 참조 설명(Fine-grained Referring Descriptions) 환경에서도 Ref-LERF 평균 점수 기준 최고 기록을 달성했습니다. ScanNet v2 클래스 이름 쿼리 테스트에서도 강력한 2D 결과와 높은 3D 매칭 정확도를 보여주었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "ScanRefer 벤치마크에서 비교 대상 3DGS 베이스라인 중 가장 우수한 렌더링 2D 분할 및 명시적 3D 타겟 지표를 달성했습니다. 또한 세밀한 참조 설명 아래에서 평균 Ref-LERF 점수도 가장 높았으며, ScanNet v2 클래스 이름 쿼리에서도 가장 강력한 렌더링 2D 결과와 최고 수준의 3D 매칭 정확도를 기록했습니다."
     },
     {
-      "heading": "NeurIPS 2026 Spotlight 채택",
-      "body": "본 연구는 학술적 우수성을 인정받아 NeurIPS 2026에서 Spotlight 논문으로 채택되었습니다. 프로젝트 페이지와 관련 소스는 공식 경로를 통해 제공되며, 향후 3D 비전 및 공간 인식 응용 프로그램의 표준 워크플로에 큰 영향을 미칠 것으로 기대됩니다."
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "실내 장면의 객체 수, 스케일, 혼잡도 등에 따라 클러스터 후보의 품질과 세분화 수준을 조절해야 하는 트레이드오프가 존재하며, 복잡한 장면에서의 정밀한 경계 설정에는 추가적인 구조적 제약이 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "프로젝트 페이지(https://jaesung8.github.io/clustersplat/)와 GitHub 이슈 리포트 링크 등이 논문에 안내되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "ClusterSplat은 어떤 문제를 해결하기 위한 기술인가요?",
-      "a": "기존 3D Gaussian Splatting 기반 비주얼 그라운딩에서 사용하던 Primitive 단위 스코어의 불안정성과 휴리스틱 임계값 의존 문제를 해결하기 위해 고안되었습니다."
+      "q": "ClusterSplat은 어떤 문제를 해결하고자 합니까?",
+      "a": "기존 방법들이 3D Gaussian Splatting(3DGS)에서 텍스트 쿼리를 처리할 때 사용하던 프리미티브별 관련도 점수 필터링의 불안정성(장면과 Prompt에 따른 민감한 스코어 변화)을 해결하고자 합니다."
     },
     {
-      "q": "어떤 벤치마크에서 성능이 검증되었나요?",
-      "a": "ScanRefer 및 ScanNet v2 데이터셋을 통해 검증되었으며, 렌더링 2D 세그멘테이션과 3D 타겟 정확도 모두에서 우수한 지표를 기록했습니다."
+      "q": "어떤 벤치마크에서 성능을 평가했습니까?",
+      "a": "ScanRefer 벤치마크, Ref-LERF 점수, 그리고 ScanNet v2 클래스 이름 쿼리와 3D 장면 데이터셋을 활용해 평가를 진행했습니다."
     }
   ],
   "media": {
@@ -53,5 +57,17 @@
   "collected_at": "2026-10-28T02:27:03.273772+00:00",
   "notion_id": "",
   "id": "2026-10-28-cfc4404bd87dd1b1",
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-03T10:14:42+00:00"
 }

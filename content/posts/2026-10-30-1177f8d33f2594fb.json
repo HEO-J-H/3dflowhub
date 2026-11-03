@@ -1,58 +1,91 @@
 {
-  "title_ko": "Gaussian Splatting 렌더링 효율 높이는 BudSplat 프레임워크 공개",
+  "title_ko": "BudSplat: 렌더링 예산 제약 속의 피드포워드 3D Gaussian Splatting",
   "title": "BudSplat: Feed-forward 3D Gaussian Splatting under a Rendering Budget",
   "url": "https://arxiv.org/abs/2610.38278v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "3D Gaussian Splatting",
-    "BudSplat",
-    "렌더링 효율",
-    "피드포워드",
-    "신경망 렌더링"
+    "3DGS",
+    "Gaussian Splatting",
+    "Feed-forward",
+    "Rendering Budget",
+    "Pruning",
+    "Computer Vision"
   ],
-  "summary": "BudSplat은 렌더링 예산 내에서 Gaussian Primitive의 중복을 줄이고 품질과 효율의 균형을 맞추는 새로운 피드포워드 3D Gaussian Splatting 프레임워크입니다.",
-  "insight": "다중 시점 입력이 늘어날수록 Gaussian 렌더링 비용이 급증하는 실무적 한계를 해결하기 위한 연구입니다. 중복 영역의 Primitive 할당을 줄이면서도 디테일을 보존하는 방식은 향후 실시간 대규모 월드 구현이나 고성능 AI 3D 파이프라인 구축에 큰 도움이 됩니다. 실무에서 방대한 뷰 데이터를 다루는 엔지니어라면 효율적인 메모리 및 렌더링 최적화 대안으로 주목할 만합니다. 렌더링 리소스가 제한된 환경에서 대규모 씬을 다루는 테크니컬 아티스트들이 눈여겨봐야 할 기술입니다.",
+  "summary": "다시점 입력이 증가할 때 발생하는 3D Gaussian Splatting의 Primitive 과다 생성과 렌더링 효율 저하 문제를 해결하기 위해, 디테일 인지 중요도와 렌더링 예산 제약 기반의 가지치기를 도입한 새로운 피드포워드 프레임워크입니다.",
+  "insight": "이 기술이 상용화되거나 실무 파이프라인에 적용된다면, 방대한 다시점 촬영 데이터를 활용하는 대규모 3D 스캔 및 실시간 뷰 합성 작업에서 불필요한 폴리곤이나 Gaussian 용량을 극적으로 줄여줄 수 있는 가능성이 있습니다. 아티스트들이 대형 씬을 빌드할 때 메모리 부하를 줄이면서도 미세한 텍스처와 엣지 디테일을 유지하는 효율적인 자동 최적화 도구로 발전할 수 있습니다.",
   "sections": [
     {
-      "heading": "피드포워드 3D Gaussian Splatting의 한계 극복",
-      "body": "피드포워드 방식의 3D Gaussian Splatting은 입력 이미지로부터 Gaussian Primitive를 직접 예측하여 빠른 신규 뷰 합성을 가능하게 합니다. 그러나 희소(sparse) 입력에서 조밀한(dense) 다중 시점 입력으로 확장될 때 렌더링 효율성 병목 현상에 직면합니다. 기하학적 제약은 늘어나지만 빠르게 증가하는 후보 Gaussian 세트가 렌더링 비용을 가중시킵니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 피드포워드 3D Gaussian Splatting(3DGS)은 밀집된 다시점 입력에서 뛰어난 기하학적 제약과 재구성 품질을 제공하지만, 뷰 수가 증가할수록 반복 관측되는 영역에서 수많은 중복 Primitive가 급증하여 렌더링 효율이 크게 떨어지는 병목 현상을 겪습니다. 단순한 불투명도나 신뢰도 기반의 가지치기는 시각적 품질에 중요한 세부 구조 대신 크고 단순한 영역에 Primitive를 낭비하게 만듭니다."
     },
     {
-      "heading": "중복 Primitive 문제와 BudSplat의 도입",
-      "body": "기존 솔루션은 반복적으로 관측된 영역에서 발생하는 중복 Primitive를 안정적으로 구별하지 못합니다. 이로 인해 시각적 품질 향상 없이 렌더링 비용만 증가하는 문제가 발생합니다. 연구팀은 제한된 Primitive 수 안에서 가장 가치 있는 Gaussian을 유지하는 콤팩트한 피드포워드 프레임워크인 BudSplat을 제안합니다."
+      "heading": "핵심 아이디어",
+      "body": "저자들은 Primitive 생성을 단순히 줄이는 것이 아니라, 렌더링 예산 제약 속에서 가장 가치 있는 Gaussian을 선택하는 학습 기반 할당 메커니즘으로 재정의합니다. 다중 레이어 비주얼 토큰에서 추출한 디테일 인지 중요도 점수를 활용하여 중요 지역의 Primitive를 보존하고, 렌더링 기여도와 중복 교정을 고려한 품질 기반 가지치기를 수행합니다."
     },
     {
-      "heading": "디테일 인식 중요도 점수와 Voxel Fusion",
-      "body": "BudSplat의 첫 번째 핵심 설계는 다중 레벨 시각 토큰에서 추출되는 디테일 인식 중요도 점수입니다. 이 점수는 프루닝(pruning)이 지각적 품질을 저하시킬 수 있는 영역에 대한 명시적인 단서를 제공합니다. 해당 점수는 복셀 융합(voxel fusion)에 주입되어 다중 시점 집계 과정에서 가치가 높은 로컬 기여 요소를 보존합니다."
+      "heading": "방법 (단계)",
+      "body": "먼저 VGGT 백본이 밀집된 지오메트리, 신뢰도 맵, 다중 레이어 토큰을 예측합니다. 다음으로 디테일 인지 분해 모듈이 잔여 토큰 단서를 추출하고 패치 레벨 디테일 점수를 예측합니다. 이 점수는 중요도 보존  voxel fusion 과정에 전달되며, 최종적으로 불투명도, 디테일 중요도, 서포트 기반 중복 교정을 결합한 품질 기반 가지치기와 패치 레벨 할당 재분배를 거쳐 렌더링용 Gaussian 세트를 확정합니다."
     },
     {
-      "heading": "품질 인식 Gaussian 프루닝 및 할당 최적화",
-      "body": "두 번째 설계는 렌더링 기여도와 디테일 중요도를 공동으로 고려하여 컴팩트한 Primitive 세트를 선택하는 품질 인식 Gaussian 프루닝입니다. 이를 통해 로컬 쿼터 재분배가 가능해져 대규모 중복 영역에 Primitive가 과도하게 할당되는 것을 방지합니다. 결과적으로 시각적 품질과 연산 효율성 사이의 유리한 절묘한 균형을 찾아냅니다."
+      "heading": "결과 (논문 수치)",
+      "body": "논문에서는 RE10K, DL3DV, ACID 데이터셋을 사용한 실험을 통해 BudSplat이 시각적 충실도(visual fidelity)와 렌더링 효율성 사이에서 유리한 균형을 달성함을 입증했습니다."
     },
     {
-      "heading": "실험 결과 및 벤치마크 성능",
-      "body": "RE10K, DL3DV, ACID 데이터셋을 활용한 실험에서 BudSplat은 렌더링 품질과 효율성 측면에서 뛰어난 성능 균형을 입증했습니다. 다양한 벤치마크 환경에서 불필요한 연산을 줄이면서도 원본의 디테일을 효과적으로 유지함을 보여주었습니다. 향후 대규모 3D 비전 및 실시간 렌더링 응용 분야에서 폭넓게 활용될 잠재력을 지니고 있습니다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문 본문에서는 저조도 영역이나 극도로 복잡한 동적 씬에서의 한계에 대한 구체적인 수치 언급은 없으나, 저시야 중복 평가 설정에서 효율성을 최적화하는 데 초점을 맞추고 있습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "본 논문 본문 및 텍스트 데이터에는 구체적인 외부 소스코드 퍼블릭 링크가 명시되어 있지 않으며, arXiv:2610.38278v1으로 등록된 연구 논문입니다."
     }
   ],
   "faq": [
     {
-      "q": "BudSplat은 기존 3D Gaussian Splatting과 무엇이 다른가요?",
-      "a": "다중 시점 입력 증가 시 발생하는 중복 Primitive 문제를 해결하기 위해, 디테일 인식 중요도 점수와 품질 인식 프루닝을 도입하여 렌더링 예산 안에서 효율을 극대화합니다."
+      "q": "BudSplat은 어떤 문제를 해결하기 위해 제안되었나요?",
+      "a": "다시점 입력이 늘어날수록 렌더링 효율을 떨어뜨리는 중복 Gaussian Primitive의 과다 생성 문제를 해결하기 위해 제안되었습니다."
     },
     {
-      "q": "어떤 데이터셋에서 성능이 검증되었나요?",
-      "a": "본 프레임워크는 RE10K, DL3DV, ACID 데이터셋을 통한 실험을 거쳐 렌더링 품질과 효율성 사이의 우수한 균형을 검증받았습니다."
+      "q": "BudSplat의 핵심 구성 요소 중 중요도 점수는 어디서 추출되나요?",
+      "a": "다중 레이어 비주얼 토큰(multi-level visual tokens)으로부터 추출됩니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.38278v1/2610.38278v1/pipeline.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.38278v1/2610.38278v1/pipeline.png",
+        "caption": "Figure 1: Overview of BudSplat. With dense geometry, confidence maps, and multi-layer tokens as predicted from multi-view RGB images by VGGT, the detail-aware decomposition first extracts residual token cues and predicts patch-level detail scores. The predicted scores are then propagated to the impo",
+        "caption_ko": "그림 1: BudSplat의 전체 파이프라인 개요. VGGT를 통한 밀집 기하학 및 토큰 예측부터 디테일 분해, 중요도 보존  voxel fusion, 품질 기반 가지치기 과정을 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.38278v1/2610.38278v1/budsplat_qualitative_main_448x224.png",
+        "caption": "Figure 2: Qualitative comparison on challenging low-overlap target views.\nRed boxes highlight regions where baselines suffer from incomplete Gaussian coverage, blurred local structures, or uneven rendering quality.\nOur method allocates Gaussian budget more effectively, producing stable renderings an",
+        "caption_ko": "그림 2: 까다로운 저시야 중복 타겟 뷰에서의 정성적 비교. 붉은색 상자는 기존 방법들이 겪는 불완전한 가우시안 커버리지나 흐릿한 구조를 나타냅니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.38278v1/2610.38278v1/density_vis.png",
+        "caption": "Figure 3: Target-view visualization of Gaussian density allocation and RGB rendering before and after pruning.\nTop row: projected Gaussian density before pruning, after pruning, removed density, and retention ratio.\nBottom row: normal RGB rendering before pruning, after pruning, absolute difference,",
+        "caption_ko": "그림 3: 가지치기 전후의 가우시안 밀도 할당 및 RGB 렌더링의 타겟 뷰 시각화."
+      }
+    ]
   },
   "collected_at": "2026-10-30T02:55:37.796404+00:00",
   "notion_id": "",
   "id": "2026-10-30-1177f8d33f2594fb",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-03T10:14:37+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "paper_v": 2
 }

@@ -8916,5 +8916,53 @@
     "id": "p-3d5e3a2520",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 내역에 웹 버전 입력 에러 처리 및 UI 피드백 관련 보완 작업이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-03T10:14:05+00:00",
+    "kind": "proposal",
+    "id": "p-8fd145e272",
+    "title": "백엔드 입력 및 PBR 검증 PR(#40~#44) 최종 검토 및 승인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42, #43, #44가 백엔드 입력 검증 및 PBR 생성 무결성 검증 테스트와 함께 승인 대기 중입니다.",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 대기 중인 PR들의 테스트 결과를 검토하고 이상이 없을 경우 승인합니다.",
+    "expected": "백엔드 입력값 오류 및 PBR 생성 시 예외 처리가 안정적으로 동작하여 시스템 무결성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T10:14:05+00:00",
+    "kind": "proposal",
+    "id": "p-9a4809460d",
+    "title": "웹 버전(web/) 에러 핸들링 UI 피드백 보완 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 기반 처리에서 사용자 입력 에러 발생 시 UI 피드백에 대한 점검 필요성이 지속적으로 제기되었습니다.",
+    "proposal": "web/index.html 및 관련 Script에서 잘못된 이미지나 URL 입력 시 사용자에게 노출되는 에러 메시지 가독성과 안내 문구를 점검하고 보완합니다.",
+    "expected": "웹 버전 사용자 경험(UX) 개선 및 에러 상황에서의 명확한 피드백 제공",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T10:15:21.715376+00:00",
+    "kind": "decision",
+    "id": "p-8fd145e272",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T10:15:21.726539+00:00",
+    "kind": "decision",
+    "id": "p-9a4809460d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 오류 핸들링 UI 피드백 보완",
+    "auto": true
   }
 ]
