@@ -1,0 +1,89 @@
+{
+  "id": "pixyz-studio-face-and-vertex-normals-cbd9",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Face and vertex normals",
+  "title": "면·Vertex 노멀 바로잡기",
+  "summary": "Pixyz Studio의 Face Normal과 Vertex Normal은 폴리곤 면의 방향과 Vertex 단위의 빛 반사(Shading)를 제어하여 시각적 품질을 결정하는 핵심 속성입니다.",
+  "when": [
+    "CAD 데이터를 테셀레이션(Tessellation)하여 생성된 메쉬의 빛 반사 오류를 수정할 때",
+    "로우 폴리곤 최적화나 데시메이션(Decimation) 후 깨진 표면 음영을 다듬을 때",
+    "임포트한 3D 모델의 법선(Normal) 방향이 뒤집혀 어둡게 보일 때"
+  ],
+  "steps": [
+    "왼쪽 Product Structure 패널에서 수정할 메쉬 파트를 선택합니다.",
+    "상단 메뉴 바에서 Mesh를 클릭합니다.",
+    "하위 메뉴에서 노멀 관련 기능(예: Repair Mesh 또는 Reverse Normals)을 선택합니다.",
+    "오른쪽 Inspector 패널에서 세부 속성을 확인하고 값을 조정합니다.",
+    "대화 상자에서 Execute를 눌러 실행하고 뷰포트에서 면의 방향과 음영을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Face Normal",
+      "desc": "폴리곤 면이 바라보는 방향을 정의하여 앞뒤를 구분합니다."
+    },
+    {
+      "name": "Vertex Normal",
+      "desc": "Vertex 단위에서 가상 빛의 반사 방식을 결정하여 부드러운 음영을 만듭니다."
+    },
+    {
+      "name": "Repair Mesh",
+      "desc": "잘못된 토폴로지와 뒤집힌 노멀 등 메쉬 오류를 자동으로 수정합니다."
+    },
+    {
+      "name": "Reverse Normals",
+      "desc": "선택한 면이나 파트의 노멀 방향을 반대로 뒤집습니다."
+    },
+    {
+      "name": "Decimate To Target",
+      "desc": "폴리곤을 줄이면서 노멀과 메쉬 형태를 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "뒤집힌 면의 노멀 방향 통일하기",
+      "steps": [
+        "Product Structure에서 어둡게 나오는 CAD 파트를 선택합니다.",
+        "메뉴 바에서 Mesh를 클릭하고 Reverse Normals 또는 Repair Mesh를 실행합니다.",
+        "Inspector 패널에서 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "CAD 테셀레이션 후 음영 부드럽게 만들기",
+      "steps": [
+        "CAD 데이터를 불러와 Tessellation을 수행합니다.",
+        "Mesh 메뉴에서 노멀 정렬 및 복구 기능을 실행합니다.",
+        "뷰포트에서 표면 음영이 매끄럽게 처리되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀이 뒤집혀 검게 보이는 현상 → Reverse Normals를 실행하여 면의 방향을 바로잡습니다.",
+    "테셀레이션 후 표면이 각져 보이는 현상 → Mesh Repair 또는 적절한 노멀 스무딩 옵션을 적용합니다.",
+    "잘못된 파트 선택으로 인한 오류 → Product Structure 트리를 확인하여 올바른 메쉬가 선택되었는지 확인합니다."
+  ],
+  "related": [
+    "Tessellation",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "nUtjuY2T6T8",
+      "title": "MODO | Transform Vertex Normals",
+      "author": "Pixel Fondue"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutFaceandVertexNormals.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T09:53:41.108105+00:00"
+}
