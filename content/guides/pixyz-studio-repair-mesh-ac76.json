@@ -1,0 +1,89 @@
+{
+  "id": "pixyz-studio-repair-mesh-ac76",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Repair Mesh",
+  "title": "Repair Mesh — 깨진 메쉬 고치기",
+  "summary": "Pixyz Studio의 Repair Mesh는 CAD 모델의 끊어진 모서리, 겹친 삼각형, 뒤집힌 면을 자동으로 정리하여 최적화와 렌더링에 적합한 깨끗한 상태로 만들어 주는 필수 데이터 전처리 도구입니다.",
+  "when": [
+    "CAD 데이터를 불러온 후 데시메이션(Decimation) 등 추가 최적화를 진행하기 전",
+    "뷰포트에서 틈새(Gaps)가 보이거나 와이어프레임 모드에서 파란색의 끊어진 모서리가 나타날 때",
+    "면의 법선 방향이 뒤집혀 렌더링이 깨지거나 핑크색(Backface culling)으로 표시될 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure(Scene Tree) 패널에서 수리할 파츠나 어셈블리를 선택합니다. (선택하지 않으면 전체 씬에 적용됩니다)",
+    "메뉴 바에서 Mesh 클릭 후 Repair Mesh를 선택하여 대화 상자를 엽니다.",
+    "Tolerance와 Orient 등의 옵션을 확인하고 설정합니다.",
+    "대화 상자에서 Execute를 눌러 메시 수리를 실행합니다.",
+    "뷰포트에서 결함이 수정되고 깨끗하게 정돈되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "정점 용접 및 경계 봉합에 적용되는 허용 오차 거리 (기본값 0.1mm)"
+    },
+    {
+      "name": "Orient",
+      "desc": "인접한 삼각형 면의 방향을 일관되게 정렬할지 여부 결정 (True/False)"
+    },
+    {
+      "name": "Crack Non Manifold",
+      "desc": "비다공성(Non-manifold) 에지를 분할하여 면 방향 정렬 성공률을 높임"
+    }
+  ],
+  "examples": [
+    {
+      "title": "끊어진 틈이 있는 자동차 문 메시 정리",
+      "steps": [
+        "Product Structure 패널에서 자동차 문 파츠 선택",
+        "Mesh 메뉴에서 Repair Mesh 실행",
+        "기본값으로 Execute를 눌러 파란색 끊어진 에지와 뒤집힌 면을 한 번에 정리"
+      ]
+    },
+    {
+      "title": "데시메이션 전 모델 정밀 수리",
+      "steps": [
+        "CAD 모델 불러오기",
+        "메시 간의 틈새를 메우기 위해 Repair Mesh 실행 (Tolerance 기본값 0.1mm 유지)",
+        "이어서 Optimize Mesh 메뉴의 Decimate 기능을 실행하여 폴리곤 최적화 진행"
+      ]
+    }
+  ],
+  "mistakes": [
+    "너무 큰 Tolerance 값 설정 → 구멍이나 마킹 같은 필수 토폴로지 디테일까지 손실됩니다. 기본값인 0.1mm 부근에서 조절하세요.",
+    "서로 다른 파츠의 결합 누락 → 수리 함수는 개별 파츠 독립적으로 작동하므로, 틈을 봉합하려면 먼저 Scene 메뉴의 Merge 기능으로 파츠를 합쳐야 합니다.",
+    "방향 정렬 옵션 끄기 오류 → Orient를 false로 설정하면 이미 잘 정렬된 면 방향까지 망가지는 것을 방지할 수 있으나, 뒤집힌 면이 그대로 남을 수 있습니다."
+  ],
+  "related": [
+    "Decimate",
+    "Optimize Mesh",
+    "Orient Faces (Advanced)",
+    "Remove Degenerated Polygons"
+  ],
+  "videos": [
+    {
+      "id": "Hf8saRi902w",
+      "title": "009  Repair Mesh in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/RepairMesh.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Scene Tree",
+    "Mesh",
+    "Repair Mesh"
+  ],
+  "at": "2026-11-03T09:33:44.379694+00:00"
+}

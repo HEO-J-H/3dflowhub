@@ -8734,5 +8734,53 @@
     "id": "p-cf7ecf2d8c",
     "verdict": "agent",
     "reason": "docs/tech-research.md 기반의 로컬 RAG 검색 프로토타입 구현 및 스크립트 구조 작성은 코드로 직접 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-03T09:33:36+00:00",
+    "kind": "proposal",
+    "id": "p-e6f1c4f79c",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 PR #40부터 #44까지 백엔드 url_ingest 및 pbr_generator 검증 로직 관련 PR들이 승인 대기 상태로 머물러 있음.",
+    "proposal": "GitHub에서 PR #40~#44의 테스트 통과 여부와 코드를 확인하고 핵심 파이프라인 안전성 확보를 위해 순차적으로 승인 또는 피드백 제공",
+    "expected": "입력값 검증 및 PBR 생성 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T09:33:36+00:00",
+    "kind": "proposal",
+    "id": "p-b252f1c91c",
+    "title": "웹 버전(web/) 입력 에러 메시지 UI 가독성 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 버전에서 사용자 입력 오류 시 피드백 UI를 더욱 직관적으로 개선할 필요가 있음.",
+    "proposal": "web/index.html 또는 관련 Script에서 잘못된 이미지/URL 입력 시 경고 메시지의 시인성과 가독성을 높이도록 UI 스타일 보완 및 테스트",
+    "expected": "사용자 에러 인지율 및 사용성 개선",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T09:33:58.870769+00:00",
+    "kind": "decision",
+    "id": "p-e6f1c4f79c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T09:33:58.879619+00:00",
+    "kind": "decision",
+    "id": "p-b252f1c91c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
+    "auto": true
   }
 ]
