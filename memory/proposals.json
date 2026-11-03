@@ -10322,5 +10322,91 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) URL 유효성 검사 UI 피드백 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T15:05:53+00:00",
+    "kind": "proposal",
+    "id": "p-98faf33917",
+    "title": "RAG 검색 API 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/tech-research.md에 RAG 활용 방안이 문서화됨(#45, #46). 현재 코드베이스에 검색 엔드포인트가 없음.",
+    "proposal": "backend/app/api/search.py에 FastAPI 라우터를 만들고, LangChain 기반 로컬 벡터스토어(예: FAISS)로 docs/ 폴더를 인덱싱한다. 기존 main.py에 라우터를 포함하고, requirements.txt에 langchain, faiss-cpu를 추가한다.",
+    "expected": "사용자는 웹 UI에서 키워드 검색으로 기술 문서·가이드 내용을 빠르게 찾을 수 있어 UX가 향상되고 SEO 내부 체류 시간이 늘어납니다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:05:53+00:00",
+    "kind": "proposal",
+    "id": "p-682db2a33a",
+    "title": "웹 UI 검색 입력창 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG API가 추가되면 프론트엔드에서 호출할 UI가 필요함. 현재 web/에 검색 UI가 없음.",
+    "proposal": "web/src/components/SearchBar.vue(또는 React) 파일을 추가하고, debounce 로 API(/api/search) 호출하도록 구현한다. 검색 결과를 모달/드롭다운 형태로 표시한다.",
+    "expected": "사용자는 사이트 내에서 바로 문서 검색이 가능해져 전환율이 상승하고, 문서 활용도가 높아집니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:05:53+00:00",
+    "kind": "proposal",
+    "id": "p-1a69ac54ce",
+    "title": "RAG 검색 기능 단위 테스트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "핵심 기능 추가 시 테스트가 필수이며, 기존 PR #40‑#44는 테스트 포함을 요구함.",
+    "proposal": "backend/tests/test_search.py에 FastAPI TestClient를 이용해 /api/search 엔드포인트가 정상 응답하고, 예상 키워드가 포함된 결과를 반환하는지 검증한다.",
+    "expected": "CI에서 자동 검증이 이루어져 코드 품질이 유지되고, PR 머지 시 자동 머지 가능성이 높아집니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:07:01.707876+00:00",
+    "kind": "decision",
+    "id": "p-98faf33917",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 경량 로컬 RAG 검색 엔드포인트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:07:01.721400+00:00",
+    "kind": "decision",
+    "id": "p-682db2a33a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:07:01.733251+00:00",
+    "kind": "decision",
+    "id": "p-1a69ac54ce",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:07:10.901379+00:00",
+    "kind": "triage",
+    "id": "p-682db2a33a",
+    "verdict": "agent",
+    "reason": "현재까지의 커밋 및 완료된 제안에 검색 입력창 구현이 포함되지 않아 코드 수정으로 해결 가능"
+  },
+  {
+    "at": "2026-11-03T15:07:32.900806+00:00",
+    "kind": "triage",
+    "id": "p-1a69ac54ce",
+    "verdict": "agent",
+    "reason": "새로운 단위 테스트 추가는 코드 수정으로 해결 가능"
   }
 ]

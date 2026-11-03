@@ -1,0 +1,102 @@
+{
+  "id": "3ds-max-macroscript-toolbar-button-fb0c",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "Macroscript toolbar button",
+  "title": "MacroScript — 툴바 버튼 만들기",
+  "summary": "MacroScript toolbar button은 사용자가 만든 MacroScript를 툴바에 아이콘 형태로 배치해 클릭 한 번으로 실행할 수 있게 해 줍니다.",
+  "when": [
+    "반복적인 Script를 빠르게 실행하고 싶을 때",
+    "작업 흐름에 맞는 커스텀 툴을 바로 접근하고 싶을 때",
+    "팀 내 표준 Script를 공유하고 일관된 UI를 제공하고 싶을 때"
+  ],
+  "steps": [
+    "Customize → Customize User Interface 메뉴를 엽니다.",
+    "Toolbars 탭에서 원하는 툴바를 선택하거나 New Toolbar 버튼으로 새 툴바를 만듭니다.",
+    "Category 리스트에서 실행할 MacroScript를 찾고, 오른쪽의 New Button 아이콘을 클릭합니다.",
+    "새 버튼에 이름(Name)과 Tooltip을 입력하고, 아이콘을 지정한 뒤 Assign 버튼을 눌러 툴바에 추가합니다.",
+    "필요하면 Hotkey 필드에 Hotkey를 입력하고 Close 로 창을 닫습니다."
+  ],
+  "params": [
+    {
+      "name": "Name",
+      "desc": "툴바 버튼에 표시될 이름"
+    },
+    {
+      "name": "Tooltip",
+      "desc": "버튼 위에 Mouse를 올렸을 때 표시되는 설명"
+    },
+    {
+      "name": "Icon",
+      "desc": "버튼에 사용할 아이콘 이미지"
+    },
+    {
+      "name": "MacroScript",
+      "desc": "실행할 Script의 내부 이름"
+    },
+    {
+      "name": "Hotkey",
+      "desc": "선택 사항인 Hotkey, 지정하면 키 입력으로도 실행 가능"
+    },
+    {
+      "name": "Category",
+      "desc": "MacroScript가 속한 카테고리, 검색에 사용"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reset XForm 버튼 만들기",
+      "steps": [
+        "Customize → Customize User Interface 열기",
+        "Toolbars 탭에서 Standard 툴바 선택",
+        "Category에서 Utility → Reset XForm 찾기",
+        "New Button 클릭 → 이름 'Reset XForm', 아이콘 선택, Assign"
+      ]
+    },
+    {
+      "title": "Wireframe 토글 버튼",
+      "steps": [
+        "Customize → Customize User Interface 열기",
+        "Toolbars 탭에서 Custom 툴바 새로 만들기",
+        "Category에서 View → Wireframe Toggle 찾기",
+        "New Button 클릭 → 이름 'Wireframe', 아이콘 지정, Hotkey 'Ctrl+W' 입력, Assign"
+      ]
+    }
+  ],
+  "mistakes": [
+    "버튼에 같은 이름을 두 번 지정 → 이름이 중복되면 마지막에 만든 것이 우선 적용됩니다. 고유한 이름으로 수정하세요.",
+    "아이콘 파일 경로가 잘못됨 → 아이콘이 보이지 않으면 이미지 파일을 다시 지정하거나 기본 아이콘을 사용하세요.",
+    "Hotkey가 다른 명령과 충돌 → 충돌 시 경고가 뜨니 다른 키 조합으로 변경하거나 기존 Hotkey를 재배정하세요."
+  ],
+  "related": [
+    "Customize User Interface",
+    "MacroScript",
+    "Toolbar",
+    "Keyboard Shortcuts"
+  ],
+  "videos": [
+    {
+      "id": "gL8aj5dzUy8",
+      "title": "How to create Maxscript toolbar button",
+      "author": "Mohamed Mrigua"
+    },
+    {
+      "id": "bX1UCuJEnzI",
+      "title": "How to create Maxscript toolbar button",
+      "author": "GamersOrbTV"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Macroscript%20toolbar%20button",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Customize",
+    "Customize User Interface",
+    "Toolbars",
+    "New Toolbar",
+    "Category",
+    "MacroScript"
+  ],
+  "at": "2026-11-03T15:06:46.047331+00:00"
+}
