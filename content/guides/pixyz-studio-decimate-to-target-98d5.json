@@ -1,0 +1,102 @@
+{
+  "id": "pixyz-studio-decimate-to-target-98d5",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Decimate To Target",
+  "title": "Decimate To Target — 목표 개수로 줄이기",
+  "summary": "Pixyz Studio의 Decimate To Target은 특정 플랫폼이나 디바이스의 폴리곤 제한(예: HoloLens 10만 개 이하)에 맞추기 위해 목표 삼각형 개수나 비율을 지정하여 메시 밀도를 정확하게 줄여주는 최적화 기능입니다.",
+  "when": [
+    "AR/VR 기기나 모바일 게임 등 플랫폼의 폴리곤 예산(Polycount)에 정확히 모델을 맞춰야 할 때",
+    "건축 및 공장(AEC) 데이터에서 벽이나 창문 같은 단순한 파츠는 유지하고 고밀도 메시 위주로 폴리곤을 줄여야 할 때",
+    "텍스처 변형을 최소화하면서 대용량 CAD 모델의 데이터 용량을 효율적으로 줄여야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure(Scene Tree) 패널에서 최적화할 파츠나 모델 전체를 선택합니다.",
+    "상단 메뉴 바에서 Optimize Mesh 메뉴를 엽니다.",
+    "Decimate To Target을 클릭하여 실행 대화 상자를 엽니다.",
+    "Triangle Count 또는 Triangle Ratio에서 목표로 하는 삼각형 개수나 비율을 입력합니다.",
+    "Optional Parameters에서 UV 중요도나 토폴로지 보호 옵션을 설정한 뒤 Execute를 눌러 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Triangle Count",
+      "desc": "데시메이션 작업 후 남길 목표 삼각형의 총 개수입니다."
+    },
+    {
+      "name": "UV Importance",
+      "desc": "데시메이션 과정에서 UV(텍스처 좌표)와 심음을 보존하는 방식을 설정합니다."
+    },
+    {
+      "name": "Protect Topology",
+      "desc": "구멍이나 모서리 같은 중요한 위상 구조가 변형되지 않도록 보호합니다."
+    },
+    {
+      "name": "Iterative Threshold",
+      "desc": "수백만 폴리곤의 대형 모델 처리 시 메모리 부족을 방지하기 위한 반복 데시메이션 임계값을 설정합니다."
+    },
+    {
+      "name": "Process Mesh Independently",
+      "desc": "선택된 메시들을 전체 기준이 아닌 각 메시 개별 기준으로 목표 폴리곤 수에 맞춰 줄입니다."
+    },
+    {
+      "name": "Max Quadric Edge",
+      "desc": "쿼드릭 재평가 전에 정점이 붕괴되는 최대 메모리 한계를 정의합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임용 캐릭터 에셋 최적화",
+      "steps": [
+        "데시메이션 전 모델의 끊어진 틈을 방지하기 위해 먼저 Mesh 메뉴에서 Repair Mesh를 실행합니다.",
+        "Decimate To Target을 실행하고 Triangle Count에 적절한 목표 삼각형 개수(예: 10,000)를 입력합니다.",
+        "UV Importance를 Preserve Seams And Reduce Deformation으로 설정하여 텍스처 왜곡을 방지합니다.",
+        "눈이나 입 같은 구조가 무너지지 않도록 Protect Topology를 활성화합니다."
+      ]
+    },
+    {
+      "title": "대규모 건축(AEC) 데이터 일괄 최적화",
+      "steps": [
+        "건물 전체 파츠를 선택한 상태로 Decimate To Target을 엽니다.",
+        "Process Mesh Independently 옵션을 끄고 전체 선택 영역 기준으로 삼각형 개수를 할당합니다.",
+        "면이 적은 벽이나 창문은 원본 상태로 유지하고 밀도가 높은 메시 위주로 폴리곤을 최적화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "데시메이션 후 텍스처가 깨지거나 늘어나는 현상 → UV Importance 설정에서 Preserve Seams And Reduce Deformation을 선택하여 해결합니다.",
+    "대용량 모델 처리 중 컴퓨터가 급격히 느려지는 현상 → 시스템 램 용량(100만 폴리곤당 약 5GB)을 고려하여 Iterative Threshold 값을 적절히 설정합니다.",
+    "데시메이션 후 모델에 구멍이 생기거나 깨지는 현상 → 작업 전 Repair Mesh를 실행하고 Protect Topology 옵션을 켭니다."
+  ],
+  "related": [
+    "Decimate To Quality",
+    "Decimation in Pixyz",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "OQNlx13QqTk",
+      "title": "Pixyz Studio | Decimate Target Bake",
+      "author": "Pixyz"
+    },
+    {
+      "id": "I2WOafuBaf8",
+      "title": "011  Decimation, Decimate To Target in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/DecimateToTarget.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Scene Tree",
+    "Optimize Mesh",
+    "Decimate To Target"
+  ],
+  "at": "2026-11-03T09:03:51.078932+00:00"
+}
