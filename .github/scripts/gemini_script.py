@@ -12,7 +12,7 @@ client = genai.Client(api_key=api_key)
 
 # Gemini 모델 호출 테스트
 response = client.models.generate_content(
-    model="gemini-2.5-flash",
+    model="gemini-3.8-flash",
     contents="GitHub Actions에서 안녕! 넌 정상적으로 동작하고 있어?",
 )
 
