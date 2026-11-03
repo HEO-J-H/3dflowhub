@@ -1,0 +1,95 @@
+{
+  "id": "pixyz-studio-uvs-in-pixyz-b32e",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "UV·재질",
+  "name": "UVs in Pixyz",
+  "title": "UV 기본 — CAD 모델의 UV",
+  "summary": "Pixyz Studio의 UVs 기능을 사용하여 CAD 모델에 텍스처와 라이트맵을 입히기 위한 UV 좌표를 생성하고 최적화합니다.",
+  "when": [
+    "CAD 데이터를 실시간 3D 엔진에서 렌더링하기 위해 머티리얼과 텍스처를 적용해야 할 때",
+    "반복 패턴 텍스처(Seamless Texture)나 라이트맵(Lightmaps)을 모델에 올바르게 매핑해야 할 때",
+    "복잡한 CAD 메시에 자동 또는 투영 방식을 사용하여 빠르고 효율적으로 UV를 생성해야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러옵니다 (File > Open).",
+    "왼쪽 Product Structure 패널에서 UV를 생성할 메시나 파츠를 선택합니다.",
+    "메뉴 바에서 UVs 관련 기능(예: UV Projection 또는 Automatic UV Mapping)을 선택합니다.",
+    "대화 상자에서 필요한 투영 방식이나 옵션을 설정합니다.",
+    "Execute 버튼을 클릭하여 UV 생성을 실행하고 Viewer 창에서 텍스처 정렬 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "UV Projection Tool",
+      "desc": "Primitive 투영을 사용하여 대화식으로 UV를 생성하는 도구입니다."
+    },
+    {
+      "name": "Automatic UV Mapping",
+      "desc": "CAD 모델에 적합한 자동 언랩 솔루션으로 빠르고 간편하게 UV를 생성합니다."
+    },
+    {
+      "name": "Basic UV (Triplanar)",
+      "desc": "오브젝트의 바운딩 박스 방향을 따라 빠르게 UV를 투영하는 기본 방식입니다."
+    },
+    {
+      "name": "UV Repack",
+      "desc": "라이트맵 Baking에 적합하도록 UV 아일랜드들을 재배치합니다."
+    },
+    {
+      "name": "Continuous UVs",
+      "desc": "CAD 모델에서 연속적인 형태의 더 나은 UV를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "반복 패턴 텍스처 적용을 위한 기본 UV 생성",
+      "steps": [
+        "Product Structure 패널에서 나무 재질을 입힐 가구 CAD 파츠를 선택합니다.",
+        "메뉴 바에서 기본 UV 투영 기능을 실행합니다.",
+        "뷰포트에서 텍스처가 끊어지는 부분이 자연스럽게 배치되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "실시간 3D 엔진용 라이트맵 UV 준비",
+      "steps": [
+        "최적화된 메시 모델을 선택합니다.",
+        "Automatic UV Mapping 또는 기본 투영 후 UV Repack 기능을 적용합니다.",
+        "라이트와 그림자 Baking 시 왜곡이나 겹침이 없는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 경계면에서 끊어짐 → 투영 방향이 겹치는 영역을 확인하고 자동 UV 매핑 또는 수동 편집을 고려합니다.",
+    "라이트맵 아일랜드가 너무 작거나 늘어남 → UV Repack 옵션을 다시 실행하여 간격과 크기를 최적화합니다."
+  ],
+  "related": [
+    "Automatic UV Mapping",
+    "UV Projection Tool",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "PfruxPmfZ0M",
+      "title": "014  Uvs Tools in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "bdCXYGCMp3k",
+      "title": "UV Unwrapping and Mapping in Pixyz Studio",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutUVs.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "File",
+    "Open",
+    "Product Structure",
+    "UV"
+  ],
+  "at": "2026-11-03T10:05:36.224165+00:00"
+}
