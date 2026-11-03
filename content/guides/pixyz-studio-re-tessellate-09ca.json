@@ -1,0 +1,90 @@
+{
+  "id": "pixyz-studio-re-tessellate-09ca",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Re-Tessellate",
+  "title": "Re-Tessellate — 다시 폴리곤으로 나누기",
+  "summary": "Pixyz Studio의 Re-Tessellate 기능은 이미 임포트된 CAD(BRep) 모델을 재차 임포트할 필요 없이, 씬 내부에서 직접 폴리곤 품질을 다시 계산하고 세밀하게 조정할 수 있게 해 줍니다.",
+  "when": [
+    "임포트된 CAD 모델의 곡면이 너무 거칠어 폴리곤 품질을 높여야 할 때",
+    "불필요하게 높은 폴리곤 수를 줄여 씬 파일 용량을 최적화하고 싶을 때",
+    "전체 모델 중 특정 파츠만 골라 테셀레이션 품질을 다시 설정하고 싶을 때"
+  ],
+  "steps": [
+    "왼쪽 Product Structure 패널 또는 뷰포트에서 재설정할 파츠를 선택합니다.",
+    "CAD 메뉴 또는 뷰포트 우클릭 메뉴에서 Re-Tessellate를 선택하거나, 오른쪽 Inspector 패널의 Part 컴포넌트에서 Re-Tessellate 버튼을 누릅니다.",
+    "이미 테셀레이션된 파츠가 포함된 경우 나타나는 메시지 박스에서 Re-tessellate를 선택합니다.",
+    "열린 Tessellate 대화 상자에서 원하는 테셀레이션 파라미터 값(Sag, Angle 등)을 조정합니다.",
+    "Execute 버튼을 클릭하여 새로운 메시를 생성하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Override Existing Tessellation",
+      "desc": "기존에 적용된 테셀레이션을 강제로 덮어씌워 새로 계산합니다."
+    },
+    {
+      "name": "Keep BRep Shape",
+      "desc": "수학적 CAD 곡면(BRep) 데이터를 유지하여 추후 재테셀레이션이 가능하게 합니다."
+    },
+    {
+      "name": "Sag",
+      "desc": "곡면에 허용되는 최대 오차 거리로, 값이 작을수록 정밀한 폴리곤이 생성됩니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "인접한 폴리곤 사이의 허용 각도를 조절하여 곡면의 부드러움을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저화질로 임포트된 자동차 곡면 부품 품질 향상",
+      "steps": [
+        "Product Structure 패널에서 차체 본넷 파츠를 선택합니다.",
+        "Inspector 패널의 Part 컴포넌트에서 Re-Tessellate 버튼을 클릭합니다.",
+        "Tessellate 대화 상자에서 Sag 값을 낮추고 Execute를 눌러 매끄러운 곡면을 만듭니다."
+      ]
+    },
+    {
+      "title": "불필요하게 무거운 너트와 볼트 폴리곤 최적화",
+      "steps": [
+        "씬 내의 작은 체결 부품들을 선택합니다.",
+        "CAD 메뉴에서 Re-Tessellate를 실행합니다.",
+        "Sag 값을 높여 폴리곤 수를 줄인 뒤 Execute를 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 수정 후 재테셀레이션 실행하기 → 재테셀레이션 시 기존 메시는 완전히 새로 생성되므로 UV 생성이나 수리 작업은 항상 테셀레이션을 마친 후에 진행해야 합니다.",
+    "초기 Import 시 Keep BRep Shape 미체크 → CAD 원본 데이터가 유지되지 않아 추후 Re-Tessellate를 사용할 수 없으므로 처음 Import 옵션을 꼭 확인해야 합니다."
+  ],
+  "related": [
+    "Tessellate",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "1vWALb0NQMc",
+      "title": "007. Tessellation & Re Tessellate 3D Cad Models in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/Re-Tessellate.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Product Structure",
+    "CAD",
+    "Re-Tessellate",
+    "Inspector",
+    "Part"
+  ],
+  "at": "2026-11-03T08:33:36.393025+00:00"
+}
