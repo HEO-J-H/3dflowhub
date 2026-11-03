@@ -1,0 +1,88 @@
+{
+  "id": "pixyz-studio-pixyz-pbr-material-library-e121",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "UV·재질",
+  "name": "Pixyz PBR Material Library",
+  "title": "PBR 재질 라이브러리 쓰기",
+  "summary": "Pixyz PBR Material Library는 CAD 모델에 사실적인 질감을 입히기 위해 Pixyz에서 제공하는 고품질 PBR 머티리얼 라이브러리입니다. .pxz 서브씬 형태로 불러와 현재 씬에 머티리얼을 등록하고 적용할 수 있습니다.",
+  "when": [
+    "CAD 시각화 작업에서 알루미늄, 플라스틱, 가죽, 유리 등의 사실적인 표면 질감을 빠르게 표현하고 싶을 때",
+    "대형 어셈블리 모델에 일관된 PBR 머티리얼을 적용하여 실시간 검토 퀄리티를 높이고 싶을 때",
+    "별도의 외부 텍스처 매핑 과정 없이 Pixyz Studio 내에서 즉시 머티리얼을 할당하고 싶을 때"
+  ],
+  "steps": [
+    "공식 GitLab에서 Pixyz_PBR_realistic_materials_library.zip 압축 파일을 다운로드하여 멥 압축을 풉니다.",
+    "Pixyz Studio를 실행하고 상단 메뉴 바에서 File → Import를 선택합니다.",
+    "압축 해제된 폴더 내의 Pixyz_PBR_realistic_material_library.pxz 파일을 선택하여 서브씬(Subscene)으로 불러옵니다.",
+    "Product Structure 패널에 추가된 'Pixyz PBR realistic materials' 노드를 확인하고, Material Editor를 엽니다.",
+    "원하는 오브젝트(Occurrence)를 선택한 뒤 Material Editor에서 필요한 머티리얼을 드래그하거나 적용합니다.",
+    "머티리얼을 모두 등록한 후, 씬 용량 최적화를 위해 원본 'Pixyz PBR realistic materials' 노드를 삭제합니다(머티리얼은 유지됨)."
+  ],
+  "params": [
+    {
+      "name": "Subscene",
+      "desc": "외부 .pxz 파일을 현재 씬의 하위 구조로 불러오는 기능"
+    },
+    {
+      "name": "Material Editor",
+      "desc": "씬 내의 머티리얼 목록을 관리하고 속성을 편집하는 전용 패널"
+    },
+    {
+      "name": "Product Structure",
+      "desc": "왼쪽 패널에서 씬의 파트와 노드 계층 구조를 트리 형태로 표시"
+    },
+    {
+      "name": "Inspector",
+      "desc": "선택한 노드와 머티리얼의 상세 속성을 확인하고 수정하는 오른쪽 패널"
+    }
+  ],
+  "examples": [
+    {
+      "title": "알루미늄 및 철제 기계 부품 질감 부여",
+      "steps": [
+        "Product Structure에서 기계 부품 옥커런스를 선택합니다.",
+        "Material Editor를 열어 라이브러리 내 Aluminum 또는 Iron 머티리얼을 찾습니다.",
+        "해당 부품에 머티리얼을 드래그하여 표면 재질을 변경합니다."
+      ]
+    },
+    {
+      "title": "유리 및 플라스틱 외장재 검토",
+      "steps": [
+        "투명 커버 파트를 선택하고 Material Editor에서 Glass 머티리얼을 적용합니다.",
+        "외관 케이스 파트에 Plastic Paint 머티리얼을 적용하여 제품 시각화를 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트에 UV 좌표가 없어 텍스처가 깨지거나 보이지 않음 → CAD 데이터에 적절한 UVs가 생성되어 있는지 확인하고 필요시 UVs 재생성 도구를 실행하세요.",
+    "머티리얼 라이브러리 .pxz 파일을 씬에 그대로 남겨두어 파일 용량이 지나치게 커짐 → 필요한 머티리얼을 가져온 후 'Pixyz PBR realistic materials' 노드를 삭제하여 용량을 줄이세요."
+  ],
+  "related": [
+    "Material Editor",
+    "Import",
+    "UVs",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/PixyzPBRMaterialLibrary.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "GitLab",
+    "Pixyz",
+    "PBR"
+  ],
+  "at": "2026-11-03T10:34:18.420736+00:00"
+}
