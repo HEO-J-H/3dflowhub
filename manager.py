@@ -25,7 +25,8 @@ FEED_REJECT_PATTERNS = ["키친", "주방", "인테리어", "요리", "레시피
 CONFIG_KEYS = {"interval": str, "max_items": int, "burst_items": int, "llm_daily_budget": int, "llm_fallback_daily": int, "buttondown_user": str}
 STATUS_KO = {"new": "새 제안", "accepted": "수락", "held": "보류", "rejected": "거절", "done": "완료"}
 PLAN_PATH = core.ROOT / "memory" / "plan.json"
-GUIDES_MIN_SHARE = 0.6  # 남은 가이드 주제가 있는 동안 AI 몫의 최소 비율
+GUIDES_MIN_SHARE = 0.4  # 남은 가이드 주제가 있는 동안 AI 몫의 최소 비율 (0.6 → 0.4: 소식이 하루 9건까지 떨어짐, 2026-11-03)
+NEWS_DAILY_MIN = 50     # 하루 소식 최소치 — 가이드·심화·QA 같은 다른 일이 늘어도 소식이 바닥나지 않게
 DEFAULT_ALLOC = {"news": 0.2, "guides": 0.5, "roundups": 0.3}  # 에버그린(가이드·정리) 중심 — 요약 소식은 남들도 가진 정보
 CALLS_PER_NEWS = 1.3   # 요약 1회 + 주제 밖·실패 여유
 RESERVE = 6            # AI 관리자 분석·답변용으로 남겨 둠
@@ -346,7 +347,7 @@ def plan_today() -> dict:
     runs_left = max(1, int(hours_left * 3600 // interval))
     rep = board()["report"]
     alloc = dict(rep.get("allocation") or DEFAULT_ALLOC)
-    news_cap = float(cfg.get("alloc_news_cap", 0.3))  # 뉴스 상한: 차별성 낮은 요약 소식이 배분을 다 먹지 않도록
+    news_cap = float(cfg.get("alloc_news_cap", 0.5))  # 뉴스 상한: 차별성 낮은 요약 소식이 배분을 다 먹지 않도록
     if alloc.get("news", 0) > news_cap:
         spare = alloc["news"] - news_cap
         alloc["news"] = news_cap
@@ -374,11 +375,17 @@ def plan_today() -> dict:
         rest = sum(v for k, v in alloc.items() if k != "guides") or 1
         alloc = {k: (floor if k == "guides" else round(v / rest * (1 - floor), 2)) for k, v in alloc.items()}
     per_run_calls = usable / runs_left
+    # 하루 소식 최소치 (사장님: 하루 약 100개 콘텐츠) — 배분 비율이 낮아도 남은 실행에 나눠 이만큼은 채움 (AI 여유가 있을 때)
+    news_min = int(cfg.get("news_daily_min", NEWS_DAILY_MIN))
+    runs = core.load_memory().get("runs", [])[-36:]  # 고른 글 중 실제로 저장되는 비율 (중복·주제 밖으로 빠지는 몫)
+    save_rate = max(0.2, min(1.0, sum(r.get("saved", 0) for r in runs) / max(1, sum(r.get("collected", 0) for r in runs))))
+    need = max(0, news_min - done_today(kst=True).get("news", 0)) / save_rate
+    news_floor = -(-int(need) // runs_left) if usable > 20 else 0
     plan = {
         "day": core.llm_day(), "at": _now(), "capacity_left": cap, "runs_left": runs_left,
         "alloc": alloc, "reason": rep.get("allocation_reason") or ("AI 관리자 분석 비율" if rep.get("allocation")
                                                                  else "기본 배분 (AI 관리자 분석 전)"),
-        "news_per_run": max(1, min(15, round(per_run_calls * alloc["news"] / CALLS_PER_NEWS))) if usable else 0,
+        "news_per_run": max(1, min(15, max(round(per_run_calls * alloc["news"] / CALLS_PER_NEWS), news_floor))) if usable else 0,
         "guides_now": min(3, pending_guides, _share(per_run_calls * alloc["guides"])) if usable else 0,
         "roundups_now": min(3, cand, _share(per_run_calls * alloc["roundups"])) if usable else 0,
         "today_target": {k: int(usable * v / (CALLS_PER_NEWS if k == "news" else 1)) for k, v in alloc.items()},
