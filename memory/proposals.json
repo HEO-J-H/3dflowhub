@@ -9805,5 +9805,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) URL 유효성 검사 UI 피드백 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T13:24:24+00:00",
+    "kind": "proposal",
+    "id": "p-a5626c355a",
+    "title": "웹 버전(web/) URL 유효성 검사 에러 피드백 UI 연동",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증 로직(url_ingest.py)이 고도화되었으나 웹 UI 단에서의 시각적 피드백 연동 보완이 필요함.",
+    "proposal": "web/index.html 및 관련 JS 파일에 backend의 validate_url_input 검증 규칙을 반영하여, 잘못된 URL 입력 시 사용자에게 직관적인 에러 메시지를 표시하도록 수정",
+    "expected": "웹 사용자 경험 향상 및 잘못된 입력으로 인한 예외 상황 사전 차단",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T13:24:35.831440+00:00",
+    "kind": "decision",
+    "id": "p-a5626c355a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 핸들링 피드백 UI 연동 확인",
+    "auto": true
   }
 ]
