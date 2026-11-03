@@ -1,0 +1,113 @@
+{
+  "id": "blender-color-ramp-node-ab1d",
+  "guide_id": "blender-color-ramp-node-ab1d",
+  "tool": "Blender",
+  "name": "Color Ramp node",
+  "title": "Color Ramp — 값을 색으로",
+  "overview": "Color Ramp 노드는 0에서 1 사이의 입력값(Factor)을 사용자가 정의한 색상 그라데이션으로 매핑하여 출력하는 절차적 텍스처링 및 쉐이딩의 핵심 노드입니다. 흑백 마스크의 대비를 극적으로 조절하거나, 머티리얼 표면에 다채로운 컬러 변환을 줄 때 필수적으로 사용됩니다.",
+  "access": "Shader Editor 열기 → Shift+A 누르기 → Converter 메뉴 선택 → Color Ramp 선택 (또는 검색창에 Color Ramp 입력)",
+  "options": [
+    {
+      "name": "Factor",
+      "value": "0.0 ~ 1.0",
+      "effect": "그라데이션 상에서 색상을 샘플링할 위치를 결정합니다.",
+      "tip": "Noise Texture나 Musgrave Texture의 출력을 연결하여 자연스러운 마스크를 만듭니다."
+    },
+    {
+      "name": "Color Stops",
+      "value": "개수 제한 없음 (기본 2개)",
+      "effect": "특정 위치(Position)에서의 색상과 알파값을 지정합니다.",
+      "tip": "+\" 버튼으로 스톱을 추가하고, 스톱 사이를 좁게 배치하면 날카로운 경계를 만들 수 있습니다."
+    },
+    {
+      "name": "Interpolation",
+      "value": "Linear (기본값)",
+      "effect": "색상 스톱 사이의 보간 방식을 결정합니다 (Linear, Constant, Ease, B-Spline, Cardinal).",
+      "tip": "단색 영역을 뚜렷하게 나누고 싶을 때는 Constant를 선택해 하드 엣지를 만듭니다."
+    },
+    {
+      "name": "Color Mode",
+      "value": "RGB (기본값), HSV, CIE-Lab",
+      "effect": "색상 혼합 시 사용하는 컬러 스페이스 방식을 결정합니다.",
+      "tip": "무지개빛 부드러운 색상 변화를 원할 때는 HSV(Clockwise/Far) 모드가 유용합니다."
+    },
+    {
+      "name": "Position",
+      "value": "0.0 ~ 1.0",
+      "effect": "선택된 색상 스톱의 그라데이션상 위치를 정밀하게 조정합니다.",
+      "tip": "수치 입력 칸을 더블클릭하여 정확한 위치(예: 0.5)를 입력할 수 있습니다."
+    },
+    {
+      "name": "Color Output",
+      "value": "RGBA",
+      "effect": "계산된 최종 색상 값을 출력합니다.",
+      "tip": "Principled BSDF의 Base Color나 Emission Color에 연결합니다."
+    },
+    {
+      "name": "Alpha Output",
+      "value": "Float (0.0 ~ 1.0)",
+      "effect": "각 색상 스톱에 지정된 알파(투명도) 값을 출력합니다.",
+      "tip": "Alpha Clip이나 Alpha Blend 쉐이더 설정과 함께 사용하여 투명 마스크로 활용합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Linear Interpolation",
+      "desc": "가장 기본적인 모드로, 두 색상 스톱 사이를 부드러운 선형(Linear) 그라데이션으로 연결합니다."
+    },
+    {
+      "name": "Constant Interpolation",
+      "desc": "보간 없이 색상이 즉각적으로 전환되어, 계단 현상이나 선명한 패턴 마스크를 만들 때 사용합니다."
+    },
+    {
+      "name": "Ease / B-Spline / Cardinal",
+      "desc": "스톱 사이의 전환을 곡선 형태로 부드럽게 만들어 자연스러운 색상 퍼짐 효과를 냅니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "노이즈를 활용한 카멜레온 피부 컬러 맵 제작",
+      "steps": [
+        "Shader Editor에서 Shift+A → Texture → Noise Texture 노드를 추가합니다.",
+        "Noise Texture의 Fac 출력을 Color Ramp의 Factor에 연결합니다.",
+        "Color Ramp에 녹색, 파란색, 보라색 스톱을 차례로 추가하여 배치합니다.",
+        "Color Ramp의 출력을 Principled BSDF의 Base Color에 연결하고 뷰포트에서 확인합니다."
+      ]
+    },
+    {
+      "title": "지형(Displacement) 높이에 따른 절차적 흙과 풀 표현",
+      "steps": [
+        "Voronoi Texture 또는 Noise Texture로 지형의 높이 맵을 생성합니다.",
+        "Color Ramp를 노이즈와 Principled BSDF 사이에 배치합니다.",
+        "Color Ramp의 검은색 스톱(낮은 곳)은 어두운 흙 색상으로 지정합니다.",
+        "흰색 스톱(높은 곳)은 밝은 풀 색상으로 지정하고 중간 위치를 좁혀 경계를 만듭니다."
+      ]
+    },
+    {
+      "title": "Edge Mask를 이용한 메탈 웨어(녹슨 표현) 효과",
+      "steps": [
+        "Geometry 노드 또는 Pointiness 출력을 Color Ramp의 Factor에 연결합니다.",
+        "Color Ramp의 스톱 위치를 조여 오브젝트의 모서리 부근에만 흰색 마스크가 생기도록 합니다.",
+        "Color Ramp의 출력을 Mix Color 노드의 Factor로 사용하여 금속 질감과 녹 색상을 합성합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Color Ramp 노드 자체는 연산 부하가 매우 낮으나, 연결된 텍스트노드(Noise, Voronoi 등)의 Detail과 Dimension 값이 높을 경우 뷰포트 갱신이 느려질 수 있습니다.",
+    "실시간 렌더링(Eevee) 환경에서 복잡한 노드 트리를 구성할 때는 텍스트 노드의 Resolution와 샘플 수를 적절히 유지하세요."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Color Ramp를 연결했는데 모델 전체가 단색으로만 보입니다.",
+      "fix": "Factor에 연결된 노드의 출력값(예: Noise Texture의 Fac)이 0과 1 사이의 범위를 정상적으로 출력하고 있는지 확인하세요. 필요시 Map Range 노드를 앞에 추가해 범위를 조절합니다."
+    },
+    {
+      "symptom": "색상 스톱이 서로 겹쳐서 순서가 뒤바뀌고 색이 깨집니다.",
+      "fix": "Color Ramp 패널 하단의 Position 슬라이더 수치를 직접 입력하거나, 스톱을 드래그하여 순서가 겹치지 않도록 좌우 간격을 확보하세요."
+    }
+  ],
+  "versions": "Blender 4.0 이후 Color Ramp 노드의 UI 및 컬러 매니지먼트 처리가 일부 개선되었으나 기본적인 작동 방식과 파라미터는 동일합니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Color%20Ramp%20node",
+  "grounded": true,
+  "at": "2026-11-03T12:24:51+00:00"
+}

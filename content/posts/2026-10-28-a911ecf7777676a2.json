@@ -1,55 +1,90 @@
 {
-  "title_ko": "Gaussian Splatting SLAM — LingGS 논문 분석",
+  "title_ko": "LingGS — 고품질 Gaussian SLAM을 위한 기하 예측과 카메라 트래킹 분리",
   "title": "LingGS: Decoupling Feed-Forward Geometry Prediction from Camera Tracking for High-Fidelity Gaussian SLAM",
   "url": "https://arxiv.org/abs/2610.36853v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "SLAM",
-    "3D Reconstruction",
-    "Computer Vision",
-    "AI 3D"
+    "Gaussian SLAM",
+    "3D Gaussian Splatting",
+    "Camera Tracking",
+    "Monocular SLAM",
+    "Geometry Prediction"
   ],
-  "summary": "LingGS는 피드포워드 기하학 예측과 카메라 트래킹을 분리하여 모노큘러 RGB Gaussian Splatting SLAM의 고화질 복원과 실시간 성능을 크게 향상시킨 새로운 온라인 시스템입니다.",
-  "insight": "이번 연구는 실시간 Gaussian Splatting SLAM 시스템에서 정확한 카메라 트래킹과 고품질 3D 복원을 동시에 달성하기 위한 효율적인 아키텍처를 제시합니다. 학습 기반 카메라 예측 대신 명시적 기하학 솔버와 스트리밍 3D 파운데이션 모델을 결합함으로써, 복잡한 실내외 환경에서도 뛰어난 포즈 정확도와 높은 처리량을 보여줍니다. 향후 실시간 공간 스캐닝, 로보틱스, 가상 프로덕션용 현장 3D 스캔 워크플로를 구축하는 엔지니어들이 주목해야 할 기술입니다. 특히 RTX 4090 환경에서 기존 대비 2~3배의 처리 속도를 달성해 실무 적용 가능성을 높였습니다.",
+  "summary": "LingGS는 피드포워드 기하 예측과 카메라 트래킹을 분리하여 단안 RGB 영상에서 고품질의 3D Gaussian Splatting SLAM을 수행하는 시스템입니다.",
+  "insight": "이 기술은 향후 AR/VR 및 로보틱스 분야에서 실시간 단안 3D 스캔 및 장면 재구성의 품질을 크게 높이는 데 기여할 수 있습니다. 3D 아티스트와 실무자들은 향후 복잡한 멀티뷰 장비 없이도 단일 카메라 영상 기반의 고정밀 3D Gaussian 맵 빌딩 워크플로우를 기대해 볼 수 있습니다 (가능성).",
   "sections": [
     {
-      "heading": "LingGS 시스템의 핵심 개요",
-      "body": "본 논문에서는 제한된 최적화 예산 내에서 모노큘러 RGB Gaussian Splatting SLAM의 고품질 복원과 반응형 카메라 트래킹의 한계를 극복하는 온라인 시스템을 제안합니다. 학습된 기하학적 사전 지식과 명시적 기하학적 카메라 트래킹을 결합하여 학습 기반 카메라 예측보다 우수한 트래킹 정확도를 보여줍니다. 실내 및 실외 데이터셋을 활용한 광범위한 실험에서 기존 접근 방식 대비 복원 품질이 크게 향상되었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "단안 Gaussian SLAM은 RGB 영상만으로 카메라 포즈와 장면 기하를 동시에 추정해야 합니다. 기존의 학습 기반 방식은 정교한 깊이를 제공하지만 크기 일관성 문제가 있고, 직접적인 포즈 예측은 프레임 간 정렬 불량을 유발하여 재구성 품질을 떨어뜨립니다. 본 논문은 제한된 온라인 연산 예산 내에서 일관된 고품질 깊이와 카메라 포즈를 동시에 얻는 문제를 해결하고자 합니다."
     },
     {
-      "heading": "가상 RGB-D 센서와 기하학적 트래킹",
-      "body": "고정된 스트리밍 3D 파운데이션 모델이 가상 RGB-D 센서 역할을 수행하여 모노큘러 비디오로부터 깊이 추정을 제공합니다. 이어서 명시적 기하학 솔버가 피처 재투영(feature reprojection)을 통해 카메라 모션을 추정합니다. 이러한 기하학적 트래킹 방식은 대표적인 스트리밍 기하학 백본 전반에서 카메라 포즈 정확도를 향상시킵니다."
+      "heading": "핵심 아이디어",
+      "body": "LingGS는 2D 피처 포인트와 예측된 깊이를 결합하여 카메라 포즈 추정을 공동으로 제한하는 명시적 기하 포즈 솔버(Explicit Geometry Pose Solver)를 도입합니다. 이를 통해 학습된 스트리밍 카메라 헤드보다 향상된 트래킹 성능을 제공하며, 추가 학습 없이 단일 RTX 4090 GPU에서 약 7 FPS로 구동됩니다."
     },
     {
-      "heading": "스트리밍 Gaussian 맵퍼와 씬 통합",
-      "body": "추정된 관측 결과는 스트리밍 Gaussian 맵퍼를 통해 조밀한 씬(scene) 표현으로 통합됩니다. 이 과정에서 3D 공간의 디테일이 손실되지 않도록 정교하게 처리됩니다. 복잡한 환경에서도 안정적인 실시간 장면 구축이 가능해집니다."
+      "heading": "방법 (단계)",
+      "body": "시스템은 1) 초기 RGB 프레임으로부터 카메라 내부 파라미터를 추정하는 고정된 스트리밍 파운데이션 모델, 2) 2D 피처 매칭과 재투영 오차 최소화를 통해 기하학적 카메라 트래킹을 수행하는 기하 솔버, 3) 키프레임 선택, Laplacian 유도 Gaussian 삽입, RGB 및 깊이 손실을 이용한 30단계 정제 과정을 수행하는 Gaussian 매퍼로 구성됩니다."
     },
     {
-      "heading": "성능 및 처리량 평가",
-      "body": "단일 RTX 4090 환경에서 약 7 FPS의 성능을 기록하며, 이는 평가된 기존 사전 SLAM 시스템 대비 2~3배에 달하는 처리량입니다. 연산 효율성과 복원 품질을 동시에 만족시켜 실시간 응용 프로그램에서의 활용 가능성을 증명했습니다. 본 연구는 10페이지 분량으로 컴퓨터 비전 및 패턴 인식 분야에 제출되었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "실내외 데이터셋에서 평가한 결과, 기존 베이스라인 대비 렌더링 PSNR을 최대 3.1 dB 향상시켰으며, 가장 낮은 깊이 오차와 경쟁력 있는 트래킹 오차를 달성했습니다. 또한 제안하는 기하 솔버는 모델 고유의 카메라 헤드 대비 궤적 오차를 최대 약 97%까지 줄였습니다."
+    },
+    {
+      "heading": "Limitations · 아직 못 하는 것",
+      "body": "온라인 연산 예산의 한계 속에서 스트리밍 모델의 깊이 예측 품질과 포즈 정확도 간의 상호작용에 의존하며, 단일 RTX 4090 GPU 환경에서 약 7 FPS의 속도를 가집니다."
+    },
+    {
+      "heading": "코드 · 데이터 공개 여부",
+      "body": "논문 본문에는 GitHub 이슈 링크 및 LaTeXML 관련 링크 외에 본 연구의 공식 소스 코드 저장소 링크가 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "LingGS 시스템은 어떤 문제를 해결하나요?",
-      "a": "모노큘러 RGB Gaussian Splatting SLAM에서 제한된 최적화 예산으로 인해 고품질 복원과 반응형 카메라 트래킹을 동시에 달성하기 어려운 문제를 해결합니다."
+      "q": "LingGS 시스템은 실행 시 추가 학습이 필요한가요?",
+      "a": "아니오, 시스템은 추가 학습이 필요하지 않습니다."
     },
     {
-      "q": "하드웨어 요구 사항과 처리 성능은 어느 정도인가요?",
-      "a": "단일 RTX 4090 GPU 환경에서 약 7 FPS로 구동되며, 기존 SLAM 시스템 대비 2~3배 높은 처리량을 보여줍니다."
+      "q": "어떤 하드웨어 환경에서 테스트되었나요?",
+      "a": "단일 RTX 4090 GPU에서 약 7 FPS로 구동됩니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.36853v1/2610.36853v1/overview.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.36853v1/2610.36853v1/overview.png",
+        "caption": "Figure 1: Overview of our online Gaussian splatting SLAM system. (a) A frozen streaming foundation model estimates camera intrinsics from the initial RGB frames. (b) Predicted depth and image features support geometric camera tracking through correspondence matching and reprojection error minimizati",
+        "caption_ko": "그림 1: 온라인 Gaussian Splatting SLAM 시스템의 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36853v1/2610.36853v1/visual_cmp.png",
+        "caption": "Figure 3: Qualitative rendering and depth comparison.\nOne representative sequence is selected from each dataset.\nFor 7-Scenes, TUM-D and Oxford Spires, we show both novel-view RGB rendering\nand rendered depth; RE10K is shown only in RGB because reference depth\nis unavailable. The 7-Scenes and TUM-D ",
+        "caption_ko": "그림 3: 정성적 렌더링 및 깊이 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36853v1/2610.36853v1/ATE_vis.png",
+        "caption": "Figure 4: Qualitative trajectory comparison.\nWe visualize one representative sequence from three datasets after\ntrajectory alignment. Our estimated trajectories closely follow the\nground truth.\nBecause OTF is designed primarily for novel-view synthesis and estimates poses only for keyframes and held",
+        "caption_ko": "그림 4: 정성적 궤적 비교."
+      }
+    ]
   },
   "collected_at": "2026-10-28T01:56:58.103331+00:00",
   "notion_id": "",
   "id": "2026-10-28-a911ecf7777676a2",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-03T12:24:37+00:00"
 }
