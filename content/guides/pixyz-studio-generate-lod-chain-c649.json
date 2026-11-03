@@ -1,0 +1,93 @@
+{
+  "id": "pixyz-studio-generate-lod-chain-c649",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Generate LOD Chain",
+  "title": "LOD 체인 만들기",
+  "summary": "Pixyz Studio의 Generate LOD Chain은 고정밀 모델로부터 단계별 LOD(Level of Detail)를 자동으로 생성하여 게임 엔진 및 3D 뷰어의 렌더링 퍼포먼스를 극대화해 주는 데이터 준비 프로세스입니다.",
+  "when": [
+    "대용량 CAD 데이터를 Unreal Engine이나 Unity 같은 게임 엔진에 최적화하여 임포트할 때",
+    "거리별로 폴리곤 밀도를 낮춘 LOD0, LOD1, LOD2... 체인을 한 번에 자동으로 구축할 때",
+    "수많은 파츠로 구성된 어셈블리 모델의 폴리곤 구조를 일괄적으로 정리할 때"
+  ],
+  "steps": [
+    "왼쪽 Product Structure 패널에서 LOD를 생성할 최상위 루트 노드나 파츠 그룹을 선택합니다.",
+    "상단 메뉴 바에서 Optimize Mesh 메뉴를 클릭합니다.",
+    "메뉴 목록에서 Generate LOD Chain을 선택하여 설정 대화 상자를 엽니다.",
+    "대화 상자에서 Decimation Strategy(디시메이션 전략)를 Decimate To Quality 또는 Decimate To Target 중 선택합니다.",
+    "생성할 LOD 단계별로 테이블에 행을 추가하거나 제거하여 원하는 개수를 지정합니다.",
+    "필요시 각 LOD별 기본값을 미세 조정하고 Execute 버튼을 클릭해 프로세스를 실행합니다.",
+    "Product Structure 패널에서 이름 뒤에 \\LODn 접미사가 붙은 그룹 구조와 최적화된 메시 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Decimation Strategy",
+      "desc": "품질 기준(Decimate To Quality) 또는 목표 폴리곤 수 기준(Decimate To Target) 중 디시메이션 방식을 선택합니다."
+    },
+    {
+      "name": "Number of LODs",
+      "desc": "테이블 행 추가 및 제거를 통해 생성할 LOD 단계를 설정합니다."
+    },
+    {
+      "name": "Product Structure",
+      "desc": "왼쪽 패널에서 선택된 계층 구조로, 프로세스 적용 대상 파츠를 결정합니다."
+    },
+    {
+      "name": "Execute",
+      "desc": "설정한 값에 따라 LOD 체인 생성 프로세스를 즉시 실행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 엔진용 차량 모델 최적화",
+      "steps": [
+        "Product Structure 패널에서 차량 전체 어셈블리 노드를 선택합니다.",
+        "Optimize Mesh 메뉴에서 Generate LOD Chain을 실행합니다.",
+        "3단계 LOD(LOD1~LOD3) 테이블을 설정하고 Decimate To Quality 전략을 선택합니다.",
+        "Execute를 눌러 게임 엔진 표준 명명 규칙(\\LODn)이 적용된 최적화 체인을 얻습니다."
+      ]
+    },
+    {
+      "title": "대규모 건축물 시각화 데이터 경량화",
+      "steps": [
+        "Product Structure 패널에서 멀리서 보이는 건물 외관 파츠들을 선택합니다.",
+        "Optimize Mesh 메뉴에서 Generate LOD Chain을 엽니다.",
+        "Decimate To Target 전략을 선택하여 전체 목표 폴리곤 수를 지정합니다.",
+        "Execute를 실행하여 뷰포트 성능을 높일 수 있는 다중 LOD 구조를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시가 테셀레이션되지 않은 상태에서 실행 → CAD 파일을 먼저 Tessellation 기능으로 폴리곤 메시로 변환 후 실행합니다.",
+    "개별 파츠가 아닌 빈 그룹을 선택함 → Product Structure에서 실제 지오메트리가 포함된 파츠나 노드를 올바르게 선택했는지 확인합니다."
+  ],
+  "related": [
+    "Decimate To Target",
+    "Decimate To Quality",
+    "Repair Mesh",
+    "Tessellation"
+  ],
+  "videos": [
+    {
+      "id": "fF6uLXhdx7c",
+      "title": "021  Generate Lod Chain in Pixyz Studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "kSmdFJXx_MY",
+      "title": "Generate mesh LODs on import",
+      "author": "Unity"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/GenerateLODChain1.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Product Structure",
+    "LOD",
+    "Optimize Mesh",
+    "Generate LOD Chain"
+  ],
+  "at": "2026-11-03T09:13:45.757249+00:00"
+}

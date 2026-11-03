@@ -38,6 +38,16 @@
     {
       "heading": "Post 프로덕션 및 후반 작업",
       "body": "3D 렌더 패스를 거친 원본 이미지는 Photoshop과 Affinity에서 최종 합성 및 색보정을 거쳤습니다. 밴드의 정체성을 드러내는 거친 텍스처와 비주얼 톤을 극대화하기 위해 레벨 및 그레이딩 작업이 세밀하게 진행되었습니다. 3D 렌더링과 2D 리터칭의 조합이 완성도 높은 앨범 아트를 완성하는 핵심 단계임을 보여줍니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "3ds Max 기반의 환경 아트워크 작업에서는 대규모 자연물 배치를 위해 tyFlow와 Forest Pack 같은 전문 플러그인의 조합이 필수적입니다. 먼저 3ds Max의 뷰포트에서 기본 지형을 잡고, tyFlow를 이용해 Particle이나 낙엽, 잔가지 등의 세부 디테일을 분산 배치합니다. 이후 V-Ray GPU의 인터랙티브 렌더링 기능을 켜둔 상태에서 조명 위치와 대기 안개(Atmospheric Fog)의 밀도를 조절하면, 데스 메탈 앨범 커버처럼 어둡고 깊이감 있는 분위기를 실시간으로 확인하며 빠르게 완성도를 높일 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "이와 유사한 어둡고 밀도 높은 숲 환경을 직접 제작해 보려면 3ds Max의 기본 지형 생성 기능과 Edit Poly 모디파이어를 숙지해야 합니다. 또한 복잡한 오브젝트 분산을 제어하는 tyFlow 기초 튜토리얼과 V-Ray GPU 환경 설정, V-Ray Camera의 Exposure 및 Color Mapping 세팅법을 먼저 학습하는 것이 좋습니다. 렌더링 후반 작업을 위해 V-Ray Render Elements를 활용해 디퓨즈, 리플렉션, Z-depth 패스를 각각 뽑아내는 워크플로우를 익혀두면 Photoshop에서의 합성 작업이 훨씬 수월해집니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -48,6 +58,14 @@
     {
       "q": "어떤 아티스트가 이 프로젝트를 공유했나요?",
       "a": "레딧 커뮤니티의 3D 아티스트 SadowskiCG가 자신의 밴드 앨범 커버 제작 사례로 공유했습니다."
+    },
+    {
+      "q": "데스 메탈 아트워크처럼 어둡고 거친 분위기를 3D 렌더링에서 극대화하려면 어떤 V-Ray 기능을 주로 쓰나요?",
+      "a": "V-Ray GPU의 강력한 라이팅 연산과 함께 V-Ray Environment의 Fog 효과를 적극 활용하여 깊이감을 부여합니다. 또한 Post 프로덕션 단계에서 Photoshop이나 Affinity를 통해 대비를 강하게 주고 거친 필름 그레인이나 텍스처 오버레이를 더해 장르 특유의 비주얼 톤을 완성합니다."
+    },
+    {
+      "q": "복잡한 자연물 씬을 제작할 때 3ds Max와 tyFlow를 함께 쓰는 이유는 무엇인가요?",
+      "a": "3ds Max의 정적인 오브젝트 배치 한계를 극복하고, tyFlow를 통해 수많은 자연물과 Particle을 파라메트릭하게 제어할 수 있기 때문입니다. 이를 통해 씬의 리소스를 효율적으로 관리하면서도 무작위성과 생동감이 넘치는 자연 환경을 연출할 수 있습니다."
     }
   ],
   "media": {
@@ -57,5 +75,23 @@
   "collected_at": "2026-11-03T08:33:19.424198+00:00",
   "notion_id": "",
   "id": "2026-11-03-d6e5d7ad3b9448d1",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [
+    {
+      "id": "7hN_Vfb_HU0",
+      "title": "3ds max Vray Forest Pack Rendering and LightingTutorial",
+      "author": "3D Studio Max Tutorials"
+    },
+    {
+      "id": "v3gyLuoLn6Q",
+      "title": "3ds Max + Forest Pack Video 4: Setting Up a V-Ray Camera To Match Our Sketch 4/4",
+      "author": "Adam Z - Learn Archviz"
+    }
+  ],
+  "enriched_at": "2026-11-03T09:13:55+00:00",
+  "quality": {
+    "before": 954,
+    "after": 1569
+  }
 }
