@@ -1,0 +1,95 @@
+{
+  "id": "pixyz-studio-instances-and-prototypes-0735",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "구조",
+  "name": "Instances and prototypes",
+  "title": "Instance·Prototype — 같은 부품 반복",
+  "summary": "Pixyz Studio의 Instance와 Prototype은 동일한 CAD 부품이나 서브어셈블리를 메모리에 중복 로드하지 않고 재사용하여 파일 용량을 줄이고 렌더링 성능을 최적화하는 기능입니다.",
+  "when": [
+    "자동차의 바퀴, 의자 등 동일한 형상이 반복되는 대규모 CAD 어셈블리를 최적화할 때",
+    "파일 용량을 줄이고 뷰포트 렌더링 성능을 극대화해야 할 때",
+    "엔지니어링 단계에서 수정된 부품을 전체 씬에 한꺼번에 반영할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "화면 왼쪽의 Product Structure 패널에서 복제하거나 인스턴스화할 부품 또는 어셈블리를 선택합니다.",
+    "Mouse 우클릭을 하거나 상단 메뉴를 통해 Instance 관련 기능(Create Instances By Similarity 또는 Replace By)을 실행합니다.",
+    "원본 역할을 하는 prototype과 이를 참조하는 instance들의 계층 구조가 Product Structure에 생성되는 것을 확인합니다.",
+    "Inspector 패널에서 개별 Instance의 변환 매트릭스(Transformation Matrix)나 머티리얼을 오버라이드하여 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Prototype",
+      "desc": "여러 Instance가 참조하는 원본 부품 또는 어셈블리 발생(Occurrence)입니다."
+    },
+    {
+      "name": "Instance",
+      "desc": "Prototype을 참조하여 씬에 반복 배치되는 객체로 개별 속성을 가집니다."
+    },
+    {
+      "name": "Product Structure",
+      "desc": "장면의 계층 구조와 Instance 관계를 관리하는 왼쪽 트리 패널입니다."
+    },
+    {
+      "name": "Replace By",
+      "desc": "선택한 부품들을 다른 Prototype Instance로 일괄 교체하는 기능입니다."
+    },
+    {
+      "name": "Create Instances By Similarity",
+      "desc": "유사한 형상을 자동으로 감지하여 Instance로 변환하는 기능입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "식탁과 동일한 의자 4개 배치하기",
+      "steps": [
+        "Product Structure 패널에서 의자 모델 하나를 선택합니다.",
+        "유사 형상 감지 기능을 사용하여 나머지 3개의 의자를 첫 번째 의자의 Instance로 변환합니다.",
+        "삼각형 폴리곤 수가 감소하여 전체 파일 크기가 줄어든 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "대규모 어셈블리 최적화하기",
+      "steps": [
+        "복잡한 CAD 데이터를 Pixyz Studio로 임포트합니다.",
+        "반복되는 볼트와 너트 부품들을 검색하여 인스턴스화합니다.",
+        "뷰어 성능이 향상되고 파일 용량이 최적화되었는지 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Instance 개별 속성을 수정하려 할 때 prototype을 직접 수정함 → 개별 Instance의 Inspector 패널에서 오버라이드 속성을 조정하세요.",
+    "Import 시 Instance 구조가 깨짐 → CAD 파일 포맷 변환 옵션에서 Instance 유지(Keep Instances) 옵션이 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Product Structure",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutInstancesPrototypes.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Mouse",
+    "Instance",
+    "Create Instances By Similarity"
+  ],
+  "at": "2026-11-03T08:04:17.342615+00:00"
+}

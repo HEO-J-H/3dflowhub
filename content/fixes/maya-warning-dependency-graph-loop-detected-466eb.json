@@ -1,0 +1,38 @@
+{
+  "id": "maya-warning-dependency-graph-loop-detected-466eb",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Warning: Dependency graph loop detected",
+  "title": "Warning: Dependency graph loop detected 경고 해결하기",
+  "summary": "Maya에서 노드 네트워크 내에 순환 참조(Loop)가 발생했을 때 출력되는 경고 메시지입니다. A 노드가 B를 참조하고, 동시에 B가 A를 참조하여 무한 루프가 형성될 때 발생합니다.",
+  "causes": [
+    "Hypershade나 Node Editor에서 Shader, 유틸리티 노드 간의 출력(Out)과 입력(In)이 잘못 연결된 경우",
+    "Rigging 작업 중 IK/FK 체인이나 Constraint(컨스트레인트) 설정에서 서로를 참조하는 순환 구조가 생긴 경우",
+    "Custom Python script나 MEL을 실행하는 동안 노드 연결 로직에 오류가 발생한 경우"
+  ],
+  "steps": [
+    "Script Editor를 열어 경고 메시지와 함께 출력되는 정확한 노드 이름과 연결(Connection) 경로를 확인합니다.",
+    "Windows -> General Editors -> Hypergraph Connection Editor를 실행하여 문제가 되는 두 노드를 시각적으로 찾습니다.",
+    "두 노드 간의 잘못된 연결 선(Connection line)을 Mouse로 선택하고 Delete 키를 눌러 끊습니다.",
+    "만약 노드 네트워크를 유지해야 한다면, 중간에 Blend 색상 노드나 Condition 노드 등을 추가하여 단방향 흐름으로 재구성합니다.",
+    "Rigging 문제인 경우, Outliner나 Node Editor에서 Constraint 및 Parent 관계를 검토하여 역참조 구조를 해제합니다."
+  ],
+  "check": [
+    "Scene을 다시 재생하거나 해당 노드를 업데이트할 때 Script Editor에 더 이상 Dependency graph loop detected 경고가 출력되지 않는지 확인합니다.",
+    "Hypergraph에서 노드 간 화살표가 단방향으로 흐르는지 확인합니다."
+  ],
+  "prevent": [
+    "Hypershade나 Node Editor에서 연결 작업을 할 때 입력과 출력 포트의 방향(좌측 Output에서 우측 Input으로)을 정확히 확인합니다.",
+    "복잡한 릭(Rig)이나 Shader 네트워크를 구성하기 전 노드 구조를 미리 설계합니다."
+  ],
+  "keywords": [
+    "Maya Dependency graph loop detected",
+    "Maya 순환 참조 오류",
+    "Maya 경고 메시지",
+    "Node Editor 연결 오류",
+    "Hypershade 루프"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T08:05:54+00:00"
+}

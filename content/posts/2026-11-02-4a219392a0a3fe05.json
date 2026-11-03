@@ -13,8 +13,12 @@
     "Texture Painting"
   ],
   "summary": "Foundry가 Mari 8.0을 출시하며 50개 이상의 신규 노드와 Tri‑Planar Tiled, Hex Tile 등 텍스처 작업을 확장하는 기능을 추가했습니다.",
-  "insight": "텍스처 아티스트에게 노드 기반 워크플로가 크게 강화됩니다. 특히 Tri‑Planar Tiled 노드는 UV가 없거나 왜곡된 모델에도 균일한 디테일을 적용할 수 있어 복잡한 UV 작업을 줄여줍니다. Hex Tile 노드는 반복 텍스처의 눈에 띄는 패턴을 최소화해 VFX Pipeline 흔히 쓰이는 기법을 그대로 Mari에 도입했습니다. 마스크 생성 기능이 확대돼 색상 ID 마스크와 멀티 컬러 마스크로 레이어별 제어가 쉬워집니다. 실시간 검색·트랙볼 네비게이션 등 UI 개선도 포함돼, 학생부터 시니어까지 빠르게 적응할 수 있습니다.",
-  "try_it": [],
+  "insight": "텍스처 아티스트에게 노드 기반 워크플로가 크게 강화됩니다. 특히 Tri‑Planar Tiled 노드는 UV가 없거나 왜곡된 모델에도 균일한 디테일을 적용할 수 있어 복잡한 UV 작업을 줄여줍니다. Hex Tile 노드는 반복 텍스처의 눈에 띄는 패턴을 최소화해 VFX Pipeline에 흔히 쓰이는 기법을 그대로 Mari에 도입했습니다. 마스크 생성 기능이 확대돼 색상 ID 마스크와 멀티 컬러 마스크로 레이어별 제어가 쉬워집니다. 실시간 검색·트랙볼 네비게이션 등 UI 개선도 포함돼, 학생부터 시니어까지 빠르게 적응할 수 있습니다.",
+  "try_it": [
+    "Tri‑Planar Tiled 노드를 활용해 UV가 아예 없거나 왜곡된 테스트 모델에 단일 2D 텍스처를 X, Y, Z 축으로 투사해 보세요.",
+    "Hex Tile 노드를 적용하여 반복되는 텍스처의 패턴 노출을 줄이고 자연스러운 표면 디테일을 확인해 보세요.",
+    "Compare 노드를 이용해 머티리얼 룩을 A/B 와이프 방식으로 비교하며 효율적인 반복 작업을 수행해 보세요."
+  ],
   "sections": [
     {
       "heading": "새로운 Node Graph 기능",
@@ -23,14 +27,60 @@
     {
       "heading": "Tri‑Planar Tiled 노드",
       "body": "Tri‑Planar Tiled 노드는 기존 Triplanar Projection과 달리 단일 2D 이미지 텍스처를 X, Y, Z 축에 걸쳐 투사합니다. UV가 없거나 왜곡된 모델에도 고주파 디테일을 유지하면서 적용할 수 있습니다. Smart blend 모드가 포함돼 디테일 손실 없이 부드러운 블렌딩을 제공합니다. 이 노드는 복잡한 모델링 Pipeline UV 작업을 크게 감소시킵니다."
+    },
+    {
+      "heading": "Hex Tile 및 컬러 조정 노드",
+      "body": "Hex Tile 노드는 텍스처를 육각형 그리드로 타일링하고 블렌딩하여 반복 패턴이 눈에 띄는 현상을 최소화합니다. 이 기법은 Houdini, Redshift, RenderMan 같은 다른 VFX 도구에서도 널리 사용됩니다. Color Remap 노드는 컬러 그레이딩 조정을 중앙화하여 효율적인 작업 환경을 제공합니다. 새로운 Transform 노드는 프로시저 머티리얼을 위한 수학적 및 공간적 제어 기능을 제공합니다."
+    },
+    {
+      "heading": "마스크 생성 및 워크플로 개선",
+      "body": "활성 캔버스 선택 영역이나 Selection Groups에서 색상 ID 마스크를 생성하는 등 마스크 생성 옵션이 확장되었습니다. Color Mask와 Multi Color Mask 같은 신규 노드를 통해 타겟 색상을 쉽게 격리하고 스택할 수 있습니다. 또한 사용자는 Node Graph의 모든 노드에 마스크 포트를 부착할 수 있습니다. 가상 카메라를 위한 트랙볼 회전 스타일 네비게이션과 Shelf의 향상된 검색 기능으로 작업 효율이 한층 높아졌습니다."
+    },
+    {
+      "heading": "실무에서 이렇게 씁니다",
+      "body": "Mari 8.0의 Tri‑Planar Tiled 노드는 UV 언랩 작업이 완료되지 않은 복잡한 캐릭터나 하드서페이스 모델링 작업에서 유용합니다. UV 왜곡 걱정 없이 단일 2D 텍스처를 X, Y, Z 축에 투사하고 Smart blend 모드로 부드럽게 연결할 수 있어 텍스처링 파이프라인의 초기 시간을 크게 단축합니다. 또한 50개가 넘는 신규 노드 중 Compare 노드를 활용하면 머티리얼 수정 전후를 A/B 와이프 방식으로 즉시 비교할 수 있어 룩개발(Look Dev) 반복 작업을 효율적으로 진행할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "시작하려면",
+      "body": "새로운 버전의 기능을 빠르게 익히려면 공식 튜토리얼 영상인 'Mari 8.0 | Overview'를 통해 전체적인 기능 변화를 먼저 파악하세요. 그 후 'Mari in Minutes | Lesson 9: Working with nodes (Color, Merge, Paint)'를 시청하며 이번 업데이트에서 대폭 강화된 Node Graph 환경에서의 컬러, 머지, 페인트 노드 운용법을 실습하는 것이 좋습니다. 특히 49개의 신규 수학 노드와 Hex Tile 노드를 활용해 프로시저 텍스처 제작 파이프라인을 구축해 보세요.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Mari 8.0의 Tri‑Planar Tiled 노드는 기존 Triplanar Projection과 어떤 점이 다른가요?",
+      "a": "기존 방식과 달리 단일 2D 이미지 텍스처를 X, Y, Z 축에 걸쳐 투사하며, UV가 없거나 왜곡된 모델에도 고주파 디테일을 유지합니다. 특히 Smart blend 모드가 포함되어 디테일 손실 없이 부드러운 블렌딩을 제공합니다."
+    },
+    {
+      "q": "반복 패턴을 줄여주는 Hex Tile 노드는 어떤 원리로 작동하나요?",
+      "a": "Hex Tile 노드는 텍스처를 육각형 Grid로 타일링하고 블렌딩하여, 대형 지형이나 반복되는 텍스처에서 흔히 발생하는 반복 패턴(Tiling Artifact)이 눈에 띄는 현상을 최소화합니다."
+    }
+  ],
   "media": {
     "image": "https://d3stdg5so273ei.cloudfront.net/ghost/content/images/2026/10/Mari-8.0-Hero-Asset---1920x1080.webp",
     "video": ""
   },
   "collected_at": "2026-11-02T18:30:58.759771+00:00",
   "notion_id": "",
-  "id": "2026-11-02-4a219392a0a3fe05"
+  "id": "2026-11-02-4a219392a0a3fe05",
+  "enriched": "2026-11-03",
+  "refs": [],
+  "videos": [
+    {
+      "id": "x8YswfV9tHI",
+      "title": "Mari 8.0 | Overview",
+      "author": "Foundry"
+    },
+    {
+      "id": "4SVZ1Frufw0",
+      "title": "Mari in Minutes | Lesson 9: Working with nodes (Color, Merge, Paint)",
+      "author": "Foundry"
+    }
+  ],
+  "enriched_at": "2026-11-03T08:04:32+00:00",
+  "quality": {
+    "before": 996,
+    "after": 1578
+  }
 }

@@ -1,0 +1,39 @@
+{
+  "id": "maya-error-the-file-type-is-not-supported-e863f",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Error: The file type is not supported",
+  "title": "Error: The file type is not supported 열기 오류 해결법",
+  "summary": "Error: The file type is not supported 오류는 Maya가 지원하지 않는 파일 포맷을 열려고 하거나, 파일 형식이 손상되었을 때 발생하는 메시지입니다.",
+  "causes": [
+    "최신 버전의 Maya에서 저장된 파일을 하위 버전에서 열려고 할 때",
+    "지원하지 않는 외부 3D 파일 포맷(.obj, .fbx, .abc 등이 아닌 파일)을 직접 임포트하려고 할 때",
+    "파일 경로 또는 파일명에 허용되지 않는 특수문자나 한글이 포함된 경우",
+    "플러그인(예: USD, Arnold, Substance 등)이 로드되지 않아 해당 포맷을 인식하지 못할 때"
+  ],
+  "steps": [
+    "메뉴 바에서 File > Open Scene 또는 File > Import를 실행하여 파일 확장자가 Maya에서 지원하는 형식(.ma, .mb, .fbx, .obj)인지 확인합니다.",
+    "상위 버전 Maya 파일을 하위 버전에서 열어야 하는 경우, 원본 Maya에서 File > Export All을 통해 .fbx나 .obj 또는 .ma(ASCII) 형식으로 내보낸 뒤 불러옵니다.",
+    "Windows 설정이나 Maya 환경 설정에서 한글 경로 및 특수문자가 포함된 폴더명을 피하고, 영문 경로로 파일을 이동한 후 다시 엽니다.",
+    "Windows의 경우 File > Settings/Preferences > Plug-in Manager에서 문제가 되는 포맷 관련 플러그인(예: objExport.mll, fbxmaya.mll)이 Loaded 및 Auto Load로 체크되어 있는지 확인합니다.",
+    "그래도 해결되지 않는 경우 새 씬을 열고 File > Import를 통해 문제가 된 파일을 참조(Reference) 형태로 불러올 수 있는지 확인합니다."
+  ],
+  "check": [
+    "뷰포트에 모델링 데이터와 계층 구조가 정상적으로 로드되는지 확인합니다.",
+    "Script Editor에 Error 메시지가 더 이상 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "다른 3D Software와 협업할 때는 호환성이 높은 .fbx 또는 .obj 포맷을 사용합니다.",
+    "파일을 저장할 때는 가급적 영문 파일명과 영문 경로를 사용합니다."
+  ],
+  "keywords": [
+    "Maya 파일 열기 오류",
+    "The file type is not supported",
+    "Maya 파일 형식 지원 안함",
+    "Maya FBX Import 에러",
+    "Maya 하위버전 호환"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T08:05:57+00:00"
+}

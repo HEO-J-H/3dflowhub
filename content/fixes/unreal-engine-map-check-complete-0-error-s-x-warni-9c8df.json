@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-map-check-complete-0-error-s-x-warni-9c8df",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Map check complete: 0 Error(s), X Warning(s)",
+  "title": "Map check complete 에러 분석과 레벨 최적화 가이드",
+  "summary": "Unreal Engine의 맵 체크(Map Check) 기능이 빌드 또는 플레이 전 레벨의 무결성을 검사한 결과, 에러는 없으나 주의(Warning) 항목이 발견되었음을 알리는 메시지입니다.",
+  "causes": [
+    "액터나 컴포넌트에 할당되어야 할 에셋(메시, 머티리얼 등)이 누락되었거나 끊어진 레퍼런스(Broken Reference)가 존재할 때",
+    "내비메시(NavMesh), 라이트맵(Lightmap), 월드 세팅(World Settings) 등의 설정에서 누락이나 최적화 경고가 발생할 때",
+    "레벨 내에 불필요하게 방치된 빈 액터나 잘못 연결된 블루프린트 노드가 있을 때"
+  ],
+  "steps": [
+    "Unreal Engine 에디터 상단 메뉴에서 Window → Developer Tools → Message Log를 엽니다.",
+    "Map Check 로그 목록에서 경고(Warning) 메시지를 클릭하여 문제가 발생한 해당 액터나 에셋을 뷰포트에서 선택합니다.",
+    "Details 패널에서 누락된 에셋 경로를 확인하고 올바른 에셋을 다시 할당하거나 문제를 수정합니다.",
+    "문제가 해결되지 않는 액터나 불필요한 오브젝트는 Outliner에서 정리하거나 삭제합니다.",
+    "레벨을 저장(Save Current)한 후 다시 Build → Map Check를 실행하여 경고가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "출력 로그(Output Log)나 Map Check 창에 '0 Error(s), 0 Warning(s)' 메시지가 표시되는지 확인합니다.",
+    "패키징(Packaging) 또는 레벨 플레이 시 경고로 인한 비정상 동작이 발생하지 않는지 테스트합니다."
+  ],
+  "prevent": [
+    "에셋을 이동하거나 삭제할 때 반드시 리디렉터(Redirector)를 정리하고 레퍼런스 유효성을 검사합니다.",
+    "정기적으로 Map Check를 실행하여 빌드 전에 경고 항목을 미리 정리합니다."
+  ],
+  "keywords": [
+    "Unreal Engine Map check 경고",
+    "맵 체크 에러",
+    "Unreal 맵 오류 해결",
+    "Map check Warning",
+    "Unreal Engine 레벨 최적화"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T08:06:03+00:00"
+}

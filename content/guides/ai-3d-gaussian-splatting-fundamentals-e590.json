@@ -5,11 +5,11 @@
   "group": "가우시안 스플래팅",
   "name": "Gaussian Splatting fundamentals",
   "title": "3D Gaussian Splatting(3DGS) 기초와 실무 파이프라인",
-  "summary": "Gaussian Splatting(3D Gaussian Splatting)은 사진이나 영상에서 수많은 3D 점(Gaussian)을 추출해 실시간으로 현장을 재현하는 최신 AI 3D 기술입니다. 전통적인 포토그래메트리보다 훨씬 빠른 속도로 고화질 결과를 보여줍니다.",
+  "summary": "Gaussian Splatting(3D Gaussian Splatting)은 사진이나 영상에서 수많은 3D 점(Gaussian)을 추출해 실시간으로 현장을 재현하는 최신 AI 3D 기술입니다. 최근에는 단안 비디오에서 카메라 포즈와 4D Gaussian Splatting을 동시에 예측하여 동적인 4D 환경을 구축하는 통합 월드 모델(AEON 등)로 확장되고 있습니다.",
   "when": [
     "실제 공간이나 건축물을 빠르게 3D 에셋으로 변환할 때",
     "복잡한 유기체나 소품을 실사 수준으로 실시간 렌더링해야 할 때",
-    "VFX 배경 촬영본을 신속하게 3D 공간으로 복원할 때"
+    "VFX 배경 촬영본을 신속하게 3D 공간으로 복원하거나 시간 흐름에 따른 4D 환경을 구축할 때"
   ],
   "steps": [
     "1. 피사체 주변을 일정한 간격으로 겹치게 촬영한 사진 또는 비디오 소스를 준비합니다.",
@@ -91,11 +91,19 @@
     "Nerfstudio"
   ],
   "at": "2026-11-01T00:03:38.256372+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-21-32263a4df1a56c90",
-      "title": "AI 3D 연구 AEON — 비디오와 3D 월드 모델의 통합",
-      "url": "https://arxiv.org/abs/2610.28631v1"
+      "at": "2026-11-03T08:06:11+00:00",
+      "what": "최신 AI 3D 연구 동향인 4D Gaussian Splatting 및 통합 월드 모델(AEON) 관련 내용을 요약과 활용 상황에 반영했습니다.",
+      "sources": [
+        {
+          "title": "AI 3D 연구 AEON — 비디오와 3D 월드 모델의 통합",
+          "url": "https://arxiv.org/abs/2610.28631v1"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-21-32263a4df1a56c90"
+      ]
     }
   ]
 }

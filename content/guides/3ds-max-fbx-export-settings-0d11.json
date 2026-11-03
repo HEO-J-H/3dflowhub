@@ -63,12 +63,33 @@
         "Animation 항목을 체크하고 Bake Animation을 활성화합니다.",
         "프레임 범위를 확인한 후 익스포트합니다."
       ]
+    },
+    {
+      "title": "Cloth 시뮬레이션 애니메이션 FBX/glTF 익스포트",
+      "steps": [
+        "Cloth 모디파이어 시뮬레이션 결과를 타임라인 키프레임이나 지오메트리 캐시(Alembic/Point Cache)로 변환합니다.",
+        "모디파이어 스택을 정리하고 베이킹을 거쳐 정점 애니메이션 데이터로 전환합니다.",
+        "File → Export Selected를 통해 FBX 포맷을 선택하고 베이크된 애니메이션 설정을 포함하여 내보냅니다."
+      ]
     }
   ],
   "mistakes": [
-    "스케일이 왜곡됨 → Reset XForm을 실행하지 않고 내보내서 발생한 문제이며, Utilities 탭에서 Reset Selected 후 폴리합본을 다시 진행합니다.",
-    "텍스처 경로가 깨짐 → Embed Media 옵션을 끄고 텍스처 폴더를 공유하지 않아 발생하며, Embed Media를 체크하거나 상대 경로를 맞춥니다.",
-    "모델이 눕거나 뒤집혀서 들어옴 → Up Axis 설정이 타겟 엔진과 일치하지 않아서 발생하며, Z-up 또는 Y-up 축을 확인하고 다시 내보냅니다."
+    {
+      "cause": "스케일이 왜곡됨",
+      "solution": "Reset XForm을 실행하지 않고 내보내서 발생한 문제이며, Utilities 탭에서 Reset Selected 후 폴리합본을 다시 진행합니다."
+    },
+    {
+      "cause": "텍스처 경로가 깨짐",
+      "solution": "Embed Media 옵션을 끄고 텍스처 폴더를 공유하지 않아 발생하며, Embed Media를 체크하거나 상대 경로를 맞춥니다."
+    },
+    {
+      "cause": "모델이 눕거나 뒤집혀서 들어옴",
+      "solution": "Up Axis 설정이 타겟 엔진과 일치하지 않아서 발생하며, Z-up 또는 Y-up 축을 확인하고 다시 내보냅니다."
+    },
+    {
+      "cause": "Cloth 애니메이션이 외부 엔진에서 움직이지 않거나 깨짐",
+      "solution": "Cloth 모디파이어의 단순 키프레임 생성만으로는 FBX/glTF 표준 구조에서 인식되지 않으므로, 지오메트리 캐시나 베이킹 과정을 거쳐 정점 애니메이션 형태로 변환 후 내보냅니다."
+    }
   ],
   "related": [
     "Reset XForm",
@@ -100,11 +121,19 @@
     "FBX"
   ],
   "at": "2026-11-02T09:59:46.047918+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-27-76bbf79df1a4891b",
-      "title": "3ds Max Cloth 애니메이션 FBX/glTF 내보내기 해결",
-      "url": "https://www.reddit.com/r/3dsmax/comments/1xgox2e/cloth_animation_to_keyframes_fbxgltf_export/"
+      "at": "2026-11-03T08:06:08+00:00",
+      "what": "3ds Max Cloth 시뮬레이션 애니메이션을 FBX나 glTF로 내보낼 때 발생하는 캐시 변환 및 베이킹 워크플로와 주의사항을 추가했습니다.",
+      "sources": [
+        {
+          "title": "3ds Max Cloth 애니메이션 FBX/glTF 내보내기 해결",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xgox2e/cloth_animation_to_keyframes_fbxgltf_export/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-27-76bbf79df1a4891b"
+      ]
     }
   ]
 }

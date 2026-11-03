@@ -1,0 +1,37 @@
+{
+  "id": "unreal-engine-the-texture-could-not-be-imported-be-9fd93",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "The texture could not be imported because it contains invalid dimensions",
+  "title": "The texture could not be imported because it contains invalid dimensions 오류",
+  "summary": "Unreal Engine에서 지원하지 않는 텍스처 해상도나 비정상적인 규격의 이미지를 임포트할 때 발생하는 에러입니다. Unreal Engine이 요구하는 텍스처 크기 규칙에 맞지 않을 때 나타납니다.",
+  "causes": [
+    "가로 또는 세로 Resolution가 2의 제곱수(Power of Two, 예: 512, 1024, 2048 등)가 아닌 경우",
+    "이미지 파일 형식이 손상되었거나 지원하지 않는 비정상적인 압축/헤더를 가진 경우",
+    "너무 크거나 작은 극단적인 Resolution(0픽셀 또는 엔진 최대 제한 초과)를 가진 경우"
+  ],
+  "steps": [
+    "Photoshop이나 이미지 편집 프로그램에서 문제가 된 텍스처 파일을 엽니다.",
+    "Image Menu 또는 Canvas Size 메뉴에서 Resolution를 2의 제곱수 규격(예: 512x512, 1024x1024, 2048x2048 등)으로 변경합니다.",
+    "파일을 PNG 또는 TGA 등 표준 포맷으로 다시 저장합니다.",
+    "Unreal Engine의 Content Browser로 돌아와 텍스처를 다시 임포트합니다."
+  ],
+  "check": [
+    "Content Browser에 텍스처가 에러 없이 정상적으로 생성되는지 확인합니다.",
+    "텍스처 썸네일이 올바르게 표시되고 뷰포트나 머티리얼에 정상 적용되는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 소스에서 텍스처를 받을 때 항상 가로·세로 크기가 2의 제곱수인지 확인하는 습관을 들입니다.",
+    "텍스처 제작 시 배치 툴이나 액션을 사용하여 2의 제곱수 규격으로 일괄 내보내기합니다."
+  ],
+  "keywords": [
+    "Unreal Engine texture import error",
+    "invalid dimensions 텍스처",
+    "Unreal 텍스처 Import 실패",
+    "2의 제곱수 텍스처",
+    "텍스처 크기 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T08:06:01+00:00"
+}

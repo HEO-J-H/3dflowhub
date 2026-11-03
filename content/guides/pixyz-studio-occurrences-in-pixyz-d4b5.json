@@ -1,0 +1,78 @@
+{
+  "id": "pixyz-studio-occurrences-in-pixyz-d4b5",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "구조",
+  "name": "Occurrences in Pixyz",
+  "title": "Occurrence — Pixyz 장면의 기본 단위",
+  "summary": "Pixyz Studio의 오커런스(Occurrence)는 씬의 Product Structure를 구성하는 단일 노드 타입이자 기본 객체로, 지오메트리를 담는 그릇 역할을 합니다.",
+  "when": [
+    "복잡한 CAD 어셈블리 모델의 계층 구조를 파악하고 관리할 때",
+    "오커런스에 컴포넌트(Component)를 추가하여 속성과 기능을 부여할 때",
+    "Unity의 GameObject처럼 씬 내 개별 요소를 선택하고 제어할 때"
+  ],
+  "steps": [
+    "CAD 파일을 Pixyz Studio로 불러옵니다 (File > Open).",
+    "화면 왼쪽의 Product Structure 패널에서 오커런스(Occurrence) 트리 구조를 확인합니다.",
+    "트리에서 특정 오커런스를 클릭하여 선택합니다.",
+    "선택한 오커런스의 속성을 오른쪽 Inspector 패널에서 확인하고 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Occurrence Id",
+      "desc": "씬 내에서 오커런스를 고유하게 식별하는 ID"
+    },
+    {
+      "name": "Components",
+      "desc": "오커런스에 실제 외형이나 기능을 부여하는 하위 요소"
+    },
+    {
+      "name": "Properties",
+      "desc": "오커런스가 보유한 메타데이터 및 정보"
+    }
+  ],
+  "examples": [
+    {
+      "title": "어셈블리 구조 확인하기",
+      "steps": [
+        "CAD 어셈블리 파일을 불러옵니다.",
+        "왼쪽 Product Structure 패널의 오커런스 트리를 펼칩니다.",
+        "하위 노드를 선택하여 부품별 계층 구조를 파악합니다."
+      ]
+    },
+    {
+      "title": "오커런스 속성 검토하기",
+      "steps": [
+        "트리에서 특정 부품 오커런스를 선택합니다.",
+        "오른쪽 Inspector 패널에서 할당된 컴포넌트와 속성을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오커런스 자체가 지오메트리를 직접 포함한다고 오해함 → 오커런스는 기본적으로 빈 노드이며 컴포넌트를 통해 기능을 가집니다.",
+    "계층 구조의 상위 오커런스를 편집하여 원치 않는 하위 부품까지 변형됨 → 편집하려는 정확한 하위 오커런스를 선택했는지 Product Structure에서 확인하세요."
+  ],
+  "related": [
+    "Product Structure",
+    "Guided Import",
+    "Repair Mesh",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "Uq9D6CrLZ7o",
+      "title": "008. Occurrences  Product Structure Tree in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutOccurrences.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T08:04:12.063940+00:00"
+}
