@@ -1,0 +1,94 @@
+{
+  "id": "pixyz-studio-tessellation-of-cad-models-42b7",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Tessellation of CAD models",
+  "title": "테셀레이션 — CAD 곡면을 폴리곤으로",
+  "summary": "Pixyz Studio의 Tessellate 기능은 수학적 곡선으로 이루어진 CAD 모델을 실시간 3D 애플리케이션과 게임 엔진이 렌더링할 수 있는 폴리곤 메시(Mesh)로 변환합니다. 시각적 품질과 폴리곤 수 사이의 완벽한 균형을 찾아줍니다.",
+  "when": [
+    "임포트한 CAD 데이터를 실시간 3D 뷰포트나 게임 엔진에 올리기 위해 폴리곤으로 변환할 때",
+    "멀리서 보는 큰 객체와 가까이서 보는 상세한 파츠의 폴리곤 밀도를 다르게 조절하고 싶을 때",
+    "곡면이나 필렛(Fillet) 부위의 렌더링 품질을 높이거나 불필요한 폴리곤을 줄여 최적화할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 파일을 임포트하여 Scene Tree 패널에서 변환할 파츠를 선택합니다.",
+    "메뉴 바에서 CAD 메뉴를 클릭합니다.",
+    "드롭다운 메뉴에서 Tessellate를 선택하여 대화 상자를 엽니다.",
+    "용도에 맞는 프리셋(Low, Medium, High, Very High) 중 하나를 선택합니다.",
+    "필요한 경우 Max Sag, Max Angle 등의 세부 파라미터를 직접 조정합니다.",
+    "Execute 버튼을 눌러 테설레이션을 실행하고 뷰포트에서 메시 품질을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Max Sag",
+      "desc": "원래 CAD 표면과 생성된 메시 사이의 최대 허용 거리(Chord error)로, 정밀도를 결정합니다(단위: mm)."
+    },
+    {
+      "name": "Max Angle",
+      "desc": "인접한 두 폴리곤 법선 사이의 최대 허용 각도로, 작은 반경의 필렛 영역에 디테일을 더해줍니다."
+    },
+    {
+      "name": "Max Length",
+      "desc": "폴리곤(엣지)의 최대 길이를 제한하며, 길게 늘어진 면의 라이팅 아티팩트를 방지합니다."
+    },
+    {
+      "name": "Medium",
+      "desc": "폴리곤 수와 시각적 품질의 균형이 가장 좋아 대부분의 상황에서 기본값으로 추천되는 프리셋입니다."
+    },
+    {
+      "name": "Low",
+      "desc": "디테일이 필요 없거나 멀리서 보이는 큰 객체에 사용하여 폴리곤 수를 최소화하는 프리셋입니다."
+    },
+    {
+      "name": "High",
+      "desc": "카메라에 가깝게 클로즈업되거나 작은 중요 디테일이 있는 객체에 사용하는 고정밀 프리셋입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 외관(Car Body) 고품질 테설레이션",
+      "steps": [
+        "Scene Tree 패널에서 자동차 바디 파츠를 선택합니다.",
+        "CAD 메뉴에서 Tessellate를 실행합니다.",
+        "반사광이 매끄럽게 보이도록 Max Sag 값을 낮게 설정하여 정밀한 메시를 생성합니다."
+      ]
+    },
+    {
+      "title": "크기가 다른 부품이 섞인 어셈블리 최적화",
+      "steps": [
+        "큰 빔 구조물과 작은 구멍이 있는 링 파츠를 각각 선택합니다.",
+        "작은 파츠에는 작은 Max Sag 값을 주어 구멍이 깨지지 않게 유지합니다.",
+        "큰 파츠에는 상대적으로 큰 Sag 값을 적용해 불필요한 폴리곤 증가를 막습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "큰 부품과 작은 부품에 일괄적으로 큰 Max Sag 값을 적용함 → 작은 부품의 구멍이나 디테일이 사각형으로 깨지는 현상 발생. 파츠 크기에 맞는 개별 Sag 값 설정 필요",
+    "모든 객체에 High 또는 Very High 프리셋을 남발함 → 불필요하게 폴리곤 수가 늘어나 렌더링 성능 저하. 일반적인 상황에서는 Medium 프리셋 사용 권장",
+    "시각적 개선 효과가 거의 없는 Max Length를 무분별하게 조절함 → 폴리곤 수만 불필요하게 증가하므로 렌더링 시 사용 자제"
+  ],
+  "related": [
+    "Re-Tessellate",
+    "About 3D Models Types",
+    "About Decimation",
+    "CAD"
+  ],
+  "videos": [
+    {
+      "id": "1vWALb0NQMc",
+      "title": "007. Tessellation & Re Tessellate 3D Cad Models in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutTessellation.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T08:23:39.764932+00:00"
+}
