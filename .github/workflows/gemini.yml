@@ -1,0 +1,28 @@
+name: Gemini AI Automation
+
+on:
+  workflow_dispatch:  # 깃허브 웹에서 수동으로 실행할 수 있게 해주는 옵션
+  push:
+    branches: [ main, master ]
+
+jobs:
+  gemini-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install google-genai python-dotenv
+
+      - name: Run Gemini script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python .github/scripts/gemini_script.py
