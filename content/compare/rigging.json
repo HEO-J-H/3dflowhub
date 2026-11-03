@@ -9,35 +9,60 @@
       "where": "Add (Shift+A) → Armature / Properties → Modifier 탭 → Add Modifier → Armature / Weight Paint 모드",
       "how": "Armature를 생성해 뼈대를 구성한 뒤, Object 모드에서 메쉬와 뼈대를 순서대로 선택하고 Ctrl+P → With Automatic Weights로 기본 스키닝을 적용합니다. 이후 Weight Paint 모드에서 브러시로 정밀하게 웨이트를 수정합니다.",
       "strength": "직관적인 웨이트 브러시와 거울화(Mirror) 기능이 강력함",
-      "limit": "복잡한 제약 조건(Constraints)이나 대규모 리그 생성 시 수동 설정이 많음"
+      "limit": "복잡한 제약 조건(Constraints)이나 대규모 리그 생성 시 수동 설정이 많음",
+      "video": {
+        "id": "2nlMZx0vp6E",
+        "title": "Character Rigging in Blender : Easy Setup for Beginners",
+        "author": "Grant Abbitt (Gabbitt)"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Create 패널 → Systems (Biped / CAT) / Modifier List → Skin",
       "how": "Biped나 CAT 시스템으로 표준 뼈대를 배치하고 크기를 맞춘 뒤, 캐릭터 메쉬에 Skin 모디파이어를 추가하고 Add Bones로 뼈를 등록합니다. Envelope와 Weight Table을 통해 정점을 세밀하게 조절합니다.",
       "strength": "게임 제작 표준인 Biped와 CAT 등 완성도 높은 기본 리깅 시스템 제공",
-      "limit": "현대적인 노드 기반 리깅 유연성은 Maya나 Blender에 비해 제한적"
+      "limit": "현대적인 노드 기반 리깅 유연성은 Maya나 Blender에 비해 제한적",
+      "video": {
+        "id": "C6E5Hco3ICQ",
+        "title": "Tutorial - Character Rigging for Beginners - 3DS Max - NO BONES?!",
+        "author": "TroubleShotVFX"
+      }
     },
     {
       "tool": "Maya",
       "where": "Rigging 메뉴셋 → Skeleton → Create Joint / Skin → Bind Skin → Paint Weights Tool",
       "how": "Create Joint 툴로 뷰포트에서 직접 관절을 계층 구조로 그리고, 메쉬와 본을 선택한 뒤 Smooth Bind를 실행합니다. Paint Weights 툴을 사용해 각 본의 영향력을 시각적으로 칠하고 조절합니다.",
       "strength": "업계 표준 애니메이션 파이프라인으로 정밀한 디포머와 리깅 제어 가능",
-      "limit": "초보자가 관절 계층과 노드 구조를 이해하기까지 학습 곡선이 높음"
+      "limit": "초보자가 관절 계층과 노드 구조를 이해하기까지 학습 곡선이 높음",
+      "video": {
+        "id": "rAZpH3m7K5U",
+        "title": "Character Rigging for Beginners: 01 Skeleton",
+        "author": "SARKAMARI"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Network View (Tab) → Skeleton / Capture / Deform 노드",
       "how": "CHOP이나 VEX, 전용 리깅 노드를 활용해 절차적으로 본을 생성하고 Capture Geometry 노드로 스키닝을 적용합니다. Deform 노드를 통해 최종 메쉬 변형을 계산합니다.",
       "strength": "절차적(Procedural) 리깅으로 대량 캐릭터나 반복 작업에 압도적 효율",
-      "limit": "아티스트 친화적인 수동 웨이트 페인팅 작업은 전통적인 툴보다 번거로움"
+      "limit": "아티스트 친화적인 수동 웨이트 페인팅 작업은 전통적인 툴보다 번거로움",
+      "video": {
+        "id": "HHXHbDH7c6A",
+        "title": "How to start rigging a character in Houdini with KineFX",
+        "author": "Pixel Dynamics"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser → Skeletal Mesh 에셋 열기 / Control Rig 블루프린트",
       "how": "외부 DCC에서 가져온 Skeletal Mesh와 애니메이션 에셋을 연결하며, 엔진 내부에서는 Control Rig를 통해 실시간 IK 및 본 조작을 수행합니다.",
       "strength": "게임 엔진 내에서 직접 실시간 캐릭터 조작 및 피직스 연동 가능",
-      "limit": "완전한 제로베이스 스키닝 및 웨이트 페인팅 작업용으로는 적합하지 않음"
+      "limit": "완전한 제로베이스 스키닝 및 웨이트 페인팅 작업용으로는 적합하지 않음",
+      "video": {
+        "id": "mkFY-EN1aEs",
+        "title": "Unreal Engine 5.3 - Character Rigging! [New Feature Walkthrough]",
+        "author": "askNK"
+      }
     }
   ],
   "pick": [
@@ -78,5 +103,6 @@
     "실수: 웨이트 값이 0과 1 사이에서 꼬여 관절 꺾임 부근이 찌그러짐 -> 해결: Weight Table이나 Component Editor를 열어 인접 본의 웨이트 합이 정확히 1이 되도록 정규화(Normalize)합니다.",
     "실수: 본의 회전 값(Joint Orientation)이 어긋나 애니메이션 복사가 안 됨 -> 해결: 스키닝 전 본의 로컬 회전 축(Local Axis)을 정렬하고 Freeze Transformation을 수행합니다."
   ],
-  "at": "2026-11-03T14:19:58+00:00"
+  "at": "2026-11-03T14:19:58+00:00",
+  "visuals_at": "2026-11-03T14:24:58+00:00"
 }

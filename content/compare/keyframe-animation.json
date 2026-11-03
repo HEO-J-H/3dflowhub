@@ -9,35 +9,60 @@
       "where": "Track View - Curve Editor (메인 툴바 또는 우클릭 메뉴)",
       "how": "오브젝트를 선택한 후 Curve Editor를 열어 Position, Rotation, Scale 등의 트랜스폼 커브를 선택하고 탄젠트 핸들로 조작합니다.",
       "strength": "정밀한 인스턴스 컨트롤과 익숙한 레거시 트랙 뷰 구조",
-      "limit": "모던 UI에 비해 복잡해 보일 수 있는 다중 창 인터페이스"
+      "limit": "모던 UI에 비해 복잡해 보일 수 있는 다중 창 인터페이스",
+      "video": {
+        "id": "ZfP_C8AJeIo",
+        "title": "3DS Max 2018 Class #40 (Exploring the Mini Curve Editor)",
+        "author": "Clayton Donnan"
+      }
     },
     {
       "tool": "Blender",
       "where": "Graph Editor (에디터 타입 변경 또는 Animation 워크스페이스)",
       "how": "타임라인이나 Graph Editor에서 키프레임을 확인하고, Tab 키나 핸들 모드 변경(Auto Clamped, Vector 등)으로 커브를 수정합니다.",
       "strength": "단축키 중심의 빠른 작업 속도와 직관적인 블렌딩",
-      "limit": "초기 로컬 축 및 오일러 회전 각도(Gimbal Lock) 관리 미숙 시 튈 수 있음"
+      "limit": "초기 로컬 축 및 오일러 회전 각도(Gimbal Lock) 관리 미숙 시 튈 수 있음",
+      "video": {
+        "id": "vKgO3NsYORo",
+        "title": "How to use Blender's Graph Editor like a Professional Animator",
+        "author": "BrianKouhi"
+      }
     },
     {
       "tool": "Maya",
       "where": "Graph Editor (Windows → Animation Editors → Graph Editor)",
       "how": "애니메이션 커브를 선택하고 자유롭게 브레이크 탄젠트(Break Tangents)를 사용하여 인/아웃 속도를 개별 제어합니다.",
       "strength": "업계 표준에 걸맞은 가장 강력하고 세밀한 애니메이션 커브 제어",
-      "limit": "초보자에게는 다소 무겁고 복잡한 설정 옵션"
+      "limit": "초보자에게는 다소 무겁고 복잡한 설정 옵션",
+      "video": {
+        "id": "8heGT9gfuVo",
+        "title": "Maya: Make Objects follow a Curve",
+        "author": "On Point Tutorials"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Animation Editor (우측 상단 뷰포트 분할 또는 채널 뷰)",
       "how": "CHOPs나 파라미터 채널에 키프레임을 잡고 Animation Editor에서 노드 기반 또는 곡선 형태의 함수로 보간을 제어합니다.",
       "strength": "절차적 애니메이션과 채널 간의 강력한 수학적 연동",
-      "limit": "순수 키프레임 아트 작업에는 툴 고유의 학습 곡선이 존재"
+      "limit": "순수 키프레임 아트 작업에는 툴 고유의 학습 곡선이 존재",
+      "video": {
+        "id": "BW4XnSjtQAo",
+        "title": "2B - Animation Editor & Timeline - STOP BEING AFRAID OF HOUDINI",
+        "author": "Mark Fancher"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Sequencer (Window → Cinematics → Sequencer) 내부 Curve Editor",
       "how": "시퀀서 타임라인에서 트랙의 Transform 속성을 확장하고 다이아몬드 아이콘으로 키프레임을 생성한 뒤 Curve Editor 탭으로 전환합니다.",
       "strength": "실시간 렌더 뷰와 연동되어 즉시 피드백 확인 가능",
-      "limit": "DCC 툴에 비해 순수 키프레임 드로잉 및 편집 기능이 다소 제한적"
+      "limit": "DCC 툴에 비해 순수 키프레임 드로잉 및 편집 기능이 다소 제한적",
+      "video": {
+        "id": "YXW2YqAIrSE",
+        "title": "Unreal Engine 5.5 Animation Tips: Editing Keyframes with Transform Tool",
+        "author": "CIVAR"
+      }
     }
   ],
   "pick": [
@@ -73,5 +98,6 @@
     "실수: 회전 값이 360도를 넘어갈 때 갑자기 역방향으로 튐 → 해결: 에디터에서 Euler Filter를 적용하거나 Rotation Curve의 값을 수동으로 연속성 있게 수정합니다.",
     "실수: 스케일 애니메이션 적용 시 한쪽 방향만 늘어남 → 해결: Scale 트랙의 X, Y, Z 커브를 개별 분할(Split)하여 각각 수정합니다."
   ],
-  "at": "2026-11-03T14:20:22+00:00"
+  "at": "2026-11-03T14:20:22+00:00",
+  "visuals_at": "2026-11-03T14:24:54+00:00"
 }

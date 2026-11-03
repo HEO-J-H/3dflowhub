@@ -1,41 +1,91 @@
 {
-  "title_ko": "Gaussian Splatting 기반 SG^2SLAM — 단안 야외 내비게이션 혁신",
+  "title_ko": "SG^2 SLAM: 단안 실외 내비게이션을 위한 3D Gaussian Splatting SLAM",
   "title": "SG^2SLAM: Spatial Geometry-Informed 3D Gaussian Splatting SLAM for Monocular Outdoor Navigation",
   "url": "https://arxiv.org/abs/2610.36312v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "3DGS",
     "SLAM",
-    "Monocular Navigation",
-    "3D Gaussian Splatting",
-    "KITTI",
-    "Waymo"
+    "Outdoor Navigation",
+    "Monocular",
+    "Gaussian Splatting"
   ],
-  "summary": "SG^2SLAM은 3D Gaussian Splat팅과 공간 기하 정보를 결합해 단안 카메라 기반 야외 내비게이션에서 기존 SLAM보다 더 일관된 지도와 궤적을 제공한다.",
-  "insight": "한국의 로봇·자율주행 연구팀은 단안 카메라만으로 고품질 지도를 만들기 어려운 점을 SG^2SLAM으로 극복할 수 있다. 실시간 스트리밍 기하 정보와 레이‑조건 커널을 활용하면 트래킹 오류가 지도에 누적되는 문제를 최소화한다. 특히 KITTI·Waymo와 같은 대규모 데이터셋에서 성능이 입증돼, 현장 테스트나 시뮬레이션 파이프라인에 바로 적용 가능하다. 다만 현재 코드는 아직 공개 전이므로, 초기 단계에서는 논문 구현을 참고해 자체 Prototype을 구축하는 것이 현실적이다. 연구·개발 단계에서 GPU 메모리 관리와 레이‑조건 파라미터 튜닝에 주의해야 한다.",
+  "summary": "스트리밍 공간 기하학과 레이 조건부 3DGS 커널을 결합하여 실외 환경에서 카메라 모션 추정 오차와 맵 왜곡을 줄인 3DGS SLAM 시스템입니다.",
+  "insight": "이 기술은 향후 실사 야외 환경을 단일 카메라로 촬영하여 정교한 3D 공간 데이터 및 내비게이션 맵으로 실시간 변환하는 파이프라인에 응용될 수 있습니다. 3D 아티스트와 실무자들은 향후 복잡한 야외 공간 스캔 작업에서 스케일 드리프트가 적고 밀집된 3DGS 맵을 구축하는 데 활용할 수 있을 것으로 기대됩니다 (가능성).",
   "sections": [
     {
-      "heading": "배경 및 문제점",
-      "body": "기존 단안 SLAM은 2D 픽셀을 3D 포인트와 연결하는 방식으로, 트래킹 오류가 지도에 직접 반영돼 품질이 급격히 저하된다. 이러한 구조적 한계를 극복하기 위해 연구자들은 더 풍부한 기하 정보를 활용하려는 시도를 늘려왔다. 3D Gaussian Splat팅은 연속적인 장면 표현을 제공하지만, 단일 프레임에 의존하는 매핑 방식은 여전히 문제를 안고 있다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 모던 3D Gaussian Splatting (3DGS) SLAM 시스템들은 2D 픽셀과 3D 포인트를 매칭하는 2D-3D 연관 방식을 사용하여, 모듈형 SLAM 구조 속에서 추적 오차가 3D 맵에 누적되고 깊이 정보가 오염되는 한계가 있었습니다. 특히 모단(Monocular) 야외 내비게이션 환경에서 이러한 교차 차원 매칭의 한계로 인해 플로팅 Gaussian이나 얇은 구조물의 파손 등 기하학적 모호성이 발생합니다."
     },
     {
-      "heading": "SG^2SLAM 핵심 아이디어",
-      "body": "SG^2SLAM은 스트리밍 공간 기하를 도입해 프레임 간 매핑을 청크 수준 메트릭 프라이어로 전환한다. 이 메트릭 프라이어는 트래킹과 매핑을 하나의 소스에서 동시에 감독한다. 결과적으로 전체 시스템이 전역적으로 일관된 지도와 궤적을 생성한다."
+      "heading": "핵심 아이디어",
+      "body": "SG^2 SLAM은 스트리밍 공간 기하학(Streaming Spatial Geometry) 프론트엔드와 광선 조건부 3DGS 커널(Ray-conditioned 3DGS Kernel) 백엔드를 도입했습니다. 이를 통해 프레임별 교차 차원 대응 대신 청크(Chunk) 단위의 메트릭 사전 정보를 제공하고, 뷰잉 방향 서브스페이스를 각 Primitive에 확장하여 시야각 변화에 강건하고 기하학적으로 일관된 맵을 구성합니다."
     },
     {
-      "heading": "Ray‑conditioned 3DGS 커널",
-      "body": "새로운 레이‑조건 커널은 각 Gaussian primitive에 카메라 시점에 민감한 서브스페이스를 추가한다. 이를 통해 단안 카메라의 시점 변화에 따라 Gaussian의 투영이 동적으로 조정된다. 이 메커니즘은 기존의 고정된 프로젝션 방식보다 시점 적응성이 뛰어나며, 매핑 정확도를 크게 향상시킨다."
+      "heading": "방법 (단계)",
+      "body": "프론트엔드는 연속된 프레임 슬라이딩 창에서 로컬 카메라 포즈, 밀집 포인트 맵, 픽셀별 신뢰도를 예측하며, 메트릭 깊이 네트워크(Metric Depth Network)를 사용해 청크의 로컬 스케일을 보정합니다. 백엔드는 광선 조건부 3DGS 커널을 최적화하고, 전역 포즈 그래프에 걸친 공동 Sim(3) 최적화를 통해 모든 청크 융합을 해결합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "KITTI 및 Waymo Open Dataset 실험 결과에 따르면, 제안하는 SG^2 SLAM은 단안 실외 내비게이션 태스크에서 기존의 프레임별 연관(Per-frame association) 기준선(Baseline)들을 능가하는 성능을 보였습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 수락 시 코드가 공개될 예정입니다 (Code will be made publicly available upon acceptance). 본문에서 명시된 공개 GitHub 링크는 LaTeXML 및 arXiv 시스템 피드백용 링크이며, 실제 소스 코드는 아직 리포지토리가 공개되지 않았습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "SG^2 SLAM은 어떤 문제를 해결하기 위해 개발되었나요?",
+      "a": "모노큘러 실외 내비게이션 환경에서 기존 2D-3D 매칭 방식이 야기하는 추적 오차 누적과 3D 맵의 기하학적 모호성(플로팅 Gaussian 등)을 해결하기 위해 개발되었습니다."
+    },
+    {
+      "q": "글로벌 스케일 교정은 어떻게 이루어지나요?",
+      "a": "메트릭 깊이 네트워크(Metric Depth Network)를 통해 얻은 깊이 정보와 뷰어의 예측 범위를 비교하여 청크 단위의 앵커 스케일을 계산하고 이를 일괄 적용합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.36312v1/2610.36312v1/Diagram.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.36312v1/2610.36312v1/Diagram.png",
+        "caption": "Fig. 1 : SG 2 \\text{SG}^{2} SLAM system. Streaming spatial geometry prior breaks the limitations on a per-frame 2D-to-3D association, optimizing the drift accumulation from cross-dimensional association. 3DGS primitives are ray-conditioned and spatial-geometry-supervised, benefiting the map consiste",
+        "caption_ko": "그림 1: SG^2 SLAM 시스템 구조. 스트리밍 공간 기하학 사전을 통해 프레임 간 2D-3D 연관의 한계를 극복하고 3DGS 프리미티브를 레이 조건화합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36312v1/2610.36312v1/Figs/gt/000586.png",
+        "caption": "(a) GT",
+        "caption_ko": "그림 2: (a) GT (Ground Truth)"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36312v1/2610.36312v1/Figs/gt/000744.png",
+        "caption": "(a) GT",
+        "caption_ko": "그림 3: (a) GT"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36312v1/2610.36312v1/Figs/2/gigaimg_744.png",
+        "caption": "(b) GigaSLAM",
+        "caption_ko": "그림 4: (b) GigaSLAM 비교"
+      }
+    ]
   },
   "collected_at": "2026-10-28T02:37:07.886728+00:00",
   "notion_id": "",
   "id": "2026-10-28-9de41337204e6228",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-03T14:28:22+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2
 }
