@@ -1,0 +1,83 @@
+{
+  "id": "pixyz-studio-creating-a-pixyz-plugin-178e",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "자동화",
+  "name": "Creating a Pixyz plugin",
+  "title": "플러그인 만들기",
+  "summary": "Pixyz Studio에서 반복적인 CAD 데이터 최적화 작업을 자동화하기 위해 사용자 정의 Python Script와 XML 인터페이스를 결합한 새로운 플러그인을 만듭니다.",
+  "when": [
+    "동일한 CAD 데이터 최적화 및 정리 과정을 여러 파일에 반복해서 적용해야 할 때",
+    "복잡한 데이터 준비(Data Preparation) 레시피를 원클릭 실행 버튼으로 만들고 싶을 때",
+    "팀원들이 공통으로 사용할 수 있는 커스텀 도구를 Pixyz Studio 메뉴에 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 상단 메뉴 바에서 Plugins 를 클릭합니다.",
+    "메뉴에서 Create a New Plugin 을 선택하여 플러그인 생성 대화 상자를 엽니다.",
+    "대화 상자에서 플러그인 설정 및 이름을 정의하여 Template 기반의 플러그인을 생성합니다.",
+    "생성된 플러그인은 Python Script(메인 함수 및 데이터 준비 레시피)와 XML 파일(사용자 인터페이스 정의)로 구성됩니다.",
+    "Script 패널 또는 외부 IDE를 열어 Python 코드를 편집하고 UI 파라미터를 수정합니다.",
+    "완성된 플러그인을 Plugins 메뉴에서 실행하여 뷰포트에서 최적화 결과가 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Plugins",
+      "desc": "커스텀 플러그인을 생성하고 실행할 수 있는 상단 메뉴 항목입니다."
+    },
+    {
+      "name": "Create a New Plugin",
+      "desc": "새로운 플러그인 Template과 설정 대화 상자를 호출합니다."
+    },
+    {
+      "name": "Script",
+      "desc": "플러그인의 Python Script 코드를 직접 작성하고 편집하는 패널입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원클릭 CAD 데시메이션 및 리페어 플러그인 제작",
+      "steps": [
+        "Plugins > Create a New Plugin 을 눌러 새 플러그인 Template을 생성합니다.",
+        "Script 패널에서 Decimate To Target과 Repair Mesh 함수를 포함하는 Python Script를 작성합니다.",
+        "XML 파일에 슬라이더 UI를 추가하여 데시메이션 타겟 폴리곤 수를 조절할 수 있게 연결합니다.",
+        "Plugins 메뉴에서 새로 만든 플러그인을 실행하여 CAD 모델이 자동으로 정리되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "반복적인 피벗 정렬 및 구조 정리 자동화",
+      "steps": [
+        "새 플러그인을 생성하고 제품 구조(Product Structure) 트리를 순회하는 Python 함수를 작성합니다.",
+        "선택한 파츠의 바운딩 박스 중심에 피벗을 맞추는 로직을 Script에 추가합니다.",
+        "XML 인터페이스에 실행 버튼을 배치하고 플러그인 메뉴에 등록합니다.",
+        "복잡한 어셈블리 파일을 불러온 뒤 플러그인을 실행해 피벗이 깔끔하게 정렬되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Python 문법 오류로 인해 플러그인이 메뉴에 나타나지 않음 → Script 패널에서 구문 오류 및 들여쓰기를 다시 확인합니다.",
+    "XML 파일의 UI 요소 이름과 Python Script 내 변수명이 일치하지 않음 → XML 태그와 Script 파라미터 이름을 정확히 일치시킵니다."
+  ],
+  "related": [
+    "Python scripting in Pixyz Studio",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/CreatingaPlugin.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T12:14:28.068704+00:00"
+}

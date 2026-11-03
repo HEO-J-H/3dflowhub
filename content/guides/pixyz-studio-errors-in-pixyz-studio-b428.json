@@ -1,0 +1,93 @@
+{
+  "id": "pixyz-studio-errors-in-pixyz-studio-b428",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "문제 해결",
+  "name": "Errors in Pixyz Studio",
+  "title": "자주 보는 오류와 해결",
+  "summary": "Pixyz Studio에서 CAD 파일 Import 및 처리 중 발생하는 주요 에러 코드와 원인을 확인하고 해결하는 가이드입니다. 로그 파일을 통해 문제를 빠르게 진단합니다.",
+  "when": [
+    "CAD 파일을 불러올 때 'Input file does not correspond to a valid file name' 같은 에러 코드가 뜰 때",
+    "대용량 멀티 모델 CAD 파일이나 호환되지 않는 버전의 파일을 임포트하다가 실패할 때",
+    "Import 실패 원인을 파악하기 위해 상세 로그 파일(%appdata%/PiXYZStudio/)을 확인해야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러오는 작업을 시도합니다.",
+    "에러 발생 시 화면에 표시되는 에러 코드 번호(예: 10000, 10001, 10013 등)를 확인합니다.",
+    "파일 경로에 유효하지 않은 문자나 한글/특수문자가 포함되어 있는지 검토합니다.",
+    "Windows 탐색기 주소창에 '%appdata%/PiXYZStudio/'를 입력하여 상세 로그 파일을 엽니다.",
+    "로그 파일에서 누락된 컴포넌트나 버전 호환성 문제(최소/최대 버전 요구사항)를 확인하고 파일을 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Error on elevation: needs admin rights",
+      "desc": "프로그램 실행 시 관리자 권한이 필요할 때 발생하는 권한 관련 이슈입니다."
+    },
+    {
+      "name": "10000: Input file does not correspond to",
+      "desc": "입력한 파일 경로가 올바르지 않거나 파일 이름에 문제가 있을 때 발생합니다."
+    },
+    {
+      "name": "10001: Input CAD file correspond to a mu",
+      "desc": "여러 모델이 포함된 멀티 모델 파일을 단일 모델 리더로 처리할 때 발생합니다."
+    },
+    {
+      "name": "10004: One or several components are mis",
+      "desc": "어셈블리 파일 구동에 필요한 하위 컴포넌트나 파트 파일이 누락되었음을 뜻합니다."
+    },
+    {
+      "name": "10013: The minimum version requirement i",
+      "desc": "CAD 파일 포맷의 최소 지원 버전 요구사항을 충족하지 못할 때 발생합니다."
+    },
+    {
+      "name": "10014: The maximum version requirement i",
+      "desc": "CAD 파일 포맷이 프로그램이 지원하는 최대 버전 범위를 초과했을 때 발생합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "잘못된 경로 및 파일 이름 오류(10000) 해결",
+      "steps": [
+        "파일 경로와 이름에 특수문자나 한글이 포함되어 있는지 확인합니다.",
+        "파일을 영문 이름의 폴더로 이동합니다.",
+        "Pixyz Studio에서 경로를 다시 지정하여 임포트합니다."
+      ]
+    },
+    {
+      "title": "버전 호환성 에러(10013/10014) 대처",
+      "steps": [
+        "사용 중인 CAD Software에서 파일을 이전 버전 형식으로 내보냅니다(Export).",
+        "Pixyz Studio에서 지원하는 버전 범위에 맞는지 확인합니다.",
+        "변환된 파일을 다시 불러와 정상 Import 여부를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "로그 파일 위치를 몰라서 헤매는 경우 → Windows 탐색기 주소창에 '%appdata%/PiXYZStudio/'를 직접 입력해 즉시 로그 폴더에 접근합니다.",
+    "권한 부족 에러를 무시하는 경우 → 프로그램 아이콘을 우클릭하여 '관리자 권한으로 실행'을 선택해 해결합니다.",
+    "파일 버전 불일치 파일을 그대로 불러오는 경우 → 원본 CAD 프로그램에서 하위 버전으로 포맷을 낮춰서 다시 저장합니다."
+  ],
+  "related": [
+    "Product Structure",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ErrorsinPixyzStudio.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T12:14:40.482832+00:00"
+}
