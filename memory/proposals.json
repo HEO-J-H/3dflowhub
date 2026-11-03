@@ -10573,5 +10573,105 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 사용 가이드 문서 업데이트",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T16:15:35+00:00",
+    "kind": "proposal",
+    "id": "p-0cf7aa096e",
+    "title": "핵심 입력 검증 PR 빠른 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40‑#44가 현재 승인 대기 중이며, 입력 검증은 서비스 안정성에 필수(상황: pending_pr_decisions에 다수 대기).",
+    "proposal": "코드 리뷰어에게 PR #40‑#44를 재검토 요청하고, 테스트 통과 시 자동 머지 설정(merge queue) 적용. 필요 시 리뷰 코멘트를 정리해 빠른 승인 유도.",
+    "expected": "입력 오류 방지로 사용자 경험 개선·백엔드 오류 감소, CI 통과율 상승.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T16:15:35+00:00",
+    "kind": "proposal",
+    "id": "p-589e95cdf0",
+    "title": "경량 로컬 RAG 엔진 통합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "‘웹 UI 검색 입력창 구현’과 ‘RAG 검색 기능 단위 테스트’가 수락됐으며, docs/tech‑research.md에 RAG 활용 방안이 문서화됨.",
+    "proposal": "LangChain 기반 로컬 RAG 서비스를 backend/app/services/rag_service.py에 추가하고, 기존 검색 UI와 연결. MIT/Apache‑2.0 라이선스 확인 후 의존성(requirements.txt) 업데이트, 단위 테스트 추가.",
+    "expected": "사용자가 문서·가이드 검색 시 빠른 응답 제공, 검색 기능 활성화로 사이트 체류 시간 ↑.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T16:15:35+00:00",
+    "kind": "proposal",
+    "id": "p-932e167333",
+    "title": "RAG 사용 가이드 UI 연동",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "‘RAG 사용 가이드 문서 업데이트’가 완료됐지만 UI와 연결되지 않음(거절된 제안 중 UI 연동 없음).",
+    "proposal": "docs/tech-research.md에 있는 RAG 가이드를 웹 UI(검색 페이지) 오른쪽 사이드바에 링크 추가하고, tooltip으로 간단 설명 제공.",
+    "expected": "사용자가 검색 기능 사용법을 즉시 확인해 검색 성공률 ↑, 문서 활용도 향상.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T16:16:49.316512+00:00",
+    "kind": "decision",
+    "id": "p-0cf7aa096e",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T16:16:49.330170+00:00",
+    "kind": "decision",
+    "id": "p-589e95cdf0",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T16:16:49.342413+00:00",
+    "kind": "decision",
+    "id": "p-932e167333",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T16:16:50.776931+00:00",
+    "kind": "decision",
+    "id": "p-0cf7aa096e",
+    "v": "done",
+    "note": "자동 완료 확인: PR #40 닫힘"
+  },
+  {
+    "at": "2026-11-03T16:16:52.607804+00:00",
+    "kind": "triage",
+    "id": "p-589e95cdf0",
+    "verdict": "done_already",
+    "reason": "‘경량 로컬 RAG 검색 엔드포인트 추가’·‘RAG 검색 UI 통합’·‘RAG 검색 기능 단위 테스트’ 등이 이미 완료·커밋에 반영돼 해당 작업이 이미 수행됨"
+  },
+  {
+    "at": "2026-11-03T16:16:52.619828+00:00",
+    "kind": "decision",
+    "id": "p-589e95cdf0",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): ‘경량 로컬 RAG 검색 엔드포인트 추가’·‘RAG 검색 UI 통합’·‘RAG 검색 기능 단위 테스트’ 등이 이미 완료·커밋에 반영돼 해당 작업이 이미 수행됨"
+  },
+  {
+    "at": "2026-11-03T16:16:53.604600+00:00",
+    "kind": "triage",
+    "id": "p-932e167333",
+    "verdict": "agent",
+    "reason": "UI에 RAG 가이드 링크와 툴팁을 추가하는 코드 수정이 필요함"
   }
 ]
