@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-gpu-timeout-detected-tdr-10c7b",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "GPU timeout detected (TDR)",
+  "title": "GPU timeout detected (TDR) 오류와 Substance 3D Painter 안정화 방법",
+  "summary": "Substance 3D Painter에서 GPU 계산량이 과도할 때 발생하는 오류로, Windows 그래픽 Driver가 멈춘 GPU를 재설정하면서 나타납니다.",
+  "causes": [
+    "Texture Set Resolution(텍스처 세트 Resolution)이 너무 높음 (예: 4K 또는 8K)",
+    "Baking 시 과도한 고폴리곤 메시 사용 또는 Max Front/Back Distance 설정 오류",
+    "그래픽 카드 Driver의 응답 시간(TDR) 초과 또는 GPU 과열 및 전력 부족"
+  ],
+  "steps": [
+    "Texture Set Settings에서 Resolution를 일시적으로 낮춥니다 (예: 4K에서 2K 또는 1K로 변경).",
+    "Baking 팝업창에서 Max Front 및 Max Back Distance 값을 줄여 계산량을 최적화합니다.",
+    "Baking 시 Anti-aliasing 설정을 낮추거나 끕니다.",
+    "NVIDIA Studio Driver 또는 AMD 최신 Driver로 클린 설치를 진행합니다.",
+    "Windows 레지스트리 편집기(regedit)에서 TdrDelay 값을 늘려 Windows가 기다려주는 시간을 조정합니다."
+  ],
+  "check": [
+    "Texture Set Resolution을 유지한 채 텍스처 Export나 Mesh Map Baking이 오류 없이 완료되는지 확인합니다.",
+    "로그 패널(Log)에 GPU timeout 관련 경고나 에러가 더 이상 뜨지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "작업 중인 하드웨어 사양(VRAM 용량)에 맞는 적절한 Texture Set Resolution를 유지합니다.",
+    "Baking을 실행하기 전 High Poly와 Low Poly 모델의 스케일과 위치를 정확히 정리합니다."
+  ],
+  "keywords": [
+    "Substance Painter GPU timeout",
+    "서브스탠스 페인터 TDR 오류",
+    "텍스처 Baking 튕김",
+    "GPU Driver 응답 없음",
+    "Painter 멈춤 현상"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T14:18:29+00:00"
+}

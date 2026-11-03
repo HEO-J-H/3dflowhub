@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-texture-set-resolution-is-too-high-fo-77310",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Texture Set resolution is too high for available VRAM",
+  "title": "Texture Set resolution is too high VRAM 부족 오류 해결법",
+  "summary": "Substance Painter에서 텍스처 셋 Resolution가 사용 가능한 VRAM 용량을 초과할 때 발생하는 오류입니다. GPU 메모리 부족으로 인해 텍스처 Baking이나 페인팅 작업이 중단됩니다.",
+  "causes": [
+    "텍스처 셋(Texture Set) Resolution가 4K 또는 8K 이상으로 설정되어 GPU VRAM 한계를 초과함",
+    "동시에 열려 있는 다른 프로젝트나 웹브라우저, 3D DCC(Maya, Blender 등)가 VRAM을 과도하게 점유함",
+    "그래픽카드 Driver가 최신 상태가 아니거나 VRAM 관리 효율이 저하됨"
+  ],
+  "steps": [
+    "Substance Painter 상단 메뉴에서 Edit 패널을 열고 Settings를 선택하거나, 프로젝트 설정에서 Texture Set Resolution을 낮춤(예: 4K에서 2K 또는 1K로 변경).",
+    "작업 중인 Texture Set 당 다수의 고해상도 레이어와 채널(Base Color, Normal, Roughness 등)이 불필요하게 켜져 있는지 확인하고 정리함.",
+    "작업 표시줄 우측 하단에서 VRAM을 소모하는 외부 프로그램(웹브라우저, 게임, 타 3D 툴)을 종료함.",
+    "Display Settings 패널에서 뷰포트 해상도나 샘플링 값을 낮추어 실시간 뷰포트 메모리 점유율을 줄임.",
+    "그래픽카드 Driver를 최신 버전으로 업데이트하여 GPU 메모리 할당 및 최적화 기능을 갱신함."
+  ],
+  "check": [
+    "오류 메시지 없이 텍스처 셋 Resolution 변경 및 Baking, 페인팅 작업이 정상적으로 수행되는지 확인합니다.",
+    "작업 관리자의 성능 탭(GPU)에서 VRAM 사용량이 안정적인 범위 내로 떨어졌는지 확인합니다."
+  ],
+  "prevent": [
+    "초기 프로젝트 생성 시 타겟 플랫폼(게임, 영화 등)의 권장 Resolution(2K 또는 4K)에 맞춰 Texture Set Resolution을 설정합니다.",
+    "불필요한 고해상도 채널은 비활성화하고, 대규모 씬은 여러 개의 Texture Set이나 UDIM으로 나누어 작업합니다."
+  ],
+  "keywords": [
+    "Substance Painter VRAM 부족",
+    "Texture Set resolution is too high",
+    "서브스탠스 페인터 텍스처 Resolution 오류",
+    "GPU 메모리 부족 3D",
+    "Substance 3D 튕김 현상"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T14:18:54+00:00"
+}

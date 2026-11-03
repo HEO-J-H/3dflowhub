@@ -1,0 +1,77 @@
+{
+  "id": "keyframe-animation",
+  "title": "키프레임 애니메이션·그래프 에디터",
+  "task": "keyframe animation and curve / graph editing",
+  "summary": "키프레임 애니메이션과 커브/그래프 에디팅은 3D 오브젝트나 캐릭터의 움직임 타이밍과 감도를 시각적으로 다듬는 핵심 작업입니다. 툴마다 Dope Sheet와 Graph Editor의 구조 및 제어 방식이 달라 파이프라인에 맞는 접근이 필요합니다.",
+  "rows": [
+    {
+      "tool": "3ds Max",
+      "where": "Track View - Curve Editor (메인 툴바 또는 우클릭 메뉴)",
+      "how": "오브젝트를 선택한 후 Curve Editor를 열어 Position, Rotation, Scale 등의 트랜스폼 커브를 선택하고 탄젠트 핸들로 조작합니다.",
+      "strength": "정밀한 인스턴스 컨트롤과 익숙한 레거시 트랙 뷰 구조",
+      "limit": "모던 UI에 비해 복잡해 보일 수 있는 다중 창 인터페이스"
+    },
+    {
+      "tool": "Blender",
+      "where": "Graph Editor (에디터 타입 변경 또는 Animation 워크스페이스)",
+      "how": "타임라인이나 Graph Editor에서 키프레임을 확인하고, Tab 키나 핸들 모드 변경(Auto Clamped, Vector 등)으로 커브를 수정합니다.",
+      "strength": "단축키 중심의 빠른 작업 속도와 직관적인 블렌딩",
+      "limit": "초기 로컬 축 및 오일러 회전 각도(Gimbal Lock) 관리 미숙 시 튈 수 있음"
+    },
+    {
+      "tool": "Maya",
+      "where": "Graph Editor (Windows → Animation Editors → Graph Editor)",
+      "how": "애니메이션 커브를 선택하고 자유롭게 브레이크 탄젠트(Break Tangents)를 사용하여 인/아웃 속도를 개별 제어합니다.",
+      "strength": "업계 표준에 걸맞은 가장 강력하고 세밀한 애니메이션 커브 제어",
+      "limit": "초보자에게는 다소 무겁고 복잡한 설정 옵션"
+    },
+    {
+      "tool": "Houdini",
+      "where": "Animation Editor (우측 상단 뷰포트 분할 또는 채널 뷰)",
+      "how": "CHOPs나 파라미터 채널에 키프레임을 잡고 Animation Editor에서 노드 기반 또는 곡선 형태의 함수로 보간을 제어합니다.",
+      "strength": "절차적 애니메이션과 채널 간의 강력한 수학적 연동",
+      "limit": "순수 키프레임 아트 작업에는 툴 고유의 학습 곡선이 존재"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Sequencer (Window → Cinematics → Sequencer) 내부 Curve Editor",
+      "how": "시퀀서 타임라인에서 트랙의 Transform 속성을 확장하고 다이아몬드 아이콘으로 키프레임을 생성한 뒤 Curve Editor 탭으로 전환합니다.",
+      "strength": "실시간 렌더 뷰와 연동되어 즉시 피드백 확인 가능",
+      "limit": "DCC 툴에 비해 순수 키프레임 드로잉 및 편집 기능이 다소 제한적"
+    }
+  ],
+  "pick": [
+    {
+      "case": "고퀄리티 캐릭터 액정 애니메이션 및 미세한 스페이싱 조절",
+      "tool": "Maya",
+      "why": "가장 정교한 탄젠트 제어 기능과 업계 표준 워크플로우를 제공하기 때문입니다."
+    },
+    {
+      "case": "게임 엔진 내에서 즉시 시네마틱 카메라 움직임 다듬기",
+      "tool": "Unreal Engine",
+      "why": "Sequencer를 통해 실시간 라이팅과 렌더 환경에서 바로 커브를 수정할 수 있기 때문입니다."
+    },
+    {
+      "case": "빠른 프로토타이핑 및 단축키 위주의 효율적 키프레임 작업",
+      "tool": "Blender",
+      "why": "가볍고 유연한 Graph Editor와 단축키 시스템으로 빠르게 결과물을 만들 수 있기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "FBX 내보내기 시 애니메이션(Bake Animation) 옵션을 활성화하여 모든 프레임에 키가 들어가도록 베이크합니다.",
+    "축 체계(Z-up vs Y-up) 변환 시 회전 값 왜곡을 막기 위해 내보내기/가져오기 축 설정을 통일합니다.",
+    "스케일과 트랜스폼은 툴 간 이동 전 반드시 Transform Apply(Blender) 또는 Reset XForm(3ds Max)을 실행합니다.",
+    "애니메이션 클립 이름과 오브젝트 계층 구조(Hierarchy)를 깔끔하게 정리한 뒤 전송합니다."
+  ],
+  "apply": [
+    "카메라 셰이크와 패스 애니메이션을 조합하여 현장감 있는 시네마틱 컷 연출",
+    "기계 장치(메카니즘)의 회전 축을 오일러 필터(Euler Filter)로 다듬어 짐벌락 현상 방지",
+    "주기적인 루프(Loop) 애니메이션 제작을 위해 Curve Editor에서 Pre/Post Infinity 속성 활용"
+  ],
+  "pitfalls": [
+    "실수: 키프레임 간 간격이 너무 좁아 움직임이 떨림 → 해결: Graph Editor에서 키프레임 간격을 넓히고 Auto Clamped 대신 Spline 탄젠트로 변경합니다.",
+    "실수: 회전 값이 360도를 넘어갈 때 갑자기 역방향으로 튐 → 해결: 에디터에서 Euler Filter를 적용하거나 Rotation Curve의 값을 수동으로 연속성 있게 수정합니다.",
+    "실수: 스케일 애니메이션 적용 시 한쪽 방향만 늘어남 → 해결: Scale 트랙의 X, Y, Z 커브를 개별 분할(Split)하여 각각 수정합니다."
+  ],
+  "at": "2026-11-03T14:20:22+00:00"
+}
