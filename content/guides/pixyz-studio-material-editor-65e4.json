@@ -1,0 +1,96 @@
+{
+  "id": "pixyz-studio-material-editor-65e4",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "UV·재질",
+  "name": "Material Editor",
+  "title": "Material Editor — 재질 편집",
+  "summary": "Pixyz Studio의 Material Editor는 3D 씬 내의 머티리얼을 생성하고 관리하는 공간입니다. CAD 데이터의 재질을 정리하거나 가볍게 색상을 입혀 검토할 때 사용합니다.",
+  "when": [
+    "임포트한 CAD 파일의 재질을 수정하거나 교체해야 할 때",
+    "프로젝트 리뷰를 위해 파트별로 색상을 빠르게 구분해야 할 때",
+    "불필요한 머티리얼을 정리하고 씬을 최적화할 때"
+  ],
+  "steps": [
+    "Main Toolbar에서 Materials 버튼을 누르거나 Materials 메뉴를 선택해 Material Editor를 엽니다.",
+    "Materials List에서 수정할 머티리얼을 선택하거나, Add Button을 눌러 새 머티리얼(Standard, Color, PBR, Unlit texture)을 추가합니다.",
+    "Materials Settings 패널에서 원하는 속성(색상, 거칠기 등)을 조정합니다.",
+    "Save material button을 눌러 변경 사항을 저장합니다.",
+    "OK 버튼을 눌러 수정 사항을 적용하고 에디터를 닫습니다."
+  ],
+  "params": [
+    {
+      "name": "Add Button",
+      "desc": "새로운 머티리얼(standard, color, PBR, unlit texture)을 생성합니다."
+    },
+    {
+      "name": "Remove Button",
+      "desc": "선택한 머티리얼을 씬에서 제거합니다."
+    },
+    {
+      "name": "Materials List",
+      "desc": "씬에 포함된 모든 머티리얼 목록을 표시합니다."
+    },
+    {
+      "name": "Search Bar",
+      "desc": "입력한 텍스트를 포함하는 머티리얼 이름만 필터링합니다."
+    },
+    {
+      "name": "Materials Settings",
+      "desc": "선택한 머티리얼의 세부 속성을 표시하고 조정합니다."
+    },
+    {
+      "name": "Create basic set of colors button",
+      "desc": "프로젝트 검토용 14가지 기본 색상 머티리얼을 자동으로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파트 구분을 위한 기본 색상 적용",
+      "steps": [
+        "Material Editor를 엽니다.",
+        "Create basic set of colors button을 눌러 14가지 색상을 생성합니다.",
+        "Product Structure 트리에서 오브젝트를 선택하고 원하는 색상 머티리얼을 할당합니다."
+      ]
+    },
+    {
+      "title": "새로운 PBR 머티리얼 추가 및 수정",
+      "steps": [
+        "Material Editor의 Add Button을 누릅니다.",
+        "PBR 타입을 선택하여 새 머티리얼을 만듭니다.",
+        "Materials Settings에서 값을 조정하고 Save material button을 누릅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "설정을 바꾼 뒤 Save material button을 누르지 않음 → 'Material has changed' 경고창이 나타나므로 변경 사항 유지 여부를 확인하고 저장합니다.",
+    "머티리얼을 삭제한 후 오브젝트가 회색으로 나옴 → 해당 오브젝트에 머티리얼이 지정되지 않은 상태이므로 새 머티리얼을 다시 할당합니다."
+  ],
+  "related": [
+    "Product Structure",
+    "Inspector",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/MaterialEditor.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Main Toolbar",
+    "Materials",
+    "Material Editor"
+  ],
+  "at": "2026-11-03T10:23:54.320878+00:00"
+}
