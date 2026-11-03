@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-variants-and-pmi-8632",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "구조",
+  "name": "Variants and PMI",
+  "title": "Variants·PMI 다루기",
+  "summary": "Pixyz Studio의 Variants & PMI 패널은 CAD 데이터에 포함된 제품 변형(Variants)과 제조 정보(PMI)를 관리하여 다양한 옵션과 부품 속성을 효율적으로 확인하는 기능입니다.",
+  "when": [
+    "동일한 3D 모델에서 컬러, 재질, 부품 배치 등 여러 옵션(Variants)을 전환하여 보여주어야 할 때",
+    "CAD 파일에 포함된 치수, 공차, 주석 등 제조 정보(PMI)를 3D 뷰어에서 확인하고 활용해야 할 때",
+    "복잡한 어셈블리 모델의 다양한 제품 구성(Configuration)을 하나의 파일로 관리할 때"
+  ],
+  "steps": [
+    "Preferences (F9) 창을 열고 IO > Import > PMI 항목에서 LoadPMI 옵션이 켜져 있는지 확인합니다.",
+    "File > Open 메뉴를 통해 PMI 또는 Variants 정보가 포함된 CAD 파일을 불러옵니다.",
+    "왼쪽 또는 우측 패널에서 Variants & PMI 패널을 엽니다.",
+    "Variants 항목에서 새로운 장면 상태(위치, 가시성, 머티리얼)를 저장하여 새로운 Variant를 생성합니다.",
+    "PMI 폴더를 확장하여 CAD 파일에 포함된 뷰와 제조 정보를 선택하고 Viewer에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "LoadPMI",
+      "desc": "CAD 파일 Import 시 PMI(제조 정보) 데이터를 함께 불러올지 설정합니다."
+    },
+    {
+      "name": "Variants",
+      "desc": "부품의 위치, 가시성, 머티리얼 할당 상태를 저장하여 시나리오별로 전환합니다."
+    },
+    {
+      "name": "PMI",
+      "desc": "CAD 원본에 포함된 3D 치수, 공차, 주석 등의 제조 정보를 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 색상 및 옵션(Variant) 전환",
+      "steps": [
+        "Product Structure에서 대상 부품을 선택합니다.",
+        "머티리얼이나 가시성을 변경한 뒤 Variants & PMI 패널에서 새 Variant를 저장합니다.",
+        "저장된 Variant를 클릭하여 모델 상태가 즉시 바뀌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "CAD PMI 데이터 확인",
+      "steps": [
+        "Preferences (F9)에서 LoadPMI를 활성화한 상태로 파일을 엽니다.",
+        "Variants & PMI 패널의 PMI 폴더를 엽니다.",
+        "포함된 뷰를 선택하여 3D 뷰어에서 치수와 주석을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "PMI 데이터가 보이지 않음 → Preferences에서 LoadPMI 옵션이 꺼져 있는지 확인하고 파일을 다시 임포트합니다.",
+    "Variant가 저장되지 않음 → 변경 사항을 적용한 후 Variants & PMI 패널에서 올바른 저장 버튼을 눌렀는지 확인합니다."
+  ],
+  "related": [
+    "Product Structure",
+    "Inspector",
+    "Repair Mesh",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/VariantsandPMI.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Preferences",
+    "IO",
+    "Import",
+    "PMI",
+    "LoadPMI",
+    "File"
+  ],
+  "at": "2026-11-03T08:14:04.050439+00:00"
+}

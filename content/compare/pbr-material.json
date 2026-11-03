@@ -9,42 +9,72 @@
       "where": "Properties → Material Properties 탭 → Principled BSDF 노드",
       "how": "Shader Editor에서 Principled BSDF 노드에 Base Color, Roughness, Metallic, Normal 맵 이미지 텍스처 노드를 연결합니다.",
       "strength": "직관적인 노드 연결과 Eevee/Cycles 실시간 프리뷰",
-      "limit": "대규모 프로젝트에서 노드가 복잡해질 수 있음"
+      "limit": "대규모 프로젝트에서 노드가 복잡해질 수 있음",
+      "video": {
+        "id": "g3jhmFRovzo",
+        "title": "PBR Materials: The Ultimate Guide (Blender Tutorial)",
+        "author": "vfx_coder"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Material Editor (M) → Slate Material Editor → Physical Material",
       "how": "Slate Material Editor에서 Physical Material을 생성하고, Base Color, Roughness, Metalness, Bump 슬롯에 Bitmap 노드를 연결합니다.",
       "strength": "다양한 외부 렌더러(V-Ray, Corona 등)와 완벽한 호환성",
-      "limit": "구형 Standard  materiales와의 혼동 주의"
+      "limit": "구형 Standard  materiales와의 혼동 주의",
+      "video": {
+        "id": "CL9AhEKQETw",
+        "title": "3DS MAX Videocourse - 16 - Materials, PBR, Diffusion, Roughness, Glossiness, Transparency, Emission",
+        "author": "jbdtube"
+      }
     },
     {
       "tool": "Maya",
       "where": "Hypershade → Standard Surface (Arnold) 또는 USD Preview Surface",
       "how": "Hypershade 창에서 Standard Surface 셰이더를 생성하고, Color, Metalness, Specular Roughness, Normal Camera 속성에 File 노드를 연결합니다.",
       "strength": "헐리우드 표준 파이프라인(USD/Arnold)과의 강력한 연동",
-      "limit": "초보자에게는 Hypershade 인터페이스가 다소 복잡함"
+      "limit": "초보자에게는 Hypershade 인터페이스가 다소 복잡함",
+      "video": {
+        "id": "zEuhXrOJfMs",
+        "title": "PBR Materials in Maya Explained! | Diffuse, Roughness, Normal & Displacement Maps",
+        "author": "Creative Catalyst"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Network View (mat 네트워크) → Principled Shader VOP",
       "how": "mat 레벨에서 Principled Shader를 생성하고, 텍스처 노드를 만들어 Base Color, Roughness, Metallic, Normal 파라미터에 연결합니다.",
       "strength": "절차적 생성 텍스처와 강력한 데이터 연동",
-      "limit": "텍스처 경로 설정 및 뷰포트 확인 과정이 번거로울 수 있음"
+      "limit": "텍스처 경로 설정 및 뷰포트 확인 과정이 번거로울 수 있음",
+      "video": {
+        "id": "hngBPS_QgWs",
+        "title": "PBR Game Asset with no Texture - Houdini breakdown #houdini #3d #tutorial  #gamedev #unity",
+        "author": "Indie Garage"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser 우클릭 → Material → Material Editor",
       "how": "머티리얼 에디터 창을 열고 텍스처 샘플러 노드를 배치한 뒤, Base Color, Roughness, Metallic, Normal핀에 각각 연결합니다.",
       "strength": "실시간 고품질 렌더링(Lumen/Nanite)과 즉각적인 피드백",
-      "limit": "실시간 엔진 특성상 텍스처 압축 및 메모리 관리 필요"
+      "limit": "실시간 엔진 특성상 텍스처 압축 및 메모리 관리 필요",
+      "video": {
+        "id": "iZgbzwBQTPY",
+        "title": "Unreal Engine Materials in 6 Levels of Complexity",
+        "author": "pwnisher"
+      }
     },
     {
       "tool": "Substance 3D",
       "where": "Painter/Designer → Properties 패널 → Texture Set Settings",
       "how": "전용 레이어 시스템을 통해 브러시와 제너레이터로 질감을 쌓아 올리며, 자동으로 PBR 채널(Base Color, Roughness, Metallic, Normal)이 생성됩니다.",
       "strength": "PBR 텍스처링 및 레이어 기반 수정의 압도적인 전문성",
-      "limit": "최종 렌더링을 위해서는 타 DCC나 엔진으로 내보내기 필요"
+      "limit": "최종 렌더링을 위해서는 타 DCC나 엔진으로 내보내기 필요",
+      "video": {
+        "id": "R839-TP3ZXY",
+        "title": "PBR - Base Material Node | Adobe Substance 3D",
+        "author": "Adobe Substance 3D"
+      }
     }
   ],
   "pick": [
@@ -80,5 +110,6 @@
     "Normal 맵의 방향이 반대로 뒤집혀 보이는 경우 -> Green 채널(DirectX vs OpenGL) 방식을 확인하고 툴 내 노드에서 Invert 또는 Flip Green을 체크합니다.",
     "Blender에서 머티리얼이 검정색으로 나오거나 텍스처가 안 보임 -> 오브젝트에 UV Unwrap이 되어 있는지, Principled BSDF 노드가 Material Output에 정확히 연결되었는지 확인합니다."
   ],
-  "at": "2026-11-03T08:07:08+00:00"
+  "at": "2026-11-03T08:07:08+00:00",
+  "visuals_at": "2026-11-03T08:13:33+00:00"
 }

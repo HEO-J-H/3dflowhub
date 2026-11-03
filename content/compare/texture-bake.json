@@ -9,42 +9,72 @@
       "where": "Properties → Render Properties (카메라 아이콘) → Bake 패널",
       "how": "Render Engine을 Cycles로 설정한 뒤 Bake 타입에서 Normal 및 Ambient Occlusion을 선택하고 Selected to Active 옵션을 켭니다.",
       "strength": "추가 비용 없이 내장된 Cycles 엔진을 이용해 강력하고 빠른 베이킹 가능",
-      "limit": "케이지(Cage) 조절 직관성이 타용도 전용 툴에 비해 다소 떨어짐"
+      "limit": "케이지(Cage) 조절 직관성이 타용도 전용 툴에 비해 다소 떨어짐",
+      "video": {
+        "id": "cissl9LKiUY",
+        "title": "Blender: High To Low Poly Normal BAKE",
+        "author": "Royal Skies"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Rendering 메뉴 → Render to Texture (또는 0 키)",
       "how": "Object Properties에서 Projection 매핑을 설정하고 Add 버튼으로 하이 폴리곤을 추가한 뒤 NormalMap과 AmbientOcclusion 요소(Element)를 추가하여 베이킹합니다.",
       "strength": "Projection 수정자와 연동되어 세밀한 케이지 조절과 레이 조절이 용이함",
-      "limit": "UI가 복잡하고 레거시 시스템이 섞여 있어 초보자에게 진입장벽이 있음"
+      "limit": "UI가 복잡하고 레거시 시스템이 섞여 있어 초보자에게 진입장벽이 있음",
+      "video": {
+        "id": "MouDPbROfDQ",
+        "title": "Bake Normal/Displacement/Ambient Occlusion Maps from High Poly to Low Poly",
+        "author": "3DWolf"
+      }
     },
     {
       "tool": "Maya",
       "where": "Rendering / Modeling 메뉴세트 → Lighting/Shading → Transfer Maps",
       "how": "Target에 로우 폴리곤, Source에 하이 폴리곤을 지정하고 Normal과 Ambient Occlusion 채널을 선택한 후 Bake 합니다.",
       "strength": "직관적인 소스 및 타겟 선택 방식으로 파이프라인 연동이 명확함",
-      "limit": "오래된 Transfer Maps 시스템으로 인해 대규모 셋업 시 UI 피드백이 느림"
+      "limit": "오래된 Transfer Maps 시스템으로 인해 대규모 셋업 시 UI 피드백이 느림",
+      "video": {
+        "id": "I9IVtq3wrbs",
+        "title": "Maya Tutorial - How to Bake Normal Maps from High Poly to Low Poly",
+        "author": "Figura"
+      }
     },
     {
       "tool": "Houdini",
       "where": "COP 네트워크 또는 ROP Baker 노드 (예: Bakers 노드)",
       "how": "Bakers 노드를 생성하고 High Poly와 Low Poly 지오메트리를 각각 연결한 뒤 Export할 맵 타입(Normal, AO)을 설정합니다.",
       "strength": "절차적(Procedural) 방식으로 대량의 에셋이나 베리에이션 베이킹 자동화에 최적화",
-      "limit": "노드 기반 베이킹 설정이 처음 접하는 아티스트에게 복잡할 수 있음"
+      "limit": "노드 기반 베이킹 설정이 처음 접하는 아티스트에게 복잡할 수 있음",
+      "video": {
+        "id": "oZdJrI6dDhM",
+        "title": "Getting Started with the Maps Baker in Houdini 21",
+        "author": "Inside The Mind"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Modeling Mode → Texture 카테고리 → Bake (또는 외부 메쉬 에디터 내부 기능)",
       "how": "모델링 모드에서 Source Mesh와 Target Mesh를 지정하고 베이킹할 맵(Normal, Ambient Occlusion)을 선택해 실시간으로 에디터 내에서 추출합니다.",
       "strength": "엔진 내부에서 임포트 직후 빠르게 검수하고 베이킹을 수행할 수 있음",
-      "limit": "전용 DCC에 비해 복잡한 케이지 편집이나 세밀한 레이 오프셋 조정이 제한적"
+      "limit": "전용 DCC에 비해 복잡한 케이지 편집이나 세밀한 레이 오프셋 조정이 제한적",
+      "video": {
+        "id": "NBAFGsBrMlM",
+        "title": "Baking From High to Low Poly in Unreal Engine 5",
+        "author": "Peyton Varney"
+      }
     },
     {
       "tool": "Substance 3D Painter",
       "where": "Texture Set Settings 패널 → Bake Mesh Maps 버튼",
       "how": "로 폴리곤을 불러온 뒤 Bake Mesh Maps 창을 열고 Matching 방식을 설정한 후 High Definition Mesh 슬롯에 하이 폴리곤을 넣고 베이킹을 실행합니다.",
       "strength": "업계 표준 수준의 안정적인 레이캐스팅, 고유의 Match By Name 기능 제공",
-      "limit": "모델링 수정이 필요할 경우 외부 DCC로 돌아가야 하는 번거로움"
+      "limit": "모델링 수정이 필요할 경우 외부 DCC로 돌아가야 하는 번거로움",
+      "video": {
+        "id": "i1akrT8cm2k",
+        "title": "High-Poly to Low-Poly with Substance 3D Painter - Mastering Texture Baking",
+        "author": "Raguram Gunasekaran"
+      }
     }
   ],
   "pick": [
@@ -80,5 +110,6 @@
     "오류: 노멀 맵의 방향이 반대로 뒤집혀 찌그러져 보임 → 해결: 노멀 맵 베이킹 설정에서 그린 채널(Green / Y Axis)의 Invert 옵션을 토글하여 타겟 엔진의 규격(DirectX/OpenGL)에 맞춥니다.",
     "오류: 특정 파츠가 서로 겹쳐서 엉뚱한 영역에 베이킹됨 → 해결: Submesh의 이름을 정확히 맞추거나(Match By Name), Match 방식을 'Always' 대신 'By Mesh Name'으로 변경하고 별도로 분리(Offset)하여 베이킹합니다."
   ],
-  "at": "2026-11-03T08:07:02+00:00"
+  "at": "2026-11-03T08:07:02+00:00",
+  "visuals_at": "2026-11-03T08:13:37+00:00"
 }

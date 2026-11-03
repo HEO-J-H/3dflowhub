@@ -8228,5 +8228,145 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T08:13:52.958980+00:00",
+    "kind": "report",
+    "id": "r-2026-11-03T08:13",
+    "text": "최근 7일간 315건의 콘텐츠를 발행하며 안정적인 운영을 이어가고 있으나, 월간 조회수(670회) 대비 가이드 콘텐츠 비중(97회)을 더욱 높여 검색 유입과 에버그린 학습 효과를 강화해야 합니다. AI 일일 한도 소진 문제가 일부 발생하므로 오늘 배분은 가이드와 뉴스 중심으로 효율적으로 조정합니다.",
+    "allocation": {
+      "news": 0.25,
+      "guides": 0.65,
+      "roundups": 0.1
+    },
+    "allocation_reason": "조회수와 검색 유입을 견인하는 에버그린 기초 가이드의 비중을 높여 방문자가 실제로 공부할 수 있는 사이트 환경을 강화합니다."
+  },
+  {
+    "at": "2026-11-03T08:13:52.958980+00:00",
+    "kind": "proposal",
+    "id": "p-b49e9c7478",
+    "title": "Unreal Engine 기초 가이드 강화",
+    "category": "콘텐츠",
+    "evidence": "Game Engine 영역의 최근 7일 발행량이 67건으로 활발하나, 독자 관심이 높은 Unreal Engine 및 게임 개발 기초 학습 수요를 충족하기 위해 에버그린 가이드 보강이 필요합니다.",
+    "proposal": "Unreal Engine의 주요 핵심 기능(예: Nanite, Lumen 등)에 대한 기초 가이드 페이지를 추가하여 학습 흐름을 강화합니다.",
+    "expected": "검색 유입 및 체류 시간 증가",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Unreal Engine",
+      "group": "렌더링·지오메트리",
+      "name": "Nanite",
+      "title_ko": "Unreal Engine Nanite 가상 지오메트리 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-03T08:13:52.958980+00:00",
+    "kind": "proposal",
+    "id": "p-c0352ed3d6",
+    "title": "Blender 핵심 모디파이어 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "3D DCC 영역 중 Blender가 최근 7일간 32건 발행되며 높은 관심을 받고 있어, 실무 필수 기능 중심의 가이드 확장이 유효합니다.",
+    "proposal": "Blender의 핵심 모디파이어 활용법을 다루는 에버그린 기초 가이드 주제를 추가합니다.",
+    "expected": "Blender 사용자 검색 유입 확대 및 학습 만족도 향상",
+    "effort": "낮음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Blender",
+      "group": "모디파이어",
+      "name": "Geometry Nodes",
+      "title_ko": "Blender 지오메트리 노드 입문 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-03T08:13:52.977412+00:00",
+    "kind": "decision",
+    "id": "p-b49e9c7478",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T08:13:52.986404+00:00",
+    "kind": "decision",
+    "id": "p-c0352ed3d6",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T08:13:53.011993+00:00",
+    "kind": "applied",
+    "id": "p-b49e9c7478",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-03T08:13:53.029919+00:00",
+    "kind": "applied",
+    "id": "p-c0352ed3d6",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-03T08:13:55+00:00",
+    "kind": "proposal",
+    "id": "p-dc66d993b0",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py 및 pbr_generator.py의 입력 검증 관련 PR #40부터 #44까지 대기 중",
+    "proposal": "GitHub에서 PR #40~#44의 테스트 결과와 코드를 확인하고 승인 또는 피드백 진행",
+    "expected": "백엔드 입력 및 PBR 검증 로직 안정화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T08:13:55+00:00",
+    "kind": "proposal",
+    "id": "p-51dd450d69",
+    "title": "웹 버전 도움말 검색 기능(help.js) UI 및 응답 속도 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 브라우저 도움말 검색 기능이 추가되어 사용성 검증 필요",
+    "proposal": "web/ 디렉토리의 도움말 검색 UI 컴포넌트와 예시 질문 동작 상태를 브라우저에서 직접 테스트",
+    "expected": "사용자 경험 및 도움말 검색 정확도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T08:14:17.962308+00:00",
+    "kind": "decision",
+    "id": "p-dc66d993b0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T08:14:17.973121+00:00",
+    "kind": "decision",
+    "id": "p-51dd450d69",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T08:14:21.063565+00:00",
+    "kind": "triage",
+    "id": "p-51dd450d69",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 도움말 검색 기능(feat(help))이 이미 구현되어 완료되었음을 확인할 수 있습니다."
+  },
+  {
+    "at": "2026-11-03T08:14:21.073714+00:00",
+    "kind": "decision",
+    "id": "p-51dd450d69",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 도움말 검색 기능(feat(help))이 이미 구현되어 완료되었음을 확인할 수 있습니다."
   }
 ]

@@ -1,0 +1,92 @@
+{
+  "id": "pixyz-studio-merge-parts-by-regions-80b0",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "구조",
+  "name": "Merge Parts By Regions",
+  "title": "Merge Parts By Regions — 부품 합치기",
+  "summary": "Pixyz Studio의 Merge Parts By Regions는 계층 구조 대신 3D 씬 내의 물리적 근접성(위치)을 기준으로 여러 부품을 하나로 합쳐주는 기능입니다. 거대한 CAD 모델이나 AEC 건축물에서 수동 선택 없이 빠르게 지오메트리를 정리할 수 있습니다.",
+  "when": [
+    "Revit, AutoCAD, Navisworks 등에서 가져온 거대한 AEC 건축물 모델을 정리할 때",
+    "Unity 등 실시간 3D 엔진에서 드로우 콜을 낮추고 컬링 효율을 높이고 싶을 때",
+    "수많은 부품을 Mouse로 일일이 선택하기 번거로워 공간 지역별로 자동 병합해야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "상단 메뉴 바에서 Scene 메뉴를 클릭합니다.",
+    "메뉴 목록에서 Merge Parts By Regions를 선택하여 대화 상자를 엽니다.",
+    "세분화 방식을 결정합니다: Number Of Regions(생성할 영역 수) 또는 Size of Regions(영역 크기) 중 선택하여 값을 입력합니다.",
+    "병합 전략을 선택합니다: Merge Parts(영역별로 하나의 부품으로 병합) 또는 Merge By Materials(재질별로 분할 병합) 중 선택합니다.",
+    "대화 상자에서 실행을 확정하여 뷰포트에서 영역별로 부품이 병합된 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Number Of Regions",
+      "desc": "생성할 결과 영역의 총 개수를 설정합니다."
+    },
+    {
+      "name": "Size of Regions",
+      "desc": "미리 정의된 영역 크기에 따라 영역의 개수를 결정합니다."
+    },
+    {
+      "name": "Merge Parts",
+      "desc": "계산된 각 영역 내의 모든 부품을 하나의 고유한 부품으로 합칩니다."
+    },
+    {
+      "name": "Merge By Materials",
+      "desc": "계산된 각 영역 내의 부품들을 재질(Material)별로 묶어서 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대형 건축물(AEC) 드로우 콜 최적화",
+      "steps": [
+        "Revit에서 임포트한 대형 건물 씬을 엽니다.",
+        "Scene > Merge Parts By Regions를 실행합니다.",
+        "Number Of Regions를 적절히 설정하여 실내 공간별로 영역을 나눕니다.",
+        "Merge Parts 전략으로 병합하여 Unity 렌더링 성능을 높입니다."
+      ]
+    },
+    {
+      "title": "재질별 영역 병합을 통한 HLOD 준비",
+      "steps": [
+        "복잡한 조립체 CAD 모델을 로드합니다.",
+        "Scene > Merge Parts By Regions를 실행합니다.",
+        "Merge By Materials 옵션을 선택해 영역별 재질 속성을 유지하며 부품을 줄입니다.",
+        "ProxyMesh와 Bake 작업을 위한 전단계로 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Instance 부품이 유지될 것으로 기대함 → 이 기능으로 병합하면 기존의 Instance와 Prototype 관계가 파괴되므로 주의합니다.",
+    "너무 적은 영역 수를 지정함 → 씬 전체가 하나의 거대한 부품으로 묶여 컬링(Culling) 이점이 사라지므로 적절한 개수를 지정해야 합니다."
+  ],
+  "related": [
+    "Instance·Prototype",
+    "Product Structure",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "HXoZq-TEyVM",
+      "title": "Pixyz Studio #11 | How to select and group parts in Pixyz Studio?",
+      "author": "Pixyz"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/MergePartsByRegions.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Scene",
+    "Merge Parts By Regions"
+  ],
+  "at": "2026-11-03T08:14:00.066930+00:00"
+}
