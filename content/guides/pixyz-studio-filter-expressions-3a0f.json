@@ -1,0 +1,100 @@
+{
+  "id": "pixyz-studio-filter-expressions-3a0f",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "자동화",
+  "name": "Filter expressions",
+  "title": "Filter expression — 조건으로 골라내기",
+  "summary": "Pixyz Studio의 필터 표현식(Filter Expressions)은 복잡한 CAD 데이터 구조에서 Python 코드를 반복 실행하지 않고 한 번의 호출로 조건에 맞는 요소를 빠르게 검색하고 제어하는 고급 검색 기능입니다.",
+  "when": [
+    "수만 개의 CAD 파츠 중 특정 이름이나 속성을 가진 오브젝트를 일괄 선택할 때",
+    "선택되지 않은 불필요한 파츠들의 가시성을 한 번에 숨길 때",
+    "부모 파츠의 재질 이름이나 속성 조건을 만족하는 하위 요소를 정밀하게 필터링할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 데이터를 불러옵니다.",
+    "메뉴 바에서 Script 실행 또는 필터식을 적용할 Python 콘솔이나 관련 함수 영역을 엽니다.",
+    "씬 트리(Scene Tree) 구조를 대상으로 `scene.getFilteredOccurrences(filter)` 함수에 원하는 필터 표현식 문자열을 작성합니다.",
+    "예: `Property('Name').Matches('.*Hello.*')` 형태로 이름에 특정 텍스트가 포함된 오커런스를 검색합니다.",
+    "반환된 오커런스 리스트를 `scene.select(occs)` 등을 통해 뷰포트에서 선택 및 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Property(propertyName)",
+      "desc": "지정된 속성 이름을 문자열 값으로 반환합니다."
+    },
+    {
+      "name": "Matches(regexp)",
+      "desc": "정규 표현식을 사용해 문자열 패턴이 일치하는지 여부를 판단합니다."
+    },
+    {
+      "name": "SetProperty(propertyName, propertyValue)",
+      "desc": "해당 오커런스의 속성 값을 지정된 값으로 변경합니다."
+    },
+    {
+      "name": "Parent()",
+      "desc": "현재 오커런스의 상위(부모) 오커런스를 반환합니다."
+    },
+    {
+      "name": "Component(componentType)",
+      "desc": "오커런스에 연결된 특정 컴포넌트를 가져옵니다."
+    },
+    {
+      "name": "This.IsNone()",
+      "desc": "현재 대상이 유효한지(None이 아닌지) 여부를 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "이름에 특정 텍스트가 포함된 파츠 선택",
+      "steps": [
+        "필터 문자열에 `Property('Name').Matches('.*Bolt.*')`를 작성합니다.",
+        "`scene.getFilteredOccurrences(filter)`를 호출하여 조건에 맞는 볼트 파츠들을 검색합니다.",
+        "`scene.select(occs)`로 검색된 파츠들을 뷰포트에서 일괄 선택합니다."
+      ]
+    },
+    {
+      "title": "부모 재질 이름을 기준으로 하위 파츠 검색",
+      "steps": [
+        "부모의 재질 조건과 일치하는 필터식 `Parent().Property('Material').Property('Name').Matches('.*8.*')`을 정의합니다.",
+        "`scene.getFilteredOccurrences(filter)` 함수에 필터를 전달합니다.",
+        "조건에 부합하는 하위 오커런스들을 씬에서 선택하여 재질 최적화 작업을 수행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "정규 표현식 문법 오류(예: 점(.)과 별표(*) 누락) → 검색 결과가 비어있을 경우 `.*` 패턴과 대소문자를 정확히 확인합니다.",
+    "잘못된 속성 이름 지정(예: 'Name' 대신 'name' 사용) → CAD 메타데이터의 대소문자와 속성 키 이름을 정확히 일치시켜야 합니다.",
+    "오커런스가 아닌 컴포넌트 레벨에 오커런스 전용 함수 적용 → 함수가 적용되는 대상 엔티티 타입(Occurrence, Component 등)을 확인합니다."
+  ],
+  "related": [
+    "Scene Tree",
+    "Python API",
+    "Repair Mesh",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "lhciH4yi1Ww",
+      "title": "Pixyz Studio 101: Simple optimization of a CAD model for Unity",
+      "author": "David Ménard"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/Filterexpressions.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Script",
+    "Python",
+    "Scene Tree",
+    "FilteredOccurrences"
+  ],
+  "at": "2026-11-03T12:04:32.836101+00:00"
+}
