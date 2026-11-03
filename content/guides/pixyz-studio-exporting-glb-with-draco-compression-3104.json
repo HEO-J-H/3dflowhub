@@ -1,0 +1,88 @@
+{
+  "id": "pixyz-studio-exporting-glb-with-draco-compression-3104",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Exporting GLB with Draco compression",
+  "title": "GLB + Draco 압축 — 웹용 경량화",
+  "summary": "Pixyz Studio에서 glTF 파일(.glb)을 내보낼 때 Draco 메시 압축을 적용하여 파일 용량을 크게 줄이고 웹 로딩 속도를 최적화하는 기능입니다.",
+  "when": [
+    "웹 브라우저 기반 3D 뷰어에 모델을 가볍게 올려야 할 때",
+    "대용량 CAD 데이터를 모바일이나 웹 환경으로 배포해야 할 때",
+    "복잡한 지오메트리 구조의 파일 크기를 줄여 네트워크 전송 시간을 단축하고 싶을 때"
+  ],
+  "steps": [
+    "키보드 F9 키를 누르거나 상단 메뉴에서 Preferences 창을 엽니다.",
+    "좌측 트리 메뉴에서 IO > Export > GLTF 항목으로 이동합니다.",
+    "ExportGLTFDraco 파라미터를 찾아 체크하여 활성화(True)합니다.",
+    "필요에 따라 하단의 고급 압축 세부 파라미터 값을 조정합니다.",
+    "상단 메뉴 바에서 File > Export를 선택하여 .glb 형식으로 Export를 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "ExportGLTFDraco",
+      "desc": "glTF Export 시 Draco 메시 압축 사용 여부를 설정합니다."
+    },
+    {
+      "name": "Compression Level",
+      "desc": "압축률을 조절하여 파일 크기와 압축 소요 시간을 제어합니다."
+    },
+    {
+      "name": "Quantization Position",
+      "desc": "Vertex 위치 좌표의 정밀도를 조절해 용량을 최적화합니다."
+    },
+    {
+      "name": "Quantization Normal",
+      "desc": "법선 벡터 데이터의 정밀도를 조절합니다."
+    },
+    {
+      "name": "Quantization TexCoord",
+      "desc": "UV 좌표 데이터의 정밀도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹 쇼핑몰용 3D 제품 시각화",
+      "steps": [
+        "Pixyz Studio에서 CAD 제품 모델링 데이터를 불러옵니다.",
+        "Preferences에서 ExportGLTFDraco 옵션을 활성화합니다.",
+        "웹 브라우저 로딩 속도가 개선된 .glb 파일로 내보냅니다."
+      ]
+    },
+    {
+      "title": "모바일 증강현실(AR)용 에셋 준비",
+      "steps": [
+        "모바일 환경에 맞게 폴리곤 최적화 및 Decimate 작업을 완료합니다.",
+        "Draco 압축을 켜고 .glb 포맷으로 익스포트합니다.",
+        "웹 및 모바일 AR 뷰어에 가볍게 탑재합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "압축률을 무리하게 높여 모델 외형이 깨짐 → Quantization 및 압축 레벨 값을 낮춰서 재시도",
+    "Pixyz Studio 내에서 압축된 glb를 다시 불러오려고 함 → Pixyz는 Draco 압축 해제(Decompression)를 지원하지 않으므로 외부 뷰어에서 확인"
+  ],
+  "related": [
+    "Exporting files from Pixyz Studio",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "sQjL7LP6xc0",
+      "title": "Impressive 3D Web Technology – GLB Files with Draco Compression",
+      "author": "Skylight Designs"
+    },
+    {
+      "id": "lhftxg7dppo",
+      "title": ".glb/.gltf Files Compression With Draco Loader - Three.js Models Size Reduction Tutorial",
+      "author": "Wael Yasmina"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingGLBWithDracoCompressio1.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T11:33:49.084800+00:00"
+}

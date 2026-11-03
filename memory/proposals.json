@@ -9300,5 +9300,74 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 입력 에러 메시지 UI 피드백 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T11:33:44+00:00",
+    "kind": "proposal",
+    "id": "p-36a25a7c66",
+    "title": "웹 버전(web/) URL 유효성 검사 UI 피드백 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증 PR(#40~#42)이 대기 중인 상태에서 브라우저 전용 웹 버전에도 동일한 URL 및 이미지 입력 오류에 대한 사용자 가이드 피드백 강화 필요",
+    "proposal": "web/index.html 또는 관련 JS 파일에 입력 오류 발생 시 시각적 피드백(경고 메시지 출력 등) 로직을 추가하고 테스트",
+    "expected": "사용자가 잘못된 입력 시 즉각적으로 원인을 파악하여 UX 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T11:33:44+00:00",
+    "kind": "proposal",
+    "id": "p-e7199bdb99",
+    "title": "PBR 맵 생성 예외 처리 가이드 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "backend/app/services/pbr_generator.py의 유효성 검사(validate_pbr_input) 관련 PR(#43, #44) 대기 중",
+    "proposal": "docs/agent-guides/pbr-input-validation.md를 생성하여 PBR 맵 생성 시 허용되는 이미지 포맷, Resolution 조건 및 에러 처리 가이드 정리",
+    "expected": "개발자 및 기여자가 PBR 입력 규격을 명확히 이해하고 관련 오류 예방",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T11:34:05.485635+00:00",
+    "kind": "decision",
+    "id": "p-36a25a7c66",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T11:34:05.493155+00:00",
+    "kind": "decision",
+    "id": "p-e7199bdb99",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T11:34:08.446025+00:00",
+    "kind": "triage",
+    "id": "p-36a25a7c66",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록과 최근 커밋에서 웹 버전 입력 에러 메시지 및 유효성 검사 UI 피드백 관련 작업이 충분히 반영되어 있음"
+  },
+  {
+    "at": "2026-11-03T11:34:08.453065+00:00",
+    "kind": "decision",
+    "id": "p-36a25a7c66",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록과 최근 커밋에서 웹 버전 입력 에러 메시지 및 유효성 검사 UI 피드백 관련 작업이 충분히 반영되어 있음"
+  },
+  {
+    "at": "2026-11-03T11:34:09.407659+00:00",
+    "kind": "triage",
+    "id": "p-e7199bdb99",
+    "verdict": "agent",
+    "reason": "docs/agent-guides/pbr-input-validation.md 파일을 생성하고 PBR 맵 생성 예외 처리 가이드를 문서화하는 작업은 코딩 에이전트가 직접 수행할 수 있습니다."
   }
 ]
