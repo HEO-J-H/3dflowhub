@@ -1,0 +1,84 @@
+{
+  "id": "pixyz-studio-exporting-textures-8a0d",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Exporting textures",
+  "title": "텍스처 Export",
+  "summary": "Pixyz Studio에서 3D 모델과 함께 포함된 텍스처 맵을 PNG 또는 JPEG 포맷으로 최적화하여 내보내는 기능입니다. 파일 용량을 줄이면서도 시각적 품질을 조절할 수 있습니다.",
+  "when": [
+    "웹 브라우저나 모바일 기기(glTF, USDZ 등)로 텍스처가 포함된 3D 모델을 가볍게 내보내야 할 때",
+    "용량 최적화를 위해 JPEG 압축 품질이나 PNG 압축 레벨을 정밀하게 제어하고 싶을 때",
+    "FBX Export 시 텍스처를 파일에 포함(Embedded)할지, 별도 파일로 분리할지 결정해야 할 때"
+  ],
+  "steps": [
+    "키보드 F9 키를 누르거나 상단 메뉴에서 Preferences 창을 엽니다.",
+    "왼쪽 트리 메뉴에서 Material > Texture export 항목으로 이동합니다.",
+    "Export Texture Format 파라미터에서 기본 포맷(PNG 또는 JPEG)을 선택합니다.",
+    "선택한 포맷에 맞춰 JPEG Quality(0~100) 또는 PNG Compression(0~9) 값을 조정합니다.",
+    "상단 메뉴 바에서 File > Export를 선택하여 원하는 포맷(FBX, glTF, USDZ 등)으로 모델을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Export Texture Format",
+      "desc": "텍스처 Export 기본 포맷을 PNG 또는 JPEG로 설정합니다."
+    },
+    {
+      "name": "Jpeg Quality",
+      "desc": "JPEG 포맷의 이미지 품질을 0에서 100 사이 값으로 정의합니다 (기본값 95)."
+    },
+    {
+      "name": "Png Compression",
+      "desc": "PNG 포맷의 압축 레벨을 0에서 9 사이 값으로 정의합니다 (값이 클수록 용량이 줄고 압축 시간 증가)."
+    },
+    {
+      "name": "Fbx Embedded Textures",
+      "desc": "Preferences(F9) > IO > Export > FBX 경로에서 텍스처를 FBX 파일 내부에 포함할지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹용 glTF Export를 위한 텍스처 경량화",
+      "steps": [
+        "Preferences (F9) > Material > Texture export 로 이동합니다.",
+        "Export Texture Format을 JPEG로 설정하고 Quality를 85로 낮춰 용량을 확보합니다.",
+        "File > Export를 통해 glTF 포맷으로 모델을 저장하여 웹 로딩 속도를 최적화합니다."
+      ]
+    },
+    {
+      "title": "단일 파일 배포를 위한 FBX 임베디드 텍스처 설정",
+      "steps": [
+        "Preferences (F9) > IO > Export > FBX 메뉴를 엽니다.",
+        "Fbx Embedded Textures 옵션을 활성화하여 텍스처가 파일 내부에 포함되도록 설정합니다.",
+        "File > Export를 통해 외부 경로 누락 없이 텍스처가 포함된 단일 FBX 파일을 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "출력 포맷이 지원하지 않는 텍스처 맵 Export → Export 대상 포맷이 Normal 맵이나 Opacity 맵을 지원하는지 사전 확인",
+    "최고 품질(100)로 설정하여 과도하게 커진 파일 용량 → 웹이나 실시간 엔진 환경에 맞춰 JPEG Quality를 85~95 사이로 타협하여 설정"
+  ],
+  "related": [
+    "Exporting files from Pixyz Studio",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "-J7Mw4ALoLc",
+      "title": "Exporting Textures from Substance Painter for Unreal Engine 5",
+      "author": "Ananya Shenoy"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportingTextures.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T11:44:30.245041+00:00"
+}
