@@ -1,0 +1,78 @@
+{
+  "id": "3ds-max-archive-scene-5c90",
+  "tool": "3ds Max",
+  "domain": "3D DCC",
+  "group": "메뉴·패널",
+  "name": "Archive scene",
+  "title": "Archive — 파일 모으기",
+  "summary": "3ds Max의 Archive 기능은 현재 씬 파일과 연결된 모든 외부 에셋(텍스처, 캐시 등)을 하나의 ZIP 파일로 압축하여 안전하게 백업하거나 다른 작업자에게 전달할 수 있도록 돕는 유용한 도구입니다.",
+  "when": [
+    "다른 작업자나 외부 스튜디오에 프로젝트 파일을 통째로 전달할 때",
+    "외장하드나 클라우드에 작업물을 아카이빙하고 누락된 텍스처를 방지하고 싶을 때",
+    "프로젝트 폴더 정리가 복잡하여 필요한 에셋만 깔끔하게 모으고 싶을 때"
+  ],
+  "steps": [
+    "메뉴 바에서 File > Archive를 클릭합니다.",
+    "파일 탐색기 창이 나타나면 저장할 위치와 파일 이름을 지정하고 저장(Save)을 누릅니다.",
+    "백그라운드에서 3ds Max가 씬에 사용된 모든 외부 에셋 경로를 스캔하고 ZIP 파일로 묶기 시작합니다.",
+    "아카이빙이 완료되면 지정한 폴더에 씬 파일과 텍스처 폴더가 포함된 ZIP 파일이 생성되었는지 확인합니다.",
+    "생성된 ZIP 파일을 해제하여 뷰포트에서 누락된 텍스처 없이 정상적으로 열리는지 최종 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "Archive Name",
+      "desc": "생성될 ZIP 압축 파일의 이름을 지정합니다."
+    },
+    {
+      "name": "Path Configuration",
+      "desc": "에셋 경로를 추적하여 누락 없이 수집하는 기준을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "외주 작업물 최종 납품",
+      "steps": [
+        "작업이 완료된 씬을 열고 File > Archive를 실행합니다.",
+        "클라이언트나 스튜디오 전달용 폴더에 ZIP 파일을 저장합니다.",
+        "압축 파일 내부에 텍스처와 .max 파일이 올바르게 포함되었는지 확인 후 전달합니다."
+      ]
+    },
+    {
+      "title": "장기 프로젝트 백업 및 정리",
+      "steps": [
+        "프로젝트 마감 후 File > Archive를 통해 현재 버전을 압축합니다.",
+        "날짜별 혹은 버전별로 백업 폴더에 보관하여 에셋 유실을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "네트워크 드라이브 경로가 끊어진 상태에서 아카이브 실행 → 에셋 누락 발생: 로컬 드라이브로 파일을 모은 후 다시 아카이브를 진행합니다.",
+    "절대 경로 대신 한글이나 특수문자가 포함된 폴더 구조 사용 → 압축 해제 시 경로 오류: 영문 폴더명과 표준화된 디렉토리 구조를 사용합니다."
+  ],
+  "related": [
+    "Asset Tracking",
+    "Resource Collector",
+    "Save As",
+    "Batch Renderer"
+  ],
+  "videos": [
+    {
+      "id": "J73ePGuP6Y4",
+      "title": "How to ARCHIVE 3ds Max File (Step by Step)",
+      "author": "Side Quest"
+    },
+    {
+      "id": "FmLyDMB-COs",
+      "title": "How to Archive a 3ds Max Project Correctly | Save As ZIP / RAR File",
+      "author": "Jake Denham"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Archive%20scene",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Archive"
+  ],
+  "at": "2026-11-03T12:54:41.972133+00:00"
+}
