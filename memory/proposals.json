@@ -9757,5 +9757,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 PR(#40~#44) 테스트 최종 확인",
     "auto": true
+  },
+  {
+    "at": "2026-11-03T13:14:09+00:00",
+    "kind": "proposal",
+    "id": "p-a4a9a86c11",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 코드 리뷰",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 backend/app/services/url_ingest.py 및 pbr_generator.py 관련 입력 검증 PR #40부터 #44까지 승인 대기 상태로 머물러 있음.",
+    "proposal": "GitHub에서 PR #40, #41, #42, #43, #44의 테스트 결과와 코드를 확인하고 이상이 없으면 승인 및 머지 진행",
+    "expected": "백엔드 입력값 및 PBR 맵 생성 시 예외 처리와 무결성 검증이 메인 브랜치에 안전하게 반영됨",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T13:14:09+00:00",
+    "kind": "proposal",
+    "id": "p-80419bc17f",
+    "title": "웹 버전(web/) 입력 유효성 검사 피드백 UI 연동 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증 로직이 추가됨에 따라, 웹 브라우저 단에서 사용자가 잘못된 URL이나 이미지를 넣었을 때 UI로 즉시 에러 피드백을 주는 기능 검증 필요.",
+    "proposal": "web/index.html 및 관련 Script에서 입력 에러 메시지가 사용자에게 직관적으로 표시되는지 테스트",
+    "expected": "사용자 경험(UX) 향상 및 잘못된 입력으로 인한 오류 사전 방지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T13:14:25.469952+00:00",
+    "kind": "decision",
+    "id": "p-a4a9a86c11",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T13:14:25.478087+00:00",
+    "kind": "decision",
+    "id": "p-80419bc17f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) URL 유효성 검사 UI 피드백 보완",
+    "auto": true
   }
 ]
