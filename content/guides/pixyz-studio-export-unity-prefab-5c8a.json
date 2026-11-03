@@ -1,0 +1,99 @@
+{
+  "id": "pixyz-studio-export-unity-prefab-5c8a",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Export Unity Prefab",
+  "title": "Unity Prefab 으로 Export",
+  "summary": "Pixyz Studio에서 최적화된 CAD 데이터를 Unity 에디터 프로젝트로 바로 가져올 수 있는 .prefab 파일 형식으로 직접 내보내는 기능입니다.",
+  "when": [
+    "복잡한 CAD 데이터를 Unity 엔진 기반의 실시간 3D 애플리케이션에 바로 투입해야 할 때",
+    "제품 구조(Product Structure)와 계층 구조, 머티리얼 정보를 Unity 프리팹 형태로 유지하며 파이프라인을 단축하고 싶을 때",
+    "런타임 앱이 아닌 Unity 에디터 프로젝트 폴더에 최적화된 에셋을 즉시 배치해야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 CAD 모델을 불러와 정비 및 최적화 작업을 완료합니다.",
+    "상단 메뉴 바에서 File > Export를 선택합니다.",
+    "Export 파일 형식(Format)에서 Unity Prefab (.prefab)을 선택합니다.",
+    "타겟 Unity Editor 프로젝트의 폴더 경로를 지정하고 저장합니다.",
+    "Unity 에디터 프로젝트 뷰에서 생성된 .prefab 파일을 확인하고 씬(Scene)에 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Product Structure",
+      "desc": "CAD의 어셈블리 계층 구조를 Unity의 GameObject 및 계층으로 그대로 변환합니다."
+    },
+    {
+      "name": "Coordinate System",
+      "desc": "Unity의 좌표계(Y-up, 왼손 좌표계)에 맞춰 자동으로 축 방향을 변환합니다."
+    },
+    {
+      "name": "Instances",
+      "desc": "동일한 파츠의 Instance 정보를 유지하여 메모리 효율을 높입니다."
+    },
+    {
+      "name": "Meshes",
+      "desc": "삼각형화된 메시 데이터와 법선(Normals), UV(0, 1채널), 탄젠트를 내보냅니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "CAD의 머티리얼 정보를 Unity Standard 머티리얼 타입으로 변환합니다."
+    },
+    {
+      "name": "Textures",
+      "desc": "텍스처를 원본 이미지(raw images) 형태로 임베드하여 함께 포함합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 인테리어 CAD 데이터를 Unity 실시간 시각화 프로젝트로 Export",
+      "steps": [
+        "Pixyz Studio에서 불필요한 내부 부품을 제거하고 폴리곤을 최적화합니다.",
+        "File > Export 메뉴에서 Unity Prefab 포맷을 선택합니다.",
+        "Unity 프로젝트의 Assets 폴더 경로를 지정하여 내보냅니다.",
+        "Unity 에디터에서 프리팹을 씬에 드래그하여 배치하고 머티리얼을 확인합니다."
+      ]
+    },
+    {
+      "title": "기계 장비 어셈블리를 Unity 시뮬레이션에 활용하기",
+      "steps": [
+        "Product Structure 트리를 정리하여 부품 계층을 정돈합니다.",
+        "Unity Prefab Export를 실행하여 Unity 프로젝트 디렉토리에 저장합니다.",
+        "Unity 에디터에서 계층 구조와 Instance가 올바르게 유지되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지원하지 않는 BRep 지오메트리나 선/점 데이터 포함 → 빈 GameObject가 생성되므로 Export 전 불필요한 요소는 미리 정리하세요.",
+    "애니메이션이나 메타데이터 유실 → Prefab Export는 애니메이션과 커스텀 속성을 지원하지 않으므로 필요시 다른 포맷이나 SDK를 검토하세요.",
+    "잘못된 프로젝트 경로 지정 → Unity 프로젝트 폴더 외부로 내보내면 에디터에서 바로 인식되지 않으니 반드시 올바른 Assets 경로를 지정하세요."
+  ],
+  "related": [
+    "Exporting files from Pixyz Studio",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "ViugcJf2DGU",
+      "title": "Max to unity prefab export workflow",
+      "author": "Project Discord"
+    },
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/ExportUnityPrefab.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "File",
+    "Export"
+  ],
+  "at": "2026-11-03T11:24:16.355533+00:00"
+}
