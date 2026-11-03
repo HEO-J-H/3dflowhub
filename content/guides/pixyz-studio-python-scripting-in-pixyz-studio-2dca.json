@@ -1,0 +1,100 @@
+{
+  "id": "pixyz-studio-python-scripting-in-pixyz-studio-2dca",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "자동화",
+  "name": "Python scripting in Pixyz Studio",
+  "title": "Python Script 시작하기",
+  "summary": "Pixyz Studio의 Python API를 활용하여 CAD 데이터 최적화 및 반복 작업을 자동화하고 플러그인을 개발합니다.",
+  "when": [
+    "반복적인 CAD 데이터 Import, 테설레이션, 최적화 작업을 자동화하고 싶을 때",
+    "특정 속성이나 메타데이터를 기준으로 씬 내의 지오메트리를 일괄 선택·수정해야 할 때",
+    "사용자 정의 스크립트나 커스텀 툴바 기능을 구축하여 작업 효율을 극대화할 때"
+  ],
+  "steps": [
+    "Menu Bar에서 Windows를 열고 Script 패널을 선택하여 Script 편집 창을 활성화합니다.",
+    "Script 패널 내부에서 Python 코드를 직접 작성하거나 선호하는 외부 IDE를 활용해 코드를 작성합니다.",
+    "씬의 루트 오커런스를 가져오려면 `scene.getRoot()` 함수를 Script에 입력합니다.",
+    "`scene.findOccurrencesByProperty('Name', '.*', [scene.getRoot()])` 코드를 사용하여 씬 내의 모든 오커런스를 검색합니다.",
+    "필요한 최적화 알고리즘 함수(예: `algo.tessellate()`)에 오커런스 ID를 인자로 전달하여 실행합니다.",
+    "Script 패널 하단의 콘솔 출력 결과와 뷰포트의 변화를 확인하여 Script 동작을 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "Script",
+      "desc": "Python 코드를 작성하고 실행하는 전용 패널 환경"
+    },
+    {
+      "name": "Function List",
+      "desc": "키워드로 API 메서드를 검색하고 설명과 인자를 확인하는 도구"
+    },
+    {
+      "name": "core.getProperty",
+      "desc": "엔티티의 고유 ID와 속성 이름을 입력받아 현재 값을 반환"
+    },
+    {
+      "name": "core.setProperty",
+      "desc": "엔티티의 속성 값을 새로운 값으로 설정하거나 변경"
+    },
+    {
+      "name": "scene.getRoot",
+      "desc": "현재 씬의 최상위 루트 오커런스 ID를 반환"
+    },
+    {
+      "name": "algo.tessellate",
+      "desc": "CAD 데이터를 지정된 허용 오차로 폴리곤 메쉬로 변환"
+    }
+  ],
+  "examples": [
+    {
+      "title": "메타데이터 기반 머티리얼 자동 할당",
+      "steps": [
+        "Script 패널을 엽니다.",
+        "정의된 메타데이터를 읽어오는 함수 구조를 작성합니다.",
+        "실행 버튼을 눌러 조건에 맞는 오커런스에 머티리얼을 일괄 적용합니다."
+      ]
+    },
+    {
+      "title": "지오메트리 메쉬 데이터 추출하기",
+      "steps": [
+        "오커런스 리스트에서 Part 컴포넌트를 가져옵니다.",
+        "폴리곤 메쉬 정의와 정점(Vertices) 정보를 가져오는 코드를 실행합니다.",
+        "콘솔 창에서 추출된 데이터 값을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "ID 형식 오류 → 정수형 ID 대신 문자열을 입력하면 예외가 발생하므로 올바른 엔티티 ID 타입인지 확인합니다.",
+    "속성 값 변환 누락 → `core.getProperty`가 반환하는 문자열 값을 리스트나 데이터로 쓸 때 `eval()` 함수를 사용해 형 변환을 거쳐야 합니다.",
+    "외부 IDE 자동완성 부재 → 외부 IDE 사용 시 정적 자동완성 라이브러리를 생성하지 않으면 메서드 이름을 찾기 어려우므로 가이드 문서의 우회 방법을 참고합니다."
+  ],
+  "related": [
+    "Product Structure",
+    "Inspector",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "wzJ-a2PT3Wo",
+      "title": "Workflow: PiXYZ to Substance Painter to Unity",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/script-in-python.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Menu Bar",
+    "Windows",
+    "Script",
+    "Python",
+    "IDE"
+  ],
+  "at": "2026-11-03T11:54:02.403278+00:00"
+}
