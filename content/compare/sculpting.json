@@ -1,0 +1,84 @@
+{
+  "id": "sculpting",
+  "title": "스컬핑 기본",
+  "task": "digital sculpting basics (brushes, dynamic topology / remesh)",
+  "summary": "디지털 스컬프팅은 점토를 빚듯 자유롭게 모델의 형태를 조형하고 세부 디테일을 더하는 핵심 작업입니다. 툴마다 브러시 알고리즘, 다이나믹 토폴로지, 레메시 처리 방식이 달라 파이프라인 목적에 맞는 선택이 필요합니다.",
+  "rows": [
+    {
+      "tool": "ZBrush",
+      "where": "Tool 팔레트 / Brush 메뉴 (B 키)",
+      "how": "B 키를 누르고 단축키를 입력해 Standard, Move, ClayBuildup 등의 브러시를 선택합니다. Geometry 팔레트의 Dynamesh나 ZRemesher로 토폴로지를 실시간 재구성합니다.",
+      "strength": "억 단위 폴리곤 처리 능력과 직관적인 스컬프팅 전용 브러시 시스템",
+      "limit": "엄격한 토폴로지 구조가 필요한 게임 엔진용 베이스 모델링에는 별도의 리토폴로지 필수"
+    },
+    {
+      "tool": "Blender",
+      "where": "Sculpt Mode (Tab 키 또는 모드 전환) / Properties → Modifier 탭",
+      "how": "Sculpt Mode에서 브러시를 고르고, Dyntopo를 켜서 브러시 스트로크에 따라 폴리곤을 실시간 분할합니다. 또는 Multiresolution 모디파이어를 추가해 단계를 나눠 스컬프팅합니다.",
+      "strength": "무료 오픈소스 환경에서 스컬프팅부터 리토폴로지, 렌더링까지 올인원 작업 가능",
+      "limit": "초고해상도 폴리곤 영역에서 ZBrush만큼 부드러운 대용량 처리 성능은 다소 제한됨"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Command Panel → Modify 탭 → Freeform / Paint Deform 도구",
+      "how": "Editable Poly 상태에서 Paint Deform이나 Graphite Modeling Tools의 Push/Pull 브러시로 간단한 형태를 변형합니다. 본격적인 스컬프팅은 Mudbox와의 연동이나 외부 툴을 주로 사용합니다.",
+      "strength": "하드서페이스 모델링과 연계된 기본 폴리곤 편집 작업에 최적화",
+      "limit": "유기적인 캐릭터 스컬프팅을 위한 전용 브러시와 다이나믹 토폴로지 기능이 거의 없음"
+    },
+    {
+      "tool": "Maya",
+      "where": "Modeling 툴셋 → Sculpting 메뉴 세트",
+      "how": "Sculpting Tool을 활성화하고 Smooth, Grab, Wax 등의 브러시로 메쉬를 조형합니다. Subdivide Mesh 기능을 이용해 메쉬 해상도를 높여가며 세부 묘사를 더합니다.",
+      "strength": "애니메이션 리깅 파이프라인과 완벽하게 연동되는 직관적인 비파괴 스컬프팅",
+      "limit": "ZBrush나 Blender에 비해 브러시 종류와 세부 반응 속도가 아쉬움"
+    },
+    {
+      "tool": "Houdini",
+      "where": "네트워크 뷰 → VDB 관련 노드 및 SOP Sculpt 노드",
+      "how": "VDB From Polygons 노드로 볼륨 변환 후 Sculpt 노드를 연결해 브러시로 형태를 빚거나, VDB Smooth로 표면을 다듬습니다. 최종 결과물은 Convert VDB로 폴리곤화합니다.",
+      "strength": "절차적(Procedural) 데이터와 결합하여 대규모 형태 변형 및 자연물 스컬프팅에 강력",
+      "limit": "전통적인 예술가 중심의 수작업 브러시 드로잉 감각을 살리기에는 UI와 노드 구조가 복잡함"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Landscape 모드 / Modeling Mode (Mesh Editing)",
+      "how": "Landscape Sculpt 브러시로 지형을 빚거나, 5버전 이후 Modeling Mode의 Sculpt 브러시로 간단한 프랍 메쉬의 형태를 엔진 내에서 직접 수정합니다.",
+      "strength": "게임 엔진 레벨 안에서 외부 툴 이동 없이 즉각적인 지형 및 프랍 수정 가능",
+      "limit": "정밀한 캐릭터 스컬프팅이나 고밀도 하이폴리곤 디테일 작업에는 부적합"
+    }
+  ],
+  "pick": [
+    {
+      "case": "영화 및 게임용 하이폴리곤 캐릭터 유기적 조형",
+      "tool": "ZBrush",
+      "why": "수천만 폴리곤 환경에서 끊김 없이 정교한 해부학적 디테일을 빚어내는 데 독보적이기 때문입니다."
+    },
+    {
+      "case": "추가 라이선스 없이 모델링부터 스컬프팅까지 한 번에 해결",
+      "tool": "Blender",
+      "why": "Dyntopo와 Multiresolution 시스템이 강력하여 별도의 툴 없이도 완성도 높은 스컬프팅이 가능합니다."
+    },
+    {
+      "case": "절차적 효과와 결합된 대형 지형 및 환경 조형",
+      "tool": "Houdini",
+      "why": "노드 기반의 VDB 볼륨 조작으로 규칙적이면서도 유기적인 자연물 형태를 대규모로 제어할 수 있습니다."
+    }
+  ],
+  "handoff": [
+    "툴 간 이동 시 축 방향(Axis) 확인: Blender(Z축 업)에서 ZBrush나 Maya(Y축 업)로 내보낼 때 축이 틀어지지 않는지 FBX/OBJ 옵션에서 확인합니다.",
+    "스케일 단위(Unit Scale) 통일: 미터법 기준 단위가 다르면 브러시 크기나 수치 감각이 완전히 달라지므로 익스포트 전 1:1 스케일을 맞춥니다.",
+    "정점 이름 및 그룹 유지: 서브툴(SubTool)이나 머티리얼 ID가 합쳐지지 않도록 OBJ/FBX 그룹(Groups) 옵션을 켭니다.",
+    "노름(Normal) 및 법선 방향 검증: 스컬프팅 후 내보낼 때 반전된 법선이 없는지 확인하고 툴 간 교차 검증을 거칩니다."
+  ],
+  "apply": [
+    "ZBrush에서 하이폴리곤 스컬프팅을 마친 후 Decimation Master로 용량을 줄이고 Blender로 가져와 베이스 메쉬로 활용합니다.",
+    "Houdini에서 절차적으로 생성한 기본 형태를 Blender Sculpt Mode로 가져와 아티스트의 손길로 자연스러운 디테일을 더합니다.",
+    "Unreal Engine Modeling Mode에서 간단한 프랍 스컬프팅을 거쳐 임시 프로토타입 메쉬를 빠르게 제작하고 레벨에 배치합니다."
+  ],
+  "pitfalls": [
+    "{'mistake': 'Blender에서 Dyntopo를 켠 상태로 디테일이 과도하게 높아져 프로그램이 멈추거나 렉이 걸림', 'fix': '세부 묘사(Detail Size) 값을 너무 작게 설정하지 말고, 필요한 부분만 부분적으로 다이나믹 토폴로지를 적용합니다.'}",
+    "{'mistake': 'ZBrush에서 Dynamesh 적용 후 모서리가 뭉개지거나 각이 죽어버림', 'fix': 'Dynamesh Resolution 값을 더 높게 설정하거나, Polish 기능을 끈 상태에서 다시 메쉬를 합칩니다.'}",
+    "{'mistake': '스케일을 적용(Apply Scale)하지 않고 브러시를 써서 크기 감각이나 스컬프팅 왜곡 발생', 'fix': '작업 전 항상 오브젝트의 Transform Scale을 1, 1, 1로 초기화(Apply)한 뒤 스컬프팅을 시작합니다.'}"
+  ],
+  "at": "2026-11-03T11:15:41+00:00"
+}

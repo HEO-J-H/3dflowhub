@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-mesh-has-open-edges-cannot-dynamesh-properl-1fdee",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Mesh has open edges (cannot dynamesh properly)",
+  "title": "Mesh has open edges 구멍 난 메시 Dynamesh 오류 해결하기",
+  "summary": "ZBrush에서 Mesh has open edges (cannot dynamesh properly) 경고는 모델에 뚫린 구멍(Open Edges)이 존재하여 Dynamesh를 올바르게 적용할 수 없을 때 나타나는 오류입니다. 닫힌 볼륨(Closed Volume) 형태가 아닐 경우 DynaMesh가 면을 제대로 계산하지 못합니다.",
+  "causes": [
+    "익스트루드(Extrude)나 딜리트(Delete) 작업으로 인해 메시에 구멍(Open Edges)이 생겼을 때",
+    "두께가 없는 단면(Plane) 상태에서 DynaMesh를 실행했을 때",
+    "비정상적인 면(Non-manifold geometry)이나 겹친 지오메트리가 존재할 때"
+  ],
+  "steps": [
+    "오른쪽 툴(Tool) 팔레트에서 Geometry 탭을 엽니다.",
+    "Mesh Integrity 하단의 Check Mesh 버튼을 클릭하여 오류를 검사합니다.",
+    "오류가 감지되면 바로 아래에 활성화되는 Close Holes 버튼을 클릭해 열린 엣지를 자동으로 막아줍니다.",
+    "자동으로 막히지 않는 복잡한 구멍은 ZModeler 브러시(B, Z, M)를 활성화하고 엣지 위에서 Mouse 우클릭 후 Insert나 Bridge를 이용해 직접 메꿉니다.",
+    "구멍을 모두 막은 뒤 Geometry → DynaMesh에서 다시 DynaMesh 버튼을 눌러 정상 작동을 확인합니다."
+  ],
+  "check": [
+    "DynaMesh를 재실행했을 때 에러 메시지 없이 정상적으로 폴리곤이 재조합(Remesh)되는지 확인합니다.",
+    "Tool → Geometry → Mesh Integrity에서 Check Mesh를 다시 실행하여 'No issues found' 메시지가 뜨는지 확인합니다."
+  ],
+  "prevent": [
+    "DynaMesh를 실행하기 전에 항상 툴에 열린 면이나 뚫린 구멍이 없는지 확인합니다.",
+    "서브툴(SubTool)의 두께(Thickness)가 필요한 모델링 작업 시 단면 형태에서 무리한 DynaMesh 실행을 피합니다."
+  ],
+  "keywords": [
+    "ZBrush Dynamesh 오류",
+    "Mesh has open edges",
+    "ZBrush 구멍 막기",
+    "Close Holes",
+    "Dynamesh 안됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T11:14:23+00:00"
+}

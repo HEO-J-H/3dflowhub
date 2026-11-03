@@ -1,0 +1,39 @@
+{
+  "id": "houdini-polygon-mesh-has-zero-area-faces-1b4db",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Polygon mesh has zero area faces",
+  "title": "Polygon mesh has zero area faces 에러 대처법",
+  "summary": "Houdini에서 Polygon mesh has zero area faces 경고는 면의 넓이가 0이거나 거의 0에 수렴하는 비정상적인 폴리곤이 존재할 때 발생합니다. 시뮬레이션, 노말 계산, Unity/Unreal Engine Export 시 깨짐이나 오류를 유발할 수 있습니다.",
+  "causes": [
+    "Extrude나 PolyExtrude 노드 사용 시 거리 값을 0으로 주었거나 면이 자기 자신과 겹친 경우",
+    "Edit 노드나 Transform 노드에서 버텍스들이 한 점이나 직선상으로 완전히 뭉개진 경우",
+    "Fuse 노드의 허용치(Distance)를 너무 높게 설정하여 인접한 면들이 무리하게 합쳐진 경우",
+    "CAD 데이터나 외부 파일(FBX, OBJ)을 임포트하는 과정에서 발생한 손상된 지오메트리"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 문제가 발생하는 Geometry Nodes 하단에 Fuse 노드를 추가합니다.",
+    "Fuse 노드의 파라미터 창에서 Dist Tolerance 값을 작게 조정한 후, 겹쳐진 Vertex가 정리되는지 확인합니다.",
+    "Fuse 노드 뒤에 Divide 노드를 연결하고, Remove Shared Edges나 Convex Polygons 옵션을 켜서 잘못된 토폴로지를 정리합니다.",
+    "여전히 해결되지 않는 면이 있다면 Clean 노드를 추가하고 Remove Degenerate Primitives 옵션을 활성화하여 넓이가 0인 면을 자동 제거합니다.",
+    "직접 수정이 필요할 경우 Blast 노드를 사용해 해당 영역의 폴리곤 번호를 지정하여 지오메트리를 아예 삭제합니다."
+  ],
+  "check": [
+    "네트워크 뷰의 노드 아이콘에 더 이상 빨간색 경고나 메시지가 뜨지 않는지 확인합니다.",
+    "지오메트리 스프레드시트(Geometry Spreadsheet)의 Primitive 탭에서 면적(Area)이 0인 폴리곤이 사라졌는지 확인합니다."
+  ],
+  "prevent": [
+    "Extrude나 Revolve 같은 생성 노드 조작 시 이동 값이나 스케일 값이 0이 되지 않도록 주의합니다.",
+    "복잡한 Procedural 모델링 체인 중간에 Clean 노드를 기본 포함하여 비정상 데이터를 실시간으로 정제합니다."
+  ],
+  "keywords": [
+    "Houdini zero area faces",
+    "Houdini 면적 0 경고",
+    "Polygon mesh has zero area faces",
+    "Houdini 오류 해결",
+    "Clean 노드 사용법"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T11:14:19+00:00"
+}

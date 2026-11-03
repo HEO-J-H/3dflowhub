@@ -1,0 +1,37 @@
+{
+  "id": "houdini-warning-type-mismatch-in-parameter-evaluat-e588a",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Warning: Type mismatch in parameter evaluation",
+  "title": "Warning: Type mismatch in parameter evaluation 해결 방법",
+  "summary": "Houdini에서 파라미터나 VEX 표현식 내 데이터 타입(예: Float과 Vector, String과 Integer 등)이 서로 맞지 않아 계산에 실패할 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "VEX 코드나 파라미터 썬크(Wrangle)에서 서로 다른 데이터 타입을 직접 연산하려고 할 때",
+    "채널 참조(Channnel Reference)를 걸 때 기대하는 타입과 대상 파라미터의 타입이 다를 때",
+    "Point나 Primitive VEX 텍스트 에디터 내에서 변수 선언 시 타입 지정을 잘못했을 때"
+  ],
+  "steps": [
+    "파라미터 창(Parameter Pane)에서 경고 아이콘이 표시된 해당 파라미터를 찾습니다.",
+    "입력된 VEX 표현식이나 채널 참조식($CH 등)의 앞뒤 데이터 타입을 확인합니다.",
+    "필요한 경우 set(), i@, v@ 등 명시적 타입 변환 함수나 접두사를 사용하여 타입을 일치시킵니다.",
+    "Wrangle 노드 안의 코드를 수정하여 float, vector, string 등 변수 선언이 올바른지 검토합니다."
+  ],
+  "check": [
+    "노드 상단의 빨간색 경고 배지(Warning Badge)가 사라지는지 확인합니다.",
+    "뷰포트와 파라미터 결과값이 정상적으로 계산되어 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "VEX 코드 작성 시 항상 변수의 데이터 타입을 명확하게 선언합니다.",
+    "다른 타입의 데이터를 연산할 때는 float() 또는 vector() 등의 캐스팅 함수를 적극 활용합니다."
+  ],
+  "keywords": [
+    "Houdini Type mismatch",
+    "Houdini 타입 미스매치",
+    "Type mismatch in parameter evaluation",
+    "VEX 타입 오류",
+    "Houdini 경고 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T11:14:21+00:00"
+}

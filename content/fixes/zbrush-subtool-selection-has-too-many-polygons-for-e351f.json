@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-subtool-selection-has-too-many-polygons-for-e351f",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "SubTool selection has too many polygons for this operation",
+  "title": "SubTool selection has too many polygons 경고와 폴리곤 줄이기",
+  "summary": "SubTool selection has too many polygons for this operation ZBrush에서 서브툴(SubTool)의 폴리곤 수가 현재 수행하려는 작업(ZRemesher, Dynamesh, Project 등)의 허용 용량을 초과했을 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "ZRemesher 실행 시 Target Polygons 값이 현재 폴리곤 수 대비 터무니없이 낮거나 하이폴리곤 메쉬의 밀도가 너무 높을 때",
+    "Dynamesh Resolution가 너무 높게 설정된 상태에서 연산을 수행할 때",
+    "Divide나 Sculptris Pro 등으로 인해 불필요하게 폴리곤(Polycount)이 과도하게 증폭되었을 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 Geometry 탭을 엽니다.",
+    "Lower Res 버튼을 눌러 디비전(Subdivision) 레벨을 낮추거나, SDiv 슬라이더를 더 낮은 단계로 이동합니다.",
+    "Decimation Master 플러그인을 사용하여 필요 없는 폴리곤 구조를 가볍게 줄입니다(Pre-process Current 누른 뒤 Decimate Current 실행).",
+    "ZRemesher를 사용할 경우 ZRemesher 서브 탭에서 Target Polygons 값을 적절히 조절하거나 반(Half)으로 낮춰서 다시 시도합니다.",
+    "Dynamesh를 사용할 경우 Resolution 값을 낮춘 뒤 다시 Remesh를 실행합니다."
+  ],
+  "check": [
+    "상단 메뉴의 Polycount 정보에서 폴리곤 수가 줄어들었는지 확인합니다.",
+    "문제가 되었던 기능(ZRemesher 등)을 다시 실행했을 때 경고창 없이 정상적으로 연산이 완료되는지 확인합니다."
+  ],
+  "prevent": [
+    "작업 중 불필요하게 높은 밀도로 디비전(Divide)을 올리지 않고, 형태를 잡을 때(Blockout)는 낮은 레벨을 유지합니다.",
+    "고해상도 디테일 작업 전에는 Decimation Master나 ZRemesher로 메쉬 구조를 미리 최적화합니다."
+  ],
+  "keywords": [
+    "ZBrush 폴리곤 초과",
+    "SubTool selection has too many polygons",
+    "ZRemesher 오류",
+    "ZBrush 폴리곤 줄이기",
+    "Dynamesh 과부하"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-03T11:14:33+00:00"
+}

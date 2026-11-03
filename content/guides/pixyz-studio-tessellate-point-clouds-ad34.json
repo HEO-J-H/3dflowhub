@@ -1,0 +1,83 @@
+{
+  "id": "pixyz-studio-tessellate-point-clouds-ad34",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "점구름",
+  "name": "Tessellate Point Clouds",
+  "title": "점구름을 메쉬로 바꾸기",
+  "summary": "Pixyz Studio의 Tessellate Point Clouds 기능은 스캔 데이터인 점구름(Point Cloud)을 실시간 3D 렌더링이 가능한 폴리곤 메시(Mesh)로 변환합니다. 기존 ProxyMesh+Bake 방식의 대안으로, 더욱 정밀하고 밀도 높은 메시를 생성할 수 있습니다.",
+  "when": [
+    "대규모 레이저 스캔 점구름 데이터를 3D 메시로 변환하여 시각화해야 할 때",
+    "포인트 데이터의 컬러 정보를 Vertex 컬러(Vertex Color)로 베이킹하여 유지하고 싶을 때",
+    "기존 ProxyMesh 방식보다 더 정밀하고 정확한 근사 메시가 필요할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 점구름(Point Cloud) 데이터를 불러옵니다.",
+    "왼쪽 Product Structure 패널에서 변환할 Point Cloud 파츠를 선택합니다.",
+    "상단 메뉴 바에서 Point Cloud를 클릭합니다.",
+    "드롭다운 메뉴에서 Tessellate Point Clouds를 선택합니다.",
+    "대화 상자에서 파라미터를 설정한 후 Execute를 클릭하여 실행합니다.",
+    "생성된 메시의 노멀과 정점 색상을 뷰포트에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Colorize",
+      "desc": "포인트 클라우드의 색상 정보를 생성된 메시의 Vertex 컬러로 베이킹합니다."
+    },
+    {
+      "name": "Vertex Colors override material",
+      "desc": "뷰어에서 정점 색상이 올바르게 표시되도록 재정의하는 옵션입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공장 스캔 데이터 메시 변환",
+      "steps": [
+        "포인트 클라우드 형식의 공장 스캔 파일을 임포트합니다.",
+        "Point Cloud → Tessellate Point Clouds를 실행합니다.",
+        "Colorize 옵션을 켜서 스캔 원본의 색상 정보를 유지합니다."
+      ]
+    },
+    {
+      "title": "역설계용 점구름 정밀화",
+      "steps": [
+        "충분한 RAM이 확보된 상태에서 대용량 점구름 데이터를 로드합니다.",
+        "Tessellate Point Clouds로 정밀한 근사 메시를 생성합니다.",
+        "Orient 함수를 사용해 뒤집힌 삼각형 면의 방향을 바로잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메모리 부족 현상 → 대용량 점구름을 처리할 때는 충분한 RAM이 확보되었는지 확인하고 작업하세요.",
+    "면이 뒤집혀 보이는 현상 → 생성된 메시의 삼각형 면이 뒤집혔다면 Orient 기능을 사용하여 면 방향을 수정하세요.",
+    "색상이 보이지 않는 현상 → Vertex Colors override material 옵션을 활성화하여 뷰어에서 정점 색상을 확인하세요."
+  ],
+  "related": [
+    "ProxyMesh+Bake",
+    "Orient",
+    "Repair Mesh",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "1YXLEzDAhHg",
+      "title": "020  Tesselate & Decimate Point Cloud in Pixyz Studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/TessellatePointClouds.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "Point Cloud",
+    "Product Structure",
+    "Tessellate Point Clouds"
+  ],
+  "at": "2026-11-03T11:14:16.303468+00:00"
+}
