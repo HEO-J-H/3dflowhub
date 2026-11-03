@@ -1,0 +1,89 @@
+{
+  "id": "pixyz-studio-decimation-in-pixyz-afbc",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Decimation in Pixyz",
+  "title": "데시메이션 — 폴리곤 줄이기 개념",
+  "summary": "Pixyz Studio의 Decimate 기능은 시각적 품질과 폴리곤 수 사이의 균형을 맞춰 고밀도 메시의 폴리곤 밀도를 최적화하는 핵심 데이터 준비 도구입니다.",
+  "when": [
+    "엔지니어링 CAD 데이터를 게임 엔진이나 실시간 3D 시각화에 맞게 경량화할 때",
+    "특정 폴리곤 수(Target)에 맞춰 모델 용량을 엄격하게 줄여야 할 때",
+    "산업용 하드 서페이스 모델의 구멍, 모따기 같은 주요 토폴로지 특징을 유지하면서 폴리곤을 줄일 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러와 Scene Tree 패널에서 최적화할 파츠를 선택합니다.",
+    "디시메이션 전 모델의 끊어진 틈을 방지하기 위해 Mesh 메뉴에서 Repair Mesh 기능을 먼저 실행합니다.",
+    "텍스처 UV가 불필요하거나 새로 만들 예정이라면 UVs 메뉴에서 Remove UV를 실행해 폴리곤 축소 효율을 높입니다.",
+    "메뉴 바에서 Optimize Mesh 또는 관련 Decimate 메뉴(Decimate To Quality 또는 Decimate To Target)를 선택합니다.",
+    "대화 상자에서 품질 우선 또는 목표 폴리곤 수 옵션을 설정한 뒤 Execute를 눌러 실행합니다.",
+    "뷰포트에서 메시 밀도와 형태가 올바르게 유지되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Decimate To Quality",
+      "desc": "시각적 품질과 토폴로지 특성을 우선 보존하며 폴리곤을 줄이는 방식입니다."
+    },
+    {
+      "name": "Decimate To Target",
+      "desc": "정밀한 목표 폴리곤 수에 맞춰 공격적으로 메시를 줄이는 방식입니다."
+    },
+    {
+      "name": "Orient",
+      "desc": "폴리곤 면 방향(Normal)을 고정할지 여부를 결정합니다."
+    },
+    {
+      "name": "Remove UV",
+      "desc": "디시메이션 효율을 높이기 위해 기존 UV 정보를 미리 제거합니다."
+    },
+    {
+      "name": "Repair Mesh",
+      "desc": "디시메이션 전 모델의 틈새나 갈라진 곳을 연결하여 오류를 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 3D 뷰어용 CAD 조립품 경량화",
+      "steps": [
+        "Scene Tree 패널에서 CAD 어셈블리를 선택합니다.",
+        "Mesh 메뉴에서 Repair Mesh를 실행해 구조적 틈새를 메웁니다.",
+        "Optimize Mesh 내 Decimate To Quality를 실행해 원형과 모서리 디테일을 유지하며 용량을 줄입니다."
+      ]
+    },
+    {
+      "title": "게임 엔진용 고폴리곤 에셋 최적화",
+      "steps": [
+        "Scene Tree 패널에서 대상 폴리곤 오브젝트를 선택합니다.",
+        "기존 불필요한 UV가 있다면 UVs 메뉴의 Remove UV로 제거합니다.",
+        "Decimate To Target 기능을 실행해 허용된 폴리곤 수에 정확히 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 수리를 하지 않고 디시메이션 실행 → 원래 있던 미세한 틈새와 균열이 더 크게 벌어짐 → 디시메이션 전에 반드시 Repair Mesh 실행",
+    "불필요한 UV가 남아있는 상태로 디시메이션 → UV 시암(Seam) 때문에 폴리곤이 충분히 줄어들지 않음 → 필요 없는 경우 Remove UV를 먼저 실행"
+  ],
+  "related": [
+    "Repair Mesh",
+    "Remove UV",
+    "Decimate To Quality",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "duh85Wa5MVI",
+      "title": "010  Decimation, Decimate To Quality in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/AboutDecimation.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-03T08:43:48.632318+00:00"
+}
