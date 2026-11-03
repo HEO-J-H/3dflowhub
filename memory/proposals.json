@@ -10408,5 +10408,98 @@
     "id": "p-1a69ac54ce",
     "verdict": "agent",
     "reason": "새로운 단위 테스트 추가는 코드 수정으로 해결 가능"
+  },
+  {
+    "at": "2026-11-03T15:45:24+00:00",
+    "kind": "proposal",
+    "id": "p-35b927c9a7",
+    "title": "경량 RAG 검색 엔드포인트 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "‘RAG 검색 기능 단위 테스트’가 수락됐으며, ‘RAG 검색 API 추가’는 중복이라 거절됐지만 백엔드 구현이 아직 없음.",
+    "proposal": "backend/app/services/rag_search.py 파일에 LangChain 기반 로컬 RAG 서비스 구현하고, main.py에 /rag/search POST 엔드포인트 추가. backend/tests/test_rag.py에 입력·출력 단위 테스트 작성 후 PR 생성(#45 이후 번호).",
+    "expected": "사용자가 웹 UI 검색 입력창을 통해 문서·가이드 검색이 가능해져 UX가 향상되고, 검색 트래픽이 내부로 제한돼 보안·비용이 절감됩니다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:45:24+00:00",
+    "kind": "proposal",
+    "id": "p-7fa7b012ae",
+    "title": "RAG 사용 가이드 문서 업데이트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "‘RAG 검색 기능 단위 테스트’와 ‘RAG 오픈소스 활용 방안’ 문서가 이미 머지됐음.",
+    "proposal": "docs/tech-research.md에 새 엔드포인트 사용법, 예시 쿼리, 로컬 모델 설치 방법을 추가하고, 웹 UI에 ‘검색 사용법’ 팝업 링크 연결.",
+    "expected": "사용자와 개발자가 RAG 기능을 빠르게 이해·활용해 지원 문의가 감소하고, 검색 활용도가 상승합니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/46",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:45:24+00:00",
+    "kind": "proposal",
+    "id": "p-750ae668d8",
+    "title": "보류 중인 핵심 PR(#40~#44) 검토 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #40~#44가 ‘핵심 코드 변경’으로 승인 대기 중이며, 입력 검증 로직이 미비해 RAG 서비스 구현 전 선행 작업이 필요합니다.",
+    "proposal": "팀 내 코드 리뷰 회의를 소집해 PR #40~#44를 빠르게 검토하고, 승인 후 머지. 필요 시 간단한 리뷰 체크리스트를 docs/agent-guides/code-review.md에 추가.",
+    "expected": "입력 검증이 강화돼 RAG 엔드포인트와 기존 파이프라인의 안정성이 확보되고, 향후 기능 추가 시 회귀 위험이 감소합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:46:17.508354+00:00",
+    "kind": "decision",
+    "id": "p-35b927c9a7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 경량 로컬 RAG 검색 엔드포인트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:46:17.520958+00:00",
+    "kind": "decision",
+    "id": "p-7fa7b012ae",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:46:17.532129+00:00",
+    "kind": "decision",
+    "id": "p-750ae668d8",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:46:18.516118+00:00",
+    "kind": "decision",
+    "id": "p-750ae668d8",
+    "v": "done",
+    "note": "자동 완료 확인: PR #40 닫힘"
+  },
+  {
+    "at": "2026-11-03T15:46:20.701665+00:00",
+    "kind": "triage",
+    "id": "p-7fa7b012ae",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 끝낸 제안에 이미 RAG 사용 가이드와 tech‑research 문서 업데이트가 포함돼 있어 해당 작업이 반영됨"
+  },
+  {
+    "at": "2026-11-03T15:46:20.713163+00:00",
+    "kind": "decision",
+    "id": "p-7fa7b012ae",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안에 이미 RAG 사용 가이드와 tech‑research 문서 업데이트가 포함돼 있어 해당 작업이 반영됨"
   }
 ]
