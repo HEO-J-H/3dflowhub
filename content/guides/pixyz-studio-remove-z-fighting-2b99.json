@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-remove-z-fighting-2b99",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "Remove Z-fighting",
+  "title": "Remove Z-fighting — 겹친 면 깜빡임 없애기",
+  "summary": "Pixyz Studio의 Remove Z-fighting은 서로 겹쳐서 깜빡이는 면(Z-fighting) 현상을 자동으로 해결하기 위해 선택한 표면을 미세하게 축소하는 데이터 정리 도구입니다.",
+  "when": [
+    "CAD 데이터를 임포트한 후 두 면이 겹쳐서 화면이 지저분하게 깜빡일 때",
+    "렌더링이나 실시간 뷰포트에서 동일한 위치에 겹친 폴리곤을 정리해야 할 때",
+    "복잡한 어셈블리 모델에서 면 충돌로 인한 시각적 오류를 빠르게 없애고 싶을 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure(Scene Tree) 패널에서 서로 겹쳐서 Z-fighting이 발생하는 메시 중 하나를 선택합니다.",
+    "상단 메뉴 바에서 Mesh 메뉴를 클릭합니다.",
+    "메뉴 목록에서 Remove Z-fighting을 선택하여 실행합니다.",
+    "선택한 메시의 정점이 자동으로 살짝 안쪽으로 축소되면서 겹침 현상이 사라지는지 뷰포트에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Selection",
+      "desc": "Z-fighting을 해결하기 위해 먼저 선택해야 하는 대상 메시 또는 파츠"
+    },
+    {
+      "name": "Mesh menu",
+      "desc": "메시 전처리 및 최적화 관련 기능들이 모여 있는 상단 메뉴"
+    },
+    {
+      "name": "Remove Z-fighting",
+      "desc": "선택한 메시의 Vertex를 음의 방향으로 자동 오프셋하여 겹친 면을 숨기는 기능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "동일한 위치에 겹친 패널 정리",
+      "steps": [
+        "Product Structure 패널에서 겹치는 외장 패널 중 안쪽 파츠를 선택합니다.",
+        "Mesh 메뉴에서 Remove Z-fighting을 실행합니다.",
+        "뷰포트에서 깜빡임이 멈추고 정상적으로 렌더링되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "여러 개의 겹친 부품 연속 수정",
+      "steps": [
+        "Hotkey를 지정하여 작업 효율을 높입니다.",
+        "겹침 현상이 발생하는 각 메시를 차례대로 선택하며 기능을 반복 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시를 선택하지 않고 실행함 → 반드시 뷰포트나 Scene Tree에서 대상 메시를 먼저 선택해야 합니다.",
+    "너무 많이 줄어들어 구멍이 생김 → 자동 계산된 값 외에 과도한 수정이 필요할 때는 Repair Mesh나 수동 편집을 병행해야 합니다.",
+    "잘못된 메시를 축소함 → 뒤로 숨겨야 할 메시가 아니라 앞에 보여야 할 메스를 선택해버린 경우 대상 파츠를 다시 확인하고 실행합니다."
+  ],
+  "related": [
+    "Repair Mesh",
+    "Decimate To Target",
+    "Optimize Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "J1Adee0BfZY",
+      "title": "Tip-044 - Z-Fighting [in Roblox Studio] (short)",
+      "author": "Troll Need Gold"
+    },
+    {
+      "id": "5eLF11G22zg",
+      "title": "How to fix Z-Fighting in Roblox Studios.",
+      "author": "eetoothless clan"
+    }
+  ],
+  "doc": "https://www.pixyz-software.com/documentations/studio/2024.1/manual/RemoveZ-fighting.html",
+  "grounded": true,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Scene Tree",
+    "Mesh",
+    "Remove Z"
+  ],
+  "at": "2026-11-03T09:43:42.323233+00:00"
+}

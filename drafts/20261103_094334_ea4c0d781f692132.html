@@ -1,0 +1,24 @@
+<!-- TITLE: Blender 시뮬레이션 기초 가이드 — 강체와 천, 유체 활용법 | TAGS: Blender,시뮬레이션,Rigid Body,Cloth,Fluid,블렌더,튜토리얼·팁 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://www.creativebloq.com/how-to/how-to-use-simulations-in-a-3d-scene-in-blender" target="_blank" rel="noopener nofollow"><img src="https://cdn.mos.cms.futurecdn.net/nkr9i3F8KTSAmtyufJVW9X-1805-80.jpg" alt="Blender 시뮬레이션 기초 가이드 — 강체와 천, 유체 활용법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://www.creativebloq.com/how-to/how-to-use-simulations-in-a-3d-scene-in-blender" target="_blank" rel="noopener nofollow">creativebloq.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Blender를 활용해 물리 법칙 기반의 강체, 천, 유체 시뮬레이션을 구현하는 기초 가이드를 제공합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 튜토리얼·팁</p>
+<h2>수동 애니메이션과 시뮬레이션의 차이</h2>
+<p>금속 공 하나가 계단으로 떨어지는 애니메이션은 키프레임으로 쉽게 만들 수 있지만, 공 100개가 동시에 굴러 떨어지는 장면은 수동 작업이 거의 불가능합니다. 창문이 열리는 동작은 간단하지만 커튼이 바람에 날리는 움직임은 매우 복잡합니다. 이처럼 수동 제어가 어려운 복잡한 움직임을 물리 법칙을 통해 해결해 주는 것이 시뮬레이션입니다.</p>
+<h2>시뮬레이션의 장단점과 Bake 기능</h2>
+<p>수동 애니메이션은 아티스트가 모든 움직임을 완벽하게 통제할 수 있는 반면, 시뮬레이션은 물리 엔진이 계산한 결과에 의존합니다. 따라서 시뮬레이션을 계산하고, 결과를 확인한 뒤 수정하는 반복적인 실험 과정이 필요합니다. 결과가 마음에 들면 시뮬레이션을 Bake(bake)하여 일반 키프레임으로 잠그고 쉽게 재생하거나 세부 조정을 할 수 있습니다.</p>
+<h2>Rigid Body를 이용한 단단한 오브젝트 충돌</h2>
+<p>Blender에서 간단한 강체(rigid body) 시뮬레이션을 만들려면 Physics 탭을 이용합니다. 바람이나 중력에 반응할 오브젝트에는 Rigid Body를 Active로 설정합니다. 반응하는 표면 역할만 하는 오브젝트에는 Passive를 설정한 뒤 재생 버튼을 누르면 시뮬레이션이 실행됩니다.</p>
+<h2>Cloth modifier를 활용한 부드러운 천 시뮬레이션</h2>
+<p>오브젝트를 부드러운 성질의 소프트 보디로 만들 때는 Cloth modifier를 적용하는 것이 가장 쉽습니다. 천이 반응해야 하는 강체 오브젝트에는 Rigid Body modifier뿐만 아니라 Collider modifier도 반드시 함께 적용해야 합니다. 설정을 마친 후 재생 버튼을 누르면 천이 자연스럽게 움직이는 시뮬레이션을 확인할 수 있습니다.</p>
+<h2>Fluid modifier로 구현하는 물, 불, 연기</h2>
+<p>유체 시뮬레이션은 물뿐만 아니라 불과 연기를 만드는 데도 사용됩니다. 일반적인 시뮬레이션과 달리 시뮬레이션의 경계 영역을 지정하는 볼륨 공간이 필요합니다. Blender에서는 불을 표현할 때도 Physics 탭의 Fluid modifier를 사용하여 오브젝트가 이러한 유체 시뮬레이션의 일부가 되도록 설정합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">수백 개의 오브젝트를 수동으로 애니메이션하기 어려울 때 물리 시뮬레이션은 작업 시간을 획기적으로 줄여주는 필수 도구입니다. Blender의 Physics 탭과 각 modifier 설정을 이해하면 금속 공의 충돌부터 바람에 날리는 커튼, 물과 불의 흐름까지 자연스럽게 구현할 수 있습니다. 결과물이 만족스러울 때 Bake(bake) 기능을 통해 일반 키프레임으로 고정하여 작업의 안정성을 높이는 것이 좋습니다. 반복적인 실험과 수치를 조정하는 과정을 거치며 3D 아티스트의 표현 영역을 확장해 보세요.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender에서 충돌하는 단단한 물체를 만들려면 어떤 기능을 써야 하나요?</b><br/>A. Physics 탭에서 Rigid Body를 활성화하여 설정하며, 반응하는 오브젝트는 Active, 충돌면 역할을 하는 오브젝트는 Passive로 설정합니다.</p>
+<p><b>Q. 천이나 부드러운 옷감이 바람에 날리는 효과는 어떻게 주나요?</b><br/>A. Cloth modifier를 적용하고, 상호작용할 물체에는 Collider modifier를 함께 적용한 뒤 재생하면 됩니다.</p>
+<p><b>Q. 시뮬레이션 계산이 끝난 결과를 고정하려면 어떻게 하나요?</b><br/>A. 결과가 만족스러울 때 시뮬레이션을 Bake(bake)하여 일반 키프레임 상태로 얼려두면 재생과 미세 조정이 더 쉬워집니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-82c6352eb316b8c1.html">Blender Mecha 제작 워크플로 — 사무라이 테마 메크 디자인</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-adfee4a0da97b111.html">Blender 실전 예시 — 와이어 형태 실린더 굽히기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-dbef8f6d2ac8671d.html">Blender 애니메이션 환경 제작 사례 — 복잡한 배경 씬 공유</a></li></ul>
+<hr/><p>원문:<a href="https://www.creativebloq.com/how-to/how-to-use-simulations-in-a-3d-scene-in-blender" target="_blank" rel="noopener nofollow">How to use simulations in a 3D scene in Blender</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
