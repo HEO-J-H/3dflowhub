@@ -10501,5 +10501,77 @@
     "id": "p-7fa7b012ae",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안에 이미 RAG 사용 가이드와 tech‑research 문서 업데이트가 포함돼 있어 해당 작업이 반영됨"
+  },
+  {
+    "at": "2026-11-03T15:55:24+00:00",
+    "kind": "proposal",
+    "id": "p-363a486c37",
+    "title": "경량 로컬 RAG 검색 엔드포인트 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "‘RAG 검색 기능 단위 테스트’와 ‘웹 UI 검색 입력창 구현’이 수락·완료된 상태이며, 기존에 ‘경량 RAG 검색 엔드포인트 구현’이 거절된 이유는 중복이었음. 현재 문서와 UI가 준비돼 있어 실제 엔드포인트만 남음.",
+    "proposal": "backend/app/api/rag_search.py 파일에 LangChain 기반 로컬 RAG 검색 함수 구현(문서 디렉터리 docs/ 를 인덱싱). backend/app/main.py에 라우트 추가하고, backend/tests/test_rag.py에 단위 테스트 작성. UI(web/)에 검색 결과 표시 컴포넌트 추가.",
+    "expected": "사용자는 Pix2Poly 내 문서·가이드 검색을 바로 이용할 수 있어 UX가 향상되고, 검색 트래픽이 증가해 사이트 체류 시간이 늘어남.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:55:24+00:00",
+    "kind": "proposal",
+    "id": "p-b1cc5603f8",
+    "title": "입력 검증 PR(#40~#44) 신속 승인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #40~#44(핵심 코드 변경) 현재 승인 대기 중이며, URL·PBR 입력 검증이 미비해 오류 발생 가능성이 있음.",
+    "proposal": "리뷰어에게 PR #40~#44를 재검토 요청하고, 자동화된 테스트 결과와 리뷰 코멘트를 공유. 필요 시 작은 수정(코드 스타일)만 추가해 빠르게 머지.",
+    "expected": "백엔드 안정성 확보·에러 방지로 사용자 신뢰도 상승.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:55:24+00:00",
+    "kind": "proposal",
+    "id": "p-b70891120a",
+    "title": "RAG 사용 가이드 UI 연동 업데이트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "docs/tech-research.md에 RAG 활용 방안이 문서화됐으며, UI 검색 입력창이 구현됨.",
+    "proposal": "web/index.html에 ‘도움말’ 버튼 추가해 docs/tech-research.md의 RAG 섹션을 모달로 표시하고, 검색 결과와 연동하도록 링크 연결.",
+    "expected": "사용자가 바로 가이드를 참고해 검색 기능을 효과적으로 활용하게 되어 학습 곡선 감소.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-03T15:58:41.486493+00:00",
+    "kind": "decision",
+    "id": "p-363a486c37",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 경량 로컬 RAG 검색 엔드포인트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:58:41.499448+00:00",
+    "kind": "decision",
+    "id": "p-b1cc5603f8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-03T15:58:41.510238+00:00",
+    "kind": "decision",
+    "id": "p-b70891120a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 사용 가이드 문서 업데이트",
+    "auto": true
   }
 ]
