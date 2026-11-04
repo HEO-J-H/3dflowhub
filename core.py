@@ -91,6 +91,9 @@ LLM_MODEL = os.getenv("LLM_MODEL") or "gemini-flash-lite-latest"  # Actions 에�
 # 예비 LLM 공급자 (선택) — 키가 등록된 것만 사용. 주 공급자(Gemini) 한도 소진·장애 시 순서대로 넘어간다.
 # 모델은 환경변수로 바꿀 수 있음 (무료 모델 목록은 각 공급자 대시보드 기준).
 FALLBACK_PROVIDERS = [
+    # 사장님이 추가한 두 번째 Gemini 키 (2026-11-04) — 다른 Google 프로젝트면 하루 한도가 따로라 여력이 그만큼 늘어남
+    {"name": "gemini2", "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL",
+     "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", "model": "gemini-flash-lite-latest"},
     {"name": "groq", "key_env": "GROQ_API_KEY", "model_env": "GROQ_MODEL",
      "endpoint": "https://api.groq.com/openai/v1/chat/completions", "model": "openai/gpt-oss-120b"},
     {"name": "cerebras", "key_env": "CEREBRAS_API_KEY", "model_env": "CEREBRAS_MODEL",
