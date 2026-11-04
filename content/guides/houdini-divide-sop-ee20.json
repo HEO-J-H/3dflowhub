@@ -1,0 +1,93 @@
+{
+  "id": "houdini-divide-sop-ee20",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Divide SOP",
+  "title": "Divide — 면 나누기·보로노이 선",
+  "summary": "Divide SOP는 폴리곤 메쉬의 면을 삼각형이나 사각형으로 나누거나, Grid 패턴으로 자르고, 브리지(Bridge)를 생성하는 Houdini의 지오메트리 처리 노드입니다.",
+  "when": [
+    "폴리곤 면을 깨끗한 삼각형(Triangles)이나 사각형(Quadrilaterals)으로 변환할 때",
+    "지오메트리 표면에 일정한 간격의 Grid 컷을 추가하고 싶을 때",
+    "두 개의 분리된 폴리곤 경계 사이에 브리지 면을 채워 넣을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Divide를 검색하여 Divide SOP 노드를 생성하고 기존 Geometry Nodes 하단에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 원하는 분할 방식(Brick, Triangulate 등)을 체크합니다.",
+    "Max Edges 등의 세부 수치를 조절하여 뷰포트에서 면이 나뉘는 형태를 확인합니다.",
+    "결과물이 의도한 폴리곤 구조로 바뀌었는지 뷰포트(Viewport)에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Compute Dual",
+      "desc": "폴리곤 메쉬의 듀얼(Dual) 형태를 계산하여 면과 정점의 구조를 바꿉니다."
+    },
+    {
+      "name": "Triangulate",
+      "desc": "모든 폴리곤 면을 삼각형으로 분할합니다."
+    },
+    {
+      "name": "Brick",
+      "desc": "벽돌 쌓기 패턴처럼 사각형 면을 교차 형태로 나눕니다."
+    },
+    {
+      "name": "Maximum Edges",
+      "desc": "폴리곤 면이 가질 수 있는 최대 모서리 수를 제한합니다."
+    },
+    {
+      "name": "Regularize",
+      "desc": "분할된 면들의 크기와 형태를 최대한 균일하게 정돈합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "각형 면을 삼각형으로 변환하기",
+      "steps": [
+        "네트워크 뷰에 Divide SOP 노드를 배치합니다.",
+        "파라미터 창에서 Triangulate 옵션을 활성화합니다.",
+        "뷰포트에서 복잡한 N-gon 면이 깔끔한 삼각형으로 쪼개졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "Grid 패턴으로 메쉬 자르기",
+      "steps": [
+        "Divide SOP 노드에서 Brick 또는 정해진 분할 옵션을 켭니다.",
+        "파라미터에서 간격(Spacing) 값을 조절하여 자를 간격을 좁히거나 넓힙니다.",
+        "시뮬레이션이나 변형(Deformation)에 알맞은 Resolution가 되었는지 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "불필요하게 Triangulate를 모든 노드에 남발함 → 렌더링이나 후속 시뮬레이션에서 무거워질 수 있으므로 꼭 필요한 경우에만 켭니다.",
+    "Divide 후 서브디비전 결과가 울퉁불퉁함 → Regularize 옵션을 함께 켜서 면의 균일도를 맞춥니다."
+  ],
+  "related": [
+    "Subdivide",
+    "PolyReduce",
+    "Remesh",
+    "Peak"
+  ],
+  "videos": [
+    {
+      "id": "ETwyuxRE0e4",
+      "title": "Add SOP | Houdini 21",
+      "author": "Simlarity"
+    },
+    {
+      "id": "EfhJ9msdLjo",
+      "title": "Houdini | Divide Geometry Node",
+      "author": "Pixel Fondue"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Divide%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Divide",
+    "Divide SOP",
+    "Geometry Nodes"
+  ],
+  "at": "2026-11-04T14:02:07.232791+00:00"
+}
