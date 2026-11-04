@@ -1,0 +1,78 @@
+{
+  "id": "houdini-reverse-sop-8fa2",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Reverse SOP",
+  "title": "Reverse — 면 방향 뒤집기",
+  "summary": "Houdini의 Reverse SOP는 선택된 폴리곤 메쉬의 면 방향(Face Normal)을 반대로 뒤집거나 정렬하여 렌더링 및 라이팅 오류를 해결하는 노드입니다.",
+  "when": [
+    "다른 프로그램에서 가져온 모델링의 노멀 방향이 뒤집혀 검게 보일 때",
+    "불리언(Boolean) 연산이나 익스트루드(Extrude) 후 면이 안쪽을 향할 때",
+    "시뮬레이션이나 렌더링 시 노멀 방향을 강제로 반전시켜야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Reverse를 입력하고 Reverse 노드를 생성합니다.",
+    "노드 파라미터 창에서 뒤집을 대상을 확인합니다.",
+    "뷰포트에서 면의 방향(Normal)이 올바르게 정렬되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "노멀을 뒤집을 특정 면이나 포인트 그룹을 지정합니다."
+    },
+    {
+      "name": "Reverse Vertex Order",
+      "desc": "폴리곤을 구성하는 Vertex 순서를 반대로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "검게 깨진 Shading 수정",
+      "steps": [
+        "오브젝트 네트웍 내부로 진입합니다.",
+        "문제가 되는 메쉬 노드 하단에 Reverse 노드를 연결합니다.",
+        "뷰포트에서 어둡게 나오던 면의 라이팅이 정상적으로 돌아오는지 확인합니다."
+      ]
+    },
+    {
+      "title": "내부 시뮬레이션을 위한 노멀 반전",
+      "steps": [
+        "구(Sphere) SOP 노드를 생성합니다.",
+        "Reverse 노드를 연결하여 노멀을 안쪽을 향하도록 뒤집습니다.",
+        "내부에서 발생하는 Particle이나 유체 시뮬레이션에 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 면이 정상인데 Reverse를 적용함 → 뷰포트 Display Options에서 Normal 시각화 옵션을 켜서 실제 방향을 먼저 확인하세요.",
+    "일부 면만 뒤집힌 경우 → Reverse 노드 대신 PolyDoctor나 Normal SOP를 사용하여 노멀을 정렬하세요."
+  ],
+  "related": [
+    "Normal SOP",
+    "PolyDoctor",
+    "Divide SOP",
+    "Blast SOP"
+  ],
+  "videos": [
+    {
+      "id": "YOXKQ6vyHtw",
+      "title": "Infinite Lego Loop in Houdini 22 | Reverse RBD Tutorial",
+      "author": "FXTIVE"
+    },
+    {
+      "id": "KeVuU7lRaR4",
+      "title": "Houdini 30s Quick Tip #14 - Secrets of the Transform-SOP",
+      "author": "cgwiki discord"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Reverse%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Reverse"
+  ],
+  "at": "2026-11-04T15:46:04.701356+00:00"
+}
