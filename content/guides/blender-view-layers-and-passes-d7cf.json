@@ -1,0 +1,96 @@
+{
+  "id": "blender-view-layers-and-passes-d7cf",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "View Layers and passes",
+  "title": "View Layer·렌더 패스",
+  "summary": "Blender의 View Layers와 Render Passes는 씬을 여러 레이어로 나누고 조명, 그림자, 노멀 등의 데이터를 분리하여 렌더링하는 기능입니다. 합성(Compositing) 작업에서 정교한 수정과 효율적인 리터칭을 가능하게 합니다.",
+  "when": [
+    "캐릭터와 배경을 따로 렌더링하여 합성하고 싶을 때",
+    "Post 프로세싱을 위해 그림자(Shadow)나 반사(Reflection) 패스를 따로 추출할 때",
+    "무거운 씬의 렌더링 부하를 줄이기 위해 오브젝트별로 나누어 관리할 때"
+  ],
+  "steps": [
+    "Properties 패널에서 View Layer 패널(아이콘 모양)을 엽니다.",
+    "View Layers 목록에서 더하기(+) 아이콘을 눌러 새 뷰 레이어를 추가하고 이름을 지정합니다.",
+    "Outliner 패널에서 특정 오브젝트를 우클릭하여 View Layer 마스크나 숨김 설정을 조정합니다.",
+    "Properties 패널의 Render Layers 탭에서 분리해서 뽑아낼 Render Passes(Combined, Z, Normal, Diffuse 등)를 체크합니다.",
+    "Compositing 워크스페이스로 이동하여 Use Nodes를 켜고 Render Layers 노드에서 각 패스 소켓을 확인합니다.",
+    "Image Editor 또는 뷰포트에서 렌더링 결과를 확인하며 패스가 정상 출력되는지 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "Combined",
+      "desc": "모든 라이팅과 색상이 합쳐진 기본 최종 이미지 패스입니다."
+    },
+    {
+      "name": "Z",
+      "desc": "카메라와의 거리 정보를 담은 뎁스(Depth) 패스로 피사계 심도(DoF) 표현에 씁니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "오브젝트 표면의 방향 벡터를 기록하여 후보정에서 입체감을 수정합니다."
+    },
+    {
+      "name": "Diffuse",
+      "desc": "그림자를 제외한 오브젝트의 순수한 고유 색상(Color) 정보를 추출합니다."
+    },
+    {
+      "name": "Glossy",
+      "desc": "광택과 반사광 데이터만 따로 분리하여 반사 세기를 조절합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "그림자 영역만 단독으로 추출해 합성 시 그림자 농도를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터와 배경 분리 렌더링",
+      "steps": [
+        "Outliner에서 캐릭터와 배경 오브젝트를 각각 다른 Collection으로 분류합니다.",
+        "새 View Layer를 만들고 특정 뷰 레이어에서 배경 Collection의 가시성(Holdout/Indirect)을 끕니다.",
+        "캐릭터 패스와 배경 패스를 각각 렌더하여 Compositor에서 알파 채널을 기준으로 합성합니다."
+      ]
+    },
+    {
+      "title": "Z 패스를 이용한 안개(Fog) 및 깊이감 표현",
+      "steps": [
+        "Render Passes 설정에서 Z 패스를 활성화합니다.",
+        "Compositing 노드 탭에서 Render Layers 노드의 Z 소켓을 Map Value 노드에 연결합니다.",
+        "Mix 노드를 사용해 원본 이미지와 Z 패스 깊이 정보를 섞어 자연스러운 원경 흐림을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "패스를 체크했는데 합성이 안 됨 → Compositor 탭에서 Use Nodes가 꺼져 있는지 확인하고 Render Layers 노드가 올바른 뷰 레이어를 바라보는지 체크하세요.",
+    "Z 패스 값이 하얗게 타오름 → Z 패스는 거리에 따라 수치가 급격히 커지므로 Map Value 또는 Normalize 노드를 거쳐 단계를 낮춰야 합니다."
+  ],
+  "related": [
+    "Compositor",
+    "Collections",
+    "Shader Editor",
+    "Cycles"
+  ],
+  "videos": [
+    {
+      "id": "vtdczoXVyvQ",
+      "title": "Render like a professional in Blender (ACES, View Layers, Passes)",
+      "author": "Robin Squares"
+    },
+    {
+      "id": "uFMH6oGGGtk",
+      "title": "How to use render layers in blender",
+      "author": "Nishaan 3d"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20View%20Layers%20and%20passes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "View Layer"
+  ],
+  "at": "2026-11-04T11:29:00.638366+00:00"
+}

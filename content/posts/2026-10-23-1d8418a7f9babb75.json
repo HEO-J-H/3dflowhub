@@ -1,49 +1,53 @@
 {
-  "title_ko": "Gaussian Splatting 연구 자동화 시스템 SplatLab 발표",
+  "title_ko": "SplatLab: 3D Gaussian Splatting 연구 자동화 시스템",
   "title": "SplatLab: Autonomous Scientific Discovery for 3DGS Research",
   "url": "https://arxiv.org/abs/2610.30468v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
     "SplatLab",
-    "AI 3D 연구",
-    "NeurIPS 2026",
-    "NeRF"
+    "3D Gaussian Splatting",
+    "Autonomous Research",
+    "3DGS",
+    "Neural Rendering"
   ],
-  "summary": "SplatLab은 논문 재현부터 가설 제안, 실험, 논문 작성까지 Gaussian Splatting 연구 전 과정을 자율 수행하는 시스템입니다.",
-  "insight": "Gaussian Splatting(3DGS) 분야에서 연구와 실험 주기를 획기적으로 단축할 수 있는 자율형 AI 시스템이 등장했습니다. 기존 연구자들이 몇 주간 거치던 논문 재현과 베이스라인 검증 과정을 자동화하여, 실무 연구원들이 새로운 확장 기능과 알고리즘 테스트에 집중할 수 있게 돕습니다. 특히 GPU 기반 PSNR 최적화와 자동 제거(falsifier) 기능을 통해 신뢰성 높은 실험 결과를 도출하므로, 차세대 3D 비전 및 렌더링 파이프라인 도입을 준비하는 개발팀에게 중요한 전환점이 될 것입니다. 복잡한 3DGS 최적화 워크플로를 도입하려는 연구소와 테크 기업이라면 주목해야 할 기술입니다.",
+  "summary": "SplatLab은 3D Gaussian Splatting(3DGS) 연구에서 아이디어 도출부터 학습, 논문 작성까지 전자동으로 수행하는 연구 시스템입니다.",
+  "insight": "이 기술이 발전하면 향후 3D 아티스트와 연구원들이 복잡한 최적화 알고리즘이나 렌더링 파이프라인 실험을 직접 수작업으로 코딩하지 않고도 AI를 통해 자동화된 성능 개선 결과를 얻을 수 있을 것으로 기대됩니다. 다만 이는 논문의 실험적 성과에 기반한 가능성이며, 실제 제작 파이프라인에 곧바로 적용되기까지는 추가 검증이 필요합니다.",
   "sections": [
     {
-      "heading": "SplatLab 시스템의 주요 배경과 목적",
-      "body": "출판된 3DGS 논문을 직접 재현하는 작업은 새로운 확장 제안 전까지 수주간의 전문 엔지니어링 역량을 필요로 합니다. 기존의 자율 연구 시스템들은 고정된 템플릿과 낮은 실행 가능성, 약한 추적성 등의 한계를 지니고 있었습니다. SplatLab은 컴퓨터 비전 하위 분야에서 실시간으로 작동하며 이러한 한계를 극복하도록 설계된 최초의 자율 연구 시스템입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "출판된 3DGS 논문을 재현하려면 수주 간의 전문 엔지니어링이 필요하며, 기존의 자율 연구 시스템들은 검증되지 않은 코드를 사용하거나 훈련 루프가 없어 신뢰성이 떨어지는 한계가 있었습니다."
     },
     {
-      "heading": "연구 주기 단축 및 자율 실행 프로세스",
-      "body": "사용자가 연구 프롬프트나 타겟 논문 URL을 입력하면 시스템이 스스로 기존 베이스라인을 재현하고 확장을 제안합니다. Mip-NeRF 360과 LLFF 데이터셋을 활용해 학습 및 어블레이션 실험을 거친 후 논문을 작성합니다. 이 과정에서 보고되는 모든 수치는 로그로 기록된 학습 실행 결과와 강하게 연동됩니다."
+      "heading": "핵심 아이디어",
+      "body": "SplatLab은 검증된 3DGS 재현 백본을 바탕으로 후보를 변형하고, 실제 GPU PSNR을 기준으로 카스케이드 가중치 Elo 토너먼트를 수행하며, 모든 수치를 기록된 훈련 실행과 강제로 바인딩합니다."
     },
     {
-      "heading": "다섯 가지 핵심 설계 원칙",
-      "body": "SplatLab은 검증된 백본으로부터 플러그인을 변형하는 구조, Elo 토너먼트를 통한 성능 평가, 실패 시 Elo를 차감하는 falsifier 시스템을 채택했습니다. 또한 모든 수치를 학습 로그와 바인딩하여 백업 없는 주장을 원천 차단합니다. 마지막으로 7가지 카테고리의 3DGS 택소노미를 적용해 다양한 3DGS 레포지토리 간 확장성을 높였습니다."
+      "heading": "방법 (단계)",
+      "body": "연구는 6단계로 진행됩니다. (i) 그라운딩을 통한 병목 현상 분석, (ii) Elo 기반 아이디어 순위화, (iii) EVOLVE-BLOCK을 이용한 구현, (iv) 8개 섬에서의 Elo 토너먼트 및 허위 검증, (v) 무결성 감사, (vi) 리뷰어 주도 논문 합성."
     },
     {
-      "heading": "성능 검증 및 천체 사진 렌더링 성과",
-      "body": "PSNR 타겟 실험에서 SplatLab이 작성한 논문들은 기존 재현 대상보다 0.18 dB에서 최대 3.78 dB 높은 성능을 기록했습니다. 특히 기존에 3DGS 방법론이 존재하지 않던 천체 사진 성운 렌더링 분야에서 3.78 dB 향상을 달성했습니다. 이를 통해 수개월이 소요되던 대학원생 수준의 연구 주기를 며칠간의 자율 연산으로 압축했습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "Mip-NeRF 360과 LLFF 데이터셋에서 SplatLab이 생성한 원고는 재현된 목표 대비 +0.18에서 +3.78 dB의 PSNR 향상을 기록했으며, 특히 기존 3DGS 방법이 없던 천체 사진 성운 렌더링에서 +3.78 dB를 달성했습니다."
     },
     {
-      "heading": "공개된 프로젝트 자원과 학술적 성과",
-      "body": "본 연구는 NeurIPS 2026에 채택되었으며 14페이지 분량의 논문으로 발표되었습니다. 프로젝트 페이지를 통해 소스 코드, 전체 논문 파일, 실험 원장, 교차 실행 논문 저장소가 전면 공개되어 있습니다. 연구자들은 이를 활용해 자신의 3DGS 파이프라인에 자율 연구 시스템을 연동하고 검증할 수 있습니다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "일반적인 Software 공학 전반보다는 3D Gaussian Splatting(3DGS)이라는 특정 하위 분야에 특화된 도메인 전용 연구 스택으로 설계되었습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "코드, 모든 원고, 실험 장부, 교차 실행 논문 저장소는 http://seemandhar.github.io/splatlab 에서 확인할 수 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "SplatLab은 어떤 연구 분야를 타겟으로 하나요?",
-      "a": "SplatLab은 3D Gaussian Splatting(3DGS) 연구 분야를 타겟으로 하여 논문 재현, 가설 제안, 실험, 논문 작성까지 자율 수행하는 시스템입니다."
+      "q": "SplatLab은 어떤 분야를 대상으로 작동합니까?",
+      "a": "3D Gaussian Splatting(3DGS) 하위 분야를 대상으로 작동합니다."
     },
     {
-      "q": "기존 자율 연구 시스템과 비교해 어떤 차별점이 있나요?",
-      "a": "짧고 고정된 템플릿에 의존하던 기존 시스템과 달리, 검증된 백본 변형, Elo 토너먼트 평가, 오류 제거용 falsifier, 학습 로그와의 엄격한 수치 바인딩을 지원합니다."
+      "q": "아이디어 순위 평가는 무엇을 기준으로 합니까?",
+      "a": "모델이 판단한 점수가 아니라 측정된 GPU PSNR을 기준으로 카스케이드 가중치가 적용된 Elo 토너먼트를 사용합니다."
     }
   ],
   "media": {
@@ -55,5 +59,17 @@
   "id": "2026-10-23-1d8418a7f9babb75",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [
+    "http://seemandhar.github.io/splatlab 에 접속하여 소스 코드, 원고, 실험 장부 확인하기"
+  ],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T11:29:36+00:00"
 }

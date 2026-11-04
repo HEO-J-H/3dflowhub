@@ -9,42 +9,72 @@
       "where": "File → Export / Import → glTF 2.0 (.glb/.gltf) 및 USD (.usd/.usda/.usdc)",
       "how": "기본 내장된 애드온을 통해 glTF와 USD 포맷을 완벽하게 지원하며, 지오메트리, 머티리얼, 애니메이션 설정을 꼼꼼하게 체크하여 내보낼 수 있습니다.",
       "strength": "무료이며 기본 기능으로 강력한 glTF/USD 입출력 지원",
-      "limit": "복잡한 프로시저럴 노드는 베이킹 과정이 필요함"
+      "limit": "복잡한 프로시저럴 노드는 베이킹 과정이 필요함",
+      "video": {
+        "id": "2VJJANVIY5Y",
+        "title": "How to Import and Organize glTF Files in Blender",
+        "author": "Four Games"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "File → Export / Import → glTF 또는 USD",
       "how": "최신 버전에서는 네이티브 USD 익스포터와 glTF 서포트를 제공하여 물리 기반 렌더링 재질과 애니메이션을 원활하게 주고받습니다.",
       "strength": "USD 스테이지 및 Max 재질의 직관적인 변환",
-      "limit": "구버전의 경우 별도의 플러그인 설치가 필요할 수 있음"
+      "limit": "구버전의 경우 별도의 플러그인 설치가 필요할 수 있음",
+      "video": {
+        "id": "TSLRx38LqBI",
+        "title": "3dsMax 2023 - glTF Material and Exporter",
+        "author": "Changsoo Eun"
+      }
     },
     {
       "tool": "Maya",
       "where": "File → Export / Import → USD Export / Import (또는 glTF 플러그인)",
       "how": "USD 데이터를 레이어와 함께 다루는 파이프라인에 최적화되어 있으며, USD 플러그인을 통해 애니메이션과 계층 구조를 정밀하게 제어합니다.",
       "strength": "대규모 VFX 파이프라인용 강력한 USD 레이어링 지원",
-      "limit": "glTF의 경우 기본 내장 외 서드파티 도구 활용이 유리할 때가 있음"
+      "limit": "glTF의 경우 기본 내장 외 서드파티 도구 활용이 유리할 때가 있음",
+      "video": {
+        "id": "vZH_w8M3-Y4",
+        "title": "How to import and export gLTF/glb in autodesk Maya ",
+        "author": "Rexx3D"
+      }
     },
     {
       "tool": "Houdini",
       "where": "USD ROP 노드 / USD Import SOP 및 glTF 로드 노드",
       "how": "Solaris 기반의 USD롭 노드를 사용하여 강력한 프로시저럴 에셋과 시뮬레이션 결과를 USD로 정밀하게 패키징합니다.",
       "strength": "복잡한 시뮬레이션 캐시와 방대한 지오메트리의 USD 변환",
-      "limit": "glTF 포맷은 상대적으로 제한적이며 주로 USD 중심 파이프라인에 최적화"
+      "limit": "glTF 포맷은 상대적으로 제한적이며 주로 USD 중심 파이프라인에 최적화",
+      "video": {
+        "id": "Q71l9WaY2yM",
+        "title": "What is glTF and How to Use It",
+        "author": "The Khronos Group"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser → Import / Datasmith 및 USD Importer / glTF Importer 플러그인 활성화",
       "how": "USD 파일과 glTF 파일을 프로젝트 내로 직접 임포트하여 레벨 디자인에 활용하거나, 데이터스미스를 통해 정밀한 에셋을 불러옵니다.",
       "strength": "실시간 렌더링 환경으로의 빠른 에셋 통합 및 고품질 머티리얼 매핑",
-      "limit": "엔진 내부 복잡한 블루프린트는 glTF/USD로 다시 내보낼 때 제한이 있음"
+      "limit": "엔진 내부 복잡한 블루프린트는 glTF/USD로 다시 내보낼 때 제한이 있음",
+      "video": {
+        "id": "t4U8-rYwR0k",
+        "title": "Unreal Engine 5 (&4) - Intro to using USD (Universal Scene Description) #UE5 #UE4 #USD",
+        "author": "3D Education with JC"
+      }
     },
     {
       "tool": "NVIDIA Omniverse",
       "where": "File → Export / Import (glTF, USD 스테이지 저장)",
       "how": "USD를 기본 파일 포맷으로 사용하여 여러 툴의 데이터를 실시간으로 통합하고, 외부 웹 공유를 위해 glTF로 변환하여 내보냅니다.",
       "strength": "다중 DCC 실시간 협업 및 완벽한 USD 중심 워크플로우",
-      "limit": "로컬 단독 작업보다는 Omniverse 플랫폼 생태계에 의존적임"
+      "limit": "로컬 단독 작업보다는 Omniverse 플랫폼 생태계에 의존적임",
+      "video": {
+        "id": "GOdyx-oSs2M",
+        "title": "What is the USD File Type? | Getting Started in NVIDIA Omniverse",
+        "author": "NVIDIA Studio"
+      }
     }
   ],
   "pick": [
@@ -80,5 +110,6 @@
     "{'mistake': 'USD 임포트 후 모델의 노멀 방향이 뒤집혀 어둡게 보이는 현상', 'fix': '익스포트 시 Face Orientation 설정을 확인하고, DCC 툴에서 Recalculate Normals를 실행한 후 다시 내보냅니다.'}",
     "{'mistake': '애니메이션 키프레임이 glTF/USD 파일에 포함되지 않고 정적 모델만 나오는 현상', 'fix': \"내보내기 옵션 패널에서 'Animation' 또는 'Bake Animations' 옵션이 체크되어 있는지 확인합니다.\"}"
   ],
-  "at": "2026-11-04T11:19:55+00:00"
+  "at": "2026-11-04T11:19:55+00:00",
+  "visuals_at": "2026-11-04T11:28:42+00:00"
 }
