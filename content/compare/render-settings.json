@@ -9,35 +9,60 @@
       "where": "Properties → Render Properties → Sampling 패널 및 Denoising",
       "how": "Render Samples 값을 설정하고, Viewport 및 Render 항목에서 OpenImageDenoise 또는 OptiX 디노이저를 활성화합니다.",
       "strength": "빠르고 직관적인 AI 디노이저 통합",
-      "limit": "낮은 샘플에서 극단적인 디테일 손실 가능"
+      "limit": "낮은 샘플에서 극단적인 디테일 손실 가능",
+      "video": {
+        "id": "GM7YcLwxqDA",
+        "title": "Save Rendering Time with Denoise Data in Blender!",
+        "author": "Drop & Render"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Render Setup (F10) → Arnold / V-Ray 탭 → Sampling 및 Denoising 설정",
       "how": "렌더러별 샘플(Camera/AA) 값을 올리고, Arnold Denoiser 또는 V-Ray Denoiser 렌더 엘리먼트를 추가합니다.",
       "strength": "프로덕션 환경에 최적화된 정밀한 제어",
-      "limit": "렌더러에 따라 설정 위치와 방식이 다름"
+      "limit": "렌더러에 따라 설정 위치와 방식이 다름",
+      "video": {
+        "id": "TjEK9I4yx1Y",
+        "title": "Reduce your Render time by 80% - Denoising with Chaos Corona For 3ds Max!",
+        "author": "Simple or Difficult"
+      }
     },
     {
       "tool": "Maya",
       "where": "Render Settings (Arnold Renderer) → Sampling 패널 및 Denoiser(OptiX) 탭",
       "how": "Camera (AA) 샘플을 조절하고, Arnold Denoiser 이미저(Imager)를 추가하여 뷰포트와 렌더 뷰에서 실시간 노이즈를 제거합니다.",
       "strength": "Arnold Imager를 통한 빠른 실시간 디노이즈 확인",
-      "limit": "샘플 설정 미숙 시 렌더 시간이 급증함"
+      "limit": "샘플 설정 미숙 시 렌더 시간이 급증함",
+      "video": {
+        "id": "YSAcFE_x-Ds",
+        "title": "Denoise with Arnold (NOICE) in Maya",
+        "author": "SARKAMARI"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Karma Render Settings 로프 노드 또는 Out 탭 → Karma 속성",
       "how": "Karma CPU/XPU 렌더러의 Pixel Samples 및 Noise Level 값을 조절하고, Denoiser 패널에서 OptiX 또는 OpenImageDenoise를 켭니다.",
       "strength": "Karma XPU를 활용한 강력한 GPU 가속 노이즈 제어",
-      "limit": "USD 및 롭(LOP) 네트워크에 대한 이해 필요"
+      "limit": "USD 및 롭(LOP) 네트워크에 대한 이해 필요",
+      "video": {
+        "id": "cEjoSAzHs_8",
+        "title": "How to Improve Houdini Karma Denoising",
+        "author": "Jona Melvin Grobe"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Project Settings / Post Process Volume → Lumen 및 Denoiser 설정",
       "how": "실시간 패스 트레이서(Path Tracer) 사용 시 Samples per Pixel을 올리고, 기본적으로는 Lumen 및 TAA/TSR 기반 디노이징을 활용합니다.",
       "strength": "실시간 렌더링에 최적화된 고성능 디노이징",
-      "limit": "패스 트레이서 구동 시 고사양 하드웨어 필요"
+      "limit": "패스 트레이서 구동 시 고사양 하드웨어 필요",
+      "video": {
+        "id": "mrYtX_llLEk",
+        "title": "Ultimate Denoiser STRESS TEST in Unreal Engine 5.1 - Path Tracing",
+        "author": "Joshua M Kerr"
+      }
     }
   ],
   "pick": [
@@ -72,5 +97,6 @@
     "실수: 애니메이션에서 프레임마다 디노이징 결과가 튀는 현상(Flicker) 발생 → 해결: 멀티프레임/Temporal 디노이징 옵션이나 전용 패스(Normal, Albedo)를 입력하여 시간적 일관성을 확보합니다.",
     "실수: 뷰포트에서는 깨끗하지만 최종 저장된 이미지에 노이즈가 남음 → 해결: Viewport Denoiser와 Render Denoiser 옵션이 별개로 설정되어 있는지 확인합니다."
   ],
-  "at": "2026-11-04T17:50:13+00:00"
+  "at": "2026-11-04T17:50:13+00:00",
+  "visuals_at": "2026-11-04T17:59:58+00:00"
 }
