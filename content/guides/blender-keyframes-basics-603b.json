@@ -1,0 +1,86 @@
+{
+  "id": "blender-keyframes-basics-603b",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Keyframes basics",
+  "title": "키프레임 넣기(I)",
+  "summary": "Blender의 Keyframes는 Timeline 상에서 오브젝트의 위치·회전·크기 등 속성 변화를 기록하여 애니메이션을 만드는 가장 기본적인 기능입니다.",
+  "when": [
+    "캐릭터나 오브젝트의 이동, 회전, 크기 변화 등 기본적인 움직임을 만들 때",
+    "카메라의 위치와 시점을 시간에 따라 변화시켜 컷을 연출할 때",
+    "빛의 세기, 재질의 색상 등 다양한 애니메이션 가능한 파라미터를 제어할 때"
+  ],
+  "steps": [
+    "Timeline에서 애니메이션을 시작할 프레임(예: Frame 1)으로 이동합니다.",
+    "3D 뷰포트에서 애니메이션할 오브젝트를 선택하고 I 키를 누릅니다.",
+    "Insert Keyframe Menu 팝업에서 기록할 속성(예: Location & Rotation)을 선택합니다.",
+    "Timeline에서 다음 프레임(예: Frame 30)으로 이동합니다.",
+    "오브젝트를 이동·회전·크기 조절(G, R, S 키)한 뒤 다시 I 키를 눌러 키프레임을 추가합니다.",
+    "스페이스바를 눌러 뷰포트에서 애니메이션 재생을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Location",
+      "desc": "오브젝트의 3차원 위치(X, Y, Z) 변화를 키프레임에 기록합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "오브젝트의 각도(X, Y, Z 또는 Quaternion) 회전 값을 기록합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기(배율) 변화를 기록합니다."
+    },
+    {
+      "name": "Auto Keying",
+      "desc": "Timeline에서 오브젝트를 변형할 때 자동으로 키프레임을 생성해주는 토글 버튼입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 직선 이동 애니메이션",
+      "steps": [
+        "Frame 1에서 오브젝트를 시작 위치에 두고 I 키 -> Location 선택",
+        "Frame 40으로 이동 후 오브젝트를 목표 위치로 이동",
+        "I 키 -> Location을 눌러 두 번째 키프레임 생성"
+      ]
+    },
+    {
+      "title": "360도 회전 애니메이션",
+      "steps": [
+        "Frame 1에서 R -> Z -> 0 입력 후 I 키 -> Rotation 선택",
+        "Frame 60으로 이동 후 R -> Z -> 360 입력하여 한 바퀴 회전",
+        "I 키 -> Rotation을 눌러 회전 키프레임 고정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "키프레임을 추가했는데 움직이지 않음 → 현재 프레임이 이전 프레임과 동일한 위치에 있는지 확인하고 오브젝트를 이동 후 I 키를 다시 누릅니다.",
+    "원하지 않는 속성까지 키프레임에 입력됨 → I 키 전체 메뉴 대신 Location, Rotation 등 필요한 항목만 개별 선택하여 키를 삽입합니다.",
+    "애니메이션이 뚝뚝 끊김 → Timeline이나 Graph Editor에서 키프레임 보간 상태와 프레임 간격을 확인합니다."
+  ],
+  "related": [
+    "Graph Editor",
+    "Dope Sheet",
+    "Timeline",
+    "Auto Keying"
+  ],
+  "videos": [
+    {
+      "id": "8gi9lUYMRcI",
+      "title": "Tutorial: Blender Keyframes For Beginners",
+      "author": "PIXXO 3D"
+    },
+    {
+      "id": "xACMr9nFELU",
+      "title": "The Basics of Animation & Keyframes in Blender (Complete Beginner Tutorial)",
+      "author": "Ryan King Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Keyframes%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T11:49:12.158470+00:00"
+}

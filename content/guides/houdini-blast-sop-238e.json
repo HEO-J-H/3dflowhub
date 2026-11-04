@@ -1,0 +1,86 @@
+{
+  "id": "houdini-blast-sop-238e",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Blast SOP",
+  "title": "Blast — 선택 부분 지우기",
+  "summary": "Blast SOP 노드는 지오메트리 네트워크에서 특정 폴리곤, 포인트, Primitive를 선택하여 삭제(Delete)하는 노드입니다. 마치 모델의 불필요한 부분을 칼로 도려내거나 지우개로 지우는 연산을 수행합니다.",
+  "when": [
+    "시뮬레이션 영역에서 불필요한 파츠를 미리 잘라내고 싶을 때",
+    "모델링 중간에 숨겨진 폴리곤이나 잘못 생성된 면을 제거할 때",
+    "특정 그룹(Group)이나 포인트 번호 기준으로 오브젝트를 분리할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Blast를 검색하여 Blast SOP 노드를 생성하고 선택합니다.",
+    "첫 번째 입력(Input 1)에 자르고자 하는 Geometry Nodes를 연결합니다.",
+    "Blast 노드를 더블 클릭하여 들어가거나 선택한 상태로 뷰포트를 확인합니다.",
+    "파라미터 창(Parameter Pane)의 Group 필드에 삭제할 포인트나 Primitive 번호를 입력하거나, 뷰포트에서 직접 선택(Select)합니다.",
+    "Delete Non Selected 옵션을 체크하여 선택된 부분만 남길지, 선택된 부분을 지울지 결정합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "삭제하거나 남길 지오메트리(포인트, Primitive, 에지)의 그룹이나 번호 지정"
+    },
+    {
+      "name": "Operation",
+      "desc": "선택한 요소를 삭제(Delete Selected)할지, 선택하지 않은 요소를 삭제(Delete Non Selected)할지 설정"
+    },
+    {
+      "name": "Datatype",
+      "desc": "대상을 Points, Primitives, Vertices, Edges 중 어떤 단위로 처리할지 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 모델에서 불필요한 파츠 지우기",
+      "steps": [
+        "Blast 노드를 지오메트리 뒤에 연결합니다.",
+        "Datatype을 Primitives로 설정합니다.",
+        "Group 필드에 삭제할 파츠의 Primitive 번호를 입력합니다.",
+        "뷰포트에서 해당 면이 깔끔하게 삭제되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "특정 영역만 남기고 나머지 정리하기",
+      "steps": [
+        "Blast 노드를 연결하고 남기고 싶은 영역을 뷰포트에서 드래그하여 선택합니다.",
+        "파라미터 창에서 Delete Non Selected 옵션을 체크합니다.",
+        "선택한 영역 외의 나머지 지오메트리가 모두 지워지는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Points와 Primitives 단위를 잘못 설정함 → 파라미터 창의 Datatype을 원하는 단위(Primitives 또는 Points)로 변경합니다.",
+    "Delete Non Selected를 켜서 반대로 지워짐 → 의도한 대로 남길지 지울지 Operation 및 Delete Non Selected 옵션을 토글하여 확인합니다."
+  ],
+  "related": [
+    "Delete SOP",
+    "Group SOP",
+    "Split SOP",
+    "Null SOP"
+  ],
+  "videos": [
+    {
+      "id": "7_1lROTHg10",
+      "title": "Blast SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "YTjK_R8NIkk",
+      "title": "Houdini Blast Tool",
+      "author": "Lin Micky"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Blast%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Blast",
+    "Blast SOP"
+  ],
+  "at": "2026-11-04T11:49:24.018680+00:00"
+}

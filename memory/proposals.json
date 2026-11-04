@@ -11499,5 +11499,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T11:48:49+00:00",
+    "kind": "proposal",
+    "id": "p-bafd84a1aa",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 backend/app/services/url_ingest.py 및 pbr_generator.py 관련 PR #40부터 #44까지 핵심 파이프라인 검증 코드가 승인 대기 중입니다.",
+    "proposal": "PR #40~#44의 단위 테스트 통과 여부와 코드 안정성을 최종 확인하고 머지 준비를 완료합니다.",
+    "expected": "백엔드 입력값 검증과 PBR 맵 생성 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T11:48:49+00:00",
+    "kind": "proposal",
+    "id": "p-f7068cac71",
+    "title": "웹 버전(web/) 브라우저 PBR 처리 로직 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 전용 버전(web/)에서 서버 전송 없이 자체 처리하는 높이맵 및 PBR 변환 기능을 검토하여 사용자 경험을 개선할 수 있습니다.",
+    "proposal": "web/ 디렉토리 내의 자바스크립트 기반 PBR 생성 및 높이맵 메시 처리 성능을 테스트하고 문서를 보완합니다.",
+    "expected": "브라우저 단에서의 3D 변환 속도 및 사용성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T11:49:41.386710+00:00",
+    "kind": "decision",
+    "id": "p-bafd84a1aa",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T11:49:41.396282+00:00",
+    "kind": "decision",
+    "id": "p-f7068cac71",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T11:49:50.191821+00:00",
+    "kind": "triage",
+    "id": "p-f7068cac71",
+    "verdict": "done_already",
+    "reason": "이미 완료된 '웹 버전(web/) 에러 처리 로직 검토 및 보완' 및 관련 PBR 문서화 커밋 내역과 중복됩니다."
+  },
+  {
+    "at": "2026-11-04T11:49:50.201548+00:00",
+    "kind": "decision",
+    "id": "p-f7068cac71",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 완료된 '웹 버전(web/) 에러 처리 로직 검토 및 보완' 및 관련 PBR 문서화 커밋 내역과 중복됩니다."
   }
 ]
