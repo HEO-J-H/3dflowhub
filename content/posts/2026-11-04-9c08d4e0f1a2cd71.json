@@ -1,0 +1,56 @@
+{
+  "title_ko": "Blender 애니메이션 계층 구조 개편 워크숍 결과 발표",
+  "title": "Layered Actions workshop: September 2026",
+  "url": "https://code.blender.org/2026/11/layered-actions-workshop-september-2026/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "업계 소식",
+  "tags": [
+    "Blender",
+    "Animation",
+    "Rigging",
+    "Dope Sheet",
+    "블렌더"
+  ],
+  "summary": "Blender 애니메이션 및 리깅 모듈 팀이 Blender 컨퍼런스 앞서 진행한 Layered Actions 워크숍의 주요 논의 결과를 공개했습니다.",
+  "insight": "17년 만에 교체되는 애니메이션 필터링 시스템(#163813)은 아웃라이너 구조를 그대로 따르던 기존 편집기 뷰를 액션 중심 구조로 개편합니다.",
+  "try_it": [
+    "Blender에서 Dope Sheet 편집기를 엽니다.",
+    "오브젝트 중심이 아닌 액션 중심으로 채널 리스트가 재편되는 구조를 #154504 트래커 문서에서 확인합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Layered Actions 워크숍 배경과 참석자",
+      "body": "Blender Conference 2026 전날 Animation & Rigging 모듈 팀이 하루 동안 Layered Actions 작동 방식을 논의하는 워크숍을 개최했습니다. Beorn Leonard, Brad Clark, Christoph Lendenfeld, Falk David 등 전문가들이 모여 진행 상황을 점검했습니다. 관련 개발 코딩 작업은 #154504 트래커에서 추적 중입니다."
+    },
+    {
+      "heading": "애니메이션 필터링 시스템 개편",
+      "body": "개발 초점은 17년 전 Blender 2.50 시절에 만들어진 애니메이션 필터링 시스템(#163813)을 대체하는 데 맞춰져 있습니다. 새로운 시스템은 유연성이 높아 채널 박스, 액션 및 슬롯 선택, 채널 고정 등의 기능을 다루는 방식을 바꿉니다."
+    },
+    {
+      "heading": "기존 Dope Sheet 구조의 문제점",
+      "body": "동일한 메쉬 데이터나 머티리얼이 이를 사용하는 각 오브젝트 아래에 반복해서 표시되어 키프레임과 데이터가 과잉 표현되었습니다. 액션 이름이 오브젝트에만 표시되고 오브젝트 데이터나 머티리얼에는 나타나지 않는 한계도 있었습니다."
+    },
+    {
+      "heading": "액션 중심의 새로운 채널 리스트 제안",
+      "body": "새로운 시스템에서는 오브젝트를 최상단에 두지 않고 애니메이션 중심의 뷰를 제공하여 액션을 최상위 항목으로 배치합니다. 오브젝트 데이터가 각 오브젝트 아래에 중첩되지 않고 독립적으로 관리되어 채널 가독성과 구조가 명확해집니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Layered Actions 워크숍은 언제 열렸나요?",
+      "a": "2026년 Blender Conference 하루 전인 2026년 11월 3일에 애니메이션 및 리깅 모듈 팀 주도로 개최되었습니다."
+    },
+    {
+      "q": "새로운 애니메이션 채널 리스트는 기존과 무엇이 달라지나요?",
+      "a": "아웃라이너를 미러링하던 기존 방식에서 벗어나 액션을 최상위 레벨로 두고 관련된 데이터와 오브젝트를 애니메이션 관점에서 묶어서 보여줍니다."
+    }
+  ],
+  "media": {
+    "image": "https://code.blender.org/wp-content/uploads/2026/11/Layered-Actions-2026-480x270.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-04T22:10:51.042718+00:00",
+  "notion_id": "",
+  "id": "2026-11-04-9c08d4e0f1a2cd71"
+}
