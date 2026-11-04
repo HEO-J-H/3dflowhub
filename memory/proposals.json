@@ -12517,5 +12517,43 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T16:59:41+00:00",
+    "kind": "proposal",
+    "id": "p-4ffd46cbeb",
+    "title": "PBR 맵 생성 서비스 예외 처리 테스트 강화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "수집",
+    "evidence": "backend/app/services/pbr_generator.py 관련 PR(#43, #44)이 대기 중이며, 추가적인 엣지 케이스 테스트 필요",
+    "proposal": "backend/tests/test_pbr.py에 비정상적인 Resolution 및 포맷의 이미지 입력 시 발생하는 예외 테스트 케이스 추가",
+    "expected": "PBR 텍스처 생성 파이프라인의 안정성 및 코드 품질 검증 강화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T17:00:09.283965+00:00",
+    "kind": "decision",
+    "id": "p-4ffd46cbeb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T17:00:12.722730+00:00",
+    "kind": "triage",
+    "id": "p-4ffd46cbeb",
+    "verdict": "done_already",
+    "reason": "이미 PBR 입력 조건·오류 처리 문서화 및 관련 PR(#43, #44) 작업이 완료되어 최근 커밋에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-04T17:00:12.732125+00:00",
+    "kind": "decision",
+    "id": "p-4ffd46cbeb",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 PBR 입력 조건·오류 처리 문서화 및 관련 PR(#43, #44) 작업이 완료되어 최근 커밋에 반영되었습니다."
   }
 ]
