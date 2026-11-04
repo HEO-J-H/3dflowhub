@@ -1,5 +1,5 @@
 {
-  "title_ko": "SwitchSplat 논문 — Gaussian Splatting의 동적 객체 상태 학습",
+  "title_ko": "SwitchSplat: 상태 인식 3D Gaussian Splatting",
   "title": "SwitchSplat: Learning Discrete Object States from Casually Captured Scenes",
   "url": "https://arxiv.org/abs/2610.24812v1",
   "domain": "AI 3D",
@@ -7,49 +7,89 @@
   "topic": "연구·논문",
   "tags": [
     "SwitchSplat",
-    "Gaussian Splatting",
-    "3D Reconstruction",
-    "SIGGRAPH Asia 2026",
-    "Neural Rendering"
+    "3DGS",
+    "State-aware Rendering",
+    "Casual Capture",
+    "Gaussian Splatting"
   ],
-  "summary": "SwitchSplat은 일상적인 영상 캡처에서 상호작용하는 객체의 이산적 상태 변화를 학습하고 조합할 수 있는 최초의 3D Gaussian Splatting 표현 방식입니다.",
-  "insight": "기존 4DGS 기술은 단순히 촬영된 시간 순서의 영상을 재생하는 데 그쳐 개별 객체의 상태를 자유롭게 조합하기 어려웠으나, 본 연구는 베이스와 슬롯 분해 방식을 통해 실무 에셋 제작에 새로운 가능성을 제시합니다. 수동 어노테이션 없이 비디오로부터 직접 지오메트리를 학습할 수 있어 향후 인터랙티브 가상 환경 구축이나 디지털 튜윈 제작 파이프라인에 큰 도움이 될 것입니다. 실무 아티스트와 연구자들은 향후 인터랙티브 3D 콘텐츠 제작 워크플로우에 이 기술이 어떻게 통합될지 주목해야 합니다. 복잡한 환경 내 오브젝트의 상태 조합을 실시간으로 렌더링해야 하는 게임 및 시뮬레이션 분야에서 유용하게 쓰일 수 있습니다.",
+  "summary": "SwitchSplat은 캐주얼 캡처 영상에서 객체의 이진 상태를 학습해, 정적 베이스와 독립적인 슬롯으로 분리된 3D Gaussian Splatting 표현을 제공한다.",
+  "insight": "이 기술이 상용화되면 3D 아티스트는 360° 캐주얼 촬영만으로 문, 서랍, 조명 등 이산적인 객체 상태를 별도 모델링 없이 바로 편집·렌더링할 수 있다. 특히 실시간 인터랙티브 Application에서 사용자 입력에 따라 장면을 즉시 재구성하는 것이 가능해져, 디지털 트윈이나 가상 쇼룸 제작에 활용될 가능성이 있다.",
   "sections": [
     {
-      "heading": "SwitchSplat의 등장 배경과 한계 극복",
-      "body": "기존 3D Gaussian Splatting 기술은 고품질의 3D 복원을 빠르게 수행할 수 있지만 정적인 월드를 가정하고 있어 한계가 있었습니다. 사용자가 문을 열거나 스위치를 켜는 등 일상적인 상호작용으로 발생하는 이산적인 상태 변화는 기존 프레임워크에서 모델링하기 어려웠습니다. 시간 조건부 동적 방식인 4DGS는 상태가 관측된 시점과 장소의 상태를 혼동하여 임의의 객체 구성을 조합하지 못하고 단순히 본 시퀀스를 재생하는 데 그쳤습니다."
+      "heading": "문제 정의",
+      "body": "기존 3D Gaussian Splatting(3DGS)은 정적인 장면만을 가정한다. 캐주얼 캡처에서 사용자가 문을 열거나 스위치를 누르는 등 이산적인 상태 변화를 일으키면 현재 프레임 기반(시간 조건) 방법으로는 이러한 상태를 독립적으로 조합하거나 재현할 수 없다."
     },
     {
-      "heading": "베이스와 슬롯(Base+Slot) 분해 구조",
-      "body": "SwitchSplat은 이 문제를 해결하기 위해 베이스와 슬롯(base+slot) 분해 방식을 도입한 최초의 3D Gaussian Splatting 표현 방식입니다. 공유되는 정적 베이스는 변하지 않는 장면에 대한 정보를 담고 있으며, 각각의 슬롯은 상호작용하는 객체 하나당 두 가지 바이너리 상태(on/off)를 독립적으로 유지합니다. 이를 통해 장면의 기본 구조와 가변적인 요소를 효과적으로 분리하여 처리할 수 있습니다."
+      "heading": "핵심 아이디어",
+      "body": "장면을 정적 베이스와 객체별 슬롯으로 분해한다. 각 슬롯은 두 개의 이진 상태(on/off)를 갖으며, Gaussian 원소마다 베이스·on·off 중 어느 채널에 속할지 결정하는 로그잇 벡터를 학습한다."
     },
     {
-      "heading": "수동 어노테이션 없는 미분 가능 학습",
-      "body": "Gaussian들을 슬롯에 할당하는 과정이 완전히 미분 가능하도록 설계되어 있어 모델이 비디오로부터 직접 각 상태의 지오메트리를 스스로 발견합니다. 사용자가 일일이 수동으로 어노테이션 작업을 수행할 필요가 없어 학습 과정의 효율성이 크게 향상됩니다. 영상 데이터만으로도 복잡한 객체의 상태 변화를 정밀하게 파악할 수 있는 핵심 동력입니다."
+      "heading": "방법 (단계)",
+      "body": "1) 캐주얼 캡처 영상 입력 2) 차별화 가능한 슬롯 테이블을 초기화하고, 각 프레임에 대한 객체별 상호작용 확률 π_k(t) 를 학습 3) 모든 Gaussian에 상태 로그잇 ℓ을 부여해 베이스·off·on 채널에 대한 소프트 할당을 계산 4) 상태‑조건부 불투명도 α~(t) 를 구해 기존 볼류메트릭 합성으로 렌더링 5) 전체 파이프라인을 사진 측정 손실로 end‑to‑end 최적화한다."
     },
     {
-      "heading": "자유로운 상태 조합과 신규 뷰 합성 성능",
-      "body": "추론 단계에서 사용자는 슬롯 상태를 자유롭게 결합하여 캡처 당시에는 한 번도 보지 못한 새로운 장면 조합을 임의의 시점에서 렌더링할 수 있습니다. 새로운 캐주얼 캡처 데이터셋을 통한 검증 결과, 기존의 정적 및 동적 베이스라인 모델보다 신규 뷰 합성(novel-view synthesis) 품질 측면에서 우수한 성능을 입증했습니다. SIGGRAPH Asia 2026 컨퍼런스 페이퍼로 채택되어 학술적 가치와 실효성을 동시에 인정받았습니다."
+      "heading": "결과",
+      "body": "새로운 casual‑capture 데이터셋에서 SwitchSplat은 정적 및 동적(예: 4DGS) 베이스라인보다 높은 품질의 새로운 뷰 합성을 달성했으며, 학습에 보이지 않은 상태 조합도 정확히 렌더링한다. 논문 그림 5에서 보듯이 기존 방법들은 상태 조합을 재현하지 못하지만 SwitchSplat은 2³=8개의 가능한 슬롯 구성 모두를 생성한다."
+    },
+    {
+      "heading": "제한 사항",
+      "body": "현재 각 슬롯은 이진 상태만 지원한다(다중 단계나 연속적인 변형은 표현하지 못한다). 또한 슬롯 수와 상태 조합이 기하학적으로 증가함에 따라 메모리·연산 비용이 상승할 수 있다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "논문에 명시된 코드 링크는 SwitchSplat 구현과 직접 관련이 없으며, 현재 공개된 구현이나 데이터셋에 대한 정보는 제공되지 않는다."
     }
   ],
   "faq": [
     {
-      "q": "SwitchSplat은 기존 4DGS와 어떤 차이가 있나요?",
-      "a": "기존 4DGS는 촬영된 시간 순서대로 영상을 단순 재생하는 반면, SwitchSplat은 객체의 이산적 상태를 독립적인 슬롯으로 분리하여 학습하므로 촬영 시 보지 못한 다양한 상태 조합을 자유롭게 생성할 수 있습니다."
+      "q": "SwitchSplat이 지원하는 객체 상태는 몇 가지인가?",
+      "a": "각 슬롯은 두 개의 이진 상태(on/off)를 모델링한다."
     },
     {
-      "q": "SwitchSplat을 학습할 때 수동 어노테이션이 필요한가요?",
-      "a": "아니오, Gaussian의 슬롯 할당이 완전히 미분 가능하게 구현되어 있어 수동 어노테이션 없이 비디오 데이터만으로 객체의 지오메트리 상태를 직접 학습합니다."
+      "q": "시간 기반 4DGS와의 주요 차이점은?",
+      "a": "SwitchSplat은 시간 대신 객체 상태에 조건을 두어, 학습에 보이지 않은 상태 조합도 자유롭게 렌더링할 수 있다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.24812v1/2610.24812v1/teaser8.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/teaser8.png",
+        "caption": "Figure 1. SwitchSplat learns a state-aware scene representation from a casual capture ( top : input video frames showing the user interacting with the car).\nThe scene is decomposed into a static base and a set of independently switchable slots, one per interactable object (here: right door, hood, tr",
+        "caption_ko": "SwitchSplat은 캐주얼 캡처 영상에서 정적 베이스와 객체별 스위처블 슬롯으로 장면을 분해하고, 3개의 이진 상태 조합(2³=8가지)으로 새로운 뷰를 렌더링한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/figs/pipeline/pipeline.png",
+        "caption": "Figure 2. Pipeline – From a casual capture in which the operator interacts with objects (a), we fit a differentiable slot table (b) whose learnable endpoints ( t l , t r ) (t_{l},t_{r}) and temperature r ​ g ​ b ​ ( 0 ​ b ​ p ) = ( 0 , 0 , 0 ) ; r ​ g ​ b ​ ( 25 ​ b ​ p ) = ( 0 , 0 , 0 ) ; r ​ g ​ b",
+        "caption_ko": "파이프라인: 캐주얼 캡처 → 차별화 가능한 슬롯 테이블 학습 → 상태 로그잇을 가진 Gaussian → 상태 조건부 투명도 합성 및 렌더링."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/state_aware_gaussians.png",
+        "caption": "Figure 3. State-aware Gaussian – (left) Each Gaussian carries a learnable logit vector ℓ \\boldsymbol{\\ell} that defines a categorical distribution 𝐩 \\mathbf{p} that softly assigns each primitive to the static base or “on”/“off” object states. (right) At render time, user specifies list of states tha",
+        "caption_ko": "각 Gaussian은 정적 베이스와 on/off 상태에 대한 로그잇 벡터를 가지고, 렌더 시 선택된 상태에 따라 할당된다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/figs/qualitative_camera_ready/flat3_standard_test2/fullcircle_3dgut.jpg",
+        "caption": "Figure 5. Qualitative comparison across three evaluation settings : standard held-out views,\nnovel-camera views and novel state combinations. Columns show FullCircle,\nDeGauss, 4DGS, SwitchSplat, and the corresponding ground truth. A three-row, five-column comparison grid. Columns show FullCircle, De",
+        "caption_ko": "정적·동적 베이스라인과 비교한 정성적 결과: SwitchSplat은 보지 못한 상태 조합에서도 높은 품질을 유지한다."
+      }
+    ]
   },
   "collected_at": "2026-10-20T01:53:44.191508+00:00",
   "notion_id": "",
   "id": "2026-10-20-2a0997b79c5bfb2a",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T23:43:38+00:00"
 }
