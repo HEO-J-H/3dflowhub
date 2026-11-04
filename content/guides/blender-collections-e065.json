@@ -1,0 +1,80 @@
+{
+  "id": "blender-collections-e065",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Collections",
+  "title": "Collection — 오브젝트 묶기",
+  "summary": "Blender의 Collections는 수많은 오브젝트를 폴더처럼 그룹화하여 씬의 구조를 깔끔하게 정리하고 뷰포트나 렌더링에서 쉽게 켜고 끌 수 있게 해주는 필수 관리 기능입니다.",
+  "when": [
+    "캐릭터, 배경, 소품 등 복잡한 씬을 체계적으로 분류하고 싶을 때",
+    "특정 오브젝트 그룹만 화면에서 숨기거나 렌더링에서 제외하여 작업 속도를 높일 때",
+    "다른 Blender 파일로 오브젝트 그룹을 깔끔하게 가져오거나(Append/Link) 내보낼 때"
+  ],
+  "steps": [
+    "3D Viewport에서 정리할 오브젝트들을 다중 선택합니다.",
+    "Hotkey M 키를 눌러 Move to Collection 메뉴를 엽니다.",
+    "New Collection을 클릭하여 새 컬렉션 이름을 입력하고 Enter를 누릅니다.",
+    "Outliner 패널에서 생성된 컬렉션과 하위 오브젝트 구조를 확인합니다.",
+    "Outliner 우측의 눈 아이콘(Viewport Display)이나 카메라 아이콘(Render)을 클릭해 표시 여부를 제어합니다."
+  ],
+  "params": [
+    {
+      "name": "View Layer",
+      "desc": "현재 뷰 레이어에서 해당 컬렉션의 렌더링 및 뷰포트 표시 여부를 결정합니다."
+    },
+    {
+      "name": "Instance for Empty",
+      "desc": "컬렉션을 빈 오브젝트(Empty) Instance로 생성하여 동일한 구조를 반복 배치합니다."
+    },
+    {
+      "name": "Local Collections",
+      "desc": "오버라이드된 링크 파일 안에서 독립적으로 컬렉션 구조를 수정할 수 있게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 씬에서 가구와 구조물 분리하기",
+      "steps": [
+        "벽과 바닥 오브젝트를 선택하고 M 키로 'Structure' 컬렉션으로 이동합니다.",
+        "의자와 책상 등 소품들을 선택하고 M 키로 'Furniture' 컬렉션으로 만듭니다.",
+        "Outliner에서 'Furniture' 컬렉션의 눈 아이콘을 꺼서 가구를 숨기고 구조 작업에 집중합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 파츠 관리하기",
+      "steps": [
+        "머리카락, 의상, 무기 오브젝트들을 각각 다중 선택합니다.",
+        "M 키를 눌러 'Character_Parts'라는 상위 컬렉션 아래에 하위 컬렉션들로 정리합니다.",
+        "필요한 파츠 그룹만 렌더링에서 제외해 테스트 시간을 단축합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이어 개념으로 혼동하여 오브젝트 중복 배치함 → 오브젝트는 하나의 컬렉션에만 속하거나 링크될 수 있으므로 Outliner를 드래그하여 정확히 정리합니다.",
+    "컬렉션을 삭제할 때 하위 오브젝트까지 전부 삭제됨 → 컬렉션을 우클릭하고 Delete를 누르면 내부에 있던 오브젝트까지 지워지므로, 오브젝트를 남기려면 Delete Hierarchy 대신 Outliner에서 컬렉션만 정리합니다."
+  ],
+  "related": [
+    "Outliner",
+    "View Layers",
+    "Instance Collections",
+    "Append"
+  ],
+  "videos": [
+    {
+      "id": "ph6QUXNq5aE",
+      "title": "How to Use Blender's Outliner and Collections (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "u_yIGGhubZs",
+      "title": "Collections - Blender 2.80 Fundamentals",
+      "author": "Blender"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Collections",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T15:19:36.928350+00:00"
+}

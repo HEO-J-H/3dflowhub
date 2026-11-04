@@ -1,0 +1,96 @@
+{
+  "id": "houdini-copy-and-transform-sop-7273",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Copy and Transform SOP",
+  "title": "Copy and Transform — 반복 복제",
+  "summary": "Copy and Transform SOP는 입력된 지오메트리를 포인트마다 복제하면서 동시에 위치, 회전, 크기를 무작위나 규칙적으로 변형할 수 있는 노드입니다. 숲속의 나무 크기를 제각각 다르게 배치하거나 건물의 회전값을 주어 자연스러운 군집을 만들 때 사용합니다.",
+  "when": [
+    "포인트마다 복제된 오브젝트의 스케일과 회전을 무작위로 다양하게 주고 싶을 때",
+    "지오메트리를 복제하면서 높이나 회전각을 순차적으로 변화시키고 싶을 때",
+    "Copy to Points 노드 이후에 개별 복제본의 변형을 한 번에 제어하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Copy and Transform 을 검색하여 선택하고 Enter 키를 눌러 노드를 생성합니다.",
+    "첫 번째 입력(Geometry to Copy)에 복제할 소스 지오메트리를 연결합니다.",
+    "두 번째 입력(Points to Copy To)에 대상 포인트(Point) 소스를 연결합니다.",
+    "파라미터 뷰(Parameter Pane)에서 Transform 탭을 열어 Translate, Rotate, Scale 값을 조작합니다.",
+    "뷰포트에서 포인트마다 복제본이 변형되어 배치된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Ncopies",
+      "desc": "포인트 입력이 없을 때 기본 지오메트리를 복제할 총 개수입니다."
+    },
+    {
+      "name": "Translate",
+      "desc": "복제된 각 지오메트리의 위치 이동 값을 설정합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "복제된 각 지오메트리의 회전 값을 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "복제된 각 지오메트리의 크기 배율을 설정합니다."
+    },
+    {
+      "name": "Stamp",
+      "desc": "복제 과정에서 변수(Stamp Variable)를 활용해 각 복제본에 고유한 랜덤 값을 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "크기와 회전이 무작위인 나무 군집 배치",
+      "steps": [
+        "Scatter SOP로 지형 위에 포인트를 뿌립니다.",
+        "Copy and Transform 노드의 첫 번째에 나무 모델, 두 번째에 Scatter 포인트를 연결합니다.",
+        "Scale 파라미터에 채널을 주거나 Stamp 기능을 활용해 크기를 무작위로 조절합니다.",
+        "Rotate의 Y축 회전값을 0에서 360도로 주어 나무들이 제각각 회전하게 만듭니다."
+      ]
+    },
+    {
+      "title": "나선형 계단이나 회전하는 탑 구조물 만들기",
+      "steps": [
+        "Line SOP로 수직선을 만들고 Point SOP나 Resample SOP로 포인트를 분할합니다.",
+        "Copy and Transform 노드로 계단 디딤판 지오메트리를 포인트마다 복제합니다.",
+        "Rotate Y 파라미터에 일정한 각도 값을 주어 위로 갈수록 회전하도록 설정합니다.",
+        "Translate Y 파라미터로 높이 간격을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포인트가 없는데 출력이 안 됩니다 → Scatter SOP나 Point SOP 등으로 대상 포인트를 먼저 생성하고 두 번째 입력에 연결해야 합니다.",
+    "모든 복제본이 똑같은 모습으로 복제됩니다 → Rotate나 Scale 파라미터에 Stamp 또는 표현식을 사용하여 랜덤 변동을 주어야 합니다.",
+    "복제된 오브젝트의 축 중심이 이상하게 회전합니다 → 소스 지오메트리의 피벗(Pivot) 위치가 원점에 있는지 확인하고 Transform SOP나 Match Size로 정렬해야 합니다."
+  ],
+  "related": [
+    "Copy to Points",
+    "Transform",
+    "Scatter",
+    "Point"
+  ],
+  "videos": [
+    {
+      "id": "0UGqHxAY3G8",
+      "title": "Copy and Transform SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "KeVuU7lRaR4",
+      "title": "Houdini 30s Quick Tip #14 - Secrets of the Transform-SOP",
+      "author": "cgwiki discord"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Copy%20and%20Transform%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Copy",
+    "Transform"
+  ],
+  "at": "2026-11-04T15:19:41.670515+00:00"
+}
