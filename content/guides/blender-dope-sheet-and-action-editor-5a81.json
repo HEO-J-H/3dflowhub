@@ -1,0 +1,85 @@
+{
+  "id": "blender-dope-sheet-and-action-editor-5a81",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Dope Sheet and Action Editor",
+  "title": "Dope Sheet — 키 시간 조절",
+  "summary": "Blender의 Dope Sheet와 Action Editor는 오브젝트와 캐릭터의 애니메이션 키프레임을 표 형식으로 관리하고, 애니메이션 데이터 블록(Action)을 생성 및 관리하는 핵심 도구입니다.",
+  "when": [
+    "여러 오브젝트나 캐릭터 본(Bone)의 애니메이션 타이밍을 전체적으로 이동하거나 조절할 때",
+    "달리기, 점프 등 서로 다른 애니메이션 액션을 분리하고 관리할 때",
+    "키프레임의 순서를 바꾸거나 간격을 넓혀 속도를 조절할 때"
+  ],
+  "steps": [
+    "오브젝트에 애니메이션 키프레임을 최소 2개 이상 설정합니다.",
+    "상단 에디터 타입 아이콘을 클릭하거나 Shift+F3를 눌러 Dope Sheet 에디터로 전환합니다.",
+    "헤더의 모드 드롭다운 메뉴를 Dope Sheet에서 Action Editor로 변경합니다.",
+    "새로운 액션을 생성하려면 Action Editor 헤더의 New(방패+플러스 아이콘) 버튼을 클릭합니다.",
+    "Timeline에서 키를 선택하듯 Dope Sheet나 Action Editor에서 키프레임을 선택하고 G 키를 눌러 타이밍을 조절합니다.",
+    "뷰포트에서 애니메이션 재생(Space)을 통해 타이밍이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Action",
+      "desc": "오브젝트에 할당된 독립적인 애니메이션 데이터 블록입니다."
+    },
+    {
+      "name": "Fake User (F)",
+      "desc": "사용자가 없는 액션 데이터가 씬을 나갔을 때 삭제되지 않도록 보호합니다."
+    },
+    {
+      "name": "Push Down",
+      "desc": "현재 액션을 NLA Editor의 트랙으로 밀어내어 복합 애니메이션을 구성합니다."
+    },
+    {
+      "name": "Summary",
+      "desc": "선택된 오브젝트들의 모든 키프레임을 한 줄로 요약하여 전체 타이밍을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "걷기 애니메이션 타이밍 늘리기",
+      "steps": [
+        "Action Editor에서 캐릭터 본의 모든 키프레임을 A 키로 전체 선택합니다.",
+        "G 키를 누르고 Mouse를 오른쪽으로 이동하여 전체 애니메이션 간격을 넓힙니다.",
+        "Space 키를 눌러 걸음걸이가 느려졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "오브젝트별 액션 분리하기",
+      "steps": [
+        "첫 번째 오브젝트의 애니메이션 액션 이름을 'Jump'로 지정합니다.",
+        "Action Editor 옆의 New 액션 버튼을 눌러 새로운 액션을 생성합니다.",
+        "두 번째 오브젝트에 새로운 액션을 할당하고 대기(Idle) 동작 키를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "씬을 껐다 켰는데 액션이 사라짐 → Fake User(F 아이콘)를 체크하지 않아 발생한 문제이므로 F 버튼을 활성화하여 보존합니다.",
+    "다른 오브젝트를 선택했는데 애니메이션이 안 나옴 → Action Editor 상단의 핀(Pin) 아이콘이 잠겨있는지 확인하고 해제합니다."
+  ],
+  "related": [
+    "Graph Editor",
+    "Timeline",
+    "NLA Editor",
+    "Dope Sheet"
+  ],
+  "videos": [
+    {
+      "id": "832aiu14324",
+      "title": "Blender 3D Animation Tutorial - The Dope Sheet (Part 5)",
+      "author": "Crashsune Academy"
+    },
+    {
+      "id": "LHdh8p37yM8",
+      "title": "Dope Sheet - Blender 2.80 Fundamentals",
+      "author": "Blender"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dope%20Sheet%20and%20Action%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T12:09:06.856175+00:00"
+}

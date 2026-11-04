@@ -1,0 +1,95 @@
+{
+  "id": "houdini-group-create-sop-f306",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Group Create SOP",
+  "title": "Group Create — 그룹 만들기",
+  "summary": "Group Create SOP는 Houdini에서 지오메트리의 포인트, 프레미티브, Vertex 등을 조건에 따라 선택하고 그룹으로 묶어주는 핵심 노드입니다. 철사를 구부리듯 특정 영역만 골라내어 후속 연산을 적용할 때 사용합니다.",
+  "when": [
+    "전체 모델링 중 특정 부분(예: 위쪽 면, 특정 높이의 포인트)에만 다른 노드를 적용하고 싶을 때",
+    "절차적 방식으로 애니메이션이나 Particle 생성 영역을 제한할 때",
+    "머티리얼이나 노드 브랜치를 분기하기 위해 특정 면을 분류해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Group Create를 입력하고 Enter를 눌러 Group Create SOP 노드를 생성합니다.",
+    "대상 Geometry Nodes(예: Box SOP 등)의 출력 포인트를 Group Create 노드의 입력 포인트에 연결합니다.",
+    "Group Create 노드를 더블클릭하거나 선택하여 파라미터 패널을 엽니다.",
+    "Group Name에 그룹 이름을 입력하고, Entity(Points/Primitives)와 방식을 지정합니다.",
+    "뷰포트에서 선택된 그룹 영역이 올바르게 하이라이트되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Group Name",
+      "desc": "생성할 그룹의 영문 이름을 지정합니다."
+    },
+    {
+      "name": "Entity",
+      "desc": "그룹화할 대상 단위를 Points, Primitives, Vertices 중 선택합니다."
+    },
+    {
+      "name": "Base Group",
+      "desc": "기존에 만들어진 특정 그룹을 기반으로 추가 필터를 적용합니다."
+    },
+    {
+      "name": "Include By",
+      "desc": "Normal, Bounding Box 등 그룹을 묶을 조건을 선택합니다."
+    },
+    {
+      "name": "Keep By",
+      "desc": "Expression이나 Distance 등 추가 규칙으로 요소를 걸러냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "박스의 윗면만 골라내기",
+      "steps": [
+        "Box SOP로 상자를 생성합니다.",
+        "Group Create SOP를 연결하고 Entity를 Primitives로 설정합니다.",
+        "Include By에서 Normal을 켜고 Direction을 (0, 1, 0)으로 설정해 윗면만 그룹화합니다.",
+        "뷰포트에서 상자 윗면만 선택되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "특정 높이 이상의 포인트 선택하기",
+      "steps": [
+        "Grid SOP나 Sphere SOP로 지오메트리를 생성합니다.",
+        "Group Create SOP를 연결하고 Entity를 Points로 설정합니다.",
+        "BBox(Bounding Box) 옵션을 켜고 높이(Y축) 범위를 조절합니다.",
+        "원하는 높이 이상의 포인트만 그룹으로 묶인 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Entity 설정 오류 → Primitives를 골라야 하는데 Points를 골라 면이 아닌 점이 선택됨. 패널에서 Entity 설정을 다시 확인하세요.",
+    "그룹 이름 공백 사용 → 그룹 이름에 띄어쓰기를 넣으면 나중에 다른 노드에서 호출할 때 인식이 안 됩니다. 언더바(_)를 사용하세요."
+  ],
+  "related": [
+    "Blast SOP",
+    "Attrib Wrangle",
+    "Subdivide SOP",
+    "Color SOP"
+  ],
+  "videos": [
+    {
+      "id": "n7Awxb_udiw",
+      "title": "Group Create SOP in Houdini",
+      "author": "BLACKBOX FX"
+    },
+    {
+      "id": "sHPLLuedgCQ",
+      "title": "Group N Primitives w Add SOP",
+      "author": "Blake Marques Carrington"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Group%20Create%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Group Create",
+    "Group Create SOP"
+  ],
+  "at": "2026-11-04T12:09:13.980148+00:00"
+}
