@@ -1,0 +1,76 @@
+{
+  "id": "render-settings",
+  "title": "렌더 설정·노이즈 줄이기",
+  "task": "render settings and noise reduction / denoising",
+  "summary": "렌더링 셈플 수 조절과 노이즈 제거(Denoising)는 최종 렌더 이미지의 품질과 시간을 결정하는 핵심 작업입니다. 각 3D DCC와 엔진은 고유의 레이트레이싱 엔진과 디노이저 알고리즘을 사용하여 접근 방식과 설정 경로에 차이가 있습니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Render Properties → Sampling 패널 및 Denoising",
+      "how": "Render Samples 값을 설정하고, Viewport 및 Render 항목에서 OpenImageDenoise 또는 OptiX 디노이저를 활성화합니다.",
+      "strength": "빠르고 직관적인 AI 디노이저 통합",
+      "limit": "낮은 샘플에서 극단적인 디테일 손실 가능"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Render Setup (F10) → Arnold / V-Ray 탭 → Sampling 및 Denoising 설정",
+      "how": "렌더러별 샘플(Camera/AA) 값을 올리고, Arnold Denoiser 또는 V-Ray Denoiser 렌더 엘리먼트를 추가합니다.",
+      "strength": "프로덕션 환경에 최적화된 정밀한 제어",
+      "limit": "렌더러에 따라 설정 위치와 방식이 다름"
+    },
+    {
+      "tool": "Maya",
+      "where": "Render Settings (Arnold Renderer) → Sampling 패널 및 Denoiser(OptiX) 탭",
+      "how": "Camera (AA) 샘플을 조절하고, Arnold Denoiser 이미저(Imager)를 추가하여 뷰포트와 렌더 뷰에서 실시간 노이즈를 제거합니다.",
+      "strength": "Arnold Imager를 통한 빠른 실시간 디노이즈 확인",
+      "limit": "샘플 설정 미숙 시 렌더 시간이 급증함"
+    },
+    {
+      "tool": "Houdini",
+      "where": "Karma Render Settings 로프 노드 또는 Out 탭 → Karma 속성",
+      "how": "Karma CPU/XPU 렌더러의 Pixel Samples 및 Noise Level 값을 조절하고, Denoiser 패널에서 OptiX 또는 OpenImageDenoise를 켭니다.",
+      "strength": "Karma XPU를 활용한 강력한 GPU 가속 노이즈 제어",
+      "limit": "USD 및 롭(LOP) 네트워크에 대한 이해 필요"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Project Settings / Post Process Volume → Lumen 및 Denoiser 설정",
+      "how": "실시간 패스 트레이서(Path Tracer) 사용 시 Samples per Pixel을 올리고, 기본적으로는 Lumen 및 TAA/TSR 기반 디노이징을 활용합니다.",
+      "strength": "실시간 렌더링에 최적화된 고성능 디노이징",
+      "limit": "패스 트레이서 구동 시 고사양 하드웨어 필요"
+    }
+  ],
+  "pick": [
+    {
+      "case": "빠른 시각화 및 애니메이션 테스트 렌더링",
+      "tool": "Blender",
+      "why": "낮은 샘플 수와 OptiX 디노이저 조합으로 가장 빠른 시간 내에 깨끗한 결과물을 얻을 수 있습니다."
+    },
+    {
+      "case": "하이엔드 VFX 및 영화 프로덕션 파이프라인",
+      "tool": "Houdini",
+      "why": "Karma XPU와 정밀한 샘플링 제어를 통해 복잡한 볼륨과 반사광 노이즈를 효과적으로 억제합니다."
+    },
+    {
+      "case": "건축 실내 인테리어 시각화",
+      "tool": "3ds Max",
+      "why": "V-Ray 또는 Arnold의 강력한 Light Cache와 Denoiser 엘리먼트로 간접광 노이즈를 완벽하게 정돈합니다."
+    }
+  ],
+  "handoff": [
+    "렌더 뷰에서 디노이징된 결과물만 믿지 말고, 원본 샘플 노이즈가 과도하지 않은지 AOV/Render Element(Beauty, Denoiser Pass)를 함께 내보냅니다.",
+    "서로 다른 렌더러(예: Blender Cycles에서 Maya Arnold로)로 이동 시 샘플 수치 값이 직접 호환되지 않으므로 시각적 테스트를 거쳐야 합니다.",
+    "익스포트 시 16-bit 또는 32-bit OpenEXR 포맷을 사용하여 디노이징 후에도 풍부한 컬러 다이나믹 레인지를 유지합니다."
+  ],
+  "apply": [
+    "실내 건축 렌더링 시 간접광(GI) 샘플을 높이고 디노이저를 적용하여 렌더 시간을 절반 이상 단축합니다.",
+    "애니메이션 시퀀스 렌더 시 디노이저로 인한 깜빡임(Flickering)을 방지하기 위해 Temporal(시간축) 안정화 옵션을 활성화합니다.",
+    "클로즈업 텍스처 샷에서는 디노이저가 미세한 범프와 텍스처 디테일을 뭉개지 않도록 블렌드(Mix) 값을 조절합니다."
+  ],
+  "pitfalls": [
+    "실수: 디노이저를 맹신하여 샘플을 터무니없이 낮게 설정함 → 해결: 텍스처와 미세한 디테일이 뭉개지므로 기본 샘플을 적정 수준 이상으로 유지한 뒤 디노이저를 적용합니다.",
+    "실수: 애니메이션에서 프레임마다 디노이징 결과가 튀는 현상(Flicker) 발생 → 해결: 멀티프레임/Temporal 디노이징 옵션이나 전용 패스(Normal, Albedo)를 입력하여 시간적 일관성을 확보합니다.",
+    "실수: 뷰포트에서는 깨끗하지만 최종 저장된 이미지에 노이즈가 남음 → 해결: Viewport Denoiser와 Render Denoiser 옵션이 별개로 설정되어 있는지 확인합니다."
+  ],
+  "at": "2026-11-04T17:50:13+00:00"
+}
