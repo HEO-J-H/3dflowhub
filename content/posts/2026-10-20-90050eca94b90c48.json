@@ -1,5 +1,5 @@
 {
-  "title_ko": "Unity SplatXR 출시 — 확장 현실을 위한 3D Gaussian Splatting 툴킷",
+  "title_ko": "SplatXR — Unity용 3D Gaussian Splatting XR 툴킷",
   "title": "SplatXR: A Toolkit for Multi-Layered Extended Reality via On-Headset 3D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.26338v1",
   "domain": "AI 3D",
@@ -7,54 +7,92 @@
   "topic": "연구·논문",
   "tags": [
     "SplatXR",
-    "3D Gaussian Splatting",
+    "Gaussian Splatting",
     "Unity",
-    "Extended Reality",
-    "AI 3D",
-    "유니티"
+    "XR",
+    "Mixed Reality"
   ],
-  "summary": "SplatXR은 Unity 환경에서 3D Gaussian Splatting을 활용하여 물리적 세계와 가상 세계를 상호작용할 수 있도록 지원하는 멀티레이어 XR 툴킷입니다.",
-  "insight": "기존 XR 파이프라인은 폴리곤 기반 지오메트리를 중심으로 설계되어 Gaussian Splatting과의 실시간 상호작용에 한계가 있었습니다. SplatXR은 독립형 렌더러와 스플래트-투-메시 재구성 기능을 제공하여 개발자가 XR 앱에서 현실과 가상을 매끄럽게 융합할 수 있는 길을 열어줍니다. 헤드셋 기반 캡처와 물리 연동 기능을 활용하려는 XR 개발자 및 테크니컬 아티스트에게 유용한 실무적 대안이 될 것입니다. Unity 기반의 몰입형 콘텐츠 제작 파이프라인에 새로운 인터랙션 단계를 도입하려는 실무자라면 주목해야 할 연구입니다.",
+  "summary": "SplatXR은 온헤드셋 3D Gaussian Splatting을 활용해 물리적 세계와 가상 세계를 다층적으로 융합하는 Unity용 XR 툴킷입니다.",
+  "insight": "이 툴킷은 3D 아티스트와 개발자가 복잡한 폴리곤 모델링 작업 없이도 3D Gaussian Splatting 결과물을 실제 XR 환경에서 물리 시뮬레이션 및 상호작용이 가능한 자산으로 활용할 수 있는 가능성을 보여줍니다. 향후 실무 Pipeline 스캔 데이터 기반의 가상 환경과 증강현실 콘텐츠를 통합하는 데 유용하게 쓰일 수 있을 것으로 보입니다.",
   "sections": [
     {
-      "heading": "기존 XR 파이프라인의 한계와 3D Gaussian Splatting",
-      "body": "최근 3D 파운데이션 모델과 비디오 패스스루 혼합 현실 기술이 발전하면서 물리 세계와 가상 세계를 블렌딩하는 정밀도가 크게 향상되었습니다. 그러나 기존 XR 방식은 물리 환경과 디지털 환경을 별개의 도메인으로 취급하는 폴리곤 기반 파이프라인에 의존하고 있습니다. 이로 인해 스플래트는 명시적인 표면 지오메트리가 부족하여 그림자 처리나 충돌 핸들링 같은 표준 그래픽스 기법을 적용하기 어렵습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "최근 3D Gaussian Splatting(3DGS)과 비전 파운데이션 모델이 높은 충실도로 물리 환경과 가상 환경을 캡처하고 융합할 수 있게 되었지만, 기존 XR 시스템은 다각형 메쉬 기반 파이프라인에 의존하고 있습니다. 스플랫(splat)은 명시적 표면 지오메트리가 없어 그림자나 충돌 처리 같은 표준 그래픽스 기법을 적용하기 어렵고, 이로 인해 Cross 래리티(cross-reality) 상호작용 구현에 한계가 있었습니다."
     },
     {
-      "heading": "SplatXR 툴킷의 핵심 아키텍처",
-      "body": "연구진은 XR을 상호작용하는 프레미티브들의 다중 레이어 현실로 재구성하여 픽셀과 객체가 물리적 경계와 디지털 경계를 자유롭게 넘나들 수 있도록 설계했습니다. SplatXR은 이러한 구조를 Unity 환경에서 구동할 수 있는 빌딩 블록 형태로 구현한 툴킷입니다. 개발자는 이를 통해 3D Gaussian Splatting을 활용하는 몰입형 애플리케이션을 보다 손쉽게 개발할 수 있습니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 XR을 상호작용하는 Primitive의 다층적 현실(multi-layered reality)로 조직화하여, 픽셀과 객체가 물리적 경계와 디지털 경계를 넘나들 수 있도록 했습니다. SplatXR은 독립형 렌더러, 스플랫-투-메쉬(splat-to-mesh) 재구성, 스플랫 물리(splat physics), 스플랫 블렌딩(splat blending), 그리고 온헤드셋 캡처를 통한 오프로드 객체 재구성 기능을 Unity 빌딩 블록으로 제공합니다."
     },
     {
-      "heading": "주요 기능: 독립형 렌더러 및 스플래트-투-메시 재구성",
-      "body": "SplatXR은 독립형 렌더러와 스플래트-투-메시 재구성 기능을 핵심 구성 요소로 제공합니다. 스플래트를 메시 데이터로 변환함으로써 기존 그래픽스 파이프라인과의 호환성을 높이고 정밀한 연산을 지원합니다. 또한 스플래트 물리 연동 및 스플래트 블렌딩 기능을 통해 가상 객체와 실제 환경 간의 상호작용성을 강화했습니다."
+      "heading": "방법",
+      "body": "개발자는 Unity 에디터 내에서 SplatXR 툴킷을 통해 PLY 형식의 입력 스플랫 파일을 로드하고, 스플랫 렌더러, 스플랫 물리, 스플랫 효과, 스플랫 블렌딩 등의 컴포넌트를 장면에 추가할 수 있습니다. 마칭 큐브(marching-cubes) 기반 및 포아송 재구성(Poisson-reconstruction) 기반 알고리즘을 통해 스플랫을 메쉬로 변환하여 물리 시뮬레이션과 충돌 처리를 지원합니다."
     },
     {
-      "heading": "헤드셋 기반 캡처와 오프로드 객체 재구성",
-      "body": "본 툴킷은 온헤드셋 캡처를 활용한 오프로드 스플래트 객체 재구성 기능을 지원합니다. 사용자가 헤드셋을 통해 주변 환경을 즉각적으로 캡처하고 디지털 스플래트로 재구성할 수 있습니다. 이를 통해 물리적 환경과 가상 환경 사이의 전환이 매끄러운 사용자 경험을 구현할 수 있습니다."
+      "heading": "결과 및 평가",
+      "body": "개발된 앱은 독립형 Meta Quest 3 또는 Apple Vision Pro 헤드셋에 배포할 수 있으며, 패스스루 Compositing, Shader 기반 알파 블렌딩, 색상 보정, 재구성된 환경 지오메트리에 의한 오클루전 기능을 제공합니다. 연구진은 시연용 Application 구축과 3명의 개발자를 대상으로 한 소규모 예비 개발자 평가(n=3)를 통해 툴킷의 유용성을 검증했습니다."
     },
     {
-      "heading": "검증 및 실무적 의의",
-      "body": "개발진은 시연용 애플리케이션 구현과 소규모 개발자 연구를 통해 SplatXR의 효용성을 검증했습니다. 비전 기술과 그래픽스 기술을 결합하여 스플래트 기반 XR 개발의 문턱을 낮추고 있습니다. 향후 몰입형 인터랙션 개발 전반에 걸쳐 유용한 레퍼런스로 활용될 전망입니다."
+      "heading": "한계점",
+      "body": "스플랫 자체에는 명시적인 표면 지오메트리가 부족하여 프록시 메쉬나 추가 재구성 알고리즘에 의존해야 하며, 복잡한 실시간 동적 환경 변화에 대응하기 위한 추가적인 최적화와 연산 오프로드 구조가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "SplatXR과 기술 평가 설정은 오픈소스화되어 온라인(https://splatxr.github.io)에 공개되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "SplatXR은 어떤 엔진을 기반으로 개발되었나요?",
-      "a": "SplatXR은 Unity 엔진을 기반으로 구축된 툴킷으로, 3D Gaussian Splatting을 활용한 인터랙티브 XR 애플리케이션 개발을 지원합니다."
+      "q": "SplatXR은 어떤 엔진을 지원합니까?",
+      "a": "논문에 따르면 SplatXR은 Unity 엔진을 지원하는 툴킷입니다."
     },
     {
-      "q": "스플래트 기반 XR 개발에서 기존 폴리곤 방식과 비교해 어떤 문제가 해결되나요?",
-      "a": "스플래트는 명시적 표면 지오메트리가 없어 충돌이나 그림자 처리가 어려웠으나, SplatXR은 스플래트-투-메시 재구성 및 물리 연동 기능을 통해 이 문제를 보완합니다."
+      "q": "어떤 헤드셋에 배포할 수 있습니까?",
+      "a": "Meta Quest 3 또는 Apple Vision Pro 같은 독립형 헤드셋에 배포할 수 있습니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.26338v1/2610.26338v1/figures/toolkit-features/toolkit_features_v6_multilayerreality_hd_3-03.jpg",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.26338v1/2610.26338v1/figures/toolkit-features/toolkit_features_v6_multilayerreality_hd_3-03.jpg",
+        "caption": "Figure 1. Left: A developer composes an XR app using our SplatXR toolkit in Unity. Mid: The resulting app can be deployed to a standalone Meta Quest 3 or Apple Vision Pro headset, featuring several toolkit capabilities for a rich, interactive user experience. Right: The toolkit leverages a set of cu",
+        "caption_ko": "그림 1. Unity에서 SplatXR 툴킷을 사용하는 개발자 경험, Meta Quest 3 및 Apple Vision Pro에서의 사용자 경험, 그리고 다층적 현실 구조."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.26338v1/2610.26338v1/figures/configs_of_reality/configs_of_reality_v3.png",
+        "caption": "Figure 2. Configurations and operations. Top: Different multilayered reality operations across splats, meshes, and reality showcasing cross-layer transitioning, physics, linkage, and blending. Bottom: Demonstrative applications that use the above operations to enable XR experiences. Figure 2 has two",
+        "caption_ko": "그림 2. 스플랫, 메쉬, 현실 간의 다층적 현실 연산 구성 및 시연용 애플리케이션."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.26338v1/2610.26338v1/figures/splat_adjust/splat_adjustments_figure_v2c_1col-01.jpg",
+        "caption": "Figure 3. Adjustments: a) Cropping of splats and their aligned meshes; b) Planar flattening to fix reconstruction artifacts on flat surfaces; c) Manual control for visual attributes (tint, saturation, and transparency); d) Auto color adjustment to the passthrough environment via histogram matching. ",
+        "caption_ko": "그림 3. 스플랫 자르기, 평면 평탄화, 시각적 속성 제어, 그리고 히스토그램 매칭을 통한 자동 색상 조절."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.26338v1/2610.26338v1/figures/mesh-augmented-splats/splat_to_mesh_pipeline_figure_v3-600dpi-q6.jpg",
+        "caption": "Figure 4. Splat-to-mesh algorithms enable splat physics. Top: Marching-cubes-based implementation for objects. Bottom: Poisson-reconstruction-based implementation for spaces. Figure 4 is composed of three rows. Each row is composed of three steps. The top row is a header row, showing a chevron proce",
+        "caption_ko": "그림 4. 객체를 위한 마칭 큐브 기반 및 공간을 위한 포아송 재구성 기반의 스플랫-투-메쉬 알고리즘."
+      }
+    ]
   },
   "collected_at": "2026-10-20T03:44:17.862967+00:00",
   "notion_id": "",
   "id": "2026-10-20-90050eca94b90c48",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [
+    "공식 웹사이트(https://splatxr.github.io)를 방문하여 오픈소스 툴킷 저장소와 관련 문서를 확인합니다.",
+    "Unity 에디터에서 SplatXR 패키지를 임포트하여 스플랫 렌더러와 물리 컴포넌트를 씬에 설정해 봅니다."
+  ],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T18:20:28+00:00"
 }
