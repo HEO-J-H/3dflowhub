@@ -1,0 +1,91 @@
+{
+  "id": "blender-nla-editor-cb10",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "NLA Editor",
+  "title": "NLA — 동작 이어 붙이기",
+  "summary": "NLA Editor(Non-Linear Animation Editor)는 여러 애니메이션 클립을 비선형 방식으로 조합, 편집, 반복(Looping)할 수 있는 Blender의 Timeline 도구입니다.",
+  "when": [
+    "걷기 애니메이션과 뛰기 애니메이션을 자연스럽게 전환하거나 블렌딩할 때",
+    "동일한 캐릭터 애니메이션을 게임 엔진처럼 여러 번 반복(Loop)시키거나 속도를 조절할 때",
+    "Idle 대기 동작 위에 무기 휘두르기 같은 상체 애니메이션을 겹쳐서(Layering) 표현할 때"
+  ],
+  "steps": [
+    "상단 Editor Type 메뉴를 클릭하거나 창 모서리를 드래그하여 NLA Editor 창을 엽니다.",
+    "애니메이션이 적용된 오브젝트를 선택하고, Dope Sheet 또는 Action Editor에서 기존 애니메이션 액션을 'Push Down'(내려놓기 아이콘)하여 NLA 스트립(Strip)으로 변환합니다.",
+    "NLA Editor Timeline에서 스트립을 선택하고 G 키를 눌러 재생 위치를 이동하거나, S 키를 눌러 재생 속도를 조절합니다.",
+    "N/A 키를 눌러 사이드바(Sidebar)를 열고, Strip 탭에서 Repeat(반복 횟수)나 Extrapolation(외삽 방식) 옵션을 설정합니다.",
+    "재생(Space) 버튼을 눌러 스트립들이 올바르게 섞여 재생되는지 뷰포트에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Repeat",
+      "desc": "애니메이션 클립을 지정한 횟수만큼 반복 재생합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "스트립의 길이를 늘리거나 줄여서 애니메이션 재생 속도를 조절합니다."
+    },
+    {
+      "name": "Blend",
+      "desc": "겹쳐진 두 스트립 간의 애니메이션 전환 방식을 결정합니다."
+    },
+    {
+      "name": "Influence",
+      "desc": "해당 NLA 스트립이 캐릭터나 오브젝트에 미치는 영향력을 0에서 1 사이로 조절합니다."
+    },
+    {
+      "name": "Extrapolation",
+      "desc": "스트립 앞뒤 구간에서 애니메이션을 유지하거나 멈추는 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 걷기 반복 재생",
+      "steps": [
+        "캐릭터의 걷기 액션을 NLA Editor로 Push Down합니다.",
+        "사이드바의 Strip 탭에서 Repeat 값을 5로 설정합니다.",
+        "Timeline에서 캐릭터가 5번 연속으로 걷는지 확인합니다."
+      ]
+    },
+    {
+      "title": "애니메이션 블렌딩 및 연결",
+      "steps": [
+        "Idle 동작 스트립 뒤에 Jump 동작 스트립을 배치합니다.",
+        "두 스트립을 살짝 겹치게 이동하여 자동으로 부드러운 전환 블렌딩을 만듭니다.",
+        "스페이스바를 눌러 끊김 없이 연결되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "액션을 Push Down하지 않고 Dope Sheet에서 수정함 → NLA 스트립을 수정하려면 Action Editor에서 언링크(Unlink) 후 편집하거나 스트립 안으로 들어가야 합니다.",
+    "스트립 반복 재생 시 끊김 현상 발생 → Action의 시작과 끝 키프레임 간격이 루프 주기에 정확히 맞아떨어지는지 확인합니다."
+  ],
+  "related": [
+    "Dope Sheet",
+    "Action Editor",
+    "Graph Editor",
+    "Pose Mode"
+  ],
+  "videos": [
+    {
+      "id": "mfdufhaiKtI",
+      "title": "Learn Blender's NLA editor in 3 minutes | Blender 2.9 Animation Tutorial",
+      "author": "TheDuckCow"
+    },
+    {
+      "id": "G3VyVz3cwMQ",
+      "title": "Animate Like a Pro  - Blender's NLA Editor tutorial",
+      "author": "Woodplank"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20NLA%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Editor Type",
+    "NLA Editor"
+  ],
+  "at": "2026-11-04T12:19:35.567962+00:00"
+}

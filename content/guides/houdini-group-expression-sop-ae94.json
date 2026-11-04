@@ -1,0 +1,89 @@
+{
+  "id": "houdini-group-expression-sop-ae94",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Group Expression SOP",
+  "title": "Group Expression — 식으로 그룹",
+  "summary": "Group Expression SOP 노드는 VEX 표현식을 사용하여 조건에 부합하는 포인트나 프시미티브를 정교하게 선택하고 그룹으로 묶어줍니다. 철사를 구부리듯 복잡한 조건을 코드로 제어하여 특정 영역만 골라낼 때 사용합니다.",
+  "when": [
+    "노이즈나 위치 좌표($P.y) 등 수학적 조건으로 특정 영역의 포인트를 그룹화할 때",
+    "노멀(Normal) 방향이나 면의 크기 등 속성값을 기준으로 프시미티브를 걸러낼 때",
+    "다른 노드에서 전달받은 어트리뷰트 값과 연산하여 동적으로 그룹을 만들 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Group Expression을 입력하고 Enter를 눌러 Group Expression SOP 노드를 생성합니다.",
+    "상위 Geometry Nodes의 출력 포트를 Group Expression SOP 노드의 입력 포트에 연결합니다.",
+    "Group Expression SOP 노드를 선택하고 파라미터 패널에서 Group Name에 생성할 그룹 이름을 입력합니다.",
+    "Type 드롭다운 메뉴에서 그룹을 적용할 대상을 Point 또는 Primitive로 선택합니다.",
+    "Expression 입력란에 VEX 조건식(예: @P.y > 0)을 작성하여 뷰포트에서 그룹이 올바르게 칠해졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Group Name",
+      "desc": "새로 생성되거나 수정될 그룹의 이름을 지정합니다."
+    },
+    {
+      "name": "Type",
+      "desc": "그룹화할 대상의 종류를 Points, Primitives, Vertices, Edges 중에서 선택합니다."
+    },
+    {
+      "name": "Expression",
+      "desc": "조건 판정을 위한 VEX 표현식이나 변수($P, @N 등)를 입력합니다."
+    },
+    {
+      "name": "Combine With Existing",
+      "desc": "기존에 존재하던 그룹과 결합하는 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "높이 기준으로 상단 포인트 그룹 만들기",
+      "steps": [
+        "Group Expression SOP 노드를 생성하고 연결합니다.",
+        "Type을 Points로 설정합니다.",
+        "Expression 입력란에 @P.y > 1.5를 입력하여 기준 높이보다 위에 있는 포인트만 그룹화합니다."
+      ]
+    },
+    {
+      "title": "노멀 방향을 이용해 위를 향한 면 선택하기",
+      "steps": [
+        "Group Expression SOP 노드를 생성하고 연결합니다.",
+        "Type을 Primitives로 설정합니다.",
+        "Expression 입력란에 @N.y > 0.7을 입력해 하늘을 향하는 폴리곤 면만 그룹으로 묶습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "VEX 구문 오류 → 변수명 앞에 @ 기호가 빠졌는지 또는 대소문자가 틀렸는지 확인합니다.",
+    "그룹이 선택되지 않음 → Type 설정(Points 또는 Primitive)이 대상 지오메트리와 일치하는지 확인합니다."
+  ],
+  "related": [
+    "Group Create",
+    "Delete",
+    "Blast",
+    "Attrib Wrangle"
+  ],
+  "videos": [
+    {
+      "id": "sHPLLuedgCQ",
+      "title": "Group N Primitives w Add SOP",
+      "author": "Blake Marques Carrington"
+    },
+    {
+      "id": "n7Awxb_udiw",
+      "title": "Group Create SOP in Houdini",
+      "author": "BLACKBOX FX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Group%20Expression%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Group Expression",
+    "Group Expression SOP"
+  ],
+  "at": "2026-11-04T12:19:46.348299+00:00"
+}

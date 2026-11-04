@@ -1,51 +1,86 @@
 {
-  "title_ko": "Gaussian Splatting 압축 혁신 — RacerGS가 150배 압축 실현",
+  "title_ko": "RacerGS: 3D 가우스 Splatting 압축 기술",
   "title": "RacerGS: Residual-Autoregressive Context for 3D Gaussian Splatting Compression",
   "url": "https://arxiv.org/abs/2610.34263",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "RacerGS",
     "3DGS",
+    "Gaussian Splatting",
     "Compression",
-    "GRU",
-    "FiLM"
+    "Neural Rendering",
+    "AI 3D"
   ],
-  "summary": "RacerGS는 3D Gaussian Splatting의 파라미터 규모를 크게 줄이면서도 렌더링 품질을 유지하는 압축 프레임워크이다.",
-  "insight": "3DGS를 실시간 뷰 렌더링에 활용하려는 스튜디오와 연구자는 저장·전송 비용이 큰 걸 고민한다. RacerGS는 해시 프로젝션과 FiLM-조절 GRU를 결합해 공간적 일관성을 살린 압축을 제공하므로, 대규모 씬을 클라우드에 배포하거나 모바일 디바이스에 적용할 때 유용하다. 특히 기존 바닐라 3DGS 대비 150배 이상, Scaffold-GS 대비 28배의 압축률은 데이터 관리 인프라 비용을 크게 절감해 준다. 다만 인코딩 과정에서 엔트로피 코딩과 GRU 연산이 추가되므로, 파이프라인 구축 시 연산 오버헤드를 고려해야 한다.",
+  "summary": "잔차-자기회귀 컨텍스트를 활용하여 렌더링 품질을 유지하면서 3D Gaussian Splatting(3DGS)의 저장 용량을 크게 줄이는 압축 프레임워크입니다.",
+  "insight": "이 기술이 상용화되면 대규모 3D 씬 데이터를 웹이나 모바일 환경으로 전송할 때 발생하는 대역폭 부담을 크게 줄일 수 있습니다. 게임 개발이나 메타버스 플랫폼에서 고품질 3D 자산을 효율적으로 관리하고 로딩 시간을 단축하는 데 기여할 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "배경 및 문제점",
-      "body": "3D Gaussian Splatting(3DGS)은 빠르고 고품질의 새로운 뷰 렌더링을 가능하게 하지만, 파라미터 양이 방대해 저장과 전송에서 심각한 병목 현상이 발생한다. 기존 연구들은 렌더링 품질을 유지하면서 압축 효율을 높이는 다양한 방법을 모색해 왔으나, 대규모 씬을 원활히 수용할 만큼 충분한 압축률을 달성하지 못했다. 이러한 대용량 파일 형식 문제는 특히 모바일 디바이스나 클라우드 기반 배포 환경에서 3DGS 활용을 가로막는 주요 걸림돌로 작용한다."
+      "heading": "무엇을 풀려는가",
+      "body": "3D Gaussian Splatting(3DGS)은 빠른 고품질 렌더링을 제공하지만 대규모 장면에서 수백만 개의 가우스로 인해 대규모 저장 및 전송 비용이 발생합니다. 기존 압축 방법들은 제한된 공간적 컨텍스트 모델링, 속성 잔차 대신 원본 속성 인코딩으로 인한 비효율적인 엔트로피 모델링, 그리고 앵커 피처 그룹 간의 인과적 의존성 부족이라는 한계를 가집니다."
     },
     {
-      "heading": "RacerGS 핵심 설계",
-      "body": "RacerGS는 앵커 해시 인코딩을 압축된 컨텍스트 특징으로 변환하는 혁신적인 해시 프로젝션 모델을 도입하여 공간적으로 일관된 특징을 도출한다. 또한 FiLM-modulated autoregressive GRU 컨텍스트 모델을 채택하여 앵커 특징 그룹 간의 인과 관계를 활용한다. 이를 통해 재귀적인 은닉 상태로 엔트로피 모델 파라미터를 정제하고 비트레이트 효율을 극대화한다."
+      "heading": "핵심 아이디어",
+      "body": "RacerGS는 구조화된 공간적 컨텍스트, 잔차 엔트로피 모델링, 순환적 인과 컨텍스트 개선을 결합하여 효율적인 압축을 달성합니다. 해시 프로젝션 모델을 통해 앵커 해시 인코딩을 컴팩트한 컨텍스트 피처로 투영하고, FiLM 변조 기반의 자기회귀 GRU 컨텍스트 모델을 통해 엔트로피 모델 파라미터를 정밀화합니다."
     },
     {
-      "heading": "잔차-자기회귀 컨텍스트와 압축률",
-      "body": "RacerGS는 컨텍스트로 예측된 평균값에 대해 양자화된 앵커 속성 잔차를 적응형으로 엔트로피 코딩한다. 공간적 일관성을 적극 활용함으로써 심벌 엔트로피를 대폭 낮추는 방식을 취한다. 결과적으로 바닐라 3DGS 대비 150배 이상, Scaffold-GS 대비 28배에 달하는 압축 성능을 달성한다."
+      "heading": "방법 (단계)",
+      "body": "(1) 해시 프로젝션 모델(Hash Projection Model)이 해시 인코딩을 컴팩트한 공간 컨텍스트 피처로 매핑합니다. (2) 적응형 잔차 양자화(Adaptive Residual Quantization)가 학습된 양자화 단계를 사용하여 컨텍스트 예측 평균을 기준으로 앵커 속성 잔차를 인코딩합니다. (3) 자기회귀 GRU가 이전에 디코딩된 피처 청크를 요약하고, FiLM 변조와 공유 예측기를 통해 분포 파라미터를 개선하여 잔차 엔트로피 코딩을 수행합니다."
     },
     {
-      "heading": "렌더링 품질 및 성능 검증",
-      "body": "5개의 서로 다른 데이터셋을 활용한 광범위한 실험을 통해, RacerGS는 기존의 3DGS 압축 방법들을 압도하는 성능을 입증했다. 저장 공간을 대폭 줄이면서도 기존 방식과 비교해 손색없는 수준의 렌더링 품질과 레이트-디스토션 성능을 유지한다. 이는 대규모 3D 씬 데이터셋을 다루는 연구자와 엔지니어들에게 실질적인 대안을 제시한다."
+      "heading": "결과 (논문 수치)",
+      "body": "RacerGS는 기존 바닐라 3DGS 대비 150배 이상, Scaffold-GS 대비 28배 이상의 압축률을 달성합니다. 또한 3DGS 대비 2.31 dB, Scaffold-GS 대비 0.56 dB의 PSNR 이득을 보여주며 렌더링 품질을 유지합니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문 본문에서는 압축률과 렌더링 품질의 우수성을 입증했으나, 실시간 스트리밍 환경이나 모바일 기기에서의 구체적인 디코딩 연산 속도 제약에 대해서는 상세히 다루지 않았습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "논문 내에 GitHub 이슈 리포트 링크 등이 포함되어 있으나, 구체적인 오픈소스 코드 저장소 링크는 본문 텍스트 내에 명시적으로 제공되지 않았습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "RacerGS는 기존 3DGS에 비해 저장 공간을 얼마나 줄여주나요?",
+      "a": "바닐라 3DGS 대비 150배 이상, Scaffold-GS 대비 28배 이상의 압축률을 달성합니다."
+    },
+    {
+      "q": "해시 프로젝션 모델은 어떤 역할을 하나요?",
+      "a": "원시 해시 기능을 직접 사용하는 대신 앵커 해시 인코딩을 컴팩트한 융합 컨텍스트 피처로 투영하여 더 강력한 사전 정보를 제공합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.34263/2610.34263v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.34263v1/2610.34263v1/pipeline.png",
+        "caption": "Figure 2: Pipeline overview. RacerGS compresses 3DGS through three components: (1) a hash projection model maps hash encodings 𝒇 i h \\bm{f}^{h}_{i} to compact spatial context features 𝒇 i c \\bm{f}^{c}_{i} ; (2) adaptive residual quantization encodes anchor attributes relative to context-predicted me",
+        "caption_ko": "파이프라인 개요: 해시 프로젝션, 적응형 잔차 양자화, 자기회귀 GRU 기반의 압축 구조를 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.34263v1/2610.34263v1/qua.png",
+        "caption": "Figure 4: Qualitative comparisons. RacerGS preserves details better and produces fewer artifacts than the baseline methods across scenes from diverse datasets.",
+        "caption_ko": "정성적 비교: RacerGS가 기존 방법들에 비해 디테일을 더 잘 보존하고 아티팩트를 줄여줍니다."
+      }
+    ]
   },
   "collected_at": "2026-10-27T04:33:10.355085+00:00",
   "notion_id": "",
   "id": "2026-10-27-c374ad2cdd868c32",
-  "enriched_at": "skip",
+  "enriched_at": "2026-11-04T12:20:00+00:00",
   "img_tried": true,
-  "try_it": [
-    "바닐라 3DGS 및 Scaffold-GS 파이프라인의 저장 및 전송 병목 현상을 분석하고 RacerGS의 압축 지표와 비교해 보세요.",
-    "해시 프로젝션 모델과 FiLM-조절 GRU 컨텍스트 모델의 구조를 파악하고 자체 데이터셋 적용 가능성을 검토해 보세요.",
-    "적응형 엔트로피 코딩과 잔차 예측 방식을 워크플로우의 인코딩 단계에 도입하여 저장 용량 절감 효과를 테스트해 보세요."
-  ],
-  "enriched": "2026-11-04"
+  "try_it": [],
+  "enriched": "2026-11-04",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }

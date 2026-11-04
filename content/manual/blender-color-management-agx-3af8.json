@@ -1,0 +1,116 @@
+{
+  "id": "blender-color-management-agx-3af8",
+  "guide_id": "blender-color-management-agx-3af8",
+  "tool": "Blender",
+  "name": "Color Management (AgX)",
+  "title": "색 관리(View Transform)",
+  "overview": "Blender의 Color Management(AgX)는 렌더링된 고다이나믹레인지(HDR) 빛의 정보를 디스플레이의 표준 색공간으로 변환해 주는 뷰 룩업 시스템입니다. 기존 Filmic 방식에서 밝은 영역이 과도하게 채도가 포화되면서 하얗게 깨지던 문제를 물리적 빛의 반응에 가깝게 부드럽게 억제하여 사실적인 톤을 만들어 냅니다.",
+  "access": "Properties 패널(오른쪽 하단) → Render Properties(카메라 아이콘) 탭 → Color Management 카테고리 클릭",
+  "options": [
+    {
+      "name": "Display Device",
+      "value": "sRGB / Display P3 등",
+      "effect": "모니터가 표현할 수 있는 최종 색공간 표준을 선택합니다.",
+      "tip": "대부분의 표준 모니터는 sRGB로 설정하며, 광색역 모니터 사용 시 환경에 맞춰 변경합니다."
+    },
+    {
+      "name": "View Transform",
+      "value": "AgX / Filmic / Standard / False Color",
+      "effect": "렌더 엔진의 물리적 빛 데이터를 화면에 보여주는 변환 방식을 결정합니다.",
+      "tip": "사실적인 빛 표현과 하이라이트 클리핑 방지를 위해 최신 표준인 AgX를 기본으로 사용합니다."
+    },
+    {
+      "name": "Look",
+      "value": "None / High Contrast / Medium High Contrast / Medium Low Con",
+      "effect": "AgX 적용 후 이미지의 전체적인 대비와 톤 커브를 조절하여 영화 같은 느낌을 더합니다.",
+      "tip": "기본값은 None이며, 밋밋해 보일 경우 Medium High Contrast를 적용하면 작업 시간을 아낄 수 있습니다."
+    },
+    {
+      "name": "Exposure",
+      "value": "EV 단위",
+      "effect": "렌더링 이미지 전체의 노출(밝기)을 EV(Exposure Value) 단위로 조절합니다.",
+      "tip": "합성(Compositing) 단계로 넘어가기 전 뷰포트 상에서 전체적인 광량 밸런스를 빠르게 잡을 때 유용합니다."
+    },
+    {
+      "name": "Gamma",
+      "value": "기본값 1.0",
+      "effect": "중간 계조(Midtones)의 밝기를 비선형적으로 조절하여 어두운 영역과 밝은 영역의 균형을 맞춥니다.",
+      "tip": "특별한 이유가 없다면 1.0 기본값을 유지하고, 조명이나 Compositing 단계에서 밝기를 조절하는 것이 안전합니다."
+    },
+    {
+      "name": "Use Curves",
+      "value": "체크박스 (기본 켜짐)",
+      "effect": "RGB 커브를 활성화하여 뷰 톤 매핑 과정에서 미세한 색상 보정을 직접 수행합니다.",
+      "tip": "렌더 단계에서 특정 채널의 톤을 직관적으로 누르고 싶을 때 활성화합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "AgX (Standard View)",
+      "desc": "강한 빛이 들어올 때 색이 채도 유지를 하며 자연스럽게 흰색으로 변하는 물리적 특성을 모사합니다."
+    },
+    {
+      "name": "False Color",
+      "desc": "이미지의 밝기(Luminance)를 무지개 색상 구간으로 시각화하여, 하이라이트가 깨지거나 언더가 났는지 분석합니다."
+    },
+    {
+      "name": "Filmic",
+      "desc": "이전 Blender 버전의 기본값으로, 하드 클리핑을 막아주지만 강한 빛에서 채도가 비정상적으로 유지되거나 왜곡될 수 있습니다."
+    },
+    {
+      "name": "Standard",
+      "desc": "수치적 정확성만 따지는 방식이며, 빛이 조금만 강해져도 붉은색이나 노란색 하이라이트 영역이 즉시 깨집니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "강렬한 네온사인과 어두운 밤거리 씬 세팅",
+      "steps": [
+        "Properties 패널의 Render Properties에서 Color Management를 엽니다.",
+        "View Transform을 AgX로 설정하여 고휘도 네온사인의 과도한 채도 포화를 방지합니다.",
+        "Look을 High Contrast로 설정하여 어두운 밤 배경과 밝은 네온 불빛 사이의 대비를 극대화합니다.",
+        "Exposure 값을 약간 낮춰 밤씬 특유의 깊이감을 살립니다."
+      ]
+    },
+    {
+      "title": "False Color 모드를 활용한 노출 및 조명 분석",
+      "steps": [
+        "조명이 완성된 3D 뷰포트 또는 렌더 프리뷰 상태를 준비합니다.",
+        "Color Management의 View Transform을 False Color로 변경합니다.",
+        "화면의 색상을 보고 빨간색/흰색으로 포화된 영역(클리핑)이 있는지 확인합니다.",
+        "Light 오브젝트의 Power 값을 조절하거나 Exposure를 낮추어 적정 노출 구간(회색~녹색 톤)으로 맞춘 뒤 View를 다시 AgX로 되돌립니다."
+      ]
+    },
+    {
+      "title": "필름릭(Filmic) 씬을 최신 AgX 룩으로 마이그레이션",
+      "steps": [
+        "기존에 제작된 Filmic 기반 프로젝트 파일을 엽니다.",
+        "Render Properties의 Color Management로 이동합니다.",
+        "View Transform을 Filmic에서 AgX로 전환합니다.",
+        "빛의 채도 포화 반응이 달라져 과도하게 물빠진 곳이 있는지 확인하고, Look 옵션을 Medium High Contrast로 보정합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "{'name': '실시간 뷰포트 연산', 'desc': 'Color Management 변환은 GPU에서 최종 후처리로 실시간 처리되므로 렌더링 속도 자체에는 거의 영향을 주지 않습니다.'}",
+    "{'name': 'Compositing 뷰어 연산', 'desc': 'Compositor 백드롭이나 뷰어 노드에서 색상 관리가 올바르게 연동되지 않을 경우, 이미지 노드의 색공간(Color Space) 설정을 확인하여 병목을 줄입니다.'}"
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "AgX로 바꿨는데 전체적으로 화면이 너무 회색빛을 띠고 밋밋해 보입니다.",
+      "fix": "Look 옵션이 None으로 되어 있는지 확인하고, Medium High Contrast나 High Contrast로 변경하여 암부와 명부의 대비를 살려줍니다."
+    },
+    {
+      "symptom": "Photoshop이나 외부 프로그램에서 본 렌더링 이미지와 Blender 뷰포트의 색감이 다릅니다.",
+      "fix": "이미지 저장(Save Image) 창의 옵션에서 Save as Rendered가 체크되어 있는지 확인하세요. 꺼져 있으면 AgX 톤 매핑이 빠진 원본 데이터만 저장됩니다."
+    },
+    {
+      "symptom": "노출(Exposure)을 조절했는데도 밝기가 변하지 않습니다.",
+      "fix": "컴포지터(Compositor) 내부에서 별도로 Color Balance나 Exposure 노드가 연결되어 최종 출력을 덮어쓰고 있는지 확인합니다."
+    }
+  ],
+  "versions": "Blender 4.0 버전부터 기존 Filmic 대신 AgX가 기본 뷰 Transform으로 채택되어, 고휘도 영역에서의 색상 왜곡이 대폭 개선되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Color%20Management%20%28AgX%29",
+  "grounded": true,
+  "at": "2026-11-04T12:21:01+00:00"
+}
