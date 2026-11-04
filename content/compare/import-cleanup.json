@@ -9,35 +9,60 @@
       "where": "Properties → Object Data Properties (그린 삼각형 아이콘) 및 Edit Mode",
       "how": "Edit Mode에서 전체 선택(A) 후 M key를 눌러 'By Distance'로 중복 정점을 병합하고, Alt+N 메뉴에서 'Recalculate Outside'로 노멀을 재정렬합니다.",
       "strength": "무료이며 메시 정리 및 노멀 편집 도구가 매우 직관적이고 빠름",
-      "limit": "대규모 CAD 데이터 임포트 시 계층 구조 파손이나 단위(Unit) 변환 설정이 번거로울 수 있음"
+      "limit": "대규모 CAD 데이터 임포트 시 계층 구조 파손이나 단위(Unit) 변환 설정이 번거로울 수 있음",
+      "video": {
+        "id": "vi3JGtG4_uw",
+        "title": "Clean Up AI 3D Models Like a Pro | Blender Tutorial 2025 #tutorial #blender",
+        "author": "Styliz 3D"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Command Panel → Modify 탭 → Edit Poly / STL Check 또는 Utilities 패널",
       "how": "Edit Poly 모디파이어를 적용한 뒤 Vertex 서브오브젝트 레벨에서 'Weld'를 실행하고, Editable Poly의 'Polygon: Flip / Unify' 또는 Normal 모디파이어로 법선을 정리합니다.",
       "strength": "오래된 아키텍처 및 하드서피스 모델의 메쉬 무결성 검사(STL Check 등) 기능이 강력함",
-      "limit": "임포트 시 축 시스템(Z-up vs Y-up) 변환 설정을 잘못 맞추면 스케일과 회전값이 틀어질 수 있음"
+      "limit": "임포트 시 축 시스템(Z-up vs Y-up) 변환 설정을 잘못 맞추면 스케일과 회전값이 틀어질 수 있음",
+      "video": {
+        "id": "M9L92qnUIhE",
+        "title": "Cleaning Up Imported Data in 3ds Max",
+        "author": "VietCAD Co., Ltd"
+      }
     },
     {
       "tool": "Maya",
       "where": "Mesh 메뉴 → Cleanup 및 Mesh Display 메뉴",
       "how": "Mesh → Cleanup을 열어 'Non-manifold geometry', 'Faces with zero area' 등을 체크하고 적용한 뒤, Mesh Display → 'Unlock Normals' 및 'Conform'을 실행합니다.",
       "strength": "복잡한 파이프라인 데이터에서 비정상적인 폴리곤과 토폴로지 오류를 일괄 정리하는 데 특화됨",
-      "limit": "메뉴 계층이 깊고 옵션 창이 복잡하여 초보자가 진입장벽을 느낄 수 있음"
+      "limit": "메뉴 계층이 깊고 옵션 창이 복잡하여 초보자가 진입장벽을 느낄 수 있음",
+      "video": {
+        "id": "KmYYfxEM2Vc",
+        "title": "HSC404 Assignment 3 - Importing and cleaning models in Maya",
+        "author": "3D Splanchnic"
+      }
     },
     {
       "tool": "Houdini",
       "where": "네트워크 뷰 → PolyDoctor 노드 또는 Clean 노드 (Tab → Clean)",
       "how": "Clean 노드를 배치하여 'Remove Degenerates', 'Remove Unused Points', 'Fix Non-Manifold' 옵션을 켜고, Normal 노드로 법선 방향을 통일합니다.",
       "strength": "절차적(Procedural) 방식으로 수천 개의 임포트 모델도 한 번에 일괄 정화 가능",
-      "limit": "순수 노드 기반 작업에 익숙하지 않으면 단순한 면 정리에도 오버헤드가 발생함"
+      "limit": "순수 노드 기반 작업에 익숙하지 않으면 단순한 면 정리에도 오버헤드가 발생함",
+      "video": {
+        "id": "rYuBJK-HVkc",
+        "title": "Houdini | Cleaning Bad Geometry | Quick Tip",
+        "author": "CG Forge"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser → FBX Import Options 및 Static Mesh Editor",
       "how": "임포트 창에서 'Combine Meshes' 및 'Auto Generate Collision'을 설정하고, 에디터 내에서 'Recompute Normals' 또는 'Build Nanite'를 통해 메쉬를 정돈합니다.",
       "strength": "엔진 내부에서 임포트 직후 스케일 팩터(Scale Factor)와 콜리전, 노멀을 한 번에 제어 가능",
-      "limit": "심각한 토폴로지 오류나 겹친 정점 자체를 직접 수정하는 정밀 편집 기능은 제한적임"
+      "limit": "심각한 토폴로지 오류나 겹친 정점 자체를 직접 수정하는 정밀 편집 기능은 제한적임",
+      "video": {
+        "id": "FrfBIGwZiOg",
+        "title": "Unreal Engine 5.6 - How To Clean Up Your Mocap Data - Tutorial",
+        "author": "Unreal - X - Tutorials"
+      }
     }
   ],
   "pick": [
@@ -72,5 +97,6 @@
     "실수: 노멀이 뒤집힌 상태로 텍스처 베이킹이나 엔진 임포트를 진행함 → 해결: 뷰포트에서 Face Orientation을 켜서 면 방향을 확인하고 외부 방향으로 재정렬합니다.",
     "실수: 미러(Mirror) 모디파이어 사용 후 정점이 중앙에서 떨어져 있음 → 해결: Merge 임계값(Threshold)을 높이거나 수동으로 정점을 정확히 일치시켜 웰드합니다."
   ],
-  "at": "2026-11-04T14:25:31+00:00"
+  "at": "2026-11-04T14:25:31+00:00",
+  "visuals_at": "2026-11-04T14:29:07+00:00"
 }

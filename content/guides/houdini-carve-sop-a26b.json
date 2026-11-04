@@ -1,0 +1,90 @@
+{
+  "id": "houdini-carve-sop-a26b",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Carve SOP",
+  "title": "Carve — 커브 일부만",
+  "summary": "Carve SOP는 커브(Curve)나 폴리라인(Polyline)의 시작점과 끝점을 잘라내거나(Trim) 특정 위치에 지오메트리 포인트를 추출(Extract)하는 Procedural 노드입니다. 복잡한 곡선의 길이를 동적으로 조절하거나 애니메이션 가이드를 만들 때 사용합니다.",
+  "when": [
+    "커브의 길이를 줄이거나 특정 구간만 남겨두고 싶을 때",
+    "곡선을 따라 물건이 자라나는(Growing) 애니메이션을 만들 때",
+    "커브 위에 정확한 위치의 포인트를 추출해 다른 노드와 연결할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "carve를 검색하고 Carve SOP 노드를 선택하여 배치합니다.",
+    "가공할 Curve SOP 노드의 출력 포인트를 Carve SOP의 입력(First Input)에 연결합니다.",
+    "파라미터 창에서 First U와 Second U 값을 조절하여 커브의 시작과 끝 범위를 설정합니다.",
+    "뷰포트에서 커브가 지정한 구간만큼 잘려나간 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "First U",
+      "desc": "커브의 시작 지점을 0에서 1 사이의 값으로 자릅니다."
+    },
+    {
+      "name": "Second U",
+      "desc": "커브의 끝 지점을 0에서 1 사이의 값으로 자릅니다."
+    },
+    {
+      "name": "Keep Inside",
+      "desc": "First U와 Second U 사이의 구간을 유지합니다."
+    },
+    {
+      "name": "Cut Points",
+      "desc": "지정한 위치에 새로운 포인트를 생성하여 잘라냅니다."
+    },
+    {
+      "name": "Extract",
+      "desc": "전체 커브 대신 지정한 U 위치의 포인트나 점을 추출합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "케이블이 자라나는 애니메이션",
+      "steps": [
+        "Curve SOP로 선을 그립니다.",
+        "Carve SOP를 연결하고 Second U 파라미터에 프레임별 수식을 입력합니다.",
+        "PolyWire SOP를 연결해 굵기를 부여하고 애니메이션을 확인합니다."
+      ]
+    },
+    {
+      "title": "커브의 일부분만 추출하기",
+      "steps": [
+        "Carve SOP의 First U를 0.2, Second U를 0.8로 설정합니다.",
+        "불필요한 양 끝 구간을 제거하고 가운데 핵심 형태만 남깁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "U 값이 반대로 설정되어 화면에 아무것도 안 나옴 → First U와 Second U의 대소 관계를 확인하거나 Keep Inside 옵션을 체크합니다.",
+    "커브가 직선이거나 포인트가 부족해 잘리지 않음 → Resample SOP를 먼저 연결해 충분한 포인트를 생성합니다."
+  ],
+  "related": [
+    "Curve SOP",
+    "Resample SOP",
+    "PolyWire SOP",
+    "Trim SOP"
+  ],
+  "videos": [
+    {
+      "id": "Wp6q1IOTCHk",
+      "title": "How to randomize the Carve SOP in Houdini #cg #animation #sidefxhoudini",
+      "author": "Łukasz Pason"
+    },
+    {
+      "id": "nNJ8Y_k_cpM",
+      "title": "Randomize Carve Lengths In Houdini",
+      "author": "Łukasz Pason"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Carve%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Carve SOP"
+  ],
+  "at": "2026-11-04T14:30:24.727893+00:00"
+}

@@ -9,35 +9,60 @@
       "where": "Add (Shift+A) → Light / Properties → World 탭",
       "how": "Shift+A로 Point, Spot, Area Light를 생성하고, World 탭의 Color 옆 점 아이콘을 눌러 Environment Texture를 연결합니다. Z 키를 눌러 Viewport Shading을 Rendered 모드로 전환하여 실시간으로 확인합니다.",
       "strength": "Eevee와 Cycles 엔진을 통해 빠르고 직관적인 실시간 조명 피드백을 제공합니다.",
-      "limit": "대규모 프로덕션 환경에서는 라이트 링크(Light Linking)나 레이어 관리 기능이 복잡해질 수 있습니다."
+      "limit": "대규모 프로덕션 환경에서는 라이트 링크(Light Linking)나 레이어 관리 기능이 복잡해질 수 있습니다.",
+      "video": {
+        "id": "aafyp5g1CjI",
+        "title": "Lighting for Beginners! 💡 (Blender Tutorial)",
+        "author": "Ryan King Art"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Create Panel → Lights / Rendering → Environment",
       "how": "Create 패널의 Lights에서 Standard나 Photometric(Arnold/V-Ray) 조명을 배치하고, Environment 및 Exposure Control에서 HDRI 맵을 적용합니다. ActiveShade를 통해 렌더 결과를 실시간 미리 봅니다.",
       "strength": "치안(Photometric) 물리 기반 조명 컨트롤이 강력하며, 다양한 상용 렌러러(V-Ray, Arnold)와 완벽하게 연동됩니다.",
-      "limit": "기본 Scanline 렌더러만으로는 최신 PBR HDRI 반사를 정확히 표현하기 어렵습니다."
+      "limit": "기본 Scanline 렌더러만으로는 최신 PBR HDRI 반사를 정확히 표현하기 어렵습니다.",
+      "video": {
+        "id": "yTF3pUpa__Y",
+        "title": "Beginning Lighting Tutorial | Introduction to 3ds Max Standard Lights",
+        "author": "Adam Z - Learn Archviz"
+      }
     },
     {
       "tool": "Maya",
       "where": "Create → Lights / Arnold → Light",
       "how": "Create 메뉴의 Lights에서 Directional, Point 등을 생성하거나 Arnold 렌더러의 Skydome Light를 추가해 HDRI를 로드합니다. Viewport 2.0에서 High Quality Lighting과 Viewport Shadow를 켭니다.",
       "strength": "VFX 파이프라인에 최적화되어 있으며 Arnold Skydome을 통한 정교한 이미지 기반 조명(IBL)이 뛰어납니다.",
-      "limit": "기본 뷰포트의 실시간 조명 품질을 높이기 위해 별도의 뷰포트 설정과 셰이더 옵션을 켜야 합니다."
+      "limit": "기본 뷰포트의 실시간 조명 품질을 높이기 위해 별도의 뷰포트 설정과 셰이더 옵션을 켜야 합니다.",
+      "video": {
+        "id": "GRoW4P5wco0",
+        "title": "Maya Lighting Beginner Guide 2025 - Introduction to Arnold Lighting + Bloom, Fog, Depth of Field",
+        "author": "Fox Bandit"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Network View Tab → Light / Environment Light",
       "how": "네트워크 뷰(Solaris 또는 OBJ 레벨)에서 Tab 키로 Environment Light나 distant light 노드를 생성합니다. 파라미터 창의 Texture 항목에서 HDRI 파일을 지정하고 Karma나 Mantra 렌더러로 확인합니다.",
       "strength": "USD와 Solaris 기반의 강력한 라이팅 변형 및 절차적 조명 제어가 가능합니다.",
-      "limit": "아티스트 친화적인 인터랙티브 뷰포트 라이팅 세팅이 다른 DCC에 비해 다소 복잡합니다."
+      "limit": "아티스트 친화적인 인터랙티브 뷰포트 라이팅 세팅이 다른 DCC에 비해 다소 복잡합니다.",
+      "video": {
+        "id": "Jy5EV3c1MYw",
+        "title": "UI and USD Basics | Introduction to Solaris and Karma | Houdini 20",
+        "author": "Inside The Mind"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Place Actors 패널 → Lights / Directional Light 및 Sky Light",
       "how": "Place Actors에서 Directional Light(주광), Key Light 등을 배치하고, Sky Light를 추가해 Cubemap 또는 HDRI 파일을 적용합니다. Real Time 옵션과 Lumen(글로벌 일루미네이션)을 켜서 즉각적인 반사를 확인합니다.",
       "strength": "Lumen과 Nanite를 활용해 실시간으로 영화급의 극사실적인 조명과 반사를 완벽하게 구현합니다.",
-      "limit": "실시간 엔진 특유의 최적화 설정(Shadow Map Resolution, Distance Field)을 이해해야 합니다."
+      "limit": "실시간 엔진 특유의 최적화 설정(Shadow Map Resolution, Distance Field)을 이해해야 합니다.",
+      "video": {
+        "id": "fSbBsXbjxPo",
+        "title": "Lighting in Unreal Engine 5 for Beginners",
+        "author": "William Faucher"
+      }
     }
   ],
   "pick": [
@@ -73,5 +98,6 @@
     "{'mistake': '조명 강도(Strength/Exposure)를 높였는데도 씬이 완전히 어둡거나 하얗게 타버림', 'fix': '카메라 노출(Exposure) 값이나 조명의 파워 단위(Lumen/Candela)를 확인하고, 블렌더의 경우 Color Management 설정을 Standard에서 Filmic으로 변경합니다.'}",
     "{'mistake': '쓰리 포인트 라이팅을 설치했는데 그림자가 생기지 않음', 'fix': '각 라이트 속성 패널에서 Cast Shadows 옵션이 체크되어 있는지 확인하고, 뷰포트 오버레이 설정에서 그림자(Shadows)가 켜져 있는지 확인합니다.'}"
   ],
-  "at": "2026-11-04T14:25:37+00:00"
+  "at": "2026-11-04T14:25:37+00:00",
+  "visuals_at": "2026-11-04T14:29:12+00:00"
 }
