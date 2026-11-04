@@ -1,0 +1,94 @@
+{
+  "id": "blender-append-and-link-f87a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Append and Link",
+  "title": "Append·Link — 다른 파일에서 가져오기",
+  "summary": "Blender의 Append와 Link 기능은 다른 Blender 파일(.blend)에 있는 오브젝트, 머티리얼, 컬렉션 등의 에셋을 현재 작업 중인 씬으로 가져오는 기능입니다.",
+  "when": [
+    "다른 작업 파일에서 완성된 모델링이나 소품을 가져와 현재 씬에 배치할 때",
+    "여러 씬에서 공통으로 사용하는 머티리얼이나 텍스처를 라이브러리 파일에서 불러올 때",
+    "원본 파일의 수정 사항을 참조 형태로 실시간 반영하며 대형 프로젝트를 협업할 때"
+  ],
+  "steps": [
+    "File 메뉴에서 Append 또는 Link를 클릭합니다.",
+    "에셋을 가져올 대상 .blend 파일을 찾아 더클릭하여 내부 폴더 구조로 진입합니다.",
+    "가져올 데이터 종류(Collection, Object, Material 등) 폴더를 선택합니다.",
+    "불러올 개별 에셋을 선택한 뒤, 우측 상단의 Append(또는 Link) 버튼을 클릭합니다.",
+    "뷰포트에서 Shift + A 키를 누르고 Collection 또는 Object 메뉴에서 방금 불러온 항목을 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Append",
+      "desc": "원본 파일의 데이터를 현재 파일로 완전히 복사하여 독립적으로 편집할 수 있게 가져옵니다."
+    },
+    {
+      "name": "Link",
+      "desc": "원본 파일을 참조 형태로 연결하여 가져오며, 원본이 수정되면 링크된 파일도 함께 변경됩니다."
+    },
+    {
+      "name": "Collections",
+      "desc": "오브젝트들이 포함된 상위 그룹 단위로 묶어서 가져옵니다."
+    },
+    {
+      "name": "Objects",
+      "desc": "개별 3D 오브젝트 단위로 선택하여 가져옵니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "오브젝트 없이 머티리얼 데이터만 현재 파일로 가져옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공용 소품 라이브러리에서 책상 모델 가져오기",
+      "steps": [
+        "File → Append를 실행합니다.",
+        "prop_library.blend 파일을 선택하고 Object 폴더로 이동합니다.",
+        "Desk 오브젝트를 선택하고 Append를 누릅니다.",
+        "Shift + A → Object 메뉴에서 Desk를 선택해 뷰포트에 배치합니다."
+      ]
+    },
+    {
+      "title": "외부 파일의 머티리얼만 재사용하기",
+      "steps": [
+        "File → Append를 선택합니다.",
+        "shader_lib.blend 파일을 열고 Material 폴더로 들어갑니다.",
+        "Gold_Shader를 선택해 가져옵니다.",
+        "현재 오브젝트의 Material Properties 탭에서 방금 불러온 머티리얼을 할당합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Link로 불러온 오브젝트가 편집되지 않음 → Link는 원본을 참조하므로 수정하려면 File → Append를 사용하거나 Library Override를 적용해야 합니다.",
+    "폴더를 거치지 않고 .blend 파일을 그냥 클릭함 → 파일 이름만 클릭하면 내부 구조로 들어가지지 않으므로, 반드시 파일 안의 Object나 Collection 폴더 내부로 진입해야 합니다."
+  ],
+  "related": [
+    "Collection Instance",
+    "Library Override",
+    "Asset Browser",
+    "Merge"
+  ],
+  "videos": [
+    {
+      "id": "ldHOfvE52QA",
+      "title": "Import Blender Files INTO BLENDER with Append and Link - Full Tutorial",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "mt7rKuSQTro",
+      "title": "Learn to Append Files in Blender!",
+      "author": "BlenderVitals"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Append%20and%20Link",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Append",
+    "Link"
+  ],
+  "at": "2026-11-04T15:31:00.292944+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "houdini-normal-sop-0fe3",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Normal SOP",
+  "title": "Normal — 노멀 계산",
+  "summary": "Normal SOP 노드는 지오메트리의 법선(Normal) 방향을 재계산하거나 정렬하여, 라이팅 계산이나 렌더링 결과가 올바르게 나오도록 정리합니다.",
+  "when": [
+    "임포트한 CAD나 외부 모델의 표면 법선이 뒤집히거나 깨져 보일 때",
+    "하드 표면(Hard Surface) 모델링에서 날카로운 모서리와 부드러운 면을 제어하고 싶을 때",
+    "포인트나 Primitive 노멀 방향을 기반으로 후속 시뮬레이션이나 인스턴싱을 제어할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Normal 을 검색하고 Normal SOP 노드를 선택하여 지오메트리 네트워크에 배치합니다.",
+    "대상 Geometry Nodes 하단에 Normal SOP 노드를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Compute 모드(Points 또는 Primitives)를 선택합니다.",
+    "Cusp Angle 값을 조절하여 부드러운 면과 날카로운 면의 경계를 설정합니다.",
+    "뷰포트에서 표면의 라이팅과 노멀 방향이 올바르게 정렬되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Weighting",
+      "desc": "폴리곤 면적이나 각도에 따라 노멀 계산 가중치를 설정합니다."
+    },
+    {
+      "name": "Cusp Angle",
+      "desc": "이 각도보다 큰 모서리는 날카로운 엣지(Hard Edge)로 처리합니다."
+    },
+    {
+      "name": "Points",
+      "desc": "포인트 단위로 법선을 계산하여 부드러운 표면을 만듭니다."
+    },
+    {
+      "name": "Primitives",
+      "desc": "Primitive(면) 단위로 법선을 계산하여 각진 표면을 만듭니다."
+    },
+    {
+      "name": "Reverse Normal",
+      "desc": "모든 법선 방향을 정반대로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 표면 모델의 날카로운 모서리 정리",
+      "steps": [
+        "Normal SOP 노드를 지오메트리 스트림에 연결합니다.",
+        "Compute Points를 활성화합니다.",
+        "Cusp Angle을 30~45도 사이로 낮추어 기계 부품의 모서리를 살립니다."
+      ]
+    },
+    {
+      "title": "뒤집힌 면 법선 교정",
+      "steps": [
+        "임포트된 모델의 라이팅이 검게 깨지는 부분을 확인합니다.",
+        "Normal SOP 노드를 추가합니다.",
+        "Reverse Normal 옵션을 켜서 법선 방향을 바깥쪽으로 향하게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Cusp Angle 값이 너무 높음 → 모든 면이 부드럽게 뭉개져 보여 하드 표면의 각이 사라짐 (해결: Cusp Angle 값을 낮춰 각진 모서리를 복원)",
+    "포인트와 Primitive 노멀이 충돌함 → 렌더링 시 Shading이 깨짐 (해결: 필요한 레이어에만 정확히 Normal SOP를 적용)"
+  ],
+  "related": [
+    "AttribWrangle",
+    "Reverse SOP",
+    "Facet SOP",
+    "Subdivide SOP"
+  ],
+  "videos": [
+    {
+      "id": "Wp6q1IOTCHk",
+      "title": "How to randomize the Carve SOP in Houdini #cg #animation #sidefxhoudini",
+      "author": "Łukasz Pason"
+    },
+    {
+      "id": "G6ZcT6vtBzM",
+      "title": "2.1 - SOPs - Overview of SOPs in Houdini",
+      "author": "Mark Fancher"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Normal%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Normal",
+    "Normal SOP"
+  ],
+  "at": "2026-11-04T15:31:04.846918+00:00"
+}
