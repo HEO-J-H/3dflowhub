@@ -1,0 +1,91 @@
+{
+  "id": "houdini-skin-sop-bfdc",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Skin SOP",
+  "title": "Skin — 커브 사이 면",
+  "summary": "Skin SOP 노드는 여러 개의 곡선(Curve)이나 폴리라인(Polyline)을 연결하여 부드러운 스킨 형태의 폴리곤 표면을 생성하는 프로시절 모델링 기능입니다. 복잡한 유기적 형태나 천, 튜브 같은 구조를 만들 때 사용합니다.",
+  "when": [
+    "여러 개의 단면 커브를 이어 붙여 3D 표면이나 형태를 만들 때",
+    "캐릭터나 크리처의 복잡한 뼈대(Curve)를 감싸는 바디 메시를 생성할 때",
+    "리본이나 깃발, 호스 같은 유기적인 곡선 형태의 모델링을 자동화할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "skin을 검색하고 Skin SOP 노드를 선택하여 생성합니다.",
+    "여러 개의 곡선(Curve SOP 등)을 순서대로 병합(Merge SOP)하여 Skin 노드의 첫 번째 입력(Input)에 연결합니다.",
+    "파라미터 창에서 표면이 생성되는 방식을 확인합니다.",
+    "뷰포트에서 곡선들을 따라 부드러운 스킨 면이 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Method",
+      "desc": "면을 연결하는 보간 방식(Skin, NURBS 등)을 선택합니다."
+    },
+    {
+      "name": "U Order",
+      "desc": "U 방향 곡선의 차수(Order)를 조절하여 표면의 부드러움을 바꿉니다."
+    },
+    {
+      "name": "V Order",
+      "desc": "V 방향 곡선의 차수(Order)를 조절하여 표면의 매끄러움을 바꿉니다."
+    },
+    {
+      "name": "Closed U",
+      "desc": "U 방향의 시작점과 끝점을 연결하여 닫힌 원통 형태의 면으로 만듭니다."
+    },
+    {
+      "name": "Closed V",
+      "desc": "V 방향의 시작점과 끝점을 연결하여 닫힌 루프 형태로 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "호스 및 케이블 모델링",
+      "steps": [
+        "여러 개의 Curve SOP로 호스의 경로 단면을 배치합니다.",
+        "Merge SOP로 커브들을 하나로 합칩니다.",
+        "Skin SOP를 연결하여 파이프 형태의 입체 표면을 만듭니다."
+      ]
+    },
+    {
+      "title": "유기적 형태의 지형 및 텐트",
+      "steps": [
+        "높낮이가 다른 여러 개의 폴리라인을 나란히 배치합니다.",
+        "Skin SOP를 연결하여 천이 덮인 듯한 곡면을 생성합니다.",
+        "PolyExtrude SOP로 두께를 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "커브의 포인트 개수나 방향이 다를 때 → Resample SOP와 Reverse SOP로 커브의 구조를 통일합니다.",
+    "면이 꼬이거나 뒤틀릴 때 → 입력되는 커브들의 연결 순서(Primitive 번호)를 확인하고 Sort SOP로 정렬합니다."
+  ],
+  "related": [
+    "Curve SOP",
+    "Resample SOP",
+    "PolyBridge SOP",
+    "Loft SOP"
+  ],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "kgQ02Zn7m7U",
+      "title": "MaskAlongGeometry SOP | Houdini 20.5",
+      "author": "Simlarity"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Skin%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Skin SOP"
+  ],
+  "at": "2026-11-04T14:49:46.525187+00:00"
+}

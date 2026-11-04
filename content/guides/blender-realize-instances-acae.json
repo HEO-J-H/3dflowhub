@@ -1,0 +1,84 @@
+{
+  "id": "blender-realize-instances-acae",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "지오메트리 노드",
+  "name": "Realize Instances",
+  "title": "Realize Instances — 실제 메시로",
+  "summary": "Blender의 Realize Instances 노드는 Geometry Nodes 안에서 생성된 Instance 데이터를 실제 편집 가능한 개별 메시(Mesh) 데이터로 변환합니다. Instance 상태에서는 불가능했던 개별 편집이나 물리 시뮬레이션 적용이 가능해집니다.",
+  "when": [
+    "인스턴스화된 오브젝트마다 각각 다른 형태의 변형이나 스컬프팅을 주고 싶을 때",
+    "게임 엔진이나 외부 렌더러로 Export 위해 Instance를 실제 메시로 구워야(Bake) 할 때",
+    "인스턴스된 오브젝트들에 물리 시뮬레이션이나 개별 머티리얼 ID를 적용해야 할 때"
+  ],
+  "steps": [
+    "상단 탭에서 Geometry Nodes 워크스페이스를 엽니다.",
+    "Modifier 탭에서 New 버튼을 눌러 새로운 Geometry Nodes 트리를 생성합니다.",
+    "Shift+A 키를 누르고 Search 창에 Instance on Points 노드를 추가해 오브젝트를 복제합니다.",
+    "Shift+A 키를 누르고 Realize Instances 노드를 검색하여 생성합니다.",
+    "Instance on Points 노드의 Output과 기존 지오메트리 출력 사이에 Realize Instances 노드를 연결합니다.",
+    "Spreadsheet 패널이나 뷰포트에서 Instance가 실제 메시 데이터로 변환되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Selection",
+      "desc": "Instance를 실제 메시로 변환할 대상 영역을 선택합니다."
+    },
+    {
+      "name": "Legacy Behavior",
+      "desc": "이전 버전의 Instance 변환 방식을 사용하여 호환성을 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "숲속 나무들에 개별 바람 흔들림 및 변형 주기",
+      "steps": [
+        "Point Distribute와 Instance on Points 노드로 지형 위에 나무 Instance를 배치합니다.",
+        "Instance on Points 뒤에 Realize Instances 노드를 연결하여 Instance를 실제 메시로 바꿉니다.",
+        "Set Position 노드와 노이즈 텍스처를 연결해 나무마다 각기 다른 무작위 움직임을 줍니다."
+      ]
+    },
+    {
+      "title": "벽돌 Instance를 무너뜨리는 강체 시뮬레이션",
+      "steps": [
+        "Grid 노드와 Instance on Points 노드를 조합해 벽돌 Instance 벽을 만듭니다.",
+        "Realize Instances 노드를 추가해 Instance 벽을 실제 개별 벽돌 메시로 변환합니다.",
+        "Rigid Body 시뮬레이션을 적용하여 물리적 충돌에 의해 벽돌이 무너지도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Instance가 많은 상태에서 Realize Instances를 바로 사용함 → 뷰포트가 심하게 느려지거나 멈추므로 Instance 개수를 확인한 뒤 적용하세요.",
+    "머티리얼이나 UV가 유지되지 않음 → Instance 생성 전 원본 오브젝트에 올바른 UV와 머티리얼이 지정되어 있는지 확인하세요."
+  ],
+  "related": [
+    "Instance on Points",
+    "Geometry Nodes",
+    "Join Geometry",
+    "Collection Info"
+  ],
+  "videos": [
+    {
+      "id": "d0-GkRXJgws",
+      "title": "How to use REALIZE INSTANCES in Blender - Geometry Nodes",
+      "author": "Xan 3D"
+    },
+    {
+      "id": "31Rxr26pHwo",
+      "title": "Geometry Nodes: Realize Instances (Blender)",
+      "author": "Blender Daily Shorts"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Realize%20Instances",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Geometry Nodes",
+    "Modifier",
+    "New",
+    "Search",
+    "Instance",
+    "Points"
+  ],
+  "at": "2026-11-04T14:49:42.663786+00:00"
+}
