@@ -1,0 +1,94 @@
+{
+  "id": "blender-compositor-basics-28a9",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Compositor basics",
+  "title": "컴포지터 기초",
+  "summary": "Blender Compositor(컴포지터)는 렌더링된 이미지에 다양한 노드를 연결하여 색보정, 블러, 글레어 등 시각적 효과를 더하는 노드 기반 후가공 작업 공간입니다.",
+  "when": [
+    "3D 렌더링 결과물의 색감과 대비를 정밀하게 보정하고 싶을 때",
+    "빛 번짐(Glare)이나 피사계 심도(Depth of Field) 같은 카메라 효과를 더할 때",
+    "캐릭터와 배경(Foreground와 Background)을 분리하여 합성할 때"
+  ],
+  "steps": [
+    "상단 작업 영역(Workspace) 탭에서 Compositing 탭을 클릭합니다.",
+    "상단 메뉴의 'Use Nodes' 체크박스를 활성화하여 기본 노드 네트워크를 생성합니다.",
+    "Shift+A 키를 눌러 Add 메뉴를 열고, 원하는 노드(예: Color Correction, Glare)를 검색하여 추가합니다.",
+    "Render Layers 노드의 Image 출력 포트를 원하는 노드의 입력 포트에 연결합니다.",
+    "최종 결과가 Composite 노드의 Image 입력 포트에 연결되어 있는지 확인합니다.",
+    "F12 키를 눌러 렌더링을 수행하면 컴포지팅된 최종 결과물이 뷰어에 나타납니다."
+  ],
+  "params": [
+    {
+      "name": "Use Nodes",
+      "desc": "컴포지터 노드 시스템을 켜고 끄는 기본 스위치입니다."
+    },
+    {
+      "name": "Backdrop",
+      "desc": "뷰포트 배경에 Compositing 결과물을 실시간으로 미리 보여줍니다."
+    },
+    {
+      "name": "Mix",
+      "desc": "두 개 이상의 이미지나 효과를 다양한 블렌드 모드로 섞어줍니다."
+    },
+    {
+      "name": "Color Balance",
+      "desc": "Lift, Gamma, Gain을 조절하여 이미지의 섀도우, 미드톤, 하이라이트 색상을 맞춥니다."
+    },
+    {
+      "name": "Glare",
+      "desc": "밝은 영역에 빛이 번지거나 별 모양으로 빛나는 효과를 추가합니다."
+    },
+    {
+      "name": "Image Output",
+      "desc": "최종 합성된 이미지를 파일로 저장하거나 뷰어로 내보냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "렌더링 이미지에 글로우(Glare) 효과 주기",
+      "steps": [
+        "Compositor 화면에서 Shift+A를 눌러 Glare 노드를 추가합니다.",
+        "Render Layers 노드의 Image와 Glare 노드의 Image를 연결합니다.",
+        "Glare 노드 유형을 Ghosts 또는 Fog Glow로 설정하여 빛 번짐 강도를 조절합니다.",
+        "Glare 노드의 출력을 Composite 노드에 연결하여 렌더링합니다."
+      ]
+    },
+    {
+      "title": "Color Correction으로 전체 톤 보정하기",
+      "steps": [
+        "Shift+A를 눌러 Color Correction 노드를 추가합니다.",
+        "Render Layers 노드와 Composite 노드 사이에 해당 노드를 삽입합니다.",
+        "Saturation과 Contrast 값을 조절하여 전체적인 색동감과 대비를 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Use Nodes를 켜지 않아 노드를 연결해도 렌더링에 반영되지 않는 실수 → Compositing 창 상단의 Use Nodes 체크박스를 켭니다.",
+    "Viewer 노드가 없거나 최종 Composite 노드에 연결되지 않아 화면이 안 나오는 실수 → 최종 출력을 Composite 노드의 Image 입력에 연결합니다."
+  ],
+  "related": [
+    "Render Layers",
+    "Color Balance",
+    "Alpha Over",
+    "Viewer"
+  ],
+  "videos": [
+    {
+      "id": "_7N7emOvDko",
+      "title": "A FULL Blender Compositor Course!",
+      "author": "SharpWind"
+    },
+    {
+      "id": "kAWfjBKcgFc",
+      "title": "Start COMPOSITING in Blender 5.0 in 16 minutes | Blender Compositor Tutorial #b3d",
+      "author": "Pau the Hueman"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Compositor%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T11:39:03.517499+00:00"
+}

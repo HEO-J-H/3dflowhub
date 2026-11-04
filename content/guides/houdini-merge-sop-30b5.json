@@ -1,0 +1,81 @@
+{
+  "id": "houdini-merge-sop-30b5",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Merge SOP",
+  "title": "Merge — 여러 입력 합치기",
+  "summary": "Merge SOP 노드는 여러 개의 지오메트리 스트림을 하나로 합쳐주는 노드입니다. 서로 다른 객체나 분산된 파츠를 하나의 네트워크로 모을 때 사용합니다.",
+  "when": [
+    "서로 다른 경로에서 생성된 여러 개의 모델을 하나로 합칠 때",
+    "포인트나 Primitive 데이터를 하나로 병합하여 후속 연산을 수행할 때",
+    "산발적인 지오메트리를 정리해 뷰포트와 네트워크를 깔끔하게 유지할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Merge를 검색하여 Merge SOP 노드를 생성하고 선택합니다.",
+    "합치고자 하는 각 Geometry Nodes의 출력(Output) 포트를 Merge 노드의 입력(Input) 포트에 각각 연결합니다.",
+    "Merge 노드를 선택한 상태로 디스플레이(Display) 플래그를 켭니다.",
+    "뷰포트에서 여러 모델이 하나의 객체로 합쳐진 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Fast Find",
+      "desc": "포인트 번호가 겹치지 않는 경우 빠르게 병합합니다."
+    },
+    {
+      "name": "Bypass",
+      "desc": "노드의 연산을 일시적으로 건너뜁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 개의 독립된 박스 결합하기",
+      "steps": [
+        "Box SOP 노드 두 개를 각각 생성합니다.",
+        "Merge SOP 노드를 생성합니다.",
+        "두 Box 노드의 출력을 Merge 노드에 연결합니다.",
+        "뷰포트에서 두 박스가 동시에 출력되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "Particle과 지오메트리 합치기",
+      "steps": [
+        "Scatter SOP으로 생성한 포인트들을 준비합니다.",
+        "복사할 오브젝트를 준비합니다.",
+        "Merge SOP에 두 스트림을 연결하여 하나의 데이터로 묶습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 포트를 잘못 연결함 → Merge 노드에 올바른 순서로 입력(Input)이 들어갔는지 네트워크 선을 확인합니다.",
+    "디스플레이 플래그를 켜지 않음 → 최종 결과물을 볼 Merge 노드 우측의 파란색 디스플레이 플래그를 활성화합니다."
+  ],
+  "related": [
+    "Boolean SOP",
+    "Copy to Points SOP",
+    "Split SOP",
+    "Object Merge SOP"
+  ],
+  "videos": [
+    {
+      "id": "JnQWmM3anzE",
+      "title": "Complete Houdini Bootcamp 06: Merge and connect and disconnect nodes",
+      "author": "Chico Media"
+    },
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Merge%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Merge",
+    "Merge SOP"
+  ],
+  "at": "2026-11-04T11:39:07.861926+00:00"
+}
