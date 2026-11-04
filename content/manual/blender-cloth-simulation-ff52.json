@@ -1,0 +1,142 @@
+{
+  "id": "blender-cloth-simulation-ff52",
+  "guide_id": "blender-cloth-simulation-ff52",
+  "tool": "Blender",
+  "name": "Cloth simulation",
+  "title": "Cloth — 천 시뮬레이션",
+  "overview": "Blender의 Cloth 시뮬레이션은 물리 방정식을 기반으로 메쉬 Vertex의 위치를 계산하여 실제 천의 물리적 성질과 주름을 재현하는 기능입니다. 내장된 윈드(Wind), 콜리전(Collision), 핀(Pin) 시스템과 연동되어 깃발, 커튼, 의류 등 유연한 표면의 움직임을 시뮬레이션합니다.",
+  "access": "Properties 패널(오른쪽 하단 영역) → Physics(물리학, 공 모양 아이콘) 탭 → Cloth 버튼 클릭. 또는 뷰포트에서 오브젝트 선택 후 검색 메뉴(F3 또는 Spacebar)에서 'Cloth' 검색.",
+  "options": [
+    {
+      "name": "Quality",
+      "value": "기본값 5 (범격 1~70)",
+      "effect": "시뮬레이션 연산의 정밀도를 결정하며, 값이 높을수록 주름이 정교해지고 자가 충돌(Self-Collision) 오류가 줄어듭니다.",
+      "tip": "작업 중에는 낮게(3~5) 설정해 속도를 확보하고, 최종 렌더링 직전에 8~12 이상으로 높여줍니다."
+    },
+    {
+      "name": "Mass",
+      "value": "기본값 0.3 kg",
+      "effect": "천의 무게를 설정합니다. 값이 클수록 관성이 커지고 중력에 의해 아래로 빠르게 처집니다.",
+      "tip": "실크 같은 얇은 천은 0.05~0.1 kg, 두꺼운 가죽이나 코트는 1.0 kg 이상으로 설정합니다."
+    },
+    {
+      "name": "Tension",
+      "value": "기본값 15",
+      "effect": "천이 늘어나는 것에 저항하는 강도를 조절합니다.",
+      "tip": "값이 너무 낮으면 천이 고무줄처럼 과도하게 늘어지며, 너무 높으면 자연스러운 주름이 잡히지 않습니다."
+    },
+    {
+      "name": "Compression",
+      "value": "기본값 15",
+      "effect": "천이 압축되거나 구겨질 때 버티는 저항력을 설정합니다.",
+      "tip": "Tension과 유사한 값으로 유지하되, 주름을 더 촘촘하게 만들려면 낮추고 탄탄하게 유지하려면 높입니다."
+    },
+    {
+      "name": "Shear",
+      "value": "기본값 15",
+      "effect": "대각선 방향으로 뒤틀리거나 비틀리는 힘에 대한 저항을 제어합니다.",
+      "tip": "직사각형 메쉬의 마름모꼴 변형을 막아주며 일반적인 직물 표현 시 Tension과 같은 값을 줍니다."
+    },
+    {
+      "name": "Bending",
+      "value": "기본값 0.5",
+      "effect": "천이 꺾이거나 접힐 때 발생하는 저항력을 조절합니다.",
+      "tip": "실크처럼 부드러운 천은 0.01~0.1, 두꺼운 천이나 종이, 펠트는 1.0 이상으로 높여줍니다."
+    },
+    {
+      "name": "Pin Group",
+      "value": "Vertex Group 이름 선택",
+      "effect": "지정된 Vertex Group에 속한 버텍스들을 공간에 고정하여 움직이지 않게 합니다.",
+      "tip": "깃발의 기둥 쪽이나 옷걸이에 걸린 어깨 부분을 고정할 때 필수적으로 사용합니다."
+    },
+    {
+      "name": "Pressure",
+      "value": "체크박스 활성화 시 사용",
+      "effect": "천 내부의 공기 압력을 시뮬레이션하여 풍선이나 쿠션 같은 입체적인 볼륨감을 만듭니다.",
+      "tip": "쿠션이나 빵빵한 의류를 만들 때 쓰며, Uniform Pressure 값을 조절해 팽창 정도를 바꿉니다."
+    },
+    {
+      "name": "Object Collisions",
+      "value": "Collisions 펼쳐기 → Active 체크",
+      "effect": "다른 오브젝트와의 충돌을 계산하여 천이 물체를 통과하지 않고 감싸도록 합니다.",
+      "tip": "캐릭터 몸체나 가구 오브젝트에도 Physics 탭에서 Collision을 활성화해야 정상 작동합니다."
+    },
+    {
+      "name": "Self Collision",
+      "value": "체크박스 활성화",
+      "effect": "천 스스로가 겹치거나 맞닿을 때 서로 파고들지 않도록 밀어내는 계산을 수행합니다.",
+      "tip": "옷 주름이 서로 겹칠 때 생기는 뚫림 현상을 방지하지만 연산량이 크게 증가합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Object Mode 시뮬레이션 제어",
+      "desc": "Timeline에서 스페이스바를 눌러 전체 Timeline 동안의 물리 연산 결과를 확인하고 Baking을 수행하는 모드입니다."
+    },
+    {
+      "name": "Edit Mode 메쉬 편집",
+      "desc": "Tab 키를 눌러 진입하며, 엣지 루프 추가나 서브디비전(Subdivide)을 통해 시뮬레이션 Resolution를 높이는 모드입니다."
+    },
+    {
+      "name": "Weight Paint 모드",
+      "desc": "핀 그룹(Pin Group)이나 가중치를 브러시로 칠해 특정 부위의 천 강성이나 고정 상태를 세밀하게 조절하는 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "바람에 휘날리는 깃발 제작",
+      "steps": [
+        "1. Plane 오브젝트를 생성하고 세그먼트를 충분히 나눈 뒤, Object Mode에서 Cloth를 적용합니다.",
+        "2. Edit Mode에서 깃발의 왼쪽 세로 변 버텍스들을 선택하고 Vertex Groups에 할당한 뒤 Pin Group으로 지정합니다.",
+        "3. 힘(Force Field) 메뉴에서 Wind 오브젝트를 추가하고 깃발 쪽을 향하도록 회전시킵니다.",
+        "4. Timeline 재생(Spacebar)을 통해 바람에 깃발이 펄럭이는 모습을 확인합니다."
+      ]
+    },
+    {
+      "title": "식탁보가 테이블 위에 자연스럽게 덮이는 연출",
+      "steps": [
+        "1. 테이블 위에 얹을 넓은 Plane을 만들고 촘촘하게 세분화(Subdivide)합니다.",
+        "2. 테이블 오브젝트를 선택하고 Physics 탭에서 Collision을 활성화합니다.",
+        "3. Plane에 Cloth를 적용하고 Mass를 0.2 kg으로 낮춘 뒤 시뮬레이션을 재생합니다.",
+        "4. 중력에 의해 테이블 위로 천이 흘러내려 안착하면 마음에 드는 프레임에서 Modifier 탭의 Cloth Modifier Apply를 누릅니다."
+      ]
+    },
+    {
+      "title": "볼륨감이 있는 쿠션(Pillow) 만들기",
+      "steps": [
+        "1. 사각형 쿠션 형태의 메쉬를 준비하고 접합면이 닫혀있는지 확인합니다.",
+        "2. Physics 탭에서 Cloth를 켜고 Pressure 옵션을 활성화합니다.",
+        "3. Uniform Pressure 값을 1~3 사이로 입력하여 내부 공기 압력을 높입니다.",
+        "4. 시뮬레이션을 재생하면 납작했던 쿠션이 부풀어 오르며 자연스러운 바느질 주름이 형성됩니다."
+      ]
+    }
+  ],
+  "performance": [
+    "메쉬의 폴리곤 수(Vertex Count)가 많을수록 시뮬레이션 속도가 급격히 느려지므로 적정 수준의 서브디비전을 유지합니다.",
+    "시뮬레이션 전용 캐시(Cache)를 Disk Cache로 설정하고 Bake를 진행하면 매번 재생할 때마다 다시 계산하는 부하를 줄일 수 있습니다.",
+    "Self Collision(자가 충돌) 옵션은 연산 부하가 매우 크므로, 주름이 겹치는 복잡한 상황이 아니라면 꺼두거나 Distance 값을 낮게 설정합니다.",
+    "Viewport Display 설정을 조절해 시뮬레이션 중 불필요한 Particle이나 고해상도 Modifier(Subdivision Surface 등)를 일시적으로 끕니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "천이 충돌체를 그대로 통과해 아래로 떨어집니다.",
+      "fix": "충돌체 오브젝트에도 Physics 탭에서 Collision이 활성화되어 있는지 확인하고, 필요시 Collision 설정의 Thickness Outer 값을 높여줍니다."
+    },
+    {
+      "symptom": "시뮬레이션 재생 시 천이 찢어지거나 사방으로 폭발하듯 튀어 나옵니다.",
+      "fix": "메쉬의 스케일(Scale)이 Object Mode에서 적용(Apply)되지 않았을 확률이 높습니다. Ctrl+A → All Transforms를 실행한 후 다시 시도합니다."
+    },
+    {
+      "symptom": "주름이 너무 뻣뻣하고 각져서 종이처럼 보입니다.",
+      "fix": "메쉬의 폴리곤 밀도가 너무 낮기 때문입니다. Edit Mode에서 Subdivide를 추가 실행하거나 Bending 값을 낮춰줍니다."
+    },
+    {
+      "symptom": "Bake한 시뮬레이션을 수정하고 싶지만 버튼이 비활성화되어 있습니다.",
+      "fix": "캐시가 이미 베이크된 상태이므로 Physics 탭의 Cache 메뉴에서 'Free Bake'를 먼저 누른 후 설정을 수정합니다."
+    }
+  ],
+  "versions": "Blender 2.8x 이후 버전부터 물리 엔진 전반이 개편되어 Self Collision과 압력(Pressure) 시뮬레이션의 안정성이 크게 향상되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cloth%20simulation",
+  "grounded": true,
+  "at": "2026-11-04T18:31:00+00:00"
+}
