@@ -1,0 +1,85 @@
+{
+  "id": "blender-rigify-9cae",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Rigify",
+  "title": "Rigify — 자동 캐릭터 리그",
+  "summary": "Blender의 기본 제공 애드온인 Rigify는 복잡한 휴머노이드 및 동물 캐릭터 리깅 과정을 자동화하여 몇 번의 클릭만으로 전문가 수준의 Controller를 생성해 줍니다.",
+  "when": [
+    "사람이나 크리처 모델링을 빠르게 리깅하고 싶을 때",
+    "스킨 웨이트 작업 후 애니메이션 테스트를 바로 시작하고 싶을 때",
+    "복잡한 관절 구조와 페이셜 Controller를 표준화된 방식으로 구축할 때"
+  ],
+  "steps": [
+    "Edit 패널의 Preferences → Add-ons 에서 Rigify를 검색해 활성화합니다.",
+    "Shift+A 숏컷을 누르고 Armature 메뉴에서 Human (또는 원하는 리그 기본형)을 생성합니다.",
+    "Edit Mode(Tab)에서 캐릭터의 체형(어깨, 무릎, 팔꿈치 등)에 맞춰 뼈대의 위치를 정확히 맞춥니다.",
+    "생성된 Armature의 Properties 창에서 Data(사람 모양 아이콘) 탭을 열고 Rigify 버튼 아래의 Generate Rig를 클릭합니다.",
+    "새로 생성된 제어용 릭(Rig)과 캐릭터 메시를 선택한 후 Ctrl+P를 누르고 With Automatic Weights를 선택해 웨이트를 바인딩합니다."
+  ],
+  "params": [
+    {
+      "name": "Generate Rig",
+      "desc": "메타 릭(Meta-rig) 구조를 바탕으로 실제 애니메이션용 Controller와 본 세트를 생성합니다."
+    },
+    {
+      "name": "Bone Layers",
+      "desc": "필요한 Controller 그룹만 화면에 켜고 꺼서 복잡한 뷰포트를 정리합니다."
+    },
+    {
+      "name": "IK/FK Switch",
+      "desc": "팔다리의 움직임을 역기 kinematics(IK)와 순기 kinematics(FK) 사이로 전환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 인간형 캐릭터 리깅",
+      "steps": [
+        "Human 메타 릭을 생성하고 캐릭터의 관절 위치에 맞게 본을 배치합니다.",
+        "Generate Rig를 실행해 최종 Controller 릭을 생성합니다.",
+        "메시와 릭을 선택하고 자동 웨이트로 결합하여 움직임을 테스트합니다."
+      ]
+    },
+    {
+      "title": "애니메이션 포징 작업",
+      "steps": [
+        "생성된 릭의 Controller를 선택하고 Pose Mode에 진입합니다.",
+        "IK/FK 스위치와 페이스 Controller를 활용해 원하는 포즈를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "본의 위치가 대칭이 아님 → 메타 릭 수정 전 X-Axis Mirror 옵션을 켜고 대칭 편집을 수행합니다.",
+    "스킨 웨이트가 찌그러짐 → Automatic Weights 적용 후 Weight Paint 모드에서 비정상적인 Vertex 영향을 수동으로 수정합니다.",
+    "Controller가 보이지 않음 → Bone Layers 설정이나 뷰포트 오버레이 옵션에서 본 표시가 켜져 있는지 확인합니다."
+  ],
+  "related": [
+    "Weight Paint",
+    "Armature",
+    "Vertex Groups",
+    "Automatic Weights"
+  ],
+  "videos": [
+    {
+      "id": "SWd3dntmhG4",
+      "title": "[Blender Rigify 2026] Ch 1: Course Intro",
+      "author": "CGDive (Blender Rigging Tuts)"
+    },
+    {
+      "id": "eoird3MVCNw",
+      "title": "[Blender 4.0 RIGIFY] Ch 2: Rigging Basics",
+      "author": "CGDive (Blender Rigging Tuts)"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Rigify",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Preferences",
+    "Add",
+    "Rigify"
+  ],
+  "at": "2026-11-04T13:39:22.262374+00:00"
+}

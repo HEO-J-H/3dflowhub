@@ -12017,5 +12017,74 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T13:39:07+00:00",
+    "kind": "proposal",
+    "id": "p-d090910a86",
+    "title": "웹 버전(web/) 성능 최적화 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 RAG 문서화가 완료되었으나 브라우저에서 직접 PBR 및 높이맵 메시를 처리하는 web/ 디렉토리의 최적화 가이드가 부족함.",
+    "proposal": "docs/web-optimization.md를 신규 작성하여 프론트엔드 연산 부하 줄이기 및 메모리 관리 방안을 문서화합니다.",
+    "expected": "웹 사용자들의 렌더링 성능 향상 및 클라이언트 에러 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:39:07+00:00",
+    "kind": "proposal",
+    "id": "p-abcce9f116",
+    "title": "단일 이미지 3D 변환 에러 핸들링 UI 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 유효성 검사(PR #40~#44)가 진행 중이나, 웹 인터페이스(web/)에서 사용자에게 명확한 에러 메시지를 보여주는 UI 피드백 보완이 필요함.",
+    "proposal": "web/index.html 및 관련 Script에서 잘못된 이미지나 URL 입력 시 사용자에게 직관적인 오류 알림(Alert/Toast) 표시 로직 추가",
+    "expected": "사용자 경험(UX) 개선 및 잘못된 입력으로 인한 프론트엔드 예외 방지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:39:43.708831+00:00",
+    "kind": "decision",
+    "id": "p-d090910a86",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T13:39:43.723383+00:00",
+    "kind": "decision",
+    "id": "p-abcce9f116",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T13:39:46.899365+00:00",
+    "kind": "triage",
+    "id": "p-d090910a86",
+    "verdict": "agent",
+    "reason": "docs/web-optimization.md 신규 작성 및 프론트엔드 연산 부하 줄이기·메모리 관리 문서화는 AI 에이전트가 코드로 수행할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-04T13:39:48.022880+00:00",
+    "kind": "triage",
+    "id": "p-abcce9f116",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋 내역에 웹 버전 에러 핸들링 및 URL 유효성 검사 UI 피드백 관련 작업들이 충분히 반영되어 있음"
+  },
+  {
+    "at": "2026-11-04T13:39:48.037109+00:00",
+    "kind": "decision",
+    "id": "p-abcce9f116",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 내역에 웹 버전 에러 핸들링 및 URL 유효성 검사 UI 피드백 관련 작업들이 충분히 반영되어 있음"
   }
 ]

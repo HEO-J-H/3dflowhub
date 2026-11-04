@@ -1,0 +1,87 @@
+{
+  "id": "houdini-polywire-sop-6fdd",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "PolyWire SOP",
+  "title": "PolyWire — 선을 튜브로",
+  "summary": "PolyWire SOP는 라인(Line)이나 커브(Curve) 형태의 지오메트리를 따라 굵기가 있는 3D 파이프나 케이블 형태의 폴리곤 메시로 변환해 주는 Procedural 노드입니다.",
+  "when": [
+    "전선, 케이블, 파이프 등 가늘고 긴 형태의 구조물을 절차적으로 생성할 때",
+    "커브(Curve)나 스파인(Spine)을 따라 입체적인 튜브 형태의 메시를 빠르게 뽑아내야 할 때",
+    "복잡한 네트워크 구조나 추상적인 라인 아트 디자인을 3D 볼륨으로 변환할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 polywire를 입력하고 PolyWire SOP 노드를 선택하여 배치합니다.",
+    "첫 번째 입력(First Input)에 변환할 라인(Line) 또는 커브(Curve) 지오메트리를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Wire Radius 값을 조절하여 파이프의 두께를 설정합니다.",
+    "세부 파라미터에서 Divisions 등의 옵션을 조절하여 원형 단면의 부드러움을 결정합니다."
+  ],
+  "params": [
+    {
+      "name": "Wire Radius",
+      "desc": "생성되는 파이프나 와이어의 전체 반지름(굵기)을 설정합니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "파이프 단면의 원형 방향 폴리곤 분할(Segments) 수를 조절합니다."
+    },
+    {
+      "name": "Segment Overlap",
+      "desc": "커브의 꺾이는 지점에서 면이 겹치거나 깨지는 것을 방지하기 위한 오프셋을 조절합니다."
+    },
+    {
+      "name": "Radius Attribute",
+      "desc": "포인트에 지정된 어트리뷰트를 사용하여 지점마다 다른 굵기의 와이어를 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "전봇대 사이의 늘어진 전선 만들기",
+      "steps": [
+        "Line SOP로 두 점 사이의 기본 직선을 만듭니다.",
+        "Resample SOP를 추가해 점의 간격을 촘촘하게 만듭니다.",
+        "PolyWire SOP를 연결하고 Wire Radius를 얇게 설정합니다."
+      ]
+    },
+    {
+      "title": "굵기가 변하는 유기적 넝쿨 만들기",
+      "steps": [
+        "Curve SOP로 자유로운 곡선을 그립니다.",
+        "Attribute Wrangle에서 pscale 어트리뷰트를 활용해 시작과 끝의 굵기 차이를 줍니다.",
+        "PolyWire SOP에서 Radius Attribute에 pscale을 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "와이어가 너무 두껍게 나오거나 면이 깨짐 → Wire Radius 값이 너무 크거나 커브의 곡률 반경보다 큽니다. 값을 줄이거나 Resample SOP로 포인트를 더 추가하세요.",
+    "파이프 단면이 너무 각져 보임 → Divisions 값이 너무 낮습니다. 파라미터에서 Divisions 값을 높여 원형 단면을 부드럽게 만드세요."
+  ],
+  "related": [
+    "Sweep SOP",
+    "Curve SOP",
+    "Resample SOP",
+    "Extrude SOP"
+  ],
+  "videos": [
+    {
+      "id": "YD5LsNKHyo8",
+      "title": "Houdini 18 SweepSOP vs. PolyWire",
+      "author": "Werner Ziemerink"
+    },
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20PolyWire%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "PolyWire SOP"
+  ],
+  "at": "2026-11-04T13:39:27.096305+00:00"
+}
