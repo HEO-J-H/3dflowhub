@@ -1,45 +1,49 @@
 {
-  "title_ko": "AI 3D 모션 생성 PASPA — 장시간 음성 동기화 모션 제어",
+  "title_ko": "PASPA: 지속형 상태와 흐름 매칭을 통한 장시간 코스피치 모션 생성",
   "title": "Past as State, Present as Attention: Persistent-State Blockwise Flow Matching for Long-Horizon Co-Speech Motion Generation",
   "url": "https://arxiv.org/abs/2610.32373",
   "domain": "AI 3D",
   "category": "3D 생성 AI",
   "topic": "연구·논문",
   "tags": [
-    "AI 3D",
-    "모션 생성",
+    "Co-Speech Motion",
     "Flow Matching",
-    "NeurIPS",
-    "음성 동기화"
+    "Diffusion Models",
+    "Gated DeltaNet",
+    "Digital Humans"
   ],
-  "summary": "NeurIPS 2026에 채택된 PASPA는 과거의 스타일 상태와 현재의 지역적 동역학을 분리하여 장시간 음성 동기화 모션 생성의 품질을 높이는 새로운 프레임워크입니다.",
-  "insight": "장시간 캐릭터 애니메이션과 음성 동기화(Co-speech motion) 작업에서 기존 프레임워크가 겪던 모션 표류(drift) 현상과 데이터 학습의 한계를 구조적으로 해결한 연구입니다. 특히 긴 시퀀스를 처리할 때 과거의 스타일을 인터 블록 지속 상태로 압축하고 현재 세그먼트를 양방향 셀프 어텐션으로 모델링하는 접근법은 게임 및 버추얼 아티스트들의 파이프라인에 큰 힌트를 줍니다. 방대한 모션 캡처 데이터나 긴 호흡의 캐릭터 연기를 자동화해야 하는 실무 개발자라면 프리필-디코디드(prefill-decode) 상태 캐싱과 결합된 이번 아키텍처를 주목할 필요가 있습니다. 향후 버추얼 아바타나 실시간 메타버스 플랫폼의 NPC 애니메이션 생성 파이프라인 고도화에 직접 적용될 수 있는 잠재력을 지니고 있습니다.",
+  "summary": "과거의 스타일 이력은 지속형 상태로 압축하고 현재 구간은 어텐션으로 모델링하여, 장시간 대사 동반 모션 생성 시 스타일 표류와 메모리 부담을 해결하는 기법입니다.",
+  "insight": "이 기술이 상용화되거나 발전한다면 가상 아바타나 디지털 인간 Pipeline 수십 초 이상의 긴 대사 동반 모션을 생성할 때 기존의 프레임 표류 현상을 크게 줄여줄 잠재력이 있습니다. 아티스트가 긴 호흡의 애니메이션을 제작할 때 반복적인 수동 수정 작업을 아끼고 일관된 캐릭터 스타일을 유지하는 데 도움을 줄 수 있을 것으로 보입니다 (가능성).",
   "sections": [
     {
-      "heading": "장시간 모션 생성의 구조적 한계와 비대칭성",
-      "body": "기존의 장시간 음성 동기화 모션 생성 방법들은 세그먼트 단위로 모션을 생성하는 과정에서 두 가지 한계에 직면했습니다. 최근 프레임의 짧은 시드에 의존하면 시간이 지날수록 모션이 표류하는 문제가 발생했고, 너무 긴 명시적 이력을 유지하면 데이터 학습이 어렵고 연산 비용이 컸습니다. 연구팀은 과거의 모션은 천천히 변하는 스타일을 담고 있어 압축적 요약이 필요한 반면, 현재 세그먼트는 빠르게 변하는 국소적 동역학을 보여 세밀한 모델링이 필요하다는 핵심 비대칭성을 발견했습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 코스피치(Co-speech) 모션 생성은 긴 시간 동안 시간적 일관성과 일관된 스타일을 유지하기 어렵습니다. 최근 프레임만 조건으로 쓰면 모션이 점진적으로 표류(drift)하고, 전체 히스토리를 유지하면 연산 비용이 커지며 제한된 데이터에서 학습이 어렵습니다."
     },
     {
-      "heading": "PASPA 프레임워크의 핵심 원리와 구조",
-      "body": "이러한 비대칭성에 착안하여 제안된 PASPA(Past-As-State, Present-as-Attention)는 과거의 이력을 인터 블록 지속 상태(inter-block persistent state)로 요약합니다. 동시에 현재 세그먼트는 블록 내 양방향 셀프 어텐션(intra-block bidirectional self-attention)을 통해 모델링합니다. 이 방식은 과거 데이터의 장기적인 스타일 일관성을 유지하면서도 현재의 디테일한 움직임을 자연스럽게 잡아냅니다."
+      "heading": "핵심 아이디어",
+      "body": "과거 모션은 천천히 변하는 스타일 특성을 담고 있어 컴팩트하게 요약되어야 하며, 현재 구간은 빠르게 변하는 로컬 다이내믹스를 가져 정밀한 모델링이 필요하다는 비대칭성에 착안했습니다. 이를 바탕으로 'Past-as-State, Present-as-Attention' 원리를 제안합니다."
     },
     {
-      "heading": "Flow Matching 기반의 효율적 학습과 롤아웃",
-      "body": "PASPA는 블록와이즈 Flow Matching 프레임워크 내에서 구현되었습니다. 가변적인 이력에 대해 효과적인 학습이 가능하도록 멀티 블록 감독(multi-block supervision) 기법을 도입했습니다. 또한 효율적인 롤아웃을 위해 프리필-디코디드 상태 캐싱(prefill-decode state caching)을 적용하여 연산 속도를 높였습니다."
+      "heading": "방법 (단계)",
+      "body": "PASPA는 블록 단위 흐름 매칭(Flow Matching) 프레임워크 내에서 구현됩니다. 과거 이력은 블록 간 지속형 상태 메커니즘(BGDN, Blockwise Gated DeltaNet)으로 누적하고, 현재 블록은 블록 내 양방향 셀프 어텐션(Self-Attention)으로 처리합니다. 또한 다중 블록 감독, 상태 캐싱, 하이브리드 분류기 프리 가이던스(CFG)를 결합합니다."
     },
     {
-      "heading": "향상된 조건 제어와 벤치마크 성능",
-      "body": "연구팀은 히스토리 및 음성 조건 제어를 강화하기 위해 하이브리드 분류기 프리 가이던스(hybrid classifier-free guidance)를 결합했습니다. 광범위한 공공 벤치마크 실험 결과, PASPA는 최첨단 수준의 FGD(Fréchet Gesture Distance) 성능을 달성했습니다. 이를 통해 긴 시퀀스 생성 시에도 모션의 스타일이 무너지지 않고 일관되게 유지됨을 입증했습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "공개 벤치마크 실험 결과, PASPA는 최신(SOTA) 수준의 FGD(Fréchet Gesture Distance) 성능을 달성했으며 긴 시퀀스 생성 전반에 걸쳐 모션 스타일을 잘 보존함을 입증했습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "프로젝트 웹사이트(https://ly403.github.io/PASPA/)가 제공되며, 깃허브 이슈 리포트 등의 링크가 포함되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "PASPA는 어떤 문제를 해결하기 위해 개발되었나요?",
-      "a": "장시간 음성 동기화 모션 생성 시 발생하는 모션 표류 현상과 긴 히스토리 유지에 따른 연산 비용 및 학습 한계를 해결하기 위해 개발되었습니다."
+      "q": "PASPA는 과거 히스토리를 어떻게 처리하나요?",
+      "a": "Gated DeltaNet(GDN)을 기반으로 한 블록 단위 지속형 상태 메커니즘을 통해 선행 블록들을 지속형 상태로 점진적으로 요약합니다."
     },
     {
-      "q": "과거 모션과 현재 세그먼트는 어떻게 다르게 처리되나요?",
-      "a": "과거 모션은 천천히 변하는 스타일을 담고 있어 인터 블록 지속 상태로 압축 요약되며, 현재 세그먼트는 빠르게 변하는 국소적 동역학을 반영하기 위해 블록 내 양방향 셀프 어텐션으로 모델링됩니다."
+      "q": "현재 구간은 어떤 방식으로 모델링합니까?",
+      "a": "블록 내 양방향 셀프 어텐션(blockwise self-attention)을 사용하여 정밀한 모션 디테일을 위한 전체적인 상호작용을 활성화합니다."
     }
   ],
   "media": {
@@ -51,5 +55,17 @@
   "id": "2026-10-26-ed0a896dd29145ae",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [
+    "프로젝트 웹사이트(https://ly403.github.io/PASPA/)에 접속하여 연구 결과와 데모 자료를 확인해 보세요."
+  ],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T09:18:30+00:00"
 }
