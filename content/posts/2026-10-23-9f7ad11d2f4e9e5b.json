@@ -1,49 +1,54 @@
 {
-  "title_ko": "TerraTransfer++ — 시연 데이터 없는 엔드투엔드 자율주행 플래너",
+  "title_ko": "TerraTransfer++: 사람 시연 없이 자율주행 정책 학습",
   "title": "TerraTransfer++: Demonstration-Free End-to-End Planner",
   "url": "https://arxiv.org/abs/2610.30319v1",
   "domain": "AI 3D",
   "category": "로보틱스·월드모델",
   "topic": "연구·논문",
   "tags": [
-    "TerraTransfer++",
-    "자율주행",
-    "3D Gaussian splatting",
-    "플래너",
-    "인공지능"
+    "Autonomous Driving",
+    "Self-Play",
+    "Trajectory Distillation",
+    "3D Gaussian Splatting",
+    "HUGSim",
+    "NAVSIM"
   ],
-  "summary": "TerraTransfer++는 사람의 시연 데이터 없이 자가 대국(Self-play)과 플로우 매칭을 활용해 최고 수준의 성능을 달성한 엔드투엔드 자율주행 플래너 논문입니다.",
-  "insight": "기존 모방 학습의 한계를 극복하기 위해 3D Gaussian splatting 환경과 결합된 자가 대국 기반 학습 방식을 제안하여 시뮬레이션 및 실무 파이프라인에 새로운 방향을 제시합니다. 대규모 주행 로그 수집 비용을 절감하면서도 안전 크리티컬 테일 케이스를 효과적으로 학습할 수 있어 AI 3D 및 로보틱스 엔지니어들에게 큰 시사점을 줍니다. 특히 폐쇄 루프 벤치마크에서 뛰어난 성능을 입증하여 향후 자율주행 시뮬레이터 및 월드 모델 구축 워크플로에 직접적인 응용이 기대됩니다.",
+  "summary": "휴먼 드라이빙 로그 없이 벡터 Simulator의 멀티에이전트 자가 대국(Self-play)과 흐름 매칭을 활용해 종단간 자율주행 및 계획 모델을 학습하는 새로운 패러다임을 제안합니다.",
+  "insight": "이번 연구에서 보여준 시뮬레이션 기반 자가 대국과 비전 3D 특징 정렬 구조는 향후 3D Gaussian Splatting이나 대규모 가상 환경(Simulated 3D Environments)에서 데이터셋 수집 비용을 획기적으로 낮추는 영감을 줄 수 있습니다. 특히 휴먼 캡처나 수동 레이블링에 의존하지 않고 에이전트 간 상호작용만으로 고도화된 행동 패턴을 학습하는 방식은 게임 AI 및 가상 시뮬레이션 에이전트 구축에 응용될 수 있는 가능성이 큽니다.",
   "sections": [
     {
-      "heading": "기존 엔드투엔드 자율주행 학습의 한계",
-      "body": "기존의 모방 학습은 플릿 규모의 주행 로그가 필요하며 이는 안전 임계 상황의 분포를 충분히 커버하지 못하는 비용 문제가 있었습니다. 포토리얼리스틱 시뮬레이터에서의 폐쇄 루프 강화학습 또한 샘플 효율성과 렌더링 비용, 대형 비전 백본의 연산 병목에 직면해 있습니다. 이러한 한계는 데이터 수집과 훈련 과정에서 막대한 비용과 시간 손실로 이어집니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 종단간 자율주행(End-to-end autonomous driving)은 비용이 많이 드는 모방 학습(Imitation learning)이나 폐쇄형 강화학습에 의존하며, 특히 안전 핵심 영역(충돌, 회피 등)의 드라이빙 로그가 절대적으로 부족한 문제를 겪습니다. 또한 Simulator에서 렌더링과 비전 백본을 거치는 비용이 커서 처음부터 주행 능력을 학습하기 어렵습니다."
     },
     {
-      "heading": "자가 대국 기반 시뮬레이션 경제학의 변화",
-      "body": "벡터화된 시뮬레이터에서의 자가 대국은 초당 수백만 번의 롤아웃 스텝을 통해 충돌, 아슬아슬한 상황, 복구 과정 등 자연스러운 다양성을 지닌 상태 분포를 제공합니다. 이는 어떠한 주행 로그에도 포함되지 않은 데이터로, 기본적 주행 품질 보상을 통해 고도로 반응적인 정책을 이끌어냅니다. 이를 통해 학습 경제학의 패러다임을 전환할 수 있습니다."
+      "heading": "핵심 아이디어",
+      "body": "주행 학습 및 계획 학습을 '보는 것(Perception)' 학습으로부터 분리하여, 인간의 시연(Demonstration)을 전혀 사용하지 않고 자가 대국(Self-play)을 통해 주행 정책을 먼저 사전 훈련합니다. 이후 시뮬레이션 롤아웃을 흐름 매칭(Flow-matching) 기반의 경로 교사(Trajectory teacher)로 증류하고, 사전 훈련된 비전 백본(DINOv3 + Adapter)에 경량 어댑터를 붙여 교사의 행동 및 구조적 표현을 흉내 내도록 정렬합니다."
     },
     {
-      "heading": "TerraTransfer++의 핵심 학습 아키텍처",
-      "body": "연구팀은 단일 정책을 자가 대국으로 사전 학습한 뒤, 그 롤아웃을 계획까지 수행하는 플로우 매칭 궤적 교사 모델로 증류했습니다. 동결된 사전 학습 비전 백본 위에 경량 어댑터를 훈련시켜 교사의 잠재 공간을 재현하며, 행동 KL 다이버전스, 배치 관계형 저랭크 구조 손실, 궤적 매칭 손실을 활용합니다. 모든 타겟이 자가 대국 정책으로 역추적되므로 기록된 주행 궤적에 대한 감독이 필요 없습니다."
+      "heading": "방법 (단계)",
+      "body": "1단계는 벡터 시뮬레이터인 TerraZero에서 PPO를 사용해 정책 $\\pi_{\\theta}$를 타뷸라 라사(Tabula rasa)로 자가 대국 학습합니다. 2단계에서는 이 정책을 자가 대국 교사로 삼고 롤아웃을 경로 교사로 증류합니다. 3단계에서는 고정된 교사에 비전 학생을 정렬하여, 액션 KL 발산, 배치 관계형 저랭크 구조적 손실, 그리고 궤적 매칭 손실을 통해 최종 모델을 완성합니다."
     },
     {
-      "heading": "시연 데이터 배제와 페어드 데이터셋 활용",
-      "body": "모방 학습 사전 훈련의 기반이 되는 큐레이션된 전문가 시연 데이터가 전혀 필요 없으며, (이미지, 장면 상태) 프레임으로 구성된 페어드 데이터셋만으로 충분합니다. 정렬 과정에서 실제 주행 로그에 의존하지 않으므로 데이터 수집의 제약에서 자유롭습니다. 이는 다양한 환경으로의 확장성과 일반화 성능을 크게 높여줍니다."
+      "heading": "결과 (논문 수치)",
+      "body": "자가 대국 교사로부터 얻은 폐쇄형 학생 모델은 포토리얼리스틱 3D Gaussian Splatting 벤치마크인 HUGSim에서 기존의 모든 공개된 모방 기반 종단간 방법을 상회하는 총합 HD-Score 0.548을 기록했습니다. NAVSIMv2 navhard에서는 59.4 EPDMS, NAVSIMv1 navtest에서는 95.5 PDMS를 달성하여 기존 방법들을 뛰어넘었습니다."
     },
     {
-      "heading": "벤치마크 성능 및 검증 결과",
-      "body": "단 하나의 자가 대국 교사 모델로부터 두 가지 엔드투엔드 학생 모델을 도출해 냈습니다. 포토리얼리스틱 3D Gaussian splatting 폐쇄 루프 벤치마크인 HUGSim에서 기존에 출판된 모든 모방 기반 엔드투엔드 방법을 능가하는 폐쇄 루프 정책을 달성했습니다. 또한 NAVSIM navhard에서 59.4 EPDMS, navtest에서 95.5 PDMS를 기록하며 인간 시연 없이도 기존 최고 기록들을 뛰어넘었습니다."
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "벡터 상태를 기반으로 시작하여 이미지 기반으로 정류하는 과정에서 페어링된 (이미지, 장면 상태) 프레임 데이터셋이 필요하며, 렌더링 비용 자체를 완전히 배제하기보다는 오프라인 데이터 수집 단계로 이전했습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 본문에서는 GitHub 이슈 링크(https://github.com/arXiv/html_feedback, https://github.com/brucemiller/LaTeXML) 및 HUGSim 관련 저장소(https://github.com/hyzhou404/HUGSIM) 등이 언급되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "TerraTransfer++는 어떤 방식으로 학습 데이터를 확보하나요?",
-      "a": "사람의 전문가 시연 데이터나 대규모 주행 로그 없이, 벡터화된 시뮬레이터에서의 자가 대국(Self-play)과 (이미지, 장면 상태) 페어드 데이터셋만을 활용하여 학습합니다."
+      "q": "TerraTransfer++는 학습 시 인간의 주행 시연(Demonstration) 데이터를 사용합니까?",
+      "a": "아니오. 인간의 시연이나 기록된 주행 로그를 지도(Supervision)로 전혀 사용하지 않습니다."
     },
     {
-      "q": "3D Gaussian splatting은 이 연구에서 어떻게 활용되나요?",
-      "a": "포토리얼리스틱 3D Gaussian splatting 기반의 폐쇄 루프 벤치마크인 HUGSim 환경에서 개발된 모델의 폐쇄 루프 성능을 평가하고 입증하는 데 사용되었습니다."
+      "q": "폐쇄형 학생 모델이 평가받은 3D Gaussian Splatting 벤치마크의 이름은 무엇입니까?",
+      "a": "HUGSim입니다."
     }
   ],
   "media": {
@@ -55,5 +60,18 @@
   "id": "2026-10-23-9f7ad11d2f4e9e5b",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [
+    "{'step': 1, 'description': 'HUGSim 공식 GitHub 저장소 확인', 'link': 'https://github.com/hyzhou404/HUGSIM'}"
+  ],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/hyzhou404/HUGSIM"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T10:29:10+00:00"
 }
