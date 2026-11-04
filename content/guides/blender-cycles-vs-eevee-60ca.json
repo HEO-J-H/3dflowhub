@@ -5,7 +5,7 @@
   "group": "렌더링",
   "name": "Cycles vs EEVEE",
   "title": "Cycles와 EEVEE 차이",
-  "summary": "Cycles와 EEVEE는 Blender의 두 렌더 엔진으로, 각각 물리 기반 경로 추적과 실시간 레이 트레이싱을 제공합니다.",
+  "summary": "Cycles와 EEVEE는 Blender의 두 렌더 엔진으로, 각각 물리 기반 경로 추적과 실시간 레이 트레이싱을 제공하며, 최신 버전에서는 EEVEE의 라이트 링크 및 멀티패스 컴포지팅 기능이 강화되었습니다.",
   "when": [
     "고품질 포토리얼리즘이 필요할 때 (Cycles)",
     "실시간 피드백이 중요한 씬이나 게임 Prototype 제작 시 (EEVEE)",
@@ -15,7 +15,7 @@
     "Properties → Render 탭 → Render Engine 드롭다운에서 Cycles 또는 EEVEE 선택",
     "Cycles: Sampling → Samples 섹션에서 Render와 Viewport 값을 설정 (예: 128)",
     "EEVEE: Sampling → Render → Samples 값을 설정 (예: 64)",
-    "필요 시 Light → Light Settings 에서 Shadow Mode 등을 엔진에 맞게 조정",
+    "필요 시 Light → Light Settings 에서 Shadow Mode 및 Light Linking 등을 엔진에 맞게 조정",
     "Render → Render Image (F12) 로 최종 이미지 출력"
   ],
   "params": [
@@ -42,6 +42,10 @@
     {
       "name": "Bloom",
       "desc": "EEVEE에서 밝은 영역 주변에 빛 번짐 효과"
+    },
+    {
+      "name": "Light & Shadow Linking",
+      "desc": "EEVEE에서 Cycles와 동일한 수준으로 특정 광선과 그림자 영향 제어 가능"
     }
   ],
   "examples": [
@@ -97,16 +101,24 @@
     "EEVEE"
   ],
   "at": "2026-11-02T03:28:33.850092+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-28-a38d8fc18a9e0ff4",
-      "title": "Blender 튜토리얼 — Eevee 시네마틱 조명 세팅법",
-      "url": "https://www.blendernation.com/2026/10/28/cinematic-lighting-for-3d-environments-the-monastery-dungeon/"
-    },
-    {
-      "key": "c:blender-4-3-c500e",
-      "title": "Blender 4.3 바뀐 점 정리",
-      "url": "https://developer.blender.org/docs/release_notes/4.3/"
+      "at": "2026-11-04T08:10:26+00:00",
+      "what": "Blender 최신 버전의 EEVEE 라이트 링크 및 멀티패스 컴포지팅 기능 추가 반영과 실시간 시네마틱 조명 세팅 팁을 가이드에 업데이트했습니다.",
+      "sources": [
+        {
+          "title": "Blender 튜토리얼 — Eevee 시네마틱 조명 세팅법",
+          "url": "https://www.blendernation.com/2026/10/28/cinematic-lighting-for-3d-environments-the-monastery-dungeon/"
+        },
+        {
+          "title": "Blender 4.3 바뀐 점 정리",
+          "url": "https://developer.blender.org/docs/release_notes/4.3/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-28-a38d8fc18a9e0ff4",
+        "c:blender-4-3-c500e"
+      ]
     }
   ]
 }

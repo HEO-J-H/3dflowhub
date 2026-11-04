@@ -1,51 +1,98 @@
 {
-  "title_ko": "Gaussian Splatting 프라이버시 보호 — 1초 안에 익명화 구현",
+  "title_ko": "PrinGS: 3D Gaussian Splatting에서 훈련 이미지 없이 민감 정보를 보호하는 프레임워크",
   "title": "PrinGS: Privacy Preservation in Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.36168v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "프라이버시",
-    "Gaussian Splatting",
-    "3DGS",
-    "익명화",
-    "Face Detection",
-    "OCR"
+    "3D Gaussian Splatting",
+    "Privacy Preservation",
+    "Anonymization",
+    "3D Computer Vision",
+    "PrinGS"
   ],
-  "summary": "본 논문은 3D Gaussian Splatting에서 얼굴·텍스트 등 민감 정보를 1초 이내에 제거하는 익명화 프레임워크와 프라이버시‑바이‑디자인 학습 전략을 제안한다.",
-  "insight": "한국의 3D 콘텐츠 스튜디오와 AR/VR 개발자는 데이터 공유 시 개인정보 노출 위험에 직면하고 있다. 이 연구는 사후 처리 방식으로 기존 3DGS 모델을 빠르게 익명화해 보안 요구를 충족시킨다. 특히 얼굴 검출률을 39%로 낮추면서 시각적 품질을 유지하므로, 실시간 렌더링 파이프라인에 바로 적용 가능하다. 프라이버시‑바이‑디자인 훈련을 도입하면 초기 데이터 수집 단계부터 민감 정보를 배제해 후처리 비용을 절감한다. 따라서 보안 규제가 엄격한 의료·건축 시각화 분야에서 큰 가치를 제공한다.",
+  "summary": "PrinGS는 원본 훈련 이미지 없이 학습된 3D Gaussian Splatting(3DGS) 표현에서 얼굴이나 개인 정보 등 민감한 영역을 직접 익명화하는 최초의 표현 수준(representation-level) 프레임워크입니다.",
+  "insight": "이 연구는 향후 3D 에셋이나 가상 공간을 공유할 때 개인정보 규제(GDPR, DPDP 등)를 준수해야 하는 실무 아티스트와 기업들에게 중요한 해결책이 될 수 있습니다. 원본 이미지나 재학습 없이 이미 완성된 3DGS 파일에서 민감 부위만 1초 만에 제거할 수 있으므로, 프라이버시 문제로 인해 공유를 망설였던 3D 스캔 데이터의 유통을 활성화하는 데 기여할 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "연구 배경",
-      "body": "3D Gaussian Splatting(3DGS)은 고품질 신시점 합성에 강점을 보여 최근 많은 프로젝트에 채택되고 있다. 그러나 학습된 스플랫은 얼굴, 차량 번호판, 문서 등 개인 식별 정보를 그대로 보관해 프라이버시 위험을 야기한다. 기존 연구에서는 이러한 문제를 다루지 않아, 데이터 공유와 배포에 제약이 있었다."
+      "heading": "무엇을 풀려는가",
+      "body": "3D Gaussian Splatting(3DGS)은 고품질의 신규 시점 합성과 3D 장면 복원에 널리 사용되지만, 사람의 얼굴, 번호판, 문서, 컴퓨터 화면 등 민감한 시각 정보를 그대로 학습하여 훈련된 스플랫(splat)을 공유하거나 배포할 때 심각한 개인정보 보호 문제를 야기합니다. 기존의 2D 이미지 기반 익명화는 시점에 따라 정보가 다시 노출되는 한계가 있으며, 훈련 전 이미지를 가리면 구조화(Structure-from-Motion, SfM) 및 최적화 과정이 망가지는 문제가 있습니다. 본 논문은 훈련된 스플랫과 사용자 참조 뷰(reference view)만으로 원본 이미지 없이 1초 만에 3D 표현 자체를 익명화하는 방법을 다룹니다."
     },
     {
-      "heading": "제안 방법",
-      "body": "저자들은 사용자가 지정한 레퍼런스 뷰를 기반으로 민감 영역을 3D 표현 내에서 자동으로 찾아낸다. 이후 해당 영역을 직접 익명화해 모든 렌더링 결과에서 정보를 제거한다. 이 과정은 사후 처리 방식으로 1초 미만의 시간만 소요된다. 추가로 프라이버시‑바이‑디자인 훈련 전략을 도입해 학습 단계부터 민감 정보를 삽입하지 않도록 설계했다."
+      "heading": "핵심 아이디어",
+      "body": "PrinGS는 사후 익명화(Post-Training Privacy Preservation)와 설계 단계부터의 개인정보 보호(Privacy-by-Design) 두 가지 방식을 제안합니다. 사후 익명화는 사용자가 제공한 민감 콘텐츠 참조 뷰를 바탕으로 래스터라이저의 투과율(transmittance) 가중치와 2D 마스크를 결합하여 3D 공간 상에서 해당하는 가우시안들을 정확히 찾아내고 직접 익명화합니다. 또한 최적화 과정에 익명화 메커니즘을 통합하여 처음부터 민감 정보가 스플랫에 인코딩되지 않도록 막는 프레임워크도 함께 제공합니다."
     },
     {
-      "heading": "성능 평가",
-      "body": "실험 결과, 제안된 익명화는 Face Similarity Measure(FSM)를 9.79%까지 낮추면서 Face Detection Rate(FDR)을 39.47%로 유지했다. 텍스트 영역은 OCR Character Error Rate이 1.00%에 달해 완전히 읽을 수 없게 만들었다. 시각적 품질은 기존 3DGS와 큰 차이가 없으며, 처리 시간은 0.8초 수준이었다."
+      "heading": "방법",
+      "body": "제안된 알고리즘은 1) 단일 뷰 식별(Single-view identification)을 통해 각 픽셀과 겹치는 Gaussian의 투과율을 평가하고 2D 마스크와 비교하여 참/거짓 가시성 카운터를 초기화하며, 2) 다중 뷰 집계(Multi-view aggregation)를 거쳐 민감한 Gaussian 서브셋을 최종 분할합니다. 또한 PrinGS-Humans라는 합성 실내 씬 벤치마크를 구축하여 다양한 인종과 성별의 9명 인물 데이터를 포함한 평가 환경을 마련했습니다."
     },
     {
-      "heading": "실무 적용 시 고려사항",
-      "body": "익명화 대상 뷰를 정확히 지정해야 지역 탐지가 오탐·누락 없이 이루어진다. 또한 프라이버시‑바이‑디자인 훈련을 적용하려면 데이터 파이프라인에 레퍼런스 마스크 생성 단계가 추가되어야 한다. 고해상도 씬에서는 메모리 사용량이 증가할 수 있으므로 하드웨어 사양을 검토해야 한다."
+      "heading": "결과 (논문 수치)",
+      "body": "얼굴 익명화 평가에서 표준 3DGS는 얼굴 유사도(Face Similarity Measure, FSM)가 83.87%인 반면, 본 방법은 9.79%의 낮은 FSM을 기록하여 74.08% 감소를 달성했습니다. 얼굴 검출률(Face Detection Rate, FDR)은 39.47%를 기록했습니다. 텍스트 민감 정보의 경우 광학 문자 판독(OCR) 문자 오류율(Character Error Rate, CER)이 1.00으로 나타나 민감한 텍스트를 완전히 읽을 수 없게 만들었으며, 이는 기본 3DGS의 CER 0.208 대비 크게 향상된 수치입니다. 사후 익명화는 1초 미만의 시간이 소요됩니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "본 논문은 주로 정적 씬과 9명의 인물 데이터셋(PrinGS-Humans)을 기반으로 평가를 수행했으며, 동적 씬이나 매우 복잡한 환경에서의 실시간 상호작용에 대한 상세한 한계는 추가 연구가 필요합니다. 또한 사용자가 민감한 내용을 포함한 참조 뷰와 마스크를 직접 제공해야 하는 전제 조건이 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문에서는 관련 프로젝트 페이지(PrivacyPreserving3DGS.github.io)와 GitHub 저장소를 통해 연구 내용과 소스코드에 대한 접근을 제공하고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "Gaussian Splatting에서 개인정보는 어떻게 보호되나요?",
-      "a": "사용자가 지정한 레퍼런스 뷰를 통해 민감 영역을 3D 모델에서 찾아내고, 해당 영역을 직접 익명화해 모든 렌더링 결과에서 정보를 제거한다."
+      "q": "PrinGS는 원본 훈련 이미지가 필요한가요?",
+      "a": "아니오. PrinGS는 훈련된 스플랫과 사용자가 선택한 참조 뷰만 있으면 원본 훈련 이미지 없이도 민감한 Gaussian을 직접 익명화합니다."
+    },
+    {
+      "q": "사후 익명화 처리에 걸리는 시간은 얼마나 되나요?",
+      "a": "본 논문에 따르면 사후 익명화는 1초 미만의 시간에 수행됩니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.36168v1/2610.36168v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.36168v1/2610.36168v1/teaser.png",
+        "caption": "Figure 1. Privacy Preservation in Gaussian Splatting. Given only a trained splat and user-selected reference views, our method localizes the Gaussians corresponding to sensitive content and directly anonymizes the splat without requiring the original training images. The resulting privacy-preserving",
+        "caption_ko": "그림 1. 3D Gaussian Splatting에서의 개인정보 보호 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36168v1/2610.36168v1/method_setup.png",
+        "caption": "Figure 2. Overview of core components for our privacy preservation pipeline. Single-view segmentation identifies sensitive Gaussians via rasterization against 2D masks combined with Isolation Forest outlier rejection. Multi-view aggregation uses a visibility counter threshold to isolate the final se",
+        "caption_ko": "그림 2. 개인정보 보호 파이프라인의 핵심 구성 요소 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36168v1/2610.36168v1/method_pipeline.png",
+        "caption": "Figure 3. Overview of our two operational settings. Top: Post-Training Privacy Preservation takes an already-trained 3D Gaussian Splat along with a reference camera view and binary mask, to produce an anonymized splat without accessing original training images. Bottom: Privacy-by-Design integrates o",
+        "caption_ko": "그림 3. 두 가지 운영 설정(사후 익명화 및 설계 단계 개인정보 보호)의 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.36168v1/2610.36168v1/post_training_results.png",
+        "caption": "Figure 4. Qualitative results for post-training anonymization on scenes from our PrinGS-Humans dataset (rows 1-4) and Tanks and Temples ( Knapitsch et al., 2017 ) (row 5). Starting from a single user-selected reference view (left), our method directly anonymizes the underlying Gaussian representatio",
+        "caption_ko": "그림 4. PrinGS-Humans 및 Tanks and Temples 씬에 대한 사후 익명화 정성적 결과."
+      }
+    ]
   },
   "collected_at": "2026-10-28T03:27:05.011267+00:00",
   "notion_id": "",
   "id": "2026-10-28-0089f233e726d0da",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T08:10:43+00:00",
+  "img_tried": true,
+  "try_it": [
+    "{'step': 1, 'description': 'PrinGS 프로젝트 페이지(PrivacyPreserving3DGS.github.io)를 방문하여 관련 코드와 데이터셋 정보를 확인합니다.'}",
+    "{'step': 2, 'description': '훈련된 3DGS 모델과 민감 콘텐츠가 포함된 참조 뷰 및 마스크를 준비하여 3D 표현 수준의 익명화 파이프라인을 테스트합니다.'}"
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2
 }

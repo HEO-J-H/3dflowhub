@@ -1,0 +1,77 @@
+{
+  "id": "particles-vfx",
+  "title": "파티클·VFX",
+  "task": "particle systems and VFX (sparks, smoke, debris)",
+  "summary": "파티클 시스템과 VFX 제작은 불꽃, 연기, 파편 같은 복잡한 동적 시뮬레이션을 구현하여 3D 씬에 생동감을 불어넣는 핵심 작업입니다. DCC 툴마다 물리 연산의 정밀도, 노드 기반 제어력, 실시간 렌더링 성능에 차이가 있어 제작 목적에 맞는 선택이 필요합니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Modifier 탭 → Add Modifier → Fluid / Particle System 또는 Geometry Nodes",
+      "how": "기존 파티클 시스템 외에도 최신 버전에서는 Geometry Nodes를 활용해 강력하고 세밀한 프로시절 파티클 제어가 가능합니다.",
+      "strength": "가벼운 파티클과 지오메트리 노드의 조합이 유연함",
+      "limit": "대규모 블로운 스모크나 복잡한 폭발 시뮬레이션은 전용 소프트웨어에 비해 무겁고 한계가 있음"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Command Panel → Create 탭 → Geometry 또는 Particle Systems (PF Source, TyFlow)",
+      "how": "기본 PF Source 외에도 업계 표준인 플러그인 TyFlow를 활용해 물리 기반의 정교하고 화려한 파티클 연출이 가능합니다.",
+      "strength": "TyFlow 플러그인 연계 시 압도적인 시뮬레이션 및 파편 연출력",
+      "limit": "기본 파티클 시스템(Particle Systems)은 구형 방식이라 최신 트렌드 작업에는 외부 플러그인 의존도가 높음"
+    },
+    {
+      "tool": "Maya",
+      "where": "FX 메뉴 세트 → nParticles (Create nParticles) 또는 Bifrost",
+      "how": "nParticle을 통해 유체, 충돌, 공기 저항이 적용된 파티클을 만들고, Bifrost를 통해 고품질의 연기와 불꽃 시뮬레이션을 수행합니다.",
+      "strength": "MAYA nDynamics와 Bifrost를 통한 정교한 물리 충돌 및 유체 제어",
+      "limit": "노드 그래프 설정과 파라미터 조정이 복잡하여 학습 곡선이 가파름"
+    },
+    {
+      "tool": "Houdini",
+      "where": "네트워크 뷰(Network View)에서 Tab → Pyro Solver, Popnet, SOPs 기반 파티클 노드",
+      "how": "모든 것이 프로시절 노드로 구성되어 있으며, Pyro 및 POP 네트워크를 통해 영화급 퀄리티의 연기, 불, 파편 시뮬레이션을 제작합니다.",
+      "strength": "업계 최고 수준의 시뮬레이션 디테일과 무한한 확장성",
+      "limit": "VFX 아티스트가 아니라면 방대한 노드 구조와 개념을 익히기 매우 어려움"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Content Browser 빈 공간 우클릭 → FX → Niagara System",
+      "how": "GPU 가속을 기반으로 하는 차세대 Niagara 파티클 시스템을 통해 실시간으로 불꽃, 연기, 비 등의 효과를 생성하고 블루프린트와 연동합니다.",
+      "strength": "압도적인 실시간 성능과 게임 엔진 내 즉각적인 피드백 및 인터랙션",
+      "limit": "시뮬레이션 캐시 베이킹이나 오프라인 렌더링보다는 실시간 최적화에 초점이 맞춰져 있음"
+    }
+  ],
+  "pick": [
+    {
+      "case": "게임 엔진(Unreal Engine) 내에서 실시간 불꽃 및 연기 효과를 바로 적용할 때",
+      "tool": "Unreal Engine",
+      "why": "GPU 가속을 활용하는 Niagara 시스템을 통해 별도의 복잡한 변환 없이 실시간으로 최적화된 VFX를 구현할 수 있기 때문입니다."
+    },
+    {
+      "case": "영화 수준의 거대한 폭발, 연기, 파편 시뮬레이션을 정밀하게 제어해야 할 때",
+      "tool": "Houdini",
+      "why": "Pyro Solver와 POP 네트워크를 통해 물리 현상을 가장 사실적이고 프로시절하게 제어할 수 있기 때문입니다."
+    },
+    {
+      "case": "3ds Max 환경에서 하이엔드 파편 및 파괴(Destruction) 효과를 빠르게 만들 때",
+      "tool": "3ds Max",
+      "why": "TyFlow 플러그인과의 완벽한 연동을 통해 실무에서 가장 검증된 속도와 퀄리티의 파편 연출이 가능하기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "DCC 툴에서 생성한 파티클 및 시뮬레이션 결과물은 주로 캐시 파일(Alembic .abc, VDB) 형태로 게임 엔진이나 다른 DCC로 전달합니다.",
+    "언리얼 엔진(Unreal Engine)으로 파티클 이미터나 메시를 넘길 때는 FBX 또는 Niagara 호환 포맷을 사용하며 축(Z-Up)과 미터법 단위를 일치시켜야 합니다.",
+    "시뮬레이션 캐시를 내보낼 때(Export) 프레임 레이트(FPS) 설정이 다르면 타이밍이 어긋나므로 원본 DCC와 타겟 툴의 FPS를 반드시 동일하게 맞춥니다.",
+    "스케일(Scale) 차이로 인해 파티클의 크기나 중력 세기가 달라질 수 있으므로, 익스포트 전 반드시 각 툴의 단위(Unit Scale) 설정을 확인합니다."
+  ],
+  "apply": [
+    "Houdini에서 정교하게 시뮬레이션한 연기 및 불꽃 볼륨(VDB)을 Unreal Engine의 볼륨 텍스처로 가져와 실시간 배경 분위기 연출하기",
+    "Blender의 Geometry Nodes로 오브젝트 표면에 먼지나 모래 파티클을 절차적으로 생성하고 정적 메쉬와 함께 익스포트하기",
+    "Unreal Engine Niagara 내에서 블루프린트 이벤트를 연동하여 캐릭터가 걸을 때마다 발밑에서 먼지 파티클이 일어나도록 설정하기"
+  ],
+  "pitfalls": [
+    "실수: 시뮬레이션 캐시나 파티클을 메쉬로 변환하지 않고 그대로 익스포트하여 다른 툴에서 렌더링되지 않는 문제 → 해결: 에디터에서 파티클을 실시간 메쉬 또는 Alembic(.abc) 캐시 파일로 베이킹(Bake)한 뒤 내보냅니다.",
+    "실수: 언리얼 엔진 Niagara에서 파티클이 너무 무거워 프레임 드랍이 발생하는 문제 → 해결: GPU 스프라이트와 LOD(Level of Detail) 설정을 적용하고 불필요한 고해상도 시뮬레이션 파라미터를 낮춥니다.",
+    "실수: DCC 간 단위(Unit) 설정 차이로 인해 파티클의 속도나 중력감이 완전히 다르게 표현되는 문제 → 해결: 프로젝트 시작 시 센티미터(cm) 또는 미터(m) 단위를 통일하고 Scale을 Apply(Ctrl+A)한 뒤 진행합니다."
+  ],
+  "at": "2026-11-04T08:11:07+00:00"
+}

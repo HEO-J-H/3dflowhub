@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-nucleus-server-connection-lost-1a2b7",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Nucleus Server connection lost",
+  "title": "Nucleus Server connection lost 연결 끊김 오류 해결 가이드",
+  "summary": "NVIDIA Omniverse에서 USD 자산을 불러오거나 저장할 때 Nucleus 서버와의 네트워크 연결이 끊어졌음을 뜻하는 오류 메시지입니다.",
+  "causes": [
+    "로컬 또는 원격 Nucleus 서버 서비스가 중지되었거나 백그라운드 프로세스가 종료된 경우",
+    "방화벽이나 백신 프로그램이 Omniverse Nucleus 통신 포트를 차단하는 경우",
+    "회사 네트워크 환경이나 VPN 설정 변경으로 인해 내부 서버 IP 접근이 막힌 경우"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 실행하고 왼쪽 메뉴에서 Nucleus 탭으로 이동합니다.",
+    "Nucleus 서비스 상태가 Stopped 또는 Error로 표시되어 있는지 확인합니다.",
+    "상태가 중지된 경우 Start 버튼을 눌러 Nucleus 서비스를 재시작합니다.",
+    "로컬 Nucleus 서버 재시작 후에도 해결되지 않으면 Omniverse Launcher를 완전히 종료한 후 다시 실행합니다.",
+    "브라우저 주소창에 'http://localhost:30080'을 입력하여 Nucleus Web UI가 정상적으로 열리는지 확인합니다."
+  ],
+  "check": [
+    "Omniverse 앱(USD Composer 등) 우측 상단의 서버 연결 아이콘이 초록색(Connected)으로 바뀝니다.",
+    "Nucleus Navigator 패널에서 원격 또는 로컬 자산 폴더가 정상적으로 로드되는지 확인합니다."
+  ],
+  "prevent": [
+    "OS 부팅 시 NVIDIA Omniverse Launcher와 Nucleus 서비스가 자동으로 실행되도록 설정합니다.",
+    "Windows 방화벽 설정에서 Omniverse 관련 프로세스 및 포트(30080 등) 통신을 허용합니다."
+  ],
+  "keywords": [
+    "Nucleus 연결 끊김",
+    "Omniverse 서버 접속 오류",
+    "Nucleus Server connection lost",
+    "Omniverse 로컬 서버 안됨",
+    "USD 협업 서버 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T08:10:10+00:00"
+}

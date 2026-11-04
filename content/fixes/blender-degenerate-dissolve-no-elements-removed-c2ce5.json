@@ -1,0 +1,38 @@
+{
+  "id": "blender-degenerate-dissolve-no-elements-removed-c2ce5",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Degenerate dissolve: no elements removed",
+  "title": "Degenerate dissolve: no elements removed 오류 해결 방법",
+  "summary": "Blender에서 Dissolve 작업을 수행할 때 선택한 요소가 지워질 수 없는 상태이거나 붕괴된 토폴로지(Degenerate) 구조를 형성할 때 발생하는 경고 메시지입니다. 실제로 제거된 메시 요소가 없음을 의미합니다.",
+  "causes": [
+    "선택한 버텍스나 엣지가 면(Face)을 유지하는 데 필수적이어서 Dissolve 대상이 아닌 경우",
+    "이미 겹쳐 있거나(Overlapping) 0의 길이를 가진 붕괴된(Degenerate) 엣지/Vertex를 선택한 경우",
+    "Edge 선택 모드에서 주변 면 구조를 깨뜨리지 않고 엣지만 단독으로 지울 수 없는 위치인 경우"
+  ],
+  "steps": [
+    "Blender에서 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "Alt + M 또는 M 키를 눌러 Merge 메뉴를 열고, Dissolve 대신 Merge(At Center, By Distance 등)를 시도합니다.",
+    "Mesh 메뉴(또는 우클릭 메뉴)에서 Clean Up -> Delete Loose를 실행하여 쓸모없는 점과 선을 먼저 정리합니다.",
+    "Mesh -> Clean Up -> Degenerate Dissolve를 사용하여 실제로 문제가 되는 붕괴된 요소를 정리합니다.",
+    "필요한 경우 X 키를 누르고 Dissolve 대신 Delete를 선택하여 면과 함께 완전히 제거합니다."
+  ],
+  "check": [
+    "작업 후 화면 하단 정보 영역(Info Status Bar)에 오류 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "뷰포트에서 토폴로지가 의도한 대로 깔끔하게 정리되었는지 확인합니다."
+  ],
+  "prevent": [
+    "모델링 작업 중 중복 생성된 버텍스나 제로 렝스(Zero-length) 엣지가 생기지 않도록 주기적으로 Merge By Distance를 실행합니다.",
+    "불필요한 구조를 지울 때는 Dissolve 대신 상황에 맞는 Delete 명령을 선택합니다."
+  ],
+  "keywords": [
+    "Degenerate dissolve no elements removed",
+    "Blender 디솔브 오류",
+    "Blender Dissolve 안됨",
+    "토폴로지 정리 오류",
+    "Degenerate dissolve 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T08:10:15+00:00"
+}

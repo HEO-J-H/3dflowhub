@@ -1,33 +1,100 @@
 {
-  "title_ko": "Gaussian Splatting, DomeGS 도입으로 VR 배경 완성도 향상",
+  "title_ko": "DomeGS: VR을 위한 3D Gaussian Splatting 배경 완성",
   "title": "DomeGS: Perceptually Consistent Background Completion for Unbounded 3D Gaussian Splatting in Virtual Reality",
   "url": "https://arxiv.org/abs/2610.37172v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "VR",
     "DomeGS",
-    "배경 보완",
-    "실감 향상"
+    "3D Gaussian Splatting",
+    "3DGS",
+    "Virtual Reality",
+    "VR",
+    "Skybox"
   ],
-  "summary": "DomeGS는 Gaussian Splatting 기반 VR 씬에 스카이돔을 통합해 배경을 일관되게 완성, 몰입감과 실감을 크게 높인다.",
-  "insight": "VR 콘텐츠 제작 시 무한히 확장되는 야외 씬의 지평선이 비어 보이는 문제는 몰입을 저해한다. DomeGS는 기존 skybox·skydome을 별도 레이어가 아니라 Gaussian Splatting 데이터에 포함시켜 앞뒤 씬 간 시각적 불일치를 해소한다. 실험 결과 36명의 사용자에게서 공간 존재감과 현실감이 통계적으로 유의하게 상승했으며, 이는 VR 프로젝트에서 배경 처리 비용을 줄이면서 품질을 높일 수 있음을 의미한다. 특히 대규모 야외 환경을 빠르게 구축해야 하는 실시간 엔진 개발자와 VR 아티스트가 바로 적용해 볼 만하다. 다만 Gaussian Splatting 자체의 렌더링 비용을 고려해 최적화된 GPU 환경에서 사용해야 한다.",
+  "summary": "DomeGS는 야외 3D Gaussian Splatting(3DGS) 재구성에서 누락된 하늘과 지평선을 360도 생성 모델과 Gaussian 스카이돔으로 통합하여 시각적 일관성과 몰입감을 높이는 프레임워크입니다.",
+  "insight": "이 기술은 3DGS 기반의 야외 씬을 VR에서 감상할 때 고질적인 문제인 '배경 끊김 현상'을 해결하는 실마리를 제공합니다. 아티스트들이 360도 생성 모델 결과물을 별도의 2D 배경으로 따로 합성하지 않고, 3D Gaussian 공간 안에서 자연스럽게 시야각에 따른 시차(parallax)와 함께 연동되도록 구성하는 워크플로우로 발전할 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "기존 배경 처리 방식의 한계",
-      "body": "무한히 확장되는 야외 씬을 Gaussian Splatting으로 재구성하면 지평선이 누락돼 배경이 비어 보인다. 전통적인 VR 시스템은 텍스처 큐브(skybox)나 구(sky dome)로 배경을 가상으로 채우지만, 재구성된 3DGS 지오메트리와 자연스럽게 블렌딩되지 않는다. 이로 인해 시각적 일관성이 깨지고 사용자의 몰입감이 감소한다."
+      "heading": "무엇을 풀려는가",
+      "body": "야외 언바운디드(unbounded) 환경을 3D Gaussian Splatting(3DGS)으로 재구성할 때 데이터 부족으로 인해 하늘이나 지평선 같은 원거리 영역이 누락되거나 불완전해지는 문제가 발생합니다. 기존 VR 시스템은 무한대 스카이박스(skybox)를 사용해 이를 가리려 하지만, 3DGS 지오메트리와의 조명 및 색상 불일치나 이음새 문제가 발생하여 몰입감을 해칩니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "DomeGS는 스카이돔 개념을 평면 2D 배경이 아닌 3DGS 장면의 일부로 직접 통합합니다. 기존 씬에서 부분 파노라마를 추출하여 생성 모델로 빈 곳을 채운 뒤, 이를 유한 반경의 원거리 구체 위에 새로운 Gaussian으로 시드(seed) 및 정제하여 전경과 배경을 일치시킵니다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "(I) Panorama Extraction and Outpainting 단계에서 기존 장면의 심리스(seamless) 에퀴렉틸리어(equirectangular) 환경 맵을 생성하고 360도 특화 생성 모델로 누락된 배경을 채웁니다. (II) Scene-Adaptive Dataset Preparation 단계에서 2D 파노라마를 다중 뷰 감독 데이터셋으로 변환합니다. (III) Unified Sky Gaussian Optimization 단계에서 원래 장면과 추가된 뷰를 함께 파인튜닝하여 단일 3DGS 표현으로 융합합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "N=36명의 사용자를 대상으로 한 실험 평가에서, DomeGS는 기존 스카이박스 베이스라인에 비해 공간적 현존감(spatial presence)과 사실감(realism)을 통계적으로 유의미하게 향상(각각 p = 0.042)시키는 것으로 나타났습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문에서는 360도 생성 모델을 활용해 배경을 완성하지만, 원거리 영역의 복잡한 기하학적 제약이나 실시간 생성 한계 등 추가적인 제어 측면에서의 한계가 존재할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "연구에 사용된 코드는 GitHub (https://github.com/Anastasiya999/DomeGS)를 통해 공개되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "DomeGS는 배경을 어떤 방식으로 표현하나요?",
+      "a": "평면 2D 백드롭 대신 유한한 반경의 원거리 구체(skydome) 형태의 Gaussian 표현으로 직접 통합합니다."
+    },
+    {
+      "q": "기존 스카이박스 방식과 비교했을 때 어떤 장점이 있나요?",
+      "a": "조명 및 색상 불일치나 이음새 문제를 줄여주며, 사용자 이동에 따른 깊이감 있는 시차(parallax)와 시각적 일관성을 제공합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.37172v1/2610.37172v1/figures/teaser_final_1.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.37172v1/2610.37172v1/figures/challenges_full.png",
+        "caption": "Figure 1: 3DGS scene integration in game engines, illustrated using Unity. Top row: Raw 3DGS, rendered without any background completion, exhibiting missing sky regions and boundary floaters. Middle row: Naive integration with a cubemap skybox fills the missing background but introduces visible seam",
+        "caption_ko": "그림 1: Unity 게임 엔진에서 시각화한 3DGS 씬 통합 비교. 맨 위: 배경 완성 없는 원본 3DGS(하늘 누락 및 플로터 발생). 가운데: 스카이박스 적용(이음새와 조명 불일치 발생). 아래: 제안하는 방법"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.37172v1/2610.37172v1/figures/scenes_v.png",
+        "caption": "Figure 2: Experimental scenes used in our study, rendered as equirectangular projections from 𝒢 pano \\mathcal{G}_{\\mathrm{pano}} . The four outdoor unbounded 3DGS reconstructions are divided into two scene types: Close-range (top: Garden, Bear) and Panoramic (bottom: Buddha, Tower).",
+        "caption_ko": "그림 2: 연구에 사용된 실험용 씬들(\\mathcal{G}_{\\mathrm{pano}} 에퀴렉틸리어 투영). 4개의 야외 언바운디드 3DGS 재구성은 근거리(위: Garden, Bear)와 파노라마(아래: Buddh"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.37172v1/2610.37172v1/figures/generative_model_2.png",
+        "caption": "Figure 3: Comparison of generators for completing the same masked panorama: (A) initial panorama with missing regions; (B) FLUX.2-dev, with a color mismatch; (C) FLUX.1-Fill-dev, with repeated structures; (D) 512-inpainting-ema , with discontinuity at the horizon; (E) Nano Banana, with a visible sky",
+        "caption_ko": "그림 3: 동일한 마스크 파노라마를 완성하기 위한 생성 모델 비교: (A) 누락 영역이 있는 초기 파노라마; (B) 색상 불일치가 있는 FLUX.2-dev; (C) 반복 구조가 나타나는 FLUX.1-Fill-dev;"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.37172v1/2610.37172v1/figures/search_task.png",
+        "caption": "Figure 4: Bird-search task design. (a) Teleport pad and target\nplacement logic: pads are positioned along the original camera\ntrajectory, targets spawn outside a ± 65 ∘ \\pm 65^{\\circ} front exclusion zone\nand within scene-dependent vertical elevation bands, with radial\ndistance scaled to local scene",
+        "caption_ko": "그림 4: 새 찾기(bird-search) 과제 디자인. (a) 텔레포트 패드 및 타겟 배치 로직: 패드는 원래 카메라 경로를 따라 배치되며, 타겟은 전방 ±65° 제외 구역 바깥과 씬 의존적 수직 고도 대역 내에 "
+      }
+    ]
   },
   "collected_at": "2026-10-28T03:07:11.930675+00:00",
   "notion_id": "",
   "id": "2026-10-28-10ce1f22a67da5a4",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T08:10:37+00:00",
+  "img_tried": true,
+  "try_it": [
+    "{'step': 'DomeGS 공식 GitHub 저장소(https://github.com/Anastasiya999/DomeGS)에 접속합니다.', 'action': '저장소의 소스 코드와 제공되는 데이터셋 구조를 확인합니다.'}",
+    "{'step': '논문에 설명된 3단계 파이프라인(파노라마 추출, 데이터셋 준비, 스카이 가우시안 최적화)에 따라 코드를 실행하여 야외 언바운디드 3DGS 씬의 배경을 완성해 봅니다.', 'action': '로컬 환경에서 3DGS 훈련 스크립트를 구동하여 배경이 통합된 결과를 렌더링합니다.'}"
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/Anastasiya999/DomeGS",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }

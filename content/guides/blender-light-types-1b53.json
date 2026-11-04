@@ -1,0 +1,94 @@
+{
+  "id": "blender-light-types-1b53",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Light types",
+  "title": "조명 종류(Point·Sun·Spot·Area)",
+  "summary": "Blender의 Light Types는 씬에 생명을 불어넣는 4가지 핵심 조명(Point, Sun, Spot, Area) 유형으로, 실내외 환경의 분위기와 그림자를 연출합니다.",
+  "when": [
+    "어두운 실내 장면에 방 안을 밝히는 은은한 전구 표현이 필요할 때",
+    "야외 풍경에 강렬한 태양광과 자연스러운 그림자를 만들고 싶을 때",
+    "특정 오브젝트나 무대 위 인물을 집중적으로 비추는 스포트라이트 연출이 필요할 때"
+  ],
+  "steps": [
+    "뷰포트에서 Shift + A 키를 누릅니다.",
+    "상위 메뉴에서 Light 항목으로 이동합니다.",
+    "원하는 조명 유형(Point, Sun, Spot, Area 중 하나)을 선택해 씬에 추가합니다.",
+    "G, R 키를 사용해 조명의 위치와 각도를 조절합니다.",
+    "Properties 패널에서 Object Data Properties(전구 아이콘) 탭을 엽니다.",
+    "Color, Power, Radius 등의 파라미터를 조절해 원하는 밝기와 광원 크기를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Power",
+      "desc": "조명의 밝기(Watt 또는 Lumen 단위)를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "조명 광원의 색상을 변경합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "광원의 크기를 키워 그림자의 부드러움(Softness)을 조절합니다."
+    },
+    {
+      "name": "Clip Start / End",
+      "desc": "조명이 빛을 비추기 시작하고 끝나는 거리 범위를 지정합니다."
+    },
+    {
+      "name": "Beam Angle",
+      "desc": "Spot 라이트에서 빛이 퍼져나가는 원뿔의 각도를 조절합니다."
+    },
+    {
+      "name": "Spread",
+      "desc": "Spot 라이트 빛의 확산 범위를 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 스탠드 조명 연출",
+      "steps": [
+        "Shift + A로 Point 라이트를 추가하고 스탠드 전구 위치로 이동합니다.",
+        "Object Data Properties에서 Power 값을 높여 밝기를 조절합니다.",
+        "Radius 값을 살짝 키워 그림자의 경계를 부드럽게 만듭니다."
+      ]
+    },
+    {
+      "title": "야외 태양광 세팅",
+      "steps": [
+        "Shift + A로 Sun 라이트를 추가합니다.",
+        "R 키를 이용해 태양의 각도(그림자 방향)를 원하는 방향으로 회전합니다.",
+        "Power 값을 환경에 맞게 조절하고 World 설정에서 배경 하늘과 일치시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명이 너무 어두워요 → Power 값이 너무 낮거나 단위가 잘못 설정된 경우이므로 값을 대폭 높이거나 단위(Watts)를 확인합니다.",
+    "그림자가 너무 칼날처럼 딱딱해요 → Point나 Spot 라이트의 Radius/Size 값이 0일 때 발생하므로 값을 키워 부드러운 그림자를 만듭니다.",
+    "원하지 않는 오브젝트까지 조명이 비쳐요 → Light Linking 기능을 사용하지 않았기 때문이며, Collection 설정을 통해 특정 오브젝트만 조명하도록 지정합니다."
+  ],
+  "related": [
+    "World Lighting",
+    "Emission Shader",
+    "Light Linking",
+    "Shadow Catcher"
+  ],
+  "videos": [
+    {
+      "id": "XcJyW5iBKlU",
+      "title": "Master Lighting in Blender Under 6 Minutes!",
+      "author": "RenderRides"
+    },
+    {
+      "id": "FdbnzfjoOJU",
+      "title": "Light Types - Blender 2.80 Fundamentals",
+      "author": "Blender"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Light%20types",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T08:08:59.843770+00:00"
+}

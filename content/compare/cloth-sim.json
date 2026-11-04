@@ -1,0 +1,82 @@
+{
+  "id": "cloth-sim",
+  "title": "천 시뮬레이션",
+  "task": "cloth simulation setup",
+  "summary": "3D 소프트웨어에서 천 시뮬레이션(Cloth Simulation)은 물리 법칙을 적용해 자연스러운 옷감이나 깃발의 움직임을 만드는 작업입니다. 각 툴마다 내장된 물리 엔진의 연산 방식과 모디파이어 설정 구조에 차이가 있습니다.",
+  "rows": [
+    {
+      "tool": "3ds Max",
+      "where": "Command Panel → Modify 탭 → Modifier List → Cloth",
+      "how": "오브젝트에 Cloth 모디파이어를 적용한 뒤 Object Properties에서 천과 충돌체를 지정하고 시뮬레이션을 실행합니다.",
+      "strength": "직관적인 오브젝트 프로퍼티 설정과 익숙한 모디파이어 스택 구조",
+      "limit": "복잡한 고속 충돌 시 연산 안정성이 다소 떨어질 수 있음"
+    },
+    {
+      "tool": "Blender",
+      "where": "Properties → Physics (물리학) 탭 → Cloth",
+      "how": "메쉬 오브젝트를 선택하고 Physics 탭에서 Cloth를 활성화한 뒤 Collision 오브젝트를 설정하여 타임라인을 재생합니다.",
+      "strength": "무료이면서도 뛰어난 캐싱 시스템과 세밀한 베이킹 옵션 제공",
+      "limit": "고밀도 메쉬에서 세그먼트 조절을 잘못하면 시뮬레이션이 튈 수 있음"
+    },
+    {
+      "tool": "Maya",
+      "where": "FX 메뉴셋 → nCloth → Create nCloth",
+      "how": "메쉬를 선택하고 nCloth 메뉴를 통해 생성한 뒤 Nucleus 노드와 충돌체(Passive Collider)를 연결하여 시뮬레이션합니다.",
+      "strength": "강력한 Nucleus 통합 프레임워크로 대규모 복잡한 시뮬레이션에 강함",
+      "limit": "초기 학습 곡선이 가파르고 설정 노드가 복잡함"
+    },
+    {
+      "tool": "Houdini",
+      "where": "네트워크 뷰(Network View) → Tab → Vellum Cloth / Vellum Object",
+      "how": "지오메트리에 Vellum Cloth 노드를 연결하고 Vellum Solver로 시뮬레이션을 구동하여 강력한 노드 기반 제어를 수행합니다.",
+      "strength": "노드 기반의 무한한 확장성과 압도적인 대규모 시뮬레이션 제어력",
+      "limit": "가벼운 작업에도 노드 파이프라인 구축이 필요해 진입장벽이 높음"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Skeletal Mesh Editor → Clothing 속성",
+      "how": "스켈레탈 메시의 특정 섹션에 페인팅으로 클로스 데이터(Chaos Cloth)를 적용하고 물리 속성을 파라미터로 조절합니다.",
+      "strength": "실시간 게임 엔진 환경에서 즉시 물리 반응을 확인하고 적용 가능",
+      "limit": "오프라인 렌더러 수준의 극도로 세밀한 주름 표현에는 한계가 있음"
+    }
+  ],
+  "pick": [
+    {
+      "case": "빠른 프로토타이핑과 기본 의상 시뮬레이션",
+      "tool": "Blender",
+      "why": "가볍고 빠르게 Physics 탭에서 토글 한 번으로 결과를 확인하고 캐싱할 수 있기 때문입니다."
+    },
+    {
+      "case": "3ds Max 기반의 전통적인 건축/제품 시각화 파이프라인",
+      "tool": "3ds Max",
+      "why": "오브젝트 프로퍼티 창에서 직관적으로 충돌체와 패브릭 프리셋을 적용해 쿠션이나 커튼을 만들기 좋기 때문입니다."
+    },
+    {
+      "case": "게임 엔진 내에서 실시간으로 캐릭터 의상 물리 적용",
+      "tool": "Unreal Engine",
+      "why": "Chaos Cloth 시스템을 통해 별도의 오프라인 베이킹 없이 실시간 게임 플레이 환경에서 바로 작동하기 때문입니다."
+    },
+    {
+      "case": "고급 VFX 및 대규모 파괴/천 상호작용 시뮬레이션",
+      "tool": "Houdini",
+      "why": "Vellum 노드 네트워크를 통해 다른 물리 시뮬레이션과 완벽하게 연동할 수 있기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "FBX 또는 Alembic(ABC) 포맷으로 내보낼 때는 반드시 시뮬레이션 결과를 키프레임이나 캐시(Vertex Cache)로 베이킹(Bake)해야 합니다.",
+    "소프트웨어 간 스케일 단위(Meter, Centimeter) 차이로 인해 물리 중력값이나 두께(Thickness)가 달라질 수 있으므로 단위를 통일하세요.",
+    "축 방향(Z-up vs Y-up) 변환 시 천의 처짐 방향이나 바람의 벡터가 달라질 수 있으므로 임포트 시 축 설정을 확인하세요.",
+    "내보내기 전 메쉬의 트랜스폼(Scale, Rotation)을 반드시 초기화(Freeze / Apply Transform)해야 오작동을 방지할 수 있습니다."
+  ],
+  "apply": [
+    "커튼, 침대 매트리스, 쿠션 등 실내 인테리어 오브젝트에 자연스러운 주름을 잡는 시각화 작업",
+    "바람에 휘날리는 깃발, 망토, 커다란 배의 돛 등 야외 환경 에셋 제작",
+    "캐릭터 의상 피팅 테스트 및 복잡한 드레스 드레이프 형태 연구"
+  ],
+  "pitfalls": [
+    "{'mistake': '세그먼트(Segments / Resolution)가 부족하여 천이 꺾이거나 각지는 현상', 'fix': '모디파이어 적용 전 메쉬에 충분한 폴리곤 분할을 주거나 서브디비전(Subdivision)을 적용하세요.'}",
+    "{'mistake': '충돌체(Collider)를 통과해버리는 현상 (Clipping)', 'fix': '충돌체의 두께(Thickness) 값을 높이거나, 시뮬레이션 서브스텝(Substeps) 값을 올려 연산 정밀도를 높이세요.'}",
+    "{'mistake': '스케일 값이 적용되지 않아 천이 너무 무겁거나 가볍게 움직이는 현상', 'fix': '오브젝트의 Scale 값이 1.0이 되도록 적용(Apply Scale)한 후 시뮬레이션을 다시 시작하세요.'}"
+  ],
+  "at": "2026-11-04T08:11:12+00:00"
+}

@@ -1,5 +1,5 @@
 {
-  "title_ko": "CVTSplat: 적응형 Voronoi 멀티뷰 재구성 – GPU 5배 가속",
+  "title_ko": "CVTSplat: 적응형 CVT로 고속 다시점 3D 재구성",
   "title": "CVTSplat: Multi-view Reconstruction Using an Adaptive Centroidal Voronoi Tessellation",
   "url": "https://arxiv.org/abs/2610.35347",
   "domain": "AI 3D",
@@ -7,28 +7,89 @@
   "topic": "연구·논문",
   "tags": [
     "CVTSplat",
-    "Voronoi",
-    "멀티뷰 재구성",
-    "GPU 가속",
-    "DTU",
-    "BlendedMVS"
+    "Voronoi Tessellation",
+    "3D Reconstruction",
+    "Differentiable Rendering",
+    "Gaussian Splatting"
   ],
-  "summary": "CVTSplat은 적응형 Centroidal Voronoi Tessellation을 이용해 멀티뷰 이미지에서 빠르고 정확한 3D 재구성을 구현한 최신 연구이다.",
-  "insight": "멀티뷰 재구성을 GPU에서 실시간에 가깝게 수행하고 싶다면 CVTSplat의 접근법을 검토해볼 가치가 있다. 기존 Gaussian‑splatting 방식은 셀 형태가 불규칙해 연산 비용이 높았지만, CVTSplat은 셀 크기를 signed distance field에 따라 조절해 거의 정규적인 형태를 유지한다. 이는 최근 실시간 가상 프로덕션이나 AR/VR에서 대규모 포인트 클라우드 처리를 요구하는 파이프라인에 직접 적용 가능하다. 또한, 5~10배 빠른 Voronoi 구축 알고리즘은 기존 파이프라인을 GPU‑only 환경으로 전환하려는 스튜디오에 큰 도움이 될 것이다. 다만, 현재는 DTU와 BlendedMVS 같은 벤치마크에서 검증됐으므로, 복잡한 실내·실외 혼합 장면에서는 추가 튜닝이 필요할 수 있다.",
+  "summary": "CVTSplat은 적응형 중심 보로노이 테셀레이션(CVT)을 활용하여 표면 세부 묘사와 렌더링 효율을 동시에 달성하는 새로운 다시점 3D 재구성 파이프라인입니다.",
+  "insight": "이 기술이 상용화되거나 발전한다면, 아티스트들은 복잡한 스캔 데이터나 다시점 사진을 매우 빠른 시간(약 2.5분) 내에 정교한 표면 메프로 변환할 수 있게 됩니다. 특히 3DGS 방식이 가지는 플로터(floater) 현상이나 불명확한 지오메트리 문제를 보로노이 셀 구조로 해결하여, 에셋 제작 및 스캔 후처리 워크플로우를 크게 단축할 가능성이 큽니다.",
   "sections": [
     {
-      "heading": "배경 및 문제점",
-      "body": "멀티뷰 이미지 기반 3D 재구성에서는 공간을 효율적으로 분할하는 방법이 핵심이다. 기존 Voronoi tessellation은 셀 형태가 불규칙해 최적화 단계에서 큰 연산 비용을 초래한다. 따라서 셀의 규칙성을 유지하면서도 적응형 크기 조절이 가능한 방법이 요구된다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 균일한 공간 분할은 필요 없는 공간에도 자원을 낭비하고, 불규칙한 비정형 분할은 이웃 탐색과 렌더링 연산 비용을 크게 높입니다. 논문은 공간 적응성과 규칙적인 셀 구조의 장점을 모두 잡는 효율적인 3D 장면 표현 방식을 찾고자 했습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "핵심은 0 레벨 세트 근처에 공간 Resolution를 집중시키면서도 셀을 정방형에 가깝게 유지하는 적응형 중심 보로노이 테셀레이션(Adaptive Centroidal Voronoi Tessellation, CVT)입니다. 각 보로노이 사이트에 부호 거리 함수(Signed-Distance Field, SDF)와 시점 의존적 외형 속성을 부여하여 렌더링을 수행합니다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "먼저 사이트들의 32개 최신접 이웃(K-nearest neighbors)을 구하고, 이를 바탕으로 보로노이 다이어그램과 들로네 삼각분할(Delaunay triangulation)을 구성합니다. 이어 셀의 질량 중심을 계산하여 CVT 손실(CVT loss)로 분포를 정규화하며, SDF 그래디언트를 활용해 표면 근처에 셀 크기를 밀집시킵니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "DTU 및 BlendedMVS 벤치마크에서 최신 3D Gaussian Splatting(3DGS) 기반 표면 재구성 방법들과 경쟁력 있는 기하학적 정확도를 달성했습니다. 단일 RTX 5090 GPU 환경에서 약 2.5분 만에 학습을 완료하며 4 GB의 VRAM을 사용합니다."
+    },
+    {
+      "heading": "Limitations · 아직 못 하는 것",
+      "body": "완전한 일반 목적 보로노이 생성 방식에 비해 속도를 높이기 위해 근사치 다이어그램(approximate diagram)을 사용하므로, 드문 경우에 국소적 중첩(local overlap)이 발생할 수 있습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "본문 내용 중 상세 소스코드 전체 링크는 명시되지 않았으나, GitHub 이슈 및 공식 리포지토리(arXiv:2610.35347) 관련 페이지가 존재합니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "CVTSplat은 렌더링을 위해 어떤 방식을 사용합니까?",
+      "a": "복잡한 레이 트레이싱 대신 셀들을 직접 래스터화(rasterize)하며, 작고 거의 등방성인 셀 모양에 맞춤화된 래스터라이저를 활용합니다."
+    },
+    {
+      "q": "셀 크기는 무엇에 의해 조절됩니까?",
+      "a": "진화하는 부호 거리 함수(SDF)에 의해 조절되며, 제로 레벨 세트 근처에 사이트를 집중시킵니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.35347/2610.35347v1/figures/CVTSplatTeaser0.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.35347v1/2610.35347v1/figures/CVTSplatTeaser0.png",
+        "caption": "Figure 1. We represent the scene with Voronoi cells carrying trainable signed-distance and view-dependent appearance attributes, and directly rasterize them for differentiable volume rendering (middle). Our adaptive CVT combines regular cells with increased spatial resolution near the zero level set",
+        "caption_ko": "그림 1. 학습 가능한 부호 거리 및 시점 의존 외형 속성을 지닌 보로노이 셀을 통한 장면 표현 및 적응형 CVT의 제로 레벨 세트 근처 해상도 집중 모습."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35347v1/2610.35347v1/ChunkRasterizerSmall.png",
+        "caption": "Figure 9. The pixel tiles are split into chunks of 32 consecutive cells. All chunks are rasterized in parallel but the ones marked in red have been skipped by detecting occlusions dynamically. The final result (top left) is the α \\alpha -blending of all the chunks in front-to-back order, evaluated i",
+        "caption_ko": "그림 9. 32개의 연속된 셀 청크로 분할된 픽셀 타일의 전면-후면 알파 블렌딩 및 동적 은면 감지 래스터화 과정."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35347v1/2610.35347v1/dtu_comp_compressed.png",
+        "caption": "Figure 10. Qualitative comparison on DTU against GGGS ( Zhang et al., 2026b ) and PGSR ( Chen et al., 2024 ) . The ground truth meshes were obtained by applying Poisson reconstruction ( Kazhdan and Hoppe, 2013 ) on the ground truth point clouds. Our approach recovers finer details, especially visibl",
+        "caption_ko": "그림 10. DTU 데이터셋에서의 GGGS 및 PGSR 방법과의 정성적 비교 (세부 디테일 재구성 우수)."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35347v1/2610.35347v1/bmvs_compressed.png",
+        "caption": "Figure 11. Qualitative comparison on BlendedMVS against GGGS ( Zhang et al., 2026b ) and PGSR ( Chen et al., 2024 ) . Errors are mesured relative to the unit bounding box enclosing the objects. Our approach produces smoother geometry than GGGS (see close-ups on man and clock, heatmaps on jade), alth",
+        "caption_ko": "그림 11. BlendedMVS 데이터셋에서의 GGGS 및 PGSR 방법과의 정성적 비교 (부드러운 지오메트리 표현)."
+      }
+    ]
   },
   "collected_at": "2026-10-27T05:13:18.119215+00:00",
   "notion_id": "",
   "id": "2026-10-27-e269227bbe34feb0",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T08:10:49+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }

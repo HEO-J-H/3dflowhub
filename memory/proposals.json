@@ -10679,5 +10679,114 @@
     "kind": "message",
     "id": "m-26e73a8892",
     "text": "깃허브에 GEMINI_API_KEY 등록했어, 확인해서 AI 남은 여려에 사용해줘"
+  },
+  {
+    "at": "2026-11-04T08:08:40.301755+00:00",
+    "kind": "report",
+    "id": "r-2026-11-04T08:08",
+    "text": "총 게시물 984건 중 최근 7일간 276건이 안정적으로 수집되었으나, AI 일일 한도 소진(49회)으로 인해 추가 수집에 병목이 발생하고 있습니다. 깃허브 키 등록이 완료되었으므로 API 할당량 활용을 극대화하여 에버그린 가이드와 핵심 소식 공급을 지속하겠습니다.",
+    "allocation": {
+      "news": 0.25,
+      "guides": 0.65,
+      "roundups": 0.1
+    },
+    "allocation_reason": "방문객들이 검색을 통해 오래 찾아오는 에버그린 기초 가이드의 학습 효과와 가치를 높이기 위해 가이드 비중을 높입니다."
+  },
+  {
+    "at": "2026-11-04T08:08:40.301755+00:00",
+    "kind": "proposal",
+    "id": "p-4ac57a55c7",
+    "title": "Unreal Engine 기초 가이드 확충",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 Game Engine 분야 유입과 관심도가 높으나 가이드 비중이 상대적으로 부족합니다.",
+    "proposal": "Unreal Engine의 주요 기능 및 최적화 기법을 다루는 에버그린 기초 가이드를 추가 생성합니다.",
+    "expected": "검색 유입 및 독자 체류 시간 증가",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Unreal Engine",
+      "group": "렌더링",
+      "name": "Nanite and Lumen Setup",
+      "title_ko": "언리얼 엔진 나나이트 및 루멘 설정 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-04T08:08:40.301755+00:00",
+    "kind": "proposal",
+    "id": "p-86ed317a7f",
+    "title": "Blender 지오메트리 노드 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "3D DCC 분야에서 Blender 관련 조회수와 관심도가 가장 높게 나타나고 있습니다.",
+    "proposal": "Blender Geometry Nodes 핵심 활용법을 다루는 기초 가이드 토픽을 추가합니다.",
+    "expected": "Blender 사용자층의 재방문율 및 학습 만족도 향상",
+    "effort": "낮음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Blender",
+      "group": "Geometry",
+      "name": "Geometry Nodes Basics",
+      "title_ko": "블렌더 지오메트리 노드 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-04T08:08:40.301755+00:00",
+    "kind": "reply",
+    "id": "y-m-26e73a8892",
+    "reply_to": "m-26e73a8892",
+    "text": "깃허브에 GEMINI_API_KEY 등록을 확인했습니다. 남은 AI 호출 여력을 에버그린 기초 가이드 제작과 원활한 콘텐츠 수집에 적극 반영하겠습니다."
+  },
+  {
+    "at": "2026-11-04T08:08:40.320029+00:00",
+    "kind": "decision",
+    "id": "p-4ac57a55c7",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T08:08:40.330095+00:00",
+    "kind": "decision",
+    "id": "p-86ed317a7f",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T08:08:40.346750+00:00",
+    "kind": "applied",
+    "id": "p-4ac57a55c7",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-04T08:08:40.359455+00:00",
+    "kind": "applied",
+    "id": "p-86ed317a7f",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-04T08:08:43+00:00",
+    "kind": "proposal",
+    "id": "p-8f0b652c32",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #40, #41, #42, #43, #44가 백엔드 검증 로직 추가 후 대기 중 상태입니다.",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py의 유효성 검사 코드를 리뷰하고 병합 준비",
+    "expected": "핵심 입력 예외 처리의 안정성 확보 및 파이프라인 무결성 강화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T08:11:30.104629+00:00",
+    "kind": "decision",
+    "id": "p-8f0b652c32",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
   }
 ]

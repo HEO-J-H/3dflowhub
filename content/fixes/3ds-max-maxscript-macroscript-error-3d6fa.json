@@ -1,0 +1,40 @@
+{
+  "id": "3ds-max-maxscript-macroscript-error-3d6fa",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript MacroScript Error",
+  "title": "MAXScript MacroScript Error 발생 시 대처법",
+  "summary": "MAXScript MacroScript Error는 3ds Max에서 커스텀 스크립트나 툴바 버튼을 실행할 때 문법 오류나 정의되지 않은 변수, 누락된 함수로 인해 Script가 정상 작동하지 않을 때 발생하는 메시지입니다.",
+  "causes": [
+    "Script 코드 내 문법 오류(Syntax Error) 또는 오타",
+    "존재하지 않는 3ds Max 함수나 낡은 MAXScript 명령어 사용",
+    "Script 실행에 필요한 외부 파일이나 종속성 누락",
+    "사용자 정의 툴바(Toolbar)나 핫키에 연결된 Script 경로가 손상된 경우"
+  ],
+  "steps": [
+    "Scripting → MAXScript Listener (F11)를 열어 에러 메시지와 발생한 라인 번호를 확인합니다.",
+    "에러가 발생한 Script를 MAXScript Editor나 외부 텍스트 편집기에서 엽니다.",
+    "Listener에 표시된 라인 번호 주변의 코드 문법, 괄호 쌍, 변수 이름을 검토하고 수정합니다.",
+    "수정한 Script를 저장한 뒤, Listener 창에서 파일 전체를 다시 드래그 앤 드롭하거나 재실행합니다.",
+    "툴바 버튼 문제라면 Customize → Customize User Interface에서 해당 버튼을 삭제하고 Script를 다시 등록합니다."
+  ],
+  "check": [
+    "MAXScript Listener 창에 빨간색 에러 메시지 없이 Script가 완료 문구를 출력하는지 확인합니다.",
+    "툴바 버튼이나 핫키를 실행했을 때 의도한 기능이 오류 없이 정상 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "커스텀 Script를 작성하거나 수정할 때는 항상 MAXScript Editor의 구문 검사 기능을 활용합니다.",
+    "버전이 바뀔 때 지원이 중단된(Deprecated) MAXScript 명령어는 최신 문법으로 교체합니다.",
+    "중요한 Script는 백업 버전을 유지하고 버전 관리를 합니다."
+  ],
+  "keywords": [
+    "MAXScript 오류",
+    "MAXScript 에러",
+    "MacroScript Error 해결",
+    "3ds Max Script 실행 오류",
+    "Listener 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T08:10:19+00:00"
+}
