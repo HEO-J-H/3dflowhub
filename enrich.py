@@ -234,7 +234,7 @@ def rewrite_paper(p: dict) -> dict | None:
               "sections": secs, "insight": fx(str(out.get("insight") or "")),
               "faq": [{"q": fx(str(f.get("q", ""))), "a": fx(str(f.get("a", "")))} for f in out.get("faq") or []
                       if isinstance(f, dict) and f.get("q")][:3],
-              "try_it": [str(t) for t in out.get("try_it") or []][:4] if src["code"] else [],
+              "try_it": [core.step_text(t) for t in out.get("try_it") or [] if core.step_text(t)][:4] if src["code"] else [],
               "tags": [str(t)[:30] for t in out.get("tags") or p.get("tags") or []][:6],
               "refs": [], "videos": [], "paper": {"code": src["code"], "license": src["license"]},
               "paper_v": 2, "enriched_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})

@@ -1352,7 +1352,7 @@ def normalize_summary(data: dict, item: dict) -> dict:
     data["faq"] = [f for f in data.get("faq") or [] if isinstance(f, dict)]
     data["topic"] = data.get("topic") if data.get("topic") in TOPICS else DEFAULT_TOPIC
     apply_glossary(data)
-    data["try_it"] = [str(t).strip() for t in (data.get("try_it") or []) if str(t).strip()][:4] if isinstance(data.get("try_it"), list) else []
+    data["try_it"] = [step_text(t) for t in (data.get("try_it") or []) if step_text(t)][:4] if isinstance(data.get("try_it"), list) else []
     return data
 
 
@@ -1857,6 +1857,13 @@ def confirm_3d(item: dict) -> bool:
 
 SELF_OFFTOPIC = re.compile(r"(3D|소프트웨어|실무|작업|DCC)[^.]{0,30}(무관|관련(이|성이)? 없|연관(이|성이)? 없|직접적인 (연관|관련)이 없)"
                            r"|혼동될 수 있지만|이름이 (같|동일)")
+
+
+def step_text(t) -> str:
+    """'직접 해 보기' 한 단계를 글자로 — AI 가 {"step":1,"description":..} 처럼 줘도 화면에 날것으로 나오지 않게."""
+    if isinstance(t, dict):
+        t = t.get("description") or t.get("text") or t.get("step_text") or " ".join(str(v) for k, v in t.items() if k != "step")
+    return str(t or "").strip()
 
 
 def self_declared_offtopic(data: dict) -> bool:
