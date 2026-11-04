@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-invalid-cook-type-for-node-8cd4d",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Invalid cook type for node",
+  "title": "Error: Invalid cook type for node 노드 에러 해결",
+  "summary": "Houdini에서 노드를 평가(Cook)할 때 해당 노드가 지원하지 않는 타입이나 잘못된 계산 방식을 강제했을 때 발생하는 오류입니다. 주로 노드 네트워크 내부의 데이터 타입 불일치나 잘못된 파라미터 설정 때문에 나타납니다.",
+  "causes": [
+    "VEX나 Python 코드, 혹은 대입 식에서 예상치 못한 데이터 타입(예: Vector를 Float에 대입 등)이 전달되었습니다.",
+    "특정 노드에서 지원하지 않는 지오메트리 타입(예: Polygon을 Volume 노드에 직접 연결)을 처리하려고 했습니다.",
+    "HDA(Houdini Digital Asset) 내부의 파라미터 타입이나 내부 노드 연결이 손상되었습니다."
+  ],
+  "steps": [
+    "{'step': \"오류가 발생한 노드를 Mouse 우클릭하고 'Error Messages'를 열어 정확한 문제 노드와 원인을 확인합니다.\"}",
+    "{'step': '파라미터 창(Parameter Pane)에서 빨간색으로 경고가 표시되거나 잘못 입력된 표현식(Expression)이 있는지 검토합니다.'}",
+    "{'step': '노드의 입력(Input) 와이어가 올바른 데이터 타입(Geometry, Volume, VDB 등)의 노드와 연결되어 있는지 확인합니다.'}",
+    "{'step': '필요한 경우 Convert 노드나 Resample 노드를 추가하여 데이터 타입을 명시적으로 변환해 줍니다.'}",
+    "{'step': \"네트워크 뷰(Network View)에서 상단 메뉴의 'Render' > 'Recook Node'를 실행하거나 Alt+U 키를 눌러 노드를 강제로 다시 계산합니다.\"}"
+  ],
+  "check": [
+    "뷰포트와 파라미터 창에서 빨간색 오류 메시지가 사라지고 노드 상태가 정상(초록색 또는 회색)으로 돌아옵니다.",
+    "지오메트리 스프레드시트(Geometry Spreadsheet)에서 데이터가 올바른 타입과 값으로 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "노드를 연결할 때 입력과 출력 포트의 색상과 데이터 타입(파란색 지오메트리, 보라색 불륨 등)을 항상 확인합니다.",
+    "커스텀 VEX나 Python 코드를 작성할 때 데이터 타입 선언과 반환값을 엄격하게 관리합니다."
+  ],
+  "keywords": [
+    "Houdini Error Invalid cook type for node",
+    "Houdini 에러",
+    "Invalid cook type",
+    "Houdini 쿡 에러",
+    "Houdini 노드 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T11:19:30+00:00"
+}

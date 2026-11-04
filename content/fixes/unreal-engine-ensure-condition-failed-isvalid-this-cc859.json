@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-ensure-condition-failed-isvalid-this-cc859",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Ensure condition failed: IsValid(this)",
+  "title": "Ensure condition failed: IsValid(this) 크래시 분석",
+  "summary": "Ensure condition failed: IsValid(this) 메시지는 Unreal Engine에서 유효하지 않은(이미 파괴되었거나 아직 초기화되지 않은) 객체에 접근하거나 함수를 호출하려고 할 때 발생하는 런타임 크래시입니다.",
+  "causes": [
+    "이미 파괴된(Destroyed) 액터나 가비지 컬렉션(GC) 대상이 된 객체의 멤버 변수나 함수에 접근한 경우",
+    "비동기 로드(Async Load)나 타이머 지연 중에 참조하려던 오브젝트가 사라진 경우",
+    "블루프린트나 C++에서 생성(Spawn) 직후 유효성 검사 없이 곧바로 사용한 경우",
+    "멀티플레이어 환경에서 클라이언트와 서버 간 레플리케이션 타이밍 문제로 참조가 끊긴 경우"
+  ],
+  "steps": [
+    "크래시 로그(LogOutputDevice)의 Callstack을 확인하여 문제가 발생한 정확한 클래스와 라인 번호(또는 블루프린트 노드)를 파악합니다.",
+    "블루프린트의 경우 대상 노드 연결 직전에 IsValid 노드를 배치하여 유효성을 검사하도록 수정합니다.",
+    "C++ 코드의 경우 문제가 된 포인터 사용 전에 if (IsValid(TargetPtr)) 또는 if (TargetPtr != nullptr) 조건문을 추가합니다.",
+    "오브젝트가 파괴되는 시점에 참조를 명시적으로 nullptr로 초기화(PendingKill 또는 Destroy 후 레퍼런스 정리)합니다."
+  ],
+  "check": [
+    "에디터에서 해당 상황을 다시 재현했을 때 크래시가 발생하지 않고 출력 로그(Output Log)에 경고(Warning)만 찍히는지 확인합니다.",
+    "패키징된 빌드(Shipping/Development)에서도 동일한 액터 상호작용 시 예외 종료가 없는지 테스트합니다."
+  ],
+  "prevent": [
+    "모든 동적 객체 참조 직전에는 습관적으로 IsValid 검사(또는 안전한 포인터 사용)를 생활화합니다.",
+    "스폰(Spawn) 및 디스트로이(Destroy) 로직이 복잡한 멀티플레이어 프로젝트에서는 델리게이트를 활용하여 안전하게 참조를 해제합니다."
+  ],
+  "keywords": [
+    "Ensure condition failed",
+    "IsValid this 크래시",
+    "Unreal Engine IsValid 오류",
+    "UATHelper 패키징 크래시",
+    "Unreal 포인터 Null 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T11:19:28+00:00"
+}

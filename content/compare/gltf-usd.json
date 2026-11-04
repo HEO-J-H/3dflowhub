@@ -1,0 +1,84 @@
+{
+  "id": "gltf-usd",
+  "title": "glTF·USD 내보내기·가져오기",
+  "task": "glTF and USD export / import",
+  "summary": "glTF와 USD 포맷은 각각 웹 기반 공유와 실시간 협업 파이프라인에서 3D 에셋을 전달하기 위한 표준 파일 형식입니다. 주요 DCC 및 엔진 툴들은 각자의 내부 좌표계와 데이터 구조를 가지므로, 호환성과 데이터 손실 방지를 위해 올바른 내보내기 및 불러오기 설정이 필수적입니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "File → Export / Import → glTF 2.0 (.glb/.gltf) 및 USD (.usd/.usda/.usdc)",
+      "how": "기본 내장된 애드온을 통해 glTF와 USD 포맷을 완벽하게 지원하며, 지오메트리, 머티리얼, 애니메이션 설정을 꼼꼼하게 체크하여 내보낼 수 있습니다.",
+      "strength": "무료이며 기본 기능으로 강력한 glTF/USD 입출력 지원",
+      "limit": "복잡한 프로시저럴 노드는 베이킹 과정이 필요함"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "File → Export / Import → glTF 또는 USD",
+      "how": "최신 버전에서는 네이티브 USD 익스포터와 glTF 서포트를 제공하여 물리 기반 렌더링 재질과 애니메이션을 원활하게 주고받습니다.",
+      "strength": "USD 스테이지 및 Max 재질의 직관적인 변환",
+      "limit": "구버전의 경우 별도의 플러그인 설치가 필요할 수 있음"
+    },
+    {
+      "tool": "Maya",
+      "where": "File → Export / Import → USD Export / Import (또는 glTF 플러그인)",
+      "how": "USD 데이터를 레이어와 함께 다루는 파이프라인에 최적화되어 있으며, USD 플러그인을 통해 애니메이션과 계층 구조를 정밀하게 제어합니다.",
+      "strength": "대규모 VFX 파이프라인용 강력한 USD 레이어링 지원",
+      "limit": "glTF의 경우 기본 내장 외 서드파티 도구 활용이 유리할 때가 있음"
+    },
+    {
+      "tool": "Houdini",
+      "where": "USD ROP 노드 / USD Import SOP 및 glTF 로드 노드",
+      "how": "Solaris 기반의 USD롭 노드를 사용하여 강력한 프로시저럴 에셋과 시뮬레이션 결과를 USD로 정밀하게 패키징합니다.",
+      "strength": "복잡한 시뮬레이션 캐시와 방대한 지오메트리의 USD 변환",
+      "limit": "glTF 포맷은 상대적으로 제한적이며 주로 USD 중심 파이프라인에 최적화"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Content Browser → Import / Datasmith 및 USD Importer / glTF Importer 플러그인 활성화",
+      "how": "USD 파일과 glTF 파일을 프로젝트 내로 직접 임포트하여 레벨 디자인에 활용하거나, 데이터스미스를 통해 정밀한 에셋을 불러옵니다.",
+      "strength": "실시간 렌더링 환경으로의 빠른 에셋 통합 및 고품질 머티리얼 매핑",
+      "limit": "엔진 내부 복잡한 블루프린트는 glTF/USD로 다시 내보낼 때 제한이 있음"
+    },
+    {
+      "tool": "NVIDIA Omniverse",
+      "where": "File → Export / Import (glTF, USD 스테이지 저장)",
+      "how": "USD를 기본 파일 포맷으로 사용하여 여러 툴의 데이터를 실시간으로 통합하고, 외부 웹 공유를 위해 glTF로 변환하여 내보냅니다.",
+      "strength": "다중 DCC 실시간 협업 및 완벽한 USD 중심 워크플로우",
+      "limit": "로컬 단독 작업보다는 Omniverse 플랫폼 생태계에 의존적임"
+    }
+  ],
+  "pick": [
+    {
+      "case": "웹 브라우저에서 가볍고 빠르게 3D 모델을 보여주어야 할 때",
+      "tool": "Blender",
+      "why": "glTF 2.0 포맷에 최적화되어 있어 텍스처 압축, 드로우 콜 최적화, 애니메이션 포함 출력이 가장 직관적이기 때문입니다."
+    },
+    {
+      "case": "대규모 VFX 스튜디오에서 여러 아티스트가 동시에 씬을 편집해야 할 때",
+      "tool": "Houdini",
+      "why": "USD(Universal Scene Description)의 강력한 레이어 시스템을 활용하여 지오메트리, 셰이더, 라이팅을 분리 관리할 수 있기 때문입니다."
+    },
+    {
+      "case": "건축 시각화 데이터를 언리얼 엔진 기반 실시간 메타버스에 올릴 때",
+      "tool": "3ds Max",
+      "why": "맥스의 정밀한 CAD/모델링 데이터를 USD 또는 Datasmith를 통해 언리얼 엔진으로 손실 없이 넘길 수 있기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "축 방향 변환: DCC 툴 간 이동 시 Z-Up(Blender/Unreal)과 Y-Up(Maya/3ds Max) 차이를 확인하고 익스포트 시 축 설정을 일치시킵니다.",
+    "단위(Scale) 통일: 미터(Meter) 또는 센티미터(Centimeter) 단위를 정하고 내보내어 엔진에서 모델이 거대해지거나 아주 작아지는 현상을 방지합니다.",
+    "머티리얼 이름 규칙: 셰이더 이름에 특수문자나 한글을 배제하고 영문과 언더바(_) 위주로 명명하여 glTF/USD 변환 시 에러를 막습니다.",
+    "스케일 적용(Apply Scale): 블렌더 등의 툴에서는 반드시 Ctrl+A 단축키로 Scale을 1.0으로 초기화한 후 내보내야 왜곡이 없습니다."
+  ],
+  "apply": [
+    "Blender에서 제작한 최적화된 저폴리 에셋을 glTF로 변환하여 웹 뷰어 서비스에 임베드하기",
+    "3ds Max와 Maya의 모델링 데이터를 USD로 통합하여 NVIDIA Omniverse에서 실시간 리뷰 진행하기",
+    "Houdini에서 생성한 파티클 및 FX 시뮬레이션을 USD 캐시로 추출하여 언리얼 엔진 시네마틱에 적용하기"
+  ],
+  "pitfalls": [
+    "{'mistake': 'glTF 내보내기 시 텍스처 경로가 깨지거나 흰색으로 나오는 현상', 'fix': \"내보내기 옵션에서 텍스처 포맷을 'Embed Images (GLB)'로 설정하거나 텍스처 폴더 경로를 정확히 유지합니다.\"}",
+    "{'mistake': 'USD 임포트 후 모델의 노멀 방향이 뒤집혀 어둡게 보이는 현상', 'fix': '익스포트 시 Face Orientation 설정을 확인하고, DCC 툴에서 Recalculate Normals를 실행한 후 다시 내보냅니다.'}",
+    "{'mistake': '애니메이션 키프레임이 glTF/USD 파일에 포함되지 않고 정적 모델만 나오는 현상', 'fix': \"내보내기 옵션 패널에서 'Animation' 또는 'Bake Animations' 옵션이 체크되어 있는지 확인합니다.\"}"
+  ],
+  "at": "2026-11-04T11:19:55+00:00"
+}

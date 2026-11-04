@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-error-the-mesh-contains-open-boundaries-or--ebb55",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Error: The mesh contains open boundaries or non-manifold edges",
+  "title": "Error: The mesh contains open boundaries or non-manifold edges 해결 방법",
+  "summary": "ZBrush에서 메쉬에 열린 구멍이나 비정상적인 면(Non-manifold edges)이 존재하여 특정 연산이나 다이나메시를 진행할 수 없을 때 발생하는 오류입니다. 닫힌 볼륨 형태가 깨졌거나 엣지에 3개 이상의 면이 붙어 있을 때 나타납니다.",
+  "causes": [
+    "메쉬의 일부가 뚫려 있어 완전한 닫힌 볼륨(Closed Volume)을 이루지 못한 경우",
+    "하나의 엣지에 3개 이상의 폴리곤 면이 공유되는 Non-manifold 구조가 존재하는 경우",
+    "임포트한 OBJ나 FBX 파일 자체에 위상(Topology) 결함이 있는 경우"
+  ],
+  "steps": [
+    "ZBrush 우측 메뉴에서 Tool -> Geometry -> Modify Topology 패널을 엽니다.",
+    "Mesh Check 버튼을 클릭하여 메쉬의 오류 부위를 스캔하고 진단합니다.",
+    "Close Holes 버튼을 눌러 열린 구멍(Open Boundaries)을 자동으로 메웁니다.",
+    "Del Intersection이나 Weld Points 등을 통해 겹치거나 떨어진 엣지를 정리합니다.",
+    "문제가 지속될 경우 DynaMesh를 다시 적용하거나 ZRemesher를 실행하여 토폴로지를 깨끗하게 재구축합니다."
+  ],
+  "check": [
+    "동일한 작업을 다시 수행했을 때 'The mesh contains open boundaries or non-manifold edges' 경고창이 더 이상 뜨지 않는지 확인합니다.",
+    "Tool 패널의 Mesh Check에서 오류가 검출되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 툴에서 모델을 가져올 때 항상 Non-manifold 지오메트리를 정리(Cleanup)합니다.",
+    "Extrude나 Insert Mesh 브러시 작업 시 면이 겹치거나 내부 면이 생기지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "ZBrush open boundaries",
+    "non-manifold edges 오류",
+    "메쉬 구멍 해결",
+    "ZBrush Mesh Check",
+    "다이나메시 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T11:19:33+00:00"
+}

@@ -1,0 +1,82 @@
+{
+  "id": "fluid-smoke",
+  "title": "연기·불·유체 시뮬레이션",
+  "task": "smoke, fire and fluid simulation",
+  "summary": "유체, 연기, 불꽃 시뮬레이션은 물리 법칙을 계산해 사실적인 유체 역학 효과를 만드는 작업입니다. 각 툴마다 내장된 솔버의 정밀도와 실시간 렌더링 방식에서 차이가 납니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Physics 탭 → Fluid (Domain / Flow)",
+      "how": "오브젝트를 Fluid Domain으로 지정하고 Flow 소스를 설정한 뒤 Bake를 수행합니다.",
+      "strength": "추가 비용 없이 강력한 Mantaflow 솔버 사용 가능",
+      "limit": "대규모 시뮬레이션 시 베이크 및 캐시 관리 필요"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Command Panel → Create → Geometry → tyFlow (또는 FumeFX 플러그인)",
+      "how": "tyFlow 노드를 생성하여 파티클 및 볼륨 연산을 세밀하게 제어합니다.",
+      "strength": "tyFlow를 통한 압도적인 파티클·유체 통합 제어",
+      "limit": "기본 내장 유체 툴보다는 서드파티 플러그인 의존도 높음"
+    },
+    {
+      "tool": "Maya",
+      "where": "FX 메뉴셋 → Fluids / Bifrost → Create Bifrost Graph",
+      "how": "Bifrost 비주얼 프로그래밍 그래프를 열어 에어리어, 이미터, 솔버 노드를 연결합니다.",
+      "strength": "Bifrost를 통한 강력하고 확장성 있는 노드 기반 시뮬레이션",
+      "limit": "러닝 커브가 높고 복잡한 설정 필요"
+    },
+    {
+      "tool": "Houdini",
+      "where": "네트워크 뷰(Out/Dopnet) → Pyro Solver / FLIP Solver",
+      "how": "Pyro Source와 Pyro Solver 노드를 연결하여 연기, 불, 액체 물리 시뮬레이션을 구축합니다.",
+      "strength": "업계 최고 수준의 시뮬레이션 정밀도와 무한한 제어력",
+      "limit": "진입 장벽이 높고 세팅 시간이 오래 걸림"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Content Browser 우클릭 → FX → Niagara System / (또는 NVIDIA Flow 플러그인)",
+      "how": "Niagara 파티클 시스템을 배치하거나 Flow 볼륨 이미터를 생성해 실시간 시뮬레이션을 구현합니다.",
+      "strength": "실시간 렌더링 및 게임 엔진 내 즉각적인 피드백",
+      "limit": "오프라인 고해상도 시뮬레이션 정밀도는 DCC 툴에 비해 제한적"
+    }
+  ],
+  "pick": [
+    {
+      "case": "영화 급의 고품질 연기·폭발 효과를 정밀하게 제어해야 할 때",
+      "tool": "Houdini",
+      "why": "Pyro Solver의 압도적인 디테일과 VEX 기반의 세밀한 제어가 가능하기 때문입니다."
+    },
+    {
+      "case": "실시간 게임 씬에서 가볍고 빠른 불꽃이나 연기를 넣어야 할 때",
+      "tool": "Unreal Engine",
+      "why": "Niagara 시스템을 통해 지연 없이 실시간으로 볼륨 효과를 렌더링할 수 있기 때문입니다."
+    },
+    {
+      "case": "3ds Max 환경에서 하드부품 파편과 유체를 함께 다루어야 할 때",
+      "tool": "3ds Max",
+      "why": "tyFlow 하나로 파티클, 연기, 액체, 강체 파괴를 통합 제어할 수 있기 때문입니다."
+    },
+    {
+      "case": "추가 플러그인 없이 합리적인 비용으로 준수한 시뮬레이션을 만들 때",
+      "tool": "Blender",
+      "why": "내장된 Mantaflow 기반 Fluid 시스템으로 간편하게 도메인 세팅이 가능하기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "VFX 캐시 데이터는 ALEMBIC(.abc) 또는 OpenVDB(.vdb) 표준 포맷으로 익스포트하여 툴 간 호환성을 유지합니다.",
+    "툴 간 이동 시 미터(Meter) 단위와 Z-Up 또는 Y-Up 축 체계를 통일하여 스케일 왜곡을 방지합니다.",
+    "OpenVDB 시퀀스를 불러올 때는 프레임 패딩 이름 규칙(파일명.0001.vdb)이 깨지지 않도록 주의합니다.",
+    "볼륨 데이터를 넘길 때 대용량 캐시 파일이므로 네트워크 경로 및 드라이브 권한을 확인합니다."
+  ],
+  "apply": [
+    "판타지 게임 트레일러에서 마법사의 손끝에서 피어오르는 푸른색 마법 연기를 Unreal Engine Niagara로 제작합니다.",
+    "건축 시각화에서 모던 주택의 수영장 물결과 분수대 물줄기를 Houdini FLIP 시뮬레이션으로 제작해 V-Ray로 렌더링합니다.",
+    "SF 영화 씬에서 거대 로봇의 발걸음마다 일어나는 먼지와 파편 폭발을 3ds Max tyFlow로 연출합니다."
+  ],
+  "pitfalls": [
+    "{'mistake': '시뮬레이션 해상도(Voxel Size)를 처음부터 너무 높게 설정해 프로그램이 멈추는 현상', 'fix': '낮은 해상도로 먼저 모션과 동선을 확인한 뒤, 최종 렌더 단계에서만 Voxel 크기를 줄여 해상도를 높입니다.'}",
+    "{'mistake': 'Blender 등에서 도메인(Domain) 바깥으로 유체가 빠져나가 시뮬레이션이 씹히는 현상', 'fix': '유체의 움직임 범위보다 도메인 상자의 크기를 여유 있게 키우고 경계면 설정을 확인합니다.'}",
+    "{'mistake': 'OpenVDB 캐시를 불러왔으나 뷰포트에 연기가 보이지 않는 현상', 'fix': '볼륨 렌더링 셰이더(Volume Shader)나 머티리얼이 올바르게 할당되었는지, Density 값이 너무 낮지 않은지 확인합니다.'}"
+  ],
+  "at": "2026-11-04T11:19:49+00:00"
+}

@@ -1,0 +1,100 @@
+{
+  "id": "blender-render-output-settings-95a3",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Render output settings",
+  "title": "렌더 출력 설정(Resolution·포맷)",
+  "summary": "Blender Render Output Settings는 뷰포트에서 작업한 3D 씬을 이미지나 애니메이션 영상 파일로 저장하기 위해 Resolution, 파일 형식, 코덱 등을 설정하는 제어판입니다.",
+  "when": [
+    "모델링이나 애니메이션 작업이 끝나고 최종 결과물을 이미지 파일로 저장할 때",
+    "시퀀스 애니메이션을 동영상 파일이나 연속된 이미지로 렌더링할 때",
+    "배경이 투명한 PNG 이미지나 알파 채널이 포함된 영상을 출력할 때"
+  ],
+  "steps": [
+    "Properties 패널에서 Output Properties(인쇄기 아이콘) 탭을 클릭합니다.",
+    "Resolution 패널에서 Resolution X와 Resolution Y 값을 입력하여 렌더링 Resolution를 설정합니다.",
+    "Frame Range 패널에서 시작 프레임과 끝 프레임을 지정하여 애니메이션 출력 범위를 설정합니다.",
+    "Output 항목의 폴더 아이콘을 클릭하여 저장할 경로를 지정합니다.",
+    "File Format을 PNG 또는 FFmpeg Video 등으로 변경합니다.",
+    "상단 메뉴 바에서 Render → Render Image(Hotkey F12) 또는 Render Animation을 실행해 렌더링을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution X",
+      "desc": "가로 Resolution 픽셀 값을 설정합니다."
+    },
+    {
+      "name": "Resolution Y",
+      "desc": "세로 Resolution 픽셀 값을 설정합니다."
+    },
+    {
+      "name": "Frame Rate",
+      "desc": "초당 프레임 수(fps)를 결정합니다."
+    },
+    {
+      "name": "File Format",
+      "desc": "출력할 이미지(PNG, JPEG 등) 또는 동영상(FFmpeg) 형식을 선택합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "RGBA를 선택하면 배경이 투명한 알파 채널을 포함해 출력합니다."
+    },
+    {
+      "name": "Encoding",
+      "desc": "FFmpeg 비디오 선택 시 컨테이너와 코덱(MPEG-4 등)을 세부 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명 배경의 제품 홍보용 PNG 이미지 저장",
+      "steps": [
+        "Output Properties 탭에서 Film 항목의 Transparent를 체크합니다.",
+        "File Format을 PNG로 설정하고 Color는 RGBA로 선택합니다.",
+        "Hotkey F12를 눌러 렌더링 후 Image → Save As로 저장합니다."
+      ]
+    },
+    {
+      "title": "턴테이블 애니메이션을 MP4 동영상으로 출력",
+      "steps": [
+        "Frame Range에서 Start와 End 프레임을 전체 애니메이션 구간으로 설정합니다.",
+        "File Format을 FFmpeg Video로 변경합니다.",
+        "Encoding 메뉴에서 Container를 MPEG-4로 선택한 뒤 Render Animation을 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션을 렌더링했는데 한 장의 이미지만 덮어써짐 → File Format이 이미지 포맷으로 되어 있는지 또는 Render Animation 대신 Render Image를 눌렀는지 확인하고 FFmpeg Video로 변경하세요.",
+    "배경이 투명해야 하는데 검은색으로 나옴 → Film 설정에서 Transparent가 체크되어 있고 Color 모드가 RGBA인지 확인하세요."
+  ],
+  "related": [
+    "Render Properties",
+    "Compositor",
+    "Sequencer",
+    "Camera"
+  ],
+  "videos": [
+    {
+      "id": "Gifto41kpJw",
+      "title": "Render Output Settings - Blender 2.80 Fundamentals",
+      "author": "Blender"
+    },
+    {
+      "id": "EKb5G_Efunw",
+      "title": "Best Cycles Render Settings Explained in 3 Minutes (Blender 4.5 Tutorial)",
+      "author": "Afternoon CG"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Render%20output%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Output Properties",
+    "Resolution",
+    "Resolution X",
+    "Resolution Y",
+    "Frame Range"
+  ],
+  "at": "2026-11-04T11:19:20.037888+00:00"
+}

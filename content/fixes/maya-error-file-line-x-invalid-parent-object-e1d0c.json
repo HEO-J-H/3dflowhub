@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-file-line-x-invalid-parent-object-e1d0c",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Invalid parent / object",
+  "title": "# Error: file: line X: Invalid parent / object 해결 방법",
+  "summary": "Maya에서 부모-자식 관계(Parent-Child)를 맺거나 그룹을 지정할 때, 대상 오브젝트가 존재하지 않거나 경로가 잘못되어 발생장하는 에러입니다.",
+  "causes": [
+    "MEL 스크립트나 Python 코드를 실행할 때 지정한 오브젝트 이름이나 경로(Path)가 잘못되었습니다.",
+    "참조(Reference)된 파일이나 네임스페이스(Namespace) 변경으로 인해 대상 노드를 찾을 수 없습니다.",
+    "히스토리나 씬 정리 중 노드가 실수로 삭제되었습니다."
+  ],
+  "steps": [
+    "Outliner에서 에러 메시지에 언급된 오브젝트 이름과 실제 씬의 노드 이름이 정확히 일치하는지 확인합니다.",
+    "Script 에디터(Script Editor)나mel 코드를 사용할 경우, 대소문자 및 정확한 DAG 패스(예: |group1|pCube1)를 사용했는지 확인합니다.",
+    "참조된 파일(Reference Files)을 사용 중이라면 Reference Editor에서 파일이 정상적으로 로드되었는지 확인합니다.",
+    "필요한 경우 올바른 노드 이름을 선택한 후 수동으로 부모 관계를 재설정합니다(Outliner에서 Mouse 드래그 앤 드롭 또는 Edit > Parent 실행)."
+  ],
+  "check": [
+    "Script 실행 시 더 이상 'Invalid parent / object' 에러가 발생하지 않습니다.",
+    "Outliner에서 계층 구조가 의도한 대로 올바르게 정렬되었는지 확인합니다."
+  ],
+  "prevent": [
+    "하드코딩된 오브젝트 이름 대신 변수(ls -selection 등)를 사용하여 Script를 작성합니다.",
+    "네임스페이스를 사용할 때는 풀 네임(Full Path) 또는 네임스페이스를 포함한 정확한 경로를 지정합니다."
+  ],
+  "keywords": [
+    "Maya Invalid parent",
+    "Maya 에러 해결",
+    "메일 Script 에러",
+    "아웃라이너 부모 오류",
+    "Maya parent 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T11:19:25+00:00"
+}
