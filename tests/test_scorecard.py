@@ -33,3 +33,26 @@ def test_manager_site_menu_action_validated():
     ok = manager._valid_action({"type": "site_menu", "order": {"배우기": ["guide/", "evil/"]}, "desc": {"x/": "y"}})
     assert ok and ok["order"]["배우기"] == ["guide/"] and ok["desc"] == {}
     assert manager._valid_action({"type": "site_menu", "order": {"없는묶음": ["learn/"]}}) is None
+
+
+def test_archive_days_shrinks_when_site_big(tmp_path, monkeypatch):
+    monkeypatch.setattr(scorecard, "TUNING_PATH", tmp_path / "t.json")
+    monkeypatch.setattr(core, "background_ok", lambda n=1: True)
+    big = {"at": "x", "site_mb": 700, "repo_mb": 100, "post_image_pct": 100, "ref_visual_pct": 100, "thin_pct": 0,
+           "manual_coverage_pct": 100, "compare_coverage_pct": 100}
+    for _ in range(10):
+        scorecard.tune(big)
+    assert scorecard.knob("archive_days") == 180  # 최소까지
+    small = {**big, "site_mb": 100}
+    for _ in range(10):
+        scorecard.tune(small)
+    assert scorecard.knob("archive_days") == 365  # 다시 기본값
+
+
+def test_archived_only_old_unseen_thin():
+    import build_site
+    old = {"id": "a", "collected_at": "2020-01-01T00:00:00", "sections": [{"body": "짧음"}]}
+    assert build_site.archived(old, {}, 365)
+    assert not build_site.archived({**old, "pick": True}, {}, 365)
+    assert not build_site.archived(old, {"a": {"views": 3}}, 365)
+    assert not build_site.archived({**old, "collected_at": "2999-01-01"}, {}, 365)

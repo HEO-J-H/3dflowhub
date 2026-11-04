@@ -23,6 +23,7 @@ KNOBS = {
     "manual_daily": (8, 4, 16, 2),                # 심화 매뉴얼 (AI)
     "compare_daily": (4, 2, 8, 1),                # 툴 비교 (AI)
     "refresh_daily": (6, 3, 12, 2),               # 기존 페이지 보강 (AI)
+    "archive_days": (365, 180, 365, -30),         # 방문 0·빈약한 옛 소식을 사이트에서 내리는 기간 (용량이 크면 줄임)
 }
 # 지표 → (목표, 모자랄 때 올릴 손잡이, AI 를 쓰는가)
 TARGETS = {
@@ -31,8 +32,10 @@ TARGETS = {
     "thin_pct": (8, "enrich_daily", True),            # 낮을수록 좋음
     "manual_coverage_pct": (60, "manual_daily", True),
     "compare_coverage_pct": (100, "compare_daily", True),
+    "site_mb": (600, "archive_days", False),       # GitHub Pages 사이트 1GB 한도 — 600MB 넘으면 옛 빈약 글을 더 빨리 내림
+    "repo_mb": (600, "archive_days", False),       # 저장소 권장 1GB
 }
-LOWER_IS_BETTER = {"thin_pct", "dup_titles"}
+LOWER_IS_BETTER = {"thin_pct", "dup_titles", "site_mb", "repo_mb"}
 
 
 def knob(name: str) -> int:
@@ -77,9 +80,30 @@ def measure() -> dict:
         "compare_coverage_pct": _pct(len(compare.load_all()), len(compare.TOPICS)),
         "guides_with_video_pct": _pct(sum(bool(g.get("videos")) for g in gs), len(gs)),
         "dup_titles": seo.get("dup_title_count", 0), "seo_orphans": seo.get("orphan_count", 0),
+        "site_mb": _site_mb(), "repo_mb": _repo_mb(),
         "counts": {"posts": len(posts), "guides": len(gs), "manuals": len(mans), "compare": len(compare.load_all()),
                    "fixes": len(refs.load("fix")), "changes": len(refs.load("change")), "recipes": len(recipes.load_all())},
     }
+
+
+def _dir_mb(d) -> float:
+    return round(sum(f.stat().st_size for f in d.rglob("*") if f.is_file()) / 1e6, 1) if d.exists() else 0.0
+
+
+def _site_mb() -> float:
+    """빌드된 사이트 크기. 이 실행에서 빌드하지 않았으면 콘텐츠 크기 × 3 으로 어림 (지금 비율: 콘텐츠 15MB → 사이트 45MB)."""
+    site = core.ROOT / "_site"
+    return _dir_mb(site) if site.exists() else round(_dir_mb(core.ROOT / "content") * 3, 1)
+
+
+def _repo_mb() -> float:
+    """GitHub 이 보고하는 저장소 크기 (공개 API, 인증 없음). 실패하면 0 (판단 보류)."""
+    try:
+        import requests
+        r = requests.get("https://api.github.com/repos/HEO-J-H/3dflowhub", timeout=15)
+        return round(r.json().get("size", 0) / 1024, 1)
+    except Exception:  # noqa: BLE001
+        return 0.0
 
 
 def gaps(score: dict) -> list[dict]:
@@ -100,15 +124,20 @@ def tune(score: dict) -> list[str]:
     t = core._load_json(TUNING_PATH, {})
     short = {g["knob"] for g in gaps(score)}
     changed = []
+    by_knob: dict[str, tuple] = {}  # 손잡이 하나에 지표가 여럿이면(사이트·저장소 용량) 하나라도 모자라면 조이기
     for k, (goal, kn, uses_ai) in TARGETS.items():
+        if kn not in by_knob or kn in short and by_knob[kn][1] not in {g["metric"] for g in gaps(score)}:
+            by_knob[kn] = (goal, k, uses_ai)
+    for kn, (goal, k, uses_ai) in by_knob.items():
         base, lo, hi, step = KNOBS[kn]
         cur = knob(kn)
         if kn in short:
             if uses_ai and not core.background_ok(4):
                 continue
-            new = min(hi, cur + step)
+            new = max(lo, min(hi, cur + step))  # step 이 음수인 손잡이(보관 기간)는 줄어드는 쪽
         else:
-            new = max(base, cur - step)  # 목표 달성 → 원래 속도로 천천히
+            new = cur - step if (cur - base) * step > 0 else base  # 목표 달성 → 기본값 쪽으로 한 칸
+            new = max(min(new, max(base, cur)), min(base, cur))
         if new != cur:
             t[kn] = new
             changed.append(f"{kn} {cur}→{new} ({k} {score.get(k)} / 목표 {goal})")

@@ -1710,8 +1710,24 @@ def build_assets() -> int:
                                        canonical=f"{BASE_URL}/assets/"), encoding="utf-8")
     return len(items)
 
+def archived(p: dict, views: dict, days: int) -> bool:
+    """오래된 소식 중 아무도 안 보고(방문 0) 빈약한 글은 사이트에서 내림 — 데이터는 저장소에 그대로 (Pages 1GB 한도 대비).
+    에디터 추천 글은 유지. 기초 가이드·오류 해결·툴 비교 같은 오래 보는 콘텐츠는 해당 없음."""
+    if p.get("pick"):
+        return False
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    return (p.get("collected_at") or "") < cutoff and not views.get(p["id"], {}).get("views") and is_thin(p)
+
+
 def build() -> dict:
     posts = load_posts()
+    try:  # 보관 기간(기본 365일)은 품질 성적표가 사이트 용량을 보고 조절
+        import scorecard
+        keep_days = scorecard.knob("archive_days")
+    except Exception:  # noqa: BLE001
+        keep_days = 365
+    views = (core._load_json(core.ROOT / "memory" / "performance.json", {}).get("pages") or {}).get("posts", {})
+    posts = [p for p in posts if not archived(p, views, keep_days)]
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "assets").mkdir(parents=True)

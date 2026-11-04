@@ -445,7 +445,22 @@ def merge_memory(path: str, remote, local):
         merged["prompt_notes"] = newer.get("prompt_notes", merged.get("prompt_notes", []))
         if newer.get("notes_updated_at"):
             merged["notes_updated_at"] = newer["notes_updated_at"]
-    return merged
+    return trim_memory(path, merged)
+
+
+# 병합하면 양쪽 목록이 합쳐져 코드의 '최근 N개만' 이 지켜지지 않음 (runs 2,223개·577KB, strategy.history 903개 — 2026-11-04)
+# → 병합 뒤에 다시 잘라 저장소가 매 커밋 불어나지 않게 (저장소 용량 관리)
+MEMORY_CAPS = {"memory/memory.json": {"runs": 300, "title_hashes": 3000, "lessons": 120},
+               "memory/strategy.json": {"history": 120, "snapshots": 60, "note_versions": 60}}
+
+
+def trim_memory(path: str, data):
+    caps = next((c for k, c in MEMORY_CAPS.items() if path.replace("\\", "/").endswith(k)), None)
+    if caps and isinstance(data, dict):
+        for k, n in caps.items():
+            if isinstance(data.get(k), list) and len(data[k]) > n:
+                data[k] = data[k][-n:]
+    return data
 
 
 def git_sync(commit_paths: list[str] | None = None, message: str = "") -> str:
