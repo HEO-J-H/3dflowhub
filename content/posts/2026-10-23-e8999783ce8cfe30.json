@@ -1,54 +1,81 @@
 {
-  "title_ko": "Gaussian Splatting RecallGS 연구 — 기하학 기반 시맨틱 복원",
+  "title_ko": "RecallGS — 온라인 세멘틱 3DGS를 위한 기하학 기반 리콜",
   "title": "RecallGS: Geometry-Grounded Recall for Online Semantic Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.31293v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "Semantic 3DGS",
-    "RecallGS",
-    "ScanNet",
-    "Open-Vocabulary"
+    "3D Gaussian Splatting",
+    "3D Segmentation",
+    "Scene Understanding",
+    "CLIP",
+    "RecallGS"
   ],
-  "summary": "추가 학습 네트워크 없이 관측 이력을 활용하여 실시간 오픈 vocab 시맨틱 3D Gaussian Splatting을 수행하는 경량형 RecallGS 기법이 발표되었습니다.",
-  "insight": "기존 시맨틱 Gaussian Splatting은 누락된 기하학적 문맥을 복원하기 위해 별도의 무거운 3D 네트워크를 추가 학습해야 하므로 연산 오버헤드가 컸습니다. 이번에 제안된 RecallGS는 과거의 관측 데이터를 파라메트릭 학습 없이 비모수적 우선순위로 활용하여 실무에서의 연산 부담을 크게 덜어줍니다. 실시간 3D 공간 이해와 로보틱스, XR 환경 구축에 적용하려는 연구원 및 개발자라면 반드시 주목해야 할 접근법입니다. 추가 학습 브랜치 없이 ScanNet 및 ScanNet++에서 준수한 성능을 보여주어 파이프라인 최적화에 큰 힌트를 제공합니다.",
+  "summary": "추가 학습 없이 과거 관측 기록을 비모수적 기하·의미론적 사전 정보로 활용하여 온라인 3D Gaussian Splatting의 의미 분할 성능을 높이는 경량 프레임워크입니다.",
+  "insight": "이 기술이 상용화되거나 발전한다면, 실시간 3D 스캔이나 로보틱스 분야에서 무거운 3D 학습 모델을 매번 돌리지 않고도 과거 프레임의 기록만으로 정교한 시맨틱 맵을 구축하는 데 활용될 수 있을 것으로 보입니다. 아티스트나 실무자 입장에서는 대규모 실내 스캔 데이터를 처리할 때 연산 부담을 줄이는 대안이 될 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "온라인 시맨틱 3D Gaussian Splatting의 한계",
-      "body": "온라인 시맨틱 3D Gaussian Splatting(3DGS)은 스트리밍 관측 데이터를 통해 오픈 vocab 장면 이해를 가능하게 합니다. 그러나 기존 방법들은 이미지 기반 시맨틱 피처에서 누락된 기하학적 문맥을 복원하기 위해 추가적인 학습형 3D 네트워크를 사용해 왔습니다. 이로 인해 추가적인 학습 비용과 런타임 오버헤드가 발생하는 문제가 있었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "온라인 세멘틱 3D Gaussian Splatting(3DGS)은 스트리밍 관측을 통해 오픈 뷰캐벌러리 장면 이해를 가능하게 합니다. 그러나 기존 방법들은 이미지 기반 의미 특징에서 누락된 기하학적 맥락을 추가적인 학습 3D 네트워크로 복구하느라 추가적인 학습 및 런타임 오버헤드를 발생시킵니다."
     },
     {
-      "heading": "RecallGS의 비모수적 기하·시맨틱 프레임워크",
-      "body": "연구진은 이러한 기하학적·시맨틱 증거가 이미 에이전트의 관측 이력 내에 존재하며, 새로 학습하기보다 검색(retrieve)할 수 있다는 점에 주목했습니다. 이에 따라 과거의 관측 데이터를 비모수적 기하-시맨틱 우선순위로 취급하는 경량형 학습 프리(training-free) 메커니즘인 RecallGS를 도입했습니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 이러한 기하·의미론적 증거가 에이전트의 관측 역사 속에 이미 존재하며, 추가로 학습하는 대신 검색(Recall)할 수 있음을 관찰했습니다. RecallGS는 과거 관측을 비모수적 기하·의미론적 사전 정보로 취급하는 학습 없는 경량 메커니즘입니다."
     },
     {
-      "heading": "리콜-그라운드-퓨즈(Recall-Ground-Fuse) 파이프라인",
-      "body": "RecallGS는 세 단계의 파이프라인으로 작동합니다. 우선 CLIP이 관련 관측 데이터를 검색하고, 알파 합성(alpha-compositing) 가중치가 기하학적으로 지원되는 뷰를 식별합니다. 마지막으로 각 Gaussian의 렌더링된 풋프린트 위에서 시맨틱 피처들을 집계합니다."
+      "heading": "방법 (단계)",
+      "body": "RecallGS는 'Recall-Ground-Fuse' 파이프라인을 따릅니다. CLIP이 관련 관측을 검색하고, 알파 합성(alpha-compositing) 가중치가 기하학적으로 지원되는 뷰를 식별하며, 각 Gaussian의 렌더링된 풋프린트 전반에 걸쳐 의미론적 특징을 집계합니다."
     },
     {
-      "heading": "ScanNet 및 ScanNet++ 벤치마크 성능",
-      "body": "ScanNet과 ScanNet++ 데이터셋을 이용한 실험에서 RecallGS는 추가적인 학습형 3D 브랜치 없이도 강력한 시맨틱 분할 성능을 달성했습니다. 특히 초당 2.48 프레임(FPS)의 속도로 작동하여 관측 이력만으로 기하학적-시맨틱 문맥을 효과적으로 복원할 수 있음을 입증했습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "ScanNet 및 ScanNet++ 데이터셋에서 RecallGS는 2.48 FPS로 강력한 세멘틱 세분화 성능을 달성했으며, 추가 학습된 3D 브랜치 없이도 관측 역사로부터 기하·의미론적 맥락을 효과적으로 복구할 수 있음을 입증했습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문에서는 관련 GitHub 이슈 링크 등이 언급되어 있으나, 구체적인 오픈소스 코드 공개 저장소의 정식 URL은 본문 텍스트 내에 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "RecallGS는 기존 시맨틱 Gaussian Splatting과 무엇이 다릅니까?",
-      "a": "기존 방식과 달리 추가적인 3D 학습 네트워크를 사용하지 않으며, 과거 관측 기록을 검색하여 기하-시맨틱 문맥을 복원하는 학습 프리(training-free) 방식을 사용합니다."
+      "q": "RecallGS는 어떤 파이프라인으로 작동하나요?",
+      "a": "CLIP을 이용한 세멘틱 리콜, 알파 합성 가중치를 통한 기하학적 그라운딩, 그리고 특징을 집계하는 Compositing 퓨전의 'recall-ground-fuse' 파이프라인으로 작동합니다."
     },
     {
-      "q": "RecallGS의 핵심 파이프라인은 어떻게 구성되나요?",
-      "a": "CLIP을 이용한 관측 데이터 검색(Recall), 알파 합성 가중치를 통한 뷰 식별(Ground), 풋프린트 기반 시맨틱 피처 집계(Fuse)의 3단계로 구성됩니다."
+      "q": "어떤 데이터셋에서 평가되었나요?",
+      "a": "ScanNet 및 ScanNet++ 데이터셋에서 평가되었습니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.31293v1/2610.31293v1/pipeline_embodied_splat.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.31293v1/2610.31293v1/pipeline_embodied_splat.png",
+        "caption": "Figure 1: Overview of RecallGS. Given a posed observation and the observation history, RecallGS recalls candidate views via CLIP, verifies their geometric support with rendering responsibility, and replays the verified features to build an online 3DGS reconstruction with a semantic field",
+        "caption_ko": "그림 1: RecallGS의 개요. 주어진 관측과 관측 히스토리를 바탕으로 CLIP을 통해 후보 뷰를 리콜하고, 렌더링 책임도로 기하학적 지지를 검증한 뒤, 검증된 특징을 리플레이하여 시맨틱 필드가 포함된 온라인 3"
+      },
+      {
+        "src": "https://arxiv.org/html/2610.31293v1/2610.31293v1/qualitative_embodied_splat.png",
+        "caption": "Figure 2: Qualitative comparison on ScanNet and ScanNet++. RecallGS produces more coherent semantic regions and fewer artifacts than EmbodiedSplat-fast, particularly on large surfaces and partially observed boundaries.",
+        "caption_ko": "그림 2: ScanNet 및 ScanNet++에서의 정성적 비교. RecallGS는 EmbodiedSplat-fast에 비해 특히 넓은 표면과 부분적으로 관측된 경계에서 더 일관된 시맨틱 영역과 적은 아티팩트를 생성"
+      }
+    ]
   },
   "collected_at": "2026-10-23T02:50:19.703634+00:00",
   "notion_id": "",
   "id": "2026-10-23-e8999783ce8cfe30",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T20:31:04+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }
