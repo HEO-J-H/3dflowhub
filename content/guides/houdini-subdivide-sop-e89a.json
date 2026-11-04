@@ -1,0 +1,88 @@
+{
+  "id": "houdini-subdivide-sop-e89a",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Subdivide SOP",
+  "title": "Subdivide — 부드럽게 나누기",
+  "summary": "Subdivide SOP는 폴리곤 메쉬의 면을 세분화하여 부드러운 곡면과 고해상도 디테일을 만드는 노드입니다. 찰흙을 빚듯 각진 형태를 매끄럽게 다듬을 때 사용합니다.",
+  "when": [
+    "각진 로우폴리곤 모델을 부드러운 하이폴리곤 곡면으로 변환할 때",
+    "디스플레이스먼트 맵(Displacement Map)이나 세밀한 노이즈를 적용하기 전 충분한 면을 확보할 때",
+    "시뮬레이션 전 지오메트리의 Resolution를 높여 디테일을 살릴고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Subdivide를 검색하여 Subdivide SOP 노드를 생성하고 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Depth 값을 조절하여 세분화 단계를 높입니다.",
+    "Method 옵션을 선택해 Catmull-Clark 또는 Bilinear 알고리즘을 지정합니다.",
+    "뷰포트에서 면이 부드럽게 쪼개진 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Depth",
+      "desc": "메쉬를 세분화하는 반복 횟수(레벨)를 결정합니다."
+    },
+    {
+      "name": "Method",
+      "desc": "부드러운 곡면(Catmull-Clark) 또는 기존 형태 유지(Bilinear) 방식을 선택합니다."
+    },
+    {
+      "name": "Keep Boundaries",
+      "desc": "열린 모서리(Boundary) 형태의 외곽선을 고정할지 여부를 설정합니다."
+    },
+    {
+      "name": "Crease Weight",
+      "desc": "특정 모서리나 점의 각진 형태를 유지하는 가중치를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저해상도 모델을 부드러운 곡면으로 변환하기",
+      "steps": [
+        "Box SOP 노드를 생성해 기본 육면체를 만듭니다.",
+        "하단에 Subdivide SOP 노드를 연결합니다.",
+        "파라미터에서 Depth를 2로 설정해 둥근 구 형태에 가까운 박스로 만듭니다."
+      ]
+    },
+    {
+      "title": "모서리를 날카롭게 유지하며 세분화하기",
+      "steps": [
+        "Grid SOP 노드로 평면 메쉬를 만듭니다.",
+        "Crease SOP 노드를 추가해 특정 모서리에 크리스 값을 부여합니다.",
+        "Subdivide SOP 노드를 연결하고 모서리가 각지게 유지되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Depth 값을 너무 높게 설정해 폴리곤 수가 폭증하여 뷰포트가 느려짐 → Depth 값을 1~2로 낮추어 적정 폴리곤 수 유지",
+    "열린 면(Open Edge)이 있는 모델에 적용하여 예상치 못한 구멍이나 왜곡 발생 → PolyExtrude나 Fuse SOP로 메쉬 상태를 먼저 정리"
+  ],
+  "related": [
+    "PolyReduce",
+    "Crease",
+    "Peak",
+    "Smooth"
+  ],
+  "videos": [
+    {
+      "id": "TvML4frp4O4",
+      "title": "Houdini | Subdivide Geometry Node",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "RABdJLizeZM",
+      "title": "Houdini Quick scripts 02-Subdivide toggle",
+      "author": "Viktors Anfimovs"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Subdivide%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Subdivide",
+    "Subdivide SOP"
+  ],
+  "at": "2026-11-04T12:49:17.613199+00:00"
+}

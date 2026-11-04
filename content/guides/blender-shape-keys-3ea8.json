@@ -1,0 +1,91 @@
+{
+  "id": "blender-shape-keys-3ea8",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Shape Keys",
+  "title": "Shape Keys — 모양 변형 애니메이션",
+  "summary": "Blender의 Shape Keys는 오브젝트의 지오메트리 형태를 변형하여 저장하고, 슬라이더로 부드럽게 전환(Morphing)할 수 있는 기능입니다.",
+  "when": [
+    "캐릭터의 눈감기, 입 벌리기 등 표정(Facial Expression) 애니메이션을 만들 때",
+    "웃거나 찡그릴 때 얼굴 근육의 미세한 움직임을 표현할 때",
+    "옷이나 갑옷이 특정 포즈에서 겹치는 충돌(Collision)을 보정할 때"
+  ],
+  "steps": [
+    "1. 뷰포트에서 변형할 메쉬 오브젝트를 선택합니다.",
+    "2. Properties 패널에서 Object Data Properties(초록색 삼각형 아이콘) 탭을 클릭합니다.",
+    "3. Shape Keys 항목으로 이동하여 '+' 버튼을 두 번 클릭해 Basis(기본 형태)와 Key 1을 생성합니다.",
+    "4. Key 1을 선택한 상태에서 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "5. 뷰포트에서 Vertex를 이동하거나 스컬프팅하여 원하는 최종 변형 형태를 만듭니다.",
+    "6. Tab 키를 눌러 Object Mode로 돌아온 뒤, Shape Keys 패널에서 Value 값을 0에서 1 사이로 조절하여 변형을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Basis",
+      "desc": "변형이 일어나지 않은 최초의 기본 형태입니다."
+    },
+    {
+      "name": "Value",
+      "desc": "선택한 Shape Key의 반영 정도를 0.0(미적용)부터 1.0(최대 적용)까지 조절합니다."
+    },
+    {
+      "name": "Range Min / Max",
+      "desc": "Value 슬라이더의 최소값과 최대값 범위를 설정합니다."
+    },
+    {
+      "name": "Relative",
+      "desc": "다른 쉐이프 키(주로 Basis)를 기준으로 상대적인 변형을 계산합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 눈 깜빡임 (Blink)",
+      "steps": [
+        "1. Basis 외에 'Blink' 이름의 Shape Key를 새로 생성합니다.",
+        "2. Edit Mode에서 위아래 눈꺼풀 Vertex를 아래로 내려 눈을 감은 상태를 만듭니다.",
+        "3. Object Mode에서 Value를 올려 자연스럽게 눈이 감기는지 확인합니다."
+      ]
+    },
+    {
+      "title": "웃는 표정 (Smile)",
+      "steps": [
+        "1. 'Smile' Shape Key를 추가하고 Edit Mode로 들어갑니다.",
+        "2. 입꼬리를 위로 당기고 광대 부근 Vertex를 살짝 들어 올립니다.",
+        "3. Value 슬라이더로 미소의 강도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Edit Mode에서 Vertex를 추가하거나 삭제함 → 쉐이프 키가 있는 메쉬는 토폴로지(Vertex 개수·순서)를 변경하면 에러가 나므로, 수정 전에는 모든 Shape Key를 지우거나 초기화해야 합니다.",
+    "Modifier가 적용된 상태에서 쉐이프 키가 어색하게 작동함 → Subdivision Surface 등의 모디파이어 스택 순서에 따라 변형 결과가 달라지므로 모디파이어 순서를 확인하거나 Apply 후 적용합니다."
+  ],
+  "related": [
+    "Armature",
+    "Vertex Groups",
+    "Drivers",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "Kumk-reupso",
+      "title": "Shape Keys for Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "B11XBZmIIZc",
+      "title": "Learn Shape Keys In Under 5 Mins | Blender",
+      "author": "PIXXO 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Shape%20Keys",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Object Data Properties",
+    "Shape Keys",
+    "Basis",
+    "Key 1"
+  ],
+  "at": "2026-11-04T12:49:13.082335+00:00"
+}

@@ -11777,5 +11777,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T12:49:03+00:00",
+    "kind": "proposal",
+    "id": "p-fe8b6200d6",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42(url_ingest.py 검증) 및 PR #43, #44(pbr_generator.py 검증)가 승인 대기 상태로 머물러 있음.",
+    "proposal": "GitHub에서 해당 PR들의 테스트 결과와 코드를 확인하고 승인 또는 수정 요청을 진행합니다.",
+    "expected": "핵심 파이프라인의 입력 유효성 검사 코드가 안전하게 반영되어 서비스 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T12:49:03+00:00",
+    "kind": "proposal",
+    "id": "p-022d1d4818",
+    "title": "웹 버전(web/) 에러 처리 로직 보완 및 테스트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증이 강화된 것에 맞춰 프론트엔드 웹 버전(web/)에서도 잘못된 입력이나 비정상적인 이미지/URL에 대한 안내 메시지 및 에러 처리를 점검할 필요가 있음.",
+    "proposal": "web/ 디렉토리 내의 입력 처리 및 예외 상황 UI 로직을 검토하고 보완 사항을 문서화합니다.",
+    "expected": "사용자 경험(UX) 개선 및 프론트/백엔드 예외 처리 일관성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T12:49:37.385400+00:00",
+    "kind": "decision",
+    "id": "p-fe8b6200d6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T12:49:37.400227+00:00",
+    "kind": "decision",
+    "id": "p-022d1d4818",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
   }
 ]
