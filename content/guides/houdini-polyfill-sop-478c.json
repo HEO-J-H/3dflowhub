@@ -1,0 +1,84 @@
+{
+  "id": "houdini-polyfill-sop-478c",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "PolyFill SOP",
+  "title": "PolyFill — 구멍 막기",
+  "summary": "PolyFill SOP 노드는 Houdini에서 열린 폴리곤 메시의 구멍이나 끊어진 면을 자동으로 메워주는 Procedural 모델링 도구입니다. 삼각형 또는 사각형(Quad) 기반으로 깔끔하게 구멍을 채울 수 있습니다.",
+  "when": [
+    "구멍이 뚫린 복잡한 3D 오브젝트의 단면을 막을 때",
+    "불규칙한 N-gon 형태의 면을 보기 좋은 Grid로 채울 때",
+    "Procedural 모델링 Pipeline 동적으로 생성된 구멍을 메울 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 PolyFill을 입력하여 노드를 생성하고 기존 모델 뒤에 연결합니다.",
+    "파라미터 창에서 Operation을 선택하여 구멍을 채울 방식(예: Single Polygon, Quadrangulate 등)을 지정합니다.",
+    "그룹(Group) 입력란에 구멍 테두리 엣지나 포인트 그룹을 지정하여 특정 영역만 선택적으로 메웁니다.",
+    "뷰포트에서 면이 깔끔하게 생성되었는지 확인하고, 필요에 따라 세부 옵션을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "구멍을 채우는 방식을 지정합니다 (Single Polygon, Quadrangulate 등)."
+    },
+    {
+      "name": "Group",
+      "desc": "면을 채울 대상 엣지 또는 포인트의 그룹을 지정합니다."
+    },
+    {
+      "name": "Fill Mode",
+      "desc": "채우기 패턴의 세부 형태를 결정합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "지정한 그룹의 선택 영역을 반전시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "끊어진 튜브 단면 막기",
+      "steps": [
+        "튜브 지오메트리 뒤에 PolyFill 노드를 연결합니다.",
+        "Operation을 Single Polygon으로 설정하여 열린 끝단을 평면으로 막습니다."
+      ]
+    },
+    {
+      "title": "사각형 Grid로 구멍 채우기",
+      "steps": [
+        "구멍이 난 메시 뒤에 PolyFill 노드를 연결합니다.",
+        "Operation을 Quadrangulate로 설정하여 사각형 중심의 깔끔한 토폴로지로 채웁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 엣지 그룹 지정 → Group 파라미터에 올바른 엣지나 포인트가 입력되었는지 확인합니다.",
+    "비만오폴(Non-manifold) 구조로 인한 오류 → 입력 메시에 중복된 포인트나 겹친 면이 없는지 Clean 노드로 정리합니다."
+  ],
+  "related": [
+    "PolyBridge SOP",
+    "Cap Holes",
+    "Grid Fill",
+    "Dissolve SOP"
+  ],
+  "videos": [
+    {
+      "id": "KivxKhggdX0",
+      "title": "Zero to One: Intro to SOP – PolyExtrude & Bevel | Houdini Tutorial (M107)",
+      "author": "Think Trix"
+    },
+    {
+      "id": "QF7D_ReerKA",
+      "title": "Houdini: Primitive SOP for Disintegration and PolyFX",
+      "author": "Professionally Incorrect"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20PolyFill%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "PolyFill"
+  ],
+  "at": "2026-11-04T13:19:52.531135+00:00"
+}

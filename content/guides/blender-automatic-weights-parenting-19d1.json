@@ -1,0 +1,88 @@
+{
+  "id": "blender-automatic-weights-parenting-19d1",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Automatic Weights parenting",
+  "title": "자동 웨이트로 본 연결",
+  "summary": "Blender의 Automatic Weights는 3D 모델(Mesh)과 뼈대(Armature)를 선택하고 한 번에 자동 웨이트를 계산하여 뼈대에 메쉬를 종속시키는 기능입니다.",
+  "when": [
+    "새로 만든 캐릭터 모델에 뼈대(Armature)를 빠르게 연결하고 싶을 때",
+    "관절 부위의 대략적인 Vertex 영향력(Weight)을 자동으로 할당하고 싶을 때",
+    "수동 웨이트 페인팅 작업을 시작하기 전 기본 뼈대를 잡을 때"
+  ],
+  "steps": [
+    "Object Mode에서 3D 모델(Mesh)을 먼저 선택한 후, Shift 키를 누른 채 Armature(본)를 다중 선택합니다.",
+    "키보드에서 Ctrl + P 키를 눌러 Parent 창을 엽니다.",
+    "팝업 메뉴에서 'Armature Deform' 아래에 있는 'With Automatic Weights'를 클릭합니다.",
+    "뼈대(Armature)를 Pose Mode(Ctrl + Tab)로 전환하고 본을 움직여 메쉬가 잘 따라오는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Object",
+      "desc": "오브젝트 간의 부모-자식 관계를 설정할 때 메인 대상이 되는 부모 오브젝트입니다."
+    },
+    {
+      "name": "Armature Deform",
+      "desc": "아마추어의 본(Bone) 구조에 따라 메쉬의 형태를 변형(Deform)하도록 설정합니다."
+    },
+    {
+      "name": "With Automatic Weights",
+      "desc": "뼈대와 메쉬의 거리를 계산하여 Vertex 그룹과 웨이트 값을 자동으로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "휴머노이드 캐릭터 리깅",
+      "steps": [
+        "캐릭터 메쉬와 생성된 아마추어를 준비합니다.",
+        "메쉬를 먼저 선택하고 아마추어를 나중에 선택한 뒤 Ctrl + P를 누릅니다.",
+        "With Automatic Weights를 선택해 자동으로 웨이트를 할당합니다.",
+        "Pose Mode에서 팔과 다리를 움직여 꺾임 상태를 확인합니다."
+      ]
+    },
+    {
+      "title": "기계 팔(Robotic Arm) 부착",
+      "steps": [
+        "파츠별로 나뉜 메쉬와 본 구조를 정렬합니다.",
+        "전체 메쉬와 아마추어를 다중 선택한 뒤 Ctrl + P를 누릅니다.",
+        "Automatic Weights를 적용하여 각 파츠를 본에 연결합니다.",
+        "본을 회전시켜 관절 회전 축이 올바른지 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬와 아마추어의 스케일이 1이 아님(Unapplied Scale) → Object 모드에서 Ctrl + A를 누르고 All Transforms를 적용하여 스케일을 1로 맞춘 뒤 다시 시도합니다.",
+    "메쉬에 겹치는 면이나 열린 구멍(Non-manifold)이 있음 → Edit Mode에서 Mesh -> Clean Up 메뉴를 사용해오류를 수정합니다."
+  ],
+  "related": [
+    "Armature",
+    "Weight Paint",
+    "Vertex Groups",
+    "Parent"
+  ],
+  "videos": [
+    {
+      "id": "EBgHRd5tJfE",
+      "title": "Blender 5.1 Basic Rigging Tutorial | Simple Armature Setup & Automatic Weights (Beginner Guide)",
+      "author": "Freedom Arts 3D Workflow"
+    },
+    {
+      "id": "RggyLrBC-X0",
+      "title": "Character Rigging & Animation Basics: Parenting with Automatic Weights - making a 3d game in Blender",
+      "author": "Jimmy On - Glitchy Thumbs"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Automatic%20Weights%20parenting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Mesh",
+    "Armature",
+    "Parent",
+    "Armature Deform",
+    "With Automatic Weights"
+  ],
+  "at": "2026-11-04T13:19:46.697805+00:00"
+}
