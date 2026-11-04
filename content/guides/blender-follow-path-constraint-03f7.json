@@ -1,0 +1,96 @@
+{
+  "id": "blender-follow-path-constraint-03f7",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Follow Path constraint",
+  "title": "Follow Path — 경로 따라 이동",
+  "summary": "Blender의 Follow Path constraint는 오브젝트나 카메라를 지정된 곡선 경로(Curve)를 따라 자동으로 이동시키고 회전시키는 애니메이션 제약 조건입니다.",
+  "when": [
+    "카메라가 특정 곡선 경로를 따라 부드럽게 이동하는 시네마틱 컷씬을 만들 때",
+    "기차나 자동차가 구불구불한 선로와 도로를 따라 주행하는 애니메이션을 만들 때",
+    "벌레나 나비가 정해진 궤적을 따라 유기적으로 날아가는 움직임을 연출할 때"
+  ],
+  "steps": [
+    "1. Shift+A를 눌러 Curve → Path(또는 Bezier)를 생성하고 뷰포트에서 원하는 이동 경로를 만듭니다.",
+    "2. 경로를 따라 움직일 대상 오브젝트(예: Sphere 또는 Camera)를 선택합니다.",
+    "3. Properties 패널에서 Object Constraint(사슬 아이콘) 탭을 엽니다.",
+    "4. Add Object Constraint 메뉴에서 Follow Path를 선택합니다.",
+    "5. Target 항목에서 1번에서 만든 Path 커브 오브젝트를 스포이트나 드롭다운으로 지정합니다.",
+    "6. 애니메이션을 위해 Offset 값에 키프레임을 입력하고 Timeline을 재생하여 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Target",
+      "desc": "오브젝트가 따라갈 대상 Curve 또는 Path 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "경로 상에서 오브젝트의 위치를 백분율(또는 거리) 단위로 조절하여 애니메이션합니다."
+    },
+    {
+      "name": "Follow Curve",
+      "desc": "체크하면 오브젝트가 곡선의 기울기와 회전 방향에 맞춰 자연스럽게 회전합니다."
+    },
+    {
+      "name": "Forward Axis",
+      "desc": "오브젝트가 경로를 향해 나아갈 로컬 축 방향(X, Y, Z 및 음수 축)을 설정합니다."
+    },
+    {
+      "name": "Up Axis",
+      "desc": "오브젝트의 상단(위쪽)을 향할 로컬 축 방향을 지정하여 기울기를 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카메라 궤적 애니메이션",
+      "steps": [
+        "Path 커브를 대상 오브젝트 주위에 배치합니다.",
+        "카메라에 Follow Path를 적용하고 Target에 Path를 연결합니다.",
+        "Offset 값에 시작점(0)과 끝점(100) 키프레임을 주어 턴 시네마틱을 완성합니다."
+      ]
+    },
+    {
+      "title": "레일 위를 달리는 열차",
+      "steps": [
+        "선로 모양의 Curve를 만들고 열차 모델을 준비합니다.",
+        "열차에 Follow Path를 적용하고 Follow Curve를 활성화합니다.",
+        "Forward Axis를 열차의 전진 방향 축으로 맞추어 탈선 없이 주행하게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 경로에서 엉뚱한 방향으로 이동함 → Forward Axis 설정을 변경하거나 오브젝트의 회전값(Alt+R)을 초기화하세요.",
+    "애니메이션 재생 시 움직이지 않음 → Curve 데이터 속성에서 Path Animation의 Frames 값이 0이 아닌지 확인하고 프레임 수를 입력하세요."
+  ],
+  "related": [
+    "Curve",
+    "Path Animation",
+    "Track To constraint",
+    "Clamp To constraint"
+  ],
+  "videos": [
+    {
+      "id": "i0XQXEUO1-I",
+      "title": "The Follow Path Constraint Is So Powerful | Blender Tutorial",
+      "author": "PIXXO 3D"
+    },
+    {
+      "id": "5EQdQdtg-ao",
+      "title": "Blender Camera Follow Path: Step-by-Step Tutorial for Dynamic Shots",
+      "author": "What Make Art"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Follow%20Path%20constraint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Curve",
+    "Path",
+    "Bezier",
+    "Sphere",
+    "Camera",
+    "Properties"
+  ],
+  "at": "2026-11-04T12:28:51.286432+00:00"
+}

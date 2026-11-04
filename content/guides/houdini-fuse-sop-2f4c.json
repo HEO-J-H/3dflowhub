@@ -1,0 +1,88 @@
+{
+  "id": "houdini-fuse-sop-2f4c",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Fuse SOP",
+  "title": "Fuse — 가까운 점 합치기",
+  "summary": "Fuse SOP 노드는 서로 떨어져 있는 정점(Point)들의 거리가 설정한 임계값 이내일 때 이들을 하나로 병합해 주는 Geometry Nodes입니다. 마치 미세하게 벌어진 모델의 틈새를 붙여 하나의 닫힌 면으로 만드는 용접 역할을 합니다.",
+  "when": [
+    "임포트한 CAD나 3D 모델의 정점들이 서로 떨어져 있어 틈이 생길 때",
+    "Extrude나 PolyExtrude 작업 후 중복 생성된 정점들을 정리할 때",
+    "시뮬레이션 전 모델의 열린 면이나 찢어진 부위를 하나로 합칠 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Fuse를 검색하여 Fuse SOP 노드를 생성하고 선택합니다.",
+    "수정이 필요한 Geometry Nodes의 출력(Output) 포트를 Fuse 노드의 입력(Input) 포트에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Distance 임계값을 조절하여 붙일 정점의 범위를 설정합니다.",
+    "뷰포트에서 정점들이 올바르게 병합되어 틈새가 메워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "정점을 병합할 최대 거리 임계값입니다. 값이 클수록 먼 거리의 정점까지 붙습니다."
+    },
+    {
+      "name": "Consolidate Points",
+      "desc": "같은 위치에 겹쳐 있는 중복 정점들을 자동으로 찾아 하나로 합쳐줍니다."
+    },
+    {
+      "name": "Snap to Grid",
+      "desc": "병합된 정점의 위치를 Grid 좌표에 스냅시켜 정렬합니다."
+    },
+    {
+      "name": "Grid Spacing",
+      "desc": "Snap to Grid가 활성화되었을 때 적용될 Grid 간격 크기입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델의 찢어진 심(Seam) 틈새 메우기",
+      "steps": [
+        "네트워크 뷰에서 Fuse SOP 노드를 모델 뒤에 연결합니다.",
+        "Distance 값을 조금씩 높이며 벌어진 틈새가 닫히는 지점을 찾습니다.",
+        "뷰포트에서 와이어프레임을 켜고 정점이 잘 붙었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "중복 생성된 정점 최적화하기",
+      "steps": [
+        "여러 조각을 합친 모델을 Fuse SOP에 연결합니다.",
+        "Consolidate Points 옵션을 켜서 겹친 정점들을 제거합니다.",
+        "통계 창에서 포인트 개수가 줄어들었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Distance 값을 너무 크게 설정함 → 모델의 형태가 일그러지거나 의도하지 않은 면이 붙습니다. 값을 낮게 시작해 조절하세요.",
+    "정점이 아예 안 붙음 → 정점 간 거리가 설정한 Distance 값보다 멀기 때문입니다. 값을 점진적으로 늘려보세요."
+  ],
+  "related": [
+    "Clean SOP",
+    "Delete SOP",
+    "Divide SOP",
+    "PolyDoctor"
+  ],
+  "videos": [
+    {
+      "id": "0vjEZXNDfXk",
+      "title": "#28 The Fuse Node in Houdini",
+      "author": "Mad Dog VFX"
+    },
+    {
+      "id": "jt_adQwBX98",
+      "title": "Houdini Foundations | Destruction FX 02 | Model the Fuse",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Fuse%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Fuse",
+    "Fuse SOP"
+  ],
+  "at": "2026-11-04T12:28:55.394210+00:00"
+}
