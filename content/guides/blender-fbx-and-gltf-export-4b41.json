@@ -1,0 +1,95 @@
+{
+  "id": "blender-fbx-and-gltf-export-4b41",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "FBX and glTF export",
+  "title": "FBX·glTF Export",
+  "summary": "Blender에서 제작한 3D 에셋을 게임 엔진이나 웹으로 Export 위해 FBX 및 glTF 포맷으로 변환하는 필수 기능입니다. 축 방향과 스케일을 정확히 맞추어 데이터 손실 없이 에셋을 전달합니다.",
+  "when": [
+    "Unreal Engine이나 Unity 같은 게임 엔진으로 캐릭터나 배경 모델을 가져갈 때 (FBX)",
+    "웹 브라우저나 모바일 앱 환경에서 가볍고 빠르게 3D 모델을 보여주어야 할 때 (glTF/GLB)",
+    "다른 DCC 툴(3ds Max, Maya 등)과 애니메이션 및 머티리얼을 포함한 에셋을 공유할 때"
+  ],
+  "steps": [
+    "Blender 상단 메뉴 바에서 File → Export → FBX (.fbx) 또는 glTF 2.0 (.glb/.gltf)을 선택합니다.",
+    "파일 브라우저 우측의 Export 설정 패널에서 필요한 옵션(Mesh, Animation 등)을 확인합니다.",
+    "정확한 축 방향(Transform 탭에서 Forward: -Z Forward, Up: Y Up)이 설정되었는지 확인합니다.",
+    "저장할 경로와 이름을 지정한 후, 우측 상단의 Export FBX 또는 Export glTF 2.0 버튼을 클릭합니다.",
+    "뷰포트 하단 상태바에 Export 완료 메시지가 표시되면 에셋 변환이 성공적으로 끝난 것입니다."
+  ],
+  "params": [
+    {
+      "name": "Selected Objects",
+      "desc": "씬 전체가 아니라 뷰포트에서 선택한 오브젝트만 내보냅니다."
+    },
+    {
+      "name": "Apply Scalings",
+      "desc": "오브젝트의 스케일 값을 적용하여 내보내 엔진에서의 크기 오류를 방지합니다."
+    },
+    {
+      "name": "Export FBX - Bake Animation",
+      "desc": "본(Bone)과 애니메이션 키프레임을 베이크하여 FBX에 포함합니다."
+    },
+    {
+      "name": "Format (glTF)",
+      "desc": "단일 파일로 묶이는 .glb 또는 텍스처가 분리되는 .gltf 중 선택합니다."
+    },
+    {
+      "name": "Textures (glTF)",
+      "desc": "에셋에 사용된 텍스처를 glTF 파일 내부에 포함하거나 외부로 내보냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 엔진용 캐릭터 FBX Export",
+      "steps": [
+        "오브젝트 모드에서 캐릭터와 아마추어를 함께 선택합니다.",
+        "File → Export → FBX로 이동합니다.",
+        "Selected Objects 옵션을 체크하고 Bake Animation을 켠 뒤 내보냅니다."
+      ]
+    },
+    {
+      "title": "웹 뷰어용 glb 제품 모델 Export",
+      "steps": [
+        "제품 모델링과 머티리얼 설정을 완료합니다.",
+        "File → Export → glTF 2.0을 선택합니다.",
+        "Format을 .glb로 설정하고 Material과 Textures 옵션을 포함하여 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일이 틀어짐 → Export 전 오브젝트 모드에서 Ctrl+A를 눌러 Apply → Scale을 먼저 실행하세요.",
+    "축이 회전되어 나옴 → Export 설정의 Transform 패널에서 Forward와 Up 축 설정을 확인하세요.",
+    "텍스처가 유실됨 → glTF Export 시 Material 옵션이 켜져 있는지, 파일 경로가 올바른지 확인하세요."
+  ],
+  "related": [
+    "FBX Export",
+    "glTF 2.0",
+    "Apply Scale",
+    "USD Export"
+  ],
+  "videos": [
+    {
+      "id": "e2mJov0SEnA",
+      "title": "Right Way Export GLTF to FBX using Blender | Cinema 4D",
+      "author": "Maqsad Animation School"
+    },
+    {
+      "id": "cG1PovYpvXo",
+      "title": "Tutorial - FBX to GLTF file conversion using Blender",
+      "author": "StellarX"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20FBX%20and%20glTF%20export",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "File",
+    "Export",
+    "FBX",
+    "TF 2"
+  ],
+  "at": "2026-11-04T15:59:38.279239+00:00"
+}

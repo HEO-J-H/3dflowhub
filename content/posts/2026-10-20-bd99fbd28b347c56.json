@@ -1,45 +1,54 @@
 {
-  "title_ko": "Gaussian Splatting 에지 렌더링 — LENS FPGA 가속 시스템",
+  "title_ko": "LENS — FPGA에서 로봇 위치 추정과 3D 신경 Gauss 렌더링",
   "title": "Localization and Neural Splatting on the Edge: An FPGA Scene Memory for Robots",
   "url": "https://arxiv.org/abs/2610.25068v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "3D Gaussian Splatting",
+    "3DGS",
     "FPGA",
-    "로보틱스",
-    "에지 컴퓨팅",
-    "LENS"
+    "Edge AI",
+    "Localization",
+    "AMD KR260",
+    "Scene-coordinate regression"
   ],
-  "summary": "데스크톱 GPU 없이도 에지 FPGA 환경에서 실시간 3D Gaussian Splatting 렌더링과 위치 추정을 수행할 수 있는 LENS 시스템이 발표되었습니다.",
-  "insight": "이번 연구는 3D Gaussian Splatting 기술이 무거운 데스크톱 환경을 벗어나 전력 제약이 심한 로봇 및 자율주행 에지 디바이스로 확장될 수 있는 중요한 가능성을 보여줍니다. AMD KR260 같은 저전력 플랫폼에서 Jetson Orin NX 대비 뛰어난 전력당 성능 효율을 입증하여, 현장 로보틱스와 실시간 공간 렌더링을 결합하려는 실무 엔지니어들에게 실질적인 하드웨어 가속 아키텍처 방향성을 제시합니다. 3D 공간 데이터와 신경망 렌더링을 가벼운 하드웨어 파이프라인으로 최적화하는 방식을 연구하는 개발자라면 주목해야 할 사례입니다.",
+  "summary": "자원 제약이 있는 엣지 로봇 환경에서 데스크톱 GPU 없이 3D Gauss Splatting(3DGS)과 씬 좌표 회귀(SCR)를 실시간으로 구동하는 FPGA 시스템(LENS)을 발표했습니다.",
+  "insight": "이 연구는 데스크톱 GPU 없이 저전력 하드웨어(FPGA)에서 실시간으로 3D Gauss Splatting과 위치 추정을 동시에 구동할 수 있음을 보여줍니다. 향후 소형 로봇이나 드론이 자체 전력만으로 주변 환경을 인식하고 렌더링하는 온디바이스 3D 비전 시스템을 구축하는 데 중요한 하드웨어 최적화 방향을 제시합니다. 다만, 현재는 추론(Inference)과 렌더링 중심이며 온디바이스 학습 영역은 추가 연구가 필요합니다.",
   "sections": [
     {
-      "heading": "에지 환경에서의 3D Gaussian Splatting 한계와 도전",
-      "body": "자율주행 차량과 자원 제약이 있는 로봇은 데스크톱 GPU 없이도 카메라 위치를 파악하고 주변 뷰를 렌더링할 수 있는 공간 메모리가 필수적입니다. Structure-from-Motion 단계를 피할 수 있는 Scene-coordinate regression(SCR)과 3D Gaussian Splatting(3DGS)이 대안으로 꼽힙니다. 하지만 기존 ACEsplat 스타일의 파이프라인은 GPU 중심이어서 에지 FPGA로 이전하기 매우 어렵습니다. 이는 SCR이 포즈 변화에 민감하고 3DGS 렌더링은 연산 구조가 불규칙하며 용량 제약을 크게 받기 때문입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "소형 로봇이나 자율주행차는 저전력 환경에서 현재 카메라 위치를 찾는 위치 추정(Localization)과 주변 뷰를 렌더링하는 씬 메모리가 필요합니다. 기존 ACEsplat 같은 파이프라인은 GPU 중심이라 전력 소모가 큰 데스크톱급 하드웨어가 필요하며, 저전력 엣지 FPGA(AMD KR260 등)로 옮기기에는 위치 추정의 미세한 오차가 큰 포즈 오류로 이어지며 렌더링 연산이 불규칙하고 메모리 용량을 크게 소모하는 문제가 있습니다."
     },
     {
-      "heading": "LENS 시스템의 하드웨어와 데이터 패스 공동 설계",
-      "body": "연구진은 AMD KR260 저전력 FPGA/ARM 플랫폼에서 ACEsplat 스타일의 워크로드를 구동하는 에지 공간 메모리 가속 시스템인 LENS를 발표했습니다. 새로운 씬 모델을 제안하는 대신, 보드 데이터 패스와 두 가지 주요 커널을 공동 설계하는 방식을 택했습니다. 포즈 정확도를 유지하는 INT16 SCR 가속기와, 알파 투과율을 log-sum-exp 재귀 연산으로 재작성하고 불필요한 스트림 Gaussian을 제거하는 비트 정확 고정소수점 순서화 3DGS 렌더러를 구현했습니다."
+      "heading": "핵심 아이디어",
+      "body": "저전력 FPGA/ARM 플랫폼인 AMD Kria KR260(약 5W급) 환경에서 동작하도록 위치 추정(SCR)과 3DGS 렌더링의 두 핵심 커널을 보드 데이터 경로와 함께 공동 설계했습니다. 포즈 정확도를 유지하는 INT16 SCR 가속기와, 알파 투과도를 로그-섬-익스포넨셜(LSE) 점화식으로 재작성하여 비트 정확도를 유지하면서 쓸모없는 Gauss 스트림을 제거하는 고정소수점 렌더러를 구현했습니다."
     },
     {
-      "heading": "실측 기반의 지연 시간, 화질 및 성능 검증",
-      "body": "모든 LENS의 지연 시간, 전력 소비, 화질 결과는 보드에서 직접 측정되었습니다. SCR 엔진은 DSAC* 위치 추정 정확도를 25.42ms 만에 유지하며, 온보드 렌더러는 Cambridge 데이터셋에서 ACEsplat의 33.20 dB를 뛰어넘는 34.11 dB를 달성했습니다. RealEstate10K에서의 새로운 뷰 합성 역시 27.84 dB를 기록하여 기존 26.11 dB보다 향상되었습니다. 10개의 Wayspots 씬 모두 ACEsplat의 렌더링 목표 수준에 도달했습니다."
+      "heading": "방법과 파이프라인",
+      "body": "입력된 RGB 프레임은 프로그래머블 로직(PL)의 SCR 엔진으로 들어가 씬 좌표 점군을 생성합니다. ARM CPU가 포즈 풀이와 타일링을 수행하며, PL의 LSE 렌더 엔진이 재구성 및 신규 뷰 합성을 위해 고정소수점 Gauss 스트림을 래스터화합니다. SCR은 Winograd F(4,3) 변환과 정확도 안전 저랭크 분해(Low-rank decomposition)를 적용했으며, 렌더러는 초월 함수를 고정소수점 테이블 읽기로 대체했습니다."
     },
     {
-      "heading": "전력 효율성과 향후 과제",
-      "body": "LENS는 모든 배포 작업에서 Jetson Orin NX 대비 1.9배에서 5.7배 높은 전력당 성능을 기록했으며, 소비 전력은 약 4분의 1 수준에 그쳤습니다. 위치 추정 및 Wayspots 렌더링의 절대 지연 시간 측면에서도 우수한 성능을 증명했습니다. 다만 온디바이스 학습의 경우 ACEsplat 수준의 화질에는 도달했으나 GPU의 시간 및 에너지 효율성에는 미치지 못해, 향후 학습 가속기를 위한 과제로 남겨졌습니다."
+      "heading": "결과 및 성능",
+      "body": "모든 결과는 AMD KR260 보드 측정 기준입니다. SCR 엔진은 DSAC* 위치 추정 정확도를 유지하며 25.42 ms에 동작합니다. 온보드 렌더러는 Cambridge 데이터셋에서 34.11 dB(기존 ACEsplat 33.20 대비), RealEstate10K 신규 뷰 합성에서 27.84 dB(기존 26.11 대비)를 기록했습니다. Jetson Orin NX 에지 GPU 대비 모든 배포 태스크에서 1.9배~5.7배 높은 전력 대비 성능(Performance per watt)을 보였습니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "온디바이스 학습(On-device training)의 경우 ACEsplat 수준의 품질에는 도달했으나, GPU의 학습 시간이나 에너지 효율에는 미치지 못했습니다. 이는 향후 학습 가속기를 위한 해결 과제로 남아 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "논문 본문에는 별도의 오픈소스 코드 저장소 링크가 명시되어 있지 않으며, arXiv에 등록된 학술 논문(arXiv:2610.25068) 형태로 발표되었습니다. (본문 내 언급된 GitHub 링크는 Arxiv HTML 피드백 및 LaTeXML 관련 링크입니다.)"
     }
   ],
   "faq": [
     {
-      "q": "LENS 시스템은 어떤 하드웨어 플랫폼에서 구동되나요?",
-      "a": "LENS는 AMD KR260 저전력 FPGA/ARM 플랫폼에서 구동되며, 모든 성능과 전력 측정 결과는 실제 해당 보드에서 실측되었습니다."
+      "q": "LENS 시스템은 어떤 하드웨어 플랫폼에서 테스트되었나요?",
+      "a": "약 5W급 Zynq UltraScale+ 플랫폼인 AMD Kria KR260 보드에서 측정되었습니다."
     },
     {
-      "q": "기존 GPU 기반 렌더링 방식과 비교해 어떤 성능 이점이 있나요?",
-      "a": "Jetson Orin NX와 비교하여 모든 배포 작업에서 약 1.9배~5.7배 높은 전력당 성능 효율을 보여주며, 전력 소모량은 4분의 1 수준이면서도 일부 렌더링 및 위치 추정 지연 시간은 더 뛰어납니다."
+      "q": "SCR 연산에서 INT8 대신 INT16을 사용한 이유는 무엇인가요?",
+      "a": "SCR 출력이 클래스 점수가 아니라 3D 좌표이기 때문이며, 작은 좌표 오차가 솔버를 통해 큰 포즈 오류로 이어질 수 있어 널리 쓰이는 INT8 경로보다 안전한 INT16 사용자 정의 로직을 채택했습니다."
     }
   ],
   "media": {
@@ -51,5 +60,15 @@
   "id": "2026-10-20-bd99fbd28b347c56",
   "refs": [],
   "videos": [],
-  "img_tried": true
+  "img_tried": true,
+  "try_it": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-04T16:00:11+00:00"
 }

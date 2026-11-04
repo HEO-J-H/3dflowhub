@@ -1,0 +1,94 @@
+{
+  "id": "houdini-facet-sop-5b26",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Facet SOP",
+  "title": "Facet — 면 정리·분리",
+  "summary": "Houdini의 Facet SOP는 폴리곤 메쉬의 노멀(Normal)을 재계산하거나, 중복된 포인트를 병합(Cusp/Merge)하고 하드/소프트 에지를 설정하는 필수 최적화 노드입니다.",
+  "when": [
+    "임포트한 3D 모델의 노멀이 깨져서 라이팅이나 렌더링이 어색할 때",
+    "서로 떨어져 있어야 할 면들이 잘못 붙어 있거나, 붙어야 할 포인트가 떨어져 있을 때",
+    "하드 에지(Hard Edge)와 소프트 에지(Soft Edge)를 각도 기준으로 깔끔하게 정리하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Facet을 입력하고 Facet SOP 노드를 선택하여 생성합니다.",
+    "Facet 노드를 대상 모델의 출력 하단에 연결합니다.",
+    "파라미터 창에서 Compute Normals 옵션을 켜서 노멀 방향을 바로잡습니다.",
+    "Needle Points나 Unique Points 등의 옵션을 조절하여 포인트 구조를 정리합니다.",
+    "뷰포트에서 라이팅과 에지 각도가 올바르게 표시되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Compute Normals",
+      "desc": "폴리곤 메쉬의 Vertex 및 Primitive 노멀을 새로 계산합니다."
+    },
+    {
+      "name": "Cusp Polygon Edges",
+      "desc": "지정된 각도(Cusp Angle)를 기준으로 하드 에지와 소프트 에지를 나눕니다."
+    },
+    {
+      "name": "Cusp Angle",
+      "desc": "에지를 날카롭게(Hard) 처리할 기준 각도를 설정합니다."
+    },
+    {
+      "name": "Remove Inline Points",
+      "desc": "직선 상에 불필요하게 늘어진 중복 포인트를 제거하여 메시를 정리합니다."
+    },
+    {
+      "name": "Unique Points",
+      "desc": "공유된 포인트를 분리하여 모든 면이 독립된 포인트를 가지도록 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "임포트한 CAD 모델 노멀 정리",
+      "steps": [
+        "타 프로그램에서 가져온 모델 하단에 Facet SOP 노드를 연결합니다.",
+        "파라미터에서 Compute Normals를 활성화합니다.",
+        "Cusp Polygon Edges를 켜고 각도를 조절하여 각진 면과 부드러운 면을 구분합니다."
+      ]
+    },
+    {
+      "title": "끊어진 포인트 병합하기",
+      "steps": [
+        "절단면이나 조각난 메시에서 떨어진 포인트를 확인합니다.",
+        "Facet SOP 노드를 연결하고 Merge Points 옵션을 켭니다.",
+        "Distance 값을 조절하여 가까운 포인트끼리 자연스럽게 붙도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀이 계속 깨짐 → Compute Normals 옵션이 꺼져 있는지 확인하고 활성화합니다.",
+    "모든 면이 딱딱하게 분리됨 → Unique Points가 의도치 않게 켜져 있는지 확인하고 해제합니다.",
+    "부드러워야 할 곡면이 각져 보임 → Cusp Angle 값이 너무 낮게 설정되어 있는지 확인하고 각도를 높입니다."
+  ],
+  "related": [
+    "PolyReduce",
+    "Reverse",
+    "Normal",
+    "Divide"
+  ],
+  "videos": [
+    {
+      "id": "kgQ02Zn7m7U",
+      "title": "MaskAlongGeometry SOP | Houdini 20.5",
+      "author": "Simlarity"
+    },
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Facet%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Facet",
+    "Facet SOP"
+  ],
+  "at": "2026-11-04T15:59:42.338374+00:00"
+}
