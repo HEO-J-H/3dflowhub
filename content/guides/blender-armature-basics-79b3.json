@@ -1,0 +1,88 @@
+{
+  "id": "blender-armature-basics-79b3",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Armature basics",
+  "title": "Armature — 뼈대 만들기",
+  "summary": "Blender Armature는 3D 모델에 뼈대(Skeleton)를 심고 메쉬를 연결하여 캐릭터나 오브젝트를 자유롭게 움직일 수 있게 만드는 핵심 리깅 시스템입니다.",
+  "when": [
+    "캐릭터, 동물, 몬스터 등 유기적인 형태를 움직이게 만들 때",
+    "기계 관절이나 문짝 등 회전 축이 필요한 하드서페이스 오브젝트를 제어할 때",
+    "의류나 천 같은 요소를 뼈대의 움직임에 따라 변형시키고 싶을 때"
+  ],
+  "steps": [
+    "3D 뷰포트에서 Shift + A 키를 누르고 Armature → Single Bone을 선택하여 첫 뼈대를 생성합니다.",
+    "Tab 키를 눌러 Edit Mode로 진입한 후, E 키를 눌러 뼈대를 돌출(Extrude)시키며 전체 구조를 만듭니다.",
+    "Alt + P 키를 눌러 뼈대 간의 상하 관계(Parenting)를 설정하거나 해제합니다.",
+    "Object Mode로 돌아와(Tab) 메쉬를 먼저 선택하고, Shift를 누른 채 Armature를 나중에 선택합니다.",
+    "Ctrl + P 키를 누르고 With Automatic Weights를 선택하여 뼈대와 메쉬를 자동 웨이트로 연결합니다.",
+    "Pose Mode(Ctrl + Tab)로 진입하여 R 키 등으로 뼈를 회전하며 움직임을 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Automatic Weights",
+      "desc": "메쉬와 뼈대의 거리를 계산하여 웨이트 값을 자동으로 부여합니다."
+    },
+    {
+      "name": "In Front",
+      "desc": "메쉬 가려짐 없이 뼈대가 항상 앞에 보이도록 표시합니다."
+    },
+    {
+      "name": "X-Axis Mirror",
+      "desc": "대칭(Symmetry) 구조의 뼈대를 편집할 때 반대쪽도 함께 수정되도록 합니다."
+    },
+    {
+      "name": "Envelope",
+      "desc": "뼈 주변의 영향력 영역(구 형태)을 기준으로 웨이트를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "이족 보행 캐릭터 팔 움직이기",
+      "steps": [
+        "어깨, 팔꿈치, 손목 순으로 뼈대를 Extrude(E)하여 배치합니다.",
+        "Mesh와 Armature를 선택하고 Ctrl + P로 자동 웨이트를 적용합니다.",
+        "Pose Mode에서 팔마디 뼈대를 선택하고 R 키를 눌러 자연스럽게 굽혀지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "문 개폐 애니메이션 만들기",
+      "steps": [
+        "문 힌지(경첩) 위치에 뼈대의 루트를 맞춥니다.",
+        "문을 구성하는 메쉬를 뼈대에 Parent(Ctrl + P) 시킵니다.",
+        "Pose Mode에서 뼈대를 Z축 기준으로 회전하여 문이 열리는 애니메이션을 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 틀어진 경우 → Object Mode에서 Ctrl + A를 누르고 All Transforms를 적용하여 스케일을 1.0으로 맞춘 뒤 웨이트를 다시 입힙니다.",
+    "웨이트가 엉뚱하게 칠해진 경우 → Weight Paint 모드로 전환하여 브러시(Weight Brush)로 해당 정점의 영향력을 직접 수정합니다."
+  ],
+  "related": [
+    "Weight Paint",
+    "Armature Modifier",
+    "Vertex Groups",
+    "Pose Mode"
+  ],
+  "videos": [
+    {
+      "id": "jbFjTFFwPsM",
+      "title": "Blenders Armature For Beginners_The Basics To Get Started",
+      "author": "PIXXO 3D"
+    },
+    {
+      "id": "cZ3o5tjO51s",
+      "title": "Armatures - Blender 2.80 Fundamentals",
+      "author": "Blender"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Armature%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Armature",
+    "Single Bone"
+  ],
+  "at": "2026-11-04T13:10:21.759813+00:00"
+}

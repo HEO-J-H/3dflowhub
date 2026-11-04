@@ -1,0 +1,89 @@
+{
+  "id": "houdini-polybridge-sop-32dc",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "PolyBridge SOP",
+  "title": "PolyBridge — 면 잇기",
+  "summary": "PolyBridge SOP 노드는 Houdini에서 서로 떨어져 있는 두 개의 폴리곤 엣지(Edge) 그룹을 연결하여 새로운 면을 생성하는 Procedural 모델링 기능입니다. 끊어진 파이프의 단면을 잇거나 복잡한 구멍을 막을 때 사용합니다.",
+  "when": [
+    "끊어진 두 개의 엣지 루프(Edge Loop) 사이를 부드럽게 연결하여 입체 구조를 만들 때",
+    "절단된 지오메트리의 열린 구멍(Open Boundary)을 메우고 새로운 토폴로지를 생성할 때",
+    "파이프나 터널 같은 두 개의 독립된 모델 부위를 자연스럽게 이어 붙일 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Poly Bridge 노드를 검색하여 생성합니다.",
+    "연결하고자 하는 두 개의 지오메트리 스트림을 Poly Bridge 노드의 첫 번째와 두 번째 입력(Input) 포트에 각각 연결합니다.",
+    "Viewport 상단에서 Edge 선택 모드를 활성화하고(Hotkey 2), 연결할 첫 번째 엣지 그룹을 선택합니다.",
+    "Poly Bridge 노드의 파라메터 창에서 첫 번째 엣지 그룹과 두 번째 엣지 그룹을 지정합니다.",
+    "Divisions와 Bridge Type 옵션을 조절하여 연결부의 면 분할 수와 형태를 다듬습니다.",
+    "Viewport에서 두 엣지 사이가 매끄럽게 연결된 면으로 채워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Bridge Type",
+      "desc": "두 엣지 사이의 연결 방식을 직선(Straight) 또는 곡선(Curve) 형태로 설정합니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "연결되는 면 사이에 생성될 세그먼트(Divisions) 개수를 조절합니다."
+    },
+    {
+      "name": "Reverse Second",
+      "desc": "두 번째로 선택한 엣지 그룹의 방향을 반전시켜 면이 꼬이는 현상을 방지합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "곡선 연결 시 곡률의 부드러운 정도를 조절합니다."
+    },
+    {
+      "name": "Crease",
+      "desc": "연결된 엣지에 크리스(Crease) 속성을 부여하여 서브디비전 시 각을 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "끊어진 파이프 연결하기",
+      "steps": [
+        "두 개의 분리된 파이프 메쉬를 준비합니다.",
+        "Poly Bridge 노드를 사용하여 각 파이프의 열린 끝단 엣지 루프를 입력합니다.",
+        "Bridge Type을 Straight로 설정하고 Divisions를 조절하여 파이프 두께를 자연스럽게 이어줍니다."
+      ]
+    },
+    {
+      "title": "곡선 브릿지 생성하기",
+      "steps": [
+        "서로 다른 높이에 위치한 두 개의 박스 메쉬를 배치합니다.",
+        "Poly Bridge 노드로 마주보는 엣지를 선택합니다.",
+        "Bridge Type을 Curve로 설정하고 Smoothness를 높여 아치 형태의 연결 구조를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "면이 꼬이거나 X자로 교차합니다. → Reverse Second 옵션을 켜서 두 번째 엣지의 방향을 반전시킵니다.",
+    "연결할 엣지의 Vertex 개수가 일치하지 않습니다. → Resample SOP이나 PolyCut SOP을 사용해 양쪽 엣지의 개수를 맞춘 뒤 브릿지를 적용합니다."
+  ],
+  "related": [
+    "PolyExtrude SOP",
+    "Bridge in Editable Poly",
+    "Connect SOP",
+    "Skin SOP"
+  ],
+  "videos": [
+    {
+      "id": "FprfScsPRdg",
+      "title": "Houdini Report: How I use the PolyBridge Node",
+      "author": "Valeska"
+    },
+    {
+      "id": "a1aTt_2Aag8",
+      "title": "The Houdini Workflow You NEED to Learn: SOPs to COPs to Karma",
+      "author": "bubblepins"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20PolyBridge%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T13:10:36.688021+00:00"
+}

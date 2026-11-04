@@ -11873,5 +11873,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T13:09:40+00:00",
+    "kind": "proposal",
+    "id": "p-e3640d7cbc",
+    "title": "웹 버전(web/) 에러 처리 로직 보완 및 테스트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 입력 오류에 대한 웹 프론트엔드 에러 처리가 아직 부족하여 안정성 보완이 필요합니다.",
+    "proposal": "web/index.html 및 관련 JS Script에서 잘못된 이미지 입력이나 네트워크 오류 발생 시 사용자 친화적인 알림 메시지와 예외 처리 로직을 보완합니다.",
+    "expected": "웹 버전 사용자 경험 향상 및 잘못된 입력으로 인한 오류 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:09:40+00:00",
+    "kind": "proposal",
+    "id": "p-513aae141a",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "수집",
+    "evidence": "현재 PR #40부터 #44까지 백엔드 입력 및 PBR 검증 관련 PR들이 승인 대기 상태로 쌓여 있습니다.",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 대기 중인 PR(#40~#44)의 테스트 통과 여부와 코드 무결성을 최종 점검합니다.",
+    "expected": "핵심 파이프라인의 입력 유효성 검사 로직 조기 반영",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:10:53.640862+00:00",
+    "kind": "decision",
+    "id": "p-e3640d7cbc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T13:10:53.650789+00:00",
+    "kind": "decision",
+    "id": "p-513aae141a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
   }
 ]
