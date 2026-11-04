@@ -1,0 +1,99 @@
+{
+  "id": "blender-rigid-body-a3fe",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "Rigid Body",
+  "title": "Rigid Body — 물체 충돌",
+  "summary": "Blender의 Rigid Body(강체) 기능은 3D 오브젝트에 중력, 충돌, 무게 등 물리 법칙을 부여하여 서로 부딪히고 떨어지는 사실적인 시뮬레이션을 자동으로 계산합니다.",
+  "when": [
+    "수많은 오브젝트가 바닥에 무너지거나 쏟아지는 장면을 만들 때",
+    "당구공이 부딪히며 흩어지는 역동적인 움직임을 표현할 때",
+    "건물이 무너지거나 파편이 사방으로 튀는 VFX 시뮬레이션을 구현할 때"
+  ],
+  "steps": [
+    "시뮬레이션을 적용할 3D 오브젝트를 선택하고 뷰포트에서 확인합니다.",
+    "오른쪽 Properties 패널에서 Physics(물리) 탭(공과 박스 아이콘)을 클릭합니다.",
+    "상단의 Rigid Body 버튼을 클릭하여 활성화합니다.",
+    "Type을 Active(움직이는 물체) 또는 Passive(고정된 바닥이나 장애물)로 설정합니다.",
+    "스페이스바(Space)를 눌러 Timeline 재생 후 시뮬레이션 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "오브젝트가 시뮬레이션에 의해 움직이는 Active인지, 고정된 Passive인지 설정합니다."
+    },
+    {
+      "name": "Mass",
+      "desc": "오브젝트의 무게를 설정하며, 충돌 시 다른 물체에 미치는 힘에 영향을 줍니다."
+    },
+    {
+      "name": "Shape",
+      "desc": "충돌 판정을 계산할 3D 형태(Mesh, Box, Sphere 등)를 지정합니다."
+    },
+    {
+      "name": "Friction",
+      "desc": "표면의 마찰력을 조절하여 미끄러지는 정도를 결정합니다."
+    },
+    {
+      "name": "Bounciness",
+      "desc": "탄성을 조절하여 충돌 후 튀어 오르는 정도를 결정합니다."
+    },
+    {
+      "name": "Animated",
+      "desc": "키프레임 애니메이션과 물리 시뮬레이션을 전환하여 연동할 때 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "도미노 쓰러트리기",
+      "steps": [
+        "첫 번째 도미노 조각에 Rigid Body(Active)를 적용합니다.",
+        "나머지 도미노 조각들도 동일하게 Active로 설정하고 복제합니다.",
+        "바닥 판정용 평면에 Rigid Body(Passive)를 적용합니다.",
+        "첫 번째 조각에 힘을 가하거나 애니메이션을 주어 쓰러뜨립니다."
+      ]
+    },
+    {
+      "title": "박스 안으로 공 쏟아붓기",
+      "steps": [
+        "박스 모델을 생성하고 Rigid Body(Passive)를 적용한 뒤 Shape을 Mesh로 변경합니다.",
+        "구(Sphere) 모델 여러 개를 복제하여 박스 위쪽에 배치합니다.",
+        "모든 공을 선택하고 Rigid Body(Active)를 적용합니다.",
+        "스페이스바를 눌러 공들이 박스 안으로 떨어지는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 찌그러지거나 이상하게 충돌함 → Shape 옵션이 Convex Hull이나 Mesh로 정확히 설정되었는지 확인합니다.",
+    "스케일 변경 후 시뮬레이션이 이상하게 됨 → Object 모드에서 Ctrl+A를 누르고 Apply Scale을 실행해 스케일을 1.0으로 초기화합니다.",
+    "시뮬레이션 도중 물체가 바닥을 뚫고 떨어짐 → 하위 단계 세부 서브스텝(Steps Per Second) 수치를 높여 충돌 정확도를 올립니다."
+  ],
+  "related": [
+    "Cloth",
+    "Soft Body",
+    "Collision",
+    "Force Field"
+  ],
+  "videos": [
+    {
+      "id": "lctjzasiy64",
+      "title": "Rigid Body Physics for Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "W4L2cRLB8gk",
+      "title": "Rigid Bodies in 1 Minute - Blender Quickly!! #blender #3d #blender3d #animation #tutorial",
+      "author": "PIXXO 3D"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Rigid%20Body",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Physics",
+    "Rigid Body"
+  ],
+  "at": "2026-11-04T13:49:40.264990+00:00"
+}
