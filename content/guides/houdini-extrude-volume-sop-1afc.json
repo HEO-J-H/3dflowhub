@@ -1,0 +1,89 @@
+{
+  "id": "houdini-extrude-volume-sop-1afc",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Extrude Volume SOP",
+  "title": "Extrude Volume — 두께 주기",
+  "summary": "Extrude Volume SOP 노드는 볼륨(Volume) 데이터를 기반으로 두께를 생성하거나 표면을 밀어내어 입체적인 3D 구조를 만듭니다. 복잡한 볼륨 형태를 유지하면서 입체감을 더할 때 유용합니다.",
+  "when": [
+    "볼륨(VDB) 데이터에 두께를 주고 싶을 때",
+    "스컬프팅된 볼륨 형태를 기반으로 단단한 셸(Shell) 구조를 만들 때",
+    "추상적인 볼륨 결과물에 일정한 두께의 면을 생성할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 'Extrude Volume'을 입력하고 Extrude Volume SOP 노드를 선택하여 배치합니다.",
+    "첫 번째 입력(First Input)에 대상 볼륨 또는 VDB 지오메트리를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Distance 값을 조절하여 돌출 두께를 설정합니다.",
+    "뷰포트(Viewport)에서 볼륨 표면이 올바르게 밀려났는지 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "볼륨 표면이 밀려나는 돌출 거리와 두께를 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "원본 표면을 기준으로 시작 위치나 간격을 조정합니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "돌출 영역의 세부 분할(Resolution) 단계를 설정합니다."
+    },
+    {
+      "name": "Reverse Normal",
+      "desc": "면의 법선 방향을 반전시켜 돌출 방향을 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VDB 볼륨에 두께 주기",
+      "steps": [
+        "VDB From Polygons 노드로 모델을 볼륨으로 변환합니다.",
+        "Extrude Volume SOP 노드를 연결합니다.",
+        "Distance 값을 높여 두꺼운 셸 구조를 완성합니다."
+      ]
+    },
+    {
+      "title": "추상적 볼륨 입체화",
+      "steps": [
+        "Noise가 적용된 볼륨 데이터를 준비합니다.",
+        "Extrude Volume SOP 노드를 추가하여 표면에 입체감을 부여합니다.",
+        "Convert VDB 노드로 다시 폴리곤으로 변환합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "볼륨 데이터가 비어 있거나 올바르지 않은 경우 → VDB From Polygons나 VDB 검증 노드를 먼저 거쳐 볼륨을 채운 뒤 적용합니다.",
+    "Distance 값이 너무 큰 경우 → 면이 서로 겹치거나 깨질 수 있으므로 적정한 값으로 줄여줍니다.",
+    "폴리곤 출력이 깨지는 경우 → Convert VDB 노드를 뒤에 연결해 폴리곤 메시로 깔끔하게 변환합니다."
+  ],
+  "related": [
+    "PolyExtrude",
+    "VDB From Polygons",
+    "Convert VDB",
+    "VDB Combine"
+  ],
+  "videos": [
+    {
+      "id": "0rxj12S9nIo",
+      "title": "Houdini tutorials Extrude volume node (RUS)",
+      "author": "HoudiniAI"
+    },
+    {
+      "id": "NcgG1hojbXg",
+      "title": "Houdini Poly Extrude Node Basics (VERY Basic)",
+      "author": "Ven Ferlin"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Extrude%20Volume%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Extrude Volume",
+    "Extrude Volume SOP"
+  ],
+  "at": "2026-11-04T14:59:22.617217+00:00"
+}

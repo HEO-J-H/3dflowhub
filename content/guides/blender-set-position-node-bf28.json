@@ -1,0 +1,87 @@
+{
+  "id": "blender-set-position-node-bf28",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "지오메트리 노드",
+  "name": "Set Position node",
+  "title": "Set Position — 점 위치 바꾸기",
+  "summary": "Blender의 Geometry Nodes에서 사용되는 Set Position 노드는 지오메트리의 각 점(Vertex)이나 Instance의 위치를 직접 이동시키거나 오프셋을 적용하는 핵심 노드입니다. 절차적(Procedural) 방식으로 정점의 좌표를 제어할 때 사용합니다.",
+  "when": [
+    "노드 네트워크를 통해 오브젝트의 특정 정점 위치를 수학적으로 변환하고 싶을 때",
+    "소음(Noise) 노드 등을 활용해 표면을 울퉁불퉁하게 왜곡할 때",
+    "애니메이션 도중 특정 조건에 따라 점들의 위치를 실시간으로 밀어내거나 모을 때"
+  ],
+  "steps": [
+    "Blender에서 Geometry Nodes를 적용할 오브젝트를 선택하고 Modifier Properties 패널에서 GeometryNodes Modifier를 추가합니다.",
+    "상단 탭에서 Geometry Nodes 에디터로 진입한 뒤, New 버튼을 눌러 새 노드 네트워크를 만듭니다.",
+    "키보드에서 Shift+A를 누르고 Search 창에 Set Position을 입력하여 노드를 생성합니다.",
+    "Group Input과 Group Output 사이의 기존 연결선 중간에 Set Position 노드를 배치하여 연결합니다.",
+    "Set Position 노드의 Offset 또는 Position 파라미터를 조절하여 뷰포트에서 오브젝트의 변형 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Selection",
+      "desc": "위치 변경을 적용할 점이나 Instance 영역을 마스크(Boolean)로 지정합니다."
+    },
+    {
+      "name": "Position",
+      "desc": "오프셋이 아닌 절대적인 새로운 월드/로컬 좌표 위치를 직접 지정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "현재 위치를 기준으로 얼만큼 더 이동시킬지 벡터 값을 더해줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노이즈를 이용한 파도 효과",
+      "steps": [
+        "Grid나 Plane 오브젝트에 Geometry Nodes를 추가합니다.",
+        "Set Position 노드와 함께 Tex Noise 노드를 생성합니다.",
+        "Noise의 Value를 Set Position의 Offset(Z축)에 연결하여 울렁이는 표면을 만듭니다."
+      ]
+    },
+    {
+      "title": "특정 영역의 정점 위로 밀어내기",
+      "steps": [
+        "Set Position 노드의 Selection에 Distance 노드나 노이즈 맵을 연결합니다.",
+        "Offset 값에 특정 방향(예: Z+ 방향) 벡터를 입력합니다.",
+        "원하는 부위만 위로 솟아오르는 형태를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트에 충분한 세그먼트가 없는 경우 → Mesh에 Subdivision Surface 노드를 추가하거나 Resolution를 높여줍니다.",
+    "Offset에 절대 좌표를 입력해 오브젝트가 엉뚱한 곳으로 날아감 → 절대 위치 변경은 Position을, 상대 이동은 Offset을 사용합니다."
+  ],
+  "related": [
+    "Geometry Nodes",
+    "Position",
+    "Noise Texture",
+    "Vector Math"
+  ],
+  "videos": [
+    {
+      "id": "5soLmkHgdrw",
+      "title": "Blender 4.3 Geometry Nodes Tutorial: Vertex Manipulation with the Set Position Node",
+      "author": "MK Graphics"
+    },
+    {
+      "id": "j_3cj_ISqk8",
+      "title": "All About Set Position node (Geometry Nodes, Blender 3+)",
+      "author": "Open Class"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Set%20Position%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Geometry Nodes",
+    "Modifier Properties",
+    "GeometryNodes Modifier",
+    "New",
+    "Search"
+  ],
+  "at": "2026-11-04T14:59:18.842832+00:00"
+}
