@@ -1,0 +1,97 @@
+{
+  "id": "blender-inverse-kinematics-constraint-ca16",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Inverse Kinematics constraint",
+  "title": "IK — 역운동학",
+  "summary": "Blender의 Inverse Kinematics(IK) 제약 조건은 체인 구조의 본(Bone) 끝단을 잡아당겨 상위 관절들이 자연스럽게 연동되도록 움직이게 만들어 주는 기능입니다.",
+  "when": [
+    "캐릭터의 다리가 바닥에 닿은 채 몸의 움직임에 따라 자연스럽게 구부러질 때",
+    "로봇 팔이나 기계 장치의 관절 움직임을 타겟 헬퍼를 통해 쉽게 제어할 때",
+    "꼬리나 채찍처럼 끝을 잡고 흔들리는 유기적인 곡선 움직임을 만들 때"
+  ],
+  "steps": [
+    "아마ature(Armature) 오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입해 연결된 본 체인을 구성합니다.",
+    "Tab 키를 눌러 Object Mode로 전환한 뒤, Pose Mode로 진입하여 IK를 적용할 끝단 본(Bone)을 선택합니다.",
+    "Properties 패널에서 Bone Constraints(본 모양 아이콘) 탭을 엽니다.",
+    "Add Bone Constraint를 클릭하고 Tracking / Inverse Kinematics 메뉴에서 Inverse Kinematics를 선택합니다.",
+    "Target 필드에 전체 Armature를 지정하고, Bone 필드에서 타겟으로 사용할 오브젝트나 빈 본을 연결합니다.",
+    "Chain Length 값을 조절하여 IK 영향력을 받을 상위 본의 개수를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Target",
+      "desc": "IK 체인을 끌어당길 대상 오브젝트나 뼈대를 지정합니다."
+    },
+    {
+      "name": "Pole Target",
+      "desc": "무릎이나 팔꿈치 등 관절이 꺾이는 방향을 지정합니다."
+    },
+    {
+      "name": "Chain Length",
+      "desc": "역운동학 영향을 받을 상위 본의 개수를 설정합니다 (0은 전체)."
+    },
+    {
+      "name": "Iterations",
+      "desc": "계산 정밀도를 높여 관절 떨림을 줄이고 수렴 횟수를 조절합니다."
+    },
+    {
+      "name": "Weight",
+      "desc": "다른 IK 제약 조건과 혼용될 때 해당 제약의 영향력을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "biped 캐릭터 다리 리깅",
+      "steps": [
+        "허벅지-종아리-발목으로 이어지는 본 체인을 생성합니다.",
+        "발목 본에 Inverse Kinematics 제약 조건을 추가합니다.",
+        "발끝에 별도의 타겟 본을 만들어 연결하고 이동하여 무릎 꺾임을 확인합니다."
+      ]
+    },
+    {
+      "title": "로봇 팔 끝단 제어",
+      "steps": [
+        "다중 관절로 구성된 로봇 팔 본을 정렬합니다.",
+        "집게 손가락 부근의 본에 Inverse Kinematics를 적용합니다.",
+        "빈 엠티(Empty) 오브젝트를 타겟으로 지정해 손쉽게 위치를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Chain Length 설정 오류 → Chain Length가 0이거나 너무 작으면 상위 본이 연동되지 않으므로 실제 본 개수만큼 설정합니다.",
+    "Pole Target 각도 틀어짐 → 무릎이나 팔꿈치가 이상한 방향으로 꺾일 때 Pole Angle 값을 90도 또는 180도 단위로 조정합니다.",
+    "Rest Pose 미적용 상태에서 적용 → 뼈대를 세팅한 후 Object Mode에서 Ctrl+A를 눌러 Scale을 1로 적용한 뒤 리깅을 진행합니다."
+  ],
+  "related": [
+    "Copy Rotation",
+    "Limit Rotation",
+    "Spline IK",
+    "Armature"
+  ],
+  "videos": [
+    {
+      "id": "d-HrPRof2tY",
+      "title": "How to Set Up a Fast Inverse Kinematics (IK) Rig in Blender | Beginner Rigging Tutorial",
+      "author": "What Make Art"
+    },
+    {
+      "id": "Pt3-mHBCoQk",
+      "title": "Blender 2.8 Inverse Kinematics In 2 Minutes!",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Inverse%20Kinematics%20constraint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Armature",
+    "Edit Mode",
+    "Object Mode",
+    "Pose Mode",
+    "IK",
+    "Bone"
+  ],
+  "at": "2026-11-04T13:29:35.502473+00:00"
+}

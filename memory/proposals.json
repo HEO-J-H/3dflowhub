@@ -11969,5 +11969,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T13:29:23+00:00",
+    "kind": "proposal",
+    "id": "p-5abd8bdc3a",
+    "title": "대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 backend/app/services/url_ingest.py 및 pbr_generator.py 관련 PR #40부터 #44까지 승인 대기 상태로 머지되지 않고 쌓여 있습니다.",
+    "proposal": "PR #40~#44의 단위 테스트 통과 여부와 예외 처리 정합성을 확인한 후 안전한 변경 사항들을 승인 및 머지합니다.",
+    "expected": "입력값 및 PBR 맵 생성 검증 로직이 반영되어 백엔드 안정성이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:29:23+00:00",
+    "kind": "proposal",
+    "id": "p-c402eed133",
+    "title": "웹 버전(web/) 입력 유효성 검사 에러 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증 로직이 추가됨에 따라 브라우저에서 실행되는 웹 버전(web/)에서도 동일한 유효성 검사 및 사용자 피드백 처리가 필요합니다.",
+    "proposal": "web/index.html 및 관련 JS 파일에 잘못된 이미지 형식이나 빈 입력값에 대한 사용자 안내 에러 메시지 처리를 보완합니다.",
+    "expected": "웹 버전 사용자 경험(UX) 개선 및 잘못된 입력으로 인한 오류 방지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:29:57.147680+00:00",
+    "kind": "decision",
+    "id": "p-5abd8bdc3a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T13:29:57.164499+00:00",
+    "kind": "decision",
+    "id": "p-c402eed133",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
   }
 ]
