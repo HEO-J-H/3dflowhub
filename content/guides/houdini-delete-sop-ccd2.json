@@ -1,0 +1,91 @@
+{
+  "id": "houdini-delete-sop-ccd2",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Delete SOP",
+  "title": "Delete — 조건으로 지우기",
+  "summary": "Delete SOP 노드는 지오메트리 네트워크에서 지정한 포인트, 프시미티브, 에지를 영구적으로 삭제하는 연산을 수행합니다. 마치 모델의 특정 부분을 완전히 도려내는 역할을 합니다.",
+  "when": [
+    "불필요한 지오메트리 요소를 모델에서 완전히 제거할 때",
+    "그룹(Group)이나 표현식(Expression)을 이용해 조건별로 메시를 정리할 때",
+    "시뮬레이션 전 특정 영역의 오브젝트를 숨기거나 지울 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Delete를 검색하여 Delete SOP 노드를 생성하고 선택합니다.",
+    "상위 노드의 출력 포트를 Delete SOP 노드의 첫 번째 입력(Input 1)에 연결합니다.",
+    "파라미터 패널(Parameter Pane)에서 Delete 상자를 Group 및 Operation 설정으로 지정합니다.",
+    "뷰포트에서 지우고 싶은 요소를 선택하거나 표현식을 입력해 대상을 지정합니다.",
+    "뷰포트에서 해당 폴리곤이나 포인트가 완전히 사라졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Entities",
+      "desc": "삭제할 대상의 단위(Points, Primitives, Edges, Vertices)를 선택합니다."
+    },
+    {
+      "name": "Operation",
+      "desc": "선택한 대상을 지울 것(Delete Selected)인지 남길 것(Delete Non-Selected)인지 결정합니다."
+    },
+    {
+      "name": "Group",
+      "desc": "삭제할 대상이 포함된 그룹 이름을 지정합니다."
+    },
+    {
+      "name": "Express Evaluation",
+      "desc": "표현식($PT, $PRIM 등)을 사용하여 조건에 맞는 요소를 선택하고 삭제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "박스 상단 면 삭제하기",
+      "steps": [
+        "Box SOP 노드를 생성하고 Delete SOP 노드와 연결합니다.",
+        "Delete SOP의 Entities를 Primitives로 설정합니다.",
+        "Group 필드에 상단 면에 해당하는 Primitive 번호를 입력하거나 뷰포트에서 직접 선택합니다.",
+        "상단 면이 열려 있는 오픈 박스 형태가 되었는지 뷰포트에서 확인합니다."
+      ]
+    },
+    {
+      "title": "특정 높이 이상의 포인트 지우기",
+      "steps": [
+        "Grid SOP 노드를 생성하고 Delete SOP 노드와 연결합니다.",
+        "Entities를 Points로 변경합니다.",
+        "Operation을 Delete Selected로 두고 Express Evaluation 또는 바운딩 박스 옵션을 활성화합니다.",
+        "기준값 이상의 포인트가 제거되어 지형 형태가 변경된 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Blast SOP 대신 Delete SOP를 사용하여 그룹 선택이 번거로워짐 → 뷰포트에서 대상을 직관적으로 지우려면 Blast SOP 사용을 고려하세요.",
+    "Entities 설정을 잘못 지정하여 포인트 대신 Primitive가 지워짐 → 파라미터 창의 Entities가 Points인지 Primitives인지 꼭 확인하세요.",
+    "삭제된 줄 알았으나 포인트 데이터가 찌투리로 남아 있음 → Delete Non-Selected 설정이나 Remove Unused Points 옵션을 확인하세요."
+  ],
+  "related": [
+    "Blast SOP",
+    "Group SOP",
+    "Partition SOP",
+    "Null SOP"
+  ],
+  "videos": [
+    {
+      "id": "juxeaslvqfY",
+      "title": "Delete SOP | Part 1 | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "qz7J1KiT09g",
+      "title": "Delete SOP | Part 2 | Node Reference",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Delete%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Delete SOP"
+  ],
+  "at": "2026-11-04T11:58:53.370270+00:00"
+}

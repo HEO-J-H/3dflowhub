@@ -1,0 +1,95 @@
+{
+  "id": "blender-graph-editor-eba6",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Graph Editor",
+  "title": "그래프 에디터 — 곡선 다듬기",
+  "summary": "Blender의 Graph Editor는 애니메이션 커브의 타이밍과 감도를 시각적으로 정밀하게 제어하여 캐릭터나 오브젝트의 움직임을 부드럽게 다듬는 도구입니다.",
+  "when": [
+    "통통 튀는 공의 물리적 감도(Ease-in, Ease-out)를 자연스럽게 만들 때",
+    "캐릭터의 걸음걸이 타이밍과 속도 변화를 세밀하게 조절할 때",
+    "기계 장치의 회전 속도 가감속(Acceleration)을 설정할 때"
+  ],
+  "steps": [
+    "애니메이션 키프레임이 적용된 오브젝트를 선택합니다.",
+    "상단 에디터 타입 변경 아이콘(또는 Ctrl+SpaceBar)을 눌러 Graph Editor 창을 엽니다.",
+    "뷰포트에서 다듬을 키프레임(A 키로 전체 선택 가능)을 지정합니다.",
+    "키프레임이 선택된 상태에서 T 키를 눌러 Interpolation Mode(예: Bezier)를 선택합니다.",
+    "V 키를 눌러 Handle Type(Vector, Auto Clamped 등)을 변경하여 커브의 곡률을 다듬습니다.",
+    "뷰포트에서 재생(Spacebar)하여 움직임을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Interpolation",
+      "desc": "키프레임 사이의 보간 방식을 Bezier, Linear, Constant 등으로 변경합니다."
+    },
+    {
+      "name": "Handle Type",
+      "desc": "핸들의 성향(Auto, Vector, Free, Aligned)을 설정해 커브의 꺾임을 제어합니다."
+    },
+    {
+      "name": "Extend Mode",
+      "desc": "애니메이션 구간 전후의 반복(Cycle)이나 유지 등 확장 방식을 결정합니다."
+    },
+    {
+      "name": "Pivot Point",
+      "desc": "스케일이나 회전 변환 시 기준이 되는 중심점을 설정합니다."
+    },
+    {
+      "name": "Auto Normalizing",
+      "desc": "그래프 편집 시 커브가 비정상적으로 튀는 것을 방지합니다."
+    },
+    {
+      "name": "Modifier",
+      "desc": "Noise나 Cycles 같은 수학적 수정자를 추가해 반복 움직임을 자동 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공이 튀는 탄성 표현",
+      "steps": [
+        "낙하 지점의 키프레임 핸들을 V → Vector로 변경하여 날카로운 충돌 감도를 만듭니다.",
+        "상승 구간의 핸들을 부드러운 곡선으로 조정해 감속 효과를 줍니다."
+      ]
+    },
+    {
+      "title": "기계 장치의 반복 회전",
+      "steps": [
+        "Z축 회전 키프레임을 선택합니다.",
+        "Graph Editor 하단 메뉴에서 Modifier → Cycles를 추가하여 무한 회전을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "키프레임이 안 보임 → Graph Editor에서 채널 필터가 꺼져 있거나 오브젝트가 선택 해제된 상태입니다. 오브젝트를 재선택하고 Home 키를 눌러 뷰를 맞추세요.",
+    "핸들이 꺾여서 부자연스러움 → 핸들이 Free 모드로 엉뚱하게 틀어진 경우입니다. V 키를 눌러 Auto나 Aligned로 재설정하세요.",
+    "전체 움직임이 일괄 수정되지 않음 → A 키로 모든 키프레임을 선택하지 않았거나 특정 채널만 선택된 상태입니다. A 키를 눌러 전체를 선택하세요."
+  ],
+  "related": [
+    "Dope Sheet",
+    "Timeline",
+    "Action Editor",
+    "Nonlinear Animation"
+  ],
+  "videos": [
+    {
+      "id": "sc64wS-gukU",
+      "title": "How to Use the Graph Editor for Beginners (Blender Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "vKgO3NsYORo",
+      "title": "How to use Blender's Graph Editor like a Professional Animator",
+      "author": "BrianKouhi"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Graph%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "SpaceBar",
+    "Graph Editor"
+  ],
+  "at": "2026-11-04T11:58:47.114919+00:00"
+}

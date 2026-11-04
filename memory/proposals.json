@@ -11561,5 +11561,53 @@
     "id": "p-f7068cac71",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 완료된 '웹 버전(web/) 에러 처리 로직 검토 및 보완' 및 관련 PBR 문서화 커밋 내역과 중복됩니다."
+  },
+  {
+    "at": "2026-11-04T11:58:33+00:00",
+    "kind": "proposal",
+    "id": "p-977888278f",
+    "title": "대기 중인 입력 검증 PR(#40~#44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42, #43, #44가 백엔드 입력 및 PBR 맵 생성 검증과 관련하여 승인 대기 중 상태로 머지되지 않고 쌓여 있습니다.",
+    "proposal": "GitHub에서 PR #40부터 #44까지의 테스트 결과를 확인하고 코어 파이프라인 안정성을 위해 순서대로 승인 머지합니다.",
+    "expected": "입력값 검증 및 예외 처리 로직이 반영되어 백엔드의 안정성과 신뢰성이 크게 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T11:58:33+00:00",
+    "kind": "proposal",
+    "id": "p-a11318744c",
+    "title": "웹 버전(web/) URL 및 입력 에러 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증(PR #40~#44)이 진행됨에 따라 브라우저 단에서 동작하는 웹 버전(web/)에서도 동일한 URL 및 이미지 입력 예외 처리가 필요합니다.",
+    "proposal": "web/app.js 파일의 입력 핸들러에 빈 값 및 잘못된 형식에 대한 프론트엔드 검증 로직을 추가합니다.",
+    "expected": "사용자가 잘못된 입력을 했을 때 즉각적인 피드백을 받아 웹 버전의 사용자 경험이 개선됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T11:59:10.732475+00:00",
+    "kind": "decision",
+    "id": "p-977888278f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 입력 검증 PR(#40~#42) 최종 승인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T11:59:10.743875+00:00",
+    "kind": "decision",
+    "id": "p-a11318744c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
   }
 ]
