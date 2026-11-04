@@ -1,0 +1,91 @@
+{
+  "id": "blender-camera-and-depth-of-field-ba45",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Camera and Depth of Field",
+  "title": "카메라·피사계 심도",
+  "summary": "Blender의 카메라와 심도 표현(Depth of Field) 기능을 사용하여 실제 카메라처럼 피사체에 초점을 맞추고 배경을 부드럽게 흐리게 만드는 방법을 알아봅니다.",
+  "when": [
+    "인물이나 특정 오브젝트를 강조하고 배경을 흐리게 처리할 때",
+    "실제 카메라로 촬영한 듯한 시네마틱한 렌더링 결과물을 만들고 싶을 때",
+    "애니메이션 씬에서 카메라 앵글을 잡고 시선을 유도할 때"
+  ],
+  "steps": [
+    "뷰포트에서 Shift+A 키를 누르고 Camera를 선택하여 씬에 카메라를 생성합니다.",
+    "Numpad 0 키를 눌러 카메라 뷰(Camera View)로 전환합니다.",
+    "Properties 패널에서 Camera(초록색 카메라 아이콘) 탭을 엽니다.",
+    "Viewport Display 섹션에서 Limits와 Composition Guides를 켜서 초점 거리와 구도를 확인합니다.",
+    "Depth of Field 섹션을 체크하여 활성화합니다.",
+    "Focus Object에서 피펫 아이콘으로 초점을 맞출 오브젝트를 지정하거나 Distance 값을 직접 조절합니다.",
+    "F-Stop 값을 낮춰 배경 흐림(아보케) 강도를 조절하고 F12 키로 렌더링하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Focal Length",
+      "desc": "렌즈의 화각(mm)을 조절하여 원근감과 시야를 결정합니다."
+    },
+    {
+      "name": "Depth of Field",
+      "desc": "심도(아웃포커싱) 효과를 활성화합니다."
+    },
+    {
+      "name": "Focus Object",
+      "desc": "초점을 자동으로 맞출 대상 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Distance",
+      "desc": "카메라에서 초점 면까지의 거리를 직접 지정합니다."
+    },
+    {
+      "name": "F-Stop",
+      "desc": "조리개 값으로, 낮을수록 배경이 강하게 흐려집니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 포커스 샷 만들기",
+      "steps": [
+        "카메라를 캐릭터 정면에 배치합니다.",
+        "Depth of Field를 켜고 Focus Object에 캐릭터 메쉬를 지정합니다.",
+        "F-Stop 값을 1.8 정도로 낮추어 배경을 흐리게 만듭니다."
+      ]
+    },
+    {
+      "title": "접사(Macro) 느낌의 제품 촬영",
+      "steps": [
+        "카메라를 제품에 매우 가깝게 이동시킵니다.",
+        "Focal Length를 85mm 이상으로 높여 망원 효과를 줍니다.",
+        "Distance 값을 미세 조정해 제품의 로고 부분에만 정확히 초점을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "초점이 맞지 않고 전체가 흐려짐 → Focus Object가 잘못 지정되었거나 Distance 값이 대상과의 거리와 일치하지 않는지 확인하고 수정합니다.",
+    "배경이 전혀 흐려지지 않음 → F-Stop 값이 너무 높게 설정되어 있는지 확인하고 값을 낮추거나 Focal Length를 높입니다.",
+    "카메라 시야가 엉뚱한 곳을 비춤 → 뷰포트에서 Ctrl+Alt+Numpad 0 키를 눌러 현재 시점으로 카메라를 정렬합니다."
+  ],
+  "related": [
+    "Camera View",
+    "Depth of Field",
+    "Viewport Display",
+    "Render Properties"
+  ],
+  "videos": [
+    {
+      "id": "ahT3P274EMw",
+      "title": "How to Use Depth of Field in Blender (Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "L4omVq18dlQ",
+      "title": "How to Setup Camera Depth of Field in Blender #shorts",
+      "author": "Karon"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Camera%20and%20Depth%20of%20Field",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T08:38:00.445349+00:00"
+}
