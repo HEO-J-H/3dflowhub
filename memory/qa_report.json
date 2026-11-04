@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-04T14:11:46+00:00",
-  "checked": 840,
+  "at": "2026-11-04T20:20:23+00:00",
+  "checked": 875,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -597,6 +597,36 @@
       "score": 9,
       "defects": [],
       "fix_hint": "공식 영문 UI 경로와 개념을 명확하게 유지하며 실무적인 학습 흐름을 지속적으로 작성합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-skew-modifier-375b",
+      "title": "Skew — 한쪽으로 기울이기",
+      "score": 8,
+      "defects": [
+        "Hole 파라미터에 대한 설명이 실제 3ds Max Skew 수정자의 기능과 다소 다르게 서술되었습니다.",
+        "일부 파라미터(Angle, Axis, Direction, Limit Effect, Upper Limit)의 설명이 나열되어 있으나 Lower Limit 등 연관 파라미터가 누락되었습니다."
+      ],
+      "fix_hint": "공식 문서의 파라미터 사양을 정확히 확인하고 실제 3ds Max UI 동작과 일치하도록 설명해 주세요."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-unwrap-uvw-modifier-8734",
+      "title": "Unwrap UVW — UV 펼치기",
+      "score": 8,
+      "defects": [
+        "단축키 안내 중 Unwrap UVW의 기본 단축키 오류 (Alt+U는 기본 지정 단축키가 아닙니다)",
+        "메뉴 경로 및 UI 용어 설명에서 일부 기능의 위치가 직관적이지 않음"
+      ],
+      "fix_hint": "소프트웨어의 기본 단축키와 공식 UI 메뉴 경로는 정확하게 검증된 사실만 기재해야 합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "blender-cast-modifier-2709",
+      "title": "Cast — 구·원통 모양으로",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "공식 문서의 Cast 모디파이어 기능과 파라미터 설명을 정확하게 반영하고, 올바른 메뉴 경로와 단축키를 사용하여 실무자가 바로 따라 할 수 있도록 작성합니다."
     }
   ],
   "avg_score": 8.8,
