@@ -9,35 +9,60 @@
       "where": "Properties → Modifier 탭 → Add Modifier → Fluid / Particle System 또는 Geometry Nodes",
       "how": "기존 파티클 시스템 외에도 최신 버전에서는 Geometry Nodes를 활용해 강력하고 세밀한 프로시절 파티클 제어가 가능합니다.",
       "strength": "가벼운 파티클과 지오메트리 노드의 조합이 유연함",
-      "limit": "대규모 블로운 스모크나 복잡한 폭발 시뮬레이션은 전용 소프트웨어에 비해 무겁고 한계가 있음"
+      "limit": "대규모 블로운 스모크나 복잡한 폭발 시뮬레이션은 전용 소프트웨어에 비해 무겁고 한계가 있음",
+      "video": {
+        "id": "8XFz-wqv3Kc",
+        "title": "Making Sparks in Blender Beginner Tutorial",
+        "author": "Markom3D"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Command Panel → Create 탭 → Geometry 또는 Particle Systems (PF Source, TyFlow)",
       "how": "기본 PF Source 외에도 업계 표준인 플러그인 TyFlow를 활용해 물리 기반의 정교하고 화려한 파티클 연출이 가능합니다.",
       "strength": "TyFlow 플러그인 연계 시 압도적인 시뮬레이션 및 파편 연출력",
-      "limit": "기본 파티클 시스템(Particle Systems)은 구형 방식이라 최신 트렌드 작업에는 외부 플러그인 의존도가 높음"
+      "limit": "기본 파티클 시스템(Particle Systems)은 구형 방식이라 최신 트렌드 작업에는 외부 플러그인 의존도가 높음",
+      "video": {
+        "id": "INk0EzIgMa0",
+        "title": "Introduction to Particle Flow in 3ds Max Tutorial -  Creating smoke using Particle Flow",
+        "author": "Pluralsight Courses and Tutorials"
+      }
     },
     {
       "tool": "Maya",
       "where": "FX 메뉴 세트 → nParticles (Create nParticles) 또는 Bifrost",
       "how": "nParticle을 통해 유체, 충돌, 공기 저항이 적용된 파티클을 만들고, Bifrost를 통해 고품질의 연기와 불꽃 시뮬레이션을 수행합니다.",
       "strength": "MAYA nDynamics와 Bifrost를 통한 정교한 물리 충돌 및 유체 제어",
-      "limit": "노드 그래프 설정과 파라미터 조정이 복잡하여 학습 곡선이 가파름"
+      "limit": "노드 그래프 설정과 파라미터 조정이 복잡하여 학습 곡선이 가파름",
+      "video": {
+        "id": "bPoHHRSN61U",
+        "title": "Maya NParticles Basics Tutorial",
+        "author": "FX Maniac"
+      }
     },
     {
       "tool": "Houdini",
       "where": "네트워크 뷰(Network View)에서 Tab → Pyro Solver, Popnet, SOPs 기반 파티클 노드",
       "how": "모든 것이 프로시절 노드로 구성되어 있으며, Pyro 및 POP 네트워크를 통해 영화급 퀄리티의 연기, 불, 파편 시뮬레이션을 제작합니다.",
       "strength": "업계 최고 수준의 시뮬레이션 디테일과 무한한 확장성",
-      "limit": "VFX 아티스트가 아니라면 방대한 노드 구조와 개념을 익히기 매우 어려움"
+      "limit": "VFX 아티스트가 아니라면 방대한 노드 구조와 개념을 익히기 매우 어려움",
+      "video": {
+        "id": "dlG9NyI62ic",
+        "title": "Smoke and Sparks in Houdini | Basic Houdini Tutorial",
+        "author": "Rebelway"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser 빈 공간 우클릭 → FX → Niagara System",
       "how": "GPU 가속을 기반으로 하는 차세대 Niagara 파티클 시스템을 통해 실시간으로 불꽃, 연기, 비 등의 효과를 생성하고 블루프린트와 연동합니다.",
       "strength": "압도적인 실시간 성능과 게임 엔진 내 즉각적인 피드백 및 인터랙션",
-      "limit": "시뮬레이션 캐시 베이킹이나 오프라인 렌더링보다는 실시간 최적화에 초점이 맞춰져 있음"
+      "limit": "시뮬레이션 캐시 베이킹이나 오프라인 렌더링보다는 실시간 최적화에 초점이 맞춰져 있음",
+      "video": {
+        "id": "Hvjnoi6J9tE",
+        "title": "How To Make Blowing Dust - Niagara Particle UNREAL ENGINE 5.4",
+        "author": "Mr. Hollt"
+      }
     }
   ],
   "pick": [
@@ -73,5 +98,6 @@
     "실수: 언리얼 엔진 Niagara에서 파티클이 너무 무거워 프레임 드랍이 발생하는 문제 → 해결: GPU 스프라이트와 LOD(Level of Detail) 설정을 적용하고 불필요한 고해상도 시뮬레이션 파라미터를 낮춥니다.",
     "실수: DCC 간 단위(Unit) 설정 차이로 인해 파티클의 속도나 중력감이 완전히 다르게 표현되는 문제 → 해결: 프로젝트 시작 시 센티미터(cm) 또는 미터(m) 단위를 통일하고 Scale을 Apply(Ctrl+A)한 뒤 진행합니다."
   ],
-  "at": "2026-11-04T08:11:07+00:00"
+  "at": "2026-11-04T08:11:07+00:00",
+  "visuals_at": "2026-11-04T08:17:59+00:00"
 }

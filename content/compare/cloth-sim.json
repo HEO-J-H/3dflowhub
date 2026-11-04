@@ -9,35 +9,60 @@
       "where": "Command Panel → Modify 탭 → Modifier List → Cloth",
       "how": "오브젝트에 Cloth 모디파이어를 적용한 뒤 Object Properties에서 천과 충돌체를 지정하고 시뮬레이션을 실행합니다.",
       "strength": "직관적인 오브젝트 프로퍼티 설정과 익숙한 모디파이어 스택 구조",
-      "limit": "복잡한 고속 충돌 시 연산 안정성이 다소 떨어질 수 있음"
+      "limit": "복잡한 고속 충돌 시 연산 안정성이 다소 떨어질 수 있음",
+      "video": {
+        "id": "R-rthwUXSxk",
+        "title": "3ds Max Cloth Simulation Tutorial",
+        "author": "3DWizard"
+      }
     },
     {
       "tool": "Blender",
       "where": "Properties → Physics (물리학) 탭 → Cloth",
       "how": "메쉬 오브젝트를 선택하고 Physics 탭에서 Cloth를 활성화한 뒤 Collision 오브젝트를 설정하여 타임라인을 재생합니다.",
       "strength": "무료이면서도 뛰어난 캐싱 시스템과 세밀한 베이킹 옵션 제공",
-      "limit": "고밀도 메쉬에서 세그먼트 조절을 잘못하면 시뮬레이션이 튈 수 있음"
+      "limit": "고밀도 메쉬에서 세그먼트 조절을 잘못하면 시뮬레이션이 튈 수 있음",
+      "video": {
+        "id": "ES0HHw87zTw",
+        "title": "Learn Blender Cloth Simulations from Scratch: A Beginner’s Guide",
+        "author": "Techtokerist"
+      }
     },
     {
       "tool": "Maya",
       "where": "FX 메뉴셋 → nCloth → Create nCloth",
       "how": "메쉬를 선택하고 nCloth 메뉴를 통해 생성한 뒤 Nucleus 노드와 충돌체(Passive Collider)를 연결하여 시뮬레이션합니다.",
       "strength": "강력한 Nucleus 통합 프레임워크로 대규모 복잡한 시뮬레이션에 강함",
-      "limit": "초기 학습 곡선이 가파르고 설정 노드가 복잡함"
+      "limit": "초기 학습 곡선이 가파르고 설정 노드가 복잡함",
+      "video": {
+        "id": "OQuBGXkWRj4",
+        "title": "Tired of hand-sculpting cloth wrinkles? Try this #maya3d #maya #3dmodeling #cloth #cushion  #pillow",
+        "author": "Mesh Labz"
+      }
     },
     {
       "tool": "Houdini",
       "where": "네트워크 뷰(Network View) → Tab → Vellum Cloth / Vellum Object",
       "how": "지오메트리에 Vellum Cloth 노드를 연결하고 Vellum Solver로 시뮬레이션을 구동하여 강력한 노드 기반 제어를 수행합니다.",
       "strength": "노드 기반의 무한한 확장성과 압도적인 대규모 시뮬레이션 제어력",
-      "limit": "가벼운 작업에도 노드 파이프라인 구축이 필요해 진입장벽이 높음"
+      "limit": "가벼운 작업에도 노드 파이프라인 구축이 필요해 진입장벽이 높음",
+      "video": {
+        "id": "m_hxr3uyhqQ",
+        "title": "Lesson 9 | Creating cloth simulation using Vellum | Houdini Beginners course | English",
+        "author": "Artists Creek"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Skeletal Mesh Editor → Clothing 속성",
       "how": "스켈레탈 메시의 특정 섹션에 페인팅으로 클로스 데이터(Chaos Cloth)를 적용하고 물리 속성을 파라미터로 조절합니다.",
       "strength": "실시간 게임 엔진 환경에서 즉시 물리 반응을 확인하고 적용 가능",
-      "limit": "오프라인 렌더러 수준의 극도로 세밀한 주름 표현에는 한계가 있음"
+      "limit": "오프라인 렌더러 수준의 극도로 세밀한 주름 표현에는 한계가 있음",
+      "video": {
+        "id": "eMUD297S6zk",
+        "title": "Unreal5 Applying Cloth Physics (In 2 Minutes!!)",
+        "author": "Royal Skies"
+      }
     }
   ],
   "pick": [
@@ -78,5 +103,6 @@
     "{'mistake': '충돌체(Collider)를 통과해버리는 현상 (Clipping)', 'fix': '충돌체의 두께(Thickness) 값을 높이거나, 시뮬레이션 서브스텝(Substeps) 값을 올려 연산 정밀도를 높이세요.'}",
     "{'mistake': '스케일 값이 적용되지 않아 천이 너무 무겁거나 가볍게 움직이는 현상', 'fix': '오브젝트의 Scale 값이 1.0이 되도록 적용(Apply Scale)한 후 시뮬레이션을 다시 시작하세요.'}"
   ],
-  "at": "2026-11-04T08:11:12+00:00"
+  "at": "2026-11-04T08:11:12+00:00",
+  "visuals_at": "2026-11-04T08:17:56+00:00"
 }
