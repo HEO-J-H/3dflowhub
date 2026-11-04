@@ -1,0 +1,95 @@
+{
+  "id": "houdini-clean-sop-cc61",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Clean SOP",
+  "title": "Clean — 메시 정리",
+  "summary": "Clean SOP는 폴리곤 지오메트리에서 중복된 포인트, 사용하지 않는 그룹, 제로 면적 Primitive 등의 불필요한 요소를 정리하여 메시 오류를 방지하는 필수 정화 노드입니다.",
+  "when": [
+    "CAD 데이터나 외부에서 임포트한 모델에 겹친 포인트나 깨진 폴리곤이 있을 때",
+    "다른 Software(Maya, Blender 등)에서 가져온 메시의 토폴로지를 정리하고 싶을 때",
+    "시뮬레이션이나 VDB 변환 전 메시의 무결성을 확보하여 오류를 방지하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "clean 을 입력하고 엔터를 쳐서 Clean SOP 노드를 생성합니다.",
+    "정리할 폴리곤 Geometry Nodes를 Clean SOP의 첫 번째 입력(Input 1)에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 제거하고 싶은 요소(Remove Degenerate Primitives, Remove Unused Points 등)의 옵션을 체크합니다.",
+    "지오메트리 스프레드시트(Geometry Spreadsheet)나 뷰포트에서 깨진 면과 불필요한 포인트가 정리되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Remove Degenerate Primitives",
+      "desc": "면적이 0이거나 잘못된 폴리곤 Primitive를 제거합니다."
+    },
+    {
+      "name": "Remove Unused Points",
+      "desc": "어떤 Primitive에도 속하지 않는 고립된 포인트를 삭제합니다."
+    },
+    {
+      "name": "Remove Duplicate Polygons",
+      "desc": "완전히 겹쳐 있는 중복된 폴리곤 면을 정리합니다."
+    },
+    {
+      "name": "Repair Non-Manifold",
+      "desc": "정상적이지 않은 비다양체(Non-manifold) 구조를 수정합니다."
+    },
+    {
+      "name": "Remove Inline Points",
+      "desc": "직선 상에 불필요하게 나열된 중간 포인트를 제거하여 폴리곤을 단순화합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "중복된 포인트나 라인을 인식할 거리 기준값을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "외부 캐드(CAD) Import 메시 정화하기",
+      "steps": [
+        "File SOP로 불러온 CAD 모델을 Clean SOP에 연결합니다.",
+        "파라미터에서 Remove Degenerate Primitives 와 Remove Unused Points를 활성화합니다.",
+        "Tolerance 값을 미세하게 조절하여 미세하게 찢어진 면을 붙입니다."
+      ]
+    },
+    {
+      "title": "VDB 변환 전 오류 방지용 정리",
+      "steps": [
+        "복잡한 스캔 데이터를 Clean SOP에 통과시켜 잡음 포인트를 제거합니다.",
+        "Remove Non-Manifold 옵션을 켜서 볼륨 변환 시 구멍이 생기는 것을 방지합니다.",
+        "VDB from Polygons 노드에 연결하여 깨끗한 볼륨을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Tolerance 값을 너무 높게 설정함 → 의도하지 않은 형태의 모델이 찌그러지거나 구멍이 생깁니다. 값을 낮추고 프리뷰를 확인하세요.",
+    "애니메이션이 있는 메시에 잘못된 옵션 적용함 → 토폴로지 구조가 바뀌면서 포인트 번호(Point Number)가 달라져 리깅이나 애니메이션이 깨질 수 있습니다."
+  ],
+  "related": [
+    "VDB from Polygons",
+    "PolyReduce",
+    "Normal",
+    "Delete"
+  ],
+  "videos": [
+    {
+      "id": "aAbXLK26Tok",
+      "title": "Houdini Tutorial: SOPs in DOPs (Part 1)",
+      "author": "Diffuse FX"
+    },
+    {
+      "id": "QF7D_ReerKA",
+      "title": "Houdini: Primitive SOP for Disintegration and PolyFX",
+      "author": "Professionally Incorrect"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Clean%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Clean SOP"
+  ],
+  "at": "2026-11-04T12:40:17.837740+00:00"
+}
