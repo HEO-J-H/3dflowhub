@@ -1,0 +1,123 @@
+{
+  "id": "blender-camera-and-depth-of-field-ba45",
+  "guide_id": "blender-camera-and-depth-of-field-ba45",
+  "tool": "Blender",
+  "name": "Camera and Depth of Field",
+  "title": "카메라·피사계 심도",
+  "overview": "Blender의 카메라와 Depth of Field(심도) 기능은 실제 카메라 광학 원리를 시뮬레이션하여 렌더링 시 특정 피사체에 시선을 집중시키고 배경을 부드럽게 아웃포커싱합니다. 렌즈의 조리개와 초점 거리를 조절하여 시네마틱한 공간감과 깊이감을 표현할 수 있습니다.",
+  "access": "3D 뷰포트에서 Shift+A 키를 누르고 Camera를 선택하거나, Properties 패널에서 초록색 Camera 아이콘 탭을 클릭하여 접근합니다. Numpad 0 키를 눌러 카메라 뷰로 전환할 수 있습니다.",
+  "options": [
+    {
+      "name": "Focal Length",
+      "value": "1mm - 1000mm (Default: 50mm)",
+      "effect": "렌즈의 초점 거리(화각)를 조절하여 원근감과 시야의 넓이를 결정합니다.",
+      "tip": "인물 촬영이나 감성적인 클로즈업에는 85mm 이상의 망원 화각을 사용하고, 넓은 공간감을 원할 때는 24mm 이하의 광각을 사용합니다."
+    },
+    {
+      "name": "Depth of Field",
+      "value": "Check / Uncheck",
+      "effect": "카메라 뷰에서 피사계 심도(아웃포커싱) 효과를 활성화하거나 끕니다.",
+      "tip": "활성화한 후 반드시 Focus Object나 Distance를 설정해야 원하는 곳에 초점이 맺힙니다."
+    },
+    {
+      "name": "Focus Object",
+      "value": "Object Selector (Eyedropper)",
+      "effect": "지정한 오브젝트의 위치를 기준으로 자동으로 초점을 맞춥니다.",
+      "tip": "애니메이션 중 움직이는 피사체를 추적할 때 매우 유용하며, 피펫 아이콘으로 뷰포트에서 직접 오브젝트를 클릭해 지정할 수 있습니다."
+    },
+    {
+      "name": "Distance",
+      "value": "0m ~ (Default: 10m)",
+      "effect": "카메라 센서에서 초점이 맺히는 면까지의 물리적 거리를 직접 미세 조정합니다.",
+      "tip": "Focus Object를 지정하더라도 Offset 값을 주어 초점 위치를 미세하게 앞뒤로 조절할 수 있습니다."
+    },
+    {
+      "name": "F-Stop",
+      "value": "0.1 - 128 (Default: 2.8)",
+      "effect": "조리개 개방 정도를 조절하여 배경 흐림(보케)의 강도를 결정합니다.",
+      "tip": "값이 낮을수록(예: 1.2, 1.4) 조리개가 열려 배경이 강하게 흐려지고, 높을수록(예: 16) 전체적으로 선명해집니다."
+    },
+    {
+      "name": "Blades",
+      "value": "3 - 16 (Default: 0)",
+      "effect": "조리개 날의 개수를 조절하여 배경 빛 망울(보케)의 다각형 형태를 바꿉니다.",
+      "tip": "값을 0으로 두면 완벽한 원형 보케가 만들어지고, 숫자를 입력하면 해당 면수의 다각형 보케(예: 육각형)가 렌더링됩니다."
+    },
+    {
+      "name": "Rotation",
+      "value": "-360° - 360° (Default: 0°)",
+      "effect": "조리개 날의 회전 각도를 조절하여 보케 모양의 기울기를 바꿉니다.",
+      "tip": "아나모픽 렌즈 특유의 세로로 퍼진 보케나 독특한 빛 망울 연출에 활용됩니다."
+    },
+    {
+      "name": "Ratio",
+      "value": "0.01 - 100 (Default: 1.0)",
+      "effect": "아나모픽 렌즈 비율을 흉내 내어 보케를 가로 또는 세로로 늘립니다.",
+      "tip": "영화 같은 시네마틱 렌즈 질감을 표현할 때 비율을 1이 아닌 값으로 설정합니다."
+    },
+    {
+      "name": "Limits",
+      "value": "Check / Uncheck",
+      "effect": "뷰포트 상에서 카메라 초점 거리가 미치는 범위를 선과 점으로 시각화합니다.",
+      "tip": "Viewport Display 섹션에서 켤 수 있으며, 초점 위치와 심도 범위를 눈으로 확인하며 작업할 때 필수적입니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Perspective (원근 뷰)",
+      "desc": "일반적인 3차원 공간감을 제공하며, 자연스러운 원근감과 심도 표현이 가능합니다."
+    },
+    {
+      "name": "Orthographic (직교 뷰)",
+      "desc": "원근감이 없어 거리에 상관없이 물체의 크기가 일정하게 유지되며, 건축이나 캐드 도면 작업에 주로 사용됩니다."
+    },
+    {
+      "name": "Panoramic (파노라마 뷰)",
+      "desc": "VR 환경이나 구형 투영, 어안 렌즈 효과 등 특수한 왜곡이 필요한 렌더링에 사용됩니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "인물 및 클로즈업 아웃포커싱 연출",
+      "steps": [
+        "Numpad 0 키를 눌러 카메라 뷰로 진입합니다.",
+        "Properties 패널의 Camera 탭에서 Focal Length를 85mm로 설정하여 인물 촬영용 화각을 만듭니다.",
+        "Depth of Field를 체크하고, Focus Object에 주인공 캐릭터 메쉬를 지정합니다.",
+        "F-Stop 값을 1.4 또는 1.8로 낮추어 배경을 극적으로 흐리게 만듭니다.",
+        "F12 키를 눌러 보케와 초점 상태를 확인합니다."
+      ]
+    },
+    {
+      "title": "동적으로 움직이는 피사체 초점 추적",
+      "steps": [
+        "애니메이션될 타겟 오브젝트를 준비하고 카메라의 Focus Object로 지정합니다.",
+        "Viewport Display에서 Limits를 켜서 카메라와 피사체 간의 거리가 올바르게 잡혀 있는지 확인합니다.",
+        "타겟이 카메라에 가까워졌다가 멀어질 때 F-Stop과 Distance가 적절한지 뷰포트에서 미리 확인합니다.",
+        "Eevee 또는 Cycles 렌더 엔진에서 렌더링하여 자연스러운 초점 이동(Rack Focus) 효과를 얻습니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Cycles 렌더러에서 Depth of Field를 켤 경우 샘플링(Samples) 수에 따라 노이즈가 발생할 수 있으므로 노이즈 억제기(Denoising)를 함께 사용합니다.",
+    "실시간 뷰포트 미리보기에서 DoF가 버벅일 경우 뷰포트 클립핑(Clipping) 거리나 복잡한 지오메트리의 투명도를 조정합니다.",
+    "너무 낮은 F-Stop 값과 복잡한 Particle 배경이 겹치면 렌더링 계산량이 급증하므로 적정 수준의 조리개 값을 유지합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Depth of Field를 켰는데도 전체 화면이 선명하게 나옵니다.",
+      "fix": "Focus Object가 지정되어 있지 않거나, Distance 값이 카메라와 피사체 간의 실제 거리와 일치하지 않는지 확인하고 조정하세요."
+    },
+    {
+      "symptom": "뷰포트 카메라 뷰에서 초점 가이드라인(Limits)이 보이지 않습니다.",
+      "fix": "Camera 탭의 Viewport Display 섹션에서 Limits 항목이 체크되어 있는지 확인하세요."
+    },
+    {
+      "symptom": "배경 흐림(보케) 부분에 지나치게 거친 노이즈가 발생합니다.",
+      "fix": "Cycles 렌더 엔진의 Max Samples 값을 높이거나, Render Properties에서 Denoise가 활성화되어 있는지 확인하세요."
+    }
+  ],
+  "versions": "Blender 4.x 버전을 기준으로 카메라 인터페이스와 심도 옵션 배치가 정돈되어 있으며, 이전 버전과 기능적 원리는 동일합니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Camera%20and%20Depth%20of%20Field",
+  "grounded": true,
+  "at": "2026-11-04T10:18:49+00:00"
+}

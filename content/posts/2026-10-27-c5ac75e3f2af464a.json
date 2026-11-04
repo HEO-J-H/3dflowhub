@@ -1,42 +1,97 @@
 {
-  "title_ko": "Gaussian Splatting: VidEdit3D로 유연한 3D 편집 구현",
+  "title_ko": "VidEdit3D: 비디오 확산 모델 기반의 유연한 3D 가우스 편집",
   "title": "VidEdit3D: Flexible 3D Gaussian Editing with Video Diffusion",
   "url": "https://arxiv.org/abs/2610.35756v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "3DGS",
+    "Video Diffusion Models",
+    "3D Editing",
     "VidEdit3D",
-    "3D Gaussian Splatting",
-    "Video Diffusion",
-    "Trajectory-Guided Rendering",
-    "Flow-Aligned Video Editing",
-    "Region-Selective Refinement"
+    "Gaussian Splatting"
   ],
-  "summary": "VidEdit3D는 3D Gaussian Splatting 장면 편집을 영상 편집 과제로 전환해 다중 뷰 일관성을 유지하면서 구조적 변형을 자유롭게 수행합니다.",
-  "insight": "텍스트 기반 3D 편집이 2D 툴에 비해 유연성이 떨어진다는 점을 보완하려는 시도는, 특히 복잡한 카메라 경로를 가진 프로젝트에서 큰 도움이 될 수 있다. VidEdit3D는 카메라 움직임을 시간 축으로 매핑해 사전 학습된 Video Diffusion Model의 시공간 프라이어를 활용하므로, 기존 3DGS 편집보다 뷰 간 일관성을 유지하면서도 원하는 구조 변형을 적용할 수 있다. 흐름 정렬 편집(FAVE)과 Editing Consistency Guidance(ECG) 메커니즘은 별도 학습 없이도 편집된 프레임과 원본 프레임을 잠재 공간에서 비교해 편집 정확도를 높인다. 또한 RS‑GS는 목표 Primitive에만 변화를 제한해 배경 속성 누수를 방지한다. 3D 아티스트와 VFX 엔지니어는 이 프레임워크를 활용해 복잡한 씬을 영상 형태로 렌더링한 뒤, 기존 영상 편집 툴과 동일한 방식으로 수정하고 다시 3DGS에 반영함으로써 작업 흐름을 크게 단순화할 수 있다.",
+  "summary": "VidEdit3D는 3D 장면 편집을 궤적 기반 비디오 편집 작업으로 재구성하여, 시점 간 일관성과 구조적 수정 유연성을 동시에 확보하는 프레임워크입니다.",
+  "insight": "이 기술이 상용화되면 아티스트가 단일 시점에서 2D 편집기로 수정하던 방식을 3D 공간 전체로 자연스럽게 확장할 수 있어, 수작업으로 다중 뷰를 일일이 수정하는 반복 업무를 크게 줄일 수 있습니다. (가능성) 특히 복잡한 오브젝트 삽입이나 제거 작업 시 주변 배경을 훼손하지 않고 국소적인 기하학적 변화를 주는 파이프라인으로 유용하게 쓰일 수 있습니다.",
   "sections": [
     {
-      "heading": "배경 및 기존 한계",
-      "body": "최근 텍스트 기반 3D 편집, 특히 3D Gaussian Splatting(3DGS) 분야가 활발히 연구되고 있지만, 2D 편집 툴에 비해 구조적 변형과 다중 뷰 일관성 유지에서 한계가 있다. 기존 방법은 뷰 간 일관성을 보존하려다 보니 구조적 수정이 제한되고, 비정상적인 시점에서의 편집이 어려운 문제가 있다. 이러한 문제점을 해결하기 위해 새로운 접근이 요구된다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 텍스트 기반 3D 가우스 Splatting(3DGS) 편집 방법들은 다중 뷰 일관성을 유지하기 위해 엄격한 기하학적 제약을 사용하므로, 모자 착용이나 구조적 변경 같은 자유로운 2D 편집 수준의 변형을 수행하기 어렵습니다. 또한 이상적인 각도나 가려진 영역에서 의도한 편집이 왜곡되는 한계가 있었습니다."
     },
     {
-      "heading": "VidEdit3D 프레임워크 개요",
-      "body": "VidEdit3D는 3D 씬 편집을 정적 장면의 카메라 움직임과 영상의 시간 흐름을 동일시하는 ‘trajectory‑based video editing’ 과제로 재구성한다. 사전 학습된 Video Diffusion Model(VDM)의 강력한 시공간 프라이어를 활용해 뷰 간 의미와 구조의 일관성을 자연스럽게 유지한다. 전체 파이프라인은 Trajectory‑Guided Rendering, Flow‑Aligned Video Editing(FAVE), Region‑Selective 3DGS Refinement(RS‑GS)로 구성된다."
+      "heading": "핵심 아이디어",
+      "body": "정적 3D 장면에서의 카메라 움직임과 비디오의 시간적 역동성 사이의 유사성에 주목하여, 사전 학습된 비디오 확산 모델(VDM)의 강력한 시공간적 사전 확률을 활용해 시점 간의 의미적·구조적 일관성을 유도합니다."
     },
     {
-      "heading": "Trajectory‑Guided Rendering (TGR)",
-      "body": "TGR은 카메라 경로에서 정보를 가장 많이 담고 있는 키프레임을 자동으로 선택하고, VDM 입력 요구사항에 맞게 부드러운 영상 클립을 생성한다. 이렇게 만든 영상은 편집 대상 뷰를 포괄하면서도 최소한의 프레임 수로 효율성을 확보한다. 키프레임 선택 기준과 클립 생성 방식은 논문에 상세히 기술되어 있다."
+      "heading": "방법 (단계)",
+      "body": "1) Trajectory-Guided Rendering(TGR)을 통해 정보성 키프레임을 선택하고 부드러운 비디오 클립을 구축합니다. 2) Flow-Aligned Video Editing(FAVE)과 Editing Consistency Guidance(ECG)를 통해 소스-편집 이미지 조건을 대조하여 앵커 뷰의 편집 내용을 비디오 클립으로 전파합니다. 3) Region-Selective 3DGS Refinement(RS-GS)를 통해 2D 분할 마스크를 3D로 역투영하고 깊이 유도 필터링을 거쳐 목표 Primitive로만 업데이트를 엄격히 제한합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "실험을 통해 기존 베이스라인(ViP3DE 등) 대비 더 강력한 지시어 정렬(instruction alignment) 성능과 우수한 다중 뷰 일관성을 입증했습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "복잡한 모션이나 대규모 외형 및 형태 변화가 수반되는 편집에서는 여전히 도전적인 과제가 남아 있으며, 배경 속성 누출을 완전히 차단하기 위한 정교한 마스킹 정밀도에 의존합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 내에 프로젝트 페이지(https://2hitee.github.io/VidEdit3D-page/)와 GitHub 이슈 신고 링크 등이 언급되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "VidEdit3D는 3D 장면 편집을 어떤 작업으로 재구성합니까?",
+      "a": "궤적 기반 비디오 편집(trajectory-based video editing) 작업으로 재구성합니다."
+    },
+    {
+      "q": "편집 내용을 비디오 클립으로 전파하기 위해 어떤 훈련 불필요 프레임을 사용합니까?",
+      "a": "Editing Consistency Guidance(ECG) 메커니즘을 포함하는 Flow-Aligned Video Editing(FAVE)을 사용합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.35756v1/2610.35756v1/sec/imgs/westlake_university_logo.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.35756v1/2610.35756v1/teaser.png",
+        "caption": "Fig. 1 : Flexible and consistent 3D editing with VidEdit3D. The baseline (left) shows inconsistent appearance, incomplete headset insertion and vase removal, and misplaced glasses. VidEdit3D (right) propagates the anchor edit across views, producing coherent appearance changes and localized object i",
+        "caption_ko": "그림 1: VidEdit3D를 통한 유연하고 일관된 3D 편집 결과. 베이스라인(왼쪽)과 달리 VidEdit3D(오른쪽)는 앵커 편집을 시점 간에 일관되게 전파합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35756v1/2610.35756v1/pipeline.png",
+        "caption": "Fig. 2 : Overview of VidEdit3D. We reformulate 3D scene editing as a trajectory-based video editing task. The pipeline consists of three key stages: (1) TGR : We organize selected views into smooth video clips. (2) FAVE : Given a user-edited anchor frame, we propagate the edit across the clip using ",
+        "caption_ko": "그림 2: VidEdit3D의 전체 파이프라인 개요. TGR, FAVE, RS-GS의 세 가지 핵심 단계로 구성됩니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35756v1/2610.35756v1/qualitative-results-arxiv.png",
+        "caption": "Fig. 3 : Qualitative comparison of reference-guided scene editing. VidEdit3D inserts accessories, removes a vase, and localizes appearance changes to the requested objects. Source and edited results are shown at matched viewpoints, with insets providing a second view.",
+        "caption_ko": "그림 3: 참조 기반 장면 편집의 정성적 비교. 액세서리 삽입, 화병 제거, 외형 변경 등이 정확히 국소화됩니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35756v1/2610.35756v1/ablation.png",
+        "caption": "Fig. 4 : Visual effects of ECG amplification and TGR view ordering. ECG amplification is disabled by setting λ = 1 \\lambda=1 , while the unordered TGR variant shuffles the source sequence. Without amplification, the red-chair edit weakens in the oblique view; VidEdit3D retains the red appearance acr",
+        "caption_ko": "그림 4: ECG 증폭 및 TGR 뷰 순서화에 따른 시각적 효과 비교."
+      }
+    ]
   },
   "collected_at": "2026-10-27T04:33:36.638618+00:00",
   "notion_id": "",
   "id": "2026-10-27-c5ac75e3f2af464a",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T10:18:41+00:00",
+  "img_tried": true,
+  "try_it": [
+    "프로젝트 페이지(https://2hitee.github.io/VidEdit3D-page/)에 접속하여 VidEdit3D의 시점별 편집 결과 및 데모 자료를 확인해 보세요."
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }
