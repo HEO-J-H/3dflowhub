@@ -1,0 +1,88 @@
+{
+  "id": "blender-color-management-agx-3af8",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Color Management (AgX)",
+  "title": "색 관리(View Transform)",
+  "summary": "Blender의 Color Management(AgX)는 렌더링된 이미지의 색상과 명암을 실제 카메라나 빛의 물리적 반응에 가깝게 변환해 주는 뷰 룩업(View Transform) 시스템입니다. 기존 Filmic 방식보다 밝은 영역의 과도한 채도 포화(Clipping)를 자연스럽게 억제합니다.",
+  "when": [
+    "강한 태양광이나 조명 아래에서 타버리는(Clipping) 화이트 영역을 부드럽게 표현하고 싶을 때",
+    "네온사인이나 불꽃처럼 채도가 극단적으로 높은 오브젝트의 색상 밴딩을 줄이고 싶을 때",
+    "실사(Photorealistic) 렌더링에서 필름 카메라 같은 자연스러운 톤과 대비를 얻고 싶을 때"
+  ],
+  "steps": [
+    "Properties 패널에서 Output 속성 아래 Render Properties(카메라 아이콘)를 엽니다.",
+    "Color Management 카테고리를 찾아 클릭하여 확장합니다.",
+    "View Transform 항목을 기존 Filmic에서 AgX로 변경합니다.",
+    "Look 항목을 High Contrast, Medium High Contrast 등으로 설정하여 원하는 전체 대비를 선택합니다.",
+    "Exposure 값을 조절하여 렌더링 이미지의 전체적인 노출(밝기)을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "View Transform",
+      "desc": "색상과 명암을 디스플레이에 표현하는 방식을 결정하며, AgX를 선택해 물리적으로 정확한 톤을 얻습니다."
+    },
+    {
+      "name": "Look",
+      "desc": "AgX 적용 후 이미지의 전체적인 콘트라스트(대비)를 선택적으로 강화합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "렌더링 결과물의 전체적인 노출(밝기)을 EV 단위로 조절합니다."
+    },
+    {
+      "name": "Gamma",
+      "desc": "중간 계조의 밝기를 비선형적으로 조절하여 어두운 영역과 밝은 영역의 균형을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "강한 조명 씬에서 화이트홀 억제하기",
+      "steps": [
+        "Render Properties에서 Color Management를 엽니다.",
+        "View Transform을 AgX로 설정합니다.",
+        "빛이 강하게 닿는 표면의 색상 깨짐이 부드러운 그라데이션으로 변하는지 확인합니다."
+      ]
+    },
+    {
+      "title": "애니메이션/카툰 스타일에서 톤 조정하기",
+      "steps": [
+        "Color Management의 Look 항목을 None 또는 Punchy로 변경합니다.",
+        "Exposure를 미세하게 조절하여 캐릭터의 하이라이트 지점을 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "기존 Filmic 씬을 AgX로 바로 바꿨을 때 전체가 너무 어두워짐 → Exposure 값을 높이거나 Look을 조정하여 밝기를 맞추세요.",
+    "텍스처 색상이 의도보다 탁하게 보임 → Color Management 설정 외에 텍스처 노드의 Color Space가 sRGB로 올바르게 지정되었는지 확인하세요."
+  ],
+  "related": [
+    "Filmic",
+    "Color Management",
+    "Render Properties",
+    "Exposure"
+  ],
+  "videos": [
+    {
+      "id": "hS7uaTquwWc",
+      "title": "The Secret to Rendering Vibrant Colors with AgX in Blender is the Raw Workflow",
+      "author": "CG Cookie – Learn Blender"
+    },
+    {
+      "id": "bIYysN4KheI",
+      "title": "How to \"Fix\" Blender's AgX and Render Exact Colors - Hue Skewing and Rotation Explained",
+      "author": "CG Cookie – Learn Blender"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Color%20Management%20%28AgX%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Output",
+    "Render Properties",
+    "Color Management"
+  ],
+  "at": "2026-11-04T11:08:36.315406+00:00"
+}
