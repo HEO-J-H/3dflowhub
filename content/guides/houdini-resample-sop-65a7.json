@@ -1,0 +1,96 @@
+{
+  "id": "houdini-resample-sop-65a7",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Resample SOP",
+  "title": "Resample — 커브 점 고르게",
+  "summary": "Resample SOP 노드는 커브(Curve)나 폴리라인(Polyline)의 포인트를 균일한 간격으로 재배치하거나 지정된 길이/개수에 맞춰 새로 생성해 주는 Geometry Nodes입니다. 복잡한 곡선을 매끄럽게 나누거나 애니메이션의 길이를 정돈할 때 사용합니다.",
+  "when": [
+    "직선이나 곡선의 포인트 간격이 불규칙하여 후속 작업(예: Copy to Points)에서 왜곡이 생길 때",
+    "커브를 일정한 길이의 세그먼트(Segment) 단위로 정확하게 분할해야 할 때",
+    "포인트 개수를 조절하여 시뮬레이션 속도를 최적화하거나 제어 포인트를 단순화할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Resample을 검색하고 Resample SOP 노드를 선택하여 생성합니다.",
+    "대상 커브 또는 폴리라인 지오메트리를 Resample SOP 노드의 첫 번째 입력(Input)에 연결합니다.",
+    "파라미터 패널에서 Method 옵션을 선택하여 포인트 생성 방식을 설정합니다.",
+    "Length 또는 Maximum Segments 값을 조절하여 뷰포트에서 포인트 간격과 밀도를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Method",
+      "desc": "포인트를 생성하는 방식(Maximum Length, Fixed Number 등)을 선택합니다."
+    },
+    {
+      "name": "Length",
+      "desc": "각 세그먼트의 최대 길이를 설정하여 균일한 간격으로 포인트를 나눕니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "지정된 개수만큼 커브를 똑같은 간격의 세그먼트로 분할합니다."
+    },
+    {
+      "name": "Subdivide",
+      "desc": "기존 포인트를 유지하면서 중간에 추가 포인트를 삽입하여 세분화합니다."
+    },
+    {
+      "name": "Keep Original",
+      "desc": "원본 커브의 정점 위치를 보존하며 리샘플링을 수행합니다."
+    },
+    {
+      "name": "Curve Attributes",
+      "desc": "커브의 길이(Arclength)나 탄젠트(Tangent) 속성을 포인트에 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커브 위에 오브젝트를 일정한 간격으로 복사하기",
+      "steps": [
+        "Curve SOP로 곡선을 그린 뒤 Resample SOP를 연결합니다.",
+        "Method를 Length로 설정하고 간격을 조절하여 포인트를 균일하게 배치합니다.",
+        "Copy to Points 노드를 연결하여 원하는 오브젝트를 복사합니다."
+      ]
+    },
+    {
+      "title": "와이어(Wire) 시뮬레이션을 위한 포인트 밀도 정돈",
+      "steps": [
+        "불규칙한 폴리라인 모델을 Resample SOP에 입력합니다.",
+        "Maximum Segments를 조절해 너무 촘촘하거나 드문드문한 포인트를 정리합니다.",
+        "Vellum Wire SOP 등으로 넘겨 안정적인 시뮬레이션을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 메쉬(Polygon Mesh)에 바로 적용함 → Resample SOP는 커브나 폴리라인 대상이므로 Mesh나 Curve를 먼저 변환해야 합니다.",
+    "Length 값을 너무 작게 설정함 → 포인트와 세그먼트 수가 급증하여 뷰포트와 시뮬레이션이 무거워지므로 적정 값을 유지해야 합니다."
+  ],
+  "related": [
+    "Fuse SOP",
+    "PolyReduce SOP",
+    "Carve SOP",
+    "Copy to Points"
+  ],
+  "videos": [
+    {
+      "id": "1jmp3PNYB0Q",
+      "title": "Procedural Chain Houdini - Adaptive Geometry & Curve Resample",
+      "author": "Paolo Orabona 3D Artist"
+    },
+    {
+      "id": "2u0iz9iMaBI",
+      "title": "Houdini Modeling SOP Library  Resample Overview",
+      "author": "Learn CG"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Resample%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Resample",
+    "Resample SOP"
+  ],
+  "at": "2026-11-04T14:22:33.271594+00:00"
+}

@@ -1,0 +1,109 @@
+{
+  "id": "blender-automatic-weights-parenting-19d1",
+  "guide_id": "blender-automatic-weights-parenting-19d1",
+  "tool": "Blender",
+  "name": "Automatic Weights parenting",
+  "title": "자동 웨이트로 본 연결",
+  "overview": "Blender의 Automatic Weights는 뼈대(Armature)와 3D 모델(Mesh) 간의 거리를 뼈대의 본(Bone) 위치와 연산하여, 각 Vertex가 어떤 본에 얼마나 영향을 받을지(Vertex Group과 Weight 값)를 자동으로 계산하고 부모-자식 관계로 묶어주는 리깅 핵심 기능입니다. 내부적으로 뼈대의 영향 범위(Bone Heat) 알고리즘을 사용하여 별도의 수작업 웨이트 칠하기 없이도 빠르게 초기 애니메이션 준비를 마칠 수 있게 도와줍니다.",
+  "access": "3D 뷰포트에서 Mesh와 Armature를 다중 선택한 상태로 키보드 Hotkey Ctrl + P를 누른 뒤 'With Automatic Weights' 항목을 클릭합니다. 또는 3D 뷰포트 상단 메뉴 바의 Object 메뉴에서 Parent → Armature Deform → With Automatic Weights 경로로 실행할 수 있습니다.",
+  "options": [
+    {
+      "name": "Object",
+      "value": "Parent To",
+      "effect": "선택한 자식 오브젝트를 부모 오브젝트에 종속시킵니다.",
+      "tip": "메시를 아마추어에 종속시킬 때 가장 기본이 되는 부모 설정 방식입니다."
+    },
+    {
+      "name": "Armature Deform",
+      "value": "Parent Type",
+      "effect": "아마추어의 본 구조에 따라 메시의 버텍스들이 변형(Deform)되도록 설정합니다.",
+      "tip": "단순 이동이 아니라 관절 꺾임에 따라 형태가 변해야 할 때 선택합니다."
+    },
+    {
+      "name": "With Automatic Weights",
+      "value": "Parent Method",
+      "effect": "메시와 본 사이의 거리를 계산하여 Vertex 그룹과 초기 웨이트 값을 자동으로 배분합니다.",
+      "tip": "빠르게 리깅을 시작할 수 있지만 겹치는 다리 사이 등에서 의도치 않은 영향이 생길 수 있습니다."
+    },
+    {
+      "name": "With Empty Groups",
+      "value": "Parent Method",
+      "effect": "본 이름과 동일한 빈 Vertex 그룹만 생성하고 웨이트 값은 채우지 않습니다.",
+      "tip": "모든 웨이트를 수동으로 칠해서 작업할 때 사용합니다."
+    },
+    {
+      "name": "With Envelope Weights",
+      "value": "Parent Method",
+      "effect": "본의 엔벨로프(영향권 영역) 크기를 기준으로 웨이트를 자동 생성합니다.",
+      "tip": "뼈대 주변의 구형/캡슐형 영역 기준으로 웨이트를 잡고 싶을 때 유용합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Object Mode",
+      "desc": "메시와 아마추어를 각각 선택하고 Ctrl + P Hotkey로 자동 웨이트 부모 관계를 맺는 기준 모드입니다."
+    },
+    {
+      "name": "Pose Mode",
+      "desc": "Ctrl + Tab으로 진입하여 본을 회전하거나 이동시키며 자동 웨이트가 잘 들어갔는지 테스트하고 검증하는 모드입니다."
+    },
+    {
+      "name": "Weight Paint Mode",
+      "desc": "Ctrl + Tab으로 진입하여 자동 웨이트가 잘못 들어간 부위(예: 겨드랑이, 다리 사이)를 브러시로 직접 수정하는 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "기본 캐릭터 자동 웨이트 적용하기",
+      "steps": [
+        "Object Mode에서 캐릭터 3D 모델(Mesh)을 먼저 좌클릭으로 선택합니다.",
+        "Shift 키를 누른 상태에서 뼈대(Armature)를 클릭하여 다중 선택합니다.",
+        "Ctrl + P 키를 눌러 Parent 창을 엽니다.",
+        "'Armature Deform' 아래의 'With Automatic Weights'를 클릭합니다.",
+        "아마추어를 선택하고 Pose Mode(Ctrl + Tab)로 전환하여 본을 움직여 메쉬가 잘 따라오는지 확인합니다."
+      ]
+    },
+    {
+      "title": "스케일 불일치로 인한 웨이트 실패 해결하기",
+      "steps": [
+        "오류나 비정상적인 웨이트가 발생할 경우 Object Mode로 돌아갑니다.",
+        "Mesh와 Armature를 각각 선택합니다.",
+        "Ctrl + A 키를 누르고 'All Transforms'를 선택해 스케일과 로테이션을 1.0으로 초기화합니다.",
+        "다시 Mesh를 먼저 선택하고 Armature를 Shift로 다중 선택합니다.",
+        "Ctrl + P -> 'With Automatic Weights'를 재적용합니다."
+      ]
+    },
+    {
+      "title": "자동 웨이트 오류 부위 수정하기",
+      "steps": [
+        "자동 웨이트 적용 후 Pose Mode에서 본을 움직여 찢어지거나 파묻히는 영역을 찾습니다.",
+        "캐릭터 Mesh를 선택하고 3D 뷰포트 상단 모드 메뉴에서 Weight Paint 모드로 전환합니다.",
+        "문제가 되는 Vertex에 영향을 주는 본을 뷰포트에서 Ctrl + 좌클릭하여 선택합니다.",
+        "브러시 강도(Weight)와 크기를 조절하여 원치 않는 영역의 색상(파란색, 0에 가까운 값)을 칠해 지웁니다."
+      ]
+    }
+  ],
+  "performance": [
+    "메시의 Vertex 밀도가 너무 높으면(예: 고해상도 조각 모델) 자동 웨이트 계산 시 멈춤 현상이나 긴 로딩이 발생합니다. Decimate Modifier 등으로 Vertex를 줄인 뒤 웨이트를 먼저 잡고 세부 디테일을 올리세요.",
+    "겹쳐 있는 면(Non-manifold geometry)이나 뚫린 구멍이 있는 메시의 경우 알고리즘이 거리 계산을 오작동하여 성능 저하 및 에러를 유발합니다. 적용 전 Mesh -> Clean Up 메뉴로 정리를 먼저 수행하세요.",
+    "뼈대의 개수가 불필요하게 많거나 구조가 엉켜 있으면 계산 시간이 급증하므로 필요한 본만 남겨두고 정리해야 합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Bone Heat Weighting: Failed to find solution for one or more bones 오류 메시지가 뜹니다.",
+      "fix": "메시에 겹쳐 있는 면, 내부 면(Internal faces), 혹은 뚫린 구멍(Non-manifold)이 있는지 확인하세요. Edit Mode에서 Mesh -> Clean Up -> Degenerate 및 Merge By Distance를 실행해 모델을 정돈한 후 다시 시도합니다."
+    },
+    {
+      "symptom": "오브젝트 스케일이나 로테이션이 틀어져 있어 자동 웨이트가 이상하게 들어갑니다.",
+      "fix": "Object Mode에서 각각의 오브젝트를 선택하고 Ctrl + A -> 'All Transforms'를 실행하여 스케일을 1.0으로 맞춘 뒤 다시 부모로 지정합니다."
+    },
+    {
+      "symptom": "팔을 움직였는데 옷이나 가슴 등 다른 엉뚱한 부위가 같이 끌려옵니다.",
+      "fix": "본의 영향 범위가 너무 넓거나 메시가 서로 너무 가까이 붙어 있어서 생기는 현상입니다. Weight Paint 모드로 진입하여 해당 본의 웨이트 중 불필요하게 붉은 영역을 파란색(0)으로 칠해 지워줍니다."
+    }
+  ],
+  "versions": "Blender 4.x 버전을 기준으로 작성되었습니다. 최신 버전에서는 성능 개선 및 복잡한 토폴로지에서의 자동 웨이트 계산 안정성이 향상되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Automatic%20Weights%20parenting",
+  "grounded": true,
+  "at": "2026-11-04T14:25:24+00:00"
+}

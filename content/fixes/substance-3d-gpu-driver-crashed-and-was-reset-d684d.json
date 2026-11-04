@@ -1,0 +1,40 @@
+{
+  "id": "substance-3d-gpu-driver-crashed-and-was-reset-d684d",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "GPU driver crashed and was reset",
+  "title": "GPU driver crashed and was reset (Substance Painter 텍스처 Baking 오류)",
+  "summary": "Substance 3D Painter에서 GPU Driver가 응답을 멈추고 Windows에 의해 강제로 재설정될 때 발생하는 오류입니다. 과도한 연산 부하, 그래픽 카드 Driver 문제, 혹은 하드웨어 안정성 문제로 인해 나타납니다.",
+  "causes": [
+    "Texture Set Resolution이 너무 높거나(4K/8K 이상) VRAM 용량을 초과하는 텍스처 Baking 작업 진행",
+    "그래픽 카드(GPU) Driver의 버전 충돌 또는 손상",
+    "GPU 오버클럭이나 전원 공급 부족으로 인한 하드웨어 불안정",
+    "오래된 디스플레이 Driver와 Windows 시스템 간의 타임아웃(TDR) 충돌"
+  ],
+  "steps": [
+    "작업 중인 프로젝트의 Texture Set Resolution을 낮추고(예: 4K에서 2K로) 다시 시도합니다.",
+    "NVIDIA GeForce Experience 또는 AMD Software를 통해 GPU Driver를 최신 정식 버전으로 클린 설치합니다.",
+    "Substance 3D Painter를 실행하고 Edit 메뉴의 Settings(설정) 또는 Display 설정에서 디스플레이 Driver 및 뷰포트 설정을 점검합니다.",
+    "TDR(Timeout Detection and Recovery) 값이 너무 짧아 발생하는 경우, 레지스트리 편집기(regedit)에서 TdrDelay 값을 조절하여 Driver 응답 대기 시간을 늘립니다.",
+    "GPU에 적용된 오버클럭을 해제하고, 전력 제한 및 쿨링 상태를 확인합니다."
+  ],
+  "check": [
+    "동일한 3D 모델에서 고해상도 Baking이나 페인팅 브러시 작업을 수행할 때 Driver 충돌 없이 정상적으로 완료되는지 확인합니다.",
+    "Windows 이벤트 뷰어에서 Display Driver 관련 크래시 로그가 더 이상 발생하지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "그래픽 Driver를 항상 최신 상태로 유지하고, 대규모 프로젝트 작업 시 주기적으로 파일을 저장합니다.",
+    "하드웨어 사양에 맞는 적절한 Texture Set Resolution(예: 실시간 작업 시 2K 이하 사용)을 유지합니다.",
+    "복잡한 하이 폴리곤 메시를 베이킹할 때는 불필요하게 높은 Max Front/Back 값이나 고폴리곤 소스를 최적화합니다."
+  ],
+  "keywords": [
+    "GPU driver crashed and was reset",
+    "Substance Painter 튕김",
+    "GPU Driver 크래시",
+    "TDR 오류 해결",
+    "서브스탠스 페인터 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T14:23:00+00:00"
+}

@@ -1,0 +1,76 @@
+{
+  "id": "import-cleanup",
+  "title": "가져온 모델 정리 (스케일·노멀·중복 점)",
+  "task": "cleaning up imported models: scale, normals, merged vertices",
+  "summary": "타사 3D 포맷(FBX, OBJ, CAD 등)을 가져올 때(Import) 발생하는 스케일 불일치, 뒤집힌 노멀, 중복 정점 등의 기초적인 데이터 오류를 정리하는 작업입니다. DCC 및 엔진마다 임포트 설정과 데이터 정화(Cleanup) 도구의 접근 방식에 차이가 있습니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Object Data Properties (그린 삼각형 아이콘) 및 Edit Mode",
+      "how": "Edit Mode에서 전체 선택(A) 후 M key를 눌러 'By Distance'로 중복 정점을 병합하고, Alt+N 메뉴에서 'Recalculate Outside'로 노멀을 재정렬합니다.",
+      "strength": "무료이며 메시 정리 및 노멀 편집 도구가 매우 직관적이고 빠름",
+      "limit": "대규모 CAD 데이터 임포트 시 계층 구조 파손이나 단위(Unit) 변환 설정이 번거로울 수 있음"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Command Panel → Modify 탭 → Edit Poly / STL Check 또는 Utilities 패널",
+      "how": "Edit Poly 모디파이어를 적용한 뒤 Vertex 서브오브젝트 레벨에서 'Weld'를 실행하고, Editable Poly의 'Polygon: Flip / Unify' 또는 Normal 모디파이어로 법선을 정리합니다.",
+      "strength": "오래된 아키텍처 및 하드서피스 모델의 메쉬 무결성 검사(STL Check 등) 기능이 강력함",
+      "limit": "임포트 시 축 시스템(Z-up vs Y-up) 변환 설정을 잘못 맞추면 스케일과 회전값이 틀어질 수 있음"
+    },
+    {
+      "tool": "Maya",
+      "where": "Mesh 메뉴 → Cleanup 및 Mesh Display 메뉴",
+      "how": "Mesh → Cleanup을 열어 'Non-manifold geometry', 'Faces with zero area' 등을 체크하고 적용한 뒤, Mesh Display → 'Unlock Normals' 및 'Conform'을 실행합니다.",
+      "strength": "복잡한 파이프라인 데이터에서 비정상적인 폴리곤과 토폴로지 오류를 일괄 정리하는 데 특화됨",
+      "limit": "메뉴 계층이 깊고 옵션 창이 복잡하여 초보자가 진입장벽을 느낄 수 있음"
+    },
+    {
+      "tool": "Houdini",
+      "where": "네트워크 뷰 → PolyDoctor 노드 또는 Clean 노드 (Tab → Clean)",
+      "how": "Clean 노드를 배치하여 'Remove Degenerates', 'Remove Unused Points', 'Fix Non-Manifold' 옵션을 켜고, Normal 노드로 법선 방향을 통일합니다.",
+      "strength": "절차적(Procedural) 방식으로 수천 개의 임포트 모델도 한 번에 일괄 정화 가능",
+      "limit": "순수 노드 기반 작업에 익숙하지 않으면 단순한 면 정리에도 오버헤드가 발생함"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Content Browser → FBX Import Options 및 Static Mesh Editor",
+      "how": "임포트 창에서 'Combine Meshes' 및 'Auto Generate Collision'을 설정하고, 에디터 내에서 'Recompute Normals' 또는 'Build Nanite'를 통해 메쉬를 정돈합니다.",
+      "strength": "엔진 내부에서 임포트 직후 스케일 팩터(Scale Factor)와 콜리전, 노멀을 한 번에 제어 가능",
+      "limit": "심각한 토폴로지 오류나 겹친 정점 자체를 직접 수정하는 정밀 편집 기능은 제한적임"
+    }
+  ],
+  "pick": [
+    {
+      "case": "CAD 파일이나 타사에서 넘어온 방대한 부품의 중복 정점과 깨진 면을 일괄 정리할 때",
+      "tool": "Houdini",
+      "why": "Clean 노드 하나로 수많은 오브젝트의 토폴로지 오류와 중복 포인트를 단숨에 자동 정화할 수 있기 때문입니다."
+    },
+    {
+      "case": "블렌더로 작업하기 전 FBX/OBJ 포맷의 기본 단위와 스케일, 노멀을 가볍게 수정할 때",
+      "tool": "Blender",
+      "why": "단축키와 Edit Mode를 통해 정점 병합(M → By Distance)과 노멀 재계산(Alt+N)을 가장 직관적이고 빠르게 처리할 수 있기 때문입니다."
+    },
+    {
+      "case": "외부 에셋을 언리얼 엔진으로 가져오면서 즉시 축과 스케일을 맞추고 콜리전을 생성할 때",
+      "tool": "Unreal Engine",
+      "why": "임포트 시점의 FBX Import Options에서 유닛 변환과 트랜스폼 베이크를 동시에 해결할 수 있기 때문입니다."
+    }
+  ],
+  "handoff": [
+    "다른 툴로 내보낼 때(Export)는 항상 Unit Scale(미터, 센티미터 등)을 통일하고 Transform(Scale, Rotation)을 원점(0,0,0)에 Freeze(Apply)해야 합니다.",
+    "축 방향(Z-up vs Y-up) 차이로 인한 회전 오류를 방지하기 위해 각 DCC의 익스포트 설정에서 대상 엔진에 맞는 축 옵션을 선택합니다.",
+    "머티리얼 이름과 오브젝트 이름에 특수문자나 한글을 배제하고 영문과 언더바(_) 위주로 정리하여 임포트 시 충돌을 막습니다."
+  ],
+  "apply": [
+    "임포트 직후 파이프라인 자동화 스크립트를 통해 모든 에셋의 중복 정점 제거와 노멀 언락(Unlock Normals)을 일괄 실행합니다.",
+    "스케일이 틀어진 모델을 엔진에 넣기 전 DCC에서 트랜스폼을 베이크하여 물리 시뮬레이션이나 라이팅 오류를 예방합니다.",
+    "하드서피스 모델의 경우 가급적 원본 CAD나 하이폴리곤 데이터를 정리한 후 로우폴리곤 베이킹 파이프라인으로 연결합니다."
+  ],
+  "pitfalls": [
+    "실수: 스케일을 적용(Apply Scale)하지 않은 상태로 모디파이어를 적용함 → 해결: 오브젝트 모드에서 Ctrl+A를 눌러 Scale을 먼저 적용(Apply)한 뒤 편집합니다.",
+    "실수: 노멀이 뒤집힌 상태로 텍스처 베이킹이나 엔진 임포트를 진행함 → 해결: 뷰포트에서 Face Orientation을 켜서 면 방향을 확인하고 외부 방향으로 재정렬합니다.",
+    "실수: 미러(Mirror) 모디파이어 사용 후 정점이 중앙에서 떨어져 있음 → 해결: Merge 임계값(Threshold)을 높이거나 수동으로 정점을 정확히 일치시켜 웰드합니다."
+  ],
+  "at": "2026-11-04T14:25:31+00:00"
+}

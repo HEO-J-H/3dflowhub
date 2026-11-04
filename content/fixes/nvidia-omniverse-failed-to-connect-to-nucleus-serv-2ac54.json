@@ -1,0 +1,39 @@
+{
+  "id": "nvidia-omniverse-failed-to-connect-to-nucleus-serv-2ac54",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Failed to connect to Nucleus Server: Connection refused",
+  "title": "Failed to connect to Nucleus Server: Connection refused 해결 방법",
+  "summary": "Failed to connect to Nucleus Server: Connection refused 메시지는 NVIDIA Omniverse에서 로컬 또는 원격 Nucleus 서버에 접속을 시도했으나 서버가 응답하지 않거나 거부했을 때 발생하는 네트워크 연결 오류입니다.",
+  "causes": [
+    "로컬 컴퓨터에서 NVIDIA Omniverse Nucleus 백그라운드 서비스가 실행 중이지 않거나 중지된 경우",
+    "방화벽이나 백신 프로그램이 Omniverse Nucleus 통신 포트를 차단하는 경우",
+    "지정한 서버 주소(URL)나 포트 번호가 잘못 입력된 경우",
+    "네트워크 환경 변경으로 인해 사내 서버 또는 원격 Nucleus 서버와의 통신이 막힌 경우"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱 또는 System Tray에서 Nucleus 서비스 상태를 확인합니다.",
+    "Windows 서비스 관리자(services.msc)를 열고 Omniverse 관련 서비스(예: Nucleus Service)가 실행 중인지 확인하고 중지되어 있다면 시작합니다.",
+    "웹 브라우저를 열고 주소창에 로컬 Nucleus 관리 주소(일반적으로 http://localhost:3080)를 입력하여 웹 기반 관리자 페이지가 정상적으로 열리는지 확인합니다.",
+    "Windows Defender나 사용 중인 방화벽 설정에서 Omniverse Nucleus 관련 프로세스 및 통신 포트가 허용되어 있는지 확인합니다.",
+    "Omniverse Kit 앱이나 3D DCC(Blender, Maya 등)의 Omniverse 커넥터 설정에서 서버 주소와 포트 번호가 올바르게 입력되었는지 확인합니다."
+  ],
+  "check": [
+    "Omniverse 앱 내에서 Nucleus 서버에 로그인하고 자산 목록이 정상적으로 로드되는지 확인합니다.",
+    "뷰포트나 USD 탐색기에서 원격 또는 로컬 USD 자산을 오류 없이 불러오거나 저장할 수 있는지 확인합니다."
+  ],
+  "prevent": [
+    "PC 부팅 시 Nucleus 서비스가 자동으로 백그라운드에서 실행되도록 설정합니다.",
+    "네트워크 환경이나 방화벽 정책이 변경될 때 Omniverse 통신 포트 예외 처리를 유지합니다."
+  ],
+  "keywords": [
+    "Omniverse 연결 오류",
+    "Nucleus Connection refused",
+    "NVIDIA Nucleus 서버 접속 실패",
+    "옴니버스 뉴클리어스 오류",
+    "Failed to connect to Nucleus"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-04T14:23:36+00:00"
+}

@@ -1,51 +1,86 @@
 {
-  "title_ko": "Gaussian Splatting — 동적 4D 적응 Bézier 스플라인",
+  "title_ko": "GaussianSpline: 동적 4D Gaussian Splatting을 위한 적응형 Bézier Spli",
   "title": "GaussianSpline: Adaptive B\\'ezier Splines for Highly Dynamic 4D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.35224",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "4D Gaussian Splatting",
     "GaussianSpline",
-    "Bézier spline",
-    "4D Gaussian splatting",
-    "동적 장면",
-    "Neural 3D Video"
+    "Bezier Spline",
+    "Dynamic Scene Reconstruction",
+    "3DGS"
   ],
-  "summary": "GaussianSpline은 각 Gaussian을 위한 비균일 Bézier 스플라인으로 4D Gaussian Splatting의 동적 표현을 크게 향상시킨다.",
-  "insight": "동적인 장면에서 기존의 전역 변형이나 고정 차수 다항식은 움직임을 충분히 포착하지 못했지만, GaussianSpline은 가우시안마다 시간 구간을 자동으로 조절해 복잡한 움직임을 정밀하게 재현한다. Neural 3D Video 벤치마크와 Google Immersive 데이터셋, 합성 씬 실험에서 기존 4D Gaussian Splatting 대비 뛰어난 재구성 품질을 입증했다. 4D 동적 씬을 다루는 연구자나 고품질 실시간 VFX를 목표로 하는 스튜디오가 주목할 만한 기술이다.",
+  "summary": "학습 가능한 비균일 시간 간격을 가진 Bézier Spline을 각 Gaussian에 적용해 복잡하고 빠르게 변하는 4D 동적 장면을 고화질로 재구성합니다.",
+  "insight": "이 연구의 적응형 시간 Parameterization 방식은 추후 실시간 퍼포먼스 캡처나 복잡한 캐릭터 애니메이션을 3DGS로 변환할 때 메모리 효율을 극적으로 높이는 데 활용될 수 있습니다. 특히 물리적 움직임이 급격한 VFX Pipeline 불필요한 연산 부하를 줄이면서 디테일을 보존하는 대안으로 적용될 가능성이 있습니다.",
   "sections": [
     {
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 동적 4D Gaussian Splatting은 전역 변형 필드나 균일하게 파라미터화된 스플래인을 사용하여, 정적인 영역과 빠르게 움직이는 영역 모두에 동일한 시간적 자원을 할당했습니다. 이로 인해 메모리 낭비가 발생하거나 복잡한 비균일 모션을 정확히 표현하기 어려웠습니다."
+    },
+    {
       "heading": "핵심 아이디어",
-      "body": "GaussianSpline은 각 Gaussian의 움직움을 비균일하게 나뉜 다중 Bézier 스플라인으로 모델링한다. 기존 방법이 전체 씬에 동일한 시간 파라미터를 적용하던 것과 달리, 이 방식은 동적이 강한 영역에 더 많은 시간 구간을 할당한다. 이를 통해 정적 영역은 간결하게, 급변 영역은 세밀하게 표현한다."
+      "body": "GaussianSpline은 각 가우시안마다 독립적인 조각별 3차 Bézier Spline(Piecewise Cubic Bézier Spline)을 할당하여 모션을 모델링합니다. 최적화 과정에서 Bézier 제어점과 시간 구간(Interval)을 함께 학습시켜 움직임이 빠른 지역에는 촘촘한 시간 간격을, 정적인 지역에는 넓은 간격을 부여합니다."
     },
     {
-      "heading": "적응형 Bézier 스플라인 설계",
-      "body": "각 Gaussian은 제어점과 함께 자체적인 시간 구간을 학습한다. 비균일 Parameterization 덕분에 스플라인 길이가 자동으로 조정되어, 복잡한 움직움을 과도한 파라미터 없이도 캡처한다. 제어점과 구간 경계는 전역 최적화 과정에서 동시에 업데이트된다."
+      "heading": "방법",
+      "body": "연속된 Splatting 세그먼트 사이의 전역적 부드러움(Global smoothness)과 로컬 적응성을 동시에 달성하기 위해, 제어점의 반사 기반 제약(Reflection-based constraint)을 사용하여 G1 연속성(G1 continuity)을 강제합니다. 이를 통해 보조 뉴럴 네트워크 없이 표준 3DGS 최적화 및 밀집화(Densification) 파이프라인에 직접 통합됩니다."
     },
     {
-      "heading": "연속성 보장 (G¹ 연속)",
-      "body": "연속적인 Bézier 세그먼트 사이에 G¹ 연속성을 강제하기 위해, 인접 세그먼트의 제어점을 반사 기반 제약으로 연결한다. 이 제약은 완전 미분 가능성을 유지하면서도 스플라인의 부드러운 전이를 보장한다. 결과적으로 움직움이 급격히 변해도 시각적 끊김이 최소화된다."
+      "heading": "결과 및 성능",
+      "body": "Neural 3D Video 벤치마크, Google Immersive 데이터셋, 합성 장면에서 실험한 결과, 비균일하고 도전적인 움직임이 포함된 장면에서 기존 최신 4D Gaussian Splatting 방법들에 비해 재구성 품질이 크게 향상되었습니다."
     },
     {
-      "heading": "벤치마크 검증 및 적용",
-      "body": "본 기법은 Neural 3D Video 벤치마크 및 Google Immersive 데이터셋, 그리고 다양한 합성 씬에서 성능을 검증받았다. 비균일하고 도전적인 동적 특성을 가진 씬에서 탁월한 재구성 품질을 보여준다. 일반적인 동적 씬에서도 최신 4D Gaussian Splatting 방법들과 경쟁력 있는 성능을 유지한다."
+      "heading": "아직 못 하는 것",
+      "body": "논문 본문에서는 별도의 명시적인 한계점을 깊게 다루지 않았으나, 다중시점 비디오 기반의 3D 둥적 재구성 Pipeline 비균일 모션에 최적화되어 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본 논문에서는 GitHub 이슈 리포트 링크 등이 언급되어 있으나, 코드나 데이터셋의 구체적인 오픈소스 공개 여부에 대한 상세 링크는 본문 텍스트 내에 명시되지 않았습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "GaussianSpline은 모션을 모델링하기 위해 어떤 방식을 사용하나요?",
+      "a": "각 Gaussian에 학습 가능한 비균일 시간 파라미터를 가진 조각별 3차 Bézier Spline(Piecewise cubic Bézier splines)을 할당하여 모션을 모델링합니다."
+    },
+    {
+      "q": "Splatting 세그먼트 간의 부드러움은 어떻게 유지하나요?",
+      "a": "제어점에 대한 반사 기반 제약(Reflection-based constraint)을 사용하여 연속된 세그먼트 간에 G1 연속성(G1 continuity)을 강제합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.35224/2610.35224v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.35224v1/2610.35224v1/pipeline.png",
+        "caption": "Figure 1: Pipeline overview. Left: multi-view video frames sampled at random timestamps and the initial SfM point cloud. Middle: three per-Gaussian piecewise cubic Bézier trajectories with learnable, non-uniform temporal intervals. Right: Gaussians evolve along their learned trajectories to reconstr",
+        "caption_ko": "그림 1: 파이프라인 개요. 임의의 시점에서 샘플링된 다중시점 비디오 프레임과 초기 SfM 포인트 클라우드, 학습 가능한 비균일 시간 간격을 가진 Bézier 궤적, 그리고 4D 장면을 재구성하는 과정을 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.35224v1/2610.35224v1/qualitative_grid.png",
+        "caption": "Figure 3: Qualitative evaluation on five dynamic scenes (rows): checker sphere (frame 59), soft contact (frame 42), cook spinach (frame 47), coffee martini (frame 0), and flames (frame 40), with zoom-ins. From left to right: ground truth, Gaussian-Flow, STG, SplineGS and our method. Zoom-ins demonst",
+        "caption_ko": "그림 3: 5가지 동적 장면에 대한 정성적 평가 비교(체커 스피어, 소프트 컨택트, 쿡 스피나치, 커피 마티니, 플레임)."
+      }
+    ]
   },
   "collected_at": "2026-10-27T04:13:30.948826+00:00",
   "notion_id": "",
   "id": "2026-10-27-9cd64f3dccc95485",
-  "enriched_at": "skip",
+  "enriched_at": "2026-11-04T14:24:56+00:00",
   "img_tried": true,
-  "try_it": [
-    "Neural 3D Video 벤치마크 및 Google Immersive 데이터셋을 활용해 GaussianSpline의 동적 4D 재구성 품질을 테스트해 보세요.",
-    "비균일 시간 구간 할당과 Bézier 스플라인 제어점 학습 구조를 기존 4D Gaussian Splatting 파이프라인과 비교 분석해 보세요.",
-    "G¹ 연속성 제약 조건이 급격한 모션 캡처 데이터에서 시각적 끊김을 얼마나 완화하는지 확인해 보세요."
-  ],
-  "enriched": "2026-11-04"
+  "try_it": [],
+  "enriched": "2026-11-04",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "paper_v": 2
 }

@@ -1,41 +1,99 @@
 {
-  "title_ko": "Gaussian Splatting: 신뢰성 높은 의미·관계 증거로 3D 장면 이해 강화",
+  "title_ko": "RelateGS: Gaussian Splatting 기반 3D 장면 이해",
   "title": "RelateGS: Reliable Semantic and Relational Evidence for 3D Scene Understanding with Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.33868v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "Semantic Grounding",
-    "3D Scene Understanding",
-    "RelateGS",
-    "WACV2027"
+    "3D Gaussian Splatting",
+    "3D Visual Grounding",
+    "Scene Graph",
+    "Semantic Understanding",
+    "RelateGS"
   ],
-  "summary": "RelateGS는 신뢰할 수 없는 관측을 억제하고 다중 뷰 객체 관계를 그래프로 통합해 3D 시각적 그라운딩 정확도를 크게 높인 언어 인식 Gaussian Splatting 기법이다.",
-  "insight": "한국의 3D AI 연구팀이나 실무자는 RelateGS가 제시하는 ‘신뢰성 기반 증거 정제’ 방식을 파이프라인에 도입해 기존 3DGS 기반 어플리케이션의 오탐을 줄일 수 있다. 멀티뷰 촬영이 제한된 현장(예: 로봇 내비게이션)에서 관계 정보를 그래프로 보존하고 필요 시 프레임을 재요청하는 전략은 데이터 효율성을 크게 개선한다. 기존 3DGS 모델에 RelateGS 모듈만 추가하면 기존 코드베이스를 크게 바꾸지 않고도 Acc@0.25를 7% 이상 끌어올릴 수 있다. 다만 그래프 구축과 재쿼리 로직이 추가되므로 실시간 요구사항이 높은 서비스에서는 연산 비용을 사전에 프로파일링해야 한다. 연구 결과는 Sr3D+와 Nr3D 데이터셋에서 검증됐으며, 유사한 언어‑시각 정합 문제에 적용 가능성이 높다.",
+  "summary": "RelateGS는 3D Gaussian Splatting(3DGS) 기반의 3D 장면 이해에서 의미론적·관계적 증거의 신뢰성을 높여 시각적 grounding 성능을 향상시키는 구조화된 언어 인식 표현 방식입니다.",
+  "insight": "이 기술은 향후 로보틱스나 자율주행 등 자연어 기반 3D 환경 제어에서 객체 간의 상대적 위치를 더 정확히 파악하는 데 기여할 수 있습니다. 3D 아티스트의 직접적인 작업 도구는 아니지만, 향후 복잡한 3D 공간 스캔 데이터를 AI가 자동으로 구조화하고 질의응답 기반으로 검색하는 파이프라인에 응용될 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "배경 및 문제점",
-      "body": "3D Gaussian Splatting(3DGS)은 언어 기반 3D 장면 이해에 큰 진전을 보였지만, 다중 뷰에서의 의미와 관계 정보가 불완전하거나 신뢰성이 낮을 경우 정확도가 떨어진다. 특히 카메라 궤적에 따라 객체 관계가 충분히 관측되지 않아 목표 객체를 구분하기 어려운 상황이 발생한다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 언어 인식 3D Gaussian Splatting 방법들은 다중 뷰 관측의 한계로 인해 의미론적 증거가 불안정하거나 시야각 제한으로 관계적 증거가 부족해지는 문제를 겪습니다. 이로 인해 '테이블 옆의 의자'와 같이 주변 객체와의 관계를 기반으로 대상을 정확히 찾아내야 하는 3D visual grounding에서 모호성이 발생합니다."
     },
     {
-      "heading": "RelateGS 핵심 아이디어",
-      "body": "RelateGS는 의미와 관계 증거를 선택적으로 정제하는 구조화된 언어 인식 Gaussian 표현이다. 의미 특징을 올리프팅할 때 신뢰성이 낮은 관측을 억제하고, 다중 뷰 객체 관측을 지속적인 3D 그래프로 통합한다."
+      "heading": "핵심 아이디어",
+      "body": "RelateGS는 모든 관측을 동등하게 취급하지 않고 장면 측의 증거를 선택적으로 정제합니다. Gauss 수준에서는 약한 의미론적 관측을 필터링하고, 객체 수준에서는 지속적인 3D 객체 그래프를 구축하여 관측이 부족한 관계를 보완합니다."
     },
     {
-      "heading": "신뢰성 향상 메커니즘",
-      "body": "그래프는 관측이 부족한 객체 관계를 식별하고, 해당 관계를 보강하기 위해 기존 프레임 중 정보가 풍부한 것을 재질의(re-query)하도록 가이드한다. 이를 통해 부족한 증거를 보완하고, 전체 장면에 대한 의미적 일관성을 강화한다."
+      "heading": "방법 (단계)",
+      "body": "먼저 confidence-aware semantic uplifting을 통해 각 이미지 관측이 개별 Gaussian에 미치는 기여도를 추정하고 신뢰할 수 있는 언어 증거만 선택적으로 집계합니다. 다음으로 이를 지속적인 3D 객체 그래프로 통합한 뒤, graph-guided relational re-querying을 통해 관측이 부족한 객체 쌍을 식별하고 기존 카메라 궤적에서 유익한 프레임을 재요청하여 누락된 관계 증거를 보완합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "Sr3D+ 및 Nr3D 벤치마크 실험에서 RelateGS는 Acc@0.25 기준 이전 최고 기록 대비 각각 7.9 및 1.7 퍼센트 포인트 향상된 경쟁력 있는 3D grounding 성능을 보여주었습니다."
+    },
+    {
+      "heading": "Limitations 및 한계",
+      "body": "본 논문은 기본 카메라 궤적 내의 기존 프레임을 재요청하는 방식을 사용하므로, 완전히 새로운 시야각을 생성하거나 궤적 외부에 완전히 가려진 영역의 정보를 보완하는 데는 구조적 한계가 존재할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "프로젝트 페이지와 코드가 GitHub(https://github.com/DrawingProcess/RelateGS)를 통해 공개되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "RelateGS는 어떤 문제를 해결하기 위해 제안되었나요?",
+      "a": "다중 뷰 관측의 약점으로 인한 불안정한 의미론적 증거와 제한된 시야각으로 인한 불충분한 관계적 증거 문제를 해결하여 3D visual grounding 성능을 높이기 위해 제안되었습니다."
+    },
+    {
+      "q": "Sr3D+와 Nr3D 평가에서 어떤 성능 향상을 기록했나요?",
+      "a": "Acc@0.25 기준으로 이전 최고 성능 대비 각각 7.9 및 1.7 퍼센트 포인트 향상되었습니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.33868v1/2610.33868v1/main_intro.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.33868v1/2610.33868v1/main_intro.png",
+        "caption": "Figure 1 : Motivation of RelateGS. Existing methods can suffer from\n(A) unreliable semantic evidence due to weak multi-view observations and\n(B) insufficient relational evidence due to limited viewpoint coverage.\nRelateGS addresses these issues by\n(A) filtering weak observations during semantic feat",
+        "caption_ko": "그림 1: RelateGS의 동기. 기존 방법들은 약한 다중 뷰 관측으로 인한 불안정한 의미론적 증거와 제한된 시야각으로 인한 불충분한 관계적 증거로 어려움을 겪습니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.33868v1/2610.33868v1/main_methods_pipeline.png",
+        "caption": "Figure 2 : Overview of RelateGS.\nGiven a reconstructed 3D Gaussian scene and posed RGB-D observations,\nRelateGS selectively refines the scene-side evidence used for\nrelation-aware grounding.\nAt the Gaussian level, weak multi-view observations are filtered during\nsemantic uplifting.\nAt the object lev",
+        "caption_ko": "그림 2: RelateGS의 개요. 재구성된 3D Gaussian 장면과 RGB-D 관측이 주어지면, 가우스 수준에서 약한 관측을 필터링하고 객체 수준에서 지속적인 그래프를 구축하여 관계적 증거를 정제합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.33868v1/2610.33868v1/main_experimental_vg_scennet.png",
+        "caption": "Figure 3 : Qualitative comparison of relation-aware 3D visual grounding on ScanNet.\nThe ground-truth column shows the target object in green and distractor\nobjects in red.\nFor each method, green denotes the ground-truth target, yellow indicates a\ncorrectly grounded prediction, and red indicates an i",
+        "caption_ko": "그림 3: ScanNet에서의 관계 인식 3D visual grounding 정성적 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.33868v1/2610.33868v1/main_experimental_vg_lerf.png",
+        "caption": "Figure 4 : Qualitative comparison of open-vocabulary localization on LERF-OVS.\nGiven the same language query, we compare the activation maps and localized regions produced by Occam’s LGS and RelateGS.\nConfidence-aware semantic uplifting suppresses weak multi-view observations,\nyielding more concentr",
+        "caption_ko": "그림 4: LERF-OVS에서의 개방 어휘 국소화 정성적 비교. Confidence-aware semantic uplifting이 약한 다중 뷰 관측을 억제하여 더 집중된 활성화 맵을 생성합니다."
+      }
+    ]
   },
   "collected_at": "2026-10-27T02:24:49.295040+00:00",
   "notion_id": "",
   "id": "2026-10-27-6dfdb0514a3504f2",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T14:25:10+00:00",
+  "img_tried": true,
+  "try_it": [
+    "GitHub 공식 저장소 방문하기 https://github.com/DrawingProcess/RelateGS",
+    "프로젝트 페이지에서 소스 코드 및 관련 구현 내용 확인하기 https://github.com/DrawingProcess/RelateGS"
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/DrawingProcess/RelateGS",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }

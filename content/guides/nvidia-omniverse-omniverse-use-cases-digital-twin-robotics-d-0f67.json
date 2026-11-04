@@ -5,18 +5,18 @@
   "group": "입문",
   "name": "Omniverse use cases (digital twin, robotics, design review)",
   "title": "활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰",
-  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합합니다.",
+  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 건설·의료 디지털 트윈 및 AI 에이전트 기반 시뮬레이션으로 생태계가 확장되고 있습니다.",
   "when": [
     "여러 아티스트가 3ds Max, Blender, Unreal Engine 등 서로 다른 툴의 데이터를 실시간으로 동기화하며 작업할 때",
-    "공장 자동화, 물류 센터, 스마트 시티 등의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
-    "로보틱스 시뮬레이션을 통해 자율주행 로봇의 AI 모델을 가상 공간에서 학습시키고 검증할 때"
+    "공장 자동화, 물류 센터, 스마트 시티, 건설 현장 및 의료(폐 디지털 트윈 등) 분야의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
+    "로보틱스 시뮬레이션을 통해 자율주행 로봇이나 케이블 라우팅 로봇의 AI 모델을 가상 공간에서 학습시키고 검증할 때"
   ],
   "steps": [
     "NVIDIA Omniverse Launcher를 실행하고 Cache, Nucleus Server 등 필수 서비스를 설치합니다.",
     "Nucleus를 통해 팀원들과 공유할 프로젝트 폴더 및 USD 기반의 협업 공간을 생성합니다.",
     "3ds Max 또는 Blender에서 Omniverse Connect 플러그인을 활성화합니다.",
     "DCC 툴의 뷰포트에서 Live Sync 기능을 켜고 실시간으로 데이터를 Nucleus 서버에 스트리밍합니다.",
-    "Omniverse Kit 기반 앱(예: Omniverse Create 또는 View)을 열어 통합된 씬을 확인하고 물리 엔진을 설정합니다."
+    "Omniverse Kit 기반 앱(예: Omniverse Create, View 또는 Isaac Sim)을 열어 통합된 씬을 확인하고 물리 엔진을 설정합니다."
   ],
   "params": [
     {
@@ -42,6 +42,10 @@
     {
       "name": "USD Composer",
       "desc": "다양한 소스에서 가져온 3D 에셋을 조립하고 라이팅을 세팅합니다."
+    },
+    {
+      "name": "Newton",
+      "desc": "유연한 케이블 라우팅 및 정밀 로봇 제어를 지원하는 물리 엔진 라이브러리입니다."
     }
   ],
   "examples": [
@@ -59,6 +63,14 @@
         "3ds Max와 Blender에서 각각 건축 모델링과 소품 모델링을 진행합니다.",
         "Live Sync를 켜서 Omniverse View에 두 모델을 실시간으로 병합합니다.",
         "클라이언트와 함께 RTX 실시간 렌더링 화면을 보며 재질과 조명을 수정합니다."
+      ]
+    },
+    {
+      "title": "AI 에이전트와 SimReady 에셋을 활용한 로봇 시뮬레이션",
+      "steps": [
+        "자연어 기반 AI 에이전트를 통해 CAD 모델을 OpenUSD 및 SimReady Foundation 요구사항에 맞게 변환합니다.",
+        "NVIDIA Isaac Sim과 Newton 물리 엔진을 연동하여 로봇의 케이블 라우팅 및 그리퍼 조작 시뮬레이션을 구성합니다.",
+        "대규모 창고 환경에서 병렬 연산을 통해 성능을 테스트하고 최적화합니다."
       ]
     }
   ],
@@ -93,21 +105,29 @@
     "Nucleus Server"
   ],
   "at": "2026-10-29T12:53:17.362189+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-01-c3173969f2a09426",
-      "title": "NVIDIA Omniverse 기반 AI 폐 디지털 튜인 솔루션 공개",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdzN0ZFpaT0x2OENqZjVEWU1kN3Rxc1hfTWlTNHlPVHJMUlVxM0xDOW9UOXZIX2pEeUlRSVdndHgzUGI0WTdzblgxYVRNdEV5N19XUjRPNDVoOTVqWWpsQnhiOEpMUEVxWko0djY1ZTR6UVpoUnd5cjkzY0x2aENUSU1UdDZrcDFYX284eWpYNmF4R0lfUHhhdlFmbEJaSE9haVVHSw?oc=5"
-    },
-    {
-      "key": "p:2026-10-29-b9009ee44e00546d",
-      "title": "NVIDIA Omniverse 기반 디지털 트윈 협업 확대",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObEVPNjIwTTVpUERDb0xvSU1aUkVYZXVkT2xlcXo3UmhGemtBZElSRW1yN0N4VWxxdjRFZTdpSVZGUy1rc3J1cGwzSW1kTkR2WUtYZF9NYWtGcXVrbjhKQjNsd1VtZ2tHc1d0dnBBcERKcnc4Q1dwUWlFUVpGbGxmakZLa01UMjQ5WkhGMmNCUjRqMTczMUFNNDJFdTVRTkpnMDI3bVJqS3VlLXJvTTNPOGJ1WE5mRjhTT0tBekthVEFObjhPdmFDcUFEWGNoNWM?oc=5"
-    },
-    {
-      "key": "p:2026-10-29-79428cf43613e413",
-      "title": "NVIDIA Omniverse와 AI 에이전트로 시뮬레이션 구축하기",
-      "url": "https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/"
+      "at": "2026-11-04T14:24:30+00:00",
+      "what": "NVIDIA Omniverse 생태계의 최신 확장 동향(건설·의료 디지털 트윈 및 자연어 AI 에이전트·Newton 물리 엔진 활용 사례)을 반영하여 요약, 활용 시점, 파라미터 및 예시를 업데이트했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 기반 AI 폐 디지털 튜인 솔루션 공개",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdzN0ZFpaT0x2OENqZjVEWU1kN3Rxc1hfTWlTNHlPVHJMUlVxM0xDOW9UOXZIX2pEeUlRSVdndHgzUGI0WTdzblgxYVRNdEV5N19XUjRPNDVoOTVqWWpsQnhiOEpMUEVxWko0djY1ZTR6UVpoUnd5cjkzY0x2aENUSU1UdDZrcDFYX284eWpYNmF4R0lfUHhhdlFmbEJaSE9haVVHSw?oc=5"
+        },
+        {
+          "title": "NVIDIA Omniverse 기반 디지털 트윈 협업 확대",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObEVPNjIwTTVpUERDb0xvSU1aUkVYZXVkT2xlcXo3UmhGemtBZElSRW1yN0N4VWxxdjRFZTdpSVZGUy1rc3J1cGwzSW1kTkR2WUtYZF9NYWtGcXVrbjhKQjNsd1VtZ2tHc1d0dnBBcERKcnc4Q1dwUWlFUVpGbGxmakZLa01UMjQ5WkhGMmNCUjRqMTczMUFNNDJFdTVRTkpnMDI3bVJqS3VlLXJvTTNPOGJ1WE5mRjhTT0tBekthVEFObjhPdmFDcUFEWGNoNWM?oc=5"
+        },
+        {
+          "title": "NVIDIA Omniverse와 AI 에이전트로 시뮬레이션 구축하기",
+          "url": "https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-01-c3173969f2a09426",
+        "p:2026-10-29-b9009ee44e00546d",
+        "p:2026-10-29-79428cf43613e413"
+      ]
     }
   ]
 }

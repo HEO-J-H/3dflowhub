@@ -1,0 +1,116 @@
+{
+  "id": "blender-armature-basics-79b3",
+  "guide_id": "blender-armature-basics-79b3",
+  "tool": "Blender",
+  "name": "Armature basics",
+  "title": "Armature — 뼈대 만들기",
+  "overview": "Blender Armature는 3D 모델에 뼈대 구조를 부여하여 캐릭터나 기계 오브젝트를 변형하고 애니메이션할 수 있게 만드는 핵심 리깅 시스템입니다. 내부적으로 뼈대(Bone)들은 상하 관계(Parenting)를 형성하여 상위 뼈의 움직임이 하위 뼈로 전달되는 기 kinematics 구조를 계산합니다.",
+  "access": "3D 뷰포트에서 Shift + A 키를 누르고 Armature → Single Bone을 선택합니다. 또는 상단 메뉴 바의 Add(Shift + A) → Armature를 통해 생성할 수 있습니다.",
+  "options": [
+    {
+      "name": "In Front",
+      "value": "체크 / 해제 (기본값: 해제)",
+      "effect": "메쉬에 가려져 보이지 않는 뼈대가 항상 화면 최전면에 보이도록 렌더링합니다.",
+      "tip": "캐릭터 내부의 뼈대를 선택하고 편집할 때 반드시 켜두는 것이 작업에 편리합니다."
+    },
+    {
+      "name": "X-Axis Mirror",
+      "value": "체크 / 해제 (기본값: 해제)",
+      "effect": "에디트 모드에서 대칭 위치에 있는 뼈대의 변형과 수정 사항을 반대편에도 동일하게 적용합니다.",
+      "tip": "이름 끝에 .L과 .R이 붙은 대칭 뼈대 구조에서 좌우를 동시에 리깅할 때 필수적입니다."
+    },
+    {
+      "name": "Draw Type",
+      "value": "Octed / Stick / B-Bone / Envelope / Wire (기본값: Octed)",
+      "effect": "뷰포트에서 뼈대가 화면에 표시되는 시각적 형태를 변경합니다.",
+      "tip": "복잡한 얼굴 리깅이나 곡선 형태의 뼈대에는 B-Bone이나 Envelope 모드가 유용합니다."
+    },
+    {
+      "name": "Show Names",
+      "value": "체크 / 해제 (기본값: 해제)",
+      "effect": "각 뼈대의 이름을 3D 뷰포트 상의 뼈대 근처에 텍스트로 표시합니다.",
+      "tip": "본의 개수가 많아질 때 이름을 식별하기 위해 켜서 확인합니다."
+    },
+    {
+      "name": "Show Axes",
+      "value": "체크 / 해제 (기본값: 해제)",
+      "effect": "선택된 뼈대의 로컬 좌표축(X, Y, Z) 방향을 화면에 표시합니다.",
+      "tip": "본의 롤(Roll) 값을 맞추거나 제약 조건(Constraints)을 설정할 때 축 방향 확인용으로 씁니다."
+    },
+    {
+      "name": "Relationship Lines",
+      "value": "체크 / 해제 (기본값: 기본 켜짐)",
+      "effect": "부모 뼈와 자식 뼈 사이의 연결 관계를 점선으로 표시합니다.",
+      "tip": "연결이 끊어진 본들의 상하 관계를 파악할 때 유용합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Object Mode",
+      "desc": "오브젝트 자체의 이동, 회전, 크기 조절 및 다른 오브젝트와의 부모-자식 관계 설정, 웨이트 페인팅 진입 전 단계로 사용합니다."
+    },
+    {
+      "name": "Edit Mode",
+      "desc": "Tab 키로 진입하며, 뼈대를 추가(Shift + A), 삭제(X), 돌출(E), 분할, 뼈대의 길이와 위치를 수정하는 구조 편집 모드입니다."
+    },
+    {
+      "name": "Pose Mode",
+      "desc": "Ctrl + Tab 키로 진입하며, 실제 애니메이션을 만들기 위해 뼈를 회전(R), 이동(G), 크기 조절(S)하여 포즈를 잡는 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "기본 인간형 뼈대(Humanoid Rig) 배치 및 정렬",
+      "steps": [
+        "1. 정면 뷰(Numpad 1)에서 Shift + A 키를 눌러 Armature를 생성합니다.",
+        "2. Tab 키를 눌러 Edit Mode로 진입한 뒤, 뼈대를 몸체 중앙에 맞게 배치합니다.",
+        "3. E 키를 눌러 척추, 목, 머리 순으로 상단을 향해 뼈대를 돌출시킵니다.",
+        "4. Armature 데이터 속성에서 X-Axis Mirror를 켜고 갈비뼈 및 팔 부위를 구성합니다.",
+        "5. Object Mode로 돌아와 올바른 스케일(Ctrl + A → Apply Scale)이 적용되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "메쉬와 아마추어 수동 웨이트 및 본 연결",
+      "steps": [
+        "1. Object Mode에서 메쉬를 선택하고 Tab을 눌러 Edit Mode로 이동합니다.",
+        "2. 특정 정점 그룹(Vertex Group)에 속할 파츠를 선택하고 Assign 합니다.",
+        "3. Object Mode에서 메쉬를 먼저 선택하고 Shift를 누른 채 Armature를 다중 선택합니다.",
+        "4. Ctrl + P 키를 누르고 Empty Groups 또는 With Automatic Weights를 선택합니다.",
+        "5. Weight Paint 모드로 전환하여 브러시로 정점의 영향력을 세밀하게 수정합니다."
+      ]
+    },
+    {
+      "title": "IK(Inverse Kinematics) 제약 조건 연결하기",
+      "steps": [
+        "1. Pose Mode에서 다리나 팔의 하단 뼈(예: 정강이 뼈)를 선택합니다.",
+        "2. Bone Constraints 속성탭에서 Add Bone Constraint를 클릭합니다.",
+        "3. Inverse Kinematics(IK)를 선택하여 제약 조건을 활성화합니다.",
+        "4. Target에 아마추어 오브젝트를 지정하고, Chain Length 값을 올바르게 설정합니다.",
+        "5. 뷰포트에서 IK 타겟 본을 움직여 다리 관절이 자연스럽게 꺾이는지 테스트합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "복잡한 캐릭터 리깅 시 불필요하게 많은 수의 본(Bone) 생성은 뷰포트 연산 속도를 저하시키므로 단순화합니다.",
+    "B-Bone 세그먼트 수가 과도하게 높을 경우 뷰포트 재생(Playback) 프레임이 떨어질 수 있으므로 필요한 만큼만 낮게 설정합니다.",
+    "Modifier Stack에서 Subsurf나 Subdivision Modifier가 Armature보다 위에 있으면 뷰포트가 무거워지므로 순서를 확인합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "자동 웨이트 연결 시 'Bone heat weighting: failed to find solution for one or more bones' 오류가 발생합니다.",
+      "fix": "메쉬에 겹쳐진 면(Overlapping faces), 열린 구멍(Non-manifold geometry), 또는 너무 가깝거나 얇은 정점들이 있는지 확인하고 Mesh → Clean Up 기능을 실행합니다."
+    },
+    {
+      "symptom": "포즈 모드에서 뼈를 움직였을 때 메쉬가 비틀어지거나 반대 방향으로 꺾입니다.",
+      "fix": "오브젝트 모드에서 메쉬와 아마추어 모두 스케일 값이 (1.0, 1.0, 1.0)인지 확인하고 Ctrl + A → All Transforms를 적용합니다."
+    },
+    {
+      "symptom": "에디트 모드에서 뼈대를 복사(Shift + D)했는데 이름이 겹치거나 대칭 편집이 안 됩니다.",
+      "fix": "뼈대 이름 끝에 각각 '.L'과 '.R' 접미사가 정확히 붙어 있는지 확인하고 Armature 메뉴의 Symmetrize 기능을 사용합니다."
+    }
+  ],
+  "versions": "Blender 4.x 버전부터는 뼈대의 기본 시각화와 조작 편의성이 개선되었으며, 본 컬렉션(Bone Collections) 시스템이 도입되어 기존의 본 레이어(Bone Layers) 기능을 대체합니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Armature%20basics",
+  "grounded": true,
+  "at": "2026-11-04T14:25:17+00:00"
+}
