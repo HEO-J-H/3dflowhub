@@ -1,0 +1,102 @@
+{
+  "id": "blender-instance-on-points-5df5",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "지오메트리 노드",
+  "name": "Instance on Points",
+  "title": "Instance on Points — 점마다 복제",
+  "summary": "Blender의 Instance on Points 노드는 Geometry Nodes 환경에서 포인트 위치마다 지정한 3D 에셋을 Instance 형태로 가볍게 복제하여 배치하는 강력한 기능입니다.",
+  "when": [
+    "넓은 지형 위에 수많은 나무, 풀, 바위 등을 퍼포먼스 저하 없이 대량으로 배치할 때",
+    "건물의 창문이나 벽돌 패턴처럼 규칙적인 포인트 Grid에 반복 요소를 채울 때",
+    "Particle이나 산란(Scatter) 시뮬레이션 결과물에 실제 3D 모델을 연결할 때"
+  ],
+  "steps": [
+    "대상 오브젝트를 선택하고 Modifier Properties 탭에서 Add Modifier → Geometry Nodes를 클릭하여 새로운 노드 네트워크를 생성합니다.",
+    "Geometry Nodes 수정자 패널 또는 상단 탭에서 Geometry Node 에디터로 진입합니다.",
+    "네트워크 뷰(Network View)에서 Shift+A 키를 누릅니다.",
+    "검색창에 Instance on Points를 입력하고 노드를 생성하여 Group Input과 Group Output 사이에 연결합니다.",
+    "Instance on Points 노드의 Instance 입력에 복제할 3D 소스 에셋(Mesh)을 드래그하여 Object Info 노드로 연결합니다.",
+    "Points 입력에 Distribute Points on Faces 노드를 연결하여 기준이 될 면 위에 무작위 포인트를 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Points",
+      "desc": "Instance가 생성될 기준 위치가 되는 포인트 데이터입니다."
+    },
+    {
+      "name": "Instance",
+      "desc": "포인트마다 복제하여 배치할 원본 3D 오브젝트나 지오메트리입니다."
+    },
+    {
+      "name": "Selection",
+      "desc": "특정 포인트에만 Instance를 생성하도록 선택 영역을 제어합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "복제된 Instance의 회전 값을 포인트의 노멀 방향 등에 맞춰 제어합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "복제된 Instance의 크기를 조절하며, 무작위 크기 노드와 연결해 다양성을 줄 수 있습니다."
+    },
+    {
+      "name": "Pick Instance",
+      "desc": "여러 개의 오브젝트 컬렉션 중 무작위로 골라서 인스턴스화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 위에 무작위 풀밭 심기",
+      "steps": [
+        "바닥 지형 오브젝트에 Geometry Nodes를 추가합니다.",
+        "Distribute Points on Faces 노드로 지형 표면에 포인트를 뿌립니다.",
+        "Instance on Points 노드에 풀 모델의 Object Info를 연결합니다.",
+        "Random Value 노드를 Scale에 연결해 풀들의 크기를 다채롭게 만듭니다."
+      ]
+    },
+    {
+      "title": "격자 Grid에 건물 조명 배치",
+      "steps": [
+        "Mesh Grid 노드를 생성하여 Points 입력에 연결합니다.",
+        "Instance on Points 노드를 거쳐 가로세로 정렬된 조명 에셋을 배치합니다.",
+        "Transform 노드로 전체 Grid의 위치와 간격을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "소스 오브젝트의 Origin(중심점)이 엉뚱한 곳에 있음 → 오브젝트 모드에서 Object 메뉴 → Set Origin을 사용하여 중심점을 하단이나 정중앙으로 재설정합니다.",
+    "Instance가 너무 무거워 뷰포트가 느려짐 → 컬렉션을 인스턴스화하거나 뷰포트 디스플레이를 포인트 클라우드 모드로 전환하여 해결합니다.",
+    "스케일 값이 0으로 나와 보이지 않음 → Scale 파라미터의 기본값이 0으로 설정되어 있는지 확인하고 1로 수정합니다."
+  ],
+  "related": [
+    "Distribute Points on Faces",
+    "Object Info",
+    "Random Value",
+    "Realize Instances"
+  ],
+  "videos": [
+    {
+      "id": "AgqMBMzz1rA",
+      "title": "Working with Geometry Nodes | Instances & Points in Blender",
+      "author": "Arya AI"
+    },
+    {
+      "id": "8WRPqpIuMt0",
+      "title": "Blender 3.0 Tutorial - Align Instances in Geometry Nodes",
+      "author": "Jose Alves da Silva"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Instance%20on%20Points",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modifier Properties",
+    "Add Modifier",
+    "Geometry Nodes",
+    "Geometry Node",
+    "Network View",
+    "Instance"
+  ],
+  "at": "2026-11-04T14:39:27.551665+00:00"
+}
