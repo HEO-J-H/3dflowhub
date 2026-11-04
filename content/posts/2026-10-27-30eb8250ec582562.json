@@ -1,31 +1,55 @@
 {
-  "title_ko": "Gaussian Splatting: 포즈 불확실성 하 안정적 기하학 학습",
+  "title_ko": "SG-Splat: 포즈 불확실성을 극복하는 포즈 프리 3D Gaussian Splatting",
   "title": "SG-Splat: Stable Geometry Learning under Pose Uncertainty for Pose-Free 3D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.35361v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "3DGS",
+    "3D Gaussian Splatting",
     "Pose-Free",
-    "FGPR",
-    "RGC",
-    "DL3DV",
-    "RealEstate10K"
+    "Novel View Synthesis",
+    "Pose Estimation",
+    "Feed-Forward 3DGS"
   ],
-  "summary": "SG‑Splat은 포즈 불확실성을 고려해 3D Gaussian Splatting의 기하학 학습을 안정화하는 새로운 포즈‑프리 프레임워크입니다.",
-  "insight": "실무에서 포즈 추정이 불완전한 이미지들을 바로 3DGS로 변환하려면 기존 방법의 포즈 오차에 취약한 점이 큰 걸림돌이었습니다. SG‑Splat은 기하와 속성을 별도 브랜치로 분리해 오류 전이를 최소화하고, 흐름 기반 포즈 정제(FGPR)와 깊이 잔차 기반 기하 보정(RGC)으로 단계별 정밀도를 높입니다. 두 경로를 혼합해 정답 포즈와 예측 포즈를 동시에 사용함으로써 학습 안정성을 크게 향상시켰습니다. DL3DV와 RealEstate10K에서의 실험 결과는 기존 포즈‑프리 방식보다 뛰어난 신시뮬레이션 품질과 포즈 추정 정확도를 보여, 포즈가 없는 데이터셋을 활용하는 프로젝트에 바로 적용할 가치가 있습니다. 3D 콘텐츠 제작 파이프라인에 이 기술을 도입하면, 촬영 현장에서 카메라 매트릭스를 정확히 잡지 못해도 빠른 3D 재구성이 가능해집니다.",
+  "summary": "SG-Splat은 포즈 정보가 없는 입력 이미지에서 카메라 포즈와 3D Gaussian을 안정적으로 재구성하기 위해 지오메트리와 속성을 분리하고 포즈 불확실성을 보정하는 피드포워드 3DGS 프레임워크입니다.",
+  "insight": "이 기술은 카메라 포즈를 사전에 알지 못하는 조건에서도 안정적인 3D 재구성을 가능하게 하므로, 모바일 캡처나 비디오 데이터셋을 활용한 실시간 3D 자산 제작 및 월드 모델링 작업에서 포즈 추정 오류로 인한 왜곡을 줄이는 데 기여할 수 있는 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "배경 및 기존 문제점",
-      "body": "3D Gaussian Splatting(3DGS)은 실시간 뷰 합성 및 장면 재구성에 유망한 표현 방식으로 떠올랐습니다. 최근 포즈‑프리 피드포워드 3DGS가 연구됐지만, 잔여 포즈 오류에 민감해 기하학 변환이 흐트러지고 속성 학습에 잡음이 섞입니다. 이러한 오류 결합은 최종 렌더링 품질 저하로 이어집니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 포즈 프리 피드포워드 3D Gaussian Splatting(3D Gaussian Splatting, 3DGS) 방법들은 잔여 포즈 오차에 민감하게 반응하여 정준 공간(canonical space)으로의 Gaussian 변환을 교란하고 지오메트리 및 속성 학습에 노이즈를 유발합니다. 또한 포즈 감독과 Gaussian 재구성이 직접 결합되어 있어 최적화 목표가 충돌하는 문제가 있습니다."
     },
     {
-      "heading": "SG‑Splat 프레임워크 개요",
-      "body": "SG‑Splat은 기하학 추정과 Gaussian 속성 예측을 각각 전용 브랜치로 분리해 포즈‑민감한 요소와 속성을 독립적으로 학습합니다. 또한, 거친‑정밀(coarse‑to‑fine) 정제 파이프라인을 도입해 초기 추정 단계에서 발생하는 오류를 단계적으로 보정합니다."
+      "heading": "핵심 아이디어",
+      "body": "SG-Splat은 지오메트리 추정(geometry estimation)과 Gaussian 속성 예측(Gaussian attribute prediction)을 두 개의 전용 브랜치로 분리하여 오차 결합을 줄입니다. 또한 훈련과 추론 간의 일관성을 유지하고 포즈 오차에 대한 강건성을 높이기 위해 그라운드 트루스(ground-truth) 포즈와 예측된 포즈를 혼합하는 듀얼 패스(dual-path) 전략을 도입했습니다."
+    },
+    {
+      "heading": "방법과 파이프라인",
+      "body": "플로우 기반 상관 피처와 미분 가능한 번들 조정(differentiable bundle adjustment, DBA)을 결합한 Flow-Guided Pose Refinement(FGPR)로 카메라 포즈를 정제합니다. 이후 FGPR에서 유도된 깊이 잔여값을 사용해 초기 포인트맵을 보정하는 Residual-Guided Geometry Correction(RGC)을 적용하여 더 신뢰할 수 있는 Gaussian 중심점을 생성합니다."
+    },
+    {
+      "heading": "실험 결과",
+      "body": "DL3DV 및 RealEstate10K 데이터셋에서의 광범위한 실험을 통해, SG-Splat은 신규 시점 합성(novel view synthesis)과 포즈 추정(pose estimation) 모두에서 최신 성능(state-of-the-art)을 달성함을 입증했습니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "논문에서는 복잡한 다중 시점 설정에서 여전히 잔여 포즈 오차가 존재할 수 있으며, 지오메트리와 포즈 추정의 상호 작용이 특정 환경에서 제약을 받을 수 있음을 시사합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "본 논문은 arXiv(arXiv:2610.35361v1)를 통해 공개되었으며, 본문에 명시된 공식 구현체 소스 코드 링크는 제공되지 않았고 LaTeXML 및 arXiv HTML 피드백 관련 GitHub 링크만 포함되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "SG-Splat은 기존 포즈 프리 3DGS의 어떤 문제를 해결하나요?",
+      "a": "잔여 포즈 오차가 정준 공간 변환을 교란하여 지오메트리 및 속성 학습에 노이즈를 유발하는 문제를 지오메트리-속성 분리 브랜치와 정제 파이프라인으로 해결합니다."
+    },
+    {
+      "q": "훈련 과정에서 포즈는 어떻게 활용되나요?",
+      "a": "그라운드 트루스 포즈와 예측된 포즈를 혼합하여 사용하는 포즈 아웨어 듀얼 패스(pose-aware dual-path) 전략을 사용하여 안정적인 속성 감독과 지오메트리 학습의 강건성을 동시에 확보합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.35361v1/2610.35361v1/pose_sel.png",
     "video": ""
@@ -33,6 +57,17 @@
   "collected_at": "2026-10-27T04:56:44.725576+00:00",
   "notion_id": "",
   "id": "2026-10-27-30eb8250ec582562",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T16:29:53+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2
 }

@@ -1,26 +1,56 @@
 {
-  "title_ko": "Modular Contact Operator로 마찰 접촉 모델링",
+  "title_ko": "Neural Network 의류 시뮬레이션의 명시적 마찰 접촉 모델링",
   "title": "Explicit Frictional Contact Modeling in Neural Garment Simulation",
   "url": "https://arxiv.org/abs/2610.33492",
   "domain": "AI 3D",
   "category": "기타 AI 3D",
   "topic": "연구·논문",
   "tags": [
-    "garment simulation",
-    "friction modeling",
-    "GNN",
-    "Modular Contact Operator",
-    "physics‑based AI"
+    "Neural Garment Simulation",
+    "Frictional Contact",
+    "Graph Neural Networks",
+    "Coulomb Friction",
+    "HOOD",
+    "ContourCraft"
   ],
-  "summary": "그래프 신경망 기반 의상 시뮬레이션에 명시적 마찰 접촉 연산자를 추가해 추론 시 마찰 계수를 직접 제어할 수 있게 했다.",
-  "insight": "이 논문은 기존 GNN 의상 시뮬레이터가 마찰을 암묵적으로 처리하던 한계를 넘어, 추론 단계에서 마찰 계수를 자유롭게 조정할 수 있는 방법을 제시한다. 실제 제작 Pipeline는 옷감 종류별 마찰 특성을 빠르게 테스트하고 싶을 때, 별도 재학습 없이 모듈식 연산자를 적용해 즉시 결과를 확인할 수 있다. 선형화된 막 파동 전파 방식을 사용해 기존 물리 기반 솔버 대비 8배 빠른 속도를 제공하므로, 실시간 가상 피팅이나 인터랙티브 의상 디자인에 바로 활용 가능하다. 다만 연산자는 현재 정적인 몸체 삼각형에 한정돼 움직이는 캐릭터에 적용하려면 추가 연구가 필요하다.",
+  "summary": "Neural Network 의류 Simulator에서 마찰력과 접촉 상태를 명시적으로 처리하는 모듈형 접촉 연산자를 제안하여 실시간 성능을 유지하면서도 마찰 계수에 따른 정지 및 미끄러짐을 정확히 재현합니다.",
+  "insight": "이 연구의 방식은 실시간 상호작용 환경이나 버츄얼 트라이온(Virtual Try-on)에서 의류가 신체에 닿았을 때 미끄러지거나 멈추는 거동을 물리적 기준에 맞게 제어할 수 있는 가능성을 보여줍니다. 추론 과정에서 재학습 없이 마찰 계수를 실시간으로 바꿀 수 있다면 게임이나 실시간 디지털 휴먼 제작 Pipeline 의류 표현의 정확도를 높이는 데 기여할 수 있습니다.",
   "sections": [
     {
-      "heading": "연구 배경",
-      "body": "그래프 신경망(GNN)은 물리 기반 자기지도 학습을 통해 의상을 효율적으로 시뮬레이션하지만, 몸체와 의상 사이의 마찰을 암묵적으로 처리한다. 기존 방법은 마찰 계수 μ를 추론 단계에서 설정할 수 없으며, 계수별 재학습을 해도 성능 향상이 미미했다. 이러한 한계는 실제 의상 디자인에서 마찰 특성을 정밀하게 제어하고 싶을 때 큰 장애가 된다."
+      "heading": "해결하려는 문제",
+      "body": "그래프 신경 네트워크(GNN) 기반 의류 Simulator는 물리 기반 자기 지도 학습을 통해 빠르게 동작하지만, 신체와 의류 간의 마찰을 암시적으로 처리하거나 학습 손실 함수 내부의 단순 페널티로만 다룹니다. 이로 인해 추론 시 마찰 계수 μ를 자유롭게 조절할 수 없고, 접촉 부위별 쿨롱 조건(Coulomb condition)이 반영되지 않는 한계가 있습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "학습된 예측기를 재학습하거나 반복적인 수렴 연산(iterative solve) 없이, 예측 단계 이후에 부착하는 모듈형 접촉 연산자(Modular Contact Operator)를 도입합니다. 예측된 상태를 임시 제안(proposal)으로 취급하고, 법선 하중을 추정하여 닫힌 형식의 쿨롱 보정을 적용한 뒤, 유도된 움직임을 막의 파동(membrane wave) 형태로 주변 천에 전파합니다."
+    },
+    {
+      "heading": "방법 및 구성",
+      "body": "연산자는 신체 거리 껍질 내의 접촉 집합을 형성하고, 가장 가까운 신체 면에서 로컬 노름-접선 프레임을 공급받습니다. 예측기가 계산하지 않는 반응을 추정하고, 각 접촉에 바운드를 적용한 뒤, 보정된 끝점을 신체 표면을 따라 유지하면서 주변 직물로 움직임을 전달하는 단계를 거칩니다."
+    },
+    {
+      "heading": "결과 및 성능",
+      "body": "HOOD 및 ContourCraft에서 테스트한 결과, 마찰 계수 μ에 따라 정지(sticking)는 증가하고 미끄러짐(slip)은 단조 감소하여 참조 솔루션의 응답을 충실히 추적했습니다. 침투율을 낮게 유지하고 기준선과 일치하는 늘어남 트렌드를 보이면서도, 전체 연산 비용은 기존 최적화 기반 솔루션 대비 8.1배 낮았습니다."
+    },
+    {
+      "heading": "한계점 및 미해결 과제",
+      "body": "논문에서는 제안된 연산자가 HOOD와 ContourCraft 등 두 가지 예측기에 부착 가능함을 보였으나, 복잡한 다중 레이어 상호작용이나 극단적인 토폴로지 변화에서의 완전한 물리적 정확성은 추가적인 검증이 필요합니다. 또한 복잡한 동적 상황에서 멤브레인 파동 전파의 근사화가 미치는 영향이 존재합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "본 연구의 프로젝트 페이지(https://trthanhnguyen.github.io/explicit-friction-ngs/)를 통해 상세한 내용과 시각화 자료를 확인할 수 있으며, 관련 소스코드와 이슈는 GitHub(arXiv/html_feedback, brucemiller/LaTeXML) 등을 통해 다뤄지고 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "기존 Neural Network 의류 Simulator는 마찰 문제를 어떻게 다루었나요?",
+      "a": "학습 목적 함수에 중력 기반 하중 프록시와 접선 변속을 곱한 페널티 항을 포함시키는 방식을 사용했으나, 이는 마찰 계수 μ가 학습 시 고정되며 접촉 부위별 쿨롱 조건을 생성하지 못했습니다."
+    },
+    {
+      "q": "제안된 모듈형 접촉 연산자는 예측기를 재학습해야 하나요?",
+      "a": "아니오. 예측기는 고정된 상태로 두고 그 이후에 모듈형 접촉 연산자를 부착하므로, 재학습이나 반복적인 수렴 연산 없이 마찰을 명시적으로 해결합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2610.33492/2610.33492v1/261023_fig1_remake.png",
     "video": ""
@@ -28,6 +58,19 @@
   "collected_at": "2026-10-27T04:23:46.434396+00:00",
   "notion_id": "",
   "id": "2026-10-27-5e063ffbc4757007",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T16:29:37+00:00",
+  "img_tried": true,
+  "try_it": [
+    "프로젝트 페이지(https://trthanhnguyen.github.io/explicit-friction-ngs/)에 접속하여 명시적 마찰 접촉 모델링의 시각화 및 데모 결과를 확인합니다."
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2
 }

@@ -1,0 +1,126 @@
+{
+  "id": "blender-append-and-link-f87a",
+  "guide_id": "blender-append-and-link-f87a",
+  "tool": "Blender",
+  "name": "Append and Link",
+  "title": "Append·Link — 다른 파일에서 가져오기",
+  "overview": "Blender의 Append와 Link는 다른 .blend 파일에 저장된 에셋을 현재 작업 중인 씬으로 가져오는 핵심 데이터 관리 기능입니다. Append는 에셋을 완전히 복사해 독립적인 편집을 가능하게 하고, Link는 원본 파일을 실시간으로 참조하여 대규모 파이프라인 협업 효율을 극대화합니다.",
+  "access": "File 메뉴에서 Append 또는 Link 클릭 (Hotkey: Append는 Shift + F1, Link는 Ctrl + Alt + O). 또는 File 드롭다운 메뉴에서 직접 선택.",
+  "options": [
+    {
+      "name": "Append",
+      "value": "버튼",
+      "effect": "선택한 에셋의 모든 데이터를 현재 파일 내부로 복사해옵니다.",
+      "tip": "원본 파일과의 연결이 끊어지므로 이후 자유롭게 수정할 수 있습니다."
+    },
+    {
+      "name": "Link",
+      "value": "버튼",
+      "effect": "원본 .blend 파일을 참조 형태로 연결하여 불러옵니다.",
+      "tip": "원격의 원본 에셋이 수정되면 링크된 파일에도 실시간 반영됩니다."
+    },
+    {
+      "name": "Collections",
+      "value": "폴더",
+      "effect": "오브젝트들이 포함된 상위 그룹 단위로 데이터를 일괄 가져옵니다.",
+      "tip": "씬 구조를 유지하며 복잡한 세트를 불러올 때 가장 유용합니다."
+    },
+    {
+      "name": "Objects",
+      "value": "폴더",
+      "effect": "개별 3D 오브젝트 단위로 선택하여 가져옵니다.",
+      "tip": "특정 소품 하나만 빠르게 꺼내올 때 사용합니다."
+    },
+    {
+      "name": "Materials",
+      "value": "폴더",
+      "effect": "오브젝트 없이 Shader 및 머티리얼 데이터만 현재 파일로 가져옵니다.",
+      "tip": "다른 파일에 만든 재질을 현재 오브젝트에 입히고 싶을 때 선택합니다."
+    },
+    {
+      "name": "Instance Collections",
+      "value": "체크박스",
+      "effect": "Link 사용 시 컬렉션을 Instance 형태로 배치하여 메모리 사용량을 줄입니다.",
+      "tip": "배경 건물이나 숲 등 반복되는 대규모 에셋 배치에 필수적입니다."
+    },
+    {
+      "name": "Relative Path",
+      "value": "체크박스 (톱니바퀴 아이콘)",
+      "effect": "링크 파일 경로를 프로젝트 폴더 기준 상대 경로로 저장합니다.",
+      "tip": "다른 작업자에게 폴더 통째로 파일을 전달할 때 경로 유실을 방지합니다."
+    },
+    {
+      "name": "Localize",
+      "value": "Outliner 메뉴",
+      "effect": "링크된 에셋을 현재 파일로 영구 귀속시킵니다.",
+      "tip": "링크 상태로 작업하다가 최종 납품 직전에 독립 파일로 분리할 때 씁니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Append Mode",
+      "desc": "원본 파일의 데이터를 완전히 복제하여 내 파일의 일부로 만듭니다. 원본을 지워도 데이터는 유지됩니다."
+    },
+    {
+      "name": "Link Mode",
+      "desc": "외부 파일을 참조 형태로 유지합니다. Outliner에서 보라색 아이콘으로 표시되며 직접 편집이 제한됩니다."
+    },
+    {
+      "name": "Library Override",
+      "desc": "Link된 에셋의 특정 속성(위치, 회전, 일부 재질 등)만 임시로 수정할 수 있게 허용하는 고급 협업 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "공용 캐릭터 라이브러리에서 애니메이션 파일로 가져오기",
+      "steps": [
+        "애니메이션 작업용 .blend 파일을 엽니다.",
+        "File → Append를 실행합니다.",
+        "캐릭터가 저장된 .blend 파일로 진입하여 Collection 폴더를 선택합니다.",
+        "캐릭터 상위 컬렉션을 선택하고 Append를 누릅니다.",
+        "Shift + A를 누르고 Collection Instance에서 캐릭터를 배치합니다."
+      ]
+    },
+    {
+      "title": "Link를 이용한 대규모 배경 환경(Environment) 협업",
+      "steps": [
+        "배경 파트너가 작업한 environment.blend 파일을 준비합니다.",
+        "메인 씬 파일에서 File → Link를 실행합니다.",
+        "environment.blend 파일 내부의 메인 컬렉션을 선택합니다.",
+        "우측 상단의 Link/Append 창에서 Instance Collections 옵션을 체크하고 Link합니다.",
+        "배경이 가벼운 Instance 형태로 배치되어 원활하게 뷰포트 작업을 진행합니다."
+      ]
+    },
+    {
+      "title": "Link된 에셋에 Library Override 적용하여 애니메이팅하기",
+      "steps": [
+        "Link로 가져온 캐릭터 에셋을 Outliner에서 선택합니다.",
+        "우클릭 후 Library Override → Make (또는 순서에 맞게)를 실행합니다.",
+        "캐릭터의 뼈대(Armature) 포즈를 변경하여 현재 씬에 맞게 애니메이션을 수정합니다.",
+        "원본 캐릭터 파일이 업데이트되어도 애니메이션 포즈 데이터는 안전하게 유지됩니다."
+      ]
+    }
+  ],
+  "performance": [
+    "많은 수의 무거운 에셋을 가져올 때는 Append 대신 Link와 Instance Collections를 활용하여 메모리 사용량을 최소화합니다.",
+    "불필요한 고해상도 텍스처나 데이터가 포함된 원본 .blend 파일은 사전에 Purge(Unused Data-Block 제거)를 실행한 뒤 가져옵니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Link로 가져온 오브젝트가 수정되지 않고 회색으로 잠겨 있습니다.",
+      "fix": "Link 방식은 원본을 참조하므로 직접 편집할 수 없습니다. 수정이 필요하면 File → Append로 가져오거나 Library Override를 적용하세요."
+    },
+    {
+      "symptom": "파일을 다른 컴퓨터로 옮겼더니 링크된 에셋이 깨지거나 사라졌습니다.",
+      "fix": "파일을 링크할 때 우측 상단 톱니바퀴 메뉴에서 Relative Path(상대 경로) 옵션이 켜져 있었는지 확인하고, 프로젝트 폴더 구조를 유지하여 이동하세요."
+    },
+    {
+      "symptom": "Append로 가져왔는데 파일 용량이 너무 커졌습니다.",
+      "fix": "Append는 데이터를 완전히 복사하므로 중복된 머티리얼이나 데이터 블록이 쌓일 수 있습니다. File → Clean Up → Purge All을 실행해 불필요한 데이터를 정리하세요."
+    }
+  ],
+  "versions": "Blender 3.0 이후 에셋 브라우저(Asset Browser)가 도입되면서 Append와 Link는 Mouse 드래그 앤 드롭 방식으로 더욱 직관적으로 처리할 수 있게 개선되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Append%20and%20Link",
+  "grounded": true,
+  "at": "2026-11-04T16:29:59+00:00"
+}

@@ -1,37 +1,97 @@
 {
-  "title_ko": "AI 3D – Semantic-Structural Alignment 기반 그림 차트 생성",
+  "title_ko": "AI로 통계 차트를 감성적인 픽토리얼 차트로 자동 변환",
   "title": "Semantic-Structural Alignment for Generative Pictorial Charts",
   "url": "https://arxiv.org/abs/2606.06498",
   "domain": "AI 3D",
   "category": "기타 AI 3D",
   "topic": "연구·논문",
   "tags": [
-    "pictorial charts",
-    "semantic alignment",
-    "structural alignment",
-    "diffusion model",
-    "visual storytelling"
+    "Pictorial Charts",
+    "Diffusion Transformers",
+    "Semantic Alignment",
+    "Structural Alignment",
+    "Data Visualization"
   ],
-  "summary": "텍스트 Prompt와 통계 차트 구조를 동시에 제어하는 멀티모달 Diffusion Transformer를 통해 시각적으로 매력적이고 구조적으로 정확한 그림 차트를 자동 생성하는 연구입니다.",
-  "insight": "데이터 시각화와 스토리텔링을 동시에 추구하는 디자이너와 VFX 아티스트에게 유용합니다. 텍스트와 기존 차트 이미지를 입력으로 받아 AI가 자동으로 그림 차트를 만들어 주므로, 반복적인 디자인 작업을 크게 줄일 수 있습니다. 길이·면적·각도·위치 등 주요 시각 채널을 모두 지원해 다양한 차트 유형에 적용이 가능합니다. 다만 현재는 고품질 레퍼런스 이미지와 정확한 구조 입력이 필요하므로, 초기 설정 단계에서 충분한 데이터 준비가 요구됩니다. 향후 플러그인 형태로 DCC 툴이나 엔진에 연동된다면 실시간 인터랙티브 디자인 파이프라인에 바로 활용할 수 있을 것입니다.",
+  "summary": "본 논문은 텍스트 Prompt와 구조적 이미지를 동시에 활용하여 통계 차트를 데이터의 정확성을 유지하면서도 시각적으로 매력적인 픽토리얼 차트로 자동 생성하는 듀얼 컨디셔닝 프레임워크를 제안합니다.",
+  "insight": "이 연구에서 제시된 피처 레벨 정렬 기술은 향후 3D 아티스트들이 텍스처나 스타일을 유지하면서도 정밀한 공간 구조와 비율을 제어하는 에셋 생성 파이프라인에 응용될 수 있는 가능성을 보여줍니다. 특히 수치적 데이터나 특정 레이아웃을 준수해야 하는 인포그래픽 및 3D 시각화 작업에서 유용한 참고 자료가 될 수 있습니다.",
   "sections": [
     {
-      "heading": "연구 배경 및 목표",
-      "body": "전통적인 통계 그래프는 정확하지만 시각적 매력과 기억에 남는 효과가 부족합니다. 이를 보완하기 위해 저자들은 의미 표현과 구조 충실성을 동시에 만족하는 그림 차트 자동 생성 프레임워크를 제안했습니다. 목표는 텍스트 Prompt와 차트 구조 두 가지 외부 신호를 활용해 고품질의 그림 차트를 만드는 것입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "전통적인 통계 그래픽은 수치적 정확성을 제공하지만 시각적 몰입감이 부족하며, 기존의 수동 작업이나 Template 기반 시스템은 창의적 표현과 데이터 가독성을 동시에 만족시키기 어렵습니다. 특히 확산 모델(Diffusion model) 기반 생성에서 객체의 크기는 조절하기 어려운 잠재적 속성이므로, 데이터의 양적 비율과 공간적 구조를 완벽히 유지하면서 텍스트 기반의 의미론적 객체로 변환하는 데 한계가 있었습니다."
     },
     {
-      "heading": "제안 프레임워크 개요",
-      "body": "프레임워크는 Multi-Modal Diffusion Transformer 기반이며, 텍스트 Prompt와 입력 차트 이미지를 병렬 제어 신호로 사용합니다. 두 신호는 모델 내부에서 각각 의미 정렬과 구조 정렬 메커니즘을 통해 반영됩니다. 이를 통해 생성된 이미지가 데이터 구조를 유지하면서도 풍부한 텍스처와 스타일을 가집니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 의미적 표현(Semantic expression)과 구조적 충실도(Structural faithfulness)의 간극을 좁히기 위해 다중 모달 확산 트랜스포머(MM-DiT)를 활용한 듀얼 컨디셔닝 생성 프레임워크를 도입했습니다. 텍스트 Prompt는 의미적 맥락을 제어하고, 컨텍스트 이미지는 추상적인 통계 차트의 전역 구조를 제공하여 두 신호가 병렬로 작동하도록 설계되었습니다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "구조적 정렬(Structural DIFT)과 의미적 정렬(Semantic DIFT)이라는 두 가지 피처 레벨 메커니즘을 도입했습니다. Structural DIFT는 입력 차트의 정확한 공간 레이아웃에 맞추어 생성되는 이미지의 공간 배치를 고정하며, Semantic DIFT는 참조 이미지로부터 표현력 있는 텍스처와 의미론적 시각 요소를 전달합니다."
+    },
+    {
+      "heading": "결과 및 성능",
+      "body": "길이(length), 면적(area), 각도(angle), 위치(position)를 포함한 주요 시각적 채널과 다양한 의미론적 도메인에 걸쳐 일반화됩니다. 정량적 평가와 지각적 사용자 연구 결과, 제안하는 프레임워크가 기존의 제어 가능한 생성 및 이미지 편집 베이스라인보다 우수한 성능을 보였습니다."
+    },
+    {
+      "heading": "아직 못 하는 것",
+      "body": "엄격한 구조적 일관성을 보장하기 위해 일대일 의미적 변환을 수행하는 기본 기하학적 Primitive 변환에 초점을 맞추었으며, 고도로 중첩되거나 다중 뷰 시각화는 범위에서 제외됩니다. 또한, Prompt 기반의 응집력 있는 배경 생성 문제는 향후 과제로 남겨두었습니다."
+    },
+    {
+      "heading": "코드 및 프로젝트 공개 여부",
+      "body": "본 연구의 프로젝트 페이지(https://ssalign.github.io/)가 공개되어 있으며, 논문 본문 내 레포지토리 정보가 안내되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "이 프레임워크는 어떤 제어 신호를 사용하나요?",
+      "a": "텍스트 Prompt(의미적 맥락)와 컨텍스트 이미지(추상적인 통계 차트의 전역 구조)라는 두 가지 병렬 외부 제어 신호를 사용합니다."
+    },
+    {
+      "q": "어떤 시각적 채널들에 적용될 수 있나요?",
+      "a": "길이, 면적, 각도, 위치 등 4가지 주요 시각적 인코딩 채널과 다양한 의미론적 도메인에 걸쳐 일반화됩니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2606.06498/2606.06498v2/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2606.06498v1/2606.06498v1/teaser.png",
+        "caption": "Figure 1. Semantically-Rich Pictorial Chart Generation.\nOur method transforms abstract statistical graphics into high-fidelity pictorial charts by replacing geometric primitives with text-guided semantic objects.\nIt synthesizes instances structurally faithful to the original data encodings (e.g., pr",
+        "caption_ko": "그림 1. 의미론적으로 풍부한 픽토리얼 차트 생성 예시."
+      },
+      {
+        "src": "https://arxiv.org/html/2606.06498v1/2606.06498v1/dift-v2.png",
+        "caption": "Figure 2. Token-Level Correspondence via DIFT. Given two images, diffusion features are extracted from MM-DiT at a specific denoising timestep t t and layer l l , where each feature corresponds to a visual token on the latent grid. Token-level correspondence is then established by nearest-neighbor m",
+        "caption_ko": "그림 2. DIFT를 통한 토큰 레벨 대응 관계(Token-Level Correspondence)."
+      },
+      {
+        "src": "https://arxiv.org/html/2606.06498v1/2606.06498v1/figures/archi-v2.png",
+        "caption": "Figure 3. Method overview.\nGiven a source chart image and a textual prompt, we provide them as the contextual image condition and textual condition, respectively. To enforce strong structural consistency and enable expressive semantic synthesis, we introduce Structural DIFT and Semantic DIFT .\nThese",
+        "caption_ko": "그림 3. 전체 메서드 개요. 소스 차트 이미지와 텍스트 프롬프트를 조건으로 활용합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2606.06498v1/2606.06498v1/structure-align.png",
+        "caption": "Figure 4. Structure Alignment.\nWhile the fine-tuned MM-DiT provides a strong baseline, structural deviations from the source chart may still occur. By incorporating our proposed structural alignment strategy, the target image is explicitly aligned with the precise spatial structure of the chart, ens",
+        "caption_ko": "그림 4. 구조적 정렬(Structure Alignment) 과정의 효과."
+      }
+    ]
   },
   "collected_at": "2026-10-27T05:23:15.027791+00:00",
   "notion_id": "",
   "id": "2026-10-27-460912b50cd02ee3",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-04T16:29:48+00:00",
+  "img_tried": true,
+  "try_it": [
+    "공식 프로젝트 페이지(https://ssalign.github.io/)에 접속하여 생성된 픽토리얼 차트 결과물과 시각화 예시를 확인합니다."
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "paper_v": 2
 }
