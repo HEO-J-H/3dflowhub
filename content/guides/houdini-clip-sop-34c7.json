@@ -1,0 +1,93 @@
+{
+  "id": "houdini-clip-sop-34c7",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Clip SOP",
+  "title": "Clip — 평면으로 자르기",
+  "summary": "Clip SOP 노드는 평면을 기준으로 지오메트리를 반으로 자르거나 한쪽 영역을 잘라내는 기능입니다. 칼로 물체의 단면을 깔끔하게 도려낼 때 사용합니다.",
+  "when": [
+    "복잡한 모델링의 단면을 일직선으로 잘라내어 평평하게 만들 때",
+    "대칭(Symmetry) 작업을 위해 모델의 절반을 깔끔하게 잘라낼 때",
+    "지오메트리 일부를 제거하고 새로운 단면 면(Cap)을 생성할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Clip을 검색하여 Clip SOP 노드를 생성하고 대상 모델 뒤에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Clip Plane의 Origin(기준점)과 Direction(방향)을 조절하여 자를 위치를 잡습니다.",
+    "Keep 옵션을 통해 자를 영역(Above, Below, Both 등)을 선택합니다.",
+    "뷰포트에서 단면이 깔끔하게 잘렸는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Origin",
+      "desc": "절단면이 위치할 기준점(Coordinates)을 설정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "절단면의 방향(Normal Vector)을 결정합니다."
+    },
+    {
+      "name": "Keep",
+      "desc": "절단면 기준 위쪽(Above), 아래쪽(Below), 또는 둘 다(Both) 남길지 선택합니다."
+    },
+    {
+      "name": "Distribute Pieces",
+      "desc": "잘려진 조각들을 서로 다른 피스로 분리합니다."
+    },
+    {
+      "name": "Capped",
+      "desc": "절단면에 새로운 폴리곤 면을 채워 막아줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델 절반 대칭 자르기",
+      "steps": [
+        "Clip SOP 노드를 모델에 연결합니다.",
+        "Direction을 축 방향(예: X축 1, 0, 0)으로 설정합니다.",
+        "Keep을 Keep Above로 설정하여 절반을 지웁니다."
+      ]
+    },
+    {
+      "title": "단면이 막힌 절단",
+      "steps": [
+        "Clip SOP 노드를 선택합니다.",
+        "파라미터에서 Capped 옵션을 체크합니다.",
+        "뷰포트에서 단면에 새로운 면이 생성되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘리는 방향이 반대인 경우 → Direction 벡터 값을 반대(-1)로 수정하거나 Keep 옵션을 변경합니다.",
+    "단면이 뚫려 속이 비어 보이는 경우 → Capped 옵션이 꺼져 있는지 확인하고 활성화합니다.",
+    "원하지 않는 위치에서 잘리는 경우 → Origin 파라미터의 좌표값이나 뷰포트 핸들을 조절합니다."
+  ],
+  "related": [
+    "Boolean SOP",
+    "PolySplit",
+    "Symmetry SOP",
+    "Slice SOP"
+  ],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "jjMtNs1S5V0",
+      "title": "SOP Loop Nodes | Houdini Railsystem | Chapter 4 - Clip 3",
+      "author": "David Kahl"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Clip%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Clip",
+    "Clip SOP"
+  ],
+  "at": "2026-11-04T14:12:47.819952+00:00"
+}

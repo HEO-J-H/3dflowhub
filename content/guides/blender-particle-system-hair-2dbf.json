@@ -1,0 +1,96 @@
+{
+  "id": "blender-particle-system-hair-2dbf",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "Particle system hair",
+  "title": "Particle 헤어",
+  "summary": "Blender의 Particle 시스템 헤어(Hair Particle) 기능은 캐릭터나 오브젝트의 표면에서 머리카락, 털, 풀 등의 섬유질 요소를 생성하고 브러시로 직접 빗어 스타일링할 수 있는 도구입니다.",
+  "when": [
+    "인간이나 동물 캐릭터의 머리카락, 털, 수염을 제작할 때",
+    "지형이나 오브젝트 표면에 잔디, 털실, 깃털 등을 밀집되게 표현할 때",
+    "바람이나 중력 같은 물리적 영향을 받는 섬유형 오브젝트를 시뮬레이션할 때"
+  ],
+  "steps": [
+    "머리카락을 심을 베이스 메쉬 오브젝트를 선택하고, Properties 패널의 Particle Properties(입자 탭)로 이동합니다.",
+    "상단의 + 버튼을 눌러 새 Particle 시스템을 추가하고, 유형(Type)을 Hair로 변경합니다.",
+    "정밀한 스타일링을 위해 Mode를 Particle Edit으로 전환하여 빗기(Comb), 자르기(Length) 등의 브러시 툴로 형태를 다듬습니다.",
+    "다시 Object Mode로 돌아와 Physics 패널에서 Hair Dynamics를 활성화하여 중력과 충돌을 적용합니다.",
+    "Properties 패널의 Material Properties에서 머리카락 전용 재질을 적용하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Number",
+      "desc": "생성할 전체 헤어 스트랜드의 개수를 설정합니다."
+    },
+    {
+      "name": "Hair Length",
+      "desc": "헤어 스트랜드의 기본 길이를 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "헤어 스트랜드의 부드러움을 결정하는 세그먼트 분할 개수를 설정합니다."
+    },
+    {
+      "name": "Children",
+      "desc": "원본 헤어 주변에 자식 헤어를 추가하여 풍성함과 밀도를 높입니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "자식 헤어가 원본 주변으로 퍼지는 반경을 조절합니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "헤어 시뮬레이션 시 작용하는 중력의 세기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "동물 캐릭터 숏퍼(Short Fur) 제작",
+      "steps": [
+        "바디 메쉬에 Particle 헤어를 추가하고 Number를 높여 밀도를 촘촘하게 만듭니다.",
+        "Hair Length를 짧게 줄이고 Children 옵션을 Simple로 설정해 털의 숱을 풍성하게 만듭니다.",
+        "Viewport Shading에서 Material Preview를 켜고 털의 색상과 질감을 확인합니다."
+      ]
+    },
+    {
+      "title": "바람에 날리는 긴 머리카락 애니메이션",
+      "steps": [
+        "캐릭터 두피 영역만 Vertex Group으로 지정해 Density에 할당합니다.",
+        "Particle Edit 모드에서 브러시로 머리결을 자연스럽게 빗어줍니다.",
+        "Hair Dynamics를 켜고 Wind 포스필드를 배치하여 바람에 날리는 움직임을 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 스케일이 1이 아닐 때 헤어 길이가 왜곡됨 → Object 모드에서 Ctrl+A를 눌러 Apply Scale을 실행합니다.",
+    "Particle 편집 후 모드 전환 시 스타일이 사라짐 → 수정 사항은 자동으로 저장되지만 반드시 Object 모드와 Particle Edit 모드를 올바르게 오가야 합니다.",
+    "헤어가 너무 뻣뻣하고 각져 보임 → Particle Properties의 Children을 활성화하고 Segments 값을 높여줍니다."
+  ],
+  "related": [
+    "Geometry Nodes",
+    "Particle System",
+    "Hair Dynamics",
+    "MT Hair Taper"
+  ],
+  "videos": [
+    {
+      "id": "uETmTpskGU4",
+      "title": "hair particles tutorial in blender 3d",
+      "author": "stache"
+    },
+    {
+      "id": "HvnzUXD4hF0",
+      "title": "Blender Tutorial 15 - Basic Hair Particles, Vertex Groups, and Weight Painting",
+      "author": "Alex Chamberlain"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Particle%20system%20hair",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Particle Properties"
+  ],
+  "at": "2026-11-04T14:12:24.295315+00:00"
+}
