@@ -1,32 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-02T17:20:46.748096+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 192,
-      "candidates_passed": 163,
-      "offtopic": 18,
-      "short": 0,
-      "prefiltered": 18,
-      "llm_fallbacks": [
-        "groq"
-      ],
-      "strategy_ver": "8181e450",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-02T17:30:33.759581+00:00",
       "collected": 1,
       "saved": 0,
@@ -5435,6 +5409,32 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-04T20:53:47.889605+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 242,
+      "candidates_passed": 187,
+      "offtopic": 31,
+      "short": 0,
+      "prefiltered": 35,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "09cff426",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post"
+      ]
     }
   ],
   "good_keywords": [
@@ -5530,7 +5530,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-28 [[p-15c75e4f37|사이트·UX] TRELLIS를 단일·다중 이미지] 새로운 3D 생성 엔진 도입 시 기존 triposr_runner의 인터페이스와 예외 처리 패턴을 일관되게 유지합니다.",
     "2026-10-28 [성찰] 무관한 행사, 일반 하드웨어, 중복 할인 뉴스는 철저히 차단하고, 실무 튜토리얼과 고단가 3D/게임엔진 소프트웨어 분석에 집중해야 가치 없는 콘텐츠 판정을 피하고 유입을 극대화할 수 있습니다.",
     "2026-10-28 [성찰] 무관한 외부 뉴스 및 중복 할인 소식은 수집 단계에서 엄격히 차단하고, Maya와 3ds Max, Blender 등 실무 중심의 고CPC 튜토리얼 및 스크립트 정보를 강화하여 페이지뷰와 광고 수익을 높여야 합니다.",
     "2026-10-28 [[p-30b123f546|운영·비용] 대기 중인 PR #17 검토 및 병] ",
@@ -5649,7 +5648,8 @@
     "2026-11-04 [evolve.summarize_cpc_category_stats(): 최] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 문서 파일(.md)에는 실제 마크다운 형식의 가이드를 작성하고, 테스트 코드는 반드시 tests/ 디렉토리에 분리하여 배치해야 합니다.",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/web-optimization.md').exists / FAILED backend/tests/test_core.py::test",
-    "2026-11-04 [성찰] 오탐지율과 무관한 글을 줄이기 위해 일반 명사 도구명을 철저히 필터링하고, 실무 검색 수요가 검증된 주제에 집중해야 합니다."
+    "2026-11-04 [성찰] 오탐지율과 무관한 글을 줄이기 위해 일반 명사 도구명을 철저히 필터링하고, 실무 검색 수요가 검증된 주제에 집중해야 합니다.",
+    "2026-11-04 [성찰] 실무 중심의 검색 유입이 확인된 3ds Max(MaxScript), Blender, Maya 등 고CPC 및 구글 검색 키워드 중심의 튜토리얼과 최적화 팁 콘텐츠가 조회수 확보에 가장 유리합니다."
   ],
   "categories": {
     "VFX": [
@@ -5684,7 +5684,7 @@
     "AI 3D/가우시안 스플래팅": 75,
     "VFX/스튜디오·작품": 81,
     "AI 3D/로보틱스·월드모델": 24,
-    "3D DCC/Blender": 94,
+    "3D DCC/Blender": 95,
     "Game Engine/Unreal Engine": 92,
     "AI 3D/기타 AI 3D": 36,
     "Game Engine/Godot": 25,
@@ -7543,14 +7543,15 @@
     6920596426899678000,
     2056074700605274567,
     72955907494908707,
-    14447548779014161458
+    14447548779014161458,
+    727863735123009995
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1861,
-    "Game Engine": 1861,
-    "VFX": 1861,
-    "AI 3D": 1861
+    "3D DCC": 1862,
+    "Game Engine": 1862,
+    "VFX": 1862,
+    "AI 3D": 1862
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
