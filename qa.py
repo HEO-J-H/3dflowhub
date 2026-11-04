@@ -20,6 +20,7 @@ PASS = 6          # AI 검수 점수가 이보다 낮으면 다시 만들기
 SAMPLE = 3        # 한 번에 AI 로 검수할 개수
 # 남은 자리표시 — 대소문자 구분 (Houdini 'Null' 노드·'Nanite' 같은 정상 용어는 걸리지 않게)
 PLACEHOLDER = re.compile(r"\bTODO\b|\bFIXME\b|[Ll]orem ipsum|\{\{|\}\}|\[object Object\]|\bNaN\b")
+TICS = ("특히", "파이프라인", "워크플로", "효율", "실무자라면", "유용합니다", "향후", "기대됩니다", "주목할 만한", "시작하려면")
 MOJIBAKE = re.compile(r"[ÃÂ][\x80-\xbf]|ì[\x80-\xbf]|�")
 
 
@@ -72,6 +73,9 @@ def mechanical(it: dict) -> list[str]:
     sents = [s.strip() for s in re.split(r"[.!?。]\s", body) if len(s.strip()) > 25]
     if sents and len(sents) - len(set(sents)) >= 2:
         probs.append("같은 문장 반복")
+    tics = [w for w in TICS if w in body]
+    if len(tics) >= 3:
+        probs.append("상투어 반복(" + "·".join(tics[:4]) + ")")
     if k == "guide" and len(x.get("steps") or []) < 3:
         probs.append("따라 하기 단계가 너무 적음")
     if k == "manual" and len(x.get("options") or []) < 4:

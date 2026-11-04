@@ -15,7 +15,7 @@
     "서브스턴스"
   ],
   "summary": "Tencent의 수석 머티리얼 아티스트 Zeqi Mu가 Substance 3D Designer의 Procedural 노드와 스플라인 생성 시스템을 활용해 스캔 수준의 숲 바닥 머티리얼을 제작하는 공정을 소개합니다.",
-  "insight": "이 인터뷰는 단순한 텍스처 제작을 넘어 타일러블 머티리얼에서 반복 패턴을 숨기고 자연스러운 계층 구조를 만드는 고급 Procedural 노드 활용법을 보여줍니다. 특히 Spline Generators와 Shape splatter v2를 결합하여 나뭇뿌리와 돌, 이끼, 낙엽을 복잡하게 적층하는 방식은 오픈월드 환경 제작 시 반복 작업의 효율을 극적으로 높여줍니다. 실무 아티스트들은 무작위성 부여와 디스플레이스먼트 최적화 기법을 주목할 필요가 있습니다.",
+  "insight": "이 인터뷰는 단순한 텍스처 제작을 넘어 타일러블 머티리얼에서 반복 패턴을 숨기고 자연스러운 계층 구조를 만드는 고급 Procedural 노드 활용법을 보여줍니다. Spline Generators와 Shape splatter v2를 결합하여 나뭇뿌리와 돌, 이끼, 낙엽을 복잡하게 적층하는 방식은 오픈월드 환경 제작 시 반복 작업의 효율을 극적으로 높여줍니다. 실무 아티스트들은 무작위성 부여와 디스플레이스먼트 최적화 기법을 주목할 필요가 있습니다.",
   "sections": [
     {
       "heading": "실제 참조 분석과 초기 뿌리 형태 생성",
@@ -36,16 +36,6 @@
     {
       "heading": "Unreal Engine 5와 Marmoset Toolbag 렌더링",
       "body": "Marmoset Toolbag에서는 스튜디오 HDRI를 활용해 통제된 조명 아래서 머티리얼을 명확하게 표현했습니다. Unreal Engine 5에서는 기본 Procedural 스카이 셋업을 조정하여 석양 분위기를 연출하고 캐릭터가 달리는 데모를 시연했습니다. 머티리얼에는 Nanite displacement를 활성화하고 토끼풀 잎에 서브서피스 스캐터링 마스크를 추가해 사실감을 극대화했습니다."
-    },
-    {
-      "heading": "실무에서 이렇게 씁니다",
-      "body": "타일러블 머티리얼 제작 시 반복 패턴을 숨기는 작업은 매우 중요합니다. 본 공정에서는 Scatter Splines on Splines 기법으로 뿌리의 밀도를 조절하고, Gaussian noise를 높이 맵에 곱해 타일링 경계를 자연스럽게 가립니다. 또한 Shape splatter v2 노드의 SDF rock 기능과 랜드마크 함수 그래프를 조합하면 돌의 둥근 정도나 면 개수를 무작위로 제어할 수 있어 Procedural 작업의 단조로움을 효과적으로 극복할 수 있습니다. 머티리얼을 레이어링할 때는 밑바닥부터 나무 뿌리, 돌, 이끼, 나뭇가지, 풀, 고사리 순으로 세밀하게 쌓아 올리는 계층 구조를 기억해 두세요.",
-      "added": true
-    },
-    {
-      "heading": "시작하려면",
-      "body": "이 공정을 직접 학습하려면 Substance 3D Designer의 최신 Procedural 노드 시스템과 스플라인 생성 기능에 익숙해져야 합니다. 특히 Shape splatter v2 노드와 SDF 기반의 오브젝트 배치 방식을 먼저 연습하는 것이 좋습니다. 제작한 머티리얼을 실무 프로젝트에 적용할 때는 Unreal Engine 5에서 Nanite displacement를 활성화하고, 토끼풀 같은 식물 요소에는 서브서피스 스캐터링 마스크를 더해 사실감을 높이는 세팅법을 함께 익혀두면 유용합니다.",
-      "added": true
     }
   ],
   "faq": [

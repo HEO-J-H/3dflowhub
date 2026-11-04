@@ -14,7 +14,7 @@
     "언리얼 엔진"
   ],
   "summary": "VR 게임 Mothergunship: Forge가 기존 Unreal 4에서 최신 Unreal Engine 5.7로 엔진을 교체하고 Meta Quest의 핸드 트래킹 기능을 전격 도입했습니다.",
-  "insight": "이번 엔진 마이그레이션은 구형 버전에서 최신 버전으로의 전환이 VR 타이틀의 성능 최적화와 인터랙션 개선에 얼마나 큰 영향을 미칠 수 있는지 보여주는 대표적인 사례입니다. 특히 Unreal Engine 5.7의 향상된 렌더링 파이프라인과 모바일/VR 플랫폼 지원 기능을 활용하려는 개발자들에게 중요한 벤치마크가 될 수 있습니다. VR 개발 시 핸드 트래킹 도입을 고민하는 팀이라면 이번 사례의 입력 지연 개선 및 최적화 노하우를 주의 깊게 살펴볼 필요가 있습니다.",
+  "insight": "이번 엔진 마이그레이션은 구형 버전에서 최신 버전으로의 전환이 VR 타이틀의 성능 최적화와 인터랙션 개선에 얼마나 큰 영향을 미칠 수 있는지 보여주는 대표적인 사례입니다. Unreal Engine 5.7의 향상된 렌더링 파이프라인과 모바일/VR 플랫폼 지원 기능을 활용하려는 개발자들에게 중요한 벤치마크가 될 수 있습니다. VR 개발 시 핸드 트래킹 도입을 고민하는 팀이라면 이번 사례의 입력 지연 개선 및 최적화 노하우를 주의 깊게 살펴볼 필요가 있습니다.",
   "sections": [
     {
       "heading": "Unreal Engine 4에서 Unreal Engine 5.7로의 대규모 마이그레이션",
@@ -31,16 +31,6 @@
     {
       "heading": "개발자 관점에서의 의의와 향후 전망",
       "body": "구형 엔진을 고수하기보다 최신 버전으로 과감히 전환하는 전략이 실제 라이브 서비스 중인 VR 게임에 어떤 긍정적 변화를 가져오는지 보여주는 좋은 본보기입니다. 향후 더 많은 VR 스튜디오들이 최신 엔진의 고도화된 기능과 확장된 입력 방식을 도입하는 계기가 될 것입니다."
-    },
-    {
-      "heading": "실무에서 이렇게 씁니다",
-      "body": "Mothergunship: Forge와 같이 기존 UE4 프로젝트를 UE5.7로 마이그레이션하려면 먼저 Epic Games Launcher에서 UE5.7을 설치하고, 기존 프로젝트 폴더를 복사한 뒤 ‘Convert Project in Place’를 실행합니다. 프로젝트 설정에서 ‘OpenXR’ 플러그인을 활성화하고, ‘Hand Tracking’ 옵션을 켭니다. 이후 ‘Input Mapping’에 손 제스처를 무기 발사·전환에 매핑하고, ‘VR Preview’를 통해 Meta Quest에 바로 테스트합니다. UE5.7의 최신 물리·렌더링 최적화 덕분에 프레임 레이트가 안정화돼 손동작 기반 인터랙션을 부드럽게 구현할 수 있습니다.",
-      "added": true
-    },
-    {
-      "heading": "시작하려면",
-      "body": "1) Epic Games Launcher에서 ‘Unreal Engine 5.7’를 다운로드·설치한다. 2) Android SDK와 NDK, 그리고 ‘Oculus ADB Drivers’를 설치해 Meta Quest와 연결할 준비를 한다. 3) Quest를 ‘Developer Mode’로 전환하고, ‘Oculus App’에서 ‘Hand Tracking’ 옵션을 활성화한다. 4) UE5.7 프로젝트를 생성할 때 ‘VR Template’를 선택하고, ‘OpenXR’ 플러그인과 ‘Meta Quest Hand Tracking’ 플러그인을 켠다. 5) 프로젝트에 기존 UE4 에셋을 임포트하고, 손 제스처 입력을 ‘Input Settings’에서 정의한 뒤, ‘Launch on Device’를 눌러 바로 실행한다.",
-      "added": true
     },
     {
       "heading": "비슷한 도구·대안과 비교",

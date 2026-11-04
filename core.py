@@ -1241,8 +1241,19 @@ SUMMARY_SYSTEM = (
     "Write in natural Korean. Never invent facts not in the source. "
     "Keep names of software, plugins, scripting languages, APIs, file formats and product features in their OFFICIAL "
     "English spelling — never transliterate them into Hangul (write MAXScript, MacroScript, 3ds Max, Blender, "
-    "Unreal Engine, Unity, Houdini, ZBrush, V-Ray, Geometry Nodes, Python, USD, FBX). Translate ordinary words only."
+    "Unreal Engine, Unity, Houdini, ZBrush, V-Ray, Geometry Nodes, Python, USD, FBX). Translate ordinary words only. "
+    "Write like a sharp human editor, not an AI: vary sentence openings and length, no filler. Never use these overused "
+    "words/phrases: 특히, 파이프라인, 워크플로(우), 효율(성/적), 실무자라면, 유용합니다, 향후, 기대됩니다, 주목할 만한, "
+    "인사이트, 시사합니다, 눈여겨볼, 중요한 역할, 크게 향상, 혁신적, 게임 체인저 - say the concrete thing instead."
 )
+
+
+# 기계적 말버릇 정리: 문장 앞 '특히,·또한·이를 통해' 같은 군더더기만 지움 (의미는 그대로, AI 가 금지어를 어겨도)
+_TIC_START = re.compile(r"(^|(?<=[.!?]) )(특히|또한|이를 통해|이처럼),?\s+")
+
+
+def tidy_tics(text: str) -> str:
+    return _TIC_START.sub(lambda m: m.group(1), text or "").strip()
 
 
 KNOWLEDGE_DIR = ROOT / "knowledge"  # 역할별 업무 교본 (사람이 고쳐 쓸 수 있는 마크다운)
@@ -1340,6 +1351,7 @@ def normalize_summary(data: dict, item: dict) -> dict:
         elif isinstance(s, str) and s.strip():
             sections.append({"heading": "내용", "body": s.strip()})
     data["sections"] = sections
+    data["insight"] = tidy_tics(str(data.get("insight") or ""))
     for key in ("title_ko", "summary", "insight"):
         if not isinstance(data.get(key), str):
             data[key] = "" if key != "title_ko" else ""
@@ -1452,12 +1464,16 @@ def summarize(item: dict) -> dict | None:
         f' "topic": exactly one of {json.dumps(TOPICS, ensure_ascii=False)} (the content type),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
-        ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
-        'how to apply it in practice, who should care. Do not restate the article,\n'
+        ' "insight": 1-3 sentences of ORIGINAL Korean commentary. Open with the single most concrete fact (a number, '
+        'version, price, feature name) and what it changes for ONE specific task. Pick only ONE angle that fits this '
+        'article (cost, compatibility, measured speed, how it differs from the usual alternative, a pitfall, or who can '
+        'use it today) - never cover why/how/who all at once. If there is nothing concrete to add, write one sentence. '
+        'Do not restate the article,\n'
         ' "try_it": 2-4 short Korean action steps a Korean artist can do TODAY with this (concrete: which tool, '
         'menu or setting to try, what to compare); [] if nothing practical,\n'
-        ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
-        'factual, from the source),\n'
+        ' "sections": list of 3-6 objects {"heading": str, "body": str} in Korean (each body 2-5 sentences, factual, '
+        'from the source). Headings must be specific to THIS article (a name, number or concrete thing), never '
+        'generic labels like 개요, 주요 내용, 배경, 결론, 시작하려면, 실무에서 이렇게 씁니다,\n'
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
         'source in 1-3 sentences,\n'
         f' "relevance": 0-10 how directly this is about any of these fields: {domain_topics()} '
@@ -1895,10 +1911,16 @@ def summarize(item: dict) -> dict | None:
         f' "topic": exactly one of {json.dumps(TOPICS, ensure_ascii=False)} (the content type),\n'
         ' "tags": 3-6 short tags,\n'
         ' "summary": one-sentence Korean summary,\n'
-        ' "insight": 3-5 sentences of ORIGINAL Korean commentary for Korean 3D/VFX/game artists — why it matters, '
-        'how to apply it in practice, who should care. Do not restate the article,\n'
-        ' "sections": list of 4-6 objects {"heading": str, "body": str} in Korean (each body 3-5 sentences, '
-        'factual, from the source),\n'
+        ' "insight": 1-3 sentences of ORIGINAL Korean commentary. Open with the single most concrete fact (a number, '
+        'version, price, feature name) and what it changes for ONE specific task. Pick only ONE angle that fits this '
+        'article (cost, compatibility, measured speed, how it differs from the usual alternative, a pitfall, or who can '
+        'use it today) - never cover why/how/who all at once. If there is nothing concrete to add, write one sentence. '
+        'Do not restate the article,\n'
+        ' "try_it": 2-4 short Korean action steps a Korean artist can do TODAY with this (which tool, menu '
+        'or setting to try, what to compare); [] if nothing practical,\n'
+        ' "sections": list of 3-6 objects {"heading": str, "body": str} in Korean (each body 2-5 sentences, factual, '
+        'from the source). Headings must be specific to THIS article (a name, number or concrete thing), never '
+        'generic labels like 개요, 주요 내용, 배경, 결론, 시작하려면, 실무에서 이렇게 씁니다,\n'
         ' "faq": 2-3 objects {"q": str, "a": str} — questions Korean readers would search for, answered from the '
         'source in 1-3 sentences,\n'
         f' "relevance": 0-10 how directly this is about any of these fields: {domain_topics()} '

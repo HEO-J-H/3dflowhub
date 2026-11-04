@@ -14,7 +14,7 @@
     "블렌더"
   ],
   "summary": "NVIDIA RTX Spark 슈퍼칩 출시를 앞두고 Adobe, Blender 등 주요 크리에이티브 및 개발자 앱 생태계가 로컬 AI와 성능 최적화 준비를 마쳤습니다.",
-  "insight": "최대 128GB 통합 메모리와 1 페타플롭의 AI 연산 성능을 제공하는 RTX Spark는 3D 아티스트와 개발자들에게 클라우드 의존도를 낮춘 강력한 로컬 작업 환경을 선사합니다. 특히 Blender 5.3의 DLSS Ray Reconstruction 지원과 Adobe 앱의 대대적인 GPU 가속 재설계는 무거운 씬 작업을 수행하는 실무자들의 작업 병목현상을 크게 해소해 줄 것입니다. 개인용 AI 슈퍼컴퓨터 환경을 구축하려는 스튜디오와 프리랜서라면 이번 하드웨어 및 소프트웨어 생태계 변화를 주목하고 워크플로우 전환을 검토해야 합니다.",
+  "insight": "최대 128GB 통합 메모리와 1 페타플롭의 AI 연산 성능을 제공하는 RTX Spark는 3D 아티스트와 개발자들에게 클라우드 의존도를 낮춘 강력한 로컬 작업 환경을 선사합니다. Blender 5.3의 DLSS Ray Reconstruction 지원과 Adobe 앱의 대대적인 GPU 가속 재설계는 무거운 씬 작업을 수행하는 실무자들의 작업 병목현상을 크게 해소해 줄 것입니다. 개인용 AI 슈퍼컴퓨터 환경을 구축하려는 스튜디오와 프리랜서라면 이번 하드웨어 및 소프트웨어 생태계 변화를 주목하고 워크플로우 전환을 검토해야 합니다.",
   "sections": [
     {
       "heading": "NVIDIA RTX Spark와 로컬 AI 슈퍼컴퓨터의 등장",
@@ -33,18 +33,8 @@
       "body": "수백 개의 인기 게임과 안티치트 솔루션이 RTX Spark를 지원하며, 더 빨라진 DLSS 5 AI 모델이 함께 제공됩니다. NVIDIA App 베타를 통해 DLSS 프레임 생성용 새로운 성능 모드(Performance Mode)를 즉시 이용할 수 있습니다. 나아가 NVIDIA ACE AI 게임 캐릭터를 위한 차세대 소형 언어 모델(SLM)인 Nemotron 3.5 Bolt E4B 4GB도 순차적으로 출시될 예정입니다."
     },
     {
-      "heading": "실무에서 이렇게 씁니다",
-      "body": "NVIDIA RTX Spark 환경에서 3D 작업 시 뷰포트 성능을 극대화하려면 하드웨어 아키텍처에 맞춘 워크플로우 조정이 필요합니다. 대규모 씬 작업 시 최대 128GB 통합 메모리를 활용해 에셋을 캐싱하고, Blender 뷰포트에서 DLSS Ray Reconstruction을 활성화하여 인터랙티비티를 높입니다. 또한 Adobe Photoshop과 Premiere 프로의 GPU 가속 Compositing 설정을 켜서 렌더링 및 재생 병목 현상을 줄일 수 있습니다.",
-      "added": true
-    },
-    {
       "heading": "커뮤니티 반응과 주의점",
       "body": "BlenderArtists 커뮤니티에서는 이번 발표와 관련해 Apple M 시리즈 Ultra APU나 AMD Ryzen 기반 APU 시스템과의 비교 논의가 활발합니다 [1]. 대용량 통합 메모리를 제공하는 APU 구조가 대형 3D 씬 로드에 강점이 있지만, 전용 dGPU 및 CUDA 생태계를 활용하는 RTX Pro 계열과는 직접적인 타겟층에 차이가 있다는 분석이 나옵니다 [1]. 따라서 대규모 3D 시뮬레이션이나 렌더링 파이프라인 도입 시 작업 특성에 따른 하드웨어 선택에 주의가 필요합니다 [1].",
-      "added": true
-    },
-    {
-      "heading": "시작하려면",
-      "body": "NVIDIA RTX Spark 및 관련 최적화 환경을 도입하기 전에 개발자 및 크리에이터는 NVIDIA App 베타를 설치하여 최신 DLSS 프레임 생성 설정과 성능 모드를 확인해야 합니다. PyTorch, Python, CUDA 등 주요 개발자 프레임워크가 해당 환경에 완전히 최적화되어 있으므로, 공식 Driver와 툴킷을 최신 버전으로 업데이트하여 로컬 AI 에이전트 및 가속 기능을 테스트해 볼 수 있습니다.",
       "added": true
     }
   ],

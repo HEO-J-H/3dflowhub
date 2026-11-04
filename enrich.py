@@ -286,9 +286,11 @@ def enrich_post(p: dict) -> dict | None:
         "(do not repeat the existing text). Rules: use only facts from the article and the discussions; never invent "
         "versions, prices, dates or features; when you use a discussion, cite it like [1]; if discussions are empty "
         "or irrelevant, skip the community section. Keep official English product/menu names.\nReturn JSON:\n"
-        ' "sections": 2-4 {"heading": Korean, "body": Korean 250-600 chars} chosen from: '
-        '"실무에서 이렇게 씁니다" (concrete workflow steps), "커뮤니티 반응과 주의점" (only from discussions, with [n]), '
-        '"비슷한 도구·대안과 비교", "시작하려면" (what to install/learn first),\n'
+        ' "sections": 1-3 {"heading": Korean, "body": Korean 200-600 chars} - only when the article or the '
+        'discussions give concrete material: usage steps the SOURCE itself describes, community reactions (with [n]), '
+        'a comparison the sources support, or setup requirements stated in the source. Headings must be specific '
+        'to this article (name the tool, feature or problem), never generic labels like 시작하려면, 실무에서 이렇게 '
+        '씁니다, 개요. If nothing concrete can be added, return an empty list,\n'
         ' "faq": 1-2 {"q","a"} new practical questions,\n'
         ' "used_refs": list of discussion numbers you actually used'
     )
@@ -317,7 +319,7 @@ def enrich_post(p: dict) -> dict | None:
     q["sections"] = list(p.get("sections") or []) + new
     q["faq"] = list(p.get("faq") or []) + [{"q": fx(str(f.get("q", ""))), "a": fx(str(f.get("a", "")))}
                                            for f in out.get("faq") or [] if isinstance(f, dict) and f.get("q")][:2]
-    if len(new) < 2 or body_chars(q) < MIN_CHARS:
+    if len(new) < 1 or body_chars(q) < MIN_CHARS:
         core.log.info("보강 품질 미달 %s: 섹션 %d, %d자", p.get("id"), len(new), body_chars(q))
         return None
     q["refs"] = [refs[i - 1] for i in sorted(used) if 0 < i <= len(refs)] or \
