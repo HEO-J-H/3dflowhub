@@ -1,0 +1,89 @@
+{
+  "id": "houdini-uv-unwrap-sop-bf8b",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "UV Unwrap SOP",
+  "title": "UV Unwrap — 자동 UV",
+  "summary": "Houdini의 UV Unwrap SOP는 3D 모델의 폴리곤 면을 평면으로 펼쳐 텍스처 왜곡을 방지하는 필수 노드입니다. 절차적(Procedural) 방식으로 심(Seam)을 자동으로 계산하거나 수동으로 지정해 깔끔하게 UV를 생성합니다.",
+  "when": [
+    "복잡한 하드서페이스 모델이나 캐릭터에 텍스처를 입히기 위해 UV를 전개할 때",
+    "모델링이 수정되어도 UV가 자동으로 갱신되는 절차적 파이프라인을 구축할 때",
+    "Auto Seam 기능을 이용해 빠른 시간 안에 대량의 에셋 UV를 펴야 할 때"
+  ],
+  "steps": [
+    "지오메트리 네트워크 내부에서 Tab 키를 누르고 ‘UV Unwrap’을 입력하여 노드를 생성합니다.",
+    "이전 모델링 노드의 출력 포트를 UV Unwrap 노드의 입력 포트에 연결합니다.",
+    "네트워크 뷰에서 UV Unwrap 노드를 선택하고 파라미터 패널에서 Seams 탭 또는 Auto Seam 옵션을 설정합니다.",
+    "파라미터 하단의 ‘Compute UVs’ 버튼을 클릭하여 UV를 계산합니다.",
+    "Viewport 상단을 우측 클릭하여 뷰어 상태를 UV Viewport로 전환하거나 UV Viewport 탭을 열어 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Method",
+      "desc": "Angle Limit 또는 Auto Seam 등 UV 심을 계산하는 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Angle Limit",
+      "desc": "폴리곤 사이의 각도 차이를 기준으로 심을 자동 생성할 임계값을 설정합니다."
+    },
+    {
+      "name": "Island Scale",
+      "desc": "생성된 UV 아일랜드들의 상대적인 크기 비율을 조절하거나 통일합니다."
+    },
+    {
+      "name": "Relax",
+      "desc": "UV 아일랜드 내부의 스트레치와 왜곡을 줄이기 위해 부드럽게 펴줍니다."
+    },
+    {
+      "name": "Pack",
+      "desc": "UV 껍질들을 0에서 1 UV 공간 안에 겹치지 않게 효율적으로 배치(Packing)합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드서페이스 메쉬 자동 UV 전개",
+      "steps": [
+        "UV Unwrap 노드의 Method를 Angle Limit으로 설정합니다.",
+        "Angle Limit 값을 60도 정도로 조절하여 날카로운 모서리에 심이 생기도록 합니다.",
+        "Pack 옵션을 활성화하여 텍스처 공간에 아일랜드들을 정렬합니다."
+      ]
+    },
+    {
+      "title": "그룹 기반 수동 심 지정 파이프라인",
+      "steps": [
+        "UV Unwrap 이전에 Group 노드를 생성해 절단할 엣지를 선택합니다.",
+        "UV Unwrap 노드의 Seams 탭에서 생성한 Edge Group 이름을 지정합니다.",
+        "Compute UVs를 실행하여 지정된 심을 기준으로 UV가 정확히 분리되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 겹치거나 찌그러짐 → Pack 파라미터에서 겹침 방지 옵션(Overlap)을 확인하고 Relax 단계를 추가합니다.",
+    "모서리가 아닌 곳에 불필요한 심이 많이 생김 → Angle Limit 값을 높여서 민감도를 낮춥니다.",
+    "뷰포트에서 UV가 보이지 않음 → 디스플레이 상태가 올바른 UV 뷰어 모드로 설정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "UV Layout",
+    "UV Project",
+    "UV Flatten",
+    "UV Edit"
+  ],
+  "videos": [
+    {
+      "id": "cguHzZ9L87g",
+      "title": "Houdini UV Unwrapping Fundamentals",
+      "author": "Mat Sola - Learn Destruction FX in Houdini & UE5"
+    },
+    {
+      "id": "VNX9Qf6a5hs",
+      "title": "Houdini Unwrapping Techniques: The Basics",
+      "author": "Simon Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20UV%20Unwrap%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T16:09:34.845072+00:00"
+}
