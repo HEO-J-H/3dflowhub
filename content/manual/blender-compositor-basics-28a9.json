@@ -1,0 +1,148 @@
+{
+  "id": "blender-compositor-basics-28a9",
+  "guide_id": "blender-compositor-basics-28a9",
+  "tool": "Blender",
+  "name": "Compositor basics",
+  "title": "컴포지터 기초",
+  "overview": "Blender Compositor는 렌더링이 완료된 픽셀 데이터에 노드 네트워크를 기반으로 다양한 후가공 효과를 적용하는 작업 공간입니다. 3D 렌더 패스(Render Passes)를 조합하고, 색보정을 거치며, 빛 번짐이나 피사계 심도 같은 시각적 완성도를 높이는 최종 관문 역할을 합니다.",
+  "access": "상단 메뉴 바의 Workspace 탭에서 'Compositing'을 클릭하거나, 새로운 뷰포트 창을 열고 Editor Type 드롭다운에서 'Compositor'를 선택하여 접근할 수 있습니다.",
+  "options": [
+    {
+      "name": "Use Nodes",
+      "value": "Check / Uncheck",
+      "effect": "컴포지터 노드 시스템을 활성화하여 렌더 결과물에 후가공 효과를 적용할 수 있게 만듭니다.",
+      "tip": "컴포지터 화면에 들어온 직후 가장 먼저 체크해야 하는 필수 옵션입니다."
+    },
+    {
+      "name": "Backdrop",
+      "value": "Check / Uncheck",
+      "effect": "노드 편집기 배경에 Compositing 결과 이미지를 실시간으로 띄워줍니다.",
+      "tip": "Viewer 노드가 연결되어 있어야 배경에 이미지가 표시됩니다."
+    },
+    {
+      "name": "Render Layers",
+      "value": "Node",
+      "effect": "3D 뷰포트에서 렌더링된 이미지와 패스(Image, Depth, Normal 등)를 컴포지터로 가져옵니다.",
+      "tip": "다양한 패스를 분리하여 합성할 때 중심이 되는 시작 노드입니다."
+    },
+    {
+      "name": "Composite",
+      "value": "Node",
+      "effect": "최종 렌더링 결과물로 내보낼 이미지를 지정하는 출력 노드입니다.",
+      "tip": "이 노드에 연결되지 않은 효과는 최종 렌더 이미지에 반영되지 않습니다."
+    },
+    {
+      "name": "Viewer",
+      "value": "Node",
+      "effect": "노드 네트워크 중간 결과물을 뷰포트 배경(Backdrop)이나 노드 창 자체에서 미리 볼 수 있게 합니다.",
+      "tip": "Shift+LMB로 번거로움 없이 빠른 연결 및 확인이 가능합니다."
+    },
+    {
+      "name": "Color Balance",
+      "value": "Lift / Gamma / Gain",
+      "effect": "이미지의 섀도우, 미드톤, 하이라이트 영역의 색상과 밝기를 정밀하게 조절합니다.",
+      "tip": "영화 같은 색감을 연출할 때 가장 빈번하게 사용되는 컬러게이딩 노드입니다."
+    },
+    {
+      "name": "Glare",
+      "value": "Streaks / Ghosts / Fog Glow",
+      "effect": "밝은 광원 주변에 빛이 번지거나 십자 모양으로 퍼지는 아테팩트를 추가합니다.",
+      "tip": "Threshold 값을 높여 너무 어두운 영역까지 빛이 번지지 않도록 조절하세요."
+    },
+    {
+      "name": "Lens Distortion",
+      "value": "Distort / Dispersion",
+      "effect": "실제 카메라 렌즈처럼 왜곡 현상이나 색수차(Chromatic Aberration)를 재현합니다.",
+      "tip": "과도한 왜곡은 시각적 피로감을 주므로 미세한 값만 주는 것이 좋습니다."
+    },
+    {
+      "name": "Blur",
+      "value": "Fast / Gaussian / Bokeh",
+      "effect": "이미지 전체 또는 특정 채널을 부드럽게 흐리게 만듭니다.",
+      "tip": "Z 패스와 연결하여 카메라 초점 외의 영역을 흐리는 Depth of Field 효과에 활용합니다."
+    },
+    {
+      "name": "Alpha Over",
+      "value": "Factor",
+      "effect": "두 개의 이미지를 알파 채널 투명도를 기준으로 겹쳐서 합성합니다.",
+      "tip": "배경 이미지 위에 전경 캐릭터나 CG 요소를 얹을 때 사용합니다."
+    },
+    {
+      "name": "Mix",
+      "value": "Blend Modes",
+      "effect": "두 이미지의 색상 데이터를 다양한 블렌드 모드로 결합합니다.",
+      "tip": "Screen이나 Multiply 모드를 선택해 라이트 효과나 그림자를 강화할 수 있습니다."
+    },
+    {
+      "name": "File Output",
+      "value": "Path / Format",
+      "effect": "렌더링 시 메인 이미지 외에 별도의 패스나 추가 레이어를 독립된 파일로 자동 저장합니다.",
+      "tip": "멀티패스 Compositing 작업 시 개별 요소를 따로 뽑아낼 때 유용합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Compositing Workspace",
+      "desc": "전체 화면을 활용하여 노드 네트워크를 넓게 배치하고 대규모 합성 작업을 수행하는 기본 모드입니다."
+    },
+    {
+      "name": "Real-time Compositor (Blender 4.0+)",
+      "desc": "뷰포트 안에서 노드 효과를 실시간으로 확인할 수 있도록 지원하여 작업 속도를 획기적으로 높여줍니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "기본 글로우(Glare) 및 색보정 추가하기",
+      "steps": [
+        "Compositing 탭으로 이동하고 'Use Nodes'를 체크합니다.",
+        "Shift+A 키를 눌러 'Color Correction' 노드를 검색하여 Render Layers와 Composite 노드 사이에 배치합니다.",
+        "Shift+A 키로 'Glare' 노드를 추가하고 Type을 'Fog Glow'로 설정합니다.",
+        "Render Layers의 Image 출력을 Glare 노드의 입력에 연결하고, Glare 출력을 Color Correction을 거쳐 Composite 노드에 연결합니다.",
+        "F12 키를 눌러 렌더링하고 결과물에 빛 번짐이 적용되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "Z 패스를 이용한 간이 피사계 심도(Depth of Field) 연출",
+      "steps": [
+        "Render Layers 노드의 Options에서 'Z' 패스(Depth) 출력을 활성화합니다.",
+        "Shift+A 키를 눌러 'Map Range' 노드와 'Blur' 노드를 추가합니다.",
+        "Render Layers의 Z 출력을 Map Range 노드의 Value 입력에 연결하여 거리 값을 정규화합니다.",
+        "Map Range 출력을 Blur 노드의 Size 입력에 연결합니다.",
+        "Render Layers의 Image 출력을 Blur 노드의 Image 입력에 연결한 뒤, 최종 Composite에 연결하여 원근감을 확인합니다."
+      ]
+    },
+    {
+      "title": "멀티 패스 분리 및 알파 오버(Alpha Over) 합성",
+      "steps": [
+        "View Layer Properties에서 Cryptomatte 또는 Object Index 패스를 활성화합니다.",
+        "전경 오브젝트를 별도의 뷰 레이어로 분리하여 렌더링 설정을 마칩니다.",
+        "Compositor에서 두 개의 Render Layers 노드를 배치하고 각각 다른 뷰 레이어를 선택합니다.",
+        "Alpha Over 노드를 추가하고 상단 배경 레이어와 하단 전경 레이어를 각각 연결합니다.",
+        "최종 Composite 노드에 연결하여 두 레이어가 올바르게 합성되었는지 확인합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "고해상도(4K 이상) 이미지나 복잡한 필터 노드가 많아지면 Compositing 연산으로 인해 렌더링 시간이 크게 늘어납니다.",
+    "실시간 컴포지터(Real-time Compositor) 사용 시 뷰포트가 느려지면 불필요한 고비용 노드(예: 복잡한 Blur, Vector Blur)를 일시적으로 뮤트(M 키)합니다.",
+    "미리보기 속도를 높이기 위해 Viewer 노드나 백드롭 Resolution를 낮추거나 영역을 제한하여 작업합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "F12 렌더링을 했는데 컴포지터 효과가 전혀 반영되지 않습니다.",
+      "fix": "컴포지터 에디터 상단의 'Use Nodes' 옵션이 켜져 있는지 확인하고, 최종 결과물이 'Composite' 노드의 Image 입력 포트에 올바르게 연결되어 있는지 점검하세요."
+    },
+    {
+      "symptom": "Backdrop 배경에 이미지가 나타나지 않습니다.",
+      "fix": "이미지를 확인할 노드에 'Viewer' 노드가 연결되어 있는지 확인하고, 컴포지터 에디터 상단 메뉴에서 'Backdrop' 체크박스가 활성화되어 있는지 확인하세요."
+    },
+    {
+      "symptom": "Glare 노드를 적용했는데 화면 전체가 하얗게 타버립니다.",
+      "fix": "Glare 노드의 Threshold 값이 너무 낮게 설정되어 어두운 영역까지 광원으로 인식된 것입니다. Threshold 값을 점진적으로 높여 밝은 영역만 반응하도록 조정하세요."
+    }
+  ],
+  "versions": "Blender 4.0 이후 실시간 컴포지터(Real-time Compositor)가 도입되어 뷰포트 내에서 노드 효과를 즉시 확인할 수 있게 성능이 크게 개선되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Compositor%20basics",
+  "grounded": true,
+  "at": "2026-11-04T22:32:11+00:00"
+}
