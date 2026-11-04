@@ -1,0 +1,87 @@
+{
+  "id": "blender-drivers-25db",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Drivers",
+  "title": "Drivers — 값 연결",
+  "summary": "Blender Drivers(Driver)는 다른 객체의 속성이나 커스텀 프로퍼티를 수식이나 표현식으로 연결하여 수동 애니메이션 없이 자동으로 제어하는 기능입니다.",
+  "when": [
+    "문이 열릴 때 손잡이나 경첩이 각도에 맞춰 자동으로 회전하게 만들 때",
+    "하나의 마스터 Controller로 여러 객체의 크기나 위치를 동시에 제어할 때",
+    "바퀴가 굴러갈 때 차체의 이동 거리에 맞춰 바퀴가 회전하도록 연동할 때"
+  ],
+  "steps": [
+    "Driver로 제어할 대상 속성(예: Rotation Z)에 Mouse 우클릭을 합니다.",
+    "컨텍스트 메뉴에서 Add Driver 를 선택합니다.",
+    "변화 값을 적용할 Driver 다이얼로그 창이 뜨면 Target 객체와 속성을 지정합니다.",
+    "Expression 입력란에 수식(예: var * 2)을 입력하여 연산 관계를 설정합니다.",
+    "뷰포트에서 제어 객체를 움직여 Driver가 올바르게 작동하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "Average, Sum, Min, Max 등 여러 입력 값을 조합하는 연산 방식을 선택합니다."
+    },
+    {
+      "name": "Prop",
+      "desc": "Driver 연결에 사용할 Blender 내부 데이터 경로를 지정합니다."
+    },
+    {
+      "name": "Transform Channel",
+      "desc": "상대 객체의 Location, Rotation, Scale 중 어떤 축 값을 참조할지 결정합니다."
+    },
+    {
+      "name": "Expression",
+      "desc": "변수(var)와 파이프라인 연산자를 사용해 값의 변환 규칙을 수식으로 작성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기어 회전 연동",
+      "steps": [
+        "두 개의 실린더 기어를 배치하고 주 기어에 회전 애니메이션을 넣습니다.",
+        "종속될 기어의 Rotation Z 에 우클릭 후 Add Driver 를 선택합니다.",
+        "Driver 다이얼로그에서 주 기어의 회전 값을 Target 으로 지정합니다.",
+        "Expression 에 -var 를 입력하여 반대 방향으로 맞물려 돌게 합니다."
+      ]
+    },
+    {
+      "title": "마스터 슬라이더 컨트롤",
+      "steps": [
+        "Empty 객체를 생성하고 커스텀 프로퍼티(예: open_amount)를 추가합니다.",
+        "오브젝트의 Scale Z 에 우클릭하여 Add Driver 를 선택합니다.",
+        "Target 에 방금 만든 Empty 객체와 커스텀 프로퍼티를 연결합니다.",
+        "Empty 슬라이더를 조절해 오브젝트의 크기가 비례해서 커지도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Python 표현식 보안 경고로 Driver가 작동 안 함 → Blender Preferences의 Save & Load에서 Auto Run Python Scripts를 체크합니다.",
+    "변수 이름 불일치로 연산 오류 발생 → Expression에 지정한 변수명(기본 var)이 올바른지 확인합니다.",
+    "회전 값 연동 시 짐벌락(Gimbal Lock) 발생 → 변환 방식을 Rotation Difference나 Quaternion 값으로 변경합니다."
+  ],
+  "related": [
+    "Animation",
+    "Custom Properties",
+    "Shape Keys",
+    "Constraints"
+  ],
+  "videos": [
+    {
+      "id": "XfHC7mpYNbA",
+      "title": "Getting Started with DRIVERS in Blender for Beginners!",
+      "author": "The CG Essentials"
+    },
+    {
+      "id": "CPEEjlRLKEU",
+      "title": "Quick Tip: Working With Drivers in Blender",
+      "author": "Polyfjord"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Drivers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-04T13:01:03.578240+00:00"
+}

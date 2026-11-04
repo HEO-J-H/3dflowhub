@@ -1,0 +1,18 @@
+<!-- TITLE: After Effects Element 3D 텍스처 정렬 오류 해결 방법 | TAGS: Element 3D,After Effects,Texture,UV Mapping,애프터 이펙트,튜토리얼·팁 | CATEGORY: VFX/After Effects | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — After Effects의 Element 3D 플러그인에서 텍스처가 올바르게 정렬되지 않는 문제의 원인과 해결 방안을 다룹니다.</p>
+<p style="color:#888;">분류: VFX › After Effects › 튜토리얼·팁</p>
+<h2>Element 3D 텍스처 틀어짐 현상</h2>
+<p>After Effects 환경에서 Video Copilot Element 3D를 사용할 때, 3D 모델에 적용한 텍스처가 원치 않는 방향으로 배치되거나 왜곡되는 증상이 보고됩니다. 이는 주로 3D 모델의 UV 좌표계가 렌더링 엔진과 일치하지 않거나 스케일 값이 어긋났을 때 발생합니다.</p>
+<h2>씬 세업 내 UV 매핑 설정 확인</h2>
+<p>Element 3D의 자체 씬 세업 창에서 재질 속성을 살펴보면 UV 매핑 타입과 채널을 조절할 수 있는 옵션이 있습니다. 텍스처가 엉뚱한 면에 반복되거나 잘려 보인다면 UV 채널 인덱스가 올바르게 지정되었는지 확인해야 합니다.</p>
+<h2>모델링 데이터와 텍스처 재적용</h2>
+<p>문제가 해결되지 않는 경우 3D 모델을 내보낼 때 사용한 FBX 또는 OBJ 파일의 UV 맵을 다시 확인해야 합니다. 3D DCC Software에서 UV 언랩을 새로 수행하고 텍스처 좌표를 정렬한 뒤 Element 3D에 다시 불러오는 과정이 필요합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Element 3D에서 UV 좌표나 텍스처 매핑 스케일 설정이 어긋날 때 발생하는 정렬 오류는 모델링 데이터의 UV 전개 방식을 재확인하거나 UV 채널 설정을 변경하여 해결할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Element 3D에서 텍스처가 뒤틀려 보이는 이유는 무엇인가요?</b><br/>A. 3D 모델의 UV 좌표가 정확히 정렬되지 않았거나 Element 3D의 재질 설정에서 UV 채널이 잘못 지정되었기 때문입니다.</p>
+<p><b>Q. 씬 세업 창에서 텍스처 정렬을 수정하려면 어떻게 하나요?</b><br/>A. 메쉬의 Material 설정 메뉴로 이동하여 UV 매핑 관련 파라미터와 채널 번호를 조절하면 정렬 상태를 맞출 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-3dcd7f4ba3943d8d.html">모션 그래픽 에이전시 7선 — 브랜드 마케팅 활용 가이드</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-04c2cf3e4b5cd65d.html">After Effects 콜라주 애니메이션 — 축구 커리어 조명</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-02-0a131b0b8c0a30e4.html">After Effects와 Inkscape로 디지털 랑골리 제작하기</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/vfx/comments/1xnb21p/unable_to_get_texture_to_align_in_element_3d/" target="_blank" rel="noopener nofollow">Unable to get texture to align in Element 3D</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,94 @@
+{
+  "id": "houdini-polybevel-sop-3307",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "PolyBevel SOP",
+  "title": "PolyBevel — 모서리 깎기",
+  "summary": "PolyBevel SOP는 폴리곤 지오메트리의 엣지와 포인트를 둥글게 깎거나 베벨 처리하여 부드러운 형태와 하이라이트를 만드는 노드입니다. 하드서페이스 모델링에서 날카로운 모서리를 자연스럽게 다듬을 때 사용합니다.",
+  "when": [
+    "기계 부품이나 하드서페이스 모델의 딱딱한 모서리를 부드럽게 깎을 때",
+    "렌더링 시 모서리에 자연스러운 빛 반사(Specular Highlight)를 주고 싶을 때",
+    "서브디비전(Subdivision) 적용 전 날카로운 엣지를 제어하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 대상 Geometry Nodes 내부로 들어갑니다.",
+    "Tab 키를 누르고 PolyBevel을 검색하여 노드를 생성합니다.",
+    "기존 Geometry Nodes와 PolyBevel 노드의 입력 와이어를 연결합니다.",
+    "Viewport에서 엣지 선택 모드(S 키)로 전환하거나 노드 파라미터에서 Groups를 설정합니다.",
+    "Parameter 패널에서 Distance와 Segments 값을 조절하여 베벨 크기와 부드러움을 설정합니다.",
+    "Viewport에서 모서리가 매끄럽게 깎였는지 결과 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "모서리가 깎이는 거리(베벨의 폭)를 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "베벨 영역에 추가될 폴리곤 세그먼트 개수를 조절하여 둥글기를 부드럽게 만듭니다."
+    },
+    {
+      "name": "Offsetting",
+      "desc": "오프셋 계산 방식을 Uniform 또는 Distance 등으로 변경합니다."
+    },
+    {
+      "name": "Mitered",
+      "desc": "모서리가 만나는 교차점의 처리 방식을 결정합니다."
+    },
+    {
+      "name": "Ignore Flat Edges",
+      "desc": "평평한 면 사이의 엣지는 베벨 대상에서 제외합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 모서리 부드럽게 다듬기",
+      "steps": [
+        "Box SOP로 기본 형태를 만듭니다.",
+        "PolyBevel 노드를 연결합니다.",
+        "Distance 값을 작게 설정하여 날카로운 철판 느낌을 줄입니다.",
+        "Segments를 2로 올려 빛 반사가 부드럽게 되도록 만듭니다."
+      ]
+    },
+    {
+      "title": "특정 엣지만 골라서 베벨 적용하기",
+      "steps": [
+        "Group SOP를 이용해 베벨을 넣을 엣지만 선택합니다.",
+        "PolyBevel 노드의 Group 파라미터에 해당 그룹 이름을 입력합니다.",
+        "Distance 값을 조절해 원하는 모서리만 둥글게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Distance 값이 너무 큰 경우 → 면이 서로 겹치거나 뒤틀리므로 값을 줄이거나 Miter 설정을 확인합니다.",
+    "그룹 지정 없이 전체에 적용된 경우 → 원치 않는 모서리까지 깎이므로 Group SOP에서 엣지를 먼저 선택하세요."
+  ],
+  "related": [
+    "Remesh",
+    "Subdivide",
+    "EdgeCusp",
+    "Normal"
+  ],
+  "videos": [
+    {
+      "id": "jSVPImEysNk",
+      "title": "New in Houdini 18: SOPs - Bevel",
+      "author": "Entagma"
+    },
+    {
+      "id": "KivxKhggdX0",
+      "title": "Zero to One: Intro to SOP – PolyExtrude & Bevel | Houdini Tutorial (M107)",
+      "author": "Think Trix"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20PolyBevel%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry Nodes",
+    "PolyBevel"
+  ],
+  "at": "2026-11-04T13:01:45.341363+00:00"
+}

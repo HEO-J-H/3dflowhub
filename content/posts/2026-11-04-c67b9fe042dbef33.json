@@ -1,0 +1,54 @@
+{
+  "title_ko": "After Effects Element 3D 텍스처 정렬 오류 해결 방법",
+  "title": "Unable to get texture to align in Element 3D",
+  "url": "https://www.reddit.com/r/vfx/comments/1xnb21p/unable_to_get_texture_to_align_in_element_3d/",
+  "domain": "VFX",
+  "category": "After Effects",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Element 3D",
+    "After Effects",
+    "Texture",
+    "UV Mapping",
+    "애프터 이펙트"
+  ],
+  "summary": "After Effects의 Element 3D 플러그인에서 텍스처가 올바르게 정렬되지 않는 문제의 원인과 해결 방안을 다룹니다.",
+  "insight": "Element 3D에서 UV 좌표나 텍스처 매핑 스케일 설정이 어긋날 때 발생하는 정렬 오류는 모델링 데이터의 UV 전개 방식을 재확인하거나 UV 채널 설정을 변경하여 해결할 수 있습니다.",
+  "try_it": [
+    "After Effects에서 Element 3D 씬 세업 창을 엽니다.",
+    "문제가 발생하는 메쉬의 Material 설정에서 UV 매핑 좌표 및 채널 번호를 확인합니다.",
+    "모델링 원본 파일의 UV 정렬 상태를 다시 점검하고 FBX 또는 OBJ로 재수출합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Element 3D 텍스처 틀어짐 현상",
+      "body": "After Effects 환경에서 Video Copilot Element 3D를 사용할 때, 3D 모델에 적용한 텍스처가 원치 않는 방향으로 배치되거나 왜곡되는 증상이 보고됩니다. 이는 주로 3D 모델의 UV 좌표계가 렌더링 엔진과 일치하지 않거나 스케일 값이 어긋났을 때 발생합니다."
+    },
+    {
+      "heading": "씬 세업 내 UV 매핑 설정 확인",
+      "body": "Element 3D의 자체 씬 세업 창에서 재질 속성을 살펴보면 UV 매핑 타입과 채널을 조절할 수 있는 옵션이 있습니다. 텍스처가 엉뚱한 면에 반복되거나 잘려 보인다면 UV 채널 인덱스가 올바르게 지정되었는지 확인해야 합니다."
+    },
+    {
+      "heading": "모델링 데이터와 텍스처 재적용",
+      "body": "문제가 해결되지 않는 경우 3D 모델을 내보낼 때 사용한 FBX 또는 OBJ 파일의 UV 맵을 다시 확인해야 합니다. 3D DCC Software에서 UV 언랩을 새로 수행하고 텍스처 좌표를 정렬한 뒤 Element 3D에 다시 불러오는 과정이 필요합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Element 3D에서 텍스처가 뒤틀려 보이는 이유는 무엇인가요?",
+      "a": "3D 모델의 UV 좌표가 정확히 정렬되지 않았거나 Element 3D의 재질 설정에서 UV 채널이 잘못 지정되었기 때문입니다."
+    },
+    {
+      "q": "씬 세업 창에서 텍스처 정렬을 수정하려면 어떻게 하나요?",
+      "a": "메쉬의 Material 설정 메뉴로 이동하여 UV 매핑 관련 파라미터와 채널 번호를 조절하면 정렬 상태를 맞출 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/NFwutrqqLK0/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=NFwutrqqLK0"
+  },
+  "collected_at": "2026-11-04T12:59:29.611959+00:00",
+  "notion_id": "",
+  "id": "2026-11-04-c67b9fe042dbef33",
+  "img_tried": true
+}

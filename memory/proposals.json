@@ -11825,5 +11825,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-04T12:59:33+00:00",
+    "kind": "proposal",
+    "id": "p-c5ea46a9ca",
+    "title": "대기 중인 백엔드 입력 및 PBR 검증 PR(#40~#44) 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #40, #41, #42, #43, #44가 현재 승인 대기 상태로 남아있음",
+    "proposal": "backend/app/services/url_ingest.py 및 pbr_generator.py 관련 대기 중인 PR들의 단위 테스트 통과 여부를 확인하고 최종 승인 검토를 진행합니다.",
+    "expected": "파이프라인 입력 및 PBR 생성의 예외 처리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/40",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T12:59:33+00:00",
+    "kind": "proposal",
+    "id": "p-a1c5386850",
+    "title": "웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 입력 검증이 추가된 만큼 브라우저단(web/)에서도 동일한 입력 유효성 검사 및 에러 피드백이 필요함",
+    "proposal": "web/ 디렉토리 내의 자바스크립트 입력 폼 및 URL/이미지 검증 에러 메시지 출력 로직을 보완하고 테스트",
+    "expected": "웹 클라이언트 사용자 경험(UX) 개선 및 잘못된 입력 사전 차단",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-04T13:02:01.768419+00:00",
+    "kind": "decision",
+    "id": "p-c5ea46a9ca",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 백엔드 및 PBR 검증 PR(#40~#44) 코드 리뷰",
+    "auto": true
+  },
+  {
+    "at": "2026-11-04T13:02:01.781725+00:00",
+    "kind": "decision",
+    "id": "p-a1c5386850",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 에러 처리 로직 검토 및 보완",
+    "auto": true
   }
 ]
