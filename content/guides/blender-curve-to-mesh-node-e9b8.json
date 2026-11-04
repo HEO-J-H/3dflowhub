@@ -1,0 +1,84 @@
+{
+  "id": "blender-curve-to-mesh-node-e9b8",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "지오메트리 노드",
+  "name": "Curve to Mesh node",
+  "title": "Curve to Mesh — 커브에 단면",
+  "summary": "Blender의 Geometry Nodes 환경에서 곡선(Curve) 데이터를 두께와 단면을 가진 폴리곤 메쉬(Mesh)로 변환하는 노드입니다. 코드나 프로시절 방식으로 케이블, 파이프, 넝쿨 등을 생성할 때 필수적입니다.",
+  "when": [
+    "Curve로 그린 경로를 두께가 있는 3D 파이프나 케이블로 변환하고 싶을 때",
+    "Geometry Nodes 안에서 커브를 메쉬 구조로 바꿔 추가적인 모델링 작업을 이어갈 때",
+    "프로시절 방식으로 커브 형태에 따라 실시간으로 굵기가 변하는 튜브를 만들 때"
+  ],
+  "steps": [
+    "1. 메쉬로 변환할 Curve 오브젝트를 선택하고, Geometry Nodes 워크스페이스로 이동합니다.",
+    "2. Modifier 패널에서 New 버튼을 눌러 새로운 Geometry Nodes Modifier를 생성합니다.",
+    "3. 노드 편집기(Node Editor) 창에서 Shift+A 키를 누릅니다.",
+    "4. 검색창에 curve to mesh를 입력하고 Curve to Mesh 노드를 선택하여 Group Input과 Group Output 사이에 연결합니다.",
+    "5. Curve to Mesh 노드의 Mesh Profile 입력단자에 Curve Circle 등의 단면 셰이프 노드를 연결하여 두께를 부여합니다.",
+    "6. 뷰포트에서 커브가 둥근 단면을 가진 입체 메쉬로 변환된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Curve",
+      "desc": "메쉬로 변환할 원본 곡선 입력 데이터입니다."
+    },
+    {
+      "name": "Profile Curve",
+      "desc": "커브의 단면 모양을 결정하는 프로파일 곡선 입력 데이터입니다."
+    },
+    {
+      "name": "Fill Caps",
+      "desc": "변환된 튜브의 양 끝 단면을 막아 면으로 채워줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 전구 케이블 만들기",
+      "steps": [
+        "1. Bezier Curve로 자유로운 곡선 경로를 그립니다.",
+        "2. Geometry Nodes를 추가하고 Curve to Mesh 노드를 연결합니다.",
+        "3. Profile Curve에 소형 Curve Circle 노드를 연결해 얇은 전선 두께를 만듭니다."
+      ]
+    },
+    {
+      "title": "건축 외관 파이프 라인 생성",
+      "steps": [
+        "1. Path 형태의 Curve를 배치합니다.",
+        "2. Curve to Mesh 노드로 두께를 주고 Fill Caps를 켭니다.",
+        "3. Material Selection을 연결해 금속 재질을 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단면이 보이지 않고 선만 유지됨 → Curve to Mesh 노드의 Profile Curve 입력에 Curve Circle 등 단면 셰이프가 연결되어 있는지 확인합니다.",
+    "파이프 표면이 꺾여 보임 → 원본 Curve의 Resolution 값을 높이거나 Resample Curve 노드를 앞에 추가합니다."
+  ],
+  "related": [
+    "Curve Circle",
+    "Resample Curve",
+    "Geometry Nodes",
+    "Set Curve Radius"
+  ],
+  "videos": [
+    {
+      "id": "nBb8hNgqgns",
+      "title": "Learn to Level Up the Curve to Mesh Node in Blender",
+      "author": "Johnny Matthews"
+    },
+    {
+      "id": "KQt2TDmPuYA",
+      "title": "Blender Curve to Mesh with Shortcut",
+      "author": "blenderian"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Curve%20to%20Mesh%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Curve",
+    "Geometry Nodes"
+  ],
+  "at": "2026-11-04T15:10:56.279535+00:00"
+}

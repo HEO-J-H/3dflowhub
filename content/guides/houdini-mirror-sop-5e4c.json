@@ -1,0 +1,93 @@
+{
+  "id": "houdini-mirror-sop-5e4c",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Mirror SOP",
+  "title": "Mirror — 대칭 복제",
+  "summary": "Houdini Mirror SOP는 지오메트리를 특정 축을 기준으로 대칭 복사하여 반대편 형태를 생성하는 노드입니다. 절반만 모델링한 후 완벽한 대칭 구조를 만들 때 사용합니다.",
+  "when": [
+    "캐릭터나 메카닉 모델링의 절반을 작업한 뒤 좌우 대칭을 완성할 때",
+    "대칭적인 건축물이나 프롭을 효율적으로 제작할 때",
+    "절차적(Procedural) Pipeline 대칭 구조를 자동으로 유지해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 'Mirror'를 입력한 뒤 Mirror SOP 노드를 생성합니다.",
+    "대칭할 오브젝트(메시)를 Mirror SOP 노드의 첫 번째 입력단자(Input)에 연결합니다.",
+    "파라미터 창(Parameters)에서 Mirror Plane 옵션을 통해 대칭 기준이 될 축(X, Y, Z)을 선택합니다.",
+    "Origin 파라미터를 조절하여 대칭 기준면의 위치를 정확한 좌표로 이동합니다.",
+    "뷰포트에서 대칭 복사가 올바르게 되었는지 확인하고, 필요시 Combine Copied Geometry 등의 옵션을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Mirror Plane",
+      "desc": "대칭 복사의 기준이 될 축 평면(X-Y, Y-Z, Z-X)을 선택합니다."
+    },
+    {
+      "name": "Origin",
+      "desc": "대칭 기준면이 위치할 월드 또는 로컬 공간의 중심 좌표를 설정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "기준면을 기준으로 어느 쪽 방향의 메스를 복사하여 반대편에 생성할지 결정합니다."
+    },
+    {
+      "name": "Combine Copied Geometry",
+      "desc": "원본 메시와 대칭 복사된 메시를 하나의 지오메트리로 병합합니다."
+    },
+    {
+      "name": "Fuse Seam Points",
+      "desc": "대칭면에서 만나는 Vertex들을 하나로 합쳐 빈틈을 메웁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "좌우 대칭 캐릭터 몸체 제작",
+      "steps": [
+        "캐릭터 메쉬의 왼쪽 절반만 남기고 PolyCut 노드로 오른쪽을 잘라냅니다.",
+        "Mirror SOP를 연결하고 Mirror Plane을 X-Axis로 설정합니다.",
+        "Fuse Seam Points 옵션을 켜서 중앙 이음새의 Vertex를 자동으로 결합합니다."
+      ]
+    },
+    {
+      "title": "대칭형 하드서페이스 프롭 만들기",
+      "steps": [
+        "비대칭 요소를 제외한 기본 구조의 절반을 모델링합니다.",
+        "Mirror SOP를 사용하여 반대편 파츠를 대칭 생성합니다.",
+        "Normal 노드를 추가하여 대칭면의 법선(Normal) 방향이 바깥쪽을 향하도록 정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "중앙 이음새가 벌어지는 현상 → Fuse Seam Points 옵션을 켜거나 Tolerance 값을 살짝 높여 해결합니다.",
+    "노멀(Normal) 방향이 안쪽으로 뒤집히는 현상 → Mirror SOP 뒤에 Normal 노드를 추가하여 Compute Normals를 실행합니다.",
+    "중심축이 맞지 않아 엉뚱한 위치에서 대칭되는 현상 → Origin 파라미터 좌표를 확인하거나 Transform SOP로 중심축을 정렬한 뒤 미러링합니다."
+  ],
+  "related": [
+    "PolyCut",
+    "Fuse",
+    "Symmetry",
+    "Transform"
+  ],
+  "videos": [
+    {
+      "id": "rGNtGkuZdsA",
+      "title": "SOP Solver for Beginners in Houdini",
+      "author": "bubblepins"
+    },
+    {
+      "id": "KeVuU7lRaR4",
+      "title": "Houdini 30s Quick Tip #14 - Secrets of the Transform-SOP",
+      "author": "cgwiki discord"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Mirror%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Mirror",
+    "Mirror SOP"
+  ],
+  "at": "2026-11-04T15:11:01.313606+00:00"
+}
