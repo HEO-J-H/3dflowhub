@@ -1,0 +1,83 @@
+{
+  "id": "houdini-uv-project-sop-7559",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "UV Project SOP",
+  "title": "UV Project — 투영 UV",
+  "summary": "Houdini UV Project SOP는 3D 지오메트리에 평면, 원통, 구 등의 수학적 공식을 적용하여 빠르고 간편하게 UV를 투영하는 노드입니다.",
+  "when": [
+    "복잡한 절개 작업 없이 단순한 형태의 모델에 빠르게 UV를 부여하고 싶을 때",
+    "기둥이나 파이프처럼 원통형 구조물에 텍스처를 왜곡 없이 감싸야 할 때",
+    "로고나 특정 무늬를 건물 외벽이나 평면 오브젝트에 정확히 투사해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 대상 Geometry 노드 안으로 더블 클릭하여 들어갑니다.",
+    "Tab 키를 누르고 'UV Project'를 검색하여 노드를 생성하고 이전 모델링 노드와 연결합니다.",
+    "파라미터 창(Parameter Pane)의 Project 상단 메뉴에서 투영 방식(Orthographic, Perspective, Cylindrical 등)을 선택합니다.",
+    "Project 버튼을 클릭하거나 뷰포트에서 기즈모(Handle)를 조작하여 투영 위치와 크기를 맞춥니다.",
+    "뷰포트 디스플레이를 UV Viewport로 전환하여 UV가 0-1 영역에 잘 투영되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Project",
+      "desc": "Orthographic, Cylindrical, Spherical 등 UV를 투영할 수학적 방식을 선택합니다."
+    },
+    {
+      "name": "Initialize",
+      "desc": "오브젝트의 바운딩 박스 크기에 맞춰 투영 영역(Gizmo)을 자동으로 초기화합니다."
+    },
+    {
+      "name": "Type",
+      "desc": "투영 핸들의 형태(Box, Cylinder, Sphere 등)를 지정합니다."
+    },
+    {
+      "name": "Aspect Ratio",
+      "desc": "텍스처의 가로세로 비율을 유지하도록 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원통형 파이프 모델링 UV 투영",
+      "steps": [
+        "Tube SOP으로 파이프 모델을 생성합니다.",
+        "UV Project SOP을 연결하고 Project를 Cylindrical로 설정합니다.",
+        "Initialize 버튼을 눌러 파이프 크기에 맞게 투영 범위를 맞춥니다."
+      ]
+    },
+    {
+      "title": "건물 외벽 간판 투사",
+      "steps": [
+        "Box SOP으로 벽면 모델을 준비합니다.",
+        "UV Project SOP을 연결하고 Project를 Orthographic으로 설정합니다.",
+        "핸들을 이용해 간판이 들어갈 위치에 정확히 정면 투영합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투영 방향이 잘못됨 → Project 파라미터에서 방향 축(Axis)이나 투영 타입을 변경합니다.",
+    "텍스처가 찌그러짐 → 오브젝트의 Non-uniform Scale이 적용된 상태이므로 Transform SOP이나 Testgeometry 등을 통해 스케일을 1로 고정(Freeze)합니다."
+  ],
+  "related": [
+    "UV Unwrap SOP",
+    "UV Layout SOP",
+    "UV Transform SOP",
+    "UV Flatten SOP"
+  ],
+  "videos": [
+    {
+      "id": "U-Y38fwuO38",
+      "title": "Houdini 17 Quicktip: (Ab)Using The UV Layout SOP For Geometry Packing",
+      "author": "Entagma"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20UV%20Project%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "UV Project"
+  ],
+  "at": "2026-11-05T08:48:15.972645+00:00"
+}

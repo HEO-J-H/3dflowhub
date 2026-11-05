@@ -1,0 +1,94 @@
+{
+  "id": "blender-udim-basics-773e",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UDIM basics",
+  "title": "UDIM — 여러 장 텍스처",
+  "summary": "Blender의 UDIM(U-Dimension) 기초 가이드입니다. 여러 장의 UV 텍스처를 하나의 큰 타일 공간에 나누어 배치함으로써 고해상도 텍스처를 효율적으로 관리하고 렌더링할 수 있습니다.",
+  "when": [
+    "캐릭터나 복잡한 오브젝트의 Resolution를 높게 유지해야 할 때",
+    "하나의 UV 공간(0-1)에 다 담기지 않는 거대한 씬이나 프랍을 텍스처링할 때",
+    "Substance Painter 등 외부 텍스처링 툴과 UDIM 워크플로우로 연동할 때"
+  ],
+  "steps": [
+    "Blender에서 오브젝트를 선택하고 Edit Mode(Tab)로 진입합니다.",
+    "UV Editing 워크스페이스로 이동합니다.",
+    "UV 메뉴에서 UVs > Export UV Layout 등을 활용하거나, 각 파츠별로 UV를 언랩(Unwrap)합니다.",
+    "UV Editor 창 우측의 UDIM Grids 또는 Image > New Image 메뉴에서 Generated Type을 UDIM Grid로 설정하여 새 타일을 추가합니다.",
+    "UV 파츠들을 1001, 1002 등의 UDIM 타일 영역으로 이동(G 키)시켜 배치합니다.",
+    "Texture Node나 Image Texture 노드에서 UDIM 파일 명명 규칙(예: texture.<UDIM>.png)을 적용해 텍스처를 연결합니다.",
+    "Material Preview 또는 Rendered 뷰포트에서 텍스처가 각 타일에 맞게 잘 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "UDIM Grid",
+      "desc": "UV Editor에서 여러 UDIM 타일 영역을 시각적으로 표시해 주는 Grid 텍스처 모드입니다."
+    },
+    {
+      "name": "Tile Number",
+      "desc": "1001, 1002 등 각 UDIM 타일을 식별하는 고유 번호입니다."
+    },
+    {
+      "name": "Source",
+      "desc": "이미지 생성 시 UDIM 타일 시퀀스를 불러오거나 새로 생성할 때 지정하는 소스 옵션입니다."
+    },
+    {
+      "name": "Color Space",
+      "desc": "텍스처 파일의 컬러 프로파일(sRGB, Non-Color 등)을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "고해상도 캐릭터 얼굴과 몸 분리하기",
+      "steps": [
+        "캐릭터 머리 UV를 1001 타일에 배치합니다.",
+        "몸통 UV를 1002 타일에 배치하여 Resolution를 분산시킵니다.",
+        "Principled BSDF에 UDIM 포맷의 텍스처 노드를 연결합니다."
+      ]
+    },
+    {
+      "title": "건축물 외벽 세부 텍스처링",
+      "steps": [
+        "큰 건물의 파츠별로 UV를 언랩합니다.",
+        "각 파츠를 1001, 1002, 1003 UDIM 타일에 각각 정렬합니다.",
+        "외부 툴에서 제작된 UDIM 텍스처 셋을 한 번에 불러와 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파일명에 <UDIM> 태그가 누락됨 → 파일 이름을 texture.1001.png 형식으로 정확히 수정합니다.",
+    "UV가 0-1 영역을 벗어났으나 UDIM 타일이 생성되지 않음 → UV Editor에서 UDIM Grid를 추가하고 올바른 타일 번호 위치에 배치합니다.",
+    "스케일이 적용되지 않음 → 오브젝트 모드에서 Ctrl + A > All Transforms를 실행하여 스케일과 회전을 초기화합니다."
+  ],
+  "related": [
+    "UV Unwrap",
+    "Image Texture",
+    "Principled BSDF",
+    "Substance Painter"
+  ],
+  "videos": [
+    {
+      "id": "55sGQLX7iho",
+      "title": "Introduction to UDIMs in Blender",
+      "author": "CG Boost"
+    },
+    {
+      "id": "3VSm7JhWDmw",
+      "title": "Blender: UDIM Texture Tiling",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20UDIM%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Edit Mode",
+    "UV Editing",
+    "UV",
+    "UVs",
+    "Export UV Layout"
+  ],
+  "at": "2026-11-05T08:48:05.475899+00:00"
+}

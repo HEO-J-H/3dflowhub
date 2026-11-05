@@ -13355,5 +13355,156 @@
     "id": "p-02fa438e01",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안에 웹 버전 PBR 텍스처 메모리 누수 및 해제 루틴 보완 작업이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T08:45:40+00:00",
+    "kind": "proposal",
+    "id": "p-64ef0136ba",
+    "title": "웹 버전 메모리 해제 루틴 보완 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 웹 버전 PBR 텍스처 메모리 누수 및 해제 루틴이 보완되었으나 관련 프론트엔드 테스트나 검증 문서가 보완될 필요가 있습니다.",
+    "proposal": "web/ 디렉토리 내 리소스 해제 함수에 대한 간단한 단위 테스트나 사용법 가이드를 점검하고 보완합니다.",
+    "expected": "브라우저 메모리 누수 방지 기능의 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T08:45:40+00:00",
+    "kind": "proposal",
+    "id": "p-2c0b18e25f",
+    "title": "백엔드 PBR 및 입력 검증 PR(#43, #44) 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 pbr_generator.py의 입력 이미지 검증 관련 PR #43과 #44가 승인 대기 상태로 남아 있습니다.",
+    "proposal": "GitHub 저장소에서 PR #43 및 #44의 코드 변경 내역을 확인하고 병합 여부를 최종 결정합니다.",
+    "expected": "백엔드 입력 무결성 검증 로직의 안정적인 반영",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T08:46:20.211022+00:00",
+    "kind": "proposal",
+    "id": "p-c8a092d145",
+    "title": "[모니터링] 사적연금 및 분리과세 소득 건강보험료 부과 검토",
+    "by": "⚖️ 규정 감시",
+    "site": "life-after-60",
+    "source": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1hTkFKX3RtUnNnaHcydTVCeUxJZEFiRjctbHo1UUpybG5zeWN2WV9XS09GTXU2TjNMT3lrMXotTV9GdGVUcHQ2V1RPaE5zSlRDVmduUFpnVUt1VUnSAWBBVV95cUxOdkpndzF6a05jbng1TG5DeG1GVk56NzZia0lRUTc2bXY5aFg3SUhGa19xcUE2aDZRc0JqOUtkWlFfZnhTMnpDdHNlQkZSbF9ia2thcmpxb1BSdEN5bnVBQ20?oc=",
+    "category": "사이트·UX",
+    "evidence": "매일경제·연합뉴스 등 보도 (2026년 11월 3일~4일), 연 1500만원 분리과세 등 사적연금 및 분리과세 소득에 대한 건강보험료 부과 검토 단계",
+    "proposal": "사적연금 분리과세 구간(연 1500만원 이하 등)에 건보료가 부과될 경우 은퇴 현금흐름에 미치는 영향이 크므로, 향후 제도 확정 시 Simulator 건보료 산정 로직 반영 여부 모니터링",
+    "expected": "은퇴자들의 실제 가처분소득 예측 정확도 유지",
+    "effort": "낮음",
+    "action": {
+      "type": "editorial_note",
+      "note": "모니터링: 사적연금 및 분리과세 소득 건보료 부과 검토 — 논의 단계"
+    }
+  },
+  {
+    "at": "2026-11-05T08:46:20.211022+00:00",
+    "kind": "proposal",
+    "id": "p-78a17f45d8",
+    "title": "[확정] 기초연금 차등 인상 (소득 하위 30% 최대 38만원)",
+    "by": "⚖️ 규정 감시",
+    "site": "life-after-60",
+    "source": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02bTg3d3FPMVpNQmdaSlFibXotZUFtZ0ZxUnF2NnlLRlN3UmZ0c0pnaEdyWGpLVEVTeFU4WFF6bDNyT0c1T08zeTBCOTJPcC1VUjMyM3VOMm9jWFE?oc=5",
+    "category": "사이트·UX",
+    "evidence": "KBS 뉴스·경기일보 등 보도 (2026년 10월 19일~20일), 내년(2027년)부터 기초연금 소득 수준에 따라 최대 38만원으로 차등 인상 확정",
+    "proposal": "기초연금 수령액 계산식 및 시나리오 기본값에 2027년 기준 최대 38만원 반영 검토 (공식 고시 발표 대조 후 적용)",
+    "expected": "60세 이후 기초연금 현금흐름 시뮬레이션 정확도 향상",
+    "effort": "낮음",
+    "action": {
+      "type": "editorial_note",
+      "note": "반영 검토: 기초연금 최대 38만원 인상 — 국무회의 및 고시 확정 시 공식 대조 후 수정 필요"
+    }
+  },
+  {
+    "at": "2026-11-05T08:47:49.266645+00:00",
+    "kind": "proposal",
+    "id": "p-eb6fdab971",
+    "title": "50~60대 가독성 개선: 입력 폼 라벨 및 결과 숫자 크기 확대",
+    "by": "🎨 디자이너 (은퇴)",
+    "site": "life-after-60",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "category": "사이트·UX",
+    "evidence": "독자층인 50~60대의 가독성을 높이기 위해 본문 17px 이상 및 대비 4.5:1 이상 유지 필요",
+    "proposal": "메인 입력 폼의 라벨 폰트 웨이트를 세미볼드(600) 이상으로 올리고, 시뮬레이션 결과 요약(월별 현금흐름 금액)의 폰트 사이즈를 현재보다 4px 더 키워 한눈에 들어오도록 개선",
+    "expected": "모바일 및 데스크톱 환경에서 핵심 숫자의 시인성과 가독성이 향상되어 이탈률 감소",
+    "effort": "낮음",
+    "action": null
+  },
+  {
+    "at": "2026-11-05T08:48:29.490584+00:00",
+    "kind": "decision",
+    "id": "p-eb6fdab971",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T08:48:29.504295+00:00",
+    "kind": "decision",
+    "id": "p-c8a092d145",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T08:48:29.515696+00:00",
+    "kind": "decision",
+    "id": "p-78a17f45d8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T08:48:29.528110+00:00",
+    "kind": "decision",
+    "id": "p-64ef0136ba",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T08:48:29.540198+00:00",
+    "kind": "decision",
+    "id": "p-2c0b18e25f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T08:48:31.404625+00:00",
+    "kind": "triage",
+    "id": "p-eb6fdab971",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 입력 라벨 글자 크기 확대와 결과 요약 숫자 크기 및 굵기 개선 작업이 이미 반영되었습니다."
+  },
+  {
+    "at": "2026-11-05T08:48:31.416886+00:00",
+    "kind": "decision",
+    "id": "p-eb6fdab971",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 입력 라벨 글자 크기 확대와 결과 요약 숫자 크기 및 굵기 개선 작업이 이미 반영되었습니다."
+  },
+  {
+    "at": "2026-11-05T08:48:32.550546+00:00",
+    "kind": "triage",
+    "id": "p-64ef0136ba",
+    "verdict": "done_already",
+    "reason": "웹 버전 메모리 해제 로직 및 관련 문서 보완이 이미 완료되어 최근 커밋과 끝낸 제안에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-05T08:48:32.562916+00:00",
+    "kind": "decision",
+    "id": "p-64ef0136ba",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 버전 메모리 해제 로직 및 관련 문서 보완이 이미 완료되어 최근 커밋과 끝낸 제안에 반영되었습니다."
   }
 ]
