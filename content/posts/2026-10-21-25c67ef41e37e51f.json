@@ -1,5 +1,5 @@
 {
-  "title_ko": "CrossFit-GS 논문 공개 — 포즈 없는 3D Gaussian Splatting 드리프트 개선",
+  "title_ko": "CrossFit-GS: COLMAP 없는 3DGS를 위한 교차 적합 포즈 추정",
   "title": "CrossFit-GS: Out-of-Fold Pose Estimation for COLMAP-Free 3D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2610.28190v1",
   "domain": "AI 3D",
@@ -7,48 +7,89 @@
   "topic": "연구·논문",
   "tags": [
     "3D Gaussian Splatting",
-    "포즈 추정",
-    "COLMAP",
-    "NeRF",
-    "연구"
+    "COLMAP-Free",
+    "Pose Estimation",
+    "Novel-View Synthesis",
+    "CrossFit-GS"
   ],
-  "summary": "CrossFit-GS는 구조화된 포즈 추정 과정 없이 입력된 이미지 시퀀스로부터 누적 궤적 드리프트를 줄이고 Gaussian Splatting을 최적화하는 새로운 프레임워크를 제안합니다.",
-  "insight": "기존 3D Gaussian Splatting 연구에서 번거로운 COLMAP 전처리를 우회하려는 시도가 이어지는 가운데, 본 논문은 독립적인 기하학적 참조를 활용해 오차 누적을 방지하는 실무적 영감을 줍니다. 향후 프로덕션 Pipeline 카메라 트래킹 및 씬 리컨스트럭션 자동화 속도를 높이는 데 기여할 수 있습니다. 3D 비전 연구자 및 알고리즘 엔지니어라면 포즈 추정의 안정성 확보 기법을 면밀히 살펴볼 필요가 있습니다.",
+  "summary": "CrossFit-GS는 COLMAP 전처리 없이 입력 영상 시퀀스로부터 카메라 포즈와 3D Gaussian Splatting(3DGS)을 직접 재구성할 때 발생하는 누적 궤적 오차와 자기 강화형 왜곡 루프를 해결하는 지연 확약(deferred-commitment) 프레임워크입니다.",
+  "insight": "이 기술이 상용화되거나 발전한다면 향후 스튜디오 Pipeline 무거운 COLMAP 전처리 단계를 거치지 않고도 언포즈(unposed) 영상만으로 정교한 3D Gaussian Splatting 씬을 빠르게 빌드하는 가능성이 열릴 수 있습니다. 특히 빠른 카메라 움직임이나 텍스처가 부족한 영역에서도 누적 드리프트를 억제하여 아티스트들이 뷰 합성 작업을 수행할 때 시행착오를 줄이는 데 기여할 것으로 기대됩니다.",
   "sections": [
     {
-      "heading": "COLMAP-Free 3D Gaussian Splatting의 배경과 목표",
-      "body": "포즈 프리 3D Gaussian Splatting은 전통적인 Structure-from-Motion(SfM) 과정을 거치지 않고, 포즈가 주어지지 않은 이미지 시퀀스로부터 직접 씬을 재구성하는 것을 목표로 합니다. 이를 통해 복잡한 전처리 단계를 생략하고 씬 복원 프로세스를 간소화할 수 있습니다. 그러나 기존 방식은 오차 전파로 인해 누적 궤적 드리프트 문제가 발생하기 쉽습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 포즈 없는(pose-free) 3DGS 방식은 구조적 모션(SfM) 전처리 없이 카메라 포즈와 장면 기납을 동시에 추정하지만, 국소적으로 누적된 상대 오차가 전역 3D Gaussian 표현에 그대로 흡수되는 문제가 있었습니다. 동일한 관측값으로 학습된 맵을 이용해 카메라 포즈를 보정하면 자기 설명(self-explanation) 지름길이 발생하여 기하학적 왜곡이 점차 심해집니다."
     },
     {
-      "heading": "CrossFit-GS의 지연된 확약 프로그레시브 프레임워크",
-      "body": "본 논문에서 제안하는 CrossFit-GS는 누적 궤적 드리프트를 완화하고 왜곡된 맵의 오차 전파 고리를 끊기 위한 지연된 확약 프로그레시브 프레임워크입니다. 입력 시퀀스를 교차 인터리브된 하위 집합으로 분할하고, 두 개의 상호 보완적인 서브맵을 유지 관리합니다. 각 후보 포즈는 타겟 프레임으로 최적화된 적이 없는 동결된 반대편 서브맵과 교차 정제됩니다."
+      "heading": "핵심 아이디어",
+      "body": "이 논문은 카메라 포즈 정제(refinement)와 장면 맵 업데이트 과정을 엄격하게 분리하는 이중 맵 정보 고립(dual-map information isolation)과 지연 확약 프로토콜을 제안합니다. 입력 시퀀스를 교차하는 두 개의 시간적 분할(Fold A/B)로 나누고, 각 프레임의 포즈는 해당 프레임으로 학습된 적 없는 동결된 반대편 서브맵을 기준으로만 보정합니다."
     },
     {
-      "heading": "독립적 기하학적 참조를 통한 포즈 정제",
-      "body": "타겟 프레임에 최적화되지 않은 서브맵을 활용함으로써 포즈 추정을 위한 독립적인 기하학적 참조를 제공합니다. 체커보드 검증 및 공간 커버리지 안전장치를 적용하여 신뢰할 수 없는 업데이트를 철저히 거릅니다. 검증된 포즈만이 각 소유자 서브맵에 커밋되며, 궤적이 정제된 후 중간 서브맵은 폐기됩니다."
+      "heading": "방법 (단계)",
+      "body": "1. 입력 프레임 스트림을 인덱스 패리티에 따라 두 개의 교차 서브셋(A/B)으로 분할합니다. 2. 들어오는 프레임의 초기 포즈 제안을 구한 뒤, 해당 프레임이 학습에 포함되지 않은 동결된 반대편 서브맵을 대상으로 교차 적합(cross-refinement)을 수행합니다. 3. 체스판 검증 마스크와 공간 커버리지 게이트를 통해 후보 포즈 업데이트를 검증합니다. 4. 검증을 통과한 포즈만 소유자 서브맵에 통합하며, 전체 궤적이 확정되면 중간 서브맵을 폐기하고 최종 전역 표현을 처음부터 다시 학습합니다."
     },
     {
-      "heading": "글로벌 표현 학습과 성능 평가",
-      "body": "중간 서브맵을 폐기한 후, 최종 정제된 고정 포즈를 사용하여 처음부터 최종 글로벌 표현을 훈련합니다. 다양한 벤치마크에 걸친 광범위한 평가를 통해 CrossFit-GS는 누적 궤적 드리프트를 대폭 줄였습니다. 기존 방법에 비해 카메라 포즈 추정과 새로운 시점 합성(novel-view synthesis) 성능을 모두 일관되게 향상시켰습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "Tanks and Temples 벤치마크의 Ballroom 씬에서 기존 방법들보다 향상된 수치를 기록했습니다. 예를 들어 Ballroom 씬에서 CF-3DGS는 PSNR 24.917, SSIM 0.828, LPIPS 0.123인 반면, 본 논문의 CrossFit-GS는 PSNR 30.272, SSIM 0.931, LPIPS 0.060을 기록하며 궤적 오차를 크게 줄이고 렌더링 품질을 높였습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문에서는 실시간 스트리밍 시나리오 등에서 COLMAP 의존도를 줄이는 것을 목표로 하지만, 이중 맵 분할 및 프레임별 교차 검증 과정에서 추가적인 연산 구조와 프로토콜 관리가 필요하다는 한계가 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본 논문에서는 arXiv 원문 및 GitHub 이슈 신고 링크 등이 언급되어 있으나, 구체적인 오픈소스 코드 저장소 링크는 본문 텍스트 내에 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "CrossFit-GS의 핵심 기여는 무엇인가요?",
-      "a": "COLMAP 같은 SfM 전처리 과정 없이 포즈 없는 이미지 시퀀스에서 발생하는 궤적 드리프트와 오차 전파를 독립적인 서브맵 교차 정제를 통해 해결한 점입니다."
+      "q": "CrossFit-GS가 기존 포즈 프리 3DGS와 가장 다른 점은 무엇인가요?",
+      "a": "카메라 포즈를 보정할 때 바로 그 프레임으로 학습된 맵을 사용하는 기존의 자기 강화 루프를 차단하기 위해, 해당 프레임이 전혀 학습되지 않은 동결된 반대편 서브맵을 기준으로 포즈를 교차 적합(cross-refine)한다는 점이 다릅니다."
     },
     {
-      "q": "기존 포즈 프리 3D Gaussian Splatting 방식과의 차별점은 무엇인가요?",
-      "a": "상호 보완적인 두 개의 서브맵을 유지하며 타겟 프레임으로 최적화되지 않은 반대편 서브맵을 기하학적 참조로 활용해 오차가 자기 강화되는 고리를 끊어낸다는 점입니다."
+      "q": "최종 전역 3D Gaussian 표현은 언제 학습되나요?",
+      "a": "시퀀스 전체의 카메라 외참(extrinsic)이 검증되고 동결된 이후, 중간 서브맵들은 폐기되고 고정된 정제 포즈를 바탕으로 단일 전역 Gaussian 표현을 처음부터(from scratch) 다시 학습합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.28190v1/2610.28190v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.28190v1/2610.28190v1/method.png",
+        "caption": "Figure 2 : Overview of CrossFit-GS. The input sequence is partitioned into two interleaved folds,\neach associated with a separate Gaussian map.\nFor a frame in Fold B, its pose is refined against the frozen\nMap A, with visual-support checks and an accept-or-keep\nvalidation rule governing the update.\n",
+        "caption_ko": "그림 1: 포즈와 맵의 보상이 교차 적합된 카메라 등록을 유도하는 원리 설명."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.28190v1/2610.28190v1/tt.png",
+        "caption": "Figure 3 : Qualitative comparison of novel-view synthesis\non Tanks and Temples. CrossFit-GS preserves fine textures and sharp structural boundaries while reducing rendering artifacts.",
+        "caption_ko": "그림 2: CrossFit-GS의 전체 개요. 입력 시퀀스를 두 개의 교차 폴드로 나누어 반대편 맵을 기준으로 포즈를 정제하는 구조."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.28190v1/2610.28190v1/co3d.png",
+        "caption": "Figure 4 : Qualitative comparison of novel-view synthesis\non CO3D-V2. CrossFit-GS delivers highly accurate geometry and sharp visual details under rapid camera rotations, effectively suppressing blur and floating artifacts.",
+        "caption_ko": "그림 3: Tanks and Temples 데이터셋에서의 신규 뷰 합성 정성적 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.28190v1/2610.28190v1/traj.png",
+        "caption": "Figure 5 : Visualization of estimated camera trajectories. The top row shows the Ignatius sequence from Tanks and Temples,\nand the bottom row shows the apple_23361 sequence from CO3D-V2. Red solid lines denote estimated trajectories, while blue dashed lines indicate the ground truth.",
+        "caption_ko": "그림 4: CO3D-V2 데이터셋에서의 신규 뷰 합성 정성적 비교."
+      }
+    ]
   },
   "collected_at": "2026-10-21T03:48:35.143869+00:00",
   "notion_id": "",
   "id": "2026-10-21-25c67ef41e37e51f",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-05T12:43:47+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }
