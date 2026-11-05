@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-viewport-navigation-421d",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Viewport navigation",
+  "title": "뷰포트 이동 방법",
+  "summary": "Unreal Engine Viewport는 3D 씬을 관람하고 오브젝트를 배치·조작하는 작업 공간입니다. 카메라를 자유롭게 이동하며 레벨 디자인과 에셋 배치를 수행합니다.",
+  "when": [
+    "새로운 레벨을 열고 3D 공간을 처음 탐색할 때",
+    "오브젝트를 정확한 위치로 이동·회전·크기 조절할 때",
+    "카메라 시점을 바꿔가며 씬의 구도를 확인할 때"
+  ],
+  "steps": [
+    "Unreal Engine Editor를 실행하고 원하는 레벨(Level)을 엽니다.",
+    "Viewport 창 안에서 Mouse 우클릭을 누른 상태로 WASD 키를 눌러 카메라를 이동합니다.",
+    "Mouse 우클릭을 유지한 채 Mouse를 움직여 시점을 회전합니다.",
+    "오브젝트를 선택하고 W 키를 눌러 Transform Gizmo(이동 툴)를 활성화합니다.",
+    "Gizmo의 화살표를 드래그하여 오브젝트를 원하는 위치로 이동합니다."
+  ],
+  "params": [
+    {
+      "name": "Camera Speed",
+      "desc": "뷰포트 카메라의 이동 속도를 조절합니다."
+    },
+    {
+      "name": "Lit",
+      "desc": "조명과 머티리얼이 적용된 최종 렌더링 상태로 뷰포트를 표시합니다."
+    },
+    {
+      "name": "Unlit",
+      "desc": "조명을 제외한 순수 머티리얼 베이스 컬러만 표시합니다."
+    },
+    {
+      "name": "Wireframe",
+      "desc": "폴리스 라인으로만 구성된 와이어프레임 형태로 뷰포트를 표시합니다."
+    },
+    {
+      "name": "Perspective",
+      "desc": "원근감이 있는 3차원 투영 시점으로 뷰포트를 전환합니다."
+    },
+    {
+      "name": "Orthographic",
+      "desc": "원근감이 없는 직교 투영(Top, Front, Side) 시점으로 전환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 정밀 배치하기",
+      "steps": [
+        "배치할 3D 에셋을 선택합니다.",
+        "E 키를 눌러 Rotation Gizmo로 전환하고 각도를 조절합니다.",
+        "R 키를 눌러 Scale Gizmo로 전환하고 크기를 조절합니다."
+      ]
+    },
+    {
+      "title": "넓은 씬 빠르게 이동하기",
+      "steps": [
+        "Viewport 우측 상단의 카메라 아이콘 또는 속성에서 Camera Speed 값을 높입니다.",
+        "Shift 키와 WASD를 함께 눌러 더 빠른 속도로 이동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 속도가 너무 빠르거나 느림 → Viewport 우측 상단의 속도 슬라이더(Camera Speed)를 조절하세요.",
+    "오브젝트가 선택되지 않음 → Viewport 세팅이 'Game View'로 켜져 있는지 확인하고 G 키를 누르세요."
+  ],
+  "related": [
+    "Sequencer",
+    "Niagara Particle System",
+    "Nanite",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "gqp2-k10tFI",
+      "title": "How to Navigate the Unreal Engine Interface in 6 Steps | UE5 Beginner Tutorial",
+      "author": "Digital Alchemy"
+    },
+    {
+      "id": "CRCdz7p8hMg",
+      "title": "Unreal Engine: Viewport Controls",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Viewport%20navigation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine Editor",
+    "Level",
+    "Viewport",
+    "Mouse",
+    "WASD"
+  ],
+  "at": "2026-11-05T09:51:47.105548+00:00"
+}

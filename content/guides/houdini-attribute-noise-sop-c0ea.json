@@ -1,0 +1,98 @@
+{
+  "id": "houdini-attribute-noise-sop-c0ea",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Noise SOP",
+  "title": "Attribute Noise — 노이즈 값",
+  "summary": "Attribute Noise SOP는 지오메트리의 포인트나 Primitive 속성(Cd, P 등)에 노이즈를 더해 무작위 변형과 유기적인 애니메이션을 만드는 노드입니다. 마치 바람에 흔들리는 나뭇잎이나 울퉁불퉁한 지형처럼 자연스러운 불규칙성을 부여할 때 씁니다.",
+  "when": [
+    "그리드나 구체 표면에 자연스러운 지형(Terrain) 높낮이를 만들 때",
+    "포인트 카피로 생성된 여러 나무나 바위의 크기, 회전 값을 다채롭게 무작위화할 때",
+    "Particle이나 메쉬의 위치(P)나 색상(Cd)을 시간에 따라 꿈틀거리듯 움직이게 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Attribute Noise 를 입력하고 엔터를 쳐서 노드를 생성합니다.",
+    "변형할 Geometry Nodes(예: Grid)와 Attribute Noise 노드의 입력 포트를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Operation 을 Set 혹은 Add 로 설정합니다.",
+    "Attribute Name 에 P(위치)나 Cd(색상)를 입력하고 Element Type 을 지정합니다.",
+    "Element Size 와 Roughness 값을 조절하여 노이즈의 크기와 디테일을 맞춥니다.",
+    "뷰포트에서 표면이 울퉁불퉁하게 변형된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "기존 속성에 값을 더하거나(Add), 덮어씁니다(Set)."
+    },
+    {
+      "name": "Attribute Name",
+      "desc": "노이즈를 적용할 대상 속성 이름(예: P, Cd, scale)을 지정합니다."
+    },
+    {
+      "name": "Element Type",
+      "desc": "속성이 적용될 단위(Point, Primitive, Vertex 등)를 선택합니다."
+    },
+    {
+      "name": "Element Size",
+      "desc": "노이즈 패턴의 크기(주파수)를 조절하여 디테일의 밀도를 바꿉니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "노이즈 샘플링 위치를 이동시켜 패턴을 바꾸거나 애니메이션(Time 연동)시킵니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "프랙탈 노이즈의 거친 세부 디테일(Houdini Noise의 다중 주파수) 양을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "울퉁불퉁한 절차적 지형 만들기",
+      "steps": [
+        "Grid SOP로 고해상도 평면을 생성합니다.",
+        "Attribute Noise SOP를 연결하고 Attribute Name을 P로 설정합니다.",
+        "Element Size를 키우고 Element Size의 Y축(높이) 방향 노이즈 강도를 높여 산등성이를 만듭니다."
+      ]
+    },
+    {
+      "title": "Particle 크기의 자연스러운 무작위화",
+      "steps": [
+        "Scatter SOP로 포인트들을 생성합니다.",
+        "Attribute Noise SOP를 연결하고 Attribute Name에 pscale을 입력합니다.",
+        "Element Type을 Point로 설정하고 크기 편차를 주어 다양한 크기의 점들을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Attribute Name을 잘못 입력함 → 대상 속성 이름(P, Cd, pscale 등)이 올바른지 대소문자를 확인합니다.",
+    "메쉬의 세그먼트(Polygon)가 너무 적음 → Grid나 Box의 분할 수(Rows/Columns)를 높여야 노이즈 디테일이 표현됩니다.",
+    "변화가 보이지 않음 → Operation이 올바르게 설정되었는지, Element Size 값이 너무 크거나 작지 않은지 파라미터를 점검합니다."
+  ],
+  "related": [
+    "Attribute Randomize",
+    "Mountain",
+    "VEX",
+    "Point VOP"
+  ],
+  "videos": [
+    {
+      "id": "wJUOUCe3K4Q",
+      "title": "How Does Noise Work? ||Attribute Noise/ Noise VOPs|| Houdini Tutorial",
+      "author": "Kate"
+    },
+    {
+      "id": "UNJcaQ2Ln7o",
+      "title": "Houdini | The Attribute Noise SOP | Node Bible Quicktip",
+      "author": "CG Forge"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Noise%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Noise"
+  ],
+  "at": "2026-11-05T09:50:23.518583+00:00"
+}
