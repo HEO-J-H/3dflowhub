@@ -1,0 +1,89 @@
+{
+  "id": "unreal-engine-material-instances-4afb",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Material Instances",
+  "title": "Material Instance — 재질 변형 빨리",
+  "summary": "Unreal Engine의 Material Instance는 원본 Material(Master Material)을 다시 컴파일하지 않고도 색상, 거칠기, 텍스처 등의 파라미터를 실시간으로 빠르게 변경할 수 있게 해주는 기능입니다.",
+  "when": [
+    "동일한 머티리얼을 공유하면서 색상이나 텍스처만 미세하게 다른 여러 오브젝트를 만들 때",
+    "대형 프로젝트에서 머티리얼 컴파일 시간을 줄이고 렌더링 성능을 최적화할 때",
+    "게임 플레이 중 블루프린트를 통해 머티리얼의 파라미터를 동적으로 변경하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 기반이 될 Master Material을 엽니다.",
+    "변경하고 싶은 속성(색상, 텍스처 등)의 노드 핀을 우클릭하고 'Convert to Parameter'를 선택하여 이름을 지정합니다.",
+    "Material을 저장하고 닫은 뒤, Content Browser에서 해당 Material을 우클릭합니다.",
+    "우클릭 메뉴에서 'Create Material Instance'를 선택하여 Instance 에셋을 생성합니다.",
+    "생성된 Material Instance 에셋을 더블 클릭하여 엽니다.",
+    "상세 패널(Details)에서 파라미터 체크박스를 켜고 원하는 값으로 수정하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Parent",
+      "desc": "기반이 되는 원본 Master Material을 지정합니다."
+    },
+    {
+      "name": "Scalar Parameter Values",
+      "desc": "수치형 값(거칠기, 메탈릭, 반사율 등)을 실시간으로 조절합니다."
+    },
+    {
+      "name": "Vector Parameter Values",
+      "desc": "RGB 색상 값이나 4차원 벡터 데이터를 조절합니다."
+    },
+    {
+      "name": "Texture Parameter Values",
+      "desc": "머티리얼에 사용되는 텍스처 맵을 교체합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 차체 색상 변경",
+      "steps": [
+        "차체용 Master Material에 Base Color를 Vector Parameter로 설정합니다.",
+        "Material Instance를 여러 개 생성합니다.",
+        "각 인스턴스마다 Vector Parameter 값을 빨간색, 파란색, 검은색 등으로 다르게 지정합니다.",
+        "동일한 차량 모델에 각각의 Instance를 적용합니다."
+      ]
+    },
+    {
+      "title": "벽면 타일의 거칠기 조절",
+      "steps": [
+        "타일 머티리얼의 Roughness 노드에 Scalar Parameter를 연결합니다.",
+        "Material Instance를 생성하여 Roughness 값을 높여 건조한 느낌을 줍니다.",
+        "또 다른 Instance에서는 Roughness 값을 낮추어 젖은 타일 표현을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Master Material에서 파라미터로 변환하지 않음 → Material Instance에서 값을 수정할 수 없음. 원본 Material에서 'Convert to Parameter'를 먼저 실행하세요.",
+    "너무 많은 수의 개별 Master Material 생성 → Shader 컴파일 부하증가 및 최적화 저하. 공통된 속성은 Master Material로 묶고 Instance를 활용하세요."
+  ],
+  "related": [
+    "Master Material",
+    "Material Function",
+    "Level Instance",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "FzFtht_kMCc",
+      "title": "How to Create a Material Instance in Unreal Engine 5",
+      "author": "Gorka Games"
+    },
+    {
+      "id": "JV2n8FkdhhE",
+      "title": "Basic Guide to Unreal Engine Material Instances - UE Beginner Tutorial",
+      "author": "Ivica Milarić"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Material%20Instances",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Master Material"
+  ],
+  "at": "2026-11-05T15:44:09.110151+00:00"
+}
