@@ -14059,5 +14059,67 @@
     "id": "p-86e7a4922f",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 내역에 웹 성능 최적화 가이드 및 관련 문서 검증/수정 작업이 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T11:12:21+00:00",
+    "kind": "proposal",
+    "id": "p-e412d54842",
+    "title": "웹 성능 최적화 가이드 문서(docs/web-optimization.md) 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 성능 최적화 문서 작성 및 포맷 오류로 인해 held 상태였던 작업을 안전한 범위에서 다시 정리",
+    "proposal": "docs/web-optimization.md 파일 내 메모리 관리 및 프론트엔드 연산 부하 가이드 내용을 간결하게 재작성하고 마크다운 문법 오류 검증",
+    "expected": "개발자와 사용자가 참고할 수 있는 명확한 브라우저 최적화 가이드 제공",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T11:12:21+00:00",
+    "kind": "proposal",
+    "id": "p-aeb2009250",
+    "title": "백엔드 PBR 입력 검증 단위 테스트 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #43 및 #44에서 pbr_generator.py 입력 이미지 무결성 검증 관련 코드가 대기 중",
+    "proposal": "backend/tests/ 폴더 내 PBR 입력 검증 테스트 코드가 정상 작동하는지 확인하고 추가적인 엣지 케이스 검토",
+    "expected": "백엔드 파이프라인의 잘못된 입력에 대한 안정성 및 예외 처리 강화",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T11:15:31.472623+00:00",
+    "kind": "decision",
+    "id": "p-e412d54842",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 최적화 가이드 문서(docs/web-optimization.md) 패",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T11:15:31.487028+00:00",
+    "kind": "decision",
+    "id": "p-aeb2009250",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T11:15:34.048229+00:00",
+    "kind": "triage",
+    "id": "p-aeb2009250",
+    "verdict": "done_already",
+    "reason": "PR #43 및 #44 관련 PBR 입력 검증 및 테스트 관련 작업이 이미 최근 커밋과 끝낸 제안 목록에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T11:15:34.061220+00:00",
+    "kind": "decision",
+    "id": "p-aeb2009250",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): PR #43 및 #44 관련 PBR 입력 검증 및 테스트 관련 작업이 이미 최근 커밋과 끝낸 제안 목록에 반영되어 있습니다."
   }
 ]
