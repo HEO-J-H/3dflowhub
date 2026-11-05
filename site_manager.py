@@ -138,7 +138,7 @@ def review(site: str, force: bool = False) -> dict | None:
     now = _now()
     evs = []
     for p in (out.get("proposals") or [])[:MAX_PROPOSALS]:
-        if not isinstance(p, dict) or not p.get("title") or manager.similar_open(str(p["title"]), site):
+        if not isinstance(p, dict) or not p.get("title") or manager.similar_open(str(p["title"]), site, str(p.get("proposal", ""))):
             continue
         evs.append({"at": now, "kind": "proposal", "id": "p-" + hashlib.md5(f"{now}{site}{p['title']}".encode()).hexdigest()[:10],
                     "title": str(p["title"])[:80], "by": f"🧭 {s['name']} 관리자", "site": site,

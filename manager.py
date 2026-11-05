@@ -84,15 +84,23 @@ def claude_request(p: dict) -> str:
             + ("\n규칙: " + s["rules"] if s.get("rules") else ""))
 
 
-def similar_open(title: str, site: str) -> bool:
-    """같은 사이트에 비슷한 제목의 제안이 열려 있거나 처리 대기 중이면 True (직원 간 중복 제안 방지)."""
+_FILE_RE = __import__("re").compile(r"[\w/.-]+\.(?:md|py|js|ts|html|css|json|yml)\b")
+
+
+def similar_open(title: str, site: str, text: str = "") -> bool:
+    """같은 사이트에 비슷한 제안이 열려 있거나 처리 대기 중이면 True (직원 간 중복 제안 방지).
+    제목 단어가 60% 이상 겹치거나, 같은 파일을 고치자는 제안이 이미 있으면 중복
+    (Pix2Poly 'docs/web-optimization.md' 과제가 제목만 바꿔 6번 올라온 일, 2026-11-05)."""
     import re as _re
     words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", title))
+    files = set(_FILE_RE.findall(f"{title} {text}"))
     for p in board()["proposals"]:
         if (p.get("site") or "3dflowhub") != site or p["status"] not in ("new", "held", "accepted"):
             continue
         other = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", p["title"]))
         if words and len(words & other) / max(1, min(len(words), len(other))) >= 0.6:
+            return True
+        if files and files & set(_FILE_RE.findall(f"{p['title']} {p.get('proposal', '')}")):
             return True
     return False
 
@@ -654,7 +662,8 @@ def review(force: bool = False) -> dict | None:
     evs = [{"at": now, "kind": "report", "id": "r-" + now[:16], "text": core.fix_terms(str(out.get("summary", "")))[:800],
             "allocation": alloc or None, "allocation_reason": str(out.get("allocation_reason", ""))[:300]}]
     for p in (out.get("proposals") or [])[:MAX_PROPOSALS]:
-        if not isinstance(p, dict) or not p.get("title") or p["title"] in open_titles:
+        if not isinstance(p, dict) or not p.get("title") or p["title"] in open_titles \
+                or similar_open(str(p["title"]), "3dflowhub", str(p.get("proposal", ""))):  # 제목만 바꾼 같은 과제
             continue
         pid = "p-" + hashlib.md5(f"{now}{p['title']}".encode()).hexdigest()[:10]
         evs.append({"at": now, "kind": "proposal", "id": pid, "title": str(p["title"])[:80],
