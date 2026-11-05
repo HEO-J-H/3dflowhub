@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-landscape-materials-layer-blend-ea9f",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Landscape materials (layer blend)",
+  "title": "Landscape 재질 레이어",
+  "summary": "Unreal Engine의 Landscape Material Layer Blend는 거대한 지형 표면에 흙, 풀, 바위 같은 여러 텍스처를 브러시로 자연스럽게 섞어 칠하는 기능입니다. 머티리얼 블렌딩을 통해 단조로운 지형을 사실적인 야외 환경으로 바꿉니다.",
+  "when": [
+    "지형 위에 흙길, 잔디, 자갈 등 여러 질감을 구역별로 나누어 칠할 때",
+    "서로 다른 텍스처가 만나는 경계면을 부드럽고 자연스럽게 그라데이션으로 이을 때",
+    "오픈 월드 레벨에서 시각적으로 풍부한 자연 환경 디테일을 만들 때"
+  ],
+  "steps": [
+    "Content Browser에서 우클릭 후 Material을 생성하고 이름을 지정한 뒤 더블 클릭하여 Material Editor를 엽니다.",
+    "Material Editor 그래프 창에서 우클릭하고 LandscapeLayerBlend 노드를 검색해 추가합니다.",
+    "Layers 속성에서 + 버튼을 눌러 흙(Dirt), 풀(Grass) 등의 Layer 이름을 추가하고 Blending 방식을 설정합니다.",
+    "각 텍스처(BaseColor, Roughness 등) 샘플러 노드를 생성하여 LandscapeLayerBlend 노드의 입력 핀에 연결합니다.",
+    "완료된 Material을 Content Browser에서 선택한 후, 뷰포트의 Landscape를 선택하고 Details 패널의 Landscape Material에 적용합니다.",
+    "에디터 상단 모드 선택 메뉴에서 Landscape 모드(Shift + 2)로 진입한 뒤 Paint 탭을 선택합니다.",
+    "생성된 Layer가 나타나면 브러시 크기와 강도를 조절하여 뷰포트의 지형 위에 직접 텍스처를 칠합니다."
+  ],
+  "params": [
+    {
+      "name": "LandscapeLayerBlend",
+      "desc": "여러 개의 지형 텍스처와 레이어 무게(Weight)를 혼합하는 핵심 노드입니다."
+    },
+    {
+      "name": "Layer Name",
+      "desc": "페인팅 탭에서 구분될 각 레이어의 고유 이름을 지정합니다."
+    },
+    {
+      "name": "Blending",
+      "desc": "레이어가 섞이는 방식(LB HeightBlend, LB WeightBlend 등)을 선택합니다."
+    },
+    {
+      "name": "LandscapeLayerWeight",
+      "desc": "특정 레이어가 칠해진 강도 데이터를 가져와 텍스처 마스크로 활용합니다."
+    },
+    {
+      "name": "Preview Weight",
+      "desc": "머티리얼 에디터 미리보기 창에서 특정 레이어의 적용 비율을 임시로 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "초원 속 흙길 만들기",
+      "steps": [
+        "Landscape Material에 잔디 레이어와 흙 레이어를 각각 설정합니다.",
+        "Landscape Paint 탭에서 흙 레이어를 선택합니다.",
+        "플레이어가 다닐 만한 경로를 따라 Mouse로 드래그하여 잔디 위에 흙길을 칠합니다."
+      ]
+    },
+    {
+      "title": "가파른 절벽에 바위 텍스처 적용",
+      "steps": [
+        "Landscape Layer Blend와 함께 Auto-Material 노드나 Z-Up 기반 마스크를 구성합니다.",
+        "지형의 경사도가 높아지는 가파른 구역에 자동으로 바위 레이어가 섞이도록 설정합니다.",
+        "뷰포트에서 지형의 높낮이를 조절하여 절벽면에 바위 텍스처가 자연스럽게 나타나는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "머티리얼 적용 후 레이어 칠하기가 안 됨 → Landscape Paint 탭에서 해당 레이어의 타겟 무게(Target Layer)를 생성하거나 새로 고침(Create Layer Info)을 하지 않아서 생기는 문제이므로 십자가(+) 아이콘을 눌러 Layer Info Table을 생성하세요.",
+    "텍스처가 지형 전체에 너무 크게 늘어남 → Texture Coordinate 노드의 UTiling / VTiling 값이 너무 낮기 때문이므로 값을 10~50 이상으로 높여 타일링 간격을 조절하세요."
+  ],
+  "related": [
+    "Landscape tool",
+    "Foliage tool",
+    "World Partition",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "W-BMbadinPI",
+      "title": "How To Make Landscape Layer Materials with Natural Height Blending in Unreal Engine 5",
+      "author": "Aziel Arts"
+    },
+    {
+      "id": "3zy5oMXuO04",
+      "title": "Unreal 5 - Landscape Painting (2 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Landscape%20materials%20%28layer%20blend%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Material",
+    "Material Editor",
+    "LandscapeLayerBlend"
+  ],
+  "at": "2026-11-05T12:33:48.557140+00:00"
+}
