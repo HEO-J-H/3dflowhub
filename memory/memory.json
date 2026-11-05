@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-03T12:03:55.532448+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 226,
-      "candidates_passed": 183,
-      "offtopic": 28,
-      "short": 0,
-      "prefiltered": 24,
-      "llm_fallbacks": [
-        "groq"
-      ],
-      "strategy_ver": "92985072",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post"
-      ]
-    },
-    {
       "at": "2026-11-03T12:14:13.841362+00:00",
       "collected": 1,
       "saved": 1,
@@ -5918,6 +5893,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-05T17:44:05.818384+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 242,
+      "candidates_passed": 188,
+      "offtopic": 33,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5093df4d",
+      "visuals": 1,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6013,7 +6015,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [evolve.analyze_3d_content_distribution()] 테스트 실패 — 159 passed in 16.41s 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
     "2026-10-29 [PR #20 다시 하기 — PR #18 다시 하기 — PR #15 다시 ] 최신 main 기준을 유지하며 기능 추가 PR을 재적용할 때 기존 테스트와 구조를 준수한다.",
     "2026-10-29 [[p-4bbef4f094|콘텐츠] 엔진 API 구현 및 테스트 추가: b] 서비스 모듈에는 비즈니스 로직만 작성하고, 테스트 코드는 반드시 tests 디렉토리에 분리하여 필요한 모듈을 정확히 임포트해야 합니다.",
     "2026-10-29 [성찰] 주제 무관한 뉴스나 중복 할인 정보를 엄격히 차단하고, Maya·Blender·3ds Max 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠를 강화해야 합니다.",
@@ -6132,7 +6133,8 @@
     "2026-11-05 [성찰] 동음이의어 및 관련 없는 일반 명사 뉴스 수집을 방지하기 위해 3D/CG 전용 맥락 검증 필터를 더욱 강화하고, 실무 검색 수요가 높은 스크립트 및 튜토리얼 콘텐츠 비중을 높여야 합니다.",
     "2026-11-05 [core.normalize_title(): 제목 정규화 함수 추가(소문자] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-05 [core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
-    "2026-11-05 [backend/app/services/url_ingest.py의 fetc] 외부 네트워크 요청은 항상 타임아웃과 예외 처리를 명시하여 견고성을 높여야 합니다."
+    "2026-11-05 [backend/app/services/url_ingest.py의 fetc] 외부 네트워크 요청은 항상 타임아웃과 예외 처리를 명시하여 견고성을 높여야 합니다.",
+    "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다."
   ],
   "categories": {
     "VFX": [
@@ -6168,7 +6170,7 @@
     "AI 3D/가우시안 스플래팅": 75,
     "VFX/스튜디오·작품": 85,
     "AI 3D/로보틱스·월드모델": 24,
-    "3D DCC/Blender": 100,
+    "3D DCC/Blender": 101,
     "Game Engine/Unreal Engine": 94,
     "AI 3D/기타 AI 3D": 36,
     "Game Engine/Godot": 25,
@@ -8100,14 +8102,15 @@
     1019073641511495522,
     15804827567898968955,
     14454325546828693528,
-    9667316505742553296
+    9667316505742553296,
+    1985819091847405893
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1929,
-    "Game Engine": 1929,
-    "VFX": 1929,
-    "AI 3D": 1929
+    "3D DCC": 1930,
+    "Game Engine": 1930,
+    "VFX": 1930,
+    "AI 3D": 1930
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
