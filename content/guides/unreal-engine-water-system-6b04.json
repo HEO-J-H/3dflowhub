@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-water-system-6b04",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Water system",
+  "title": "Water — 물 시스템",
+  "summary": "Unreal Engine의 Water System은 강, 호수, 바다, 폭포 등의 자연스러운 물 환경을 구축하고 랜드스케이프와 실시간으로 상호작용하는 통합 시스템입니다.",
+  "when": [
+    "오픈월드 맵에 거대한 바다나 호수를 구현할 때",
+    "지형을 따라 흐르는 강과 계곡을 만들 때",
+    "플레이어가 물에 들어갔을 때 수면 높낮이와 물리 효과를 적용할 때"
+  ],
+  "steps": [
+    "Plugins 창(Edit → Plugins)에서 Water 플러그인을 검색하여 활성화한 뒤 에디터를 재시작합니다.",
+    "Project Settings에서 Support global distance field 옵션이 켜져 있는지 확인합니다.",
+    "Place Actors 패널에서 Water 또는 Water Zone 관련 액터를 뷰포트로 드래그하여 배치합니다.",
+    "Landscape 모드에서 Water Mesh와 지형이 자연스럽게 블렌딩되도록 Spline 포인트를 수정합니다.",
+    "Details 패널에서 Water Body의 Material, Wave, Physics 속성을 조정하여 원하는 물결을 만듭니다.",
+    "플레이어 캐릭터를 배치하고 수면에 진입하여 물 속 시야와 파형 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Water Body Type",
+      "desc": "강, 호수, 바다 등 물의 기본 유형을 결정합니다."
+    },
+    {
+      "name": "Wave Amplitude",
+      "desc": "파도의 높낮이 진폭을 조절합니다."
+    },
+    {
+      "name": "Wave Frequency",
+      "desc": "파도가 치는 빈도와 간격을 설정합니다."
+    },
+    {
+      "name": "Current Velocity",
+      "desc": "물의 흐름 방향과 유속을 제어합니다."
+    },
+    {
+      "name": "Water Color",
+      "desc": "수심에 따른 물의 기본 색상과 투명도를 결정합니다."
+    },
+    {
+      "name": "Spline Points",
+      "desc": "강이나 해안선의 형태를 제어하는 제어점입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "계곡을 따라 흐르는 강 만들기",
+      "steps": [
+        "Water Body River 액터를 뷰포트의 계곡 지형 위에 배치합니다.",
+        "Spline 포인트를 추가하며 계곡의 굴곡을 따라 위치를 맞춥니다.",
+        "Details 패널에서 Current Velocity 값을 높여 물살이 빠르게 흐르게 합니다."
+      ]
+    },
+    {
+      "title": "섬 주변의 해안선 제작",
+      "steps": [
+        "Water Body Ocean 액터를 생성하여 섬 맵 전체를 감싸도록 배치합니다.",
+        "Wave Amplitude를 조절해 해안가에 밀려오는 파도의 세기를 조정합니다.",
+        "Landscape 패널과 연동하여 해수면 근처의 모래 지형을 부드럽게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "수면과 랜드스케이프 경계가 어색하게 끊어짐 → Water Body의 Landscape Layer Blending 옵션을 켜고 지형 레이어를 맞추세요.",
+    "물 속으로 들어갔는데 시야 효과가 적용되지 않음 → Post Process Volume이 수면 아래 영역을 포함하고 있는지 확인하세요."
+  ],
+  "related": [
+    "Landscape",
+    "Niagara Particle System",
+    "Post Process Volume",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "lxTUak5fxRA",
+      "title": "Unreal Engine 5 Water System (Buoyancy Physics, Oceans, Rivers, Lakes) | Beginner Tutorial",
+      "author": "Tinkr Academy"
+    },
+    {
+      "id": "gK0QccI0eeE",
+      "title": "How to Add Realistic Water in Unreal Engine 5.6 (Under 3 Minutes)",
+      "author": "Reality Fakers – Game Dev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Water%20system",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Plugins",
+    "Edit",
+    "Water"
+  ],
+  "at": "2026-11-05T13:23:45.052383+00:00"
+}
