@@ -1,0 +1,90 @@
+{
+  "id": "houdini-point-wrangle-examples-bfe4",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Point Wrangle examples",
+  "title": "Wrangle 예제 — 점 다루기",
+  "summary": "Houdini의 Point Wrangle 노드는 VEX 코드를 사용해 개별 포인트의 위치, 크기, 색상 등의 어트리뷰트를 직접 조작하여 정밀한 효과를 만드는 강력한 툴입니다.",
+  "when": [
+    "포인트마다 랜덤한 크기나 회전 값을 주어 자연스러운 군집을 만들 때",
+    "특정 조건에 맞는 포인트의 위치를 수학적 공식을 이용해 움직일 때",
+    "포인트 속성(P, Cd, @ptnum 등)을 활용해 복잡한 애니메이션을 제어할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Point Wrangle을 검색하여 선택하고 Geometry Nodes 하단에 연결합니다.",
+    "Point Wrangle 노드를 더블클릭하여 내부로 들어갑니다.",
+    "상단 파라미터 창의 VEX Code 입력란을 클릭합니다.",
+    "원하는 VEX 코드(예: @P.y += 1.0;)를 작성하여 포인트를 제어합니다.",
+    "네트워크 뷰에서 결과를 확인하고 파라미터 값을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "VEX Code",
+      "desc": "포인트 어트리뷰트를 제어하기 위해 작성하는 VEX 스니펫 코드 입력창입니다."
+    },
+    {
+      "name": "Run Over",
+      "desc": "코드를 실행할 데이터 단위를 지정합니다 (기본값 Points)."
+    },
+    {
+      "name": "Class",
+      "desc": "어트리뷰트가 저장될 레벨을 지정합니다."
+    },
+    {
+      "name": "CAGE",
+      "desc": "바인딩된 지오메트리의 세부 조정을 위한 추가 입력 슬롯입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "포인트 높이 랜덤하게 흔들기",
+      "steps": [
+        "Grid 노드 위에 Scatter 노드를 연결해 포인트를 생성합니다.",
+        "Scatter 노드 하단에 Point Wrangle 노드를 연결합니다.",
+        "VEX Code 창에 @P.y += sin(@ptnum) * 0.5; 코드를 입력합니다.",
+        "뷰포트에서 높이가 물결 모양으로 변형된 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "포인트 스케일 무작위 조절",
+      "steps": [
+        "Point Wrangle 노드를 지오메트리에 연결합니다.",
+        "VEX Code 창에 f@pscale = rand(@ptnum) * 0.8 + 0.2; 코드를 입력합니다.",
+        "Copy to Points 노드와 연결해 다양한 크기의 Instance를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "데이터 타입 불일치 (Type mismatch) → 정수형과 실수형(예: float과 int)을 섞어 연산할 때 발생하므로 f@나 i@ 등 정확한 타입 명시 및 형변환(float())을 사용합니다.",
+    "속성 이름 오타 → @P나 @pscale 등 기본 속성 이름을 대소문자나 스펠링 틀리게 입력하면 적용되지 않으므로 정확한 VEX 문법을 확인합니다."
+  ],
+  "related": [
+    "Attribute Wrangle",
+    "Primitive Wrangle",
+    "VEX",
+    "Scatter"
+  ],
+  "videos": [
+    {
+      "id": "x9xyrlLYi-Y",
+      "title": "Split By Point Attribute | Houdini 21",
+      "author": "Inside The Mind"
+    },
+    {
+      "id": "zaDcX9Sla8M",
+      "title": "3 Tips in Houdini for the Wrangle Node. #houdini #houdinifx #shortsclip #subscribe #tutorial",
+      "author": "Diffluctum"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Point%20Wrangle%20examples",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Point Wrangle",
+    "Geometry Nodes"
+  ],
+  "at": "2026-11-05T10:48:43.226832+00:00"
+}
