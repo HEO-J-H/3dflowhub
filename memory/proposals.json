@@ -13787,5 +13787,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 메모리 최적화 문서 내용 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T09:57:16+00:00",
+    "kind": "proposal",
+    "id": "p-aad7dc945d",
+    "title": "백엔드 PBR 입력 검증 PR(#43, #44) 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/pbr_generator.py 관련 PR #43, #44가 승인 대기 상태로 남아 있습니다.",
+    "proposal": "GitHub에서 PR #43과 #44의 코드를 최종 검토하고 문제가 없으면 머지 진행",
+    "expected": "PBR 맵 생성 시 유효성 검사 강화로 안정성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T09:57:16+00:00",
+    "kind": "proposal",
+    "id": "p-7ccb6a74d1",
+    "title": "웹 버전 메모리 최적화 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 PBR 텍스처 메모리 해제 및 3D 모델 재생성 시 메모리 누수 방지 코드가 반영되었습니다.",
+    "proposal": "web/ 디렉토리 내의 메모리 해제 루틴을 브라우저 환경에서 점검할 수 있는 단위 테스트 또는 체크리스트 보완",
+    "expected": "장시간 사용 시 브라우저 메모리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T10:01:46.934647+00:00",
+    "kind": "decision",
+    "id": "p-aad7dc945d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T10:01:46.949184+00:00",
+    "kind": "decision",
+    "id": "p-7ccb6a74d1",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T10:01:55.564577+00:00",
+    "kind": "triage",
+    "id": "p-7ccb6a74d1",
+    "verdict": "done_already",
+    "reason": "웹 버전 메모리 해제 루틴과 관련된 테스트 및 문서 보완 작업이 이미 끝낸 제안 및 최근 커밋에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T10:01:55.578201+00:00",
+    "kind": "decision",
+    "id": "p-7ccb6a74d1",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 버전 메모리 해제 루틴과 관련된 테스트 및 문서 보완 작업이 이미 끝낸 제안 및 최근 커밋에 반영되어 있습니다."
   }
 ]

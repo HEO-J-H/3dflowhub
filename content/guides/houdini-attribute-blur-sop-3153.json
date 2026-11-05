@@ -1,0 +1,88 @@
+{
+  "id": "houdini-attribute-blur-sop-3153",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Blur SOP",
+  "title": "Attribute Blur — 값 부드럽게",
+  "summary": "Attribute Blur SOP는 지오메트리의 포인트나 Primitive에 존재하는 속성(Attribute) 값들을 주변 이웃과 평균 내어 부드럽게(Blur) 섞어주는 노드입니다. 마치 물감이 번지듯 거친 속성 변화를 자연스럽게 완화할 때 사용합니다.",
+  "when": [
+    "노이즈나 무작위 값으로 생성된 속성의 경계가 너무 거칠고 급격하게 변할 때",
+    "시뮬레이션 초기값이나 가중치 맵을 부드럽게 스무딩하여 자연스러운 효과를 내고 싶을 때",
+    "Attribute Transfer 등으로 가져온 외부 데이터의 경계를 자연스럽게 블렌딩할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Attribute Blur를 검색하여 Attribute Blur SOP 노드를 생성하고 대상 지오메트리 하단에 연결합니다.",
+    "파라미터 창(Parameter Pane)의 Attributes 란에 블러를 적용할 속성 이름(예: Cd, pscale 등)을 입력합니다.",
+    "Iterations 값을 조절하여 블러가 반복되는 횟수와 강도를 설정합니다.",
+    "뷰포트에서 속성 값이 부드럽게 퍼져 나가는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Attributes",
+      "desc": "블러를 적용할 대상 속성의 이름을 지정합니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "블러 연산을 반복하는 횟수로, 값이 높을수록 더 넓게 부드러워집니다."
+    },
+    {
+      "name": "Blur Type",
+      "desc": "주변 이웃을 탐색하는 방식을 설정합니다 (Distance 기반 또는 Point 이웃 기반)."
+    },
+    {
+      "name": "Radius",
+      "desc": "블러가 미치는 영향 반경 거리 값을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "색상(Cd) 속성 부드럽게 섞기",
+      "steps": [
+        "Attribute Randomize로 거칠게 들어간 색상 속성을 확인합니다.",
+        "Attribute Blur 노드를 연결하고 Attributes 에 Cd를 입력합니다.",
+        "Iterations 값을 높여 색상 경계를 부드럽게 그라데이션 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "Particle 스케일(pscale) 자연스럽게 만들기",
+      "steps": [
+        "포인트 크기 값이 급격하게 차이 나는 지오메트리를 준비합니다.",
+        "Attribute Blur를 추가하고 Attributes 에 pscale을 입력합니다.",
+        "인접한 포인트끼리 크기가 부드럽게 이어지도록 Radius를 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "속성 이름 오입력 → Attributes 란에 대소문자를 포함한 정확한 속성 이름(예: Cd, pscale)이 입력되었는지 확인합니다.",
+    "지오메트리에 포인트/Primitive 속성이 없음 → Attribute Create나 Transfer 등으로 먼저 대상 속성이 존재하는지 점검합니다."
+  ],
+  "related": [
+    "Attribute Transfer",
+    "Attribute Randomize",
+    "Attribute Noise",
+    "Subdivide"
+  ],
+  "videos": [
+    {
+      "id": "OI0KDAP31Xg",
+      "title": "Attribute Blur",
+      "author": "Paul Esteves"
+    },
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Blur%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Blur",
+    "Attribute Blur SOP"
+  ],
+  "at": "2026-11-05T09:58:07.322807+00:00"
+}
