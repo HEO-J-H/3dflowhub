@@ -1569,11 +1569,11 @@ with h_kpi:
     v1.metric("오늘 방문", f"{_v_today}회" if _v_today is not None else "집계 전",
               (f"{_v_today - _v_yday:+d} 어제 대비" if (_v_today is not None and _v_yday is not None) else None),
               help=f"GoatCounter 3시간마다 갱신 (마지막 {str(_pg.get('at', ''))[11:16] or '-'}) · 하루 중간 값")
-    v2.metric("오늘 올린 콘텐츠", f"{_made}개", help="소식 + 기초 가이드 + 도구별 정리 + 실무 파이프라인 + 오류 해결·바뀐 점")
+    v2.metric("오늘 올린 콘텐츠", f"{_made}개", help="소식 + 기초 가이드 + 도구별 정리 + 오류 해결·바뀐 점")
     v3.metric("최근 30일 방문", f"{_pg.get('pv_30d', '-')}회")
     v4.metric("AI 남은 여력", f"{core.llm_capacity_left()}회", help=f"매일 {core.llm_reset_kst()[-5:]} 리셋 (한국 시간)")
     st.caption(f"오늘 올린 것 — 소식 {done_k['news']} · 기초 가이드 {done_k['guides']} · 오류 해결·바뀐 점 {_fx} · "
-               f"도구별 정리 {done_k['roundups']} · 실무 파이프라인 {done_k['recipes']} · 품질 보강 {done_k['enriched']}")
+               f"도구별 정리 {done_k['roundups']} · 품질 보강 {done_k['enriched']}")
     st.caption(f"한국 시간 {_today:%m/%d} 0시부터 · AI 남은 여력 {core.llm_capacity_left()}회 "
                f"(AI 한도는 매일 {core.llm_reset_kst()[-5:]} 리셋)")
     st.caption(("🤖 자동 모드 켜짐 — AI 관리자가 배분 중" if cfg.get("auto_mode") else "자동 모드 꺼짐 (자동화·진화 탭에서 켜기)")

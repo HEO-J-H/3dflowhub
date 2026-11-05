@@ -74,7 +74,7 @@ def newsletter_box(root: str = "") -> str:
     if not re.fullmatch(r"[A-Za-z0-9_-]{2,40}", user):
         return ""
     return (f'<form class="nl" action="https://buttondown.com/api/emails/embed-subscribe/{e(user)}" method="post" '
-            f'target="_blank"><b>📬 주간 3D 소식·검증된 스크립트 받아보기</b>'
+            f'target="_blank"><b>📬 주간 3D 소식·기초 가이드 받아보기</b>'
             f'<span>매주 한 번, 구독 확인한 분께만 보냅니다. 언제든 메일 하단에서 수신거부할 수 있어요.</span>'
             f'<div><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소">'
             f'<button type="submit">구독</button></div>'
