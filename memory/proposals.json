@@ -16107,5 +16107,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 메모리 관리 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T18:55:17+00:00",
+    "kind": "proposal",
+    "id": "p-2e7f2252f9",
+    "title": "경량 RAG 가이드 검색 엔드포인트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 PR #45·#46에서 RAG 오픈소스 활용 방안을 문서화(merged)했으며, 현재 핵심 파이프라인에 영향 없는 경량 기능을 추가할 여지가 있습니다.",
+    "proposal": "backend/app/services/guide_search.py 파일에 LangChain + FAISS 기반 검색 로직을 구현하고, /search/guide API 엔드포인트를 추가한다. docs/agent-guides/guide-search.md에 설계 가이드와 사용법을 기록하고, unit test (tests/test_guide_search.py) 를 작성한다.",
+    "expected": "사용자는 사이트 내에서 키워드로 가이드·문서를 빠르게 찾을 수 있어 UX가 향상되고, 검색 트래픽이 증가해 페이지 체류 시간이 늘어난다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/45",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T18:55:17+00:00",
+    "kind": "proposal",
+    "id": "p-654477845d",
+    "title": "RAG 활용 가이드 페이지 공개",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "docs/tech-research.md에 RAG 오픈소스 조사 내용이 이미 정리돼 있으나, 사용자에게 직접 노출되지 않음.",
+    "proposal": "docs/guide-search.md 파일을 새로 만들고, 기존 사이트 메뉴에 ‘도움말·검색’ 섹션을 추가해 해당 페이지를 연결한다. 간단한 사용 예시와 설치/실행 스크린샷을 포함한다.",
+    "expected": "새로운 가이드 페이지가 SEO 키워드(‘RAG 검색’, ‘LangChain 가이드’)를 확보해 검색 유입을 늘린다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T18:55:17+00:00",
+    "kind": "proposal",
+    "id": "p-42e3c1f1b4",
+    "title": "RAG 통합 설계 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "RAG 오픈소스 검토 결과가 docs/tech-research.md에 정리돼 있으나, 실제 구현 방안이 문서화되지 않음.",
+    "proposal": "docs/agent-guides/rag-integration.md 에 라이선스 검토(MIT, Apache‑2.0), GPU/CPU 요구사항, 선택 가능한 라이브러리(LangChain, LlamaIndex)와 구현 흐름을 정리한다. 향후 PR 검토 시 이 가이드를 기준으로 사용한다.",
+    "expected": "팀이 RAG 기능을 추가할 때 일관된 기준을 갖게 되어 개발 속도가 빨라지고, 라이선스·보안 리스크를 사전에 차단한다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T19:00:15.559829+00:00",
+    "kind": "decision",
+    "id": "p-2e7f2252f9",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 경량 로컬 RAG 검색 엔드포인트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T19:00:15.581548+00:00",
+    "kind": "decision",
+    "id": "p-654477845d",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T19:00:15.604043+00:00",
+    "kind": "decision",
+    "id": "p-42e3c1f1b4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
   }
 ]

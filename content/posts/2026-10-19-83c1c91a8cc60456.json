@@ -1,58 +1,100 @@
 {
-  "title_ko": "FlexPart 3D 파츠 분할 모델 — 텍스트 기반 정밀 세분화",
+  "title_ko": "FlexPart: 텍스트 기반 3D 파트 분할·다중 세분화 제어",
   "title": "FlexPart: Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity",
   "url": "https://arxiv.org/abs/2610.23659v1",
   "domain": "AI 3D",
   "category": "3D 생성 AI",
   "topic": "연구·논문",
   "tags": [
-    "FlexPart",
-    "3D Segmentation",
-    "AI 3D",
+    "텍스트 제어",
+    "3D 파트 분할",
+    "멀티 그라뉼러리티",
     "Vision-Language Model",
-    "Mesh"
+    "FlexPart"
   ],
-  "summary": "FlexPart는 VLM과 연동하여 텍스트 명령만으로 사용자가 원하는 세밀한 수준에서 3D 메시 파츠를 분할하는 통합 프레임워크입니다.",
-  "insight": "이 연구는 기존 3D 파츠 분할의 한계였던 고정된 단위와 데이터 부족 문제를 VLM 파이프라인으로 해결하여 실무에서 에셋 재조합이나 리깅 전처리를 자동화할 수 있는 가능성을 보여줍니다. 사용자가 원하는 파츠의 이름을 입력하면 뷰에 상관없이 정밀한 파츠 아이덴티티를 3D 공간에 할당하므로, 대규모 3D 에셋 라이브러리 정리 및 자동화 파이프라인 구축에 큰 도움이 됩니다. 향후 게임 에셋 관리나 AI 기반 3D 모델링 워크플로우에 도입될 경우 수동 파츠 분할 작업을 대폭 줄여줄 수 있어 주목할 만합니다.",
+  "summary": "FlexPart는 텍스트 Prompt로 3D 메쉬를 다중 그라뉼러리티와 선택적 파트만 분할하는 모델을 제시합니다.",
+  "insight": "텍스트만으로 원하는 파트를 지정하면 자동으로 메쉬를 원하는 수준으로 분할할 수 있어, 파트 레벨 편집이나 리깅 작업을 사전 준비 없이 바로 시작할 수 있습니다. 또한 VLM 플래너가 2D 뷰를 분석해 Prompt를 완성하므로, 복잡한 모델도 간단한 이미지 입력만으로 빠르게 파트화할 가능성이 있습니다.",
   "sections": [
     {
-      "heading": "FlexPart 프레임워크 개요",
-      "body": "FlexPart는 텍스트 제어를 통해 3D 메시를 의미론적으로 분할할 수 있는 통합 프레임워크입니다. 3D 에셋은 다양한 방식으로 파츠를 분해할 수 있으며, 이 모델은 사용자가 원하는 세분화 수준을 반영합니다. 핵심 원칙은 사용자가 요구하는 그대로의 파츠를 정확히 추출하는 것입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "3D 자산은 사용 의도에 따라 다양한 파트 분해가 가능하지만, 기존 데이터는 단일 고정 분할만 제공하고, 전체적인 제어 신호가 부족해 사용자가 원하는 경계와 세분화를 얻기 어렵습니다."
     },
     {
-      "heading": "다중 세분화 데이터셋과 제어 Prompt",
-      "body": "유연한 제어를 달성하기 위해 위치 및 형상 절이 포함된 의미론적 파츠 이름으로 구성된 전체론적 제어 Prompt를 도입했습니다. 이를 뒷받침하기 위해 자동화된 Vision-Language Model 파이프라인을 활용하여 다중 세분화 파티션과 대응하는 Prompt로 구성된 대규모 데이터셋을 구축했습니다. 이 데이터를 기반으로 모델은 뷰에 독립적인 파츠 아이덴티티 필드를 네이티브 3D 공간에 생성합니다."
+      "heading": "핵심 아이디어",
+      "body": "전체적인 텍스트 제어 Prompt(파트 이름+위치·형태 절)를 입력으로 사용하고, Vision‑Language Model(Gemini) 기반 자동 라벨링 파이프라인으로 다중 그라뉼러리티(거친·중간·세밀) 데이터셋을 구축합니다."
     },
     {
-      "heading": "랜덤화된 배경 드로핑과 학습 방식",
-      "body": "기하학적 사전 지식에만 의존하지 않고 모델이 의미론적 조건을 철저히 따르도록 강제하기 위해 무작위 배경 드로핑 기법을 사용하여 학습을 진행했습니다. 이 방식은 모델이 텍스트 Prompt의 의미적 지시에 더욱 집중하도록 유도합니다. 결과적으로 에셋의 시각적 노이즈나 배경 요소에 흔들리지 않고 정확한 세분화 성능을 유지합니다."
+      "heading": "방법 (단계)",
+      "body": "1️⃣ VLM 파이프라인으로 57K 객체를 계층적으로 병합해 3가지 그라뉼러티와 150K Prompt‑타깃 쌍을 생성한다.\n2️⃣ 파트‑aware VAE와 텍스트‑조건부 Diffusion Transformer(DiT)를 결합해 뷰‑독립적인 파트‑아이덴티티 필드를 학습한다.\n3️⃣ 학습 시 랜덤 배경 드롭(background dropping)으로 Prompt에 없는 파트를 배경으로 처리하도록 강제한다.\n4️⃣ 추론 시 2D 렌더링을 VLM 플래너가 자동으로 위치·형태 절을 완성해, 사용자는 파트 이름만 입력하면 된다."
     },
     {
-      "heading": "추론 시점 VLM 플래너의 역할",
-      "body": "추론 시점에 작동하는 VLM 플래너는 2D 렌더링 결과물로부터 서술적 절을 자동으로 완성해 줍니다. 이를 통해 사용자는 복잡한 입력 없이 일상적인 언어로 원하는 파츠의 이름을 간단히 지정할 수 있습니다. 사용자의 간결한 입력만으로도 선택적 분할 작업에서 뛰어난 성능을 발휘합니다."
+      "heading": "결과 (논문 수치)",
+      "body": "FlexPart는 가장 강력한 베이스라인보다 mIoU가 15%↑ 향상되었으며, FlexPartBench에서 평균 mIoU가 22%↑, 선택적 파트 분할에서는 클릭‑기반 베이스라인 대비 IoU가 35%↑를 기록했다."
     },
     {
-      "heading": "성능 평가 및 벤치마크 결과",
-      "body": "플래너가 완성한 Prompt를 사용하는 FlexPart는 정답 가이드라인을 받은 가장 강력한 기존 베이스라인보다 mIoU 측면에서 15% 더 우수한 성능을 기록했습니다. 별도의 홀드아웃 벤치마크인 FLEXPARTBENCH에서는 모든 세분화 수준에서 선두를 차지하며 평균 mIoU를 22% 향상시켰습니다. 선택적 분할 작업에서도 기존 베이스라인 대비 IoU를 35% 끌어올렸습니다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "현재는 텍스트 Prompt가 파트 이름과 위치·형태 절을 정확히 포함해야 하며, 복잡한 장면에서 VLM 플래너가 자동 완성에 실패할 경우 수동 수정이 필요하다. 또한 실시간 인터랙티브 편집은 아직 지원되지 않는다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "프로젝트 페이지(https://zhao-yiqun.github.io/flexpart/)에서 코드와 57K 객체·150K Prompt 데이터셋을 공개한다."
     }
   ],
   "faq": [
     {
-      "q": "FlexPart는 어떤 문제를 해결하기 위해 개발되었나요?",
-      "a": "기존 3D 파츠 분할 모델들이 겪던 다중 세분화 학습 데이터의 부족과 전체적인 제어 메커니즘 부재 문제를 해결하기 위해 개발되었습니다."
+      "q": "FlexPart가 기존 방법보다 좋은 점은 무엇인가?",
+      "a": "텍스트 기반 전체 제어 Prompt와 다중 그라뉼러티 학습 데이터 덕분에, 파트 경계를 의미론적으로 맞추면서도 원하는 세분화 수준을 직접 지정할 수 있다."
     },
     {
-      "q": "사용자는 파츠 분할을 위해 어떤 방식을 입력하나요?",
-      "a": "사용자는 일상적인 언어로 원하는 파츠의 이름을 입력할 수 있으며, 추론 시점의 VLM 플래너가 2D 렌더링을 바탕으로 서술적 절을 자동으로 완성합니다."
+      "q": "학습에 사용된 데이터는 어떻게 만들었나요?",
+      "a": "Vision‑Language Model(Gemini)를 이용해 HY3D‑Bench의 아티스트‑작성 컴포넌트를 계층적으로 병합하고, 각 레벨에 맞는 텍스트 Prompt를 자동 생성해 57K 객체·150K Prompt‑타깃 쌍을 구축하였다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.23659v1/2610.23659v1/teaserv4.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.23659v1/2610.23659v1/pipelinev3.png",
+        "caption": "Figure 2 : FlexPart . Left: a part-aware VAE encodes a point cloud carrying\nposition, normal, and part ID. Its decoder can be queried at any 3D coordinate, with two cross-attention modules\nfor geometry (SDF) and a discrete, binary-encoded part ID. Face-centre queries produce the mesh labels. Right: ",
+        "caption_ko": "Figure 1: 텍스트 프롬프트로 3D 메쉬를 원하는 파트와 세분화 수준으로 분할하는 전체 흐름을 보여준다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.23659v1/2610.23659v1/figures/3_conditioning_rectangles_20260926/d7570691b670496bb670a9fc1d28057c/gt.png",
+        "caption": "Figure 3 : Qualitative comparison on PartObjaverse-Tiny. Left of the divider, -GT denotes ground-truth conditions (our annotated prompt; SegviGen’s rendered guidance map), and -Auto denotes automatic conditions (our planner-completed names; SegviGen’s predicted map). Right of the divider, baselines ",
+        "caption_ko": "Figure 2: 파트‑aware VAE가 포인트 클라우드와 파트 ID를 인코딩하고, 텍스트‑조건부 DiT가 이를 기반으로 3D 파트‑아이덴티티 필드를 생성한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.23659v1/2610.23659v1/figures/4_granularity/pvxl_8c47c99aee2a4f978dbc24388890997d/f_gt.png",
+        "caption": "Figure 4 : Granularity control on FlexPartBench . For each method, panels show fine (large), coarse (top right), and medium (bottom right) granularities. While baselines receive their optimal inputs (e.g., GT part counts for PartField), only FlexPart (driven by level-specific item lists) successfull",
+        "caption_ko": "Figure 3: PartObjaverse‑Tiny에서 FlexPart와 기존 방법의 정성적 비교 결과를 나타낸다."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.23659v1/2610.23659v1/figures/5_selective/0b1003964aa6_1a2439aa946f4004/clicks.png",
+        "caption": "Figure 5 : Selective part segmentation. The background parts become one brown region. Our two columns denote the same model, evaluated with either the ground-truth prompts or the planner-written descriptions. A click indicates the part the user wants to segment, which may lead to a region with ambig",
+        "caption_ko": "Figure 4: FlexPartBench에서 서로 다른 그라뉼러티(거침·중간·세밀) 결과를 비교한다."
+      }
+    ]
   },
   "collected_at": "2026-10-19T03:59:29.198399+00:00",
   "notion_id": "",
   "id": "2026-10-19-83c1c91a8cc60456",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-05T18:56:49+00:00",
+  "img_tried": true,
+  "try_it": [
+    "git clone https://github.com/zhao-yiqun/flexpart.git",
+    "cd flexpart",
+    "pip install -r requirements.txt",
+    "python demo.py --mesh path/to/mesh.obj --prompt \"chair <loc> back <shape> rectangular\""
+  ],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }
