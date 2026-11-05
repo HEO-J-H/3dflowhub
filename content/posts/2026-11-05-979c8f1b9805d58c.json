@@ -1,0 +1,55 @@
+{
+  "title_ko": "ComfyUI 오픈소스 기반 Paint a plate 공개",
+  "title": "FX artist here: I missed the lookdev phase, so I built a free tool where you paint a rough concept and get a shot back",
+  "url": "https://www.reddit.com/r/vfx/comments/1xokkv9/fx_artist_here_i_missed_the_lookdev_phase_so_i/",
+  "domain": "VFX",
+  "category": "Houdini FX",
+  "topic": "업데이트·출시",
+  "tags": [
+    "ComfyUI",
+    "Houdini",
+    "VFX",
+    "LTX 2.5",
+    "Open Source",
+    "후디니"
+  ],
+  "summary": "전직 VFX 아티스트가 개발한 ComfyUI 기반의 오픈소스 툴 Paint a plate는 첫 프레임에 직접 칠한 러프한 컨셉을 바탕으로 LTX 2.5를 통해 샷 전체를 자동 생성합니다.",
+  "insight": "Comfy의 오픈소스 Higgsfield 콘테스트를 계기로 제작된 오픈소스 툴입니다. OCIO 및 EXR 입출력을 지원하는 RV 스타일의 플레이어를 제공하여 기존 합성 작업 흐름에 바로 녹여낼 수 있습니다.",
+  "try_it": [
+    "ComfyUI 환경에서 Paint a plate 오픈소스 코드를 다운로드합니다.",
+    "첫 프레임 플레이트에 연기나 물 등의 덩어리를 러프하게 브러시로 칠해봅니다.",
+    "LTX 2.5 연동 결과를 RV 스타일의 플레이어에서 EXR 포맷으로 확인하고 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Paint a plate 개발 배경과 목적",
+      "body": "제작 초기 Houdini에서 새로운 FX 룩데브 작업을 즐기던 아티스트가 클라이언트 리뷰 전의 빠르고 직관적인 룩데브 과정을 재현하기 위해 개발했습니다. 긴 작업 시간 대신 빠르고 인터랙티브한 피드백 루프를 만드는 데 초점을 맞추었습니다."
+    },
+    {
+      "heading": "ComfyUI와 LTX 2.5 연동 방식",
+      "body": "ComfyUI 기반으로 빌드되어 첫 프레임에 연기, 불, 물 같은 플랫 블롭을 직접 칠하거나 지우고,어요 요소를 추가하는 방식으로 작동합니다. 이후 LTX 2.5 모델이 샷 전체로 결과를 자연스럽게 이어줍니다."
+    },
+    {
+      "heading": "RV 스타일의 내장 플레이어 기능",
+      "body": "VFX 실무에서 쓰이는 RV 플레이어와 유사한 인터페이스를 갖추고 있습니다. OCIO 색상 관리, EXR 입출력, 와이프(wipe) 비교, 컬러 인스펙터 기능을 통해 리뷰 과정을 효율적으로 지원합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Paint a plate는 어떤 툴을 기반으로 만들어졌나요?",
+      "a": "ComfyUI를 기반으로 제작된 오픈소스 툴이며 LTX 2.5를 활용해 비디오 샷을 생성합니다."
+    },
+    {
+      "q": "어떤 기능을 직접 칠해서 적용할 수 있나요?",
+      "a": "첫 프레임 플레이트에 연기, 불, 물 등의 평면 블롭을 그리거나 기존 요소를 지우고 재조명(relight)하는 작업을 수행할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/xigXk14qc4w/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=xigXk14qc4w"
+  },
+  "collected_at": "2026-11-05T16:04:24.268169+00:00",
+  "notion_id": "",
+  "id": "2026-11-05-979c8f1b9805d58c",
+  "img_tried": true
+}
