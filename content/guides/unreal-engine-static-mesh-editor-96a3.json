@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-static-mesh-editor-96a3",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Static Mesh Editor",
+  "title": "Static Mesh 에디터",
+  "summary": "Static Mesh Editor는 Unreal Engine에서 3D 모델(Static Mesh)의 머티리얼, 콜리전, LOD, 소켓 등을 시각적으로 확인하고 편집하는 전용 에디터입니다.",
+  "when": [
+    "임포트한 3D 모델에 기본 머티리얼이나 UV, 노멀을 확인하고 수정할 때",
+    "캐릭터나 무기가 장착될 위치에 소켓(Socket)을 추가하고 정렬할 때",
+    "게임 최적화를 위해 심플한 콜리전(Collision) 메쉬를 생성·조정할 때"
+  ],
+  "steps": [
+    "Content Browser에서 편집할 Static Mesh 에셋을 더블 클릭하여 Static Mesh Editor 창을 엽니다.",
+    "Viewport 패널에서 3D 모델의 외형과 라이팅, 와이어프레임(Alt+2) 상태를 확인합니다.",
+    "Details 패널에서 LOD Settings나 Nanite Settings 등 필요한 최적화 옵션을 설정합니다.",
+    "Collision 메뉴를 클릭하여 Box, Sphere 등 원하는 콜리전 Primitive를 추가합니다.",
+    "Toolbar의 Save 버튼을 눌러 변경 사항을 에셋에 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "LOD Settings",
+      "desc": "거리에 따라 폴리곤 디테일을 낮추는 레벨 오브 디테일 설정"
+    },
+    {
+      "name": "Collision",
+      "desc": "오브젝트 간 충돌 판정을 처리하는 콜리전 형상 관리"
+    },
+    {
+      "name": "Sockets",
+      "desc": "무기, Particle 등을 붙이기 위한 부착점 생성 및 위치 조절"
+    },
+    {
+      "name": "Nanite Settings",
+      "desc": "고밀도 폴리곤 에셋을 실시간 렌더링하기 위한 가상화 지오메트리 활성화"
+    },
+    {
+      "name": "Material Slots",
+      "desc": "에셋에 적용된 머티리얼 슬롯과 인덱스 연결 확인"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 손에 무기 장착용 소켓 만들기",
+      "steps": [
+        "Static Mesh Editor의 Skeleton Tree 또는 Sockets 패널을 엽니다.",
+        "상단 툴바의 Add Socket 버튼을 클릭하고 이름을 지정합니다.",
+        "Viewport에서 기즈모를 이용해 소켓 위치와 회전값을 무기 장착 위치에 맞게 조절합니다."
+      ]
+    },
+    {
+      "title": "벽 모델에 맞춘 심플 콜리전 생성하기",
+      "steps": [
+        "Static Mesh Editor 상단 메뉴 바에서 Collision을 클릭합니다.",
+        "Auto Convex Collision을 선택하고 팝업창에서 디테일 슬라이더를 조절합니다.",
+        "Apply 버튼을 눌러 최적화된 충돌 메쉬를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "에디터에서 수정 후 저장을 안 함 → Content Browser에서 반드시 Save 버튼을 눌러야 적용됩니다.",
+    "콜리전을 너무 복잡하게 만듦 → 복잡한 Convex 콜리전은 성능을 저하시키므로 Simple Collision 형태를 조합해 사용합니다."
+  ],
+  "related": [
+    "Nanite",
+    "LOD Settings",
+    "Collision",
+    "Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "U8YxNCGHfzE",
+      "title": "How to Edit Static Meshes in Unreal Engine 5",
+      "author": "CG Fast Tips"
+    },
+    {
+      "id": "EQ09ACsu0SU",
+      "title": "Master the Static Mesh Editor: Materials & Collision: Unreal Engine 5 for Beginners #7",
+      "author": "Game Dev Academy"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Static%20Mesh%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Static Mesh",
+    "Static Mesh Editor"
+  ],
+  "at": "2026-11-05T10:25:09.429668+00:00"
+}
