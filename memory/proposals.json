@@ -15577,5 +15577,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 최적화 가이드 파일(docs/web-optimization.md) 정",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T16:34:11+00:00",
+    "kind": "proposal",
+    "id": "p-8345d7739b",
+    "title": "PR #43 및 #44 백엔드 PBR 검증 최종 확인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "PR #43 및 #44가 백엔드 PBR 입력 무결성 검증 및 테스트를 추가한 채 승인 대기 중입니다.",
+    "proposal": "backend/app/services/pbr_generator.py의 유효성 검사 및 단위 테스트 코드를 최종 검토하고 이상이 없을 경우 승인 및 머지 진행",
+    "expected": "PBR 맵 생성 시 잘못된 입력으로 인한 백엔드 오류 방지",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T16:34:11+00:00",
+    "kind": "proposal",
+    "id": "p-f490346343",
+    "title": "웹 버전 성능 최적화 가이드 문서 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 버전 메모리 최적화 문서 작성 시 포맷 오류 및 LLM 호출 제한으로 인해 held 상태가 되었습니다.",
+    "proposal": "docs/web-optimization.md 파일의 포맷 오류를 수정하고 브라우저 메모리 관리 가이드를 깔끔하게 재작성하여 저장",
+    "expected": "개발자와 사용자가 참고할 수 있는 정확한 웹 성능 최적화 가이드 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T16:34:40.601456+00:00",
+    "kind": "decision",
+    "id": "p-8345d7739b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 PR(#40~#44) 테스트 최종 확인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T16:34:40.618500+00:00",
+    "kind": "decision",
+    "id": "p-f490346343",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T16:34:43.980935+00:00",
+    "kind": "triage",
+    "id": "p-f490346343",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 이미 끝낸 제안 내역에 웹 버전 성능 및 메모리 최적화 가이드 문서 작성과 포맷 수정 내용이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T16:34:43.995593+00:00",
+    "kind": "decision",
+    "id": "p-f490346343",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 이미 끝낸 제안 내역에 웹 버전 성능 및 메모리 최적화 가이드 문서 작성과 포맷 수정 내용이 이미 반영되어 있습니다."
   }
 ]
