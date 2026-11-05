@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-quixel-bridge-and-fab-assets-2950",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Quixel Bridge and Fab assets",
+  "title": "Fab — 무료 자산 가져오기",
+  "summary": "Quixel Bridge와 Fab 에셋은 Unreal Engine에서 고품질 3D 모델, 머티리얼, 표면 텍스처를 빠르게 검색하고 다운로드하여 씬에 바로 배치할 수 있는 통합 에셋 라이브러리 기능입니다.",
+  "when": [
+    "건축 시각화나 게임 배경 제작 시 자연물이나 건물 외벽 같은 고품질 3D 소스가 대량으로 필요할 때",
+    "PBR 머티리얼과 텍스처를 직접 제작할 시간이 없어 신속하게 실사풍 룩을 구성해야 할 때",
+    "Unreal Engine 5 환경에서 공식 통합된 Fab 브라우저를 통해 검증된 3D 모델과 소품을 가져오고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 에디터 상단 메뉴 바에서 Window -> Fab 또는 Quixel Bridge 창을 엽니다.",
+    "Epic Games 계정으로 로그인하여 큐레이션된 방대한 3D 모델 및 머티리얼 라이브러리에 접속합니다.",
+    "검색창에서 원하는 에셋(예: Rock, Brick Wall, Foliage)을 검색하고 Mouse로 클릭합니다.",
+    "품질(LOD/Nanite 설정)을 확인한 뒤 Download 버튼을 눌러 에셋을 로컬로 내려받습니다.",
+    "다운로드가 완료된 에셋을 Content Browser 또는 뷰포트로 직접 드래그 앤 드롭하여 배치합니다.",
+    "Details 패널에서 스케일, 머티리얼 Instance 파라미터를 조정하여 씬에 맞게 연출을 마무리합니다."
+  ],
+  "params": [
+    {
+      "name": "Quality / Resolution",
+      "desc": "다운로드할 에셋의 텍스처 Resolution(Standard, High, Nanite 등)를 선택합니다."
+    },
+    {
+      "name": "Nanite",
+      "desc": "하이폴리곤 지오메트리를 성능 저하 없이 그대로 사용할 수 있도록 활성화합니다."
+    },
+    {
+      "name": "LOD (Level of Detail)",
+      "desc": "거리에 따라 폴리곤 밀도를 낮추어 렌더링 성능을 최적화하는 단계 설정입니다."
+    },
+    {
+      "name": "Material Instance",
+      "desc": "다운로드된 에셋의 표면 색상, 거칠기, 노멀 등을 실시간으로 수정할 수 있는 머티리얼입니다."
+    },
+    {
+      "name": "Collision",
+      "desc": "캐릭터나 오브젝트가 부딪힐 수 있도록 에셋에 물리 충돌 영역을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실사풍 숲 배경에 바위와 나무 배치하기",
+      "steps": [
+        "Fab 또는 Quixel Bridge에서 자연물 카테고리를 엽니다.",
+        "원하는 바위와 나무 모델을 검색해 다운로드합니다.",
+        "뷰포트로 드래그 앤 드롭하여 지형 위에 배치합니다."
+      ]
+    },
+    {
+      "title": "건축 시각화 콘크리트 벽면 머티리얼 적용하기",
+      "steps": [
+        "Bridge 브라우저에서 콘크리트 서피스 머티리얼을 찾습니다.",
+        "해당 머티리얼을 다운로드한 뒤 씬의 벽면 오브젝트로 드래그합니다.",
+        "Details 패널에서 텍스처 타일링(Tiling) 값을 조절해 간격을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "로그인 오류 또는 네트워크 끊김 → Epic Games Launcher가 최신 버전인지 확인하고 계정을 재연결합니다.",
+    "에셋 스케일이 비정상적으로 큼 → 프로젝트 기본 단위(Units)와 에셋의 Import 스케일 설정을 확인합니다.",
+    "드래그 앤 드롭 후 에셋이 보이지 않음 → Content Browser의 최근 폴더나 검색 필터를 확인하고 뷰포트 포커스(F 키)를 맞춥니다."
+  ],
+  "related": [
+    "Static Mesh",
+    "Material Instance",
+    "Nanite",
+    "Content Browser"
+  ],
+  "videos": [
+    {
+      "id": "y29jijP6AKA",
+      "title": "The Easy Way to Use Megascans in FAB w/ Unreal Engine 5",
+      "author": "William Faucher"
+    },
+    {
+      "id": "Gy_a6T40s4Y",
+      "title": "How to Claim All Quixel Megascans assets on Fab for free in 2025",
+      "author": "LinYao"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Quixel%20Bridge%20and%20Fab%20assets",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Window",
+    "Fab",
+    "Quixel Bridge"
+  ],
+  "at": "2026-11-05T11:23:32.849713+00:00"
+}

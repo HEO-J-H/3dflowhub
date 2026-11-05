@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-warning-subdivision-level-cannot-be-deleted-23f9c",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Warning: Subdivision level cannot be deleted because higher levels exist",
+  "title": "Warning: Subdivision level cannot be deleted because higher levels exist 대처법",
+  "summary": "ZBrush에서 'Warning: Subdivision level cannot be deleted because higher levels exist' 경고는 현재 작업 중인 서브디비전 레벨보다 더 높은 상위 레벨이 남아있어 임의로 삭제할 수 없을 때 나타나는 메시지입니다. ZBrush의 지오메트리 구조상 상위 레벨을 먼저 정리해야 하거나, 현재 레벨 위치를 확인해야 합니다.",
+  "causes": [
+    "현재 선택한 서브디비전 레벨 위에 더 높은 상세 레벨(Higher Subdivision Level)이 존재할 때",
+    "Lowest 레벨이 아닌 중간 레벨 상태에서 하위 또는 현재 레벨을 삭제하려고 시도할 때",
+    "다중 서브디비전 구조를 이해하지 못한 상태에서 Del Lower 또는 Del Higher 기능을 잘못 적용할 때"
+  ],
+  "steps": [
+    "Tool 팔레트를 엽니다.",
+    "Geometry 탭에서 Subdivision Level 슬라이더를 확인합니다.",
+    "슬라이더를 가장 오른쪽(가장 높은 레벨)으로 이동합니다.",
+    "Del Higher 버튼을 눌러 상위 서브디비전 레벨들을 먼저 삭제합니다.",
+    "필요한 경우 다시 슬라이더를 원하는 레벨로 이동한 뒤 Del Lower 버튼을 사용합니다."
+  ],
+  "check": [
+    "Geometry 패널의 SDiv 슬라이더 범위가 줄어들고 불필요한 상위 레벨이 제거되었는지 확인합니다.",
+    "더 이상 해당 경고 창이 뜨지 않고 서브디비전 삭제 작업이 정상적으로 수행되는지 확인합니다."
+  ],
+  "prevent": [
+    "서브디비전 레벨을 삭제할 때는 항상 가장 높은 상위 레벨부터 순서대로 정리하는 습관을 들입니다.",
+    "작업 중인 서브디비전 히스토리(Lower/Higher) 단계를 Hotkey(Shift + D, D)로 수시로 확인합니다."
+  ],
+  "keywords": [
+    "ZBrush 서브디비전 삭제 오류",
+    "Subdivision level cannot be deleted",
+    "ZBrush Del Higher 비활성화",
+    "지오메트리 레벨 삭제 안됨",
+    "ZBrush SDiv 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-05T11:23:40+00:00"
+}

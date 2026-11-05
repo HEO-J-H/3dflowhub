@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-extension-manager-failed-to-load--aec4f",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Extension manager failed to load required extension",
+  "title": "Extension manager failed to load required extension 오류 해결",
+  "summary": "NVIDIA Omniverse에서 필수 확장(Extension)을 불러오는 중 문제가 발생했을 때 나타나는 오류입니다. 설정 파일 경로 오류, 누락된 의존성 패키지, 또는 캐시 손상으로 인해 발생합니다.",
+  "causes": [
+    "확장 설정 파일(extension.toml 또는 config)의 경로 누락 및 문법 오류",
+    "필수 확장 프로그램 간의 의존성(Dependency) 충돌이나 버전 불일치",
+    "Kit App 캐시(Cache) 데이터 손상",
+    "네트워크 차단으로 인한 원격 확장 다운로드 실패"
+  ],
+  "steps": [
+    "Omniverse Kit 앱과 런처를 완전히 종료합니다.",
+    "Stage 패널 및 Property 패널에서 문제가 발생한 앱의 설정 파일 경로를 확인합니다.",
+    "Extensions 탭(Extension Manager)에서 비활성화된 필수 확장이 있는지 확인하고 수동으로 활성화합니다.",
+    "로컬 캐시 폴더로 이동하여 해당 Kit App의 캐시(cache 폴더)를 삭제하고 앱을 재시작합니다.",
+    "Command Prompt 또는 Terminal에서 로그(Log)를 확인하여 누락된 구체적인 확장 이름을 파악합니다."
+  ],
+  "check": [
+    "Kit App이 오류 없이 정상적으로 실행되며 Extension Manager에서 모든 필수 확장이 'Enabled' 상태로 표시되는지 확인합니다.",
+    "Console 창에 확장 로딩 관련 에러 메시지가 더 이상 나타나지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "확장 파일(extension.toml)을 수정할 때는 JSON 및 TOML 문법을 철저히 검증합니다.",
+    "Omniverse Kit 앱 업데이트 시 의존성 패키지가 최신 버전과 호환되는지 확인합니다."
+  ],
+  "keywords": [
+    "Omniverse Extension Manager 오류",
+    "Extension manager failed to load required extension",
+    "Kit App 확장 로드 실패",
+    "Omniverse 확장 프로그램 오류 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-05T11:23:44+00:00"
+}

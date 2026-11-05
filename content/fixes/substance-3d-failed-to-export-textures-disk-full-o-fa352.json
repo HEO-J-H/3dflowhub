@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-failed-to-export-textures-disk-full-o-fa352",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Failed to export textures: Disk full or write permission denied",
+  "title": "Failed to export textures: Disk full or write permission denied 해결 방법",
+  "summary": "Failed to export textures: Disk full or write permission denied 오류는 Substance 3D Painter 등에서 텍스처를 내보낼 때 디스크 용량이 부족하거나 해당 폴더에 쓰기 권한이 없어 발생하는 문제입니다.",
+  "causes": [
+    "저장하려는 드라이브의 실제 남은 용량이 부족한 경우",
+    "지정한 폴더에 Windows나 macOS의 쓰기 권한이 없는 경우 (예: Program Files 등 시스템 보호 폴더)",
+    "외부 저장소나 네트워크 드라이브의 연결이 끊어졌거나 읽기 전용으로 설정된 경우",
+    "다른 프로그램(예: 이미지 뷰어, 탐색기 등)이 내보내려는 파일을 이미 열고 있어 잠겨 있는 경우"
+  ],
+  "steps": [
+    "File Explorer 또는 Finder를 열어 저장할 드라이브의 남은 용량이 충분한지 확인합니다.",
+    "Substance 3D 앱의 Export 패널에서 Output Path(경로)를 바탕권이나 문서 폴더 등 쓰기 권한이 확실한 위치로 변경합니다.",
+    "Substance 3D 앱을 완전히 종료한 뒤, 아이콘을 Mouse 우클릭하여 '관리자 권한으로 실행'을 선택합니다.",
+    "외장 하드나 네트워크 드라이브를 사용하는 경우 연결 상태를 확인하고 다른 로컬 드라이브에 먼저 저장해 봅니다.",
+    "Export 파일명이나 폴더 경로에 특수문자나 지원하지 않는 언어가 포함되어 있는지 확인하고 영문으로 변경합니다."
+  ],
+  "check": [
+    "Export 창에서 Export 버튼을 눌렀을 때 오류 메시지 없이 'Successfully exported' 알림이 뜨는지 확인합니다.",
+    "지정한 폴더에 최신 날짜와 시간으로 텍스처 파일들이 정상 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "작업 전 프로젝트 폴더와 텍스처 출력 경로의 여유 디스크 공간을 수시로 확인합니다.",
+    "시스템 폴더나 권한 제한이 걸린 네트워크 경로 대신 로컬 작업 디렉토리를 기본 출력 경로로 사용합니다."
+  ],
+  "keywords": [
+    "Substance 3D 텍스처 Export 오류",
+    "Disk full or write permission denied",
+    "Substance Painter 저장 안 됨",
+    "디스크 용량 부족 권한 거부",
+    "Substance 텍스처 export 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-05T11:23:42+00:00"
+}

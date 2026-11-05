@@ -5,16 +5,16 @@
   "group": "디지털 트윈",
   "name": "Digital twin basics with Omniverse",
   "title": "디지털 트윈 기초",
-  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있습니다.",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
   "when": [
     "서로 다른 3D 툴(Blender, 3ds Max, Maya 등)을 사용하는 팀원들과 실시간 협업이 필요할 때",
-    "공장, 도시, 대형 건축물 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
+    "공장, 도시, 대형 건축물, 의료 및 AI 팩토리 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
     "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때"
   ],
   "steps": [
     "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 로컬 또는 원격으로 시작합니다.",
     "설치된 DCC 툴(예: 3ds Max 또는 Blender)을 열고 Omniverse Connector(Live Sync) 플러그인을 활성화합니다.",
-    "Omniverse Nucleus 서버에 새로운 프로젝트용 USD 스테이지(Stage)를 생성합니다.",
+    "Omniverse Nucleus 서버에 새로운 프로젝트용 USD 스테이지(Stage)를 생성하거나 OpenUSD 레이어 기반의 파이프라인을 구성합니다.",
     "각 DCC 툴에서 모델링 데이터를 수정하면 Omniverse Viewport에 실시간으로 반영되는 것을 확인합니다.",
     "Render Settings 패널에서 RTX Renderer와 Path Tracing 모드를 켜서 고품질 결과를 확인합니다.",
     "Physics 패널에서 강체(Rigid Body)와 충돌(Collision) 속성을 부여해 시뮬레이션을 실행합니다."
@@ -26,7 +26,7 @@
     },
     {
       "name": "Layer",
-      "desc": "원본 데이터를 수정하지 않고 속성이나 요소를 덧씌워 비파괴적으로 협업합니다."
+      "desc": "원본 데이터를 수정하지 않고 속성이나 요소를 덧씌워 비파괴적으로 협업합니다. (AI 에이전트 워크플로우를 통한 가산형 레이어 분리 지원)"
     },
     {
       "name": "Live Sync",
@@ -55,11 +55,11 @@
       ]
     },
     {
-      "title": "공장 자동화 디지털 트윈 시뮬레이션",
+      "title": "공장 자동화 및 AI 팩토리 디지털 트윈 시뮬레이션",
       "steps": [
         "CAD 데이터를 USD 형식으로 변환하여 Stage에 임포트합니다.",
-        "컨베이어 벨트 오브젝트에 Kinematic Rigid Body 속성을 적용합니다.",
-        "PhysX 시뮬레이션을 실행하여 제품 이동 경로와 병목 구간을 테스트합니다."
+        "OpenUSD 레이어 분리 기법을 활용해 팀별 수정 사항을 원본 손상 없이 관리합니다.",
+        "PhysX 시뮬레이션을 실행하여 제품 이동 경로, 전력 및 냉각 분석 등 병목 구간을 테스트합니다."
       ]
     }
   ],
@@ -90,21 +90,29 @@
   "images": [],
   "menu_path": [],
   "at": "2026-11-01T12:45:49.356962+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-01-c3173969f2a09426",
-      "title": "NVIDIA Omniverse 기반 AI 폐 디지털 튜인 솔루션 공개",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdzN0ZFpaT0x2OENqZjVEWU1kN3Rxc1hfTWlTNHlPVHJMUlVxM0xDOW9UOXZIX2pEeUlRSVdndHgzUGI0WTdzblgxYVRNdEV5N19XUjRPNDVoOTVqWWpsQnhiOEpMUEVxWko0djY1ZTR6UVpoUnd5cjkzY0x2aENUSU1UdDZrcDFYX284eWpYNmF4R0lfUHhhdlFmbEJaSE9haVVHSw?oc=5"
-    },
-    {
-      "key": "p:2026-10-29-b9009ee44e00546d",
-      "title": "NVIDIA Omniverse 기반 디지털 트윈 협업 확대",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObEVPNjIwTTVpUERDb0xvSU1aUkVYZXVkT2xlcXo3UmhGemtBZElSRW1yN0N4VWxxdjRFZTdpSVZGUy1rc3J1cGwzSW1kTkR2WUtYZF9NYWtGcXVrbjhKQjNsd1VtZ2tHc1d0dnBBcERKcnc4Q1dwUWlFUVpGbGxmakZLa01UMjQ5WkhGMmNCUjRqMTczMUFNNDJFdTVRTkpnMDI3bVJqS3VlLXJvTTNPOGJ1WE5mRjhTT0tBekthVEFObjhPdmFDcUFEWGNoNWM?oc=5"
-    },
-    {
-      "key": "p:2026-10-21-24f50db3e043ed4c",
-      "title": "NVIDIA Omniverse DSX Blueprint — AI 팩토리 디지털 트윈 구축",
-      "url": "https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/"
+      "at": "2026-11-05T11:23:51+00:00",
+      "what": "NVIDIA Omniverse의 최신 산업별 디지털 트윈 확장 사례(의료·건설·AI 팩토리 DSX Blueprint 및 OpenUSD 레이어 워크플로우)를 요약 및 파라미터 설명에 반영했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 기반 AI 폐 디지털 튜인 솔루션 공개",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdzN0ZFpaT0x2OENqZjVEWU1kN3Rxc1hfTWlTNHlPVHJMUlVxM0xDOW9UOXZIX2pEeUlRSVdndHgzUGI0WTdzblgxYVRNdEV5N19XUjRPNDVoOTVqWWpsQnhiOEpMUEVxWko0djY1ZTR6UVpoUnd5cjkzY0x2aENUSU1UdDZrcDFYX284eWpYNmF4R0lfUHhhdlFmbEJaSE9haVVHSw?oc=5"
+        },
+        {
+          "title": "NVIDIA Omniverse 기반 디지털 트윈 협업 확대",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObEVPNjIwTTVpUERDb0xvSU1aUkVYZXVkT2xlcXo3UmhGemtBZElSRW1yN0N4VWxxdjRFZTdpSVZGUy1rc3J1cGwzSW1kTkR2WUtYZF9NYWtGcXVrbjhKQjNsd1VtZ2tHc1d0dnBBcERKcnc4Q1dwUWlFUVpGbGxmakZLa01UMjQ5WkhGMmNCUjRqMTczMUFNNDJFdTVRTkpnMDI3bVJqS3VlLXJvTTNPOGJ1WE5mRjhTT0tBekthVEFObjhPdmFDcUFEWGNoNWM?oc=5"
+        },
+        {
+          "title": "NVIDIA Omniverse DSX Blueprint — AI 팩토리 디지털 트윈 구축",
+          "url": "https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-01-c3173969f2a09426",
+        "p:2026-10-29-b9009ee44e00546d",
+        "p:2026-10-21-24f50db3e043ed4c"
+      ]
     }
   ]
 }
