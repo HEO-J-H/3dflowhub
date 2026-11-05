@@ -1,0 +1,83 @@
+{
+  "id": "unreal-engine-level-instances-4de0",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Level Instances",
+  "title": "Level Instance — 묶음 재사용",
+  "summary": "Unreal Engine의 Level Instances는 여러 Actor의 조합을 하나의 독립된 레벨 파일(.umap)로 묶어 관리하고, 여러 곳에 재사용할 수 있는 모듈식 레벨 제작 기능입니다.",
+  "when": [
+    "반복되는 건물이나 아파트 단지의 동일한 층 구조를 여러 번 배치할 때",
+    "대규모 환경에서 팀원과 파트를 나누어 서브 레벨 단위로 협업할 때",
+    "오픈월드 씬에서 특정 구역을 통째로 로드하거나 언로드하여 최적화할 때"
+  ],
+  "steps": [
+    "Viewport에서 Level Instance로 묶을 여러 Actor들을 다중 선택합니다.",
+    "선택한 Actor들 위에서 우클릭하여 Level Instance → Create Level Instance를 선택합니다.",
+    "대화 상자에서 새로 생성될 레벨 파일(.umap)의 저장 경로와 이름을 지정합니다.",
+    "Instance Packaging 옵션을 Packed 또는 Level Instance로 설정하고 Create를 누릅니다.",
+    "Viewport에서 묶인 에셋이 하나의 Level Instance Actor로 합쳐져 선택되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Level Instance Asset",
+      "desc": "참조하거나 생성할 대상 .umap 레벨 파일"
+    },
+    {
+      "name": "Instance Packaging",
+      "desc": "Packed(단일 에셋 패키지) 또는 일반 Level Instance(서브레벨 방식) 선택"
+    },
+    {
+      "name": "Transform",
+      "desc": "Level Instance 전체의 위치, 회전, 스케일 조절"
+    }
+  ],
+  "examples": [
+    {
+      "title": "모듈식 빌딩 반복 배치",
+      "steps": [
+        "벽, 바닥, 기둥 조합을 Level Instance로 묶습니다.",
+        "복제(Alt+드래그)하여 건물 전체 층을 빠르게 구성합니다.",
+        "원본 Level Instance 에셋을 수정하여 모든 배치본을 한 번에 업데이트합니다."
+      ]
+    },
+    {
+      "title": "파괴 가능한 건물 조립",
+      "steps": [
+        "건물 한 채를 Level Instance로 만들어 씬에 배치합니다.",
+        "필요시 우클릭하여 Edit Level Instance를 통해 내부 구조를 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Level Instance 편집 중 원본 레벨에 저장하지 않음 → Edit Level Instance 모드에서 수정 후 반드시 해당 레벨을 저장해야 반영됩니다.",
+    "스케일(Scale)을 비균등하게 조절함 → 찌그러진 형태가 발생하므로 가급적 1:1 비율을 유지하거나 부모/자식 트랜스폼을 확인하세요."
+  ],
+  "related": [
+    "Packed Level Actor",
+    "World Partition",
+    "Sublevels",
+    "Data Layers"
+  ],
+  "videos": [
+    {
+      "id": "UrKXfER5wj4",
+      "title": "Unreal Engine 5 Tutorial - Level Design Tools - Level Instances",
+      "author": "JBarlowTraining"
+    },
+    {
+      "id": "MOIXPN_IUkw",
+      "title": "Unreal Engine 5 Tutorial - Level Instancing",
+      "author": "Ryan Laley"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Level%20Instances",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Level Instance",
+    "Actor"
+  ],
+  "at": "2026-11-05T12:03:39.015271+00:00"
+}

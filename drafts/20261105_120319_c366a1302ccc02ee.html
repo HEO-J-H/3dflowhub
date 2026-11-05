@@ -1,0 +1,16 @@
+<!-- TITLE: 3ds Max 리토폴로지 후 기존 UV 유지하는 방법과 플러그인 | TAGS: 3ds Max,Retopology,UV,리토폴로지,플러그인,3ds 맥스,튜토리얼·팁 | CATEGORY: 3D DCC/3ds Max | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 3ds Max에서 리토폴로지 작업 후 기존에 펴둔 UV 레이아웃을 보존하는 방법과 관련 플러그인을 찾는 사용자들의 고민을 다룹니다.</p>
+<p style="color:#888;">분류: 3D DCC › 3ds Max › 튜토리얼·팁</p>
+<h2>3ds Max 리토폴로지 후 UV 소실 문제</h2>
+<p>3ds Max 내부의 Retopology 모빌리티나 외부 툴을 거쳐 메쉬 구조를 정리하면 면 번호와 정점 인덱스가 바뀌어 기존 UV 좌표가 유지되지 않습니다. 이로 인해 텍스처가 깨지거나 완전히 사라지는 현상이 발생합니다.</p>
+<h2>유실된 UV를 복구하는 대안</h2>
+<p>과거 작업물이나 커뮤니티에서 언급된 전용 플러그인 혹은 Script를 사용하면 표면 릴랙스 후 UV를 프로젝션하는 방식으로 레이아웃을 유지할 수 있습니다. 수동으로 Unwrap UVW를 다시 펴는 시간을 단축하려면 노멀 Baking과 유사한 데이터 전송 기능을 거쳐야 합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">리토폴로지 과정에서 토폴로지가 완전히 재구성되면 기존 UV 좌표가 소실되기 쉽습니다. 수동으로 다시 펴는 수고를 줄이려면 데이터 전송(Data Transfer) 모디파이어나 외부 텍스처 Baking 방식을 활용해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 3ds Max에서 리토폴로지를 거치면 왜 UV가 사라지나요?</b><br/>A. 새로운 폴리곤 구조와 정점 순서가 생성되면서 기존 언랩(Unwrap) 정보가 매핑되는 기준을 잃기 때문입니다.</p>
+<p><b>Q. UV를 유지하면서 리토폴로지하는 플러그인이 있나요?</b><br/>A. 커뮤니티 사용자들 사이에서 리토폴로지 전후의 UV를 보존하거나 고속으로 전송해 주는 서드파티 플러그인과 Script가 공유되곤 합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-05-d3c8217ec0b11f45.html">3ds Max로 제작 중인 New Flyer D40LF 버스 모델</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-04-977f92ea392ab06b.html">3ds Max 및 Corona Renderer 모던 침실 인테리어 시각화 작품</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-04-517e765f8695001d.html">3ds Max Kitchen Builder 플러그인 — 박스 하나로 주방 모델링 자동화</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/3dsmax/comments/1xmy0kg/maintain_uv_after_retopology/" target="_blank" rel="noopener nofollow">Maintain uv after retopology</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
