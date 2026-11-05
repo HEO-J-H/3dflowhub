@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-foliage-tool-6a8f",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Foliage tool",
+  "title": "Foliage — 나무·풀 칠하기",
+  "summary": "Unreal Engine Foliage 툴은 풀, 나무, 바위 같은 수많은 에셋을 드래그 한 번으로 지형 위에 대량으로 자연스럽게 배치하는 기능입니다. 숲이나 초원 같은 거대한 자연 환경을 빠르고 효율적으로 구축할 수 있습니다.",
+  "when": [
+    "오픈월드 게임이나 배경에 넓은 숲과 잔디밭을 만들 때",
+    "바람에 흔들리는 풀이나 나무 군합을 동적으로 배치할 때",
+    "지형의 경사도나 높낮이에 맞춰 식생을 자동으로 제한하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 에디터 상단 모드 선택 메뉴에서 Landscape 모드 옆의 Foliage 모드(Shift+3)를 선택합니다.",
+    "Content Browser에서 배치할 Static Mesh(풀, 나무 등)를 드래그하여 Foliage 패널 영역에 놓습니다.",
+    "등록된 에셋의 체크박스를 켜고, 뷰포트의 지형(Landscape) 위에서 Mouse 왼쪽 버튼을 클릭하거나 드래그하여 식생을 칠(Paint)합니다.",
+    "필요시 패널 하단의 Brush Settings에서 Radius(브러시 크기)와 Density(밀도)를 조절하여 배치 범위를 세밀하게 제어합니다.",
+    "뷰포트에서 식생들이 지형에 자연스럽게 배치되었는지 확인하고 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Density",
+      "desc": "단위 면적당 생성되는 에셋의 밀도를 조절합니다."
+    },
+    {
+      "name": "Scale X",
+      "desc": "배치되는 에셋의 가로 크기 무작위 변동 범위를 설정합니다."
+    },
+    {
+      "name": "Align to Normal",
+      "desc": "지형의 기울어진 표면 각도에 맞춰 에셋의 회전을 정렬합니다."
+    },
+    {
+      "name": "Ground Slope Angle",
+      "desc": "식생이 생성될 지형의 최소 및 최대 경사도를 제한합니다."
+    },
+    {
+      "name": "Cull Distance",
+      "desc": "카메라와의 거리에 따라 에셋을 숨겨 성능을 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "언덕 전체에 잔디 깔기",
+      "steps": [
+        "Foliage 모드에서 잔디 Static Mesh를 등록합니다.",
+        "Brush Settings에서 Radius를 크게 설정합니다.",
+        "언덕 영역을 드래그하여 잔디를 넓게 채웁니다."
+      ]
+    },
+    {
+      "title": "길가 주변에 나무 군락 배치하기",
+      "steps": [
+        "나무 Static Mesh를 Foliage 패널에 추가합니다.",
+        "Density를 낮추고 Scale X 범위를 조절해 크기 차이를 줍니다.",
+        "길 주변을 가볍게 브러시질하여 자연스러운 숲 경계를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "밀도를 너무 높게 설정해 프레임 저하가 발생함 → Density 값을 낮추고 Cull Distance를 설정하여 최적화합니다.",
+    "식생이 지형을 뚫고 공중에 떠서 생성됨 → Mesh의 Pivot 위치가 오브젝트 하단에 있는지 확인하고 Z Offset을 조절합니다."
+  ],
+  "related": [
+    "Nanite Foliage",
+    "Procedural Content Generation",
+    "Landscape",
+    "Hierarchical Instanced Static Mesh"
+  ],
+  "videos": [
+    {
+      "id": "Mg3N0xKGJRw",
+      "title": "Foliage in Unreal Engine 5 | Beginner Tutorial",
+      "author": "Tinkr Academy"
+    },
+    {
+      "id": "lFXOnCea728",
+      "title": "Unreal 5 - Foliage Mode Explained (2 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Foliage%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Landscape",
+    "Foliage"
+  ],
+  "at": "2026-11-05T12:13:43.725715+00:00"
+}
