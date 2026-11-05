@@ -16014,5 +16014,74 @@
     "id": "p-9cfcc5f8c8",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에서 웹 버전 메모리 관리 및 최적화 가이드 문서(docs/web-optimization.md) 관련 정비와 수정이 반복적으로 반영되었습니다."
+  },
+  {
+    "at": "2026-11-05T18:24:34+00:00",
+    "kind": "proposal",
+    "id": "p-cbde5d0d47",
+    "title": "로컬 가이드 RAG 테스트 코드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/tech-research.md에 RAG 오픈소스 활용 방안이 정리되었으나 관련 테스트와 연동 예제 검증이 남아 있습니다.",
+    "proposal": "backend/tests/test_rag.py를 추가하여 로컬 가이드 검색 로직의 기본 기능을 검증합니다.",
+    "expected": "가이드 검색 기능의 안정성을 높이고 테스트 커버리지를 유지합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/3dflowhub/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T18:24:34+00:00",
+    "kind": "proposal",
+    "id": "p-342f08b5ad",
+    "title": "웹 버전 메모리 누수 방지 유틸 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/web-optimization.md에 브라우저 메모리 관리 가이드가 정리되어 실제 코드 반영이 필요합니다.",
+    "proposal": "web/js/memory.js(또는 관련 프론트엔드 Script)에 Three.js 객체 dispose 및 메모리 정리 함수를 보완합니다.",
+    "expected": "브라우저에서 대용량 3D 메시 렌더링 시 메모리 누수를 방지합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T18:24:57.305421+00:00",
+    "kind": "decision",
+    "id": "p-cbde5d0d47",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T18:24:57.319054+00:00",
+    "kind": "decision",
+    "id": "p-342f08b5ad",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T18:24:59.999309+00:00",
+    "kind": "triage",
+    "id": "p-cbde5d0d47",
+    "verdict": "agent",
+    "reason": "로컬 가이드 RAG 테스트 코드(backend/tests/test_rag.py)를 추가하여 기본 기능을 검증하는 작업은 에이전트가 코드를 작성하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-05T18:25:00.874932+00:00",
+    "kind": "triage",
+    "id": "p-342f08b5ad",
+    "verdict": "done_already",
+    "reason": "이미 최근 커밋과 완료된 제안 목록에 Three.js 메모리 누수 방지 및 웹 최적화 작업이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-05T18:25:00.886594+00:00",
+    "kind": "decision",
+    "id": "p-342f08b5ad",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 최근 커밋과 완료된 제안 목록에 Three.js 메모리 누수 방지 및 웹 최적화 작업이 반영되어 있습니다."
   }
 ]
