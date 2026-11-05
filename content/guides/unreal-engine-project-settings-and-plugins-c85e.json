@@ -1,0 +1,86 @@
+{
+  "id": "unreal-engine-project-settings-and-plugins-c85e",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Project Settings and Plugins",
+  "title": "프로젝트 설정·플러그인",
+  "summary": "Unreal Engine의 Project Settings와 Plugins는 프로젝트의 전반적인 환경 설정과 필요한 기능을 관리하는 핵심 제어판입니다. 최적화, 렌더링 옵션, 외부 파일 포맷 지원 등을 한곳에서 제어합니다.",
+  "when": [
+    "새로운 프로젝트를 생성하고 기본 렌더링 및 입력 설정을 변경할 때",
+    "Water, Modeling Tools 등 필요한 추가 기능을 활성화하고 싶을 때",
+    "빌드 및 패키징 전 프로젝트 최적화 옵션을 점검할 때"
+  ],
+  "steps": [
+    "Unreal Engine Editor를 실행하고 상단 메뉴 바에서 Edit을 클릭합니다.",
+    "Project Settings를 선택하여 프로젝트 전체 설정 창을 엽니다.",
+    "좌측 메뉴에서 Maps & Modes나 Rendering 등 원하는 카테고리를 선택해 값을 변경합니다.",
+    "필요한 기능을 추가하려면 다시 Edit 메뉴로 돌아와 Plugins를 선택합니다.",
+    "Plugins 창에서 원하는 플러그인(예: Water)을 검색하고 체크박스를 활성화합니다.",
+    "에디터를 재시작하여 변경된 플러그인과 설정을 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Support global distance field",
+      "desc": "글로벌 거리 필드를 생성하여 물결 상호작용이나 나이트 에프펙트에 활용합니다."
+    },
+    {
+      "name": "Generate Mesh Distance Fields",
+      "desc": "메시의 거리 필드를 생성해 앰비언트 오클루전 및 충돌 처리에 사용합니다."
+    },
+    {
+      "name": "Default GameMode",
+      "desc": "게임 실행 시 기본으로 사용할 게임 모드와 캐릭터 클래스를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Water 플러그인 활성화하기",
+      "steps": [
+        "Edit → Plugins 창을 엽니다.",
+        "검색창에 Water를 입력합니다.",
+        "Water 플러그인에 체크하여 활성화합니다.",
+        "에디터를 재시작하여 워터 바디를 생성합니다."
+      ]
+    },
+    {
+      "title": "글로벌 거리 필드 켜기",
+      "steps": [
+        "Edit → Project Settings를 엽니다.",
+        "좌측에서 Rendering 카테고리를 선택합니다.",
+        "Lighting 항목에서 Support global distance field를 체크합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플러그인 활성화 후 에디터를 재시작하지 않음 → 에디터를 완전히 껐다 켭니다.",
+    "프로젝트 세팅 변경 후 저장하지 않음 → 에디터가 꺼지기 전 설정을 확인하고 자동 저장 또는 수동 저장합니다."
+  ],
+  "related": [
+    "Water",
+    "Modeling Tools Editor Mode",
+    "USD Importer",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "j7hYFC9FDzY",
+      "title": "How To Use The NEW FAB Unreal Engine Plugin! (Tutorial)",
+      "author": "Smart Poly"
+    },
+    {
+      "id": "dh9XiCf4ZlU",
+      "title": "Plugins & Project Settings in Unreal Engine 5.8 | Complete Guide",
+      "author": "Cinematic Node"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Project%20Settings%20and%20Plugins",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine Editor",
+    "Edit",
+    "Project Settings"
+  ],
+  "at": "2026-11-05T13:33:31.799616+00:00"
+}
