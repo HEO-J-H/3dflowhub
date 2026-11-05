@@ -1,0 +1,92 @@
+{
+  "id": "houdini-attribute-promote-sop-b9d1",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Promote SOP",
+  "title": "Attribute Promote — 속성 단계 옮기기",
+  "summary": "Attribute Promote SOP는 지오메트리의 어트리뷰트 레벨(Point, Primitive, Vertex, Detail)을 다른 레벨로 변환하거나 모아주는 강력한 노드입니다.",
+  "when": [
+    "포인트에 있는 컬러나 크기 속성을 Primitive 단위로 평균 내어 전달할 때",
+    "베이크된 포인트 데이터를 Vertex 단위로 변환해 서브디비전 호환성을 맞출 때",
+    "전체 지오메트리의 Detail 속성을 개별 포인트로 뿌려줄 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Attribute Promote를 검색하여 선택하고 Enter를 눌러 노드를 생성합니다.",
+    "변환할 Geometry 노드의 출력 단자를 Attribute Promote 노드의 입력 단자에 연결합니다.",
+    "파라미터 창에서 In Name 에 변환할 속성 이름을 입력합니다.",
+    "Original Class와 New Class를 각각 원하는 레벨(Point, Primitive 등)로 설정합니다.",
+    "Method 파라미터에서 평균(Average), 합계(Sum), 최소/최대(Min/Max) 등 집계 방식을 선택합니다."
+  ],
+  "params": [
+    {
+      "name": "In Name",
+      "desc": "변환하거나 가져올 기존 어트리뷰트의 이름입니다."
+    },
+    {
+      "name": "Original Class",
+      "desc": "현재 어트리뷰트가 소속된 데이터 레벨(Point, Primitive, Vertex, Detail)입니다."
+    },
+    {
+      "name": "New Class",
+      "desc": "변환되어 새로 저장될 타겟 데이터 레벨입니다."
+    },
+    {
+      "name": "Method",
+      "desc": "여러 값을 하나로 합칠 때 사용할 연산 방식(Average, Sum, Min, Max 등)입니다."
+    },
+    {
+      "name": "Delete Original",
+      "desc": "변환 작업 후 기존 레벨에 남아있는 원본 어트리뷰트를 삭제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "포인트 속성을 Primitive로 평균내기",
+      "steps": [
+        "Attribute Promote 노드를 생성합니다.",
+        "Original Class를 Point, New Class를 Primitive로 설정합니다.",
+        "Method를 Average로 설정하여 면 단위의 평균 색상이나 값을 얻습니다."
+      ]
+    },
+    {
+      "title": "디테일 값을 모든 포인트에 복제하기",
+      "steps": [
+        "Attribute Promote 노드를 연결합니다.",
+        "Original Class를 Detail, New Class를 Point로 설정합니다.",
+        "전역 변수 값을 모든 포인트가 개별적으로 참조할 수 있게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "존재하지 않는 속성 이름 입력 → In Name에 대소문자와 스펠링이 정확한지 확인합니다.",
+    "지원하지 않는 변환 레벨 선택 → Original Class와 New Class가 올바르게 지정되었는지 확인합니다."
+  ],
+  "related": [
+    "Attribute Wrangle",
+    "Attribute Create",
+    "Attribute Transfer",
+    "Point Wrangle"
+  ],
+  "videos": [
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    },
+    {
+      "id": "jyOa5Azp5F4",
+      "title": "CGPedia - Houdini - Attribute Create & Solver Sop",
+      "author": "CGPedia"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Promote%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Promote"
+  ],
+  "at": "2026-11-05T09:07:36.637194+00:00"
+}

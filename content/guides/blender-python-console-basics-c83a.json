@@ -1,0 +1,93 @@
+{
+  "id": "blender-python-console-basics-c83a",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "Python Console basics",
+  "title": "Python 콘솔 — 첫 Script",
+  "summary": "Blender Python Console은 뷰포트 조작, 오브젝트 생성, 속성 변경 등의 작업을 Python 코드로 즉시 실행하고 결과를 확인할 수 있는 대화형 인터프리터 환경입니다.",
+  "when": [
+    "반복적인 오브젝트 생성이나 배치 작업을 코드로 자동화하고 싶을 때",
+    "UI 메뉴를 여러 번 거치지 않고 단축키처럼 코드로 빠르게 속성을 제어할 때",
+    "Blender 내부 API 구조를 파악하고 간단한 Script 테스트를 바로 수행할 때"
+  ],
+  "steps": [
+    "Blender 상단 에디터 타입 전환 아이콘을 클릭하거나 Shift+F4 Hotkey를 눌러 Python Console을 엽니다.",
+    "콘솔 창 하단 Prompt(>>>)에 'import bpy'를 입력하여 Blender Python API 모듈을 불러옵니다.",
+    "오브젝트 위치를 변경하려면 'bpy.context.active_object.location.z = 5.0'과 같이 코드를 입력하고 Enter를 누릅니다.",
+    "코드 자동 완성 기능을 사용하려면 코드를 일부 입력한 후 Tab 키를 눌러 사용 가능한 속성과 함수 목록을 확인합니다.",
+    "뷰포트에서 오브젝트의 변화를 확인하며 Python 명령어가 정상 적용되었는지 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "bpy",
+      "desc": "Blender 데이터와 씬을 제어하는 핵심 Python API 모듈입니다."
+    },
+    {
+      "name": "bpy.context",
+      "desc": "현재 선택된 오브젝트나 뷰포트 모드 등 실시간 작업 환경 정보를 담고 있습니다."
+    },
+    {
+      "name": "bpy.data",
+      "desc": "메시, 머티리얼, 씬 등 Blender 파일에 포함된 모든 데이터 블록에 접근합니다."
+    },
+    {
+      "name": "bpy.ops",
+      "desc": "사용자가 UI에서 수행하는 연산(오브젝트 추가, 삭제 등)을 코드로 실행합니다."
+    },
+    {
+      "name": "Info Editor",
+      "desc": "Python 콘솔 위쪽 영역에서 내가 수행한 Mouse/UI 작업이 어떤 Python 코드로 실행되는지 기록해 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 오브젝트 이름 일괄 변경하기",
+      "steps": [
+        "Python Console을 엽니다.",
+        "반복문을 이용해 선택된 오브젝트들의 이름을 일괄 변경하는 코드를 입력합니다.",
+        "for obj in bpy.context.selected_objects: obj.name = 'NewName'"
+      ]
+    },
+    {
+      "title": "Python으로 원추형(Cone) 오브젝트 생성하기",
+      "steps": [
+        "Python Console을 엽니다.",
+        "bpy.ops.mesh.primitive_cone_add(radius1=1.0, depth=2.0) 명령어를 입력합니다.",
+        "뷰포트에 생성된 콘 오브젝트를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "bpy 모듈을 임포트하지 않고 함수를 호출했을 때 NameError 발생 → 첫 줄에 'import bpy'를 입력 후 실행합니다.",
+    "선택된 오브젝트가 없는 상태에서 bpy.context.active_object를 조작할 때 AttributeError 발생 → 뷰포트에서 대상 오브젝트를 먼저 선택(Active)합니다.",
+    "대소문자를 잘못 입력하거나 들여쓰기가 어긋났을 때 SyntaxError 발생 → Python Console의 에러 메시지를 확인하고 정확한 구문으로 다시 입력합니다."
+  ],
+  "related": [
+    "Blender Scripting",
+    "Text Editor",
+    "Info Editor",
+    "MAXScript"
+  ],
+  "videos": [
+    {
+      "id": "cyt0O7saU4Q",
+      "title": "Blender Python Tutorial : An Introduction to Scripting [how to learn python for beginners]",
+      "author": "Darkfall"
+    },
+    {
+      "id": "hF-cyH8Z7WQ",
+      "title": "Blender Python Tutorial : Finishing the Object Adder Add-on [learn python for beginners]",
+      "author": "Darkfall"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Python%20Console%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "F4 Hotkey",
+    "Python Console"
+  ],
+  "at": "2026-11-05T09:07:31.640568+00:00"
+}

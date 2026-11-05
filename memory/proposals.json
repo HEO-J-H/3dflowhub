@@ -13553,5 +13553,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T09:05:43+00:00",
+    "kind": "proposal",
+    "id": "p-e860012dc8",
+    "title": "웹 버전 PBR 메모리 해제 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 웹 버전 메모리 누수 수정 및 docs/web-optimization.md 반영 완료",
+    "proposal": "web/js/ 또는 관련 테스트 파일에 PBR 텍스처 생성 후 메모리 해제(dispose) 루틴이 정상 동작하는지 확인하는 프론트엔드 테스트 케이스 추가",
+    "expected": "브라우저 환경에서 장시간 사용 시 메모리 누수 방지 및 안정성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T09:05:43+00:00",
+    "kind": "proposal",
+    "id": "p-318ac18335",
+    "title": "로컬 RAG 활용 가이드 코드 예시 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 요청으로 깃허브 RAG 오픈소스 검토 내용(docs/tech-research.md) 반영 완료",
+    "proposal": "docs/tech-research.md에 간단한 Python 기반 로컬 문서 검색(RAG) 예제 코드 스니펫 추가",
+    "expected": "로컬 3D 파이프라인 문서 및 가이드 검색 편의성 증대",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T09:08:00.316017+00:00",
+    "kind": "decision",
+    "id": "p-e860012dc8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 메모리 해제 루틴 보완 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T09:08:00.330022+00:00",
+    "kind": "decision",
+    "id": "p-318ac18335",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T09:08:02.314592+00:00",
+    "kind": "triage",
+    "id": "p-318ac18335",
+    "verdict": "done_already",
+    "reason": "이미 PR #45 및 관련 커밋을 통해 로컬 RAG 오픈소스 검토 내용과 문서 반영이 완료되었습니다."
+  },
+  {
+    "at": "2026-11-05T09:08:02.327208+00:00",
+    "kind": "decision",
+    "id": "p-318ac18335",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 PR #45 및 관련 커밋을 통해 로컬 RAG 오픈소스 검토 내용과 문서 반영이 완료되었습니다."
   }
 ]
