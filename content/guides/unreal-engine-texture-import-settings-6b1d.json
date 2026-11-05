@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-texture-import-settings-6b1d",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Texture import settings",
+  "title": "텍스처 가져오기 설정(sRGB·압축)",
+  "summary": "Unreal Engine에 이미지 파일을 Texture로 가져와 머티리얼에 적용할 수 있는 실시간 렌더링용 에셋으로 변환하는 기초 작업입니다. 색상(Color), 노멀(Normal), 거칠기(Roughness) 등 텍스처 성격에 맞는 압축 및 채널 설정을 지정합니다.",
+  "when": [
+    "Substance 3D Painter나 외부 툴에서 제작한 Albedo, Normal, Roughness 맵을 Unreal Engine에 처음 임포트할 때",
+    "임포트된 텍스트가 너무 흐리거나 색감이 왜곡되어 보일 때 텍스처 설정을 수정할 때",
+    "게임 성능 최적화를 위해 텍스처 Resolution(Max Texture Size)나 압축 포맷을 조절해야 할 때"
+  ],
+  "steps": [
+    "Unreal Engine의 Content Browser에서 텍스처를 가져올 폴더를 엽니다.",
+    "탐색기의 이미지 파일(PNG, TGA, EXR 등)을 Content Browser 안으로 드래그 앤 드롭하여 가져옵니다.",
+    "임포트된 텍스처 에셋을 더블 클릭하여 Texture Editor 창을 엽니다.",
+    "Details 패널에서 텍스처 용도에 맞는 Compression Settings 및 SRGB 옵션을 확인하고 수정합니다.",
+    "상단 메뉴 바의 Save 버튼을 클릭하여 변경 사항을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Compression Settings",
+      "desc": "텍스처 용도(Default, Normalmap 등)에 맞춰 압축 방식을 결정합니다."
+    },
+    {
+      "name": "sRGB",
+      "desc": "색상 텍스처의 감마 보정 여부를 결정합니다. Normal이나 Mask 맵은 체크를 해제합니다."
+    },
+    {
+      "name": "Filter",
+      "desc": "텍스처가 확대/축소될 때 적용되는 필터링 방식을 설정합니다."
+    },
+    {
+      "name": "Max Texture Size",
+      "desc": "텍스처의 최대 Resolution를 제한하여 메모리를 최적화합니다."
+    },
+    {
+      "name": "LOD Bias",
+      "desc": "카메라 거리에 따라 텍스처 Resolution를 낮추는 단계를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Albedo(Color) 텍스처 설정",
+      "steps": [
+        "Content Browser에서 컬러 텍스처 에셋을 더블 클릭합니다.",
+        "Details 패널에서 Compression Settings를 Default (DXT1/5 or BC1/3)로 둡니다.",
+        "sRGB 옵션이 켜져(Checked) 있는지 확인합니다.",
+        "Save를 눌러 저장합니다."
+      ]
+    },
+    {
+      "title": "Normal 맵 텍스처 설정",
+      "steps": [
+        "Content Browser에서 노멀 맵 에셋을 더블 클릭합니다.",
+        "Details 패널에서 Compression Settings를 Normalmap으로 변경합니다.",
+        "sRGB 옵션이 자동으로 꺼졌는지(Unchecked) 확인합니다.",
+        "Save를 눌러 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Normal 맵에 sRGB가 켜져 있음 → 색감이 깨지거나 표면 조명이 이상해짐. Compression Settings를 Normalmap으로 변경하여 sRGB를 자동 해제합니다.",
+    "Roughness 맵에 sRGB가 켜져 있음 → 반사 표현이 지나치게 밝아짐. sRGB를 끄고 압축 방식을 Mask로 설정합니다."
+  ],
+  "related": [
+    "Material Editor",
+    "Static Mesh import (FBX)",
+    "Quixel Bridge and Fab assets",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "-NCgcDPryjY",
+      "title": "UE5.5 - Texture Settings for UI Textures",
+      "author": "UI Made Simple"
+    },
+    {
+      "id": "Sic_goW0bPQ",
+      "title": "Unreal Engine 5 Beginner Tutorial Part 6: Intro to Materials & Textures",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Texture%20import%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Content Browser",
+    "PNG",
+    "TGA",
+    "EXR",
+    "Texture Editor"
+  ],
+  "at": "2026-11-05T15:54:30.320922+00:00"
+}
