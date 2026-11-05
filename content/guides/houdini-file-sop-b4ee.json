@@ -1,0 +1,89 @@
+{
+  "id": "houdini-file-sop-b4ee",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "File SOP",
+  "title": "File — 파일 불러오기",
+  "summary": "File SOP는 외부 파일을 읽어 SOP 네트워크에 지오메트리를 가져오는 노드입니다.",
+  "when": [
+    "다른 DCC에서 만든 모델을 Houdini에 가져올 때",
+    "레퍼런스 파일을 교체해 파이프라인을 자동화하고 싶을 때",
+    "OBJ·FBX·glTF·USD 등 다양한 포맷을 SOP 레벨에서 바로 사용하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰에서 Tab 키 → 'File' 입력 → File SOP 생성",
+    "파라미터 창의 File 필드에 가져올 파일 경로를 입력 (Browse 버튼 사용)",
+    "필요에 따라 Load Into Memory 를 켜고, Read As 옵션을 파일 형식에 맞게 설정",
+    "출력 포트(geometry)를 downstream SOP에 연결하고 뷰포트에서 결과 확인",
+    "파일이 바뀔 경우 Reload 버튼을 클릭하거나 Reload on Frame Change 옵션을 활성화"
+  ],
+  "params": [
+    {
+      "name": "File",
+      "desc": "읽어올 파일 경로"
+    },
+    {
+      "name": "Load Into Memory",
+      "desc": "파일을 메모리로 미리 로드해 빠른 재생을 지원"
+    },
+    {
+      "name": "Read As",
+      "desc": "파일 형식에 맞는 읽기 모드 선택 (Geometry, Point Cloud 등)"
+    },
+    {
+      "name": "Prim Group",
+      "desc": "불러올 Primitive 그룹을 지정"
+    },
+    {
+      "name": "Transform",
+      "desc": "가져온 지오메트리의 위치·회전·스케일을 조정"
+    },
+    {
+      "name": "Time",
+      "desc": "시퀀스 파일의 프레임 번호를 지정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "OBJ 모델을 가져와 스케일 맞추기",
+      "steps": [
+        "File SOP에 OBJ 파일 경로 지정",
+        "Transform 파라미터에서 Scale 값을 0.01 로 조정",
+        "PolyReduce SOP 연결해 폴리곤 수 감소",
+        "Viewport에서 모델이 올바른 크기로 보이는지 확인"
+      ]
+    },
+    {
+      "title": "USD 씬을 불러와 Particle 시뮬레이션에 연결",
+      "steps": [
+        "File SOP에 .usd 파일 경로 입력",
+        "Read As 를 'Geometry' 로 설정",
+        "Attribute Transfer SOP 로 필요한 속성(velocity) 전달",
+        "POP Network에 연결해 Particle에 적용"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "kgQ02Zn7m7U",
+      "title": "MaskAlongGeometry SOP | Houdini 20.5",
+      "author": "Simlarity"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20File%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "File SOP"
+  ],
+  "at": "2026-11-05T19:45:33.657705+00:00"
+}
