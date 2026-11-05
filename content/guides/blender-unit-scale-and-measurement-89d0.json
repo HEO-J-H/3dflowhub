@@ -1,0 +1,102 @@
+{
+  "id": "blender-unit-scale-and-measurement-89d0",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Unit scale and measurement",
+  "title": "단위·치수 재기(Measure)",
+  "summary": "Blender의 Units 설정은 씬 전체의 길이·각도·질량 단위를 정의해 모델링·수출 시 스케일 일관성을 유지합니다.",
+  "when": [
+    "건축·제품 모델링처럼 실제 크기가 중요한 프로젝트를 시작할 때",
+    "다른 DCC 툴·엔진과 에셋을 교환해 스케일 오류를 방지하고 싶을 때",
+    "측정 도구(Measure)로 정확한 거리·각도를 표시해 협업·리뷰를 할 때"
+  ],
+  "steps": [
+    "Properties → Scene 탭 → Units 섹션 열기 (Hotkey: N → View → Sidebar → Scene)",
+    "Unit System 드롭다운에서 Metric 또는 Imperial 선택",
+    "Unit Scale 입력란에 1.0(미터)·0.01(센티미터) 등 프로젝트에 맞는 값 입력",
+    "Length, Mass, Time 등 필요한 단위 옵션을 필요에 따라 켜기 (Separate Units 등)",
+    "툴바(T) → Measure 툴 선택 후 3D 뷰에서 클릭·드래그해 거리·각도 측정"
+  ],
+  "params": [
+    {
+      "name": "Unit System",
+      "desc": "Metric(미터·센티미터)·Imperial(피트·인치) 중 선택"
+    },
+    {
+      "name": "Unit Scale",
+      "desc": "기본 길이 단위에 대한 배율, 1.0이면 선택 단위가 실제 길이와 동일"
+    },
+    {
+      "name": "Length",
+      "desc": "길이 단위 표시 형식 (예: m, cm)"
+    },
+    {
+      "name": "Mass",
+      "desc": "질량 단위 표시 형식 (예: kg)"
+    },
+    {
+      "name": "Separate Units",
+      "desc": "큰 값은 km·m·cm 등 복합 단위로 표시해 가독성 향상"
+    },
+    {
+      "name": "Rotation",
+      "desc": "각도 단위 선택 (Degrees 또는 Radians)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 모델을 미터 단위로 설정",
+      "steps": [
+        "Scene → Units 열고 Unit System을 Metric으로",
+        "Unit Scale을 1.0으로 설정 (1 Blender Unit = 1 m)",
+        "Length를 Meter로 확인",
+        "Measure 툴로 문 폭 3 m 측정"
+      ]
+    },
+    {
+      "title": "게임 에셋을 센티미터 단위로 Export",
+      "steps": [
+        "Unit System을 Metric 유지",
+        "Unit Scale을 0.01로 설정 (1 Blender Unit = 1 cm)",
+        "Separate Units 켜서 100 cm → 1 m 로 표시 확인",
+        "Export 시 Scale 적용 옵션 비활성화"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일을 적용하지 않은 채 Unit Scale만 바꾸면 기존 오브젝트가 100배·0.01배로 변함 → Ctrl+A → Apply Scale 로 스케일 적용 후 단위 설정",
+    "Separate Units를 끄면 큰 값이 10000처럼 표시돼 읽기 어려움 → Separate Units 체크",
+    "Metric을 선택했는데 Length를 Inch로 남겨두면 단위 혼동 → Length 옵션을 Unit System에 맞게 일치"
+  ],
+  "related": [
+    "Scene Properties",
+    "Apply Scale (Ctrl+A)",
+    "MeasureIt Add‑on",
+    "Export Settings"
+  ],
+  "videos": [
+    {
+      "id": "ePuGQZEkTTo",
+      "title": "How to set units in Blender",
+      "author": "3D Printer Academy Tutorials"
+    },
+    {
+      "id": "HZgCOZQTsLM",
+      "title": "Blender Tips | Measurements In Blender",
+      "author": "Blender For Buffoons"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Unit%20scale%20and%20measurement",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Properties",
+    "Scene",
+    "Units",
+    "Hotkey",
+    "View",
+    "Sidebar"
+  ],
+  "at": "2026-11-05T00:12:36.154127+00:00"
+}

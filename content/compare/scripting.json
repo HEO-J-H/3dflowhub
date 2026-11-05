@@ -1,0 +1,76 @@
+{
+  "id": "scripting",
+  "title": "스크립트로 반복 작업 자동화",
+  "task": "automating repetitive tasks with scripting (Python / MAXScript / VEX / Blueprint)",
+  "summary": "반복 작업 자동화는 스크립트 언어를 이용해 작업 시간을 크게 줄이는 방법이며, 각 툴마다 제공하는 스크립팅 환경과 API가 달라 접근 방식이 다릅니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Scripting → Text Editor → Run Script",
+      "how": "텍스트 에디터에 파이썬 코드를 작성하고 ‘Run Script’ 버튼을 눌러 반복 작업을 자동화합니다.",
+      "strength": "풍부한 파이썬 API와 실시간 뷰포트 반영",
+      "limit": "복잡한 UI 커스터마이징은 제한적"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Scripting → MAXScript Listener 또는 MAXScript → New Script",
+      "how": "MAXScript 로 선택(Selection)과 반복문(Loops)을 사용해 오브젝트를 조건별로 제어합니다.",
+      "strength": "3ds Max 전용 기능에 직접 접근 가능",
+      "limit": "언어가 오래돼 최신 파이썬 라이브러리 사용이 어려움"
+    },
+    {
+      "tool": "Maya",
+      "where": "Windows → General Editors → Script Editor (Python Tab)",
+      "how": "Python 혹은 MEL 로 루프와 선택을 활용해 모델링·리깅·렌더링 작업을 자동화합니다.",
+      "strength": "강력한 Python API와 풍부한 플러그인 연동",
+      "limit": "MEL은 구식이며 Python 버전 제약이 있을 수 있음"
+    },
+    {
+      "tool": "Houdini",
+      "where": "Network View → Tab → Python SOP 또는 Attribute Wrangle (VEX)",
+      "how": "Python SOP 로 절차적 노드를 제어하거나 VEX Wrangle 로 고성능 반복 연산을 수행합니다.",
+      "strength": "노드 기반 파이프라인과 VEX의 초고속 처리",
+      "limit": "VEX는 C‑like 문법이라 초보자에게 학습 장벽이 높음"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Blueprint Editor → Event Graph 또는 Edit → Plugins → Python Editor Script Plugin",
+      "how": "Blueprint 로 시각적 로직을 구성하거나, Python 플러그인으로 에디터 스크립트를 실행해 반복 작업을 자동화합니다.",
+      "strength": "시각적 흐름으로 비전문가도 이해 쉬움",
+      "limit": "Blueprint 실행 속도가 느리고 Python 플러그인은 별도 활성화 필요"
+    }
+  ],
+  "pick": [
+    {
+      "case": "수백 개 오브젝트에 동일한 재질 적용",
+      "tool": "3ds Max",
+      "why": "MAXScript 로 SelectionSet 과 loop 사용이 가장 직관적"
+    },
+    {
+      "case": "복잡한 절차적 모델을 단계별로 생성",
+      "tool": "Houdini",
+      "why": "Python SOP 와 VEX Wrangle 로 노드 흐름을 그대로 자동화 가능"
+    },
+    {
+      "case": "게임 레벨에 대량의 라이트 배치",
+      "tool": "Unreal Engine",
+      "why": "Blueprint 로 레벨 블루프린트를 만들면 실시간 미리보기와 디버깅이 용이"
+    }
+  ],
+  "handoff": [
+    "FBX 로 내보낼 때 ‘Apply Transform’ 옵션을 켜서 스케일·축을 1·1·1 로 고정합니다.",
+    "Blender → Maya 전환 시 축 방향을 Z‑up → Y‑up 로 변환하고, 단위는 미터로 맞춥니다.",
+    "Houdini → Unreal 로 USD 로 전달할 경우, ‘Export Scale = 1’ 로 설정하고 ‘Convert Units’를 비활성화합니다."
+  ],
+  "apply": [
+    "파이프라인 초기에 Python 스크립트로 파일 네이밍 규칙을 자동 적용해 팀 전체 일관성 확보.",
+    "Blueprint 로 레벨 스트리밍 트리거를 자동 생성하고, Houdini의 Python SOP 로 해당 트리거 데이터를 실시간 업데이트.",
+    "MAXScript 로 배치된 라이트의 강도를 분석해 CSV 로 추출, Blender 파이썬으로 색 보정 자동 적용."
+  ],
+  "pitfalls": [
+    "스크립트에서 오브젝트 스케일을 적용하지 않아 변환이 누락되는 경우 → Apply Scale 후 실행.",
+    "Blueprint 에서 무한 루프를 만들면 에디터가 멈춤 → ‘Delay’ 노드로 프레임 간격을 두고 반복.",
+    "VEX Wrangle 에서 attribute 이름을 오타 내면 결과가 보이지 않음 → 콘솔 로그와 ‘Attribute Promote’ 확인."
+  ],
+  "at": "2026-11-05T00:16:15+00:00"
+}

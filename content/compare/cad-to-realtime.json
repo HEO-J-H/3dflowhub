@@ -1,0 +1,97 @@
+{
+  "id": "cad-to-realtime",
+  "title": "CAD 데이터를 실시간 3D 로 (테셀레이션·경량화)",
+  "task": "converting CAD (STEP, CATIA, SolidWorks) into optimized real-time meshes: tessellation, decimation, hidden part removal, export to game engines",
+  "summary": "CAD 데이터를 실시간 엔진용 경량 메쉬로 변환하는 작업은 튜셀레이션·디시메이션·숨은 파트 제거·엔진 내보내기의 4단계를 포함합니다. 각 툴은 전처리 방식·플러그인·내보내기 포맷이 달라 작업 흐름이 다르게 설계됩니다.",
+  "rows": [
+    {
+      "tool": "Blender",
+      "where": "Properties → Modifier (렌치) 탭 → Add Modifier → Subdivision Surface / Decimate",
+      "how": "Subdivision Surface 로 폴리곤을 늘리고 Decimate 로 삼각형 수를 줄여 최적화합니다. Hide 기능으로 보이지 않는 파트를 비활성화하고 FBX 로 내보냅니다.",
+      "strength": "무료·오픈소스",
+      "limit": "고급 디시메이션 옵션 부족"
+    },
+    {
+      "tool": "3ds Max",
+      "where": "Modify 패널 → Modifier List → TurboSmooth / ProOptimizer / Hide",
+      "how": "TurboSmooth 로 세부를 늘리고 ProOptimizer 로 삼각형 수를 감소시킵니다. Hide 명령으로 숨긴 파트를 제외하고 FBX 로 내보냅니다.",
+      "strength": "강력한 프로프리어터리 디시메이터",
+      "limit": "플러그인 의존도 높음"
+    },
+    {
+      "tool": "Maya",
+      "where": "Mesh 메뉴 → Smooth / Reduce / Delete → Export Selection → FBX",
+      "how": "Smooth 로 세부를 추가하고 Reduce 로 폴리곤 수를 조절합니다. Delete 로 숨은 파트를 삭제하고 FBX 로 내보냅니다.",
+      "strength": "산업 표준 파이프라인 연동",
+      "limit": "Reduce 옵션이 다소 제한적"
+    },
+    {
+      "tool": "Houdini",
+      "where": "Tab → Subdivide SOP / PolyReduce SOP / Delete SOP → File SOP → Export",
+      "how": "Subdivide SOP 로 세부를 늘리고 PolyReduce SOP 로 디시메이션합니다. Delete SOP 로 숨은 파트를 제거한 뒤 File SOP 로 FBX/GLTF 로 내보냅니다.",
+      "strength": "노드 기반 절차적 제어",
+      "limit": "노드 연결에 학습 곡선 필요"
+    },
+    {
+      "tool": "Unreal Engine",
+      "where": "Content Browser → Import → FBX → Static Mesh Editor → LOD Settings → Reduce",
+      "how": "FBX 를 임포트한 뒤 Static Mesh Editor 에서 LOD Reduce 기능으로 자동 디시메이션합니다. 숨은 파트는 임포트 전 파일에서 제거해야 합니다.",
+      "strength": "엔진 내 실시간 LOD 생성",
+      "limit": "내부 디시메이션 옵션이 제한적"
+    },
+    {
+      "tool": "Pixyz Studio",
+      "where": "Scene Tree → Mesh → Decimate To Target / Remesh / Hide Unused Parts → Export → FBX/GLTF",
+      "how": "Decimate To Target 로 목표 폴리곤 수를 지정하고 Remesh 로 균일한 토폴로지를 만듭니다. Hide Unused Parts 로 불필요 파트를 비활성화하고 엔진 호환 포맷으로 내보냅니다.",
+      "strength": "CAD‑to‑Game 최적화 전문",
+      "limit": "전용 라이선스 필요"
+    },
+    {
+      "tool": "NVIDIA Omniverse",
+      "where": "Create → Import → USD (STEP) → Remesh 노드 / Decimate 노드 → Export → USD/GLTF",
+      "how": "STEP 파일을 USD 로 변환 후 Remesh 노드로 토폴로지를 정리하고 Decimate 노드로 폴리곤 수를 감소시킵니다. 최종 USD 를 엔진에 연결합니다.",
+      "strength": "협업·클라우드 기반 파이프라인",
+      "limit": "전용 Kit 앱 필요"
+    }
+  ],
+  "pick": [
+    {
+      "case": "수천 개 파트의 대형 기계 어셈블리",
+      "tool": "Pixyz Studio",
+      "why": "전용 CAD 전처리와 자동 파트 숨김 기능이 가장 효율적"
+    },
+    {
+      "case": "실시간 모바일 게임용 저폴리곤 모델",
+      "tool": "Blender",
+      "why": "무료이면서 Decimate 옵션으로 손쉽게 폴리곤 수를 맞출 수 있음"
+    },
+    {
+      "case": "언리얼 엔진 내 실시간 LOD 자동 생성",
+      "tool": "Unreal Engine",
+      "why": "엔진 내 LOD Reduce 로 별도 외부 툴 없이 바로 최적화 가능"
+    },
+    {
+      "case": "절차적 LOD와 변형을 동시에 관리하고 싶을 때",
+      "tool": "Houdini",
+      "why": "노드 기반 파이프라인으로 디시메이션·리메시·숨은 파트 제거를 하나의 흐름에 통합"
+    }
+  ],
+  "handoff": [
+    "CAD → STEP 파일을 임포트할 때 Y‑up 축을 유지하고 단위는 미터로 맞춥니다.",
+    "Export 전 반드시 Apply Transform(Scale/Rotation)을 수행해 스케일 오류를 방지합니다.",
+    "파일명에 _LOD0, _LOD1 등 단계별 접미사를 붙여 엔진에서 자동 LOD 매핑을 쉽게 합니다.",
+    "FBX 로 내보낼 경우 삼각형만 포함하도록 Triangulate 옵션을 켭니다."
+  ],
+  "apply": [
+    "Pixyz Studio 로 사전 최적화 후 Unreal Engine 로 바로 임포트해 파이프라인 시간을 절감합니다.",
+    "Houdini Engine 플러그인을 사용해 언리얼 내에서 실시간 디시메이션 파라미터를 조정합니다.",
+    "Blender 로 간단히 재텍스처링하고 재수출해 빠른 시각적 피드백을 얻습니다."
+  ],
+  "pitfalls": [
+    "스케일 적용을 놓쳐 엔진에서 모델이 100배 크게 보이는 경우 → Apply Scale 후 재내보내기",
+    "축 방향이 서로 달라 모델이 뒤집히는 경우 → 임포트 시 Y‑up 옵션을 확인하고 필요 시 Rotate 90° 적용",
+    "디시메이션 전에 머티리얼 ID를 병합하지 않아 텍스처가 섞이는 경우 → Decimate 전 Merge by Material 수행",
+    "숨은 파트를 삭제하지 않아 불필요한 폴리곤이 남는 경우 → Hide/Delete 단계에서 파트 이름 확인 후 제거"
+  ],
+  "at": "2026-11-05T00:13:10+00:00"
+}
