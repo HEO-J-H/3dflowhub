@@ -9,7 +9,8 @@
   "when": [
     "규칙적인 패턴이나 반복되는 오브젝트를 대량으로 배치할 때",
     "파라미터 조절만으로 형태가 실시간으로 변하는 절차적 에셋을 만들 때",
-    "기존 메시나 커브를 기반으로 복잡한 구조물을 자동으로 생성할 때"
+    "기존 메시나 커브를 기반으로 복잡한 구조물을 자동으로 생성할 때",
+    "시뮬레이션 없이 가볍고 제어하기 쉬운 만화풍 화염 같은 스타일라이즈드 에셋을 만들 때"
   ],
   "steps": [
     "오브젝트를 선택한 상태로 Properties 패널에서 Modifier 탭을 엽니다.",
@@ -47,6 +48,14 @@
         "Mesh 오브젝트에 Geometry Nodes 모디파이어를 추가합니다.",
         "Distribute Points on Faces 노드를 연결해 표면에 무작위 점을 생성합니다.",
         "Scale Instances 노드로 생성된 점들의 크기를 무작위로 조절합니다."
+      ]
+    },
+    {
+      "title": "커브 기반 만화풍 화염 시스템 제작하기",
+      "steps": [
+        "Curve 오브젝트를 생성하고 Geometry Nodes 모디파이어를 추가합니다.",
+        "커브 주변에 불꽃 모양의 메쉬를 절차적으로 생성하는 노드 조합을 구성합니다.",
+        "수학 노드와 노이즈 텍스처를 결합하여 시간 값에 따라 타오르는 애니메이션을 적용합니다."
       ]
     }
   ],
@@ -110,13 +119,19 @@
       "source_keys": [
         "p:2026-10-21-bfb4a40b72697665"
       ]
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-04-1ec2c83722de79a5",
-      "title": "Blender Geometry Nodes로 만화풍 화염 제작법",
-      "url": "https://www.blendernation.com/2026/11/04/create-a-procedural-cartoon-flame-in-blender-with-geometry-nodes/"
+      "at": "2026-11-05T08:16:48+00:00",
+      "what": "Geometry Nodes를 활용한 만화풍 화염 제작 사례와 커브 기반 절차적 에셋 활용법이 추가되었습니다.",
+      "sources": [
+        {
+          "title": "Blender Geometry Nodes로 만화풍 화염 제작법",
+          "url": "https://www.blendernation.com/2026/11/04/create-a-procedural-cartoon-flame-in-blender-with-geometry-nodes/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-04-1ec2c83722de79a5"
+      ]
     }
   ]
 }

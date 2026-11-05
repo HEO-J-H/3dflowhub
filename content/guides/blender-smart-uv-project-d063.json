@@ -1,0 +1,104 @@
+{
+  "id": "blender-smart-uv-project-d063",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Smart UV Project",
+  "title": "Smart UV Project — 자동 UV",
+  "summary": "Blender의 Smart UV Project는 별도의 심(Seam) 작업 없이 모델의 각도를 계산하여 UV를 자동으로 빠르고 간편하게 펼쳐주는 기능입니다. 규칙적인 패턴 텍스처를 입힐 때 유용합니다.",
+  "when": [
+    "복잡한 하드서페이스 모델의 UV를 빠르게 대략적으로 펼치고 싶을 때",
+    "수동으로 심을 자를 시간이 부족하거나 Prototype 텍스처를 입혀야 할 때",
+    "규칙적인 패턴 텍스처를 오브젝트에 빠르게 적용하고자 할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 모든 면(Mesh)을 선택합니다.",
+    "상단 메뉴에서 UV > Smart UV Project를 클릭합니다.",
+    "팝업 창에서 Angle Limit(각도 제한)과 Island Margin(조각 간격) 값을 설정한 뒤 OK를 누릅니다.",
+    "UV Editing 탭으로 이동하여 뷰포트에서 자동으로 펼쳐진 UV 조각들을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Angle Limit",
+      "desc": "면이 나뉘는 기준 각도를 설정하며, 높을수록 조각이 적게 나뉩니다."
+    },
+    {
+      "name": "Island Margin",
+      "desc": "UV 조각(Island) 사이의 여백을 주어 텍스처 겹침(Bleeding) 현상을 방지합니다."
+    },
+    {
+      "name": "Area Weight",
+      "desc": "면적 비율에 따라 UV 크기를 조절하여 왜곡을 줄입니다."
+    },
+    {
+      "name": "Correct Aspect",
+      "desc": "이미지 텍스처의 가로세로 비율을 고려하여 UV를 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "단순한 기하학적 형태(건축물, 박스 등) 빠르게 텍스처링하기",
+      "steps": [
+        "건물이나 상자 형태의 오브젝트를 Edit Mode에서 전체 선택(A)합니다.",
+        "UV > Smart UV Project를 실행합니다.",
+        "기본 설정값으로 OK를 누른 뒤 Material을 적용해 텍스처 흐름을 확인합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 기계 부품 초안 UV 전개",
+      "steps": [
+        "복잡한 하드서페이스 모델을 Edit Mode에서 전체 선택합니다.",
+        "Angle Limit을 적절히 조절하여 불필요하게 쪼개지는 조각을 줄입니다.",
+        "Island Margin을 약간 주어 텍스처 굽기(Bake) 오류를 예방합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트의 스케일이 적용되지 않음 (Scale 값이 1이 아님) → Object Mode에서 Ctrl+A > All Transforms를 실행하여 스케일을 초기화한 뒤 다시 UV를 폅니다.",
+    "조각이 너무 잘게 쪼개짐 → Smart UV Project 팝업 창의 Angle Limit 값을 높여서 면이 덜 쪼개지도록 조절합니다."
+  ],
+  "related": [
+    "Unwrap",
+    "Project from View",
+    "Mark Seam",
+    "UV Pack Islands"
+  ],
+  "videos": [
+    {
+      "id": "MkT4xIhoaLM",
+      "title": "Blender Smart UV Project Quick Start Guide - UV Unwrap",
+      "author": "What Make Art"
+    },
+    {
+      "id": "RgtK94zl0kg",
+      "title": "Fast UV Unwrap in Blender | Smart UV Project Tutorial for Low Poly Models",
+      "author": "MrWonderHow"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Smart%20UV%20Project",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mode",
+    "Mesh",
+    "UV",
+    "Smart UV Project"
+  ],
+  "at": "2026-11-05T08:10:10.873060+00:00",
+  "updates": [
+    {
+      "at": "2026-11-05T08:17:09+00:00",
+      "what": "Smart UV Project의 활용 목적(규칙적인 패턴 텍스처 적용)에 대한 설명과 세부 문구를 최신 소식에 맞춰 보완했습니다.",
+      "sources": [
+        {
+          "title": "Blender UV 언랩 대표 방법 3가지 기초 가이드",
+          "url": "https://www.youtube.com/shorts/FvZEUObSQmE"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-04-65ef35f2d89a22b9"
+      ]
+    }
+  ]
+}
