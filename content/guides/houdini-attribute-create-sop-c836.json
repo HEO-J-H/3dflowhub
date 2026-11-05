@@ -1,0 +1,93 @@
+{
+  "id": "houdini-attribute-create-sop-c836",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Create SOP",
+  "title": "Attribute Create — 속성 만들기",
+  "summary": "Houdini의 Attribute Create SOP는 지오메트리에 새로운 커스텀 포인트, 프레미티브, Vertex 어트리뷰트를 직접 생성하고 초기값과 데이터 타입을 설정하는 핵심 노드입니다.",
+  "when": [
+    "VEX나 타 노드에서 참조할 커스텀 float, vector, string 어트리뷰트를 새로 만들 때",
+    "기존 어트리뷰트의 기본값을 오버라이드하거나 초기화해야 할 때",
+    "포인트나 프레미티브 단위의 사용자 정의 데이터(예: 색상, 가중치, ID)를 부여할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Attribute Create를 입력하고 Enter를 눌러 노드를 생성합니다.",
+    "생성된 Attribute Create 노드를 기존 지오메트리 SOP 노드의 출력 단자에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Name 필드에 생성할 어트리뷰트 이름을 입력합니다.",
+    "Class 드롭다운에서 어트리뷰트가 적용될 대상(Point, Primitive, Vertex, Detail)을 선택합니다.",
+    "Type에서 데이터 타입(Float, Integer, Vector 등)을 지정하고 Value 값을 설정합니다.",
+    "뷰포트나 Geometry Spreadsheet에서 어트리뷰트가 올바르게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Name",
+      "desc": "생성하거나 수정할 어트리뷰트의 고유 이름을 지정합니다."
+    },
+    {
+      "name": "Class",
+      "desc": "어트리뷰트가 저장될 데이터 레벨(Point, Primitive, Vertex, Detail)을 선택합니다."
+    },
+    {
+      "name": "Type",
+      "desc": "어트리뷰트의 데이터 타입(Float, Integer, Vector, String 등)을 결정합니다."
+    },
+    {
+      "name": "Value",
+      "desc": "어트리뷰트에 할당할 초기값을 설정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "Vector 타입인 경우 컴포넌트 개수(1~4)를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 가중치(Weight) 어트리뷰트 생성",
+      "steps": [
+        "Box SOP 뒤에 Attribute Create 노드를 연결합니다.",
+        "Name에 custom_weight를 입력하고 Class를 Point로 설정합니다.",
+        "Type을 Float로 두고 Value를 0.5로 설정하여 전체 포인트에 기본 가중치를 부여합니다."
+      ]
+    },
+    {
+      "title": "컬러 제어를 위한 RGB 벡터 어트리뷰트 추가",
+      "steps": [
+        "Grid SOP 하단에 Attribute Create 노드를 배치합니다.",
+        "Name에 Cd를 입력하고 Class를 Point로 설정합니다.",
+        "Type을 Vector로 두고 Value를 (1, 0, 0)으로 설정해 붉은색 기본값을 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "대소문자 오타 → 어트리뷰트 이름의 대소문자가 틀리면 후속 노드(Attribute Wrangle 등)에서 인식하지 못하므로 정확히 일치시키세요.",
+    "Class 설정 오류 → Point에 적용할 데이터를 Primitive에 생성하면 의도한 대로 연산되지 않으므로 대상 레벨을 다시 확인하세요."
+  ],
+  "related": [
+    "Attribute Wrangle",
+    "Attribute Delete",
+    "Attribute Promote",
+    "Attribute Transfer"
+  ],
+  "videos": [
+    {
+      "id": "a1wR_9X1mVw",
+      "title": "Attribute Create SOP | Local Variables | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Create%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Create"
+  ],
+  "at": "2026-11-05T08:56:53.716204+00:00"
+}
