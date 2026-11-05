@@ -15735,5 +15735,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 최적화 가이드 파일(docs/web-optimization.md) 정",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T17:24:34+00:00",
+    "kind": "proposal",
+    "id": "p-420d6d6e23",
+    "title": "PR #43 및 #44 백엔드 PBR 검증 최종 확인 및 머지 요청",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #43 및 #44가 백엔드 PBR 입력 무결성 검증 및 ValueError 처리 추가 상태로 승인 대기 중입니다.",
+    "proposal": "GitHub에서 PR #43과 #44의 테스트 결과를 최종 검토하고 이상이 없을 경우 운영자 권한으로 병합합니다.",
+    "expected": "백엔드 PBR 파이프라인의 입력 안정성과 에러 핸들링이 강화됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T17:24:34+00:00",
+    "kind": "proposal",
+    "id": "p-b3251bfed2",
+    "title": "웹 버전(web/) 메모리 관리 스크립트 안정화 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/web-optimization.md 문서 정비가 완료되었으나 브라우저 3D 렌더링 시 메모리 누수 방지 로직의 점검이 필요합니다.",
+    "proposal": "web/ 디렉토리 내 Three.js 리소스 해제(dispose) 관련 코드를 점검하고 보완 사항을 문서화합니다.",
+    "expected": "웹 브라우저 환경에서 대용량 이미지/메시 처리 시 메모리 안정성이 향상됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T17:25:18.335696+00:00",
+    "kind": "decision",
+    "id": "p-420d6d6e23",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #43 및 #44 최종 검토 및 머지",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T17:25:18.356861+00:00",
+    "kind": "decision",
+    "id": "p-b3251bfed2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 메모리 관리 스크립트 오류 점검",
+    "auto": true
   }
 ]
