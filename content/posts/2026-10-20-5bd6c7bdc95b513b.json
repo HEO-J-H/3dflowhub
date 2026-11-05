@@ -1,54 +1,95 @@
 {
-  "title_ko": "Gaussian Splatting RoMo-GS — 로봇 매핑의 모션 블러 해결",
+  "title_ko": "RoMo-GS: 노출 시간 통합 기반 실시간 3D Gaussian 맵핑",
   "title": "RoMo-GS: Efficient Online 3D Gaussian Splatting for Robot Mapping via Exposure-Integrated Motion Blur",
   "url": "https://arxiv.org/abs/2610.24605v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "로보틱스",
-    "모션 블러",
-    "온라인 매핑",
-    "3D 비전"
+    "3D Gaussian Splatting",
+    "Motion Deblurring",
+    "Robotic Mapping",
+    "SLAM",
+    "Online Optimization"
   ],
-  "summary": "RoMo-GS는 노출 통합 모션 블러 처리와 Hessian 기반 프루닝을 통해 고속 로봇 이동 중에도 실시간으로 정확한 3D Gaussian Splatting 매핑을 수행하는 새로운 온라인 시스템입니다.",
-  "insight": "본 연구는 자율주행 로봇이나 드론 등 고속 이동 환경에서 3D Gaussian Splatting을 적용할 때 고질적으로 발생하는 모션 블러와 카메라 포즈 드리프트 문제를 근본적으로 해결합니다. 기존 오프라인 방식 대비 수십 배 빠른 속도로 작동하면서도 렌더링 품질을 유지하므로, 실시간 공간 인식과 인터랙티브 시뮬레이션 개발에 큰 도움이 됩니다. 로보틱스와 실시간 3D 비전 파이프라인을 연동하려는 엔지니어들에게 실무적인 해법을 제시합니다.",
+  "summary": "로봇의 빠른 이동으로 인한 모션 블러를 단일 패스로 처리하고 Gaussian 증가를 억제하여 실시간 3DGS 맵핑을 수행하는 RoMo-GS 시스템을 제안합니다.",
+  "insight": "이 연구의 노출 시간 통합 및 실시간 모션 블러 처리 기법은 향후 고속 카메라나 드론 촬영 등 흔들림이 심한 실사 3D 스캔 및 Virtual 프러덕션 Pipeline 블러가 발생한 소스를 정제하는 데 응용될 수 있는 가능성을 보여줍니다. 다만 논문은 로봇 맵핑과 SLAM에 초점을 맞추고 있어, 일반 3D 아티스트의 DCC 툴 워크플로에 직접 적용되기보다는 향후 실시간 비전 및 렌더링 엔진 플러그인 형태로 발전할 잠재력이 있습니다.",
   "sections": [
     {
-      "heading": "실시간 로봇 매핑의 난제와 RoMo-GS",
-      "body": "온라인 3D Gaussian Splatting은 로보틱스 분야에서 환경 표현을 구축하는 실용적인 방법으로 주목받고 있습니다. 그러나 로봇의 급격한 기동은 모션 블러를 유발하여 재구성된 지오메트리를 손상시키고 카메라 포즈 드리프트를 발생시킵니다. 또한 지속적인 온라인 매핑 과정에서 가우스 개수가 무한정 증가하는 문제가 있습니다. 연구팀은 이러한 과제를 해결하기 위해 RoMo-GS 온라인 시스템을 제안했습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "로봇의 빠른 기동이나 진동은 입력 프레임에 모션 블러를 발생시켜 재구성된 지오메트리를 손상시키고 카메라 포즈 드리프트를 유발합니다. 또한 지속적인 온라인 맵핑 과정에서 Gaussian 개수가 무한히 증가하여 메모리를 고갈시키는 문제가 있습니다."
     },
     {
-      "heading": "노출 통합을 통한 모션 블러 해결",
-      "body": "기존의 모션 블러 인식 3D Gaussian Splatting 방식들은 N개의 개별 서브 프레임을 평균화하는 방식을 사용했습니다. 반면 RoMo-GS는 각 투영된 가우스를 노출 간격에 걸쳐 분석적으로 통합하여 가우스당 O(1) 복잡도를 달성합니다. 이를 통해 복잡한 연산 부하를 줄이면서도 고속 움직임 속에서 선명한 3D 지오메트리를 유지할 수 있습니다."
+      "heading": "핵심 아이디어",
+      "body": "기존 모션 블러 인식 3DGS 방식들이 N개의 개별 서브 프레임을 평균 내어 N배의 연산 비용을 소모하던 것과 달리, 선형 모션 모델 하에서 투영된 각 Gaussian의 노출 시간 적분을 해석적으로 평가하여 가우시안당 O(1) 복잡도를 달성합니다."
     },
     {
-      "heading": "가우스 증가 제어와 공동 최적화",
-      "body": "지속적인 매핑 중 메모리 부하를 줄이기 위해 Hessian 기반 프루닝 점수를 도입하여 가우스의 무분별한 성장을 제한합니다. 동시에 Adam 옵티마이저와 온라인 Levenberg-Marquardt 단계를 통해 포즈, 속도, 가우스를 공동으로 정밀하게 보정합니다. 이 최적화 파이프라인은 시스템 전반의 수렴 안정성을 크게 높여줍니다."
+      "heading": "방법과 파이프라인",
+      "body": "비전 트래커 입력을 받아 랜드마크와 깊이 샘플로 초기 Gaussian을 생성합니다. 노출 통합 모션 블러 모델을 통해 단일 래스터화로 흐린 이미지를 렌더링하고, Adam 및 Levenberg-Marquardt(LM) 최적화 단계로 카메라 상태와 Gaussian을 정밀 조정하며, 헤시안 기반 프루닝 점수로 맵 크기를 제한합니다."
     },
     {
-      "heading": "성능 및 효율성 검증",
-      "body": "다양한 공개 데이터셋과 자체 수집한 데이터셋을 통한 실험 결과, RoMo-GS는 오프라인 디블러링 3D Gaussian Splatting 방법과 동등하거나 더 우수한 렌더링 품질을 보여주었습니다. 그러면서도 처리 속도는 15배에서 150배까지 더 빨라졌습니다. 나아가 기존 온라인 3D Gaussian Splatting 베이스라인 대비 약 20% 더 적은 가우스 개수만으로도 경쟁력 있는 품질을 온라인에서 구현합니다."
+      "heading": "성능과 결과",
+      "body": "여러 공공 및 자체 수집 데이터셋에서 오프라인 디블러링 3DGS 방법들과 맞먹거나 뛰어넘는 렌더링 품질을 보여주며 15~150배 더 빠르게 작동합니다. 또한 온라인 3DGS 기준선 대비 약 20% 더 적은 Gaussian을 유지하면서 경쟁력 있는 품질을 제공합니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "실시간 로봇 환경에서 모션 블러와 메모리 증가를 효과적으로 해결하지만, 논문에서는 카메라의 복잡한 비선형 가속이나 극단적인 조명 변화 환경에서의 한계에 대해서는 추가적인 검토가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "공식 논문 내에 별도의 소스 코드 저장소 링크는 명시되지 않았으나, 표준 공개 데이터셋(ETH3D, Deblur-NeRF 합성 데이터셋 및 자체 수집 멀티 플랫폼 데이터셋)을 활용한 평가 결과를 상세히 수록하고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "RoMo-GS는 기존 모션 블러 처리 방식과 무엇이 다른가요?",
-      "a": "기존 방식들이 여러 서브 프레임을 단순 평균화하는 것과 달리, RoMo-GS는 투영된 각 가우스를 노출 간격에 맞춰 분석적으로 통합하여 가우스당 O(1) 연산 복잡도로 처리합니다."
+      "q": "RoMo-GS는 모션 블러를 어떻게 처리하나요?",
+      "a": "기존 방식처럼 여러 개의 서브 프레임을 수치적으로 평균 내는 대신, ERF(Error Function)를 사용하여 투영된 Gaussian의 모션에 따른 노출 시간 적분을 해석적으로 평가합니다."
     },
     {
-      "q": "실시간 매핑 중 메모리 관리 문제는 어떻게 해결했나요?",
-      "a": "Hessian 기반의 프루닝 점수를 적용하여 불필요하게 가우스가 늘어나는 것을 제한하고, Adam 및 온라인 Levenberg-Marquardt 단계를 통해 효율적으로 최적화합니다."
+      "q": "Gaussian의 무분별한 개수 증가는 어떻게 막나요?",
+      "a": "Gauss-뉴턴 헤시안의 불투명도-축 대각선을 기반으로 하는 온라인 Gaussian 프루닝 점수를 도입하여 중복되거나 정보가 부족한 Gaussian을 효율적으로 제거합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2610.24605v1/2610.24605v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/teaser.png",
+        "caption": "Figure 1: We introduce RoMo-GS , an efficient online 3D Gaussian Splatting system for real-world robotic mapping. Given a stream of motion-blurred frames captured by robots and front-end vision tracker outputs (a), RoMo-GS produces a compact 3DGS map (b) and sharp renderings online (c).",
+        "caption_ko": "그림 1: 로봇 맵핑을 위한 효율적인 온라인 3D 가우시안 스플래팅 시스템인 RoMo-GS 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/pipeline.png",
+        "caption": "Figure 2: Overview of RoMo-GS . Given inputs from the vision-based tracker, we spawn initial Gaussians with the landmarks and depth samples. The exposure-integrated motion blur model renders a blurry image in a single rasterization. A joint Adam loop and an LM step refine the camera state and Gaussi",
+        "caption_ko": "그림 2: 비전 트래커 입력부터 최적화 및 렌더링까지 이어지는 RoMo-GS 파이프라인 구조."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/closed_blur.png",
+        "caption": "Figure 3: Comparison with multi-sample. (a) Static Gaussian with a motion arrow. (b) N blur = 5 N_{\\text{blur}}=5 , visible discretization. (c) N blur = 100 N_{\\text{blur}}=100 , smoother, but expensive. (d) Our model results same as (c) at a single sample.",
+        "caption_ko": "그림 3: 다중 샘플링 방식과 제안하는 단일 샘플 노출 통합 모션 블러 모델의 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/blur_pic.png",
+        "caption": "Figure 4: Top: ETH3D real-world. Bottom: Deblur-NeRF synthetic. GSOM fails to handle motion blur on both. Deblurring 3DGS and BAGS handle the synthetic case but collapse on ETH3D. CoMoGaussian is competitive on both, while Ours matches CoMoGaussian’s visual quality and trains 70–150 × \\times faster ",
+        "caption_ko": "그림 4: ETH3D 실제 환경 및 Deblur-NeRF 합성 데이터셋에서의 다른 3DGS 및 NeRF 디블러링 방식과의 렌더링 품질 비교."
+      }
+    ]
   },
   "collected_at": "2026-10-20T01:53:55.763062+00:00",
   "notion_id": "",
   "id": "2026-10-20-5bd6c7bdc95b513b",
-  "enriched_at": "skip",
-  "img_tried": true
+  "enriched_at": "2026-11-05T16:50:59+00:00",
+  "img_tried": true,
+  "try_it": [],
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2
 }
