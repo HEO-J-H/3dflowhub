@@ -1,0 +1,90 @@
+{
+  "id": "houdini-for-each-loop-b517",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "For-Each Loop",
+  "title": "For-Each — 조각마다 반복",
+  "summary": "For-Each Loop SOP는 Houdini에서 지오메트리나 포인트를 반복문으로 처리하여 복잡한 생성과 변형을 자동화하는 노드입니다. 마치 프로그래밍의 루프처럼 각 조각을 순차적으로 처리하거나 누적하여 결과를 만듭니다.",
+  "when": [
+    "부서진 파편마다 각각 다른 무작위 회전과 크기를 주고 싶을 때",
+    "여러 개의 독립된 오브젝트를 순서대로 병합(Merge)하거나 처리할 때",
+    "스프레드시트의 피쳐나 각 Primitive를 개별적으로 제어하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "For-Each Loop를 검색하여 생성합니다. (일반적으로 For-Each Connected Pieces 또는 For-Each Named Primitive 등을 활용합니다)",
+    "반복 처리할 지오메트리를 For-Each Begin 노드의 첫 번째 입력에 연결합니다.",
+    "루프 내부에서 적용할 모디파이어나 조작 노드를 Begin과 End 노드 사이에 배치합니다.",
+    "End 노드의 파라미터에서 Block Begin과 연결된 반복 방식(Pieces, Primitive 등)을 확인합니다.",
+    "뷰포트에서 반복 연산이 적용되어 결과가 누적된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Method",
+      "desc": "반복 처리 방식을 피스로 나눌지, 프리미티브별로 할지 결정합니다."
+    },
+    {
+      "name": "Piece Element",
+      "desc": "어떤 단위를 기준으로 루프를 돌릴지 지정합니다 (예: Primitive, Point)."
+    },
+    {
+      "name": "Accumulate Results",
+      "desc": "각 반복의 결과를 다음 단계로 누적할지 여부를 설정합니다."
+    },
+    {
+      "name": "Iteration",
+      "desc": "현재 반복 중인 회차(Index) 정보를 가져와 표현식에 활용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파편 오브젝트마다 랜덤 회전 주기",
+      "steps": [
+        "Voronoi Fracture로 조각난 지오메트리를 준비합니다.",
+        "For-Each Pieces 루프 노드를 배치하고 사이에 Transform 노드를 넣습니다.",
+        "Transform 노드에서 회전 값에 rand($IT)를 입력해 조각마다 다른 각도를 줍니다."
+      ]
+    },
+    {
+      "title": "순차적 애니메이션 지오메트리 생성",
+      "steps": [
+        "For-Each Number 루프를 사용해 반복 횟수를 지정합니다.",
+        "내부에 Copy 노드나 Extrude 노드를 배치합니다.",
+        "반복 횟수 변수를 활용해 높이가 점점 높아지는 계단 구조를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 지오메트리에 피스(Piece) 정보나 그룹이 없을 때 → Connectivity 노드나 Name 속성을 먼저 부여해 조각을 구분합니다.",
+    "루프 안에서 무한 연산이 발생해 툴이 멈출 때 → 조건문이나 반복 횟수(Iterations) 설정이 올바른지 확인하고 연산 범위를 제한합니다."
+  ],
+  "related": [
+    "Copy and Transform",
+    "Copy to Points",
+    "Voronoi Fracture",
+    "Connectivity"
+  ],
+  "videos": [
+    {
+      "id": "xs5WezgOZlo",
+      "title": "Foreach Loops in Houdini for Beginners",
+      "author": "bubblepins"
+    },
+    {
+      "id": "FDXuZLn67so",
+      "title": "Houdini In Five Minutes 11: The Foreach Loop",
+      "author": "Entagma"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20For-Each%20Loop",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "For-Each Loop",
+    "For-Each Connected Pieces",
+    "For-Each Named Primitive"
+  ],
+  "at": "2026-11-05T11:07:08.407824+00:00"
+}
