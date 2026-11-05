@@ -14928,5 +14928,67 @@
     "id": "p-1b489d1693",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 완료된 제안 및 최근 커밋 내역에 웹 버전 메모리 최적화 가이드 문서 작성 및 수정 내용이 반영되어 있음"
+  },
+  {
+    "at": "2026-11-05T14:13:46+00:00",
+    "kind": "proposal",
+    "id": "p-e4c5c1ce2e",
+    "title": "웹 브라우저 메모리 관리 가이드 문서 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 버전 성능 최적화 가이드 작성 중 패치 적용 및 LLM 호출 제한 이슈가 발생하여 문서 포맷 및 내용 보완이 필요함.",
+    "proposal": "docs/web-optimization.md 파일의 마크다운 포맷을 점검하고, 브라우저 환경에서의 메모리 해제 및 캔버스 자원 관리 내용을 명확하게 정리하여 커밋.",
+    "expected": "사용자가 웹 버전 사용 시 메모리 누수를 방지하고 가이드를 쉽게 참고할 수 있음",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T14:13:46+00:00",
+    "kind": "proposal",
+    "id": "p-4b4394e5b2",
+    "title": "백엔드 PBR 입력 검증 PR(#43, #44) 검토 및 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/app/services/pbr_generator.py 관련 PBR 맵 유효성 검사 PR(#43, #44)이 승인 대기 상태로 남아 있음.",
+    "proposal": "PR #43 및 #44의 단위 테스트 통과 여부를 확인하고 핵심 파이프라인 무결성을 위해 운영자 승인 후 머지 진행",
+    "expected": "잘못된 이미지 입력 시 발생하는 예외 처리가 안정적으로 적용됨",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T14:14:17.238668+00:00",
+    "kind": "decision",
+    "id": "p-e4c5c1ce2e",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:14:17.257629+00:00",
+    "kind": "decision",
+    "id": "p-4b4394e5b2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:14:19.337093+00:00",
+    "kind": "triage",
+    "id": "p-e4c5c1ce2e",
+    "verdict": "done_already",
+    "reason": "이미 완료된 '웹 성능·메모리 가이드 수정' 및 관련 커밋 내용과 중복되는 과제입니다."
+  },
+  {
+    "at": "2026-11-05T14:14:19.354276+00:00",
+    "kind": "decision",
+    "id": "p-e4c5c1ce2e",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 완료된 '웹 성능·메모리 가이드 수정' 및 관련 커밋 내용과 중복되는 과제입니다."
   }
 ]
