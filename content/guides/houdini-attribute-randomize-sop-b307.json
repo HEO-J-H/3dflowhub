@@ -1,0 +1,99 @@
+{
+  "id": "houdini-attribute-randomize-sop-b307",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Randomize SOP",
+  "title": "Attribute Randomize — 무작위 값",
+  "summary": "Houdini의 Attribute Randomize SOP는 지오메트리의 포인트나 Primitive 속성(Attribute)에 무작위 값을 부여하는 노드입니다. 마치 여러 개체의 크기나 색상을 불규칙하게 흩뿌려 자연스러운 다양성을 만들 때 유용합니다.",
+  "when": [
+    "복사된 나무나 돌멩이들의 크기와 회전값을 제각각 다르게 만들고 싶을 때",
+    "그리드나 Particle 표면에 불규칙한 높낮이(Displacement)를 주어 자연스러운 지형을 만들 때",
+    "군중 시뮬레이션에서 캐릭터마다 옷 색상이나 움직임 속도를 다르게 줄 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Attribute Randomize를 검색하여 노드를 생성합니다.",
+    "변형을 줄 대상 Geometry Nodes와 Attribute Randomize 노드를 연결합니다.",
+    "파라미터 창(Parameters)의 Attribute 필드에 무작위로 만들 속성 이름(예: P, scale, Cd)을 입력합니다.",
+    "Class 드롭다운에서 대상이 Point인지 Primitive인지 선택합니다.",
+    "Operation(구간 연산 방식)과 Element Size를 조절하여 무작위성의 범위를 설정합니다.",
+    "시드(Seed) 값을 변경하여 무작위 패턴의 형태를 바꿉니다."
+  ],
+  "params": [
+    {
+      "name": "Attribute",
+      "desc": "무작위 값을 적용할 타겟 속성의 이름(예: scale, Cd, P)을 입력합니다."
+    },
+    {
+      "name": "Class",
+      "desc": "속성이 적용될 레벨을 점(Point), Primitive, Vertex 중 선택합니다."
+    },
+    {
+      "name": "Operation",
+      "desc": "기존 값에 무작위 값을 더하거나(Add), 곱하거나(Multiply), 대체(Set)하는 방식을 결정합니다."
+    },
+    {
+      "name": "Distribution",
+      "desc": "균등 분포(Uniform), Gauss 분포(Gaussian) 등 무작위가 뿌려지는 확률 방식을 지정합니다."
+    },
+    {
+      "name": "Value Range",
+      "desc": "생성되는 무작위 값의 최소(Min)와 최대(Max) 범위를 설정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "난수 생성을 위한 시드 번호를 변경하여 완전히 다른 무작위 패턴을 얻습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Copy to Points로 복제된 나무 크기 무작위화하기",
+      "steps": [
+        "나무 모델과 Scatter SOP로 생성된 포인트를 준비합니다.",
+        "Scatter SOP 바로 아래에 Attribute Randomize 노드를 연결합니다.",
+        "Attribute에 'scale'을 입력하고 Class를 Point로 설정합니다.",
+        "Value Range 값을 Min 0.5, Max 1.5로 조절하여 나무의 크기가 제각각이 되도록 만듭니다."
+      ]
+    },
+    {
+      "title": "Particle 색상(Cd) 무작위로 채우기",
+      "steps": [
+        "포인트가 생성된 지오메트리 뒤에 Attribute Randomize 노드를 연결합니다.",
+        "Attribute에 'Cd'를 입력하여 컬러 속성을 지정합니다.",
+        "Value Range를 원하는 색상 범위로 설정하여 형긋한 불규칙 컬러를 만듭니다.",
+        "Viewport에서 디스플레이 옵션을 Point Color로 켜서 결과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "존재하지 않는 속성 이름을 입력한 경우 → Attribute 이름을 'scale'이나 'Cd' 등 올바른 소문자 표준 속성명으로 수정합니다.",
+    "Class 설정을 잘못 선택한 경우 → 포인트 속성인데 Class가 Primitive로 되어 있으면 적용되지 않으므로 Point로 변경합니다.",
+    "Attribute Wrangle과 중복 충돌하는 경우 → 동일한 속성을 Wrangle과 Randomize에서 동시에 제어하지 않는지 노드 연결을 확인합니다."
+  ],
+  "related": [
+    "Attribute Wrangle",
+    "Scatter SOP",
+    "Copy to Points",
+    "Attribute Noise SOP"
+  ],
+  "videos": [
+    {
+      "id": "zz6oakEB17I",
+      "title": "Attribute Randomize SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "FEgKOlIxmwY",
+      "title": "#63 Randomise attributes with the Copy To Points Node in Houdini",
+      "author": "Mad Dog VFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Randomize%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Randomize"
+  ],
+  "at": "2026-11-05T09:33:46.227477+00:00"
+}
