@@ -1,0 +1,89 @@
+{
+  "id": "unreal-engine-data-layers-1c47",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Data Layers",
+  "title": "Data Layers — 장면 상태 나누기",
+  "summary": "Data Layers는 Unreal Engine의 World Partition 환경에서 레벨 내 오브젝트 그룹을 논리적으로 분류하고 스트리밍을 제어하는 시스템입니다. 오브젝트의 가시성과 로딩 상태를 런타임 및 에디터에서 효율적으로 관리합니다.",
+  "when": [
+    "낮은 사양의 플랫폼이나 특정 시나리오에 따라 오브젝트 그룹을 동적으로 켜고 꺼야 할 때",
+    "하나의 거대한 오픈 월드 레벨에서 파괴된 환경과 복구된 환경 같은 대체 버전을 관리할 때",
+    "팀원 간 협업 시 레벨의 특정 구역(예: 조명, 사운드, 게임플레이 요소)을 독립적으로 로드하고 편집할 때"
+  ],
+  "steps": [
+    "Unreal Engine Editor를 열고 World Partition이 활성화된 레벨에 진입합니다.",
+    "Window 메뉴에서 Data Layers 패널을 엽니다.",
+    "Data Layers 패널 하단의 + 아이콘을 클릭하여 새로운 Data Layer를 생성합니다.",
+    "이름을 지정하고 Initial State(초기 상태)를 Unloaded 또는 Loaded, Loaded 중 선택합니다.",
+    "Outliner 패널에서 관리할 오브젝트들을 다중 선택합니다.",
+    "선택한 오브젝트를 우클릭하고 Data Layers 메뉴에서 생성한 Data Layer를 할당합니다.",
+    "Viewport 또는 Data Layers 패널에서 눈 아이콘을 토글하여 가시성과 로딩 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Initial State",
+      "desc": "게임 시작 시 Data Layer의 기본 로딩 상태(Unloaded, Loaded, Activated)를 설정합니다."
+    },
+    {
+      "name": "Is Dynamically Loaded",
+      "desc": "런타임에 스트리밍을 통해 동적으로 로드 및 언로드할지 여부를 결정합니다."
+    },
+    {
+      "name": "Data Layer Asset",
+      "desc": "여러 레벨에서 재사용할 수 있는 독립된 Data Layer 에셋 파일을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "주야간 조명 프리셋 전환",
+      "steps": [
+        "Daytime과 Nighttime Data Layer를 각각 생성합니다.",
+        "낮에만 쓰이는 라이트와 프랍을 Daytime에 할당합니다.",
+        "밤에만 쓰이는 라이트와 프랍을 Nighttime에 할당합니다.",
+        "Data Layers 패널에서 하나를 끄고 다른 하나를 켜서 씬을 확인합니다."
+      ]
+    },
+    {
+      "title": "파괴 전후 오브젝트 관리",
+      "steps": [
+        "Building-Intact와 Building-Destroyed Data Layer를 생성합니다.",
+        "정상적인 건물의 메시들을 Intact에 넣습니다.",
+        "파괴된 건물의 파편 메시들을 Destroyed에 넣습니다.",
+        "게임플레이 이벤트에 따라 블루프린트로 각 레이어를 언로드 및 로드합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Initial State를 잘못 설정하여 게임 시작 시 필요한 오브젝트가 보이지 않음 → Data Layers 패널에서 Initial State를 Loaded 또는 Activated로 변경",
+    "World Partition이 꺼진 일반 레벨에서 Data Layers를 찾으려 함 → 월드 생성 시 World Partition 옵션이 켜져 있는지 확인"
+  ],
+  "related": [
+    "World Partition",
+    "Level Instances",
+    "Sublevels",
+    "Hierarchical LOD"
+  ],
+  "videos": [
+    {
+      "id": "_OlAs-fvICc",
+      "title": "Unreal Engine 5 Tutorial - Data Layers",
+      "author": "Ryan Laley"
+    },
+    {
+      "id": "4bCqDX1Q1io",
+      "title": "UE5 Data Layers in Under 4 Minutes! (Quick Tutorial)",
+      "author": "LearnCodingWithADummy"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Data%20Layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine Editor",
+    "World Partition",
+    "Window",
+    "Data Layers"
+  ],
+  "at": "2026-11-05T13:54:11.595645+00:00"
+}
