@@ -15014,5 +15014,122 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 PBR 입력 검증 단위 테스트 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-05T14:34:09+00:00",
+    "kind": "proposal",
+    "id": "p-2e5ac827ff",
+    "title": "웹 버전 메모리 관리 및 최적화 문서 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 최적화 가이드 작성 시 포맷 오류 및 일시적 LLM 호출 한도 도달로 인해 내용 보완이 필요합니다.",
+    "proposal": "docs/web-optimization.md 파일의 포맷을 점검하고, 브라우저 환경에서의 메모리 해제 및 캔버스 렌더링 최적화 가이드를 명확하게 재작성합니다.",
+    "expected": "프론트엔드 연산 부하 및 메모리 누수 방지에 대한 가이드 완성도 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T14:34:09+00:00",
+    "kind": "proposal",
+    "id": "p-19efcc5e92",
+    "title": "백엔드 PBR 입력 검증 PR(#43, #44) 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "pbr_generator.py 입력 이미지 검증 관련 PR #43 및 #44가 생성되어 검토 대기 상태입니다.",
+    "proposal": "작성된 단위 테스트 및 백엔드 서비스의 예외 처리 로직을 확인하고 PR 승인 여부를 최종 결정합니다.",
+    "expected": "잘못된 입력값에 대한 백엔드 안정성 강화 및 불필요한 대기 상태 해소",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/43",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T14:34:11+00:00",
+    "kind": "proposal",
+    "id": "p-c51186bb12",
+    "title": "모바일 화면 주요 입력 폼 레이아웃 최종 점검",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "헬스 체크 링크 28개 모두 정상(broken_links: 0), 이전 디자이너 UI 개선 완료 반영됨",
+    "proposal": "스마트폰 화면에서 5060 은퇴 준비자가 입력 폼과 계산 버튼을 한눈에 알아보고 쉽게 터치할 수 있도록 여백과 버튼 크기를 재점검합니다.",
+    "expected": "모바일 기기에서의 사용자 이탈률 감소 및 편리한 시뮬레이션 경험 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-05T14:35:24.527998+00:00",
+    "kind": "proposal",
+    "id": "p-8924705579",
+    "title": "깨진 참고 링크 2개 수정 (💰 life-after-60)",
+    "by": "🔗 상태 점검",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "응답 404/5xx: https://github.com/MikePiper/open-social-security, https://github.com/boknows/cFIREsim-open",
+    "proposal": "regulatory-reference.js 의 해당 링크를 공식 최신 주소로 바꾸거나 삭제 (사람 검토 후 커밋)",
+    "expected": "신뢰도 유지, 사용자 이탈 방지",
+    "effort": "낮음",
+    "action": null
+  },
+  {
+    "at": "2026-11-05T14:35:30.048642+00:00",
+    "kind": "proposal",
+    "id": "p-97a1373605",
+    "title": "TRELLIS 단일/다중 이미지 생성 모델 검토",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "수집",
+    "evidence": "스타일 14194개, MIT 라이선스, CVPR'25 Spotlight 선정",
+    "proposal": "microsoft/TRELLIS 리포트를 다중 각도 이미지 3D 생성 선택 엔진으로 도입 검토",
+    "expected": "공개 AI 데모 수준을 넘어 로컬 파이프라인에서도 고품질 3D 생성 지원 가능",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-05T14:36:03.808806+00:00",
+    "kind": "decision",
+    "id": "p-97a1373605",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TRELLIS 오픈소스 모델 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:36:03.824253+00:00",
+    "kind": "decision",
+    "id": "p-8924705579",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깨진 참고 링크 2개 수정 (💰 life-after-60)",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:36:03.844041+00:00",
+    "kind": "decision",
+    "id": "p-c51186bb12",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:36:03.858223+00:00",
+    "kind": "decision",
+    "id": "p-2e5ac827ff",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 메모리 최적화 문서 내용 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-05T14:36:03.872456+00:00",
+    "kind": "decision",
+    "id": "p-19efcc5e92",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PBR 맵 및 이미지 검증 PR (#43, #44) 검토",
+    "auto": true
   }
 ]
