@@ -1,0 +1,97 @@
+{
+  "id": "houdini-color-sop-1855",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Color SOP",
+  "title": "Color — 색 지정",
+  "summary": "Color SOP 노드는 지오메트리의 포인트나 프시미티브에 색상(Cd) 및 알파(Alpha) 속성을 추가하거나 수정하는 노드입니다. 마치 모델 위에 직접 물감을 칠하듯 데이터를 부여하여 후속 연산이나 렌더링에 활용할 수 있습니다.",
+  "when": [
+    "포인트 클라우드나 Particle에 무작위 색상을 부여하고 싶을 때",
+    "특정 조건이나 그룹에 따라 모델의 색상을 다르게 지정하고 싶을 때",
+    "Material(재질) 없이 뷰포트에서 기본 색상이나 마스크 데이터를 확인하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Color를 검색하여 Color SOP 노드를 생성하고 선택합니다.",
+    "색상을 변경할 Geometry Nodes를 Color SOP 노드의 첫 번째 입력 포트에 연결합니다.",
+    "파라미터 패널(Parameter Pane)의 Class 속성을 Point 또는 Primitive로 설정합니다.",
+    "Color Type을 Constant, Random 등 원하는 방식으로 변경합니다.",
+    "Color 파라미터에서 원하는 색상을 선택하거나 무작위 옵션을 조정하여 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Class",
+      "desc": "색상 데이터를 포인트(Point) 단위로 지정할지, Primitive 단위로 지정할지 결정합니다."
+    },
+    {
+      "name": "Color Type",
+      "desc": "Constant(단색), Random(무작위), Ramp(그라데이션) 등 색상을 생성하는 방식을 선택합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "Color Type이 Constant일 때 적용할 기본 RGB 색상을 설정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "Color Type이 Random일 때 무작위 패턴을 생성하는 시드(난수 번호)를 변경합니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "투명도 또는 마스크로 사용할 알파(Alpha) 값의 강도를 조절합니다."
+    },
+    {
+      "name": "Operation",
+      "desc": "기존 색상에 새 색상을 Set(덮어쓰기), Add(더하기), Multiply(곱하기) 등으로 조합하는 방식을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Particle에 무작위 색상 부여하기",
+      "steps": [
+        "Scatter SOP 노드 뒤에 Color SOP 노드를 연결합니다.",
+        "Color Type을 Random으로 설정합니다.",
+        "Seed 값을 조절하여 파티클마다 다양한 색상이 무작위로 섞이도록 만듭니다."
+      ]
+    },
+    {
+      "title": "그룹별로 다른 색상 지정하기",
+      "steps": [
+        "Group SOP 노드로 모델의 특정 부분을 그룹화합니다.",
+        "Color SOP 노드를 연결하고 Group 파라미터에 해당 그룹 이름을 입력합니다.",
+        "Color Type을 Constant로 두고 원하는 색상을 지정하여 특정 영역만 색칠합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "색상이 보이지 않음 → 뷰포트 디스플레이 옵션에서 Display 조명 또는 Color 속성(Cd) 표시가 꺼져 있는지 확인하고 켭니다.",
+    "포인트에 칠했는데 면 색상이 안 바뀜 → Class 파라미터가 Point로 되어 있는지, 혹은 Primitive 단위로 칠해야 하는지 확인합니다."
+  ],
+  "related": [
+    "Attribute Wrangle",
+    "Scatter SOP",
+    "Blast SOP",
+    "Material SOP"
+  ],
+  "videos": [
+    {
+      "id": "5KK06YTZgzo",
+      "title": "Color SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Color%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Color",
+    "Color SOP"
+  ],
+  "at": "2026-11-05T10:12:07.821397+00:00"
+}

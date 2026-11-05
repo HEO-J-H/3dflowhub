@@ -1,0 +1,102 @@
+{
+  "id": "unreal-engine-static-mesh-import-fbx-9d25",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Static Mesh import (FBX)",
+  "title": "Static Mesh 가져오기(FBX)",
+  "summary": "FBX 포맷의 3D 모델을 Unreal Engine의 콘텐츠 브라우저로 가져와 실시간 렌더링에 적합한 Static Mesh로 변환하는 기초 작업입니다. 좌표계, 스케일, 머티리얼, 충돌(Collision) 설정을 한 번에 처리합니다.",
+  "when": [
+    "외부 3D DCC(Blender, 3ds Max, Maya 등)에서 제작한 배경이나 소품 에셋을 Unreal Engine으로 가져올 때",
+    "Import 과정에서 미터법 단위(Scale)나 회전 축(Z-up)을 올바르게 맞추고 싶을 때",
+    "모델의 노멀 방향이나 라이트맵 UV를 검증하고 자동 생성해야 할 때"
+  ],
+  "steps": [
+    "Content Browser 에서 에셋을 가져올 폴더를 열고, 우측 상단 Import 버튼을 클릭하거나 FBX 파일을 드래그 앤 드롭합니다.",
+    "파일 탐색기에서 대상 FBX 파일을 선택하면 Import 옵션 대화 상자가 나타납니다.",
+    "Mesh 섹션에서 Skeletal Mesh 대신 Static Mesh 옵션이 선택되어 있는지 확인합니다.",
+    "Transform 섹션에서 Import Uniform Scale(예: 1.0 또는 100)과 회전 값을 조정하여 크기와 방향을 맞춥니다.",
+    "Normal & Tangents 설정에서 Normals Import Method 를 Import Normals 또는 Import Normals and Tangents 로 설정합니다.",
+    "하단의 Import 또는 Import All 버튼을 클릭하여 에셋 생성을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Import Uniform Scale",
+      "desc": "모델의 전체적인 크기 비율을 조절하여 엔진 단위를 맞춥니다."
+    },
+    {
+      "name": "Normals Import Method",
+      "desc": "FBX에 포함된 법선(Normal)을 그대로 쓸지, 엔진에서 다시 계산할지 결정합니다."
+    },
+    {
+      "name": "Generate Lightmap UVs",
+      "desc": "라이트맵 Baking을 위한 두 번째 UV 채널을 자동으로 생성합니다."
+    },
+    {
+      "name": "Auto Generate Collision",
+      "desc": "에셋 주변에 간단한 충돌 박스나 헐(Hull)을 자동으로 만들어 캐릭터가 통과하지 못하게 합니다."
+    },
+    {
+      "name": "Combine Meshes",
+      "desc": "FBX 내의 여러 오브젝트를 하나의 Static Mesh로 합쳐서 가져옵니다."
+    },
+    {
+      "name": "Material Import Method",
+      "desc": "FBX에 연결된 머티리얼과 텍스처를 함께 가져와 기본 재질을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축물 외부 소품(벤치) Import",
+      "steps": [
+        "Blender에서 제작한 벤치 모델을 FBX로 내보냅니다.",
+        "Content Browser로 드래그하여 Import 창을 엽니다.",
+        "Combine Meshes를 켜서 하나의 메쉬로 합치고 Auto Generate Collision을 체크합니다.",
+        "Import를 눌러 씬에 배치 가능한 프랍으로 완성합니다."
+      ]
+    },
+    {
+      "title": "정밀한 충돌이 필요한 문(Door) 오브젝트",
+      "steps": [
+        "문 모델을 FBX로 가져올 때 Auto Generate Collision을 끕니다.",
+        "정교한 충돌 판정을 위해 3D DCC에서 별도의 Collision 메쉬(UBX_)를 함께 제작하여 가져옵니다.",
+        "Materials 옵션에서 원본 머티리얼을 유지하도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "크기가 너무 작거나 크게 나옴 → Import Uniform Scale 값을 0.01 또는 100 등으로 변경하여 다시 임포트합니다.",
+    "모델이 누워 있거나 방향이 잘못됨 → Source Axis Conversion 또는 DCC Export 시 Z-up 축 설정을 확인합니다.",
+    "표면이 검게 깨지거나 빛이 이상하게 맺힘 → Normal Import Method를 'Import Normals and Tangents'로 변경하거나 DCC에서 Normal을 재계산합니다."
+  ],
+  "related": [
+    "Static Mesh Editor",
+    "LOD (Level of Detail)",
+    "Collision",
+    "Material Instance"
+  ],
+  "videos": [
+    {
+      "id": "WWF4rmhvMQA",
+      "title": "Unreal Engine 5.5 How to import static mesh FBX",
+      "author": "STUDIO C-illy_B"
+    },
+    {
+      "id": "q3sGxHyliBo",
+      "title": "Import FBX as Blueprints into Unreal Engine 5 the Right Way [Tutorial]",
+      "author": "Jen Abbott Creates"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Static%20Mesh%20import%20%28FBX%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Import",
+    "FBX",
+    "Mesh",
+    "Skeletal Mesh",
+    "Static Mesh"
+  ],
+  "at": "2026-11-05T10:15:05.599191+00:00"
+}
