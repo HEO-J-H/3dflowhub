@@ -1,0 +1,105 @@
+{
+  "id": "houdini-switch-sop-de3a",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Switch SOP",
+  "title": "Switch — 입력 고르기",
+  "summary": "Switch SOP는 두 개 이상의 입력 중 하나를 선택해 출력하는 노드로, 인덱스 값을 바꾸면 실시간으로 전환됩니다.",
+  "when": [
+    "두 개의 모델을 교차 애니메이션하고 싶을 때",
+    "거리나 레벨에 따라 LOD(Detail) 모델을 전환할 때",
+    "랜덤 변형 중 하나를 선택해 다양성을 줄 때"
+  ],
+  "steps": [
+    "Network View에서 Tab 키 → ‘Switch’ 검색 후 Switch SOP 생성",
+    "첫 번째 입력에 기본 모델, 두 번째 입력에 변형 모델을 연결",
+    "Parameter Pane에서 ‘Switch Index’ 값을 0(첫 입력) 또는 1(두 번째 입력)으로 설정",
+    "필요하면 ‘Switch Index’에 키프레임을 추가하거나 $FRAME, $RAND 같은 표현식을 입력",
+    "출력 결과를 뷰포트에서 확인하고, 필요 시 다른 SOP와 연결"
+  ],
+  "params": [
+    {
+      "name": "Switch Index",
+      "desc": "선택할 입력 번호(0부터 시작)"
+    },
+    {
+      "name": "Input 0",
+      "desc": "첫 번째 입력에 연결된 지오메트리"
+    },
+    {
+      "name": "Input 1",
+      "desc": "두 번째 입력에 연결된 지오메트리"
+    },
+    {
+      "name": "Input 2",
+      "desc": "세 번째 입력(필요 시)"
+    },
+    {
+      "name": "Input Count",
+      "desc": "연결된 입력 개수(자동 업데이트)"
+    },
+    {
+      "name": "By Attribute",
+      "desc": "특정 어트리뷰트 값으로 자동 전환 (고급)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "거리 기반 LOD 전환",
+      "steps": [
+        "멀리 있는 객체에 저해상도 모델을 Input 0에, 가까운 객체에 고해상도 모델을 Input 1에 연결",
+        "Attribute Wrangle에서 ‘@dist = distance(@P, point(0,\"P\",0));’ 생성",
+        "Switch SOP의 ‘By Attribute’를 ‘dist’로 설정하고, 거리 구간에 따라 인덱스를 매핑"
+      ]
+    },
+    {
+      "title": "두 형태 간의 모핑 애니메이션",
+      "steps": [
+        "두 개의 변형된 메쉬를 각각 Input 0, Input 1에 연결",
+        "‘Switch Index’에 키프레임을 0→1로 24프레임 간 이동",
+        "재생하면 두 메쉬가 순차적으로 전환되어 부드러운 모핑 효과"
+      ]
+    },
+    {
+      "title": "랜덤 변형 선택",
+      "steps": [
+        "세 개 이상의 변형 모델을 Input 0~2에 연결",
+        "‘Switch Index’에 ‘int(rand(3))’ 표현식을 입력",
+        "프레임마다 무작위로 하나의 변형이 표시되어 다양성 제공"
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력을 연결하지 않음 → 출력이 비어 있음 → 반드시 두 개 이상 연결",
+    "‘Switch Index’를 실수형으로 입력 → 전환되지 않음 → 정수값(0,1,…) 사용",
+    "키프레임을 놓치고 고정값만 설정 → 애니메이션이 정지 → 키프레임을 적절히 삽입"
+  ],
+  "related": [
+    "Blend SOP",
+    "Delete SOP",
+    "Group SOP",
+    "Attribute Wrangle"
+  ],
+  "videos": [
+    {
+      "id": "t8oBkZ7aekc",
+      "title": "Switch SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "2eZZ_nSuSwk",
+      "title": "Invoke Sop Tutorial - Houdini",
+      "author": "Paul Ambrosiussen"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Switch%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Switch",
+    "Switch SOP"
+  ],
+  "at": "2026-11-05T18:45:29.869685+00:00"
+}
