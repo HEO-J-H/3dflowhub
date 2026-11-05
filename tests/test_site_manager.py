@@ -17,7 +17,7 @@ def test_review_posts_site_proposals_and_answers(monkeypatch, tmp_path):
     import manager
     posted = []
     monkeypatch.setattr(manager, "_append", lambda *e: posted.extend(e))
-    monkeypatch.setattr(manager, "similar_open", lambda t, s: False)
+    monkeypatch.setattr(manager, "similar_open", lambda t, s, *a: False)
     site_manager.send_message("life-after-60", "요즘 어때?")
     monkeypatch.setattr(core, "llm", lambda *a, **k: '{"summary":"정상","proposals":[{"title":"깨진 링크 정리","category":"사이트·UX"}],'
                                                      '"replies":[{"i":0,"text":"괜찮아요"}],"watch":"링크"}')
