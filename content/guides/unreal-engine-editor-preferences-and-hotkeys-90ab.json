@@ -1,0 +1,94 @@
+{
+  "id": "unreal-engine-editor-preferences-and-hotkeys-90ab",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Editor Preferences and hotkeys",
+  "title": "에디터 Hotkey",
+  "summary": "Unreal Engine Editor Preferences는 에디터 전반의 동작 방식을 사용자 취향에 맞게 설정하는 환경 설정 패널이며, Hotkey 커스텀을 통해 작업 효율을 극대화합니다.",
+  "when": [
+    "작업 환경을 내 손에 맞게 다듬고 싶을 때",
+    "자주 쓰는 메뉴나 기능에 Hotkey를 새로 지정하고 싶을 때",
+    "성능 및 뷰포트 동작 방식을 변경하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 상단 메뉴에서 Edit 선택 후 Editor Preferences 클릭",
+    "Editor Preferences 창의 왼쪽 패널에서 General 또는 Appearance 등 원하는 카테고리 선택",
+    "오직 키보드 Hotkey를 바꾸려면 Keyboard Shortcuts 카테고리 선택",
+    "검색창에 원하는 명령어나 메뉴 이름 입력",
+    "해당 항목 옆의 입력란을 클릭하고 원하는 키 조합(예: Alt + 키) 입력",
+    "설정은 실시간으로 자동 저장되므로 창을 닫고 뷰포트에서 Hotkey 동작 확인"
+  ],
+  "params": [
+    {
+      "name": "Keyboard Shortcuts",
+      "desc": "에디터 내 모든 명령어의 Hotkey를 검색하고 변경합니다."
+    },
+    {
+      "name": "Performance",
+      "desc": "포커스가 없을 때 CPU 사용량을 줄이거나 뷰포트 프레임 제한을 설정합니다."
+    },
+    {
+      "name": "Loading & Saving",
+      "desc": "자동 저장 주기 및 백업 파일 관련 설정을 관리합니다."
+    },
+    {
+      "name": "Level Editor",
+      "desc": "뷰포트 탐색, 스냅, Grid 단위 등 레벨 편집 관련 환경을 바꿉니다."
+    },
+    {
+      "name": "Theme",
+      "desc": "에디터 UI의 색상 테마와 스타일을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자주 쓰는 기능에 커스텀 Hotkey 지정하기",
+      "steps": [
+        "Editor Preferences 창을 엽니다.",
+        "Keyboard Shortcuts 메뉴로 이동합니다.",
+        "검색창에 원하는 기능(예: Spawn Actor 등)을 검색합니다.",
+        "Hotkey 입력란을 클릭하고 원하는 키를 누릅니다."
+      ]
+    },
+    {
+      "title": "자동 저장(Autosave) 주기 조절하기",
+      "steps": [
+        "Editor Preferences 창을 엽니다.",
+        "Loading & Saving 카테고리로 이동합니다.",
+        "Autosave 항목에서 Time Between Autosaves 값을 원하는 분 단위로 변경합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미 다른 기능에 할당된 Hotkey를 중복 지정함 → 충돌 경고 메시지를 확인하고 다른 키 조합으로 변경합니다.",
+    "Project Settings와 혼동하여 에디터 전체 설정을 프로젝트 파일에만 적용하려 함 → Editor Preferences는 엔진/PC 전역 설정임을 유의합니다."
+  ],
+  "related": [
+    "Project Settings",
+    "Plugin Manager",
+    "Viewport",
+    "Output Log"
+  ],
+  "videos": [
+    {
+      "id": "Tj4bj6EETRQ",
+      "title": "Editor Preferences - Spline | #UEFN Tutorial",
+      "author": "Cleverlike"
+    },
+    {
+      "id": "3cDb5yJ0y9c",
+      "title": "Unreal Engine 5 - Keyboard Shortcuts for Beginners",
+      "author": "UnrealityBites"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Editor%20Preferences%20and%20hotkeys",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Edit",
+    "Editor Preferences"
+  ],
+  "at": "2026-11-05T13:44:36.858370+00:00"
+}
