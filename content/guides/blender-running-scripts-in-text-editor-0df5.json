@@ -1,0 +1,83 @@
+{
+  "id": "blender-running-scripts-in-text-editor-0df5",
+  "tool": "Blender",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "Running scripts in Text Editor",
+  "title": "텍스트 에디터에서 Script 실행",
+  "summary": "Blender의 Text Editor에서 Python Script를 작성하고 실행하여 반복 작업을 자동화하거나 새로운 기능을 실행하는 기능입니다.",
+  "when": [
+    "동일한 설정의 오브젝트를 대량으로 생성하거나 배치할 때",
+    "수백 개의 오브젝트 이름을 일괄 변경하거나 재질을 한 번에 할당할 때",
+    "반복적인 3D 파이프라인 작업을 코드로 자동화하고 싶을 때"
+  ],
+  "steps": [
+    "Blender 상단 에디터 타입 변경 버튼을 누르거나 레이아웃 탭에서 Text Editor를 선택합니다.",
+    "Text Editor 창 상단의 New 버튼을 클릭하여 새로운 텍스트 파일을 생성합니다.",
+    "텍스트 영역에 실행할 Python 코드를 작성하거나 붙여넣습니다 (예: import bpy).",
+    "Script 편집기 상단 메뉴의 Text 드롭다운에서 Run Script를 클릭하거나 Alt + P Hotkey를 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "새로운 텍스트 파일을 만들거나 파일을 불러오는 메뉴입니다."
+    },
+    {
+      "name": "Run Script",
+      "desc": "작성된 Python 코드를 즉시 실행합니다 (Hotkey Alt + P)."
+    },
+    {
+      "name": "Word Wrap",
+      "desc": "코드 줄이 길어질 때 화면 안에 맞게 줄 바꿈을 합니다."
+    },
+    {
+      "name": "Syntax Highlighting",
+      "desc": "Python 코드의 문법을 색상으로 구분하여 가독성을 높입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 오브젝트 위치에 큐브 대량 생성하기",
+      "steps": [
+        "Text Editor에서 New를 클릭합니다.",
+        "반복문을 이용해 큐브를 생성하는 bpy.ops.mesh.primitive_cube_add() 코드를 작성합니다.",
+        "Alt + P를 눌러 Script를 실행하고 3D 뷰포트에서 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "모든 오브젝트 이름 일괄 변경하기",
+      "steps": [
+        "Text Editor를 엽니다.",
+        "for obj in bpy.data.objects: 구문을 사용하여 이름을 바꾸는 코드를 작성합니다.",
+        "Run Script를 실행하여 Outliner에서 이름이 변경된 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "들여쓰기 오류 (IndentationError) → Python의 특성상 탭과 스페이스바 혼용을 피하고 일관되게 들여쓰기를 정렬합니다.",
+    "모듈 누락 오류 (ModuleNotFoundError) → Blender 내장 Python 환경에 없는 외부 라이브러리를 임포트하려 할 때 발생하므로 기본 bpy 모듈을 사용합니다."
+  ],
+  "related": [
+    "Blender Scripting",
+    "Python Script Editor in Kit",
+    "MAXScript Listener",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "DFeCrfElNQs",
+      "title": "Scripting Editors - Blender Tutorial",
+      "author": "Kenneth Moore Media"
+    },
+    {
+      "id": "gSlIFiHwvoc",
+      "title": "Blender Python 1. Python Console and Text Editor",
+      "author": "Boy Rig"
+    }
+  ],
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Running%20scripts%20in%20Text%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-05T09:19:45.966999+00:00"
+}

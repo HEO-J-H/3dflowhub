@@ -1,0 +1,99 @@
+{
+  "id": "houdini-attribute-transfer-sop-e7a4",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Attribute Transfer SOP",
+  "title": "Attribute Transfer — 가까운 곳에서 속성 가져오기",
+  "summary": "Attribute Transfer SOP는 서로 다른 두 지오메트리 사이의 거리를 계산하여 특정 속성(Attribute) 값을 실시간으로 투영하고 복사해 주는 노드입니다. 마치 스텐실을 대고 물감을 칠하듯, 기준 모델의 형태나 색상 정보를 다른 모델에 부드럽게 옮겨 심을 수 있습니다.",
+  "when": [
+    "근접한 메쉬의 위치나 컬러 정보를 다른 오브젝트의 포인트에 그대로 전달하고 싶을 때",
+    "지형(Terrain)의 높낮이나 경사도에 따라 식생이나 Particle의 분포를 다르게 제어하고 싶을 때",
+    "애니메이션되는 오브젝트의 영향력을 가까운 거리의 다른 지오메트리에 부드럽게 전파하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Attribute Transfer를 검색하여 선택하고 Enter를 눌러 노드를 생성합니다.",
+    "첫 번째 입력단자(Left Input)에는 속성을 받을 타겟 지오메트리를 연결합니다.",
+    "두 번째 입력단자(Right Input)에는 속성 원본이 되는 소스 지오메트리를 연결합니다.",
+    "파라미터 창에서 Transfer Attributes 항목에 옮기고 싶은 속성 이름(예: Cd, pscale 등)을 입력합니다.",
+    "Distance Threshold와 Blend Width 값을 조절하여 투영되는 범위와 감쇠 영역을 맞춥니다.",
+    "뷰포트에서 대상 모델에 속성이 부드럽게 복사되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Transfer Attributes",
+      "desc": "복사할 속성의 이름을 입력합니다 (여러 개일 경우 스페이스바로 구분)."
+    },
+    {
+      "name": "Distance Threshold",
+      "desc": "속성을 전달할 최대 탐색 거리를 설정합니다."
+    },
+    {
+      "name": "Blend Width",
+      "desc": "임계값 주변에서 속성이 부드럽게 감쇠하며 섞이는 영역의 크기를 조절합니다."
+    },
+    {
+      "name": "Points",
+      "desc": "포인트 레벨의 속성을 전송할지 여부를 결정합니다."
+    },
+    {
+      "name": "Primitives",
+      "desc": "Primitive 레벨의 속성을 전송할지 여부를 결정합니다."
+    },
+    {
+      "name": "Conditions",
+      "desc": "특정 조건을 만족하는 지오메트리만 필터링하여 속성을 옮깁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 높이에 따른 풀(Grass) 크기 조절",
+      "steps": [
+        "지형(Landscape) 메쉬를 Attribute Transfer의 두 번째 입력에 연결합니다.",
+        "식생 포인트 메쉬를 첫 번째 입력에 연결합니다.",
+        "Transfer Attributes에 P(Position) 또는 커스텀 마스크 속성을 지정합니다.",
+        "포인트의 pscale 속성과 연동하여 지형 높낮이에 따라 풀의 크기가 달라지도록 만듭니다."
+      ]
+    },
+    {
+      "title": "오브젝트 근접에 따른 컬러(Cd) 번짐 효과",
+      "steps": [
+        "컬러가 칠해진 소스 오브젝트를 준비합니다.",
+        "Attribute Transfer를 통해 주변 지오메트리로 Cd 속성을 복사합니다.",
+        "Distance Threshold를 좁게 설정하여 가까운 면에만 색상이 스며들게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전송할 속성이 소스 지오메트리에 존재하지 않음 → 소스 모델에 해당 Attribute가 실제로 있는지 Geometry Spreadsheet에서 먼저 확인합니다.",
+    "Distance Threshold 값이 너무 작아 효과가 보이지 않음 → 탐색 거리를 넓히고 Blend Width 값을 조절하여 영향 범위를 키웁니다.",
+    "포인트 밀도가 너무 낮아 속성이 깨져 보임 → Resample SOP나 Subdivide를 사용하여 타겟 메쉬의 포인트를 추가합니다."
+  ],
+  "related": [
+    "Attribute Promote",
+    "Attribute Wrangle",
+    "Point SOP",
+    "VDB From Polygons"
+  ],
+  "videos": [
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    },
+    {
+      "id": "49DRSO3pPQU",
+      "title": "Attribute Transfer, Attribute Copy and ID Attributes - Handy Houdini Tips",
+      "author": "Nine Between"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Attribute%20Transfer%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Attribute Transfer"
+  ],
+  "at": "2026-11-05T09:23:17.424107+00:00"
+}
