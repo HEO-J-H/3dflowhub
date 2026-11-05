@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-03T06:31:41.998534+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/03 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-03T06:41:47.561077+00:00",
       "collected": 0,
       "saved": 0,
@@ -5759,6 +5747,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-05T11:33:13.896967+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 236,
+      "candidates_passed": 174,
+      "offtopic": 34,
+      "short": 0,
+      "prefiltered": 38,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5aa9b38d",
+      "visuals": 5,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -5854,7 +5869,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-28 [[p-1c297c04b1|사이트·UX] 웹 버전(web/) 성능 및 UI] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('web/index.js').exists / FAILED backend/tests/test_core.py::test_web_js_modu",
     "2026-10-28 [성찰] 오프토픽 및 중복 할인 기사의 대량 유입을 철저히 차단하고, Maya, 3ds Max, Blender 등 고CPC 실무 튜토리얼 및 스크립트 정보 중심의 발행에 집중해야 합니다.",
     "2026-10-28 [성찰] 오프토픽 및 중복 할인·구조조정 뉴스를 철저히 차단하고, Maya, 3ds Max, Blender 등 고CPC 실무 튜토리얼 및 스크립트 위주로 콘텐츠 질을 높여야 합니다.",
     "2026-10-29 [app.render_practical_content_metrics(): ] 테스트 실패 — FAILED tests/test_core.py::test_render_practical_content_metrics - AttributeError: 'list' object has no attribute 'columns' 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
@@ -5973,7 +5987,8 @@
     "2026-11-04 [성찰] 실무 중심의 검색 유입이 확인된 3ds Max(MaxScript), Blender, Maya 등 고CPC 및 구글 검색 키워드 중심의 튜토리얼과 최적화 팁 콘텐츠가 조회수 확보에 가장 유리합니다.",
     "2026-11-04 [성찰] 검색 의도에 맞는 도구명·키워드 선두 배치와 1,500자 이상 깊이 있는 본문이 페이지뷰와 RPM을 동시에 끌어올린다.",
     "2026-11-04 [[p-1b4af86662|사이트·UX] 웹 버전 메모리 최적화 문서 내용] Always update navigation and indexing when adding new content to avoid invisible pages.",
-    "2026-11-05 [성찰] AI 일일 한도 소진 오류를 해결하기 위해 API 사용량 최적화와 예비 모델 분산 호출 로직을 점검해야 합니다."
+    "2026-11-05 [성찰] AI 일일 한도 소진 오류를 해결하기 위해 API 사용량 최적화와 예비 모델 분산 호출 로직을 점검해야 합니다.",
+    "2026-11-05 [성찰] 검색 유입과 실무 체류 시간을 높이기 위해 3ds Max, Maya, Blender 등 입증된 툴 중심의 스크립트·튜토리얼 콘텐츠 비중을 높이고 동음이의어 필터링을 더욱 엄격히 적용해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6027,7 +6042,7 @@
     "VFX/기타 VFX": 45,
     "Game Engine/게임 업계": 39,
     "3D DCC/Maya": 7,
-    "3D DCC/3ds Max": 55,
+    "3D DCC/3ds Max": 56,
     "3D DCC/V-Ray·Corona": 12,
     "3D DCC/Houdini": 5,
     "VFX/TheGrain": 1,
@@ -7902,14 +7917,15 @@
     4923334357514523241,
     14749915204534764418,
     2795033334630580448,
-    4574333701119579918
+    4574333701119579918,
+    648853216858106346
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1896,
-    "Game Engine": 1896,
-    "VFX": 1896,
-    "AI 3D": 1896
+    "3D DCC": 1897,
+    "Game Engine": 1897,
+    "VFX": 1897,
+    "AI 3D": 1897
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
