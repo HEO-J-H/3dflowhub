@@ -9,49 +9,84 @@
       "where": "Properties → Modifier (렌치) 탭 → Add Modifier → Subdivision Surface / Decimate",
       "how": "Subdivision Surface 로 폴리곤을 늘리고 Decimate 로 삼각형 수를 줄여 최적화합니다. Hide 기능으로 보이지 않는 파트를 비활성화하고 FBX 로 내보냅니다.",
       "strength": "무료·오픈소스",
-      "limit": "고급 디시메이션 옵션 부족"
+      "limit": "고급 디시메이션 옵션 부족",
+      "video": {
+        "id": "RysGwbTS4WQ",
+        "title": "How to Import Solidworks / CAD Models in Blender",
+        "author": "Oxfeldt Animation"
+      }
     },
     {
       "tool": "3ds Max",
       "where": "Modify 패널 → Modifier List → TurboSmooth / ProOptimizer / Hide",
       "how": "TurboSmooth 로 세부를 늘리고 ProOptimizer 로 삼각형 수를 감소시킵니다. Hide 명령으로 숨긴 파트를 제외하고 FBX 로 내보냅니다.",
       "strength": "강력한 프로프리어터리 디시메이터",
-      "limit": "플러그인 의존도 높음"
+      "limit": "플러그인 의존도 높음",
+      "video": {
+        "id": "tPGJTru5ApA",
+        "title": "Migrating Your 3D CAD to SOLIDWORKS - 3D Interconnect",
+        "author": "CATI: Computer Aided Technology is now GoEngineer"
+      }
     },
     {
       "tool": "Maya",
       "where": "Mesh 메뉴 → Smooth / Reduce / Delete → Export Selection → FBX",
       "how": "Smooth 로 세부를 추가하고 Reduce 로 폴리곤 수를 조절합니다. Delete 로 숨은 파트를 삭제하고 FBX 로 내보냅니다.",
       "strength": "산업 표준 파이프라인 연동",
-      "limit": "Reduce 옵션이 다소 제한적"
+      "limit": "Reduce 옵션이 다소 제한적",
+      "video": {
+        "id": "TphQL8ndRR4",
+        "title": "Step by step: Convert a SOLID MODEL to a workable part on CATIA!",
+        "author": "3D PANN WORLD"
+      }
     },
     {
       "tool": "Houdini",
       "where": "Tab → Subdivide SOP / PolyReduce SOP / Delete SOP → File SOP → Export",
       "how": "Subdivide SOP 로 세부를 늘리고 PolyReduce SOP 로 디시메이션합니다. Delete SOP 로 숨은 파트를 제거한 뒤 File SOP 로 FBX/GLTF 로 내보냅니다.",
       "strength": "노드 기반 절차적 제어",
-      "limit": "노드 연결에 학습 곡선 필요"
+      "limit": "노드 연결에 학습 곡선 필요",
+      "video": {
+        "id": "c9r9IdCIujc",
+        "title": "How to Edit Imported 3D CAD Data : STEP–IGES–Solidworks–Inventor–Creo-Catia in Solid Edge",
+        "author": "Siemens Software"
+      }
     },
     {
       "tool": "Unreal Engine",
       "where": "Content Browser → Import → FBX → Static Mesh Editor → LOD Settings → Reduce",
       "how": "FBX 를 임포트한 뒤 Static Mesh Editor 에서 LOD Reduce 기능으로 자동 디시메이션합니다. 숨은 파트는 임포트 전 파일에서 제거해야 합니다.",
       "strength": "엔진 내 실시간 LOD 생성",
-      "limit": "내부 디시메이션 옵션이 제한적"
+      "limit": "내부 디시메이션 옵션이 제한적",
+      "video": {
+        "id": "0ER5C2TyNL8",
+        "title": "Rendering a SOLIDWORKS model as fast as possible in Unreal Engine 5 - Day 1",
+        "author": "Stephen Johnson"
+      }
     },
     {
       "tool": "Pixyz Studio",
       "where": "Scene Tree → Mesh → Decimate To Target / Remesh / Hide Unused Parts → Export → FBX/GLTF",
       "how": "Decimate To Target 로 목표 폴리곤 수를 지정하고 Remesh 로 균일한 토폴로지를 만듭니다. Hide Unused Parts 로 불필요 파트를 비활성화하고 엔진 호환 포맷으로 내보냅니다.",
       "strength": "CAD‑to‑Game 최적화 전문",
-      "limit": "전용 라이선스 필요"
+      "limit": "전용 라이선스 필요",
+      "video": {
+        "id": "MswbKJv_2fo",
+        "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+        "author": "Cam Ayres"
+      }
     },
     {
       "tool": "NVIDIA Omniverse",
       "where": "Create → Import → USD (STEP) → Remesh 노드 / Decimate 노드 → Export → USD/GLTF",
       "how": "STEP 파일을 USD 로 변환 후 Remesh 노드로 토폴로지를 정리하고 Decimate 노드로 폴리곤 수를 감소시킵니다. 최종 USD 를 엔진에 연결합니다.",
       "strength": "협업·클라우드 기반 파이프라인",
-      "limit": "전용 Kit 앱 필요"
+      "limit": "전용 Kit 앱 필요",
+      "video": {
+        "id": "GY_vbK4sAVU",
+        "title": "How to Build CAD to USD Workflows With NVIDIA Omniverse",
+        "author": "科技小Q"
+      }
     }
   ],
   "pick": [
@@ -93,5 +128,6 @@
     "디시메이션 전에 머티리얼 ID를 병합하지 않아 텍스처가 섞이는 경우 → Decimate 전 Merge by Material 수행",
     "숨은 파트를 삭제하지 않아 불필요한 폴리곤이 남는 경우 → Hide/Delete 단계에서 파트 이름 확인 후 제거"
   ],
-  "at": "2026-11-05T00:13:10+00:00"
+  "at": "2026-11-05T00:13:10+00:00",
+  "visuals_at": "2026-11-05T00:24:52+00:00"
 }
