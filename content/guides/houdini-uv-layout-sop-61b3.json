@@ -1,0 +1,93 @@
+{
+  "id": "houdini-uv-layout-sop-61b3",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "UV Layout SOP",
+  "title": "UV Layout — UV 배치",
+  "summary": "Houdini의 UV Layout SOP은 여러 개의 UV 섬(Island)들을 겹치지 않게 2D UV 공간(0-1 영역) 안에 효율적으로 배치(Packing)하고 정렬하는 노드입니다. 텍스처 공간의 낭비를 줄이고 균일한 텍셀 밀도를 유지해 줍니다.",
+  "when": [
+    "UV Flatten SOP이나 UV Unwrap SOP으로 펼친 여러 UV 조각들을 하나의 텍스처 공간에 정리할 때",
+    "게임 엔진이나 렌더러에 올리기 전 UV 레이아웃의 겹침(Overlap)을 방지하고 최적화할 때",
+    "서로 다른 크기로 펼쳐진 UV 섬들의 텍셀 밀도(Texel Density)를 균일하게 맞추고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 대상 Geometry Node 안으로 들어갑니다.",
+    "Tab 키를 누르고 'UV Layout'을 검색하여 노드를 생성하고, 이전 UV 펼치기 노드의 출력 포트를 연결합니다.",
+    "노드를 선택하고 파라미터 패널에서 Pack 옵션과 정렬 방식을 확인합니다.",
+    "뷰포트 상단의 디스플레이 메뉴에서 UV Viewport로 전환하여 0-1 UV 스페이스 내에 섬들이 잘 배치되었는지 확인합니다.",
+    "필요한 경우 Scale Step이나 Margin 값을 조절하여 UV 섬 사이의 간격을 최적화합니다."
+  ],
+  "params": [
+    {
+      "name": "Pack",
+      "desc": "UV 섬들을 0-1 UV 공간 내에 자동으로 채워 넣을지 여부를 결정합니다."
+    },
+    {
+      "name": "Margin",
+      "desc": "UV 섬과 섬 사이, 그리고 UV 경계선 사이의 여백 간격을 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "전체 UV 섬들의 크기를 조절하여 텍스처 공간에 맞추거나 여유를 둡니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "텍스처 공간 효율을 높이기 위해 UV 섬을 회전시키는 방식을 설정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "패킹 계산 시 기준이 되는 텍스처 Resolution 크기를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 개의 독립된 소품 UV 통합 배치",
+      "steps": [
+        "여러 개로 나뉜 오브젝트의 UV 셋을 Merge 노드로 하나로 합칩니다.",
+        "UV Layout SOP을 연결하여 모든 UV 섬들을 0-1 공간에 한 번에 패킹합니다.",
+        "Margin 값을 높여 텍스처 밉맵(Mipmap) 단계에서의 색상 번짐(Bleeding)을 방지합니다."
+      ]
+    },
+    {
+      "title": "텍셀 밀도(Texel Density) 균일화",
+      "steps": [
+        "UV Layout 파라미터에서 Rescale 옵션을 활성화합니다.",
+        "모델 전체의 3차원 표면적 대비 2차원 UV 면적이 균일해지도록 자동 조절합니다.",
+        "뷰포트에서 모든 오브젝트의 텍스처 Resolution 품질이 일정하게 유지되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Margin 값을 너무 작게 설정함 → 텍스처 밉맵(Mipmap) 적용 시 인접한 UV 섬의 색상이 겹쳐서 선이 생기는 현상 발생 → Margin 값을 키워 여백을 넉넉히 확보합니다.",
+    "UV가 겹친 상태에서 UV Layout을 생략함 → 텍스처 페인팅 시 다른 영역에 같은 그림이 그려지는 오류 발생 → Pack 옵션이 켜져 있는지 확인하고 노드를 다시 실행합니다."
+  ],
+  "related": [
+    "UV Unwrap SOP",
+    "UV Flatten SOP",
+    "UV Transform SOP",
+    "UV Quick Shade"
+  ],
+  "videos": [
+    {
+      "id": "U-Y38fwuO38",
+      "title": "Houdini 17 Quicktip: (Ab)Using The UV Layout SOP For Geometry Packing",
+      "author": "Entagma"
+    },
+    {
+      "id": "Jx3pUwymvKk",
+      "title": "Quick UV Layout for Any Complex Model in Houdini – Fast & Easy",
+      "author": "EasyCG"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20UV%20Layout%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry Node",
+    "UV Layout",
+    "UV"
+  ],
+  "at": "2026-11-05T08:28:24.374262+00:00"
+}
