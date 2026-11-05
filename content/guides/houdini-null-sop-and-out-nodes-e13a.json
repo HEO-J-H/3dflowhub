@@ -1,0 +1,100 @@
+{
+  "id": "houdini-null-sop-and-out-nodes-e13a",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Null SOP and OUT nodes",
+  "title": "Null — 출력 표시 노드",
+  "summary": "Null SOP는 네트워크를 정리하고 연결 지점을 표시하는 용도이며, OUT 노드는 최종 결과를 외부 파일이나 다른 컨텍스트로 내보내는 출력 포인트입니다.",
+  "when": [
+    "복잡한 SOP 네트워크를 시각적으로 구분하고 싶을 때",
+    "여러 파이프라인을 하나의 흐름으로 묶어 관리하고 싶을 때",
+    "렌더링이나 파일 출력 등 최종 결과를 다른 컨텍스트에 전달해야 할 때"
+  ],
+  "steps": [
+    "Network View에서 Tab 키 → Null 입력 → Null SOP 생성",
+    "노드 이름을 의미 있게 Rename (예: \"_geo_main\")",
+    "필요한 SOP 출력 포트를 Null에 연결 (입력 포트에 끌어다 놓기)",
+    "Display Flag(파란 원)와 Render Flag(노란 원)를 필요에 따라 켜고 끈다",
+    "OUT 노드를 만들려면 Tab → Output 입력 → OUT SOP 생성",
+    "OUT SOP에 최종 SOP를 연결하고 파라미터에서 파일 경로나 Export 옵션을 설정한다"
+  ],
+  "params": [
+    {
+      "name": "Display Flag",
+      "desc": "뷰포트에 SOP 결과를 표시합니다"
+    },
+    {
+      "name": "Render Flag",
+      "desc": "렌더링 시 SOP 결과를 포함합니다"
+    },
+    {
+      "name": "Template Flag",
+      "desc": "연산은 하지 않지만 연결선은 유지합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "노드 색을 바꿔 시각적 구분을 돕습니다"
+    },
+    {
+      "name": "Name",
+      "desc": "OUT 노드의 출력 이름을 지정합니다"
+    },
+    {
+      "name": "File",
+      "desc": "내보낼 파일 경로와 형식을 설정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "네트워크 정리용 Null 사용",
+      "steps": [
+        "Tab → Null 생성 → \"_geo_body\" 로 Rename",
+        "Body 파트 SOP들을 모두 Null 입력에 연결",
+        "Null에 Color를 파란색으로 지정해 시각적 구분",
+        "필요 시 Null에 Display Flag를 켜서 중간 결과 확인"
+      ]
+    },
+    {
+      "title": "Geometry를 Alembic으로 Export",
+      "steps": [
+        "최종 모델 SOP에 Tab → Output 생성 → OUT SOP 연결",
+        "OUT 파라미터에서 File을 \"$HIP/geo/model.abc\" 로 지정",
+        "Export 옵션을 켜고 파일 형식을 Alembic(.abc)으로 선택",
+        "Render 또는 ROP에서 실행해 파일 생성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Display Flag를 끈 상태로 OUT을 연결 → 파일이 비어 있음 → Display Flag를 켜고 다시 실행",
+    "Null을 Geometry처럼 사용 → 아무 효과도 없음 → Null은 데이터 흐름을 전달하지 않음",
+    "OUT 파일 경로를 절대 경로가 아닌 잘못된 변수 사용 → 저장 실패 → $HIP 등 올바른 변수 사용"
+  ],
+  "related": [
+    "Fuse SOP",
+    "Facet SOP",
+    "Merge SOP",
+    "Delete SOP"
+  ],
+  "videos": [
+    {
+      "id": "xoe90184Euo",
+      "title": "Null SOP | Node Reference",
+      "author": "Houdini"
+    },
+    {
+      "id": "kgQ02Zn7m7U",
+      "title": "MaskAlongGeometry SOP | Houdini 20.5",
+      "author": "Simlarity"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Null%20SOP%20and%20OUT%20nodes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Null",
+    "Null SOP"
+  ],
+  "at": "2026-11-05T19:10:12.013436+00:00"
+}
