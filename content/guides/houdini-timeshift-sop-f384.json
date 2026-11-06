@@ -1,0 +1,92 @@
+{
+  "id": "houdini-timeshift-sop-f384",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Timeshift SOP",
+  "title": "Timeshift — 프레임 고정",
+  "summary": "Timeshift SOP는 Houdini에서 애니메이션이나 시뮬레이션의 특정 프레임을 고정하거나 시간에 변화를 주어 재생 속도를 조절하는 노드입니다. Timeline을 멈추고 원하는 순간을 캡처하듯 모델링의 특정 상태를 추출할 때 사용합니다.",
+  "when": [
+    "시뮬레이션 결과물 중 가장 멋진 특정 프레임 하나를 정지된 스태틱 모델로 쓸 때",
+    "애니메이션의 재생 속도를 느리게 하거나 역재생(Reverse) 등 시간축을 변형하고 싶을 때",
+    "여러 개의 오브젝트가 시간차를 두고 나타나도록 프레임 오프셋을 줄 때"
+  ],
+  "steps": [
+    "Network View에서 Tab 키를 누릅니다.",
+    "검색창에 timeshift를 입력하고 Enter를 눌러 Timeshift SOP 노드를 생성합니다.",
+    "애니메이션이나 시뮬레이션이 적용된 Geometry Nodes를 Timeshift SOP의 첫 번째 입력에 연결합니다.",
+    "Parameter Pane에서 'Frame' 파라미터의 입력값을 확인합니다.",
+    "Frame 값을 직접 입력하거나 $F+10 같은 표현식을 사용하여 고정하거나 바꿀 프레임을 지정합니다.",
+    "Scene View 뷰포트에서 애니메이션이 해당 프레임으로 고정되거나 조절되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Method",
+      "desc": "프레임을 직접 지정할지($F), 퍼센티지(Percent)나 초(Seconds) 단위로 제어할지 방식을 선택합니다."
+    },
+    {
+      "name": "Frame",
+      "desc": "고정하거나 출력할 목표 프레임 번호를 지정합니다. 애니메이션 표현식을 입력할 수 있습니다."
+    },
+    {
+      "name": "Seconds",
+      "desc": "Method가 초 단위일 때, 기준이 되는 시간(초)을 설정합니다."
+    },
+    {
+      "name": "Percent",
+      "desc": "Method가 퍼센트 단위일 때, 전체 애니메이션 진행률(0~1)을 설정합니다."
+    },
+    {
+      "name": "Lock Index",
+      "desc": "특정 인덱스를 고정하여 포인트 번호가 뒤섞이는 것을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파편이 튀는 시뮬레이션에서 특정 프레임 정지하기",
+      "steps": [
+        "Rigid Body 시뮬레이션이 끝난 RBD Object 노드 하단에 Timeshift SOP를 연결합니다.",
+        "Parameter Pane의 Frame 값에 가장 멋지게 파편이 퍼진 프레임 번호(예: 45)를 입력합니다.",
+        "시뮬레이션이 멈추고 45프레임 상태의 정지된 조각 모델을 얻습니다."
+      ]
+    },
+    {
+      "title": "캐릭터 애니메이션 역재생(Reverse) 만들기",
+      "steps": [
+        "애니메이션이 있는 캐릭터 지오메트리 하단에 Timeshift SOP를 연결합니다.",
+        "Frame 입력란에 '$FSTART + $FEND - $F' 표현식을 입력합니다.",
+        "애니메이션이 거꾸로 재생되는 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션이 안 멈추고 계속 움직입니다. → Frame 파라미터에 고정할 숫자 대신 애니메이션 변수나 잘못된 값이 들어가 있는지 확인하고 상수로 바꿉니다.",
+    "시뮬레이션 오브젝트가 갑자기 튀거나 사라집니다. → 입력된 프레임 범위가 시뮬레이션 캐시 범위를 벗어났는지 확인하고 유효한 프레임 번호를 입력합니다."
+  ],
+  "related": [
+    "Switch",
+    "TimeBlend",
+    "RBD Packed Object",
+    "Cache"
+  ],
+  "videos": [
+    {
+      "id": "kgQ02Zn7m7U",
+      "title": "MaskAlongGeometry SOP | Houdini 20.5",
+      "author": "Simlarity"
+    },
+    {
+      "id": "NqdnTXuxn6k",
+      "title": "Houdini In Five Minutes 10: Procedural Animations Using The SOP Solver",
+      "author": "Entagma"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Timeshift%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Timeshift SOP"
+  ],
+  "at": "2026-11-06T14:06:36.670670+00:00"
+}
