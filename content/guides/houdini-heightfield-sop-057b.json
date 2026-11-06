@@ -1,0 +1,87 @@
+{
+  "id": "houdini-heightfield-sop-057b",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Heightfield SOP",
+  "title": "Heightfield — 지형 시작",
+  "summary": "HeightField SOP는 2D 텍스처나 노이즈를 기반으로 대규모 지형(Terrain)을 절차적으로 생성하고 편집하는 툴세트입니다. 실제 산맥, 협곡, 강줄기 같은 자연 지형을 효율적으로 시뮬레이션할 수 있습니다.",
+  "when": [
+    "오픈월드 게임이나 영화 배경을 위한 대규모 산악 지형을 만들 때",
+    "지형 위에 자연스럽게 흐르는 강(River)이나 침식(Erosion) 효과를 주고 싶을 때",
+    "노이즈와 마스크를 결합해 리얼한 바위와 평야를 구성할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "heightfield를 검색하고 HeightField 노드를 선택해 생성합니다. (기본 평면 지형 생성)",
+    "Tab 키를 눌러 HeightField Noise 노드를 추가하고, 이전 HeightField 노드와 연결합니다.",
+    "HeightField Noise 노드의 파라미터 창에서 Element Scale과 Height Scale을 조절하여 산세를 만듭니다.",
+    "Tab 키를 눌러 HeightField Erosion 노드를 연결하여 비와 바람에 깎인 듯한 자연스러운 침식 효과를 더합니다.",
+    "뷰포트에서 기하학적 지형의 높낮이 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Divisions",
+      "desc": "지형 Resolution를 결정하며, 값이 높을수록 더 정밀한 지형 표현이 가능합니다."
+    },
+    {
+      "name": "Height Scale",
+      "desc": "지형의 전체적인 높낮이(기압 및 고도) 진폭을 조절합니다."
+    },
+    {
+      "name": "Element Scale",
+      "desc": "노이즈 패턴이나 지형 디테일의 크기(주파수)를 조절합니다."
+    },
+    {
+      "name": "Rain Amount",
+      "desc": "HeightField Erosion에서 비의 양을 조절하여 강줄기와 계곡의 깊이를 바꿉니다."
+    },
+    {
+      "name": "Solubility",
+      "desc": "지형이 물에 의해 녹는 정도를 조절하여 퇴적과 침식 형태를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "리얼한 산맥 지형 만들기",
+      "steps": [
+        "HeightField 노드로 기본 평면을 만듭니다.",
+        "HeightField Noise 노드를 연결해 큰 산맥 형태를 잡습니다.",
+        "두 번째 HeightField Noise 노드를 믹스하여 잔잔한 바위 표면 디테일을 더합니다."
+      ]
+    },
+    {
+      "title": "침식(Erosion)을 통한 계곡 표현",
+      "steps": [
+        "기본 HeightField 지형에 Mountain 노드나 Noise를 적용합니다.",
+        "HeightField Erosion 노드를 연결합니다.",
+        "Simulation 탭에서 Settle 버튼을 눌러 비가 흐른 자국과 계곡을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution(Divisions)를 너무 높게 설정해 뷰포트와 시뮬레이션이 느려짐 → 작업 중에는 낮게 유지하고 최종 출력 시에만 높입니다.",
+    "침식 시뮬레이션 후 결과가 변하지 않음 → Erosion 노드 안에서 Sim 버튼(Step/Settle)을 눌러 시뮬레이션을 실행해야 합니다."
+  ],
+  "related": [
+    "HeightField Noise",
+    "HeightField Erosion",
+    "HeightField Mask",
+    "Mountain SOP"
+  ],
+  "videos": [
+    {
+      "id": "yRaqPFDfQB8",
+      "title": "How to Use COPs to Generate Heightfields | Houdini 21",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Heightfield%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "HeightField"
+  ],
+  "at": "2026-11-06T11:05:54.318713+00:00"
+}

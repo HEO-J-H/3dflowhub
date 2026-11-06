@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-volumetric-clouds-df2f",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Volumetric Clouds",
+  "title": "Volumetric Cloud — 구름",
+  "summary": "Unreal Engine의 Volumetric Clouds는 물리 기반의 입체적인 구름과 대기 효과를 실시간으로 생성하여 사실적인 야외 환경을 구축합니다.",
+  "when": [
+    "오픈월드 게임이나 실외 시각화에서 역동적인 하늘과 구름을 표현할 때",
+    "일몰, 일출 등 시간에 따라 변화하는 극적인 대기 조명을 연출할 때",
+    "드론 샷이나 비행 시뮬레이션에서 구름 속을 통과하는 입체감을 줄 때"
+  ],
+  "steps": [
+    "Place Actors 패널(Ctrl+1)에서 Volumetric Cloud를 검색하여 뷰포트에 드래그 앤 드롭합니다.",
+    "Place Actors 패널에서 Directional Light와 Sky Atmosphere를 각각 배치하여 기본 태양광과 대기 레이어를 설정합니다.",
+    "Directional Light의 Details 패널에서 Atmosphere Sun Light 옵션을 체크하여 구름과 대기에 빛이 반영되도록 연결합니다.",
+    "Content Browser에서 우클릭 후 Miscellaneous → Volumetric Cloud Material을 생성하고 구름 재질 노드를 구성합니다.",
+    "배치된 Volumetric Cloud 액터의 Details 패널에서 Material 슬롯에 방금 만든 머티리얼을 할당합니다.",
+    "Details 패널의 Layer Bottom Altitude와 Height 같은 수치를 조절하여 구름의 높이와 두께를 최종 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Material",
+      "desc": "구름의 형태와 밀도를 제어하는 볼륨 머티리얼을 지정합니다."
+    },
+    {
+      "name": "Layer Bottom Altitude",
+      "desc": "월드 좌표계에서 구름 레이어가 시작되는 최저 높이를 설정합니다."
+    },
+    {
+      "name": "Layer Height",
+      "desc": "구름 레이어 전체의 수직 두께를 지정합니다."
+    },
+    {
+      "name": "Tracing Start Max Distance",
+      "desc": "카메라로부터 볼륨 레이 마칭(Ray Marching)을 시작할 최대 거리를 조절합니다."
+    },
+    {
+      "name": "Planet Radius",
+      "desc": "구름 곡률 계산에 적용할 행성의 반경을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노을이 지는 판타지 하늘 연출",
+      "steps": [
+        "Directional Light의 회전 값을 조절하여 태양을 지평선 낮게 배치합니다.",
+        "Sky Atmosphere의 Multi Scattering 페이즈를 높여 붉고 노란 대기 산란을 강조합니다.",
+        "Volumetric Cloud 머티리얼의 노이즈 스케일을 키워 거대하고 웅장한 적운을 만듭니다."
+      ]
+    },
+    {
+      "title": "폭풍우가 치는 어두운 날씨",
+      "steps": [
+        "Directional Light의 빛 색상을 어두운 회색빛으로 낮추고 강도를 줄입니다.",
+        "Volumetric Cloud 머티리얼의 익스텐션 밀도를 높여 구름을 무겁고 짙게 만듭니다.",
+        "Exponential Height Fog를 추가해 지상과 구름 사이의 안개감을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Directional Light와 Atmosphere Sun Light 연동 누락 → 해결: Directional Light의 Details 패널에서 Atmosphere Sun Light 옵션을 켜세요.",
+    "구름이 너무 투명하거나 보이지 않음 → 해결: Volumetric Cloud 머티리얼 내부의 Extinction Coefficient나 Density 멀티플라이어 값을 높이세요.",
+    "시점 이동 시 구름 경계가 깨지거나 노이즈가 심함 → 해결: 프로젝트 설정에서 Temporal Super Resolution(TSR)이나 Ray Marching 샘플링 품질 설정을 확인하세요."
+  ],
+  "related": [
+    "Sky Atmosphere",
+    "Directional Light",
+    "Exponential Height Fog",
+    "Sky Light"
+  ],
+  "videos": [
+    {
+      "id": "hjlIsbSiSvI",
+      "title": "I Spent 30 Days Mastering Unreal Engine 5.5 Volumetric Cloud Shader Here's What Happened",
+      "author": "Arghanion's Puzzlebox"
+    },
+    {
+      "id": "paO-Its5P2Q",
+      "title": "Volumetric Clouds & Sky effects Part01 : Clouds Base Shape",
+      "author": "Nabil TechArt"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Volumetric%20Clouds",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Place Actors",
+    "Volumetric Cloud"
+  ],
+  "at": "2026-11-06T11:05:58.852008+00:00"
+}
