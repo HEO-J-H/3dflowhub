@@ -5,7 +5,7 @@
   "group": "페인터",
   "name": "Substance Painter baking mesh maps",
   "title": "Substance Painter 맵 Baking",
-  "summary": "Substance Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 텍스처가 표면의 구부러짐이나 모서리를 인식하게 만듭니다. 최신 12.2 버전에서는 케이지(Cage) 기반 베이킹 오류 수정뿐만 아니라 브러시와 Polygon Fill을 활용한 케이지 페인팅 기능이 추가되어 투영 정확도와 안정성이 크게 향상되었습니다.",
+  "summary": "Substance Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 텍스처가 표면의 구부러짐이나 모서리를 인식하게 만듭니다. 최신 12.2 버전에서는 모델 선택과 Bake 준비 과정 및 불필요한 반복 단계를 간소화하여 작업 속도를 높였으며, 케이지(Cage) 기반 베이킹 오류 수정과 브러시·Polygon Fill을 활용한 케이지 페인팅 기능으로 투영 정확도와 안정성이 크게 향상되었습니다.",
   "when": [
     "로우 폴리곤 모델에 하이 폴리곤의 스컬프팅 디테일을 노말 맵으로 입히고 싶을 때",
     "Smart Materials가 모서리나 홈을 자동으로 인식해 먼지나 마모 효과를 주게 하고 싶을 때",
@@ -13,7 +13,7 @@
   ],
   "steps": [
     "Substance Painter에서 프로젝트를 열고 텍스처를 적용할 로우 폴리곤 모델을 준비합니다.",
-    "Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
+    "개선된 모델 선택 및 Bake 준비 단계를 거쳐 Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
     "Bake Mesh Maps 창에서 Common 탭의 Output Size(해상도)와 상단 탭에서 베이킹할 맵들을 선택합니다.",
     "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다.",
     "Max Front/Rear 방사 거리(Distance) 값을 조절하거나 최신 버전의 케이지 페인팅(브러시 및 Polygon Fill 활용)을 이용해 투영 범위를 세밀하게 맞춥니다.",
@@ -136,6 +136,19 @@
         "p:2026-11-02-03a6a3b434a09633",
         "p:2026-11-05-5d6def8cadb459b4",
         "p:2026-11-05-0b7d9c74318b8f9b"
+      ]
+    },
+    {
+      "at": "2026-11-06T14:25:59+00:00",
+      "what": "Substance 3D Painter 12.2 버전의 모델 선택·Bake 준비 간소화 및 케이지 Baking 안정성 향상 내용을 요약 및 단계에 반영했습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D Painter 12.2 업데이트와 기능",
+          "url": "https://www.youtube.com/watch?v=1Li0DDbJ98Y"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-06-795f52579c250e7e"
       ]
     }
   ]

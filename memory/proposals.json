@@ -16789,5 +16789,36 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 메모리 관리 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-06T14:25:46+00:00",
+    "kind": "proposal",
+    "id": "p-5128e32c54",
+    "title": "로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 TripoSR 실행 안내서가 문서화되었으나 관련 예외 처리 테스트가 추가로 필요합니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 TripoSR 실행 실패 시 대체 경로 또는 명확한 오류 반환 테스트를 추가합니다.",
+    "expected": "로컬 파이프라인 실행 시 예외 상황에서 안정적인 에러 핸들링 보장",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-06T14:26:24.110191+00:00",
+    "kind": "decision",
+    "id": "p-5128e32c54",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T14:26:27.378822+00:00",
+    "kind": "triage",
+    "id": "p-5128e32c54",
+    "verdict": "agent",
+    "reason": "backend/tests/test_triposr.py 파일에 예외 처리 및 대체 경로 단위 테스트를 추가하는 작업은 AI 에이전트가 코드를 수정하여 해결할 수 있습니다."
   }
 ]

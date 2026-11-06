@@ -42,6 +42,10 @@
     {
       "name": "Opacity",
       "desc": "레이어 전체의 투명도를 조절하여 효과의 세기를 부드럽게 낮춥니다."
+    },
+    {
+      "name": "visible polygons only",
+      "desc": "Substance 3D Painter 12.2에서 추가된 Polygon Fill 옵션으로, 화면에 보이는 면만 선택해 복잡한 모델의 선택 작업을 단축합니다."
     }
   ],
   "examples": [
@@ -64,7 +68,8 @@
   ],
   "mistakes": [
     "마스크를 칠했는데 아무 변화가 없음 → 현재 선택된 레이어나 마스크 아이콘이 올바른지(파란색 테두리 확인) 체크하고, Brush의 Opacity와 Flow 값이 0이 아닌지 확인합니다.",
-    "스마트 마스크나 제너레이터가 작동하지 않음 → Texture Set Settings에서 Normal, World Space Normal, Ambient Occlusion 등의 메시오픈(Mesh Maps) Baking이 완료되었는지 확인합니다."
+    "스마트 마스크나 제너레이터가 작동하지 않음 → Texture Set Settings에서 Normal, World Space Normal, Ambient Occlusion 등의 메시오픈(Mesh Maps) Baking이 완료되었는지 확인합니다.",
+    "케이지(Cage) 기반 Baking 오류 발생 → Substance 3D Painter 12.2 버전으로 업데이트하여 투영 및 케이지 베이킹 결함 문제를 해결합니다."
   ],
   "related": [
     "Fill Layer",
@@ -91,24 +96,34 @@
   "menu_path": [],
   "refresh_with": [
     {
-      "key": "p:2026-10-29-bb6cf290609d6117",
-      "title": "Substance 3D Painter 12.2 업데이트 — 케이지 Baking 오류 수정",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPT0FFZ1htVlBYYU1ockdxTUZUUlZWRXRFWlJkVkRFY2ZwdGZqVFJhaWgzaHBfaGppR2l2a1RPWF95Ym13VzYxTzBNb3pBV29ReEhoalcxWWtXVkdVT3hZQWx6ZGxuRzNmaWVPa1g3bDQzald5UWJvamZvNUdnUUVURlk2VENiTVFFN2VBSm4zMDBFc3ZieTRMQ1BhaE9IaEwzVUV4X1lQZnpDdw?oc=5"
-    },
-    {
-      "key": "p:2026-10-26-613e7533b65502b1",
-      "title": "Substance 3D Painter 12.2 출시 — 새로운 기능과 업데이트",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMkdGb2NEZ2Q3R0N0aDdDS3JERkF2emlJOVZjVHB3R051bi1xWjU4cmtXSnJ2S0FSbmJVREt3VnhmZldUN2JMeFlIVXpaYm0zVnFmQ2xKUmRNNFNoUkozS0RVcE9pYXFaMDlnX1g5NDRoTXVJUFZwX3BLQlZxM1MtbQ?oc=5"
-    },
-    {
-      "key": "p:2026-11-05-0b7d9c74318b8f9b",
-      "title": "Substance 3D Painter Polygon Fill 최신 기능 소개",
-      "url": "https://www.youtube.com/watch?v=QuhoQV4fcXE"
-    },
-    {
       "key": "p:2026-11-05-2d393691d4f764f5",
       "title": "Substance 3D Painter 비파괴 판타지 지도 제작 튜토리얼",
       "url": "https://www.youtube.com/watch?v=65XyvX9-Igg"
+    }
+  ],
+  "updates": [
+    {
+      "at": "2026-11-06T14:26:02+00:00",
+      "what": "Substance 3D Painter 12.2 업데이트 내용을 반영하여 Polygon Fill의 'visible polygons only' 옵션과 케이지 베이킹 오류 수정 사항을 추가했습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D Painter 12.2 업데이트 — 케이지 Baking 오류 수정",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPT0FFZ1htVlBYYU1ockdxTUZUUlZWRXRFWlJkVkRFY2ZwdGZqVFJhaWgzaHBfaGppR2l2a1RPWF95Ym13VzYxTzBNb3pBV29ReEhoalcxWWtXVkdVT3hZQWx6ZGxuRzNmaWVPa1g3bDQzald5UWJvamZvNUdnUUVURlk2VENiTVFFN2VBSm4zMDBFc3ZieTRMQ1BhaE9IaEwzVUV4X1lQZnpDdw?oc=5"
+        },
+        {
+          "title": "Substance 3D Painter 12.2 출시 — 새로운 기능과 업데이트",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMkdGb2NEZ2Q3R0N0aDdDS3JERkF2emlJOVZjVHB3R051bi1xWjU4cmtXSnJ2S0FSbmJVREt3VnhmZldUN2JMeFlIVXpaYm0zVnFmQ2xKUmRNNFNoUkozS0RVcE9pYXFaMDlnX1g5NDRoTXVJUFZwX3BLQlZxM1MtbQ?oc=5"
+        },
+        {
+          "title": "Substance 3D Painter Polygon Fill 최신 기능 소개",
+          "url": "https://www.youtube.com/watch?v=QuhoQV4fcXE"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-29-bb6cf290609d6117",
+        "p:2026-10-26-613e7533b65502b1",
+        "p:2026-11-05-0b7d9c74318b8f9b"
+      ]
     }
   ]
 }
