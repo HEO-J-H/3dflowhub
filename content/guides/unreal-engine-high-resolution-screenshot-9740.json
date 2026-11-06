@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-high-resolution-screenshot-9740",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "High Resolution Screenshot",
+  "title": "고해상도 스크린샷",
+  "summary": "Unreal Engine에서 고해상도 뷰포트 이미지를 캡처하는 기능입니다. 게임 실행 없이도 원본 Resolution의 몇 배에 달하는 선명한 고품질 스크린샷을 얻을 수 있습니다.",
+  "when": [
+    "포트폴리오용 고해상도 렌더링 이미지가 필요할 때",
+    "웹사이트나 인쇄물에 들어갈 고화질 씬 캡처가 필요할 때",
+    "일반 스크린샷으로는 모서리가 계단 현상(Aliasing)처럼 보일 때"
+  ],
+  "steps": [
+    "Unreal Engine 뷰포트 창 왼쪽 상단의 작은 화살표(View Options) 아이콘을 클릭합니다.",
+    "드롭다운 메뉴에서 High Resolution Screenshot 을 선택하여 대화 상자를 엽니다.",
+    "Screenshot Resolution Multiplier 값을 조절하여 기본 Resolution의 배율을 설정합니다.",
+    "Film Quantitative 옵션이나 필요한 경우 Tiling 을 체크하여 대형 이미지를 분할 렌더링합니다.",
+    "Capture 버튼을 클릭하여 스크린샷을 저장합니다.",
+    "화면 하단에 나타나는 알림창의 링크를 클릭하여 저장된 이미지 폴더를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Screenshot Resolution Multiplier",
+      "desc": "현재 뷰포트 Resolution에 곱해질 배율을 설정하여 최종 이미지 크기를 결정합니다."
+    },
+    {
+      "name": "Filename Manual Override",
+      "desc": "체크 시 저장될 파일의 이름을 직접 지정할 수 있습니다."
+    },
+    {
+      "name": "Include In-Game UI",
+      "desc": "뷰포트에 표시된 게임 내 UI(HUD 등)를 스크린샷에 포함할지 여부를 결정합니다."
+    },
+    {
+      "name": "Show Dump",
+      "desc": "캡처 과정의 디버그 정보를 화면에 표시합니다."
+    },
+    {
+      "name": "Tiling",
+      "desc": "초고해상도 렌더링 시 메모리 부족을 방지하기 위해 화면을 타일 단위로 나누어 렌더링합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "포트폴리오용 4K/8K 씬 렌더링",
+      "steps": [
+        "뷰포트 카메라 구도를 잡습니다.",
+        "High Resolution Screenshot 창을 엽니다.",
+        "Multiplier 값을 2 또는 4로 설정하여 고해상도로 캡처합니다."
+      ]
+    },
+    {
+      "title": "건축 시각화 디테일 컷 추출",
+      "steps": [
+        "가구 마감재와 라이팅을 세팅합니다.",
+        "Tiling 옵션을 활성화하여 GPU 메모리 부하를 줄입니다.",
+        "Capture를 눌러 고품질 텍스처 디테일을 확보합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Multiplier 값을 너무 높게 설정해 VRAM 부족 오류가 발생함 → Tiling 옵션을 켜거나 배율을 낮추어 다시 시도합니다.",
+    "캡처된 이미지에 뷰포트 기즈모나 UI가 포함됨 → 뷰포트 오버레이를 끄거나(G 키) UI 포함 옵션을 해제합니다."
+  ],
+  "related": [
+    "Movie Render Queue",
+    "Lumen",
+    "Nanite",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "xW-ns1dCEMk",
+      "title": "How To Take A High Resolution Screenshot In Unreal Engine 5.6",
+      "author": "Pitchfork Academy"
+    },
+    {
+      "id": "7vExw6STwFU",
+      "title": "How to take High Resolution SCREENSHOTS in Unreal Engine 5",
+      "author": "Cobra Code"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20High%20Resolution%20Screenshot",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "View Options",
+    "High Resolution Screenshot"
+  ],
+  "at": "2026-11-06T13:26:00.031688+00:00"
+}
