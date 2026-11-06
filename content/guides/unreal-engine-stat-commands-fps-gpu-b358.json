@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-stat-commands-fps-gpu-b358",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Stat commands (FPS, GPU)",
+  "title": "stat 명령 — 성능 확인",
+  "summary": "Unreal Engine Stat commands는 뷰포트에서 게임의 FPS, GPU 부하, 드로우 콜 등 성능 지표를 실시간으로 모니터링할 수 있는 명령어 기능입니다. 최적화 작업 시 병목 구간을 빠르게 파악할 수 있도록 도와줍니다.",
+  "when": [
+    "오픈월드 레벨이나 복잡한 씬에서 프레임 드랍 원인을 찾을 때",
+    "빌드 전 패키징된 게임의 실시간 퍼포먼스를 검증할 때",
+    "GPU와 CPU 중 어느 쪽이 부하의 원인인지 확인할 때"
+  ],
+  "steps": [
+    "Unreal Engine 에디터에서 플레이(Play) 버튼을 눌러 게임을 실행합니다.",
+    "키보드의 물결(`~`) 키를 눌러 하단에 Output Log 콘솔 창을 엽니다.",
+    "콘솔 창에 `stat fps`를 입력하고 Enter 키를 눌러 프레임 레이트를 표시합니다.",
+    "필요한 추가 성능 지표를 위해 `stat unit` 또는 `stat gpu`를 입력합니다.",
+    "뷰포트 좌측 상단에 실시간으로 갱신되는 성능 수치를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "stat fps",
+      "desc": "초당 프레임 수(FPS)와 프레임 당 렌더링 시간을 밀리초 단위로 표시합니다."
+    },
+    {
+      "name": "stat unit",
+      "desc": "Frame, Game, Draw, GPU, RHIT 등의 처리 시간을 개별적으로 비교하여 병목 구간을 찾습니다."
+    },
+    {
+      "name": "stat gpu",
+      "desc": "GPU 내부의 렌더링 패스별 소요 시간을 실시간으로 분석합니다."
+    },
+    {
+      "name": "stat rhi",
+      "desc": "렌더링 하드웨어 인터페이스 관련 통계(드로우 콜, 폴리곤 수 등)를 표시합니다."
+    },
+    {
+      "name": "stat levels",
+      "desc": "스트리밍 되는 레벨의 메모리 사용량과 로딩 상태를 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "프레임 드랍의 원인이 CPU인지 GPU인지 판별하기",
+      "steps": [
+        "콘솔 창에 `stat unit`을 입력합니다.",
+        "Game 수치와 GPU 수치를 비교합니다.",
+        "GPU 수치가 높으면 셰이더나 Resolution 문제, Game 수치가 높으면 블루프린트나 틱(Tick) 연산 부하를 의심합니다."
+      ]
+    },
+    {
+      "title": "특정 렌더링 패스의 GPU 부하 측정하기",
+      "steps": [
+        "콘솔 창에 `stat gpu`를 입력합니다.",
+        "화면 하단에 나타나는 렌더링 세부 항목(예: Shadow, BasePass)의 퍼센트와 밀리초를 확인합니다.",
+        "가장 높은 수치를 차지하는 항목을 파악하여 최적화 방향을 결정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "에디터 뷰포트가 아닌 메인 에디터 창에서 명령어를 입력함 → 플레이(Play) 상태로 전환 후 `~` 키를 눌러 콘솔 창에 입력합니다.",
+    "에디터 환경에서의 수치만 신뢰함 → 에디터 자체 오버헤드가 있으므로 정확한 성능 측정은 독립 실행형(Standalone) 빌드에서 진행합니다.",
+    "명령어를 끄지 않고 계속 띄워둠 → 화면 가림 현상이 발생하므로 해제 시 동일 명령어나 `stat none`을 입력합니다."
+  ],
+  "related": [
+    "Unreal Engine Scalability",
+    "GPU Profiler",
+    "Console Variables",
+    "Frame Rate"
+  ],
+  "videos": [
+    {
+      "id": "PH_dvtrzJTU",
+      "title": "Unreal Engine 5 Trick -- Show FPS ⚡ in Your Packaged Game ! #unrealengine #shorts",
+      "author": "General_AKO_Coding"
+    },
+    {
+      "id": "vXkjelMrD2U",
+      "title": "Unreal Console Commands - Frame Rate and Performance Stats",
+      "author": "Project Living in America, Inc."
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Stat%20commands%20%28FPS%2C%20GPU%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Play",
+    "Output Log"
+  ],
+  "at": "2026-11-06T13:45:43.575645+00:00"
+}

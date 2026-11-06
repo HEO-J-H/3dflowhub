@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T06:06:12.497562+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/04 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-04T06:16:19.866668+00:00",
       "collected": 0,
       "saved": 0,
@@ -6111,6 +6099,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-06T13:45:22.638563+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 246,
+      "candidates_passed": 196,
+      "offtopic": 31,
+      "short": 0,
+      "prefiltered": 29,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5cc690b6",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -6206,7 +6219,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [성찰] 주제 무관한 뉴스나 중복 할인 정보를 엄격히 차단하고, Maya·Blender·3ds Max 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠를 강화해야 합니다.",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — 159 passed in 16.91s 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — E       AssertionError: assert 2 == 1 / E        +  where 2 = len([{'title': 'Blender 5.0 Release Notes', 'rss_summary': 'New features for 3D modeling and rendering', 'url': 'https://e...le':",
     "2026-10-29 [[guide:trellis_integration] 1단계: backend] 테스트 실패 — 26 passed, 1 warning in 1.91s 보안: ['위험 함수 사용: subprocess']",
@@ -6325,7 +6337,8 @@
     "2026-11-05 [backend/app/services/url_ingest.py의 fetc] 외부 네트워크 요청은 항상 타임아웃과 예외 처리를 명시하여 견고성을 높여야 합니다.",
     "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다.",
     "2026-11-06 [성찰] 동음이의어 필터를 강화하고 3ds Max 및 Maya 실무 스크립트·튜토리얼 중심의 고단가 키워드를 집중 공략해야 합니다.",
-    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류(오프토픽)를 근본적으로 차단하기 위해 3D 및 CG 전문 맥락 필터를 강화하고 실무 중심의 검색 유입 키워드에 집중해야 합니다."
+    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류(오프토픽)를 근본적으로 차단하기 위해 3D 및 CG 전문 맥락 필터를 강화하고 실무 중심의 검색 유입 키워드에 집중해야 합니다.",
+    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류를 막기 위해 맥락 검증 필터를 강화하고, 실무 검색 수요가 검증된 튜토리얼 및 스크립트 위주의 콘텐츠를 집중적으로 확보해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -8335,14 +8348,15 @@
     2253549168167789216,
     9489925108817183383,
     1098896832500664779,
-    5790358499033397973
+    5790358499033397973,
+    9148420248689514987
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1969,
-    "Game Engine": 1969,
-    "VFX": 1969,
-    "AI 3D": 1969
+    "3D DCC": 1970,
+    "Game Engine": 1970,
+    "VFX": 1970,
+    "AI 3D": 1970
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
