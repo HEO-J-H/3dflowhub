@@ -1,0 +1,92 @@
+{
+  "id": "houdini-font-sop-009c",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Font SOP",
+  "title": "Font — 글자",
+  "summary": "Houdini의 Font SOP는 3D 공간에 벡터 폰트 텍스트를 생성하여 Procedural 모션 그래픽이나 로고 애니메이션의 기본 소스로 활용하는 노드입니다.",
+  "when": [
+    "타이포그래피 기반의 모션 그래픽이나 타이틀을 제작할 때",
+    "동적으로 변하는 번호, 이름 등의 문자열 데이터를 시각화할 때",
+    "로고나 슬로건을 입체적인 3D 지오메트리로 변환할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "font 를 입력하고 엔터를 쳐서 Font SOP 노드를 생성합니다.",
+    "Font SOP 노드를 더블클릭하여 하위로 들어가거나 디스플레이 플래그를 켭니다.",
+    "Parameter 패널에서 Text 입력란에 원하는 문구를 타이핑합니다.",
+    "Font 드롭다운 메뉴에서 시스템에 설치된 폰트를 선택합니다.",
+    "Size와 Extrusion 값을 조절하여 글자의 크기와 두께를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "뷰포트에 표시할 문자열을 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "사용할 시스템 폰트 파일을 지정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "폰트의 전체적인 크기를 조절합니다."
+    },
+    {
+      "name": "Extrusion",
+      "desc": "2D 글자에 3D 두께를 부여합니다."
+    },
+    {
+      "name": "Consolidate Points",
+      "desc": "중복된 포인트를 병합하여 구조를 정리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 타이포그래피",
+      "steps": [
+        "Font SOP로 텍스트를 생성합니다.",
+        "PolyExtrude 노드로 두께를 얇게 만듭니다.",
+        "Color 노드와 Glow 효과를 주어 네온 느낌을 냅니다."
+      ]
+    },
+    {
+      "title": "흩어지는 글자 Particle",
+      "steps": [
+        "Font SOP로 글자를 만듭니다.",
+        "Scatter SOP로 표면에 포인트를 뿌립니다.",
+        "Copy to Points 노드나 DOP Net을 이용해 Particle로 전환합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폰트가 깨지거나 네모로 나올 때 → 시스템에 존재하지 않는 폰트 경로이거나 유효하지 않은 문자일 수 있으므로 기본 영문 폰트로 변경합니다.",
+    "글자가 너무 작거나 안 보일 때 → Size 값이 기본 단위에 비해 너무 작을 수 있으므로 뷰포트 프레임(H 키)을 맞추고 Size 값을 키웁니다."
+  ],
+  "related": [
+    "PolyExtrude",
+    "Text SOP",
+    "Scatter SOP",
+    "Copy to Points"
+  ],
+  "videos": [
+    {
+      "id": "aw7FREXBkA0",
+      "title": "#122 The Font Node (Basics) in Houdini",
+      "author": "Mad Dog VFX"
+    },
+    {
+      "id": "DrfaLaYiWno",
+      "title": "Extracting End And Middle Characters From A Font SOP - Houdini",
+      "author": "Henry Medhurst"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Font%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Font SOP"
+  ],
+  "at": "2026-11-06T12:11:02.608235+00:00"
+}

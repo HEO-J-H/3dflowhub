@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T04:36:03.015030+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/04 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-04T04:46:04.570443+00:00",
       "collected": 0,
       "saved": 0,
@@ -5984,6 +5972,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-06T12:10:36.080586+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 240,
+      "candidates_passed": 185,
+      "offtopic": 31,
+      "short": 0,
+      "prefiltered": 35,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "6747062e",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6079,7 +6094,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [[p-4bbef4f094|콘텐츠] 엔진 API 구현 및 테스트 추가: b] 서비스 모듈에는 비즈니스 로직만 작성하고, 테스트 코드는 반드시 tests 디렉토리에 분리하여 필요한 모듈을 정확히 임포트해야 합니다.",
     "2026-10-29 [성찰] 주제 무관한 뉴스나 중복 할인 정보를 엄격히 차단하고, Maya·Blender·3ds Max 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠를 강화해야 합니다.",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — 159 passed in 16.91s 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — E       AssertionError: assert 2 == 1 / E        +  where 2 = len([{'title': 'Blender 5.0 Release Notes', 'rss_summary': 'New features for 3D modeling and rendering', 'url': 'https://e...le':",
@@ -6198,7 +6212,8 @@
     "2026-11-05 [core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-05 [backend/app/services/url_ingest.py의 fetc] 외부 네트워크 요청은 항상 타임아웃과 예외 처리를 명시하여 견고성을 높여야 합니다.",
     "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다.",
-    "2026-11-06 [성찰] 동음이의어 필터를 강화하고 3ds Max 및 Maya 실무 스크립트·튜토리얼 중심의 고단가 키워드를 집중 공략해야 합니다."
+    "2026-11-06 [성찰] 동음이의어 필터를 강화하고 3ds Max 및 Maya 실무 스크립트·튜토리얼 중심의 고단가 키워드를 집중 공략해야 합니다.",
+    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류(오프토픽)를 근본적으로 차단하기 위해 3D 및 CG 전문 맥락 필터를 강화하고 실무 중심의 검색 유입 키워드에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6232,7 +6247,7 @@
   "category_counts": {
     "Game Engine/Unity": 47,
     "AI 3D/가우시안 스플래팅": 75,
-    "VFX/스튜디오·작품": 91,
+    "VFX/스튜디오·작품": 92,
     "AI 3D/로보틱스·월드모델": 24,
     "3D DCC/Blender": 101,
     "Game Engine/Unreal Engine": 94,
@@ -8199,14 +8214,15 @@
     5794716980155256163,
     10124379847613825632,
     4208119406034441776,
-    17888407969112836241
+    17888407969112836241,
+    11307406927916668426
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1960,
-    "Game Engine": 1960,
-    "VFX": 1960,
-    "AI 3D": 1960
+    "3D DCC": 1961,
+    "Game Engine": 1961,
+    "VFX": 1961,
+    "AI 3D": 1961
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

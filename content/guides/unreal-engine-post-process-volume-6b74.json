@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-post-process-volume-6b74",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Post Process Volume",
+  "title": "Post Process Volume — 화면 효과",
+  "summary": "Unreal Engine Post Process Volume은 씬 전체 또는 특정 구역에 색감, 노출, 블룸, 안개 등의 시각적 후가공 효과를 적용하는 볼륨 컴포넌트입니다. 카메라 렌즈 효과와 컬러 그레이딩을 실시간으로 제어합니다.",
+  "when": [
+    "시네마틱한 분위기를 위해 영화 같은 색감(Color Grading)과 콘트라스트를 줄 때",
+    "빛이 번지는 효과(Bloom)나 카메라 렌즈의 피사계 심도(Depth of Field)를 조절할 때",
+    "게임이나 레벨의 특정 구역에 진입할 때만 다른 시각적 분위기를 연출하고 싶을 때"
+  ],
+  "steps": [
+    "메인 툴바의 Quick Add (+) 버튼 또는 Modes 패널에서 Visual Effects 카테고리를 엽니다.",
+    "Post Process Volume을 뷰포트로 드래그하여 원하는 위치에 배치합니다.",
+    "Details 패널에서 Post Process Volume Settings 항목을 찾습니다.",
+    "Unbound 옵션을 체크하여 씬 전체에 효과가 적용되도록 설정합니다.",
+    "Lens 또는 Color Grading 세부 항목에서 원하는 파라미터 값을 조정합니다.",
+    "뷰포트에서 실시간으로 변화하는 렌더링 결과와 후가공 효과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Unbound",
+      "desc": "볼륨 박스 크기와 상관없이 씬 전체에 후가공 효과를 적용합니다."
+    },
+    {
+      "name": "Bloom",
+      "desc": "밝은 광원 주변으로 빛이 은은하게 퍼지는 눈부심 효과를 조절합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "카메라의 노출을 조절하여 씬의 전체적인 밝기를 밝거나 어둡게 만듭니다."
+    },
+    {
+      "name": "Depth of Field",
+      "desc": "초점 외의 영역을 흐리게 만들어 영화 같은 아웃포커싱 효과를 줍니다."
+    },
+    {
+      "name": "Color Grading",
+      "desc": "화이트 밸런스, 섀도우, 하이라이트 색상을 보정하여 전체적인 톤을 잡습니다."
+    },
+    {
+      "name": "Vignette",
+      "desc": "화면 모서리를 어둡게 만들어 시선을 중앙으로 집중시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 같은 시네마틱 톤앤매너 적용하기",
+      "steps": [
+        "Post Process Volume을 생성하고 Unbound를 체크합니다.",
+        "Color Grading 탭의 Misc 항목에서 Saturation을 낮춰 채도를 조절합니다.",
+        "Gamma 또는 Lift/Gain/Offset을 조정하여 어두운 곳은 푸르게, 밝은 곳은 따뜻하게 연출합니다."
+      ]
+    },
+    {
+      "title": "실내 진입 시 밝기 급변(Eye Adaptation) 방지하기",
+      "steps": [
+        "Post Process Volume을 실내 공간에 배치합니다.",
+        "Lens 탭의 Exposure 항목을 찾습니다.",
+        "Auto Exposure의 Min Brightness와 Max Brightness 값을 동일하게 설정하여 급격한 밝기 변화를 막습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Unbound를 켜지 않아 볼륨 박스 바깥으로 나가면 효과가 사라짐 → Details 패널에서 Unbound 옵션을 체크합니다.",
+    "효과가 적용되지 않음 → Post Process Volume의 Priority 값이 낮거나 다른 볼륨과 충돌하는지 확인하고 우선순위를 높입니다."
+  ],
+  "related": [
+    "Lumen",
+    "Directional Light",
+    "Exponential Height Fog",
+    "Cinematic Camera"
+  ],
+  "videos": [
+    {
+      "id": "GsaMU0C9Yzc",
+      "title": "Post Process Volume in 140 seconds! | Unreal Engine 5",
+      "author": "Proj Prod"
+    },
+    {
+      "id": "noUoeFl_aKQ",
+      "title": "From Basic to Breathtaking: Unreal Engine Post Process Volume Explained",
+      "author": "TUF"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Post%20Process%20Volume",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Quick Add",
+    "Modes",
+    "Visual Effects",
+    "Post Process Volume"
+  ],
+  "at": "2026-11-06T12:11:09.914670+00:00"
+}
