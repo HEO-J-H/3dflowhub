@@ -50,6 +50,6 @@
 - [ ] (agent:보류) evolve.summarize_cpc_category_stats(): 최근 발행된 콘텐츠의 도메인별 고CPC 가중치와 성공률 통계를 집계하여 요약 리포트를 반환하는 함수 추가 및 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) app.render_cpc_optimization_status(): Streamlit 현황판 사이드바에 실무 3D 콘텐츠의 도메인별 CPC 최적화 상태와 오류 태그 현황을 시각적으로 렌더링하는 함수 추가 및 테스트 추가
 
-- [ ] (agent) core.normalize_title(): 제목 정규화 함수 추가(소문자, 특수문자 제거, 공백 정규화) 및 tests/test_core.py에 정규화 테스트 추가
+- [ ] (agent:보류) core.normalize_title(): 제목 정규화 함수 추가(소문자, 특수문자 제거, 공백 정규화) 및 tests/test_core.py에 정규화 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊이 판정 함수 구현 및 해당 판정 로직 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) evolve.summarize_cpc_category_stats(): 반환되는 알림 순서가 '도메인 갱신 D-1'을 포함하도록 로직 수정 및 순서 검증 테스트 추가 — [4] 패치 적용 실패: 변경 없음
