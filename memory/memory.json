@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T07:16:23.759280+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/04 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-04T07:26:27.244601+00:00",
       "collected": 0,
       "saved": 0,
@@ -6194,6 +6182,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-06T14:45:46.286356+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 230,
+      "candidates_passed": 181,
+      "offtopic": 30,
+      "short": 0,
+      "prefiltered": 29,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5cc690b6",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6289,7 +6304,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — 159 passed in 16.91s 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — E       AssertionError: assert 2 == 1 / E        +  where 2 = len([{'title': 'Blender 5.0 Release Notes', 'rss_summary': 'New features for 3D modeling and rendering', 'url': 'https://e...le':",
     "2026-10-29 [[guide:trellis_integration] 1단계: backend] 테스트 실패 — 26 passed, 1 warning in 1.91s 보안: ['위험 함수 사용: subprocess']",
     "2026-10-29 [성찰] 오프토픽 및 중복 기사 수집을 철저히 차단하고, Maya, 3ds Max, Blender 등 실무 중심의 고CPC 튜토리얼 및 스크립트 콘텐츠 비중을 높여야 합니다.",
@@ -6408,7 +6422,8 @@
     "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다.",
     "2026-11-06 [성찰] 동음이의어 필터를 강화하고 3ds Max 및 Maya 실무 스크립트·튜토리얼 중심의 고단가 키워드를 집중 공략해야 합니다.",
     "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류(오프토픽)를 근본적으로 차단하기 위해 3D 및 CG 전문 맥락 필터를 강화하고 실무 중심의 검색 유입 키워드에 집중해야 합니다.",
-    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류를 막기 위해 맥락 검증 필터를 강화하고, 실무 검색 수요가 검증된 튜토리얼 및 스크립트 위주의 콘텐츠를 집중적으로 확보해야 합니다."
+    "2026-11-06 [성찰] 동음이의어나 일반 명사로 인한 허위 수집 오류를 막기 위해 맥락 검증 필터를 강화하고, 실무 검색 수요가 검증된 튜토리얼 및 스크립트 위주의 콘텐츠를 집중적으로 확보해야 합니다.",
+    "2026-11-06 [성찰] 검색 유입과 체류 시간을 높이려면 일반 명사의 동음이의어를 철저히 필터링하고, Maya·3ds Max·Blender 등 실무 중심의 구체적인 스크립트와 튜토리얼 콘텐츠를 강화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6460,8 +6475,8 @@
     "3D DCC/Substance 3D": 29,
     "VFX/Unreal 가상 프로덕션": 9,
     "AI 3D/AI 텍스처·렌더링": 10,
-    "VFX/기타 VFX": 52,
-    "Game Engine/게임 업계": 39,
+    "VFX/기타 VFX": 54,
+    "Game Engine/게임 업계": 40,
     "3D DCC/Maya": 9,
     "3D DCC/3ds Max": 57,
     "3D DCC/V-Ray·Corona": 14,
@@ -6541,7 +6556,9 @@
   },
   "category_merges": {
     "3D DCC/3D Painter": "Substance 3D",
-    "3D DCC/Substance Painter": "Substance 3D"
+    "3D DCC/Substance Painter": "Substance 3D",
+    "VFX/Blender": "기타 VFX",
+    "VFX/V-Ray·Corona": "기타 VFX"
   },
   "title_hashes": [
     2427546160189540771,
@@ -8424,14 +8441,15 @@
     10749128155429135473,
     8523794847759101443,
     110718769437499199,
-    1568402869047274305
+    1568402869047274305,
+    8492146103059382422
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1975,
-    "Game Engine": 1975,
-    "VFX": 1975,
-    "AI 3D": 1975
+    "3D DCC": 1976,
+    "Game Engine": 1976,
+    "VFX": 1976,
+    "AI 3D": 1976
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
