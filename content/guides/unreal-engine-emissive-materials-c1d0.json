@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-emissive-materials-c1d0",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Emissive materials",
+  "title": "Emissive — 빛나는 재질",
+  "summary": "Unreal Engine의 Emissive Material은 머티리얼이 자체적으로 빛을 발산하도록 만들어, 주변을 밝히는 광원(Light) 역할이나 네온사인 같은 시각 효과를 내는 기능입니다.",
+  "when": [
+    "밤거리의 네온사인이나 간판을 표현할 때",
+    "공간을 밝히는 형광등이나 LED 조명 오브젝트를 만들 때",
+    "SF 영화 속 홀로그램이나 레이저 Effect를 제작할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Material을 선택하여 새 머티리얼을 생성하고 엽니다.",
+    "Graph Editor 창에서 우클릭하고 Constant3Vector 또는 Texture Sample 노드를 검색해 추가합니다.",
+    "컬러 노드의 출력을 Main Material Node의 Emissive Color 핀에 연결합니다.",
+    "더 강한 빛을 내려면 Multiply 노드를 추가하고 Scalar Parameter를 연결해 Emissive Strength 값을 높입니다.",
+    "Apply 버튼을 누르고 저장한 뒤, 뷰포트의 지오메트리 오브젝트에 머티리얼을 드래그하여 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Emissive Color",
+      "desc": "발광하는 색상과 기본 밝기를 결정합니다."
+    },
+    {
+      "name": "Multiply",
+      "desc": "입력값들을 곱하여 발광 강도를 증폭시킵니다."
+    },
+    {
+      "name": "Scalar Parameter",
+      "desc": "머티리얼 Instance에서 발광 세기를 실시간으로 조절할 수 있는 변수입니다."
+    },
+    {
+      "name": "Camera Distance Fade",
+      "desc": "카메라 거리에 따라 발광 세기를 조절하여 과도한 빛 번짐을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "사이버펑크 네온 간판",
+      "steps": [
+        "텍스처 샘플 노드에 네온 알파 텍스처를 불러옵니다.",
+        "Multiply 노드로 강한 컬러를 곱해주어 발광 세기를 높입니다.",
+        "Emissive Color에 연결하고 Material Instance를 만들어 색상을 변경합니다."
+      ]
+    },
+    {
+      "title": "천장 LED 조명 스트립",
+      "steps": [
+        "길쭉한 박스 오브젝트를 레벨에 배치합니다.",
+        "단색 Constant3Vector 노드를 생성하고 밝은 흰색을 설정합니다.",
+        "Emissive Color에 연결하고 Lumen 활성화 상태에서 주변을 비추는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Emissive만 높이고 Lumen 조명이 켜지지 않음 → Project Settings에서 Lumen 글로벌 illumination이 활성화되어 있는지 확인합니다.",
+    "빛이 너무 강해 화면이 하얗게 탐 → Post Process Volume에서 Bloom 설정의 Intensity나 Threshold를 조절합니다."
+  ],
+  "related": [
+    "Lumen",
+    "Post Process Volume",
+    "Material Instance",
+    "Rect Light"
+  ],
+  "videos": [
+    {
+      "id": "T8jtXoAHMzo",
+      "title": "Unreal Engine Lighting & Emissive Materials Tutorial (Part 7): Complete Wrap-Up Guide",
+      "author": "Lost Day Games"
+    },
+    {
+      "id": "LpggbGYbGiA",
+      "title": "UE5: How to Create Simple, Cheap Emissive Materials & Instances to Improve Your Environment Lighting",
+      "author": "WorldofLevelDesign"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Emissive%20materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Material",
+    "Graph Editor",
+    "Constant3Vector",
+    "Texture Sample",
+    "Main Material Node"
+  ],
+  "at": "2026-11-06T08:57:50.864333+00:00"
+}

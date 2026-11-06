@@ -1,0 +1,87 @@
+{
+  "id": "houdini-unpack-sop-5fdb",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Unpack SOP",
+  "title": "Unpack — 묶음 풀기",
+  "summary": "Houdini의 Unpack SOP는 Pack 노드로 묶여 있던 가벼운 Packed Primitive나 USD Primitive를 다시 원래의 폴리곤 지오메트리 상태로 되돌리는 노드입니다.",
+  "when": [
+    "팩 처리된 파편이나 에셋에 개별적인 폴리곤 단위의 디테일한 모델링 수정을 가해야 할 때",
+    "시뮬레이션 후 개별 조각에 UV를 펼치거나 세부적인 텍스처 매핑을 적용해야 할 때",
+    "FBX나 USD 파일로 Export 전 지오메트리를 원래 구조로 해제해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "unpack 을 입력하고 엔터를 쳐서 Unpack SOP 노드를 생성합니다.",
+    "Pack SOP 또는 Packed Primitive 형태의 Geometry Nodes를 Unpack SOP의 입력(Input)에 연결합니다.",
+    "파라미터 창에서 Unpack Method를 원하는 해제 방식으로 설정합니다.",
+    "뷰포트에서 지오메트리가 원래의 폴리곤 메쉬로 풀려있는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Unpack Method",
+      "desc": "Primitive를 풀 때 사용할 방식을 선택합니다 (Full, To Points 등)."
+    },
+    {
+      "name": "Transfer Attributes",
+      "desc": "팩 상태일 때 가졌던 어트리뷰트를 해제된 폴리곤에 그대로 전달합니다."
+    },
+    {
+      "name": "Piece Attribute",
+      "desc": "특정 피스 이름을 기준으로 개별 조각을 나누어 풉니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "중첩되어 팩된 구조를 몇 단계까지 풀어낼지 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파편 시뮬레이션 후 개별 파편 모델링 수정",
+      "steps": [
+        "Rigid Body 시뮬레이션으로 깨진 팩 조각을 준비합니다.",
+        "Unpack SOP를 연결하여 조각들을 폴리곤 메ش로 전환합니다.",
+        "PolyExtrude SOP를 연결해 두께를 추가합니다."
+      ]
+    },
+    {
+      "title": "Packed Disk 에셋을 활용한 상세 렌더링 준비",
+      "steps": [
+        "메모리 절약을 위해 불러온 Packed Disk 파일에 Unpack SOP를 연결합니다.",
+        "오브젝트 내부 구조를 파악할 수 있도록 폴리곤 상태로 만듭니다.",
+        "Material SOP를 통해 개별 Shader를 할당합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "대규모 데이터에 무분별하게 Unpack 사용 → 메모리 부족 및 버벅임 발생, 필요한 시점에만 국소적으로 사용하세요.",
+    "어트리뷰트 누락 → Unpack 시 Transfer Attributes 옵션이 꺼져 있어 이전 단계의 속성(Velocity 등)이 사라짐, 옵션을 켭니다."
+  ],
+  "related": [
+    "Pack SOP",
+    "Copy to Points SOP",
+    "Primitive SOP",
+    "Blast SOP"
+  ],
+  "videos": [
+    {
+      "id": "ETwyuxRE0e4",
+      "title": "Add SOP | Houdini 21",
+      "author": "Simlarity"
+    },
+    {
+      "id": "Wp6q1IOTCHk",
+      "title": "How to randomize the Carve SOP in Houdini #cg #animation #sidefxhoudini",
+      "author": "Łukasz Pason"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Unpack%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Unpack SOP"
+  ],
+  "at": "2026-11-06T08:57:47.132419+00:00"
+}
