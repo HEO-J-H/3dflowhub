@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T14:59:02.771457+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 263,
-      "candidates_passed": 215,
-      "offtopic": 26,
-      "short": 0,
-      "prefiltered": 39,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "cbd3a941",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-04T15:10:35.255362+00:00",
       "collected": 2,
       "saved": 1,
@@ -6296,6 +6271,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-06T23:16:58.600391+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 201,
+      "candidates_passed": 164,
+      "offtopic": 21,
+      "short": 0,
+      "prefiltered": 22,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5cc690b6",
+      "visuals": 1,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6391,7 +6393,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [성찰] 스포츠, 무관한 뉴스, 중복된 할인 정보 등 주제 이탈 콘텐츠를 원천 차단하고 Maya, 3ds Max, Blender 등 실무 중심 고CPC 튜토리얼 및 스크립트 정보에 집중해야 합니다.",
     "2026-10-29 [[p-d3c63c180e|운영·비용] TRELLIS(MIT) 멀티뷰 3D] 오픈소스 3D 생성 모델 연동 시 라이선스 검토와 파이프라인 호환성을 철저히 확인해야 합니다.",
     "2026-10-29 [[p-d3c63c180e|운영·비용] TRELLIS(MIT) 멀티뷰 3D] ",
     "2026-10-29 [성찰] 스포츠, 구조조정, 중복 할인 등의 무관한 수집 오류를 철저히 차단하고, Maya·3ds Max·Blender 중심의 실무 튜토리얼 및 스크립트 정보에 집중하여 저품질 및 오프토픽 페널티를 극복해야 합니다.",
@@ -6510,7 +6511,8 @@
     "2026-11-06 [성찰] 동음이의어 및 일반 명사로 인한 오수집을 방지하기 위해 3D/CG 전용 맥락 검증을 강화하고, 검색 유입이 입증된 Maya·3ds Max·Blender 중심의 튜토리얼 및 스크립트 콘텐츠 비중을 대폭 높여야 합니다.",
     "2026-11-06 [성찰] 실무 검색 유입이 입증된 3ds Max, Maya, Blender 등 3D DCC 툴의 구체적인 스크립트·튜토리얼 콘텐츠 비중을 집중 확대하고 동음이의어 필터를 강화해야 합니다.",
     "2026-11-06 [성찰] 실무 검색 유입이 입증된 3ds Max 및 Maya의 무료 스크립트와 튜토리얼 중심 콘텐츠가 블로그 체류 시간과 가치를 극대화합니다.",
-    "2026-11-06 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l"
+    "2026-11-06 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
+    "2026-11-06 [성찰] 실무 검색 트래픽이 검증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼 콘텐츠에 집중하고 동음이의어 오수집을 철저히 차단해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6579,7 +6581,7 @@
     "AI 3D/Hexels": 1,
     "Game Engine/Source Engine": 1,
     "AI 3D/NVIDIA Omniverse": 17,
-    "3D DCC/NVIDIA Omniverse": 1,
+    "3D DCC/NVIDIA Omniverse": 2,
     "AI 3D/NVIDIA DSX": 3,
     "Game Engine/RPG Maker": 1,
     "3D DCC/Procreate": 2,
@@ -8574,14 +8576,15 @@
     17396146279578682717,
     9896662978171832449,
     1495290424562372306,
-    13969640195501756197
+    13969640195501756197,
+    9507226404682037410
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2021,
-    "Game Engine": 2021,
-    "VFX": 2021,
-    "AI 3D": 2021
+    "3D DCC": 2022,
+    "Game Engine": 2022,
+    "VFX": 2022,
+    "AI 3D": 2022
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
