@@ -1,0 +1,96 @@
+{
+  "id": "unreal-engine-scalability-settings-0893",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Scalability settings",
+  "title": "Scalability — 품질 단계",
+  "summary": "Unreal Engine Scalability Settings는 하드웨어 성능에 맞추어 그래픽 품질과 연산 부하를 실시간으로 조절하는 최적화 기능입니다. 뷰포트나 게임 플레이 중 프레임 레이트를 안정적으로 유지할 수 있게 도와줍니다.",
+  "when": [
+    "복잡한 3D 씬을 편집할 때 뷰포트 프레임 레이트(FPS)가 떨어져 작업이 버거울 때",
+    "다양한 사양의 하드웨어에서 타겟 프레임 레이트를 만족하는지 테스트할 때",
+    "빌드 패키징 전 품질과 성능의 최적의 균형점을 찾고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 에디터 상단 메인 툴바에서 Settings 버튼을 클릭합니다.",
+    "드롭다운 메뉴에서 Engine Scalability Settings를 선택합니다.",
+    "Overall 프리셋(Low, Medium, High, Epic, Cinematic) 중 하나를 선택해 전체 품질을 일괄 조절합니다.",
+    "필요한 경우 View Distance, Anti-Aliasing, Post Processing, Shadows, Effects, Foliage 항목별 세부 슬라이더 값을 개별 조정합니다.",
+    "에디터 우측 하단의 뷰포트 FPS와 통계(Stat Unit)를 확인하며 최적의 설정 값을 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "View Distance",
+      "desc": "카메라로부터 멀리 있는 오브젝트와 메시가 렌더링되는 거리를 조절합니다."
+    },
+    {
+      "name": "Anti-Aliasing",
+      "desc": "오브젝트 경계면의 계단 현상을 부드럽게 처리하는 품질을 결정합니다."
+    },
+    {
+      "name": "Post Processing",
+      "desc": "블룸, 앰비언트 오클루전, 뎁스 오브 필드 등 후처리 효과의 품질을 설정합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자의 Resolution와 거리별 디테일 표현 수준을 조절합니다."
+    },
+    {
+      "name": "Effects",
+      "desc": "Particle, 연기, 불꽃 등 시각 효과의 복잡도와 디테일을 결정합니다."
+    },
+    {
+      "name": "Foliage",
+      "desc": "풀과 나무 등 식생 오브젝트의 렌더링 밀도와 가시 거리를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저사양 노트북에서 원활한 레벨 편집 작업",
+      "steps": [
+        "Settings 메뉴에서 Engine Scalability Settings를 엽니다.",
+        "전체 프리셋을 Low 또는 Medium으로 일괄 낮춥니다.",
+        "뷰포트의 프레임 레이트가 안정되는지 확인하고 작업을 진행합니다."
+      ]
+    },
+    {
+      "title": "시네마틱 컷씬 촬영 직전 최고 품질 적용",
+      "steps": [
+        "Sequencer로 카메라 컷씬 준비를 마칩니다.",
+        "Scalability 설정에서 모든 항목을 Cinematic 또는 Epic으로 설정합니다.",
+        "Movie Render Queue를 통해 최고 품질의 시퀀스를 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 프리셋(Epic)만 고집하여 작업 중 프레임 드랍 발생 → 뷰포트용 Scalability를 낮게 설정하고 렌더링 시에만 높입니다.",
+    "낮은 View Distance 설정으로 인해 멀리 있는 중요한 에셋이 사라짐 → 카메라 시야에 맞게 View Distance를 개별 상향 조정합니다."
+  ],
+  "related": [
+    "Movie Render Queue",
+    "LOD settings",
+    "Nanite",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "sUw_wRXezcQ",
+      "title": "Changes in Unreal Engine 5.6 - Engine Scalability Settings",
+      "author": "3D Dreamer"
+    },
+    {
+      "id": "eaRRcu5u7HY",
+      "title": "How To Change The Engine Scalability Settings To Make Unreal Engine 5 Run Smoother And Faster",
+      "author": "Matt Aspland"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Scalability%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Settings",
+    "Engine Scalability Settings"
+  ],
+  "at": "2026-11-06T13:35:56.672581+00:00"
+}

@@ -1,0 +1,84 @@
+{
+  "id": "houdini-point-deform-sop-f0b9",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Point Deform SOP",
+  "title": "Point Deform — 저폴리로 고폴리 변형",
+  "summary": "Houdini의 Point Deform SOP는 기준(Rest) 지오메트리의 움직임이나 변형을 타겟(Target) 지오메트리에 그대로 전달하여 리깅된 애니메이션이나 형태 변화를 따라가게 만드는 노드입니다.",
+  "when": [
+    "캐릭터의 뼈대 애니메이션(Bone Deformation)을 의상이나 갑옷 메쉬에 빠르게 적용할 때",
+    "변형 전후의 토폴로지가 다른 오브젝트 간에 애니메이션을 전송하고 싶을 때",
+    "간단한 섭디비전이나 변형 효과를 다른 오브젝트에 동기화할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Point Deform을 입력하고 Point Deform SOP 노드를 선택하여 지오메트리 네트워크에 배치합니다.",
+    "Point Deform 노드의 첫 번째 입력(Input 1)에 변형을 적용할 대상(Target) 지오메트리를 연결합니다.",
+    "두 번째 입력(Input 2)에 변형 전의 기준(Rest) 지오메트리를 연결합니다.",
+    "세 번째 입력(Input 3)에 애니메이션이나 변형이 적용된 최종 기준(Deformed) 지오메트리를 연결합니다.",
+    "파라미터 창에서 옵션을 확인하고 뷰포트에서 변형 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Rest Geometry",
+      "desc": "변형이 시작되기 전의 기준 지오메트리 소스를 지정합니다."
+    },
+    {
+      "name": "Deformed Geometry",
+      "desc": "애니메이션이나 변형이 적용된 상태의 기준 지오메트리 소스를 지정합니다."
+    },
+    {
+      "name": "Point Group",
+      "desc": "변형을 적용할 대상 포인트를 그룹 단위로 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 의상 리깅",
+      "steps": [
+        "캐릭터 본체 메쉬를 Deformed 입력에 연결합니다.",
+        "옷 메쉬를 Target 입력에 연결합니다.",
+        "옷이 캐릭터의 움직임에 맞춰 자연스럽게 변형되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "부분 변형 전송",
+      "steps": [
+        "Point Group을 설정해 캐릭터의 특정 부위에만 Deform 효과를 적용합니다.",
+        "파라미터에서 영향력을 조절하여 부드러운 움직임을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 지오메트리의 포인트 개수가 다름 → Warning: Deform sop: Input geometry has different point counts 경고가 발생하며, Rest와 Target의 포인트 구조를 확인해야 합니다.",
+    "입력 순서 오류 → Input 1, 2, 3의 연결 순서가 바뀌면 비정상적인 형태가 되므로 순서를 재배치해야 합니다."
+  ],
+  "related": [
+    "Skin Deform",
+    "Bone Deform",
+    "Peak",
+    "Attribute Transfer"
+  ],
+  "videos": [
+    {
+      "id": "b1ocLa60uEo",
+      "title": "Point Deform",
+      "author": "Paul Esteves"
+    },
+    {
+      "id": "cP_oroSsH48",
+      "title": "Point deform will change your VFX workflow #houdini #deform #fx",
+      "author": "Jorge Lega"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Point%20Deform%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Point Deform",
+    "Point Deform SOP"
+  ],
+  "at": "2026-11-06T13:35:52.332556+00:00"
+}
