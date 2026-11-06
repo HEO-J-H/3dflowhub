@@ -1,0 +1,87 @@
+{
+  "id": "houdini-bend-sop-b6f0",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Bend SOP",
+  "title": "Bend — 휘기",
+  "summary": "Houdini Bend SOP는 지오메트리를 지정한 축과 각도에 따라 부드럽게 휘어지게 만드는 변형 노드입니다. 철사를 구부리거나 곡선 형태의 구조물을 만들 때 사용합니다.",
+  "when": [
+    "파이프나 호스 같은 직선형 모델을 곡선 형태로 부드럽게 휘어야 할 때",
+    "기둥이나 타워의 상단을 자연스럽게 기울이거나 구부릴 때",
+    "애니메이션을 위해 리깅 전 오브젝트에 미리 곡선형 변형을 주고자 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "bend 를 입력하고 엔터를 쳐서 Bend SOP 노드를 생성합니다.",
+    "변형할 Geometry Nodes와 Bend 노드를 연결합니다.",
+    "파라미터 창에서 Group을 지정하여 특정 부분만 휘어지게 설정합니다.",
+    "Axis와 Angle 값을 조절하여 뷰포트에서 휘어지는 정도를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "오브젝트가 휘어지는 각도를 설정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "휘어지는 방향의 벡터를 지정합니다."
+    },
+    {
+      "name": "Group",
+      "desc": "변형을 적용할 포인트나프리미티브 그룹을 선택합니다."
+    },
+    {
+      "name": "BBox",
+      "desc": "바운딩 박스를 기준으로 변형 영역을 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 모델 휘기",
+      "steps": [
+        "Tube SOP로 실린더형 파이프를 생성합니다.",
+        "Bend SOP를 연결하고 Angle 값을 90도로 설정합니다.",
+        "뷰포트에서 90도로 꺾인 파이프 형태를 확인합니다."
+      ]
+    },
+    {
+      "title": "타워 상단 기울이기",
+      "steps": [
+        "Box SOP로 높은 건물의 기둥을 만듭니다.",
+        "Bend SOP 파라미터에서 바운딩 박스를 조절해 상단부만 선택합니다.",
+        "Angle과 Direction을 조절해 끝부분이 비스듬히 휘어지게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족 → 지오메트리가 꺾일 때 각이 지고 부서져 보이면 Resample SOP나 Subdivide SOP로 폴리곤 분할을 늘려줍니다.",
+    "전체가 휘어짐 → 특정 부분만 휘고 싶을 때 Group 파라미터를 비워두면 전체가 휘어지므로, Point Wug 또는 Group SOP로 영역을 지정해 줍니다."
+  ],
+  "related": [
+    "Twist SOP",
+    "Taper SOP",
+    "Path Deform SOP",
+    "Resample SOP"
+  ],
+  "videos": [
+    {
+      "id": "MnpJcHwT-kI",
+      "title": "Houdini | Bend Geometry Node",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "dqRvzEg_9D4",
+      "title": "New in Houdini 18: SOPs - Bend",
+      "author": "Entagma"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Bend%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Bend SOP"
+  ],
+  "at": "2026-11-06T13:15:37.838139+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-reflections-lumen-reflections-92bb",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Reflections (Lumen reflections)",
+  "title": "반사 설정",
+  "summary": "Unreal Engine의 Lumen Reflections는 실시간 전역 조명과 연계하여 물리적으로 정확한 표면 반사를 계산하는 기능으로, Bake 없이 동적 환경에서 자연스러운 거울 및 광택 반사를 제공합니다.",
+  "when": [
+    "유리 창문이나 금속 재질 표면에 주변 환경과 움직이는 캐릭터가 실시간으로 반사되도록 만들 때",
+    "실내 인테리어 씬에서 거울이나 광택 있는 바닥재의 디테일한 반사를 구현할 때",
+    "전통적인 Capture Reflection Probes의 한계를 벗어나 동적으로 변하는 빛과 그림자를 반사에 반영하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 프로젝트를 열고 메인 툴바의 Quick Add (+) 버튼 또는 Modes 패널에서 Directional Light와 Sky Light를 배치합니다.",
+    "상단 메뉴에서 Edit → Project Settings를 엽니다.",
+    "좌측 메뉴에서 Engine → Rendering 항목으로 이동합니다.",
+    "Global Illumination 및 Reflections 섹션에서 Reflection Method를 Lumen으로 설정합니다.",
+    "Post Process Volume을 씬에 배치하고 Details 패널에서 Infinite Extent (Unbound)를 체크합니다.",
+    "Post Process Volume 설정의 Lumen Reflections 항목에서 Hit Lighting Mode 등을 조절하여 반사 품질을 최적화합니다.",
+    "뷰포트에서 반사된 표면을 확인하고 라이팅과 머티리얼의 거친 정도(Roughness)를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Reflection Method",
+      "desc": "반사 계산 방식을 Lumen, Screen Space, 혹은 None 중에서 선택합니다."
+    },
+    {
+      "name": "Hit Lighting Mode",
+      "desc": "반사 광원의 정확도를 결정하며, Material 혹은 Surface Cache 방식을 지정합니다."
+    },
+    {
+      "name": "Max Roughness",
+      "desc": "Lumen 반사가 적용될 최대 거친 정도(Roughness) 임계값을 설정합니다."
+    },
+    {
+      "name": "Screen Percentage",
+      "desc": "반사 패스의 Resolution 비율을 조절하여 성능과 품질을 타협합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 거울 및 유리 반사",
+      "steps": [
+        "Post Process Volume을 방 중앙에 배치합니다.",
+        "Details 패널에서 Lumen Reflections 설정을 활성화합니다.",
+        "유리 머티리얼의 Roughness 값을 낮추어 선명한 반사를 유도합니다."
+      ]
+    },
+    {
+      "title": "젖은 바닥 길 구현",
+      "steps": [
+        "지형 머티리얼의 Roughness를 부분적으로 낮추어 젖은 느낌을 줍니다.",
+        "Directional Light 각도를 조절해 바닥에 광원 반사가 맺히도록 합니다.",
+        "View 모드를 Lumen Reflections로 변경해 반사 연산 상태를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Reflection Method가 Screen Space로 설정되어 있음 → Project Settings에서 Lumen으로 변경합니다.",
+    "머티리얼의 Roughness가 너무 높음 → Roughness 값을 낮추어 반사가 시각적으로 보이도록 수정합니다."
+  ],
+  "related": [
+    "Lumen Global Illumination",
+    "Hardware Ray Tracing",
+    "Post Process Volume",
+    "Reflection Capture"
+  ],
+  "videos": [
+    {
+      "id": "kc_MThD65Uk",
+      "title": "High Quality Lumen Reflections in Unreal Engine 5.5 Tutorial",
+      "author": "killshot2596"
+    },
+    {
+      "id": "B9_Bm14OzpM",
+      "title": "Unreal Engine: Lumen Reflections: Real Reflections on Floors and Mirrors (Step by Step)",
+      "author": "Cerdas Inovasi Digital"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Reflections%20%28Lumen%20reflections%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Quick Add",
+    "Modes",
+    "Directional Light",
+    "Sky Light",
+    "Edit"
+  ],
+  "at": "2026-11-06T13:15:47.859031+00:00"
+}
