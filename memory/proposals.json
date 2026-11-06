@@ -16820,5 +16820,104 @@
     "id": "p-5128e32c54",
     "verdict": "agent",
     "reason": "backend/tests/test_triposr.py 파일에 예외 처리 및 대체 경로 단위 테스트를 추가하는 작업은 AI 에이전트가 코드를 수정하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-06T14:35:43+00:00",
+    "kind": "proposal",
+    "id": "p-1b5c51d3b4",
+    "title": "웹 버전(web/) 메모리 누수 방지 가이드 문서화 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 문서 작성 작업(docs/web-optimization.md)이 패치 형식 오류 및 LLM 호출 한도 문제로 held 상태가 되었습니다.",
+    "proposal": "docs/web-optimization.md 파일에 Three.js 객체 해제 및 메모리 관리 가이드를 올바른 형식으로 작성합니다.",
+    "expected": "프론트엔드 개발 시 메모리 누수를 방지하는 가이드가 명확히 제공됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-06T14:35:45+00:00",
+    "kind": "proposal",
+    "id": "p-b0fcb9a1bb",
+    "title": "깨진 참고 링크 2개 복구 또는 제거",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "건강 진단 결과 참고 링크 2개가 깨진(404 등) 상태로 확인되었습니다.",
+    "proposal": "소스코드 내 유효하지 않은 외부 참고 링크 URL을 확인하여 최신 공식 링크로 교체하거나 제거합니다.",
+    "expected": "사용자 이탈 방지 및 신뢰도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-06T14:36:37.854593+00:00",
+    "kind": "proposal",
+    "id": "p-82807b402e",
+    "title": "TRELLIS (CVPR'25) 모델 도입 검토",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "수집",
+    "evidence": "깃허브 별 14,201개, MIT 라이선스 저장소 microsoft/TRELLIS 확인",
+    "proposal": "다중 이미지 및 고품질 단일 이미지 3D 생성 선택 엔진으로 microsoft/TRELLIS를 검토하고 로컬/클라우드 워커 파이프라인에 통합 가능 여부 확인",
+    "expected": "오픈소스 MIT 라이선스 기반으로 상업적 활용이 가능하며, 기존 단일/다중 뷰 3D 생성 품질을 대폭 향상",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-06T14:37:05.671073+00:00",
+    "kind": "decision",
+    "id": "p-82807b402e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TRELLIS 오픈소스 모델 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T14:37:05.689547+00:00",
+    "kind": "decision",
+    "id": "p-b0fcb9a1bb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T14:37:05.708721+00:00",
+    "kind": "decision",
+    "id": "p-1b5c51d3b4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T14:37:08.929498+00:00",
+    "kind": "triage",
+    "id": "p-b0fcb9a1bb",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 끝낸 제안에 이미 깨진 참고 링크 수정 내역이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-06T14:37:08.946540+00:00",
+    "kind": "decision",
+    "id": "p-b0fcb9a1bb",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안에 이미 깨진 참고 링크 수정 내역이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-06T14:37:10.098501+00:00",
+    "kind": "triage",
+    "id": "p-1b5c51d3b4",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋 기록에서 웹 버전 성능 및 메모리 최적화 가이드 문서 작성·정비 작업이 반복적으로 처리되어 반영되었기 때문입니다."
+  },
+  {
+    "at": "2026-11-06T14:37:10.115224+00:00",
+    "kind": "decision",
+    "id": "p-1b5c51d3b4",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 기록에서 웹 버전 성능 및 메모리 최적화 가이드 문서 작성·정비 작업이 반복적으로 처리되어 반영되었기 때문입니다."
   }
 ]
