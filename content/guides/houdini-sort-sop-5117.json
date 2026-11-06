@@ -1,0 +1,92 @@
+{
+  "id": "houdini-sort-sop-5117",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Sort SOP",
+  "title": "Sort — 점 순서 바꾸기",
+  "summary": "Houdini의 Sort SOP는 지오메트리의 포인트, Primitive, Vertex 순서를 특정 조건이나 기준에 따라 재정렬하는 노드입니다. 카피(Copy)나 포인트 텍스처 애니메이션, Particle 제어 등 순서가 중요한 작업에서 필수적으로 사용됩니다.",
+  "when": [
+    "Particle이나 카피된 오브젝트가 생성되는 순서(ID 순서)를 바꾸고 싶을 때",
+    "포인트의 위치(XYZ 좌표)를 기준으로 정렬하여 후속 노드에 규칙적인 흐름을 줄 때",
+    "랜덤한 순서를 정리하거나 특정 속성(Attribute) 값을 기준으로 정렬할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 Sort를 입력하고 Sort 노드를 선택하여 배치합니다.",
+    "정렬할 오브젝트의 출력 와이어를 Sort 노드의 입력에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Point Sort 드롭다운 메뉴를 클릭합니다.",
+    "원하는 정렬 기준(예: Along Axis, Random 등)을 선택합니다.",
+    "뷰포트에서 결과가 반영되었는지 시각적으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Point Sort",
+      "desc": "포인트를 재정렬하는 방식을 선택합니다."
+    },
+    {
+      "name": "Primitive Sort",
+      "desc": "Primitive를 재정렬하는 방식을 선택합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "정렬 기준으로 사용할 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "Random 정렬 방식에서 무작위 패턴을 변경하는 시드 값입니다."
+    },
+    {
+      "name": "Reverse",
+      "desc": "정렬된 순서를 역순으로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "축(Axis)을 기준으로 포인트 순서 정렬하기",
+      "steps": [
+        "Sort 노드의 Point Sort를 Along Axis로 설정합니다.",
+        "Axis 파라미터에서 원하는 축(예: Z Axis)을 선택합니다.",
+        "Z 좌표가 낮은 곳에서 높은 곳 순서로 포인트 번호가 재배열됩니다."
+      ]
+    },
+    {
+      "title": "무작위(Random) 순서로 포인트 섞기",
+      "steps": [
+        "Sort 노드의 Point Sort를 Randomize로 설정합니다.",
+        "Seed 값을 조절하여 무작위로 섞이는 패턴을 변경합니다.",
+        "카피된 오브젝트들이 무작위 순서로 나타나도록 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "정렬 기준을 바꿨는데 변화가 없음 → Point Sort가 'Off'로 설정되어 있는지 확인하고 다른 모드로 변경하세요.",
+    "원하는 방향과 반대로 정렬됨 → Reverse 체크박스를 켜거나 축 방향을 확인하세요."
+  ],
+  "related": [
+    "Copy to Points",
+    "Attribute Wrangle",
+    "Blast",
+    "Partition"
+  ],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "2eZZ_nSuSwk",
+      "title": "Invoke Sop Tutorial - Houdini",
+      "author": "Paul Ambrosiussen"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Sort%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Sort"
+  ],
+  "at": "2026-11-06T13:55:34.644591+00:00"
+}

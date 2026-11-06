@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-blueprint-actor-basics-89a7",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Blueprint Actor basics",
+  "title": "Blueprint Actor 만들기",
+  "summary": "Unreal Engine의 Blueprint Actor 기초 가이드입니다. 3D 공간에 배치할 수 있는 독립된 오브젝트를 만들고, 컴포넌트와 비주얼 Script 노드를 결합하여 다양한 인터랙션을 구현합니다.",
+  "when": [
+    "플레이어가 상호작용할 수 있는 문, 스위치, 보물상자 등의 오브젝트를 만들 때",
+    "빛, 소리, Particle 등 레벨에 동적으로 배치하고 제어할 부모 개체가 필요할 때",
+    "C++ 코드 작성 없이 캐릭터나 프롭에 간단한 게임 로직을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택합니다.",
+    "Pick Parent Class 창에서 Actor를 선택하여 새로운 블루프린트 에셋을 생성합니다.",
+    "생성된 블루프린트 에셋을 더블 클릭하여 Blueprint Editor 창을 엽니다.",
+    "Viewport 패널 상단의 Add 버튼을 눌러 Static Mesh 같은 컴포넌트를 추가합니다.",
+    "Event Graph 탭으로 이동해 노드를 연결하여 게임 로직과 이벤트를 작성합니다.",
+    "컴파일(Compile)과 저장(Save) 후 뷰포트에 배치하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Add Component",
+      "desc": "블루프린트에 3D 메시, 라이트, 콜리전 등 구성 요소를 추가합니다."
+    },
+    {
+      "name": "Event Graph",
+      "desc": "노드를 시각적으로 연결하여 게임 로직과 이벤트를 실행하는 작업 영역입니다."
+    },
+    {
+      "name": "Construction Script",
+      "desc": "레벨에 배치되거나 속성이 변경될 때 실시간으로 실행되는 초기화 로직입니다."
+    },
+    {
+      "name": "Details",
+      "desc": "선택한 컴포넌트나 노드의 세부 속성과 변수 값을 설정하는 패널입니다."
+    },
+    {
+      "name": "Compile",
+      "desc": "작성한 블루프린트 노드와 코드를 검증하고 실행 가능한 상태로 빌드합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "가까이 가면 열리는 자동문",
+      "steps": [
+        "Blueprint Class로 Actor를 생성하고 Door Mesh 컴포넌트를 추가합니다.",
+        "Box Collision 컴포넌트를 추가하여 감지 영역을 설정합니다.",
+        "Event Graph에서 OnComponentBeginOverlap 이벤트 노드를 추가합니다.",
+        "Timeline 노드를 연결하여 문의 회전(Rotation) 값을 애니메이션으로 제어합니다."
+      ]
+    },
+    {
+      "title": "획득 가능한 아이템",
+      "steps": [
+        "Actor 블루프린트를 만들고 젬(Gem) 스태틱 메시를 추가합니다.",
+        "Box Collision을 추가해 플레이어와 닿는지 확인합니다.",
+        "OnComponentBeginOverlap 이벤트에서 DestroyActor 노드를 연결합니다.",
+        "아이템에 닿는 순간 레벨에서 사라지도록 구현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컴파일하지 않고 테스트 → 수정 사항이 레벨에 반영되지 않으므로 반드시 Compile 버튼을 누릅니다.",
+    "콜리전 범위 미설정 → 오버랩 이벤트가 작동하지 않으므로 Collision Presets를 OverlapAllDynamic으로 설정합니다.",
+    "이벤트 그래프 연결 오류 → 화살표 선(Execution Pin)이 올바르게 이어졌는지 확인합니다."
+  ],
+  "related": [
+    "Blueprint Class",
+    "Event Graph",
+    "Timeline",
+    "Collision"
+  ],
+  "videos": [
+    {
+      "id": "1zZCeYBxDtk",
+      "title": "Unreal Engine 5 Blueprints Explained Like You're 5 (2025)",
+      "author": "Captain Pacific"
+    },
+    {
+      "id": "upiZTBXuPI8",
+      "title": "Introduction To Blueprint Actors | Unreal Engine Blueprint Basics For Beginners [TUTORIAL]",
+      "author": "AstrumDev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Blueprint%20Actor%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class"
+  ],
+  "at": "2026-11-06T13:55:39.825266+00:00"
+}
