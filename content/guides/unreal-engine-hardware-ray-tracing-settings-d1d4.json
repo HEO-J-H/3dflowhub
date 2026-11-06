@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-hardware-ray-tracing-settings-d1d4",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Hardware Ray Tracing settings",
+  "title": "하드웨어 레이 트레이싱",
+  "summary": "Unreal Engine의 하드웨어 레이 트레이싱(Hardware Ray Tracing) 설정을 통해 물리적으로 정확한 빛의 반사, 그림자, 글로벌 일루미네이션(GI)을 구현하여 시각적 사실감을 극대화합니다.",
+  "when": [
+    "건축 시각화나 고품질 시네마틱 영상 제작 시 실사와 같은 빛과 그림자를 표현할 때",
+    "금속 표면이나 거울 등 복잡한 반사 및 굴절 표현이 정밀하게 요구될 때",
+    "실시간 게임 플레이에서 Lumen과 Nanite를 활용해 뛰어난 비주얼과 성능의 균형을 맞출 때"
+  ],
+  "steps": [
+    "Unreal Engine 프로젝트를 열고 상단 메뉴에서 Edit → Project Settings를 엽니다.",
+    "좌측 메뉴에서 Engine → Rendering 섹션을 선택합니다.",
+    "Ray Tracing 카테고리에서 Ray Tracing 옵션을 체크하여 활성화합니다.",
+    "하위 옵션인 Support Hardware Ray Tracing 및 Ray Tracing Shadows 설정을 체크합니다.",
+    "프로젝트를 재시작한 후, 뷰포트에서 Lit 모드와 Lumen 글로벌 일루미네이션이 정상 작동하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Ray Tracing",
+      "desc": "하드웨어 가속 레이 트레이싱 기능을 전체적으로 켜고 끕니다."
+    },
+    {
+      "name": "Support Hardware Ray Tracing",
+      "desc": "GPU의 전용 RT 코어를 활용하여 레이 트레이싱 연산 성능을 높입니다."
+    },
+    {
+      "name": "Ray Tracing Shadows",
+      "desc": "광선 추적을 이용해 물리적으로 정확하고 선명한 그림자를 생성합니다."
+    },
+    {
+      "name": "Lumen Global Illumination",
+      "desc": "실시간 바운스광과 간접 조명을 레이 트레이싱으로 계산합니다."
+    },
+    {
+      "name": "Reflections",
+      "desc": "거울이나 금속 표면에 주변 환경이 사실적으로 반사되도록 처리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 시각화 반사 표현",
+      "steps": [
+        "Project Settings에서 Ray Tracing 및 Reflections를 활성화합니다.",
+        "유리창이나 대리석 바닥 머티리얼의 Roughness를 낮추고 Metallic을 조절합니다.",
+        "Viewport에서 실시간으로 맺히는 정교한 반사광을 확인합니다."
+      ]
+    },
+    {
+      "title": "야외 자연광 그림자 디테일 강화",
+      "steps": [
+        "Directional Light를 배치하고 Cast Ray Tracing Shadows 옵션을 켭니다.",
+        "Shadow Resolution과 Ray Tracing 샘플 값을 조정합니다.",
+        "나뭇잎이나 세밀한 구조물 사이의 부드러운 그림자(Contact Shadows)를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이 트레이싱을 켰는데 프레임이 극단적으로 떨어짐 → GPU 성능 한계를 고려하여 Reflections 샘플 수나 Max Bounces 값을 낮춥니다.",
+    "거울이나 유리 표면이 까맣게 나옴 → Post Process Volume을 배치하고 Global Illumination 및 Reflection 설정을 확인합니다."
+  ],
+  "related": [
+    "Lumen",
+    "Nanite",
+    "Virtual Shadow Maps",
+    "Path Tracing"
+  ],
+  "videos": [
+    {
+      "id": "jRFo478xfOE",
+      "title": "UE5 Quick Tip 29: How to Enable Hardware Ray Tracing (Real-Time Ray Tracing) in Existing UE5 Project",
+      "author": "WorldofLevelDesign"
+    },
+    {
+      "id": "ye2tYNSihNQ",
+      "title": "Ray Tracing, Lumen and Path Tracing Explained | For Beginners By TUF – The Unreal Forge",
+      "author": "TUF"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Hardware%20Ray%20Tracing%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Edit",
+    "Project Settings",
+    "Engine",
+    "Rendering",
+    "Ray Tracing"
+  ],
+  "at": "2026-11-06T13:05:40.170154+00:00"
+}
