@@ -1,0 +1,90 @@
+{
+  "id": "houdini-ray-sop-7cdb",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Ray SOP",
+  "title": "Ray — 표면에 투영",
+  "summary": "Houdini Ray SOP는 한 지오메트리의 포인트를 다른 지오메트리 표면을 향해 광선을 발사하여 정확히 밀착시키거나 투영하는 노드입니다. 하이 폴리곤 지형에 로우 폴리곤 지오메트리를 스냅시키거나 건물 지붕에 오브젝트를 정렬할 때 사용합니다.",
+  "when": [
+    "평평한 지형 위에 구불구불한 도로 지오메트리를 굴곡에 맞춰 완벽히 밀착시킬 때",
+    "건물 옥상이나 메쉬 표면 위에 소품(Prop)들을 정확히 안착시킬 때",
+    "복잡한 하이 폴리곤 표면 구조를 따라 로우 폴리곤 메쉬를 투영·정렬할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 대상 Geometry 노드 안으로 더블 클릭하여 들어갑니다.",
+    "Tab 키를 누르고 'Ray'를 검색하여 노드를 생성하고, 대상 지오메트리(Projected)와 기준 표면(Collision)을 각각 첫 번째, 두 번째 인풋에 연결합니다.",
+    "Ray 노드를 선택하고 파라미터 창에서 Operation을 'Minimum Distance' 또는 'Maximum Direction'으로 설정합니다.",
+    "Direction 파라미터에서 광선을 발사할 방향 축(예: -Z 또는 Normal 방향)을 지정합니다.",
+    "Scene View에서 지오메트리가 기준 표면 위로 정확히 밀착되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "광선을 투영하는 방식을 최소 거리(Minimum Distance) 또는 지정 방향(Direction) 등으로 결정합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "표면을 향해 광선을 발사할 벡터 방향을 지정합니다."
+    },
+    {
+      "name": "Search Radius",
+      "desc": "광선이 표면을 탐색할 최대 거리를 제한하여 엉뚱한 곳으로 붙는 오류를 방지합니다."
+    },
+    {
+      "name": "Transform Points",
+      "desc": "포인트뿐만 아니라 연결된 폴리곤 구조 전체를 표면 노멀 방향에 맞춰 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형(Terrain)에 도로(Road) 메쉬 밀착시키기",
+      "steps": [
+        "지형 지오메트리를 Ray 노드의 두 번째 인풋(Collision)에 연결합니다.",
+        "평평한 도로 메쉬를 첫 번째 인풋(Projected)에 연결합니다.",
+        "Ray 노드의 Operation을 'Closest Point'로 설정하여 지형 높낮이에 맞게 도로를 구부립니다."
+      ]
+    },
+    {
+      "title": "건물 옥상에 에어컨 실외기 배치하기",
+      "steps": [
+        "건물 지붕 메쉬를 두 번째 인풋에 연결합니다.",
+        "공중에 떠 있는 실외기 포인트들을 첫 번째 인풋에 연결합니다.",
+        "Direction을 -Y축으로 설정하여 실외기들이 지붕 바닥에 정확히 안착되도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "인풋 순서 반대 → Ray 노드의 첫 번째 인풋에는 투영할 대상(Projected), 두 번째 인풋에는 기준이 될 표면(Collision)을 연결해야 올바르게 작동합니다.",
+    "Search Radius 값 부족 → 오브젝트가 표면과 멀리 떨어져 있을 때 Search Radius가 너무 작으면 투영되지 않으므로 값을 늘려줍니다."
+  ],
+  "related": [
+    "Scatter SOP",
+    "Copy to Points",
+    "Attrib Transfer",
+    "VDB Smooth"
+  ],
+  "videos": [
+    {
+      "id": "xa4P3vUGCsw",
+      "title": "#75 The Ray Node - Basics (in Houdini)",
+      "author": "Mad Dog VFX"
+    },
+    {
+      "id": "AGjwA8OjEQY",
+      "title": "Houdini 12 Tutorial - The Ray Sop",
+      "author": "Khermah"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Ray%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "Ray",
+    "Projected",
+    "Collision"
+  ],
+  "at": "2026-11-06T12:35:26.796840+00:00"
+}

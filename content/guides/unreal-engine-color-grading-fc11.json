@@ -1,0 +1,101 @@
+{
+  "id": "unreal-engine-color-grading-fc11",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Color grading",
+  "title": "색 보정",
+  "summary": "Unreal Engine의 Color Grading은 렌더링된 씬의 색감, 대비, 화이트 밸런스, 필름 톤 등을 실시간으로 조정하여 영화 같은 시각적 분위기를 완성하는 기능입니다.",
+  "when": [
+    "게임이나 시네마틱 영상의 전체적인 무드와 톤앤매너를 설정할 때",
+    "낮, 밤, 석양 등 시간대에 따른 극적인 분위기를 연출할 때",
+    "리얼하고 생동감 있는 화면 색감을 위해 콘텐트 룩을 보정할 때"
+  ],
+  "steps": [
+    "메인 툴바의 Quick Add (+) 버튼을 클릭하거나 Modes 패널을 엽니다.",
+    "Visual Effects 카테고리에서 Post Process Volume을 선택해 뷰포트에 배치합니다.",
+    "Details 패널에서 Post Process Volume Settings를 찾고, 무한 적용을 위해 Infinite Extent (Unbound)를 체크합니다.",
+    "Details 패널에서 Color Grading 항목을 찾아 펼칩니다.",
+    "Global, Shadows, Midtones, Highlights 탭에서 톤(Tone)과 채도(Saturation) 값을 조절하여 색감을 맞춥니다.",
+    "뷰포트에서 실시간으로 적용되는 색감 변화를 확인하며 렌더링을 마무리합니다."
+  ],
+  "params": [
+    {
+      "name": "Temperature",
+      "desc": "화이트 밸런스의 색온도를 조절하여 씬을 따뜻하거나 차갑게 만듭니다."
+    },
+    {
+      "name": "Tint",
+      "desc": "초록색 또는 마젠타색 편향을 조절하여 색조를 미세하게 교정합니다."
+    },
+    {
+      "name": "Saturation",
+      "desc": "전체적인 색상의 채도를 높이거나 낮추어 생동감을 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "밝은 부분과 어두운 부분 사이의 대비를 강화하거나 부드럽게 만듭니다."
+    },
+    {
+      "name": "Gamma",
+      "desc": "중간 톤의 밝기를 조절하여 전체적인 노출 균형을 맞춥니다."
+    },
+    {
+      "name": "Gain",
+      "desc": "가장 밝은 영역의 출력 크기를 조절하여 하이라이트를 강조합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 같은 시네마틱 룩 연출",
+      "steps": [
+        "Post Process Volume을 배치하고 Infinite Extent (Unbound)를 활성화합니다.",
+        "Color Grading 카테고리의 Saturation을 살짝 낮춰 모노톤 느낌을 줍니다.",
+        "Shadows 탭에서 푸른빛을 더하고, Highlights 탭에서 따뜻한 주황빛을 더해 텔레시네 룩을 완성합니다."
+      ]
+    },
+    {
+      "title": "차가운 사이버펑크 분위기",
+      "steps": [
+        "Post Process Volume을 선택합니다.",
+        "Temperature 값을 낮추어 전체 화면을 차가운 푸른빛으로 물들입니다.",
+        "Contrast와 Gain을 높여 강렬한 명암 대비를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Infinite Extent (Unbound)를 켜지 않음 → 볼륨 영역을 벗어나면 색감 보정이 사라집니다. 구역 밖에서도 적용되도록 체크하세요.",
+    "과도한 채도 및 대비 조절 → 화면이 타거나(Clipping) 디테일이 깨집니다. 미세한 값부터 조절하세요.",
+    "Post 프로세스 가중치(Weight) 미설정 → 효과가 적용되지 않을 때는 Weight 값이 1로 설정되어 있는지 확인하세요."
+  ],
+  "related": [
+    "Post Process Volume",
+    "Exposure",
+    "Bloom",
+    "Lens Flares"
+  ],
+  "videos": [
+    {
+      "id": "JkPlXP0xXGE",
+      "title": "The Easy Way to Color Grade in Unreal Engine 5 | UE5 LUTs Workflow",
+      "author": "Unreal ArchWizard"
+    },
+    {
+      "id": "WRHcXDr6H4Y",
+      "title": "Revolutionary Color Correction in Unreal Engine 5",
+      "author": "UnrealForDummies"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Color%20grading",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Quick Add",
+    "Modes",
+    "Visual Effects",
+    "Post Process Volume",
+    "Details",
+    "Post Process Volume Settings"
+  ],
+  "at": "2026-11-06T12:35:31.109988+00:00"
+}
