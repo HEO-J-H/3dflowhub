@@ -91,6 +91,10 @@ def health_check(site: str = "life-after-60") -> dict:
                 rr = requests.head(u, headers=UA, timeout=12, allow_redirects=True)
                 if rr.status_code >= 400 and rr.status_code not in (403, 405, 429):  # 403/405: HEAD 거부하는 정부 사이트 많음
                     rr = requests.get(u, headers=UA, timeout=15, allow_redirects=True)
+                if rr.status_code >= 500:  # 정부 서버의 일시적 5xx 로 '깨짐' 알림이 뜨던 문제 → 잠시 뒤 한 번 더
+                    import time
+                    time.sleep(5)
+                    rr = requests.get(u, headers=UA, timeout=15, allow_redirects=True)
                 if rr.status_code in (404, 410) or rr.status_code >= 500:
                     broken.append({"url": u, "status": rr.status_code, "sure": True})  # 확실히 깨짐
                 elif rr.status_code >= 400 and rr.status_code not in (403, 405, 429):
