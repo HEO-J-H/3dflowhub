@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-masked-and-translucent-blend-modes-2ca9",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Masked and Translucent blend modes",
+  "title": "Masked·Translucent — 투명 재질",
+  "summary": "Unreal Engine의 Masked와 Translucent 블렌드 모드(Blend Mode)는 머티리얼의 투명도를 제어하여 나뭇잎이나 유리 같은 재질을 표현하는 핵심 설정입니다.",
+  "when": [
+    "나뭇잎이나 철창처럼 뚫린 영역이 있는 표면을 만들 때 (Masked)",
+    "창문이나 물처럼 투명하고 빛이 비치는 재질을 만들 때 (Translucent)",
+    "Particle 이펙트나 연기, 불꽃 등의 시각 효과를 렌더링할 때"
+  ],
+  "steps": [
+    "Content Browser에서 머티리얼(Material)을 우클릭하여 생성하고 더블클릭하여 Material Editor를 엽니다.",
+    "Graph 패널에서 Main Material Node를 선택합니다.",
+    "Details 패널에서 Blend Mode를 Masked 또는 Translucent로 변경합니다.",
+    "Masked 모드의 경우, 텍스처의 알파(Alpha) 채널을 Main Material Node의 Opacity Mask 핀에 연결합니다.",
+    "Translucent 모드의 경우, 텍스처의 알파 채널을 Opacity 핀에 연결합니다.",
+    "Viewport에서 결과물을 확인하고 Apply 버튼을 눌러 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "머티리얼의 투명도 계산 방식(Opaque, Masked, Translucent 등)을 선택합니다."
+    },
+    {
+      "name": "Opacity Mask",
+      "desc": "Masked 모드에서 0과 1(불투명/투명)의 경계를 결정하는 핀입니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "Translucent 모드에서 투명도의 세기를 조절하는 핀입니다."
+    },
+    {
+      "name": "Two Sided",
+      "desc": "폴리곤의 양면 모두에 머티리얼을 렌더링합니다."
+    },
+    {
+      "name": "Lighting Mode",
+      "desc": "Translucent 재질이 빛과 상호작용하는 방식(Surface ForwardShading 등)을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "나뭇잎 컷아웃 표현",
+      "steps": [
+        "Content Browser에서 새 머티리얼을 생성하고 엽니다.",
+        "Blend Mode를 Masked로 설정합니다.",
+        "나뭇잎 텍스처의 RGB를 Base Color에, Alpha를 Opacity Mask에 연결합니다.",
+        "Two Sided를 체크하여 나뭇잎 뒷면도 보이게 합니다."
+      ]
+    },
+    {
+      "title": "유리 창문 표현",
+      "steps": [
+        "Material Editor에서 Blend Mode를 Translucent로 설정합니다.",
+        "Base Color에 유리 색상이나 텍스처를 연결합니다.",
+        "Opacity 핀에 유리의 투명도 값을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Masked 모드인데 경계면이 계단 현상처럼 깨짐 → Opacity Mask Clip Value를 조절하거나 텍스처 Resolution 및 필터링을 확인합니다.",
+    "Translucent 재질 뒤에 있는 물체가 렌더링되지 않음 → 반투명 정렬(Translucency Sorting) 문제이므로 렌더 순서나 조명 설정을 점검합니다."
+  ],
+  "related": [
+    "Landscape materials (layer blend)",
+    "Nanite",
+    "Lumen global illumination",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "845gvhf2DH8",
+      "title": "All 7 Material Blend Modes in Unreal Engine Explained in Under 2 Minutes",
+      "author": "Unreal Engine 5 Tutorials"
+    },
+    {
+      "id": "IPKYrSXhOO0",
+      "title": "How to Create a Masked Material in Unreal Engine 5 (Opacity Mask)",
+      "author": "CG Fast Tips"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Masked%20and%20Translucent%20blend%20modes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Material",
+    "Material Editor",
+    "Graph",
+    "Main Material Node",
+    "Details"
+  ],
+  "at": "2026-11-06T08:47:28.397472+00:00"
+}

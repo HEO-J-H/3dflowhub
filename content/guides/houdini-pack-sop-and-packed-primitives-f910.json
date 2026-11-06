@@ -1,0 +1,83 @@
+{
+  "id": "houdini-pack-sop-and-packed-primitives-f910",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Pack SOP and packed primitives",
+  "title": "Pack — 가볍게 묶기",
+  "summary": "Houdini의 Pack SOP는 수많은 지오메트리 조각을 하나의 가벼운 Packed Primitive로 묶어 메모리를 절약하고 시뮬레이션 속도를 획기적으로 높여주는 핵심 노드입니다.",
+  "when": [
+    "수천 개의 파편(Debris)이나 돌멩이 등 무거운 에셋을 시뮬레이션할 때",
+    "숲이나 건물 군락 등 동일한 3D 오브젝트를 대량으로 복제(Instancing)할 때",
+    "Houdini 씬의 메모리 사용량을 줄이고 뷰포트 속도를 최적화하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "pack 을 입력하고 엔터를 쳐서 Pack SOP 노드를 생성합니다.",
+    "포장할 Geometry Nodes를 Pack SOP의 첫 번째 입력 단자에 연결합니다.",
+    "파라미터 창에서 Pack Type을 확인하고 뷰포트에서 결과물을 확인합니다.",
+    "필요시 Copy to Points SOP 등과 연동하여 Packed Primitives를 대량 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Pack Type",
+      "desc": "지오메트리를 패킹할 방식을 선택합니다 (Primitive, Detail 등)."
+    },
+    {
+      "name": "Transfer Attributes",
+      "desc": "원본 지오메트리의 어트리뷰트를 패킹된 상태로 유지합니다."
+    },
+    {
+      "name": "Pivot",
+      "desc": "패킹된 오브젝트의 중심축(Origin, Center of Mass 등)을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 파괴 파편(Debris) 최적화",
+      "steps": [
+        "Voronoi Fracture SOP로 건물을 조각냅니다.",
+        "각 조각 하단에 Pack SOP를 연결하여 개별 조각을 1개의 Primitive로 만듭니다.",
+        "Rigid Body Dynamics(RBD) 시뮬레이션을 가볍게 실행합니다."
+      ]
+    },
+    {
+      "title": "숲 환경 에셋(Trees) 인스턴싱",
+      "steps": [
+        "나무 모델을 Pack SOP로 묶어 가벼운 Packed Primitive로 변환합니다.",
+        "Scatter SOP로 생성한 포인트 위에 Copy to Points SOP를 연결합니다.",
+        "수만 그루의 나무를 메모리 부하 없이 뷰포트에 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "팩 상태에서 서브오브젝트 편집 시도 → Unpack SOP를 먼저 사용하여 지오메트리를 풀어준 뒤 수정합니다.",
+    "스케일이나 회전 값이 왜곡됨 → Transform 전후의 패킹 순서를 확인하고 Pivot 설정이 올바른지 체크합니다."
+  ],
+  "related": [
+    "Unpack SOP",
+    "Copy to Points SOP",
+    "Voronoi Fracture SOP",
+    "RBD Packed Object"
+  ],
+  "videos": [
+    {
+      "id": "_WPLO4sQrNI",
+      "title": "Houdini In Five Minutes 15: Packed Primitives (Theory)",
+      "author": "Entagma"
+    },
+    {
+      "id": "3adn2r_yXKs",
+      "title": "SOLARIS ESSENTIALS | 09 Packed Prims & LOPS",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Pack%20SOP%20and%20packed%20primitives",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Pack SOP"
+  ],
+  "at": "2026-11-06T08:47:24.782924+00:00"
+}
