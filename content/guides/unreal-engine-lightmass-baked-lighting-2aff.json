@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-lightmass-baked-lighting-2aff",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Lightmass baked lighting",
+  "title": "Lightmass — 라이트 굽기",
+  "summary": "Lightmass baked lighting은 Unreal Engine에서 정적(Static) 라이트의 빛과 그림자 정보를 미리 연산하여 텍스처(Lightmap)로 저장하는 시스템입니다. 실시간 연산 부하를 줄이면서 부드러운 간접광과 글로벌 일루미네이션(GI)을 표현합니다.",
+  "when": [
+    "모바일 게임이나 저사양 플랫폼에서 높은 프레임률을 유지해야 할 때",
+    "건축 Visualization이나 실내 인테리어 씬에서 정교하고 사실적인 간접광을 표현할 때",
+    "움직이지 않는 배경(Static Mesh)에 고품질의 자연스러운 그림자를 적용하고 싶을 때"
+  ],
+  "steps": [
+    "World Outliner 또는 뷰포트에서 원하는 라이트(예: Directional Light)를 선택합니다.",
+    "Details 패널의 Light Mobility 설정을 Static으로 변경합니다.",
+    "씬에 배치된 스태틱 메시(Static Mesh)들의 Lightmap Resolution 값이 올바르게 설정되어 있는지 확인합니다.",
+    "메인 툴바의 Build 아이콘 옆 화살표를 클릭합니다.",
+    "Build Lighting Only를 선택하여 Lightmass 연산을 실행합니다.",
+    "연산이 완료된 후 뷰포트에서 결과물과 그림자 품질을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Lightmass Settings",
+      "desc": "개별 라이트나 월드의 라이트매스 연산 품질과 간접광 강도를 조절합니다."
+    },
+    {
+      "name": "Indirect Lighting Intensity",
+      "desc": "간접광(바운스 빛)의 밝기와 영향력을 조절합니다."
+    },
+    {
+      "name": "Lightmap Resolution",
+      "desc": "스태틱 메시에 생성될 라이트맵 텍스처의 Resolution를 결정하여 그림자 선명도를 바꿉니다."
+    },
+    {
+      "name": "Static Lighting Level Scale",
+      "desc": "글로벌 일루미네이션의 샘플링 간격을 조절하여 그림자 디테일을 높이거나 낮춥니다."
+    },
+    {
+      "name": "Num Indirect Lighting Bounces",
+      "desc": "빛이 표면에 반사되는 횟수를 설정하여 더욱 자연스러운 실내 광량을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 시각화 간접광 만들기",
+      "steps": [
+        "창문을 통해 들어오는 Directional Light를 Static으로 설정합니다.",
+        "Interior 씬의 벽과 바닥 스태틱 메시의 Lightmap Resolution을 512 이상으로 높입니다.",
+        "Build 메뉴에서 Production 품질로 Lighting Only를 빌드하여 부드러운 방안 간접광을 얻습니다."
+      ]
+    },
+    {
+      "title": "모바일 게임 배경 고정 그림자 최적화",
+      "steps": [
+        "모든 배경 지오메트리를 Static으로 배치하고 라이트를 Static으로 놓습니다.",
+        "World Settings에서 Lightmass 관련 바운스 값을 조절합니다.",
+        "라이팅을 빌드한 뒤 모바일 디바이스에서 프레임 저하가 없는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Lighting needs to be rebuilt 경고 무시 → 라이트나 오브젝트를 수정한 뒤 반드시 Build Lighting을 실행해 최신 상태로 갱신합니다.",
+    "검은 점(Lightmass Black Spots) 발생 → 라이트맵 UV가 겹치거나 오버랩되었는지 확인하고 UV를 재정렬합니다.",
+    "그림자가 너무 흐리거나 깨짐 → 메시의 Lightmap Resolution 값이 너무 낮거나 라이트매스 스케일 설정이 잘못되었으므로 값을 높입니다."
+  ],
+  "related": [
+    "Light Mobility",
+    "Post Process Volume",
+    "Lumen",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "8Yka9zMSGig",
+      "title": "Stop Baking Lights the Hard Way - Unreal Engine GPU Lightmass Tutorial",
+      "author": "Shaded Fragments"
+    },
+    {
+      "id": "RBY82TSLjFA",
+      "title": "Lighting with GPU Lightmass | Tips & Tricks | Unreal Engine",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Lightmass%20baked%20lighting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "World Outliner",
+    "Directional Light",
+    "Details",
+    "Light Mobility",
+    "Static",
+    "Static Mesh"
+  ],
+  "at": "2026-11-06T11:35:15.500865+00:00"
+}

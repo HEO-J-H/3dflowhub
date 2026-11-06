@@ -1,0 +1,96 @@
+{
+  "id": "houdini-heightfield-erode-843d",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Heightfield Erode",
+  "title": "Heightfield Erode — 침식",
+  "summary": "HeightField Erode SOP는 비, 바람, 중력 등의 자연 현상을 시뮬레이션하여 지형 표면을 깎고 퇴적시켜 실제 산맥과 계곡 같은 사실적인 침식 결과를 만드는 노드입니다.",
+  "when": [
+    "급경사면에 자연스러운 물길이나 계곡(Gullying)을 표현하고 싶을 때",
+    "봉우리와 능선에 비바람에 깎인 듯한 거친 디테일을 추가할 때",
+    "침식된 토사가 골짜기와 평지에 자연스럽게 쌓이게 만들 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "heightfield erode를 입력하고 HeightField Erode 노드를 선택해 생성합니다.",
+    "이전 단계의 HeightField 노드 출력과 HeightField Erode 노드의 첫 번째 입력(Heightfield)을 연결합니다.",
+    "파라미터 창에서 Simulation 탭을 확인합니다.",
+    "Rainfall과 Thermal 침식 관련 값을 조절한 후 시뮬레이션을 실행합니다.",
+    "뷰포트에서 지형의 흙이 깎이고 계곡이 파이는 모습을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "침식 연산을 반복할 횟수로, 높을수록 더 오랜 시간 깎인 깊은 계곡이 만들어집니다."
+    },
+    {
+      "name": "Rainfall",
+      "desc": "지형에 내리는 비의 양을 조절하여 물길과 침식 강도를 결정합니다."
+    },
+    {
+      "name": "Thermal Weathering",
+      "desc": "중력에 의해 가파른 경사의 흙이 아래로 무너져 내리는 물리적 풍화 작용을 제어합니다."
+    },
+    {
+      "name": "Hardness",
+      "desc": "지형의 단단함 정도를 설정해 침식에 저항하는 강도를 조절합니다."
+    },
+    {
+      "name": "Sediment Capacity",
+      "desc": "흐르는 물이 운반할 수 있는 퇴적물의 최대량을 조절합니다."
+    },
+    {
+      "name": "Evaporation",
+      "desc": "흐르는 빗물이 증발하는 속도를 조절하여 물길의 길이를 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "급경사 계곡 생성",
+      "steps": [
+        "HeightField Noise로 울퉁불퉁한 산 지형을 만듭니다.",
+        "HeightField Erode 노드를 연결합니다.",
+        "Rainfall 값을 높여 물이 모이는 자리에 깊은 협곡을 파냅니다."
+      ]
+    },
+    {
+      "title": "바위산 능선 풍화 표현",
+      "steps": [
+        "HeightField Noise로 거친 산맥을 준비합니다.",
+        "Thermal Weathering 값을 높여 가파른 능선이 무너져 내리게 합니다.",
+        "Iterations를 낮게 유지하여 부드러운 토사 산이 아닌 바위산 느낌을 냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "시뮬레이션 시간이 너무 오래 걸립니다 → Iterations 값을 낮추거나 Grid Resolution를 줄여서 테스트합니다.",
+    "계곡이 파이지 않고 지형이 평평해집니다 → Rainfall이나 Hardness 값이 잘못 설정되었는지 확인하고 지형의 높이 스케일을 높입니다."
+  ],
+  "related": [
+    "HeightField",
+    "HeightField Noise",
+    "HeightField Reconstruct",
+    "HeightField Mask By Feature"
+  ],
+  "videos": [
+    {
+      "id": "5svsRpnTZgQ",
+      "title": "Terrain Nodebook | HeightField Erode",
+      "author": "Houdini"
+    },
+    {
+      "id": "yRaqPFDfQB8",
+      "title": "How to Use COPs to Generate Heightfields | Houdini 21",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Heightfield%20Erode",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "HeightField Erode"
+  ],
+  "at": "2026-11-06T11:35:04.535049+00:00"
+}
