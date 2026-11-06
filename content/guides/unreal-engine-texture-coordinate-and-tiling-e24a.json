@@ -1,0 +1,87 @@
+{
+  "id": "unreal-engine-texture-coordinate-and-tiling-e24a",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Texture Coordinate and tiling",
+  "title": "UV 타일링",
+  "summary": "Texture Coordinate 노드는 머티리얼 내에서 텍스처의 UV 좌표와 타일링(반복)을 제어하여 텍스처의 크기와 배치를 조절하는 기능입니다.",
+  "when": [
+    "벽돌이나 타일처럼 텍스처를 표면에 반복해서 채우고 싶을 때",
+    "UV展开 없이 간단하게 월드 좌표나 객체 크기 기준으로 텍스처를 정렬할 때",
+    "머티리얼 Instance에서 동적으로 텍스처의 스케일이나 오프셋을 조절하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 머티리얼(Material)을 더블 클릭하여 Material Editor를 엽니다.",
+    "그래프 빈 곳에서 Mouse 우클릭을 하거나 Hotkey U를 누른 채 클릭하여 Texture Coordinate 노드를 추가합니다.",
+    "Texture Coordinate 노드의 출력을 Texture Sample 노드의 UV 입력에 연결합니다.",
+    "Texture Coordinate 노드를 선택하고 Details 패널에서 U Tiling과 V Tiling 값을 조정하여 반복 횟수를 설정합니다.",
+    "Apply 버튼을 눌러 변경 사항을 저장하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "U Tiling",
+      "desc": "가로 방향으로 텍스처를 반복하는 횟수를 조절합니다."
+    },
+    {
+      "name": "V Tiling",
+      "desc": "세로 방향으로 텍스처를 반복하는 횟수를 조절합니다."
+    },
+    {
+      "name": "Coordinate Index",
+      "desc": "메시에 포함된 여러 개의 UV 채널 중 사용할 채널 번호를 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽 타일링 늘리기",
+      "steps": [
+        "Material Editor에서 Texture Coordinate 노드를 추가합니다.",
+        "U Tiling과 V Tiling 값을 각각 4로 설정하여 텍스처가 4배 더 촘촘하게 반복되도록 만듭니다.",
+        "Texture Sample의 UV에 연결하고 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "머티리얼 Instance로 실시간 타일링 조절",
+      "steps": [
+        "Texture Coordinate와 Multiply 노드를 조합하고 Scalar Parameter를 연결합니다.",
+        "머티리얼을 우클릭하여 Create Material Instance를 실행합니다.",
+        "Instance 창에서 파라미터 값을 조절해 실시간으로 타일링을 변경합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 늘어나거나 찌그러짐 → UV Tiling 값이 가로세로 비율과 맞지 않으므로 메시의 비율에 맞춰 U와 V 값을 다르게 조절합니다.",
+    "텍스처 가장자리가 부자연스럽게 반복됨 → 텍스처 에셋 자체의 타일링(Seamless) 속성이 없는 이미지이므로 타일링이 지원되는 텍스처로 교체합니다."
+  ],
+  "related": [
+    "Texture Sample",
+    "Multiply",
+    "Scalar Parameter",
+    "Panner"
+  ],
+  "videos": [
+    {
+      "id": "kFvGcpfuMBo",
+      "title": "How to Change the Tiling of a Material in Unreal Engine 5",
+      "author": "Gorka Games"
+    },
+    {
+      "id": "DeyZzndhXV0",
+      "title": "How To Tile and Pan Material Instance In Unreal Engine 5",
+      "author": "Unreal ART With Alireza "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Texture%20Coordinate%20and%20tiling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Material",
+    "Material Editor",
+    "Mouse",
+    "Hotkey U",
+    "Texture Coordinate"
+  ],
+  "at": "2026-11-06T08:27:45.870114+00:00"
+}
