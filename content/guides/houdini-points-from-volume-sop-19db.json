@@ -1,0 +1,92 @@
+{
+  "id": "houdini-points-from-volume-sop-19db",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Points from Volume SOP",
+  "title": "Points from Volume — 부피 안 점",
+  "summary": "Points from Volume SOP는 3D 볼륨(VDB) 내부와 표면에 무작위로 포인트를 채워 넣는 노드입니다. 복잡한 형태의 오브젝트 안쪽까지 Particle이나 Instance 지오메트리를 자연스럽게 배치할 때 사용합니다.",
+  "when": [
+    "구름이나 연기 시뮬레이션을 위해 볼륨 내부에 Particle을 채울 때",
+    "복잡한 3D 모델 내부를 곤충이나 먼지 같은 Particle로 가득 채우고 싶을 때",
+    "Volume VOP이나 Copy to Points와 연계하여 내부 Instance를 배치할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "points from volume 을 입력하고 엔터를 쳐서 Points from Volume SOP 노드를 생성합니다.",
+    "포인트를 생성할 대상 지오메트리(예: VDB Volume)를 Points from Volume SOP 노드의 첫 번째 입력(Input)에 연결합니다.",
+    "Scene View에서 노드를 선택하여 볼륨 내부에 생성된 포인트(Points)의 분포를 확인합니다.",
+    "파라미터 창에서 Point Spacing이나 Density Scale 값을 조절하여 포인트의 밀도와 개수를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Point Spacing",
+      "desc": "포인트 사이의 간격을 조절하여 전체 포인트 개수와 Resolution를 결정합니다."
+    },
+    {
+      "name": "Density Scale",
+      "desc": "볼륨의 밀도에 비례하여 포인트가 생성되는 양을 조절합니다."
+    },
+    {
+      "name": "Jitter",
+      "desc": "포인트 위치에 무작위성을 주어 격자무늬(Grid) 형태의 정렬을 없애고 자연스럽게 만듭니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 포인트 배치 패턴을 변경하는 시드(Seed) 값입니다."
+    },
+    {
+      "name": "Keep Inside",
+      "desc": "볼륨 내부 영역에만 포인트를 생성할지 여부를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "운석 내부 Particle 채우기",
+      "steps": [
+        "VDB từ SOP로 암석 지오메트리를 VDB 볼륨으로 변환합니다.",
+        "Points from Volume SOP를 연결하여 볼륨 내부를 포인트로 가득 채웁니다.",
+        "Scatter나 Copy to Points를 연결해 작은 암석 조각들을 내부에 배치합니다."
+      ]
+    },
+    {
+      "title": "구름 볼륨에 Particle 분포시키기",
+      "steps": [
+        "Cloud SOP나 VDB로 만든 구름 볼륨을 Points from Volume SOP에 입력합니다.",
+        "Point Spacing을 좁혀 구름 안쪽까지 촘촘한 포인트를 생성합니다.",
+        "Attribute Randomize 등으로 포인트 크기와 투명도에 변화를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포인트가 하나도 보이지 않음 → 입력된 지오메트리가 VDB 볼륨 형태인지 확인하고, VDB From Polygons 등으로 먼저 변환하세요.",
+    "포인트 개수가 너무 많아 뷰포트가 멈춤 → Point Spacing 값을 크게 높여 포인트 간격을 넓히세요."
+  ],
+  "related": [
+    "VDB From Polygons SOP",
+    "Scatter SOP",
+    "Copy to Points SOP",
+    "Volume VOP"
+  ],
+  "videos": [
+    {
+      "id": "RBqo0SAnyQk",
+      "title": "Houdini | Fill a Volume with Points",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "qEnQyHTLUL8",
+      "title": "Houdini Mini Lesson   Calculating Volume HD",
+      "author": "Purdue University VFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Points%20from%20Volume%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Points",
+    "Volume SOP"
+  ],
+  "at": "2026-11-06T09:47:44.262197+00:00"
+}

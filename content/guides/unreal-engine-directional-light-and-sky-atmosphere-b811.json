@@ -1,0 +1,100 @@
+{
+  "id": "unreal-engine-directional-light-and-sky-atmosphere-b811",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Directional Light and Sky Atmosphere",
+  "title": "태양광·하늘",
+  "summary": "Directional Light와 Sky Atmosphere를 조합하여 Unreal Engine에서 물리적으로 정확한 야외 태양광과 대기 환경을 실시간으로 구축하는 라이팅 시스템입니다.",
+  "when": [
+    "오픈월드나 야외 건축 시각화 씬에서 사실적인 태양빛과 하늘 배경을 만들 때",
+    "시간대 변화(일출, 정오, 노을, 밤)에 따른 자연스러운 대기 산란을 연출할 때",
+    "별도의 복잡한 Bake 없이 실시간으로 부드러운 야외 그림자와 간접광을 얻고 싶을 때"
+  ],
+  "steps": [
+    "메인 툴바의 Quick Add (+) 버튼 또는 Modes 패널을 엽니다.",
+    "Light 서브메뉴에서 Directional Light를 선택하여 씬에 추가합니다.",
+    "다시 Quick Add (+) 또는 Modes 패널의 Visual Effects 카테고리로 이동합니다.",
+    "Sky Atmosphere를 선택하여 씬에 추가합니다.",
+    "Directional Light의 Details 패널에서 Transform을 조절하여 태양의 각도와 방향을 맞춥니다.",
+    "Directional Light의 Details 패널 내 Light 카테고리에서 Intensity와 Color를 조정합니다.",
+    "뷰포트에서 사실적인 태양광과 대기 색상이 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기(Lumen 또는 럭스 단위)를 조절합니다."
+    },
+    {
+      "name": "Light Color",
+      "desc": "태양광의 색온도 및 색상을 설정합니다."
+    },
+    {
+      "name": "Atmosphere Sun Light",
+      "desc": "Directional Light가 대기 시스템과 상호작용하도록 연결합니다."
+    },
+    {
+      "name": "Rayleigh Scattering",
+      "desc": "공기 중 분자에 의한 빛의 산란을 조절하여 하늘의 푸른빛 등을 결정합니다."
+    },
+    {
+      "name": "Mie Scattering",
+      "desc": "에어로졸이나 먼지에 의한 빛의 산란으로 태양 주변의 후광 효과를 조절합니다."
+    },
+    {
+      "name": "Sun Disk Size",
+      "desc": "하늘에 렌더링되는 태양 원반의 크기를 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노을이 지는 황혼 씬 연출",
+      "steps": [
+        "Directional Light를 낮게 회전시켜 지평선에 가깝게 배치합니다.",
+        "Light Color를 따뜻한 주황빛 또는 붉은빛으로 변경합니다.",
+        "Sky Atmosphere의 Rayleigh Scattering 색상을 붉은 계열로 조정합니다."
+      ]
+    },
+    {
+      "title": "한낮의 밝은 야외 건축 렌더링",
+      "steps": [
+        "Directional Light를 수직에 가깝게 위쪽으로 배치합니다.",
+        "Intensity 값을 높여 강렬한 정오의 태양광을 만듭니다.",
+        "Shadow Cascades 설정을 조정하여 가까운 거리의 그림자 디테일을 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Directional Light에 Atmosphere Sun Light 옵션이 체크되지 않음 → Sky Atmosphere와 연동되지 않아 하늘과 태양광이 따로 놀므로 옵션을 체크합니다.",
+    "Directional Light의 각도를 너무 낮춰 빛이 지면 아래로 감 → 태양광이 사라져 씬이 어두워지므로 회전 값을 조절해 위를 향하게 합니다.",
+    "Exposure(노출) 설정이 고정되어 있어 태양광을 키워도 씬이 밝아지지 않음 → Auto Exposure 또는 Exposure 설정을 확인하고 밝기를 맞춥니다."
+  ],
+  "related": [
+    "Lumen",
+    "Sky Light",
+    "Exponential Height Fog",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "hXlY4jbQAlQ",
+      "title": "Understanding Atmosphere in Unreal Engine 5 | Beginner's Guide to Sky Effects",
+      "author": "Neon Tomorrow"
+    },
+    {
+      "id": "mKZUlyM9oZQ",
+      "title": "The Perfect Sky Light in Unreal Engine 5",
+      "author": "Karim Yasser"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Directional%20Light%20and%20Sky%20Atmosphere",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Quick Add",
+    "Modes",
+    "Light",
+    "Directional Light"
+  ],
+  "at": "2026-11-06T09:47:48.523463+00:00"
+}
