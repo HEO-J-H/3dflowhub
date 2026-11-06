@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-virtual-shadow-maps-411e",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Virtual Shadow Maps",
+  "title": "Virtual Shadow Maps — 그림자",
+  "summary": "Virtual Shadow Maps(VSM)은 Unreal Engine에서 고해상도 그림자를 성능 저하 없이 표현하기 위한 차세대 그림자 맵 시스템입니다. 픽셀 수준의 정밀한 그림자와 나이트(Nanite) 지오메트리와의 완벽한 호환성을 제공합니다.",
+  "when": [
+    "Nanite 메쉬와 세밀한 디테일이 많은 대형 오픈월드 씬을 제작할 때",
+    "기존 Shadow Map의 계단 현상(Aliasing)이나 Resolution 부족 문제를 해결하고 싶을 때",
+    "영화 같은 고품질 실사 렌더링에서 부드럽고 정확한 그림자 표현이 필요할 때"
+  ],
+  "steps": [
+    "Unreal Engine Editor를 열고 메인 메뉴에서 Edit → Project Settings를 엽니다.",
+    "좌측 검색창이나 설정 목록에서 Rendering 항목을 선택합니다.",
+    "Lighting 섹션에서 Shadow Map Method 옵션을 찾습니다.",
+    "드롭다운 메뉴에서 Virtual Shadow Maps (Beta/Default)를 선택합니다.",
+    "프로젝트를 재시작하거나 뷰포트에서 라이트의 Cast Shadows 옵션이 켜져 있는지 확인합니다.",
+    "뷰포트에서 그림자의 선명도와 디테일이 향상되었는지 확인하면 완료됩니다."
+  ],
+  "params": [
+    {
+      "name": "Shadow Map Method",
+      "desc": "그림자 연산 방식을 전통적인 Shadow Maps에서 Virtual Shadow Maps로 전환합니다."
+    },
+    {
+      "name": "Cast Shadows",
+      "desc": "선택한 액터나 라이트가 그림자를 생성할지 여부를 결정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "라이트가 생성하는 그림자의 진한 정도와 밝기를 조절합니다."
+    },
+    {
+      "name": "Source Radius",
+      "desc": "포인트 또는 스팟 라이트의 광원 크기를 키워 그림자 경계를 부드럽게(Soft Shadow) 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "클로즈업 나뭇잎 그림자 표현",
+      "steps": [
+        "Directional Light를 배치하고 VSM 활성화 상태를 확인합니다.",
+        "복잡한 폴리곤의 나뭇잎 메쉬에 Nanite를 적용합니다.",
+        "카메라를 나뭇잎에 가까이 붙여 뭉개짐 없는 그림자를 확인합니다."
+      ]
+    },
+    {
+      "title": "대규모 건축물 외관 실사 렌더링",
+      "steps": [
+        "거대한 건물과 지형 에셋을 씬에 배치합니다.",
+        "Directional Light의 Shadow Bias 값을 조절하여 아티팩트를 줄입니다.",
+        "원거리에서도 그림자가 깨지지 않고 정밀하게 렌더링되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "VRAM 부족 에러 발생 → 텍스처 스트리밍 풀 사이즈를 조절하거나 불필요한 고해상도 에셋을 최적화합니다.",
+    "그림자 경계가 너무 날카로움 → Light Details의 Source Radius 값을 살짝 높여 부드러운 그림자를 만듭니다.",
+    "구형 모바일 기기나 구형 GPU에서 성능 저하 발생 → 프로젝트 타겟 플랫폼에 맞춰 Shadow Map Method를 전통적 방식(Shadow Maps)으로 변경합니다."
+  ],
+  "related": [
+    "Nanite",
+    "Lumen",
+    "Directional Light",
+    "Distance Field Shadows"
+  ],
+  "videos": [
+    {
+      "id": "dWYGSL-8WWo",
+      "title": "Unreal Engine Shadow Tutorial: Exploring Contact Shadow Length and Virtual Shadow Maps",
+      "author": "CIVAR"
+    },
+    {
+      "id": "JksxxnoMPbk",
+      "title": "Unreal Engine 5: What Actually Is A VSM - Virtual Shadow Map?",
+      "author": "DF Clips"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Virtual%20Shadow%20Maps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine Editor",
+    "Edit",
+    "Project Settings",
+    "Rendering",
+    "Lighting",
+    "Shadow Map Method"
+  ],
+  "at": "2026-11-06T11:45:24.702415+00:00"
+}
