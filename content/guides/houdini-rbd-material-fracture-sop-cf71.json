@@ -1,0 +1,97 @@
+{
+  "id": "houdini-rbd-material-fracture-sop-cf71",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "RBD Material Fracture SOP",
+  "title": "RBD Material Fracture — 재질별 파괴",
+  "summary": "Houdini의 RBD Material Fracture SOP는 유리, 콘크리트, 나무, 돌 등 다양한 재질의 특성에 맞춰 오브젝트를 정교하게 파괴하고 내부 구조를 자동으로 생성하는 강력한 파쇄 노드입니다.",
+  "when": [
+    "건물이 무너지거나 바위가 깨지는 등 사실적인 하드서피스 파괴 효과를 만들 때",
+    "유리나 콘크리트처럼 재질에 따른 고유의 파편 패턴과 단면 디테일을 표현하고 싶을 때",
+    "Interior Detail 기능을 통해 파편 내부의 철근이나 세부 구조를 함께 생성해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "rbd material fracture 를 입력하고 엔터를 쳐서 RBD Material Fracture SOP 노드를 생성합니다.",
+    "첫 번째 입력단자에 파괴할 지오메트리(Geometry)를 연결합니다.",
+    "파라미터 창에서 Material 종류(Concrete, Glass, Wood 등)를 선택하여 기본적인 파쇄 성향을 지정합니다.",
+    "Interior Detail 옵션을 켜서 파편의 단면에 브릭(Brick)이나 디테일한 지오메트리를 추가합니다.",
+    "네트워크를 상위로 빠져나와 뷰포트에서 파편들이 올바르게 쪼개졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Material",
+      "desc": "콘크리트, 유리, 나무 등 파괴할 대상의 재질을 선택하여 기본 파쇄 방식을 결정합니다."
+    },
+    {
+      "name": "Interior Detail",
+      "desc": "파편 안쪽 단면에 벽돌 패턴이나 홈 등의 디테일을 추가하여 사실감을 높입니다."
+    },
+    {
+      "name": "Points",
+      "desc": "파쇄 기준이 되는 점들의 밀도와 분포를 조절하여 조각의 크기를 제어합니다."
+    },
+    {
+      "name": "Constraints",
+      "desc": "파편들 사이의 결합력을 정의하는 접점(Glue) 및 제약 조건을 생성합니다."
+    },
+    {
+      "name": "Clusters",
+      "desc": "작은 조각들을 큰 덩어리로 묶어 계층적인 파괴 구조를 만듭니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 난수 값을 변경하여 매번 다른 파쇄 패턴을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 기둥 파괴",
+      "steps": [
+        "기둥 지오메트리를 노드에 연결합니다.",
+        "Material을 Concrete로 설정합니다.",
+        "Points 개수를 늘려 세밀한 조각을 만듭니다."
+      ]
+    },
+    {
+      "title": "유리창 깨짐 효과",
+      "steps": [
+        "판 형태의 지오메트리를 준비합니다.",
+        "Material을 Glass로 설정합니다.",
+        "충돌 지점을 중심으로 방사형 파쇄가 일어나도록 Point Source를 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 구조가 깨끗하지 않아 파쇄 후 면이 뒤집힘 → PolyDoctor SOP나 Divide SOP로 토폴로지를 먼저 정리합니다.",
+    "파편 개수가 너무 많아 시뮬레이션이 멈춤 → Points 밀도를 낮추거나 Cluster 옵션을 사용하여 조각을 그룹화합니다.",
+    "내부 디테일이 보이지 않음 → Interior Detail 옵션이 켜져 있는지 확인하고 스케일을 조정합니다."
+  ],
+  "related": [
+    "Voronoi Fracture SOP",
+    "Assemble SOP",
+    "RBD Bullet Solver",
+    "Scatter SOP"
+  ],
+  "videos": [
+    {
+      "id": "hBd9rpqaGsc",
+      "title": "Houdini | RBD Material Fracture Geometry Node",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "n_wsSlWC_Tc",
+      "title": "Intro to RBD Fractures and the Bullet Solver in Houdini",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20RBD%20Material%20Fracture%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "RBD Material Fracture SOP"
+  ],
+  "at": "2026-11-06T09:27:27.353628+00:00"
+}

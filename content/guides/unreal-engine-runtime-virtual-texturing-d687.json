@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-runtime-virtual-texturing-d687",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Runtime Virtual Texturing",
+  "title": "RVT — 지형과 오브젝트 섞기",
+  "summary": "Unreal Engine의 Runtime Virtual Texturing(RVT)은 대규모 지형과 복잡한 메쉬의 텍스처를 런타임에 가상 텍스처로 베이킹하여 렌더링 성능을 극적으로 높여주는 기능입니다. 드로우 콜을 줄이고 지형과 오브젝트 간의 자연스러운 블렌딩을 돕습니다.",
+  "when": [
+    "오픈월드 레벨에서 대규모 Landscape와 복잡한 메쉬(바위, 나무 등)의 경계면을 자연스럽게 섞고 싶을 때",
+    "수많은 오브젝트가 배치된 씬에서 먼 거리의 렌더링 퍼포먼스를 최적화하고 싶을 때",
+    "Landscape 위에 겹쳐진 메쉬들이 지형의 머티리얼 변화를 실시간으로 반영해야 할 때"
+  ],
+  "steps": [
+    "Content Browser에서 우클릭 후 Miscellaneous → Runtime Virtual Texture를 생성합니다.",
+    "대형 Landscape의 Details 패널에서 Runtime Virtual Textures 항목에 방금 만든 RVT 자산을 추가합니다.",
+    "씬에 배치할 오브젝트(예: Cliff, Rock)의 머티리얼 에디터를 열고 Runtime Virtual Texture Output 노드를 추가합니다.",
+    "레벨에 Runtime Virtual Texture Volume을 배치하고, Size와 Bounds를 조절하여 최적화할 영역을 감싸줍니다.",
+    "Volume의 Details 패널에서 Virtual Texture 슬롯에 RVT 자산을 연결하여 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Virtual Texture",
+      "desc": "참조할 Runtime Virtual Texture 자산을 지정합니다."
+    },
+    {
+      "name": "Tile Size",
+      "desc": "가상 텍스처의 타일 크기를 설정하여 메모리와 성능 균형을 맞춥니다."
+    },
+    {
+      "name": "Tile Border Size",
+      "desc": "타일 간의 경계선이 끊기는 현상을 방지하기 위한 여백을 설정합니다."
+    },
+    {
+      "name": "Draw Only If Visible",
+      "desc": "화면에 보일 때만 렌더링하여 성능을 최적화합니다."
+    },
+    {
+      "name": "Allocated UV Channels",
+      "desc": "RVT 샘플링에 사용할 UV 채널을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형과 바위의 자연스러운 블렌딩",
+      "steps": [
+        "Landscape와 바위 메쉬에 동일한 RVT 자산을 연결합니다.",
+        "바위 머티리얼에 RVT 샘플러를 추가해 지형의 색상과 높이 정보를 읽어옵니다.",
+        "바위가 땅에 파묻히는 경계면에 부드러운 블렌딩 효과를 적용합니다."
+      ]
+    },
+    {
+      "title": "오픈월드 원거리 성능 최적화",
+      "steps": [
+        "넓은 영역을 커버하는 Runtime Virtual Texture Volume을 배치합니다.",
+        "복잡한 지형 머티리얼을 RVT에 캐싱하여 원거리 뷰포트 부하를 줄입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "RVT Volume이 오브젝트나 지형을 감싸지 않음 → Volume의 Bounds 크기와 위치를 조정하여 대상 영역이 완전히 포함되도록 수정합니다.",
+    "머티리얼에 RVT Output 노드가 누락됨 → 메쉬 머티리얼 에디터에 Runtime Virtual Texture Output 노드를 추가하고 적절한 채널을 연결합니다."
+  ],
+  "related": [
+    "Landscape",
+    "Virtual Texture",
+    "Nanite",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "RLEPA16QDRw",
+      "title": "Runtime Virtual Textures: The Ultimate Starter Guide [UE5]",
+      "author": "PrismaticaDev"
+    },
+    {
+      "id": "GSJFuoerkaw",
+      "title": "Blending Objects into Landscapes in UE5: A Guide to Runtime Virtual Texture",
+      "author": "Mohammad Solei"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Runtime%20Virtual%20Texturing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Miscellaneous",
+    "Runtime Virtual Texture"
+  ],
+  "at": "2026-11-06T09:27:31.801499+00:00"
+}
