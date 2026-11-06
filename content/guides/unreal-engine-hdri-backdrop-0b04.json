@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-hdri-backdrop-0b04",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "HDRI Backdrop",
+  "title": "HDRI Backdrop — HDRI 배경",
+  "summary": "Unreal Engine의 HDRI Backdrop은 구체 형태의 배경 메시와 HDRI 환경 텍스처를 자동으로 결합하여, 실내외 씬에서 현실적인 반사와 배경을 동시에 제공하는 플러그인 기반 조명 시스템입니다.",
+  "when": [
+    "자동차나 제품 디자인 렌더링 시 차량 표면에 사실적인 반사(Reflection)를 넣고 싶을 때",
+    "실내 인테리어 씬에서 창밖 풍경과 부드러운 환경광을 한 번에 세팅하고 싶을 때",
+    "별도의 복잡한 스카이돔 라이트 세팅 없이 빠르게 스튜디오 환경을 구성하고 싶을 때"
+  ],
+  "steps": [
+    "Plugins 창에서 HDRI Backdrop 플러그인이 활성화되어 있는지 확인하고 레벨을 재시작합니다.",
+    "Modes 패널 또는 Content Browser에서 HDRI Backdrop 블루프린트를 검색하여 뷰포트에 드래그 앤 드롭합니다.",
+    "Details 패널에서 Cubemap 슬롯에 원하는 HDRI 텍스처(EXR 또는 HDR 파일)를 할당합니다.",
+    "Details 패널에서 스케일(Scale) 값을 조절하여 배경 구체의 크기를 씬의 오브젝트 크기에 맞게 조절합니다.",
+    "Projected Radius 값을 조절하여 카메라 투영 왜곡을 줄이고 시차(Parallax) 효과를 최적화합니다.",
+    "Viewport Shading을 Lit 모드로 두고 조명과 반사 결과물이 자연스럽게 렌더링되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cubemap",
+      "desc": "배경과 조명으로 사용할 HDR 또는 EXR 환경 텍스처를 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "배경 구체(Sphere)의 전체 크기를 조절하여 씬과의 비율을 맞춥니다."
+    },
+    {
+      "name": "Projected Radius",
+      "desc": "투영되는 구체의 반경을 조절해 카메라 이동에 따른 시차 왜곡을 제어합니다."
+    },
+    {
+      "name": "Light Intensity",
+      "desc": "HDRI가 씬에 미치는 조명과 반사의 밝기 세기를 조절합니다."
+    },
+    {
+      "name": "Background Tint",
+      "desc": "배경 이미지 전체에 특정 색상을 더해 분위기를 보정합니다."
+    },
+    {
+      "name": "Cast Shadows",
+      "desc": "배경 메시가 투사하는 그림자 생성 여부를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 스튜디오 반사 세팅",
+      "steps": [
+        "차량 3D 모델을 레벨 중앙에 배치합니다.",
+        "HDRI Backdrop을 스폰하고 스튜디오 라이팅용 HDR 텍스처를 Cubemap에 연결합니다.",
+        "Scale 값을 키워 차량이 구체 내부에 완전히 들어오도록 배치합니다.",
+        "Light Intensity를 조절해 하이라이트와 반사 톤을 맞춥니다."
+      ]
+    },
+    {
+      "title": "실내 건축 시각화 창밖 풍경",
+      "steps": [
+        "실내 인테리어 씬을 불러오고 창문 위치를 파악합니다.",
+        "HDRI Backdrop을 배치하고 야외 풍경 HDR 텍스처를 적용합니다.",
+        "Projected Radius 값을 조정해 창너머 배경의 원근감을 자연스럽게 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scale 값이 너무 작을 때 → 오브젝트가 배경 구체 밖으로 튀어나가거나 왜곡이 심해지므로 Scale 값을 충분히 키워줍니다.",
+    "반사가 너무 어두울 때 → Light Intensity 값이 낮거나 익스포저 설정 문제이므로 라이트 강도를 높이거나 Post 프로세스 설정을 확인합니다."
+  ],
+  "related": [
+    "Sky Light",
+    "Directional Light",
+    "Post Process Volume",
+    "Reflection Capture"
+  ],
+  "videos": [
+    {
+      "id": "46AVX08O2XM",
+      "title": "Easyway To Use Hdri In Unrealengine 5.7.4",
+      "author": "Unreal Fusion"
+    },
+    {
+      "id": "vW9PvQUBZLU",
+      "title": "How to use HDRI lighting in Unreal Engine 5.6 | TUTORIAL",
+      "author": "RenderRebels"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20HDRI%20Backdrop",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Plugins",
+    "HDRI Backdrop"
+  ],
+  "at": "2026-11-06T11:55:21.650200+00:00"
+}

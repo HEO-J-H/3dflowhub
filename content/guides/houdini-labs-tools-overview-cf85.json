@@ -1,0 +1,96 @@
+{
+  "id": "houdini-labs-tools-overview-cf85",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Labs tools overview",
+  "title": "SideFX Labs 도구 소개",
+  "summary": "SideFX Houdini Labs는 프로덕션 Pipeline 자주 쓰이는 실무 유틸리티와 노드를 모아둔 무료 확장 툴킷입니다. 복잡한 절차를 단 몇 개의 노드로 해결하여 작업 시간을 크게 단축합니다.",
+  "when": [
+    "복잡한 모델링이나 UV 전개, 최적화 작업을 빠르게 자동화하고 싶을 때",
+    "게임 엔진이나 다른 DCC 툴로 에셋을 Export 전 데이터를 정리할 때",
+    "Houdini 기본 노드만으로는 구현하기 번거로운 유용한 기능을 바로 가져다 쓸 때"
+  ],
+  "steps": [
+    "Houdini 네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "검색창에 'labs'를 입력해 사용하려는 Labs 노드(예: Labs Edge Distance, Labs Auto UV 등)를 선택합니다.",
+    "오브젝트 노드 네트워크 안의 지오메트리(Geometry) 레벨에 노드를 배치합니다.",
+    "노드를 연결하고 파라미터 패널에서 필요한 옵션을 조정합니다.",
+    "뷰포트에서 결과물을 확인하고 상류 노드의 데이터를 갱신합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "효과를 적용할 특정 포인트, 에지, Primitive 그룹을 지정합니다."
+    },
+    {
+      "name": "Auto Unwrap",
+      "desc": "수동 절단선 없이 자동으로 깨끗한 UV 껍질을 펼쳐줍니다."
+    },
+    {
+      "name": "Distance Scale",
+      "desc": "계산되는 거리나 두께의 전체적인 크기를 조절합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "텍스처나 맵 생성 시 세밀함의 단계를 결정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "랜덤한 패턴이나 분산 값의 난수를 변경하여 다른 형태를 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "빠른 자동 UV 전개",
+      "steps": [
+        "지오메트리 네트워크에 모델링을 불러옵니다.",
+        "Tab 키를 눌러 Labs Auto UV 노드를 생성하고 연결합니다.",
+        "파라미터에서 박스 투영 방식이나 섬(Island) 정렬 옵션을 체크합니다.",
+        "UV 뷰포트에서 결과가 깔끔하게 펼쳐졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "에지 기반 두께 추출 (Edge Distance)",
+      "steps": [
+        "메시 모델을 준비하고 Labs Edge Distance 노드를 연결합니다.",
+        "외곽선이나 특정 코너 영역이 컬러 어트리뷰트(Color Attribute)로 변환되는 것을 확인합니다.",
+        "파라미터에서 범위를 조절하여 마스크로 활용할 영역을 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Labs 툴이 검색되지 않음 → 상단 메뉴 셸(Shelves)의 Houdini Labs 탭에서 Update Toolset을 실행해 최신 버전으로 갱신하세요.",
+    "모델링의 스케일이 틀어짐 → Transform 노드를 추가해 Uniform Scale을 1로 맞춘 뒤 Labs 노드를 적용하세요.",
+    "불필요하게 무거운 연산 발생 → High-poly 대신 Proxy 메시나 최적화된 저폴리곤 상태에서 먼저 테스트하세요."
+  ],
+  "related": [
+    "Labs Auto UV",
+    "Labs Edge Distance",
+    "Labs Quad Remesh",
+    "Labs USD Export"
+  ],
+  "videos": [
+    {
+      "id": "fmWlLxifzbc",
+      "title": "What's New from SideFX Labs | Danicka Oglesby | Houdini HIVE Education + Studio Edition",
+      "author": "Houdini"
+    },
+    {
+      "id": "jxpb36URQ9M",
+      "title": "SideFX Labs: Tools for Everyone | Paul Ambrosiussen | Houdini HIVE Worldwide",
+      "author": "Houdini"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Labs%20tools%20overview",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Houdini",
+    "Network View",
+    "Labs",
+    "Labs Edge Distance",
+    "Labs Auto UV"
+  ],
+  "at": "2026-11-06T11:55:16.715590+00:00"
+}
