@@ -1,0 +1,79 @@
+{
+  "id": "houdini-vdb-smooth-sdf-19a0",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "VDB Smooth SDF",
+  "title": "VDB Smooth — 볼륨 매끄럽게",
+  "summary": "Houdini의 VDB Smooth SDF 노드는 VDB 볼륨의 표면(Signed Distance Field)을 부드럽게 다듬어 노이즈를 제거하고 형태를 정돈하는 도구입니다. 찰흙 표면을 매끄럽게 문지르듯 볼륨의 거친 부분을 유연하게 만들어줍니다.",
+  "when": [
+    "VDB From Polygons 등으로 변환한 볼륨 표면이 울퉁불퉁하거나 노이즈가 심할 때",
+    "볼륨 연산(VDB Combine, VDB Morph 등) 과정에서 생긴 날카로운 계단 현상이나 깨짐을 보정할 때",
+    "VDB Resample 후 볼륨의 경계면을 자연스럽게 블렌딩하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "vdb smooth sdf 를 입력하고 엔터를 눌러 노드를 생성합니다.",
+    "정리가 필요한 VDB 볼륨 노드를 VDB Smooth SDF 노드의 첫 번째 입력(Input 1)에 연결합니다.",
+    "파라미터 창에서 Smooth Method 와 Iterations 값을 조절하여 부드러움의 강도를 설정합니다.",
+    "뷰포트에서 볼륨의 표면이 매끄럽게 다듬어졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Smooth Method",
+      "desc": "볼륨을 부드럽게 만드는 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Iterations",
+      "desc": "스무딩 연산을 반복할 횟수를 설정하여 강도를 조절합니다."
+    },
+    {
+      "name": "Voxel Size",
+      "desc": "볼륨의 Resolution를 유지하거나 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노이즈가 심한 VDB 표면 정리",
+      "steps": [
+        "VDB From Polygons 노드 하단에 VDB Smooth SDF 노드를 연결합니다.",
+        "Smooth Method를 기본값으로 두고 Iterations 값을 3으로 설정합니다.",
+        "뷰포트에서 표면의 거친 입자가 정돈되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "VDB 연산 결과물 경계 부드럽게 하기",
+      "steps": [
+        "VDB Combine으로 합쳐진 볼륨 노드를 준비합니다.",
+        "VDB Smooth SDF를 연결하고 Iterations를 높여 접합부의 경계를 완만하게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 Iterations 설정 → 볼륨의 디테일과 형태가 지나치게 뭉개짐 (해결: Iterations 값을 낮추거나 Voxel Size를 더 세밀하게 조정)",
+    "폴리곤 대신 SOP 레벨에서 잘못된 입력 연결 → 볼륨 데이터가 아니어서 연산이 적용되지 않음 (해결: VDB 타입의 볼륨 데이터가 입력되었는지 확인)"
+  ],
+  "related": [
+    "VDB From Polygons",
+    "VDB Resample",
+    "VDB Combine",
+    "VDB Morph SDF"
+  ],
+  "videos": [
+    {
+      "id": "xPrnFhfuuk4",
+      "title": "Fancy SDF Operations | Houdini Tutorial (Smooth Min, Coding SDFs, 4D SDFs)",
+      "author": "Hallam's Echo Chamber"
+    },
+    {
+      "id": "aISjYmjStDU",
+      "title": "Houdini | VDB Morph SDF | Node Bible Quick Tips",
+      "author": "CG Forge"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20VDB%20Smooth%20SDF",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-06T09:57:17.249841+00:00"
+}
