@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-exposure-and-auto-exposure-bbfa",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Exposure and Auto Exposure",
+  "title": "노출 설정",
+  "summary": "Unreal Engine의 Exposure와 Auto Exposure는 실제 카메라처럼 씬의 전체적인 밝기를 조절하고, 밝은 곳에서 어두운 곳으로 이동할 때 눈이 적응하는 현상을 시뮬레이션합니다.",
+  "when": [
+    "실내와 실외를 오갈 때 급격한 밝기 변화(눈부심 현상)를 자연스럽게 표현하고 싶을 때",
+    "야외 씬이나 스튜디오 씬에서 렌더링 결과물이 지나치게 밝거나 어두울 때",
+    "게임플레이 중 시야 확보를 위해 강제 노출을 고정하고 싶을 때"
+  ],
+  "steps": [
+    "Modes 패널 또는 Place Actors에서 Post Process Volume을 검색하여 씬에 배치합니다.",
+    "Details 패널에서 Post Process Volume Settings를 찾고 Infinite Extent (unbound) 옵션을 체크합니다.",
+    "Details 패널에서 Lens 아이콘을 확장하고 Exposure 섹션을 찾습니다.",
+    "Metering Mode를 선택하여 밝기를 측정할 방식을 결정합니다(예: Auto Exposure Histogram).",
+    "Auto Exposure의 Min Brightness와 Max Brightness 값을 조절하여 밝기 변화의 한계를 설정합니다.",
+    "노출 변화를 고정하려면 Auto Exposure Bias 값을 조절하거나 Min/Max 값을 동일하게 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Metering Mode",
+      "desc": "노출을 측정할 알고리즘 방식을 선택합니다 (Histogram, Auto Center Weighted 등)."
+    },
+    {
+      "name": "Auto Exposure Bias",
+      "desc": "전체적인 노출의 기준 밝기를 양수나 음수로 치우치게 조절합니다."
+    },
+    {
+      "name": "Auto Exposure Min Brightness",
+      "desc": "어두운 환경에서 자동 노출이 내려갈 수 있는 최소 한계값입니다."
+    },
+    {
+      "name": "Auto Exposure Max Brightness",
+      "desc": "밝은 환경에서 자동 노출이 올라갈 수 있는 최대 한계값입니다."
+    },
+    {
+      "name": "Exposure Compensation",
+      "desc": "수동 노출 모드에서 씬의 최종 밝기를 직접 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "어두운 동굴에서 밝은 야외로 나갈 때의 적응 효과 연출",
+      "steps": [
+        "Post Process Volume을 배치하고 Unbound를 활성화합니다.",
+        "Metering Mode를 Auto Exposure Histogram으로 설정합니다.",
+        "Min Brightness와 Max Brightness의 폭을 넓게 설정하여 밝기 변화폭을 키웁니다.",
+        "플레이어 캐릭터를 동굴에서 야외로 이동시켜 눈부심과 적응 속도를 확인합니다."
+      ]
+    },
+    {
+      "title": "시네마틱 컷신에서 급격한 밝기 변화(오토 익스포저 튐 현상) 방지",
+      "steps": [
+        "해당 컷신 구역을 커버하는 Post Process Volume을 선택합니다.",
+        "Auto Exposure Min Brightness와 Max Brightness 값을 동일한 수치로 입력합니다.",
+        "자동 노출 변화가 고정되어 카메라가 움직여도 밝기가 일정하게 유지되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Post Process Volume에 Unbound를 체크하지 않음 → 볼륨 영역 바깥으로 나가면 노출 설정이 적용되지 않습니다. Details에서 Infinite Extent (unbound)를 체크하세요.",
+    "자동 노출 변화가 너무 심하게 깜빡임 → Min Brightness와 Max Brightness의 기본값 차이가 너무 클 때 발생합니다. 두 값의 간격을 좁혀서 조절하세요."
+  ],
+  "related": [
+    "Post Process Volume",
+    "Lumen",
+    "Directional Light",
+    "Cinematic Camera"
+  ],
+  "videos": [
+    {
+      "id": "Q1xi8NwpIqA",
+      "title": "Exposure Control | Tips & Tricks | Unreal Engine",
+      "author": "Unreal Engine"
+    },
+    {
+      "id": "TTBEcn-CeSo",
+      "title": "Unreal Engine 5 Beginner Tutorial: How to Use Auto Exposure!",
+      "author": "3D Dreamer"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Exposure%20and%20Auto%20Exposure",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modes",
+    "Place Actors",
+    "Post Process Volume",
+    "Details",
+    "Post Process Volume Settings",
+    "Infinite Extent"
+  ],
+  "at": "2026-11-06T12:25:46.934349+00:00"
+}

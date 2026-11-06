@@ -1,0 +1,91 @@
+{
+  "id": "houdini-trace-sop-9980",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Trace SOP",
+  "title": "Trace — 이미지 윤곽 따기",
+  "summary": "Houdini의 Trace SOP는 흑백 이미지를 기반으로 2D 벡터 곡선(Polygon Curve)을 자동 생성해 주는 노드입니다. 로고나 손글씨, 실루엣 그래픽을 3D 모델링의 기초 형태로 변환할 때 사용합니다.",
+  "when": [
+    "2D 브랜드 로고나 일러스트를 3D 입체 모델로 변환할 때",
+    "이미지 텍스처에서 특정 형태의 윤곽선을 추출해 절차적 구조물로 만들 때",
+    "손글씨나 드로잉 소스를 Houdini 안에서 커브 지오메트리로 활용할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "trace 를 입력하고 엔터를 쳐서 Trace SOP 노드를 생성합니다.",
+    "Trace 노드를 선택하고 파라미터 패널(Parameter Pane)을 엽니다.",
+    "File 파라미터 옆의 폴더 아이콘을 클릭해 불러올 흑백 이미지(.png, .jpg 등)를 선택합니다.",
+    "Threshold 값을 조절하여 이미지의 밝기 기준선을 맞춥니다.",
+    "뷰포트에서 커브가 올바르게 추출되었는지 확인한 뒤 Extrude SOP 등을 연결해 입체화합니다."
+  ],
+  "params": [
+    {
+      "name": "File",
+      "desc": "추적할 흑백 이미지 파일 경로를 지정합니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "이미지의 픽셀을 흰색과 검은색으로 나누는 기준 밝기 값입니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "이미지의 밝기 반전을 통해 추출 영역을 뒤집습니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "추출된 커브의 전체 크기를 조절합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "커브의 정점(Point) 개수를 부드럽게 단순화하는 정밀도 값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 로고를 3D 입체간판으로 만들기",
+      "steps": [
+        "Trace SOP로 고대비 로고 이미지를 불러옵니다.",
+        "Extrude SOP를 연결해 두께를 부여합니다.",
+        "PolyExtrude SOP로 전면 베벨(Bevel)을 추가합니다."
+      ]
+    },
+    {
+      "title": "이미지 기반 Motion Graphics 커브 생성",
+      "steps": [
+        "Trace SOP로 추출한 곡선에 Resample SOP를 적용해 포인트를 고르게 재배치합니다.",
+        "Copy to Points SOP로 Particle이나 도형을 커브 위에 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컬러나 회색조가 많은 이미지를 사용함 → Photoshop 등에서 대비가 강한 흑백(Black & White) 이미지로 변환 후 불러옵니다.",
+    "Trace 결과가 너무 꺾이거나 지저분함 → Resample SOP나 Tolerance 옵션을 조절하여 불필요한 포인트를 정리합니다."
+  ],
+  "related": [
+    "Extrude SOP",
+    "Resample SOP",
+    "Copy to Points SOP",
+    "PolyExtrude SOP"
+  ],
+  "videos": [
+    {
+      "id": "lJpfOhn7fw0",
+      "title": "Modeling a bench (Trace SOP)",
+      "author": "Houdini 123"
+    },
+    {
+      "id": "plYbiiO3nAM",
+      "title": "Houdini 21 tutorial - 2dfx Trace Update",
+      "author": "Rohan Dalvi"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Trace%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Trace SOP"
+  ],
+  "at": "2026-11-06T12:25:42.498604+00:00"
+}

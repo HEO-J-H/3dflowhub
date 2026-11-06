@@ -16542,5 +16542,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전(web/) 메모리 관리 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-06T12:25:13+00:00",
+    "kind": "proposal",
+    "id": "p-b0ad1558e0",
+    "title": "웹 버전 Three.js 렌더링 성능 최적화 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전(web/) 메모리 및 Three.js 최적화 가이드와 관련 문서가 성공적으로 검증 및 반영되었음",
+    "proposal": "web/ 디렉토리 내의 3D 렌더링 루프에서 불필요한 객체 생성을 줄이고 requestAnimationFrame 정리 로직을 보완합니다.",
+    "expected": "브라우저 메모리 사용량 감소 및 저사양 환경에서의 프레임 레이트 안정화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-06T12:25:13+00:00",
+    "kind": "proposal",
+    "id": "p-e85a53212a",
+    "title": "로컬 파이프라인 TripoSR 실행 안내서 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 버전(FastAPI·TripoSR·COLMAP) 사용에 대한 GPU 요구사항 및 설치 가이드 보강 필요",
+    "proposal": "docs/local-pipeline.md를 업데이트하여 TripoSR 실행 시 필요한 VRAM 권장 사양과 CUDA 설정 절차를 상세히 안내합니다.",
+    "expected": "로컬 사용자들의 설치 오류 감소 및 실행 성공률 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-06T12:26:03.856439+00:00",
+    "kind": "decision",
+    "id": "p-b0ad1558e0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 Three.js 렌더링 성능 최적화 가이드 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T12:26:03.869163+00:00",
+    "kind": "decision",
+    "id": "p-e85a53212a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-06T12:26:12.940303+00:00",
+    "kind": "triage",
+    "id": "p-e85a53212a",
+    "verdict": "agent",
+    "reason": "TripoSR 실행 안내서 문서화는 로컬 파이프라인 관련 문서(docs/local-pipeline.md)를 수정하여 에이전트가 직접 처리할 수 있습니다."
   }
 ]
