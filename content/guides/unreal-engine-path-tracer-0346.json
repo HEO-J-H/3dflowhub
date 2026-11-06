@@ -1,0 +1,91 @@
+{
+  "id": "unreal-engine-path-tracer-0346",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Path Tracer",
+  "title": "Path Tracer — 사실적 렌더",
+  "summary": "Unreal Engine Path Tracer는 물리 기반 광선 추적(Ray Tracing)을 사용하여 실제 카메라로 촬영한 것 같은 극사실적 빛의 반사,굴절,그림자를 구현하는 프로그레시브 렌더러입니다.",
+  "when": [
+    "건축 시각화 및 제품 디자인에서 사진 같은 고품질 최종 렌더링이 필요할 때",
+    "유리, 거울, 물 등 복잡한 반사와 굴절(Refraction)을 정확하게 표현해야 할 때",
+    "실시간 Lumen만으로는 표현하기 어려운 미세한 간접 조명과 영역 광원의 그림자를 구현할 때"
+  ],
+  "steps": [
+    "Viewport 상단의 보기 모드 메뉴(Lit)를 클릭합니다.",
+    "Show Flags 또는 View Mode에서 Path Tracing을 선택하여 활성화합니다.",
+    "Level Viewport에 Post Process Volume을 배치하거나 기존 볼륨을 선택합니다.",
+    "Details 패널에서 Path Tracer 항목을 찾아 Samples per Pixel과 Max Bounces 값을 조정합니다.",
+    "Movie Render Queue를 열고 렌더 세팅에 Path Tracer를 추가하여 최종 고화질 시퀀스를 출력합니다."
+  ],
+  "params": [
+    {
+      "name": "Samples per Pixel",
+      "desc": "픽셀당 광선 샘플 수로, 높을수록 노이즈가 줄어들고 렌더링 품질이 좋아집니다."
+    },
+    {
+      "name": "Max Bounces",
+      "desc": "빛이 반사되는 최대 횟수를 설정하여 유리나 거울의 다중 반사 깊이를 제어합니다."
+    },
+    {
+      "name": "Max Roughness To Ray Trace",
+      "desc": "광선 추적을 적용할 표면의 최대 거칠기 값을 지정하여 성능을 최적화합니다."
+    },
+    {
+      "name": "Firefly Filter",
+      "desc": "반사면에서 튀는 밝은 점(파이어플라이 노이즈)을 제거하여 이미지를 부드럽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 인테리어 건축 렌더링",
+      "steps": [
+        "Post Process Volume을 인테리어 공간 중앙에 배치합니다.",
+        "Path Tracing 뷰 모드로 전환하여 유리창을 통과하는 자연광과 그림자의 부드러움을 확인합니다.",
+        "Movie Render Queue에서 안티에이징과 샘플 수를 높여 최종 이미지를 렌더링합니다."
+      ]
+    },
+    {
+      "title": "자동차 제품 시각화",
+      "steps": [
+        "차량 도장면 머티리얼의 Clear Coat와 메탈릭 반사 값을 점검합니다.",
+        "HDRI 스카이 라이트를 배치하여 차체에 맺히는 주변 반사광을 극대화합니다.",
+        "Path Tracer를 켜고 차 유리와 헤드라이트의 정확한 굴절 효과를 검수합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "화면이 심하게 지글거리거나 노이즈가 가득함 → Post Process Volume에서 Samples per Pixel 값이 너무 낮기 때문입니다. 값을 높여주세요.",
+    "유리나 거울 내부가 까맣게 나옴 → Max Bounces 값이 너무 낮아 빛의 반사 횟수가 부족한 원인입니다. 반사 횟수를 늘려주세요.",
+    "실시간 뷰포트가 너무 느리거나 멈춤 → Path Tracer는 고성능 GPU 연산이 필요하므로 작업 중에는 실시간(Lit) 모드로 작업하고 최종 확인 시에만 켜야 합니다."
+  ],
+  "related": [
+    "Lumen",
+    "Post Process Volume",
+    "Movie Render Queue",
+    "Ray Tracing"
+  ],
+  "videos": [
+    {
+      "id": "X5zVhc5ahl0",
+      "title": "PATH TRACER Explained - Unreal Engine's Underrated Tool",
+      "author": "William Faucher"
+    },
+    {
+      "id": "v9jFuVeDe1o",
+      "title": "Beginners guide to Path Tracing for Architects and Archviz Artist in Unreal Engine 5",
+      "author": "TDAP "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Path%20Tracer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Lit",
+    "Show Flags",
+    "View Mode",
+    "Path Tracing"
+  ],
+  "at": "2026-11-06T12:55:52.907247+00:00"
+}
