@@ -1,0 +1,88 @@
+{
+  "id": "houdini-convert-vdb-sop-b2ba",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Convert VDB SOP",
+  "title": "Convert VDB — 볼륨↔폴리곤",
+  "summary": "Convert VDB SOP 노드는 OpenVDB 볼륨 데이터를 표준 폴리곤 메시(Polygon Mesh)나 다른 형태의 볼륨으로 변환하는 기능입니다. 볼륨 기반의 효과를 최종 렌더링이나 다른 DCC 툴로 Export 위한 폴리곤 형태로 바꿀 때 사용합니다.",
+  "when": [
+    "VDB 볼륨으로 연기나 구름 시뮬레이션을 한 뒤 표면을 폴리곤 메시로 추출할 때",
+    "VDB Level Set 데이터를 게임 엔진이나 다른 3D 툴로 Export 위해 폴리곤화할 때",
+    "볼륨 연산 결과를 바탕으로 일반 지오메트리 Modifier를 적용하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "convert vdb 를 입력하고 엔터를 쳐서 Convert VDB SOP 노드를 생성합니다.",
+    "변환할 VDB 볼륨 노드를 Convert VDB SOP의 첫 번째 입력(Input 1)에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Convert To 옵션을 원하는 형식(예: Polygons)으로 선택합니다.",
+    "Isovalue 값을 조절하여 표면의 두께나 외곽선을 미세 조정합니다.",
+    "뷰포트에서 폴리곤 메시가 올바르게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Convert To",
+      "desc": "볼륨을 변환할 대상 형식(Polygons, VDB, Fog 등)을 선택합니다."
+    },
+    {
+      "name": "Isovalue",
+      "desc": "볼륨 표면의 기준 값을 설정하여 메시의 두께나 크기를 조절합니다."
+    },
+    {
+      "name": "Adaptivity",
+      "desc": "평평한 영역의 폴리곤 개수를 줄여 와이어프레임을 최적화합니다."
+    },
+    {
+      "name": "Voxel Size",
+      "desc": "폴리곤화할 때의 복셀 Resolution 크기를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VDB 연기 시뮬레이션을 폴리곤 지오메트리로 변환",
+      "steps": [
+        "Smoke Sim 결과물인 VDB 볼륨 노드를 준비합니다.",
+        "Convert VDB SOP 노드를 연결하고 Convert To를 Polygons로 설정합니다.",
+        "Isovalue와 Adaptivity를 조절하여 가볍고 매끄러운 덩어리를 만듭니다."
+      ]
+    },
+    {
+      "title": "VDB Level Set을 이용한 단단한 덩어리 추출",
+      "steps": [
+        "여러 개가 겹친 VDB 볼륨을 VDB Combine 등으로 합칩니다.",
+        "Convert VDB SOP를 연결하여 하나의 단단한 폴리곤 표면으로 추출합니다.",
+        "Normal SOP나 PolyReduce SOP를 거쳐 후속 작업을 준비합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "복셀 크기가 너무 작음 → Voxel Size를 키워 시뮬레이션 및 뷰포트 속도를 확보합니다.",
+    "표면이 너무 거칠거나 깨짐 → Isovalue 값을 조정하거나 Adaptivity 옵션을 해제하여 면을 고르게 만듭니다."
+  ],
+  "related": [
+    "VDB from Polygons",
+    "VDB Combine",
+    "VDB Smooth",
+    "PolyReduce"
+  ],
+  "videos": [
+    {
+      "id": "W5giDfs-Dd8",
+      "title": "Houdini | VDB Activate & VDB SOPs | CG Forge Node Bible Entry #56",
+      "author": "CG Forge"
+    },
+    {
+      "id": "1UTHA95vBgY",
+      "title": "Export Volume VDB from Houdini into Blender",
+      "author": "bubblepins"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Convert%20VDB%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Convert VDB SOP"
+  ],
+  "at": "2026-11-06T10:45:35.719357+00:00"
+}

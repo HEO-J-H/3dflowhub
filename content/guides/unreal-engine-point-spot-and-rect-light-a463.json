@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-point-spot-and-rect-light-a463",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Point, Spot and Rect Light",
+  "title": "Point·Spot·Rect 조명",
+  "summary": "Unreal Engine의 Point, Spot, Rect Light는 각각 전구, 손전등, 면 광원처럼 씬 내부의 국소적인 영역을 밝히고 사실적인 조명 효과를 연출합니다.",
+  "when": [
+    "실내 인테리어에서 펜던트 조명이나 스탠드 전구의 광원을 표현할 때",
+    "복도나 무대 조명처럼 특정 방향으로 좁게 빛을 쏘는 연출이 필요할 때",
+    "창문이나 스튜디오 패널 조명처럼 면적이 있는 부드러운 빛을 만들 때"
+  ],
+  "steps": [
+    "메인 툴바의 Quick Add (+) 버튼 또는 Modes 패널을 엽니다.",
+    "Light 서브메뉴에서 Point Light, Spot Light, 또는 Rect Light 중 하나를 선택해 뷰포트로 드래그합니다.",
+    "Details 패널에서 Transform의 위치(Location)와 회전(Rotation)을 조절해 원하는 위치에 배치합니다.",
+    "Details 패널의 Light 섹션에서 Intensity(밝기)와 Light Color(색상)를 설정합니다.",
+    "Viewport에서 조명의 영향 범위(Attenuation Radius 등)와 그림자가 자연스럽게 맺히는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "조명의 총 밝기(Lumen 또는 칸델라 단위)를 조절합니다."
+    },
+    {
+      "name": "Light Color",
+      "desc": "조명이 발산하는 빛의 색상과 온도를 설정합니다."
+    },
+    {
+      "name": "Attenuation Radius",
+      "desc": "Point Light와 Spot Light의 빛이 도달하는 최대 거리를 지정합니다."
+    },
+    {
+      "name": "Source Radius",
+      "desc": "광원의 물리적 크기를 키워 그림자의 경계를 부드럽게(Soft Shadow) 만듭니다."
+    },
+    {
+      "name": "Outer Cone Angle",
+      "desc": "Spot Light에서 빛이 퍼져나가는 전체 원뿔 각도를 설정합니다."
+    },
+    {
+      "name": "Source Width",
+      "desc": "Rect Light의 가로 면적 크기를 조절하여 직사각형 형태의 반사광을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 천장 펜던트 조명",
+      "steps": [
+        "Point Light를 생성하여 천장 전구 모델 위치에 배치합니다.",
+        "Light Color를 따뜻한 주황빛(Kelvin 3000K)으로 설정합니다.",
+        "Attenuation Radius를 조절하여 방 안의 가구까지만 빛이 닿게 제한합니다."
+      ]
+    },
+    {
+      "title": "창문을 통해 들어오는 면 광원",
+      "steps": [
+        "Rect Light를 생성하여 창문 틀 안쪽에 배치합니다.",
+        "Source Width와 Source Height를 창문 크기에 맞게 조절합니다.",
+        "Intensity를 높여 실내 바닥과 벽면에 부드러운 직사각형 빛이 떨어지도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛이 너무 멀리까지 영향을 미쳐 씬이 과도하게 밝아짐 → Attenuation Radius 값을 줄여 영향 범위를 제한하세요.",
+    "그림자의 경계가 너무 날카로움 → Source Radius나 Source Width 값을 키워 부드러운 그림자를 만드세요.",
+    "모바일이나 성능 제한 환경에서 동적 조명을 과도하게 사용함 → 조명 Mobility를 Stationary나 Static으로 변경하세요."
+  ],
+  "related": [
+    "Directional Light",
+    "Sky Light",
+    "Lightmass",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "rXvy26vwNjc",
+      "title": "Unreal Engine 5 Lighting Explained – Point, Spot, Rect & Directional Lights Full Guide",
+      "author": "Rambod Dev"
+    },
+    {
+      "id": "tFi_szTpx8o",
+      "title": "Unreal Lighting And Cinematics Part 6: Point Spot and Rect Lights",
+      "author": "bpcrews"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Point%2C%20Spot%20and%20Rect%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-06T10:45:39.932615+00:00"
+}
