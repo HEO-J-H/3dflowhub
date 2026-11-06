@@ -1,0 +1,85 @@
+{
+  "id": "houdini-vdb-combine-dcee",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "VDB Combine",
+  "title": "VDB Combine — 볼륨 합치기",
+  "summary": "Houdini의 VDB Combine 노드는 두 개 이상의 VDB 볼륨 데이터를 서로 결합(Merge)하거나 연산(합집합·교집합·차집합)하여 새로운 볼륨 형태를 만드는 도구입니다. 복잡한 볼륨 구조를 조립하거나 구멍을 뚫을 때 사용합니다.",
+  "when": [
+    "서로 다른 연기나 구름 볼륨을 하나로 합쳐서 자연스럽게 섞고 싶을 때",
+    "지형이나 단단한 오브젝트 볼륨에서 다른 볼륨 형태를 빼내어(Boolean) 파인 자국을 만들 때",
+    "두 볼륨이 겹치는 영역만 추출하여 새로운 볼륨 구조를 생성할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "vdb combine 을 입력하고 엔터를 눌러 노드를 생성합니다.",
+    "첫 번째 입력(Input 1)에 기준이 되는 A 볼륨 노드를 연결합니다.",
+    "두 번째 입력(Input 2)에 결합할 B 볼륨 노드를 연결합니다.",
+    "파라미터 창에서 Operation 방식을 선택하여 볼륨 연산 종류를 변경합니다.",
+    "뷰포트에서 결합된 VDB 볼륨의 형태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "볼륨 간의 연산 방식(Add, Subtract, Intersect 등)을 선택합니다."
+    },
+    {
+      "name": "A Is SDF",
+      "desc": "첫 번째 입력된 볼륨이 Signed Distance Field 데이터인지 설정합니다."
+    },
+    {
+      "name": "B Is SDF",
+      "desc": "두 번째 입력된 볼륨이 Signed Distance Field 데이터인지 설정합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "볼륨 연산 시 경계면의 허용 오차와 계산 정밀도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "볼륨 차집합(Subtract)으로 구멍 뚫기",
+      "steps": [
+        "VDB Combine 노드의 Operation을 Subtract로 설정합니다.",
+        "Input 1에 큰 기본 볼륨을 연결합니다.",
+        "Input 2에 파낼 형태의 작은 볼륨을 연결하여 빈 공간을 만듭니다."
+      ]
+    },
+    {
+      "title": "두 개 이상의 볼륨 합치기(Add)",
+      "steps": [
+        "Operation을 Add 또는 Merge 계열로 설정합니다.",
+        "여러 개의 VDB 볼륨을 각 입력에 연결합니다.",
+        "겹치는 영역이 자연스럽게 합쳐진 최종 볼륨을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "볼륨 데이터가 아닌 일반 폴리곤을 연결함 → VDB from Polygons 노드를 먼저 거쳐 VDB 형태로 변환해야 합니다.",
+    "SDF 속성이 일치하지 않아 연산이 깨짐 → A Is SDF 및 B Is SDF 옵션 체크 상태를 확인합니다."
+  ],
+  "related": [
+    "VDB Smooth SDF",
+    "VDB from Polygons",
+    "Convert VDB",
+    "VDB Resample"
+  ],
+  "videos": [
+    {
+      "id": "rtH5bw5Zjm0",
+      "title": "Houdini VDB Combine In 5 Minutes",
+      "author": "5 Minute FX"
+    },
+    {
+      "id": "7JIVzuKOy8g",
+      "title": "How to combine VDB Fields in Houdini | Houdini Tips and Tricks",
+      "author": "AscVfx"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20VDB%20Combine",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-06T10:55:54.032766+00:00"
+}
