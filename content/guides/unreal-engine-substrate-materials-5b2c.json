@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-substrate-materials-5b2c",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Substrate materials",
+  "title": "Substrate — 새 재질 시스템",
+  "summary": "Unreal Engine의 Substrate는 기존의 단일 레이어 머티리얼 구조를 대체하는 차세대 다중 레이어 머티리얼 시스템입니다. 여러 재질의 조합을 물리적으로 정확하고 유연하게 표현하여 복잡한 표면을 쉽게 만들 수 있습니다.",
+  "when": [
+    "자동차 도색처럼 투명 클리어 코트와 금속이 복잡하게 겹친 표면을 만들 때",
+    "천 위에 먼지가 쌓이거나 땀이 스며든 것처럼 여러 재질을 레이어링할 때",
+    "기존 블렌드 방식보다 더 사실적인 빛의 반사와 굴절을 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Project Settings를 열고 Engine - Rendering 항목으로 이동합니다.",
+    "Support Forward Shading 아래에 있는 Substrate 옵션을 찾아 체크하여 활성화한 후 에디터를 재시작합니다.",
+    "Content Browser에서 빈 공간을 우클릭하고 Material을 선택해 새 머티리얼을 생성하고 엽니다.",
+    "Material Graph에서 에러가 발생하지 않도록 상세 블렌드 및 레이어 노드(Substrate Sliders, Substrate Thin Film 등)를 배치합니다.",
+    "노드들을 조합하여 메인 Material Attributes에 연결한 후 뷰포트에서 결과가 반영된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Substrate Front Material",
+      "desc": "최상단 표면의 물리적 성질과 레이어를 정의합니다."
+    },
+    {
+      "name": "Substrate Slab",
+      "desc": "가장 기본이 되는 단일 표면 Shading 모델입니다."
+    },
+    {
+      "name": "Fuzzy Specular",
+      "desc": "천, 벨벳, 먼지 같은 미세한 섬유질 표면의 반사를 표현합니다."
+    },
+    {
+      "name": "Thin Film",
+      "desc": "비눗방울이나 기름막처럼 두께에 따른 무지개 빛 무늬를 표현합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 빛의 산란 정도를 바꿉니다."
+    },
+    {
+      "name": "Subsurface Scattering",
+      "desc": "빛이 표면 내부로 스며들어 투과되는 효과를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 클리어 코트 도색",
+      "steps": [
+        "Substrate Slab 노드를 생성하여 베이스 금속 색상을 설정합니다.",
+        "상단에 투명한 클리어 코트 레이어를 Substrate 믹스 노드로 얹습니다.",
+        "두 레이어의 거칠기와 두께 값을 조절하여 광택을 살립니다."
+      ]
+    },
+    {
+      "title": "벨벳 천 재질 표현",
+      "steps": [
+        "기본 패브릭 베이스 노드를 생성합니다.",
+        "Fuzzy Specular 노드를 추가하여 표면의 미세한 털 느낌을 더합니다.",
+        "뷰포트에서 시점에 따라 빛나는 벨벳 고유의 광택을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Substrate 활성화 후 재시작 안 함 → 프로젝트 설정에서 Substrate를 켠 뒤 반드시 에디터를 재시작해야 메뉴와 노드가 활성화됩니다.",
+    "과도한 레이어 중첩 → 너무 많은 레이어를 쌓으면 렌더링 성능이 떨어지므로 필요한 만큼만 조합하세요."
+  ],
+  "related": [
+    "Material Editor",
+    "Emissive",
+    "Niagara",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "d1ncs8M6Lkg",
+      "title": "Introduction to Substrate Materials | Unreal Engine 5.7",
+      "author": "Unreal Engine"
+    },
+    {
+      "id": "4X-nZ7qflcw",
+      "title": "Exploring Substrate Materials: Basic to Advanced Techniques | Unreal Fest Bali 2025",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Substrate%20materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project Settings",
+    "Engine",
+    "Rendering",
+    "Support Forward Shading",
+    "Substrate"
+  ],
+  "at": "2026-11-06T09:37:29.674349+00:00"
+}

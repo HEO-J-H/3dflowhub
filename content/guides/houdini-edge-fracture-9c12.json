@@ -1,0 +1,87 @@
+{
+  "id": "houdini-edge-fracture-9c12",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Edge Fracture",
+  "title": "Edge Fracture — 모서리 따라 깨기",
+  "summary": "Edge Fracture 노드는 모델의 엣지를 따라 지오메트리를 부서뜨려 균열과 조각난 파편을 만드는 파괴 시뮬레이션 및 디테일 작업용 기능입니다.",
+  "when": [
+    "건물이 무너지거나 바닥이 갈라지는 파괴 시뮬레이션(Rigid Body)을 준비할 때",
+    "돌이나 금속 오브젝트에 자연스러운 균열과 파손 자국을 표현할 때",
+    "하드서페이스 모델에 전투 흔적이나 오래된 노후화 표현을 더할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Edge Fracture 노드를 검색하여 생성합니다.",
+    "첫 번째 입력단자(Input 0)에 파괴할 오브젝트의 지오메트리를 연결합니다.",
+    "두 번째 입력단자(Input 1)에 균열의 방향과 패턴을 제어할 가이드 포인트나 커브를 연결합니다(선택 사항).",
+    "파라미터 패널에서 조각의 밀도(Density)와 노이즈(Noise) 값을 조절하여 균열의 형태를 잡습니다.",
+    "뷰포트에서 조각난 파편들이 올바르게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Points",
+      "desc": "균열과 파편의 기준이 되는 포인트를 생성하고 배치합니다."
+    },
+    {
+      "name": "Noise",
+      "desc": "균열 단면에 무작위성을 주어 더 자연스럽고 불규칙한 파편을 만듭니다."
+    },
+    {
+      "name": "Interior Group",
+      "desc": "파괴로 인해 새로 생긴 단면(안쪽 면)에 별도의 그룹 이름을 지정합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "조각난 파편들 사이에 미세한 틈을 벌려 겹침 현상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 바닥 균열 표현",
+      "steps": [
+        "Grid 노드로 평면 오브젝트를 만듭니다.",
+        "Edge Fracture 노드를 연결하고 노이즈 값을 높여 불규칙한 금을 만듭니다.",
+        "Exploded View 노드로 조각들을 살짝 벌려 균열 상태를 확인합니다."
+      ]
+    },
+    {
+      "title": "벽돌 벽 파괴 시뮬레이션 준비",
+      "steps": [
+        "Box 노드로 벽돌 형태의 모델을 준비합니다.",
+        "Edge Fracture 노드를 적용하여 충격 지점을 중심으로 조각을 쪼갭니다.",
+        "Rigid Body Solver에 연결하여 물리적인 낙하 및 충돌 시뮬레이션을 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트 부족 → 모델의 폴리곤 수가 너무 적으면 균열선이 각지게 깨지므로 Subdivide 노드로 면을 미리 늘려줍니다.",
+    "파편 겹침 현상 → Offset 값이 0이어서 조각들이 서로 겹칠 때 Offset 값을 미세하게 주어 해결합니다."
+  ],
+  "related": [
+    "Voronoi Fracture",
+    "RBD Bullet Solver",
+    "Subdivide",
+    "Exploded View"
+  ],
+  "videos": [
+    {
+      "id": "220PcHa4Y30",
+      "title": "Encyclopedia Of Nodes (Houdini) | Ep.01: Edge Fracture",
+      "author": "txjxs"
+    },
+    {
+      "id": "dG11s-_Q9Po",
+      "title": "Houdini: Fracture Detail",
+      "author": "N/A"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Edge%20Fracture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Edge Fracture"
+  ],
+  "at": "2026-11-06T09:37:23.119881+00:00"
+}
