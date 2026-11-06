@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-material-layers-9140",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Material Layers",
+  "title": "Material Layers — 재질 겹치기",
+  "summary": "Unreal Engine의 Material Layers는 여러 개의 독립된 재질 레이어를 조합하여 복잡하고 세밀한 표면을 효율적으로 제작할 수 있는 기능입니다. 레이어별로 텍스처와 속성을 관리하여 마스크나 블렌딩을 통해 자연스럽게 섞을 수 있습니다.",
+  "when": [
+    "하나의 모델에 가죽, 금속, 먼지 등 여러 재질을 레이어 구조로 겹쳐서 표현하고 싶을 때",
+    "캐릭터나 프롭의 마모 및 손상 표현을 동적으로 제어하고 싶을 때",
+    "복잡한 마스터 머티리얼 내부 노드를 깔끔하게 모듈화하여 관리하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 우클릭 후 Materials & Textures 카테고리에서 Material Layer와 Material Layer Blend 아셋을 각각 생성합니다.",
+    "Material Layer 아셋을 더블 클릭하여 머티리얼 에디터를 열고, 베이스 컬러와 러프니스 등의 기본 노드를 Material Attributes에 연결합니다.",
+    "메인 마스터 머티리얼(Master Material)을 생성하고 열어 그래프 창에서 우클릭 후 Material Attributes 노드를 배치합니다.",
+    "그래프 창에서 우클릭 후 Make Material Attributes 또는 Layer Blend 노드를 검색하여 배치하고, 생성해 둔 Layer들을 연결합니다.",
+    "마스터 머티리얼을 우클릭하고 Create Material Instance를 선택하여 Instance 아셋을 생성합니다.",
+    "Details 패널에서 Layer 파라미터를 활성화하고, 각 레이어의 텍스처나 블렌드 마스크를 조정하여 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Material Attributes",
+      "desc": "베이스 컬러, 노멀, 러프니스 등 머티리얼의 모든 속성을 하나로 묶어 전달하는 데이터 구조입니다."
+    },
+    {
+      "name": "Blend Material Attributes",
+      "desc": "알파 마스크나 가중치를 이용해 두 개의 Material Layer를 자연스럽게 섞어주는 노드입니다."
+    },
+    {
+      "name": "Layer Weight",
+      "desc": "레이어가 표면에 섞이는 비율이나 강도를 조절합니다."
+    },
+    {
+      "name": "Parameter Layer",
+      "desc": "머티리얼 Instance에서 파라미터를 수정할 수 있도록 허용하는 레이어 슬롯입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 표면의 녹(Rust) 표현",
+      "steps": [
+        "기본 철재 재질 레이어와 녹(Rust) 재질 레이어를 각각 생성합니다.",
+        "Material Layer Blend 노드를 사용하여 두 레이어를 연결합니다.",
+        "마스크 텍스처(Roughness/Noise)를 블렌드 알파에 연결하여 모서리나 홈에 녹이 슬도록 지정합니다.",
+        "Material Instance에서 마스크의 스케일과 강도를 조절해 자연스러움을 더합니다."
+      ]
+    },
+    {
+      "title": "먼지가 쌓인 가구 프롭 제작",
+      "steps": [
+        "나무 재질 레이어와 상단 면에 쌓인 먼지 재질 레이어를 준비합니다.",
+        "World Position Z나 Vertex Normal을 활용한 마스크로 먼지 레이어의 블렌드 위치를 위쪽 방향으로 제한합니다.",
+        "Material Instance에서 먼지의 두께와 거칠기를 실시간으로 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Material Layer 아셋을 쓰지 않고 일반 Material 노드를 직접 연결함 → Material Layer 및 Blend 전용 노드 구조를 사용해야 합니다.",
+    "Instance 패널에서 레이어가 보이지 않음 → 마스터 머티리얼에서 Use Material Attributes 체크 여부와 파라미터 노출 설정을 확인해야 합니다."
+  ],
+  "related": [
+    "Material Instances",
+    "Material parameters",
+    "Landscape materials (layer blend)",
+    "Subsurface Scattering"
+  ],
+  "videos": [
+    {
+      "id": "HJA0Ti6_r7A",
+      "title": "Material Layers In Unreal Engine 5",
+      "author": "Pitchfork Academy"
+    },
+    {
+      "id": "QaJ_5pQIGSo",
+      "title": "Advanced Material Layering in Unreal Engine with Hugh Chew",
+      "author": "Beyond Extent"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Material%20Layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Materials",
+    "Textures",
+    "Material Layer",
+    "Material Layer Blend"
+  ],
+  "at": "2026-11-06T09:08:03.805769+00:00"
+}

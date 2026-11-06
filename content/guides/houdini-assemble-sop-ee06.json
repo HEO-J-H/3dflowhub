@@ -1,0 +1,88 @@
+{
+  "id": "houdini-assemble-sop-ee06",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Assemble SOP",
+  "title": "Assemble — 조각 정리",
+  "summary": "Houdini의 Assemble SOP는 흩어진 조각(Fragments)들을 인식하여 패킹(Packing)하고, 파편이나 조각들을 하나의 오브젝트 단위로 묶어 조립(Assembly)해 주는 노드입니다.",
+  "when": [
+    "Voronoi Fracture 등으로 깨진 파편들을 각각 Packed Primitive로 변환하여 메모리를 아끼고 싶을 때",
+    "건물 파괴 시뮬레이션 후 개별 조각들을 그룹화하거나 패밀리 단위로 묶을 때",
+    "여러 개의 독립된 지오메트리 조각을 하나의 깔끔한 오브젝트로 정리하고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "assemble 을 입력하고 엔터를 쳐서 Assemble SOP 노드를 생성합니다.",
+    "조각낼 지오메트리(예: Voronoi Fracture의 결과물)와 Assemble SOP 노드를 연결합니다.",
+    "파라미터 패널에서 Create Packed Geometry 옵션을 체크하여 조각들을 Packed Primitive로 변환합니다.",
+    "필요에 따라 Create Name Attribute를 켜서 각 조각에 고유한 이름표(Name)를 부여합니다.",
+    "뷰포트에서 조각들이 하나의 패키지 단위로 묶여 가벼워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Create Packed Geometry",
+      "desc": "입력된 지오메트리 조각들을 각각 메모리에 효율적인 Packed Primitive로 변환합니다."
+    },
+    {
+      "name": "Create Name Attribute",
+      "desc": "각 조각을 구분할 수 있는 고유한 Name 속성을 자동으로 생성합니다."
+    },
+    {
+      "name": "Name Prefix",
+      "desc": "생성되는 Name 속성 앞에 붙일 공통 접두사(Prefix) 이름을 지정합니다."
+    },
+    {
+      "name": "Pack By Attribute",
+      "desc": "특정 속성(Attribute) 값을 기준으로 조각들을 묶어 패킹합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 파괴 시뮬레이션 최적화",
+      "steps": [
+        "Voronoi Fracture SOP로 건물을 여러 조각으로 쪼갭니다.",
+        "그 뒤에 Assemble SOP를 연결하여 각 파편을 Packed Primitive로 변환합니다.",
+        "Rigid Body Solver에 입력하여 시뮬레이션 연산 속도를 대폭 높입니다."
+      ]
+    },
+    {
+      "title": "흩어진 파편에 고유 이름 부여",
+      "steps": [
+        "Connectivity SOP와 Blast SOP 등으로 분리된 조각들을 준비합니다.",
+        "Assemble SOP를 연결하고 Create Name 속성을 활성화합니다.",
+        "Alembic 등 외부 파일로 캐시를 내보낼 때 개별 오브젝트 이름으로 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Packed Geometry가 켜져 있어 서브오브젝트 수정이 안 됨 → Explode나 Unpack SOP를 사용하여 풀어준 뒤 수정합니다.",
+    "Name 속성이 생성되지 않아 후속 노드에서 조각을 인식하지 못함 → Create Name Attribute 옵션이 켜져 있는지 확인합니다."
+  ],
+  "related": [
+    "Voronoi Fracture SOP",
+    "Connectivity SOP",
+    "Pack SOP",
+    "Rigid Body Solver"
+  ],
+  "videos": [
+    {
+      "id": "MB2YojnvbXE",
+      "title": "Houdini Assemble SOP",
+      "author": "Terranimator"
+    },
+    {
+      "id": "ETwyuxRE0e4",
+      "title": "Add SOP | Houdini 21",
+      "author": "Simlarity"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Assemble%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Assemble SOP"
+  ],
+  "at": "2026-11-06T09:07:58.951498+00:00"
+}
