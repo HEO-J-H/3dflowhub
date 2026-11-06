@@ -1,0 +1,96 @@
+{
+  "id": "houdini-heightfield-noise-7238",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Heightfield Noise",
+  "title": "Heightfield Noise — 지형 굴곡",
+  "summary": "HeightField Noise SOP는 절차적인 노이즈 패턴을 지형(Heightfield)에 더해 산맥의 능선, 바위의 거친 질감, 미세한 요철 같은 자연스러운 불규칙성을 만드는 노드입니다.",
+  "when": [
+    "민둥산이나 평평한 지형에 자연스러운 산세와 울퉁불퉁한 높낮이를 추가할 때",
+    "사막의 모래 언덕이나 거친 바위 지대의 표면 질감을 생성할 때",
+    "여러 개의 노이즈를 층층이 섞어 복잡하고 거대한 리얼한 대규모 지형을 만들 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "heightfield noise를 입력하고 HeightField Noise 노드를 선택해 생성합니다.",
+    "기존에 만든 HeightField 노드의 출력 단자를 HeightField Noise 노드의 입력 단자에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Element Size와 Height Scale 값을 조절해 노이즈의 크기와 높낮이를 설정합니다.",
+    "뷰포트(Viewport)에서 지형의 표면에 노이즈가 자연스럽게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Element Size",
+      "desc": "노이즈 패턴 전체의 물리적 크기를 조절합니다."
+    },
+    {
+      "name": "Height Scale",
+      "desc": "노이즈가 지형의 높낮이에 영향을 주는 강도를 조절합니다."
+    },
+    {
+      "name": "Noise Type",
+      "desc": "Perlin, Simplex, Alligator 등 노이즈의 알고리즘 형태를 선택합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "프랙탈 노이즈의 세부 디테일과 거친 정도를 조절합니다."
+    },
+    {
+      "name": "Element Size Z",
+      "desc": "높이 축 방향으로 노이즈의 세부 스케일을 별도로 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "노이즈 패턴의 위치를 X, Y, Z 방향으로 이동시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "거대한 산맥 능선 만들기",
+      "steps": [
+        "HeightField BaseShape로 기본 산 모양의 윤곽을 잡습니다.",
+        "HeightField Noise 노드를 연결하고 Noise Type을 Perlin으로 설정합니다.",
+        "Element Size를 크게 높여 거대한 산맥의 줄기를 만듭니다.",
+        "Height Scale을 조절해 봉우리의 높낮이 대비를 강하게 줍니다."
+      ]
+    },
+    {
+      "title": "세부 바위 표면 질감 추가",
+      "steps": [
+        "기존 지형 노드 뒤에 두 번째 HeightField Noise 노드를 연결합니다.",
+        "Element Size를 작게 설정하여 미세한 표면 요철을 만듭니다.",
+        "Height Scale을 낮게 주어 전체 지형 형태를 해치지 않도록 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "HeightField의 Resolution가 너무 낮아 노이즈가 깨져 보임 → HeightField 노드의 Res(Resolution) 값을 높여 Grid Resolution를 늘립니다.",
+    "지형이 지나치게 뾰족하고 날카로워짐 → Height Scale 값을 낮추거나 HeightField Blur 노드를 중간에 추가해 부드럽게 다듬습니다."
+  ],
+  "related": [
+    "HeightField",
+    "HeightField Blur",
+    "HeightField Reconstruct",
+    "HeightField Mask by Feature"
+  ],
+  "videos": [
+    {
+      "id": "8e_ZPwwMxJ8",
+      "title": "Houdini Painter II, Adding Heightfield Noise, Painting Textures in Houdini 20",
+      "author": "3DGO"
+    },
+    {
+      "id": "Wpxvz4akrg4",
+      "title": "Heightfield Noise",
+      "author": "Paul Esteves"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Heightfield%20Noise",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "HeightField Noise"
+  ],
+  "at": "2026-11-06T11:19:50.775404+00:00"
+}
