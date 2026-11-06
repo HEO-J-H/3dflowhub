@@ -1,0 +1,85 @@
+{
+  "id": "houdini-connectivity-sop-863e",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Connectivity SOP",
+  "title": "Connectivity — 덩어리 번호",
+  "summary": "Connectivity SOP 노드는 서로 연결되지 않은 독립된 폴리곤 조각들을 각각 인식하여 고유한 정수 번호(Class ID)를 부여하는 기능입니다. 마치 흩어진 여러 덩어리에 각각 다른 이름표를 붙이는 역할을 합니다.",
+  "when": [
+    "통합된 하나의 지오메트리 안에 들어 있는 여러 독립된 파트를 개별 조각으로 분리하고 싶을 때",
+    "부서진 파편(Voronoi Fracture 등)이나 무수한 돌멩이마다 랜덤한 애니메이션이나 속성을 주고 싶을 때",
+    "군중 시뮬레이션이나 Particle 생성 시 각각의 개체를 구분해야 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "Connectivity를 검색하여 Connectivity SOP 노드를 생성하고 선택합니다.",
+    "분할하려는 Geometry Nodes를 Connectivity SOP의 첫 번째 입력(Input 1)에 연결합니다.",
+    "파라미터 창에서 Class Attribute 이름을 지정합니다 (기본값 class).",
+    "이어서 Partition SOP 노드나 For-Each 블록을 연결해 조각별로 작업을 이어 나갑니다.",
+    "뷰포트에서 시각적 확인을 위해 Primitive 또는 Point 번호와 색상이 잘 들어오는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Class Attribute",
+      "desc": "독립된 조각에 부여할 어트리뷰트의 이름 (기본값 class)"
+    },
+    {
+      "name": "Run Over",
+      "desc": "어트리뷰트를 Point 단위로 계산할지, Primitive 단위로 계산할지 선택"
+    },
+    {
+      "name": "Connectedness",
+      "desc": "어떤 기준으로 연결성을 판단할지 설정 (Point 또는 Primitive 공유 여부)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "부서진 유리 파편 분리하기",
+      "steps": [
+        "Voronoi Fracture로 깨진 유리 모델을 준비합니다.",
+        "Connectivity SOP를 연결하여 각 파편에 고유 class 어트리뷰트를 생성합니다.",
+        "Partition SOP를 이용해 class별로 각각의 그룹으로 나눕니다."
+      ]
+    },
+    {
+      "title": "여러 개의 독립된 박스에 랜덤 색상 주기",
+      "steps": [
+        "여러 개로 복제된 박스 지오메트리를 준비합니다.",
+        "Connectivity SOP로 각각의 박스에 고유 ID를 부여합니다.",
+        "Color SOP에서 class 어트리뷰트를 활용해 파란색에서 빨간색 사이의 랜덤 컬러를 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모델들이 눈에 보기에는 떨어져 있지만 미세하게 정점이 붙어 있는 경우 → Fuse SOP로 먼저 정점을 정리하거나 분리(Blast/Split) 후 적용합니다.",
+    "포인트와 Primitive 단위를 헷갈린 경우 → Run Over 옵션을 원하는 단위(Point 또는 Primitive)로 올바르게 설정했는지 확인합니다."
+  ],
+  "related": [
+    "Partition SOP",
+    "Split SOP",
+    "Blast SOP",
+    "Foreach Connected Pieces"
+  ],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "mIA20Z3wsTs",
+      "title": "#11 Connectivity in Houdini",
+      "author": "Mad Dog VFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Connectivity%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Connectivity",
+    "Connectivity SOP"
+  ],
+  "at": "2026-11-06T08:37:36.414007+00:00"
+}

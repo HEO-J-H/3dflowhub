@@ -13,16 +13,17 @@
     "블렌더"
   ],
   "summary": "Blender의 Quick Smoke 기능을 이용해 메쉬에서 빠르고 간단하게 연기 시뮬레이션을 생성하는 방법입니다.",
-  "insight": "Blender에서 오브젝트를 선택하고 Object, Quick Effect, Quick Smoke 순서로 실행하면 복잡한 세팅 없이 즉시 연기 도메인과 플로우가 생성됩니다.",
+  "insight": "Blender에서 오브젝트를 선택하고 Object, Quick Effect, Quick Smoke 순서로 실행하면 복잡한 세팅 없이 즉시 연기 도메인과 플로우가 생성됩니다. Flow의 Physics 메뉴에서 Flow Behavior를 Inflow로 설정하면 연기가 계속해서 발생하고, Geometry로 설정하면 메쉬 크기만큼만 연기가 채워집니다. Initial Temperature는 연기의 시작 온도를 결정하며 값이 높을수록 빠르게 위로 상승합니다.",
   "try_it": [
-    "Blender에서 메쉬를 선택합니다.",
-    "상단 메뉴에서 Object, Quick Effect, Quick Smoke를 차례대로 클릭합니다.",
-    "Flow 설정에서 Flow Behavior를 Inflow로 바꾸어 연기가 지속해서 나오는지 확인합니다."
+    "Viewport에서 연기를 생성할 기본 오브젝트를 선택합니다.",
+    "상단 메뉴의 Object에서 Quick Effect를 거쳐 Quick Smoke를 실행합니다.",
+    "Flow Physics 메뉴에서 Flow Behavior와 Initial Temperature 값을 조정해 연기 발생 형태를 바꿉니다.",
+    "Domain Physics에서 Resolution Divisions를 조절해 시뮬레이션 디테일을 높입니다."
   ],
   "sections": [
     {
       "heading": "Quick Smoke 기본 생성 방법",
-      "body": "Blender에서 메쉬를 선택한 상태로 상단 메뉴의 Object에서 Quick Effect를 거쳐 Quick Smoke를 실행합니다. 이 과정만으로 연기 시뮬레이션에 필요한 기본 도메인과 플로우 영역이 자동으로 만들어집니다."
+      "body": "Blender에서 메쉬를 선택한 상태로 상단 메뉴의 Object에서 Quick Effect를 거쳐 Quick Smoke를 실행합니다. 이 과정만으로 연기 시뮬레이션에 필요한 기본 도메인과 플로우 영역이 자동으로 만들어집니다. Mantaflow 내장 유체 역학 시스템을 활용하여 복잡한 설정 없이도 연기를 시뮬레이션할 수 있습니다."
     },
     {
       "heading": "Flow Physics 옵션 설정",
@@ -50,5 +51,6 @@
   "collected_at": "2026-11-05T16:34:04.558705+00:00",
   "notion_id": "",
   "id": "2026-11-05-6dacd52726150a41",
-  "enriched_at": "skip"
+  "enriched_at": "skip",
+  "enriched": "2026-11-06"
 }

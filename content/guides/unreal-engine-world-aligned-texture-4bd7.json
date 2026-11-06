@@ -1,0 +1,90 @@
+{
+  "id": "unreal-engine-world-aligned-texture-4bd7",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "World Aligned Texture",
+  "title": "World Aligned — 월드 기준 텍스처",
+  "summary": "World Aligned Texture는 UV 좌표를 펴는 과정 없이 오브젝트의 월드 공간 좌표를 기준으로 텍스처를 자연스럽게 투영하는 Unreal Engine의 머티리얼 기능입니다.",
+  "when": [
+    "복잡한 모델링이라 수동으로 UV를 펼 시간이 부족할 때",
+    "벽면이나 지형처럼 큰 오브젝트에 타일링 텍스처를 이음새 없이 넣고 싶을 때",
+    "서로 다른 크기의 여러 오브젝트에 텍스처 크기를 균일하게 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 머티리얼을 더블클릭하여 Material Editor를 엽니다.",
+    "그래프 빈 곳을 우클릭하고 'WorldAlignedTexture' 노드를 검색하여 추가합니다.",
+    "텍스처 에셋을 Material 그래프로 드래그 앤 드롭하여 가져옵니다.",
+    "Texture 노드의 RGB 핀을 WorldAlignedTexture 노드의 Texture 입력 핀에 연결합니다.",
+    "WorldAlignedTexture 노드의 결과 핀을 Material의 Base Color 등에 연결하고 Apply를 누릅니다.",
+    "Viewport에서 오브젝트에 텍스처가 월드 기준으로 투영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Texture",
+      "desc": "투영할 원본 텍스처 에셋을 연결합니다."
+    },
+    {
+      "name": "Texture Size",
+      "desc": "월드 공간에서 텍스처가 반복되는 물리적 크기를 조절합니다."
+    },
+    {
+      "name": "World Normal",
+      "desc": "노멀맵이나 특수한 방향성을 가진 텍스처를 투영할 때 사용합니다."
+    },
+    {
+      "name": "Blend Sharpness",
+      "desc": "삼면 투영(Tri-planar) 사이의 이음새가 섞이는 부드러움을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽에 벽돌 텍스처 자연스럽게 넣기",
+      "steps": [
+        "벽돌 텍스처와 WorldAlignedTexture 노드를 준비합니다.",
+        "Texture Size를 실제 벽돌 크기에 맞게 설정합니다.",
+        "Base Color와 Roughness에 각각 연결하여 이음새 없는 벽면을 완성합니다."
+      ]
+    },
+    {
+      "title": "바위 지형에 텍스처 일체감 있게 입히기",
+      "steps": [
+        "불규칙한 바위 스태틱 메시를 배치합니다.",
+        "WorldAlignedTexture를 적용해 UV 왜곡 없이 텍스처를 입힙니다.",
+        "Preview를 통해 각진 면마다 텍스처가 늘어나지 않는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀맵에 일반 WorldAlignedTexture 사용 → WorldAlignedNormal 노드를 대신 사용해 해결",
+    "텍스처 크기가 너무 작거나 커서 깨져 보임 → Texture Size 파라미터 값을 조정해 해결",
+    "오브젝트가 움직일 때 텍스처가 고정되지 않고 흐름 → 동적 오브젝트가 아닌 정적 배경에 주로 사용"
+  ],
+  "related": [
+    "WorldAlignedNormal",
+    "Landscape Layer Blend",
+    "Material Function",
+    "Texture Coordinate"
+  ],
+  "videos": [
+    {
+      "id": "37QR5b0JCaE",
+      "title": "How To Make a World Aligned Texture (Material) in Unreal Engine 5 EASY & FAST — TUTORIAL — #ue5",
+      "author": "Bodhi the Movie Maker"
+    },
+    {
+      "id": "DH8YMTAo32U",
+      "title": "UE5: Anti-STRETCH Textures (World-Aligned Materials)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20World%20Aligned%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Material Editor",
+    "WorldAlignedTexture"
+  ],
+  "at": "2026-11-06T08:37:40.412110+00:00"
+}
