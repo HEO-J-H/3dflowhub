@@ -1,0 +1,89 @@
+{
+  "id": "unreal-engine-depth-of-field-cine-camera-8322",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Depth of Field (Cine Camera)",
+  "title": "Cine Camera — 피사계 심도",
+  "summary": "Unreal Engine의 Cine Camera Actor를 사용하여 실제 카메라의 광학 원리를 시뮬레이션하고, 피사체에 초점을 맞추어 배경을 부드럽게 흐리게 만드는(Depth of Field) 기능입니다.",
+  "when": [
+    "시네마틱 컷신이나 쇼렐에서 특정 캐릭터나 오브젝트로 시선을 집중시킬 때",
+    "건축 시각화에서 좁은 실내 공간을 촬영하며 깊이감과 공간감을 강조할 때",
+    "매크로 촬영처럼 작은 피사체를 극적으로 부각하고 배경을 아웃포커싱할 때"
+  ],
+  "steps": [
+    "Place Actors 패널(Ctrl+Shift+1)에서 Cine Camera Actor를 검색하여 뷰포트에 배치합니다.",
+    "키보드 0 키를 눌러 뷰포트 시점을 생성한 Cine Camera 뷰로 전환합니다.",
+    "디테일(Details) 패널에서 CineCameraComponent의 Lens 세팅을 확장합니다.",
+    "Focus Settings 항목에서 Focus Method를 Manual 또는 Tracking으로 변경합니다.",
+    "Manual Focus Distance 값을 조절하거나 Eye Traced 기능을 사용하여 초점 거리를 맞춥니다.",
+    "Current Aperture(f-stop) 값을 낮게 설정하여 배경 흐림(아웃포커싱) 강도를 높이고 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Focus Method",
+      "desc": "초점을 맞출 방식을 수동(Manual), 추적(Tracking), 고정(None) 중에서 선택합니다."
+    },
+    {
+      "name": "Manual Focus Distance",
+      "desc": "카메라 렌즈로부터 초점이 맺히는 지점까지의 거리를 직접 설정합니다."
+    },
+    {
+      "name": "Current Aperture",
+      "desc": "조리개 값(f-stop)을 조절하여 피사계 심도의 깊이와 배경 흐림 강도를 결정합니다."
+    },
+    {
+      "name": "Sensor Width",
+      "desc": "카메라 센서의 물리적 크기를 mm 단위로 설정하여 화각과 심도 표현에 영향을 줍니다."
+    },
+    {
+      "name": "Blade Count",
+      "desc": "조리개 날의 개수를 설정하여 보케(Bokeh)의 형태를 원형 또는 다각형으로 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 클로즈업 시네마틱 샷",
+      "steps": [
+        "Cine Camera Actor를 캐릭터 얼굴 높이에 배치합니다.",
+        "Focus Method를 Tracking으로 설정하고 Actor to Track에 캐릭터 블루프린트를 지정합니다.",
+        "Current Aperture를 1.8로 낮추어 배경을 완전히 흐리게 만듭니다."
+      ]
+    },
+    {
+      "title": "풍경 속 특정 오브젝트 강조",
+      "steps": [
+        "넓은 배경 뷰에서 멀리 떨어진 랜드마크 구조물에 카메라를 겨냥합니다.",
+        "Focus Method를 Manual로 두고 Manual Focus Distance 값을 세밀하게 조절합니다.",
+        "Aperture를 조절하여 원경은 선명하게, 전경은 부드럽게 흐려지도록 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "초점이 전혀 맞지 않고 화면 전체가 흐려짐 → Focus Method가 잘못 설정되었거나 Manual Focus Distance 값이 대상과의 실제 거리와 일치하지 않는지 확인합니다.",
+    "배경이 전혀 흐려지지 않음 → Current Aperture 값이 너무 높게(조리개가 조여짐) 설정되어 있는지 확인하고 값을 낮춰봅니다."
+  ],
+  "related": [
+    "Cine Camera Actor",
+    "Post Process Volume",
+    "Camera Rig Crane",
+    "Level Sequence"
+  ],
+  "videos": [
+    {
+      "id": "uTNTz1-lD80",
+      "title": "Cinematic Depth of Field Focus Unreal Engine 5",
+      "author": "Live Visual"
+    },
+    {
+      "id": "4h14vJ6K-CQ",
+      "title": "Cinematic DEPTH OF FIELD in Unreal Engine 5",
+      "author": "Proj Prod"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Depth%20of%20Field%20%28Cine%20Camera%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-06T12:45:43.190183+00:00"
+}

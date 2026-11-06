@@ -1,0 +1,87 @@
+{
+  "id": "houdini-smooth-sop-22cb",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Smooth SOP",
+  "title": "Smooth — 매끄럽게",
+  "summary": "Houdini의 Smooth SOP는 폴리곤 메쉬의 정점 위치를 평균화하여 거친 표면을 부드럽게 다듬고 노이즈를 제거하는 도구입니다. 찰흙 표면을 살짝 문지르듯 형태를 유연하게 정돈해 줍니다.",
+  "when": [
+    "VDB 변환 후 계단 현상이 생기거나 표면이 거칠 때",
+    "시뮬레이션 결과물이나 스캔 데이터에 불필요한 노이즈가 낄 때",
+    "메쉬를 세분화(Subdivide)하기 전후로 형태를 부드럽게 다듬고 싶을 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "smooth를 입력하고 엔터를 눌러 Smooth SOP 노드를 생성합니다.",
+    "부드럽게 다듬을 메쉬 노드 하단에 Smooth SOP 노드를 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Relax Iterations 값을 조절하여 부드러워지는 강도를 설정합니다.",
+    "뷰포트에서 표면이 매끄럽게 정돈되었는지 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Relax Iterations",
+      "desc": "스무딩 연산을 반복하는 횟수로, 값이 높을수록 더 부드러워집니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "각 정점이 이동하는 강도를 조절하여 스무딩의 세기를 제어합니다."
+    },
+    {
+      "name": "Preserve Boundaries",
+      "desc": "오픈 메쉬의 테두리(Boundary) 형태가 변형되지 않도록 유지합니다."
+    },
+    {
+      "name": "Group",
+      "desc": "특정 정점이나 면 그룹에만 스무딩 효과를 국소적으로 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "노이즈가 심한 지형 메쉬 부드럽게 다듬기",
+      "steps": [
+        "지형 데이터 하단에 Smooth SOP 노드를 연결합니다.",
+        "Relax Iterations 값을 높여 미세한 노이즈를 제거합니다.",
+        "Preserve Boundaries를 켜서 지형의 외곽 경계선 형태를 유지합니다."
+      ]
+    },
+    {
+      "title": "파인 튜닝으로 국소 부위만 스무딩 적용하기",
+      "steps": [
+        "Group SOP를 사용해 부드럽게 만들 영역의 점들을 선택합니다.",
+        "Smooth SOP의 Group 항목에 해당 그룹 이름을 입력합니다.",
+        "Strength 값을 조절하여 선택된 부위만 자연스럽게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Relax Iterations 값을 너무 높여 형태가 뭉개짐 → 반복 횟수를 낮추거나 Strength 값을 줄여 해결합니다.",
+    "열린 메쉬의 테두리까지 안쪽으로 말려 들어감 → Preserve Boundaries 옵션을 활성화하여 테두리를 고정합니다."
+  ],
+  "related": [
+    "Subdivide SOP",
+    "VDB Smooth SDF",
+    "Peak SOP",
+    "Attribute Blur"
+  ],
+  "videos": [
+    {
+      "id": "xIDwAO5u7YU",
+      "title": "Retarget the CMU Database 5 | Motion Clips and the Smooth SOP",
+      "author": "Houdini"
+    },
+    {
+      "id": "qeKvaqVYx0A",
+      "title": "TLDR: Temporal Smoothing in SOPs // Houdini Quicktip",
+      "author": "Mark Fancher"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Smooth%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Smooth SOP"
+  ],
+  "at": "2026-11-06T12:45:38.260072+00:00"
+}
