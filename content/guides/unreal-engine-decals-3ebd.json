@@ -1,0 +1,86 @@
+{
+  "id": "unreal-engine-decals-3ebd",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Decals",
+  "title": "Decal — 표면에 덧붙이기",
+  "summary": "Unreal Engine의 Decal은 3D 오브젝트 표면에 그림이나 질감을 스티커처럼 덧붙이는 기능입니다. 지형의 핏자국, 벽의 낙서, 바닥의 흠집 등을 모델링 수정 없이 표현할 때 사용합니다.",
+  "when": [
+    "콘크리트 바닥에 긁힌 자국이나 핏자국을 표현할 때",
+    "벽면에 포스터나 그래피티 낙서를 자연스럽게 넣을 때",
+    "반복되는 타일 바닥에 불규칙한 디테일과 오염을 더할 때"
+  ],
+  "steps": [
+    "Content Browser에서 우클릭 후 Miscellaneous → Decal Material을 선택하여 새로운 데칼 머티리얼을 만듭니다.",
+    "머티리얼 에디터(Material Editor)를 열고 Blend Mode를 Translucent로, Decal Blend Mode를 Surface Normal로 설정합니다.",
+    "Base Color와 Normal 등의 텍스처 노드를 연결한 뒤 저장하고 창을 닫습니다.",
+    "Modes 패널(Shift+1)의 Place Actors에서 Decal을 검색하여 레벨의 원하는 표면으로 드래그 앤 드롭합니다.",
+    "Details 패널에서 Decal Actor의 크기(Scale)와 방향을 조절하여 표면에 정확히 밀착시킵니다.",
+    "뷰포트에서 데칼이 오브젝트 표면에 깨끗하게 투영되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "데칼 머티리얼의 투명도 블렌딩 방식을 지정합니다 (Translucent 등)."
+    },
+    {
+      "name": "Decal Blend Mode",
+      "desc": "표면의 Normal과 라이팅에 데칼이 반응하는 방식을 설정합니다."
+    },
+    {
+      "name": "Sort Order",
+      "desc": "여러 데칼이 겹쳐 있을 때 렌더링 우선순위를 결정합니다."
+    },
+    {
+      "name": "Fade Screen Size",
+      "desc": "카메라가 멀어질 때 데칼이 사라지기 시작하는 거리를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 바닥 오염 및 균열 표현",
+      "steps": [
+        "지면 메쉬 위에 Decal Actor를 배치합니다.",
+        "균열과 먼지가 포함된 텍스처를 연결한 데칼 머티리얼을 적용합니다.",
+        "Scale을 조절하여 바닥 크기에 맞게 넓게 펼칩니다."
+      ]
+    },
+    {
+      "title": "벽면 포스터 부착",
+      "steps": [
+        "포스터 이미지를 Base Color에 연결한 데칼 머티리얼을 생성합니다.",
+        "건물 외벽 표면을 향하도록 Decal Actor를 회전시킵니다.",
+        "Projection Box의 두께를 조절하여 벽면을 뚫고 나오지 않도록 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "데칼이 표면에 나타나지 않음 → Decal Actor의 투영 방향(빨간색 화살표 축)이 표면을 향하고 있는지 확인합니다.",
+    "데칼이 여러 표면을 뚫고 뒤쪽 오브젝트까지 오염시킴 → Projection Box의 크기를 줄이거나 데칼 머티리얼의 클리핑 설정을 조정합니다.",
+    "빛을 받지 못해 너무 어둡게 보임 → 머티리얼의 Emissive Color를 조절하거나 Decal Blend Mode를 변경합니다."
+  ],
+  "related": [
+    "Material Editor",
+    "Nanite",
+    "Lumen",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "MbLXOiNIIno",
+      "title": "Unreal Engine 5 Decal Tutorial",
+      "author": "Unreal University "
+    },
+    {
+      "id": "acbbuGUM2fo",
+      "title": "How to Make a Custom Decal With a Texture in Unreal Engine 5",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Decals",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-06T09:17:19.110822+00:00"
+}

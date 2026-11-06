@@ -14,17 +14,28 @@
     "서브스턴스"
   ],
   "summary": "Adobe Substance 3D Painter 12.2에 추가된 Polygon Fill 툴의 ‘visible polygons only’, 루프 기능 등 새 옵션을 소개합니다.",
-  "insight": "12.2 버전에서 Polygon Fill에 ‘visible polygons only’ 옵션을 도입해 화면에 보이는 면만 선택해 빠르게 텍스처를 채울 수 있어 복잡한 모델의 선택 작업을 크게 단축합니다. 이 기능은 다중 레이어 텍스처링을 하는 아티스트에게 바로 적용해볼 만합니다.",
+  "insight": "Substance 3D Painter 12.2 버전에서 Polygon Fill에 visible polygons only 옵션을 도입해 화면에 보이는 면만 선택해 빠르게 텍스처를 채울 수 있어 복잡한 모델의 선택 작업을 단축합니다. 또한 케이지 페인팅 기능을 도입해 Baking 시 투사 거리를 직접 제어할 수 있습니다. 아티스트는 브러시로 픽셀 단위까지 케이지 거리를 페인팅하거나 Polygon Fill을 이용해 세밀하게 조절 가능합니다.",
   "try_it": [
-    "Substance 3D Painter를 12.2 버전으로 업데이트한다.",
-    "툴바에서 Polygon Fill을 선택한다.",
-    "옵션 패널에서 ‘visible polygons only’를 켜고 원하는 면을 클릭해 색을 채워본다.",
-    "Polygon Loop 모드로 연속된 면을 한 번에 채워본다."
+    "Substance 3D Painter 12.2로 프로젝트를 열고 Polygon Fill 툴의 새 옵션을 활성화해봅니다.",
+    "visible polygons only 옵션을 켜고 복잡한 모델에서 화면에 보이는 면만 선택해봅니다.",
+    "루프 기능과 케이지 페인팅을 결합해 Baking 투사 거리를 픽셀 단위로 제어해봅니다."
   ],
   "sections": [
     {
       "heading": "Polygon Fill 툴 업데이트",
-      "body": "Substance 3D Painter 12.2에서는 Polygon Fill 툴이 새 옵션과 모드를 추가했습니다. 기존의 단순 채우기 기능에 비해 선택 범위를 세밀하게 제어할 수 있습니다."
+      "body": "Substance 3D Painter 12.2에서는 Polygon Fill 툴이 새 옵션과 모드를 추가했습니다. 기존의 단순 채우기 기능에 비해 선택 범위를 세밀하게 제어할 수 있습니다. 복잡한 모델 구조에서도 필요한 영역만 정확히 지정하는 것이 가능해졌습니다."
+    },
+    {
+      "heading": "visible polygons only 옵션 활용",
+      "body": "화면에 보이는 면만 선택하는 visible polygons only 옵션이 추가되었습니다. 이 기능을 통해 겹쳐 있거나 복잡한 지오메트리에서도 원치 않는 면이 선택되는 문제를 방지합니다. 다중 레이어 텍스처링 작업을 진행할 때 소요 시간을 줄여줍니다."
+    },
+    {
+      "heading": "루프 선택 기능 추가",
+      "body": "Polygon Fill 툴에 루프 선택 기능이 더해져 연속된 폴리곤 영역을 한 번에 지정할 수 있습니다. 하드 서페이스 모델이나 반복적인 패턴이 있는 에셋을 다룰 때 유용합니다. 클릭 몇 번으로 넓은 면적을 빠르게 채우는 레이아웃 작업을 지원합니다."
+    },
+    {
+      "heading": "Baking과 케이지 페인팅 연동",
+      "body": "Substance 3D Painter 12.2는 케이지 페인팅 기능을 도입해 Baking 시 투사 거리를 직접 제어합니다. 아티스트는 브러시로 픽셀 단위까지 케이지 거리를 페인팅하거나 Polygon Fill을 이용할 수 있습니다. 어도비는 유저 요청을 반영해 Baking 워크플로를 전면 개편했습니다."
     }
   ],
   "faq": [],
@@ -36,5 +47,6 @@
   "notion_id": "",
   "id": "2026-11-05-0b7d9c74318b8f9b",
   "img_tried": true,
-  "enriched_at": "skip"
+  "enriched_at": "skip",
+  "enriched": "2026-11-06"
 }
