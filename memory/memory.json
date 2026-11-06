@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T01:35:35.109436+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/04 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-04T01:45:29.278131+00:00",
       "collected": 0,
       "saved": 0,
@@ -5728,6 +5716,31 @@
       "errors": [
         "AI 일일 한도 소진 — 11/06 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
       ]
+    },
+    {
+      "at": "2026-11-06T08:10:57.754623+00:00",
+      "collected": 2,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 240,
+      "candidates_passed": 181,
+      "offtopic": 33,
+      "short": 0,
+      "prefiltered": 38,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5cc690b6",
+      "visuals": 0,
+      "enriched": 3,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -5823,7 +5836,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [PR #20 다시 하기 — PR #18 다시 하기 — PR #15 다시 ] 최신 main 기준을 유지하며 기능 추가 PR을 재적용할 때 기존 테스트와 구조를 준수한다.",
     "2026-10-29 [[p-4bbef4f094|콘텐츠] 엔진 API 구현 및 테스트 추가: b] 서비스 모듈에는 비즈니스 로직만 작성하고, 테스트 코드는 반드시 tests 디렉토리에 분리하여 필요한 모듈을 정확히 임포트해야 합니다.",
     "2026-10-29 [성찰] 주제 무관한 뉴스나 중복 할인 정보를 엄격히 차단하고, Maya·Blender·3ds Max 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠를 강화해야 합니다.",
     "2026-10-29 [[p-36c28c2d57|수집] 오프토픽 필터링 기준 최적화: 3D DC] 테스트 실패 — 159 passed in 16.91s 보안: ['병합 충돌 표시가 남은 파일: TODO.md']",
@@ -5942,7 +5954,8 @@
     "2026-11-05 [core.normalize_title(): 제목 정규화 함수 추가(소문자] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-05 [core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-05 [backend/app/services/url_ingest.py의 fetc] 외부 네트워크 요청은 항상 타임아웃과 예외 처리를 명시하여 견고성을 높여야 합니다.",
-    "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다."
+    "2026-11-05 [성찰] 동음이의어나 일반 명사로 인한 허위 수집을 완벽히 차단하고, 실무 검색 트래픽이 입증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼에 집중할 때 고품질 콘텐츠가 확보됩니다.",
+    "2026-11-06 [성찰] 동음이의어 필터를 강화하고 3ds Max 및 Maya 실무 스크립트·튜토리얼 중심의 고단가 키워드를 집중 공략해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7923,14 +7936,16 @@
     5055595284690514065,
     15512156161130733696,
     9872467449536348873,
-    2604568156442726611
+    2604568156442726611,
+    9701038284733999427,
+    15374791930559722063
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 1942,
-    "Game Engine": 1942,
-    "VFX": 1942,
-    "AI 3D": 1942
+    "3D DCC": 1943,
+    "Game Engine": 1943,
+    "VFX": 1943,
+    "AI 3D": 1943
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

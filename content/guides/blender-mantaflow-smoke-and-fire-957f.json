@@ -5,17 +5,16 @@
   "group": "시뮬레이션",
   "name": "Mantaflow smoke and fire",
   "title": "연기·불 시뮬레이션",
-  "summary": "Blender의 Mantaflow은 3차원 공간에서 연기와 불꽃의 물리적 움직임을 시뮬레이션하는 내장 유체 역학 시스템입니다. 캐시 Baking을 통해 불규칙하고 역동적인 에어로졸 효과를 구현합니다.",
+  "summary": "Blender의 Mantaflow은 3차원 공간에서 연기와 불꽃의 물리적 움직임을 시뮬레이션하는 내장 유체 역학 시스템입니다. Quick Smoke 기능을 활용하면 복잡한 설정 없이도 메쉬에서 빠르고 간단하게 연기 시뮬레이션을 생성할 수 있습니다.",
   "when": [
     "모닥불이나 횃불에서 피어오르는 화염과 불똥을 표현할 때",
     "폭발이나 화재 현장에서 발생하는 자욱한 연기를 만들 때",
     "담배 연기나 향에서 뿜어져 나오는 가늘고 부드러운 유선형 기체를 연출할 때"
   ],
   "steps": [
-    "Viewport에서 Shift + A 키를 눌러 연기나 불을 생성할 기본 오브젝트(예: Mesh → Cube)를 배치합니다.",
+    "Viewport에서 연기나 불을 생성할 기본 오브젝트를 선택합니다.",
+    "상단 메뉴의 Object에서 Quick Effect를 선택한 뒤 Quick Smoke를 실행하여 도메인과 플로우를 자동으로 생성합니다.",
     "Object를 선택한 상태로 Properties 패널에서 Physics 탭(물리 아이콘)을 클릭합니다.",
-    "Fluid 버튼을 클릭하고 Domain 유형을 선택하여 시뮬레이션 영역을 지정합니다.",
-    "불꽃이나 연기를 뿜어낼 다른 오브젝트(예: 소형 이너 큐브나 스피어)를 추가하고, Physics 탭에서 Fluid를 활성화한 뒤 Flow 유형을 Smoke 또는 Fire로 설정합니다.",
     "Domain 오브젝트를 다시 선택하고 Physics 탭의 Fluid 설정에서 Cache 항목을 찾아 불꽃이나 연기 데이터 저장을 위한 경로를 지정합니다.",
     "Cache 섹션 아래의 Bake Data 버튼을 클릭하여 시뮬레이션을 연산(Baking)합니다.",
     "Timeline 패널에서 재생(Space) 버튼을 눌러 뷰포트에서 시뮬레이션 결과를 확인합니다."
@@ -30,6 +29,18 @@
       "desc": "발화체에서 배출되는 물질의 종류를 Smoke, Fire, 또는 Both 중 선택합니다."
     },
     {
+      "name": "Flow Behavior",
+      "desc": "Inflow로 설정하면 연기가 계속해서 발생하고, Geometry로 설정하면 메쉬 크기만큼만 연기가 채워집니다."
+    },
+    {
+      "name": "Initial Temperature",
+      "desc": "연기의 시작 온도를 결정하며 값이 높을수록 빠르게 위로 상승합니다."
+    },
+    {
+      "name": "Density",
+      "desc": "연기의 밀도를 조절하여 값이 클수록 연기의 양이 풍부해집니다."
+    },
+    {
       "name": "Resolution Divisions",
       "desc": "시뮬레이션의 디테일과 Resolution를 결정하며, 높을수록 정밀하지만 계산 시간이 오래 걸립니다."
     },
@@ -40,6 +51,10 @@
     {
       "name": "Flame Rate",
       "desc": "불꽃이 생성된 후 소멸하는 속도와 연소 팽창 정도를 조절합니다."
+    },
+    {
+      "name": "Dissolve",
+      "desc": "연기의 지속 시간을 정하며 위로 올라갈수록 자연스럽게 사라지도록 만듭니다."
     },
     {
       "name": "Bake Data",
@@ -94,11 +109,19 @@
   "images": [],
   "menu_path": [],
   "at": "2026-11-04T14:21:31.253665+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-05-6dacd52726150a41",
-      "title": "Blender Quick Smoke로 연기 시뮬레이션 만들기",
-      "url": "https://www.youtube.com/shorts/Pl0xR33Q8DE"
+      "at": "2026-11-06T08:13:31+00:00",
+      "what": "Blender의 Quick Smoke 기능과 관련된 Object 메뉴 경로, Flow Behavior, Initial Temperature, Dissolve 등의 신규 파라미터를 추가하여 연기 시뮬레이션 가이드를 보강했습니다.",
+      "sources": [
+        {
+          "title": "Blender Quick Smoke로 연기 시뮬레이션 만들기",
+          "url": "https://www.youtube.com/shorts/Pl0xR33Q8DE"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-05-6dacd52726150a41"
+      ]
     }
   ]
 }
