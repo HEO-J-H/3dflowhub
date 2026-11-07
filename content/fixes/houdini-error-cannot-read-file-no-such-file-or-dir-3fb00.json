@@ -1,0 +1,39 @@
+{
+  "id": "houdini-error-cannot-read-file-no-such-file-or-dir-3fb00",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Cannot read file '...': No such file or directory",
+  "title": "Error: Cannot read file '...': No such file or directory – Houdini 파일 읽기 오류 대처",
+  "summary": "Houdini가 지정된 경로에서 파일을 찾지 못할 때 발생하는 오류입니다. 파일 경로가 잘못되었거나 파일이 삭제·이동되었을 때 나타납니다.",
+  "causes": [
+    "노드 경로(Path)나 파일 이름에 오타가 있는 경우",
+    "실제 파일이 다른 폴더로 이동되었거나 삭제된 경우",
+    "상대 경로($HIP 등)를 사용할 때 힙 파일(.hip)이 저장되지 않아 기준 폴더를 찾지 못하는 경우",
+    "네트워크 드라이브나 외장 디스크의 연결이 끊긴 경우"
+  ],
+  "steps": [
+    "오류가 발생한 노드(File 노드, Alembic 노드 등)를 선택합니다.",
+    "Parameter Pane에서 File 경로 입력란의 오른쪽에 있는 파일 탐색기 버튼(...)을 클릭합니다.",
+    "파일이 실제로 존재하는 올바른 경로를 찾아 선택하거나 경로의 오타를 수정합니다.",
+    "파일 경로에 $HIP, $JOB 같은 Houdini 변수가 쓰인 경우, 현재 작업 중인 .hip 파일을 올바른 위치에 먼저 저장(Save)합니다.",
+    "네트워크 경로인 경우 드라이브 연결 상태를 확인하고 마운트 상태를 점검합니다."
+  ],
+  "check": [
+    "노드의 경고 표시(빨간색 배지)가 사라지고 뷰포트에 지오메트리나 데이터가 정상적으로 로드되는지 확인합니다."
+  ],
+  "prevent": [
+    "파일 경로를 수동으로 입력하기보다 파일 브라우저 버튼을 사용하여 입력합니다.",
+    "프로젝트 시작 시 File > Set Project를 통해 작업 폴더를 먼저 지정합니다.",
+    "외장 메모리나 네트워크 경로를 사용할 때는 드라이브 문자나 마운트 경로가 바뀌지 않도록 관리합니다."
+  ],
+  "keywords": [
+    "Houdini No such file or directory",
+    "Houdini 파일 경로 오류",
+    "Cannot read file Houdini",
+    "Houdini file 노드 에러",
+    "Houdini 파일 없음"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T11:09:17+00:00"
+}

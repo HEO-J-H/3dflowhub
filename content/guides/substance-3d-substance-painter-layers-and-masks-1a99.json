@@ -46,6 +46,14 @@
     {
       "name": "visible polygons only",
       "desc": "Substance 3D Painter 12.2에서 추가된 Polygon Fill 옵션으로, 화면에 보이는 면만 선택해 복잡한 모델의 선택 작업을 단축합니다."
+    },
+    {
+      "name": "Hard Surface Auto UV",
+      "desc": "Substance 3D Painter 12.1에서 추가된 기능으로, 외부 프로그램 이동 없이 UV가 없는 로우 폴리곤에 하드 서페이스 자동 UV를 적용합니다."
+    },
+    {
+      "name": "Skew Correction Painting",
+      "desc": "Substance 3D Painter 12.1에서 추가된 기능으로, 엣지 프로텍션과 지오메트리 랩핑 설정을 활용해 베이킹 왜곡을 직접 페인팅으로 바로잡습니다."
     }
   ],
   "examples": [
@@ -69,7 +77,8 @@
   "mistakes": [
     "마스크를 칠했는데 아무 변화가 없음 → 현재 선택된 레이어나 마스크 아이콘이 올바른지(파란색 테두리 확인) 체크하고, Brush의 Opacity와 Flow 값이 0이 아닌지 확인합니다.",
     "스마트 마스크나 제너레이터가 작동하지 않음 → Texture Set Settings에서 Normal, World Space Normal, Ambient Occlusion 등의 메시오픈(Mesh Maps) Baking이 완료되었는지 확인합니다.",
-    "케이지(Cage) 기반 Baking 오류 발생 → Substance 3D Painter 12.2 버전으로 업데이트하여 투영 및 케이지 베이킹 결함 문제를 해결합니다."
+    "케이지(Cage) 기반 Baking 오류 발생 → Substance 3D Painter 12.2 버전으로 업데이트하여 투영 및 케이지 베이킹 결함 문제를 해결합니다.",
+    "하드 서페이스 모델의 UV 전개 및 왜곡 문제 → Substance 3D Painter 12.1의 Hard Surface Auto UV와 Skew Correction Painting 기능을 사용하여 외부 툴 없이 자체 해결합니다."
   ],
   "related": [
     "Fill Layer",
@@ -94,13 +103,6 @@
   "at": "2026-10-18T14:07:15.341061+00:00",
   "images": [],
   "menu_path": [],
-  "refresh_with": [
-    {
-      "key": "p:2026-11-06-48bb133c61a72352",
-      "title": "Substance 3D Painter 12.1 UV 및 Baking 신기능",
-      "url": "https://www.youtube.com/watch?v=tePQ-1LMwjU"
-    }
-  ],
   "updates": [
     {
       "at": "2026-11-06T14:26:02+00:00",
@@ -146,6 +148,19 @@
         "p:2026-11-05-2d393691d4f764f5",
         "p:2026-11-06-0f050ea0219e36fe",
         "p:2026-11-06-0abd4ef2161d29d5"
+      ]
+    },
+    {
+      "at": "2026-11-07T11:09:25+00:00",
+      "what": "Substance 3D Painter 12.1 신기능인 Hard Surface Auto UV와 Skew Correction Painting, 그리고 관련 파라미터 및 주의사항을 추가했습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D Painter 12.1 UV 및 Baking 신기능",
+          "url": "https://www.youtube.com/watch?v=tePQ-1LMwjU"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-06-48bb133c61a72352"
       ]
     }
   ]

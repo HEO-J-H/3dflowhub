@@ -1,0 +1,38 @@
+{
+  "id": "blender-python-traceback-importererror-no-module-n-870bf",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... ImporterError: No module named 'numpy'",
+  "title": "Python: Traceback ... ImporterError: No module named 'numpy'",
+  "summary": "Blender Python 스크립트나 애드온 실행 중 내부 환경에 NumPy 라이브러리가 설치되어 있지 않을 때 발생하는 ImportError입니다. Blender 내장 Python과 외부 Python 환경이 분리되어 있어 발생합니다.",
+  "causes": [
+    "현재 실행 중인 Blender 내장 Python 환경에 numpy 패키지가 설치되지 않음",
+    "시스템에 설치된 독립 Python 환경의 패키지를 Blender가 직접 참조하지 못함",
+    "Blender 버전 업그레이드 직후 외부 패키지가 마이그레이션되지 않음"
+  ],
+  "steps": [
+    "운영체제에 맞는 권한으로 명령 Prompt(CMD) 또는 터미널을 관리자 권한으로 엽니다.",
+    "Blender가 설치된 경로의 Python 폴더로 이동합니다 (예: C:\\Program Files\\Blender Foundation\\Blender 4.X\\4.X\\python\\bin\\).",
+    "python -m ensurepip 명령을 입력하여 pip 모듈을 활성화하거나 최신 상태로 업그레이드합니다.",
+    "python -m pip install numpy 명령을 실행하여 Blender 전용 Python 환경에 NumPy를 설치합니다.",
+    "Blender를 재시작하고 스크립트나 애드온을 다시 실행합니다."
+  ],
+  "check": [
+    "Blender의 Scripting 탭 콘솔에서 import numpy 명령을 실행했을 때 에러가 발생하지 않는지 확인합니다.",
+    "문제가 되던 애드온이나 Script가 정상적으로 로드되고 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 라이브러리를 사용하는 애드온을 설치할 때는 공식 문서의 설치 가이드 및 Python 경로 설정을 확인합니다.",
+    "Blender 버전을 새로 설치할 때는 필요한 외부 패키지를 동일한 방식으로 재설치합니다."
+  ],
+  "keywords": [
+    "Blender 넘파이 오류",
+    "Blender numpy ImportError",
+    "No module named numpy Blender",
+    "Blender Python 외부 라이브러리 설치",
+    "Blender pip install numpy"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T11:09:19+00:00"
+}
