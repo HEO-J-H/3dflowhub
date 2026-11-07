@@ -17770,5 +17770,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T09:08:38+00:00",
+    "kind": "proposal",
+    "id": "p-bb3385938c",
+    "title": "backend/tests/test_url_ingest.py 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 통합 및 URL 인게스트 관련 PR #47이 대기 중이며, 입력 유효성 검증 테스트가 필요함",
+    "proposal": "backend/tests/test_url_ingest.py를 신규 생성하여 잘못된 URL 입력 및 타임아웃 예외 처리에 대한 단위 테스트를 작성합니다.",
+    "expected": "URL 인게스트 로직의 안정성 확보 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/47",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T09:08:38+00:00",
+    "kind": "proposal",
+    "id": "p-c07e355bae",
+    "title": "docs/local-pipeline.md VRAM 및 CUDA 가이드 간소화 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 TripoSR 가이드 문서 업데이트가 반복 보류 및 중복 처리되어 정리 필요",
+    "proposal": "docs/local-pipeline.md 파일을 점검하여 오탈자를 수정하고, Windows 환경에서의 TripoSR 실행 안내 문구를 명확하게 다듬습니다.",
+    "expected": "사용자가 로컬 파이프라인 구동 시 겪는 시행착오 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T09:09:25.555789+00:00",
+    "kind": "decision",
+    "id": "p-bb3385938c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T09:09:25.572189+00:00",
+    "kind": "decision",
+    "id": "p-c07e355bae",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T09:09:30.512772+00:00",
+    "kind": "triage",
+    "id": "p-bb3385938c",
+    "verdict": "done_already",
+    "reason": "이미 URL 인게스트 예외 처리 테스트 강화 및 관련 테스트 코드가 최근 작업에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-07T09:09:30.529018+00:00",
+    "kind": "decision",
+    "id": "p-bb3385938c",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 URL 인게스트 예외 처리 테스트 강화 및 관련 테스트 코드가 최근 작업에 반영되어 있습니다."
   }
 ]

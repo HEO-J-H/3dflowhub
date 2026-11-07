@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-niagara-fire-and-smoke-cb73",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Niagara fire and smoke",
+  "title": "Niagara 불·연기",
+  "summary": "Unreal Engine의 Niagara 시스템은 GPU 가속을 활용해 사실적인 불과 연기 Particle을 실시간으로 시뮬레이션하고 렌더링하는 차세대 Particle 시스템입니다.",
+  "when": [
+    "게임 배경에 모닥불이나 횃불 같은 실시간 불꽃 효과를 배치할 때",
+    "폭발이나 화재 현장에서 피어오르는 짙은 연기를 표현할 때",
+    "마법 주문이나 엔진 배기구 등 시각적 타격감을 주는 Particle을 제작할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 FX → Niagara System을 선택합니다.",
+    "New system from selected emitters or templates에서 Fire 또는 Smoke 관련 Template을 선택하고 Finish를 누릅니다.",
+    "생성된 Niagara System 아웃라이너를 드래그하여 뷰포트 레벨에 배치합니다.",
+    "Details 패널에서 Niagara Component의 부모 또는 파라미터를 확인하고 에셋을 더블클릭하여 Niagara Editor를 엽니다.",
+    "Emitter Summary에서 Spawn Rate나 Sprite Size 등을 조절하여 불과 연기의 양과 크기를 변경합니다.",
+    "뷰포트에서 실시간으로 시뮬레이션되는 불과 연기의 움직임을 확인하고 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Spawn Rate",
+      "desc": "초당 생성되는 Particle의 개수를 조절하여 불이나 연기의 밀도를 결정합니다."
+    },
+    {
+      "name": "Sprite Size",
+      "desc": "Particle 텍스처가 표시되는 2D 스프라이트의 크기를 설정합니다."
+    },
+    {
+      "name": "Gravity Force",
+      "desc": "Particle에 작용하는 중력의 세기로, 연기가 위로 피어오르거나 아래로 떨어지는 힘을 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "Particle의 수명 주기에 따른 색상과 투명도(Alpha) 변화를 커브로 제어합니다."
+    },
+    {
+      "name": "Initial Velocity",
+      "desc": "Particle이 생성될 때 뿜어져 나오는 초기 속도와 방향을 설정합니다."
+    },
+    {
+      "name": "Mesh Renderer",
+      "desc": "기본 2D 스프라이트 대신 3D 메쉬를 Particle로 사용하여 입체적인 효과를 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모닥불 효과 제작",
+      "steps": [
+        "Niagara System에서 Fire Template을 선택해 생성합니다.",
+        "Spawn Rate를 높여 불꽃의 밀도를 빽빽하게 만듭니다.",
+        "Color 모듈에서 중심부의 밝은 노란색과 외곽의 주황·붉은색을 조정합니다."
+      ]
+    },
+    {
+      "title": "굴뚝 연기 표현",
+      "steps": [
+        "Smoke Template 기반의 Niagara 시스템을 생성합니다.",
+        "Gravity Force의 Z값 음수를 줄여 연기가 천천히 위로 올라가게 합니다.",
+        "Sprite Size 모듈에서 수명이 다할수록 연기가 커지도록 커브를 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Particle 수(Spawn Rate)를 너무 높게 설정함 → GPU 성능 저하가 발생하므로 적정 수치로 낮추거나 LOD를 설정합니다.",
+    "재질(Material)의 블렌드 모드가 잘못됨 → 투명한 연기가 네모난 박스로 보일 경우 마테어리얼의 Blend Mode를 Translucent로 변경합니다."
+  ],
+  "related": [
+    "Cascade",
+    "Volumetric Cloud",
+    "Material Editor",
+    "Chaos Destruction"
+  ],
+  "videos": [
+    {
+      "id": "q8avHL7syC4",
+      "title": "Fire Simulation FX in Unreal Engine Niagara | in 12 minutes",
+      "author": "Motion Dreams"
+    },
+    {
+      "id": "XDOhgG1KLH4",
+      "title": "Unreal Engine Niagara Masterclass | EP02—Fire & Smoke(Stylized & Realistic) #tutorial #niagara #vfx",
+      "author": "PolyBoost"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Niagara%20fire%20and%20smoke",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "FX",
+    "Niagara System"
+  ],
+  "at": "2026-11-07T09:08:55.866064+00:00"
+}
