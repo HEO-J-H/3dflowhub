@@ -1813,13 +1813,18 @@ def validate_practical_3d_density(data: dict) -> bool:
         return False
     return True
 
-def ensure_minimum_content_depth(data: dict) -> bool:
-    """요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도를 검증하고 부족 시 'low depth' 오류 태그를 기록한다."""
+def is_low_depth(data: dict, min_length: int = 1500, min_terms: int = 3) -> bool:
+    """콘텐츠 길이 및 실무 3D 전문 키워드 밀도를 기반으로 저깊이(low depth) 콘텐츠인지 판정하는 함수."""
     sections = data.get("sections", [])
     full_text = " ".join(f"{s.get('heading', '')} {s.get('body', '')}" for s in sections if isinstance(s, dict))
-    full_text += f" {data.get('summary', '')} {data.get('insight', '')}"
+    full_text += f" {data.get('summary', '')} {data.get('insight', '')} {data.get('title_ko', '')}"
     
-    # 실무 3D DCC 및 렌더링 관련 전문 용어 집합 (영어/한글)
+    # 1. 콘텐츠 길이 검증
+    text_len = len(full_text)
+    if text_len < min_length:
+        return True
+
+    # 2. 실무 3D DCC 및 렌더링 전문 키워드 밀도 검증
     tech_terms = [
         "blender", "3ds max", "maya", "zbrush", "cinema 4d", "houdini", "substance",
         "unreal engine", "unity", "godot", "v-ray", "corona", "cycles", "eevee",
@@ -1833,9 +1838,16 @@ def ensure_minimum_content_depth(data: dict) -> bool:
     text_lower = full_text.lower()
     matches = sum(1 for term in tech_terms if term in text_lower)
     
-    # 전문 용어 밀도 또는 출현 빈도가 기준(3개 미만) 미달일 경우 'low depth' 태그 기록
-    if matches < 3:
-        log.warning("low depth: 실무 3D DCC 및 렌더링 관련 전문 용어 밀도가 부족합니다 (%d개 감지): %s", matches, data.get("title_ko", ""))
+    if matches < min_terms:
+        return True
+
+    return False
+
+
+def ensure_minimum_content_depth(data: dict) -> bool:
+    """요약 및 생성 단계에서 본문 내 실무 3D DCC 및 렌더링 관련 전문 용어 밀도 및 길이를 검증하고 저깊이 판정 시 'low depth' 오류 태그를 기록한다."""
+    if is_low_depth(data):
+        log.warning("low depth: 콘텐츠가 너무 짧거나(1,500자 미만) 3D 전문 용어 밀도가 부족합니다: %s", data.get("title_ko", ""))
         if "low depth" not in RUN_ERRORS:
             RUN_ERRORS.append("low depth")
         return False
