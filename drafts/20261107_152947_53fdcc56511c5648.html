@@ -1,0 +1,18 @@
+<!-- TITLE: Blender Geometry Nodes로 절차적 얼음 만들기 가이드 | TAGS: Blender,Geometry Nodes,절차적,얼음,튜토리얼,블렌더,지오메트리 노드,튜토리얼·팁 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Blender Geometry Nodes를 활용해 절차적인 얼음 형태와 질감을 제작하는 방법을 다룬 80 Level 가이드입니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 튜토리얼·팁</p>
+<h2>Geometry Nodes 기반 얼음 생성 개요</h2>
+<p>80 Level에서 소개한 이번 가이드는 반복적인 수작업 없이 파라미터 조절만으로 다양한 형태의 얼음 에셋을 구현하는 방식을 다룹니다. 노드 네트워크를 구축해 얼음 결정의 크기와 밀도를 실시간으로 변경할 수 있습니다.</p>
+<h2>표면 디테일과 노이즈 텍스처 조합</h2>
+<p>자연스러운 얼음의 질감을 내기 위해 Voronoi Texture와 Noise Texture를 레이어 형태로 쌓아 올립니다. 노드의 수치를 조절하는 과정에서 얼음 특유의 깨진 단면과 날카로운 모서리 표현이 가능해집니다.</p>
+<h2>Shader 설정과 투명도 표현</h2>
+<p>지오메트리 단계에서 만든 형태에 Principled BSDF Shader를 연결하고 Transmission과 Roughness 값을 조절합니다. 얼음 내부의 빛 산란 효과를 극대화하여 시각적 완성도를 높입니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Geometry Nodes의 반복 노드와 노이즈 텍스처를 조합하면 수동 모델링 없이 자연스러운 결정 형태를 만들 수 있어 환경 디자인 작업 시간을 대폭 줄여줍니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender에서 절차적 얼음을 만들 때 어떤 기능을 주로 사용하나요?</b><br/>A. Geometry Nodes를 활용해 메쉬의 형태를 무작위로 변형하고, 노이즈 텍스처를 더해 얼음 결정의 질감을 표현합니다.</p>
+<p><b>Q. 이 가이드는 초보자도 따라 할 수 있나요?</b><br/>A. Geometry Nodes의 기본 노드 연결 구조에 대한 이해가 있다면 원리와 절차를 따라 하면서 자신만의 얼음 에셋을 응용할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-07-6219ce9f41db6353.html">Blender 실시간 Procedural 스카이 애드온 소개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-06-cdf56a00cdae7221.html">Blender와 Substance 3D로 빈티지 블라스팅 기계 제작하기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-06-0b1bf5711088c032.html">Blender 아날로그 필름 룩 구현 애드온 소개</a></li></ul>
+<hr/><p>원문:<a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE0xOUpWWDl4VjM4QWFiUTgteTNJV25TSDVPSkhKT3lRWS1Ea0tFVHFxclZsVVdsWUpvR2NuN1hDYTdPVW9RSElrUFBhcVZPem1rWXhCelpTUENpNzZuV1RwMWZNMlpubUtvX3BMNlM4M1A1Y0VLeW40?oc=5" target="_blank" rel="noopener nofollow">How To Create Procedural Ice Using Geometry In Blender - 80 Level</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
