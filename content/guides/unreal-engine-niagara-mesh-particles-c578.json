@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-niagara-mesh-particles-c578",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Niagara mesh particles",
+  "title": "Niagara 메시 Particle",
+  "summary": "Unreal Engine의 Niagara 시스템에서 정적 메시(Static Mesh)를 Particle로 사용하여 흩날리는 낙엽, 파편, 비행하는 탄피 등의 복잡한 오브젝트 군집을 실시간으로 시뮬레이션하고 렌더링하는 기능입니다.",
+  "when": [
+    "폭발 시 사방으로 튀어나오는 파편이나 파괴된 파이프 조각을 표현할 때",
+    "바람에 날려 흩날리는 낙엽이나 눈송이, 종이 조각을 만들 때",
+    "탄피 배출이나 총알 파편 같은 반복적인 다중 오브젝트 효과를 낼 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 FX → Niagara System을 선택합니다.",
+    "New system from selected emitters를 선택하고 Mesh Particle Template(예: Simple Mesh Burst 등)을 고릅니다.",
+    "생성된 Niagara System을 더블클릭하여 Niagara Editor를 엽니다.",
+    "Emitter의 Particle State 및 Spawn Rate를 설정하여 생성되는 메시의 수명과 개수를 지정합니다.",
+    "Mesh Renderer 모듈의 Mesh 속성에 사용할 Static Mesh 아산세를 지정합니다.",
+    "뷰포트에서 시뮬레이션을 재생(Space)하여 메시 Particle이 정상적으로 나타나는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mesh",
+      "desc": "Particle로 사용할 Static Mesh를 지정합니다."
+    },
+    {
+      "name": "Scale Mesh Size",
+      "desc": "Particle로 생성되는 메시의 크기를 조절합니다."
+    },
+    {
+      "name": "Spawn Rate",
+      "desc": "초당 생성되는 Particle 메시의 개수를 설정합니다."
+    },
+    {
+      "name": "Gravity Force",
+      "desc": "Particle 메시가 받는 중력의 영향력을 조절합니다."
+    },
+    {
+      "name": "Mesh Orientation",
+      "desc": "메시 Particle의 회전 방향과 정렬 방식을 결정합니다."
+    },
+    {
+      "name": "Material Overrides",
+      "desc": "메시에 기본 설정된 머티리얼 대신 새로운 머티리얼을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바람에 흩날리는 낙엽 표현",
+      "steps": [
+        "Content Browser에서 나뭇잎 Static Mesh를 준비합니다.",
+        "Niagara System에 Mesh Renderer를 추가하고 나뭇잎 Mesh를 연결합니다.",
+        "Add Velocity in Box 모듈을 추가해 무작위 방향으로 퍼지게 합니다.",
+        "Turbulence 모듈을 더해 바람에 흔들리는 자연스러운 움직임을 줍니다."
+      ]
+    },
+    {
+      "title": "폭발 파편 효과",
+      "steps": [
+        "돌덩이 파편 Static Mesh를 Niagara System에 불러옵니다.",
+        "Spawn Burst Instantaneous 모듈을 사용해 폭발 순간에 한꺼번에 파편이 튀어나오게 합니다.",
+        "Gravity Force를 추가해 아래로 떨어지는 물리 운동을 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 Particle이 너무 작거나 보이지 않음 → Scale Mesh Size 값이 너무 작거나 단위가 맞지 않기 때문입니다. Particle 속성에서 스케일 값을 키워 확인합니다. → Scale Mesh Size 값을 키우거나 Static Mesh 자체의 원본 크기(Scale)를 검토합니다.",
+    "많은 수의 메시 Particle 생성 시 프레임 드랍 발생 → 폴리곤이 높은 메시를 그대로 사용했기 때문입니다. → 낮은 폴리곤의 최적화된 메시(Low Poly Mesh)를 사용하거나 LOD를 설정합니다."
+  ],
+  "related": [
+    "Niagara Particle System",
+    "Static Mesh",
+    "Nanite",
+    "Cascade Particle System"
+  ],
+  "videos": [
+    {
+      "id": "B4JRenA85ak",
+      "title": "Unreal5 Niagra VFX: 3D Mesh Particles -",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "Amk28ALebeg",
+      "title": "Unreal Niagara Static Mesh Particles Tutorial | download files",
+      "author": "SoftTofuVFX"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Niagara%20mesh%20particles",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "FX",
+    "Niagara System"
+  ],
+  "at": "2026-11-07T09:19:01.392191+00:00"
+}

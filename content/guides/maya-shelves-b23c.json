@@ -1,0 +1,83 @@
+{
+  "id": "maya-shelves-b23c",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Shelves",
+  "title": "Shelf — 자주 쓰는 도구",
+  "summary": "Maya Shelves는 자주 사용하는 메뉴와 도구를 아이콘 형태로 상단바에 모아두어, 클릭 한 번으로 빠르게 실행할 수 있게 돕는 사용자 정의 단축 인터페이스입니다.",
+  "when": [
+    "메뉴 깊숙이 숨겨진 기능을 반복해서 사용해야 할 때",
+    "자주 쓰는 스크립트나 커스텀 명령어를 버튼 하나로 등록하고 싶을 때",
+    "작업 목적(모델링, 애니메이션 등)에 맞춰 툴바를 깔끔하게 정리하고 싶을 때"
+  ],
+  "steps": [
+    "마이아 상단 UI에서 Shelves 영역을 확인합니다.",
+    "원하는 기능(예: Extrude)을 찾으려면 메인 메뉴(Modeling 등)로 이동합니다.",
+    "Shift + Ctrl 키를 누른 상태에서 원하는 메뉴 항목이나 도구를 클릭합니다.",
+    "Shelf에 해당 기능의 아이콘이 새로 생성된 것을 확인합니다.",
+    "아이콘을 Mouse 중클릭으로 드래그하여 순서를 변경하거나 정리합니다."
+  ],
+  "params": [
+    {
+      "name": "New Shelf",
+      "desc": "새로운 빈 셸프 탭을 추가합니다."
+    },
+    {
+      "name": "Delete Shelf",
+      "desc": "현재 선택된 셸프 탭을 삭제합니다."
+    },
+    {
+      "name": "Shelf Editor",
+      "desc": "등록된 아이콘의 이름, Script, 아이콘 이미지를 편집합니다."
+    },
+    {
+      "name": "Load Shelf",
+      "desc": "외부에 저장된 셸프 파일을 불러옵니다."
+    },
+    {
+      "name": "Save All Shelves",
+      "desc": "현재 변경된 모든 셸프 설정을 디스크에 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자주 쓰는 모델링 도구 모음 만들기",
+      "steps": [
+        "Modeling 탭에서 Mesh Tools > Multi-Cut 메뉴를 찾습니다.",
+        "Shift + Ctrl 키를 누른 채 Multi-Cut 항목을 클릭합니다.",
+        "현재 셸프에 Multi-Cut 아이콘이 추가된 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "MEL Script 버튼 등록하기",
+      "steps": [
+        "Script Editor를 열어 자주 사용하는 MEL 코드를 작성합니다.",
+        "Mouse로 코드를 드래그하여 활성화된 Shelf 영역으로 드롭합니다.",
+        "생성된 버튼을 우클릭하여 이름을 바꾸고 아이콘을 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "아이콘을 잘못 드래그해서 삭제함 → Shelf Editor에서 실수로 지운 항목을 확인하거나 셸프 파일을 재로드하여 복구합니다.",
+    "작업 후 셸프 저장을 안 함 → Maya 종료 시 설정이 날아갈 수 있으므로 Save All Shelves를 실행하거나 환경설정 저장 여부를 확인합니다."
+  ],
+  "related": [
+    "Hotbox",
+    "Marking Menu",
+    "Script Editor",
+    "Customizing UI"
+  ],
+  "videos": [
+    {
+      "id": "UB4P9cWejt4",
+      "title": "Creating and Saving Custom Shelves in Maya",
+      "author": "James Arndt"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Shelves",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T09:19:06.814696+00:00"
+}
