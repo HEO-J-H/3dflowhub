@@ -535,7 +535,13 @@ pre.code{max-height:520px;overflow:auto;padding:14px;border-radius:12px;backgrou
 .gcard .th.v::after{content:"▶";position:absolute;right:10px;bottom:8px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;
   padding:3px 8px;border-radius:99px}
 .gcard .b{padding:12px 14px}.gcard .k{font-size:12px;color:var(--accent);font-weight:600}
-.gcard .t{display:block;font-weight:600;margin:3px 0 4px;line-height:1.35}.gcard .s{font-size:13px;color:var(--muted)}
+.gcard .t{display:block;font-weight:600;margin:3px 0 4px;line-height:1.35;font-size:16px}.gcard .s{font-size:13px;color:var(--muted)}
+@media (max-width: 640px) {
+  .gcards { grid-template-columns: 1fr; gap: 12px; }
+  .gcard { padding: 4px; border-radius: 18px; }
+  .gcard .b { padding: 14px 16px 16px; }
+  .gcard .t { font-size: 18px; line-height: 1.4; }
+}
 #results .row{display:block}#results .row.on{background:var(--accent-soft)}#results .row.s{font-size:13px;color:var(--muted);padding:8px 14px}
 .lpath{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}.lpath .k{grid-column:1/-1;font-size:13px;color:var(--muted)}
 .lpath a{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
