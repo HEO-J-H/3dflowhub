@@ -1,0 +1,99 @@
+{
+  "id": "maya-viewport-navigation-and-panels-9276",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Viewport navigation and panels",
+  "title": "뷰포트 이동·패널",
+  "summary": "Maya 뷰포트 내비게이션과 패널 조작은 3D 씬을 관람하고 오브젝트를 정밀하게 배치·조작하는 작업 공간입니다. Alt 키 조합을 통해 카메라를 자유롭게 회전·이동하며 효율적인 모델링과 애니메이션 작업을 수행합니다.",
+  "when": [
+    "새로운 3D 모델링 작업을 시작하거나 씬 전체의 레이아웃을 확인할 때",
+    "특정 오브젝트나 컴포넌트(Vertex, 엣지, 페이스)를 클로즈업하여 정밀하게 편집할 때",
+    "다양한 뷰(Perspective, Orthographic)와 패널 레이아웃을 전환하여 작업 효율을 높일 때"
+  ],
+  "steps": [
+    "Autodesk Maya를 실행하고 빈 씬 또는 기존 프로젝트 파일을 엽니다.",
+    "Viewport 창 안에서 Alt + Mouse 좌클릭을 누른 채 드래그하여 뷰포트 카메라를 회전(Tumble)합니다.",
+    "Alt + Mouse 우클릭을 누른 채 드래그하여 카메라를 확대 및 축소(Zoom)합니다.",
+    "Alt + Mouse 중클릭을 누른 채 드래그하여 뷰포트 카메라를 상하좌우로 이동(Track)합니다.",
+    "키보드 Spacebar를 짧게 눌러 단일 뷰포트와 4분할 뷰포트(Four View) 레이아웃을 전환합니다.",
+    "특정 오브젝트를 선택한 상태에서 영문 F 키를 눌러 뷰포트 중앙에 꽉 차게(Frame Selection) 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Tumble",
+      "desc": "Alt + Mouse 좌클릭으로 뷰포트 카메라를 회전하여 다양한 각도에서 씬을 관람합니다."
+    },
+    {
+      "name": "Track",
+      "desc": "Alt + Mouse 중클릭으로 카메라 위치를 수평 및 수직 방향으로 평행 이동합니다."
+    },
+    {
+      "name": "Zoom",
+      "desc": "Alt + Mouse 우클릭으로 카메라를 대상에 가깝게 당기거나 멀리 밀어냅니다."
+    },
+    {
+      "name": "Frame Selection",
+      "desc": "선택한 오브젝트를 뷰포트 정중앙에 배치하고 적절한 크기로 확대합니다 (Hotkey F)."
+    },
+    {
+      "name": "Frame All",
+      "desc": "씬에 있는 모든 오브젝트가 한눈에 보이도록 카메라를 조절합니다 (Hotkey A)."
+    },
+    {
+      "name": "Panel Layout",
+      "desc": "Perspective, Top, Front, Side 등 다양한 뷰포트 패널 구성을 전환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "복잡한 캐릭터 모델링 중 특정 부위 확대하기",
+      "steps": [
+        "Outliner나 뷰포트에서 편집할 캐릭터의 손(Hand) 오브젝트를 선택합니다.",
+        "Hotkey F를 눌러 뷰포트 카메라를 손 부위로 즉시 이동 및 포커싱합니다.",
+        "Alt + Mouse 좌클릭으로 회전하며 손가락의 세부 Vertex를 확인합니다."
+      ]
+    },
+    {
+      "title": "4분할 뷰를 활용한 정확한 오브젝트 정렬",
+      "steps": [
+        "키보드 Spacebar를 눌러 4분할 뷰포트(Perspective, Top, Front, Side)로 전환합니다.",
+        "Top 뷰와 Front 뷰를 번갈아 보며 오브젝트의 위치를 정확하게 맞춥니다.",
+        "작업할 패널에 Mouse를 올리고 Spacebar를 다시 눌러 해당 패널을대형화면으로 확장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Alt 키를 누르지 않고 Mouse만 드래그하여 화면이 움직이지 않음 → 반드시 Alt 키를 누른 상태에서 Mouse 버튼과 함께 드래그하세요.",
+    "오브젝트가 뷰포트 화면 밖으로 사라져 보이지 않음 → 씬 전체를 보려면 Hotkey A(Frame All)를 누르거나 특정 오브젝트를 선택하고 F를 누르세요.",
+    "4분할 뷰에서 원하지 않는 패널이 최대화됨 → Mouse 커서가 위치한 패널을 기준으로 Spacebar가 작동하므로, 원하는 패널 위에 커서를 두고 누르세요."
+  ],
+  "related": [
+    "Outliner",
+    "Channel Box",
+    "Attribute Editor",
+    "Hypershade"
+  ],
+  "videos": [
+    {
+      "id": "FrG43faNknQ",
+      "title": "Nifty Little Tricks in Maya: Viewport",
+      "author": "Roland Reyer"
+    },
+    {
+      "id": "mnLIF_HDUto",
+      "title": "Autodesk Maya Viewport Navigation || First Step In Maya",
+      "author": "Maya Daily"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Viewport%20navigation%20and%20panels",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Autodesk Maya",
+    "Viewport",
+    "Mouse",
+    "Tumble"
+  ],
+  "at": "2026-11-07T08:08:46.568878+00:00"
+}

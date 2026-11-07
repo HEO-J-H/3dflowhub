@@ -1,29 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-05T00:20:46.214193+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 214,
-      "candidates_passed": 155,
-      "offtopic": 22,
-      "short": 0,
-      "prefiltered": 51,
-      "llm_fallbacks": [],
-      "strategy_ver": "cbd3a941",
-      "visuals": 2,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "오늘 LLM 호출 한도(280회) 도달 | groq: 429 하루 한도: '{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m56dywyveeyafdzdkg8k263j` service tier `on_demand` on t' — 남은 1건은 리셋 후"
-      ]
-    },
-    {
       "at": "2026-11-05T00:29:37.072929+00:00",
       "collected": 0,
       "saved": 0,
@@ -5893,6 +5870,33 @@
       "errors": [
         "AI 일일 한도 소진 — 11/07 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
       ]
+    },
+    {
+      "at": "2026-11-07T08:08:19.432588+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 213,
+      "candidates_passed": 155,
+      "offtopic": 29,
+      "short": 0,
+      "prefiltered": 36,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "14131e98",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6169,7 +6173,7 @@
     "AI 3D/NeRF": 6,
     "VFX/V-Ray·Corona": 1,
     "3D DCC/3D Painter": 1,
-    "VFX/DaVinci Resolve": 45,
+    "VFX/DaVinci Resolve": 46,
     "3D DCC/Substance Painter": 1,
     "AI 3D/NVIDIA Mission Control": 2,
     "AI 3D/NVIDIA Isaac Sim": 2,
@@ -8199,14 +8203,15 @@
     1922116939791725730,
     405353461180797257,
     16849573804553710866,
-    8792949589536884736
+    8792949589536884736,
+    3279356473925702432
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2044,
-    "Game Engine": 2044,
-    "VFX": 2044,
-    "AI 3D": 2044
+    "3D DCC": 2045,
+    "Game Engine": 2045,
+    "VFX": 2045,
+    "AI 3D": 2045
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

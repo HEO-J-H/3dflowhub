@@ -1,0 +1,40 @@
+{
+  "id": "unreal-engine-uathelper-packaging-windows-64-bit-e-3685e",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "UATHelper: Packaging (Windows (64-bit)): ERROR: Unable to read file '...'",
+  "title": "UATHelper: Packaging (Windows (64-bit)): ERROR: Unable to read file '...' – Unre",
+  "summary": "Unreal Engine 프로젝트 패키징 과정에서 UAT(Unreal Automation Tool)가 특정 파일을 읽어오지 못해 중단되었음을 뜻합니다. 파일 경로 누락, 권한 문제, 또는 다른 프로그램에 의한 파일 잠금이 주된 원인입니다.",
+  "causes": [
+    "패키징 과정에서 참조하려는 에셋 파일이나 소스 파일이 지정된 경로에 존재하지 않음",
+    "다른 프로그램(텍스트 에디터, 버전 관리 툴 등)이 해당 파일을 열고 있어 접근 권한이 충돌함",
+    "프로젝트 폴더나 파일에 현재 사용자 계정의 읽기·쓰기 권한이 없음",
+    "너무 긴 파일 경로(Windows 260자 제한)로 인해 파일을 읽지 못함"
+  ],
+  "steps": [
+    "Output Log 패널에서 ERROR: Unable to read file 뒤에 나오는 전체 파일 경로를 확인합니다.",
+    "해당 경로에 파일이 실제로 존재하는지 탐색기에서 확인합니다.",
+    "파일이 다른 프로그램에서 사용 중이거나 잠겨 있는지 확인하고, 필요시 해당 프로그램을 종료합니다.",
+    "프로젝트 폴더의 속성(Properties)에서 읽기 전용(Read-only) 속성이 체크되어 있다면 해제합니다.",
+    "파일 경로가 너무 길 경우, 프로젝트를 드라이브 루트(예: C:/Project) 근처로 이동하여 다시 패키징합니다."
+  ],
+  "check": [
+    "Output Log에 Unable to read file 오류가 더 이상 나타나지 않는지 확인합니다.",
+    "패키징 작업이 중단 없이 완료되어 빌드 폴더에 실행 파일(.exe)이 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "에셋을 이동하거나 삭제할 때는 반드시 Unreal Engine 에디터 내부(Content Browser)에서 진행합니다.",
+    "프로젝트 폴더 경로를 가급적 짧고 단순하게 유지합니다.",
+    "외장 드라이브나 네트워크 드라이브보다는 로컬 SSD에서 작업합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 패키징 오류",
+    "UATHelper Unable to read file",
+    "Unreal 에러 Unable to read file",
+    "패키징 파일 읽기 오류",
+    "Unreal 패키징 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T08:08:57+00:00"
+}

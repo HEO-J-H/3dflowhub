@@ -1,0 +1,36 @@
+{
+  "id": "maya-mel-syntax-error-unexpected-token-a413e",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "MEL syntax error: Unexpected token",
+  "title": "MEL syntax error: Unexpected token – Maya MEL 구문 오류 해결",
+  "summary": "MEL syntax error: Unexpected token 에러는 Maya에서 MEL Script를 실행할 때 문법에 맞지 않는 기호나 구문이 발견되어 파싱에 실패했을 때 발생하는 메시지입니다.",
+  "causes": [
+    "Script 코드 내에 괄호, 중괄호, 세미콜론(;) 등의 필수 문장 부호가 누락되거나 잘못 입력되었습니다.",
+    "따옴표(quotation marks)가 제대로 닫히지 않았거나 문자열 처리 중 오타가 발생했습니다.",
+    "변수 이름 앞에 달러 기호($)를 빼먹었거나 MEL 문법 규칙에 어긋나는 예약어를 사용했습니다."
+  ],
+  "steps": [
+    "Script Editor를 열고 에러 발생 라인 번호로 이동하여 빨간색으로 표시된 문제의 구문을 확인합니다.",
+    "명령어 끝에 세미콜론(;)이 빠졌는지, 여닫는 괄호나 따옴표가 짝을 이루는지 확인합니다.",
+    "변수명 앞에 올바르게 $ 기호가 붙어 있는지 검토합니다.",
+    "코드를 수정하거나 다시 입력한 뒤 Script Editor에서 드래그하여 재실행합니다."
+  ],
+  "check": [
+    "Script Editor 하단 History 창에 'Error: MEL syntax error' 문구가 사라지고 정상적인 실행 결과가 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "코드 작성 시 자동 완성 기능이나 괄호 짝 맞추기 기능을 지원하는 외부 코드 편집기를 사용합니다.",
+    "MEL 대신 Python 기반의 pymel 또는 cmds 모듈을 사용하여 구문 오류를 줄입니다."
+  ],
+  "keywords": [
+    "MEL syntax error",
+    "Unexpected token",
+    "Maya Script 에러",
+    "MEL 문법 오류",
+    "Script Editor 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T08:08:54+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "maya-maya-command-error-object-psphere1-not-found-3971c",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Maya command error: Object 'pSphere1' not found.",
+  "title": "Maya command error: Object 'pSphere1' not found. – Maya 오브젝트 찾기 오류 처리",
+  "summary": "Maya에서 MEL이나 Python Script를 실행할 때 'pSphere1'이라는 이름의 오브젝트를 찾지 못해 발생하는 에러입니다. 주로 Script 실행 시점에 해당 노드가 존재하지 않거나 이름이 변경되었을 때 나타납니다.",
+  "causes": [
+    "씬(Scene) 내에 지정된 이름의 오브젝트가 존재하지 않음",
+    "오브젝트의 이름이 변경되었거나 네임스페이스(Namespace)가 포함되어 있음",
+    "Script가 너무 빨리 실행되어 생성 중인 오브젝트를 찾지 못함"
+  ],
+  "steps": [
+    "Outliner 창을 열어 에러 메시지에 나온 오브젝트 이름(예: pSphere1)이 실제로 존재하는지 확인합니다.",
+    "오브젝트가 존재한다면 대소문자나 오타가 없는지 Script 코드를 다시 검토합니다.",
+    "참조(Reference) 파일이나 네임스페이스가 사용된 경우, 전체 경로(예: referenceRN:pSphere1)를 포함하여 호출하거나 네임스페이스를 확인합니다.",
+    "mel 또는 python Script 실행 전에 해당 오브젝트를 선택(Select)하거나 존재 여부를 확인하는 조건문(if `obj.exists('pSphere1'):`)을 추가합니다."
+  ],
+  "check": [
+    "Script Editor에서 Script를 다시 실행했을 때 해당 에러 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport와 Outliner에서 대상 오브젝트가 정상적으로 조작되는지 확인합니다."
+  ],
+  "prevent": [
+    "하드코딩된 이름 대신 변수(`ls(selection=True)`)를 사용하여 오브젝트를 동적으로 지정합니다.",
+    "Script 작성 시 명명 규칙(Naming Convention)을 통일하여 이름 충돌을 방지합니다."
+  ],
+  "keywords": [
+    "Maya 에러 Object not found",
+    "pSphere1 not found",
+    "메이아 오브젝트 찾을 수 없음",
+    "Maya MEL script error",
+    "Python 오브젝트 이름 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T08:08:52+00:00"
+}

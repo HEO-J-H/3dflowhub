@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-live-link-436a",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Live Link",
+  "title": "Live Link — 외부 툴 연결",
+  "summary": "Unreal Engine Live Link는 외부 3D DCC 툴이나 Motion Capture 장비의 데이터를 지연 없이 실시간으로 Unreal Engine 뷰포트에 스트리밍하여 확인하고 녹화하는 기능입니다.",
+  "when": [
+    "Maya나 Blender에서 캐릭터 애니메이션을 수정하면서 Unreal Engine 렌더를 실시간으로 확인할 때",
+    "iPhone이나 Motion Capture 장비를 이용해 실시간 페이셜 애니메이션을 캐릭터에 적용할 때",
+    "가상 제작(Virtual Production) 환경에서 카메라 트래킹 데이터를 실시간으로 연동할 때"
+  ],
+  "steps": [
+    "Edit 패널 → Plugins 메뉴를 열고 Live Link 관련 플러그인(예: Apple ARKit, Maya Live Link 등)을 활성화(Enabled)한 후 Unreal Engine을 재시작합니다.",
+    "Window 메뉴 → Virtual Production → Live Link를 선택해 Live Link 패널을 엽니다.",
+    "Live Link 패널에서 + Source 버튼을 클릭하고 연결할 소스 유형(예: Message Bus Source)을 선택합니다.",
+    "외부 3D DCC 툴이나 장비에서 Live Link 플러그인을 활성화하고 동일한 포트와 브로드캐스트 설정을 맞춥니다.",
+    "Unreal Engine의 스켈레탈 메시 혹은 카메라 컴포넌트의 Details 패널에서 Live Link Subject 이름을 연결하여 실시간 구동을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Subject Name",
+      "desc": "외부 프로그램에서 전송되는 데이터 스트림의 고유 식별 이름입니다."
+    },
+    {
+      "name": "Buffer Size",
+      "desc": "네트워크 지연을 보정하기 위해 데이터를 버퍼링하는 크기입니다."
+    },
+    {
+      "name": "Interpolation",
+      "desc": "프레임 사이의 끊김을 부드럽게 보간하여 출력합니다."
+    },
+    {
+      "name": "Role",
+      "desc": "애니메이션, 카메라, 라이트 등 수신하는 데이터의 유형을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "외부 DCC 애니메이션 실시간 스트리밍",
+      "steps": [
+        "Maya에서 Live Link 플러그인을 설치하고 전송할 조인트(Joint)를 선택합니다.",
+        "Unreal Engine Live Link 패널에서 Maya 소스가 인식되는지 확인합니다.",
+        "캐릭터 블루프린트의 AnimGraph에 Live Link Pose 노드를 추가해 애니메이션을 연결합니다."
+      ]
+    },
+    {
+      "title": "아이폰 페이셜 Motion Capture 연동",
+      "steps": [
+        "Unreal Engine에서 Apple ARKit Face Support 플러그인을 활성화합니다.",
+        "아이폰 앱을 통해 얼굴 데이터를 Wi-Fi 네트워크로 송출합니다.",
+        "메시의 AnimBP에서 Live Link Evaluator를 통해 얼굴 BlendShape(Blendshape)를 구동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "방화벽이나 네트워크 문제로 소스가 안 뜸 → 방화벽 설정 해제 및 동일한 로컬 네트워크(IP) 연결 확인",
+    "캐릭터 움직임이 엇나감 → DCC 툴과 Unreal Engine의 축 방향(Axis System)과 스케일 단위 일치시키기",
+    "데이터가 끊기거나 지연됨 → 버퍼 사이즈(Buffer Size) 조정 및 불필요한 백그라운드 네트워크 트래픽 차단"
+  ],
+  "related": [
+    "Animation Blueprint",
+    "Control Rig",
+    "Sequencer",
+    "USD Stage"
+  ],
+  "videos": [
+    {
+      "id": "JdaXti950vg",
+      "title": "Live Link Hub Tips | Unreal Engine Animation Hub",
+      "author": "Unreal Engine"
+    },
+    {
+      "id": "rFKXFdtCrfA",
+      "title": "Live Link Face Animation for Metahuman in Unreal Engine 5. [Step by Step Guide]",
+      "author": "AI Cinematic"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Live%20Link",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Plugins",
+    "Live Link",
+    "Apple ARKit",
+    "Maya Live Link",
+    "Enabled"
+  ],
+  "at": "2026-11-07T08:08:41.238322+00:00"
+}

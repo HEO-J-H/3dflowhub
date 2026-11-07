@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-shader-compilation-error-error-x5000-ec218",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "Shader compilation error: error X5000: unexpected token",
+  "title": "Shader compilation error: error X5000: unexpected token – Unreal Engine Shader 컴파일 ",
+  "summary": "Unreal Engine에서 Shader 컴파일 중 HLSL 문법 오류나 지원되지 않는 구문으로 인해 발생하는 빌드 실패 메시지입니다. 커스텀 Shader 코드, Material Node 또는 구형 플랫폼 호환성 문제로 발생합니다.",
+  "causes": [
+    "Custom Material Node 내부의 HLSL 코드 오타 또는 문법 오류",
+    "DirectX Shader Compiler(DXC) 또는 FXC가 처리하지 못하는 구형/비표준 HLSL 구문 사용",
+    "엔진 버전 업그레이드 후 호환되지 않는 구형 Shader 코드 및 함수 사용"
+  ],
+  "steps": [
+    "Output Log 패널에서 error X5000: unexpected token 메시지와 함께 지목된 줄 번호와 파일 경로를 확인합니다.",
+    "문제가 발생한 Material을 열고 Custom 노드 또는 관련 Material Expression을 선택합니다.",
+    "Code 입력창에서 구문 오류가 발생한 줄의 세미콜론(;), 괄호(()), 중괄호({}) 누락 여부를 확인하고 수정합니다.",
+    "hlsl.cc 표준에 맞지 않는 예약어나 잘못된 변수 선언이 있는지 검토합니다.",
+    "Materials를 저장하고 상단 메뉴에서 Apply를 눌러 Shader를 다시 컴파일합니다."
+  ],
+  "check": [
+    "Output Log에 빨간색 error X5000 메시지가 사라지고 컴파일이 성공하는지 확인합니다.",
+    "Viewport에서 해당 Material이 적용된 오브젝트가 에러 없이 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "Custom Material Node 작성 시 HLSL 표준 문법을 준수하고 자주 사용하는 함수는 미리 테스트합니다.",
+    "엔진 버전을 업그레이드할 때 구형 커스텀 Shader 코드가 새 컴파일러 규칙에 맞는지 검토합니다."
+  ],
+  "keywords": [
+    "Shader compilation error X5000",
+    "unexpected token Unreal",
+    "HLSL Shader 에러",
+    "Unreal Custom Node 오류",
+    "Unreal 머티리얼 컴파일 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T08:09:01+00:00"
+}
