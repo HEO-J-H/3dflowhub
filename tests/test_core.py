@@ -70,15 +70,18 @@ def test_ensure_minimum_content_depth_low_and_high(monkeypatch):
         "summary": "일반적인 이야기입니다.",
         "sections": [{"heading": "개요", "body": "아무런 전문 용어가 없는 일반적인 내용입니다."}]
     }
+    assert core.is_low_depth(low_data) is True
     assert core.ensure_minimum_content_depth(low_data) is False
     assert "low depth" in core.RUN_ERRORS
 
     monkeypatch.setattr(core, "RUN_ERRORS", [])
+    long_and_rich_body = "Blender and ZBrush 3D modeling workflow with Houdini simulation. " * 150
     high_data = {
         "title_ko": "Blender 3D Modeling",
         "summary": "Blender and ZBrush 3D modeling workflow.",
-        "sections": [{"heading": "Houdini Simulation", "body": "Using Unreal Engine and Maya for ray tracing and shaders."}]
+        "sections": [{"heading": "Houdini Simulation", "body": long_and_rich_body}]
     }
+    assert core.is_low_depth(high_data) is False
     assert core.ensure_minimum_content_depth(high_data) is True
     assert "low depth" not in core.RUN_ERRORS
 
