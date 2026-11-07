@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-niagara-emitters-and-modules-5b80",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Niagara emitters and modules",
+  "title": "Niagara 이미터·모듈",
+  "summary": "Unreal Engine의 Niagara Emitter와 Module은 개별 Particle의 생성, 운동, 외형을 세부적으로 제어하는 핵심 구성 요소입니다. 모듈식 구조를 통해 불꽃, 연기, 비 등의 복잡한 실시간 시각 효과를 유연하게 빌드할 수 있습니다.",
+  "when": [
+    "불, 연기, 폭발 등 복잡하고 유기적인 실시간 파티クル 효과를 제작할 때",
+    "게임 내 날씨 시스템(비, 눈)이나 마법 시전 같은 커스텀 VFX를 구현할 때",
+    "Particle의 수명, 속도, 크기, 색상 등을 모듈 단위로 정밀하게 제어하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 FX → Niagara System을 선택합니다.",
+    "원하는 Template(예: New system with empty emitter)을 선택하고 완료합니다.",
+    "생성된 Niagara System을 더블클릭하여 Niagara Editor를 엽니다.",
+    "Hierarchy 패널에서 Emitter를 선택한 뒤, Stack 패널(Emitter Update, Particle Spawn 등)을 확인합니다.",
+    "Stack 패널 하단의 '+' 버튼을 눌러 원하는 Module(예: Spawn Rate, Initialize Particle)을 추가합니다.",
+    "Details 패널 또는 Module 내부에서 파라미터 값을 조절하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Spawn Rate",
+      "desc": "초당 생성되는 Particle의 개수를 설정합니다."
+    },
+    {
+      "name": "Initialize Particle",
+      "desc": "Particle 생성 시 수명, 크기, 질량, 색상 등의 초기값을 정의합니다."
+    },
+    {
+      "name": "Gravity Force",
+      "desc": "Particle에 작용하는 중력의 세기와 방향을 조절합니다."
+    },
+    {
+      "name": "Scale Color",
+      "desc": "Particle의 수명 주기에 따라 색상이나 투명도가 변하도록 설정합니다."
+    },
+    {
+      "name": "Sprite Size",
+      "desc": "2D 스프라이트 Particle의 화면상 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 불꽃 Particle 제작",
+      "steps": [
+        "Empty Emitter 기반의 Niagara System을 생성합니다.",
+        "Emitter Update에 Spawn Rate를 추가하여 초당 Particle 수를 조절합니다.",
+        "Particle Spawn에 Initialize Particle을 추가해 수명과 초기 크기를 설정합니다.",
+        "Particle Update에 Gravity Force를 음수 값으로 주어 위로 솟구치는 불꽃을 만듭니다."
+      ]
+    },
+    {
+      "title": "떨어지는 빗방울 효과",
+      "steps": [
+        "Mesh Emitter를 추가하고 빗방울 모양의 Static Mesh를 할당합니다.",
+        "Spawn Rate를 높여 비가 내리는 밀도를 조절합니다.",
+        "Particle Update에 Velocity 모듈을 추가해 아래로 향하는 속도 벡터를 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Spawn Rate 값을 너무 높게 설정함 → GPU 부하 및 프레임 드랍 발생, 적정 값 유지 필요",
+    "Initialize Particle에서 수명(Lifetime)을 0으로 설정함 → Particle이 생성되자마자 사라져 보이지 않음",
+    "Material의 투명도 블렌드 모드가 잘못 설정됨 → Particle 주변에 검은 사각형 박스가 노출됨"
+  ],
+  "related": [
+    "Niagara System",
+    "Cascade",
+    "Material Graph",
+    "Vector Field"
+  ],
+  "videos": [
+    {
+      "id": "btUjODoqSnI",
+      "title": "All Location Modules in UE4 Niagara Explained",
+      "author": "CGHOW"
+    },
+    {
+      "id": "CG8D9woqTa0",
+      "title": "Niagara Module Script | Unreal Engine Niagara Tutorial",
+      "author": "CGHOW"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Niagara%20emitters%20and%20modules",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "FX",
+    "Niagara System"
+  ],
+  "at": "2026-11-07T08:59:17.346558+00:00"
+}
