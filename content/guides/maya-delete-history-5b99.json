@@ -1,0 +1,85 @@
+{
+  "id": "maya-delete-history-5b99",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Delete History",
+  "title": "Delete History — 기록 지우기",
+  "summary": "Maya Delete History는 오브젝트에 쌓인 불필요한 컨스트럭션 히스토리(Construction History)를 삭제하여 파일 용량을 줄이고 뷰포트 속도를 개선하는 기능입니다.",
+  "when": [
+    "모델링 수정을 완료하고 다른 Software로 Export 전",
+    "오브젝트에 기형적인 변형이 생기거나 회전축(Pivot)이 비정상적으로 움직일 때",
+    "복잡한 노드 연결로 인해 뷰포트나 렌더링 작업이 느려질 때"
+  ],
+  "steps": [
+    "작업 중인 뷰포트나 Outliner에서 히스토리를 지울 오브젝트를 선택합니다.",
+    "상단 메뉴 바에서 Edit > Delete by Type > History를 클릭하거나 Hotkey Alt+Shift+D를 누릅니다.",
+    "원하는 경우 채널 박스(Channel Box)에서 개별적으로 불필요한 히스토리를 우클릭하여 삭제할 수도 있습니다.",
+    "아웃라인어나 하이퍼그래프에서 불필요한 컨스트럭션 노드들이 사라지고 깔끔하게 정리되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Delete by Type > History",
+      "desc": "선택한 오브젝트의 모든 컨스트럭션 히스토리를 한 번에 삭제합니다."
+    },
+    {
+      "name": "Delete All by Type > History",
+      "desc": "씬(Scene) 전체에 있는 모든 오브젝트의 히스토리를 일괄 삭제합니다."
+    },
+    {
+      "name": "Non-Deformer History",
+      "desc": "스킨(Skin)이나 BlendShape(Blend Shape) 등 디포머를 제외한 모델링 히스토리만 삭제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델링 작업 완료 후 Export 전 정리",
+      "steps": [
+        "오브젝트를 선택합니다.",
+        "Alt+Shift+D를 눌러 히스토리를 삭제합니다.",
+        "FBX 또는 OBJ 형식으로 안전하게 익스포트합니다."
+      ]
+    },
+    {
+      "title": "미러(Mirror) 또는 불린(Boolean) 연산 후 최종 확정",
+      "steps": [
+        "Boolean이나 Mirror 작업으로 모델링 모양을 잡습니다.",
+        "결과물이 마음에 들면 오브젝트를 선택합니다.",
+        "Edit > Delete by Type > History를 실행해 연산 기록을 고정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스킨(Skin) 작업 중인 캐릭터에 무작정 전체 히스토리 삭제 → Non-Deformer History를 사용하거나 스킨 웨이트가 유지되는지 확인 후 삭제합니다.",
+    "아직 수정할 여지가 남은 단계에서 히스토리 삭제 → 가능하면 백업 파일(Save As)을 먼저 만든 뒤 실행합니다."
+  ],
+  "related": [
+    "Freeze Transformations",
+    "Center Pivot",
+    "Outliner",
+    "Hypershade"
+  ],
+  "videos": [
+    {
+      "id": "1SXvWTiMkjs",
+      "title": "Delete History and Freeze Transformations Maya Tutorial",
+      "author": "What Make Art"
+    },
+    {
+      "id": "l7-jHuPIe9M",
+      "title": "How To Delete Transaction History In Maya | Full Guide",
+      "author": "Ned HELP"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Delete%20History",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Outliner",
+    "Edit",
+    "Type",
+    "History",
+    "Hotkey Alt"
+  ],
+  "at": "2026-11-07T10:09:10.735582+00:00"
+}

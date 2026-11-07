@@ -1,0 +1,89 @@
+{
+  "id": "unreal-engine-nanite-settings-and-fallback-9789",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Nanite settings and fallback",
+  "title": "Nanite 설정·Fallback",
+  "summary": "Nanite settings와 Fallback은 Unreal Engine에서 고폴리곤 가상화 지오메트리의 압축 품질과 비-Nanite 환경용 대체 폴리곤을 관리하는 핵심 설정입니다. 원본 디테일을 유지하면서 퍼포먼스를 최적화할 수 있습니다.",
+  "when": [
+    "하이폴리곤 스스닉 메시(Static Mesh)를 임포트한 뒤 Nanite 압축률과 외곽선 품질을 세부 조정할 때",
+    "Nanite를 지원하지 않는 플랫폼이나 하드웨어를 위해 Fallback(대체) 메시의 폴리곤 수를 지정할 때",
+    "메시의 특정 영역에서 디포메이션이나 충돌(Collision) 오류가 발생하여 Fallback 설정을 변경해야 할 때"
+  ],
+  "steps": [
+    "Content Browser에서 Nanite가 적용된 Static Mesh 에셋을 더블 클릭하여 Static Mesh Editor를 엽니다.",
+    "Details 패널에서 Nanite Settings 섹션을 찾습니다.",
+    "Enabled 체크박스를 확인하고, 필요에 따라 Percent Triangles 값을 조절하여 폴리곤 압축률을 변경합니다.",
+    "Fallback Relative Error 값을 조정하여 원본 메시와 Fallback 메시 사이의 허용 오차를 설정합니다.",
+    "툴바의 Save 버튼을 눌러 변경 사항을 저장하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Enabled",
+      "desc": "선택한 Static Mesh에 Nanite 가상화 지오메트리를 활성화하거나 비활성화합니다."
+    },
+    {
+      "name": "Percent Triangles",
+      "desc": "Nanite가 생성할 때 유지할 삼각형의 백분율 비율을 결정합니다 (기본값 100%)."
+    },
+    {
+      "name": "Fallback Relative Error",
+      "desc": "Fallback(대체) 메시를 생성할 때 허용되는 최대 오차 거리입니다."
+    },
+    {
+      "name": "Fallback Percent Triangles",
+      "desc": "비-Nanite 환경에서 사용할 Fallback 메시의 삼각형 유지 비율을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하이폴리곤 락(Rock) 에셋의 Nanite 압축 최적화",
+      "steps": [
+        "Content Browser에서 락 에셋을 열어 Static Mesh Editor를 실행합니다.",
+        "Details 패널의 Nanite Settings에서 Percent Triangles 값을 70으로 낮춰 용량을 최적화합니다.",
+        "Save를 눌러 에셋을 저장하고 뷰포트의 디테일 변화를 확인합니다."
+      ]
+    },
+    {
+      "title": "원거리 오브젝트를 위한 Fallback 퍼센트 조정",
+      "steps": [
+        "Static Mesh Editor의 Nanite Settings에서 Fallback Percent Triangles 항목을 찾습니다.",
+        "값을 낮추어 레거시 하드웨어용 대체 폴리곤의 부하를 줄입니다.",
+        "Apply Changes를 클릭하여 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Nanite가 비활성화된 상태에서 Fallback 설정만 변경함 → Enabled 체크박스가 켜져 있는지 먼저 확인합니다.",
+    "Percent Triangles를 너무 낮게 설정해 외곽선이 깨짐 → 시각적 손실이 없는 선(예: 70~90%)에서 값을 조절합니다."
+  ],
+  "related": [
+    "Nanite",
+    "Static Mesh Editor",
+    "LOD",
+    "Content Browser"
+  ],
+  "videos": [
+    {
+      "id": "-NzdavD9VAI",
+      "title": "How To Fix Unreal Engine Nanite Breaking Meshes!",
+      "author": "IsValid"
+    },
+    {
+      "id": "P65cADzsP8Q",
+      "title": "Nanite: Everything You Should Know [Unreal Engine 5]",
+      "author": "William Faucher"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Nanite%20settings%20and%20fallback",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Nanite",
+    "Static Mesh",
+    "Static Mesh Editor"
+  ],
+  "at": "2026-11-07T10:09:05.557560+00:00"
+}
