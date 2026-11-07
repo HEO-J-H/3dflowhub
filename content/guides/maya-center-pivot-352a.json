@@ -1,0 +1,83 @@
+{
+  "id": "maya-center-pivot-352a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Center Pivot",
+  "title": "Center Pivot",
+  "summary": "Maya의 Center Pivot은 선택한 오브젝트의 기하학적 중심(Bounding Box Center)으로 피벗(Pivot) 위치를 정확히 재설정하는 기능입니다. 엉뚱한 곳에 가 있는 회전과 스케일의 기준점을 오브젝트의 정중앙으로 빠르게 되돌릴 수 있습니다.",
+  "when": [
+    "임의로 편집하거나 결합(Combine)하여 피벗이 원점(World Origin)이나 엉뚱한 곳에 있을 때",
+    "오브젝트를 제자리에서 정확히 회전시키거나 크기를 조절하고 싶을 때",
+    "히스토리를 지우거나 대칭(Mirror) 작업 전 기준점을 잡아야 할 때"
+  ],
+  "steps": [
+    "피벗을 중앙으로 정렬할 대상 오브젝트를 뷰포트에서 Mouse로 선택합니다.",
+    "상단 메뉴 바에서 Modify 탭을 클릭하여 메뉴 목록을 엽니다.",
+    "목록 중간에 있는 Center Pivot 항목을 클릭합니다.",
+    "뷰포트에서 오브젝트의 피벗(Gizmo)이 정중앙으로 이동했는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Center Pivot",
+      "desc": "오브젝트의 바운딩 박스 기준으로 피벗을 정중앙으로 이동시킵니다."
+    },
+    {
+      "name": "Modify",
+      "desc": "오브젝트의 변형(Transformation)과 피벗을 관리하는 상단 메뉴 탭입니다."
+    },
+    {
+      "name": "Pivot editing",
+      "desc": "D 키를 눌러 피벗의 위치와 방향을 수동으로 미세 조정하는 기능입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제자리에서 회전하는 문(Door)",
+      "steps": [
+        "문을 구성하는 오브젝트를 선택합니다.",
+        "Modify → Center Pivot을 실행하여 피벗을 문 중앙에 맞춥니다.",
+        "D 키를 눌러 피벗을 문 경첩(Hinge) 위치로 이동시킨 후 회전합니다."
+      ]
+    },
+    {
+      "title": "여러 오브젝트 결합 후 중심 맞추기",
+      "steps": [
+        "여러 개의 파츠를 Mesh → Combine으로 하나로 합칩니다.",
+        "합쳐진 직후 엉뚱하게 유지되는 피벗 위치를 확인합니다.",
+        "Modify → Center Pivot을 눌러 전체 덩어리의 정중앙으로 피벗을 재설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗이 아니라 오브젝트 자체의 위치가 원점으로 이동했다고 착각함 → Undo(Ctrl+Z) 후 D 키를 이용한 수동 이동(Pivot editing)을 사용했는지 확인",
+    "히스토리가 남아 있어 Center Pivot 적용 후 의도치 않게 피벗이 다시 틀어짐 → Edit → Delete by Type → History를 먼저 실행한 뒤 Center Pivot 재적용"
+  ],
+  "related": [
+    "Pivot editing (D key)",
+    "Bake Pivot",
+    "Freeze Transformations",
+    "Combine"
+  ],
+  "videos": [
+    {
+      "id": "Np4Du0xMnUo",
+      "title": "Maya Course • Edit Pivot, Center Pivot, or Reset the Pivot of Objects in Maya • Maya Basics Tutorial",
+      "author": "Innovledia"
+    },
+    {
+      "id": "WsW0OEQjhZU",
+      "title": "Maya For Beginners - Grouping Of Objects & Center Pivot",
+      "author": "Animatics Studio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Center%20Pivot",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Modify",
+    "Center Pivot"
+  ],
+  "at": "2026-11-07T10:29:30.532314+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-texture-streaming-and-mipmaps-b67c",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Texture streaming and mipmaps",
+  "title": "텍스처 스트리밍",
+  "summary": "Texture streaming and mipmaps manage texture memory allocation in real-time by dynamically loading lower-resolution texture maps based on camera distance, preventing VRAM overflow.",
+  "when": [
+    "Large open-world games where millions of square units of textured terrain and buildings are rendered simultaneously",
+    "Projects targeting platforms with limited VRAM such as mobile devices or older graphics cards",
+    "Optimizing overall performance to prevent hitching and out-of-memory crashes during high-speed camera movement"
+  ],
+  "steps": [
+    "Open the Unreal Engine project and navigate to the Content Browser where target textures are located.",
+    "Double-click a texture asset to open the Texture Editor window and inspect current compression and streaming settings.",
+    "In the Details panel under Level of Detail, verify that 'Mip Gen Settings' is set to 'FromTextureGroup' or 'NoMipmaps' depending on usage.",
+    "Adjust 'Texture Group' in the Details panel to categorize the texture (e.g., World, Character, UI) for global streaming pool management.",
+    "Check 'Never Stream' if the texture must remain fully loaded in memory at all times, such as UI elements or critical mask maps.",
+    "Save the texture asset and verify that VRAM usage updates accordingly in the viewport statistics."
+  ],
+  "params": [
+    {
+      "name": "Mip Gen Settings",
+      "desc": "Determines how lower-resolution mipmap levels are automatically generated for the texture."
+    },
+    {
+      "name": "Texture Group",
+      "desc": "Assigns the texture to a specific group for collective resolution scaling and streaming control."
+    },
+    {
+      "name": "Never Stream",
+      "desc": "Forces the texture to stay fully loaded in memory, disabling streaming behavior for this asset."
+    },
+    {
+      "name": "LOD Bias",
+      "desc": "Shifts the texture mipmap selection to lower resolutions to save VRAM at the cost of sharpness."
+    },
+    {
+      "name": "Max Texture Size",
+      "desc": "Caps the maximum resolution of the texture loaded into memory regardless of the source file."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Optimizing a massive landscape terrain texture",
+      "steps": [
+        "Select the giant landscape base color texture in the Content Browser.",
+        "Set 'Texture Group' to 'World' in the Details panel to apply standard terrain streaming rules.",
+        "Ensure mipmaps are enabled so distant landscape tiles load smaller resolutions automatically."
+      ]
+    },
+    {
+      "title": "Preventing texture blur on a close-up cinematic hero prop",
+      "steps": [
+        "Locate the primary hero prop texture in the Content Browser.",
+        "Open the Details panel and check the 'Never Stream' option to lock full resolution in memory.",
+        "Adjust 'Max Texture Size' to allow 4K or 8K resolution without reduction."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Textures appearing blurry when viewed up close → Increase texture streaming pool size or check if 'Never Stream' is needed for critical assets.",
+    "VRAM exceeding limits in large scenes → Enable mipmaps on all world textures and assign correct Texture Groups."
+  ],
+  "related": [
+    "Texture import settings",
+    "World Aligned Texture",
+    "Nanite",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "OXieJUwJXIg",
+      "title": "How To Optimize Unreal Engine Textures Using MipMaps #tutorial #performance",
+      "author": "3D Dreamer"
+    },
+    {
+      "id": "uk3W8Zhahdg",
+      "title": "Managing the Texture Streaming Pool | Tips & Tricks | Unreal Engine",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Texture%20streaming%20and%20mipmaps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Open",
+    "Unreal Engine",
+    "Content Browser"
+  ],
+  "at": "2026-11-07T10:29:25.379627+00:00"
+}
