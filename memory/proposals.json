@@ -19248,5 +19248,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T15:59:54+00:00",
+    "kind": "proposal",
+    "id": "p-7a421314d3",
+    "title": "backend/tests/test_triposr_mock.py 예외 상황 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "과거 TripoSR 오류 처리 단위 테스트 과제가 패치 적용 실패로 종료된 이력이 있어, 안정성 검증을 위한 모의 테스트 보강이 필요합니다.",
+    "proposal": "backend/tests/test_triposr_mock.py 파일에 TripoSR 모듈이 없거나 예외 발생 시 대체 경로와 오류 메시지 반환 검증 테스트를 추가합니다.",
+    "expected": "로컬 파이프라인의 예외 상황 대응력 향상 및 테스트 커버리지 유지",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T15:59:54+00:00",
+    "kind": "proposal",
+    "id": "p-4e0757b340",
+    "title": "docs/local-pipeline.md VRAM 설정 안내 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 파이프라인 실행 시 GPU 및 VRAM 요구사항에 대한 사용자 문의가 많아 명확한 가이드가 필요합니다.",
+    "proposal": "docs/local-pipeline.md 문서를 업데이트하여 권장 VRAM 사양과 CUDA 버전별 설정 주의사항을 상세히 정리합니다.",
+    "expected": "사용자의 로컬 설치 및 실행 성공률 증가",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T16:00:19.649451+00:00",
+    "kind": "decision",
+    "id": "p-7a421314d3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T16:00:19.670974+00:00",
+    "kind": "decision",
+    "id": "p-4e0757b340",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
   }
 ]
