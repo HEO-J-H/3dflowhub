@@ -1,0 +1,91 @@
+{
+  "id": "houdini-karma-renderer-basics-fa3b",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Karma renderer basics",
+  "title": "Karma — 렌더 기초",
+  "summary": "Houdini Karma 렌더러는 USD 기반의 차세대 물리 기반 렌더러로, Solaris 작업 환경에서 사실적인 빛과 Shading을 고속으로 계산합니다.",
+  "when": [
+    "Houdini Solaris에서 USD 기반의 복잡한 씬을 렌더링할 때",
+    "USD MaterialX Shader를 사용하여 물리적으로 정확한 재질을 표현할 때",
+    "CPU와 GPU(Karma XPU)를 활용해 효율적으로 고화질 이미지를 뽑아낼 때"
+  ],
+  "steps": [
+    "Houdini 상단 데스크톱 메뉴에서 Solaris 레이아웃으로 전환합니다.",
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Karma 렌더 노드를 생성합니다.",
+    "Tab 키를 눌러 USD Render ROP 노드를 생성하고 Karma 렌더 노드와 연결합니다.",
+    "Scene Graph Tree 패널에서 카메라와 라이트가 제대로 포함되어 있는지 확인합니다.",
+    "Render Gallery 또는 뷰포트에서 Karma 렌더러를 활성화하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Renderer",
+      "desc": "Karma CPU와 Karma XPU 중 연산 방식을 선택합니다."
+    },
+    {
+      "name": "Max Ray Depth",
+      "desc": "빛의 반사와 굴절 최대 횟수를 설정하여 사실감을 조절합니다."
+    },
+    {
+      "name": "Sampling Quality",
+      "desc": "렌더링 노이즈와 품질을 결정하는 샘플링 값을 조절합니다."
+    },
+    {
+      "name": "Bucket Size",
+      "desc": "CPU 렌더링 시 렌더 버킷의 크기를 지정합니다."
+    },
+    {
+      "name": "Denoiser",
+      "desc": "렌더 이미지의 노이즈를 줄여주는 디노이저를 활성화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Karma XPU로 빠른 뷰포트 렌더링",
+      "steps": [
+        "Karma 렌더 노드의 파라미터에서 Renderer를 Karma XPU로 변경합니다.",
+        "뷰포트 디스플레이를 Karma로 설정하여 실시간 인터랙티브 렌더링을 확인합니다."
+      ]
+    },
+    {
+      "title": "MaterialX Shader 적용하기",
+      "steps": [
+        "Material Library 노드를 생성하고 내부에서 MaterialX Shader 네트워크를 구성합니다.",
+        "Assign Material 노드를 통해 USD 지오메트리에 재질을 할당합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라나 라이트가 USD 스테이지에 누락됨 → Scene Graph Tree에서 대상 노드가 뷰포트와 연결되어 있는지 확인",
+    "GPU 메모리 초과로 인한 렌더 실패 → Karma XPU 대신 Karma CPU로 변경하거나 텍스처 Resolution 최적화"
+  ],
+  "related": [
+    "Solaris",
+    "MaterialX",
+    "USD Render ROP",
+    "Scene Graph Tree"
+  ],
+  "videos": [
+    {
+      "id": "vptMKogBiRA",
+      "title": "Overview | Introduction to Solaris and Karma | Houdini 20",
+      "author": "Inside The Mind"
+    },
+    {
+      "id": "Jy5EV3c1MYw",
+      "title": "UI and USD Basics | Introduction to Solaris and Karma | Houdini 20",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Karma%20renderer%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Houdini",
+    "Solaris",
+    "Network View",
+    "Karma"
+  ],
+  "at": "2026-11-07T01:37:41.692742+00:00"
+}

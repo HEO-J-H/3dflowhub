@@ -1,0 +1,99 @@
+{
+  "id": "unreal-engine-umg-widgets-basics-8e76",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "UMG widgets basics",
+  "title": "UMG — 화면 UI",
+  "summary": "Unreal Engine의 UMG(Unreal Motion Graphics)는 게임 내 체력 바, 메인 메뉴, 인벤토리 같은 시각적 유저 인터페이스(UI)를 시각적으로 디자인하고 구현하는 강력한 툴입니다.",
+  "when": [
+    "화면에 플레이어 체력이나 미니맵 같은 HUD를 띄울 때",
+    "메인 메뉴, 일시정지 창 등 게임 UI 화면을 만들 때",
+    "아이템 획득 알림이나 대화창 같은 상호작용 인터페이스를 구성할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 User Interface → Widget Blueprint를 선택합니다.",
+    "부모 클래스로 User Widget을 선택하고 위젯 블루프린트 이름을 지정합니다.",
+    "생성된 위젯을 더블클릭하여 UMG Designer 탭을 엽니다.",
+    "Palette 패널에서 Button, Text 같은 UI 요소를 드래그하여 Canvas Panel 위로 배치합니다.",
+    "Details 패널에서 크기, 위치, 텍스트 내용을 수정하고 컴파일 후 저장합니다.",
+    "레벨 블루프린트에서 Create Widget 노드와 Add to Viewport 노드를 연결해 화면에 띄웁니다."
+  ],
+  "params": [
+    {
+      "name": "Canvas Panel",
+      "desc": "하위 UI 요소들의 절대 위치와 앵커를 설정하는 기본 컨테이너입니다."
+    },
+    {
+      "name": "Anchor",
+      "desc": "Resolution가 변할 때 UI 요소가 화면 비율에 맞춰 정렬되도록 기준점을 지정합니다."
+    },
+    {
+      "name": "Details",
+      "desc": "선택한 UI 요소의 크기, 색상, 텍스트, 폰트 등 속성을 정밀하게 수정합니다."
+    },
+    {
+      "name": "Palette",
+      "desc": "버튼, 텍스트, 이미지 등 뷰포트에 배치할 수 있는 모든 UI 위젯 목록을 제공합니다."
+    },
+    {
+      "name": "Graph",
+      "desc": "버튼 클릭 등 UI 이벤트와 게임 로직을 블루프린트 노드로 연결하는 편집 탭입니다."
+    },
+    {
+      "name": "ZOrder",
+      "desc": "여러 UI가 겹칠 때 화면에 표시되는 전후 순서(레이어)를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어 체력 바 만들기",
+      "steps": [
+        "Palette 패널에서 ProgressBar를 드래그하여 캔버스에 배치합니다.",
+        "Details 패널의 Progress에서 Percent 값을 조절해 채워진 정도를 확인합니다.",
+        "Graph 탭에서 체력 변수와 바의 Percent 속성을 바인딩합니다."
+      ]
+    },
+    {
+      "title": "게임 시작 메인 메뉴 버튼 제작",
+      "steps": [
+        "Palette 패널에서 Button을 배치하고 그 위에 Text 위젯을 자식으로 넣습니다.",
+        "Details 패널에서 버튼의 색상과 텍스트 내용을 'Game Start'로 바꿉니다.",
+        "버튼의 Details 패널 하단에서 On Clicked 이벤트 노드를 추가하여 레벨 이동 로직을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution 변경 시 UI가 깨짐 → Canvas Panel에 올바른 Anchor 설정을 지정하지 않은 경우이므로 위젯의 앵커를 모서리나 중앙에 정확히 고정합니다.",
+    "UI가 화면에 나타나지 않음 → Add to Viewport 노드를 누락했거나 호출하지 않은 경우이므로 레벨 블루프린트에서 위젯 생성 후 뷰포트 추가 노드가 연결되었는지 확인합니다."
+  ],
+  "related": [
+    "Editor Utility Widget",
+    "Blueprint Basics",
+    "Outliner and Details panel",
+    "Level Blueprint"
+  ],
+  "videos": [
+    {
+      "id": "QVSKvY_AXfE",
+      "title": "How to Make Clean Switchable Tabs in Unreal Engine 5.7 (Widget Switcher Guide)",
+      "author": "Rambod Dev"
+    },
+    {
+      "id": "WbqlFanF_pA",
+      "title": "Unreal Engine 5 Create Stunning Glass Blur UI Widgets in Minutes",
+      "author": "Rambod Dev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20UMG%20widgets%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "User Interface",
+    "Widget Blueprint",
+    "User Widget",
+    "UMG Designer"
+  ],
+  "at": "2026-11-07T01:37:45.589755+00:00"
+}

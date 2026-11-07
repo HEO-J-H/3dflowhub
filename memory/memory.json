@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-04T17:09:31.223978+00:00",
-      "collected": 2,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 241,
-      "candidates_passed": 185,
-      "offtopic": 29,
-      "short": 0,
-      "prefiltered": 40,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "09cff426",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-04T17:24:16.860533+00:00",
       "collected": 2,
       "saved": 2,
@@ -6286,6 +6259,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-07T01:37:20.427468+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 198,
+      "candidates_passed": 162,
+      "offtopic": 22,
+      "short": 0,
+      "prefiltered": 22,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "5cc690b6",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6381,7 +6381,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-29 [[p-d3c63c180e|운영·비용] TRELLIS(MIT) 멀티뷰 3D] ",
     "2026-10-29 [성찰] 스포츠, 구조조정, 중복 할인 등의 무관한 수집 오류를 철저히 차단하고, Maya·3ds Max·Blender 중심의 실무 튜토리얼 및 스크립트 정보에 집중하여 저품질 및 오프토픽 페널티를 극복해야 합니다.",
     "2026-10-29 [성찰] 오프토픽 및 중복 할인·구조조정 뉴스를 수집 단계에서 완전히 차단하고, 실무 튜토리얼 및 스크립트·플러그인 등 고수요 고CPC 콘텐츠 비중을 높여야 합니다.",
     "2026-10-30 [[p-61440d09bd|콘텐츠] Trellis C++ 1단계 가이드 과] 애플리케이션 소스 코드 파일(backend/app/)에는 테스트 함수를 두지 말고 구현 코드만 작성하며, 테스트는 반드시 tests/ 디렉토리에 분리하여 작성해야 합니다.",
@@ -6500,7 +6499,8 @@
     "2026-11-06 [성찰] 실무 검색 유입이 입증된 3ds Max 및 Maya의 무료 스크립트와 튜토리얼 중심 콘텐츠가 블로그 체류 시간과 가치를 극대화합니다.",
     "2026-11-06 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
     "2026-11-06 [성찰] 실무 검색 트래픽이 검증된 Blender, Maya, 3ds Max 중심의 스크립트·튜토리얼 콘텐츠에 집중하고 동음이의어 오수집을 철저히 차단해야 합니다.",
-    "2026-11-07 [성찰] 일반 명사 동음이의어(Nuke, Houdini 등)로 인한 허위 수집을 막고 Maya·3ds Max·Blender 중심의 실무 튜토리얼과 스크립트 비중을 집중해야 검색 유입과 애드센스 RPM이 높아집니다."
+    "2026-11-07 [성찰] 일반 명사 동음이의어(Nuke, Houdini 등)로 인한 허위 수집을 막고 Maya·3ds Max·Blender 중심의 실무 튜토리얼과 스크립트 비중을 집중해야 검색 유입과 애드센스 RPM이 높아집니다.",
+    "2026-11-07 [성찰] 검색 유입과 체류 시간을 극대화하려면 Maya·3ds Max·Blender 등 실무 툴 중심의 튜토리얼 및 스크립트 활용법에 집중하고 동음이의어 노이즈를 철저히 차단해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6550,7 +6550,7 @@
     "VFX/Houdini FX": 9,
     "3D DCC/기타 DCC": 66,
     "3D DCC/Substance 3D": 32,
-    "VFX/Unreal 가상 프로덕션": 10,
+    "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 10,
     "VFX/기타 VFX": 55,
     "Game Engine/게임 업계": 40,
@@ -8576,14 +8576,16 @@
     9323022987899834376,
     16102852114956238036,
     10120541458953715101,
-    8719482798001696946
+    8719482798001696946,
+    14530489631236868192,
+    9310399635807306303
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2033,
-    "Game Engine": 2033,
-    "VFX": 2033,
-    "AI 3D": 2033
+    "3D DCC": 2034,
+    "Game Engine": 2034,
+    "VFX": 2034,
+    "AI 3D": 2034
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
