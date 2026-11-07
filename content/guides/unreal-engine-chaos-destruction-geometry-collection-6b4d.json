@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-chaos-destruction-geometry-collection-6b4d",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Chaos Destruction (Geometry Collection)",
+  "title": "Chaos — 부수기",
+  "summary": "Unreal Engine의 Chaos Destruction 시스템은 건물이 무너지거나 오브젝트가 물리적으로 부서지는 효과를 실시간으로 시뮬레이션하는 강력한 파괴 도구입니다.",
+  "when": [
+    "게임 속에서 플레이어의 공격으로 건물이 무너지는 파괴 연출을 만들 때",
+    "차량 충돌로 인해 장애물이나 구조물이 산조각으로 부서질 때",
+    "시네마틱 영상에서 사실적인 잔해와 파편 시뮬레이션을 구현할 때"
+  ],
+  "steps": [
+    "Content Browser에서 파괴할 3D Mesh를 우클릭하고 Fracture 메뉴를 선택해 Fracture Editor를 엽니다.",
+    "Fracture 모드에서 Voronoi 등 파쇄 방식을 선택하고 점(Points) 개수를 조절한 뒤 Fracture 버튼을 누릅니다.",
+    "파쇄된 메시들을 선택하고 상단 메뉴에서 Geometry Collection으로 변환(New Geometry Collection)합니다.",
+    "Outliner나 Content Browser에서 생성된 Geometry Collection 오브젝트를 뷰포트로 드래그하여 배치합니다.",
+    "Details 패널에서 Simulation 설정과 Physics 속성을 활성화하고 재생 버튼을 눌러 파괴 시뮬레이션을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cluster",
+      "desc": "여러 개의 파편 조각을 하나로 묶어 단계적으로 부서지게 제어합니다."
+    },
+    {
+      "name": "Damage Threshold",
+      "desc": "오브젝트가 충격을 받아 부서지기 시작하는 최소한의 임계값입니다."
+    },
+    {
+      "name": "Strain",
+      "desc": "파편들이 서로 연결되어 버틸 수 있는 응력 한계치를 설정합니다."
+    },
+    {
+      "name": "Initial Velocity",
+      "desc": "시뮬레이션 시작 시 파편에 부여되는 초기 속도와 방향입니다."
+    },
+    {
+      "name": "Collision Shape",
+      "desc": "파편 간의 충돌 계산을 처리할 물리적 형태를 지정합니다."
+    },
+    {
+      "name": "Sleep",
+      "desc": "움직임이 멈춘 파편의 물리 연산을 비활성화하여 성능을 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 기둥 파괴",
+      "steps": [
+        "기둥 메시를 Fracture Editor로 불러옵니다.",
+        "Voronoi 파쇄를 적용하여 균일하지 않은 조각으로 쪼갭니다.",
+        "Geometry Collection으로 변환 후 Details에서 Damage Threshold를 조정합니다.",
+        "공격 프로젝타일을 충돌시켜 기둥이 무너지는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "유리창 깨짐 연출",
+      "steps": [
+        "얇은 판 형태의 유리 메시를 선택합니다.",
+        "Uniform 또는 Voronoi 방식으로 파편 간격을 촘촘하게 나눕니다.",
+        "외곽 고정(Anchor) 설정을 통해 창틀에 붙어 있는 형태를 유지합니다.",
+        "물체가 충돌할 때 중심부터 유리 조각이 흩어지도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파편 조각이 너무 많아 게임 프레임이 떨어짐 → Fracture 설정에서 Min/Max Size를 키워 폴리곤과 파편 개수를 최적화하세요.",
+    "충돌해도 오브젝트가 꿈쩍도 하지 않음 → Geometry Collection의 Physics 설정에서 Simulate Physics가 켜져 있는지 확인하세요.",
+    "파편이 제멋대로 공중에서 터짐 → Anchor 설정을 통해 고정되어야 할 베이스 영역을 지정해 주세요."
+  ],
+  "related": [
+    "Geometry Collection",
+    "Chaos Solver",
+    "Field System",
+    "Niagara"
+  ],
+  "videos": [
+    {
+      "id": "hI40gKTiIzc",
+      "title": "Chaos Destruction in Unreal Engine 5 – Geometry Collection & Material Setup",
+      "author": "3D College"
+    },
+    {
+      "id": "6TAQTqNQj8A",
+      "title": "How to Make Destructible Objects in Unreal Engine 5 Chaos Destruction",
+      "author": "Rambod Dev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Chaos%20Destruction%20%28Geometry%20Collection%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T09:29:17.264669+00:00"
+}
