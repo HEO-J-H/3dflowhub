@@ -19925,5 +19925,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T19:20:15+00:00",
+    "kind": "proposal",
+    "id": "p-84eaeab158",
+    "title": "backend/tests/test_triposr_mock.py 모의 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 TripoSR 오류 처리 테스트 과제가 패치 적용 실패로 반복 중단됨",
+    "proposal": "backend/tests/test_triposr_mock.py 파일을 새로 구성하여 TripoSR 실행 실패 시의 예외 반환을 격리된 환경에서 안전하게 테스트",
+    "expected": "테스트 안정성 확보 및 로컬 파이프라인 신뢰도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T19:20:15+00:00",
+    "kind": "proposal",
+    "id": "p-fa33844018",
+    "title": "docs/local-pipeline.md VRAM 및 CUDA 설정 가이드 재정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 파이프라인 실행 안내서 문서화 과제가 held 상태였으며, 사용자 가이드 보완 필요",
+    "proposal": "docs/local-pipeline.md 파일 내 VRAM 권장 사양 표기와 CUDA 설정 단계를 간결하게 수정",
+    "expected": "로컬 실행 사용자의 오류 문의 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T19:20:34.731653+00:00",
+    "kind": "decision",
+    "id": "p-84eaeab158",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T19:20:34.757786+00:00",
+    "kind": "decision",
+    "id": "p-fa33844018",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
   }
 ]
