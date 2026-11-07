@@ -20064,5 +20064,74 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T21:50:38+00:00",
+    "kind": "proposal",
+    "id": "p-ce372dec60",
+    "title": "docs/rag-open-source.md 오픈소스 비교 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자 요청인 '깃허브 RAG 오픈소스 검토 반영' 중 파일 패치 실패 문제를 해결하기 위해 안전한 문서 작업으로 우선 진행",
+    "proposal": "docs/rag-open-source.md 파일을 생성하여 Pix2Poly에 적용 가능한 오픈소스 RAG 라이브러리(예: LlamaIndex 등)의 라이선스와 요구사항을 정리합니다.",
+    "expected": "안전하게 오픈소스 검토 결과 문서화 완료",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/3dflowhub/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T21:50:38+00:00",
+    "kind": "proposal",
+    "id": "p-4ebee64cc9",
+    "title": "backend/tests/test_basic_pipeline.py 기본 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 TripoSR 및 RAG 관련 테스트 패치가 거듭 실패함에 따라, 영향도가 낮고 안정적인 기본 파이프라인 목(Mock) 테스트 추가",
+    "proposal": "backend/tests/test_basic_pipeline.py에 이미지 입력 시 기본 웹 렌더링 및 높이맵 메시 생성 흐름을 검증하는 간단한 단위 테스트를 추가합니다.",
+    "expected": "테스트 통과율 향상 및 코드 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T21:50:59.801602+00:00",
+    "kind": "decision",
+    "id": "p-ce372dec60",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T21:50:59.823281+00:00",
+    "kind": "decision",
+    "id": "p-4ebee64cc9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T21:51:02.349388+00:00",
+    "kind": "triage",
+    "id": "p-ce372dec60",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 이미 끝낸 제안에 이미 오픈소스 RAG 관련 문서화 및 검토 내용이 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-07T21:51:02.367121+00:00",
+    "kind": "decision",
+    "id": "p-ce372dec60",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 이미 끝낸 제안에 이미 오픈소스 RAG 관련 문서화 및 검토 내용이 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-07T21:51:03.212997+00:00",
+    "kind": "triage",
+    "id": "p-4ebee64cc9",
+    "verdict": "agent",
+    "reason": "backend/tests/test_basic_pipeline.py에 기본 파이프라인 목(Mock) 테스트를 추가하는 작업은 AI 에이전트가 코드를 직접 수정하여 처리할 수 있습니다."
   }
 ]
