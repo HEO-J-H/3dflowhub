@@ -53,3 +53,4 @@
 - [ ] (agent:보류) core.normalize_title(): 제목 정규화 함수 추가(소문자, 특수문자 제거, 공백 정규화) 및 tests/test_core.py에 정규화 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊이 판정 함수 구현 및 해당 판정 로직 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) evolve.summarize_cpc_category_stats(): 반환되는 알림 순서가 '도메인 갱신 D-1'을 포함하도록 로직 수정 및 순서 검증 테스트 추가 — [4] 패치 적용 실패: 변경 없음
+- [x] (agent) [p-57aa5c9235|사이트·UX] 모바일 화면 가이드 카드 가시성 강화: 모바일 화면에서 기초 가이드 카드의 제목 폰트 크기를 키우고 여백을 최적화하여 3초 안에 내용을 파악할 수 있도록 수정합니다.
