@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-game-mode-and-player-controller-44f3",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Game Mode and Player Controller",
+  "title": "Game Mode·Player Controller",
+  "summary": "Unreal Engine의 Game Mode와 Player Controller는 게임의 규칙을 정의하고 플레이어의 입력과 제어를 관리하는 핵심 클래스입니다. 게임의 승리 조건, 스폰 지점, 카메라 시점 등을 설정할 때 사용합니다.",
+  "when": [
+    "새로운 게임 규칙이나 승리/패배 조건을 설정할 때",
+    "플레이어의 키보드 및 Mouse 입력을 받아 캐릭터를 움직이고 싶을 때",
+    "레벨이 시작될 때 캐릭터(Pawn)를 특정 위치에 스폰하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser에서 우클릭하고 Blueprint Class를 선택합니다.",
+    "All Classes 확장 메뉴에서 GameModeBase를 검색하여 선택하고 새로운 GameMode 블루프린트를 생성합니다.",
+    "같은 방식으로 PlayerController 클래스를 상속받는 커스텀 플레이어 Controller를 생성합니다.",
+    "생성한 GameMode 블루프린트를 열고 Defaults 패널의 Player Controller Class 항목에 방금 만든 커스텀 Player Controller를 지정합니다.",
+    "World Settings 패널(Window → World Settings)에서 GameMode Override를 방금 만든 GameMode로 설정합니다.",
+    "플레이어 캐릭터 블루프린트를 생성하여 GameMode의 Default Pawn Class 항목에 할당하고 뷰포트에서 Play를 눌러 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "GameMode Override",
+      "desc": "현재 레벨에만 적용할 커스텀 게임 규칙을 지정합니다."
+    },
+    {
+      "name": "Default Pawn Class",
+      "desc": "게임 시작 시 플레이어가 조종할 기본 캐릭터나 폰을 설정합니다."
+    },
+    {
+      "name": "Player Controller Class",
+      "desc": "플레이어의 입력을 받아 캐릭터를 제어할 Controller 클래스를 지정합니다."
+    },
+    {
+      "name": "HUD Class",
+      "desc": "플레이어 화면에 표시될 체력바, 조준점 등 UI 요소를 설정합니다."
+    },
+    {
+      "name": "Player State",
+      "desc": "점수나 플레이어의 상태 등 세션 동안 유지되는 데이터를 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 캐릭터 스폰 및 제어 설정",
+      "steps": [
+        "Content Browser에서 GameModeBase 블루프린트를 엽니다.",
+        "Classes 카테고리에서 Default Pawn Class를 내가 만든 캐릭터 블루프린트로 변경합니다.",
+        "월드에 Player Start를 배치하고 Play를 눌러 캐릭터가 해당 위치에 스폰되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "레벨별 게임 규칙 오버라이드",
+      "steps": [
+        "새로운 레벨을 열고 창 상단의 Window 메뉴에서 World Settings를 엽니다.",
+        "World Settings 패널의 GameMode Override를 커스텀 GameMode로 변경합니다.",
+        "해당 레벨에서만 다르게 동작할 규칙과 스폰 설정을 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "World Settings에서 GameMode를 오버라이드하지 않음 → 기본 Default GameMode가 작동하여 커스텀 설정이 무시됨. World Settings에서 GameMode Override를 지정하세요.",
+    "Player Controller에 입력 매핑(Enhanced Input)을 연결하지 않음 → 키를 눌러도 캐릭터가 반응하지 않음. Player Controller 블루프린트 내에서 Input Mapping Context를 추가했는지 확인하세요."
+  ],
+  "related": [
+    "Enhanced Input",
+    "Player Start",
+    "Character",
+    "Level Blueprint"
+  ],
+  "videos": [
+    {
+      "id": "LQl-7Kt6azU",
+      "title": "Build a Player Controller in Unreal Engine 5.8 Blueprints | Tutorial 2",
+      "author": "Cole Craven"
+    },
+    {
+      "id": "zZJP0t2jETw",
+      "title": "Unreal Engine's GAME MODE explained in 2 Minutes!",
+      "author": "Pobato"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Game%20Mode%20and%20Player%20Controller",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class",
+    "All Classes",
+    "GameModeBase",
+    "GameMode"
+  ],
+  "at": "2026-11-07T01:57:32.399182+00:00"
+}
