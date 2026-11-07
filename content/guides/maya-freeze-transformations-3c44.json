@@ -1,0 +1,88 @@
+{
+  "id": "maya-freeze-transformations-3c44",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Freeze Transformations",
+  "title": "Freeze Transformations — 값 초기화",
+  "summary": "Maya의 Freeze Transformations 기능은 오브젝트의 현재 이동·회전·크기 값을 초기화하여 Translate(0, 0, 0), Rotate(0, 0, 0), Scale(1, 1, 1) 상태로 만드는 기초 작업입니다. 시각적인 변화 없이 내부 채널 값만 리셋되어 Modifier, 리깅, 대칭 복사 시 오류를 방지합니다.",
+  "when": [
+    "오브젝트를 스케일 조정한 후 모디파이어나 디포머를 적용할 때",
+    "캐릭터 리깅 전 관절의 회전값과 축을 깨끗하게 정리할 때",
+    "미러링(Mirror) 또는 대칭 복사 시 중심축이 어긋나는 것을 방지할 때"
+  ],
+  "steps": [
+    "Maya 뷰포트에서 초기화할 오브젝트를 선택합니다.",
+    "상단 메뉴 바에서 Modify 탭을 클릭합니다.",
+    "드롭다운 메뉴에서 Freeze Transformations 를 선택합니다 (필요시 옵션 상자 클릭).",
+    "Channel Box에서 Translate, Rotate 값이 0, Scale 값이 1로 초기화되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Translate",
+      "desc": "오브젝트의 위치 이동 값을 0으로 초기화합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "오브젝트의 회전 값을 0으로 초기화합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기 값을 1로 초기화합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "면의 법선 방향을 함께 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "소품 스케일 정렬하기",
+      "steps": [
+        "오브젝트를 뷰포트에서 크기를 임의로 조절합니다.",
+        "Channel Box에서 Scale 값이 1이 아닌 것을 확인합니다.",
+        "Modify -> Freeze Transformations 를 실행합니다.",
+        "Scale 값이 1.000으로 리셋된 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 관절 축 정리",
+      "steps": [
+        "조인트(Joint) 배치를 완료한 후 선택합니다.",
+        "Modify -> Freeze Transformations 를 실행합니다.",
+        "회전값이 0으로 정렬되어 리깅 오류를 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값을 바꾼 채 Freeze를 하지 않음 → Modifier 적용 시 두께가 찌그러짐 (해결: Modify -> Freeze Transformations 실행)",
+    "히스토리가 남아있는 상태에서 작업 → 예상치 못한 변형 발생 (해결: Edit -> Delete by Type -> History 먼저 실행 후 Freeze)"
+  ],
+  "related": [
+    "Center Pivot",
+    "Delete History",
+    "Modify",
+    "Channel Box"
+  ],
+  "videos": [
+    {
+      "id": "KWSh4m5_Zsw",
+      "title": "The Maya Toolbelt - Freeze Transformations",
+      "author": "Maya Toolbelt"
+    },
+    {
+      "id": "1SXvWTiMkjs",
+      "title": "Delete History and Freeze Transformations Maya Tutorial",
+      "author": "What Make Art"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Freeze%20Transformations",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Modify",
+    "Freeze Transformations"
+  ],
+  "at": "2026-11-07T09:59:18.125118+00:00"
+}

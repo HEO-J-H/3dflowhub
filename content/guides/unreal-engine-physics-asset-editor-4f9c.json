@@ -1,0 +1,96 @@
+{
+  "id": "unreal-engine-physics-asset-editor-4f9c",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "물리",
+  "name": "Physics Asset Editor",
+  "title": "Physics Asset — 래그돌",
+  "summary": "Physics Asset Editor는 Unreal Engine에서 스켈레탈 메시의 물리 충돌 영역(Physics Body와 Constraint)을 설정하고 편집하는 전용 도구입니다.",
+  "when": [
+    "캐릭터나 크리처가 바닥에 쓰러질 때 래그돌(Ragdoll) 물리 반응을 만들 때",
+    "무기나 장갑 등 캐릭터에 장착된 오브젝트가 주변 환경과 실시간으로 충돌하게 할 때",
+    "캐릭터의 특정 신체 부위가 물리 시뮬레이션에 반응하도록 제한(Constraint)을 걸 때"
+  ],
+  "steps": [
+    "Content Browser에서 대상 Skeletal Mesh를 우클릭합니다.",
+    "Create 메뉴에서 Physics Asset을 선택하여 새 피직스 에셋을 생성합니다.",
+    "생성된 Physics Asset을 더블 클릭하여 Physics Asset Editor를 엽니다.",
+    "Hierarchy 패널에서 본(Bone)을 선택하고, 상단 메뉴에서 Add Body를 눌러 충돌 영역을 생성합니다.",
+    "Viewport에서 기즈모(Gizmo)를 사용해 본의 충돌 볼륨(Shape) 크기와 위치를 조절합니다.",
+    "Constraint 설정을 통해 관절의 회전 각도와 제한을 조정하고 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Physics Body",
+      "desc": "충돌을 계산하기 위한 기본 도형(Sphere, Box, Sphyl) 영역입니다."
+    },
+    {
+      "name": "Constraint",
+      "desc": "두 본 사이의 관절 운동 범위와 회전 제한을 설정합니다."
+    },
+    {
+      "name": "Mass",
+      "desc": "해당 본 또는 오브젝트의 물리적 무게를 결정합니다."
+    },
+    {
+      "name": "Linear Limits",
+      "desc": "관절이 늘어나거나 이동할 수 있는 거리를 제한합니다."
+    },
+    {
+      "name": "Angular Limits",
+      "desc": "관절이 꺾이는 회전 각도를 축별로 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 래그돌 사망 효과",
+      "steps": [
+        "Skeletal Mesh의 Physics Asset을 엽니다.",
+        "모든 주요 본에 Physics Body를 추가합니다.",
+        "각 관절의 Constraint 한계를 조정해 자연스러운 꺾임을 만듭니다.",
+        "캐릭터 블루프린트에서 사망 시 Simulate Physics를 활성화합니다."
+      ]
+    },
+    {
+      "title": "흔들리는 장신구 설정",
+      "steps": [
+        "캐릭터 허리에 매달린 천이나 가방 본을 선택합니다.",
+        "해당 본에 작은 Physics Body를 추가합니다.",
+        "Constraint를 설정해 회전 범위를 넓게 풀어줍니다.",
+        "게임 플레이 중 캐릭터가 움직일 때 장신구가 흔들리는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "충돌 영역(Body)이 서로 겹침 → 캐릭터가 비정상적으로 튕겨 나가거나 떨림 현상 발생. 겹치는 영역의 크기를 줄이거나 모양을 변경하세요.",
+    "Constraint 제한 각도가 너무 넓음 → 관절이 사람의 신체 구조와 다르게 꺾임. Angular Limits 값을 조여 회전 범위를 제한하세요."
+  ],
+  "related": [
+    "Chaos Destruction",
+    "Chaos Cloth",
+    "IK Retargeter",
+    "Animation Blueprint"
+  ],
+  "videos": [
+    {
+      "id": "pfvVrE0cBJU",
+      "title": "Unreal Engine 5 Tutorial -  Physics Asset",
+      "author": "Ryan Laley"
+    },
+    {
+      "id": "UqJXKFldJSM",
+      "title": "Physics Asset | Tutorial",
+      "author": "Helios"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Physics%20Asset%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Skeletal Mesh",
+    "Create",
+    "Physics Asset"
+  ],
+  "at": "2026-11-07T09:59:13.294813+00:00"
+}
