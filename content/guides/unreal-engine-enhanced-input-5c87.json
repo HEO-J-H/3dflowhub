@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-enhanced-input-5c87",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Enhanced Input",
+  "title": "Enhanced Input — 키 입력",
+  "summary": "Unreal Engine의 Enhanced Input은 입력 시스템을 데이터 기반으로 확장하여, 키보드·Mouse·게임패드 등의 입력 장치를 유연하게 매핑하고 컨텍스트별로 분기할 수 있게 해주는 기능입니다.",
+  "when": [
+    "플레이어의 이동 및 시점 조작 키를 사용자가 직접 커스텀(Rebind)할 수 있게 만들 때",
+    "무기 장착, 탈것 탑승 등 게임 상황(Context)에 따라 입력 키 역할을 다르게 전환해야 할 때",
+    "키 누름(Pressed), 떼기(Released), 홀드(Hold) 외에 복잡한 입력 트리거(Trigger)와 Modifier를 조합할 때"
+  ],
+  "steps": [
+    "Content Browser에서 빈 공간을 우클릭하고 Input → Input Action을 선택하여 새로운 입력 액션을 생성합니다.",
+    "다시 Content Browser를 우클릭하고 Input → Input Mapping Context(IMC)를 생성합니다.",
+    "생성한 Input Mapping Context를 열고, Mapping 섹션에서 '+' 버튼을 눌러 위에서 만든 Input Action을 추가합니다.",
+    "추가된 Input Action 옆의 드롭다운 메뉴에서 실제 키보드나 Mouse 버튼(예: W 키, Gamepad Left Stick 등)을 연결합니다.",
+    "플레이어 캐릭터 블루프린트의 Event Graph에서 우클릭하고 'Enhanced Action Events'를 검색하여 방금 만든 Input Action 노드를 배치합니다.",
+    "캐릭터의 BeginPlay 이벤트 등에서 Add Mapping Context 노드를 호출하여, Player Controller와 생성한 IMC를 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Triggers",
+      "desc": "입력이 작동하기 위한 조건(예: Down, Pressed, Hold, Released)을 정의합니다."
+    },
+    {
+      "name": "Modifiers",
+      "desc": "입력값에 수학적 변환(예: Negate, Swizzle Axis, Dead Zone)을 적용합니다."
+    },
+    {
+      "name": "Value Type",
+      "desc": "입력 데이터의 형식(Digital Bool, Axis 1D, Axis 2D Vector)을 설정합니다."
+    },
+    {
+      "name": "Mappings",
+      "desc": "하나의 Input Action에 여러 개의 물리적 키를 대응시키는 목록입니다."
+    },
+    {
+      "name": "Priority",
+      "desc": "여러 Input Mapping Context가 동시에 활성화될 때 입력 처리 우선순위를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 이동(WASD) 입력 설정",
+      "steps": [
+        "Input Action (IA_Move)을 생성하고 Value Type을 Axis 2D (Vector2D)로 설정합니다.",
+        "Modifiers에 Swizzle Axis를 추가하여 Y축과 X축 입력을 올바르게 정렬합니다.",
+        "Input Mapping Context에 IA_Move를 등록하고 W, A, S, D 키를 각각 매핑합니다.",
+        "블루프린트에서 IA_Move의 Triggered 노드와 Add Movement Input 노드를 연결합니다."
+      ]
+    },
+    {
+      "title": "Mouse 시점 회전(Look) 설정",
+      "steps": [
+        "Input Action (IA_Look)을 생성하고 Value Type을 Axis 2D로 설정합니다.",
+        "Input Mapping Context에 IA_Look을 추가하고 Mouse XY 2D-Axis를 연결합니다.",
+        "캐릭터 블루프린트에서 IA_Look 이벤트의 Value를 Add Controller Yaw/Pitch Input에 각각 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컨텍스트 미적용 → 플레이어 Controller에서 Add Mapping Context를 호출하지 않아 키 입력이 전혀 반응하지 않음. BeginPlay 이벤트에 Add Mapping Context 노드를 추가하고 타겟을 올바르게 연결하세요.",
+    "Axis Type 불일치 → Vector2D가 필요한 이동 액션에 1D Axis나 Bool을 연결하여 움직이지 않음. Input Action의 Value Type이 연결하려는 키의 스펙과 일치하는지 확인하세요."
+  ],
+  "related": [
+    "Input Mapping Context",
+    "Input Action",
+    "Player Controller",
+    "Enhanced Input Subsystem"
+  ],
+  "videos": [
+    {
+      "id": "TiDo_J4VOFA",
+      "title": "Introduction to Enhanced Input Action Mapping in Unreal Engine",
+      "author": "Unreal Engine"
+    },
+    {
+      "id": "CYiHNbAIp4s",
+      "title": "How to Easily Use the NEW Enhanced Input Action System in Unreal Engine 5.1",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Enhanced%20Input",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Input",
+    "Input Action",
+    "Input Mapping Context",
+    "IMC",
+    "Mapping"
+  ],
+  "at": "2026-11-07T01:00:28.652709+00:00"
+}

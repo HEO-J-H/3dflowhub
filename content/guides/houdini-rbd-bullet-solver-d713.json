@@ -1,0 +1,99 @@
+{
+  "id": "houdini-rbd-bullet-solver-d713",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "RBD Bullet Solver",
+  "title": "RBD — 강체 파괴",
+  "summary": "Houdini의 RBD Bullet Solver는 파쇄된 조각들이 중력, 충돌, 마찰 등 물리 법칙에 따라 서로 부딪히고 떨어지는 거동을 계산하는 강력한 강체 시뮬레이션 솔버입니다.",
+  "when": [
+    "유리, 콘크리트, 돌 등 딱딱한 오브젝트가 충돌하여 수많은 조각으로 깨지고 흩어질 때",
+    "건물이 무너지거나 바닥에 파편이 쌓이는 다중 강체 충돌 시뮬레이션을 만들 때",
+    "외부 힘(Wind, Collision)에 반응하여 파편들이 자연스럽게 튕겨 나가게 할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 오브젝트 레벨(obj)로 들어간 후 Geometry 노드 안으로 이동합니다.",
+    "Tab 키를 누르고 rbd material fracture 노드를 생성해 오브젝트를 파쇄하고 점(Point) 속성을 준비합니다.",
+    "Tab 키를 누르고 dopnet 노드를 생성하여 다이나믹스 네트워크 안으로 들어갑니다.",
+    "DOP 네트워크 안에서 Tab 키를 누르고 rbdbulletsolver 노드와 rbdobject 노드를 생성합니다.",
+    "RBD Object 노드의 SOP Path를 이전 단계의 파쇄된 지오메트리 경로로 지정합니다.",
+    "RBD Bullet Solver의 출력을 Merge를 거쳐 최종 dopoutput에 연결하고, Timeline의 Play 버튼을 눌러 시뮬레이션을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Substeps",
+      "desc": "초당 계산 횟수를 늘려 빠르게 움직이는 파편의 충돌 정확도와 안정성을 높입니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "중력의 방향과 세기를 조절하여 파편이 떨어지는 물리적 힘을 설정합니다."
+    },
+    {
+      "name": "Collision Group",
+      "desc": "오브젝트 간 충돌 그룹을 나누어 특정 파편끼리만 반응하도록 제어합니다."
+    },
+    {
+      "name": "Bounce",
+      "desc": "충돌 시 파편이 튕겨 나가는 반발력(탄성)을 조절합니다."
+    },
+    {
+      "name": "Friction",
+      "desc": "표면 마찰력을 조절하여 파편이 바닥이나 서로를 스칠 때 미끄러지는 정도를 결정합니다."
+    },
+    {
+      "name": "Sleep Threshold",
+      "desc": "움직임이 거의 없는 파편의 계산을 멈춰 시뮬레이션 속도를 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽에 부딪히며 무너지는 콘크리트 벽돌",
+      "steps": [
+        "Box 지오메트리를 RBD Material Fracture로 콘크리트 조각으로 쪼갭니다.",
+        "DOP 네트워크 안에서 RBD Bullet Solver와 RBD Object를 연결합니다.",
+        "빠르게 날아오는 고속의 충돌용 오브젝트(Collider)를 추가합니다.",
+        "Timeline을 재생하여 벽돌이 충돌 지점을 중심으로 사방으로 흩어지게 만듭니다."
+      ]
+    },
+    {
+      "title": "바닥에 떨어져 산산조각 나는 도자기",
+      "steps": [
+        "도자기 모델링을 가져와 Voronoi Fracture로 내부 조각을 생성합니다.",
+        "RBD Bullet Solver 설정 후 바닥(Ground Plane) 콜라이더를 배치합니다.",
+        "Bounce와 Friction 값을 조절하여 도자기 파편이 현실감 있게 구르도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파편이 서로 겹쳐서 시작할 때 폭발하듯 튕겨 나감 → RBD Material Fracture 후 unpack 단계에서 패킹(Packing) 설정을 확인하거나 초기 간격을 약간 벌려줍니다.",
+    "시뮬레이션이 너무 느리고 파편이 뚫고 지나감 → Bullet Solver의 Substeps 값을 높이고 Collision 여유즈(Padding)를 확인합니다.",
+    "파편이 멈추지 않고 계속 미끄러짐 → Friction(마찰력) 값을 높이고 Sleep Threshold를 조정합니다."
+  ],
+  "related": [
+    "RBD Material Fracture",
+    "Voronoi Fracture",
+    "RBD Packed Object",
+    "POP Solver"
+  ],
+  "videos": [
+    {
+      "id": "n_wsSlWC_Tc",
+      "title": "Intro to RBD Fractures and the Bullet Solver in Houdini",
+      "author": "Inside The Mind"
+    },
+    {
+      "id": "NtCdsZ4CWXI",
+      "title": "Controlling the RBD Material Fracture Placement in Houdini",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20RBD%20Bullet%20Solver",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "Point"
+  ],
+  "at": "2026-11-07T01:00:24.404610+00:00"
+}
