@@ -1,0 +1,104 @@
+{
+  "id": "unreal-engine-control-rig-basics-cf32",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Control Rig basics",
+  "title": "Control Rig — 엔진 안 리깅",
+  "summary": "Control Rig은 Unreal Engine 내에서 리깅과 애니메이션을 실시간으로 제작·편집할 수 있는 시스템입니다.",
+  "when": [
+    "간단한 캐릭터 팔·다리 움직임을 빠르게 프로토타입할 때",
+    "리얼타임 게임플레이 중에 직접 애니메이션을 조정해야 할 때",
+    "외부 DCC 툴 없이 Unreal만으로 리깅 파이프라인을 구축하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser → Add New → Animation → Control Rig → Choose Skeleton → Create",
+    "Control Rig 에디터에서 Graph 탭을 엽니다",
+    "Hierarchy 노드를 추가하고 제어할 Bone을 선택합니다",
+    "Transform (Modify) Bone 노드를 추가하고 Hierarchy 노드와 연결합니다",
+    "필요에 따라 IK, FK, Blend 노드 등을 연결합니다",
+    "Compile 버튼을 눌러 저장합니다",
+    "레벨에 Skeletal Mesh Actor를 배치하고 Details 패널 → Add Component → Control Rig을 추가해 만든 Control Rig을 지정합니다"
+  ],
+  "params": [
+    {
+      "name": "Control Name",
+      "desc": "컨트롤의 식별자 이름, 뷰포트에 표시되는 핸들의 라벨"
+    },
+    {
+      "name": "Transform",
+      "desc": "컨트롤이 적용할 위치·회전·스케일 값"
+    },
+    {
+      "name": "Space",
+      "desc": "Transform 적용 기준 좌표계 (World 또는 Bone Space)"
+    },
+    {
+      "name": "Weight",
+      "desc": "컨트롤이 영향을 미치는 비율, 0~1 사이"
+    },
+    {
+      "name": "Clamp",
+      "desc": "값 범위 제한, 과도한 회전을 방지"
+    },
+    {
+      "name": "Blend",
+      "desc": "여러 컨트롤 간 가중치 혼합 방식"
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔의 FK 리깅 만들기",
+      "steps": [
+        "Hierarchy 노드에 UpperArm, LowerArm, Hand Bone 선택",
+        "각 Bone마다 Transform (Modify) Bone 노드 추가",
+        "노드들을 순서대로 연결해 계층 구조 유지",
+        "Compile 후 레벨에서 컨트롤을 회전시켜 팔이 움직이는지 확인"
+      ]
+    },
+    {
+      "title": "두 손목에 IK 적용하기",
+      "steps": [
+        "IK Rig 노드(두 손목) 추가",
+        "Target Bone (Hand)과 Effector Bone (Hand) 연결",
+        "IK Weight 값을 1로 설정",
+        "컨트롤을 움직이면 손이 목표 위치에 자동으로 맞춰짐"
+      ]
+    }
+  ],
+  "mistakes": [
+    "컨트롤이 움직이지 않음 → Hierarchy 노드에 올바른 Skeleton이 연결됐는지, Bone 이름이 정확한지 확인",
+    "키프레임이 저장되지 않음 → Compile 후 Save를 반드시 수행하고, Animation Blueprint에 Control Rig을 연결했는지 검증",
+    "스케일이 비정상적으로 적용 → Transform 노드에서 Scale 값을 1로 초기화하고, 필요 시 Apply Scale를 사용"
+  ],
+  "related": [
+    "Control Rig Blueprint",
+    "IK Rig",
+    "Animation Blueprint",
+    "Sequencer"
+  ],
+  "videos": [
+    {
+      "id": "hhcpSXJ2zak",
+      "title": "Control Rig #1:  Intro & Your First Controls   |   Unreal Engine Tutorial",
+      "author": "Ask A Dev"
+    },
+    {
+      "id": "ENl6FhVEiwM",
+      "title": "Control Rig #2:  Forward Kinematics   |   Unreal Engine Tutorial",
+      "author": "Ask A Dev"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Control%20Rig%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Add New",
+    "Animation",
+    "Control Rig",
+    "Choose Skeleton",
+    "Create"
+  ],
+  "at": "2026-11-07T02:50:44.530604+00:00"
+}

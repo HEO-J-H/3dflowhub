@@ -1,0 +1,100 @@
+{
+  "id": "houdini-geometry-spreadsheet-44ca",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Geometry Spreadsheet",
+  "title": "Geometry Spreadsheet — 속성 보기",
+  "summary": "Geometry Spreadsheet는 SOP 레벨에서 포인트·Primitive·엣지·Vertex 어트리뷰트를 표 형태로 실시간 확인·편집할 수 있는 창입니다.",
+  "when": [
+    "새로운 어트리뷰트를 직접 입력하거나 기존 값을 빠르게 수정하고 싶을 때",
+    "디버깅 중 특정 포인트/Primitive에 할당된 값이 올바른지 확인할 때",
+    "데이터를 CSV 등 외부 파일로 내보내어 다른 툴에서 활용하고자 할 때"
+  ],
+  "steps": [
+    "Network View에서 Tab → Geometry Spreadsheet 입력 후 Enter",
+    "또는 오른쪽 파라미터 패널 상단의 ‘Spreadsheet’ 아이콘 클릭",
+    "표 상단의 Display Mode 드롭다운에서 Point/Primitive/Edge/Vertex 중 선택",
+    "Attribute 리스트에서 보고 싶은 어트리뷰트를 클릭 (예: Cd, P, N)",
+    "값을 직접 클릭해 편집하거나, 오른쪽 클릭 → Edit Values 선택",
+    "필요 시 Filter 입력란에 이름 일부를 입력해 검색, Sort 헤더 클릭으로 정렬",
+    "편집이 끝난 뒤 오른쪽 상단 ‘Export’ 버튼 → CSV 로 저장"
+  ],
+  "params": [
+    {
+      "name": "Display Mode",
+      "desc": "포인트·Primitive·엣지·Vertex 중 표시할 요소 선택"
+    },
+    {
+      "name": "Attribute",
+      "desc": "표에 나타낼 어트리뷰트 이름 선택"
+    },
+    {
+      "name": "Filter",
+      "desc": "이름에 포함된 문자열로 어트리뷰트 검색"
+    },
+    {
+      "name": "Sort",
+      "desc": "컬럼 헤더 클릭 시 오름/내림차순 정렬"
+    },
+    {
+      "name": "Edit",
+      "desc": "셀을 더블클릭해 직접 값 수정"
+    },
+    {
+      "name": "Export",
+      "desc": "표 데이터를 CSV 파일로 내보냄"
+    }
+  ],
+  "examples": [
+    {
+      "title": "포인트 색상(Cd) 일괄 수정",
+      "steps": [
+        "Geometry Spreadsheet → Display Mode: Point",
+        "Attribute 리스트에서 Cd 클릭",
+        "첫 셀을 더블클릭하고 원하는 RGB 값을 입력",
+        "Enter 키 → 전체 포인트에 동일 색상이 적용됨"
+      ]
+    },
+    {
+      "title": "Primitive ID 확인 후 선택",
+      "steps": [
+        "Display Mode를 Primitive으로 전환",
+        "Attribute에서 primnum 선택",
+        "필터에 특정 번호 입력해 해당 Primitive 찾기",
+        "셀을 오른쪽 클릭 → Select Geometry 로 해당 Primitive 하이라이트"
+      ]
+    }
+  ],
+  "mistakes": [
+    "값을 편집했지만 Apply 버튼을 누르지 않아 반영되지 않음 → Edit 후 Enter 또는 오른쪽 클릭 → Apply 선택",
+    "Display Mode를 잘못 선택해 포인트 대신 Primitive를 보고 수정 → 올바른 모드(Point/Primitive)로 전환 후 다시 편집",
+    "CSV Export 시 헤더가 포함되지 않아 다른 툴에서 인식 못 함 → Export 옵션에서 ‘Include Header’ 체크"
+  ],
+  "related": [
+    "Attribute Create",
+    "Measure",
+    "Clean",
+    "Attribute Wrangle"
+  ],
+  "videos": [
+    {
+      "id": "KnUXXm7YVSU",
+      "title": "Houdini for Beginners-  Part 8:  The Geometry Spreadsheet",
+      "author": "Jordan Allen"
+    },
+    {
+      "id": "mF_u0ghcRv4",
+      "title": "The Geometry Spreadsheet in Houdini",
+      "author": "Socratica FX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Geometry%20Spreadsheet",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry Spreadsheet"
+  ],
+  "at": "2026-11-07T02:50:24.738845+00:00"
+}
