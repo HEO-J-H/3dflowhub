@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-spawn-actor-b3a3",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Spawn Actor",
+  "title": "Spawn Actor — 실행 중 생성",
+  "summary": "Unreal Engine의 Spawn Actor는 게임 플레이 중 Script(Blueprint)를 통해 특정 위치와 회전에 3D 오브젝트나 캐릭터를 동적으로 생성하는 핵심 기능입니다.",
+  "when": [
+    "플레이어가 총을 쏠 때 총알이나 발사체를 동적으로 생성할 때",
+    "적 캐릭터나 아이템이 필드 위에 리스폰되거나 스폰될 때",
+    "트랩이나 Particle 효과 등 이벤트 발생 시 오브젝트를 즉시 불러와야 할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택하고 Actor를 부모 클래스로 지정합니다.",
+    "생성된 Actor 블루프린트를 더 열고 Components 패널에서 Add 버튼을 눌러 원하는 3D Mesh나 성분을 추가합니다.",
+    "스폰을 총괄할 이벤트 쟁점(예: Level Blueprint나 캐릭터 블루프린트)을 엽니다.",
+    "그래프 창에서 우클릭 후 SpawnActor From Class 노드를 검색해 추가합니다.",
+    "SpawnActor 노드의 Class 핀에서 생성할 블루프린트(Actor)를 선택합니다.",
+    "Transform 핀에 소켓 위치나 벡터 값을 연결한 뒤 컴파일(Compile)하고 실행 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Class",
+      "desc": "월드에 생성할 Actor의 블루프린트 클래스를 지정합니다."
+    },
+    {
+      "name": "Spawn Transform",
+      "desc": "오브젝트가 생성될 위치(Location), 회전(Rotation), 스케일(Scale)을 결정합니다."
+    },
+    {
+      "name": "Collision Handling Override",
+      "desc": "생성 위치에 장애물이 있을 때 충돌을 무시할지, 생성 실패로 처리할지 설정합니다."
+    },
+    {
+      "name": "Owner",
+      "desc": "생성된 Actor의 소유자(Owner)가 될 Actor를 지정합니다."
+    },
+    {
+      "name": "Instigator",
+      "desc": "이 스폰 행동에 책임을 지는 Pawn(대개 플레이어나 가해자)을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어 Mouse 클릭 위치에 폭탄 생성하기",
+      "steps": [
+        "Mouse 좌클릭 이벤트(Input Action) 노드를 배치합니다.",
+        "Get Hit Result Under Cursor by Channel 노드로 화면의 3D 공간 좌표를 구합니다.",
+        "SpawnActor From Class 노드에 Bomb 블루프린트를 지정하고 Hit Location을 Transform에 연결합니다."
+      ]
+    },
+    {
+      "title": "적 캐릭터 웨이브 스폰하기",
+      "steps": [
+        "스폰 지점(Arrow Component)을 가진 Target Point Actor를 레벨에 배치합니다.",
+        "Level Blueprint에서 타겟 포인트의 Transform 위치를 가져옵니다.",
+        "SpawnActor From Class 노드로 Enemy 블루프린트를 주기적으로 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Class 핀이 비어 있는 경우 → SpawnActor 노드에서 생성할 블루프린트 클래스를 정확히 선택해 주어야 크래시나 오류를 방지할 수 있습니다.",
+    "스폰 위치가 지형에 파묻히는 경우 → Spawn Transform 위치의 Z축 값을 메쉬 높이 절반만큼 위로 올려서 설정합니다.",
+    "무한 루프로 인해 에디터가 멈추는 경우 → Tick 이벤트 안에서 조건 없이 SpawnActor를 호출하지 않도록 주의합니다."
+  ],
+  "related": [
+    "Blueprint Actor",
+    "DestroyActor",
+    "Level Instances",
+    "PCG"
+  ],
+  "videos": [
+    {
+      "id": "fmLSRVlDtow",
+      "title": "Unreal Engine 5 - How To Spawn Actors/NPC's In Your Level. Beginners Tutorial",
+      "author": "That's Unreal"
+    },
+    {
+      "id": "USVivX6cljw",
+      "title": "Blueprint101 - SpawnActor | Unreal Engine",
+      "author": "Josh Does Coding"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Spawn%20Actor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class",
+    "Actor",
+    "Components",
+    "Add",
+    "D Mesh"
+  ],
+  "at": "2026-11-07T01:27:34.965891+00:00"
+}
