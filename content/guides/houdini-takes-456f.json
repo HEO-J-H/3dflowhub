@@ -1,0 +1,94 @@
+{
+  "id": "houdini-takes-456f",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Takes",
+  "title": "Takes — 설정 바꿔 보기",
+  "summary": "Houdini Takes는 하나의 .hip 파일 안에서 여러 버전의 씬 설정(카메라, 라이트, 가시성, 렌더 옵션 등)을 손쉽게 저장·전환할 수 있는 기능입니다.",
+  "when": [
+    "여러 렌더 레이어·카메라 구성을 한 파일에 관리하고 싶을 때",
+    "라이트링·재질·Resolution 등 설정을 빠르게 바꾸어야 할 때",
+    "클라이언트 피드백에 따라 씬 변형을 별도 파일 없이 바로 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Network View에서 Tab → Takes 입력 후 Enter (또는 상단 툴바의 Takes 버튼 클릭)",
+    "Takes Manager 창에서 + 버튼을 눌러 New Take 생성 후 이름 입력",
+    "변경할 노드(예: camera, light, geometry)를 선택하고 파라미터 오른쪽의 Take 아이콘을 클릭해 현재 Take에 값 저장",
+    "Takes Manager에서 원하는 Take를 선택하고 Activate 클릭(또는 오른쪽 클릭 → Activate)",
+    "필요 시 Take를 선택하고 Export 버튼으로 해당 Take만 별도 .hip 로 저장",
+    "다른 .hip 파일에서 Import 버튼으로 Take를 불러와 병합"
+  ],
+  "params": [
+    {
+      "name": "Take Name",
+      "desc": "Take의 식별자이며 리스트에 표시됩니다"
+    },
+    {
+      "name": "Active",
+      "desc": "현재 씬에 적용되는 Take 여부"
+    },
+    {
+      "name": "Export",
+      "desc": "선택 Take만 별도 .hip 파일로 저장"
+    },
+    {
+      "name": "Import",
+      "desc": "외부 Take를 현재 씬에 병합"
+    },
+    {
+      "name": "Override",
+      "desc": "파라미터 값을 Take 별로 덮어쓰기"
+    },
+    {
+      "name": "Visibility",
+      "desc": "오브젝트 가시성을 Take 별로 제어"
+    }
+  ],
+  "examples": [
+    {
+      "title": "다른 카메라 앵글로 렌더링",
+      "steps": [
+        "Takes Manager에서 New Take → Camera_A 생성",
+        "Camera 노드 선택 → 파라미터 오른쪽 Take 아이콘 클릭 → 현재 카메라 위치 저장",
+        "다른 Take(New Take → Camera_B) 생성 후 카메라 위치 재설정 및 저장",
+        "Render 전 원하는 Take를 Activate 후 렌더"
+      ]
+    },
+    {
+      "title": "클라이언트 요청에 따라 라이트 강도 조정",
+      "steps": [
+        "Takes Manager → New Take → Light_High 생성",
+        "Light 노드 선택 → Intensity 파라미터 오른쪽 Take 아이콘 클릭 → 높은 값 저장",
+        "새 Take(New Take → Light_Low) 생성 후 낮은 값 저장",
+        "렌더 전 해당 Take를 Activate"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Take에 파라미터 키프레임을 저장하지 않음 → 파라미터 오른쪽 Take 아이콘을 클릭해 Override 저장",
+    "같은 이름의 Take을 여러 개 만들면 충돌 → 고유한 이름을 사용",
+    "Take를 비활성화한 채로 Export 하면 적용되지 않음 → Activate 후 Export 수행"
+  ],
+  "related": [
+    "Geometry Spreadsheet",
+    "Render Settings",
+    "Scene View",
+    "Version Control"
+  ],
+  "videos": [
+    {
+      "id": "Gv8cCjUtFbo",
+      "title": "Using Takes in Houdini",
+      "author": "Tim van Helsdingen"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Takes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Takes"
+  ],
+  "at": "2026-11-07T03:19:20.109734+00:00"
+}

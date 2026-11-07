@@ -1,0 +1,105 @@
+{
+  "id": "unreal-engine-metahuman-basics-1b17",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "MetaHuman basics",
+  "title": "MetaHuman — 디지털 휴먼",
+  "summary": "MetaHuman은 고품질 디지털 휴먼을 빠르게 생성·편집할 수 있는 Unreal Engine 내 통합 솔루션입니다.",
+  "when": [
+    "실시간 캐릭터 애니메이션이 필요할 때",
+    "리얼타임 렌더링 프로젝트에 고품질 휴먼을 넣고 싶을 때",
+    "AI 기반 페이셜 리깅·표정 제어를 활용하고 싶을 때"
+  ],
+  "steps": [
+    "Epic Games Launcher → Unreal Engine → New Project → ‘MetaHuman Sample’ Template 선택 후 프로젝트 생성",
+    "Quixel Bridge에서 ‘MetaHuman’ → 원하는 캐릭터 선택 → ‘Add to Project’ 클릭",
+    "Content Browser에서 ‘MetaHumans’ 폴더 → ‘[CharacterName]’ → ‘[CharacterName]_BP’ 더블클릭해 레벨에 배치",
+    "Details 패널 → ‘Material’ 섹션에서 ‘[CharacterName]_Material’을 선택해 기본 머티리얼 확인",
+    "‘Control Rig’ 탭 → ‘Facial Controls’ 위젯을 사용해 표정 키프레임 설정 (Hotkey: Ctrl+Shift+R)",
+    "Blueprint 에디터 → ‘Event Graph’에 ‘Set Morph Target’ 노드 연결해 실시간 표정 제어"
+  ],
+  "params": [
+    {
+      "name": "MetaHuman Creator",
+      "desc": "클라우드 기반 휴먼 생성 툴, 외부 브라우저에서 캐릭터를 디자인"
+    },
+    {
+      "name": "Control Rig",
+      "desc": "페이셜·바디 리깅을 실시간으로 조작하는 노드 기반 시스템"
+    },
+    {
+      "name": "Material Instance",
+      "desc": "머티리얼 파라미터를 빠르게 조정해 피부·눈·머리카락 색상 변경"
+    },
+    {
+      "name": "Morph Target",
+      "desc": "표정·근육 변형을 제어하는 블렌드 쉐이프"
+    },
+    {
+      "name": "Blueprint",
+      "desc": "시각 스크립팅으로 캐릭터 로직·인터랙션 구현"
+    },
+    {
+      "name": "Quixel Bridge",
+      "desc": "MetaHuman 에셋을 Unreal 프로젝트로 직접 전송"
+    }
+  ],
+  "examples": [
+    {
+      "title": "리얼타임 대화형 NPC 만들기",
+      "steps": [
+        "Control Rig → ‘Talk’ 애니메이션 블루프린트에 연결",
+        "Morph Target ‘Smile’에 키프레임 추가해 대화 시 미소 표시"
+      ]
+    },
+    {
+      "title": "시네마틱 컷에서 피부 반사 조정",
+      "steps": [
+        "Material Instance → ‘Specular’ 값을 0.8로 증가",
+        "‘Roughness’를 0.2로 낮춰 반사도 강화"
+      ]
+    },
+    {
+      "title": "VR 프로젝트에 최적화된 MetaHuman 배치",
+      "steps": [
+        "Blueprint → ‘LOD’ 설정을 ‘Auto’로 변경",
+        "‘Cull Distance’를 5000으로 설정해 원거리에서 자동 삭제"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일이 맞지 않음 → ‘Details’ 패널에서 ‘Transform → Scale’를 1,1,1 로 리셋",
+    "머티리얼이 적용되지 않음 → ‘Material Instance’가 ‘[CharacterName]_Material’에 연결돼 있는지 확인",
+    "표정이 끊김 → ‘Control Rig’에서 ‘Update Frequency’를 ‘Every Frame’으로 설정"
+  ],
+  "related": [
+    "Control Rig",
+    "Material Instance",
+    "Quixel Bridge",
+    "Blueprint"
+  ],
+  "videos": [
+    {
+      "id": "TGrE4qaD2ME",
+      "title": "How To Create Metahumans In Unreal Engine 5.6 (Tutorial)",
+      "author": "Smart Poly"
+    },
+    {
+      "id": "iNfezN4WzZI",
+      "title": "Ultimate Guide to MetaHuman Creation & Facial Animation | Unreal Engine 5 Tutorial",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20MetaHuman%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Epic Games Launcher",
+    "Unreal Engine",
+    "New Project",
+    "MetaHuman Sample",
+    "Template"
+  ],
+  "at": "2026-11-07T03:19:52.633375+00:00"
+}
