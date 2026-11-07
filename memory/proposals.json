@@ -19080,5 +19080,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T15:19:40+00:00",
+    "kind": "proposal",
+    "id": "p-82da5c1698",
+    "title": "backend/tests/test_url_ingest.py 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #47이 머지되었으나 URL 인게스트 기능에 대한 추가적인 에지 케이스 검증 단위 테스트가 보강되면 안정성이 높아집니다.",
+    "proposal": "backend/tests/test_url_ingest.py 파일에 잘못된 URL 포맷이나 타임아웃 발생 시 예외 처리를 검증하는 테스트 코드를 작성합니다.",
+    "expected": "백엔드 URL 인게스트 파이프라인의 견고성 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T15:19:40+00:00",
+    "kind": "proposal",
+    "id": "p-04a5b2139d",
+    "title": "docs/local-pipeline.md FAQ 섹션 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 파이프라인 TripoSR 및 COLMAP 관련 가이드는 작성되었으나 사용자가 자주 겪는 일반적인 오류(VRAM 부족 등)에 대한 안내가 부족합니다.",
+    "proposal": "docs/local-pipeline.md 문서 하단에 간단한 FAQ 및 문제 해결(Troubleshooting) 섹션을 추가합니다.",
+    "expected": "로컬 가이드 활용 시 사용자 시행착오 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T15:20:04.348438+00:00",
+    "kind": "decision",
+    "id": "p-82da5c1698",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_url_ingest.py 단위 테스트 ",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T15:20:04.364421+00:00",
+    "kind": "decision",
+    "id": "p-04a5b2139d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
   }
 ]
