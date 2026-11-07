@@ -1,0 +1,93 @@
+{
+  "id": "houdini-solaris-lop-basics-2a26",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Solaris LOP basics",
+  "title": "Solaris — USD 장면 구성",
+  "summary": "Houdini Solaris LOP(Lighting/Shading/Rendering Operators)는 USD(Universal Scene Description)를 기반으로 거대한 3D 장면 구성, 레이아웃, 룩데브(Look Dev), 조명 및 렌더링을 통합 관리하는 노드 기반 환경입니다.",
+  "when": [
+    "복잡한 에셋과 수많은 캐릭터가 포함된 대규모 3D 씬을 USD 기반으로 조립하고 관리할 때",
+    "Karma 렌더러를 사용하여 사실적인 조명과 물리 기반 Shading 작업을 수행할 때",
+    "여러 부서(모델링, 애니메이션, 라이팅)가 USD 스테이지를 통해 동시에 협업 파이프라인을 구축할 때"
+  ],
+  "steps": [
+    "Houdini 상단 데스크톱(Desktop) 메뉴에서 Solaris 레이아웃으로 전환합니다.",
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 LOP 네트워크로 진입합니다.",
+    "Tab 키를 누르고 Sublayer 노드나 Reference 노드를 생성하여 외부 USD 파일을 불러옵니다.",
+    "Tab 키를 눌러 Dome Light 노드를 생성하고 HDRI 환경 맵을 연결하여 기본 조명을 배치합니다.",
+    "Tab 키를 눌러 Karma 렌더 노드(Karma Render LOP)를 생성하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Sublayer File",
+      "desc": "기존에 저장된 USD 파일을 현재 스테이지에 레이어 형태로 불러옵니다."
+    },
+    {
+      "name": "Light Color",
+      "desc": "조명의 색상 및 온도를 설정합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "조명의 밝기를 F-stop 단위로 조절합니다."
+    },
+    {
+      "name": "Renderer",
+      "desc": "Karma XPU 또는 Karma CPU 등 사용할 렌더 엔진을 선택합니다."
+    },
+    {
+      "name": "Max Ray Depth",
+      "desc": "빛의 반사와굴절 횟수를 제한하여 렌더링 속도와 품질을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "USD 씬 구성 및 에셋 배치",
+      "steps": [
+        "Sublayer 노드를 생성하여 배경 지형 USD 파일을 불러옵니다.",
+        "Reference 노드를 추가하여 캐릭터 USD 에셋을 스테이지에 불러옵니다.",
+        "Xform LOP 노드를 사용하여 캐릭터의 위치와 회전 값을 정렬합니다."
+      ]
+    },
+    {
+      "title": "Karma 렌더링 설정",
+      "steps": [
+        "Karma 노드를 네트워크 뷰에 생성합니다.",
+        "LOP 뷰포트 드롭다운 메뉴에서 Karma를 선택하여 실시간 뷰포트 렌더링을 켭니다.",
+        "Render Settings 노드에서 Resolution와 샘플링 값을 최종 출력에 맞게 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "USD 경로 오류 → Scene Graph Tree 패널을 열어 Primitive 경로가 올바르게 연결되었는지 확인합니다.",
+    "조명이 보이지 않음 → Dome Light나 Distant Light 노드가 생성되었는지, 노드 상단의 디스플레이 플래그가 켜져 있는지 확인합니다.",
+    "렌더가 너무 느림 → Karma Render 노드에서 Max Ray Depth 값이 과도하게 높지 않은지 확인하고 샘플링 값을 낮춥니다."
+  ],
+  "related": [
+    "Karma",
+    "NVIDIA Omniverse",
+    "USD",
+    "Scene Graph Tree"
+  ],
+  "videos": [
+    {
+      "id": "Mu8bT3zaUsA",
+      "title": "SOLARIS ESSENTIALS | 08 SOP Attributes & LOPS",
+      "author": "Houdini"
+    },
+    {
+      "id": "vptMKogBiRA",
+      "title": "Overview | Introduction to Solaris and Karma | Houdini 20",
+      "author": "Inside The Mind"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Solaris%20LOP%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Houdini",
+    "Desktop",
+    "Solaris"
+  ],
+  "at": "2026-11-07T01:47:46.105900+00:00"
+}
