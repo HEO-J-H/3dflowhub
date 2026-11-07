@@ -1,0 +1,92 @@
+{
+  "id": "houdini-vellum-cloth-2299",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "Vellum cloth",
+  "title": "Vellum Cloth — 천",
+  "summary": "Houdini Vellum cloth는 물리 기반의 빠르고 강력한 연산으로 천, 종이, 연질의 오브젝트가 구겨지고 찢어지는 움직임을 시뮬레이션하는 노드 기반 시스템입니다.",
+  "when": [
+    "바람에 휘날리는 깃발이나 커튼을 만들 때",
+    "캐릭터의 복잡한 의상과 드레이프를 시뮬레이션할 때",
+    "천이 찢어지거나 압력에 의해 부풀어 오르는 효과를 낼 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Vellum Cloth 노드를 생성하거나, 대상 메쉬를 선택한 후 상단 shelf에서 Cloth를 클릭합니다.",
+    "Vellum Cloth 노드의 Geometry 입력단자에 메쉬 오브젝트를 연결합니다.",
+    "Vellum I/O 또는 Vellum Solver 노드를 생성하여 Cloth 노드의 출력을 연결하고 물리 연산을 활성화합니다.",
+    "파라미터 창에서 Substeps와 Mass 값을 조절하여 시뮬레이션의 안정성과 무게감을 맞춥니다.",
+    "뷰포트에서 Play 버튼을 눌러 시뮬레이션 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Substeps",
+      "desc": "프레임당 연산 횟수를 늘려 시뮬레이션의 정확도와 충돌 안정성을 높입니다."
+    },
+    {
+      "name": "Mass",
+      "desc": "오브젝트의 무게를 설정하여 중력과 바람에 반응하는 속도를 조절합니다."
+    },
+    {
+      "name": "Stitch",
+      "desc": "서로 다른 천 조각의 이어진 경계면을 고정하거나 꿰매는 역할을 합니다."
+    },
+    {
+      "name": "Pressure",
+      "desc": "내부 공기압을 주어 풍선처럼 부풀어 오르는 형태를 만듭니다."
+    },
+    {
+      "name": "Thickness",
+      "desc": "천의 두께감을 주어 충돌 시 겹침 현상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바람에 휘날리는 깃발",
+      "steps": [
+        "Grid 노드를 생성하고 충분한 세그먼트를 주어 촘촘하게 만듭니다.",
+        "Vellum Cloth 노드를 연결하고 깃발의 한쪽 변을 Pin(Group)으로 고정합니다.",
+        "Vellum Wind 노드를 추가하여 바람의 세기와 방향을 설정합니다."
+      ]
+    },
+    {
+      "title": "공기압으로 부풀어 오르는 쿠션",
+      "steps": [
+        "Box 노드를 생성하고 Vellum Cloth 노드에 연결합니다.",
+        "파라미터에서 Pressure 값을 높여 내부 압력을 가합니다.",
+        "Vellum Solver를 통해 쿠션이 팽창하며 생기는 자연스러운 주름을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤이 너무 적을 때 → 세그먼트(Divisions)를 늘려 촘촘하게 만듭니다.",
+    "시뮬레이션이 튀거나 깨질 때 → Vellum Solver의 Substeps 값을 높여 연산 정밀도를 올립니다."
+  ],
+  "related": [
+    "Vellum Solver",
+    "Vellum Wind",
+    "Vellum Hair",
+    "Vellum Softbody"
+  ],
+  "videos": [
+    {
+      "id": "m_hxr3uyhqQ",
+      "title": "Lesson 9 | Creating cloth simulation using Vellum | Houdini Beginners course | English",
+      "author": "Artists Creek"
+    },
+    {
+      "id": "yHRlCkLdVmg",
+      "title": "Beginner Houdini Tutorial: Vellum Cloth Sim + Export To Blender, Cinema4D, Maya",
+      "author": "Entagma"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Vellum%20cloth",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Vellum Cloth",
+    "Cloth"
+  ],
+  "at": "2026-11-07T01:17:25.005403+00:00"
+}
