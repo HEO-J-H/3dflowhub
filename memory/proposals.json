@@ -18697,5 +18697,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md TripoSR 안내서 재작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T13:49:29+00:00",
+    "kind": "proposal",
+    "id": "p-77e4c387bf",
+    "title": "backend/tests/test_triposr_mock.py 모의 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 TripoSR 오류 처리 테스트 과제가 패치 적용 실패 및 스킵 상태로 남아 있어 안정적인 모의 테스트 보완이 필요합니다.",
+    "proposal": "backend/tests/test_triposr_mock.py 파일을 생성하여 TripoSR 실행 실패 시 예외 처리와 대체 경로 동작을 검증하는 모의 단위 테스트를 추가합니다.",
+    "expected": "로컬 파이프라인 TripoSR 오류 대응력 검증 강화 및 테스트 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T13:49:29+00:00",
+    "kind": "proposal",
+    "id": "p-e87b24966e",
+    "title": "docs/local-pipeline.md VRAM 설정 및 안내 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 파이프라인 실행 시 하드웨어(VRAM 및 CUDA) 요구사항에 대한 상세 안내가 사용자 가이드에 더 명시될 필요가 있습니다.",
+    "proposal": "docs/local-pipeline.md 문서에 TripoSR 및 COLMAP 실행 시 필요한 최소/권장 VRAM 사양과 CUDA 설정 가이드를 명확하게 업데이트합니다.",
+    "expected": "로컬 사용자들의 환경 설정 오류 감소 및 가이드 품질 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T13:49:55.261386+00:00",
+    "kind": "decision",
+    "id": "p-77e4c387bf",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 모의 테스",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T13:49:55.279619+00:00",
+    "kind": "decision",
+    "id": "p-e87b24966e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
   }
 ]
