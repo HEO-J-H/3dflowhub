@@ -20253,5 +20253,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T23:10:53+00:00",
+    "kind": "proposal",
+    "id": "p-30f1f800f4",
+    "title": "backend/tests/test_triposr_mock.py 예외 테스트 신규 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 test_triposr.py 패치 적용 실패 건이 반복되어, 파일 경로를 확실히 분리하여 모의 테스트 방식으로 안정적으로 추가 필요",
+    "proposal": "backend/tests/test_triposr_mock.py 파일에 TripoSR 실행 실패 시 예외 처리와 대체 경로 반환 테스트 코드를 새로 작성",
+    "expected": "로컬 파이프라인 TripoSR 오류 처리에 대한 단위 테스트 커버리지 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T23:11:30.701256+00:00",
+    "kind": "decision",
+    "id": "p-30f1f800f4",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
   }
 ]
