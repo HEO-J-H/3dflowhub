@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-05T03:41:30.674103+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/05 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-05T04:00:33.502958+00:00",
       "collected": 0,
       "saved": 0,
@@ -6136,6 +6124,31 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-07T11:18:58.910952+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 201,
+      "candidates_passed": 154,
+      "offtopic": 31,
+      "short": 0,
+      "prefiltered": 23,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "0e735f1a",
+      "visuals": 2,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -6231,7 +6244,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-30 [[p-61440d09bd|콘텐츠] Trellis C++ 1단계 가이드 과] 애플리케이션 소스 코드 파일(backend/app/)에는 테스트 함수를 두지 말고 구현 코드만 작성하며, 테스트는 반드시 tests/ 디렉토리에 분리하여 작성해야 합니다.",
     "2026-10-30 [[p-61440d09bd|콘텐츠] Trellis C++ 1단계 가이드 과] 테스트 실패 — 27 passed, 1 warning in 1.88s 보안: ['위험 함수 사용: shell=True']",
     "2026-10-30 [성찰] 검색 의도에 맞는 툴·키워드 중심 제목과 1500자 이상 깊이 있는 본문이 조회수와 RPM을 크게 끌어올린다.",
     "2026-10-30 [evolve.analyze_3d_content_distribution()] 신규 통계 함수 추가 시 도메인 분류 기준을 명확히 하고 예외 처리를 꼼꼼히 작성하자.",
@@ -6350,7 +6362,8 @@
     "2026-11-07 [성찰] 일반 명사 동음이의어(Nuke, Houdini 등)로 인한 허위 수집을 막고 Maya·3ds Max·Blender 중심의 실무 튜토리얼과 스크립트 비중을 집중해야 검색 유입과 애드센스 RPM이 높아집니다.",
     "2026-11-07 [성찰] 검색 유입과 체류 시간을 극대화하려면 Maya·3ds Max·Blender 등 실무 툴 중심의 튜토리얼 및 스크립트 활용법에 집중하고 동음이의어 노이즈를 철저히 차단해야 합니다.",
     "2026-11-07 [성찰] 검색 의도에 맞는 툴·키워드 중심 제목과 1,500자 이상 깊이 있는 본문이 페이지뷰와 RPM을 동시에 끌어올린다.",
-    "2026-11-07 [성찰] 동음이의어 및 일반 명사 도구명(Nuke, Unity, Houdini 등)으로 인한 오수집을 막기 위해 3D·CG 전용 문맥 검증 필터를 강화하고, 3ds Max와 Blender의 실무 스크립트 및 튜토리얼 콘텐츠에 집중해야 합니다."
+    "2026-11-07 [성찰] 동음이의어 및 일반 명사 도구명(Nuke, Unity, Houdini 등)으로 인한 오수집을 막기 위해 3D·CG 전용 문맥 검증 필터를 강화하고, 3ds Max와 Blender의 실무 스크립트 및 튜토리얼 콘텐츠에 집중해야 합니다.",
+    "2026-11-07 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)의 오수집을 막는 정밀 필터링을 유지하면서 실무 검색 수요가 높은 튜토리얼과 스크립트 정보를 집중 공략해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -8461,14 +8474,15 @@
     9917605482971808864,
     14547701659009881966,
     18356618747615175840,
-    105819812286334225
+    105819812286334225,
+    2080503335642087252
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2063,
-    "Game Engine": 2063,
-    "VFX": 2063,
-    "AI 3D": 2063
+    "3D DCC": 2064,
+    "Game Engine": 2064,
+    "VFX": 2064,
+    "AI 3D": 2064
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
