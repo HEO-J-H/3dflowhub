@@ -19650,5 +19650,36 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-integration.md 오픈소스 활용 방안 추가 문서",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T17:50:02+00:00",
+    "kind": "proposal",
+    "id": "p-a0abb338ab",
+    "title": "웹 PBR 생성 유틸리티 예외 처리 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 PBR 맵 생성 및 로컬 가이드 문서 정비가 완료되었으나 브라우저 측 PBR 렌더링 폴백에 대한 검증 보완 필요",
+    "proposal": "web/js/pbr.js 내 텍스처 로딩 실패 시 기본 디폴트 텍스처 적용 로직을 보강하고 관련 단언 테스트 추가",
+    "expected": "브라우저 환경에서 텍스처 로드 오류 시 발생할 수 있는 UI 멈춤 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T17:50:45.158450+00:00",
+    "kind": "decision",
+    "id": "p-a0abb338ab",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T17:50:47.633617+00:00",
+    "kind": "triage",
+    "id": "p-a0abb338ab",
+    "verdict": "agent",
+    "reason": "web/js/pbr.js 파일 내 텍스처 로딩 예외 처리 및 단언 테스트 추가는 AI 에이전트가 코드를 직접 수정하여 해결할 수 있는 작업입니다."
   }
 ]
