@@ -18903,5 +18903,96 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T14:39:38+00:00",
+    "kind": "proposal",
+    "id": "p-84c52280f7",
+    "title": "docs/local-pipeline.md VRAM 설정 안내서 갱신",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "TripoSR 실행 안내서 문서화 과제가 held 상태였음",
+    "proposal": "docs/local-pipeline.md를 업데이트하여 TripoSR 실행 시 필요한 VRAM 권장 사양과 CUDA 설정 절차를 상세히 안내",
+    "expected": "사용자가 로컬 환경 설정 시 겪는 혼란 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T14:39:40+00:00",
+    "kind": "proposal",
+    "id": "p-c397e522ef",
+    "title": "모바일 입력 폼 터치 영역 및 패딩 최종 최적화",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "50~60대 가독성과 입력 폼 라벨 크기 확대가 완료되었으나 모바일 기기에서의 터치 간격 점검 필요",
+    "proposal": "index.html 내 주요 입력 필드와 버튼의 패딩을 12px 이상으로 유지하고 세로 간격을 넓혀 모바일 사용성 개선",
+    "expected": "모바일 기기에서 5060 사용자의 입력 편의성과 오조작 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T14:40:47.051059+00:00",
+    "kind": "proposal",
+    "id": "p-b19f9e9f4d",
+    "title": "TRELLIS 모델 검토 (CVPR 2025 Spotlight)",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "콘텐츠",
+    "evidence": "별 14208개, 라이선스 MIT로 상업 이용 가능",
+    "proposal": "microsoft/TRELLIS 모델을 멀티뷰 3D 생성 파이프라인의 선택 엔진으로 조사 및 도입 검토",
+    "expected": "멀티뷰 3D 생성의 품질과 다양성 향상",
+    "effort": "높음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "python",
+      "group": "ai-models",
+      "name": "trellis_runner",
+      "title_ko": "TRELLIS 멀티뷰 3D 엔진 연동"
+    }
+  },
+  {
+    "at": "2026-11-07T14:42:05.485299+00:00",
+    "kind": "decision",
+    "id": "p-b19f9e9f4d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TRELLIS 오픈소스 모델 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T14:42:05.507519+00:00",
+    "kind": "decision",
+    "id": "p-c397e522ef",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T14:42:05.528530+00:00",
+    "kind": "decision",
+    "id": "p-84c52280f7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md TripoSR 안내서 재작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T14:42:20.288684+00:00",
+    "kind": "triage",
+    "id": "p-c397e522ef",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 이미 모바일 터치 영역과 폰트 크기 관련 개선 작업이 반영되었기 때문입니다."
+  },
+  {
+    "at": "2026-11-07T14:42:20.308982+00:00",
+    "kind": "decision",
+    "id": "p-c397e522ef",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 이미 모바일 터치 영역과 폰트 크기 관련 개선 작업이 반영되었기 때문입니다."
   }
 ]
