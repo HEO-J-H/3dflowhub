@@ -1,0 +1,85 @@
+{
+  "id": "maya-hotbox-and-marking-menus-e69e",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Hotbox and marking menus",
+  "title": "Hotbox·마킹 메뉴",
+  "summary": "Maya의 Hotbox와 Marking Menu는 화면 어디서나 Mouse 조작만으로 주요 메뉴와 도구에 빠르게 접근할 수 있게 돕는 단축 인터페이스입니다.",
+  "when": [
+    "상단 메뉴바를 일일이 찾아가지 않고 현재 작업 중인 뷰포트에서 즉시 명령을 실행하고 싶을 때",
+    "모드 전환(Object/Component)이나 자주 쓰는 모델링 도구를 손쉽게 호출하고 싶을 때",
+    "풀스크린(Full Screen) 작업 환경에서 인터페이스를 숨긴 채 효율적으로 작업할 때"
+  ],
+  "steps": [
+    "Maya 뷰포트 위에서 Space바를 길게 누릅니다.",
+    "화면 중앙에 나타나는 Hotbox 영역에서 원하는 메뉴 카테고리(Maya, Modeling, Animation 등)를 확인합니다.",
+    "Mouse 우클릭을 함께 누르거나 특정 영역에 Mouse를 올려 Marking Menu를 활성화합니다.",
+    "원하는 도구(예: Extrude, Bevel 등)나 모드(Object Mode, Vertex 등) 방향으로 Mouse를 드래그하여 선택합니다.",
+    "Mouse 버튼을 놓아 선택한 명령을 실행하고 뷰포트에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Hotbox",
+      "desc": "Space바를 눌러 화면 전체의 메뉴를 팝업 형태로 호출하는 기능"
+    },
+    {
+      "name": "Marking Menu",
+      "desc": "방사형으로 펼쳐지는 단축 메뉴로 Mouse 드래그를 통해 빠르게 명령을 실행"
+    },
+    {
+      "name": "Show Menu Bar",
+      "desc": "Hotbox 상단과 하단에 Maya의 기본 메뉴바 표시 여부를 제어"
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 모드와 컴포넌트 모드 빠르게 전환하기",
+      "steps": [
+        "오브젝트 위에서 Mouse 우클릭을 길게 누릅니다.",
+        "열린 Marking Menu에서 Vertex 또는 Face 방향으로 Mouse를 드래그합니다.",
+        "컴포넌트 모드로 전환된 것을 확인하고 편집을 시작합니다."
+      ]
+    },
+    {
+      "title": "풀스크린에서 자주 쓰는 도구 호출하기",
+      "steps": [
+        "Ctrl + Space 키를 눌러 뷰포트를 최대화합니다.",
+        "Space바를 눌러 Hotbox를 띄운 뒤 중앙 영역에서 원하는 메뉴를 선택합니다.",
+        "필요한 툴을 실행하여 화면 전환 없이 작업을 이어갑니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Space바를 길게 누르지 않고 짧게 누름 → 뷰포트 패널 레이아웃이 원치 않게 전환됨 (Space바를 길게 유지하여 Hotbox 호출)",
+    "Mouse 드래그 중 엉뚱한 방향으로 놓음 → 다른 명령이 실행됨 (정확한 방향으로 드래그 후 Mouse 버튼 떼기)"
+  ],
+  "related": [
+    "Outliner",
+    "Attribute Editor",
+    "Extrude",
+    "Bevel"
+  ],
+  "videos": [
+    {
+      "id": "PTnpquwMkTk",
+      "title": "02 Hotbox and Marking Menus in Maya",
+      "author": "Rohan Page"
+    },
+    {
+      "id": "UC1x7tBl3gE",
+      "title": "Using the Hotbox and Marking Menus in Maya",
+      "author": "Autodesk Softimage Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Hotbox%20and%20marking%20menus",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Hotbox",
+    "Modeling",
+    "Animation"
+  ],
+  "at": "2026-11-07T08:28:41.823624+00:00"
+}

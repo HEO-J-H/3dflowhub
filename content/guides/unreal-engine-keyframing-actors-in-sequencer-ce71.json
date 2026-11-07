@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-keyframing-actors-in-sequencer-ce71",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "시퀀서",
+  "name": "Keyframing actors in Sequencer",
+  "title": "시퀀서 키프레임",
+  "summary": "Unreal Engine Sequencer에서 캐릭터나 오브젝트(Actor)의 위치, 회전, 스케일 변화를 시간 축에 따라 기록하여 애니메이션을 만드는 핵심 기능입니다. 영화 세트의 배우처럼 가상 공간의 요소를 원하는 타이밍에 움직이게 합니다.",
+  "when": [
+    "시네마틱 영상에서 프랍이나 소품이 특정 시간에 움직여야 할 때",
+    "캐릭터의 위치 이동이나 회전 상태를 Timeline으로 정밀하게 제어할 때",
+    "카메라 컷과 연동하여 오브젝트의 애니메이션 타이밍을 맞출 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Window → Cinematics → Sequencer를 선택하여 Sequencer 패널을 엽니다.",
+    "Sequencer 패널의 + Track 버튼을 누르고 Level Sequence를 생성하거나 기존 씬의 Actor를 선택합니다.",
+    "애니메이션할 Actor를 드래그하여 Sequencer Timeline에 드롭하여 트랙으로 추가합니다.",
+    "Timeline에서 원하는 프레임(시간)으로 이동한 후, 뷰포트에서 Actor를 이동(W), 회전(E), 스케일(R)합니다.",
+    "디테일 패널 옆의 키프레임 아이콘(+)을 누르거나 뷰포트에서 S 키를 눌러 Transform 키프레임을 추가합니다.",
+    "Timeline을 재생하여 뷰포트에서 애니메이션의 움직임이 자연스러운지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Transform",
+      "desc": "오브젝트의 위치(Location), 회전(Rotation), 스케일(Scale) 데이터를 저장하는 기본 트랙입니다."
+    },
+    {
+      "name": "Location",
+      "desc": "X, Y, Z 좌표를 이용해 오브젝트의 공간 이동 위치를 제어합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "Roll, Pitch, Yaw 값을 이용해 오브젝트의 회전 방향을 제어합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기를 축별로 혹은 전체적으로 조절합니다."
+    },
+    {
+      "name": "Auto Interpolation",
+      "desc": "키프레임 사이의 움직임을 부드러운 곡선 형태로 자동 보간합니다."
+    },
+    {
+      "name": "Time Slider",
+      "desc": "현재 프레임과 재생 위치를 확인하고 조절하는 Timeline 바입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "문이 열리는 애니메이션 제작",
+      "steps": [
+        "Sequencer에 문 Actor를 트랙으로 추가합니다.",
+        "프레임 0에서 문이 닫힌 상태의 Rotation 키프레임을 추가합니다.",
+        "프레임 30으로 이동한 후 문을 회전시키고 Rotation 키프레임을 추가합니다.",
+        "Timeline을 재생하여 문이 열리는 움직임을 확인합니다."
+      ]
+    },
+    {
+      "title": "공이 튀어 오르는 움직임",
+      "steps": [
+        "Sequencer에 공 Actor를 트랙으로 추가합니다.",
+        "프레임 0에서 바닥에 있는 Location 키프레임을 추가합니다.",
+        "프레임 15로 이동하여 공을 위로 올리고 Location 키프레임을 추가합니다.",
+        "프레임 30으로 이동하여 다시 바닥으로 내리고 키프레임을 추가합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "키프레임을 추가했는데 움직임이 저장되지 않음 → 뷰포트에서 Actor를 수정한 뒤 S 키 또는 + 버튼을 눌러 키프레임이 실제로 생성되었는지 확인합니다.",
+    "애니메이션이 갑자기 뚝뚝 끊기며 움직임 → Timeline의 키프레임 보간 방식(Interpolation)이 Constant로 설정되어 있는지 확인하고 Linear나 Auto로 변경합니다."
+  ],
+  "related": [
+    "Sequencer",
+    "Camera Cuts",
+    "Level Sequence",
+    "Animation Tracks"
+  ],
+  "videos": [
+    {
+      "id": "4G8FQZQwOiw",
+      "title": "How To Create Cinematic Cutscenes In Unreal Engine 5 | Sequencer Tutorial For Beginners",
+      "author": "AstrumDev"
+    },
+    {
+      "id": "mTq7PeUY6MU",
+      "title": "How to Animate in Unreal Engine 5 using Sequencer, Curves, Keyframes",
+      "author": "bubblepins"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Keyframing%20actors%20in%20Sequencer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T08:28:38.534092+00:00"
+}
