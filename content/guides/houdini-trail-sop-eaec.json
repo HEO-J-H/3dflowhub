@@ -1,0 +1,87 @@
+{
+  "id": "houdini-trail-sop-eaec",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "노드",
+  "name": "Trail SOP",
+  "title": "Trail — 궤적·속도",
+  "summary": "Trail SOP는 Houdini에서 오브젝트나 Particle의 이전 프레임 위치를 추적하여 잔상(Trail)이나 궤적(Ribbon, Curve)을 만들어주는 노드입니다.",
+  "when": [
+    "빠르게 움직이는 Particle이나 불릿(Bullet) 파편 뒤로 부드러운 꼬리(Trail)를 만들 때",
+    "검이나 캐릭터가 휘두르는 궤적을 따라 스위프(Sweep)용 가이드 커브를 생성할 때",
+    "움직이는 포인트의 이동 경로를 시각화하거나 연속된 선으로 연결할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
+    "trail을 입력하고 Enter를 눌러 Trail SOP 노드를 생성합니다.",
+    "애니메이션이나 시뮬레이션이 적용된 지오메트리/Particle 노드를 Trail SOP의 첫 번째 입력(Input)에 연결합니다.",
+    "파라미터 창(Parameter Pane)에서 Result Type을 Computed로 설정하고 Segments 값을 조절합니다.",
+    "뷰포트(Viewport)에서 궤적이 생성되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Result Type",
+      "desc": "궤적을 만드는 방식을 결정합니다 (Computed, Creep 등)."
+    },
+    {
+      "name": "Segments",
+      "desc": "이전 프레임을 추적하여 생성할 잔상의 개수나 분할 수를 정합니다."
+    },
+    {
+      "name": "Increment",
+      "desc": "프레임 간격을 조절하여 궤적의 길이나 밀도를 바꿉니다."
+    },
+    {
+      "name": "Generate",
+      "desc": "포인트를 연결할지, 커브를 만들지 지정합니다 (Points, Connect As Polygons 등)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Particle 불꽃 꼬리 만들기",
+      "steps": [
+        "POP Network 내부의 Particle 출력 노드 뒤에 Trail SOP를 연결합니다.",
+        "Result Type을 Computed로 설정하고 Segments를 10으로 올립니다.",
+        "Generate를 Connect As Polygons로 설정해 선 형태로 만듭니다."
+      ]
+    },
+    {
+      "title": "검 휘두르기 궤적(Ribbon) 생성",
+      "steps": [
+        "검의 날끝 포인트를 아소스(Attribute)로 추출합니다.",
+        "Trail SOP를 연결하여 지나간 자리에 폴리곤 리본이 생기게 합니다.",
+        "Skin SOP나 Sweep SOP를 연결해 두께감 있는 칼날 궤적 모델을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션이 없는 정적인 오브젝트에 사용함 → 애니메이션이나 속도(Velocity)가 있는 지오메트리에 연결해야 궤적이 생깁니다.",
+    "Segments 값이 너무 낮아 잔상이 안 보임 → 파라미터에서 Segments 값을 충분히 높여줍니다."
+  ],
+  "related": [
+    "File Cache",
+    "Pack",
+    "Timeshift",
+    "Sweep"
+  ],
+  "videos": [
+    {
+      "id": "nG3Zztc3Of8",
+      "title": "SOP Solver - Houdini For MoGraph Ep0010",
+      "author": "Far Out Studio"
+    },
+    {
+      "id": "lVMKzCJ9T5Q",
+      "title": "Spark Trail SOP || Houdini 19 || Houdini Tutorial",
+      "author": "Kate"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Trail%20SOP",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Trail SOP"
+  ],
+  "at": "2026-11-07T00:10:53.315726+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-event-graph-and-construction-script-d199",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Event Graph and Construction Script",
+  "title": "Event Graph·Construction Script",
+  "summary": "Event Graph와 Construction Script는 Unreal Engine 블루프린트에서 게임 플레이 로직과 액터의 초기 생성 설정을 담당하는 핵심 비주얼 Script 영역입니다. 런타임 이벤트 처리와 에디터 내 동적 오브젝트 구성을 나누어 제어할 수 있습니다.",
+  "when": [
+    "게임 플레이 중 발생하는 입력, 충돌, 타이머 등의 이벤트를 처리할 때",
+    "에디터 뷰포트에서 액터를 배치하거나 변수를 바꿀 때 메쉬와 속성이 실시간으로 변경되게 만들 때",
+    "C++ 코드 없이 노드 연결만으로 게임 인터랙션과 컴포넌트 구조를 동적으로 제어할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택합니다.",
+    "부모 클래스로 Actor를 선택하고 이름을 지정한 뒤 더블 클릭하여 블루프린트 에디터를 엽니다.",
+    "상단 탭의 My Blueprint 패널에서 Event Graph를 클릭하여 게임플레이 이벤트 노드를 배치합니다.",
+    "Construction Script 탭을 선택하여 에디터 실행 시 즉시 반영될 컴포넌트 생성 및 초기화 노드를 연결합니다.",
+    "Event BeginPlay 또는 Custom Event 노드에서 핀을 드래그해 원하는 기능을 실행하는 노드를 검색하여 추가합니다.",
+    "뷰포트(Viewport) 패널과 Details 패널에서 결과를 확인하며 노드 연결을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Event BeginPlay",
+      "desc": "게임이 시작되거나 액터가 스폰될 때 단 한 번 실행되는 이벤트 노드입니다."
+    },
+    {
+      "name": "Event Tick",
+      "desc": "매 프레임마다 연속으로 호출되어 지속적인 연산이나 체크가 필요할 때 사용합니다."
+    },
+    {
+      "name": "Construction Script",
+      "desc": "에디터에서 액터가 생성되거나 속성이 변경될 때 즉시 실행되어 형태를 재구성합니다."
+    },
+    {
+      "name": "Add Static Mesh Component",
+      "desc": "Construction Script 등에서 코드로 스태틱 메쉬 컴포넌트를 동적으로 추가합니다."
+    },
+    {
+      "name": "Set Relative Location",
+      "desc": "부모 컴포넌트를 기준으로 자식 컴포넌트의 상대적인 위치를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "랜덤 크기 기둥 생성기 (Construction Script)",
+      "steps": [
+        "블루프린트의 Construction Script 탭을 엽니다.",
+        "Add Static Mesh Component 노드를 추가하고 메쉬에 기둥 자산을 지정합니다.",
+        "Random Integer in Range 노드와 Set Actor Scale 3D 노드를 연결하여 배치할 때마다 크기가 무작위로 바뀌게 합니다."
+      ]
+    },
+    {
+      "title": "플레이어 접근 시 문 열기 (Event Graph)",
+      "steps": [
+        "Event Graph에 Box Collision의 OnComponentBeginOverlap 이벤트 노드를 추가합니다.",
+        "Cast To Character 노드를 연결해 플레이어인지 확인합니다.",
+        "Timeline 노드와 Set Relative Rotation 노드를 연결해 문이 부드럽게 열리도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Construction Script에 매 프레임 연산이 필요한 무거운 노드를 넣는 실수 → Tick 이벤트나 Event Graph로 로직을 이동하여 에디터가 느려지는 현상을 방지합니다.",
+    "Event Tick에서 과도한 루프나 복잡한 연산을 수행하는 실수 → 타이머(Set Timer by Event)나 오버랩 이벤트로 대체하여 성능 저하를 막습니다."
+  ],
+  "related": [
+    "Blueprint Basics",
+    "Timeline",
+    "Component",
+    "Actor"
+  ],
+  "videos": [
+    {
+      "id": "CiK8wT0wREE",
+      "title": "Construction Script In Unreal Engine 5 | UE5 Tutorial",
+      "author": "Tyler Serino"
+    },
+    {
+      "id": "oWtUAOPFWbM",
+      "title": "Unreal Engine 5 Blueprints - Construction Script 10",
+      "author": "QuickTipsCentral"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Event%20Graph%20and%20Construction%20Script",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class",
+    "Actor",
+    "My Blueprint",
+    "Event Graph"
+  ],
+  "at": "2026-11-07T00:10:57.395964+00:00"
+}
