@@ -1,0 +1,91 @@
+{
+  "id": "maya-pivot-editing-d-key-8f52",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Pivot editing (D key)",
+  "title": "피벗 옮기기(D)",
+  "summary": "Maya에서 D 키를 눌러 오브젝트의 피벗(Pivot) 위치와 방향을 자유롭게 이동시키고 정렬하는 기능입니다. 회전이나 스케일의 기준점을 원하는 곳으로 빠르게 바꿀 수 있습니다.",
+  "when": [
+    "문짝이나 서랍이 열리는 경첩 위치로 회전 중심을 옮기고 싶을 때",
+    "비대칭 오브젝트의 특정 모서리나 꼭짓점으로 피벗을 스냅(Snapping)하고 싶을 때",
+    "캐릭터 리깅이나 소품 애니메이션을 위해 피벗 축을 정렬해야 할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 키보드 D 키(또는 Insert 키)를 누릅니다. 피벗 매니퓰레이터가 나타납니다.",
+    "Mouse로 피벗 핸들을 드래그하여 원하는 위치로 대략 이동시킵니다.",
+    "특정 버텍스나 Grid에 정확히 맞추려면 V 키(Vertex Snap) 또는 X 키(Grid Snap)를 누른 채 이동합니다.",
+    "피벗 편집이 끝나면 다시 D 키(또는 Insert 키)를 눌러 편집 모드를 종료합니다."
+  ],
+  "params": [
+    {
+      "name": "D Key",
+      "desc": "피벗 편집 모드를 켜고 끄는 단축키입니다."
+    },
+    {
+      "name": "Insert Key",
+      "desc": "D 키와 동일하게 피벗 편집 모드를 토글하는 대체 단축키입니다."
+    },
+    {
+      "name": "V Key",
+      "desc": "가까운 Vertex 위치로 피벗을 스냅합니다."
+    },
+    {
+      "name": "C Key",
+      "desc": "가까운 엣지(Edge) 위로 피벗을 스냅합니다."
+    },
+    {
+      "name": "X Key",
+      "desc": "Grid 눈금에 맞춰 피벗을 스냅합니다."
+    },
+    {
+      "name": "Center Pivot",
+      "desc": "Modify ‣ Center Pivot 경로로 피벗을 오브젝트 정중앙으로 자동 재설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "문 열림 애니메이션을 위한 경첩 위치 설정",
+      "steps": [
+        "문 오브젝트를 선택하고 D 키를 누릅니다.",
+        "V 키를 누른 상태에서 문의 회전 축이 될 경첩 쪽 Vertex를 클릭하여 피벗을 이동시킵니다.",
+        "D 키를 눌러 피벗 편집을 종료하고 Rotate 툴로 회전 테스트를 합니다."
+      ]
+    },
+    {
+      "title": "바닥에 닿는 오브젝트의 기준점 정렬",
+      "steps": [
+        "오브젝트를 선택하고 D 키를 누릅니다.",
+        "V 키를 누른 채 바닥 면의 Vertex를 클릭하여 피벗을 아래로 내립니다.",
+        "D 키를 해제하고 Grid 바닥(Y=0)에 오브젝트를 정확히 안착시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗 편집을 끝냈는데 계속 피벗이 움직여요 → D 키나 Insert 키를 다시 눌러 편집 모드가 켜져 있는지 확인하고 해제하세요.",
+    "스냅이 자꾸 다른 곳에 붙어요 → V나 C 키를 너무 오래 누르고 있거나 뷰포트에서 다른 요소를 클릭했기 때문입니다. Hotkey 조합을 확인하세요."
+  ],
+  "related": [
+    "Center Pivot",
+    "Freeze Transformations",
+    "Snapping",
+    "Component Mode"
+  ],
+  "videos": [
+    {
+      "id": "GsI0-8UjMl0",
+      "title": "How to Edit the Pivot Point in Maya | Maya 2020 Tutorial for Beginners",
+      "author": "Game Dev Academy"
+    },
+    {
+      "id": "THvhjfgC10w",
+      "title": "Maya Pivot Points Essentials Explained! Maya Beginner Guide",
+      "author": "Holly's Maya Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Pivot%20editing%20%28D%20key%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T09:39:30.568123+00:00"
+}

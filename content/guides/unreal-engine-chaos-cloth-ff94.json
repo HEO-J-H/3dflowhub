@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-chaos-cloth-ff94",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Chaos Cloth",
+  "title": "Chaos Cloth — 천",
+  "summary": "Unreal Engine Chaos Cloth는 물리 기반의 천 시뮬레이션 시스템으로, 게임 내에서 캐릭터의 의류나 깃발이 역동적이고 자연스럽게 휘날리도록 구현합니다.",
+  "when": [
+    "플레이어 캐릭터의 망토나 옷자락이 바람과 움직임에 반응해야 할 때",
+    "바람에 휘날리는 깃발이나 천막 등 환경 오브젝트를 만들 때",
+    "실시간 게임 엔진에서 가볍고 빠른 물리 연산으로 천을 표현할 때"
+  ],
+  "steps": [
+    "Content Browser에서 천 시뮬레이션을 적용할 Skeletal Mesh를 엽니다.",
+    "Mesh Editor 창의 Asset Details 패널에서 Clothing 섹션을 찾습니다.",
+    "시뮬레이션을 적용할 부위의 삼각형(Triangle) 면들을 선택합니다.",
+    "우클릭 후 Create Clothing Data를 선택하여 새로운 Cloth Asset을 생성합니다.",
+    "해당 슬롯에 방금 만든 Cloth Data를 할당하고 시뮬레이션을 활성화합니다.",
+    "Details 패널에서 Chaos Cloth 관련 파라미터를 조정하여 천의 무게와 탄성을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Mass",
+      "desc": "천의 무게를 결정하며, 값이 클수록 무겁게 처집니다."
+    },
+    {
+      "name": "Linear Damping",
+      "desc": "움직임에 저항을 주어 천이 덜 흔들리도록 안정시킵니다."
+    },
+    {
+      "name": "Edge Stiffness",
+      "desc": "천의 모서리 변형을 막아 형태를 유지하는 강성을 조절합니다."
+    },
+    {
+      "name": "Bending Stiffness",
+      "desc": "천이 구부러질 때의 뻣뻣함 정도를 설정합니다."
+    },
+    {
+      "name": "Gravity Scale",
+      "desc": "천에 작용하는 중력의 세기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 망토 제작",
+      "steps": [
+        "Skeletal Mesh에서 망토 영역의 메쉬를 선택합니다.",
+        "Create Clothing Data를 실행하여 Chaos Cloth 에셋을 생성합니다.",
+        "상단 고정(Fixed) Vertex를 지정하여 어깨에 매달리도록 설정합니다.",
+        "Mass와 Bending Stiffness를 조절하여 부드러운 망토 움직임을 만듭니다."
+      ]
+    },
+    {
+      "title": "바람에 날리는 깃발",
+      "steps": [
+        "깃발 형태의 정적 또는 스켈레탈 메시를 준비합니다.",
+        "깃대와 맞닿는 한쪽 변의 Vertex를 고정(Max Distance 0)합니다.",
+        "Wind 속성을 추가하여 바람에 자연스럽게 펄럭이도록 연동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "고정해야 할 Vertex를 지정하지 않음 → 천이 중력을 이기지 못하고 아래로 떨어지거나 사방으로 날아감 (Max Distance 페인팅으로 고정 영역 확인)",
+    "메쉬의 폴리곤 밀도가 너무 낮음 → 천이 부드럽게 접히지 않고 각지게 꺾임 (적절한 폴리곤 수 확보)",
+    "Stiffness 값이 너무 낮음 → 천이 형태를 유지하지 못하고 고무줄처럼 과도하게 늘어남 (Edge Stiffness 값 상향 조정)"
+  ],
+  "related": [
+    "Skeletal Mesh",
+    "Physics Asset",
+    "Niagara",
+    "AnimBP"
+  ],
+  "videos": [
+    {
+      "id": "un6ZNdcxQIk",
+      "title": "How to Create Amazing Cloth Simulations with Chaos Cloth in Unreal Engine 5",
+      "author": "WINBUSH"
+    },
+    {
+      "id": "RXq1X8q04Dk",
+      "title": "Unreal Engine 5.6 - Chaos Cloth for Metahuman - Tutorial",
+      "author": "Unreal - X - Tutorials"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Chaos%20Cloth",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Skeletal Mesh",
+    "Mesh Editor",
+    "Asset Details",
+    "Clothing",
+    "Triangle"
+  ],
+  "at": "2026-11-07T09:39:21.741726+00:00"
+}
