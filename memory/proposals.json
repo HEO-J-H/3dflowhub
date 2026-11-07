@@ -19805,5 +19805,77 @@
     "id": "p-413852c5b8",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에 TripoSR 모의 테스트와 예외 처리 관련 테스트 코드가 반복적으로 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-07T18:40:02+00:00",
+    "kind": "proposal",
+    "id": "p-54bfa743da",
+    "title": "backend/tests/test_triposr_mock.py 모의 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "과거 TripoSR 오류 처리 테스트에서 패치 적용 실패(held) 기록이 있으므로, 모의 테스트 코드를 분할하여 안전하게 재작성 필요",
+    "proposal": "backend/tests/test_triposr_mock.py 파일을 새로 구성하여 TripoSR 실행 실패 시 예외 처리와 대체 경로 동작을 격리된 환경에서 검증",
+    "expected": "로컬 파이프라인의 견고성 향상 및 테스트 커버리지 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T18:40:02+00:00",
+    "kind": "proposal",
+    "id": "p-4860e08e92",
+    "title": "docs/local-pipeline.md FAQ 및 VRAM 가이드 업데이트",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자들이 로컬 실행 시 VRAM 요구 사항과 CUDA 설정에 대한 안내를 자주 참고하므로 문서 최신화 필요",
+    "proposal": "docs/local-pipeline.md 문서에 자주 발생하는 오류 코드와 해결 방법을 FAQ 섹션으로 추가 정리",
+    "expected": "사용자 설치 및 실행 시행착오 감소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T18:40:02+00:00",
+    "kind": "proposal",
+    "id": "p-d6849b5362",
+    "title": "web/index.html 오프라인 브라우저 렌더링 안내 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전은 브라우저에서 직접 처리하므로 사용자에게 브라우저 리소스 사용 및 오프라인 작동 원리를 명확히 안내할 필요가 있음",
+    "proposal": "web/index.html 내 안내 문구 및 툴팁을 수정하여 클라이언트 사이드 처리의 장점을 직관적으로 표시",
+    "expected": "웹 툴 사용자 이해도 향상 및 이탈률 감소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T18:40:23.067102+00:00",
+    "kind": "decision",
+    "id": "p-54bfa743da",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T18:40:23.082406+00:00",
+    "kind": "decision",
+    "id": "p-4860e08e92",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md FAQ 섹션 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T18:40:23.095953+00:00",
+    "kind": "decision",
+    "id": "p-d6849b5362",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: web/index.html 브라우저 렌더링 안내 문구 개선",
+    "auto": true
   }
 ]
