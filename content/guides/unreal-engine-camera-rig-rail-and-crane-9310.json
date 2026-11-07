@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-camera-rig-rail-and-crane-9310",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "시퀀서",
+  "name": "Camera Rig Rail and Crane",
+  "title": "Camera Rail·Crane",
+  "summary": "Unreal Engine의 Camera Rig Rail과 Camera Rig Crane은 실제 영화 촬영 장비인 카메라 레일과 지브 크레인을 가상 공간에서 시뮬레이션하여 역동적이고 부드러운 카메라 무빙을 만드는 기능입니다.",
+  "when": [
+    "복잡하고 일정한 곡선 경로를 따라 카메라가 부드럽게 이동해야 할 때",
+    "영화 같은 지브 크레인 샷처럼 상하 붐업·다운 및 회전 무빙이 필요할 때",
+    "시네마틱 컷씬이나 가상 카메라 연출에서 안정적인 카메라 패스(Path)를 구성할 때"
+  ],
+  "steps": [
+    "Place Actors 패널(Ctrl+Shift+1)에서 Camera Rig Rail을 검색하여 뷰포트에 배치합니다.",
+    "Details 패널에서 Spline 컴포넌트를 선택하고, Alt 키를 누른 채 포인트를 드래그하여 원하는 카메라 이동 경로를 만듭니다.",
+    "Place Actors 패널에서 Camera Rig Crane을 검색하여 레일 위 또는 레벨에 배치합니다.",
+    "Details 패널에서 Camera Rig Crane을 Camera Rig Rail의 하위(Attach)로 드래그하여 레일에 연결합니다.",
+    "Cine Camera Actor를 생성하여 Camera Rig Crane의 하위(Attach)로 연결하고, 뷰포트에서 카메라 시점으로 전환하여 구도를 잡습니다.",
+    "Details 패널의 Rail Position 및 Crane Pitch/Yaw 값을 조절하여 카메라의 위치와 각도를 애니메이팅합니다."
+  ],
+  "params": [
+    {
+      "name": "Rail Position",
+      "desc": "레일 위에서 카메라가 위치하는 비율 또는 거리(0.0 ~ 1.0)를 결정합니다."
+    },
+    {
+      "name": "Crane Pitch",
+      "desc": "크레인 암의 상하 각도를 조절하여 틸트 업·다운 무빙을 만듭니다."
+    },
+    {
+      "name": "Crane Yaw",
+      "desc": "크레인 암의 좌우 회전 각도를 조절합니다."
+    },
+    {
+      "name": "Crane Arm Length",
+      "desc": "크레인 팔의 길이를 설정하여 카메라와 회전 중심 간의 거리를 조절합니다."
+    },
+    {
+      "name": "Lock to Rail",
+      "desc": "카메라를 레일 경로에 강제로 고정하여 정밀한 패스 주행을 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공중 회전 패닝 샷",
+      "steps": [
+        "Camera Rig Rail을 원형 형태로 배치합니다.",
+        "Camera Rig Crane의 Arm Length를 길게 설정합니다.",
+        "Rail Position에 키프레임을 주어 한 바퀴 회전시킵니다."
+      ]
+    },
+    {
+      "title": "레일 기반 추적 샷",
+      "steps": [
+        "주행하는 캐릭터를 따라가는 선형 Camera Rig Rail을 만듭니다.",
+        "Cine Camera Actor를 부착하고 피사체에 초점을 맞춥니다.",
+        "Sequencer에서 Rail Position을 애니메이팅하여 캐릭터를 추적합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라가 레일에 붙지 않고 따로 노는 경우 → Cine Camera Actor를 Camera Rig Crane의 하위 오브젝트로 정확히 Attach 했는지 확인합니다.",
+    "레일 경로가 직선으로만 움직이는 경우 → Details 패널의 Spline 컴포넌트 에디터에서 포인트를 추가하고 곡선 핸들을 조절하여 경로를 수정합니다."
+  ],
+  "related": [
+    "Cine Camera Actor",
+    "Sequencer",
+    "Camera cuts in Sequencer",
+    "Control Rig"
+  ],
+  "videos": [
+    {
+      "id": "Y7pOpTsqbtk",
+      "title": "How to use the camera rig rail in Unreal Engine 5.4 | Tutorial #cinematics",
+      "author": "Jen Abbott Creates"
+    },
+    {
+      "id": "zSA17y5QQ8M",
+      "title": "How to use the NEW CineCamera Rig Rail in Unreal Engine 5.3 Update",
+      "author": "tiedtke."
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Camera%20Rig%20Rail%20and%20Crane",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Place Actors",
+    "Camera Rig Rail"
+  ],
+  "at": "2026-11-07T08:38:43.668717+00:00"
+}

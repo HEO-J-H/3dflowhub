@@ -17643,5 +17643,58 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 성능 최적화 가이드 문서 정비",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T08:38:27.631533+00:00",
+    "kind": "report",
+    "id": "r-2026-11-07T08:38",
+    "text": "최근 7일간 293건의 콘텐츠가 발행되어 총 1,128건의 3D 학습 자료가 누적되었으며, 가이드 비중을 높여 방문자가 실무 지식을 깊이 있게 학습할 수 있도록 운영 중입니다. 다만 AI 일일 한도 소진 이슈가 발생하고 있어 효율적인 호출 배분이 필요합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.8,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자가 실제로 공부하고 오래 머무를 수 있는 에버그린 기초 가이드 중심의 학습 사이트 방향에 맞추어 예산을 집중합니다."
+  },
+  {
+    "at": "2026-11-07T08:38:27.631533+00:00",
+    "kind": "proposal",
+    "id": "p-5398f023a2",
+    "title": "AI 호출 예산 한도 대비 배분 조정",
+    "category": "운영·비용",
+    "evidence": "최근 실행 50회 중 AI 일일 한도 소진 관련 오류가 27건 발생하여 리소스 최적화가 필요합니다.",
+    "proposal": "뉴스 비중을 낮추고 가이드 제작 중심의 안정적인 예산 활용 구조를 유지합니다.",
+    "expected": "불필요한 LLM 호출 한도 초과를 방지하고 핵심 가이드 품질을 높입니다.",
+    "effort": "낮음",
+    "action": {
+      "type": "set_config",
+      "key": "llm_daily_budget",
+      "value": 280
+    },
+    "risk": "high"
+  },
+  {
+    "at": "2026-11-07T08:38:30+00:00",
+    "kind": "proposal",
+    "id": "p-7bf26b71cd",
+    "title": "docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 TripoSR 실행 안내서 문서화 과제가 패치 적용 실패로 중단되었으나, 로컬 가이드 보완 필요성은 여전히 존재합니다.",
+    "proposal": "docs/local-pipeline.md 파일을 직접 검토하여 TripoSR 실행 시 필요한 VRAM 권장 사양과 CUDA 설정 안내를 명확하게 보완합니다.",
+    "expected": "로컬 사용자들의 GPU 환경 설정 혼선 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T08:39:50.704674+00:00",
+    "kind": "decision",
+    "id": "p-7bf26b71cd",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
+    "auto": true
   }
 ]
