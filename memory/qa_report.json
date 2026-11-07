@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-06T20:16:52+00:00",
-  "checked": 993,
+  "at": "2026-11-07T02:18:58+00:00",
+  "checked": 1015,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -754,9 +754,47 @@
       "score": 10,
       "defects": [],
       "fix_hint": "현재의 명확한 구조와 정확한 공식 영문 UI 명칭 및 실습 단계를 계속 유지합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "houdini-polysplit-sop-f8b0",
+      "title": "PolySplit — 면 자르기",
+      "score": 5,
+      "defects": [
+        "Enter 키 위치 설명이 부정확함",
+        "스냅 옵션 활성화 방법 누락",
+        "이미지·영상 미첨부로 학습 어려움",
+        "핵심 파라미터(예: Keep Original) 언급 없음"
+      ],
+      "fix_hint": "공식 매뉴얼을 참고해 정확한 UI 경로와 주요 파라미터를 모두 포함하고, 시각 자료를 반드시 삽입하세요."
+    },
+    {
+      "kind": "fix",
+      "id": "nvidia-omniverse-nucleus-server-connection-lost-1a2b7",
+      "title": "Nucleus Server connection lost 연결 끊김 오류 해결 가이드",
+      "score": 7,
+      "defects": [
+        "방화벽 포트 허용 방법을 구체적으로 제시하지 않음",
+        "원격 서버 IP·포트 확인 및 DNS 설정 안내가 부족함",
+        "Nucleus 서비스 로그 확인 및 서비스 정확한 이름(Omniverse Nucleus Service) 언급 누락",
+        "UI 명칭을 공식 영문 그대로 표기하지 않아 혼동 가능 (예: Nucleus Navigator)"
+      ],
+      "fix_hint": "공식 문서와 UI 명칭을 그대로 사용하고, 각 단계별로 필요한 설정 방법과 확인 포인트를 구체적으로 기술하세요."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-smooth-modifier-4b6d",
+      "title": "Smooth — 스무딩 그룹 자동 지정",
+      "score": 10,
+      "defects": [],
+      "fix_hint": ""
     }
   ],
   "avg_score": 9.0,
-  "low_by_kind": {},
-  "redo_now": []
+  "low_by_kind": {
+    "guide": 1
+  },
+  "redo_now": [
+    "guide:houdini-polysplit-sop-f8b0"
+  ]
 }

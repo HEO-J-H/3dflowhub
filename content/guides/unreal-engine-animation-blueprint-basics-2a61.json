@@ -1,0 +1,102 @@
+{
+  "id": "unreal-engine-animation-blueprint-basics-2a61",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animation Blueprint basics",
+  "title": "Animation Blueprint 기초",
+  "summary": "Animation Blueprint는 Skeletal Mesh의 애니메이션 로직을 시각적으로 구성해 재생·전이·블렌딩 등을 제어하는 툴입니다.",
+  "when": [
+    "캐릭터 움직임을 상태에 따라 다르게 재생하고 싶을 때",
+    "복합적인 블렌드와 전이 로직을 한 곳에서 관리하고 싶을 때",
+    "리얼타임 게임플레이에서 애니메이션을 코딩 없이 제어하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 → Blueprint Class → Pick Parent Class에서 Animation Blueprint 선택 → 이름 지정 후 Create",
+    "새로 만든 Animation Blueprint를 더블 클릭 → 왼쪽 Anim Graph 탭에서 Add New State Machine 추가",
+    "State Machine 안에 Idle, Walk 등 State를 Add → 각 State에 기존 Animation Sequence를 드래그하여 연결",
+    "Transition Rule을 만들려면 두 State 사이에 화살표를 클릭 → Rule Graph에 Boolean 변수(예: bIsWalking)와 Compare 노드를 연결",
+    "Event Graph에서 변수 값을 업데이트하려면 Event Tick 또는 Custom Event에 Set Boolean 노드를 배치",
+    "Compile 버튼을 클릭하고, Skeletal Mesh 에디터에서 해당 Animation Blueprint를 할당하여 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Blend Space",
+      "desc": "다중 방향 이동 시 애니메이션을 부드럽게 보간합니다"
+    },
+    {
+      "name": "State Machine",
+      "desc": "상태 전이를 관리하는 컨테이너"
+    },
+    {
+      "name": "Transition Rule",
+      "desc": "State 간 전이 조건을 정의합니다"
+    },
+    {
+      "name": "Anim Notify",
+      "desc": "재생 중 특정 시점에 이벤트를 트리거합니다"
+    },
+    {
+      "name": "Layered Blend per Bone",
+      "desc": "뼈대별로 다른 애니메이션을 겹쳐 재생합니다"
+    },
+    {
+      "name": "Pose Snapshot",
+      "desc": "특정 포즈를 저장해 다른 블렌드에 활용합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "걷기와 달리기 전이",
+      "steps": [
+        "Walk State와 Run State를 각각 추가",
+        "Transition Rule에 Speed 변수 > 300 조건 설정",
+        "Speed 변수를 캐릭터 블루프린트에서 Update",
+        "플레이 모드에서 속도에 따라 애니메이션이 전환되는지 확인"
+      ]
+    },
+    {
+      "title": "무기 교체 시 애니메이션 레이어링",
+      "steps": [
+        "Base Layer에 기본 이동 애니메이션 설정",
+        "UpperBody Layer에 Weapon Hold Pose를 Add",
+        "Layered Blend per Bone에서 UpperBody만 블렌드 적용",
+        "무기 교체 시 Set Bool 변수로 UpperBody 레이어 활성화"
+      ]
+    }
+  ],
+  "mistakes": [
+    "전이 규칙에 조건을 넣지 않음 → 무한 루프 전이 발생, 반드시 Boolean 또는 비교 노드로 조건을 설정",
+    "Blend Space 축 범위를 잘못 설정 → 움직임이 튀어 보임, 각 축의 Min/Max 값을 실제 속도 범위에 맞게 조정",
+    "변수 업데이트를 Event Tick에만 두면 성능 저하 → 필요 시 Custom Event와 캐시 변수 사용으로 최적화"
+  ],
+  "related": [
+    "Animation Montage",
+    "Anim Notify",
+    "Blend Space",
+    "State Machine"
+  ],
+  "videos": [
+    {
+      "id": "I3uiXmGTJMw",
+      "title": "Set up ANIMATIONS for Beginners in Unreal Engine 5!",
+      "author": "Unreal in 5 Minutes!"
+    },
+    {
+      "id": "WUXvq6At6pE",
+      "title": "How to Animate Your Character in Unreal Engine 5 - Animation Blueprints and Blendspaces",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Animation%20Blueprint%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprint Class",
+    "Pick Parent Class",
+    "Animation Blueprint",
+    "Create"
+  ],
+  "at": "2026-11-07T02:20:34.826485+00:00"
+}

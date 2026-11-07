@@ -5,66 +5,91 @@
   "group": "노드",
   "name": "PolySplit SOP",
   "title": "PolySplit — 면 자르기",
-  "summary": "PolySplit SOP 노드는 폴리곤 면 위에 직접 새로운 엣지를 자유롭게 그려 넣거나 기존 엣지를 분할하는 Geometry Nodes입니다. 복잡한 형태를 수정하거나 원하는 위치에 디테일을 추가할 때 사용합니다.",
+  "summary": "PolySplit SOP는 폴리곤 면 위에 새로운 엣지를 직접 그리거나 기존 엣지를 원하는 위치에서 분할해 메쉬에 디테일을 추가하는 노드입니다.",
   "when": [
-    "모델링 표면에 새로운 엣지 루프를 수동으로 추가하고 싶을 때",
-    "특정 면과 면 사이를 연결하는 절단선을 직접 그리고 싶을 때",
-    "하드 표면(Hard Surface) 모델링에서 구조적인 디테일을 더할 때"
+    "복잡한 형태에 작은 디테일을 삽입하고 싶을 때",
+    "UV 시어를 만들기 위해 메쉬에 정확한 절단선을 넣을 때",
+    "기존 폴리곤을 손쉽게 삼각형·사각형 등으로 재구성할 때"
   ],
   "steps": [
-    "네트워크 뷰(Network View)에서 Tab 키를 누릅니다.",
-    "PolySplit을 검색하여 PolySplit SOP 노드를 생성하고 대상 모델 뒤에 연결합니다.",
-    "노드를 더블클릭하여 지오메트리 내부로 진입하거나, 뷰포트 우측 상단의 Enter 키를 눌러 툴을 활성화합니다.",
-    "뷰포트에서 Mouse 클릭으로 엣지 위에 포인트를 찍고, 원하는 경로를 따라 엣지를 그려 나갑니다.",
-    "Enter 키를 누르거나 드래그를 완료하여 절단 작업을 확정합니다."
+    "Network View에서 Tab 키 → PolySplit 입력 후 PolySplit SOP 생성",
+    "대상 Geometry SOP 뒤에 PolySplit 노드 연결",
+    "Parameter Pane에서 Edge를 클릭해 분할할 엣지 선택",
+    "Position 슬라이더(또는 직접 입력)로 새 엣지 위치 조정",
+    "필요 시 Split Type을 Edge/Vertex/Face 중 선택",
+    "Preserve Group 옵션을 켜서 기존 그룹 유지"
   ],
   "params": [
     {
-      "name": "Split",
-      "desc": "선택한 엣지나 면 위에 새로운 분할선을 생성합니다."
+      "name": "Edge",
+      "desc": "분할할 기존 엣지를 선택합니다"
     },
     {
-      "name": "Snap",
-      "desc": "그리기를 할 때 가까운 포인트나 엣지 미드포인트에 자동으로 흡착합니다."
+      "name": "Position",
+      "desc": "새 엣지가 삽입될 상대 위치(0~1)"
+    },
+    {
+      "name": "Split Type",
+      "desc": "Edge·Vertex·Face 중 분할 방식 선택"
     },
     {
       "name": "Group",
-      "desc": "새로 생성된 엣지나 포인트에 지정할 그룹 이름을 설정합니다."
+      "desc": "새 엣지가 포함될 그룹 이름 지정"
+    },
+    {
+      "name": "Preserve Group",
+      "desc": "기존 그룹 정보를 유지합니다"
+    },
+    {
+      "name": "Snap to Edge",
+      "desc": "새 엣지를 가장 가까운 기존 엣지에 스냅합니다"
     }
   ],
   "examples": [
     {
-      "title": "박스 모델링에 추가 디테일 엣지 넣기",
+      "title": "파이프에 작은 홈 만들기",
       "steps": [
-        "Box SOP로 기본 육면체를 만듭니다.",
-        "그 뒤에 PolySplit SOP 노드를 연결합니다.",
-        "뷰포트에서 측면 모서리에서 반대쪽 모서리로 가로지르는 엣지를 그려 넣습니다."
+        "Pipe SOP 뒤에 PolySplit 추가",
+        "분할할 파이프 측면 엣지 선택",
+        "Position을 0.5로 설정해 중앙에 홈 삽입",
+        "Split Type을 Edge로 유지하고 결과 확인"
       ]
     },
     {
-      "title": "특정 면 분할하여 구조 변경하기",
+      "title": "UV 시어를 위한 정확한 절단선",
       "steps": [
-        "Grid SOP로 평면 모델을 생성합니다.",
-        "PolySplit SOP를 연결하고 뷰포트에서 면의 중앙을 가르는 대각선 엣지를 추가합니다.",
-        "추가된 엣지를 기준으로 Extrude SOP 등을 활용해 입체감을 줍니다."
+        "UV Unwrap 전 Geometry 뒤에 PolySplit 배치",
+        "UV 경계에 맞는 엣지 선택 후 Position 조정",
+        "Preserve Group 켜서 UV 그룹 손실 방지",
+        "UV Layout을 다시 실행해 시어 확인"
+      ]
+    },
+    {
+      "title": "저폴리 모델에 디테일 추가",
+      "steps": [
+        "LowPoly Mesh 뒤에 PolySplit 삽입",
+        "디테일이 필요한 면의 엣지 선택",
+        "Position을 0.25~0.75 사이로 조정해 여러 개의 새 엣지 생성",
+        "Split Type을 Face로 바꿔 삼각형 분할"
       ]
     }
   ],
   "mistakes": [
-    "노드만 생성하고 뷰포트에서 활성화하지 않은 경우 → 네트워크 뷰에서 노드를 선택한 상태로 뷰포트에 Mouse를 올리고 Enter 키를 누릅니다.",
-    "원하는 위치에 스냅되지 않고 엉뚱한 곳에 엣지가 생기는 경우 → 스냅 옵션을 켜고 포인인트나 엣지 미드포인트 근처에서 클릭합니다."
+    "노드를 Geometry 뒤에 연결하지 않음 → PolySplit이 적용되지 않으니 노드 순서를 확인",
+    "Edge 선택을 잘못 지정 → 올바른 엣지를 다시 클릭하거나 Viewport에서 직접 선택",
+    "Preserve Group을 끄면 기존 그룹이 사라짐 → 필요 시 Preserve Group을 활성화"
   ],
   "related": [
-    "Knife SOP",
-    "Edge Loop SOP",
-    "Subdivide SOP",
-    "Blast SOP"
+    "Clip SOP",
+    "Divide SOP",
+    "Boolean SOP",
+    "VEX (PolySplit 함수)"
   ],
   "videos": [
     {
-      "id": "nG3Zztc3Of8",
-      "title": "SOP Solver - Houdini For MoGraph Ep0010",
-      "author": "Far Out Studio"
+      "id": "KivxKhggdX0",
+      "title": "Zero to One: Intro to SOP – PolyExtrude & Bevel | Houdini Tutorial (M107)",
+      "author": "Think Trix"
     },
     {
       "id": "auyzqhP_1OI",
@@ -80,5 +105,5 @@
     "PolySplit",
     "PolySplit SOP"
   ],
-  "at": "2026-11-04T13:49:52.253584+00:00"
+  "at": "2026-11-07T02:20:05.123621+00:00"
 }
