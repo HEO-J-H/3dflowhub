@@ -1,0 +1,93 @@
+{
+  "id": "maya-snapping-grid-point-curve-91d3",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Snapping (grid, point, curve)",
+  "title": "스냅",
+  "summary": "Maya의 Snapping 기능은 오브젝트나 컴포넌트를 Grid, 다른 점, 커브 선 위에 정확하게 맞닿게 정렬하고 배치하는 필수 도구입니다. Hotkey와 툴바 아이콘을 통해 신속하게 켜고 끌 수 있습니다.",
+  "when": [
+    "건축 모델링 시 벽체와 가구를 Grid에 정확히 맞출 때",
+    "Vertex를 다른 오브젝트의 특정 포인트에 정확히 붙여 틈새를 메울 때",
+    "리깅이나 가이드라인용 Curve 위에 오브젝트를 정확히 배치할 때"
+  ],
+  "steps": [
+    "Maya 상단 툴바에서 자석 모양의 Snapping 아이콘을 클릭하거나 Hotkey(X, C, V)를 사용하여 원하는 스냅 모드를 활성화합니다.",
+    "Grid 스냅을 위해 상단 툴바의 'Snap to Grids' 아이콘을 클릭하거나 X 키를 누릅니다.",
+    "포인트 스냅을 위해 상단 툴바의 'Snap to Points' 아이콘을 클릭하거나 V 키를 누릅니다.",
+    "커브 스냅을 위해 상단 툴바의 'Snap to Curves' 아이콘을 클릭하거나 C 키를 누릅니다.",
+    "뷰포트에서 오브젝트의 이동(W), 회전(E), 스케일(R) 기즈모를 드래그하여 대상 위치에 정확히 스냅시킵니다.",
+    "뷰포트에서 대상을 정확히 맞춘 뒤 Mouse 클릭을 떼어 배치를 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Snap to Grids",
+      "desc": "Grid 간격에 맞춰 오브젝트를 이동시킵니다."
+    },
+    {
+      "name": "Snap to Points",
+      "desc": "버텍스나 포인트 위치에 정확히 맞닿게 이동시킵니다."
+    },
+    {
+      "name": "Snap to Curves",
+      "desc": "NURBS 또는 폴리곤 커브 라인을 따라 오브젝트를 배치합니다."
+    },
+    {
+      "name": "Snap to Pixel",
+      "desc": "화면 픽셀 단위에 맞춰 뷰포트 요소를 정렬합니다."
+    },
+    {
+      "name": "Relative to Grid",
+      "desc": "현재 위치를 기준으로 Grid 간격만큼 상대적으로 이동합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽체 모서리에 기둥 Vertex 정확히 맞추기",
+      "steps": [
+        "기둥 오브젝트를 선택하고 컴포넌트 모드(F9)로 전환하여 Vertex를 선택합니다.",
+        "V 키를 누른 채로 Mouse 중 클릭으로 벽체의 모서리 Vertex 위치로 드래그합니다.",
+        "Vertex가 벽체 모서리에 정확히 스냅되면 Mouse를 놓습니다."
+      ]
+    },
+    {
+      "title": "커브를 따라 가로등 에셋 배치하기",
+      "steps": [
+        "배치할 가로등 오브젝트를 선택합니다.",
+        "C 키를 누른 채로 커브 라인 위로 오브젝트를 드래그합니다.",
+        "커브 라인에 완전히 밀착되어 스냅된 것을 확인하고 배치를 완료합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅 Hotkey를 뗄 때 Mouse 버튼을 먼저 놓지 않아 원하는 위치에서 벗어남 → Mouse를 먼저 놓은 뒤 Hotkey를 뗍니다.",
+    "포인트나 커브가 선택되지 않고 빈 공간으로 스냅됨 → 대상 오브젝트에 Mouse 커서를 가까이 대고 드래그합니다."
+  ],
+  "related": [
+    "Move Tool",
+    "Rotate Tool",
+    "Scale Tool",
+    "Symmetry"
+  ],
+  "videos": [
+    {
+      "id": "oY5criL-epM",
+      "title": "Maya - Mastering The Snapping Tools",
+      "author": "James, How Do I?"
+    },
+    {
+      "id": "tDuyFRQxnGc",
+      "title": "Quick Tips! Snap 3D Objects in Maya: Grid, Objects, and Curves",
+      "author": "Academic Phoenix Plus"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Snapping%20%28grid%2C%20point%2C%20curve%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Snapping",
+    "Hotkey"
+  ],
+  "at": "2026-11-07T09:48:56.392254+00:00"
+}

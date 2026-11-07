@@ -1,0 +1,99 @@
+{
+  "id": "unreal-engine-physics-simulation-on-actors-e6cc",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "물리",
+  "name": "Physics simulation on actors",
+  "title": "물리 시뮬레이션 켜기",
+  "summary": "Unreal Engine의 액터 물리 시뮬레이션(Physics Simulation)은 3D 오브젝트에 중력과 충돌 반응을 실시간으로 부여하여 자연스러운 움직임을 만드는 기능입니다.",
+  "when": [
+    "바닥에 떨어지거나 서로 부딪히는 소품(프롭)을 연출할 때",
+    "캐릭터와 상호작용하여 밀려나는 오브젝트를 만들 때",
+    "바람이나 외력에 반응하는 다이나믹한 환경 요소를 구현할 때"
+  ],
+  "steps": [
+    "Content Browser에서 물리 반응을 적용할 3D Static Mesh를 선택하거나 뷰포트에 배치합니다.",
+    "Details 패널에서 해당 Static Mesh Component를 선택합니다.",
+    "Details 패널의 Physics 카테고리에서 Simulate Physics 옵션을 체크하여 활성화합니다.",
+    "Collision 카테고리의 Collision Preset을 PhysicsActor 또는 BlockAllDynamic으로 설정합니다.",
+    "뷰포트 상단의 Play 버튼을 눌러 시뮬레이션 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Simulate Physics",
+      "desc": "오브젝트에 중력과 외력을 적용하여 물리적으로 움직이게 합니다."
+    },
+    {
+      "name": "Mass",
+      "desc": "오브젝트의 무게를 설정하여 충돌 시 밀리는 정도를 결정합니다."
+    },
+    {
+      "name": "Linear Damping",
+      "desc": "이동할 때 공기 저항과 같은 마찰력을 주어 속도를 조절합니다."
+    },
+    {
+      "name": "Angular Damping",
+      "desc": "회전할 때 발생하는 저항값을 주어 회전 운동을 감쇠시킵니다."
+    },
+    {
+      "name": "Collision Preset",
+      "desc": "다른 오브젝트와의 충돌 판정 및 반응 방식을 설정합니다."
+    },
+    {
+      "name": "Enable Gravity",
+      "desc": "오브젝트에 중력을 적용할지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "테이블 위 상자가 쏟아지는 연출",
+      "steps": [
+        "테이블 위에 여러 개의 상자 Static Mesh를 배치합니다.",
+        "모든 상자의 Details 패널에서 Simulate Physics를 켭니다.",
+        "Play를 눌러 상자들이 중력에 의해 떨어지며 흩어지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "공을 던져 장애물을 맞추는 상호작용",
+      "steps": [
+        "가벼운 구체(Sphere) Mesh에 Simulate Physics를 적용합니다.",
+        "정지해 있는 핀 모양의 Mesh들도 Simulate Physics를 켭니다.",
+        "캐릭터가 공을 던져 핀들과 충돌하는 물리 반응을 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Simulate Physics를 켰으나 오브젝트가 공중에 가만히 있는 경우 → Mass나 Enable Gravity 설정 및 Static Mesh의 Mobility가 Movable로 되어 있는지 확인합니다.",
+    "오브젝트가 서로 통과해 버리는 경우 → Collision Preset이 올바르게 설정되었는지, 또는 복잡한 형태에 Collision이 생성되었는지 확인합니다."
+  ],
+  "related": [
+    "Collision",
+    "Chaos Destruction",
+    "Constraint",
+    "Destructible Mesh"
+  ],
+  "videos": [
+    {
+      "id": "ye0gjAx50oU",
+      "title": "🥊Beat Yourself up with Unreal! RAGDOLL Physics for Filmmaking made Easy (or Hard) in UE5.6!🥊",
+      "author": "Dean Yurke - Unreal Engine and VFX Filmmaking"
+    },
+    {
+      "id": "UP3zWCMPn3E",
+      "title": "Unreal Engine Just Got AAA Animation Physics (Game Animation Sample 5.8)",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Physics%20simulation%20on%20actors",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "D Static Mesh",
+    "Details",
+    "Static Mesh Component",
+    "Physics",
+    "Simulate Physics"
+  ],
+  "at": "2026-11-07T09:48:50.746847+00:00"
+}
