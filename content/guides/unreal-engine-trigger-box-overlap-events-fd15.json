@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-trigger-box-overlap-events-fd15",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Trigger Box overlap events",
+  "title": "Trigger — 들어가면 동작",
+  "summary": "Trigger Box는 플레이어가 특정 영역에 진입하거나 나갈 때 이벤트를 발생시키는 가장 기본적인 볼륨 컴포넌트입니다. 문 열기, 사운드 재생, 컷신 실행 등 게임 내 상호작용의 핵심 트리거로 활용됩니다.",
+  "when": [
+    "플레이어가 방에 들어갈 때 문이 자동으로 열리도록 만들 때",
+    "특정 구역에 진입했을 때 배경 음악이나 효과음을 재생할 때",
+    "플레이어가 위험 지역에 닿았을 때 대사 출력이나 데미지를 줄 때"
+  ],
+  "steps": [
+    "Content Browser에서 빈 공간을 우클릭하거나 상단 + Add 버튼을 클릭합니다.",
+    "Volumes 카테고리에서 Trigger Box를 선택하여 레벨 뷰포트로 드래그 앤 드롭합니다.",
+    "Transform 툴을 사용해 Trigger Box의 위치를 맞추고 Scale을 조절하여 감지 영역의 크기를 설정합니다.",
+    "Details 패널 하단의 Events 섹션에서 OnActorBeginOverlap 의 렌더링된 + 버튼을 클릭하여 블루프린트 노드를 생성합니다.",
+    "생성된 OnActorBeginOverlap 이벤트 노드에 원하는 기능을 연결하고, 뷰포트에서 플레이어 캐릭터가 닿을 때 이벤트가 실행되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Transform",
+      "desc": "Trigger Box의 위치(Location), 회전(Rotation), 크기(Scale)를 조절하여 감지 영역을 설정합니다."
+    },
+    {
+      "name": "OnActorBeginOverlap",
+      "desc": "다른 액터(플레이어 등)가 Trigger Box 영역 안으로 처음 겹쳐 들어올 때 이벤트를 발생시킵니다."
+    },
+    {
+      "name": "OnActorEndOverlap",
+      "desc": "다른 액터가 Trigger Box 영역 밖으로 완전히 벗어날 때 이벤트를 발생시킵니다."
+    },
+    {
+      "name": "Collision Presets",
+      "desc": "충돌 판정을 처리할 채널을 설정하며, 기본 Trigger 설정으로 플레이어나 펜듈럼 등을 감지합니다."
+    },
+    {
+      "name": "Actor Hidden In Game",
+      "desc": "플레이 중에 Trigger Box의 시각적 경계 박스를 숨기거나 보이게 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동 문 열기 시스템",
+      "steps": [
+        "레벨에 Door 액터를 배치하고 문이 열리는 애니메이션을 준비합니다.",
+        "문 앞에 Trigger Box를 배치하여 감지 영역을 만듭니다.",
+        "Trigger Box의 OnActorBeginOverlap 이벤트를 문 블루프린트의 Timeline 노드와 연결합니다.",
+        "플레이어가 박스에 닿으면 문이 스르륵 열리는지 테스트합니다."
+      ]
+    },
+    {
+      "title": "구역 진입 시 배경음악 전환",
+      "steps": [
+        "전환하고 싶은 공간에 Trigger Box를 넓게 배치합니다.",
+        "OnActorBeginOverlap 이벤트에서 Play Sound 2D 노드를 연결합니다.",
+        "플레이어가 해당 구역에 걸어 들어갈 때 새로운 음악이 재생되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "콜리전 설정 오류 → Trigger Box의 Collision Presets가 OverlapAll 또는 Custom으로 설정되어 있는지 확인하세요.",
+    "시야에서 박스가 보이지 않음 → 게임 플레이 중에는 박스가 기본적으로 숨겨지므로, 에디터 화면에서 크기와 위치를 미리 정확히 맞춰야 합니다.",
+    "이벤트가 두 번 실행됨 → 캐릭터에 여러 개의 충돌 컴포넌트(캡슐과 메시 등)가 있을 경우 Overlap이 중복 발생할 수 있으므로 Other Actor 노드를 Cast하여 플레이어 본인만 필터링하세요."
+  ],
+  "related": [
+    "Collision Box",
+    "Level Blueprint",
+    "Event Dispatcher",
+    "Editor Utility Widgets"
+  ],
+  "videos": [
+    {
+      "id": "9l16RdmJ4KE",
+      "title": "How to Create OVERLAP EVENTS in Unreal Engine 5 C++",
+      "author": "Keltick's Game Dev"
+    },
+    {
+      "id": "H2I7I8blgn8",
+      "title": "How to Trigger an Event when the Player Collides in Unreal Engine 5",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Trigger%20Box%20overlap%20events",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Add",
+    "Volumes",
+    "Trigger Box"
+  ],
+  "at": "2026-11-07T00:37:46.997256+00:00"
+}

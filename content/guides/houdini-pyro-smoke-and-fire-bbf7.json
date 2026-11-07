@@ -1,0 +1,91 @@
+{
+  "id": "houdini-pyro-smoke-and-fire-bbf7",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "Pyro smoke and fire",
+  "title": "Pyro — 연기·불",
+  "summary": "Houdini의 Pyro는 연기와 불꽃의 물리적 움직임을 시뮬레이션하는 강력한 볼륨 솔버입니다. 노드 기반으로 연기 밀도, 온도, 불꽃의 확산 등을 세밀하게 제어할 수 있습니다.",
+  "when": [
+    "폭발이나 화재 장면에서 사실적인 불꽃과 연기를 만들 때",
+    "굴뚝이나 담배 연기처럼 자연스럽게 피어오르는 유체 효과를 낼 때",
+    "마찰이나 바람에 반응하는 역동적인 볼륨 시뮬레이션이 필요할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 오브젝트 레벨로 이동 후 Tab 키를 누릅니다.",
+    "Pyro Source 노드를 생성하고 연기를 발생시킬 메쉬 오브젝트를 연결합니다.",
+    "Tab 키를 눌러 Pyro Solver 노드를 생성하고 이전 노드와 연결합니다.",
+    "파라미터 창에서 Source Type과 Fuel, Smoke 속성을 설정합니다.",
+    "Timeline의 Play 버튼을 눌러 뷰포트에서 시뮬레이션 결과와 볼륨의 움직임을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Divisions",
+      "desc": "볼륨  voxels의 Resolution를 결정하며 높을수록 디테일이 살아납니다."
+    },
+    {
+      "name": "Buoyancy",
+      "desc": "온도 차이에 의해 연기와 불이 위로 떠오르는 힘을 조절합니다."
+    },
+    {
+      "name": "Flame Height",
+      "desc": "불꽃이 타오르는 높이와 연소 속도를 결정합니다."
+    },
+    {
+      "name": "Turbulence",
+      "desc": "연기 외곽에 무작위의 소용돌이 움직임을 더해 거친 질감을 만듭니다."
+    },
+    {
+      "name": "Dissipation",
+      "desc": "연기가 시간에 따라 흩어지고 사라지는 속도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 화재 연기",
+      "steps": [
+        "건물 메쉬를 Pyro Source에 연결하여 표면에서 연기가 뿜어져 나오게 설정합니다.",
+        "Buoyancy 값을 높여 연기가 빠르게 위로 솟구치도록 만듭니다.",
+        "Dissipation 값을 낮추어 연기가 오래 유지되게 조절합니다."
+      ]
+    },
+    {
+      "title": "작은 폭발 효과",
+      "steps": [
+        "구체(Sphere) 메쉬를 소스로 사용하여 짧고 강한 Fuel을 주입합니다.",
+        "Flame Height와 Expansion을 높여 초기 폭발의 팽창 감을 극대화합니다.",
+        "Turbulence를 추가해 불꽃의 파편적인 느낌을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Divisions 값을 처음부터 너무 높게 설정해 시뮬레이션 속도가 느려짐 → 낮은 Resolution로 먼저 테스트한 뒤 캐시 단계에서 값을 올립니다.",
+    "Fuel이나 Temperature 값이 부족해 불이 붙지 않음 → Source 노드의 Emission 속성에서 Fuel 채널이 제대로 들어오는지 확인합니다."
+  ],
+  "related": [
+    "Pyro Source",
+    "Pyro Solver",
+    "Volume Rasterize Attributes",
+    "Volume Visualization"
+  ],
+  "videos": [
+    {
+      "id": "_UDnKyMmbgc",
+      "title": "Houdini Pyro Basics: The Ultimate Beginner’s Guide to Fire Simulations",
+      "author": "Nodeconnector"
+    },
+    {
+      "id": "uqoiGnOSdPY",
+      "title": "Pyro FX in Houdini Tutorial, Part 03 | Realistic Fire & Smoke | For Beginner",
+      "author": "Sadjad Rabiee"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Pyro%20smoke%20and%20fire",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Pyro Source"
+  ],
+  "at": "2026-11-07T00:37:42.296596+00:00"
+}
