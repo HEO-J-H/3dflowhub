@@ -1,0 +1,94 @@
+{
+  "id": "unreal-engine-timeline-node-d81a",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Timeline node",
+  "title": "Timeline — 시간에 따른 값",
+  "summary": "Unreal Engine의 Timeline 노드는 블루프린트(Blueprint) 내에서 시간에 따른 변화(애니메이션, 값의 보간)를 프레임 단위로 제어할 수 있는 핵심 노드입니다. 코드 없이 시각적인 커브(Curve) 편집만으로 문을 열거나 조명을 켜는 등의 동적 이벤트를 구현합니다.",
+  "when": [
+    "플레이어가 다가갈 때 문이 스르륵 열리는 애니메이션을 만들 때",
+    "스위치를 켤 때 조명 밝기나 색상이 서서히 변하도록 만들 때",
+    "특정 위치로 오브젝트가 부드럽게 이동하거나 회전하는 연출을 할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprints → Blueprint Class 를 선택하여 Actor 클래스를 생성합니다.",
+    "생성된 블루프린트를 더블 클릭하여 개방하고, 상단 컴포넌트(Components) 패널에서 원하는 3D 메쉬를 추가합니다.",
+    "Event 그래프 탭으로 이동한 뒤, 그래프 빈 공간에서 우클릭하고 Add Timeline... 을 검색하여 Timeline 노드를 생성합니다.",
+    "Timeline 노드를 더블 클릭하여 Timeline 에디터 창을 엽니다.",
+    "좌측 상단의 + Track 버튼을 눌러 Float Track 등을 추가하고, Shift+클릭으로 키(Key)를 생성해 애니메이션 커브를 그립니다.",
+    "EventGraph로 돌아와 Timeline 노드의 Update 핀을 Set Relative Location 등의 노드와 연결하고, Play 핀을 트리거 이벤트에 연결하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Length",
+      "desc": "Timeline 애니메이션이 재생되는 총 시간(초 단위)을 설정합니다."
+    },
+    {
+      "name": "Auto Play",
+      "desc": "게임 시작 시 Timeline을 자동으로 재생할지 여부를 결정합니다."
+    },
+    {
+      "name": "Loop",
+      "desc": "애니메이션을 반복 재생(루프)할지 설정합니다."
+    },
+    {
+      "name": "Track Name",
+      "desc": "Timeline 내 개별 트랙의 이름을 지정하여 출력 핀으로 활용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동문 열림 연출",
+      "steps": [
+        "Box Collision 컴포넌트로 트리거 영역을 만듭니다.",
+        "OnComponentBeginOverlap 이벤트에서 Timeline 노드의 Play 핀을 연결합니다.",
+        "Timeline의 Float Track으로 0에서 90까지의 회전 값을 시간에 따라 출력합니다.",
+        "Set Relative Rotation 노드에 값을 연결해 문이 회전하며 열리게 만듭니다."
+      ]
+    },
+    {
+      "title": "조명 서서히 켜기 (Fade In)",
+      "steps": [
+        "Light 컴포넌트를 블루프린트에 추가합니다.",
+        "Timeline 노드를 생성하고 1초 길이의 Track을 추가합니다.",
+        "Update 핀에서 Set Intensity 노드를 연결해 Light 의 Intensity 값을 제어합니다.",
+        "플레이어가 스위치를 누르면 Timeline이 재생되어 조명이 밝아집니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "루프(Loop)를 체크하지 않아 애니메이션이 한 번 재생된 후 멈춤 → Timeline 내부 설정에서 Loop 아이콘을 활성화합니다.",
+    "Length 값이 너무 짧아 변화가 보이지 않음 → Timeline 에디터 상단의 Length 값을 작업하려는 시간(초)에 맞게 늘려줍니다."
+  ],
+  "related": [
+    "Blueprint",
+    "Lerp",
+    "Curve Float",
+    "Matinee"
+  ],
+  "videos": [
+    {
+      "id": "SS9weBeGOcc",
+      "title": "Unreal Engine 5 Blueprint Tutorial-Timeline Node Explained(Animation, Movement & Smooth Transitions)",
+      "author": "Mighty Knight's Forge"
+    },
+    {
+      "id": "r4znM0S9fIw",
+      "title": "How to work with the Timeline node in Unreal Engine 5",
+      "author": "Unreal ART With Alireza "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Timeline%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Blueprints",
+    "Blueprint Class",
+    "Actor",
+    "Components",
+    "Event"
+  ],
+  "at": "2026-11-07T00:27:38.907309+00:00"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "houdini-pop-particles-basics-9584",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "POP particles basics",
+  "title": "POP — Particle 기초",
+  "summary": "Houdini POP particles basics는 DOP(Dynamics Operator) 네트워크 안에서 Particle의 발생, 힘, 충돌을 제어하여 불꽃, 연기, 먼지 등의 동적 효과를 만드는 핵심 시스템입니다.",
+  "when": [
+    "폭발이나 충격으로 흩어지는 파편(Debris)을 만들 때",
+    "바람이나 중력에 날리는 먼지, 연기 시뮬레이션을 구현할 때",
+    "오브젝트 표면이나 특정 지점에서 입자들이 쏟아져 나오는 효과를 낼 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Geometry 노드를 생성하여 더블 클릭해 들어갑니다.",
+    "Geometry 내부에서 Tab 키를 누르고 Source로 사용할 오브젝트(예: Box SOP 또는 Grid SOP)를 만듭니다.",
+    "Tab 키를 누르고 POP Net (POP Network) 노드를 생성하고, 첫 번째 입력단자에 Source 지오메트리를 연결합니다.",
+    "POP Network 안으로 더블 클릭해 들어가 POP Source 노드와 POP Object 노드가 기본 생성되어 있는지 확인합니다.",
+    "Particle에 물리적 힘을 주기 위해 Tab 키를 누르고 POP Gravity 노드를 생성하여 POP Source와 Merge 하거나 체인으로 연결합니다.",
+    "시선창(Scene View)에서 재생(Play) 버튼을 눌러 Particle이 중력에 의해 떨어지는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Activation",
+      "desc": "Particle이 생성되는 활성화 조건이나 프레임을 제어합니다."
+    },
+    {
+      "name": "Birth Rate",
+      "desc": "초당 생성되는 Particle의 개수를 설정합니다."
+    },
+    {
+      "name": "Life Expectancy",
+      "desc": "Particle이 생존하는 시간(초)을 결정합니다."
+    },
+    {
+      "name": "Speed",
+      "desc": "Particle이 생성될 때 뿜어져 나오는 초기 속도를 지정합니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "POP Gravity 노드에서 지구 중력과 유사한 아래 방향의 힘을 조절합니다."
+    },
+    {
+      "name": "Air Resistance",
+      "desc": "공기 저항을 주어 Particle의 움직임을 부드럽고 자연스럽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "중력과 바람에 날리는 먼지 효과",
+      "steps": [
+        "Grid SOP로 넓은 평면을 만듭니다.",
+        "POP Network 안의 POP Source에서 Birth Rate를 높여 먼지 소스를 만듭니다.",
+        "POP Wind 노드를 추가하고 Force 벡터 값을 주어 바람에 날리게 합니다."
+      ]
+    },
+    {
+      "title": "오브젝트 표면에서 튀어 오르는 불꽃 파편",
+      "steps": [
+        "Mesh 오브젝트를 POP Network의 입력에 연결합니다.",
+        "POP Source의 Emission Type을 'All Points'로 설정해 표면에서 입자가 나오게 합니다.",
+        "POP Drag와 POP Gravity를 조합해 파편이 흩어지다 가라앉게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Particle이 보이지 않음 → Scene View 우측 디스플레이 툴바에서 Particle 가시성(Display Points)이 꺼져 있는지 확인하고 켭니다.",
+    "Particle이 무한정 쌓여 버벅임 → Life Expectancy 값을 주어 일정 시간이 지나면 Particle이 소멸하도록 설정합니다.",
+    "시뮬레이션이 재생되지 않음 → Timeline의 Play 버튼을 눌렀는지, DOP 네트워크 내부에서 노드 연결이 끊어지지 않았는지 확인합니다."
+  ],
+  "related": [
+    "POP Source",
+    "POP Wind",
+    "POP Collision",
+    "Copy to Points"
+  ],
+  "videos": [
+    {
+      "id": "0_fW0SRJ4Dg",
+      "title": "Setting Up Particle Collisions | Intro to POP's | Houdini 20.5",
+      "author": "Inside The Mind"
+    },
+    {
+      "id": "94YAomHfMbw",
+      "title": "Intro To Houdini Particles - Full Beginner Course",
+      "author": "Voxyde VFX"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20POP%20particles%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "Source",
+    "Box SOP",
+    "Grid SOP",
+    "POP Net"
+  ],
+  "at": "2026-11-07T00:27:34.667431+00:00"
+}
