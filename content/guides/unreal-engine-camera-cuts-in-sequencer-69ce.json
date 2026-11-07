@@ -1,0 +1,93 @@
+{
+  "id": "unreal-engine-camera-cuts-in-sequencer-69ce",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "시퀀서",
+  "name": "Camera cuts in Sequencer",
+  "title": "시퀀서 카메라 컷",
+  "summary": "Unreal Engine Sequencer의 Camera Cuts 트랙은 여러 개의 카메라를 배치하고 원하는 시점에 따라 시점 전환을 자유롭게 편집하는 기능입니다. 영화 같은 컷 편집과 시네마틱 연출을 만들 때 사용합니다.",
+  "when": [
+    "하나의 씬을 다양한 앵글(클로즈업, 풀샷 등)로 교차 편집하고 싶을 때",
+    "게임 플레이 중 실시간 컷신이나 시네마틱 카메라 연출을 구성할 때",
+    "다수의 카메라 애니메이션을 Timeline에서 비파괴적으로 관리할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Window → Cinematics → Sequencer를 선택해 시네마틱 트랙을 엽니다.",
+    "레벨에 Cinematic Camera Actor를 2대 이상 배치합니다.",
+    "Sequencer 패널 왼쪽의 + Track 버튼을 눌러 Camera Cuts 트랙을 추가합니다.",
+    "Camera Cuts 트랙의 + Camera 버튼을 클릭하고 첫 번째로 사용할 카메라를 지정합니다.",
+    "Timeline 헤더를 이동한 뒤, 다른 카메라로 변경하여 컷 전환 애니메이션을 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Camera Cuts",
+      "desc": "최종 렌더링 및 뷰포트 시점을 결정하는 핵심 컷 편집 트랙입니다."
+    },
+    {
+      "name": "Lock Viewport to Camera Cut",
+      "desc": "뷰포트를 현재 선택된 카메라 컷 시점에 고정하여 연출을 실시간으로 확인합니다."
+    },
+    {
+      "name": "Current Shot",
+      "desc": "여러 숏(Shot) 트랙을 사용할 때 개별 컷의 순서와 길이를 관리합니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "카메라의 위치와 회전값을 애니메이션 키프레임으로 제어합니다."
+    },
+    {
+      "name": "Focus Settings",
+      "desc": "피사계 심도(Depth of Field)와 초점 거리를 조절해 영화 같은 아웃포커싱을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 대화 씬 컷 전환",
+      "steps": [
+        "A 캐릭터를 비추는 Camera 1과 B 캐릭터를 비추는 Camera 2를 레벨에 배치합니다.",
+        "Sequencer의 Camera Cuts 트랙에서 Timeline 구간별로 Camera 1과 Camera 2를 번갈아 할당합니다.",
+        "플레이 버튼을 눌러 대화하는 시점에 맞춰 컷이 자연스럽게 전환되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "액션 시퀀스 멀티 앵글 연출",
+      "steps": [
+        "와이드 샷과 다이내믹한 로우 앵글 샷 카메라를 각각 세팅합니다.",
+        "Camera Cuts 트랙에서 컷 경계 지점을 Mouse로 드래그하여 전환 타이밍을 조절합니다.",
+        "Lock Viewport to Camera Cut을 켜고 전체적인 연출 속도감을 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Camera Cuts 트랙이 없는 상태에서 카메라를 움직임 → Sequencer에 반드시 Camera Cuts 트랙을 추가하고 카메라를 바인딩해야 합니다.",
+    "카메라가 뷰포트에서 보이지 않음 → Lock Viewport to Camera Cut 버튼이 꺼져 있는지 확인하고 켜줍니다."
+  ],
+  "related": [
+    "Cinematic Camera Actor",
+    "Level Sequence",
+    "Shot Track",
+    "Transform Track"
+  ],
+  "videos": [
+    {
+      "id": "OC8Ab1YYHFc",
+      "title": "How to use Camera Cuts in Sequencer in Unreal Engine 5",
+      "author": "CG Fast Tips"
+    },
+    {
+      "id": "ZLCzKp48dQw",
+      "title": "How to use Camera Cuts in Sequencer in Unreal Engine 5",
+      "author": "CG Fast Tips"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Camera%20cuts%20in%20Sequencer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Cinematics",
+    "Sequencer",
+    "Cinematic Camera Actor"
+  ],
+  "at": "2026-11-07T08:19:10.427104+00:00"
+}

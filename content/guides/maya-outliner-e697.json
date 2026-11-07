@@ -1,0 +1,92 @@
+{
+  "id": "maya-outliner-e697",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Outliner",
+  "title": "Outliner — 장면 정리",
+  "summary": "Autodesk Maya의 Outliner는 씬(Scene)에 포함된 모든 오브젝트, 카메라, 라이트, 조인트 등의 계층 구조를 트리 형태로 관리하고 제어하는 핵심 패널입니다.",
+  "when": [
+    "복잡한 씬에서 특정 오브젝트를 이름으로 빠르게 검색하고 선택해야 할 때",
+    "부모-자식(Parent-Child) 관계를 설정하거나 해제하여 그룹을 관리할 때",
+    "숨겨진(Hidden) 오브젝트나 엉킨 계층 구조를 정리할 때"
+  ],
+  "steps": [
+    "Autodesk Maya를 실행하고 상단 메뉴 바에서 Windows를 클릭합니다.",
+    "드롭다운 메뉴에서 Outliner를 선택해 Outliner 패널을 엽니다.",
+    "패널 상단의 Search 입력창에 찾으려는 오브젝트의 이름을 입력해 필터링합니다.",
+    "오브젝트를 드래그하여 다른 오브젝트 위로 올리면 부모-자식 관계(Parenting)가 형성됩니다.",
+    "Mouse 우클릭을 통해 그룹화(Group)하거나 이름을 변경(Rename)합니다."
+  ],
+  "params": [
+    {
+      "name": "Display",
+      "desc": "DAG Objects Only, Shapes 등 Outliner에 표시할 오브젝트 범위를 필터링합니다."
+    },
+    {
+      "name": "Show",
+      "desc": "Transforms, Shapes, Lights, Cameras 등 뷰포트 요소의 표시 여부를 토글합니다."
+    },
+    {
+      "name": "Search",
+      "desc": "입력한 키워드와 일치하는 이름을 가진 오브젝트를 실시간으로 검색합니다."
+    },
+    {
+      "name": "Group",
+      "desc": "선택한 오브젝트들을 상위 Null 그룹으로 묶어 관리합니다 (Hotkey Ctrl + G)."
+    },
+    {
+      "name": "Parent",
+      "desc": "선택한 자식 오브젝트를 부모 오브젝트 아래로 종속시켜 함께 이동하게 합니다 (Hotkey Shift + P로 해제)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 리깅을 위한 조인트 계층 구조 정리",
+      "steps": [
+        "Outliner에서 Spine, Arm, Leg 등의 Joint 오브젝트들을 확인합니다.",
+        "자식 조인트를 드래그하여 상위 부모 조인트 아래로 배치합니다.",
+        "오브젝트 이름(예: L_Arm_Jnt)을 규칙에 맞게 일괄 변경합니다."
+      ]
+    },
+    {
+      "title": "여러 개의 파츠로 구성된 소품 그룹화",
+      "steps": [
+        "Outliner에서 책상에 속한 다리와 상판 오브젝트들을 다중 선택합니다.",
+        "Ctrl + G 키를 눌러 하나의 그룹 노드로 묶습니다.",
+        "그룹 노드 이름을 Desk_GRP로 변경하여 씬을 깔끔하게 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 뷰포트에서 보이지 않음 → Outliner에서 해당 오브젝트가 숨김 처리(Hidden)되었거나 노드가 언페어런트 상태인지 확인하고 표시를 켭니다.",
+    "이동 및 회전 중심축이 이상함 → 계층 구조가 꼬여 피벗(Pivot)이 부모 노드 기준으로 설정된 상태이므로, Outliner에서 언페어런트(Shift + P) 후 중심축을 재설정합니다."
+  ],
+  "related": [
+    "Hypershade",
+    "Node Editor",
+    "Channel Box",
+    "Layer Editor"
+  ],
+  "videos": [
+    {
+      "id": "jyyc-mPeieU",
+      "title": "Maya Tutorial - Outliner for scene organization",
+      "author": "Figura"
+    },
+    {
+      "id": "lvrqwN2dm-Y",
+      "title": "Maya Outliner Tips and Tricks that everyone should know!",
+      "author": "Holly's Maya Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Outliner",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Autodesk Maya",
+    "Windows",
+    "Outliner"
+  ],
+  "at": "2026-11-07T08:19:14.817247+00:00"
+}
