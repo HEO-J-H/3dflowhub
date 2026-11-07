@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-05T15:28:30.531820+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 237,
-      "candidates_passed": 186,
-      "offtopic": 32,
-      "short": 0,
-      "prefiltered": 29,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "5093df4d",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "duplicate story"
-      ]
-    },
-    {
       "at": "2026-11-05T15:43:50.971317+00:00",
       "collected": 1,
       "saved": 0,
@@ -6495,6 +6468,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-07T22:01:27.188988+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 162,
+      "candidates_passed": 115,
+      "offtopic": 32,
+      "short": 0,
+      "prefiltered": 23,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "a27f3c00",
+      "visuals": 1,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6590,7 +6590,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-30 [성찰] 실무 중심의 튜토리얼, 스크립트, 플러그인 활용법 콘텐츠가 검색 유입과 독자 체류 시간에 가장 큰 기여를 하므로 고CPC 및 실무 가이드 발행 비중을 더욱 높여야 합니다.",
     "2026-10-30 [core.filter_practical_3d_depth(): 수집 및 요] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_ensure_minimum_content_depth_low_and_high - AttributeError: module 'core' has no at",
     "2026-10-30 [backend/app/services/mesh_from_image.py의] 입력 이미지 검증 시 크기와 포맷을 사전에 엄격히 확인하여 예외 처리를 명확히 하자.",
     "2026-10-30 [backend/app/services/mesh_from_image.py에] 입력값 검증과 예외 처리를 꼼꼼히 추가하면 서비스의 안정성이 크게 향상됩니다.",
@@ -6709,7 +6708,8 @@
     "2026-11-07 [[p-42e3c1f1b4|콘텐츠] RAG 통합 설계 가이드 작성: doc] Never place executable Python test code inside Markdown documentation files; always separate implementation tests into the `tests/` directory.",
     "2026-11-07 [[p-cbde5d0d47|사이트·UX] 로컬 가이드 RAG 테스트 코드 ] ",
     "2026-11-07 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 철저히 차단하고, 3ds Max 맥스스크립트나 Blender 애드온 같이 실무 검색 유입이 확실한 고단가·튜토리얼 콘텐츠에 집중해야 합니다.",
-    "2026-11-07 [성찰] 오수집되는 동음이의어(Nuke, Unity 등)를 철저히 차단하고, 실무 검색량이 높은 Maxscript, 애드온, 튜토리얼 중심의 콘텐츠를 구성해야 광고 수익 극대화에 유리합니다."
+    "2026-11-07 [성찰] 오수집되는 동음이의어(Nuke, Unity 등)를 철저히 차단하고, 실무 검색량이 높은 Maxscript, 애드온, 튜토리얼 중심의 콘텐츠를 구성해야 광고 수익 극대화에 유리합니다.",
+    "2026-11-07 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비중을 철저히 차단하고, 실무 검색량이 높은 3ds Max 맥스스크립트(Maxscript) 및 Blender 애드온·튜토리얼 위주의 고품질 콘텐츠를 확대해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6747,7 +6747,7 @@
     "AI 3D/가우시안 스플래팅": 75,
     "VFX/스튜디오·작품": 111,
     "AI 3D/로보틱스·월드모델": 24,
-    "3D DCC/Blender": 109,
+    "3D DCC/Blender": 110,
     "Game Engine/Unreal Engine": 115,
     "AI 3D/기타 AI 3D": 36,
     "Game Engine/Godot": 25,
@@ -8896,14 +8896,15 @@
     14472899316356555921,
     9674867592737773416,
     9009081975865482199,
-    14708538551091512543
+    14708538551091512543,
+    15046429188842436863
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2125,
-    "Game Engine": 2125,
-    "VFX": 2125,
-    "AI 3D": 2125
+    "3D DCC": 2126,
+    "Game Engine": 2126,
+    "VFX": 2126,
+    "AI 3D": 2126
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
