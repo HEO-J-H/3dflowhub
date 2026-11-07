@@ -1,0 +1,96 @@
+{
+  "id": "houdini-network-editor-navigation-99f2",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Network editor navigation",
+  "title": "네트워크 에디터 다루기",
+  "summary": "Network editor navigation은 Houdini에서 노드 그래프를 이동·확대·축소·포커싱하여 작업 흐름을 원활하게 하는 기능입니다.",
+  "when": [
+    "복잡한 SOP 네트워크를 구성할 때",
+    "노드 연결 오류를 디버깅할 때",
+    "작업 중 특정 노드에 빠르게 집중하고 싶을 때"
+  ],
+  "steps": [
+    "Network View를 열고 (Tab → Network View) 화면을 확인합니다.",
+    "Pan: Space 키를 누른 채 Left Mouse Button을 드래그합니다.",
+    "Zoom: Mouse 휠을 굴리거나 Alt + Left Mouse Button을 드래그합니다.",
+    "Focus: 선택한 노드에 F 키를 눌러 화면 중앙에 맞춥니다.",
+    "Fit View: Shift + F 로 전체 네트워크를 한 화면에 맞춥니다.",
+    "새 노드 추가: Tab 키 → 원하는 노드 이름 입력 → Enter"
+  ],
+  "params": [
+    {
+      "name": "Pan",
+      "desc": "Space+LMB 드래그로 화면을 이동"
+    },
+    {
+      "name": "Zoom",
+      "desc": "Mouse 휠 또는 Alt+LMB 드래그로 확대·축소"
+    },
+    {
+      "name": "Focus",
+      "desc": "F 키로 선택 노드에 화면을 맞춤"
+    },
+    {
+      "name": "Fit View",
+      "desc": "Shift+F 로 전체 네트워크를 화면에 맞춤"
+    },
+    {
+      "name": "Display Flags",
+      "desc": "노드 오른쪽에 있는 아이콘으로 시각화/렌더링 토글"
+    },
+    {
+      "name": "Network View",
+      "desc": "노드 그래프 전체를 보여주는 창"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 파이프 모델링",
+      "steps": [
+        "Tab → Circle SOP 생성 → Enter",
+        "Tab → PolyExtrude SOP 생성 → Enter, Circle에 연결",
+        "Tab → Transform SOP 생성 → Enter, PolyExtrude에 연결",
+        "F 키로 각 노드에 포커스하며 파라미터 조정"
+      ]
+    },
+    {
+      "title": "복잡한 쉐이더 네트워크 정리",
+      "steps": [
+        "Shift를 누른 채 여러 노드 선택",
+        "G 키로 그룹화하여 배경 박스 생성",
+        "Shift+F 로 전체 네트워크를 한 화면에 맞춤",
+        "F 키로 주요 노드에 포커스하여 세부 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Pan 모드에서 Space 키를 놓고 Mouse를 움직이면 화면이 이동하지 않음 → Space를 계속 누른 상태 유지",
+    "Zoom 할 때 Mouse 휠만 사용하면 뷰포트가 스크롤될 수 있음 → Alt+LMB 드래그 사용 권장",
+    "노드를 화면 밖으로 이동시켜 찾기 어려울 때 → Shift+F 로 전체 보기 후 다시 Focus 사용"
+  ],
+  "related": [
+    "Tab Menu",
+    "Display Flags",
+    "Network View",
+    "Node Graph"
+  ],
+  "videos": [
+    {
+      "id": "4VPFDLZZOTE",
+      "title": "Houdini | Network Navigation Tip",
+      "author": "Pixel Fondue"
+    },
+    {
+      "id": "6KsAt3P5-5A",
+      "title": "Houdini | Network Editor Navigation Shortcuts",
+      "author": "Pixel Fondue"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Network%20editor%20navigation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T02:28:19.826418+00:00"
+}

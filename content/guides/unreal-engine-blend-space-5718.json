@@ -1,0 +1,107 @@
+{
+  "id": "unreal-engine-blend-space-5718",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Blend Space",
+  "title": "Blend Space — 걷기·뛰기 섞기",
+  "summary": "Blend Space는 두 개 이상의 애니메이션을 파라미터(예: 속도·방향) 값에 따라 부드럽게 섞어 주어, 연속적인 움직임을 구현하는 도구입니다.",
+  "when": [
+    "속도에 따라 걷기·뛰기 전환이 필요할 때",
+    "캐릭터가 상하·좌우로 조준하거나 바라볼 때",
+    "차량·비행기의 조향 각도에 따라 바퀴·프로펠러 회전이 변할 때"
+  ],
+  "steps": [
+    "Content Browser → 오른쪽 클릭 → Animation → Blend Space (또는 Blend Space 1D/2D) 선택",
+    "새 Blend Space에 이름 입력 후 더블클릭하여 에디터 열기",
+    "Details 패널 → Axis Settings → X Axis (예: Speed)와 Y Axis (예: Direction) 범위 설정",
+    "Grid에 사용할 Animation Asset을 Drag&Drop하고 각 셀에 파라미터 값을 입력",
+    "Preview 창에서 파라미터 슬라이더를 움직여 블렌딩을 확인",
+    "Save 후 해당 Blend Space를 Animation Blueprint의 상태에 연결"
+  ],
+  "params": [
+    {
+      "name": "X Axis",
+      "desc": "가로축 파라미터 (예: Speed) 범위와 단위 설정"
+    },
+    {
+      "name": "Y Axis",
+      "desc": "세로축 파라미터 (예: Direction) 범위와 단위 설정"
+    },
+    {
+      "name": "Sample Rate",
+      "desc": "블렌드 시 샘플링 간격, 값이 클수록 부드러움 증가"
+    },
+    {
+      "name": "Interpolation",
+      "desc": "Blend 방식 (Linear·Cubic 등) 선택"
+    },
+    {
+      "name": "Preview",
+      "desc": "실시간 파라미터 조정으로 결과 확인"
+    },
+    {
+      "name": "Loop",
+      "desc": "소스 애니메이션이 루프되는지 여부"
+    }
+  ],
+  "examples": [
+    {
+      "title": "걷기·뛰기 전환",
+      "steps": [
+        "X Axis를 Speed(0~600)로 설정",
+        "Walk(0)와 Run(600) 애니메이션을 각각 좌측·우측 셀에 배치",
+        "Speed 슬라이더를 움직여 부드러운 전환 확인"
+      ]
+    },
+    {
+      "title": "상하·좌우 조준",
+      "steps": [
+        "X Axis를 Pitch(-45~45), Y Axis를 Yaw(-90~90)으로 설정",
+        "다양한 조준 각도 애니메이션을 Grid에 배치",
+        "Yaw·Pitch 값을 조정해 캐릭터가 자연스럽게 머리를 움직이는지 확인"
+      ]
+    },
+    {
+      "title": "차량 조향 블렌드",
+      "steps": [
+        "X Axis를 Steering Angle(-30~30)로 설정",
+        "좌회전·우회전 애니메이션을 좌·우 셀에 배치",
+        "Steering 값을 바꿔 바퀴 회전이 연속적으로 변하는지 테스트"
+      ]
+    }
+  ],
+  "mistakes": [
+    "축 범위 설정 오류 → 파라미터가 범위 밖으로 나가면 갑작스러운 점프 발생. → Axis Settings에서 Min/Max 값을 정확히 입력",
+    "소스 애니메이션에 Loop 비활성화 → 블렌드 중 재생이 멈춤. → 애니메이션 Asset의 Loop 옵션을 켜기",
+    "Interpolation을 Linear으로만 사용 → 급격한 변화 시 끊김. → Details에서 Interpolation을 Cubic 또는 Auto로 변경"
+  ],
+  "related": [
+    "Animation Blueprint",
+    "State Machine",
+    "Aim Offset",
+    "Montage"
+  ],
+  "videos": [
+    {
+      "id": "0Ab_MeAh6_k",
+      "title": "Unreal Engine 5 Tutorial -  Animation Blueprint Part 2: Blend Spaces",
+      "author": "Ryan Laley"
+    },
+    {
+      "id": "DST2bMbRxEQ",
+      "title": "How to Make a Simple Blendspace in Unreal Engine 5",
+      "author": "Gorka Games"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Blend%20Space",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Animation",
+    "Blend Space",
+    "Blend Space 1D"
+  ],
+  "at": "2026-11-07T02:28:45.885078+00:00"
+}
