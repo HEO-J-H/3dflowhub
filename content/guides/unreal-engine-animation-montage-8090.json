@@ -1,0 +1,101 @@
+{
+  "id": "unreal-engine-animation-montage-8090",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animation Montage",
+  "title": "Montage — 동작 재생",
+  "summary": "Animation Montage는 여러 애니메이션을 하나의 시퀀스로 결합하고, 섹션·브랜치·블렌드 등을 제어해 캐릭터 동작을 유연하게 재생합니다.",
+  "when": [
+    "다양한 공격·스킬 동작을 하나의 에셋으로 관리하고 싶을 때",
+    "다중 애니메이션을 순차·동시 재생하거나 블렌드가 필요할 때",
+    "애니메이션 전환 시점에 정확한 타이밍 제어가 필요할 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간 우클릭 → Animation → Animation Montage 선택 → 부모 Skeletal Mesh의 Anim Blueprint 지정 → 이름 입력 후 Create",
+    "Montage 에디터에서 + Slot 클릭 → 사용할 Slot(예: UpperBody) 선택 → Add",
+    "재생할 애니메이션을 Asset Browser에서 드래그하여 Montage Track에 놓고, 필요 시 오른쪽 클릭 → Add Section으로 구간 나누기",
+    "섹션 경계 드래그 또는 Details 패널의 Blend In/Out 값 입력으로 전환 블렌드 타임 조정",
+    "Blueprint에서 Play Montage 노드 사용 → Montage To Play에 만든 Montage 지정 → Slot Name 입력 후 Play"
+  ],
+  "params": [
+    {
+      "name": "Slot",
+      "desc": "재생될 슬롯을 지정해 해당 Anim Instance와 연결"
+    },
+    {
+      "name": "Section",
+      "desc": "Montage 내부 구간으로, 각각 다른 애니메이션을 배치"
+    },
+    {
+      "name": "Blend In",
+      "desc": "섹션 시작 시 이전 애니메이션과 섞이는 시간"
+    },
+    {
+      "name": "Blend Out",
+      "desc": "섹션 종료 시 다음 애니메이션과 섞이는 시간"
+    },
+    {
+      "name": "Looping",
+      "desc": "섹션을 반복 재생할지 여부"
+    },
+    {
+      "name": "Enable Root Motion",
+      "desc": "루트 모션을 사용해 이동을 애니메이션에 포함"
+    }
+  ],
+  "examples": [
+    {
+      "title": "근접 공격 콤보",
+      "steps": [
+        "Animation Montage 생성 → UpperBody Slot 추가",
+        "공격1·공격2·공격3 애니메이션을 각각 Section1~3에 배치",
+        "각 Section의 Blend In/Out을 0.1초로 설정",
+        "입력 이벤트에 Play Montage 노드 연결 → Slot Name에 UpperBody 지정"
+      ]
+    },
+    {
+      "title": "점프·착지 연결",
+      "steps": [
+        "점프와 착지 애니메이션을 하나의 Montage에 Section1·Section2로 배치",
+        "Section1의 Blend Out을 0.2초, Section2의 Blend In을 0.2초로 설정",
+        "Enable Root Motion 체크 → 점프 시작 시 Montage 재생"
+      ]
+    }
+  ],
+  "mistakes": [
+    "섹션 경계가 겹침 → 섹션 길이와 시작 프레임을 정확히 맞춰 조정",
+    "루트 모션이 적용되지 않음 → Montage 설정에서 Enable Root Motion을 체크하고, Skeletal Mesh의 Root Bone이 올바른지 확인",
+    "잘못된 Slot 사용 → Anim Instance의 Slot 이름과 Montage의 Slot 이름이 일치하는지 확인하고, Play Montage 노드의 Slot Name을 올바르게 입력"
+  ],
+  "related": [
+    "Animation Blueprint",
+    "Blend Space",
+    "State Machine",
+    "Trigger Box"
+  ],
+  "videos": [
+    {
+      "id": "9a1xpCA6maI",
+      "title": "Unreal Engine 5 Tutorial - Animation Montages",
+      "author": "The Real Unreal"
+    },
+    {
+      "id": "Ff5lAuCJZng",
+      "title": "Unreal Engine 5 Tutorial -  Animation Blueprint Part 4: Montages",
+      "author": "Ryan Laley"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Animation%20Montage",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Animation",
+    "Animation Montage",
+    "Skeletal Mesh",
+    "Anim Blueprint",
+    "Create"
+  ],
+  "at": "2026-11-07T03:09:21.193023+00:00"
+}
