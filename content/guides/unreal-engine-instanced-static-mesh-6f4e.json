@@ -1,0 +1,97 @@
+{
+  "id": "unreal-engine-instanced-static-mesh-6f4e",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Instanced Static Mesh",
+  "title": "Instanced Mesh — 대량 복제",
+  "summary": "Instanced Static Mesh(ISM)는 하나의 Static Mesh 에셋을 GPU의 인스턴싱 기술을 활용해 수많은 개체로 복제·렌더링하면서도 드로우 콜(Draw Call)을 획기적으로 줄여주는 성능 최적화 기능입니다.",
+  "when": [
+    "숲의 나무나 풀처럼 동일한 형태의 3D 모델을 화면에 수천 개 이상 대량으로 배치할 때",
+    "도시의 가로등, 의자, 울타리 등 반복되는 프랍(Prop)들로 인해 프레임 저하가 발생할 때",
+    "블루프린트(Blueprint)를 통해 동일한 오브젝트들을 규칙적 또는 절차적으로 생성·관리해야 할 때"
+  ],
+  "steps": [
+    "Content Browser에서 Instance를 생성할 기준이 되는 Static Mesh 에셋을 준비합니다.",
+    "새로운 Blueprint Class를 생성하거나 기존 블루프린트를 엽니다.",
+    "Components 패널에서 + Add 버튼을 클릭하고 Instanced Static Mesh 또는 Hierarchical Instanced Static Mesh를 검색하여 추가합니다.",
+    "Details 패널에서 Static Mesh 슬롯에 사용할 3D 모델을 지정합니다.",
+    "블루프린트 내부의 Construction Script 또는 Event Graph에서 Add Instance 노드를 사용하여 위치, 회전, 스케일 값을 설정합니다.",
+    "뷰포트에서 다수의 Instance가 정상적으로 생성되고 렌더링되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Static Mesh",
+      "desc": "복제하여 화면에 표시할 기본 3D 모델 에셋을 지정합니다."
+    },
+    {
+      "name": "Instances",
+      "desc": "배치된 개별 인스턴스들의 위치, 회전, 스케일 트랜스폼 데이터 목록입니다."
+    },
+    {
+      "name": "Collision Domain",
+      "desc": "인스턴스들의 물리 충돌 및 오버랩 감지 방식을 설정합니다."
+    },
+    {
+      "name": "Body Instance",
+      "desc": "물리 시뮬레이션, 콜리전 프리셋, 피직스 매터리얼 등의 물리 속성을 설정합니다."
+    },
+    {
+      "name": "LOD Parent",
+      "desc": "원거리 최적화를 위한 레벨 오브 디테일(LOD) 상속 관계를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "도로변 가로등 배치 블루프린트",
+      "steps": [
+        "Blueprint에 Instanced Static Mesh 컴포넌트를 추가합니다.",
+        "Static Mesh에 가로등 모델을 할당합니다.",
+        "Construction Script에서 For Loop 노드를 연결해 일정한 간격으로 Add Instance 노드를 실행합니다."
+      ]
+    },
+    {
+      "title": "벽돌 성벽 쌓기",
+      "steps": [
+        "벽돌 모델을 가진 ISM 컴포넌트를 생성합니다.",
+        "중첩된 루프(Nested Loop) 노드를 사용하여 X축과 Z축 방향으로 좌표를 계산합니다.",
+        "Add Instance를 호출하여 격자 형태의 성벽 구조를 실시간으로 빌드합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 다른 3D 모델을 하나의 ISM에 섞어서 넣으려고 함 → 모델별로 별도의 Instanced Static Mesh 컴포넌트를 각각 생성해야 합니다.",
+    "Instance 개수가 너무 많아 콜리전 부하가 발생함 → 멀리 있는 Instance는 Collision을 끄거나 HISM(Hierarchical Instanced Static Mesh)을 사용해 컬링을 적용합니다.",
+    "런타임에 불필요하게 매 프레임 Instance를 재추가함 → 초기화 시점(Construction Script 또는 BeginPlay)에만 Instance를 생성하도록 구성합니다."
+  ],
+  "related": [
+    "Foliage tool",
+    "Static Mesh",
+    "Hierarchical Instanced Static Mesh",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "cfR36FTbvcQ",
+      "title": "Unreal Engine 5 Tutorial - Instanced Static Meshes - ISM/HISM [1/4]",
+      "author": "renderBucket"
+    },
+    {
+      "id": "S7lJnSeL41M",
+      "title": "Optimization UE5 - The Power of Instanced Static Meshes with Efficient Materials",
+      "author": "PolySphere 3D"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Instanced%20Static%20Mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Instance",
+    "Static Mesh",
+    "Blueprint Class",
+    "Components",
+    "Add"
+  ],
+  "at": "2026-11-07T10:19:07.939082+00:00"
+}
