@@ -1,0 +1,89 @@
+{
+  "id": "unreal-engine-opening-a-door-with-blueprint-9b1f",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "블루프린트",
+  "name": "Opening a door with Blueprint",
+  "title": "블루프린트로 문 열기",
+  "summary": "Unreal Engine 블루프린트로 플레이어가 다가가면 문이 자동으로 열리고 닫히는 인터랙션 시스템을 만듭니다. C++ 코드 없이 시각적 노드 연결만으로 구현합니다.",
+  "when": [
+    "플레이어가 근처에 갔을 때 열리는 자동문을 만들 때",
+    "키를 눌러 열리는 인터랙티브 문을 구현할 때",
+    "트리거 볼륨(Trigger Volume)을 이용한 공간 진입 이벤트를 만들 때"
+  ],
+  "steps": [
+    "Content Browser 빈 공간에서 우클릭 후 Blueprint Class를 선택하고 Actor를 부모 클래스로 지정합니다.",
+    "블루프린트 에디터를 열고 Components 패널에서 Add 버튼을 클릭해 Static Mesh 컴포넌트를 추가하고 문 모델을 할당합니다.",
+    "다시 Add 버튼을 클릭해 Box Collision(트리거 볼륨)을 추가하고 문 주변 영역을 감싸도록 크기를 조절합니다.",
+    "Event Graph 탭으로 이동하여 Box Collision을 선택한 상태로 우클릭 후 Add Event -> Collision -> Add OnComponentBeginOverlap을 추가합니다.",
+    "Timeline 노드를 추가하고 더블 클릭하여 열린 상태와 닫힌 상태의 애니메이션 커브를 작성합니다.",
+    "Timeline의 Update 출력을 Set Relative Rotation 노드에 연결하여 문의 회전값을 제어합니다.",
+    "Compile 버튼을 클릭하고 뷰포트에 블루프린트 액터를 배치한 뒤 Play로 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Box Collision",
+      "desc": "플레이어의 접근을 감지하는 투명한 충돌 영역입니다."
+    },
+    {
+      "name": "Timeline",
+      "desc": "시간에 따른 값 변화를 애니메이션 커브로 만들어주는 노드입니다."
+    },
+    {
+      "name": "Set Relative Rotation",
+      "desc": "컴포넌트의 상대적인 회전 값을 설정합니다."
+    },
+    {
+      "name": "Add OnComponentBeginOverlap",
+      "desc": "다른 객체가 콜리전 영역에 진입할 때 발생하는 이벤트입니다."
+    },
+    {
+      "name": "Add OnComponentEndOverlap",
+      "desc": "다른 객체가 콜리전 영역을 벗어날 때 발생하는 이벤트입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동 슬라이딩 문",
+      "steps": [
+        "Timeline 커브를 활용해 회전 대신 Set Relative Location 노드로 위치를 이동시킵니다.",
+        "X축 또는 Y축 방향으로 문이 열리는 거리만큼 값을 설정합니다."
+      ]
+    },
+    {
+      "title": "키 입력으로 열리는 비밀의 문",
+      "steps": [
+        "Overlap 이벤트 대신 Input E 키 노드를 활용하여 입력을 받습니다.",
+        "FlipFlop 노드를 연결해 누를 때마다 문이 열리고 닫히도록 전환합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "콜리전 크기가 너무 작아 오버랩 이벤트가 발생하지 않음 → Box Collision의 크기를 충분히 키우고 플레이어의 Collision Preset을 확인합니다.",
+    "문이 회전축 중심이 아니라 이상하게 열림 → Static Mesh의 피벗 포인트(Pivot) 위치가 문의 경첩 부근에 있는지 확인합니다.",
+    "문이 한 번 열린 뒤 다시 안 닫힘 → Timeline의 Play와 Reverse핀이 Overlap Begin과 End에 올바르게 연결되었는지 확인합니다."
+  ],
+  "related": [
+    "Blueprint Class",
+    "Timeline",
+    "Box Collision",
+    "Set Relative Rotation"
+  ],
+  "videos": [
+    {
+      "id": "oGWS-OHnoXw",
+      "title": "Unreal Engine 5.6 – Easy Swing Door Blueprint Tutorial (Beginner Friendly)",
+      "author": "Unreal Starter Kit"
+    },
+    {
+      "id": "vjC6iSbo0vw",
+      "title": "UE5: Simple Physics Door (Blueprint Tutorial)",
+      "author": "WizardQuack"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Opening%20a%20door%20with%20Blueprint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T00:47:39.132430+00:00"
+}

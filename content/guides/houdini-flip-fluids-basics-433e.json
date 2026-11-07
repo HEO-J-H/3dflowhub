@@ -1,0 +1,94 @@
+{
+  "id": "houdini-flip-fluids-basics-433e",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "FLIP fluids basics",
+  "title": "FLIP — 액체 기초",
+  "summary": "Houdini FLIP fluids basics는 입자(Particle)와 격자(Grid)를 결합한 하이브리드 방식으로 물, 액체, 점성 유체의 물리적 거동을 시뮬레이션하는 핵심 시스템입니다.",
+  "when": [
+    "출렁이는 파도, 물줄기, 폭포 등 사실적인 액체 움직임을 만들 때",
+    "그릇에 물이 담기거나 물체와 상호작용하는 유체 효과를 제작할 때",
+    "꿀, 진흙 등 점도가 높은 액체의 끈적한 물리 반응을 시표할 때"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Geometry 노드를 생성한 뒤 더블 클릭하여 들어갑니다.",
+    "Tab 키를 눌러 FLIP Tank 노드를 생성하고 뷰포트에서 물탱크와 영역을 확인합니다.",
+    "FLIP Tank 내부 노드 구조에서 flipnet 노드로 들어가 DOP(Dynamics Operator) 네트워크를 엽니다.",
+    "flipsolver 속성에서 입자 크기(Particle Separation)와 중력, 외력을 조절합니다.",
+    "캐시(File Cache) 노드를 연결하여 시뮬레이션 결과를 디스크에 저장합니다.",
+    "도입된 FLIP 입자들을 Surface Tension 또는 Particle Fluid Surface 노드를 통해 부드러운 폴리곤 메시로 변환합니다."
+  ],
+  "params": [
+    {
+      "name": "Particle Separation",
+      "desc": "입자 간의 간격을 조절하여 시뮬레이션 정밀도와 디테일을 결정합니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "유체에 작용하는 중력의 방향과 세기를 설정합니다."
+    },
+    {
+      "name": "Viscosity",
+      "desc": "유체의 끈적임 정도를 조절하여 물부터 꿀 같은 점성 액체를 표현합니다."
+    },
+    {
+      "name": "Surface Tension",
+      "desc": "표면장력을 조절하여 작은 물방울이 뭉치거나 방울지는 효과를 만듭니다."
+    },
+    {
+      "name": "Bouyancy",
+      "desc": "유체 내부에 있는 물체의 부력 상호작용을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "컵에 물이 채워지는 시뮬레이션",
+      "steps": [
+        "FLIP Tank로 기본 물 영역을 설정합니다.",
+        "컵 모델을 Collision 객체로 가져와 FLIP Solver에 연결합니다.",
+        "File Cache 노드로 시뮬레이션을 베이크합니다."
+      ]
+    },
+    {
+      "title": "장애물에 부딪히는 파도",
+      "steps": [
+        "FLIP Tank의 Source를 조절해 물줄기를 발사합니다.",
+        "바위 형태의 Static Object를 경로에 배치합니다.",
+        "Particle Fluid Surface로 물 표면을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Particle Separation 값을 너무 낮게 설정함 → 시뮬레이션 속도가 지나치게 느려지므로 초기 작업은 큰 값으로 테스트하세요.",
+    "캐시를 저장하지 않고 뷰포트를 재생함 → 프레임이 건너뛰어 정확한 결과를 볼 수 없으므로 File Cache를 사용하세요.",
+    "충돌체(Collider)의 법선이 뒤집혀 있음 → 물이 객체 내부로 새어나가므로 Mesh의 Normal을 확인하고 바깥쪽으로 정렬하세요."
+  ],
+  "related": [
+    "FLIP Tank",
+    "FLIP Solver",
+    "Particle Fluid Surface",
+    "File Cache"
+  ],
+  "videos": [
+    {
+      "id": "PtUwSvLBjY8",
+      "title": "How FLIP Fluids Work in Houdini | Beginner Friendly Introduction",
+      "author": "DoubleJump VFX Academy"
+    },
+    {
+      "id": "Is4U9E84hWU",
+      "title": "Houdini Flip Tank Simulation (Free beginner friendly course)#Houdini #FlipFluids #FlatTank #Flip",
+      "author": "INDIAN VFX SCHOOL "
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20FLIP%20fluids%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "FLIP Tank"
+  ],
+  "at": "2026-11-07T00:47:35.075480+00:00"
+}
