@@ -1,0 +1,96 @@
+{
+  "id": "unreal-engine-retargeting-ik-retargeter-9f51",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Retargeting (IK Retargeter)",
+  "title": "IK Retargeter — 애니메이션 옮기기",
+  "summary": "IK Retargeter는 하나의 캐릭터 애니메이션을 다른 스켈레톤에 맞게 자동 변환해 주는 도구입니다.",
+  "when": [
+    "다른 스켈레톤을 가진 캐릭터에 기존 애니메이션을 적용할 때",
+    "리깅이 동일하지 않은 여러 캐릭터에 동일 동작을 공유하고 싶을 때",
+    "MetaHuman 등 고품질 캐릭터에 외부 모션 캡처를 적용할 때"
+  ],
+  "steps": [
+    "Content Browser에서 오른쪽 클릭 → Animation → IK Retargeter → New IK Retargeter 선택",
+    "새 IK Retargeter 에디터가 열리면 Source Asset에 리타게팅할 원본 Animation Sequence를 드래그",
+    "Target Asset에 목표 캐릭터의 Skeletal Mesh 또는 Skeleton을 지정",
+    "Retarget Pose와 Target Pose를 각각 ‘Set Pose’ 버튼으로 현재 포즈 저장",
+    "Retarget Settings에서 필요 옵션(예: Root Motion, IK Chain) 조정 후 ‘Retarget’ 버튼 클릭",
+    "결과가 새로운 Animation Sequence 로 생성되면 Content Browser에 저장된 파일을 확인"
+  ],
+  "params": [
+    {
+      "name": "Root Motion",
+      "desc": "루트 움직임을 유지하거나 제거해 전역 이동을 제어"
+    },
+    {
+      "name": "IK Chain",
+      "desc": "리타게팅에 사용할 IK 체인을 지정"
+    },
+    {
+      "name": "Retarget Pose",
+      "desc": "소스 캐릭터의 기준 포즈"
+    },
+    {
+      "name": "Target Pose",
+      "desc": "타깃 캐릭터의 기준 포즈"
+    },
+    {
+      "name": "Humanoid Rig",
+      "desc": "인간형 리깅 자동 매핑 옵션"
+    },
+    {
+      "name": "Animation Blueprint",
+      "desc": "리타게팅 결과를 바로 연결할 수 있는 블루프린트"
+    }
+  ],
+  "examples": [
+    {
+      "title": "MetaHuman에 외부 모션 캡처 적용",
+      "steps": [
+        "Source Asset에 모션 캡처 Animation Sequence 지정",
+        "Target Asset에 MetaHuman Skeleton 지정",
+        "Retarget Pose와 Target Pose를 각각 ‘Set Pose’ 로 저장",
+        "‘Retarget’ 클릭 후 생성된 Sequence 를 MetaHuman의 Animation Blueprint에 연결"
+      ]
+    },
+    {
+      "title": "다른 게임 캐릭터에 기본 걷기 애니메이션 적용",
+      "steps": [
+        "Source Asset에 기존 걷기 Animation Sequence 지정",
+        "Target Asset에 새로운 캐릭터 Skeleton 지정",
+        "IK Chain을 ‘Legs’와 ‘Spine’만 선택",
+        "‘Retarget’ 후 결과 Sequence 를 캐릭터에 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "소스와 타겟 스켈레톤 구조 차이로 관절이 어긋남 → Retarget Settings 의 ‘Skeleton Mapping’에서 수동 매핑 수정",
+    "Retarget Pose를 설정하지 않아 캐릭터가 바닥에 떠 있음 → ‘Set Pose’ 로 현재 포즈를 저장하고 ‘Grounded’ 옵션 활성화",
+    "Root Motion을 그대로 두면 이동 경로가 중복 → ‘Root Motion’ 옵션을 ‘Ignore’ 로 바꾼 뒤 재리타게팅"
+  ],
+  "related": [
+    "Animation Blueprint",
+    "Control Rig",
+    "Pose Asset",
+    "Live Link"
+  ],
+  "videos": [
+    {
+      "id": "N4T76dEDc7Q",
+      "title": "How To Retarget Animations in Unreal Engine 5 (Tutorial)",
+      "author": "Smart Poly"
+    },
+    {
+      "id": "A9NMxIjCfag",
+      "title": "Unreal Engine 5 Tutorial: Animation Retargeting/IK Retargeting System #ue5 #unrealenginetutorial",
+      "author": "Kedryn"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Retargeting%20%28IK%20Retargeter%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T02:41:12.791762+00:00"
+}

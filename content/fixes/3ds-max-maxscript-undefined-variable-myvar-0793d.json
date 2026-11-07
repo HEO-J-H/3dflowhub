@@ -1,0 +1,40 @@
+{
+  "id": "3ds-max-maxscript-undefined-variable-myvar-0793d",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Undefined variable: myVar",
+  "title": "MAXScript: Undefined variable: myVar – 3ds Max Script 변수 미정의 해결",
+  "summary": "MAXScript에서 myVar 변수가 정의되지 않아 Script가 실행되지 않는 오류입니다.",
+  "causes": [
+    "변수 선언을 누락했음",
+    "변수 이름에 오타가 있음",
+    "스코프 외부에서 변수를 사용함",
+    "필요한 외부 .ms 파일이 로드되지 않음"
+  ],
+  "steps": [
+    "Script 상단에 myVar = <초기값> 형태로 변수를 선언한다",
+    "변수명을 정확히 입력했는지 스펠링을 확인한다",
+    "변수가 필요한 위치와 동일한 스코프에 선언했는지 확인한다(예: rollout 내부에서 사용한다면 rollout 외부에 선언하거나 global 키워드 사용)",
+    "필요한 경우, 외부 .ms 파일을 Include 또는 fileIn 명령으로 로드한다",
+    "MAXScript Listener 또는 Scripting → New Script 에서 Script를 다시 실행한다"
+  ],
+  "check": [
+    "MAXScript Listener 창에 오류 메시지가 사라지고 Script가 정상 실행되는지 확인한다",
+    "예상 출력이나 객체가 생성된 것을 뷰포트에서 확인한다"
+  ],
+  "prevent": [
+    "변수를 사용할 때 항상 선언 후 사용한다",
+    "global 키워드를 사용해 스코프 문제를 방지한다",
+    "Script 저장 전 Ctrl+E 로 Syntax Check 를 수행한다"
+  ],
+  "keywords": [
+    "MAXScript Undefined variable 오류",
+    "myVar 정의되지 않음",
+    "MAXScript 변수 선언 방법",
+    "MAXScript 스코프 문제",
+    "MAXScript 오류 디버깅"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T02:44:58+00:00"
+}

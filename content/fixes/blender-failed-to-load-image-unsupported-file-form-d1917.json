@@ -1,0 +1,38 @@
+{
+  "id": "blender-failed-to-load-image-unsupported-file-form-d1917",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Failed to load image: ... (unsupported file format)",
+  "title": "Failed to load image: ... (unsupported file format) – Blender 이미지 로드 오류 대처법",
+  "summary": "Blender가 이미지 파일을 읽어들이려 했지만 현재 포맷을 지원하지 않아 로드에 실패했습니다.",
+  "causes": [
+    "이미지 파일 형식이 Blender에서 지원되지 않음 (예: .psd, .tiff 등 일부 포맷)",
+    "파일이 손상되었거나 헤더가 올바르지 않음",
+    "파일 확장자가 실제 포맷과 일치하지 않음"
+  ],
+  "steps": [
+    "File → Import → Image (or Texture) 메뉴 대신 Image → Open을 선택하고 지원되는 포맷(.png, .jpg, .exr, .tga 등)으로 파일을 열어봅니다",
+    "이미지를 지원 포맷으로 변환합니다 – 외부 이미지 편집 프로그램(예: GIMP, Photoshop)에서 파일을 열고 ‘Save As’ 또는 ‘Export’로 .png 또는 .jpg 형식으로 저장합니다",
+    "이미지 파일 이름에 한글·특수문자가 포함되어 있으면 영문·숫자·언더스코어만 사용하도록 파일명을 변경합니다",
+    "Blender를 재시작한 뒤 Edit → Preferences → File Paths → Data Paths에서 ‘Images’ 경로가 올바른지 확인하고, 필요하면 ‘Reload’ 버튼을 눌러 캐시를 새로 고칩니다"
+  ],
+  "check": [
+    "이미지를 다시 Image → Open으로 열었을 때 정상적으로 미리보기가 나타나는지 확인합니다",
+    "Viewport 혹은 Shader Editor에서 이미지 텍스처가 올바르게 표시되는지 확인합니다"
+  ],
+  "prevent": [
+    "작업에 사용할 이미지는 Blender 공식 지원 포맷(.png, .jpg, .exr, .tga 등)으로 미리 저장합니다",
+    "파일명에 영문·숫자·‘_’만 사용하고, 경로에 공백이나 한글 폴더를 피합니다",
+    "이미지를 외부 프로그램에서 저장할 때 압축 옵션을 최소화하고, 파일이 손상되지 않도록 백업합니다"
+  ],
+  "keywords": [
+    "Blender 이미지 로드 실패",
+    "unsupported file format 오류",
+    "Blender 이미지 포맷 지원",
+    "이미지 파일 변환 Blender",
+    "Blender 이미지 파일명 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T02:44:34+00:00"
+}

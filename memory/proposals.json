@@ -17513,5 +17513,73 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 Three.js 메모리 관리 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-07T02:39:44+00:00",
+    "kind": "proposal",
+    "id": "p-43ea959527",
+    "title": "경량 RAG 엔드포인트 프로토타입 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 관련 문서는 있으나 실제 서비스에 적용된 코드가 없으며, PR #47(핵심 코드 변경)도 아직 승인되지 않아 핵심 파이프라인에 영향 없이 별도 기능을 추가할 여지가 있다.",
+    "proposal": "backend/app/services/rag_query.py 에 MIT‑licensed FAISS + sentence‑transformers 기반 검색 엔진을 구현하고, main.py 에 `/api/rag/query` 라우트를 추가한다. 기존 docs/ 폴더의 마크다운을 인덱싱하고, 간단한 질문에 답변하도록 한다. 테스트 파일 backend/tests/test_rag_query.py 을 추가하고 CI에 포함한다.",
+    "expected": "사용자는 웹 UI에서 ‘도움말’ 버튼을 눌러 Pix2Poly 사용법을 실시간으로 검색할 수 있어 UX가 향상된다. 또한 RAG 기능이 별도 모듈이므로 핵심 파이프라인에 위험을 주지 않는다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T02:39:44+00:00",
+    "kind": "proposal",
+    "id": "p-c23b4c92f0",
+    "title": "RAG 통합 관련 PR #47 진행 독촉",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #47(backend/app/services/url_ingest.py 변경) 승인 대기 중이며, 핵심 코드 변경이 지연되고 있다.",
+    "proposal": "프로젝트 오너에게 PR #47 검토를 요청하고, 필요 시 리뷰어를 지정해 빠른 승인을 유도한다. 동시에 PR #47이 승인되면 RAG 엔드포인트가 의존할 수 있는 URL 검증 로직을 최신화한다.",
+    "expected": "핵심 파이프라인 변경이 신속히 반영돼 전체 서비스 안정성이 향상되고, RAG 기능 구현에 필요한 기반이 마련된다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-07T02:46:45.776283+00:00",
+    "kind": "decision",
+    "id": "p-43ea959527",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T02:46:45.798558+00:00",
+    "kind": "decision",
+    "id": "p-c23b4c92f0",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-07T02:46:52.104914+00:00",
+    "kind": "triage",
+    "id": "p-43ea959527",
+    "verdict": "agent",
+    "reason": "현재까지 커밋 및 완료된 제안에 RAG 엔드포인트 구현 내용이 없으며, 코드 추가·테스트 작성이 필요함"
+  },
+  {
+    "at": "2026-11-07T02:47:13.676399+00:00",
+    "kind": "triage",
+    "id": "p-c23b4c92f0",
+    "verdict": "human",
+    "reason": "PR #47 검토와 승인을 촉구하고, 승인 후 URL 검증 로직을 업데이트하는 작업은 사람의 협조와 코드 수정이 모두 필요함"
+  },
+  {
+    "at": "2026-11-07T02:47:13.696347+00:00",
+    "kind": "applied",
+    "id": "p-c23b4c92f0",
+    "result": "사람 할 일 — 1. 프로젝트 오너에게 PR #47 검토 요청 메일 또는 슬랙 메시지 전송\n2. 필요 시 리뷰어를 지정하고 리뷰 진행 독려\n3. PR가 승인되면 backend/app/services/url_ingest.py 파일의 URL 검증 로직을 최신화하고 테스트를 추가\n4. 변경 사항을 커밋하고 PR에 반영하여 머지"
   }
 ]

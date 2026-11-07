@@ -5,11 +5,12 @@
   "group": "디지털 트윈",
   "name": "Digital twin basics with Omniverse",
   "title": "디지털 트윈 기초",
-  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint), 해양 파력(데이터센터 전력 공급) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
   "when": [
     "서로 다른 3D 툴(Blender, 3ds Max, Maya 등)을 사용하는 팀원들과 실시간 협업이 필요할 때",
     "공장, 도시, 대형 건축물, 의료 및 AI 팩토리 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
-    "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때"
+    "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때",
+    "해양 파력 에너지를 데이터센터 전력원으로 전환하는 시뮬레이션을 수행할 때"
   ],
   "steps": [
     "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 로컬 또는 원격으로 시작합니다.",
@@ -60,6 +61,14 @@
         "CAD 데이터를 USD 형식으로 변환하여 Stage에 임포트합니다.",
         "OpenUSD 레이어 분리 기법을 활용해 팀별 수정 사항을 원본 손상 없이 관리합니다.",
         "PhysX 시뮬레이션을 실행하여 제품 이동 경로, 전력 및 냉각 분석 등 병목 구간을 테스트합니다."
+      ]
+    },
+    {
+      "title": "해양 파력 디지털 트윈을 통한 데이터센터 전력 공급 시뮬레이션",
+      "steps": [
+        "해양 파도 데이터를 USD 레이어로 변환해 Stage에 임포트합니다.",
+        "Omniverse Physics 패널에서 파도와 터빈 모델에 Rigid Body와 Collision을 설정합니다.",
+        "실시간 시뮬레이션으로 파도 운동 에너지 → 전력 변환 효율을 측정하고 결과를 데이터센터 전력 모델에 매핑합니다."
       ]
     }
   ],
@@ -113,19 +122,24 @@
         "p:2026-10-29-b9009ee44e00546d",
         "p:2026-10-21-24f50db3e043ed4c"
       ]
+    },
+    {
+      "at": "2026-11-07T02:46:32+00:00",
+      "what": "해양 파력 에너지와 데이터센터 전력 공급 시뮬레이션 사례를 새 예시와 상황으로 추가해 최신 활용 사례를 반영했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 디지털 트윈으로 해양 파력 활용",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPd1ZXUTNWUHVHRlFjQ05vYW5PMzIwUlB1Rjd2NC1pQk1IT3U3N2FMV184Tm1QMGF3N056V2ZwYnNGamJKR2VCZHZlR2MtUXRGM0h5UWJrcnhvZXplTm5PY2RnWHFSR2xpaVhDckxBQ3FDZVdjQTloN3VWNG9USnFTSWlFdjVPQQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-06-b69433aac4c14dde"
+      ]
     }
   ],
-  "qa_at": "2026-11-06T20:16:52+00:00",
   "qa": {
     "score": 10,
     "defects": [],
     "fix_hint": "현재의 명확한 구조와 정확한 공식 영문 UI 명칭 및 실습 단계를 계속 유지합니다."
-  },
-  "refresh_with": [
-    {
-      "key": "p:2026-11-06-b69433aac4c14dde",
-      "title": "NVIDIA Omniverse 디지털 트윈으로 해양 파력 활용",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPd1ZXUTNWUHVHRlFjQ05vYW5PMzIwUlB1Rjd2NC1pQk1IT3U3N2FMV184Tm1QMGF3N056V2ZwYnNGamJKR2VCZHZlR2MtUXRGM0h5UWJrcnhvZXplTm5PY2RnWHFSR2xpaVhDckxBQ3FDZVdjQTloN3VWNG9USnFTSWlFdjVPQQ?oc=5"
-    }
-  ]
+  }
 }

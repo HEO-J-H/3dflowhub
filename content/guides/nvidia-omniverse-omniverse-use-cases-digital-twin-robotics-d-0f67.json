@@ -5,7 +5,7 @@
   "group": "입문",
   "name": "Omniverse use cases (digital twin, robotics, design review)",
   "title": "활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰",
-  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 건설·의료 디지털 트윈 및 AI 에이전트 기반 시뮬레이션으로 생태계가 확장되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 건설·의료 디지털 트윈 및 AI 에이전트 기반 시뮬레이션과 함께 해양 파력 에너지를 데이터센터 전력원으로 전환하는 연구도 진행되고 있습니다.",
   "when": [
     "여러 아티스트가 3ds Max, Blender, Unreal Engine 등 서로 다른 툴의 데이터를 실시간으로 동기화하며 작업할 때",
     "공장 자동화, 물류 센터, 스마트 시티, 건설 현장 및 의료(폐 디지털 트윈 등) 분야의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
@@ -54,7 +54,7 @@
       "steps": [
         "CAD 데이터를 USD 형식으로 변환하여 Omniverse로 가져옵니다.",
         "컨베이어 벨트와 로봇 팔 모델에 PhysX 물리 속성을 부여합니다.",
-        "IoT 센서 데이터를 연동하여 실제 공장 가동 상태를 실시간 시각화합니다."
+        "IoT 센서 데이터를 연동하여 실제 공장 가동 상태를 실시간으로 시각화합니다."
       ]
     },
     {
@@ -71,6 +71,14 @@
         "자연어 기반 AI 에이전트를 통해 CAD 모델을 OpenUSD 및 SimReady Foundation 요구사항에 맞게 변환합니다.",
         "NVIDIA Isaac Sim과 Newton 물리 엔진을 연동하여 로봇의 케이블 라우팅 및 그리퍼 조작 시뮬레이션을 구성합니다.",
         "대규모 창고 환경에서 병렬 연산을 통해 성능을 테스트하고 최적화합니다."
+      ]
+    },
+    {
+      "title": "해양 파력 기반 데이터센터 전력 시뮬레이션",
+      "steps": [
+        "해양 파도 데이터를 USD 형식으로 변환하여 Omniverse에 가져옵니다.",
+        "PhysX 또는 Omniverse 물리 엔진으로 파도 물리 시뮬레이션을 설정하고 전력 변환 모델을 적용합니다.",
+        "시뮬레이션 결과를 분석하여 데이터센터 전력 공급 효율을 평가합니다."
       ]
     }
   ],
@@ -128,13 +136,19 @@
         "p:2026-10-29-b9009ee44e00546d",
         "p:2026-10-29-79428cf43613e413"
       ]
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-06-b69433aac4c14dde",
-      "title": "NVIDIA Omniverse 디지털 트윈으로 해양 파력 활용",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPd1ZXUTNWUHVHRlFjQ05vYW5PMzIwUlB1Rjd2NC1pQk1IT3U3N2FMV184Tm1QMGF3N056V2ZwYnNGamJKR2VCZHZlR2MtUXRGM0h5UWJrcnhvZXplTm5PY2RnWHFSR2xpaVhDckxBQ3FDZVdjQTloN3VWNG9USnFTSWlFdjVPQQ?oc=5"
+      "at": "2026-11-07T02:45:47+00:00",
+      "what": "요약에 해양 파력 에너지 활용을 추가하고, 새로운 예시 '해양 파력 기반 데이터센터 전력 시뮬레이션'을 examples에 삽입했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 디지털 트윈으로 해양 파력 활용",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPd1ZXUTNWUHVHRlFjQ05vYW5PMzIwUlB1Rjd2NC1pQk1IT3U3N2FMV184Tm1QMGF3N056V2ZwYnNGamJKR2VCZHZlR2MtUXRGM0h5UWJrcnhvZXplTm5PY2RnWHFSR2xpaVhDckxBQ3FDZVdjQTloN3VWNG9USnFTSWlFdjVPQQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-06-b69433aac4c14dde"
+      ]
     }
   ]
 }

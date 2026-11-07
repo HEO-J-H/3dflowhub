@@ -1,0 +1,91 @@
+{
+  "id": "houdini-parameters-and-channel-references-e148",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Parameters and channel references",
+  "title": "파라미터·채널 참조(ch)",
+  "summary": "Houdini의 파라미터와 채널 레퍼런스는 노드 속성을 외부 값에 연결해 자동화와 재사용을 가능하게 합니다.",
+  "when": [
+    "다른 노드의 변수를 기반으로 속성을 제어하고 싶을 때",
+    "키프레임 없이 연속적인 변화를 만들 때",
+    "복잡한 리깅·시뮬레이션에서 값 일관성을 유지할 때"
+  ],
+  "steps": [
+    "Network View에서 원하는 노드 선택 → Parameter Pane에서 연결할 파라미터 우클릭",
+    "Context 메뉴에서 ‘Reference’ → ‘Channel Reference’를 선택",
+    "Reference 창에 $CH 혹은 ch('node/parameter') 형식 입력 후 Apply",
+    "필요하면 Expression Editor에서 $CH를 사용해 수식 추가 (Ctrl+E)"
+  ],
+  "params": [
+    {
+      "name": "$CH",
+      "desc": "현재 노드의 같은 이름 파라미터 값을 가져옵니다"
+    },
+    {
+      "name": "ch()",
+      "desc": "다른 노드의 파라미터 값을 반환합니다"
+    },
+    {
+      "name": "chf()",
+      "desc": "float 타입 채널 값을 반환합니다"
+    },
+    {
+      "name": "chs()",
+      "desc": "string 타입 채널 값을 반환합니다"
+    },
+    {
+      "name": "chv()",
+      "desc": "vector 타입 채널 값을 반환합니다"
+    },
+    {
+      "name": "$F",
+      "desc": "현재 프레임 번호를 반환합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 굽힘에 다른 노드 회전값 적용",
+      "steps": [
+        "Pipe 노드의 ‘Twist’ 파라미터 우클릭 → Reference → Channel Reference",
+        "ch('rotate_node/ry') 입력 → Apply",
+        "뷰포트에서 회전 노드 회전 시 Pipe가 실시간으로 굽힘"
+      ]
+    },
+    {
+      "title": "시뮬레이션 시작 프레임을 전역 변수로 관리",
+      "steps": [
+        "Global 변수 노드에 ‘StartFrame’ 파라미터 생성",
+        "다른 DOP 노드의 ‘Start Frame’ 파라미터에 ch('globals/StartFrame') 입력",
+        "시뮬레이션 설정을 바꿀 때 변수만 수정하면 전체가 업데이트"
+      ]
+    }
+  ],
+  "mistakes": [
+    "채널 타입 불일치 → chf() 대신 chv() 등 올바른 함수 사용",
+    "레퍼런스 경로 오타 → 정확한 노드/파라미터 경로를 확인하고 재입력"
+  ],
+  "related": [
+    "Channel Reference",
+    "Expression Editor",
+    "Copy to Points",
+    "Object Merge"
+  ],
+  "videos": [
+    {
+      "id": "1f9L99FvTwc",
+      "title": "Houdini for Beginners: Copy Parameter, Relative References & Node Linking",
+      "author": "AnimFX Lab"
+    },
+    {
+      "id": "Lu20cMtSfsE",
+      "title": "Driving Parameters using Dictionary Attributes in Houdini",
+      "author": "Paul Ambrosiussen"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20Parameters%20and%20channel%20references",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-07T02:40:46.923595+00:00"
+}

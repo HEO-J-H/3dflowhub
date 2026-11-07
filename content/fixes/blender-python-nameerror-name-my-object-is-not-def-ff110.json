@@ -1,0 +1,41 @@
+{
+  "id": "blender-python-nameerror-name-my-object-is-not-def-ff110",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: NameError: name 'my_object' is not defined",
+  "title": "Python: NameError: name 'my_object' is not defined – Blender에서 변수 미정의 오류 해결",
+  "summary": "Python Script에서 'my_object' 변수가 정의되지 않아 NameError가 발생합니다. 이는 변수를 선언하거나 올바른 객체를 참조하지 않았을 때 나타납니다.",
+  "causes": [
+    "변수를 사용하기 전에 선언하지 않음",
+    "변수 이름에 오타가 있음",
+    "Script가 실행되는 컨텍스트에 해당 객체가 존재하지 않음",
+    "전역/지역 스코프 혼동으로 변수 접근이 불가능함"
+  ],
+  "steps": [
+    "Text Editor에서 오류가 발생한 라인을 확인합니다",
+    "변수를 선언합니다 – 예: my_object = bpy.data.objects['ObjectName'] 또는 my_object = bpy.context.active_object",
+    "변수 이름이 정확히 일치하는지 확인하고, 대소문자를 맞춥니다",
+    "함수 내부에서 사용한다면 매개변수로 전달하거나 global my_object 선언을 추가합니다",
+    "필요 시 Script를 올바른 컨텍스트(예: 3D View → Scripting)에서 실행합니다",
+    "콘솔이나 Info 영역에서 다시 실행해 오류가 사라졌는지 확인합니다"
+  ],
+  "check": [
+    "콘솔에 NameError가 더 이상 표시되지 않음",
+    "print(my_object.name) 등으로 객체 이름이 정상 출력됨"
+  ],
+  "prevent": [
+    "변수 선언을 코드 앞부분에 명확히 배치합니다",
+    "객체 이름을 직접 입력하기보다 bpy.data.objects.get('ObjectName') 로 존재 여부를 확인합니다",
+    "함수·클래스 설계 시 전역·지역 스코프를 일관되게 사용하고, 필요 시 주석으로 변수 흐름을 기록합니다"
+  ],
+  "keywords": [
+    "NameError my_object 정의되지 않음",
+    "Blender Python 변수 선언",
+    "Blender Script 오류 해결",
+    "bpy.data.objects 찾기",
+    "Blender Python NameError"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-07T02:44:08+00:00"
+}
