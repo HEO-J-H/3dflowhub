@@ -21430,5 +21430,80 @@
     "kind": "applied",
     "id": "p-246d67a028",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] 패치 적용 실패: 변경 없음"
+  },
+  {
+    "at": "2026-11-08T10:33:01+00:00",
+    "kind": "proposal",
+    "id": "p-338e0d6d57",
+    "title": "PR #50 및 PR #51 백엔드 변경 사항 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #50 및 PR #51이 핵심 코드 변경으로 인해 GitHub에서 승인 대기 상태로 머물러 있습니다.",
+    "proposal": "GitHub에서 PR #50과 PR #51의 테스트 통과 여부 및 예외 처리 코드를 최종 확인하고 오너 승인 유도",
+    "expected": "백엔드 PBR 및 URL 인게스트, RAG 연동 관련 핵심 기능 안정적 머지",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/50",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T10:33:01+00:00",
+    "kind": "proposal",
+    "id": "p-951dcad644",
+    "title": "RAG 오픈소스 연동 가이드 및 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너가 깃허브 RAG 오픈소스 검토 및 반영을 요청했으나 관련 설계 및 테스트 작업이 held 되었습니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 및 backend/tests/test_rag.py의 패치 실패 원인을 분석하고 단위를 쪼개어 재시도",
+    "expected": "오너의 RAG 오픈소스 반영 요청에 부응하는 안전한 문서 및 테스트 기반 마련",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T10:33:21.837166+00:00",
+    "kind": "decision",
+    "id": "p-338e0d6d57",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T10:33:21.859888+00:00",
+    "kind": "decision",
+    "id": "p-951dcad644",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T10:33:24.468961+00:00",
+    "kind": "triage",
+    "id": "p-338e0d6d57",
+    "verdict": "human",
+    "reason": "PR #50 및 PR #51의 최종 테스트 통과 확인과 오너(human) 승인은 외부 플랫폼인 GitHub 웹 인터페이스에서 사람이 직접 수행해야 합니다."
+  },
+  {
+    "at": "2026-11-08T10:33:24.488765+00:00",
+    "kind": "applied",
+    "id": "p-338e0d6d57",
+    "result": "사람 할 일 — 1. GitHub 웹사이트의 pix2poly 저장소에 접속합니다.\n2. Pull Requests 탭에서 PR #50과 PR #51을 차례대로 엽니다.\n3. CI/CD 테스트가 모두 통과되었는지 최종 확인하고 코드 변경 사항을 검토한 후 승인(Approve) 및 머지 버튼을 누릅니다."
+  },
+  {
+    "at": "2026-11-08T10:33:25.344823+00:00",
+    "kind": "triage",
+    "id": "p-951dcad644",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 검토 및 관련 가이드 문서화와 테스트 보강이 여러 차례 수행되어 끝낸 제안 목록에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-08T10:33:25.365588+00:00",
+    "kind": "decision",
+    "id": "p-951dcad644",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 관련 가이드 문서화와 테스트 보강이 여러 차례 수행되어 끝낸 제안 목록에 반영되어 있습니다."
   }
 ]
