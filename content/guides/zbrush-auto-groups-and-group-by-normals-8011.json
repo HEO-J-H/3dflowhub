@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-auto-groups-and-group-by-normals-8011",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Auto Groups and Group by normals",
+  "title": "자동 Polygroup",
+  "summary": "ZBrush의 Auto Groups와 Group by Normals은 모델의 이음새나 법선 각도 차이를 기준으로 폴리곤 면들을 자동으로 서로 다른 Polygroup으로 분할해 주는 영역 관리 기능입니다.",
+  "when": [
+    "하드 서페이스 모델의 각진 면이나 파츠별로 폴리그룹을 한 번에 나누고 싶을 때",
+    "SubTool로 분리되지 않은 복잡한 매쉬를 부위별로 빠르게 분리·마스킹할 때",
+    "그룹 경계(Group Border)를 활용해 엣지 크리즈나 스커프 디테일을 넣을 때"
+  ],
+  "steps": [
+    "ZBrush 뷰포트에서 그룹을 나눌 메쉬(SubTool)를 선택합니다.",
+    "키보드 Shift + F 를 눌러 PolyFrame(와이어프레임 및 폴리그룹 컬러)을 활성화합니다.",
+    "오른쪽 툴 팔레트(Tool Palette)에서 SubTool 아래의 Polygroups 메뉴를 클릭하여 엽니다.",
+    "각진 면 기준이라면 Group By Normals를 클릭하고, 아일랜드 기준이라면 Auto Groups를 클릭합니다.",
+    "뷰포트에서 메쉬의 면들이 서로 다른 색상(Polygroup)으로 나뉘었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Groups",
+      "desc": "물리적으로 떨어져 있는(연결되지 않은) 섬(Island) 단위로 서로 다른 폴리그룹을 자동으로 지정합니다."
+    },
+    {
+      "name": "Group By Normals",
+      "desc": "면의 노멀(법선) 각도 차이를 기준으로 이음새를 인식하여 폴리그룹을 나눕니다."
+    },
+    {
+      "name": "Max Angle",
+      "desc": "Group By Normals 실행 시 그룹을 분할할 기준 각도를 설정합니다. 값이 낮을수록 좁은 각도에서도 민감하게 분리됩니다."
+    },
+    {
+      "name": "Polish",
+      "desc": "그룹 경계면을 정리하거나 다듬어 주는 옵션입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 하드 서페이스 파츠별 분리",
+      "steps": [
+        "여러 파츠가 결합된 복잡한 메쉬를 불러옵니다.",
+        "Polygroups 메뉴에서 Group By Normals를 클릭합니다.",
+        "각진 엣지 경계에 따라 파츠별로 폴리그룹이 나뉘는지 확인합니다.",
+        "Ctrl + Shift + 클릭하여 특정 파츠만 남기고 나머지는 숨깁니다."
+      ]
+    },
+    {
+      "title": "분리된 메쉬 아일랜드별 그룹 지정",
+      "steps": [
+        "여러 개의 독립된 오브젝트가 하나의 SubTool로 합쳐져 있는 메쉬를 준비합니다.",
+        "Polygroups 메뉴에서 Auto Groups를 클릭합니다.",
+        "각각의 독립된 메쉬 덩어리마다 고유한 폴리그룹 색상이 할당됩니다.",
+        "SubTool Split ➔ Groups Split을 통해 개별 서브툴로 분리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "그룹이 원치 않게 너무 잘게 쪼개짐 → Max Angle 값을 높여서 각도 민감도를 낮추고 다시 실행합니다.",
+    "그룹 경계가 울퉁불퉁함 → 메쉬의 다중 스컬프팅 레벨(Sdiv)이 높을 경우 발생하므로, 가장 낮은 레벨(Sdiv 1)에서 그룹을 나눈 뒤 레벨을 올립니다."
+  ],
+  "related": [
+    "Polygroups",
+    "Group By Mask",
+    "Groups Split",
+    "PolyFrame"
+  ],
+  "videos": [
+    {
+      "id": "xhv5kk6AFx4",
+      "title": "Polygroups By Normals - MUST USE! (zBrush Tips & Tricks)",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "5Yw3-HH1PYU",
+      "title": "051 ZBrush 2018 New Group By Normals Algorithm",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Auto%20Groups%20and%20Group%20by%20normals",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "SubTool",
+    "PolyFrame",
+    "Tool Palette",
+    "Polygroups",
+    "Group By Normals"
+  ],
+  "at": "2026-11-08T10:02:38.407610+00:00"
+}

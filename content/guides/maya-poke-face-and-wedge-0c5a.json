@@ -1,0 +1,94 @@
+{
+  "id": "maya-poke-face-and-wedge-0c5a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Poke Face and Wedge",
+  "title": "Poke·Wedge",
+  "summary": "Maya의 Poke Face는 선택한 면의 중심에 Vertex를 생성해 삼각형으로 쪼개고, Wedge는 지정된 각도와 축을 기준으로 면을 부채꼴 모양으로 회전하며 연장합니다.",
+  "when": [
+    "로우폴리곤 스타일의 입체적인 돌출 효과를 만들 때",
+    "곡면을 따라 오브젝트를 부채꼴 형태로 회전 및 확장할 때",
+    "기존 메쉬에 특정 각도의 회전 구조를 추가할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Mouse 우클릭 후 Face 모드로 진입합니다.",
+    "Poke Face의 경우, 쪼갤 면을 선택한 뒤 상단 메뉴 바에서 Mesh → Poke를 실행합니다.",
+    "Wedge의 경우, 연장할 에지(Edge)를 선택하고 Mesh → Wedge 옵션 박스를 엽니다.",
+    "Wedge 옵션 창에서 Angle, Division 등의 값을 설정한 뒤 Apply를 누릅니다.",
+    "뷰포트에서 생성된 피라미드 형태나 부채꼴 구조가 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Division",
+      "desc": "Wedge 실행 시 생성되는 분할 세그먼트 개수를 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "Wedge가 회전하며 뻗어나가는 총 각도를 설정합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "Wedge 작업이 회전 기준으로 삼을 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Pivot",
+      "desc": "Wedge 회전의 중심축 위치를 조정합니다."
+    },
+    {
+      "name": "Local Translate",
+      "desc": "로컬 좌표계를 기준으로 면의 이동 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로우폴리곤 지형 만들기 (Poke)",
+      "steps": [
+        "평면(Plane) 오브젝트의 서브디비전을 높여줍니다.",
+        "Face 모드에서 무작위 면들을 다중 선택합니다.",
+        "Mesh → Poke를 실행해 중앙 Vertex를 올립니다."
+      ]
+    },
+    {
+      "title": "계단식 곡선 구조물 만들기 (Wedge)",
+      "steps": [
+        "큐브나 판 형태의 오브젝트에서 끝단 에지를 선택합니다.",
+        "Mesh → Wedge를 실행하고 Angle을 90도로 설정합니다.",
+        "Division 값을 조절하여 부드러운 곡선 분할을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Wedge 사용 시 회전 축이 잘못 지정됨 → Axis 설정을 올바른 축으로 변경합니다.",
+    "Poke 적용 후 면이 겹쳐 보임 → 노멀(Normal) 방향을 확인하고 필요시 Unlock Normals를 실행합니다."
+  ],
+  "related": [
+    "Bridge",
+    "Extrude",
+    "Bevel",
+    "Retopologize"
+  ],
+  "videos": [
+    {
+      "id": "QL7rXw2TfF8",
+      "title": "Noob vs Pro Artist: 3D Maya Poke Face #mayatutorial #mayatips #shorts",
+      "author": "Parveen 3D Artist "
+    },
+    {
+      "id": "xBy9krQ-XZU",
+      "title": "Wedge Face, Poke Face & Merge Faces to Center | Autodesk Maya Tutorial",
+      "author": "NEXUS"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Poke%20Face%20and%20Wedge",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Face",
+    "Poke Face",
+    "Mesh",
+    "Poke"
+  ],
+  "at": "2026-11-08T10:02:34.390465+00:00"
+}
