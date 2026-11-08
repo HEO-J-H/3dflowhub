@@ -1867,8 +1867,50 @@ def ambiguous_name_only(item: dict) -> bool:
     return bool(AMBIG_NAMES.search(t)) and not UNAMBIG_3D.search(f"{t} {item.get('rss_summary', '')[:300]}")
 
 
+def filter_homonym_3d_content(item: dict) -> bool:
+    """동음이의어(인물, 주식, 무관한 뉴스 등)를 3D/CG 전문 맥락 필터 및 키워드 조합으로 정밀 판정하여 차단하는 함수.
+    정상 3D 전문 콘텐츠이거나 확인된 맥락이면 True, 동음이의어 오수집 대상이면 False를 반환합니다."""
+    title = (item.get("title", "") or "").lower()
+    summary = (item.get("rss_summary", "") or "").lower()
+    full_text = f"{title} {summary}"
+
+    # 1. 명백한 동음이의어/오수집 키워드 그룹 (인물, 주식, 가전 주방, 무관한 뉴스 등)
+    homonym_keywords = {
+        "maya": ["civilization", "mayan", "calendar", "ancient", "pyramid", "indigenous", "사람", "문명", "마야인", "역사", "유적"],
+        "blender": ["kitchen", "smoothie", "juicer", "cooking", "recipe", "주방", "믹서기", "요리", "스무디", "가전"],
+        "nuke": ["nuclear", "bomb", "missile", "war", "korea", "iran", "headquarters", "핵", "미사일", "전쟁", "북한", "외교", "정치", "국방"],
+        "unity": ["stock", "shares", "dividend", "market", "economy", "주식", "증시", "주가", "배당", "경제", "정당", "통합"],
+        "houdini": ["magician", "magic", "escape", "illusionist", "마술사", "마법", "탈출", "일루션"],
+        "apple": ["fruit", "pie", "orchard", "ios", "iphone", "macbook", "과일", "사과", "농장"],
+        "apex": ["legend", "game", "apex legends", "apex predators", "apex corporation"] # 예시
+    }
+
+    # 3D/CG 전문 맥락 판정 어휘 (이 중 하나 이상 포함되어야 동음이의어 의심 상황에서도 3D로 인정)
+    professional_3d_context = [
+        "3d", "cgi", "vfx", "render", "shader", "texture", "modeling", "modelling", "sculpt", "rigging",
+        "animation", "mesh", "polygon", "game engine", "unreal", "unity 6", "houdini fx", "plugin", "addon",
+        "add-on", "script", "splat", "nerf", "geometry nodes", "maxscript", "python", "usd", "gltf",
+        "렌더링", "모델링", "애니메이션", "텍스처", "셰이더", "시뮬레이션", "플러그인", "스크립트", "블렌더", "맥스", "마야", "후디니"
+    ]
+
+    has_3d_context = any(ctx in full_text for ctx in professional_3d_context)
+
+    for tool, bad_contexts in homonym_keywords.items():
+        if tool in full_text:
+            # 툴 이름이 들어가 있으면서 무관한 동음이의어 맥락 키워드가 포함되어 있고, 3D 전문 맥락이 부족한 경우 차단
+            matched_bad = [bc for bc in bad_contexts if bc in full_text]
+            if matched_bad and not has_3d_context:
+                log.info("동음이의어 정밀 필터 차단 (툴: %s, 감지된 무관 맥락: %s): %s", tool, matched_bad, item.get("title", ""))
+                RUN_ERRORS.append("off-topic")
+                return False
+
+    return True
+
+
 def confirm_3d(item: dict) -> bool:
     """짧은 예/아니오 판정 — 3D 소프트웨어·제작에 관한 기사인가. 실패하면 통과(수집이 멈추지 않게)."""
+    if not filter_homonym_3d_content(item):
+        return False
     try:
         out = _parse_json(llm(f"Title: {item['title']}\nSnippet: {item.get('rss_summary', '')[:400]}\n"
                               "Is this article about 3D/VFX/game-development SOFTWARE or 3D content creation (e.g. Autodesk "
