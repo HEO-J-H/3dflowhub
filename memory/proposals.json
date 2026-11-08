@@ -22933,5 +22933,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/agent-guides/rag-integration.md RAG",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T19:34:29+00:00",
+    "kind": "proposal",
+    "id": "p-e7b53039c1",
+    "title": "backend/tests/test_rag.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 통합 및 오픈소스 연동 검토가 진행되었으나 관련 단위 테스트의 세부 예외 처리 검증이 추가로 필요합니다.",
+    "proposal": "backend/tests/test_rag.py 파일에 검색 실패 및 빈 쿼리 입력 등 예외 상황에 대한 단위 테스트 케이스를 보완합니다.",
+    "expected": "RAG 검색 기능의 안정성이 향상되고 테스트 커버리지가 높아집니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:34:29+00:00",
+    "kind": "proposal",
+    "id": "p-c57463ba7d",
+    "title": "docs/agent-guides/rag-integration.md 가이드 최신화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "RAG 관련 오픈소스 연동 및 구현 검토가 완료되어 실무 적용 가이드를 최신 상태로 유지해야 합니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일에 실제 구현된 FAISS 및 sentence-transformers 기반 검색 엔진의 연동 방식을 반영하고 상세 가이드를 업데이트합니다.",
+    "expected": "향후 개발 및 PR 검토 시 명확한 기준을 제공합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:34:49.269249+00:00",
+    "kind": "decision",
+    "id": "p-e7b53039c1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_rag.py 테스트 케이스 추가 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T19:34:49.286945+00:00",
+    "kind": "decision",
+    "id": "p-c57463ba7d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/agent-guides/rag-integration.md RAG",
+    "auto": true
   }
 ]
