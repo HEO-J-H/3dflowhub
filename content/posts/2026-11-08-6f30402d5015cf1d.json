@@ -1,0 +1,54 @@
+{
+  "title_ko": "Gaussian Splatting 척도 추정 논문 METRIC-GS 공개",
+  "title": "METRIC-GS: Selective Metric-Scale Estimation for 3D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.06020v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "척도 추정",
+    "AR 콘텐츠",
+    "ScanNet++",
+    "MASt3R"
+  ],
+  "summary": "METRIC-GS는 3D Gaussian Splatting 재구성 데이터에서 의미론적 콘텐츠를 읽어 내어 실제 미터법 척도를 선택적으로 추정하는 기법입니다.",
+  "insight": "ScanNet++ 47개 실내 장면에서 테스트한 결과, 기존 휴리스틱 방식의 평균 오차를 21.1%에서 16.6%로 낮추며 장면당 약 11초가 소요됩니다. MASt3R과 연계하여 거부된 샘플만 라우팅하는 하이브리드 구성으로 전체 연산 횟수를 60% 줄이면서도 정확도를 유지할 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "기존 Gaussian Splatting 척도 추정의 한계",
+      "body": "Structure-from-motion 기반의 3D Gaussian Splatting 재구성은 임의의 단위를 상속하므로 실제 측정이나 AR 콘텐츠 배치를 위해 별도의 척도 부여가 필요합니다. 바닥에서 천장까지의 높이를 측정하는 기존 양자 기반 휴리스틱 방식은 실내 촬영본에서 27% 이상의 오차를 보였습니다."
+    },
+    {
+      "heading": "METRIC-GS의 선택적 척도 추정 작동 방식",
+      "body": "재구성물의 의미론적 콘텐츠를 바탕으로 척도를 읽어 내며, 증거가 부족할 때는 명시적으로 추정을 거부합니다. 고정된 2D 교사가 가시성 인지 투표를 통해 Gaussian에 레이블을 지정하고, 문과 테이블 같은 건축·가구 클래스의 인스턴스별 크기 사전 정보를 최대 우도 단계로 융합합니다."
+    },
+    {
+      "heading": "MASt3R과의 하이브리드 라우팅 성능",
+      "body": "불확실한 증거를 감지하는 인라이어 매스 테스트를 통해 중량급 미터법 모델인 MASt3R로 라우팅하는 선택적 하이브리드 방식을 제안합니다. 이 구성을 사용하면 MASt3R을 모든 곳에 실행하는 것에 비해 연산 횟수를 60% 줄이면서도 동등한 수준의 정확도를 달성합니다."
+    },
+    {
+      "heading": "실제 실내 장면 및 모바일 촬영본 평가 결과",
+      "body": "47개의 ScanNet++ 레이저 실측 데이터 씬에서 단독 추정기로만 휴리스틱 평균 오차를 21.1%에서 16.6%로 낮추었습니다. 자체 촬영한 13개의 폰 및 드론 촬영본 중 MASt3R이 등록 게이트를 통과하지 못한 장면에서도 성능 저하 없이 작동했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "METRIC-GS는 어떤 문제를 해결하기 위한 기술인가요?",
+      "a": "3D Gaussian Splatting 재구성이 지닌 임의의 단위를 실제 미터법 크기로 변환하여 AR 콘텐츠 배치나 실제 측정에 활용할 수 있도록 돕습니다."
+    },
+    {
+      "q": "MASt3R과의 연동은 어떤 방식으로 이루어지나요?",
+      "a": "METRIC-GS가 자체적으로 신뢰하기 어려운 박약한 증거를 감지하여 추정을 거부하고, 이 거부된 사례들만 MASt3R 모델로 라우팅하여 연산 효율을 높입니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.06020v1/2611.06020v1/WACV_overview.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T23:34:53.996517+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-6f30402d5015cf1d",
+  "img_tried": true
+}
