@@ -1,0 +1,20 @@
+<!-- TITLE: MOMASPLAT: Gaussian Splatting 기반 모바일 매니퓰레이션 데이터 증강 | TAGS: Gaussian Splatting,모바일 매니퓰레이션,NeRF,로보틱스,비주오모터 정책,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — MOMASPLAT은 Gaussian Splatting과 3D 파운데이션 모델을 결합해 모바일 매니퓰레이션을 위한 동적 객체 상호작용 및 시점 증강을 수행하는 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>모바일 매니퓰레이션 시점 문제와 기존 한계</h2>
+<p>모바일 매니퓰레이션(MoMa) 환경에서 로봇은 내비게이션 오차와 위치 추정 오로드로 인해 시연 시점과 동일한 베이스 포즈를 유지하기 어렵습니다. 기존의 신규 시점 합성(NVS) 기법은 정적 장면만을 가정하기 때문에, 접촉 후 상호작용 단계에서 조작되는 객체를 다시 렌더링하지 못해 핵심적인 시연 데이터 증강이 누락되는 문제가 있었습니다.</p>
+<h2>MOMASPLAT의 정적·동적 분리 재구성 접근법</h2>
+<p>연구진이 발표한 MOMASPLAT은 표준 모바일 매니퓰레이션 데이터 수집 과정에서 얻어지는 다시점 관측 데이터를 활용합니다. 이를 통해 3D 공간 상에서 정적 배경과 조작 대상 객체를 각각 분리하여 재구성할 수 있습니다.</p>
+<h2>Gaussian Splatting과 액션 리타겟팅의 결합</h2>
+<p>이 프레임워크는 Gaussian Splatting, 피드포워드 3D 파운데이션 모델, 그리고 기구학 기반의 액션 리타겟팅을 함께 사용합니다. 시점 변환에 맞추어 장면과 객체를 각각 렌더링하고, 변환된 액션과 결합하여 기하학적으로 일관된 합성 시연 데이터를 생성합니다.</p>
+<h2>실제 로봇 태스크 평가 및 성능 검증</h2>
+<p>3개의 서로 다른 장소에서 강체 및 다관절 객체를 포함하는 5가지 실제 모바일 매니퓰레이션 태스크를 통해 MOMASPLAT이 평가되었습니다. 시뮬레이션 환경의 Ground Truth와 비교하여 합성된 시연 데이터의 충실도가 검증되었으며, 기존 베이스라인 대비 평균 성공률이 두 배 이상 향상되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Gaussian Splatting을 활용해 정적 배경과 동적 조작 객체를 분리 재구성함으로써 기존 시점 증강 기법의 한계를 극복했습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. MOMASPLAT은 어떤 문제를 해결하기 위한 기술인가요?</b><br/>A. 모바일 로봇이 시연 수집 당시와 다른 베이스 포즈에서 조작을 수행할 때 발생하는 카메라 시점 변화 민감성을 해결합니다.</p>
+<p><b>Q. 조작 중인 동적 객체는 어떻게 처리하나요?</b><br/>A. Gaussian Splatting과 3D 파운데이션 모델을 활용하여 정적 배경과 동적 조작 객체를 분리한 뒤 각각 신규 시점에서 렌더링합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-73ff5ae0fa45090e.html">Gaussian Splatting CTBakeGS — 학습 없는 CT 볼륨 실시간 변환</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-761ff331276da480.html">StereoSplat — 스테레오 비디오의 미터법 3D 복원 기술</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-0ded6a5d77355226.html">Einstar EXStar Hub 2.0 및 Mobile 앱 출시</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.08372v1" target="_blank" rel="noopener nofollow">MOMASPLAT: Dynamic Novel-View Demonstration Augmentation for Mobile Manipulation</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
