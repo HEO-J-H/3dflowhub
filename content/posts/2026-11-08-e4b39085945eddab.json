@@ -1,0 +1,73 @@
+{
+  "title_ko": "CrossPressor: 피드포워드 3D-GS를 위한 교차 뷰 융합",
+  "title": "CrossPressor: Scalable Cross-View Fusion for Feed-Forward 3D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.06258v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "CrossPressor",
+    "Token Reduction",
+    "Feed-Forward 3D",
+    "Multi-View Fusion"
+  ],
+  "summary": "Anchor 기반 압축 모델의 표현-융합 불일치를 해결하여 긴 입력 시퀀스에서도 복원 품질을 유지하며 빠른 교차 뷰 융합을 수행하는 학습 프리(training-free) 방법론입니다.",
+  "insight": "이 연구는 긴 멀티뷰 시퀀스를 처리할 때 발생하는 메모리 및 연산 병목을 재학습 없이 해결할 수 있는 가능성을 보여줍니다. 향후 대규모 3D 비전 및 실시간 뉴럴 렌더링 Pipeline 입력 뷰가 늘어나더라도 연산 부담을 크게 낮추는 데 기여할 수 있습니다. (가능성)",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "피드포워드 3D Gaussian Splatting(3D-GS)은 다수의 보정된 이미지로부터 단일 순방향 패스로 명시적 3D 표현을 예측하지만, 입력 시퀀스가 길어지면 표현 크기와 교차 뷰 연산 비용이 크게 증가합니다. ZPressor 같은 앵커 기반 압축 방식은 디코더를 향하는 앵커 표현 크기를 제한하지만, 앵커에 할당되는 지원 뷰(support view)가 늘어날수록 서포트 측 K/V 프로젝션과 교차 어텐션 연산량이 계속 증가하는 '표현-융합 불일치(representation-fusion mismatch)' 문제를 겪습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "CrossPressor는 앵커 쿼리 및 디코더 구조를 그대로 유지하면서, 커버리지 순환형 증거 라우팅(coverage-cycled evidence routing)을 통해 증가하는 서포트 시퀀스를 제한합니다. 공간 샘플링 오프셋을 지원 뷰마다 다르게 부여하고 융합 레이어에 따라 변화시켜, 추가된 뷰들이 K/V 시퀀스를 비례해서 늘리지 않고도 공간적 증거를 분산 기여하도록 만듭니다."
+    },
+    {
+      "heading": "방법",
+      "body": "라우팅은 K/V 프로젝션 수행 전에 적용되며, 융합 레이어 전반에 걸쳐 라우팅된 컨텍스트가 결합(packed)됩니다. 클러스터 스트라이드 s_c에 따라 s_c × s_c Grid 내에서 공간 샘플링 오프셋이 결정되며, 지원 뷰 순위와 레이어별 증가분을 반영해 패턴을 이동시킵니다. 이를 통해 원래의 카메라 그룹화, 앵커 표현, 어텐션 모듈 및 Gauss 디코더를 전혀 재학습 없이 그대로 활용합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "실험 결과, CrossPressor는 밀집 융합(dense fusion)에 가까운 복원 품질을 유지하면서 긴 입력 시퀀스에서 최대 26.12배 빠른 교차 뷰 융합과 1.43배의 엔드투엔드(end-to-end) 가속을 달성했습니다."
+    },
+    {
+      "heading": "아직 못 하는 것과 한계",
+      "body": "논문에서는 기존 모델의 체크포인트를 재학습 없이 바로 적용할 수 있는 추론 시점 축소에 초점을 맞추었으며, 학습 기반 토큰 선택 방식과 달리 태스크 적응형 학습을 직접 수행하지는 않습니다."
+    },
+    {
+      "heading": "코드 및 프로젝트 공개",
+      "body": "프로젝트 페이지(https://yuhsihu.github.io/CrossPressor)가 공개되어 있으며, 논문에서 제안된 방법론의 상세 내용과 시각화 자료를 확인할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "CrossPressor는 어떤 문제를 해결하기 위해 도입되었나요?",
+      "a": "디코더를 향하는 앵커 표현은 고정되어 있으나 이를 구성하는 지원 뷰의 서포트 증거가 계속 증가하는 '표현-융합 불일치' 문제를 해결하기 위해 도입되었습니다."
+    },
+    {
+      "q": "기존 앵커 기반 융합 방식과 비교해 어떤 점이 달라졌나요?",
+      "a": "K/V 프로젝션 전에 커버리지 순환형 증거 라우팅을 적용하여, 전체 지원 뷰의 공간적 증거를 보존하면서도 지원 측 K/V 시퀀스 비용을 재학습 없이 줄입니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.06258v1/2611.06258v1/teaser.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T22:44:35.910383+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-e4b39085945eddab",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T22:44:49+00:00"
+}
