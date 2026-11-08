@@ -1,0 +1,58 @@
+{
+  "title_ko": "Gaussian Splatting 주행 환경 복원 기술 OccSplat 발표",
+  "title": "Quo Vadis, Driving Scene Reconstruction? Occlusion-Aware Gaussian Densification",
+  "url": "https://arxiv.org/abs/2611.06273v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "OccSplat",
+    "nuScenes",
+    "ACCV 2026",
+    "자율주행"
+  ],
+  "summary": "OccSplat은 입력 영상에서 가려진 영역을 3D 레벨에서 직접 보완하여 자율주행 환경의 Gaussian Splatting 품질을 높이는 피드포워드 프레임워크입니다.",
+  "insight": "nuScenes 벤치마크 테스트에서 기존 방식 대비 시점 전환 시 누락된 기하학적 구조를 채워 넣는 성능이 개선되었습니다. 개별 씬 최적화 과정이 없어 실시간 추론이 필요한 주행 시나리오 재구성 분야에 도입하기 좋습니다. 2D 픽셀 공간에서 인페인팅을 처리하는 대신 3D 공간 내에서 직접 가우시안 Primitive를 생성하므로 시점 전환 시 발생하는 빈 공간을 자연스럽게 메웁니다. ACCV 2026 워크숍(CV4DC)에 채택된 본 논문은 다중 뷰 주행 영상 데이터셋을 다루는 연구자들에게 단일 관측 한계를 극복하는 단서를 제공합니다.",
+  "try_it": [
+    "arXiv:2611.06273 논문 원문을 통해 Occlusion-Aware Gaussian Densification의 수식과 아키텍처 세부사항을 확인하세요.",
+    "nuScenes 벤치마크 데이터셋을 활용하는 기존 피드포워드 3D Gaussian Splatting 파이프라인에 본 기법의 적용 가능성을 검토하세요."
+  ],
+  "sections": [
+    {
+      "heading": "OccSplat 프레임워크의 구조",
+      "body": "OccSplat은 단일 관측 기반 피드포워드 3D Gaussian Splatting의 한계인 시점 가림 현상을 해결합니다. 픽셀 공간의 단순 인페인팅을 넘어 3D 표현 내에서 누락된 장면 기하학적 구조를 직접 복원하도록 설계되었습니다. 주변 뷰 영상에서 출발하여 새로운 시점으로 전환할 때 나타나는 공백을 메우는 데 초점을 맞춥니다."
+    },
+    {
+      "heading": "Gaussian Occlusion Mapping과 Completion",
+      "body": "이 시스템은 먼저 Gaussian Occlusion Mapping을 통해 가우시안 데이터가 부족한 가려진 영역을 식별합니다. 이어서 Gaussian Occlusion Completion 단계에서 해당 영역에 새로운 Primitive를 생성하여 기존 표현에 통합합니다. 이를 통해 보이지 않던 영역까지 기하학적으로 일관된 3D 데이터로 복원합니다."
+    },
+    {
+      "heading": "nuScenes 벤치마크 성능 결과",
+      "body": "ACCV 2026 워크숍에 채택된 본 논문은 nuScenes 벤치마크에서 가려진 영역 복원 정확도 개선을 입증했습니다. 시각적으로 일관된 주행 장면 재구성을 유지하면서도 피드포워드 추론 속도를 보존합니다. 개별 씬마다 별도의 최적화 단계를 거치지 않는 점이 특징입니다."
+    },
+    {
+      "heading": "자율주행 씬 재구성의 기술적 의의",
+      "body": "주행 환경을 다중 카메라로 촬영할 때 발생하는 시차와 가려짐은 기존 3D reconstruction에서 고질적인 제약이었습니다. OccSplat은 Occlusion-Aware Gaussian Densification 방식을 통해 결손된 영역을 명시적으로 타겟팅합니다. 결과적으로 렌더링 품질과 기하학적 정밀도를 동시에 끌어올립니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "OccSplat은 어떤 문제를 해결하나요?",
+      "a": "주행 환경 재구성에서 단일 카메라 시점으로 인해 가려진 영역이 새로운 시점에서 비어 보이거나 불완전해지는 문제를 3D Gaussian Primitive 추가로 해결합니다."
+    },
+    {
+      "q": "개별 씬 최적화가 필수인가요?",
+      "a": "아니오. 최적화 과정 없이 피드포워드 방식으로 작동하여 새로운 시점 합성을 수행합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.06273v1/2611.06273v1/intro.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T14:53:25.750758+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-0328c01c2ff8b98a",
+  "img_tried": true,
+  "enriched": "2026-11-08"
+}
