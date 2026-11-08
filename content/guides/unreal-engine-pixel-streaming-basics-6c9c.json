@@ -1,0 +1,94 @@
+{
+  "id": "unreal-engine-pixel-streaming-basics-6c9c",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "내보내기",
+  "name": "Pixel Streaming basics",
+  "title": "Pixel Streaming — 웹으로 보기",
+  "summary": "Unreal Engine Pixel Streaming은 고성능 PC에서 렌더링되는 실시간 3D 콘텐츠를 웹 브라우저로 스트리밍하여, 사용자가 별도의 고사양 하드웨어 없이 일반 웹 기기에서 인터랙트할 수 있게 해주는 솔루션입니다.",
+  "when": [
+    "설치나 다운로드 없이 웹 브라우저에서 고품질 Unreal Engine 프로젝트를 실시간으로 보여주고 싶을 때",
+    "웹 기반 제품 컨피규레이터나 실시간 건축 시각화 프레젠테이션을 구축할 때",
+    "모바일 기기나 저사양 PC에서 고사양 3D 렌더링 콘텐츠를 실행해야 할 때"
+  ],
+  "steps": [
+    "Edit → Plugins 메뉴를 엽니다.",
+    "Plugins 창에서 'Pixel Streaming'을 검색하여 체크박스를 활성화한 후 Unreal Engine을 재시작합니다.",
+    "Project Settings → Maps & Modes에서 Default Maps와 Default Modes 설정을 확인합니다.",
+    "릴리즈 빌드 패키징 시 Pixel Streaming 플러그인에 포함된 시그널링 서버(Signalling Web Server) 파일을 함께 준비합니다.",
+    "명령줄 인자(Command-line arguments)에 Pixel Streaming에 사용할 Instance IP와 포트 번호(예: -PixelStreamingIP=localhost -PixelStreamingPort=8888)를 지정하여 실행합니다.",
+    "웹 브라우저를 열고 지정된 서버 주소로 접속하여 뷰포트 화면이 정상적으로 스트리밍되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "PixelStreamingIP",
+      "desc": "스트리밍 시그널링 서버가 연결될 IP 주소를 지정합니다."
+    },
+    {
+      "name": "PixelStreamingPort",
+      "desc": "클라이언트와 통신할 포트 번호를 설정합니다."
+    },
+    {
+      "name": "ResX / ResY",
+      "desc": "스트리밍되는 렌더링 화면의 Resolution 너비와 높이를 결정합니다."
+    },
+    {
+      "name": "WebRTC",
+      "desc": "웹 브라우저 간에 미디어나 데이터를 실시간으로 주고받는 통신 프로토콜입니다."
+    },
+    {
+      "name": "Signalling Server",
+      "desc": "클라이언트와 Unreal Engine Instance 간의 연결을 중개하는 웹 서버입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹 기반 자동차 커스터마이저 구축",
+      "steps": [
+        "차량 3D 모델과 재질을 설정한 Unreal Engine 프로젝트를 준비합니다.",
+        "Pixel Streaming 플러그인을 활성화하고 패키징합니다.",
+        "시그널링 서버를 실행하고 웹 브라우저에서 접속하여 실시간으로 차량 옵션을 변경합니다."
+      ]
+    },
+    {
+      "title": "원격 건축 시각화 프레젠테이션",
+      "steps": [
+        "건축물 인테리어 씬에 Path Tracer 또는 Lumen을 설정합니다.",
+        "클라우드 서버 또는 로컬 고사양 PC에 프로젝트를 배포하고 Pixel Streaming 포트를 개방합니다.",
+        "클라이언트가 태블릿이나 노트북의 웹 브라우저로 접속해 공간을 자유롭게 탐색합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "방화벽이나 포트 포워딩 설정 누락 → 포트 번호(기본 8888, 80 등)를 방화벽에서 허용하고 공유기 포트 포워딩을 설정합니다.",
+    "웹 브라우저 코덱 호환성 문제 → 최신 Chrome이나 Edge 브라우저를 사용하며 H.264 코덱 설정 및 하드웨어 가속 상태를 확인합니다."
+  ],
+  "related": [
+    "Path Tracer",
+    "Lumen",
+    "Nanite",
+    "Movie Render Queue"
+  ],
+  "videos": [
+    {
+      "id": "Za7lA_ZjPHU",
+      "title": "Pixel Streaming Introduction",
+      "author": "TensorWorks"
+    },
+    {
+      "id": "xOU_uYeWDB8",
+      "title": "Pixel Streaming Showcase Demonstration",
+      "author": "TensorWorks"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Pixel%20Streaming%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Plugins",
+    "Pixel Streaming",
+    "Unreal Engine"
+  ],
+  "at": "2026-11-08T01:01:20.398466+00:00"
+}
