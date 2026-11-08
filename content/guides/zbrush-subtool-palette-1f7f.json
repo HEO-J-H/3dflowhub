@@ -1,0 +1,97 @@
+{
+  "id": "zbrush-subtool-palette-1f7f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "SubTool palette",
+  "title": "SubTool — 부품 관리",
+  "summary": "SubTool 패널은 ZBrush에서 여러 개의 독립된 오브젝트를 레이어처럼 관리하고 합성하는 핵심 기능입니다. 복잡한 캐릭터의 파츠나 의상, 소품을 개별적으로 분리해 작업할 때 사용합니다.",
+  "when": [
+    "캐릭터의 신체 부위(눈, 머리카락, 옷, 액세서리)를 별도의 레이어로 나누어 스컬프팅할 때",
+    "여러 개의 3D 모델을 불러와 하나의 작업 파일 안에서 조합하고 관리할 때",
+    "고해상도 디테일 작업 전, 특정 파츠만 숨기거나(Hide) 마스크를 주어 작업 영역을 보호할 때"
+  ],
+  "steps": [
+    "우측 Tray(기본 위치)에서 SubTool 패널을 클릭해 엽니다.",
+    "상단의 Append 버튼을 눌러 다른 기본 도형(Sphere, Cube 등)이나 저장된 툴을 추가합니다.",
+    "Shift+F 키를 눌러 PolyFrame(와이어프레임)을 켜면 각 서브툴의 구분이 명확해집니다.",
+    "작업할 서브툴을 Mouse로 직접 클릭하거나 Alt+클릭하여 활성화합니다.",
+    "필요한 경우 Merge 메뉴를 사용하여 떨어져 있는 서브툴을 하나로 합칩니다.",
+    "뷰포트에서 결과 확인 후, 필요 없는 서브툴은 Delete 버튼으로 삭제합니다."
+  ],
+  "params": [
+    {
+      "name": "Append",
+      "desc": "현재 툴에 다른 3D 오브젝트나 기본 도형을 새로운 서브툴로 추가합니다."
+    },
+    {
+      "name": "Duplicate",
+      "desc": "선택한 서브툴을 복제하여 동일한 모델을 하나 더 생성합니다."
+    },
+    {
+      "name": "MergeDown",
+      "desc": "현재 서브툴을 바로 아래에 있는 서브툴과 하나로 병합합니다."
+    },
+    {
+      "name": "Delete",
+      "desc": "선택한 서브툴을 삭제합니다."
+    },
+    {
+      "name": "Split",
+      "desc": "폴리그룹(Polygroup) 단위나 마스크된 영역을 기준으로 서브툴을 쪼갭니다."
+    },
+    {
+      "name": "Project",
+      "desc": "고해상도 서브툴의 디테일을 저해상도 서브툴로 투영하여 복제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 투구(Helmet) 씌우기",
+      "steps": [
+        "SubTool 패널에서 Append를 눌러 투구 모델을 추가합니다.",
+        "Move(W), Scale(E) 기즈모를 사용해 캐릭터 머리 크기에 맞게 조절합니다.",
+        "캐릭터 헤어 파츠 서브툴을 선택한 뒤 눈 모양 아이콘을 꺼서 잠시 숨깁니다."
+      ]
+    },
+    {
+      "title": "파츠 분할 및 합치기",
+      "steps": [
+        "작업 중인 하나의 모델에서 Polygroup 기능으로 특정 영역을 나눕니다.",
+        "SubTool 패널의 Split 메뉴에서 Groups Split을 실행해 파츠를 서브툴로 각각 분리합니다.",
+        "수정이 끝난 파츠들은 MergeDown을 이용해 다시 하나의 서브툴로 합칩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 서브툴을 선택한 채 스컬프팅함 → SubTool 패널에서 작업할 대상이 파란색 테두리로 활성화되었는지 먼저 확인합니다.",
+    "폴리곤이 너무 많은 상태에서 불필요하게 서브툴을 합침 → MergeDown 하기 전에 Decimation Master 등으로 폴리곤 수를 미리 줄여줍니다.",
+    "눈 모양 아이콘을 헷갈려 다른 파츠를 지워버림 → Delete 실행 전에는 반드시 ZTL 또는 ZPR 파일로 백업을 해둡니다."
+  ],
+  "related": [
+    "ZRemesher",
+    "Dynamesh",
+    "Polygroup",
+    "GoZ"
+  ],
+  "videos": [
+    {
+      "id": "7WQHp_MeJDE",
+      "title": "ZBrush Tools and SubTools Explained: A Beginner's Guide",
+      "author": "Jewelry Hustlers Corner"
+    },
+    {
+      "id": "DeMeHldfqlw",
+      "title": "The Basics of ZBrush, Tooltip: Episode 1 ~ Introduction to ZBrush and Subtools",
+      "author": "RequiemsVoid"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20SubTool%20palette",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tray",
+    "SubTool"
+  ],
+  "at": "2026-11-08T09:02:33.388239+00:00"
+}
