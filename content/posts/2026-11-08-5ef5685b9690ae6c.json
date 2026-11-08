@@ -1,0 +1,59 @@
+{
+  "title_ko": "NVIDIA DSX OS 공개 — Kubernetes GPU 클러스터 관리",
+  "title": "Configure, Certify, and Operate Kubernetes GPU Clusters with NVIDIA DSX OS",
+  "url": "https://developer.nvidia.com/blog/configure-certify-and-operate-kubernetes-gpu-clusters-with-nvidia-dsx-os/",
+  "domain": "AI 3D",
+  "category": "NVIDIA DSX",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA DSX",
+    "Kubernetes",
+    "GPU",
+    "AICR",
+    "NVCRE",
+    "NVSentinel"
+  ],
+  "summary": "NVIDIA DSX OS는 가속화된 Kubernetes 인프라의 설정, 인증, 유지보수를 자동화하는 오픈소스 Software 계층을 제공합니다.",
+  "insight": "대규모 분산 학습 환경에서 성능 저하를 일으키는 불량 GPU는 단순한 헬스 체크나 유휴 상태 측정만으로는 찾아내기 어렵습니다. NVIDIA DSX OS는 NVIDIA AI Cluster Runtime(AICR)을 통해 버전이 고정된 구성 레시피를 정의하여 인프라 구성 편차를 방지합니다. 또한 NVIDIA Cluster Readiness Engine(NVCRE)과 NVSentinel을 결합해 노드 교체나 Driver 패치 이후에도 워크로드 준비 상태를 지속적으로 검증합니다. 이를 통해 하드웨어 결함으로 인한 자원 낭비를 줄이고 파이프라인 전반의 연산 안정성을 유지할 수 있습니다.",
+  "try_it": [
+    "NVIDIA AI Cluster Runtime(AICR) 레포지토리에서 설치 지침과 설정 예시를 확인합니다.",
+    "NVIDIA Cluster Readiness Engine(NVCRE)을 통해 NCCL 통신 테스트와 학습 워크로드 실행을 준비합니다.",
+    "NVSentinel을 설정하여 GPU 및 네트워크 상태 신호 모니터링과 결함 노드 격리 프로세스를 구성합니다."
+  ],
+  "sections": [
+    {
+      "heading": "NVIDIA AI Cluster Runtime 구성",
+      "body": "AICR은 네트워킹, 스토리지, Driver 등 주요 구성 요소의 버전이 고정된 레시피를 정의합니다. Argo CD, Flux, Helm 같은 배포 도구에서 사용할 수 있는 번들 형태로 렌더링되어 재현 가능한 기반을 제공합니다. 이를 통해 Driver 업그레이드나 인프라 변경 후에도 동일한 구성 상태를 유지합니다."
+    },
+    {
+      "heading": "NVIDIA Cluster Readiness Engine 검증",
+      "body": "NVCRE는 NCCL 통신 테스트와 AI 학습 워크로드를 실행하여 프로덕션 환경의 가동 준비 상태를 검증합니다. 성능 임계값을 충족하는지 확인하고 실패한 노드 그룹을 분할하여 문제가 있는 노드를 찾아냅니다. 노드가 클러스터에 합류하거나 수리 후 복귀할 때 테스트를 통과할 때까지 접근을 제한합니다."
+    },
+    {
+      "heading": "NVSentinel을 통한 상태 모니터링",
+      "body": "NVSentinel은 GPU, 노드, 네트워크 상태 신호를 지속적으로 모니터링하여 노드 조건을 게시합니다. 결함이 감지되면 노드를 격리하고 워크로드를 드레인한 뒤 조치를 취하며, NVCRE를 통해 재검증을 트리거할 수 있습니다. 라이프사이클 컨트롤러가 이러한 검증 과정을 자동화합니다."
+    },
+    {
+      "heading": "분산 학습 환경의 Goodput 관리",
+      "body": "단일 노드의 성능 저하는 전체 분산 학습 작업의 속도를 떨어뜨립니다. 단순 활용도 지표는 이러한 손실을 가릴 수 있으므로 실제 성공적으로 완료된 작업량을 측정하는 Goodput 지표가 필요합니다. DSX OS는 클러스터 운영 수명 주기 전반에 걸쳐 지속적인 검증을 수행합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA DSX OS는 어떤 역할을 하나요?",
+      "a": "가속화된 Kubernetes 인프라의 설정, 인증, 건강 상태 유지보수를 담당하는 오픈소스 Software 계층입니다."
+    },
+    {
+      "q": "클러스터의 정상 작동 여부는 어떻게 검증하나요?",
+      "a": "NVIDIA Cluster Readiness Engine(NVCRE)을 통해 NCCL 통신 테스트와 AI 워크로드를 실행하여 성능 임계값을 검증합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/dsx-os-cluster-readiness-featured.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T11:42:40.179412+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-5ef5685b9690ae6c",
+  "enriched": "2026-11-08"
+}
