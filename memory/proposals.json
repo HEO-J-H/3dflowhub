@@ -22101,5 +22101,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 통합 설계 가이드 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T15:33:22+00:00",
+    "kind": "proposal",
+    "id": "p-e3ba1f205c",
+    "title": "backend/tests/test_basic_pipeline.py 기본 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 RAG 테스트 및 문서 작업이 패치 적용 실패로 홀드되었으나 기본 파이프라인 테스트는 안정적으로 진행 가능합니다.",
+    "proposal": "backend/tests/test_basic_pipeline.py 에 기본 이미지 메시 변환 및 PBR 맵 생성 테스트 코드를 보강하여 테스트 안정성을 높입니다.",
+    "expected": "파이프라인 핵심 기능의 무결성 확보 및 자동 머지 조건 충족",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T15:33:22+00:00",
+    "kind": "proposal",
+    "id": "p-21ea44c741",
+    "title": "docs/rag-integration.md 문서 재작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "이전 rag-integration.md 작성 작업이 패치 적용 실패로 홀드되었습니다.",
+    "proposal": "docs/rag-integration.md 파일을 새로 생성하여 깃허브 RAG 오픈소스(MIT/Apache-2.0 라이선스) 검토 결과와 구현 아키텍처를 정리합니다.",
+    "expected": "오픈소스 연동 가이드 문서화 및 RAG 도입 기반 마련",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T15:33:44.137681+00:00",
+    "kind": "decision",
+    "id": "p-e3ba1f205c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_basic_pipeline.py 기본 ",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T15:33:44.155413+00:00",
+    "kind": "decision",
+    "id": "p-21ea44c741",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T15:33:46.811118+00:00",
+    "kind": "triage",
+    "id": "p-21ea44c741",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 검토 및 관련 문서화 작업이 최근 커밋과 끝낸 제안에 여러 번 반영되었기 때문입니다."
+  },
+  {
+    "at": "2026-11-08T15:33:46.828910+00:00",
+    "kind": "decision",
+    "id": "p-21ea44c741",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 관련 문서화 작업이 최근 커밋과 끝낸 제안에 여러 번 반영되었기 때문입니다."
   }
 ]
