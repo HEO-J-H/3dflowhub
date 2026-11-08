@@ -1,0 +1,18 @@
+<!-- TITLE: BudgetSplat Gaussian Splatting 용량·렌더링 비용 제어 연구 | TAGS: Gaussian Splatting,3D Reconstruction,Novel View Synthesis,AI 3D,Research,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 사용자가 지정한 보존 비율에 맞춰 3D Gaussian Primitive의 용량과 렌더링 비용을 실시간으로 조절하는 프레임워크 BudgetSplat 연구 논문이 공개되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>BudgetSplat 프레임워크의 핵심 문제 제기</h2>
+<p>기존 픽셀 정렬 방식의 피드포워드 3D Gaussian Splatting은 과도하게 중복된 Gaussian Primitive를 생성합니다. 이로 인해 Resolution와 입력 뷰 개수가 증가할수록 최종 표현 크기와 렌더링 비용이 급격히 늘어나는 한계가 있습니다. 연구진은 이를 해결하기 위해 사용자가 지정한 보존 비율에 맞춰 표현을 조절하는 방법을 제안합니다.</p>
+<h2>Intra-Cross Mask Supervision과 예산 조건부 변조</h2>
+<p>단순한 중요도 순위 매기기를 넘어 중요도 추정, 공간 커버리지, 교차 뷰 중복성을 결합하여 압축 문제를 정의합니다. Intra-Cross Mask Supervision은 Gaussian 중요도를 학습하기 위한 구조·커버리지·중복성 인식 가이드를 제공합니다. 예산 조건부 피처 변조는 요청된 보존 비율에 맞춰 Gaussian 불투명도와 속성을 동적으로 조정합니다.</p>
+<h2>Coverage-Aware Budget Selection과 성능 검증</h2>
+<p>패치 단위 사전 선택, 뷰 단위 불투명도 순위, 3D 중복성 억제를 결합하여 공간적으로 분산되면서도 컴팩트한 Gaussian 표현을 구성합니다. 실내 재구성 및 교차 데이터셋 일반화 실험 결과, 다양한 입력 뷰 개수와 보존 비율에서 일관된 화질과 크기 트레이드오프를 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">단일 훈련 모델로 추가 재훈련이나 장면별 압축 없이 다양한 테스트 타임 예산 설정을 지원하여 3D 재구성 데이터 크기를 줄입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. BudgetSplat은 어떤 문제를 해결하나요?</b><br/>A. 기존 피드포워드 Gaussian Splatting 메서드에서 발생하는 과도한 Primitive 중복과 렌더링 비용 증가 문제를 사용자가 지정한 보존 비율로 제어합니다.</p>
+<p><b>Q. 재훈련이나 장면별 압축이 별도로 필요한가요?</b><br/>A. 단일 훈련 모델이 다양한 컨텍스트 뷰 개수와 여러 테스트 타임 예산을 지원하므로 별도의 재훈련이나 장면별 압축이 필요하지 않습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-e1405559ff994d57.html">Gaussian Splatting 3D — 자율주행 광시야 합성 논문 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-1202002e5e8a2a3c.html">AffineGS - 3DGS 기하학적 정확도 개선 논문</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-9bfcc7a304c13298.html">XM4D: 기하학적 최적화 기반 4D 재구성 연구</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.06593v1" target="_blank" rel="noopener nofollow">BudgetSplat: Budget-Controllable Generalizable Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,53 +1,99 @@
 {
-  "title_ko": "Gaussian Splatting 아바타 품질 개선 연구 EDGAR 발표",
+  "title_ko": "EDGAR: Gauss 아바타의 품질을 높이는 확산 기반 정제 프레임워크",
   "title": "EDGAR: Efficient Diffusion-Driven Gaussian Avatar Refinement via Synthetic Failure",
   "url": "https://arxiv.org/abs/2611.07909v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "아바타",
-    "디퓨전",
-    "ACM Transactions on Graphics"
+    "Gaussian Avatar",
+    "Diffusion Model",
+    "3D Gaussian Splatting",
+    "Image Refinement",
+    "KAIST"
   ],
-  "summary": "EDGAR는 조건부 디퓨전 프레임워크와 Mixture-of-Experts 구조를 활용해 단안 비디오 기반 Gaussian Splatting 아바타의 블러링과 왜곡을 보정합니다.",
-  "insight": "ACM Transactions on Graphics에 채택된 본 논문은 Sapiens 모델의 아이덴티티 특징을 원스텝 디퓨전 백본에 주입하여 처리 속도 저하 없이 아바타 품질을 끌어올립니다. 대규모 요우 각도와 입을 벌리는 극단적인 표정에서도 교정된 일관성을 유지하므로 고품질 아바타 재구성 파이프라인에 도입하기 적합합니다.",
-  "try_it": [],
+  "summary": "EDGAR는 단일 영상이나 이미지로 학습된 Gauss 아바타(Gaussian Avatar)의 왜곡과 아티팩트를 보정하는 조건부 확산(conditional diffusion) 프레임워크입니다.",
+  "insight": "이 연구는 단일 영상 기반 3D Gauss 아바타 제작 시 고질적인 문제인 측면 프로필이나 큰 표정 변화에서의 왜곡을 확산 모델로 교정하는 실무적 가능성을 보여줍니다. 향후 실시간 VR 텔레프레즌스나 소셜 게임 아바타 제작 Pipeline 저품질 캡처본의 한계를 보완하는 도구로 응용될 수 있습니다. 다만, 실제 3D DCC 툴에 곧바로 내장되는 상용 기능이 되기까지는 추가적인 속도 최적화와 연산량 검증이 필요해 보입니다.",
+  "try_it": [
+    "공식 GitHub 저장소(https://github.com/arXiv/html_feedback)에 접속하여 EDGAR의 공개 소스 코드와 관련 구현 가이드를 확인합니다.",
+    "제공되는 EDGAR-SET 데이터 구성 방식을 참고하여, 자체 학습한 3D 가우스 아바타의 렌더링 결과물과 참조 이미지를 준비합니다.",
+    "단일 단계 확산 백본과 MoE 아키텍처를 포함한 정제 파이프라인을 실행하여 왜곡된 아바타 프레임을 보정하고 3D 아바타 최적화에 적용해 봅니다."
+  ],
   "sections": [
     {
-      "heading": "EDGAR-SET 데이터셋과 합성 실패 케이스 학습",
-      "body": "연구팀은 실제 촬영 샘플과 합성 렌더링 샘플을 결합한 EDGAR-SET 데이터셋을 구축했습니다. 이 하이브리드 트라이플릿 데이터셋은 저하된 렌더링 결과물과 정답 및 참조 이미지를 쌍으로 묶어 현실적인 아바타 왜곡 사례를 시뮬레이션합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "단일 카메라 영상이나 적은 수의 이미지로 3D Gauss Splatting(3D Gaussian Splatting) 기반의 인물 아바타를 재구성하면, 관측되지 않은 영역에서 텍스처 늘어남, 부유하는 Gauss, 깊이 모호성 같은 기하학적·텍스처 왜곡이 발생합니다. EDGAR는 이러한 저품질 아바타의 렌더링 결과물을 정제하여 시각적 품질을 높이고자 합니다."
     },
     {
-      "heading": "Sapiens 모델과 원스텝 디퓨전 융합 블록",
-      "body": "자기 지도 학습 기반의 Sapiens 모델에서 추출한 아이덴티티 특징을 원스텝 디퓨전 백본에 주입하는 융합 블록을 사용합니다. 이를 통해 효율성을 희생하지 않고도 블러링과 늘어남, 시간적 불안정성 같은 아티팩트를 효과적으로 제거합니다."
+      "heading": "핵심 아이디어",
+      "body": "핵심은 저품질 아바타 렌더링 결과와 정답(ground-truth) 이미지를 쌍으로 묶은 하이브리드 데이터셋 'EDGAR-SET'을 구축하고, 이를 활용해 아바타의 왜곡을 보정하는 것입니다. 단일 단계 확산 백본(single-step diffusion backbone)에 자가 지도 학습 기반 Sapiens 모델이 추출한 신원(identity) 특징을 주입하여 효율성을 유지하면서 아티팩트를 제거합니다."
     },
     {
-      "heading": "Mixture-of-Experts 구조와 아바타 최적화",
-      "body": "다양한 종류와 심각도의 왜곡을 처리하기 위해 Mixture-of-Experts 아키텍처를 도입했습니다. 정제된 다중 시점 렌더링 결과물은 의사 타겟으로 활용되어 단일 Gaussian 아바타를 최적화하므로 매 프레임마다 EDGAR를 적용하지 않고도 최종 아바타를 렌더링할 수 있습니다."
+      "heading": "방법과 아키텍처",
+      "body": "EDGAR는 다양한 열화 유형과 심각도를 처리하기 위해 혼합 전문가(MoE, Mixture-of-Experts) 아키텍처를 도입했습니다. 또한 얼굴 움직임과 미세한 근육 변화를 유지하기 위해 표현 일관성 손실(expression consistency loss)을 적용합니다. 정제된 다중 시점 렌더링 결과물은 최종 3D Gauss 아바타를 최적화하는 가짜 타겟(pseudo-target)으로 사용됩니다."
     },
     {
-      "heading": "성능 평가 및 교차 시점 검증",
-      "body": "세 가지 Gaussian 아바타 재구성 방법에 적용하여 테스트한 결과, 원본 출력 및 기존 SDEdit 방식에 비해 지각적·재구성 지표 모두에서 향상된 성능을 보였습니다. 교차 시점 평가에서는 보정된 일관성이 개선되었음이 확인되었습니다."
+      "heading": "실험 결과",
+      "body": "세 가지 다른 Gauss 아바타 재구성 방법에 대해 각각 세 가지 설정으로 평가한 결과, 원본 출력 및 SDEdit 스타일의 정제 베이스라인과 비교하여 인지 및 재구성 지표 모두에서 향상된 성능을 보였습니다. 또한 큰 요우(yaw) 각도와 입 벌림(open-mouth) 표현 조건에서도 강건함을 입증했습니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "논문에서는 복구 가능한 외형 아티팩트를 다루며, 대규모 이미지 편집 기초 모델에 비해 단일 프레임 품질에서 한계가 있을 수 있음을 시사합니다. 또한 아바타 외형 복원의 복잡성으로 인해 데이터셋 구축 과정에서 정렬되지 않은 샘플을 필터링해야 합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "EDGAR의 소스 코드는 공식 저장소(https://github.com/arXiv/html_feedback 및 논문 내 안내된 링크)를 통해 공개되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "EDGAR는 어떤 문제를 해결하기 위한 프레임워크인가요?",
-      "a": "단안 비디오나 이미지 기반의 Gaussian Splatting 아바타 재구성에서 발생하는 기하학적·텍스처 제약 부족으로 인한 블러링, 늘어남, 시간적 불안정성 등의 아티팩트를 보정합니다."
+      "q": "EDGAR-SET 데이터셋은 어떤 구조로 이루어져 있나요?",
+      "a": "실제 촬영 데이터와 합성 렌더링 샘플이 결합된 하이브리드 삼중항(triplet) 데이터셋으로, 열화된 아바타의 렌더링 이미지, 대응하는 정답 이미지, 그리고 신원 참조 이미지로 구성됩니다."
     },
     {
-      "q": "최종 아바타 렌더링 시 매 프레임마다 EDGAR를 거치나요?",
-      "a": "아니요, 정제된 다중 시점 렌더링을사 타겟으로 사용하여 단일 Gaussian 아바타를 최적화하므로 매 프레임마다 EDGAR를 적용할 필요는 없습니다."
+      "q": "최종 3D 아바타는 어떻게 최적화되나요?",
+      "a": "정제된 다중 시점 렌더링 결과물을 가짜 타겟(pseudo-target)으로 사용하여 단일 기저 3D Gauss 아바타를 최적화합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.07909v1/2611.07909v1/figure/teaserrm.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.07909v1/2611.07909v1/figure/teaserrm.png",
+        "caption": "Figure 1. From diverse failure cases of Gaussian avatars, EDGAR learns to refine arbitrary avatars trained with a video or an image, acting as both an artifact remover and a quality enhancer.",
+        "caption_ko": "그림 1. 다양한 가우스 아바타 실패 사례에서 출발하여, EDGAR는 비디오나 이미지로 학습된 임의의 아바타를 정제하여 아티팩트 제거기와 품질 향상기 역할을 수행합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07909v1/2611.07909v1/figure/EDGAR-Set-Data2.png",
+        "caption": "Figure 2. Examples from EDGAR-SET and discarded samples. We filter out cases where the geometry or expression is misaligned, making the recovery target ambiguous. Samples are removed when the combination of I f I_{f} and I r I_{r} from novel views or expressions cannot reliably reproduce I g ​ t I_{",
+        "caption_ko": "그림 2. EDGAR-SET의 예시와 폐기된 샘플. 기하학이나 표현이 정렬되지 않아 복구 대상이 모호한 경우는 필터링합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07909v1/2611.07909v1/figure/datasplit3.png",
+        "caption": "Figure 3. Configuration of EDGAR-SET. The dataset is constructed under diverse conditions to capture a wide range of Gaussian avatar failure cases. The view-count groups (one, two to four, and at least five) are mutually exclusive and account for 23%, 51%, and 26% of retained examples, respectively.",
+        "caption_ko": "그림 3. EDGAR-SET의 구성. 다양한 가우스 아바타 실패 사례를 포착하기 위해 뷰 카운트 그룹별로 구축되었습니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07909v1/2611.07909v1/figure/EDGAR_model.png",
+        "caption": "Figure 4. Network architecture of EDGAR. EDGAR learns to refine rendered images of Gaussian avatars using EDGAR-SET. The fuse block in the Upblock of Diffusion UNet is simplified.",
+        "caption_ko": "그림 4. EDGAR의 네트워크 아키텍처. Diffusion UNet의 Upblock 내 퓨즈 블록이 간소화되어 있습니다."
+      }
+    ]
   },
   "collected_at": "2026-11-08T13:43:04.902868+00:00",
   "notion_id": "",
   "id": "2026-11-08-ffa3fa13b6bc5b4e",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T14:33:59+00:00"
 }

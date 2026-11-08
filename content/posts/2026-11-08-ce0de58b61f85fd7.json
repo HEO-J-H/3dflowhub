@@ -1,54 +1,96 @@
 {
-  "title_ko": "MOMASPLAT: Gaussian Splatting 기반 모바일 매니퓰레이션 데이터 증강",
+  "title_ko": "MoMaSplat — 모바일 매니퓰레이션을 위한 동적 신규 시점 데모 증강",
   "title": "MOMASPLAT: Dynamic Novel-View Demonstration Augmentation for Mobile Manipulation",
   "url": "https://arxiv.org/abs/2611.08372v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "모바일 매니퓰레이션",
-    "NeRF",
-    "로보틱스",
-    "비주오모터 정책"
+    "MoMaSplat",
+    "3D Gaussian Splatting",
+    "Mobile Manipulation",
+    "Novel-View Synthesis",
+    "Imitation Learning"
   ],
-  "summary": "MOMASPLAT은 Gaussian Splatting과 3D 파운데이션 모델을 결합해 모바일 매니퓰레이션을 위한 동적 객체 상호작용 및 시점 증강을 수행하는 프레임워크입니다.",
-  "insight": "Gaussian Splatting을 활용해 정적 배경과 동적 조작 객체를 분리 재구성함으로써 기존 시점 증강 기법의 한계를 극복했습니다.",
+  "summary": "MoMaSplat은 3D Gaussian Splatting과 3D 파운데이션 모델을 결합하여, 모바일 매니퓰레이션의 동적 객체 상호작용을 포함한 전체 조작궤적을 미지의 로봇 베이스 포즈에서 합성하는 프레임워크입니다.",
+  "insight": "이 기술은 향후 가상 프로덕션이나 로봇 시뮬레이션 Pipeline 카메라 시점 변화에 따른 데이터 부족 문제를 해결하는 데 영감을 줄 수 있습니다. 특히 3D Gaussian Splatting 기반의 동적 객체 분리 및 재구성이 실시간 렌더링 및 에셋 제작 워크플로에 응용될 가능성이 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "모바일 매니퓰레이션 시점 문제와 기존 한계",
-      "body": "모바일 매니퓰레이션(MoMa) 환경에서 로봇은 내비게이션 오차와 위치 추정 오로드로 인해 시연 시점과 동일한 베이스 포즈를 유지하기 어렵습니다. 기존의 신규 시점 합성(NVS) 기법은 정적 장면만을 가정하기 때문에, 접촉 후 상호작용 단계에서 조작되는 객체를 다시 렌더링하지 못해 핵심적인 시연 데이터 증강이 누락되는 문제가 있었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "모사학습(Imitation Learning)으로 학습된 시각운동 정책(Visuomotor Policy)은 카메라 시점 변화에 매우 민감합니다. 특히 내비게이션 불확실성과 위치 추정 오차로 인해 로봇이 시연 당시와 정확히 같은 베이스 포즈에서 조작을 수행하기 어려운 모바일 매니퓰레이션(MoMa) 환경에서 문제가 됩니다. 기존의 신규 시점 합성(NVS) 방식은 정적 장면만 가정하여 접촉 후 상호작용 단계에서 움직이는 조작 객체를 렌더링하지 못하는 한계가 있습니다."
     },
     {
-      "heading": "MOMASPLAT의 정적·동적 분리 재구성 접근법",
-      "body": "연구진이 발표한 MOMASPLAT은 표준 모바일 매니퓰레이션 데이터 수집 과정에서 얻어지는 다시점 관측 데이터를 활용합니다. 이를 통해 3D 공간 상에서 정적 배경과 조작 대상 객체를 각각 분리하여 재구성할 수 있습니다."
+      "heading": "핵심 아이디어",
+      "body": "표준 모바일 매니퓰레이션 데이터 수집 과정이 정적 배경과 3D로 조작되는 객체를 재구성하는 데 필요한 다중 시점 관측을 자연스럽게 제공한다는 점에 착안했습니다. 내비게이션 중에는 로봇이 다양한 시점에서 환경을 관측하고, 조작 시연은 객체 중심 관측을 제공합니다. 이를 통해 정적 장면과 조작 객체를 개별적으로 재구성하고 신규 시점에서 렌더링합니다."
     },
     {
-      "heading": "Gaussian Splatting과 액션 리타겟팅의 결합",
-      "body": "이 프레임워크는 Gaussian Splatting, 피드포워드 3D 파운데이션 모델, 그리고 기구학 기반의 액션 리타겟팅을 함께 사용합니다. 시점 변환에 맞추어 장면과 객체를 각각 렌더링하고, 변환된 액션과 결합하여 기하학적으로 일관된 합성 시연 데이터를 생성합니다."
+      "heading": "방법 (단계)",
+      "body": "MoMaSplat은 먼저 내비게이션 및 조작 데이터에서 SfM(Structure-from-Motion)으로 카메라 포즈를 추정하고 3D Gaussian Splatting(3DGS)을 통해 정적 장면 모델을 피팅합니다. 다음으로 피드포워드 3D 파운데이션 모델을 이용해 조작 객체를 세분화하고 프레임별 포즈 궤적을 추정하며, Sim(3) 변환으로 정렬하여 객체 모델을 구축합니다. 마지막으로 샘플링된 로봇 베이스 포즈에서 장면, 객체, Simulator 기반 로봇을 렌더링하고 동작을 변환하여 합성 데모를 생성합니다."
     },
     {
-      "heading": "실제 로봇 태스크 평가 및 성능 검증",
-      "body": "3개의 서로 다른 장소에서 강체 및 다관절 객체를 포함하는 5가지 실제 모바일 매니퓰레이션 태스크를 통해 MOMASPLAT이 평가되었습니다. 시뮬레이션 환경의 Ground Truth와 비교하여 합성된 시연 데이터의 충실도가 검증되었으며, 기존 베이스라인 대비 평균 성공률이 두 배 이상 향상되었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "5개의 실제 모바일 매니퓰레이션 태스크(정적 및 관절형 객체 포함, 3개 장소)에서 평가한 결과, MoMaSplat은 미지의 배포 시점 베이스 포즈에 대한 강건성을 크게 향상시켰습니다. 가장 강력한 베이스라인의 평균 성공률을 두 배 이상 높였으며, 모든 베이스라인이 실패하는 큰 베이스 변위에서도 상당한 성공률을 유지했습니다."
+    },
+    {
+      "heading": "Limitations (아직 못 하는 것)",
+      "body": "본 논문에서는 복잡한 동적 물리 시뮬레이션과의 완전한 통합 한계나 특정 재질의 반사 및 투명 객체 재구성 시 3D Gaussian Splatting의 오차 가능성에 대해 명시적으로 다루지 않았습니다. 다만 복잡한 실세계 환경과 동적 객체 상호작용에서 기하학적 일관성을 유지하기 위해 추가적인 3D 파운데이션 모델 추정에 의존합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문에서는 추가 정보와 프로젝트 페이지 링크(https://robin-lab.cs.utexas.edu/momasplat/)를 제공하며, GitHub 이슈 Template 및 관련 오픈소스 리포지토리(예: Grounded-SAM-2, curobo, OmniGibson 등)에 대한 언급이 포함되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "MOMASPLAT은 어떤 문제를 해결하기 위한 기술인가요?",
-      "a": "모바일 로봇이 시연 수집 당시와 다른 베이스 포즈에서 조작을 수행할 때 발생하는 카메라 시점 변화 민감성을 해결합니다."
+      "q": "MoMaSplat은 어떤 데이터를 기반으로 환경을 재구성하나요?",
+      "a": "내비게이션 데이터와 조작 데이터를 함께 사용하여 정적 장면과 조작되는 객체를 3D로 재구성합니다."
     },
     {
-      "q": "조작 중인 동적 객체는 어떻게 처리하나요?",
-      "a": "Gaussian Splatting과 3D 파운데이션 모델을 활용하여 정적 배경과 동적 조작 객체를 분리한 뒤 각각 신규 시점에서 렌더링합니다."
+      "q": "기존 신규 시점 합성(NVS) 방법들과의 가장 큰 차이점은 무엇인가요?",
+      "a": "기존 NVS 방법들은 정적 장면만 가정하여 조작 객체가 움직이는 접촉 후 상호작용 단계를 재렌더링하지 못하는 반면, MoMaSplat은 정적 배경과 동적 조작 객체를 분리하여 전체 조작 궤적을 합성합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.08372v1/2611.08372v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.08372v1/2611.08372v1/teaser.png",
+        "caption": "Fig. 1 : MoMaSplat . Starting from mobile-manipulation data collected at the original base pose (white and red robot), MoMaSplat synthesizes demonstrations from sampled novel base poses ( yellow -outlined gray robot). The top-right sequence shows the source manipulation demonstration, while the bott",
+        "caption_ko": "그림 1: MoMaSplat 개요. 원래 베이스 포즈에서 수집한 데이터로부터 샘플링된 미지의 신규 베이스 포즈에서 동적 객체 상호작용을 포함한 조작 데모를 합성합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.08372v1/2611.08372v1/method4.png",
+        "caption": "Fig. 2 : Overview of MoMaSplat . 3D Reconstruction: We build 3D models of the environment from the navigation and manipulation data. We estimate camera poses via structure-from-motion and fit a 3D Gaussian Splatting model of the static scene, 𝒢 scene \\mathcal{G}_{\\text{scene}} . For the dynamic obje",
+        "caption_ko": "그림 2: MoMaSplat 아키텍처 및 파이프라인. 3D 재구성, 신규 베이스 포즈에서의 데모 합성, 그리고 모사학습 단계로 이어지는 전체 흐름을 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.08372v1/2611.08372v1/figures/task_fig_images/desk_cropped.jpg",
+        "caption": "((a)) Scenes: desk, kitchen, and living room environments used in our experiments;\nthe simulated scene is shown at right.",
+        "caption_ko": "그림 3: 실험에 사용된 책상, 주방, 거실 환경 및 시뮬레이션 장면입니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.08372v1/2611.08372v1/figures/task_fig_images/desk_cropped.jpg",
+        "caption": "((a)) Scenes: desk, kitchen, and living room environments used in our experiments;\nthe simulated scene is shown at right.",
+        "caption_ko": ""
+      }
+    ]
   },
   "collected_at": "2026-11-08T13:13:52.304523+00:00",
   "notion_id": "",
   "id": "2026-11-08-ce0de58b61f85fd7",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/IDEA-Research/Grounded-SAM-2",
+      "https://github.com/NVlabs/curobo",
+      "https://github.com/StanfordVL/OmniGibson"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T14:34:09+00:00"
 }

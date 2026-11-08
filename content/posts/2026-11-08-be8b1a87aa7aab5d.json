@@ -1,0 +1,72 @@
+{
+  "title_ko": "BudgetSplat — 예산 조절 가능한 일반화 Gaussian Splatting",
+  "title": "BudgetSplat: Budget-Controllable Generalizable Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.06593v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "Feed-forward",
+    "Budget-Controllable",
+    "Novel View Synthesis"
+  ],
+  "summary": "BudgetSplat은 단 한 번의 학습으로 사용자가 지정한 보존 비율에 맞춰 3D Gaussian 렌더링 결과물의 용량과 렌더링 비용을 실시간으로 조절하는 피드포워드 프레임워크입니다.",
+  "insight": "이 기술이 상용화되거나 발전한다면, 모바일 기기나 웹 브라우저 등 실시간 자원 제약이 큰 환경에서 3D Gaussian 씬의 용량을 동적으로 조절하여 가볍게 서비스할 수 있는 가능성이 열립니다. 씬마다 별도의 압축 최적화를 거칠 필요 없이 하나의 모델로 다양한 하드웨어 예산에 대응할 수 있어 파이프라인 효율성이 높아질 것으로 기대됩니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 피드포워드 3D Gaussian Splatting(3D-GS) 방법들은 이미지 Resolution와 입력 뷰 수에 비례하여 과도하게 많은 픽셀 정렬 Gaussian을 생성합니다. 이로 인해 렌더링 자산의 저장 용량과 렌더링 비용이 급격히 증가하며, 단순한 중요도 순위 매기기 방식은 저주파 영역을 제대로 커버하지 못하는 한계가 있습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "BudgetSplat은 압축 문제를 중요도 추정, 공간 커버리지, 그리고 뷰 간 중복성(cross-view redundancy)의 결합 문제로 재정의합니다. 재학습이나 씬별 최적화 없이, 단일 모델이 다양한 입력 뷰 수와 테스트 시점의 예산(보존 비율)을 동시에 지원합니다."
+    },
+    {
+      "heading": "방법",
+      "body": "먼저 FreeSplat 백본을 기반으로 밀집 지오메트리를 추정합니다. 이후 Intra-Cross Mask Supervision을 통해 구조, 커버리지, 중복성을 고려한 Gaussian 중요도를 학습하며, Budget-Conditioned Feature Modulation(BCFM)으로 사용자가 지정한 보존 비율(ρ)을 특징에 주입하여 Gaussian 불투명도와 속성을 조절합니다. 마지막으로 Coverage-Aware Budget Selection(CABS)을 통해 패치별 사전 선택, 뷰별 전역 불투명도 순위, 3D 중복성 억제를 수행하여  kompakt한 표현을 완성합니다."
+    },
+    {
+      "heading": "결과 및 성능",
+      "body": "ScanNet과 Replica 데이터셋을 활용한 실험에서, BudgetSplat은 다양한 입력 뷰 설정과 테스트 시점 보존 비율에 걸쳐 일관성 있는 품질과 크기의 트레이드오프를 보여주었으며, 렌더링 품질을 유지하면서도 최종 표현의 저장 용량과 렌더링 비용을 대폭 줄였습니다."
+    },
+    {
+      "heading": "Limitations 및 한계",
+      "body": "논문 본문에서 상세히 다루어지지 않았으나, 픽셀 정렬 피드포워드 방식의 특성상 입력 이미지의 시야각을 벗어난 영역이나 극단적인 폐색(occlusion) 환경에서는 여전히 정보 부족이 발생할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 본문에서는 GitHub 이슈 링크 및 LaTeXML 관련 링크만 언급되어 있으며, 구체적인 공식 소스코드나 데이터셋 저장소 링크는 본문 텍스트 내에 명시되어 있지 않습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "BudgetSplat은 씬별 최적화(per-scene optimization)가 필요한가요?",
+      "a": "아니오. 사전 학습된 단일 모델이 씬별 최적화나 재학습 없이 다양한 테스트 시점 예산을 지원합니다."
+    },
+    {
+      "q": "보존 비율 ρ는 어떻게 정의되나요?",
+      "a": "사용자가 지정하는 preservation ratio ρ ∈ ( 0 , 1 ] 이며, 렌더링에 유지할 후보의 목표 분율을 제어합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.06593v1/2611.06593v1/pipeline_flow.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T14:33:35.363269+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-be8b1a87aa7aab5d",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T14:33:54+00:00"
+}

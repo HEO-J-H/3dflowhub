@@ -1,50 +1,95 @@
 {
-  "title_ko": "Gaussian Splatting 3D — 자율주행 광시야 합성 논문 발표",
+  "title_ko": "Wide-View Gaussian Splatting으로 자율주행 광야시야 합성하기",
   "title": "Wide View Synthesis from Overlapping Perspective Cameras in Autonomous Driving",
   "url": "https://arxiv.org/abs/2611.07081v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "자율주행",
-    "3D 비전",
-    "연구",
-    "NeRF"
+    "Wide-View Gaussian Splatting",
+    "3DGS",
+    "Autonomous Driving",
+    "Image Stitching",
+    "Neural Rendering"
   ],
-  "summary": "자율주행 환경에서 복수의 카메라 시점을 결합해 기하학적으로 일관된 광시야 3D 뷰를 실시간으로 합성하는 WV-GS 프레임워크를 제안합니다.",
-  "insight": "사전 최적화 과정 없이 피드포워드 방식으로 작동하여 자율주행 시뮬레이션 및 3D 공간 복원 속도를 크게 끌어올립니다. 대규모 주행 데이터셋에서 광각 왜곡과 조명 불일치 문제를 해결해야 하는 연구원과 엔지니어가 주목할 만한 논문입니다.",
+  "summary": "자율주행 환경에서 여러 카메라의 겹치는 시야를 활용해 기하학적으로 일관된 광야시야(WVS)를 생성하는 피드포워드 3D Gaussian Splatting 프레임워크를 제안합니다.",
+  "insight": "이 연구는 다중 카메라 영상을 하나의 일관된 시야로 묶어야 하는 자율주행 및 대규모 실사 환경 구축에서 유용하게 쓰일 수 있습니다. 특히 씬별 최적화가 필요 없는 피드포워드 방식은 향후 실시간 파노라마 및 광시야 3D 재구성 워크플로의 속도를 크게 높여줄 가능성이 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "Wide-View Gaussian Splatting 구조와 핵심 목표",
-      "body": "다중 시점 카메라 시스템은 넓은 시야각을 제공하지만 카메라 간의 거리로 인해 깊이 기반 시차와 가림 현상이 발생합니다. 논문에서는 개별 장면에 대한 최적화 과정 없이 광시야 뷰를 생성하는 WV-GS 프레임워크를 새롭게 제안합니다. 이를 통해 실시간성이 요구되는 자율주행 환경에서 효율적인 3D 공간 합성이 가능해집니다."
+      "heading": "무엇을 풀려는가",
+      "body": "자율주행에 널리 쓰이는 다중 원근 카메라 시스템은 넓은 시야를 제공하지만, 카메라 위치가 달라 생기는 깊이 의존적 시차(parallax)와 가려짐(occlusion)으로 인해 기존 이미지 스티칭 방식은 심각한 기하학적 왜곡과 아티팩트를 유발합니다. 또한 기존 3D Gaussian Splatting(3DGS)은 씬마다 최적화를 거쳐야 하므로 자율주행 장면에 적용하기 어렵고, 단일 원근 투영으로는 주변부 늘어짐(peripheral stretching)과 카메라 간 광도 불일치 문제가 발생합니다."
     },
     {
-      "heading": "Piecewise Perspective Rendering 적용 방식",
-      "body": "원근 투영 환경에서 발생하는 주변부 왜곡을 해결하기 위해 Piecewise Perspective Rendering 기법을 도입했습니다. 공통 카메라 중심을 공유하는 국소 원근 투영을 사용하여 왜곡을 완화하고 시각적 정밀도를 높입니다. 복잡한 3D 기하학과 가시성 추론을 동시에 처리할 수 있는 구조입니다."
+      "heading": "핵심 아이디어",
+      "body": "저자들은 피드포워드 3D Gaussian Splatting 기반의 Wide-View Gaussian Splatting(WV-GS)을 제안합니다. 이 방식은 별도의 씬별 최적화 없이 다중 카메라 입력에서 공유되는 3D Gaussian 표현을 예측하며, 주변부 늘어짐을 줄이는 Piecewise Perspective Rendering(PPR)과 카메라별 광도 변화를 보정하는 Spatial Affine Photometric Modeling(SAPM)을 결합합니다."
     },
     {
-      "heading": "Spatial Affine Photometric Modeling과 벤치마크",
-      "body": "카메라마다 상이한 광도 변화를 학습 과정에서 보정하기 위해 Spatial Affine Photometric Modeling을 적용했습니다. 또한, 고밀도 정답 광시야 뷰를 제공하는 신규 합성 벤치마크인 WideDrive를 함께 공개하여 실험의 객관성을 높였습니다. 실제 데이터셋에 맞춘 LiDAR 투영 기반 희소 참조 프로토콜도 함께 검증되었습니다."
+      "heading": "방법 (단계)",
+      "body": "먼저 OmniVGGT 백본을 통해 시간적 맥락 창(temporal context window)과 다중 뷰 특징을 집계하여 밀집 깊이(dense depth), Gauss 원시인(Gaussian primitives) 속성, SAPM을 예측합니다. 학습 시에는 SAPM이 표준 렌더링에 공간적으로 변화하는 3차원 채널 게인 및 바이어스 잔차 필드를 적용해 관측 이미지와 일치시키며, 추론 시에는 PPR이 여러 로컬 원근 투영을 합성하여 왜곡 없는 광야시야 이미지를 완성합니다."
+    },
+    {
+      "heading": "결과 및 데이터셋",
+      "body": "정량적 평가를 위해 CARLA 기반의 픽셀 정렬된 지상 진실 광야시야를 제공하는 합성 벤치마크 'WideDrive'를 구축하고, 실제 데이터셋에는 LiDAR 투사 희소 참조(LPSR) 프로토콜을 적용했습니다. 다양한 데이터셋 실험에서 WV-GS는 시차 아티팩트 없이 매끄러운 융합과 높은 기하학적 충실도를 보여주었습니다."
+    },
+    {
+      "heading": "아직 못 하는 것",
+      "body": "논문 본문에서는 피드포워드 추론과 렌더링 품질 향상을 다루고 있으나, 매우 급격한 조명 변화나 극단적인 동적 객체 환경에서 발생하는 실시간 처리 한계나 미세한 오클루전 경계 처리의 복잡성에 대해서는 추가 연구가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "저자들은 본 연구의 데이터셋과 코드를 공개할 예정(Dataset and code will be publicly released)이라고 밝혔으며, 리포지토리 관련 언급으로는 arXiv 및 LaTeXML 기반의 기본 이슈 링크만 존재합니다."
     }
   ],
   "faq": [
     {
-      "q": "WV-GS는 기존 3D Gaussian Splatting과 무엇이 다른가요?",
-      "a": "기존 방식과 달리 개별 장면에 대한 사전 최적화 과정이 필요 없는 피드포워드 프레임워크로 설계되어 자율주행 환경에 최적화되어 있습니다."
+      "q": "WVS란 무엇을 의미하나요?",
+      "a": "WVS(Wide View Synthesis)는 공간적으로 분리된 여러 원근 카메라로부터 지정된 가상 시점에서 기하학적으로 일관된 광야시야를 합성하는 작업을 뜻합니다."
     },
     {
-      "q": "WideDrive 벤치마크는 어떤 데이터를 제공하나요?",
-      "a": "자율주행 환경에 맞춘 고밀도 정답 광시야 뷰 데이터와 실제 데이터셋 적응을 위한 LiDAR 투영 기반 희소 참조 프로토콜을 제공합니다."
+      "q": "SAPM과 PPR은 각각 어떤 역할을 하나요?",
+      "a": "SAPM은 학습 과정에서 카메라 간 광도 불일치(노출, 화이트 밸런스 등)를 보정하며, PPR은 렌더링 단계에서 공통 광학 중심을 공유하는 다중 로컬 원근 투영을 통해 주변부 늘어짐을 완화합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.07081v1/2611.07081v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.07081v1/2611.07081v1/motivation2.png",
+        "caption": "Figure 2 : Stitching images of different methods. (a)–(c) Input images captured by three perspective cameras with limited overlap.\n(d)–(g) Results obtained using REwarp [ 21 ] , DSFN [ 19 ] , RopStitch [ 33 ] , and UniStitch [ 28 ] , respectively, showing severe geometric distortions and visible art",
+        "caption_ko": "다양한 방법들의 스티칭 결과 비교: 기존 방식들은 심각한 기하학적 왜곡과 가시적 아티팩트를 보입니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07081v1/2611.07081v1/overview2.png",
+        "caption": "Figure 3 : WF-GS overview. A feed-forward backbone predicts 𝒢 t \\mathcal{G}_{t} from the input context 𝒞 t \\mathcal{C}_{t} . (a) Training: SAPM maps canonical renders 𝐈 ^ i , t \\widehat{\\mathbf{I}}_{i,t} to corrected renders 𝐈 ~ i , t \\widetilde{\\mathbf{I}}_{i,t} , which are compared with observed i",
+        "caption_ko": "WF-GS 개요: 피드포워드 백본이 입력 컨텍스트로부터 3D Gaussian 표현을 예측하는 구조입니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07081v1/2611.07081v1/main_comparisons_widedrive.png",
+        "caption": "Figure 6 : Visual comparison of WVS on WideDrive. (a)–(c) Input images from three overlapping perspective cameras. (d)–(l) Wide-FOV outputs from StabStitch++ [ 32 ] , UDIS2 [ 31 ] , DSFN [ 19 ] , APAP [ 39 ] , REwarp [ 21 ] , RopStitch [ 33 ] , AutoStitch [ 2 ] , UniStitch [ 28 ] , and WV-GS (ours),",
+        "caption_ko": "WideDrive에서의 WVS 시각적 비교: 제안하는 WV-GS가 가장 자연스러운 광야시야 출력을 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07081v1/2611.07081v1/main_comparisons.png",
+        "caption": "Figure 7 : Visual comparison of WVS on nuScenes [ 3 ] . (a)–(c) Input images from three overlapping perspective cameras. (d)–(j) Wide-FOV outputs from RopStitch [ 33 ] , REwarp [ 21 ] , UniStitch [ 28 ] , StabStitch++ [ 32 ] , DSFN [ 19 ] , AutoStitch [ 2 ] , and WV-GS (ours), respectively.",
+        "caption_ko": "nuScenes에서의 WVS 시각적 비교: 여러 기존 방식과 WF-GS의 결과물 차이를 비교합니다."
+      }
+    ]
   },
   "collected_at": "2026-11-08T14:23:27.014953+00:00",
   "notion_id": "",
   "id": "2026-11-08-e1405559ff994d57",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T14:34:04+00:00"
 }
