@@ -22331,5 +22331,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 통합 설계 가이드 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T17:03:50+00:00",
+    "kind": "proposal",
+    "id": "p-67dc43c306",
+    "title": "홀드된 RAG 가이드 및 테스트 재분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "rag-integration 및 RAG 테스트 작업이 패치 적용 실패로 held 상태임",
+    "proposal": "docs/agent-guides/rag-integration.md 문서 작성과 backend/tests/test_rag.py 추가 작업을 더 작은 단위로 분할하여 코딩 에이전트가 재시도하도록 설정",
+    "expected": "RAG 관련 문서와 기본 테스트 코드가 안정적으로 머지됨",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T17:03:50+00:00",
+    "kind": "proposal",
+    "id": "p-bc1e90aca2",
+    "title": "승인 대기 중인 PR #50 및 #51 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #50 및 PR #51이 핵심 코드 변경으로 승인 대기 중 상태임",
+    "proposal": "GitHub에서 PR #50 및 PR #51의 변경 사항과 테스트 통과 여부를 최종 확인하고 오너 승인 진행",
+    "expected": "백엔드 PBR 및 URL 인게스트, RAG 연동 코드가 메인 브랜치에 반영됨",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/50",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T17:04:22.429970+00:00",
+    "kind": "decision",
+    "id": "p-67dc43c306",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T17:04:22.448234+00:00",
+    "kind": "decision",
+    "id": "p-bc1e90aca2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 PR #1 검토 및 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T17:04:25.297359+00:00",
+    "kind": "triage",
+    "id": "p-67dc43c306",
+    "verdict": "duplicate",
+    "reason": "이미 완료된 RAG 가이드 작성 및 테스트 보완 작업들과 동일한 성격의 반복 제안입니다."
+  },
+  {
+    "at": "2026-11-08T17:04:25.311921+00:00",
+    "kind": "decision",
+    "id": "p-67dc43c306",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(duplicate): 이미 완료된 RAG 가이드 작성 및 테스트 보완 작업들과 동일한 성격의 반복 제안입니다."
   }
 ]
