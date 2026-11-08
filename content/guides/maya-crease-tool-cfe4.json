@@ -1,0 +1,91 @@
+{
+  "id": "maya-crease-tool-cfe4",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Crease tool",
+  "title": "Crease — 서브디비전 모서리",
+  "summary": "Maya의 Crease tool은 Subdivision Surface 모델링 시 특정 엣지나 Vertex에 가중치를 주어, 추가적인 엣지 루프를 넣지 않고도 날카로운 모서리를 유지할 수 있는 기능입니다.",
+  "when": [
+    "하드 표면 모델링에서 불필요한 서브디비전 추가 없이 모서리를 단단하게 만들 때",
+    "기계 부품이나 전자제품 등 날카로운 엣지와 부드러운 곡선이 공존하는 오브젝트를 작업할 때",
+    "Subdivision Preview(Hotkey 3) 상태에서도 각진 형태를 유지해야 할 때"
+  ],
+  "steps": [
+    "Viewport에서 서브디비전(Hotkey 3)을 적용할 3D 오브젝트를 선택합니다.",
+    "Mesh Modeling 툴셋으로 전환한 뒤, 상단 메뉴 바에서 Mesh > Crease Tool을 선택합니다.",
+    "날카롭게 만들고 싶은 Edge를 클릭한 상태로 Mouse 중클릭(Middle Mouse Button)을 좌우로 드래그하여 Crease Value를 높입니다.",
+    "또는 Channel Box나 Attribute Editor의 Crease 값 조절 영역에서 수치를 직접 입력합니다.",
+    "Hotkey 3번을 눌러 부드러운 곡면 사이로 모서리가 날카롭게 유지되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Crease Value",
+      "desc": "엣지가 서브디비전의 영향을 받지 않고 버티는 강도 (0에서 최대값 사이, 보통 1에 가까울수록 날카로움)"
+    },
+    {
+      "name": "Offset",
+      "desc": "드래그 시 크리즈 값이 변경되는 감도와 속도를 조절합니다."
+    },
+    {
+      "name": "Flood Crease",
+      "desc": "선택한 컴포넌트에 일괄적으로 특정 크리즈 값을 적용합니다."
+    },
+    {
+      "name": "Remove Crease",
+      "desc": "적용된 크리즈 값을 제거하여 원래의 부드러운 상태로 되돌립니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계식 하우징 모서리 보강",
+      "steps": [
+        "큐브 오브젝트를 생성하고 베벨을 살짝 줍니다.",
+        "Hotkey 3을 눌러 부드러운 곡면 상태를 미리 봅니다.",
+        "Mesh > Crease Tool로 모서리 엣지를 선택하고 드래그하여 각을 세웁니다."
+      ]
+    },
+    {
+      "title": "단단한 테두리가 있는 패널",
+      "steps": [
+        "평면(Plane) 오브젝트에 Subdivisions을 적당히 줍니다.",
+        "외곽 테두리 엣지들을 루프(Edge Loop)로 선택합니다.",
+        "Crease Tool로 값을 1로 설정하여 테두리가 둥글게 무너지지 않도록 고정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Hotkey 3(Smooth Mesh Preview)을 켜지 않고 작업함 → 반드시 3번 키를 눌러 뷰포트 미리보기 상태에서 크리즈 변화를 확인하세요.",
+    "Mouse 드래그 방향이 잘못됨 → Crease Tool 실행 후 Mouse 중클릭(MMB)을 좌우로 드래그해야 수치가 조절됩니다.",
+    "전체 엣지에 불필요한 크리즈가 들어감 → Remove Crease 기능이나 Channel Box에서 불필요한 크리즈 세트를 정리하세요."
+  ],
+  "related": [
+    "Smooth Mesh",
+    "Bevel",
+    "Multi-Cut",
+    "Subdivision Surface"
+  ],
+  "videos": [
+    {
+      "id": "P086d7F-4bs",
+      "title": "How To Use Crease Tool | Maya | Tutorial",
+      "author": "Reimagine Fx"
+    },
+    {
+      "id": "5rMgBwLTWfY",
+      "title": "Crease Tool and Crease Sets - Maya 2016",
+      "author": "Tim Ash"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Crease%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Hotkey 3",
+    "Mesh Modeling",
+    "Mesh",
+    "Crease Tool"
+  ],
+  "at": "2026-11-08T08:22:27.247981+00:00"
+}

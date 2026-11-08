@@ -1,0 +1,83 @@
+{
+  "id": "zbrush-quicksave-aac1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "QuickSave",
+  "title": "QuickSave — 자동 저장",
+  "summary": "ZBrush의 QuickSave 기능은 작업 중 일정 시간마다 모델과 씬을 자동으로 백업하여, 예기치 않은 프로그램 종료나 시스템 오류로부터 작업물을 안전하게 보호합니다.",
+  "when": [
+    "복잡한 스컬프팅이나 고폴리곤 작업을 장시간 진행할 때",
+    "예기치 않은 크래시나 프로그램 강제 종료에 대비하고 싶을 때",
+    "이전 작업 시점으로 빠르게 돌아가 복구 작업을 해야 할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Preferences → QuickSave 패널을 엽니다.",
+    "Max SimTime 및 Minutes 설정을 통해 자동 저장 간격과 시간을 조절합니다.",
+    "수동으로 즉시 백업하려면 라이트박스(LightBox)를 열거나 Hotkey 9 키를 누릅니다.",
+    "백업된 파일을 불러오려면 LightBox(Hotkey ,)의 QuickSave 탭으로 이동합니다.",
+    "원하는 버전의 프로젝트 파일을 더블 클릭하여 뷰포트에 불러와 이어서 작업합니다."
+  ],
+  "params": [
+    {
+      "name": "Minutes",
+      "desc": "자동 QuickSave가 실행되는 시간 간격(분)을 설정합니다."
+    },
+    {
+      "name": "Max SavedFiles",
+      "desc": "폴더에 보관할 최대 QuickSave 파일 개수를 지정합니다."
+    },
+    {
+      "name": "Autosave",
+      "desc": "QuickSave 기능의 전체 활성화 및 비활성화 여부를 토글합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대규모 스컬프팅 작업 중 안전장치 마련",
+      "steps": [
+        "Preferences → QuickSave 메뉴에서 Minutes 값을 15분으로 설정합니다.",
+        "작업을 진행하면 백그라운드에서 자동으로 QuickSave 폴더에 파일이 쌓입니다.",
+        "갑작스러운 오류 발생 시 재실행 후 LightBox에서 최신 파일을 엽니다."
+      ]
+    },
+    {
+      "title": "이전 작업 버전으로 신속하게 복원",
+      "steps": [
+        "Hotkey ,(콤마)를 눌러 LightBox를 활성화합니다.",
+        "상단 탭 중 QuickSave 항목을 선택하여 백업된 목록을 확인합니다.",
+        "원하는 시점의 파일을 선택하여 현재 씬에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "수동 저장 대신 QuickSave만 믿고 파일을 최종 저장하지 않음 → 프로젝트(ZPR)나 툴(ZTL) 형식으로 수동 저장하는 습관을 들입니다.",
+    "QuickSave 파일 용량이 너무 커서 하드 용량이 부족함 → Preferences 메뉴에서 Max SavedFiles 개수를 조절하여 관리합니다."
+  ],
+  "related": [
+    "Tool Save As",
+    "Project Save As",
+    "LightBox",
+    "Undo History"
+  ],
+  "videos": [
+    {
+      "id": "_o0RMz40n6s",
+      "title": "🦜Quicksaves ZBrush Hack",
+      "author": "Virtus"
+    },
+    {
+      "id": "guImh-poy6U",
+      "title": "#AskZBrush: “How can I change where the QuickSaves are stored?”",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20QuickSave",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Preferences",
+    "QuickSave"
+  ],
+  "at": "2026-11-08T08:22:31.190975+00:00"
+}
