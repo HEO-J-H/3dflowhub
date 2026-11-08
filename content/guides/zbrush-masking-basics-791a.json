@@ -1,0 +1,100 @@
+{
+  "id": "zbrush-masking-basics-791a",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Masking basics",
+  "title": "마스크 기초(Ctrl)",
+  "summary": "ZBrush Masking은 모델의 특정 영역을 잠그거나 보호하여 변형이나 스컬프팅으로부터 안전하게 유지하는 비파괴적 편집 핵심 기능입니다. 도화지에 테이프를 붙이듯 원하는 부분만 골라서 작업할 수 있습니다.",
+  "when": [
+    "특정 부위(예: 얼굴, 갑옷의 테두리)를 건드리지 않고 다른 곳만 스컬프팅할 때",
+    "마스크 영역을 반대로 뒤집어 숨겨진 디테일을 다듬을 때",
+    "Transpose 도구와 조합하여 특정 부위만 정확히 꺾거나 늘릴 때"
+  ],
+  "steps": [
+    "키보드의 Ctrl 키를 누른 채로 모델 위를 드래그하여 원하는 영역에 마스크를 칠합니다.",
+    "마스크를 지우고 싶다면 Ctrl 키를 누른 상태에서 모델 빈 공간을 한 번 클릭합니다.",
+    "마스크 영역을 반전(Invert)하려면 Ctrl 키를 누른 상태에서 모델 빈 공간을 드래그하여 놓습니다.",
+    "마스크 경계를 부드럽게(Blur) 만들려면 Ctrl 키를 누른 상태로 마스크가 칠해진 영역을 클릭합니다.",
+    "마스크를 완전히 지우려면 Ctrl 키를 누른 상태에서 모델 빈 공간에 사각형을 그리듯 드래그를 시작했다가 떼며 캔버스 여백을 클릭합니다.",
+    "Tool 팔레트의 Masking 서브패섹션에서 다양한 마스크 관련 세부 조절 옵션을 확인할 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "BlurMask",
+      "desc": "마스크 경계를 부드럽게 흐리게 만들어 자연스러운 전환을 줍니다."
+    },
+    {
+      "name": "SharpenMask",
+      "desc": "마스크의 경계를 날카롭고 단단하게 만들어 줍니다."
+    },
+    {
+      "name": "Inverse",
+      "desc": "선택된 마스크 영역과 해제된 영역을 서로 맞바꿉니다."
+    },
+    {
+      "name": "ViewMask",
+      "desc": "스컬프팅 시 마스크 영역을 숨기거나 표시하여 작업에 집중하게 합니다."
+    },
+    {
+      "name": "MaskPen",
+      "desc": "브러시 형태로 자유롭게 마스크를 칠합니다."
+    },
+    {
+      "name": "MaskLasso",
+      "desc": "올가미 선을 그려서 특정 영역을 깔끔하게 선택하여 마스크합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴만 보호하고 몸통 스컬프팅하기",
+      "steps": [
+        "Ctrl+Lasso 브러시를 선택합니다.",
+        "캐릭터의 목 아래 몸통 부분만 올가미로 감싸서 마스크를 칠합니다.",
+        "Ctrl을 누른 채 빈 공간을 클릭하여 마스크를 반전시킵니다.",
+        "얼굴 영역만 활성화된 상태에서 자유롭게 스컬프팅을 진행합니다."
+      ]
+    },
+    {
+      "title": "경계가 부드러운 갑옷 주름 만들기",
+      "steps": [
+        "MaskPen으로 갑옷의 접히는 부위에 마스크를 칠합니다.",
+        "Ctrl 키를 누른 채 마스크 영역을 몇 번 클릭하여 경계를 흐리게 만듭니다.",
+        "Move (W) 도구와 Transpose line을 사용하여 마스크된 부위를 부드럽게 들어 올립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원하지 않는 곳까지 마스크가 칠해졌어요 → Ctrl 키를 누른 채 모델 바깥 빈 공간을 드래그하여 마스크를 전체 해제한 후 다시 칠합니다.",
+    "마스크 경계가 계단 현상처럼 거칠어요 → Tool 팔레트의 Masking 메뉴에서 BlurMask 버튼을 눌러 경계를 부드럽게 다듬어 줍니다.",
+    "마스크가 반대로 걸렸어요 → Ctrl 키를 누른 상태에서 캔버스 빈 공간을 한 번 클릭하여 영역을 반전시킵니다."
+  ],
+  "related": [
+    "Transpose",
+    "DynaMesh",
+    "ZRemesh",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "LAykGCL-Btk",
+      "title": "Getting Started with ZBrush, Part 10 - Masking and Selection",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "7m9kG1mTDfM",
+      "title": "ZBrush - EVERYTHING About Masking (In 3 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Masking%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Invert",
+    "Blur",
+    "Tool",
+    "Masking"
+  ],
+  "at": "2026-11-08T10:13:00.239483+00:00"
+}

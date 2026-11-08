@@ -1,0 +1,93 @@
+{
+  "id": "maya-extrude-along-curve-fdd6",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extrude along curve",
+  "title": "커브 따라 Extrude",
+  "summary": "Maya의 Extrude along curve는 선택한 폴리곤 면을 특정 커브 경로를 따라 자연스럽게 늘려가며 입체적인 형태로 확장하는 기능입니다. 철길이나 전선처럼 구부러진 긴 구조물을 만들 때 유용합니다.",
+  "when": [
+    "구불구불한 파이프나 호스를 정교하게 모델링할 때",
+    "도로, 철도, 케이블 등의 선형 구조물을 배치할 때",
+    "곡선을 따라 일정한 단면을 가진 장식용 몰딩을 제작할 때"
+  ],
+  "steps": [
+    "1. Top 또는 Perspective 뷰포트에서 CV Curve Tool 등을 사용해 경로가 될 Curve 오브젝트를 생성합니다.",
+    "2. 씬에 돌출(Extrude)시킬 단면이 될 Polygon Mesh 오브젝트(예: Circle)를 생성하고 원하는 위치에 놓습니다.",
+    "3. Shift 키를 누른 상태에서 단면 Mesh와 경로 Curve를 차례대로 다중 선택합니다.",
+    "4. 상단 메뉴 바에서 Modeling 메뉴 세트로 전환한 뒤, Surfaces 또는 Edit Mesh > Extrude 대신 Surfaces 메뉴의 Surfaces > Extrude (또는 Modeling 툴셋의 Extrude 옵션)를 사용하거나, History를 활용해 Polygon Extrude를 실행합니다.",
+    "5. 채널 박스(Channel Box)나 Attribute Editor에서 Extrude 노드 속성을 조절하여 Divisions(분할 수)와 Taper 값을 설정합니다.",
+    "6. 뷰포트에서 커브를 따라 형태가 부드럽게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Divisions",
+      "desc": "커브 경로를 따라 생성되는 폴리곤 세그먼트(분할) 수를 조절하여 부드러움을 결정합니다."
+    },
+    {
+      "name": "Taper",
+      "desc": "경로를 따라 진행될수록 단면의 크기가 커지거나 작아지도록 비율을 조절합니다."
+    },
+    {
+      "name": "Use selected curve",
+      "desc": "미리 선택한 커브를 돌출 경로로 지정하여 적용합니다."
+    },
+    {
+      "name": "Pivot",
+      "desc": "돌출이 시작될 때 단면의 중심축(Pivot) 기준점을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구부러진 수도관 제작",
+      "steps": [
+        "1. Cylinder 단면을 작게 만들고 경로가 될 Bezier Curve를 그립니다.",
+        "2. 두 오브젝트를 함께 선택하고 Extrude를 실행합니다.",
+        "3. Divisions 값을 높여 파이프 꺾임 부위가 부드럽게 보이도록 수정합니다."
+      ]
+    },
+    {
+      "title": "꼬불꼬불한 전선 가닥 표현",
+      "steps": [
+        "1. NURBS나 Curve로 자유로운 형태의 전선 경로를 잡습니다.",
+        "2. 작은 Circle을 단면으로 하여 Extrude along curve를 적용합니다.",
+        "3. Taper와 Twist 값을 주어 자연스러운 전선 뭉치를 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "커브와 메쉬의 선택 순서 오류 → 반드시 단면 메쉬를 먼저 선택한 뒤 경로 커브를 Shift로 나중에 선택해야 합니다.",
+    "Divisions 부족으로 인한 꺾임 현상 → Channel Box의 Extrude 노드에서 Divisions 값을 높여 부드럽게 해결합니다.",
+    "초기 위치 어긋남 → 단면 메쉬의 중심점(Pivot)이 커브의 시작점에 정확히 위치해 있는지 확인합니다."
+  ],
+  "related": [
+    "Curve Warp",
+    "Sweep Mesh",
+    "Bevel",
+    "Loft"
+  ],
+  "videos": [
+    {
+      "id": "Evbp6kuuJg4",
+      "title": "Extrude Along Curve In Maya",
+      "author": "Michael Swartz"
+    },
+    {
+      "id": "KZtwzMZO9aQ",
+      "title": "How to extrude along a curve in Maya | Maya Tutorial",
+      "author": "Creative Tap"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Extrude%20along%20curve",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Top",
+    "Perspective",
+    "CV Curve Tool",
+    "Curve",
+    "Extrude",
+    "Polygon Mesh"
+  ],
+  "at": "2026-11-08T10:12:56.024816+00:00"
+}
