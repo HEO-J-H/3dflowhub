@@ -312,6 +312,30 @@ def test_merge_json_unions_lists_and_keeps_max():
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
 
 
+def test_filter_homonym_3d_content():
+    # 1. 마야 문명 / 주방용 블렌더 / 핵무기 nuke 등 동음이의어 무관 뉴스는 차단되어야 함
+    item_maya_civilization = {"title": "New discoveries in Maya civilization and ancient pyramids", "rss_summary": "Historical research on indigenous people."}
+    item_kitchen_blender = {"title": "Best kitchen blenders for making smoothies in 2026", "rss_summary": "Home appliance review for cooking."}
+    item_nuclear_nuke = {"title": "Nuclear nuke tensions rise in international politics", "rss_summary": "Military missile defense updates."}
+    item_unity_stock = {"title": "Unity stock plummets amid market economy downturn", "rss_summary": "Financial dividends and shares."}
+    item_houdini_magician = {"title": "Harry Houdini escape trick anniversary", "rss_summary": "Famous magician illusionist history."}
+
+    assert core.filter_homonym_3d_content(item_maya_civilization) is False
+    assert core.filter_homonym_3d_content(item_kitchen_blender) is False
+    assert core.filter_homonym_3d_content(item_nuclear_nuke) is False
+    assert core.filter_homonym_3d_content(item_unity_stock) is False
+    assert core.filter_homonym_3d_content(item_houdini_magician) is False
+
+    # 2. 동음이의어 단어가 포함되어 있더라도 3D/CG 전문 맥락(Blender 3D, Maya 3D rendering 등)이 함께 있으면 정상 통과되어야 함
+    item_valid_blender = {"title": "Blender 5.0 release with new geometry nodes workflow", "rss_summary": "3D modeling and rendering software update."}
+    item_valid_maya = {"title": "Autodesk Maya rigging tutorial for 3D character animation", "rss_summary": "CGI digital production guide."}
+    item_valid_nuke = {"title": "Foundry Nuke compositing workflow for VFX pipeline", "rss_summary": "Visual effects video production."}
+
+    assert core.filter_homonym_3d_content(item_valid_blender) is True
+    assert core.filter_homonym_3d_content(item_valid_maya) is True
+    assert core.filter_homonym_3d_content(item_valid_nuke) is True
+
+
 def test_offtopic_article_is_skipped(monkeypatch):
     monkeypatch.setattr(core, "fetch_article", lambda url: ("x" * 300, {"image": "", "video": ""}))
     monkeypatch.setattr(core, "llm", lambda *a, **k: '{"title_ko": "날씨", "relevance": 1, '
