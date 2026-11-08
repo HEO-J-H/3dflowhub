@@ -1,0 +1,99 @@
+{
+  "id": "unreal-engine-usd-in-unreal-d8a4",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "내보내기",
+  "name": "USD in Unreal",
+  "title": "USD 가져오기",
+  "summary": "Unreal Engine에서 USD(Universal Scene Description) 포맷 파일을 가져오고 내보내어, 복잡한 3D 씬과 에셋 데이터를 효율적으로 협업 및 관리하는 기능입니다.",
+  "when": [
+    "DCC 툴(Houdini, Blender, Maya 등)에서 제작한 대규모 씬 데이터를 애니메이션과 계층 구조 그대로 가져올 때",
+    "여러 부서 간 Pipeline USD 포맷을 활용해 실시간으로 에셋을 공유하고 조립할 때",
+    "Unreal Engine 씬의 변경 사항을 다시 USD로 내보내어 외부 파이프라인과 연동할 때"
+  ],
+  "steps": [
+    "Unreal Engine 프로젝트를 열고 Plugins 창(Edit → Plugins)에서 'USD Importer' 플러그인을 활성화한 뒤 에디터를 재시작합니다.",
+    "Content Browser에서 USD 파일을 가져올 폴더를 엽니다.",
+    "Content Browser 상단의 Import 버튼을 클릭하거나 USD 파일을 드래그 앤 드롭합니다.",
+    "파일 탐색기에서 대상 .usd, .usda, .usdc 파일을 선택하고 열기를 누릅니다.",
+    "USD Import Options 창에서 스테이지 옵션과 머티리얼 변환 설정을 확인하고 Import를 클릭합니다.",
+    "Content Browser와 Viewport에 생성된 USD Stage 에셋 및 변환된 Static Mesh와 Material을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Import Cameras",
+      "desc": "USD 파일에 포함된 카메라 데이터를 레벨에 함께 가져옵니다."
+    },
+    {
+      "name": "Import Lights",
+      "desc": "USD 씬의 라이트 정보를 Unreal Engine 라이트로 변환합니다."
+    },
+    {
+      "name": "Import Materials",
+      "desc": "USD에 정의된 머티리얼을 Unreal Engine 머티리얼 에셋으로 자동 생성합니다."
+    },
+    {
+      "name": "Base Material",
+      "desc": "머티리얼 변환 시 기준으로 사용할 부모 마스터 머티리얼을 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "외부 툴과 Unreal Engine 간의 단위 차이를 맞추기 위해 전체 크기 배율을 조절합니다."
+    },
+    {
+      "name": "Curve Interpolation",
+      "desc": "애니메이션 커브를 보간하는 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Houdini 시뮬레이션 캐시를 USD로 가져오기",
+      "steps": [
+        "Houdini에서 에셋을 USD 포맷으로 내보냅니다.",
+        "Unreal Engine의 Content Browser에서 파일을 임포트합니다.",
+        "USD Stage 액터를 레벨에 배치하여 애니메이션을 재생합니다."
+      ]
+    },
+    {
+      "title": "건축 및 레이아웃 씬 협업",
+      "steps": [
+        "여러 디자이너가 작업한 층별 USD 레이어를 각각 준비합니다.",
+        "Unreal Engine에서 USD Stage를 통해 여러 파일을 하나의 씬으로 조합합니다.",
+        "Viewport에서 전체 레이아웃 구조와 트랜스폼을 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플러그인 미활성화 → Edit → Plugins에서 USD Importer 플러그인을 켜고 에디터를 재시작해야 메뉴가 활성화됩니다.",
+    "단위(Scale) 차이로 에셋이 너무 작거나 크게 보임 → Import Options의 Scale 값을 조정하여 유닛을 맞춥니다.",
+    "텍스처 경로 유실 → USD 파일과 외부 텍스처 소스가 올바른 상대 경로로 연결되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Datasmith",
+    "glTF",
+    "Level Sequence",
+    "Content Browser"
+  ],
+  "videos": [
+    {
+      "id": "t4U8-rYwR0k",
+      "title": "Unreal Engine 5 (&4) - Intro to using USD (Universal Scene Description) #UE5 #UE4 #USD",
+      "author": "3D Education with JC"
+    },
+    {
+      "id": "uEepFwuHuJs",
+      "title": "How to Install the USD Importer Plugin in Unreal Engine (Universal Scene Description)",
+      "author": "What Make Art"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20USD%20in%20Unreal",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Plugins",
+    "Edit",
+    "USD Importer"
+  ],
+  "at": "2026-11-08T00:42:55.039094+00:00"
+}

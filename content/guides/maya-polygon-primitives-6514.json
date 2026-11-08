@@ -1,0 +1,93 @@
+{
+  "id": "maya-polygon-primitives-6514",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Polygon primitives",
+  "title": "기본 도형 만들기",
+  "summary": "Polygon primitives는 Maya에서 3D 모델링을 시작할 때 사용하는 기본 기하학적 형태(큐브, 구체, 실린더 등) 생성 도구입니다. 복잡한 모델링 작업을 시작하기 위한 뼈대 역할을 합니다.",
+  "when": [
+    "캐릭터, 프롭, 배경 등 새로운 3D 모델링 작업을 처음 시작할 때",
+    "기본 도형을 조합하여 대략적인 형태와 비율(Blockout)을 잡을 때",
+    "연습용 오브젝트나 간단한 테스트 씬을 빠르게 구성할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Create → Polygon Primitives 로 이동합니다.",
+    "원하는 기본 도형(예: Cube, Sphere, Cylinder)을 클릭하여 뷰포트에 생성합니다.",
+    "생성 직후 화면 하단(또는 Channel Box)에서 생성된 Primitive의 속성을 확인합니다.",
+    "Channel Box / Layer Editor 패널에서 Subdivisions 등의 수치를 조절해 폴라이언 구조를 설정합니다.",
+    "W 키를 눌러 Move 툴로 위치를 이동하거나, R 키로 Scale을 조절해 형태를 다듬습니다.",
+    "뷰포트에서 원하는 기본 형태가 완성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "구체나 실린더 등의 기본 반지름 크기를 조절합니다."
+    },
+    {
+      "name": "Subdivisions Width",
+      "desc": "가로 방향의 폴리곤 분할(세그먼트) 개수를 지정합니다."
+    },
+    {
+      "name": "Subdivisions Height",
+      "desc": "세로 방향의 폴리곤 분할(세그먼트) 개수를 지정합니다."
+    },
+    {
+      "name": "Subdivisions Axis",
+      "desc": "원형 축을 따라 도는 방향의 분할 개수를 지정합니다."
+    },
+    {
+      "name": "Width / Height / Depth",
+      "desc": "Cube 등의 가로, 세로, 깊이 크기를 각각 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "책상 다리 만들기",
+      "steps": [
+        "Create → Polygon Primitives → Cylinder를 생성합니다.",
+        "Channel Box에서 Subdivisions Axis 값을 낮추어 각진 다리 형태로 만듭니다.",
+        "R 키를 눌러 상단과 하단 비율을 조절해 늘씬한 다리 모양을 잡습니다."
+      ]
+    },
+    {
+      "title": "건물 Blockout 배치",
+      "steps": [
+        "Create → Polygon Primitives → Cube를 여러 개 생성합니다.",
+        "W, E, R 키를 사용해 크기와 위치를 배치하여 대략적인 건물 군을 만듭니다.",
+        "Outliner에서 각 큐브의 이름을 정리하여 씬 구조를 관리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "생성 후 히스토리를 지우지 않아 나중에 문제가 생김 → Edit → Delete by Type → History를 실행해 히스토리를 정리합니다.",
+    "폴리곤 분할(Subdivisions)을 너무 많이 주어 작업이 무거워짐 → Channel Box에서 세그먼트 값을 낮게 재설정합니다.",
+    "오브젝트의 스케일이 왜곡됨 → Modify → Freeze Transformations를 적용해 스케일 값을 1로 초기화합니다."
+  ],
+  "related": [
+    "Extrude",
+    "Bevel",
+    "Multi-Cut Tool",
+    "Channel Box"
+  ],
+  "videos": [
+    {
+      "id": "eBEitxaRYQs",
+      "title": "Maya Intro Polygon Modeling Tools for Beginners Tutorial",
+      "author": "What Make Art"
+    },
+    {
+      "id": "Wyxt54rPM9w",
+      "title": "Creating Polygon Primitives || Working with Poly Components || Maya Tutorial",
+      "author": "Pebbles Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Polygon%20primitives",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Polygon Primitives"
+  ],
+  "at": "2026-11-08T00:42:59.047875+00:00"
+}
