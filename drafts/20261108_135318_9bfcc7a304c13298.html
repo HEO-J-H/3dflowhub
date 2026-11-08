@@ -1,0 +1,20 @@
+<!-- TITLE: XM4D: 기하학적 최적화 기반 4D 재구성 연구 | TAGS: 4D Reconstruction,Gaussian Splatting,SDP,QCQP,Riemannian Optimization,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — XM4D는 카메라 움직임과 비강체 변형을 분리하여 전역 최적화를 보장하는 인증 가능한 4D 재구성 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>XM4D 프레임워크의 핵심 구조</h2>
+<p>카메라 움직임 추정과 비강체 변형을 분리하여 두 단계 모두 구조화된 QCQP(Quadratically Constrained Quadratic Programs)로 공식화합니다. 이를 통해 SDP(Semidefinite Programming) 완화와 검증 가능한 전역 최적성 인증서를 제공합니다.</p>
+<h2>카메라 움직임 추정 및 스케일 번들 조정</h2>
+<p>기초 깊이 예측 모델을 사용하여 정적 포인트 트랙을 3D로 리프팅하고, 카메라 포즈, 깊이 스케일, 정적 랜드마크를 공동으로 추정하는 스케일 번들 조정 문제를 구성합니다. 평행이동과 랜드마크를 분석적으로 제거하여 스케일된 회전에 대한 QCQP로 문제를 축소합니다.</p>
+<h2>비강체 재구성과 EDG 기반 최적화</h2>
+<p>동적 움직임을 EDG(Embedded Deformation Graph)로 표현하고, 추적, 강성, 시간적 정규화 목표가 회전 전용 QCQP로 축소됨을 입증합니다. GPU 가속 Burer-Monteiro 솔버를 기반으로 리만 최적화를 통해 두 문제를 효율적으로 해결합니다.</p>
+<h2>Gaussian Splatting 연동 렌더링</h2>
+<p>복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제를 위한 초기화 데이터로 사용됩니다. 7개의 벤치마크 실험을 통해 정적 및 동적 장면 모두에서 정확한 카메라 움직임 추정과 뛰어난 렌더링 품질을 입증했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 4D 재구성은 비볼록 최적화 문제로 인해 전역 최적해를 보장하기 어려웠으나, 본 논문은 SDP 완화를 통해 이를 해결합니다. 복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제 단계 초기화에 직접 활용됩니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. XM4D는 어떤 문제를 해결하기 위한 프레임워크인가요?</b><br/>A. 카메라 움직임, 장면 지형, 비강체 변형을 동시에 추정할 때 발생하는 비볼록 최적화의 한계를 극복하여 전역 최적성을 보장하는 4D 재구성 프레임워크입니다.</p>
+<p><b>Q. 최적화 과정은 어떻게 가속화되나요?</b><br/>A. 문제를 QCQP 형태로 축소하고, GPU 가속 기반의 Burer-Monteiro 솔버와 리만 최적화를 적용하여 수천 개의 프레임에서도 효율적으로 연산합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-ffa3fa13b6bc5b4e.html">Gaussian Splatting 아바타 품질 개선 연구 EDGAR 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-79336ccae0285209.html">P-MGS: 지오메트리 대신 인지 복잡도 기반 Gauss 배치를 통한 메시 기반 3DGS</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-4e786d4e3875ba4f.html">Gaussian Splatting 3D 실시간 재구성 HIBS 논문 발표</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.07902v1" target="_blank" rel="noopener nofollow">XM4D: 4D Reconstruction through Certifiable Geometric Optimization</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

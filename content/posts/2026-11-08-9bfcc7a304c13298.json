@@ -1,0 +1,54 @@
+{
+  "title_ko": "XM4D: 기하학적 최적화 기반 4D 재구성 연구",
+  "title": "XM4D: 4D Reconstruction through Certifiable Geometric Optimization",
+  "url": "https://arxiv.org/abs/2611.07902v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "4D Reconstruction",
+    "Gaussian Splatting",
+    "SDP",
+    "QCQP",
+    "Riemannian Optimization"
+  ],
+  "summary": "XM4D는 카메라 움직임과 비강체 변형을 분리하여 전역 최적화를 보장하는 인증 가능한 4D 재구성 프레임워크입니다.",
+  "insight": "기존 4D 재구성은 비볼록 최적화 문제로 인해 전역 최적해를 보장하기 어려웠으나, 본 논문은 SDP 완화를 통해 이를 해결합니다. 복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제 단계 초기화에 직접 활용됩니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "XM4D 프레임워크의 핵심 구조",
+      "body": "카메라 움직임 추정과 비강체 변형을 분리하여 두 단계 모두 구조화된 QCQP(Quadratically Constrained Quadratic Programs)로 공식화합니다. 이를 통해 SDP(Semidefinite Programming) 완화와 검증 가능한 전역 최적성 인증서를 제공합니다."
+    },
+    {
+      "heading": "카메라 움직임 추정 및 스케일 번들 조정",
+      "body": "기초 깊이 예측 모델을 사용하여 정적 포인트 트랙을 3D로 리프팅하고, 카메라 포즈, 깊이 스케일, 정적 랜드마크를 공동으로 추정하는 스케일 번들 조정 문제를 구성합니다. 평행이동과 랜드마크를 분석적으로 제거하여 스케일된 회전에 대한 QCQP로 문제를 축소합니다."
+    },
+    {
+      "heading": "비강체 재구성과 EDG 기반 최적화",
+      "body": "동적 움직임을 EDG(Embedded Deformation Graph)로 표현하고, 추적, 강성, 시간적 정규화 목표가 회전 전용 QCQP로 축소됨을 입증합니다. GPU 가속 Burer-Monteiro 솔버를 기반으로 리만 최적화를 통해 두 문제를 효율적으로 해결합니다."
+    },
+    {
+      "heading": "Gaussian Splatting 연동 렌더링",
+      "body": "복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제를 위한 초기화 데이터로 사용됩니다. 7개의 벤치마크 실험을 통해 정적 및 동적 장면 모두에서 정확한 카메라 움직임 추정과 뛰어난 렌더링 품질을 입증했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "XM4D는 어떤 문제를 해결하기 위한 프레임워크인가요?",
+      "a": "카메라 움직임, 장면 지형, 비강체 변형을 동시에 추정할 때 발생하는 비볼록 최적화의 한계를 극복하여 전역 최적성을 보장하는 4D 재구성 프레임워크입니다."
+    },
+    {
+      "q": "최적화 과정은 어떻게 가속화되나요?",
+      "a": "문제를 QCQP 형태로 축소하고, GPU 가속 기반의 Burer-Monteiro 솔버와 리만 최적화를 적용하여 수천 개의 프레임에서도 효율적으로 연산합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.07902v1/2611.07902v1/teaser.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T13:53:18.366021+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-9bfcc7a304c13298",
+  "img_tried": true
+}
