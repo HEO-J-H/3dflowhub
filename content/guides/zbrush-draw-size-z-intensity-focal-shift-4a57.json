@@ -1,0 +1,87 @@
+{
+  "id": "zbrush-draw-size-z-intensity-focal-shift-4a57",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Draw Size, Z Intensity, Focal Shift",
+  "title": "브러시 크기·세기·Focal Shift",
+  "summary": "Draw Size, Z Intensity, Focal Shift는 브러시의 크기·깊이·작업 영역 중심을 조절해 스컬프팅 강도와 디테일을 미세하게 제어합니다.",
+  "when": [
+    "작은 디테일을 정밀하게 새길 때",
+    "표면을 부드럽게 전체적으로 깎을 때",
+    "특정 영역만 강조하거나 얕게 스컬프팅할 때"
+  ],
+  "steps": [
+    "Brush Palette 에서 원하는 브러시 선택 (예: Standard)",
+    "S 키 → Draw Size 슬라이더를 움직여 브러시 크기 조절",
+    "I 키 → Z Intensity 슬라이더를 움직여 압력(깊이) 조절",
+    "Shift+F (또는 Brush > Focal Shift) → Focal Shift 슬라이더로 작업 중심 이동",
+    "Viewport 에서 Mouse/펜으로 스컬프팅 시작"
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시 원형 크기를 조절합니다"
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 표면을 파고드는 강도를 설정합니다"
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심을 앞·뒤로 이동시켜 영향을 주는 영역을 바꿉니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "얼굴에 미세한 주름 추가",
+      "steps": [
+        "Standard 브러시 선택 → Draw Size를 작게(S) 설정",
+        "Z Intensity를 낮게(I) 설정",
+        "Focal Shift를 0.2 정도로 앞쪽 이동",
+        "주름을 그리며 디테일을 추가"
+      ]
+    },
+    {
+      "title": "큰 근육 형태를 부드럽게 다듬기",
+      "steps": [
+        "Move 브러시 선택 → Draw Size 크게(S) 설정",
+        "Z Intensity를 높게(I) 설정",
+        "Focal Shift를 0.5 로 중앙에 두고",
+        "전체 근육 표면을 부드럽게 스컬프팅"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Draw Size가 너무 작아 작업 영역이 보이지 않음 → S 키로 크기 확대",
+    "Z Intensity를 0으로 두면 스컬프팅이 전혀 안 됨 → I 키로 최소 10% 이상 올리기",
+    "Focal Shift를 1.0 으로 설정하면 전체 브러시가 앞쪽에 고정 → Shift+F 로 0~1 사이 적절히 조정"
+  ],
+  "related": [
+    "Brush",
+    "Alpha",
+    "Stroke",
+    "Lazy Mouse"
+  ],
+  "videos": [
+    {
+      "id": "7i4VRASc8PA",
+      "title": "055 ZBrush Draw Size Preferences",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "abB8C3zU5RY",
+      "title": "#AskZBrush: “What does the Dynamic option on the Draw Size slider do?”",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Draw%20Size%2C%20Z%20Intensity%2C%20Focal%20Shift",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Standard",
+    "Draw Size"
+  ],
+  "at": "2026-11-08T02:37:09.875839+00:00"
+}

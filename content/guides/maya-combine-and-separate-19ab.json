@@ -1,0 +1,90 @@
+{
+  "id": "maya-combine-and-separate-19ab",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Combine and Separate",
+  "title": "Combine·Separate",
+  "summary": "Combine은 여러 개의 메쉬를 하나의 오브젝트로 합치고, Separate는 하나의 메쉬를 선택된 요소별로 분리합니다.",
+  "when": [
+    "여러 파트가 하나의 오브젝트로 움직여야 할 때",
+    "복잡한 모델을 파트별로 편집하거나 텍스처를 다르게 적용하고 싶을 때",
+    "불필요한 연결을 끊어 개별 오브젝트로 정리하고 싶을 때"
+  ],
+  "steps": [
+    "Mesh 메뉴 → Combine 선택 (또는 Edit → Delete by Type → History 후 Mesh → Combine)",
+    "Combine 후 필요하면 Pivot을 재설정: Modify → Center Pivot",
+    "Separate를 할 오브젝트 선택 → Mesh 메뉴 → Separate 선택",
+    "Separate 후 원하지 않는 파트는 Delete 혹은 Hide로 정리"
+  ],
+  "params": [
+    {
+      "name": "Combine",
+      "desc": "선택한 모든 메쉬를 하나의 폴리곤 오브젝트로 합칩니다"
+    },
+    {
+      "name": "Separate",
+      "desc": " 선택된 메쉬를 연결된 쉐이프 단위(면, 에지, 정점)별로 분리합니다"
+    },
+    {
+      "name": "Center Pivot",
+      "desc": "오브젝트의 피벗을 지오메트리 중심으로 이동합니다"
+    },
+    {
+      "name": "History",
+      "desc": "이전 연산 기록을 삭제해 변형을 고정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프와 플랜지를 하나의 오브젝트로 만들기",
+      "steps": [
+        "Pipe와 Flange 메쉬 각각 선택",
+        "Mesh → Combine 선택",
+        "Modify → Center Pivot 실행"
+      ]
+    },
+    {
+      "title": "복합 메쉬를 파트별로 분리해 재질 적용",
+      "steps": [
+        "복합 메쉬 선택",
+        "Mesh → Separate 선택",
+        "각 파트별로 재질 할당"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Combine 후 히스토리를 남겨두면 변형이 꼬입니다 → Edit → Delete by Type → History 로 히스토리 삭제",
+    "Separate 후 파트가 하나로 남아있음 → 선택 모드가 Object가 아닌 Vertex/Edge/Face인지 확인하고 다시 Separate 실행",
+    "Pivot이 원래 위치에 남아 움직임이 어색함 → Combine 후 Modify → Center Pivot 로 재설정"
+  ],
+  "related": [
+    "Merge Vertex Tool",
+    "Extract",
+    "Detach Component",
+    "Delete History"
+  ],
+  "videos": [
+    {
+      "id": "qqLsijlKa5A",
+      "title": "Maya's Combine & Separate Tools",
+      "author": "Josh Antonio"
+    },
+    {
+      "id": "vWCSDhlsLho",
+      "title": "MAYA MASTERCLASS 12.5 - How To  COMBINE & SEPARATE OBJECTS ( BEGINNER TUTORIAL )",
+      "author": "TheForge Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Combine%20and%20Separate",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Combine",
+    "Edit",
+    "Type",
+    "History"
+  ],
+  "at": "2026-11-08T02:36:59.379008+00:00"
+}
