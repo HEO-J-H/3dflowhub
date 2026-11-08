@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-tools-vs-projects-ztl-and-zpr-3ab6",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Tools vs Projects (ZTL and ZPR)",
+  "title": "Tool·Project 저장 차이",
+  "summary": "ZBrush에서 Tools(.ZTL)와 Projects(.ZPR)는 각각 개별 모델과 전체 작업 세션을 저장하는 파일 형식으로, 작업 흐름을 관리하고 다른 PC·팀과 공유할 때 사용합니다.",
+  "when": [
+    "단일 모델을 여러 프로젝트에서 재사용하고 싶을 때",
+    "전체 씬(서브툴·캔버스·폴리페인트 등)을 그대로 보존해 다른 컴퓨터에서 이어 작업할 때",
+    "버전·파일 손상 위험을 최소화해 백업을 만들고 싶을 때"
+  ],
+  "steps": [
+    "File → New Document (Ctrl+N) 로 빈 캔버스 생성",
+    "툴을 만들거나 가져온 뒤 Subtool 패널에서 필요하면 Merge 또는 Split 수행",
+    "Tool 메뉴 → Save As → ZTool (.ZTL) 로 현재 서브툴(모델)만 저장",
+    "Project 메뉴 → Save As → ZProject (.ZPR) 로 현재 Document·Subtool·폴리페인트·스냅샷 전체를 저장",
+    "다른 PC에서 열 때는 Project → Open Project (Ctrl+O) 로 .ZPR 파일을 선택하면 모든 내용이 복원됩니다",
+    "필요 시 LightBox (,) 로 저장된 .ZTL 파일을 끌어와 새로운 프로젝트에 추가"
+  ],
+  "params": [
+    {
+      "name": "ZTool (.ZTL)",
+      "desc": "현재 선택된 Subtool(모델)만 저장"
+    },
+    {
+      "name": "ZProject (.ZPR)",
+      "desc": " Document, Subtool, Polypaint, LightBox 설정 전체를 저장"
+    },
+    {
+      "name": "Subtool",
+      "desc": "하나의 Tool 안에 포함된 개별 메쉬"
+    },
+    {
+      "name": "Document",
+      "desc": "캔버스 크기·Resolution·Position 등 뷰포트 설정"
+    },
+    {
+      "name": "LightBox",
+      "desc": "파일 탐색기·저장·로드를 빠르게 수행"
+    },
+    {
+      "name": "Export",
+      "desc": "다른 포맷(OBJ, FBX 등)으로 내보낼 때 사용"
+    }
+  ],
+  "examples": [
+    {
+      "title": "단일 모델을 여러 프로젝트에서 재사용",
+      "steps": [
+        "툴을 완성한 뒤 Tool → Save As → ZTool (.ZTL) 저장",
+        "다른 프로젝트를 시작할 때 Project → New → LightBox에서 .ZTL 파일을 끌어와 Subtool로 추가"
+      ]
+    },
+    {
+      "title": "전체 씬을 다른 PC로 이동",
+      "steps": [
+        "작업이 끝나면 Project → Save As → ZProject (.ZPR) 저장",
+        "파일을 USB·클라우드·네트워크에 복사 후 다른 PC에서 Project → Open Project 로 열기"
+      ]
+    },
+    {
+      "title": "백업 후 버전 관리",
+      "steps": [
+        "중간 저장 시 Tool → Save As 로 .ZTL 저장",
+        "주요 단계마다 Project → Save As 로 .ZPR 저장해 두면 언제든 이전 상태 복구 가능"
+      ]
+    }
+  ],
+  "mistakes": [
+    "ZTool만 저장하고 Document 설정을 잊음 → 전체 작업을 복원하려면 반드시 ZProject(.ZPR)도 저장",
+    "프로젝트를 열 때 LightBox에서 파일을 끌어와서만 열면 Document 설정이 누락 → Project → Open Project 로 열어야 모든 설정 복원",
+    "파일명을 영문이 아닌 특수문자로 저장 → ZBrush가 파일을 인식 못함 → 영문·숫자·언더스코어만 사용"
+  ],
+  "related": [
+    "LightBox",
+    "Subtool",
+    "Document",
+    "Project"
+  ],
+  "videos": [
+    {
+      "id": "mgMJiTHba70",
+      "title": "Tools VS Projects | Lesson 2 | Chapter 1 | Zbrush 2021.5 Essentials Training",
+      "author": "zinteractive"
+    },
+    {
+      "id": "Lnw-y7xV1Sw",
+      "title": "#AskZBrush- \"What is or isn't Saved in a Project (ZPR) and Tool (ZTL) \"",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Tools%20vs%20Projects%20%28ZTL%20and%20ZPR%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T02:23:27.667720+00:00"
+}

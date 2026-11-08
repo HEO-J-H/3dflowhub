@@ -1,0 +1,89 @@
+{
+  "id": "maya-target-weld-894b",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Target Weld",
+  "title": "Target Weld",
+  "summary": "Target Weld는 선택한 Vertex를 지정한 타깃 Vertex로 정확히 합치는 Maya의 편집 툴입니다.",
+  "when": [
+    "두 Vertex 사이에 미세한 틈이 생겼을 때",
+    "중복된 정점이 많아 메쉬가 복잡해졌을 때",
+    "특정 포인트에 여러 정점을 모아 하나의 정점으로 만들고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 F8(또는 오른쪽 클릭 → Component → Vertex)으로 Vertex 모드 전환",
+    "타깃으로 삼을 Vertex를 클릭하여 선택 (단일 선택)",
+    "Edit Mesh → Target Weld 클릭 (또는 Shift+Ctrl+W)",
+    "옵션 창에서 Threshold 값 조정 후 Apply 클릭"
+  ],
+  "params": [
+    {
+      "name": "Target Vertex",
+      "desc": "합칠 기준이 되는 타깃 Vertex"
+    },
+    {
+      "name": "Threshold",
+      "desc": "타깃과의 거리 허용 범위, 값이 클수록 멀리 있는 Vertex도 합쳐짐"
+    },
+    {
+      "name": "Keep Original",
+      "desc": "타깃 Vertex를 유지하고 원본을 삭제할지 여부"
+    },
+    {
+      "name": "Weld To",
+      "desc": "‘First’(첫 번째 선택) 혹은 ‘Last’(마지막 선택) 중 어느 Vertex로 합칠지 지정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 연결부 틈 메우기",
+      "steps": [
+        "파이프 끝부분의 두 Vertex를 선택",
+        "타깃 Vertex로 연결하고 싶은 중앙 Vertex를 선택",
+        "Target Weld 실행 → 파이프가 매끄럽게 연결됨"
+      ]
+    },
+    {
+      "title": "Import 후 중복 정점 정리",
+      "steps": [
+        "전체 메쉬를 선택하고 ‘Select All’ → ‘Select Similar → Vertex’",
+        "Threshold를 크게 잡고 Target Weld 실행",
+        "중복 정점이 하나로 합쳐져 메쉬가 정리됨"
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 타깃 선택 → 타깃 Vertex를 다시 선택하고 재실행",
+    "Threshold가 너무 낮아 합치지 않음 → Threshold 값을 증가시켜 재시도",
+    "Vertex 모드가 아닌 오브젝트 모드에서 실행 → F8로 Vertex 모드 전환 후 사용"
+  ],
+  "related": [
+    "Merge Vertex",
+    "Delete Edge/Vertex",
+    "Combine",
+    "Smooth"
+  ],
+  "videos": [
+    {
+      "id": "mCUQx0gyy84",
+      "title": "The Maya Toolbelt - Target Weld",
+      "author": "Maya Toolbelt"
+    },
+    {
+      "id": "SB9f23Uor3c",
+      "title": "Maya's Target Weld Tool",
+      "author": "Josh Antonio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Target%20Weld",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Component",
+    "Vertex",
+    "Edit Mesh",
+    "Target Weld"
+  ],
+  "at": "2026-11-08T02:23:02.645960+00:00"
+}
