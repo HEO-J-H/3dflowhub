@@ -22823,5 +22823,67 @@
     "id": "p-0a99e81e4f",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록과 최근 커밋에 백엔드 RAG 테스트 및 예외 처리 보완 관련 작업이 다수 포함되어 있어 중복되거나 이미 반영된 내용입니다."
+  },
+  {
+    "at": "2026-11-08T19:14:11+00:00",
+    "kind": "proposal",
+    "id": "p-7ae35ce4ab",
+    "title": "RAG 오픈소스 연동 구조 초안 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너 메시지: 깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영",
+    "proposal": "docs/agent-guides/rag-integration.md에 검토된 오픈소스(예: FAISS, sentence-transformers)의 라이선스 및 통합 절차를 정리합니다.",
+    "expected": "RAG 기능 도입을 위한 명확한 기술적 가이드 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:14:11+00:00",
+    "kind": "proposal",
+    "id": "p-430aa8b396",
+    "title": "백엔드 RAG 쿼리 엔드포인트 기본 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "백엔드 파이프라인 및 테스트 자동화 요구",
+    "proposal": "backend/tests/test_rag.py 파일에 RAG 검색 엔드포인트의 기본 요청 및 예외 처리 검증 테스트를 추가합니다.",
+    "expected": "RAG 기능 도입 시 안정성 확보 및 테스트 커버리지 유지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:14:32.699249+00:00",
+    "kind": "decision",
+    "id": "p-7ae35ce4ab",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T19:14:32.718196+00:00",
+    "kind": "decision",
+    "id": "p-430aa8b396",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 RAG 쿼리 엔드포인트 단위 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T19:14:34.931338+00:00",
+    "kind": "triage",
+    "id": "p-7ae35ce4ab",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 연동 검토와 문서화 작업이 최근 커밋 및 끝낸 제안에 충실히 반영되었습니다."
+  },
+  {
+    "at": "2026-11-08T19:14:34.949590+00:00",
+    "kind": "decision",
+    "id": "p-7ae35ce4ab",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 연동 검토와 문서화 작업이 최근 커밋 및 끝낸 제안에 충실히 반영되었습니다."
   }
 ]
