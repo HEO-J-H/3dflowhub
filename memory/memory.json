@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-06T03:04:44.898266+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/06 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-06T03:14:47.524437+00:00",
       "collected": 0,
       "saved": 0,
@@ -6619,6 +6607,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-08T08:42:10.816511+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 148,
+      "candidates_passed": 97,
+      "offtopic": 32,
+      "short": 0,
+      "prefiltered": 26,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "c3d462db",
+      "visuals": 0,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6714,7 +6729,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-31 [성찰] 스포츠, 기업 구조조정, 중복 할인 등의 노이즈 뉴스를 철저히 차단하고, Maya·3ds Max·Blender 중심의 고CPC 실무 튜토리얼 및 스크립트 리뷰에 집중해야 저품질 페널티를 피하고 검색 유입을 극대화할 수 있습니다.",
     "2026-10-31 [성찰] 스포츠, 기업 구조조정, 중복 할인 등의 저품질·무관한 노이즈 뉴스를 철저히 차단하고, 실무에 유용한 Blender 및 Maya 등 3D DCC 튜토리얼과 스크립트 위주로 콘텐츠를 선별해야 검색 유입과 애드센스 효율을 극대화할 수 있습니다.",
     "2026-10-31 [성찰] 스포츠, 구조조정, 중복 할인 등의 저품질·무관 콘텐츠 수집을 철저히 차단하고, Maya·3ds Max·Blender 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠를 강화해야 합니다.",
     "2026-10-31 [evolve.calculate_cpc_score_distribution(] 작은 변경 단위로 철저한 테스트와 함께 기능을 추가하면 안정성을 유지할 수 있습니다.",
@@ -6833,7 +6847,8 @@
     "2026-11-08 [[p-8370bc2097|사이트·UX] PR #47 백엔드 PBR 및 U] 외부 URL 인게스트 기능 추가 시 다양한 포맷과 비정상적인 입력값에 대한 예외 처리를 철저히 검증해야 한다.",
     "2026-11-08 [[p-43ea959527|사이트·UX] 경량 RAG 엔드포인트 프로토타입] 테스트 실패 — E       assert 404 == 200 / E        +  where 404 = <Response [404 Not Found]>.status_code / FAILED backend/tests/test_core.py::test_rag_query_endpoint - assert 404 == 200",
     "2026-11-08 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D/CG 전문 맥락 필터를 더욱 강화하고 실무 검색량이 높은 튜토리얼 및 애드온 중심의 콘텐츠를 집중 발행해야 합니다.",
-    "2026-11-08 [성찰] 검색 의도에 맞는 툴명+핵심 키워드 제목과 1500자 이상 실무 중심 콘텐츠가 트래픽·RPM을 크게 끌어온다."
+    "2026-11-08 [성찰] 검색 의도에 맞는 툴명+핵심 키워드 제목과 1500자 이상 실무 중심 콘텐츠가 트래픽·RPM을 크게 끌어온다.",
+    "2026-11-08 [성찰] 동음이의어 오수집을 철저히 차단하고 검색 유입이 입증된 3ds Max Script, Blender 애드온, Maya 리깅 등 실무 중심 튜토리얼 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6883,7 +6898,7 @@
     "Game Engine/기타 엔진": 65,
     "VFX/After Effects": 36,
     "VFX/Houdini FX": 9,
-    "3D DCC/기타 DCC": 66,
+    "3D DCC/기타 DCC": 67,
     "3D DCC/Substance 3D": 34,
     "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 10,
@@ -9059,14 +9074,15 @@
     1960120377398330037,
     4829272867890077961,
     11705049387570410635,
-    5728113887441941692
+    5728113887441941692,
+    275463399491948714
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2159,
-    "Game Engine": 2159,
-    "VFX": 2159,
-    "AI 3D": 2159
+    "3D DCC": 2160,
+    "Game Engine": 2160,
+    "VFX": 2160,
+    "AI 3D": 2160
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

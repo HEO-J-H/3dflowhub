@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-transpose-line-b1a4",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Transpose line",
+  "title": "Transpose — 이동·회전·크기",
+  "summary": "ZBrush Transpose line은 마스크와 조합하여 모델을 이동, 회전, 스케일 조절하거나 비틀 수 있는 비선형 편집 도구입니다.",
+  "when": [
+    "스컬프팅 중 특정 부위의 각도나 포즈를 자연스럽게 바꿀 때",
+    "모델의 전체적인 비율(길이와 두께)을 직관적으로 늘리고 줄일 때",
+    "대칭을 유지하거나 특정 축을 기준으로 정확하게 회전시킬 때"
+  ],
+  "steps": [
+    "상단 툴바 또는 드로잉 영역에서 Move (W), Scale (E), Rotate (R) 중 원하는 변형 모드를 선택합니다.",
+    "모델 위에서 드래그하여 Transpose line(축)을 생성합니다.",
+    "Transpose line의 끝점(Ring)을 드래그하여 이동, 회전, 스케일을 적용합니다.",
+    "중간 원(Center Ring)을 드래그하여 축의 피벗 위치를 이동하거나 모델을 변형합니다.",
+    "Ctrl 키를 드래그하여 마스크를 칠한 뒤 Transpose line을 사용하면 선택된 부위만 정교하게 변형됩니다."
+  ],
+  "params": [
+    {
+      "name": "Move",
+      "desc": "Transpose line을 이용해 선택한 영역을 이동하거나 길이를 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "선택한 영역의 크기를 늘리거나 줄입니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "축을 기준으로 모델을 회전시키거나 구부립니다."
+    },
+    {
+      "name": "Masking",
+      "desc": "Ctrl 키로 마스크를 적용해 Transpose 변형 영역을 제한합니다."
+    },
+    {
+      "name": "Poseable symmetry",
+      "desc": "비대칭 포즈를 잡을 때 대칭 축을 유지하거나 조정할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 팔 포즈 수정하기",
+      "steps": [
+        "Ctrl 키로 팔을 제외한 몸통 부위에 마스크를 칠합니다.",
+        "Rotate(R) 모드를 선택하고 어깨 부위에 Transpose line을 드래그하여 배치합니다.",
+        "끝점을 드래그하여 팔의 각도를 자연스럽게 회전시킵니다."
+      ]
+    },
+    {
+      "title": "뿔이나 꼬리 길이 늘리기",
+      "steps": [
+        "Move(W) 모드를 선택합니다.",
+        "뿔의 끝에서 시작점까지 Transpose line을 길게 그립니다.",
+        "끝점을 드래그하여 뿔의 길이를 늘리거나 형태를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크가 없는 상태에서 전체 모델이 변형됨 → Ctrl 키로 변형할 부위 외의 영역을 먼저 마스킹하세요.",
+    "Transpose line의 피벗 위치가 잘못 지정됨 → 중간 원(Center Ring)을 정확한 관절 위치로 이동시킨 뒤 회전하세요."
+  ],
+  "related": [
+    "Masking",
+    "Move",
+    "Rotate",
+    "Scale"
+  ],
+  "videos": [
+    {
+      "id": "FVaTCf90l7Q",
+      "title": "053 ZBrush Transpose Basics",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "dne3tanKjP4",
+      "title": "How to use the TRANSPOSE LINE in Zbrush P1 - 60 Second Tutorial",
+      "author": "Danny Mac 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Transpose%20line",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Move",
+    "Scale",
+    "Rotate",
+    "Transpose"
+  ],
+  "at": "2026-11-08T08:42:45.344758+00:00"
+}

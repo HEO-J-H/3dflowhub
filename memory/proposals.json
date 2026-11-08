@@ -20750,5 +20750,88 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_rag.py 대체 테스트 구조 적용",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T08:42:22.410357+00:00",
+    "kind": "report",
+    "id": "r-2026-11-08T08:42",
+    "text": "총 1,183건의 Post 중 최근 7일간 330건이 안정적으로 발행되었으며, 특히 VFX와 3D DCC 분야의 학습 콘텐츠 비중이 높습니다. 다만 검색 유입과 조회수 확대를 위해 에버그린 기초 가이드 중심의 배분을 유지하며 품질을 지속적으로 강화해야 합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.8,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자가 오래 머물며 실질적으로 학습할 수 있는 에버그린 기초 가이드(guides) 중심의 콘텐츠 비중을 높여 검색 경쟁력을 강화합니다."
+  },
+  {
+    "at": "2026-11-08T08:42:22.410357+00:00",
+    "kind": "proposal",
+    "id": "p-1e7628c1e0",
+    "title": "VFX 스튜디오 제작 사례 가이드 보강",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 VFX 도메인에서 작품·제작 사례(65건)가 가장 높은 비중을 차지하고 있습니다.",
+    "proposal": "DaVinci Resolve 및 After Effects를 활용한 실무 합성 및 색보정 기초 가이드라인을 확충합니다.",
+    "expected": "VFX 및 영상 편집 실무자의 실질적인 학습 만족도 증대",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "DaVinci Resolve",
+      "group": "Color Grading",
+      "name": "Color Grading Basics",
+      "title_ko": "DaVinci Resolve 컬러 그레이딩 및 노드 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-08T08:42:22.457819+00:00",
+    "kind": "decision",
+    "id": "p-1e7628c1e0",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T08:42:22.484607+00:00",
+    "kind": "applied",
+    "id": "p-1e7628c1e0",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-08T08:42:25+00:00",
+    "kind": "proposal",
+    "id": "p-68424ba445",
+    "title": "로컬 파이프라인 실행 가이드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #50 병합 및 PBR 통합 완료 후 로컬 파이프라인 관련 문서 보완 필요성 대두",
+    "proposal": "docs/local-pipeline.md 파일을 수정하여 TripoSR 및 CUDA 설정에 필요한 구체적인 VRAM 권장 사양과 실행 절차를 추가합니다.",
+    "expected": "사용자가 로컬 환경에서 발생할 수 있는 VRAM 부족 및 실행 오류를 스스로 해결할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T08:43:01.014112+00:00",
+    "kind": "decision",
+    "id": "p-68424ba445",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T08:43:02.949554+00:00",
+    "kind": "triage",
+    "id": "p-68424ba445",
+    "verdict": "done_already",
+    "reason": "이미 'docs/local-pipeline.md VRAM 설정 가이드 보완' 및 'docs/local-pipeline.md 내용 최신화 및 검증' 등의 작업으로 완료되었습니다."
+  },
+  {
+    "at": "2026-11-08T08:43:02.965358+00:00",
+    "kind": "decision",
+    "id": "p-68424ba445",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 'docs/local-pipeline.md VRAM 설정 가이드 보완' 및 'docs/local-pipeline.md 내용 최신화 및 검증' 등의 작업으로 완료되었습니다."
   }
 ]

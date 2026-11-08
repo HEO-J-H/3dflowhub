@@ -1,0 +1,98 @@
+{
+  "id": "maya-retopologize-76f3",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Retopologize",
+  "title": "Retopologize — 자동 리토폴로지",
+  "summary": "Maya의 Retopologize는 고해상도 스캔 데이터나 스컬프팅 메쉬를 애니메이션과 시뮬레이션에 적합한 깔끔한 사각형(Quad) 토폴로지로 자동 재배치해 주는 기능입니다.",
+  "when": [
+    "ZBrush나 Mudbox 등에서 스컬프팅한 하이폴리곤 캐릭터를 리깅하고 애니메이션할 때",
+    "3D 스캔 데이터의 불규칙하고 무거운 삼각형 메쉬를 가볍고 정돈된 구조로 정리할 때",
+    "수동 Quad Draw 작업 전에 빠르고 정확하게 베이스 토폴로지를 자동 생성할 때"
+  ],
+  "steps": [
+    "리토폴로지할 하이폴리곤 메쉬를 뷰포트에서 선택합니다.",
+    "상단 메뉴 세트를 Modeling으로 변경합니다.",
+    "메뉴 바에서 Mesh → Retopologize 옵션 박스를 엽니다.",
+    "Target Face Count 및 Symmetry 등의 주요 옵션을 설정합니다.",
+    "옵션 창의 Retopologize 버튼을 클릭하여 실행합니다.",
+    "뷰포트에서 생성된 깔끔한 사각형 토폴로지 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Target Face Count",
+      "desc": "결과물 메쉬가 가질 목표 폴리곤(페이스) 개수를 지정합니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "특정 축(X, Y, Z)을 기준으로 대칭적인 토폴로지 흐름을 생성합니다."
+    },
+    {
+      "name": "Regularity",
+      "desc": "페이스의 정렬 상태와 균일성을 조절하여 사각형의 정방향성을 유지합니다."
+    },
+    {
+      "name": "Adaptivity",
+      "desc": "디테일이 필요한 부분에는 폴리곤을 더 배분하고 평면적인 곳은 줄여줍니다."
+    },
+    {
+      "name": "Keep Hard Edges",
+      "desc": "모델의 날카로운 모서리나 하드 표면 경계 부위를 유지합니다."
+    },
+    {
+      "name": "Boundary Tolerance",
+      "desc": "오픈 경계선(엣지)의 형태를 원본에 가깝게 보존하도록 허용 오차를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 스컬프팅 메쉬 자동 정리",
+      "steps": [
+        "ZBrush에서 가져온 하이폴리곤 캐릭터 오브젝트를 선택합니다.",
+        "Mesh → Retopologize 메뉴를 실행합니다.",
+        "Target Face Count를 낮게 설정하여 게임 엔진용 로우폴리 메쉬를 얻습니다."
+      ]
+    },
+    {
+      "title": "대칭 구조 오브젝트 리토폴로지",
+      "steps": [
+        "중앙 기준으로 대칭인 크리처 모델을 선택합니다.",
+        "Retopologize 옵션에서 Symmetry 축을 X로 활성화합니다.",
+        "대칭이 완벽하게 유지된 깔끔한 토폴로지 결과물을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 틀어져 왜곡된 결과가 나옴 → Modify → Freeze Transformations를 먼저 실행하여 스케일을 1로 고정합니다.",
+    "불필요한 히스토리 때문에 오류가 발생함 → Edit → Delete by Type → History로 히스토리를 정리한 후 다시 시도합니다.",
+    "목표 폴리곤 수가 너무 적어 디테일이 무너짐 → Target Face Count 값을 높이거나 Adaptivity 옵션을 조절합니다."
+  ],
+  "related": [
+    "Quad Draw",
+    "Remesh",
+    "Cleanup",
+    "Sculpting Tool"
+  ],
+  "videos": [
+    {
+      "id": "9N4rG5qHWgk",
+      "title": "How to Retopologize a Head in Maya",
+      "author": "FlippedNormals"
+    },
+    {
+      "id": "4zST3WzOPA4",
+      "title": "Quickly Retopologize Booleans in Maya 2023",
+      "author": "Academic Phoenix Plus"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Retopologize",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modeling",
+    "Mesh",
+    "Retopologize"
+  ],
+  "at": "2026-11-08T08:42:41.722719+00:00"
+}
