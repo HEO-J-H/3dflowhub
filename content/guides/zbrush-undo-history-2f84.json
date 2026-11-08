@@ -1,0 +1,84 @@
+{
+  "id": "zbrush-undo-history-2f84",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Undo History",
+  "title": "Undo History",
+  "summary": "ZBrush의 Undo History는 작업 과정을 Timeline 형태로 기록하여 특정 시점으로 되돌리거나, 과거의 조형 상태를 슬라이더로 자유롭게 오갈 수 있는 강력한 기능입니다.",
+  "when": [
+    "작업 중 실수로 브러시를 너무 강하게 적용하여 이전 모양으로 돌아가고 싶을 때",
+    "모델링의 특정 단계별 모습을 Undo History 슬라이더로 비교하고 싶을 때",
+    "과거 특정 시점의 메쉬 상태를 별도의 서브툴(SubTool)이나 마스크로 추출하고 싶을 때"
+  ],
+  "steps": [
+    "상단 메뉴 바나 LightBox, 또는 드로잉 영역에서 작업을 진행하며 히스토리를 쌓습니다.",
+    "상단 메뉴의 Edit 탭을 열거나, 기본 인터페이스 상단의 Undo History Timeline 바를 확인합니다.",
+    "Ctrl+Z를 눌러 순차적으로 이전 단계로 돌아갑니다.",
+    "더 넓은 범위의 기록을 보려면 Undo History 슬라이더 마커를 직접 드래그하여 원하는 시점으로 이동합니다.",
+    "필요한 경우 특정 시점의 상태를 유지한 채 새 브러시 작업을 계속 진행하여 새로운 분기점을 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Undo History",
+      "desc": "툴별로 작업 과정을 Timeline에 기록하고 시점을 이동하는 기능입니다."
+    },
+    {
+      "name": "Max History",
+      "desc": "메모리 내에 저장할 최대 Undo 기록 횟수를 설정합니다."
+    },
+    {
+      "name": "Timeline",
+      "desc": "Undo History와 연동되어 시간 흐름에 따른 카메라 뷰와 포즈 변화를 기록합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실수했던 디테일 조형 복구하기",
+      "steps": [
+        "얼굴 스울링 중 형태가 무너진 지점을 확인합니다.",
+        "Ctrl+Z를 여러 번 눌러 형태가 무너지기 직전 상태로 돌아갑니다.",
+        "그 상태에서 스디(Sculpt) 작업을 이어갑니다."
+      ]
+    },
+    {
+      "title": "과거 작업 시점을 마스크로 추출하기",
+      "steps": [
+        "Undo History 슬라이더를 원하는 과거 시점으로 이동합니다.",
+        "캔버스에 모델을 드래그하거나 특정 영역을 마스킹합니다.",
+        "현재 시점으로 돌아와 과거의 마스크 데이터가 반영된 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메모리 부족으로 히스토리가 끊김 → Preferences > Mem > Max History 값을 조절하거나 불필요한 서브툴을 정리하세요.",
+    "도큐먼트를 새로 열어 히스토리가 초기화됨 → ZBrush는 툴(Tool) 단위로 히스토리가 저장되므로 저장 시 ZTL 또는 ZPR 파일 형식을 확인하세요."
+  ],
+  "related": [
+    "SubTool",
+    "Morph Target",
+    "ProjectAll",
+    "ZProject"
+  ],
+  "videos": [
+    {
+      "id": "AtzXehYjxvg",
+      "title": "How To Create An Undo History Movie In ZBrush #zbrush",
+      "author": "Kingslien"
+    },
+    {
+      "id": "RgwvfGvNHek",
+      "title": "015 Zbrush 2020 File Undo And Preferences",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Undo%20History",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "LightBox",
+    "Edit",
+    "Undo History Timeline"
+  ],
+  "at": "2026-11-08T08:12:43.890906+00:00"
+}

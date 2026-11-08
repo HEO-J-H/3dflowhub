@@ -1,0 +1,79 @@
+{
+  "id": "maya-smooth-subdivision-preview-3-key-35e2",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Smooth (Subdivision preview 3 key)",
+  "title": "Smooth·3키 미리보기",
+  "summary": "Maya에서 오브젝트의 폴리곤 면을 부드럽게 세분화하여 곡면을 매끄럽게 표현하는 실시간 스무딩 프리뷰 기능입니다.",
+  "when": [
+    "저폴리곤(Low-poly) 모델링을 작업할 때 고품질 곡면 형태를 미리 확인하고 싶을 때",
+    "캐릭터나 유기적 형태의 오브젝트를 부드러운 스무딩 상태로 작업하고 싶을 때",
+    "렌더링 전 최종 곡면의 실루엣과 볼륨감을 빠르게 체크하고 싶을 때"
+  ],
+  "steps": [
+    "Object Mode에서 부드럽게 만들고 싶은 폴리곤 오브젝트를 선택합니다.",
+    "키보드 3 키를 눌러 Subdivision Preview(Smooth Mesh) 상태로 전환합니다.",
+    "원래의 각진 로우폴리 상태로 돌아가려면 키보드 1 키를 누릅니다.",
+    "중간 단계의 서브디비전 레벨을 보려면 키보드 2 키를 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Smooth Mesh Preview",
+      "desc": "오브젝트를 영구적으로 변형하지 않고 화면상에서 부드럽게 미리 보여주는 기능입니다."
+    },
+    {
+      "name": "Division Levels",
+      "desc": "스무딩을 적용할 세분화 단계를 조절하여 곡면의 정밀도를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저폴리곤 캐릭터 얼굴 곡면 확인",
+      "steps": [
+        "캐릭터 헤드 모델링을 Object Mode에서 선택합니다.",
+        "키보드 3 키를 눌러 턱과 볼의 곡선이 부드럽게 연결되는지 확인합니다.",
+        "필요시 1 키를 눌러 Vertex 위치를 수정하고 다시 3 키로 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "기계 부품의 모서리 부드러움 체크",
+      "steps": [
+        "하드 서피스 모델링 메쉬를 선택합니다.",
+        "키보드 3 키를 눌러 엣지 주변의 빛 반사와 곡면 상태를 점검합니다.",
+        "너무 뭉개지는 모서리가 있다면 1 키로 돌아가 Bevel을 추가합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "3 키 상태에서 엣지가 너무 뭉개짐 → 모서리 부분에 Hard Edge가 풀려 있거나 Edge Loop(Support Edge)가 부족한 원인이므로, Chamfer나 Connect Tool로 지지 엣지를 추가합니다.",
+    "오브젝트의 스케일이 깨져 있음 → Transform 값이 비정상적일 때 스무딩 결과가 일그러지므로 Modify 메뉴에서 Freeze Transformations를 실행한 뒤 다시 확인합니다."
+  ],
+  "related": [
+    "Smooth",
+    "Bevel",
+    "Crease Tool",
+    "Mesh Smooth"
+  ],
+  "videos": [
+    {
+      "id": "sxbFCU_8NbQ",
+      "title": "Maya 3D Modeling Basics - How to Use Mesh Smooth in Maya 2022",
+      "author": "3DWolf"
+    },
+    {
+      "id": "bithdwYGn5g",
+      "title": "Maya Modeling: Smooth & Bevel Tools Explained!",
+      "author": "Rees3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Smooth%20%28Subdivision%20preview%203%20key%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object Mode",
+    "Subdivision Preview",
+    "Smooth Mesh"
+  ],
+  "at": "2026-11-08T08:12:40.226916+00:00"
+}

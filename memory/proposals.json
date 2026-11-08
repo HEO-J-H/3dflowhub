@@ -20616,5 +20616,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T08:12:30+00:00",
+    "kind": "proposal",
+    "id": "p-65be9e469a",
+    "title": "docs/agent-guides/rag-integration.md RAG 가이드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너가 깃허브 RAG 오픈소스 검토 및 반영을 요청함.",
+    "proposal": "docs/agent-guides/rag-integration.md 문서에 오픈소스 RAG 라이브러리(예: FAISS, sentence-transformers 등 MIT/Apache-2.0 라이선스)의 Pix2Poly 도입 타당성과 요구사항을 구체적으로 정리합니다.",
+    "expected": "외부 RAG 도입 시 기술적 기준 및 라이선스 검증 절차가 명확해집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T08:12:30+00:00",
+    "kind": "proposal",
+    "id": "p-3c83b53977",
+    "title": "backend/tests/test_rag.py 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 관련 기능 도입 전 백엔드 검증 기반 마련 필요.",
+    "proposal": "backend/tests/test_rag.py 파일을 추가하여 향후 추가될 경량 RAG 검색 기능의 기본 입출력과 예외 상황을 검증하는 테스트 코드를 작성합니다.",
+    "expected": "",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T08:13:02.666911+00:00",
+    "kind": "decision",
+    "id": "p-65be9e469a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T08:13:02.687213+00:00",
+    "kind": "decision",
+    "id": "p-3c83b53977",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_rag.py 대체 테스트 구조 적용",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T08:13:04.804066+00:00",
+    "kind": "triage",
+    "id": "p-65be9e469a",
+    "verdict": "done_already",
+    "reason": "이미 'docs/rag-integration.md 오픈소스 활용 방안 추가 문서화' 및 관련 RAG 오픈소스 검토 내용이 끝낸 제안과 최근 커밋에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-08T08:13:04.822765+00:00",
+    "kind": "decision",
+    "id": "p-65be9e469a",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 'docs/rag-integration.md 오픈소스 활용 방안 추가 문서화' 및 관련 RAG 오픈소스 검토 내용이 끝낸 제안과 최근 커밋에 반영되어 있습니다."
   }
 ]
