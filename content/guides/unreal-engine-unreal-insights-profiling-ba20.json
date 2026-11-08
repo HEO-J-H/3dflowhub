@@ -1,0 +1,90 @@
+{
+  "id": "unreal-engine-unreal-insights-profiling-ba20",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Unreal Insights profiling",
+  "title": "Unreal Insights — 성능 분석",
+  "summary": "Unreal Insights는 Unreal Engine 게임과 Application의 CPU, GPU, 메모리 및 네트워크 성능을 정밀하게 분석하고 프로파일링하는 공식 툴입니다.",
+  "when": [
+    "게임 실행 중 특정 구간에서 프레임 드랍이나 끊김 현상(Stuttering)이 발생할 때",
+    "GPU 또는 CPU 병목 현상(Bottleneck)의 원인을 정확히 찾아내야 할 때",
+    "네트워크 패킷이나 메모리 사용량을 최적화하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 설치 폴더 내 Engine/Binaries/Win64 경로에서 UnrealInsights.exe를 실행합니다.",
+    "Unreal Editor 또는 패키지된 게임을 실행할 때 콘솔 창(~)에 'Insights.Tracehost=localhost' 명령어를 입력하여 트레이싱을 활성화합니다.",
+    "Unreal Insights 프로그램의 상단 연결(Connection) 목록에서 실행 중인 프로젝트 세션을 선택합니다.",
+    "프로파일링이 시작되면 Timing Insights 창에서 프레임 단위의 CPU 및 GPU 실행 시간을 확인합니다.",
+    "상세 분석이 필요한 구간을 Mouse로 드래그하여 확대하고, 각 스레드(Thread)별 작업 부하를 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Timing Insights",
+      "desc": "CPU와 GPU의 시간대별 실행 흐름과 프레임 타이밍을 시각적으로 보여줍니다."
+    },
+    {
+      "name": "Networking Insights",
+      "desc": "멀티플레이어 환경에서 네트워크 패킷 전송량과 대역폭 사용을 분석합니다."
+    },
+    {
+      "name": "Memory Insights",
+      "desc": "실시간 메모리 할당 상태와 누수 여부를 추적합니다."
+    },
+    {
+      "name": "Trace Channels",
+      "desc": "프로파일링할 데이터의 종류(CPU, GPU, Asset 등)를 켜고 끕니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "특정 프레임 드랍 구간 분석",
+      "steps": [
+        "게임 플레이 중 끊김이 발생한 순간을 기억합니다.",
+        "Unreal Insights Timeline에서 해당 시간대의 프레임 스파이크(Spike)를 찾습니다.",
+        "해당 프레임의 CPU/GPU 스레드를 확장하여 어떤 함수나 시스템이 부하를 주는지 확인합니다."
+      ]
+    },
+    {
+      "title": "렌더링 부하(GPU 병목) 원인 파악",
+      "steps": [
+        "Timing Insights에서 GPU 탭을 활성화합니다.",
+        "Draw Call이나 Nanite, Lumen 관련 패스가 차지하는 시간을 확인합니다.",
+        "과도하게 렌더링 시간을 소모하는 셰이더나오브젝트를 특정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "패키지 빌드에 Trace 설정이 포함되지 않음 → 프로젝트 설정(Project Settings)에서 Trace 관련 옵션이 켜져 있는지 확인하고 다시 빌드합니다.",
+    "원격 기기(모바일/콘솔)에서 프로파일링이 안 됨 → IP 주소 설정(-Tracehost=PC아이피)을 콘솔 명령어나 커맨드라인에 정확히 입력했는지 확인합니다."
+  ],
+  "related": [
+    "Stat System",
+    "GPU Profiler",
+    "Nanite",
+    "Lumen"
+  ],
+  "videos": [
+    {
+      "id": "5rjm1s-pAMk",
+      "title": "Unreal Insights Tutorial (UE 5.5)",
+      "author": "Lucian Tranc"
+    },
+    {
+      "id": "mCZRHljYnZA",
+      "title": "Technical Artist's Guide to Profiling in Unreal Engine | Unreal Fest Orlando 2025",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Unreal%20Insights%20profiling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Engine",
+    "Binaries",
+    "Win64",
+    "UnrealInsights"
+  ],
+  "at": "2026-11-08T00:01:28.615089+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "maya-grouping-and-parenting-f7c2",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Grouping and parenting",
+  "title": "그룹·부모 연결",
+  "summary": "Autodesk Maya의 Grouping(그룹화)과 Parenting(부모-자식 관계)은 여러 오브젝트를 하나로 묶어 이동, 회전, 스케일을 함께 제어할 수 있게 해주는 핵심 씬 관리 기능입니다.",
+  "when": [
+    "자동차의 차체와 바퀴처럼 부속 오브젝트들을 하나의 구조로 묶어 애니메이션할 때",
+    "복잡한 캐릭터나 세트장의 씬 계층 구조(Hierarchy)를 깔끔하게 정리할 때",
+    "오브젝트의 피벗(Pivot) 위치를 기준점으로 모아 변형 작업을 할 때"
+  ],
+  "steps": [
+    "Autodesk Maya를 실행하고 뷰포트에서 묶어줄 오브젝트들을 다중 선택합니다.",
+    "상단 메뉴 바에서 Edit을 클릭합니다.",
+    "드롭다운 메뉴에서 Group(Hotkey: Ctrl+G)을 선택해 빈 그룹 노드 아래로 묶거나, Outliner에서 드래그하여 부모-자식 관계를 만듭니다.",
+    "Parenting의 경우, 자식으로 만들 오브젝트를 먼저 선택하고 마지막에 부모가 될 오브젝트를 Shift 키를 누른 채 선택합니다.",
+    "상단 메뉴 바에서 Edit을 클릭하고 Parent(Hotkey: P)를 선택합니다.",
+    "Outliner 패널에서 계층 구조가 들여쓰기로 잘 형성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Group",
+      "desc": "선택한 오브젝트들을 상위 Null 그룹 노드 아래에 동시에 포함시킵니다."
+    },
+    {
+      "name": "Parent",
+      "desc": "선택한 오브젝트 간에 주종 관계를 형성하여 부모의 변형을 자식이 그대로 따르게 합니다."
+    },
+    {
+      "name": "Unparent",
+      "desc": "부모-자식 관계를 해제하여 자식 오브젝트를 독립적인 최상위 계층으로 분리합니다."
+    },
+    {
+      "name": "Preserve Pose",
+      "desc": "부모를 지정하거나 해제할 때 자식 오브젝트의 월드 좌표상 위치와 회전 값이 틀어지지 않도록 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 바퀴와 차체 연결하기",
+      "steps": [
+        "바퀴 오브젝트를 선택한 뒤 차체 오브젝트를 마지막에 Shift 키를 누르고 선택합니다.",
+        "Hotkey P를 눌러 바퀴를 차체의 자식으로 만듭니다.",
+        "차체 오브젝트를 이동하거나 회전할 때 바퀴가 함께 움직이는지 확인합니다."
+      ]
+    },
+    {
+      "title": "여러 조각의 오브젝트 한 번에 이동하기",
+      "steps": [
+        "흩어져 있는 여러 조각의 파츠들을 모두 선택합니다.",
+        "Hotkey Ctrl+G를 눌러 새로운 그룹 노드를 생성합니다.",
+        "Outliner에서 그룹 노드의 피벗 위치를 원하는 곳으로 조정하고 전체 위치를 이동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "부모를 지정할 때 순서를 반대로 선택함 → 자식과 부모를 올바른 순서(자식 선택 후 마지막에 부모 선택)로 다시 지정하거나 Outliner에서 드래그하여 수정합니다.",
+    "그룹 생성 시 피벗 포인트가 원점(0,0,0)에 위치해 회전이 어색함 → Modify 메뉴에서 Center Pivot을 실행해 그룹의 중심을 오브젝트 정중앙으로 맞춥니다.",
+    "Parent 해제 후 오브젝트가 엉뚱한 위치로 튀어 감 → Unparent 실행 시 World 계층으로 올바르게 빠져나왔는지 Outliner 패널에서 확인합니다."
+  ],
+  "related": [
+    "Outliner",
+    "Hypergraph Hierarchy",
+    "Center Pivot",
+    "Freeze Transformations"
+  ],
+  "videos": [
+    {
+      "id": "hx2TjqabyYg",
+      "title": "Grouping and Parenting Objects in Maya | Beginner 3D Tutorial Day 6",
+      "author": "MayaQuickCraft"
+    },
+    {
+      "id": "m63HZ91s6mA",
+      "title": "Parenting and Grouping in Maya",
+      "author": "Michael Balchaitis"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Grouping%20and%20parenting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T00:01:32.850171+00:00"
+}
