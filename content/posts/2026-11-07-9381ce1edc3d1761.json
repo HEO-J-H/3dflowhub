@@ -13,11 +13,11 @@
     "AI Keying"
   ],
   "summary": "VFX 합성 Software Comp 0.2 베타가 Windows, macOS, Linux용으로 출시되어 FBX 및 Alembic 애니메이션 카메라 Import와 AI 기반 그린스크린 키잉 기능을 제공합니다.",
-  "insight": "버전 0.2 베타는 Alembic과 FBX 카메라 애니메이션을 불러와 카드 지오메트리에 푸티지를 투영하고 3D 렌더러를 통해 깊이, UV, 모션 벡터, 알파 패스를 분리 추출하는 합성 작업을 지원합니다.",
+  "insight": "버전 0.2 베타는 Alembic과 FBX 카메라 애니메이션을 불러와 카드 지오메트리에 푸티지를 투영하고 3D 렌더러를 통해 깊이, UV, 모션 벡터, 알파 패스를 분리 추출하는 합성 작업을 지원합니다. LensDistortion 노드를 통해 Nuke 형식의 3DE Export 파일을 가져와 렌즈 왜곡을 제어할 수 있습니다. 또한 AI 기반 그린스크린 키잉과 디스필 도구를 결합하여 머리카락이나 반투명 소재를 다루는 수작업 부담을 줄입니다.",
   "try_it": [
-    "Comp 0.2 베타 버전을 다운로드하여 설치합니다.",
-    "FBX 또는 Alembic 형식의 카메라와 애니메이션 데이터를 불러옵니다.",
-    "LensDistortion 노드를 적용해 3DE 모델을 불러오고 렌즈 왜곡 보정 테스트를 진행합니다."
+    "FBX 또는 Alembic 애니메이션 카드를 Comp에 불러와 3D 푸티지 투영을 테스트합니다.",
+    "Nuke 형식의 3DE Export 파일을 LensDistortion 노드에 적용해 왜곡 보정을 확인합니다.",
+    "CCkey 노드를 추가하고 전경색 복원 도구로 그린스크린 경계면을 정리합니다."
   ],
   "sections": [
     {
@@ -31,6 +31,10 @@
     {
       "heading": "AI 기반 그린스크린 키잉과 디스필",
       "body": "CCkey 노드를 통해 Corridor Crew Keyer 1 기반의 로컬 AI 그린스크린 키잉을 활용할 수 있습니다. 새로운 디스필 도구와 함께 EdgeReconstruct는 매트 주변의 전경색을 복원하고, BlendSpill은 가장자리 합성을 돕습니다."
+    },
+    {
+      "heading": "크로스 플랫폼 지원과 설치 환경",
+      "body": "Comp 0.2 베타는 Windows, macOS, Linux 운영체제를 모두 지원합니다. 다양한 제작 환경에서 동일한 합성 도구와 카메라 연동 기능을 사용할 수 있습니다. 파일 형식을 일치시켜 3D 씬과 2D 플레이트의 정합성을 높입니다."
     }
   ],
   "faq": [
@@ -51,5 +55,6 @@
   "notion_id": "",
   "id": "2026-11-07-9381ce1edc3d1761",
   "img_tried": true,
-  "enriched_at": "skip"
+  "enriched_at": "skip",
+  "enriched": "2026-11-08"
 }
