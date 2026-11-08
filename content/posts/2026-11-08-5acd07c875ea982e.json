@@ -1,0 +1,57 @@
+{
+  "title_ko": "NVIDIA CUDA 13.5 출시 — Vera Rubin GA 지원",
+  "title": "NVIDIA CUDA 13.5 Brings NVIDIA Vera Rubin GA Support",
+  "url": "https://developer.nvidia.com/blog/nvidia-cuda-13-5-brings-nvidia-vera-rubin-ga-support/",
+  "domain": "AI 3D",
+  "category": "NVIDIA Omniverse",
+  "topic": "업데이트·출시",
+  "tags": [
+    "CUDA 13.5",
+    "NVIDIA",
+    "Vera Rubin",
+    "GPU",
+    "MPS v3"
+  ],
+  "summary": "NVIDIA CUDA 13.5가 정식 출시되어 Vera Rubin GPU 아키텍처를 지원하고 로컬리티 도메인 및 MPS v3 기능을 강화했습니다.",
+  "insight": "CUDA 13.5는 cudaDevSmResourceSplit() API를 통한 SM 리소스 분할과 가중치 타임슬라이싱을 제공하여 대규모 3D 시뮬레이션 및 AI 추론 작업의 GPU 활용도를 높입니다.",
+  "try_it": [
+    "NVIDIA Developer 웹사이트에서 CUDA Toolkit 13.5를 다운로드하여 설치합니다.",
+    "CUDA Runtime API 문서에서 로컬리티 도메인 분할 설정을 확인합니다.",
+    "MPS v3 인터페이스 가이드를 참고하여 가중치 타임슬라이싱 및 SM 분할 부하 분산을 구성합니다."
+  ],
+  "sections": [
+    {
+      "heading": "NVIDIA Vera Rubin 및 Windows on Arm 지원",
+      "body": "CUDA 13.5는 NVIDIA Vera Rubin GPU 아키텍처에 대한 프로덕션 수준의 정식 지원을 시작합니다. 또한 CUDA 13.4에서 도입된 Windows on Arm 지원이 NVIDIA DGX Station for Windows까지 확대됩니다."
+    },
+    {
+      "heading": "로컬리티 도메인 및 SM 리소스 제어",
+      "body": "Application은 균등한 스트리밍 멀티프로세서 파티션과 모든 가용한 SM을 포함하는 파티션 중 선택할 수 있습니다. cudaDevSmResourceSplit() API를 사용하여 각 파티션의 SM 개수를 파악하고 작업 분산을 최적화합니다."
+    },
+    {
+      "heading": "NVIDIA MPS v3 및 작업 스케줄링",
+      "body": "MPS v3는 가중치 타임슬라이싱, 자원 대여 및 차용을 지원하는 SM 파티션 부하 분산, cgroup 기반 라우팅을 제공합니다. 이를 통해 다중 사용자 환경에서 GPU 자원 공유 제어력이 향상됩니다."
+    },
+    {
+      "heading": "라이브러리 및 개발자 툴 업데이트",
+      "body": "CUDA Tile은 NVLink 및 NVSwitch 패브릭을 통한 다중 GPU 통신을 지원하며 SIMT 상호운용성 프리뷰를 제공합니다. CCCL 3.5는 CUB를 위한 공개 튜닝 API와 FlashInfer에 통합된 배치 Top-K 선택 기능을 포함합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "CUDA 13.5에서 어떤 새로운 GPU 아키텍처가 지원되나요?",
+      "a": "NVIDIA Vera Rubin GPU 아키텍처에 대한 프로덕션 수준의 정식 지원이 포함되었습니다."
+    },
+    {
+      "q": "로컬리티 도메인에서 SM 개수는 어떻게 확인할 수 있나요?",
+      "a": "cudaDevSmResourceSplit() API의 디스커버리 모드를 사용하여 각 파티션의 SM 개수를 얻을 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/image1-16.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T12:12:58.207536+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-5acd07c875ea982e"
+}

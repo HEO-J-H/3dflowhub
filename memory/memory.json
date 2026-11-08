@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-06T07:05:35.577686+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/06 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-06T07:15:22.210360+00:00",
       "collected": 0,
       "saved": 0,
@@ -6922,6 +6910,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-08T12:12:55.180099+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 139,
+      "candidates_passed": 83,
+      "offtopic": 27,
+      "short": 0,
+      "prefiltered": 36,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "b05ff18e",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7017,7 +7032,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-31 [성찰] 오탐과 중복 뉴스를 철저히 차단하고, Maya·3ds Max·Blender 등 실무 튜토리얼 및 스크립트 활용법 중심의 고CPC 콘텐츠에 집중해야 합니다.",
     "2026-10-31 [app.render_practical_content_metrics(): ] 스트림릿 현황판에 시각적 지표를 추가할 때는 기존 UI 레이아웃과 일관성을 유지하고 예외 처리를 꼼꼼히 작성하자.",
     "2026-10-31 [backend/app/services/mesh_from_image.py에] 입력값 검증과 단위 테스트는 예외 케이스(빈 파일, 저해상도)를 꼼꼼히 커버해야 합니다.",
     "2026-10-31 [backend/app/services/mesh_from_image.py에] 입력 검증 함수와 단위 테스트를 명확하게 추가하여 안정성을 높입니다.",
@@ -7136,7 +7150,8 @@
     "2026-11-08 [core.filter_homonym_3d_content(): 동음이의어(] 3D 맥락 필터 추가 시 무관한 뉴스나 인물명을 정확히 차단하기 위한 키워드 조합 검증을 철저히 테스트한다.",
     "2026-11-08 [core.filter_homonym_3d_content(): 동음이의어(] 테스트 실패 — 215 passed in 27.23s 보안: ['병합 충돌 표시가 남은 파일: core.py, core.py, core.py']",
     "2026-11-08 [[p-c23b4c92f0|운영·비용] RAG 통합 관련 PR #47 진행] PR 검토 독촉 시 의존성 있는 후속 로직을 함께 점검하면 통합 속도를 높일 수 있다.",
-    "2026-11-08 [[p-246d67a028|콘텐츠] 웹/로컬 PBR 텍스처 생성 프로세스 ] 문서 파일(.md)에는 테스트 코드를 작성하지 말고 실제 가이드 내용만 포함해야 합니다."
+    "2026-11-08 [[p-246d67a028|콘텐츠] 웹/로컬 PBR 텍스처 생성 프로세스 ] 문서 파일(.md)에는 테스트 코드를 작성하지 말고 실제 가이드 내용만 포함해야 합니다.",
+    "2026-11-08 [성찰] 오수집(동음이의어) 비율을 낮추고 3ds Max Maxscript 및 Blender 애드온처럼 검색 유입이 입증된 실무 튜토리얼과 스크립트 콘텐츠 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7206,7 +7221,7 @@
     "AI 3D/NVIDIA Isaac Sim": 2,
     "AI 3D/Hexels": 1,
     "Game Engine/Source Engine": 1,
-    "AI 3D/NVIDIA Omniverse": 20,
+    "AI 3D/NVIDIA Omniverse": 21,
     "3D DCC/NVIDIA Omniverse": 3,
     "AI 3D/NVIDIA DSX": 4,
     "Game Engine/RPG Maker": 1,
@@ -9383,14 +9398,15 @@
     1478663810248413790,
     6377968438025046114,
     4724632975194873937,
-    4990012963004892387
+    4990012963004892387,
+    4513083188978957886
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2180,
-    "Game Engine": 2180,
-    "VFX": 2180,
-    "AI 3D": 2180
+    "3D DCC": 2181,
+    "Game Engine": 2181,
+    "VFX": 2181,
+    "AI 3D": 2181
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
