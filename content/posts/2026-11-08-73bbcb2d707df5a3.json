@@ -1,0 +1,59 @@
+{
+  "title_ko": "NVIDIA Factory Operations Blueprint AI 에이전트 아키텍처",
+  "title": "How NVIDIA Factory Operations Blueprint Coordinates AI Agents to Investigate Production Issues",
+  "url": "https://developer.nvidia.com/blog/how-nvidia-factory-operations-blueprint-coordinates-ai-agents-to-investigate-production-issues/",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "연구·논문",
+  "tags": [
+    "NVIDIA",
+    "Omniverse",
+    "Isaac Sim",
+    "AI 에이전트",
+    "로보틱스"
+  ],
+  "summary": "NVIDIA Factory Operations Blueprint는 공장 데이터와 툴을 연결하고 AI 에이전트를 조율하는 레퍼런스 아키텍처를 제공합니다.",
+  "insight": "NVIDIA Nemotron과 NVIDIA Isaac Sim을 연동해 공장 설비 시뮬레이션과 결함 검사 과정을 자동화합니다.",
+  "try_it": [
+    "NVIDIA 개발자 포털에서 Factory Operations Blueprint 조기 액세스를 신청합니다.",
+    "NVIDIA Isaac Sim 환경을 구축하고 ROS 2 기반 로봇 제어 연동을 테스트합니다.",
+    "Siemens Intelligence Center X 연동을 통한 공장 생산 시뮬레이션 문서를 확인합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Factory Manager Agent와 레퍼런스 아키텍처",
+      "body": "NVIDIA Factory Operations Blueprint는 공장 관리자 에이전트를 구축하기 위한 레퍼런스 아키텍처를 제공합니다. 기존 공장 데이터와 툴을 연결하고 전문화된 에이전트를 구성해 작업자가 개입할 결정을 정의합니다. LLM과 NemoClaw 에이전트 하네스, NVIDIA OpenShell을 활용해 작업을 해석하고 메모리를 관리합니다."
+    },
+    {
+      "heading": "전문화된 에이전트의 역할과 협업",
+      "body": "시스템에는 NVIDIA Cosmos를 호출하는 Visual Inspection Agent와 NVIDIA Isaac Sim 및 ROS 2 기반 Fleet Management Agent가 포함됩니다. 또한 Kumo Anomaly를 사용하는 Root Cause Analysis Agent가 시계열 분석을 수행합니다. 이 에이전트들이 협력해 결함을 검사하고 재작업을 조율하며 원인을 조사합니다."
+    },
+    {
+      "heading": "SMT 조립 라인 레퍼런스 예시",
+      "body": "PCB 생산을 위한 표면 실장 기술 조립 라인 예시에서 시스템은 AOI 경보를 추적합니다. 2차 검사, 로봇을 이용한 재작업 운송, 증거 및 권장 시정 조치가 포함된 PDF 보고서를 생성하는 근본 원인 분석으로 이어집니다. 공장 네트워크 내에서 NVIDIA DGX Station을 통해 온프레미스 배포를 지원합니다."
+    },
+    {
+      "heading": "Siemens 공장 생산 계획 및 가상 Prototype",
+      "body": "독일 에를랑겐의 Siemens 공장에서는 NVIDIA Nemotron 기반 에이전트가 Siemens Intelligence Center X를 통해 시뮬레이션을 실행합니다. 비용, 주문, 공급 수준, 라인 설정을 수동 조회 없이 균형을 맞추어 비용을 최대 20% 절감합니다. 제품 수명 주기 관리 Software와 NVIDIA Cosmos 및 NVIDIA Omniverse를 결합해 가상 Prototype과 합성 훈련 데이터를 생성합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA Factory Operations Blueprint는 어떤 역할을 하나요?",
+      "a": "공장 데이터와 도구를 연결하는 관리자 에이전트를 구축하고, 시각 검사 및 함대 관리 등의 전문화된 AI 에이전트들을 조율하여 생산 문제를 조사하고 가동 중단을 줄이는 레퍼런스 아키텍처입니다."
+    },
+    {
+      "q": "시스템은 어떤 온프레미스 환경을 지원하나요?",
+      "a": "NVIDIA DGX Station을 통한 완전한 온프레미스 배포를 지원하여 생산 기록, 이미지, Prompt, 조사 결과를 공장 네트워크 내에 유지합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/FOC-Blueprint.webp",
+    "video": "https://www.youtube.com/watch?v=IqhDPbRrsh4"
+  },
+  "collected_at": "2026-11-08T12:23:10.311504+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-73bbcb2d707df5a3",
+  "enriched_at": "skip",
+  "paper_tried": true
+}
