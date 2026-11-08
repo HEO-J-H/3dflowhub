@@ -1,0 +1,62 @@
+{
+  "title_ko": "Unity 카메라 가이드 — 6가지 시점 선택법",
+  "title": "Camera 101: How to choose your game’s perspective",
+  "url": "https://unity.com/blog/video-game-camera-perspectives",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Unity",
+    "카메라",
+    "시점",
+    "게임디자인",
+    "튜토리얼",
+    "유니티"
+  ],
+  "summary": "Unity에서 제공하는 6가지 기본 카메라 시점을 소개하고, 각각에 적합한 게임 장르와 설계 포인트를 설명합니다.",
+  "insight": "Unity는 최신 카메라 시스템에 Fixed, Side‑Scrolling, Top‑Down, Isometric, First‑Person, Third‑Person 총 6가지 프리셋을 제공해, 초보 개발자가 원하는 시점을 클릭 몇 번으로 적용하고 바로 레벨 레이아웃을 테스트할 수 있습니다.",
+  "try_it": [
+    "Unity Hub에서 2D 프로젝트를 새로 만들고, Hierarchy에 있는 Main Camera를 선택한다",
+    "Inspector에서 Projection을 Orthographic으로 바꾸면 Top‑Down 시점이 즉시 적용된다",
+    "같은 방식으로 Perspective으로 전환하고 Position을 조정하면 First‑Person 시점을 확인한다"
+  ],
+  "sections": [
+    {
+      "heading": "Fixed Camera (고정 시점)",
+      "body": "Fixed Camera는 화면이 고정돼 전체 플레이 영역을 한 화면에 보여줍니다. 퍼즐이나 아케이드 스타일 게임에 적합하며, 세계 규모가 작아야 합니다."
+    },
+    {
+      "heading": "Side‑Scrolling Camera (횡스크롤)",
+      "body": "Side‑Scrolling Camera는 플레이어를 따라 좌우·상하로 이동합니다. 플랫폼 게임에서 거리 판단이 쉬워 설계가 간단합니다. 배경 레이어를 느리게 움직이는 Parallax Scrolling을 활용하면 깊이감을 줄 수 있습니다."
+    },
+    {
+      "heading": "Top‑Down Camera (탑‑다운)",
+      "body": "Top‑Down 시점은 위에서 아래로 바라보는 시점으로, 레이아웃과 경로 파악이 명확합니다. 미로, Racing, 전략 게임 등에 많이 쓰이며 높이감 표현이 제한됩니다."
+    },
+    {
+      "heading": "Isometric Camera (등각 시점)",
+      "body": "Isometric Camera는 대각선 각도로 세계를 보여줘 2D 아트에도 3D 느낌을 줍니다. 객체가 멀어져도 크기가 변하지 않아 전체적인 구도가 잘 보이지만, 깊이 판단이 어려울 수 있습니다."
+    },
+    {
+      "heading": "First‑Person & Third‑Person Cameras (1인·3인 시점)",
+      "body": "First‑Person는 플레이어 시점으로 몰입감을 높이고, Third‑Person는 캐릭터 뒤를 따라가며 주변 환경을 동시에 보여줍니다. 액션·어드벤처 게임에 주로 사용됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Fixed Camera와 Side‑Scrolling Camera의 차이는?",
+      "a": "Fixed Camera는 화면이 전혀 움직이지 않아 전체 구역을 한 번에 보여주지만, Side‑Scrolling Camera는 플레이어 이동에 따라 화면이 따라 움직이며 레벨이 화면보다 클 수 있습니다."
+    },
+    {
+      "q": "Unity에서 카메라 시점을 바꾸려면 어디서 설정하나요?",
+      "a": "Hierarchy의 Main Camera를 선택한 뒤 Inspector에서 Projection(Orthographic/Perspective)과 Position 값을 조정하면 원하는 시점으로 전환할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.sanity.io/images/fuvbjjlp/production/b85e09d3bb14fc91cab750b44b6347e97ba9f91a-1920x1080.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T02:51:41.661794+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-46e35a9224af8dd1"
+}

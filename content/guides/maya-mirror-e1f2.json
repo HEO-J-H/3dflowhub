@@ -1,0 +1,97 @@
+{
+  "id": "maya-mirror-e1f2",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Mirror",
+  "title": "Mirror — 대칭",
+  "summary": "Mirror는 선택한 폴리곤 오브젝트를 지정 축을 기준으로 대칭 복제해 완전한 좌우(또는 앞뒤) 대칭 모델을 만들 수 있는 기능입니다.",
+  "when": [
+    "반쪽만 모델링하고 전체 형태를 빠르게 완성하고 싶을 때",
+    "대칭 구조가 필요한 캐릭터 혹은 기계 부품을 만들 때",
+    "이미 만든 메시에 반대쪽을 추가로 만들고 싶을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택합니다",
+    "Mesh 메뉴 → Mirror 를 클릭합니다",
+    "옵션 창에서 Axis(축)와 Merge 옵션을 설정합니다",
+    "Apply 버튼을 눌러 대칭 복제를 완료합니다"
+  ],
+  "params": [
+    {
+      "name": "Axis",
+      "desc": "대칭 복제 기준이 되는 축 (X, Y, Z)"
+    },
+    {
+      "name": "Merge",
+      "desc": "복제된 Vertex와 원본 Vertex를 연결할지 여부"
+    },
+    {
+      "name": "Merge Threshold",
+      "desc": "Vertex를 병합할 거리 기준값"
+    },
+    {
+      "name": "Pivot",
+      "desc": "World 혹은 Object 기준 피벗 사용 여부"
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "UV 좌표를 유지하면서 대칭 복제"
+    },
+    {
+      "name": "Flip Normals",
+      "desc": "법선을 뒤집어 면이 올바르게 보이게 함"
+    }
+  ],
+  "examples": [
+    {
+      "title": "반쪽 캐릭터 모델링",
+      "steps": [
+        "반쪽 몸통을 모델링 후 선택",
+        "Mesh → Mirror, Axis 를 X 로 설정",
+        "Merge 를 켜고 Threshold 를 0.001 로 지정",
+        "Apply 하면 완전한 대칭 캐릭터가 완성됩니다"
+      ]
+    },
+    {
+      "title": "대칭 파이프 만들기",
+      "steps": [
+        "한쪽 파이프를 모델링",
+        "Pivot 을 파이프 끝으로 이동",
+        "Mesh → Mirror, Axis 를 Y 로 선택",
+        "Merge 를 끄고 Apply 하면 반대쪽 파이프가 생성됩니다"
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗 위치가 원점에 있지 않음 → 대칭 결과가 원하는 위치와 달라집니다. 피벗을 오브젝트의 대칭 기준점으로 이동 후 다시 시도합니다",
+    "Merge 옵션을 켜지 않음 → 복제된 Vertex가 겹쳐서 구멍이 생깁니다. Merge 를 활성화하고 적절한 Threshold 로 재실행합니다",
+    "법선이 뒤집힘 → 면이 검게 보입니다. 옵션에서 Flip Normals 를 켜거나, Mirror 후 Mesh → Reverse Normals 로 수정합니다"
+  ],
+  "related": [
+    "Duplicate Special",
+    "Symmetry",
+    "Blend Shape",
+    "Mirror Skin Weights"
+  ],
+  "videos": [
+    {
+      "id": "k6MKu9YxXr0",
+      "title": "Maya Mirror Tool Tutorial",
+      "author": "What Make Art"
+    },
+    {
+      "id": "zdKxRY8jUvc",
+      "title": "Autodesk Maya tutorial | How to create a mirror in Maya",
+      "author": "Maya for beginners"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Mirror",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Mirror"
+  ],
+  "at": "2026-11-08T02:52:32.645401+00:00"
+}

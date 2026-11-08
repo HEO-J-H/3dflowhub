@@ -1,0 +1,91 @@
+{
+  "id": "zbrush-radial-symmetry-66f0",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Radial symmetry",
+  "title": "방사 대칭",
+  "summary": "Radial Symmetry는 선택한 축을 중심으로 여러 복제본을 동시에 대칭시켜, 원형 배열 모델링을 빠르게 할 수 있게 해줍니다.",
+  "when": [
+    "다수의 팔, 톱니, 원형 패턴을 동시에 만들 때",
+    "대칭을 회전시켜 반복적인 형태를 만들고 싶을 때",
+    "단일 객체를 여러 방향으로 동일하게 스컬프팅할 때"
+  ],
+  "steps": [
+    "ZBrush 실행 → 모델 로드 또는 새 스컬프팅 시작",
+    "Transform 팔레트(T) 열고 Radial Symmetry 버튼을 클릭 (또는 Shift+X)",
+    "Radial Count 값을 원하는 복제 개수로 설정",
+    "Radial Axis (X/Y/Z)와 Radial Angle(°)를 조정하여 회전 방향과 간격을 지정",
+    "스컬프팅 브러시로 작업하면 모든 복제본에 동시에 적용됨"
+  ],
+  "params": [
+    {
+      "name": "Radial Symmetry",
+      "desc": "활성화하면 선택 축을 기준으로 복제본을 생성"
+    },
+    {
+      "name": "Radial Count",
+      "desc": "복제본 수 (예: 6이면 6개가 원형으로 배치)"
+    },
+    {
+      "name": "Radial Axis",
+      "desc": "복제 기준 축 (X, Y, Z)"
+    },
+    {
+      "name": "Radial Angle",
+      "desc": "복제 간격 각도 (°)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "원형 스피어 패턴 만들기",
+      "steps": [
+        "Radial Count를 8로 설정",
+        "Radial Axis를 Z로 선택",
+        "Radial Angle를 45°로 조정",
+        "브러시로 하나의 스피어를 스컬프팅하면 8개가 원형으로 배치"
+      ]
+    },
+    {
+      "title": "톱니형 베벨링",
+      "steps": [
+        "Radial Count를 12로 설정",
+        "Radial Axis를 Y로 선택",
+        "Radial Angle를 30°로 설정",
+        "베벨 브러시로 한 면을 작업하면 12개의 톱니가 생성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "복제본이 겹쳐 보임 → Radial Angle를 조정하거나 Radial Count를 감소시킴",
+    "축이 잘못 설정돼 원하는 방향에 복제되지 않음 → Radial Axis를 올바른 축으로 바꾸고 다시 적용",
+    "스컬프팅 후 복제본이 서로 다른 스케일을 가짐 → 작업 전 Geometry → Modify Topology → Freeze Geometry 로 고정 후 사용"
+  ],
+  "related": [
+    "Symmetry (X)",
+    "Mirror",
+    "Array (3ds Max)",
+    "Duplicate"
+  ],
+  "videos": [
+    {
+      "id": "BUGs_0pSd2s",
+      "title": "Radial Symmetry Sculpting Part 1 - Introduction & Project Setup",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "GKJYCxx79u0",
+      "title": "Radial Symmetry Sculpting Part 2 - Creating a Cup for Practice",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Radial%20symmetry",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Transform",
+    "Radial Symmetry"
+  ],
+  "at": "2026-11-08T02:52:36.311314+00:00"
+}

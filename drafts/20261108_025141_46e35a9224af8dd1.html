@@ -1,0 +1,23 @@
+<!-- TITLE: Unity 카메라 가이드 — 6가지 시점 선택법 | TAGS: Unity,카메라,시점,게임디자인,튜토리얼,유니티,튜토리얼·팁 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://unity.com/blog/video-game-camera-perspectives" target="_blank" rel="noopener nofollow"><img src="https://cdn.sanity.io/images/fuvbjjlp/production/b85e09d3bb14fc91cab750b44b6347e97ba9f91a-1920x1080.png" alt="Unity 카메라 가이드 — 6가지 시점 선택법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://unity.com/blog/video-game-camera-perspectives" target="_blank" rel="noopener nofollow">unity.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unity에서 제공하는 6가지 기본 카메라 시점을 소개하고, 각각에 적합한 게임 장르와 설계 포인트를 설명합니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 튜토리얼·팁</p>
+<h2>Fixed Camera (고정 시점)</h2>
+<p>Fixed Camera는 화면이 고정돼 전체 플레이 영역을 한 화면에 보여줍니다. 퍼즐이나 아케이드 스타일 게임에 적합하며, 세계 규모가 작아야 합니다.</p>
+<h2>Side‑Scrolling Camera (횡스크롤)</h2>
+<p>Side‑Scrolling Camera는 플레이어를 따라 좌우·상하로 이동합니다. 플랫폼 게임에서 거리 판단이 쉬워 설계가 간단합니다. 배경 레이어를 느리게 움직이는 Parallax Scrolling을 활용하면 깊이감을 줄 수 있습니다.</p>
+<h2>Top‑Down Camera (탑‑다운)</h2>
+<p>Top‑Down 시점은 위에서 아래로 바라보는 시점으로, 레이아웃과 경로 파악이 명확합니다. 미로, Racing, 전략 게임 등에 많이 쓰이며 높이감 표현이 제한됩니다.</p>
+<h2>Isometric Camera (등각 시점)</h2>
+<p>Isometric Camera는 대각선 각도로 세계를 보여줘 2D 아트에도 3D 느낌을 줍니다. 객체가 멀어져도 크기가 변하지 않아 전체적인 구도가 잘 보이지만, 깊이 판단이 어려울 수 있습니다.</p>
+<h2>First‑Person &amp; Third‑Person Cameras (1인·3인 시점)</h2>
+<p>First‑Person는 플레이어 시점으로 몰입감을 높이고, Third‑Person는 캐릭터 뒤를 따라가며 주변 환경을 동시에 보여줍니다. 액션·어드벤처 게임에 주로 사용됩니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unity는 최신 카메라 시스템에 Fixed, Side‑Scrolling, Top‑Down, Isometric, First‑Person, Third‑Person 총 6가지 프리셋을 제공해, 초보 개발자가 원하는 시점을 클릭 몇 번으로 적용하고 바로 레벨 레이아웃을 테스트할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Fixed Camera와 Side‑Scrolling Camera의 차이는?</b><br/>A. Fixed Camera는 화면이 전혀 움직이지 않아 전체 구역을 한 번에 보여주지만, Side‑Scrolling Camera는 플레이어 이동에 따라 화면이 따라 움직이며 레벨이 화면보다 클 수 있습니다.</p>
+<p><b>Q. Unity에서 카메라 시점을 바꾸려면 어디서 설정하나요?</b><br/>A. Hierarchy의 Main Camera를 선택한 뒤 Inspector에서 Projection(Orthographic/Perspective)과 Position 값을 조정하면 원하는 시점으로 전환할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-45c590ae784629f2.html">Unity 접근성 가이드 — 기본 설정과 실전 팁</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-a1db8404ebc74044.html">Unity 레벨 디자인 가이드 — 플레이어를 자연스럽게 유도하는 7가지 방법</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-6a5dbd5634bff7d0.html">Unity 산업용 실시간 3D·AI·Template 10가지 최신 리소스</a></li></ul>
+<hr/><p>원문:<a href="https://unity.com/blog/video-game-camera-perspectives" target="_blank" rel="noopener nofollow">Camera 101: How to choose your game’s perspective</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
