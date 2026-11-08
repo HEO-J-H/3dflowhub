@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting 3D 실시간 재구성 HIBS 논문 발표 | TAGS: Gaussian Splatting,NeRF,3D Reconstruction,WACV 2027,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 베타 커널 기반의 계층적 증분 재구성 기법인 HIBS는 PSNR을 최대 0.8 dB 향상시키고 최적화 시간을 40% 단축합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>온라인 재구성의 한계와 베타 커널 도입</h2>
+<p>기존 온라인 Gaussian Splatting은 캡처 과정에서 씬을 재구성할 때 Primitive를 단 몇 번의 반복으로만 정제해 초기화 오류나 디테일 부족을 수정하기 어렵습니다. 또한 Gaussian은 본질적으로 부드러워 단단한 표면 표현에 많은 중첩이 필요합니다. HIBS는 베타 커널을 증분 재구성에 도입해 이 문제를 해결합니다.</p>
+<h2>형상 파라미터와 신뢰도 기반 스폰</h2>
+<p>베타 커널의 형상 파라미터는 부드러운 Gaussian 형태와 평평한 상단을 가진 준불투명 서펠 사이를 보간하며 지오메트리의 신뢰도 다이얼 역할을 합니다. 신뢰도 기반 스폰은 기하학적 관측 가능성과 다시점 깊이 일치성을 이용해 불투명도와 형상을 초기화합니다. 지오메트리가 검증 가능한 곳에는 단단한 Primitive를, 그렇지 않은 곳에는 수정 가능한 부드러운 Primitive를 생성합니다.</p>
+<h2>오류 기반 재배치와 레벨 오브 디테일</h2>
+<p>온라인 밀도화 과정에서 오류 기반 재배치는 오래된 Primitive를 광도 측정 오류가 집중되는 핫스팟으로 재활용합니다. 제한된 베타 커널 서포트는 정확한 타일 컬링과 더 빠른 래스터화를 가능하게 합니다. 또한 폐쇄형 형상 보존 병합 공식은 빠른 최적화와 실시간 렌더링을 위한 LOD 계층 구조를 제공합니다.</p>
+<h2>Mip-NeRF 360 벤치마크 성능</h2>
+<p>Mip-NeRF 360 온더플라이 프로토콜에서 HIBS는 PSNR을 최대 0.8 dB 향상시키는 동시에 최적화 시간을 최대 40% 단축합니다. 이 연구는 WACV 2027에 채택되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Mip-NeRF 360 데이터셋 기준 PSNR 0.8 dB 상승과 40% 최적화 시간 단축 수치를 통해 실시간 실내 스캔 환경에서의 속도와 품질 한계를 동시에 돌파합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. HIBS는 기존 Gaussian Splatting과 무엇이 다릅니까?</b><br/>A. Gaussian 대신 베타 커널을 사용하여 형상 파라미터로 부드러운 형태와 단단한 서펠 사이를 조절하며, 지오메트리 신뢰도에 따라 Primitive를 초기화합니다.</p>
+<p><b>Q. 어떤 벤치마크에서 성능 향상이 검증되었습니까?</b><br/>A. Mip-NeRF 360의 온더플라이 프로토콜에서 PSNR 최대 0.8 dB 향상 및 최적화 시간 40% 단축이 확인되었습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-ce0de58b61f85fd7.html">MOMASPLAT: Gaussian Splatting 기반 모바일 매니퓰레이션 데이터 증강</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-73ff5ae0fa45090e.html">Gaussian Splatting CTBakeGS — 학습 없는 CT 볼륨 실시간 변환</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-761ff331276da480.html">StereoSplat — 스테레오 비디오의 미터법 3D 복원 기술</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.08288v1" target="_blank" rel="noopener nofollow">Hierarchical Incremental Beta Splatting for Online Reconstruction</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
