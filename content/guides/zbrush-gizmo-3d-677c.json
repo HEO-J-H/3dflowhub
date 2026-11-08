@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-gizmo-3d-677c",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Gizmo 3D",
+  "title": "Gizmo 3D",
+  "summary": "Gizmo 3D는 ZBrush에서 오브젝트를 이동, 회전, 크기 조절(Scale)뿐만 아니라 비선형 변형까지 직관적으로 수행하는 3D 변환 도구입니다.",
+  "when": [
+    "스컬프팅 중인 모델의 특정 부분을 회전하거나 크기를 미세하게 조절할 때",
+    "여러 서브툴(SubTool)이나 마스크가 지정된 영역을 정밀하게 변형할 때",
+    "오브젝트에 벤딩(Bend)이나 테이퍼(Taper) 같은 비선형 디포머(Deformer)를 적용할 때"
+  ],
+  "steps": [
+    "ZBrush에서 오브젝트를 불러온 뒤 상단 툴바에서 Move(W), Scale(E), Rotate(R) 중 하나를 선택하거나 기본 Gizmo 3D 모드를 활성화합니다.",
+    "오브젝트 위를 드래그하거나 Hotkey E(Scale) 또는 R(Rotate)을 눌러 뷰포트에서 Gizmo 3D를 소환합니다.",
+    "Gizmo 중심의 화살표(이동), 링(회전), 네모난 핸들(크기)을 Mouse로 드래그하여 변형을 적용합니다.",
+    "기즈모 중앙의 톱니바퀴 아이콘을 클릭하여 디포머(Deformer) 메뉴를 열고 세부 변형 기능을 활용합니다.",
+    "변형이 완료되면 다른 스러스트나 브러시를 선택하여 작업을 이어갑니다."
+  ],
+  "params": [
+    {
+      "name": "Move",
+      "desc": "오브젝트를 축 방향 또는 자유 공간으로 이동합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기를 전체 또는 특정 축 기준으로 조절합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "오브젝트를 지정된 축을 중심으로 회전시킵니다."
+    },
+    {
+      "name": "Go to Unmasked Center",
+      "desc": "마스크가 지정되지 않은 영역의 중심점으로 기즈모 피벗을 이동합니다."
+    },
+    {
+      "name": "Deformers",
+      "desc": "기즈모 톱니바퀴를 통해 Bend, Taper, Twist 등의 추가 변형을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 팔다리 각도 조절",
+      "steps": [
+        "Mask Pen(Ctrl) 브러시로 관절 위쪽 영역에 마스크를 칠합니다.",
+        "Ctrl을 누르고 빈 화면을 클릭하여 마스크를 반전시킵니다.",
+        "Rotate(R)를 눌러 Gizmo 3D를 관절 위치에 맞추고 회전시킵니다."
+      ]
+    },
+    {
+      "title": "오브젝트 크기 및 비율 수정",
+      "steps": [
+        "Scale(E) Hotkey를 눌러 Gizmo 3D를 활성화합니다.",
+        "중앙의 흰색 사각형 핸들을 드래그하여 전체 비율을 키우거나 줄입니다.",
+        "필요시 특정 축의 색상 핸들을 당겨 한쪽 방향만 늘립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗 위치가 엉뚱한 곳에 있음 → Gizmo 톱니바퀴 메뉴에서 'Reset to Mesh Center'를 눌러 중심을 맞춥니다.",
+    "마스크가 걸려 있어 원하는 부분이 안 움직임 → Ctrl을 누르고 빈 공간을 드래그하여 마스크를 해제합니다."
+  ],
+  "related": [
+    "Transpose Line",
+    "SubTool",
+    "Masking",
+    "Transpose Master"
+  ],
+  "videos": [
+    {
+      "id": "c0dXFhWgqiA",
+      "title": "019 ZBrush 2018 Basic Gizmo And Deformer Functionality",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "tFHor2jczek",
+      "title": "Top 5 Gizmo 3D Tips I Wish I Knew When I Started Learning ZBrush.",
+      "author": "Khatri3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Gizmo%203D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Move",
+    "Scale",
+    "Rotate",
+    "Gizmo 3D"
+  ],
+  "at": "2026-11-08T08:52:57.177577+00:00"
+}
