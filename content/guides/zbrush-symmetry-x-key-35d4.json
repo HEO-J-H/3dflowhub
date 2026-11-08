@@ -1,0 +1,106 @@
+{
+  "id": "zbrush-symmetry-x-key-35d4",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Symmetry (X key)",
+  "title": "대칭(X)",
+  "summary": "ZBrush에서 X 키를 눌러 좌우 대칭을 즉시 켜고 끌 수 있으며, 대칭 축과 옵션을 Transform 팔레트에서 조정합니다.",
+  "when": [
+    "얼굴·인체 등 좌우가 대칭인 모델을 스컬프팅할 때",
+    "대칭적인 패턴(예: 갑옷, 기하학적 형태)을 빠르게 만들고 싶을 때",
+    "대칭을 유지하면서 세부 디테일을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush를 실행하고 모델을 로드하거나 새 스컬프팅 프로젝트를 시작합니다.",
+    "툴 바에서 Transform 팔레트를 엽니다 (T 키).",
+    "키보드에서 X 키를 눌러 X 축 대칭을 활성화합니다. (상태 바에 ‘Symmetry On’ 표시)",
+    "필요 시 Y 또는 Z 키를 눌러 축을 전환하거나, Transform 팔레트에서 ‘Activate Symmetry’를 클릭합니다.",
+    "‘Radial Symmetry’와 ‘Local Symmetry’를 필요에 따라 켜고, ‘Symmetry Size’와 ‘Symmetry Angle’를 조정합니다.",
+    "스컬프팅 브러시로 작업하면 좌우가 자동으로 동기화됩니다."
+  ],
+  "params": [
+    {
+      "name": "X",
+      "desc": "X 축을 기준으로 좌우 대칭을 적용"
+    },
+    {
+      "name": "Y",
+      "desc": "Y 축을 기준으로 좌우 대칭을 적용"
+    },
+    {
+      "name": "Z",
+      "desc": "Z 축을 기준으로 좌우 대칭을 적용"
+    },
+    {
+      "name": "Radial Symmetry",
+      "desc": "다중 축 대칭을 원형으로 확장"
+    },
+    {
+      "name": "Local Symmetry",
+      "desc": "현재 서브툴의 로컬 좌표계 기준 대칭"
+    },
+    {
+      "name": "Symmetry Size",
+      "desc": "대칭 복제 간격을 조절, 값이 클수록 복제 간격이 늘어남"
+    }
+  ],
+  "examples": [
+    {
+      "title": "얼굴 스컬프팅",
+      "steps": [
+        "베이스 메쉬를 로드하고 X 키로 대칭 켜기",
+        "브러시로 한쪽 눈과 코를 잡아당겨 형태 잡기",
+        "대칭이 자동 적용돼 반대쪽도 동시에 완성"
+      ]
+    },
+    {
+      "title": "갑옷 플레이트 디자인",
+      "steps": [
+        "새 레이어에서 X 키로 대칭 활성화",
+        "다각형 브러시로 한쪽 플레이트를 그리면 반대쪽에 동일하게 복제",
+        "‘Radial Symmetry’를 켜고 2~3축으로 확장해 전체 갑옷 패턴 완성"
+      ]
+    },
+    {
+      "title": "대칭적인 바디 파트 모델링",
+      "steps": [
+        "베이스 바디를 불러와 X 키로 대칭 켜기",
+        "‘Local Symmetry’를 활성화해 팔 부분만 독립적으로 대칭",
+        "‘Symmetry Size’를 조정해 팔 간격을 미세하게 맞춤"
+      ]
+    }
+  ],
+  "mistakes": [
+    "대칭을 켜 놓은 채 비대칭 디테일을 추가 → X 키를 눌러 대칭 끄고 수정",
+    "잘못된 축으로 대칭 설정 → Y 또는 Z 키로 올바른 축 전환",
+    "‘Symmetry Size’가 너무 커서 복제 간격이 벌어짐 → ‘Symmetry Size’를 1.0 이하로 줄임"
+  ],
+  "related": [
+    "Mirror",
+    "Transpose Master",
+    "Dynamic Subdivision",
+    "ZRemesher"
+  ],
+  "videos": [
+    {
+      "id": "j-Tgzh2yHmU",
+      "title": "Dynamic Symmetry ZBrush Tips  #reinsacademy",
+      "author": "Reins  Academy"
+    },
+    {
+      "id": "JZrfNDB952k",
+      "title": "How to use radial symmetry in Zbrush",
+      "author": "ZBrush Tutor"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Symmetry%20%28X%20key%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Transform",
+    "Symmetry On"
+  ],
+  "at": "2026-11-08T02:43:03.078465+00:00"
+}

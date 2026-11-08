@@ -1,0 +1,96 @@
+{
+  "id": "maya-boolean-2645",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Boolean",
+  "title": "Boolean — 합치기·빼기",
+  "summary": "Maya의 Boolean 툴은 두 개 이상의 메쉬를 합치거나 빼서 새로운 형태를 만들 수 있는 연산입니다.",
+  "when": [
+    "두 메쉬를 합쳐 복합 형태를 만들 때",
+    "하나의 메쉬에서 다른 메쉬 형태만큼을 깎아내어 구멍을 만들 때",
+    "두 메쉬의 교차 영역만 남겨 새로운 실루엣을 만들고 싶을 때"
+  ],
+  "steps": [
+    "첫 번째 메쉬를 선택하고 Shift 키를 누른 채 두 번째 메쉬를 클릭해 둘 다 선택합니다",
+    "메인 메뉴에서 Mesh → Booleans → 원하는 Operation(Union, Difference, Intersection)을 선택합니다",
+    "옵션 창이 뜨면 기본값을 확인하고 Apply를 클릭합니다",
+    "결과 메쉬를 확인하고 필요하면 Edit → Delete History로 히스토리를 정리합니다"
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "Union(합치기), Difference(빼기), Intersection(교차) 중 선택"
+    },
+    {
+      "name": "Tolerance",
+      "desc": "연산 시 허용 오차, 값이 클수록 작은 틈을 메워줍니다"
+    },
+    {
+      "name": "Keep Original",
+      "desc": "원본 메쉬를 유지할지 여부"
+    },
+    {
+      "name": "Output Type",
+      "desc": "Result(결과 메쉬) 또는 Mesh (새 메쉬) 선택"
+    },
+    {
+      "name": "Mesh",
+      "desc": "Boolean 연산에 사용할 입력 메쉬들"
+    }
+  ],
+  "examples": [
+    {
+      "title": "두 파이프를 합쳐 복합 파이프 만들기",
+      "steps": [
+        "두 파이프 메쉬를 겹치게 배치하고 모두 선택",
+        "Mesh → Booleans → Union 선택",
+        "Apply 후 파이프가 하나의 메쉬로 합쳐지는지 확인"
+      ]
+    },
+    {
+      "title": "벽에 창문 구멍 만들기",
+      "steps": [
+        "벽 메쉬와 창문 형태 메쉬를 교차하도록 배치",
+        "두 메쉬를 모두 선택",
+        "Mesh → Booleans → Difference 선택",
+        "Apply 후 창문 모양 구멍이 생겼는지 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "법선이 뒤집힘 → Edit → Normals → Reverse를 실행",
+    "두 메쉬가 정확히 교차하지 않음 → 위치를 조정해 겹치게 만든 후 다시 시도",
+    "Non‑manifold geometry 존재 → Mesh → Clean Up → Select Geometry → Cleanup으로 정리"
+  ],
+  "related": [
+    "Mesh → Combine",
+    "Edit Mesh → Merge Vertex Tool",
+    "Mesh → Clean Up",
+    "PolyExtrude"
+  ],
+  "videos": [
+    {
+      "id": "ZpY6fto7dZ8",
+      "title": "Quick, Clean and Easy Booleans in Maya",
+      "author": "Josh Antonio"
+    },
+    {
+      "id": "WVpGp6HqAhM",
+      "title": "Clean Booleans in Maya",
+      "author": "Josh Antonio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Boolean",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Booleans",
+    "Operation",
+    "Union",
+    "Difference",
+    "Intersection"
+  ],
+  "at": "2026-11-08T02:42:54.022288+00:00"
+}
