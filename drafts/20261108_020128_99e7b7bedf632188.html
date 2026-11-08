@@ -1,0 +1,21 @@
+<!-- TITLE: Unity SEED의 대규모 지속형 MMO 렌더링 최적화 | TAGS: Unity,URP,BatchRendererGroup,Burst,C# Job System,유니티,작품·제작 사례 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://unity.com/blog/seed-unity-rendering-performance" target="_blank" rel="noopener nofollow"><img src="https://cdn.sanity.io/images/fuvbjjlp/production/860b250cb00e8fdaf6a66897091498a2a3722c45-3840x2160.png" alt="Unity SEED의 대규모 지속형 MMO 렌더링 최적화" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://unity.com/blog/seed-unity-rendering-performance" target="_blank" rel="noopener nofollow">unity.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unity로 개발된 영구 지속형 MMO 샌드박스 게임 SEED가 플레이어가 직접 구축하는 방대한 월드 데이터를 URP와 BatchRendererGroup으로 렌더링하는 최적화 사례를 공개했습니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 작품·제작 사례</p>
+<h2>서버 권위형 아키텍처와 Unity 클라이언트</h2>
+<p>클강 게임즈의 SEED는 플레이어가 로그아웃해도 월드가 계속 작동하는 영구 지속형 MMO 샌드박스입니다. 서버에서 시뮬레이션을 처리하고 Unity 클라이언트는 스트리밍되는 상태를 읽어 렌더링을 담당합니다.</p>
+<h2>정점 데이터 기반 로우폴리 스타일과 모듈형 구조</h2>
+<p>텍스처 대신 정점 데이터에 색상과 재질 정의를 베이킹하여 모바일 환경의 Shading 부하를 줄였습니다. 건물을 통째로 올리지 않고 1미터 Grid 기준의 벽, 바닥, 지붕 등의 작은 모듈 조합으로 생성합니다.</p>
+<h2>BatchRendererGroup과 C# Job System의 결합</h2>
+<p>19만 개가 넘는 모듈을 렌더링하기 위해 BatchRendererGroup을 활용하여 배치 처리를 수행합니다. 이 작업들은 C# Job System 위에서 실행되며 Burst 컴파일러로 컴파일되어 성능을 유지합니다.</p>
+<h2>URP 기본 경로를 활용한 멀티플랫폼 확장</h2>
+<p>PC와 모바일 양쪽을 지원하기 위해 Unity의 Universal Render Pipeline 기본 설정을 최대한 유지합니다. Unity 업데이트 주기에 맞춰 엔진 버전을 업그레이드하면서 커스텀 렌더러 기능으로 필요한 효과만 확장합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unity 6.3 환경에서 기본 URP 구조를 유지하면서 커스텀 렌더러와 C# Job System, Burst 컴파일러를 조합해 수십만 개의 모듈을 끊김 없이 처리합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. SEED는 어떤 엔진으로 개발되었나요?</b><br/>A. Unity 엔진으로 개발되었으며 현재 Unity 6.3 버전을 사용하고 있습니다.</p>
+<p><b>Q. 수많은 건물을 렌더링할 때 성능 저하를 어떻게 방지하나요?</b><br/>A. BatchRendererGroup과 C# Job System, Burst 컴파일러를 조합해 대량의 작은 모듈을 효율적으로 묶어서 처리합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-484f8307a1e394a1.html">Unity Meta XR 가이드북 공개 — VR 개발 설정과 최적화</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-07-386ee0762c396e7d.html">Unity 공식 OpenAI Codex 플러그인 출시</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-07-6e9be6ee34918529.html">Unity 물리 기반 월드 구축 사례와 Shader Graph 활용</a></li></ul>
+<hr/><p>원문:<a href="https://unity.com/blog/seed-unity-rendering-performance" target="_blank" rel="noopener nofollow">How SEED renders a world players never stop building</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,88 @@
+{
+  "id": "maya-fill-hole-c208",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Fill Hole",
+  "title": "Fill Hole",
+  "summary": "Fill Hole은 선택된 경계에 있는 구멍을 자동으로 면으로 메워주는 Maya의 Edit Mesh 기능입니다.",
+  "when": [
+    "구멍이 난 메쉬를 빠르게 복구하고 싶을 때",
+    "다각형이 열려 있어 렌더링 오류가 발생할 때",
+    "다른 툴에서 가져온 모델에 누락된 면이 있을 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 F10(또는 오른쪽 클릭) → Edit Mesh → Fill Hole 선택",
+    "옵션 창이 뜨면 필요에 따라 Fill Type과 Triangulate를 설정하고 Apply 클릭",
+    "Hotkey Shift+Right‑Click → Fill Hole 로 바로 실행 가능",
+    "완료 후 폴리곤이 생성된 것을 뷰포트에서 확인한다"
+  ],
+  "params": [
+    {
+      "name": "Fill Type",
+      "desc": "새 면을 삼각형(Triangulate) 또는 사각형(Quad) 형태로 만들지 선택"
+    },
+    {
+      "name": "Triangulate",
+      "desc": "삼각형으로 채우면 복잡한 구멍에 안정적"
+    },
+    {
+      "name": "Keep Original",
+      "desc": "기존 경계 엣지를 유지하고 새 면만 추가"
+    },
+    {
+      "name": "Tolerance",
+      "desc": "경계 간 거리 허용값, 작은 값일수록 정확히 메워짐"
+    }
+  ],
+  "examples": [
+    {
+      "title": "구멍 난 캐릭터 얼굴 복구",
+      "steps": [
+        "얼굴 메쉬에서 구멍 영역을 Edge Loop으로 선택",
+        "Edit Mesh → Fill Hole 실행",
+        "Triangulate 옵션을 켜고 Apply",
+        "결과를 스무딩 후 정상 렌더"
+      ]
+    },
+    {
+      "title": "불완전한 건축 모델의 바닥 메우기",
+      "steps": [
+        "바닥 주변 Edge Select 후 전체 선택",
+        "Fill Hole 선택 → Fill Type을 Quad으로 설정",
+        "Apply 후 폴리곤 수를 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "구멍 경계가 정확히 선택되지 않음 → Edge Loop 전체를 선택하고 다시 시도",
+    "Triangulate 옵션을 켜지 않아 비정상적인 삼각형이 생김 → 옵션에서 Triangulate 활성화",
+    "새 면이 기존 메쉬와 다른 노멀 방향을 가짐 → Edit Mesh → Reverse Normals 로 수정"
+  ],
+  "related": [
+    "Merge Vertex",
+    "Bridge Edge",
+    "Append Polygon",
+    "Extrude"
+  ],
+  "videos": [
+    {
+      "id": "ozA7pyogbk0",
+      "title": "How to Fill Hole in Maya like a Pro",
+      "author": "JinjiNite"
+    },
+    {
+      "id": "9VveNAB76QU",
+      "title": "Maya Fill Hole & Bridge Tool [Maya Tutorials] (2022)",
+      "author": "Mr Welcome"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Fill%20Hole",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit Mesh",
+    "Fill Hole"
+  ],
+  "at": "2026-11-08T02:01:42.026292+00:00"
+}

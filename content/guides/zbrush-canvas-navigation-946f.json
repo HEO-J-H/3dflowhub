@@ -1,0 +1,101 @@
+{
+  "id": "zbrush-canvas-navigation-946f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Canvas navigation",
+  "title": "캔버스 회전·이동",
+  "summary": "ZBrush 캔버스 네비게이션은 뷰포트를 이동·확대·회전해 모델을 원하는 각도에서 확인하고 작업할 수 있게 해줍니다.",
+  "when": [
+    "복잡한 모델을 전체적으로 파악하고 싶을 때",
+    "세부 디테일을 확대하거나 축소해 정밀 작업을 할 때",
+    "다양한 각도에서 조명을 확인하고 형태를 검토할 때"
+  ],
+  "steps": [
+    "Alt 키를 누른 채 Left Mouse Button(LMB) → 드래그: Pan (캔버스 이동)",
+    "Alt 키를 누른 채 Right Mouse Button(RMB) → 위/아래 드래그: Zoom (캔버스 확대/축소)",
+    "Alt 키를 누른 채 Middle Mouse Button(MMB) → 드래그: Rotate (캔버스 회전)",
+    "Spacebar 누른 채 클릭 → Navigation Mode 전환: Mouse 클릭만으로 Pan/Zoom/Rotate 전환",
+    "F 키 → Focus: 현재 선택된 SubTool을 화면 중앙에 맞춤",
+    "Home 키 → Home: 뷰포트를 초기 상태(정면, 전체 보기)로 복구"
+  ],
+  "params": [
+    {
+      "name": "Zoom",
+      "desc": "캔버스 확대·축소, 디테일 작업에 필수"
+    },
+    {
+      "name": "Pan",
+      "desc": "캔버스 이동, 모델을 원하는 위치에 놓음"
+    },
+    {
+      "name": "Rotate",
+      "desc": "캔버스 회전, 다양한 각도에서 형태 확인"
+    },
+    {
+      "name": "Focus",
+      "desc": "선택된 SubTool을 화면 중앙에 맞춤"
+    },
+    {
+      "name": "Home",
+      "desc": "뷰포트를 기본 뷰(정면, 전체)로 초기화"
+    },
+    {
+      "name": "Navigation Mode",
+      "desc": "Spacebar 로 전환, Mouse 클릭만으로 Pan/Zoom/Rotate 가능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "머리 조각 세부 디테일 작업",
+      "steps": [
+        "F 키로 머리 전체를 화면 중앙에 맞춤",
+        "Alt+RMB 로 머리 앞부분을 확대",
+        "Alt+LMB 로 원하는 부위로 이동"
+      ]
+    },
+    {
+      "title": "생물 모델 전체 형태 검토",
+      "steps": [
+        "Alt+MMB 로 모델을 회전해 전체 실루엣 확인",
+        "Home 키로 초기 뷰로 복구 후 다른 각도 재검토"
+      ]
+    },
+    {
+      "title": "텍스처 페인팅 시 정확한 위치 잡기",
+      "steps": [
+        "Spacebar 로 Navigation Mode 전환",
+        "Alt+LMB 로 캔버스를 이동해 페인팅 영역을 맞춤",
+        "Alt+RMB 로 확대해 픽셀 단위 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Alt키를 누르지 않고 LMB를 드래그하면 스컬프팅이 진행됩니다 → 반드시 Alt를 누른 상태에서 클릭",
+    "Zoom이 너무 빠르게 변해 작업이 방해됩니다 → Alt+RMB 대신 Mouse 휠(Zoom) 사용을 고려",
+    "Rotate 후 뷰가 뒤집혀 방향 감각을 잃음 → Home 키로 초기화 후 다시 회전"
+  ],
+  "related": [
+    "Transpose",
+    "Move",
+    "Scale",
+    "Rotate"
+  ],
+  "videos": [
+    {
+      "id": "734lS2UeKW8",
+      "title": "Introduction to ZBrush: Navigation (1/5)",
+      "author": "Academic Phoenix Plus"
+    },
+    {
+      "id": "GRgQ9vCtNHI",
+      "title": "ZBrush Course – Part 1 | Introduction, Interface & Navigation",
+      "author": "GoZ Masterclass"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Canvas%20navigation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T02:02:04.043027+00:00"
+}

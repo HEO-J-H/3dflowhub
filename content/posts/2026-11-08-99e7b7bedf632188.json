@@ -1,0 +1,58 @@
+{
+  "title_ko": "Unity SEED의 대규모 지속형 MMO 렌더링 최적화",
+  "title": "How SEED renders a world players never stop building",
+  "url": "https://unity.com/blog/seed-unity-rendering-performance",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unity",
+    "URP",
+    "BatchRendererGroup",
+    "Burst",
+    "C# Job System",
+    "유니티"
+  ],
+  "summary": "Unity로 개발된 영구 지속형 MMO 샌드박스 게임 SEED가 플레이어가 직접 구축하는 방대한 월드 데이터를 URP와 BatchRendererGroup으로 렌더링하는 최적화 사례를 공개했습니다.",
+  "insight": "Unity 6.3 환경에서 기본 URP 구조를 유지하면서 커스텀 렌더러와 C# Job System, Burst 컴파일러를 조합해 수십만 개의 모듈을 끊김 없이 처리합니다.",
+  "try_it": [
+    "Unity 프로젝트에서 Universal Render Pipeline 설정 확인",
+    "BatchRendererGroup을 활용한 대량 메시 배치 테스트 진행",
+    "C# Job System과 Burst 컴파일러 연동 상태 점검"
+  ],
+  "sections": [
+    {
+      "heading": "서버 권위형 아키텍처와 Unity 클라이언트",
+      "body": "클강 게임즈의 SEED는 플레이어가 로그아웃해도 월드가 계속 작동하는 영구 지속형 MMO 샌드박스입니다. 서버에서 시뮬레이션을 처리하고 Unity 클라이언트는 스트리밍되는 상태를 읽어 렌더링을 담당합니다."
+    },
+    {
+      "heading": "정점 데이터 기반 로우폴리 스타일과 모듈형 구조",
+      "body": "텍스처 대신 정점 데이터에 색상과 재질 정의를 베이킹하여 모바일 환경의 Shading 부하를 줄였습니다. 건물을 통째로 올리지 않고 1미터 Grid 기준의 벽, 바닥, 지붕 등의 작은 모듈 조합으로 생성합니다."
+    },
+    {
+      "heading": "BatchRendererGroup과 C# Job System의 결합",
+      "body": "19만 개가 넘는 모듈을 렌더링하기 위해 BatchRendererGroup을 활용하여 배치 처리를 수행합니다. 이 작업들은 C# Job System 위에서 실행되며 Burst 컴파일러로 컴파일되어 성능을 유지합니다."
+    },
+    {
+      "heading": "URP 기본 경로를 활용한 멀티플랫폼 확장",
+      "body": "PC와 모바일 양쪽을 지원하기 위해 Unity의 Universal Render Pipeline 기본 설정을 최대한 유지합니다. Unity 업데이트 주기에 맞춰 엔진 버전을 업그레이드하면서 커스텀 렌더러 기능으로 필요한 효과만 확장합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "SEED는 어떤 엔진으로 개발되었나요?",
+      "a": "Unity 엔진으로 개발되었으며 현재 Unity 6.3 버전을 사용하고 있습니다."
+    },
+    {
+      "q": "수많은 건물을 렌더링할 때 성능 저하를 어떻게 방지하나요?",
+      "a": "BatchRendererGroup과 C# Job System, Burst 컴파일러를 조합해 대량의 작은 모듈을 효율적으로 묶어서 처리합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.sanity.io/images/fuvbjjlp/production/860b250cb00e8fdaf6a66897091498a2a3722c45-3840x2160.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T02:01:28.796214+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-99e7b7bedf632188"
+}
