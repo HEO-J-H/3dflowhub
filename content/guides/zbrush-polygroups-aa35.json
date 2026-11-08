@@ -1,0 +1,97 @@
+{
+  "id": "zbrush-polygroups-aa35",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Polygroups",
+  "title": "Polygroup — 면 그룹",
+  "summary": "Polygroups는 ZBrush 모델의 특정 면들을 그룹화하여 개별적으로 선택, 숨기기, 마스킹 등을 쉽게 수행할 수 있도록 돕는 영역 관리 기능입니다.",
+  "when": [
+    "캐릭터의 갑옷, 의상, 신체 부위 등 서로 다른 파츠를 분리하여 작업할 때",
+    "서브디비전 레벨을 유지한 채 특정 그룹만 숨기거나 마스크를 빠르게 적용할 때",
+    "Hard Edge를 기준으로 자동으로 그룹을 나누어 하드서핑 모델링을 진행할 때"
+  ],
+  "steps": [
+    "ZBrush에서 모델의 SubTool을 선택하고 PolyFrame (Shift+F) 활성화",
+    "그룹으로 묶을 영역을 Ctrl+Shift+드래그하여 Mouse로 지정",
+    "숨겨진 나머지 영역을 보이게 하려면 빈 공간을 Ctrl+Shift+클릭",
+    "Tool → Polygroups 메뉴 확장",
+    "원하는 그룹화 방식(예: Auto Groups, Group Visible) 버튼 클릭"
+  ],
+  "params": [
+    {
+      "name": "Auto Groups",
+      "desc": "서로 연결되지 않은 독립된 메쉬 영역들을 각각 다른 Polygroup으로 자동 분할합니다."
+    },
+    {
+      "name": "Group Visible",
+      "desc": "현재 뷰포트에 보이는(숨겨지지 않은) 모든 면들을 하나의 Polygroup으로 지정합니다."
+    },
+    {
+      "name": "Groups Mask",
+      "desc": "Polygroup 경계선을 기준으로 마스크를 생성하거나 반전시킵니다."
+    },
+    {
+      "name": "Polygroups from UV",
+      "desc": "모델에 설정된 UV 아일랜드 경계를 기반으로 Polygroup을 생성합니다."
+    },
+    {
+      "name": "Polish",
+      "desc": "Polygroup 경계의 날카로운 모서리를 정돈하며 그룹을 나눕니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 의상 파츠 분리",
+      "steps": [
+        "상체 의상 영역만 보이도록 불필요한 부위를 숨김",
+        "Tool → Polygroups → Group Visible 클릭",
+        "다른 파츠도 동일한 방식으로 각각의 그룹으로 지정",
+        "Ctrl+Shift+클릭으로 특정 파츠만 선택하여 집중 수정"
+      ]
+    },
+    {
+      "title": "하드서페이스 패널 라인 제작",
+      "steps": [
+        "Auto Groups를 실행해 인접 면들을 그룹화",
+        "Tool → Polygroups → Group By Normals 실행",
+        "SubTool → Geometry → CreasePG를 눌러 그룹 경계에 크리스 적용",
+        "Divide를 올려도 각진 형태가 유지되는 패널 구조 완성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크가 칠해져 있어 그룹 지정이 안 됨 → Ctrl+드래그 빈 공간을 그어 마스크를 완전히 해제한 뒤 Polygroup 작업 수행",
+    "전체 모델이 하나의 그룹으로 묶임 → Auto Groups를 사용하여 분리된 매쉬인지 확인"
+  ],
+  "related": [
+    "SubTool",
+    "Masking",
+    "ZRemesher",
+    "Crease"
+  ],
+  "videos": [
+    {
+      "id": "uuhZYqGOoH8",
+      "title": "Getting Started with ZBrush, Part 11 - Polygroups",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "iFouLqjx934",
+      "title": "ZBrush - EVERYTHING About Polygroups (In 3 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Polygroups",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "SubTool",
+    "PolyFrame",
+    "Mouse",
+    "Tool",
+    "Polygroups"
+  ],
+  "at": "2026-11-08T09:53:04.776660+00:00"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "maya-chamfer-vertex-d32c",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Chamfer Vertex",
+  "title": "Chamfer Vertex",
+  "summary": "Maya의 Chamfer Vertex는 선택한 Vertex 주변을 잘라내어 모서리를 둥글거나 각지게 만드는 모델링 툴입니다. 하드서페이스 모델링에서 날카로운 점 부위를 부드럽게 다듬을 때 유용합니다.",
+  "when": [
+    "상자의 꼭짓점을 둥글게 깎아 부드러운 형태로 만들 때",
+    "파이프나 기계 부품의 결합 부위 Vertex를 다듬을 때",
+    "서브디비전 서피스(Subdivision Surface) 적용 시 모서리 흐름을 제어할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Mouse 우클릭 후 Vertex 모드로 전환합니다 (또는 Hotkey 9).",
+    "Chamfer를 적용할 Vertex를 드래그하여 선택합니다.",
+    "상단 메뉴 바에서 Edit Mesh → Chamfer를 클릭합니다 (또는 하단/시프트 메뉴 활용).",
+    "Viewport에 나타난 채널 박스(Channel Box) 또는 Modeling Toolkit에서 Fraction 값과 Segments를 조정합니다.",
+    "뷰포트에서 Vertex가 깎여 면이 생성된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Fraction",
+      "desc": "원래 Vertex 위치에서 깎여 나가는 거리와 범위를 조절합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "chamfer로 생성된 면의 세그먼트 개수를 늘려 곡선을 부드럽게 만듭니다."
+    },
+    {
+      "name": "Smoothing Angle",
+      "desc": "노멀(Normal)을 부드럽게 처리할 각도 임계값을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "큐브 꼭짓점 부드럽게 만들기",
+      "steps": [
+        "큐브를 생성하고 Vertex 모드로 진입합니다.",
+        "하나 또는 여러 개의 Vertex를 선택합니다.",
+        "Edit Mesh → Chamfer를 실행합니다.",
+        "Fraction 값을 조절해 깎이는 크기를 맞춥니다."
+      ]
+    },
+    {
+      "title": "기계 부품 모서리 디테일 추가",
+      "steps": [
+        "각진 하드서페이스 모델의 코너 Vertex를 선택합니다.",
+        "Chamfer를 적용하고 Segments를 2 이상으로 높입니다.",
+        "서브디비전(Smooth, 3 키)을 켰을 때 형태가 무너지지 않는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Vertex가 겹쳐서 면이 뒤틀림 → Edit Mesh → Merge나 Delete History를 실행해 불필요한 히스토리를 지우고 다시 시도합니다.",
+    "Fraction 값이 너무 커서 면이 찢어짐 → 채널 박스에서 Fraction 값을 낮추거나 수동으로 값을 입력합니다."
+  ],
+  "related": [
+    "Target Weld",
+    "Bevel",
+    "Connect",
+    "Multi-Cut"
+  ],
+  "videos": [
+    {
+      "id": "ozxFGr9opXI",
+      "title": "Maya 2014 tutorial : How to use the Chamfer vertex tool",
+      "author": "MH Tutorials"
+    },
+    {
+      "id": "cyj_Ich9kpA",
+      "title": "Maya's Chamfer Vertices Tool",
+      "author": "Josh Antonio"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Chamfer%20Vertex",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Vertex",
+    "Hotkey 9",
+    "Chamfer"
+  ],
+  "at": "2026-11-08T09:52:54.509231+00:00"
+}
