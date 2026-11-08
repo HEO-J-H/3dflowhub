@@ -1,0 +1,56 @@
+{
+  "title_ko": "NVIDIA Blackwell GPU에서 FLUX 3 Image Klein 가속",
+  "title": "Speed Up Image Generation with FLUX 3 Image Klein on NVIDIA Blackwell GPUs",
+  "url": "https://developer.nvidia.com/blog/speed-up-image-generation-with-flux-3-image-klein-on-nvidia-blackwell-gpus/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA Blackwell",
+    "FLUX 3",
+    "TensorRT LLM",
+    "GPU 가속"
+  ],
+  "summary": "NVIDIA Blackwell GPU 환경에서 TensorRT LLM VisualGen과 NVFP4 양자화를 활용해 FLUX 3 Image Klein 모델의 이미지 생성 속도를 대폭 끌어올리는 최적화 기법을 소개합니다.",
+  "insight": "단일 B200 GPU에서 B200 NVL72 기반으로 훈련된 FLUX 3 Image Klein Base 모델을 실행할 때 uncompiled BF16 대비 최대 3.46배 빠른 T2I 생성을 기록했습니다. 시각 디자인 제작 Pipeline 2048x2048 고해상도 연산 지연을 줄여야 하는 작업자가 참고할 만한 최적화 구성입니다.",
+  "try_it": [
+    "TensorRT LLM GitHub에서 FLUX 3 예제 YAML 설정 파일을 내려받습니다.",
+    "TensorRT LLM VisualGen 런타임에서 NVFP4 및 FP8 양자화 옵션을 활성화합니다.",
+    "B200 단일 GPU와 다중 GPU 환경에서 2048x2048 해상도 생성 속도와 출력을 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "FLUX 3 Image Klein과 TensorRT LLM VisualGen 구조",
+      "body": "FLUX 3 Image Klein은 텍스트 조건 지정을 위한 Qwen3-VL-4B-Instruct와 이미지 레이턴트를 정제하는 디퓨전 트랜스포머, 그리고 디코딩을 담당하는 오토에코더를 결합했습니다. TensorRT LLM 내의 전용 런타임인 VisualGen은 출시 시점부터 BF16, FP8, NVFP4 변환을 지원합니다."
+    },
+    {
+      "heading": "NVIDIA Blackwell GPU에서의 NVFP4 및 양자화 성능",
+      "body": "단일 B200 GPU 환경에서 NVFP4 양자화를 적용한 결과, BF16 대비 텍스트 투 이미지 생성은 1.62배, 이미지 투 이미지 생성은 1.58배 빨라졌습니다. cuDNN FP8 및 VC-Attention FP8 옵션을 함께 사용하면 2048x2048 고해상도 처리에서 추가적인 속도 향상을 얻을 수 있습니다."
+    },
+    {
+      "heading": "희소 어텐션 및 캐싱을 통한 지연 시간 단축",
+      "body": "Sol-Attention 희소 어텐션과 Cache-DiT 단계별 캐싱 기법을 적용하면 디노이징 및 디코딩 지연을 크게 낮출 수 있습니다. 특히 2048x2048 고해상도 테스트에서 Cache-DiT는 지연 시간을 거의 절반으로 줄이며 1.94배의 속도 향상을 기록했습니다."
+    },
+    {
+      "heading": "다중 GPU 병렬화 스케일링",
+      "body": "8개의 B200 GPU에서 CFG와 Ulysses 병렬화를 활용한 다중 GPU 스케일링을 수행한 결과, Base 모델의 중앙값 T2I 지연 시간이 14.90초에서 3.00초로 단축되었습니다. 디노이징 속도 역시 베이스와 증류 모델 각각 6.01배, 4.44배 빨라졌습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "FLUX 3 Image Klein 모델은 어떤 컴포넌트로 구성되어 있나요?",
+      "a": "텍스트 조건 지정을 맡는 Qwen3-VL-4B-Instruct, 이미지 레이턴트를 다듬는 디퓨전 트랜스포머, 그리고 이미지를 디코딩 및 인코딩하는 오토에코더로 이루어져 있습니다."
+    },
+    {
+      "q": "NVIDIA Blackwell GPU에서 어떤 최적화 옵션을 사용할 수 있나요?",
+      "a": "TensorRT LLM VisualGen을 통해 NVFP4 양자화, cuDNN 및 VC-Attention FP8, Sol-Attention 희소 어텐션, Cache-DiT 단계 캐싱, 그리고 다중 GPU Ulysses 병렬화를 적용할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/techblog-5893-article-kix-ulkeecvizi09.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T11:22:42.326894+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-4e0aa3919fe104e5"
+}
