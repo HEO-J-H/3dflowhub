@@ -1,0 +1,93 @@
+{
+  "id": "maya-preferences-and-units-3d8b",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Preferences and units",
+  "title": "설정·단위",
+  "summary": "Maya Preferences and Units 설정은 씬 전체의 길이 단위와 작업 환경을 정의하여, 다른 DCC 툴과의 에셋 공유 및 모델링 시 스케일 왜곡을 방지합니다.",
+  "when": [
+    "새로운 프로젝트를 시작하여 올바른 길이 단위를 설정해야 할 때",
+    "Unreal Engine이나 Substance 3D 등 다른 프로그램으로 에셋을 내보낼 때",
+    "작업 환경의 UI 언어, Hotkey, 백업 주기 등을 사용자 맞춤형으로 변경할 때"
+  ],
+  "steps": [
+    "상단 메뉴에서 Windows → Settings/Preferences → Preferences 를 선택하여 Preferences 창을 엽니다.",
+    "좌측 카테고리 목록에서 Settings를 클릭하여 Working Units 섹션으로 이동합니다.",
+    "Linear 드롭다운 메뉴에서 프로젝트에 맞는 길이 단위(예: centimeter, meter, millimeter)를 선택합니다.",
+    "Time 드롭다운 메뉴에서 애니메이션 작업에 사용할 프레임 단위(예: film (24 fps), NTSC (30 fps))를 선택합니다.",
+    "우측 하단의 Save 버튼을 클릭하여 설정을 저장하고 창을 닫습니다.",
+    "뷰포트에서 정확한 크기의 모델링이 반영되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Linear",
+      "desc": "길이 및 거리 측정에 사용되는 기본 단위를 설정합니다 (Centimeter, Meter 등)."
+    },
+    {
+      "name": "Angular",
+      "desc": "회전 및 각도 계산에 사용되는 단위를 설정합니다 (Degrees 또는 Radians)."
+    },
+    {
+      "name": "Time",
+      "desc": "Timeline 재생 및 애니메이션에 적용될 초당 프레임 수(FPS)를 설정합니다."
+    },
+    {
+      "name": "Up Axis",
+      "desc": "씬의 수직 방향 축을 설정합니다 (Y Up 또는 Z Up)."
+    },
+    {
+      "name": "Undo Queue",
+      "desc": "실행 취소(Ctrl+Z)의 최대 횟수와 메모리 사용량을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine 연동을 위한 미터(Meter) 단위 설정",
+      "steps": [
+        "Windows → Settings/Preferences → Preferences 창을 엽니다.",
+        "Settings 카테고리에서 Linear 단위를 meter로 변경합니다.",
+        "Save를 눌러 저장한 뒤, 뷰포트 Grid 간격이 실사 기준에 맞게 조정되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "애니메이션 작업을 위한 타임프레임(FPS) 변경",
+      "steps": [
+        "Preferences 창의 Settings 카테고리로 이동합니다.",
+        "Time 항목을 film (24 fps)에서 30 fps로 변경합니다.",
+        "Timeline의 프레임 눈금이 변경된 규격에 맞춰 표시되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위를 확인하지 않고 모델링을 진행하여 타 툴로 내보냈을 때 크기가 너무 크거나 작아지는 현상 → 작업 초기 Settings에서 올바른 Linear 단위를 먼저 설정합니다.",
+    "Up Axis(축 방향)를 고려하지 않고 에셋을 제작해 게임 엔진에서 누워 보이는 현상 → 프로젝트 시작 전 대상 엔진에 맞는 Up Axis 설정을 확인합니다."
+  ],
+  "related": [
+    "File New",
+    "Export Selection",
+    "Grid Options",
+    "Project Window"
+  ],
+  "videos": [
+    {
+      "id": "04Mj5N64nrQ",
+      "title": "MAYA MASTERCLASS 04 - How To CUSTOMIZE MAYA  ( SETTINGS AND PREFERENCES ) ( BEGINNER TUTORIAL )",
+      "author": "TheForge Tutorials"
+    },
+    {
+      "id": "Wiqf8Ff9F04",
+      "title": "Setting Up Maya Preferences",
+      "author": "MACA at Macomb"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Preferences%20and%20units",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Settings",
+    "Preferences"
+  ],
+  "at": "2026-11-08T00:31:18.475359+00:00"
+}

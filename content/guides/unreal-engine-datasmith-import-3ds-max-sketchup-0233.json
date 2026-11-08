@@ -1,0 +1,98 @@
+{
+  "id": "unreal-engine-datasmith-import-3ds-max-sketchup-0233",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "내보내기",
+  "name": "Datasmith import (3ds Max, SketchUp)",
+  "title": "Datasmith — 건축 파일 가져오기",
+  "summary": "Datasmith는 3ds Max나 SketchUp 등에서 제작한 3D 데이터와 씬 구조를 Unreal Engine으로 손실 없이 한 번에 가져오는 전용 Import 시스템입니다.",
+  "when": [
+    "건축 인테리어 모델링(SketchUp)을 Unreal Engine 실시간 씬으로 빠르게 전환할 때",
+    "복잡한 3ds Max 씬의 계층 구조, 머티리얼, Instance를 유지하며 가져올 때",
+    "대규모 CAD 및 시각화 에셋의 일괄 Import와 최적화가 필요할 때"
+  ],
+  "steps": [
+    "Unreal Engine 프로젝트의 Content Browser 에서 에셋을 가져올 폴더를 엽니다.",
+    "상단 툴바의 Quick Add(+) 또는 Import 버튼 옆의 드롭다운을 클릭하거나, Datasmith 파일(.udatasmith)을 드래그 앤 드롭합니다.",
+    "파일 탐색기에서 3ds Max 또는 SketchUp에서 내보낸 Datasmith 파일을 선택하고 Open을 클릭합니다.",
+    "Import Options 대화 상자가 나타나면 씬 구조, 머티리얼, 지오메트리 옵션을 확인합니다.",
+    "하단의 Import 버튼을 클릭하여 씬 변환을 시작합니다.",
+    "Content Browser와 뷰포트에 생성된 에셋과 레벨(Level) 파일이 정상적으로 배치되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Scene",
+      "desc": "원본 3D 파일의 계층 구조와 액터 배치를 그대로 가져옵니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "원본의 머티리얼을 Unreal Engine용 기본 머티리얼 노드로 자동 변환합니다."
+    },
+    {
+      "name": "Lightmaps",
+      "desc": "라이트배킹을 위한 라이트맵 UV를 자동으로 생성하거나 채널을 지정합니다."
+    },
+    {
+      "name": "Collision",
+      "desc": "Import 시 오브젝트의 충돌(Collision) 판정 메쉬를 자동으로 생성합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "원본 툴의 단위를 Unreal Engine의 센티미터 단위에 맞게 변환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SketchUp 건축 인테리어 씬 가져오기",
+      "steps": [
+        "SketchUp에서 Datasmith Exporter를 이용해 .udatasmith 파일로 내보냅니다.",
+        "Unreal Engine Content Browser에서 파일을 임포트합니다.",
+        "Import 옵션에서 머티리얼과 라이트맵 생성 옵션을 켭니다.",
+        "생성된 레벨을 열고 뷰포트에서 가구와 벽체 배치를 확인합니다."
+      ]
+    },
+    {
+      "title": "3ds Max 제품 디자인 씬 가져오기",
+      "steps": [
+        "3ds Max에서 Datasmith 형식으로 씬을 익스포트합니다.",
+        "Unreal Engine으로 파일을 드래그하여 Import 창을 엽니다.",
+        "Instance 옵션을 활성화하여 동일한 오브젝트의 메모리 사용량을 최적화합니다.",
+        "뷰포트에서 머티리얼 연결 상태를 확인하고 필요시 에디터에서 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위(Unit) 설정 불일치로 오브젝트가 너무 작거나 크게 들어오는 경우 → Datasmith Import 옵션에서 Scale 값을 확인하고 미터/센티미터 단위를 맞춥니다.",
+    "머티리얼이 검은색으로 깨져서 보이는 경우 → 원본 툴에서 지원하지 않는 Shader를 사용했기 때문에 Unreal Engine에서 기본 Material을 다시 할당합니다.",
+    "오브젝트가 겹치거나 피벗 포인트가 잘못된 경우 → 원본 툴에서 피벗 위치와 좌표계(Axis)를 원점으로 정렬한 후 다시 익스포트합니다."
+  ],
+  "related": [
+    "Static Mesh",
+    "Material Graph",
+    "Level Editor",
+    "Datasmith Exporter"
+  ],
+  "videos": [
+    {
+      "id": "qsV4k09kPV8",
+      "title": "How to use Datasmith and Direct Link | 3dsMax to Unreal | Full Tutorial",
+      "author": "Unreal ArchWizard"
+    },
+    {
+      "id": "37zLuV3WdZo",
+      "title": "How to import 3d model from 3ds max (or other applications) to UnrealEngine 5 using datasmith plugin",
+      "author": " CG-SCHOOL "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Datasmith%20import%20%283ds%20Max%2C%20SketchUp%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Content Browser",
+    "Quick Add",
+    "Import",
+    "Datasmith"
+  ],
+  "at": "2026-11-08T00:31:14.862229+00:00"
+}

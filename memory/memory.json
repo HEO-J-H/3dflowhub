@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-05T18:24:29.107459+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 236,
-      "candidates_passed": 187,
-      "offtopic": 34,
-      "short": 0,
-      "prefiltered": 25,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "5cc690b6",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-05T18:34:56.030009+00:00",
       "collected": 1,
       "saved": 0,
@@ -6483,6 +6458,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-08T00:30:51.892715+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 148,
+      "candidates_passed": 103,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 28,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "e9acf09f",
+      "visuals": 0,
+      "enriched": 3,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -6578,7 +6578,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-30 [core.filter_practical_3d_depth(): 수집 및 요] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_ensure_minimum_content_depth_low_and_high - AttributeError: module 'core' has no at",
     "2026-10-30 [backend/app/services/mesh_from_image.py의] 입력 이미지 검증 시 크기와 포맷을 사전에 엄격히 확인하여 예외 처리를 명확히 하자.",
     "2026-10-30 [backend/app/services/mesh_from_image.py에] 입력값 검증과 예외 처리를 꼼꼼히 추가하면 서비스의 안정성이 크게 향상됩니다.",
     "2026-10-30 [성찰] 스포츠, 기업 구조조정, 중복 할인 등의 저품질·무관한 이슈 수집을 철저히 차단하고, Maya, 3ds Max, Blender 등 실무 중심의 고CPC 튜토리얼과 스크립트 정보에 집중하여 검색 유입과 페이지뷰를 높여야 합니다.",
@@ -6697,7 +6696,8 @@
     "2026-11-07 [[p-cbde5d0d47|사이트·UX] 로컬 가이드 RAG 테스트 코드 ] ",
     "2026-11-07 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 철저히 차단하고, 3ds Max 맥스스크립트나 Blender 애드온 같이 실무 검색 유입이 확실한 고단가·튜토리얼 콘텐츠에 집중해야 합니다.",
     "2026-11-07 [성찰] 오수집되는 동음이의어(Nuke, Unity 등)를 철저히 차단하고, 실무 검색량이 높은 Maxscript, 애드온, 튜토리얼 중심의 콘텐츠를 구성해야 광고 수익 극대화에 유리합니다.",
-    "2026-11-07 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비중을 철저히 차단하고, 실무 검색량이 높은 3ds Max 맥스스크립트(Maxscript) 및 Blender 애드온·튜토리얼 위주의 고품질 콘텐츠를 확대해야 합니다."
+    "2026-11-07 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비중을 철저히 차단하고, 실무 검색량이 높은 3ds Max 맥스스크립트(Maxscript) 및 Blender 애드온·튜토리얼 위주의 고품질 콘텐츠를 확대해야 합니다.",
+    "2026-11-08 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비율을 줄이기 위해 3D/CG 전문 맥락 필터를 더욱 강화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -8899,14 +8899,15 @@
     1208217329547790854,
     14416650228581023981,
     793146816222576305,
-    1715038352483891202
+    1715038352483891202,
+    12295345800616477028
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2140,
-    "Game Engine": 2140,
-    "VFX": 2140,
-    "AI 3D": 2140
+    "3D DCC": 2141,
+    "Game Engine": 2141,
+    "VFX": 2141,
+    "AI 3D": 2141
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
