@@ -1,0 +1,83 @@
+{
+  "id": "maya-edge-flow-and-edit-edge-flow-846d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Edge flow and Edit Edge Flow",
+  "title": "Edit Edge Flow",
+  "summary": "Maya의 Edge Flow 편집 기능은 선택한 에티지의 곡률 흐름을 유지하며 부드러운 형태로 자동 정렬해 주는 도구입니다. 하드서페이스 모델링에서 원형 홀이나 곡면의 흐름을 정리할 때 필수적입니다.",
+  "when": [
+    "원형 구멍 주변의 찌그러진 폴리곤 흐름을 원형으로 매끄럽게 정리할 때",
+    "캐릭터 얼굴이나 유기적 형태의 에지 루프 곡선을 부드럽게 다듬을 때",
+    "서브디비전(Subdivision) 적용 전후로 에지의 탄성과 곡률을 자연스럽게 연결할 때"
+  ],
+  "steps": [
+    "뷰포트에서 모델링할 오브젝트를 Mouse 우클릭하고 Edge 모드를 선택합니다.",
+    "정리하고자 하는 에지 루프(Edge Loop)를 더블클릭하여 전체를 선택합니다.",
+    "메뉴바에서 Edit Mesh > Edit Edge Flow를 실행합니다.",
+    "채널 박스(Channel Box) 또는 아틀리비ュ트 에디터에서 Adjust Edge Flow 값을 조절하여 곡률을 맞춥니다.",
+    "뷰포트에서 에지 흐름이 주변 표면과 부드럽게 이어지는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Adjust Edge Flow",
+      "desc": "선택한 에지의 곡률을 주변 메쉬의 흐름에 맞춰 자동으로 조절합니다 (값 1은 완벽한 곡률 복원)."
+    },
+    {
+      "name": "Insert Edge Loop Tool",
+      "desc": "원하는 위치에 새로운 에지 루프를 추가하여 형태의 단단함을 조절합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "날카로운 에지를 깎아내어 하드서페이스의 빛 반사를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 원형 구멍 주변 정리",
+      "steps": [
+        "구멍 주변의 에지 루프를 선택합니다.",
+        "Edit Mesh > Edit Edge Flow를 실행합니다.",
+        "Adjust Edge Flow 값을 1로 설정하여 완벽한 원형 흐름을 만듭니다."
+      ]
+    },
+    {
+      "title": "캐릭터 어깨 곡선 흐름 다듬기",
+      "steps": [
+        "어깨와 팔로 이어지는 에지 루프를 선택합니다.",
+        "Edit Edge Flow를 실행하여 울퉁불퉁한 면을 정리합니다.",
+        "Smooth Tool로 최종 표면을 부드럽게 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 에지 루프가 아닌 일부 에지만 선택함 → 에지를 더블클릭하여 완전한 루프를 선택한 뒤 실행합니다.",
+    "스케일이나 회전 값이 초기화되지 않음 → Modify > Freeze Transformations를 먼저 실행한 뒤 에지 플로우를 적용합니다."
+  ],
+  "related": [
+    "Insert Edge Loop Tool",
+    "Bevel",
+    "Extrude",
+    "Multi-Cut Tool"
+  ],
+  "videos": [
+    {
+      "id": "Hg9cJJWXRsg",
+      "title": "Fix Edge Flow in Maya 🧵 | How to Use Edit Edge Flow Tool for Clean Topology #Shorts",
+      "author": "NAMAN DO 3D"
+    },
+    {
+      "id": "MqPl2VBSuNU",
+      "title": "Noob vs Pro Artist: 3D Maya Edit Edge Flow #mayatutorial #mayatips #shorts",
+      "author": "Parveen 3D Artist "
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Edge%20flow%20and%20Edit%20Edge%20Flow",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Edge"
+  ],
+  "at": "2026-11-08T09:34:56.150725+00:00"
+}

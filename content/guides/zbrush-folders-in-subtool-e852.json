@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-folders-in-subtool-e852",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Folders in SubTool",
+  "title": "SubTool 폴더",
+  "summary": "ZBrush의 SubTool 팔레트 내에서 수많은 파츠를 폴더 단위로 묶고 관리하여 복잡한 캐릭터와 하드서페이스 모델링의 작업 효율을 높이는 기능입니다.",
+  "when": [
+    "캐릭터의 갑옷, 무기, 소품 등 수십 개의 SubTool을 부위별로 깔끔하게 정리하고 싶을 때",
+    "특정 폴더 안에 있는 여러 파츠를 한 번에 숨기거나(Hide) 마스크를 적용하고 싶을 때",
+    "복잡한 씬 구조를 레이어처럼 계층화하여 작업 속도를 개선하고 싶을 때"
+  ],
+  "steps": [
+    "우측 Tray에서 SubTool 패널을 클릭하여 엽니다.",
+    "패널 하단에 있는 Create Folder 아이콘(폴더 모양 버튼)을 클릭하여 새 폴더를 생성합니다.",
+    "폴더 이름을 더블 클릭하여 원하는 이름(예: Armor, Weapons)으로 변경합니다.",
+    "정리할 SubTool을 Mouse로 드래그하여 생성한 폴더 안으로 이동시킵니다.",
+    "폴더 왼쪽에 있는 눈(Visibility) 아이콘이나 자물쇠(Lock) 아이콘을 클릭해 폴더 전체를 관리합니다.",
+    "뷰포트에서 폴더 구조가 정리되고 파츠들이 그룹별로 묶인 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Create Folder",
+      "desc": "SubTool 목록에 새로운 폴더를 생성합니다."
+    },
+    {
+      "name": "Folder Visibility",
+      "desc": "폴더 안에 포함된 모든 SubTool의 뷰포트 표시 여부를 한 번에 토글합니다."
+    },
+    {
+      "name": "Folder Mask",
+      "desc": "폴더 내의 모든 SubTool에 일괄적으로 마스크를 적용하거나 해제합니다."
+    },
+    {
+      "name": "Merge Folder",
+      "desc": "폴더 안에 있는 모든 SubTool을 하나의 메쉬로 합칩니다."
+    },
+    {
+      "name": "Duplicate Folder",
+      "desc": "폴더와 그 안에 포함된 모든 SubTool을 통째로 복제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 의상과 파츠 분류하기",
+      "steps": [
+        "SubTool 패널 하단에서 Create Folder를 눌러 'Clothing' 폴더를 만듭니다.",
+        "상, 하의, 신발 SubTool을 'Clothing' 폴더 안으로 드래그합니다.",
+        "폴더의 눈 아이콘을 꺼서 의상을 한 번에 숨기고 바디 조형에 집중합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 무기 세트 관리",
+      "steps": [
+        "Create Folder를 눌러 'Weapon' 폴더를 생성합니다.",
+        "검의 날, 손잡이, 장식 파츠들을 해당 폴더로 이동시킵니다.",
+        "폴더 단위로 락(Lock)을 걸어 실수로 다른 파츠가 선택되는 것을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "드래그 위치 오류로 폴더 안이 아니라 엉뚱한 SubTool 사이에 배치됨 → 원하는 SubTool을 정확히 폴더 영역 안으로 드래그하여 이동시킵니다.",
+    "폴더 내 파츠를 개별 수정하려는데 폴더 전체가 선택됨 → 폴더 안의 개별 SubTool 이름을 직접 클릭하여 선택 상태를 바꿉니다."
+  ],
+  "related": [
+    "SubTool",
+    "Append",
+    "Merge",
+    "Split"
+  ],
+  "videos": [
+    {
+      "id": "VuIrMpZOM-I",
+      "title": "Adding multiple subtools into the same folder in zbrush",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "bBHqeaKNOzg",
+      "title": "Intro to ZBrush 030 - Subtool Options and Folders; Quickly and effectively organize your scene file!",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Folders%20in%20SubTool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T09:34:59.828101+00:00"
+}
