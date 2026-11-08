@@ -22493,5 +22493,67 @@
     "id": "p-338e0d6d57",
     "v": "done",
     "note": "코딩 에이전트 처리: PR #53 머지 완료"
+  },
+  {
+    "at": "2026-11-08T18:14:15+00:00",
+    "kind": "proposal",
+    "id": "p-538b8150d7",
+    "title": "RAG 검색 기능 연동 테스트 코드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "RAG 통합 관련 PR 및 문서화가 진행되었으나 검색 로직에 대한 단위 테스트 보완이 필요합니다.",
+    "proposal": "backend/tests/test_rag_search.py 파일을 추가하여 기본 RAG 쿼리 엔드포인트의 동작을 검증합니다.",
+    "expected": "RAG 검색 기능의 안정적인 동작 보장",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T18:14:15+00:00",
+    "kind": "proposal",
+    "id": "p-3fd2b9af13",
+    "title": "웹 브라우저 PBR 텍스처 변환 가이드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹/로컬 PBR 텍스처 생성 프로세스 문서화가 완료되었으므로 웹 UI상에서의 안내 문구를 정비합니다.",
+    "proposal": "web/index.html 또는 관련 UI 컴포넌트에 PBR 텍스처 생성 관련 툴팁 및 가이드 링크를 추가합니다.",
+    "expected": "사용자 편의성 및 기능 이해도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T18:14:59.381784+00:00",
+    "kind": "decision",
+    "id": "p-538b8150d7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 검색 기능 단위 테스트",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T18:14:59.410303+00:00",
+    "kind": "decision",
+    "id": "p-3fd2b9af13",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T18:15:01.929804+00:00",
+    "kind": "triage",
+    "id": "p-3fd2b9af13",
+    "verdict": "done_already",
+    "reason": "웹 PBR 텍스처 생성 관련 안내 문구 및 툴팁 추가 작업은 이미 완료된 '웹 렌더링 안내 문구 개선' 및 '도움말 창에 사용 안내 전체 링크' 등과 내용이 겹치거나 이미 커밋에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-08T18:15:01.954488+00:00",
+    "kind": "decision",
+    "id": "p-3fd2b9af13",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 PBR 텍스처 생성 관련 안내 문구 및 툴팁 추가 작업은 이미 완료된 '웹 렌더링 안내 문구 개선' 및 '도움말 창에 사용 안내 전체 링크' 등과 내용이 겹치거나 이미 커밋에 반영되었습니다."
   }
 ]
