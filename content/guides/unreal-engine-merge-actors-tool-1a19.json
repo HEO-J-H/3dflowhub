@@ -1,0 +1,95 @@
+{
+  "id": "unreal-engine-merge-actors-tool-1a19",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Merge Actors tool",
+  "title": "Merge Actors — 메시 합치기",
+  "summary": "Unreal Engine의 Merge Actors 도구는 레벨에 배치된 여러 개의 개별 스태틱 메시(Static Mesh)를 하나로 합쳐서 드로우 콜(Draw Call)을 줄이고 최적화하는 기능입니다.",
+  "when": [
+    "건물 외관이나 소품처럼 여러 개의 작은 조각을 하나의 오브젝트로 묶어 최적화할 때",
+    "오픈월드나 복잡한 레벨의 퍼포먼스(FPS)를 개선하기 위해 폴리합성 및 머티리얼을 병합할 때",
+    "레벨에 고정된 정적 오브젝트(Static Objects)를 가볍게 관리하고 싶을 때"
+  ],
+  "steps": [
+    "Unreal Engine 뷰포트에서 합치고자 하는 여러 개의 Static Mesh Actors들을 선택합니다.",
+    "상단 메뉴 바에서 Tools 또는 Window 메뉴를 열고, Developer Tools 또는 Merge Actors 항목을 선택합니다.",
+    "Merge Actors 창이 열리면 병합 옵션(Merge Type 등)을 설정합니다.",
+    "창 하단의 Merge Actors 버튼을 클릭하여 새로운 단일 스태틱 메시 에셋을 생성합니다.",
+    "저장할 폴더(Content Browser)를 지정하고 에셋 이름을 입력하여 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Merge Type",
+      "desc": "여러 메시를 단순히 합치거나 새 메시로 구워내는(Bake) 병합 방식을 선택합니다."
+    },
+    {
+      "name": "Static Mesh",
+      "desc": "병합 결과물로 생성될 새로운 스태틱 메시 에셋의 저장 경로와 이름을 지정합니다."
+    },
+    {
+      "name": "Pivot Point",
+      "desc": "합쳐진 새 오브젝트의 피벗(기준점) 위치를 설정합니다(예: 첫 번째 액터 기준 등)."
+    },
+    {
+      "name": "Generate Lightmap UVs",
+      "desc": "병합된 메시에 라이트맵 UV를 새로 생성하여 라이팅 오류를 방지합니다."
+    },
+    {
+      "name": "Group Identical Materials",
+      "desc": "동일한 머티리얼을 사용하는 영역을 하나로 묶어 드로우 콜을 추가로 줄입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽 소품 합치기",
+      "steps": [
+        "외벽에 붙은 여러 개의 창문과 장식 메시들을 다중 선택합니다.",
+        "Merge Actors 도구를 열고 설정을 확인합니다.",
+        "병합을 실행하여 하나의 스태틱 메시로 Content Browser에 저장합니다."
+      ]
+    },
+    {
+      "title": "바위 군락 최적화",
+      "steps": [
+        "흩어져 있는 작은 바위 액터들을 모두 선택합니다.",
+        "Merge Actors를 통해 하나의 메시로 결합합니다.",
+        "레벨의 기존 액터들을 지우고 병합된 단일 바위 메시를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "동적(Movable) 오브젝트를 병합함 → 정적(Static) 환경 오브젝트 위주로 병합해야 최적화 효과가 큽니다.",
+    "라이트맵 UV 체크 안 함 → 병합 후 그림자가 깨지므로 Generate Lightmap UVs 옵션을 켜야 합니다."
+  ],
+  "related": [
+    "Hierarchical Instanced Static Mesh (HISM",
+    "Nanite",
+    "Proxy LOD",
+    "Data Layer"
+  ],
+  "videos": [
+    {
+      "id": "UjyNjBBE5Gc",
+      "title": "How to Combine Multiple Objects into One in Unreal Engine 5 using Combine Meshes and Merge Actors",
+      "author": "Francesco Milanese | CG Tutorials"
+    },
+    {
+      "id": "B9BZBxjap-g",
+      "title": "Merge Meshes/Actors In Unreal Engine - Beginner Tutorial #ue5 #unrealengine5",
+      "author": "Ben Crawshaw"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Merge%20Actors%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Static Mesh Actors",
+    "Tools",
+    "Window",
+    "Developer Tools",
+    "Merge Actors"
+  ],
+  "at": "2026-11-08T01:31:18.310357+00:00"
+}
