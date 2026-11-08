@@ -1,0 +1,20 @@
+<!-- TITLE: NVIDIA NeMo로 에이전트 실패를 테스트로 전환하기 | TAGS: NVIDIA NeMo,Agentic AI,OpenShell,Harbor,AI 에이전트 최적화,튜토리얼·팁 | CATEGORY: AI 3D/로보틱스·월드모델 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/agentic-workflow.webp" alt="NVIDIA NeMo로 에이전트 실패를 테스트로 전환하기" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/IqhDPbRrsh4" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA NeMo Compass와 Eval Author를 활용하여 에이전트 실행 기록에서 실패 원인을 분석하고 이를 커스텀 테스트와 하네스 수정으로 연결하는 최적화 주기를 소개합니다.</p>
+<p style="color:#888;">분류: AI 3D › 로보틱스·월드모델 › 튜토리얼·팁</p>
+<h2>NeMo Compass를 통한 실패 원인 분석</h2>
+<p>NeMo Compass는 저장된 에이전트 트레이스와 평가 데이터를 분석하여 반복되는 문제를 찾아냅니다. 평가 공백을 파악하고 개선 우선순위를 정해 각 발견 사항을 특정 트레이스 ID와 연결합니다. 이를 통해 엔지니어는 에이전트가 어떤 지점에서 잘못된 도구를 호출하거나 문맥을 놓쳤는지 정확히 추적할 수 있습니다.</p>
+<h2>NeMo Eval Author를 이용한 커스텀 평가 생성</h2>
+<p>NeMo Eval Author는 코딩 에이전트 스킬과 워크플로를 제공하여 Harbor 또는 NVIDIA NeMo Gym 형식으로 커스텀 평가를 만듭니다. 도메인 요구사항에 맞춰 에이전트의 실제 행동을 측정할 수 있는 테스트 환경을 구축합니다. 이를 통해 모델 튜닝을 넘어 Prompt, 도구, 제어 흐름 전체의 신뢰성을 검증합니다.</p>
+<h2>에이전트 하네스 최적화 주기 실행 결과</h2>
+<p>시스템 Prompt를 수정하는 등 에이전트 하네스를 업데이트한 뒤 개발 및 평가 태스크에서 반복 검증을 수행합니다. Dassault Systèmes 엔지니어링 시나리오에서는 이 최적화 주기를 적용하여 잘못된 도구 호출을 142건에서 0건으로 줄였습니다. 전체 평가 점수는 28% 향상되었으며 실행당 도구 호출 수도 35% 감소했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Dassault Systèmes 엔지니어링 사례에서 잘못된 도구 호출 수가 142건에서 0건으로 줄어들고 전체 평가 점수가 28% 향상되었습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA NeMo는 에이전트 최적화에 어떻게 기여하나요?</b><br/>A. 기록된 트레이스와 평가 증거를 분석하여 반복되는 문제를 식별하고, 커스텀 평가를 생성해 Prompt와 도구 설정을 체계적으로 개선할 수 있도록 돕습니다.</p>
+<p><b>Q. 실행에 필요한 시스템 권장 사양은 무엇인가요?</b><br/>A. Docker가 기본적으로 구동되는 Linux 머신이 필요하며, 8 vCPU와 32GB RAM을 갖춘 Ubuntu 24.04 환경이 권장됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-73bbcb2d707df5a3.html">NVIDIA Factory Operations Blueprint AI 에이전트 아키텍처</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-cfb4189f31938d74.html">NVIDIA TensorRT Edge-LLM으로 엣지 AI 모델 실행하기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-dc25330eca513d87.html">SceneAgent: 3D·4D 캡처를 시뮬레이션 환경으로 변환</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/use-nvidia-nemo-to-turn-agent-failures-into-tests-and-harness-fixes/" target="_blank" rel="noopener nofollow">Use NVIDIA NeMo to Turn Agent Failures into Tests and Harness Fixes</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
