@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-split-and-merge-subtools-af85",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Split and Merge SubTools",
+  "title": "Split·Merge",
+  "summary": "ZBrush의 SubTool 패널에서 여러 파츠로 이루어진 모델을 쪼개거나(Split) 하나로 합치는(Merge) 기능으로, 복잡한 캐릭터나 하드서페이스 모델링을 체계적으로 관리합니다.",
+  "when": [
+    "캐릭터의 갑옷, 눈, 몸체 등 서로 다른 부위를 독립된 SubTool로 분리해 세밀하게 스컬프팅할 때",
+    "파츠별로 폴리그룹(Polygroup)이 나뉘어 있는 모델을 각각 개별 오브젝트로 쪼개고 싶을 때",
+    "작업이 끝난 여러 개의 SubTool을 하나로 합쳐서 최종 출력이나 다이나믹 리토폴로지(Dynamesh)를 걸고 싶을 때"
+  ],
+  "steps": [
+    "우측 Tray에서 SubTool 패널을 열고 분리하거나 합칠 대상 SubTool을 선택합니다.",
+    "부위를 쪼개려면 SubTool 패널 하단의 Split 메뉴를 펼칩니다.",
+    "그룹별로 나누려면 Split To Similar Parts 또는 Split Groups를 클릭합니다.",
+    "오브젝트를 합치려면 Merge할 대상 SubTool 중 위에 있는 것을 선택하고 Merge Down (또는 Merge Visible)을 클릭합니다.",
+    "뷰포트에서 SubTool들이 각각 분리되었거나 하나로 합쳐졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Split Groups",
+      "desc": "폴리그룹(Polygroup) 경계면을 기준으로 SubTool을 각각 독립된 파츠로 쪼갭니다."
+    },
+    {
+      "name": "Split To Similar Parts",
+      "desc": "대칭(Sym) 상태이거나 유사한 구조의 메시를 대칭축 기준으로 분리합니다."
+    },
+    {
+      "name": "Merge Down",
+      "desc": "선택한 SubTool을 바로 아래에 있는 SubTool과 하나로 합칩니다."
+    },
+    {
+      "name": "Merge Visible",
+      "desc": "현재 눈(Visibility)이 켜져 있는 모든 SubTool을 하나의 메시로 통합합니다."
+    },
+    {
+      "name": "Flatten",
+      "desc": "Merge 시 하위 부위의 트랜스폼 정보를 유지하며 병합합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터와 의상 분리하기",
+      "steps": [
+        "전신 모델에서 의상 부위에 해당하는 폴리그룹을 지정합니다.",
+        "SubTool 메뉴의 Split > Split Groups를 실행합니다.",
+        "몸체와 의상이 각각 별도의 SubTool로 나뉘었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "소품 부속품 병합하기",
+      "steps": [
+        "칼날과 손잡이 등 여러 개로 나뉜 소품 SubTool들을 정렬합니다.",
+        "상위에 있는 서브툴을 선택하고 Merge Down을 실행합니다.",
+        "두 부위가 하나의 SubTool로 합쳐진 것을 확인하고 스컬프팅을 이어갑니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리그룹이 안 나뉘었는데 Split Groups를 누름 → Ctrl+W(Auto Groups)로 먼저 폴리그룹을 나눈 뒤 분리합니다.",
+    "합친 후 메시에 구멍이나 겹침 발생 → Merge Visible 후 Dynamesh나 Remesh를 실행해 토폴로지를 정리합니다."
+  ],
+  "related": [
+    "SubTool",
+    "Polygroup",
+    "Dynamesh",
+    "Merge Visible"
+  ],
+  "videos": [
+    {
+      "id": "JuE4Zm490NM",
+      "title": "How to detach or split parts of the 3D Model in zBrush and maintain topology!",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "5Tqn1t7Ao4o",
+      "title": "ZBrush - split and merge geometry under cursor",
+      "author": "mronetwo"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Split%20and%20Merge%20SubTools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tray",
+    "SubTool",
+    "Split"
+  ],
+  "at": "2026-11-08T09:22:55.239780+00:00"
+}

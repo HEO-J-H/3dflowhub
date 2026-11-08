@@ -1,0 +1,93 @@
+{
+  "id": "maya-duplicate-special-a7e6",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Duplicate Special",
+  "title": "Duplicate Special — 규칙 복제",
+  "summary": "Duplicate Special은 선택한 오브젝트를 위치, 회전, 크기 등 지정한 규칙에 따라 복제하고 패턴을 만드는 강력한 기능입니다.",
+  "when": [
+    "건축물의 기둥, 창문, 울타리처럼 일정한 간격으로 반복되는 요소를 만들 때",
+    "톱니바퀴나 꽃잎처럼 원형으로 회전하며 대칭 복제를 해야 할 때",
+    "계단이나 나선형 구조물처럼 이동과 회전을 동시에 주며 복제할 때"
+  ],
+  "steps": [
+    "복제할 기본 오브젝트를 선택합니다.",
+    "상단 메뉴에서 Edit → Duplicate Special 옵션 박스(□)를 엽니다.",
+    "Duplicate Special Options 창에서 복사 방식을 Instance 또는 Copy 중에서 선택합니다.",
+    "Translate(이동), Rotate(회전), Scale(크기) 값과 Number of Copies(복제 횟수)를 설정합니다.",
+    "Apply 버튼을 누르면 뷰포트에 규칙에 따른 복제본이 생성됩니다."
+  ],
+  "params": [
+    {
+      "name": "Number of Copies",
+      "desc": "설정한 규칙에 따라 생성할 복제본의 개수를 지정합니다."
+    },
+    {
+      "name": "Translate",
+      "desc": "X, Y, Z 축 방향으로 이동하며 복제할 간격 값을 설정합니다."
+    },
+    {
+      "name": "Rotate",
+      "desc": "X, Y, Z 축 기준으로 회전하며 복제할 각도를 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "복제될 때마다 오브젝트의 크기가 커지거나 작아지도록 비율을 설정합니다."
+    },
+    {
+      "name": "Geometry Type",
+      "desc": "원본과 독립적인 Copy 또는 원본과 연동되는 Instance 방식을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원형 기둥 배치",
+      "steps": [
+        "기둥 오브젝트를 선택하고 피벗(Pivot)을 원점으로 이동합니다.",
+        "Duplicate Special Options 창을 엽니다.",
+        "Rotate Y 값에 360을 복제 개수로 나눈 각도를 입력합니다.",
+        "Number of Copies에 원하는 개수를 입력하고 Apply를 누릅니다."
+      ]
+    },
+    {
+      "title": "일직선 울타리 만들기",
+      "steps": [
+        "울타리 패널 오브젝트를 선택합니다.",
+        "Duplicate Special Options 창을 엽니다.",
+        "Translate X 값에 패널의 너비만큼 거리를 입력합니다.",
+        "Number of Copies를 설정하고 Apply를 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗(Pivot) 위치가 원점이 아닌 경우 → 회전 복제 시 원하지 않는 중심축을 기준으로 돌아가므로 D 키를 눌러 피벗을 원하는 위치로 먼저 옮깁니다.",
+    "Instance 대신 Copy로 생성해 수정이 불편한 경우 → 모든 복제본을 한 번에 수정하려면 Geometry Type을 Instance로 설정해야 합니다."
+  ],
+  "related": [
+    "Duplicate",
+    "Instancer",
+    "MASH",
+    "Snap to Grid"
+  ],
+  "videos": [
+    {
+      "id": "6VZpoQFwJz8",
+      "title": "How to Use Duplicate Special in Maya!",
+      "author": "MB_Cre8"
+    },
+    {
+      "id": "GKAC6HBbVdg",
+      "title": "Maya Tutorial for Beginners - Duplicate/Duplicate Special",
+      "author": "3DWolf"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Duplicate%20Special",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Duplicate Special"
+  ],
+  "at": "2026-11-08T09:22:50.969920+00:00"
+}
