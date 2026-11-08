@@ -1,0 +1,96 @@
+{
+  "title_ko": "P-MGS: 지오메트리 대신 인지 복잡도 기반 Gauss 배치를 통한 메시 기반 3DGS",
+  "title": "Perception Over Geometry: Rethinking Gaussian Allocation in Mesh-based Splatting",
+  "url": "https://arxiv.org/abs/2611.07979v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "Mesh Editing",
+    "P-MGS",
+    "Novel-View Synthesis",
+    "Perception Over Geometry"
+  ],
+  "summary": "메시 분할 밀도가 아닌 다중시점 관측의 인지 복잡도를 기반으로 3도가우스를 할당하고 비제약 최적화 후 사후 바인딩하여 편집 정밀도를 높이는 프레임워크입니다.",
+  "insight": "이 연구의 접근 방식은 향후 캐릭터나 소품을 메시로 변형하면서도 털이나 복잡한 텍스처를 뭉개지지 않게 유지하는 리깅 및 애니메이션 파이프라인에 활용될 수 있는 가능성을 보여줍니다. 외형 표현과 지오메트리 구조를 분리했다는 점은 향후 실시간 게임 엔진 내 동적 Gauss 에디팅 도구 개발에도 영감을 줄 수 있습니다.",
+  "try_it": [
+    "GitHub 저장소(https://github.com/yuting01234/P-MGS)에 접속하여 소스 코드와 프로젝트 페이지를 확인합니다.",
+    "NeRF-Synthetic 및 DTU 데이터셋을 이용해 인지 복잡도 기반 가우스 할당과 사후 바인딩 과정을 실습합니다."
+  ],
+  "sections": [
+    {
+      "heading": "기존 메시 기반 3DGS의 한계와 연구 배경",
+      "body": "기존 메시 기반 Gaussian Splatting 방법인 GaMeS 등은 삼각형 메시 면마다 고정된 수의 Gauss를 할당합니다. 그러나 메시는 지오메트리를 정의하고 외형 복잡도는 다중시점 관측에 의해 결정되므로, 균등 배치는 텍스처가 풍부한 영역은 과소표현하고 단순하지만 조밀한 영역은 낭비하는 불일치를 발생시킵니다."
+    },
+    {
+      "heading": "P-MGS의 핵심 아이디어: Perception Over Geometry",
+      "body": "본 논문은 외형 재현에 필요한 표현 용량이 메시 분할 밀도가 아닌 지역 외형 복잡도에 의존한다는 점에 착안했습니다. 이에 따라 다중시점 관측에서 추정된 표면 외형 수요에 따라 Gauss를 분배하는 인지 복잡도 유도 할당 전략을 제안합니다."
+    },
+    {
+      "heading": "구현 방법과 단계별 구성",
+      "body": "P-MGS는 먼저 다중시점 인지 복잡도로 메시 기반 Gauss를 초기화한 뒤 메시 제약 없이 3DGS를 최적화합니다. 그 후 사후 바인딩(post-hoc binding)을 통해 Gauss와 원본 메시를 연결하며, 메시 편집 시 국소 아핀 변형 전송(local affine deformation transfer)을 통해 Gauss 중심과 공분산을 업데이트합니다."
+    },
+    {
+      "heading": "실험 결과 및 렌더링·편집 성능",
+      "body": "NeRF-Synthetic 및 DTU 데이터셋 실험 결과, P-MGS는 더 적은 Gauss 수로도 우수한 평균 신시점 합성(novel-view synthesis) 품질을 달성했습니다. 또한 메시 변형 시 발생하는 Gauss-메시 오정렬과 플로팅 아티팩트를 줄여 정합성 있는 메시 편집을 보여줍니다."
+    },
+    {
+      "heading": "오픈소스 공개 여부",
+      "body": "본 연구의 소스 코드는 공식 프로젝트 페이지와 GitHub 저장소(https://github.com/yuting01234/P-MGS)를 통해 공개되어 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "P-MGS는 Gauss를 어떻게 초기화합니까?",
+      "a": "다중시점 관측에서 추정된 표면 외형 수요와 인지 복잡도를 기반으로 Gauss를 초기화합니다."
+    },
+    {
+      "q": "메시 변형 시 Gauss의 정렬은 어떻게 유지됩니까?",
+      "a": "국소 아핀 변형 전송을 사용하여 메시 변형에 맞춰 Gauss 중심과 공분산을 업데이트함으로써 정렬을 유지합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.07979v1/2611.07979v1/fig/abstruct11.png",
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.07979v1/2611.07979v1/fig/Observation9.png",
+        "caption": "Figure 2 : Illustration of the mismatch between mesh subdivision density and perceptual complexity.\n(a) Mesh topology with non-uniform geometric complexity.\n(b) Fixed Gaussian allocation in GaMeS [ 18 ] .\n(c) Perceptual complexity-guided Gaussian allocation in P-MGS.",
+        "caption_ko": "그림 2: 메시 분할 밀도와 인지 복잡도 간의 불일치 예시. (a) 비균일 지오메트리 복잡도를 가진 메시 토폴로지, (b) GaMeS의 고정 가우스 할당, (c) P-MGS의 인지 복잡도 유도 가우스 할당."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07979v1/2611.07979v1/fig/pipeline14.png",
+        "caption": "Figure 3 : Overview of P-MGS.\nThe framework consists of two stages: perceptual complexity-guided Gaussian allocation and post-hoc Gaussian–mesh binding.\nIn the first stage, multi-view perceptual complexity guides mesh-based Gaussian initialization, followed by unconstrained 3DGS optimization.\nIn the",
+        "caption_ko": "그림 3: P-MGS의 개요. 인지 복잡도 유도 가우스 할당과 사후 가우스-메시 바인딩의 두 단계로 구성됩니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07979v1/2611.07979v1/fig/dong7.png",
+        "caption": "Figure 4 : Qualitative comparison of mesh-driven editing with GaMeS △ and Mani-GS on Chair and Ship from NeRF-Synthetic, and Pigeon (Scan106) and Skull (Scan65) from DTU.\nGaMeS △ and Mani-GS exhibit floating Gaussian artifacts and Gaussian–mesh misalignment after deformation, whereas P-MGS produces ",
+        "caption_ko": "그림 4: NeRF-Synthetic과 DTU 데이터셋의 메시 기반 편집 정성적 비교. GaMeS와 Mani-GS는 변형 후 아티팩트가 발생하는 반면 P-MGS는 정합성을 유지합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07979v1/2611.07979v1/fig/jing7.png",
+        "caption": "Figure 5 : Qualitative comparison of static novel-view rendering on Chair from NeRF-Synthetic and Building (Scan24) from DTU.\nThe zoomed-in regions highlight the green area of Chair and the windows of Building , where P-MGS exhibits fewer noise artifacts than GaMeS △ and Mani-GS.",
+        "caption_ko": "그림 5: 정적 신시점 렌더링 정성적 비교. 확대된 영역에서 P-MGS가 더 적은 노이즈 아티팩트를 보입니다."
+      }
+    ]
+  },
+  "collected_at": "2026-11-08T13:33:16.525214+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-79336ccae0285209",
+  "img_tried": true,
+  "enriched": "2026-11-08",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/yuting01234/P-MGS"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T13:33:36+00:00"
+}

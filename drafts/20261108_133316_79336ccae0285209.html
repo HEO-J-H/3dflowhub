@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting P-MGS 연구 논문 발표 | TAGS: Gaussian Splatting,Mesh,P-MGS,3D AI,NeRF,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 메시 기반 Gaussian Splatting에서 지오메트리 제약 없이 외형 복잡도에 따라 Gaussian을 할당하는 P-MGS 프레임워크를 제안합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>P-MGS 프레임워크와 외형 모델링 분리</h2>
+<p>기존 메시 기반 방식은 삼각형 면에 Gaussian을 고정 개수로 할당하여 복잡도를 충분히 반영하지 못했습니다. P-MGS는 외형 모델링과 지오메트리 제어를 분리하여 렌더링 품질과 컴팩트한 표현을 동시에 달성합니다.</p>
+<h2>지각적 복잡도 기반 Gaussian 할당 전략</h2>
+<p>멀티뷰 관측에서 추정된 표면 외형 수요에 따라 Gaussian을 분배합니다. 메시 분할 밀도 대신 실제 필요한 외형 복잡도에 맞추어 표현 능력을 극대화합니다.</p>
+<h2>메시 제약 없는 최적화와 후속 바인딩</h2>
+<p>Gaussian은 초기 최적화 과정에서 메시 제약 없이 최적화되며, 이후 후속 바인딩을 통해 원래 메시와 연결됩니다. 이를 통해 적응형 정밀화와 메시 토폴로지를 동시에 보존합니다.</p>
+<h2>메시 변형 시 국소 아핀 변형 전송</h2>
+<p>메시 변형이 일어날 때 국소 아핀 변형 전송을 사용하여 Gaussian 중심과 공분산을 업데이트합니다. 결과적으로 변형 과정에서 발생하기 쉬운 오정렬과 플로팅 아티팩트를 효과적으로 줄여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 메시 면당 고정된 개수의 Gaussian을 할당하던 방식에서 벗어나, 외형 복잡도 기반 할당과 후속 바인딩 방식을 도입하여 적은 수의 Gaussian으로 고품질 시점 합성 결과를 만듭니다. 메시 변형 시 국소 아핀 변형 전송을 적용해 정렬 오류와 플로팅 아티팩트를 줄입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. P-MGS는 기존 메시 기반 Gaussian Splatting과 무엇이 다릅니까?</b><br/>A. 기존 방식이 메시 면마다 고정된 수의 Gaussian을 할당했던 것과 달리, P-MGS는 표면 외형의 복잡도에 따라 Gaussian을 유연하게 할당하고 메시 제약 없는 최적화 후 바인딩을 수행합니다.</p>
+<p><b>Q. 메시 편집 시 아티팩트는 어떻게 해결합니까?</b><br/>A. 국소 아핀 변형 전송 방식을 도입하여 메시 변형에 맞춰 Gaussian의 중심과 공분산을 업데이트함으로써 정렬 오류와 플로팅 아티팩트를 줄입니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-4e786d4e3875ba4f.html">Gaussian Splatting 3D 실시간 재구성 HIBS 논문 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-ce0de58b61f85fd7.html">MOMASPLAT: Gaussian Splatting 기반 모바일 매니퓰레이션 데이터 증강</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-31-73ff5ae0fa45090e.html">Gaussian Splatting CTBakeGS — 학습 없는 CT 볼륨 실시간 변환</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.07979v1" target="_blank" rel="noopener nofollow">Perception Over Geometry: Rethinking Gaussian Allocation in Mesh-based Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
