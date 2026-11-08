@@ -1,0 +1,21 @@
+<!-- TITLE: NVIDIA Reshard Collective — 강화학습 웨이트 리핏 속도 향상 | TAGS: NVIDIA,강화학습,NeMo RL,NCCL,DTensor,연구·논문 | CATEGORY: AI 3D/기타 AI 3D | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/green-cube.webp" alt="NVIDIA Reshard Collective — 강화학습 웨이트 리핏 속도 향상" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA가 대규모 언어 모델 강화학습 후학습 과정에서 훈련 GPU와 추론 GPU 사이의 모델 가중치 전송 속도를 최대 5.7배 높여주는 Reshard collective 기술을 발표했습니다.</p>
+<p style="color:#888;">분류: AI 3D › 기타 AI 3D › 연구·논문</p>
+<h2>강화학습 웨이트 리핏과 통신 병목</h2>
+<p>강화학습 후학습 단계에서는 현재 정책 모델로 추론을 실행해 훈련 궤적을 실시간으로 생성합니다. 훈련과 추론을 분리된 GPU 자원에서 병렬로 수행할 때, 훈련 GPU에서 갱신된 모델 가중치를 추론 GPU로 주기적으로 동기화하는 과정을 리핏이라고 부릅니다. 대형 모델의 경우 리핏 한 번에 전송해야 하는 데이터 페이로드가 최대 10TB에 달해 통신 병목이 발생합니다.</p>
+<h2>기존 Gather-and-Broadcast 방식의 한계</h2>
+<p>기존 리핏 구현 방식은 훈련 GPU들이 로컬 샤드를 모아 전체 파라미터를 재구성한 뒤 추론 GPU 전체에 브로드캐스트하는 구조를 사용합니다. 이 방식은 추론 GPU가 자신의 로컬 레이아웃에 필요한 샤드 외에도 전체 파라미터를 수신해야 하므로 불필요한 네트워크 트래픽을 유발합니다. 모델 규모가 커질수록 이 중간 표현 방식은 통신 효율을 크게 떨어뜨립니다.</p>
+<h2>DTensor 간 최소 데이터 전송 Reshard Collective</h2>
+<p>새롭게 도입된 Reshard collective는 리핏 과정을 DTensor 간 전송으로 재구성하여 임의의 소스 레이아웃과 타겟 레이아웃 사이에서 이론적 최솟값에 해당하는 데이터만 이동시킵니다. NCCL M2N Reshard는 정확한 샤드 교차점을 도출하고 NVLink 도메인 레플리카를 그룹화하여 중복되는 네트워크 전송을 제거합니다. 이를 통해 대형 모델 분산 환경에서 전송 시간을 대폭 단축합니다.</p>
+<h2>NeMo RL 벤치마크 성과와 하이브리드 접근법</h2>
+<p>NVIDIA DGX H100 및 DGX GB200 시스템에서 진행된 NeMo RL 벤치마크 결과, Reshard 리핏은 기존 방식 대비 2.7배에서 5.7배 속도 향상을 달성했습니다. 전체 페이로드의 대부분을 차지하는 피드포워드 프로젝션 웨이트에는 Reshard를 적용하고, 상대적으로 작은 가중치에는 기존 gather-and-broadcast 방식을 유지하는 하이브리드 방식을 적용해 기능적 커버리지를 보장합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NeMo RL 벤치마크 테스트에서 Qwen 3 235B와 DeepSeek v3 671B 모델을 기준으로 기존 방식 대비 2.7배에서 5.7배 빠른 속도 향상을 기록했습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 웨이트 리핏이란 무엇인가요?</b><br/>A. 훈련 GPU에서 갱신된 모델 파라미터를 추론 GPU로 주기적으로 전송하여 동기화하는 과정을 의미합니다.</p>
+<p><b>Q. Reshard collective는 어떤 성능 향상을 보여주나요?</b><br/>A. NVIDIA DGX H100 및 DGX GB200 시스템 환경에서 Qwen 3 235B와 DeepSeek v3 671B 모델을 대상으로 기존 방식 대비 2.7배에서 5.7배 빠른 속도를 기록했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-4e0aa3919fe104e5.html">NVIDIA Blackwell GPU에서 FLUX 3 Image Klein 가속</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-fba0bc8ee0b01f24.html">Atelico AI Engine 얼리 액세스 출시</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-42b398d4de92f01a.html">Schneider Electric, AI 공장 디지털 트윈 테스트 – Sines 데이터센터</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/accelerating-reinforcement-learning-weight-refit-with-the-reshard-collective/" target="_blank" rel="noopener nofollow">Accelerating Reinforcement Learning Weight Refit with the Reshard Collective</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
