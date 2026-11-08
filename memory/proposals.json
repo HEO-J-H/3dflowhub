@@ -20986,5 +20986,53 @@
     "id": "p-8f5a012a3f",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): docs/rag-integration.md 오픈소스 검토 내용 정리와 관련된 RAG 오픈소스 활용 방안 및 연동 구조 문서화는 이미 끝낸 제안과 최근 커밋에서 반영 완료되었습니다."
+  },
+  {
+    "at": "2026-11-08T09:12:33+00:00",
+    "kind": "proposal",
+    "id": "p-e6df0603e0",
+    "title": "docs/local-pipeline.md 내용 최신화 및 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 가이드 및 VRAM 관련 문서화 요구가 있었으며 일부 문서 작업이 보류 상태임",
+    "proposal": "docs/local-pipeline.md 문서에 TripoSR 및 CUDA 설정 가이드를 명확하게 정리하고 포맷을 점검합니다.",
+    "expected": "사용자가 로컬 환경에서 VRAM 요구사항과 실행 절차를 쉽게 파악할 수 있음",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T09:12:33+00:00",
+    "kind": "proposal",
+    "id": "p-9356321ce3",
+    "title": "backend/tests/test_triposr.py 예외 처리 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 TripoSR 오류 처리 단위 테스트 과제가 패치 적용 실패로 스킵된 상태임",
+    "proposal": "backend/tests/test_triposr.py에 TripoSR 실행 실패 시의 대체 경로 또는 명확한 오류 반환 테스트를 단순화하여 재추가합니다.",
+    "expected": "로컬 파이프라인의 예외 상황 대응력 검증 및 테스트 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T09:13:10.838930+00:00",
+    "kind": "decision",
+    "id": "p-e6df0603e0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md 내용 최신화 및 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T09:13:10.859776+00:00",
+    "kind": "decision",
+    "id": "p-9356321ce3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
   }
 ]

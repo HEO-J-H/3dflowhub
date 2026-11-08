@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-append-and-insert-subtool-3736",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Append and Insert SubTool",
+  "title": "Append·Insert",
+  "summary": "ZBrush의 Append와 Insert SubTool은 현재 선택된 모델에 새로운 3D 오브젝트나 파츠를 추가하여 복잡한 캐릭터나 소품을 구성하는 기능입니다. 마치 레소 블록처럼 서로 다른 오브젝트를 하나의 파일 안에서 독립된 레이어로 관리할 수 있게 해줍니다.",
+  "when": [
+    "캐릭터에 안경, 모자, 단추 같은 소품(Prop)을 따로 만들어 추가할 때",
+    "갑옷이나 의상의 파츠를 분리하여 세부 디테일을 효율적으로 조각할 때",
+    "기본 도형(Sphere, Cylinder 등)을 불러와 새로운 몬스터의 뿔이나 날개를 붙일 때"
+  ],
+  "steps": [
+    "우측 Tray(기본 위치)에서 SubTool 패널을 클릭해 엽니다.",
+    "다른 오브젝트를 추가하려면 SubTool 패널 하단의 Append 버튼을 누릅니다.",
+    "팝업 창(LightBox 또는 Tool 선택창)에서 추가할 기본 도형(예: Sphere 3D)을 클릭합니다.",
+    "현재 메쉬 안에 직접 다른 파츠를 끼워 넣으려면 SubTool 패널의 Insert 버튼을 클릭합니다.",
+    "뷰포트에서 추가된 서브툴이 선택되었는지 확인하고 Move(W), Scale(E), Rotate(R) 기즈모로 위치를 잡습니다."
+  ],
+  "params": [
+    {
+      "name": "Append",
+      "desc": "현재 툴에 새로운 3D 오브젝트(Tool)를 목록의 마지막에 추가합니다."
+    },
+    {
+      "name": "Insert",
+      "desc": "현재 선택된 서브툴 바로 아래에 새로운 기본 도형이나 메시를 삽입합니다."
+    },
+    {
+      "name": "Delete",
+      "desc": "선택한 불필요한 서브툴을 영구적으로 삭제합니다."
+    },
+    {
+      "name": "MergeDown",
+      "desc": "현재 서브툴을 바로 아래에 있는 서브툴과 하나로 합칩니다."
+    },
+    {
+      "name": "Split",
+      "desc": "마스크 영역이나 그룹별로 서브툴을 여러 개의 독립된 오브젝트로 쪼갭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 머리에 뿔 장식 추가하기",
+      "steps": [
+        "SubTool 패널에서 캐릭터 바디를 선택합니다.",
+        "Append 버튼을 누르고 Cylinder 3D를 불러옵니다.",
+        "Gizmo 3D(W)를 이용해 실린더를 머리 위치로 이동시킵니다.",
+        "Move 브러시로 실린더 끝을 뾰족하게 다듬어 뿔 모양을 만듭니다."
+      ]
+    },
+    {
+      "title": "로봇 모델에 원형 볼트 소품 복제 배치하기",
+      "steps": [
+        "Append 버튼으로 작은 Sphere 3D를 추가합니다.",
+        "복제할 위치로 이동시킨 뒤 SubTool 패널에서 Duplicate 버튼을 눌러 개체를 복사합니다.",
+        "필요한 위치마다 Gizmo 3D로 볼트 파츠를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시가 안 보임 → Append 후 뷰포트 크기가 너무 크거나 작아서 화면 밖에 있는 상태이므로 F 키를 눌러 뷰를 맞춥니다.",
+    "엉뚱한 파츠가 조각됨 → SubTool 패널에서 편집할 대상이 파란색으로 선택(활성화)되어 있는지 확인하지 않은 실수입니다.",
+    "대칭(Symmetry)이 안 맞음 → 새로 Append한 기본 도형의 피벗 포인트가 중앙에서 벗어났으므로 Geometry → Modify Topology → Mirror & Weld 등을 확인합니다."
+  ],
+  "related": [
+    "SubTool",
+    "MergeDown",
+    "Split",
+    "Gizmo 3D"
+  ],
+  "videos": [
+    {
+      "id": "Jn6OM9llvQE",
+      "title": "ZB_01 |  Append vs Insert in Subtool palette.(Turn on CC for subtitles)",
+      "author": "Exploring Zbrush with Michele "
+    },
+    {
+      "id": "YncNcfzjvFk",
+      "title": "#AskZBrush: “How can I load reference images into ZBrush as a separate subtools?”",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Append%20and%20Insert%20SubTool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tray",
+    "SubTool",
+    "Append"
+  ],
+  "at": "2026-11-08T09:12:47.307895+00:00"
+}

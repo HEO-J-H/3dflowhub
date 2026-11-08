@@ -1,0 +1,98 @@
+{
+  "id": "maya-soft-selection-8420",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Soft Selection",
+  "title": "Soft Selection — 부드럽게 함께 이동",
+  "summary": "Maya의 Soft Selection은 컴포넌트를 이동하거나 회전할 때 주변 영역까지 영향력을 부드럽게 퍼뜨려 유기적인 형태를 만드는 기능입니다. 철사를 자연스럽게 구부리듯 부드러운 감쇠 곡선을 적용합니다.",
+  "when": [
+    "캐릭터의 얼굴 근육이나 옷 주름을 자연스럽게 변형할 때",
+    "지형이나 바위 같은 비정형적인 자연물을 스컬프팅하듯 다듬을 때",
+    "하드 표면 모델링에서 부드러운 볼륨감과 곡선을 잡을 때"
+  ],
+  "steps": [
+    "뷰포트에서 변형할 폴리곤 오브젝트를 선택하고 Mouse 우클릭을 길게 눌러 Vertex나 Edge 등 Sub-component 모드로 진입합니다.",
+    "키보드 W 키를 눌러 Move 툴을 활성화하고 아무 버텍스나 하나 선택합니다.",
+    "키보드 B 키를 눌러 Soft Selection을 켭니다. (또는 툴 설정에서 Soft Select 체크)",
+    "선택한 Vertex 주변으로 붉은색에서 검은색으로라지는 그라데이션 영역이 나타나는지 확인합니다.",
+    "b 키를 누른 채 Mouse 중첩 드래그(또는 B 키 누르고 드래그)하여 영향력 범위(Falloff Radius)를 조절합니다.",
+    "선택된 Vertex를 이동하여 주변 영역이 부드럽게 따라오는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Soft Select",
+      "desc": "소프트 셀렉션 기능의 켜기/끄기를 전환합니다."
+    },
+    {
+      "name": "Falloff Radius",
+      "desc": "주변 영역에 영향이 미치는 전체 반경 크기를 조절합니다."
+    },
+    {
+      "name": "Falloff Curve",
+      "desc": "감쇠되는 모양의 그래프 커브를 조절하여 부드럽거나 날카로운 변형을 만듭니다."
+    },
+    {
+      "name": "Color Scheme",
+      "desc": "영향력의 강도를 Visualize는 색상 표시 방식을 설정합니다."
+    },
+    {
+      "name": "Ignore Backfaces",
+      "desc": "카메라 시점에서 뒷면에 있는 Vertex는 영향력 범위에서 제외합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형(Terrain)의 완만한 언덕 만들기",
+      "steps": [
+        "평면(Plane) 오브젝트의 서브디비전(Subdivisions) 값을 높게 올립니다.",
+        "Vertex 모드에서 중앙의 Vertex 하나를 선택합니다.",
+        "Soft Selection(B 키)을 켜고 Falloff Radius를 넓게 조절합니다.",
+        "위쪽으로 끌어올려 자연스러운 원형 언덕 모양을 만듭니다."
+      ]
+    },
+    {
+      "title": "캐릭터 어깨 라인 다듬기",
+      "steps": [
+        "캐릭터 모델의 어깨 부근 버텍스들을 선택합니다.",
+        "Soft Selection을 켠 뒤 Falloff Radius를 적당히 설정합니다.",
+        "Rotate 툴(E 키)을 이용해 어깨 각도를 살짝 회전하여 주변 팔과 가슴이 부드럽게 따라오게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "B 키를 눌러도 반응이 없을 때 → Sub-component 모드(Vertex, Edge 등)인지 확인하고 다시 시도합니다.",
+    "원하지 않는 반대편 면까지 변형될 때 → Soft Select 옵션에서 Ignore Backfaces를 체크합니다.",
+    "변형 범위가 너무 좁거나 넓을 때 → B 키를 누른 채 Mouse 드래그를 좌우로 움직여 Falloff Radius 값을 재조절합니다."
+  ],
+  "related": [
+    "Proximity Wrap",
+    "Sculpting Tools",
+    "Lattice",
+    "Smooth Mesh"
+  ],
+  "videos": [
+    {
+      "id": "Zd-uPHi8Zk4",
+      "title": "How to use Soft Selection in Maya",
+      "author": "Josh Antonio"
+    },
+    {
+      "id": "rj5PhQOblK0",
+      "title": "Maya Tutorial - Soft Selection",
+      "author": "Figura"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Soft%20Selection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Vertex",
+    "Edge",
+    "Sub",
+    "Move",
+    "Soft Selection"
+  ],
+  "at": "2026-11-08T09:12:43.354769+00:00"
+}
