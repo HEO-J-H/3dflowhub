@@ -23029,5 +23029,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-integration.md 문서 재작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T19:54:18+00:00",
+    "kind": "proposal",
+    "id": "p-a3a2aa2f21",
+    "title": "backend/tests/test_rag.py 테스트 케이스 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 관련 백엔드 엔드포인트 및 검색 로직이 추가되었으나 단위 검증 테스트 보완이 필요합니다.",
+    "proposal": "backend/tests/test_rag.py 파일에 FAISS 및 검색 기본 동작을 검증하는 단위 테스트 케이스를 추가하여 자동 머지 조건(테스트 통과)을 만족시킵니다.",
+    "expected": "RAG 쿼리 엔드포인트 및 검색 모듈의 안정성 확보",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:54:18+00:00",
+    "kind": "proposal",
+    "id": "p-ca512fd6b4",
+    "title": "docs/agent-guides/rag-integration.md 오픈소스 연동 가이드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너의 RAG 오픈소스 검토 요청에 따라 기술 연동 가이드 문서화가 지속적으로 요구됩니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 문서에 사용된 오픈소스(FAISS, sentence-transformers)의 라이선스 검토 및 GPU/CPU 요구사항을 명확히 정리합니다.",
+    "expected": "향후 RAG 관련 PR 검토 시 명확한 기준 제공 및 개발 표준 확립",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T19:54:41.032325+00:00",
+    "kind": "decision",
+    "id": "p-a3a2aa2f21",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_rag.py 테스트 케이스 추가 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T19:54:41.059809+00:00",
+    "kind": "decision",
+    "id": "p-ca512fd6b4",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/agent-guides/rag-integration.md RAG",
+    "auto": true
   }
 ]
