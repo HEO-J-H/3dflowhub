@@ -1,0 +1,95 @@
+{
+  "id": "zbrush-zbrush-interface-and-lightbox-a7ef",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "ZBrush interface and LightBox",
+  "title": "인터페이스·LightBox",
+  "summary": "ZBrush의 인터페이스와 LightBox는 디지털 조형을 시작하기 위한 작업 공간이자 붓, 모델, 소재를 불러오는 탐색기입니다. 작업실의 도구함과 창고 같은 역할을 합니다.",
+  "when": [
+    "프로그램을 처음 실행하고 화면 배치를 파악할 때",
+    "기본 제공되는 예제 모델이나 브러시, 재질을 빠르게 불러올 때",
+    "작업 중 불필요한 패널을 숨기고 넓은 뷰포트 공간을 확보하고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush를 실행하면 중앙에 뷰포트(Canvas), 상단에 메뉴 바, 우측에 주요 툴과 서브툴 패널이 나타납니다.",
+    "키보드 쉼표(,) 키를 누르거나 화면 상단의 LightBox 버튼을 클릭하여 LightBox 탐색기를 엽니다.",
+    "LightBox 창에서 Project, Tool, Brush 등의 탭을 골라 원하는 에셋을 더블클릭해 뷰포트로 불러옵니다.",
+    "메뉴 바 좌측의 Edit (Tab) 버튼을 누르거나 T 키를 눌러 2D 드로잉 모드에서 3D 스컬프팅 모드로 전환합니다.",
+    "화면 빈 곳을 드래그하여 모델을 회전하고, Alt + 드래그로 이동, Alt 누른 채 떼며 드래그하여 확대/축소합니다."
+  ],
+  "params": [
+    {
+      "name": "LightBox",
+      "desc": "프로젝트, 툴, 브러시, 알파 등의 에셋을 미리 보고 불러오는 통합 탐색기입니다."
+    },
+    {
+      "name": "Tool",
+      "desc": "현재 작업 중인 3D 모델의 지오메트리와 세부 속성을 관리하는 우측 메인 패널입니다."
+    },
+    {
+      "name": "SubTool",
+      "desc": "하나의 모델 파일 안에서 여러 개의 독립된 파츠를 관리하는 목록입니다."
+    },
+    {
+      "name": "Brush",
+      "desc": "클레이, 무브, 스무스 등 형태를 빚고 다듬는 브러시 종류를 선택합니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "대칭(Symmetry)이나 3D Gizmo 등 변형 관련 기능을 모아둔 패널입니다."
+    },
+    {
+      "name": "Draw",
+      "desc": "브러시의 크기(Size)와 강도(Intensity)를 조절하는 기본 설정 메뉴입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 예제 모델 불러와서 살펴보기",
+      "steps": [
+        "쉼표(,) 키를 눌러 LightBox를 엽니다.",
+        "Project 탭에서 원하는 예제 파일을 더블클릭합니다.",
+        "뷰포트에 나타난 3D 모델을 Mouse로 돌려가며 구조를 관찰합니다."
+      ]
+    },
+    {
+      "title": "LightBox 창 닫고 작업 영역 넓히기",
+      "steps": [
+        "LightBox가 열려 있는 상태에서 쉼표(,) 키를 다시 누릅니다.",
+        "LightBox 창이 사라지고 뷰포트 작업 공간이 전체 화면으로 확장됩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "2D 드로잉 모드에서 모델이 계속 복제됨 → T 키(Edit 모드)를 누르지 않고 캔버스를 드래그했기 때문입니다. Ctrl+N으로 지우고 모델을 다시 불러온 뒤 T를 누르세요.",
+    "화면의 모델이 회전하지 않고 캔버스 자체가 움직임 → 뷰포트 빈 곳이 아닌 캔버스 바깥쪽을 드래그했거나 내비게이션 조작이 잘못된 경우입니다. Alt 키를 정확히 활용해 회전하세요.",
+    "LightBox에서 불러온 모델이 수정되지 않음 → 툴 선택 후 Make PolyMesh3D 버튼을 누르지 않았거나 Edit 모드가 꺼져 있는지 확인하세요."
+  ],
+  "related": [
+    "Make PolyMesh3D",
+    "SubTool",
+    "Geometry",
+    "Dynamic Subdivision"
+  ],
+  "videos": [
+    {
+      "id": "H68F4xsuAPk",
+      "title": "001 ZBrush Lightbox",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "XDaVnnN3zgk",
+      "title": "ZBrush User Interface Tutorial: Part 1",
+      "author": "Benjamin Leitgeb"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20ZBrush%20interface%20and%20LightBox",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Canvas"
+  ],
+  "at": "2026-11-08T01:52:00.299827+00:00"
+}

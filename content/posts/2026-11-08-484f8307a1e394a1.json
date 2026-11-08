@@ -1,0 +1,59 @@
+{
+  "title_ko": "Unity Meta XR 가이드북 공개 — VR 개발 설정과 최적화",
+  "title": "Our new XR e-book is here: Build XR with Unity: Meta XR",
+  "url": "https://unity.com/blog/our-new-xr-e-book-is-here-build-xr-with-unity:-meta-xr",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Unity",
+    "Meta",
+    "XR",
+    "VR",
+    "유니티"
+  ],
+  "summary": "Unity가 기존 Quest 앱 포팅과 신규 XR 타이틀 개발을 지원하는 Meta XR 가이드북 e-book을 발표했습니다.",
+  "insight": "Unity 6.6과 XR Interaction Toolkit 3.6 환경을 기준으로 Meta VR 기기 타겟 개발의 핵심 최적화 기법을 정리했습니다. Quad Views 렌더링과 동적 Resolution 설정을 통해 디바이스 GPU 부하를 낮추는 방법을 확인할 수 있으며, 5K 해상도를 온전히 활용하기 위한 메모리 구조 접근법을 제시합니다. 시선 추적 권한 거부 시 대체 입력 수단을 마련하는 설계적 예외 처리가 필수적입니다.",
+  "try_it": [
+    "Unity Hub에서 VR template을 다운로드하고 프로젝트를 생성합니다.",
+    "Project Settings의 OpenXR 및 Meta, Android XR feature group을 활성화합니다.",
+    "XR Interaction Simulator를 이용해 에디터 내에서 상호작용 테스트를 수행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Meta XR e-book 구성 내용",
+      "body": "Meta VR 기기의 100g대 폼팩터 특징과 시선·손 추적 입력 방식을 활용하는 방법을 설명합니다. XR Interaction Toolkit 컴포넌트인 XR Origin과 텔레포트, 그랩 상호작용 기능을 구현하는 절차를 다룹니다. 기존 Quest와 동일한 OS 및 OpenXR 스택을 공유하여 기존 앱의 원활한 포팅을 지원합니다."
+    },
+    {
+      "heading": "시선 추적 및 Quad Views 렌더링",
+      "body": "시선 추적 데이터를 활용한 포비티드 렌더링과 프레임 주변부를 낮은 Resolution로 그려 GPU 비용을 절감하는 Quad Views 기법을 지원합니다. 사생활 보호를 위해 시선 추적 권한 거부 시 손 레이캐스팅 같은 대체 입력 수단 마련이 필요합니다. Enhanced Audio Foundation을 통한 7.1.4 채널 서라운드 사운드 설정도 적용할 수 있습니다."
+    },
+    {
+      "heading": "Unity VR Template과 실기기 테스트",
+      "body": "Unity Hub의 VR template을 통해 샘플 씬과 권장 패키지를 바로 불러올 수 있습니다. XR Interaction Simulator를 통해 에디터 환경에서 즉시 상호작용 테스트가 가능합니다. 빌드 프로필에서 플랫폼을 Meta Quest로 전환하고 OpenXR과 관련 feature group을 활성화하여 기기 배포를 진행합니다."
+    },
+    {
+      "heading": "5K 디스플레이 최적화",
+      "body": "마이크로 OLED 패널의 5K Infinite Display 환경에서 시선 기반 포비티드 렌더링과 Application SpaceWarp로 프레임 생성 부하를 분산합니다. 온칩 GPU 메모리 구조를 고려하여 렌더러가 프레임을 처리하는 방식을 조절합니다. 디바이스의 여유 성능을 활용해 복잡한 씬 요소를 안정적으로 렌더링할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 가이드북은 어떤 개발자를 위한 것인가요?",
+      "a": "Meta VR 기기용 신규 타이틀을 제작하거나 기존 앱을 포팅하려는 Unity XR 개발자를 위한 안내서입니다."
+    },
+    {
+      "q": "어떤 버전의 Unity와 패키지를 사용하나요?",
+      "a": "Unity 6.6 및 XR Interaction Toolkit 3.6 버전 이상을 기준으로 설명합니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/9IfZEm4fVh4/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=9IfZEm4fVh4"
+  },
+  "collected_at": "2026-11-08T01:51:30.354647+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-484f8307a1e394a1",
+  "img_tried": true,
+  "enriched": "2026-11-08"
+}
