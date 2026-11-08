@@ -22603,5 +22603,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/agent-guides/rag-integration.md RAG",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T18:33:56+00:00",
+    "kind": "proposal",
+    "id": "p-60e54f2144",
+    "title": "오픈소스 RAG 기능 검토 및 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너의 RAG 오픈소스 반영 요청 및 최근 문서 자동 머지 완료",
+    "proposal": "docs/agent-guides/rag-integration.md에 검토 가능한 오픈소스 라이브러리(예: FAISS, sentence-transformers 등 MIT/Apache-2.0 계열)의 Pix2Poly 반영 방안과 라이선스/GPU 제약을 정리합니다.",
+    "expected": "오너 요청에 대한 명확한 기술 검토 문서 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T18:33:56+00:00",
+    "kind": "proposal",
+    "id": "p-f8ee23f93f",
+    "title": "백엔드 RAG 쿼리 엔드포인트 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/ 폴더 내 테스트 보강 필요성 및 이전 테스트 안정화 완료",
+    "proposal": "backend/tests/test_rag.py 파일을 생성하여 RAG 검색 엔드포인트의 기본 입출력과 예외 처리를 검증하는 단위 테스트를 작성합니다.",
+    "expected": "향후 RAG 기능 도입 시 코드 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T18:34:17.226930+00:00",
+    "kind": "decision",
+    "id": "p-60e54f2144",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 오픈소스 RAG 연동 검토 문서화",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T18:34:17.251640+00:00",
+    "kind": "decision",
+    "id": "p-f8ee23f93f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T18:34:19.460550+00:00",
+    "kind": "triage",
+    "id": "p-f8ee23f93f",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 'backend/tests/test_rag.py 대체 테스트 구조 적용' 및 유사한 테스트 추가 작업들이 포함되어 있어 이미 반영된 할 일입니다."
+  },
+  {
+    "at": "2026-11-08T18:34:19.482441+00:00",
+    "kind": "decision",
+    "id": "p-f8ee23f93f",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 'backend/tests/test_rag.py 대체 테스트 구조 적용' 및 유사한 테스트 추가 작업들이 포함되어 있어 이미 반영된 할 일입니다."
   }
 ]
