@@ -23173,5 +23173,74 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-integration.md 문서 재작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T20:24:21+00:00",
+    "kind": "proposal",
+    "id": "p-dd2b84bcfb",
+    "title": "웹 PBR 텍스트 브라우저 실시간 렌더링 성능 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전(web/)의 PBR 텍스처 생성과 관련된 브라우저 처리 로직의 안정성을 높이기 위한 자동화된 검증 필요",
+    "proposal": "web/tests/ 폴더 내에 PBR 높이맵 생성 및 텍스처 변환 함수 단위 테스트 코드 추가",
+    "expected": "브라우저 환경에서의 예외 상황 사전 차단 및 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T20:24:21+00:00",
+    "kind": "proposal",
+    "id": "p-ed8ba8589c",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 FastAPI 서버 구동 시 GPU 및 VRAM 부족 환경에서의 gracefully fallback 메커니즘 검증 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일의 예외 처리 로직을 보완하고 관련 단위 테스트 추가",
+    "expected": "GPU가 없는 로컬 환경에서도 안정적인 CPU 높이맵 폴백 동작 보장",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T20:24:45.920187+00:00",
+    "kind": "decision",
+    "id": "p-dd2b84bcfb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T20:24:45.947344+00:00",
+    "kind": "decision",
+    "id": "p-ed8ba8589c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T20:24:48.558199+00:00",
+    "kind": "triage",
+    "id": "p-dd2b84bcfb",
+    "verdict": "agent",
+    "reason": "웹 폴더 내 단위 테스트 코드 추가는 AI 에이전트가 코드를 직접 작성하여 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-08T20:24:49.590114+00:00",
+    "kind": "triage",
+    "id": "p-ed8ba8589c",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋 내역에 TripoSR 모의 테스트 및 예외 상황 보강 관련 작업들이 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-08T20:24:49.613695+00:00",
+    "kind": "decision",
+    "id": "p-ed8ba8589c",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋 내역에 TripoSR 모의 테스트 및 예외 상황 보강 관련 작업들이 충분히 반영되어 있습니다."
   }
 ]
