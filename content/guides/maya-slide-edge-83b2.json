@@ -1,0 +1,82 @@
+{
+  "id": "maya-slide-edge-83b2",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Slide Edge",
+  "title": "Slide Edge",
+  "summary": "Maya의 Slide Edge 툴은 선택한 컴포넌트(Vertex, 엣지 등)를 인접한 엣지 라인을 따라 미끄러지듯 이동시키는 기능입니다. 모델링의 전체적인 형태와 볼륨을 유지하면서 디테일의 위치를 정밀하게 조정할 때 사용합니다.",
+  "when": [
+    "캐릭터 얼굴이나 하드서페이스 모델의 토폴로지 흐름(Edge Flow)을 수정할 때",
+    "이미 만들어진 볼륨의 찌그러짐 없이 디테일 라인의 위치를 옮기고 싶을 때",
+    "엣지 루프의 간격을 조절하여 섭디비전(Subdivision) 결과물을 다듬을 때"
+  ],
+  "steps": [
+    "대상 오브젝트를 선택하고 Mouse 우클릭을 하여 Edge 모드로 진입합니다.",
+    "이동하려는 엣지나 엣지 루프를 더블클릭하여 선택합니다.",
+    "상단 메뉴바에서 Edit Mesh > Slide Edge Tool을 실행하거나, Shift + 우클릭 marking menu에서 Slide Edge 도구를 선택합니다.",
+    "뷰포트에서 Mouse 중글을 클릭한 채 드래그하여 엣지를 원하는 방향으로 슬라이드합니다.",
+    "필요한 경우 Channel Box나 Attribute Editor에서 세부 수치를 조정하고 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Offset",
+      "desc": "선택한 엣지가 인접한 엣지를 따라 이동하는 거리나 비율을 조절합니다."
+    },
+    {
+      "name": "Auto Normalize",
+      "desc": "이동 시 Vertex가 메쉬의 전체적인 정규화 구조를 유지하도록 돕습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "근육 라인 위치 조정",
+      "steps": [
+        "캐릭터 메쉬의 에지 루프를 더블클릭하여 선택합니다.",
+        "Shift + 우클릭 메뉴에서 Slide Edge Tool을 실행합니다.",
+        "Mouse 드래그로 근육의 볼륨을 해치지 않는 위치로 엣지를 이동시킵니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 각도 정리",
+      "steps": [
+        "기계 모델의 베벨 주변 엣지 루프를 선택합니다.",
+        "Edit Mesh > Slide Edge Tool을 실행합니다.",
+        "슬라이드하여 하이라이트의 반사각을 원하는 형태로 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 모드에서 실행하여 메뉴가 비활성화됨 → 반드시 Edge 컴포넌트 선택 상태에서 실행하세요.",
+    "의도치 않은 방향으로 튀어나감 → 엣지 루프가 끊어져 있는지 확인하고 재선택하세요."
+  ],
+  "related": [
+    "Bevel",
+    "Insert Edge Loop Tool",
+    "Connect",
+    "Extrude"
+  ],
+  "videos": [
+    {
+      "id": "fvakBkKQlcU",
+      "title": "Maya 3D Modeling Basics - Edge Slide Transform Constraint",
+      "author": "3DWolf"
+    },
+    {
+      "id": "Bz0al47DOmk",
+      "title": "How To Use Slide Edge Tool In Maya",
+      "author": "Reimagine Fx"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Slide%20Edge",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Edge",
+    "Edit Mesh",
+    "Slide Edge Tool",
+    "Slide Edge"
+  ],
+  "at": "2026-11-08T09:42:59.319085+00:00"
+}

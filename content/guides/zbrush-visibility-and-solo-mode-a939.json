@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-visibility-and-solo-mode-a939",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Visibility and Solo mode",
+  "title": "Solo 모드",
+  "summary": "ZBrush에서 화면에 복잡하게 얽힌 서브툴 중 특정 파츠만 남기고 숨기거나(Visibility), 단독으로 표시해(Solo mode) 세밀한 스컬프팅 작업을 쉽게 하도록 돕는 기능입니다.",
+  "when": [
+    "캐릭터의 얼굴이나 눈 안쪽처럼 복잡한 부위를 작업할 때 주변 파츠를 가리고 싶을 때",
+    "여러 개의 SubTool이 겹쳐 있어 특정 오브젝트의 형태가 잘 보이지 않을 때",
+    "오브젝트 전체 구조를 가린 채 특정 영역만 펜스로 숨겨가며 디테일을 정리할 때"
+  ],
+  "steps": [
+    "SubTool 팔레트에서 작업할 대상 오브젝트를 선택합니다.",
+    "키보드에서 Shift 키를 누른 상태로 뷰포트의 특정 SubTool을 클릭하여 해당 파츠를 숨기거나(Hide) 남깁니다.",
+    "캔버스 빈 공간을 드래그하여 숨겨진 영역을 반전(Invert)시키거나 전체를 다시 표시합니다.",
+    "우측 트레이 또는 인터페이스 상단에서 Solo 버튼을 켜거나 Hotkey Shift+S를 눌러 선택한 SubTool만 단독으로 표시합니다.",
+    "뷰포트에서 숨겨진 메시 영역을 확인하고 정교한 스컬프팅 작업을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Solo",
+      "desc": "선택한 SubTool 외의 다른 모든 오브젝트를 화면에서 임시로 숨기고 단독으로 표시합니다."
+    },
+    {
+      "name": "Visibility",
+      "desc": "서브툴 또는 폴리그룹 단위로 화면에 표시할지 여부를 제어합니다."
+    },
+    {
+      "name": "HidePt",
+      "desc": "현재 마스크나 선택 영역을 기준으로 포인트를 숨깁니다."
+    },
+    {
+      "name": "ShowAll",
+      "desc": "화면에서 숨겨진 모든 파츠를 다시 보이게 복원합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "보이는 영역과 숨겨진 영역의 상태를 서로 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 입안 스컬프팅",
+      "steps": [
+        "SubTool 목록에서 머리와 몸통 파츠를 선택합니다.",
+        "Shift 키를 누른 채 얼굴 앞쪽을 클릭하여 일시적으로 숨깁니다.",
+        "입 속 가구와 혀 부위를 가림 없이 자유롭게 브러시로 다듬습니다.",
+        "작업 완료 후 빈 공간을 드래그하여 숨겨진 메시를 다시 불러옵니다."
+      ]
+    },
+    {
+      "title": "Solo 모드로 하드서페이스 디테일 작업",
+      "steps": [
+        "복잡한 갑옷 파츠 중 수정할 작은 부품(SubTool)을 선택합니다.",
+        "Shift+S 키를 눌러 Solo 모드를 활성화합니다.",
+        "다른 파츠의 방해 없이 해당 부품에만 집중하여 폴리시와 트림 브러시로 모서리를 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "숨겨진 파츠가 남아있는데 전체 메시에 문제가 생긴 것으로 오해함 → ShowAll 버튼을 누르거나 캔버스를 드래그하여 모두 표시 상태로 전환합니다.",
+    "Solo 모드가 켜져 있어서 다른 서브툴이 사라진 것을 모름 → 우측 인터페이스의 Solo 버튼이 활성화되어 있는지 확인하고 끕니다."
+  ],
+  "related": [
+    "SubTool",
+    "Polygroups",
+    "Masking",
+    "Geometry"
+  ],
+  "videos": [
+    {
+      "id": "KEsm-6d9aFE",
+      "title": "Visibility Sets in zBrush",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "c3FcHxzHERI",
+      "title": "Solo mode in ZBrush - do it in a single click!",
+      "author": "Sean Forsyth"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Visibility%20and%20Solo%20mode",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T09:43:03.462832+00:00"
+}

@@ -21130,5 +21130,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md VRAM 설정 가이드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T09:42:41+00:00",
+    "kind": "proposal",
+    "id": "p-41a2253bbf",
+    "title": "PR #50 백엔드 PBR 및 URL 인게스트 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 PR #50이 승인 대기 중이며 GitHub에서 테스트 및 예외 처리 검증이 필요합니다.",
+    "proposal": "GitHub에서 https://github.com/HEO-J-H/Pix2Poly/pull/50 의 테스트 통과 여부와 PBR 맵 생성 및 URL 인게스트 로직을 확인하고 머지합니다.",
+    "expected": "핵심 백엔드 PBR 기능과 URL 입력 처리 안정화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/50",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T09:42:41+00:00",
+    "kind": "proposal",
+    "id": "p-5efee9aca7",
+    "title": "backend/tests/test_pbr.py 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹/로컬 PBR 텍스처 생성 프로세스 문서화는 수락되었으나 관련 단위 테스트가 부족합니다.",
+    "proposal": "backend/tests/test_pbr.py 파일을 신규 생성하여 PBR 맵(Albedo, Normal, Roughness, Metallic) 생성 함수의 기본 동작을 검증하는 테스트를 작성합니다.",
+    "expected": "PBR 텍스처 생성 파이프라인의 회귀 오류 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T09:43:23.683644+00:00",
+    "kind": "decision",
+    "id": "p-41a2253bbf",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #50 검토 및 백엔드 PBR 통합 확인",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T09:43:23.710108+00:00",
+    "kind": "decision",
+    "id": "p-5efee9aca7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 모의 테스",
+    "auto": true
   }
 ]
