@@ -21752,5 +21752,53 @@
     "id": "p-572805b315",
     "verdict": "agent",
     "reason": "문서 생성과 테스트 코드 추가 작업을 분리하여 작은 단위의 과제로 재등록하고 코딩 에이전트가 처리하도록 요청된 실무 작업입니다."
+  },
+  {
+    "at": "2026-11-08T13:43:10+00:00",
+    "kind": "proposal",
+    "id": "p-e1d969cd32",
+    "title": "RAG 오픈소스 연동 가이드 문서 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자로부터 깃허브 RAG 오픈소스 검토 및 반영 요청이 있으며, 관련 문서화 작업이 필요합니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 점검하고 라이선스 및 GPU 요구사항에 맞춘 경량 RAG 연동 가이드를 최종 정리합니다.",
+    "expected": "오픈소스 RAG 도입 기준 명확화 및 향후 개발 가이드 제공",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T13:43:10+00:00",
+    "kind": "proposal",
+    "id": "p-e78fad7db3",
+    "title": "로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/ 폴더 내 기본 파이프라인 및 테스트 보완이 반복적으로 제안되었으나 핵심 테스트 안정화가 필요합니다.",
+    "proposal": "backend/tests/test_basic_pipeline.py에 TripoSR 및 PBR 맵 생성 실패 시의 예외 처리 테스트 케이스를 추가합니다.",
+    "expected": "로컬 파이프라인의 예외 상황 대응력 강화 및 테스트 커버리지 유지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T13:43:27.394764+00:00",
+    "kind": "decision",
+    "id": "p-e1d969cd32",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 오픈소스 연동 가이드 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T13:43:27.416420+00:00",
+    "kind": "decision",
+    "id": "p-e78fad7db3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "auto": true
   }
 ]
