@@ -1,0 +1,81 @@
+{
+  "id": "unreal-engine-bookmarks-and-camera-views-7002",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Bookmarks and camera views",
+  "title": "뷰 북마크",
+  "summary": "Unreal Engine의 뷰포트 북마크 기능은 현재 카메라의 위치와 회전값을 저장하여 특정 뷰로 즉시 이동할 수 있게 해 주는 기능입니다. 복잡한 레벨에서 작업 영역을 빠르게 오가거나 시네마틱 구도를 고정할 때 유용합니다.",
+  "when": [
+    "거대한 오픈월드 레벨에서 자주 확인해야 하는 특정 구역(예: 메인 입구, 보스룸)으로 빠르게 이동하고 싶을 때",
+    "카메라 앵글을 유지한 채 에셋 배치 상태나 라이팅을 반복 비교할 때",
+    "시네마틱 컷이나 카메라 애니메이션 작업 전 원하는 구도를 임시로 저장해 둘 때"
+  ],
+  "steps": [
+    "뷰포트에서 원하는 카메라 위치와 구도를 잡습니다.",
+    "뷰포트 좌측 상단의 카메라 아이콘 또는 뷰 모드 버튼을 클릭하여 드롭다운 메뉴를 엽니다.",
+    "메뉴 하단의 Bookmark 섹션으로 이동합니다.",
+    "Set Bookmark (또는 Hotkey Ctrl + 숫자 0~9)를 눌러 현재 시점을 특정 번호에 저장합니다.",
+    "저장된 뷰로 돌아가려면 Hotkey 숫자 0~9를 누릅니다.",
+    "뷰포트에서 올바른 구도가 불러와졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Set Bookmark",
+      "desc": "현재 뷰포트 카메라의 위치와 회전을 지정된 번호 슬롯에 저장합니다."
+    },
+    {
+      "name": "Jump to Bookmark",
+      "desc": "저장된 북마크 번호로 뷰포트 카메라를 즉시 이동시킵니다."
+    },
+    {
+      "name": "Clear Bookmarks",
+      "desc": "저장된 모든 북마크 데이터를 초기화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "레벨 내 주요 구역 빠른 이동",
+      "steps": [
+        "건축물 외관, 로비, 옥상 등 주요 위치로 이동합니다.",
+        "각 위치에서 Ctrl + 1, Ctrl + 2, Ctrl + 3을 눌러 북마크를 지정합니다.",
+        "숫자 키 1, 2, 3을 눌러 작업 중 원하는 구역으로 즉시 전환합니다."
+      ]
+    },
+    {
+      "title": "라이팅 비교 및 검토",
+      "steps": [
+        "라이팅 테스트가 필요한 앵글을 잡고 Ctrl + 5로 북마크를 저장합니다.",
+        "라이트 디테일 패널을 수정하며 레벨을 돌아다닙니다.",
+        "숫자 5를 눌러 원래 구도로 돌아와 라이팅 결과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Hotkey 누를 때 Ctrl을 빼고 숫자만 누름 → 뷰포트 카메라가 저장되는 대신 다른 툴이나 모드로 전환됨. 저장할 때는 반드시 Ctrl + 숫자 조합을 사용하세요.",
+    "레벨을 재부팅했는데 북마크가 사라짐 → 뷰포트 북마크는 에디터 세션에 임시 저장되므로 프로젝트를 닫으면 초기화됩니다. 영구적인 카메라는 Cine Camera Actor를 사용하세요."
+  ],
+  "related": [
+    "Cine Camera Actor",
+    "Camera Rig Rail",
+    "Sequencer",
+    "Level Sequence"
+  ],
+  "videos": [
+    {
+      "id": "N1X4R6Z6xaE",
+      "title": "Camera Bookmarks: The hidden Shortcuts in Unreal Engine",
+      "author": "The WP Guru"
+    },
+    {
+      "id": "yRU8bRtM7XA",
+      "title": "Camera Bookmarks In Unreal Engine 5 - Quick Tip For Beginners",
+      "author": "Unreal ART With Alireza "
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Bookmarks%20and%20camera%20views",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-08T01:41:36.384085+00:00"
+}
