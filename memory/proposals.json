@@ -20592,5 +20592,29 @@
     "id": "p-e85a53212a",
     "v": "done",
     "note": "처리 완료 — Pix2Poly PR #47·#50 병합·보정(862838d), TripoSR 오류 처리·테스트, docs/agent-guides/rag-integration.md (상세는 커밋 기록)"
+  },
+  {
+    "at": "2026-11-08T08:02:18+00:00",
+    "kind": "proposal",
+    "id": "p-c95bf675df",
+    "title": "backend/tests/test_triposr_mock.py 예외 테스트 신규 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 TripoSR 단위 테스트 보강 시도가 패치 적용 문제로 건너뛰어져, 예외 상황에 대한 견고한 테스트 추가가 필요합니다.",
+    "proposal": "backend/tests/test_triposr_mock.py 에 TripoSR 실행 실패 시 대체 경로 또는 명확한 오류 반환에 대한 단위 테스트를 작성하여 검증합니다.",
+    "expected": "로컬 파이프라인의 예외 처리 안정성 향상 및 테스트 커버리지 확대",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T08:03:28.770116+00:00",
+    "kind": "decision",
+    "id": "p-c95bf675df",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr_mock.py 예외 상황",
+    "auto": true
   }
 ]

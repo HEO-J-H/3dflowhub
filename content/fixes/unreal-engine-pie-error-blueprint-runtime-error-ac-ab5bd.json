@@ -1,0 +1,41 @@
+{
+  "id": "unreal-engine-pie-error-blueprint-runtime-error-ac-ab5bd",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "PIE error: Blueprint Runtime Error: Accessed None trying to read property",
+  "title": "PIE error: Blueprint Runtime Error: Accessed None trying to read property",
+  "summary": "Unreal Engine에서 블루프린트 실행 중 유효하지 않은(None) 객체 변수의 속성이나 함수를 호출하려고 할 때 발생하는 런타임 오류입니다. 초기화되지 않은 변수 참조나 이미 파괴된(Destroyed) 릭터·액터를 호출할 때 주로 발생합니다.",
+  "causes": [
+    "생성(Spawn)되거나 월드에 배치되지 않은 액터 레퍼런스를 변수에 담아둔 채 속성을 읽으려 할 때",
+    "이미 파괴된(Destroyed) 액터나 컴포넌트를 계속해서 참조하고 있을 때",
+    "블루프린트 생성자나 이벤트 BeginPlay 시점에서 필수 컴포넌트나 변수가 아직 초기화되지 않았을 때",
+    "멀티플레이어 환경에서 클라이언트와 서버 간 레퍼런스 동기화 누락으로 인해 한쪽에서 객체가 None 상태일 때"
+  ],
+  "steps": [
+    "출력 로그(Output Log)나 메시지 로그에서 오류가 발생한 블루프린트 노드와 노드 이름을 확인합니다.",
+    "해당 블루프린트를 열고 오류가 발생한 노드(예: Get Property 직전의 변수 핀)를 Mouse로 확인합니다.",
+    "변수 핀 앞에 'Is Valid' 노드를 배치하여 해당 개체가 None이 아닐 경우에만 로직이 실행되도록 분기 처리를 추가합니다.",
+    "변수에 올바른 객체가 할당(Assignment)되었는지, 스폰(Spawn Actor) 로직이 누락되지 않았는지 확인합니다.",
+    "컴포넌트 참조 오류라면 Construction Script나 BeginPlay에서 해당 컴포넌트가 올바르게 생성(Create Default Subobject 등)되었는지 검토합니다.",
+    "수정 후 컴파일(Compile)하고 PIE(Play in Editor)를 다시 실행하여 오류가 재발하지 않는지 확인합니다."
+  ],
+  "check": [
+    "PIE 실행 중 해당 블루프린트 로직을 거쳐도 Output Log에 'Accessed None' 붉은색 오류 메시지가 더 이상 출력되지 않습니다.",
+    "Is Valid 노드로 인해 예외 상황에서도 크래시나 런타임 오류 없이 안전하게 무시되거나 로그만 출력됩니다."
+  ],
+  "prevent": [
+    "오브젝트 레퍼런스를 사용하는 모든 주요 로직 앞단에 습관적으로 Is Valid 노드를 배치하여 안전성을 높입니다.",
+    "변수를 선언할 때 기본값(Default Value)을 비워두지 말고 적절한 초기값을 설정합니다.",
+    "액터를 파괴(Destroy Actor)한 직후에는 해당 변수 레퍼런스를 명시적으로 초기화(Clear/Set to None)합니다."
+  ],
+  "keywords": [
+    "Accessed None",
+    "블루프린트 런타임 오류",
+    "Unreal Engine Accessed None",
+    "Blueprint Runtime Error",
+    "Unreal None 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-08T08:02:54+00:00"
+}

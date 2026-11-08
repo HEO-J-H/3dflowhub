@@ -1,0 +1,90 @@
+{
+  "id": "zbrush-custom-ui-and-hotkeys-2f98",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Custom UI and hotkeys",
+  "title": "UI·Hotkey 바꾸기",
+  "summary": "ZBrush의 Custom UI와 Hotkey 설정은 자주 쓰는 브러시, 메뉴, 기능을 화면 배치와 Hotkey로 등록해 작업 속도를 극대화하는 기능입니다.",
+  "when": [
+    "자주 사용하는 브러시나 서브툴(SubTool) 메뉴를 찾느라 작업 흐름이 끊길 때",
+    "태블릿 펜 닙이나 키보드 왼손 조작만으로 빠르게 브러시를 전환하고 싶을 때",
+    "나만의 작업 환경을 설정하여 다른 PC나 작업실에서도 동일하게 불러오고 싶을 때"
+  ],
+  "steps": [
+    "Preferences 메뉴로 이동하여 Config → Enable Customize를 켭니다 (Hotkey 없음, 클릭 활성화).",
+    "Ctrl+Alt를 누른 상태에서 Mouse로 원하는 메뉴 항목이나 브러시 버튼을 드래그하여 인터페이스 빈 공간으로 끌어다 놓습니다.",
+    "배치 조율이 끝나면 Ctrl+Alt를 떼고, Preferences → Config → Store Config를 눌러 현재 레이아웃을 저장합니다.",
+    "Hotkey를 지정하려면 Ctrl+Alt를 누른 상태에서 대상 메뉴 항목을 클릭한 뒤, 할당하고 싶은 키보드 자판을 누릅니다.",
+    "설정한 Hotkey를 영구 저장하려면 Preferences → Hotkeys → Store를 클릭합니다."
+  ],
+  "params": [
+    {
+      "name": "Enable Customize",
+      "desc": "인터페이스 편집 모드를 활성화하여 버튼을 이동·복사할 수 있게 합니다."
+    },
+    {
+      "name": "Store Config",
+      "desc": "현재의 UI 레이아웃과 구성을 ZBrush 시작 시 기본값으로 저장합니다."
+    },
+    {
+      "name": "Custom UI",
+      "desc": "사용자가 직접 배치한 버튼과 슬라이더들이 모여 있는 영역을 관리합니다."
+    },
+    {
+      "name": "Hotkeys",
+      "desc": "선택한 메뉴나 브러시에 사용자 지정 Hotkey를 할당하고 관리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자주 쓰는 브러시(DamStandard, Move 등)를 화면 상단에 고정하기",
+      "steps": [
+        "Brush 팔레트에서 원하는 브러시를 선택합니다.",
+        "Preferences → Config → Enable Customize를 켭니다.",
+        "Ctrl+Alt를 누른 채 상단 비어 있는 셸프(Shelf) 영역으로 브러시 아이콘을 드래그합니다.",
+        "Preferences → Config → Store Config를 눌러 저장합니다."
+      ]
+    },
+    {
+      "title": "서브툴(SubTool) 병합 및 대칭 Hotkey 지정하기",
+      "steps": [
+        "Tool → SubTool 메뉴를 엽니다.",
+        "Ctrl+Alt를 누르고 Merge Down 항목을 클릭한 뒤 원하는 키(예: Alt+M)를 입력합니다.",
+        "Preferences → Hotkeys → Store를 눌러 Hotkey를 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Enable Customize를 켜지 않고 버튼을 이동하려 함 → 반드시 Preferences → Config → Enable Customize를 먼저 켜야 합니다.",
+    "설정을 마친 후 Store Config를 누르지 않음 → ZBrush를 재시작하면 UI가 초기화되므로 반드시 Store Config를 실행하세요."
+  ],
+  "related": [
+    "SubTool",
+    "Brush",
+    "Preferences",
+    "LightBox"
+  ],
+  "videos": [
+    {
+      "id": "AoiCMWwRP6k",
+      "title": "ZBrush - Custom UI and Hotkeys",
+      "author": "Phiyen Nguyen"
+    },
+    {
+      "id": "1F1OyohRiNs",
+      "title": "ZBrush - ALL Custom UI Tricks (In 3 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Custom%20UI%20and%20hotkeys",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Preferences",
+    "Config",
+    "Enable Customize",
+    "Hotkey"
+  ],
+  "at": "2026-11-08T08:02:32.823407+00:00"
+}

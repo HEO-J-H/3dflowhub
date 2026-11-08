@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logstaticmesh-warning-nanite-scene-p-32b45",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogStaticMesh: Warning: Nanite: Scene Proxy created with zero triangles",
+  "title": "LogStaticMesh: Warning: Nanite: Scene Proxy created with zero triangles",
+  "summary": "Unreal Engine에서 Nanite가 활성화된 Static Mesh 에셋의 폴리곤 데이터가 비어 있거나 유효하지 않을 때 발생하는 경고 메시지입니다. 렌더링할 삼각형(triangle)이 없어 뷰포트에 에셋이 보이지 않거나 깨질 수 있습니다.",
+  "causes": [
+    "Import 당시 Source Mesh에 폴리곤 데이터가 없거나 0개의 삼각형으로 구성된 빈 FBX/OBJ 에셋을 불러온 경우",
+    "LOD나 Nanite 빌드 과정에서 오류가 발생하여 메시의 지오메트리 데이터가 손실된 경우",
+    "Static Mesh 에셋의 환원(Reduction) 설정 값이 너무 높거나 잘못되어 모든 폴리곤이 사라진 경우"
+  ],
+  "steps": [
+    "Content Browser에서 문제가 발생하는 Static Mesh 에셋을 더블 클릭하여 Static Mesh Editor를 엽니다.",
+    "Details 패널에서 Nanite Settings 섹션을 찾고, Enabled 체크박스를 해제하여 일시적으로 Nanite를 끕니다.",
+    "오른쪽 상단의 Build 메뉴를 클릭하거나 에셋을 재임포트(Reimport)하여 원본 메시 데이터가 정상적인지 확인합니다.",
+    "만약 원본 메시의 삼각형 개수가 0개라면 3D DCC 툴(Blender, Maya 등)에서 지오메트리가 올바르게 모델링되었는지 확인 후 다시 내보냅니다.",
+    "원본 메시에 문제가 없다면 Nanite Settings를 다시 활성화하고 Apply Changes를 눌러 Nanite 데이터를 재생성합니다."
+  ],
+  "check": [
+    "Output Log 패널에서 해당 에셋에 대한 Warning 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "뷰포트 및 레벨에 Static Mesh가 정상적으로 렌더링되어 형태가 올바르게 보이는지 확인합니다."
+  ],
+  "prevent": [
+    "3D DCC 툴에서 FBX나 OBJ 파일을 내보낼 때 빈 오브젝트나 히든 메시가 포함되어 있지 않은지 확인합니다.",
+    "Unreal Engine으로 에셋을 임포트할 때 Import Uniform Scale과 Import Meshes 옵션을 올바르게 설정합니다."
+  ],
+  "keywords": [
+    "Unreal Engine Nanite 오류",
+    "Scene Proxy created with zero triangles",
+    "Static Mesh 경고",
+    "Nanite 삼각형 없음",
+    " Unreal 에셋 안 보임"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-08T08:02:51+00:00"
+}

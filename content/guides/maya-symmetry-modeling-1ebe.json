@@ -1,0 +1,97 @@
+{
+  "id": "maya-symmetry-modeling-1ebe",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Symmetry modeling",
+  "title": "Symmetry — 대칭 편집",
+  "summary": "Maya의 Symmetry modeling은 캐릭터나 대칭형 오브젝트를 작업할 때 한쪽을 수정하면 반대쪽이 실시간으로 대칭 반영되도록 돕는 기능입니다. 거울을 보듯 정확히 균형 잡힌 모델링을 만들 수 있습니다.",
+  "when": [
+    "인간형 캐릭터나 크리처의 얼굴 및 바디 토폴로지를 잡을 때",
+    "좌우가 완벽히 대칭인 메카닉 파츠나 무기를 모델링할 때",
+    "UV 언랩 전, 대칭 상태에서 한쪽만 수정하여 작업 시간을 단축할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Spacebar를 눌러 4분할 뷰 또는 Perspective 뷰로 이동합니다.",
+    "오브젝트의 중심축(Pivot)이 월드 중심(0,0,0)과 대칭 기준선에 정확히 위치해 있는지 확인합니다.",
+    "Modeling 툴세트에서 Mesh 메뉴를 열거나, 뷰포트 상단의 Modeling Toolkit 아이콘을 클릭합니다.",
+    "Modeling Toolkit 패널 하단의 Symmetry 드롭다운 메뉴를 엽니다.",
+    "원하는 대칭 축(Object X, Object Y, Object Z 중 선택)을 지정하여 활성화합니다.",
+    "뷰포트에서 컴포넌트(Vertex, Edge, Face)를 선택하고 이동·회전·스케일하여 대칭 편집 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Off",
+      "desc": "대칭 기능을 끕니다."
+    },
+    {
+      "name": "Object X / Y / Z",
+      "desc": "오브젝트의 로컬 축을 기준으로 지정한 축 방향의 대칭을 적용합니다."
+    },
+    {
+      "name": "World X / Y / Z",
+      "desc": "월드 좌표계의 축을 기준으로 지정한 방향의 대칭을 적용합니다."
+    },
+    {
+      "name": "Topology",
+      "desc": "기하학적 위치가 아닌 토폴로지 연결 구조를 기반으로 대칭을 계산합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "중앙선 근처의 Vertex가 대칭으로 인식되는 허용 오차 범위를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 좌우 대칭 모델링",
+      "steps": [
+        "중앙선(Center line)의 버텍스들이 X축 0에 정확히 위치하도록 정렬합니다.",
+        "Symmetry 설정을 Object X로 활성화합니다.",
+        "한쪽 눈두덩이나 입술 주변의 Vertex를 편집하여 반대쪽이 동시에 움직이는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 무기 대칭 디자인",
+      "steps": [
+        "대칭 기준이 되는 축을 확인하고 Symmetry를 World X로 설정합니다.",
+        "Extrude나 Bevel을 사용해 한쪽 면을 돌출시킵니다.",
+        "반대편에 동일한 디테일이 대칭 생성되는지 뷰포트에서 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트의 Pivot이 중심에 없음 → Modify 메뉴에서 Center Pivot을 실행하거나 스냅 기능을 이용해 피벗을 0,0,0 위치로 이동합니다.",
+    "중앙 Vertex가 축에 정확히 붙지 않음 → Mesh > Weld 등을 사용하여 중앙선 Vertex를 하나로 합치거나 툴러런스 값을 조정합니다.",
+    "대칭 방향이 반대로 적용됨 → Axis 옵션(X, Y, Z)이 올바른 방향으로 선택되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Mirror",
+    "Modeling Toolkit",
+    "Center Pivot",
+    "Soft Selection"
+  ],
+  "videos": [
+    {
+      "id": "usQgRQgBJfY",
+      "title": "#3DQuickTips 013 - Maya - Take Control Of The Symmetry",
+      "author": "Jan Jinda"
+    },
+    {
+      "id": "yaueNw4rATM",
+      "title": "Maya 2014 tutorial : How to mirror objects while box modeling",
+      "author": "MH Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Symmetry%20modeling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Spacebar",
+    "Perspective",
+    "Pivot",
+    "Modeling",
+    "Mesh",
+    "Modeling Toolkit"
+  ],
+  "at": "2026-11-08T08:02:29.078237+00:00"
+}

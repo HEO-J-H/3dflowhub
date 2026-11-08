@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-safe-to-load-with-missing-files-miss-11679",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Safe to load with missing files? (Missing OTL definitions)",
+  "title": "Error: Safe to load with missing files? (Missing OTL definitions)",
+  "summary": "Error: Safe to load with missing files? (Missing OTL definitions) 메시지는 Houdini 씬 파일을 열 때 필요한 OTL(또는 HDA) 디지털 자산 정의를 찾을 수 없음을 경고하는 오류입니다.",
+  "causes": [
+    "다른 작업자나 외부에서 전달받은 .hip 씬 파일에 사용된 커스텀 HDA/OTL 파일이 현재 로컬 시스템의 $OTL / $HSITE 경로에 존재하지 않습니다.",
+    "HDA 파일이 저장된 디렉토리 경로가 변경되었거나 네트워크 드라이브 연결이 해제되었습니다.",
+    "씬 파일에서 참조하는 HDA의 버전이 현재 시스템에 설치된 버전과 일치하지 않습니다."
+  ],
+  "steps": [
+    "경고창에서 파일을 계속 열려면 'Load anyway'를 선택하고, 작업을 중단하려면 'Cancel'을 누릅니다.",
+    "Houdini 메뉴 바에서 File > Houdini Environment 혹은 Assets > Operator Type Manager를 열어 누락된 OTL 경로를 확인합니다.",
+    "누락된 OTL/HDA 파일을 원래 있던 경로에 복사해 넣거나, Asset Manager에서 올바른 파일 경로를 다시 지정합니다.",
+    "프로젝트 폴더 구조를 유지하며 필요한 OTL 파일을 씬 파일과 함께 패키징하거나 $HIP/otls 폴더에 배치합니다."
+  ],
+  "check": [
+    "씬 파일을 다시 열었을 때 'Missing OTL definitions' 경고 창이 뜨지 않고 노드가 정상적으로 로드되는지 확인합니다.",
+    "Network View에서 빨간색 경고 아이콘이나 깨진 노드가 보이지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트를 공유하거나 아카이브할 때는 반드시 File > Package File 기능을 사용하여 필요한 HDA와 외부 자산을 함께 묶어 전달합니다.",
+    "자체 제작한 커스텀 OTL/HDA는 개인 로컬 경로가 아닌 프로젝트 내 otls 디렉토리나 정해진 $OTL 환경 변수 경로에 관리합니다."
+  ],
+  "keywords": [
+    "Houdini OTL 에러",
+    "Missing OTL definitions",
+    "HDA 누락",
+    "Safe to load with missing files",
+    "Houdini 씬 파일 열기 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-08T08:02:56+00:00"
+}
