@@ -1,0 +1,85 @@
+{
+  "id": "unreal-engine-python-scripting-in-unreal-editor-b6c2",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "내보내기",
+  "name": "Python scripting in Unreal Editor",
+  "title": "에디터 Python Script",
+  "summary": "Unreal Engine에서 Python Script를 사용하여 에디터 작업을 자동화하고 대량의 에셋을 관리합니다.",
+  "when": [
+    "수백 개의 에셋 이름이나 메타데이터를 일괄 변경할 때",
+    "레벨 안에 배치된 오브젝트의 위치나 속성을 규칙에 따라 정렬할 때",
+    "반복적인 에포트 Import 및 빌드 작업을 자동화할 때"
+  ],
+  "steps": [
+    "Unreal Editor 상단 메뉴 바에서 Edit → Plugins 를 엽니다.",
+    "Plugins 창에서 Python Editor Script Plugin을 검색하여 체크를 켜고 에디터를 재시작합니다.",
+    "Window → Developer Tools → Output Log 를 엽니다.",
+    "Output Log 하단의 입력창을 Python 모드로 변경합니다.",
+    "명령어 입력창에 간단한 Python 코드를 작성하고 Enter 키를 눌러 실행 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Output Log",
+      "desc": "실행 결과와 오류 메시지를 확인하는 패널입니다."
+    },
+    {
+      "name": "Python Editor Script Plugin",
+      "desc": "에디터 내에서 Python 실행을 활성화하는 플러그인입니다."
+    },
+    {
+      "name": "Editor Utility Widget",
+      "desc": "Python Script를 UI 버튼과 연결해 실행할 수 있는 도구입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 에셋 이름 일괄 변경",
+      "steps": [
+        "Content Browser에서 변경할 에셋들을 선택합니다.",
+        "Python Script를 통해 선택된 에셋 목록을 가져옵니다.",
+        "문자열 연산을 사용해 접두사나 접미사를 일괄 추가합니다."
+      ]
+    },
+    {
+      "title": "레벨 내 액터 위치 정렬",
+      "steps": [
+        "레벨에서 정렬할 오브젝트들을 다중 선택합니다.",
+        "Python 반복문을 통해 각 액터의 Transform 좌표 값을 가져옵니다.",
+        "일정한 간격으로 X 또는 Y 좌표를 재설정하여 정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플러그인 미활성화 → Edit → Plugins에서 Python Editor Script Plugin이 켜져 있는지 확인합니다.",
+    "Output Log 입력 모드 오류 → 로그창 하단의 입력 필드가 Python으로 지정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Editor Utility Widget",
+    "MAXScript",
+    "Blender Scripting",
+    "Output Log"
+  ],
+  "videos": [
+    {
+      "id": "OwZxr1SMluY",
+      "title": "Python Setup For Unreal Engine 5 Tutorial",
+      "author": "Matt Lakeᵀᴬ"
+    },
+    {
+      "id": "0guOMTiwmhk",
+      "title": "Python in Unreal Engine | Inside Unreal",
+      "author": "Unreal Engine"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Python%20scripting%20in%20Unreal%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Editor",
+    "Edit",
+    "Plugins",
+    "Python Editor Script Plugin"
+  ],
+  "at": "2026-11-08T01:11:36.586077+00:00"
+}

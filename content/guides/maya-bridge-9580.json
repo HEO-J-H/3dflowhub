@@ -1,0 +1,95 @@
+{
+  "id": "maya-bridge-9580",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bridge",
+  "title": "Bridge — 면 잇기",
+  "summary": "Maya의 Bridge는 떨어져 있는 두 개 이상의 엣지(Edge)나 페이스(Face) 사이를 새로운 폴리곤 면으로 연결해 주는 필수 모델링 기능입니다.",
+  "when": [
+    "끊어진 폴리곤 실린더나 파이프의 단면을 자연스럽게 이을 때",
+    "캐릭터 모델링에서 두 부위의 열린 구멍(Hole)을 서로 연결할 때",
+    "복잡한 하드서피스 모델링 중 두 오브젝트의 경계면을 하나로 병합할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Mouse 우클릭 후 Edge 또는 Face 모드로 진입합니다.",
+    "연결하고자 하는 첫 번째 엣지(또는 페이스)와 두 번째 엣지(또는 페이스)를 Shift + 클릭으로 다중 선택합니다.",
+    "상단 메뉴 바에서 Edit Mesh → Bridge 항목의 옵션 박스를 열거나, Modeling 툴킷에서 Bridge를 클릭합니다.",
+    "파라미터 창에서 Divisions와 Twist 값을 조정한 뒤 Apply 또는 Enter 키를 눌러 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Divisions",
+      "desc": "연결되는 면 사이에 생성되는 세그먼트(분할) 개수를 조절합니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "두 엣지가 연결될 때 꼬이는 현상을 방지하거나 비틀림 효과를 줍니다."
+    },
+    {
+      "name": "Taper",
+      "desc": "연결된 중간 부위의 두께를 가늘거나 굵게 조절합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "연결되는 부위의 곡률 부드러움을 조절합니다."
+    },
+    {
+      "name": "Bridge Offset",
+      "desc": "연결될 엣지의 순서가 어긋났을 때 정렬을 맞추어 꼬임을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "끊어진 실린더 파이프 잇기",
+      "steps": [
+        "Edge 모드에서 끊어진 양쪽 파이프의 끝단 엣지 루프를 각각 선택합니다.",
+        "Edit Mesh → Bridge를 실행하여 두 단면을 연결합니다.",
+        "Divisions 값을 높여 파이프의 Resolution를 맞춥니다."
+      ]
+    },
+    {
+      "title": "캐릭터 팔과 몸통 연결하기",
+      "steps": [
+        "몸통과 팔의 구멍 부위에 남아 있는 Face를 삭제하여 열린 상태로 만듭니다.",
+        "마주보는 두 엣지 테두리(Border)를 선택합니다.",
+        "Bridge를 적용하고 Offset과 Divisions를 조절해 자연스럽게 이어줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "엣지 선택 순서가 꼬여서 면이 X자로 교차함 → Bridge 옵션의 Offset 값을 조정하거나 엣지를 다시 올바르게 선택합니다.",
+    "메시 노멀(Normal) 방향이 서로 반대여서 면이 뒤집힘 → Mesh Display → Reverse 또는 Unlock Normals를 실행하여 법선 방향을 통일합니다.",
+    "불필요하게 히스토리가 남아 있어 변형이 생김 → Edit → Delete by Type → History를 실행해 히스토리를 정리합니다."
+  ],
+  "related": [
+    "Append to Polygon Tool",
+    "Extrude",
+    "Fill Hole",
+    "Target Weld"
+  ],
+  "videos": [
+    {
+      "id": "Dau8zgi7TaM",
+      "title": "Noob vs Pro Artist 3D : Maya Bridge Tool to Model Bent Pipe in Maya 2025 #maya2025 #maya",
+      "author": "3DWolf"
+    },
+    {
+      "id": "uou9GFKmG4I",
+      "title": "How to model a 3D bridge in Maya 2018",
+      "author": "MH Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Bridge",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Edge",
+    "Face",
+    "Edit Mesh",
+    "Bridge",
+    "Modeling"
+  ],
+  "at": "2026-11-08T01:11:40.251037+00:00"
+}
