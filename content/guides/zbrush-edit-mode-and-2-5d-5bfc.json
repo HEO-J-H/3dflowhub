@@ -1,0 +1,97 @@
+{
+  "id": "zbrush-edit-mode-and-2-5d-5bfc",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Edit mode and 2.5D",
+  "title": "Edit 모드와 2.5D 차이",
+  "summary": "ZBrush의 Edit 모드와 2.5D 캔버스는 스컬프팅을 시작하고, 2.5D 스택을 3D 메쉬로 전환하는 기본 흐름을 제공합니다.",
+  "when": [
+    "스컬프를 처음 시작해 기본 형태를 빠르게 잡을 때",
+    "2.5D 스트로크를 이용해 디테일을 쌓고 나중에 3D 메쉬로 변환하고 싶을 때",
+    "서브툴을 이동·스케일·회전 등 기본 변형을 할 때"
+  ],
+  "steps": [
+    "ZBrush 실행 → 화면 상단의 Edit 버튼(F) 클릭해 Edit 모드 활성화",
+    "Canvas 위에서 ZAdd(브러시)로 2.5D 스컬프팅 시작",
+    "필요 시 ZSub, ZInt 등 브러시 모드 전환 (Shift+Ctrl+Alt Hotkey)",
+    "스컬프가 충분히 완성되면 Tool > Make PolyMesh3D 클릭해 3D 메쉬 변환",
+    "Transform 메뉴에서 Move, Scale, Rotate (W/E/R) 로 서브툴 변형",
+    "필요 시 Dynamesh 로 토폴로지를 재구성"
+  ],
+  "params": [
+    {
+      "name": "Edit",
+      "desc": "Edit 모드 토글 – 3D 변형을 가능하게 함"
+    },
+    {
+      "name": "Draw",
+      "desc": "Draw 모드 – 2.5D 스트로크를 캔버스에 기록"
+    },
+    {
+      "name": "ZAdd",
+      "desc": "양의 브러시 – 표면을 올림"
+    },
+    {
+      "name": "ZSub",
+      "desc": "음의 브러시 – 표면을 파냄"
+    },
+    {
+      "name": "ZInt",
+      "desc": "브러시 강도 조절 – 스트로크 깊이와 높이"
+    },
+    {
+      "name": "Make PolyMesh3D",
+      "desc": "2.5D 데이터를 실제 3D 메쉬로 변환"
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 클레이 형태 만들기",
+      "steps": [
+        "Edit 모드 켜기 → ZAdd 브러시로 원형 스택 쌓기",
+        "ZSub으로 골짜기 파기 → 전체 형태 잡기",
+        "Tool > Make PolyMesh3D 로 3D 변환 → 필요 시 Dynamesh 적용"
+      ]
+    },
+    {
+      "title": "서브툴 위치 조정",
+      "steps": [
+        "Edit 모드에서 Transform > Move 선택 (W)",
+        "Canvas 위에서 서브툴을 드래그해 원하는 위치로 이동",
+        "Scale(R)·Rotate(E) 로 크기·회전 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Edit 모드 안에서 Move 시도 → Edit 버튼을 먼저 켜야 변형이 적용됩니다",
+    "Make PolyMesh3D 를 안 하고 계속 스컬프 → 2.5D 상태에서는 폴리곤이 없으니 렌더링이 불가능합니다. 반드시 변환 후 작업하세요",
+    "ZAdd 강도를 너무 높게 설정 → 스파이크가 생겨 표면이 거칠어집니다. ZInt 로 강도 낮추기"
+  ],
+  "related": [
+    "Dynamesh",
+    "ZRemesh",
+    "Transpose",
+    "Polypaint"
+  ],
+  "videos": [
+    {
+      "id": "AjIsYP2Hys8",
+      "title": "Intro to Zbrush - Lesson 2: 2.5D to 3D changing with Edit Mode",
+      "author": "Paco 3d Art"
+    },
+    {
+      "id": "jLgU6pEaYdY",
+      "title": "Getting Started with ZBrush, Part 21 - 2.5D Mode",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Edit%20mode%20and%202.5D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Edit"
+  ],
+  "at": "2026-11-08T02:13:46.578919+00:00"
+}

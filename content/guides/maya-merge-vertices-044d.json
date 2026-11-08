@@ -1,0 +1,80 @@
+{
+  "id": "maya-merge-vertices-044d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Merge vertices",
+  "title": "Merge — 점 합치기",
+  "summary": "Edit Mesh > Merge를 사용해 선택한 Vertex를 하나로 합쳐 메시를 정리하고 모델링 효율을 높입니다.",
+  "when": [
+    "복잡한 메쉬에서 불필요한 Vertex가 많이 존재할 때",
+    "두 개 이상의 엣지 루프를 하나로 연결해 매끄러운 형태를 만들고 싶을 때",
+    "UV 시트가 겹쳐서 깨지는 경우 Vertex를 정리하고 싶을 때"
+  ],
+  "steps": [
+    "Maya를 실행하고 모델을 선택한 뒤 Tab 키로 Component Mode → Vertex 선택 모드로 전환합니다.",
+    "Merge할 버텍스들을 Shift 클릭으로 다중 선택합니다.",
+    "Edit Mesh 메뉴 → Merge 를 클릭하거나 Shift+Right‑Click 마크 메뉴에서 Merge 선택합니다.",
+    "옵션 창에서 Threshold 값을 필요에 맞게 조정하고 Apply를 눌러 합칩니다."
+  ],
+  "params": [
+    {
+      "name": "Threshold",
+      "desc": "합칠 Vertex 간 최대 거리, 값이 클수록 멀리 떨어진 Vertex도 합쳐짐"
+    },
+    {
+      "name": "Merge To",
+      "desc": "Vertex를 어느 위치에 합칠지 지정 (Center, First, Last)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 끝 연결",
+      "steps": [
+        "파이프 양쪽 끝 Vertex를 선택",
+        "Edit Mesh > Merge 선택",
+        "Merge To를 'First'로 설정 후 Apply"
+      ]
+    },
+    {
+      "title": "두 개의 면을 하나로 합치기",
+      "steps": [
+        "두 면의 공통 Vertex를 모두 선택",
+        "Threshold를 0.001로 설정",
+        "Merge 실행"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Threshold 값을 너무 크게 설정 → 원치 않는 주변 버텍스까지 합쳐 형태가 뒤틀림 → 적절한 값(보통 0.001~0.01)으로 재조정",
+    "Merge To 옵션을 놓치고 Center로 합침 → 원하는 정점 위치가 유지되지 않음 → Merge To를 First 또는 Last으로 변경"
+  ],
+  "related": [
+    "Delete Edge",
+    "Collapse",
+    "Extrude",
+    "Merge Vertex Tool"
+  ],
+  "videos": [
+    {
+      "id": "Lt_MtPJv2NA",
+      "title": "Maya Quick Tip #30: Merge Vertices",
+      "author": "Jamie 3D"
+    },
+    {
+      "id": "DOOAQuIdjl0",
+      "title": "Maya Merge vertex / Vertices option and tools",
+      "author": "quick.3d.tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Merge%20vertices",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Component Mode",
+    "Vertex",
+    "Merge"
+  ],
+  "at": "2026-11-08T02:13:20.007408+00:00"
+}

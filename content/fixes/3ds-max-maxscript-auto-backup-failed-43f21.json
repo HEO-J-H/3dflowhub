@@ -1,0 +1,42 @@
+{
+  "id": "3ds-max-maxscript-auto-backup-failed-43f21",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript Auto-Backup Failed",
+  "title": "MAXScript Auto-Backup Failed",
+  "summary": "MAXScript Auto-Backup Failed 메시지는 Script 편집 중 자동 백업 파일을 생성하지 못했음을 의미합니다.",
+  "causes": [
+    "백업 폴더에 쓰기 권한이 없거나 접근이 차단됨",
+    "디스크 여유 공간이 부족함",
+    "기존 .bak 파일이 손상되었거나 이름 충돌이 발생함",
+    "MAXScript Listener 환경 설정이 손상되었음"
+  ],
+  "steps": [
+    "MAXScript Listener를 엽니다 (Hotkey F11).",
+    "MAXScript → Preferences → General 탭에서 “Auto Backup” 경로를 확인합니다.",
+    "해당 경로 폴더를 탐색기에서 열고, 현재 사용자에게 쓰기 권한이 있는지 확인하고 필요하면 관리자 권한으로 실행하거나 다른 폴더(예: C:\\Temp\\MAXScriptBackup) 로 경로를 변경합니다.",
+    "디스크 용량을 확인하고, 불필요한 파일을 삭제해 충분한 여유 공간을 확보합니다.",
+    "백업 폴더 안의 기존 .bak 파일을 모두 삭제하거나 다른 위치로 이동합니다.",
+    "MAXScript Listener를 닫았다가 다시 엽니다 (MAXScript → Listener → Close → Open) 혹은 3ds Max를 재시작합니다.",
+    "새 Script를 입력하고 저장한 뒤, 자동 백업 파일(.bak)이 생성되는지 확인합니다."
+  ],
+  "check": [
+    "MAXScript Listener에서 Script를 편집·저장 후 오류 메시지가 더 이상 나타나지 않음",
+    "백업 폴더에 최신 .bak 파일이 생성된 것을 확인함"
+  ],
+  "prevent": [
+    "백업 폴더를 전용 위치에 두고 쓰기 권한을 항상 유지합니다",
+    "디스크 여유 공간을 정기적으로 확인하고 부족해지면 정리합니다",
+    "3ds Max를 관리자 권한으로 실행하거나, 환경 변수 MAXScriptAutoBackupPath 를 안정적인 경로로 설정합니다"
+  ],
+  "keywords": [
+    "MAXScript 자동 백업 실패",
+    "MAXScript Auto-Backup Failed 해결",
+    "3ds Max Script 백업 오류",
+    "MAXScript Listener 백업 경로",
+    "MAXScript Auto Backup 폴더 권한"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-08T02:16:58+00:00"
+}

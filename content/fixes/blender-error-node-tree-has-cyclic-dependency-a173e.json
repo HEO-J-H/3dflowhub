@@ -1,0 +1,40 @@
+{
+  "id": "blender-error-node-tree-has-cyclic-dependency-a173e",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Node tree has cyclic dependency",
+  "title": "Error: Node tree has cyclic dependency",
+  "summary": "‘Error: Node tree has cyclic dependency’는 노드 네트워크 내에서 출력이 다시 자신의 입력으로 연결돼 무한 루프가 형성된 경우 표시되는 경고입니다.",
+  "causes": [
+    "노드의 Output을 같은 노드 혹은 상위 노드의 Input에 직접 연결했을 때",
+    "노드 그룹 내부에서 Output → Input 순으로 순환 연결이 존재할 때",
+    "드라이버나 속성 노드가 자신을 참조하도록 설정했을 때",
+    "Geometry Nodes에서 Attribute 노드가 서로를 순환 참조할 때"
+  ],
+  "steps": [
+    "문제 발생 노드 트리를 확인합니다 – Shader Editor, Geometry Nodes, Compositor 중 해당 에디터를 엽니다",
+    "에디터 상단 메뉴에서 View → Show Node Links 를 켜고 빨간색 경고 라인이 보이는 연결을 찾습니다",
+    "문제가 되는 연결을 선택하고 Delete 키 또는 끊기 아이콘으로 링크를 해제합니다",
+    "만약 연결이 노드 그룹 내부에 있다면 해당 그룹을 Tab 키로 들어가 위 과정을 동일하게 수행합니다",
+    "연결을 끊은 뒤 ‘Update Dependencies’(Ctrl+Shift+U) 로 노드 트리를 재계산합니다"
+  ],
+  "check": [
+    "노드 에디터에서 경고 메시지가 사라지고, 화면에 빨간 라인이 보이지 않음",
+    "렌더링 혹은 프리뷰를 실행했을 때 동일 오류가 다시 나타나지 않음"
+  ],
+  "prevent": [
+    "노드를 연결할 때 Output → Input 순환이 되지 않도록 항상 흐름을 일방향으로 유지합니다",
+    "노드 그룹을 만들 때 Group Input → Group Output 사이에 피드백 루프가 없도록 검토합니다",
+    "복잡한 노드 트리는 ‘Node → Clean Up → Remove Unused Nodes’ 로 정리하고, 주기적으로 ‘Update Dependencies’ 로 의존성을 확인합니다"
+  ],
+  "keywords": [
+    "Blender 노드 순환 의존성",
+    "Node tree has cyclic dependency 오류",
+    "Blender 노드 루프 해결",
+    "노드 순환 경고",
+    "Blender 사이클 의존성"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-08T02:16:32+00:00"
+}

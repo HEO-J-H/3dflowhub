@@ -35,6 +35,16 @@
     {
       "heading": "5K 디스플레이 최적화",
       "body": "마이크로 OLED 패널의 5K Infinite Display 환경에서 시선 기반 포비티드 렌더링과 Application SpaceWarp로 프레임 생성 부하를 분산합니다. 온칩 GPU 메모리 구조를 고려하여 렌더러가 프레임을 처리하는 방식을 조절합니다. 디바이스의 여유 성능을 활용해 복잡한 씬 요소를 안정적으로 렌더링할 수 있습니다."
+    },
+    {
+      "heading": "Unity Hub VR Template으로 Meta Quest 빌드 시작하기",
+      "body": "Unity Hub를 실행하고 ‘New Project’ 화면에서 ‘VR Template’를 선택합니다. 프로젝트가 생성되면 Package Manager에서 ‘XR Interaction Toolkit’과 ‘OpenXR Plugin’을 추가합니다. ‘File > Build Settings’에서 플랫폼을 ‘Meta Quest’로 전환하고, ‘Player Settings > XR Plug-in Management’에서 OpenXR을 활성화합니다. OpenXR Feature Groups 중 ‘Meta Quest Features’를 체크하고, 필요에 따라 ‘Hand Tracking’과 ‘Eye Tracking’ 옵션을 켭니다. 마지막으로 ‘XR Interaction Simulator’를 열어 에디터 내에서 손동작과 텔레포트, 그랩 상호작용을 즉시 테스트할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "XR Interaction Toolkit으로 XR Origin 및 기본 상호작용 설정하기",
+      "body": "XR Interaction Toolkit을 설치한 뒤 ‘Assets > XR > Interaction Toolkit > Prefabs’ 폴더에서 ‘XR Origin (VR)’ 프리팹을 씬에 드래그합니다. XR Origin 안의 ‘Camera Offset’에 ‘Eye Tracking’ 컴포넌트를 추가해 시선 입력을 연결하고, ‘XR Ray Interactor’를 이용해 손 레이캐스팅을 설정합니다. 텔레포트 기능을 사용하려면 ‘Teleportation Area’와 ‘Teleportation Anchor’를 배치하고, ‘Teleportation Provider’를 XR Origin에 연결합니다. 물체 잡기를 구현하려면 ‘XR Grab Interactable’ 컴포넌트를 대상 오브젝트에 추가하고, ‘Interaction Layer Mask’를 적절히 지정합니다. 시선 추적 권한이 거부될 경우, 손 레이캐스팅이 자동으로 대체 입력으로 동작하도록 설정됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +55,14 @@
     {
       "q": "어떤 버전의 Unity와 패키지를 사용하나요?",
       "a": "Unity 6.6 및 XR Interaction Toolkit 3.6 버전 이상을 기준으로 설명합니다."
+    },
+    {
+      "q": "Meta Quest용 빌드 시 반드시 켜야 하는 설정은 무엇인가요?",
+      "a": "‘Build Settings’에서 플랫폼을 ‘Meta Quest’로 전환하고, ‘Player Settings > XR Plug-in Management’에서 OpenXR을 활성화합니다. 이후 OpenXR Feature Groups에서 ‘Meta Quest Features’를 선택해 Hand Tracking·Eye Tracking 옵션을 켜면 최적화된 실행이 보장됩니다."
+    },
+    {
+      "q": "시선 추적이 비활성화된 경우 어떤 대체 입력을 사용해야 하나요?",
+      "a": "시선 추적 권한이 거부되면 XR Interaction Toolkit이 자동으로 손 레이캐스팅(Hand Raycasting)으로 전환됩니다. 이를 위해 XR Origin에 ‘XR Ray Interactor’를 추가하고, 해당 인터랙터가 손 입력을 받도록 설정하면 됩니다."
     }
   ],
   "media": {
@@ -55,5 +73,23 @@
   "notion_id": "",
   "id": "2026-11-08-484f8307a1e394a1",
   "img_tried": true,
-  "enriched": "2026-11-08"
+  "enriched": "2026-11-08",
+  "refs": [],
+  "videos": [
+    {
+      "id": "8KJK04YBpA4",
+      "title": "Complete E-book Business in 1 Video | The ULTIMATE Ebook Business Masterclass | Unity My Academy",
+      "author": "Unity My Academy"
+    },
+    {
+      "id": "Ubt0CDccRok",
+      "title": "New e-book: 2D game art, animation, and lighting for Unity 6.3 LTS",
+      "author": "Unity"
+    }
+  ],
+  "enriched_at": "2026-11-08T02:15:19+00:00",
+  "quality": {
+    "before": 837,
+    "after": 1745
+  }
 }
