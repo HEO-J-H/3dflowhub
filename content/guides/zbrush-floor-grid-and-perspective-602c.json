@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-floor-grid-and-perspective-602c",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기본 조작",
+  "name": "Floor grid and Perspective",
+  "title": "바닥 Grid·원근",
+  "summary": "ZBrush에서 공간감을 파악하고 정확한 비율로 모델링을 진행하기 위해 Floor Grid와 Perspective를 켜고 설정하는 방법입니다.",
+  "when": [
+    "인체나 사물의 전체적인 비례와 밸런스를 확인할 때",
+    "바닥면을 기준으로 오브젝트의 위치와 방향을 정렬할 때",
+    "카메라 렌즈 왜곡을 고려한 사실적인 뷰를 만들 때"
+  ],
+  "steps": [
+    "Transform 메뉴를 열거나 Hotkey P를 눌러 Perspective(원근감)를 활성화합니다.",
+    "Draw 메뉴를 열거나 Shift+P를 눌러 Floor Grid(바닥 격자)를 켭니다.",
+    "Tool 패널 하단의 Geometry 혹은 SubTool 메뉴에서 현재 모델의 위치와 크기를 확인합니다.",
+    "Document 메뉴에서 비례와 캔버스 크기를 조정하여 작업 환경을 최적화합니다.",
+    "뷰포트 우측의 네비게이션 바에서 Floor 버튼을 클릭해 특정 축(X, Y, Z) 방향의 격자를 켜고 끕니다."
+  ],
+  "params": [
+    {
+      "name": "Perspective",
+      "desc": "원근감을 적용하여 실제 카메라 렌즈로 보는 듯한 뷰를 제공합니다."
+    },
+    {
+      "name": "Focal Length",
+      "desc": "카메라 렌즈의 화각을 조절하여 원근감의 왜곡 정도를 바꿉니다."
+    },
+    {
+      "name": "Floor",
+      "desc": "기준이 되는 바닥 격자(Grid)를 뷰포트에 표시합니다."
+    },
+    {
+      "name": "Grid Size",
+      "desc": "바닥 격자의 전체 크기와 간격을 조절합니다."
+    },
+    {
+      "name": "Elevation",
+      "desc": "오브젝트를 기준으로 바닥 격자의 상하 높이 위치를 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인체 모델링 비율 맞추기",
+      "steps": [
+        "Perspective를 켜서 실제 사람을 보듯 원근감을 부여합니다.",
+        "Floor Grid를 켜고 발이 닿는 바닥면의 기준선을 확인합니다.",
+        "Focal Length 값을 조절해 인체의 왜곡을 자연스럽게 맞춥니다."
+      ]
+    },
+    {
+      "title": "바닥에 안착하는 하드서브젝트 배치",
+      "steps": [
+        "Floor Grid의 Z축 방향 격자를 활성화합니다.",
+        "오브젝트의 Pivot(피벗)이 바닥면에 오도록 위치를 정렬합니다.",
+        "정면 및 측면 뷰(Shift+클릭)로 전환하여 격자와 정렬 상태를 검수합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원근감(Perspective)을 끈 채로 인체 스컬프팅 진행 → 얼굴이나 상체가 지나치게 커지는 왜곡 발생. 작업 중 수시로 Perspective를 켜서 밸런스를 확인하세요.",
+    "바닥 격자(Floor) 기준선과 모델의 Pivot이 어긋남 → 오브젝트가 공중에 떠 있거나 바닥을 파고듦. Gizmo 3D를 이용해 모델을 바닥면으로 정렬하세요."
+  ],
+  "related": [
+    "Gizmo 3D",
+    "Transform",
+    "SubTool",
+    "Draw"
+  ],
+  "videos": [
+    {
+      "id": "tylyp_4mTkg",
+      "title": "#AskZBrush: “How can I set my model to be translucent when using floor grid reference images?”",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "CdQeqRkYmKE",
+      "title": "Character Proportions Using floor grid in #zbrush",
+      "author": "ThreeDManic"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Floor%20grid%20and%20Perspective",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Transform",
+    "Hotkey P",
+    "Perspective",
+    "Draw",
+    "Floor Grid"
+  ],
+  "at": "2026-11-08T08:32:39.224638+00:00"
+}

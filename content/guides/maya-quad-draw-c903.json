@@ -1,0 +1,92 @@
+{
+  "id": "maya-quad-draw-c903",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Quad Draw",
+  "title": "Quad Draw — 리토폴로지",
+  "summary": "Quad Draw는 Maya에서 기존 하이폴리곤 모델이나 스캔 데이터 위에 새로운 사각형(Quad) 토폴로지 메쉬를 직접 그려가며 리토폴로지를 수행하는 핵심 기능입니다.",
+  "when": [
+    "ZBrush 등에서 스컬프팅한 하이폴리곤 크리처 모델을 애니메이션용 로우폴리곤으로 정리할 때",
+    "얼굴 표정(Blend Shape) 리깅을 위해 깨끗한 얼굴 토폴로지를 다시 구축할 때",
+    "불규칙한 스캔 데이터나 CAD 메쉬를 서브디비전 모델링에 적합한 구조로 바꿀 때"
+  ],
+  "steps": [
+    "작업할 하이폴리곤 메쉬를 선택하고, Status Line에서 Make Live(자석 아이콘)를 클릭하여 라이브 메쉬로 지정합니다.",
+    "Modeling 메뉴 세트에서 Modeling Toolkit 아이콘을 클릭하거나 우측 상단의 Modeling Toolkit 패널을 엽니다.",
+    "Modeling Toolkit 패널에서 Quad Draw 버튼을 클릭하여 툴을 활성화합니다.",
+    "뷰포트의 라이브 메쉬 위에서 Mouse 좌클릭으로 점(Vertex)을 찍거나, Shift+좌클릭으로 면(Face)을 채워가며 토폴로지를 구성합니다.",
+    "생성된 컴포넌트 위에 Mouse를 올리고 Tab 키를 누른 채 드래그하여 메쉬를 확장(Extrude)하거나 조정합니다.",
+    "뷰포트에서 깔끔한 쿼드 메쉬가 생성된 것을 확인하고 Quad Draw 툴을 종료합니다."
+  ],
+  "params": [
+    {
+      "name": "Relax",
+      "desc": "정점 간의 간격을 부드럽게 고르게 정렬합니다."
+    },
+    {
+      "name": "Tweak",
+      "desc": "생성된 점, 선, 면을 클릭하여 자유롭게 위치를 이동합니다."
+    },
+    {
+      "name": "Soft Select",
+      "desc": "주변 정점들에 영향을 주어 부드럽게 형태를 수정합니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "좌우 대칭을 활성화하여 반대편 토폴로지를 동시에 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 토폴로지 제작",
+      "steps": [
+        "스컬프팅된 두부 모델을 Make Live로 지정합니다.",
+        "눈, 코, 입 주변의 주요 엣지 루프를 Quad Draw로 먼저 배치합니다.",
+        "면 채우기 기능을 이용해 얼굴 전체를 사각형 메쉬로 덮습니다."
+      ]
+    },
+    {
+      "title": "하드서면 크리처 관절 부위 정리",
+      "steps": [
+        "관절 꺾임 부위에 고밀도 하이폴리곤 메쉬를 라이브 메쉬로 올립니다.",
+        "회전 축에 맞춰 엣지 루프가 원형으로 감싸도록 사각형을 배치합니다.",
+        "Symmetry 기능을 켜고 양쪽 대칭 구조를 효율적으로 작업합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Make Live를 지정하지 않아 점이 모델 위에 생성되지 않음 → 대상 메쉬를 선택하고 Status Line의 자석 아이콘(Make Live)을 다시 클릭합니다.",
+    "면이 뒤집혀 어둡게 표시됨 → Quad Draw 상태에서 Shift 키를 누르고 면을 클릭하여 노멀 방향을 바로잡습니다.",
+    "점들이 서로 붙지 않고 겹침 → 점을 생성할 때 기존 엣지나 점 근처로 드래그하여 스냅 기능을 활성화합니다."
+  ],
+  "related": [
+    "GoZ",
+    "ZRemesher",
+    "Smooth Brush",
+    "Multi-Cut"
+  ],
+  "videos": [
+    {
+      "id": "6aspn6QCCYA",
+      "title": "Mastering the Quad Draw Tool in Autodesk Maya: Step-by-Step Tutorial #autodeskmaya #3dtutorials",
+      "author": "3DWolf"
+    },
+    {
+      "id": "I7YqK-E1l6c",
+      "title": "ZBrush to Maya to ZBrush - Retopology and UVing with Quad Draw",
+      "author": "Alex Cheparev"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Quad%20Draw",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Status Line",
+    "Make Live",
+    "Modeling",
+    "Modeling Toolkit",
+    "Quad Draw"
+  ],
+  "at": "2026-11-08T08:32:35.366053+00:00"
+}
