@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-shader-compile-and-ddc-6ae3",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Shader compile and DDC",
+  "title": "Shader 컴파일·DDC",
+  "summary": "Unreal Engine에서 에셋을 처음 임포트하거나 프로젝트를 열 때 발생하는 Shader 컴파일과 DerivedDataCache(DDC)의 개념을 이해하고, 빌드 병목 현상을 해결하는 가이드입니다.",
+  "when": [
+    "새로운 프로젝트나 대형 에셋 팩을 처음 열었을 때 뷰포트가 멈추거나 버벅일 때",
+    "에디터 로딩 속도가 비정상적으로 느려지고 CPU 사용량이 100%에 육박할 때",
+    "프로젝트 이동이나 엔진 업데이트 후 갑자기 Shader 에러나 로딩 지연이 발생할 때"
+  ],
+  "steps": [
+    "작업 중인 프로젝트 폴더(Project Folder) 위치를 확인합니다.",
+    "프로젝트 폴더 내에서 Intermediate 폴더와 DerivedDataCache 폴더를 찾습니다.",
+    "Unreal Engine 에디터를 완전히 종료한 상태에서 해당 폴더들을 백업하거나 삭제합니다.",
+    "프로젝트를 다시 실행하여 DDC와 Shader 캐시가 깨끗한 상태에서 재생성되도록 기다립니다.",
+    "Project Settings → Rendering 메뉴에서 Shader 관련 최적화 옵션을 시스템 사양에 맞게 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "DerivedDataCache",
+      "desc": "엔진이 빠르게 읽을 수 있도록 에셋과 Shader를 미리 컴파일해 둔 캐시 데이터 폴더입니다."
+    },
+    {
+      "name": "Shader Compilation",
+      "desc": "머티리얼 코드를 GPU가 이해할 수 있는 기계어로 변환하는 작업입니다."
+    },
+    {
+      "name": "Local Derived Data Cache",
+      "desc": "로컬 PC에 캐시 데이터를 저장하여 반복 로딩 속도를 높이는 설정입니다."
+    },
+    {
+      "name": "Shared Derived Data Cache",
+      "desc": "팀원 간에 빌드된 Shader 캐시를 공유하여 컴파일 시간을 단축하는 네트워크 저장소 설정입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "손상된 DDC 폴더 초기화로 무한 로딩 해결하기",
+      "steps": [
+        "Unreal Engine 에디터를 완전히 종료합니다.",
+        "프로젝트 루트 디렉토리로 이동합니다.",
+        "DerivedDataCache 폴더를 삭제하거나 이름을 변경합니다.",
+        "프로젝트를 다시 실행하여 캐시를 새로 생성합니다."
+      ]
+    },
+    {
+      "title": "대형 텍스처 Import 시 컴파일 최적화",
+      "steps": [
+        "Content Browser에서 텍스처 에셋을 더블클릭합니다.",
+        "Details 패널에서 Compression 및 LOD 설정 확인합니다.",
+        "불필요한 고해상도 머티리얼 Instance의 압축 설정을 최적화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Shader 컴파일 중 에디터를 강제로 종료함 → DDC 폴더가 손상되어 무한 로딩이나 크래시 유발 (해결: 엔진 종료 후 DerivedDataCache 폴더 삭제 및 재실행)",
+    "네트워크 드라이브에 프로젝트를 직접 저장함 → DDC 읽기/쓰기 속도가 느려져 컴파일 지연 (해결: 로컬 SSD로 프로젝트를 복사 후 작업)"
+  ],
+  "related": [
+    "Shader Compilation",
+    "DerivedDataCache",
+    "Project Settings",
+    "ASDTool"
+  ],
+  "videos": [
+    {
+      "id": "eYjHRwzfteQ",
+      "title": "PSO Autopilot: Protect your game from shader compilation stutter and crash (UE5)",
+      "author": "Andras Gregori"
+    },
+    {
+      "id": "4hJ4jt-UFWo",
+      "title": "Unreal engine - Compiling Shaders",
+      "author": "Alizia Kaline Carina"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Shader%20compile%20and%20DDC",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project Folder",
+    "Intermediate",
+    "DerivedDataCache",
+    "Unreal Engine",
+    "DDC",
+    "Shader"
+  ],
+  "at": "2026-11-08T00:11:18.927478+00:00"
+}
