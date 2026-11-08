@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-actor-pivot-and-snapping-d24e",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "에디터",
+  "name": "Actor pivot and snapping",
+  "title": "액터 피벗·스냅",
+  "summary": "Unreal Engine의 Actor Pivot과 Snapping 기능은 3D 공간에서 오브젝트의 기준점을 조절하고 표면이나 Grid에 정확하게 배치할 수 있도록 돕습니다.",
+  "when": [
+    "건축 시각화에서 벽체나 바닥 타일을 Grid에 딱 맞춰 배치할 때",
+    "소품(Prop)의 회전 중심이나 접지면이 잘못되어 있을 때 임시로 Pivot을 조정할 때",
+    "오브젝트끼리 틈새 없이 맞닿게 정렬해야 할 때"
+  ],
+  "steps": [
+    "Unreal Engine 뷰포트에서 대상 Actor를 선택합니다.",
+    "Alt + 중클릭(Middle Mouse Button)을 Pivot 위치에서 드래그하여 임시로 Pivot 위치를 일시적으로 변경합니다.",
+    "영구적으로 Pivot을 수정하려면 뷰포트에서 Actor 우클릭 → Pivot → Set Pivot Offset 또는 Enable Pivot Editing을 선택합니다.",
+    "뷰포트 상단 툴바의 자석 아이콘(Snapping)을 클릭하거나 Hotkey를 눌러 Snapping을 활성화합니다.",
+    "Grid Snapping(Grid 단위 이동) 또는 Surface Snapping(표면 스냅) 옵션을 켜고 원하는 위치로 이동합니다."
+  ],
+  "params": [
+    {
+      "name": "Grid Snapping",
+      "desc": "지정된 수치(cm) 단위로 이동 및 회전이 끊기며 움직이게 합니다."
+    },
+    {
+      "name": "Surface Snapping",
+      "desc": "다른 오브젝트의 표면에 닿았을 때 그 면을 기준으로 딱 붙게 배치합니다."
+    },
+    {
+      "name": "Rotation Snap",
+      "desc": "회전할 때 지정된 각도(예: 5도, 45도, 90도) 단위로 회전합니다."
+    },
+    {
+      "name": "Scale Snap",
+      "desc": "크기를 조절할 때 일정한 비율이나 단위로 스케일이 조절됩니다."
+    },
+    {
+      "name": "Pivot Offset",
+      "desc": "Actor의 로컬 좌표계 기준점(Origin) 위치를 수치로 정밀하게 이동합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바닥 타일 틈새 없이 배치하기",
+      "steps": [
+        "뷰포트 상단 툴바에서 Grid Snapping 단위를 100cm로 설정합니다.",
+        "타일 Actor를 선택하고 W 키를 눌러 Move 툴을 활성화합니다.",
+        "Grid 눈금에 맞춰 타일을 이동하여 완벽하게 맞닿도록 배치합니다."
+      ]
+    },
+    {
+      "title": "벽에 액자 걸기 (Surface Snapping)",
+      "steps": [
+        "뷰포트 툴바에서 Surface Snapping 옵션을 켭니다.",
+        "액자 Actor를 선택하고 벽면 쪽으로 이동합니다.",
+        "Mouse 드래그를 통해 액자가 벽면 표면에 자연스럽게 밀착되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅이 너무 둔감하게 움직임 → 툴바의 Grid Snapping 수치(예: 10cm, 1cm)가 너무 크게 설정되었는지 확인하고 값을 낮춥니다.",
+    "임시 Pivot 조작 후 원래대로 돌아오지 않음 → Alt + 중클릭으로 변경한 임시 Pivot은 오브젝트 재선택 시 초기화되므로 영구 수정은 Pivot Offset 메뉴를 사용합니다.",
+    "표면에 스냅되지 않고 공중에 뜸 → Surface Snapping이 꺼져있거나 정렬 기준면(Collision)이 올바르지 않은 경우이므로 콜리전 설정을 확인합니다."
+  ],
+  "related": [
+    "Grid Snapping",
+    "Surface Snapping",
+    "Transform Gizmo",
+    "Alignment Tool"
+  ],
+  "videos": [
+    {
+      "id": "sr6VxFoOxqs",
+      "title": "Use V to snap pivots to vertices. Best place to set up a pivot for rapid blocking. #unreal #ue5",
+      "author": "KITE BOY DREAM"
+    },
+    {
+      "id": "5ny3Jj_Yrus",
+      "title": "Vertex Snapping - Pivot Temporal",
+      "author": "Luis Alfredo Hoyos Arias"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Actor%20pivot%20and%20snapping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Actor"
+  ],
+  "at": "2026-11-08T01:21:30.300824+00:00"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "maya-append-to-polygon-2180",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Append to Polygon",
+  "title": "Append to Polygon — 구멍 메우기",
+  "summary": "Append to Polygon 도구는 Maya에서 열린 엣지나 Vertex 사이에 수동으로 새로운 폴리곤 면을 생성하고 연결하는 기능입니다. 모델링 중 구멍 난 부분을 메우거나 끊어진 구조를 이어 붙일 때 유용합니다.",
+  "when": [
+    "메쉬에 생긴 구멍이나 빈 면을 원하는 모양의 폴리곤으로 직접 채울 때",
+    "떨어진 두 엣지 사이에 새로운 면을 수동으로 연장하여 연결할 때",
+    "하드 표면 모델링 중 비어 있는 측면이나 두께를 채워 넣을 때"
+  ],
+  "steps": [
+    "대상 오브젝트를 선택하고 Mouse 우클릭 후 Object Mode에서 Vertex 또는 Edge 모드로 전환합니다.",
+    "상단 메뉴 바에서 Mesh Modeling Tool킷(Modeling Toolkit)을 열거나 Mesh 메뉴를 엽니다.",
+    "Mesh 메뉴 또는 Modeling Toolkit 패널에서 Append to Polygon을 클릭하여 도구를 활성화합니다.",
+    "뷰포트에서 면을 채우고자 하는 열린 엣지나 Vertex를 순서대로 클릭하여 윤곽선을 지정합니다.",
+    "윤곽선이 완성되면 Mouse 우클릭 또는 Enter 키를 눌러 면 생성(Append)을 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Keep Faces Together",
+      "desc": "여러 개의 면을 밀어낼 때 개별적으로 또는 하나로 묶어서 처리할지 설정합니다."
+    },
+    {
+      "name": "Divisions",
+      "desc": "새로 생성되는 폴리곤 내부의 세분화(분할) 횟수를 조절합니다."
+    },
+    {
+      "name": "Smoothing Angle",
+      "desc": "새로 생성된 면과 주변 면 사이의 부드러운 음영(소프트 엣지) 전환 기준 각도를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 측면 구멍 메우기",
+      "steps": [
+        "구멍 주변의 열린 엣지들을 순서대로 클릭하여 선택합니다.",
+        "Append to Polygon 도구를 실행하여 엣지 루프를 연결합니다.",
+        "Enter를 눌러 면을 확정합니다."
+      ]
+    },
+    {
+      "title": "끊어진 브릿지 연결하기",
+      "steps": [
+        "마주 보는 두 엣지 사이의 Vertex를 번갈아 클릭합니다.",
+        "폴리곤 면이 생성되는 것을 뷰포트에서 확인합니다.",
+        "Enter 키를 눌러 명령을 종료합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "버텍스나 엣지를 잘못된 순서로 클릭함 → 면이 꼬이거나 겹치게 생성되므로 ESC로 취소 후 시계 또는 반시계 방향으로 일관되게 다시 클릭합니다.",
+    "Edge가 아닌 Vertex를 잘못 선택함 → 도구가 제대로 활성화되지 않으므로 뷰포트 상단 선택 필터를 확인하고 열린 엣지를 정확히 클릭합니다."
+  ],
+  "related": [
+    "Bridge",
+    "Fill Hole",
+    "Extrude",
+    "Multi-Cut"
+  ],
+  "videos": [
+    {
+      "id": "E81iV-pUbas",
+      "title": "Maya's Append to Polygon Tool",
+      "author": "Josh Antonio"
+    },
+    {
+      "id": "QMmtLcEUPe0",
+      "title": "Maya Toolbelt - In-Depth Guide - Append to Polygon tool",
+      "author": "Curious Trader Mindset"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Append%20to%20Polygon",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Object Mode",
+    "Vertex",
+    "Edge",
+    "Mesh Modeling Tool",
+    "Modeling Toolkit"
+  ],
+  "at": "2026-11-08T01:21:33.707873+00:00"
+}
