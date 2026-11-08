@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-06T12:45:12.623874+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 243,
-      "candidates_passed": 194,
-      "offtopic": 32,
-      "short": 0,
-      "prefiltered": 26,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "5cc690b6",
-      "visuals": 0,
-      "enriched": 1,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-06T12:55:18.639116+00:00",
       "collected": 1,
       "saved": 1,
@@ -7012,6 +6985,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-08T16:43:38.245575+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 108,
+      "candidates_passed": 59,
+      "offtopic": 28,
+      "short": 0,
+      "prefiltered": 27,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "37639d54",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7107,7 +7107,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-10-31 [backend/app/services/mesh_from_image.py에] 입력 검증 함수와 단위 테스트를 명확하게 추가하여 안정성을 높입니다.",
     "2026-10-31 [성찰] 오프토픽 및 중복 기사 수집을 엄격히 차단하고, Maya·3ds Max·Blender 등 실무 튜토리얼 및 스크립트 중심의 고CPC 콘텐츠 발행 비중을 높여야 합니다.",
     "2026-10-31 [성찰] 오프토픽 및 중복 할인·이벤트성 뉴스의 수집을 철저히 차단하고, 실무 검색 유입이 높은 Maya·3ds Max·Blender 튜토리얼 및 스크립트 중심의 고품질 콘텐츠 발행에 집중해야 합니다.",
     "2026-10-31 [성찰] 주제와 무관한 뉴스나 중복 할인 정보의 유입을 철저히 차단하고, Maya·Blender·3ds Max 등의 실무 튜토리얼 및 스크립트 중심 콘텐츠를 집중 강화해야 합니다.",
@@ -7226,7 +7225,8 @@
     "2026-11-08 [[p-246d67a028|콘텐츠] 웹/로컬 PBR 텍스처 생성 프로세스 ] 문서 파일(.md)에는 테스트 코드를 작성하지 말고 실제 가이드 내용만 포함해야 합니다.",
     "2026-11-08 [성찰] 오수집(동음이의어) 비율을 낮추고 3ds Max Maxscript 및 Blender 애드온처럼 검색 유입이 입증된 실무 튜토리얼과 스크립트 콘텐츠 비중을 높여야 합니다.",
     "2026-11-08 [성찰] 오수집율을 낮추고 검색 유입이 검증된 실무 튜토리얼 및 플러그인 콘텐츠를 집중 발행해야 합니다.",
-    "2026-11-08 [성찰] 오수집된 일반 명사 및 동음이의어 이슈를 극복하기 위해 CG/3D 전문 맥락 필터를 엄격히 적용하고, 실무 검색량이 높은 튜토리얼·스크립트 콘텐츠에 집중해야 합니다."
+    "2026-11-08 [성찰] 오수집된 일반 명사 및 동음이의어 이슈를 극복하기 위해 CG/3D 전문 맥락 필터를 엄격히 적용하고, 실무 검색량이 높은 튜토리얼·스크립트 콘텐츠에 집중해야 합니다.",
+    "2026-11-08 [성찰] 동음이의어 오수집 비율을 줄이고 실무 검색량이 높은 Maxscript 및 애드온 튜토리얼 중심으로 콘텐츠를 구성해야 검색 유입과 점수가 향상됩니다."
   ],
   "categories": {
     "VFX": [
@@ -7271,7 +7271,7 @@
     "3D DCC/Cinema 4D": 27,
     "3D DCC/ZBrush": 18,
     "Game Engine/UEFN·Fortnite": 6,
-    "AI 3D/3D 생성 AI": 61,
+    "AI 3D/3D 생성 AI": 62,
     "VFX/Nuke": 13,
     "Game Engine/기타 엔진": 110,
     "VFX/After Effects": 37,
@@ -9501,14 +9501,15 @@
     4371708982606411755,
     5575585703658282054,
     9517434829279398932,
-    17704230572206408451
+    17704230572206408451,
+    3931651293883521375
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2207,
-    "Game Engine": 2207,
-    "VFX": 2207,
-    "AI 3D": 2207
+    "3D DCC": 2208,
+    "Game Engine": 2208,
+    "VFX": 2208,
+    "AI 3D": 2208
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

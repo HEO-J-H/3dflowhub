@@ -22259,5 +22259,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 가이드 RAG 테스트 코드 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-08T16:43:50+00:00",
+    "kind": "proposal",
+    "id": "p-246cb41d26",
+    "title": "backend/tests/test_rag.py 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 rag_query 관련 서비스 구현에 따른 테스트 부재 및 패치 적용 실패 해결 필요",
+    "proposal": "backend/tests/test_rag.py 파일을 생성하여 FAISS 검색 및 /api/rag/query 엔드포인트의 기본 입출력을 검증하는 테스트 코드를 작성합니다.",
+    "expected": "RAG 엔드포인트의 안정성 확보 및 백엔드 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T16:43:50+00:00",
+    "kind": "proposal",
+    "id": "p-d8918be8a6",
+    "title": "docs/rag-integration.md 문서화 재구성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "이전 rag-integration.md 패치 적용 실패 및 RAG 통합 설계 가이드 필요성",
+    "proposal": "docs/rag-integration.md 파일을 생성하여 오픈소스 RAG 라이선스(MIT/Apache-2.0)와 시스템 아키텍처를 명시합니다.",
+    "expected": "향후 RAG 관련 기능 도입 시 명확한 기준 제공 및 문서 품질 유지",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-08T16:44:32.839903+00:00",
+    "kind": "decision",
+    "id": "p-246cb41d26",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_basic_pipeline.py 기본 ",
+    "auto": true
+  },
+  {
+    "at": "2026-11-08T16:44:32.866730+00:00",
+    "kind": "decision",
+    "id": "p-d8918be8a6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-integration.md 오픈소스 활용 방안 추가 문서",
+    "auto": true
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "title_ko": "XM4D: 기하학적 최적화 기반 4D 재구성 연구",
+  "title_ko": "XM4D: 인증 가능한 기하학적 최적화를 통한 4D 재구성",
   "title": "XM4D: 4D Reconstruction through Certifiable Geometric Optimization",
   "url": "https://arxiv.org/abs/2611.07902v1",
   "domain": "AI 3D",
@@ -7,48 +7,92 @@
   "topic": "연구·논문",
   "tags": [
     "4D Reconstruction",
+    "Semidefinite Relaxation",
+    "Embedded Deformation Graph",
     "Gaussian Splatting",
-    "SDP",
-    "QCQP",
-    "Riemannian Optimization"
+    "Camera Motion Estimation"
   ],
-  "summary": "XM4D는 카메라 움직임과 비강체 변형을 분리하여 전역 최적화를 보장하는 인증 가능한 4D 재구성 프레임워크입니다.",
-  "insight": "기존 4D 재구성은 비볼록 최적화 문제로 인해 전역 최적해를 보장하기 어려웠으나, 본 논문은 SDP 완화를 통해 이를 해결합니다. 복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제 단계 초기화에 직접 활용됩니다.",
-  "try_it": [],
+  "summary": "XM4D는 카메라 모션, 장면 기하학, 비강체 변형을 전역적으로 최적화하여 4D 재구성을 수행하는 프레임워크입니다.",
+  "insight": "이 연구는 수동으로 카메라와 모션을 맞추던 기존 4D 스캔 및 재구성 Pipeline 전역 최적화를 수학적으로 보장해 주는 가능성을 보여줍니다. 향후 실제 촬영된 영상이나 모노큘러 비디오로부터 디지털 아카이브나 모션 캡처 데이터를 더욱 신뢰성 있게 추출하는 실무 도구의 기초가 될 수 있습니다.",
+  "try_it": [
+    "https://computationalrobotics.seas.harvard.edu/XM4D/ 에서 코드와 시각화 자료를 확인합니다.",
+    "공식 저장소에서 제공하는 소스 코드와 벤치마크 데이터셋을 검토합니다."
+  ],
   "sections": [
     {
-      "heading": "XM4D 프레임워크의 핵심 구조",
-      "body": "카메라 움직임 추정과 비강체 변형을 분리하여 두 단계 모두 구조화된 QCQP(Quadratically Constrained Quadratic Programs)로 공식화합니다. 이를 통해 SDP(Semidefinite Programming) 완화와 검증 가능한 전역 최적성 인증서를 제공합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "동적 3D 재구성은 카메라와 객체의 모션이 얽혀 있고 비볼록 최적화로 인해 지역 최적점에 빠지기 쉬우며, 긴 시퀀스에서 프레임 조각화와 스케일 불일치 문제가 발생합니다. 논문은 전역적 최적성을 보장하는 인증 가능한 기하학적 최적화를 통해 정확하고 효율적인 4D 재구성을 달성하고자 합니다."
     },
     {
-      "heading": "카메라 움직임 추정 및 스케일 번들 조정",
-      "body": "기초 깊이 예측 모델을 사용하여 정적 포인트 트랙을 3D로 리프팅하고, 카메라 포즈, 깊이 스케일, 정적 랜드마크를 공동으로 추정하는 스케일 번들 조정 문제를 구성합니다. 평행이동과 랜드마크를 분석적으로 제거하여 스케일된 회전에 대한 QCQP로 문제를 축소합니다."
+      "heading": "핵심 아이디어",
+      "body": "카메라 모션 추정과 비강체 변형을 분리하여 구조화된 QCQP(Quadratically Constrained Quadratic Program)로 공식화하고, SDP(Semidefinite Programming) 완화와 Burer–Monteiro 솔루션을 통해 전역적 최적성을 인증합니다. 정적 포인트는 스케일 번들 조정으로 추정하고, 동적 모션은 임베디드 변형 그래프(EDG)로 표현합니다."
     },
     {
-      "heading": "비강체 재구성과 EDG 기반 최적화",
-      "body": "동적 움직임을 EDG(Embedded Deformation Graph)로 표현하고, 추적, 강성, 시간적 정규화 목표가 회전 전용 QCQP로 축소됨을 입증합니다. GPU 가속 Burer-Monteiro 솔버를 기반으로 리만 최적화를 통해 두 문제를 효율적으로 해결합니다."
+      "heading": "방법 (단계)",
+      "body": "1단계 정적 단계에서는 기초 깊이 예측 모델의 3D 포인트 트랙과 프레임별 스케일을 사용해 카메라 포즈와 랜드마크를 구하며, 균일 구면 제약(uniform sphere constraint)으로 스케일 모호성을 해결합니다. 2단계 동적 단계에서는 변환을 고정된 기준 프레임 기준으로 표현해 트래킹, 강체성(ARAP), 시간적 평활화 목적 함수를 회전 전용 QCQP로 축소합니다. 복구된 기하는 광도학적 정교화를 위해 동적 Gauss Splatting(Gaussian splatting)을 초기화합니다."
     },
     {
-      "heading": "Gaussian Splatting 연동 렌더링",
-      "body": "복구된 지형 데이터는 동적 Gaussian Splatting의 포토메트릭 정제를 위한 초기화 데이터로 사용됩니다. 7개의 벤치마크 실험을 통해 정적 및 동적 장면 모두에서 정확한 카메라 움직임 추정과 뛰어난 렌더링 품질을 입증했습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "DyCheck, NVIDIA, Syn4D, DAVIS, Sintel, EgoDexter 등의 7개 벤치마크를 통한 실험에서 정확한 카메라 모션 추정, 수천 프레임으로 확장되는 효율적인 최적화, 그리고 모든 3개의 동적 벤치마크에서 최고 평균 신규 시점 렌더링 품질을 달성했습니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문에서는 복잡한 비강체 변형과 노이즈가 많은 모노큘러 깊이에서 전역 최적화를 보장하려고 하지만, 얽힌 모션과 불완전한 관측이 극심한 경우 추가적인 제약이나 보정이 필요할 수 있습니다. (원문 한계 언급을 바탕으로 한 사실)"
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "연구진은 프로젝트 페이지(https://computationalrobotics.seas.harvard.edu/XM4D/)와 GitHub를 통해 시각화 자료와 코드를 공개하고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "XM4D는 어떤 문제를 해결하기 위한 프레임워크인가요?",
-      "a": "카메라 움직임, 장면 지형, 비강체 변형을 동시에 추정할 때 발생하는 비볼록 최적화의 한계를 극복하여 전역 최적성을 보장하는 4D 재구성 프레임워크입니다."
+      "q": "XM4D는 동적 장면을 어떻게 표현합니까?",
+      "a": "비동적 모션을 임베디드 변형 그래프(EDG)로 표현하며, 각 동적 포인트는 주변 EDG 노드의 리지드 트랜스포메이션에 의해 워프됩니다."
     },
     {
-      "q": "최적화 과정은 어떻게 가속화되나요?",
-      "a": "문제를 QCQP 형태로 축소하고, GPU 가속 기반의 Burer-Monteiro 솔버와 리만 최적화를 적용하여 수천 개의 프레임에서도 효율적으로 연산합니다."
+      "q": "정적 단계에서 스케일 모호성을 어떻게 해결합니까?",
+      "a": "첫 번째 프레임에 고정하는 대신 균일 구면 제약(uniform sphere constraint, ∑ t s t 2 = T)을 부과하여 프레임을 특권화하지 않고 글로벌 스케일을 고정합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.07902v1/2611.07902v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.07902v1/2611.07902v1/view-graph.png",
+        "caption": "Figure 2: The XM 4D view graph. (a) Schematic\nview graph. Camera poses ( C t , 𝐜 t ) ∈ SO ⁡ ( 3 ) × ℝ 3 (C_{t},\\mathbf{c}_{t})\\in\\mathrm{SO}(3)\\times\\mathbb{R}^{3} (red) observe\nstatic landmarks 𝐱 i s ∈ ℝ 3 \\mathbf{x}^{s}_{i}\\in\\mathbb{R}^{3} (blue triangles)\nand dynamic points (pink\ncircles) throug",
+        "caption_ko": "그림 2: XM4D 뷰 그래프 개요"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07902v1/2611.07902v1/fig_combined_rows.png",
+        "caption": "Figure 3: Certified versus local optimization. Results on a\nreal DAVIS video [ 54 ] (top) and a\nsynthetic deformation graph (bottom). Each panel shows the EDG nodes,\ntheir estimated rotations (red, green, and blue axes), and the graph\nedges at different frames. The local\nsolver converges to a local ",
+        "caption_ko": "그림 3: 인증된 최적화와 지역 최적화의 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07902v1/2611.07902v1/qualitative_all.png",
+        "caption": "Figure 4: Qualitative results of XM 4D . Sequences from DyCheck [ 18 ] , NVIDIA [ 81 ] , Syn4D, DAVIS [ 54 ] , Sintel [ 12 ] , EgoDexter [ 46 ] , a Boston Dynamics video [ 6 ] , and a generated video from Google Flow. For each sequence, from left to right: an input frame, the reconstructed static an",
+        "caption_ko": "그림 4: XM4D의 정성적 결과"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.07902v1/2611.07902v1/paper_dycheck_compare.png",
+        "caption": "Figure 6: Estimated camera trajectories. Estimated camera poses (blue) after Sim(3) alignment to the ground truth (red), shown for one scene per benchmark. IMC [ 28 ] consists of unordered images, whereas all other benchmarks contain temporally ordered sequences.",
+        "caption_ko": "그림 6: 추정된 카메라 궤적"
+      }
+    ]
   },
   "collected_at": "2026-11-08T13:53:18.366021+00:00",
   "notion_id": "",
   "id": "2026-11-08-9bfcc7a304c13298",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-08T16:44:01+00:00"
 }
