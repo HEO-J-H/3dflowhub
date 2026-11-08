@@ -1,0 +1,50 @@
+{
+  "title_ko": "Gaussian Splatting 3D — 자율주행 광시야 합성 논문 발표",
+  "title": "Wide View Synthesis from Overlapping Perspective Cameras in Autonomous Driving",
+  "url": "https://arxiv.org/abs/2611.07081v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "자율주행",
+    "3D 비전",
+    "연구",
+    "NeRF"
+  ],
+  "summary": "자율주행 환경에서 복수의 카메라 시점을 결합해 기하학적으로 일관된 광시야 3D 뷰를 실시간으로 합성하는 WV-GS 프레임워크를 제안합니다.",
+  "insight": "사전 최적화 과정 없이 피드포워드 방식으로 작동하여 자율주행 시뮬레이션 및 3D 공간 복원 속도를 크게 끌어올립니다. 대규모 주행 데이터셋에서 광각 왜곡과 조명 불일치 문제를 해결해야 하는 연구원과 엔지니어가 주목할 만한 논문입니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Wide-View Gaussian Splatting 구조와 핵심 목표",
+      "body": "다중 시점 카메라 시스템은 넓은 시야각을 제공하지만 카메라 간의 거리로 인해 깊이 기반 시차와 가림 현상이 발생합니다. 논문에서는 개별 장면에 대한 최적화 과정 없이 광시야 뷰를 생성하는 WV-GS 프레임워크를 새롭게 제안합니다. 이를 통해 실시간성이 요구되는 자율주행 환경에서 효율적인 3D 공간 합성이 가능해집니다."
+    },
+    {
+      "heading": "Piecewise Perspective Rendering 적용 방식",
+      "body": "원근 투영 환경에서 발생하는 주변부 왜곡을 해결하기 위해 Piecewise Perspective Rendering 기법을 도입했습니다. 공통 카메라 중심을 공유하는 국소 원근 투영을 사용하여 왜곡을 완화하고 시각적 정밀도를 높입니다. 복잡한 3D 기하학과 가시성 추론을 동시에 처리할 수 있는 구조입니다."
+    },
+    {
+      "heading": "Spatial Affine Photometric Modeling과 벤치마크",
+      "body": "카메라마다 상이한 광도 변화를 학습 과정에서 보정하기 위해 Spatial Affine Photometric Modeling을 적용했습니다. 또한, 고밀도 정답 광시야 뷰를 제공하는 신규 합성 벤치마크인 WideDrive를 함께 공개하여 실험의 객관성을 높였습니다. 실제 데이터셋에 맞춘 LiDAR 투영 기반 희소 참조 프로토콜도 함께 검증되었습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "WV-GS는 기존 3D Gaussian Splatting과 무엇이 다른가요?",
+      "a": "기존 방식과 달리 개별 장면에 대한 사전 최적화 과정이 필요 없는 피드포워드 프레임워크로 설계되어 자율주행 환경에 최적화되어 있습니다."
+    },
+    {
+      "q": "WideDrive 벤치마크는 어떤 데이터를 제공하나요?",
+      "a": "자율주행 환경에 맞춘 고밀도 정답 광시야 뷰 데이터와 실제 데이터셋 적응을 위한 LiDAR 투영 기반 희소 참조 프로토콜을 제공합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.07081v1/2611.07081v1/teaser.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-08T14:23:27.014953+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-e1405559ff994d57",
+  "img_tried": true
+}
