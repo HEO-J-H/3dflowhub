@@ -1,0 +1,53 @@
+{
+  "title_ko": "NVIDIA Cosmos — 인터랙티브 시뮬레이션을 위한 월드 모델 구축",
+  "title": "Build World Models for Interactive Simulation with NVIDIA Cosmos",
+  "url": "https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA Cosmos",
+    "월드 모델",
+    "물리 AI",
+    "시뮬레이션",
+    "NIM"
+  ],
+  "summary": "NVIDIA Cosmos 플랫폼이 물리 AI와 자율주행 및 로보틱스 시뮬레이션을 위한 월드 파운데이션 모델과 개발 프레임워크를 공개했습니다.",
+  "insight": "Cosmos3-Nano 모델 생성에 BF16 기준으로 58 GiB, FP8 오프로딩 적용 시 44 GiB의 GPU 메모리가 요구되며, H200 GPU 환경에서 vLLM 기반 가속 추론으로 약 2~3배의 속도 향상을 기록합니다. 자율주행 및 로보틱스 시나리오를 위한 카메라 비디오와 LiDAR 관측 데이터를 동기화하여 생성하려는 실무 개발 환경에 적합합니다.",
+  "try_it": [
+    "NVIDIA Developer 사이트에서 Cosmos Framework 레시피와 체크포인트를 다운로드합니다.",
+    "지원되는 시뮬레이터와 연동하여 자율주행 및 로보틱스 시나리오의 카메라 비디오와 LiDAR 데이터 생성 테스트를 실행합니다.",
+    "대상 GPU 사양에 맞는 Cosmos NIM 컨테이너 구성을 선택하고 추론 요청을 전송해 속도를 검증합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Cosmos 프레임워크와 모델 지원 범위",
+      "body": "NVIDIA Cosmos는 센서 적응과 안정적인 배포 문제를 해결하는 물리 AI 전용 월드 파운데이션 모델 및 개발 도구 플랫폼입니다. Cosmos Framework는 Cosmos 3 외에도 NVIDIA Alpamayo, GR00T, Qwen, pi0.5 및 Hugging Face 호환 모델을 지원하는 모듈식 도구를 제공합니다. 이를 통해 텍스트, 이미지, 비디오, 오디오, 액션 데이터 기반의 모델 학습을 수행할 수 있습니다."
+    },
+    {
+      "heading": "시뮬레이션 데이터 생성 및 추론 최적화",
+      "body": "Cosmos 3 Nano 시뮬레이션 레시피는 공개된 체크포인트를 활용하여 자율주행, 로보틱스, 수술 시나리오를 위한 동기화된 카메라 비디오와 LiDAR 관측 데이터를 생성합니다. Cosmos NIM 마이크로서비스는 양자화, 추측 디코딩, KV 캐시 인식 라우팅을 통한 가속 추론을 제공하여 H200 GPU에서 약 2~3배의 속도 향상을 달성합니다."
+    },
+    {
+      "heading": "강화학습 및 모델 최적화 파이프라인",
+      "body": "플랫폼은 DPO, GRPO, PPO, OPD, DiffusionNFT를 포함한 온·오프라인 강화학습 경로를 지원합니다. LoRA를 이용한 파라미터 효율적 적응이나 전체 지도 학습 미세조정을 통해 모델을 맞춤화할 수 있습니다. 또한 모델 크기와 생성 단계를 줄이기 위한 증류 및 메모리 사용량을 줄이는 양자화 기법을 적용할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA Cosmos Framework는 어떤 모델과 학습 방식을 지원하나요?",
+      "a": "Cosmos 3, NVIDIA Alpamayo, GR00T, Qwen, pi0.5 모델을 지원하며 LoRA를 통한 파라미터 효율적 적응과 전체 지도 학습 미세조정(SFT)을 제공합니다."
+    },
+    {
+      "q": "Cosmos NIM 마이크로서비스의 추론 성능은 어느 정도인가요?",
+      "a": "양자화, 추측 디코딩, KV 캐시 인식 라우팅을 적용하여 H200 GPU 환경에서 약 2~3배의 가속 추론 성능을 기록합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/cosmos-framework-tech-blog-600x338-5784057.webp",
+    "video": "https://www.youtube.com/watch?v=8lNoGg_j8S8"
+  },
+  "collected_at": "2026-11-08T12:53:23.634294+00:00",
+  "notion_id": "",
+  "id": "2026-11-08-a840098ac4436b98"
+}

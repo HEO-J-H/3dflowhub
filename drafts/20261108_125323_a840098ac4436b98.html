@@ -1,0 +1,20 @@
+<!-- TITLE: NVIDIA Cosmos — 인터랙티브 시뮬레이션을 위한 월드 모델 구축 | TAGS: NVIDIA Cosmos,월드 모델,물리 AI,시뮬레이션,NIM,업데이트·출시 | CATEGORY: AI 3D/로보틱스·월드모델 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/10/cosmos-framework-tech-blog-600x338-5784057.webp" alt="NVIDIA Cosmos — 인터랙티브 시뮬레이션을 위한 월드 모델 구축" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/8lNoGg_j8S8" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA Cosmos 플랫폼이 물리 AI와 자율주행 및 로보틱스 시뮬레이션을 위한 월드 파운데이션 모델과 개발 프레임워크를 공개했습니다.</p>
+<p style="color:#888;">분류: AI 3D › 로보틱스·월드모델 › 업데이트·출시</p>
+<h2>Cosmos 프레임워크와 모델 지원 범위</h2>
+<p>NVIDIA Cosmos는 센서 적응과 안정적인 배포 문제를 해결하는 물리 AI 전용 월드 파운데이션 모델 및 개발 도구 플랫폼입니다. Cosmos Framework는 Cosmos 3 외에도 NVIDIA Alpamayo, GR00T, Qwen, pi0.5 및 Hugging Face 호환 모델을 지원하는 모듈식 도구를 제공합니다. 이를 통해 텍스트, 이미지, 비디오, 오디오, 액션 데이터 기반의 모델 학습을 수행할 수 있습니다.</p>
+<h2>시뮬레이션 데이터 생성 및 추론 최적화</h2>
+<p>Cosmos 3 Nano 시뮬레이션 레시피는 공개된 체크포인트를 활용하여 자율주행, 로보틱스, 수술 시나리오를 위한 동기화된 카메라 비디오와 LiDAR 관측 데이터를 생성합니다. Cosmos NIM 마이크로서비스는 양자화, 추측 디코딩, KV 캐시 인식 라우팅을 통한 가속 추론을 제공하여 H200 GPU에서 약 2~3배의 속도 향상을 달성합니다.</p>
+<h2>강화학습 및 모델 최적화 파이프라인</h2>
+<p>플랫폼은 DPO, GRPO, PPO, OPD, DiffusionNFT를 포함한 온·오프라인 강화학습 경로를 지원합니다. LoRA를 이용한 파라미터 효율적 적응이나 전체 지도 학습 미세조정을 통해 모델을 맞춤화할 수 있습니다. 또한 모델 크기와 생성 단계를 줄이기 위한 증류 및 메모리 사용량을 줄이는 양자화 기법을 적용할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Cosmos3-Nano 모델 생성에 BF16 기준으로 58 GiB, FP8 오프로딩 적용 시 44 GiB의 GPU 메모리가 요구되며, H200 GPU 환경에서 vLLM 기반 가속 추론으로 약 2~3배의 속도 향상을 기록합니다. 자율주행 및 로보틱스 시나리오를 위한 카메라 비디오와 LiDAR 관측 데이터를 동기화하여 생성하려는 실무 개발 환경에 적합합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA Cosmos Framework는 어떤 모델과 학습 방식을 지원하나요?</b><br/>A. Cosmos 3, NVIDIA Alpamayo, GR00T, Qwen, pi0.5 모델을 지원하며 LoRA를 통한 파라미터 효율적 적응과 전체 지도 학습 미세조정(SFT)을 제공합니다.</p>
+<p><b>Q. Cosmos NIM 마이크로서비스의 추론 성능은 어느 정도인가요?</b><br/>A. 양자화, 추측 디코딩, KV 캐시 인식 라우팅을 적용하여 H200 GPU 환경에서 약 2~3배의 가속 추론 성능을 기록합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-1f522e8436ab4f4e.html">NVIDIA NeMo로 에이전트 실패를 테스트로 전환하기</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-73bbcb2d707df5a3.html">NVIDIA Factory Operations Blueprint AI 에이전트 아키텍처</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-cfb4189f31938d74.html">NVIDIA TensorRT Edge-LLM으로 엣지 AI 모델 실행하기</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/" target="_blank" rel="noopener nofollow">Build World Models for Interactive Simulation with NVIDIA Cosmos</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
