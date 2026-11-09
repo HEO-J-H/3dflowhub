@@ -1,0 +1,98 @@
+{
+  "id": "maya-render-settings-bd9d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Render Settings",
+  "title": "Render Settings",
+  "summary": "Maya의 Render Settings는 렌더러(Arnold 등)를 선택하고 이미지 Resolution, 파일 형식, 레이트레이싱 샘플링 값을 설정하여 최종 결과물의 품질과 포맷을 결정하는 핵심 패널입니다.",
+  "when": [
+    "작업 중인 Viewport 화면을 고해상도 이미지나 시퀀스로 출력하기 전",
+    "렌더링 노이즈를 줄이기 위해 샘플링(Sampling) 값을 높여야 할 때",
+    "EXR 등 합성 작업에 필요한 멀티채널(AOV) 파일을 설정할 때"
+  ],
+  "steps": [
+    "메뉴바에서 Windows → Rendering Editors → Render Settings (또는 상단 쉘프의 Render Settings 아이콘)를 클릭합니다.",
+    "Render Using 드롭다운 메뉴에서 사용할 렌더러(예: Arnold Renderer)를 선택합니다.",
+    "Common 탭의 Image File Output 항목에서 파일 이름 접두사(File name prefix)와 이미지 형식(예: exr, png)을 지정합니다.",
+    "Resolution 항목에서 Width와 Height 값을 입력해 렌더링 Resolution를 설정합니다.",
+    "Arnold Renderer 탭으로 이동하여 Camera (AA) 및 디퓨즈, 스펙큘러 등의 샘플링(Samples) 값을 조정합니다.",
+    "상단 메인 메뉴바의 Render → Render Sequence를 실행하거나 Render View 창에서 렌더링을 진행해 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Render Using",
+      "desc": "Arnold 등 사용할 렌더링 엔진을 선택합니다."
+    },
+    {
+      "name": "Image File Output",
+      "desc": "저장할 이미지 포맷, 프레임 번호 규칙, 파일 경로를 설정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "최종 렌더링 이미지의 가로(Width)와 세로(H) Resolution 픽셀 값을 지정합니다."
+    },
+    {
+      "name": "Camera (AA)",
+      "desc": "Arnold 렌더러의 전체적인 안티에일리어싱과 이미지 품질을 결정하는 기본 샘플 값입니다."
+    },
+    {
+      "name": "Diffuse / Specular Samples",
+      "desc": "재질의 확산 반사와 반사광 영역에서 발생하는 노이즈를 줄여주는 샘플 값입니다."
+    },
+    {
+      "name": "AOV's",
+      "desc": "Compositing 작업을 위해 디퓨즈, 섀도우, 뷰티 등 요소를 별도의 패스 파일로 분리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "HD 1080p 테스트 렌더링 설정",
+      "steps": [
+        "Render Settings의 Common 탭을 엽니다.",
+        "Presets에서 HD 1080을 선택해 Resolution를 자동으로 채웁니다.",
+        "Camera (AA) 값을 낮게(예: 2) 설정하여 빠른 속도로 테스트 이미지를 뽑습니다."
+      ]
+    },
+    {
+      "title": "노이즈가 심한 고품질 최종 렌더링",
+      "steps": [
+        "Render Settings에서 Arnold Renderer 탭으로 이동합니다.",
+        "Camera (AA) 값을 4~5 이상으로 높여 전반적인 디테일을 선명하게 만듭니다.",
+        "필요시 Specular Samples를 높여 반사광 표면의 지글거리는 노이즈를 제거합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution 비율이 잘못 설정됨 → Common 탭의 Maintain W/H Ratio 옵션을 켜고 비율을 고정합니다.",
+    "렌더링 시간은 오래 걸리는데 노이즈가 안 사라짐 → 무작정 Camera (AA)만 높이지 말고 유발 원인인 Diffuse나 Specular 샘플을 개별적으로 확인하여 높입니다.",
+    "시퀀스 파일이 덮어씌워짐 → Frame/Animation ext 옵션을 name.#.ext 형식으로 바꾸어 프레임 번호가 들어가게 설정합니다."
+  ],
+  "related": [
+    "Render View",
+    "Arnold Renderer",
+    "Hypershade",
+    "Render Sequence"
+  ],
+  "videos": [
+    {
+      "id": "5BUveu3bFCg",
+      "title": "Maya Tutorial - Render settings in Arnold",
+      "author": "LinkedIn Learning"
+    },
+    {
+      "id": "hpynqqrFsSA",
+      "title": "Maya Course • Render Settings in Maya & Arnold Renderer • A Beginner's Guide • Sampling & Ray Depth",
+      "author": "Innovledia"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Render%20Settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Rendering Editors",
+    "Render Settings"
+  ],
+  "at": "2026-11-09T10:17:24.151164+00:00"
+}

@@ -24617,5 +24617,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T10:16:13+00:00",
+    "kind": "proposal",
+    "id": "p-aa6048b666",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 로컬 파이프라인 TripoSR 관련 예외 처리 및 폴백 경로의 테스트 견고성을 높일 필요가 있음",
+    "proposal": "backend/app/services/triposr_runner.py와 backend/tests/test_triposr.py에 GPU 부재 시 폴백 및 예외 발생 시 명확한 메시지 반환 검증 테스트 추가",
+    "expected": "로컬 환경 실행 시 예외 상황에서의 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T10:16:13+00:00",
+    "kind": "proposal",
+    "id": "p-f528ab0804",
+    "title": "웹 PBR 파이프라인 단위 테스트 확장",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 내 높이맵 및 PBR 변환 로직의 성능 검증 테스트가 일부 추가되었으나 커버리지 확대 필요",
+    "proposal": "web/tests/에 다양한 Resolution 이미지 입력 시의 PBR 맵 생성 속도 및 정확도 검증 테스트 케이스 추가",
+    "expected": "브라우저 기반 3D 변환 품질 및 신뢰도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T10:17:52.611101+00:00",
+    "kind": "decision",
+    "id": "p-aa6048b666",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T10:17:52.634630+00:00",
+    "kind": "decision",
+    "id": "p-f528ab0804",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 파이프라인 단위 테스트 확장",
+    "auto": true
   }
 ]
