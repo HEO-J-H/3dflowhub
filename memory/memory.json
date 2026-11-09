@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T18:50:03.025964+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 151,
-      "candidates_passed": 104,
-      "offtopic": 29,
-      "short": 0,
-      "prefiltered": 25,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a27f3c00",
-      "visuals": 1,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-07T18:59:15.792533+00:00",
       "collected": 1,
       "saved": 1,
@@ -6925,6 +6898,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-09T21:58:51.759800+00:00",
+      "collected": 2,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 122,
+      "candidates_passed": 72,
+      "offtopic": 29,
+      "short": 0,
+      "prefiltered": 32,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d38cc5dd",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7020,7 +7020,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력 검증 및 예외 처리는 보안과 안정성을 위해 철저히 테스트되어야 합니다.",
     "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력값 검증 함수 작성 시 예외 처리를 꼼꼼히 하여 안정성을 높여야 합니다.",
     "2026-11-01 [성찰] 실무자 검색 유입이 높은 3ds Max, Maya, Blender 등 튜토리얼과 스크립트 주제를 집중 발굴하고 무관한 동음이의어 뉴스를 철저히 필터링해야 합니다.",
     "2026-11-01 [성찰] 오동작 및 동명이인 뉴스(배구, 오페라 등)와 중복 할인 소식을 철저히 차단하고, 실무 검색 수요가 높은 맥스크립트 및 블렌더·마야 튜토리얼 비중을 더욱 높여야 합니다.",
@@ -7139,7 +7138,8 @@
     "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
     "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
     "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다.",
-    "2026-11-09 [성찰] 오수집되는 동음이의어(Nuke, Unity, Houdini 등)를 철저히 차단하고 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 위주로 콘텐츠를 구성해야 광고 수익과 트래픽을 동시에 극대화할 수 있습니다."
+    "2026-11-09 [성찰] 오수집되는 동음이의어(Nuke, Unity, Houdini 등)를 철저히 차단하고 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 위주로 콘텐츠를 구성해야 광고 수익과 트래픽을 동시에 극대화할 수 있습니다.",
+    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7183,7 +7183,7 @@
   "category_counts": {
     "Game Engine/Unity": 75,
     "AI 3D/가우시안 스플래팅": 90,
-    "VFX/스튜디오·작품": 133,
+    "VFX/스튜디오·작품": 134,
     "AI 3D/로보틱스·월드모델": 28,
     "3D DCC/Blender": 117,
     "Game Engine/Unreal Engine": 122,
@@ -9549,14 +9549,16 @@
     16041498413376589209,
     7114398090322428370,
     9951199225020815826,
-    4619365196921017840
+    4619365196921017840,
+    9333243010568844344,
+    321563990753884485
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2345,
-    "Game Engine": 2345,
-    "VFX": 2345,
-    "AI 3D": 2345
+    "3D DCC": 2346,
+    "Game Engine": 2346,
+    "VFX": 2346,
+    "AI 3D": 2346
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
