@@ -1,0 +1,87 @@
+{
+  "id": "zbrush-adaptive-skin-b83b",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Adaptive Skin",
+  "title": "Adaptive Skin",
+  "summary": "Adaptive Skin은 ZSphere를 기반으로 빠르게 메쉬를 생성해 주는 툴이며, 스켈레톤 형태를 즉시 폴리곤으로 변환합니다.",
+  "when": [
+    "ZSphere로 골격을 만든 뒤 즉시 메쉬가 필요할 때",
+    "복잡한 유기 형태를 빠르게 프로토타입하고 싶을 때",
+    "다른 리토폴로지 도구(Dynamesh, ZRemesher) 전에 기본 형태를 잡고 싶을 때"
+  ],
+  "steps": [
+    "Tool 팔레트 → Adaptive Skin 버튼 클릭 (또는 Shift+S)",
+    "ZSphere 모드에서 골격을 배치·연결 (Shift+클릭으로 새 ZSphere 연결)",
+    "T 키를 눌러 Edit 모드 전환 후 ZSphere 위치·크기 조정",
+    "Adaptive Skin 버튼을 다시 클릭해 메쉬 생성"
+  ],
+  "params": [
+    {
+      "name": "Adaptive Skin",
+      "desc": "ZSphere 골격을 메쉬로 변환"
+    },
+    {
+      "name": "Adaptive Skin Subdivision",
+      "desc": "생성 메쉬의 서브디비전 레벨을 조절"
+    },
+    {
+      "name": "Adaptive Skin Thickness",
+      "desc": "메쉬 두께를 지정"
+    },
+    {
+      "name": "Adaptive Skin Quality",
+      "desc": "표면 디테일 수준을 설정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 팔뚝 모델링",
+      "steps": [
+        "ZSphere를 두 개 배치해 어깨와 손목 연결",
+        "ZSphere 크기 조정 후 Adaptive Skin 클릭",
+        "Subdivision 2로 설정해 부드러운 형태 확보"
+      ]
+    },
+    {
+      "title": "파이프 형태 만들기",
+      "steps": [
+        "ZSphere를 연속으로 배치해 곡선형 골격 생성",
+        "Adaptive Skin Thickness를 0.5로 설정",
+        "Adaptive Skin 클릭 후 Subdivision 1 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "ZSphere 배치 후 Adaptive Skin을 누르지 않음 → 메쉬가 생성되지 않음 → 다시 Adaptive Skin 클릭",
+    "Subdivision 값을 과도하게 높임 → 폴리곤 수 급증 → 적절한 레벨(1~2)로 낮춤",
+    "Adaptive Skin Thickness를 0으로 설정 → 메쉬가 얇아 보임 → 적절한 두께(0.2~0.5)로 조정"
+  ],
+  "related": [
+    "ZSphere",
+    "ZRemesher",
+    "Dynamesh",
+    "ZModeler"
+  ],
+  "videos": [
+    {
+      "id": "1gdSynvxO8A",
+      "title": "ZBRUSH - MAKE ADAPTIVE SKIN",
+      "author": "Sem Limites Artes"
+    },
+    {
+      "id": "5YxZJjL-zHw",
+      "title": "Introduction to ZBrush Tutorial (2/5) - Adaptive Skin",
+      "author": "OUGDA"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Adaptive%20Skin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Adaptive Skin"
+  ],
+  "at": "2026-11-09T01:16:20.284625+00:00"
+}

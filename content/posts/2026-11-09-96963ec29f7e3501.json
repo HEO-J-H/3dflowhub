@@ -1,0 +1,46 @@
+{
+  "title_ko": "Gaussian Splatting Transformer 렌더링",
+  "title": "GaussianRenderFormer: Transformer-based Rendering of 3D Gaussian Splats",
+  "url": "https://arxiv.org/abs/2611.05593v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Transformer",
+    "Gaussian Splats",
+    "Neural Rendering",
+    "Objaverse",
+    "PSNR"
+  ],
+  "summary": "GaussianRenderFormer는 20,000개의 Gaussian을 입력으로 38.08 dB PSNR을 달성한 Transformer 기반 3D Gaussian 렌더러입니다.",
+  "insight": "38.08 dB PSNR을 기록한 점은 기존 래스터화 방식(44.02 dB)보다 낮지만, 순수 Neural Network만으로 렌더링이 가능하다는 점에서 실시간 파이프라인에 Neural Network 기반 대체재를 시험해볼 수 있는 기준이 됩니다.",
+  "try_it": [
+    "GitHub에서 GaussianRenderFormer 코드를 클론한다.",
+    "공식 프로젝트 페이지에서 제공하는 샘플 Gaussian 파일(.ply) 하나를 다운로드한다.",
+    "README에 따라 Python 환경에서 `python render.py --input sample.ply --camera cam.json` 명령을 실행해 결과 이미지를 확인한다."
+  ],
+  "sections": [
+    {
+      "heading": "모델 구조",
+      "body": "GaussianRenderFormer는 각 Gaussian을 토큰으로 인코딩하는 view‑independent Encoder와, 카메라 레이 패치를 픽셀로 변환하는 view‑dependent Decoder로 구성됩니다. Decoder는 토큰에 어텐션을 적용해 픽셀 색을 예측합니다."
+    },
+    {
+      "heading": "학습 데이터",
+      "body": "26,820개의 Objaverse 객체를 20,000개의 Gaussian으로 프루닝한 뒤 학습에 사용했습니다. 동일한 프루닝 입력을 기존 래스터라이저에 넣으면 44.02 dB PSNR을 얻었습니다."
+    },
+    {
+      "heading": "성능 평가",
+      "body": "학습되지 않은 300개의 객체에 대해 GaussianRenderFormer는 38.08 dB PSNR을 기록했습니다. 이는 래스터화 대비 약 6 dB 낮은 수치이며, 일반화 문제라기보다 디코더 구조의 병목으로 해석됩니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.05593v1/2611.05593v1/figures/teaser/0099_reference.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-09T01:15:10.187680+00:00",
+  "notion_id": "",
+  "id": "2026-11-09-96963ec29f7e3501",
+  "img_tried": true,
+  "enriched_at": "skip"
+}

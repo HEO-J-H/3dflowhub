@@ -1,0 +1,97 @@
+{
+  "id": "maya-blend-shape-c195",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Blend Shape",
+  "title": "Blend Shape — 표정",
+  "summary": "Blend Shape은 기본 메쉬에 여러 타깃 메쉬를 연결해 슬라이더 하나로 형태 변형을 제어하는 디포머입니다.",
+  "when": [
+    "표정·입술·눈 등 세밀한 형태 변형이 필요할 때",
+    "같은 Topology를 가진 여러 버전의 메쉬를 빠르게 전환하고 싶을 때",
+    "리깅 후에도 비선형 변형을 추가로 보정하고 싶을 때"
+  ],
+  "steps": [
+    "베이스 메쉬와 변형용 타깃 메쉬를 모두 준비합니다",
+    "타깃 메쉬를 먼저 선택하고 Shift‑클릭으로 베이스 메쉬를 추가 선택합니다",
+    "Deformer > Blend Shape 메뉴를 클릭해 Blend Shape Deformer를 생성합니다",
+    "Windows > Animation Editors > Blend Shape 로 Blend Shape 에디터를 엽니다",
+    "에디터에서 원하는 타깃의 Weight 슬라이더를 조정해 변형을 확인합니다"
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "슬라이더 값에 따라 타깃 메쉬 형태가 베이스 메쉬에 혼합됩니다"
+    },
+    {
+      "name": "Envelope",
+      "desc": "Blend Shape 전체 영향 범위를 전체적으로 조절합니다"
+    },
+    {
+      "name": "In‑Between",
+      "desc": "Weight 값 구간별로 중간 형태를 지정해 부드러운 변형을 만들 수 있습니다"
+    },
+    {
+      "name": "Target",
+      "desc": "연결된 각 타깃 메쉬의 이름이 표시됩니다"
+    },
+    {
+      "name": "Blend Shape Deformer",
+      "desc": "Blend Shape 기능을 담당하는 노드이며 History에 추가됩니다"
+    },
+    {
+      "name": "Maintain History",
+      "desc": "Blend Shape 생성 시 기존 히스토리를 유지할지 결정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "얼굴 표정 변형",
+      "steps": [
+        "기본 얼굴 메쉬와 웃는 표정 메쉬를 준비",
+        "두 메쉬를 선택 후 Deformer > Blend Shape 실행",
+        "Blend Shape 에디터에서 \"Smile\" Weight 슬라이더를 0~1 사이로 움직여 표정 변화를 확인"
+      ]
+    },
+    {
+      "title": "눈 깜빡임 애니메이션",
+      "steps": [
+        "눈을 감은 형태 메쉬를 타깃으로 준비",
+        "베이스 눈 메쉬와 타깃을 선택 후 Blend Shape 생성",
+        "Blend Shape 에디터에서 \"Blink\" Weight를 Keyframe에 넣어 눈 깜빡임을 애니메이션"
+      ]
+    }
+  ],
+  "mistakes": [
+    "타깃 메쉬와 베이스 메쉬의 Topology가 다르면 Blend Shape이 정상 작동하지 않음 → 동일 정점 수·배열로 재구성하거나 새 메쉬를 만든다",
+    "Weight 값을 0이 아닌 상태에서 스키닝을 적용하면 변형이 겹쳐 보임 → Blend Shape Weight를 0으로 초기화 후 Skin Cluster 적용",
+    "History가 너무 많이 쌓여 편집이 느려짐 → 필요 없는 히스토리를 Delete History 로 정리한다"
+  ],
+  "related": [
+    "Skin Cluster",
+    "Cluster",
+    "Wrap Deformer",
+    "Nonlinear Deformer"
+  ],
+  "videos": [
+    {
+      "id": "UEiBwCfJ3a4",
+      "title": "Blend Shape Tutorial Maya Ep1 | Deformer Series",
+      "author": "TGH Learnings"
+    },
+    {
+      "id": "C29DJYBLh_M",
+      "title": "Maya blend shape tutorial (blendshapes)",
+      "author": "Rob Redman"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Blend%20Shape",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Deformer",
+    "Blend Shape",
+    "Blend Shape Deformer"
+  ],
+  "at": "2026-11-09T01:15:47.059073+00:00"
+}
