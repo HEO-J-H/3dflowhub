@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T20:00:09.379813+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 189,
-      "candidates_passed": 140,
-      "offtopic": 36,
-      "short": 0,
-      "prefiltered": 21,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a27f3c00",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-07T20:10:30.534565+00:00",
       "collected": 1,
       "saved": 1,
@@ -6928,6 +6903,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-09T22:59:13.572723+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 104,
+      "candidates_passed": 54,
+      "offtopic": 29,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d38cc5dd",
+      "visuals": 1,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7023,7 +7025,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력값 검증 함수 작성 시 예외 처리를 꼼꼼히 하여 안정성을 높여야 합니다.",
     "2026-11-01 [성찰] 실무자 검색 유입이 높은 3ds Max, Maya, Blender 등 튜토리얼과 스크립트 주제를 집중 발굴하고 무관한 동음이의어 뉴스를 철저히 필터링해야 합니다.",
     "2026-11-01 [성찰] 오동작 및 동명이인 뉴스(배구, 오페라 등)와 중복 할인 소식을 철저히 차단하고, 실무 검색 수요가 높은 맥스크립트 및 블렌더·마야 튜토리얼 비중을 더욱 높여야 합니다.",
     "2026-11-01 [성찰] 오직 검색 유입과 실무 튜토리얼·스크립트 중심의 고CPC 콘텐츠에 집중하고, 동명이인 및 중복 할인 등 가치 없는 수집 대상을 철저히 배제해야 애드센스 정책을 준수하면서 페이지뷰와 수익을 극대화할 수 있습니다.",
@@ -7142,7 +7143,8 @@
     "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
     "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다.",
     "2026-11-09 [성찰] 오수집되는 동음이의어(Nuke, Unity, Houdini 등)를 철저히 차단하고 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 위주로 콘텐츠를 구성해야 광고 수익과 트래픽을 동시에 극대화할 수 있습니다.",
-    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용해야 합니다."
+    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용해야 합니다.",
+    "2026-11-09 [성찰] 일반 명사 도구명(Nuke, Unity, Houdini 등)의 동음이의어 오수집을 막는 정밀 필터링을 유지하고, 검색 유입이 입증된 Maxscript·애드온·실무 튜토리얼 중심의 고단가 콘텐츠를 확대해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7220,7 +7222,7 @@
     "AI 3D/NVIDIA Isaac Sim": 2,
     "AI 3D/Hexels": 1,
     "Game Engine/Source Engine": 1,
-    "AI 3D/NVIDIA Omniverse": 22,
+    "AI 3D/NVIDIA Omniverse": 23,
     "3D DCC/NVIDIA Omniverse": 3,
     "AI 3D/NVIDIA DSX": 4,
     "Game Engine/RPG Maker": 1,
@@ -9560,14 +9562,15 @@
     6687533230734288712,
     15045686158616051968,
     8294582759782481920,
-    5602920576993943565
+    5602920576993943565,
+    4370853428503117900
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2351,
-    "Game Engine": 2351,
-    "VFX": 2351,
-    "AI 3D": 2351
+    "3D DCC": 2352,
+    "Game Engine": 2352,
+    "VFX": 2352,
+    "AI 3D": 2352
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
