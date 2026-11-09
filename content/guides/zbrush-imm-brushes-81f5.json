@@ -1,0 +1,91 @@
+{
+  "id": "zbrush-imm-brushes-81f5",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "IMM brushes",
+  "title": "IMM — 부품 넣기",
+  "summary": "ZBrush의 IMM(Insert Multi Mesh) 브러시는 하나의 브러시 안에 여러 개의 파츠를 담아두고, 표면 위에 Mouse 드래그 한 번으로 새로운 메쉬를 즉시 삽입하는 강력한 스컬프팅 도구입니다.",
+  "when": [
+    "캐릭터의 갑옷이나 의상에 리벳, 지퍼, 단추 등의 반복적인 디테일을 빠르게 추가할 때",
+    "기계 부품, 볼트, 너트 같은 하드서페이스 소품을 모델 표면에 연속으로 배치할 때",
+    "다양한 형태의 오브젝트들을 하나의 브러시로 관리하며 효율적으로 조립할 때"
+  ],
+  "steps": [
+    "상단 Brush 팔레트 또는 Canvas 우측의 Brush 메뉴를 엽니다.",
+    "Hotkey B, I, M을 순서대로 눌러 IMM 관련 브러시를 선택합니다.",
+    "B 키를 누른 상태에서 팝업되는 브러시 목록 중 원하는 IMM 메쉬 세트를 선택합니다.",
+    "브러시 패널의 Stroke 메뉴에서 드래그 방식을 선택합니다 (예: Dot, Curve 등).",
+    "모델의 표면 위에서 마우스나 펜을 클릭하고 드래그하여 원하는 크기와 방향으로 메쉬를 삽입합니다.",
+    "Viewport의 빈 곳을 드래그하여 마스크를 해제하고 SubTool로 분리하거나 편집을 계속합니다."
+  ],
+  "params": [
+    {
+      "name": "Brush",
+      "desc": "사용할 IMM 브러시 종류를 선택합니다."
+    },
+    {
+      "name": "Stroke",
+      "desc": "메쉬가 배치되는 방식(Dot, DragRect, Curve 등)을 설정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "삽입되는 메쉬의 크기를 조절합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "표면 안쪽으로 파고드는 깊이감을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷에 리벳 배치하기",
+      "steps": [
+        "IMM Primitives 또는 IMM Parts 브러시를 선택합니다.",
+        "Stroke를 Dot 또는 DragRect로 설정합니다.",
+        "갑옷 표면 위를 클릭하여 리벳 메쉬를 반복해서 찍어냅니다."
+      ]
+    },
+    {
+      "title": "곡선을 따라 체인 연결하기",
+      "steps": [
+        "체인 모양의 IMM 브러시를 선택합니다.",
+        "Stroke를 Curve로 변경합니다.",
+        "캐릭터의 목이나 허리 주변을 드래그하여 체인을 자연스럽게 두릅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬가 표면 안쪽에 묻힘 → Depth 값을 조절하거나 ZIntensity를 낮춰서 다시 드래그합니다.",
+    "삽입된 메쉬가 별도의 SubTool이 아님 → Split 히든(Split Hidden) 기능을 사용해 개별 파츠로 분리합니다.",
+    "원하는 방향으로 메쉬가 꽂히지 않음 → 스컬프팅 표면의 Normal 방향을 확인하고 브러시 회전축을 조정합니다."
+  ],
+  "related": [
+    "SubTool",
+    "Curve brushes",
+    "ZModeler",
+    "Transpose"
+  ],
+  "videos": [
+    {
+      "id": "U5u3RpI9In4",
+      "title": "Intro to ZBrush 044 - Use IMM Brushes (Insert Multi Mesh) to kitbash and enhance your models!",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "OL88JkHyT4w",
+      "title": "ZBrush - Everything About CURVE Brushes (In 5 MINUTES!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20IMM%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush",
+    "Canvas",
+    "Hotkey B",
+    "IMM"
+  ],
+  "at": "2026-11-09T09:37:10.360580+00:00"
+}
