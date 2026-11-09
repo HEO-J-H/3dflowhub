@@ -1,0 +1,97 @@
+{
+  "id": "maya-render-setup-layers-92f0",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Render Setup (layers)",
+  "title": "Render Setup — 렌더 레이어",
+  "summary": "Maya의 Render Setup은 하나의 씬 안에서 캐릭터, 배경, 조명 등을 여러 레이어(Render Layers)와 컬렉션(Collections)으로 나누어 독립적으로 설정하고 렌더링할 수 있는 기능입니다. 합성 단계에서 유연한 제어와 효율적인 수정 작업을 가능하게 합니다.",
+  "when": [
+    "동일한 씬에서 주역 캐릭터와 배경을 따로 분리하여 렌더링하고 싶을 때",
+    "특정 오브젝트나 조명에만 다른 재질(Material Override)을 적용해 테스트하고 싶을 때",
+    "샷(Shot)마다 카메라 구도나 가시성(Visibility) 옵션을 다르게 설정해야 할 때"
+  ],
+  "steps": [
+    "메뉴 바에서 Windows → Rendering Editors → Render Setup을 엽니다.",
+    "Render Setup 창 상단의 세 번째 아이콘(Create Render Layer)을 클릭하여 새 레이어를 만듭니다.",
+    "레이어에 포함할 오브젝트를 아웃라이너(Outliner)에서 선택합니다.",
+    "만든 레이어 우측의 메뉴에서 Create Collection을 클릭하여 오브젝트를 컬렉션에 추가합니다.",
+    "컬렉션을 Mouse 우클릭하고 Create Override를 선택해 Material(재질)이나 Visibility(가시성) 등을 변경합니다.",
+    "Render Setup 창 상단의 렌더 아이콘을 눌러 해당 레이어의 렌더링 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Render Layers",
+      "desc": "독립적인 렌더 설정과 오브젝트 구성을 갖는 레이어 목록입니다."
+    },
+    {
+      "name": "Collections",
+      "desc": "레이어 내에서 오버라이드를 적용할 오브젝트나 라이트의 그룹입니다."
+    },
+    {
+      "name": "Material Override",
+      "desc": "컬렉션 내의 모든 오브젝트에 특정 재질을 강제로 적용합니다."
+    },
+    {
+      "name": "Absolute Override",
+      "desc": "기존 속성값을 무시하고 새로운 값으로 완전히 덮어씁니다."
+    },
+    {
+      "name": "Relative Override",
+      "desc": "기존 속성값에 수치를 더하거나 곱하여 상대적으로 변경합니다."
+    },
+    {
+      "name": "Visibility",
+      "desc": "특정 레이어에서 오브젝트의 렌더 가시성을 켜거나 끕니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터와 배경 분리 렌더",
+      "steps": [
+        "Render Setup에서 CharacterLayer와 BackgroundLayer를 각각 생성합니다.",
+        "CharacterLayer 컬렉션에 캐릭터를 넣고 배경 오브젝트의 Visibility를 끕니다.",
+        "BackgroundLayer 컬렉션에 배경을 넣고 캐릭터의 Visibility를 끕니다."
+      ]
+    },
+    {
+      "title": "클린업을 위한 매트(Matte) 렌더",
+      "steps": [
+        "새 Render Layer를 만들고 MatteLayer로 이름을 지정합니다.",
+        "컬렉션에 대상 오브젝트를 추가하고 Material Override를 생성합니다.",
+        "Surface Shader 등을 적용하여 그림자나 특정 마스크 영역만 추출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 컬렉션에 포함되지 않았는데 오버라이드를 적용함 → 아웃라이너에서 올바른 오브젝트를 드래그하여 컬렉션에 추가했는지 확인합니다.",
+    "글로벌 렌더 세팅과 레이어 세팅의 혼동 → 레이어별 세팅은 Render Setup 창 내에서 별도로 오버라이드해야 적용됩니다."
+  ],
+  "related": [
+    "Maya AOV",
+    "Render Settings",
+    "Hypershade",
+    "Batch Render"
+  ],
+  "videos": [
+    {
+      "id": "CdwBtIqX3cY",
+      "title": "Setting Up Render Layers in Maya Arnold | Tutorial",
+      "author": "TOILSTORY"
+    },
+    {
+      "id": "CaVj5QET3kw",
+      "title": "Maya Render Layers: The Professional VFX Workflow You Need to Know",
+      "author": "Creative Catalyst"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Render%20Setup%20%28layers%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Rendering Editors",
+    "Render Setup"
+  ],
+  "at": "2026-11-09T10:37:16.145308+00:00"
+}

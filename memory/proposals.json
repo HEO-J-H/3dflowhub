@@ -24689,5 +24689,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 파이프라인 단위 테스트 확장",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T10:37:01+00:00",
+    "kind": "proposal",
+    "id": "p-1db5dbcadc",
+    "title": "깃허브 RAG 오픈소스 연동 구조 설계 및 초안 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "오너 요청: 깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영할 수 있는 것 반영 요청",
+    "proposal": "backend/app/services/rag_source_sync.py 파일을 생성하여 오픈소스 RAG 레포지토리의 핵심 검색 모듈을 안전하게 포팅하고, 기존 문서와의 연동 테스트 코드를 추가합니다.",
+    "expected": "오너의 RAG 반영 요구사항을 충족하고 사이트 내 문서 검색 및 활용도를 높입니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T10:37:01+00:00",
+    "kind": "proposal",
+    "id": "p-d2c2def4f7",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 및 폴백 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "기존 로컬 TripoSR 관련 예외 처리 테스트 요구가 계속 이어짐",
+    "proposal": "backend/tests/test_triposr_fallback.py를 추가하여 GPU가 없는 환경이나 모델 로딩 실패 시 예외가 올바르게 반환되는지 검증합니다.",
+    "expected": "로컬 백엔드의 안정성과 테스트 커버리지를 높여 안정적인 툴 운영을 도모합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T10:37:34.168733+00:00",
+    "kind": "decision",
+    "id": "p-1db5dbcadc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 오픈소스 연동 구조 초안 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T10:37:34.195678+00:00",
+    "kind": "decision",
+    "id": "p-d2c2def4f7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]

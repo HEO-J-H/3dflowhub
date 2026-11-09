@@ -1,0 +1,85 @@
+{
+  "id": "zbrush-standard-brush-b3d1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Standard brush",
+  "title": "Standard 브러시",
+  "summary": "ZBrush의 Standard 브러시는 디지털 점토를 덧붙이거나 파내는 가장 기본적인 스컬프팅 도구로, 모델의 전체적인 실루엣과 볼륨을 잡을 때 사용합니다.",
+  "when": [
+    "캐릭터나 크리처의 근육, 뼈대 등 기본 볼륨(Volume)을 추가할 때",
+    "얼굴 윤곽이나 주름 등 중간 단계의 형태를 스컬프팅할 때",
+    "표면에 유기적인 돌출부나 파인 자국을 자유롭게 표현할 때"
+  ],
+  "steps": [
+    "상단의 Brush Palette를 클릭하거나 B 키를 눌러 브러시 메뉴를 엽니다.",
+    "키보드 S, T 순서로 눌러 Standard 브러시를 선택합니다.",
+    "모델의 메쉬 위에 마우스나 타블렛 펜을 올립니다.",
+    "S 키를 눌러 Draw Size(브러시 크기)를 조절하고, I 키를 눌러 Z Intensity(브러시 세기)를 조절합니다.",
+    "Alt 키를 누른 상태에서 드래그하면 파내는(Subtractive) 모드로 작동하며, 그냥 드래그하면 튀어나오는(Additive) 모드로 스컬프팅됩니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 전체적인 크기를 조절하여 영향 범위를 바꿉니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "스컬프팅 시 형태가 튀어나오거나 파이는 강도를 조절합니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 테두리 사이의 감쇠 영역을 조절해 브러시 날카로움을 바꿉니다."
+    },
+    {
+      "name": "RGB Intensity",
+      "desc": "텍스처 페인팅 시 색상이 적용되는 세기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 근육 볼륨 스컬프팅",
+      "steps": [
+        "S 키로 브러시 크기를 크게 설정하고 인체의 대략적인 근육 덩어리를 더합니다.",
+        "Alt 키를 누른 채 오목한 부위를 다듬어 근육 간의 경계를 나눕니다."
+      ]
+    },
+    {
+      "title": "자연물 바위 디테일 추가",
+      "steps": [
+        "Z Intensity를 높여 바위의 거친 표면과 갈라진 틈을 강하게 튀어나오게 그립니다.",
+        "Focal Shift 값을 조절해 브러시 끝을 날카롭게 만들고 바위의 단단한 모서리를 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세부 디테일을 팔 때 폴리곤이 찢어지거나 깨짐 → Geometry 메뉴에서 Divide(Ctrl+D)를 실행해 폴리곤 밀도를 높여 해결합니다.",
+    "브러시 세기가 너무 강해 형태가 울퉁불퉁해짐 → Z Intensity 값을 낮추고 여러 번 겹쳐서 부드럽게 스컬프팅합니다."
+  ],
+  "related": [
+    "ClayBuildup",
+    "Smooth",
+    "Move",
+    "DamStandard"
+  ],
+  "videos": [
+    {
+      "id": "LYbUAAJ9Ysc",
+      "title": "Standard Brush: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "pzUxXWTsHgg",
+      "title": "Zbrush Tips and Tricks Standard Brush #zbrush #reinsacademy #vishalrein",
+      "author": "Reins  Academy"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Standard%20brush",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Standard"
+  ],
+  "at": "2026-11-09T10:37:19.509651+00:00"
+}
