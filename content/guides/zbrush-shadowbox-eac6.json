@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-shadowbox-eac6",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Shadowbox",
+  "title": "ShadowBox — 실루엣으로 형태",
+  "summary": "ShadowBox는 ZBrush에서 모델을 둘러싼 박스를 생성해 간단한 조명·그림자를 적용해 빠르게 프리뷰 및 렌더링할 수 있는 기능입니다.",
+  "when": [
+    "간단한 실루엣·그림자 프리뷰가 필요할 때",
+    "포트폴리오용 빠른 배경 렌더를 만들 때",
+    "복잡한 라이트 세팅 없이 모델 형태를 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Render 메뉴 → ShadowBox 클릭",
+    "ShadowBox Settings 창에서 Box Size, Segments, Angle, Softness 조정",
+    "필요 시 Color 슬라이더로 박스 색상 변경",
+    "Create 버튼을 눌러 박스 생성",
+    "Render → BPR 또는 Export로 결과 저장 (선택)"
+  ],
+  "params": [
+    {
+      "name": "Box Size",
+      "desc": "박스의 전체 크기를 결정합니다"
+    },
+    {
+      "name": "Segments",
+      "desc": "박스 면의 세분화 정도, 높을수록 부드러운 그림자"
+    },
+    {
+      "name": "Angle",
+      "desc": "빛의 방향을 설정해 그림자 각도를 조절합니다"
+    },
+    {
+      "name": "Softness",
+      "desc": "그림자 경계의 부드러움을 조절합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "박스 표면 색상을 지정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 실루엣 프리뷰",
+      "steps": [
+        "Render → ShadowBox 클릭",
+        "Box Size를 모델에 맞게 조정",
+        "Angle을 45°로 설정하고 Softness 0.5 적용",
+        "Create 후 Viewport에서 실루엣 확인"
+      ]
+    },
+    {
+      "title": "포트폴리오용 배경 렌더",
+      "steps": [
+        "ShadowBox Settings에서 Box Size 크게 설정",
+        "Color를 어두운 회색으로 지정",
+        "Segments를 8로 늘려 부드러운 그림자 확보",
+        "Create 후 BPR로 최종 렌더"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Box Size가 모델보다 작아 모델이 잘려 나감 → Box Size를 충분히 크게 조정",
+    "Segments를 0으로 두면 그림자가 거칠게 보임 → 최소 4 이상으로 설정",
+    "ShadowBox를 만든 뒤 Light가 켜져 있지 않아 어두움 → Light를 켜거나 Angle 값을 조정"
+  ],
+  "related": [
+    "Render",
+    "BPR",
+    "MatCap",
+    "Lighting"
+  ],
+  "videos": [
+    {
+      "id": "lIO4u2KdiTU",
+      "title": "ZBrush Shadowbox Tutorial for Beginners",
+      "author": "Jayanam"
+    },
+    {
+      "id": "snjzO19btuc",
+      "title": "ShadowBox - zBrush",
+      "author": "3D Tutorials by Alan Balodi"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Shadowbox",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render",
+    "ShadowBox"
+  ],
+  "at": "2026-11-09T01:37:55.244674+00:00"
+}

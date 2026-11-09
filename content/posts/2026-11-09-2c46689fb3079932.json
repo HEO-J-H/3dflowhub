@@ -1,0 +1,45 @@
+{
+  "title_ko": "Gaussian Splatting 가속기 GSPIM — 4.15배 속도·4.99배 에너지 효율",
+  "title": "GSPIM: A Temporal-Locality-Aware 4D Gaussian Splatting Accelerator with Polymorphic PIM and Multi-Frame Rendering Dataflow",
+  "url": "https://arxiv.org/abs/2611.04804v2",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "4DGS",
+    "PIM",
+    "GPU",
+    "Jetson AGX Orin",
+    "속도"
+  ],
+  "summary": "GSPIM은 4D Gaussian Splatting 작업을 위한 PIM 기반 가속기로, 평균 4.15배 빠른 렌더링과 4.99배 높은 에너지 효율을 달성했습니다.",
+  "insight": "GSPIM은 4.15배의 평균 속도 향상을 제공해, 실시간 동적 씬의 프레임당 렌더링 시간을 크게 줄일 수 있습니다. 이로써 모바일 XR 기기에서 복잡한 움직이는 장면을 지연 없이 스트리밍할 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Temporal Locality 병목 해결",
+      "body": "기존 4DGS 파이프라인은 프레임 간 데이터 재로드로 LPDDR5 대역폭을 낭비했습니다. GSPIM은 시간적 지역성을 인식해 비활성 데이터를 필터링하고 연속적인 입력으로 압축합니다. 이를 통해 GPU가 필요한 속성만 접근하도록 하여 전송량을 최소화합니다."
+    },
+    {
+      "heading": "Polymorphic PIM 설계",
+      "body": "Polymorphic PIM은 메모리 근처에 공유 데이터 경로를 두고, 각 표현 방식에 맞는 필드 레이아웃과 선택 로직을 동적으로 적용합니다. 이 구조는 4DGS의 다양한 방법(명시적 4D 분포, Keyframe 보간, 앵커 바인딩) 모두에 동일한 하드웨어를 재사용하게 합니다."
+    },
+    {
+      "heading": "Multi-Frame Rendering Dataflow",
+      "body": "새로운 데이터 흐름은 인접 프레임 간 겹치는 활성 속성 및 깊이 관계를 재활용합니다. 동일한 속성을 여러 프레임에서 중복 로드하지 않으며, 시간 창 내에서 안정적인 깊이 정보를 유지해 재계산을 방지합니다."
+    },
+    {
+      "heading": "성능 평가",
+      "body": "Jetson AGX Orin 64 GB 기반 GPU‑PIM 모델과 1 z DRAM 구현을 사용해 3가지 4DGS 방법과 6개 동적 씬을 테스트했습니다. 평균 4.15배 속도와 4.99배 에너지 효율을 기록했으며, PSNR 차이는 최대 0.011 dB에 불과했습니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.04804v2/2611.04804v2/intro.drawio.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-09T01:36:51.245367+00:00",
+  "notion_id": "",
+  "id": "2026-11-09-2c46689fb3079932",
+  "img_tried": true
+}
