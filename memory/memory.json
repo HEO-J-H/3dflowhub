@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T11:08:46.161087+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 187,
-      "candidates_passed": 136,
-      "offtopic": 31,
-      "short": 0,
-      "prefiltered": 28,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "0e735f1a",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-07T11:18:58.910952+00:00",
       "collected": 1,
       "saved": 0,
@@ -6928,6 +6903,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-09T14:07:16.599367+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 114,
+      "candidates_passed": 58,
+      "offtopic": 29,
+      "short": 0,
+      "prefiltered": 35,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "6cfda840",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7023,7 +7025,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [[p-241c9f44b6|수집] 단일 이미지 3D 파트에 PhysAg3D] 단일 이미지 3D 생성 모델에 물리적 상호작용 및 변형 능력을 결합하는 연구는 향후 시뮬레이션 연계에 핵심적인 기여를 합니다.",
     "2026-11-01 [backend/app/services/url_ingest.py에 URL ] 입력값 검증 함수 추가 시 허용 스키마와 예외 처리를 명확히 분기하자.",
     "2026-11-01 [성찰] 이름 유사성으로 인한 무관 뉴스(배구, 오페라 등)와 중복 할인 소식을 철저히 필터링하고, Maya 및 3ds Max 같은 고단가 실무 스크립트·튜토리얼 콘텐츠에 집중해야 검색 유입과 참여도가 높아집니다.",
     "2026-11-01 [성찰] 이름 유사성으로 인한 무관한 뉴스(스포츠·오페라 등)와 중복 할인 소식을 철저히 차단하고, Maya·3ds Max·Blender 등 실무형 튜토리얼 및 스크립트 고CPC 콘텐츠에 집중해야 합니다.",
@@ -7142,7 +7143,8 @@
     "2026-11-09 [성찰] 툴명과 핵심 검색 키워드를 제목 앞에 배치하고 1500자 이상 깊이 있게 작성하면 검색 유입과 AdSense 수익이 크게 상승한다.",
     "2026-11-09 [성찰] AI API 일일 사용량 한도를 주기적으로 모니터링하고 초과 시 자동 백업 모델 전환 로직을 강화하여 수집 및 발행 중단을 방지해야 합니다.",
     "2026-11-09 [PR #42 다시 하기 — backend/app/services/url_] 최신 main 기준을 유지하며 필요한 함수 변경 사항을 신속하고 정확하게 재적용한다.",
-    "2026-11-09 [PR #41 다시 하기 — backend/app/services/url_] 최신 main 브랜치 기준 충돌 여부를 확인하고 깔끔하게 다시 적용하자."
+    "2026-11-09 [PR #41 다시 하기 — backend/app/services/url_] 최신 main 브랜치 기준 충돌 여부를 확인하고 깔끔하게 다시 적용하자.",
+    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity, Houdini 등)로 인한 오수집 비중을 강력한 CG 전문 맥락 필터로 차단하고, 검색 유입이 입증된 Maxscript, 애드온, 실무 튜토리얼 중심으로 콘텐츠를 집중 발행해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7178,7 +7180,7 @@
   "category_counts": {
     "Game Engine/Unity": 74,
     "AI 3D/가우시안 스플래팅": 90,
-    "VFX/스튜디오·작품": 116,
+    "VFX/스튜디오·작품": 117,
     "AI 3D/로보틱스·월드모델": 27,
     "3D DCC/Blender": 115,
     "Game Engine/Unreal Engine": 122,
@@ -9495,14 +9497,15 @@
     12640520907610186361,
     18263481069202402240,
     1739445607380172848,
-    14247499607739201448
+    14247499607739201448,
+    5728194917188339051
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2300,
-    "Game Engine": 2300,
-    "VFX": 2300,
-    "AI 3D": 2300
+    "3D DCC": 2301,
+    "Game Engine": 2301,
+    "VFX": 2301,
+    "AI 3D": 2301
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
