@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T17:49:56.317548+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 171,
-      "candidates_passed": 125,
-      "offtopic": 30,
-      "short": 0,
-      "prefiltered": 22,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a27f3c00",
-      "visuals": 1,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-07T17:59:53.802254+00:00",
       "collected": 1,
       "saved": 0,
@@ -6925,6 +6898,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-09T20:58:31.041799+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 109,
+      "candidates_passed": 62,
+      "offtopic": 28,
+      "short": 0,
+      "prefiltered": 28,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d38cc5dd",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7020,7 +7020,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [evolve.summarize_cpc_category_stats(): 최] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력 검증 및 예외 처리는 보안과 안정성을 위해 철저히 테스트되어야 합니다.",
     "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력값 검증 함수 작성 시 예외 처리를 꼼꼼히 하여 안정성을 높여야 합니다.",
     "2026-11-01 [성찰] 실무자 검색 유입이 높은 3ds Max, Maya, Blender 등 튜토리얼과 스크립트 주제를 집중 발굴하고 무관한 동음이의어 뉴스를 철저히 필터링해야 합니다.",
@@ -7139,7 +7138,8 @@
     "2026-11-09 [evolve.analyze_3d_content_distribution()] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
     "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
-    "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다."
+    "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다.",
+    "2026-11-09 [성찰] 오수집되는 동음이의어(Nuke, Unity, Houdini 등)를 철저히 차단하고 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 위주로 콘텐츠를 구성해야 광고 수익과 트래픽을 동시에 극대화할 수 있습니다."
   ],
   "categories": {
     "VFX": [
@@ -7198,7 +7198,7 @@
     "VFX/After Effects": 37,
     "VFX/Houdini FX": 11,
     "3D DCC/기타 DCC": 68,
-    "3D DCC/Substance 3D": 34,
+    "3D DCC/Substance 3D": 35,
     "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 12,
     "VFX/기타 VFX": 62,
@@ -9541,14 +9541,15 @@
     9811616549992530992,
     3901110308389071116,
     14132296309431414179,
-    7663225162835434373
+    7663225162835434373,
+    250834199930525770
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2339,
-    "Game Engine": 2339,
-    "VFX": 2339,
-    "AI 3D": 2339
+    "3D DCC": 2340,
+    "Game Engine": 2340,
+    "VFX": 2340,
+    "AI 3D": 2340
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
