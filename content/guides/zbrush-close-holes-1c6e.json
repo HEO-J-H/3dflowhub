@@ -1,0 +1,86 @@
+{
+  "id": "zbrush-close-holes-1c6e",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Close Holes",
+  "title": "Close Holes — 구멍 막기",
+  "summary": "ZBrush의 Close Holes는 열려 있는 폴리곤 메시의 구멍을 감지하여 자동으로 면을 생성하고 메워주는 도구입니다. 구멍의 경계선을 따라 매끄럽게 폴리곤을 채워 모델링 작업을 마무리할 수 있습니다.",
+  "when": [
+    "Boolean 작업 후 뚫린 단면이나 구멍을 메워야 할 때",
+    "불완전하게 가져온 외부 OBJ/FBX 모델의 구멍을 채울 때",
+    "Dynamesh나 ZRemesh 전후로 열린 면을 빠르게 닫고 싶을 때"
+  ],
+  "steps": [
+    "구멍이 포함된 Subtool을 선택합니다.",
+    "오른쪽 셰프 또는 Tool 팔레트에서 Geometry 메뉴를 엽니다.",
+    "Modify Topology 서브메뉴를 확장합니다.",
+    "Close Holes 버튼을 클릭합니다.",
+    "Viewport에서 구멍이 메워진 모델의 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Close Holes",
+      "desc": "열려 있는 모든 메시의 구멍을 감지하여 즉시 면으로 채웁니다."
+    },
+    {
+      "name": "Mirror and Weld",
+      "desc": "대칭 축을 기준으로 구멍이나 잘린 단면을 반대편과 연결하며 메웁니다."
+    },
+    {
+      "name": "Del Hidden",
+      "desc": "숨겨진 마스크 영역이나 폴리곤을 삭제하여 구멍 주변을 정리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Boolean 결과물 구멍 메우기",
+      "steps": [
+        "Live Boolean을 적용한 메시를 Make Boolean Mesh로 변환합니다.",
+        "새로 생성된 Subtool을 선택합니다.",
+        "Geometry → Modify Topology에서 Close Holes를 실행합니다."
+      ]
+    },
+    {
+      "title": "실린더 형태 단면 닫기",
+      "steps": [
+        "열려 있는 파이프나 실린더 Subtool을 준비합니다.",
+        "Geometry 탭의 Modify Topology를 엽니다.",
+        "Close Holes를 눌러 양쪽 끝 면을 막아줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구멍이 완전히 닫히지 않음 → 메시가 겹쳐 있거나 미세한 두께로 열려 있는지 확인하고 Trim 브러시로 정리 후 재실행합니다.",
+    "비정상적인 삼각형 면 생성 → 구멍의 경계선 엣지가 꼬였는지 확인하고 ZRemesh로 Topology를 먼저 정리합니다."
+  ],
+  "related": [
+    "Dynamesh",
+    "ZRemesher",
+    "Mirror and Weld",
+    "Trim Curve"
+  ],
+  "videos": [
+    {
+      "id": "cy3JRUFKtRw",
+      "title": "zbrush close a hole",
+      "author": "Alex Li"
+    },
+    {
+      "id": "ckJdaBto1WQ",
+      "title": "Zbrush | Fixing Holes when Sculpting with Dynamesh",
+      "author": "Art of Akrosh"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Close%20Holes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Subtool",
+    "Tool",
+    "Geometry",
+    "Modify Topology",
+    "Close Holes"
+  ],
+  "at": "2026-11-09T10:06:55.315599+00:00"
+}

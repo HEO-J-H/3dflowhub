@@ -1,0 +1,98 @@
+{
+  "id": "maya-arnold-lights-area-skydome-5865",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Arnold lights (Area, SkyDome)",
+  "title": "Arnold 조명",
+  "summary": "Maya에서 Arnold 렌더러를 사용하여 물리적으로 정확한 빛과 자연스러운 감쇠를 표현하는 광원 시스템입니다. 실내외 렌더링에서 부드러운 그림자와 사실적인 반사를 만드는 데 사용됩니다.",
+  "when": [
+    "실내 건축 렌더링에서 창문을 통해 들어오는 자연광을 표현할 때",
+    "제품 스튜디오 샷에서 부드러운 하이라이트와 확산광을 만들 때",
+    "야외 환경에서 HDRI 텍스처를 활용해 주변광과 배경을 한 번에 설정할 때"
+  ],
+  "steps": [
+    "메인 메뉴 상단에서 Rendering 또는 Modeling 메뉴 세트로 전환합니다.",
+    "상단 메뉴 바에서 Arnold → Lights 로 이동합니다.",
+    "원하는 광원(예: Skydome Light, Area Light)을 클릭하여 Viewport에 생성합니다.",
+    "Channel Box 또는 Attribute Editor 에서 광원의 세부 속성을 조정합니다.",
+    "Arnold RenderView 를 열어 조명 결과물을 실시간으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "광원의 색상을 결정합니다. 온도(Kelvin)를 켜서 색온도로 조절할 수도 있습니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기를 조절합니다. 값이 클수록 광원이 밝아집니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "빛의 노출 값을 조절합니다. 정수 단위로 광량을 크게 조절할 때 유용합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "빛의 품질을 결정합니다. 값을 높이면 조명 영역의 노이즈가 줄어듭니다."
+    },
+    {
+      "name": "Normalize",
+      "desc": "라이트의 크기가 바뀌어도 전체 광량이 일정하게 유지되도록 보정합니다."
+    },
+    {
+      "name": "Color (Skydome)",
+      "desc": "File 노드를 연결하여 HDRI 맵을 불러오고 환경 조명으로 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 스튜디오 제품 조명",
+      "steps": [
+        "Create → Arnold → Light → Area Light 를 생성하여 제품 위쪽에 배치합니다.",
+        "Attribute Editor 에서 Scale 툴(R)을 사용해 Area Light 의 크기를 키워 부드러운 그림자를 만듭니다.",
+        "Intensity 와 Exposure 값을 조절하여 제품 표면에 은은한 하이라이트를 연출합니다."
+      ]
+    },
+    {
+      "title": "HDRI 환경광 설정",
+      "steps": [
+        "Create → Arnold → Light → Skydome Light 를 생성합니다.",
+        "Attribute Editor 의 Color 탭 옆 체커보드 버튼을 눌러 File 노드를 연결합니다.",
+        "Image Name 경로에서 준비된 HDRI 이미지(.exr 또는 .hdr)를 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명을 만들었는데 화면이 완전히 검은색일 때 → Intensity나 Exposure 값이 너무 낮거나 기본 활성화가 꺼져 있는지 확인합니다.",
+    "그림자 경계선에 지글거리는 노이즈가 심할 때 → Light의 Samples 값을 2 이상으로 높여줍니다.",
+    "Skydome Light에 HDRI를 넣었는데 배경이 하얗게 나오거나 타버릴 때 → Camera 샘플 값을 높이거나 Skydome의 Visibility 옵션에서 Camera 체크를 해제합니다."
+  ],
+  "related": [
+    "Arnold RenderView",
+    "Standard Surface",
+    "Color Management",
+    "Light Manager"
+  ],
+  "videos": [
+    {
+      "id": "sFeadqvndG8",
+      "title": "Maya Skydome Light HDRI Tutorial",
+      "author": "Modeling With Animation"
+    },
+    {
+      "id": "oh1QUJU8dS8",
+      "title": "Lighting a Starry Night Sky in Maya with Arnold Skydome",
+      "author": "Alexander Williams"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Arnold%20lights%20%28Area%2C%20SkyDome%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Modeling",
+    "Arnold",
+    "Lights"
+  ],
+  "at": "2026-11-09T10:06:51.758436+00:00"
+}
