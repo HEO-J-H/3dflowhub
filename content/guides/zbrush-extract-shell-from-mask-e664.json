@@ -1,0 +1,106 @@
+{
+  "id": "zbrush-extract-shell-from-mask-e664",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Extract (shell from mask)",
+  "title": "Extract — 마스크로 껍질",
+  "summary": "Extract는 마스크된 영역을 기준으로 일정 두께의 쉘(새로운 서브툴)을 생성합니다.",
+  "when": [
+    "복잡한 디테일을 보존하면서 얇은 판이나 옷감 같은 얇은 메쉬를 만들고 싶을 때",
+    "마스크된 부분을 독립된 오브젝트로 분리해 별도 편집·텍스처링을 할 때",
+    "기존 서브툴을 손상시키지 않고 새로운 레이어를 추가해 리터칭·보강을 할 때"
+  ],
+  "steps": [
+    "1. 마스크할 영역을 선택하고 Masking 팔레트 → Mask By ... 로 마스크 적용",
+    "2. SubTool 메뉴에서 Extract 버튼을 클릭 (또는 Shift+Ctrl+E)",
+    "3. Extract 다이얼로그가 뜨면 Thickness, Surface, Smooth 값을 조정",
+    "4. 필요에 따라 Fill Type(Polygroups / Groups Visible) 옵션 선택",
+    "5. OK 버튼을 눌러 새 서브툴이 생성되면, Geometry 메뉴 → Delete Hidden 로 마스크 제거"
+  ],
+  "params": [
+    {
+      "name": "Thickness",
+      "desc": "쉘의 두께를 지정합니다. 값이 클수록 두꺼워집니다."
+    },
+    {
+      "name": "Surface",
+      "desc": "마스크 경계와 쉘 사이의 간격을 조절합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "추출된 메쉬의 표면을 부드럽게 할 정도를 설정합니다."
+    },
+    {
+      "name": "Fill Type",
+      "desc": "새 서브툴에 적용할 폴리그룹 옵션을 선택합니다."
+    },
+    {
+      "name": "Polygroups",
+      "desc": "추출된 메쉬에 기존 폴리그룹을 그대로 유지합니다."
+    },
+    {
+      "name": "Groups Visible",
+      "desc": "보이는 서브툴만 추출해 새로운 서브툴을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "옷감 레이어 만들기",
+      "steps": [
+        "1) 옷감이 될 영역을 마스크",
+        "2) Extract → Thickness 0.2, Smooth 1 적용",
+        "3) 새 서브툴을 선택하고 Sculpt로 주름 추가"
+      ]
+    },
+    {
+      "title": "배관 내부 쉘 생성",
+      "steps": [
+        "1) 배관 내부를 마스크",
+        "2) Extract → Thickness 0.1, Surface 0.02 설정",
+        "3) 새 서브툴을 PolyPaint로 색칠"
+      ]
+    },
+    {
+      "title": "디테일 보강용 판 만들기",
+      "steps": [
+        "1) 보강할 면을 마스크",
+        "2) Extract → Thickness 0.05, Fill Type → Groups Visible",
+        "3) 새 서브툴을 ZRemesher로 재구성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크가 너무 얇아 추출된 쉘이 사라짐 → 마스크 영역을 확대하거나 Thickness 값을 늘리기",
+    "Extract 후 원본 서브툴에 마스크가 남아 작업이 방해됨 → Geometry → Delete Hidden 로 마스크 제거",
+    "Smooth 값을 과하게 높여 디테일이 사라짐 → 필요한 최소값만 사용하고, 필요 시 Sculpt로 보완"
+  ],
+  "related": [
+    "Masking",
+    "ZRemesher",
+    "Dynamesh",
+    "Subdivide"
+  ],
+  "videos": [
+    {
+      "id": "laalZ8wBAjk",
+      "title": "ZBrush - Extract ARMOR (In 2 MINUTES!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "hH3WMTBRZkg",
+      "title": "ZBrush - Simple Extract Tutorial: Make accessories, clothes, etc :D",
+      "author": "hewwo art"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Extract%20%28shell%20from%20mask%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Masking",
+    "Mask By",
+    "SubTool",
+    "Extract"
+  ],
+  "at": "2026-11-09T01:47:20.087886+00:00"
+}
