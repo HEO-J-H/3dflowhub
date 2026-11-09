@@ -1,0 +1,99 @@
+{
+  "id": "maya-uv-editor-basics-3787",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV Editor basics",
+  "title": "UV Editor 기초",
+  "summary": "Maya의 UV Editor는 3D 모델에 텍스처를 정확히 입히기 위해 UV 좌표를 생성·편집하는 기본 툴입니다.",
+  "when": [
+    "복잡한 모델에 텍스처를 입히려 할 때",
+    "UV가 겹치거나 비율이 맞지 않을 때",
+    "다중 재질·다중 텍스처를 관리해야 할 때"
+  ],
+  "steps": [
+    "Object 모드에서 모델 선택 → UV → UV Editor (Shift+U)",
+    "UV Editor에서 Edit 메뉴 → UV → Automatic Mapping (Ctrl+Shift+U) 선택",
+    "UV Shell을 선택하고 UV → Unfold 로 펼치기 (Shift+U)",
+    "UV → Layout Windows 열고 Preserve Aspect Ratio 체크 후 Apply 클릭",
+    "Viewport에서 텍스처를 확인하고 필요 시 UV Transform (R) 로 미세 조정"
+  ],
+  "params": [
+    {
+      "name": "Automatic Mapping",
+      "desc": "자동으로 UV를 타일에 배치해 기본 UV를 생성합니다"
+    },
+    {
+      "name": "Unfold",
+      "desc": "선택한 UV 쉘을 최적 형태로 펼칩니다"
+    },
+    {
+      "name": "Layout",
+      "desc": "전체 UV 쉘을 정렬·스케일링해 겹침을 최소화합니다"
+    },
+    {
+      "name": "Preserve Aspect Ratio",
+      "desc": "UV 비율을 유지하면서 레이아웃합니다"
+    },
+    {
+      "name": "UV Snap",
+      "desc": "UV 포인트를 격자에 맞춰 정밀 배치합니다"
+    },
+    {
+      "name": "UV Transform",
+      "desc": "선택 UV를 이동·회전·스케일링합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 UV 매핑",
+      "steps": [
+        "얼굴 메쉬 선택 → UV Editor 열기",
+        "UV → Automatic Mapping 실행",
+        "UV Shell 선택 → Unfold 적용",
+        "Layout에서 Preserve Aspect Ratio 켜고 Apply"
+      ]
+    },
+    {
+      "title": "파이프 모델 UV 매핑",
+      "steps": [
+        "파이프 전체 선택 → UV Editor 열기",
+        "UV → Cylindrical Mapping 선택",
+        "UV Shell을 Unfold 후 Layout 적용",
+        "UV Transform으로 텍스처 방향 맞춤"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 쉘을 선택하지 않고 Unfold 실행 → 전체 메쉬가 뒤틀림 → 먼저 UV Shell을 선택하고 Unfold 적용",
+    "UV Layout 후 겹친 UV가 남음 → Layout 옵션에서 Overlap Check 활성화 후 재실행",
+    "텍스처 비율이 깨짐 → Preserve Aspect Ratio를 체크하지 않음 → 옵션을 켜고 다시 Layout"
+  ],
+  "related": [
+    "UV Toolkit",
+    "UV Snapshot",
+    "UV Unfold",
+    "UV Layout"
+  ],
+  "videos": [
+    {
+      "id": "7IIO66-QAa0",
+      "title": "Maya UV Editor Basics Tutorial for Beginners",
+      "author": "MAYAIN"
+    },
+    {
+      "id": "J2pglfdPJxk",
+      "title": "UV Mapping Basics in Maya | Beginner tutorial",
+      "author": "Cryptic Visionary"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20UV%20Editor%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "UV",
+    "UV Editor"
+  ],
+  "at": "2026-11-09T02:16:21.854953+00:00"
+}

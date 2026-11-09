@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-decimation-master-58b1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Decimation Master",
+  "title": "Decimation Master — 폴리곤 줄이기",
+  "summary": "Decimation Master는 ZBrush에서 고해상도 모델의 폴리곤 수를 손실 최소화하면서 빠르게 감소시켜 실시간 Viewport와 파일 용량을 최적화하는 플러그인입니다.",
+  "when": [
+    "게임 엔진에 내보낼 저폴리 모델이 필요할 때",
+    "3D 프린팅용 경량 파일을 만들 때",
+    "Viewport 성능이 떨어져 작업이 끊길 때"
+  ],
+  "steps": [
+    "ZBrush에서 모델을 로드하고 SubTool을 선택합니다",
+    "Zplugin 메뉴 → Decimation Master → Pre‑process Current SubTool 클릭",
+    "Zplugin 메뉴 → Decimation Master → Decimate Current 를 열고 Target % 혹은 Target Polygon Count 를 설정합니다",
+    "Apply 버튼을 눌러 디시메이션을 적용합니다"
+  ],
+  "params": [
+    {
+      "name": "Target %",
+      "desc": "전체 폴리곤 수를 원하는 비율로 감소시킵니다"
+    },
+    {
+      "name": "Target Polygon Count",
+      "desc": "목표 폴리곤 수를 직접 입력합니다"
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "UV 맵을 유지하여 텍스처가 깨지지 않게 합니다"
+    },
+    {
+      "name": "Preserve Polypaint",
+      "desc": "Polypaint 색상을 보존합니다"
+    },
+    {
+      "name": "Adaptive",
+      "desc": "곡면을 더 많이 보존하고 평면을 크게 줄입니다"
+    },
+    {
+      "name": "Preserve Details",
+      "desc": "미세 디테일을 가능한 한 유지합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임용 캐릭터 저폴리화",
+      "steps": [
+        "고해상도 캐릭터를 로드",
+        "Pre‑process 후 Target % 를 10% 로 설정",
+        "Apply 후 SubTool을 Export > OBJ 로 Export"
+      ]
+    },
+    {
+      "title": "3D 프린팅용 경량 모델",
+      "steps": [
+        "스캔한 고해상도 메쉬를 불러오기",
+        "Preserve UVs 끄고 Target Polygon Count 를 50,000 으로 지정",
+        "Apply 후 PolyMesh3D 로 변환"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Pre‑process 를 생략 → 디시메이션 품질이 크게 떨어짐 → 다시 Pre‑process 후 재시도",
+    "Target % 를 너무 낮게 설정 → 실루엣이 변형됨 → 비율을 5~15% 사이로 조정",
+    "Preserve UVs 를 끈 채로 텍스처를 사용 → UV가 깨짐 → 적용 전에 Preserve UVs 를 켜기"
+  ],
+  "related": [
+    "ZRemesher",
+    "SubTool",
+    "Polygroup",
+    "Project"
+  ],
+  "videos": [
+    {
+      "id": "4KsACS3TOdU",
+      "title": "Decimation Master Zbrush!",
+      "author": "3D Bros"
+    },
+    {
+      "id": "Vi8KPSP9Aio",
+      "title": "ZBrush Decimation Master tutorial",
+      "author": "David Bittorf"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Decimation%20Master",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "SubTool",
+    "Zplugin",
+    "Decimation Master",
+    "Pre",
+    "Current SubTool"
+  ],
+  "at": "2026-11-09T02:16:25.666374+00:00"
+}
