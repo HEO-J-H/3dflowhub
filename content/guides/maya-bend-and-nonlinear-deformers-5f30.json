@@ -1,0 +1,91 @@
+{
+  "id": "maya-bend-and-nonlinear-deformers-5f30",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bend and nonlinear deformers",
+  "title": "Bend 등 Nonlinear 디포머",
+  "summary": "Maya Bend and nonlinear deformers는 오브젝트를 자르거나 형태를 망가뜨리지 않고 휘거나 비틀어 부드럽게 변형하는 비파괴적 도구입니다.",
+  "when": [
+    "구부러진 파이프나 호스 모델링을 제작할 때",
+    "건축물이나 기둥에 자연스러운 곡선을 줄 때",
+    "캐릭터의 포즈를 유연하게 수정할 때"
+  ],
+  "steps": [
+    "변형할 오브젝트를 Mouse로 선택합니다.",
+    "상단 메뉴 세트를 Animation 또는 Rigging으로 전환합니다.",
+    "메뉴바에서 Create Deformers > Nonlinear > Bend를 클릭합니다.",
+    "채널 박스(Channel Box)나 아웃라이너에서 bend 변형기(Deformer Handle)를 선택합니다.",
+    "Viewport에서 Rotate나 Scale을 조절하여 오브젝트가 휘어지는 정도를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Curvature",
+      "desc": "오브젝트가 휘어지는 각도와 강도를 조절합니다."
+    },
+    {
+      "name": "Low Bound",
+      "desc": "변형이 시작되는 하단 기준 위치를 설정합니다."
+    },
+    {
+      "name": "High Bound",
+      "desc": "변형이 끝나는 상단 기준 위치를 설정합니다."
+    },
+    {
+      "name": "Envelope",
+      "desc": "디포머의 전체적인 영향력을 0에서 1 사이로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 파이프 구부리기",
+      "steps": [
+        "충분히 세그먼트가 나뉜 Cylinder 오브젝트를 생성합니다.",
+        "Create Deformers > Nonlinear > Bend를 적용합니다.",
+        "Curvature 값을 높여 파이프가 90도로 꺾이도록 만듭니다."
+      ]
+    },
+    {
+      "title": "간판 휘게 만들기",
+      "steps": [
+        "직사각형 평면 오브젝트를 생성합니다.",
+        "Create Deformers > Nonlinear > Bend를 적용합니다.",
+        "Channel Box에서 Curvature 값을 조절해 아치형 간판을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 세그먼트 부족 → 곡선이 꺾이지 않고 각지게 부러짐: Edge Loop를 추가해 Resolution를 높입니다.",
+    "디포머 핸들 위치 오류 → 원치 않는 위치에서 꺾임: Deformer Handle의 Pivot을 오브젝트 중앙으로 이동합니다."
+  ],
+  "related": [
+    "Maya Lattice",
+    "Maya Twist",
+    "Maya Flare",
+    "Maya Wave"
+  ],
+  "videos": [
+    {
+      "id": "HAs7_5eqlsk",
+      "title": "Maya Course • Complete In-depth Guide to Nonlinear Deformers in Maya • Maya Deformers Tutorial",
+      "author": "Innovledia"
+    },
+    {
+      "id": "6D_2UYPq2f4",
+      "title": "MAYA Bend Deformers",
+      "author": "BCT Games Design"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Bend%20and%20nonlinear%20deformers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Animation",
+    "Rigging",
+    "Create Deformers",
+    "Nonlinear",
+    "Bend"
+  ],
+  "at": "2026-11-09T00:55:16.490446+00:00"
+}
