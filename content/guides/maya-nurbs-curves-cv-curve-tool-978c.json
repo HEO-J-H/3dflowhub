@@ -1,0 +1,79 @@
+{
+  "id": "maya-nurbs-curves-cv-curve-tool-978c",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "NURBS curves (CV Curve tool)",
+  "title": "CV Curve — 커브 그리기",
+  "summary": "Maya의 CV Curve Tool은 Viewport에서 제어점(Control Vertex)을 조작해 부드러운 곡선과 정교한 형태의 NURBS 커브를 그리는 핵심 기능입니다. 모델링 가이드나 경로 생성, 리깅 뼈대의 기반으로 널리 사용됩니다.",
+  "when": [
+    "복잡한 파이프나 케이블 등 꼬불꼬불한 오브젝트의 경로(Path)를 잡을 때",
+    "캐릭터나 기계 장치의 리깅을 위한 뼈대(Joint)의 위치를 계획할 때",
+    "로프트(Loft)나 익스트루드(Extrude) 같은 NURBS/Polygon 모델링의 기준선이 필요할 때"
+  ],
+  "steps": [
+    "Maya 상단 메뉴 바에서 Create > Curve Tools > CV Curve Tool 옵션 박스를 열거나 클릭합니다.",
+    "Top 또는 Perspective Viewport에서 빈 공간을 클릭하여 첫 번째 CV(제어점)를 생성합니다.",
+    "Mouse로 이동하며 클릭하여 연속적인 커브 제어점을 배치합니다. 커브가 부드럽게 생성되는 것을 확인합니다.",
+    "엔터(Enter) 키를 누르거나 다른 툴을 선택하여 커브 그리기를 완료합니다.",
+    "Mouse 우클릭을 길게 눌러 Control Vertex 모드로 전환한 뒤, 노란색 CV 점들을 이동하여 형태를 세밀하게 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Curve Degree",
+      "desc": "커브의 부드러운 정도를 설정합니다. 기본값 3은 Cubic 커브를 만듭니다."
+    },
+    {
+      "name": "Knot Spacing",
+      "desc": "커브 노드의 간격을 균일하게 할지(Uniform) 코드 형태에 맞출지 결정합니다."
+    },
+    {
+      "name": "Periodic",
+      "desc": "시작점과 끝점이 자연스럽게 이어지는 닫힌 고리 형태의 커브로 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "케이블 및 전선 경로 만들기",
+      "steps": [
+        "CV Curve Tool로 전주와 건물 사이를 잇는 곡선 경로를 그립니다.",
+        "경로에 맞춰 폴리곤 실린더를 생성하거나 Extrude along curve 기능을 적용합니다.",
+        "CV 모드에서 점들을 움직여 처지는 전선의 무게감을 연출합니다."
+      ]
+    },
+    {
+      "title": "스윕(Sweep) 모델링 가이드",
+      "steps": [
+        "측면 뷰에서 CV Curve Tool로 복잡한 단면 회전 경로를 그립니다.",
+        "NURBS Surfaces > Revolve 또는 Extrude를 실행해 찻잔이나 항아리 외형을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "CV 점을 너무 많이 찍어 커브가 울퉁불퉁해짐 → 점 개수를 줄이고 Curve Degree와 간격을 확인합니다.",
+    "오브젝트 모드와 CV 모드를 헷갈려서 형태가 안 바뀜 → Mouse 우클릭을 길게 눌러 Control Vertex 모드로 정확히 진입했는지 확인합니다."
+  ],
+  "related": [
+    "EP Curve Tool",
+    "Extrude",
+    "Revolve",
+    "Curve Editing Tool"
+  ],
+  "videos": [
+    {
+      "id": "955WdcXMt9o",
+      "title": "Maya - Creating & Editing Curves for Modelling & Animation",
+      "author": "James, How Do I?"
+    },
+    {
+      "id": "gAxFVYKzU2M",
+      "title": "How to Convert Curves to Polygons in Autodesk Maya",
+      "author": "CG Know-How"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20NURBS%20curves%20%28CV%20Curve%20tool%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-09T00:05:19.832302+00:00"
+}

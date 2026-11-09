@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-mask-by-cavity-8570",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "SubTool",
+  "name": "Mask by cavity",
+  "title": "Cavity 마스크",
+  "summary": "ZBrush의 Mask by cavity는 모델의 오목한(Cavity) 홈이나 볼록한 틈새에 자동으로 마스크를 생성하여 디테일을 살리거나 텍스처를 넣을 때 유용한 기능입니다.",
+  "when": [
+    "갑옷이나 기계 표면의 홈(Groove) 부분에 먼지나 녹 같은 웨어 앤 테어 효과를 넣고 싶을 때",
+    "유기체 모델의 주름이나 피부 결 사이에 음영이나 컬러를 다르게 주고 싶을 때",
+    "스컬프팅 중 오목한 부위만 선택해 강도를 높이거나 보호(Mask)하고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush Viewport에서 마스크를 적용할 대상 서브툴(SubTool)을 선택합니다.",
+    "오른쪽 팔레트 또는 Tool 메뉴에서 Masking 서브 팔레트를 클릭하여 엽니다.",
+    "Masking 메뉴 아래에 있는 Mask by Cavity 버튼을 클릭하여 오목한 영역에 마스크를 생성합니다.",
+    "마스크가 생성된 후 Viewport 빈 곳을 Ctrl 키를 누른 채 드래그하여 마스크 강도를 조절하거나 반전(Ctrl + Viewport 클릭)합니다.",
+    "Viewport에서 오목한 홈을 따라 마스크가 검은색(또는 붉은색) 점선으로 표시되면 성공입니다."
+  ],
+  "params": [
+    {
+      "name": "Mask by Cavity",
+      "desc": "오목하거나 볼록한 정도에 따라 자동으로 마스크를 생성합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "마스크의 경계면을 부드럽게(Blur) 블러 처리하여 자연스럽게 만듭니다."
+    },
+    {
+      "name": "Sharpen",
+      "desc": "마스크의 경계선을 날카롭고 선명하게 다듬어 줍니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "현재 적용된 마스크의 영역을 정반대로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 홈에 먼지 웨더링 표현",
+      "steps": [
+        "하드 서페이스 갑옷 모델의 Mask by Cavity를 실행합니다.",
+        "마스크가 뒤집히지 않았으면 Ctrl + 클릭으로 마스크를 반전합니다.",
+        "Polygroup이나 Color 메뉴에서 Fill Object를 사용하여 홈 부위에 어두운 색상을 채워 넣습니다."
+      ]
+    },
+    {
+      "title": "피부 주름 강조 스컬프팅",
+      "steps": [
+        "크리처 피부 모델에서 Mask by Cavity를 적용하여 주름 사이를 보호합니다.",
+        "마스크가 유지된 상태에서 브러시로 볼록한 피부 덩어리를 더 강하게 밀어 올립니다.",
+        "Ctrl + 드래그로 마스크를 해제하고 전체적인 디테일을 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤 밀도가 너무 낮을 때 → Divide를 실행해 서브디비전 레벨을 높인 후 다시 시도합니다.",
+    "마스크가 반대로 적용되었을 때 → Ctrl 키를 누르고 캔버스 빈 곳을 한 번 클릭해 마스크를 반전합니다."
+  ],
+  "related": [
+    "Masking",
+    "SubTool",
+    "Polygroup",
+    "Morph Target"
+  ],
+  "videos": [
+    {
+      "id": "0xrzXqrnypE",
+      "title": "Colouring or Darkening Skin Pores in ZBrush using Mask by Cavity.",
+      "author": "Dylan Saunders"
+    },
+    {
+      "id": "iWj8b4A4Vlk",
+      "title": "PavWork 21: Cavity and AO Maps in ZBrush",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Mask%20by%20cavity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush Viewport",
+    "SubTool",
+    "Tool",
+    "Masking"
+  ],
+  "at": "2026-11-09T00:05:23.797352+00:00"
+}
