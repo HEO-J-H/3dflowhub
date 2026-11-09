@@ -1,0 +1,96 @@
+{
+  "id": "maya-type-tool-3d-text-8349",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Type tool (3D text)",
+  "title": "Type — 3D 글자",
+  "summary": "Maya의 Type tool은 3D 공간에서 입체적인 타이포그래피와 로고를 생성하고 베벨, 왜곡, 애니메이션 속성을 부여하는 텍스트 제작 기능입니다.",
+  "when": [
+    "영화 타이틀, 자막, 로고 등 3D 타이포그래피를 제작할 때",
+    "곡선을 따라 텍스트를 배치하거나 휘어지는 입체 글자를 만들 때",
+    "절차적으로 텍스트의 두께와 베벨(Bevel)을 정밀하게 조절해야 할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Create → Type 을 클릭하여 Type 도구를 실행합니다.",
+    "Attribute Editor의 Text 탭에서 Text 입력란에 원하는 문구를 입력합니다.",
+    "Font 항목에서 사용할 시스템 폰트를 선택하고 스타일을 지정합니다.",
+    "Extrude Depth 값을 조절하여 3D 텍스트에 두께를 부여합니다.",
+    "Bevel Style을 선택하여 모서리에 입체적인 경사나 곡선을 추가합니다.",
+    "Viewport에서 결과물을 확인하고 필요시 폴리메쉬로 변환하여 세부 편집을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "생성할 텍스트 문자열을 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "적용할 시스템 폰트와 서체를 선택합니다."
+    },
+    {
+      "name": "Extrude Depth",
+      "desc": "텍스트의 3D 입체 두께(돌출 깊이)를 설정합니다."
+    },
+    {
+      "name": "Bevel Style",
+      "desc": "텍스트 모서리의 베벨(경사) 형태와 스타일을 지정합니다."
+    },
+    {
+      "name": "Caps",
+      "desc": "텍스트 앞뒤 면의 캡(뚜껑) 생성 여부와 방식을 결정합니다."
+    },
+    {
+      "name": "Curve Fit",
+      "desc": "특정 커브를 따라 텍스트가 배치되도록 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "입체 로고 제작",
+      "steps": [
+        "Create → Type을 실행해 브랜드 이름을 입력합니다.",
+        "Extrude Depth를 높여 두께감 있는 입체 로고를 만듭니다.",
+        "Bevel Style에서 Convex를 선택해 모서리를 부드럽게 다듬습니다."
+      ]
+    },
+    {
+      "title": "커브를 따라 흐르는 텍스트",
+      "steps": [
+        "EP Curve Tool로 곡선을 그린 뒤 텍스트와 함께 배치합니다.",
+        "Type 속성에서 Curve Fit 옵션을 활성화하고 해당 커브를 연결합니다.",
+        "Offset 값을 조절하여 곡선 위에서 텍스트의 위치를 이동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폰트 파일이 손상되었거나 지원되지 않는 형식임 → 표준 TTF 또는 OTF 폰트로 교체합니다.",
+    "텍스트가 깨지거나 면이 겹침 → Extrude Depth와 Bevel 값을 줄여서 겹침 현상을 해결합니다."
+  ],
+  "related": [
+    "Extrude",
+    "Bevel",
+    "EP Curve Tool",
+    "MASH"
+  ],
+  "videos": [
+    {
+      "id": "keSf9_KFd3s",
+      "title": "Create 3D Text | Maya Type Tool",
+      "author": "Digital Dreambox"
+    },
+    {
+      "id": "zaiRcHiZ_5Y",
+      "title": "Noob vs Pro Artist: 3D Text Maya #mayatutorial #3dtips #shorts",
+      "author": "Parveen 3D Artist "
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Type%20tool%20%283D%20text%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Type"
+  ],
+  "at": "2026-11-09T00:25:14.764152+00:00"
+}
