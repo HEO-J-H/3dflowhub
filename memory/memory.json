@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T16:49:42.794815+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 170,
-      "candidates_passed": 123,
-      "offtopic": 30,
-      "short": 0,
-      "prefiltered": 24,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a27f3c00",
-      "visuals": 1,
-      "enriched": 1,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-07T16:59:51.170694+00:00",
       "collected": 1,
       "saved": 1,
@@ -6931,6 +6904,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-09T19:58:24.835500+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 129,
+      "candidates_passed": 84,
+      "offtopic": 28,
+      "short": 0,
+      "prefiltered": 25,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d38cc5dd",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7026,7 +7026,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [app.render_cpc_optimization_dashboard():] 테스트 실패 — FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_render_practical_content_metrics - ",
     "2026-11-01 [evolve.summarize_cpc_category_stats(): 최] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력 검증 및 예외 처리는 보안과 안정성을 위해 철저히 테스트되어야 합니다.",
     "2026-11-01 [backend/app/services/url_ingest.py의 vali] 입력값 검증 함수 작성 시 예외 처리를 꼼꼼히 하여 안정성을 높여야 합니다.",
@@ -7145,7 +7144,8 @@
     "2026-11-09 [성찰] 오수집된 동음이의어 비관련 기사 비율을 줄이기 위해 컨텍스트 필터를 엄격히 적용하고 검색 유입이 높은 툴 중심의 실무 튜토리얼과 애드온 콘텐츠를 집중 발행해야 합니다.",
     "2026-11-09 [evolve.analyze_3d_content_distribution()] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
-    "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services."
+    "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
+    "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7206,7 +7206,7 @@
     "3D DCC/기타 DCC": 68,
     "3D DCC/Substance 3D": 34,
     "VFX/Unreal 가상 프로덕션": 11,
-    "AI 3D/AI 텍스처·렌더링": 10,
+    "AI 3D/AI 텍스처·렌더링": 11,
     "VFX/기타 VFX": 62,
     "Game Engine/게임 업계": 45,
     "3D DCC/Maya": 12,
@@ -9541,14 +9541,15 @@
     10817704929642514291,
     2557961349083153790,
     14493131479808635121,
-    10470098732335454798
+    10470098732335454798,
+    11118808381142598957
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2333,
-    "Game Engine": 2333,
-    "VFX": 2333,
-    "AI 3D": 2333
+    "3D DCC": 2334,
+    "Game Engine": 2334,
+    "VFX": 2334,
+    "AI 3D": 2334
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
