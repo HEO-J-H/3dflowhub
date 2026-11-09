@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-07T13:10:44.827953+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 193,
-      "candidates_passed": 142,
-      "offtopic": 30,
-      "short": 0,
-      "prefiltered": 27,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a27f3c00",
-      "visuals": 1,
-      "enriched": 1,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-07T13:29:16.139776+00:00",
       "collected": 1,
       "saved": 1,
@@ -6932,6 +6905,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-09T16:08:23.702905+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 125,
+      "candidates_passed": 72,
+      "offtopic": 28,
+      "short": 0,
+      "prefiltered": 31,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "bbfd6620",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7027,7 +7027,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-01 [backend/app/services/url_ingest.py에 URL ] 입력값 검증 함수 추가 시 허용 스키마와 예외 처리를 명확히 분기하자.",
     "2026-11-01 [성찰] 이름 유사성으로 인한 무관 뉴스(배구, 오페라 등)와 중복 할인 소식을 철저히 필터링하고, Maya 및 3ds Max 같은 고단가 실무 스크립트·튜토리얼 콘텐츠에 집중해야 검색 유입과 참여도가 높아집니다.",
     "2026-11-01 [성찰] 이름 유사성으로 인한 무관한 뉴스(스포츠·오페라 등)와 중복 할인 소식을 철저히 차단하고, Maya·3ds Max·Blender 등 실무형 튜토리얼 및 스크립트 고CPC 콘텐츠에 집중해야 합니다.",
     "2026-11-01 [성찰] 이름 유사성으로 인한 무관 뉴스(배구, 오페라 등) 및 중복 할인 소식을 철저히 필터링하고, Maya·3ds Max·Blender 등 실무 튜토리얼 및 스크립트 위주의 고CPC 콘텐츠에 집중해야 합니다.",
@@ -7146,7 +7145,8 @@
     "2026-11-09 [성찰] AI API 일일 사용량 한도를 주기적으로 모니터링하고 초과 시 자동 백업 모델 전환 로직을 강화하여 수집 및 발행 중단을 방지해야 합니다.",
     "2026-11-09 [PR #42 다시 하기 — backend/app/services/url_] 최신 main 기준을 유지하며 필요한 함수 변경 사항을 신속하고 정확하게 재적용한다.",
     "2026-11-09 [PR #41 다시 하기 — backend/app/services/url_] 최신 main 브랜치 기준 충돌 여부를 확인하고 깔끔하게 다시 적용하자.",
-    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity, Houdini 등)로 인한 오수집 비중을 강력한 CG 전문 맥락 필터로 차단하고, 검색 유입이 입증된 Maxscript, 애드온, 실무 튜토리얼 중심으로 콘텐츠를 집중 발행해야 합니다."
+    "2026-11-09 [성찰] 일반 명사 및 동음이의어(Nuke, Unity, Houdini 등)로 인한 오수집 비중을 강력한 CG 전문 맥락 필터로 차단하고, 검색 유입이 입증된 Maxscript, 애드온, 실무 튜토리얼 중심으로 콘텐츠를 집중 발행해야 합니다.",
+    "2026-11-09 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용하고, Maxscript나 애드온처럼 검색 유입이 검증된 실무형 콘텐츠를 집중 발행해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7208,7 +7208,7 @@
     "3D DCC/Substance 3D": 34,
     "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 10,
-    "VFX/기타 VFX": 58,
+    "VFX/기타 VFX": 59,
     "Game Engine/게임 업계": 45,
     "3D DCC/Maya": 12,
     "3D DCC/3ds Max": 64,
@@ -9521,14 +9521,15 @@
     13998232210846330655,
     307615710400788128,
     195638315906289016,
-    2434477495146798156
+    2434477495146798156,
+    87615808796668561
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2312,
-    "Game Engine": 2312,
-    "VFX": 2312,
-    "AI 3D": 2312
+    "3D DCC": 2313,
+    "Game Engine": 2313,
+    "VFX": 2313,
+    "AI 3D": 2313
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
