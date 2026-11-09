@@ -1,0 +1,88 @@
+{
+  "id": "maya-wrap-deformer-0ecf",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Wrap deformer",
+  "title": "Wrap 디포머",
+  "summary": "Maya Wrap deformer는 하나의 고해상도 오브젝트를 간단한 저해상도 격자나 케이지(Cage) 오브젝트의 변형에 맞춰 실시간으로 움직이게 만드는 비파괴적 디포머입니다.",
+  "when": [
+    "캐릭터 얼굴에 복잡한 옷이나 장신구를 자연스럽게 밀착시킬 때",
+    "저해상도 가이드 오브젝트로 고해상도 메쉬를 간편하게 제어하고 싶을 때",
+    "여러 개의 오브젝트를 하나의 마스터 케이지로 동시에 변형할 때"
+  ],
+  "steps": [
+    "변형을 받을 대상 오브젝트(Driven Mesh)와 변형을 줄 소스 오브젝트(Driver Mesh)를 각각 준비합니다.",
+    "상단 메뉴 세트를 Animation 또는 Rigging으로 전환합니다.",
+    "먼저 대상 오브젝트를 선택하고, Shift 키를 누른 채 소스 오브젝트를 나중에 선택합니다.",
+    "메뉴바에서 Deform > (Nonlinear 외에) Wrap 항목을 찾아 적용하거나 Modeling/Rigging 메뉴에서 Deform > Wrap 옵션 박스를 엽니다.",
+    "옵션에서 Dropoff 등의 기본 설정을 확인한 뒤 Create Wrap을 클릭합니다.",
+    "소스 오브젝트(Driver)를 수정하거나 이동하면 대상 오브젝트(Driven)가 그에 맞춰 변형되는 것을 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Dropoff",
+      "desc": "Driver 메쉬의 영향력이 미치는 거리와 감쇠 범위를 조절합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "변형 부위의 표면을 부드럽게 스무딩하여 꺾이는 현상을 줄여줍니다."
+    },
+    {
+      "name": "Exclusive Bind",
+      "desc": "특정 Driver 메쉬만 지정하여 오작동을 방지하고 결합을 고정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터에 셔츠 입히기",
+      "steps": [
+        "캐릭터 몸체에 딱 맞는 간소화된 셔츠 형태의 소스 메쉬를 준비합니다.",
+        "고해상도 실제 셔츠를 대상 오브젝트로 선택하고 소스 메쉬를 나중에 선택합니다.",
+        "Deform > Wrap을 적용한 뒤 소스 메쉬를 스케일링하거나 형태를 수정합니다."
+      ]
+    },
+    {
+      "title": "모자에 장식 부착하기",
+      "steps": [
+        "모자의 변형을 담당할 기본형 Driver 오브젝트를 생성합니다.",
+        "디테일한 모자 장식 메쉬에 Wrap deformer를 연결합니다.",
+        "Driver를 구부리거나 변형하여 장식이 모자 곡선에 자연스럽게 감기게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 순서 오류(대상을 먼저, 소스를 나중에 선택해야 함) → Outliner에서 순서를 확인하고 다시 Wrap을 적용합니다.",
+    "Driver와 타겟의 초기 위치가 멀리 떨어져 있음 → 두 오브젝트의 위치(Transform)를 일치시키거나 Center Pivot 후 다시 시도합니다."
+  ],
+  "related": [
+    "Lattice",
+    "Blend Shape",
+    "Cluster",
+    "Soft Modification"
+  ],
+  "videos": [
+    {
+      "id": "NTBbP054weM",
+      "title": "How to wrap one object around another in Maya #maya3d #modeling3d #tutorial #3dcourse",
+      "author": "Mediocre Artist"
+    },
+    {
+      "id": "jFYDcOXEJNY",
+      "title": "Maya Wrap Deformers",
+      "author": "Joshua Jones"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Wrap%20deformer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Driven Mesh",
+    "Driver Mesh",
+    "Animation",
+    "Rigging",
+    "Deform",
+    "Nonlinear"
+  ],
+  "at": "2026-11-09T01:05:19.147452+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-zsphere-basics-f909",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "ZSphere basics",
+  "title": "ZSphere — 뼈대로 형태",
+  "summary": "ZSphere는 ZBrush에서 뼈대처럼 배치해 빠르게 기본 형태를 만들고, Adaptive Skin으로 바로 메쉬를 생성하는 Primitive 도구입니다.",
+  "when": [
+    "복잡한 유기 형태를 빠르게 잡을 때",
+    "다른 툴에서 만든 스켈레톤을 ZBrush에 가져와 재구성할 때",
+    "Prototype 단계에서 저해상도 베이스 메쉬가 필요할 때"
+  ],
+  "steps": [
+    "Tool 팔레트 → ZSphere 버튼 클릭",
+    "Viewport에서 클릭·드래그로 ZSphere 를 배치 (Shift+클릭으로 새로운 ZSphere 연결)",
+    "T 키를 눌러 Edit 모드 전환 후 ZSphere 를 이동·스케일·회전",
+    "Adaptive Skin 버튼을 눌러 ZSphere 를 폴리메시로 변환 (또는 Geometry → Adaptive Skin)",
+    "필요하면 Geometry 메뉴에서 Divide 로 디테일 추가"
+  ],
+  "params": [
+    {
+      "name": "Adaptive Skin",
+      "desc": "ZSphere 구조를 기반으로 자동 메쉬를 생성합니다"
+    },
+    {
+      "name": "ZSphere Density",
+      "desc": "생성 메쉬의 삼각형 밀도를 조절합니다"
+    },
+    {
+      "name": "ZSphere Scale",
+      "desc": "선택된 ZSphere 의 전체 크기를 비례적으로 조절합니다"
+    },
+    {
+      "name": "ZSphere Size",
+      "desc": "새 ZSphere 를 만들 때 기본 반지름을 설정합니다"
+    },
+    {
+      "name": "ZSphere Position",
+      "desc": "ZSphere 의 위치를 정확히 지정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 팔 만들기",
+      "steps": [
+        "ZSphere 로 3개의 구를 연속 배치 (어깨‑팔‑손)",
+        "각 ZSphere 를 T 키로 이동·스케일 조정해 관절 형태 만들기",
+        "Adaptive Skin 으로 메쉬 변환 후 Divide 로 디테일 추가"
+      ]
+    },
+    {
+      "title": "곡선 파이프 제작",
+      "steps": [
+        "ZSphere 로 곡선 경로를 따라 여러 개 배치",
+        "각 ZSphere 를 회전·스케일로 파이프 두께 맞춤",
+        "Adaptive Skin 적용 후 Geometry → Divide 로 부드러운 파이프 완성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "ZSphere 를 메쉬로 변환하지 않고 바로 스컬프 → Adaptive Skin 으로 변환 후 작업",
+    "Edit 모드(T) 를 안 켜서 ZSphere 를 이동할 수 없음 → T 키로 Edit 모드 진입",
+    "ZSphere Density 를 너무 낮게 설정 → 메쉬가 거칠어지니 Divide 로 보완"
+  ],
+  "related": [
+    "ZRemesher",
+    "Adaptive Skin",
+    "Transpose",
+    "ZModeler"
+  ],
+  "videos": [
+    {
+      "id": "dV50cTlQybg",
+      "title": "ZBrush Tutorial - ZSpheres",
+      "author": "Derrick Sesson"
+    },
+    {
+      "id": "F4HV36d0X38",
+      "title": "ZBrush Tutorial (Sketching with ZSpheres Basics) - Sketch Brushes",
+      "author": "Zbrush3Dinfo"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20ZSphere%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "ZSphere"
+  ],
+  "at": "2026-11-09T01:05:22.575690+00:00"
+}
