@@ -5,7 +5,7 @@
   "group": "렌더링",
   "name": "Nanite",
   "title": "Unreal Engine Nanite 기초 가이드",
-  "summary": "Nanite은 지오메트리 데이터를 축소하지 않고 영화 수준의 고밀도 폴리곤 에셋을 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 막대한 폴리곤 수에도 퍼포먼스 저하를 줄여줍니다.",
+  "summary": "Nanite은 지오메트리 데이터를 축소하지 않고 영화 수준의 고밀도 폴리곤 에셋을 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 막대한 폴리곤 수에도 퍼포먼스 저하를 줄여주며, 최근에는 PCG(Procedural Content Generation) 툴과의 연동을 통해 대규모 자연 환경 구축의 필수 워크플로로 자리 잡았습니다.",
   "when": [
     "수백만 개의 폴리곤을 가진 고해상도 스컬프팅 에셋을 게임 엔진에 그대로 임포트할 때",
     "배경 에셋의 뷰 거리(LOD) 전환 없이 먼 거리에서도 선명하고 매끄러운 디테일을 유지하고 싶을 때",
@@ -54,6 +54,15 @@
         "모든 메쉬 선택 후 일괄적으로 Nanite를 활성화합니다.",
         "카메라를 멀리 이동해도 장식의 뭉개짐 없이 선명하게 렌더링합니다."
       ]
+    },
+    {
+      "title": "PCG와 Nanite Foliage를 활용한 대규모 숲 구축",
+      "steps": [
+        "고밀도 폴이지(식생) 에셋들에 Nanite를 일괄 활성화합니다.",
+        "Unreal Engine의 PCG(Procedural Content Generation) 툴을 열어 지형 규칙을 설정합니다.",
+        "절차적 규칙에 따라 대규모 숲과 자연물을 자연스럽게 자동 배치합니다.",
+        "멀리서도 LOD 전환 없이 프레임 드랍 없이 렌더링되는 대형 오픈월드 환경을 확인합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -87,11 +96,19 @@
     "Static Mesh"
   ],
   "at": "2026-10-21T14:41:17.806459+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-10-22-c601756d8ff3fa5a",
-      "title": "Unreal Engine Nanite Foliage와 PCG 활용 사례",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZThxNzBEOERoZGVlaEViUUszejBjWmhxUEhxSFB0UDBLZDJuQmJGbFZtN2VURjlXZDUxN2E1X2Q2dTlfYUxDYzZFcnlpTC1QTEJ4c3dvc1pyalVUbldKQUJTNno3WWh3NUlUOXdYOXpGb1NyZEFNWUo5SURPZ0ZUcDkxTUVKRDk4N3hsQw?oc=5"
+      "at": "2026-11-09T11:08:18+00:00",
+      "what": "Unreal Engine의 Nanite Foliage와 PCG 툴 연동을 통한 대규모 환경 구축 사례와 활용 가이드를 요약 및 예시 섹션에 추가했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine Nanite Foliage와 PCG 활용 사례",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZThxNzBEOERoZGVlaEViUUszejBjWmhxUEhxSFB0UDBLZDJuQmJGbFZtN2VURjlXZDUxN2E1X2Q2dTlfYUxDYzZFcnlpTC1QTEJ4c3dvc1pyalVUbldKQUJTNno3WWh3NUlUOXdYOXpGb1NyZEFNWUo5SURPZ0ZUcDkxTUVKRDk4N3hsQw?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-10-22-c601756d8ff3fa5a"
+      ]
     }
   ]
 }

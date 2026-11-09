@@ -1,0 +1,55 @@
+{
+  "title_ko": "Maya로 제작하고 Unity에서 작동하는 서스펜션 스니커즈",
+  "title": "Check Out These Sneakers With Actual Working Suspension",
+  "url": "https://80.lv/articles/check-out-these-sneakers-with-actual-working-suspension/",
+  "domain": "3D DCC",
+  "category": "Maya",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Maya",
+    "Unity",
+    "lilToon",
+    "VRChat",
+    "3D 에셋",
+    "유니티",
+    "마야"
+  ],
+  "summary": "3D 아티스트 sou가 Maya로 모델링하고 Unity의 lilToon Shader를 적용해 실제로 작동하는 서스펜션 구조를 갖춘 VRChat용 스니커즈 아바타 액세서리를 제작했습니다.",
+  "insight": "10,000 폴리곤 미만과 단일 1K 텍스처 제약을 맞추기 위해 대칭 모델링 후 래티스 변형을 적용하고 UV를 겹친 방식을 활용합니다. VRChat 아바타 최적화 작업 시 폴리곤 수와 텍스처 용량을 동시에 줄여야 하는 실무 환경에서 참고할 만한 구성입니다.",
+  "try_it": [
+    "Maya에서 대칭 구조의 하이폴리 모델링을 진행한 후 리토폴로지를 거쳐 폴리곤 수를 10,000개 미만으로 제한합니다.",
+    "래티스(Lattice) 변형을 적용하면서 UV를 겹쳐 단일 1K 텍스처 공간에 배치합니다.",
+    "Unity로 모델을 내보낸 뒤 가벼운 툰 셰이더인 lilToon을 적용하여 아바타 액세서리로 설정합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Maya를 이용한 고정밀 스니커즈 모델링",
+      "body": "3D 아티스트 sou는 Maya를 사용하여 서스펜션 메커니즘이 실제로 작동하는 두툼한 밑창의 스니커즈를 제작했습니다. 하이폴리곤 모델링으로 시작해 세심하게 리토폴로지와 Baking 과정을 거쳐 최종 메시를 10,000 폴리곤 미만으로 유지했습니다."
+    },
+    {
+      "heading": "대칭 구조와 래티스 변형을 통한 최적화",
+      "body": "대칭으로 모델링한 뒤 래티스(Lattice)를 이용해 변형을 주어 대부분의 UV를 서로 겹치게 배치했습니다. 이를 통해 모든 텍스처 데이터가 단일 1K 텍스처 안에 들어가도록 용량을 최적화했습니다."
+    },
+    {
+      "heading": "Unity 환경과 lilToon Shader 적용",
+      "body": "Shading 과정에서는 VRChat 생태계에서 널리 쓰이는 가벼운 툰 셰이더인 lilToon을 선택했습니다. VRChat 아바타와 액세서리 제작에 특화된 제작 환경에 맞춰, 해당 스니커즈는 향후 사용자들이 자신의 아바타에 직접 착용할 수 있도록 배포될 예정입니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 스니커즈 아바타 액세서리는 어떤 툴로 제작되었나요?",
+      "a": "Maya로 모델링 및 리토폴로지, Baking 작업을 거쳐 제작되었으며 Unity 엔진과 lilToon Shader를 사용해 구현되었습니다."
+    },
+    {
+      "q": "폴리곤 수와 텍스처 용량은 어느 정도인가요?",
+      "a": "최종 메시는 10,000 폴리곤 미만이며, 대칭 구조와 래티스 변형 및 UV 겹치기 방식을 적용하여 단일 1K 텍스처 안에 모두 담겼습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/50937/images/6af1a94f72400/contain_1200x630.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-09T11:07:52.649015+00:00",
+  "notion_id": "",
+  "id": "2026-11-09-705484c290f8df97"
+}
