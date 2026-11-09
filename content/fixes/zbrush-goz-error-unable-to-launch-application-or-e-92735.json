@@ -1,0 +1,41 @@
+{
+  "id": "zbrush-goz-error-unable-to-launch-application-or-e-92735",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "GoZ Error: Unable to launch application or establish communication",
+  "title": "GoZ Error: Unable to launch application or establish communication",
+  "summary": "GoZ Error: Unable to launch application or establish communication은 ZBrush가 연결된 외부 프로그램을 실행하거나 GoZ 통신을 시작하지 못했을 때 표시되는 메시지입니다.",
+  "causes": [
+    "GoZ 플러그인이 비활성화돼 있거나 설치되지 않음",
+    "외부 프로그램(예: Maya, 3ds Max, Blender 등)의 GoZ 브릿지 파일이 없거나 경로가 잘못됨",
+    "방화벽·안티바이러스가 GoZ 실행 파일을 차단함",
+    "ZBrush와 외부 프로그램의 32‑bit/64‑bit 버전이 일치하지 않음"
+  ],
+  "steps": [
+    "Preferences > Plug‑Ins > GoZ 로 이동해 GoZ 플러그인이 체크되어 있는지 확인하고, 필요하면 Reload Plug‑Ins 로 재로드합니다",
+    "외부 프로그램이 설치된 폴더에 GoZ 브릿지(예: GoZ for Maya, GoZ for 3ds Max 등)가 존재하는지 확인하고, 없으면 공식 ZBrush 다운로드 페이지에서 최신 버전을 설치합니다",
+    "Preferences > GoZ > Application Path 에서 해당 프로그램의 실행 파일 경로가 정확히 지정돼 있는지 확인하고, 잘못되었으면 올바른 경로로 수정합니다",
+    "ZBrush와 외부 프로그램을 모두 관리자 권한으로 실행하거나, 방화벽·안티바이러스 설정에서 GoZ.exe와 Bridge.exe 를 예외(Whitelist)로 추가합니다",
+    "버전 불일치가 의심되면 32‑bit와 64‑bit 중 서로 맞는 GoZ 브릿지를 설치하고, 필요하면 ZBrush와 외부 프로그램을 동일한 비트 버전으로 맞춥니다",
+    "Preferences > GoZ > Reset 을 클릭해 GoZ 설정을 초기화한 뒤 ZBrush와 외부 프로그램을 재시작합니다",
+    "File > GoZ > Send to (대상 프로그램) 을 선택해 모델을 전송하고 오류가 발생하지 않는지 확인합니다"
+  ],
+  "check": [
+    "GoZ 메뉴에서 대상 프로그램이 회색이 아닌 활성 상태이며, 전송 후 외부 프로그램에 모델이 정상적으로 로드되면 문제가 해결된 것입니다"
+  ],
+  "prevent": [
+    "ZBrush와 외부 프로그램을 업데이트할 때마다 GoZ 브릿지도 최신 버전으로 유지합니다",
+    "ZBrush와 외부 프로그램을 동일한 관리자/일반 사용자 권한으로 실행하고, 설치 경로를 이동하지 않습니다",
+    "방화벽·안티바이러스에 GoZ 관련 실행 파일을 항상 예외에 추가해 통신이 차단되지 않도록 합니다"
+  ],
+  "keywords": [
+    "GoZ 오류",
+    "Unable to launch application or establish communication",
+    "ZBrush GoZ 통신 오류",
+    "GoZ 연결 안됨",
+    "ZBrush GoZ 설정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-09T02:06:05+00:00"
+}

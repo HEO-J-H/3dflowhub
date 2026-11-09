@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-mirror-and-weld-11ce",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Mirror and Weld",
+  "title": "Mirror and Weld",
+  "summary": "Mirror and Weld는 ZBrush에서 모델을 좌우(또는 다른 축) 대칭으로 복제하고, 경계선 정점을 자동으로 결합해 완전한 대칭 메시에 만드는 기능입니다.",
+  "when": [
+    "한쪽 면만 모델링하고 나머지 반을 빠르게 만들고 싶을 때",
+    "대칭을 유지하면서 스컬프팅을 진행하고, 마지막에 경계선을 매끄럽게 연결해야 할 때",
+    "대칭 복제 후 정점이 겹쳐 틈이 생긴 경우"
+  ],
+  "steps": [
+    "Tool > Geometry 메뉴 열기",
+    "Mirror 옵션에서 원하는 Axis를 선택하고 Activate 클릭",
+    "Mirror 적용 후 Geometry > Modify Topology > Mirror And Weld 클릭",
+    "옵션 창에서 Weld Threshold 값을 조정하고 Apply 클릭"
+  ],
+  "params": [
+    {
+      "name": "Mirror Axis",
+      "desc": "좌우, 앞뒤, 위아래 중 대칭 복제 축을 선택"
+    },
+    {
+      "name": "Weld Threshold",
+      "desc": "정점이 결합될 최대 거리, 작게 설정할수록 정확히 결합"
+    },
+    {
+      "name": "Preserve Polygroups",
+      "desc": "대칭 복제 시 폴리그룹을 유지"
+    },
+    {
+      "name": "Flip Normals",
+      "desc": "대칭 후 노멀 방향을 자동 반전"
+    },
+    {
+      "name": "Subdivision Levels",
+      "desc": "Mirror 적용 전 레벨을 선택, 낮을수록 빠름"
+    }
+  ],
+  "examples": [
+    {
+      "title": "반대칭 얼굴 모델링",
+      "steps": [
+        "반쪽 얼굴을 스컬프팅 후 Mirror Axis를 X로 설정하고 Activate",
+        "Mirror And Weld 실행 → Weld Threshold 0.001 적용",
+        "전체 얼굴이 완성돼 좌우 대칭이 됨"
+      ]
+    },
+    {
+      "title": "대칭 자동차 바디",
+      "steps": [
+        "차체 한쪽 면을 모델링 → Mirror Axis를 Y 선택 → Activate",
+        "Mirror And Weld 후 Weld Threshold 0.005로 미세 조정",
+        "대칭 바디가 완성돼 이어진 엣지가 매끄럽게 연결"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Weld Threshold를 너무 크게 설정 → 불필요한 정점이 합쳐져 형태가 변형 → 값을 낮추고 다시 적용",
+    "Mirror 전에 Subdivision 레벨이 높음 → 처리 속도 저하 및 메모리 부족 → 낮은 레벨에서 Mirror 후 필요 시 다시 subdivide"
+  ],
+  "related": [
+    "Mirror",
+    "Weld",
+    "Modify Topology",
+    "Subdivision"
+  ],
+  "videos": [
+    {
+      "id": "OZ_q4rFOBQg",
+      "title": "Mirror and weld to the Negative (-ve) side in ZBrush | Tips for beginners",
+      "author": "Wireless Edits"
+    },
+    {
+      "id": "Z5kegq0MKpE",
+      "title": "#AskZBrush - \"How can I perform an inverse Mirror and Weld?\"",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Mirror%20and%20Weld",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Geometry",
+    "Mirror",
+    "Axis",
+    "Activate"
+  ],
+  "at": "2026-11-09T02:05:57.464594+00:00"
+}

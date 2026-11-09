@@ -1,0 +1,40 @@
+{
+  "id": "substance-3d-designer-error-computing-node-graph-c-e9c78",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: Error computing node graph. Circular dependency detected",
+  "title": "Designer: Error computing node graph. Circular dependency detected",
+  "summary": "‘Error computing node graph. Circular dependency detected’는 노드 그래프 내에서 출력이 다시 자신의 입력으로 연결돼 무한 루프가 형성되었을 때 발생하는 오류입니다.",
+  "causes": [
+    "노드의 Output을 같은 노드 혹은 연결된 노드 체인에서 Input으로 직접 연결했을 때",
+    "파라미터(Node) 또는 Custom Function 노드가 자신을 참조하도록 설정했을 경우",
+    "그룹(Node Group) 내부에서 내부 노드 간에 순환 연결이 존재할 때",
+    "Python Script 등 외부 툴이 자동으로 만든 연결이 순환 구조를 만들었을 경우"
+  ],
+  "steps": [
+    "문제가 발생한 그래프를 열고(Graph View) 오류가 표시된 노드(빨간색 테두리)를 찾습니다",
+    "해당 노드의 Output 포트와 Input 포트를 확인하고, 순환 연결이 의심되는 선을 선택한 뒤 Disconnect 합니다",
+    "그룹 노드 내부에 오류가 있다면 그룹을 더블클릭해 내부 그래프를 연 뒤 동일한 절차로 순환 연결을 끊습니다",
+    "Graph 메뉴 → Evaluate 를 실행해 그래프를 재계산하고 오류가 사라졌는지 확인합니다",
+    "오류가 지속되면 Graph 메뉴 → Clean Up 또는 Reset Node Cache 를 수행해 캐시를 초기화합니다"
+  ],
+  "check": [
+    "그래프를 다시 Evaluate 했을 때 오류 메시지가 나타나지 않습니다",
+    "노드 프리뷰가 정상적으로 렌더링되고, 연결된 결과물이 예상대로 출력됩니다"
+  ],
+  "prevent": [
+    "노드를 연결할 때 Output이 다시 자신의 Input으로 돌아가지 않도록 경로를 확인합니다",
+    "복잡한 연결을 만들 경우 중간에 ‘Break’ 노드나 ‘Switch’ 노드를 삽입해 순환 구조가 생기지 않게 합니다",
+    "작업 중간에 Graph → Validate(또는 오류 표시 확인)를 주기적으로 실행해 순환 의존성을 사전에 탐지합니다"
+  ],
+  "keywords": [
+    "Substance Designer 순환 의존성",
+    "Circular dependency 오류",
+    "노드 그래프 오류",
+    "Substance Designer 노드 루프",
+    "그래프 순환 문제"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-09T02:07:02+00:00"
+}

@@ -1,0 +1,80 @@
+{
+  "id": "maya-soften-harden-edge-5640",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Soften/Harden Edge",
+  "title": "Soften·Harden Edge",
+  "summary": "Soften/Harden Edge 도구는 선택한 에지의 법선을 부드럽게(soft) 혹은 날카롭게(hard) 만들어 표면의 스무딩을 제어합니다.",
+  "when": [
+    "저폴리 모델에 부드러운 곡면을 만들고 싶을 때",
+    "기계 부품처럼 날카로운 경계가 필요할 때",
+    "스무딩 그룹을 빠르게 전환해 전체적인 쉐이딩을 조정할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Mouse 우클릭 → Edge 모드 진입",
+    "소프트/하드 처리할 에지를 더블클릭하거나 드래그로 선택",
+    "상단 메뉴바 → Edit Mesh → Soften Edge (또는 Harden Edge) 클릭",
+    "옵션 박스에서 Angle 값을 조정하고 Apply"
+  ],
+  "params": [
+    {
+      "name": "Angle",
+      "desc": "각도 임계값(°) 이하이면 에지를 부드럽게, 초과이면 날카롭게"
+    },
+    {
+      "name": "Selection",
+      "desc": "현재 선택된 에지(또는 에지 루프)"
+    },
+    {
+      "name": "Apply",
+      "desc": "설정 적용"
+    }
+  ],
+  "examples": [
+    {
+      "title": "저폴리 구의 부드러운 표면 만들기",
+      "steps": [
+        "구 메쉬를 선택 → Edge 모드 → 전체 에지 선택 (Ctrl+A)",
+        "Edit Mesh → Soften Edge 클릭",
+        "Angle를 30°로 두고 Apply"
+      ]
+    },
+    {
+      "title": "기계 파이프의 날카로운 모서리 강조",
+      "steps": [
+        "파이프 메쉬를 선택 → Edge 모드 → 파이프 끝부분 에지 선택",
+        "Edit Mesh → Harden Edge 클릭",
+        "Angle를 0°(기본)로 유지하고 Apply"
+      ]
+    }
+  ],
+  "mistakes": [
+    "에지를 선택하지 않음 → 전체 메쉬가 부드러워짐 → 에지 선택 후 다시 적용",
+    "Angle 값을 너무 크게 설정 → 원치 않는 부드러운 면이 생김 → Angle를 낮춰 재적용",
+    "소프트와 하드 작업을 같은 에지에 반복 → 스무딩 그룹 충돌 → 마지막 작업만 남게 됨, 필요 시 Edge Loop 추가 후 재작업"
+  ],
+  "related": [
+    "Insert Edge Loop",
+    "Slide Edge",
+    "Edit Edge Flow",
+    "Mesh → Smooth"
+  ],
+  "videos": [
+    {
+      "id": "TTr1ACsm6rU",
+      "title": "The Maya Toolbelt - Soften/Harden Edge",
+      "author": "Maya Toolbelt"
+    },
+    {
+      "id": "PV3QCyDvkMg",
+      "title": "The Maya Toolbelt - Soften/Harden Edge in Maya 2016",
+      "author": "Maya Toolbelt"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Soften/Harden%20Edge",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-09T02:05:40.739578+00:00"
+}
