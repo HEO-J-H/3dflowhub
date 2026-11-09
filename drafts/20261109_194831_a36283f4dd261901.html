@@ -1,0 +1,18 @@
+<!-- TITLE: 3dfc PNG 시퀀스 아카이버 — 무손실 압축과 검증 기능 | TAGS: VFX,컴핑,PNG,아카이브,압축,플러그인·스크립트 | CATEGORY: VFX/기타 VFX | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — VFX 작업 완료 후 남은 방대한 프레임 시퀀스를 원본 이름과 알파 채널을 유지한 채 무손실로 압축하고 삭제 전 검증하는 오픈소스 도구 3dfc가 공개되었습니다.</p>
+<p style="color:#888;">분류: VFX › 기타 VFX › 플러그인·스크립트</p>
+<h2>3dfc 아카이버의 주요 설계 목적</h2>
+<p>VFX 컴핑 작업이 끝난 후 디스크를 차지하고 있는 대규모 프레임 시퀀스를 안전하게 보관하기 위해 개발되었습니다. 원본 프레임 이름과 알파 채널을 그대로 보존하면서 단일 파일 또는 범위별로 패키징할 수 있습니다.</p>
+<h2>데이터 무결성 검증과 압축 방식</h2>
+<p>프레임별 해시 값과 검증 패스를 거쳐 원본과 일치하는지 확인한 뒤 기존 파일을 삭제합니다. 원자적 쓰기 방식을 지원하며 침묵의 덮어쓰기를 방지하고, 대용량 인코딩 중 중단된 지점에서 다시 시작할 수 있는 체크포인트 기능을 제공합니다.</p>
+<h2>입력 데이터에 따른 압축률과 벤치마크</h2>
+<p>필름 그레인이나 노이즈처럼 압축이 어려운 소스는 원본 그대로 보존하여 최악의 경우에도 원본과 동일한 용량을 유지합니다. 실제 640x360 Resolution 프레임 2,000장 테스트에서 53.8%의 저장 공간 절감 효과가 검증되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">640x360 Resolution의 실사 프레임 2,000장을 테스트한 결과 53.8%의 용량을 절감하면서도 데이터 무결성을 완벽하게 유지합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 3dfc는 어떤 파일을 대상으로 압축하나요?</b><br/>A. 완료된 숏의 PNG 프레임 시퀀스를 대상으로 무손실 압축을 수행합니다.</p>
+<p><b>Q. 압축 과정에서 데이터 손실 위험은 없나요?</b><br/>A. 프레임별 해시 값 생성과 엄격한 검증 패스를 거치며 원본과 동일함이 확인된 후에만 작동하므로 무손실을 보장합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-3ee7593e2682688e.html">Flowi 텍스트 기반 AI 모션 디자인 툴 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-5f6a61efd357bded.html">VFX 제작 사례 — 7일 만에 완성한 그린 랜턴 피날레</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-41736990e83bf46a.html">Barad-Dûr 시네마틱 프로젝트 작업기 — 하단 요새 3D 모델링 완료</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/vfx/comments/1xs0o4v/cold_storage_for_finished_shots_lossless/" target="_blank" rel="noopener nofollow">Cold storage for finished shots: lossless PNG-sequence archiver with verify-before-you-delete</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
