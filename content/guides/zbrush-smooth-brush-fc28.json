@@ -1,0 +1,83 @@
+{
+  "id": "zbrush-smooth-brush-fc28",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Smooth brush",
+  "title": "Smooth — 매끄럽게(Shift)",
+  "summary": "ZBrush의 Smooth 브러시는 스컬프팅 과정에서 거칠어진 표면을 부드럽게 문지르며 노이즈를 제거하고 형태를 정돈하는 기본 도구입니다.",
+  "when": [
+    "다이나메시(Dynamesh)나 래비어메시(ZRemesher) 실행 후 울퉁불퉁해진 표면을 다듬을 때",
+    "클레이 빌드(ClayBuildup)나 댐스표(DamStandard) 브러시로 작업한 경계선을 부드럽게 연결할 때",
+    "불필요한 디테일을 지우고 매끈한 기본 볼륨을 다시 잡을 때"
+  ],
+  "steps": [
+    "브러시 팔레트(Brush Palette)를 열거나 Hotkey B 를 누릅니다.",
+    "키보드 S, M 순서로 눌러 Smooth 브러시를 선택합니다 (또는 브러시 목록에서 Smooth 선택).",
+    "모델 위에서 Shift 키를 누른 상태로 드래그하여 브러시를 활성화합니다.",
+    "Shift 키를 유지한 채 거친 표면 위를 문질러 매끄럽게 다듬습니다.",
+    "Viewport에서 표면의 노이즈가 사라지고 부드러워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 표면을 부드럽게 만드는 강도를 조절합니다."
+    },
+    {
+      "name": "Brush Size",
+      "desc": "브러시의 크기를 조절하여 영향 범위를 바꿉니다 (Hotkey S)."
+    },
+    {
+      "name": "Shift Relax Mode",
+      "desc": "Shift 키를 누르는 동안 Topology를 균일하게 정돈하는 모드를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 피부 매끄럽게 다듬기",
+      "steps": [
+        "Standard 브러시로 콧등과 광대 라인을 거칠게 스케치합니다.",
+        "Shift 키를 눌러 Smooth 브러시로 전환합니다.",
+        "경계선 부위를 부드럽게 문질러 자연스러운 피부 굴곡을 만듭니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 모서리 부드럽게 정리하기",
+      "steps": [
+        "TrimDynamic 브러시로 평면을 깎아냅니다.",
+        "Shift 키를 눌러 Smooth 브러시로 모서리 주변의 미세한 튀어나옴을 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 모델을 과도하게 문지름 → 주요 형태와 날카로운 디테일이 무너짐. 꼭 필요한 부분만 부분적으로 Shift 문지르기",
+    "너무 낮은 폴리곤 상태에서 강하게 스무딩함 → 메쉬가 찌그러짐. Divide를 높이거나 Dynamesh로 밀도 확보 후 사용"
+  ],
+  "related": [
+    "Dynamesh",
+    "ZRemesher",
+    "Morph Brush",
+    "Polish"
+  ],
+  "videos": [
+    {
+      "id": "s3uM8qggkf4",
+      "title": "021 Smooth Brush Modifiers",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "djFXdHNi5jw",
+      "title": "Smooth Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Smooth%20brush",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Hotkey B",
+    "Smooth"
+  ],
+  "at": "2026-11-09T00:35:36.839276+00:00"
+}

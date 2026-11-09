@@ -1,0 +1,94 @@
+{
+  "id": "maya-sculpting-tools-ee06",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Sculpting tools",
+  "title": "스컬프트 도구",
+  "summary": "Maya의 Sculpting Tool셋은 다폴리곤 모델 표면을 점토처럼 직접 밀고 당기며 유기적인 형태를 빠르게 조형하는 기능입니다. 세밀한 디테일 표현이나 캐릭터 및 자연물 형태 수정에 주로 사용됩니다.",
+  "when": [
+    "캐릭터 얼굴이나 생물의 근육, 주름 등 유기적인 형태를 부드럽게 빚을 때",
+    "지형(Terrain)이나 바위 표면 등 불규칙한 자연물 디테일을 추가할 때",
+    "하드서페이스 모델에 자연스러운 찌그러짐이나 스크래치 질감을 더할 때"
+  ],
+  "steps": [
+    "상단 메뉴 세트를 Modeling (F2)으로 전환합니다.",
+    "Mesh 메뉴 아래에서 Sculpting Tools 창을 열거나, Modeling 툴바의 Sculpting 탭을 선택합니다.",
+    "작업할 폴리곤 오브젝트를 선택하고, 충분한 폴리곤 밀도(Subdivision)가 확보되어 있는지 확인합니다.",
+    "원하는 브러시(예: Push, Pull, Smooth)를 선택하고 Viewport에서 드래그하여 형태를 조형합니다.",
+    "브러시 크기나 강도를 조절하려면 B 키(크기)나 M 키(강도)를 누른 채 Mouse 드래그를 사용합니다."
+  ],
+  "params": [
+    {
+      "name": "Brush Radius",
+      "desc": "브러시의 영향 범위를 조절합니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "브러시가 표면에 가해지는 힘의 세기를 조절합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "거칠어진 폴리곤 표면을 부드럽게 정돈합니다."
+    },
+    {
+      "name": "Stamp",
+      "desc": "브러시 자국에 알파 텍스처를 적용하여 세밀한 문양을 넣습니다."
+    },
+    {
+      "name": "Mirror",
+      "desc": "축을 기준으로 대칭 스컬프팅을 수행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유기적 생물의 뿔 형태 빚기",
+      "steps": [
+        "실린더나 콘 형태의 기본 메시를 준비합니다.",
+        "Push 및 Pull 브러시를 이용해 전체적인 곡선과 굵기를 잡습니다.",
+        "Smooth 브러시로 면을 다듬고 디테일을 마무리합니다."
+      ]
+    },
+    {
+      "title": "바위 표면 텍스처 및 균열 표현",
+      "steps": [
+        "기본 바위 모델을 배치하고 세그먼트를 높입니다.",
+        "Grab 브러시로 표면을 불규칙하게 밀고 당깁니다.",
+        "Pinch 브러시로 갈라진 틈과 모서리를 날카롭게 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 수가 너무 적은 상태에서 스컬프팅함 → Smooth나 Subdivide(Smooth Mesh Preview 또는 Smooth 기능)로 면을 충분히 늘린 후 작업하세요.",
+    "브러시 크기가 너무 큼 → B 키를 누른 채 드래그하여 세부 작업에 맞는 크기로 줄이세요.",
+    "작업 후 미러링이 틀어짐 → Symmetrical 옵션이 올바른 축(World X 등)으로 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Smooth Mesh Preview",
+    "Multi-Cut",
+    "Quad Draw",
+    "Bifrost"
+  ],
+  "videos": [
+    {
+      "id": "jRlc8_jWJS4",
+      "title": "How To Use The Basic Sculpting Tools | Maya Tutorial #1",
+      "author": "KBOT STUDIOS"
+    },
+    {
+      "id": "-Uqe5eUm5LU",
+      "title": "Maya Sculpting Tools",
+      "author": "tess elliot"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Sculpting%20tools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modeling",
+    "Mesh",
+    "Sculpting Tools",
+    "Sculpting"
+  ],
+  "at": "2026-11-09T00:35:33.144854+00:00"
+}
