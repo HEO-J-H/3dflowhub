@@ -1,0 +1,100 @@
+{
+  "id": "zbrush-sculptris-pro-784c",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Sculptris Pro",
+  "title": "Sculptris Pro — 동적 폴리곤",
+  "summary": "Sculptris Pro는 스컬프팅 중에 메쉬를 자동으로 서브디비전해 실시간으로 폴리곤을 늘리며 자유롭게 형태를 만들 수 있게 해 주는 모드입니다.",
+  "when": [
+    "복잡한 디테일을 처음부터 손으로 레벨을 올리지 않고 빠르게 잡고 싶을 때",
+    "다이나믹하게 형태를 변형하면서도 메쉬가 깨지지 않게 유지하고 싶을 때",
+    "클레이 형태의 Blockout 후 세부 디테일을 자연스럽게 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Tool 팔레트 → Geometry 탭 → Sculptris Pro 체크 (Hotkey Ctrl+Shift+S)",
+    "B 키 → 원하는 브러시 선택 (예: ClayBuildup)",
+    "브러시 크기와 강도 조절 후 캔버스에 스컬프팅 시작",
+    "필요에 따라 Sculptris Pro 서브패널에서 Detail Size 와 Detail Level 조정",
+    "작업이 끝나면 Sculptris Pro 해제 후 필요 시 Divide 로 레벨 고정"
+  ],
+  "params": [
+    {
+      "name": "Detail Size",
+      "desc": "자동 서브디비전이 일어나는 최소 브러시 크기"
+    },
+    {
+      "name": "Detail Level",
+      "desc": "현재 자동 서브디비전 단계(높을수록 세밀)"
+    },
+    {
+      "name": "Auto-Subdivision",
+      "desc": "브러시가 메쉬를 통과할 때 자동으로 서브디비전 여부"
+    },
+    {
+      "name": "Brush Size",
+      "desc": "브러시의 반경, Detail Size와 연동"
+    },
+    {
+      "name": "Intensity",
+      "desc": "브러시 압력, 높을수록 더 많은 폴리곤 생성"
+    },
+    {
+      "name": "Polish",
+      "desc": "표면을 부드럽게 정리, 디테일 손실 최소화"
+    }
+  ],
+  "examples": [
+    {
+      "title": "생물 머리 Blockout",
+      "steps": [
+        "Sculptris Pro 활성화",
+        "ClayBuildup 브러시로 기본 머리 형태 잡기",
+        "Detail Size를 크게 늘려 큰 형태 수정",
+        "Detail Level을 올려 눈, 코 등 작은 디테일 추가"
+      ]
+    },
+    {
+      "title": "파이프 굽힘 모델링",
+      "steps": [
+        "Sculptris Pro 활성화",
+        "Move 브러시로 원통형 기본 형태 만들기",
+        "Detail Size를 중간값으로 설정",
+        "Smooth 브러시로 곡선 부드럽게 다듬기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Detail Size를 너무 작게 설정 → 메쉬가 과도하게 서브디비전돼 프레임 저하 → Detail Size를 적절히 크게 조정",
+    "Sculptris Pro 상태에서 바로 Divide 사용 → 자동 서브디비전이 중복돼 불필요한 폴리곤 증가 → Divide 전 Sculptris Pro 해제 후 적용",
+    "브러시 강도를 과도하게 높이면 메쉬가 급격히 늘어나 형태가 뒤틀림 → Intensity를 낮추고 단계별로 작업"
+  ],
+  "related": [
+    "Dynamesh",
+    "ZRemesher",
+    "ZModeler",
+    "Subdivision Levels"
+  ],
+  "videos": [
+    {
+      "id": "7G9eN2pyiRM",
+      "title": "Getting Started with ZBrush, Part 16 - Sculptris Pro",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "x85vW9L5ptE",
+      "title": "018 ZBrush Sculptris Pro",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Sculptris%20Pro",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Geometry",
+    "Sculptris Pro",
+    "Hotkey Ctrl"
+  ],
+  "at": "2026-11-09T01:25:57.901729+00:00"
+}
