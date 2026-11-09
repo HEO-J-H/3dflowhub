@@ -1,0 +1,59 @@
+{
+  "title_ko": "Godot 4.8 beta 3 출시 — 버그 수정 및 3D LineBase3D 추가",
+  "title": "Dev snapshot: Godot 4.8 beta 3",
+  "url": "https://godotengine.org/article/dev-snapshot-godot-4-8-beta-3/",
+  "domain": "Game Engine",
+  "category": "Godot",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Godot",
+    "게임 엔진",
+    "오픈소스",
+    "베타",
+    "업데이트",
+    "고도 엔진"
+  ],
+  "summary": "Godot 4.8 beta 3가 공개되며 2D 에러 메시지 개선, 3D LineBase3D 추가, 각종 회귀 버그 74건이 수정되었습니다.",
+  "insight": "Godot 4.8 beta 3는 Release 후보 단계 진입을 앞두고 74건의 수정 사항을 반영했습니다. VisualShader 출력 노드에 light vertex 입력 기능이 추가되어 Shader 작성 작업이 정교해집니다. .NET 빌드의 경우 최소 요구 사양이 .NET 10.0 이상으로 변경되어 프로젝트 빌드 환경을 사전에 점검해야 합니다.",
+  "try_it": [
+    ".NET 10.0 이상 환경에서 Godot 4.8 beta 3 .NET 빌드를 테스트하고 C# 프로젝트 구동 여부를 확인하세요.",
+    "VisualShader의 출력 노드에서 새롭게 추가된 light vertex 입력을 활용해 커스텀 셰이더를 작성해 보세요.",
+    "기존 프로젝트를 4.8 beta 3로 열어 Save on Focus Loss 관련 씬 복구 문제나 입력 버그가 해결되었는지 점검하세요."
+  ],
+  "sections": [
+    {
+      "heading": "Godot 4.8 beta 3 주요 수정 및 개선 사항",
+      "body": "이번 베타 3 버전은 Release 후보 단계 전환을 앞두고 잔여 출시 차단 버그 해결에 집중했습니다. 총 51명의 기여자가 74건의 수정 사항을 제출했습니다. 주로 이전 베타 버전에서 발생한 회귀 현상 해결에 초점을 맞추었습니다."
+    },
+    {
+      "heading": "3D 및 Shader 노드 추가",
+      "body": "3D 기능 측면에서는 LineBase3D가 추가되고 추상 클래스로 지정되었습니다. 또한 Shader 영역에서는 VisualShader 출력 노드에 light vertex 입력이 추가되어 시각적 Shader 작성 범위가 넓어졌습니다. Sprite2D 텍스처 이미지가 null일 때 출력되는 에러 메시지도 더 명확하게 개선되었습니다."
+    },
+    {
+      "heading": "에디터 안정성 및 입력 버그 수정",
+      "body": "에디터 편의성과 관련하여 Save on Focus Loss 기능이 삭제되었던 열린 씬을 다시 생성하던 문제가 수정되었습니다. 메뉴에서 Mouse 모션이 Controller 입력을 덮어쓰던 입력 관련 오류도 함께 해결되었습니다. Animation 노드에서는 활성화되지 않은 상태에서 키가 자동 삽입되던 현상이 수정되었습니다."
+    },
+    {
+      "heading": ".NET 요구 사항 및 테스트 버전 안내",
+      "body": ".NET 빌드는 C#을 지원하며 이제 .NET 10.0 이상이 필수입니다. 웹, XR, 안드로이드 전용 에디터도 함께 테스트할 수 있어 다양한 플랫폼 환경에서 검증이 가능합니다. 프리릴리즈 소프트웨어 특성상 데이터 유실에 대비해 Git 같은 버전 관리 시스템을 사용하는 것이 안전합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Godot 4.8 beta 3의 .NET 빌드 사용 시 최소 요구 버전은 무엇인가요?",
+      "a": ".NET 10.0 이상이 필요하며, 기존에 지원되던 .NET 8에서 버전이 변경되었습니다."
+    },
+    {
+      "q": "이번 베타 3 버전에서 3D 관련으로 새로 추가된 기능은 무엇인가요?",
+      "a": "LineBase3D가 새롭게 추가되었으며 추상 클래스로 마크되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://godotengine.org/storage/blog/covers/dev-snapshot-godot-4-8-beta-3.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-09T21:38:47.865871+00:00",
+  "notion_id": "",
+  "id": "2026-11-09-4a1c67ea07f5c43b",
+  "enriched": "2026-11-09"
+}
