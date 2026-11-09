@@ -1,0 +1,100 @@
+{
+  "id": "maya-file-texture-node-ae3a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "File texture node",
+  "title": "File 텍스처 연결",
+  "summary": "Maya의 File texture node는 이미지 파일을 3D Shader의 컬러나 범프 맵 등으로 불러와 오브젝트 표면에 입혀주는 핵심 노드입니다. 2D 이미지를 3D 공간에 연결하는 다리 역할을 합니다.",
+  "when": [
+    "캐릭터나 배경 오브젝트에 실제 질감(컬러, 거칠기 등)을 적용할 때",
+    "하이트 맵이나 노멀 맵을 사용해 입체적인 표면 디테일을 살릴 때",
+    "나무, 벽돌 등의 패턴 이미지를 머티리얼에 반복 배치할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Windows → Rendering Editors → Hypershade 를 클릭하여 Hypershade 창을 엽니다.",
+    "좌측 Create 탭의 Maya → Surface 또는 Arnold 영역에서 표준 머티리얼(예: aiStandardSurface)을 클릭하여 생성합니다.",
+    "생성된 머티리얼을 우클릭하고 Graph Network를 선택하여 Node Editor에 노드 관계를 띄웁니다.",
+    "Node Editor 탭 상단의 검색창 또는 Tab 키를 눌러 'file'을 입력하고 File texture 노드를 생성합니다.",
+    "File 노드의 Out Color 소켓을 드래그하여 aiStandardSurface 노드의 Base Color 소켓에 연결합니다.",
+    "File 노드를 선택하고 우측 Attribute Editor에서 Image Name 옆의 폴더 아이콘을 눌러 사용할 이미지 파일을 불러옵니다.",
+    "Viewport에서 숫자 6번을 눌러 텍스처가 적용된 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Image Name",
+      "desc": "불러올 이미지 파일의 경로와 이름을 지정합니다."
+    },
+    {
+      "name": "Color Space",
+      "desc": "이미지의 색상 공간(sRGB, Raw 등)을 설정하여 정확한 컬러를 표현합니다."
+    },
+    {
+      "name": "Repeat UV",
+      "desc": "U와 V 방향으로 텍스처를 반복해서 타일링할 횟수를 지정합니다."
+    },
+    {
+      "name": "Offset UV",
+      "desc": "텍스처의 시작 위치를 U와 V 축 기준으로 이동시킵니다."
+    },
+    {
+      "name": "Filter Type",
+      "desc": "이미지가 축소되거나 확대될 때 적용되는 픽셀 필터링 방식을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 건물 외벽 텍스처 적용하기",
+      "steps": [
+        "Hypershade에서 aiStandardSurface 머티리얼을 만들고 건물 오브젝트에 할당합니다.",
+        "File 노드를 생성하여 벽돌 컬러 이미지(Diffuse)를 불러옵니다.",
+        "File 노드의 Out Color를 aiStandardSurface의 Base Color에 연결합니다.",
+        "Attribute Editor의 Repeat UV 값을 U: 4, V: 4로 높여 벽돌 패턴을 촘촘하게 반복시킵니다."
+      ]
+    },
+    {
+      "title": "노멀 맵으로 금속 스크래치 표현하기",
+      "steps": [
+        "금속 머티리얼에 연결된 File 노드를 생성하고 스크래치 노멀 맵 이미지를 불러옵니다.",
+        "File 노드의 Color Space를 Raw로 설정합니다.",
+        "File 노드와 머티리얼 사이에 bump2d 노드를 추가하여 연결합니다.",
+        "bump2d 노드의 Out Normal을 머티리얼의 Normal Camera 소켓에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 맵이나 러프니스 맵을 불러왔는데 색감이 이상함 → File 노드의 Color Space를 sRGB에서 Raw로 변경합니다.",
+    "텍스처 이미지를 바꿨는데 화면에 반영되지 않음 → Attribute Editor의 File 노드 하단에서 Reload 버튼을 클릭합니다.",
+    "텍스처가 오브젝트에 찌그러져서 나옴 → UV 편집이 되어 있지 않은 상태이므로 UV Editor를 열어 UV를 다시 풉니다."
+  ],
+  "related": [
+    "Hypershade",
+    "Node Editor",
+    "aiStandardSurface",
+    "Place 2d Texture"
+  ],
+  "videos": [
+    {
+      "id": "L7MscCMXMps",
+      "title": "Maya Layered Texture Node",
+      "author": "Knut Hybinette"
+    },
+    {
+      "id": "TWOo6FXtCu0",
+      "title": "How to add Textures in Maya - Introduction to Hypershade and PBR Texture Maps (Beginner Friendly)",
+      "author": "Fox Bandit"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20File%20texture%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Rendering Editors",
+    "Hypershade",
+    "Create",
+    "Maya",
+    "Surface"
+  ],
+  "at": "2026-11-09T08:56:25.315917+00:00"
+}

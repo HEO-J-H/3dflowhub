@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-gizmo-deformers-bend-twist-taper-12ae",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Gizmo deformers (Bend, Twist, Taper)",
+  "title": "Gizmo 디포머",
+  "summary": "ZBrush의 Gizmo 3D Deformers(Bend, Twist, Taper)는 메쉬를 자르거나 망가뜨리지 않고 자유롭게 휘거나 비틀고 두께를 조절하는 비파괴적 변형 도구입니다.",
+  "when": [
+    "캐릭터의 포즈를 바꾸거나 팔다리를 부드럽게 휠 때",
+    "기둥, 뿔, 칼자루 등 오브젝트를 비틀어 역동적인 형태를 만들 때",
+    "오브젝트의 끝부분을 좁히거나 넓혀 테이퍼 효과를 줄 때"
+  ],
+  "steps": [
+    "변형할 오브젝트를 선택하고 Viewport에서 Edit 모드(당기기/조각 모드)를 활성화합니다.",
+    "상단 툴바에서 Gizmo 3D(Hotkey W)를 활성화합니다.",
+    "Gizmo 중앙의 작은 톱니바퀴 아이콘을 클릭하여 메뉴를 엽니다.",
+    "메뉴에서 Bend, Twist, Taper 등 원하는 Deformer를 클릭합니다.",
+    "Viewport에 나타난 주황색 가이드 라인과 조절점을 드래그하여 형태를 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "Bend",
+      "desc": "오브젝트를 특정 축을 기준으로 부드럽게 휠 때 사용합니다."
+    },
+    {
+      "name": "Twist",
+      "desc": "오브젝트를 나선형으로 비틀어 꼬임 효과를 줍니다."
+    },
+    {
+      "name": "Taper",
+      "desc": "오브젝트의 한쪽 끝을 가늘거나 굵게 스케일 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "휘어지거나 비틀어지는 각도의 크기를 조절합니다."
+    },
+    {
+      "name": "Deform Resolution",
+      "desc": "변형이 일어나는 부분의 메쉬 분할 밀도를 조절하여 부드러움을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "막대기 휘기 (Bend)",
+      "steps": [
+        "막대기 오브젝트에 Gizmo 3D를 켭니다.",
+        "톱니바퀴 아이콘에서 Bend Deformer를 선택합니다.",
+        "중앙의 주황색 축을 드래그하여 원하시는 만큼 부드럽게 휍니다."
+      ]
+    },
+    {
+      "title": "뿔 모양 만들기 (Taper)",
+      "steps": [
+        "원뿔 또는 실린더 형태의 오브젝트를 준비합니다.",
+        "Gizmo 3D 메뉴에서 Taper Deformer를 실행합니다.",
+        "끝부분의 조절점을 안쪽으로 모아 뾰족한 형태로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(폴리곤 밀도)가 부족해 변형 부위가 꺾이는 현상 → Divide(Hotkey Ctrl+D)를 실행해 폴리곤을 늘린 후 적용합니다.",
+    "Gizmo의 피벗 위치가 잘못되어 이상하게 휘어지는 현상 → Unmask 상태에서 Alt 키를 누르고 Gizmo를 클릭해 피벗을 오브젝트 중앙으로 재배치합니다."
+  ],
+  "related": [
+    "Gizmo 3D",
+    "Transpose",
+    "Dynamic Subdivision",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "K8Chqt0Bs9c",
+      "title": "Bend Curve - Amazing ZBrush Tool For Creating Pipes, Tubes And Horns",
+      "author": "Khatri3D"
+    },
+    {
+      "id": "PGZP2g5b500",
+      "title": "Bend Arc Deformer in ZBrush",
+      "author": "3D Tutorials by Alan Balodi"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Gizmo%20deformers%20%28Bend%2C%20Twist%2C%20Taper%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Edit",
+    "Gizmo 3D",
+    "Hotkey W"
+  ],
+  "at": "2026-11-09T08:56:29.136131+00:00"
+}
