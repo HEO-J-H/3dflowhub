@@ -1,0 +1,83 @@
+{
+  "id": "zbrush-move-brush-bb19",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Move brush",
+  "title": "Move 브러시",
+  "summary": "ZBrush의 Move 브러시는 디지털 점토를 손으로 밀고 당기듯 메쉬의 형태를 크게 변형하는 핵심 스컬프팅 도구입니다. 인체의 비율 조정이나 전체적인 실루엣을 잡을 때 주로 사용합니다.",
+  "when": [
+    "캐릭터의 팔다리 길이나 두상 형태를 크게 늘리고 줄일 때",
+    "기본 도형(Sphere, Cylinder 등)의 실루엣을 원하는 형태로 변형할 때",
+    "옷 주름이나 머리카락 흐름의 전체적인 방향을 잡을 때"
+  ],
+  "steps": [
+    "상단의 Brush Palette를 클릭하거나 B 키를 눌러 브러시 메뉴를 엽니다.",
+    "키보드 M, V 순서로 눌러 Move 브러시를 선택합니다 (또는 브러시 목록에서 Move 선택).",
+    "S 키를 눌러 Draw Size(브러시 크기)를 작업 대상보다 크거나 알맞게 조절합니다.",
+    "모델의 표면 위에 마우스나 타블렛 펜을 올리고 드래그하여 원하는 방향으로 메쉬를 밀어냅니다.",
+    "Viewport 빈 공간을 드래그하여 시점을 돌리며 형태가 입체적으로 잘 변형되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 전체 크기를 조절하여 한 번에 영향을 받는 메쉬 영역을 넓히거나 좁힙니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 밀고 당겨지는 힘의 세기를 조절하여 변형의 민감도를 바꿉니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 외곽부의 영향력 비율을 조절하여 변형의 날카로움이나 부드러움을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴형 다듬기",
+      "steps": [
+        "B 키를 누르고 M, V를 눌러 Move 브러시를 선택합니다.",
+        "S 키로 브러시 크기를 턱 끝보다 약간 크게 조절합니다.",
+        "턱 부분을 아래로 드래그하여 갸름한 턱선을 만듭니다."
+      ]
+    },
+    {
+      "title": "팔다리 길이 늘리기",
+      "steps": [
+        "Move 브러시의 Draw Size를 팔 두께보다 충분히 크게 키웁니다.",
+        "팔꿈치 부근에 커서를 올리고 손목 방향으로 드래그합니다.",
+        "Viewport를 돌려가며 양팔의 비율이 맞는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤이 너무 적은 상태에서 Move로 크게 당겨 메쉬가 찢어짐 → Divide(Ctrl+D)를 실행해 폴리곤 수를 늘린 후 다시 작업합니다.",
+    "브러시 크기가 너무 작아 메쉬가 울퉁불퉁해짐 → S 키를 눌러 Draw Size를 모델 크기에 맞게 충분히 키운 뒤 넓은 면적으로 당깁니다."
+  ],
+  "related": [
+    "Standard",
+    "Smooth",
+    "Inflate",
+    "MaskPen"
+  ],
+  "videos": [
+    {
+      "id": "iNMX1bMYWTI",
+      "title": "014 ZBrush Move and Snakehook Brush",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "pruRbwGdqtA",
+      "title": "Move Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Move%20brush",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Move"
+  ],
+  "at": "2026-11-09T10:47:00.566680+00:00"
+}

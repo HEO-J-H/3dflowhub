@@ -1,0 +1,94 @@
+{
+  "id": "maya-camera-and-depth-of-field-c16a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Camera and depth of field",
+  "title": "카메라·피사계 심도",
+  "summary": "Maya의 카메라와 Depth of Field(심도) 기능을 사용하여 실제 카메라처럼 특정 피사체에 초점을 맞추고 배경을 부드럽게 흐리게 만들어 시각적인 깊이감을 표현합니다.",
+  "when": [
+    "인물이나 주요 프롭(Prop)에 시선을 집중시키는 시네마틱 샷을 만들 때",
+    "건축 시각화에서 원거리 배경을 자연스럽게 아웃포커싱할 때",
+    "매크로(접사) 촬영처럼 얕은 심도로 공간감을 연출할 때"
+  ],
+  "steps": [
+    "View 메뉴에서 Create → Cameras → Camera 를 선택하여 씬에 새 카메라를 생성합니다.",
+    "Numpad 0 키를 누르거나 Panels → Perspective → [카메라 이름]을 선택하여 카메라 뷰로 전환합니다.",
+    "Outliner 에서 카메라를 선택하고 Attribute Editor(Ctrl+A)를 엽니다.",
+    "Camera Attributes 탭에서 Depth of Field 옵션을 체크하여 활성화합니다.",
+    "Focus Distance 값을 조절하여 초점이 맺힐 거리를 맞추고, F Stop 값을 낮추어 배경 흐림(아웃포커싱) 강도를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Depth of Field",
+      "desc": "카메라의 심도(피사계 심도) 효과를 켜고 끕니다."
+    },
+    {
+      "name": "Focus Distance",
+      "desc": "카메라 렌즈로부터 초점이 정확히 맺히는 지점까지의 거리입니다."
+    },
+    {
+      "name": "F Stop",
+      "desc": "조리개 개방 정도를 조절하며, 낮을수록 배경이 강하게 흐려집니다."
+    },
+    {
+      "name": "Focus Region Scale",
+      "desc": "초점이 선명하게 유지되는 영역의 범위를 확장하거나 축소합니다."
+    },
+    {
+      "name": "Bake Focus Distance",
+      "desc": "지정한 오브젝트나 컴포넌트까지의 거리를 측정하여 Focus Distance에 자동 입력합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "주요 캐릭터 클로즈업 아웃포커싱",
+      "steps": [
+        "캐릭터 얼굴 앞에 카메라를 배치하고 카메라 뷰로 진입합니다.",
+        "Attribute Editor에서 Depth of Field를 켭니다.",
+        "Focus Distance를 캐릭터 눈 위치에 맞게 조절합니다.",
+        "F Stop 값을 1.4~2.8 사이로 낮추어 배경을 흐리게 만듭니다."
+      ]
+    },
+    {
+      "title": "풍경 샷 전경 심도 연출",
+      "steps": [
+        "카메라를 전경의 나뭇잎 가까이에 배치합니다.",
+        "Focus Distance를 줄여 나뭇잎에 초점을 맞춥니다.",
+        "원경의 산과 건물 자연스럽게 흐려지는 것을 Viewport에서 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Focus Distance가 맞지 않아 전체 화면이 흐리게 보임 → 카메라와 피사체 사이의 거리를 측정하여 Focus Distance 값을 정확히 재설정합니다.",
+    "렌더러(Arnold 등)에서 Dof가 적용되지 않음 → Viewport가 아닌 Arnold 렌더 설정 및 카메라 자체의 물리적 카메라(Physical Camera) 옵션이 켜져 있는지 확인합니다."
+  ],
+  "related": [
+    "Physical Camera",
+    "Arnold Renderer",
+    "Camera sequencer",
+    "Look Through Selected"
+  ],
+  "videos": [
+    {
+      "id": "kzqcNfSjdCY",
+      "title": "Depth of field in Maya cameras",
+      "author": "3D Splanchnic"
+    },
+    {
+      "id": "ehD0VKJZQkw",
+      "title": "Maya 2024 - Depth of Field and Camera Basics",
+      "author": "Creator Brew - Experimenting & Sharing"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Camera%20and%20depth%20of%20field",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "View",
+    "Create",
+    "Cameras",
+    "Camera"
+  ],
+  "at": "2026-11-09T10:46:56.198087+00:00"
+}
