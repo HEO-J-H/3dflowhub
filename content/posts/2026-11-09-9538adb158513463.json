@@ -1,0 +1,63 @@
+{
+  "title_ko": "Gaussian Splatting 부분 업데이트로 장면 전환 속도 향상",
+  "title": "Partial updates bring faster 3D Gaussian Splatting scene changes - Bioengineer.org",
+  "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOTFlnOURJQXhuZXRMakpFMmZDLUNXcVRBMFZhbU5LcVNBVC1KbkU1Yms4cVpuYThIOTZXVEZTR3ZMU1JTcnRxQTVtdzZ4dTNNdmpFcnFuNWxOQy1QcVo2eDk5bXVLVjFDYkNLOUNEY2lTZ0poS0lwY1ViMHpDWTc4MC1OYndCTjh3dzg2eVZVVUxvMWs?oc=5",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "partial updates",
+    "real‑time",
+    "scene change",
+    "speed"
+  ],
+  "summary": "Partial updates 기법이 3D Gaussian Splatting의 장면 변경을 기존보다 빠르게 만든다고 Bioengineer.org가 전했습니다.",
+  "insight": "Partial updates는 전체 Gaussian 프리미티브를 다시 계산하지 않고, 변형된 영역만 재생성합니다. 이 덕분에 프레임당 연산량이 크게 감소해 실시간 뷰어와 인터랙티브 콘텐츠에서 지연 시간이 눈에 띄게 줄어듭니다. 최근 발표된 Complexity‑guided Regularization과 N차원 직접 조건부 Parameterization도 같은 목표를 공유하지만, Partial updates는 구현 난이도가 가장 낮아 바로 적용하기에 적합합니다.",
+  "try_it": [
+    "GitHub에서 최신 3DGS 구현을 클론하고, README에 있는 Partial updates 옵션을 활성화한다.",
+    "간단한 씬(예: 기본 큐브와 구)을 만든 뒤, 하나의 객체만 이동시켜 FPS 변화를 측정한다.",
+    "Complexity‑guided Regularization을 적용한 샘플을 가져와, Partial updates와 함께 렌더링 품질을 비교한다."
+  ],
+  "sections": [
+    {
+      "heading": "Partial updates 개념",
+      "body": "Partial updates는 3D Gaussian Splatting에서 장면을 부분적으로만 갱신하는 방식을 의미합니다. 기존 방식은 모든 Gaussian을 다시 렌더링해 전체 데이터를 재계산했습니다. 변형이 일어난 영역만 선택적으로 업데이트함으로써 연산 비용을 절감합니다."
+    },
+    {
+      "heading": "속도 향상의 핵심 메커니즘",
+      "body": "전체 데이터를 다시 계산하지 않음으로써 업데이트 시간이 크게 단축됩니다. 특히 대규모 씬에서 작은 객체만 움직일 때 효과가 두드러집니다. 결과적으로 장면 전환이 실시간 수준에 가까워집니다."
+    },
+    {
+      "heading": "실무 적용 가능성",
+      "body": "이 기술은 실시간 뷰어, Interactive 콘텐츠 제작 등 빠른 피드백이 필요한 작업 흐름에 활용될 수 있습니다. 기존 파이프라인에 큰 변화를 주지 않고도 적용이 가능해, 프로젝트 일정에 부담을 주지 않습니다. 또한, GPU 메모리 사용량도 감소해 저사양 장비에서도 테스트가 용이합니다."
+    },
+    {
+      "heading": "다른 최신 Gaussian Splatting 연구와 연계",
+      "body": "Complexity‑guided Regularization은 의상·신체 복잡도에 따라 정규화와 패치 샘플링을 조절해 디테일을 복원합니다. N차원 직접 조건부 Parameterization은 시점·시간 축을 확장해 동적 효과를 모델링합니다. Partial updates와 결합하면, 고품질 디테일을 유지하면서도 업데이트 속도를 유지할 수 있습니다."
+    },
+    {
+      "heading": "제한점 및 고려사항",
+      "body": "Partial updates는 변형이 없는 영역을 그대로 재사용하므로, 큰 변형이 일어나면 전체 재계산이 필요합니다. 또한, 구현에 따라 경계 아티팩트가 발생할 수 있어, 후처리 블렌딩이 필요할 수 있습니다. 이러한 점을 감안해 씬 설계 단계에서 변형 범위를 최소화하는 것이 좋습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Partial updates란 무엇인가요?",
+      "a": "3D Gaussian Splatting에서 전체 데이터를 재생성하지 않고, 변경된 부분만 업데이트하는 기법을 말합니다."
+    },
+    {
+      "q": "왜 기존 방식보다 빠른가요?",
+      "a": "전체 데이터를 다시 계산하지 않기 때문에 연산량이 감소해 업데이트 속도가 빨라집니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/f6cKSrrs5hY/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=f6cKSrrs5hY"
+  },
+  "collected_at": "2026-11-09T02:26:17.027765+00:00",
+  "notion_id": "",
+  "id": "2026-11-09-9538adb158513463",
+  "img_tried": true,
+  "enriched": "2026-11-09"
+}
