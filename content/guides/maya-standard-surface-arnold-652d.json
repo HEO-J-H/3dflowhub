@@ -1,0 +1,100 @@
+{
+  "id": "maya-standard-surface-arnold-652d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Standard Surface (Arnold)",
+  "title": "Standard Surface — Arnold 재질",
+  "summary": "Maya Standard Surface(Arnold)는 물리 기반(PBR) 라이팅을 완벽하게 지원하는 Arnold 렌더러의 표준 셰이더입니다. 유리, 금속, 플라스틱 등 실제 세계의 거의 모든 재질을 사실적으로 표현할 수 있습니다.",
+  "when": [
+    "유리나 물처럼 빛이 투과하고 굴절되는 투명한 재질을 만들 때",
+    "금속, 크롬, 알루미늄 등 반사율이 높은 하드서페이스 재질을 표현할 때",
+    "실제 사진처럼 사실적인 PBR 텍스처를 3D 모델에 적용할 때"
+  ],
+  "steps": [
+    "Hypershade 창을 엽니다 (Windows → Rendering Editors → Hypershade).",
+    "Create 태블릿 또는 창 좌측 Create 바에서 Arnold → Shader → standardSurface를 클릭해 Shader를 생성합니다.",
+    "모델링 오브젝트를 우클릭하고 'Assign Material to Selection'을 선택하여 standardSurface를 적용합니다.",
+    "Attribute Editor에서 standardSurface 노드를 선택하고 Base, Specular, Transmission 등의 파라미터를 조절합니다.",
+    "Render View에서 Arnold IPR(Interactive Production Rendering)을 실행해 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "물체의 기본 색상이나 알베도 텍스처를 지정합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "금속성을 조절합니다. 1로 설정하면 완전한 금속 재질이 됩니다."
+    },
+    {
+      "name": "Specular",
+      "desc": "표면의 하이라이트와 반사 강도를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절합니다. 값이 높을수록 반사가 퍼지고 흐려집니다."
+    },
+    {
+      "name": "Transmission",
+      "desc": "빛의 투과율을 조절하여 유리나 물 같은 투명한 재질을 만듭니다."
+    },
+    {
+      "name": "Normal Camera",
+      "desc": "노멀 맵(Normal Map)을 연결하여 미세한 표면 요철과 디테일을 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 유리 컵 만들기",
+      "steps": [
+        "standardSurface Shader를 생성하고 컵에 적용합니다.",
+        "Transmission 값을 1.0으로 올려 투명하게 만듭니다.",
+        "IOR(Index of Refraction) 값을 유리에 맞는 1.5로 설정합니다.",
+        "Specular Roughness를 낮추어 매끄러운 유리 표면을 만듭니다."
+      ]
+    },
+    {
+      "title": "리얼한 자동차 도색(Car Paint) 표현",
+      "steps": [
+        "Base Color를 원하는 색상(예: 빨간색)으로 설정합니다.",
+        "Metalness를 조절하고 Specular Roughness를 낮추어 유광 코팅 느낌을 냅니다.",
+        "Bump 또는 Normal 맵을 연결해 미세한 요철을 추가합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Transmission을 높였는데 유리가 검게 나옵니다 → Arnold Render Settings에서 Ray Depth(특히 Transmission 수치)를 기본값보다 높여주세요.",
+    "텍스처를 연결했는데 Viewport에 반영되지 않습니다 → Hypershade에서 Viewport 텍스처 미리보기 버튼(6번 키 또는 텍스처 아이콘)을 켜주세요."
+  ],
+  "related": [
+    "Arnold Render",
+    "Hypershade",
+    "Ai Image",
+    "Ai Normal Map"
+  ],
+  "videos": [
+    {
+      "id": "vsXMgDBKH6g",
+      "title": "Maya Arnold aiStandardSurface Basics",
+      "author": "MAYAIN"
+    },
+    {
+      "id": "7-rZQ_68y4I",
+      "title": "3D Basics in Maya - Arnold Standard Surface Shader",
+      "author": "Tim Moore"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Standard%20Surface%20%28Arnold%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hypershade",
+    "Windows",
+    "Rendering Editors",
+    "Create",
+    "Arnold",
+    "Shader"
+  ],
+  "at": "2026-11-09T08:46:43.822781+00:00"
+}

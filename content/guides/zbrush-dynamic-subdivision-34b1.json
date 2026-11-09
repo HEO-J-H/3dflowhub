@@ -1,0 +1,91 @@
+{
+  "id": "zbrush-dynamic-subdivision-34b1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Dynamic Subdivision",
+  "title": "Dynamic Subdiv — 미리보기 서브디비전",
+  "summary": "ZBrush의 Dynamic Subdivision은 실제 폴리곤을 추가하지 않고 Viewport에서 실시간으로 부드러운 곡면을 미리 보여주는 기능입니다. 작업 속도를 유지하면서 매끄러운 폼을 확인하고 스스럼없이 스컬프팅할 수 있습니다.",
+  "when": [
+    "로우폴리곤 베이스 메쉬 상태에서 디테일을 무겁지 않게 부드럽게 확인하고 싶을 때",
+    "하드서페이스 모델링 중 실시간으로 부드러운 베벨과 코너 곡면을 프리뷰하고 싶을 때",
+    "실제 Divide를 실행하기 전에 가벼운 상태로 형태감을 테스트하고 싶을 때"
+  ],
+  "steps": [
+    "오른쪽 Tool 팔레트를 열고 Geometry 탭을 클릭합니다.",
+    "Dynamic Subdiv 메뉴를 펼쳐서 활성화 버튼을 누릅니다.",
+    "Thickness와 Crease 등 필요한 실시간 세부 옵션을 설정합니다.",
+    "Shift+D 또는 D 키를 눌러 다이나믹 서브디비전 단계를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Dynamic Subdivision",
+      "desc": "실시간 서브디비전 프리뷰 기능을 켜고 끕니다."
+    },
+    {
+      "name": "Smooth Subdiv",
+      "desc": "부드러운 곡면을 표현하는 서브디비전 레벨을 지정합니다."
+    },
+    {
+      "name": "Thickness",
+      "desc": "두께가 없는 평면 메쉬에 실시간으로 두께를 부여합니다."
+    },
+    {
+      "name": "Crease",
+      "desc": "모서리의 날카로운 각진 형태를 유지하도록 지정합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "모서리 주변에 부드러운 베벨 효과를 실시간으로 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "얇은 판에 두께 주기",
+      "steps": [
+        "평면(Plane) 메쉬를 로드합니다.",
+        "Geometry의 Dynamic Subdiv를 켭니다.",
+        "Thickness 값을 올려 실시간으로 두께가 생기는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 모서리 정리",
+      "steps": [
+        "각진 로우폴리 오브젝트를 준비합니다.",
+        "Dynamic Subdiv를 켜서 둥글게 변하는 것을 확인합니다.",
+        "CreaseLvl 값을 조절하여 원하는 모서리만 날카롭게 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "실제 폴리곤이 늘어난 것으로 착각함 → 실제 지오메트리를 나누려면 Apply 버튼을 누르거나 일반 Divide를 사용해야 합니다.",
+    "스컬프팅 브러시가 적용되지 않음 → Dynamic Subdivision 상태에서는 브러시의 물리적 영향이 제한될 수 있으므로 실제 붓질이 필요하면 Apply를 실행하세요."
+  ],
+  "related": [
+    "Divide",
+    "Reconstruct Subdiv",
+    "Crease",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "XKKCFoJOUp4",
+      "title": "How to Use Dynamic Subdivision",
+      "author": "Nicky Cry"
+    },
+    {
+      "id": "B9GHs7U42bI",
+      "title": "Zbrush: Dynamesh vs Subdivisions",
+      "author": "FlippedNormals"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Dynamic%20Subdivision",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Geometry",
+    "Dynamic Subdiv"
+  ],
+  "at": "2026-11-09T08:46:47.437389+00:00"
+}

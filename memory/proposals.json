@@ -24265,5 +24265,89 @@
     "id": "p-738dedd9ce",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 웹 PBR 파이프라인 단위 테스트 확장 및 실시간 렌더링 성능 검증 테스트가 이미 끝낸 제안과 최근 커밋에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-09T08:46:28.179899+00:00",
+    "kind": "report",
+    "id": "r-2026-11-09T08:46",
+    "text": "최근 7일간 총 329건의 콘텐츠가 안정적으로 수집 및 발행되었으며, 기초 가이드(8건) 중심의 내실 있는 운영이 이루어지고 있습니다. 다만 일일 AI 한도 소진(33건) 및 QA 기계 검사에서 나타난 일부 상투어 반복 문제를 개선해야 합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.8,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자와 실무자들에게 장기적으로 유용한 에버그린 기초 가이드 중심의 학습 환경을 우선 제공하기 위해 가이드 비중을 높입니다."
+  },
+  {
+    "at": "2026-11-09T08:46:28.179899+00:00",
+    "kind": "proposal",
+    "id": "p-5dc1c6a6eb",
+    "title": "상투어 반복 방지 편집 지침 추가",
+    "category": "콘텐츠",
+    "evidence": "기계 검사 결과 파이프라인, 워크플로, 효율 등의 상투적인 표현이 반복되는 문제가 5건 확인되었습니다.",
+    "proposal": "에디터 작성 시 지나친 상투어 사용을 금지하고 구체적인 수치나 기능 설명 위주로 작성하도록 편집 지침을 등록합니다.",
+    "expected": "콘텐츠의 가독성과 전문성이 향상됩니다.",
+    "effort": "낮음",
+    "action": {
+      "type": "editorial_note",
+      "note": "콘텐츠 작성 시 '파이프라인', '워크플로', '효율' 등의 상투적인 표현 반복을 피하고 구체적인 기능 명칭과 실행 절차 중심으로 서술합니다."
+    },
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T08:46:31+00:00",
+    "kind": "proposal",
+    "id": "p-6989755f80",
+    "title": "웹 브라우저 PBR 텍스처 렌더링 성능 검증 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 단위 테스트 범위 추가 확장 및 텍스처 변환 함수 단위 테스트(PR #54)가 성공적으로 머지되었습니다.",
+    "proposal": "web/tests/ 폴더에 대용량 이미지 입력 시 높이맵 변환 및 렌더링 속도를 측정한느 성능 벤치마크 테스트 코드를 추가합니다.",
+    "expected": "브라우저 환경에서의 3D 메시 및 PBR 렌더링 성능 최적화 지표 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T08:46:31+00:00",
+    "kind": "proposal",
+    "id": "p-be93a6772a",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인과 관련하여 GPU 부재 시 발생하는 예외 처리를 검증하는 단위 테스트가 필요합니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU VRAM 부족 또는 모델 로드 실패 시 graceful fallback을 검증하는 테스트 코드를 추가합니다.",
+    "expected": "로컬 백엔드 서버의 안정성 및 오류 복구력 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T08:47:01.031081+00:00",
+    "kind": "decision",
+    "id": "p-6989755f80",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 텍스트 브라우저 실시간 렌더링 성능 검증 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T08:47:01.060643+00:00",
+    "kind": "decision",
+    "id": "p-be93a6772a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T08:47:01.088126+00:00",
+    "kind": "decision",
+    "id": "p-5dc1c6a6eb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
   }
 ]
