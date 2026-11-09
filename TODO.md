@@ -56,7 +56,7 @@
 - [x] (agent) [p-57aa5c9235|사이트·UX] 모바일 화면 가이드 카드 가시성 강화: 모바일 화면에서 기초 가이드 카드의 제목 폰트 크기를 키우고 여백을 최적화하여 3초 안에 내용을 파악할 수 있도록 수정합니다.
 
 - [x] (agent) core.filter_homonym_3d_content(): 동음이의어(인물, 주식, 무관한 뉴스 등)를 3D/CG 전문 맥락 필터 및 키워드 조합으로 정밀 판정하여 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
-- [ ] (agent:보류) evolve.summarize_3d_niche_performance(): 실무 검색량이 높은 3ds Max Maxscript 및 Blender 애드온 관련 콘텐츠의 성과 지표를 요약 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
-- [ ] (agent:보류) core.filter_homonym_3d_content(): 동음이의어(인물, 주식 등) 뉴스 및 아티클을 차단하기 위한 3D/CG 전문 맥락 필터링 함수 구현 및 tests/test_core.py에 테스트 추가 — [4] 패치 적용 실패: ['core.py: search 블록이 정확히 1회 일치하지 않음']
+- [ ] (agent:보류) evolve.summarize_3d_niche_performance(): 실무 검색량이 높은 3ds Max Maxscript 및 Blender 애드온 관련 콘텐츠의 성과 지표를 요약 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
+- [x] (agent) core.filter_homonym_3d_content(): 동음이의어(인물, 주식 등) 뉴스 및 아티클을 차단하기 위한 3D/CG 전문 맥락 필터링 함수 구현 및 tests/test_core.py에 테스트 추가 (재시도)
 - [ ] (agent:보류) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 3D DCC 및 실무 툴 도메인별 분포 비율을 집계하는 통계 함수 구현 및 tests/test_core.py에 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) app.render_cpc_optimization_dashboard(): Streamlit 현황판에 고CPC 실무 3D 콘텐츠 집중도와 오프토픽 차단 현황을 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
