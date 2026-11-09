@@ -1,0 +1,98 @@
+{
+  "id": "zbrush-zmodeler-brush-a7d7",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "ZModeler brush",
+  "title": "ZModeler — 폴리곤 모델링",
+  "summary": "ZBrush의 ZModeler 브러시는 폴리곤 단위로 정점, 엣지, 면을 직접 편집하여 하드서피스 모델링을 효율적으로 수행할 수 있는 다각형 전문 도구입니다.",
+  "when": [
+    "로봇, 갑옷, 무기 등 딱 떨어지는 하드서피스 형태를 제작할 때",
+    "로우폴리곤 베이스 메쉬에서 각진 구조물이나 패널 라인을 빠르게 만들 때",
+    "복잡한 Topology를 유지하면서 엣지나 면을 밀어내고 늘릴 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 폴리곤 메쉬(Low Poly)를 캔버스에 드래그하여 올린 뒤 T 키를 눌러 Edit 모드로 진입합니다.",
+    "B 키를 누르고 Z, M 순서로 입력하여 ZModeler 브러시를 선택합니다.",
+    "메쉬의 면(Polygon) 위에 Mouse를 올린 상태로 스페이스바를 누릅니다.",
+    "상단에 나타나는 팝업 메뉴에서 원하는 작업(Action, 예: Extrude)을 선택합니다.",
+    "작업 대상(Target, 예: PolyGroup All 또는 Single Poly)을 지정합니다.",
+    "메쉬 위를 클릭하고 드래그하여 형태를 변형하고 결과가 Viewport에 반영되면 완료됩니다."
+  ],
+  "params": [
+    {
+      "name": "Action",
+      "desc": "선택한 요소(면, 엣지, 정점)에 적용할 편집 동작을 결정합니다 (Extrude, Insert 등)."
+    },
+    {
+      "name": "Target",
+      "desc": "명령이 적용될 범위를 지정합니다 (Single Poly, PolyGroup, QMesh 등)."
+    },
+    {
+      "name": "QMesh",
+      "desc": "면을 돌출시키면서 주변 Topology와 자동으로 연결하고 정리해주는 핵심 기능입니다."
+    },
+    {
+      "name": "Extrude",
+      "desc": "지정한 면을 법선 방향으로 밀어내어 두께나 입체감을 부여합니다."
+    },
+    {
+      "name": "Insert",
+      "desc": "면 내부에 새로운 엣지 루프나 서브 폴리곤 영역을 삽입합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "모서리나 엣지 주변을 부드럽거나 각지게 깎아내어 면을 분할합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 표면 패널 라인 및 돌출 구조 제작",
+      "steps": [
+        "면 위에 Mouse를 올리고 스페이스바를 누릅니다.",
+        "Action을 QMesh로, Target을 PolyGroup Island로 설정합니다.",
+        "해당 폴리그룹 영역을 드래그하여 바깥쪽으로 돌출시킵니다."
+      ]
+    },
+    {
+      "title": "하드서피스 기계 부품에 구멍(Hole) 뚫기",
+      "steps": [
+        "면 위에 Mouse를 올리고 스페이스바를 누릅니다.",
+        "Action을 Delete, Target을 Single Poly로 설정합니다.",
+        "불필요한 면을 클릭하여 삭제하고 열린 구멍을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "고밀도 다이내메쉬(Dynamesh) 상태에서 ZModeler를 사용할 때 → 폴리곤이 너무 많아 제어가 어렵습니다. ZRemesher를 이용해 로우폴리곤으로 정리한 뒤 사용하세요.",
+    "스페이스바 팝업 메뉴에서 잘못된 Target을 선택하여 전체 메쉬가 변형될 때 → Ctrl+Z로 실행을 취소하고 Target 옵션을 Single Poly나 PolyGroup 단위로 다시 설정하세요."
+  ],
+  "related": [
+    "ZRemesher",
+    "PolyGroup",
+    "Crease",
+    "Dynamic Subdiv"
+  ],
+  "videos": [
+    {
+      "id": "S4JvEV4KuSw",
+      "title": "ZBrush ZModeler Introduction - PolyMesh3D Initialize",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "PJQJeFd2vEA",
+      "title": "ZBrush ZModeler Introduction",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20ZModeler%20brush",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Low Poly",
+    "Edit",
+    "ZModeler"
+  ],
+  "at": "2026-11-09T00:45:32.483929+00:00"
+}

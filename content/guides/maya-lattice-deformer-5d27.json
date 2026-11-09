@@ -1,0 +1,91 @@
+{
+  "id": "maya-lattice-deformer-5d27",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Lattice deformer",
+  "title": "Lattice — 격자 변형",
+  "summary": "Maya Lattice deformer는 격자 형태의 제어점을 이용해 대상 지오메트리를 부드럽고 유기적으로 변형하는 비파괴적 디포머입니다. 복잡한 오브젝트의 실루엣을 대대적으로 수정할 때 유용합니다.",
+  "when": [
+    "캐릭터의 몸매나 얼굴 비율을 전체적으로 부드럽게 수정할 때",
+    "딱딱한 기하학적 형태의 오브젝트를 구부리거나 비틀어 유기적인 느낌을 줄 때",
+    "애니메이션 중간에 형태를 변형하는 세부적인 와핑(Warping) 효과를 줄 때"
+  ],
+  "steps": [
+    "변형할 오브젝트를 Mouse로 선택합니다.",
+    "상단 메뉴에서 Animation 또는 Rigging 세트로 전환합니다.",
+    "메뉴바에서 Create Deformers > Lattice를 클릭하여 격자를 생성합니다.",
+    "Channel Box 또는 Attribute Editor에서 Divisions (S, T, U) 값을 조절해 제어점 격자 수를 설정합니다.",
+    "우클릭을 유지한 채 Lattice 점들을 선택하고 Lattice Point 메뉴로 전환하거나 Hotkey(예: 구성 요소 모드)를 사용해 제어점을 이동합니다.",
+    "Viewport에서 제어점을 조작해 오브젝트의 형태가 자연스럽게 변형되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Divisions S",
+      "desc": "S축(가로) 방향의 격자 분할 수"
+    },
+    {
+      "name": "Divisions T",
+      "desc": "T축(세로) 방향의 격자 분할 수"
+    },
+    {
+      "name": "Divisions U",
+      "desc": "U축(깊이) 방향의 격자 분할 수"
+    },
+    {
+      "name": "Local Scale",
+      "desc": "Lattice 자체의 크기 조절"
+    }
+  ],
+  "examples": [
+    {
+      "title": "기둥 휘게 만들기",
+      "steps": [
+        "기둥 오브젝트를 선택하고 Create Deformers > Lattice를 실행합니다.",
+        "Divisions 값을 높여 제어점을 세밀하게 만듭니다.",
+        "Lattice 제어점 모드에서 중간 점들을 한쪽으로 이동시켜 곡선을 만듭니다."
+      ]
+    },
+    {
+      "title": "캐릭터 실루엣 수정",
+      "steps": [
+        "캐릭터 메쉬를 선택하고 Lattice를 적용합니다.",
+        "전체적인 볼륨감이 필요한 부위의 제어점을 선택합니다.",
+        "Scale 도구를 이용해 특정 부위의 두께를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Lattice를 적용한 뒤 오브젝트를 이동시키거나 회전했는데 변형이 깨짐 → History를 삭제하거나 Deformer 순서를 확인하세요.",
+    "제어점이 보이지 않음 → 오브젝트 선택 후 우클릭 메뉴에서 Lattice Point 모드가 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Blend Shape",
+    "Cluster",
+    "Nonlinear Deformers (Bend, Twist)",
+    "Soft Modification"
+  ],
+  "videos": [
+    {
+      "id": "U75sfagGB7E",
+      "title": "Maya 3D Beginner Tutorial - Lattice Deformer",
+      "author": "Summer Day Studios"
+    },
+    {
+      "id": "jOq0H1V3mSE",
+      "title": "CGI 3D Tutorial : \"Using Lattices in Maya\" - by 3dmotive",
+      "author": "TheCGBros"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Lattice%20deformer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "Animation",
+    "Rigging",
+    "Create Deformers",
+    "Lattice"
+  ],
+  "at": "2026-11-09T00:45:28.314548+00:00"
+}

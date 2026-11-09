@@ -24031,5 +24031,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 오픈소스 RAG 연동 설계 문서 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T00:45:19+00:00",
+    "kind": "proposal",
+    "id": "p-4b39966252",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 버전 FastAPI 환경에서 TripoSR 실행 시 발생할 수 있는 VRAM 부족 및 모델 부재 예외 처리 강화 필요",
+    "proposal": "backend/app/services/triposr_runner.py 에 명확한 예외 처리 구문 및 관련 단위 테스트를 추가하여 안정성 확보",
+    "expected": "GPU 환경이 아닌 곳에서도 명확한 에러 메시지와 함께 안정적인 서비스 흐름 유지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T00:45:50.992183+00:00",
+    "kind": "decision",
+    "id": "p-4b39966252",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
