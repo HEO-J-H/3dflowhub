@@ -25578,5 +25578,53 @@
     "id": "p-189754cc50",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 유사한 문서 생성 및 홀드 재시도 작업들이 다수 완료되었거나 커밋 내역에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-09T16:38:29+00:00",
+    "kind": "proposal",
+    "id": "p-9c5316f999",
+    "title": "웹 PBR 텍스처 단위 테스트 추가 확장",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #54를 통해 web/tests/ 내 PBR 높이맵 생성 및 텍스처 변환 단위 테스트가 성공적으로 머지됨",
+    "proposal": "web/tests/ 폴더에 추가적인 브라우저 PBR 텍스처 변환 엣지 케이스 단위 테스트 Script를 작성하여 자동 머지 유도",
+    "expected": "브라우저 환경에서의 PBR 텍스처 변환 안정성 및 품질 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T16:38:29+00:00",
+    "kind": "proposal",
+    "id": "p-7ec5dda1f8",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "백엔드 핵심 파이프라인 관련 PR #55 및 #56이 대기 중이며, 로컬 GPU/CPU 전환 예외 처리 보강 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU VRAM 부족 또는 모델 부재 시 명확한 예외 메시지를 반환하는 테스트 케이스 추가",
+    "expected": "로컬 실행 시 예외 상황 대처 능력 향상 및 디버깅 용이성 확보",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T16:38:56.807836+00:00",
+    "kind": "decision",
+    "id": "p-9c5316f999",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T16:38:56.832816+00:00",
+    "kind": "decision",
+    "id": "p-7ec5dda1f8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
