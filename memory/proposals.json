@@ -24450,5 +24450,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T09:26:29+00:00",
+    "kind": "proposal",
+    "id": "p-086bf1f7f0",
+    "title": "로컬 TripoSR 예외 처리 및 폴백 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 관련 단위 테스트와 예외 처리 검증 요구가 지속됨.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 부재 또는 모델 로드 실패 시 예외 처리 및 graceful fallback 동작 테스트 추가.",
+    "expected": "로컬 환경 실행 시 안정성 향상 및 예외 상황 대응력 검증",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T09:26:29+00:00",
+    "kind": "proposal",
+    "id": "p-d547073e80",
+    "title": "웹 PBR 실시간 렌더링 검증 테스트 확장",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 단위 테스트 범위 추가 확장 및 실시간 렌더링 관련 성능 검증 필요.",
+    "proposal": "web/tests/pbr_render_test.js (또는 기존 테스트 파일)에 다양한 이미지 입력에 따른 텍스처 변환 정확도 검증 케이스 추가.",
+    "expected": "브라우저 측 PBR 텍스처 생성 신뢰도 및 렌더링 품질 보장",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T09:27:21.966359+00:00",
+    "kind": "decision",
+    "id": "p-086bf1f7f0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T09:27:21.990980+00:00",
+    "kind": "decision",
+    "id": "p-d547073e80",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 텍스트 브라우저 실시간 렌더링 성능 검증 테스트 추가",
+    "auto": true
   }
 ]

@@ -1,0 +1,91 @@
+{
+  "id": "maya-assigning-materials-to-faces-6827",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Assigning materials to faces",
+  "title": "면별 재질 지정",
+  "summary": "Maya에서 폴리곤 오브젝트의 특정 면(Face)마다 서로 다른 재질을 지정하여 디테일한 텍스처와 컬러를 입히는 작업입니다. 하나의 오브젝트에 여러 개의 머티리얼을 나누어 적용할 때 사용합니다.",
+  "when": [
+    "하나의 캐릭터 모델링에서 얼굴, 옷, 신발 등 서로 다른 재질을 나누어 적용할 때",
+    "건축물 외벽의 특정 면에만 벽돌이나 유리 재질을 부분적으로 입힐 때",
+    "하드서페이스 모델의 특정 패널 라인이나 디테일 면의 컬러를 다르게 표현할 때"
+  ],
+  "steps": [
+    "오브젝트를 Mouse 우클릭하여 Face 모드로 전환합니다 (Hotkey: F9 또는 콤포넌트 모드 선택).",
+    "재질을 적용할 폴리곤 면들을 드래그하여 선택합니다.",
+    "Hypershade 창을 엽니다 (Windows → Rendering Editors → Hypershade).",
+    "원하는 재질(예: Standard Surface 등)을 클릭하여 생성합니다.",
+    "생성된 머티리얼 노드를 Mouse 우클릭으로 드래그하여 Viewport의 선택된 면 위에 올린 후 Assign Material to Selection을 선택합니다.",
+    "Viewport에서 면별로 재질이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Assign Material to Selection",
+      "desc": "Viewport에서 선택한 컴포넌트(면)에 현재 머티리얼을 할당합니다."
+    },
+    {
+      "name": "Hypershade",
+      "desc": "Maya의 씬 내 모든 머티리얼과 텍스처를 생성하고 관리하는 노드 기반 편집기입니다."
+    },
+    {
+      "name": "Material Viewer",
+      "desc": "Hypershade 내에서 선택한 재질의 렌더링 결과를 미리 확인합니다."
+    },
+    {
+      "name": "Face",
+      "desc": "폴리곤 오브젝트의 면 단위를 선택하는 서브오브젝트 모드입니다."
+    },
+    {
+      "name": "Graph Network",
+      "desc": "선택한 머티리얼의 텍스처 및 노드 연결 구조를 하단 작업 영역에 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스마트폰 모델 화면 부분만 다른 재질 지정하기",
+      "steps": [
+        "스마트폰 바디 오브젝트를 선택하고 Face 모드로 전환합니다.",
+        "앞면 디스플레이가 위치한 면들만 드래그하여 선택합니다.",
+        "Hypershade에서 밝은 발광용 머티리얼을 생성합니다.",
+        "선택된 면에 Assign Material to Selection을 실행합니다."
+      ]
+    },
+    {
+      "title": "건물 외벽의 창문 프레임과 유리 구분하기",
+      "steps": [
+        "건물 모델에서 유리창에 해당하는 면들을 각각 선택합니다.",
+        "투명도가 있는 AI Standard Surface 머티리얼을 생성합니다.",
+        "선택된 면들에 유리 머티리얼을 할당하여 투명한 재질을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트 전체가 선택된 상태에서 머티리얼을 적용해 기존 전체 재질이 덮어씌워짐 → 반드시 Face 모드로 필요한 면만 선택한 뒤 Assign Material to Selection을 실행하세요.",
+    "텍스처나 컬러가 깨지거나 늘어남 → 재질을 면 단위로 나눈 후 UV Editor에서 UV 맵이 올바르게 정렬되어 있는지 확인하세요.",
+    "Viewport에서 머티리얼 변화가 보이지 않음 → Viewport 상단 메뉴에서 Shading → Hardware Texturing 또는 고품질 렌더링 모드가 켜져 있는지 확인하세요."
+  ],
+  "related": [
+    "Hypershade",
+    "UV Editor",
+    "AI Standard Surface",
+    "Assign Existing Material"
+  ],
+  "videos": [
+    {
+      "id": "KjAG7k_-1SI",
+      "title": "#28 Assigning textures to specific faces in Maya 2016",
+      "author": "Game Dev Academy"
+    },
+    {
+      "id": "mN7XtmIUnTQ",
+      "title": "Maya and Assigning Material IDs to Selected Faces",
+      "author": "Creator Brew - Experimenting & Sharing"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Assigning%20materials%20to%20faces",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-09T09:26:56.259455+00:00"
+}
