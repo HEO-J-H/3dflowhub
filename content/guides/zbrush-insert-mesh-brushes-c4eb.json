@@ -1,0 +1,87 @@
+{
+  "id": "zbrush-insert-mesh-brushes-c4eb",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Insert Mesh brushes",
+  "title": "Insert Mesh",
+  "summary": "ZBrush의 Insert Mesh 브러시는 하나의 브러시 안에 단일 오브젝트를 담아두고 메쉬 표면에 드래그하여 즉시 삽입하는 스컬프팅 도구입니다. 복잡한 소품이나 디테일을 효율적으로 모델링할 때 사용합니다.",
+  "when": [
+    "캐릭터 갑옷이나 의상에 리벳, 단추, 벨트 버클 같은 반복적인 디테일을 추가할 때",
+    "메카닉 모델링에 볼트, 너트, 패널 라인 등의 하드서페이스 요소를 빠르게 심을 때",
+    "유기체 모델링에 뿔, 이빨, 비늘 등의 파츠를 표면 위에 직관적으로 배치할 때"
+  ],
+  "steps": [
+    "상단 Brush 팔레트 또는 캔버스 우측의 Brush 메뉴를 엽니다.",
+    "Hotkey B, I를 순서대로 누른 뒤 원하는 Insert Mesh 브러시를 선택합니다.",
+    "대상 SubTool 메쉬 위에 마우스나 펜을 대고 드래그하여 오브젝트를 삽입합니다.",
+    "Ctrl 키를 누른 채 캔버스 빈 곳을 드래그하여 마스크를 해제하고 배치를 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Brush",
+      "desc": "현재 선택된 브러시의 종류를 변경하고 세부 설정을 조절합니다."
+    },
+    {
+      "name": "Stroke",
+      "desc": "브러시가 그려지는 방식(DragRect, Freehand 등)을 결정합니다."
+    },
+    {
+      "name": "Auto Groups",
+      "desc": "삽입된 새 오브젝트에 자동으로 고유 Polygroup을 부여합니다."
+    },
+    {
+      "name": "Split Unmasked",
+      "desc": "마스크되지 않은 삽입 파츠를 별도의 SubTool로 분리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 표면에 리벳 디테일 추가",
+      "steps": [
+        "Insert Mesh 브러시를 선택하고 갑옷 표면에 드래그하여 리벳을 배치합니다.",
+        "Move, Scale, Rotate gizmo를 사용해 리벳의 위치와 크기를 정돈합니다.",
+        "SubTool 패널에서 Split Hidden 또는 Split Unmasked를 실행해 리벳을 독립된 SubTool로 분리합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 머리에 뿔 파츠 심기",
+      "steps": [
+        "Insert Single Mesh 브러시로 두개골 위치에 뿔을 드래그하여 삽입합니다.",
+        "Draw Size를 조절하여 뿔의 기본 크기를 맞춥니다.",
+        "Move 브러시로 뿔의 뿌리 부분을 다듬어 두개골 표면과 자연스럽게 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "드래그 직후 크기나 위치를 조절하지 않고 다른 곳을 클릭함 → 펜을 떼기 전이나 확정 전에 Gizmo 3D로 크기와 위치를 즉시 조절하세요.",
+    "삽입된 파츠가 메쉬 안쪽에 파묻힘 → Draw Size를 키우거나 평평한 표면 부근에서 드래그하여 메쉬 바깥쪽에 안착시키세요."
+  ],
+  "related": [
+    "IMM brushes",
+    "Append and Insert SubTool",
+    "Polygroup",
+    "Gizmo 3D"
+  ],
+  "videos": [
+    {
+      "id": "qwchznvX-jQ",
+      "title": "#AskZBrush: “How can I create an Insert Mesh Curve Brush?”",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "U5u3RpI9In4",
+      "title": "Intro to ZBrush 044 - Use IMM Brushes (Insert Multi Mesh) to kitbash and enhance your models!",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Insert%20Mesh%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush",
+    "Hotkey B",
+    "Insert Mesh"
+  ],
+  "at": "2026-11-09T09:46:49.670490+00:00"
+}

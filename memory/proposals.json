@@ -24522,5 +24522,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 파이프라인 단위 테스트 확장",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T09:46:29+00:00",
+    "kind": "proposal",
+    "id": "p-2793052178",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인의 핵심인 TripoSR 오류 처리 및 폴백 안정성 검증이 필요합니다.",
+    "proposal": "backend/tests/test_triposr_runner.py 에 GPU 부재 또는 추론 실패 시의 예외 처리 단위를 검증하는 테스트 코드를 추가합니다.",
+    "expected": "로컬 환경 실행 시 예외 안정성이 높아지고 테스트 커버리지가 확장됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T09:47:05.769957+00:00",
+    "kind": "decision",
+    "id": "p-2793052178",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]

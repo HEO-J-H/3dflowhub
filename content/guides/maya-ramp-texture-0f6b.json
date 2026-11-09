@@ -1,0 +1,103 @@
+{
+  "id": "maya-ramp-texture-0f6b",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Ramp texture",
+  "title": "Ramp — 그라데이션",
+  "summary": "Maya의 Ramp texture는 0에서 1 사이의 입력값이나 위치를 기반으로 색상이나 값의 그라데이션을 생성하는 절차적 텍스처입니다. 머티리얼의 컬러 변환, 범프 맵의 강도 조절, 투명도 마스크 제작에 필수적으로 사용됩니다.",
+  "when": [
+    "오브젝트 표면에 자연스러운 색상 그라데이션(예: 지형의 고도별 색상)을 줄 때",
+    "흑백 램프를 이용해 범프(Bump)나 디스플레이스먼트 맵의 세부 요소를 정밀하게 제어할 때",
+    "투명도(Opacity)나 마스크 채널을 활용해 부드러운 페이드 아웃 효과를 만들 때"
+  ],
+  "steps": [
+    "Hypershade 창(Windows → Rendering Editors → Hypershade)을 엽니다.",
+    "Create 태브의 2D Textures 또는 General 목록에서 Ramp 노드를 클릭하여 생성합니다.",
+    "생성된 Ramp 노드의 출력을 원하는 머티리얼(예: AiStandardSurface)의 Color나 Bump Map 슬롯에 드래그하여 연결합니다.",
+    "Hypershade에서 Ramp 노드를 선택하고 Attribute Editor에서 램프 슬라이더의 색상 스톱(Color Stops)을 클릭하여 색상을 지정합니다.",
+    "인터페이스 상단의 Interpolation 방식을 변경하여 색상 간의 전환 부드러움을 조절합니다.",
+    "Viewport에서 머티리얼이 적용된 오브젝트를 확인하며 텍스처 결과를 점검합니다."
+  ],
+  "params": [
+    {
+      "name": "Selected Color",
+      "desc": "현재 선택된 색상 스톱의 색상을 지정합니다."
+    },
+    {
+      "name": "Position",
+      "desc": "그라데이션 축 상에서 현재 색상 스톱의 위치(0~1)를 결정합니다."
+    },
+    {
+      "name": "Interpolation",
+      "desc": "색상과 색상 사이의 전환 방식(None, Linear, Exponential 등)을 설정합니다."
+    },
+    {
+      "name": "Type",
+      "desc": "그라데이션의 형태(Linear, Radial, Circular 등)를 변경합니다."
+    },
+    {
+      "name": "U Wave / V Wave",
+      "desc": "U축 또는 V축 방향으로 램프 패턴에 물결(웨이브) 효과를 추가합니다."
+    },
+    {
+      "name": "Noise",
+      "desc": "그라데이션 경계면에 노이즈를 주어 불규칙하고 유기적인 패턴을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지형 고도별 컬러 맵핑",
+      "steps": [
+        "지형 오브젝트에 램프 텍스처를 Color에 연결합니다.",
+        "Type을 V Linear로 설정합니다.",
+        "아래쪽에는 어두운 갈색, 중간에는 초록색, 위쪽에는 흰색 스톱을 배치합니다.",
+        "Viewport에서 산등성이의 높이에 따라 자연스러운 흙과 풀, 눈 표현을 확인합니다."
+      ]
+    },
+    {
+      "title": "부드러운 투명도 페이드 마스크",
+      "steps": [
+        "Ramp 노드의 출력을 머티리얼의 Opacity나 Transparency에 연결합니다.",
+        "흑백 그라데이션으로 설정하여 한쪽은 검은색(투명), 반대쪽은 흰색(불투명)으로 만듭니다.",
+        "Interpolation을 Linear로 설정해 부드러운 경계를 만듭니다.",
+        "오브젝트의 끝부분이 자연스럽게 사라지는 페이드 효과를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "색상 스톱이 겹쳐서 색이 급격하게 변하는 현상 → Position 값을 확인하고 스톱 간의 간격을 넓혀줍니다.",
+    "텍스처가 오브젝트에 올바르게 매핑되지 않고 깨져 보이는 현상 → UV 좌표계가 올바르지 않거나 Projection 노드가 누락되었는지 확인하고 UV를 재정렬합니다.",
+    "Ramp 노드의 결과가 Viewport에 반영되지 않는 현상 → 텍스처 출력 슬롯(Out Color 등)이 머티리얼의 올바른 입력 속성에 연결되었는지 확인합니다."
+  ],
+  "related": [
+    "Hypershade",
+    "AiStandardSurface",
+    "File texture",
+    "Condition"
+  ],
+  "videos": [
+    {
+      "id": "wHI2Rx6ZzBs",
+      "title": "The Maya Toolbelt - Ramp Texture",
+      "author": "Maya Toolbelt"
+    },
+    {
+      "id": "FQMMGZm1WA4",
+      "title": "Maya 2016 tutorial : How to apply a Ramp Shader",
+      "author": "MH Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Ramp%20texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hypershade",
+    "Windows",
+    "Rendering Editors",
+    "Create",
+    "D Textures",
+    "General"
+  ],
+  "at": "2026-11-09T09:46:39.927869+00:00"
+}
