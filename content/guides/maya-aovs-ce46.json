@@ -1,0 +1,93 @@
+{
+  "id": "maya-aovs-ce46",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "AOVs",
+  "title": "AOV — 렌더 패스",
+  "summary": "Maya의 AOVs(Arbitrary Output Variables)는 렌더링 시 Diffuse, Specular, Normal 등의 요소를 개별 패스로 분리하여 합성(Compositing) 단계에서 자유롭게 수정할 수 있게 해주는 기능입니다.",
+  "when": [
+    "Compositing 단계에서 3D 렌더링 결과물의 색상이나 조명을 세밀하게 보정하고 싶을 때",
+    "캐릭터나 오브젝트의 특정 영역만 마스크(CryptoMatte 등)로 분리해 후보정할 때",
+    "반사, 그림자, 글로벌 일루미네이션(GI) 등의 요소를 독립적으로 조절하여 렌더 시간을 아끼고 싶을 때"
+  ],
+  "steps": [
+    "메뉴 바에서 Windows → Rendering Editors → Render Setup을 엽니다.",
+    "Render Setup 창 상단의 AOV탭을 클릭하거나 Arnold 렌더러 기준으로 AOV 창을 엽니다.",
+    "Add AOV 버튼을 클릭하여 추가하고 싶은 패스(예: diffuse, specular, Z 등)를 선택합니다.",
+    "Render Settings에서 Arnold Renderer 탭으로 이동하여 사용할 AOV들이 활성화되었는지 확인합니다.",
+    "Batch Render 또는 Render View를 실행하여 분리된 AOV 이미지가 정상적으로 출력되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "오브젝트의 기본 색상 및 질감 정보를 담은 패스"
+    },
+    {
+      "name": "Specular",
+      "desc": "광원에 의한 하이라이트와 반사광 정보를 담은 패스"
+    },
+    {
+      "name": "Z",
+      "desc": "카메라와 오브젝트 간의 거리(Depth)를 그레이스케일로 표현하는 패스"
+    },
+    {
+      "name": "Normal",
+      "desc": "표면의 방향 정보를 색상으로 변환하여 조명 수정에 활용하는 패스"
+    },
+    {
+      "name": "CryptoMatte",
+      "desc": "오브젝트나 재질별로 완벽한 ID 마스크를 자동으로 생성해 주는 패스"
+    },
+    {
+      "name": "Emission",
+      "desc": "오브젝트 자체가 발광하는 빛의 요소를 분리하여 담는 패스"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 눈동자 반사광(Specular) 강도 조절",
+      "steps": [
+        "Render Setup에서 Specular AOV를 추가하고 렌더링합니다.",
+        "Nuke나 Photoshop 등의 합성 프로그램에서 Specular 패스를 불러옵니다.",
+        "레벨이나 게인(Gain) 노드를 이용해 눈동자의 하이라이트 밝기만 별도로 조절합니다."
+      ]
+    },
+    {
+      "title": "원거리 배경 깊이감(Depth of Field) 후가공",
+      "steps": [
+        "AOV 설정에서 Z 패스를 추가하고 카메라의 클립 플레인(Clip Plane) 거리를 조절합니다.",
+        "합성 프로그램의 렌즈 블러(Lens Blur) 노드에 Z 패스를 연결합니다.",
+        "초점 거리를 조정하여 자연스러운 아웃포커싱 효과를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "AOV 파일 형식을 JPG로 설정함 → EXR 등 멀티채널을 지원하는 32비트 포맷으로 변경합니다.",
+    "라이팅 조절 후 합성 시 알파 채널이 깨짐 → Background와 Alpha 패스가 올바르게 포함되었는지 Render Settings에서 확인합니다.",
+    "Z 패스 깊이감이 이상하게 나옴 → Camera의 Near/Far 클립 값이 올바르게 설정되었는지 확인합니다."
+  ],
+  "related": [
+    "Render Setup",
+    "Arnold Renderer",
+    "Nuke",
+    "CryptoMatte"
+  ],
+  "videos": [
+    {
+      "id": "hORptT7eQu4",
+      "title": "Maya - AOVs Tutorial",
+      "author": "Maxon Redshift"
+    },
+    {
+      "id": "2w_T3RvIDYI",
+      "title": "Maya Arnold AOVs - Render Passes, Z Depth and Cryptomatte",
+      "author": "MAYAIN"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20AOVs",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-09T10:27:11.012282+00:00"
+}
