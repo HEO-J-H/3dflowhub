@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-bevel-pro-25bc",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Bevel Pro",
+  "title": "Bevel Pro — 하드서피스 베벨",
+  "summary": "ZBrush의 Bevel Pro 플러그인은 하드서피스 모델링에서 각진 모서리를 정교하게 다듬고 부드러운 베벨을 생성해 주는 필수 기능입니다. 복잡한 기하학적 구조를 유지하면서 깔끔한 면 분할을 빠르게 처리할 수 있습니다.",
+  "when": [
+    "총기, 메카닉 등 하드서피스 에셋의 날카로운 모서리를 부드럽게 정리할 때",
+    "서브디비전(Subdivision) 적용 시 모서리가 너무 뭉개지지 않도록 단단한 에지를 만들 때",
+    "폴리곤 흐름을 유지하며 효율적으로 베벨과 챔퍼 효과를 주고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush의 Zplugin 메뉴를 엽니다.",
+    "Zplugin 탭에서 Bevel Pro 플러그인을 선택하여 인터페이스를 활성화합니다.",
+    "Tool 패널에서 베벨을 적용할 하드서피스 모델을 선택합니다.",
+    "Bevel Pro 패널에서 Width 및 Segments 값을 조절하여 모서리의 크기와 부드러움을 설정합니다.",
+    "실시간 미리보기를 확인한 뒤 Apply 버튼을 눌러 베벨을 메시 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "모서리에서 베벨이 적용되는 전체 너비와 범위를 결정합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "베벨 영역에 생성되는 폴리곤 루프의 개수로, 부드러움의 정도를 조절합니다."
+    },
+    {
+      "name": "Profile",
+      "desc": "베벨 단면의 곡선 형태를 오목하거나 볼록하게 설정합니다."
+    },
+    {
+      "name": "Mitering",
+      "desc": "여러 모서리가 만나는 교차 지점의 형태를 정리합니다."
+    },
+    {
+      "name": "Group",
+      "desc": "베벨로 생성된 면을 별도의 Polygroup으로 자동 분류합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "총기 수냉식 배럴 제작",
+      "steps": [
+        "실린더 형태의 하드서피스 메쉬를 준비합니다.",
+        "Bevel Pro를 실행하고 모서리 에지를 선택합니다.",
+        "Width를 좁게 설정하고 Segments를 2로 주어 단단한 하이라이트 에지를 만듭니다."
+      ]
+    },
+    {
+      "title": "SF 패널 라인 및 홈 파기",
+      "steps": [
+        "메카닉 패널의 경계면 모서리를 선택합니다.",
+        "Profile을 조정하여 날카로운 요철 느낌의 베벨을 적용합니다.",
+        "Polygroup 옵션을 켜서 추후 텍스처링 시 마스크로 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "세그먼트(Segments)를 너무 높게 설정함 → 불필요한 폴리곤이 늘어나므로 1~3 사이의 적정 값을 유지하세요.",
+    "스케일이 정규화되지 않은 상태에서 적용함 → Transform 메뉴에서 Unified Skin 또는 Scale을 초기화한 후 실행하세요.",
+    "모서리가 겹치는 영역에서 깨짐 현상 발생 → Mitering 옵션을 변경하여 교차 지점 계산 방식을 조정하세요."
+  ],
+  "related": [
+    "ZModeler",
+    "Polish",
+    "Dynamic Subdivision",
+    "Crease"
+  ],
+  "videos": [
+    {
+      "id": "ysxV993RL0U",
+      "title": "Zbrush 2022 New Feature | How to Use Bevel Pro in Zbrush 2022",
+      "author": "Nexttut"
+    },
+    {
+      "id": "6uvPmEqD4nY",
+      "title": "ZBrush 2022 - Bevel Pro! Bevel ANYthing with a polygroup border - high res, boolean, dynamesh, etc!",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Bevel%20Pro",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Zplugin",
+    "Bevel Pro"
+  ],
+  "at": "2026-11-09T08:36:30.147763+00:00"
+}

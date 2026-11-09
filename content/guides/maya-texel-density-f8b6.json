@@ -1,0 +1,96 @@
+{
+  "id": "maya-texel-density-f8b6",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Texel Density",
+  "title": "Texel Density",
+  "summary": "Texel Density는 3D 모델의 모든 면에 적용되는 텍스처 Resolution의 밀도를 균일하게 맞추어 주는 핵심 작업입니다. 게임이나 실시간 렌더링에서 텍스처가 깨지거나 늘어나는 것을 방지합니다.",
+  "when": [
+    "캐릭터나 배경 오브젝트의 텍스처 Resolution 디테일을 일관되게 맞출 때",
+    "여러 파트로 나뉜 모델을 하나의 UV 셰트로 묶기 전 단위를 통일할 때",
+    "게임 엔진(Unreal Engine, Unity)으로 Export 전 텍스처 품질을 최적화할 때"
+  ],
+  "steps": [
+    "UV Editor를 엽니다: 상단 메뉴 Windows > UV Editor를 선택합니다.",
+    "텍셀 밀도를 맞출 오브젝트나 UV 셸(Shell) 전체를 선택합니다.",
+    "상단 UV Editor 메뉴에서 Tools > Unitize 또는 UV Toolkit을 엽니다.",
+    "UV Toolkit 패널에서 Transform 탭 또는 Texel Density 항목을 찾습니다.",
+    "목표로 하는 픽셀 값(예: 5.12 px/cm 또는 1024 맵 기준)을 입력하고 Get 또는 Set 버튼을 누릅니다.",
+    "Viewport와 UV Editor에서 텍스처 밀도가 균일하게 정렬되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Texel Density",
+      "desc": "단위 면적당 할당되는 텍스처 픽셀의 밀도 값입니다."
+    },
+    {
+      "name": "Get",
+      "desc": "선택한 UV 셸의 현재 텍셀 밀도 값을 읽어옵니다."
+    },
+    {
+      "name": "Set",
+      "desc": "입력한 목표 텍셀 밀도 값에 맞춰 선택한 UV 셸의 크기를 조절합니다."
+    },
+    {
+      "name": "Texture Map Size",
+      "desc": "기준이 되는 텍스처 Resolution 크기(예: 2048, 1024)를 설정합니다."
+    },
+    {
+      "name": "Sample UV",
+      "desc": "특정 면의 UV 밀도를 샘플링하여 다른 면에 동일하게 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 배경 건물 파트 크기 맞추기",
+      "steps": [
+        "건물의 벽과 기둥 오브젝트를 모두 선택합니다.",
+        "UV Editor를 열고 표준 텍셀 밀도(예: 10.24 px/cm) 값을 설정합니다.",
+        "Set 버튼을 눌러 모든 벽과 기둥의 UV 크기를 동일한 비율로 맞춥니다."
+      ]
+    },
+    {
+      "title": "캐릭터 소품 디테일 통일하기",
+      "steps": [
+        "무기와 벨트 등 작은 소품들의 UV를 전개합니다.",
+        "중요한 무기 파트의 현재 텍셀 밀도를 Get으로 확인합니다.",
+        "벨트의 UV를 선택하고 동일한 값으로 Set을 적용해 텍스처 선명도를 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트에 스케일 값이 남아있는 상태에서 텍셀 밀도를 적용함 → Modify > Freeze Transformations를 먼저 실행하여 스케일을 1로 초기화합니다.",
+    "서로 다른 텍스처 Resolution 기준을 혼용함 → 프로젝트 전체가 공통으로 사용할 텍셀 밀도 기준값(예: 5.12 또는 10.24)을 정해두고 작업합니다."
+  ],
+  "related": [
+    "UV Editor",
+    "Layout",
+    "Auto Unwrap",
+    "Freeze Transformations"
+  ],
+  "videos": [
+    {
+      "id": "fKj2C66n3qU",
+      "title": "Setting up texel density in Maya #maya #uv #modeling",
+      "author": "Cryptic Visionary"
+    },
+    {
+      "id": "5e6zvJqVqlA",
+      "title": "What is Texel Density and How to Master it",
+      "author": "malcolm341"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Texel%20Density",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "UV Editor",
+    "Windows",
+    "UV",
+    "Shell",
+    "Tools",
+    "Unitize"
+  ],
+  "at": "2026-11-09T08:36:25.978855+00:00"
+}
