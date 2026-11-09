@@ -1,0 +1,37 @@
+{
+  "id": "blender-python-traceback-keyerror-bpy-prop-collect-d3a59",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... KeyError: 'bpy_prop_collection[key]: key \"...\" not found'",
+  "title": "Python: Traceback ... KeyError: 'bpy_prop_collection[key]' 오류 해결",
+  "summary": "Blender Python Script 실행 중 존재하지 않는 키 값을 딕셔너리 형태로 조회하려고 할 때 발생하는 KeyError입니다. 주로 씬에 없는 오브젝트 이름이나 데이터 블록을 직접 호출할 때 발생합니다.",
+  "causes": [
+    "bpy.data.objects['이름'] 등에서 오타나 삭제된 오브젝트 이름을 직접 지정한 경우",
+    "다른 파일에서 에셋을 가져오거나 이름을 변경한 후 Script의 하드코딩된 이름이 업데이트되지 않은 경우",
+    "존재 여부를 확인하지 않고 컬렉션에서 키를 바로 조회한 경우"
+  ],
+  "steps": [
+    "에러 메시지 Traceback에서 문제가 발생한 코드 라인과 찾지 못한 키('...') 이름을 확인합니다.",
+    "Blender Outliner 창에서 해당 이름의 오브젝트나 데이터 블록이 실제로 존재하는지 확인합니다.",
+    "직접 조회가 아닌 안전한 접근 방식을 사용합니다. 예: obj = bpy.data.objects.get('대상_이름')",
+    "obj가 None인지 확인하는 조건문(if obj is not None:)을 추가하여 에러를 방지합니다."
+  ],
+  "check": [
+    "Script를 다시 실행했을 때 KeyError가 발생하지 않고 코드가 정상적으로 완료되는지 확인합니다.",
+    "존재하지 않는 이름일 때 예외 처리가 올바르게 동작하는지 콘솔창을 통해 확인합니다."
+  ],
+  "prevent": [
+    "하드코딩된 문자열 대신 변수나 선택된 오브젝트(bpy.context.active_object)를 활용하여 Script를 작성합니다.",
+    "컬렉션 접근 시 대괄호([]) 대신 .get() 메서드를 사용하여 예외 상황에 대비합니다."
+  ],
+  "keywords": [
+    "Blender Python 에러",
+    "KeyError not found",
+    "bpy_prop_collection key not found",
+    "Blender Python 오류",
+    "오브젝트 이름 찾기 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-09T08:07:41+00:00"
+}

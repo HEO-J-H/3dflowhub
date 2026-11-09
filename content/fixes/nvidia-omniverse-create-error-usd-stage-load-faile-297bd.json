@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-create-error-usd-stage-load-faile-297bd",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Create Error: USD stage load failed due to unresolved asset paths",
+  "title": "Create Error: USD stage load failed due to unresolved asset paths",
+  "summary": "NVIDIA Omniverse에서 USD 파일을 불러올 때 내부 에셋(텍스처, 레퍼런스 등)의 파일 경로를 찾지 못해 스테이지 로딩이 실패하는 오류입니다. 주로 상대 경로의 기준점이 어긋났거나 파일이 이동·삭제되었을 때 발생합니다.",
+  "causes": [
+    "참조(Reference)되거나 서브레이어(Sublayer)로 연결된 USD 파일 및 에셋의 실제 경로가 변경되었거나 삭제된 경우",
+    "절대 경로 대신 잘못된 상대 경로를 사용하여 프로젝트 폴더 구조가 바뀔 때 경로를 찾지 못하는 경우",
+    "네트워크 드라이브나 외부 저장소 연결이 끊겨 에셋 파일에 접근할 수 없는 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 오류가 발생한 Prim을 선택하고 Property 패널에서 References 또는 Sublayers 속성을 확인합니다.",
+    "연결된 에셋의 파일 경로가 올바른지 확인하고, 파일이 실제로 해당 디렉토리에 존재하는지 체크합니다.",
+    "경로가 잘못되었다면 Property 패널에서 경로 입력 필드를 수정하거나 우클릭하여 경로를 재지정(Relink)합니다.",
+    "상대 경로 문제인 경우 프로젝트 루트 폴더 기준으로 경로를 다시 설정하거나 절대 경로로 일시 전환하여 테스트합니다."
+  ],
+  "check": [
+    "Stage 패널에서 더 이상 에셋 로드 경고나 빨간색 오류 아이콘이 표시되지 않는지 확인합니다.",
+    "Viewport에 누락된 에셋이나 텍스처가 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트를 다른 위치로 이동할 때는 반드시 USD 파일과 외부 에셋(텍스처 등)을 함께 패키징하거나 Omniverse Nucleus 서버를 통해 관리합니다.",
+    "에셋 링크 시 가급적 프로젝트 루트 기준의 상대 경로를 사용하고 폴더 구조를 임의로 변경하지 않습니다."
+  ],
+  "keywords": [
+    "Omniverse USD 로드 실패",
+    "unresolved asset paths 오류",
+    "USD stage load failed",
+    "옴니버스 경로 오류",
+    "Omniverse 레퍼런스 누락"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-09T08:07:37+00:00"
+}

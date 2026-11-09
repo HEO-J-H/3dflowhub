@@ -1,0 +1,35 @@
+{
+  "id": "blender-cannot-edit-mesh-data-in-edit-mode-because-cc3fa",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Cannot edit mesh data in edit mode because it has shape keys",
+  "title": "Cannot edit mesh data in edit mode because it has shape keys 오류 해결",
+  "summary": "Cannot edit mesh data in edit mode because it has shape keys 메시지는 Blender에서 Shape Keys가 존재하는 메쉬 오브젝트를 에디트 모드(Edit Mode)에서 Topology 변경이나 Vertex 추가/삭제 등으로 편집하려고 할 때 발생하는 오류입니다.",
+  "causes": [
+    "Shape Keys가 설정된 메쉬 오브젝트의 Topology(Vertex, Edge, Face의 수나 연결 구조)를 변경하려고 시도함",
+    "Basis 셰이프 외에 다른 Shape Key가 활성화되어 있거나 메쉬 구조가 잠긴 상태에서 편집을 시도함"
+  ],
+  "steps": [
+    "Properties 패널에서 Object Data Properties(초록색 삼각형 아이콘) 탭으로 이동합니다.",
+    "Shape Keys 패널에서 등록된 모든 Shape Key를 확인합니다.",
+    "Topology를 반드시 수정해야 하는 경우, 기존 Shape Keys 목록을 '-' 버튼을 눌러 모두 삭제하거나 초기화합니다.",
+    "또는 메쉬의 형태를 유지한 채 수정하려면, Shape Keys를 보존한 상태에서 스디비전(Subdivision)이나 위치 이동 등 허용되는 작업만 수행합니다."
+  ],
+  "check": [
+    "Tab 키를 눌러 Edit Mode로 진입했을 때 경고 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "Vertex나 Edge를 정상적으로 선택하고 조작할 수 있는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "메쉬의 기본 Topology 수정 작업은 Shape Keys를 생성하기 전에 완료합니다.",
+    "Shape Keys 작업이 필요한 메쉬는 최종 지오메트리 확정 후에 진행합니다."
+  ],
+  "keywords": [
+    "Blender Shape Keys 에러",
+    "Cannot edit mesh data shape keys",
+    "Blender 셰이프키 에디트모드 오류",
+    "메시 편집 불가 셰이프키"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-09T08:07:43+00:00"
+}

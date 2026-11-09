@@ -24117,5 +24117,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 오픈소스 연동 방안 검토 문서 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T08:06:15+00:00",
+    "kind": "proposal",
+    "id": "p-fd4f3e9f0e",
+    "title": "웹 PBR 파이프라인 단위 테스트 범위 확장",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 PR #54를 통해 웹 PBR 높이맵 생성 및 텍스트 브라우저 렌더링 테스트가 머지되었으나 추가적인 엣지 케이스 검증이 필요합니다.",
+    "proposal": "web/tests/ 폴더에 다양한 이미지 Resolution 및 비정상 입력값에 대한 PBR 높이맵 변환 예외 처리 단위 테스트 코드를 추가합니다.",
+    "expected": "웹 브라우저 기반 3D 메시 및 PBR 텍스처 변환의 안정성이 더욱 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T08:06:15+00:00",
+    "kind": "proposal",
+    "id": "p-b9cf867a41",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 FastAPI 백엔드에서 TripoSR 실행 시 GPU VRAM 부족 등 예외 상황에 대한 명확한 에러 핸들링과 테스트 보강이 필요합니다.",
+    "proposal": "backend/app/services/triposr_runner.py 및 관련 테스트 파일에서 GPU 미지원 또는 VRAM 초과 시 명확한 오류 반환 코드를 보완합니다.",
+    "expected": "로컬 환경에서 사용자에게 정확한 오류 메시지를 제공하여 디버깅 시간이 단축됩니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T08:08:34.544884+00:00",
+    "kind": "decision",
+    "id": "p-fd4f3e9f0e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 파이프라인 단위 테스트 확장",
+    "auto": true
+  },
+  {
+    "at": "2026-11-09T08:08:34.563599+00:00",
+    "kind": "decision",
+    "id": "p-b9cf867a41",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]

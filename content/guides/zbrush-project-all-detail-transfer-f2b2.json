@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-project-all-detail-transfer-f2b2",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Project All (detail transfer)",
+  "title": "Project All — 디테일 옮기기",
+  "summary": "ZBrush의 Project All 기능은 서로 다른 두 서브툴(SubTool) 사이에서 디테일과 형태 정보를 투영하여 옮겨주는 기능입니다. 고해상도 메쉬의 세밀한 조형을 저해상도 메쉬로 전달할 때 주로 사용합니다.",
+  "when": [
+    "하이 폴리곤 스컬프팅 디테일을 로우 폴리곤 베이스 메쉬에 옮길 때",
+    "리토폴로지 완료 후 기존 조형의 디테일을 새 메쉬로 투영할 때",
+    "파츠가 분리된 두 모델의 형태를 하나로 맞추어 정리할 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 원본 디테일이 있는 서브툴과 디테일을 받을 타겟 서브툴을 준비합니다.",
+    "SubTool 패널에서 디테일을 받을 타겟 서브툴을 활성화(선택)합니다.",
+    "SubTool 패널에서 Merge 등을 통해 비교할 서브툴들을 정렬하거나 위치를 정확히 맞춥니다.",
+    "Tool 팔레트에서 SubTool 메뉴를 열고 Projection 서브 메뉴를 확장합니다.",
+    "Project All 버튼을 클릭하여 원본 서브툴의 디테일을 타겟 서브툴로 투영합니다."
+  ],
+  "params": [
+    {
+      "name": "Dist",
+      "desc": "투영 시 허용할 최대 거리 임계값으로, 값이 너무 작으면 디테일이 누락됩니다."
+    },
+    {
+      "name": "Clr",
+      "desc": "높낮이 디테일뿐만 아니라 색상(Polypaint) 정보까지 함께 투영합니다."
+    },
+    {
+      "name": "Blt",
+      "desc": "투영된 결과물의 경계면을 부드럽게(Blur) 블렌딩하여 거친 자국을 줄입니다."
+    },
+    {
+      "name": "Smt",
+      "desc": "투영 과정에서 발생할 수 있는 노이즈나 울퉁불퉁한 면을 완화합니다."
+    },
+    {
+      "name": "Projection Shell",
+      "desc": "쉘 두께를 기준으로 투영 범위를 제한하여 외곽선 오류를 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "리토폴로지 모델에 스컬프팅 디테일 복원",
+      "steps": [
+        "하이 폴리곤 서브툴과 새로 짠 로우 폴리곤 서브툴의 위치를 완전히 겹칩니다.",
+        "로우 폴리곤 서브툴의 SubDivision 레벨을 단계별로 올려가며 Subdiv를 확보합니다.",
+        "Project All을 실행하여 각 레벨마다 디테일을 차례대로 투영합니다."
+      ]
+    },
+    {
+      "title": "옷 주름 디테일 전송",
+      "steps": [
+        "기본 체형 위에 스컬프팅된 옷 매쉬를 얹습니다.",
+        "Dist 값을 조절하여 옷의 미세한 주름이 안쪽의 신체 모델에 정확히 닿도록 맞춥니다.",
+        "Project All을 눌러 옷의 압착 및 주름 형태를 전송합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브툴의 위치나 크기가 일치하지 않음 → Gizmo 3D를 이용해 두 서브툴의 위치와 비례를 정확히 일치시킨 후 다시 시도합니다.",
+    "타겟 서브툴의 폴리곤 밀도가 너무 낮음 → Divide(Ctrl+D)를 이용해 서브디비전 레벨을 충분히 높인 뒤 Project All을 실행합니다."
+  ],
+  "related": [
+    "SubTool",
+    "Morph Target",
+    "ZRemesh",
+    "Append"
+  ],
+  "videos": [
+    {
+      "id": "R2MzFqWMaWY",
+      "title": "#AskZBrush - \"How can I ZRemesh a model then transfer the details back?\"",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "t3Q8xzPwt2A",
+      "title": "Project in zBrush!! 🔥 Transfer details between different meshes.",
+      "author": "3D Tutorials by Alan Balodi"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Project%20All%20%28detail%20transfer%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "SubTool",
+    "Merge",
+    "Projection"
+  ],
+  "at": "2026-11-09T08:06:38.207218+00:00"
+}

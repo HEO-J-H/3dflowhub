@@ -1,0 +1,97 @@
+{
+  "id": "maya-automatic-and-planar-mapping-3727",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Automatic and Planar mapping",
+  "title": "Automatic·Planar 매핑",
+  "summary": "Maya의 Automatic Mapping과 Planar Mapping은 3D 모델에 텍스처를 입히기 위한 UV 좌표를 빠르고 직관적으로 생성하는 핵심 기능입니다.",
+  "when": [
+    "복잡한 CAD 모델이나 다면체 오브젝트에 빠르게 기본 UV를 펼쳐야 할 때",
+    "평면적인 형태의 오브젝트(예: 벽, 간판, 바닥)에 텍스처를 왜곡 없이 투사할 때",
+    "수동 UV 펼치기(Unfold) 작업 전, 기본 셸(Shell) 단위를 빠르게 분할할 때"
+  ],
+  "steps": [
+    "Object 모드에서 UV를 생성할 3D 모델을 선택합니다.",
+    "상단 메뉴 바에서 UV > UV Editor 를 실행합니다 (Shift+U Hotkey 사용 가능).",
+    "Automatic Mapping의 경우: UV Editor 창의 상단 메뉴에서 Create > Automatic Mapping 을 클릭합니다.",
+    "Planar Mapping의 경우: UV Editor 창의 상단 메뉴에서 Create > Planar 를 클릭하여 프로젝션 플레인을 생성합니다.",
+    "뷰포트나 채널 박스에서 투사 방향과 옵션을 조정하여 UV 비율을 정돈합니다.",
+    "UV Shell들을 배치하고 정렬하여 텍스처 공간(0~1 Uv 영역)에 맞게 최적화합니다."
+  ],
+  "params": [
+    {
+      "name": "Projection Plane",
+      "desc": "Planar Mapping 시 텍스처가 투사되는 가상의 평면 방향과 위치를 결정합니다."
+    },
+    {
+      "name": "Automatic Mapping - Planes",
+      "desc": "오브젝트를 여러 방향에서 투사할 때 사용하는 프로젝션 평면의 개수를 설정합니다."
+    },
+    {
+      "name": "Automatic Mapping - Distortion",
+      "desc": "UV 셸이 늘어나거나 왜곡되는 정도를 최소화하도록 배치 비율을 조절합니다."
+    },
+    {
+      "name": "Keep Proportion",
+      "desc": "모델의 실제 3D 비율을 유지하면서 UV 셸 크기를 균일하게 맞춥니다."
+    },
+    {
+      "name": "Fit Box",
+      "desc": "선택한 모델의 바운딩 박스 크기에 맞춰 프로젝션 영역을 자동으로 일치시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "박스 형태의 하드서페이스 모델 UV 생성",
+      "steps": [
+        "오브젝트를 선택하고 UV Editor를 엽니다.",
+        "Create > Automatic Mapping 을 실행합니다.",
+        "생성된 여러 개의 UV Shell을 Layout 기능을 이용해 정리합니다."
+      ]
+    },
+    {
+      "title": "평면 간판 모델에 텍스처 투사",
+      "steps": [
+        "간판 모델의 앞면을 정면으로 Viewport를 맞춥니다.",
+        "Create > Planar Mapping 옵션 박스를 열고 Z축(또는 카메라 방향)을 선택합니다.",
+        "Project 버튼을 눌러 UV를 생성하고 스케일을 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 셸이 너무 잘게 쪼개지는 현상 (Automatic Mapping) → Planes 값을 낮추거나 수동으로 셸을 Stitch 하여 병합합니다.",
+    "텍스처가 늘어나 보이는 현상 (Planar Mapping) → 모델의 비율과 Planar Projection의 Box 비율이 맞지 않아서 발생하며, Fit Box 기능을 다시 적용합니다.",
+    "오브젝트의 스케일이 균일하지 않은 상태에서 UV 생성 → UV 작업 전 Modify > Freeze Transformations 를 먼저 수행해야 합니다."
+  ],
+  "related": [
+    "UV Editor",
+    "Unfold",
+    "Layout",
+    "Bake Texture"
+  ],
+  "videos": [
+    {
+      "id": "psGbZF7xKV8",
+      "title": "Maya - Automatic UV Unwrapping Models",
+      "author": "James, How Do I?"
+    },
+    {
+      "id": "wGBOMlxEe6o",
+      "title": "Learning Maya  Automatic Mapping",
+      "author": "Vad Almafa"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Automatic%20and%20Planar%20mapping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "UV",
+    "UV Editor",
+    "U Hotkey",
+    "Automatic Mapping",
+    "Create"
+  ],
+  "at": "2026-11-09T08:06:28.060624+00:00"
+}
