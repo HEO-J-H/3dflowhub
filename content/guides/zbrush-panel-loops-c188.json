@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-panel-loops-c188",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Panel Loops",
+  "title": "Panel Loops — 판 두께",
+  "summary": "Panel Loops는 선택한 폴리곤 패널의 경계에 새로운 엣지 루프를 자동으로 삽입해 디테일링이나 베벨링을 쉽게 할 수 있는 ZModeler 기능입니다.",
+  "when": [
+    "폴리곤 면을 따라 추가적인 디테일을 넣고 싶을 때",
+    "베벨이나 스무딩을 위해 균일한 엣지 루프가 필요할 때",
+    "모델의 특정 부위(예: 팔, 다리, 튜브) 주변에 균등한 서브디비전을 만들고 싶을 때"
+  ],
+  "steps": [
+    "B → Z → M 로 ZModeler 브러시 선택",
+    "툴 바에서 Action → Insert Edge Loop 선택",
+    "Sub‑Action 로 Panel Loops 선택",
+    "Ctrl 키를 누른 채로 루프를 만들고 싶은 폴리곤 패널 클릭",
+    "Parameters 팔레트에서 Segments, Offset 등 원하는 값 조정",
+    "Enter 키로 적용 후 Viewport에서 새 엣지 루프 확인"
+  ],
+  "params": [
+    {
+      "name": "Segments",
+      "desc": "생성할 루프의 세그먼트 수, 값이 클수록 더 많은 엣지가 추가됩니다"
+    },
+    {
+      "name": "Offset",
+      "desc": "패널 경계에서 루프가 떨어지는 거리(0~1 범위)"
+    },
+    {
+      "name": "Loop Type",
+      "desc": "Loop Edge, Loop Face 중 선택, Edge는 선형, Face는 면 기반 루프 생성"
+    },
+    {
+      "name": "Crease",
+      "desc": "새 루프에 적용할 크리즈 강도, 값이 높을수록 경계가 뚜렷해집니다"
+    },
+    {
+      "name": "Smooth",
+      "desc": "루프 생성 후 자동 스무딩 여부, 켜면 부드러운 형태 유지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "튜브(파이프) 표면에 균일한 루프 추가",
+      "steps": [
+        "ZModeler 브러시로 파이프 옆면 폴리곤 선택",
+        "Panel Loops → Segments 4, Offset 0.2 설정",
+        "Enter 로 적용 → 파이프 주변에 4개의 균일 루프가 생성"
+      ]
+    },
+    {
+      "title": "캐릭터 팔에 베벨용 루프 삽입",
+      "steps": [
+        "팔의 외곽 폴리곤 패널 선택",
+        "Panel Loops → Loop Type = Loop Edge, Crease 80 설정",
+        "Enter 로 적용 → 베벨링 전용 강한 엣지 루프가 생성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 폴리곤을 선택 → 루프가 원치 않는 위치에 생성 → 올바른 패널을 다시 선택하고 재시도",
+    "Segments 값을 과도하게 높임 → 메쉬가 무거워짐 → 필요한 최소 세그먼트만 사용",
+    "Offset 값을 0으로 설정 → 루프가 기존 엣지와 겹쳐 보임 → 0.1~0.3 사이 값으로 조정"
+  ],
+  "related": [
+    "Insert Edge Loop",
+    "Extract",
+    "Crease",
+    "Subdivision Levels"
+  ],
+  "videos": [
+    {
+      "id": "y-fjgzHxLz0",
+      "title": "ZBrush for beginners_#36 | Panel Loops",
+      "author": "Albert Coen - All about 3D"
+    },
+    {
+      "id": "otVCYf5YtP0",
+      "title": "Panel Loops: ZBrush Course",
+      "author": "Sketchzombie"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Panel%20Loops",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZModeler",
+    "Action",
+    "Insert Edge Loop",
+    "Sub",
+    "Panel Loops"
+  ],
+  "at": "2026-11-09T01:57:04.679917+00:00"
+}
