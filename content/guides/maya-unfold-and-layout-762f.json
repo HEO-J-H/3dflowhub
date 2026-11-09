@@ -1,0 +1,101 @@
+{
+  "id": "maya-unfold-and-layout-762f",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Unfold and Layout",
+  "title": "Unfold·Layout",
+  "summary": "Maya의 Unfold와 Layout은 3D 모델의 UV 껍질(UV Shell)을 왜곡 없이 평평하게 펼치고, 0-1 UV 공간 안에 겹치지 않게 정렬하는 필수적인 UV 편집 기능입니다.",
+  "when": [
+    "캐릭터나 복잡한 오브젝트의 심(Seam)을 자른 뒤 텍스처 왜곡 없이 평면으로 펼치고 싶을 때",
+    "여러 개의 UV 껍질들을 0-1 UV 공간 안에 낭비 없이 효율적으로 팩킹(Packing)하고 싶을 때",
+    "텍스처 Resolution 손실을 막기 위해 모든 UV 껍질의 텍셀 밀도(Texel Density)를 균일하게 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Object 모드에서 모델을 선택한 뒤, 상단 메뉴에서 UV → UV Editor 를 실행하여 UV Editor 창을 엽니다.",
+    "UV Editor 창 안에서 Edge 컴포넌트 모드로 전환한 후, 텍스처를 펼칠 기준이 되는 모서리를 선택하고 Cut & Sew → Cut 을 실행하여 심(Seam)을 만듭니다.",
+    "UV 껍질(UV Shell) 단위로 선택하려면 모델 위에서 Mouse 우클릭을 하고 UV Shell을 선택합니다.",
+    "상단 메뉴 또는 UV Toolkit에서 Unfold 를 클릭하거나 Hotkey를 활용해 선택한 UV 껍질을 왜곡 없이 펼칩니다.",
+    "펼쳐진 UV 껍질들이 서로 겹치지 않고 정돈되도록 Arrange and Layout 메뉴에서 Layout 옵션을 실행합니다.",
+    "UV Editor Viewport에서 0-1 사각형 영역 안에 모든 UV 껍질이 정렬된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Unfold",
+      "desc": "선택한 UV 껍질의 면적과 길이를 최대한 유지하면서 왜곡 없이 평평하게 펼칩니다."
+    },
+    {
+      "name": "Layout",
+      "desc": "여러 개의 UV 껍질을 0-1 UV 공간 안에 겹치지 않도록 자동으로 배치하고 크기를 정렬합니다."
+    },
+    {
+      "name": "Cut",
+      "desc": "선택한 엣지(Edge)를 기준으로 UV를 잘라내어 새로운 심(Seam)을 생성합니다."
+    },
+    {
+      "name": "Sew",
+      "desc": "떨어져 있는 두 UV 엣지를 서로 붙여 하나의 껍질로 연결합니다."
+    },
+    {
+      "name": "Optimize",
+      "desc": "펼쳐진 UV의 남은 왜곡과 겹침(Overlap)을 완화하고 형태를 부드럽게 다듬습니다."
+    },
+    {
+      "name": "Texel Density",
+      "desc": "모델 전체의 텍스처 픽셀 밀도를 통일하여 Resolution 편차를 없앱니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원기둥 파이프 UV 펼치기",
+      "steps": [
+        "파이프의 측면을 따라 일직선으로 엣지를 선택하고 Cut을 실행합니다.",
+        "파이프 양쪽 끝의 캡(Cap)과 원통형 몸통의 경계 엣지를 잘라냅니다.",
+        "UV Shell 모드에서 전체를 선택한 후 Unfold를 실행하여 직사각형 형태로 곱게 펼칩니다."
+      ]
+    },
+    {
+      "title": "여러 개의 소품 UV 배치(Packing)하기",
+      "steps": [
+        "씬에 있는 여러 모델들의 UV를 각각 알맞게 펴줍니다.",
+        "모든 UV Shell을 드래그하여 전체 선택합니다.",
+        "Layout 옵션을 실행하여 0-1 UV 공간 안에 간격(Padding)을 두고 자동 정렬되도록 마무리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "심(Seam)을 전혀 자르지 않고 Unfold를 실행함 → 겹침(Overlap)과 심한 왜곡 발생. 해결 방법: 모델의 안쪽이나 안 보이는 곳에 엣지 심을 먼저 만들고 Unfold를 실행하세요.",
+    "Layout 실행 시 0-1 영역을 벗어남 → 텍스처가 깨지거나 타일링 오류 발생. 해결 방법: Layout 옵션 창에서 Shell Pre-scale 설정을 확인하고 0-1 UV 공간 내부로 제한되도록 설정하세요.",
+    "오브젝트에 스케일 값이 남아있음(Non-uniform Scale) → UV가 한쪽으로 찌그러져서 펼쳐짐. 해결 방법: Object 모드로 돌아가서 Modify → Freeze Transformations를 먼저 실행한 뒤 UV를 작업하세요."
+  ],
+  "related": [
+    "Automatic Mapping",
+    "Planar Mapping",
+    "Unitize",
+    "Flip And Rotate"
+  ],
+  "videos": [
+    {
+      "id": "I2XUHDm4gEU",
+      "title": "UV Unwrap - Unfold a Horse (MAYA) *UPDATE",
+      "author": "Soren T"
+    },
+    {
+      "id": "mJ3PJD0WEmk",
+      "title": "Maya UV Mapping Tutorial: How to Layout Your UVs Quickly",
+      "author": "Kurt B"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Unfold%20and%20Layout",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Object",
+    "UV",
+    "UV Editor",
+    "Edge",
+    "Cut",
+    "Sew"
+  ],
+  "at": "2026-11-09T08:26:42.561877+00:00"
+}

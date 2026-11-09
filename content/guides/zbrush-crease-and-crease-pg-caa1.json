@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-crease-and-crease-pg-caa1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Crease and Crease PG",
+  "title": "Crease — 날카로운 모서리",
+  "summary": "ZBrush의 Crease와 Crease PG는 Subdivision Surface 적용 시 특정 엣지나 폴리그룹 경계에 주름(각)을 잡아 추가 에지 루프 없이도 날카로운 하드서페이스 형태를 유지하는 기능입니다.",
+  "when": [
+    "기계 부품이나 갑옷처럼 단단한 모서리가 필요한 하드서페이스 모델링을 할 때",
+    "대원형 폴리그룹(Polygroup) 경계를 기준으로 일괄적으로 각을 세우고 싶을 때",
+    "서브디비전(Subdivision) 레벨을 높여도 둥글게 무너지는 모서리를 단단하게 고정할 때"
+  ],
+  "steps": [
+    "ZBrush에서 3D 오브젝트를 불러오고 Tool 팔레트를 엽니다.",
+    "Geometry 탭을 펼치고 Crease 서브 팔레트를 클릭합니다.",
+    "직접 엣지를 선택하거나 Polygroup(PG) 버튼을 눌러 그룹 경계에 주름을 지정합니다.",
+    "Divide (Ctrl + D)를 눌러 서브디비전을 올리면서 모서리가 날카롭게 유지되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Crease",
+      "desc": "선택된 엣지나 마스크된 부위에 주름을 추가하여 서브디비전 시 날카롭게 유지합니다."
+    },
+    {
+      "name": "UnCrease",
+      "desc": "지정된 엣지의 주름을 제거하여 다시 부드러운 형태로 되돌립니다."
+    },
+    {
+      "name": "Crease PG",
+      "desc": "폴리그룹(Polygroup) 경계선을 기준으로 모든 모서리에 일괄적으로 주름을 생성합니다."
+    },
+    {
+      "name": "UnCrease PG",
+      "desc": "폴리그룹 경계선에 적용된 주름을 한꺼번에 제거합니다."
+    },
+    {
+      "name": "CreaseLevel",
+      "desc": "주름이 유지되는 강도나 단계를 설정하여 각의 날카로움을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 패널 라인 각 살리기",
+      "steps": [
+        "ZModeler 브러시(B, Z, M)를 선택합니다.",
+        "엣지 위에 Mouse를 올리고 Spacebar를 눌러 팝업 메뉴를 엽니다.",
+        "Action을 Crease로, Target을 Edge나 Edge Loop로 설정합니다.",
+        "원하는 엣지를 클릭하여 주름을 적용하고 Subdivide로 확인합니다."
+      ]
+    },
+    {
+      "title": "폴리그룹 경계 일괄 각 세우기",
+      "steps": [
+        "Auto Groups 기능 등을 이용해 모델을 여러 개의 Polygroup으로 나눕니다.",
+        "Geometry > Crease 팔레트를 엽니다.",
+        "Crease PG 버튼을 클릭하여 모든 폴리그룹 경계에 주름을 한 번에 생성합니다.",
+        "Ctrl + D를 눌러 서브디비전을 높여 반듯한 각을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서브디비전(Divide)을 너무 낮게 준 상태에서 Crease를 적용해 효과가 안 보임 → Ctrl + D로 서브디비전 레벨을 높인 후 확인하세요.",
+    "불필요한 엣지까지 Crease PG로 각이 잡힘 → Polygroup을 다시 정리하거나 UnCrease로 해당 엣지 주름을 지우세요."
+  ],
+  "related": [
+    "ZModeler",
+    "Dynamic Subdivision",
+    "Polygroup",
+    "Bevel"
+  ],
+  "videos": [
+    {
+      "id": "y_yD4TJJ3iQ",
+      "title": "Geometry - Crease Options in ZBrush",
+      "author": "Reins  Academy"
+    },
+    {
+      "id": "mKrDslQlC94",
+      "title": "CREASE - Edge Action - ZModeler - ZBrush Tutorial for Beginners",
+      "author": "Reins  Academy"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Crease%20and%20Crease%20PG",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Tool",
+    "Geometry",
+    "Crease"
+  ],
+  "at": "2026-11-09T08:26:46.618440+00:00"
+}
