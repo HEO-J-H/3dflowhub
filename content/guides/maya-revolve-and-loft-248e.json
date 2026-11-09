@@ -1,0 +1,100 @@
+{
+  "id": "maya-revolve-and-loft-248e",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Revolve and Loft",
+  "title": "Revolve·Loft",
+  "summary": "Maya의 Revolve와 Loft는 2차원 커브를 회전시키거나 두 개 이상의 커브를 이어 붙여 입체적인 3D 서페이스를 만드는 핵심 모델링 기능입니다.",
+  "when": [
+    "컵이나 병처럼 중심축 기준으로 대칭인 회전체를 만들 때 (Revolve)",
+    "복잡한 곡선 경로를 따라 형태가 변하는 파이프나 인체 뼈대를 만들 때 (Loft)",
+    "여러 개의 단면 커브를 부드럽게 연결하여 유기적인 곡면을 형성할 때 (Loft)"
+  ],
+  "steps": [
+    "Top 뷰나 Side 뷰에서 Create → Curve Tools 로 이동하여 원하는 단면이나 경로 커브(CV Curve Tool 등)를 그립니다.",
+    "Revolve의 경우: 생성한 커브를 선택한 후, 메뉴 세트를 Modeling으로 변경하고 Surfaces → Revolve 옵션 박스를 엽니다.",
+    "Loft의 경우: 순서대로 연결할 두 개 이상의 커브를 다중 선택(Shift+클릭)한 뒤, Surfaces → Loft 옵션을 실행합니다.",
+    "Channel Box 또는 Attribute Editor에서 Axis, Spans, Degree 등의 파라미터를 조절하여 서페이스 디테일을 다듬습니다.",
+    "Viewport에서 3D 서페이스가 올바르게 생성되었는지 확인하고 역사를 지우려면 Edit → Delete by Type → History를 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Axis",
+      "desc": "Revolve 시 기준이 되는 회전 축(X, Y, Z 또는 커브 방향)을 지정합니다."
+    },
+    {
+      "name": "Segments",
+      "desc": "Revolve 생성 시 회전 방향으로 나뉘는 폴리곤 또는 서페이스 분할 수를 결정합니다."
+    },
+    {
+      "name": "Degree",
+      "desc": "커브와 서페이스의 곡률 차수(Linear는 직선형, Cubic은 부드러운 곡선형)를 설정합니다."
+    },
+    {
+      "name": "Start/End Sweep",
+      "desc": "Revolve 시 회전하는 각도의 시작점과 끝점을 지정하여 부분적인 회전체를 만듭니다."
+    },
+    {
+      "name": "Close",
+      "desc": "Loft나 Revolve의 시작과 끝을 원형으로 매끄럽게 연결합니다."
+    },
+    {
+      "name": "History",
+      "desc": "생성 후에도 원본 커브를 수정하면 서페이스가 실시간으로 연동되도록 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유리잔 만들기 (Revolve)",
+      "steps": [
+        "Grid 중앙을 기준으로 유리잔의 반쪽 단면 커브를 그립니다.",
+        "Surfaces → Revolve 를 실행하고 Axis를 Y축으로 설정합니다.",
+        "End Sweep을 360도로 설정하여 완전한 원형 컵을 완성합니다."
+      ]
+    },
+    {
+      "title": "물결치는 뿔 모양 만들기 (Loft)",
+      "steps": [
+        "크기가 다른 원형 커브 두 개를 위아래로 배치합니다.",
+        "작은 커브와 큰 커브를 순서대로 선택합니다.",
+        "Surfaces → Loft를 실행하여 자연스럽게 퍼지는 뿔 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "커브 선택 순서 오류(Loft) → Loft는 커브를 클릭한 순서대로 이어지므로, 원하는 방향에 맞춰 순서대로 Shift+클릭하세요.",
+    "축 설정 오류(Revolve) → 회전 축이 잘못 지정되어 엉뚱한 방향으로 형태가 퍼질 경우 Axis 옵션을 올바른 축으로 변경하세요.",
+    "서페이스 노이즈 발생 → 커브의 CV 포인트가 서로 꼬여(Self-intersection) 있을 경우 커브 정점을 정리한 후 다시 시도하세요."
+  ],
+  "related": [
+    "Extrude",
+    "Bevel",
+    "Curve Warp",
+    "Bilateral"
+  ],
+  "videos": [
+    {
+      "id": "qcnWD_DQ1_k",
+      "title": "Maya Revolve and Loft: Creating Surfaces from Curves",
+      "author": "Phiyen Nguyen"
+    },
+    {
+      "id": "RG71rbUA6xE",
+      "title": "Mastering Maya's Basic Surface Modeling: Uncover the Secrets of Loft, Revolve and Planar!",
+      "author": "Artists Creek"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Revolve%20and%20Loft",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Top",
+    "Side",
+    "Create",
+    "Curve Tools",
+    "CV Curve Tool",
+    "Revolve"
+  ],
+  "at": "2026-11-09T00:15:29.359640+00:00"
+}
