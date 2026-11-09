@@ -24847,5 +24847,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T11:47:17+00:00",
+    "kind": "proposal",
+    "id": "p-04895bd197",
+    "title": "로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "핵심 로컬 파이프라인의 예외 상황 대비 안정성을 강화할 필요가 있습니다.",
+    "proposal": "backend/tests/test_triposr.py 내에 GPU가 없는 환경이나 입력 오류 시 폴백 처리 및 명확한 에러 반환을 검증하는 단위 테스트를 추가합니다.",
+    "expected": "로컬 실행 시 예외 상황에서 시스템 다운 없이 안정적인 에러 메시지를 제공합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T11:47:36.782668+00:00",
+    "kind": "decision",
+    "id": "p-04895bd197",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "auto": true
   }
 ]
