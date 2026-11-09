@@ -1,0 +1,90 @@
+{
+  "id": "zbrush-thick-skin-b481",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Thick Skin",
+  "title": "Thick Skin — 두께",
+  "summary": "ZBrush Thick Skin은 ZSphere 기반의 골격에 균일한 두께의 셸(Shell) 형태 폴리곤 메쉬를 생성하여 유기적인 갑옷이나 의상, 파이프 구조를 빠르게 만들 수 있는 기능입니다.",
+  "when": [
+    "캐릭터의 몸체 위에 딱 맞는 갑옷이나 의상의 기본 형태를 잡을 때",
+    "파이프, 케이블, 생체 조직의 튜브형 구조를 일정하게 두께를 주어 모델링할 때",
+    "ZSphere 뼈대 구조를 바탕으로 속이 빈(Hollow) 입체 메쉬를 빠르게 추출할 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 ZSphere를 선택하고 Viewport에 드래그하여 배치합니다.",
+    "T 키를 눌러 Edit 모드로 진입한 후, ZSphere를 추가하여 기본 뼈대 구조를 완성합니다.",
+    "Tool 팔레트 → Thick Skin 서브 팔레트를 열어 두께 설정 값을 조절합니다.",
+    "Thick Skin 만들기 버튼을 활성화하여 ZSphere 구조물 위에 두께가 적용된 메쉬를 생성합니다.",
+    "A 키를 눌러 Adaptive Skin 미리보기 및 폴리곤 변환을 수행합니다."
+  ],
+  "params": [
+    {
+      "name": "Thick Skin",
+      "desc": "ZSphere 뼈대 주위에 두께를 가진 셸 메쉬 생성을 활성화합니다."
+    },
+    {
+      "name": "Thickness",
+      "desc": "생성되는 메쉬의 전체적인 두께 값을 조절합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성되는 폴리곤 메쉬의 Resolution와 디테일 밀도를 결정합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "두께가 적용된 메쉬 표면의 부드러운 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SF 캐릭터의 튜브 파이프 제작",
+      "steps": [
+        "ZSphere로 곡선 형태의 뼈대 라인을 만듭니다.",
+        "Thick Skin 메뉴에서 Thickness 값을 높여 파이프의 두께를 설정합니다.",
+        "Adaptive Skin으로 변환하여 매끄러운 원형 파이프 메쉬를 완성합니다."
+      ]
+    },
+    {
+      "title": "생체 외골격(갑옷) 형태 잡기",
+      "steps": [
+        "캐릭터 몸체에 밀착되도록 ZSphere 골격을 배치합니다.",
+        "Thick Skin을 적용하여 외피 형태의 셸 메쉬를 생성합니다.",
+        "추출된 메쉬를 SDiv 및 Sculpt 브러시로 다듬어 갑옷 디테일을 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "두께가 비정상적으로 얇거나 찌그러짐 → Thickness 값을 낮추거나 ZSphere 간격을 넓혀서 해결합니다.",
+    "폴리곤이 너무 거칠게 나옴 → Adaptive Skin의 Density 또는 Resolution 값을 높여서 해결합니다."
+  ],
+  "related": [
+    "ZSphere",
+    "Adaptive Skin",
+    "Extract",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "TnpHRRMGdmk",
+      "title": "#AskZBrush - \"How do you activate Thick Skin?\"",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "A0GfmGTGlzU",
+      "title": "ThickSkin: ZBrush Course",
+      "author": "Sketchzombie"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Thick%20Skin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "ZSphere",
+    "Viewport",
+    "Edit",
+    "Thick Skin"
+  ],
+  "at": "2026-11-09T09:57:15.776530+00:00"
+}

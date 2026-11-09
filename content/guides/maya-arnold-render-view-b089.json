@@ -1,0 +1,96 @@
+{
+  "id": "maya-arnold-render-view-b089",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Arnold Render View",
+  "title": "Arnold Render View",
+  "summary": "Maya에서 Arnold 렌더러의 결과를 실시간으로 확인하고 조명, 재질, 카메라 설정을 즉시 조정할 수 있는 뷰어입니다. 렌더링 품질과 성능을 빠르게 테스트할 수 있습니다.",
+  "when": [
+    "재질의 텍스처와 반사 값을 실시간으로 확인하고 싶을 때",
+    "씬 안의 조명(Light) 위치와 강도를 시각적으로 조절할 때",
+    "카메라 앵글과 뎁스 오브 필드(Depth of Field)를 테스트할 때"
+  ],
+  "steps": [
+    "Maya 상단 메뉴 바에서 Arnold를 클릭합니다.",
+    "Open Render View를 선택해 Arnold Render View 창을 엽니다.",
+    "창 왼쪽 상단의 Play 버튼(버튼 아이콘)을 눌러 실시간 렌더링을 시작합니다.",
+    "필요한 경우 렌더링 Resolution를 변경하려면 Resolution 게이지를 조절합니다.",
+    "Viewport에서 조명이나 오브젝트를 수정하면 Arnold Render View에 즉시 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Camera",
+      "desc": "렌더링에 사용할 카메라를 선택합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "렌더링 이미지의 Resolution 비율을 조절합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "렌더 뷰 전체의 밝기 노출 값을 조절합니다."
+    },
+    {
+      "name": "Gamma",
+      "desc": "이미지의 중간톤 밝기를 보정합니다."
+    },
+    {
+      "name": "Isolate Selected",
+      "desc": "선택한 오브젝트만 단독으로 렌더링합니다."
+    },
+    {
+      "name": "Snapshot",
+      "desc": "현재 렌더링된 이미지를 임시 저장하여 비교합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 조명 밝기 테스트",
+      "steps": [
+        "Arnold Render View를 엽니다.",
+        "Render 버튼을 눌러 Interactive 렌더링을 켭니다.",
+        "Maya Viewport에서 Point Light의 Exposure 값을 올리며 결과 변화를 확인합니다."
+      ]
+    },
+    {
+      "title": "스냅샷으로 이전 버전과 비교",
+      "steps": [
+        "현재 렌더링 결과에서 Camera 아이콘(Snapshot)을 누릅니다.",
+        "재질의 색상을 수정한 뒤 새로운 결과와 비교합니다.",
+        "Mouse 드래그로 두 이미지의 차이를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "렌더 뷰가 검은색으로 나옴 → 씬에 활성화된 조명이 없거나 카메라 노출 값이 너무 낮습니다. 조명을 추가하거나 Exposure를 높이세요.",
+    "Interactive 렌더링이 멈춰 있음 → 다른 작업으로 인해 포커스가 해제되었거나 Play 버튼이 꺼졌습니다. Play 버튼을 다시 누르세요.",
+    "노이즈가 심하게 발생함 → Sampling 값이 너무 낮습니다. Render Settings에서 Camera(AA) 샘플 값을 올리세요."
+  ],
+  "related": [
+    "Maya Standard Surface — Arnold",
+    "Render Settings",
+    "Hypershade",
+    "Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "vN6uJtbTNLc",
+      "title": "Render Passes in Arnold - Beginners Guide to Rendering with Arnold in Maya Part 1",
+      "author": "Holly's Maya Tutorials"
+    },
+    {
+      "id": "pzQy03WyRW4",
+      "title": "Render Layers in Arnold - Beginners Guide to Rendering with Arnold in Maya Part 2",
+      "author": "Holly's Maya Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Arnold%20Render%20View",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Arnold"
+  ],
+  "at": "2026-11-09T09:57:12.356958+00:00"
+}
