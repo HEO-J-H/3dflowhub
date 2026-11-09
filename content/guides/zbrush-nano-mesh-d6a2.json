@@ -1,0 +1,100 @@
+{
+  "id": "zbrush-nano-mesh-d6a2",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Nano Mesh",
+  "title": "Nano Mesh — 면마다 배치",
+  "summary": "ZBrush의 NanoMesh는 폴리곤 면 하나하나에 소형 3D 오브젝트(임의의 메쉬)를 브러시나 마스크를 통해 대량으로 배치하고 실시간으로 관리하는 기능입니다. 체인 갑옷, 나뭇잎, 스파이크 같은 반복적인 디테일을 가볍고 효율적으로 채울 수 있습니다.",
+  "when": [
+    "캐릭터의 갑옷이나 체인 메일(사슬 갑옷)처럼 반복되는 작은 패턴을 만들 때",
+    "크리처의 피부 표면이나 등껍질에 무수히 많은 가시, 돌기를 균일하게 심을 때",
+    "건축물 외벽의 디테일 장식이나 기계적인 파츠를 대량으로 배치할 때"
+  ],
+  "steps": [
+    "ZBrush에서 메쉬 오브젝트를 불러온 뒤 ZModeler 브러시(B 키 누르고 ZM 선택)를 활성화합니다.",
+    "적용할 폴리곤 면 위에 커서를 올리고 스페이스바를 눌러 ZModeler 팝업 메뉴를 엽니다.",
+    "Target을 Polygon(또는 Polygroup)으로, Action을 NanoMesh로 설정하고 원하는 면을 클릭합니다.",
+    "Tool 팔레트 하단의 SubTool 메뉴에서 NanoMesh 서브메뉴를 확장합니다.",
+    "Edit NanoMesh 버튼을 켜고 배치된 오브젝트의 크기, 회전, 오프셋 등 파라미터를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Edit NanoMesh",
+      "desc": "선택한 면에 배치된 나노메쉬 오브젝트를 직접 편집하거나 수정 모드로 진입합니다."
+    },
+    {
+      "name": "Placement Resolution",
+      "desc": "폴리곤 면 내에서 나노메쉬가 배치되는 밀도와 Resolution를 조절합니다."
+    },
+    {
+      "name": "Fit Size",
+      "desc": "대상 폴리곤 면의 크기에 맞춰 나노메쉬 오브젝트의 크기를 자동으로 조절합니다."
+    },
+    {
+      "name": "Offset X/Y/Z",
+      "desc": "면의 중심을 기준으로 나노메쉬의 위치를 축별로 이동시킵니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "배치된 나노메쉬 전체의 크기를 확대하거나 축소합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "배치된 나노메쉬의 각도를 회전시켜 무작위성이나 방향성을 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "사슬 갑옷(Chainmail) 제작",
+      "steps": [
+        "갑옷 형태의 베이스 메쉬를 준비하고 Polygroup으로 영역을 나눕니다.",
+        "ZModeler 브러시로 해당 폴리그룹 면에 NanoMesh를 적용하여 고리 모양의 오브젝트를 할당합니다.",
+        "NanoMesh 옵션에서 크기와 간격을 조절하여 틈이 없도록 촘촘히 엮인 사슬 형태를 완성합니다."
+      ]
+    },
+    {
+      "title": "외계 생명체 등껍질 스파이크 배치",
+      "steps": [
+        "스컬프팅된 크리처 모델의 등 영역에 Mask 붓으로 스파이크가 밀집할 부위를 칠합니다.",
+        "Tool 팔레트의 Mask 메뉴에서 Mask를 Polygroup으로 변환합니다.",
+        "NanoMesh를 이용해 해당 폴리그룹 면에 뿔 모양의 메쉬를 배치하고 크기 편차를 주어 자연스럽게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬가 너무 작거나 보이지 않음 → Fit Size 옵션을 켜거나 Scale 값을 높여 크기를 확인합니다.",
+    "모든 면에 불필요하게 배치됨 → ZModeler의 Target을 Polygroup으로 설정하거나 미리 마스크를 지정해 원하는 면에만 적용합니다.",
+    "폴리곤 수가 너무 많아 Viewport가 느려짐 → ZBrush 설정에서 Instance 렌더링 최적화를 확인하고 필요시 다이나믹 디비전을 조절합니다."
+  ],
+  "related": [
+    "ZModeler",
+    "ArrayMesh",
+    "Fibermesh",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "mCsVf9kpojE",
+      "title": "ZBrush - Basics of NanoMesh",
+      "author": "Andor Kollar"
+    },
+    {
+      "id": "GuJFlpZFIfA",
+      "title": "PavWork 07: Insect Eye NanoMesh",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Nano%20Mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "ZModeler",
+    "ZM",
+    "Target",
+    "Polygon",
+    "Polygroup"
+  ],
+  "at": "2026-11-09T09:16:31.208284+00:00"
+}

@@ -24426,5 +24426,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-09T09:16:18+00:00",
+    "kind": "proposal",
+    "id": "p-38387c56d8",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "핵심 파인프라인의 안정성 확보를 위해 GPU가 없거나 예외 상황에서의 TripoSR 동작 검증 테스트가 필요합니다.",
+    "proposal": "backend/tests/test_tripo_sr_exception.py 파일을 추가하여 TripoSR 실패 시의 예외 처리와 안전한 폴백(Fallback) 동작을 검증합니다.",
+    "expected": "로컬 환경에서 GPU 자원이 부족하거나 오류 발생 시 비정상 종료를 막고 명확한 예외 메시지를 반환합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-09T09:17:03.429588+00:00",
+    "kind": "decision",
+    "id": "p-38387c56d8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]

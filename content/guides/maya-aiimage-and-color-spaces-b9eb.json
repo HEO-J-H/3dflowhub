@@ -1,0 +1,94 @@
+{
+  "id": "maya-aiimage-and-color-spaces-b9eb",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "aiImage and color spaces",
+  "title": "색 공간 설정",
+  "summary": "Maya의 aiImage 노드와 컬러 스페이스(Color Space) 설정은 텍스처 이미지의 색상 정보를 정확하게 불러와 렌더러가 올바른 물리적 밝기와 색감으로 표현하도록 관리합니다.",
+  "when": [
+    "Arnold 렌더러에서 Diffuse나 Base Color 텍스처를 모델에 적용할 때",
+    "Normal 맵이나 Roughness 같은 데이터 텍스처의 색상 왜곡을 방지할 때",
+    "Linear 렌더링 환경에서 텍스처 감마(Gamma) 오류를 수정할 때"
+  ],
+  "steps": [
+    "Hypershade 창을 엽니다 (Windows → Rendering Editors → Hypershade).",
+    "Create 태브 또는 검색창에서 aiImage 노드를 생성합니다.",
+    "aiImage 노드를 선택하고 Attribute Editor에서 Image Name 항목의 폴더 아이콘을 눌러 사용할 텍스처 파일을 불러옵니다.",
+    "Attribute Editor 내의 Color Space 항목을 텍스처 성격(예: sRGB 또는 Raw)에 맞게 설정합니다.",
+    "aiImage의 출력을 대상 Shader(예: aiStandardSurface)의 적절한 입력 슬롯에 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Image Name",
+      "desc": "불러올 텍스처 이미지 파일의 경로와 이름을 지정합니다."
+    },
+    {
+      "name": "Color Space",
+      "desc": "텍스처의 색상 프로파일(컬러 스페이스)을 정의합니다."
+    },
+    {
+      "name": "Raw",
+      "desc": "감마 보정을 거치지 않는 데이터(Normal, Roughness 등)용 설정입니다."
+    },
+    {
+      "name": "sRGB",
+      "desc": "일반적인 컬러 이미지(Base Color, Diffuse 등)용 표준 감마 설정입니다."
+    },
+    {
+      "name": "Alpha Is Luminance",
+      "desc": "알파 채널이 없을 때 이미지의 밝기(Luminance)를 알파값으로 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Base Color 텍스처 연결",
+      "steps": [
+        "aiImage 노드를 생성하고 컬러 텍스처를 불러옵니다.",
+        "Color Space를 sRGB로 지정합니다.",
+        "aiImage의 outColor를 aiStandardSurface의 baseColor에 연결합니다."
+      ]
+    },
+    {
+      "title": "Normal 맵 연결",
+      "steps": [
+        "aiImage 노드를 생성하고 노멀 맵 이미지를 불러옵니다.",
+        "Color Space를 Raw로 설정합니다.",
+        "aiImage의 outColor를 aiBump2D 노드를 거쳐 normalCamera에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Normal 맵이나 Roughness 맵에 sRGB 컬러 스페이스를 사용함 → Color Space를 Raw로 변경하여 올바른 데이터 값을 유지합니다.",
+    "텍스처가 지나치게 밝거나 어두워짐 → Color Space 설정과 렌더러의 색 관리(Color Management) 설정이 중복 적용되었는지 확인합니다."
+  ],
+  "related": [
+    "aiStandardSurface",
+    "aiBump2D",
+    "Hypershade",
+    "Color Management"
+  ],
+  "videos": [
+    {
+      "id": "biGWwdqaimY",
+      "title": "Color Management in Maya: Input Spaces",
+      "author": "Maya Learning Channel"
+    },
+    {
+      "id": "HX4-xeCI9hY",
+      "title": "Understanding Colorspaces in Maya",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20aiImage%20and%20color%20spaces",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hypershade",
+    "Windows",
+    "Rendering Editors",
+    "Create",
+    "Image"
+  ],
+  "at": "2026-11-09T09:16:26.689721+00:00"
+}
