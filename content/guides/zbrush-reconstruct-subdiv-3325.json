@@ -1,0 +1,97 @@
+{
+  "id": "zbrush-reconstruct-subdiv-3325",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "모델링",
+  "name": "Reconstruct Subdiv",
+  "title": "Reconstruct Subdiv",
+  "summary": "ZBrush의 Reconstruct Subdiv 기능은 고해상도 모델의 다중 서브디비전 레벨을 거꾸로 낮추어 저해상도 단계로 복구합니다. 불필요하게 높은 폴리곤 구조를 정리하고 효율적으로 형태를 수정할 때 사용합니다.",
+  "when": [
+    "외부에서 가져온 고정점 모델의 서브디비전 레벨 구조를 되살리고 싶을 때",
+    "세밀한 디테일을 잠시 숨기고 낮은 레벨에서 전체 형태를 크게 수정할 때",
+    "파일 용량과 폴리곤 수를 줄여 작업 속도를 최적화하고 싶을 때"
+  ],
+  "steps": [
+    "Tool 팔레트를 열고 Geometry 탭을 클릭합니다.",
+    "Subdivision Level 슬라이더가 1(최상위 상태)인지 확인합니다.",
+    "낮은 레벨의 메시가 존재할 수 있는 상태에서 Reconstruct Subdiv 버튼을 누릅니다.",
+    "Hotkey Shift + Ctrl + D를 눌러 이전 하위 레벨로 이동하며 복구 상태를 확인합니다.",
+    "Viewport에서 저해상도 메시가 올바르게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Reconstruct Subdiv",
+      "desc": "현재 고해상도 메시를 분석하여 하위 서브디비전 레벨을 재구성합니다."
+    },
+    {
+      "name": "Lower Res",
+      "desc": "현재 레벨보다 한 단계 낮은 서브디비전 레벨로 이동합니다."
+    },
+    {
+      "name": "Higher Res",
+      "desc": "현재 레벨보다 한 단계 높은 서브디비전 레벨로 이동합니다."
+    },
+    {
+      "name": "Del Lower",
+      "desc": "현재 레벨보다 낮은 하위 서브디비전 레벨 데이터를 삭제합니다."
+    },
+    {
+      "name": "Del Higher",
+      "desc": "현재 레벨보다 높은 상위 서브디비전 레벨 데이터를 삭제합니다."
+    },
+    {
+      "name": "Divide",
+      "desc": "현재 메시를 세분화하여 새로운 상위 서브디비전 레벨을 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "외부 OBJ 모델의 서브디비전 복원",
+      "steps": [
+        "다른 프로그램에서 제작된 고정점 OBJ 파일을 ZBrush로 불러옵니다.",
+        "Geometry 메뉴에서 Reconstruct Subdiv 버튼을 여러 번 눌러 하위 레벨을 되살립니다.",
+        "낮은 레벨로 이동하여 전체적인 실루엣을 부드럽게 수정합니다."
+      ]
+    },
+    {
+      "title": "스컬프팅 최적화 및 수정",
+      "steps": [
+        "지나치게 고폴리곤화된 파츠를 선택합니다.",
+        "Reconstruct Subdiv를 실행해 베이스 메쉬 단계를 확보합니다.",
+        "낮은 레벨에서 형태를 크게 바꾼 뒤 상위 레벨로 올라와 디테일을 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "구조가 불균일하거나 삼각형이 섞인 메시에서 실행 시 오류 발생 → Dynamesh나 ZRemesher로 사각형 위주의 깨끗한 메시로 정리한 뒤 재시도",
+    "최상위 레벨이 아닌 중간 레벨에서 실행하여 레벨이 유실됨 → Undo(Ctrl + Z) 후 가장 높은 서브디비전 상태에서 다시 실행"
+  ],
+  "related": [
+    "Subdivide",
+    "ZRemesher",
+    "Dynamesh",
+    "Lower Res"
+  ],
+  "videos": [
+    {
+      "id": "xbsjA8HycoU",
+      "title": "1  Reconstruct Subdivision 1",
+      "author": "R Brm"
+    },
+    {
+      "id": "ilqyaSQvq7Y",
+      "title": "Local Subdivision in Zbrush",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Reconstruct%20Subdiv",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Geometry",
+    "Subdivision Level",
+    "Reconstruct Subdiv"
+  ],
+  "at": "2026-11-09T08:16:30.446919+00:00"
+}

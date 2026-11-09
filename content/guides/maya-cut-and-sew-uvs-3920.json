@@ -1,0 +1,101 @@
+{
+  "id": "maya-cut-and-sew-uvs-3920",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "Cut and Sew UVs",
+  "title": "Cut·Sew UV",
+  "summary": "Maya의 Cut and Sew UVs는 3D 모델의 표면을 펼치기 위해 UV 경계를 자르고(Cut) 붙이는(Sew) 핵심 UV 편집 도구입니다. 텍스처가 왜곡되지 않도록 자연스러운 전개도를 만듭니다.",
+  "when": [
+    "캐릭터나 하드서페이스 모델의 텍스처 심(Seam) 위치를 직접 조정하고 싶을 때",
+    "자동 전개된 UV 아일랜드의 불필요한 절단면을 서로 붙여서 갯수를 줄이고 싶을 때",
+    "정교한 UV 언랍(Unwrap) 작업 중 텍스처 늘어짐을 방지하기 위해 경계선을 수정할 때"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Mouse 우클릭을 유지하여 UV 모드로 전환하거나, UV Editor 창을 엽니다.",
+    "메뉴 바에서 UV > UV Editor를 클릭해 UV 편집기 창을 띄웁니다.",
+    "UV 에디터 상단의 툴바 또는 Shift + 우클릭 쿼드 메뉴에서 Cut 또는 Sew 도구를 선택합니다.",
+    "모델의 에지(Edge)를 선택하고 Cut을 실행하여 UV 경계선을 자릅니다.",
+    "나뉘어진 UV 에지를 선택하고 Sew를 실행하여 두 아일랜드를 하나로 붙입니다.",
+    "Viewport와 UV 에디터에서 텍스처 왜곡 없이 UV가 잘 정리되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cut",
+      "desc": "선택한 UV 에지를 잘라내어 서로 다른 아일랜드로 분리합니다."
+    },
+    {
+      "name": "Sew",
+      "desc": "떨어져 있는 두 UV 에지를 서로 붙여서 하나의 경사면으로 만듭니다."
+    },
+    {
+      "name": "Move and Sew",
+      "desc": "두 UV 에지를 붙이면서 한쪽 아일랜드를 다른 쪽 위치로 이동시켜 정렬합니다."
+    },
+    {
+      "name": "Unfold",
+      "desc": "잘라낸 UV 아일랜드의 텍스처 왜곡을 최소화하며 넓게 펼쳐줍니다."
+    },
+    {
+      "name": "Optimize",
+      "desc": "UV 페이스의 늘어짐과 찌그러짐을 완화하여 균일한 간격으로 정돈합니다."
+    },
+    {
+      "name": "3D Cut and Sew UV Tool",
+      "desc": "3D Viewport에서 직접 에지를 클릭하여 자르고 붙이기를 실시간으로 수행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실린더 형태의 파이프 UV 심 정리",
+      "steps": [
+        "파이프 모델의 UV Editor를 엽니다.",
+        "세로 방향으로 일직선인 에지들을 선택하고 Cut을 실행합니다.",
+        "파이프 윗면과 아랫면의 경계선을 잘라내어 독립된 아일랜드로 분리합니다.",
+        "Unfold를 실행하여 실린더가 사각형태로 곱게 펼쳐지도록 만듭니다."
+      ]
+    },
+    {
+      "title": "끊어진 UV 아일랜드 병합하기",
+      "steps": [
+        "자동 전개로 인해 잘게 쪼개진 UV 아일랜드들을 확인합니다.",
+        "연결해야 할 맞닿은 UV 에지 쌍을 선택합니다.",
+        "Move and Sew를 실행하여 에지를 붙임과 동시에 위치를 정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 에지가 아닌 UV 에지를 선택하지 않음 → UV Editor 내부에서 에지(Edge) 컴포넌트 모드가 활성화되어 있는지 확인하세요.",
+    "필요한 부분까지 잘라내어 아일랜드가 너무 많아짐 → 꼭 필요한 은닉선 위주로 자르고 불필요한 부분은 Sew로 병합하세요.",
+    "Cut과 Sew 이후 Unfold를 실행하지 않음 → 자르거나 붙인 뒤에는 반드시 Unfold와 Optimize를 실행해 왜곡을 펴주어야 합니다."
+  ],
+  "related": [
+    "UV Editor",
+    "Unfold",
+    "Optimize",
+    "Auto Seam"
+  ],
+  "videos": [
+    {
+      "id": "1qfegujErKQ",
+      "title": "UV Mapping_Unfold_3d Cut and Sew Tool",
+      "author": "Learning Channel by P.O-studio"
+    },
+    {
+      "id": "Me2QS9qYkFQ",
+      "title": "🪡Stitch vs Sew in Maya UVs 🧵| Which One Should You Use? #tutorial #autodeskmaya #3d #beginners",
+      "author": "Academic Phoenix Plus"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Cut%20and%20Sew%20UVs",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mouse",
+    "UV",
+    "UV Editor",
+    "Cut",
+    "Sew"
+  ],
+  "at": "2026-11-09T08:16:26.575131+00:00"
+}
