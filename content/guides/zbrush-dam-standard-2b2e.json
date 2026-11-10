@@ -1,0 +1,84 @@
+{
+  "id": "zbrush-dam-standard-2b2e",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Dam Standard",
+  "title": "Dam Standard — 주름 선",
+  "summary": "ZBrush의 Dam Standard 브러시는 디지털 점토 위에 깊고 날카로운 홈이나 칼자국을 파낼 때 사용하는 필수 스컬프팅 브러시입니다.",
+  "when": [
+    "하드서페이스 모델링에서 패널라인이나 금속 접합부를 표현할 때",
+    "크리처나 인물의 피부에 깊은 주름, 상처, 칼자국을 새길 때",
+    "천이나 갑옷의 날카로운 절단면과 접힌 선을 강조할 때"
+  ],
+  "steps": [
+    "상단 Brush Palette를 클릭하거나 B 키를 눌러 Brush 메뉴를 엽니다.",
+    "키보드에서 D 키를 눌러 Dam Standard 브러시를 찾습니다.",
+    "S와 T 키를 순서대로 눌러 DamStandard(BST) 브러시를 선택합니다.",
+    "오브젝트 메쉬 위에 펜을 올리고 S 키로 브러시 크기(Draw Size)를 조절합니다.",
+    "Alt 키를 누른 채 드래그하면 파이는 것과 반대로 튀어나오는(Raised) 선을 그릴 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 전체 크기를 조절하여 선의 두께를 결정합니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "홈이 파이는 깊이와 강도를 조절합니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 가장자리의 감쇠 비율을 조절해 선의 날카로움을 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑 패널라인 제작",
+      "steps": [
+        "ZBrush에서 하드서페이스 모델을 불러옵니다.",
+        "Dam Standard 브러시를 선택하고 Z Intensity를 적당히 높입니다.",
+        "Shift 키를 조합해 직선 가이드를 그리며 패널 경계선을 파냅니다."
+      ]
+    },
+    {
+      "title": "몬스터 피부의 깊은 상처 표현",
+      "steps": [
+        "스컬프팅 중인 크리처 메쉬의 Subdiv 레벨을 충분히 올립니다.",
+        "Dam Standard 브러시로 피부 결을 따라 불규칙한 칼자국을 긋습니다.",
+        "Standard 브러시로 상처 주변을 살짝 부풀려 입체감을 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 밀도가 너무 낮을 때 → Geometry 탭에서 Divide(Ctrl+D)를 실행해 메쉬를 세밀하게 나눈 뒤 작업하세요.",
+    "Alt 키를 반대로 누를 때 → 홈을 파야 하는데 튀어나온다면 Alt 키를 떼고 다시 드래그하세요."
+  ],
+  "related": [
+    "Standard",
+    "ClayBuildup",
+    "TrimDynamic",
+    "Slash3"
+  ],
+  "videos": [
+    {
+      "id": "Kavejp3Iqsw",
+      "title": "DamStandard Brush: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "uX2yaGVktrs",
+      "title": "ZBrush - Dam Standard Brush",
+      "author": "The Creature Creator"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Dam%20Standard",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Brush",
+    "Dam Standard"
+  ],
+  "at": "2026-11-10T00:19:29.467565+00:00"
+}
