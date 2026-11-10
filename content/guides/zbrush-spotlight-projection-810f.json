@@ -1,0 +1,98 @@
+{
+  "id": "zbrush-spotlight-projection-810f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "페인트",
+  "name": "Spotlight projection",
+  "title": "Spotlight — 사진 투영",
+  "summary": "Spotlight은 이미지·텍스처를 캔버스에 띄워 브러시로 직접 페인팅하거나 스컬프팅에 투사할 수 있는 도구입니다.",
+  "when": [
+    "텍스처를 직접 스컬프에 입히고 싶을 때",
+    "레퍼런스 이미지를 실시간으로 보며 디테일을 잡을 때",
+    "UV가 없거나 간단히 색·디테일을 배치하고 싶을 때"
+  ],
+  "steps": [
+    "Texture 팔레트 → Spotlight 버튼 클릭 (Hotkey Shift+F)",
+    "Spotlight 창에서 Load Image 로 투사할 이미지 선택",
+    "이미지 로드 후 ‘Draw’ 모드로 전환 (Hotkey D)",
+    "브러시를 선택하고 캔버스 위에 클릭·드래그해 투사",
+    "필요시 ‘Projection’ 옵션을 켜고 ‘Depth’·‘Size’ 조정",
+    "완료 후 Spotlight 창 닫기 (Hotkey Shift+F)"
+  ],
+  "params": [
+    {
+      "name": "Depth",
+      "desc": "투사 깊이, 높을수록 이미지가 표면에 더 깊게 파고듦"
+    },
+    {
+      "name": "Size",
+      "desc": "이미지 스케일, 캔버스에 맞게 확대·축소"
+    },
+    {
+      "name": "Opacity",
+      "desc": "투사 투명도, 낮을수록 배경이 비침"
+    },
+    {
+      "name": "Color",
+      "desc": "이미지 색상 보정, Hue·Saturation 조정"
+    },
+    {
+      "name": "Alpha",
+      "desc": "알파 채널 사용 여부, 마스크처럼 활용"
+    },
+    {
+      "name": "Projection",
+      "desc": "이미지를 표면에 정사영·원통형으로 투사"
+    }
+  ],
+  "examples": [
+    {
+      "title": "머리카락 디테일 입히기",
+      "steps": [
+        "Spotlight에 머리카락 텍스처 로드",
+        "Draw 브러시로 머리 영역에 클릭·드래그",
+        "Depth와 Size 조절해 자연스럽게 섞기"
+      ]
+    },
+    {
+      "title": "스컬프에 레퍼런스 라인 그리기",
+      "steps": [
+        "스케치 라인 이미지 로드",
+        "Draw 브러시로 모델 전체에 투사",
+        "Opacity 낮춰 레이어처럼 겹치게"
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지를 너무 크게 로드 → Size 슬라이더로 축소하거나 이미지 자체를 리사이즈",
+    "Depth 값을 0에 가깝게 설정 → 투사 깊이가 없어져 보이지 않음, Depth를 올려서 확인",
+    "Projection을 켜지 않아 곡면에 왜곡 → Projection 옵션을 활성화 후 재투사"
+  ],
+  "related": [
+    "Texture Map",
+    "Project All",
+    "UV Master",
+    "Masking"
+  ],
+  "videos": [
+    {
+      "id": "Ivt648-fgC0",
+      "title": "🔥Spotlight Projection in zBrush Tutorial. Project any image onto a mesh!",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "eXx4rdk94Hs",
+      "title": "Getting Started with ZBrush, Part 19 - Spotlight Tool",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Spotlight%20projection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture",
+    "Spotlight",
+    "Hotkey Shift"
+  ],
+  "at": "2026-11-10T04:20:23.871115+00:00"
+}

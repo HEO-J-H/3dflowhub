@@ -1,0 +1,103 @@
+{
+  "id": "maya-nparticles-basics-e611",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "이펙트",
+  "name": "nParticles basics",
+  "title": "nParticles",
+  "summary": "nParticles는 Maya의 입자 시스템으로, 물리 기반 입자 시뮬레이션을 생성·제어합니다.",
+  "when": [
+    "폭발·연기·불꽃 등 빠른 동적 효과가 필요할 때",
+    "대량 입자를 이용해 물결·비·먼지 같은 자연 현상을 만들고 싶을 때",
+    "다른 다이나믹(예:nCloth, Fluid)과 결합해 복합 시뮬레이션을 구성할 때"
+  ],
+  "steps": [
+    "Windows → Settings/Preferences → Plug-in Manager에서 nParticle 플러그인(nParticle) 활성화 (기본 활성화)",
+    "Create → nParticle → nParticle (Shift+Ctrl+N) 클릭해 nParticle 시스템 생성",
+    "Attribute Editor에서 nParticleShape 탭을 열고 Emit From → Surface 또는 Volume 선택",
+    "nParticleShape → Rate, Speed, Lifespan 등 기본 파라미터 설정",
+    "필요시 nParticle → nParticle → Add Dynamic → Field (예: Gravity) 로 물리 필드 추가",
+    "시뮬레이션을 재생해 결과 확인 (Spacebar)"
+  ],
+  "params": [
+    {
+      "name": "Rate",
+      "desc": "초당 생성되는 입자 수"
+    },
+    {
+      "name": "Speed",
+      "desc": "입자 초기 속도"
+    },
+    {
+      "name": "Lifespan",
+      "desc": "입자 존재 시간(프레임)"
+    },
+    {
+      "name": "Emit From",
+      "desc": "입자 방출 소스(Geometry) 선택"
+    },
+    {
+      "name": "Size",
+      "desc": "입자 크기"
+    },
+    {
+      "name": "Color",
+      "desc": "입자 색상(Shader 연결)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "폭발 효과",
+      "steps": [
+        "Sphere를 만든 뒤 nParticle → nParticle 선택",
+        "Emit From를 Surface로 설정하고 Rate를 500, Speed를 20으로 조정",
+        "Gravity 필드 추가 후 시뮬레이션 재생",
+        "렌더링 시 Particle Render → Point Sprite로 전환"
+      ]
+    },
+    {
+      "title": "비 내리는 장면",
+      "steps": [
+        "Plane을 만든 뒤 nParticle → nParticle 선택",
+        "Emit From를 Volume, Rate를 2000, Speed를 -5(하강)로 설정",
+        "Turbulence 필드 추가해 무작위 움직임 부여",
+        "Particle Render → Cloud로 전환해 구름 형태 입자 표시"
+      ]
+    }
+  ],
+  "mistakes": [
+    "입자 수(Rate)를 과도하게 높이면 Viewport가 느려짐 → 필요 최소값으로 조정하고 GPU 캐시 사용",
+    "Emit From을 잘못된 Geometry에 지정하면 입자가 보이지 않음 → 올바른 Mesh 또는 NURBS 선택",
+    "필드 강도를 너무 크게 하면 입자가 튀어 나가 버림 → Strength 값을 낮추고 Falloff 조정"
+  ],
+  "related": [
+    "nCloth",
+    "Fluid",
+    "Bifrost",
+    "Dynamic Fields"
+  ],
+  "videos": [
+    {
+      "id": "bPoHHRSN61U",
+      "title": "Maya NParticles Basics Tutorial",
+      "author": "FX Maniac"
+    },
+    {
+      "id": "y2xZ0k3U8EA",
+      "title": "Introduction To nParticles | Maya And Arnold Renderer | Tutorial",
+      "author": "Reimagine Fx"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20nParticles%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Settings",
+    "Preferences",
+    "Plug",
+    "Manager",
+    "Particle"
+  ],
+  "at": "2026-11-10T04:20:03.784372+00:00"
+}
