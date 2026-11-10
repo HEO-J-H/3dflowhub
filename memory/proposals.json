@@ -29980,5 +29980,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T18:33:15+00:00",
+    "kind": "proposal",
+    "id": "p-2505c7ae2b",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 및 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 TripoSR 실행 중 발생할 수 있는 예외 상황에 대한 단위 테스트가 아직 충분하지 않습니다.",
+    "proposal": "backend/app/services/triposr_runner.py 및 backend/tests/test_triposr.py에 예외 상황 처리 및 단위 테스트를 추가합니다.",
+    "expected": "GPU 환경 제약이나 오류 발생 시 안정적인 에러 반환 및 파이프라인 견고성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:33:15+00:00",
+    "kind": "proposal",
+    "id": "p-252e528b9b",
+    "title": "웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전에서 수행되는 PBR 텍스처 생성 로직의 단위 테스트 보강이 지속적으로 요구되고 있습니다.",
+    "proposal": "web/ 디렉토리 내 PBR 변환 및 높이맵 생성 관련 자바스크립트 모듈에 대한 테스트 케이스를 보강합니다.",
+    "expected": "브라우저 단에서의 PBR 텍스처 처리 신뢰성 확보 및 회귀 오류 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:33:36.452215+00:00",
+    "kind": "decision",
+    "id": "p-2505c7ae2b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T18:33:36.477337+00:00",
+    "kind": "decision",
+    "id": "p-252e528b9b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
   }
 ]
