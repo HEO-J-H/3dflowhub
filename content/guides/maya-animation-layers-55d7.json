@@ -1,0 +1,101 @@
+{
+  "id": "maya-animation-layers-55d7",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Animation Layers",
+  "title": "Animation Layer",
+  "summary": "Maya의 Animation Layers는 하나의 오브젝트에 여러 애니메이션 키를 레이어별로 겹쳐서 관리하고 비파괴적으로 수정할 수 있는 기능입니다. 기존 애니메이션을 유지한 채 추가 동작이나 디테일을 쉽게 얹을 수 있습니다.",
+  "when": [
+    "기본 걷기 애니메이션 위에 미세한 상체 흔들림이나 호흡 모션을 추가하고 싶을 때",
+    "감독이나 클라이언트의 요청으로 전체 애니메이션 수정 없이 특정 부분만 덮어쓰거나 가감하고 싶을 때",
+    "여러 애니메이션 클립이나 베이스 모션과 레이어 모션의 가중치(Weight)를 실시간으로 블렌딩할 때"
+  ],
+  "steps": [
+    "메인 메뉴 바에서 Animation 세팅 또는 Channel Box / Layer Editor 탭으로 이동합니다.",
+    "Layer Editor 하단에서 Display 탭 옆의 Animation 탭을 선택하여 Animation Layers 창을 엽니다.",
+    "메뉴 바에서 Layers → Create Empty Layer를 클릭하거나 + 아이콘을 눌러 새 애니메이션 레이어를 생성합니다.",
+    "아웃라인(Outliner)이나 Viewport에서 애니메이션을 적용할 컨트롤러나 오브젝트를 선택합니다.",
+    "생성된 레이어를 Mouse 우클릭하고 Add Selected Objects to Selected Layer를 선택하여 오브젝트를 레이어에 포함시킵니다.",
+    "Viewport에서 Timeline을 이동하며 Keyframe을 입력해 해당 레이어 전용 애니메이션을 작성합니다.",
+    "Channel Box나 레이어 창에서 Weight 값을 조절하여 레이어의 반영 비율을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "해당 애니메이션 레이어가 전체 결과물에 미치는 영향력을 0에서 1 사이의 값으로 조절합니다."
+    },
+    {
+      "name": "BaseLayer",
+      "desc": "씬의 기본 애니메이션 데이터가 저장되는 최하단 기본 레이어입니다."
+    },
+    {
+      "name": "Solo",
+      "desc": "선택한 레이어의 애니메이션만 독점적으로 재생하고 나머지 레이어는 일시적으로 숨깁니다."
+    },
+    {
+      "name": "Mute",
+      "desc": "해당 레이어의 애니메이션 출력을 일시적으로 끕니다."
+    },
+    {
+      "name": "Lock",
+      "desc": "레이어의 실수 수정을 방지하기 위해 편집 기능을 잠급니다."
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "레이어 간의 애니메이션 연산 방식을 Override(덮어쓰기) 또는 Add(더하기) 등으로 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 걷기 애니메이션에 상체 호흡 추가하기",
+      "steps": [
+        "BaseLayer에 완성된 캐릭터의 기본 걷기 사이클을 배치합니다.",
+        "새로운 Animation Layer를 만들고 상체 컨트롤러들을 추가합니다.",
+        "Timeline에서 숨쉬는 듯한 상하 움직임 Keyframe을 추가합니다.",
+        "Weight 값을 조절하여 걷기 모션과 호흡 모션을 자연스럽게 섞습니다."
+      ]
+    },
+    {
+      "title": "특정 구간만 덮어쓰는 부분 수정 (Override)",
+      "steps": [
+        "수정이 필요한 구간의 Controller를 새 Animation Layer에 등록합니다.",
+        "Blend Mode를 Override로 설정합니다.",
+        "원하는 프레임 구간에서 포즈를 새로 잡고 키를 입력합니다.",
+        "레이어 Mute 버튼을 켜고 꺼가며 수정 전후를 비교합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트를 레이어에 추가하지 않고 키를 입력함 → Animation Layer가 아닌 BaseLayer에 키가 들어가 전체 수정이 안 됨. 반드시 Add Selected Objects to Selected Layer 후 작업하세요.",
+    "Lock이 걸린 상태에서 Keyframe 입력 시도 → 키가 안 들어가거나 에러 발생. 레이어 잠금 상태를 해제하거나 올바른 레이어가 선택되었는지 확인하세요.",
+    "Blend Mode 설정 오류로 인한 값 튀김 현상 → Add 모드와 Override 모드의 차이를 이해하고 목적에 맞게 모드를 변경하세요."
+  ],
+  "related": [
+    "Graph Editor",
+    "Trax Editor",
+    "Channel Box",
+    "Time Slider"
+  ],
+  "videos": [
+    {
+      "id": "GNgIotN2miI",
+      "title": "How to Use Animation Layer in MAYA | Animation Layer Tutorial",
+      "author": "Learn to become an Animator"
+    },
+    {
+      "id": "Xd_aoHvJ3EI",
+      "title": "Maya Tutorial -  How To Make BIG Changes FAST With Animation Layers",
+      "author": "Mark Masters"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Animation%20Layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Animation",
+    "Channel Box",
+    "Layer Editor"
+  ],
+  "at": "2026-11-10T02:10:00.310752+00:00"
+}

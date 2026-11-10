@@ -1,0 +1,95 @@
+{
+  "id": "zbrush-dragrect-with-alphas-1dbb",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "DragRect with alphas",
+  "title": "DragRect — 무늬 찍기",
+  "summary": "ZBrush에서 DragRect 스트로크와 알파를 조합하여 모델 표면에 흑백 이미지 패턴을 왜곡 없이 정확한 비율로 도장처럼 찍어내는 핵심 기능입니다.",
+  "when": [
+    "갑옷이나 방패에 일정한 비율의 문양이나 로고를 정확하게 새길 때",
+    "피부의 흉터, 상처, 리벳 같은 개별 디테일을 원하는 위치에 한 번씩 찍어 넣을 때",
+    "타일링 패턴이나 스티치(바느질 자국)를 표면에 반복 없이 깔끔하게 배치할 때"
+  ],
+  "steps": [
+    "ZBrush에서 폴리곤이 충분히 밀집된 모델(Subdivision Level이 높은 상태)을 준비합니다.",
+    "상단 툴바 또는 알파(Alpha) 팔레트를 열어 적용할 흑백 이미지(Alpha)를 선택합니다.",
+    "상단 툴바 또는 스트로크(Stroke) 팔레트를 열고 스트로크 방식을 DragRect로 변경합니다.",
+    "원하는 스컬프팅 브러시(예: Standard 또는 DamStandard)를 선택합니다.",
+    "Viewport의 모델 표면에 마우스나 펜을 대고 드래그하여 패턴의 크기와 위치를 잡고 Mouse를 뗍니다.",
+    "Viewport에서 패턴이 왜곡 없이 정확한 비율로 찍혔는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "DragRect",
+      "desc": "알파 이미지를 드래그한 크기와 비율 그대로 한 번만 정확하게 찍어냅니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "브러시로 찍을 형태를 결정하는 흑백 텍스처 패턴입니다."
+    },
+    {
+      "name": "ZIntensity",
+      "desc": "표면에 파이거나 튀어나오는 스컬프팅 높이의 강도를 조절합니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 가장자리의 감쇠(Falloff) 부드러움을 조절합니다."
+    },
+    {
+      "name": "Rgb Intensity",
+      "desc": "컬러나 폴리페인팅을 동시에 찍을 때 색상의 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 표면 문양 새기기",
+      "steps": [
+        "Alpha 팔레트에서 문양 모양의 흑백 이미지를 선택합니다.",
+        "Stroke 메뉴에서 DragRect를 선택합니다.",
+        "갑옷 중앙 부위에 Mouse를 대고 드래그하여 정중앙에 문양을 찍습니다."
+      ]
+    },
+    {
+      "title": "금속 리벳(Rivets) 배치하기",
+      "steps": [
+        "Alpha 팔레트에서 동그란 리벳 형태의 알파를 선택합니다.",
+        "Standard 브러시와 DragRect 스트로크를 활성화합니다.",
+        "패널 이음새 주변을 클릭 앤 드래그하여 리벳 볼트를 하나씩 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤 수가 너무 적어 패턴이 깨지고 계단 현상이 생김 → Divide(Ctrl+D)를 실행해 폴리곤 밀도를 높인 후 다시 시도합니다.",
+    "Mouse를 드래그할 때 알파가 회전하거나 크기가 고정되지 않음 → DragRect는 드래그 크기에 따라 실시간으로 크기가 조절되므로 시작점을 잡고 천천히 당겨 크기를 맞춘 뒤 놓습니다."
+  ],
+  "related": [
+    "Alphas",
+    "Stroke types",
+    "Standard brush",
+    "LazyMouse"
+  ],
+  "videos": [
+    {
+      "id": "HwEbKlxrWCw",
+      "title": "ZBrush - Alphas Explained (In 2 MINUTES!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "ReJsURX2L-k",
+      "title": "Alphas in Zbrush - How to make and use them to speed up your sculpting workflow (+ lots of tricks)",
+      "author": "Ana Carolina Art"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20DragRect%20with%20alphas",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Subdivision Level",
+    "Alpha",
+    "Stroke",
+    "DragRect"
+  ],
+  "at": "2026-11-10T02:10:04.947917+00:00"
+}
