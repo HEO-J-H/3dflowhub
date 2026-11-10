@@ -30570,5 +30570,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T20:43:46+00:00",
+    "kind": "proposal",
+    "id": "p-7e754821a5",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 관련 거절된 제안들을 보완하여 안정성을 높여야 함",
+    "proposal": "backend/tests/test_triposr.py에 다양한 예외 상황(GPU 부족, 잘못된 입력)에 대한 단위 테스트 추가",
+    "expected": "로컬 파이프라인 실행 시 예외 처리 견고성 향상",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T20:43:46+00:00",
+    "kind": "proposal",
+    "id": "p-0a32b07809",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 PBR 텍스처 변환 안정성 검증 필요",
+    "proposal": "web/tests/ (또는 관련 테스트 파일)에 PBR 맵 생성 로직에 대한 프론트엔드 단위 테스트 추가",
+    "expected": "브라우저 내 3D 메시 및 텍스처 처리 품질 보증",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T20:44:10.224199+00:00",
+    "kind": "decision",
+    "id": "p-7e754821a5",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T20:44:10.266953+00:00",
+    "kind": "decision",
+    "id": "p-0a32b07809",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
   }
 ]
