@@ -1,0 +1,99 @@
+{
+  "id": "maya-playblast-cc9f",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Playblast",
+  "title": "Playblast — 미리보기 영상",
+  "summary": "Playblast는 Maya Viewport의 애니메이션을 실시간으로 빠르게 캡처하여 동영상 파일로 저장하는 프리뷰 확인 기능입니다. 렌더링 시간을 들이지 않고도 애니메이션 타이밍과 움직임을 즉시 검토할 수 있습니다.",
+  "when": [
+    "애니메이션 작업 중 캐릭터의 타이밍과 간격을 빠르게 확인할 때",
+    "클라이언트나 팀원에게 작업 중간 결과물을 공유할 때",
+    "복잡한 시뮬레이션이나 리깅 상태를 실시간 Viewport 속도로 점검할 때"
+  ],
+  "steps": [
+    "애니메이션이 완성된 오브젝트를 Viewport에서 확인합니다.",
+    "Time Slider에서 플레이블래스트를 적용할 프레임 구간을 설정합니다.",
+    "메인 메뉴 바에서 Windows -> Playblast 옵션 박스(상자 아이콘)를 클릭합니다.",
+    "Playblast 옵션 창에서 Display Size를 'From Window'로 설정하고, Format을 'qt'(QuickTime) 또는 'avi'로 지정합니다.",
+    "Save to file을 체크하고 파일 경로와 이름을 설정한 뒤, 'Playblast' 버튼을 클릭합니다.",
+    "Viewport가 자동으로 재생되며 캡처가 완료되면 지정된 경로에 동영상 파일이 생성됩니다."
+  ],
+  "params": [
+    {
+      "name": "Display Size",
+      "desc": "캡처할 Viewport Resolution 기준을 현재 창 크기 또는 직접 입력 값으로 설정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "Viewport 크기에 비례하여 출력 영상의 크기를 조절합니다."
+    },
+    {
+      "name": "Format",
+      "desc": "저장할 동영상 파일 포맷(qt, avi, image 등)을 선택합니다."
+    },
+    {
+      "name": "Quality",
+      "desc": "출력되는 동영상 압축 품질을 0에서 100 사이의 값으로 조절합니다."
+    },
+    {
+      "name": "Remove Frame Padding",
+      "desc": "이미지 시퀀스로 저장할 때 파일 이름의 패딩 자릿수를 조절합니다."
+    },
+    {
+      "name": "Save to file",
+      "desc": "임시 Viewport 재생에 그치지 않고 지정한 경로에 파일로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 걷기 사이클 타이밍 점검",
+      "steps": [
+        "Time Slider에서 걷기 사이클 구간(예: 1~24 프레임)을 지정합니다.",
+        "Windows -> Playblast 옵션 창을 엽니다.",
+        "Format을 Viewport 녹화에 적합한 포맷으로 설정하고 Playblast를 실행합니다.",
+        "생성된 영상 파일을 재생하며 발이 미끄러지는 구간이 없는지 확인합니다."
+      ]
+    },
+    {
+      "title": "카메라 무빙 및 구도 최종 확인",
+      "steps": [
+        "Camera Viewport로 전환하여 전체 컷의 레이아웃과 카메라 애니메이션을 점검합니다.",
+        "Playblast 옵션에서 Viewport의 오버레이(Grid 등)가 보이지 않도록 Viewport 메뉴를 정리합니다.",
+        "Playblast를 실행하여 감독이나 팀원에게 씬의 연출 의도를 공유합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오디오 싱크가 맞지 않음 → Playblast 옵션에서 Sound 설정을 현재 씬에 로드된 오디오 트랙으로 올바르게 지정했는지 확인합니다.",
+    "불필요한 UI 요소(Grid, 핸들 등)가 영상에 찍힘 → Viewport 상단의 Show 메뉴에서 Grid나 NURBS Curves 등의 체크를 해제한 뒤 다시 실행합니다."
+  ],
+  "related": [
+    "Graph Editor",
+    "Time Slider",
+    "Camera Sequencer",
+    "Batch Render"
+  ],
+  "videos": [
+    {
+      "id": "F_0lr6sf2-Y",
+      "title": "How to create a playblast in Maya 2023 #animation #drawing #gaming #movie",
+      "author": "VANAS"
+    },
+    {
+      "id": "1t1ke0qk5Cc",
+      "title": "How To Make A Playblast in Maya",
+      "author": "Escape Studios"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Playblast",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Viewport",
+    "Time Slider",
+    "Windows",
+    "Playblast"
+  ],
+  "at": "2026-11-10T00:29:35.157742+00:00"
+}

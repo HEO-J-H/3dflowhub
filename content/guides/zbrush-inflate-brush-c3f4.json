@@ -1,0 +1,84 @@
+{
+  "id": "zbrush-inflate-brush-c3f4",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Inflate brush",
+  "title": "Inflate — 부풀리기",
+  "summary": "Inflate 브러시는 ZBrush에서 모델의 표면을 노멀 방향을 따라 부풀리거나 밀어내는 조형 도구입니다. 캐릭터의 근육 볼륨을 키우거나 옷 주름을 과장할 때 자주 사용합니다.",
+  "when": [
+    "캐릭터의 근육이나 신체 볼륨을 자연스럽게 키워줄 때",
+    "갑옷이나 소품의 표면을 입체적으로 부풀릴 때",
+    "클로스(Cloth)의 주름이나 엠보싱 효과를 강조할 때"
+  ],
+  "steps": [
+    "ZBrush에서 메쉬 오브젝트를 불러오거나 스피어를 꺼내어 Edit(T) 모드로 진입합니다.",
+    "키보드 B 키를 누른 뒤 I, N 키를 순서대로 눌러 Inflate 브러시를 선택합니다.",
+    "Brushes 팔레트나 상단 메뉴에서 Inflate 아이콘이 선택되었는지 확인합니다.",
+    "서브디비전 레벨(Subdivision Level)이 충분히 높은지 확인하여 메쉬가 부드럽게 늘어나도록 합니다.",
+    "모델의 원하는 영역 위에서 마우스나 펜을 드래그하여 표면을 부풀립니다."
+  ],
+  "params": [
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 표면을 밀어내거나 부풀리는 세기를 조절합니다."
+    },
+    {
+      "name": "Draw Size",
+      "desc": "브러시 팁의 크기를 조절하여 영향 범위를 바꿉니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 테두리의 감쇠(Falloff) 영역을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 근육 볼륨 살리기",
+      "steps": [
+        "Inflate 브러시를 선택하고 Draw Size를 적당히 키웁니다.",
+        "팔이나 다리의 근육 중앙 부위를 가볍게 드래그하여 볼륨을 더합니다.",
+        "Z Intensity를 낮추고 경계면을 다듬어 자연스럽게 연결합니다."
+      ]
+    },
+    {
+      "title": "갑옷 표면 엠보싱 효과",
+      "steps": [
+        "Mask Pen 브러시로 갑옷 위에 문양을 그립니다.",
+        "마스크를 반전(Ctrl+클릭)시킨 뒤 Inflate 브러시로 문양 부위를 살짝 밀어냅니다.",
+        "면을 정리하여 입체적인 양각 장식을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 밀도가 부족할 때 → Divide(Ctrl+D)로 서브디비전 레벨을 높여 면을 부드럽게 만듭니다.",
+    "지나치게 부풀려 메쉬가 찢어질 때 → Z Intensity를 낮추고 Morph 브러시로 일부 되돌린 뒤 다시 작업합니다."
+  ],
+  "related": [
+    "Standard",
+    "Move",
+    "Blob",
+    "Smooth"
+  ],
+  "videos": [
+    {
+      "id": "IrtDZcteNh8",
+      "title": "Inflate Brush: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "o5GjY9x_leQ",
+      "title": "ZBrush Tips #4 - Inflate Brush Tutorial!🔥#shorts",
+      "author": "Prarthana 3D Studio"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Inflate%20brush",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Edit",
+    "Inflate"
+  ],
+  "at": "2026-11-10T00:29:38.684565+00:00"
+}
