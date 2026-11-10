@@ -1,0 +1,95 @@
+{
+  "id": "maya-quick-rig-712d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Quick Rig",
+  "title": "Quick Rig — 빠른 리그",
+  "summary": "Quick Rig은 Maya에 내장된 HumanIK 기반 자동 리깅 툴로, 캐릭터 메시에 몇 번의 클릭만으로 기본 컨트롤 리그를 생성합니다.",
+  "when": [
+    "간단한 휴머노이드 캐릭터를 빠르게 리깅해야 할 때",
+    "기존에 HumanIK 캐릭터 정의가 없고 처음부터 시작할 때",
+    "Prototype이나 테스트용 모델에 빠른 애니메이션 테스트가 필요할 때"
+  ],
+  "steps": [
+    "Window→Animation Editors→HumanIK→Quick Rig 열기",
+    "Create New 클릭 후 캐릭터 이름 입력 → OK",
+    "메시 선택 후 Define Skeleton 클릭, Auto Mapping 사용 (필요 시 Manual Mapping)",
+    "Create Rig 클릭 → 리그가 자동 생성됨",
+    "Settings→Control Size 로 컨트롤 크기 조정 (선택)",
+    "컨트롤을 움직여 정상 작동 확인"
+  ],
+  "params": [
+    {
+      "name": "Character Definition",
+      "desc": "리그에 사용할 캐릭터 이름과 기본 스켈레톤 정보를 저장"
+    },
+    {
+      "name": "Skeleton Definition",
+      "desc": "자동 또는 수동으로 매핑된 본 구조"
+    },
+    {
+      "name": "Control Size",
+      "desc": "Viewport에서 보이는 컨트롤의 크기"
+    },
+    {
+      "name": "Auto Mapping",
+      "desc": "메시와 스켈레톤을 자동 매칭"
+    },
+    {
+      "name": "Mirror Axis",
+      "desc": "대칭 본을 자동 생성할 축"
+    },
+    {
+      "name": "Rig Type",
+      "desc": "HumanIK 기본 리그 또는 커스텀 리그 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "간단한 인간 캐릭터 리깅",
+      "steps": [
+        "FBX 파일 Import → Quick Rig 실행 → Auto Mapping으로 스켈레톤 생성 → Create Rig → 팔, 다리 컨트롤 움직여 확인"
+      ]
+    },
+    {
+      "title": "사자(Quadruped) 캐릭터 리깅",
+      "steps": [
+        "동물 메쉬 선택 → Quick Rig 실행 → Skeleton Definition에서 Quadruped Template 선택 → Manual Mapping으로 다리 본 지정 → Create Rig → 꼬리와 목 컨트롤 테스트"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스켈레톤 매핑 오류 → Auto Mapping 대신 Manual Mapping으로 각 본을 직접 지정",
+    "컨트롤 크기가 너무 작음 → Settings→Control Size 에서 값 키워서 확대",
+    "리깅 후 스킨 가중치 손실 → Bind Skin → Smooth Bind 다시 실행 후 Weight Paint 확인"
+  ],
+  "related": [
+    "HumanIK",
+    "Rigify",
+    "CAT",
+    "Advanced Skeleton"
+  ],
+  "videos": [
+    {
+      "id": "c538zkwxgTQ",
+      "title": "Quick Rigging and Skinning a character for beginners",
+      "author": "Maya Learning Channel"
+    },
+    {
+      "id": "8RqfDcoP0jI",
+      "title": "How to Rig a Character in Maya | Step-by-Step Quick Rig Tutorial for Beginners",
+      "author": "What Make Art"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Quick%20Rig",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Animation Editors",
+    "HumanIK",
+    "Quick Rig"
+  ],
+  "at": "2026-11-10T04:01:35.019893+00:00"
+}

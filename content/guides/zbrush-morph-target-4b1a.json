@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-morph-target-4b1a",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Morph Target",
+  "title": "Morph Target — 되돌리기 붓",
+  "summary": "Morph Target는 현재 메쉬 상태를 저장해 두었다가 언제든지 원래 형태로 되돌리거나 두 형태를 섞어 변형을 제어할 수 있는 기능입니다.",
+  "when": [
+    "기본 형태를 보존하고 디테일을 추가한 뒤 원래 형태와 비교·블렌드하고 싶을 때",
+    "얼굴·표정·리깅용 블렌드 쉐이프를 만들고 싶을 때",
+    "스컬프 후 원본 형태로 되돌려 재작업하거나 타 모델에 투사할 때"
+  ],
+  "steps": [
+    "Tool 팔레트 → Morph Target 서브‑패널에서 Store Morph Target 버튼 클릭",
+    "원하는 스컬프 작업을 진행 (예: Move, Clay 등 브러시 사용)",
+    "다시 Tool → Morph Target → Morph Target 슬라이더를 조절해 저장된 형태와 현재 형태를 블렌드",
+    "필요하면 Switch To Morph Target 버튼을 눌러 저장된 형태로 즉시 전환",
+    "작업이 끝나면 다시 Store Morph Target 로 새 상태를 저장하거나, 다른 SubTool에 동일 작업 반복"
+  ],
+  "params": [
+    {
+      "name": "Store Morph Target",
+      "desc": "현재 메쉬를 기준 형태로 저장"
+    },
+    {
+      "name": "Switch To Morph Target",
+      "desc": "저장된 기준 형태로 즉시 전환"
+    },
+    {
+      "name": "Morph Target Slider",
+      "desc": "저장된 형태와 현재 형태를 비율로 블렌드"
+    },
+    {
+      "name": "Undo History",
+      "desc": "Morph Target 적용 전후에도 Undo 로 되돌릴 수 있음"
+    },
+    {
+      "name": "SubTool",
+      "desc": "각 SubTool마다 별도로 Morph Target을 저장·사용 가능"
+    },
+    {
+      "name": "Layers",
+      "desc": "Layers 와 함께 사용하면 더 세밀한 블렌드 제어 가능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "얼굴 표정 블렌드 쉐이프 만들기",
+      "steps": [
+        "얼굴 기본 형태를 만든 뒤 Store Morph Target",
+        "브러시로 웃는 표정 스컬프",
+        "Morph Target Slider 를 0~100% 로 움직여 기본·웃는 형태를 블렌드",
+        "필요한 표정마다 Store Morph Target 을 추가 저장"
+      ]
+    },
+    {
+      "title": "디테일 추가 후 원본 형태와 비교",
+      "steps": [
+        "베이스 메쉬에 SubD 레벨 1에서 Store Morph Target",
+        "레벨 2에서 디테일 스컬프",
+        "Morph Target Slider 로 디테일 강도 조절·원본과 비교",
+        "완성된 디테일을 유지하려면 새 Morph Target 저장"
+      ]
+    }
+  ],
+  "mistakes": [
+    "저장 전에 이미 변형을 시작 → 저장 전 상태가 없어 복구 불가 → 작업 전 반드시 Store Morph Target",
+    "여러 SubTool에 동일 Morph Target 적용을 시도 → 각 SubTool마다 별도 저장 필요 → SubTool 선택 후 각각 Store",
+    "Morph Target Slider 를 100% 이상 올려서 메쉬가 뒤틀림 → 슬라이더는 0~100% 범위 내에서 사용"
+  ],
+  "related": [
+    "Subdivision Levels",
+    "Layers",
+    "Dynamic Subdivision",
+    "Projection"
+  ],
+  "videos": [
+    {
+      "id": "3bp0rtmG2EY",
+      "title": "Zbrush Tutorial | Morph Target and Morph Brush",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "B_wKwXwjcZs",
+      "title": "#AskZBrush: “How does the Morph Target and Morph Brush work inside of ZBrush?”",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Morph%20Target",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Morph Target",
+    "Store Morph Target"
+  ],
+  "at": "2026-11-10T04:02:02.803086+00:00"
+}

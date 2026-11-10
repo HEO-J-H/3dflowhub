@@ -1,0 +1,55 @@
+{
+  "title_ko": "Gaussian Splatting·World Model로 영상 → 디지털 트윈 생성 (20프레임, 200크레딧)",
+  "title": "From Video to Digital Twin: An Exploratory Study of World Models and Gaussian Splatting on In-the-Wild Video",
+  "url": "https://arxiv.org/abs/2611.10013v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "World Model",
+    "디지털 트윈",
+    "OpenUSD",
+    "비용"
+  ],
+  "summary": "상업용 World Model과 Gaussian Splatting을 이용해 20프레임 영상만으로 747,000개의 splat을 200크레딧(20¢)에 디지털 트윈으로 재구성했다.",
+  "insight": "20프레임만으로 747k개의 Gaussian splat을 200크레딧에 생성한다는 비용 구조는 소규모 프로젝트에서도 시도해볼 만한 수준이다. CPU‑기반 최적화가 충분히 빠르지만, 경로 외부 품질 저하를 감안해 촬영 경로를 전략적으로 배치하면 결과물을 크게 개선할 수 있다. OpenUSD 변환 파이프라인을 구축하면 Blender와 Omniverse 사이의 데이터 교환이 매끄럽게 이루어진다.",
+  "try_it": [
+    "World Model API 키를 발급받고 20프레임 정도의 영상을 추출한다.",
+    "추출한 프레임을 입력으로 CPU‑기반 Gaussian Splat 최적화 툴을 실행한다.",
+    "생성된 splat 데이터를 OpenUSD 형식으로 변환하고 Blender에서 임포트한다.",
+    "필요시 NVIDIA Omniverse에 업로드해 실시간 뷰어로 검증한다"
+  ],
+  "sections": [
+    {
+      "heading": "입력 영상 및 실험 설정",
+      "body": "논문은 공개된 뉴스 영상(식품 은행 창고)에서 20프레임만을 사용했다. 영상에는 진행자가 지속적으로 움직이며 배경에 사람과 물체가 등장한다. 실험은 상업용 World Model API와 CPU‑기반 Gaussian Splat 최적화를 각각 적용했다."
+    },
+    {
+      "heading": "World Model이 복원한 카메라와 깊이",
+      "body": "World Model은 20프레임에서 카메라 포즈와 metric depth를 추정했다. 추정된 깊이는 세 구역에 대해 747,000개의 splat으로 변환되었다. 이 과정에서 사용된 비용은 200크레딧(≈20 센트)뿐이었다."
+    },
+    {
+      "heading": "Gaussian Splat 최적화와 품질",
+      "body": "CPU에서 로컬로 최적화된 Gaussian splat 모델은 촬영 경로 근처에서 포토리얼리스틱한 결과를 보였다. 그러나 경로에서 멀어질수록 품질이 급격히 떨어졌다. 보이지 않는 영역을 제외한 픽셀에서 PSNR은 21.2 dB와 23.1 dB를 기록했으며, 프레임 수를 8개로 제한하면 3.8 dB와 5.4 dB가 감소했다."
+    },
+    {
+      "heading": "Metric USD 변환 및 활용",
+      "body": "World Model 출력물을 유효한 metric OpenUSD 자산으로 변환하려면 몇 가지 보정이 필요했다. 변환된 USD는 native splat schema를 사용해 데이터 레이어, 브라우저 뷰어, Blender, NVIDIA Omniverse와 연결된다. 이를 통해 제작자는 동일한 3DGS 데이터를 다양한 툴에서 바로 활용할 수 있다."
+    },
+    {
+      "heading": "비용과 적용 시나리오",
+      "body": "200크레딧(20 센트)이라는 저비용으로 metric‑scale 디지털 트윈을 만들 수 있다는 점이 핵심이다. 제한된 촬영 환경이나 현장 엔지니어가 빠르게 3D 복제본을 필요로 할 때 적합하다. 다만 관찰되지 않은 영역의 외삽은 아직 상용 수준에 미치지 못한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/contact_sheet.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-10T04:00:35.779581+00:00",
+  "notion_id": "",
+  "id": "2026-11-10-cb571d8d58d8c328",
+  "img_tried": true,
+  "enriched": "2026-11-10"
+}
