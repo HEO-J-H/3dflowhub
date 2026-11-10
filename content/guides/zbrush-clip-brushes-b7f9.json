@@ -1,0 +1,85 @@
+{
+  "id": "zbrush-clip-brushes-b7f9",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Clip brushes",
+  "title": "Clip 브러시 — 잘라 평평하게",
+  "summary": "ZBrush의 Clip 브러시는 모델의 특정 영역을 직선이나 곡선으로 잘라내어 날카로운 평면이나 단면을 만드는 강력한 하드 서피스 스컬프팅 도구입니다.",
+  "when": [
+    "하드 서피스 모델의 모서리를 칼로 자른 듯이 직선으로 평평하게 깎아낼 때",
+    "메시의 불필요한 바깥쪽 영역을 깔끔하게 잘라내어 단면을 정리할 때",
+    "기계 부품이나 갑옷의 단단하고 각진 면을 빠르게 스컬프팅할 때"
+  ],
+  "steps": [
+    "Brush 팔레트(또는 화면 우측의 브러시 아이콘)를 클릭하거나 B 키를 누릅니다.",
+    "Hotkey C와 L을 차례대로 입력하여 ClipCurve 브러시(또는 원하는 Clip 계열 브러시)를 선택합니다.",
+    "모델의 자르고자 하는 시작점에 마우스나 펜을 대고 드래그하여 선(Curve)을 그립니다.",
+    "드래그를 멈추기 전 Alt 키를 누르면 선이 꺾이는 곡선(Curve) 형태로 조절할 수 있습니다.",
+    "마우스나 펜을 떼면 선의 어두운 쪽 영역이 모델 안쪽으로 잘려나가며 평면이 생성됩니다."
+  ],
+  "params": [
+    {
+      "name": "Brush Radius",
+      "desc": "브러시의 크기를 조절하여 자르기 선의 영향 범위를 설정합니다."
+    },
+    {
+      "name": "LazyMouse",
+      "desc": "선이나 곡선을 부드럽고 안정적으로 그릴 수 있도록 보정해 줍니다."
+    },
+    {
+      "name": "ZIntensity",
+      "desc": "클립 작업이 적용되는 깊이와 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑의 각진 모서리 잘라내기",
+      "steps": [
+        "B 키를 누르고 C, L을 입력하여 ClipCurve 브러시를 선택합니다.",
+        "로봇 장갑 모델의 모서리 부근에 직선을 드래그하여 자를 영역을 지정합니다.",
+        "어두운 쪽 방향을 확인하고 펜을 떼어 모서리를 사선으로 깔끔하게 잘라냅니다."
+      ]
+    },
+    {
+      "title": "실린더 형태의 단면 평평하게 자르기",
+      "steps": [
+        "ClipCircle 브러시를 선택하여 원형 단면을 지정합니다.",
+        "실린더 끝부분에 원을 그린 뒤 영역을 지정합니다.",
+        "불필요한 끝부분을 잘라내어 완벽한 평면 단면을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘리는 방향이 반대로 될 때 → 선을 그릴 때 생성되는 어두운 회색 영역이 잘려나가는 방향이므로, Alt 키를 눌러 방향을 전환하거나 반대 방향으로 드래그합니다.",
+    "메시가 찌그러지거나 깨질 때 → 모델의 폴리곤 밀도(Polygon Density)가 너무 낮을 때 발생하므로, Divide(Ctrl+D)를 실행해 폴리수를 높인 후 다시 시도합니다."
+  ],
+  "related": [
+    "Trim brushes",
+    "Slice brushes",
+    "hPolish",
+    "Dynamesh"
+  ],
+  "videos": [
+    {
+      "id": "FuMy_6UQa3w",
+      "title": "Clip Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "CJTu2qcOssg",
+      "title": "ZBrush 4 - ShadowBox and Clip Brushes",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Clip%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush",
+    "Hotkey C",
+    "ClipCurve",
+    "Clip"
+  ],
+  "at": "2026-11-10T01:29:59.217527+00:00"
+}
