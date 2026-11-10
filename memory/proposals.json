@@ -29836,5 +29836,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T18:05:51+00:00",
+    "kind": "proposal",
+    "id": "p-6f214b952e",
+    "title": "웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 PBR 텍스처 생성 기능이 추가되어 있으나 관련 클라이언트 측 테스트 케이스 보강이 필요합니다.",
+    "proposal": "web/tests/pbr_test.js 파일(또는 해당 테스트 경로)을 생성하여 Albedo, Normal, Roughness 맵 변환 로직에 대한 단위 테스트를 추가합니다.",
+    "expected": "브라우저 환경에서의 PBR 텍스처 생성 안정성 및 품질 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:05:51+00:00",
+    "kind": "proposal",
+    "id": "p-645fa3fa8e",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 FastAPI Pipeline GPU 부재 시 TripoSR 실행 예외 처리를 보다 견고하게 다듬을 필요가 있습니다.",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU 메모리 부족 또는 모델 로드 실패 시 명확한 에러 코드를 반환하도록 예외 처리를 보완합니다.",
+    "expected": "로컬 실행 시 예기치 않은 서버 다운 방지 및 디버깅 용이성 증대",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:06:10.515653+00:00",
+    "kind": "decision",
+    "id": "p-6f214b952e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T18:06:10.552813+00:00",
+    "kind": "decision",
+    "id": "p-645fa3fa8e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
