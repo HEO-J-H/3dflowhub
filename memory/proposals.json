@@ -30354,5 +30354,53 @@
     "id": "p-3be705d78c",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 통합 및 관련 단위 테스트가 끝낸 제안과 커밋 내역에 다수 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-10T19:53:45+00:00",
+    "kind": "proposal",
+    "id": "p-0e59e1bc28",
+    "title": "웹 브라우저 PBR 텍스처 변환 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 RAG 및 URL 검증 관련 PR 머지 완료 및 기존 테스트 안정화 상태",
+    "proposal": "web/tests/pbr_test.js 파일에 다양한 이미지 입력 포맷(PNG, JPEG)에 따른 PBR 텍스처(Albedo, Normal, Roughness) 생성 유효성 검사 단위 테스트 추가",
+    "expected": "브라우저 환경에서의 PBR 텍스처 생성 품질 안정성 확보 및 회귀 오류 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T19:53:45+00:00",
+    "kind": "proposal",
+    "id": "p-3038457186",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 FastAPI 서버 환경에서 GPU 자원 부족 또는 모델 파일 부재 시 예외 처리 필요성 제기",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 부재 환경 및 비정상 이미지 입력 시 예외 발생 및 적절한 에러 메시지 반환 여부 검증 테스트 추가",
+    "expected": "로컬 실행 시 예기치 않은 서버 중단 방지 및 사용자 친화적 오류 안내",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T19:54:02.715830+00:00",
+    "kind": "decision",
+    "id": "p-0e59e1bc28",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T19:54:02.754118+00:00",
+    "kind": "decision",
+    "id": "p-3038457186",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
