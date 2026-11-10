@@ -1959,6 +1959,21 @@ def step_text(t) -> str:
     return str(t or "").strip()
 
 
+def is_target_category(title: str) -> bool:
+    """제목에 고수익 키워드(Maxscript, 애드온, 튜토리얼 등) 포함 여부를 판별하는 함수."""
+    if not isinstance(title, str) or not title.strip():
+        return False
+    # 대소문자 무시 정규화 및 고수익 실무 키워드 패턴 정의
+    normalized = title.strip().lower()
+    target_keywords = [
+        "maxscript", "macroscript", "script", "plugin", "addon", "add-on",
+        "tutorial", "guide", "workflow", "geometry nodes", "shader", "rigging",
+        "animation", "rendering", "v-ray", "corona", "unreal engine", "unity",
+        "스크립트", "플러그인", "애드온", "튜토리얼", "가이드", "워크플로우", "셰이더", "리깅"
+    ]
+    return any(re.search(rf"(?<![a-z0-9]){re.escape(kw)}(?![a-z0-9])" if kw.isascii() else kw, normalized) for kw in target_keywords)
+
+
 def self_declared_offtopic(data: dict) -> bool:
     """요약·해설에 '3D 와 무관', '이름만 같음' 같은 말이 있으면 주제 밖 (점수(relevance)를 높게 줘도)."""
     t = " ".join([str(data.get("summary", "")), str(data.get("insight", ""))]

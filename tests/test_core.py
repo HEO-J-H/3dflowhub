@@ -226,6 +226,17 @@ def test_post_html_faq_and_related():
     assert "함께 보면 좋은 글" in out and 'href="https://hjh1014.tistory.com/3"' in out
 
 
+def test_is_target_category():
+    # 고수익 키워드(Maxscript, 애드온, 튜토리얼 등) 포함 여부 테스트 (대소문자 무시 및 안전한 처리)
+    assert core.is_target_category("Maxscript automation guide for 3ds Max") is True
+    assert core.is_target_category("Blender Geometry Nodes addon tutorial") is True
+    assert core.is_target_category("Unreal Engine 5 workflow guide") is True
+    assert core.is_target_category("블렌더 애드온 및 스크립트 작성 법") is True
+    assert core.is_target_category("일반적인 일상 뉴스 소식") is False
+    assert core.is_target_category("") is False
+    assert core.is_target_category(None) is False
+
+
 def test_short_post_warning_and_error(monkeypatch):
     monkeypatch.setattr(core, "RUN_ERRORS", [])
     short_item = {**ITEM, "sections": [{"heading": "Short", "body": "Too short"}]}
