@@ -744,6 +744,38 @@ OpenUSD|USD schemas (typed and applied)|스키마 — 형식·적용 스키마 �
 OpenUSD|USD collections and light linking|컬렉션·라이트 링크
 연결|NVIDIA Omniverse Blender add-on and USD settings|Blender USD 내보내기 옵션 정리
 """,
+"Unity": """
+입문|Unity Hub and installing the Editor|Unity Hub — 에디터 설치·프로젝트 만들기
+입문|Unity Editor interface|화면 구성 — Scene·Game·Hierarchy·Inspector·Project
+입문|Scene view navigation|Scene 뷰 이동·회전·확대
+입문|GameObjects and Components|GameObject 와 Component — Unity 의 기본 구조
+입문|Transform component|Transform — 위치·회전·크기
+입문|Prefabs|Prefab — 재사용하는 오브젝트
+입문|Render pipelines (URP vs HDRP vs Built-in)|렌더 파이프라인 고르기 — URP·HDRP·Built-in
+가져오기|Importing FBX models|FBX 모델 가져오기 — 스케일·축·재질
+가져오기|Model import settings|모델 Import Settings — Mesh·Rig·Animation·Materials
+가져오기|Importing textures and texture import settings|텍스처 가져오기·압축 설정
+재질|Materials and the Lit shader (URP)|재질과 URP Lit 셰이더
+재질|Shader Graph basics|Shader Graph 기초 — 노드로 셰이더 만들기
+재질|PBR texture maps in Unity|PBR 텍스처 연결 — Base Map·Normal·Mask
+조명|Lighting basics (directional, point, spot)|조명 기초 — Directional·Point·Spot
+조명|Baked lighting and Lightmapping|라이트맵 굽기 (Baked GI)
+조명|Reflection Probes|Reflection Probe — 반사 맞추기
+조명|Post-processing Volume|후처리 Volume — Bloom·Color Grading
+카메라|Cinemachine basics|Cinemachine — 카메라 연출 기초
+카메라|Timeline basics|Timeline — 컷신 만들기
+애니메이션|Animator Controller and states|Animator Controller — 상태와 전환
+애니메이션|Humanoid rig and retargeting|Humanoid 리그·리타깃팅
+애니메이션|Animation clips and import|애니메이션 클립 가져오기·자르기
+물리|Rigidbody and Colliders|Rigidbody·Collider — 물리 기초
+VFX|Particle System basics|Particle System — 파티클 기초
+VFX|VFX Graph basics|VFX Graph — GPU 파티클
+환경|Terrain tools|Terrain — 지형 만들기
+최적화|LOD Group|LOD Group — 거리별 디테일
+최적화|Static batching and GPU instancing|배칭·GPU 인스턴싱으로 가볍게
+최적화|Profiler basics|Profiler — 느린 곳 찾기
+내보내기|Building for Windows and WebGL|빌드하기 — Windows·WebGL
+""",
 "Substance 3D": """
 페인터|Substance Painter project setup|Painter 새 프로젝트 설정
 페인터|Painter interface and shelf|Painter 인터페이스·Shelf
@@ -896,7 +928,7 @@ URLS = {
     "Building USD Composer from Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
     "Kit App Template": "https://github.com/NVIDIA-Omniverse/kit-app-template",
 }
-FIRST = ("Pixyz Studio", "NVIDIA Omniverse")  # 도구 순서에서 먼저 (운영자 요청 — 한국어 자료가 부족한 분야)
+FIRST = ("Substance 3D", "Unity", "Pixyz Studio", "NVIDIA Omniverse")  # 부족한 도구 먼저 (Substance 4·Unity 1개, 2026-11-10)  # 도구 순서에서 먼저 (운영자 요청 — 한국어 자료가 부족한 분야)
 
 
 def topics() -> list[tuple]:

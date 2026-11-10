@@ -830,6 +830,8 @@ def pager_html(n: int, total: int, href) -> str:
 
 def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header: str, domain_on: str,
                 indexable: bool = True, header_more: str | None = None) -> None:
+    if out_dir.resolve().is_relative_to((OUT / "c").resolve()):
+        indexable = False  # 분야별 소식 게시판 = 요약 목록 → 검색 노출 제외 (링크는 따라감)
     """게시판 목록 (페이지네이션: index.html, page/2/ ...)."""
     pages = [posts[i:i + PAGE_SIZE] for i in range(0, max(len(posts), 1), PAGE_SIZE)] or [[]]
     for n, chunk in enumerate(pages, 1):
@@ -1353,10 +1355,17 @@ def is_thin(p: dict) -> bool:
     return sum(t in low for t in terms) < 3
 
 
+def post_indexed(p: dict) -> bool:
+    """검색에 올리는 소식 글: 에디터 추천만 (2026-11-10 사장님 결정).
+    요약 소식은 원문이 따로 있어 구글이 중복으로 보고, 많을수록 사이트 전체 평가를 떨어뜨림(28일 노출 1회).
+    사이트에는 그대로 있고, 검색엔 기초 가이드·툴 비교·오류 해결·공모전·레이더처럼 우리만의 페이지를 올린다."""
+    return bool(p.get("pick")) and not is_thin(p)
+
+
 def post_head(p: dict) -> str:
     """글 페이지 SEO: og:image·article 메타 + JSON-LD (BlogPosting, BreadcrumbList)."""
     url = f"{BASE_URL}/p/{p['id']}.html"
-    thin = '<meta name="robots" content="noindex,follow">' if is_thin(p) else ""
+    thin = "" if post_indexed(p) else '<meta name="robots" content="noindex,follow">'
     img = (p.get("media") or {}).get("image") or ""
     date = iso_tz(p.get("collected_at") or "")
     ld = [{
@@ -2069,18 +2078,14 @@ def build() -> dict:
                                   f"<title>{SITE_TITLE}</title><link>{BASE_URL}/</link><description>{e(SITE_DESC)}"
                                   f"</description>{items}</channel></rss>", encoding="utf-8")
     urls = [f"{BASE_URL}/", f"{BASE_URL}/about/", f"{BASE_URL}/weekly/", f"{BASE_URL}/contact/", f"{BASE_URL}/privacy/"] + \
-           [f"{BASE_URL}/weekly/{w}/" for w in sorted({w for w in (iso_week(p) for p in posts) if w})] + [f"{BASE_URL}/{cat_url(d)}" for d in board_domains()] + \
-           [f"{BASE_URL}/{cat_url(d, c)}" for (d, c) in sorted(by_cat)] + \
-           [f"{BASE_URL}/{cat_url(d, c)}{TOPIC_SLUG[t]}/" for (d, c), ps in sorted(by_cat.items())
-            for t in sorted({p.get("topic") for p in ps if p.get("topic") in TOPIC_SLUG})
-            if sum(1 for p in ps if p.get("topic") == t) >= MIN_INDEXABLE] + \
+           [f"{BASE_URL}/weekly/{w}/" for w in sorted({w for w in (iso_week(p) for p in posts) if w})] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
            [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + \
            ([f"{BASE_URL}/assets/"] if n_assets else []) + \
            [f"{BASE_URL}/fix/"] + [f"{BASE_URL}/fix/{x['id']}/" for x in ref_fixes] + \
            [f"{BASE_URL}/changes/"] + [f"{BASE_URL}/changes/{x['id']}/" for x in ref_changes] + \
-           [f"{BASE_URL}/p/{p['id']}.html" for p in posts if not is_thin(p)]
+           [f"{BASE_URL}/p/{p['id']}.html" for p in posts if post_indexed(p)]
     # 수정일 신호: 글은 수집일, 가이드는 작성일 (Google 이 다시 크롤할 페이지를 고를 때 사용)
     lastmod = {f"{BASE_URL}/p/{p['id']}.html": (p.get("collected_at") or "")[:10] for p in posts}
     lastmod.update({f"{BASE_URL}/{learn_url(g)}": (g.get("at") or "")[:10] for g in learn_guides})

@@ -33,3 +33,8 @@ def test_radar_filters():
     assert radar.KAGGLE_OK.search("modelnet40 - princeton 3d object dataset")
     assert radar.KAGGLE_NO.search("3d liver segmentation") and radar.KAGGLE_NO.search("rsna trained 3d model weights")
     assert radar._lic("mit")["commercial"] == "가능" and radar._lic("cc-by-nc-4.0")["commercial"] == "불가"
+
+
+def test_only_original_pages_indexed():
+    import build_site
+    assert not build_site.post_indexed({"id": "a", "sections": [{"body": "x" * 900}]})  # 요약 소식은 검색 제외
