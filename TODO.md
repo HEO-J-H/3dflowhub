@@ -61,6 +61,6 @@
 - [ ] (agent:보류) evolve.analyze_3d_content_distribution(): 최근 생성된 콘텐츠의 3D DCC 및 실무 툴 도메인별 분포 비율을 집계하는 통계 함수 구현 및 tests/test_core.py에 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [x] (agent) app.render_cpc_optimization_dashboard(): Streamlit 현황판에 고CPC 실무 3D 콘텐츠 집중도와 오프토픽 차단 현황을 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
 
-- [x] (agent) validate_url_scheme(): URL 스킴을 http/https 로만 허용하고, 잘못된 스킴은 False 반환하도록 구현 및 테스트 추가
+- [ ] (agent:보류) validate_url_scheme(): URL 스킴을 http/https 로만 허용하고, 잘못된 스킴은 False 반환하도록 구현 및 테스트 추가 — [4] 패치 적용 실패: ['tests/test_core.py: search 블록이 정확히 1회 일치하지 않음']
 - [ ] (agent) is_target_category(): 제목에 고수익 키워드(Maxscript, 애드온, 튜토리얼 등) 포함 여부를 판별하는 함수 구현 및 테스트 추가
 - [ ] (agent) compute_internal_link_score(): 콘텐츠 내 내부 링크 비율을 계산해 SEO 점수로 반환하는 함수 구현 및 테스트 추가
