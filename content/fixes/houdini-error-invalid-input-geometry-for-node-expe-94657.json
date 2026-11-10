@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-invalid-input-geometry-for-node-expe-94657",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Invalid input geometry for node (Expected points, got primitives)",
+  "title": "Error: Invalid input geometry for node (Expected points, got primitives) 오류 해결",
+  "summary": "Error: Invalid input geometry for node (Expected points, got primitives) 에러는 Houdini 노드가 입력 데이터로 포인트(Points)를 요구했으나 실제로는 Primitive(Primitives, 면)나 다른 형태의 지오메트리가 연결되었을 때 발생하는 데이터 타입 불일치 오류입니다.",
+  "causes": [
+    "Copy to Points 또는 Scatter 같은 노드의 포인트 입력(두 번째 입력)에 포인트가 아니라 일반 폴리곤 메시(Primitives)나 곡선이 연결된 경우",
+    "Point Wrangle 노드 등이 포인트가 존재하지 않는 Primitive 레벨 데이터나 잘못된 오브젝트를 참조하고 있는 경우",
+    "입력 노드에서 출력 데이터 타입이 예상과 다르게 변경되었거나 상위 노드의 속성 누락으로 인해 데이터 종류가 바뀐 경우"
+  ],
+  "steps": [
+    "에러가 발생한 노드를 선택하고 네트워크 뷰(Network View)나 파라미터 패널에서 어떤 입력 단자(Input)에 잘못된 와이어가 꽂혀 있는지 확인합니다.",
+    "포인트 데이터를 요구하는 입력 단자(예: Copy to Points의 두 번째 입력, 혹은 포인트 전용 노드)에 올바른 포인트 소스가 연결되어 있는지 점검합니다.",
+    "만약 입력된 소스가 폴리곤 메시 형태라면, 그 앞에 Add SOP 또는 Scatter SOP 노드를 추가하여 메시를 포인트로 변환합니다.",
+    "Add SOP 노드의 파라미터에서 Delete Geometry 생성 옵션을 켜서 폴리곤 면은 제거하고 포인트만 남기도록 설정합니다.",
+    "필요한 경우 Blast SOP나 Convert SOP 노드를 사용하여 불필요한 Primitive를 사전에 정리하고 명확한 포인트 지오메트리만 전달합니다."
+  ],
+  "check": [
+    "노드 네트워크에서 빨간색 에러 마크가 사라지고 노드 상태가 정상(Ready/Up to date)으로 바뀝니다.",
+    "Viewport와 노드의 디스플레이 플래그(Display Flag)를 켜서 원하는 위치에 포인트가 정상적으로 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "노드를 연결할 때 와이어 입력 단자의 색상과 아이콘을 확인하여 포인트(Points) 입력과 Primitive(Primitives) 입력을 혼동하지 않도록 주의합니다.",
+    "데이터를 변환하는 과정(Scatter, Add, Blast 등)에서 출력 데이터 타입이 의도한 대로 유지되는지 항상 중간 노드에서 확인하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Houdini 에러",
+    "Invalid input geometry",
+    "Expected points got primitives",
+    "Copy to Points 오류",
+    "Houdini 포인트 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T08:13:02+00:00"
+}

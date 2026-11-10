@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-wedge-sop-failed-to-evaluate-express-cdc09",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Wedge sop: Failed to evaluate expression for variable",
+  "title": "Error: Wedge sop: Failed to evaluate expression for variable 오류 해결",
+  "summary": "Houdini에서 Wedge SOP 노드가 파라미터나 변수를 평가하는 도중 유효하지 않은 식이나 누락된 레퍼런스를 만나 계산에 실패했을 때 발생하는 오류입니다. 잘못된 변수 이름이나 문법 오류가 주된 원인입니다.",
+  "causes": [
+    "Wedge SOP의 Wedge Parms에 입력한 Hscript 또는 VEX 표현식에 오타나 문법 오류가 있음",
+    "표현식에서 참조하는 변수($CH 등)나 어트리뷰트가 해당 노드의 컨텍스트에 존재하지 않음",
+    "외부 파일 경로를 동적으로 생성할 때 잘못된 경로 변수나 문법을 사용함"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 문제가 발생한 Wedge SOP 노드를 더블 클릭하여 파라미터 인터페이스를 엽니다.",
+    "Wedge Parms 탭에서 각 Wedge 항목에 입력된 표현식과 변수 이름을 검토합니다.",
+    "Textport 또는 Hscript/VEX 표현식 내부에 누락된 달러사인($)이나 괄호가 있는지 확인합니다.",
+    "Alt + E를 눌러 식 편집기(Expression Editor)를 열고 문법 오류를 수정합니다.",
+    "수정 완료 후 Wedge SOP 노드를 우클릭하고 Cook Selected를 눌러 재시작합니다."
+  ],
+  "check": [
+    "노드 하단의 상태 표시줄에 빨간색 오류 메시지가 사라지고 초록색 성공 상태로 바뀝니다.",
+    "Geometry Spreadsheet에서 Wedge 결과에 따라 어트리뷰트가 정상적으로 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "복잡한 표현식을 작성할 때는 Textport나 파라미터 팝업 창에서 먼저 단일 값으로 테스트합니다.",
+    "노드 경로와 어트리뷰트 이름을 직접 입력하는 대신 드래그 앤 드롭을 활용해 오타를 방지합니다."
+  ],
+  "keywords": [
+    "Houdini 웨지 오류",
+    "Wedge sop Failed to evaluate",
+    "Houdini Wedge 표현식 오류",
+    "Vex expression error Houdini",
+    "Wedge Parms 수정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T08:13:17+00:00"
+}

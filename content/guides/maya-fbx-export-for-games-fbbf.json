@@ -1,0 +1,100 @@
+{
+  "id": "maya-fbx-export-for-games-fbbf",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "FBX export for games",
+  "title": "게임용 FBX Export",
+  "summary": "Maya에서 제작한 3D 모델을 게임 엔진(Unreal Engine, Unity 등)으로 Export 위해 FBX 포맷으로 변환하는 필수 과정입니다. 축 방향과 스케일을 정확히 맞춰 게임 엔진에서 왜곡 없이 불러올 수 있습니다.",
+  "when": [
+    "캐릭터, 배경, 프랍 등의 모델링을 완료하고 게임 엔진에 임포트할 때",
+    "애니메이션 데이터가 포함된 뼈대(Skeleton)와 메시를 함께 내보낼 때",
+    "팀원이나 퍼블리셔에게 에셋을 FBX 포맷으로 전달할 때"
+  ],
+  "steps": [
+    "불필요한 히스토리를 지우고 피벗을 정렬할 오브젝트를 선택합니다.",
+    "상단 메뉴에서 File → Export Selection(또는 Export All)을 클릭합니다.",
+    "Files of type 드롭다운에서 FBX export를 선택합니다.",
+    "Export Selection 옵션 상자의 General Options에서 Animation과 Constraints 등의 포함 여부를 체크합니다.",
+    "File 타입별 세부 옵션(Axis Conversion 등)에서 Up axis를 Z-up 또는 Y-up에 맞게 확인합니다.",
+    "저장할 경로와 파일 이름을 입력한 후 Export Selection 버튼을 클릭합니다."
+  ],
+  "params": [
+    {
+      "name": "Smoothing Groups",
+      "desc": "모델의 부드러운 면과 각진 면의 경계(스무딩) 정보를 FBX 파일에 포함합니다."
+    },
+    {
+      "name": "Triangulate",
+      "desc": "사이드 폴리곤을 자동으로 삼각형으로 쪼개어 게임 엔진과의 호환성을 높입니다."
+    },
+    {
+      "name": "Embed Media",
+      "desc": "텍스처 파일을 FBX 파일 내부에 함께 포함시켜 경로 유실을 방지합니다."
+    },
+    {
+      "name": "Axis Conversion",
+      "desc": "DCC 툴과 게임 엔진 간의 서로 다른 좌표축(Y-up, Z-up)을 자동으로 변환합니다."
+    },
+    {
+      "name": "Animation",
+      "desc": "Timeline에 제작된 리깅 및 애니메이션 Keyframe을 함께 내보냅니다."
+    },
+    {
+      "name": "Constraints",
+      "desc": "리그에 적용된 컨스트레인트(Constraint) 연결 정보를 베이크하여 내보냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "정적 배경 오브젝트(Static Mesh) Export",
+      "steps": [
+        "오브젝트를 선택하고 Edit → Delete by Type → History를 실행합니다.",
+        "File → Export Selection으로 진입합니다.",
+        "Geometry 항목에서 Smoothing Groups와 Triangulate를 체크한 후 내보냅니다."
+      ]
+    },
+    {
+      "title": "애니메이션 캐릭터 Export",
+      "steps": [
+        "스켈레톤과 메시를 모두 선택합니다.",
+        "Export Selection 창에서 Animation 옵션을 켭니다.",
+        "Deformations 항목이 체크되어 있는지 확인하고 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피벗이 원점이 아닌 곳에 있음 → Modify → Center Pivot을 먼저 실행한 뒤 내보냅니다.",
+    "오브젝트에 남은 히스토리로 인한 오류 → Edit → Delete by Type → History로 히스토리를 지우고 다시 시도합니다.",
+    "게임 엔진에서의 축 틀림 현상 → Export 옵션의 Axis Conversion에서 Z-up 혹은 Y-up 설정을 엔진에 맞게 변경합니다."
+  ],
+  "related": [
+    "Delete by Type",
+    "Center Pivot",
+    "Bake Animation",
+    "Material Assignments"
+  ],
+  "videos": [
+    {
+      "id": "fjSQti0gSoU",
+      "title": "How AAA Studios Export FBX Animations From Maya To Unreal Engine",
+      "author": "Libby Pete"
+    },
+    {
+      "id": "BkJP251R2f4",
+      "title": "Game Exporter, How to Export FBX with Animation!! #3dmodeling #autodeskmaya #blender #tutorial",
+      "author": "MB_Cre8"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20FBX%20export%20for%20games",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Export Selection",
+    "Export All",
+    "Files",
+    "FBX"
+  ],
+  "at": "2026-11-10T08:12:49.089868+00:00"
+}

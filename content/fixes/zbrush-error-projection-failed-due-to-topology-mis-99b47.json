@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-error-projection-failed-due-to-topology-mis-99b47",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Error: Projection failed due to topology mismatch or missing UVs",
+  "title": "Error: Projection failed due to topology mismatch or missing UVs 오류 해결",
+  "summary": "ZBrush에서 Project All 또는 투영 작업을 수행할 때 소스 메쉬와 타겟 메쉬 간의 Topology가 크게 다르거나 UV 정보가 누락되어 투영 연산을 진행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "소스 메쉬와 타겟 메쉬의 Topology 구조가 너무 달라서 세부 디테일을 매핑할 기준을 찾지 못할 때",
+    "투영 방식(UV Projection 등)을 지정했으나 대상 모델에 UV가 존재하지 않을 때",
+    "SubTool의 위치나 스케일이 크게 어긋나 두 메쉬가 올바르게 겹치지 않을 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 대상 SubTool을 선택하고 Geometry 패널에서 SDiv(Subdivision Level)를 확인합니다.",
+    "Tool > UV Map 메뉴에서 Create UVs 기능을 실행하거나 기존 UV가 올바르게 펼쳐져 있는지 확인합니다.",
+    "SubTool 팔레트에서 투영할 소스 SubTool과 타겟 SubTool의 가시성(눈 아이콘)이 올바르게 켜져 있는지 확인합니다.",
+    "Tool > Projection 패널에서 투영 옵션(Dist, ProjDist 등) 값을 조정합니다.",
+    "Project All 버튼을 다시 눌러 투영을 실행합니다."
+  ],
+  "check": [
+    "Viewport에서 오류 메시지 없이 투영 작업이 완료되고 타겟 메쉬에 디테일이 정상적으로 반영되는지 확인합니다.",
+    "Tool > Geometry 팔레트에서 메쉬의 형태가 깨지지 않았는지 점검합니다."
+  ],
+  "prevent": [
+    "UV 기반 투영을 진행하기 전에 반드시 대상 메쉬에 UV를 미리 생성합니다.",
+    "투영 전 두 SubTool의 위치와 스케일을 일치시키고 고해상도 상태에서 작업을 진행합니다."
+  ],
+  "keywords": [
+    "ZBrush Projection failed",
+    "Topology 불일치 오류",
+    "ZBrush 투영 실패",
+    "Missing UVs ZBrush",
+    "Project All 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T08:13:30+00:00"
+}

@@ -10,7 +10,7 @@
     "영화 품질의 고도화된 하이폴리 스캔 에셋을 씬에 대량으로 배치할 때",
     "멀리 있는 오브젝트가 작아질 때 자동으로 폴리곤을 줄여 프레임 저하를 막고 싶을 때",
     "전통적인 노말 맵 Baking(Normal Map Baking) 작업을 생략하고 원본 지오메트리로 작업하고 싶을 때",
-    "대규모 오픈월드 환경에서 Nanite Foliage와 PCG를 활용해 수백만 개의 식생을 퍼포먼스 저하 없이 배치하고 싶을 때"
+    "대규모 오픈월드 환경에서 Nanite Foliage와 PCG를 활용해 수백만 개의 식생을 퍼포먼스 저하 없이 배치할 때"
   ],
   "steps": [
     "Content Browser에서 Nanite를 적용할 Static Mesh 에셋을 더블클릭하여 Static Mesh Editor를 엽니다.",
@@ -43,7 +43,7 @@
       "steps": [
         "하이폴리 3D 스캔 나무 에셋들을 씬에 대량 배치합니다.",
         "모든 나무 스태틱 메시 설정에서 Enable Nanite를 켭니다.",
-        "수백만 폴리곤의 나무가 프레임 드롭 없이 렌더링되는지 확인합니다."
+        "수백만 폴리곤의 나무가 LOD 전환이나 프레임 드롭 없이 렌더링되는지 확인합니다."
       ]
     },
     {
@@ -108,13 +108,24 @@
       "source_keys": [
         "p:2026-10-22-c601756d8ff3fa5a"
       ]
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-10-97608abe4d28eb16",
-      "title": "Unreal Engine 5 초목 제작 맞춤형 워크플로",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd3hQdUgxTGVIbWRHMVRnZUdtd2hzVXg1Q3dVSWNkQW9lV3hRcVdmV1d3LXE4S1pxYk85WWpsOXdqbFNUQ1BlQ3c2blZIZjRiSDN6M3FwZHYyUnFvYTRpdm1OZDhJQXdLYUFrdjlweC1UVWxyMFFFQmg0eUxnTjFoTzhaek8wdE11MGNVU2Vfc005dzg?oc=5"
+      "at": "2026-11-10T08:14:00+00:00",
+      "what": "최신 Unreal Engine 5 초목 제작 워크플로 및 리메이크 사례 소식을 반영하여, LOD 전환 없이 고밀도 에셋을 유지하는 Nanite 숲 배경 제작 예시의 설명을 보강했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 5 초목 제작 맞춤형 워크플로",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd3hQdUgxTGVIbWRHMVRnZUdtd2hzVXg1Q3dVSWNkQW9lV3hRcVdmV1d3LXE4S1pxYk85WWpsOXdqbFNUQ1BlQ3c2blZIZjRiSDN6M3FwZHYyUnFvYTRpdm1OZDhJQXdLYUFrdjlweC1UVWxyMFFFQmg0eUxnTjFoTzhaek8wdE11MGNVU2Vfc005dzg?oc=5"
+        },
+        {
+          "title": "Unreal Engine 5로 재구현된 Driver 2 리메이크",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNQy1WRFU1V2hHajd0enJCQXVvbVdRRkpUbko4OFJGVUtUV3F3R1BZMEVhSkx4YTJRbFM5QXJhbV9VRXpjSzZRSEdKV2I4bm5vS084NEVVRmstb19UdkxZVUZDNzZWbGJsZDZ2cVg4RlFUdW5ueF96bTM2S1p1NEpjWUlfWFdWSGJ3OTdOOTNHTXlqNGZfTnBJUFpnOUdoMFNkT29PTVFJR29LS1pFcldsZFdOTERfZ3M?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-10-97608abe4d28eb16",
+        "p:2026-11-10-1ef5c1ad2b6f4d53"
+      ]
     }
   ]
 }

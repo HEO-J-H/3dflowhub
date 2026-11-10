@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-error-mesh-has-subdivision-levels-delete-or-b584e",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Error: Mesh has subdivision levels. Delete or freeze levels to perform this operation",
+  "title": "Error: Mesh has subdivision levels. Delete or freeze levels to perform this oper",
+  "summary": "ZBrush에서 'Error: Mesh has subdivision levels. Delete or freeze levels to perform this operation' 메시지는 서브디비전(Subdivision) 레벨이 남아 있는 상태에서 다이나메쉬(DynaMesh), 지오메트리 삭제 등 상위/하위 레벨과 충돌하는 작업을 수행하려고 할 때 발생합니다.",
+  "causes": [
+    "현재 SubTool에 여러 개의 Subdivision 레벨이 존재합니다.",
+    "Dynamesh, ZRemesher, 또는 Delete Lower/Higher 등 레벨이 없어야 실행 가능한 기능을 실행했습니다.",
+    "고해상도 디테일 작업 도중 실수로 구조 변경 작업을 시도했습니다."
+  ],
+  "steps": [
+    "Tool 팔레트에서 Geometry 메뉴를 엽니다.",
+    "Subdivision Levels 서브 메뉴에서 현재 모델의 레벨 상태를 확인합니다.",
+    "서브디비전 레벨을 완전히 지우려면 Delete Lower 또는 Delete Higher 버튼을 클릭하여 레벨을 1개로 만듭니다.",
+    "또는 레벨의 세부 디테일을 유지하고 싶다면 Freeze 버튼을 눌러 레벨을 일시적으로 고정(Freeze)합니다.",
+    "원하는 작업(예: DynaMesh, ZRemesher 등)을 다시 실행합니다."
+  ],
+  "check": [
+    "Geometry 팔레트의 Subdivision Levels에서 SDiv가 1로 고정되거나 레벨 바가 사라졌는지 확인합니다.",
+    "오류 메시지 없이 DynaMesh나 타 작업이 정상적으로 수행되는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "구조를 크게 변경하거나 DynaMesh를 적용하기 전에 반드시 Subdivision 레벨을 정리하거나 Del Lower를 실행합니다.",
+    "디테일 스컬프팅 전 단계에서 형태를 확실히 잡아두어 불필요한 고레벨 생성을 줄입니다."
+  ],
+  "keywords": [
+    "ZBrush 오류",
+    "Mesh has subdivision levels",
+    "Delete or freeze levels",
+    "다이나메쉬 오류",
+    "서브디비전 삭제"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T08:13:27+00:00"
+}
