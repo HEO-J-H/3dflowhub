@@ -1,0 +1,95 @@
+{
+  "id": "maya-usd-in-maya-239b",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "USD in Maya",
+  "title": "USD 사용",
+  "summary": "Maya의 USD(Universal Scene Description) 기능은 대규모 3D 에셋과 씬을 효율적으로 관리하고 USD 포맷으로 내보내거나 가져올 수 있도록 지원하는 핵심 파이프라인 도구입니다.",
+  "when": [
+    "여러 부서가 동시에 하나의 대형 3D 씬을 편집하며 협업할 때",
+    "USD 기반 파이프라인(예: NVIDIA Omniverse)으로 씬 데이터를 넘길 때",
+    "무거운 지오메트리와 애니메이션 데이터를 가볍게 참조(Reference) 형태로 불러올 때"
+  ],
+  "steps": [
+    "Autodesk Maya를 실행하고 Windows → Settings/Preferences → Plug-in Manager를 엽니다.",
+    "플러그인 목록에서 mayaUsdPlugin.mll을 찾아 Loaded 및 Auto Load에 체크합니다.",
+    "File → Export All 또는 Export Selection을 열고 파일 형식을 USD Export (.usd, .usda, .usdc)로 선택합니다.",
+    "옵션 창에서 Material, Animation, Mesh 등의 Export 항목을 체크하고 Export를 누릅니다.",
+    "Viewport에서 USD 계층 구조가 정상적으로 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "File Format",
+      "desc": "저장할 USD 파일의 포맷(텍스트 기반 usda 또는 바이너리 기반 usdc/usd)을 선택합니다."
+    },
+    {
+      "name": "Materials",
+      "desc": "머티리얼 정보와 Shader 네트워크를 USD 파일 함께 내보냅니다."
+    },
+    {
+      "name": "Animation",
+      "desc": "Timeline의 애니메이션 Keyframe과 캐시 데이터를 USD 형태로 변환합니다."
+    },
+    {
+      "name": "Shapes",
+      "desc": "지오메트리 메시 데이터를 USD Primitive로 내보냅니다."
+    },
+    {
+      "name": "Subdivisions",
+      "desc": "스무딩 및 서브디비전 정보를 USD 스키마로 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 에셋을 하나의 USD 씬으로 조합하기",
+      "steps": [
+        "빈 Maya 씬에서 Create → USD → Stage를 생성합니다.",
+        "Outliner에서 USD Stage를 선택하고 Mouse 우클릭으로 Sublayer 또는 Reference를 추가합니다.",
+        "외부에 저장된 .usdc 캐릭터와 배경 파일을 불러와 하나의 Viewport에 조립합니다."
+      ]
+    },
+    {
+      "title": "USD 파일로 애니메이션 Export",
+      "steps": [
+        "애니메이션이 완료된 캐릭터 리그를 선택합니다.",
+        "File → Export Selection으로 이동해 USD Export 옵션을 엽니다.",
+        "Animation 옵션을 켜고 프레임 범위를 지정한 뒤 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "mayaUsdPlugin이 로드되지 않아 메뉴가 안 뜸 → Plug-in Manager에서 mayaUsdPlugin.mll을 체크하고 로드합니다.",
+    "텍스처 경로가 깨짐 → 파일 경로가 상대 경로로 올바르게 지정되었는지 확인하고 텍스처를 에셋 폴더에 모읍니다."
+  ],
+  "related": [
+    "NVIDIA Omniverse Maya USD 플러그인",
+    "MaterialX in USD",
+    "glTF Export",
+    "USD Stage"
+  ],
+  "videos": [
+    {
+      "id": "LC0xOdhCCHo",
+      "title": "Maya USD Import Guide: Stage from File, Scenegraph & Viewport Setup (USD 2.1)",
+      "author": "辛浩然"
+    },
+    {
+      "id": "-m5McRmyGC8",
+      "title": "A Detailed Look at USD Layering Systems in Autodesk Maya for VFX Artists",
+      "author": "Arvid Schneider"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20USD%20in%20Maya",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Autodesk Maya",
+    "Windows",
+    "Settings",
+    "Preferences",
+    "Plug",
+    "Manager"
+  ],
+  "at": "2026-11-10T08:41:59.003341+00:00"
+}
