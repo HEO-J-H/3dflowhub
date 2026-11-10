@@ -1,5 +1,5 @@
 {
-  "title_ko": "Plant Orbiter — 단일 이미지와 Gaussian Splatting 기반 3D 식물 생성",
+  "title_ko": "Plant Orbiter — 비디오 디퓨전과 3DGS로 단일 이미지 식물 3D 복원",
   "title": "Plant Orbiter: 3D Plant Reconstruction and Generation with Video Diffusion Orbit Cameras and 3D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2611.12739v1",
   "domain": "AI 3D",
@@ -8,43 +8,88 @@
   "tags": [
     "Plant Orbiter",
     "3D Gaussian Splatting",
-    "비디오 디퓨전",
-    "3D 식물 복원",
-    "생성 AI"
+    "Video Diffusion",
+    "Digital Phenotyping",
+    "Monocular 3D Reconstruction"
   ],
-  "summary": "비디오 디퓨전 오비트 카메라와 3D Gaussian Splatting을 결합하여 단일 이미지나 텍스트 Prompt로부터 정밀한 3D 식물 모델을 생성하는 연구 논문입니다.",
-  "insight": "식물의 복잡한 형태와 얇은 구조, 가림 현상 문제를 해결하기 위해 3D F-score 기준 최고 성능을 기록했습니다.",
+  "summary": "Plant Orbiter는 단일 이미지나 텍스트 Prompt로부터 비디오 디퓨전 모델과 3D Gaussian Splatting(3DGS)을 활용해 고품질의 3D 식물을 자동으로 정렬 및 복원하는 파이프라인입니다.",
+  "insight": "이 기술은 향후 농업 분야의 디지털 표현형 분석이나 3D 식물 자산 제작 시 복잡한 촬영 장비 없이 단 한 장의 사진만으로 빠르고 정확한 3D 식물을 얻는 데 기여할 수 있는 가능성을 보여줍니다. 3D 아티스트와 연구자들은 수동 스캔이나 다시점 보정의 번거로움을 줄이고 자연물 3D 에셋을 효율적으로 생성하는 파이프라인 구축에 응용할 수 있을 것으로 기대됩니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "Plant Orbiter의 등장 배경과 디지털 펜오 타이핑",
-      "body": "현대 디지털 펜오 타이핑 파이프라인은 다양한 3D 형태학적 식물 특성의 정밀한 측정을 요구합니다. 정확하고 처리량이 높은 이러한 특성의 획득은 육종가와 연구자가 새로운 품종, 기법, 제품 개발을 가속화하도록 돕습니다. 그러나 식물의 복잡한 형태, 얇은 구조, 가림 현상 때문에 식물의 디지털 3D 트윈을 고속으로 획득하는 것은 여전히 큰 과제입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 디지털 3D 표현형 분석(Digital Phenotyping)은 잎의 형태, 과일 부피 등 정확한 3D 형태 측정이 필요하지만, 복잡한 식물의 형태, 얇은 구조, 가려짐(occlusion) 때문에 고속 대량 획득이 어렵습니다. 기존 다시점 촬영이나 Structure-from-Motion(SfM) 기반 COLMAP 카메라는 복잡한 생체 구조에서 실패율이 높고 비용이 큽니다."
     },
     {
-      "heading": "비디오 디퓨전과 3D Gaussian Splatting의 결합",
-      "body": "연구진이 발표한 Plant Orbiter는 비디오 디퓨전 기술을 활용해 단일 이미지로부터 고품질의 3D Gaussian Splats를 생성합니다. 이 접근 방식은 기존 최신 방법들보다 식물 형태를 더 정확하게 재현하며 모든 기준선 대비 가장 높은 3D F-score를 달성했습니다. 또한 더 쉬운 정렬과 카메라 배치 비용 절감 덕분에 고처리량 파이프라인에 더 실용적입니다."
+      "heading": "핵심 아이디어",
+      "body": "강력한 비디오 디퓨전 모델인 Minimax H3와 식물 오비탈(orbital) 카메라 비디오를 생성하도록 훈련된 LoRA를 결합합니다. 단일 입력 이미지를 기반으로 일관된 궤도 비디오를 생성하며, 이를 통해 복잡한 카메라 추정 과정을 건너뛰고 3D Gaussian Splatting을 수행합니다."
     },
     {
-      "heading": "텍스트 Prompt 기반 3D 식물 생성 성능",
-      "body": "2D 디퓨전 모델과 결합된 본 연구 방법은 텍스트 Prompt로부터 3D 식물 모델을 생성하는 작업에서도 최고 수준의 결과를 보여줍니다. 카메라 배치의 부담을 줄이면서도 복잡한 식물의 형태를 정교하게 복원할 수 있어 농업 및 식물 연구 분야의 3D 전환을 가속화합니다."
+      "heading": "방법",
+      "body": "1단계에서는 입력 이미지의 배경을 제거하고 흰색 캔버스에 맞춘 뒤 Minimax Resolution로 조절합니다. 2-3단계에서는 사전 훈련된 LoRA를 이용해 일정한 궤도를 도는 73프레임 비디오를 생성합니다. 4단계에서는 알려진 카메라 궤도와 시각 헐(visual hull) 기반 초기 Gaussian을 이용해 Splatfacto 모델로 30,000회 반복 학습합니다."
+    },
+    {
+      "heading": "결과",
+      "body": "Plant Orbiter는 식물 복원에서 가장 높은 3D F-score를 달성하여 기존 베이스라인 대비 더 정확한 형태 재현력을 보였습니다. 또한 2D 디퓨전 모델과 결합하여 텍스트 Prompt 기반 3D 식물 생성 및 특정 과일 개수(예: 토마토, 레몬) Prompt 준수 평가에서 최고 수준의 성능을 기록했습니다."
+    },
+    {
+      "heading": "아직 못 하는 것",
+      "body": "논문에서는 식물의 복잡한 세부 구조를 다루지만, 일반적인 오픈소스 3D 생성 모델들이 가지는 일반화 한계와 대규모 식물 도메인 외 다른 객체에 대한 성능은 별도로 다루지 않습니다."
+    },
+    {
+      "heading": "코드와 데이터",
+      "body": "본문 내 연구 논문 및 arXiv(2611.12739v1)에 내용이 공개되어 있으며, 텍스트 내 GitHub 이슈 관련 링크 외에 별도의 공식 소스코드 저장소 주소는 본문 전문에 직접 기재되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "Plant Orbiter는 어떤 입력 데이터로부터 3D를 생성하나요?",
-      "a": "단일 이미지 또는 텍스트 Prompt를 입력받아 3D 식물 모델과 3D Gaussian Splatting 결과물을 생성합니다."
+      "q": "Plant Orbiter는 어떤 방식으로 카메라 포즈 문제를 해결하나요?",
+      "a": "복잡한 구조로 인해 실패하기 쉬운 COLMAP 등 Structure-from-Motion 대신, 알려진 오비탈 비디오 파라미터를 활용해 균일하게 배치된 카메라 포즈를 직접 계산하여 사용합니다."
     },
     {
-      "q": "기존 방식과 비교해 어떤 장점이 있나요?",
-      "a": "복잡한 식물 형태와 얇은 구조를 정확하게 복원하여 가장 높은 3D F-score를 달성했으며 카메라 정렬과 배치 비용을 낮추었습니다."
+      "q": "3D 초기화는 어떻게 수행되나요?",
+      "a": "COLMAP을 건너뛰는 대신 비디오 프레임들의 실루엣을 이용해 복셀 Grid로부터 실루엣 코너를 깎아내는 시각 헐(visual hull) 방식을 사용해 초기 Gaussian을 생성합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.12739v1/2611.12739v1/Plant_Orbiter_Fig.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.12739v1/2611.12739v1/Plant_Orbiter_Fig.png",
+        "caption": "Figure 1: The plant orbiter pipeline, showing both the reconstruction and text-to-3D setups. In step 1, we acquire an appropriate input image of a plant, either a single photograph or the output of a high-quality 2D diffusion model. Step 2 and 3 show how a pretrained LoRA model is used in conjunctio",
+        "caption_ko": "그림 1: 복원 및 텍스트-to-3D 설정을 모두 보여주는 Plant Orbiter 파이프라인 개요"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.12739v1/2611.12739v1/fig2_qualitative.png",
+        "caption": "Figure 2: Outputs of our model and all baselines showing examples from each test set. Column 1 shows the input image used for single image 3D reconstruction and column 2 shows the held-out image from an unseen view. For each output we render the reconstruction from the held-out view using oracle pla",
+        "caption_ko": "그림 2: 단일 이미지 3D 복원 테스트셋에서 우리 모델과 베이스라인들의 출력 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.12739v1/2611.12739v1/t23d_phase1_samples.png",
+        "caption": "Figure 4: Text-to-3D samples (seeds 1 and 2). Every baseline receives the prompt “A photo of ⟨ \\langle species ⟩ \\rangle plants. Single potted plant, whole plant.” Ours receives the same text with the\nfinal period replaced by its text-to-image suffix (“…whole plant and pot fully in frame and centred",
+        "caption_ko": "그림 4: 텍스트-to-3D 샘플 (시드 1 및 2), 각 베이스라인과 프롬프트 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.12739v1/2611.12739v1/t23d_counting_samples.png",
+        "caption": "Figure 6: Text-to-3D samples for prompted fruit counts: tomato and lemon with N = 3 N=3 and N = 6 N=6 . Every baseline\nreceives “A photo of ⟨ \\langle species ⟩ \\rangle plants with ⟨ N ⟩ \\langle N\\rangle ⟨ \\langle fruit ⟩ \\rangle . Single\npotted plant, whole plant.” with the number written as a word;",
+        "caption_ko": "그림 6: 과일 개수(N=3, N=6)가 지정된 토마토와 레몬의 텍스트-to-3D 샘플"
+      }
+    ]
   },
   "collected_at": "2026-11-10T10:11:41.098030+00:00",
   "notion_id": "",
   "id": "2026-11-10-14219a2b5d97f852",
-  "img_tried": true
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-10T10:21:57+00:00"
 }

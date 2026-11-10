@@ -1,0 +1,73 @@
+{
+  "title_ko": "3D Gaussian Splatting GPU 부하 불균형 완화 스케줄링",
+  "title": "Mitigating SM-Level Load Imbalance in 3D Gaussian Splatting on GPUs",
+  "url": "https://arxiv.org/abs/2611.12319v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3DGS",
+    "GPU Scheduling",
+    "Alpha Blending",
+    "Rendering Optimization",
+    "Urban Scene"
+  ],
+  "summary": "대규모 도시 및 주행 장면에 3D Gaussian Splatting(3DGS)을 렌더링할 때 발생하는 GPU SM(Streaming Multiprocessor) 부하 불균형과 실행 꼬리(execution tail) 현상을 Software 기반 스케줄링으로 해결합니다.",
+  "insight": "이 기술이 상용 3D 엔진이나 Simulator에 적용된다면 대규모 도시 환경이나 자율주행 시뮬레이션에서 3DGS 렌더링 프레임 레이트가 크게 향상될 수 있습니다. 아티스트들이 복잡한 대규모 씬을 실시간으로 확인하며 작업하는 데 유용할 가능성이 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "기존 3DGS 렌더링은 화면 타일을 GPU Cooperative Thread Array(CTA)에 단순 할당하여 타일 간 작업량 차이가 클 경우 일부 타일 처리가 끝날 때까지 대부분의 SM이 유휴 상태로 남는 심각한 부하 불균형과 실행 꼬리가 발생합니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "재학습이나 전용 하드웨어 수정 없이 Software 정의 GPU 스케줄링 방식을 도입합니다. 지속형 커널(persistent kernel)을 통해 무거운 타일을 먼저 처리하고, 특히 무거운 타일은 여러 CTA에 분할하여 병렬 처리합니다."
+    },
+    {
+      "heading": "방법",
+      "body": "예측된 Gauss 개수를 기준으로 가장 오래 걸리는 작업을 먼저 처리하는 LPT(Longest-Processing-Time-First) 스케줄링을 적용합니다. 알파 블렌딩의 결합 법칙을 활용해 무거운 타일을 깊이 단위로 나누고(depth-wise chunking), 조기 종료를 유지하기 위한 포화 신호(saturation signaling)를 사용합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "대규모 도시 장면에서 알파 블렌딩 속도를 평균 최대 2.93배, 가장 불균형이 심한 프레임에서는 최대 5.6배까지 가속합니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "타일 청킹(chunking) 과정에서 추가적인 오버헤드가 발생할 수 있으므로, 모든 타일을 나누지 않고 선별적 청킹(selective chunking)과 스트림 동시 실행 기법을 함께 사용합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 본문에는 구체적인 외부 공개 코드 저장소 주소가 명시되어 있지 않으며, arXiv 프리프린트(arXiv:2611.12319v1)로 공개되었습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "기존 3DGS 최적화와 무엇이 다른가요?",
+      "a": "기존 알고리즘 최적화는 학습 과정에서의 프루닝이나 가지치기에 집중하여 재학습이 필요하지만, 이 방식은 학습이나 전용 하드웨어 변경 없이 GPU 스케줄링을 개선합니다."
+    },
+    {
+      "q": "알파 블렌딩 결과가 달라지나요?",
+      "a": "원래의 알파 블렌딩 공식을 그대로 유지하며 수치적 차이가 거의 없도록 설계되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.12319v1/2611.12319v1/pm_sampling_ptb.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-10T10:21:31.249431+00:00",
+  "notion_id": "",
+  "id": "2026-11-10-85f4da73557088e9",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-10T10:21:52+00:00"
+}
