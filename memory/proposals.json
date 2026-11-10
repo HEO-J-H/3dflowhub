@@ -31098,5 +31098,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T22:44:23+00:00",
+    "kind": "proposal",
+    "id": "p-ad8e759975",
+    "title": "PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #1이 'revise' 상태로 실제 img2threejs 호출 및 결과 파일 반환 구현 대기 중",
+    "proposal": "backend/app/services/img2threejs_runner.py 파일에 실제 img2threejs 연동 로직과 예외 처리 및 테스트 코드 작성",
+    "expected": "외부 3D 변환 엔진 선택 시 정상적인 결과물 생성 및 에러 핸들링 보장",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T22:44:23+00:00",
+    "kind": "proposal",
+    "id": "p-bfdd7da70d",
+    "title": "웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 버전의 PBR 텍스처 생성 기능에 대한 자동화된 검증 필요",
+    "proposal": "web/tests/pbr_test.js 파일 추가 및 브라우저 환경 PBR 변환 로직 유닛 테스트 작성",
+    "expected": "클라이언트 사이드 PBR 처리의 안정성 확보 및 회귀 오류 방지",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T22:45:13.126730+00:00",
+    "kind": "decision",
+    "id": "p-ad8e759975",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T22:45:13.163340+00:00",
+    "kind": "decision",
+    "id": "p-bfdd7da70d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T22:45:14.656922+00:00",
+    "kind": "decision",
+    "id": "p-ad8e759975",
+    "v": "done",
+    "note": "자동 완료 확인: PR #1 닫힘"
   }
 ]
