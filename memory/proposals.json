@@ -29068,5 +29068,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T15:03:43+00:00",
+    "kind": "proposal",
+    "id": "p-c976e2331f",
+    "title": "웹 브라우저 PBR 텍스처 변환 안정성 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 RAG 통합 PR #59가 머지 완료되었으나, 웹 브라우저 단에서 PBR 텍스처 생성 및 변환 로직에 대한 독립적인 단위 테스트 보강이 필요합니다.",
+    "proposal": "web/tests/pbr_test.js 파일(또는 해당 테스트 Script)을 추가하여 Albedo, Normal, Roughness, Metallic 맵 생성 함수의 에러 핸들링과 정합성을 검증합니다.",
+    "expected": "웹 클라이언트 측 PBR 변환 오류를 사전에 방지하고 브라우저 기반 처리 안정성을 높입니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T15:04:03.568081+00:00",
+    "kind": "decision",
+    "id": "p-c976e2331f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "auto": true
   }
 ]
