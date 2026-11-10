@@ -259,6 +259,17 @@ def _save_json(path: Path, data) -> None:
 apply_custom_domains()  # 대시보드에서 추가한 수집 분야 반영
 
 
+def validate_url_scheme(url: str) -> bool:
+    """URL 스킴을 http/https 로만 허용하고, 잘못된 스킴은 False 반환."""
+    if not isinstance(url, str) or not url.strip():
+        return False
+    try:
+        parsed = urlparse(url.strip())
+        return parsed.scheme.lower() in ("http", "https")
+    except Exception:
+        return False
+
+
 def url_hash(url: str) -> str:
     return hashlib.sha256(url.strip().lower().rstrip("/").encode()).hexdigest()[:16]
 
