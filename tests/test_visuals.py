@@ -26,3 +26,13 @@ def test_visibly_different_rejects_near_identical(tmp_path):
     a, b, c = img("a.jpg", (100, 80, 200, 200)), img("b.jpg", (260, 80, 360, 200)), img("c.jpg", (100, 80, 201, 200))
     assert manual_shots.visibly_different([a, b, img("d.jpg", None)])
     assert not manual_shots.visibly_different([a, b, c])  # a 와 c 는 1px 차이 → 같은 그림
+
+
+def test_arxiv_image_url_has_number_once(monkeypatch):
+    import visuals
+
+    class R:
+        text = '<img src="2611.11602v1/figures/a.png">'
+    monkeypatch.setattr(visuals.requests, "get", lambda *a, **k: R())
+    img, _ = visuals.post_image({"url": "https://arxiv.org/abs/2611.11602v1"})
+    assert img == "https://arxiv.org/html/2611.11602v1/figures/a.png"

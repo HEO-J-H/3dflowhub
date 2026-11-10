@@ -2381,6 +2381,7 @@ def run_pipeline(max_items: int = 10, domains: list[str] | None = None, publish:
     try:  # 그림·영상이 없는 글·참고 페이지에 붙임 — 공부하러 온 사람이 눈으로 이해하게
         import visuals
         import scorecard  # 속도는 품질 성적표가 스스로 조절
+        visuals.check_post_images(40)  # 깨진 그림은 비우고 아래에서 다시 찾음
         stats["visuals"] = (len(visuals.backfill(scorecard.knob("visuals_refs_per_run")))
                             + visuals.backfill_posts(scorecard.knob("visuals_posts_per_run")))
     except Exception as e:  # noqa: BLE001

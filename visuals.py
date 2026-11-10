@@ -86,9 +86,9 @@ def post_image(p: dict) -> tuple[str, str]:
     if (m := re.search(r"(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]{11})", url)):
         return f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg", url
     if (m := re.search(r"arxiv\.org/(?:abs|pdf|html)/([\d.]+(?:v\d+)?)", url)):
-        base = f"https://arxiv.org/html/{m.group(1)}/"
+        base = f"https://arxiv.org/html/{m.group(1)}"  # 끝에 / 를 붙이면 그림 주소에 논문 번호가 두 번 들어가 404 (2026-11-10)
         try:
-            t = requests.get(base, headers={"User-Agent": "Mozilla/5.0 (3dflowhub)"}, timeout=20).text
+            t = requests.get(base + "/", headers={"User-Agent": "Mozilla/5.0 (3dflowhub)"}, timeout=20).text
             if (im := re.search(r'<img[^>]+src="([^"]+\.(?:png|jpg|jpeg|gif))"', t, re.I)):
                 return urljoin(base, im.group(1)), ""
         except requests.RequestException:
@@ -110,6 +110,36 @@ def post_image(p: dict) -> tuple[str, str]:
     if v:
         return f"https://i.ytimg.com/vi/{v[0]['id']}/hqdefault.jpg", f"https://www.youtube.com/watch?v={v[0]['id']}"
     return "", ""
+
+
+def check_post_images(limit: int = 40) -> int:
+    """최근 글 그림이 실제로 열리는지 확인 — 404 등이면 비우고 다시 찾게 (깨진 그림 상자가 목록에 보이던 문제).
+    확인한 글엔 img_ok 날짜를 남겨 매번 같은 글을 다시 보지 않음 (7일마다 다시)."""
+    from datetime import timedelta
+    week_ago = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    n = fixed = 0
+    for f in sorted(core.POSTS_DIR.glob("*.json"), reverse=True)[:600]:
+        if n >= limit:
+            break
+        p = core._load_json(f, {})
+        img = (p.get("media") or {}).get("image", "")
+        if not img or p.get("img_ok", "") > week_ago:
+            continue
+        n += 1
+        try:
+            r = requests.get(img, headers={"User-Agent": "Mozilla/5.0 (3dflowhub)"}, timeout=12, stream=True)
+            ok = r.status_code < 400 and r.headers.get("content-type", "").startswith("image")
+            r.close()
+        except requests.RequestException:
+            ok = True  # 접속 오류는 일시적일 수 있어 그대로 둠
+        if ok:
+            p["img_ok"] = _now()
+        else:
+            p["media"] = {**(p.get("media") or {}), "image": ""}
+            p.pop("img_tried", None)  # backfill_posts 가 다시 찾음
+            fixed += 1
+        core._save_json(f, p)
+    return fixed
 
 
 def backfill_posts(limit: int = 30) -> int:

@@ -51,26 +51,26 @@
     }
   ],
   "media": {
-    "image": "https://arxiv.org/html/2610.24812v1/2610.24812v1/teaser8.png",
+    "image": "https://arxiv.org/html/2610.24812v1/teaser8.png",
     "video": "",
     "figures": [
       {
-        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/teaser8.png",
+        "src": "https://arxiv.org/html/2610.24812v1/teaser8.png",
         "caption": "Figure 1. SwitchSplat learns a state-aware scene representation from a casual capture ( top : input video frames showing the user interacting with the car).\nThe scene is decomposed into a static base and a set of independently switchable slots, one per interactable object (here: right door, hood, tr",
         "caption_ko": "SwitchSplat은 캐주얼 캡처 영상에서 정적 베이스와 객체별 스위처블 슬롯으로 장면을 분해하고, 3개의 이진 상태 조합(2³=8가지)으로 새로운 뷰를 렌더링한다."
       },
       {
-        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/figs/pipeline/pipeline.png",
+        "src": "https://arxiv.org/html/2610.24812v1/figs/pipeline/pipeline.png",
         "caption": "Figure 2. Pipeline – From a casual capture in which the operator interacts with objects (a), we fit a differentiable slot table (b) whose learnable endpoints ( t l , t r ) (t_{l},t_{r}) and temperature r ​ g ​ b ​ ( 0 ​ b ​ p ) = ( 0 , 0 , 0 ) ; r ​ g ​ b ​ ( 25 ​ b ​ p ) = ( 0 , 0 , 0 ) ; r ​ g ​ b",
         "caption_ko": "파이프라인: 캐주얼 캡처 → 차별화 가능한 슬롯 테이블 학습 → 상태 로그잇을 가진 Gaussian → 상태 조건부 투명도 합성 및 렌더링."
       },
       {
-        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/state_aware_gaussians.png",
+        "src": "https://arxiv.org/html/2610.24812v1/state_aware_gaussians.png",
         "caption": "Figure 3. State-aware Gaussian – (left) Each Gaussian carries a learnable logit vector ℓ \\boldsymbol{\\ell} that defines a categorical distribution 𝐩 \\mathbf{p} that softly assigns each primitive to the static base or “on”/“off” object states. (right) At render time, user specifies list of states tha",
         "caption_ko": "각 Gaussian은 정적 베이스와 on/off 상태에 대한 로그잇 벡터를 가지고, 렌더 시 선택된 상태에 따라 할당된다."
       },
       {
-        "src": "https://arxiv.org/html/2610.24812v1/2610.24812v1/figs/qualitative_camera_ready/flat3_standard_test2/fullcircle_3dgut.jpg",
+        "src": "https://arxiv.org/html/2610.24812v1/figs/qualitative_camera_ready/flat3_standard_test2/fullcircle_3dgut.jpg",
         "caption": "Figure 5. Qualitative comparison across three evaluation settings : standard held-out views,\nnovel-camera views and novel state combinations. Columns show FullCircle,\nDeGauss, 4DGS, SwitchSplat, and the corresponding ground truth. A three-row, five-column comparison grid. Columns show FullCircle, De",
         "caption_ko": "정적·동적 베이스라인과 비교한 정성적 결과: SwitchSplat은 보지 못한 상태 조합에서도 높은 품질을 유지한다."
       }

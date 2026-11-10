@@ -51,26 +51,26 @@
     }
   ],
   "media": {
-    "image": "https://arxiv.org/html/2610.38951v1/2610.38951v1/gradsplat_teaser.png",
+    "image": "https://arxiv.org/html/2610.38951v1/gradsplat_teaser.png",
     "video": "",
     "figures": [
       {
-        "src": "https://arxiv.org/html/2610.38951v1/2610.38951v1/gradsplat_motivation.png",
+        "src": "https://arxiv.org/html/2610.38951v1/gradsplat_motivation.png",
         "caption": "Figure 2 : Motivation. A feed-forward model predicts the Gaussians in one pass, but rendered back into an input view they leave a large error (a).\nPer-scene optimization of their scale and rotation removes most of it, but takes 1500 1500 gradient steps on the input views (b).\nGradSplat takes gradien",
         "caption_ko": "그림 1: GradSplat의 개요. 소수의 뷰로부터 3D 가우스를 재구성하고 모델 내부 입력 뷰의 기울기 단계로 이를 정제합니다."
       },
       {
-        "src": "https://arxiv.org/html/2610.38951v1/2610.38951v1/gradsplat_method.png",
+        "src": "https://arxiv.org/html/2610.38951v1/gradsplat_method.png",
         "caption": "Figure 3 : Overview. A backbone feeds a camera head, a dense head and a shape head.\nEach refinement step renders the Gaussians into the input views and applies the learned update 𝒰 ψ \\mathcal{U}_{\\psi} to the gradient 𝒈 k \\bm{g}_{k} of ℒ in \\mathcal{L}_{\\mathrm{in}} .\nThe four marks in 𝒰 ψ \\mathcal{",
         "caption_ko": "그림 2: 동기 부여. 피드포워드 모델은 한 번에 가우스를 예측하지만 입력 뷰에서 큰 오차가 발생하며, GradSplat은 학습된 업데이트를 통해 이를 해결합니다."
       },
       {
-        "src": "https://arxiv.org/html/2610.38951v1/2610.38951v1/qual_narrow.png",
+        "src": "https://arxiv.org/html/2610.38951v1/qual_narrow.png",
         "caption": "Figure 4: Qualitative comparison on RealEstate10K. The upper three rows are scenes of the narrow protocol and the lower two scenes of the wide protocol.\nEach row shows the six input views, one target view rendered by every method and the ground truth.\nThe boxed region is magnified in the opposite co",
         "caption_ko": "그림 3: 전체 구조. 백본이 카메라 헤드, 덤스 헤드, 셰이프 헤드로 이어지며 각 정제 단계에서 학습된 업데이트를 적용합니다."
       },
       {
-        "src": "https://arxiv.org/html/2610.38951v1/2610.38951v1/zs-dl3dv.png",
+        "src": "https://arxiv.org/html/2610.38951v1/zs-dl3dv.png",
         "caption": "Figure 5 : Qualitative comparison on DL3DV. Each row shows one target view rendered by every method and the ground truth, and the boxed region is magnified as in Fig. 4 . ⋆ \\star marks weights trained on DL3DV, all other columns use RealEstate10K weights, and TranSplat and AnySplat are not shown.",
         "caption_ko": "그림 4: RealEstate10K에서의 정성적 비교 결과."
       }

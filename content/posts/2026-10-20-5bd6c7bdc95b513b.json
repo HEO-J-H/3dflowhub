@@ -51,26 +51,26 @@
     }
   ],
   "media": {
-    "image": "https://arxiv.org/html/2610.24605v1/2610.24605v1/teaser.png",
+    "image": "https://arxiv.org/html/2610.24605v1/teaser.png",
     "video": "",
     "figures": [
       {
-        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/teaser.png",
+        "src": "https://arxiv.org/html/2610.24605v1/teaser.png",
         "caption": "Figure 1: We introduce RoMo-GS , an efficient online 3D Gaussian Splatting system for real-world robotic mapping. Given a stream of motion-blurred frames captured by robots and front-end vision tracker outputs (a), RoMo-GS produces a compact 3DGS map (b) and sharp renderings online (c).",
         "caption_ko": "그림 1: 로봇 맵핑을 위한 효율적인 온라인 3D 가우시안 스플래팅 시스템인 RoMo-GS 개요."
       },
       {
-        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/pipeline.png",
+        "src": "https://arxiv.org/html/2610.24605v1/pipeline.png",
         "caption": "Figure 2: Overview of RoMo-GS . Given inputs from the vision-based tracker, we spawn initial Gaussians with the landmarks and depth samples. The exposure-integrated motion blur model renders a blurry image in a single rasterization. A joint Adam loop and an LM step refine the camera state and Gaussi",
         "caption_ko": "그림 2: 비전 트래커 입력부터 최적화 및 렌더링까지 이어지는 RoMo-GS 파이프라인 구조."
       },
       {
-        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/closed_blur.png",
+        "src": "https://arxiv.org/html/2610.24605v1/closed_blur.png",
         "caption": "Figure 3: Comparison with multi-sample. (a) Static Gaussian with a motion arrow. (b) N blur = 5 N_{\\text{blur}}=5 , visible discretization. (c) N blur = 100 N_{\\text{blur}}=100 , smoother, but expensive. (d) Our model results same as (c) at a single sample.",
         "caption_ko": "그림 3: 다중 샘플링 방식과 제안하는 단일 샘플 노출 통합 모션 블러 모델의 비교."
       },
       {
-        "src": "https://arxiv.org/html/2610.24605v1/2610.24605v1/blur_pic.png",
+        "src": "https://arxiv.org/html/2610.24605v1/blur_pic.png",
         "caption": "Figure 4: Top: ETH3D real-world. Bottom: Deblur-NeRF synthetic. GSOM fails to handle motion blur on both. Deblurring 3DGS and BAGS handle the synthetic case but collapse on ETH3D. CoMoGaussian is competitive on both, while Ours matches CoMoGaussian’s visual quality and trains 70–150 × \\times faster ",
         "caption_ko": "그림 4: ETH3D 실제 환경 및 Deblur-NeRF 합성 데이터셋에서의 다른 3DGS 및 NeRF 디블러링 방식과의 렌더링 품질 비교."
       }

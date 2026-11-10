@@ -183,7 +183,8 @@ def paper_source(url: str) -> dict:
             for fig in soup.find_all("figure"):
                 img, cap = fig.find("img"), fig.find("figcaption")
                 if img and img.get("src") and cap:
-                    out["figures"].append({"src": urljoin(base, img["src"]), "caption": cap.get_text(" ", strip=True)[:300]})
+                    out["figures"].append({"src": urljoin(base.rstrip("/"), img["src"]),  # 끝 / 가 있으면 번호가 두 번 들어가 404
+                                           "caption": cap.get_text(" ", strip=True)[:300]})
                 if len(out["figures"]) >= 4:
                     break
     except Exception as e:  # noqa: BLE001
