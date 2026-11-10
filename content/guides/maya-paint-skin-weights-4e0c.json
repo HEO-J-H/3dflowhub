@@ -1,0 +1,95 @@
+{
+  "id": "maya-paint-skin-weights-4e0c",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Paint Skin Weights",
+  "title": "Paint Skin Weights",
+  "summary": "Maya의 Paint Skin Weights 툴은 캐릭터의 메쉬와 뼈대(Skeleton) 사이의 영향력을 브러시로 직접 칠하며 세밀하게 조절하는 기능입니다.",
+  "when": [
+    "자동 스키닝(Smooth Bind) 후 관절 부위의 메쉬가 꺾이거나 찌그러질 때",
+    "어깨나 겨드랑이처럼 여러 본(Bone)의 영향이 겹치는 복잡한 영역을 수정할 때",
+    "옷이나 장신구 등 움직임에 따른 웨이트를 수동으로 정교하게 다듬을 때"
+  ],
+  "steps": [
+    "Skin이 적용된 캐릭터 메쉬를 선택하고, 메인 메뉴 바에서 Skin → Paint Skin Weights 도구 옵션 박스를 엽니다.",
+    "Tool Settings Windows에서 영향을 줄 특정 본(Bone) 이름을 목록에서 클릭하여 선택합니다.",
+    "Paint 오퍼레이션에서 Replace, Add, Scale, Smooth 중 원하는 브러시 모드를 선택합니다.",
+    "Viewport에서 메쉬 위를 드래그하여 웨이트 값(흰색: 1.0, 검은색: 0.0)을 칠해 조절합니다.",
+    "관절을 회전(Rotate)해 가며 웨이트가 자연스럽게 분배되었는지 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Select",
+      "desc": "클릭한 Vertex의 웨이트 값을 그대로 유지하거나 선택된 본의 영역을 확인합니다."
+    },
+    {
+      "name": "Replace",
+      "desc": "설정된 Value 값으로 웨이트를 덮어씁니다."
+    },
+    {
+      "name": "Add",
+      "desc": "현재 웨이트 값에 지정된 값만큼 더합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "현재 웨이트 값을 비율(%)에 따라 키우거나 줄입니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "주변 버텍스들과의 웨이트 차이를 부드럽게 평균화합니다."
+    },
+    {
+      "name": "Value",
+      "desc": "브러시가 칠할 웨이트의 강도나 수치를 결정합니다 (0.0 ~ 1.0)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔꿈치 관절 꺾임 부드럽게 만들기",
+      "steps": [
+        "팔 부위 본을 선택하고 Paint Skin Weights 툴을 엽니다.",
+        "Smooth 모드를 선택하여 아래팔과 위팔 본이 만나는 주름 부위를 가볍게 문지릅니다.",
+        "팔을 90도로 꺾어보며 메쉬가 무너지지 않는지 확인합니다."
+      ]
+    },
+    {
+      "title": "겨드랑이 다중 본 영향 정리하기",
+      "steps": [
+        "등 본과 어깨 본을 번갈아 선택하며 각 본이 미치는 영향력을 확인합니다.",
+        "Replace 모드와 Value 0을 사용하여 불필요하게 튀어나온 웨이트를 지웁니다.",
+        "가슴과 팔을 움직여 의도치 않은 메쉬 관통이 생기지 않도록 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 본의 웨이트 합이 1.0을 넘는 경우 → Normalize Weights 옵션을 켜서 전체 합이 자동으로 1.0이 되도록 유지합니다.",
+    "한쪽 본만 칠하고 반대쪽을 잊어버리는 경우 → Mirror Skin Weights 기능을 사용하여 반대편 대칭 본에 웨이트를 복사합니다."
+  ],
+  "related": [
+    "Smooth Bind",
+    "Component Editor",
+    "Mirror Skin Weights",
+    "Prune Small Weights"
+  ],
+  "videos": [
+    {
+      "id": "cuaXDkbg4QA",
+      "title": "Maya: Painting Skin Weights",
+      "author": "Uhr"
+    },
+    {
+      "id": "lA5gVcLEZWk",
+      "title": "Rigging for Beginners: Painting Weights in Maya",
+      "author": "Academic Phoenix Plus"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Paint%20Skin%20Weights",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Skin",
+    "Paint Skin Weights"
+  ],
+  "at": "2026-11-10T03:12:11.212798+00:00"
+}

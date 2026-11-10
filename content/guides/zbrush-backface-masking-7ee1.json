@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-backface-masking-7ee1",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Backface Masking",
+  "title": "Backface Mask",
+  "summary": "Backface Masking은 현재 뷰에서 보이는 앞면을 제외하고, 뒤쪽(Backface) 폴리곤을 자동으로 마스크하여 내부 구조를 숨기고 외부 디테일에 집중할 수 있게 해줍니다.",
+  "when": [
+    "복잡한 내부 구조가 있는 모델을 스컬프팅하거나 텍스처링할 때 외부 표면만 작업하고 싶을 때",
+    "다중 서브툴이 겹쳐 있어 앞면만 보이게 하여 폴리곤을 선택하거나 삭제할 때",
+    "렌더링 전, 보이지 않는 면을 마스크해 불필요한 연산을 줄이고 싶을 때"
+  ],
+  "steps": [
+    "Tool 메뉴 → Masking 팔레트를 엽니다.",
+    "Masking 팔레트에서 Backface Mask 체크박스를 활성화합니다.",
+    "Viewport에서 원하는 각도로 모델을 회전하면 뒤쪽 면이 자동으로 마스크됩니다.",
+    "필요하면 Ctrl+Shift+F (Toggle Backface Mask) 로 토글하거나, Masking > Clear Mask 로 마스크를 해제합니다."
+  ],
+  "params": [
+    {
+      "name": "Backface Mask",
+      "desc": "뒤쪽 면을 자동 마스크, 체크 시 활성화"
+    },
+    {
+      "name": "Masking",
+      "desc": "마스크 관련 옵션이 모여 있는 팔레트"
+    },
+    {
+      "name": "Clear Mask",
+      "desc": "현재 마스크를 모두 삭제"
+    },
+    {
+      "name": "Mask By Angle",
+      "desc": "특정 각도 이하의 면을 마스크, Backface와 병행 사용 가능"
+    },
+    {
+      "name": "Mask By Polygroups",
+      "desc": "폴리그룹을 기준으로 마스크, 백페이스와 조합 가능"
+    },
+    {
+      "name": "Mask By Cavity",
+      "desc": "오목한 부분을 자동 마스크, 백페이스와 별도 기능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "외부 표면만 스컬프팅",
+      "steps": [
+        "SubTool 선택 → Backface Mask 활성화",
+        "뷰를 모델 앞쪽으로 맞춘 뒤 스컬프팅 브러시 사용",
+        "뒤쪽 면이 마스크돼 있어 실수로 내부를 건드리지 않음"
+      ]
+    },
+    {
+      "title": "내부 구조 숨기고 디테일링",
+      "steps": [
+        "복잡한 메카 모델 로드 → Backface Mask 켜기",
+        "카메라를 외부에서 바라보며 디테일 브러시 적용",
+        "내부 파이프와 기어가 마스크돼 작업이 깔끔해짐"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Backface Mask를 켜고 바로 Clear Mask를 눌러 해제 → 마스크가 사라져 작업이 방해됨 → 필요 시에만 Clear Mask 사용",
+    "뷰를 너무 급격히 회전해 마스크가 부분적으로만 적용 → 회전 후 마스크를 확인하고 필요 시 Mask By Angle 보정",
+    "다중 SubTool에 적용하지 않아 일부 서브툴은 마스크되지 않음 → 각 SubTool마다 Backface Mask를 개별 활성화"
+  ],
+  "related": [
+    "Masking",
+    "Mask By Cavity",
+    "Mask By Polygroups",
+    "Extract"
+  ],
+  "videos": [
+    {
+      "id": "DmKfXGlhMiI",
+      "title": "Backface Mask in ZBrush, sculpting on thin surfaces without effecting the other side.",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "7jZXxBypbGk",
+      "title": "ZBRUSH: HOW TO USE BACKFACE MASKING!!! #shorts",
+      "author": "Thivolan 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Backface%20Masking",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Masking",
+    "Backface Mask"
+  ],
+  "at": "2026-11-10T03:12:14.901975+00:00"
+}
