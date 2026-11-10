@@ -31153,5 +31153,67 @@
     "id": "p-ad8e759975",
     "v": "done",
     "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-10T22:54:06+00:00",
+    "kind": "proposal",
+    "id": "p-44f915cef8",
+    "title": "웹 브라우저 PBR 변환 렌더링 성능 최적화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "웹 브라우저에서 처리하는 PBR 텍스처 생성 과정의 단위 테스트 및 문서화가 진행되었으나 렌더링 성능 검증이 추가로 필요합니다.",
+    "proposal": "web/ 디렉토리 내 PBR 텍스처 생성 및 캔버스 렌더링 로직의 실행 속도를 측정하고 최적화 방안을 검토합니다.",
+    "expected": "브라우저 환경에서의 3D 메시 및 PBR 텍스처 처리 속도 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T22:54:06+00:00",
+    "kind": "proposal",
+    "id": "p-b0bb9c270c",
+    "title": "로컬 TripoSR 파이프라인 예외 처리 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 관련 예외 처리 요구사항이 여러 차례 제기되었으며 안정적인 GPU/CPU 폴백 처리가 중요합니다.",
+    "proposal": "backend/app/services/triposr_runner.py 및 관련 테스트 파일에서 GPU 메모리 부족 등 예외 상황 시뮬레이션 테스트를 보강합니다.",
+    "expected": "로컬 구동 시 예외 상황에서의 안정성 확보 및 디버깅 용이성 증대",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T22:54:25.853692+00:00",
+    "kind": "decision",
+    "id": "p-44f915cef8",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T22:54:25.879475+00:00",
+    "kind": "decision",
+    "id": "p-b0bb9c270c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T22:54:28.328497+00:00",
+    "kind": "triage",
+    "id": "p-44f915cef8",
+    "verdict": "done_already",
+    "reason": "이미 완료된 PBR 관련 성능 테스트 및 텍스처 검증 제안들과 내용이 중복되거나 최근 커밋 내역에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-10T22:54:28.351796+00:00",
+    "kind": "decision",
+    "id": "p-44f915cef8",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 완료된 PBR 관련 성능 테스트 및 텍스처 검증 제안들과 내용이 중복되거나 최근 커밋 내역에 반영되어 있습니다."
   }
 ]
