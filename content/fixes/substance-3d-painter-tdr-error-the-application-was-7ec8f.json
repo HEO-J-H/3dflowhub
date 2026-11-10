@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-painter-tdr-error-the-application-was-7ec8f",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [TDR Error] The application was blocked from graphics hardware",
+  "title": "Painter: [TDR Error] The application was blocked from graphics hardware 오류 해결",
+  "summary": "Substance 3D Painter에서 [TDR Error] The application was blocked from graphics hardware 메시지가 나타나는 것은 Windows의 GPU 응답 시간 제한(TDR) 기능에 의해 Application의 그래픽 작업이 강제로 차단되었음을 뜻합니다.",
+  "causes": [
+    "Texture Set Resolution이 너무 높아(예: 4K 또는 8K) GPU가 지정된 시간 안에 렌더링이나 계산을 끝내지 못함",
+    "Baking 시 High Definition Mesh의 폴리곤 수가 지나치게 많거나 Max Front/Back Distance 설정이 과도함",
+    "그래픽 카드 Driver가 최신 상태가 아니거나 안정성이 떨어져 GPU 응답 지연이 발생함"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 Edit 메뉴에서 Settings(또는 Preferences)를 엽니다.",
+    "Display 설정에서 Display Driver를 변경하거나 GPU 부하를 줄일 수 있는 옵션을 조정합니다.",
+    "Texture Set Settings에서 Resolution을 낮춥니다(예: 4K에서 2K로 변경).",
+    "Bake Mesh Maps 창에서 Max Front와 Back Distance 값을 줄이고, High Definition Mesh의 폴리곤 수를 최적화합니다.",
+    "NVIDIA 또는 AMD 공식 웹사이트에서 최신 그래픽 Driver를 다운로드하여 클린 설치를 진행합니다."
+  ],
+  "check": [
+    "텍스처 세트 Resolution을 낮추거나 Baking을 다시 시도했을 때 TDR 오류 없이 정상적으로 완료되는지 확인합니다.",
+    "작업 중 Viewport 조작과 브러시 칠이 멈춤 현상 없이 원활하게 작동하는지 점검합니다."
+  ],
+  "prevent": [
+    "텍스처 작업 시 필요한 최소한의 Resolution만 사용하고 최종 렌더 직전에 Resolution을 높입니다.",
+    "Baking을 수행할 때는 High Definition Mesh의 불필요한 고폴리곤 요소를 정리하고 적절한 거리 값을 유지합니다.",
+    "그래픽 카드 Driver를 주기적으로 업데이트하고 Windows 시스템의 TDR 관련 레지스트리 값을 조정하여 안정성을 확보합니다."
+  ],
+  "keywords": [
+    "Substance Painter TDR Error",
+    "Painter 그래픽 하드웨어 차단",
+    "Substance GPU 응답 멈춤",
+    "페인터 Driver 리셋 오류",
+    "Substance Painter 팅김 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T11:23:51+00:00"
+}

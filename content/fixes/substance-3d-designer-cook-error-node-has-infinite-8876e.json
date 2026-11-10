@@ -1,0 +1,37 @@
+{
+  "id": "substance-3d-designer-cook-error-node-has-infinite-8876e",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: Cook error: Node has infinite loop in graph execution",
+  "title": "Designer: Cook error: Node has infinite loop in graph execution 오류 해결",
+  "summary": "Substance 3D Designer에서 Cook error: Node has infinite loop in graph execution 오류는 노드 그래프 내에 순환 참조(Infinite Loop)가 발생하여 연산이 무한 루프에 빠졌을 때 나타납니다.",
+  "causes": [
+    "노드의 출력(Output) 값이 직접 또는 간접적으로 자신의 입력(Input) 노드로 다시 연결된 경우",
+    "FX-Map이나 Iteration 노드 내부에서 조건문이나 카운터 설정 오류로 인해 탈출 조건이 사라진 경우",
+    "비효율적인 커스텀 노드(Custom Node) 내부 그라프 구성에서 발생한 논리적 오류"
+  ],
+  "steps": [
+    "Graph View에서 최근에 수정했거나 연결을 바꾼 노드 주변을 확인합니다.",
+    "선(Connection Wire)을 추적하여 출력이 다시 이전 노드의 입력으로 들어가는 순환 고리를 찾습니다.",
+    "문제가 되는 잘못된 연결 선을 선택하고 Delete 키를 눌러 연결을 끊습니다.",
+    "필요한 경우 FX-Map이나 Pixel Processor 노드의 내부 그래프를 열어 반복(Iteration) 조건을 재검토합니다."
+  ],
+  "check": [
+    "상단 툴바나 Explorer 창에서 오류 표시(빨간색 경고 아이콘)가 사라지는지 확인합니다.",
+    "Graph가 정상적으로 Cook(연산)되어 2D View에 결과 텍스처가 올바르게 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "노드 네트워크를 구성할 때 데이터의 흐름이 단방향(왼쪽에서 오른쪽)으로 유지되도록 정리합니다.",
+    "복잡한 반복 연산 노드를 만들 때는 항상 탈출 조건과 카운터가 올바르게 설정되었는지 테스트합니다."
+  ],
+  "keywords": [
+    "Substance Designer 무한 루프",
+    "Cook error infinite loop",
+    "그래프 순환참조 오류",
+    "Designer 노드 에러",
+    "Substance 3D 엉킨 노드"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T11:23:53+00:00"
+}

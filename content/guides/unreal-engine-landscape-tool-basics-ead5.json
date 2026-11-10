@@ -5,18 +5,20 @@
   "group": "에디터",
   "name": "Landscape tool basics",
   "title": "Landscape — 지형 만들기 기초",
-  "summary": "Unreal Engine의 Landscape 툴은 대규모 지형과 자연 환경을 브러시로 직접 조각하고 텍스처를 칠해 사실적인 야외 레벨을 만드는 기능입니다.",
+  "summary": "Unreal Engine의 Landscape 툴은 대규모 지형과 자연 환경을 브러시로 직접 조각하고 텍스처를 칠해 사실적인 야외 레벨을 만드는 기능입니다. Landscape Combinator 플러그인을 활용하면 데이터 기반으로 대형 지형과 도로 망을 자동화하여 빠르게 구성할 수 있습니다.",
   "when": [
     "오픈월드 게임이나 광활한 야외 배경의 베이스 지형을 만들 때",
     "산맥, 언덕, 계곡 등 자연스러운 높낮이 변화를 제작할 때",
-    "흙, 풀, 바위 등 다양한 지면 재질을 레이어 기반으로 블렌딩할 때"
+    "흙, 풀, 바위 등 다양한 지면 재질을 레이어 기반으로 블렌딩할 때",
+    "복잡한 대형 지형과 도로 네트워크를 데이터 기반으로 자동 생성할 때"
   ],
   "steps": [
     "Modes 패널(좌측 상단 또는 Shift + 2)에서 Landscape 모드로 진입합니다.",
     "Manage 탭에서 New Landscape를 선택하여 지형의 크기(Resolution), 위치, 머티리얼을 설정합니다.",
     "Create 버튼을 눌러 뷰포트에 빈 지형을 생성합니다.",
     "Sculpt 탭에서 Sculpt 브러시를 선택하고 좌클릭 드래그로 지형을 높이거나 낮춥니다.",
-    "Paint 탭에서 Layer를 선택하고 지형 위에 머티리얼 텍스처를 브러시로 칠합니다."
+    "Paint 탭에서 Layer를 선택하고 지형 위에 머티리얼 텍스처를 브러시로 칠합니다.",
+    "Landscape Combinator 플러그인을 사용하여 외부 지형 데이터 병합 및 스플라인 기반 도로 네트워크를 구성합니다."
   ],
   "params": [
     {
@@ -56,6 +58,14 @@
         "Ctrl + 클릭으로 기준 높이를 샘플링합니다.",
         "지면을 드래그하여 도로가 들어설 자리를 평평하게 다듬습니다."
       ]
+    },
+    {
+      "title": "Landscape Combinator로 도로와 메시 자동 생성하기",
+      "steps": [
+        "Landscape Combinator 플러그인을 활성화하고 UI를 엽니다.",
+        "소스 지형 데이터를 불러와 에디터 창에서 병합 및 관리합니다.",
+        "스플라인을 기반으로 도로 네트워크를 배치하고 지형 높낮이를 자동으로 정렬합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -88,11 +98,19 @@
     "Landscape"
   ],
   "at": "2026-10-19T11:10:54.107084+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-10-9acb95d7a0f5ad24",
-      "title": "Unreal Engine 5 Landscape Combinator 툴 업데이트",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1RdXE1M0J0QVJ4TXV6amlURDB0OVFJdFNQUGhBbTNWcXRDcFRqOXBMcXllZTNsdEc2V2dyc3hwWWhVUQ?oc=5"
+      "at": "2026-11-10T11:24:01+00:00",
+      "what": "Unreal Engine 5의 Landscape Combinator 플러그인 업데이트 내용을 반영하여 지형 데이터 자동화 및 스플라인 기반 도로 네트워크 생성 관련 설명과 단계를 추가했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 5 Landscape Combinator 툴 업데이트",
+          "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1RdXE1M0J0QVJ4TXV6amlURDB0OVFJdFNQUGhBbTNWcXRDcFRqOXBMcXllZTNsdEc2V2dyc3hwWWhVUQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-10-9acb95d7a0f5ad24"
+      ]
     }
   ]
 }
