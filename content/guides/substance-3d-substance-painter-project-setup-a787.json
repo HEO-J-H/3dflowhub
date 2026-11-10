@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-substance-painter-project-setup-a787",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Substance Painter project setup",
+  "title": "Painter 새 프로젝트 설정",
+  "summary": "Substance Painter의 Project Setup은 3D 모델(Mesh)을 불러오고 텍스처 Resolution와 파일 경로를 설정하여 텍스처링 작업을 준비하는 필수 단계입니다.",
+  "when": [
+    "새로운 3D 모델(FBX, OBJ 등)을 불러와서 텍스처 작업을 시작할 때",
+    "프로젝트의 텍스처 Resolution(Texture Resolution)를 2K 또는 4K로 변경하고 싶을 때",
+    "노멀 맵(Normal Map) Baking을 위한 하이 폴리곤 모델을 연결할 때"
+  ],
+  "steps": [
+    "Substance Painter를 실행하고 상단 메뉴 바에서 File > New를 클릭합니다.",
+    "New 프로젝트 창이 열리면 File 항목의 Select 버튼을 눌러 작업할 3D 모델(FBX 또는 OBJ)을 선택합니다.",
+    "Document resolution에서 기본 텍스처 Resolution(예: 2048)를 선택합니다.",
+    "Normal map format을 DirectX 또는 OpenGL 중 작업 환경에 맞게 선택합니다.",
+    "OK 버튼을 클릭하여 모델을 Viewport에 불러오고 프로젝트를 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "File",
+      "desc": "작업할 3D 모델 파일(FBX, OBJ 등)을 지정합니다."
+    },
+    {
+      "name": "Document resolution",
+      "desc": "생성될 텍스처의 기본 Resolution(픽셀 크기)를 설정합니다."
+    },
+    {
+      "name": "Normal map format",
+      "desc": "노멀 맵의 그린(Green) 채널 방향을 DirectX 또는 OpenGL로 설정합니다."
+    },
+    {
+      "name": "Autounwrap",
+      "desc": "모델에 UV가 없을 경우 자동으로 UV를 펼쳐주는 기능입니다."
+    },
+    {
+      "name": "Mesh",
+      "desc": "불러온 3D 모델의 파츠와 머티리얼 목록을 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 서페이스 모델 프로젝트 시작",
+      "steps": [
+        "File > New를 선택합니다.",
+        "무기 또는 기계 메시 파일을 불러옵니다.",
+        "Resolution를 2048로 설정하고 OK를 누릅니다."
+      ]
+    },
+    {
+      "title": "캐릭터 메시 불러오기 및 UV 확인",
+      "steps": [
+        "File > New를 실행합니다.",
+        "캐릭터 FBX 파일을 선택합니다.",
+        "Viewport에서 모델이 깨끗하게 로드되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "유효하지 않은 파일 형식 선택 → 반드시 FBX나 OBJ 등 지원되는 3D 파일 포맷인지 확인하고 다시 불러옵니다.",
+    "낮은 Resolution 설정으로 인한 디테일 저하 → 프로젝트 설정에서 Document resolution 값을 2K 이상으로 변경하거나 Texture Set Settings에서 수정합니다."
+  ],
+  "related": [
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Export Textures",
+    "Project Configuration"
+  ],
+  "videos": [
+    {
+      "id": "uxxliJba8m0",
+      "title": "A Beginners Guide to Substance Painter",
+      "author": "Cryptic Visionary"
+    },
+    {
+      "id": "xkuysgooHRM",
+      "title": "learn SUBSTANCE PAINTER the Beginner Tutorial!",
+      "author": "ProductionCrate"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Painter%20project%20setup",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance Painter",
+    "File",
+    "New"
+  ],
+  "at": "2026-11-10T13:02:26.984720+00:00"
+}

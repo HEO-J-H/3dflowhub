@@ -28647,5 +28647,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T13:02:17+00:00",
+    "kind": "proposal",
+    "id": "p-5392a99102",
+    "title": "깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "사장님 요청 사항 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘' 반영 필요",
+    "proposal": "docs/agent-guides/rag_opensource_review.md 생성하여 외부 RAG 오픈소스의 라이선스 및 Pix2Poly 백엔드 연동 방안 정리",
+    "expected": "오픈소스 RAG 기능을 안전하고 체계적으로 도입할 수 있는 설계 기반 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T13:02:17+00:00",
+    "kind": "proposal",
+    "id": "p-07e549a17f",
+    "title": "웹 브라우저 PBR 텍스처 변환 안정성 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "반복 거절된 중복 제안을 피하고 브라우저 단 PBR 변환 로직의 실무 검증 강화",
+    "proposal": "web/tests/ 또는 관련 JS 테스트 파일에 PBR 컬러/노멀 맵 변환 정확도 검증 케이스 보강",
+    "expected": "클라이언트 측 텍스처 생성 오류 사전 방지 및 품질 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T13:02:49.732167+00:00",
+    "kind": "decision",
+    "id": "p-5392a99102",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T13:02:49.754317+00:00",
+    "kind": "decision",
+    "id": "p-07e549a17f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T13:02:52.566877+00:00",
+    "kind": "triage",
+    "id": "p-5392a99102",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 검토 및 가이드 작성, 관련 PR 머지가 여러 차례 완료되어 반복 작업에 해당함."
+  },
+  {
+    "at": "2026-11-10T13:02:52.588562+00:00",
+    "kind": "decision",
+    "id": "p-5392a99102",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 가이드 작성, 관련 PR 머지가 여러 차례 완료되어 반복 작업에 해당함."
   }
 ]
