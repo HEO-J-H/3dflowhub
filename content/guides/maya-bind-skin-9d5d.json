@@ -1,0 +1,91 @@
+{
+  "id": "maya-bind-skin-9d5d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Bind Skin",
+  "title": "Bind Skin — 스키닝",
+  "summary": "Maya의 Bind Skin은 캐릭터의 3D 메쉬와 스켈레톤(Biped/Joint)을 연결하여 뼈대의 움직임에 따라 메쉬가 자연스럽게 변형되도록 만듭니다.",
+  "when": [
+    "캐릭터 모델링이 완료되고 뼈대(Joint) 배치가 끝났을 때",
+    "몬스터나 크리처의 관절 움직임에 맞춰 외형을 구부려야 할 때",
+    "클로스나 액세서리를 특정 본에 종속시켜 함께 움직이게 만들 때"
+  ],
+  "steps": [
+    "Outliner나 Viewport에서 연결할 뼈대(Root Joint)와 메쉬를 순서대로 선택합니다.",
+    "상단 메뉴에서 Rigging 메뉴 세트로 전환합니다.",
+    "메뉴 바에서 Skin → Bind Skin 옵션 박스를 엽니다.",
+    "Bind to 옵션을 Joint Hierarchy 등으로 설정하고 Bind Skin 버튼을 클릭합니다.",
+    "Viewport에서 본을 회전시켜 메쉬가 올바르게 따라오는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Bind to",
+      "desc": "스킨을 바인딩할 뼈대의 기준 범위를 선택합니다."
+    },
+    {
+      "name": "Bind Method",
+      "desc": "초기 웨이트 계산 방식을 지정합니다 (Geodesic Voxel 권장)."
+    },
+    {
+      "name": "Max Influences",
+      "desc": "하나의 Vertex에 영향을 줄 수 있는 최대 본 개수를 제한합니다."
+    },
+    {
+      "name": "Dropoff Rate",
+      "desc": "본과의 거리에 따라 웨이트가 감소하는 감쇠율을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 바이페드 캐릭터 스키닝",
+      "steps": [
+        "캐릭터 메쉬와 척추 최상위 본을 선택합니다.",
+        "Skin → Bind Skin을 실행합니다.",
+        "팔과 다리를 움직여 웨이트가 적절히 분배되었는지 테스트합니다."
+      ]
+    },
+    {
+      "title": "로봇 관절 및 하드서피스 연결",
+      "steps": [
+        "기계 부품 메쉬를 해당 위치의 Joint에 각각 선택합니다.",
+        "Bind Skin에서 Max Influences를 1로 설정하여 단단한 1:1 결합을 만듭니다.",
+        "관절 회전 시 메쉬가 찢어지지 않는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬와 본의 스케일이 1이 아님 → Modify → Freeze Transformations를 먼저 적용한 후 바인딩하세요.",
+    "엉뚱한 본이 선택됨 → Outliner에서 계층 구조를 정리하고 루트 본부터 올바르게 다중 선택하세요."
+  ],
+  "related": [
+    "Paint Weights Tool",
+    "Smooth Bind",
+    "Detach Skin",
+    "Mirror Skin Weights"
+  ],
+  "videos": [
+    {
+      "id": "FSvEb91T7aM",
+      "title": "#RiggingInMaya | Part 05 | Skin Binding & Editing",
+      "author": "antCGi"
+    },
+    {
+      "id": "v3LP8hZgjdI",
+      "title": "Maya Binding Skin | Maya Bind Skin Command | Bind Skin Option | Maya Joint Bind | Skin Bind In Maya",
+      "author": "3D Knowledge"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Bind%20Skin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Outliner",
+    "Viewport",
+    "Root Joint",
+    "Rigging",
+    "Skin",
+    "Bind Skin"
+  ],
+  "at": "2026-11-10T03:00:02.819919+00:00"
+}
