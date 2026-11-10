@@ -28877,5 +28877,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T14:43:12+00:00",
+    "kind": "proposal",
+    "id": "p-7219c06a86",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 RAG 통합과 URL 검증 관련 PR이 완료되었으나, 브라우저 환경에서의 PBR 텍스처 변환 안정성을 보장할 단위 테스트 보강이 필요합니다.",
+    "proposal": "web/ 디렉토리 내 PBR 텍스처 변환 함수들에 대한 자바스크립트 유닛 테스트 파일을 추가하고 CI Pipeline 실행되도록 설정합니다.",
+    "expected": "웹 클라이언트 단에서의 PBR 텍스처 생성 오류 사전 방지 및 품질 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T14:43:12+00:00",
+    "kind": "proposal",
+    "id": "p-35586adc05",
+    "title": "로컬 파이프라인 예외 처리 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 FastAPI 서버 구동 시 TripoSR 및 COLMAP 실행 환경 설정에 대한 가이드와 예외 처리 문서 보완이 유용합니다.",
+    "proposal": "docs/agent-guides/local-pipeline-errors.md 문서를 신규 작성하여 GPU/VRAM 부족 또는 의존성 누락 시 대응 방법을 정리합니다.",
+    "expected": "로컬 사용자들의 설치 및 실행 트러블슈팅 시간 단축",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T14:46:53.301045+00:00",
+    "kind": "decision",
+    "id": "p-7219c06a86",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T14:46:53.340314+00:00",
+    "kind": "decision",
+    "id": "p-35586adc05",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
