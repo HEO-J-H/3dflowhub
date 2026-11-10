@@ -1,0 +1,89 @@
+{
+  "id": "maya-component-editor-weights-07da",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Component Editor weights",
+  "title": "Component Editor — 웨이트 숫자로",
+  "summary": "Component Editor를 이용해 개별 Vertex·Edge·Face의 스킨 웨이트를 직접 수치 입력·편집합니다.",
+  "when": [
+    "특정 본에 과도하게 할당된 웨이트를 미세 조정해야 할 때",
+    "자동 웨이트가 부정확해 특정 부위가 뭉개지거나 끊어질 때",
+    "다른 툴(Paint Skin Weights)로는 접근하기 어려운 소수점 이하 정밀 조정이 필요할 때"
+  ],
+  "steps": [
+    "Mesh를 선택하고 Windows → General Editors → Component Editor 로 이동합니다",
+    "Component Editor 상단 탭에서 Smooth Skins 를 클릭합니다",
+    "좌측 Component 리스트에서 편집하려는 Vertex(또는 Edge, Face)를 선택합니다",
+    "Weight 열에 원하는 값(0~1)을 직접 입력하고 Enter 키를 눌러 적용합니다"
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "해당 컴포넌트가 받는 본의 영향력(0~1)"
+    },
+    {
+      "name": "Lock",
+      "desc": "값을 고정해 자동 바인드가 변경되지 않도록 함"
+    },
+    {
+      "name": "Component",
+      "desc": "편집 대상인 Vertex·Edge·Face 표시"
+    },
+    {
+      "name": "Smoothness",
+      "desc": "스킨 바인드 전체의 부드러움 정도 (Smooth Bind 옵션)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔꿈치 관절 웨이트 정밀 조정",
+      "steps": [
+        "팔꿈치 주변 Vertex를 선택",
+        "Component Editor에서 해당 Vertex의 Weight 값을 0.85→0.92 로 증가",
+        "Enter 로 적용 후 Viewport에서 팔꿈치 굽힘을 확인"
+      ]
+    },
+    {
+      "title": "얼굴 눈 주위 웨이트 미세 조정",
+      "steps": [
+        "눈 주변 Vertex를 선택",
+        "Weight 값을 0.6에서 0.73 으로 입력",
+        "Enter 후 눈 깜빡임 애니메이션을 재생해 변형 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "잘못된 컴포넌트(Edge 대신 Vertex)를 선택 → 올바른 Component 모드로 전환 후 다시 선택",
+    "Weight 값을 입력하고 Enter 를 누르지 않음 → 값이 적용되지 않음 → 입력 후 반드시 Enter 로 확정",
+    "Lock 을 켜놓고 수정하려고 함 → Lock 해제 후 수정 필요"
+  ],
+  "related": [
+    "Paint Skin Weights Tool",
+    "Weight Hammer",
+    "Component Editor",
+    "Smooth Bind"
+  ],
+  "videos": [
+    {
+      "id": "bqrwmDRnLZ4",
+      "title": "Setting up Human IK in Maya 2012 pt5 Component Editor and Constraints",
+      "author": "Vinny Argentina"
+    },
+    {
+      "id": "Bpze0eTwJ5I",
+      "title": "Painting Weights 04 Component Editor",
+      "author": "Jared Rodriguez"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Component%20Editor%20weights",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Windows",
+    "General Editors",
+    "Component Editor"
+  ],
+  "at": "2026-11-10T03:30:44.289144+00:00"
+}

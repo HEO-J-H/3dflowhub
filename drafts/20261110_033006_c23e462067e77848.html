@@ -1,0 +1,22 @@
+<!-- TITLE: Gaussian Splatting: LiDAR 스캐폴드 PLS‑GS 발표 | TAGS: Gaussian Splatting,LiDAR,PLS‑GS,3D Reconstruction,WACV2027,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — PLS‑GS는 LiDAR 데이터를 활용해 3D Gaussian Splatting을 보다 적은 Primitive와 표면 정렬 방식으로 구현한 새로운 방법이다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>PLS‑GS 개요</h2>
+<p>PLS‑GS는 이미지와 고해상도 LiDAR 데이터를 동시에 이용해 3D Gaussian Splatting을 최적화한다. LiDAR에서 얻은 정확한 기하 정보를 스캐폴드로 사용해 모델의 표면 정렬을 강화한다.</p>
+<h2>Hierarchical Gaussian Mixture Model 적용</h2>
+<p>위치와 색상을 동시에 모델링하는 계층적 Gaussian Mixture Model(GMM)을 학습한다. GMM 컴포넌트마다 공분산 행렬이 정의돼 로컬 표면 프레임을 제공한다.</p>
+<h2>Mahalanobis Support Loss</h2>
+<p>각 렌더링 Gaussian은 해당 GMM 컴포넌트의 표면 프레임에 고정되고, Mahalanobis 거리 기반 손실이 LiDAR 표면에서의 편차를 제한한다. 이 손실은 Primitive가 실제 측정치에 가까이 머물게 만든다.</p>
+<h2>실험 결과</h2>
+<p>다섯 개의 대형 야외 씬에서 PLS‑GS는 기존 이미지‑기반 및 LiDAR‑기반 초기화 방법보다 LiDAR와의 평균 거리 오차가 크게 낮았다. 동시에 Primitive 수는 40~60% 감소해 렌더링 속도가 향상되었다.</p>
+<h2>코드 공개 및 활용</h2>
+<p>논문과 함께 제공된 코드는 MIT 라이선스로 공개돼 바로 다운로드할 수 있다. 연구자는 이를 로봇 매핑, 자율주행 시뮬레이션 등 실시간 3D 재구성 작업에 적용할 수 있다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">PLS‑GS는 기존 3DGS 대비 약 2배 적은 Primitive로 LiDAR 측정치와의 거리 오차를 크게 줄여, 동일한 렌더링 품질에서 처리 속도가 눈에 띄게 빨라진다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. PLS‑GS가 기존 3D Gaussian Splatting과 다른 점은?</b><br/>A. LiDAR 기반의 확률적 스캐폴드를 사용해 Primitive를 표면에 정렬하고, Mahalanobis 손실로 오차를 제한한다.</p>
+<p><b>Q. PLS‑GS를 직접 사용하려면 어떤 환경이 필요한가</b><br/>A. Python 3.9 이상, PyTorch, CUDA 11.0 이상이 설치된 Linux 또는 Windows 환경에서 제공된 Docker 이미지 또는 conda 환경을 설정하면 된다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-040314fa4764f153.html">RefineSplat — 오픈 어휘 3D 분할을 위한 재구성 유도 객체 중심 Gauss Splatting</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-9538adb158513463.html">Gaussian Splatting 부분 업데이트로 장면 전환 속도 향상</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-2c46689fb3079932.html">Gaussian Splatting 가속기 GSPIM — 4.15배 속도·4.99배 에너지 효율</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.10699v1" target="_blank" rel="noopener nofollow">PLS-GS: Probabilistic Lidar Scaffolds for Compact, Surface-Aligned Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

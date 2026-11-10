@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-saving-custom-brushes-e330",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Saving custom brushes",
+  "title": "브러시 저장",
+  "summary": "현재 설정된 브러시를 .ZBP 파일로 저장해 언제든 불러와 사용할 수 있습니다.",
+  "when": [
+    "새로운 브러시 설정을 만들었을 때",
+    "다른 프로젝트에서 동일 브러시를 재사용하고 싶을 때",
+    "팀과 브러시 파일을 공유하고 싶을 때"
+  ],
+  "steps": [
+    "Brush Palette에서 원하는 브러시를 선택합니다",
+    "Brush Palette 하단의 Save As 버튼을 클릭합니다",
+    "파일 탐색기에서 저장 폴더를 선택하고 파일명을 입력합니다",
+    "Save 버튼을 눌러 .ZBP 파일로 저장합니다",
+    "(선택) Preferences → Hotkeys 에서 Save As Hotkey를 지정합니다"
+  ],
+  "params": [
+    {
+      "name": "Save As",
+      "desc": "현재 브러시를 .ZBP 파일로 저장"
+    },
+    {
+      "name": "Brush",
+      "desc": "저장할 브러시의 현재 설정 전체"
+    },
+    {
+      "name": "Alpha",
+      "desc": "브러시와 함께 저장되는 알파 이미지"
+    },
+    {
+      "name": "Texture",
+      "desc": "브러시와 연결된 텍스처가 포함됩니다"
+    },
+    {
+      "name": "ZIntensity",
+      "desc": "브러시 강도 값이 파일에 기록됩니다"
+    },
+    {
+      "name": "ZAdd",
+      "desc": "브러시가 추가 모드인지 뺄셈 모드인지 저장"
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 서피스 모델링용 Hard Edge 브러시 저장",
+      "steps": [
+        "Hard Edge 브러시 선택 → ZIntensity를 0.8로 조정",
+        "Alpha를 ‘HardEdgeMask’로 지정",
+        "Brush Palette → Save As → 이름을 ‘HardEdge_HS’로 저장"
+      ]
+    },
+    {
+      "title": "유기 모델링용 Clay Buildup 브러시와 커스텀 알파 저장",
+      "steps": [
+        "Clay Buildup 브러시 선택 → Alpha ‘OrganicDetail’ 적용",
+        "ZAdd를 켜고 ZIntensity 0.5 설정",
+        "Brush Palette → Save As → ‘Clay_Organic’ 저장"
+      ]
+    }
+  ],
+  "mistakes": [
+    "설정 변경 후 Store 버튼을 누르지 않음 → 저장된 브러시에 변경 사항이 반영되지 않음",
+    "기본 브러시 이름으로 저장 → 원본 브러시가 덮어써져 복구 불가 → 다른 이름으로 저장하고 백업 파일 유지"
+  ],
+  "related": [
+    "Custom UI",
+    "Hotkey",
+    "Brush Palette",
+    "Alpha"
+  ],
+  "videos": [
+    {
+      "id": "2v324CILXPU",
+      "title": "Intro to ZBrush 011 - Creating and Saving Custom Brushes - Tweaked or From Scratch!",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "rsVsFLzkvis",
+      "title": "009 ZBrush Saving Custom Brush Settings",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Saving%20custom%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T03:31:19.916483+00:00"
+}

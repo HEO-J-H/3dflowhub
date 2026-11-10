@@ -31,6 +31,21 @@
     {
       "heading": "Nsight Systems 프로파일링 결과",
       "body": "내장된 NVTX 어노테이션이 포함된 Nsight Systems 프로파일링을 통해 성능을 측정할 수 있습니다. 제어 파티션을 특정 CPU 코어에 고정하는 설정은 C++ 구현의 p99.99 지연 시간을 약 5배 줄여줍니다. Python 구현의 경우 동일한 설정에서 지연 시간이 약 9.6배 감소하는 결과를 보여줍니다."
+    },
+    {
+      "heading": "Holoscan 5와 Pinocchio를 이용한 중력 보상 제어 구현 단계",
+      "body": "먼저 NVIDIA Holoscan 5 SDK를 설치하고 C++ 또는 Python 프로젝트를 생성합니다. 3개의 커스텀 오퍼레이터(센서 입력, 역동역학 계산, 토크 출력)를 정의하고, 센서 오퍼레이터에서 400 Hz 로 Seeed Studio reBot Arm B601‑DM의 관절 상태를 읽어옵니다. 읽은 joint position 데이터를 Pinocchio 라이브러리로 전달해 역동역학(inverse dynamics) 연산을 수행하고, 결과 토크 값을 motorbridge 라이브러리의 명령 인터페이스에 넘겨 로봇에 실시간으로 적용합니다. 전체 파이프라인은 Holoscan 5의 단일 프로그래밍 모델 안에서 실행되어 저지연 제어와 고처리량 인식을 동시에 처리합니다.",
+      "added": true
+    },
+    {
+      "heading": "파티션 및 드롭‑올드스트 큐 설정으로 지연 시간 최소화하기",
+      "body": "Holoscan 5에서는 오퍼레이터 체인을 하나의 파티션에 묶어 단일 스레드에서 실행하도록 구성합니다. 이렇게 하면 스레드 간 핸드오프와 불필요한 시스템 콜이 사라져 지연이 크게 감소합니다. 각 오퍼레이터는 클록 및 데이터 도착 트리거를 사용해 실행 시점을 명시하고, 오래된 샘플이 쌓이는 것을 방지하기 위해 드롭‑올드스트(drop‑oldest) 큐를 설정합니다. 이 큐는 최신 데이터만 유지하므로 제어 루프의 지터와 전체 지연을 최소화할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "Nsight Systems 프로파일링 및 파티션 고정으로 성능 최적화",
+      "body": "Holoscan 5는 NVTX 어노테이션을 자동 삽입해 Nsight Systems에서 상세 프로파일링이 가능합니다. 프로파일링 결과를 확인하면 파티션을 특정 CPU 코어에 고정(pin)하는 옵션을 사용할 수 있습니다. C++ 구현에서는 p99.99 지연 시간이 약 5배, Python 구현에서는 약 9.6배 감소하는 효과가 보고되었습니다. 파티션 고정은 Holoscan 설정 파일에서 `cpu_affinity` 옵션을 지정하거나, 실행 시 `--cpu-affinity` 플래그를 추가해 적용합니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +56,14 @@
     {
       "q": "중력 보상 루프에서 토크 명령을 받는 로봇 팔 기종은 무엇인가요?",
       "a": "Seeed Studio reBot Arm B601-DM 모델이 사용되며 motorbridge 라이브러리를 통해 제어 명령을 전달받습니다."
+    },
+    {
+      "q": "Holoscan 5 파티션을 특정 CPU 코어에 고정하려면 어떻게 설정하나요?",
+      "a": "Holoscan 설정 파일 또는 실행 명령에 `cpu_affinity` 옵션을 추가하고, 원하는 코어 번호를 지정합니다. 예를 들어 `holoscan run my_app.yaml --cpu-affinity 2`와 같이 실행하면 파티션이 코어 2에 고정되어 지연이 크게 감소합니다."
+    },
+    {
+      "q": "Pinocchio를 이용해 역동역학 토크를 계산하는 기본 흐름은?",
+      "a": "관절 위치와 속도 데이터를 Pinocchio 모델에 입력하면 `computeInverseDynamics` 함수가 현재 중력 및 관성에 대한 토크 값을 반환합니다. 반환된 토크는 motorbridge 라이브러리의 `setTorque` API에 전달해 로봇 관절에 실시간으로 적용합니다."
     }
   ],
   "media": {
@@ -49,5 +72,23 @@
   },
   "collected_at": "2026-11-10T02:49:33.635730+00:00",
   "notion_id": "",
-  "id": "2026-11-10-2379109f43cc3c2b"
+  "id": "2026-11-10-2379109f43cc3c2b",
+  "refs": [],
+  "videos": [
+    {
+      "id": "F0ZvF-FbCr0",
+      "title": "DIY Arduino Robot Arm - Controlled by Hand Gestures | Full Tutorial",
+      "author": "Eben Kouao"
+    },
+    {
+      "id": "u74TJJS3gCw",
+      "title": "How to Rig and Animate a Robotic Arm in Blender?",
+      "author": "MK Graphics"
+    }
+  ],
+  "enriched_at": "2026-11-10T03:32:13+00:00",
+  "quality": {
+    "before": 647,
+    "after": 1551
+  }
 }
