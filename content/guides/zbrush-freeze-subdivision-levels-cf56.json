@@ -1,0 +1,95 @@
+{
+  "id": "zbrush-freeze-subdivision-levels-cf56",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "리토폴로지",
+  "name": "Freeze Subdivision Levels",
+  "title": "Freeze Subdivision Levels",
+  "summary": "ZBrush의 Freeze Subdivision Levels 기능은 서브디비전 레벨을 유지한 채 디테일(디바이드)을 임시로 잠그고, Base Mesh 상태에서 폴리곤 구조 변경이나 마스크 작업 등을 수행할 수 있게 해줍니다.",
+  "when": [
+    "서브디비전 레벨이 있는 모델의 Base Mesh 구조(Topology)를 수정하고 싶을 때",
+    "상위 레벨의 세밀한 스컬프팅 디테일을 잠근 상태로 대형 변형을 주고 싶을 때",
+    "고해상도 메쉬에서 레벨 손실 없이 안전하게 대대적인 형태 수정을 진행할 때"
+  ],
+  "steps": [
+    "ZBrush에서 서브디비전 레벨이 적용된 SubTool을 선택합니다.",
+    "Tool 팔레트를 열고 Geometry 서브 팔레트를 클릭합니다.",
+    "Geometry 메뉴 하단에서 SDiv(Subdivision Levels) 섹션을 확장합니다.",
+    "Freeze SubD 버튼을 클릭하여 서브디비전 레벨을 임시로 잠급니다.",
+    "Base Mesh 상태에서 Move 브러시나 ZModeler 등으로 형태를 수정합니다.",
+    "작업 완료 후 다시 Freeze SubD 버튼을 눌러(Unfreeze) 원래의 디테일을 복원합니다."
+  ],
+  "params": [
+    {
+      "name": "Freeze SubD",
+      "desc": "현재의 서브디비전 레벨을 임시로 잠그고 Base Mesh 편집 상태로 전환합니다."
+    },
+    {
+      "name": "SDiv",
+      "desc": "현재 모델에 적용된 서브디비전의 총 레벨 수와 활성 레벨을 표시합니다."
+    },
+    {
+      "name": "Del Lower",
+      "desc": "현재 활성 레벨보다 낮은 하위 서브디비전 레벨들을 삭제합니다."
+    },
+    {
+      "name": "Del Higher",
+      "desc": "현재 활성 레벨보다 높은 상위 서브디비전 레벨들을 삭제합니다."
+    },
+    {
+      "name": "Divide",
+      "desc": "메쉬의 폴리곤 밀도를 높여 새로운 상위 서브디비전 레벨을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Base Mesh 형태 수정하기",
+      "steps": [
+        "디테일이 올려진 캐릭터 모델에서 Geometry > SDiv 메뉴를 엽니다.",
+        "Freeze SubD를 실행하여 가장 낮은 레벨 상태로 만듭니다.",
+        "Move 브러시로 전체적인 비율을 수정한 뒤 Freeze SubD를 다시 눌러 디테일을 되살립니다."
+      ]
+    },
+    {
+      "title": "Topology 수정 시 디테일 보존",
+      "steps": [
+        "ZModeler 브러시로 Edge를 추가하기 전 Freeze SubD를 켭니다.",
+        "필요한 면 구조를 편집한 뒤 Freeze SubD를 해제하여 기존 스컬프팅을 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Freeze 상태에서 폴리곤 개수나 정점의 순서를 완전히 바꾸는 것 → Topology가 크게 변경되면 언프리즈 시 디테일이 왜곡되거나 오류가 발생할 수 있으므로 주의합니다.",
+    "언프리즈(Unfreeze)를 잊고 계속 스컬프팅 작업하기 → 상위 레벨의 디테일 데이터가 유실될 수 있으므로 구조 수정 후 반드시 Freeze를 해제합니다."
+  ],
+  "related": [
+    "Subdivision Levels",
+    "ZModeler",
+    "Dynamesh",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "NrsuP4Vj4Lg",
+      "title": "#AskZBrush - \"What is the Freeze Subdivision Levels button used for?\"",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "VsVJJE0USqQ",
+      "title": "PavWork 21: Freeze Subdivision Levels",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Freeze%20Subdivision%20Levels",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "SubTool",
+    "Tool",
+    "Geometry",
+    "SDiv",
+    "Subdivision Levels"
+  ],
+  "at": "2026-11-10T08:22:01.724864+00:00"
+}

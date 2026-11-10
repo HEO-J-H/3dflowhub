@@ -1,0 +1,94 @@
+{
+  "id": "maya-reference-files-229f",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Reference files",
+  "title": "Reference — 파일 참조",
+  "summary": "Maya의 Reference Files 기능은 외부 Maya 파일을 원본 링크 형태로 불러와 현재 씬에서 실시간 반영되도록 관리하는 시스템입니다. 대규모 프로젝트에서 파트별로 파일을 나누어 협업할 때 필수적입니다.",
+  "when": [
+    "배경, 캐릭터, 소품 팀이 각기 다른 파일을 동시에 작업하며 메인 씬에 합칠 때",
+    "동일한 프랍(Prop)이나 건물을 여러 번 복제 배치했다가 원본 수정으로 한 번에 업데이트하고 싶을 때",
+    "메인 씬 파일의 용량을 줄이고 작업 속도를 쾌적하게 유지하고 싶을 때"
+  ],
+  "steps": [
+    "메뉴 바에서 File > Create Reference를 클릭합니다.",
+    "파일 탐색기 창이 열리면 불러올 Maya 파일(.mb 또는 .ma)을 선택합니다.",
+    "하단 옵션 박스(Option Box)에서 Namespace나 Group 등의 세부 설정을 확인한 후 Reference 버튼을 누릅니다.",
+    "Outliner 패널에서 파란색 아이콘으로 참조된 파일의 최상위 노드가 생성된 것을 확인합니다.",
+    "참조된 오브젝트를 수정하려면 Reference Editor를 통해 일시적으로 파일을 열거나 에디트(Edit) 작업을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Namespace",
+      "desc": "참조된 에셋의 노드 이름 앞에 고유 접두사를 붙여 이름 충돌을 방지합니다."
+    },
+    {
+      "name": "File Type",
+      "desc": "불러올 파일의 포맷을 지정합니다. 보통 auto-detect로 둡니다."
+    },
+    {
+      "name": "Using Reference Editor",
+      "desc": "참조된 파일들의 로드 상태, 경로, 언로드(Unload), 리로드(Reload)를 관리합니다."
+    },
+    {
+      "name": "Shared Display Layers",
+      "desc": "참조 파일 내부의 디스플레이 레이어 공유 여부를 설정합니다."
+    },
+    {
+      "name": "Group with",
+      "desc": "참조된 에셋들을 하나의 빈 그룹 노드 아래에 묶어서 불러옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "도시 배경 배치와 원본 업데이트",
+      "steps": [
+        "빌딩 A 모델링 파일을 별도로 저장합니다.",
+        "도시 레이아웃 씬에서 File > Create Reference로 빌딩 A를 10개 불러와 배치합니다.",
+        "빌딩 A 원본 파일을 열어 창틀 디자인을 수정하고 저장합니다.",
+        "도시 레이아웃 씬을 열면 Reference Editor를 통해 모든 빌딩 A의 창틀이 자동으로 변경됩니다."
+      ]
+    },
+    {
+      "title": "캐릭터 애니메이션 협업",
+      "steps": [
+        "리깅이 완료된 캐릭터 파일을 준비합니다.",
+        "애니메이션 씬 파일에서 File > Create Reference로 캐릭터를 불러옵니다.",
+        "Reference Editor에서 Namespace를 설정하여 Controller와 메쉬의 이름 엉킴을 막습니다.",
+        "애니메이션 키를 작업한 뒤 원본 리깅 수정 사항이 생겨도 애니메이션이 깨지지 않게 연동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "참조된 파일의 경로를 임의로 이동하거나 이름을 바꿈 → File > Reference Editor에서 해당 경로(Path)를 다시 지정하거나 Fix Name로 연결합니다.",
+    "참조된 오브젝트를 현재 씬에서 직접 수정하려다 에러가 남 → 원본 파일을 열어서 수정하거나 Reference Editor의 Allow Editing 기능을 사용합니다.",
+    "파일 내부에 노드가 없어 네임스페이스 생성 실패 경고가 뜸 → 참조하려는 파일에 실제 지오메트리나 노드가 포함되어 있는지 Outliner에서 확인합니다."
+  ],
+  "related": [
+    "Reference Editor",
+    "File Path Editor",
+    "Namespace Editor",
+    "Export Selection"
+  ],
+  "videos": [
+    {
+      "id": "hdTDligoXOc",
+      "title": "How to Create & Work with Reference Files in Maya 2018 | Referencing Multiple Files |Maya Tips-4",
+      "author": "Zeeshan Academy"
+    },
+    {
+      "id": "WDpYKvhSOYI",
+      "title": "Mastering Maya: Importing vs Referencing Scene Files - A Comprehensive Tutorial",
+      "author": "What Make Art"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Reference%20files",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Create Reference"
+  ],
+  "at": "2026-11-10T08:21:44.450859+00:00"
+}
