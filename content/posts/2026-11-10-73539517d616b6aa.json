@@ -1,0 +1,50 @@
+{
+  "title_ko": "Martine 3D 표면 복원 벤치마크 — NeurIPS 2026 발표",
+  "title": "Martine: Benchmarking Multi-View 3D Surface Reconstruction Across Viewpoint Coverage, Resolution, and Lighting",
+  "url": "https://arxiv.org/abs/2611.11602v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "NeRF",
+    "Gaussian Splatting",
+    "포토그래메트리",
+    "NeurIPS 2026",
+    "3D 표면 복원"
+  ],
+  "summary": "NeurIPS 2026에 채택된 Martine은 다양한 촬영 조건과 재질을 포괄하는 정밀 3D 표면 복원 평가 벤치마크입니다.",
+  "insight": "9568x6376 Resolution의 84개 뷰포인트로 구성된 28개 오브젝트 데이터를 제공하여 Gaussian Splatting과 NeRF 기반 복원 알고리즘의 정밀도를 0.058 mm 오차 수준까지 비교할 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Martine 벤치마크의 구성 요소",
+      "body": "NeurIPS 2026 평가 및 데이터셋 트랙에 채택된 Martine은 투명한 재질과 미세한 구조를 포함한 28개의 오브젝트를 담고 있습니다. 단일 조명과 다중 조명 환경에서 구형 캡 형태의 84개 뷰포인트를 통해 9568 x 6376 픽셀 Resolution로 촬영되었습니다. 오브젝트와 독립된 카메라 캘리브레이션과 실제 3D 스캔 정답 데이터를 제공합니다."
+    },
+    {
+      "heading": "다양한 3D 복원 패러다임 비교",
+      "body": "본 벤치마크는 포토그래메트리, 전통적 다중 뷰 스테레오(MVS), 뉴럴 임플리시프트 서피스, Gaussian Splatting 기반 복원, 다중 뷰 포도메트릭 스테레오 방식을 모두 아우릅니다. 레퍼런스 데이터의 정확도를 명확히 제어하며 조건별 평가를 수행할 수 있도록 설계되었습니다. 평가된 가시 표면에서 가장 우수한 기록은 0.058 mm의 참퍼 거리(Chamfer distance)를 보여줍니다."
+    },
+    {
+      "heading": "정밀 분석을 위한 3D 속성 마스크",
+      "body": "재질 속성, 가시성, 곡률, 미세 구조에 따른 오차를 분석할 수 있는 속성 마스크를 지원합니다. 기존 벤치마크들이 뷰포인트 커버리지나 Resolution, 조명을 제한하여 특정 방식에 유리하게 작용했던 한계를 보완합니다. 이미지와 지오메트리 간의 정렬 정확도가 정량화되어 있어 미세한 3D 표면 차이를 구분해 냅니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Martine 벤치마크는 어떤 데이터를 제공하나요?",
+      "a": "투명 재질과 미세 구조를 포함한 28개 오브젝트를 9568x6376 Resolution, 84개 뷰포인트로 촬영한 데이터와 정확한 3D 정답 스캔 데이터를 제공합니다."
+    },
+    {
+      "q": "어떤 3D 복원 기술들을 평가할 수 있나요?",
+      "a": "포토그래메트리, 다중 뷰 스테레오, 뉴럴 임플리시프트 서피스, Gaussian Splatting, 다중 뷰 포도메트릭 스테레오 방식을 평가할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.11602v1/2611.11602v1/figures/013_misaligned.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-10T11:51:59.936051+00:00",
+  "notion_id": "",
+  "id": "2026-11-10-73539517d616b6aa",
+  "img_tried": true
+}
