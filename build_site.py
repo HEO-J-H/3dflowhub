@@ -381,6 +381,7 @@ h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
   background:linear-gradient(transparent,rgba(0,0,0,.78));display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .wall-item.big .wall-cap{font-size:22px;padding:60px 20px 18px}
 .wall-cap small{display:block;font-size:12px;font-weight:600;opacity:.8;margin-bottom:2px}
+@media (prefers-color-scheme:dark){.hero-mosaic{opacity:.13}}  /* 다크 모드에선 그림이 진해 보여 글씨가 어수선 → 더 옅게 */
 @media (max-width:820px){.hero-mosaic{opacity:.09}.wall{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.hm-track{grid-auto-columns:150px}.hm-track img{width:150px}}
 /* 스크롤하면 부드럽게 나타남 (user.js 가 .rv → .in) */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
@@ -1911,18 +1912,26 @@ def build() -> dict:
     hot += [g for g in sorted(learn_guides, key=lambda g: g.get("at", ""), reverse=True)
             if g.get("videos") and g not in hot][:6 - len(hot)]
     hot_html = "".join(guide_card(g, "{ROOT}") for g in hot)
-    pics = [p for p in posts if (p.get("media") or {}).get("image")][:40]
+    pics = [p for p in posts if (p.get("media") or {}).get("image")][:120]
     wall = pics[:5]  # 80.lv 처럼: 큰 그림 하나 + 작은 그림 넷 (2×2 + 4칸이 빈틈 없이 맞음), 제목은 그림 위에
     wall_html = "".join(
         f'<a class="wall-item{" big" if i == 0 else ""}" href="{{ROOT}}p/{e(p["id"])}.html">'
         f'<img src="{e(p["media"]["image"])}" alt="" loading="{"eager" if i < 3 else "lazy"}" referrerpolicy="no-referrer">'
         f'<span class="wall-cap"><small>{e(p.get("category") or p["domain"])}</small>{e(p["title_ko"])}</span></a>'
         for i, p in enumerate(wall))
+    # 첫 화면 뒤 그림: 논문 표·그래프는 빼고 보기 좋은 것부터 (작품·제작 사례 → 일반 그림 → 유튜브 썸네일)
+    used = {p["id"] for p in wall}
+    pool = [p for p in pics if p["id"] not in used and "arxiv.org" not in p["media"]["image"]
+            and p.get("topic") != "연구·논문"]
+    pool.sort(key=lambda p: (p.get("topic") != "작품·제작 사례", "ytimg.com" in p["media"]["image"]))
+    pool = pool[:40]
     mosaic = "".join(f'<img src="{e(p["media"]["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">'
-                     for p in pics[5:29])
+                     for p in pool[:24])
+    mosaic_pool = json.dumps([p["media"]["image"] for p in pool], ensure_ascii=False)
     home_head = (
         f'<section class="hero">'
-        + (f'<div class="hero-mosaic" aria-hidden="true"><div class="hm-track">{mosaic}{mosaic}</div></div>' if mosaic else "")
+        + (f'<div class="hero-mosaic" aria-hidden="true" data-pool="{e(mosaic_pool)}"><div class="hm-track">{mosaic}{mosaic}</div></div>'
+           if mosaic else "")
         + f'<h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
         f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
         f'전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리해 둡니다.</p>'

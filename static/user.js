@@ -163,3 +163,17 @@
     requestAnimationFrame(step);
   });
 })();
+
+// 첫 화면 뒤 그림: 새로고침할 때마다 최근 그림 40장 중에서 섞어 24장 (다시 와도 다른 화면)
+(function () {
+  const box = document.querySelector('.hero-mosaic[data-pool]');
+  if (!box) return;
+  let pool = [];
+  try { pool = JSON.parse(box.dataset.pool); } catch (e) { return; }
+  if (pool.length < 8) return;
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  const pick = pool.slice(0, 24);
+  const imgs = box.querySelectorAll('img');  // 같은 줄을 두 번 이어 붙여 끊김 없이 흐름 → 앞·뒤 절반에 같은 순서
+  const half = imgs.length / 2;
+  imgs.forEach((im, i) => { const u = pick[i % half % pick.length]; if (u) im.src = u; });
+})();
