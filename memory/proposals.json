@@ -30076,5 +30076,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T18:53:29+00:00",
+    "kind": "proposal",
+    "id": "p-4fdf7cc037",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 버전의 PBR 텍스처 처리 과정에 대한 단위 테스트 추가 필요",
+    "proposal": "web/tests/ 디렉토리에 PBR 생성 및 변환 로직에 대한 Jest 단위 테스트 파일 추가",
+    "expected": "브라우저 환경에서의 텍스처 생성 안정성 확보 및 회귀 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:53:29+00:00",
+    "kind": "proposal",
+    "id": "p-bb94804693",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 Pipeline GPU 자원 부족이나 모델 로딩 실패 시 예외 처리 명확화 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 상세한 예외 처리 및 로깅 추가 후 테스트 작성",
+    "expected": "GPU 환경 오류 시 명확한 에러 메시지 반환으로 디버깅 용이성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:53:49.681809+00:00",
+    "kind": "decision",
+    "id": "p-4fdf7cc037",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T18:53:49.705523+00:00",
+    "kind": "decision",
+    "id": "p-bb94804693",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
