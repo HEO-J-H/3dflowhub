@@ -633,6 +633,7 @@ SITE_MENU = [
     ("문제 해결", [("fix/", "🛠", "오류 해결", "오류 메시지로 원인과 해결"),
                  ("changes/", "🆕", "버전별 바뀐 점", "새 버전에서 달라진 것")]),
     ("자료", [("assets/", "🎁", "무료 에셋", "텍스처·재질·HDRI"),
+             ("radar/", "🛰️", "AI 3D 레이더", "지금 뜨는 3D AI 모델·데모·오픈소스"),
              ("resources/", "📎", "추천 자료", "강의·도구·커뮤니티")]),
     ("소식", [("events/", "🏆", "공모전·게임 잼", "공모전·게임 잼·3D 챌린지·행사 일정"),
              ("weekly/", "🗓️", "주간 요약", "한 주의 핵심만"),
@@ -650,6 +651,9 @@ def section_count(u: str) -> int | None:
         if u == "manual/":
             import manual
             return len(manual.load_all())
+        if u == "radar/":
+            import radar
+            return len(radar.load())
         if u == "events/":
             import events
             return len(events.load_all())
@@ -1633,6 +1637,46 @@ def build_events() -> int:
     return len(xs)
 
 
+def radar_card(x: dict) -> str:
+    stat = " · ".join(v for v in [f'★ {x["stars"]:,}' if x.get("stars") else "", f'♥ {x["likes"]:,}' if x.get("likes") else "",
+                                  f'⬇ {x["downloads"]:,}' if x.get("downloads") else ""] if v)
+    lic = {"가능": "상업 사용 가능", "불가": "상업 사용 불가", "확인 필요": "라이선스 확인 필요"}.get(x.get("commercial"), "")
+    img = (f'<div class="img"><img src="{e(x["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer" '
+           f'onerror="this.parentNode.classList.add(\'evph\');this.remove()"></div>' if x.get("image")
+           else f'<div class="img evph">{e(x.get("emoji") or "🧊")}</div>')
+    return (f'<a class="card evcard" href="{e(x["url"])}" target="_blank" rel="noopener">{img}<div class="body">'
+            f'<div class="evmeta"><span class="pill">{e(x["source"])}</span>'
+            + (f'<span class="dd{" hot" if x.get("commercial") == "불가" else ""}">{e(lic)}</span>' if lic else "")
+            + f'</div><h3 class="t">{e(x["name"])}</h3><div class="s">{e(x.get("desc") or x.get("desc_en", ""))}</div>'
+            f'<div class="k">{e(x.get("owner", ""))}{" · " + e(stat) if stat else ""}{" · " + e(x["updated"]) if x.get("updated") else ""}</div></div></a>')
+
+
+def build_radar() -> int:
+    """🛰️ AI 3D 레이더 (/radar/) — 허깅페이스·GitHub·Civitai·Kaggle 에서 지금 뜨는 3D 관련 것."""
+    import radar as _radar
+    xs = _radar.load()
+    (OUT / "radar").mkdir(exist_ok=True)
+    order = [("🧪 브라우저에서 바로 써 보기 (Hugging Face Spaces)", "바로 써 보기"),
+             ("🤖 3D 생성 AI 모델 (Hugging Face)", "AI 모델"),
+             ("🛠 오픈소스 (GitHub)", "오픈소스"),
+             ("🎨 3D 스타일 이미지 모델 (Civitai)", "이미지 모델"),
+             ("📦 3D 데이터셋 (Kaggle)", "데이터셋")]
+    rank = lambda x: -(x.get("likes") or x.get("stars") or x.get("downloads") or 0)  # noqa: E731
+    body = ('<div class="doc"><h1>🛰️ AI 3D 레이더</h1><p class="desc">허깅페이스·GitHub·Civitai·Kaggle 에서 지금 많이 쓰이는 3D 관련 '
+            'AI 모델·데모·오픈소스·데이터셋을 모았습니다. 하루 두 번 갱신되고, 카드마다 상업 사용 가능 여부를 표시합니다 '
+            '(최종 조건은 원문 라이선스를 확인하세요).</p></div>'
+            + "".join(f'<h2 class="sec">{e(t)} <small>{sum(x["kind"] == k for x in xs)}개</small></h2><div class="cards">'
+                      + "".join(radar_card(x) for x in sorted([x for x in xs if x["kind"] == k], key=rank)[:24]) + "</div>"
+                      for t, k in order if any(x["kind"] == k for x in xs))
+            + ("" if xs else "<p>준비 중입니다.</p>")
+            + '<p class="crumb">출처: Hugging Face·GitHub·Civitai(성인물·실존 인물 제외)·Kaggle 공개 API — 이름·설명·인기·라이선스·링크만 모아 원문으로 연결합니다.</p>')
+    (OUT / "radar" / "index.html").write_text(page(
+        f"AI 3D 레이더 — 3D 생성 AI 모델·데모·오픈소스 - {SITE_TITLE}", body, "../", canonical=f"{BASE_URL}/radar/",
+        desc="허깅페이스·GitHub·Civitai·Kaggle 에서 지금 뜨는 3D 생성 AI 모델, 바로 써 보는 데모, 오픈소스, 데이터셋 — 상업 사용 여부 표시"),
+        encoding="utf-8")
+    return len(xs)
+
+
 def build_compare() -> int:
     """주제별 툴 비교 (/compare/) — 같은 작업을 툴마다 어디서·어떻게. 만든 페이지 수 반환."""
     import compare as _cmp
@@ -1913,6 +1957,7 @@ def build() -> dict:
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
     build_compare()  # 주제별 툴 비교
     build_events()  # 공모전·게임 잼
+    build_radar()  # AI 3D 레이더
     build_manual(learn_guides)  # 명령별 심화 매뉴얼
     n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()

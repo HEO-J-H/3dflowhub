@@ -41,3 +41,4 @@
 - 정규식은 대소문자·단어 경계 주의 (Nanite 의 'NaN', Houdini 'Null' 노드 오탐).
 - 실무 파이프라인(recipes)은 생성 중단 (2026-11-03 사장님: 다른 AI 로 쉽게 만들 수 있어 차별성 없음). 기존 페이지는 주소만 유지, 메뉴에서 뺌.
 - 공모전·게임 잼(events.py, /events/): 위비티·itch.io·CGTrader, 6시간마다, AI 안 씀. 새 출처는 sources 처럼 관리자가 제안 가능.
+- 사람이 찾은 버그는 knowledge/lessons.md 에 원인·규칙·자동 점검 위치를 남기고, inspect_site.py 나 qa.py 에 규칙을 더한다.

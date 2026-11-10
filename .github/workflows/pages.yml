@@ -8,7 +8,7 @@ on:
     - cron: "5 15 * * *"   # 매일 00:05 KST — 새 글이 없어도 공모전 D-day·마감 지난 일정이 날짜에 맞게 바뀌도록
   push:
     branches: [main]
-    paths: ["content/**", "build_site.py", "compare.py", "manual.py", "visuals.py", "events.py", "rag.py", "check_links.py", "static/**", "config.json", "memory/curation.json", "memory/tips.json"]
+    paths: ["content/**", "build_site.py", "compare.py", "manual.py", "visuals.py", "events.py", "radar.py", "rag.py", "check_links.py", "static/**", "config.json", "memory/curation.json", "memory/tips.json"]
 
 permissions:
   contents: read
@@ -36,6 +36,8 @@ jobs:
           python -c "import json; d=json.load(open('seo.json',encoding='utf-8')); bad={k:d[k] for k in ('dup_title_count','dup_desc_count','dup_h1_count','not_in_sitemap_count','orphan_count') if d[k]}; print('::warning::SEO 점검 문제 '+json.dumps(bad,ensure_ascii=False) if bad else 'SEO 점검 통과')"
       - name: Check internal links
         run: python check_links.py
+      - name: 사이트 점검관 — 날것 데이터·None·깨진 글자·그림 주소·사이트맵 한글·그만둔 메뉴 이름 (사장님이 찾았던 버그 종류)
+        run: python inspect_site.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

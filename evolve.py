@@ -919,6 +919,16 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("파이프라인 레시피 생성 실패: %s", e)
         strategy["recipes_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "radar_at", 12 * 3600):  # AI 3D 레이더: 허깅페이스·GitHub·Civitai·Kaggle (12시간마다)
+        try:
+            import radar
+            r = radar.refresh()
+            if r.get("errors"):
+                log.warning("레이더 일부 실패: %s", r["errors"])
+        except Exception as e:
+            log.warning("레이더 갱신 실패: %s", e)
+        strategy["radar_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     if force or _due(strategy, "events_at", 6 * 3600):  # 공모전·게임 잼·3D 챌린지 (AI 안 씀, 마감 지난 것 자동 정리)
         try:
             import events
