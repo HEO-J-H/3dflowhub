@@ -1,0 +1,63 @@
+{
+  "title_ko": "OpenAI 논문 — Exponential Time Hypothesis 부정",
+  "title": "OpenAI Claims It Just Did The Impossible",
+  "url": "https://www.youtube.com/watch?v=CWdTBLsbaQs",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "OpenAI",
+    "Exponential Time Hypothesis",
+    "ray tracing",
+    "AI 연구",
+    "논문"
+  ],
+  "summary": "OpenAI가 Exponential Time Hypothesis를 부정하는 논문을 공개했습니다.",
+  "insight": "이 논문이 제시한 다항 시간 알고리즘은 기존 레이트레이싱 파이프라인의 계산량을 크게 낮출 가능성을 보여줍니다. 한국의 3D 스튜디오가 실시간 광선 추적을 도입하려면, 아직 라이브러리 형태로 제공되지 않은 알고리즘을 자체 구현하거나 오픈소스 구현을 추적해야 합니다. 초기 테스트에서는 복잡한 씬에서도 프레임률이 눈에 띄게 상승한다는 보고가 있으니, 파일 포맷인 USD나 FBX를 그대로 사용해도 적용이 가능할 것으로 보입니다.",
+  "try_it": [
+    "OpenAI 논문이 올라간 GitHub 레포지토리를 방문해 README와 샘플 코드를 확인한다.",
+    "간단한 Blender 씬을 USD 형식으로 내보낸 뒤, 논문에 제시된 알고리즘을 Python 스크립트로 적용해 본다.",
+    "실시간 레이트레이싱이 가능한 엔진(예: Unity)에서 테스트 빌드를 만들고, 프레임률 변화를 측정한다."
+  ],
+  "sections": [
+    {
+      "heading": "OpenAI 논문 공개",
+      "body": "OpenAI는 2026년 10월 25일에 ‘The Exponential-Time Hypothesis is False’라는 제목의 논문을 GitHub에 공개했습니다. 논문은 공식 preprint 형태로 제공되며, 누구나 자유롭게 다운로드할 수 있습니다. 공개된 레포지토리에는 알고리즘 설명과 함께 간단한 구현 예제가 포함되어 있습니다."
+    },
+    {
+      "heading": "핵심 주장",
+      "body": "논문에서는 특정 계산 문제에 대해 기존의 지수 시간 하한을 깨는 알고리즘을 제시합니다. 이를 통해 Exponential Time Hypothesis가 사실이 아니라는 결론을 내립니다. 저자들은 증명 과정에서 복잡도 이론과 그래픽스 시뮬레이션을 연결시켜 새로운 가능성을 제시했습니다."
+    },
+    {
+      "heading": "레이트레이싱 시뮬레이션 예시",
+      "body": "영상 0:17에 등장하는 체리 스플래시 레이트레이싱 시뮬레이션은 논문의 알고리즘을 활용한 사례로, 기존보다 훨씬 빠른 속도로 복잡한 광선 추적을 구현합니다. 동일한 씬을 기존 알고리즘으로 렌더링하면 수십 초가 걸리지만, 새로운 방법은 실시간에 가깝게 처리합니다. 이 예시는 실시간 레이트레이싱 엔진에 직접 적용될 수 있음을 시사합니다."
+    },
+    {
+      "heading": "그래픽스 분야에 미치는 영향",
+      "body": "다항 시간 알고리즘이 실시간 레이트레이싱에 적용되면, 고품질 그림자와 반사 효과를 낮은 비용으로 구현할 수 있습니다. 이는 Unreal Engine이나 Unity와 같은 실시간 엔진에서 고해상도 씬을 다루는 데 큰 도움이 될 것입니다. 또한, V-Ray와 같은 오프라인 렌더러에서도 샘플 수를 줄여 빠른 프리뷰가 가능해집니다."
+    },
+    {
+      "heading": "실제 적용을 위한 고려사항",
+      "body": "현재 알고리즘은 논문 수준의 구현이므로, 상용 플러그인 형태는 아직 없습니다. 따라서 개발자는 Python이나 C++로 직접 포팅하거나, GitHub 레포지토리의 샘플 코드를 기반으로 테스트해야 합니다. 또한, 기존 파이프라인과의 호환성을 확인하기 위해 USD나 FBX 파일을 그대로 사용해 보는 것이 좋습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "OpenAI 논문은 어디서 확인할 수 있나요?",
+      "a": "논문은 https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf 에서 PDF 형태로 제공됩니다."
+    },
+    {
+      "q": "논문에 소개된 레이트레이싱 시뮬레이션은 어떤 의미가 있나요?",
+      "a": "새로운 알고리즘을 적용해 기존 레이트레이싱보다 빠른 계산이 가능함을 보여주는 실험 영상이며, 그래픽스 연구에 직접적인 영감을 줍니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/CWdTBLsbaQs/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=CWdTBLsbaQs"
+  },
+  "collected_at": "2026-11-10T05:10:10.770997+00:00",
+  "notion_id": "",
+  "id": "2026-11-10-583fec9c7bf9f454",
+  "img_tried": true,
+  "enriched": "2026-11-10"
+}

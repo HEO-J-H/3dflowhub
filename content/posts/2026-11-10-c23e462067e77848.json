@@ -1,50 +1,60 @@
 {
-  "title_ko": "Gaussian Splatting: LiDAR 스캐폴드 PLS‑GS 발표",
+  "title_ko": "PLS‑GS: LiDAR 스캐폴드 기반 컴팩트 Gaussian Splatting",
   "title": "PLS-GS: Probabilistic Lidar Scaffolds for Compact, Surface-Aligned Gaussian Splatting",
   "url": "https://arxiv.org/abs/2611.10699v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
     "LiDAR",
+    "Gaussian Splatting",
     "PLS‑GS",
-    "3D Reconstruction",
-    "WACV2027"
+    "HGMM",
+    "컴팩트",
+    "3D Reconstruction"
   ],
-  "summary": "PLS‑GS는 LiDAR 데이터를 활용해 3D Gaussian Splatting을 보다 적은 Primitive와 표면 정렬 방식으로 구현한 새로운 방법이다.",
-  "insight": "PLS‑GS는 기존 3DGS 대비 약 2배 적은 Primitive로 LiDAR 측정치와의 거리 오차를 크게 줄여, 동일한 렌더링 품질에서 처리 속도가 눈에 띄게 빨라진다.",
-  "try_it": [],
+  "summary": "PLS‑GS는 LiDAR 포인트 클라우드와 색상을 이용해 계층적 Gaussian 혼합 모델(HGMM) 스캐폴드를 만들고, 이를 표면 정렬된 Gaussian Splatting에 적용해 모델 크기를 크게 줄이며 정확한 렌더링을 구현합니다.",
+  "insight": "PLS‑GS는 LiDAR와 이미지가 동시에 제공되는 현장 스캔 워크플로에서 모델 용량을 크게 줄이면서도 표면 정밀도를 유지할 수 있어, 대규모 환경의 실시간 뷰어 제작에 도움이 될 수 있습니다. 또한, HGMM 기반 스캐폴드가 자동으로 지역 Resolution를 조절하므로 아티스트가 직접 파티션을 설계할 필요가 줄어들 가능성이 있습니다.",
+  "try_it": [
+    "1. GitHub 저장소(https://github.com/k-harikumar/PLS-GS)를 clone한다.",
+    "2. 색상 포함 LiDAR 포인트 클라우드를 data/ 폴더에 넣는다.",
+    "3. README에 안내된 training 스크립트를 실행한다 (예: python train.py --data data/your_scene.pcd).",
+    "4. 학습이 끝난 모델을 제공된 render 스크립트로 시각화한다."
+  ],
   "sections": [
     {
-      "heading": "PLS‑GS 개요",
-      "body": "PLS‑GS는 이미지와 고해상도 LiDAR 데이터를 동시에 이용해 3D Gaussian Splatting을 최적화한다. LiDAR에서 얻은 정확한 기하 정보를 스캐폴드로 사용해 모델의 표면 정렬을 강화한다."
+      "heading": "문제 정의",
+      "body": "기존 3D Gaussian Splatting(3DGS)은 이미지만으로 최적화돼 기하학적 정확도가 떨어지고 장면 규모가 커질수록 원시가 늘어나는 문제가 있습니다. 특히 로봇이나 매핑에서 제공되는 고해상도 LiDAR와 이미지 데이터를 동시에 활용하지 못합니다."
     },
     {
-      "heading": "Hierarchical Gaussian Mixture Model 적용",
-      "body": "위치와 색상을 동시에 모델링하는 계층적 Gaussian Mixture Model(GMM)을 학습한다. GMM 컴포넌트마다 공분산 행렬이 정의돼 로컬 표면 프레임을 제공한다."
+      "heading": "핵심 아이디어",
+      "body": "LiDAR 포인트와 색상을 결합해 위치·색상 6차원에서 계층적 Gaussian 혼합 모델(HGMM)을 학습하고, 각 GMM 컴포넌트를 표면 정렬된 로컬 프레임으로 사용해 Gaussian Primitive를 디코딩합니다. Mahalanobis 지원 손실을 통해 Primitive가 LiDAR 표면에서 벗어나지 않도록 제약합니다."
     },
     {
-      "heading": "Mahalanobis Support Loss",
-      "body": "각 렌더링 Gaussian은 해당 GMM 컴포넌트의 표면 프레임에 고정되고, Mahalanobis 거리 기반 손실이 LiDAR 표면에서의 편차를 제한한다. 이 손실은 Primitive가 실제 측정치에 가까이 머물게 만든다."
+      "heading": "방법 (단계)",
+      "body": "1) 입력은 색상 포함 6D 포인트 클라우드(𝑝_i=[𝑥_i,𝑐_i])이며, 0‑mean·unit‑variance 정규화 후 HGMM을 레벨별로 EM 알고리즘으로 재귀적으로 분할한다. 2) 잎 노드(leaf) 컴포넌트의 평균 𝜇_j와 공분산 Σ_j를 스캐폴드 앵커 위치·표면 프레임으로 사용한다. 3) 각 앵커에서 로컬 프레임에 맞춰 Neural Network(MLP)으로 Gaussian Primitive를 생성하고, Mahalanobis 손실로 LiDAR 표면과의 편차를 제한한다. 4) 학습 중 포토메트릭 잔차가 큰 영역에 앵커를 추가해 점진적으로 성장한다."
     },
     {
       "heading": "실험 결과",
-      "body": "다섯 개의 대형 야외 씬에서 PLS‑GS는 기존 이미지‑기반 및 LiDAR‑기반 초기화 방법보다 LiDAR와의 평균 거리 오차가 크게 낮았다. 동시에 Primitive 수는 40~60% 감소해 렌더링 속도가 향상되었다."
+      "body": "• 5개의 대형 야외 씬에서 LiDAR 측정에 가장 가깝게 Primitive를 배치했으며, 모델 크기는 LiDAR‑초기화 기준의 35% 수준으로 감소했다. • 정밀도는 1.47× 향상(⭑)하고, Chamfer 거리도 감소(·)했다. • 성장 단계에서 앵커 수는 기존 Scaffold‑GS 대비 1.1× 증가했지만, 모델은 2.5× 작아지고 렌더링 속도는 1.7× 빨라졌다."
     },
     {
-      "heading": "코드 공개 및 활용",
-      "body": "논문과 함께 제공된 코드는 MIT 라이선스로 공개돼 바로 다운로드할 수 있다. 연구자는 이를 로봇 매핑, 자율주행 시뮬레이션 등 실시간 3D 재구성 작업에 적용할 수 있다."
+      "heading": "제한점·아직 못 하는 것",
+      "body": "현재는 색상 정보를 포함한 LiDAR 포인트 클라우드가 필요하며, 실시간 SLAM이나 동적 씬에 대한 적용은 검증되지 않았다. 또한, 공개된 코드는 GPU 환경에서만 동작하므로 저사양 장비에서는 학습이 어려울 수 있다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "코드와 예제 데이터는 GitHub(https://github.com/k-harikumar/PLS-GS)에서 공개되어 있다."
     }
   ],
   "faq": [
     {
-      "q": "PLS‑GS가 기존 3D Gaussian Splatting과 다른 점은?",
-      "a": "LiDAR 기반의 확률적 스캐폴드를 사용해 Primitive를 표면에 정렬하고, Mahalanobis 손실로 오차를 제한한다."
+      "q": "PLS‑GS가 요구하는 입력 데이터는 무엇인가요?",
+      "a": "색상 정보를 포함한 6D LiDAR 포인트 클라우드(위치 𝑥∈ℝ³와 색상 𝑐∈ℝ³)이다."
     },
     {
-      "q": "PLS‑GS를 직접 사용하려면 어떤 환경이 필요한가",
-      "a": "Python 3.9 이상, PyTorch, CUDA 11.0 이상이 설치된 Linux 또는 Windows 환경에서 제공된 Docker 이미지 또는 conda 환경을 설정하면 된다."
+      "q": "PLS‑GS가 기존 방법보다 모델을 작게 만드는 이유는?",
+      "a": "HGMM의 각 컴포넌트를 스캐폴드 앵커로 사용하고, 로컬 표면 프레임에서 Gaussian을 디코딩해 불필요한 중복 Primitive를 제거하기 때문이다."
     }
   ],
   "media": {
@@ -55,5 +65,16 @@
   "notion_id": "",
   "id": "2026-11-10-c23e462067e77848",
   "img_tried": true,
-  "enriched_at": "skip"
+  "enriched_at": "2026-11-10T05:12:13+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/k-harikumar/PLS-GS"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2
 }

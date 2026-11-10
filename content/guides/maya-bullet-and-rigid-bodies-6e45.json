@@ -1,0 +1,93 @@
+{
+  "id": "maya-bullet-and-rigid-bodies-6e45",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "이펙트",
+  "name": "Bullet and rigid bodies",
+  "title": "강체 시뮬레이션",
+  "summary": "Maya에서 Bullet 물리 엔진을 이용해 강체(Rigid Body)를 설정하고 시뮬레이션하는 방법을 안내합니다.",
+  "when": [
+    "복잡한 파편 파괴를 구현할 때",
+    "중력·충돌·마찰이 적용된 물체 움직임을 시뮬레이션할 때",
+    "게임 엔진으로 내보낼 물리 데이터를 준비할 때"
+  ],
+  "steps": [
+    "Windows → Settings/Preferences → Plug-in Manager에서 bullet.so 플러그인을 Load하고 Auto Load 체크",
+    "Create → Rigid Body → Active (또는 Passive) 선택 후 오브젝트에 적용",
+    "Attribute Editor → Bullet → Rigid Body 탭에서 Enable 체크 및 파라미터 조정",
+    "필요 시 Create → Field → Gravity 로 중력 필드 추가",
+    "Timeline에서 Play 버튼을 눌러 시뮬레이션 실행"
+  ],
+  "params": [
+    {
+      "name": "Mass",
+      "desc": "물체의 무게, 값이 클수록 관성 증가"
+    },
+    {
+      "name": "Friction",
+      "desc": "접촉면 마찰 계수, 높을수록 미끄러짐 감소"
+    },
+    {
+      "name": "Restitution",
+      "desc": "반발 계수, 0이면 완전 비탄성, 1이면 완전 탄성"
+    },
+    {
+      "name": "Collision Shape",
+      "desc": "충돌 형태, Mesh 또는 Primitive 선택"
+    },
+    {
+      "name": "Initial Velocity",
+      "desc": "시뮬레이션 시작 시 물체에 부여되는 속도"
+    },
+    {
+      "name": "Gravity",
+      "desc": "중력 가속도, 기본값 -9.8"
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽에 부딪히는 공 시뮬레이션",
+      "steps": [
+        "구 Sphere 생성 → Rigid Body → Active 적용",
+        "Plane 생성 → Rigid Body → Passive 적용",
+        "Sphere 위치를 위쪽으로 이동",
+        "Play 버튼으로 중력에 떨어지는 모습 확인"
+      ]
+    },
+    {
+      "title": "파편 파괴 효과",
+      "steps": [
+        "복제된 Cube 여러 개를 Rigid Body → Active 로 설정",
+        "Create → Bullet → RBD Solver 노드 추가 (MEL Script 없이 UI 사용)",
+        "Collision Shape을 Mesh로 설정하고 Friction 조정",
+        "Play 후 파편이 서로 부딪히며 흩어짐 확인"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "1yajpyGbQjw",
+      "title": "Rigid Body Dynamics (RBD) Simulation in Maya with Bullet",
+      "author": "SnedFX"
+    },
+    {
+      "id": "-Ee5fWROo5s",
+      "title": "Maya Bullet Physics Simulation Tutorial: Wrecking Ball Animation - Active and Passive Rigid Body",
+      "author": "3D Models World"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Bullet%20and%20rigid%20bodies",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Settings",
+    "Preferences",
+    "Plug",
+    "Manager",
+    "Load"
+  ],
+  "at": "2026-11-10T05:11:11.673246+00:00"
+}

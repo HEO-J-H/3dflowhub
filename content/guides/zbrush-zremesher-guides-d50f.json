@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-zremesher-guides-d50f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "리토폴로지",
+  "name": "ZRemesher guides",
+  "title": "ZRemesher Guide — 흐름 지정",
+  "summary": "ZRemesher는 하이폴리 모델을 애니메이션·시뮬레이션에 적합한 깔끔한 Quad 기반 Topology로 자동 재배치합니다.",
+  "when": [
+    "복잡한 스컬프팅 메쉬를 저폴리 리깅용으로 바꿀 때",
+    "다른 툴로 가져가기 전에 Topology를 정리하고 싶을 때",
+    "동일 SubTool 내에서 여러 파트의 폴리곤 수를 균일하게 맞출 때"
+  ],
+  "steps": [
+    "SubTool palette에서 리토폴로지할 SubTool 선택",
+    "Tool palette → Geometry tab 클릭",
+    "ZRemesher sub‑tab에서 Target Polygons 값을 설정하고 ZRemesher 버튼 클릭",
+    "필요 시 Adaptive, Curve Strength, Preserve Groups 옵션을 조정 후 다시 ZRemesher 클릭",
+    "Viewport에서 메쉬가 Quad 형태로 재구성된 것을 확인"
+  ],
+  "params": [
+    {
+      "name": "Target Polygons",
+      "desc": "목표 폴리곤 수를 지정, 낮을수록 저폴리"
+    },
+    {
+      "name": "Adaptive",
+      "desc": "곡선 부분에 더 많은 폴리곤을 배분"
+    },
+    {
+      "name": "Curve Strength",
+      "desc": "곡선 보존 강도를 조절, 높을수록 원형 유지"
+    },
+    {
+      "name": "Preserve Groups",
+      "desc": "PolyGroup 경계 보존"
+    },
+    {
+      "name": "Keep Groups",
+      "desc": "원본 그룹을 그대로 유지"
+    },
+    {
+      "name": "Crease Angle",
+      "desc": "경계선 유지 각도, 높을수록 날카로운 모서리 유지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 리토폴로지",
+      "steps": [
+        "얼굴 SubTool 선택 → Geometry → ZRemesher",
+        "Target Polygons를 30k 정도로 설정, Adaptive 켜기",
+        "ZRemesher 실행 후 눈, 코, 입 주변을 Curve Strength로 미세 조정"
+      ]
+    },
+    {
+      "title": "파이프 모델 정리",
+      "steps": [
+        "파이프 SubTool 선택 → Geometry → ZRemesher",
+        "Target Polygons를 5k로 낮게 설정, Adaptive 끄기",
+        "ZRemesher 실행 → 결과가 균일한 Quad 파이프가 되면 완료"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mask가 활성화된 상태 → Mask를 Clear하고 재시도",
+    "Subdivision 레벨이 낮아 디테일 손실 → Subdivide 후 ZRemesher 적용",
+    "Adaptive를 켜고 Target Polygons을 과도하게 낮게 설정 → 형태가 흐트러짐, 값 올리기"
+  ],
+  "related": [
+    "Dynamesh",
+    "ZProject",
+    "ZModeler",
+    "Divide"
+  ],
+  "videos": [
+    {
+      "id": "Cho8VtS7jDE",
+      "title": "ZRemesher Guides: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "jIq9ahYOb54",
+      "title": "How to use ZREMESHER to create efficient TOPOLOGY in ZBRUSH | Tutorial",
+      "author": "Jared Chavez"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20ZRemesher%20guides",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "SubTool",
+    "Tool",
+    "Geometry",
+    "ZRemesher",
+    "Target Polygons"
+  ],
+  "at": "2026-11-10T05:11:29.137731+00:00"
+}
