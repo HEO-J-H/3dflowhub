@@ -1,0 +1,93 @@
+{
+  "id": "maya-orient-joints-4eb1",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Orient Joints",
+  "title": "Orient Joint — 축 정리",
+  "summary": "Maya Orient Joints는 뼈대(Joint)의 회전 축(Axis)을 정렬하여, 애니메이션 시 관절이 뒤틀리거나 어색하게 꺾이는 현상을 방지하는 필수 리깅 기능입니다.",
+  "when": [
+    "캐릭터 리깅 전 팔, 다리, 척추 등의 관절 축을 일관되게 맞출 때",
+    "FK/IK 전환 시 관절이 원치 않는 방향으로 튀는 현상을 해결할 때",
+    "미러링(Mirror) 작업 후 반대쪽 본의 축 방향이 뒤바뀌었을 때"
+  ],
+  "steps": [
+    "Rigging 메뉴 세트로 전환합니다 (상단 메뉴바 왼쪽 드롭다운 또는 F3 키).",
+    "Viewport나 Outliner에서 축을 정렬할 본(Joint) 계층 구조를 선택합니다.",
+    "상단 메뉴바에서 Skeleton → Orient Joint 옵션 박스(□)를 엽니다.",
+    "Orient 설정에서 Primary Axis(주요 축), Secondary Axis(보조 축), Secondary Axis World Orientation을 목적에 맞게 설정합니다.",
+    "Apply 버튼을 클릭하여 본의 회전 축을 정렬하고, Viewport에서 축 방향(XYZ)을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Primary Axis",
+      "desc": "본의 길이 방향(다음 자식 본을 향하는 축)을 설정합니다."
+    },
+    {
+      "name": "Secondary Axis",
+      "desc": "관절의 꺾이는 방향(무릎이나 팔꿈치의 벤딩 축)을 결정합니다."
+    },
+    {
+      "name": "Secondary Axis World Orientation",
+      "desc": "보조 축을 월드 좌표계 기준으로 정렬할지 선택합니다."
+    },
+    {
+      "name": "Orient Children of Selected Joints",
+      "desc": "선택한 본의 하위 본들까지 한 번에 모두 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔 관절 축 일괄 정렬",
+      "steps": [
+        "어깨부터 손목까지 이어지는 팔 본 계층 구조를 선택합니다.",
+        "Skeleton → Orient Joint 옵션을 엽니다.",
+        "Primary Axis를 x로, Secondary Axis를 y로 설정합니다.",
+        "Apply를 눌러 팔꿈치가 한쪽으로만 정확히 접히도록 축을 맞춥니다."
+      ]
+    },
+    {
+      "title": "다리 본 미러링 후 축 수정",
+      "steps": [
+        "오른쪽 다리 본을 복사하여 반대쪽으로 Mirror 실행 후 선택합니다.",
+        "Skeleton → Orient Joint 옵션 창을 엽니다.",
+        "왼쪽 다리와 방향이 일치하도록 Secondary Axis 옵션을 조정합니다.",
+        "Apply를 눌러 양쪽 다리의 회전 축 방향을 대칭으로 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "축 정렬 후 캐릭터가 왜곡됨 → Modify → Freeze Transformations를 먼저 적용한 후 Orient Joint를 실행하세요.",
+    "IK를 켰을 때 팔다리가 엉뚱한 방향으로 꺾임 → Secondary Axis 설정이 잘못된 경우이므로, Viewport에서 본의 방향을 확인하고 다시 정렬하세요."
+  ],
+  "related": [
+    "Maya Joint",
+    "Mirror Joint",
+    "IK Handle",
+    "Freeze Transformations"
+  ],
+  "videos": [
+    {
+      "id": "1P4cGFnvaJU",
+      "title": "Easiest way to Orient joints in MAYA",
+      "author": "Yusha Taram"
+    },
+    {
+      "id": "6FOgt1Ykfw4",
+      "title": "Manually orient local rotation axis in Maya",
+      "author": "Don't Waste My Time"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Orient%20Joints",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rigging",
+    "Viewport",
+    "Outliner",
+    "Joint",
+    "Skeleton",
+    "Orient Joint"
+  ],
+  "at": "2026-11-10T02:40:36.524710+00:00"
+}
