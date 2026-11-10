@@ -29764,5 +29764,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T17:55:20+00:00",
+    "kind": "proposal",
+    "id": "p-f791ad0f47",
+    "title": "RAG 오픈소스 연동 결과 문서 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "소유자 요청 '깃허브 RAG 오픈소스를 검토해서 반영'에 따라 PR #59 RAG 통합이 완료됨",
+    "proposal": "docs/rag-integration.md 파일에 연동된 RAG 오픈소스의 활용 방안과 사용법을 상세히 문서화합니다.",
+    "expected": "사용자와 개발자가 RAG 기능을 쉽게 이해하고 활용할 수 있음",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T17:55:20+00:00",
+    "kind": "proposal",
+    "id": "p-d1646aea69",
+    "title": "웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 상에서의 PBR 텍스처 처리 안정성을 높이기 위한 지속적인 테스트 필요",
+    "proposal": "web/tests/pbr_test.js (또는 해당 테스트 파일)에 PBR 텍스처 변환 엣지 케이스 단위 테스트를 추가합니다.",
+    "expected": "브라우저 환경에서의 텍스처 생성 오류 사전 방지 및 품질 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T17:55:20+00:00",
+    "kind": "proposal",
+    "id": "p-c82eed9af4",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 FastAPI 서버 환경에서 GPU 자원 부족이나 모델 로드 실패 시 안정적인 동작 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU 오류 발생 시 대체 폴백 처리 및 명확한 에러 메시지 반환 로직을 보완합니다.",
+    "expected": "로컬 실행 시 예외 상황에서 서버 다운 없이 안정적인 응답 보장",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T17:55:45.078018+00:00",
+    "kind": "decision",
+    "id": "p-f791ad0f47",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 오픈소스 연동 방안 검토 문서 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T17:55:45.111195+00:00",
+    "kind": "decision",
+    "id": "p-d1646aea69",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T17:55:45.142527+00:00",
+    "kind": "decision",
+    "id": "p-c82eed9af4",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
