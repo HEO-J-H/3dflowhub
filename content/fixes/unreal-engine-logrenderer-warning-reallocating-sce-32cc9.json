@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logrenderer-warning-reallocating-sce-32cc9",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogRenderer: Warning: Reallocating scene render targets failed because of out of memory",
+  "title": "LogRenderer: Warning: Reallocating scene render targets failed because of out of",
+  "summary": "Unreal Engine에서 렌더 타겟(Scene Render Targets)을 재할당하는 도중 GPU 메모리(VRAM)가 부족하여 발생하는 경고 메시지입니다. 주로 Viewport Resolution 상승, 과도한 Post 프로세싱, 복잡한 렌더 타겟 활용 시 발생합니다.",
+  "causes": [
+    "GPU VRAM 용량을 초과하는 고해상도 렌더 타겟 및 Viewport 스케일 설정",
+    "Nanite, Lumen, Virtual Texture 등 대규모 그래픽 리소스가 동시에 VRAM을 점유함",
+    "프로젝트 렌더러 설정의 메모리 제한 값(Pool Size) 초과"
+  ],
+  "steps": [
+    "Unreal Engine 에디터 우측 하단의 Scalability(확장성) 설정에서 세부 항목(Shadows, Effects 등)을 낮춥니다.",
+    "Project Settings(프로젝트 세팅) 창을 엽니다.",
+    "Rendering 항목에서 Screen Percentage 또는 Virtual Texture Pool Size 값을 적절히 낮게 조절합니다.",
+    "Console Variable 창(키보드 `~`)에 'r.Streaming.PoolSize'를 입력하여 VRAM 풀 크기를 시스템 사양에 맞게 늘려줍니다(예: 4096 이상).",
+    "불필요하게 켜져 있는 고해상도 Render Target 관련 블루프린트나 렌더 큐(Movie Render Queue) 설정을 확인하고 Resolution를 낮춥니다."
+  ],
+  "check": [
+    "Output Log에서 해당 경고(LogRenderer: Warning: Reallocating scene render targets failed)가 더 이상 출력되지 않는지 확인합니다.",
+    "Stat RHI 명령어를 입력하여 VRAM 사용량이 한계 이하로 안정적으로 유지되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 초기 설정 시 타겟 플랫폼의 GPU VRAM 사양에 맞춰 Texture Pool Size와 Render Target Resolution를 미리 최적화합니다.",
+    "Movie Render Queue로 고해상도 렌더링 시 Unreal Engine의 텍스처 스트리밍 설정을 점검합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 메모리 부족",
+    "Reallocating scene render targets failed",
+    "Unreal Engine VRAM 에러",
+    "렌더 타겟 메모리 부족",
+    "r.Streaming.PoolSize"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T02:30:31+00:00"
+}

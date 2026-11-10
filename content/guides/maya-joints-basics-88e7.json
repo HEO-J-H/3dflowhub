@@ -1,0 +1,83 @@
+{
+  "id": "maya-joints-basics-88e7",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Joints basics",
+  "title": "Joint — 뼈 만들기",
+  "summary": "Maya Joints basics는 3D 모델에 뼈대(Joint) 구조를 심어 캐릭터나 기계 오브젝트를 자연스럽게 변형하고 애니메이션할 수 있게 만드는 리깅의 기초 시스템입니다. 관절 계층 구조를 형성하여 상위 관절의 움직임이 하위 관절로 이어지게 만듭니다.",
+  "when": [
+    "biped나 quadrupod 캐릭터의 팔다리, 척주 뼈대를 세팅할 때",
+    "기계 장치나 로봇 팔의 관절 운동을 계층적으로 제어할 때",
+    "날개나 꼬리처럼 마디가 여러 개로 이어진 유기적 형태를 움직일 때"
+  ],
+  "steps": [
+    "Rigging 메뉴 세트로 전환합니다 (상단 메뉴바 왼쪽 드롭다운 또는 F3 키).",
+    "Rigging 메뉴 탭에서 Skeleton → Create Joint 를 선택합니다.",
+    "Front 뷰나 Side Viewport에서 Mouse 좌클릭으로 관절을 순서대로 생성합니다.",
+    "Enter 키를 누르거나 Mouse 우클릭을 눌러 Joint 생성을 완료합니다.",
+    "Outliner 창에서 Joint들의 상하 계층(Parenting) 관계를 확인하고 정돈합니다."
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "Viewport에서 Joint(구형 아이콘)의 표시 크기를 조절합니다."
+    },
+    {
+      "name": "Orientation",
+      "desc": "Joint의 회전 축(Axis) 방향을 정렬하여 애니메이션 오류를 방지합니다."
+    },
+    {
+      "name": "Degrees of Freedom",
+      "desc": "특정 축으로의 회전을 제한하여 관절이 비정상적으로 꺾이는 것을 막습니다."
+    },
+    {
+      "name": "Preferred Angle",
+      "desc": "IK Handle을 생성할 때 관절이 꺾이는 기본 방향을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2절 관절(팔꿈치) 만들기",
+      "steps": [
+        "Create Joint 툴로 어깨 위치를 클릭합니다.",
+        "팔꿈치와 손목 위치를 차례대로 클릭하여 3개의 Joint를 연결합니다.",
+        "Enter 키를 눌러 체인을 완성합니다."
+      ]
+    },
+    {
+      "title": "로봇 실린더 관절 배치",
+      "steps": [
+        "로봇 메쉬의 회전 중심축에 맞춰 Joint를 정확히 배치합니다.",
+        "Outliner에서 메쉬를 해당 Joint의 Child로 지정(Parent)합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "퍼스펙티브 뷰에서 Joint를 생성해 축이 틀어짐 → Front나 Side Viewport에서 Grid를 켜고 생성하거나 Joint Orient 기능을 사용해 정렬하세요.",
+    "Joint 생성 후 Transform 값이 남아 있음 → Modify → Freeze Transformations를 실행해 값을 초기화하세요."
+  ],
+  "related": [
+    "IK Handle",
+    "Bind Skin",
+    "Paint Weights Tool",
+    "Outliner"
+  ],
+  "videos": [
+    {
+      "id": "rNKqDSPdIZk",
+      "title": "Maya Rigging Basics | Joints",
+      "author": "CGI Nerd"
+    },
+    {
+      "id": "DhMxwBxvpZ4",
+      "title": "Creating Joints - Maya Rigging for Beginners Part 1",
+      "author": "Holly's Maya Tutorials"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Joints%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T02:30:19.660633+00:00"
+}

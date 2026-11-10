@@ -5,7 +5,7 @@
   "group": "입문",
   "name": "Omniverse use cases (digital twin, robotics, design review)",
   "title": "활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰",
-  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 ABB Robotics와의 물리 AI 교육 프로그램 협력, 산업용 로보틱스 시뮬레이션, 그리고 해양 파력 에너지를 데이터센터 전력원으로 전환하는 연구 등이 활발히 진행되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 ABB Robotics와의 물리 AI 교육 프로그램 협력, 한국 제조업 핵심 공정(공장 자동화 및 로보틱스 시뮬레이션) 도입 확대, 그리고 해양 파력 에너지를 데이터센터 전력원으로 전환하는 연구 등이 활발히 진행되고 있습니다.",
   "when": [
     "여러 아티스트가 3ds Max, Blender, Unreal Engine 등 서로 다른 툴의 데이터를 실시간으로 동기화하며 작업할 때",
     "공장 자동화, 물류 센터, 스마트 시티, 건설 현장 및 의료(폐 디지털 트윈 등) 분야의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
@@ -54,11 +54,11 @@
   ],
   "examples": [
     {
-      "title": "공장 자동화 디지털 트윈 구축",
+      "title": "공장 자동화 디지털 트윈 및 물리 AI 구축",
       "steps": [
         "CAD 데이터를 USD 형식으로 변환하여 Omniverse로 가져옵니다.",
-        "컨베이어 벨트와 로봇 팔 모델에 PhysX 물리 속성을 부여합니다.",
-        "IoT 센서 데이터를 연동하여 실제 공장 가동 상태를 실시간으로 시각화합니다."
+        "NVIDIA Isaac Sim 및 Omniverse 플랫폼을 연계하여 컨베이어 벨트와 로봇 팔 모델에 PhysX 물리 속성을 부여합니다.",
+        "실제 생산 라인 구축 전 가상 공간에서 로봇 동적 거동과 센서 데이터를 사전에 검증합니다."
       ]
     },
     {
@@ -171,13 +171,19 @@
         "p:2026-11-07-c11ff929aaa08f8d",
         "p:2026-11-07-fb3c82707b745ad6"
       ]
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-09-52eb97e61aafa14a",
-      "title": "NVIDIA Omniverse 제조 현장 물리 AI 도입 확대",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNZXk5WlJsdjJaQ1FkYTN2R0w1dDFwTk82WUt6WjJRUmRiZUJhcmV0aFRqY3hfNGJNdGtnZ3J6d1lVZDJORXB2MXFWX3ZUVnpDd1o5MFlMOXlqNTE4d09haEVpNDRTZVF4TmlZSmR3Rk5KOVdlSHJES2RmZmF3dE5JbllLQ2ZmdGpWcTZaQUJpb0Y5ZUVP?oc=5"
+      "at": "2026-11-10T02:30:40+00:00",
+      "what": "최신 소식을 반영하여 NVIDIA Omniverse와 Isaac Sim을 연계한 한국 제조업 핵심 공정의 물리 AI 및 공장 자동화 시뮬레이션 내용과 활용 예시를 보강했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 제조 현장 물리 AI 도입 확대",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNZXk5WlJsdjJaQ1FkYTN2R0w1dDFwTk82WUt6WjJRUmRiZUJhcmV0aFRqY3hfNGJNdGtnZ3J6d1lVZDJORXB2MXFWX3ZUVnpDd1o5MFlMOXlqNTE4d09haEVpNDRTZVF4TmlZSmR3Rk5KOVdlSHJES2RmZmF3dE5JbllLQ2ZmdGpWcTZaQUJpb0Y5ZUVP?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-09-52eb97e61aafa14a"
+      ]
     }
   ]
 }

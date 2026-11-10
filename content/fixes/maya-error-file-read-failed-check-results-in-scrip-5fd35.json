@@ -1,0 +1,38 @@
+{
+  "id": "maya-error-file-read-failed-check-results-in-scrip-5fd35",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Error: File read failed. Check results in Script Editor.",
+  "title": "Error: File read failed. Check results in Script Editor 오류 해결",
+  "summary": "Maya에서 씬 파일이나 외부 에셋을 불러오는 도중 문제가 생겼을 때 발생하는 오류입니다. Script Editor에서 구체적인 원인과 실패한 파일 경로를 확인할 수 있습니다.",
+  "causes": [
+    "지정한 경로에 파일이 없거나 파일 이름이나 확장자에 오타가 있는 경우",
+    "파일 경로에 한글이나 특수문자가 포함되어 Maya가 정상적으로 읽지 못하는 경우",
+    "다른 최신 버전의 Maya에서 저장된 씬 파일이거나 파일이 손상된 경우",
+    "참조(Reference)된 파일이나 텍스처 경로가 잘못 연결된 경우"
+  ],
+  "steps": [
+    "Windows > General Editors > Script Editor를 열어 에러 로그를 확인하고 어떤 파일에서 문제가 발생했는지 파악합니다.",
+    "파일 경로와 이름에 한글, 공백, 특수문자가 포함되어 있다면 영문과 숫자로 변경합니다.",
+    "File > Open Scene 옵션 팝업을 열어 설정이 올바른지 확인하고 다시 시도합니다.",
+    "참조된 파일(Reference Editor)이나 텍스처(File 노드)의 경로가 끊겼다면 올바른 경로로 재지정합니다."
+  ],
+  "check": [
+    "Script Editor에 오류 메시지 없이 파일이 정상적으로 로드되는지 확인합니다.",
+    "Viewport에 모델링과 에셋이 누락 없이 올바르게 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 폴더 구조(Set Project)를 항상 올바르게 설정하고 작업합니다.",
+    "파일 이름과 경로에는 가급적 영문, 숫자, 언더바(_)만 사용합니다."
+  ],
+  "keywords": [
+    "Maya 파일 읽기 오류",
+    "File read failed",
+    "Script Editor 에러",
+    "Maya 씬 안 열림",
+    "Maya 파일 열기 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-10T02:30:28+00:00"
+}
