@@ -261,6 +261,14 @@ def test_domain_weights_need_samples_and_keep_floor():
     assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.1 and abs(sum(w.values()) - 1) < 0.01
 
 
+def test_is_target_category():
+    assert core.is_target_category("Advanced Maxscript Tutorial for 3ds Max") is True
+    assert core.is_target_category("Blender Geometry Nodes Addon Release") is True
+    assert core.is_target_category("맥스스크립트 자동화 플러그인 가이드") is True
+    assert core.is_target_category("General weather update in the city") is False
+    assert core.is_target_category("Stock market crashes today") is False
+
+
 def test_validate_url_scheme():
     assert core.validate_url_scheme("https://example.com/path") is True
     assert core.validate_url_scheme("http://example.com") is True
