@@ -1,0 +1,91 @@
+{
+  "id": "zbrush-clay-buildup-0e2b",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Clay Buildup",
+  "title": "Clay Buildup",
+  "summary": "ZBrush의 Clay Buildup 브러시는 디지털 점토를 덧대듯 볼륨을 직관적으로 쌓아 올리는 핵심 스컬프팅 브러시입니다. 사각형 형태의 알파를 기본으로 사용하여 근육의 결이나 갑옷의 두께를 잡을 때 매우 유용합니다.",
+  "when": [
+    "크리처의 근육 덩어리나 얼굴의 큰 형태(Mass)를 잡을 때",
+    "갑옷이나 투구의 두께감 있는 외골격을 스컬프팅할 때",
+    "표면에 점토를 덧붙인 듯한 거친 질감과 러프한 스케치를 표현할 때"
+  ],
+  "steps": [
+    "ZBrush에서 메쉬 모델을 불러오거나 캔버스에 생성한 뒤 Edit 모드(Hotkey T)를 켭니다.",
+    "상단 툴바의 Brush 팔레트나 화면 우측의 Brush 메뉴를 엽니다.",
+    "Hotkey B를 누른 뒤 C, L 순서대로 입력하여 Clay Buildup 브러시를 선택합니다.",
+    "브러시 크기(Size)와 강도(Z Intensity)를 모델 크기에 맞게 조절합니다.",
+    "메쉬 표면에 드래그하여 점토를 쌓아 올리며 전체적인 덩어리와 볼륨을 만듭니다."
+  ],
+  "params": [
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 표면을 깎거나 쌓아 올리는 전체적인 강도를 조절합니다."
+    },
+    {
+      "name": "Draw Size",
+      "desc": "Viewport에 표시되는 브러시의 크기를 조절합니다."
+    },
+    {
+      "name": "LazyMouse",
+      "desc": "펜의 떨림을 보정하고 부드러운 곡선과 드로잉을 유도합니다."
+    },
+    {
+      "name": "Rgb Intensity",
+      "desc": "컬러나 폴리페인팅을 칠할 때의 색상 적용 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "크리처 근육 덩어리(Mass) 잡기",
+      "steps": [
+        "S 키를 눌러 브러시 크기를 크게 설정합니다.",
+        "팔이나 다리 부위에 Clay Buildup으로 크게 점토를 얹어 근육의 기본 형태를 만듭니다.",
+        "Alt 키를 누른 채 드래그하여 근육 사이의 골을 파냅니다."
+      ]
+    },
+    {
+      "title": "외골격 및 갑옷 두께 표현",
+      "steps": [
+        "브러시 크기를 중간 정도로 줄이고 Z Intensity를 높입니다.",
+        "가장자리를 따라 겹겹이 점토를 쌓아 단단한 갑옷의 단면을 만듭니다.",
+        "Trim Smooth나 HPolish 브러시로 표면을 다듬어 금속 느낌을 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "낮은 Resolution에서 과도하게 디테일을 파는 실수 → Dynamesh를 실행하여 폴리곤 밀도를 높인 뒤 스컬프팅합니다.",
+    "Z Intensity를 너무 높게 설정해 울퉁불퉁해지는 실수 → 강도를 낮추고 여러 번 겹쳐 칠하며 부드럽게 볼륨을 쌓습니다."
+  ],
+  "related": [
+    "Standard",
+    "Clay",
+    "DamStandard",
+    "Move"
+  ],
+  "videos": [
+    {
+      "id": "-evIc0RJPk8",
+      "title": "Clay Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "xVW44-_Xq6o",
+      "title": "21. ZBrush -  Clay, HPolish, Move Brushes",
+      "author": "Create 3d Characters"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Clay%20Buildup",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Edit",
+    "Hotkey T",
+    "Brush",
+    "Hotkey B",
+    "Clay Buildup"
+  ],
+  "at": "2026-11-10T00:09:48.758975+00:00"
+}
