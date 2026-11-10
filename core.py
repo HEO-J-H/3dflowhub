@@ -1436,21 +1436,33 @@ def filter_off_topic_feeds(candidates: list[dict]) -> list[dict]:
     return filter_offtopic_news(filtered)
 
 
+def is_target_category(title: str, summary: str = "") -> bool:
+    """제목에 고수익 실무 키워드(Maxscript, 애드온, 튜토리얼 등) 포함 여부를 판별하는 함수."""
+    text = f"{title} {summary}".lower()
+    high_revenue_keywords = [
+        "maxscript", "script", "plugin", "addon", "add-on", "tutorial", "guide",
+        "shader", "rigging", "geometry nodes", "python", "uefn", "blueprint",
+        "맥스스크립트", "스크립트", "플러그인", "애드온", "가이드", "튜토리얼", "셰이더"
+    ]
+    return any(kw in text for kw in high_revenue_keywords)
+
+
 def filter_content_quality(item: dict, body: str, data: dict) -> bool:
     """수집된 콘텐츠 중 실무 3D 툴 및 스크립트 가이드 키워드가 포함되지 않은 항목을 엄격하게 필터링합니다."""
-    text_to_check = f"{item.get('title', '')} {data.get('title_ko', '')} {data.get('summary', '')} {body}"
-    # 실무 3D 툴 및 스크립트 가이드 관련 필수 실무 키워드 확장
-    practical_keywords = [
-        "script", "plugin", "addon", "add-on", "tutorial", "guide", "workflow", "shader",
-        "rigging", "animation", "modeling", "simulation", "render", "geometry nodes", "maxscript",
-        "python", "uefn", "blueprint", "material", "lighting", "vfx", "splatting", "nerf",
-        "스크립트", "플러그인", "가이드", "튜토리얼", "워크플로우", "셰이더", "리깅", "애니메이션",
-        "모델링", "시뮬레이션", "렌더", "지오메트리 노드", "블렌더", "맥스", "마야", "후디니", "언리얼"
-    ]
-    has_practical_keyword = any(kw in text_to_check.lower() for kw in practical_keywords)
-    if not has_practical_keyword:
-        log.info("실무 3D 툴 및 스크립트 키워드 누락으로 엄격 off-topic 분류: %s", item.get("title", ""))
-        return False
+    title = item.get("title", "")
+    summary = data.get("summary", "")
+    if not is_target_category(title, summary):
+        text_to_check = f"{title} {data.get('title_ko', '')} {summary} {body}"
+        practical_keywords = [
+            "script", "plugin", "addon", "add-on", "tutorial", "guide", "workflow", "shader",
+            "rigging", "animation", "modeling", "simulation", "render", "geometry nodes", "maxscript",
+            "python", "uefn", "blueprint", "material", "lighting", "vfx", "splatting", "nerf",
+            "스크립트", "플러그인", "가이드", "튜토리얼", "워크플로우", "셰이더", "리깅", "애니메이션",
+            "모델링", "시뮬레이션", "렌더", "지오메트리 노드", "블렌더", "맥스", "마야", "후디니", "언리얼"
+        ]
+        if not any(kw in text_to_check.lower() for kw in practical_keywords):
+            log.info("실무 3D 툴 및 스크립트 키워드 누락으로 엄격 off-topic 분류: %s", title)
+            return False
     return True
 
 def summarize(item: dict) -> dict | None:
