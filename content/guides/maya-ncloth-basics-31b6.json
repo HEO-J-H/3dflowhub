@@ -1,0 +1,89 @@
+{
+  "id": "maya-ncloth-basics-31b6",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "이펙트",
+  "name": "nCloth basics",
+  "title": "nCloth — 천",
+  "summary": "nCloth는 Maya의 동적 시뮬레이션 시스템으로 옷감·깃발·커튼 등 유연한 물체의 물리 기반 움직임을 실시간으로 계산합니다.",
+  "when": [
+    "옷이나 커튼처럼 늘어나고 휘어지는 물체를 자연스럽게 표현하고 싶을 때",
+    "리깅된 캐릭터에 옷을 입혀 실시간 애니메이션을 만들고 싶을 때",
+    "바람·중력 등 외부 힘에 반응하는 플래그나 배너를 만들고 싶을 때"
+  ],
+  "steps": [
+    "시뮬레이션할 메쉬(예: 평면)를 만든다.",
+    "메쉬 선택 → nCloth 메뉴 → Create nCloth (Shift+Ctrl+N).",
+    "Attribute Editor에서 nClothShape 탭을 연다.",
+    "Stretch Resistance·Bend Resistance·Mass·Damping 등 기본 파라미터를 조정한다.",
+    "Play 버튼을 눌러 시뮬레이션을 재생한다."
+  ],
+  "params": [
+    {
+      "name": "Stretch Resistance",
+      "desc": "늘어남에 대한 저항, 값이 클수록 옷감이 덜 늘어남"
+    },
+    {
+      "name": "Bend Resistance",
+      "desc": "굽힘 저항, 값이 클수록 구부릴 때 강해짐"
+    },
+    {
+      "name": "Mass",
+      "desc": "질량, 값이 클수록 무거워져 관성 증가"
+    },
+    {
+      "name": "Damping",
+      "desc": "속도 감쇠, 값이 클수록 움직임이 빨리 멈춤"
+    },
+    {
+      "name": "Collision Thickness",
+      "desc": "충돌 두께, 값이 클수록 다른 오브젝트와 겹치지 않음"
+    },
+    {
+      "name": "Solver Priority",
+      "desc": "여러 nCloth이 있을 때 시뮬 순서 결정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "옷감 시뮬레이션",
+      "steps": [
+        "캐릭터 몸에 맞는 평면 메쉬를 만든다.",
+        "Create nCloth 후 Stretch/Bend 값을 조정한다.",
+        "nCloth → Attach to Dynamic 로 캐릭터 리깅에 연결한다.",
+        "Play하여 옷이 자연스럽게 움직이는지 확인한다."
+      ]
+    },
+    {
+      "title": "깃발 시뮬레이션",
+      "steps": [
+        "깃발용 평면 메쉬를 만든다.",
+        "Create nCloth 후 Collision Thickness를 적절히 설정한다.",
+        "nParticle → Air 필드(또는 Field → Air)를 추가해 바람을 만든다.",
+        "Play하여 깃발이 바람에 휘날리는 모습을 확인한다."
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "eEjYX8JolJc",
+      "title": "Create a Realistic Flag with nCloth in Maya 🚩 | #nCloth #MayaTutorial #ClothSimulation",
+      "author": "TGH Learnings"
+    },
+    {
+      "id": "EVAmjPdxLaw",
+      "title": "Maya nCloth: A Comprehensive Introduction",
+      "author": "Kurt B"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20nCloth%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Cloth",
+    "Create"
+  ],
+  "at": "2026-11-10T04:11:12.472165+00:00"
+}

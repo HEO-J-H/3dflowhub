@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-polypaint-basics-f2fb",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "페인트",
+  "name": "Polypaint basics",
+  "title": "Polypaint — 정점 색칠",
+  "summary": "Polypaint는 메쉬에 UV 없이 정점 색을 직접 입혀 형태를 시각화하고 텍스처 Baking 등 다양한 작업에 활용할 수 있는 기능입니다.",
+  "when": [
+    "초기 스컬프팅 단계에서 형태와 구조를 빠르게 구분하고 싶을 때",
+    "텍스처 Baking을 위해 색상 마스크를 만들고자 할 때",
+    "리얼타임 엔진이나 렌더링에 사용할 Vertex Color를 준비할 때"
+  ],
+  "steps": [
+    "Tool > Polypaint > Colorize (또는 Shift+F) 로 Polypaint 활성화",
+    "Brush (B) 를 선택하고 원하는 색을 Color Picker 로 지정",
+    "ZInten 슬라이더로 브러시 강도를 조절한 뒤 메쉬 표면에 직접 페인팅",
+    "Ctrl+F 로 Fill Object 를 사용해 전체 메쉬에 기본 색을 채우",
+    "필요 시 Alpha 를 선택해 마스크 형태로 페인팅",
+    "완료 후 Tool > Export > Export Polypaint 로 파일 저장"
+  ],
+  "params": [
+    {
+      "name": "Colorize",
+      "desc": "Polypaint 기능을 켜고 끕니다"
+    },
+    {
+      "name": "RGB",
+      "desc": "페인팅할 색상을 지정합니다"
+    },
+    {
+      "name": "ZInten",
+      "desc": "브러시 강도(투명도)를 조절합니다"
+    },
+    {
+      "name": "Fill Object",
+      "desc": "전체 메쉬에 현재 색을 한 번에 채웁니다"
+    },
+    {
+      "name": "Alpha",
+      "desc": "알파 채널을 이용해 마스크 페인팅을 할 수 있습니다"
+    },
+    {
+      "name": "Color Fill Mode",
+      "desc": "색상 채우기 방식을 선택합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "형태 구분 색칠",
+      "steps": [
+        "베이스 메쉬 로드 → Colorize 활성화",
+        "주요 형태별로 서로 다른 색을 페인팅",
+        "Ctrl+F 로 전체에 기본 색을 채워 일관성 유지"
+      ]
+    },
+    {
+      "title": "베이킹용 디테일 색상",
+      "steps": [
+        "전체 메쉬를 중간 톤으로 Fill Object",
+        "세부 디테일을 작은 브러시로 추가 페인팅",
+        "Export Polypaint 로 Vertex Color Baking"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "7M18tqG6P3M",
+      "title": "ZBrush - PolyPaint Anything (In 2 MINUTES!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "xp92frK0WkA",
+      "title": "How to Start with ZBrush - PolyPaint Basics - Part 10",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Polypaint%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Polypaint",
+    "Colorize"
+  ],
+  "at": "2026-11-10T04:11:38.338275+00:00"
+}

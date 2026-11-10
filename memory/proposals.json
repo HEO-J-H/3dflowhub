@@ -27462,5 +27462,84 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 URL 검증 PR #58 최종 머지 승인 요청",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T04:10:29+00:00",
+    "kind": "proposal",
+    "id": "p-62ea7df69c",
+    "title": "RAG 연동 설계 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "‘RAG 오픈소스 연동 검토 결과 문서화’가 이전에 거절된 기록이 있음(Owner decisions).",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 생성하여: 1) 후보 RAG 오픈소스 프로젝트 리스트(예: LangChain, LlamaIndex) 2) 라이선스(MIT/Apache) 검토 3) GPU 요구사항 및 실행 환경 4) Pix2Poly에 적용 가능한 사용 시나리오(예: 이미지‑텍스트 검색, 오류 해결 힌트) 5) 구현 단계와 테스트 계획을 명시한다.",
+    "expected": "팀이 동일한 검토를 반복하지 않으며, 외부 코드 도입 여부를 명확히 판단할 수 있다. 향후 PR 검토 시 설계 근거가 제공돼 승인 속도가 상승한다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T04:10:29+00:00",
+    "kind": "proposal",
+    "id": "p-0c4e55c4a0",
+    "title": "RAG 프로토타입 서비스 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "수집",
+    "evidence": "RAG 연동 검토가 아직 진행되지 않아 실제 코드가 없음. 현재 위험이 낮은 변경은 자동 머지 가능.",
+    "proposal": "설계 가이드 승인 후, backend/app/services/rag_service.py 파일에 간단한 RAG 래퍼 클래스를 추가한다. 예시: LangChain의 RetrievalQAChain을 사용해 로컬 문서(FAQ) 검색. 테스트 파일 backend/tests/test_rag_service.py을 작성해 입력‑출력 검증한다. 문서와 README에 사용 방법을 업데이트한다.",
+    "expected": "사용자는 Pix2Poly UI에서 ‘도움말’ 버튼을 눌러 관련 문서 검색이 가능해져 사용자 경험이 향상된다. 코드베이스에 RAG 기반 기능이 포함돼 향후 확장성이 확보된다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T04:10:29+00:00",
+    "kind": "proposal",
+    "id": "p-f0cb5e9af4",
+    "title": "RAG 통합 PR 생성 및 자동 머지 설정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #58 등 핵심 코드 변경은 PR 필요. 현재 자동 머지 정책은 위험 낮은 변경에 적용 가능.",
+    "proposal": "위 두 단계가 완료되면 PR #?? (새 PR) 를 생성하고 라벨 ‘low‑risk’와 ‘auto‑merge’ 를 붙인다. CI 테스트가 통과하면 자동 머지하도록 설정한다.",
+    "expected": "RAG 기능이 빠르게 배포돼 사용자 피드백을 조기에 받을 수 있다. 머지 프로세스가 자동화돼 운영 비용이 감소한다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T04:11:51.875454+00:00",
+    "kind": "decision",
+    "id": "p-62ea7df69c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 연동 설계 및 모듈 초안 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T04:11:51.910088+00:00",
+    "kind": "decision",
+    "id": "p-0c4e55c4a0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 경량 RAG 엔드포인트 프로토타입 구현",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T04:11:51.945021+00:00",
+    "kind": "decision",
+    "id": "p-f0cb5e9af4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T04:12:01.619095+00:00",
+    "kind": "triage",
+    "id": "p-f0cb5e9af4",
+    "verdict": "agent",
+    "reason": "PR 생성·라벨링·자동 머지 설정은 스크립트·CI 설정 수정으로 자동화 가능"
   }
 ]
