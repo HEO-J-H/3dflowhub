@@ -1,0 +1,96 @@
+{
+  "id": "maya-set-key-and-auto-key-0b75",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Set Key and Auto Key",
+  "title": "키 넣기(S)·Auto Key",
+  "summary": "Maya의 Auto Key와 Set Key는 Timeline에서 오브젝트의 애니메이션 Keyframe을 기록하고 관리하는 핵심 도구입니다. 움직임의 변화를 자동으로 추적하거나 특정 상태를 수동으로 지정하여 저장합니다.",
+  "when": [
+    "캐릭터의 걷기나 뛰기 등 연속적인 움직임을 자연스러운 Keyframe으로 만들 때",
+    "오브젝트의 위치, 회전, 스케일을 특정 프레임마다 정확하게 고정하고 싶을 때",
+    "복잡한 기계 장치나 카메라 무빙의 시작점과 끝점을 수동으로 세밀하게 설정할 때"
+  ],
+  "steps": [
+    "Timeline(Time Slider)의 슬라이더를 애니메이션을 시작할 프레임(예: Frame 1)으로 이동합니다.",
+    "애니메이션을 줄 오브젝트를 선택하고, Auto Key를 활성화하려면 Timeline 우측 하단의 Key Icon(Auto Key)을 클릭합니다 (또는 Hotkey 없음, 수동 Set Key는 S 키 사용).",
+    "슬라이더를 원하는 이동 프레임(예: Frame 30)으로 옮깁니다.",
+    "Viewport에서 오브젝트를 이동(W), 회전(E), 스케일(R) 조작하여 원하는 형태로 바꿉니다.",
+    "Auto Key가 켜져 있으면 자동으로 키가 찍히며, 꺼져 있다면 S 키를 눌러 Set Key를 실행합니다.",
+    "Timeline 플레이 버튼을 눌러 Viewport에서 애니메이션 결과가 올바르게 작동하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Key",
+      "desc": "오브젝트를 변형할 때 Timeline에 자동으로 Keyframe을 기록합니다."
+    },
+    {
+      "name": "Set Key",
+      "desc": "S 키를 눌러 현재 선택된 채널의 상태를 수동으로 Keyframe에 저장합니다."
+    },
+    {
+      "name": "Time Slider",
+      "desc": "애니메이션의 현재 프레임을 확인하고 구간을 이동하는 Timeline 컨트롤러입니다."
+    },
+    {
+      "name": "Graph Editor",
+      "desc": "Keyframe 간의 움직임 곡선과 속도를 시각적으로 편집하는 창입니다."
+    },
+    {
+      "name": "Channel Box",
+      "desc": "선택한 오브젝트의 TRS(Translate, Rotate, Scale) 수치와 Keyframe 상태를 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공이 바닥으로 튀어 오르는 애니메이션",
+      "steps": [
+        "Frame 1에서 공을 공중에 두고 S 키를 눌러 키를 설정합니다.",
+        "Frame 15로 이동하여 공을 바닥으로 내리고 S 키를 누릅니다.",
+        "Frame 30으로 이동하여 공을 다시 위로 올리고 S 키를 누릅니다."
+      ]
+    },
+    {
+      "title": "회전하는 문 열기 애니메이션",
+      "steps": [
+        "Auto Key 버튼을 켜서 활성화합니다.",
+        "Frame 1에서 문의 기본 닫힌 상태를 유지합니다.",
+        "Frame 20으로 이동한 뒤 E 키를 눌러 문을 90도 회전시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Keyframe이 저장되지 않고 움직임이 사라짐 → Auto Key가 꺼져 있는지 확인하고 S 키를 눌러 수동으로 Set Key를 실행하세요.",
+    "원하지 않는 프레임에 키가 잘못 찍힘 → Channel Box에서 빨갛게 표시된 채널 이름을 우측 클릭해 Selected Key를 삭제하세요."
+  ],
+  "related": [
+    "Graph Editor",
+    "Channel Box",
+    "Time Slider",
+    "Blend Shape"
+  ],
+  "videos": [
+    {
+      "id": "TsJwfFALODw",
+      "title": "Keyframe Animation using Auto Key & Set Key",
+      "author": "DigitalSTEAMWorkshop"
+    },
+    {
+      "id": "eDM_1eVkXKU",
+      "title": "How To Turn on Autokey in Maya",
+      "author": "Alexander Williams"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Set%20Key%20and%20Auto%20Key",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Timeline",
+    "Time Slider",
+    "Frame 1",
+    "Auto Key",
+    "Key Icon",
+    "Hotkey"
+  ],
+  "at": "2026-11-10T00:39:35.008866+00:00"
+}
