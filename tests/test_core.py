@@ -261,6 +261,16 @@ def test_domain_weights_need_samples_and_keep_floor():
     assert w["VFX"] > w["AI 3D"] > 0 and min(w.values()) >= 0.1 and abs(sum(w.values()) - 1) < 0.01
 
 
+def test_validate_url_scheme():
+    assert core.validate_url_scheme("https://example.com/path") is True
+    assert core.validate_url_scheme("http://example.com") is True
+    assert core.validate_url_scheme("ftp://example.com") is False
+    assert core.validate_url_scheme("javascript:alert(1)") is False
+    assert core.validate_url_scheme("file:///etc/passwd") is False
+    assert core.validate_url_scheme("invalid-url") is False
+    assert core.validate_url_scheme("") is False
+
+
 def test_simhash_detects_same_story_different_outlet():
     a = core.title_simhash("Epic Games releases Unreal Engine 5.8 with new PCG tools - 80 Level")
     b = core.title_simhash("Epic Games releases Unreal Engine 5.8 with new PCG tools")
