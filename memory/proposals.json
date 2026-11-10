@@ -31407,5 +31407,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 가이드 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T23:54:20+00:00",
+    "kind": "proposal",
+    "id": "p-b1ac302144",
+    "title": "RAG 오픈소스 기반 로컬 검색 기능 테스트 강화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "운영자님이 깃허브 RAG 오픈소스 반영을 요청하셨고 최근 PR #59 RAG 통합이 완료됨.",
+    "proposal": "backend/tests/test_rag.py에 RAG 검색 기능의 예외 상황 및 정확도 검증 단위 테스트를 추가합니다.",
+    "expected": "RAG 통합 기능의 안정성과 검색 신뢰성을 높입니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T23:54:20+00:00",
+    "kind": "proposal",
+    "id": "p-4326c68d30",
+    "title": "웹 브라우저 PBR 텍스처 변환 예외 처리 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "웹 브라우저 환경에서 이미지 기반 PBR 텍스처 생성 과정의 안정성 확보 필요.",
+    "proposal": "web/js/pbr.js 및 관련 테스트 파일에서 손상된 이미지나 비정상 입력값에 대한 예외 처리 코드를 보완합니다.",
+    "expected": "사용자가 브라우저에서 텍스처를 생성할 때 발생하는 오류를 방지하고 사용성을 개선합니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T23:54:55.246029+00:00",
+    "kind": "decision",
+    "id": "p-b1ac302144",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 검색 기능 단위 테스트",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T23:54:55.276689+00:00",
+    "kind": "decision",
+    "id": "p-4326c68d30",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "auto": true
   }
 ]
