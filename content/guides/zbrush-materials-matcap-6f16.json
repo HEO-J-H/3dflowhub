@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-materials-matcap-6f16",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "페인트",
+  "name": "Materials (MatCap)",
+  "title": "MatCap 재질",
+  "summary": "MatCap 재질은 조명 설정 없이도 표면 색과 반사를 즉시 미리 볼 수 있게 해 줍니다.",
+  "when": [
+    "스컬프 초안 단계에서 형태와 하이라이트를 빠르게 확인하고 싶을 때",
+    "렌더링 전 전체 모델에 일관된 라이트 효과를 간단히 적용해 색감을 검토할 때",
+    "텍스처 작업 전 기본 재질 색과 반사도를 미리 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Material Palette 열기 (Hotkey M)",
+    "MatCap Palette 열기 (Material Palette 하단의 MatCap 버튼 클릭)",
+    "Load MatCap 버튼으로 원하는 MatCap 이미지 선택",
+    "적용할 Subtool 선택 후 MatCap 버튼을 클릭해 적용",
+    "필요 시 Material Palette에서 기본 Material을 조정해 색상·스펙큘러 보강",
+    "Viewport에서 결과 확인 – 라이트 없이도 하이라이트가 보이면 성공"
+  ],
+  "params": [
+    {
+      "name": "MatCap",
+      "desc": "MatCap 이미지가 표면 색과 반사를 정의합니다"
+    },
+    {
+      "name": "Material",
+      "desc": "MatCap 위에 겹치는 기본 재질, 색상·스펙큘러 조정 가능"
+    },
+    {
+      "name": "Specular",
+      "desc": "반사 강도를 조절해 하이라이트 강도를 조정합니다"
+    },
+    {
+      "name": "Diffuse",
+      "desc": "기본 색상의 밝기·채도를 조절합니다"
+    },
+    {
+      "name": "Bump",
+      "desc": "표면 요철 효과, MatCap과 함께 사용 시 미세한 디테일을 추가합니다"
+    },
+    {
+      "name": "ZAdd",
+      "desc": "표면 높이 변화를 적용해 입체감을 강화합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "스컬프 초안에 빠른 라이트 Shading 적용",
+      "steps": [
+        "Material Palette (M) → MatCap Palette → 기본 MatCap 선택",
+        "Subtool 선택 후 MatCap 적용",
+        "Specular 값을 0.5 정도로 조정해 하이라이트 강조"
+      ]
+    },
+    {
+      "title": "렌더링 전 전체 모델 색감 검토",
+      "steps": [
+        "Material Palette → MatCap Palette → 프로젝트 색감에 맞는 MatCap 로드",
+        "모든 Subtool에 동일 MatCap 적용",
+        "Viewport에서 전체 모델 색과 반사 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "MatCap 적용 후 기존 Material 색이 보인다 → Material Palette에서 Base Color을 0으로 낮추거나 MatCap을 활성화 상태로 확인",
+    "MatCap이 투명하게 보인다 → 알파 채널이 없는 MatCap 이미지를 사용하거나 Alpha 옵션을 OFF로 설정",
+    "스케일이 큰 모델에 MatCap이 흐릿해 보인다 → MatCap 이미지 Resolution를 높이거나 UV를 재조정"
+  ],
+  "related": [
+    "Material Palette",
+    "Polypaint",
+    "UV Master",
+    "Texture Map"
+  ],
+  "videos": [
+    {
+      "id": "t_dCvEjmyFY",
+      "title": "Create a Material from an Image in ZBrush using MatCap 2.5D brush",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "1zgJxC3kReY",
+      "title": "ZBrush4R8 MATCAP CREATION",
+      "author": "LEGIT134"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Materials%20%28MatCap%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T04:31:52.473573+00:00"
+}
