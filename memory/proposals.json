@@ -30268,5 +30268,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T19:33:23+00:00",
+    "kind": "proposal",
+    "id": "p-d06327198d",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 Pipeline GPU 부하 및 TripoSR 실행 중 발생하는 예외에 대한 안정성 검증 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU 메모리 부족 및 모델 로드 실패 시 명확한 에러 로그와 폴백 메커니즘 추가",
+    "expected": "로컬 실행 시 예외 발생으로 인한 서버 중단 방지 및 사용자 친화적 오류 메시지 반환",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T19:33:23+00:00",
+    "kind": "proposal",
+    "id": "p-071d8cf3d3",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 기반 PBR 변환(Albedo, Normal, Roughness) 로직의 단위 테스트 추가 필요성",
+    "proposal": "web/ 테스트 Script에 PBR 맵 생성 및 색상 정규화 함수에 대한 유닛 테스트 케이스 작성 및 검증",
+    "expected": "브라우저 단독 처리 기능의 회귀 오류 방지 및 품질 신뢰도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T19:33:43.387417+00:00",
+    "kind": "decision",
+    "id": "p-d06327198d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T19:33:43.411340+00:00",
+    "kind": "decision",
+    "id": "p-071d8cf3d3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
   }
 ]
