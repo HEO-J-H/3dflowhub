@@ -750,6 +750,46 @@ def nav_tail(root: str) -> str:
             f'<a href="{root}contact/">✉️ 문의</a></div></div></div></details>')
 
 
+def site_ld() -> str:
+    """홈 JSON-LD: 사이트 이름·설명·언어·다루는 주제 — 검색엔진·AI 검색이 사이트 성격을 확실히 알게 (2026-11-10)."""
+    topics = ["3D modeling", "Blender", "3ds Max", "Maya", "Houdini", "ZBrush", "Substance 3D", "Unreal Engine", "Unity",
+              "NVIDIA Omniverse", "Pixyz Studio", "VFX", "Gaussian Splatting", "AI 3D", "3D 모델링 기초", "3D 툴 독학"]
+    data = [{"@context": "https://schema.org", "@type": "WebSite", "name": SITE_TITLE, "alternateName": ["3D플로우허브", "3D Flow Hub"],
+             "url": BASE_URL + "/", "inLanguage": "ko-KR", "description": SITE_DESC},
+            {"@context": "https://schema.org", "@type": "Organization", "name": SITE_TITLE, "url": BASE_URL + "/",
+             "logo": f"{BASE_URL}/favicon.svg", "description": "한국어 3D 학습 사이트 — 툴별 기초 가이드(영상·따라 하기·옵션 전체), "
+             "작업별 툴 비교, 오류 해결, 버전별 바뀐 점, 공모전·게임 잼, AI 3D 레이더", "knowsAbout": topics,
+             "sameAs": ["https://github.com/HEO-J-H/3dflowhub"]}]
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
+def write_llms_txt(learn_guides: list[dict]) -> None:
+    """llms.txt — AI 검색(ChatGPT·Claude·Perplexity·구글 AI)이 사이트를 읽을 때 보는 안내 (llmstxt.org 형식).
+    핵심 페이지를 사람 말로: 무엇이 있고 어디서 시작하면 되는지. 소식 요약은 넣지 않음(검색 노출도 제외한 것)."""
+    by_tool: dict[str, list] = defaultdict(list)
+    for g in learn_guides:
+        by_tool[g["tool"]].append(g)
+    lines = [f"# {SITE_TITLE}", "",
+             "> 한국어 3D 학습 사이트. 3ds Max·Blender·Maya·Houdini·ZBrush·Substance 3D·Unreal·Unity·NVIDIA Omniverse·Pixyz 의 "
+             "기본 기능을 영상과 따라 하기, 옵션 전체 표, Blender 값 비교 렌더로 설명하고, 같은 작업의 툴별 비교와 오류 메시지별 해결법을 "
+             "정리합니다. 공식 문서를 근거로 쓰고, 틀린 내용은 페이지의 제보 버튼으로 고칩니다.", "",
+             "## 핵심 페이지",
+             f"- [기초 가이드 전체]({BASE_URL}/learn/): 툴별 기능 {len(learn_guides)}개 — 영상·따라 하기·옵션 전체·응용·문제 해결",
+             f"- [작업별 툴 비교]({BASE_URL}/compare/): 같은 작업(UV·베이크·리깅·FBX 내보내기 등)을 툴마다 어디서·어떻게",
+             f"- [오류 해결]({BASE_URL}/fix/): 오류 메시지 원문으로 찾는 원인과 해결 순서 (Blender 는 실제 실행 확인)",
+             f"- [버전별 바뀐 점]({BASE_URL}/changes/): 공식 릴리스 노트 근거",
+             f"- [공모전·게임 잼]({BASE_URL}/events/): 국내 공모전·해외 게임 잼·3D 챌린지·행사, 마감 임박 순",
+             f"- [AI 3D 레이더]({BASE_URL}/radar/): 허깅페이스·GitHub·Civitai·Kaggle 의 3D 생성 AI 모델·데모·오픈소스, 상업 사용 여부",
+             f"- [무료 에셋]({BASE_URL}/assets/): CC0 텍스처·HDRI·3D 모델", "", "## 툴별 기초 가이드 (대표)"]
+    for tool, gs in sorted(by_tool.items(), key=lambda kv: -len(kv[1])):
+        if len(gs) < 3:
+            continue
+        lines.append(f"### {tool} ({len(gs)}개)")
+        for g in sorted(gs, key=lambda g: (not g.get("grounded"), g["id"]))[:8]:
+            lines.append(f"- [{g['title']}]({BASE_URL}/{learn_url(g)}): {(g.get('summary') or '')[:90]}")
+    (OUT / "llms.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def kst_date(ts: str) -> str:
     """수집 시각(UTC) → 한국 날짜 'YYYY-MM-DD'. 한국 0~9시에 모은 글이 전날로 보이던 문제."""
     if not ts:
@@ -889,6 +929,7 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         rel = d.relative_to(OUT).as_posix()
         if rel == "." and n == 1:  # 홈: 브랜드 + 무엇을 하는 사이트인지 (검색 결과 제목)
             full = f"{SITE_TITLE} — 3D 툴, 기초부터 최신 소식까지 한곳에서"  # 사장님 지정 (2026-11-10)
+            robots += site_ld()
         else:  # 2쪽 이후 제목 중복 방지
             full = f"{title}{f' {n}페이지' if n > 1 else ''} - {SITE_TITLE}"
         canonical = f"{BASE_URL}/" + ("" if rel == "." else quote(rel) + "/")
@@ -2030,6 +2071,7 @@ def build() -> dict:
     build_compare()  # 주제별 툴 비교
     build_events()  # 공모전·게임 잼
     build_radar()  # AI 3D 레이더
+    write_llms_txt(learn_guides)  # AI 검색용 안내
     build_manual(learn_guides)  # 명령별 심화 매뉴얼
     n_assets = build_assets()  # 무료 텍스처·재질·HDRI 모음
     build_resources()
