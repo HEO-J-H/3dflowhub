@@ -1,0 +1,107 @@
+{
+  "id": "zbrush-layers-palette-884a",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Layers palette",
+  "title": "Layer — 디테일 층",
+  "summary": "Layers palette는 스컬프 작업을 비파괴적으로 레이어별로 저장·블렌딩·숨기기·삭제할 수 있게 해줍니다.",
+  "when": [
+    "기존 메시에 추가 디테일을 입히고 싶을 때",
+    "여러 변형을 시험해 보면서 원본을 보존하고 싶을 때",
+    "베이스·디테일·색상 등 복수 단계의 스컬프를 관리하고 싶을 때"
+  ],
+  "steps": [
+    "Tool 팔레트 → Layers 서브‑팔레트 열기 (또는 Shift+L)",
+    "New 버튼을 눌러 새 레이어 생성·이름 입력",
+    "선택한 레이어에서 원하는 스컬프 작업 수행",
+    "Opacity 슬라이더로 레이어 투명도 조절·eye 아이콘으로 숨기기·lock 아이콘으로 잠금",
+    "작업이 끝났으면 Merge Down 또는 Merge Visible 클릭해 레이어를 합침"
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "레이어 투명도, 다른 레이어와 섞이는 비율"
+    },
+    {
+      "name": "Visibility (eye)",
+      "desc": "레이어 보이기·숨기기"
+    },
+    {
+      "name": "Lock (padlock)",
+      "desc": "레이어 잠금·수정 방지"
+    },
+    {
+      "name": "Merge Down",
+      "desc": "현재 레이어를 바로 아래 레이어와 합침"
+    },
+    {
+      "name": "Merge Visible",
+      "desc": "보이는 모든 레이어를 하나로 합침"
+    },
+    {
+      "name": "Delete",
+      "desc": "레이어 삭제, 복구 불가"
+    }
+  ],
+  "examples": [
+    {
+      "title": "베이스 메시에 세부 디테일 추가",
+      "steps": [
+        "베이스 레이어에서 기본 형태 스컬프",
+        "Layers → New 클릭 후 ‘Detail’ 레이어 생성",
+        "Detail 레이어에서 세부 디테일 조각",
+        "Opacity 조절해 원본과 비교 후 필요 시 Merge Down"
+      ]
+    },
+    {
+      "title": "Polypaint 색상을 별도 레이어에 적용",
+      "steps": [
+        "Layers → New 클릭 후 ‘Color’ 레이어 생성",
+        "Color 레이어에서 Polypaint로 색칠",
+        "Opacity 조절해 색상 강도 제어",
+        "완료 후 Merge Down으로 색상 레이어 고정"
+      ]
+    },
+    {
+      "title": "큰 변형을 시험하고 원본 복구",
+      "steps": [
+        "Layers → New 클릭 후 ‘Test’ 레이어 생성",
+        "Test 레이어에서 큰 변형 적용",
+        "결과가 마음에 안 들면 eye 아이콘 끄기 또는 Delete로 레이어 삭제",
+        "원본 레이어는 그대로 유지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Opacity를 0으로 하면 레이어가 사라진다고 생각 → 실제로는 투명할 뿐, 눈 아이콘으로 숨겨야 함",
+    "Merge Down을 바로 눌러 원본을 잃음 → 원하는 레이어만 보이게 하거나 Merge Visible 사용 후 백업",
+    "레이어 삭제 후 복구 불가 → 삭제 전 스냅샷 저장하거나 Undo 가능 범위 내에서 작업"
+  ],
+  "related": [
+    "Subtool",
+    "Masking",
+    "Polypaint",
+    "Projection Master"
+  ],
+  "videos": [
+    {
+      "id": "xiYk2gFM6lQ",
+      "title": "Zbrush - Layers",
+      "author": "MadPonyInteractive"
+    },
+    {
+      "id": "pWBbB9Y0VG8",
+      "title": "Zbrush Tip! Work with Layers and Preserve Detail!",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Layers%20palette",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Layers"
+  ],
+  "at": "2026-11-10T03:51:34.868142+00:00"
+}
