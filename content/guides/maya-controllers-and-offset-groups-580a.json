@@ -1,0 +1,93 @@
+{
+  "id": "maya-controllers-and-offset-groups-580a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "Controllers and offset groups",
+  "title": "Controller·오프셋 그룹",
+  "summary": "Maya의 Controllers와 Offset Group은 오브젝트의 변형을 독립적으로 제어하고, 원본 트랜스폼을 보존해 애니메이션 작업을 효율화합니다.",
+  "when": [
+    "복잡한 리깅에서 개별 파트의 회전·이동을 별도 제어하고 싶을 때",
+    "오브젝트의 원본 위치·축을 유지하면서 Controller만 움직이고 싶을 때",
+    "Keyframe을 넣을 때 트랜스폼이 섞이는 것을 방지하고 싶을 때"
+  ],
+  "steps": [
+    "Create > NURBS Primitives > Circle 로 Controller 생성",
+    "Controller를 선택하고 이름을 \"*_ctrl\" 로 변경",
+    "오브젝트와 Controller를 모두 선택 후 Edit > Parent (Hotkey P) 로 오브젝트를 Controller에 부모화",
+    "오브젝트를 선택한 상태에서 Ctrl+Shift+G (Edit > Group > Offset Group) 로 오프셋 그룹 생성",
+    "Controller를 원하는 위치·회전으로 이동 – 오프셋 그룹은 원래 위치를 유지합니다"
+  ],
+  "params": [
+    {
+      "name": "Translate",
+      "desc": "오브젝트의 위치 이동"
+    },
+    {
+      "name": "Rotate",
+      "desc": "오브젝트의 회전"
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트의 크기 조절"
+    },
+    {
+      "name": "Visibility",
+      "desc": "보이기·숨기기 토글"
+    },
+    {
+      "name": "Channels",
+      "desc": "채널 박스에서 개별 속성 켜기·끄기"
+    },
+    {
+      "name": "Offset Group",
+      "desc": "원본 트랜스폼을 보존하는 빈 그룹"
+    }
+  ],
+  "examples": [
+    {
+      "title": "팔 리깅용 Controller와 오프셋 그룹",
+      "steps": [
+        "팔 메쉬 선택 → Create > NURBS Primitives > Circle 로 arm_ctrl 생성",
+        "arm_ctrl을 팔 메쉬 위에 배치 → 팔 메쉬와 arm_ctrl 선택 후 P 로 부모화",
+        "팔 메쉬 선택 → Ctrl+Shift+G 로 arm_offset 그룹 생성"
+      ]
+    },
+    {
+      "title": "머리 회전 제어",
+      "steps": [
+        "머리 메쉬 선택 → Create > NURBS Primitives > Circle 로 head_ctrl 생성",
+        "head_ctrl을 머리 메쉬에 부모화 (P)",
+        "머리 메쉬 선택 → Ctrl+Shift+G 로 head_offset 그룹 생성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Controller를 직접 이동 → 오프셋 그룹이 원점에 남아 움직임이 깨짐 → 오프셋 그룹을 먼저 만든 뒤 Controller를 이동",
+    "Controller와 오프셋 그룹을 동시에 선택 후 Group → 계층이 복잡해짐 → 개별 선택 후 Offset Group 사용",
+    "스케일을 조정 후 Freeze Transformations을 하지 않음 → 애니메이션 시 스케일 비율이 변함 → Modify > Freeze Transformations 후 진행"
+  ],
+  "related": [
+    "Parent Constraint",
+    "Scale Constraint",
+    "Group",
+    "Attribute Editor"
+  ],
+  "videos": [
+    {
+      "id": "JhZLZdhWvKw",
+      "title": "Maintaining Flexibility with Offset Groups // Maya 2023",
+      "author": "Jacob Sherlock"
+    },
+    {
+      "id": "gBDtJxKgL-k",
+      "title": "Automatically create and manage offset groups: pk_groupnAlign.py",
+      "author": "polyKraken"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Controllers%20and%20offset%20groups",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T03:41:14.969486+00:00"
+}

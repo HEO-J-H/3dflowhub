@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-surface-noise-b4f2",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Surface noise",
+  "title": "Surface Noise — 표면 질감",
+  "summary": "Surface Noise는 ZBrush에서 현재 서브툴의 표면에 절차적인 노이즈를 추가해 거칠거나 질감 있는 형태를 만드는 기능입니다.",
+  "when": [
+    "돌, 금속 등 거친 재질을 빠르게 구현하고 싶을 때",
+    "스컬프팅 후 디테일을 한 번에 크게 늘리고 싶을 때",
+    "텍스처 없이 형태적인 요철·주름을 만들고 싶을 때"
+  ],
+  "steps": [
+    "Tool 팔레트에서 원하는 SubTool을 선택한다",
+    "Tool > Surface > Noise 패널을 연다",
+    "Noise Type 드롭다운에서 원하는 노이즈 종류를 선택한다 (예: Perlin, Turbulence)",
+    "Scale, Strength, Detail 슬라이더를 조정해 노이즈 크기·강도·세부 정도를 설정한다",
+    "Noise 버튼을 클릭해 노이즈를 적용한다"
+  ],
+  "params": [
+    {
+      "name": "Noise Type",
+      "desc": "노이즈 형태를 선택 (Perlin, Turbulence 등)"
+    },
+    {
+      "name": "Scale",
+      "desc": "노이즈 패턴의 전체 크기"
+    },
+    {
+      "name": "Strength",
+      "desc": "노이즈가 표면을 변형시키는 강도"
+    },
+    {
+      "name": "Detail",
+      "desc": "고해상도 디테일 정도, 값이 높을수록 작은 요철이 추가됨"
+    },
+    {
+      "name": "MidLevel",
+      "desc": "노이즈가 적용되는 기준 높이, 0~1 사이 값"
+    },
+    {
+      "name": "Random Seed",
+      "desc": "노이즈 패턴의 무작위성을 제어"
+    }
+  ],
+  "examples": [
+    {
+      "title": "돌 조각에 거친 표면 만들기",
+      "steps": [
+        "SubTool을 선택하고 Surface Noise 패널을 연다",
+        "Noise Type을 \"Perlin\"으로 설정한다",
+        "Scale 0.8, Strength 0.6, Detail 0.4 로 조정한다",
+        "Noise 버튼을 눌러 적용하고 Viewport에서 거친 질감 확인"
+      ]
+    },
+    {
+      "title": "피부에 미세한 주름 추가",
+      "steps": [
+        "스컬프팅이 끝난 얼굴 SubTool 선택",
+        "Noise Type을 \"Turbulence\"로 선택한다",
+        "Scale 0.3, Strength 0.2, Detail 0.7 로 설정한다",
+        "Noise 적용 후 필요 시 Strength 를 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈 강도를 너무 높게 설정 → 표면이 과도하게 변형돼 원본 형태가 손실됩니다. Strength 를 낮추고 Detail 로 보완하세요",
+    "Scale 값을 너무 작게 하면 눈에 보이는 변화가 없어요 → Scale 을 0.5~1.0 사이로 올린 뒤 다시 적용합니다"
+  ],
+  "related": [
+    "Displacement",
+    "Morph Target",
+    "Polypaint",
+    "UV Master"
+  ],
+  "videos": [
+    {
+      "id": "chhloHtlclQ",
+      "title": "Quick surface noise tutorial and explanation for Zbrush",
+      "author": "Monster Caesar Studios"
+    },
+    {
+      "id": "nP-M00S1ZtE",
+      "title": "How to SURFACE NOISE in Zbrush - 60 Second Tutorial",
+      "author": "Danny Mac 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Surface%20noise",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "SubTool",
+    "Surface",
+    "Noise"
+  ],
+  "at": "2026-11-10T03:41:41.852223+00:00"
+}
