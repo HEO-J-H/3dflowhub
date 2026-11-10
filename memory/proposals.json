@@ -30858,5 +30858,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T21:54:12+00:00",
+    "kind": "proposal",
+    "id": "p-e30f32662a",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 파일 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹/로컬 PBR 텍스처 생성 프로세스 문서화가 완료되었으나 브라우저 측 PBR 단위 테스트 보강 필요",
+    "proposal": "web/tests/pbr_test.js 파일을 추가하여 브라우저 환경에서의 PBR 텍스처 변환 로직 유닛 테스트 작성",
+    "expected": "웹 버전 PBR 텍스처 생성의 안정성 및 코드 품질 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T21:54:12+00:00",
+    "kind": "proposal",
+    "id": "p-e5f512917c",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 TripoSR Pipeline GPU 자원 부족 등 예외 상황 발생 시 안정적인 처리가 중요함",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU 메모리 부족 및 모델 로드 실패 예외 처리 코드 보강 및 테스트 추가",
+    "expected": "로컬 실행 시 예외 상황에서 앱 크래시 방지 및 명확한 오류 반환",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T21:54:30.254791+00:00",
+    "kind": "decision",
+    "id": "p-e30f32662a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T21:54:30.285434+00:00",
+    "kind": "decision",
+    "id": "p-e5f512917c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
