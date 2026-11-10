@@ -1,0 +1,100 @@
+{
+  "id": "zbrush-polypaint-from-texture-b437",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "페인트",
+  "name": "Polypaint from texture",
+  "title": "텍스처에서 Polypaint",
+  "summary": "Polypaint from texture는 이미지 파일을 메쉬에 직접 입혀 정점 색으로 변환해 빠르게 색칠하고 텍스처 Baking 등에 활용합니다.",
+  "when": [
+    "UV가 없는 모델에 빠르게 색을 입히고 싶을 때",
+    "텍스처를 정점 색으로 변환해 실시간 Viewport 색상으로 작업할 때",
+    "Baking 전 색상 정보를 미리 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Tool > Polypaint > Load Texture (또는 Shift+F, Texture 팔레트에서 Load Texture) 로 이미지 로드",
+    "Texture 팔레트 > Polypaint From Texture 버튼 클릭",
+    "팝업에서 원하는 채널(R,G,B,Alpha) 선택 후 Apply 클릭",
+    "Viewport에서 Colorize 모드가 켜진 것을 확인하고 Brush (B) 로 추가 색칠 가능",
+    "필요 시 Colorize (Shift+F) 로 기존 Polypaint을 켜고 조정",
+    "완료 후 Color > Export > Vertex Colors 로 정점 색을 저장",
+    "(선택) Geometry > Modify Topology > Decimation Master 로 폴리 수 줄이기"
+  ],
+  "params": [
+    {
+      "name": "Channel",
+      "desc": "로드할 이미지 채널을 선택합니다"
+    },
+    {
+      "name": "Invert",
+      "desc": "색상 값을 반전시킵니다"
+    },
+    {
+      "name": "Strength",
+      "desc": "텍스처 색상의 적용 강도를 조절합니다"
+    },
+    {
+      "name": "Masking",
+      "desc": "마스크 영역에만 적용하도록 제한합니다"
+    },
+    {
+      "name": "Resolution",
+      "desc": "텍스처 Resolution를 지정해 정밀도를 조절합니다"
+    },
+    {
+      "name": "Alpha",
+      "desc": "알파 채널을 정점 알파로 변환합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "초기 스컬프팅 색상 배치",
+      "steps": [
+        "Texture 팔레트에서 원하는 컬러 레퍼런스 이미지 로드",
+        "Polypaint From Texture 로 전체 메쉬에 색 입히기",
+        "Brush 로 강조하고 싶은 부위만 추가 색칠"
+      ]
+    },
+    {
+      "title": "게임용 저폴리 모델에 색상 Baking",
+      "steps": [
+        "UV 없이 모델을 준비",
+        "Polypaint From Texture 로 전체 색 입히기",
+        "Export > Vertex Colors 로 저장 후 엔진에 Import"
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 Resolution가 낮아 정점 색이 거칠게 보임 → 고해상도 이미지 사용",
+    "이미 적용된 Polypaint이 있을 때 바로 Load Texture 하면 색이 겹침 → 먼저 Colorize (Shift+F) 로 기존 색을 초기화",
+    "채널 선택을 잘못해 알파만 적용 → 올바른 RGB 채널을 선택 후 재시도"
+  ],
+  "related": [
+    "Texture",
+    "Spotlight",
+    "Colorize",
+    "UV Master"
+  ],
+  "videos": [
+    {
+      "id": "7M18tqG6P3M",
+      "title": "ZBrush - PolyPaint Anything (In 2 MINUTES!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "MpYs2sXUTFo",
+      "title": "Zbrush Polypaint - Painting Made Easy - How to Apply Materials on Armor - Tutorial",
+      "author": "Gatz 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Polypaint%20from%20texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "Polypaint",
+    "Load Texture",
+    "Texture"
+  ],
+  "at": "2026-11-10T04:51:53.886477+00:00"
+}

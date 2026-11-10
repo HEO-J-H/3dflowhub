@@ -1,0 +1,108 @@
+{
+  "id": "maya-xgen-basics-0b22",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "이펙트",
+  "name": "XGen basics",
+  "title": "XGen — 털·머리카락",
+  "summary": "XGen은 Maya에서 머리카락·털·풀 등 섬유형 요소를 빠르게 생성·배치·시뮬레이션하는 툴입니다.",
+  "when": [
+    "캐릭터 머리카락을 빠르게 만들 때",
+    "동물 털이나 풀 같은 대량 가닥을 배치할 때",
+    "프리셋·스플라인·스컬프팅 방식으로 섬세한 머리카락을 제어하고 싶을 때"
+  ],
+  "steps": [
+    "1) 가닥을 만들 메쉬 선택 → XGen → Create XGen Description",
+    "2) Collection Type 선택 (Splines, Guides, or Mesh)",
+    "3) Description 이름 입력 후 OK",
+    "4) Paint Guides (XGen → Paint Guides) 혹은 기존 Curve 연결",
+    "5) Attribute Editor 에서 Density·Width·Length·Clump·Noise 등 조정",
+    "6) Viewport → XGen → Preview → Generate 로 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Density",
+      "desc": "가닥의 밀도를 조절합니다"
+    },
+    {
+      "name": "Width",
+      "desc": "각 가닥의 두께를 설정합니다"
+    },
+    {
+      "name": "Length",
+      "desc": "가닥의 길이를 정의합니다"
+    },
+    {
+      "name": "Clump",
+      "desc": "가닥을 뭉치게 만들어 자연스러운 볼륨을 줍니다"
+    },
+    {
+      "name": "Noise",
+      "desc": "가닥에 무작위 변형을 추가해 다양성을 높입니다"
+    },
+    {
+      "name": "Color",
+      "desc": "가닥 색상을 직접 지정하거나 텍스처 매핑합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 머리카락",
+      "steps": [
+        "얼굴 메쉬 선택 → XGen → Create XGen Description → Splines",
+        "Paint Guides 로 머리카락 라인 그리기",
+        "Width와 Clump 값 조정",
+        "Preview → Generate 로 최종 확인"
+      ]
+    },
+    {
+      "title": "풀밭",
+      "steps": [
+        "평면 메쉬 선택 → XGen → Create XGen Description → Guides",
+        "Density를 높게 설정하고 Noise 추가",
+        "Length와 Width를 적당히 조절",
+        "Generate 로 풀 전체 확인"
+      ]
+    },
+    {
+      "title": "동물 털",
+      "steps": [
+        "동물 바디 메쉬 선택 → XGen → Create XGen Description → Mesh",
+        "Auto‑Generate 가닥을 사용해 전체 표면에 배치",
+        "Clump와 Noise 로 털 결속감과 불규칙성 부여",
+        "Generate 후 Render View 에서 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "가이드가 보이지 않음 → XGen → Display → Show Guides 활성화",
+    "스케일 적용 안 됨 → Modify → Freeze Transformations 후 XGen 재생성",
+    "Density가 낮아 가닥이 안 보임 → Density 값을 증가시키고 Preview 로 확인"
+  ],
+  "related": [
+    "Maya Hair System",
+    "Maya Paint Effects",
+    "Maya nHair",
+    "Maya Alembic Cache"
+  ],
+  "videos": [
+    {
+      "id": "XeFJ3MGDTAk",
+      "title": "Maya XGen Basics Tutorial | Learn How To Create Hair",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "SLWkpHPBAFg",
+      "title": "Maya XGen Series: 09 Shading XGen Using Arnold",
+      "author": "SARKAMARI"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20XGen%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "XGen",
+    "Create XGen Description"
+  ],
+  "at": "2026-11-10T04:51:30.905049+00:00"
+}
