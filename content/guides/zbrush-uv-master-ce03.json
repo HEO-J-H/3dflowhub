@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-uv-master-ce03",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV Master",
+  "title": "UV Master — 자동 UV",
+  "summary": "ZBrush UV Master는 복잡한 하이 폴리곤 모델의 UV를 수작업 없이 빠르고 균일하게 펼쳐주는 자동 UV 언래핑 플러그인입니다. 텍스처 페인팅이나 Substance Painter 연동을 위한 필수 도구입니다.",
+  "when": [
+    "Substance Painter나 다른 DCC 툴로 Export 전 UV 맵을 빠르게 생성해야 할 때",
+    "복잡한 스컬프팅 모델에 왜곡 없는 텍스처 심(Seam)을 자동으로 넣고 싶을 때",
+    "수작업 UV 전개에 시간을 들이지 않고 최적화된 체스판 패턴을 얻고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush에서 UV를 펼칠 SubTool을 선택하고 활성화합니다.",
+    "상단 메뉴 바에서 Zplugin → UV Master를 클릭하여 플러그인 패널을 엽니다.",
+    "원하는 옵션(Unwrap, Polygroups 등)을 설정합니다.",
+    "Unwrap 버튼을 클릭하여 자동 UV 계산을 실행합니다.",
+    "Viewport에서 Shift + F 키를 눌러 Polyframe을 켜고 UV가 잘 펼쳐졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Unwrap",
+      "desc": "현재 설정과 옵션을 기반으로 UV 맵 계산을 실행합니다."
+    },
+    {
+      "name": "PolyGroups",
+      "desc": "모델에 설정된 PolyGroup 경계를 기준으로 UV 심을 나눕니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "좌우 대칭 모델의 경우 대칭적인 UV 맵을 생성하도록 유지합니다."
+    },
+    {
+      "name": "CheckSeams",
+      "desc": "모델 위에 UV 심(Seam)의 위치를 시각적으로 표시해 줍니다."
+    },
+    {
+      "name": "Flatten",
+      "desc": "3D 모델을 2D UV 상태로 펼쳐서 Viewport에 직접 보여줍니다."
+    },
+    {
+      "name": "UnFlatten",
+      "desc": "Flatten 상태의 2D 모델을 다시 원래의 3D 형태로 되돌립니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 모델의 자동 UV 언래핑",
+      "steps": [
+        "캐릭터 SubTool을 선택한 후 Zplugin → UV Master를 엽니다.",
+        "Symmetry 버튼이 켜져 있는지 확인하고 Unwrap을 클릭합니다.",
+        "CheckSeams로 심의 위치를 확인하고 필요시 폴리그룹을 조정해 다시 계산합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 오브젝트의 PolyGroup 기준 UV 분할",
+      "steps": [
+        "하드서페이스 모델의 파츠별로 PolyGroup을 미리 지정합니다.",
+        "UV Master 메뉴에서 PolyGroups 옵션을 활성화합니다.",
+        "Unwrap을 눌러 그룹별로 깔끔하게 나뉘어진 UV를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "대칭 모델인데 Symmetry 옵션을 끄고 Unwrap을 실행함 → Symmetry를 켜고 다시 실행합니다.",
+    "모델에 불필요한 마스크가 남아있어 UV가 제대로 안 펼쳐짐 → Ctrl 키를 누르고 빈 공간을 드래그해 마스크를 해제합니다."
+  ],
+  "related": [
+    "Decimation Master",
+    "SubTool",
+    "Polygroups",
+    "Zplugin"
+  ],
+  "videos": [
+    {
+      "id": "re6s4MKjpbQ",
+      "title": "ZBrush UV Master Explained — Easiest Way to Unwrap Your Models!",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "a0G6JS469mE",
+      "title": "#AskZBrush Shorts - Create UVs With UV Master in ZBrush",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20UV%20Master",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "UV",
+    "SubTool"
+  ],
+  "at": "2026-11-10T08:31:49.399684+00:00"
+}
