@@ -2045,7 +2045,8 @@ def build() -> dict:
     listed = {unquote(u) for u in urls}
     for f in sorted(OUT.rglob("index.html")) + sorted((OUT / "p").glob("*.html")):
         rel = f.relative_to(OUT).as_posix()
-        u = f"{BASE_URL}/{rel[:-len('index.html')] if rel.endswith('index.html') else rel}"
+        # 사이트맵 규격: 주소의 한글은 %인코딩 (그대로 넣은 21개 때문에 Search Console '일시적인 처리 오류', 2026-11-10)
+        u = f"{BASE_URL}/{quote(rel[:-len('index.html')] if rel.endswith('index.html') else rel)}"
         if unquote(u) in listed or f.parent.name in ("saved",):
             continue
         head = f.read_text(encoding="utf-8", errors="ignore")[:6000]
