@@ -28153,5 +28153,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T10:42:00+00:00",
+    "kind": "proposal",
+    "id": "p-6d4882b698",
+    "title": "웹 브라우저 PBR 생성 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 PBR 브라우저 렌더링 테스트 머지(PR #54) 이후 추가 안정성 검증 필요",
+    "proposal": "web/tests/ 폴더 내에 PBR 높이맵 생성 및 텍스처 변환 로직에 대한 추가 유닛 테스트 작성",
+    "expected": "브라우저 환경에서의 3D 텍스처 생성 품질 및 예외 처리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T10:42:00+00:00",
+    "kind": "proposal",
+    "id": "p-7bfb924890",
+    "title": "로컬 백엔드 URL 검증 테스트 코드 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #58 등 백엔드 URL 스키마 검사 변경 사항 검토 대기 중",
+    "proposal": "backend/app/services/url_ingest.py의 validate_url_input 관련 테스트 코드가 모든 프로토콜 예외를 커버하는지 점검",
+    "expected": "보안성 강화 및 잘못된 입력으로 인한 백엔드 오류 방지",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T10:42:29.533705+00:00",
+    "kind": "decision",
+    "id": "p-6d4882b698",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T10:42:29.555693+00:00",
+    "kind": "decision",
+    "id": "p-7bfb924890",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #58 백엔드 URL 검증 테스트 코드 추가 보강",
+    "auto": true
   }
 ]
