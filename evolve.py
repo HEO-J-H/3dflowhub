@@ -795,8 +795,9 @@ def write_roundups(max_new: int = 3, days: int = 30, gate: bool = True) -> list[
 
 
 def collect_pages_due(strategy: dict) -> bool:
-    """방문 통계(GoatCounter) 3시간마다 수집. 성찰 주기(최대 6시간)와 분리 — 현황판 날짜별 방문이 늦게 갱신되던 문제."""
-    if not _due(strategy, "pages_at", 3 * 3600):
+    """방문 통계(GoatCounter) 30분마다 수집 (3시간 → 30분: 현황판 방문 수가 최대 3시간 늦던 문제, 요청 몇 번뿐이라 부담 없음).
+    성찰 주기(최대 6시간)와 분리."""
+    if not _due(strategy, "pages_at", 30 * 60):
         return False
     try:
         import monetize
