@@ -117,3 +117,28 @@
     dlg.showModal();
   });
 })();
+
+// 👍👎 도움이 됐나요? — 로그인 없이 한 번 누르기. 기록은 방문 통계(GoatCounter) 이벤트로만 (개인정보 없음).
+// 👎 가 쌓인 페이지는 QA 가 다시 쓰기·보강 대기열로 보냄 (qa.feedback_targets)
+(function () {
+  document.querySelectorAll('.fb').forEach((box) => {
+    const key = 'fb:' + location.pathname;
+    let done = null;
+    try { done = localStorage.getItem(key); } catch (e) { /* 저장 안 되는 브라우저 */ }
+    const msg = box.querySelector('.fb-msg');
+    const finish = (v) => {
+      box.classList.add('done');
+      box.querySelectorAll('button').forEach((b) => { b.disabled = true; b.classList.toggle('on', b.dataset.v === v); });
+      msg.textContent = v === 'up' ? '고맙습니다! 😊' : '알려 주셔서 고맙습니다 — 이 페이지를 더 낫게 고치겠습니다.';
+    };
+    if (done) finish(done);
+    box.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+      const v = b.dataset.v;
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: 'fb/' + v + location.pathname, title: document.title.slice(0, 120), event: true });
+      }
+      try { localStorage.setItem(key, v); } catch (e) { /* 무시 */ }
+      finish(v);
+    }));
+  });
+})();

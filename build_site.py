@@ -114,6 +114,13 @@ def _asset_ver(name: str) -> str:
 ASSET_VER = {n: _asset_ver(n) for n in ("search.js", "user.js")}
 
 
+def feedback_html() -> str:
+    """페이지 끝 '도움이 됐나요? 👍 👎' — static/user.js 가 기록 (로그인·개인정보 없음)."""
+    return ('<div class="fb" role="group" aria-label="이 페이지가 도움이 됐나요?"><span>이 페이지가 도움이 됐나요?</span>'
+            '<button type="button" data-v="up" aria-label="도움이 됐어요">👍</button>'
+            '<button type="button" data-v="down" aria-label="아쉬워요">👎</button><span class="fb-msg" aria-live="polite"></span></div>')
+
+
 def report_button(subject: str, text: str = "오류 제보") -> str:
     """오류 제보 버튼 — 누르면 종류 선택·메모 창이 열리고 '접수됨' 안내 (static/user.js). 메일은 창 안의 보조 수단."""
     enc = "".join(f"&#{ord(c)};" for c in CONTACT_EMAIL)
@@ -482,6 +489,11 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .tvids{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin:12px 0 20px}
 .tvids h3{font-size:15px;margin:0 0 6px}.hero-img{width:100%;height:auto;border-radius:18px;margin:12px 0}
 .deep{margin-top:28px;padding-top:8px;border-top:2px solid var(--line)}.deep h3{font-size:18px;margin:22px 0 8px}
+.fb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:28px 0 8px;padding:14px 16px;border:1px solid var(--line);
+  border-radius:14px;background:var(--surface);font-weight:600}
+.fb button{min-width:48px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:20px;cursor:pointer}
+.fb button:hover{border-color:var(--accent)}.fb button.on{background:var(--accent-soft);border-color:var(--accent)}
+.fb.done button:not(.on){opacity:.4}.fb-msg{font-weight:400;color:var(--muted);font-size:14px}
 .updbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--surface)}
 .updbox ul{margin:6px 0 0;padding-left:18px}.updbox li{font-size:14px;margin:3px 0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
@@ -1229,7 +1241,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
             + f'<p class="crumb">📖 <a href="{e(g["doc"])}" target="_blank" rel="noopener">{e(g["tool"])} 공식 문서에서 자세히 보기</a>'
             + (" · 영상: " + ", ".join(f'<a href="https://www.youtube.com/watch?v={e(v["id"])}" target="_blank" rel="noopener">'
                                        f'{e(v["author"])}</a>' for v in vids) if vids else "")
-            + "</p></article>" + nav_path
+            + "</p>" + feedback_html() + "</article>" + nav_path
             + (f'<h2 class="sec">{e(g["tool"])} 관련 새 소식</h2><div class="cards">{"".join(card(q, root) for q in news)}</div>'
                if news else "")
             + (f'<h2 class="sec">{e(g["tool"])} 기초 더 보기</h2><div class="gcards">{"".join(guide_card(o, root) for o in same)}</div>'
@@ -1501,6 +1513,7 @@ def build_refs() -> tuple[list, list]:
                    f'<p>고친 코드:</p><pre class="code"><code>{e(repro["good"])}</code></pre>' if repro else "")
                 + (f'<h2>해결됐는지 확인</h2><ul>{ul(x["check"])}</ul>' if x.get("check") else "")
                 + (f'<h2>다시 안 생기게</h2><ul class="warn">{ul(x["prevent"])}</ul>' if x.get("prevent") else "")
+                + feedback_html()
                 + f'<p class="crumb"><a href="{root}fix/">← 오류 해결 전체</a> · <a href="{root}learn/">기초 가이드</a></p></article>')
         (d / "index.html").write_text(page(f"{x['title']} | {x['tool']} 오류 해결 - {SITE_TITLE}", body, root,
                                            desc=x.get("summary", "") or x["error"], canonical=url,
@@ -1535,6 +1548,7 @@ def build_refs() -> tuple[list, list]:
                 + f'<h2>주요 변경</h2><table class="params"><thead><tr><th>분야</th><th>바뀐 점</th><th>작업자에게 의미</th></tr>'
                 f'</thead><tbody>{rows}</tbody></table>'
                 + (f'<h2>예전 파일·스크립트에 영향</h2><ul class="warn">{ul(x["breaking"])}</ul>' if x.get("breaking") else "")
+                + feedback_html()
                 + f'<p class="crumb"><a href="{root}changes/">← 버전별 바뀐 점 전체</a></p></article>')
         (d / "index.html").write_text(page(f"{x['title']} - {SITE_TITLE}", body, root, desc=x.get("summary", ""),
                                            canonical=url, extra_head=ld(x, url, "버전별 바뀐 점", f"{BASE_URL}/changes/")),
@@ -1719,6 +1733,7 @@ def build_compare() -> int:
                 + (f'<h2>툴 사이에서 넘길 때</h2><ul>{ul(x["handoff"])}</ul>' if x["handoff"] else "")
                 + (f'<h2>이렇게 응용하기</h2><ul>{ul(x["apply"])}</ul>' if x["apply"] else "")
                 + (f'<h2>자주 하는 실수</h2><ul class="warn">{ul(x["pitfalls"])}</ul>' if x["pitfalls"] else "")
+                + feedback_html()
                 + f'<p class="crumb"><a href="{root}compare/">← 툴 비교 전체</a> · <a href="{root}learn/">기초 가이드</a> · '
                   f'<a href="{root}fix/">오류 해결</a></p></article>')
         (d / "index.html").write_text(page(

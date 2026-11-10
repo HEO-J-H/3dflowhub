@@ -117,7 +117,15 @@ def fetch_pages_stats(days: int = 30) -> dict | None:
     if reports:  # 사이트 '오류 제보' 창에서 보낸 것 — selfheal 이 현황판 할 일로 올림
         core._save_json(core.ROOT / "memory" / "reports.json", {"at": datetime.now().isoformat(timespec="seconds"),
                                                                  "items": reports})
-    rows = [r for r in rows if not str(r.get("path", "")).lstrip("/").startswith("report/")]
+    fb: dict[str, dict] = {}
+    for r in rows:  # 👍👎 — 'fb/up/<경로>' 이벤트를 페이지별로 합침 (qa.feedback_targets 가 씀)
+        m = re.match(r"/?fb/(up|down)(/.*)$", str(r.get("path", "")))
+        if m:
+            d = fb.setdefault(m.group(2), {"up": 0, "down": 0, "title": r.get("title", "")})
+            d[m.group(1)] += int(r.get("count", 0))
+    if fb:
+        core._save_json(core.ROOT / "memory" / "feedback.json", {"at": datetime.now().isoformat(timespec="seconds"), "pages": fb})
+    rows = [r for r in rows if not str(r.get("path", "")).lstrip("/").startswith(("report/", "fb/"))]
     learn: dict[str, dict] = {}
     by_kind = {"news": 0, "guides": 0, "roundups": 0, "other": 0}  # 콘텐츠 종류별 조회수 (자동 모드 배분 판단용)
     for row in rows:

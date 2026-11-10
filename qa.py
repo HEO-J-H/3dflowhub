@@ -119,8 +119,45 @@ def ai_review(it: dict) -> dict | None:
         return None
 
 
+FB_MIN_DOWN = 2  # 👎 가 이만큼 이상이고 👍 보다 많으면 다시 쓰기·보강
+
+
+def feedback_targets() -> list[str]:
+    """독자 👎 가 쌓인 페이지 → 가이드·비교는 qa_redo(다시 만들기), 오류 해결은 qa_redo, 소식은 보강 대기열.
+    한 페이지는 한 번만 (fb_acted 기록) — 고친 뒤 다시 👎 가 쌓이면 그때 또."""
+    import compare
+    import guides
+    import refs
+    fb = (core._load_json(core.ROOT / "memory" / "feedback.json", {}).get("pages") or {})
+    acted = []
+    for path, d in fb.items():
+        if d.get("down", 0) < FB_MIN_DOWN or d["down"] <= d.get("up", 0):
+            continue
+        m = re.search(r"/(learn|compare|fix)/([^/]+)/", path) or re.search(r"/p/([^/]+)\.html", path)
+        if not m:
+            continue
+        if path.find("/p/") >= 0:
+            f = core.POSTS_DIR / f"{m.group(1)}.json"
+        else:
+            kind, pid = m.group(1), m.group(2)
+            f = {"learn": guides.GUIDE_DIR, "compare": compare.DIR, "fix": refs.FIX_DIR}[kind] / f"{pid}.json"
+        x = core._load_json(f, None)
+        if not isinstance(x, dict) or x.get("fb_acted") == d["down"]:
+            continue
+        if "/p/" in path:
+            x.pop("enriched", None)
+            x["qa_flag"] = True
+        else:
+            x["qa_redo"] = True
+        x["fb_acted"] = d["down"]
+        core._save_json(f, x)
+        acted.append(path)
+    return acted
+
+
 def run(sample: int = SAMPLE) -> dict:
     all_items = items()
+    fb_redo = feedback_targets()  # 독자 👎 먼저
     mech = []
     for it in all_items:
         p = mechanical(it)
@@ -159,7 +196,7 @@ def run(sample: int = SAMPLE) -> dict:
               "mechanical_by_problem": Counter(p for m in mech for p in m["problems"]).most_common(),
               "mechanical": mech[:60], "reviews": history,
               "avg_score": round(sum(r["score"] for r in history) / len(history), 1) if history else None,
-              "low_by_kind": dict(low), "redo_now": redo}
+              "low_by_kind": dict(low), "redo_now": redo, "reader_downvoted": fb_redo}
     core._save_json(REPORT_PATH, report)
     _escalate(history)
     return report
