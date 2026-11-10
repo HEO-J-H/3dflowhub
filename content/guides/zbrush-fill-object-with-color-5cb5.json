@@ -1,0 +1,98 @@
+{
+  "id": "zbrush-fill-object-with-color-5cb5",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "페인트",
+  "name": "Fill object with color",
+  "title": "색 채우기",
+  "summary": "Fill Object는 현재 전경색으로 선택한 SubTool 전체를 한 번에 색칠해 주는 기능입니다.",
+  "when": [
+    "전체 메시에 단색을 빠르게 입히고 싶을 때",
+    "Polypaint 작업 전 기본 색을 지정하고 싶을 때",
+    "머티리얼이 투명하거나 베이스 컬러가 필요할 때"
+  ],
+  "steps": [
+    "SubTool palette → 원하는 SubTool 선택",
+    "Color palette에서 전경색(Foreground) 설정 (RGB 슬라이더 또는 Color Picker)",
+    "Color palette에서 Colorize 버튼을 켜서 Polypaint 활성화",
+    "Color palette → Fill Object 버튼 클릭 (또는 Shift+F) → 전체 메시에 색이 채워짐"
+  ],
+  "params": [
+    {
+      "name": "Fill Object",
+      "desc": "전경색으로 SubTool 전체를 채웁니다"
+    },
+    {
+      "name": "Colorize",
+      "desc": "Polypaint 모드를 켜서 색상이 보이게 합니다"
+    },
+    {
+      "name": "Foreground Color",
+      "desc": "채울 색을 지정합니다"
+    },
+    {
+      "name": "RGB Sliders",
+      "desc": "색상의 R·G·B 값을 직접 조정합니다"
+    },
+    {
+      "name": "HSV Sliders",
+      "desc": "색상의 색조·채도·명도를 조정합니다"
+    },
+    {
+      "name": "Alpha (Opacity)",
+      "desc": "색상의 투명도를 설정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "단색 베이스 컬러 지정",
+      "steps": [
+        "새 SubTool을 로드하고 전경색을 파란색으로 설정",
+        "Colorize 활성화 후 Fill Object 실행 → 전체 메시에 파란색이 적용"
+      ]
+    },
+    {
+      "title": "Polypaint 전 준비 단계",
+      "steps": [
+        "모델을 로드하고 전경색을 회색으로 선택",
+        "Colorize 켜고 Fill Object → 기본 회색 베이스가 생김",
+        "이후 Brush로 세부 색을 입히면 색이 겹쳐 보임"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Colorize를 켜지 않음 → 색이 보이지 않음 → Color palette에서 Colorize 버튼을 활성화",
+    "잘못된 SubTool을 선택 → 원하지 않는 메시에 색이 채워짐 → SubTool palette에서 올바른 레이어 선택",
+    "전경색이 검은색이거나 알파가 0% → 색이 보이지 않음 → Foreground Color와 Alpha 값을 확인"
+  ],
+  "related": [
+    "Polypaint",
+    "Colorize",
+    "Color Picker",
+    "Material"
+  ],
+  "videos": [
+    {
+      "id": "5lsIqMNMI6g",
+      "title": "ZBrush - Filling Subtools with a Material and Color",
+      "author": "The Creature Creator"
+    },
+    {
+      "id": "1aJaP50vkp8",
+      "title": "029 Color Fill",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Fill%20object%20with%20color",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "SubTool",
+    "Color",
+    "Foreground",
+    "RGB",
+    "Color Picker",
+    "Colorize"
+  ],
+  "at": "2026-11-10T04:42:27.875595+00:00"
+}

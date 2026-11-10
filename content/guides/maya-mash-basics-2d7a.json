@@ -1,0 +1,101 @@
+{
+  "id": "maya-mash-basics-2d7a",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "이펙트",
+  "name": "MASH basics",
+  "title": "MASH — 모션 그래픽 복제",
+  "summary": "MASH는 Maya의 절차적 복제·애니메이션 툴로, 대량 오브젝트를 빠르게 배치하고 동적으로 제어합니다.",
+  "when": [
+    "수백~수천 개의 오브젝트를 한 번에 배치하고 싶을 때",
+    "복제된 오브젝트에 애니메이션·노이즈를 적용해 자연스러운 움직임을 만들고 싶을 때",
+    "리얼타임 Viewport에서 퍼포먼스를 유지하며 복제 작업을 반복하고 싶을 때"
+  ],
+  "steps": [
+    "Maya 메뉴에서 Create → MASH → Create MASH Network 선택 (Hotkey: Shift+Ctrl+M)",
+    "MASH Network 에디터가 열리면 Add Node → Repro 선택하여 MASH Repro 노드 추가",
+    "복제할 원본 오브젝트를 선택하고 MASH Network의 Input에 드래그",
+    "MASH Repro 노드의 Distribution 탭에서 Count와 Distribution Type을 설정",
+    "Viewport에서 결과를 확인하고 필요 시 Offset·Scale·Rotation 파라미터 조정"
+  ],
+  "params": [
+    {
+      "name": "Count",
+      "desc": "복제할 오브젝트 수를 지정합니다"
+    },
+    {
+      "name": "Distribution",
+      "desc": "복제 위치 패턴을 선택합니다 (Grid, Scatter 등)"
+    },
+    {
+      "name": "Offset",
+      "desc": "복제된 오브젝트의 전체 위치 오프셋을 조정합니다"
+    },
+    {
+      "name": "Scale",
+      "desc": "복제된 오브젝트의 전체 스케일을 조절합니다"
+    },
+    {
+      "name": "Rotation",
+      "desc": "복제된 오브젝트의 전체 회전을 설정합니다"
+    },
+    {
+      "name": "Blend",
+      "desc": "다중 MASH 노드 간의 가중치를 혼합합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 배열",
+      "steps": [
+        "파이프 모델을 하나 만든 뒤 선택",
+        "Create → MASH → Create MASH Network",
+        "MASH Repro 의 Distribution을 Grid 로 설정, Count를 5×1×1 로 지정",
+        "Offset X 값을 조정해 파이프 간 간격을 맞춤"
+      ]
+    },
+    {
+      "title": "나뭇잎 클러스터",
+      "steps": [
+        "단일 나뭇잎 모델을 준비",
+        "MASH Network 생성 후 Distribution을 Scatter 로 선택",
+        "Count를 200 정도로 설정하고 Noise Strength 로 자연스러운 위치 변동 적용",
+        "Scale 파라미터에 Random 값을 켜서 크기 변화를 줌"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Count 값을 과도하게 크게 설정 → Viewport가 느려짐. → 필요 수보다 적게 설정하고 Viewport 2.0의 Display → Geometry → Instancing 옵션 활용",
+    "원본 오브젝트에 Transform이 적용되지 않음 → Apply Transform (Modify → Freeze Transformations) 후 MASH에 연결",
+    "MASH Repro 의 Output Geometry가 비활성화 → Output 탭에서 Geometry 체크를 활성화"
+  ],
+  "related": [
+    "MASH Instancer",
+    "MASH Blend",
+    "MASH Dynamics",
+    "MASH Network"
+  ],
+  "videos": [
+    {
+      "id": "KEEPzJTADQk",
+      "title": "Maya MASH - Intro - 2 min Tutorial",
+      "author": "marc russo"
+    },
+    {
+      "id": "YYW-vzXz8ZU",
+      "title": "MAYA TUTORIAL | MASH Dynamics basics",
+      "author": "Nexttut"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20MASH%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Maya",
+    "Create",
+    "MASH",
+    "Create MASH Network",
+    "Hotkey"
+  ],
+  "at": "2026-11-10T04:42:12.377630+00:00"
+}

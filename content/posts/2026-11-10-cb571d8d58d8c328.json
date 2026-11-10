@@ -1,55 +1,102 @@
 {
-  "title_ko": "Gaussian Splatting·World Model로 영상 → 디지털 트윈 생성 (20프레임, 200크레딧)",
+  "title_ko": "비디오에서 디지털 트윈까지: 월드 모델·Gaussian Splatting 탐구",
   "title": "From Video to Digital Twin: An Exploratory Study of World Models and Gaussian Splatting on In-the-Wild Video",
   "url": "https://arxiv.org/abs/2611.10013v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
+    "디지털트윈",
     "World Model",
-    "디지털 트윈",
+    "Gaussian Splatting",
     "OpenUSD",
-    "비용"
+    "3D Reconstruction"
   ],
-  "summary": "상업용 World Model과 Gaussian Splatting을 이용해 20프레임 영상만으로 747,000개의 splat을 200크레딧(20¢)에 디지털 트윈으로 재구성했다.",
-  "insight": "20프레임만으로 747k개의 Gaussian splat을 200크레딧에 생성한다는 비용 구조는 소규모 프로젝트에서도 시도해볼 만한 수준이다. CPU‑기반 최적화가 충분히 빠르지만, 경로 외부 품질 저하를 감안해 촬영 경로를 전략적으로 배치하면 결과물을 크게 개선할 수 있다. OpenUSD 변환 파이프라인을 구축하면 Blender와 Omniverse 사이의 데이터 교환이 매끄럽게 이루어진다.",
+  "summary": "공개 뉴스 영상만으로 세계 모델과 3D Gaussian Splatting을 이용해 메트릭 스케일 디지털 트윈을 생성하고, 그 정확도와 한계를 정량적으로 평가했습니다.",
+  "insight": "가능성: 3D 아티스트가 현장 촬영 영상만으로 저비용 디지털 트윈 초안을 빠르게 만들 수 있어, 초기 레이아웃 검토나 시각화 작업에 활용할 수 있습니다. 가능성: OpenUSD 기반 파이프라인을 이용하면 Blender·Omniverse 등 다양한 툴에서 동일 데이터를 바로 불러와 수정·애니메이션 작업을 이어갈 수 있습니다.",
   "try_it": [
-    "World Model API 키를 발급받고 20프레임 정도의 영상을 추출한다.",
-    "추출한 프레임을 입력으로 CPU‑기반 Gaussian Splat 최적화 툴을 실행한다.",
-    "생성된 splat 데이터를 OpenUSD 형식으로 변환하고 Blender에서 임포트한다.",
-    "필요시 NVIDIA Omniverse에 업로드해 실시간 뷰어로 검증한다"
+    "1. GitHub 저장소(https://github.com/pikulsomesh/foodbank-spatial-twin)를 클론합니다.",
+    "2. README에 따라 blur‑aware 프레임 추출 스크립트를 실행해 입력 프레임을 준비합니다.",
+    "3. 제공된 API 키로 세계 모델 서비스에 프레임을 전송하고 Gaussian‑splat 결과를 받습니다.",
+    "4. scripts/convert_to_usd.py를 사용해 반환된 splat을 OpenUSD(.usdz)와 SPZ 파일로 변환합니다."
   ],
   "sections": [
     {
-      "heading": "입력 영상 및 실험 설정",
-      "body": "논문은 공개된 뉴스 영상(식품 은행 창고)에서 20프레임만을 사용했다. 영상에는 진행자가 지속적으로 움직이며 배경에 사람과 물체가 등장한다. 실험은 상업용 World Model API와 CPU‑기반 Gaussian Splat 최적화를 각각 적용했다."
+      "heading": "무엇을 풀려는가",
+      "body": "비정형(in‑the‑wild) 영상에서 별도 CAD·스캔·현장 방문 없이 실제 공간의 3D 기하와 카메라 포즈를 복원할 수 있는지, 그리고 관찰되지 않은 영역을 생성 모델이 메우는지 조사했습니다."
     },
     {
-      "heading": "World Model이 복원한 카메라와 깊이",
-      "body": "World Model은 20프레임에서 카메라 포즈와 metric depth를 추정했다. 추정된 깊이는 세 구역에 대해 747,000개의 splat으로 변환되었다. 이 과정에서 사용된 비용은 200크레딧(≈20 센트)뿐이었다."
+      "heading": "핵심 아이디어",
+      "body": "상업용 세계 모델 API가 반환하는 Gaussian‑splat 세계를 OpenUSD 형식으로 변환하고, 부족한 영역은 Blender Script로 만든 시설 모델로 보완하는 3단계 파이프라인을 제안했습니다."
     },
     {
-      "heading": "Gaussian Splat 최적화와 품질",
-      "body": "CPU에서 로컬로 최적화된 Gaussian splat 모델은 촬영 경로 근처에서 포토리얼리스틱한 결과를 보였다. 그러나 경로에서 멀어질수록 품질이 급격히 떨어졌다. 보이지 않는 영역을 제외한 픽셀에서 PSNR은 21.2 dB와 23.1 dB를 기록했으며, 프레임 수를 8개로 제한하면 3.8 dB와 5.4 dB가 감소했다."
+      "heading": "방법 (단계)",
+      "body": "1) Blur‑aware 프레임 추출 → 세계 모델에 입력 → Gaussian‑splat 결과 반환\n2) 반환된 splat을 메트릭(미터)·Y‑up 좌표계로 정규화하고 OpenUSD stage와 SPZ 파일, 메타데이터로 저장\n3) AWS Lambda 기반 서버리스 API가 JSON 형태의 텔레메트리 데이터를 제공하고, NVIDIA Omniverse·브라우저·Blender가 동일 USD를 Visualize도록 연결했습니다."
     },
     {
-      "heading": "Metric USD 변환 및 활용",
-      "body": "World Model 출력물을 유효한 metric OpenUSD 자산으로 변환하려면 몇 가지 보정이 필요했다. 변환된 USD는 native splat schema를 사용해 데이터 레이어, 브라우저 뷰어, Blender, NVIDIA Omniverse와 연결된다. 이를 통해 제작자는 동일한 3DGS 데이터를 다양한 툴에서 바로 활용할 수 있다."
+      "heading": "결과 (논문 수치)",
+      "body": "상업용 세계 모델이 20프레임으로 3개 구역의 카메라 포즈와 메트릭 깊이를 복원했으며, 이를 747,000개의 Gaussian splat(200 credits, 20 US cents)으로 융합했습니다. 보유 프레임에서 사람을 마스크 처리한 후 PSNR은 64프레임 학습 시 21.2 dB, 43프레임 학습 시 23.1 dB였고, 세계 모델이 허용하는 8프레임만 사용하면 각각 3.8 dB·5.4 dB 감소했습니다. 사람 배경을 제거하면 PSNR이 상승했지만 관측되지 않은 픽셀 영역에서는 정확도가 떨어졌습니다."
     },
     {
-      "heading": "비용과 적용 시나리오",
-      "body": "200크레딧(20 센트)이라는 저비용으로 metric‑scale 디지털 트윈을 만들 수 있다는 점이 핵심이다. 제한된 촬영 환경이나 현장 엔지니어가 빠르게 3D 복제본을 필요로 할 때 적합하다. 다만 관찰되지 않은 영역의 외삽은 아직 상용 수준에 미치지 못한다."
+      "heading": "제한점·아직 못 하는 것",
+      "body": "관찰되지 않은 영역에 대한 생성 단계가 제공자 측 오류로 두 차례 실패해 평가할 수 없었으며, 사람·동적인 객체가 많은 장면에서는 품질이 급격히 저하됩니다. 또한 세계 모델이 생성한 새로운 뷰는 현재 실시간 렌더링이 아닌 Script 기반 보완 모델에 의존합니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "논문에서 사용된 코드와 데이터는 GitHub에 공개되었습니다: https://github.com/arXiv/html_feedback, https://github.com/brucemiller/LaTeXML, https://github.com/pikulsomesh/foodbank-spatial-twin."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "연구에 사용된 원본 영상의 길이와 Resolution는?",
+      "a": "18분 32초, 1920×1080 Resolution, 59.94 fps."
+    },
+    {
+      "q": "Gaussian splat 모델에 포함된 스플랫 수와 비용은?",
+      "a": "약 747,000개의 Gaussian splat이며, 200 credits(≈20 US cents) 비용이 소요되었습니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/contact_sheet.jpg",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/contact_sheet.jpg",
+        "caption": "Figure 2 : The eight input frames from the racking aisle, 1920 × \\times 816\npixels after cropping the broadcast graphic. The sorting room and market\ninputs are in the repository.",
+        "caption_ko": "레킹 통로에서 추출한 8개의 입력 프레임 (1920×816 픽셀, 방송 그래픽 크롭) – 정렬실·시장 입력은 저장소에 포함"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/racking_preview.jpg",
+        "caption": "(a)",
+        "caption_ko": ""
+      },
+      {
+        "src": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/racking_preview.jpg",
+        "caption": "(a)",
+        "caption_ko": ""
+      },
+      {
+        "src": "https://arxiv.org/html/2611.10013v1/2611.10013v1/figures/site_preview.jpg",
+        "caption": "(b)",
+        "caption_ko": ""
+      }
+    ]
   },
   "collected_at": "2026-11-10T04:00:35.779581+00:00",
   "notion_id": "",
   "id": "2026-11-10-cb571d8d58d8c328",
   "img_tried": true,
-  "enriched": "2026-11-10"
+  "enriched": "2026-11-10",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/pikulsomesh/foodbank-spatial-twin"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-10T04:43:33+00:00"
 }
