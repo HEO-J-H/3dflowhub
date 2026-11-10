@@ -1,0 +1,84 @@
+{
+  "id": "zbrush-move-topological-03be",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Move Topological",
+  "title": "Move Topological",
+  "summary": "ZBrush의 Move Topological 브러시는 메쉬가 서로 연결된 Topology 기준으로만 형태를 변형하여, 가까이 있는 다른 메쉬 파츠에 영향을 주지 않고 안전하게 스컬프팅할 수 있는 도구입니다.",
+  "when": [
+    "옷의 겹쳐진 주름이나 몸에 붙은 장갑의 형태를 수정할 때",
+    "캐릭터의 손가락이나 좁은 틈새 사이의 메쉬를 변형할 때",
+    "서로 밀접하게 붙어 있는 독립된 메쉬 오브젝트 중 하나만 선택하여 당기고 싶을 때"
+  ],
+  "steps": [
+    "상단의 Brush Palette를 클릭하거나 B 키를 눌러 브러시 팔레트를 엽니다.",
+    "키보드 M, T 순서로 눌러 Move Topological 브러시를 선택합니다 (또는 브러시 목록에서 MoveTopological 선택).",
+    "S 키를 눌러 브러시 크기(Draw Size)를 조절합니다.",
+    "변형하고 싶은 메쉬 영역 위에 Mouse를 올리고 클릭 앤 드래그하여 형태를 밀고 당깁니다.",
+    "Viewport에서 연결된 Topology만 변형되고 인접한 다른 파츠는 유지되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 전체 크기를 조절하여 영향 범위를 설정합니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 밀고 당겨지는 힘의 강도를 조절합니다."
+    },
+    {
+      "name": "Topological",
+      "desc": "공간적 거리가 아닌 Topology 연결성을 기준으로 영향을 제한합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "옷자락 주름 수정하기",
+      "steps": [
+        "Move Topological 브러시를 선택합니다.",
+        "옷의 겹친 부분 중 바깥쪽 레이어만 클릭하여 당깁니다.",
+        "안쪽 옷 레이어에 침범하지 않고 자연스러운 주름을 만듭니다."
+      ]
+    },
+    {
+      "title": "손가락 사이 간격 조정하기",
+      "steps": [
+        "지오메트리가 밀집된 손가락 영역에 브러시 크기를 작게 설정합니다.",
+        "원하는 손가락 메쉬만 선택하여 바깥쪽으로 당깁니다.",
+        "인접한 다른 손가락이 딸려오지 않는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 Move 브러시와 혼동하여 사용 → 가까운 다른 메쉬 파츠까지 함께 변형될 때는 Move Topological 브러시로 변경하세요.",
+    "브러시 크기가 너무 큼 → 원하지 않는 인접 토폴로지까지 영향권에 들어갈 수 있으므로 S 키로 크기를 줄여서 사용하세요."
+  ],
+  "related": [
+    "Move",
+    "Elastic",
+    "SnakeHook",
+    "MaskPen"
+  ],
+  "videos": [
+    {
+      "id": "FsC6PhYfPV4",
+      "title": "ZBrush - Move Topological Tool",
+      "author": "The Creature Creator"
+    },
+    {
+      "id": "-YogK3MNW68",
+      "title": "ZBrush - Move Topological Brush",
+      "author": "The Creature Creator"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Move%20Topological",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Brush Palette",
+    "Move Topological",
+    "MoveTopological"
+  ],
+  "at": "2026-11-10T01:10:54.868488+00:00"
+}

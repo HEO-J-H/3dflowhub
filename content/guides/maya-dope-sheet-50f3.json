@@ -1,0 +1,95 @@
+{
+  "id": "maya-dope-sheet-50f3",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Dope Sheet",
+  "title": "Dope Sheet",
+  "summary": "Maya의 Dope Sheet는 애니메이션 Keyframe의 타이밍과 간격을 스프레드시트 형태로 한눈에 파악하고 수정하는 도구입니다. 여러 오브젝트의 애니메이션을 동시에 밀고 당기며 전체적인 템포를 조절할 때 사용합니다.",
+  "when": [
+    "캐릭터나 오브젝트의 전체 애니메이션 속도를 빠르게 하거나 느리게 늘리고 싶을 때",
+    "여러 오브젝트의 등장 타이밍이나 동작 간격을 한 화면에서 비교하고 맞출 때",
+    "특정 구간의 Keyframe을 통째로 복사하거나 다른 시간대로 이동할 때"
+  ],
+  "steps": [
+    "애니메이션 Keyframe이 설정된 오브젝트를 뷰포트나 Outliner에서 선택합니다.",
+    "상단 메뉴에서 Windows → Animation Editors → Dope Sheet 를 클릭하여 창을 엽니다.",
+    "Dope Sheet 좌측 계층 구조(Outliner 뷰)에서 애니메이션 채널을 확인합니다.",
+    "Timeline 영역에서 Mouse 드래그로 원하는 키프레임들을 박스 선택합니다.",
+    "선택한 Keyframe 테두리의 변형 핸들을 좌우로 드래그하거나 이동하여 타이밍을 조절합니다.",
+    "Viewport 재생(Play 버튼 또는 Alt+V)을 눌러 수정된 애니메이션 타이밍을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Outliner",
+      "desc": "Dope Sheet 좌측에서 애니메이션이 적용된 오브젝트와 채널 계층을 보여줍니다."
+    },
+    {
+      "name": "Time Slider",
+      "desc": "현재 프레임 위치를 표시하고 재생 구간을 설정하는 상단/하단 영역입니다."
+    },
+    {
+      "name": "Summary",
+      "desc": "계층 구조 최상단에서 하위 오브젝트들의 모든 Keyframe을 요약하여 보여줍니다."
+    },
+    {
+      "name": "Scale Keys Tool",
+      "desc": "선택한 키프레임들의 간격을 비율(Scale)에 따라 늘리거나 줄입니다."
+    },
+    {
+      "name": "Move Keys Tool",
+      "desc": "선택한 키프레임들을 시간 축을 따라 전체적으로 이동시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 등장 타이밍 전체 지연시키기",
+      "steps": [
+        "Windows → Animation Editors → Dope Sheet를 엽니다.",
+        "Summary 바를 드래그하여 모든 Keyframe을 선택합니다.",
+        "선택된 Keyframe 블록을 우측(뒤쪽 프레임)으로 드래그합니다."
+      ]
+    },
+    {
+      "title": "특정 동작 속도 빠르게 늘리기/줄이기",
+      "steps": [
+        "Dope Sheet에서 조절할 구간의 키프레임들을 박스 드래그로 선택합니다.",
+        "선택 영역 우측 끝에 나타나는 크기 조절 핸들을 잡습니다.",
+        "안쪽이나 바깥쪽으로 드래그하여 애니메이션 재생 속도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Keyframe이 선택되지 않은 상태에서 이동을 시도함 → Dope Sheet 안에서 Mouse 드래그로 Keyframe(빨간색 막대)이 정확히 선택되었는지 확인 후 이동합니다.",
+    "전체 Summary가 아닌 특정 채널만 움직여 타이밍이 어긋남 → 전체 오브젝트의 간격을 맞출 때는 최상단 Summary 바를 활용해 함께 이동합니다."
+  ],
+  "related": [
+    "Graph Editor",
+    "Time Slider",
+    "Trax Editor",
+    "Outliner"
+  ],
+  "videos": [
+    {
+      "id": "DdPhW56MSgw",
+      "title": "HOW TO USE MAYA'S DOPE SHEET - Maya Tutorial",
+      "author": "Skitty Animates"
+    },
+    {
+      "id": "7zazvdNkgac",
+      "title": "DYK about Maya’s DOPE sheet?  #tutorial #maya #3d #animation",
+      "author": "Maya Learning Channel"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Dope%20Sheet",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Keyframe",
+    "Outliner",
+    "Windows",
+    "Animation Editors",
+    "Dope Sheet"
+  ],
+  "at": "2026-11-10T01:10:51.451257+00:00"
+}
