@@ -31359,5 +31359,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T23:44:03+00:00",
+    "kind": "proposal",
+    "id": "p-964118f654",
+    "title": "로컬 파이프라인 RAG 검색 기능 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 RAG 통합 PR #59가 머지되었으나 관련 신규 기능에 대한 충분한 단위 테스트 검증이 필요합니다.",
+    "proposal": "backend/tests/test_rag.py 파일을 추가하여 새로 도입된 RAG 검색 및 통합 기능의 기본 동작을 검증합니다.",
+    "expected": "RAG 기능의 안정성 확보 및 회귀 오류 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T23:44:03+00:00",
+    "kind": "proposal",
+    "id": "p-4fdad6f5f1",
+    "title": "웹 브라우저 PBR 텍스처 변환 예외 처리 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저에서 처리하는 PBR 변환 관련 유닛 테스트 제안이 반복적으로 거절되었으므로 실제 JS Script의 에러 핸들링을 보완해야 합니다.",
+    "proposal": "web/app.js 파일의 텍스처 변환 및 이미지 로드 실패 시 사용자 알림 및 예외 처리 로직을 수정합니다.",
+    "expected": "잘못된 이미지 입력 시 웹 UI의 안정성과 사용자 경험 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T23:44:23.808362+00:00",
+    "kind": "decision",
+    "id": "p-964118f654",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 검색 기능 단위 테스트",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T23:44:23.833597+00:00",
+    "kind": "decision",
+    "id": "p-4fdad6f5f1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 가이드 보강",
+    "auto": true
   }
 ]
