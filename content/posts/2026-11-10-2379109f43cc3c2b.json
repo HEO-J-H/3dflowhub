@@ -1,0 +1,53 @@
+{
+  "title_ko": "NVIDIA Holoscan 5로 로봇 팔 무게감 없애기 구현",
+  "title": "Make a Robot Arm Feel Weightless with NVIDIA Holoscan 5",
+  "url": "https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "NVIDIA Holoscan",
+    "Pinocchio",
+    "Seeed Studio reBot",
+    "Nsight Systems",
+    "로보틱스"
+  ],
+  "summary": "NVIDIA Holoscan 5와 Pinocchio 라이브러리를 활용해 Seeed Studio reBot 팔의 중력 보상 제어 루프를 구축하는 방법입니다.",
+  "insight": "NVIDIA Holoscan 5는 400 Hz 주기로 관절 상태를 읽고 역동역학을 연산해 지연 시간을 크게 줄입니다. C++ 및 Python 구현에서 CPU 코어 고정 설정만으로 p99.99 지연 시간을 각각 약 5배, 9.6배 단축할 수 있습니다.",
+  "try_it": [
+    "NVIDIA Holoscan 5 SDK를 시스템에 다운로드합니다.",
+    "Pinocchio 라이브러리와 Seeed Studio reBot Arm B601-DM 환경을 연동합니다.",
+    "Nsight Systems 프로파일링 툴을 실행해 제어 파티션의 CPU 코어 고정 전후 지연 시간을 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Holoscan 5 기반 중력 보상 루프 구축",
+      "body": "NVIDIA Holoscan 5는 단일 프로그래밍 모델 안에서 저지연 로봇 제어와 고처리량 인식을 동시에 처리합니다. 3개의 커스텀 오퍼레이터로 구성된 중력 보상 루프는 400 Hz 속도로 관절 상태를 읽습니다. 이 데이터는 Pinocchio를 통해 역동역학 계산을 거쳐 motorbridge 라이브러리로 Seeed Studio reBot Arm B601-DM에 토크 명령을 보냅니다."
+    },
+    {
+      "heading": "파티션 구조와 큐를 통한 지연 시간 최적화",
+      "body": "Holoscan 파티션은 오퍼레이터 체인을 단일 스레드에 그룹화하여 스레드 간 핸드오프와 불필요한 시스템 콜을 방지합니다. 클록 및 데이터 도착 트리거는 작업 실행 시점을 명시적으로 표현하며 드롭 올디스트 큐는 오래된 샘플이 쌓이는 것을 막아줍니다. 이를 통해 제어 경로의 지연 시간과 지터를 최소화합니다."
+    },
+    {
+      "heading": "Nsight Systems 프로파일링 결과",
+      "body": "내장된 NVTX 어노테이션이 포함된 Nsight Systems 프로파일링을 통해 성능을 측정할 수 있습니다. 제어 파티션을 특정 CPU 코어에 고정하는 설정은 C++ 구현의 p99.99 지연 시간을 약 5배 줄여줍니다. Python 구현의 경우 동일한 설정에서 지연 시간이 약 9.6배 감소하는 결과를 보여줍니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA Holoscan 5는 어떤 하드웨어 환경에서 테스트되었나요?",
+      "a": "Jetson Orin Nano, Jetson Thor, 그리고 x86 Ubuntu 24.04 시스템에서 테스트되었습니다."
+    },
+    {
+      "q": "중력 보상 루프에서 토크 명령을 받는 로봇 팔 기종은 무엇인가요?",
+      "a": "Seeed Studio reBot Arm B601-DM 모델이 사용되며 motorbridge 라이브러리를 통해 제어 명령을 전달받습니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/featured-image.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-10T02:49:33.635730+00:00",
+  "notion_id": "",
+  "id": "2026-11-10-2379109f43cc3c2b"
+}

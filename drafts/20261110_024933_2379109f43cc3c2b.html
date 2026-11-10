@@ -1,0 +1,19 @@
+<!-- TITLE: NVIDIA Holoscan 5로 로봇 팔 무게감 없애기 구현 | TAGS: NVIDIA Holoscan,Pinocchio,Seeed Studio reBot,Nsight Systems,로보틱스,튜토리얼·팁 | CATEGORY: AI 3D/로보틱스·월드모델 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/featured-image.webp" alt="NVIDIA Holoscan 5로 로봇 팔 무게감 없애기 구현" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA Holoscan 5와 Pinocchio 라이브러리를 활용해 Seeed Studio reBot 팔의 중력 보상 제어 루프를 구축하는 방법입니다.</p>
+<p style="color:#888;">분류: AI 3D › 로보틱스·월드모델 › 튜토리얼·팁</p>
+<h2>Holoscan 5 기반 중력 보상 루프 구축</h2>
+<p>NVIDIA Holoscan 5는 단일 프로그래밍 모델 안에서 저지연 로봇 제어와 고처리량 인식을 동시에 처리합니다. 3개의 커스텀 오퍼레이터로 구성된 중력 보상 루프는 400 Hz 속도로 관절 상태를 읽습니다. 이 데이터는 Pinocchio를 통해 역동역학 계산을 거쳐 motorbridge 라이브러리로 Seeed Studio reBot Arm B601-DM에 토크 명령을 보냅니다.</p>
+<h2>파티션 구조와 큐를 통한 지연 시간 최적화</h2>
+<p>Holoscan 파티션은 오퍼레이터 체인을 단일 스레드에 그룹화하여 스레드 간 핸드오프와 불필요한 시스템 콜을 방지합니다. 클록 및 데이터 도착 트리거는 작업 실행 시점을 명시적으로 표현하며 드롭 올디스트 큐는 오래된 샘플이 쌓이는 것을 막아줍니다. 이를 통해 제어 경로의 지연 시간과 지터를 최소화합니다.</p>
+<h2>Nsight Systems 프로파일링 결과</h2>
+<p>내장된 NVTX 어노테이션이 포함된 Nsight Systems 프로파일링을 통해 성능을 측정할 수 있습니다. 제어 파티션을 특정 CPU 코어에 고정하는 설정은 C++ 구현의 p99.99 지연 시간을 약 5배 줄여줍니다. Python 구현의 경우 동일한 설정에서 지연 시간이 약 9.6배 감소하는 결과를 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NVIDIA Holoscan 5는 400 Hz 주기로 관절 상태를 읽고 역동역학을 연산해 지연 시간을 크게 줄입니다. C++ 및 Python 구현에서 CPU 코어 고정 설정만으로 p99.99 지연 시간을 각각 약 5배, 9.6배 단축할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA Holoscan 5는 어떤 하드웨어 환경에서 테스트되었나요?</b><br/>A. Jetson Orin Nano, Jetson Thor, 그리고 x86 Ubuntu 24.04 시스템에서 테스트되었습니다.</p>
+<p><b>Q. 중력 보상 루프에서 토크 명령을 받는 로봇 팔 기종은 무엇인가요?</b><br/>A. Seeed Studio reBot Arm B601-DM 모델이 사용되며 motorbridge 라이브러리를 통해 제어 명령을 전달받습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-86c270bf47b54ff7.html">NVIDIA, 한국 AI 스타트업 투자 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-6e07690c27eb09da.html">NVIDIA GR00T 2 출시 — 시뮬레이션 기반 로봇 조작 모델 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-a840098ac4436b98.html">NVIDIA Cosmos — 인터랙티브 시뮬레이션을 위한 월드 모델 구축</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/make-a-robot-arm-feel-weightless-with-nvidia-holoscan-5/" target="_blank" rel="noopener nofollow">Make a Robot Arm Feel Weightless with NVIDIA Holoscan 5</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

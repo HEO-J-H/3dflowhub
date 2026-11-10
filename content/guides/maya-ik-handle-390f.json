@@ -1,0 +1,94 @@
+{
+  "id": "maya-ik-handle-390f",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "리깅",
+  "name": "IK Handle",
+  "title": "IK Handle",
+  "summary": "Maya IK Handle은 스켈레톤 체인에 역기 운동학(Inverse Kinematics)을 적용하여, 관절의 끝을 잡고 자연스럽게 움직이거나 포즈를 잡을 수 있게 해주는 핵심 애니메이션 도구입니다.",
+  "when": [
+    "사람이나 크리처의 다리와 팔처럼 끝부분을 고정하고 움직여야 할 때",
+    "바닥에 닿는 발이 미끄러지지 않도록 고정(Foot Locking)할 때",
+    "로봇 팔이나 기계 장치처럼 끝단을 기준으로 연쇄적인 관절 움직임을 만들 때"
+  ],
+  "steps": [
+    "상단 메뉴 세트를 Animation 또는 Rigging으로 전환합니다.",
+    "메뉴바에서 Skeleton > Create IK Handle 옵션 박스를 엽니다.",
+    "옵션에서 IK Solver를 설정합니다 (일반적으로 ikRPsolver 또는 ikSCsolver 선택).",
+    "뷰포트나 Outliner에서 체인의 시작 관절(Root Joint)을 클릭한 후, 끝 관절(End Joint)을 클릭하여 IK Handle을 생성합니다.",
+    "Outliner에서 생성된 ikHandle1을 선택하고 W 키를 눌러 이동시키며 관절이 움직이는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "IK Solver",
+      "desc": "관절을 계산하는 알고리즘 방식을 선택합니다 (ikRPsolver, ikSCsolver 등)."
+    },
+    {
+      "name": "Weight",
+      "desc": "여러 IK Handle이 겹칠 때 영향력의 가중치를 조절합니다."
+    },
+    {
+      "name": "Sticky",
+      "desc": "애니메이션 재생 시 현재 위치에 IK Handle을 고정합니다."
+    },
+    {
+      "name": "Enable Position",
+      "desc": "위치 값에 따른 IK 계산 활성화 여부를 결정합니다."
+    },
+    {
+      "name": "Enable Twist",
+      "desc": "관절 체인의 비틀림 각도를 허용하거나 고정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 걷기 사이클 발목 고정",
+      "steps": [
+        "골반부터 발끝까지 이어지는 다리 조인트 체인을 준비합니다.",
+        "Create IK Handle 도구로 고관절부터 발목까지 연결합니다.",
+        "발목 IK Handle을 바닥 위치에 고정하고 애니메이션 키를 입력합니다."
+      ]
+    },
+    {
+      "title": "로봇 팔 끝단 제어",
+      "steps": [
+        "다중 관절로 구성된 로봇 팔 조인트를 생성합니다.",
+        "첫 관절과 마지막 손목 조인트 사이에 ikSCsolver 기반 IK Handle을 생성합니다.",
+        "IK Handle을 타겟 목표 지점에 스냅하여 정확한 위치를 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "시작 관절과 끝 관절을 반대로 선택함 → Create IK Handle 시 반드시 루트(상위) 관절을 먼저 클릭하고 끝 관절을 클릭해야 합니다.",
+    "IK Handle이 조인트 계층 구조 밖에 생성됨 → 올바른 IK 제어를 위해 생성 후 적절한 Controller 그룹 하위로 parent(P 키) 시켜 정리합니다.",
+    "관절이 꺾이는 방향이 어긋남 → ikRPsolver 사용 시 Pole Vector Constraint를 추가하여 무릎이나 팔꿈치의 꺾이는 방향을 바로잡습니다."
+  ],
+  "related": [
+    "Pole Vector Constraint",
+    "IK Spline Handle",
+    "Orient Constraint",
+    "Cluster"
+  ],
+  "videos": [
+    {
+      "id": "qbrfbEI16sM",
+      "title": "Maya IK Handle in a Minute",
+      "author": "askNK"
+    },
+    {
+      "id": "C5_txR2A6Bg",
+      "title": "Create IK Handle In Maya | IK Handle Basics Tutorial | IK Rigging In Maya | IK Hand Rigging",
+      "author": "3D Knowledge"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20IK%20Handle",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Animation",
+    "Rigging",
+    "Skeleton",
+    "Create IK Handle"
+  ],
+  "at": "2026-11-10T02:49:45.923438+00:00"
+}
