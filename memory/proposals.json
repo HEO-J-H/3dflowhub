@@ -29524,5 +29524,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T16:54:06+00:00",
+    "kind": "proposal",
+    "id": "p-fa9d6a0799",
+    "title": "웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 PBR 텍스처 변환 안정성 검증 필요",
+    "proposal": "web/ 디렉토리 내 PBR 변환 관련 JavaScript 유닛 테스트 코드 보강 및 테스트 실행 Script 점검",
+    "expected": "웹 클라이언트 측 PBR 텍스처 생성 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T16:54:06+00:00",
+    "kind": "proposal",
+    "id": "p-0710e378b3",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "GPU 환경 제약이 있는 로컬 파이프라인의 안정성 확보 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에서 GPU 부재 또는 VRAM 부족 시 명확한 예외 메시지 반환 및 대체 경로 처리 보완",
+    "expected": "로컬 실행 시 사용자 경험 및 오류 디버깅 용이성 개선",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T16:54:24.137084+00:00",
+    "kind": "decision",
+    "id": "p-fa9d6a0799",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T16:54:24.172318+00:00",
+    "kind": "decision",
+    "id": "p-0710e378b3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
