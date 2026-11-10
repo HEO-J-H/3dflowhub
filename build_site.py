@@ -37,7 +37,8 @@ import core
 ROOT = Path(__file__).parent
 OUT = ROOT / "_site"
 SITE_TITLE = "3dflowhub"
-SITE_DESC = "3D DCC · 게임 엔진 · VFX · AI 3D 최신 소식을 한국어로 요약·정리합니다."
+SITE_DESC = ("3ds Max·Blender·Houdini·언리얼의 기본 기능을 영상과 따라 하기로 익히고, "
+             "전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리합니다.")
 BASE_URL = "https://heo-j-h.github.io/3dflowhub"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
 TOPIC_SLUG = {"업데이트·출시": "update", "튜토리얼·팁": "tutorial", "플러그인·스크립트": "plugin",
@@ -842,7 +843,7 @@ def board_pages(posts: list[dict], out_dir: Path, root: str, title: str, header:
         robots = "" if indexable else '<meta name="robots" content="noindex,follow">'
         rel = d.relative_to(OUT).as_posix()
         if rel == "." and n == 1:  # 홈: 브랜드 + 무엇을 하는 사이트인지 (검색 결과 제목)
-            full = f"{SITE_TITLE} — 3D·게임 엔진·VFX·AI 3D 소식과 기초 가이드"
+            full = f"{SITE_TITLE} — 3D 툴, 기초부터 최신 소식까지 한곳에서"  # 사장님 지정 (2026-11-10)
         else:  # 2쪽 이후 제목 중복 방지
             full = f"{title}{f' {n}페이지' if n > 1 else ''} - {SITE_TITLE}"
         canonical = f"{BASE_URL}/" + ("" if rel == "." else quote(rel) + "/")
@@ -1903,7 +1904,12 @@ def build() -> dict:
     # 실무 파이프라인 (AI 3D 소식 → 작업 툴 스크립트)
     import recipes as _recipes
     recipes_ = [r for r in _recipes.load_all() if _recipes.published(r)]  # Blender 는 실행 검증 통과분만
-    build_recipes(recipes_, posts)
+    # 실무 파이프라인(중단): 옛 주소가 검색에 남아 있어 홈으로 이동 — 구글이 다시 읽으면 검색 결과에서 빠짐
+    (OUT / "recipes").mkdir(exist_ok=True)
+    for r in recipes_ + [{"id": ""}]:
+        d = OUT / "recipes" / r["id"] if r["id"] else OUT / "recipes"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(redirect_page(f"{BASE_URL}/", SITE_TITLE), encoding="utf-8")
     ref_fixes, ref_changes = build_refs()  # 오류 해결·버전별 바뀐 점
     build_compare()  # 주제별 툴 비교
     build_events()  # 공모전·게임 잼
