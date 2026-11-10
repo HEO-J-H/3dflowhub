@@ -1,0 +1,88 @@
+{
+  "id": "zbrush-snakehook-91ad",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Snakehook",
+  "title": "Snakehook — 끌어당겨 뽑기",
+  "summary": "ZBrush의 Snakehook 브러시는 마치 뱀의 머리처럼 메시 표면을 길게 늘려 돌출된 형태(뿔, 나뭇가지, 머리카락 등)를 직관적으로 뽑아내는 유기적 스컬프팅 브러시입니다.",
+  "when": [
+    "캐릭터의 뿔, 더듬이, 길게 뻗은 머리카락을 만들 때",
+    "유기적인 생물의 팔다리나 꼬리의 대략적인 실루엣을 빠르게 연장할 때",
+    "덩어리에서 뾰족하게 튀어나오는 형태를 직관적으로 끌어낼 때"
+  ],
+  "steps": [
+    "ZBrush 캔버스에 ZTool 모델을 불러오거나 3D 메쉬를 배치한 뒤 Edit 모드(Hotkey T)를 켭니다.",
+    "상단 브러시 팔레트(또는 Hotkey B)를 클릭하여 브러시 목록을 엽니다.",
+    "Hotkey S+N을 누르거나 목록에서 Sn(Snakehook)을 찾아 선택합니다.",
+    "브러시 크기(Hotkey S)와 강도(Hotkey U)를 작업에 맞게 조절합니다.",
+    "모델 표면을 클릭하고 바깥쪽으로 드래그하여 원하는 방향과 길이로 형태를 뽑아냅니다.",
+    "Viewport에서 늘어난 메쉬가 길고 자연스럽게 돌출되면 성공입니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 전체 크기를 조절하여 늘어나는 영역의 범위를 결정합니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "브러시의 힘을 조절하여 드래그할 때 뻗어 나가는 속도와 양을 제어합니다."
+    },
+    {
+      "name": "Lazy Mouse",
+      "desc": "선이 흔들리지 않게 부드럽고 매끄러운 곡선으로 길게 뽑아지도록 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "괴물의 뿔 만들기",
+      "steps": [
+        "머리 메쉬의 뿔이 시작될 위치에 Snakehook 브러시를 올립니다.",
+        "위쪽 대각선 방향으로 부드럽게 드래그하여 길쭉한 뿔 형태를 만듭니다.",
+        "끝부분으로 갈수록 가늘어지도록 드래그 속도와 브러시 크기를 조절합니다."
+      ]
+    },
+    {
+      "title": "나뭇가지 뻗어내기",
+      "steps": [
+        "원통형 나무 기둥 메쉬에서 가지가 자라날 위치를 찾습니다.",
+        "옆으로 길게 드래그하여 나뭇가지 기본 줄기를 뽑아냅니다.",
+        "중간중간 브러시 방향을 꺾어가며 불규칙한 자연의 곡선을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤이 너무 늘어나 면이 깨짐 → Draw Size를 키우거나 Dynamesh 또는 ZRemesh를 실행해 폴리곤 밀도를 높여줍니다.",
+    "너무 얇게 뽑혀서 구멍이 뚫림 → Z Intensity를 낮추고 메쉬의 서브디비전 레벨을 올린 뒤 다시 시도합니다."
+  ],
+  "related": [
+    "Move",
+    "ClayBuildup",
+    "Dynamesh",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "0k-3LMF_zb4",
+      "title": "017 ZBrush 2018 New Snakehook Functionality",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "iNMX1bMYWTI",
+      "title": "014 ZBrush Move and Snakehook Brush",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Snakehook",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "ZTool",
+    "Edit",
+    "Hotkey T",
+    "Hotkey B",
+    "Hotkey S"
+  ],
+  "at": "2026-11-10T00:59:35.504518+00:00"
+}

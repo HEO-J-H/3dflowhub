@@ -1,0 +1,97 @@
+{
+  "id": "maya-graph-editor-dc77",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Graph Editor",
+  "title": "Graph Editor",
+  "summary": "Maya Graph Editor는 Keyframe 간의 애니메이션 곡선(Curve)을 시각적으로 제어하여 움직임의 타이밍과 가속도를 정밀하게 다듬는 도구입니다.",
+  "when": [
+    "캐릭터의 걷기나 뛰기 애니메이션에서 가속과 감속(Ease-in, Ease-out)을 부드럽게 만들 때",
+    "기계 장치의 움직임이나 카메라 워크의 속도 변화를 타이밍에 맞게 조절할 때",
+    "Keyframe 간 불필요하게 튀는 값이나 덜컹거리는 구간을 그래프로 찾아 수정할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Windows → Animation Editors → Graph Editor 를 클릭하여 창을 엽니다.",
+    "Outliner나 Viewport에서 애니메이션이 적용된 오브젝트를 선택합니다.",
+    "Graph Editor의 좌측 채널 뷰에서 애니메이션 곡선을 편집할 속성(예: translateZ, rotateY)을 선택합니다.",
+    "메인 뷰포트나 Graph Editor 안에서 Keyframe 점(Key)을 클릭하여 선택합니다.",
+    "툴바의 Tangents 아이콘(Auto, Linear, Clamped 등)을 클릭하거나 Hotkey를 이용해 곡선 형태를 변경합니다.",
+    "그래프 상에서 Keyframe의 탄젠트 핸들(Tangent Handle)을 드래그하여 움직임의 가속도를 세밀하게 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Tangent",
+      "desc": "Keyframe 사이의 곡선을 자동으로 부드럽게 이어줍니다."
+    },
+    {
+      "name": "Linear Tangent",
+      "desc": "Keyframe 사이를 직선으로 연결하여 일정한 속도로 움직이게 합니다."
+    },
+    {
+      "name": "Flat Tangent",
+      "desc": "탄젠트 핸들을 수평으로 만들어 최고점이나 최저점에서 부드럽게 멈추게 합니다."
+    },
+    {
+      "name": "Break Tangent",
+      "desc": "양쪽 탄젠트 핸들의 연결을 끊어 양방향 곡선을 독립적으로 조절합니다."
+    },
+    {
+      "name": "Pre/Post Infinity",
+      "desc": "애니메이션 구간 앞뒤로 반복(Cycle)이나 왕복(CycleOffset) 등 연장 효과를 줍니다."
+    },
+    {
+      "name": "Value / Time",
+      "desc": "선택한 Keyframe의 정확한 수치와 프레임 값을 직접 입력해 고정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공이 바닥에 튀어 오르는 탄성 표현",
+      "steps": [
+        "바닥에 닿는 순간의 Keyframe 탄젠트를 Flat Tangent로 설정합니다.",
+        "상승과 하강 구간은 Linear Tangent를 섞어 속도감을 줍니다.",
+        "Break Tangent를 이용해 바닥에 부딪히는 순간의 꺾임 곡선을 날카롭게 만듭니다."
+      ]
+    },
+    {
+      "title": "카메라 무빙의 부드러운 출발과 정지",
+      "steps": [
+        "카메라 패스 애니메이션의 시작과 끝 Keyframe을 선택합니다.",
+        "Auto Tangent를 적용해 서서히 출발하고 멈추도록(Ease-in/Out) 만듭니다.",
+        "Graph Editor에서 핸들을 길게 늘려 감속 구간을 부드럽게 넓혀줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "탄젠트 핸들이 꼬여서 애니메이션이 역방향으로 튀는 현상 → Tangent를 Auto나 Flat으로 초기화 후 다시 조절합니다.",
+    "원하지 않는 축(X, Y, Z)의 곡선까지 함께 수정되는 경우 → Graph Editor 좌측 채널 뷰에서 수정할 특정 속성만 선택하고 편집합니다."
+  ],
+  "related": [
+    "Time Slider",
+    "Dope Sheet",
+    "Trax Editor",
+    "Blend Shape"
+  ],
+  "videos": [
+    {
+      "id": "3QdGbuR1tQQ",
+      "title": "HOW TO USE MAYA'S GRAPH EDITOR - Maya Tutorial",
+      "author": "Skitty Animates"
+    },
+    {
+      "id": "TMSpauVphNs",
+      "title": "Why Graph Editor is an Animator's HOLY GRAIL",
+      "author": "Sir Wade Neistadt"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Graph%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Animation Editors",
+    "Graph Editor"
+  ],
+  "at": "2026-11-10T00:59:31.224585+00:00"
+}
