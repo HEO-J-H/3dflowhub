@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-hpolish-and-trim-dynamic-fdc4",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "hPolish and Trim Dynamic",
+  "title": "hPolish·Trim — 평평하게",
+  "summary": "ZBrush의 hPolish와 Trim Dynamic은 하드 서피스 스컬프팅에서 날카로운 모서리와 평면을 빠르고 직관적으로 다듬어 주는 핵심 브러시입니다.",
+  "when": [
+    "로봇 장갑이나 기계 부품의 날카로운 엣지(Edge)를 정리할 때",
+    "유기체 모델의 단단한 면이나 칼자국 같은 하드 서피스 디테일을 만들 때",
+    "울퉁불퉁한 표면을 매끄럽게 밀어내며 평평한 면(Plane)을 잡을 때"
+  ],
+  "steps": [
+    "LightBox 또는 브러시 팔레트(B 키)에서 hPolish 또는 Trim Dynamic 브러시를 선택합니다.",
+    "모델 표면에 마우스나 펜을 대고 드래그하여 브러시가 닿는 면을 평평하게 깎아냅니다.",
+    "hPolish는 두 면이 만나는 모서리를 날카로운 릿지(Ridge) 형태로 세워주는 데 집중합니다.",
+    "Trim Dynamic은 표면의 튀어나온 부분을 깎아내며 매끄러운 단면을 유지합니다.",
+    "Draw Size와 Z Intensity 값을 조절하여 브러시의 크기와 깎이는 강도를 미세 조정합니다.",
+    "Shift 키를 누르면 일시적으로 Smooth 브러시로 전환되어 경계를 자연스럽게 부드럽게 만들 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "Draw Size",
+      "desc": "브러시의 크기를 조절하여 깎아내는 영역의 범위를 결정합니다."
+    },
+    {
+      "name": "Z Intensity",
+      "desc": "브러시가 표면을 깎거나 밀어내는 강도를 설정합니다."
+    },
+    {
+      "name": "Backface Mask",
+      "desc": "Viewport 반대편의 숨겨진 면이 의도치 않게 깎이는 것을 방지합니다."
+    },
+    {
+      "name": "Lazy Mouse",
+      "desc": "스트로크를 부드럽고 안정적으로 그려 반듯한 선을 만들 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑의 날카로운 모서리 정리",
+      "steps": [
+        "기본 구체나 Blockout 형태를 DynaMesh로 뭉쳐 모델링을 준비합니다.",
+        "hPolish 브러시를 선택하고 엣지 부근을 가로질러 드래그합니다.",
+        "면과 면이 만나는 경계선이 칼로 자른 듯 날카롭게 정돈되는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "갑옷 표면의 평면(Plane) 다듬기",
+      "steps": [
+        "Trim Dynamic 브러시를 선택합니다.",
+        "울퉁불퉁한 갑옷 표면 위를 넓은 스트로크로 문질러 줍니다.",
+        "불필요한 굴곡이 사라지며 단단하고 정돈된 평면이 만들어집니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 밀도가 부족해 면이 깨짐 → Divide를 실행하거나 DynaMesh로 Resolution를 높인 뒤 다시 시도합니다.",
+    "브러시 강도가 너무 강해 움푹 파임 → Z Intensity 값을 낮추고 여러 번 부드럽게 깎아냅니다."
+  ],
+  "related": [
+    "ClayBuildup",
+    "Trim Smooth Border",
+    "DamStandard",
+    "Dynamic Subdiv"
+  ],
+  "videos": [
+    {
+      "id": "E9rjPJhyv0Q",
+      "title": "HPolish and Trim Dynamic",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "CxL7qiJksOw",
+      "title": "Trim Adaptive and Trim Dynamic Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20hPolish%20and%20Trim%20Dynamic",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "LightBox",
+    "Polish",
+    "Trim Dynamic"
+  ],
+  "at": "2026-11-10T00:49:52.234589+00:00"
+}

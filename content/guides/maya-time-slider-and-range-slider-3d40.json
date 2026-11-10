@@ -1,0 +1,91 @@
+{
+  "id": "maya-time-slider-and-range-slider-3d40",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Time Slider and Range Slider",
+  "title": "타임 슬라이더",
+  "summary": "Maya의 Time Slider와 Range Slider는 애니메이션 재생 구간을 설정하고 Timeline을 탐색하는 핵심 인터페이스입니다. 애니메이션의 전체 재생 범위와 작업 중인 특정 구간을 효율적으로 제어할 수 있습니다.",
+  "when": [
+    "애니메이션 전체 작업 중 특정 구간(예: 1~50프레임)만 반복 재생하여 세부 동작을 확인할 때",
+    "전체 씬의 Timeline 길이(Playback Range)를 늘리거나 줄여야 할 때",
+    "Keyframe이 없는 구간을 건너뛰고 특정 애니메이션 영역만 집중적으로 수정할 때"
+  ],
+  "steps": [
+    "인터페이스 하단의 Timeline과 Range Slider 영역을 확인합니다.",
+    "Range Slider의 양쪽 끝 파란색 핸들을 드래그하여 Playback Range(재생 범위)를 조절합니다.",
+    "Time Slider의 빨간색 플레이헤드를 좌우로 드래그하여 원하는 프레임으로 이동합니다.",
+    "Play 버튼(Alt+V)을 눌러 설정한 구간의 애니메이션을 재생하고 확인합니다.",
+    "Slider Display 설정(우측 하단 아이콘)을 통해 Keyframe 표시 방식을 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "Playback Range",
+      "desc": "애니메이션이 실제로 재생되는 시작과 끝 프레임 구간을 지정합니다."
+    },
+    {
+      "name": "Animation Range",
+      "desc": "씬에 존재하는 전체 Keyframe의 범위를 나타냅니다."
+    },
+    {
+      "name": "Current Time",
+      "desc": "현재 작업 중인 Timeline의 프레임 위치를 표시하고 입력합니다."
+    },
+    {
+      "name": "Play Button",
+      "desc": "설정된 구간의 애니메이션을 실시간으로 재생하거나 정지합니다."
+    },
+    {
+      "name": "Min/Max Range",
+      "desc": "Timeline 슬라이더 전체가 표현할 수 있는 최소 및 최대 프레임 한계값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "특정 구간 반복 재생하기",
+      "steps": [
+        "Range Slider의 시작과 끝 핸들을 움직여 1~30프레임으로 좁힙니다.",
+        "Alt+V Hotkey를 눌러 해당 구간만 반복 재생합니다.",
+        "모션의 타이밍을 실시간으로 검토합니다."
+      ]
+    },
+    {
+      "title": "전체 Timeline 길이 확장하기",
+      "steps": [
+        "Range Slider 우측 끝의 숫자 입력란을 클릭합니다.",
+        "기존 값보다 큰 값(예: 240)을 입력하여 전체 작업 길이를 늘립니다.",
+        "추가된 프레임 영역에 새로운 애니메이션 키를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 애니메이션이 안 보임 → Range Slider의 핸들이 좁게 설정되어 있는지 확인하고 넓혀줍니다.",
+    "Keyframe 마커가 안 보임 → Time Slider 상단이나 오브젝트 선택 상태를 확인하고 올바른 레이어인지 점검합니다."
+  ],
+  "related": [
+    "Set Key",
+    "Auto Key",
+    "Graph Editor",
+    "Playblast"
+  ],
+  "videos": [
+    {
+      "id": "oGgg4kBbrVs",
+      "title": "time slider and range slider  in maya",
+      "author": "AutoCAD Basics"
+    },
+    {
+      "id": "dtsrJpa0dwA",
+      "title": "Maya (हिंदी) - Time Slider, Range Slider, Playback and Other Controls",
+      "author": "Innovledia"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Time%20Slider%20and%20Range%20Slider",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Timeline",
+    "Range Slider"
+  ],
+  "at": "2026-11-10T00:49:47.966195+00:00"
+}
