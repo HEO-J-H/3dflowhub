@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-slice-brushes-fdda",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Slice brushes",
+  "title": "Slice — Polygroup 나누기",
+  "summary": "ZBrush의 Slice 브러시는 3D 모델의 표면을 칼로 자르듯 선을 그어 물리적으로 면을 분리하거나 새로운 폴리그룹(Polygroup)을 생성하는 절단 도구입니다.",
+  "when": [
+    "하드서페이스 모델링에서 갑옷이나 패널 라인을 날카롭게 분할할 때",
+    "캐릭터의 의상 조각이나 장신구를 자연스럽게 잘라내어 별도의 SubTool로 나누고 싶을 때",
+    "불필요한 메쉬 영역을 깔끔한 직선이나 곡선 형태로 잘라내어 정리할 때"
+  ],
+  "steps": [
+    "ZBrush Viewport에서 자르고자 하는 SubTool 모델을 선택합니다.",
+    "키보드 B 키를 누른 뒤 S 키를 눌러 브러시 팔레트를 엽니다.",
+    "목록에서 SliceCurve(또는 SliceCircle, SliceRect) 브러시를 선택합니다.",
+    "Ctrl + Shift 키를 누른 상태에서 Mouse를 드래그하여 모델 위에 절단선을 그립니다.",
+    "드래그를 떼는 순간 선을 기준으로 면이 나뉘며 서로 다른 Polygroup 색상이 적용됩니다.",
+    "Viewport에서 나뉜 영역을 확인하고 필요시 SubTool 팔레트에서 Split 기능을 사용해 분리합니다."
+  ],
+  "params": [
+    {
+      "name": "SliceCurve",
+      "desc": "자유로운 곡선이나 직선을 그려 모델을 자르는 기본 브러시입니다."
+    },
+    {
+      "name": "SliceRect",
+      "desc": "사각형 영역 형태로 모델의 특정 부분을 지정해 자릅니다."
+    },
+    {
+      "name": "SliceCircle",
+      "desc": "원형 영역 형태로 모델의 특정 부분을 지정해 자릅니다."
+    },
+    {
+      "name": "Polygroup",
+      "desc": "절단된 면들을 각각 서로 다른 색상의 영역 그룹으로 자동 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 패널 라인 분할",
+      "steps": [
+        "SliceCurve 브러시를 선택합니다.",
+        "갑옷 표면에 원하는 곡선 절단선을 그립니다.",
+        "나뉜 Polygroup을 확인하고 Masking과 숨기기 기능으로 디테일을 추가합니다."
+      ]
+    },
+    {
+      "title": "모델 파츠 분리 후 SubTool 나누기",
+      "steps": [
+        "Slice 브러시로 자를 영역에 선을 그어 Polygroup을 분리합니다.",
+        "Tool 팔레트의 SubTool 메뉴를 엽니다.",
+        "Split 하위 메뉴에서 'Group Split'을 눌러 각각 독립된 SubTool로 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 드래그로 선이 안 그려짐 → Ctrl + Shift 조합키를 누른 상태에서 드래그해야 합니다.",
+    "자른 후 면이 구멍 나거나 깨짐 → 모델의 밀도(Resolution / DynaMesh)가 너무 낮을 때 발생하므로 Resolution를 높이고 다시 시도합니다.",
+    "원하지 않는 방향으로 잘림 → 브러시를 시작하고 드래그하는 방향과 시점을 Viewport 정면에서 정확히 조절합니다."
+  ],
+  "related": [
+    "TrimRect",
+    "ClipCurve",
+    "Polygroups",
+    "Group Split"
+  ],
+  "videos": [
+    {
+      "id": "tlz4D6llzag",
+      "title": "048 ZBrush Slice and Trim Brush",
+      "author": "Michael Pavlovich"
+    },
+    {
+      "id": "GNqqPEJzN2Q",
+      "title": "ZBrush Quick Tip Tutorial: Slice Curve brush in 4R6",
+      "author": "3D tutorials AM"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Slice%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush Viewport",
+    "SubTool",
+    "SliceCurve",
+    "SliceCircle",
+    "SliceRect"
+  ],
+  "at": "2026-11-10T01:40:18.901709+00:00"
+}

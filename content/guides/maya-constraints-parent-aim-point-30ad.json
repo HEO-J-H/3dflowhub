@@ -1,0 +1,95 @@
+{
+  "id": "maya-constraints-parent-aim-point-30ad",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Constraints (Parent, Aim, Point)",
+  "title": "Constraint — 부모·조준",
+  "summary": "Autodesk Maya의 Constraints(Parent, Aim, Point)는 오브젝트 간의 위치, 회전, 스케일을 애니메이션과 관계없이 동적으로 제어할 수 있는 핵심 리깅 및 씬 구성 기능입니다.",
+  "when": [
+    "캐릭터 손에 무기나 소품을 쥐여주고 애니메이션을 따라오게 만들 때",
+    "카메라가 특정 캐릭터나 오브젝트를 항상 정확하게 바라보게 고정할 때",
+    "여러 오브젝트의 위치나 회전 값을 특정 대상의 움직임에 실시간으로 동기화할 때"
+  ],
+  "steps": [
+    "Viewport에서 제어권을 줄 부모(Driver) 오브젝트를 먼저 선택하고, Shift를 누른 채 자식(Driven) 오브젝트를 나중에 선택합니다.",
+    "상단 메뉴 세트를 Animation 또는 Rigging으로 전환합니다.",
+    "상단 메뉴 바에서 Constrain 메뉴를 클릭합니다.",
+    "원하는 제약 조건인 Parent, Aim, 또는 Point 옵션 박스를 열어 세부 설정을 확인하거나 바로 실행합니다.",
+    "Outliner 패널에서 자식 오브젝트 하위에 제약 조건 노드(Constraint Node)가 생성되었는지 확인합니다.",
+    "부모 오브젝트를 이동·회전하여 자식 오브젝트가 올바르게 따라오는 Viewport 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Maintain Offset",
+      "desc": "제작 당시의 오브젝트 간 간격과 회전 각도를 그대로 유지한 채 연결합니다."
+    },
+    {
+      "name": "Weight",
+      "desc": "여러 부모가 있을 때 각 부모의 영향력 비율을 조절합니다."
+    },
+    {
+      "name": "Aim Vector",
+      "desc": "Aim Constraint 시 대상 오브젝트를 향할 로컬 축 방향을 지정합니다."
+    },
+    {
+      "name": "Up Vector",
+      "desc": "Aim Constraint 시 오브젝트의 윗면이 향할 방향을 지정하여 뒤틀림을 방지합니다."
+    },
+    {
+      "name": "World Up Type",
+      "desc": "Up Vector의 기준을 Scene, Object, Vector 등으로 설정합니다."
+    },
+    {
+      "name": "Skip Translate / Skip Rotate",
+      "desc": "특정 축(X, Y, Z)의 이동이나 회전 제어를 제외하고 연결합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 손에 검 쥐어주기",
+      "steps": [
+        "캐릭터 손 조인트(부모)를 먼저 선택하고 검(자식)을 Shift+클릭합니다.",
+        "Constrain → Parent 옵션 박스를 엽니다.",
+        "Maintain Offset을 체크하고 Apply를 누릅니다.",
+        "손을 움직여 검이 손을 따라 움직이는지 확인합니다."
+      ]
+    },
+    {
+      "title": "카메라가 주인공을 바라보게 고정하기",
+      "steps": [
+        "주인공 캐릭터(부모)를 먼저 선택하고 카메라(자식)를 Shift+클릭합니다.",
+        "Constrain → Aim을 실행합니다.",
+        "카메라를 움직여도 시선이 항상 주인공을 향하는지 Viewport에서 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 순서 오류 (자식을 먼저 선택함) → 올바른 순서(부모 선택 후 자식 선택)로 다시 선택하고 Constraint를 적용합니다.",
+    "Maintain Offset 체크 누락으로 인한 튀는 현상 → Undo 후 Maintain Offset 옵션을 켜고 다시 Constraint를 적용합니다.",
+    "Aim Constraint 적용 시 카메라가 엉뚱하게 뒤틀리는 현상 → Up Vector와 World Up Type 설정을 확인하고 재조정합니다."
+  ],
+  "related": [
+    "Grouping and parenting",
+    "Blend Colors",
+    "Node Editor",
+    "Channel Box"
+  ],
+  "videos": [
+    {
+      "id": "SVs3xENe0Hg",
+      "title": "How to use the Parent and Aim Constraint in Maya #maya #rigging #3dart",
+      "author": "Cryptic Visionary"
+    },
+    {
+      "id": "g9A1DAtjkpg",
+      "title": "Maya Constraint Basics - Parent, Point, Orient, Scale, Aim",
+      "author": "MAYAIN"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Constraints%20%28Parent%2C%20Aim%2C%20Point%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T01:40:14.656219+00:00"
+}
