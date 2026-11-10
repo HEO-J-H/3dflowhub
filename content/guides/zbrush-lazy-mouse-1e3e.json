@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-lazy-mouse-1e3e",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Lazy Mouse",
+  "title": "Lazy Mouse — 부드러운 선",
+  "summary": "ZBrush의 Lazy Mouse는 Mouse 커서 뒤에 가상의 끈을 연결하여 손떨림을 보정하고 매끄러운 곡선과 선을 그릴 수 있게 해주는 기능입니다. 철사를 잡아당기듯 부드러운 궤적을 만들어 정교한 스컬프팅을 돕습니다.",
+  "when": [
+    "태블릿이나 Mouse로 유기적인 곡선이나 날카로운 패스를 부드럽게 그려야 할 때",
+    "캐릭터의 머리카락, 주름, 갑옷의 정교한 하드서피스 패스를 스컬프팅할 때",
+    "곡선이나 원을 왜곡 없이 매끄럽게 연결하고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush 캔버스에서 스컬프팅할 오브젝트를 불러오고 Edit 모드(T 키)로 진입합니다.",
+    "상단 메뉴 바 또는 브러시 팔레트에서 원하는 스컬프팅 브러시(예: Standard, Dam_Standard)를 선택합니다.",
+    "화면 우측의 Stroke 팔레트를 클릭하여 메뉴를 엽니다.",
+    "Stroke 메뉴 안에서 LazyMouse 항목을 찾아 클릭하여 활성화합니다 (Hotkey L 키).",
+    "Viewport에서 스트로크를 그릴 때 커서 뒤로 따라오는 빨간색 가이드 라인(Lazy Mouse 끈)을 확인합니다.",
+    "Stroke 팔레트에서 LazyRadius와 LazySmooth 값을 조절하여 보정 강도와 감쇠를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Lazy Mouse",
+      "desc": "기능을 켜고 꺼서 스트로크 보정 여부를 결정합니다."
+    },
+    {
+      "name": "LazyRadius",
+      "desc": "Mouse 커서와 브러시 포인트 사이의 거리(끈의 길이)를 조절하여 보정 범위를 넓힙니다."
+    },
+    {
+      "name": "LazySmooth",
+      "desc": "스트로크가 이동할 때 궤적의 부드러움과 떨림 방지 정도를 조절합니다."
+    },
+    {
+      "name": "LazyStep",
+      "desc": "브러시 도트가 찍히는 간격을 조절하여 점선이나 일정한 패턴의 선을 만듭니다."
+    },
+    {
+      "name": "LazyStartRadius",
+      "desc": "스트로크가 시작될 때 고정되는 반경을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "갑옷 표면의 부드러운 패스 스컬프팅",
+      "steps": [
+        "Dam_Standard 브러시를 선택합니다.",
+        "L 키를 눌러 Lazy Mouse를 활성화합니다.",
+        "LazyRadius를 높게 설정하여 손떨림을 방지하고 길고 매끄러운 패스 홈을 파냅니다."
+      ]
+    },
+    {
+      "title": "캐릭터 머리카락 가름마 및 결 정리",
+      "steps": [
+        "Standard 브러시를 선택하고 Stroke에서 Lazy Mouse를 켭니다.",
+        "LazySmooth 값을 조절하여 머리카락의 흐름이 꺾이지 않고 자연스럽게 이어지도록 합니다.",
+        "일정한 간격으로 곡선을 그려 덩어리감을 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "LazyRadius 값이 너무 낮음 → 손떨림이 그대로 반영되어 선이 울퉁불퉁해집니다. LazyRadius 값을 높여서 해결합니다.",
+    "Lazy Mouse가 켜져 있어 Mouse가 느리게 따라옴 → 실시간 빠른 드로잉이 안 되어 답답할 때가 있습니다. 필요하지 않은 디테일 작업 시 L 키를 눌러 비활성화합니다."
+  ],
+  "related": [
+    "Strokes",
+    "Curves",
+    "Focal Shift",
+    "Dynamic Subdivision"
+  ],
+  "videos": [
+    {
+      "id": "fxU0G9oprtA",
+      "title": "LazyMouse basics",
+      "author": "Sam Nielson"
+    },
+    {
+      "id": "WLuvDbuYy7A",
+      "title": "ZBrush: Lazy Mouse  | Quick Tips | Tutorial for beginners.",
+      "author": "NEEL3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Lazy%20Mouse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Edit",
+    "Standard",
+    "Dam",
+    "Stroke",
+    "LazyMouse"
+  ],
+  "at": "2026-11-10T02:20:24.825531+00:00"
+}

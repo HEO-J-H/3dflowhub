@@ -1,0 +1,98 @@
+{
+  "id": "maya-set-driven-key-0397",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Set Driven Key",
+  "title": "Set Driven Key",
+  "summary": "Maya Set Driven Key는 하나의 오브젝트나 파라미터의 움직임(Driver)에 연동하여 다른 오브젝트나 파라미터(Driven)가 특정 비율로 움직이도록 수학적 관계를 설정하는 애니메이션 도구입니다.",
+  "when": [
+    "자동차 핸들을 돌릴 때 바퀴와 내부 부품이 함께 회전하도록 연동할 때",
+    "캐릭터의 턱을 벌릴 때 입술 주변의 BlendShape(Blend Shape)가 자연스럽게 열릴 때",
+    "문이 열릴 때 문고리가 특정 각도로 내려가는 동작을 자동화할 때"
+  ],
+  "steps": [
+    "상단 메뉴 세트를 Animation 또는 Rigging으로 전환합니다.",
+    "메뉴 바에서 Animation > Set Driven Key > Set [옵션 박스]를 엽니다.",
+    "연동을 유도할 주체 오브젝트를 선택하고 Set Driven Key 창의 Driver에 Load Driver를 클릭합니다.",
+    "변형을 받을 대상 오브젝트를 선택하고 Driven에 Load Driven을 클릭합니다.",
+    "Driver 채널(예: RotateY)과 Driven 채널(예: RotateZ)을 각각 선택한 후 첫 번째 상태에서 Key를 클릭합니다.",
+    "Viewport에서 Driver 오브젝트를 목표 위치로 움직인 뒤 Driven 오브젝트를 원하는 값으로 조절하고 다시 Key를 클릭합니다.",
+    "Graph Editor에서 애니메이션 커브를 확인하고 연동 결과가 자연스러운지 Viewport에서 재생(Play)하여 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "Driver",
+      "desc": "움직임을 발생시키는 기준이 되는 오브젝트와 채널입니다."
+    },
+    {
+      "name": "Driven",
+      "desc": "기준 오브젝트의 움직임에 따라 종속되어 변형될 대상 오브젝트와 채널입니다."
+    },
+    {
+      "name": "Load Driver",
+      "desc": "현재 선택한 오브젝트를 Set Driven Key 창의 Driver 목록에 불러옵니다."
+    },
+    {
+      "name": "Load Driven",
+      "desc": "현재 선택한 오브젝트를 Set Driven Key 창의 Driven 목록에 불러옵니다."
+    },
+    {
+      "name": "Key",
+      "desc": "현재 Driver와 Driven의 수치 관계를 시스템에 기록하여 Keyframe을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 핸들과 앞바퀴 회전 연동",
+      "steps": [
+        "핸들 Controller를 Driver로, 앞바퀴 그룹을 Driven으로 각각 지정합니다.",
+        "기본 상태(핸들 0도)에서 양쪽 모두 Key를 누릅니다.",
+        "핸들을 90도 회전시킨 후 바퀴를 30도 꺾은 상태에서 Key를 누릅니다.",
+        "핸들을 좌우로 돌려 바퀴가 자연스럽게 연동되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "문 열림과 문고리 회전 연동",
+      "steps": [
+        "문 패널을 Driver로, 문고리를 Driven으로 지정합니다.",
+        "문이 닫힌 상태에서 Key를 누릅니다.",
+        "문이 열리는 도중(중간 프레임) 문고리가 내려가는 위치를 잡고 Key를 누릅니다.",
+        "문을 열고 닫으며 문고리가 제때 움직이는지 검증합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Driver와 Driven 채널을 반대로 지정함 → Set Driven Key 창에서 Load Driver와 Load Driven 대상을 확인하고 다시 로드합니다.",
+    "초기 기본값(Default) 키를 누락함 → 0점 상태에서 Key를 먼저 누른 후 변형 상태를 입력해야 합니다.",
+    "스케일이나 회전 값이 Locked 상태임 → Channel Box에서 채널이 잠겨있는지 확인하고 Unlock Selected를 실행합니다."
+  ],
+  "related": [
+    "Set Key",
+    "Auto Key",
+    "Blend Shape",
+    "Graph Editor"
+  ],
+  "videos": [
+    {
+      "id": "4aBPOFPmYh8",
+      "title": "Maya Quick Tips: Set Driven Keys Explained",
+      "author": "Manson Akram"
+    },
+    {
+      "id": "iIsZTkSuVgk",
+      "title": "Set Driven Keys Explained in Maya | Beginner Rigging Tutorial",
+      "author": "Vertmode"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Set%20Driven%20Key",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Animation",
+    "Rigging",
+    "Set Driven Key",
+    "Set"
+  ],
+  "at": "2026-11-10T02:20:20.790541+00:00"
+}
