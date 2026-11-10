@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-knife-brushes-8f03",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Knife brushes",
+  "title": "Knife — 잘라내기",
+  "summary": "ZBrush의 Knife 브러시는 메스를 대듯 모델의 특정 부분을 깔끔하게 잘라내고 새로운 Topology를 생성하는 하드 서피스 스컬프팅 도구입니다.",
+  "when": [
+    "하드 서피스 모델링에서 날카로운 절단면이나 단면을 빠르게 만들 때",
+    "캐릭터나 소품의 불필요한 부분을 칼로 도려내듯 잘라내고 싶을 때",
+    "직선이나 자유로운 곡선 경로를 따라 정확하게 메시를 분할할 때"
+  ],
+  "steps": [
+    "브러시 팔레트를 클릭하거나 B 키를 눌러 브러시 패널을 엽니다.",
+    "키보드 K 키를 눌러 Knife 브러시 계열(KnifeRect, KnifeCurve 등)의 Hotkey를 확인합니다.",
+    "원하는 Knife 브러시를 선택합니다.",
+    "모델 표면에서 Mouse 드래그하여 절단선을 지정합니다.",
+    "Mouse를 놓으면 지정한 경로를 따라 메시가 잘려 나가며 새로운 경계 엣지가 생성됩니다."
+  ],
+  "params": [
+    {
+      "name": "Brush",
+      "desc": "브러시 팔레트에서 Knife 계열 브러시를 선택합니다."
+    },
+    {
+      "name": "Lazy Mouse",
+      "desc": "곡선이나 긴 절단선을 부드럽고 안정적으로 그릴 수 있도록 보조합니다."
+    },
+    {
+      "name": "Stroke",
+      "desc": "Freehand, Curve 등 스트로크 방식을 지정하여 절단선의 형태를 바꿉니다."
+    },
+    {
+      "name": "Polygroup",
+      "desc": "자른 단면에 새로운 폴리그룹을 자동으로 할당하여 후속 작업을 쉽게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑 모서리 잘라내기",
+      "steps": [
+        "KnifeCurve 브러시를 선택합니다.",
+        "장갑 모델의 모서리에 커서를 대고 직선 절단선을 드래그합니다.",
+        "Mouse를 놓아 불필요한 각진 부분을 잘라냅니다."
+      ]
+    },
+    {
+      "title": "기계 부품 단면 분할하기",
+      "steps": [
+        "KnifeLasso 브러시를 선택합니다.",
+        "원하는 부품 주변을 올리브가 잘려 나가듯 자유 곡선으로 감싸듯 드래그합니다.",
+        "절단된 단면을 확인하고 후속 스컬프팅을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "다이나메시(Dynamesh) 밀도가 너무 낮을 때 → 절단면이 깨지거나 각지게 나오므로, 분할 전 밀도를 높이거나 ReMesh를 실행합니다.",
+    "원하지 않는 방향으로 잘릴 때 → 시점(Camera View)을 정면이나 측면으로 맞춘 뒤 드래그 방향을 확인합니다."
+  ],
+  "related": [
+    "Clip Brushes",
+    "Trim Brushes",
+    "Dynamesh",
+    "ZModeler"
+  ],
+  "videos": [
+    {
+      "id": "ZyHvT2t15g0",
+      "title": "Knife Brushes: ZBrush All Brushes",
+      "author": "Sketchzombie"
+    },
+    {
+      "id": "AcreT1bqukw",
+      "title": "085 Zbrush 2021.7 - Knife Brushes! No muss no fuss slicing and dicing your geometry!!",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Knife%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Knife",
+    "KnifeRect",
+    "KnifeCurve",
+    "Hotkey"
+  ],
+  "at": "2026-11-10T01:50:10.672095+00:00"
+}
