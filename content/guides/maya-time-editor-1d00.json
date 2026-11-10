@@ -1,0 +1,92 @@
+{
+  "id": "maya-time-editor-1d00",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "애니메이션",
+  "name": "Time Editor",
+  "title": "Time Editor",
+  "summary": "Maya Time Editor는 클립 기반의 비선형 애니메이션 편집(NLA) 도구로, 여러 애니메이션 클립을 조합하고 수정하여 복잡한 시퀀스를 효율적으로 구성합니다.",
+  "when": [
+    "배우들의 걷기, 뛰기 등 반복되는 애니메이션 클립을 자연스럽게 이어붙일 때",
+    "군중 시뮬레이션이나 배경 캐릭터의 다양한 동작 바리에이션을 빠르게 만들 때",
+    "전체 애니메이션의 타이밍을 손쉽게 늘리거나 줄이고 블렌딩할 때"
+  ],
+  "steps": [
+    "메뉴바에서 Windows → Animation Editors → Time Editor를 실행합니다.",
+    "애니메이션이 적용된 오브젝트를 선택하고 Time Editor 패널로 드래그하여 클립(Clip)으로 변환합니다.",
+    "Timeline에서 플레이어 헤드를 이동하며 클립의 배치와 길이를 조절합니다.",
+    "두 클립의 경계 영역을 겹쳐서 자연스러운 블렌딩(Transition)을 생성합니다.",
+    "Viewport에서 재생 버튼을 눌러 애니메이션 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "클립이 애니메이션에 미치는 영향력을 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "클립의 재생 속도를 늘리거나 줄여 전체 길이를 조절합니다."
+    },
+    {
+      "name": "Start Time",
+      "desc": "Time Editor 내에서 클립이 시작되는 타이밍을 설정합니다."
+    },
+    {
+      "name": "Loop",
+      "desc": "클립을 지정된 횟수만큼 반복 재생합니다."
+    },
+    {
+      "name": "Hold",
+      "desc": "클립의 마지막 프레임 상태를 유지하는 시간을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "걷기 사이클 반복 연결",
+      "steps": [
+        "캐릭터의 걷기 애니메이션을 Time Editor에 클립으로 등록합니다.",
+        "클립을 복제하여 오른쪽으로 이어 붙입니다.",
+        "클립 끝부분을 약간 겹쳐서 부드러운 전환 구간을 만듭니다."
+      ]
+    },
+    {
+      "title": "애니메이션 속도 조절",
+      "steps": [
+        "대상 클립을 Time Editor에서 선택합니다.",
+        "클립의 오른쪽 모서리를 드래그하여 길이를 조절합니다.",
+        "Scale 옵션 값이 변경되었는지 확인하고 재생합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "클립이 적용되지 않음 → 오브젝트가 올바른 채널과 함께 선택되었는지 확인하고 다시 클립으로 등록합니다.",
+    "클립 전환 부위가 튀는 현상 → 두 클립 사이의 Transition 영역을 늘려 블렌딩을 부드럽게 조정합니다."
+  ],
+  "related": [
+    "Graph Editor",
+    "Trax Editor",
+    "Time Slider and Range Slider",
+    "Motion Trail"
+  ],
+  "videos": [
+    {
+      "id": "LNe8BziLSd4",
+      "title": "Maya Time Editor Part 1 - Getting Started",
+      "author": "My Oh Maya"
+    },
+    {
+      "id": "43c4dlYn9oY",
+      "title": "Maya Time Editor Part 2 - Clips and Sources",
+      "author": "My Oh Maya"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Time%20Editor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "Animation Editors",
+    "Time Editor"
+  ],
+  "at": "2026-11-10T01:59:49.704591+00:00"
+}

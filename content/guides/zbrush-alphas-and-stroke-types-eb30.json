@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-alphas-and-stroke-types-eb30",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "브러시",
+  "name": "Alphas and stroke types",
+  "title": "Alpha·Stroke 종류",
+  "summary": "ZBrush의 Alphas와 Stroke 타입은 모델 표면에 흑백 이미지 패턴을 브러시로 찍거나 새겨 디테일을 올리는 핵심 기능입니다. 점토 표면에 도장을 찍듯 피부 질감, 균열, 갑옷 장식을 빠르고 정교하게 표현합니다.",
+  "when": [
+    "생물 모델 표면에 미세한 피부 주름이나 모공 질감을 추가할 때",
+    "갑옷이나 석재 표면에 기하학적 문양이나 긁힌 상처를 새길 때",
+    "리벳, 볼트 같은 반복되는 패널 디테일을 모델 위에 찍어낼 때"
+  ],
+  "steps": [
+    "ZBrush 화면 우측(또는 상단) 알파 팔레트를 클릭해 원하는 흑백 이미지(Alpha)를 선택합니다.",
+    "상단 브러시 팔레트에서 Standard나 DragRect 등 원하는 스컬프팅 브러시를 선택합니다.",
+    "상단 스트로크 팔레트(또는 Hotkey Ctrl+U)를 열어 DragRect나 Freehand 등 스트로크 방식을 선택합니다.",
+    "모델의 표면 위에서 Mouse를 드래그하거나 클릭하여 알파 패턴을 스컬프팅합니다.",
+    "Viewport에서 표면이 튀어나오거나 파인 디테일이 선명하게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Alpha",
+      "desc": "브러시에 적용할 흑백 높이맵 이미지 패턴을 선택합니다."
+    },
+    {
+      "name": "Stroke",
+      "desc": "Mouse 움직임에 따라 브러시가 적용되는 방식(DragRect, Dot 등)을 결정합니다."
+    },
+    {
+      "name": "ZIntensity",
+      "desc": "알파가 표면을 파고들거나 튀어나오는 높이의 세기를 조절합니다."
+    },
+    {
+      "name": "Focal Shift",
+      "desc": "브러시 중심부와 가장자리 사이의 감쇠(Falloff) 부드러움을 조절합니다."
+    },
+    {
+      "name": "Brush Radius",
+      "desc": "브러시의 전체 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "피부 모공 및 주름 표현",
+      "steps": [
+        "Alpha 팔레트에서 미세한 노이즈 형태의 알파를 선택합니다.",
+        "Stroke를 Freehand로 설정하고 ZIntensity를 낮게 조절합니다.",
+        "모델 얼굴 피부 위를 부드럽게 문질러 자연스러운 결을 만듭니다."
+      ]
+    },
+    {
+      "title": "갑옷 표면 패널라인 및 리벳 새기기",
+      "steps": [
+        "Alpha 팔레트에서 원형 리벳이나 홈 패턴을 선택합니다.",
+        "Stroke를 DragRect로 설정하여 비율 유지 드래그가 가능하게 합니다.",
+        "갑옷 모서리 위에 Mouse를 드래그하여 정확한 크기의 리벳을 찍습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤 수가 부족하여 알파 디테일이 깨짐 → Divide(Ctrl+D)를 실행해 폴리곤 밀도를 높인 후 다시 시도합니다.",
+    "드래그할 때 알파가 계속 반복되어 찍힘(Dot 모드) → Stroke 메뉴에서 DragRect나 DragDot으로 변경합니다.",
+    "알파 모양이 반대로 파임/튀어나옴 → ZIntensity 값을 음(-)수로 주거나 Alt 키를 누른 채 드래그합니다."
+  ],
+  "related": [
+    "Standard",
+    "DragRect",
+    "Morph Target",
+    "LazyMouse"
+  ],
+  "videos": [
+    {
+      "id": "GZQKyVCiQwA",
+      "title": "ZBrush Classroom - 06 strokes and alphas",
+      "author": "cgpixol"
+    },
+    {
+      "id": "Qqc3nM95gc8",
+      "title": "ZBrush 2024 DragStamp Stroke - a new stroke type to quickly & easily detail your meshes with alphas!",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Alphas%20and%20stroke%20types",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-10T01:59:54.044773+00:00"
+}
