@@ -347,6 +347,13 @@ h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
 
 /* 히어로 */
 .hero{margin:24px 0 8px;padding:56px 40px;border-radius:28px;background:var(--hero);position:relative;overflow:hidden}
+.hero>*:not(.hero-mosaic){position:relative;z-index:1}
+.hero-mosaic{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:.22;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 45%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 45%,#000 100%)}
+.hm-track{display:grid;grid-template-rows:repeat(3,1fr);grid-auto-flow:column;grid-auto-columns:220px;gap:8px;height:100%;
+  width:max-content;animation:hm-pan 90s linear infinite}
+.hm-track img{width:220px;height:100%;object-fit:cover;border-radius:10px}
+@keyframes hm-pan{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero h1{font-size:clamp(32px,5vw,52px);margin:0 0 12px}
 .hero p{font-size:clamp(17px,2vw,21px);color:var(--text-2);max-width:640px;margin:0 0 24px}
 .hero .stats{display:flex;gap:28px;flex-wrap:wrap;color:var(--muted);font-size:15px}
@@ -361,7 +368,25 @@ h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
   box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);color:inherit}
 .card .img{aspect-ratio:16/9;background:var(--accent-soft);overflow:hidden}
-.card .img img{width:100%;height:100%;object-fit:cover}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .img img,.gcard:hover img,.evcard:hover .img img{transform:scale(1.06)}
+.gcard img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+/* 80.lv 식 비주얼 월: 큰 그림 하나 + 작은 그림, 제목은 그림 위 */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:12px;margin-bottom:8px}
+.wall-item{position:relative;overflow:hidden;border-radius:var(--r-lg);background:var(--accent-soft);color:#fff}
+.wall-item.big{grid-column:span 2;grid-row:span 2}
+.wall-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .4s}
+.wall-item:hover img{transform:scale(1.07);filter:brightness(1.05)}
+.wall-cap{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-weight:700;font-size:15px;line-height:1.35;
+  background:linear-gradient(transparent,rgba(0,0,0,.78));display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.wall-item.big .wall-cap{font-size:22px;padding:60px 20px 18px}
+.wall-cap small{display:block;font-size:12px;font-weight:600;opacity:.8;margin-bottom:2px}
+@media (max-width:820px){.wall{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.hm-track{grid-auto-columns:150px}.hm-track img{width:150px}}
+/* 스크롤하면 부드럽게 나타남 (user.js 가 .rv → .in) */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.hm-track{animation:none}.rv{opacity:1;transform:none;transition:none}
+  .card .img img,.wall-item img,.gcard img{transition:none}.card:hover .img img,.wall-item:hover img,.gcard:hover img{transform:none}}
 .card .img.ph{display:flex;align-items:center;justify-content:center;font-size:40px;
   background:linear-gradient(135deg,var(--accent-soft),rgba(94,92,230,.12))}
 .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
@@ -1885,14 +1910,27 @@ def build() -> dict:
     hot += [g for g in sorted(learn_guides, key=lambda g: g.get("at", ""), reverse=True)
             if g.get("videos") and g not in hot][:6 - len(hot)]
     hot_html = "".join(guide_card(g, "{ROOT}") for g in hot)
+    pics = [p for p in posts if (p.get("media") or {}).get("image")][:40]
+    wall = pics[:5]  # 80.lv 처럼: 큰 그림 하나 + 작은 그림 넷 (2×2 + 4칸이 빈틈 없이 맞음), 제목은 그림 위에
+    wall_html = "".join(
+        f'<a class="wall-item{" big" if i == 0 else ""}" href="{{ROOT}}p/{e(p["id"])}.html">'
+        f'<img src="{e(p["media"]["image"])}" alt="" loading="{"eager" if i < 3 else "lazy"}" referrerpolicy="no-referrer">'
+        f'<span class="wall-cap"><small>{e(p.get("category") or p["domain"])}</small>{e(p["title_ko"])}</span></a>'
+        for i, p in enumerate(wall))
+    mosaic = "".join(f'<img src="{e(p["media"]["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">'
+                     for p in pics[5:29])
     home_head = (
-        f'<section class="hero"><h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
+        f'<section class="hero">'
+        + (f'<div class="hero-mosaic" aria-hidden="true"><div class="hm-track">{mosaic}{mosaic}</div></div>' if mosaic else "")
+        + f'<h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
         f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
         f'전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리해 둡니다.</p>'
         f'<div class="actions"><a class="btn primary" href="{{ROOT}}learn/">기초 가이드 시작하기</a>'
         f'<a class="btn ghost" href="{{ROOT}}weekly/">이번 주 요약 →</a></div>'
-        f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>정리된 소식</span>'
-        f'<span><b>{tools_n}</b>도구 게시판</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        f'<div class="stats"><span><b data-count="{len(learn_guides)}">{len(learn_guides)}</b>기초 가이드</span>'
+        f'<span><b data-count="{len(posts)}">{len(posts)}</b>정리된 소식</span>'
+        f'<span><b data-count="{tools_n}">{tools_n}</b>도구 게시판</span><span><b data-count="{len(weeks)}">{len(weeks)}</b>주간 요약</span></div></section>'
+        + (f'<h2 class="sec">🔥 지금 눈에 띄는 작업·소식</h2><div class="wall">{wall_html}</div>' if len(wall) >= 5 else "")
         + '<p class="quick"><a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
           '<a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
           '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
