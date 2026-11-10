@@ -381,7 +381,7 @@ h2.sec a{font-size:15px;font-weight:500;color:var(--accent)}
   background:linear-gradient(transparent,rgba(0,0,0,.78));display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .wall-item.big .wall-cap{font-size:22px;padding:60px 20px 18px}
 .wall-cap small{display:block;font-size:12px;font-weight:600;opacity:.8;margin-bottom:2px}
-@media (max-width:820px){.wall{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.hm-track{grid-auto-columns:150px}.hm-track img{width:150px}}
+@media (max-width:820px){.hero-mosaic{opacity:.09}.wall{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.hm-track{grid-auto-columns:150px}.hm-track img{width:150px}}
 /* 스크롤하면 부드럽게 나타남 (user.js 가 .rv → .in) */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -486,7 +486,8 @@ footer{color:var(--muted);font-size:13px;padding:48px 0 56px;border-top:1px soli
 footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer a{color:var(--text-2)}
 
 @media (max-width:1100px){.dd summary{padding:0 8px;font-size:14px}}
-@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}.mnav{display:block}.top{gap:10px}}
+@media (max-width:820px){.cards.lead-grid{grid-template-columns:1fr}.cards.lead-grid .card:first-child{grid-row:auto}.topnav{display:none}.mnav{display:block;flex:none}.top{gap:8px}
+  .search{flex:1 1 auto;min-width:0}.iconbtn{width:36px}.mnav summary{padding:0 10px}}  /* 375px 에서 헤더가 8px 넘치던 문제 */
 @media (max-width:640px){
   body{font-size:16px}.wrap{padding:0 16px}.hero{padding:36px 22px;border-radius:22px}
   .row{grid-template-columns:84px 1fr;gap:12px}.row img,.row .ph{width:84px;height:56px}.row .side{display:none}
