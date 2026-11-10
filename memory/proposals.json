@@ -30028,5 +30028,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-10T18:46:06+00:00",
+    "kind": "proposal",
+    "id": "p-bc2a528d5a",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 관련 예외 처리 및 테스트 보완 요구가 있었으나 중복 거절 이력이 있어, 명확한 에러 코드 반환과 단위 테스트 추가로 재설계 필요",
+    "proposal": "backend/app/services/triposr_runner.py 파일에 GPU 메모리 부족 및 모델 로드 실패 시 명확한 예외 메시지를 반환하도록 예외 처리를 추가하고 backend/tests/test_triposr.py에 테스트 케이스 작성",
+    "expected": "로컬 실행 시 예외 상황에서 안정적인 에러 핸들링 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:46:06+00:00",
+    "kind": "proposal",
+    "id": "p-d1357bea88",
+    "title": "웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 기반 PBR 텍스처 생성 프로세스 문서화는 완료되었으나 자동화된 유닛 테스트가 부족한 상태",
+    "proposal": "web/js/pbr.js 또는 관련 Script의 PBR 변환 함수에 대한 Jest 등 웹 단위 테스트 파일(web/tests/pbr.test.js) 추가",
+    "expected": "브라우저 환경에서의 PBR 텍스처 변환 로직 품질 신뢰성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-10T18:47:17.754866+00:00",
+    "kind": "decision",
+    "id": "p-bc2a528d5a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-10T18:47:17.795209+00:00",
+    "kind": "decision",
+    "id": "p-d1357bea88",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
+    "auto": true
   }
 ]
