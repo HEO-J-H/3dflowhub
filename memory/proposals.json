@@ -32886,5 +32886,36 @@
     "id": "p-d296e1182c",
     "verdict": "agent",
     "reason": "웹 브라우저의 PBR 변환 상태 메시지와 로딩 스피너 제어를 위한 DOM 조작 로직 수정은 코드 변경을 통해 직접 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-11T13:16:42+00:00",
+    "kind": "proposal",
+    "id": "p-f2a7c2673b",
+    "title": "로컬 파이프라인 예외 처리 로그 메시지 개선",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 입력 검증 및 PBR 텍스처 생성 프로세스 문서화 작업이 완료되었습니다.",
+    "proposal": "backend/app/services/mesh_from_image.py 및 관련 서비스 파일에서 예외 발생 시 반환되는 로그 메시지 상세화",
+    "expected": "사용자 및 개발자가 로컬 환경에서 오류 원인을 더 빠르게 파악 가능",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T13:17:00.147508+00:00",
+    "kind": "decision",
+    "id": "p-f2a7c2673b",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T13:17:08.790848+00:00",
+    "kind": "triage",
+    "id": "p-f2a7c2673b",
+    "verdict": "agent",
+    "reason": "백엔드 서비스 파일의 예외 처리 로그 메시지 상세화는 코드 수정 작업을 통해 자동 해결할 수 있는 사안입니다."
   }
 ]
