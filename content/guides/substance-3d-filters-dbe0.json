@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-filters-dbe0",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Filters",
+  "title": "Filter",
+  "summary": "Substance 3D의 Filters는 텍스처나 마스크의 색상, 노이즈, 형태를 비파괴적으로 수정하고 가공하는 절차적 필터 노드입니다.",
+  "when": [
+    "텍스처나 마스크의 색상 대비, 밝기, 블러 효과를 실시간으로 조절하고 싶을 때",
+    "패턴이나 노이즈에 왜곡(Distortion)이나 거친 질감을 추가하고 싶을 때",
+    "기존 재질 위에 절차적인 디테일이나 웨더링 효과를 더하고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 또는 Designer에서 프로젝트를 엽니다.",
+    "Layers 패널 또는 Graph에서 필터를 적용할 레이어(Layer)나 마스크를 선택합니다.",
+    "Effects 아이콘(더하기 모양 또는 마스크 아이콘)을 클릭하고 Add Filter를 선택합니다.",
+    "필터 검색창에서 원하는 필터(예: Blur, Levels, Sharpen)를 검색해 추가합니다.",
+    "Properties 패널에서 필터의 파라미터 값을 조절하여 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "필터 효과의 전체적인 강도를 조절합니다."
+    },
+    {
+      "name": "Levels",
+      "desc": "입력 텍스처의 블랙, 화이트 포인트를 조절해 대비를 극대화합니다."
+    },
+    {
+      "name": "Blur Intensity",
+      "desc": "이미지나 마스크의 흐림 정도를 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "색상이나 마스크의 명암 대비를 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "절차적 패턴이나 노이즈 필터의 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "마스크 부드럽게 만들기",
+      "steps": [
+        "적용된 지오메트리 마스크를 선택합니다.",
+        "Add Filter를 클릭하여 Blur 필터를 추가합니다.",
+        "Blur Intensity 값을 높여 경계선을 자연스럽게 만듭니다."
+      ]
+    },
+    {
+      "title": "텍스처 대비 강화하기",
+      "steps": [
+        "색상을 조정할 레이어 위에 필터 레이어를 추가합니다.",
+        "Levels 필터를 적용합니다.",
+        "슬라이더를 조절하여 어두운 부분은 더 어둡게, 밝은 부분은 더 밝게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이어 스택에서 필터의 위치가 잘못됨 → 필터는 적용하려는 레이어 또는 마스크의 하단이나 내부에 올바른 순서로 배치되어야 합니다.",
+    "과도한 수치 적용으로 인한 디테일 손실 → Intensity나 Blur 값을 너무 높이면 텍스처가 깨지므로 적정 값을 유지하세요."
+  ],
+  "related": [
+    "Smart Materials",
+    "Generators",
+    "Procedural Noise",
+    "Levels"
+  ],
+  "videos": [
+    {
+      "id": "z_UvIA7Zr_s",
+      "title": "Substance Painter - Filters Explained (In 60 SECONDS!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "YKmqPojGtvI",
+      "title": "Substance Painter - NEW Hand Painted Filters",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Filters",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T00:24:44.350690+00:00"
+}

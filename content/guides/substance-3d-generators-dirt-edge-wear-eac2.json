@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-generators-dirt-edge-wear-eac2",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Generators (Dirt, Edge Wear)",
+  "title": "Generator — 먼지·모서리 마모",
+  "summary": "Substance 3D Painter의 Generators는 마스크 내부에 Dirt나 Edge Wear 같은 절차적 효과를 자동으로 채워주는 기능입니다. 오브젝트의 곡률과 오클루전 정보를 활용해 손으로 직접 칠하지 않고도 사실적인 마모와 오염 표현을 만듭니다.",
+  "when": [
+    "금속 표면의 모서리가 닳아 벗겨진 엣지 웨어(Edge Wear)를 표현할 때",
+    "틈새와 홈 사이에 먼지나 때가 낀 더스트(Dirt) 효과를 넣을 때",
+    "오브젝트의 자연스러운 노화와 사용감을 빠르게 더하고 싶을 때"
+  ],
+  "steps": [
+    "Layers 패널에서 텍스처를 적용할 Fill Layer를 선택합니다.",
+    "Fill Layer에 Mouse 오른쪽 버튼을 클릭하고 Add Mask with Selection 또는 Add Black Mask를 선택합니다.",
+    "추가된 마스크를 Mouse 오른쪽 버튼으로 클릭하고 Add Generator를 선택합니다.",
+    "Properties 패널의 Generator 슬롯을 클릭하고 원하는 효과(예: Dirt, Edge Wear)를 선택합니다.",
+    "파라미터 패널에서 균형(Balance), 대비(Contrast), 거친 정도(Roughness)를 조절해 효과의 범위를 맞춥니다.",
+    "Viewport에서 마스크가 적용된 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Balance",
+      "desc": "효과가 적용되는 전체적인 양과 범위를 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "효과의 경계선을 선명하거나 부드럽게 만들어 줍니다."
+    },
+    {
+      "name": "Wear Level",
+      "desc": "Edge Wear에서 마모된 부위의 강도와 면적을 넓힙니다."
+    },
+    {
+      "name": "Grunge Amount",
+      "desc": "오염이나 마모 패턴에 섞이는 노이즈의 양을 조절합니다."
+    },
+    {
+      "name": "Distortion",
+      "desc": "효과의 가장자리를 불규칙하게 왜곡하여 자연스러움을 더합니다."
+    },
+    {
+      "name": "Color Correction",
+      "desc": "제너레이터에 의해 생성된 색상이나 명암을 세부 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "철제 상자 모서리 녹과 마모 표현",
+      "steps": [
+        "Base Color와 Roughness 채널이 켜진 Fill Layer에 Black Mask를 추가합니다.",
+        "마스크에 Edge Wear 제너레이터를 추가하여 모서리 밝은 금속 질감을 드러냅니다.",
+        "Balance 값을 낮추어 마모가 심한 모서리에만 효과가 좁게 나타나도록 조절합니다."
+      ]
+    },
+    {
+      "title": "기계 틈새 기름때 및 먼지 표현",
+      "steps": [
+        "어두운 갈색 계열의 Fill Layer를 만들고 Black Mask를 추가합니다.",
+        "Dirt 제너레이터를 적용하여 오목한 틈새에 먼지가 쌓인 효과를 줍니다.",
+        "Grunge Amount를 높여 먼지가 불규칙하게 흩뿌려진 느낌을 냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 맵이 구워지지 않음(Bake Mesh Maps 누락) → Texture Set Settings에서 Ambient Occlusion, Curvature 등을 먼저 베이킹해야 제너레이터가 정상 작동합니다.",
+    "효과가 너무 과도하게 들어감 → Balance나 Contrast 파라미터를 낮추거나 Fill Layer의 Opacity를 조절해 자연스럽게 만듭니다.",
+    "UV 경계선이 어색하게 끊어짐 → Texture Set Settings의 Normal Map Baking 설정이나 Seam 확인 후 다시 베이킹합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Add Black Mask",
+    "Fill Layer",
+    "Smart Mask"
+  ],
+  "videos": [
+    {
+      "id": "XVEul5XRPGk",
+      "title": "\"🚀 Master Edge Wear in Substance Painter in Just 5 Minutes! 💥\" #substance_painter #3danimation",
+      "author": "Blurred Normals"
+    },
+    {
+      "id": "jrfE8KJqh4k",
+      "title": "Substance 3D Painter Barrel Texturing | Generators, Edge Wear & Details",
+      "author": "Nexttut"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Generators%20%28Dirt%2C%20Edge%20Wear%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T00:24:40.698657+00:00"
+}

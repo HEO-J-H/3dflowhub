@@ -1,0 +1,99 @@
+{
+  "id": "substance-3d-smart-masks-af14",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Smart Masks",
+  "title": "Smart Mask",
+  "summary": "Substance 3D Painter의 Smart Masks는 메쉬의 곡률, 모서리, 두께 등 지오메트리 정보를 분석하여 먼지, 긁힘, 녹 같은 마모 효과를 마스크 영역에 자동으로 생성하는 지능형 마스킹 기능입니다.",
+  "when": [
+    "금속 표면의 모서리나 엣지에 자연스러운 칠 벗김이나 녹슨 표현을 넣고 싶을 때",
+    "오목한 틈새나 구석진 곳에 먼지나 때가 낀 효과를 빠르게 더하고 싶을 때",
+    "수작업 브러시 드로잉 없이 복잡한 오브젝트 전체에 일관된 웨어 앤 테어(Wear & Tear)를 주고자 할 때"
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Bake Mesh Maps를 클릭하여 Curvature, Ambient Occlusion 등의 맵을 먼저 베이킹합니다.",
+    "Layers 패널에서 마스크를 적용할 Fill Layer 또는 Paint Layer를 선택합니다.",
+    "해당 레이어의 오른쪽 마스크 아이콘(Add Mask)을 클릭한 후, Add Mask with Generator를 선택합니다.",
+    "Properties 패널의 Generator 드롭다운에서 원하는 Smart 마스크(예: Rust, Edges)를 선택합니다.",
+    "Global Balance 등의 파라미터를 조절하여 마스크가 적용되는 강도와 범위를 Viewport에서 확인하며 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Global Balance",
+      "desc": "마스크 생성 효과의 전반적인 양과 민감도를 조절합니다."
+    },
+    {
+      "name": "Wear Level",
+      "desc": "마모나 긁힘이 일어난 부분의 노출 정도를 늘리거나 줄입니다."
+    },
+    {
+      "name": "Edges Contrast",
+      "desc": "모서리에 닿는 효과의 경계선 선명도를 조절합니다."
+    },
+    {
+      "name": "Dirt Intensity",
+      "desc": "오목한 곳이나 틈새에 쌓이는 먼지/오염의 진하기를 설정합니다."
+    },
+    {
+      "name": "Roughness Transition",
+      "desc": "마스크가 적용된 표면의 거칠기 변화를 부드럽게 다듬습니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "마스크의 블랙과 화이트 영역을 반전시켜 효과의 위치를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 무기 모서리 칠 벗김 표현",
+      "steps": [
+        "밝은 금속 색상의 Fill Layer 위에 어두운 철판 색상의 Fill Layer를 올립니다.",
+        "어두운 레이어에 Add Mask with Generator를 추가하고 Edges 계열 Smart 마스크를 적용합니다.",
+        "Global Balance를 낮춰 모서리 끝부분에만 금속 밑바닥이 살짝 드러나도록 조절합니다."
+      ]
+    },
+    {
+      "title": "기계 틈새 먼지 쌓임 표현",
+      "steps": [
+        "먼지 색상으로 설정된 새로운 Fill Layer를 만듭니다.",
+        "Add Mask with Generator를 추가하고 Dirt 계열 Smart 마스크를 선택합니다.",
+        "AO와 Curvature 연동 값을 높여 홈과 꺾인 틈새에만 먼지가 고이도록 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Smart 마스크가 아예 적용되지 않고 레이어가 변화가 없음 → Texture Set Settings에서 Mesh Maps(Curvature 등)를 먼저 베이킹했는지 확인합니다.",
+    "마스크 효과가 메쉬 전체에 지저분하게 퍼짐 → Global Balance 값을 조절하거나 모델의 Normal 방향이 뒤집히지 않았는지 확인합니다."
+  ],
+  "related": [
+    "Smart Materials",
+    "Bake Mesh Maps",
+    "Generators",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "KQMXKx1J4RU",
+      "title": "SMART MASKS in SUBSTANCE PAINTER!",
+      "author": "3D Bros"
+    },
+    {
+      "id": "sOpGU6O5meo",
+      "title": "Substance Painter - Masks Explained (FAST!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Smart%20Masks",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Curvature",
+    "Ambient Occlusion",
+    "Layers",
+    "Fill Layer"
+  ],
+  "at": "2026-11-11T00:24:36.012664+00:00"
+}
