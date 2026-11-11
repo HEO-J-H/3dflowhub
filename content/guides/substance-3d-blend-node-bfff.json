@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-blend-node-bfff",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Blend node",
+  "title": "Blend 노드",
+  "summary": "Substance 3D Designer의 Blend 노드는 두 개 이상의 그레이스케일이나 컬러 맵을 Photoshop의 레이어 합성처럼 블렌딩 모드(Blend Mode)를 이용해 합쳐주는 핵심 합성 노드입니다.",
+  "when": [
+    "콘크리트 벽에 균열이나 스크래치 맵을 자연스럽게 얹고 싶을 때",
+    "여러 개의 절차적 맵을 마스크(Mask)를 이용해 구역별로 섞을 때",
+    "기본 베이스 컬러에 더스트(Dust)나 웨어(Wear) 효과를 추가할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Explorer 패널 또는 Graph 뷰에서 작업 중인 패키지를 엽니다.",
+    "Graph 뷰 빈 곳을 우클릭하거나 Hotkey Tab 키를 누르고 'Blend'를 검색하여 노드를 생성합니다.",
+    "상위 노드(예: Uniform Color 또는 Noise)의 출력을 Blend 노드의 Background 포트에 연결합니다.",
+    "다른 노드(예: Grunge Map)의 출력을 Blend 노드의 Foreground 포트에 연결합니다.",
+    "Blend 노드를 더블클릭하여 Properties 패널에서 Blend Mode와 Opacity를 조절하여 합성 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "두 맵을 합성할 방식(Copy, Multiply, Overlay 등 Photoshop 레이어 모드와 유사)을 선택합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "Foreground 맵이 Background에 섞이는 전체적인 투명도 강도를 조절합니다."
+    },
+    {
+      "name": "Background",
+      "desc": "합성될 이미지의 밑바탕이 되는 배경 입력 포트입니다."
+    },
+    {
+      "name": "Foreground",
+      "desc": "배경 위에 얹어질 상위 이미지 입력 포트입니다."
+    },
+    {
+      "name": "Opacity Map",
+      "desc": "Foreground가 적용될 영역을 그레이스케일 마스크로 제어하는 입력 포트입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽면에 스크래치 맵 합성하기",
+      "steps": [
+        "Noise 노드를 Background에 연결해 기본 벽면 질감을 만듭니다.",
+        "Scratch 노드를 Foreground에 연결합니다.",
+        "Blend Mode를 Multiply로 설정하여 스크래치 자국이 어둡게 파이도록 만듭니다."
+      ]
+    },
+    {
+      "title": "마스크를 이용한 부분 컬러 칠하기",
+      "steps": [
+        "Uniform Color 노드로 전체 바탕색을 지정해 Background에 연결합니다.",
+        "다른 색상의 Uniform Color 노드를 Foreground에 연결합니다.",
+        "Grayscale Mask 노드를 Opacity Map에 연결하여 특정 영역에만 색이 들어가게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포트 연결 오류 → Background와 Foreground의 입력 위치가 바뀌었는지 확인합니다.",
+    "결과물이 변화가 없음 → Blend Mode가 기본값(Copy) 상태인지 확인하고 알맞은 모드로 변경합니다.",
+    "Resolution 불일치 경고 → 연결된 두 노드의 크기(Resolution) 설정이 다를 수 있으니 확인합니다."
+  ],
+  "related": [
+    "Levels",
+    "Uniform Color",
+    "Grunge Map 1",
+    "Auto Levels"
+  ],
+  "videos": [
+    {
+      "id": "GAMAEFDG400",
+      "title": "Mastering Blending Modes - 01 - Introduction | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "RZKBSPj9hbs",
+      "title": "Mastering Blending Modes - 02 - Add & Subtract | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Blend%20node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Explorer",
+    "Graph",
+    "Hotkey Tab",
+    "Blend"
+  ],
+  "at": "2026-11-11T03:14:54.816347+00:00"
+}

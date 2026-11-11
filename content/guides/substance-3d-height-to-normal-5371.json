@@ -1,0 +1,86 @@
+{
+  "id": "substance-3d-height-to-normal-5371",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Height to Normal",
+  "title": "높이 → 노멀",
+  "summary": "Substance 3D Designer에서 2D Height(높이) 맵을 노멀(Normal) 맵으로 변환하여 표면의 미세한 입체감과 빛의 반사 디테일을 살려주는 핵심 유틸리티 노드입니다.",
+  "when": [
+    "Height 맵을 기반으로 실시간 렌더링에 적합한 Normal 맵을 추출해야 할 때",
+    "그레이스케일로 그려진 패턴이나 마스크에 물리적인 요철 질감을 부여할 때",
+    "머티리얼 제작 과정에서 범프와 노멀의 깊이감을 정밀하게 조절해야 할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Graph View를 엽니다.",
+    "Tab 키를 누르고 검색창에 Height to Normal을 입력하여 노드를 생성합니다.",
+    "표현할 흑백 이미지(Height 맵)의 출력을 Height to Normal 노드의 Input(Height)에 연결합니다.",
+    "2D View 패널에서 노드를 선택하여 실시간으로 변환된 노멀 결과물을 확인합니다.",
+    "Properties 패널에서 Intensity 값을 조절하여 요철의 깊이와 강도를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "노멀 맵의 요철 깊이와 강도를 조절합니다."
+    },
+    {
+      "name": "Format",
+      "desc": "DirectX와 OpenGL 중 타겟 엔진에 맞는 노멀 채널 방식을 선택합니다."
+    },
+    {
+      "name": "Filtering",
+      "desc": "노멀 변환 시 적용할 필터링 방식을 선택하여 디테일의 부드러움을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "타일 벽돌 표면 입체감 부여",
+      "steps": [
+        "Tile Generator 노드로 벽돌 패턴의 Height 맵을 만듭니다.",
+        "Height to Normal 노드에 연결하여 각 벽돌 모서리의 음영을 생성합니다.",
+        "Intensity 값을 높여 벽돌 사이의 깊이감을 강조합니다."
+      ]
+    },
+    {
+      "title": "금속 패널 스크래치 및 흠집 표현",
+      "steps": [
+        "Grunge 노드로 미세한 흠집 형태의 Height 맵을 준비합니다.",
+        "Height to Normal 노드를 거쳐 표면의 미세한 긁힘 디테일로 변환합니다.",
+        "Normal Combine 노드를 사용해 기본 금속 패널 노멀에 합성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Height 맵의 대비가 너무 낮아 노멀 효과가 안 보임 → Levels나 Curves 노드로 흑백 대비를 강하게 조정한 뒤 연결합니다.",
+    "OpenGL과 DirectX 노멀 방향이 반대로 나옴 → Format 파라미터에서 타겟 플랫폼 설정을 확인하고 변경합니다.",
+    "변환된 노멀에 계단 현상(Aliasing)이 생김 → Height 원본 이미지의 Resolution를 높이거나 Filtering 옵션을 조정합니다."
+  ],
+  "related": [
+    "Normal Combine",
+    "Blend",
+    "Levels",
+    "Ambient Occlusion"
+  ],
+  "videos": [
+    {
+      "id": "-X3F5vSeiUM",
+      "title": "Using Height Maps as an Input for Normal Information in SUBSTANCE PAINTER",
+      "author": "Xolotl Studio"
+    },
+    {
+      "id": "dA9dHg_aDe4",
+      "title": "Height Techniques | Designer Quick Tip #9 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Height%20to%20Normal",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Graph View",
+    "Height",
+    "Normal"
+  ],
+  "at": "2026-11-11T03:14:50.974653+00:00"
+}

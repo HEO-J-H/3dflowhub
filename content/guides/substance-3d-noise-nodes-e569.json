@@ -1,0 +1,100 @@
+{
+  "id": "substance-3d-noise-nodes-e569",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Noise nodes",
+  "title": "노이즈 노드",
+  "summary": "Substance 3D의 Noise 노드는 절차적(Procedural) 방식으로 다양한 형태의 노이즈 패턴을 생성하여, 텍스처의 높낮이(Height), 거칠기(Roughness), 컬러 등에 자연스러운 무작위성을 부여하는 필수 노드입니다.",
+  "when": [
+    "금속 표면이나 벽면에 미세한 요철(Bump)과 거친 질감을 줄 때",
+    "가죽, 돌, 콘크리트 등 자연물 및 인공물의 마모 흔적을 표현할 때",
+    "여러 노이즈를 조합하여 복잡한 유기적 패턴이나 구름 같은 마스크를 만들 때"
+  ],
+  "steps": [
+    "Substance 3D Designer(또는 Painter)의 Graph/Layer 뷰를 엽니다.",
+    "Library 창(스페이스바 또는 Tab 키)에서 Noise 를 검색합니다.",
+    "원하는 Noise 노드(예: Perlin Noise, BnW Spots 등)를 드래그하여 작업 영역(Graph)에 놓습니다.",
+    "Noise 노드의 출력 포인트를 메인 소재(Material)나 Blend 노드의 입력에 연결합니다.",
+    "Properties 패널에서 Scale, Roughness 등의 파라미터를 조절하여 패턴의 크기와 밀도를 맞춥니다.",
+    "2D/3D Viewport에서 결과가 실시간으로 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "노이즈 패턴의 전체적인 크기를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "노이즈의 세부적인 거칠기와 주파수를 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "노이즈의 밝은 부분과 어두운 부분의 대비를 강하게 만듭니다."
+    },
+    {
+      "name": "Disorder",
+      "desc": "패턴의 무작위성과 불규칙한 정도를 높여줍니다."
+    },
+    {
+      "name": "Global Offset",
+      "desc": "노이즈 패턴의 위치(X, Y 좌표)를 이동시킵니다."
+    },
+    {
+      "name": "Anisotropy",
+      "desc": "노이즈를 한쪽 방향으로 늘려 긁힌 자국 같은 결을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 벽면 요철 만들기",
+      "steps": [
+        "BnW Spots 노드를 생성하여 기본 입자를 만듭니다.",
+        "Normal 노드에 연결하여 표면에 미세한 높낮이를 부여합니다.",
+        "Scale 값을 높여 세밀한 콘크리트 질감을 연출합니다."
+      ]
+    },
+    {
+      "title": "철판의 거친 스크래치와 마모",
+      "steps": [
+        "Anisotropic 노드나 방향성 있는 Noise 노드를 추가합니다.",
+        "Transform 2D 노드로 패턴을 한쪽 방향으로 길게 늘립니다.",
+        "Blend 노드로 기본 메탈 컬러와 합성하여 긁힌 자국을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈 Scale이 너무 작거나 커서 타일링(Tiling) 반복 무늬가 눈에 띔 → Scale 값을 조정하거나 Multi-Angle Blend 등으로 패턴을 섞어 반복을 숨깁니다.",
+    "높낮이(Height) 강도가 너무 과도함 → Normal 혹은 Height 노드의 Intensity 값을 낮추거나 Levels 노드로 중간톤을 조절합니다."
+  ],
+  "related": [
+    "Blend",
+    "Levels",
+    "Transform 2D",
+    "Normal"
+  ],
+  "videos": [
+    {
+      "id": "Lz12zerHVa0",
+      "title": "Substance Designer Tutorial 6   Noise nodes",
+      "author": "Mike's Mini Sessions"
+    },
+    {
+      "id": "_5D1HafCTbc",
+      "title": "👉 How to Make Noise Texture for Stylized VFX (Substance Designer)",
+      "author": "VFX Box"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Noise%20nodes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Painter",
+    "Graph",
+    "Layer",
+    "Library",
+    "Noise"
+  ],
+  "at": "2026-11-11T03:14:47.525513+00:00"
+}
