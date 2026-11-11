@@ -1,0 +1,21 @@
+<!-- TITLE: NVIDIA DRIVE AGX Thor 자율주행 추론 모델 Alpamayo 2 Edge 공개 | TAGS: NVIDIA,DRIVE AGX Thor,자율주행,AI,VLA,업데이트·출시 | CATEGORY: AI 3D/로보틱스·월드모델 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/running-av-reasoning-models-within-onboard-compute-and-latency-limits/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/auto-alpamayo-2-edge-tech-blog-promo-600x338_r2-1-500x282.gif" alt="NVIDIA DRIVE AGX Thor 자율주행 추론 모델 Alpamayo 2 Edge 공개" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/running-av-reasoning-models-within-onboard-compute-and-latency-limits/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA가 DRIVE AGX Thor에서 실시간 구동되는 2B 파라미터 기반의 자율주행 비전-언어-액션 모델 Alpamayo 2 Edge를 발표했습니다.</p>
+<p style="color:#888;">분류: AI 3D › 로보틱스·월드모델 › 업데이트·출시</p>
+<h2>Alpamayo 2 Edge 모델 구조와 특징</h2>
+<p>NVIDIA Alpamayo 2 Edge는 2B 파라미터 규모의 적응형 추론 비전-언어-액션 모델입니다. NVIDIA Cosmos 3 Edge의 추론 백본을 기반으로 하며 주변 카메라 관측값과 내비게이션 입력을 활용합니다. 필요한 순간에만 Chain-of-Causation 추론을 생성하여 일반 주행 시 불필요한 토큰 생성을 줄이고 연산량을 아낍니다.</p>
+<h2>AlpaGym을 활용한 강화학습 성능 개선</h2>
+<p>이 모델은 NVIDIA AlpaGym의 폐루프 강화학습을 거쳐 후학습됩니다. 폐루프 강화학습을 적용하지 않은 최고 성능 체크포인트와 비교해 주행 성능이 48.9% 향상되었습니다. 이를 통해 온보드 스택에 곧바로 적용할 수 있는 강력한 기초 모델 역할을 수행합니다.</p>
+<h2>AlpaJudge 기반 평가와 훈련 워크플로</h2>
+<p>NVIDIA AlpaJudge는 추론 품질을 측정하고 강화학습 보상을 제공하는 인간 교정 평가 및 보상 모델입니다. 개발자는 AlpaJudge-RB와 AlpaJudge-RF를 PhysicalAI-AV 샘플에 실행하여 점수를 검사하고 학습 데이터 예제를 선택합니다. 이러한 평가는 후학습 과정에서 보상 체계로 연결됩니다.</p>
+<h2>DRIVE AGX Thor 대상 추론 최적화</h2>
+<p>Alpamayo Developer Hub에 제공되는 배포 레시피를 통해 TensorRT와 DFlash2를 활용한 추론 최적화가 가능합니다. 이를 통해 DRIVE AGX Thor 하드웨어 환경에서 160에서 190 밀리초 수준의 픽셀 투 트래젝토리 지연 시간을 기록합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">TensorRT와 DFlash2를 적용한 추론 최적화로 DRIVE AGX Thor에서 160~190ms의 픽셀 투 트래젝토리 지연 시간을 달성합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Alpamayo 2 Edge는 어떤 하드웨어에서 구동되나요?</b><br/>A. NVIDIA DRIVE AGX Thor 온보드 시스템에서 실시간으로 구동되도록 설계되었습니다.</p>
+<p><b>Q. AlpaJudge의 역할은 무엇인가요?</b><br/>A. 추론 품질을 평가하고 고가치 훈련 데이터를 선택하며 후학습을 위한 강화학습 보상을 제공하는 인간 교정 평가 모델입니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-2379109f43cc3c2b.html">NVIDIA Holoscan 5로 로봇 팔 무게감 없애기 구현</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-86c270bf47b54ff7.html">NVIDIA, 한국 AI 스타트업 투자 발표</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-09-6e07690c27eb09da.html">NVIDIA GR00T 2 출시 — 시뮬레이션 기반 로봇 조작 모델 공개</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/running-av-reasoning-models-within-onboard-compute-and-latency-limits/" target="_blank" rel="noopener nofollow">Running AV Reasoning Models Within Onboard Compute and Latency Limits</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
