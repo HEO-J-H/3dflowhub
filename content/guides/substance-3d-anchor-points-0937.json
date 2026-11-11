@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-anchor-points-0937",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Anchor points",
+  "title": "Anchor Point — 레이어 참조",
+  "summary": "Substance 3D Painter의 앵커 포인트(Anchor Points)는 레이어 간의 연결 고리로, 상위 레이어의 페인팅이나 제너레이터 수정 사항을 하위 레이어의 마스크나 필터에 실시간으로 반영하는 기능입니다.",
+  "when": [
+    "웨어 앤 테어(Wear and Tear) 효과로 긁힌 자국 주변에 먼지나 녹이 자연스럽게 쌓이게 만들 때",
+    "높이(Height) 채널의 디테일을 노말이나 마스크 생성에 연동하여 입체감을 살릴 때",
+    "수정이 잦은 페인팅 디테일에 맞춰 하위 마스크와 제너레이터가 자동으로 업데이트되도록 할 때"
+  ],
+  "steps": [
+    "Layers 패널에서 마스크를 추가할 레이어나 필터를 선택합니다.",
+    "레이어 속성(Properties) 창에서 마스크 또는 Effect(Add Mask / Add Effect)를 추가합니다.",
+    "마스크나 Effect에 Fill Effect를 추가한 뒤, Grayscale 슬롯을 우클릭하여 Anchor Point를 생성하고 이름을 지정합니다.",
+    "상위에 새 레이어를 만들고 브러시나 Shape 툴로 페인팅하여 디테일을 추가합니다.",
+    "하위 레이어의 Generator 설정에서 Reference 채널을 앞서 만든 Anchor Point로 지정합니다.",
+    "Viewport에서 상위 레이어의 수정 사항이 하위 마스크에 실시간으로 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Anchor Point Name",
+      "desc": "참조할 앵커 포인트의 고유 이름을 지정합니다."
+    },
+    {
+      "name": "Global/Local",
+      "desc": "프로젝트 전체나 특정 레이어 그룹 내에서 앵커 포인트를 참조할 범위를 설정합니다."
+    },
+    {
+      "name": "Source",
+      "desc": "참조할 데이터 소스 채널(Height, Normal, Roughness 등)을 선택합니다."
+    },
+    {
+      "name": "Level",
+      "desc": "참조하는 소스의 강도나 단계를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스크래치 주변 녹(Rust) 표현",
+      "steps": [
+        "Base Color와 Roughness 레이어 위에 Paint 레이어를 올려 철판 긁힌 자국을 그립니다.",
+        "해당 Paint 레이어에 앵커 포인트를 설정합니다.",
+        "하위 Rust 레이어의 Mask에 Generator(예: Dirt 또는 Edges)를 추가합니다.",
+        "Generator 파라미터에서 Micro Roughness 또는 Anchor Point 소스를 연결해 스크래치 주변에만 녹이 슬게 만듭니다."
+      ]
+    },
+    {
+      "title": "하이트(Height) 기반 입체 마스크",
+      "steps": [
+        "Fill 레이어에 Height 채널만 켠 상태로 패턴이나 알파 심볼을 그립니다.",
+        "해당 레이어에 앵커 포인트를 추가합니다.",
+        "다른 레이어의 마스크에 Fill Effect를 넣고 앵커 포인트를 참조시킵니다.",
+        "높이 정보에 따라 그림자나 색상이 자동으로 변하는 입체적인 효과를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "앵커 포인트 이름을 찾을 수 없음 → 상위 레이어에 올바르게 앵커 포인트가 생성되었는지, 레이어 순서가 하위 레이어보다 위에 있는지 확인합니다.",
+    "효과가 반영되지 않음 → Generator나 Filter 내부에서 참조하는 Source 채널(Height 등)이 실제 상위 레이어에 칠해져 있는지 확인합니다."
+  ],
+  "related": [
+    "Fill",
+    "Generator",
+    "Mask",
+    "Smart Mask"
+  ],
+  "videos": [
+    {
+      "id": "TgnrDtxk5Hs",
+      "title": "Substance Painter Tutorial: Texture Your 3D Models Like a Pro with Anchor Points",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "_uzHwNjwcU4",
+      "title": "Anchor Points in Adobe Substance Painter - Beginner Tutorial",
+      "author": "ProductionCrate"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Anchor%20points",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "Properties",
+    "Effect",
+    "Add Mask",
+    "Add Effect",
+    "Fill Effect"
+  ],
+  "at": "2026-11-11T00:34:40.230496+00:00"
+}

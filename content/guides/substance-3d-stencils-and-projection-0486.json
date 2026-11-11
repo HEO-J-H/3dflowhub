@@ -1,0 +1,85 @@
+{
+  "id": "substance-3d-stencils-and-projection-0486",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Stencils and projection",
+  "title": "스텐실·투영",
+  "summary": "Substance 3D의 Stencil과 Projection은 2D 이미지를 3D 메쉬 표면의 마스크나 브러시 투영 소스로 사용하여 정교한 디테일과 텍스처를 그리는 기능입니다.",
+  "when": [
+    "하드서페이스 모델에 스크래치, 로고, 패치 등 복잡한 문양을 넣을 때",
+    "천이나 가죽 표면에 바늘땀, 지퍼, 스티치 패턴을 일관되게 그릴 때",
+    "오브젝트 표면에 자연스러운 먼지나 얼룩을 특정 방향으로 투영할 때"
+  ],
+  "steps": [
+    "Assets 패널 또는 외부에서 사용할 텍스처 이미지를 드래그 앤 드롭으로 프로젝트에 추가합니다.",
+    "Texture를 Viewport 상단의 Stencil 영역이나 상단 툴바의 Projection 마스크 슬롯에 드래그하여 활성화합니다.",
+    "Viewport에서 S 키를 누른 채 Mouse 드래그로 Stencil의 위치, 크기, 회전을 조절합니다.",
+    "Paint Brush 도구를 선택하고 Viewport에서 메쉬 위를 직접 브러싱하여 Stencil 영역에만 텍스처를 투영합니다.",
+    "작업이 완료되면 Stencil Hotkey(Escape 또는 패널에서 닫기)를 눌러 Stencil 모드를 해제합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "투영되는 이미지 Stencil의 크기를 조절합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "이미지 Stencil의 각도를 회전시켜 메쉬 방향에 맞춥니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "투영되는 이미지의 불투명도를 조절하여 브러시 강도를 제어합니다."
+    },
+    {
+      "name": "Alignment",
+      "desc": "카메라 뷰 또는 UV 기준으로 투영 방식을 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 장갑에 로고와 스크래치 각인하기",
+      "steps": [
+        "로고 이미지를 Stencil로 로드하고 S 키로 크기와 위치를 맞춥니다.",
+        "Normal 또는 Height 채널만 활성화된 페인트 레이어를 만듭니다.",
+        "메쉬 표면에 브러시로 칠해 음각이나 양각 효과를 적용합니다."
+      ]
+    },
+    {
+      "title": "가죽 가방에 스티치 패턴 넣기",
+      "steps": [
+        "스티치 라인 이미지를 Stencil로 불러옵니다.",
+        "S 키를 이용해 가죽 이음새 라인에 정확히 맞추어 회전하고 배치합니다.",
+        "Color 및 Roughness 채널을 켜고 가볍게 덧칠해 바느질 자국을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Stencil이 화면에 보이지 않음 → S 키를 누른 상태에서 Mouse 조작이 아닌지 확인하거나 이미지 로드 상태를 점검합니다.",
+    "원하지 않는 곳까지 칠해짐 → Mask를 생성하거나 UV Seam 경계면을 확인하고 Projector 투영 각도를 조절합니다.",
+    "텍스처가 깨져 보임 → 텍스처 Resolution가 낮거나 메쉬의 UV 언랩 상태가 왜곡되었는지 확인합니다."
+  ],
+  "related": [
+    "Polygon Fill",
+    "Anchor Points",
+    "Fill Layer",
+    "Projection"
+  ],
+  "videos": [
+    {
+      "id": "QSFMe5Q06qo",
+      "title": "Substance Painter: Stencils & Projections (EXPLAINED)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "q3WwaYxq5VY",
+      "title": "Projection vs. Stencil in Adobe Substance 3D Painter",
+      "author": "SARKAMARI"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Stencils%20and%20projection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T00:34:48.815399+00:00"
+}

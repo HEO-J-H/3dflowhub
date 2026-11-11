@@ -1,0 +1,101 @@
+{
+  "id": "substance-3d-height-and-normal-painting-3a37",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Height and normal painting",
+  "title": "높이·노멀 칠하기",
+  "summary": "Substance 3D Painter에서 브러시 스트로크로 직접 높이(Height)와 노멀(Normal) 디테일을 그려 입체감을 부여하는 기능입니다. 평평한 표면에 균열, 긁힘, 리벳 같은 미세한 요철을 직관적으로 더할 때 사용합니다.",
+  "when": [
+    "하드 표면 모델에 볼트, 나사, 패널 라인 같은 미세한 요철을 추가할 때",
+    "유기물이나 벽면에 자연스러운 긁힘, 파임, 균열 자국을 손으로 직접 그릴 때",
+    "노멀 맵만으로는 표현하기 부족한 깊이감 있는 디테일을 실시간으로 쌓을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter의 Layers 패널에서 Fill Layer 또는 Paint Layer를 생성합니다.",
+    "Properties 패널에서 Height 채널을 활성화하고 브러시(Brush) 툴을 선택합니다.",
+    "Shelf 패널에서 원하는 알파(Alpha) 형태나 기본 브러시 아이콘을 선택합니다.",
+    "Viewport 상의 모델 표면에서 Mouse 드래그 또는 페인팅하여 높이와 노멀 디테일을 그립니다.",
+    "Properties 패널의 Height 슬라이더 값을 조절하여 요철의 깊이나 솟아오른 정도를 맞춥니다.",
+    "Viewport에서 Shading에 따른 입체감과 그림자가 올바르게 나타나는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Height",
+      "desc": "브러시가 그리는 높이(돌출 또는 파임)의 강도와 깊이를 조절합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "표면의 법선 방향을 틀어 미세한 빛 반사와 디테일을 추가합니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "브러시 스트로크의 단면 모양이나 패턴(균열, 리벳 등)을 결정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "브러시 팁의 전체 크기를 조절합니다."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 칠해지는 속도와 겹침의 농도를 조절합니다."
+    },
+    {
+      "name": "Blending Mode",
+      "desc": "레이어나 브러시 스트로크 간의 결합 방식을 설정합니다(예: Linear Dodge, Overlay)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 장갑판에 리벳과 볼트 자국 표현하기",
+      "steps": [
+        "Paint Layer를 만들고 Height 채널만 켠 상태로 설정합니다.",
+        "Shelf에서 원형 리벳 모양의 알파(Alpha)를 선택합니다.",
+        "장갑판 모서리 라인을 따라 클릭하여 볼트가 박힌 듯한 높이 디테일을 찍어냅니다."
+      ]
+    },
+    {
+      "title": "석조 벽면에 수공예 균열과 긁힘 넣기",
+      "steps": [
+        "새로운 Paint Layer를 추가하고 브러시 툴을 선택합니다.",
+        "갈라진 틈 모양의 알파를 선택하고 Height 값을 마이너스(-)로 설정합니다.",
+        "벽면 모서리를 따라 그어 파인 자국과 균열의 입체감을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Height 채널이 꺼져 있는데 높이를 그리려고 함 → Properties 패널에서 Height 채널 토글이 켜져 있는지 확인합니다.",
+    "높이 값이 너무 과도하게 설정되어 깨짐 현상 발생 → Height 슬라이더 값을 낮추고 노멀 블렌딩을 부드럽게 조정합니다.",
+    "스킬 맵이나 Baking이 누락되어 입체감이 안 보임 → Texture Set Settings에서 Normal 맵이 정상적으로 베이킹되었는지 확인합니다."
+  ],
+  "related": [
+    "Height Extrude",
+    "Normal Map",
+    "Fill Layer",
+    "Anchor Point"
+  ],
+  "videos": [
+    {
+      "id": "-X3F5vSeiUM",
+      "title": "Using Height Maps as an Input for Normal Information in SUBSTANCE PAINTER",
+      "author": "Xolotl Studio"
+    },
+    {
+      "id": "HL5mZdzzgIg",
+      "title": "Anchor Point Magic 02 - Micro Normals & Micro Height in Substance 3D Painter | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Height%20and%20normal%20painting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Layers",
+    "Fill Layer",
+    "Paint Layer",
+    "Properties",
+    "Height"
+  ],
+  "at": "2026-11-11T00:34:44.664073+00:00"
+}
