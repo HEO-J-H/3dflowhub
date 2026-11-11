@@ -1,0 +1,89 @@
+{
+  "id": "substance-3d-python-scripting-in-painter-16ab",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Python scripting in Painter",
+  "title": "Painter Python",
+  "summary": "Substance 3D Painter에서 Python API를 활용하여 텍스처링 프로세스를 자동화하고 반복 작업을 줄입니다.",
+  "when": [
+    "수백 개의 프로젝트에 동일한 텍스처 프리셋이나 메타데이터를 일괄 적용할 때",
+    "Export 설정이나 채널 구성을 표준화하여 수동 작업 실수를 방지할 때",
+    "외부 파이프라인과 연동하여 Painter 프로젝트를 자동으로 생성하고 관리할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 상단 메뉴 바에서 Python → Python Plugins 폴더를 엽니다.",
+    "텍스트 편집기(VS Code 등)를 사용하여 새 Python Script 파일을 작성합니다.",
+    "Script 상단에 'import substance_painter'와 필요한 모듈을 임포트합니다.",
+    "상단 메뉴 바에서 Python → Run Python Script 를 선택하거나 플러그인 메뉴에서 Script를 실행합니다.",
+    "콘솔 패널(Python console)에서 실행 결과와 오류 로그를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "project.create",
+      "desc": "새로운 Substance Painter 프로젝트를 메쉬와 함께 프로그래밍 방식으로 생성합니다."
+    },
+    {
+      "name": "export.document_maps",
+      "desc": "현재 프로젝트의 텍스처 맵을 지정한 경로와 프리셋으로 일괄 내보냅니다."
+    },
+    {
+      "name": "textureset.get_texture_sets",
+      "desc": "씬에 포함된 모든 텍스처 세트(Texture Set) 리스트를 가져와 제어합니다."
+    },
+    {
+      "name": "resource.search",
+      "desc": "프로젝트나 에셋 라이브러리에서 특정 머티리얼과 Smart 머티리얼을 검색합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "텍스처 일괄 Export 자동화",
+      "steps": [
+        "export 모듈을 임포트하여 Export 설정을 정의합니다.",
+        "타겟 폴더 경로와 파일 형식(PNG, EXR 등)을 지정합니다.",
+        "Script를 실행하여 모든 텍스처 세트의 맵을 한 번에 출력합니다."
+      ]
+    },
+    {
+      "title": "프로젝트 자동 생성 및 메쉬 로드",
+      "steps": [
+        "프로젝트 생성 함수에 FBX/OBJ 메쉬 파일 경로를 전달합니다.",
+        "기본 Template과 텍스처 Resolution를 옵션으로 설정합니다.",
+        "Script를 실행해 Viewport에 메쉬가 로드된 새 프로젝트를 엽니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "API 버전 불일치 → Painter 최신 공식 문서와 API 레퍼런스를 확인하여 모듈 경로 수정",
+    "메쉬 경로 오류 → 절대 경로를 올바르게 지정했는지, 슬래시(/) 방향 확인",
+    "UI 락 현상 → 무한 루프나 무거운 작업을 메인 스레드에서 실행할 때 발생하므로 비동기 처리 또는 단순화 적용"
+  ],
+  "related": [
+    "Substance 3D Painter JavaScript API",
+    "Python scripting in Unreal Editor",
+    "3ds Max pymxs",
+    "Blender Scripting"
+  ],
+  "videos": [
+    {
+      "id": "-ZbmRsOnApk",
+      "title": "Substance Painter 2021 Getting Started - Course introduction",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "_j27AS0VQOw",
+      "title": "Substance Painter 2021 Getting Started - Part 01 - Materials & masking | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Python%20scripting%20in%20Painter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Python",
+    "Python Plugins"
+  ],
+  "at": "2026-11-11T02:15:15.811848+00:00"
+}

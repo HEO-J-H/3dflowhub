@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-auto-uv-unwrap-in-painter-865e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Auto UV unwrap in Painter",
+  "title": "Painter 자동 UV",
+  "summary": "Substance 3D Painter의 Auto UV unwrap 기능은 별도의 외부 3D DCC 툴을 거치지 않고, 로우 폴리곤 모델에 자동으로 UV 시머를 생성하고 펼쳐주는 기능입니다. 텍스처 페인팅과 맵 Baking을 빠르게 시작할 수 있도록 돕습니다.",
+  "when": [
+    "외부 툴에서 UV 작업을 미리 하지 않고 모델링 파일을 바로 가져왔을 때",
+    "하드 서페이스 모델의 빠른 텍스처링을 위해 급하게 UV를 펴야 할 때",
+    "수동 UV 전개 과정에서 발생하는 시간 소모를 줄이고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 텍스처링할 3D 모델(OBJ, FBX 등)을 불러옵니다.",
+    "메뉴 바에서 Texture Set Settings 또는 관련 Mesh Maps 패널을 확인합니다.",
+    "Bake Mesh Maps 또는 관련 Auto UV 메뉴 옵션을 선택합니다.",
+    "옵션 창에서 Auto Unwrap 또는 관련 하드 서페이스 자동 UV 관련 항목을 활성화합니다.",
+    "설정을 확인하고 Baking 또는 실행 버튼을 눌러 UV 전개와 맵 추출을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Unwrap",
+      "desc": "모델의 형태를 분석해 자동으로 UV 시머를 생성하고 펼칩니다."
+    },
+    {
+      "name": "Hard Surface",
+      "desc": "기계나 건축물 같은 각진 하드 서페이스 모델에 최적화된 알고리즘을 적용합니다."
+    },
+    {
+      "name": "Quick Bake",
+      "desc": "빠른 속도로 메시 맵과 Baking 과정을 처리합니다."
+    },
+    {
+      "name": "Auto Rebake",
+      "desc": "모델이나 설정 변경 시 맵을 자동으로 다시 계산합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 하드 서페이스 텍스처링",
+      "steps": [
+        "각진 기계 부품 모델을 Substance 3D Painter에 임포트합니다.",
+        "Auto UV 옵션을 활성화하여 자동으로 셸을 분리합니다.",
+        "Mesh Maps Baking을 실행해 Normal 및 AO 맵을 추출합니다."
+      ]
+    },
+    {
+      "title": "외부 툴 없이 급하게 모델 수정하기",
+      "steps": [
+        "UV가 누락된 로우 폴리곤 모델을 불러옵니다.",
+        "자동 UV 기능을 적용하여 Viewport에서 즉시 패딩 상태를 확인합니다.",
+        "바로 Smart 머티리얼을 드래그하여 페인팅을 시작합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 왜곡된 모델에 바로 적용하는 경우 → 오브젝트 모드에서 Ctrl+A를 눌러 스케일을 먼저 적용(Apply Scale)합니다.",
+    "너무 복잡한 유기농 캐릭터에 하드 서페이스용 자동 UV를 쓰는 경우 → 왜곡이 생길 수 있으므로 모델 용도에 맞는 옵션을 선택합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Texture Set Settings",
+    "Smart Materials",
+    "Normal Map"
+  ],
+  "videos": [
+    {
+      "id": "qClGuFE74o4",
+      "title": "Substance Painter - Auto UV-Unwrap Anything (IN 60 Seconds!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "uiBGLPVkfnU",
+      "title": "Auto UV Unwrap in Substance Painter | Does it work?",
+      "author": "Kev's Art Stuff"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Auto%20UV%20unwrap%20in%20Painter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "OBJ",
+    "FBX",
+    "Texture Set Settings",
+    "Mesh Maps",
+    "Bake Mesh Maps"
+  ],
+  "at": "2026-11-11T02:15:08.058136+00:00"
+}

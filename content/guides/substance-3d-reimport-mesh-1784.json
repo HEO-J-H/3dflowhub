@@ -1,0 +1,84 @@
+{
+  "id": "substance-3d-reimport-mesh-1784",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Reimport mesh",
+  "title": "메시 다시 불러오기",
+  "summary": "Substance 3D Painter에서 작업 중인 3D 모델(Mesh)의 형태나 UV가 수정되었을 때, 기존에 작업한 텍스처를 유지한 채 모델만 최신 버전으로 교체하는 기능입니다.",
+  "when": [
+    "DCC 툴(Blender, 3ds Max 등)에서 모델링 형태나 비율을 수정했을 때",
+    "UV 언랩(Unwrap)이나 텍스텔 밀도를 다시 정리하여 모델을 교체해야 할 때",
+    "클라이언트나 팀원으로부터 수정된 FBX 또는 OBJ 파일을 받았을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 수정할 프로젝트를 엽니다.",
+    "상단 메뉴 바에서 Edit > Reimport Mesh를 클릭합니다.",
+    "Reimport Mesh 대화 상자가 열리면 새로 수정된 3D 파일(FBX/OBJ 등)을 선택합니다.",
+    "옵션 창에서 Keep UVs 나 Mesh 교체 옵션을 확인한 후 Reimport 버튼을 누릅니다.",
+    "Viewport에서 모델이 교체되고 기존 텍스처 레이어가 올바르게 유지되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Select File",
+      "desc": "새로 불러올 수정된 3D 메쉬 파일을 선택합니다."
+    },
+    {
+      "name": "Keep UVs from existing project",
+      "desc": "기존 프로젝트의 UV를 유지할지, 새 파일의 UV를 가져올지 선택합니다."
+    },
+    {
+      "name": "Preserve stroke positions on mesh",
+      "desc": "모델 형태가 바뀌어도 기존 페인트 스트로크 위치를 최대한 보존합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "손잡이 두께 수정 후 다시 불러오기",
+      "steps": [
+        "Blender에서 컵 손잡이 두께를 수정한 뒤 FBX 파일로 다시 내보냅니다.",
+        "Substance 3D Painter 프로젝트를 열고 Edit > Reimport Mesh를 실행합니다.",
+        "수정된 FBX 파일을 선택하고 Reimport를 클릭하여 텍스처가 깨지지 않는지 확인합니다."
+      ]
+    },
+    {
+      "title": "UV 펴기 작업 후 메쉬 업데이트",
+      "steps": [
+        "텍스처 작업 중 UV 왜곡을 발견하여 DCC 툴에서 UV를 다시 폅니다.",
+        "Reimport Mesh 기능을 실행하여 새 파일로 교체합니다.",
+        "옵션에서 새 UV를 반영하도록 설정하여 텍스처 정밀도를 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬 이름이나 구조가 완전히 달라짐 → 메쉬 재임포트 시 텍스처 매핑이 유실될 수 있으므로 오브젝트 이름을 동일하게 유지해야 합니다.",
+    "스케일 단위가 달라짐 → DCC 툴에서 내보낼 때 Unit 설정이 달라져 모델 크기가 급격히 변할 수 있으니 단위를 통일합니다."
+  ],
+  "related": [
+    "Project Setup",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Export Textures"
+  ],
+  "videos": [
+    {
+      "id": "t3BVX8hE0zo",
+      "title": "Substance Painter Reimport Mesh",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "unzWvJsOtHE",
+      "title": "Substance Painter: How To UPDATE mesh WITHOUT Losing Result!",
+      "author": "AnArtBrand"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Reimport%20mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Edit",
+    "Reimport Mesh"
+  ],
+  "at": "2026-11-11T02:15:11.818732+00:00"
+}
