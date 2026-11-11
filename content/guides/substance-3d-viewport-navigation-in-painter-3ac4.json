@@ -1,0 +1,93 @@
+{
+  "id": "substance-3d-viewport-navigation-in-painter-3ac4",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Viewport navigation in Painter",
+  "title": "Painter Viewport 이동",
+  "summary": "Substance 3D Painter Viewport 내비게이션은 3D 모델의 텍스처와 재질을 다양한 각도에서 관람하고 세부 묘사를 확인할 수 있는 작업 공간입니다.",
+  "when": [
+    "브러시로 모델 표면에 디테일이나 텍스처를 직접 그릴 때",
+    "지정된 재질과 맵이 모델 전체에 올바르게 적용되었는지 확인할 때",
+    "특정 부위의 UV 왜곡이나 이음새(Seam)를 점검할 때"
+  ],
+  "steps": [
+    "Adobe Substance 3D Painter를 실행하고 작업할 3D 프로젝트 파일을 엽니다.",
+    "Viewport 창 안에서 Alt + Mouse 좌클릭을 누른 채 드래그하여 카메라를 회전(Orbit)합니다.",
+    "Alt + Mouse 우클릭을 누른 채 드래그하여 카메라를 확대 및 축소(Zoom)합니다.",
+    "Alt + Mouse 중클릭을 누른 채 드래그하여 카메라를 상하좌우로 이동(Pan)합니다.",
+    "F 키를 눌러 선택한 오브젝트를 Viewport 중앙에 맞춥니다.",
+    "Shift + 우클릭을 누른 채 드래그하여 환경광(Environment)의 각도를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Orbit",
+      "desc": "Alt + Mouse 좌클릭으로 모델 주변을 회전하며 관람합니다."
+    },
+    {
+      "name": "Pan",
+      "desc": "Alt + Mouse 중클릭으로 카메라 시점을 평행하게 이동합니다."
+    },
+    {
+      "name": "Zoom",
+      "desc": "Alt + Mouse 우클릭 또는 Mouse 휠로 카메라를 당기거나 밉니다."
+    },
+    {
+      "name": "Focus",
+      "desc": "F 키를 눌러 선택된 메쉬를 화면 중앙으로 가져옵니다."
+    },
+    {
+      "name": "Environment Rotation",
+      "desc": "Shift + 우클릭 드래그로 조명과 반사 환경을 회전시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델의 좁은 틈새 확인하기",
+      "steps": [
+        "Alt + Mouse 좌클릭으로 모델의 세부 구조가 보이는 각도로 회전합니다.",
+        "Alt + Mouse 우클릭으로 틈새 부위로 카메라를 밀착시킵니다.",
+        "F 키를 눌러 해당 부위를 화면 중앙에 정확히 고정합니다."
+      ]
+    },
+    {
+      "title": "전체 실루엣과 조명 방향 점검",
+      "steps": [
+        "Alt + Mouse 좌클릭으로 모델 전체를 크게 회전하며 외형을 봅니다.",
+        "Shift + 우클릭을 누른 채 드래그하여 하이라이트와 그림자 방향을 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "시점을 잃어버리고 모델이 화면 밖으로 사라짐 → F 키를 눌러 선택한 오브젝트를 중앙으로 정렬합니다.",
+    "카메라가 의도치 않게 회전함 → Alt 키를 먼저 누른 상태에서 Mouse 버튼을 클릭했는지 확인합니다."
+  ],
+  "related": [
+    "Texture Set List",
+    "Layer Stack",
+    "Material Mode",
+    "Display Settings"
+  ],
+  "videos": [
+    {
+      "id": "42UOGkxUKNo",
+      "title": "Substance Painter UI-Controls (In 3 Minutes)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "uWgLjdIr_1k",
+      "title": "Substance 3D Painter Tutorial | 1. UI and Navigation",
+      "author": "3DWolf"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Viewport%20navigation%20in%20Painter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Adobe Substance 3D Painter",
+    "Viewport",
+    "Mouse",
+    "Orbit"
+  ],
+  "at": "2026-11-11T00:04:31.592838+00:00"
+}

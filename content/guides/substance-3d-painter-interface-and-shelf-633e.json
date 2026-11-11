@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-painter-interface-and-shelf-633e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Painter interface and shelf",
+  "title": "Painter 인터페이스·Shelf",
+  "summary": "Substance 3D Painter의 인터페이스와 Shelf는 3D 모델에 정교한 텍스처와 머티리얼을 입히기 위한 작업 공간이자 다양한 브러시, 재질, Smart 머티리얼을 보관하는 창고입니다.",
+  "when": [
+    "3D 모델을 불러와서 화면 조작(회전·이동·줌)과 Viewport 레이아웃을 익히고 싶을 때",
+    "철판, 가죽, 나무 등 기본 머티리얼이나 Smart 머티리얼을 빠르게 가져와 모델에 적용할 때",
+    "레이어, 텍스처 세트, 패싯터(Properties) 패널을 활용해 세부적인 페인팅 작업을 준비할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 상단 메뉴 바에서 File → New를 선택하여 OBJ 또는 FBX 형식의 3D 모델을 불러옵니다.",
+    "화면 중앙의 Viewport에서 Alt + 좌클릭으로 회전, Alt + 우클릭으로 줌, Alt + 가운데 클릭으로 패닝(이동)하여 모델을 관찰합니다.",
+    "화면 우측의 Layer 패널과 Texture Set Settings 패널에서 Baking 및 레이어 구성을 확인합니다.",
+    "화면 하단 또는 좌측의 Shelf 패널에서 Materials 탭을 열어 원하는 머티리얼을 찾습니다.",
+    "Shelf에서 선택한 머티리얼을 드래그하여 Viewport의 모델이나 Layer 패널에 드롭하여 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Viewport",
+      "desc": "3D 모델과 텍스처 결과물을 실시간으로 확인하는 메인 3D 화면입니다."
+    },
+    {
+      "name": "Shelf",
+      "desc": "머티리얼, Smart 마스크, 브러시, 알파 등을 모아둔 리소스 보관함입니다."
+    },
+    {
+      "name": "Layer",
+      "desc": "색상, 러프니스, 노멀 등을 층층이 쌓아 텍스처를 수정하는 패널입니다."
+    },
+    {
+      "name": "Texture Set Settings",
+      "desc": "텍스처 Resolution 설정 및 Bake Mesh Maps를 실행하는 패널입니다."
+    },
+    {
+      "name": "Properties",
+      "desc": "선택한 브러시나 머티리얼의 세부 옵션과 파라미터를 조절하는 패널입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 메탈 머티리얼 입히기",
+      "steps": [
+        "Shelf 패널의 검색창에 Iron을 입력하여 철판 머티리얼을 찾습니다.",
+        "해당 머티리얼 아이콘을 Mouse로 드래그합니다.",
+        "Viewport 안의 3D 모델 위에 Mouse를 놓고 드롭하여 적용합니다."
+      ]
+    },
+    {
+      "title": "Smart 머티리얼로 녹(Rust) 표현하기",
+      "steps": [
+        "Shelf 패널의 Smart Materials 탭을 선택합니다.",
+        "Rust 관련 Smart 머티리얼을 레이어 패널로 드래그하여 올립니다.",
+        "Properties 패널에서 녹의 양과 번짐 정도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모델이 검게 나오거나 텍스처가 깨져 보임 → Texture Set Settings에서 Bake Mesh Maps를 먼저 실행하지 않아서 발생하는 문제이므로 노멀과 앰비언트 오클루전 등을 베이킹합니다.",
+    "머티리얼을 드래그해도 모델에 색이 안 칠해짐 → UV가 펴져 있지 않거나 잘못된 텍스처 세트를 선택했기 때문이므로 UV 상태를 확인합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Smart Materials",
+    "Layer",
+    "Texture Set Settings"
+  ],
+  "videos": [
+    {
+      "id": "uxxliJba8m0",
+      "title": "A Beginners Guide to Substance Painter",
+      "author": "Cryptic Visionary"
+    },
+    {
+      "id": "uWgLjdIr_1k",
+      "title": "Substance 3D Painter Tutorial | 1. UI and Navigation",
+      "author": "3DWolf"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Painter%20interface%20and%20shelf",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "File",
+    "New",
+    "OBJ",
+    "FBX"
+  ],
+  "at": "2026-11-11T00:04:28.164263+00:00"
+}

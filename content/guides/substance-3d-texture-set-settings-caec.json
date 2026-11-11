@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-texture-set-settings-caec",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Texture Set settings",
+  "title": "Texture Set 설정",
+  "summary": "Substance 3D Painter에서 3D 모델의 재질 영역을 나누고 텍스처 Resolution와 채널을 설정하여 페인팅 준비를 마치는 기능입니다. 캔버스의 도화지 크기와 색상·거칠기 같은 세부 속성을 결정합니다.",
+  "when": [
+    "임포트한 3D 모델의 머티리얼 ID나 UV 섬(Island)별로 재질을 분리하여 관리하고 싶을 때",
+    "프로젝트 전체 또는 개별 Texture Set의 텍스처 Resolution를 2K, 4K 등으로 변경할 때",
+    "Normal, Roughness, Metallic 등 채널을 추가하거나 제거하여 Shader 구성을 바꿀 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 3D 모델(FBX/OBJ)을 불러온 뒤, 오른쪽 Texture Set List 패널에서 설정할 텍스처 셋을 선택합니다.",
+    "오른쪽 Texture Set Settings 패널로 이동하여 현재 텍스처 셋의 이름과 할당된 재질을 확인합니다.",
+    "Size 항목의 드롭다운 메뉴를 클릭하여 원하는 텍스처 Resolution(예: 2048 또는 4096)를 선택합니다.",
+    "Channels 항목 우측의 '+' 아이콘을 눌러 필요한 Shader 채널(예: Emissive, Anisotropy 등)을 추가하거나 편집합니다.",
+    "오른쪽 위의 Bake Mesh Maps 버튼을 눌러 선택한 텍스처 셋의 Normal, AO 등을 추출합니다.",
+    "Viewport에서 텍스처 선명도와 레이어 설정이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Size",
+      "desc": "텍스처 셋의 Resolution(픽셀 크기)를 결정하며 높을수록 디테일이 선명해지고 VRAM 소모가 증가합니다."
+    },
+    {
+      "name": "Channels",
+      "desc": "Base Color, Roughness, Metallic, Normal 등 해당 텍스처 셋이 사용할 맵 종류를 설정합니다."
+    },
+    {
+      "name": "Bake Mesh Maps",
+      "desc": "하이 폴리곤 모델의 디테일을 활용해 Normal, Ambient Occlusion, Curvature 맵 등을 베이킹합니다."
+    },
+    {
+      "name": "Use UV Tile workflow",
+      "desc": "UDIM 방식을 사용하여 하나의 텍스처 셋에 여러 UV 조각을 나누어 고해상도로 페인팅합니다."
+    },
+    {
+      "name": "Bit Depth",
+      "desc": "텍스처 맵의 색상 정밀도를 8-bit, 16-bit 등으로 설정하여 밴딩 현상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저사양 작업을 위한 텍스처 Resolution 일괄 낮추기",
+      "steps": [
+        "Texture Set Settings 패널에서 첫 번째 텍스처 셋의 Size를 4096에서 2048로 변경합니다.",
+        "다른 텍스처 셋들도 동일한 방식으로 Resolution를 낮춰 VRAM 부족 오류를 예방합니다.",
+        "Viewport에서 디테일 손상 여부를 확인하고 작업을 계속 진행합니다."
+      ]
+    },
+    {
+      "title": "발광(Emissive) 표현을 위한 채널 추가하기",
+      "steps": [
+        "Texture Set Settings 패널의 Channels 항목으로 이동합니다.",
+        "옆의 '+' 아이콘을 클릭하여 Emissive 채널을 선택해 추가합니다.",
+        "Layers 패널에서 Fill Layer를 만들고 Emissive 색상을 조절하여 빛나는 표현을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "VRAM 용량을 고려하지 않고 모든 Texture Set을 4K나 8K로 설정함 → Texture Set Settings에서 Size를 2K로 낮추거나 필요한 셋만 고해상도로 설정",
+    "UV 중복이나 겹침(Overlap)이 있는 상태에서 Texture Set을 분할함 → 3D DCC에서 UV Unwrap을 다시 정리한 뒤 모델 재임포트",
+    "필요한 채널(예: Roughness나 Metallic)을 누락한 채 페인팅을 시작함 → Texture Set Settings의 Channels에서 누락된 채널을 추가"
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Export Textures",
+    "UDIM workflow",
+    "Texture Set List"
+  ],
+  "videos": [
+    {
+      "id": "IgvIGndKNCQ",
+      "title": "27 | Substance 3D Painter Course - Texture Set Settings",
+      "author": "Michael Tanzillo"
+    },
+    {
+      "id": "IlmcEUVKVfQ",
+      "title": "All Texture Export Settings for Substance 3D Painter | EP154",
+      "author": "Ambient 3D Animations"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Texture%20Set%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "FBX",
+    "OBJ",
+    "Texture Set List"
+  ],
+  "at": "2026-11-11T00:04:36.939896+00:00"
+}
