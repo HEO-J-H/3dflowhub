@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-09T15:17:23.733984+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 90,
-      "candidates_passed": 41,
-      "offtopic": 28,
-      "short": 0,
-      "prefiltered": 27,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "bbfd6620",
-      "visuals": 1,
-      "enriched": 1,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-09T15:27:33.898090+00:00",
       "collected": 1,
       "saved": 1,
@@ -7554,6 +7527,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-11T19:38:17.136150+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 113,
+      "candidates_passed": 57,
+      "offtopic": 34,
+      "short": 0,
+      "prefiltered": 29,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "32212da8",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7649,7 +7649,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 문서 파일(.md)에는 실제 마크다운 형식의 가이드를 작성하고, 테스트 코드는 반드시 tests/ 디렉토리에 분리하여 배치해야 합니다.",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/web-optimization.md').exists / FAILED backend/tests/test_core.py::test",
     "2026-11-04 [성찰] 오탐지율과 무관한 글을 줄이기 위해 일반 명사 도구명을 철저히 필터링하고, 실무 검색 수요가 검증된 주제에 집중해야 합니다.",
     "2026-11-04 [성찰] 실무 중심의 검색 유입이 확인된 3ds Max(MaxScript), Blender, Maya 등 고CPC 및 구글 검색 키워드 중심의 튜토리얼과 최적화 팁 콘텐츠가 조회수 확보에 가장 유리합니다.",
@@ -7768,7 +7767,8 @@
     "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] 사용자 인터페이스의 상태 변화(로딩, 완료)는 명확한 시각적 피드백과 직관적인 텍스트로 전달해야 UX 만족도가 높아진다.",
     "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] ",
     "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Maya, Unity 등)에서 발생하는 동음이의어 노이즈를 강력한 컨텍스트 필터로 차단하고 실무 밀착형 튜토리얼 및 스크립트 주제를 집중 공략해야 유입과 체류시간이 대폭 상승합니다.",
-    "2026-11-11 [성찰] 오동입(일반 명사 혼동)으로 인한 비관련 글의 유입 비율을 낮추고, 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 키워드에 집중해야 페이지뷰와 품질 점수를 높일 수 있습니다."
+    "2026-11-11 [성찰] 오동입(일반 명사 혼동)으로 인한 비관련 글의 유입 비율을 낮추고, 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 키워드에 집중해야 페이지뷰와 품질 점수를 높일 수 있습니다.",
+    "2026-11-11 [성찰] 동음이의어와 일반 명사로 인한 오탐지를 방지하기 위해 7중 컨텍스트 필터를 적용하고, 검색 유입이 검증된 Maxscript 및 애드온·플러그인 실무 튜토리얼 중심으로 콘텐츠를 발행해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7810,7 +7810,7 @@
     ]
   },
   "category_counts": {
-    "Game Engine/Unity": 77,
+    "Game Engine/Unity": 78,
     "AI 3D/가우시안 스플래팅": 107,
     "VFX/스튜디오·작품": 156,
     "AI 3D/로보틱스·월드모델": 31,
@@ -10414,14 +10414,16 @@
     4274097423382807489,
     18400636382439617404,
     9860145701937466786,
-    11554127254333316698
+    11554127254333316698,
+    9405618528837091439,
+    10124456223115665775
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2591,
-    "Game Engine": 2591,
-    "VFX": 2591,
-    "AI 3D": 2591
+    "3D DCC": 2592,
+    "Game Engine": 2592,
+    "VFX": 2592,
+    "AI 3D": 2592
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
