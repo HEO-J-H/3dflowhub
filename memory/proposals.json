@@ -33200,5 +33200,29 @@
     "id": "p-d612beb1a7",
     "verdict": "agent",
     "reason": "백엔드 Python 파일의 예외 로깅 및 메시지 정교화 작업이므로 에이전트가 코드를 직접 수정하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-11T15:50:10+00:00",
+    "kind": "proposal",
+    "id": "p-c6b60004a0",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 TripoSR 예외 로깅 및 메시지 정교화 작업이 수락되었으나 관련 단위 테스트가 부족함",
+    "proposal": "backend/tests/test_triposr.py 파일에 TripoSR 실행 중 GPU 부족이나 예외 발생 시 반환되는 로그 및 메시지 검증 테스트 케이스를 추가",
+    "expected": "로컬 파이프라인의 안정성 확보 및 예외 상황 대응력 검증 자동화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:50:37.174637+00:00",
+    "kind": "decision",
+    "id": "p-c6b60004a0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]
