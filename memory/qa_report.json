@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-11T02:34:59+00:00",
-  "checked": 1314,
+  "at": "2026-11-11T08:36:11+00:00",
+  "checked": 1337,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -1186,6 +1186,38 @@
       "score": 9,
       "defects": [],
       "fix_hint": "모디파이어 스택의 기본 개념과 주요 버튼(Show End Result, Make Unique, Collapse 등)의 역할이 명확하게 잘 정리되어 있습니다."
+    },
+    {
+      "kind": "fix",
+      "id": "3ds-max-exception-the-file-is-corrupt-or-uses-a-ne-5fb65",
+      "title": "Exception: The file is corrupt or uses a newer version of 3ds Max 오류 해결",
+      "score": 8,
+      "defects": [
+        "문장이 구두점 없이 길게 이어져 있어 가독성이 다소 떨어집니다.",
+        "AutoBack 기본 경로의 윈도우 환경 표기를 조금 더 명확히 구분하면 좋습니다."
+      ],
+      "fix_hint": "해결 방법과 단계별 조치 사항을 불릿 포인트나 번호 매기기로 정리하여 독자가 따라 하기 쉽게 작성해주세요."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-array-tool-46ce",
+      "title": "Array — 규칙적으로 복제·배열",
+      "score": 9,
+      "defects": [
+        "상단 메뉴 경로가 Edit → Array로 되어 있으나 실제 3ds Max 최신 버전에서는 Edit 메뉴가 아닌 Tools → Array입니다."
+      ],
+      "fix_hint": "3ds Max의 메뉴 경로(Edit, Tools 등)를 작성할 때는 공식 UI 기준의 정확한 위치를 검증해야 합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "maya-texel-density-f8b6",
+      "title": "Texel Density",
+      "score": 8,
+      "defects": [
+        "UV Toolkit의 Texel Density 기능 경로 설명 중 'Tools > Unitize'와 UV Toolkit의 메뉴 구조가 다소 혼동되게 서술됨",
+        "픽셀 값 예시(5.12 px/cm)가 구체적인 텍스처 사이즈 및 유닛 세팅과의 연관성에 대한 설명이 부족함"
+      ],
+      "fix_hint": "Maya의 UV Editor 및 UV Toolkit 내 실제 메뉴 경로와 옵션 이름을 정확히 검증하여 작성하세요."
     }
   ],
   "avg_score": 9.0,
