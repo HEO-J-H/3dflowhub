@@ -1,0 +1,59 @@
+{
+  "title_ko": "Gaussian Splatting FastWild-GS 연구 논문",
+  "title": "FastWild-GS: Minutes-Scale In-the-Wild Gaussian Splatting via Compact Per-Image Appearance Adaptation",
+  "url": "https://arxiv.org/abs/2611.13808v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "FastWild-GS",
+    "NeRF",
+    "arXiv",
+    "3D 비전"
+  ],
+  "summary": "인터넷 사진의 조명과 노출 차이를 128차원 토큰으로 해결해 학습 시간을 몇 분 단위로 단축한 FastWild-GS 논문이 공개되었습니다.",
+  "insight": "기존 Gaussian Splatting 기법들은 야외에서 수집한 인터넷 사진의 제각각인 노출과 조명, 지나가는 행인 같은 비동기 객체 때문에 수 시간이 걸리는 최적화 과정을 거쳐야 했습니다. FastWild-GS는 각 사진을 128차원 Photo Appearance Token과 채널별 변환 값으로 처리하여 이 문제를 해결합니다. 구면 조화 함수 대신 소형 MLP가 색상을 예측하도록 설계되어 재구성 오차 계산의 정확도를 높입니다. 결과적으로 PhotoTourism 데이터셋에서 씬당 8.8분 만에 학습을 완료하며 AsymGS 대비 23배 빠른 복원 속도를 보여줍니다.",
+  "try_it": [
+    "arXiv:2611.13808 논문 본문을 다운로드하여 128차원 Photo Appearance Token의 구체적인 구조를 확인합니다.",
+    "PhotoTourism 및 NeRF-OSR 데이터셋을 활용해 기존 방식과 학습 시간을 비교 테스트합니다.",
+    "소형 MLP를 이용한 구면 조화 함수 대체 방식을 실험해 렌더링 품질을 점검합니다."
+  ],
+  "sections": [
+    {
+      "heading": "FastWild-GS의 주요 제안 내용",
+      "body": "인터넷 사진은 노출, 조명, 지나가는 행인 같은 비동기 객체가 제각각이라 기존 Gaussian 색상 모델로는 모든 사진을 설명하기 어렵습니다. 저자들은 각 사진을 128차원 Photo Appearance Token과 채널별 변환 값으로 처리하는 방법을 제안합니다. 구면 조화 함수 대신 소형 MLP가 이 토큰과 Gaussian 특징을 받아 색상을 예측합니다."
+    },
+    {
+      "heading": "조명 및 외형 적응 방식",
+      "body": "렌더링된 이미지에 스케일과 오프셋 등 6개 파라미터로 구성된 채널별 변환이 적용됩니다. Gaussian을 밀집화하고 가지치기하는 평가 단계에도 동일한 변환이 적용됩니다. 따라서 사진 간의 외형 차이가 재구성 오차로 잘못 계산되는 문제를 방지합니다."
+    },
+    {
+      "heading": "성능 및 학습 시간 검증",
+      "body": "PhotoTourism 데이터셋에서 씬당 8.8분 만에 학습을 완료하며 비교군 중 가장 낮은 LPIPS 수치를 기록했습니다. 이는 기존 상위 방식인 AsymGS보다 23배 빠른 속도입니다. NeRF-OSR 데이터셋에서도 씬당 9.7분 만에 최고 수준의 평균 PSNR, SSIM, LPIPS 지표를 달성했습니다."
+    },
+    {
+      "heading": "야외 사진 데이터셋 적용의 기술적 배경",
+      "body": "논문 저자인 Donghun Ryu, Seokhyun Kim, Minhyeok Lee는 인터넷에 산재한 비정형 이미지의 한계를 극복하기 위해 컴팩트한 퍼이미지 외형 적응 방식을 도입했습니다. 복잡한 야외 환경에서 촬영된 수많은 사진들의 물리적 차이를 128차원 공간 안에서 제어합니다. 이를 통해 방대한 이미지 데이터 세트를 다루는 3D 재건 프로세스의 병목 현상을 줄입니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "FastWild-GS는 학습에 얼마나 걸리나요?",
+      "a": "PhotoTourism 데이터셋 기준 씬당 평균 8.8분이 소요됩니다."
+    },
+    {
+      "q": "기존 야외 Gaussian Splatting 방식과 어떤 차이가 있나요?",
+      "a": "128차원 Photo Appearance Token과 소형 MLP를 활용해 조명과 외형 변화를 빠르게 학습하며, 밀집화 과정에서 외형 차이를 오차에서 제외합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.13808v1/fig_qual_compare_v4_user4.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-11T05:15:20.292929+00:00",
+  "notion_id": "",
+  "id": "2026-11-11-c250fd535b56e68f",
+  "img_tried": true,
+  "enriched": "2026-11-11"
+}
