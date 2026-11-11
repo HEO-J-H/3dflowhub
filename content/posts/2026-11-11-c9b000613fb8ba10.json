@@ -1,63 +1,93 @@
 {
-  "title_ko": "DepthGS — Gaussian Splatting 표면 재구성 논문",
+  "title_ko": "DepthGS: 깊이 가이드 Gaussian Splatting으로 고품질 표면 재구성",
   "title": "DepthGS: Depth-Guided Gaussian Splatting with Adaptive Regularization for High-Quality Surface Reconstruction",
   "url": "https://arxiv.org/abs/2611.13628v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "DepthGS",
     "Gaussian Splatting",
-    "NeRF",
     "표면 재구성",
-    "연구 논문"
+    "Depth-guided regularization",
+    "Multi-view consistency"
   ],
-  "summary": "단일 뷰 및 다중 뷰 설정에서 깊이 정보와 재구성 오차의 이론적 관계를 분석하고 적응형 정규화를 제안한 DepthGS 논문입니다.",
-  "insight": "깊이 차이를 신뢰도로 활용하면 노이즈가 많은 영역에서 법선이 과도하게 왜곡되는 것을 막을 수 있다. 다중 뷰 환경에서는 각 카메라의 깊이 맵을 서로 변환해 비교함으로써 일관성을 강제한다. 한국의 3D 아티스트가 자체 파이프라인에 DepthGS를 도입하면, 기존 3DGS 기반 뷰 합성보다 더 정밀한 표면을 얻을 수 있다.",
-  "try_it": [
-    "논문에 제시된 수식과 알고리즘을 참고해 현재 사용 중인 Gaussian Splatting 코드에 깊이 차이 기반 가중치를 추가한다.",
-    "DTU 같은 공개 데이터셋으로 단일 뷰 실험을 수행해 법선 정규화 강도를 조절해 본다.",
-    "다중 뷰 시퀀스를 준비하고, 인접 뷰 깊이 맵을 변환해 교차 일관성 정규화를 적용해 본다."
-  ],
+  "summary": "DepthGS는 깊이 차이를 이용해 Gaussian Splatting의 정규화를 적응적으로 조절함으로써 표면 재구성 정확도를 높이는 프레임워크입니다.",
+  "insight": "단일 뷰 촬영만으로도 깊이 차이를 활용해 노멀 제약을 자동 조절하면, 복잡한 장면에서도 과도한 정규화 없이 자연스러운 표면을 얻을 수 있습니다. 또한 다중 뷰 일관성 정규화는 여러 카메라 위치에서 일관된 메쉬를 생성하는 파이프라인에 바로 적용 가능할 것으로 기대됩니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "DepthGS 프레임워크 개요",
-      "body": "DepthGS는 3D Gaussian Splatting을 표면 재구성에 적용하면서 깊이 정보를 활용한다. 논문은 깊이 차이와 재구성 오차 사이의 수학적 관계를 도출한다. 이 관계를 기반으로 기하학적 최적화 전략을 설계한다."
+      "heading": "무엇을 풀려는가",
+      "body": "3D Gaussian Splatting(3DGS)은 빠른 렌더링과 높은 시각적 품질을 제공하지만, 불규칙한 Gaussian Primitive 때문에 정확한 표면 재구성이 어려운 문제를 가지고 있습니다."
     },
     {
-      "heading": "깊이 차이와 오차 상한선",
-      "body": "단일 뷰와 다중 뷰 각각에 대해 깊이 불일치가 재구성 오차에 미치는 영향을 정량화한다. 저자들은 이를 통해 오차 상한선을 엄밀히 계산한다. 이러한 이론적 근거가 적응형 정규화 설계의 토대가 된다."
+      "heading": "핵심 아이디어",
+      "body": "논문은 깊이 차이와 재구성 오류 사이의 이론적 관계를 유도하고, 이를 기반으로 단일 뷰와 다중 뷰에서 각각 다른 적응형 정규화 전략을 설계합니다."
     },
     {
-      "heading": "단일 뷰 적응형 정규화",
-      "body": "국소 깊이 차이로부터 기하학적 신뢰도 가중치를 구한다. 이 가중치는 법선 제약 강도를 조절하는 데 사용된다. 결과적으로 깊이 불확실성이 큰 영역에서 과도한 정규화를 방지한다."
+      "heading": "방법 (단계)",
+      "body": "1️⃣ 단일 뷰: 깊이 차이(ΔD)를 계산해 지역 깊이 차이 기반 가중치 𝒲_{ΔD}를 구하고, 이를 정규화된 노멀 제약 ℒ_{svgeo}에 곱해 약한 제약을 적용합니다.\n2️⃣ 다중 뷰: 인접 뷰 간 깊이 맵을 좌표 변환으로 정렬하고, 변환된 깊이와 원본 깊이 사이의 일관성을 촉진하는 ℒ_{mv_D} 정규화를 추가합니다.\n3️⃣ 두 정규화 항을 기존 3DGS 목표와 함께 공동 최적화합니다."
     },
     {
-      "heading": "다중 뷰 깊이 일관성 정규화",
-      "body": "인접 뷰의 깊이 맵과 현재 뷰의 예측을 변환해 비교한다. 변환된 깊이와 실제 깊이 사이의 차이를 최소화하도록 정규화한다. 이는 여러 시점에서 일관된 표면을 재구성하도록 돕는다."
+      "heading": "결과 (논문 수치)",
+      "body": "DTU, Mip‑NeRF360, Tanks and Temples 데이터셋에서 실험을 수행했으며, DepthGS는 표면 재구성 및 새로운 뷰 합성 모두에서 기존 방법과 경쟁력 있는 성능을 달성했습니다."
     },
     {
-      "heading": "실험 결과와 벤치마크",
-      "body": "DTU, Mip-NeRF360, Tanks and Temples 데이터셋에서 DepthGS는 기존 3DGS 대비 표면 재구성 정확도가 높았다. 신규 뷰 합성에서도 시각적 품질이 향상되었다. 논문은 IEEE Transactions on Pattern Analysis and Machine Intelligence에 게재될 예정이다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문은 정규화 전략이 깊이 차이에 의존하므로, 깊이 추정이 매우 부정확한 장면에서는 효과가 제한될 수 있다고 언급합니다."
     }
   ],
   "faq": [
     {
-      "q": "DepthGS는 어떤 문제를 해결하기 위한 연구인가요?",
-      "a": "Gaussian Splatting을 표면 재구성에 확장할 때 깊이 정보와 재구성 오차 간의 관계가 충분히 탐구되지 않은 한계를 극복하기 위해 제안된 프레임워크입니다."
+      "q": "DepthGS가 해결하려는 핵심 문제는 무엇인가요?",
+      "a": "3D Gaussian Splatting에서 깊이와 렌더링 거리 사이의 차이가 표면 재구성 오류를 일으키는 것을 이론적으로 분석하고, 이를 정규화에 활용해 오류를 감소시키는 것이 목표입니다."
     },
     {
-      "q": "어떤 데이터셋에서 성능이 검증되었나요?",
-      "a": "DTU, Mip-NeRF360, Tanks and Temples 벤치마크 데이터셋을 사용한 광범위한 실험을 통해 성능을 입증했습니다."
+      "q": "단일 뷰와 다중 뷰에서 어떤 정규화 전략을 사용하나요?",
+      "a": "단일 뷰에서는 깊이 차이 기반 가중치 𝒲_{ΔD}로 노멀 제약 강도를 조절하고, 다중 뷰에서는 인접 뷰 간 깊이 일관성을 강제하는 ℒ_{mv_D} 정규화를 적용합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.13628v1/4_1_framework.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.13628v1/4_1_framework.png",
+        "caption": "Fig. 1: Overview of the proposed framework. The Gaussian representation is initialized from a sparse point cloud and used to render the distance and normal maps. Unbiased depth maps are then derived from these rendered quantities. The discrepancy between the unbiased depth and rendered distance is u",
+        "caption_ko": "Fig. 1: Gaussian 표현을 초기화하고 거리·노멀 맵을 렌더링한 뒤, 무편향 깊이 맵을 생성하여 깊이 차이 기반 가중치를 계산하는 전체 흐름"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13628v1/figures/4_2_depth_diff_ellpisods.jpg",
+        "caption": "Fig. 2: Depth differences (left) and corresponding Gaussian distributions (right); large discrepancies often coincide with irregular Gaussian layouts.",
+        "caption_ko": "Fig. 2: 깊이 차이가 큰 영역은 Gaussian 배치가 불규칙한 경우와 일치함을 보여줍니다"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13628v1/figures/4_4_depth_diff.jpg",
+        "caption": "Fig. 3: Depth-difference weights are derived from the discrepancy between the rendered-distance map and the unbiased-depth map. The greater the depth difference, the smaller the weight.",
+        "caption_ko": "Fig. 3: 깊이 차이가 클수록 가중치가 작아지는 깊이 차이 기반 가중치 생성 과정"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13628v1/figures/4_5_multi_view_depth_diff.jpg",
+        "caption": "Fig. 5: Cross-view inconsistency of depth-difference maps at corresponding surface locations in neighboring views.",
+        "caption_ko": "Fig. 5: 인접 뷰에서 동일 표면 위치의 깊이 차이 맵이 일관되지 않은 사례"
+      }
+    ]
   },
   "collected_at": "2026-11-11T05:25:04.616612+00:00",
   "notion_id": "",
   "id": "2026-11-11-c9b000613fb8ba10",
   "img_tried": true,
   "enriched": "2026-11-11",
-  "img_ok": "2026-11-11T05:35:40+00:00"
+  "img_ok": "2026-11-11T05:35:40+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-11T06:46:39+00:00"
 }
