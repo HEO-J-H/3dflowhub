@@ -688,5 +688,11 @@
     "task": "validate_url_scheme(): URL 스킴을 http/https 로만 허용하고, 잘못된 스킴은 False 반환하도록 구현 및 테스트 추가 (재시도)",
     "result": "skipped",
     "msg": "같은 과제 2회 실패 — 마지막 사유: [4] 패치 적용 실패: ['core.py: search 블록이 정확히 1회 일치하지 않음']"
+  },
+  {
+    "at": "2026-11-11T11:01:42+00:00",
+    "task": "core.filter_offtopic_homonyms(): 텍스트 내 동음이의어(Maya, Unity, Nuke 등)가 등장할 때 주변에 CG/3D 전문 문맥 키워드가 없으면 오탐으로 판정하여 차단하는 필터 함수 구현 및 tests/test_core.py에 테스트 추가",
+    "result": "merged",
+    "msg": "PR #60 머지 완료"
   }
 ]
