@@ -1,0 +1,89 @@
+{
+  "id": "substance-3d-mesh-maps-resolution-1823",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Mesh Maps resolution",
+  "title": "메시 맵 Resolution",
+  "summary": "Substance 3D Painter의 Mesh Maps resolution은 맵 Baking 시 추출되는 텍스처 맵들의 Resolution를 결정하여 하이 폴리곤의 세밀한 디테일 표현력을 제어합니다.",
+  "when": [
+    "하이 폴리곤의 복잡한 디테일을 로우 폴리곤에 선명하게 투영하고 싶을 때",
+    "클로즈업 샷이나 고해상도 렌더링을 위해 텍스처 품질을 높여야 할 때",
+    "작업 중인 하드웨어 성능과 텍스처 용량의 최적화를 균형 있게 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러온 뒤, 오른쪽 Texture Set Settings 패널을 엽니다.",
+    "Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭하여 Baking 창을 엽니다.",
+    "Bake Mesh Maps 창의 상단 또는 좌측 옵션에서 Output Size 드롭다운 메뉴를 찾습니다.",
+    "원하는 텍스처 Resolution(예: 2048, 4096 등)를 선택합니다.",
+    "필요한 서브메시와 옵션을 설정한 뒤, 하단의 Bake [TextureSet Name] 버튼을 클릭하여 Baking을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Output Size",
+      "desc": "베이킹될 맵들의 전체 Resolution 크기를 결정합니다 (예: 512, 1024, 2048, 4096)."
+    },
+    {
+      "name": "Max Front/Rear Distance",
+      "desc": "하이 폴리곤과 로우 폴리곤 간의 투영 거리를 조절하여 Baking 오류를 방지합니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노멀 맵 Baking 시 부드러운 이음새를 위해 법선 방향을 평균화합니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "투영 시 서로 반대 방향에 있는 폴리곤의 영향을 무시하여 겹침 오류를 줄입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "클로즈업 컷을 위한 고해상도 디테일 굽기",
+      "steps": [
+        "Texture Set Settings에서 Bake Mesh Maps를 엽니다.",
+        "Output Size를 4096으로 설정합니다.",
+        "Bake 버튼을 눌러 미세한 흠집과 볼륨감을 선명하게 추출합니다."
+      ]
+    },
+    {
+      "title": "작업 속도 향상을 위한 저해상도 테스트",
+      "steps": [
+        "Texture Set Settings에서 Bake Mesh Maps를 엽니다.",
+        "Output Size를 1024 또는 512로 낮게 설정합니다.",
+        "Baking을 빠르게 수행하여 전체적인 마스크와 텍스처 흐름을 먼저 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution를 지나치게 높게 설정하여 작업 중 툴이 멈추거나 텍스처 용량이 과도해짐 → 프로젝트 요구 사양에 맞춰 2048 또는 4096 수준으로 적절히 조절합니다.",
+    "낮은 Resolution로 베이킹하여 Smart 마스크의 경계선이 계단 현상처럼 깨져 보임 → Output Size를 상향 조정하고 다시 베이킹합니다."
+  ],
+  "related": [
+    "Baking ambient occlusion and curvature",
+    "Substance Painter baking mesh maps",
+    "Auto UV unwrap in Painter",
+    "Texture Set Settings"
+  ],
+  "videos": [
+    {
+      "id": "YolnkoZNH20",
+      "title": "Bakes & Mesh Maps Explained - Substance Painter",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "Jo_8ElmVgtI",
+      "title": "Resolution in Modeler | First Steps | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Mesh%20Maps%20resolution",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Baking"
+  ],
+  "at": "2026-11-11T02:25:01.295386+00:00"
+}
