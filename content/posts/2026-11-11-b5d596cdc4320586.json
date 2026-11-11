@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting 반사 제거 기술 RF3DGS 논문 공개",
+  "title_ko": "RF3DGS: 반사 없는 3D Gaussian Splatting 구현",
   "title": "RF3DGS: Reflection-Free 3D Gaussian Splatting with Self-Priors",
   "url": "https://arxiv.org/abs/2611.13772v1",
   "domain": "AI 3D",
@@ -7,54 +7,89 @@
   "topic": "연구·논문",
   "tags": [
     "RF3DGS",
-    "Gaussian Splatting",
-    "반사 제거",
-    "연구논문",
-    "Unity",
-    "유니티"
+    "3D Gaussian Splatting",
+    "Reflection Removal",
+    "Multi‑view"
   ],
-  "summary": "다시점 이미지의 최소 픽셀 강도와 기하학적 선행 학습을 결합해 반사를 깔끔하게 제거하는 Gaussian Splatting 기반 새 방법론 RF3DGS가 발표되었습니다.",
-  "insight": "RF3DGS는 기하학적 선행 학습으로 깊이 맵을 추정하고, 이를 바탕으로 다각도의 반사 없는 정보를 모아 정밀한 전송 의도 라벨을 만듭니다. 복잡한 유리창이나 쇼윈도 촬영본을 3D 공간으로 재구성할 때 시각적 품질을 크게 끌어올릴 수 있는 기법입니다.",
-  "try_it": [
-    "Unity 렌더링 엔진 환경에서 반사가 포함된 다시점 데이터셋을 준비합니다.",
-    "기하학적 선행 학습을 적용해 각 뷰별 깊이 맵을 추출합니다.",
-    "ATR 손실 함수를 적용하여 원본 디테일을 유지하면서 반사 성분이 제거되는지 비교합니다."
-  ],
+  "summary": "본 논문은 다중 시점 sRGB 영상만으로 반사 정보를 최소화한 3D Gaussian Splatting을 통해 3D 반사 제거를 수행하는 방법을 제시합니다.",
+  "insight": "이 방법을 활용하면 별도의 플래시 촬영 없이 모바일 영상만으로도 3D 씬의 반사를 제거할 수 있어 현장 촬영 워크플로가 크게 단순화될 가능성이 있습니다. 또한 3DGS 기반이라 실시간 렌더링이 가능하므로, AR/VR 전시 콘텐츠 제작 시 반사‑없는 고품질 모델을 빠르게 생성할 수 있습니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "반사 제거를 위한 다중 뷰 광도 선행 조건 활용",
-      "body": "박물관 전시 관람이나 쇼윈도 촬영 등에서 3D 모델의 품질을 떨어뜨리는 반사를 제거하기 위해 RF3DGS는 광도 선행 조건을 도입합니다. 동일한 3D 지점에 대응하는 다시점 이미지 중 최소 픽셀 강도가 반사 없는 정보와 강하게 연관된다는 원리를 Gaussian Splatting 구조에 맞게 확장했습니다. 이를 통해 다각도에서 유용한 투과 정보를 추출할 수 있습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "전시관 등에서 촬영된 사진에 포함된 반사는 시각 품질을 저하시키고 downstream 컴퓨터 비전 성능을 감소시키므로, 이를 3D 장면 수준에서 제거하는 것이 목표입니다."
     },
     {
-      "heading": "기하학적 선행 학습과 3D 워핑 기반 의도 라벨 생성",
-      "body": "다시점 환경에서 반사 제거를 일반화하기 위해 초기 Gaussian Splatting 모델을 기하학적 선행 학습으로 최적화하여 각 뷰의 거친 깊이 맵을 먼저 추정합니다. 이 깊이 맵과 광도 선행 조건을 활용하는 3D 워핑 과정을 거쳐 보조 뷰의 반사 없는 정보를 모아 깨끗한 투과 슈도 라벨을 완성합니다. 이 슈도 라벨은 모델이 스스로 학습할 수 있는 자기 지도 신호로 작용합니다."
+      "heading": "핵심 아이디어",
+      "body": "두 가지 자체 프라이어를 활용합니다. (1) Photometric Prior: 동일 3D 포인트에 대한 다중 뷰의 최소 픽셀 강도가 반사‑없는 정보를 강하게 나타낸다는 가정. (2) Geometric Prior: 깊이 맵을 부드럽게 하는 제약을 적용해 반사‑오염된 깊이 추정의 오류를 감소시킵니다."
     },
     {
-      "heading": "Adaptive Twin Loss를 통한 고주파 디테일 보존",
-      "body": "원본의 반사 훼손 이미지에서 나오는 고주파 세부 묘사를 잃지 않도록 Adaptive Twin Rendering 손실 함수를 새롭게 도입했습니다. 내부적인 3D 자기 선행 조건과 이 손실 함수를 유기적으로 결합하여, 합성 데이터와 실제 촬영 환경 모두에서 최고 수준의 반사 제거 성능을 보여줍니다."
+      "heading": "방법 (단계)",
+      "body": "1) Initialization: SfM으로 초기 포인트 클라우드를 만든 뒤 3DGS 모델을 초기화한다. 2) Geometric Prior Utilization: 잔여 맵(E)과 깊이 부드러움 손실을 결합해 거친 반사‑오염 깊이 맵을 정제한다(λ=0.2). 3) Photometric Prior Utilization: 정제된 깊이 맵을 이용해 모든 뷰를 3D에 역투영하고, 최소값 기반 포토메트릭 프라이어로 깨끗한 전송(pseudo‑label) 이미지를 생성한다. 4) Comprehensive Optimization: 원본 뷰와 전송 pseudo‑label을 동시에 사용해 Adaptive Twin Rendering(ATR) 손실을 적용, 전송 Tⁿ, 반사 Rⁿ, 반사 계수 βⁿ을 각각 최적화한다."
     },
     {
-      "heading": "Unity 엔진 기반 첫 번째 3D 반사 제거 벤치마크 구축",
-      "body": "정밀한 정량적 평가를 수행하기 위해 Unity 렌더링 엔진을 활용한 최초의 3D 반사 제거 벤치마크가 함께 구축되었습니다. 이를 통해 다양한 알고리즘의 성능을 객관적으로 비교하고 검증할 수 있는 표준 환경이 마련되었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "Unity 기반으로 만든 45개의 합성 시나리오와 실제 영상에서 기존 NeRF·3DGS 기반 방법들을 모두 능가하는 성능을 보였으며, 특히 복잡한 반사·투명도 조건에서도 높은 정밀도를 유지했습니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "정확한 깊이 맵이 전제되어야 하며, 깊이 추정 오류가 큰 경우 잔여 반사 아티팩트가 남을 수 있습니다. 또한 현재는 sRGB 영상만 지원하고, 플래시·노플래시 RAW 데이터와 같은 추가 촬영 기법은 활용하지 못합니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "논문에 공개된 코드 링크는 없으며, 벤치마크는 Unity 엔진을 사용해 자체 제작되었습니다. (제공된 GitHub 링크는 논문 내용과 직접적인 연관이 없습니다.)"
     }
   ],
   "faq": [
     {
-      "q": "RF3DGS는 어떤 문제를 해결하기 위한 기술인가요?",
-      "a": "다시점 이미지 기반 3D 재구성 시 유리창이나 투명 표면에서 발생하는 반사광을 깔끔하게 제거하여 고화질 3D 시각화를 구현하는 기술입니다."
+      "q": "RF3DGS가 기존 NeRF 기반 반사 제거보다 빠른가요?",
+      "a": "논문에서는 3DGS의 실시간 렌더링 특성 덕분에 NeRFReN 등 기존 방법보다 학습·렌더링 시간이 크게 단축된다고 언급했습니다."
     },
     {
-      "q": "학습 과정에서 사용되는 핵심 아이디어는 무엇인가요?",
-      "a": "다시점 이미지 간의 최소 픽셀 강도 상관관계와 기하학적 선행 학습으로 구한 깊이 맵을 조합하여, 반사 없는 투과 슈도 라벨을 만들고 이를 자기 지도 학습에 활용합니다."
+      "q": "반사 제거를 위해 별도의 장비가 필요한가요",
+      "a": "아니요, 단일 모노큘러 sRGB 비디오만 있으면 되며, 플래시·노플래시 RAW 촬영은 필요하지 않다고 명시했습니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.13772v1/figures/Framework.jpg",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.13772v1/figures/Framework.jpg",
+        "caption": "Fig. 2 : An overview of the proposed method. 1) During Initialization , all captured views are processed through structure-from-motion (SfM) to generate an initial 3D scene point cloud, which is then used to initialize a 3DGS model; 2) During Geometric Prior Utilization , the 3DGS model is optimized",
+        "caption_ko": "Fig. 2: 제안 방법 전체 흐름을 단계별로 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13772v1/figures/geometric_prior_exploitation.jpg",
+        "caption": "Fig. 3 : The significance of learnable residual maps during geometric prior utilization. Introducing residual maps significantly enhances the utilization of the geometric prior, resulting in cleaner, reflection-free depth maps.",
+        "caption_ko": "Fig. 3: 학습 가능한 잔여 맵이 깊이 부드러움 프라이어 적용에 미치는 효과를 시각화합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13772v1/figures/geometric_prior_exploitation.jpg",
+        "caption": "Fig. 3 : The significance of learnable residual maps during geometric prior utilization. Introducing residual maps significantly enhances the utilization of the geometric prior, resulting in cleaner, reflection-free depth maps.",
+        "caption_ko": "Fig. 3: 학습 가능한 잔여 맵이 깊이 부드러움 프라이어 적용에 미치는 효과를 시각화합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13772v1/figures/3D_warp.jpg",
+        "caption": "Fig. 4 : Illustration of depth-based 3D warp. c ∗ c_{*} denotes the camera parameters of the captured view I ∗ I_{*} . For certain meaningless areas in the warped image I m → n I_{m\\to n} , we fill these areas with pure white color.",
+        "caption_ko": "Fig. 4: 깊이 기반 3D 워핑 과정에서 빈 영역을 흰색으로 채운 예시를 보여줍니다."
+      }
+    ]
   },
   "collected_at": "2026-11-11T05:25:01.941388+00:00",
   "notion_id": "",
   "id": "2026-11-11-b5d596cdc4320586",
   "img_tried": true,
-  "img_ok": "2026-11-11T05:35:40+00:00"
+  "img_ok": "2026-11-11T05:35:40+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-11T07:16:41+00:00"
 }
