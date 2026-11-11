@@ -31685,5 +31685,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T00:54:16+00:00",
+    "kind": "proposal",
+    "id": "p-8595130f2c",
+    "title": "PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "pending_pr_decisions에 PR #1이 'revise' 상태로 남아 있으며, 실제 img2threejs 호출과 결과 파일 생성 및 명확한 오류 반환 테스트가 필요합니다.",
+    "proposal": "backend/app/services/triposr_runner.py 및 관련 테스트 파일에서 img2threejs 엔진 연동 실패 시 조용히 대체하지 않고 명확한 예외를 반환하도록 수정하고 테스트를 추가합니다.",
+    "expected": "엔진 호출 실패 시 모호함 없이 명확한 오류 처리 및 신뢰성 확보",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T00:54:16+00:00",
+    "kind": "proposal",
+    "id": "p-8103cf70fd",
+    "title": "웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전(web/)에서 브라우저 기반 PBR 텍스처 생성 기능의 단위 테스트와 예외 처리를 보강하여 사용자 경험을 안정화할 필요가 있습니다.",
+    "proposal": "web/ 디렉토리 내의 텍스트 변환 및 캔버스 렌더링 로직에 대한 단위 테스트 파일을 추가하고 예외 처리 시 안내 문구를 보강합니다.",
+    "expected": "브라우저 환경에서의 PBR 텍스처 생성 오류 방지 및 사용자 피드백 개선",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T00:54:55.357343+00:00",
+    "kind": "decision",
+    "id": "p-8595130f2c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T00:54:55.379546+00:00",
+    "kind": "decision",
+    "id": "p-8103cf70fd",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "auto": true
   }
 ]

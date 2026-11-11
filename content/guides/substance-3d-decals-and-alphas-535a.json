@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-decals-and-alphas-535a",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Decals and alphas",
+  "title": "데칼·알파",
+  "summary": "Substance 3D Painter의 Decals와 Alphas는 3D 모델 표면에 스티커를 붙이거나 브러시로 텍스처와 디테일을 찍어내는 핵심 기능입니다. 페인트 레이어에 흑백 이미지(Alpha)를 적용해 긁힌 자국, 로고, 리벳 같은 미세한 요철을 정교하게 표현합니다.",
+  "when": [
+    "메탈이나 플라스틱 표면에 제조사 로고나 경고 문구를 스티커처럼 깔끔하게 넣을 때",
+    "갑옷이나 기계 표면에 못 자국, 볼트, 용접 흔적 등의 입체적인 디테일을 더할 때",
+    "건물 외벽이나 차량에 흙탕물, 녹 흘러내린 자국, 낙서 같은 자연스러운 오염을 표현할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러온 뒤 Texture Set Settings에서 필요한 채널(Base Color, Normal, Height 등)을 확인합니다.",
+    "Layers 패널 하단의 Fill Layer(물통 아이콘) 또는 Paint Layer(붓 아이콘)를 추가합니다.",
+    "Assets 패널(좌측 상단)의 Alphas 탭에서 원하는 흑백 이미지 에셋을 선택합니다.",
+    "Properties - Paint 패널의 Alpha 슬롯에 선택한 알파 이미지를 드래그하여 넣습니다.",
+    "브러시 툴(Hotkey B)을 선택하고 Viewport의 모델 표면에 Mouse로 클릭하거나 드래그하여 패턴을 찍습니다.",
+    "Projection(투영) 모드나 3D View에서 위치와 크기를 조절하여 결과물이 정확히 안착되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Alpha",
+      "desc": "브러시나 프로젝션에 사용할 흑백 이미지 패턴을 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "적용할 알파 패턴의 크기를 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "알파 패턴이나 프로젝션의 회전 각도를 설정합니다."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 그려지는 속도와 농도를 조절합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "알파의 흑백 값에 따라 표면이 튀어나오거나 파이는 높이(Bump) 세기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 표면의 볼트 및 리벳 표현",
+      "steps": [
+        "Paint Layer를 추가하고 Normal과 Height 채널만 활성화합니다.",
+        "Alphas 탭에서 볼트 모양의 흑백 알파를 선택합니다.",
+        "Properties 패널에서 Height 값을 높여 입체감을 설정합니다.",
+        "모델의 패널 이음새 주변을 클릭하여 리벳 볼트를 찍어냅니다."
+      ]
+    },
+    {
+      "title": "박스 포장재 로고 데칼 부착",
+      "steps": [
+        "Fill Layer를 추가하고 Base Color 채널만 켠 상태로 로고 이미지를 Alpha에 넣습니다.",
+        "Projection 모드를 활성화하여 Viewport에서 스티커처럼 크기와 위치를 맞춥니다.",
+        "UV seam(이음새) 부근이 늘어지지 않는지 확인하고 위치를 고정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 미스매치로 데칼이 찢어지는 현상 → Projection(투영) 모드를 사용해 카메라 시점에서 직접 투명 스티커처럼 부착합니다.",
+    "높이(Height) 채널이 너무 과하게 튀어나오는 현상 → Fill Layer나 Brush Properties의 Height 슬래시 값을 낮추거나 마스크를 조절합니다.",
+    "픽셀이 깨져 보이는 현상 → Texture Set Resolution를 높이거나(예: 2K에서 4K), 사용하는 알파 이미지의 원본 Resolution가 충분한지 확인합니다."
+  ],
+  "related": [
+    "Fill Layer",
+    "Smart Mask",
+    "Anchor Points",
+    "Projection Mode"
+  ],
+  "videos": [
+    {
+      "id": "JGiX8Z0LxPo",
+      "title": "Substance Painter  working with decals-Decals and Alphas in Substance Painter- #CENTER PIVOT",
+      "author": "Center pivot"
+    },
+    {
+      "id": "dHpGMHHxM_o",
+      "title": "Substance Painter 2021 Getting Started - Part 04 - Adding decals | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Decals%20and%20alphas",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T00:54:26.642119+00:00"
+}

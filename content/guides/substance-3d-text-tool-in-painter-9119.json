@@ -1,0 +1,99 @@
+{
+  "id": "substance-3d-text-tool-in-painter-9119",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Text tool in Painter",
+  "title": "Text — 글자 넣기",
+  "summary": "Substance 3D Painter의 Text tool은 3D 모델 표면에 직접 텍스트 스탬프를 찍거나 알파 형태로 인쇄하여 레이블, 로고, 세부 텍스트를 추가하는 기능입니다. 투사(Projection) 방식을 활용해 굴곡진 표면에도 자연스럽게 텍스트를 새길 수 있습니다.",
+  "when": [
+    "하드 표면 모델(총기, 기계 등)에 시리얼 번호나 경고 문구를 새길 때",
+    "의류나 가죽 제품에 브랜드 로고를 스탬프 형태로 표현할 때",
+    "건축물 외벽이나 소품에 간판 글씨를 디테일하게 넣을 때"
+  ],
+  "steps": [
+    "왼쪽 툴바(Toolbar)에서 Projection Tool을 선택하거나 Hotkey 3 번을 누릅니다.",
+    "상단 Properties 패널에서 Brush 세팅 중 Alpha 항목을 열어 Text 프리셋을 선택하거나 글자를 입력합니다.",
+    "3D Viewport에서 Alt+우클릭으로 크기를 조절하고, Ctrl+우클릭으로 텍스트를 회전합니다.",
+    "브러시로 모델 표면을 클릭하거나 드래그하여 텍스트를 투사(Projection)합니다.",
+    "Layers 패널에서 새로 생성된 Fill Layer 또는 Paint Layer를 확인하고 속성을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "모델 표면에 인쇄할 텍스트 문구를 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "사용할 시스템 또는 가져온 폰트 파일을 선택합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "투사되는 텍스트의 브러시 크기를 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "텍스트의 회전 각도를 설정합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "텍스트가 표면에서 파이거나 튀어나오는 높이(Height 맵 채널)를 조절합니다."
+    },
+    {
+      "name": "Alignment",
+      "desc": "텍스트 정렬 방식(좌측, 중앙, 우측)을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 장치 시리얼 번호 각인",
+      "steps": [
+        "Projection Tool을 선택하고 Text 패널에 일련번호를 입력합니다.",
+        "Height 채널만 활성화하여 Depth 값을 낮게 설정합니다.",
+        "금속 재질 표면을 클릭하여 각인된 듯한 음각 효과를 줍니다."
+      ]
+    },
+    {
+      "title": "의류 로고 패치 제작",
+      "steps": [
+        "브랜드 이름을 Text로 입력하고 Color와 Normal 채널을 켭니다.",
+        "직물(Fabric) 재질 위에 텍스트를 스탬프처럼 찍어냅니다.",
+        "Roughness를 조절해 자수나 프린트 질감을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스트가 반대로 찍힘 → 브러시 투사 방향이나 UV 미러링 상태를 확인하고 투사 각도를 재조정합니다.",
+    "텍스트가 깨져 보임 → 모델의 UV 언랩 상태가 불량이거나 Texture Set Resolution이 낮아서 발생하므로 Resolution를 높입니다."
+  ],
+  "related": [
+    "Projection Tool",
+    "Alpha",
+    "Fill Layer",
+    "Height"
+  ],
+  "videos": [
+    {
+      "id": "6iUABF2bPSY",
+      "title": "Substance Painter: Words & Fonts (FAST!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "LZtm2i_FHzs",
+      "title": "Substance Painter: Guide to Adding Text/Font and Alpha Design Logos",
+      "author": "WorldofLevelDesign"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Text%20tool%20in%20Painter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Toolbar",
+    "Projection Tool",
+    "Hotkey 3",
+    "Properties",
+    "Brush",
+    "Alpha"
+  ],
+  "at": "2026-11-11T00:54:30.776168+00:00"
+}
