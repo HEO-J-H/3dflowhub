@@ -341,6 +341,20 @@ def test_merge_json_unions_lists_and_keeps_max():
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
 
 
+def test_filter_offtpic_homonyms():
+    # 1. CG/3D 전문 문맥이 없는 동음이의어 등장 시 오탐 판정 및 차단 테스트
+    assert core.filter_offtpic_homonyms("Discovery of ancient Maya civilization in the jungle") is False
+    assert core.filter_offtpic_homonyms("Best kitchen blender for smoothie recipes") is False
+    assert core.filter_offtpic_homonyms("Unity stock shares drop in market economy") is False
+    assert core.filter_offtpic_homonyms("Nuclear nuke missile test in international politics") is False
+
+    # 2. 주변에 CG/3D 전문 문맥 키워드가 함께 등장하면 정상으로 판정
+    assert core.filter_offtpic_homonyms("Blender 3D modeling and geometry nodes tutorial workflow", tool_name="blender") is True
+    assert core.filter_offtpic_homonyms("Autodesk Maya character rigging and animation rendering", tool_name="maya") is True
+    assert core.filter_offtpic_homonyms("Foundry Nuke VFX compositing pipeline update") is True
+    assert core.filter_offtpic_homonyms("General tech news without any homonyms") is True
+
+
 def test_filter_homonym_3d_content():
     # 1. 마야 문명 / 주방용 블렌더 / 핵무기 nuke 등 동음이의어 무관 뉴스는 차단되어야 함
     item_maya_civilization = {"title": "New discoveries in Maya civilization and ancient pyramids", "rss_summary": "Historical research on indigenous people."}

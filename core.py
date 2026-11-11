@@ -1930,9 +1930,49 @@ def filter_homonym_3d_content(item: dict) -> bool:
     return True
 
 
+def filter_offtpic_homonyms(text: str, tool_name: str = "") -> bool:
+    """텍스트 내 동음이의어(Maya, Unity, Nuke, Blender 등)가 등장할 때 주변에 CG/3D 전문 문맥 키워드가 없으면 오탐으로 판정하여 차단하는 필터 함수."""
+    if not isinstance(text, str) or not text.strip():
+        return True
+    t_lower = text.lower()
+    
+    # 툴별 명백한 동음이의어(무관 맥락) 단어 목록
+    homonym_bad_contexts = {
+        "maya": ["civilization", "mayan", "calendar", "ancient", "pyramid", "indigenous", "사람", "문명", "마야인", "역사", "유적"],
+        "blender": ["kitchen", "smoothie", "juicer", "cooking", "recipe", "주방", "믹서기", "요리", "스무디", "가전", "화장품"],
+        "nuke": ["nuclear", "bomb", "missile", "war", "korea", "iran", "headquarters", "핵", "미사일", "전쟁", "북한", "외교", "정치", "국방"],
+        "unity": ["stock", "shares", "dividend", "market", "economy", "주식", "증시", "주가", "배당", "경제", "정당", "통합"],
+        "houdini": ["magician", "magic", "escape", "illusionist", "마술사", "마법", "탈출", "일루션"]
+    }
+
+    # CG/3D 전문 문맥 키워드 목록
+    professional_3d_context = [
+        "3d", "cgi", "vfx", "render", "renderer", "shader", "texture", "modeling", "modelling", "sculpt",
+        "rigging", "animation", "mesh", "polygon", "game engine", "unreal", "unity 6", "houdini fx",
+        "plugin", "addon", "add-on", "script", "maxscript", "geometry nodes", "splat", "nerf",
+        "렌더링", "모델링", "애니메이션", "텍스처", "셰이더", "시뮬레이션", "플러그인", "스크립트", "블렌더", "맥스", "마야", "후디니"
+    ]
+
+    has_3d_context = any(ctx in t_lower for ctx in professional_3d_context)
+
+    # 특정 툴 이름이 지정되었거나 텍스트에 포함된 경우 무관 맥락 검사
+    tools_to_check = [tool_name.lower()] if tool_name and tool_name.lower() in homonym_bad_contexts else homonym_bad_contexts.keys()
+    
+    for tool in tools_to_check:
+        if tool in t_lower:
+            bad_words = homonym_bad_contexts.get(tool, [])
+            matched_bad = [bw for bw in bad_words if bw in t_lower]
+            if matched_bad and not has_3d_context:
+                log.info("오탐 방지 필터(filter_offtpic_homonyms) 차단: 툴 '%s' 및 무관 키워드 '%s' 감지, 3D 전문 문맥 부족", tool, matched_bad)
+                return False
+
+    return True
+
+
 def confirm_3d(item: dict) -> bool:
     """짧은 예/아니오 판정 — 3D 소프트웨어·제작에 관한 기사인가. 실패하면 통과(수집이 멈추지 않게)."""
-    if not filter_homonym_3d_content(item):
+    full_text = f"{item.get('title', '')} {item.get('rss_summary', '')}"
+    if not filter_homonym_3d_content(item) or not filter_offtpic_homonyms(full_text):
         return False
     try:
         out = _parse_json(llm(f"Title: {item['title']}\nSnippet: {item.get('rss_summary', '')[:400]}\n"
