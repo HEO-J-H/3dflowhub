@@ -1,0 +1,52 @@
+{
+  "title_ko": "Gaussian Splatting: 저조도 RAW 재구성을 위한 RetinexGS 논문",
+  "title": "RetinexGS: Retinex-Inspired Gaussian Splatting for Low-Light RAW Reconstruction",
+  "url": "https://arxiv.org/abs/2611.13280v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "RAW Reconstruction",
+    "Low-Light",
+    "Retinex",
+    "Novel View Synthesis"
+  ],
+  "summary": "RetinexGS는 저조도 RAW 이미지에서 3D Gaussian Splatting을 적용해 색상 불안정과 결손을 크게 감소시킨 최신 연구입니다.",
+  "insight": "RetinexGS는 저조도 RAW 데이터를 그대로 활용해 노이즈를 정량화하고, 색과 기하 정보를 분리해 학습한다. 기존 3DGS가 색 불안정과 결손에 시달리던 문제를 크게 완화한다. 실시간 뷰 합성이 가능하니, 저조도 촬영 후 바로 가상 환경에 적용해볼 수 있다. 특히 DNG 메타데이터를 활용하는 방식은 다른 RAW‑based 재구성에도 적용 가능하다.",
+  "try_it": [
+    "DNG 파일을 확보하고, 메타데이터에 포함된 노이즈 파라미터를 추출한다.",
+    "RetinexGS 구현 코드를 클론한 뒤, 손실 함수에 노이즈 가중치를 적용하도록 설정한다.",
+    "깊이 맵을 미리 생성해 초기 Gaussian 배치에 입력하고, 학습을 시작한다.",
+    "학습이 끝난 모델을 Unity 혹은 Unreal Engine에 내보내 실시간 뷰 합성을 테스트한다."
+  ],
+  "sections": [
+    {
+      "heading": "RetinexGS 프레임워크 개요",
+      "body": "RetinexGS는 기존 3D Gaussian Splatting 파이프라인에 Retinex 영감을 받은 외관 모델을 추가한다. 각 Gaussian은 뷰‑독립적인 베이스 색과 위치·뷰 의존적인 변조 필드를 별도로 학습한다. 두 컴포넌트를 개별 정규화해 저조도 관측에서도 색 재현을 안정화한다."
+    },
+    {
+      "heading": "RAW 기반 노이즈 가중치 적용",
+      "body": "논문은 DNG 파일에 포함된 신호‑종속 노이즈 메타데이터를 손실 함수에 가중치로 활용한다. 신호가 약한 영역일수록 가중치를 낮춰 과적합을 방지한다. 왜곡‑인식 렌더링은 RAW 타깃을 재샘플링 없이 직접 비교해 정확도를 높인다."
+    },
+    {
+      "heading": "깊이 가이드 초기화 기법",
+      "body": "어두운 영역은 기하학적 정보가 부족해 재구성이 어려운데, 저자들은 깊이 맵을 이용해 초기 Gaussian 배치를 가이드한다. 이 단계는 희소한 구조를 보강해 이후 최적화가 원활히 진행되도록 돕는다. 결과적으로 어두운 구역에서도 형태가 더 명확히 복원된다."
+    },
+    {
+      "heading": "성능 및 실시간 뷰 합성",
+      "body": "RetinexGS는 동일 RAW 입력을 사용했을 때 LE3D보다 평균 sRGB PSNR이 2.18 dB, RawNeRF보다 2.71 dB 높다. 평균 PSNR 상승 폭은 2 dB 이상이며, 실시간 novel‑view 렌더링을 지원한다. 저조도 장면에서도 부드러운 뷰 전환이 가능해 연구와 프로토타입 제작에 바로 적용할 수 있다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.13280v1/teaser_2.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-11T05:35:40.386739+00:00",
+  "notion_id": "",
+  "id": "2026-11-11-8087654ae50fe2aa",
+  "img_tried": true,
+  "enriched": "2026-11-11",
+  "enriched_at": "skip"
+}

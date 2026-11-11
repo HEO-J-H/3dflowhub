@@ -1,0 +1,98 @@
+{
+  "title_ko": "GEMOR-GS: 3D Gaussian‑Splatting SLAM 정밀 매핑·재위치 추정",
+  "title": "GEMOR-GS: Global Extrinsic-calibration-refined Mapping and Online Relocalization for 3D Gaussian-Splatting SLAM",
+  "url": "https://arxiv.org/abs/2611.13528v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "SLAM",
+    "LiDAR‑camera 캘리브레이션",
+    "재위치",
+    "오픈소스"
+  ],
+  "summary": "본 논문은 LiDAR‑camera 외부 캘리브레이션을 사전 추정하고, Keyframe과 Gaussian 매개변수를 교대로 정제해 전역 재구성 및 온라인 재위치를 구현한 시스템을 제안합니다.",
+  "insight": "이 기술이 상용화되면 3D 아티스트가 LiDAR와 카메라를 결합한 로봇 데이터로부터 고품질 Gaussian 모델을 자동으로 얻어, 실시간 트래킹 손실 후에도 동일 맵에서 빠르게 복구할 수 있다. 전역 재구성 단계가 기존 온라인 맵보다 10 dB 이상 향상된 PSNR을 제공하므로, Post 프로덕션에서 사실적인 씬 재구성이나 라이트 프로빙에 활용 가능성이 있다. 또한 오픈소스 구현이 제공되므로, 자체 파이프라인에 통합해 맞춤형 로봇 비전 워크플로우를 구축할 수 있다.",
+  "try_it": [
+    "git clone https://github.com/Vector-4D/gemor-gs.git",
+    "cd gemor-gs",
+    "pip install -r requirements.txt",
+    "# 제공된 샘플 데이터 다운로드 후 data/ 폴더에 위치시킴"
+  ],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "LiDAR‑camera‑inertial‑visual(LIV) SLAM에서 생성된 3D Gaussian‑Splatting(3DGS) 맵은 기하학적 정확도, 외관 충실도, 재진입성(재위치)이 부족해 로봇이 지속적으로 활용하기 어렵다는 문제를 해결하고자 한다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "외부 캘리브레이션을 오프라인에서 직접 방법(direct‑method)으로 추정해 모든 후속 과정에 재사용하고, 캘리브레이션된 기하학을 기반으로 Keyframe 자세와 Gaussian 파라미터를 교대로 최적화한 뒤, 정제된 Keyframe 스키마로 전역 재구성을 수행한다. 재위치는 XFeat 바이패스 맵·RANSAC‑PnP·Gaussian RGB‑D 워프 정밀화 파이프라인으로 구현한다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "1) 전용 캘리브레이션 구간에서 LiDAR‑camera 정렬을 직접 방법으로 수행해 외부 파라미터를 오프라인 추정한다.\n2) 온라인 트랙에서는 IESKF 기반 LIV 측정으로 실시간 트래킹을 수행하며, 5채널 계약을 통해 Keyframe을 축적한다.\n3) 오프라인에서 캘리브레이션된 기하학 하에 Keyframe 자세와 Gaussian 매개변수를 교대로 미분 가능한 렌더링·LiDAR 투영 목표로 정제한다.\n4) 정제된 Keyframe 스키마를 이용해 전역 재구성 단계에서 전체 Gaussian 모델을 재초기화하고, 전역 밀도화·프루닝·구면조화 차수 상승을 수행한다.\n5) 재위치 시에는 XFeat 디스크립터와 경량 재위치 데이터베이스 매칭 → RANSAC‑PnP로 대략 자세 획득 → Gaussian RGB‑D 워프 정밀화로 최종 자세를 복구한다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "오프라인 재구성은 온라인 맵 대비 모든 짝 Keyframe에서 14.3 ~ 19.9 dB 향상된 PSNR을 기록했다. Gaussian‑LIC2와 비교했을 때 PSNR이 약 9 dB 상승하였다. 재위치는 대부분의 시퀀스에서 86 % ~ 100 %의 쿼리에 성공했으며, 성공률은 외부 캘리브레이션 품질에 크게 의존한다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "현재 시스템은 전용 캘리브레이션 구간이 필요하며, 실시간 재구성 단계에서 고차 구면조화와 전역 밀도화를 수행하지 않는다. 또한 재위치 파이프라인은 XFeat와 RGB‑D 워프에 의존하므로 텍스처가 부족하거나 조명이 급격히 변하는 환경에서는 성능이 저하될 수 있다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "외부 캘리브레이션은 어떻게 수행하나요?",
+      "a": "전용 캘리브레이션 구간에서 직접 방법(direct‑method) LiDAR‑camera 정렬을 수행해 오프라인으로 외부 파라미터를 추정한다."
+    },
+    {
+      "q": "재위치에 사용되는 알고리즘은 무엇인가요?",
+      "a": "XFeat 바이패스 맵 매칭 → RANSAC‑PnP로 대략 자세 획득 → Gaussian RGB‑D 워프 정밀화 순으로 진행한다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.13528v1/fig_system_overview.png",
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.13528v1/fig_system_overview.png",
+        "caption": "Figure 1 : System overview. The online track ① runs an IESKF over LiDAR, inertial, and visual measurements against a compact Gaussian tracking reference, and keyframes accumulate under the five-channel contract into the shared keyframe schema.\nThe offline track ② consumes the keyframe schema: joint ",
+        "caption_ko": "시스템 전체 흐름: 온라인 트랙은 IESKF 기반 LiDAR·관성·시각 측정으로 Gaussian 트래킹을 수행하고, 키프레임을 축적한다. 오프라인 트랙은 키프레임 스키마를 이용해 전역 재구성을 수행한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13528v1/figures/LiDAR-Camera.png",
+        "caption": "Figure 2 : Sensor configuration for the self-collected sequence. The rig carries a RoboSense Airy 96 LiDAR, a DECXIN-3007V1 color camera, and the Airy built-in IMU.\nThe LiDAR is mounted on the top of the camera with a 28 mm offset and 20 ∘ downward tilt, and the camera is mounted with 25 mm offset f",
+        "caption_ko": "자체 수집 시퀀스의 센서 구성: RoboSense Airy 96 LiDAR와 DECXIN‑3007V1 컬러 카메라, 내장 IMU. LiDAR는 카메라 위에 28 mm 오프셋·20° 하향 기울기로 장착."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13528v1/fig_teaser_grid.png",
+        "caption": "Figure 3 : Examples of offline global reconstruction on the self-collected sequence. Rendered training views from the final global 3DGS model after calibration-refined reconstruction.",
+        "caption_ko": "오프라인 전역 재구성 결과 예시: 최종 3DGS 모델에서 훈련 뷰를 렌더링한 이미지."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.13528v1/figures/fig_qualitative_compare.png",
+        "caption": "Figure 4 : Qualitative comparison against Gaussian-LIC2 on four\nsequences. One aligned keyframe per sequence (rows), rendered from\nmatched poses: ground-truth camera images, our online Gaussian map\n(tracking reference, rendered at the end of the online stage), our\ncalibration-refined global reconstr",
+        "caption_ko": "Gaussian‑LIC2와의 정성적 비교: 동일 키프레임에서 실제 이미지, 온라인 Gaussian 맵, 우리 방법의 전역 재구성 결과를 비교한다."
+      }
+    ]
+  },
+  "collected_at": "2026-11-11T05:35:07.170927+00:00",
+  "notion_id": "",
+  "id": "2026-11-11-d9d89f3c06316df3",
+  "img_tried": true,
+  "enriched": "2026-11-11",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/Vector-4D/gemor-gs",
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-11T05:38:34+00:00"
+}

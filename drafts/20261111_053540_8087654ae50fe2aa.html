@@ -1,0 +1,15 @@
+<!-- TITLE: Gaussian Splatting: 저조도 RAW 재구성을 위한 RetinexGS 논문 | TAGS: Gaussian Splatting,RAW Reconstruction,Low-Light,Retinex,Novel View Synthesis,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — RetinexGS는 저조도 RAW 이미지에서 3D Gaussian Splatting을 적용해 색상 불안정과 결손을 크게 감소시킨 최신 연구입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>RetinexGS 프레임워크 개요</h2>
+<p>RetinexGS는 기존 3D Gaussian Splatting 파이프라인에 Retinex‑영감을 받은 외관 모델을 결합한다. 각 Gaussian은 뷰‑독립적인 베이스 색과 위치·뷰 의존적인 변조 필드를 별도로 학습한다. 두 컴포넌트를 개별 정규화해 노이즈가 많은 저조도 관측에서도 안정적인 색 재현을 목표로 한다.</p>
+<h2>RAW 기반 노이즈 가중치 적용</h2>
+<p>논문은 DNG 파일에 포함된 신호‑종속 노이즈 메타데이터를 활용해 손실 함수에 가중치를 부여한다. 신호가 약한 영역일수록 손실 가중치를 낮춰 과적합을 방지한다. 또한 왜곡‑인식 렌더링으로 RAW 타깃을 재샘플링 없이 직접 비교한다.</p>
+<h2>깊이 가이드 초기화 기법</h2>
+<p>어두운 영역은 기하학적 정보가 부족해 재구성이 어려운데, 저자들은 깊이 맵을 이용해 초기 Gaussian 배치를 가이드한다. 이 단계는 초기화 단계에서 희소한 구조를 보강해 이후 최적화가 원활히 진행되도록 돕는다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">RetinexGS는 평균 sRGB PSNR을 2.5 dB 이상 끌어올려, 저조도 장면에서도 실시간 뷰 합성이 가능해졌습니다. 이는 기존 LE3D·RawNeRF 대비 뚜렷한 품질 차이를 제공하므로, 저조도 촬영 데이터를 바로 활용하려는 연구자에게 즉시 적용 가치가 있습니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-d9d89f3c06316df3.html">Gaussian Splatting SLAM, GEMOR-GS 로 외부 캘리브레이션 정밀 매핑</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-c9b000613fb8ba10.html">DepthGS — Gaussian Splatting 표면 재구성 논문</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-b5d596cdc4320586.html">Gaussian Splatting 반사 제거 기술 RF3DGS 논문 공개</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.13280v1" target="_blank" rel="noopener nofollow">RetinexGS: Retinex-Inspired Gaussian Splatting for Low-Light RAW Reconstruction</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
