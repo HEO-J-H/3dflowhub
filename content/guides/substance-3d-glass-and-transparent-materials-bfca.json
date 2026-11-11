@@ -1,0 +1,90 @@
+{
+  "id": "substance-3d-glass-and-transparent-materials-bfca",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Glass and transparent materials",
+  "title": "유리 재질",
+  "summary": "Substance 3D Painter에서 투명한 유리와 굴절 효과를 가진 재질을 제작하고 렌더링하는 방법입니다. 물리적으로 정확한 IOR과 거칠기를 조절하여 실제와 같은 투명체를 표현합니다.",
+  "when": [
+    "유리 컵, 창문, 병 등 투명한 용기를 제작할 때",
+    "자동차 전조등이나 안경알처럼 굴절이 필요한 부품을 표현할 때",
+    "보석이나 물방울 같은 반투명 오브젝트를 렌더링할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러온 뒤, Texture Set Settings 패널에서 Bake Mesh Maps를 눌러 노멀과 곡률 맵 등을 베이킹합니다.",
+    "Layers 패널에서 Fill Layer(물통 아이콘)를 추가하여 유리용 기본 레이어를 생성합니다.",
+    "Properties 패널의 채널(Channels)에서 Base Color, Roughness, Metallic, Normal, Opacity(또는 Transmission) 채널을 활성화합니다.",
+    "Base Color의 색상을 조정하고, Roughness 값을 낮추어 매끄러운 표면을 만듭니다.",
+    "Opacity 또는 Transmission 채널을 조절하여 투명도를 설정하고, IOR 값을 유리의 표준 값인 1.5로 설정합니다.",
+    "Display Settings 패널에서 Shadow와 Refraction 옵션을 켜서 Viewport에서 굴절 효과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 투명한 유리의 광택이나 서리가 낀 질감을 표현합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "오브젝트의 불투명도를 조절하여 투명한 정도를 결정합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "굴절률을 조절하여 빛이 꺾이는 정도를 설정합니다 (유리의 경우 보통 1.45~1.5)."
+    },
+    {
+      "name": "Base Color",
+      "desc": "유리 전체의 기본 색상이나 유색 유리(컬러 글래스)의 틴트 색상을 지정합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "유리 표면의 미세한 흠집이나 두께감을 노멀 맵으로 더합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 음료수 병 제작",
+      "steps": [
+        "Fill Layer를 추가하고 Base Color를 어두운 녹색으로 설정합니다.",
+        "Roughness를 0.05로 낮추어 매끄러운 유리 광택을 줍니다.",
+        "Opacity를 낮추고 IOR을 1.5로 설정해 굴절을 표현합니다."
+      ]
+    },
+    {
+      "title": "자동차 전조등 렌즈",
+      "steps": [
+        "전조등 커버 메쉬에 새 Fill Layer를 적용합니다.",
+        "Roughness를 완전히 낮춰 투명도를 높입니다.",
+        "내부 반사판이 보이도록 Opacity와 IOR 값을 정밀하게 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mesh Maps Baking을 누락함 → Texture Set Settings에서 Bake Mesh Maps를 먼저 실행합니다.",
+    "Viewport에서 투명도가 보이지 않음 → Display Settings에서 Refraction 옵션이 꺼져 있는지 확인하고 켭니다.",
+    "유리가 너무 불투명함 → Opacity나 Transmission 채널의 값이 너무 높게 설정되었는지 확인하고 낮춥니다."
+  ],
+  "related": [
+    "Smart Materials",
+    "Bake Mesh Maps",
+    "Principled BSDF",
+    "Substance 3D Designer"
+  ],
+  "videos": [
+    {
+      "id": "smqqrM6bf2o",
+      "title": "Create See Through Glass In Substance 3D Painter #transparency #3dtexturing",
+      "author": "Blackout3D"
+    },
+    {
+      "id": "kUZljNIWEjI",
+      "title": "How to make Glass in Substance Painter",
+      "author": "Aaron Palmer"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Glass%20and%20transparent%20materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T02:55:17.123141+00:00"
+}
