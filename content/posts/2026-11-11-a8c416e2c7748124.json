@@ -31,6 +31,16 @@
     {
       "heading": "NVIDIA Dynamo 및 KAI Scheduler와의 연동",
       "body": "NVIDIA Dynamo는 GPU 워커 전반의 인퍼런스를 조율하며 세션 아이덴티티와 KV 캐시 위치를 활용해 관련 모델 호출을 유지합니다. KAI Scheduler는 Substrate 워커 Pod을 GPU 트레이너 및 인퍼런스 서버와 함께 배치하여 DSX AI Factory Platform 상에서 구동합니다."
+    },
+    {
+      "heading": "Agent Substrate 설치 및 워커 풀 구성 방법",
+      "body": "Agent Substrate는 NVIDIA DSX AI Factory 플랫폼용 오픈소스 Kubernetes 런타임으로, 작은 규모의 워커 Pod 풀에 다수의 에이전트 세션을 멀티플렉싱합니다. 설치는 먼저 GitHub 레포지토리를 클론한 뒤, 제공되는 k8s 매니페스트를 적용해 `substrate-controller`와 `worker` 네임스페이스를 생성합니다. `worker` Pod Template에서 `resources.limits`와 `resources.requests`를 적절히 설정해 워커 풀 크기를 정의하고, `checkpointDir` 경로를 지정하면 유휴 세션이 메모리·파일시스템 상태와 함께 체크포인트됩니다. 배포 후 `substrate` CRD를 사용해 에이전트 세션을 생성하면, Substrate가 자동으로 빈 워커에 복원해 즉시 서비스가 재개됩니다.",
+      "added": true
+    },
+    {
+      "heading": "NVIDIA Dynamo와 KAI Scheduler 연동 시 주의사항",
+      "body": "NVIDIA Dynamo는 GPU 워커 전반의 인퍼런스를 조율하며, 세션 아이덴티티와 KV 캐시 위치를 활용해 모델 호출을 유지합니다. 따라서 Substrate 워커 Pod에 동일한 `sessionID` 라벨을 부여하고, KV 캐시가 공유될 수 있도록 PersistentVolume을 마운트해야 합니다. KAI Scheduler는 Substrate 워커 Pod을 GPU 트레이너 및 인퍼런스 서버와 함께 배치하므로, 스케줄러 정책에 `gpu` 리소스 요청을 명시하고, 워커와 트레이너가 같은 노드 풀에 배치되도록 `nodeSelector`와 `affinity`를 설정합니다. 이 두 컴포넌트를 연동하면 DSX AI Factory 플랫폼에서 에이전트와 GPU 작업이 효율적으로 공동 운영됩니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -41,6 +51,14 @@
     {
       "q": "어떤 플랫폼과 컴포넌트 함께 동작하나요?",
       "a": "NVIDIA DSX AI 팩토리 플랫폼 안에서 NVIDIA Dynamo 인퍼런스 조율기 및 KAI 스케줄러와 함께 연동되어 동작합니다."
+    },
+    {
+      "q": "Agent Substrate를 기존 Kubernetes 클러스터에 바로 적용할 수 있나요?",
+      "a": "네. 오픈소스 런타임이므로 기존 클러스터에 매니페스트를 적용하고, 워커 풀 크기와 체크포인트 디렉터리만 설정하면 바로 사용할 수 있습니다."
+    },
+    {
+      "q": "유휴 세션의 메모리와 파일시스템 상태는 어떻게 관리되나요?",
+      "a": "Substrate는 유휴 세션을 자동으로 체크포인트해 `checkpointDir`에 저장합니다. 새로운 요청이 들어오면 빈 워커 Pod에 해당 체크포인트를 복원해 즉시 실행되므로, 메모리 낭비 없이 높은 세션 밀도를 유지합니다."
     }
   ],
   "media": {
@@ -50,5 +68,23 @@
   "collected_at": "2026-11-11T04:45:08.350255+00:00",
   "notion_id": "",
   "id": "2026-11-11-a8c416e2c7748124",
-  "img_ok": "2026-11-11T04:45:11+00:00"
+  "img_ok": "2026-11-11T04:45:11+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "B9Dfjj1BU_o",
+      "title": "Agent Substrate: Running AI Agents at 10x Density on Kubernetes (Tutorial)",
+      "author": "CLI Stack"
+    },
+    {
+      "id": "JJ8fZHxGroE",
+      "title": "What is agent substrate?",
+      "author": "Justin Garrison"
+    }
+  ],
+  "enriched_at": "2026-11-11T07:59:08+00:00",
+  "quality": {
+    "before": 688,
+    "after": 1507
+  }
 }

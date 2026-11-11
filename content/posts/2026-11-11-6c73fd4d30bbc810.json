@@ -39,9 +39,28 @@
     {
       "heading": "브랜드 일관성 유지 팁",
       "body": "새 로고와 색상을 사용할 때는 기존 마케팅 자료와 동일한 색값을 적용한다. USD나 FBX 형식으로 로고 모델을 내보내면 다양한 엔진에서 재사용이 쉽다. 프로젝트 파일에 색상 스와치를 저장해 팀 전체가 같은 기준을 공유한다."
+    },
+    {
+      "heading": "Blender에서 X 모티프 로고 모델링 단계",
+      "body": "Blender를 실행하고 기본 큐브를 삭제한 뒤 Shift+A → Mesh → Plane 로 기본 평면을 만든다. Geometry Nodes 에디터를 열고 새로운 노드 트리를 만든 뒤, Plane Geometry → Transform → Array 노드를 연결해 X 형태의 격자를 만든다. Array 옵션에서 Count와 Offset을 조절해 상자와 지붕 모양을 재현한다. 이후 Mesh → Extrude Region을 사용해 3D 두께를 추가하고, Shade Smooth로 부드럽게 만든다. Material 탭에서 새 머티리얼을 만들고 Base Color에 파란색과 주황색을 각각 지정한다(색상 스와치를 저장해 팀과 공유). 완성된 로고는 File → Export → USD(.usd) 혹은 FBX(.fbx) 로 내보내어 다른 엔진에서 재사용한다.",
+      "added": true
+    },
+    {
+      "heading": "Unreal Engine 프로젝트에 로고 적용 팁",
+      "body": "Unreal Engine을 열고 Content Browser에서 Import 버튼을 눌러 앞서 Blender에서 Export한 USD 또는 FBX 파일을 선택한다. Import Settings에서 ‘Import Materials’를 활성화하면 기본 머티리얼이 자동 생성된다. 머티리얼 에디터에서 Base Color 슬롯에 파란색과 주황색을 정확히 매칭하도록 색상 스와치를 적용한다(색상 값은 디자인 가이드에 명시된 대로). 로고를 레벨에 배치하고, 필요에 따라 Light와 Post Process Volume을 조정해 브랜드 색상이 화면에 선명히 보이도록 한다. 이렇게 하면 프로젝트 전반에 일관된 브랜드 아이덴티티를 유지할 수 있다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Blender에서 색상 값을 정확히 입력하려면 어떻게 하나요?",
+      "a": "Material 탭에서 색상 스와치를 만들고, 파란색과 주황색을 각각 선택한다. 만든 스와치를 저장하면 팀 전체가 동일한 색상 값을 사용할 수 있다."
+    },
+    {
+      "q": "USD와 FBX 중 어느 포맷을 선택해야 하나요?",
+      "a": "두 포맷 모두 지원된다. 실시간 엔진(예: Unreal)에서는 USD가 최신 파이프라인에 유리하고, 기존 파이프라인이나 다른 DCC와 호환이 필요하면 FBX를 선택한다."
+    }
+  ],
   "media": {
     "image": "https://cdn.mos.cms.futurecdn.net/ejRfKMMFUvDPsGTU8QoTud-1000-80.jpg",
     "video": ""
@@ -50,5 +69,23 @@
   "notion_id": "",
   "id": "2026-11-11-6c73fd4d30bbc810",
   "img_ok": "2026-11-11T07:05:36+00:00",
-  "enriched": "2026-11-11"
+  "enriched": "2026-11-11",
+  "refs": [],
+  "videos": [
+    {
+      "id": "2RO44hoGdlE",
+      "title": "The ONLY Logo Design Guide You’ll EVER Need (2025 Edition)",
+      "author": "Satori Graphics"
+    },
+    {
+      "id": "lMvFmRLPecg",
+      "title": "BANK FUR TIROL UND VORARLBERG LOGO DESIGN PROCESS | Adobe Illustrator Tutorial",
+      "author": "PEARL DESIGN ACADEMY "
+    }
+  ],
+  "enriched_at": "2026-11-11T07:57:04+00:00",
+  "quality": {
+    "before": 732,
+    "after": 1506
+  }
 }
