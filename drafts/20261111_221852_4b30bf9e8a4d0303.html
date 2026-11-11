@@ -1,0 +1,21 @@
+<!-- TITLE: NVIDIA DSX AI Factory, k8s-aibom 통합 | TAGS: NVIDIA DSX,Kubernetes,AIBOM,AICR,vLLM,업데이트·출시 | CATEGORY: AI 3D/NVIDIA DSX | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/validating-gpu-platforms-with-runtime-ai-inventory-via-the-nvidia-dsx-ai-factory/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/image1-7.webp" alt="NVIDIA DSX AI Factory, k8s-aibom 통합" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/validating-gpu-platforms-with-runtime-ai-inventory-via-the-nvidia-dsx-ai-factory/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA AI Cluster Runtime(AICR) v1.2.0이 k8s-aibom 1.6.2와 통합되어 Kubernetes 환경에서 실행되는 AI 워크로드의 빌드 오브 마테리얼(AIBOM) 추적 기능을 제공합니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA DSX › 업데이트·출시</p>
+<h2>k8s-aibom 통합과 AIBOM 레코드 생성</h2>
+<p>NVIDIA AI Cluster Runtime(AICR)은 오픈소스 k8s-aibom 프로젝트를 기반으로 자격이 검증된 AI 빌드 오브 마테리얼 컴포넌트를 포함합니다. 이를 통해 Kubernetes에서 구동되는 AI 워크로드를 추적하며, CycloneDX 1.6 AIBOM 레코드를 신뢰도 티어 및 증거 로케이터와 함께 출력합니다. h100-gke-cos-inference 및 h100-gke-cos-inference-dynamo 두 가지 스톡 레시피가 k8s-aibom을 기본으로 선택합니다.</p>
+<h2>실행 중인 워크로드 가시성 확보</h2>
+<p>Application 팀이 플랫폼 레시피와 독립적으로 워크로드를 정의하고 업데이트하기 때문에, 재현 가능한 배포 번들만으로는 각 노드에서 어떤 아티팩트가 실행 중인지 파악하기 어렵습니다. 가변 이미지 태그 :latest와 같은 요소는 동일한 태그 아래에서 노드마다 다른 코드가 실행되게 만드는 복잡성을 더합니다. AICR과 k8s-aibom 통합은 이러한 간극을 좁혀 배포된 워크로드의 실제 상태를 명확히 가시화합니다.</p>
+<h2>레시피 구성과 런타임 인벤토리 플래그</h2>
+<p>다른 GKE 레시피의 경우 --runtime-inventory 플래그를 사용하여 k8s-aibom을 선택적으로 활성화하거나 비활성화할 수 있습니다. AICR은 검증된 GPU 플랫폼 구성을 버전이 고정된 레시피와 재현 가능한 배포 번들로 변환합니다. 번들에는 체크섬이 포함되며, aicr bundle --attest 명령을 통해 서명이 가능합니다.</p>
+<h2>자원 소비량과 네임스페이스 제어</h2>
+<p>통합 검증은 k8s-aibom 1.6.2가 핀닝된 AICR v1.2.0을 통해 이루어졌으며, 정상 상태 관찰 시 분당 약 4회의 API 서버 요청, 2.2 밀리코어의 평균 CPU 사용량을 보였습니다. Controller 메모리 워킹 셋은 28~34 MiB 수준을 유지했습니다. 네임스페이스 옵트인(opt-in) 제어 기능을 통해 어떤 네임스페이스에서 AIBOM 레코드를 출력할지 결정할 수 있으며, 모델 및 컨테이너 이미지 세부 정보가 포함된 vLLM 추론 배포 같은 워크로드 카테고리를 자동으로 분류합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NVIDIA AI Cluster Runtime v1.2.0에 핀닝된 k8s-aibom 1.6.2는 정상 상태에서 분당 약 4회의 API 서버 요청과 2.2 밀리코어의 평균 CPU 사용량을 기록하여 대규모 클러스터에서도 오버헤드가 적습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA AICR에서 k8s-aibom을 기본으로 사용하는 레시피는 무엇인가요?</b><br/>A. h100-gke-cos-inference 및 h100-gke-cos-inference-dynamo 두 가지 스톡 레시피가 기본으로 선택합니다.</p>
+<p><b>Q. 다른 GKE 레시피에서 런타임 인벤토리를 활성화하려면 어떻게 해야 하나요?</b><br/>A. 레시피 생성 시 --runtime-inventory 플래그를 사용하여 옵트인할 수 있으며, 반대의 경우 --runtime-inventory disabled를 사용할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-25d05ca668539a66.html">NVIDIA Snapshot 출시 — GPU 워크로드 복구 속도 36배 향상</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-a8c416e2c7748124.html">NVIDIA Agent Substrate — Kubernetes 에이전트 인프라</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-5ef5685b9690ae6c.html">NVIDIA DSX OS 공개 — Kubernetes GPU 클러스터 관리</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/validating-gpu-platforms-with-runtime-ai-inventory-via-the-nvidia-dsx-ai-factory/" target="_blank" rel="noopener nofollow">Validating GPU Platforms with Runtime AI Inventory via the NVIDIA DSX AI Factory</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
