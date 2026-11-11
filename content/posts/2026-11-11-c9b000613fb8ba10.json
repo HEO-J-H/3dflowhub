@@ -1,0 +1,62 @@
+{
+  "title_ko": "DepthGS — Gaussian Splatting 표면 재구성 논문",
+  "title": "DepthGS: Depth-Guided Gaussian Splatting with Adaptive Regularization for High-Quality Surface Reconstruction",
+  "url": "https://arxiv.org/abs/2611.13628v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "NeRF",
+    "표면 재구성",
+    "연구 논문"
+  ],
+  "summary": "단일 뷰 및 다중 뷰 설정에서 깊이 정보와 재구성 오차의 이론적 관계를 분석하고 적응형 정규화를 제안한 DepthGS 논문입니다.",
+  "insight": "깊이 차이를 신뢰도로 활용하면 노이즈가 많은 영역에서 법선이 과도하게 왜곡되는 것을 막을 수 있다. 다중 뷰 환경에서는 각 카메라의 깊이 맵을 서로 변환해 비교함으로써 일관성을 강제한다. 한국의 3D 아티스트가 자체 파이프라인에 DepthGS를 도입하면, 기존 3DGS 기반 뷰 합성보다 더 정밀한 표면을 얻을 수 있다.",
+  "try_it": [
+    "논문에 제시된 수식과 알고리즘을 참고해 현재 사용 중인 Gaussian Splatting 코드에 깊이 차이 기반 가중치를 추가한다.",
+    "DTU 같은 공개 데이터셋으로 단일 뷰 실험을 수행해 법선 정규화 강도를 조절해 본다.",
+    "다중 뷰 시퀀스를 준비하고, 인접 뷰 깊이 맵을 변환해 교차 일관성 정규화를 적용해 본다."
+  ],
+  "sections": [
+    {
+      "heading": "DepthGS 프레임워크 개요",
+      "body": "DepthGS는 3D Gaussian Splatting을 표면 재구성에 적용하면서 깊이 정보를 활용한다. 논문은 깊이 차이와 재구성 오차 사이의 수학적 관계를 도출한다. 이 관계를 기반으로 기하학적 최적화 전략을 설계한다."
+    },
+    {
+      "heading": "깊이 차이와 오차 상한선",
+      "body": "단일 뷰와 다중 뷰 각각에 대해 깊이 불일치가 재구성 오차에 미치는 영향을 정량화한다. 저자들은 이를 통해 오차 상한선을 엄밀히 계산한다. 이러한 이론적 근거가 적응형 정규화 설계의 토대가 된다."
+    },
+    {
+      "heading": "단일 뷰 적응형 정규화",
+      "body": "국소 깊이 차이로부터 기하학적 신뢰도 가중치를 구한다. 이 가중치는 법선 제약 강도를 조절하는 데 사용된다. 결과적으로 깊이 불확실성이 큰 영역에서 과도한 정규화를 방지한다."
+    },
+    {
+      "heading": "다중 뷰 깊이 일관성 정규화",
+      "body": "인접 뷰의 깊이 맵과 현재 뷰의 예측을 변환해 비교한다. 변환된 깊이와 실제 깊이 사이의 차이를 최소화하도록 정규화한다. 이는 여러 시점에서 일관된 표면을 재구성하도록 돕는다."
+    },
+    {
+      "heading": "실험 결과와 벤치마크",
+      "body": "DTU, Mip-NeRF360, Tanks and Temples 데이터셋에서 DepthGS는 기존 3DGS 대비 표면 재구성 정확도가 높았다. 신규 뷰 합성에서도 시각적 품질이 향상되었다. 논문은 IEEE Transactions on Pattern Analysis and Machine Intelligence에 게재될 예정이다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "DepthGS는 어떤 문제를 해결하기 위한 연구인가요?",
+      "a": "Gaussian Splatting을 표면 재구성에 확장할 때 깊이 정보와 재구성 오차 간의 관계가 충분히 탐구되지 않은 한계를 극복하기 위해 제안된 프레임워크입니다."
+    },
+    {
+      "q": "어떤 데이터셋에서 성능이 검증되었나요?",
+      "a": "DTU, Mip-NeRF360, Tanks and Temples 벤치마크 데이터셋을 사용한 광범위한 실험을 통해 성능을 입증했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.13628v1/4_1_framework.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-11T05:25:04.616612+00:00",
+  "notion_id": "",
+  "id": "2026-11-11-c9b000613fb8ba10",
+  "img_tried": true,
+  "enriched": "2026-11-11"
+}
