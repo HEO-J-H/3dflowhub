@@ -1,0 +1,99 @@
+{
+  "id": "substance-3d-symmetry-painting-d23e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Symmetry painting",
+  "title": "대칭 칠하기",
+  "summary": "Substance 3D Painter에서 브러시 스트로크로 표면에 균일한 대칭 요철과 디테일을 동시에 그리는 기능입니다. 좌우 또는 방사형 대칭을 활용해 효율적으로 입체감을 더할 수 있습니다.",
+  "when": [
+    "캐릭터의 얼굴이나 갑옷에 대칭적인 긁힘과 흠집을 넣을 때",
+    "로봇 메cha 표면에 대칭적인 패널 라인과 리벳을 그릴 때",
+    "대칭 구조를 유지하면서 유기적인 디테일을 빠르게 새길 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 프로젝트를 열고 3D Viewport에 모델을 로드합니다.",
+    "Layers 패널에서 Paint Layer를 새로 추가하거나 기존 레이어를 선택합니다.",
+    "상단 툴바에서 Symmetry(대칭) 아이콘을 클릭하거나 X 키를 눌러 대칭 패널을 활성화합니다.",
+    "Mirror Axis를 X, Y, Z 중 원하는 축으로 설정하고 Position Gizmo로 대칭 중심선을 정렬합니다.",
+    "Brushes 툴을 선택하고 Viewport에서 드래그하여 대칭으로 그려지는 칠(Paint) 디테일을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mirror Axis",
+      "desc": "대칭 기준이 되는 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Position",
+      "desc": "대칭 축의 위치와 중심점을 이동합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "대칭 축의 각도를 회전시켜 정렬합니다."
+    },
+    {
+      "name": "Show Symmetry Plane",
+      "desc": "Viewport에 대칭 기준면의 시각화 표시 여부를 토글합니다."
+    },
+    {
+      "name": "Brush",
+      "desc": "칠할 브러시의 크기, 불투명도, 알파를 설정합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "브러시 스트로크가 만들어내는 높이와 노멀의 깊이 값을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대칭 갑옷 표면 스크래치",
+      "steps": [
+        "Paint Layer를 추가하고 Height 채널만 활성화합니다.",
+        "Symmetry 설정에서 X축 대칭을 켭니다.",
+        "Hard 브러시로 갑옷 한쪽을 긁으면 반대편에도 동일하게 스크래치가 그려집니다."
+      ]
+    },
+    {
+      "title": "로봇 메cha 대칭 리벳 배치",
+      "steps": [
+        "새로운 Paint Layer를 생성합니다.",
+        "Alpha 텍스처에서 리벳 형태를 선택합니다.",
+        "중앙선 기준에 맞춰 클릭하여 양쪽에 대칭으로 리벳 디테일을 찍어냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "대칭 중심선이 모델 한쪽으로 치우침 → Position 값을 조정하거나 Reset하여 중앙에 맞춥니다.",
+    "반대편에 브러시 자국이 나타나지 않음 → Layers 패널에서 Height 또는 Normal 채널이 켜져 있는지 확인합니다.",
+    "모델의 UV Seam 부근에서 대칭이 어긋남 → UV 언랩 상태를 확인하고 대칭 축 방향을 재조정합니다."
+  ],
+  "related": [
+    "Height and normal painting",
+    "Fill Layer",
+    "Paint Layer",
+    "Projection"
+  ],
+  "videos": [
+    {
+      "id": "Tj_iTvU-M40",
+      "title": "How to Use Symmetry & Radial Symmetry in Substance Painter (Quick Guide)",
+      "author": "Vasanthrajark"
+    },
+    {
+      "id": "FKSWSHXFo-4",
+      "title": "Using Symmetry in Substance 3D Modeler to create intricate grip details",
+      "author": "Pablo Muñoz Gómez"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Symmetry%20painting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "D Viewport",
+    "Layers",
+    "Paint Layer",
+    "Symmetry"
+  ],
+  "at": "2026-11-11T00:44:36.212766+00:00"
+}

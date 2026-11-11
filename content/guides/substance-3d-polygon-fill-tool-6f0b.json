@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-polygon-fill-tool-6f0b",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Polygon Fill tool",
+  "title": "Polygon Fill — 면 단위 마스크",
+  "summary": "Substance 3D Painter의 Polygon Fill 툴은 3D 모델의 폴리곤, UV 섬, 메시를 클릭 한 번으로 빠르게 선택하고 마스크나 색상을 채울 수 있는 핵심 도구입니다.",
+  "when": [
+    "UV IsMesh, Polygon, Mesh 등 특정 영역에만 머티리얼이나 마스크를 적용하고 싶을 때",
+    "브러시로 직접 칠하기 어려운 복잡한 기계 부품이나 모서리를 깔끔하게 분리할 때",
+    "텍스처 세트 내 특정 영역을 빠르게 선택하여 마스크를 생성할 때"
+  ],
+  "steps": [
+    "Toolbar 에서 Polygon Fill 툴을 선택합니다 (Hotkey 4).",
+    "Properties 패널에서 Fill mode를 UV IsMesh, Polygon, 또는 Mesh 중 작업 목적에 맞게 선택합니다.",
+    "모델의 Viewport에서 원하는 폴리곤이나 영역을 Mouse로 클릭하여 선택합니다.",
+    "Layers 패널에서 마스크를 적용할 레이어를 우클릭하고 Add Mask with Selection을 선택하여 채웁니다.",
+    "Viewport에서 선택 영역이 마스크로 정확히 지정되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Fill mode",
+      "desc": "폴리곤, UV IsMesh, Mesh 단위 중 선택 방식을 결정합니다."
+    },
+    {
+      "name": "Color/Level",
+      "desc": "채우기 작업 시 적용할 색상이나 마스크의 그레이스케일 값을 설정합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "인접한 면을 선택할 때 색상이나 영역의 허용 오차를 조절합니다."
+    },
+    {
+      "name": "Ignore backfacing",
+      "desc": "카메라 반대 방향에 있는 보이지 않는 폴리곤의 선택을 제외합니다."
+    },
+    {
+      "name": "Visible polygons only",
+      "desc": "화면에 실제로 보이는 폴리곤만 선택 대상으로 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 갑옷 부위별 색상 분할",
+      "steps": [
+        "Polygon Fill 툴을 켜고 Fill mode를 Mesh로 설정합니다.",
+        "로봇의 팔 부위 3D 모델 Mesh를 클릭하여 전체를 한 번에 선택합니다.",
+        "새 Fill Layer를 만들고 우클릭하여 Add Mask with Selection을 적용합니다."
+      ]
+    },
+    {
+      "title": "손잡이와 날의 경계선 마스킹",
+      "steps": [
+        "Polygon Fill 툴의 Fill mode를 Polygon으로 설정합니다.",
+        "검의 손잡이 부분 폴리곤들을 드래그하거나 연속 클릭하여 선택합니다.",
+        "Layers 패널에서 Black Mask를 생성하고 선택 영역을 채워 가죽 질감을 입힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "뒷면까지 같이 선택되는 실수 → Properties 패널에서 Ignore backfacing 또는 Visible polygons only 옵션을 켭니다.",
+    "원하지 않는 세부 폴리곤이 선택되는 실수 → Fill mode를 Polygon에서 UV IsMesh 또는 Mesh 단위로 변경하여 클릭합니다."
+  ],
+  "related": [
+    "Paint Layer",
+    "Black Mask",
+    "Properties",
+    "Texture Set List"
+  ],
+  "videos": [
+    {
+      "id": "ZfTYPHLrgCE",
+      "title": "Substance Painter - Polygon Fill (2 Minutes!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "KBFonG4BG70",
+      "title": "Polygon Fill Tool in Substance Painter",
+      "author": "Reins  Academy"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Polygon%20Fill%20tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Toolbar",
+    "Polygon Fill",
+    "Hotkey 4"
+  ],
+  "at": "2026-11-11T00:44:28.239898+00:00"
+}

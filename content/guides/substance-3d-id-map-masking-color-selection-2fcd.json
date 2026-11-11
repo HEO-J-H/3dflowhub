@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-id-map-masking-color-selection-2fcd",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "ID map masking (Color Selection)",
+  "title": "ID 맵으로 마스크",
+  "summary": "ID Map Masking(Color Selection)은 고유한 색상(ID)으로 구분된 텍스처 맵을 활용해, 모델의 특정 부위에 마스크를 순식간에 적용하고 재질을 입히는 기능입니다.",
+  "when": [
+    "복잡한 하드서면 모델의 부위별로 머티리얼을 빠르게 나누고 싶을 때",
+    "브러시로 직접 칠하기 어려운 미세한 경계나 홈을 정확하게 분리할 때",
+    "서로 다른 색상의 ID 컬러 맵을 구동하여 프로젝트 전반의 텍스처링 속도를 높일 때"
+  ],
+  "steps": [
+    "TextureSet Settings 패널에서 Bake Texture 버튼을 클릭합니다.",
+    "Bake Settings 창에서 ID 항목을 체크하고, Source를 High Definition Mesh로 설정한 뒤 Bake 합니다.",
+    "Layers 패널에서 색상을 입힐 Fill Layer를 생성합니다.",
+    "Fill Layer를 우클릭하고 Add Mask with Color Selection을 선택합니다.",
+    "Properties 패널의 Pick Color 버튼을 누르고 Viewport에서 원하는 색상(ID)을 클릭하여 마스크를 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Pick Color",
+      "desc": "Viewport의 모델 표면에서 특정 ID 색상을 스포이트로 선택합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "색상 선택의 허용 오차를 조절하여 경계면의 번짐이나 누락을 보정합니다."
+    },
+    {
+      "name": "Expand",
+      "desc": "선택된 마스크 영역의 경계를 바깥쪽으로 확장합니다."
+    },
+    {
+      "name": "Invert Mask",
+      "desc": "선택한 색상 영역과 반대되는 영역으로 마스크를 반전합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 갑옷의 파츠별 색상 분리",
+      "steps": [
+        "ID 맵을 베이킹하여 각 패널을 고유 색상으로 나눕니다.",
+        "철갑용 Fill Layer를 만들고 Add Mask with Color Selection을 추가합니다.",
+        "Pick Color로 갑옷 부위의 색상을 클릭해 철 재질을 한 번에 적용합니다."
+      ]
+    },
+    {
+      "title": "게임 캐릭터 무기의 금속과 손잡이 구분",
+      "steps": [
+        "검의 날과 손잡이 영역이 다른 ID 색상을 가지도록 베이킹합니다.",
+        "가죽 손잡이 레이어에 Color Selection 마스크를 생성합니다.",
+        "손잡이 영역의 ID 색상을 선택하여 가죽 재질만 정확히 입힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "ID 컬러가 서로 겹치거나 너무 유사함 → High Poly 모델의 재질 ID(Material ID)나 Vertex Color 설정을 수정하여 다시 베이킹합니다.",
+    "경계선에 지저분한 픽셀이 튀어나옴 → Tolerance 값을 낮추거나 Baking 시 Anti-aliasing 옵션을 높여 해결합니다."
+  ],
+  "related": [
+    "Substance Painter layers and masks",
+    "Bake Texture",
+    "Fill Layer",
+    "Smart Mask"
+  ],
+  "videos": [
+    {
+      "id": "hXSUVPy1I-I",
+      "title": "ID Maps are a super easy way to make texturing easy #substancepainter #gamedev #videogames",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "GIAx-V-AD-I",
+      "title": "Add Bitmap Mask and Add mask with color selection Tutorial in Substance Painter for Beginners",
+      "author": "Reins  Academy"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20ID%20map%20masking%20%28Color%20Selection%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "TextureSet Settings",
+    "Bake Texture",
+    "Bake Settings",
+    "ID",
+    "Source",
+    "High Definition Mesh"
+  ],
+  "at": "2026-11-11T00:44:32.096175+00:00"
+}
