@@ -1,0 +1,89 @@
+{
+  "id": "substance-3d-graphs-and-nodes-basics-4a5c",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Graphs and nodes basics",
+  "title": "그래프·노드 기초",
+  "summary": "Substance 3D Designer의 Graphs와 Nodes는 텍스처와 머테리얼을 절차적(Procedural)으로 생성하고 제어하는 핵심 시각적 프로그래밍 시스템입니다.",
+  "when": [
+    "Resolution에 구애받지 않는 무한한 디테일의 타일링 머테리얼을 만들 때",
+    "파라미터 조절 하나로 색상, 거친 정도, 패턴 등을 실시간으로 바꿀 필요가 있을 때",
+    "복잡한 노드 네트워크를 조합해 자연스러운 절차적 패턴을 구성할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer를 실행하고 상단 메뉴에서 File → New Substance 패널을 엽니다.",
+    "Graph Template 창에서 Physically Based (Metallic/Roughness) 등 원하는 Template을 선택합니다.",
+    "Explorer 패널에서 생성된 Graph를 더블클릭하여 Graph 뷰(작업 공간)를 엽니다.",
+    "Graph 뷰에서 Tab 키를 누르고 원하는 노드 이름(예: Brick Generator, Blend)을 검색해 추가합니다.",
+    "노드의 출력 핀(Output Pin)과 입력 핀(Input Pin)을 Mouse로 드래그하여 연결합니다.",
+    "2D View 패널에서 노드 네트워크의 최종 결과물이 실시간 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "두 노드의 이미지를 합성하는 방식을 설정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "합성되는 노드의 투명도를 조절합니다."
+    },
+    {
+      "name": "Tiling",
+      "desc": "패턴의 반복 횟수를 가로, 세로 방향으로 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "패턴이나 요소의 크기를 확대 또는 축소합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "절차적 패턴 생성 시 무작위 변형 값을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 패턴 머테리얼 제작",
+      "steps": [
+        "Tab 키를 눌러 Brick Generator 노드를 추가합니다.",
+        "Brick Generator의 파라미터에서 Brick Count와 Mortar Size를 조절해 벽돌 간격을 맞춥니다.",
+        "Normal 노드에 연결하여 벽돌 표면의 입체감을 부여합니다."
+      ]
+    },
+    {
+      "title": "노드 블렌딩을 통한 오염 표현",
+      "steps": [
+        "Brick Generator 결과물과 Grunge Map 노드를 준비합니다.",
+        "Blend 노드를 생성하고 Background에 벽돌을, Foreground에 Grunge Map을 연결합니다.",
+        "Blend Mode를 Multiply로 설정해 벽돌 표면에 자연스러운 얼룩을 입힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노드 연결선이 엉켜 흐름이 보이지 않음 → Reroute 노드를 추가하거나 노드 정렬 기능을 사용해 깔끔하게 정리합니다.",
+    "출력 채널에 잘못된 데이터 타입(Grayscale과 Color)을 연결해 오류 발생 → 연결하려는 핀의 색상(회색 점과 컬러 점)이 일치하는지 확인합니다."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Substance 3D Sampler",
+    "Graph Inputs",
+    "Output Node"
+  ],
+  "videos": [
+    {
+      "id": "VyFgpitTsYg",
+      "title": "Substance 3D Designer First Steps: 01 - Overview & Basics | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "gaI6fK7IK3Y",
+      "title": "Substance Designer for Beginners - 1. Set Up our Substance and the color node",
+      "author": "3DGameArt"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Graphs%20and%20nodes%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T03:05:10.548535+00:00"
+}

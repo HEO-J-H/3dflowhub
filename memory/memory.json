@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-08T22:54:54.315964+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 105,
-      "candidates_passed": 59,
-      "offtopic": 28,
-      "short": 0,
-      "prefiltered": 25,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "37639d54",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-08T23:04:32.347016+00:00",
       "collected": 1,
       "saved": 1,
@@ -7109,6 +7084,31 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-11T03:04:50.542726+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 106,
+      "candidates_passed": 72,
+      "offtopic": 21,
+      "short": 0,
+      "prefiltered": 20,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "11f7ba6c",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7204,7 +7204,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-03 [성찰] 단어만 일치하는 외부 노이즈(스포츠·주가·동명이인)를 철저히 차단하고, 실무 검색 수요가 높은 3ds Max, Maya, Blender 등 고CPC 튜토리얼 및 스크립트 위주로 콘텐츠 질을 높여야 합니다.",
     "2026-11-03 [성찰] 검색 의도에 맞는 툴명·키워드 선두 제목과 1,500자 이상 깊이 있는 실무 튜토리얼이 페이지뷰와 RPM을 동시에 끌어올린다.",
     "2026-11-04 [성찰] 동음이의어나 일반 명사(Nuke, Houdini 등)가 포함된 비관련 뉴스는 철저히 필터링하고, MaxScript나 무료 애드온/스크립트 등 실무 검색 수요가 높은 주제를 집중 공략해야 합니다.",
     "2026-11-04 [성찰] 검색 유입과 고단가(CPC) 광고 수익을 극대화하려면 단순 요약에서 벗어나 Maya, 3ds Max(MaxScript), Blender 등 실무 중심의 구체적인 활용법과 비교 정보를 포함한 1,500자 이상의 독창적인 콘텐츠를 지속해서 발행해야 합니다.",
@@ -7323,7 +7322,8 @@
     "2026-11-10 [성찰] 동음이의어(Maya, Unity, Nuke 등)로 인한 오수집 비중을 대폭 줄이고 실무 중심 튜토리얼 및 애드온·스크립트 가이드에 집중해야 검색 유입과 유효 발행 효율이 높아집니다.",
     "2026-11-11 [compute_internal_link_score(): 콘텐츠 내 내부 ] ",
     "2026-11-11 [PR #29 다시 하기 — backend/app/services/mesh] 이미지 업로드 전 포맷과 크기 사전 검증은 잘못된 입력으로 인한 서버 오류를 방지하는 데 필수적이다.",
-    "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Unity 등)으로 인한 오수집 비중을 획기적으로 낮추기 위해 수집 단계에서 CG 전용 문맥 필터링을 더욱 강화해야 합니다."
+    "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Unity 등)으로 인한 오수집 비중을 획기적으로 낮추기 위해 수집 단계에서 CG 전용 문맥 필터링을 더욱 강화해야 합니다.",
+    "2026-11-11 [성찰] 동음이의어(Maya, Unity, Nuke 등)로 인한 오수집률을 낮추고 실무 튜토리얼·스크립트·애드온 중심의 고단가 검색 유입 콘텐츠를 집중 발행해야 페이지뷰와 애드센스 효율이 극대화됩니다."
   ],
   "categories": {
     "VFX": [
@@ -9892,14 +9892,15 @@
     6788198999636902177,
     6183687041393016193,
     7246773331023617906,
-    2175837927215556609
+    2175837927215556609,
+    5189703706056798851
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2494,
-    "Game Engine": 2494,
-    "VFX": 2494,
-    "AI 3D": 2494
+    "3D DCC": 2495,
+    "Game Engine": 2495,
+    "VFX": 2495,
+    "AI 3D": 2495
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

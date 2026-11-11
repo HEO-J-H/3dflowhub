@@ -1,0 +1,103 @@
+{
+  "id": "substance-3d-shape-and-tile-generator-abaa",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Shape and Tile Generator",
+  "title": "Tile Generator — 반복 무늬",
+  "summary": "Substance 3D Painter의 Shape and Tile Generator는 절차적 패턴과 타일 구조를 만들어 바닥재나 벽돌 같은 반복되는 텍스처를 손쉽게 생성하는 기능입니다.",
+  "when": [
+    "바닥 타일, 벽돌 벽, 콘크리트 패널 등 규칙적인 반복 패턴을 만들 때",
+    "직접 텍스처를 그리지 않고 노드나 레이어에서 수학적 패턴을 조합할 때",
+    "패턴의 크기, 간격, 무작위성을 실시간으로 조절하여 디테일을 더할 때"
+  ],
+  "steps": [
+    "Layers 패널에서 새로운 Fill Layer를 추가합니다.",
+    "Properties 패널에서 Base Color 또는 Height 채널의 텍스처 슬롯을 클릭합니다.",
+    "Generator 카테고리에서 Shape and Tile Generator를 선택하여 적용합니다.",
+    "Properties 패널의 Generator 파라미터에서 타일의 개수와 간격(Spacing)을 조절합니다.",
+    "Shape 유형을 변경하여 사각형, 원형 등 원하는 기본 형태를 지정합니다.",
+    "Viewport에서 패턴이 메쉬에 자연스럽게 반복되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tile Count",
+      "desc": "가로와 세로 방향으로 패턴이 반복되는 개수를 조절합니다."
+    },
+    {
+      "name": "Spacing",
+      "desc": "타일과 타일 사이의 간격을 설정합니다."
+    },
+    {
+      "name": "Shape",
+      "desc": "타일 내부에 생성될 기본 형태(사각형, 원형 등)를 선택합니다."
+    },
+    {
+      "name": "Random Rotation",
+      "desc": "각 타일에 무작위 회전 값을 주어 단조로움을 없애줍니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "타일 모서리에 경사(입체감)를 주어 볼륨감을 살립니다."
+    },
+    {
+      "name": "Random Offset",
+      "desc": "타일의 배치 위치를 무작위로 어긋나게 만들어 자연스러운 벽돌 패턴을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽 텍스처 만들기",
+      "steps": [
+        "Fill Layer에 Shape and Tile Generator를 적용합니다.",
+        "Shape을 사각형으로 선택하고 Tile Count를 조절해 벽돌 비율을 맞춥니다.",
+        "Random Offset을 켜서 어긋난 벽돌 구조(Staggered)를 만듭니다.",
+        "Height 채널과 Normal 채널에 연결하여 입체적인 벽돌 표면을 완성합니다."
+      ]
+    },
+    {
+      "title": "보도블록 바닥 제작",
+      "steps": [
+        "새로운 Fill Layer에 Generator를 추가합니다.",
+        "Spacing 값을 높여 블록 사이의 시멘트 줄무늬(Grout) 간격을 넓힙니다.",
+        "Bevel 값을 주어 블록 모서리를 둥글게 만듭니다.",
+        "Roughness와 Color 채널을 조합해 사실적인 콘크리트 바닥을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "타일 개수가 너무 촘촘함 → Tile Count 값을 낮추고 Viewport Resolution를 확인합니다.",
+    "입체감이 느껴지지 않음 → Height 또는 Normal 채널이 활성화되어 있는지 확인하고 Intensity를 높입니다.",
+    "패턴이 한쪽으로 늘어남 → UV Mapping이 정사각형 비율인지 확인합니다."
+  ],
+  "related": [
+    "Fill Layer",
+    "Anchor Point",
+    "Generators",
+    "Smart Masks"
+  ],
+  "videos": [
+    {
+      "id": "wvgoqWAwJBI",
+      "title": "Create Tileable TILE Texture in Substance Painter",
+      "author": "Wayne Carnegie"
+    },
+    {
+      "id": "pQw-iDo5hnk",
+      "title": "Getting Started with Substance 3D Sampler's Texture Generators for Textile Design | Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Shape%20and%20Tile%20Generator",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "Fill Layer",
+    "Properties",
+    "Base Color",
+    "Height",
+    "Generator"
+  ],
+  "at": "2026-11-11T03:05:14.668258+00:00"
+}

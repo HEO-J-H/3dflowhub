@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-substance-designer-interface-b55b",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Substance Designer interface",
+  "title": "Designer 인터페이스",
+  "summary": "Substance 3D Designer 인터페이스는 노드 기반의 비파괴 방식으로 절차적(Procedural) 머티리얼, 패턴, 텍스처를 제작하는 작업 공간입니다. 복잡한 맵을 시각적인 노드 연결을 통해 유연하고 정밀하게 제어합니다.",
+  "when": [
+    "반복되는 타일형 벽돌, 아스팔트, 나무 판자 등 절차적 텍스처 패턴을 만들 때",
+    "Substance 3D Painter에서 사용할 수 있는 커스텀 Smart 머티리얼이나 SBSAR 파일을 제작할 때",
+    "높낮이가 뚜렷한 Height Map, Normal Map, Roughness Map 등 다양한 PBR 텍스처 맵을 한 번에 유기적으로 생성할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer를 실행하고 상단 메뉴 바에서 File → New Substance를 선택합니다.",
+    "New Substance 대화 상자에서 그래프 Template(예: PBR Graph)과 Resolution를 설정한 후 OK를 누릅니다.",
+    "화면 중앙의 Graph View에서 빈 공간을 우클릭하거나 Hotkey Tab 을 눌러 원하는 노드(예: Brick Generator, Noise)를 검색해 생성합니다.",
+    "생성된 노드의 출력 핀(Output Pin)과 입력 핀(Input Pin)을 드래그하여 서로 연결합니다.",
+    "화면 우측의 Parameters 패널에서 선택한 노드의 수치(세부 크기, 거칠기 등)를 조정합니다.",
+    "화면 우측 상단의 3D View에서 결과물이 3D 모델(Sphere, Cube 등)에 적용된 모습을 실시간으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Graph View",
+      "desc": "노드들을 배치하고 연결하여 텍스처 생성 흐름을 시각적으로 설계하는 메인 작업 영역입니다."
+    },
+    {
+      "name": "Explorer",
+      "desc": "프로젝트 내의 패키지, 그래프, 리소스 및 외부 파일을 계층 구조로 관리하는 패널입니다."
+    },
+    {
+      "name": "Parameters",
+      "desc": "선택한 노드의 세부 속성(크기, 강도, 색상 등)을 정밀하게 조정하는 패널입니다."
+    },
+    {
+      "name": "3D View",
+      "desc": "제작 중인 노드 네트워크의 결과 텍스처를 다양한 3D 입체 형태에 렌더링하여 미리 보는 창입니다."
+    },
+    {
+      "name": "Library",
+      "desc": "기본 제공되는 다양한 노드, 필터, 패턴, 머티리얼 소스를 검색하고 가져다 쓰는 창고입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "절차적 벽돌 패턴 생성",
+      "steps": [
+        "Graph View에서 Tab 키를 눌러 Brick Generator 노드를 생성합니다.",
+        "Parameters 패널에서 Brick Rows와 Columns 값을 조절해 벽돌의 개수를 늘립니다.",
+        "Brick Generator 노드의 출력을 Normal 노드에 연결하여 입체적인 Height/Normal 맵을 만듭니다.",
+        "3D View에서 벽돌 표면의 줄눈과 입체감이 실시간으로 반영되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "노이즈를 활용한 거친 표면(Roughness) 제작",
+      "steps": [
+        "Graph View에서 Perlin Noise 노드를 생성하여 화면에 배치합니다.",
+        "Level 노드나 Grayscale Conversion 노드를 추가로 연결해 콘트라스트를 강하게 조절합니다.",
+        "최종 결과를 Roughness 출력 노드(Output Node)에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노드 연결 오류로 3D View에 아무것도 안 나옴 → Output 노드에 올바른 채널(Color, Normal 등)이 연결되어 있는지 확인합니다.",
+    "텍스처가 너무 깨져 보임 → 그래프 생성 시 설정한 Resolution가 너무 낮기 때문이므로, Graph 속성에서 Resolution를 2048 또는 4096으로 높입니다."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Substance 3D Sampler",
+    "SBSAR",
+    "PBR Material"
+  ],
+  "videos": [
+    {
+      "id": "At3FoFcuN6k",
+      "title": "Adobe Substance 3D Designer for Beginners | Course Overview | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "UyF5Ie-HJ0Q",
+      "title": "What is Substance 3D Designer? (Pt 1) | For Beginners | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Designer%20interface",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "File",
+    "New Substance"
+  ],
+  "at": "2026-11-11T03:05:06.329218+00:00"
+}
