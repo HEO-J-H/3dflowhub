@@ -1,46 +1,55 @@
 {
-  "title_ko": "Gaussian Splatting 기반 XR 음악 공연 연구",
+  "title_ko": "XR 공간이 음악 창작에 미치는 영향 분석 연구",
   "title": "Where do we Jam? - The Impact of Real and Virtual XR Spaces on Musical Creativity, Co-Presence, Affect, and Flow",
   "url": "https://arxiv.org/abs/2611.14029v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
     "XR",
-    "VR",
-    "AR",
-    "3D 포인트 클라우드"
+    "Virtual Reality",
+    "Augmented Reality",
+    "Gaussian Splatting",
+    "Point Cloud",
+    "Networked Music Performance"
   ],
-  "summary": "Gaussian Splatting Shader로 원격 협업자의 3D 포인트 클라우드를 실시간 렌더링하는 네트워크 음악 공연 환경에서 VR과 AR이 창의성과 몰입감에 미치는 영향을 비교한 연구입니다.",
-  "insight": "28명을 대상으로 한 실험에서 Gaussian Splatting 기반 VR 환경이 AR보다 몰입감과 창의성 지원 측면에서 더 높은 상관관계를 보였습니다.",
+  "summary": "가상현실(VR)과 증강현실(AR) 환경이 원격 협업 음악 연주(NMP)에서 창의성, 몰입감, 현장감에 미치는 영향을 실험한 연구입니다.",
+  "insight": "이 연구는 실시간 3D 포인트 클라우드와 Gauss Splatting 렌더링을 활용한 원격 XR 협업의 가능성을 보여줍니다. 3D 아티스트와 개발자들은 향후 가상 스튜디오나 메타버스 공간을 설계할 때 단순한 배경 제작을 넘어 사용자의 몰입과 창의성을 극대화할 수 있는 환경 맞춤형 기능을 고려해 볼 수 있습니다. 다만 이는 연구 단계의 실험 결과이므로 실제 상용 파이프라인에 적용할 때는 네트워크 지연과 하드웨어 부하를 면밀히 검토해야 합니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "Gaussian Splatting Shader를 활용한 3D 실시간 렌더링",
-      "body": "연구진은 네트워크 음악 공연(NMP) 환경에서 원격 파트너를 실시간으로 시각화하기 위해 최적화된 Gaussian Splatting Shader를 적용했습니다. 이를 통해 참여자들은 상대방의 모습을 3D 포인트 클라우드 형태로 정확하게 인지하며 협업할 수 있었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "원격 협업 음악 연주(Networked Music Performance, NMP)에서 가상현실(VR)과 증강현실(AR) 같은 확장현실(XR) 기술이 음악가들의 창의성과 협업 경험에 미치는 영향을 파악하고자 했습니다. 특히 주변 3D 공간의 디자인이 협업 과정에 어떤 영향을 주는지 검증하는 것이 목적입니다."
     },
     {
-      "heading": "VR과 AR 환경에 따른 몰입감과 창의성 비교 실험",
-      "body": "28명의 음악가를 대상으로 진행된 실험에서는 가상 현실(VR)과 증강 현실(AR) 환경이 비교되었습니다. VR 환경에서는 사용자가 완전한 가상 3D 공간을 맞춤 설정할 수 있는 반면, AR 환경은 실험실 환경의 패스스루 뷰를 제공했습니다."
+      "heading": "핵심 아이디어",
+      "body": "음악가들이 실시간으로 상대방을 3D 포인트 클라우드(Point Cloud) 형태로 보면서, 물리적 연구실 환경을 그대로 보는 AR 조건과 완전히 가상화된 공간(Studio, Space, Meadow, Theater)을 선택하고 맞춤화할 수 있는 VR 조건을 비교했습니다."
     },
     {
-      "heading": "실험 결과 나타난 사용자 몰입도와 선호도 차이",
-      "body": "연구 결과 참여자들은 AR 환경보다 몰입형 XR 환경인 VR에서 훨씬 더 높은 수준의 몰입감을 느꼈습니다. 긍정적인 감정, 몰입(Flow), 창의성 지원은 두 조건 모두에서 강하게 상관관계가 나타났으나 몰입도는 VR에서만 유의미한 상관관계를 보였습니다."
+      "heading": "연구 방법",
+      "body": "총 28명의 참가자(N = 28)를 대상으로 실험을 진행했습니다. 참가자들은 Varjo XR-3 HMD와 Azure Kinect DK 카메라를 사용해 3D 포인트 클라우드를 송수신했으며, Gauss Splatting(Gaussian Splatting) 기반 Shader와 커스텀 마스킹 파이프라인을 적용하여 지연 시간을 줄였습니다. 각 조건별로 설문지와 인터뷰를 통해 창의성 지원, 몰입감, 공존감 등을 측정했습니다."
     },
     {
-      "heading": "네트워크 음악 XR 시스템의 공간 설계 방향",
-      "body": "참가자들은 AR과 VR 선호도 및 창의적 가상 환경 디자인에서 큰 개인차를 보였습니다. 결과적으로 주변 공간은 단순한 시각적 배경을 넘어 협업적 음악 경험을 형성하는 핵심 설계 요소로 작용해야 합니다."
+      "heading": "연구 결과 (논문 수치)",
+      "body": "참가자들은 AR 조건에 비해 몰입형 XR 경험을 제공하는 VR 조건에서 통계적으로 유의미하게 더 높은 관여도(Involvement)를 느꼈습니다. 긍정적 정서, 몰입(Flow), 창의성 지원은 두 조건 모두에서 강한 상관관계를 보였으나, 관여도가 몰입 및 창의성 지원과 상관관계가 나타난 것은 VR 조건에서뿐이었습니다."
+    },
+    {
+      "heading": "한계점 및 향후 과제",
+      "body": "참가자들마다 AR과 VR에 대한 선호도나 가상 환경 디자인에 대한 요구 사항이 크게 달랐습니다. 따라서 단일한 가상 공간을 강제하기보다는 현실과 가상의 연속선 상에서 사용자의 개별적 요구를 수용할 수 있는 시스템 설계가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본 논문에서는 Social Signal Interpretation(SSI) 프레임워크와 Unity 기반 커스텀 프리팹, Varjo Unity XR SDK 등을 활용한 시스템 구현 방식을 설명하고 있으나, 별도의 오픈소스 코드 저장소 링크는 논문 본문에 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "본 연구에서 사용된 원격 파트너 렌더링 방식은 무엇인가요?",
-      "a": "최적화된 Gaussian Splatting Shader를 통해 실시간으로 3D 포인트 클라우드 형태로 원격 협업자를 렌더링했습니다."
+      "q": "실험에 사용된 하드웨어 기기는 무엇인가요?",
+      "a": "두 대의 Varjo XR-3 HMD와 각각 두 대의 Azure Kinect DK 카메라, 그리고 Intel Core i9-13900K CPU와 Nvidia RTX 4090 GPU, 128 GB RAM을 탑재한 고성능 PC가 사용되었습니다."
     },
     {
-      "q": "VR과 AR 환경 중 어떤 조건에서 참여자들이 더 높은 몰입감을 느꼈나요?",
-      "a": "실험 결과 참여자들은 AR 환경보다 몰입형 XR 경험을 제공하는 VR 환경에서 유의미하게 더 높은 몰입감을 느꼈습니다."
+      "q": "참가자들은 어떤 가상 환경들을 선택할 수 있었나요?",
+      "a": "스튜디오(Studio), 우주(Space), 초원(Meadow), 극장(Theater) 등 4가지 일반적인 가상 환경(VE)을 선택하고 시각적 요소, 조명, 색상 등을 맞춤화할 수 있었습니다."
     }
   ],
   "media": {
@@ -50,5 +59,17 @@
   "collected_at": "2026-11-11T04:55:15.878443+00:00",
   "notion_id": "",
   "id": "2026-11-11-383d1fb6b1a90837",
-  "img_tried": true
+  "img_tried": true,
+  "img_ok": "2026-11-11T05:05:53+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-11T05:06:01+00:00"
 }
