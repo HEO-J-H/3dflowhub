@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-fabric-and-leather-materials-15e4",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Fabric and leather materials",
+  "title": "천·가죽 재질",
+  "summary": "Substance 3D의 Fabric과 Leather 재질은 직물의 직조감과 가죽의 질감을 세밀한 노멀과 러프니스 맵으로 구현하여 사실적인 표면을 만드는 기능입니다.",
+  "when": [
+    "소파나 의자 같은 가구의 천 및 가죽 표면을 표현할 때",
+    "의류나 가방 등 패션 아이템의 세부 질감을 낼 때",
+    "자동차 시트나 핸들의 가죽 질감을 사실적으로 묘사할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러온 뒤, Texture Set Settings에서 Bake Mesh Maps를 눌러 맵을 베이킹합니다.",
+    "오직 Assets 패널의 Materials 탭에서 원하는 Fabric 또는 Leather 재질을 검색합니다.",
+    "선택한 재질을 레이어 패널이나 Viewport의 메쉬 위로 드래그 앤 드롭하여 적용합니다.",
+    "Layers 패널에서 해당 재질 폴더를 선택하고 Properties 패널에서 UV Scale 값을 조절해 패턴 크기를 맞춥니다.",
+    "Color, Roughness, Normal 슬라이더를 조절하여 직물의 밀도와 광택을 최종 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "UV Scale",
+      "desc": "모델 표면에 반복되는 패브릭 및 가죽 패턴의 크기를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 가죽의 윤기나 천의 건조한 느낌을 표현합니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "직조감이나 가죽 주름의 입체감과 깊이감을 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "재질의 기본 베이스 색상을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "소파 가죽 질감 표현",
+      "steps": [
+        "Assets 패널에서 가죽 재질을 드래그하여 소파 메쉬에 적용합니다.",
+        "Properties 패널에서 UV Scale을 낮춰 가죽 주름 패턴을 크게 만듭니다.",
+        "Roughness 값을 살짝 높여 무광의 고급스러운 가죽 느낌을 냅니다."
+      ]
+    },
+    {
+      "title": "의류 천 직조감 표현",
+      "steps": [
+        "패브릭 재질을 드래그하여 옷 메쉬에 적용합니다.",
+        "UV Scale을 높여 미세한 실 짜임새가 보이도록 조절합니다.",
+        "Normal Intensity를 조절하여 천의 올록볼록한 입체감을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "패턴이 너무 크거나 작게 나옴 → UV Scale 값을 조절하여 메쉬 크기에 맞게 패턴 간격을 수정합니다.",
+    "노멀 맵이 깨지거나 어색하게 나옴 → Texture Set Settings에서 Normal 맵과 Curvature 맵을 다시 베이킹합니다.",
+    "가죽 표면이 지나치게 번들거림 → Roughness 채널의 값을 높여 반사를 줄입니다."
+  ],
+  "related": [
+    "Smart Materials",
+    "Bake Mesh Maps",
+    "Opacity and alpha channel",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "Y2D8fLHVTtg",
+      "title": "Make Quilted Leather in Substance 3D Sampler | Materials in Minutes #2 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "5SLiUn6tVfQ",
+      "title": "Hat Leather | Leather Material | Substance painter",
+      "author": "Esmail Ghadrdani"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Fabric%20and%20leather%20materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Assets",
+    "Materials",
+    "Fabric"
+  ],
+  "at": "2026-11-11T02:44:55.441909+00:00"
+}

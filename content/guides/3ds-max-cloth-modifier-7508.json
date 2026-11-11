@@ -5,24 +5,25 @@
   "group": "모디파이어",
   "name": "Cloth modifier",
   "title": "Cloth — 천 시뮬레이션",
-  "summary": "Cloth modifier는 3차원 오브젝트에 물리적인 천의 성질을 부여하여 자연스러운 주름과 드레이프를 실시간으로 시뮬레이션하는 기능입니다. 바람이나 중력 같은 물리 법칙을 반영해 옷감이나 깃발의 움직임을 쉽게 만들 수 있습니다.",
+  "summary": "Cloth modifier는 3차원 오브젝트에 물리적인 천의 성질을 부여하여 자연스러운 주름과 드레이프를 실시간으로 시뮬레이션하는 기능입니다. 바람이나 중력 같은 물리 법칙을 반영해 옷감이나 깃발의 움직임은 물론, 공기압 조절을 통한 마일라(은박 풍선) 형태까지 쉽게 만들 수 있습니다.",
   "when": [
     "캐릭터의 의상, 망토, 드레스 등 부드러운 천 재질을 표현할 때",
     "바람에 휘날리는 깃발이나 커튼의 애니메이션을 제작할 때",
-    "쿠션이나 소파 등 푹신한 표면에 천이 덮이는 형태를 만들 때"
+    "쿠션이나 소파 등 푹신한 표면에 천이 덮이는 형태를 만들 때",
+    "공기압과 벤딩 저항을 조절해 광택 있는 마일라 벌룬(은박 풍선) 형태를 구현할 때"
   ],
   "steps": [
     "1. 옷감으로 사용할 오브젝트를 선택하고, 세그먼트(Segments)를 충분히 주어 촘촘하게 만듭니다.",
     "2. Command Panel의 Modify 탭으로 이동합니다.",
     "3. Modifier List에서 Cloth를 선택하여 적용합니다.",
-    "4. Object Properties 버튼을 눌러 오브젝트를 Cloth로 지정하고 프리셋(Cotton, Silk 등)을 선택합니다.",
+    "4. Object Properties 버튼을 눌러 오브젝트를 Cloth로 지정하고 프리셋(Cotton, Silk 등)을 선택하거나 공기압 설정을 조정합니다.",
     "5. 충돌체로 사용할 오브젝트를 Add Object로 추가하여 Collision(충돌) 속성을 부여합니다.",
-    "6. 시뮬레이션 창에서 Simulate Local 버튼을 눌러 천이 중력에 의해 떨어지는 모습을 확인합니다."
+    "6. 시뮬레이션 창에서 Simulate Local 버튼을 눌러 천이 중력이나 압력에 의해 반응하는 모습을 확인합니다."
   ],
   "params": [
     {
       "name": "Object Properties",
-      "desc": "천과 충돌체의 물리적 속성(재질, 두께, 마찰력 등)을 설정하는 창을 엽니다."
+      "desc": "천과 충돌체의 물리적 속성(재질, 두께, 마찰력, 내부 공기 압력 등)을 설정하는 창을 엽니다."
     },
     {
       "name": "Simulate Local",
@@ -59,12 +60,21 @@
         "3. Forces 메뉴에서 Wind(바람) 스페이스 와프를 생성하고 깃발과 연결합니다.",
         "4. Timeline을 재생하여 깃발이 바람에 휘날리는 애니메이션을 확인합니다."
       ]
+    },
+    {
+      "title": "마일라 벌룬(은박 풍선) 구현",
+      "steps": [
+        "1. 두 겹의 메쉬 또는 밀도가 높은 입체 오브젝트를 준비하고 Cloth modifier를 적용합니다.",
+        "2. Object Properties에서 내부 공기 압력 값과 벤딩 저항 값을 세밀하게 조정합니다.",
+        "3. Simulate Local을 실행하여 은박 풍선 특유의 팽창감과 꺾임 주름을 생성합니다."
+      ]
     }
   ],
   "mistakes": [
     "세그먼트 부족으로 천이 꺾이거나 부자연스럽게 굳어짐 → MeshSmooth나 Tessellate를 적용하거나 생성할 때 Segments 값을 높여줍니다.",
     "천이 충돌체(Collision) 오브젝트를 뚫고 지나감 → Object Properties에서 Collision Offset 값을 조절하거나 Subsamples를 높여줍니다.",
-    "Modifier 스택 순서 오류로 Soft Selection 가중치나 버텍스 그룹 데이터가 유실됨 → 시뮬레이션을 적용하기 전에 명시적인 Vertex Group을 생성하고 저장합니다."
+    "Modifier 스택 순서 오류로 Soft Selection 가중치나 버텍스 그룹 데이터가 유실됨 → 시뮬레이션을 적용하기 전에 명시적인 Vertex Group을 생성하고 저장합니다.",
+    "마일라 풍선 제작 시 팽창감이 부족함 → 일반 천 설정에서 벗어나 Object Properties의 내부 공기 압력 및 벤딩 저항 값을 별도로 조합해 주어야 합니다."
   ],
   "related": [
     "Garment Maker",
@@ -117,6 +127,19 @@
         "p:2026-10-29-2e2a78533b504804",
         "p:2026-10-27-5e0e9ee23f8e796d",
         "p:2026-10-26-0a7f824fb556dabb"
+      ]
+    },
+    {
+      "at": "2026-11-11T02:45:16+00:00",
+      "what": "3ds Max Cloth modifier를 활용해 마일라 벌룬(은박 풍선)을 만드는 공기압 설정 및 응용 팁을 추가했습니다.",
+      "sources": [
+        {
+          "title": "3ds Max 클로스 시뮬레이션으로 마일라 벌룬 풍선 구현",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xsvn3s/mylar_inflatable_technique/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-10-33d5ec557cb80058"
       ]
     }
   ]

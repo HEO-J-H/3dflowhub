@@ -1,0 +1,38 @@
+{
+  "id": "blender-python-traceback-runtimeerror-error-bone-h-b7b8c",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... RuntimeError: Error: Bone heatmap weighting: failed to find solution for one or more bones",
+  "title": "Python: Traceback ... RuntimeError: Error: Bone heatmap weighting: failed to fin",
+  "summary": "Blender에서 자동 웨이트(Automatic Weights)로 스킨 리깅을 진행할 때, 메쉬 Topology 문제나 겹침 현상으로 인해 본(Bone)의 영향력을 계산하지 못해 발생하는 오류입니다.",
+  "causes": [
+    "메쉬에 겹친 면(Intersects), 이중 정점(Double Vertices), 열린 구멍(Open Edges) 등 Topology 결함이 존재함",
+    "메쉬의 스케일 값이 정규화되지 않아(Scale이 1이 아님) 계산이 왜곡됨",
+    "너무 가깝거나 겹쳐 있는 손가락, 다리 등의 메쉬 구조가 본의 영향력 범위를 혼동시킴"
+  ],
+  "steps": [
+    "오브젝트 모드(Object Mode)에서 메쉬를 선택하고 Ctrl + A를 누른 뒤 'All Transforms'를 선택하여 스케일을 1.0으로 초기화합니다.",
+    "에디트 모드(Edit Mode)로 전환한 뒤 모든 정점을 선택(A)하고, M 키를 누른 후 'By Distance'를 선택해 중복 정점을 제거합니다.",
+    "메쉬 메뉴에서 'Mesh > Clean Up > Non-Manifold'를 실행하여 Topology 오류가 있는 구조를 찾아 수정합니다.",
+    "본(Armature)과 메쉬가 비정상적으로 겹쳐 있는 부분이 있다면 본의 위치나 메쉬의 형태를 미세하게 조정합니다.",
+    "필요한 경우 Viewport 오버레이(Viewport Overlays)에서 'Face Orientation'을 켜고 법선(Normals)이 모두 바깥쪽을 향하고 있는지 확인합니다."
+  ],
+  "check": [
+    "오류가 발생했던 메쉬와 Armature를 다시 선택하고 Ctrl + P를 눌러 'With Automatic Weights'를 정상적으로 적용할 수 있는지 확인합니다.",
+    "웨이트 페인트(Weight Paint) 모드에서 각 본을 선택했을 때 메쉬에 정상적으로 그라데이션 영향력이 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "리깅을 시작하기 전 항상 Object Mode에서 Ctrl + A를 눌러 Transforms(Scale/Rotation)를 적용(Apply)합니다.",
+    "정점 모델링 작업 시 중복 정점이나 비정상적인 면(Non-Manifold)이 생기지 않도록 주기적으로 정돈합니다."
+  ],
+  "keywords": [
+    "Blender 자동 웨이트 오류",
+    "Bone heatmap weighting failed",
+    "Blender 리깅 에러",
+    "failed to find solution for one or more bones",
+    "자동 웨이트 실패 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T02:45:09+00:00"
+}

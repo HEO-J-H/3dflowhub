@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-kit-error-carb-datasource-failed--4777c",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [carb.datasource] Failed to resolve URI path in USD stage",
+  "title": "Kit: [Error] [carb.datasource] Failed to resolve URI path in USD stage 오류 해결",
+  "summary": "NVIDIA Omniverse에서 USD 씬을 로드할 때 URI 경로를 해석하지 못해 에셋을 찾지 못하는 오류입니다. 잘못된 파일 경로, 누락된 상대 경로 기준점, 또는 접근 권한 문제가 원인입니다.",
+  "causes": [
+    "USD 파일 내부의 에셋(텍스처, 참조 파일 등) 경로가 상대 경로로 잘못 지정되어 있거나 파일이 이동된 경우",
+    "Nucleus 서버 또는 로컬 파일 시스템의 URI 형식(예: omniverse:// 또는 file://)이 올바르지 않은 경우",
+    "파일에 대한 읽기 권한이 없거나 네트워크 연결이 불안정하여 원격 서버의 리소스에 접근하지 못하는 경우"
+  ],
+  "steps": [
+    "텍스트 편집기나 USD Viewer로 USD 파일을 열어 문제가 되는 URI 경로 문자열을 확인합니다.",
+    "상대 경로로 지정된 에셋의 실제 파일 위치가 USD 파일 기준으로 올바른 디렉토리에 있는지 확인합니다.",
+    "필요한 경우 USD 파일 내의 에셋 경로를 절대 경로(Absolute Path) 또는 올바른 Nucleus URI 형식으로 수정합니다.",
+    "NVIDIA Omniverse에서 Stage 패널을 열어 누락된 에셋이나 빨간색으로 표시되는 깨진 레퍼런스를 다시 연결합니다."
+  ],
+  "check": [
+    "USD 스테이지가 오류 없이 완전히 로드되는지 Viewport에서 확인합니다.",
+    "Console 로그 창에 carb.datasource 관련 URI 경로 오류 메시지가 더 이상 나타나지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 내 모든 에셋은 상대 경로 규칙을 일관되게 유지하고 폴더 구조를 임의로 변경하지 않습니다.",
+    "외부 협업자와 공유할 때는 상대 경로가 깨지지 않도록 USD 패키지(.usdz) 형식이나 통합 아카이브 기능을 사용합니다."
+  ],
+  "keywords": [
+    "Omniverse URI 경로 오류",
+    "carb.datasource Failed to resolve",
+    "USD 스테이지 로드 실패",
+    "Omniverse 경로 에러",
+    "USD 에셋 찾기 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T02:45:02+00:00"
+}

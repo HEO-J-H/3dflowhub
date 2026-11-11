@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-wood-material-workflow-3081",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Wood material workflow",
+  "title": "나무 재질",
+  "summary": "Substance 3D Designer와 Painter를 활용하여 가구, 마루, 목재 소품 등에 적용할 사실적인 나이테와 질감을 효율적으로 제작하고 칠하는 워크플로우입니다.",
+  "when": [
+    "실내 건축 렌더링을 위해 정교한 원목 바닥이나 가구 표면을 만들 때",
+    "판타지 무기나 도구의 손잡이에 사실적인 나무 결을 넣을 때",
+    "오래되거나 갈라진 나무 표면의 웨어 앤드 테어(Wear and Tear) 질감을 표현할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer에서 Wood 노드 계열(Wood Basic, Wood Planks 등)을 조합하여 기본 나이테와 범프(Bump) 맵을 생성합니다.",
+    "Graph Outputs에 Base Color, Roughness, Normal, Height 맵을 연결하여 물질(Material) 패키지를 구성합니다.",
+    "Substance 3D Painter에서 3D 모델을 불러온 뒤, Texture Set Settings 패널에서 Bake Mesh Maps를 실행하여 곡률과 노멀 정보를 추출합니다.",
+    "Layers 패널에서 Fill Layer를 생성하고, 제작한 Wood Smart 머티리얼을 드래그하여 모델 표면에 입힙니다.",
+    "Projection 속성과 Triplanar Projection을 활성화하여 이음새 없는 자연스러운 목결 정렬을 맞춥니다.",
+    "Paint Layer를 추가하고 브러시로 모서리 부위에 긁힘이나 먼지 효과를 더해 사실감을 높입니다."
+  ],
+  "params": [
+    {
+      "name": "Wood Frequency",
+      "desc": "목재 나이테의 조밀함과 간격을 조절합니다."
+    },
+    {
+      "name": "Fiber Intensity",
+      "desc": "나무 결의 미세한 거칠기와 섬유질 디테일 강도를 바꿉니다."
+    },
+    {
+      "name": "Triplanar Projection",
+      "desc": "UV 전개 없이 3차원 공간 기준으로 텍스처를 자연스럽게 투영합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "목재 표면 코팅의 광택과 반사율을 조절합니다."
+    },
+    {
+      "name": "Height/Normal",
+      "desc": "나이테 파인 홈이나 결의 입체감을 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "빈티지 원목 식탁 제작",
+      "steps": [
+        "Wood Planks 노드로 판자 형태의 기본 패널을 배치합니다.",
+        "Levels 노드로 나이테의 명암 대비를 강하게 주어 오래된 느낌을 냅니다.",
+        "Painter에서 가장자리 마모(Edge Wear) 마스크를 주어 페인트가 벗겨진 원목을 표현합니다."
+      ]
+    },
+    {
+      "title": "합판(Plywood) 옆면 표현",
+      "steps": [
+        "얇은 판자가 겹쳐진 형태의 텍스처 패턴을 Designer에서 설정합니다.",
+        "Height 맵을 강하게 주어 층층이 쌓인 단면의 입체감을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 좌표가 겹치거나 왜곡됨 → Triplanar Projection을 켜거나 UV를 다시 폅니다.",
+    "나이테 방향이 오브젝트 흐름과 어긋남 → Rotation 파라미터나 UV 셸 방향을 회전합니다.",
+    "목재 표면이 플라스틱처럼 반짝임 → Roughness 값을 높이고 미세한 노이즈 범프를 추가합니다."
+  ],
+  "related": [
+    "Substance 3D Material",
+    "Triplanar Projection",
+    "Bake Mesh Maps",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "S8P4QAH2K1U",
+      "title": "Wood Grain | Designer Quick Tip #6 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "9CVEkQb2t8Y",
+      "title": "Speed Substance Material Creation 01  -  Procedural Wood Material #substancedesigner",
+      "author": "Vini Cortez"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Wood%20material%20workflow",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Wood",
+    "Wood Basic",
+    "Wood Planks",
+    "Bump"
+  ],
+  "at": "2026-11-11T02:44:59.966613+00:00"
+}

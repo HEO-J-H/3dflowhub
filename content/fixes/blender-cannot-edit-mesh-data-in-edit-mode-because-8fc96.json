@@ -1,0 +1,37 @@
+{
+  "id": "blender-cannot-edit-mesh-data-in-edit-mode-because-8fc96",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Cannot edit mesh data in edit mode because it has modifier stack",
+  "title": "Cannot edit mesh data in edit mode because it has modifier stack",
+  "summary": "Cannot edit mesh data in edit mode because it has modifier stack 메시지는 Blender에서 Modifier가 적용된 메쉬 오브젝트를 에디트 모드(Edit Mode)에서 편집하려고 할 때 발생하는 오류입니다. Modifier가 스택에 남아 있는 상태에서는 지오메트리의 Topology를 직접 수정할 수 없음을 경고합니다.",
+  "causes": [
+    "오브젝트에 아직 Apply(적용)되지 않은 Modifier(예: Subdivision Surface, Solidify, Mirror 등)가 남아 있는 경우",
+    "Edit Mode에서 버텍스나 페이스를 직접 편집하려 하지만 Modifier가 여전히 활성화되어 있는 경우"
+  ],
+  "steps": [
+    "Object Mode로 전환합니다 (Tab 키).",
+    "Properties 패널에서 Modifier 탭(렌치 아이콘)을 엽니다.",
+    "문제가 되는 Modifier의 드롭다운 메뉴(또는 화살표 버튼)를 클릭합니다.",
+    "Apply를 선택하여 Modifier를 메쉬 데이터에 영구적으로 반영합니다 (Hotkey: Ctrl+A).",
+    "다시 Tab 키를 눌러 Edit Mode로 진입하여 메쉬 편집을 수행합니다."
+  ],
+  "check": [
+    "Modifier 탭에서 해당 Modifier가 사라지고 메쉬에 직접 적용된 것을 확인합니다.",
+    "Edit Mode에서 Vertex와 에지를 자유롭게 선택하고 편집할 수 있는지 확인합니다."
+  ],
+  "prevent": [
+    "Topology 수정(Vertex 추가·삭제 등) 작업은 Modifier를 적용(Apply)하거나 비활성화한 상태에서 진행합니다.",
+    "비파괴적 작업이 필요한 경우 Modifier를 켠 채로 작업하되, 베이스 메쉬 편집이 꼭 필요할 때만 Apply를 실행합니다."
+  ],
+  "keywords": [
+    "Blender Modifier 오류",
+    "Cannot edit mesh data in edit mode",
+    "Blender 에디트모드 막힘",
+    "Modifier stack 오류",
+    "Blender Modifier 적용"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T02:45:07+00:00"
+}

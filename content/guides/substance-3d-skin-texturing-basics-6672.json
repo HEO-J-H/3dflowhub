@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-skin-texturing-basics-6672",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Skin texturing basics",
+  "title": "피부 텍스처 기초",
+  "summary": "Substance 3D Painter에서 인물의 피부 질감을 사실적으로 표현하기 위해 모공, 홍조, 잡티 등의 세부 디테일을 레이어와 마스크를 활용해 그리는 기법입니다. PBR 워크플로우를 기반으로 생동감 있는 피부 톤을 완성합니다.",
+  "when": [
+    "게임 캐릭터나 시네마틱 인물 모델에 사실적인 피부 질감을 부여할 때",
+    "단조로운 단색 피부에 미세한 혈색과 불규칙한 색조 변화를 주고 싶을 때",
+    "모공, 주름, 흉터 등의 노멀 및 러프니스 세부 디테일을 더할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 File > New 메뉴를 통해 로우폴리 혹은 하이미지 메시를 불러옵니다.",
+    "Texture Set Settings 패널에서 Baking(Bake Mesh Maps)을 실행하여 Ambient Occlusion, Curvature, Normal 등의 맵을 추출합니다.",
+    "Layers 패널에서 Fill Layer를 추가하고 Base Color를 자연스러운 피부 기본 톤으로 설정합니다.",
+    "새로운 Fill Layer를 추가하고 붉은 계열의 색상을 선택한 뒤, Black Mask를 생성합니다.",
+    "Brush 툴을 선택하고 Particle 브러시나 노이즈 알파를 적용해 얼굴 중앙, 코, 귀 부위에 은은한 홍조와 피부 톤 변화를 그려 넣습니다.",
+    "Normal 및 Roughness 채널만 활성화된 레이어를 추가하고 알파 브러시로 모공과 미세한 주름을 찍어 입체감을 더합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "피부의 기본 색상과 멜라닌 톤을 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "피부의 번들거림과 건조함을 조절하여 유분감을 표현합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "모공, 주름, 흉터 등 미세한 요철 입체감을 부여합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "레이어의 투명도를 조절해 피부 톤의 세기를 부드럽게 섞습니다."
+    },
+    {
+      "name": "Particle Brush",
+      "desc": "중력이나 흘러내림 효과를 주어 자연스러운 땀이나 눈물 자국을 만듭니다."
+    },
+    {
+      "name": "Black Mask",
+      "desc": "특정 영역에만 브러시로 텍스처를 드러나게 하는 마스크입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자연스러운 얼굴 홍조 표현",
+      "steps": [
+        "새로운 Fill Layer를 추가하고 붉은 피부 톤 색상을 지정합니다.",
+        "Add Mask with Paint를 추가하고 부드러운 브러시 강도를 낮춥니다.",
+        "광대, 코끝, 귓바퀴 부위에 가볍게 터치하여 혈색을 표현합니다."
+      ]
+    },
+    {
+      "title": "T존 유분감 및 모공 디테일",
+      "steps": [
+        "Roughness 채널만 켠 레이어를 추가하고 값을 낮춰 번들거림을 만듭니다.",
+        "Black Mask에 노이즈를 추가해 이마와 코 주변 T존에만 유분감을 남깁니다.",
+        "Normal 채널 레이어에서 모공 알파를 이용해 코 주변에 미세한 요철을 찍어줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "피부 톤이 너무 단조로움 → 여러 개의 Fill Layer와 노이즈를 섞어 미세한 색조 변화와 혈색을 추가합니다.",
+    "모공 노멀 디테일이 너무 강함 → Normal 레이어의 Intensity 값을 낮추거나 Roughness와 조화롭게 맞춥니다.",
+    "번들거림이 과도함 → Roughness 맵의 레벨을 조절하여 하이라이트가 너무 강하게 튀지 않도록 수정합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Fill Layer",
+    "Black Mask",
+    "Anchor Points"
+  ],
+  "videos": [
+    {
+      "id": "-YUQ5futwSk",
+      "title": "Skin Texturing Tutorial in Substance Painter | Files available",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "s0DhvFML7oM",
+      "title": "How to make SKIN TEXTURES in Substance Painter",
+      "author": "J Hill"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Skin%20texturing%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T02:44:51.626753+00:00"
+}

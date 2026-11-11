@@ -5,9 +5,9 @@
   "group": "렌더링",
   "name": "Cycles vs EEVEE",
   "title": "Cycles와 EEVEE 차이",
-  "summary": "Cycles와 EEVEE는 Blender의 두 렌더 엔진으로, 각각 물리 기반 경로 추적과 실시간 레이 트레이싱을 제공하며, 최신 버전에서는 EEVEE의 라이트 링크 및 멀티패스 컴포지팅 기능이 강화되었습니다.",
+  "summary": "Cycles와 EEVEE는 Blender의 두 렌더 엔진으로, 각각 물리 기반 경로 추적과 실시간 레이 트레이싱을 제공하며, 최신 블렌더 5.3 버전에서는 Cycles의 분산(dispersion) 및 이방성 거칠기 추가, EEVEE의 Material Lighting Nodes 도입 등 기능이 대폭 강화되었습니다.",
   "when": [
-    "고품질 포토리얼리즘이 필요할 때 (Cycles)",
+    "고품질 포토리얼리즘 및 보석/유리 재질 표현이 필요할 때 (Cycles)",
     "실시간 피드백이 중요한 씬이나 게임 Prototype 제작 시 (EEVEE)",
     "GPU 메모리·시간 제약이 있을 때 두 엔진 중 적절히 선택하고 싶을 때"
   ],
@@ -46,6 +46,14 @@
     {
       "name": "Light & Shadow Linking",
       "desc": "EEVEE에서 Cycles와 동일한 수준으로 특정 광선과 그림자 영향 제어 가능"
+    },
+    {
+      "name": "Dispersion & Anisotropic Roughness",
+      "desc": "Cycles에서 유리와 투과 재질의 보석/유리 내부 무지개 효과 및 거칠기 정밀 제어 (Blender 5.3 추가)"
+    },
+    {
+      "name": "Material Lighting Nodes",
+      "desc": "EEVEE에서 비사실적 렌더링과 물리적 효과를 세밀하게 제어 (Blender 5.3 추가)"
     }
   ],
   "examples": [
@@ -140,6 +148,19 @@
       ],
       "source_keys": [
         "p:2026-11-05-4014f09cf15ab518"
+      ]
+    },
+    {
+      "at": "2026-11-11T02:45:18+00:00",
+      "what": "Blender 5.3 업데이트에 맞춰 Cycles의 분산 및 이방성 거칠기 파라미터와 EEVEE의 Material Lighting Nodes 내용을 요약 및 파라미터 섹션에 반영했습니다.",
+      "sources": [
+        {
+          "title": "Blender 5.3 출시 — 3D Gaussian Splatting 및 Vulkan 기본 적용",
+          "url": "https://www.blender.org/press/blender-5-3-release/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-11-48afc17db24ec577"
       ]
     }
   ]
