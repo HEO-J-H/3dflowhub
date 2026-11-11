@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-09T17:48:05.829297+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 104,
-      "candidates_passed": 55,
-      "offtopic": 29,
-      "short": 0,
-      "prefiltered": 30,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "d38cc5dd",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-09T17:58:15.324896+00:00",
       "collected": 1,
       "saved": 1,
@@ -7558,6 +7533,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-11T22:58:36.989266+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 89,
+      "candidates_passed": 43,
+      "offtopic": 32,
+      "short": 0,
+      "prefiltered": 23,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "32212da8",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7653,7 +7653,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-04 [[p-1b4af86662|사이트·UX] 웹 버전 메모리 최적화 문서 내용] Always update navigation and indexing when adding new content to avoid invisible pages.",
     "2026-11-05 [성찰] AI 일일 한도 소진 오류를 해결하기 위해 API 사용량 최적화와 예비 모델 분산 호출 로직을 점검해야 합니다.",
     "2026-11-05 [성찰] 검색 유입과 실무 체류 시간을 높이기 위해 3ds Max, Maya, Blender 등 입증된 툴 중심의 스크립트·튜토리얼 콘텐츠 비중을 높이고 동음이의어 필터링을 더욱 엄격히 적용해야 합니다.",
     "2026-11-05 [성찰] 일반 명사 및 동음이의어(Nuke, Houdini 등)로 인한 허위 수집 비중을 대폭 줄이고, 3ds Max·Maya·Blender의 실무 스크립트 및 튜토리얼 중심의 엄격한 맥락 검증을 강화해야 저품질 페널티를 방지하고 검색 유입을 극대화할 수 있습니다.",
@@ -7772,7 +7771,8 @@
     "2026-11-11 [app.render_niche_performance_dashboard()] 테스트 실패 — E       AssertionError: assert ('실무 고단가 콘텐츠 수', '5건') == ('실무 고CPC 콘텐츠 수', '5건') / E / E         At index 0 diff: '실무 고단가 콘텐츠 수' != '실무 고CPC 콘텐츠 수' / E         Full diff: (-: missing in left ",
     "2026-11-11 [[p-4a1108f7de|사이트·UX] PR #60 및 #61 상태 점검] PR 검증 완료 시 신속하게 병합 프로세스를 진행하고 관련 상태를 로그에 기록한다.",
     "2026-11-11 [[p-d612beb1a7|사이트·UX] 로컬 파이프라인 TripoSR 예] 로컬 AI 파이프라인(TripoSR 등) 예외 처리 시 구체적인 에러 메시지와 조치 가이드를 로그에 남기면 디버깅 효율이 크게 향상된다.",
-    "2026-11-11 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)로 인한 오탐지를 방지하기 위해 컨텍스트 필터를 강화하고, 3D/CG 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 콘텐츠에 집중해야 합니다."
+    "2026-11-11 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)로 인한 오탐지를 방지하기 위해 컨텍스트 필터를 강화하고, 3D/CG 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 콘텐츠에 집중해야 합니다.",
+    "2026-11-11 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)로 인한 오탐지를 방지하기 위해 7중 컨텍스트 필터를 적용하고, 실무 튜토리얼 및 애드온 등 검색 유입이 높은 고단가 주제에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -10443,14 +10443,15 @@
     5171690692606946713,
     12021708554856704971,
     3588726361474473470,
-    18078076675491835062
+    18078076675491835062,
+    12076767003468536946
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2606,
-    "Game Engine": 2606,
-    "VFX": 2606,
-    "AI 3D": 2606
+    "3D DCC": 2607,
+    "Game Engine": 2607,
+    "VFX": 2607,
+    "AI 3D": 2607
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
