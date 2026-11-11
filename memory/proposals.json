@@ -33013,5 +33013,137 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T14:59:25+00:00",
+    "kind": "proposal",
+    "id": "p-b02669f80f",
+    "title": "PR #60 및 #61 검토 및 승인 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #60과 PR #61이 승인 대기 상태로 남아있으며 로컬 파이프라인과 웹 브라우저 PBR 변환 UI 피드백 개선을 포함하고 있습니다.",
+    "proposal": "GitHub에서 PR #60 및 #61의 변경 사항과 테스트 결과를 확인하고 승인(Merge)합니다.",
+    "expected": "로컬 파이프라인 안정성 향상 및 웹 사용자 경험(UX) 개선",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/60",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T14:59:25+00:00",
+    "kind": "proposal",
+    "id": "p-86aa05e824",
+    "title": "깃허브 RAG 오픈소스 활용 방안 검토 문서 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 메시지에서 RAG 오픈소스 연동 검토를 요청하였으나 관련 문서화가 아직 반영되지 않았습니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 신규 생성하여 Pix2Poly 툴 가이드 검색에 적용 가능한 오픈소스 RAG 라이브러리 검토 내용을 정리합니다.",
+    "expected": "향후 툴 사용법 및 문서 검색 기능 도입을 위한 기술 기반 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:00:07+00:00",
+    "kind": "proposal",
+    "id": "p-47081a2d38",
+    "title": "5060 은퇴 준비자를 위한 월별 현금흐름 결과 차트 가독성 개선",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "최근 모바일 입력 폼 및 터치 영역 최적화 제안은 완료되었으나, 결과 화면 차트와 월별 수치 요약의 50~60대 가독성 추가 보완 필요",
+    "proposal": "결과 화면 내 핵심 월별 현금흐름 금액(연금, ISA, 자산 소진) 폰트 크기를 확대하고 다크 네이비 배경과의 대비율을 높이도록 CSS 조정",
+    "expected": "모바일 및 태블릿 환경에서 5060 은퇴 준비자들이 은퇴 후 월별 수치를 더 선명하게 파악 가능",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:00:07+00:00",
+    "kind": "proposal",
+    "id": "p-96c3297aa2",
+    "title": "ISA 만기 자금 연금 전환 시뮬레이션 활용 가이드 툴팁 보완",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "콘텐츠",
+    "evidence": "마케터와 관리자 측에서 꾸준히 관심을 가졌던 ISA 만기 자금 연금 계좌 이전 세제혜택 관련 안내가 입력 폼 주변에 명확히 안내되면 유용함",
+    "proposal": "ISA 만기 금액 입력란 하단 또는 물음표 툴팁에 연금계좌 이전 시 세액공제 및 분리과세 혜택을 시뮬레이션에 반영하는 방법 안내 문구 추가",
+    "expected": "사용자가 도구의 기능을 정확히 이해하고 실제 은퇴 계획에 활용하도록 유도",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:03:04.194189+00:00",
+    "kind": "proposal",
+    "id": "p-0fca34c1ae",
+    "title": "TRELLIS 모델 통합 검토 (CVPR'25)",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "수집",
+    "evidence": "스타 14,242개, MIT 라이선스 저장소 microsoft/TRELLIS",
+    "proposal": "현재 다중 각도 3D 생성에 쓰이는 오픈 데모 외에 공식 구조화된 3D 잠재 표현 모델(TRELLIS)을 로컬 엔진 선택지에 MIT 라이선스로 도입 검토",
+    "expected": "고품질 다중 각도 3D 생성 및 텍스처 품질 향상",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-11T15:04:14.212409+00:00",
+    "kind": "decision",
+    "id": "p-0fca34c1ae",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TRELLIS 오픈소스 모델 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:04:14.251849+00:00",
+    "kind": "decision",
+    "id": "p-47081a2d38",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:04:14.288963+00:00",
+    "kind": "decision",
+    "id": "p-96c3297aa2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:04:14.330077+00:00",
+    "kind": "decision",
+    "id": "p-b02669f80f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:04:14.368702+00:00",
+    "kind": "decision",
+    "id": "p-86aa05e824",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:04:25.375717+00:00",
+    "kind": "triage",
+    "id": "p-b02669f80f",
+    "verdict": "human",
+    "reason": "PR #60 및 #61의 변경 사항 검토 및 승인(Merge)은 GitHub 권한이 필요한 사람이 직접 수행해야 하는 작업입니다."
+  },
+  {
+    "at": "2026-11-11T15:04:25.413222+00:00",
+    "kind": "applied",
+    "id": "p-b02669f80f",
+    "result": "사람 할 일 — 1. GitHub 웹사이트에 접속합니다. 2. pix2poly 저장소의 Pull Requests 탭으로 이동합니다. 3. PR #60과 #61의 변경 내용과 테스트 결과를 검토한 후 승인 및 머지(Merge)를 진행합니다."
   }
 ]
