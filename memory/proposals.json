@@ -33580,5 +33580,43 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T20:18:31+00:00",
+    "kind": "proposal",
+    "id": "p-876c13e026",
+    "title": "로컬 TripoSR 예외 처리 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #63(로컬 파이프라인 TripoSR 예외 로깅 및 메시지 정교화)이 승인 대기 중입니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 메모리 부족 및 모델 로드 실패 시 예외 로깅 동작을 검증하는 단위 테스트를 추가합니다.",
+    "expected": "예외 상황에서의 로깅 정확성과 파이프라인 안정성을 테스트로 보장합니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/63",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T20:29:20.786894+00:00",
+    "kind": "decision",
+    "id": "p-876c13e026",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T20:29:25.742187+00:00",
+    "kind": "triage",
+    "id": "p-876c13e026",
+    "verdict": "done_already",
+    "reason": "최근 커밋에 TripoSR 오류 메시지 및 예외 처리 보정 작업이 이미 포함되어 반영되었습니다."
+  },
+  {
+    "at": "2026-11-11T20:29:25.763858+00:00",
+    "kind": "decision",
+    "id": "p-876c13e026",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에 TripoSR 오류 메시지 및 예외 처리 보정 작업이 이미 포함되어 반영되었습니다."
   }
 ]
