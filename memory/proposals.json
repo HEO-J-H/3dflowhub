@@ -32217,5 +32217,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T03:24:55+00:00",
+    "kind": "proposal",
+    "id": "p-7d2695fb0d",
+    "title": "로컬 파이프라인 RAG 검색 기능 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "사용자 요청인 깃허브 RAG 오픈소스 반영 검토가 진행 중이며 관련 RAG 연동 PR이 성공적으로 머지되었습니다.",
+    "proposal": "backend/tests/test_rag.py 파일을 생성하여 RAG 검색 및 문서 참조 기능에 대한 단위 테스트를 추가합니다.",
+    "expected": "RAG 오픈소스 연동 코드의 안정성과 회귀 테스트 커버리지를 높입니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T03:24:55+00:00",
+    "kind": "proposal",
+    "id": "p-d636636722",
+    "title": "웹 브라우저 PBR 텍스처 변환 JS 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전에서 브라우저 기반 PBR 텍스처 생성 기능이 핵심이나 관련 JS 단위 테스트 검증이 필요합니다.",
+    "proposal": "web/tests/ (또는 해당 테스트 디렉토리)에 PBR 텍스처 변환 로직(Albedo, Normal, Roughness) 검증 Script를 추가합니다.",
+    "expected": "브라우저 환경에서의 텍스처 생성 오류를 사전에 방지합니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T03:25:29.703719+00:00",
+    "kind": "decision",
+    "id": "p-7d2695fb0d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 검색 기능 단위 테스트",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T03:25:29.736120+00:00",
+    "kind": "decision",
+    "id": "p-d636636722",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 텍스처 변환 유닛 테스트 추가 보완",
+    "auto": true
   }
 ]
