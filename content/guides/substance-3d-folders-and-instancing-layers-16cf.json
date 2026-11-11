@@ -1,0 +1,79 @@
+{
+  "id": "substance-3d-folders-and-instancing-layers-16cf",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Folders and instancing layers",
+  "title": "레이어 폴더·Instance",
+  "summary": "Substance 3D Painter의 Folders와 Instancing Layers는 복잡한 레이어 구조를 그룹화하고, 동일한 레이어 속성을 여러 채널이나 프로젝트에 동기화하여 효율적으로 텍스처를 관리하는 기능입니다.",
+  "when": [
+    "복잡한 메쉬 파츠별로 레이어를 깔끔하게 정리하고 싶을 때",
+    "동일한 머티리얼 효과나 웨어 앤 테어(Wear and Tear)를 여러 레이어에 동시에 적용하고 싶을 때",
+    "프로젝트 전체의 특정 마스크나 페인트 세부사항을 일괄 수정해야 할 때"
+  ],
+  "steps": [
+    "Layers 패널 하단의 Create Folder 아이콘을 클릭하여 새 폴더를 생성합니다.",
+    "정리할 레이어들을 드래그하여 생성한 폴더 안으로 이동시킵니다.",
+    "인스턴스화할 레이어를 우클릭하고 Instance(또는 Instance Layer)를 선택합니다.",
+    "생성된 Instance 레이어의 속성을 변경하여 원본 레이어와 실시간으로 연동되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Folder",
+      "desc": "여러 레이어와 마스크를 그룹화하여 관리하는 컨테이너입니다."
+    },
+    {
+      "name": "Instance",
+      "desc": "원본 레이어의 속성을 공유하여 원본 수정 시 함께 변경되도록 만듭니다."
+    },
+    {
+      "name": "Mask with Color Selection",
+      "desc": "폴더 단위로 컬러 ID를 활용하여 빠르게 영역을 마스킹합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 갑옷 부품 일괄 웨어링",
+      "steps": [
+        "갑옷 파츠별 레이어를 각각의 폴더로 그룹화합니다.",
+        "엣지 웨어(Edge Wear) 제너레이터가 포함된 레이어를 인스턴스화합니다.",
+        "Instance 레이어를 각 폴더에 복제하여 전체적인 마모 톤을 통일합니다."
+      ]
+    },
+    {
+      "title": "로고 및 심볼 다중 배치",
+      "steps": [
+        "로고 페인트 레이어를 생성하고 폴더에 넣습니다.",
+        "해당 레이어를 인스턴스화하여 다른 UV 셸 위치에 배치합니다.",
+        "원본 로고의 그래픽을 수정하여 모든 Instance에 즉시 반영합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Instance 레이어의 독립 속성을 수정하려고 함 → Instance 링크를 해제(Unlink)하거나 원본을 수정해야 합니다.",
+    "폴더 마스크가 내부 레이어에 적용되지 않음 → 폴더의 Blending Mode나 Mask 설정을 다시 확인합니다."
+  ],
+  "related": [
+    "Smart Materials",
+    "Anchor Points",
+    "Mask Editor",
+    "Layers"
+  ],
+  "videos": [
+    {
+      "id": "s5BGom-dslw",
+      "title": "Instancing in Modeler | First Steps | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "5piSS1JSp5Y",
+      "title": "Substance Painter 2017.4: Layer instancing | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Folders%20and%20instancing%20layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:54:33.778630+00:00"
+}

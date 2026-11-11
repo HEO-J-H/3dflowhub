@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-geometry-mask-bb7a",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Geometry mask",
+  "title": "Geometry Mask",
+  "summary": "Substance 3D Painter의 Geometry Mask는 특정 폴리그룹, 메쉬 이름, UV 섬(UV Island) 등의 지오메트리 정보를 기반으로 레이어의 적용 범위를 제한하는 비파괴 마스킹 기능입니다.",
+  "when": [
+    "하나의 텍스처 세트 안에서 서로 다른 파츠(예: 금속 부품과 가죽 부품)를 분리하여 텍스처를 칠할 때",
+    "복잡한 모델링에서 특정 폴리곤 영역에만 데칼이나 스티커를 정확히 배치할 때",
+    "메쉬 ID나 폴리그룹 단위로 텍스처 레이어의 경계를 깔끔하게 나누고 싶을 때"
+  ],
+  "steps": [
+    "Layers 패널에서 마스크를 적용할 Fill Layer 또는 Paint Layer를 선택합니다.",
+    "레이어 슬롯 우클릭 또는 마스크 아이콘을 클릭하여 'Add Mask with Selection'을 선택합니다.",
+    "Viewport 또는 Texture Set List에서 마스크를 적용할 폴리곤이나 메쉬 파츠를 클릭합니다.",
+    "Properties 패널에서 선택된 지오메트리 영역(Polygon Fill, Mesh Fill 등)의 인버스(Invert)나 추가 설정을 조정합니다.",
+    "Viewport에서 선택된 영역에만 레이어 효과가 적용되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Polygon Fill",
+      "desc": "폴리곤 면 단위로 클릭하여 마스크 영역을 지정합니다."
+    },
+    {
+      "name": "Mesh Fill",
+      "desc": "분리된 단일 메쉬 단위로 클릭하여 마스크 영역을 지정합니다."
+    },
+    {
+      "name": "UV Island Fill",
+      "desc": "UV 껍질(Island) 단위로 클릭하여 마스크 영역을 지정합니다."
+    },
+    {
+      "name": "Invert Mask",
+      "desc": "선택된 지오메트리 영역과 반대로 마스크 영역을 뒤집습니다."
+    },
+    {
+      "name": "Color Source",
+      "desc": "ID Map 등의 컬러 정보를 기반으로 영역을 자동 인식합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 갑옷 부품별 색상 분리",
+      "steps": [
+        "Fill Layer를 생성하고 원하는 금속 재질을 적용합니다.",
+        "Layers 패널에서 Add Mask with Selection을 추가합니다.",
+        "Polygon Fill 모드로 로봇의 어깨 장갑 폴리곤들을 클릭하여 선택합니다."
+      ]
+    },
+    {
+      "title": "손잡이와 날이 나뉜 검 모델링 텍스처링",
+      "steps": [
+        "날 부분에 적용할 Fill Layer를 생성합니다.",
+        "Add Mask with Selection을 실행합니다.",
+        "Mesh Fill 모드로 검의 날(Blade) 메쉬를 클릭하여 선택 영역을 제한합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지오메트리 마스크가 적용되지 않음 → 메쉬에 올바른 UV 또는 Material ID가 할당되어 있는지 확인하세요.",
+    "원하지 않는 뒷면까지 선택됨 → Polygon Fill 옵션에서 Backface Culling 옵션을 켜서 해결하세요."
+  ],
+  "related": [
+    "Smart Mask",
+    "Add Fill Layer",
+    "Bake Mesh Maps",
+    "ID Map"
+  ],
+  "videos": [
+    {
+      "id": "TGASuIGSUns",
+      "title": "Substance Painter 2021.1 New Feature: Geometry Mask | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "YU9IOghIH70",
+      "title": "Substance Painter   Geometry Masks",
+      "author": "The Mesh Workshop"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Geometry%20mask",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:54:37.339990+00:00"
+}

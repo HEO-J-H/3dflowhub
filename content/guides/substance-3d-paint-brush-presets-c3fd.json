@@ -1,0 +1,96 @@
+{
+  "id": "substance-3d-paint-brush-presets-c3fd",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Paint brush presets",
+  "title": "브러시 프리셋 저장",
+  "summary": "Substance 3D Painter의 Paint brush presets는 다양한 브러시 설정값과 형태를 미리 저장하여, 반복 작업 없이 일관된 브러시 스타일을 빠르게 불러와 사용하는 기능입니다.",
+  "when": [
+    "프로젝트 전반에 걸쳐 일정한 너비와 감압 설정을 가진 커스텀 브러시를 반복해서 사용할 때",
+    "리벳이나 스치듯 남은 마모 흔적 등 특수한 형태의 브러시 프리셋을 빠르게 전환하며 칠할 때",
+    "팀원 간에 동일한 브러시 룩앤필을 공유하여 텍스처 스타일의 통일성을 유지할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 프로젝트를 열고 3D Viewport에 3D 모델을 로드합니다.",
+    "상단 혹은 측면의 Brushes 패널을 열어 기본 제공되는 브러시 프리셋 목록을 확인합니다.",
+    "원하는 브러시 프리셋을 클릭하거나, Properties - Brush 패널에서 직접 크기·간격·알파 등을 조정합니다.",
+    "툴바(Toolbar)에서 Paint Tool을 선택하고 3D Viewport나 Texture Set List의 레이어 위에 드래그하여 그려봅니다.",
+    "커스텀 조정한 브러시를 저장하려면 Shelf 패널이나 브러시 설정 상단에서 새 프리셋으로 등록합니다."
+  ],
+  "params": [
+    {
+      "name": "Size",
+      "desc": "브러시의 전체 지름 크기를 조절합니다."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 칠해지는 속도와 농도를 조절합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "브러시 스트로크의 최대 불투명도를 설정합니다."
+    },
+    {
+      "name": "Spacing",
+      "desc": "브러시 알파 마크 사이의 간격을 조절하여 매끄러움이나 점선 형태를 결정합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "브러시 알파 텍스처의 회전 각도를 바꿉니다."
+    },
+    {
+      "name": "Jitter",
+      "desc": "크기나 각도 등에 무작위 변형을 주어 자연스러운 질감을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 패널 용접 자국 표현",
+      "steps": [
+        "Brushes 패널에서 점선 형태의 프리셋을 선택합니다.",
+        "Spacing 값을 살짝 넓히고 Size를 모델 모서리에 맞게 조절합니다.",
+        "Height 채널만 활성화한 채 메탈 표면 모서리를 따라 드래그하여 용접 비드 볼륨을 그립니다."
+      ]
+    },
+    {
+      "title": "가죽 스티치(바느질) 넣기",
+      "steps": [
+        "스티치 형태의 알파가 포함된 브러시 프리셋을 불러옵니다.",
+        "Alignment 옵션을 Path로 설정하여 곡선을 따라 스티치가 이어지도록 합니다.",
+        "가죽 가방 모델의 이음새를 따라 클릭하여 일정한 바느질 패턴을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "브러시 크기가 너무 크거나 작음 → Bracket 키([, ])를 이용해 Viewport에서 바로 크기를 조절합니다.",
+    "원하는 채널이 칠해지지 않음 → Properties 패널에서 Height, Roughness, Color 등 채널 토글이 켜져 있는지 확인합니다.",
+    "직조된 알파가 찌그러져 보임 → Symmetry나 Projection 설정 및 Alpha의 Mapping 방식을 확인합니다."
+  ],
+  "related": [
+    "Basic Brushes",
+    "Particle brushes",
+    "Text tool in Painter",
+    "Projection Tool"
+  ],
+  "videos": [
+    {
+      "id": "Nid0b-eyFjY",
+      "title": "Substance Painter: BRUSH Controls (COMPREHENSIVE)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "f-1nj6iao6A",
+      "title": "Create custom brushes for Substance Painter",
+      "author": "Anna Natter"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Paint%20brush%20presets",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "D Viewport"
+  ],
+  "at": "2026-11-11T01:54:41.834268+00:00"
+}
