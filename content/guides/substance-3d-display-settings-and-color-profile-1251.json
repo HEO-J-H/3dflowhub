@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-display-settings-and-color-profile-1251",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Display settings and color profile",
+  "title": "Display Settings",
+  "summary": "Substance 3D Painter의 Display Settings와 Color Profile은 Viewport에서 모델을 비추는 환경 조명(Environment Map)과 색상 공간(Color Space)을 설정하여, 최종 렌더링 결과물을 정확하게 예측하고 작업할 수 있도록 돕는 기능입니다.",
+  "when": [
+    "작업 중인 모델의 재질과 색상이 실제 게임 엔진이나 렌더러와 다르게 보일 때",
+    "다양한 조명 환경(스튜디오, 야외 등)에서 재질의 반사와 러프니스(Roughness)를 검증하고 싶을 때",
+    "sRGB 및 ACES 같은 올바른 컬러 프로파일을 적용하여 정확한 색감을 유지하고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 상단 메뉴 바에서 View 메뉴를 클릭하거나 단추를 통해 Display Settings 패널을 엽니다.",
+    "Display Settings 패널에서 Environment 탭을 선택하여 Viewport 배경과 조명에 사용할 HDR 이미지를 고릅니다.",
+    "Environment Map 목록에서 원하는 조명 프리셋(예: Studio, Panorama 등)을 선택합니다.",
+    "Alt + Mouse 우클릭 드래그를 사용하여 Viewport 안에서 조명의 회전 각도를 조절합니다.",
+    "Color Management (또는 Color Profile) 설정에서 보기 방식과 감마, 노출(Exposure) 값을 조절하여 Viewport 밝기와 색감을 맞춥니다.",
+    "Viewport에서 반사와 명암 변화를 확인하며 최종 텍스처링 작업의 정확도를 높입니다."
+  ],
+  "params": [
+    {
+      "name": "Environment Map",
+      "desc": "모델에 반사광과 조명을 제공하는 360도 HDR 이미지 프리셋을 선택합니다."
+    },
+    {
+      "name": "Environment Rotation",
+      "desc": "Viewport 조명의 각도를 회전하여 하이라이트와 그림자 위치를 변경합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "Viewport 전체의 노출(밝기)을 조절하여 과도하게 밝거나 어두운 영역을 보정합니다."
+    },
+    {
+      "name": "Color Management",
+      "desc": "sRGB 등 색상 프로파일 방식을 지정하여 모니터와 렌더링 엔진 간의 색상 오차를 줄입니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "Viewport 내 오브젝트 그림자의 활성화 여부와 품질을 설정합니다."
+    },
+    {
+      "name": "Field of View",
+      "desc": "Viewport 카메라의 화각(FOV)을 조절하여 원근감을 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질의 반사 검증하기",
+      "steps": [
+        "Display Settings 패널에서 Environment 탭을 엽니다.",
+        "대비가 강한 스튜디오 조명(예: Studio Dark) 맵을 선택합니다.",
+        "Alt + 우클릭으로 조명을 회전하며 러프니스(Roughness)와 메탈릭(Metallic) 표현이 자연스러운지 확인합니다."
+      ]
+    },
+    {
+      "title": "야외 배경 환경 조명으로 변경하기",
+      "steps": [
+        "Environment Map 목록에서 야외 환경 HDR을 불러옵니다.",
+        "Exposure 값을 조절하여 밝은 햇빛 아래에서의 질감을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명 환경이 어두워 재질이 까맣게 보임 → Display Settings에서 Exposure 값을 높이거나 밝은 Environment Map으로 교체합니다.",
+    "색감이 게임 엔진과 다르게 너무 채도가 높음 → Color Management 설정이 sRGB 및 올바른 감마 값으로 되어 있는지 확인합니다.",
+    "하이라이트 위치가 마음에 들지 않음 → Alt + Mouse 우클릭으로 Environment Rotation을 돌려 원하는 위치에 하이라이트를 맞춥니다."
+  ],
+  "related": [
+    "Iray rendering",
+    "TextureSet Settings",
+    "Baker",
+    "Viewport"
+  ],
+  "videos": [
+    {
+      "id": "AuGtKuCZw44",
+      "title": "Substance Painter: Display-Settings (EXPLAINED!!)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "FXWHPgh9MNw",
+      "title": "How To Change Color Profile Substance 3D Painter",
+      "author": "Linnet's How To"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Display%20settings%20and%20color%20profile",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "View",
+    "Display Settings"
+  ],
+  "at": "2026-11-11T01:35:26.147270+00:00"
+}

@@ -1,0 +1,100 @@
+{
+  "id": "substance-3d-environment-map-and-lighting-7b03",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Environment map and lighting",
+  "title": "환경 맵·조명",
+  "summary": "Substance 3D Painter의 Environment map and lighting 기능은 3차원 공간 전체에 HDR 이미지를 적용하여 제품이나 에셋에 사실적인 주변광과 반사를 제공하는 핵심 조명 시스템입니다.",
+  "when": [
+    "하드서페이스 모델이나 캐릭터에 실감 나는 금속 반사와 유리 하이라이트를 주고 싶을 때",
+    "스튜디오 조명 환경에서 모델의 디테일과 마감 상태를 정밀하게 확인하고 싶을 때",
+    "포트폴리오용 고품질 렌더링 결과물이나 프리뷰 이미지를 빠르게 제작하고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 작업 중인 프로젝트 파일을 엽니다.",
+    "우측 상단의 Display Settings 패널을 찾거나, 화면 상단 메뉴에서 View → Window → Display Settings를 선택해 패널을 엽니다.",
+    "Display Settings 패널 내부에서 Environment 섹션을 확인합니다.",
+    "Environment Map 항목에서 제공되는 기본 프리셋을 선택하거나, 폴더 아이콘을 눌러 보유하고 있는 커스텀 HDR/EXR 파일을 불러옵니다.",
+    "Environment 파라미터 영역에서 Exposure 와 Intensity 값을 조절하여 전체적인 밝기와 노출을 맞춥니다.",
+    "키보드 Shift 키를 누른 상태에서 Mouse 우클릭 드래그를 해 3D Viewport 내에서 HDRI 환경 조명의 각도를 회전시켜 원하는 반사 위치를 잡습니다."
+  ],
+  "params": [
+    {
+      "name": "Environment Map",
+      "desc": "씬 전체의 조명과 반사를 결정하는 360도 HDR 또는 EXR 이미지 텍스처를 지정합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "환경 조명의 전체적인 노출 값을 조절하여 밝기를 키우거나 줄입니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "조명 광원의 강도를 조절하여 반사와 하이라이트의 세기를 다듬습니다."
+    },
+    {
+      "name": "Environment Rotation",
+      "desc": "배경 및 조명 이미지의 회전 각도를 조절하여 반사 하이라이트 위치를 수동으로 맞춥니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "배경 이미지의 흐림 정도를 조절해 모델에 집중할 수 있도록 배경을 부드럽게 만듭니다."
+    },
+    {
+      "name": "Background",
+      "desc": "Viewport 배경에 HDRI 이미지를 그대로 표시할지, 단색이나 투명하게 처리할지 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 무기 에셋 스튜디오 반사 연출",
+      "steps": [
+        "Display Settings 패널에서 스튜디오 조명이 포함된 HDR 맵을 불러옵니다.",
+        "Environment Rotation을 조절해 날렵한 하이라이트가 칼날 측면에 떨어지도록 맞춥니다.",
+        "Exposure 값을 약간 높여 금속 재질의 거친 반사감을 극대화합니다."
+      ]
+    },
+    {
+      "title": "자동차 외장 페인트 리얼 스펙큘러 확인",
+      "steps": [
+        "야외 또는 대형 스튜디오 형태의 HDR 환경 맵을 적용합니다.",
+        "Blur 값을 조절하여 배경의 방해 요소를 줄이고 부드러운 소프트 박스 광원만 남깁니다.",
+        "Shift + Mouse 우클릭 드래그로 조명 각도를 돌려 곡면에 맺히는 반사를 정돈합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명 회전이 안 됨 → Shift 키를 누르지 않고 Mouse만 드래그했기 때문입니다. Shift + Mouse 우클릭 드래그를 사용하세요.",
+    "모델이 너무 어둡거나 하얗게 날아감 → Environment Map의 Exposure 또는 Intensity 값이 너무 낮거나 높아서 생기는 현상입니다. 적정 수치로 조정하세요.",
+    "반사가 너무 지저분함 → 복잡한 야외 환경 맵 대신 깔끔한 Studio 계열 HDR 맵으로 교체하거나 Blur 값을 올려 해결하세요."
+  ],
+  "related": [
+    "Iray rendering",
+    "Display Settings",
+    "Shader Settings",
+    "Texture Set Settings"
+  ],
+  "videos": [
+    {
+      "id": "lbdAKL-gqkI",
+      "title": "Environment Lighting in Substance 3D",
+      "author": "Adobe Live"
+    },
+    {
+      "id": "khJgtd_mbaI",
+      "title": "Adjusting Environment to for Better Lighting",
+      "author": "Pablo Muñoz Gómez"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Environment%20map%20and%20lighting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Display Settings",
+    "View",
+    "Window",
+    "Environment"
+  ],
+  "at": "2026-11-11T01:35:21.222659+00:00"
+}

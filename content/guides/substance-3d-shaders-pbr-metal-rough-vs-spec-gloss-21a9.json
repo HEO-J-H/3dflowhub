@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-shaders-pbr-metal-rough-vs-spec-gloss-21a9",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Shaders (PBR Metal Rough vs Spec Gloss)",
+  "title": "Metal Rough와 Spec Gloss",
+  "summary": "Substance 3D에서 PBR 렌더링을 위해 사용하는 두 가지 주요 Shader 워크플로우(Metal/Rough와 Spec/Gloss)의 개념과 차이점을 이해하고 선택하는 가이드입니다. 표면의 금속성과 거칠기 또는 반사율과 광택도를 제어합니다.",
+  "when": [
+    "PBR 텍스처링 작업 시 프로젝트 표준에 맞는 Shader 워크플로우를 선택해야 할 때",
+    "실시간 게임 엔진이나 외부 렌더러(Unreal Engine, V-Ray 등)와의 호환성을 맞출 때",
+    "금속과 비금속 재질의 반사 특성을 정밀하게 제어하고 싶을 때"
+  ],
+  "steps": [
+    "Substance Painter 프로젝트 생성 시 혹은 상단 메뉴에서 Edit -> Project Configuration을 엽니다.",
+    "Config 탭 또는 Shader 설정에서 사용할 Shader Template(pbr-metallic-roughness 또는 pbr-specular-glossiness)을 선택합니다.",
+    "Texture Set Settings에서 맵 채널 목록이 선택한 워크플로우(Base Color/Metallic/Roughness 또는 Diffuse/Specular/Glossiness)로 변경되었는지 확인합니다.",
+    "Layers 패널에서 채널별 마스크와 페인팅을 통해 머티리얼 디테일을 제작합니다.",
+    "Export Textures 메뉴에서 올바른 출력 맵 프리셋을 선택해 텍스처를 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "금속의 반사 색상과 비금속의 알베도(기본 색상)를 정의합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면이 금속인지 비금속인지 이진 값 또는 그라데이션으로 정의합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 미세한 거칠기를 제어하여 하이라이트와 반사의 선명도를 결정합니다."
+    },
+    {
+      "name": "Specular",
+      "desc": "Spec/Gloss 워크플로우에서 비금속의 반사율 색상과 강도를 정의합니다."
+    },
+    {
+      "name": "Glossiness",
+      "desc": "Spec/Gloss 워크플로우에서 표면의 광택 매끄러움 정도를 정의합니다 (Roughness의 반대개념)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 엔진용 최적화된 에셋 제작 (Metal/Rough)",
+      "steps": [
+        "Unreal Engine 또는 Unity 표준에 맞춰 pbr-metallic-roughness Shader를 선택합니다.",
+        "Base Color와 Metallic, Roughness 맵을 채널에 맞춰 각각 페인팅합니다.",
+        "ORM(Occlusion, Roughness, Metallic) 팩 텍스처로 내보내어 엔진 성능을 최적화합니다."
+      ]
+    },
+    {
+      "title": "VFX 및 영화용 레거시 파이프라인 대응 (Spec/Gloss)",
+      "steps": [
+        "스튜디오 파이프라인 요구사항에 맞춰 pbr-specular-glossiness Shader로 설정합니다.",
+        "Diffuse와 Specular 맵을 활용해 복잡한 금속 반사 색상을 정밀하게 세팅합니다.",
+        "Glossiness 맵을 통해 광택의 감쇠를 세밀하게 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Metal/Rough Shader에서 Metallic 채널에 회색 중간값을 잘못 사용하여 비금속이 금속처럼 반사되는 현상 → Metallic은 가급적 순수한 검은색(0) 또는 흰색(1)으로 설정합니다.",
+    "Roughness와 Glossiness 개념을 혼동하여 반대로 텍스처를 적용하는 현상 → Roughness는 값이 높을수록 거칠고, Glossiness는 값이 높을수록 매끄럽다는 점을 유의합니다."
+  ],
+  "related": [
+    "Base Color",
+    "Metallic",
+    "Roughness",
+    "Ambient Occlusion"
+  ],
+  "videos": [
+    {
+      "id": "VEqbQ4Xvov4",
+      "title": "Easy and Quick Convert PBR Spec/Gloss Textures to Metal/Rough",
+      "author": "Lam Phung"
+    },
+    {
+      "id": "UAyAr4A1ctw",
+      "title": "How to convert PBR Spec Gloss to Metal Rough in substance painter (CS2 Workshop)",
+      "author": "DucksWorkshop"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Shaders%20%28PBR%20Metal%20Rough%20vs%20Spec%20Gloss%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:35:30.221393+00:00"
+}

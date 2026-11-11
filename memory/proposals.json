@@ -31853,5 +31853,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T01:35:15+00:00",
+    "kind": "proposal",
+    "id": "p-9a1aa8cbc8",
+    "title": "웹 브라우저 PBR 텍스처 변환 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 PBR 텍스처 변환 관련 문서화는 완료되었으나, 브라우저 환경에서의 단위 테스트 검증을 체계적으로 보강할 필요가 있습니다.",
+    "proposal": "web/ 테스트 디렉토리 내 PBR 텍스처 생성 유틸리티에 대한 Jest 기반 단위 테스트 케이스를 추가하고 실행을 검증합니다.",
+    "expected": "웹 클라이언트 단의 PBR 변환 안정성과 코드 신뢰성이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T01:35:15+00:00",
+    "kind": "proposal",
+    "id": "p-9eea3f45cd",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이미지 포맷 및 사전 검증 관련 핵심 파이프라인 변경(PR #60)이 대기 중입니다.",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷(RGBA, RGB, 잘못된 포맷 등)에 대한 입력 검증 테스트를 추가합니다.",
+    "expected": "파이프라인 핵심 변경에 대한 예외 처리가 더욱 견고해집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T01:35:47.594087+00:00",
+    "kind": "decision",
+    "id": "p-9a1aa8cbc8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T01:35:47.635669+00:00",
+    "kind": "decision",
+    "id": "p-9eea3f45cd",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T01:35:49.912190+00:00",
+    "kind": "triage",
+    "id": "p-9eea3f45cd",
+    "verdict": "agent",
+    "reason": "백엔드 테스트 코드 추가는 에이전트가 직접 파일 수정 및 테스트 실행을 통해 처리할 수 있는 작업입니다."
   }
 ]
