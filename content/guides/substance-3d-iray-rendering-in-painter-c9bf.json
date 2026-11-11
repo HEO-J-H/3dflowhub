@@ -1,0 +1,98 @@
+{
+  "id": "substance-3d-iray-rendering-in-painter-c9bf",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Iray rendering in Painter",
+  "title": "Painter Iray 렌더",
+  "summary": "Substance 3D Painter의 Iray 렌더링은 실시간 Viewport에서 물리 기반(PBR) 광원과 패스 Tracing을 활용해 실제 사진처럼 높은 품질의 렌더링 결과물을 만들어내는 내장 렌더러입니다.",
+  "when": [
+    "포트폴리오나 웹사이트에 게시할 최종 텍스처링 결과물 이미지를 고품질로 렌더링할 때",
+    "금속, 유리, 투명한 플라스틱 등 복잡한 재질의 반사와 굴절을 정확하게 확인하고 싶을 때",
+    "외부 렌더러로 Export 전, Painter 안에서 바로 조명과 카메라 앵글을 세팅하여 시각적 완성도를 검토할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Mode 메뉴를 클릭하거나 F11 키를 눌러 Iray 렌더링 모드로 전환합니다.",
+    "Viewport가 Iray 렌더링 모드로 바뀌면 화면이 패스 Tracing 방식으로 부드럽게 렌더링되는지 확인합니다.",
+    "Display Settings 패널에서 Environment Map(환경 맵)을 변경하여 모델에 비치는 조명과 반사를 설정합니다.",
+    "Shift + 우클릭 드래그로 환경 맵의 회전 각도를 조절해 가장 멋진 하이라이트 위치를 찾습니다.",
+    "Display Settings 패널에서 Camera 설정의 Focal Length(초점 거리)와 Exposure(노출) 값을 조절하여 구도를 다듬습니다.",
+    "상단 메뉴 바의 File → Export renders (Ctrl + Shift + S)를 선택해 고해상도 이미지 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Environment Map",
+      "desc": "모델에 반사될 배경 및 조명용 HDRI 맵을 선택합니다."
+    },
+    {
+      "name": "Environment Exposure",
+      "desc": "배경 및 조명의 전체적인 밝기를 조절합니다."
+    },
+    {
+      "name": "Environment Rotation",
+      "desc": "조명과 배경의 회전 각도를 조절하여 하이라이트 위치를 바꿉니다."
+    },
+    {
+      "name": "Focal Length",
+      "desc": "카메라의 화각(초점 거리)을 조절하여 원근감을 연출합니다."
+    },
+    {
+      "name": "Max Iterations",
+      "desc": "렌더링 품질을 결정하는 최대 반복 횟수로, 높을수록 노이즈가 줄어듭니다."
+    },
+    {
+      "name": "Tone Mapping",
+      "desc": "밝은 영역의 톤을 조절하여 노출 과다를 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 하드 서페이스 무기 포트폴리오 샷 제작",
+      "steps": [
+        "Iray 모드(F11)로 전환한 뒤 스튜디오 타입의 Dark Studio 환경 맵을 적용합니다.",
+        "Shift + 우클릭으로 조명을 회전시켜 날카로운 금속 날과 모서리에 멋진 반사광을 만듭니다.",
+        "Focal Length를 50mm 이상으로 높여 왜곡을 줄이고 시각적 안정감을 줍니다.",
+        "Max Iterations가 충분히 올라가 노이즈가 사라지면 Export renders로 이미지를 저장합니다."
+      ]
+    },
+    {
+      "title": "자동차 도색(Car Paint) 재질 감상",
+      "steps": [
+        "야외 환경(Outdoor) HDRI 맵을 선택해 차체 표면에 자연스러운 자연광 반사를 유도합니다.",
+        "Environment Exposure를 조절해 도색의 플레이크(반짝이) 입자가 잘 보이도록 밝기를 맞춥니다.",
+        "카메라 앵글을 로우 앵글로 낮춘 뒤 Depth of Field를 켜서 배경을 부드럽게 흐립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Iray 모드에서 화면이 지나치게 어둡거나 하얗게 날아감 → Environment Exposure 값이 너무 낮거나 높기 때문이며, Display Settings에서 노출을 조절해 해결합니다.",
+    "렌더링 결과물에 자글자글한 노이즈가 많음 → Max Iterations(반복 횟수)가 부족하거나 렌더링 시간이 짧아서 생기는 현상으로, 조금 더 기다리거나 설정에서 반복 횟수를 높입니다.",
+    "배경이 너무 튀어 모델이 잘 보이지 않음 → Environment Opacity를 낮추거나 배경을 단색(Solid Color)으로 변경하여 모델에 시선을 집중시킵니다."
+  ],
+  "related": [
+    "Display Settings",
+    "Mesh Maps Baking",
+    "Export Textures",
+    "Shader Settings"
+  ],
+  "videos": [
+    {
+      "id": "3tI9axK89tM",
+      "title": "How to Render in Substance Painter",
+      "author": "TalleN GameDev"
+    },
+    {
+      "id": "OAmjP64FTWk",
+      "title": "29 | Substance 3D Painter Course - The iRay Renderer",
+      "author": "Michael Tanzillo"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Iray%20rendering%20in%20Painter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mode",
+    "Iray"
+  ],
+  "at": "2026-11-11T01:24:55.907895+00:00"
+}

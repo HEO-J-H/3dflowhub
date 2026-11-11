@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-export-for-unity-9387",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Export for Unity",
+  "title": "Unity용 Export",
+  "summary": "Substance 3D Painter에서 작업한 텍스처를 Unity 게임 엔진에 최적화된 형식으로 내보내는 기능입니다. Unity 표준 Shader(Standard Shader 또는 URP/HDRP)에 맞게 맵을 자동 조합하여 깨짐 없는 머티리얼을 만듭니다.",
+  "when": [
+    "Substance 3D Painter에서 제작한 텍스처를 Unity 프로젝트 에셋 폴더로 가져와야 할 때",
+    "메탈릭/러프니스 워크플로우로 제작된 텍스처를 Unity Standard Shader 규격에 맞게 변환할 때",
+    "노멀 맵(Normal Map)의 Y축 반전(OpenGL to DirectX) 설정을 Unity에 맞게 적용해야 할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 상단 메뉴 File → Export Textures (Ctrl+Shift+E)를 엽니다.",
+    "Output Template 항목에서 Unity URP, Unity HDRP 또는 Unity Standard (Metallic) 중 사용하는 렌더 피라인 프리셋을 선택합니다.",
+    "Export 경로(Location) 설정에서 Unity 프로젝트의 Assets 폴더 내 텍스처 저장 경로를 지정합니다.",
+    "File format 설정에서 PNG 또는 TGA 등 프로젝트에 적합한 이미지 포맷을 선택합니다.",
+    "Size 설정에서 텍스처 Resolution(예: 2048x2048)를 확인하고 오른쪽 아래 Export 버튼을 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Output Template",
+      "desc": "Unity Shader 규격에 맞춰 텍스처 채널을 조합하는 Export 프리셋입니다."
+    },
+    {
+      "name": "File format",
+      "desc": "내보낼 이미지 파일의 포맷(PNG, TGA 등)을 선택합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "텍스처 Resolution를 설정하며, 프로젝트 성능에 맞춰 512에서 4096 사이로 조절합니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "UV 이음새 부분에 픽셀이 튀어나오는 현상을 방지하기 위해 텍스처 테두리를 확장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unity 표준 셰이더용 PBR 텍스처 Export",
+      "steps": [
+        "File → Export Textures를 엽니다.",
+        "Output Template에서 Unity (Standard) 프리셋을 선택합니다.",
+        "Albedo, Normal, MetallicSmoothness 맵이 올바르게 생성되는지 확인하고 Export 합니다."
+      ]
+    },
+    {
+      "title": "URP(Universal Render Pipeline) 캐릭터 텍스처 Export",
+      "steps": [
+        "File → Export Textures를 엽니다.",
+        "Output Template에서 Unity URP 프리셋을 선택합니다.",
+        "Unity 프로젝트의 에셋 폴더로 경로를 지정한 뒤 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 맵 방향 오류 → Unity는 DirectX 방식을 사용하므로 Substance에서 Normal DirectX 형식을 사용하거나 Y축 반전을 확인하세요.",
+    "메탈릭과 스무스니스 맵 분리 오류 → Unity Standard Shader는 알파 채널에 Smoothness가 포함된 패킹 맵을 요구하므로 올바른 Template을 선택했는지 확인하세요."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Export Textures",
+    "Substance 3D for Unity",
+    "Standard Shader"
+  ],
+  "videos": [
+    {
+      "id": "xdYKKFSkLo4",
+      "title": "How to export 3D models from Substance Painter and import them into Unity.",
+      "author": "CattDevs"
+    },
+    {
+      "id": "_4ULQ95njmQ",
+      "title": "Export Substance Painter to Unity - Tutorial",
+      "author": "SimonSanchezArt"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Export%20for%20Unity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "File",
+    "Export Textures"
+  ],
+  "at": "2026-11-11T01:24:46.421977+00:00"
+}

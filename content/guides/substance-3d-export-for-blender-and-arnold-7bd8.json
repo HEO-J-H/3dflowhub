@@ -1,0 +1,93 @@
+{
+  "id": "substance-3d-export-for-blender-and-arnold-7bd8",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Export for Blender and Arnold",
+  "title": "Blender·Arnold용 Export",
+  "summary": "Substance 3D Painter에서 제작한 텍스처를 Blender와 Arnold 렌더러에 최적화된 채널 맵 세트로 각각 내보내는 기능입니다. 실시간 Viewport와 물리 기반 오프라인 렌더링에 알맞은 파일 포맷과 세팅을 자동 구성합니다.",
+  "when": [
+    "Substance 3D Painter에서 완성한 텍스처를 Blender (Cycles 또는 Eevee) 에셋에 적용할 때",
+    "Maya나 3ds Max에서 Arnold 렌더러를 사용해 금속, 유리, 피부 등 물리 기반 질감을 정확히 표현할 때",
+    " roughness, metallic, normal 등의 맵 채널을 각 렌더러의 표준 입력 슬롯에 맞게 한 번에 추출할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 상단 메뉴 바에서 File → Export Textures를 클릭하거나 Ctrl+Shift+E를 누릅니다.",
+    "Export 창의 Output Template 드롭다운 메뉴에서 Blender (Principled BSDF) 또는 Arnold (AiStandardSurface) 프리셋을 선택합니다.",
+    "Mesh 세부 항목에서 텍스처를 추출할 텍스처 세트(Texture Set)를 체크합니다.",
+    "File format과 Destination 경로를 확인한 뒤, 우측 하단의 Export 버튼을 클릭해 Export를 완료합니다.",
+    "Blender나 Arnold Shader 에디터에서 생성된 텍스처 맵(Base Color, Roughness, Normal 등)을 각 입력 노드에 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Output Template",
+      "desc": "목표 렌더러나 엔진에 맞추어 텍스처 맵 조합과 명칭 규칙을 자동 설정합니다."
+    },
+    {
+      "name": "File format",
+      "desc": "출력할 이미지 파일의 확장자(PNG, EXR, TGA 등)를 선택합니다."
+    },
+    {
+      "name": "Bit depth",
+      "desc": "텍스처의 색상 정밀도(8-bit, 16-bit 등)를 설정하여 노멀 맵 등의 계단 현상을 방지합니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "UV 이음새(Seam) 부근의 픽셀 번짐 현상을 방지하기 위해 여백 영역을 채우는 방식을 지정합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "내보낼 텍스처의 Resolution(예: 2048x2048, 4096x4096)를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Blender Principled BSDF 연동용 텍스처 추출",
+      "steps": [
+        "Export Textures 창을 엽니다.",
+        "Output Template을 Blender (Principled BSDF)로 선택합니다.",
+        "Export 버튼을 눌러 베이스 컬러와 러프니스 등의 맵을 생성한 뒤 Blender에 불러옵니다."
+      ]
+    },
+    {
+      "title": "Arnold 렌더러 표준 셰이더용 맵 Export",
+      "steps": [
+        "Export Textures 창의 Output Template에서 Arnold (AiStandardSurface) 프리셋을 선택합니다.",
+        "Resolution와 파일 포맷을 16-bit EXR 또는 PNG로 지정합니다.",
+        "Export를 실행한 후 Arnold Material Network에서 각 맵을 대응하는 슬롯에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Blender에서 Normal 맵이 어색하게 깨짐 → Substance에서 OpenGL 노멀로 설정되었는지 확인하고 Blender Normal 맵 노드의 Color Space를 Non-Color로 변경합니다.",
+    "Roughness나 Metallic 맵의 값이 너무 반짝이거나 거칠어짐 → 텍스처 노드의 Color Space가 잘못 지정되었을 가능성이 높으므로 Non-Color로 설정합니다.",
+    "텍스처 파일 경로에 한글이나 특수문자가 포함됨 → 텍스처가 누락되거나 에러가 발생하므로 영문 경로로 수정하여 다시 내보냅니다."
+  ],
+  "related": [
+    "Export for Unreal Engine",
+    "Bake Mesh Maps",
+    "Principled BSDF",
+    "AiStandardSurface"
+  ],
+  "videos": [
+    {
+      "id": "CPO-q51qZqE",
+      "title": "Export Textures & Render Your Materials in Substance 3D Painter",
+      "author": "Nexttut"
+    },
+    {
+      "id": "O14emMOvw7Q",
+      "title": "Substance 3D Add-On for Blender: A Complete Guide | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Export%20for%20Blender%20and%20Arnold",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "File",
+    "Export Textures"
+  ],
+  "at": "2026-11-11T01:24:50.922044+00:00"
+}
