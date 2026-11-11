@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-export-textures-presets-e40a",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Export textures presets",
+  "title": "텍스처 Export 프리셋",
+  "summary": "Substance 3D Painter에서 작업한 텍스처를 게임 엔진, 렌더러 등 목적에 맞는 포맷과 폴더 구조로 한 번에 내보내는 기능입니다.",
+  "when": [
+    "Unreal Engine이나 Unity 등 게임 엔진에 맞게 텍스처 채널을 조합하여 내보낼 때",
+    "Arnold, V-Ray 등 외부 렌더러의 표준 Shader 규격에 맞춰 텍스처를 출력할 때",
+    "프로젝트 협업을 위해 특정 폴더 경로와 파일명 규칙으로 일괄 저장할 때"
+  ],
+  "steps": [
+    "상단 메뉴에서 File > Export Textures를 클릭하거나 Ctrl+Shift+E Hotkey를 누릅니다.",
+    "Export 창이 열리면 Output template 드롭다운 메뉴에서 원하는 목적지 프리셋을 선택합니다.",
+    "Configurations 탭에서 채널 조합과 파일 포맷(PNG, TGA, EXR 등)을 최종 확인합니다.",
+    "Export path 항목에서 폴더 아이콘을 눌러 저장될 디렉터리를 지정합니다.",
+    "오른쪽 하단의 Export 버튼을 눌러 텍스처 Export를 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Output template",
+      "desc": "게임 엔진이나 렌더러 규격에 맞는 Export 프리셋을 선택합니다."
+    },
+    {
+      "name": "File type",
+      "desc": "저장할 이미지 파일 포맷(PNG, JPG, TGA, EXR 등)을 설정합니다."
+    },
+    {
+      "name": "Bit depth",
+      "desc": "색상 정밀도를 결정합니다. 일반용은 8-bit, 노멀맵이나 변위맵은 16-bit를 권장합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "내보낼 텍스처의 Resolution 크기(2K, 4K 등)를 프로젝트 크기 혹은 일괄 변경합니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "UV 이음새 부분에 생기는 경계선 깨짐을 막기 위해 픽셀을 바깥쪽으로 확장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine용 패킹 텍스처 Export",
+      "steps": [
+        "File > Export Textures를 엽니다.",
+        "Output template에서 Unreal Engine (Packed) 프리셋을 선택합니다.",
+        "R 채널에 Roughness, G 채널에 AO, B 채널에 Metallic이 묶였는지 확인합니다.",
+        "Export를 눌러 에셋 폴더에 바로 저장합니다."
+      ]
+    },
+    {
+      "title": "시네마틱용 고해상도 16-bit 맵 Export",
+      "steps": [
+        "File > Export Textures를 엽니다.",
+        "File type을 EXR 또는 TIFF로 변경합니다.",
+        "Bit depth를 16-bit로 설정하여 색상 계조 손실을 방지합니다.",
+        "Export 버튼을 눌러 렌더링용 텍스처를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "용량 부족 오류 발생 → 디스크 여유 공간을 확보하거나 쓰기 권한이 있는 폴더로 경로를 변경합니다.",
+    "알파 채널이 비어 있음 → Shader 설정이나 Output template에 Opacity 채널이 포함되어 있는지 확인합니다.",
+    "텍스처 경계선에 줄이 생김 → Padding 옵션을 Dilate with width 값으로 올려 해결합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Project Settings",
+    "Export Textures",
+    "Layers"
+  ],
+  "videos": [
+    {
+      "id": "IlmcEUVKVfQ",
+      "title": "All Texture Export Settings for Substance 3D Painter | EP154",
+      "author": "Ambient 3D Animations"
+    },
+    {
+      "id": "4iUVOfGOxPI",
+      "title": "Substance Painter 2021 Getting Started - Part 05 - Exporting & rendering | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Export%20textures%20presets",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Export Textures",
+    "E Hotkey"
+  ],
+  "at": "2026-11-11T01:15:01.580846+00:00"
+}

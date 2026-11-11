@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-fixing-baking-artifacts-bf67",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Fixing baking artifacts",
+  "title": "Baking 오류 고치기",
+  "summary": "Substance 3D Painter에서 Baking 시 발생하는 노멀 맵 깨짐이나 검은 얼룩(Artifacts) 오류를 해결하고 깔끔한 텍스처를 얻는 가이드입니다.",
+  "when": [
+    "하이 폴리곤과 로우 폴리곤의 겹치는 면에서 검은색 얼룩이나 깨짐이 보일 때",
+    "모서리나 베벨(Bevel) 영역이 부자연스럽게 잘려 보일 때",
+    "케이지(Cage)를 활용한 정밀한 프로젝션이 필요할 때"
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭합니다.",
+    "Common 탭에서 Output Size와 Max Front/Back Distance 값을 모델 크기에 맞게 조절합니다.",
+    "Cage 탭을 활성화하거나 외부 케이지(.obj) 파일을 불러와서 투사 범위를 설정합니다.",
+    "Max Front/Back Distance 값을 조금씩 낮추거나 높여가며 Viewport의 오류 영역을 확인합니다.",
+    "Anti-aliasing 값을 올려서 모서리의 계단 현상과 미세한 노이즈를 정리합니다.",
+    "Bake [Texture Set Name] 버튼을 눌러 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Max Front/Back Distance",
+      "desc": "하이 폴리곤의 세부 사항을 로우 폴리곤에 투사하는 최대 거리입니다."
+    },
+    {
+      "name": "Average Normal",
+      "desc": "노멀 맵의 모서리 부드러움과 심(Seam) 깨짐 현상을 제어합니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "겹쳐 있는 지오메트리에서 반대편 면의 오투사를 방지합니다."
+    },
+    {
+      "name": "Use Cage",
+      "desc": "별도로 제작된 케이지(Cage) 오브젝트를 사용하여 Baking 오류를 방지합니다."
+    },
+    {
+      "name": "Anti-aliasing",
+      "desc": "텍스처 경계면의 계단 현상을 줄여 깔끔한 결과물을 만듭니다."
+    },
+    {
+      "name": "Match",
+      "desc": "메쉬의 이름(By Mesh Name)을 기준으로 하이와 로우를 정확히 매칭합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 모서리 검은 얼룩 제거",
+      "steps": [
+        "Texture Set Settings에서 Match 옵션을 By Mesh Name으로 변경합니다.",
+        "Max Front/Back Distance 값을 줄여서 인접한 다른 파츠의 영향을 없애줍니다.",
+        "다시 베이킹하여 모서리 깨짐이 사라졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "두께가 얇은 천공 패널 Baking 오류 수정",
+      "steps": [
+        "Ignore Backface 옵션을 활성화하여 뒷면의 노멀이 간섭하는 것을 막습니다.",
+        "Anti-aliasing을 4x로 설정하여 구멍 주변의 자글거림을 줄입니다.",
+        "결과를 확인하고 필요시 Max Distance를 미세 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Max Distance 값이 너무 클 때 → 모델 전체가 검게 오염되거나 엉뚱한 면이 투사되므로 값을 낮춥니다.",
+    "하이 폴리곤과 로우 폴리곤의 피벗이나 위치가 다를 때 → 두 모델의 좌표를 원점(0,0,0) 또는 일치하는 위치로 맞춥니다.",
+    "메쉬 이름이 일치하지 않아 엉뚱한 파츠끼리 베이킹될 때 → 하이와 로우 메쉬의 이름을 동일하게 맞추고 Match를 By Mesh Name으로 설정합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Texture Set Settings",
+    "Normal Map",
+    "Ambient Occlusion"
+  ],
+  "videos": [
+    {
+      "id": "cAluGnsJ4-E",
+      "title": "🦜Baking Just Got 10x Easier! New Substance Painter Feature",
+      "author": "Virtus"
+    },
+    {
+      "id": "jV_kuxeD8q4",
+      "title": "Substance Painter SKEW CORRECTION Tutorial | Skew and Artifacts Fix with Substance or Photoshop",
+      "author": "GonzaloM3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Fixing%20baking%20artifacts",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:14:57.523634+00:00"
+}

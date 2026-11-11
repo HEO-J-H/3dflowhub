@@ -1,0 +1,22 @@
+<!-- TITLE: Blender 5.3 출시 — 3D Gaussian Splatting 및 Vulkan 기본 적용 | TAGS: Blender,Gaussian Splatting,Geometry Nodes,EEVEE,Cycles,Vulkan,블렌더,지오메트리 노드,업데이트·출시 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://www.blender.org/press/blender-5-3-release/" target="_blank" rel="noopener nofollow"><img src="https://www.blender.org/wp-content/uploads/2026/07/splash-overgrown-480x270.webp" alt="Blender 5.3 출시 — 3D Gaussian Splatting 및 Vulkan 기본 적용" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://www.blender.org/press/blender-5-3-release/" target="_blank" rel="noopener nofollow">blender.org</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/pvUy69I_Xuk" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Blender 5.3 버전이 출시되어 3D Gaussian Splatting 네이티브 지원, Vulkan 기본 백엔드 전환, Cycles 및 EEVEE 렌더링 엔진 개선 사항을 제공합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 업데이트·출시</p>
+<h2>3D Gaussian Splatting 기본 지원 및 Geometry Nodes 연동</h2>
+<p>Blender 5.3은 3D Gaussian Splats를 네이티브로 지원합니다. PLY 및 SPZ 파일로 포인트를 불러온 뒤 Geometry Nodes를 사용해 가공할 수 있으며, Workbench, EEVEE, Cycles에서 직접 렌더링과 라이팅 조절이 가능합니다.</p>
+<h2>Vulkan 백엔드 기본 적용 및 렌더링 성능 향상</h2>
+<p>Windows(ARM 제외)와 Linux 환경에서 Vulkan이 기본 백엔드로 지정되었습니다. 또한 NVIDIA GPU 환경에서는 뷰포트용 DLSS 디노이저가 도입되어 이전 프레임의 샘플을 재사용하며 선명한 이미지를 빠르게 생성합니다.</p>
+<h2>Cycles 및 EEVEE 렌더링 기능 확장</h2>
+<p>Cycles는 유리와 투과 재질을 위한 분산(dispersion) 및 이방성 거칠기(anisotropic roughness)를 추가하여 보석이나 유리 내부의 무지개 효과를 정밀하게 재현합니다. EEVEE는 Material Lighting Nodes를 도입해 비사실적 렌더링과 물리적 효과를 세밀하게 제어할 수 있습니다.</p>
+<h2>Geometry Nodes 및 애니메이션 도구 업데이트</h2>
+<p>Geometry Nodes 모듈에는 맞춤형 유체 시뮬레이션을 위한 볼륨 Grid 노드의 기초 블록이 추가되었습니다. 애니메이션 및 리깅 영역에서는 월드 스페이스 애니메이션 복사·붙여넣기 연산자와 회전 모드 변환 기능이 포함되었습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">PL 및 SPZ 파일로 임포트된 3D Gaussian Splats 데이터를 Geometry Nodes를 통해 직접 편집하고 가공할 수 있어, 실사 스캔 데이터와 절차적 파이프라인의 결합이 더욱 긴밀해졌습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender 5.3에서 Vulkan은 어떤 운영체제에서 기본 백엔드로 설정되나요?</b><br/>A. ARM 기반 Windows를 제외한 Windows 및 Linux 환경에서 Vulkan이 기본 백엔드로 설정됩니다.</p>
+<p><b>Q. Cycles 렌더링 엔진에는 어떤 새로운 재질 표현 기능이 추가되었나요?</b><br/>A. 유리 및 투과 재질을 위한 분산 효과와 이방성 거칠기가 추가되어 보석과 유리에서 나타나는 무지개 빛 번짐 현상을 표현할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-7db803444da2b442.html">Blender 3ds Max 전환 사용자용 오픈소스 작업 환경</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-5ff4a0e093cb2a30.html">Blender 연동 AI 애니메이션 워크플로 FlipMove 공개</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-10-1510758c76d67a80.html">Blender 3D Print Suite 출시 — 18종 3D 프린팅 애드온 번들</a></li></ul>
+<hr/><p>원문:<a href="https://www.blender.org/press/blender-5-3-release/" target="_blank" rel="noopener nofollow">Blender 5.3 Release</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

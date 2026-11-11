@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-export-for-unreal-engine-bd07",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Export for Unreal Engine",
+  "title": "Unreal용 Export",
+  "summary": "Substance 3D Painter에서 제작한 텍스처를 Unreal Engine에서 최적화된 상태로 불러올 수 있도록 적절한 텍스처 맵 세트로 내보내는 기능입니다. 실시간 렌더링에 적합한 채널 조합과 파일 포맷을 생성합니다.",
+  "when": [
+    "Substance 3D Painter에서 완성한 텍스처를 Unreal Engine 프로젝트에 적용할 때",
+    "Roughness와 Metallic 맵을 Unreal Engine의 Packed Texture 구조(ORM 채널)로 합쳐야 할 때",
+    "실시간 게임 엔진 환경에 맞추어 텍스처 Resolution와 파일 형식을 일괄 변환할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 상단 메뉴 바에서 File → Export Textures를 클릭하거나 Hotkey Ctrl+Shift+E를 누릅니다.",
+    "Export 설정 창의 Output directory에서 저장할 폴더 경로를 지정합니다.",
+    "Output template 항목에서 Unreal Engine (Packed) 프리셋을 선택하여 ORM 맵(Occlusion, Roughness, Metallic)을 자동으로 생성합니다.",
+    "Texture format 드롭다운 메뉴에서 텍스처 포맷(예: PNG 또는 TGA)과 비트 깊이를 프로젝트에 맞게 설정합니다.",
+    "Size 드롭다운 메뉴에서 텍스처 Resolution(예: 2048x2048)를 선택합니다.",
+    "우측 하단의 Export 버튼을 클릭하여 텍스처 맵을 일괄 Export 합니다."
+  ],
+  "params": [
+    {
+      "name": "Output template",
+      "desc": "목적하는 엔진에 맞는 텍스처 채널 조합 프리셋을 선택합니다."
+    },
+    {
+      "name": "File format",
+      "desc": "내보낼 이미지 파일의 형식(PNG, TGA, JPG 등)을 지정합니다."
+    },
+    {
+      "name": "Bit depth",
+      "desc": "텍스처의 색상 정밀도(8-bit 또는 16-bit)를 설정합니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "UV 이음새 부분의 텍스처 늘어남(Bleeding)을 방지하는 여백 방식을 선택합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "내보낼 텍스처의 Resolution 크기를 일괄 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 무기 텍스처 Export",
+      "steps": [
+        "File → Export Textures를 실행합니다.",
+        "Unreal Engine (Packed) 프리셋을 선택하여 메모리를 절약합니다.",
+        "Export 버튼을 눌러 에셋 폴더로 바로 저장합니다."
+      ]
+    },
+    {
+      "title": "건축 배경용 콘크리트 바닥 텍스처 Export",
+      "steps": [
+        "Texture format을 PNG로 설정하여 무손실 품질을 유지합니다.",
+        "Size를 4K로 설정하여 디테일을 높입니다.",
+        "Export를 실행한 뒤 Unreal Engine Content Browser로 드래그 앤 드롭합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Roughness와 Metallic 맵이 반대로 적용됨 → Unreal Engine (Packed) 프리셋 대신 개별 맵을 내보냈거나 채널 세팅이 잘못된 경우이므로 프리셋을 다시 확인하고 내보냅니다.",
+    "Unreal Engine에서 텍스처가 너무 어둡거나 왜곡됨 → Normal Map의 압축 포맷 설정이나 sRGB 체크박스(Normal 맵의 경우 해제 필요)가 올바른지 확인합니다."
+  ],
+  "related": [
+    "Bicubic Filtering",
+    "Normal Map",
+    "Ambient Occlusion",
+    "Roughness"
+  ],
+  "videos": [
+    {
+      "id": "wcpz9_stKgs",
+      "title": "Substance 3D Painter Textures into Unreal Engine 5 Including Emission",
+      "author": "James, How Do I?"
+    },
+    {
+      "id": "1m9I0GJPijY",
+      "title": "How to Use Substance Designer Materials Directly in Unreal Engine 5",
+      "author": "3dEx"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Export%20for%20Unreal%20Engine",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "File",
+    "Export Textures",
+    "Hotkey Ctrl"
+  ],
+  "at": "2026-11-11T01:15:05.658843+00:00"
+}
