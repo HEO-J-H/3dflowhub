@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-09T11:56:56.013779+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 85,
-      "candidates_passed": 40,
-      "offtopic": 26,
-      "short": 0,
-      "prefiltered": 26,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "6cfda840",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-09T12:06:56.147203+00:00",
       "collected": 0,
       "saved": 0,
@@ -7545,6 +7520,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-11T15:58:17.693546+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 107,
+      "candidates_passed": 59,
+      "offtopic": 27,
+      "short": 0,
+      "prefiltered": 29,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "46e86386",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7640,7 +7640,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-04 [성찰] 검색 유입과 실무 밀착형 튜토리얼(3ds Max, Blender 등)의 비중을 높이고 동음이의어 오탐지를 엄격히 차단해야 애드센스 품질과 페이지뷰가 개선됩니다.",
     "2026-11-04 [evolve.summarize_cpc_category_stats(): 최] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 문서 파일(.md)에는 실제 마크다운 형식의 가이드를 작성하고, 테스트 코드는 반드시 tests/ 디렉토리에 분리하여 배치해야 합니다.",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/web-optimization.md').exists / FAILED backend/tests/test_core.py::test",
@@ -7759,7 +7758,8 @@
     "2026-11-11 [성찰] 동음이의어와 일반 명사로 인한 오프토픽 유입을 막기 위해 5중 컨텍스트 필터를 적용하고, 실무에 유용한 Maxscript 및 애드온 튜토리얼 중심으로 콘텐츠를 발행해야 합니다.",
     "2026-11-11 [core.filter_offtopic_homonyms(): 텍스트 내 동] 전문 문맥 키워드 매칭을 통한 동음이의어 필터링은 기술 블로그/사이트의 오탐율을 줄이는 데 매우 효과적이다.",
     "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] 사용자 인터페이스의 상태 변화(로딩, 완료)는 명확한 시각적 피드백과 직관적인 텍스트로 전달해야 UX 만족도가 높아진다.",
-    "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] "
+    "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] ",
+    "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Maya, Unity 등)에서 발생하는 동음이의어 노이즈를 강력한 컨텍스트 필터로 차단하고 실무 밀착형 튜토리얼 및 스크립트 주제를 집중 공략해야 유입과 체류시간이 대폭 상승합니다."
   ],
   "categories": {
     "VFX": [
@@ -10374,14 +10374,15 @@
     1892132028523015169,
     13769771600947134495,
     9252042551802575403,
-    4255341850660911066
+    4255341850660911066,
+    11430982527352844289
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2571,
-    "Game Engine": 2571,
-    "VFX": 2571,
-    "AI 3D": 2571
+    "3D DCC": 2572,
+    "Game Engine": 2572,
+    "VFX": 2572,
+    "AI 3D": 2572
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
