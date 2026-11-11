@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-09T13:57:15.810098+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 107,
-      "candidates_passed": 57,
-      "offtopic": 30,
-      "short": 0,
-      "prefiltered": 27,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "6cfda840",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-09T14:07:16.599367+00:00",
       "collected": 1,
       "saved": 1,
@@ -7555,6 +7530,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-11T18:17:43.689029+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 120,
+      "candidates_passed": 69,
+      "offtopic": 30,
+      "short": 0,
+      "prefiltered": 28,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "e6a3f472",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7650,7 +7652,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-04 [evolve.summarize_cpc_category_stats(): 최] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 문서 파일(.md)에는 실제 마크다운 형식의 가이드를 작성하고, 테스트 코드는 반드시 tests/ 디렉토리에 분리하여 배치해야 합니다.",
     "2026-11-04 [[p-d090910a86|사이트·UX] 웹 버전(web/) 성능 최적화 ] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/web-optimization.md').exists / FAILED backend/tests/test_core.py::test",
     "2026-11-04 [성찰] 오탐지율과 무관한 글을 줄이기 위해 일반 명사 도구명을 철저히 필터링하고, 실무 검색 수요가 검증된 주제에 집중해야 합니다.",
@@ -7769,7 +7770,8 @@
     "2026-11-11 [core.filter_offtopic_homonyms(): 텍스트 내 동] 전문 문맥 키워드 매칭을 통한 동음이의어 필터링은 기술 블로그/사이트의 오탐율을 줄이는 데 매우 효과적이다.",
     "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] 사용자 인터페이스의 상태 변화(로딩, 완료)는 명확한 시각적 피드백과 직관적인 텍스트로 전달해야 UX 만족도가 높아진다.",
     "2026-11-11 [[p-c1d28b237d|사이트·UX] 웹 브라우저 PBR 변환 UI 피] ",
-    "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Maya, Unity 등)에서 발생하는 동음이의어 노이즈를 강력한 컨텍스트 필터로 차단하고 실무 밀착형 튜토리얼 및 스크립트 주제를 집중 공략해야 유입과 체류시간이 대폭 상승합니다."
+    "2026-11-11 [성찰] 일반 명사 형태의 툴 이름(Nuke, Maya, Unity 등)에서 발생하는 동음이의어 노이즈를 강력한 컨텍스트 필터로 차단하고 실무 밀착형 튜토리얼 및 스크립트 주제를 집중 공략해야 유입과 체류시간이 대폭 상승합니다.",
+    "2026-11-11 [성찰] 오동입(일반 명사 혼동)으로 인한 비관련 글의 유입 비율을 낮추고, 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 키워드에 집중해야 페이지뷰와 품질 점수를 높일 수 있습니다."
   ],
   "categories": {
     "VFX": [
@@ -7816,7 +7818,7 @@
     "VFX/스튜디오·작품": 155,
     "AI 3D/로보틱스·월드모델": 31,
     "3D DCC/Blender": 131,
-    "Game Engine/Unreal Engine": 134,
+    "Game Engine/Unreal Engine": 135,
     "AI 3D/기타 AI 3D": 44,
     "Game Engine/Godot": 32,
     "3D DCC/Cinema 4D": 30,
@@ -10399,14 +10401,16 @@
     295097102288028192,
     17475583177659885196,
     12815494270530292345,
-    4731331201843857610
+    4731331201843857610,
+    9842114836974420967,
+    10396562940072674580
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2583,
-    "Game Engine": 2583,
-    "VFX": 2583,
-    "AI 3D": 2583
+    "3D DCC": 2584,
+    "Game Engine": 2584,
+    "VFX": 2584,
+    "AI 3D": 2584
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
