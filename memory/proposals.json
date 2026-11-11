@@ -33145,5 +33145,60 @@
     "kind": "applied",
     "id": "p-b02669f80f",
     "result": "사람 할 일 — 1. GitHub 웹사이트에 접속합니다. 2. pix2poly 저장소의 Pull Requests 탭으로 이동합니다. 3. PR #60과 #61의 변경 내용과 테스트 결과를 검토한 후 승인 및 머지(Merge)를 진행합니다."
+  },
+  {
+    "at": "2026-11-11T15:19:17+00:00",
+    "kind": "proposal",
+    "id": "p-a9adf532c6",
+    "title": "웹 브라우저 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 PBR 변환 관련 피드백 및 안내 문구 보강 작업이 진행 중이나 관련 UI 에러 상태에 대한 자동 테스트가 부족합니다.",
+    "proposal": "web/tests/ 또는 프론트엔드 테스트 환경에 PBR 변환 실패 시 에러 메시지 표시를 검증하는 단위 테스트 코드를 추가합니다.",
+    "expected": "프론트엔드 예외 상황에서의 사용자 피드백 신뢰성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:19:17+00:00",
+    "kind": "proposal",
+    "id": "p-d612beb1a7",
+    "title": "로컬 파이프라인 TripoSR 예외 로깅 및 메시지 정교화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 예외 처리 로그 메시지 개선 작업이 진행되었으나 추가적인 예외 상황별 상세 로그가 유용합니다.",
+    "proposal": "backend/app/services/triposr_runner.py 파일에서 GPU 메모리 부족 또는 모델 로드 실패 시 구체적인 가이드 메시지를 로그에 남기도록 보완합니다.",
+    "expected": "로컬 실행 시 사용자 및 관리자의 트러블슈팅 시간 단축",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T15:19:40.918506+00:00",
+    "kind": "decision",
+    "id": "p-a9adf532c6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:19:40.952392+00:00",
+    "kind": "decision",
+    "id": "p-d612beb1a7",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T15:19:44.213643+00:00",
+    "kind": "triage",
+    "id": "p-d612beb1a7",
+    "verdict": "agent",
+    "reason": "백엔드 Python 파일의 예외 로깅 및 메시지 정교화 작업이므로 에이전트가 코드를 직접 수정하여 해결할 수 있습니다."
   }
 ]
