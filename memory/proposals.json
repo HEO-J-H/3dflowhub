@@ -31932,5 +31932,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 단위 테스트 추가 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-11T02:04:52+00:00",
+    "kind": "proposal",
+    "id": "p-38e4a00ec2",
+    "title": "PR #60 검토 및 로컬 파이프라인 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #60 'backend/app/services/mesh_from_image.py 이미지 포맷 및 크기 사전 검증 함수'가 승인 대기 상태입니다.",
+    "proposal": "GitHub에서 PR #60의 테스트 통과 여부를 최종 확인하고 머지하여 로컬 파이프라인의 입력 안정성을 강화합니다.",
+    "expected": "잘못된 이미지 형식으로 인한 파이프라인 오류 원천 차단",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/60",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T02:04:52+00:00",
+    "kind": "proposal",
+    "id": "p-b857cc3fa5",
+    "title": "웹 브라우저 PBR 텍스처 변환 안정성 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "웹 브라우저 측 PBR 생성 및 변환 로직의 독립 실행 검증 필요",
+    "proposal": "web/ 디렉토리 내 PBR 변환 관련 JavaScript 유닛 테스트 코드 보강 및 브라우저 환경 검증 Script 작성",
+    "expected": "클라이언트 사이드 3D 렌더링 및 텍스처 매핑의 품질 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-11T02:05:25.419685+00:00",
+    "kind": "decision",
+    "id": "p-38e4a00ec2",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T02:05:25.459380+00:00",
+    "kind": "decision",
+    "id": "p-b857cc3fa5",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 안정성 추가 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-11T02:05:33.212477+00:00",
+    "kind": "triage",
+    "id": "p-38e4a00ec2",
+    "verdict": "agent",
+    "reason": "PR #60의 테스트 통과 여부 확인 및 로컬 파이프라인 머지 작업은 에이전트가 코드를 검토하고 처리할 수 있는 백엔드 개발 과제입니다."
   }
 ]

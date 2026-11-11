@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-projection-painting-from-photos-fa73",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Projection painting from photos",
+  "title": "사진 투영 칠하기",
+  "summary": "Substance 3D Painter에서 2D 사진이나 텍스처를 3D 모델 표면에 직접 투영하여 정교한 디테일과 패턴을 그리는 기능입니다.",
+  "when": [
+    "실제 사진의 질감이나 로고를 모델 표면에 왜곡 없이 그대로 입힐 때",
+    "복잡한 패턴이나 문양을 수작업 대신 사진 소스로 빠르게 표현할 때",
+    "의상이나 갑옷 표면에 특정 데칼이나 그래픽을 정밀하게 배치할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 프로젝트를 열고 3D Viewport에 모델을 로드합니다.",
+    "Assets 패널에서 투영할 이미지나 텍스처를 찾아 Mouse로 드래그하여 Projection 패널에 올립니다.",
+    "Viewport 상단 툴바에서 Projection(투영) 브러시 아이콘을 선택하거나 투영 모드를 활성화합니다.",
+    "Alt + 우클릭 드래그로 이미지를 이동·회전·크기 조절하여 모델의 원하는 위치에 맞춥니다.",
+    "Mouse로 모델 표면을 칠하면 투영된 이미지가 그대로 페인팅됩니다.",
+    "Viewport에서 결과가 올바르게 그려졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "투영되는 이미지의 불투명도를 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "투영할 이미지의 크기를 키우거나 줄입니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "투영할 이미지의 각도를 회전시킵니다."
+    },
+    {
+      "name": "Channel",
+      "desc": "Base Color, Roughness, Height 등 칠할 채널을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "의류 로고 배치하기",
+      "steps": [
+        "로고 이미지를 Assets 패널에서 불러옵니다.",
+        "Projection 모드에서 Alt 키와 Mouse를 이용해 의류 가슴 위치에 로고를 맞춥니다.",
+        "브러시 스트로크로 가슴 부위에 로고를 칠해 완성합니다."
+      ]
+    },
+    {
+      "title": "벽면 균열 사진 투영하기",
+      "steps": [
+        "균열 사진을 투영 소스로 등록합니다.",
+        "벽 모델의 깨진 부분에 사진을 정확히 정렬합니다.",
+        "Height 채널을 켜고 칠해 입체적인 균열을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지가 늘어나는 현상 → 카메라 시점과 모델 표면 각도가 너무 기울어져 있으므로 정면 시점에서 투영합니다.",
+    "원하지 않는 채널이 칠해지는 현상 → Layers 패널 또는 Properties 패널에서 Base Color나 Height 등 활성화된 채널을 확인합니다."
+  ],
+  "related": [
+    "Symmetry painting",
+    "Height and normal painting",
+    "Spotlight projection",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "rsDVc9WzUY0",
+      "title": "Photo-Textures & Projection in Substance Painter",
+      "author": "SpeedTutor"
+    },
+    {
+      "id": "QSFMe5Q06qo",
+      "title": "Substance Painter: Stencils & Projections (EXPLAINED)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Projection%20painting%20from%20photos",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "D Viewport",
+    "Assets",
+    "Mouse",
+    "Projection"
+  ],
+  "at": "2026-11-11T02:05:01.473834+00:00"
+}

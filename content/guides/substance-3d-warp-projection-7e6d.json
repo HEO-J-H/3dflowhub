@@ -1,0 +1,96 @@
+{
+  "id": "substance-3d-warp-projection-7e6d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Warp projection",
+  "title": "Warp 투영",
+  "summary": "Substance 3D의 Warp projection은 평면적인 텍스처나 패턴을 곡면이나 굴곡진 3D 메쉬 표면에 왜곡 없이 자연스럽게 휘어 감싸며 투영하는 기능입니다.",
+  "when": [
+    "구부러진 표면이나 원통형 메쉬에 로고나 문양을 정확히 새기고 싶을 때",
+    "의류나 천의 굴곡에 맞춰 패턴 텍스처를 자연스럽게 밀착시킬 때",
+    "단순한 스텐실 투영으로 왜곡이 생기는 복잡한 곡면 영역을 정밀하게 보정할 때"
+  ],
+  "steps": [
+    "Assets 패널 또는 외부에서 투영할 텍스처 이미지를 드래그 앤 드롭으로 프로젝트에 추가합니다.",
+    "상단 툴바 또는 Projection 모드에서 투영 소스로 사용할 이미지를 선택합니다.",
+    "Viewport 상단 메뉴에서 Projection 툴을 활성화하고 Warp 옵션을 켭니다.",
+    "Viewport에서 기즈모(Gizmo)를 조작하여 투영할 위치, 크기, 회전 및 휘어짐(Warp) 범위를 조절합니다.",
+    "브러시나 페인트 툴을 이용해 Viewport 또는 텍스처셋 창에서 투영된 내용을 메쉬 표면에 그려 넣습니다.",
+    "결과물이 메쉬의 굴곡에 맞게 잘 투영되었는지 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Warp",
+      "desc": "표면의 굴곡에 따라 텍스처를 휘어지게 만드는 변형 제어 활성화"
+    },
+    {
+      "name": "Opacity",
+      "desc": "투영되는 이미지의 투명도를 조절하여 브러시 강도 변경"
+    },
+    {
+      "name": "Scale",
+      "desc": "투영 소스 이미지의 전체 크기 확대 및 축소"
+    },
+    {
+      "name": "Rotation",
+      "desc": "메쉬 표면에 투영되는 이미지의 각도 조절"
+    },
+    {
+      "name": "Projection Mode",
+      "desc": "Orthographic 또는 Perspective 등 투영 방식 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "원통형 파이프에 로고 감싸기",
+      "steps": [
+        "파이프 메쉬를 Viewport에 불러오고 로고 이미지를 투영 소스로 선택합니다.",
+        "Warp 모드를 켜고 기즈모를 파이프 표면에 밀착시킵니다.",
+        "회전과 크기를 조절하여 로고가 파이프 곡면을 따라 자연스럽게 휘어지게 맞춥니다.",
+        "페인트 스트로크를 적용해 파이프 표면에 로고를 확정합니다."
+      ]
+    },
+    {
+      "title": "굴곡진 갑옷 표면에 문양 넣기",
+      "steps": [
+        "갑옷의 굴곡진 부위에 맞출 패턴 텍스처를 불러옵니다.",
+        "Warp 옵션을 활성화하고 Viewport에서 기즈모를 갑옷의 굴곡 방향으로 정렬합니다.",
+        "세부 위치를 미세 조정하여 왜곡을 최소화합니다.",
+        "브러시로 칠해 표면에 문양을 입힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 좌표가 겹치거나 왜곡되어 있음 → 텍스처셋 설정에서 올바른 UV 언랩 상태를 먼저 확인하고 다시 투영합니다.",
+    "Warp 기즈모가 메쉬와 너무 멀리 떨어져 있음 → Viewport에서 기즈모를 메쉬 표면 가까이 붙여 투영 오류를 방지합니다."
+  ],
+  "related": [
+    "Stencils and projection",
+    "Substance Painter baking mesh maps",
+    "Projection",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "6_8CCf6v-uM",
+      "title": "Warp Projection in Substance 3D Painter | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "UHSJc0G5fmo",
+      "title": "How to Use Warp Projection in Substance 3D Painter",
+      "author": "Destiny Rose"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Warp%20projection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Assets",
+    "Projection",
+    "Viewport",
+    "Warp"
+  ],
+  "at": "2026-11-11T02:05:05.664113+00:00"
+}
