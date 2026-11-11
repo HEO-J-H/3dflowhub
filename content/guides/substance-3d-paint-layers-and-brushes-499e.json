@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-paint-layers-and-brushes-499e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Paint layers and brushes",
+  "title": "Paint 레이어·브러시",
+  "summary": "Substance 3D Painter의 Paint Layers와 Brushes는 3D 모델 표면 위에 색상, 재질, 세부 디테일을 직접 그리고 수정할 수 있는 핵심 페인팅 도구입니다.",
+  "when": [
+    "모델 표면에 스크래치, 먼지, 오염 같은 웨어 앤 테어(Wear and Tear) 디테일을 직접 그려 넣을 때",
+    "이음새(Seam)나 특정 모서리에 하이라이트와 자연스러운 터치를 추가할 때",
+    "Fill Layer 위에 마스크를 얹고 브러시로 특정 영역만 지우거나 드러내어 세밀하게 보정할 때"
+  ],
+  "steps": [
+    "Texture Set List 패널에서 페인팅을 진행할 텍스처 세트를 선택합니다.",
+    "Layers 패널 하단의 더하기 아이콘을 눌러 새 Paint Layer를 생성하거나 기존 Fill Layer에 마스크를 추가합니다.",
+    "Tool Bar(좌측)에서 Brush 도구를 선택합니다.",
+    "Properties - Paint 패널에서 Size, Flow, Opacity 등의 브러시 속성을 조절합니다.",
+    "Properties 패널의 Material 채널(Base Color, Roughness, Height 등)에서 칠할 속성을 켜거나 끕니다.",
+    "3D 뷰포트나 2D 뷰에 직접 드래그하여 텍스처를 그려 넣고 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Size",
+      "desc": "브러시 Viewport 크기를 조절합니다. (Hotkey: Ctrl + Mouse 우클릭 드래그)"
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 칠해지는 밀도와 속도를 조절하여 부드러운 겹치기 표현이 가능합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "브러시 스트로크 전체의 최대 불투명도를 결정합니다."
+    },
+    {
+      "name": "Spacing",
+      "desc": "브러시 자국이 찍히는 간격을 조절하여 점선이나 거친 자국을 방지합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "브러시 알파(Alpha) 형태의 회전 각도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 모서리 까진 흔적 표현하기",
+      "steps": [
+        "Fill Layer로 밝은 메탈 재질을 전체에 적용합니다.",
+        "그 위에 새 Paint Layer를 만들고 Base Color와 Roughness 채널만 활성화합니다.",
+        "어두운 색상이나 철판 색을 선택한 뒤, 모서리 위주로 브러시를 칠해 마모된 표현을 만듭니다."
+      ]
+    },
+    {
+      "title": "마스크를 이용한 특정 부위 오염 추가",
+      "steps": [
+        "먼지 색상의 Fill Layer를 생성합니다.",
+        "Fill Layer를 우클릭하고 Add Mask with Black을 선택해 레이어를 숨깁니다.",
+        "검은색 마스크를 선택한 상태에서 하얀색 브러시로 홈이나 구석진 곳을 문질러 먼지를 드러냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "채널이 꺼져 있어서 칠해도 아무 변화가 없음 → Properties 패널에서 Base Color나 Roughness 등 필요한 채널이 활성화되어 있는지 확인",
+    "지우개 대신 잘못 칠함 → 레이어를 새로 만들지 않고 작업해 수정이 어려움 → 항상 새 Paint Layer를 생성하여 비파괴 방식으로 작업"
+  ],
+  "related": [
+    "Fill Layer",
+    "Add Black Mask",
+    "Alpha",
+    "Texture Set List"
+  ],
+  "videos": [
+    {
+      "id": "bJ3XXrYWXWY",
+      "title": "Substance Painter - Paint Layers",
+      "author": "3D College"
+    },
+    {
+      "id": "Nid0b-eyFjY",
+      "title": "Substance Painter: BRUSH Controls (COMPREHENSIVE)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Paint%20layers%20and%20brushes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture Set List",
+    "Layers",
+    "Paint Layer",
+    "Fill Layer"
+  ],
+  "at": "2026-11-11T00:14:45.549018+00:00"
+}

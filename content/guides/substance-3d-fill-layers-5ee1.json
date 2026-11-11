@@ -1,0 +1,96 @@
+{
+  "id": "substance-3d-fill-layers-5ee1",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Fill layers",
+  "title": "Fill 레이어",
+  "summary": "Substance 3D Painter의 Fill Layer는 텍스처와 재질을 비파괴 방식으로 채워 넣는 핵심 레이어입니다. 모델 전체에 균일한 머티리얼을 적용하거나 프로시절 패턴을 입힐 때 사용합니다.",
+  "when": [
+    "메탈, 플라스틱, 가죽 등 기본 재질을 오브젝트 전체에 깔끔하게 입힐 때",
+    "Smart Mask나 Black Mask를 조합하여 특정 부분에만 웨어 앤 테어(마모) 효과를 줄 때",
+    "Height나 Normal 채널을 활용해 표면에 미세한 요철이나 흠집을 균일하게 넣을 때"
+  ],
+  "steps": [
+    "Layers 패널 하단의 더하기(+) 아이콘을 클릭합니다.",
+    "메뉴에서 Add Fill Layer를 선택해 새 필 레이어를 생성합니다.",
+    "Assets 패널이나 기본 머티리얼 목록에서 원하는 소재를 드래그하여 Layers 패널의 Fill Layer 슬롯에 올립니다.",
+    "Properties 패널에서 Base Color, Roughness, Metallic 등의 채널을 체크하거나 해제하여 필요한 속성만 남깁니다.",
+    "필요한 경우 Fill Layer 우클릭 후 Add Mask를 선택하여 마스크를 생성하고 브러시로 칠해 영역을 조절합니다.",
+    "Viewport에서 재질이 모델 전체에 알맞게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 색상이나 텍스처를 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기(매끄러움 정도)를 조절하여 반사 광택을 바꿉니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속성을 조절하여 0은 비금속, 1은 완전한 금속으로 만듭니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "입체적인 요철 정보를 추가하여 표면의 미세한 굴곡을 표현합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "높낮이 정보를 주어 실루엣에 영향을 주거나 Normal과 함께 깊이감을 만듭니다."
+    },
+    {
+      "name": "UV Scale / Tiling",
+      "desc": "텍스처 패턴의 반복 횟수와 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 바디에 기본 페인트 칠하기",
+      "steps": [
+        "Layers 패널에서 Add Fill Layer를 클릭하여 새 레이어를 만듭니다.",
+        "Properties 패널의 Base Color 색상을 원하는 도색 색상으로 바꿉니다.",
+        "Roughness 값을 조절하여 반짝이는 광택 또는 무광 페인트 느낌을 설정합니다."
+      ]
+    },
+    {
+      "title": "Tiling 패턴으로 카본 파이버 질감 만들기",
+      "steps": [
+        "Fill Layer를 추가하고 Assets에서 카본 패턴 머티리얼을 드래그해 넣습니다.",
+        "Properties 패널의 UV Scale 값을 높여서 격자 패턴의 크기를 조밀하게 만듭니다.",
+        "Normal 채널과 Roughness 채널을 통해 입체적인 직조감을 극대화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필요 없는 채널이 켜져 있어 다른 레이어의 텍스처를 덮어씁니다. → Properties 패널에서 사용하지 않는 채널 체크를 해제합니다.",
+    "패턴 크기가 너무 크거나 작게 나옵니다. → Properties 패널에서 UV Scale 또는 Projection 방식을 Tri-planar로 변경합니다."
+  ],
+  "related": [
+    "Paint Layer",
+    "Black Mask",
+    "Smart Mask",
+    "Anchor Point"
+  ],
+  "videos": [
+    {
+      "id": "5IlMfx2ybpA",
+      "title": "Substance Painter - Fill Layers",
+      "author": "3D College"
+    },
+    {
+      "id": "oTSzGIVXJgQ",
+      "title": "2.  Substance Painter   Fill Layers and PBR Properties",
+      "author": "Sunderland NextGen"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Fill%20layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "Add Fill Layer"
+  ],
+  "at": "2026-11-11T00:14:41.376887+00:00"
+}

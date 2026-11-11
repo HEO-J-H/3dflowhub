@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-smart-materials-9a93",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Smart Materials",
+  "title": "Smart Material",
+  "summary": "Substance 3D Painter의 Smart Materials는 메쉬의 곡률, 두께, AO 등을 인식해 녹, 먼지, 긁힘 등의 마모 효과를 자동으로 적용하는 지능형 재질입니다.",
+  "when": [
+    "금속 표면에 자연스러운 철골 부식이나 녹슨 표현을 빠르게 넣고 싶을 때",
+    "하드서페이스 모델 모서리에 페인트 까짐이나 스크래치 디테일을 추가할 때",
+    "다양한 오브젝트에 일관된 텍스처 스타일과 마모 효과를 통일감 있게 적용할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러온 뒤, Texture Set Settings에서 Bake Mesh Maps를 눌러 맵을 베이킹합니다.",
+    "오른쪽 Assets 패널의 Filter 아이콘에서 Smart Materials(sM)를 선택합니다.",
+    "원하는 Smart Material(예: Rust, Damaged Paint)을 Mouse로 드래그하여 Viewport의 모델이나 Layer 패널에 드롭합니다.",
+    "Layer 패널에서 Smart Material 폴더를 펼치고 하위 레이어나 마스크(Mask)를 선택합니다.",
+    "Properties 패널에서 파라미터를 조절하여 마모의 강도나 범위, 색상을 수정하고 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Bake Mesh Maps",
+      "desc": "Smart Material이 표면 굴곡을 인식하도록 Curvature, Normal 등의 맵을 추출하는 기능입니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "재질 표면의 거칠기를 조절하여 빛의 반사율을 바꿉니다."
+    },
+    {
+      "name": "Color",
+      "desc": "베이스 머티리얼의 기본 색상을 변경합니다."
+    },
+    {
+      "name": "Wear Level",
+      "desc": "모서리와 틈새에 적용되는 마모 및 부식 효과의 전체 양을 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "재질에 포함된 노이스나 패턴의 반복 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 장갑의 모서리 페인트 까짐 표현",
+      "steps": [
+        "Mesh Maps Baking을 완료합니다.",
+        "Assets에서 Damaged Paint 계열 Smart Material을 모델에 드래그하여 올립니다.",
+        "Properties에서 마모 레벨을 높여 모서리 부분에 금속 하부층이 드러나도록 조절합니다."
+      ]
+    },
+    {
+      "title": "철제 파이프의 자연스러운 녹 발생 표현",
+      "steps": [
+        "철 재질이 적용된 파이프 모델에 Rust Smart Material을 적용합니다.",
+        "마스크 채널을 확인하며 파이프 굴곡과 틈새에 녹이 자연스럽게 고이도록 세부 파라미터를 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mesh Maps를 베이킹하지 않고 Smart Materials를 적용함 → 효과가 올바르게 나타나지 않으므로 Texture Set Settings에서 반드시 맵을 먼저 베이킹하세요.",
+    "UV 구분이 잘못되었거나 겹쳐 있음 → 마모 효과가 왜곡되거나 한쪽으로 쏠리므로 UV를 정리하고 다시 베이킹하세요."
+  ],
+  "related": [
+    "Smart Masks",
+    "Bake Mesh Maps",
+    "Generators",
+    "Layers"
+  ],
+  "videos": [
+    {
+      "id": "AJT4S_DBKqg",
+      "title": "Your Own Smart Materials - Beginner Substance Painter Tutorial",
+      "author": "ProductionCrate"
+    },
+    {
+      "id": "a25UX1YH20M",
+      "title": "Substance Painter: Smart Materials (EXPLAINED!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Smart%20Materials",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Assets",
+    "Filter",
+    "Smart Materials"
+  ],
+  "at": "2026-11-11T00:14:49.623421+00:00"
+}
