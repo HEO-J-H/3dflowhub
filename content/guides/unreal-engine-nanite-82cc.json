@@ -5,11 +5,11 @@
   "group": "렌더링",
   "name": "Nanite",
   "title": "Unreal Engine Nanite 기초 가이드",
-  "summary": "Nanite은 지오메트리 데이터를 축소하지 않고 영화 수준의 고밀도 폴리곤 에셋을 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 막대한 폴리곤 수에도 퍼포먼스 저하를 줄여주며, 최근에는 PCG(Procedural Content Generation) 툴과의 연동을 통해 대규모 자연 환경 구축의 필수 워크플로로 자리 잡았습니다.",
+  "summary": "Nanite은 지오메트리 데이터를 축소하지 않고 영화 수준의 고밀도 폴리곤 에셋을 실시간으로 렌더링하는 Unreal Engine의 가상화 지오메트리 시스템입니다. 막대한 폴리곤 수에도 퍼포먼스 저하를 줄여주며, 최근에는 Nanite Assemblies와 SpeedTree 연동을 통해 중간 DCC 단계 없이 복잡한 침엽수와 식생 에셋을 직접 다루는 대규모 자연 환경 구축의 필수 워크플로로 자리 잡았습니다.",
   "when": [
     "수백만 개의 폴리곤을 가진 고해상도 스컬프팅 에셋을 게임 엔진에 그대로 임포트할 때",
     "배경 에셋의 뷰 거리(LOD) 전환 없이 먼 거리에서도 선명하고 매끄러운 디테일을 유지하고 싶을 때",
-    "트리나 바위 같은 복잡한 자연물 군집을 대규모로 배치하여 압도적인 밀도를 구현할 때"
+    "Nanite Assemblies와 SpeedTree 등을 연동해 침엽수나 복잡한 식생 같은 고밀도 자연물 군집을 중간 DCC 과정 없이 대규모로 배치할 때"
   ],
   "steps": [
     "Content Browser에서 Nanite를 적용할 Static Mesh 에셋을 더블 클릭하여 에디터를 엽니다.",
@@ -56,18 +56,19 @@
       ]
     },
     {
-      "title": "PCG와 Nanite Foliage를 활용한 대규모 숲 구축",
+      "title": "Nanite Assemblies와 SpeedTree를 활용한 침엽수 숲 구축",
       "steps": [
-        "고밀도 폴이지(식생) 에셋들에 Nanite를 일괄 활성화합니다.",
-        "Unreal Engine의 PCG(Procedural Content Generation) 툴을 열어 지형 규칙을 설정합니다.",
-        "절차적 규칙에 따라 대규모 숲과 자연물을 자연스럽게 자동 배치합니다.",
-        "멀리서도 LOD 전환 없이 프레임 드랍 없이 렌더링되는 대형 오픈월드 환경을 확인합니다."
+        "SpeedTree 등의 식생 에셋을 중간 DCC 단계 없이 Unreal Engine으로 직접 임포트합니다.",
+        "식생 에셋에 Nanite Assemblies 설정을 적용하여 복잡한 나뭇잎과 줄기 구조를 처리합니다.",
+        "바람에 흔들리는 애니메이션과 양방향 머티리얼 인터랙션을 최적화 설정과 함께 적용합니다.",
+        "LOD 전환 없이 대규모 침엽수 숲 환경을 고밀도로 렌더링합니다."
       ]
     }
   ],
   "mistakes": [
     "반투명(Translucent) 머티리얼에 Nanite 적용 → Nanite는 현재 기본적으로 오파크(Opaque) 및 마스크드(Masked) 머티리얼을 지원하므로 머티리얼 블렌드 모드를 확인하세요.",
-    "스켈레탈 메쉬(Skeletal Mesh)에 적용 시도 → Nanite는 스태틱 메쉬 전용이므로 애니메이션이 필요한 캐릭터에는 사용할 수 없습니다."
+    "스켈레탈 메쉬(Skeletal Mesh)에 적용 시도 → Nanite는 스태틱 메şi 전용이므로 애니메이션이 필요한 캐릭터에는 사용할 수 없습니다.",
+    "복잡한 식생 적용 시 양방향 머티리얼 인터랙션 및 바람 애니메이션 미조정 → 초목에 Nanite를 적용할 때는 성능 저하를 방지하기 위해 머티리얼과 애니메이션 설정을 별도로 최적화해야 합니다."
   ],
   "related": [
     "Lumen",
@@ -109,18 +110,24 @@
       "source_keys": [
         "p:2026-10-22-c601756d8ff3fa5a"
       ]
-    }
-  ],
-  "refresh_with": [
-    {
-      "key": "p:2026-11-09-0bc887c1180bf99b",
-      "title": "Unreal Engine 5 Alpine Forest 프로젝트와 Nanite 식생 제작",
-      "url": "https://80.lv/articles/creating-realistic-mountain-scene-with-custom-unreal-engine-5-tool/"
     },
     {
-      "key": "p:2026-11-10-97608abe4d28eb16",
-      "title": "Unreal Engine 5 초목 제작 맞춤형 워크플로",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd3hQdUgxTGVIbWRHMVRnZUdtd2hzVXg1Q3dVSWNkQW9lV3hRcVdmV1d3LXE4S1pxYk85WWpsOXdqbFNUQ1BlQ3c2blZIZjRiSDN6M3FwZHYyUnFvYTRpdm1OZDhJQXdLYUFrdjlweC1UVWxyMFFFQmg0eUxnTjFoTzhaek8wdE11MGNVU2Vfc005dzg?oc=5"
+      "at": "2026-11-11T08:58:16+00:00",
+      "what": "최신 Unreal Engine 5 환경에서 Nanite Assemblies와 SpeedTree를 연동하여 복잡한 식생 및 침엽수 숲을 구축하는 워크플로 내용과 초목 제작 시 성능 최적화 요소를 반영했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 5 Alpine Forest 프로젝트와 Nanite 식생 제작",
+          "url": "https://80.lv/articles/creating-realistic-mountain-scene-with-custom-unreal-engine-5-tool/"
+        },
+        {
+          "title": "Unreal Engine 5 초목 제작 맞춤형 워크플로",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd3hQdUgxTGVIbWRHMVRnZUdtd2hzVXg1Q3dVSWNkQW9lV3hRcVdmV1d3LXE4S1pxYk85WWpsOXdqbFNUQ1BlQ3c2blZIZjRiSDN6M3FwZHYyUnFvYTRpdm1OZDhJQXdLYUFrdjlweC1UVWxyMFFFQmg0eUxnTjFoTzhaek8wdE11MGNVU2Vfc005dzg?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-09-0bc887c1180bf99b",
+        "p:2026-11-10-97608abe4d28eb16"
+      ]
     }
   ]
 }

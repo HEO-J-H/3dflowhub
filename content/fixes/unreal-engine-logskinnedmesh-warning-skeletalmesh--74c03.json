@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logskinnedmesh-warning-skeletalmesh--74c03",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogSkinnedMesh: Warning: SkeletalMesh has degenerate triangles on LOD 0",
+  "title": "LogSkinnedMesh: Warning: SkeletalMesh has degenerate triangles on LOD 0",
+  "summary": "Unreal Engine에서 스켈레탈 메시(Skeletal Mesh)의 LOD 0에 면적으로 계산되지 않는 퇴화된 삼각형(degenerate triangles)이 포함되어 있을 때 발생하는 경고 메시지입니다. 렌더링이나 물리 연산 오류, 혹은 스킨닝 왜곡을 유발할 수 있습니다.",
+  "causes": [
+    "3D 모델링 툴에서 FBX Export 시 폴리곤 구조가 찌그러졌거나 면의 정점(Vertex)들이 한 점 또는 선으로 겹쳐진 경우",
+    "아주 미세한 크기의 삼각형이나 0의 면적을 가진 폴리곤이 Import 과정에서 그대로 유지된 경우",
+    "Unreal Engine 내부의 LOD 생성 알고리즘이 복잡한 지오메트리를 단순화하다가 비정상적인 삼각형을 만든 경우"
+  ],
+  "steps": [
+    "Content Browser에서 문제가 발생한 Skeletal Mesh 에셋을 더블 클릭하여 Skeletal Mesh Editor를 엽니다.",
+    "Details 패널에서 Import Settings 또는 LOD Settings 섹션을 찾습니다.",
+    "Build Settings에서 'Recompute Normals' 및 'Recompute Tangents' 옵션을 켜고 Apply Changes를 클릭합니다.",
+    "원인이 된 소스 3D DCC(Blender, Maya 등) 툴에서 해당 모델의 LOD 0 메시를 열고 Merge by Distance 또는 Delete Loose/Degenerate Faces 기능을 사용해 중복 정점과 깨진 면을 정리합니다.",
+    "문제가 해결된 FBX 파일을 다시 익스포트하여 Unreal Engine에서 Reimport 합니다."
+  ],
+  "check": [
+    "Output Log에서 해당 에셋에 대한 'LogSkinnedMesh: Warning: SkeletalMesh has degenerate triangles' 경고 문구가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport에서 스켈레탈 메시에 왜곡이나 깨짐 없이 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "FBX로 익스포트하기 전 3D DCC 툴에서 Mesh Clean-up(정점 합치기, 0 면적 페이스 제거)을 정기적으로 수행합니다.",
+    "Unreal Engine으로 임포트할 때 자동 생성되는 LOD 설정의 임계값을 조정하여 비정상적인 폴리곤 생성을 방지합니다."
+  ],
+  "keywords": [
+    "SkeletalMesh degenerate triangles",
+    "LogSkinnedMesh Warning",
+    "Unreal 스켈레탈 메시 경고",
+    "degenerate triangles 해결",
+    "스켈레탈 메시 깨짐"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T08:57:53+00:00"
+}

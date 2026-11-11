@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-pie-error-blueprint-runtime-error-in-a95ed",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "PIE error: Blueprint Runtime Error: Infinite loop detected in Blueprint graph",
+  "title": "PIE error: Blueprint Runtime Error: Infinite loop detected in Blueprint graph",
+  "summary": "Unreal Engine에서 블루프린트 실행(PIE) 중 While Loop나 For Loop 등의 반복문 노드에서 무한 루프가 감지되었을 때 발생하는 런타임 오류입니다. 엔진이 멈추는(Hang) 현상을 방지하기 위해 강제로 실행을 중단시키고 로그를 출력합니다.",
+  "causes": [
+    "While Loop 노드의 조건문(Condition)이 항상 True로 유지되어 종료되지 않는 경우",
+    "루프 내부에서 인덱스(Index) 값을 증가시키거나 감소시키는 로직이 누락된 경우",
+    "복잡한 매크로(Macro)나 함수 내부에서 의도치 않게 자기 자신을 계속 호출하거나 순환 구조가 형성된 경우"
+  ],
+  "steps": [
+    "Output Log 패널에서 오류가 발생한 블루프린트 에셋 이름과 노드(Node)의 링크를 클릭하여 문제의 위치로 이동합니다.",
+    "그래프에서 While Loop 또는 For Loop 노드와 연결된 Condition 핀 및 인덱스 변수 갱신 로직을 확인합니다.",
+    "루프 내부 마지막 실행선(Execution Wire)에 연결된 로직이 반복 횟수나 종료 조건을 정상적으로 변화시키는지 검토합니다.",
+    "조건이 영구적으로 참이 될 수밖에 없는 구조라면 분기(Branch) 조건이나 카운터 제한(Max Loop Count) 로직을 추가합니다.",
+    "컴파일(Compile) 후 저장하고 다시 플레이(Play)하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "더 이상 Output Log에 'Infinite loop detected' 경고가 나타나지 않고 게임 플레이가 멈춤 없이 정상 진행됩니다.",
+    "반복문이 포함된 블루프린트를 실행했을 때 의도한 횟수만큼만 연산이 수행됩니다."
+  ],
+  "prevent": [
+    "While Loop 사용 시 반드시 종료 조건을 명확히 설정하고, 갱신 누락으로 인한 무한 대기 상태가 발생하지 않도록 주의합니다.",
+    "대량의 연산이 필요한 경우 단일 틱(Tick)에서 처리하기보다 여러 프레임에 걸쳐 나누어 처리(Latent Action 등 활용)하는 것을 고려합니다."
+  ],
+  "keywords": [
+    "Unreal 무한루프 오류",
+    "블루프린트 런타임 에러",
+    "Infinite loop detected",
+    "While Loop 멈춤",
+    "BP 반복문 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T08:58:02+00:00"
+}
