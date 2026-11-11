@@ -1,0 +1,87 @@
+{
+  "id": "substance-3d-baking-with-cage-8ba4",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Baking with cage",
+  "title": "Cage로 Baking",
+  "summary": "Substance 3D Painter에서 하이 폴리곤 모델의 디테일을 로우 폴리곤에 투영할 때, 케이지(Cage)를 사용하여 오류 없이 정확한 노멀 맵과 텍스처를 구워내는 기능입니다.",
+  "when": [
+    "복잡한 하이 폴리곤의 돌출부가 로우 폴리곤 표면을 벗어나 잘릴 때",
+    "맞닿은 면이나 각진 모서리에 프로젝션 오류(레이 빗나감 현상)가 발생할 때",
+    "모델 전체의 일괄적인 Max Front/Back Front 값으로는 디테일 조절이 어려울 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 로우 폴리곤 모델을 불러옵니다.",
+    "Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭하여 Bake 창을 엽니다.",
+    "Common 탭의 High Definition Meshes 항목에 하이 폴리곤 모델을 연결합니다.",
+    "Bake Settings 탭의 Cage 항목을 활성화하거나 외부에서 제작한 케이지 파일을 불러옵니다.",
+    "Viewport에서 직접 케이지의 외형을 조절하거나 Max Front/Back Front 파라미터를 미세 조정합니다.",
+    "오른쪽 하단의 Bake 버튼을 클릭하여 텍스처 투영 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cage",
+      "desc": "프로젝션 레이가 발사되는 범위를 결정하는 외부 껍질(케이지)을 활성화하거나 지정합니다."
+    },
+    {
+      "name": "Max Front/Back Front",
+      "desc": "케이지를 사용하지 않을 때 레이가 뻗어 나가는 기본 전방 및 후방 거리 한계값입니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노멀 벡터를 부드럽게 평균화하여 이음새를 줄여줍니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "서로 마주보는 폴리곤 사이에서 잘못된 투영이 일어나는 것을 방지합니다."
+    },
+    {
+      "name": "Relative to Bounding Box",
+      "desc": "모델의 전체 크기에 비례하여 레이의 거리 단위를 백분율로 계산합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "돌출된 볼트와 리벳 표현",
+      "steps": [
+        "로우 폴리곤에 볼트가 파묻히지 않도록 케이지 범위를 바깥쪽으로 확장합니다.",
+        "Viewport에서 왜곡된 부분이 없는지 확인하고 Bake를 실행합니다."
+      ]
+    },
+    {
+      "title": "기계 부품의 깊은 홈과 틈새",
+      "steps": [
+        "좁은 틈새에 레이가 엉뚱한 면을 타격하지 않도록 케이지 간격을 좁게 맞춥니다.",
+        "Ignore Backface 옵션을 켜고 Baking을 수행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "케이지가 너무 좁아 하이 폴리곤을 감싸지 못함 → 모델 바깥쪽으로 케이지 크기를 키우거나 Max Front 값을 늘립니다.",
+    "서브디비전 차이로 인한 표면 깨짐 현상 → Normal Map의 Average Normals 옵션을 켜고 다시 베이크합니다."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Normal Map",
+    "Ambient Occlusion",
+    "High Definition Meshes"
+  ],
+  "videos": [
+    {
+      "id": "cAluGnsJ4-E",
+      "title": "🦜Baking Just Got 10x Easier! New Substance Painter Feature",
+      "author": "Virtus"
+    },
+    {
+      "id": "dnSN3MpGHSY",
+      "title": "Baking Auto-Cage in Painter",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Baking%20with%20cage",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:04:53.280353+00:00"
+}

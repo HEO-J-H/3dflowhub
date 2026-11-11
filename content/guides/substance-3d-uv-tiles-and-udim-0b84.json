@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-uv-tiles-and-udim-0b84",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "UV Tiles and UDIM",
+  "title": "UDIM 작업",
+  "summary": "Substance 3D Painter에서 UV Tiles(UDIM)를 활용해 여러 장의 고해상도 텍스처를 하나의 오브젝트에 효율적으로 나누어 배치하고 렌더링하는 방법입니다. 고밀도 모델의 텍스처 Resolution 저하 문제를 해결합니다.",
+  "when": [
+    "캐릭터나 대형 환경 오브젝트의 텍스처 Resolution를 극대화하고 싶을 때",
+    "하나의 UV 맵 공간(0-1)에 모든 파트를 담기에는 폴리곤이 너무 많고 복잡할 때",
+    "Substance 3D Painter와 외부 3D DCC(Blender, Maya 등) 간 UDIM 기반 텍스처 워크플로우를 구축할 때"
+  ],
+  "steps": [
+    "외부 3D DCC에서 모델링의 UV를 UDIM 타일 영역(1001, 1002 등)에 나누어 배치하고 FBX 또는 OBJ 파일로 내보냅니다.",
+    "Substance 3D Painter를 실행하고 File > New를 클릭하여 새 프로젝트 창을 엽니다.",
+    "Select 버튼을 눌러 UDIM으로 설정된 3D 모델 파일을 불러옵니다.",
+    "Texture Set Size에서 기본 텍스처 Resolution를 선택하고, 'Use UV Tile workflow' 옵션이 활성화되었는지 확인합니다.",
+    "OK 버튼을 눌러 프로젝트를 생성한 후, Texture Set List 패널에서 각 UDIM 타일별로 분리된 텍스처 세트를 확인합니다.",
+    "Layers 패널과 3D Viewport에서 각 UDIM 타일에 맞게 텍스처 페인팅을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Use UV Tile workflow",
+      "desc": "오브젝트의 UDIM(UV Tiles) 구조를 인식하여 여러 장의 텍스처 세트로 관리합니다."
+    },
+    {
+      "name": "Texture Set Size",
+      "desc": "각 UDIM 타일별 기본 텍스처 Resolution(예: 2048, 4096)를 설정합니다."
+    },
+    {
+      "name": "Texture Set List",
+      "desc": "프로젝트 내에 존재하는 개별 UDIM 타일 목록을 표시하고 선택합니다."
+    },
+    {
+      "name": "Bake Mesh Maps",
+      "desc": "UDIM 타일 간의 간섭을 방지하며 Normal, Ambient Occlusion 등의 메쉬맵을 베이킹합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "고해상도 캐릭터 아머 텍스처링",
+      "steps": [
+        "투구, 상체 갑옷, 하체 갑옷의 UV를 각각 1001, 1002, 1003 타일에 분산 배치합니다.",
+        "Substance 3D Painter에서 UDIM 워크플로우로 파일을 불러옵니다.",
+        "각 파트별 Texture Set을 선택하여 세부적인 흠집과 재질감을 다르게 페인팅합니다."
+      ]
+    },
+    {
+      "title": "대형 건물 외벽 제작",
+      "steps": [
+        "건물의 좌측, 우측, 중앙 외벽 구조물의 UV를 UDIM 타일에 나누어 정렬합니다.",
+        "Texture Set List에서 타일별로 콘크리트와 벽돌 Smart 머티리얼을 적용합니다.",
+        "Export Textures에서 UDIM 타일 규칙에 맞게 텍스처 맵들을 일괄 Export 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UDIM 타일 번호가 1001부터 시작하지 않거나 겹침 → 3D DCC의 UV 에디터에서 타일 좌표와 겹침 여부를 다시 확인하고 재정렬합니다.",
+    "Substance 3D Painter에서 UDIM 옵션을 켜지 않음 → 프로젝트를 새로 만들고 'Use UV Tile workflow' 체크박스를 활성화합니다."
+  ],
+  "related": [
+    "Blender UDIM",
+    "UV Master",
+    "Bake Mesh Maps",
+    "Export Textures"
+  ],
+  "videos": [
+    {
+      "id": "PJQpB_q4Yl0",
+      "title": "Creating a UV Tile (UDIMs) Substance Painter Project | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "YbZvyvhX7PM",
+      "title": "UV Tile mask and painting across UV Tiles (UDIMs) | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20UV%20Tiles%20and%20UDIM",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D DCC",
+    "UV",
+    "UDIM",
+    "FBX",
+    "OBJ"
+  ],
+  "at": "2026-11-11T01:04:44.777402+00:00"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-baking-ambient-occlusion-and-curvature-d5d1",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Baking ambient occlusion and curvature",
+  "title": "AO·Curvature 굽기",
+  "summary": "Substance 3D Painter에서 하이 폴리곤 모델의 디테일을 로우 폴리곤에 투영하고 곡률과 오클루전 정보를 계산하여 Smart 마스크의 기반이 되는 맵을 추출하는 기능입니다.",
+  "when": [
+    "로우 폴리곤 모델에 하이 폴리곤의 세밀한 디테일과 입체감을 노멀 맵으로 넣고 싶을 때",
+    "모서리 긁힘이나 먼지 쌓임 같은 마모 효과를 주는 Smart Masks를 사용하기 전",
+    "모델의 구부러진 틈새와 음영을 강조하는 Ambient Occlusion 맵을 생성할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에 로우 폴리곤 OBJ 또는 FBX 파일을 불러옵니다.",
+    "오른쪽 Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭합니다.",
+    "Bake Mesh Maps 창이 뜨면 High Definition Meshes 항목에서 Select 버튼을 눌러 하이 폴리곤 파일을 불러옵니다.",
+    "Common 탭과 각 맵 탭(Ambient Occlusion, Curvature 등)에서 Resolution와 세부 옵션을 설정합니다.",
+    "창 아래쪽의 Bake [Texture Set Name] 버튼을 클릭하여 Baking을 실행합니다.",
+    "Viewport와 Texture Set List에서 맵이 올바르게 생성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "추출할 텍스처의 Resolution를 설정하며, 높을수록 디테일이 선명해집니다."
+    },
+    {
+      "name": "High Definition Meshes",
+      "desc": "디테일을 가져올 하이 폴리곤 메쉬 파일을 지정합니다."
+    },
+    {
+      "name": "Max Front/Rear Distance",
+      "desc": "하이 폴리곤과 로우 폴리곤 사이의 투영 거리를 조절하여 오류를 줄입니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "오목한 부분의 그림자 정보를 계산하여 어두운 음영 맵을 생성합니다."
+    },
+    {
+      "name": "Curvature",
+      "desc": "모델의 모서리와 홈을 분석하여 엣지 마스크의 기준이 되는 맵을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 장비에 모서리 까임 표현하기",
+      "steps": [
+        "High Definition Meshes에 하이 폴리곤을 연결하고 Curvature 맵을 베이킹합니다.",
+        "Layers 패널에서 Fill Layer를 추가하고 재질을 철판으로 설정합니다.",
+        "Fill Layer에 Add Mask with Smart Mask를 추가하고 Edge Scratches를 선택합니다."
+      ]
+    },
+    {
+      "title": "기계 틈새에 먼지 끼임 표현하기",
+      "steps": [
+        "Ambient Occlusion 맵이 포함된 상태로 Mesh Maps를 베이킹합니다.",
+        "새로운 Fill Layer를 만들고 먼지 색상의 베이스 컬러를 지정합니다.",
+        "Smart Mask에서 Dust 계열을 적용하여 오목한 곳에만 먼지가 쌓이게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하이 폴리곤과 로우 폴리곤의 위치나 크기가 다름 → Maya나 Blender에서 두 모델의 원점(Origin)과 스케일을 먼저 일치시킵니다.",
+    "Baking 결과물에 검은색 깨짐(Artifact)이 발생함 → Max Front/Rear Distance 값을 조금씩 조절하여 투영 범위를 맞춥니다.",
+    "Smart 마스크가 모서리를 인식하지 못함 → Curvature 맵을 다시 베이킹했는지 Texture Set Settings를 확인합니다."
+  ],
+  "related": [
+    "Smart Masks",
+    "Ambient Occlusion",
+    "Curvature",
+    "Normal Map"
+  ],
+  "videos": [
+    {
+      "id": "nv9_0NUQyNI",
+      "title": "Ambient Occlusion Mask - Substance 3D Painter",
+      "author": "Alberto"
+    },
+    {
+      "id": "Rc3l1mcnLLk",
+      "title": "How to paint ambient occlusion in Substance Painter",
+      "author": "J 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Baking%20ambient%20occlusion%20and%20curvature",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "OBJ",
+    "FBX",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "High Definition Meshes"
+  ],
+  "at": "2026-11-11T01:04:49.011292+00:00"
+}
