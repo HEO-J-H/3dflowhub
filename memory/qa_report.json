@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-10T20:34:00+00:00",
-  "checked": 1269,
+  "at": "2026-11-11T02:34:59+00:00",
+  "checked": 1314,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -1158,11 +1158,39 @@
       "score": 9,
       "defects": [],
       "fix_hint": "ZBrush 오류 해결 가이드는 현재의 명확한 메뉴 경로와 해결 절차 형식을 계속 유지합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "zbrush-split-and-merge-subtools-af85",
+      "title": "Split·Merge",
+      "score": 9,
+      "defects": [],
+      "fix_hint": "ZBrush의 SubTool Split 및 Merge 기능 설명 시 공식 메뉴명과 단축키(Ctrl+W 등)를 정확하게 유지합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-wire-parameters-f092",
+      "title": "Wire Parameters — 값 연결",
+      "score": 3,
+      "defects": [
+        "제목은 'Wire Parameters(값 연결)'인데 본문 내용은 'Wire Modifier'라는 존재하지 않는 모디파이어에 대한 가이드임",
+        "3ds Max에는 Wire Modifier라는 기능이 없으며, Wire Parameters는 리깅/애니메이션에서 파라미터 간 연결을 설정하는 기능임",
+        "Cylinder에 와이어프레임 구조물을 만드는 기능은 Lattice 모디파이어의 역할이며 잘못된 메뉴 경로와 기능을 설명함"
+      ],
+      "fix_hint": "존재하지 않는 3ds Max 기능을 지어내어 작성하지 말고, 공식 기능인 Wire Parameters 또는 Lattice의 정확한 개념과 사용법을 검증한 뒤 작성하세요."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-modifier-stack-5e0c",
+      "title": "모디파이어 스택 — 순서·끄기·합치기",
+      "score": 9,
+      "defects": [],
+      "fix_hint": "모디파이어 스택의 기본 개념과 주요 버튼(Show End Result, Make Unique, Collapse 등)의 역할이 명확하게 잘 정리되어 있습니다."
     }
   ],
   "avg_score": 9.0,
   "low_by_kind": {
-    "guide": 1
+    "guide": 2
   },
   "redo_now": [
     "guide:houdini-polysplit-sop-f8b0"

@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-rust-and-dirt-workflow-49b3",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Rust and dirt workflow",
+  "title": "녹·먼지 표현",
+  "summary": "Substance 3D Painter의 Rust와 Dirt 워크플로우는 메쉬의 곡률과 오클루전 정보를 활용해 사실적인 녹과 먼지 오염을 자동으로 표현하는 기법입니다.",
+  "when": [
+    "오랫동안 방치되어 부식되거나 녹슨 금속 오브젝트를 표현할 때",
+    "비바람과 먼지에 노출된 야외 배경 에셋을 제작할 때",
+    "하드서페이스 모델의 모서리 마모와 자연스러운 사용감을 더할 때"
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Bake Mesh Maps를 클릭하여 Curvature와 Ambient Occlusion 맵을 먼저 베이킹합니다.",
+    "Layers 패널에서 Fill Layer를 추가하고 메탈릭과 러프니스 값을 조절하여 녹이나 먼지 재질의 기본 색상을 잡습니다.",
+    "추가한 Fill Layer에 우클릭 후 Add Mask with Generator를 선택합니다.",
+    "Properties 패널의 Generator 드롭다운에서 Rust 또는 Dirt를 선택합니다.",
+    "Balance와 Roughness 파라미터를 조절해 녹이나 먼지의 분포 범위와 밀도를 시각적으로 맞춥니다.",
+    "Viewport에서 모서리와 틈새에 오염이 자연스럽게 스며들었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Balance",
+      "desc": "오염이나 녹이 퍼져나가는 전체적인 양과 범위를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "녹과 먼지 영역의 표면 거칠기 값을 변경하여 광택을 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "오염 효과의 경계면을 선명하거나 부드럽게 조정합니다."
+    },
+    {
+      "name": "Grunge Amount",
+      "desc": "텍스처에 섞이는 불규칙한 얼룩과 노이즈의 강도를 정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "제너레이터에 사용되는 노이즈 패턴의 크기를 확대하거나 축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오래된 철제 파이프",
+      "steps": [
+        "어두운 갈색 계열의 Fill Layer를 생성합니다.",
+        "Add Mask with Generator로 Rust를 추가합니다.",
+        "Balance를 높여 파이프 이음새와 곡률 주변으로 녹이 슬게 만듭니다."
+      ]
+    },
+    {
+      "title": "방치된 기계 장치",
+      "steps": [
+        "회색 철판 재질 위에 먼지 색상의 Fill Layer를 올립니다.",
+        "Generator에서 Dirt를 선택합니다.",
+        "오목한 구멍과 틈새 위주로 먼지가 고여 있는 형태로 세팅합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬 맵 Baking을 누락함 → Generator가 곡률과 틈새를 인식하지 못하므로 Bake Mesh Maps를 먼저 실행합니다.",
+    "UV 경계선에 어색한 이음새가 생김 → Texture Set 설정에서 Seam 여부를 확인하고 페인팅 클론 브러시로 보정합니다.",
+    "모든 곳에 동일한 강도로 녹이 슬어 부자연스러움 → Mask의 Grunge Amount와 Contrast 값을 조절해 불규칙함을 더합니다."
+  ],
+  "related": [
+    "Smart Materials",
+    "Smart Masks",
+    "Generators",
+    "Fill Layer"
+  ],
+  "videos": [
+    {
+      "id": "2z2RM0zAWp8",
+      "title": "Substance Painter Tutorials for Beginners | 05 - Creating Rust and Dirt",
+      "author": "3DWolf"
+    },
+    {
+      "id": "gY6PIQ-XScc",
+      "title": "Substance 3D Painter Rust Effect with Smart Materials",
+      "author": "Wes McDermott"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Rust%20and%20dirt%20workflow",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Curvature",
+    "Ambient Occlusion",
+    "Layers",
+    "Fill Layer"
+  ],
+  "at": "2026-11-11T02:35:07.968628+00:00"
+}

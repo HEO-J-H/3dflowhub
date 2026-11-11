@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-hand-painted-stylized-texturing-2ef5",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Hand-painted stylized texturing",
+  "title": "손그림 스타일",
+  "summary": "Substance 3D Painter에서 손그림(Hand-painted) 스타일의 독창적인 스타일라이즈드 텍스처를 제작하는 기법입니다. 물리 기반 렌더링(PBR)을 넘어 브러시 터치감과 뚜렷한 명암을 강조하여 회화적인 질감을 표현합니다.",
+  "when": [
+    "게임이나 애니메이션에서 따뜻하고 아기자기한 핸드페인팅풍 비주얼을 만들 때",
+    "PBR 텍스처의 사실적인 금속·가죽 느낌 대신 손으로 그린 듯한 붓 자국과 엣지 하이라이트를 표현할 때",
+    "판타지나 카툰 랜더링(Toon Shading) 프로젝트에 어울리는 독창적인 재질감을 입힐 때"
+  ],
+  "steps": [
+    "Substance 3D Painter를 실행하고 File > New 메뉴를 통해 로우폴리 혹은 하이폴리 메시(OBJ, FBX)를 불러옵니다.",
+    "Texture Set Settings에서 텍스처 Resolution(예: 2048x2048)를 설정하고 Bake Mesh Maps를 클릭해 Normal, World Space Normal, Curvature 등의 맵을 베이크합니다.",
+    "Layers 패널에서 Fill Layer를 추가해 기본 베이스 컬러(Base Color)를 칠하고, 러프니스(Roughness)를 높여 반사광을 줄입니다.",
+    "새로운 Paint Layer를 추가하고 Brush 툴을 선택한 뒤, 자국이 남는 독특한 알파 브러시를 불러옵니다.",
+    "메시의 꺾이는 모서리(Edge) 부근에 밝은 색상으로 수동 하이라이트를 그려 넣고, 어두운 틈새에는 어조를 낮춘 섀도우를 터치합니다.",
+    "필요에 따라 Filter(예: Sharpen 또는 HSL Adjust)를 추가해 전체적인 색감과 톤을 정돈한 후 File > Export Textures로 결과물을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 채색과 손그림 톤을 결정하는 기본 컬러 채널입니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 손그림 고유의 매트하고 건조한 질감을 부여합니다."
+    },
+    {
+      "name": "Curvature",
+      "desc": "모서리와 굴곡을 인식하여 핸드페인팅의 하이라이트와 림 라이트를 더 쉽게 칠하도록 돕는 맵입니다."
+    },
+    {
+      "name": "Brush Alpha",
+      "desc": "브러시 끝자락의 형태를 제어해 거칠거나 부드러운 터치감을 만듭니다."
+    },
+    {
+      "name": "Flow / Opacity",
+      "desc": "브러시의 투명도와 칠해지는 속도를 조절하여 자연스러운 붓 자국을 냅니다."
+    },
+    {
+      "name": "Anchor Point",
+      "desc": "상위 레이어가 하위 레이어의 마스크나 효과를 실시간으로 참조하게 연결합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스타일라이즈드 목재 상자 제작",
+      "steps": [
+        "Base Color 레이어에 어두운 갈색을 채우고, Wood Normal 맵을 적용합니다.",
+        "Paint 레이어에서 밝은 베이지색 브러시로 나이테와 나무 결의 외곽선을 따라 붓질합니다.",
+        "Curvature 마스크를 활용해 모서리마다 밝은 하이라이트 페인팅을 더해 입체감을 살립니다."
+      ]
+    },
+    {
+      "title": "판타지 검(Sword) 날 핸드페인팅",
+      "steps": [
+        "메탈릭 값을 낮추고 짙은 푸른빛의 회색으로 베이스 컬러를 칠합니다.",
+        "검 날의 날(Edge) 부근을 따라 밝은 하늘색과 흰색 브러시로 얇고 선명한 엣지 라이트를 그려 넣습니다.",
+        "손잡이 가죽 부분에 진한 그림자 색상을 터치해 수작업 느낌을 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 맵(Curvature 등)을 베이크하지 않음 → 모서리 하이라이트 자동 마스킹이나 제너레이터 사용이 불가능하므로 반드시 먼저 베이크합니다.",
+    "러프니스 값을 너무 낮게 설정함 → 반사광이 지나치게 번들거려 핸드페인팅 고유의 매트하고 아기자기한 느낌이 사라지므로 러프니스를 높여줍니다.",
+    "모든 면을 동일한 명도로 칠함 → 입체감이 죽어 밋밋해지므로 빛이 닿는 위쪽은 밝게, 아래쪽은 어둡게 톤 차이를 확실히 줍니다."
+  ],
+  "related": [
+    "Substance 3D Designer",
+    "ZBrush",
+    "Unreal Engine",
+    "Blender"
+  ],
+  "videos": [
+    {
+      "id": "uVRdep73hCQ",
+      "title": "Substance Painter Stylized Hand Painted Texturing - Tutorial for Beginners",
+      "author": "Artscape"
+    },
+    {
+      "id": "cT5PJKMPTdg",
+      "title": "Stylized Textures Tutorial | Hand-Painted Style in Substance Painter",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Hand-painted%20stylized%20texturing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T02:35:13.460326+00:00"
+}

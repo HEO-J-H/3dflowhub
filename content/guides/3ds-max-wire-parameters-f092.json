@@ -97,5 +97,16 @@
     "Modify",
     "Modifier List"
   ],
-  "at": "2026-11-02T02:18:34.396446+00:00"
+  "at": "2026-11-02T02:18:34.396446+00:00",
+  "qa_at": "2026-11-11T02:34:58+00:00",
+  "qa": {
+    "score": 3,
+    "defects": [
+      "제목은 'Wire Parameters(값 연결)'인데 본문 내용은 'Wire Modifier'라는 존재하지 않는 모디파이어에 대한 가이드임",
+      "3ds Max에는 Wire Modifier라는 기능이 없으며, Wire Parameters는 리깅/애니메이션에서 파라미터 간 연결을 설정하는 기능임",
+      "Cylinder에 와이어프레임 구조물을 만드는 기능은 Lattice 모디파이어의 역할이며 잘못된 메뉴 경로와 기능을 설명함"
+    ],
+    "fix_hint": "존재하지 않는 3ds Max 기능을 지어내어 작성하지 말고, 공식 기능인 Wire Parameters 또는 Lattice의 정확한 개념과 사용법을 검증한 뒤 작성하세요."
+  },
+  "qa_redo": true
 }

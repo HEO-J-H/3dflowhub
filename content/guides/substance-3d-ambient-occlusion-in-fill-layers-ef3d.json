@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-ambient-occlusion-in-fill-layers-ef3d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Ambient occlusion in fill layers",
+  "title": "AO 활용",
+  "summary": "Substance 3D Painter의 Fill Layer에서 Ambient Occlusion을 활용하여 모서리 음영과 구석진 공간에 자연스러운 어두움을 실시간으로 표현하는 기법입니다.",
+  "when": [
+    "오브젝트의 틈새나 접합부에 자연스러운 그림자 효과를 더하고 싶을 때",
+    "Smart Mask나 Generator 없이 Fill Layer 단계에서 직접 마스킹을 제어하고 싶을 때",
+    "복잡한 지오메트리의 입체감을 빠르고 가볍게 강조하고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 모델을 불러오고 Texture Set Settings 패널에서 Bake Mesh Maps를 눌러 Ambient Occlusion 맵을 베이크합니다.",
+    "Layers 패널 하단의 Add fill layer 아이콘을 클릭하여 새로운 Fill Layer를 생성합니다.",
+    "Layers 패널에서 해당 Fill Layer의 마스크 아이콘 옆을 우클릭하고 Add mask with selection 또는 Add black mask를 선택합니다.",
+    "생성된 마스크를 우클릭하고 Add generator를 선택한 뒤 Ambient Occlusion을 고릅니다.",
+    "Properties 패널에서 AO 관련 파라미터(Distance, Contrast 등)를 조절하여 원하는 음영 영역을 맞춥니다.",
+    "Viewport에서 틈새와 구석에 그림자가 자연스럽게 드리워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "Ambient Occlusion이 미치는 거리 범위를 조절합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "그림자의 대비를 높여 어두운 부분을 더 진하게 만듭니다."
+    },
+    {
+      "name": "Level",
+      "desc": "효과의 전반적인 밝기와 강도를 조절합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "Ambient Occlusion의 밝고 어두운 영역을 반전시킵니다."
+    },
+    {
+      "name": "Balance",
+      "desc": "마스크가 적용되는 임계값의 균형을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 패널 틈새 먼지 표현",
+      "steps": [
+        "어두운 갈색 계열의 Fill Layer를 생성합니다.",
+        "Add generator로 Ambient Occlusion을 추가합니다.",
+        "Distance 값을 좁게 설정하여 패널 틈새에만 먼지가 낀 듯한 음영을 연출합니다."
+      ]
+    },
+    {
+      "title": "모서리 마모 및 깊이감 강조",
+      "steps": [
+        "기본 베이스 컬러 레이어 위에 Fill Layer를 얹습니다.",
+        "Invert 옵션을 켜서 오목한 곳 대신 볼록한 모서리나 전체적인 깊이감을 분리합니다.",
+        "Opacity를 낮추어 모델의 입체감을 부드럽게 살려줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬 맵을 베이크하지 않음 → Texture Set Settings에서 Bake Mesh Maps를 먼저 실행하여 AO 맵을 생성해야 합니다.",
+    "Distance 값이 너무 큼 → 그림자가 너무 넓게 퍼져 지저분해 보일 수 있으니 좁은 값부터 조절하세요.",
+    "스케일 적용 오류로 음영이 깨짐 → DCC 툴에서 Transform Freeze(Reset XForm)를 한 뒤 다시 불러와야 합니다."
+  ],
+  "related": [
+    "Ambient Occlusion",
+    "Smart Masks",
+    "Fill Layer",
+    "Bake Mesh Maps"
+  ],
+  "videos": [
+    {
+      "id": "nv9_0NUQyNI",
+      "title": "Ambient Occlusion Mask - Substance 3D Painter",
+      "author": "Alberto"
+    },
+    {
+      "id": "oTSzGIVXJgQ",
+      "title": "2.  Substance Painter   Fill Layers and PBR Properties",
+      "author": "Sunderland NextGen"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Ambient%20occlusion%20in%20fill%20layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Ambient Occlusion"
+  ],
+  "at": "2026-11-11T02:35:04.012619+00:00"
+}
