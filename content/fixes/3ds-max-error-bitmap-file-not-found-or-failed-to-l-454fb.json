@@ -1,0 +1,42 @@
+{
+  "id": "3ds-max-error-bitmap-file-not-found-or-failed-to-l-454fb",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: Bitmap file not found or failed to load image file",
+  "title": "Error: Bitmap file not found or failed to load image file",
+  "summary": "Error: Bitmap file not found or failed to load image file는 3ds Max가 머티리얼이나 매핑에서 지정한 비트맵 파일을 찾지 못하거나 읽어들이지 못했을 때 표시되는 메시지입니다.",
+  "causes": [
+    "텍스처 파일이 이동, 이름 변경 또는 삭제됨",
+    "파일 경로에 한글·공백·특수문자 등 비ASCII 문자 포함",
+    "지원되지 않는 포맷이거나 파일이 손상됨",
+    "프로젝트 폴더 구조가 바뀌어 상대 경로가 깨짐"
+  ],
+  "steps": [
+    "Material Editor (M) → 해당 머티리얼 선택 → 비트맵 슬롯 클릭 → Browse... 로 올바른 파일을 재지정",
+    "File > Asset Tracking 열고 Missing Files 탭에서 ‘Set Path’ 로 올바른 폴더를 지정",
+    "파일 경로를 절대 경로나 $PROJECT\\textures 와 같은 프로젝트 상대 경로로 수정",
+    "파일 형식이 .png, .jpg, .tga, .exr 등 3ds Max가 지원하는 포맷인지 확인하고, 파일이 손상되지 않았는지 미리 열어 보기",
+    "외부 드라이브에 있던 경우 드라이브를 연결하거나 로컬 디스크로 복사 후 경로를 업데이트",
+    "Material Editor에서 Reload 버튼을 눌러 텍스처를 새로 고침",
+    "씬을 저장하고 Render Setup에서 테스트 렌더를 수행"
+  ],
+  "check": [
+    "Viewport와 최종 렌더에 텍스처가 정상적으로 표시되는지 확인",
+    "Render Setup → Common 탭에서 ‘Bitmap file not found’ 경고가 사라졌는지 확인"
+  ],
+  "prevent": [
+    "프로젝트 시작 시 File > Set Project 로 프로젝트 폴더를 지정하고 Asset Tracking에 경로를 고정",
+    "텍스처는 프로젝트 내부 ‘textures’ 폴더에 보관하고 절대 경로 대신 $PROJECT 상대 경로 사용",
+    "지원되는 이미지 포맷(.png, .jpg, .tga, .exr 등)만 사용하고, 파일 이동·이름 변경 후에는 Asset Tracking으로 경로를 재설정"
+  ],
+  "keywords": [
+    "3ds Max 비트맵 파일 찾을 수 없음",
+    "Bitmap file not found 오류",
+    "텍스처 경로 깨짐 3ds Max",
+    "3ds Max 이미지 로드 실패",
+    "Asset Tracking 사용법"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T05:46:33+00:00"
+}

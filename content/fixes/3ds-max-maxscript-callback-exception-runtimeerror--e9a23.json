@@ -1,0 +1,39 @@
+{
+  "id": "3ds-max-maxscript-callback-exception-runtimeerror--e9a23",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript Callback Exception: RuntimeError: 3ds Max is not responding or busy",
+  "title": "MAXScript Callback Exception: RuntimeError: 3ds Max is not responding or busy",
+  "summary": "MAXScript Callback Exception: RuntimeError: 3ds Max is not responding or busy는 Script가 실행 중 UI가 응답하지 않을 때 콜백을 호출하려고 해서 발생합니다.",
+  "causes": [
+    "Script 내부에 무한 루프나 지나치게 긴 연산이 포함돼 UI가 차단된 경우",
+    "대용량 메쉬·복잡한 변형 등으로 3ds Max가 일시적으로 과부하된 경우",
+    "외부 플러그인·커스텀 툴바가 메인 스레드를 점유하고 있는 경우",
+    "콜백 등록 시 적절한 중단 처리(checkInterrupt) 없이 호출한 경우"
+  ],
+  "steps": [
+    "MAXScript Listener에서 **Esc** 키를 눌러 현재 실행 중인 Script를 중단합니다.",
+    "3ds Max를 **File → Exit** 후 다시 실행해 메모리를 초기화합니다.",
+    "문제 Script를 열어 루프·연산 부분에 **maxOps.checkInterrupt()** 혹은 **maxOps.yield()** 를 삽입해 UI가 주기적으로 응답하도록 수정합니다.",
+    "필요 시 무거운 연산을 **with progressBar** 블록 안에 넣어 진행 상황을 표시하고, 가능한 경우 **maxOps.executeOnMainThread** 로 분리합니다.",
+    "플러그인·툴바가 원인이라면 최신 버전으로 업데이트하거나 일시적으로 비활성화합니다."
+  ],
+  "check": [
+    "Script를 다시 실행했을 때 예외가 발생하지 않고, 3ds Max UI가 정상적으로 반응하는지 확인합니다."
+  ],
+  "prevent": [
+    "긴 연산 앞에 반드시 **maxOps.checkInterrupt()** 혹은 **maxOps.yield()** 를 넣어 UI 차단을 방지합니다.",
+    "가능하면 무거운 작업을 여러 단계로 나누어 진행하고, 진행 상황을 **progressBar** 로 표시합니다.",
+    "플러그인·커스텀 툴바는 최신 버전을 유지하고, 필요 시 로드 순서를 검토합니다."
+  ],
+  "keywords": [
+    "MAXScript Callback Exception",
+    "3ds Max 응답 없음",
+    "MAXScript 런타임 오류",
+    "Script 멈춤",
+    "MAXScript 콜백 예외"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T05:46:06+00:00"
+}

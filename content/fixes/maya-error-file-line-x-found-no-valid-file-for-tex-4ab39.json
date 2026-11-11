@@ -1,0 +1,42 @@
+{
+  "id": "maya-error-file-line-x-found-no-valid-file-for-tex-4ab39",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Found no valid file for texture node file1",
+  "title": "# Error: file: line X: Found no valid file for texture node file1",
+  "summary": "Maya가 파일 텍스처 노드에 지정된 이미지 파일을 찾지 못했을 때 나타나는 오류입니다.",
+  "causes": [
+    "텍스처 파일이 이동·삭제되어 경로가 잘못됨",
+    "파일 형식이 Maya가 지원하지 않는 경우",
+    "프로젝트 경로나 환경 변수가 올바르게 설정되지 않음",
+    "파일명에 공백·특수문자가 포함돼 인식되지 않음"
+  ],
+  "steps": [
+    "Windows → Rendering Editors → Hypershade 로 Hypershade 창을 엽니다",
+    "Attribute Editor에서 오류가 발생한 파일 텍스처 노드(file1)를 선택합니다",
+    "‘Image Name’(또는 ‘File Texture Name’) 필드 옆의 Browse 버튼을 눌러 실제 존재하는 이미지 파일을 선택합니다",
+    "파일이 프로젝트 폴더 안에 있으면 Windows → Projects → Set Project 로 프로젝트 경로를 재설정합니다",
+    "파일 형식이 .jpg, .png, .tif, .exr 등 Maya가 지원하는 포맷인지 확인합니다",
+    "파일명에 공백·특수문자가 있으면 영문·숫자·_ 로만 구성된 이름으로 변경하고 다시 지정합니다",
+    "씬을 저장하고 Maya를 재시작하거나 파일을 다시 열어 오류가 사라졌는지 확인합니다"
+  ],
+  "check": [
+    "Viewport·Render View(Arnold 등)에서 텍스처가 정상적으로 표시되는지 확인합니다",
+    "Script Editor에 동일 오류 메시지가 더 이상 출력되지 않는지 확인합니다"
+  ],
+  "prevent": [
+    "텍스처 파일을 프로젝트 폴더 내부에 보관하고 상대 경로를 사용합니다",
+    "파일명은 영문·숫자·_ 만 사용하고 공백·특수문자를 피합니다",
+    "씬을 다른 PC에 옮길 때 Windows → File → Archive Scene 으로 전체 파일을 패키징합니다"
+  ],
+  "keywords": [
+    "Maya 텍스처 파일 오류",
+    "Found no valid file for texture node",
+    "Maya 파일 텍스처 노드 경로 문제",
+    "Maya 텍스처 연결 실패",
+    "Maya 텍스처 찾을 수 없음"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T05:46:59+00:00"
+}

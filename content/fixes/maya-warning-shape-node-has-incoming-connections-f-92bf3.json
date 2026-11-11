@@ -1,0 +1,41 @@
+{
+  "id": "maya-warning-shape-node-has-incoming-connections-f-92bf3",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Warning: Shape node has incoming connections from multiple objects",
+  "title": "# Warning: Shape node has incoming connections from multiple objects",
+  "summary": "‘Warning: Shape node has incoming connections from multiple objects’는 하나의 Shape 노드가 두 개 이상의 다른 노드에 입력으로 연결돼 있어 Maya가 정상적인 변형이나 삭제를 수행할 수 없다는 의미입니다.",
+  "causes": [
+    "같은 Shape를 여러 Transform에 직접 부모‑자식 관계로 연결했을 때",
+    "스크립트나 플러그인이 Shape의 output을 여러 노드에 연결했을 때",
+    "레퍼런스/Instance 파일을 가져오면서 중복 연결이 생겼을 때",
+    "Constraint, Blend Shape 등에서 Shape를 대상으로 지정했지만 대상이 두 개 이상일 때"
+  ],
+  "steps": [
+    "Window > General Editors > Node Editor(또는 Hypergraph) 를 열고 경고가 뜬 Shape 노드를 선택합니다.",
+    "Node Editor에서 해당 Shape 노드의 ‘Incoming Connections’ 섹션을 확인하고, 연결된 노드들을 파악합니다.",
+    "불필요하거나 중복된 연결을 선택한 뒤 Edit > Delete Connections(또는 Delete) 로 끊어줍니다.",
+    "Shape가 올바른 Transform에만 연결되었는지 확인하고, 필요하면 Shape를 선택한 뒤 Edit > Parent 로 올바른 Transform에 다시 연결합니다.",
+    "History가 남아 있을 경우 Edit > Delete by Type > History 로 히스토리를 정리합니다.",
+    "Scene을 저장하고, File > Open Recent 로 다시 열어 경고가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "Node Editor에서 해당 Shape 노드의 ‘Incoming Connections’가 하나만 남아 있는지 확인합니다.",
+    "Scene을 다시 열거나 Script를 재실행했을 때 동일한 경고 메시지가 출력되지 않으면 해결된 것입니다."
+  ],
+  "prevent": [
+    "Shape 노드에 직접 연결하지 말고 항상 Transform 노드를 통해 연결합니다.",
+    "스크립트나 플러그인에서 Shape 연결을 자동화할 경우, 기존 연결을 먼저 끊는 코드를 추가합니다.",
+    "레퍼런스/Instance를 사용할 때는 Import 옵션에서 ‘Create New Nodes’ 를 선택해 중복 연결을 방지합니다."
+  ],
+  "keywords": [
+    "Maya Shape node 다중 연결 오류",
+    "Warning Shape node has incoming connections from multiple objects",
+    "Maya 노드 연결 문제",
+    "Shape node 연결 해제",
+    "Maya 경고 다중 연결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-11T05:47:25+00:00"
+}
