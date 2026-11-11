@@ -1,0 +1,54 @@
+{
+  "title_ko": "NVIDIA Agent Substrate — Kubernetes 에이전트 인프라",
+  "title": "Agent Substrate: Advancing Kubernetes for Agents at Scale",
+  "url": "https://developer.nvidia.com/blog/agent-substrate-advancing-kubernetes-for-agents-at-scale/",
+  "domain": "AI 3D",
+  "category": "NVIDIA DSX",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Kubernetes",
+    "NVIDIA",
+    "AI 에이전트",
+    "CNCF",
+    "DSX AI Factory"
+  ],
+  "summary": "Agent Substrate는 NVIDIA DSX AI 팩토리 플랫폼에서 에이전트 실행과 리소스를 관리하는 오픈소스 쿠버네티스 런타임입니다.",
+  "insight": "Agent Substrate는 메모리와 파일시스템 상태를 유지한 채 유휴 에이전트 세션을 체크포인트 처리하여 표준 컨테이너 대비 10배 높은 밀도로 실행합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "에이전트 워크로드의 특성과 쿠버네티스의 한계",
+      "body": "AI 에이전트는 프롬프트나 도구 결과, 모델 응답을 기다리며 대부분의 시간을 대기 상태로 보냅니다. 기존 쿠버네티스 구조에서는 세션당 하나의 Pod을 실행하면 유휴 상태에서도 메모리를 차지하고, 매번 Pod을 삭제하고 생성하면 수초의 콜드 스타트 지연과 상태 소실이 발생합니다."
+    },
+    {
+      "heading": "Agent Substrate의 다중화와 상태 보존 메커니즘",
+      "body": "이 오픈소스 런타임은 작은 규모의 워커 Pod 풀에 다수의 에이전트 세션을 멀티플렉싱합니다. 유휴 세션은 메모리와 파일시스템 상태를 포함하여 체크포인트 처리되며, 다음 요청이 도착하면 빈 워커에 즉시 복원됩니다."
+    },
+    {
+      "heading": "세 가지 타겟 워크로드와 업스트림 기여",
+      "body": "이 런타임은 LLM 호출과 리포지토리 작업을 반복하는 코딩 어시스턴트, CPU 집약적인 강화학습 사후 학습 환경, 연구 컴파일과 벤치마크를 위한 단기 GPU 샌드박스를 대상으로 합니다. 라우터의 요청 파킹, 마이크로VM 샌드박스용 컨테이너별 리소스 제한 등의 업스트림 기여가 포함되어 있습니다."
+    },
+    {
+      "heading": "NVIDIA Dynamo 및 KAI Scheduler와의 연동",
+      "body": "NVIDIA Dynamo는 GPU 워커 전반의 인퍼런스를 조율하며 세션 아이덴티티와 KV 캐시 위치를 활용해 관련 모델 호출을 유지합니다. KAI Scheduler는 Substrate 워커 Pod을 GPU 트레이너 및 인퍼런스 서버와 함께 배치하여 DSX AI Factory Platform 상에서 구동합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Agent Substrate는 어떤 문제를 해결하나요?",
+      "a": "에이전트가 대기하는 동안 메모리를 낭비하거나 매번 발생하는 콜드 스타트 지연 문제를 해결하여, 유휴 세션의 상태를 체크포인트로 저장하고 복원하는 방식으로 에이전트 실행 밀도를 높입니다."
+    },
+    {
+      "q": "어떤 플랫폼과 컴포넌트 함께 동작하나요?",
+      "a": "NVIDIA DSX AI 팩토리 플랫폼 안에서 NVIDIA Dynamo 인퍼런스 조율기 및 KAI 스케줄러와 함께 연동되어 동작합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/image2-5.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-11T04:45:08.350255+00:00",
+  "notion_id": "",
+  "id": "2026-11-11-a8c416e2c7748124",
+  "img_ok": "2026-11-11T04:45:11+00:00"
+}

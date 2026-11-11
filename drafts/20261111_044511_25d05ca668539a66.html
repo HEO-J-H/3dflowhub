@@ -1,0 +1,19 @@
+<!-- TITLE: NVIDIA Snapshot 출시 — GPU 워크로드 복구 속도 36배 향상 | TAGS: NVIDIA Snapshot,GPU,Kubernetes,인공지능,대규모 언어 모델,업데이트·출시 | CATEGORY: AI 3D/NVIDIA DSX | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/nvidia-snapshot-gpu-checkpoint-restore.webp" alt="NVIDIA Snapshot 출시 — GPU 워크로드 복구 속도 36배 향상" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA Snapshot은 Kubernetes 환경에서 초기화된 CPU 및 GPU 메모리 상태를 캡처하여 대규모 언어 모델 추론 복구 시간을 수초 내로 단축하는 오픈소스 체크포인트 및 복구 시스템입니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA DSX › 업데이트·출시</p>
+<h2>NVIDIA Snapshot의 체크포인트 및 복구 매커니즘</h2>
+<p>NVIDIA Snapshot은 쿠버네티스 커스텀 리소스를 통해 GPU Pod의 체크포인트와 복구 작업을 수행합니다. 이미 실행 중인 Pod를 대상으로 PodSnapshot을 생성하거나, 준비되는 즉시 캡처하는 SnapshotJob을 활용하여 워크로드를 휴대 가능한 아티팩트로 저장합니다. 이를 통해 모델 가중치 로딩과 컴파일, 그래프 캡처 과정을 생략하고 동일한 Driver와 GPU 모델이 장착된 노드에서 즉시 재시작할 수 있습니다.</p>
+<h2>추론 복구 속도와 벤치마크 성능</h2>
+<p>다양한 설정에서 테스트한 결과, Snapshot 아티팩트를 이용한 복구는 추론 복제본을 3.6초에서 42.7초 사이에 온라인 상태로 전환합니다. 이는 몇 분씩 소요되는 콜드 스타트와 비교했을 때 최대 8배에서 36배 빠른 속도입니다. 대규모 모델에서 1TB에 달하는 체크포인트를 다룰 때도 조합된 체크포인트 및 복구 소요 시간은 단일 콜드 스타트보다 짧게 측정되었습니다.</p>
+<h2>대규모 텐서 및 데이터 병렬 처리 지원</h2>
+<p>이 시스템은 8개의 GPU 전반에 걸쳐 최대 1TB 규모의 체크포인트를 지원하며 텐서 병렬성, 데이터 및 전문가 병렬성, 디코드 컨텍스트 병렬성을 활용하는 멀티 GPU 워크로드를 소화합니다. vLLM, SGLang, NVIDIA TensorRT LLM을 위한 즉시 사용 가능한 예제들이 저장소에 마련되어 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NVIDIA B200 GPU 환경에서 VAST NFS 스토리지를 사용할 때, 전체 복구 시간의 대부분인 18~29초가 GPU 상태 복원에 소요되며 CRIU 기반 CPU 프로세스 복원은 4.2~10.8초가 걸립니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA Snapshot은 어떤 환경에서 동작하나요?</b><br/>A. Kubernetes 환경에서 실행되는 GPU 워크로드를 대상으로 하며, NVIDIA DSX AI Factory 플랫폼의 오픈소스 구성 요소로 제공됩니다.</p>
+<p><b>Q. 콜드 스타트와 비교해 복구 시간에 어떤 차이가 있나요?</b><br/>A. 콜드 스타트는 몇 분이 걸리지만, Snapshot을 사용하면 복구 시간이 3.6초에서 42.7초로 단축되어 최대 36배 빠른 속도를 보여줍니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-a8c416e2c7748124.html">NVIDIA Agent Substrate — Kubernetes 에이전트 인프라</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-08-5ef5685b9690ae6c.html">NVIDIA DSX OS 공개 — Kubernetes GPU 클러스터 관리</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-30-869014b81cc7bf41.html">NVIDIA Dynamo — Kubernetes 런타임 구축과 검증 방법</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot/" target="_blank" rel="noopener nofollow">Start and Restore GPU Workloads in Seconds with NVIDIA Snapshot</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
