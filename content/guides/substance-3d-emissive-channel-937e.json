@@ -1,0 +1,85 @@
+{
+  "id": "substance-3d-emissive-channel-937e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Emissive channel",
+  "title": "Emissive 채널",
+  "summary": "Substance 3D Painter의 Emissive 채널은 3D 모델의 특정 영역이 스스로 빛을 발산하도록 만드는 속성입니다. 네온사인, 홀로그램, sci-fi 패널의 발광부 등을 표현할 때 사용합니다.",
+  "when": [
+    "sci-fi 패널이나 기계 장치에 전자기기 불빛이나 경고등을 표현할 때",
+    "어두운 배경에서 네온사인이나 간판에 자체 발광 효과를 줄 때",
+    "게임 엔진이나 렌더러에서 Unreal Engine의 Emissive Material과 연동될 발광 텍스처를 제작할 때"
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Channels 항목의 [+] 버튼을 눌러 Emissive 채널을 추가합니다.",
+    "Layers 패널에서 Fill Layer를 생성하거나 새 Paint Layer를 만듭니다.",
+    "Properties 패널에서 Base Color와 기타 채널을 끄고 Emissive 채널만 활성화합니다.",
+    "Emissive 색상(Color)을 원하는 발광 색상으로 설정하고 강도(Intensity) 값을 높입니다.",
+    "Mask를 추가하거나 직접 브러시로 칠해 모델 표면에서 빛이 날 영역을 지정합니다.",
+    "Viewport 상단에서 Display Settings를 열고 Bloom이나 Environment Map을 조절해 발광 효과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Emissive Color",
+      "desc": "발광하는 빛의 색상을 결정합니다."
+    },
+    {
+      "name": "Emissive Intensity",
+      "desc": "빛의 밝기 강도를 조절하여 주변을 비추는 세기를 바꿉니다."
+    },
+    {
+      "name": "Blending Mode",
+      "desc": "레이어 간 Emissive 채널의 혼합 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SF 복도 모듈의 경고등 제작",
+      "steps": [
+        "Texture Set Settings에서 Emissive 채널을 추가합니다.",
+        "Fill Layer를 만들고 Emissive 색상을 주황색으로 설정합니다.",
+        "Polygon Fill 툴을 사용해 복도 모듈의 램프 매시 영역만 선택하여 적용합니다."
+      ]
+    },
+    {
+      "title": "네온사인 간판 표현",
+      "steps": [
+        "Paint Layer를 생성하고 브러시로 글자 모양을 그립니다.",
+        "Emissive 강도를 높여 밝은 푸른빛이 나도록 설정합니다.",
+        "Display Settings에서 Bloom을 켜서 빛 번짐 효과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Emissive 채널이 꺼져 있음 → Texture Set Settings에서 채널을 먼저 추가했는지 확인합니다.",
+    "빛이 전혀 번지지 않음 → Painter Viewport의 Display Settings에서 Bloom이나 Shader 설정을 확인합니다."
+  ],
+  "related": [
+    "Texture Set Settings",
+    "Fill Layer",
+    "Polygon Fill",
+    "Export Textures"
+  ],
+  "videos": [
+    {
+      "id": "kNpQ_wkEy8o",
+      "title": "Substance Painter Beginner Tutorial : Emissive Materials",
+      "author": "Jayanam"
+    },
+    {
+      "id": "ezPtcGqN9WE",
+      "title": "How to Add an \"Emissive Map\" in Substance Painter 3D!",
+      "author": "MB_Cre8"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Emissive%20channel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Texture Set Settings",
+    "Channels",
+    "Emissive"
+  ],
+  "at": "2026-11-11T01:45:32.601276+00:00"
+}

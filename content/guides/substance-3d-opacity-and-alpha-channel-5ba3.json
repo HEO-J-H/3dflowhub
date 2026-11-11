@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-opacity-and-alpha-channel-5ba3",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Opacity and alpha channel",
+  "title": "불투명도 채널",
+  "summary": "Substance 3D Painter에서 Opacity와 알파 채널을 활용해 유리, 천, 나뭇잎 같은 투명하거나 부분적으로 구멍이 뚫린 재질을 표현합니다.",
+  "when": [
+    "유리나 물방울처럼 투명한 반사 재질을 표현할 때",
+    "나뭇잎이나 레이스 천처럼 부분적으로 투명한 에셋을 만들 때",
+    "철망이나 그레이팅 판처럼 구멍이 뚫린 텍스처를 제작할 때"
+  ],
+  "steps": [
+    "TextureSet Settings 패널에서 Channels 항목 우측의 '+' 버튼을 클릭합니다.",
+    "목록에서 Opacity 채널을 추가하여 레이어에서 투명도를 조절할 수 있도록 설정합니다.",
+    "Layers 패널에서 새 Fill Layer를 생성하고 Opacity 슬라이더 값을 낮추어 전체적인 투명도를 조절합니다.",
+    "정밀한 투명 영역 제어가 필요한 경우 Mask를 추가하고 Grayscale 맵을 연결합니다.",
+    "Display Settings(또는 Viewport Settings)에서 Shader Settings의 Alpha Blending 모드를 활성화하여 Viewport에서 투명도를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "머티리얼의 전체적인 투명도를 조절합니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "이미지의 투명 채널 정보를 기반으로 픽셀 단위의 투명도를 결정합니다."
+    },
+    {
+      "name": "Shader Settings",
+      "desc": "Viewport 렌더러에서 투명도와 블렌딩 방식을 실시간으로 표현하도록 설정합니다."
+    },
+    {
+      "name": "Channel",
+      "desc": "텍스처 세트에 Opacity 등 필요한 데이터 레이어를 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 유리 컵 제작",
+      "steps": [
+        "TextureSet Settings에서 Opacity 채널을 추가합니다.",
+        "Fill Layer의 Base Color는 흰색으로 두고 Opacity 값을 0.2로 낮춥니다.",
+        "Roughness를 낮추어 매끄러운 유리 질감을 완성합니다."
+      ]
+    },
+    {
+      "title": "나뭇잎 알파 컷아웃 표현",
+      "steps": [
+        "나뭇잎 텍스처의 알파 맵을 Opacity 슬롯에 드래그하여 연결합니다.",
+        "Shader Settings에서 블렌딩 모드를 Masked로 설정합니다.",
+        "Viewport에서 나뭇잎 테두리가 깔끔하게 잘려나왔는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Opacity 채널을 추가하지 않고 레이어에서 투명도를 찾으려고 함 → TextureSet Settings에서 Opacity 채널을 먼저 추가해야 합니다.",
+    "Viewport에서 투명 부분이 검게 보임 → Shader Settings에서 Alpha Blending 또는 Masked 모드가 활성화되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Base Color",
+    "Roughness",
+    "Mask",
+    "TextureSet Settings"
+  ],
+  "videos": [
+    {
+      "id": "6vMrvHZpvz4",
+      "title": "Substance Painter Tutorial Alpha | Opacity Map And Use In Blender 3.0",
+      "author": "CGI Dimension"
+    },
+    {
+      "id": "7Iq1jUY9DJ8",
+      "title": "Painting Opacity Maps in Substance Painter",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Opacity%20and%20alpha%20channel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "TextureSet Settings",
+    "Channels",
+    "Opacity"
+  ],
+  "at": "2026-11-11T01:45:28.798250+00:00"
+}

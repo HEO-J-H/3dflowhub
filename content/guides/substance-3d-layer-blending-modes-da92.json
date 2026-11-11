@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-layer-blending-modes-da92",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "페인터",
+  "name": "Layer blending modes",
+  "title": "레이어 혼합 모드",
+  "summary": "Substance 3D Painter의 Layer Blending Modes는 포토샵처럼 여러 레이어의 픽셀 색상과 질감을 다양한 수학적 방식으로 혼합하여 자연스러운 합성 효과를 만드는 핵심 기능입니다.",
+  "when": [
+    "금속 표면에 자연스러운 녹이나 먼지, 오염을 겹쳐서 표현할 때",
+    "여러 개의 페인트 레이어나 머티리얼의 색상을 미세하게 조정하고 섞을 때",
+    "스크래치나 웨어 앤드 테어(Wear and Tear) 효과를 극대화할 때"
+  ],
+  "steps": [
+    "Layers 패널에서 혼합 효과를 적용할 상위 레이어를 선택합니다.",
+    "Layers 패널 상단에 있는 기본 혼합 모드 드롭다운 메뉴(Normal)를 클릭합니다.",
+    "Multiply, Overlay, Screen 등 원하는 Blending Mode를 목록에서 선택합니다.",
+    "레이어의 Opacity(불투명도) 슬라이더를 조절하여 혼합되는 강도를 맞춥니다.",
+    "Viewport에서 텍스처가 기존 레이어와 자연스럽게 어우러지는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Normal",
+      "desc": "상위 레이어를 불투명도에 따라 그대로 덮어씁니다."
+    },
+    {
+      "name": "Multiply",
+      "desc": "색상을 곱하여 어두운 톤을 강조하며, 그림자나 때 표현에 적합합니다."
+    },
+    {
+      "name": "Screen",
+      "desc": "색상을 반전하여 곱한 뒤 밝게 만들어 빛이나 먼지 표현에 좋습니다."
+    },
+    {
+      "name": "Overlay",
+      "desc": "Multiply와 Screen을 조합한 모드로, 어두운 곳은 더 어둡게 밝은 곳은 더 밝게 만듭니다."
+    },
+    {
+      "name": "Add",
+      "desc": "두 레이어의 색상 값을 더하여 빛나는 발광 효과나 강한 하이라이트를 줍니다."
+    },
+    {
+      "name": "Subtract",
+      "desc": "하위 레이어 색상에서 상위 레이어 색상을 빼서 타버린 듯한 어두운 효과를 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 표면의 녹(Rust) 표현",
+      "steps": [
+        "기본 철판 레이어 위에 녹 색상의 Fill Layer를 새로 생성합니다.",
+        "Blending Mode를 Multiply 또는 Overlay로 변경합니다.",
+        "Black Mask를 추가하고 Generator(Dirt 또는 Rust)를 적용하여 모서리에만 녹이 슬게 만듭니다."
+      ]
+    },
+    {
+      "title": "미세한 먼지(Dust) 얹기",
+      "steps": [
+        "밝은 회색 계열의 Fill Layer를 맨 위에 생성합니다.",
+        "Blending Mode를 Screen 또는 Linear Dodge로 설정합니다.",
+        "Opacity를 낮추어 윗면 위주로 은은하게 쌓인 먼지 느낌을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Blending Mode를 바꿨는데 변화가 없음 → Opacity 값이 0이거나 하위 레이어의 채널(Base Color 등)이 꺼져 있는지 확인합니다.",
+    "색상이 너무 탁해짐 → Multiply 모드를 과도하게 사용한 경우이므로 레이어 Opacity를 낮추거나 Overlay로 변경합니다."
+  ],
+  "related": [
+    "Fill Layer",
+    "Black Mask",
+    "Generators",
+    "Anchor Points"
+  ],
+  "videos": [
+    {
+      "id": "GAMAEFDG400",
+      "title": "Mastering Blending Modes - 01 - Introduction | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "RZKBSPj9hbs",
+      "title": "Mastering Blending Modes - 02 - Add & Subtract | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Layer%20blending%20modes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-11T01:45:36.952986+00:00"
+}
