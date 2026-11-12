@@ -1,0 +1,88 @@
+{
+  "id": "unity-transform-component-243a",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입문",
+  "name": "Transform component",
+  "title": "Transform — 위치·회전·크기",
+  "summary": "Unity Transform component는 3D 공간에서 모든 GameObject의 위치, 회전, 크기를 제어하는 가장 기본적인 컴포넌트입니다. 가상 세계에 오브젝트를 배치하고 구조를 조립할 때 반드시 사용합니다.",
+  "when": [
+    "캐릭터나 소품을 게임 씬 안에서 원하는 위치로 이동시키고 싶을 때",
+    "오브젝트의 방향을 회전시키거나 크기를 키우고 줄일 때",
+    "부모-자식 계층 구조를 만들어 오브젝트들을 함께 움직이게 할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 대상을 선택하거나 Mouse 우클릭 후 Create Empty를 눌러 새 GameObject를 생성합니다.",
+    "Hierarchy 창에서 해당 GameObject를 클릭하여 선택합니다.",
+    "Inspector 패널 최상단에서 Transform 컴포넌트가 활성화되어 있는지 확인합니다.",
+    "Position, Rotation, Scale 입력 칸에 원하는 수치를 직접 입력하거나 Mouse로 드래그하여 조절합니다.",
+    "Scene 뷰 상단 툴바에서 W(이동), E(회전), R(크기) Hotkey를 눌러 Viewport 기즈모로 직접 조작합니다.",
+    "Scene 뷰에서 기즈모의 축(화살표 또는 핸들)을 드래그하여 결과가 반영되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Position",
+      "desc": "X, Y, Z 축을 기준으로 오브젝트의 3D 공간상 위치를 지정합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "X, Y, Z 축을 기준으로 오일러 각도(Euler Angles)를 사용하여 회전값을 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "X, Y, Z 축 방향으로 오브젝트의 크기를 배율(Multiplier) 단위로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오브젝트 배치 및 크기 조절",
+      "steps": [
+        "Hierarchy 창에서 3D Object > Cube를 생성합니다.",
+        "Inspector 패널의 Transform에서 Scale 값을 X: 2, Y: 0.5, Z: 2로 입력하여 넓고 납작한 바닥 판을 만듭니다.",
+        "Position 값을 X: 0, Y: 0, Z: 0으로 정렬합니다."
+      ]
+    },
+    {
+      "title": "부모-자식 계층 구조 만들기",
+      "steps": [
+        "자동차 역할을 할 빈 GameObject를 만들고 이름을 Car로 지정합니다.",
+        "바퀴 역할을 할 Cylinder를 생성하여 Car 오브젝트 안으로 드래그하여 자식(Child)으로 넣습니다.",
+        "부모인 Car의 Transform Position을 이동시키면 자식 바퀴도 함께 움직이는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "부모 오브젝트의 Scale이 0일 때 → 자식 오브젝트의 크기도 0이 되어 보이지 않게 됩니다. 부모의 Scale을 1 이상으로 되돌려 해결합니다.",
+    "로컬 좌표계와 월드 좌표계의 혼동 → 회전된 상태에서 이동 축이 꺾이는 경우, 툴바의 Pivot/Global 토글을 확인하거나 Local 모드로 변경합니다."
+  ],
+  "related": [
+    "GameObjects and Components",
+    "Hierarchy",
+    "Inspector",
+    "Character Controller"
+  ],
+  "videos": [
+    {
+      "id": "8pC3SE5PIzY",
+      "title": "What is a Transform (Unity Tutorial for Beginners - Position, Rotation, Scale, Vector3)",
+      "author": "Code Monkey"
+    },
+    {
+      "id": "B-dVf9wUEbg",
+      "title": "What is the DIFFERENCE between Transform and GameObject? (Unity Tutorial for Beginners)",
+      "author": "Code Monkey"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Transform%20component",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Mouse",
+    "Create Empty",
+    "GameObject",
+    "Inspector",
+    "Transform"
+  ],
+  "at": "2026-11-12T02:39:33.429684+00:00"
+}

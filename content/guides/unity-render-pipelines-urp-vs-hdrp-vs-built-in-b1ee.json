@@ -1,0 +1,96 @@
+{
+  "id": "unity-render-pipelines-urp-vs-hdrp-vs-built-in-b1ee",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입문",
+  "name": "Render pipelines (URP vs HDRP vs Built-in)",
+  "title": "렌더 파이프라인 고르기 — URP·HDRP·Built-in",
+  "summary": "Unity의 렌더 파이프라인(Built-in, URP, HDRP)은 게임과 프로젝트의 그래픽 품질, 플랫폼 성능, 타겟 디바이스에 맞춰 렌더링 방식을 선택하는 핵심 시스템입니다. 프로젝트 성격에 따라 최적의 파이프라인을 선택하여 효율적인 렌더링 환경을 구축할 수 있습니다.",
+  "when": [
+    "기존 레거시 프로젝트 유지보수나 초경량 모바일 게임을 개발할 때 (Built-in)",
+    "모바일, PC, 콘솔을 아우르는 범용성과 높은 커스텀 성능이 필요할 때 (URP)",
+    "AAA급 고품질 그래픽, 실시간 레이 Tracing, 건축 시각화 등 최고 수준의 비주얼을 구현할 때 (HDRP)"
+  ],
+  "steps": [
+    "Unity Editor를 실행하고 Projects 탭에서 새 프로젝트(New Project)를 생성합니다.",
+    "Template 선택 화면에서 2D, 3D, Universal 3D(URP), High Definition RP(HDRP) 중 원하는 렌더 파이프라인을 선택합니다.",
+    "프로젝트 창(Project Window)에서 우클릭 후 Create → Rendering 메뉴로 이동합니다.",
+    "URP 또는 HDRP 셋업에 맞는 Render Pipeline Asset을 생성합니다.",
+    "Edit → Project Settings → Graphics (또는 Quality) 패널로 이동합니다.",
+    "Scriptable Render Pipeline Settings 슬롯에 생성한 Pipeline Asset을 드래그하여 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Universal Render Pipeline Asset",
+      "desc": "URP의 전반적인 품질과 렌더링 기능을 제어하는 핵심 설정 파일입니다."
+    },
+    {
+      "name": "HDRenderPipelineAsset",
+      "desc": "HDRP의 물리 기반 조명과 고품질 Post 프로세싱을 관장하는 설정 파일입니다."
+    },
+    {
+      "name": "Rendering Path",
+      "desc": "Forward 또는 Deferred 등 광원 계산 방식을 선택하여 성능을 조절합니다."
+    },
+    {
+      "name": "Color Grading",
+      "desc": "게임 화면의 최종 색감과 톤을 보정하는 Post 프로세싱 효과입니다."
+    },
+    {
+      "name": "Shadow Distance",
+      "desc": "카메라로부터 그림자가 렌더링되는 최대 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 캐주얼 게임 최적화 (URP)",
+      "steps": [
+        "Universal 3D Template으로 새 프로젝트를 생성합니다.",
+        "URP Asset에서 불필요한 Post 프로세싱과 고해상도 그림자를 비활성화합니다.",
+        "Forward Renderer 데이터에서 렌더러 특징(Renderer Features)을 최소화하여 모바일 프레임레이트를 확보합니다."
+      ]
+    },
+    {
+      "title": "PC/콘솔 AAA급 실사풍 그래픽 구현 (HDRP)",
+      "steps": [
+        "High Definition RP Template으로 프로젝트를 시작합니다.",
+        "Volume 컴포넌트를 생성하여 High Definition Render Pipeline Global Volume에 할당합니다.",
+        "Ray Tracing 옵션을 켜고 물리 기반 조명과 고도화된 반사 효과를 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Built-in 파이프라인용 머티리얼을 URP나 HDRP 프로젝트에 그대로 가져다 쓴 경우 → Edit → Rendering → Convert Project to URP/HDRP 메뉴를 실행해 Shader를 일괄 변환합니다.",
+    "URP 프로젝트에서 잘못된 렌더러 에셋을 참조한 경우 → Project Settings의 Graphics와 Quality 탭 양쪽에 올바른 Render Pipeline Asset이 등록되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Universal Render Pipeline",
+    "High Definition Render Pipeline",
+    "Shader Graph",
+    "BatchRendererGroup"
+  ],
+  "videos": [
+    {
+      "id": "CYeJGQP8g5s",
+      "title": "Unity Render Pipelines Explained (URP vs HDRP vs Built-In)",
+      "author": "Mission Bit"
+    },
+    {
+      "id": "xS6g15XL8jQ",
+      "title": "What are the Unity render pipelines and which to use? | HDRP vs URP 2022",
+      "author": "Brendan Dickinson"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Render%20pipelines%20%28URP%20vs%20HDRP%20vs%20Built-in%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity Editor",
+    "Projects",
+    "New Project",
+    "Template",
+    "Universal 3D",
+    "URP"
+  ],
+  "at": "2026-11-12T02:39:41.650681+00:00"
+}
