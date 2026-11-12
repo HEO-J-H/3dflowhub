@@ -34835,5 +34835,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T03:19:38+00:00",
+    "kind": "proposal",
+    "id": "p-1c6d5b1d71",
+    "title": "웹 브라우저 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 PBR 변환 관련 UI 피드백 및 안내 문구 보강 작업이 진행되었으나 관련 유닛 테스트 보완이 필요합니다.",
+    "proposal": "web/tests/ 또는 프론트엔드 테스트 Script에 PBR 변환 오류 발생 시 에러 메시지 표시 여부를 검증하는 테스트 코드를 추가합니다.",
+    "expected": "웹 브라우저 PBR 텍스처 생성 기능의 예외 상황 대응력 및 품질 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T03:19:38+00:00",
+    "kind": "proposal",
+    "id": "p-288a98f7d8",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "triposr_runner.py 및 관련 서비스의 예외 로깅이 정교화되었으며, 이를 검증할 단위 테스트 보강이 요구됩니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 메모리 부족 및 모델 로드 실패 시의 예외 발생 및 로그 출력 검증 테스트를 추가합니다.",
+    "expected": "로컬 파이프라인의 안정성 확보 및 회귀 테스트 커버리지 증가",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T03:20:53.393011+00:00",
+    "kind": "decision",
+    "id": "p-1c6d5b1d71",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T03:20:53.431919+00:00",
+    "kind": "decision",
+    "id": "p-288a98f7d8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 TripoSR 예외 처리 테스트 추가",
+    "auto": true
   }
 ]

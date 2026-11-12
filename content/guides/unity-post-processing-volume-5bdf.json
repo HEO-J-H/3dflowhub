@@ -1,0 +1,94 @@
+{
+  "id": "unity-post-processing-volume-5bdf",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Post-processing Volume",
+  "title": "후처리 Volume — Bloom·Color Grading",
+  "summary": "Unity의 Post-processing Volume은 씬 전체나 특정 구역에 bloom, color grading, ambient occlusion 같은 후가공 시각 효과를 적용하여 완성도를 높이는 컴포넌트입니다.",
+  "when": [
+    "게임 화면에 영화 같은 색감이나 대비를 주고 싶을 때",
+    "빛 번짐(Bloom)이나 비현실적인 광원 효과를 더하고 싶을 때",
+    "플레이어의 위치나 구역에 따라 다른 시각적 분위기를 연출하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 빈 오브젝트를 우클릭하거나 생성하여 이름을 지정합니다.",
+    "Inspector 패널에서 Add Component 버튼을 클릭합니다.",
+    "Volume 컴포넌트를 검색하여 추가합니다.",
+    "Profile 항목 옆의 New 버튼을 클릭해 새로운 프로필 데이터를 생성합니다.",
+    "Add Override 버튼을 눌러 원하는 후가공 효과(예: Bloom, Color Adjustments)를 추가합니다.",
+    "Global 체크 해제 후 Box Volume 등을 사용해 특정 구역에만 효과를 제한할 수 있습니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "볼륨 효과가 적용되는 전체 강도를 조절합니다."
+    },
+    {
+      "name": "Bloom",
+      "desc": "밝은 영역 주변으로 빛이 부드럽게 번져 나오는 효과를 줍니다."
+    },
+    {
+      "name": "Color Adjustments",
+      "desc": "노출, 대비, 색조 등 씬의 전반적인 색감을 보정합니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "오브젝트가 만나는 틈새에 자연스러운 음영을 만들어 입체감을 높입니다."
+    },
+    {
+      "name": "Vignette",
+      "desc": "화면 가장자리를 어둡게 만들어 시선을 중앙으로 집중시킵니다."
+    },
+    {
+      "name": "Depth of Field",
+      "desc": "카메라 초점 외의 영역을 흐리게 만들어 심도 표현을 더합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 빛 번짐(Bloom) 표현",
+      "steps": [
+        "Post-processing Volume을 생성하고 Profile을 추가합니다.",
+        "Add Override에서 Bloom을 선택합니다.",
+        "Threshold 값을 낮추고 Intensity 값을 높여 밝은 네온 영역이 빛나도록 조정합니다."
+      ]
+    },
+    {
+      "title": "시네마틱 색감(Color Adjustments) 적용",
+      "steps": [
+        "Volume 컴포넌트에서 Color Adjustments를 추가합니다.",
+        "Post Exposure로 전체 밝기를 맞추고 Contrast를 높여 대비를 줍니다.",
+        "Color Filter에서 약간의 푸른빛을 더해 차가운 분위기를 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Global이 켜져 있는데 효과가 안 보임 → 카메라에 Post Processing 레이어 컴포넌트나 Renderer 설정을 확인하세요.",
+    "Bloom 값이 너무 과함 → Intensity를 지나치게 높이면 화면이 하얗게 타버리므로 Threshold와 함께 적절히 조절하세요.",
+    "볼륨 영역 경계가 너무 딱 떨어짐 → Box Collider 등의 Size와 Blend Distance를 조정해 부드럽게 전환되도록 만드세요."
+  ],
+  "related": [
+    "Universal Render Pipeline",
+    "Bloom",
+    "Color Adjustments",
+    "Depth of Field"
+  ],
+  "videos": [
+    {
+      "id": "CTj_ZMWnC4g",
+      "title": "Post Processing Area Volumes in Unity (Resident Evil Tutorial)",
+      "author": "SpeedTutor"
+    },
+    {
+      "id": "9tjYz6Ab0oc",
+      "title": "EVERY Image Effect in Unity Explained - Post Processing v2 Tutorial",
+      "author": "Brackeys"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Post-processing%20Volume",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T03:19:44.456097+00:00"
+}

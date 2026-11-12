@@ -1,0 +1,98 @@
+{
+  "id": "unity-cinemachine-basics-e745",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "카메라",
+  "name": "Cinemachine basics",
+  "title": "Cinemachine — 카메라 연출 기초",
+  "summary": "Unity Cinemachine은 게임 내 카메라 구도, 추적, 흔들림 등을 코드 없이 시각적으로 제어할 수 있는 강력한 Smart 카메라 시스템입니다.",
+  "when": [
+    "플레이어를 부드럽게 따라다니는 3인칭 카메라가 필요할 때",
+    "특정 오브젝트를 주시하거나 컷씬 연출용 카메라 전환이 필요할 때",
+    "화면 흔들림(Shake)이나 줌 인·아웃 같은 동적 연출을 구현할 때"
+  ],
+  "steps": [
+    "Unity 상단 메뉴에서 GameObject를 클릭하고 Cinemachine 서브메뉴로 이동합니다.",
+    "Virtual Camera를 선택하여 씬에 새로운 Cinemachine Virtual Camera(vcam)를 생성합니다.",
+    "Inspector 패널에서 Virtual Camera 컴포넌트의 Follow 필드에 추적할 플레이어 오브젝트를 드래그하여 지정합니다.",
+    "Look At 필드에 시선을 고정할 대상 오브젝트를 지정하여 카메라가 타겟을 바라보게 합니다.",
+    "Body, Aim, Noise 등 각 속성 그룹에서 프레임 위치, 추적 감도, 카메라 흔들림 값을 조절합니다.",
+    "Game 뷰에서 카메라가 타겟을 자연스럽게 추적하고 구도가 유지되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Follow",
+      "desc": "카메라가 위치와 이동을 따라갈 대상(Target) 오브젝트"
+    },
+    {
+      "name": "Look At",
+      "desc": "카메라가 항상 바라볼(Aim) 대상 오브젝트"
+    },
+    {
+      "name": "Body",
+      "desc": "타겟을 추적할 때 카메라의 물리적 움직임과 따라붙는 방식을 설정"
+    },
+    {
+      "name": "Aim",
+      "desc": "타겟을 프레임 내에 가두거나 조준하는 방식을 설정"
+    },
+    {
+      "name": "Noise",
+      "desc": "카메라에 수동 또는 절차적 흔들림(Shake) 효과를 추가"
+    },
+    {
+      "name": "Lens",
+      "desc": "시야각(FOV), 클립 평면, 오르토그래픽 크기 등 카메라 렌즈 속성 설정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "3인칭 플레이어 추적 카메라",
+      "steps": [
+        "Hierarchy 패널에서 Cinemachine Virtual Camera를 생성합니다.",
+        "Body 설정을 Framing Transposer로 변경합니다.",
+        "Follow에 플레이어 캐릭터를 연결하고 Damping 값을 조절하여 부드러운 추적을 만듭니다."
+      ]
+    },
+    {
+      "title": "이벤트 구역 진입 시 카메라 전환",
+      "steps": [
+        "두 번째 Virtual Camera를 생성하고 원하는 각도로 배치합니다.",
+        "Cinemachine Brain이 포함된 Main Camera에서 카메라 전환 블렌드 설정을 확인합니다.",
+        "우선순위(Priority) 값을 변경하여 활성화되는 카메라를 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Main Camera에 Cinemachine Brain 컴포넌트가 없음 → Main Camera에 Add Component를 눌러 Cinemachine Brain을 추가합니다.",
+    "Virtual Camera의 Priority가 같아 전환이 안 됨 → 활성화할 카메라의 Priority 값을 더 높게 설정합니다.",
+    "타겟을 놓치거나 카메라가 떨림 → Damping 값이 너무 낮거나 높을 수 있으므로 적절한 수치로 재조정합니다."
+  ],
+  "related": [
+    "Cinemachine Brain",
+    "Virtual Camera",
+    "Cinemachine Timeline",
+    "Collider"
+  ],
+  "videos": [
+    {
+      "id": "P_ibDJhFVMU",
+      "title": "How to use Cameras in Unity: Cinemachine Overview and Brain Explained!",
+      "author": "iHeartGameDev"
+    },
+    {
+      "id": "24EaQ2-5M4w",
+      "title": "Intro to Cinemachine in Unity 6: What is it, Why should I care, and How to Get Started?",
+      "author": "Cam Ayres"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Cinemachine%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "GameObject",
+    "Cinemachine"
+  ],
+  "at": "2026-11-12T03:19:48.546718+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "unity-timeline-basics-bed5",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "카메라",
+  "name": "Timeline basics",
+  "title": "Timeline — 컷신 만들기",
+  "summary": "Unity Timeline은 게임 내 오브젝트의 움직임, 카메라 컷, 사운드, Particle 등을 시각적인 트랙 형태로 정밀하게 제어하는 시퀀서 도구입니다. 영화 같은 컷씬이나 복잡한 연출을 코딩 없이 직관적으로 만들 때 사용합니다.",
+  "when": [
+    "게임 내에서 카메라가 움직이는 시네마틱 컷씬이나 인트로 연출을 만들 때",
+    "캐릭터의 애니메이션, 오디오, Effect 재생 타이밍을 하나의 Timeline에서 정밀하게 맞출 때",
+    "문이 열리거나 발판이 움직이는 등의 레벨 오브젝트 인터랙션 연출을 만들 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 우클릭 후 Create Empty를 눌러 빈 오브젝트를 만들고 이름을 'TimelineManager'로 지정합니다.",
+    "상단 메뉴 Bar에서 Window → Sequencing → Timeline을 선택하여 Timeline 창을 엽니다.",
+    "TimelineManager 오브젝트를 선택한 상태로 Timeline 창의 빈 곳에서 Create를 클릭하여 새로운 Timeline Asset 파일(.playable)을 생성합니다.",
+    "Timeline 창 왼쪽의 + 버튼을 클릭하여 Animation Track, Audio Track, Activation Track 등 필요한 트랙을 추가합니다.",
+    "Project 창의 애니메이션 클립이나 오브젝트를 해당 트랙으로 드래그 앤 드롭하여 배치하고, Timeline 헤더를 이동하며 타이밍을 조절합니다.",
+    "Scene 뷰와 Game 뷰에서 재생(Space) 버튼을 눌러 연출 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Playable Director",
+      "desc": "Timeline 에셋을 게임 오브젝트에 연결하고 재생 모드나 바인딩을 관리하는 컴포넌트입니다."
+    },
+    {
+      "name": "Track",
+      "desc": "애니메이션, 오디오, 이벤트 등을 개별적으로 쌓고 제어하는 수평 레이어입니다."
+    },
+    {
+      "name": "Clip",
+      "desc": "트랙 위에서 실제 데이터(애니메이션, 사운드 등)가 재생되는 구간을 나타내는 블록입니다."
+    },
+    {
+      "name": "Ease In / Ease Out",
+      "desc": "클립의 시작과 끝에서 부드럽게 페이드인 또는 페이드아웃되도록 전환을 주는 감속 구간입니다."
+    },
+    {
+      "name": "Binding",
+      "desc": "Timeline 트랙의 가상 오브젝트를 씬 내의 실제 게임 오브젝트와 연결해 주는 설정입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "시네마틱 카메라 컷씬 만들기",
+      "steps": [
+        "Timeline에 Cinemachine Track을 추가합니다.",
+        "가상 카메라(Virtual Camera) 오브젝트를 트랙에 바인딩합니다.",
+        "클립의 길이를 조절하고 여러 개의 카메라를 배치해 시점이 전환되는 컷씬을 구성합니다."
+      ]
+    },
+    {
+      "title": "오프닝 문 열림 연출",
+      "steps": [
+        "Timeline에 Animation Track을 추가하고 문 오브젝트를 연결합니다.",
+        "Record(빨간색 버튼)를 활성화하고 Timeline을 이동하며 문이 회전하는 Keyframe을 만듭니다.",
+        "게임 시작 시 Playable Director의 Play on Awake 옵션을 켜서 바로 실행되게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "씬의 오브젝트가 바인딩되지 않아 에러가 남 → Timeline 창의 트랙 헤더 영역에 실제 씬 오브젝트를 드래그하여 연결해 줍니다.",
+    "재생해도 아무 변화가 없음 → Playable Director 컴포넌트의 Play on Awake가 꺼져 있거나 Script로 호출되지 않은 상태인지 확인합니다."
+  ],
+  "related": [
+    "Cinemachine",
+    "Animator Controller",
+    "Animation Clip",
+    "Signal"
+  ],
+  "videos": [
+    {
+      "id": "cDtR79o-mK0",
+      "title": "Unity Video Tutorial: Getting Started with Timeline",
+      "author": "Unity"
+    },
+    {
+      "id": "rhAbQpQYwzA",
+      "title": "Create Professional-Quality Animations with Unity Timeline: Introduction to Timeline  Class #1",
+      "author": "Ziki Tutorial"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Timeline%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Create Empty",
+    "TimelineManager"
+  ],
+  "at": "2026-11-12T03:19:52.766966+00:00"
+}
