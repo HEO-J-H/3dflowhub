@@ -1930,43 +1930,64 @@ def filter_homonym_3d_content(item: dict) -> bool:
     return True
 
 
-def filter_offtpic_homonyms(text: str, tool_name: str = "") -> bool:
-    """텍스트 내 동음이의어(Maya, Unity, Nuke, Blender 등)가 등장할 때 주변에 CG/3D 전문 문맥 키워드가 없으면 오탐으로 판정하여 차단하는 필터 함수."""
+def filter_strict_offtopic(text: str, tool_name: str = "") -> bool:
+    """일반 명사 도구명(Nuke, Unity, Maya, Blender 등) 등장 시 CG/3D 전문 문맥 키워드 부재 여부를 5중 이상으로 정밀 검증하여 차단하는 함수."""
     if not isinstance(text, str) or not text.strip():
         return True
     t_lower = text.lower()
-    
-    # 툴별 명백한 동음이의어(무관 맥락) 단어 목록
+
+    # 1단계: 도구별 명백한 동음이의어/무관 비전문 맥락 단어군 사전 검사
     homonym_bad_contexts = {
         "maya": ["civilization", "mayan", "calendar", "ancient", "pyramid", "indigenous", "사람", "문명", "마야인", "역사", "유적"],
-        "blender": ["kitchen", "smoothie", "juicer", "cooking", "recipe", "주방", "믹서기", "요리", "스무디", "가전", "화장품"],
+        "blender": ["kitchen", "smoothie", "juicer", "cooking", "recipe", "주방", "믹서기", "요리", "스무디", "가전", "화장품", "음식"],
         "nuke": ["nuclear", "bomb", "missile", "war", "korea", "iran", "headquarters", "핵", "미사일", "전쟁", "북한", "외교", "정치", "국방"],
-        "unity": ["stock", "shares", "dividend", "market", "economy", "주식", "증시", "주가", "배당", "경제", "정당", "통합"],
-        "houdini": ["magician", "magic", "escape", "illusionist", "마술사", "마법", "탈출", "일루션"]
+        "unity": ["stock", "shares", "dividend", "market", "economy", "주식", "증시", "주가", "배당", "경제", "정당", "통합", "정부"],
+        "houdini": ["magician", "magic", "escape", "illusionist", "마술사", "마법", "탈출", "일루션", "서커스"],
+        "cinema": ["popcorn", "ticket", "movie theater", "팝콘", "영화관람권"],
+        "zbrush": ["toothbrush", "brush", "칫솔", "청소솔"]
     }
 
-    # CG/3D 전문 문맥 키워드 목록
-    professional_3d_context = [
+    # 2단계: 필수 CG/3D 전문 문맥 키워드 풀 (5중 이상의 엄격한 검증을 위한 다양성 확보)
+    professional_3d_contexts = [
         "3d", "cgi", "vfx", "render", "renderer", "shader", "texture", "modeling", "modelling", "sculpt",
         "rigging", "animation", "mesh", "polygon", "game engine", "unreal", "unity 6", "houdini fx",
-        "plugin", "addon", "add-on", "script", "maxscript", "geometry nodes", "splat", "nerf",
+        "plugin", "addon", "add-on", "script", "maxscript", "geometry nodes", "splat", "nerf", "ray tracing",
         "렌더링", "모델링", "애니메이션", "텍스처", "셰이더", "시뮬레이션", "플러그인", "스크립트", "블렌더", "맥스", "마야", "후디니"
     ]
 
-    has_3d_context = any(ctx in t_lower for ctx in professional_3d_context)
+    # 3단계: 도메인 특화 용어 및 API/포맷 키워드 추가 검증
+    format_or_api_tokens = ["usd", "gltf", "fbx", "obj", "python", "blueprint", "uefn", "pbr", "hdri", "uv"]
 
-    # 특정 툴 이름이 지정되었거나 텍스트에 포함된 경우 무관 맥락 검사
+    # 4단계: 부정어/무관 토픽(정치, 주식, 연예, 스포츠, 가전) 복합 필터링
+    irrelevant_general_topics = ["volleyball", "soccer", "baseball", "concert", "festival", "recipe", "travel", "배구", "축구", "콘서트", "여행", "맛집"]
+
+    for topic in irrelevant_general_topics:
+        if topic in t_lower:
+            log.info("5중 정밀 필터(filter_strict_offtopic) - 무관 일반 토픽 감지 차단: %s", topic)
+            return False
+
+    has_3d_context = sum(1 for ctx in professional_3d_contexts if ctx in t_lower)
+    has_format_context = any(fmt in t_lower for fmt in format_or_api_tokens)
+
+    # 5단계: 대상 도구명 일치 여부 확인 및 무관 맥락 교차 검증 (전문 문맥 점수 복합 채점)
     tools_to_check = [tool_name.lower()] if tool_name and tool_name.lower() in homonym_bad_contexts else homonym_bad_contexts.keys()
-    
+
     for tool in tools_to_check:
         if tool in t_lower:
             bad_words = homonym_bad_contexts.get(tool, [])
             matched_bad = [bw for bw in bad_words if bw in t_lower]
-            if matched_bad and not has_3d_context:
-                log.info("오탐 방지 필터(filter_offtpic_homonyms) 차단: 툴 '%s' 및 무관 키워드 '%s' 감지, 3D 전문 문맥 부족", tool, matched_bad)
-                return False
+            if matched_bad:
+                # 무관 맥락이 존재하고, 3D 전문 문맥 점수가 기준 미달(최소 2개 이상 혹은 API 포맷 동반)인 경우 철저히 차단
+                if has_3d_context < 2 and not has_format_context:
+                    log.info("5중 정밀 필터(filter_strict_offtopic) 차단: 툴 '%s' 및 무관 키워드 '%s' 감지, 3D 전문 문맥 부족 (점수: %d)", tool, matched_bad, has_3d_context)
+                    return False
 
     return True
+
+
+def filter_offtpic_homonyms(text: str, tool_name: str = "") -> bool:
+    """하위 호환성 유지용 래퍼 함수 (내부적으로 filter_strict_offtopic을 호출)."""
+    return filter_strict_offtopic(text, tool_name)
 
 
 def confirm_3d(item: dict) -> bool:
