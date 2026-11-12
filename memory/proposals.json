@@ -33519,5 +33519,67 @@
     "id": "p-bdea3a6641",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 최근 커밋(feat: PR #65 병합·정리 + 웹 진행 안내 + 입력 형식 테스트) 및 끝낸 제안에 '로컬 파이프라인 입력 검증 테스트 추가' 항목 등으로 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-12T13:53:31+00:00",
+    "kind": "proposal",
+    "id": "p-58186520b7",
+    "title": "웹 브라우저 PBR 상태 안내 UI 문구 정돈",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 UI 피드백 관련 패치가 경로 불일치 등으로 held 되었으므로 web/index.html 내 DOM Script 구조에 맞춰 안전하게 재작성 필요",
+    "proposal": "web/index.html 파일에서 PBR 변환 진행 상태 및 로딩 스피너 제어 JS 코드를 정확한 엘리먼트 ID 기준으로 수정",
+    "expected": "사용자가 브라우저에서 PBR 변환 상태를 더 직관적으로 확인",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:53:31+00:00",
+    "kind": "proposal",
+    "id": "p-a49dc976b0",
+    "title": "백엔드 입력 검증 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 PR #66 병합 완료 후 입력 안정성이 강화되었으나, 다양한 이미지 포맷 테스트 추가 필요",
+    "proposal": "backend/tests/test_mesh_from_image.py에 잘못된 포맷 및 예외 상황에 대한 단위 테스트 추가",
+    "expected": "로컬 파이프라인의 예외 상황 대응력 향상 및 회귀 방지",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:53:54.114002+00:00",
+    "kind": "decision",
+    "id": "p-58186520b7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 UI 피드백 및 안내 문구 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:53:54.158266+00:00",
+    "kind": "decision",
+    "id": "p-a49dc976b0",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:54:03.859828+00:00",
+    "kind": "triage",
+    "id": "p-a49dc976b0",
+    "verdict": "done_already",
+    "reason": "최근 커밋(PR #65 병합·정리 + 웹 진행 안내 + 입력 형식 테스트)과 끝낸 제안에 이미 백엔드 입력 형식 테스트 및 검증 보완 작업이 반영되어 있음."
+  },
+  {
+    "at": "2026-11-12T13:54:03.898190+00:00",
+    "kind": "decision",
+    "id": "p-a49dc976b0",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋(PR #65 병합·정리 + 웹 진행 안내 + 입력 형식 테스트)과 끝낸 제안에 이미 백엔드 입력 형식 테스트 및 검증 보완 작업이 반영되어 있음."
   }
 ]
