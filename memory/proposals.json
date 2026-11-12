@@ -34941,5 +34941,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T21:28:55+00:00",
+    "kind": "proposal",
+    "id": "p-62eaa6bbd9",
+    "title": "웹 PBR 변환 에러 핸들링 유닛 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 상태 안내 UI 마크업 정돈 관련 PR #68이 대기 중이며 프론트엔드 예외 처리의 안정성이 중요합니다.",
+    "proposal": "web/ 또는 backend/static/ 내의 PBR 변환 예외 상황 처리 Script에 대한 간단한 JavaScript 단위 테스트를 추가합니다.",
+    "expected": "프론트엔드 PBR 변환 UI의 오작동을 방지하고 사용자 경험을 높입니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T21:28:55+00:00",
+    "kind": "proposal",
+    "id": "p-22ea93b66c",
+    "title": "COLMAP 및 TripoSR 로컬 파이프라인 문서화 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "로컬 버전 FastAPI 기반 TripoSR·COLMAP 파이프라인 운영 시 GPU 요구사항 명시 필요",
+    "proposal": "docs/local-pipeline.md를 생성하여 로컬 버전 실행 시 필요한 VRAM 사양과 설치 단계를 상세히 정리합니다.",
+    "expected": "사용자가 로컬 버전을 구축할 때 발생하는 시행착오를 줄여줍니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T21:29:59.845684+00:00",
+    "kind": "decision",
+    "id": "p-62eaa6bbd9",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T21:29:59.885650+00:00",
+    "kind": "decision",
+    "id": "p-22ea93b66c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T21:30:02.910565+00:00",
+    "kind": "triage",
+    "id": "p-22ea93b66c",
+    "verdict": "done_already",
+    "reason": "이미 최근 커밋과 완료된 제안에 PBR 및 로컬 파이프라인 관련 문서화 작업이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-12T21:30:02.946405+00:00",
+    "kind": "decision",
+    "id": "p-22ea93b66c",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 최근 커밋과 완료된 제안에 PBR 및 로컬 파이프라인 관련 문서화 작업이 반영되어 있습니다."
   }
 ]
