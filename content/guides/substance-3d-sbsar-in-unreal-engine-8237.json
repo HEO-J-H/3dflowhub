@@ -1,0 +1,99 @@
+{
+  "id": "substance-3d-sbsar-in-unreal-engine-8237",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "SBSAR in Unreal Engine",
+  "title": "Unreal에서 SBSAR",
+  "summary": "Substance 3D에서 제작한 SBSAR 절차적 머티리얼을 Unreal Engine으로 불러와 실시간으로 파라미터를 조절하고 PBR 텍스처를 적용하는 기능입니다.",
+  "when": [
+    "게임 엔진 내에서 텍스처 해상도나 컬러를 실시간으로 변경해야 할 때",
+    "고품질 PBR 재질을 가볍고 유연하게 에셋에 적용하고 싶을 때",
+    "Substance 3D Designer의 절차적 파라미터를 Unreal Engine 블루프린트와 연동할 때"
+  ],
+  "steps": [
+    "Unreal Engine 프로젝트에서 Plugins 창을 열고 Substance 3D Plugin을 활성화한 뒤 에디터를 재시작합니다.",
+    "Content Browser 빈 곳을 우클릭하거나 Import 버튼을 눌러 준비된 .sbsar 파일을 불러옵니다.",
+    "임포트된 Substance Instance Factory asset을 더블클릭하여 파라미터 세팅 창을 엽니다.",
+    "Graph Instances 항목에서 Substance Instance asset을 생성합니다.",
+    "생성된 Substance Instance를 Viewport의 3D 메시 드래그하여 재질을 적용합니다.",
+    "Details 패널에서 BaseColor, Roughness, Normal 등의 파라미터 값을 조절해 실시간으로 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "머티리얼의 출력 텍스처 Resolution를 조절합니다."
+    },
+    {
+      "name": "Output Size",
+      "desc": "가로 및 세로 텍스처 픽셀 크기를 개별 설정합니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "노멀 맵의 요철 깊이와 강도를 조절합니다."
+    },
+    {
+      "name": "Roughness Scale",
+      "desc": "거칠기 맵의 전반적인 세기와 대비를 바꿉니다."
+    },
+    {
+      "name": "Color Tint",
+      "desc": "절차적 재질의 기본 색상을 실시간으로 변경합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "패턴이나 노이즈의 무작위 생성 시드를 바꿔 다양한 Variation을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽 벽돌 타일 실시간 커스텀",
+      "steps": [
+        "벽돌 .sbsar 파일을 Unreal Engine에 임포트합니다.",
+        "Substance Instance를 생성하여 건물 Static Mesh에 드래그합니다.",
+        "Details 패널에서 Mortar Width와 Brick Color를 조절해 다양한 외벽을 연출합니다."
+      ]
+    },
+    {
+      "title": "철판 표면 웨어링(스크래치) 조절",
+      "steps": [
+        "메탈 머티리얼 SBSAR을 적용합니다.",
+        "Wear Level 파라미터 값을 높여 모서리 부식과 흠집을 표현합니다.",
+        "Resolution을 낮추어 모바일 플랫폼 성능에 맞게 최적화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Substance 3D Plugin이 설치되지 않음 → Epic Games Launcher 및 마켓플레이스에서 최신 플러그인을 설치하고 프로젝트 설정을 확인합니다.",
+    "텍스처가 흐리게 나옴 → Substance Instance의 Resolution 값이 낮게 설정되어 있는지 확인하고 2048 또는 4096으로 올립니다."
+  ],
+  "related": [
+    "Substance 3D Designer",
+    "Substance 3D Painter",
+    "Material Instance",
+    "PBR Material"
+  ],
+  "videos": [
+    {
+      "id": "ZhbCD-GuLJw",
+      "title": "Using Substance Materials in Unreal Engine | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "1m9I0GJPijY",
+      "title": "How to Use Substance Designer Materials Directly in Unreal Engine 5",
+      "author": "3dEx"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20SBSAR%20in%20Unreal%20Engine",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Plugins",
+    "Substance 3D Plugin",
+    "Content Browser",
+    "Import"
+  ],
+  "at": "2026-11-12T01:39:35.451762+00:00"
+}

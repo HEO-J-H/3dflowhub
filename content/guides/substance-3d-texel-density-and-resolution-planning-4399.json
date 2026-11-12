@@ -1,0 +1,96 @@
+{
+  "id": "substance-3d-texel-density-and-resolution-planning-4399",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Texel density and resolution planning",
+  "title": "텍스처 Resolution 계획",
+  "summary": "Substance 3D에서 Texel Density와 Resolution Planning을 활용해 3D 모델 전체의 텍스처 Resolution 밀도를 균일하게 맞추고 최적의 텍스처 맵 크기를 계획합니다. 게임과 실시간 렌더링에서 텍스처가 깨지거나 늘어나는 현상을 방지합니다.",
+  "when": [
+    "서로 다른 크기의 오브젝트들 사이에 텍스처 픽셀 밀도(Texel Density)를 일관되게 맞추어야 할 때",
+    "게임 엔진이나 실시간 렌더링 파이프라인에 모델을 올리기 전 텍스처 Resolution을 효율적으로 계획할 때",
+    "UV 셸 크기 왜곡으로 인해 특정 부분만 텍스처가 흐리게 보이는 현상을 수정할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 프로젝트를 열거나 새로운 프로젝트를 생성합니다.",
+    "상단 메뉴에서 Texture Set Settings를 열어 현재 텍스처 Resolution(예: 2048x2048)을 확인하고 설정합니다.",
+    "외부에서 가져온 모델의 UV가 UDIM 또는 단일 타일에 올바르게 배치되어 있는지 Viewport에서 확인합니다.",
+    "텍스처 세트별로 Texel Density를 계산하여 Resolution가 용도에 맞는지 점검합니다.",
+    "필요시 Texture Set Settings의 Resolution을 변경하여 텍스처 디테일을 재조정합니다.",
+    "Viewport에서 텍스처 밀도가 균일하게 적용되었는지 확인하고 작업을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "텍스처 맵의 Resolution 크기(예: 1024, 2048, 4096)를 설정합니다."
+    },
+    {
+      "name": "Texel Density",
+      "desc": "단위 면적당 할당되는 텍셀의 밀도를 뜻합니다."
+    },
+    {
+      "name": "Texture Set",
+      "desc": "오브젝트의 머티리얼 ID나 UDIM 타일별로 분리된 텍스처 묶음입니다."
+    },
+    {
+      "name": "UV Tile",
+      "desc": "여러 장의 텍스처를 사용하기 위해 UV를 구역별로 나누어 배치하는 공간입니다."
+    },
+    {
+      "name": "Bit Depth",
+      "desc": "텍스처 맵의 색상 깊이(8-bit 또는 16-bit)를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 무기 텍스처 Resolution 통일",
+      "steps": [
+        "무기와 손잡이의 UV 셸 크기를 비율에 맞게 정렬합니다.",
+        "Texture Set Settings에서 Resolution을 2048로 설정합니다.",
+        "Viewport에서 디테일이 균일하게 표현되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "건축 프랍 텍스처 최적화",
+      "steps": [
+        "큰 건물 벽면과 작은 소품의 Texel Density 기준을 통일합니다.",
+        "소품의 Texture Set Resolution을 1024로 낮추어 최적화합니다.",
+        "전체 씬의 텍스처 메모리 사용량을 점검합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트마다 텍스처 Resolution이 제각각임 → Texture Set Settings에서 프로젝트 목적에 맞게 Resolution 기준을 통일합니다.",
+    "UV 스케일이 왜곡되어 픽셀 밀도가 깨짐 → 3D DCC에서 Apply Scale을 적용한 뒤 UV를 다시 정리합니다."
+  ],
+  "related": [
+    "Maya Texel Density",
+    "Substance 3D UDIM 작업",
+    "UV Editor",
+    "Texture Set Settings"
+  ],
+  "videos": [
+    {
+      "id": "0nfcGPsjaxU",
+      "title": "Texel Resolution for your 3D Assets Explained",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "nkUuidQb4Tk",
+      "title": "Texel Density Made Simple (Game Art Workflow)",
+      "author": "On Mars 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Texel%20density%20and%20resolution%20planning",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Resolution",
+    "UV",
+    "UDIM",
+    "Viewport"
+  ],
+  "at": "2026-11-12T01:39:44.697129+00:00"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-sbsar-in-3ds-max-and-maya-4c77",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "SBSAR in 3ds Max and Maya",
+  "title": "Max·Maya에서 SBSAR",
+  "summary": "Substance 3D의 SBSAR 파라메트릭 재질 파일을 3ds Max와 Maya로 불러와 실시간으로 Resolution, 색상, 패턴 등을 조절하고 고품질 PBR 텍스처로 적용하는 방법입니다.",
+  "when": [
+    "게임 엔진이나 렌더러로 Export 전, 3ds Max와 Maya Viewport에서 재질의 세부 파라미터를 실시간으로 수정해야 할 때",
+    "하나의 SBSAR 파일로 타일링, 거칠기(Roughness), 노멀(Normal) 강도 등을 유연하게 변형하여 다양한 베리에이션을 만들 때",
+    "대형 에셋 제작 시 텍스처 파일 용량을 줄이고 절차적(Procedural) 머티리얼의 이점을 살려 파이프라인을 효율화할 때"
+  ],
+  "steps": [
+    "Adobe Substance 3D 공식 플러그인(Substance in 3ds Max / Substance in Maya)이 최신 버전으로 설치되어 있는지 확인합니다.",
+    "3ds Max 또는 Maya를 실행하고, 머티리얼 에디터(Material Editor / Hypershade)를 엽니다.",
+    "Substance 맵 또는 노드를 생성하고, 외부 파일 불러오기 버튼을 눌러 준비된 .sbsar 파일을 선택합니다.",
+    "Attribute Editor 또는 Substance 노드 속성 패널에서 Resolution과 각종 파라미터 값을 원하는 대로 조절합니다.",
+    "생성된 PBR 맵(BaseColor, Normal, Roughness 등)을 각 3D Software의 표준 Shader(Standard Surface, Physical Material 등) 채널에 연결합니다.",
+    "Viewport에서 렌더링 결과와 타일링 상태를 확인하고, 필요시 UV 좌표를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "출력되는 PBR 텍스처의 Resolution(픽셀 크기)를 실시간으로 변경합니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "표면의 요철과 입체감을 주는 노멀 맵의 강도를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 및 반사 광택의 퍼짐 정도를 제어합니다."
+    },
+    {
+      "name": "Tiling / Repeat",
+      "desc": "오브젝트 표면에서 머티리얼 패턴이 반복되는 횟수를 조절합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "절차적 패턴의 무작위 생성 시드를 변경하여 색상이나 형태의 변형을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화 벽돌 벽 제작",
+      "steps": [
+        "벽 모델링 오브젝트에 Substance 머티리얼을 적용합니다.",
+        "SBSAR 파라미터에서 Brick Count와 Mortar Width를 조절해 벽돌 간격을 맞춥니다.",
+        "Roughness와 Normal Intensity를 조정하여 사실적인 벽돌 질감을 완성합니다."
+      ]
+    },
+    {
+      "title": "금속 파이프 녹 표현 적용",
+      "steps": [
+        "파이프 모델링에 금속 재질의 SBSAR 파일을 불러옵니다.",
+        "Rust Amount 파라미터를 높여 표면의 녹슨 정도를 실시간으로 표현합니다.",
+        "Resolution을 2048 이상으로 설정하여 Viewport에서 세밀한 디테일을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플러그인 버전 불일치 → 3ds Max와 Maya의 최신 호환 버전에 맞는 Adobe 공식 Substance 플러그인을 재설치합니다.",
+    "Resolution를 무리하게 높여 작업 속도가 느려짐 → 작업 중에는 1024 이하로 낮추고 최종 렌더링 시에만 4K 이상으로 높입니다.",
+    "UV 언랩 누락으로 타일링이 깨짐 → 모델링의 UV 좌표가 정확히 0-1 영역에 펴져 있는지 확인하고 UV를 재정렬합니다."
+  ],
+  "related": [
+    "Substance 3D Designer",
+    "Substance 3D Painter",
+    "Substance 3D Assets",
+    "Physical Material"
+  ],
+  "videos": [
+    {
+      "id": "fDDKFVk7tfo",
+      "title": "Substance in 3ds Max | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "vFB35dELyno",
+      "title": "SBSAR To Substance 3D - How To Import",
+      "author": "CGI MADE SIMPLE"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20SBSAR%20in%203ds%20Max%20and%20Maya",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Adobe Substance 3D",
+    "Substance",
+    "Max",
+    "Maya",
+    "Material Editor",
+    "Hypershade"
+  ],
+  "at": "2026-11-12T01:39:40.212433+00:00"
+}
