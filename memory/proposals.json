@@ -33863,5 +33863,84 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T22:39:12+00:00",
+    "kind": "proposal",
+    "id": "p-9aa9a69867",
+    "title": "PR #68 검토 및 병합 처리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68(웹 브라우저 PBR 상태 안내 UI 마크업 정돈)이 승인 대기 상태입니다.",
+    "proposal": "GitHub에서 PR #68의 변경 내용과 테스트 결과를 확인하고 최종 병합합니다.",
+    "expected": "웹 PBR 변환 상태 안내 UI가 사용자에게 정확하게 표시됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T22:39:12+00:00",
+    "kind": "proposal",
+    "id": "p-7b5ecfcde1",
+    "title": "깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "사장님 요청 사항에 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘'가 접수되었습니다.",
+    "proposal": "docs/rag_review.md 문서를 생성하여 RAG 오픈소스와 사진 기반 3D 생성 툴(Pix2Poly) 간의 연계 가능성 및 실효성을 검토합니다.",
+    "expected": "오픈소스 활용 방안에 대한 명확한 기술 검토 결과 도출",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T22:39:12+00:00",
+    "kind": "proposal",
+    "id": "p-861c22555e",
+    "title": "웹 브라우저 PBR 텍스처 변환 단위 테스트 추가 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 웹 PBR 관련 패치 적용 시 일부 DOM 매칭 오류가 발생했으나 테스트를 통해 안정화가 필요합니다.",
+    "proposal": "web/tests/test_pbr.js 또는 관련 테스트 파일에 PBR 텍스처 변환 에러 핸들링 유닛 테스트를 추가합니다.",
+    "expected": "웹 브라우저 상에서의 PBR 변환 예외 상황 대응력 강화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T22:39:47.744633+00:00",
+    "kind": "decision",
+    "id": "p-9aa9a69867",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #63 최종 검토 및 병합 처리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T22:39:47.793639+00:00",
+    "kind": "decision",
+    "id": "p-7b5ecfcde1",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T22:39:47.838963+00:00",
+    "kind": "decision",
+    "id": "p-861c22555e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 오류 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T22:39:50.457209+00:00",
+    "kind": "triage",
+    "id": "p-7b5ecfcde1",
+    "verdict": "agent",
+    "reason": "깃허브 RAG 오픈소스와 Pix2Poly 연계 검토를 위해 docs/rag_review.md 문서를 생성하는 작업은 AI 에이전트가 코드를 작성하여 처리할 수 있습니다."
   }
 ]
