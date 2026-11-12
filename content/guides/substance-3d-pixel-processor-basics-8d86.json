@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-pixel-processor-basics-8d86",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Pixel processor basics",
+  "title": "Pixel Processor",
+  "summary": "Substance 3D Designer의 Pixel Processor는 입력된 텍스처의 픽셀 단위 데이터를 직접 연산하고 조작하여 커스텀 필터와 효과를 만드는 핵심 노드입니다.",
+  "when": [
+    "기본 제공하는 노드로는 구현하기 힘든 독창적인 픽셀 조작 효과를 만들 때",
+    "입력된 이미지의 특정 채널 값을 반전, 왜곡하거나 수학적 공식을 적용할 때",
+    "절차적 머테리얼 내에서 복잡한 패턴 변형 및 커스텀 마스크를 생성할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Graph 뷰에서 빈 공간을 우클릭하거나 Tab 키를 누릅니다.",
+    "검색창에 Pixel Processor를 입력하고 선택하여 노드를 생성합니다.",
+    "Pixel Processor 노드를 더블클릭하여 내부 서브그래프 편집기로 들어갑니다.",
+    "내부에서 Input 노드, 샘플링 노드, 수학 연산(Math) 노드들을 조합하여 픽셀 처리 로직을 구성합니다.",
+    "Output 노드에 최종 연산된 결과를 연결하고 상단 Graph 뷰로 돌아와 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Inputs",
+      "desc": "노드 내부로 들어오는 입력 텍스처나 마스크의 개수와 슬롯을 정의합니다."
+    },
+    {
+      "name": "Output Color Mode",
+      "desc": "출력되는 텍스처의 컬러 채널 형식(Grayscale 또는 RGBA)을 설정합니다."
+    },
+    {
+      "name": "Graph Editor",
+      "desc": "픽셀 단위 연산을 위한 함수와 수학 노드들을 배치하고 연결하는 작업 공간입니다."
+    },
+    {
+      "name": "Sample Grayscale / Sample Color",
+      "desc": "입력된 텍스처의 특정 좌표 픽셀 값을 샘플링하여 가져옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "픽셀 오프셋(왜곡) 효과 만들기",
+      "steps": [
+        "Pixel Processor 내부로 메인 텍스처와 노이즈 맵을 입력합니다.",
+        "UV 좌표계에 노이즈 맵의 샘플링 값을 더해주는 연산 노드를 연결합니다.",
+        "변형된 UV 좌표로 메인 텍스처를 샘플링하여 출력합니다."
+      ]
+    },
+    {
+      "title": "커스텀 컬러 채널 스와핑 및 임계값 처리",
+      "steps": [
+        "Pixel Processor에 컬러 텍스처를 입력합니다.",
+        "각 RGB 채널 값을 추출하여 수학적 조건문(Step / Compare)을 적용합니다.",
+        "조건에 따라 특정 색상만 강조하거나 변환된 결과를 출력합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "성능 최적화 고려 안 함 → 픽셀 내부 연산이 너무 복잡하면 쿡 타임이 길어지므로 불필요한 연산 노드를 줄입니다.",
+    "UV 좌표 범위 초과 → 샘플링 시 좌표가 0~1 범위를 벗어날 때 Wrap 혹은 Clamp 옵션을 올바르게 설정합니다."
+  ],
+  "related": [
+    "FX-Map",
+    "Blend",
+    "Levels",
+    "Grayscale Conversion"
+  ],
+  "videos": [
+    {
+      "id": "VyFgpitTsYg",
+      "title": "Substance 3D Designer First Steps: 01 - Overview & Basics | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "8h4Cm3EYRAc",
+      "title": "Live Training: Introduction to Pixel Processor | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Pixel%20processor%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Graph",
+    "Pixel Processor"
+  ],
+  "at": "2026-11-12T00:39:25.860366+00:00"
+}

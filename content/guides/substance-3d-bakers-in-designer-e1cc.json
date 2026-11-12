@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-bakers-in-designer-e1cc",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Bakers in Designer",
+  "title": "Designer Baking",
+  "summary": "Substance 3D Designer의 Bakers를 활용해 하이 폴리곤 모델의 디테일을 로우 폴리곤 모델에 Normal, Ambient Occlusion 등의 맵으로 투영합니다. 복잡한 입체감을 가벼운 게임용 모델에 그대로 살릴 때 사용합니다.",
+  "when": [
+    "하이 폴리곤 스컬프팅 모델의 세밀한 주름이나 흠집을 로우 폴리곤 게임용 에셋에 입힐 때",
+    "실시간 렌더링에서 입체감을 극대화하기 위해 Normal 맵과 Ambient Occlusion 맵을 추출할 때",
+    "텍스처 제작 시 지오메트리 구조 기반의 마스크(Curvature, Thickness 등)를 빠르게 얻고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Designer에서 새 패키지를 만들거나 프로젝트를 엽니다.",
+    "Explorer 패널에서 에셋을 우클릭하고 Bake Model Information을 선택해 Baker 설정 창을 엽니다.",
+    "High Definition Models 슬롯에 세부 굴곡이 있는 하이 폴리곤 Mesh 파일을 추가합니다.",
+    "Low Definition Models 슬롯에 텍스처를 적용할 로우 폴리곤 Mesh 파일을 추가합니다.",
+    "추출할 맵 종류(Normal Map, Ambient Occlusion 등)를 선택하고 Max Front/Back Distance 값을 모델 크기에 맞게 조절합니다.",
+    "오른쪽 아래 Bake 버튼을 눌러 맵 추출을 실행하고 2D View에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "High Definition Models",
+      "desc": "디테일을 추출할 원본 하이 폴리곤 모델을 지정합니다."
+    },
+    {
+      "name": "Low Definition Models",
+      "desc": "실제 텍스처가 입혀질 타겟 로우 폴리곤 모델을 지정합니다."
+    },
+    {
+      "name": "Max Front Distance",
+      "desc": "레이캐스팅 시 모델 표면 바깥쪽으로 검색할 최대 거리를 설정합니다."
+    },
+    {
+      "name": "Max Back Distance",
+      "desc": "레이캐스팅 시 모델 표면 안쪽으로 검색할 최대 거리를 설정합니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노멀 맵 투영 시 접선 및 법선 왜곡을 줄이기 위해 노멀을 평균화합니다."
+    },
+    {
+      "name": "Output Size",
+      "desc": "추출될 Bake 텍스처의 Resolution(예: 2048x2048)를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 서페이스 갑옷에 볼트와 패널 라인 투영하기",
+      "steps": [
+        "하이 폴리곤 갑옷 메쉬와 로우 폴리곤 메쉬를 각각 준비합니다.",
+        "Baker 창에서 두 메쉬를 올바른 슬롯에 배치합니다.",
+        "Max Front/Back Distance 값을 조절하여 돌출된 볼트 부위가 잘리지 않도록 맞춥니다.",
+        "Normal 맵을 베이크하여 로우 폴리곤 모델에 패널 라인 음영을 부여합니다."
+      ]
+    },
+    {
+      "title": "콘크리트 벽면의 균열 및 구멍 AO 추출하기",
+      "steps": [
+        "울퉁불퉁한 고해상도 벽면 스컬프팅 모델을 High Definition에 넣습니다.",
+        "면이 평평한 로우 폴리곤 벽 플레인을 Low Definition에 넣습니다.",
+        "Ambient Occlusion 베이커를 활성화하고 Contact Shadow 설정을 조정합니다.",
+        "틈새가 어둡게 표현된 AO 맵을 얻어 머티리얼 마스크로 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투영 결과물에 구멍이나 깨진 면이 나타남 → Max Front 또는 Max Back Distance 값이 너무 낮아 레이가 모델에 닿지 않는 것이므로 값을 늘립니다.",
+    "모델 표면에 얼룩이나 검은 점(Meatball artifact)이 생김 → High와 Low 모델의 피벗이나 스케일이 일치하지 않는 문제이므로 DCC 툴에서 Transform을 초기화(Freeze Transform)한 뒤 다시 불러옵니다."
+  ],
+  "related": [
+    "Normal Map",
+    "Ambient Occlusion",
+    "Curvature",
+    "Substance 3D Painter"
+  ],
+  "videos": [
+    {
+      "id": "kl4zD4krV2E",
+      "title": "Tree Bark - Baking in Substance Designer | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "At3FoFcuN6k",
+      "title": "Adobe Substance 3D Designer for Beginners | Course Overview | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Bakers%20in%20Designer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T00:39:30.397748+00:00"
+}
