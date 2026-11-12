@@ -1221,13 +1221,12 @@ def test_render_practical_content_metrics(monkeypatch):
     assert metrics_called[5] == ("평균 CPC 점수", "4.20점")
 
 
-def test_render_cpc_optimization_dashboard(monkeypatch):
+def test_render_niche_performance_dashboard(monkeypatch):
     import app
-    # evolve 모듈의 CPC 최적화 분석 및 분포 함수 목킹
-    monkeypatch.setattr("evolve.summarize_cpc_optimization_metrics", lambda: {"total_practical_posts": 5, "cpc_score_avg": 4.2})
-    monkeypatch.setattr("evolve.analyze_3d_content_distribution", lambda: {"percentages": {"3D DCC": 60.0}, "total": 10})
-    monkeypatch.setattr("evolve.summarize_error_trends", lambda: {"전체": {"주제 무관/필터링됨": 2}})
-    monkeypatch.setattr("evolve.calculate_cpc_score_distribution", lambda: {"high_cpc_keywords": [{"keyword": "v-ray", "score": 3.0}]})
+    monkeypatch.setattr("evolve.summarize_cpc_optimization_metrics", lambda: {"total_practical_posts": 4, "cpc_score_avg": 4.0, "domains_breakdown": {"3D DCC": 4}})
+    monkeypatch.setattr("evolve.analyze_3d_content_distribution", lambda: {"percentages": {"3D DCC": 80.0}, "total": 5})
+    monkeypatch.setattr("evolve.summarize_error_trends", lambda: {"전체": {"주제 무관/필터링됨": 1}})
+    monkeypatch.setattr("evolve.calculate_cpc_score_distribution", lambda: {"high_cpc_keywords": [{"keyword": "maya", "score": 2.5}]})
 
     class DummyContainer:
         def __enter__(self): return self
@@ -1243,12 +1242,12 @@ def test_render_cpc_optimization_dashboard(monkeypatch):
     monkeypatch.setattr(app, "hbars", lambda *args, **kwargs: None)
     monkeypatch.setattr(app.st, "columns", lambda n: [type("Col", (), {"metric": lambda self, k, v: metrics_called.append((k, v))})() for _ in range(n)])
 
-    app.render_cpc_optimization_dashboard()
+    app.render_niche_performance_dashboard()
     assert len(metrics_called) == 4
-    assert metrics_called[0] == ("실무 고CPC 콘텐츠 수", "5건")
-    assert metrics_called[1] == ("평균 CPC 최적화 점수", "4.20점")
-    assert metrics_called[2] == ("전체 분석 콘텐츠", "10건")
-    assert metrics_called[3] == ("오프토픽 차단 건수", "2건")
+    assert metrics_called[0] == ("실무 고단가 콘텐츠 수", "4건")
+    assert metrics_called[1] == ("평균 CPC 최적화 점수", "4.00점")
+    assert metrics_called[2] == ("전체 분석 콘텐츠", "5건")
+    assert metrics_called[3] == ("오프토픽 차단 건수", "1건")
 
 
 def test_render_cpc_optimization_status(monkeypatch):
