@@ -1,0 +1,99 @@
+{
+  "id": "unity-baked-lighting-and-lightmapping-0eb1",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Baked lighting and Lightmapping",
+  "title": "라이트맵 굽기 (Baked GI)",
+  "summary": "Unity Baked Lighting과 Lightmapping은 실시간 연산 부하를 줄이기 위해 라이트와 그림자 정보를 미리 계산하여 텍스처(Lightmap)로 저장하는 시스템입니다.",
+  "when": [
+    "모바일 기기나 저사양 플랫폼에서 높은 프레임 레이트를 유지해야 할 때",
+    "실시간 연산이 어려운 복잡한 간접광과 부드러운 글로벌 일루미네이션(GI)을 표현할 때",
+    "건축 시각화나 실내 배경처럼 움직이지 않는 정적 환경을 사실적으로 렌더링할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 조명을 선택하고 Inspector 패널 상단에서 Light Mode를 Baked로 설정합니다.",
+    "조명을 받을 스태틱 메시 오브젝트들을 선택하고 Inspector 우측 상단의 Static 드롭다운에서 Contribute GI를 체크합니다.",
+    "Window 메뉴에서 Rendering > Lighting을 선택하여 Lighting 창을 엽니다.",
+    "Lighting 창의 Scene 탭에서 Lightmapping Settings를 확인하고 Mixed Lighting 또는 Baked Global Illumination 옵션을 활성화합니다.",
+    "Lighting 창 하단의 Generate Lighting 버튼을 클릭하여 라이트맵 Baking을 시작합니다.",
+    "Baking이 완료되면 Viewport에서 조명과 그림자 결과물이 적용된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Lightmapping Settings",
+      "desc": "라이트맵 Baking의 전반적인 품질과 알고리즘을 설정합니다."
+    },
+    {
+      "name": "Indirect Multiplier",
+      "desc": "간접광(바운스된 빛)의 밝기 강도를 조절합니다."
+    },
+    {
+      "name": "Lightmap Resolution",
+      "desc": "텍스처의 픽셀 밀도를 결정하며 높을수록 선명하지만 생성 시간이 길어집니다."
+    },
+    {
+      "name": "Lightmap Padding",
+      "desc": "라이트맵 UV 간의 간격을 조절하여 텍스처 번짐 현상을 방지합니다."
+    },
+    {
+      "name": "Compress Lightmaps",
+      "desc": "생성된 라이트맵 텍스처를 압축하여 메모리 사용량을 줄입니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "오목한 틈새에 어두운 그림자를 추가하여 입체감을 높입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 인테리어 공간의 부드러운 간접광 연출",
+      "steps": [
+        "방 안의 주요 광원(Point Light 또는 Spot Light)을 Baked 모드로 설정합니다.",
+        "벽과 바닥, 가구 오브젝트에 Contribute GI 스태틱 옵션을 켭니다.",
+        "Lighting 창에서 Generate Lighting을 실행해 창가로 들어오는 빛의 반사광을 표현합니다."
+      ]
+    },
+    {
+      "title": "야간 가로등 주변의 고정된 그림자 Baking",
+      "steps": [
+        "가로등 밑의 Spot Light를 Baked로 지정합니다.",
+        "지면과 건물 매시에 스태틱 옵션을 적용합니다.",
+        "Lightmap Resolution을 높여 그림자의 경계선을 선명하게 굽습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트가 Static으로 설정되지 않음 → Inspector 창에서 Contribute GI 또는 GameObject Static을 체크합니다.",
+    "라이트맵 UV가 겹치거나 왜곡됨 → 모델링 툴에서 겹치지 않는 2번 UV 채널을 생성하거나 Unity의 Generate Lightmap UVs 옵션을 켭니다.",
+    "Baking 후 검은색 얼룩(Lightmap Seams) 발생 → Lightmap Padding 값을 늘리고 UV 마진을 확보합니다."
+  ],
+  "related": [
+    "Light Probes",
+    "Reflection Probes",
+    "Realtime GI",
+    "Emissive Materials"
+  ],
+  "videos": [
+    {
+      "id": "XzJe4W96Mgc",
+      "title": "Basics of Lightmapping in Unity. How baking light in Unity?",
+      "author": "Mixall studio"
+    },
+    {
+      "id": "-nqZfFUzAL8",
+      "title": "Unity 6 Lightmapping Tutorial: Modular Room Workflow",
+      "author": "Mythmatic"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Baked%20lighting%20and%20Lightmapping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Inspector",
+    "Light Mode",
+    "Baked"
+  ],
+  "at": "2026-11-12T03:09:49.634124+00:00"
+}

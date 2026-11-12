@@ -1,0 +1,97 @@
+{
+  "id": "unity-reflection-probes-ba41",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Reflection Probes",
+  "title": "Reflection Probe — 반사 맞추기",
+  "summary": "Unity의 Reflection Probe는 주변 환경을 큐브맵(Cubemap)으로 실시간 또는 베이크하여 금속이나 유리 같은 표면에 주변 풍경이 반사되도록 만드는 핵심 기능입니다.",
+  "when": [
+    "실시간 Ray Tracing을 사용하지 않는 환경에서 사실적인 반사 효과를 낼 때",
+    "금속 장갑, 자동차 차체, 유광 타일 바닥 등 반사율이 높은 표면을 표현할 때",
+    "실내 공간이나 특정 구역마다 주변 환경에 맞는 정확한 반사를 주고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 패널 우클릭 또는 상단 메뉴에서 GameObject → Light → Reflection Probe를 선택하여 씬에 프로브를 생성합니다.",
+    "Scene 뷰에서 Reflection Probe의 위치를 반사를 표현할 오브젝트 근처로 이동합니다.",
+    "Inspector 패널에서 Size와 Box Size를 조절하여 반사를 수집할 공간의 영역을 설정합니다.",
+    "반사된 이미지를 생성하기 위해 Baked 모드인 경우 Inspector 상단의 Bake 버튼을 누르거나 Realtime으로 설정합니다.",
+    "Scene 뷰에서 오브젝트 표면에 주변 환경이 자연스럽게 반사되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "프로브의 갱신 방식을 Baked, Custom, Realtime 중 선택합니다."
+    },
+    {
+      "name": "Mode",
+      "desc": "Lighting에 포함되는 방식을 Baked 또는 Realtime으로 설정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "반사되는 이미지의 밝기 세기를 조절합니다."
+    },
+    {
+      "name": "Box Size",
+      "desc": "반사 캡처 영역의 3차원 크기를 설정합니다."
+    },
+    {
+      "name": "Box Offset",
+      "desc": "캡처 영역의 중심 위치를 오프셋 값으로 조정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성되는 큐브맵 텍스처의 Resolution를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 쇼룸 바닥 유광 반사 표현",
+      "steps": [
+        "쇼룸 중앙 천장에 Reflection Probe를 배치합니다.",
+        "Box Size를 쇼룸 방 크기에 딱 맞게 늘립니다.",
+        "Bake를 실행하여 바닥 타일에 주변 조명과 벽이 비치도록 만듭니다."
+      ]
+    },
+    {
+      "title": "자동차 외장재 주변 풍경 반사",
+      "steps": [
+        "자동차 모델 바로 위에 Reflection Probe를 위치시킵니다.",
+        "Resolution을 높여 세밀한 반사 품질을 확보합니다.",
+        "Realtime 모드로 설정하여 주변 배경이 바뀔 때 반사가 실시간 반영되게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Box Size가 너무 작아 오브젝트가 영역을 벗어남 → Box Size를 키워 반사 영역 안에 오브젝트가 포함되도록 설정합니다.",
+    "반사가 업데이트되지 않음 → Baked 모드에서 조명이나 오브젝트가 바뀐 후 Bake 버튼을 다시 눌러줍니다."
+  ],
+  "related": [
+    "Light Probe",
+    "Lightmapping",
+    "Screen Space Reflections",
+    "Material"
+  ],
+  "videos": [
+    {
+      "id": "lhELeLnynI8",
+      "title": "REFLECTIONS in Unity",
+      "author": "Brackeys"
+    },
+    {
+      "id": "JgiLLD2cvnE",
+      "title": "How to use Reflection Probes - UNITY Tutorial",
+      "author": "Phil Berex"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Reflection%20Probes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "GameObject",
+    "Light",
+    "Reflection Probe"
+  ],
+  "at": "2026-11-12T03:09:53.597704+00:00"
+}

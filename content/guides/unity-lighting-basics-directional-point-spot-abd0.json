@@ -1,0 +1,99 @@
+{
+  "id": "unity-lighting-basics-directional-point-spot-abd0",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "조명",
+  "name": "Lighting basics (directional, point, spot)",
+  "title": "조명 기초 — Directional·Point·Spot",
+  "summary": "Unity의 Directional, Point, Spot 조명은 씬 내부에 태양광, 전구, 손전등 같은 빛을 배치하여 공간의 입체감과 분위기를 연출하는 핵심 라이팅 요소입니다.",
+  "when": [
+    "야외 씬에서 태양광이나 전반적인 방향성 빛을 표현할 때",
+    "실내 공간에서 전구나 횃불 같은 국소적인 광원을 배치할 때",
+    "가로등이나 손전등처럼 특정 방향으로 좁게 퍼지는 빛을 연출할 때"
+  ],
+  "steps": [
+    "Hierarchy 패널 빈 곳을 우클릭하거나 상단 메뉴에서 GameObject를 선택합니다.",
+    "Light 서브메뉴로 이동하여 원하는 조명 유형(Directional Light, Point Light, Spot Light)을 선택해 씬에 추가합니다.",
+    "Scene 뷰나 Inspector 패널의 Transform에서 Position과 Rotation 값을 조절해 조명 위치와 각도를 맞춥니다.",
+    "Inspector 패널에서 Light 컴포넌트의 Color, Mode, Intensity 등을 조절하여 빛의 색상과 밝기를 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "조명의 종류(Directional, Point, Spot 등)를 변경합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "조명이 발산하는 빛의 색상을 설정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기 강도를 조절합니다."
+    },
+    {
+      "name": "Range",
+      "desc": "Point 및 Spot 조명이 도달하는 최대 거리(반경)를 설정합니다."
+    },
+    {
+      "name": "Spot Angle",
+      "desc": "Spot 조명이 퍼져나가는 원뿔 형태의 각도를 조절합니다."
+    },
+    {
+      "name": "Shadow Type",
+      "desc": "실시간 그림자(No Shadows, Hard Shadows, Soft Shadows) 생성 여부를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 자연광 (Directional Light)",
+      "steps": [
+        "Hierarchy 패널에서 Directional Light를 선택합니다.",
+        "Rotation 값을 조절해 태양의 고도와 각도를 설정합니다.",
+        "Intensity를 1~1.5 사이로 맞추고 주간 분위기를 연출합니다."
+      ]
+    },
+    {
+      "title": "실내 천장 전구 (Point Light)",
+      "steps": [
+        "Hierarchy 패널에서 Point Light를 생성하고 방 중앙 천장 아래로 이동합니다.",
+        "Range 값을 방 크기에 맞게 조절하여 벽면까지 빛이 닿게 합니다.",
+        "Color를 따뜻한 주황빛으로 변경해 전구 느낌을 냅니다."
+      ]
+    },
+    {
+      "title": "손전등 효과 (Spot Light)",
+      "steps": [
+        "Spot Light를 생성하고 캐릭터나 카메라 위치에 배치합니다.",
+        "Spot Angle을 좁게 설정하여 빛이 모이게 합니다.",
+        "Intensity를 높여 어두운 통로를 비추는 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 조명을 Realtime으로 설정하여 프레임 레이트가 떨어짐 → Baked 또는 Mixed 라이팅 모드를 사용하여 최적화합니다.",
+    "Point Light의 Range가 너무 작아 주변 물체에 빛이 닿지 않음 → Range 값을 늘려 조명의 영향 반경을 넓혀줍니다."
+  ],
+  "related": [
+    "Reflection Probe",
+    "Lightmapping",
+    "Post-processing",
+    "Emissive Material"
+  ],
+  "videos": [
+    {
+      "id": "5rxMdiCkQGk",
+      "title": "Light Up Your Game : Unity Lighting Essentials!",
+      "author": "Fist Full of Shrimp"
+    },
+    {
+      "id": "-1zdyJrSze8",
+      "title": "9 Directional, Point and Spot Lighting",
+      "author": "Holistic3D"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Lighting%20basics%20%28directional%2C%20point%2C%20spot%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T03:09:44.718238+00:00"
+}
