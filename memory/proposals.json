@@ -34062,5 +34062,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T23:19:28+00:00",
+    "kind": "proposal",
+    "id": "p-156a56c221",
+    "title": "PR #68 웹 PBR UI 마크업 변경 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 생성되어 승인 대기 중이며 웹 PBR 상태 안내 UI 마크업 정돈을 다룸",
+    "proposal": "GitHub에서 PR #68의 코드 변경 사항과 테스트 통과 여부를 검토하고 머지 진행",
+    "expected": "웹 PBR 변환 진행 상태 안내 UI가 사용자가 직관적으로 확인하기 좋게 정돈됨",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T23:19:28+00:00",
+    "kind": "proposal",
+    "id": "p-927b097558",
+    "title": "웹 브라우저 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 기능의 안정성을 높이기 위한 단위 테스트 보강 필요성 지속 제기됨",
+    "proposal": "web/tests/ 또는 관련 JS 테스트 파일에 PBR 변환 실패 시 에러 핸들링 및 예외 상황 테스트 추가",
+    "expected": "브라우저 환경에서의 예외 상황 대응력 강화 및 코드 품질 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T23:19:28+00:00",
+    "kind": "proposal",
+    "id": "p-f4fd4a74e1",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_mesh_from_image.py 관련 입력 검증 테스트 추가 작업이 일부 held 상태였음",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷 및 잘못된 입력에 대한 검증 테스트 보완",
+    "expected": "로컬 FastAPI 파이프라인의 입력 데이터 안정성 검증 강화",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T23:19:44.133430+00:00",
+    "kind": "decision",
+    "id": "p-156a56c221",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR 상태 UI 마크업 변경 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T23:19:44.174308+00:00",
+    "kind": "decision",
+    "id": "p-927b097558",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T23:19:44.215329+00:00",
+    "kind": "decision",
+    "id": "p-f4fd4a74e1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
