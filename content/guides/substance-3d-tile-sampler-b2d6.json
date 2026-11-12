@@ -1,0 +1,98 @@
+{
+  "id": "substance-3d-tile-sampler-b2d6",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Tile Sampler",
+  "title": "Tile Sampler",
+  "summary": "Substance 3D Designer에서 입력된 패턴을 격자나 원형 등의 형태로 배열하여 벽돌, 보도블록, 바닥재 같은 복잡한 반복 무늬를 생성하는 핵심 노드입니다. 패턴의 위치, 크기, 회전 등을 정교하게 제어할 수 있습니다.",
+  "when": [
+    "불규칙한 크기와 간격을 가진 벽돌이나 타일 벽면을 만들 때",
+    "바닥에 흩뿌려진 자갈이나 동전 같은 산포형 패턴을 제작할 때",
+    "원형이나 육각형 등 특수 구조로 요소를 배열해야 할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Graph View에서 Tab 키를 누릅니다.",
+    "검색창에 Tile Sampler를 입력하고 노드를 생성합니다.",
+    "배열할 기본 패턴 노드(예: Square, Shape 등)의 Output을 Tile Sampler의 Pattern Input에 연결합니다.",
+    "Tile Sampler 노드를 더블 클릭하여 2D View에서 결과를 확인합니다.",
+    "Properties 패널에서 Pattern 매니저와 Size/Scale 값을 조정하여 타일의 밀도와 간격을 설정합니다.",
+    "노드의 Output(Color 또는 Grayscale)을 최종 Material 출력 노드에 연결하여 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Pattern",
+      "desc": "배열할 기본 형태(Square, Disc 등) 또는 입력된 패턴을 선택합니다."
+    },
+    {
+      "name": "X Amount",
+      "desc": "가로 축을 따라 배열되는 패턴의 개수를 조절합니다."
+    },
+    {
+      "name": "Y Amount",
+      "desc": "세로 축을 따라 배열되는 패턴의 개수를 조절합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "생성되는 개별 패턴의 크기를 조절합니다."
+    },
+    {
+      "name": "Size Random",
+      "desc": "패턴마다 크기가 무작위로 달라지는 정도를 설정합니다."
+    },
+    {
+      "name": "Position Random",
+      "desc": "규칙적인 격자에서 패턴이 무작위로 어긋나는 정도를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Classic 벽돌 벽 제작",
+      "steps": [
+        "Pattern을 Square로 설정하고 X Amount와 Y Amount를 조절합니다.",
+        "Brick Type을 Running Bond로 변경하여 전형적인 벽돌 어긋남 구조를 만듭니다.",
+        "Bevel 매개변수를 높여 벽돌 모서리를 부드럽게 깎아냅니다."
+      ]
+    },
+    {
+      "title": "불규칙한 자갈 바닥 생성",
+      "steps": [
+        "Pattern Input에 Disc 노드를 연결하여 둥근 형태를 만듭니다.",
+        "Size Random과 Position Random 값을 높여 자연스러운 돌의 배치를 유도합니다.",
+        "Rotation Random으로 각 돌의 각도를 무작위로 회전시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "X Amount와 Y Amount가 너무 낮아 텍스처가 깨져 보임 → 수치를 높이고 Tiling 모드 확인",
+    "패턴들이 서로 겹쳐서 뭉개짐 → Size 값을 줄이거나 Distance 매개변수 조절",
+    "흑백 출력이 연결되지 않아 Viewport에 반응이 없음 → Grayscale 또는 Color 출력이 올바르게 연결되었는지 확인"
+  ],
+  "related": [
+    "Tile Generator",
+    "Shape and Tile Generator",
+    "Blend",
+    "Height Extrude"
+  ],
+  "videos": [
+    {
+      "id": "T4u-bGySD7s",
+      "title": "Tile Sampler 101 - Substance Designer Tutorial - #1",
+      "author": "PopulusArt"
+    },
+    {
+      "id": "VAj4jFfMAvk",
+      "title": "Create a Brick Wall Material in Substance 3D Sampler | Materials in Minutes #4 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Tile%20Sampler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Graph View",
+    "Tile Sampler"
+  ],
+  "at": "2026-11-12T00:19:36.067215+00:00"
+}
