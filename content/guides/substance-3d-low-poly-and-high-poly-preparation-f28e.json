@@ -1,0 +1,97 @@
+{
+  "id": "substance-3d-low-poly-and-high-poly-preparation-f28e",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Low poly and high poly preparation",
+  "title": "로우·하이폴리 준비",
+  "summary": "Substance 3D 작업에서 로우 폴리곤과 하이 폴리곤 모델을 준비하고 정렬하여 정확한 Baking 결과를 얻기 위한 필수 사전 작업 과정입니다.",
+  "when": [
+    "게임 엔진용 최적화 모델에 고해상도 디테일을 텍스처로 투영해야 할 때",
+    "하드 서페이스나 캐릭터 모델링에서 노멀 맵과 오클루전 맵을 구울 때",
+    "하이 폴리곤의 면 구조와 로우 폴리곤의 실루엣이 정확히 일치하지 않을 때"
+  ],
+  "steps": [
+    "1. 3D DCC(Blender, 3ds Max 등)에서 게임 엔진용 Low Poly 모델의 UV를 깨끗하게 펼치고 트랜스폼(Scale, Rotation)을 초기화합니다.",
+    "2. High Poly 모델을 복제하여 Modifier를 적용(Apply)하고, 불필요한 빈틈이나 교차 영역을 정리합니다.",
+    "3. Low Poly와 High Poly 모델의 중심점(Pivot)과 월드 좌표계 위치를 정확히 겹쳐지도록 정렬합니다.",
+    "4. 두 모델의 파일명을 각각 접미사 '_low'와 '_high'를 붙여 명확하게 구분합니다.",
+    "5. FBX 또는 OBJ 형식으로 모델을 각각 또는 하나의 파일로 Export 합니다.",
+    "6. Substance Painter 또는 Substance 3D Designer에서 모델을 불러와 Baking 패널을 엽니다."
+  ],
+  "params": [
+    {
+      "name": "Match",
+      "desc": "하이 폴리곤과 로우 폴리곤을 매칭할 기준을 설정합니다 (Always / By Mesh Name)."
+    },
+    {
+      "name": "Max Frontal Distance",
+      "desc": "레이(Ray)가 하이 폴리곤을 찾기 위해 앞쪽으로 뻗어나가는 최대 거리입니다."
+    },
+    {
+      "name": "Max Rear Distance",
+      "desc": "레이가 하이 폴리곤을 찾기 위해 뒤쪽으로 뻗어나가는 최대 거리입니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노멀 방향을 부드럽게 평균화하여 Baking 시 이음새를 줄입니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "뒷면 폴리곤을 레이 캐스팅 대상에서 제외하여 오류를 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "하드 서페이스 패널 디테일 투영",
+      "steps": [
+        "기본 판자 모양의 Low Poly 모델을 준비합니다.",
+        "볼트와 홈 파인 디테일이 추가된 High Poly 모델을 동일 위치에 배치합니다.",
+        "Substance Painter에서 두 모델을 불러와 이름 기준(By Mesh Name)으로 Baking을 실행합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 갑옷 파츠 Baking",
+      "steps": [
+        "캐릭터 몸체에 딱 맞는 Low Poly 갑옷 메시를 준비합니다.",
+        "조각(Sculpting)된 고도 폴리곤 갑옷을 겹쳐서 정렬합니다.",
+        "Max Frontal Distance 값을 조절하여 갑옷 표면의 틈새가 깨지지 않도록 베이킹합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일 값이 1.0이 아님 → 모델을 선택하고 적용(Apply Scale)을 실행하여 크기 값을 초기화합니다.",
+    "모델의 위치가 어긋남 → 월드 좌표(0,0,0)를 기준으로 두 모델의 피벗 위치를 일치시킵니다.",
+    "노멀 방향이 뒤집힘 → 3D DCC에서 면(Face)의 방향(Normal)을 바깥쪽으로 재정렬합니다."
+  ],
+  "related": [
+    "Normal Map",
+    "Ambient Occlusion",
+    "Bakers",
+    "Match By Mesh Name"
+  ],
+  "videos": [
+    {
+      "id": "i1akrT8cm2k",
+      "title": "High-Poly to Low-Poly with Substance 3D Painter - Mastering Texture Baking",
+      "author": "Raguram Gunasekaran"
+    },
+    {
+      "id": "FILl_h2E2Q4",
+      "title": "Substance Painter High Poly to Low Poly Texture Maps Baking Tutorial",
+      "author": "3DWolf"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Low%20poly%20and%20high%20poly%20preparation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D DCC",
+    "Blender",
+    "Max",
+    "Low Poly",
+    "UV",
+    "Scale"
+  ],
+  "at": "2026-11-12T01:59:15.152786+00:00"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "substance-3d-mesh-map-types-explained-6895",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Mesh map types explained",
+  "title": "메시 맵 종류",
+  "summary": "Substance 3D Painter에서 Baking을 통해 추출하는 다양한 Mesh Maps의 종류와 역할(Normal, Ambient Occlusion, Curvature 등)을 이해하고 텍스처링 품질을 높입니다.",
+  "when": [
+    "하이 폴리곤 모델의 디테일을 로우 폴리곤 모델에 노멀 맵으로 투영해 가벼우면서도 정교한 입체감을 표현할 때",
+    "Ambient Occlusion 맵을 사용해 틈새나 모서리에 자연스러운 음영과 먼지 효과를 넣을 때",
+    "Curvature 맵과 Position 맵을 이용해 마스크 기반의 엣지 웨어(Edge Wear)나 그라데이션 질감을 만들 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 로우 폴리곤 모델을 불러옵니다.",
+    "오른쪽 Texture Set Settings 패널을 엽니다.",
+    "Mesh Maps 섹션에서 Bake Mesh Maps 버튼을 클릭하여 Baking 설정 창을 엽니다.",
+    "High Definition Meshes 슬롯에 하이 폴리곤 모델을 연결합니다.",
+    "추출할 맵(Normal, Ambient Occlusion, Curvature 등)을 체크하고 Output Size를 설정합니다.",
+    "오른쪽 아래의 Bake [Texture Set Name] 버튼을 눌러 맵 추출을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Normal",
+      "desc": "하이 폴리곤의 미세한 굴곡과 디테일을 로우 폴리곤 표면에 입체감으로 투영합니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "면이 겹치거나 좁은 틈새에 빛이 닿지 않아 생기는 자연스러운 어둠을 표현합니다."
+    },
+    {
+      "name": "Curvature",
+      "desc": "모델의 볼록한 모서리와 오목한 틈을 감지하여 엣지 마스크 제작에 활용합니다."
+    },
+    {
+      "name": "Position",
+      "desc": "모델의 공간적 높낮이와 위치를 그라데이션 형태로 기록하여 상하 텍스처 효과에 사용합니다."
+    },
+    {
+      "name": "Thickness",
+      "desc": "오브젝트의 두께를 계산하여 빛이 투과하는 듯한 서브수페이스 스캐터링 표현을 돕습니다."
+    },
+    {
+      "name": "World Space Normal",
+      "desc": "월드 좌표계를 기준으로 표면의 방향을 기록하여 특정 방향의 라이팅이나 마스크에 씁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "철제 상자 모서리에 긁힌 자국(Edge Wear) 넣기",
+      "steps": [
+        "Curvature 맵이 정상적으로 베이킹되었는지 확인합니다.",
+        "Fill Layer를 추가하고 머티리얼 색상을 철판 재질로 설정합니다.",
+        "Fill Layer에 Black Mask를 추가합니다.",
+        "Mask에 Add Generator를 넣고 붕괴 효과를 주는 Curvature 기반의 적절한 제너레이터를 선택합니다."
+      ]
+    },
+    {
+      "title": "파이프 틈새에 먼지(Dirt) 효과 넣기",
+      "steps": [
+        "Ambient Occlusion 맵이 포함된 상태로 메시를 베이킹합니다.",
+        "먼지 색상의 Fill Layer를 만들고 Black Mask를 적용합니다.",
+        "Add Generator에서 Dirt를 추가하여 AO 맵 기반으로 오목한 곳에만 먼지가 쌓이게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하이 폴리곤 모델과 로우 폴리곤 모델의 위치나 스케일이 다름 → 양쪽 모델의 피벗과 크기(Scale)를 일치시킨 후 다시 베이킹합니다.",
+    "Baking 결과물에 검은색 아티팩트(Cage 오류)가 발생함 → Max Front/Rear Distance 값을 조절하여 캐지 범위를 올바르게 맞춥니다.",
+    "모서리가 깨지거나 디테일이 누락됨 → Mesh Maps Resolution을 높이고 노멀 맵의 Average Normals 옵션을 확인합니다."
+  ],
+  "related": [
+    "Texture Set Settings",
+    "Bake Mesh Maps",
+    "Substance 3D Designer",
+    "Generators"
+  ],
+  "videos": [
+    {
+      "id": "YolnkoZNH20",
+      "title": "Bakes & Mesh Maps Explained - Substance Painter",
+      "author": "Abe Leal 3D"
+    },
+    {
+      "id": "hXSUVPy1I-I",
+      "title": "ID Maps are a super easy way to make texturing easy #substancepainter #gamedev #videogames",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Mesh%20map%20types%20explained",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "Mesh Maps",
+    "Bake Mesh Maps",
+    "Baking"
+  ],
+  "at": "2026-11-12T01:59:23.084931+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "substance-3d-naming-for-bake-matching-0614",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Naming for bake matching",
+  "title": "Bake 이름 맞추기",
+  "summary": "Substance 3D Painter에서 하이 폴리곤 모델의 디테일을 로우 폴리곤에 정확히 베이크하기 위해 오브젝트 이름 뒤에 특정 접미사를 붙여 매칭하는 기능입니다. 겹쳐 있는 메쉬의 오류를 방지하고 깔끔한 노멀 맵을 얻을 수 있습니다.",
+  "when": [
+    "기계 파츠나 하우징처럼 여러 부품이 밀접하게 겹쳐 있는 모델을 베이크할 때",
+    "하이 폴리곤과 로우 폴리곤의 이름이 유사하여 잘못된 투영이 일어날 때",
+    "대칭(Symmetry) 구조를 가진 오브젝트에서 맵 투영 오류를 해결할 때"
+  ],
+  "steps": [
+    "3D DCC(Blender, 3ds Max 등)에서 하이 폴리곤과 로우 폴리곤 오브젝트의 이름을 통일합니다.",
+    "로우 폴리곤 오브젝트 이름 뒤에 고정 접미사(예: _low)를 붙입니다.",
+    "하이 폴리곤 오브젝트 이름 뒤에 고정 접미사(예: _high)를 붙입니다.",
+    "Substance 3D Painter에서 모델을 불러온 뒤 Texture Set Settings 패널에서 Bake Mesh Maps를 엽니다.",
+    "Bake Mesh Maps 창의 Match 옵션을 By Mesh Name으로 변경합니다.",
+    "Additional Settings에서 Sub-mesh Matching Distance 값을 조절하고 Bake 버튼을 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "Match",
+      "desc": "메쉬 매칭 방식을 By Mesh Name 또는 Always로 설정합니다."
+    },
+    {
+      "name": "Max Frontane Distance",
+      "desc": "레이캐스팅이 전면으로 뻗어나가는 최대 거리를 지정합니다."
+    },
+    {
+      "name": "Max Rearside Distance",
+      "desc": "레이캐스팅이 후면으로 뻗어나가는 최대 거리를 지정합니다."
+    },
+    {
+      "name": "Average Normals",
+      "desc": "노멀 방향을 평균화하여 부드러운 투영을 돕습니다."
+    },
+    {
+      "name": "Ignore Backface",
+      "desc": "후면 폴리곤에 대한 레이캐스팅을 무시하여 오류를 방지합니다."
+    },
+    {
+      "name": "Sub-mesh Matching Distance",
+      "desc": "이름이 매칭된 서브 메쉬 간의 허용 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "볼트와 너트가 결합된 기계 파츠 Bake",
+      "steps": [
+        "볼트_low와 볼트_high로 각각 이름을 지정합니다.",
+        "Texture Set Settings에서 Bake Mesh Maps를 엽니다.",
+        "Match 옵션을 By Mesh Name으로 설정하여 겹침 오류를 방지합니다."
+      ]
+    },
+    {
+      "title": "갑옷과 몸체가 밀착된 캐릭터 장비 Bake",
+      "steps": [
+        "어깨 패드_low와 어깨 패드_high로 이름을 맞춥니다.",
+        "Match를 By Mesh Name으로 설정합니다.",
+        "Max Frontane Distance 값을 모델 크기에 맞게 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "접미사가 서로 다름 → 로우와 하이 폴리곤의 접미사 규칙(_low / _high)을 정확히 일치시키세요.",
+    "Match 옵션이 Always로 되어 있음 → Bake Mesh Maps 설정에서 반드시 By Mesh Name으로 변경하세요."
+  ],
+  "related": [
+    "Bake Mesh Maps",
+    "Normal Map",
+    "Ambient Occlusion",
+    "Curvature"
+  ],
+  "videos": [
+    {
+      "id": "0rnKXrJPPmk",
+      "title": "How to Bake by Mesh Name | Achieve Clean High‑to‑Low Poly Baking in Substance Painter",
+      "author": "Quinn Kuslich"
+    },
+    {
+      "id": "GTA6VdSuI5c",
+      "title": "Bake By Mesh Name - Adobe Substance 3D Painter",
+      "author": "3Dynamics"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Naming%20for%20bake%20matching",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T01:59:18.869735+00:00"
+}
