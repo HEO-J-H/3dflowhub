@@ -65,5 +65,5 @@
 - [x] (agent) is_target_category(): 제목에 고수익 키워드(Maxscript, 애드온, 튜토리얼 등) 포함 여부를 판별하는 함수 구현 및 테스트 추가
 - [ ] (agent:보류) compute_internal_link_score(): 콘텐츠 내 내부 링크 비율을 계산해 SEO 점수로 반환하는 함수 구현 및 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] 패치 적용 실패: ['core.py: search 블록이 정확히 1회 일치하지 않음']
 - [x] (agent) core.filter_offtopic_homonyms(): 텍스트 내 동음이의어(Maya, Unity, Nuke 등)가 등장할 때 주변에 CG/3D 전문 문맥 키워드가 없으면 오탐으로 판정하여 차단하는 필터 함수 구현 및 tests/test_core.py에 테스트 추가
-- [ ] (agent) evolve.summarize_niche_performance(): 실무 검색 유입이 높은 3ds Max Maxscript 및 Blender 애드온 관련 콘텐츠의 성과와 도메인 분포 지표를 집계하여 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [ ] (agent:보류) evolve.summarize_niche_performance(): 실무 검색 유입이 높은 3ds Max Maxscript 및 Blender 애드온 관련 콘텐츠의 성과와 도메인 분포 지표를 집계하여 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가 (재시도) — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent:보류) app.render_niche_performance_dashboard(): Streamlit 현황판에 고단가 실무 3D 콘텐츠의 도메인별 성과 요약과 오프토픽 차단 현황을 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가 — [4] tests=False security=[] — 리뷰 생략
