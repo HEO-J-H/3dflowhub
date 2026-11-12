@@ -33821,5 +33821,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T14:55:09+00:00",
+    "kind": "proposal",
+    "id": "p-26ebad3dc5",
+    "title": "웹 브라우저 PBR 상태 안내 UI 마크업 정돈",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 PBR 변환 상태 메시지 JS 보완 및 UI 피드백 보강 작업이 search 블록 일치 문제로 held 상태임",
+    "proposal": "backend/static/index.html 또는 web/index.html의 PBR 상태 안내 DOM 구조를 확인하고 안전한 위치에 스피너 및 완료 메시지 요소를 재배치",
+    "expected": "웹 브라우저 사용자에게 PBR 텍스처 변환 진행 상황이 정확히 전달됨",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T14:55:09+00:00",
+    "kind": "proposal",
+    "id": "p-3a1c515853",
+    "title": "깃허브 RAG 오픈소스 활용 가이드 문서 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "운영자 요청 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영'에 대한 검토 결과, 사진-3D 변환 코어 파이프라인 외의 문서 검색 RAG 기능은 현재 범위를 벗어나므로 가이드 문서로 한정",
+    "proposal": "docs/rag-integration.md 파일을 신규 작성하여 깃허브 오픈소스 RAG 툴의 특징과 3D DCC/소스코드 검색에의 제한적 적용 방안을 정리",
+    "expected": "운영자 요청에 명확한 기술적 검토 결과와 방향성 제시",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T14:55:29.563348+00:00",
+    "kind": "decision",
+    "id": "p-26ebad3dc5",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T14:55:29.603879+00:00",
+    "kind": "decision",
+    "id": "p-3a1c515853",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T14:55:45.829138+00:00",
+    "kind": "triage",
+    "id": "p-26ebad3dc5",
+    "verdict": "agent",
+    "reason": "웹 브라우저 PBR 상태 안내 DOM 구조 수정 및 스피너 재배치는 코드 수정으로 직접 해결할 수 있는 작업입니다."
   }
 ]
