@@ -33433,5 +33433,91 @@
     "id": "p-f2a7c2673b",
     "v": "done",
     "note": "자동 완료 확인: PR #65 병합"
+  },
+  {
+    "at": "2026-11-12T13:42:23+00:00",
+    "kind": "proposal",
+    "id": "p-b38434f547",
+    "title": "로컬 파이프라인 예외 처리 PR (#63, #65) 검토 및 반영",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 PR #63 및 #65가 대기 중이며 TripoSR 및 메시 변환 예외 로그 메시지 상세화 작업 포함",
+    "proposal": "GitHub에서 PR #63 및 #65의 변경 사항과 테스트 통과 여부를 직접 확인하고 병합 진행",
+    "expected": "로컬 파이프라인 오류 발생 시 명확한 로그 및 예외 처리 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:42:23+00:00",
+    "kind": "proposal",
+    "id": "p-002c8da086",
+    "title": "웹 브라우저 PBR 변환 상태 안내 UI 문구 보완 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 패치 적용 실패로 인해 held 상태인 웹 PBR 변환 UI 관련 작업 존재",
+    "proposal": "web/index.html의 DOM 구조를 정확히 확인하여 로딩 스피너 및 PBR 텍스처 변환 완료 안내 문구 관련 JS 패치 재작성",
+    "expected": "사용자가 브라우저 내에서 PBR 변환 진행 상황을 직관적으로 파악 가능",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:42:23+00:00",
+    "kind": "proposal",
+    "id": "p-bdea3a6641",
+    "title": "입력 검증 테스트 코드 보완 및 재적용",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_mesh_from_image.py 관련 입력 검증 테스트 추가 작업이 변경 없음으로 held 상태",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 다양한 이미지 포맷 테스트 케이스를 올바르게 추가하고 테스트 통과 확인",
+    "expected": "메시 변환 API의 입력 데이터 안정성 검증 강화",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:42:44.021767+00:00",
+    "kind": "decision",
+    "id": "p-b38434f547",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:42:44.051099+00:00",
+    "kind": "decision",
+    "id": "p-002c8da086",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:42:44.079117+00:00",
+    "kind": "decision",
+    "id": "p-bdea3a6641",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:42:55.751792+00:00",
+    "kind": "triage",
+    "id": "p-bdea3a6641",
+    "verdict": "done_already",
+    "reason": "이미 최근 커밋(feat: PR #65 병합·정리 + 웹 진행 안내 + 입력 형식 테스트) 및 끝낸 제안에 '로컬 파이프라인 입력 검증 테스트 추가' 항목 등으로 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-12T13:42:55.777206+00:00",
+    "kind": "decision",
+    "id": "p-bdea3a6641",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 최근 커밋(feat: PR #65 병합·정리 + 웹 진행 안내 + 입력 형식 테스트) 및 끝낸 제안에 '로컬 파이프라인 입력 검증 테스트 추가' 항목 등으로 반영되어 있습니다."
   }
 ]
