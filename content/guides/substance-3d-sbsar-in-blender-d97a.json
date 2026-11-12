@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-sbsar-in-blender-d97a",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "SBSAR in Blender",
+  "title": "Blender에서 SBSAR",
+  "summary": "Blender에서 Adobe Substance 3D SBSAR 파일을 불러와 실시간으로 파라미터를 조절하고 PBR 텍스처를 적용하는 방법입니다. 노드 기반으로 재질 속성을 유연하게 제어할 수 있습니다.",
+  "when": [
+    "외부에서 제작된 절차적 SBSAR 머티리얼을 Blender 프로젝트에 바로 적용하고 싶을 때",
+    "해상도나 거칠기, 색상 등을 수치 조절로 실시간 변경하며 작업할 때",
+    "USD 및 Substance 통합 애드온을 활용해 워크플로우를 간소화할 때"
+  ],
+  "steps": [
+    "Blender를 실행하고 Edit → Preferences → Add-ons에서 Substance 관련 애드온이 활성화되어 있는지 확인합니다.",
+    "Shader Editor를 열고 Substring 또는 Substance 3D in Blender 기능을 통해 .sbsar 파일을 불러옵니다.",
+    "불러온 SBSAR 노드에서 Base Color, Normal, Roughness 등의 출력 소켓을 Principled BSDF 노드에 연결합니다.",
+    "Node Editor 또는 지정된 패널에서 Exposure, Roughness, Color 변형 등의 파라미터 값을 조절합니다.",
+    "Viewport 렌더 모드(Material Preview 또는 Rendered)에서 재질이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "출력되는 텍스처 맵의 Resolution를 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 반사 광택을 바꿉니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "노멀 맵의 요철 깊이와 입체감을 조절합니다."
+    },
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 색상 및 패턴을 결정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "텍스처 패턴의 반복 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "목재 가구 표면 제작",
+      "steps": [
+        "Wood Base SBSAR 파일을 불러와 오브젝트에 할당합니다.",
+        "Scale 값을 조절하여 나뭇결 패턴의 크기를 오브젝트 스케일에 맞춥니다.",
+        "Roughness를 미세하게 높여 자연스러운 무광 코팅 느낌을 줍니다."
+      ]
+    },
+    {
+      "title": "금속 패널 웨더링 표현",
+      "steps": [
+        "Metal SBSAR 노드를 Principled BSDF에 연결합니다.",
+        "Metallic 값을 1.0으로 설정하고 Wear 파라미터를 조절해 긁힌 자국을 만듭니다.",
+        "Normal Intensity를 높여 패널의 용접선 입체감을 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 늘어나거나 깨져 보임 → UV Unwrapping이 되어 있지 않거나 Scale 값이 잘못 설정된 경우이므로 UV를 펴고 Scale을 재조정합니다.",
+    "파라미터를 바꿔도 화면에 반응이 없음 → Material Preview 또는 Rendered Viewport 모드가 아닌 Solid 모드로 뷰가 설정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Substance 3D Designer",
+    "Principled BSDF",
+    "Shader Editor",
+    "UV Unwrapping"
+  ],
+  "videos": [
+    {
+      "id": "O14emMOvw7Q",
+      "title": "Substance 3D Add-On for Blender: A Complete Guide | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "17MOiAKtkA0",
+      "title": "How to Use the New SUBSTANCE 3D Add-On for Blender! (Plus...FREE MATERIALS!)",
+      "author": "The CG Essentials"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20SBSAR%20in%20Blender",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Blender",
+    "Edit",
+    "Preferences",
+    "Add",
+    "Substance",
+    "Shader Editor"
+  ],
+  "at": "2026-11-12T01:29:03.388512+00:00"
+}

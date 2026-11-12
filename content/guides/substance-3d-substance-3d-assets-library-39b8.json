@@ -1,0 +1,89 @@
+{
+  "id": "substance-3d-substance-3d-assets-library-39b8",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Substance 3D Assets library",
+  "title": "Substance 에셋 라이브러리",
+  "summary": "Substance 3D Assets 라이브러리는 Adobe에서 제공하는 고품질 3D 머티리얼, 모델, 데칼을 다운로드하여 3D 파이프라인에 즉시 활용할 수 있는 클라우드 기반 리소스 플랫폼입니다.",
+  "when": [
+    "프로젝트에 즉시 사용할 수 있는 사실적인 PBR 머티리얼(재질)이 필요할 때",
+    "배경이나 소품 제작을 위해 기본 형태가 갖춰진 3D 모델(Asset)을 빠르게 가져오고 싶을 때",
+    "Substance 3D Painter나 Blender 등에서 바로 수정 가능한 SBSAR Smart 머티리얼이 필요할 때"
+  ],
+  "steps": [
+    "브라우저에서 Adobe Substance 3D Assets 공식 웹사이트에 접속하여 로그인합니다.",
+    "상단 검색창이나 카테고리 메뉴(Materials, Models, Decals)에서 원하는 리소스를 찾습니다.",
+    "원하는 에셋을 선택하고 상세 페이지에서 Resolution(예: 2K, 4K)와 포맷(.sbsar, .fbx, .obj 등)을 확인합니다.",
+    "Download 버튼을 눌러 로컬 드라이브에 파일을 저장합니다.",
+    "Substance 3D Painter 또는 사용 중인 3D DCC(Blender, 3ds Max 등)로 다운로드한 파일을 불러와 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "다운로드할 텍스처 또는 에셋의 Resolution(2K, 4K 등)를 설정합니다."
+    },
+    {
+      "name": "Format",
+      "desc": "사용하는 Software에 맞는 파일 형식(.sbsar, .fbx, .obj 등)을 선택합니다."
+    },
+    {
+      "name": "Category",
+      "desc": "목재, 금속, 직물, 대리석 등 머티리얼의 성격에 따라 분류된 카테고리입니다."
+    },
+    {
+      "name": "Keywords",
+      "desc": "특정 재질이나 형태를 빠르게 찾기 위해 입력하는 검색 태그입니다."
+    },
+    {
+      "name": "Send to",
+      "desc": "Substance 3D Painter나 Stager 등 연동된 프로그램으로 에셋을 바로 전송합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화 바닥재 제작",
+      "steps": [
+        "Substance 3D Assets에서 'Wood Floor' 머티리얼을 검색합니다.",
+        "SBSAR 포맷으로 파일을 다운로드합니다.",
+        "Substance 3D Painter의 Shelf에 파일을 드래그하여 추가합니다.",
+        "3D 모델의 표면에 머티리얼을 드래그 앤 드롭하여 적용합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 소품 텍스처링",
+      "steps": [
+        "Assets 라이브러리에서 금속 질감의 'Scratched Metal' 머티리얼을 선택합니다.",
+        "프로젝트에 맞는 Resolution를 선택한 뒤 다운로드합니다.",
+        "사용 중인 3D Software의 머티리얼 편집기에서 Base Color, Roughness, Normal 맵을 각각 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "너무 높은 Resolution(4K 이상)를 무분별하게 다운로드함 → 프로젝트 용량이 커지고 Viewport가 느려지므로 작업 환경에 맞는 Resolution(2K 등)를 선택하세요.",
+    "포맷 호환성 확인 누락 → Substance 3D Painter 전용 .sbsar 파일인지, 일반 DCC용 텍스처 맵인지 확인 후 다운로드하세요."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Substance 3D Designer",
+    "Substance 3D Sampler",
+    "Substance 3D Stager"
+  ],
+  "videos": [
+    {
+      "id": "D-IfZ0udBNk",
+      "title": "Entire Adobe Substance 3D Suite Explained Simply in 5 mins",
+      "author": "Humtog"
+    },
+    {
+      "id": "pjRAaoP5bfo",
+      "title": "Browse the Substance 3D Assets Library Inside Painter",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%203D%20Assets%20library",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T01:28:59.333812+00:00"
+}
