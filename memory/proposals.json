@@ -33331,6 +33331,38 @@
     "auto": true
   },
   {
+    "at": "2026-11-12T13:31:46+00:00",
+    "kind": "proposal",
+    "id": "p-8fd59eace1",
+    "title": "깃허브 RAG 오픈소스 활용 및 3D 파이프라인 연동 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사장님 요청 사항: 깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영",
+    "proposal": "docs/rag-integration-review.md 파일을 생성하여 오픈소스 RAG 도구들의 라이선스와 3D 파이프라인 문서 검색 연동 가능성을 분석하고 정리합니다.",
+    "expected": "RAG 오픈소스 도입 가능성 검토 완료 및 문서화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T13:31:46+00:00",
+    "kind": "proposal",
+    "id": "p-60c2d6411d",
+    "title": "로컬 파이프라인 대기 중인 PR (#63, #65) 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "대기 중인 핵심 파이프라인 PR (#63, #65)이 존재함",
+    "proposal": "GitHub에서 PR #63(TripoSR 예외 로깅) 및 PR #65(예외 처리 로그 메시지 개선)의 변경 사항과 테스트 결과를 최종 점검하고 승인 대기 상태를 관리합니다.",
+    "expected": "로컬 파이프라인 예외 처리 및 로깅 안정화",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/63",
+    "action": null,
+    "risk": "medium"
+  },
+  {
     "at": "2026-11-12T13:31:53.200197+00:00",
     "kind": "decision",
     "id": "p-984809e9b8",
@@ -33378,5 +33410,28 @@
     "id": "p-246d67a028",
     "v": "done",
     "note": "docs/pbr-pipeline.md 작성(웹·로컬 비교·원리·좋은 사진·한계), 도움말 검색에 포함 1525164"
+  },
+  {
+    "at": "2026-11-12T13:32:09.655649+00:00",
+    "kind": "decision",
+    "id": "p-8fd59eace1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 오픈소스 RAG 연동 검토 문서화",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:32:09.695919+00:00",
+    "kind": "decision",
+    "id": "p-60c2d6411d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T13:32:11.957754+00:00",
+    "kind": "decision",
+    "id": "p-f2a7c2673b",
+    "v": "done",
+    "note": "자동 완료 확인: PR #65 병합"
   }
 ]
