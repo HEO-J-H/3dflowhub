@@ -33767,5 +33767,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T22:19:18+00:00",
+    "kind": "proposal",
+    "id": "p-6d1f91489e",
+    "title": "웹 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 관련 UI 상태 변경 및 마크업 정돈 작업이 진행되었으나, 예외 상황에 대한 브라우저 단위 테스트가 부족합니다.",
+    "proposal": "web/tests/ 또는 관련 테스트 Script에 PBR 변환 실패 시 에러 메시지와 스피너 숨김 처리가 올바르게 동작하는지 확인하는 단위 테스트를 추가합니다.",
+    "expected": "웹 브라우저 버전의 PBR 변환 안정성과 사용자 피드백 신뢰도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T22:19:18+00:00",
+    "kind": "proposal",
+    "id": "p-4318807d28",
+    "title": "로컬 파이프라인 입력 검증 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 로컬 파이프라인 입력 검증 관련 패치 적용 과정에서 일부 충돌 및 held 상태가 발생하여 안정적인 테스트 커버리지 확충이 필요합니다.",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 손상된 이미지나 지원하지 않는 포맷 입력 시 명확한 예외 반환을 검증하는 테스트 케이스를 재작성합니다.",
+    "expected": "백엔드 API 입력 안정성 확보 및 파이프라인 예외 처리 견고화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T22:19:40.384933+00:00",
+    "kind": "decision",
+    "id": "p-6d1f91489e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 텍스처 변환 유닛 테스트 추가 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T22:19:40.428784+00:00",
+    "kind": "decision",
+    "id": "p-4318807d28",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
