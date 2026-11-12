@@ -338,6 +338,7 @@ def reports_to_todo() -> list[str]:
     import manager
     data = core._load_json(core.ROOT / "memory" / "reports.json", {})
     seen = {p.get("probe_key") for p in manager.board()["proposals"]}
+    hidden = core.curation_state()
     evs = []
     for r in data.get("items", []):
         m = _re.match(r"/?report/(\d)(/.*)$", r.get("path", ""))
@@ -352,6 +353,13 @@ def reports_to_todo() -> list[str]:
         url = "https://heo-j-h.github.io" + page
         now = manager._now()
         pid = "p-" + hashlib.md5(f"{now}{key}".encode()).hexdigest()[:10]
+        pm = _re.search(r"/p/([^/]+)\.html", page)
+        if pm and hidden.get(pm.group(1)) == "hide":  # 이미 숨긴 글에 대한 (숨기기 전) 제보 → 사람에게 올리지 않고 바로 완료
+            evs += [{"at": now, "kind": "proposal", "id": pid, "title": f"방문자 오류 제보: {kind}"[:80], "category": "운영·비용",
+                     "evidence": f"{url} · 제보 {r.get('count', 1)}건", "proposal": f"{note}"[:300], "action": None,
+                     "probe_key": key, "site": "3dflowhub"},
+                    {"at": now, "kind": "decision", "id": pid, "v": "done", "note": "이미 숨긴 글 — 자동 완료"}]
+            continue
         evs += [{"at": now, "kind": "proposal", "id": pid, "title": f"방문자 오류 제보: {kind}"[:80],
                  "category": "운영·비용", "evidence": f"{url} · 제보 {r.get('count', 1)}건",
                  "proposal": f"{note} — 페이지를 확인해 고치거나 내립니다: {url}"[:900], "expected": "신뢰도 유지",
