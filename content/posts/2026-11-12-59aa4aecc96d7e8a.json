@@ -1,0 +1,61 @@
+{
+  "title_ko": "3ds Max 메뉴 스트립 도킹 Script 활용 방법",
+  "title": "Tip: Dock menu strip in the main UI",
+  "url": "https://www.reddit.com/r/3dsmax/comments/1xpvtbe/tip_dock_menu_strip_in_the_main_ui/",
+  "domain": "3D DCC",
+  "category": "3ds Max",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "3ds Max",
+    "MAXScript",
+    "MacroScript",
+    "UI 커스텀",
+    "매크로스크립트",
+    "맥스스크립트",
+    "3ds 맥스"
+  ],
+  "summary": "3ds Max에서 분리된 메뉴 스트립을 대화 상자 형태로 도킹할 수 있는 유틸리티 Script 공유 소식입니다.",
+  "insight": "MAXScript를 활용해 3ds Max의 뜯어진 메뉴 창을 메인 UI에 고정하는 방법입니다. 재시작 시 도킹 상태가 유지되지 않는 제약이 있으나 작업 환경을 빠르게 정돈하는 데 도움을 줍니다. 복잡한 UI 구성에서 불필요하게 공간을 차지하는 창들을 간편하게 제어할 수 있습니다. 스크립트 기반 접근이므로 커스텀 단축키와 연동하면 매번 코드를 여는 번거로움을 줄입니다.",
+  "try_it": [
+    "3ds Max 메인 메뉴에서 분리되어 떠 있는 메뉴 스트립 창의 정확한 이름을 확인합니다.",
+    "Script Editor를 열고 제공된 스크립트 코드를 로드한 후 Ctrl+E로 실행합니다.",
+    "실행 창에 대상 대화 상자 이름을 입력하여 메인 UI에 도킹시킵니다."
+  ],
+  "sections": [
+    {
+      "heading": "메뉴 스트립 도킹 Script 개요",
+      "body": "3ds Max 메인 UI에서 분리된 메뉴 스트립을 도킹된 다이얼로그 형태로 변환해 주는 유틸리티 스크립트입니다. 작업 중 뜯어져 나온 메뉴 창을 깔끔하게 정리하려는 목적에서 제작되었습니다. 화면 복잡도를 낮추어 모델링과 애니메이션 작업에 집중하도록 돕습니다."
+    },
+    {
+      "heading": "Script 실행 및 사용 방법",
+      "body": "제공된 Script를 3ds Max의 Script Editor에 로드한 뒤 Ctrl+E Hotkey로 실행합니다. 실행 후 나타나는 대화 상자에 도킹하려는 다이얼로그의 이름을 직접 입력하는 방식으로 작동합니다. 정확한 명칭을 입력해야 대상 창이 정상적으로 감지됩니다."
+    },
+    {
+      "heading": "사용 시 주의 사항",
+      "body": "해당 유틸리티를 통해 적용한 도킹 상태는 3ds Max 프로그램을 재시작할 경우 유지되지 않습니다. 따라서 Software를 다시 켤 때마다 Script를 재실행해야 하는 번거로움이 있습니다. 세션이 바뀔 때마다 초기화되므로 작업 세팅 단계에서 루틴으로 포함하는 편이 좋습니다."
+    },
+    {
+      "heading": "추가 활용 팁",
+      "body": "이와 유사한 UI 정돈 문제 외에도 3ds Max에서는 XForm 수정자 등을 통해 오브젝트의 크기나 회전 변형에서 오는 피벗 문제를 해결할 수 있습니다. Modifier List에서 XForm을 적용하고 Gizmo 서브오브젝트 레벨에서 형태를 바로잡는 방식과 맥락을 같이 합니다. UI와 모델링 데이터 모두 원본 상태를 명확히 관리하는 것이 안정적인 작업의 핵심입니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 Script는 어떻게 실행하나요?",
+      "a": "Script Editor에 Script를 불러온 후 Ctrl+E Hotkey를 눌러 실행할 수 있습니다."
+    },
+    {
+      "q": "프로그램을 껐다 켜도 도킹 상태가 유지되나요?",
+      "a": "아니요, 3ds Max를 재시작하면 도킹 상태는 유지되지 않습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/UE5FuSjm3d0/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=UE5FuSjm3d0"
+  },
+  "collected_at": "2026-11-12T23:09:17.895408+00:00",
+  "notion_id": "",
+  "id": "2026-11-12-59aa4aecc96d7e8a",
+  "img_tried": true,
+  "enriched": "2026-11-12"
+}
