@@ -1,0 +1,94 @@
+{
+  "id": "unity-materials-and-the-lit-shader-urp-cddd",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Materials and the Lit shader (URP)",
+  "title": "재질과 URP Lit Shader",
+  "summary": "Unity Universal Render Pipeline (URP)의 기본 Lit Shader는 물리 기반 렌더링(PBR)을 사용하여 금속, 플라스틱, 나무 등 다양한 재질의 표면 질감을 사실적으로 표현합니다.",
+  "when": [
+    "게임 캐릭터나 환경 오브젝트에 기본 머티리얼을 적용할 때",
+    "PBR 텍스처(Base Map, Normal, Metallic 등)를 조합하여 사실적인 표면을 만들 때",
+    "URP 환경에서 성능과 시각적 품질의 균형을 맞춘 표준 재질이 필요할 때"
+  ],
+  "steps": [
+    "Project 창에서 빈 공간 우클릭 후 Create → Material 을 선택합니다.",
+    "생성된 머티리얼을 선택하고 Inspector 패널 상단의 Shader 드롭다운을 엽니다.",
+    "Universal Render Pipeline → Lit 을 선택하여 Shader를 변경합니다.",
+    "Base Map 슬롯에 컬러 텍스처를 드래그 앤 드롭하여 적용합니다.",
+    "Metallic 및 Smoothness 값을 조절하여 표면의 반사 광택을 설정합니다.",
+    "씬(Scene) 뷰의 3D 오브젝트에 머티리얼을 드래그하여 적용 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Map",
+      "desc": "오브젝트의 기본 색상과 투명도를 결정하는 주 텍스처입니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면의 금속성을 조절하여 0은 비금속, 1은 완전한 금속으로 만듭니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "표면의 매끄러운 정도를 조절하여 하이라이트와 반사의 선명함을 바꿉니다."
+    },
+    {
+      "name": "Normal Map",
+      "desc": "텍스처의 굴곡 정보를 이용해 폴리곤 추가 없이 미세한 표면 입체감을 줍니다."
+    },
+    {
+      "name": "Emission",
+      "desc": "머티리얼 자체에서 빛을 내뿜어 네온사인이나 발광 효과를 만듭니다."
+    },
+    {
+      "name": "Surface Type",
+      "desc": "머티리얼을 불투명(Opaque) 또는 반투명(Transparent)으로 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질 머티리얼 만들기",
+      "steps": [
+        "Project 창에서 새 Material을 만들고 URP Lit Shader를 적용합니다.",
+        "Metallic 값을 1.0으로 올려 금속 특유의 반사를 활성화합니다.",
+        "Smoothness 값을 0.7 이상으로 주어 매끄럽고 광나는 표면을 만듭니다."
+      ]
+    },
+    {
+      "title": "나뭇잎 투명도 설정하기",
+      "steps": [
+        "Surface Type을 Transparent로 변경합니다.",
+        "Render Face를 Both로 설정하여 양면 모두 렌더링되도록 합니다.",
+        "Base Map에 알파 채널이 포함된 나뭇잎 텍스처를 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처를 적용했는데 오브젝트가 하얗게 보임 → Base Map 컬러가 흰색이 아닌지 확인하고 텍스처가 올바르게 연결되었는지 확인합니다.",
+    "메탈릭 값을 높였는데 빛 반사가 어둡고 이상함 → Scene에 URP에 맞는 Directional Light와 Reflection Probe가 배치되어 있는지 확인합니다.",
+    "투명한 머티리얼 뒤의 오브젝트가 안 보임 → Surface Type이 Opaque로 설정되어 있는지 확인하고 Transparent로 변경합니다."
+  ],
+  "related": [
+    "Universal Render Pipeline",
+    "Substance 3D Unity용 Export",
+    "Shader Graph",
+    "Post-processing"
+  ],
+  "videos": [
+    {
+      "id": "HCXCmHgV7Sk",
+      "title": "Understanding URP settings and essentials",
+      "author": "Unity"
+    },
+    {
+      "id": "ObpmdNTgVps",
+      "title": "How to Make Every Specular PBR Surface Input in the URP/Lit Shader | Unity Tutorial",
+      "author": "LlamAcademy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Materials%20and%20the%20Lit%20shader%20%28URP%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T02:59:16.896062+00:00"
+}

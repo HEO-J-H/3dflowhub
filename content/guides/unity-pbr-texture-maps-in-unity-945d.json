@@ -1,0 +1,94 @@
+{
+  "id": "unity-pbr-texture-maps-in-unity-945d",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "PBR texture maps in Unity",
+  "title": "PBR 텍스처 연결 — Base Map·Normal·Mask",
+  "summary": "Unity에서 Albedo, Normal, Metallic 등 PBR 텍스처 맵을 3D 모델의 머티리얼에 올바르게 연결하여 사실적인 표면 질감과 반사 효과를 구현하는 과정입니다.",
+  "when": [
+    "Substance 3D Painter 등에서 제작한 PBR 텍스처 맵을 Unity 프로젝트에 처음 가져올 때",
+    "3D 모델의 금속, 플라스틱, 가죽 등 재질의 반사와 요철을 실시간 렌더링으로 표현할 때",
+    "다운로드한 텍스처 에셋의 컬러 채널이나 노멀 맵 강도가 잘못 표현되어 수정이 필요할 때"
+  ],
+  "steps": [
+    "탐색기의 이미지 파일을 Unity의 Project 패널(Assets 폴더 안)로 드래그 앤 드롭하여 가져옵니다.",
+    "Project 패널에서 텍스처를 선택하고 Inspector 패널에서 Texture Type과 용도에 맞는 설정을 확인합니다.",
+    "Normal 맵의 경우 Inspector 패널에서 Fix Now 버튼을 눌러 Normal Map으로 올바르게 변환합니다.",
+    "Project 패널에서 우클릭 후 Create > Material을 눌러 새로운 머티리얼을 생성하고 이름을 지정합니다.",
+    "생성한 머티리얼을 선택한 뒤, Inspector 패널의 Shader를 Standard 또는 Universal Render Pipeline(URP) Lit으로 설정합니다.",
+    "Inspector 패널의 Base Map(또는 Albedo), Metallic, Normal Map 슬롯에 각 텍스처를 드래그하여 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Map",
+      "desc": "모델의 기본 색상과 투명도(Alpha)를 결정하는 Albedo 텍스처를 연결합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면의 금속성과 비금속성을 구분하는 흑백 맵을 연결합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "표면의 매끄러운 정도를 조절하여 하이라이트의 퍼짐을 제어합니다."
+    },
+    {
+      "name": "Normal Map",
+      "desc": "폴리곤을 추가하지 않고도 미세한 요철과 입체감을 표현하는 노멀 맵을 연결합니다."
+    },
+    {
+      "name": "Tiling",
+      "desc": "텍스처가 표면에서 반복되는 횟수를 가로(X)와 세로(Y) 방향으로 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "텍스처가 시작되는 위치의 UV 좌표를 이동합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질 머티리얼 설정하기",
+      "steps": [
+        "Project 패널에서 금속 색상 텍스처를 Base Map 슬롯에 연결합니다.",
+        "Metallic 맵을 Metallic 슬롯에 연결하여 금속 반사 영역을 지정합니다.",
+        "Smoothness 값을 높여 반사광을 선명하게 만듭니다."
+      ]
+    },
+    {
+      "title": "노멀 맵으로 입체감 더하기",
+      "steps": [
+        "노멀 맵 텍스처를 Project 패널에서 선택하고 Inspector에서 Normal Map으로 설정합니다.",
+        "머티리얼의 Normal Map 슬롯에 텍스처를 드래그합니다.",
+        "슬롯 옆의 수치(Scale)를 조절하여 요철의 깊이감을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Normal 맵을 가져온 후 Fix Now를 누르지 않음 → Inspector 패널 상단의 Fix Now 버튼을 클릭해 노멀 맵 포맷으로 올바르게 적용합니다.",
+    "Roughness 맵을 Smoothness 슬롯에 그대로 넣음 → Unity는 Smoothness를 사용하므로 텍스처가 반전되어 보일 수 있어 필요시 텍스처 변환이나 알파 채널을 반전합니다.",
+    "스케일과 타일링이 맞지 않아 텍스처가 너무 촘촘하게 반복됨 → Material Inspector의 Tiling 값을 1보다 작은 값이나 원하는 배율로 수정합니다."
+  ],
+  "related": [
+    "Universal Render Pipeline (URP)",
+    "Standard Shader",
+    "Texture Import Settings",
+    "Material Inspector"
+  ],
+  "videos": [
+    {
+      "id": "SZoQW5gqQy0",
+      "title": "Using PBR maps with Unity Standard Shader - converting roughness maps to smoothness in alpha channel",
+      "author": "Composit"
+    },
+    {
+      "id": "cnZtbydOyHk",
+      "title": "How to use Unity PBR in Blender | Blender & Unity Tutorial",
+      "author": "CheckingMyLootz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20PBR%20texture%20maps%20in%20Unity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T02:59:25.435478+00:00"
+}

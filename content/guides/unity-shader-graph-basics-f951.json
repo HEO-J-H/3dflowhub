@@ -1,0 +1,96 @@
+{
+  "id": "unity-shader-graph-basics-f951",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "재질",
+  "name": "Shader Graph basics",
+  "title": "Shader Graph 기초 — 노드로 Shader 만들기",
+  "summary": "Unity Shader Graph는 코딩 없이 노드 네트워크를 시각적으로 연결하여 커스텀 Shader와 머티리얼을 만드는 툴입니다. Universal Render Pipeline(URP) 환경에서 화려한 시각 효과나 독특한 표면 질감을 직관적으로 구현할 때 사용합니다.",
+  "when": [
+    "코딩 지식 없이 나만의 독창적인 게임 재질이나 카툰 렌더링 효과를 만들 때",
+    "텍스처에 흐르는 물결, 용암, 에너지 방출 같은 동적인 애니메이션 효과를 줄 때",
+    "게임 내 최적화와 시각적 스타일을 맞추기 위해 커스텀 PBR Shader가 필요할 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create → Shader Graph → URP (예: Lit Shader Graph)를 선택합니다.",
+    "생성된 Shader 에셋을 더블 클릭하여 Shader Graph 창을 엽니다.",
+    "Graph 창 빈 공간에서 우클릭 후 Space 키를 눌러 필요한 노드(예: Sample Texture 2D, Multiply)를 검색하고 추가합니다.",
+    "노드간의 포트를 드래그하여 연결하고, 왼쪽 상단의 BlackBoard에서 프로퍼티(변수)를 추가하여 노드와 연결합니다.",
+    "Shader Graph 창 상단의 Save Asset 버튼을 눌러 변경 사항을 저장합니다.",
+    "머티리얼을 생성하고 Shader를 새로 만든 Shader Graph로 지정한 뒤, 3D 오브젝트에 적용하여 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 표면 색상이나 텍스처를 결정합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면의 금속성 질감을 조절하여 빛 반사 특성을 변경합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "표면의 매끄러운 정도를 조절하여 하이라이트의 선명함을 결정합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "텍스처의 딥스 정보를 활용해 표면의 미세한 요철과 입체감을 표현합니다."
+    },
+    {
+      "name": "Emission",
+      "desc": "오브젝트 자체가 빛을 발산하는 자체 발광 효과를 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "흐르는 물 애니메이션",
+      "steps": [
+        "Shader Graph에서 Tiling and Offset 노드를 추가하여 UV 좌표에 움직임을 줍니다.",
+        "Sample Texture 2D 노드에 물결 텍스처를 연결하고 Offset 포트에 Time 노드를 연결합니다.",
+        "결과값을 Base Color와 Emission에 연결하여 반짝이는 물 표면을 완성합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 피격 시 깜빡이는 효과",
+      "steps": [
+        "Color 프로퍼티를 추가하고 BlackBoard에서 Color(HDR) 타입으로 설정합니다.",
+        "Multiply 노드를 사용해 기본 텍스처 색상과 피격 색상을 조합합니다.",
+        "스케일러 변수를 만들어 붉은색 발광 강도를 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "URP가 아닌 기본 Built-in 렌더 파이프라인 프로젝트에서 Shader Graph를 생성함 → URP 패키지 설치 및 렌더 파이프라인 설정 확인 후 재시도",
+    "수정 후 Save Asset을 누르지 않아 씬의 머티리얼에 반영되지 않음 → Shader Graph 창 좌측 상단의 Save Asset 버튼 클릭",
+    "텍스처나 변수를 마스터 노드(Master Stack)에 올바르게 연결하지 않음 → 최종 출력 포트 연결 상태 확인"
+  ],
+  "related": [
+    "Universal Render Pipeline",
+    "Material Properties",
+    "Post-processing",
+    "VFX Graph"
+  ],
+  "videos": [
+    {
+      "id": "TbZYoSu1w8Y",
+      "title": "Unity Shader Graph Basics (Part 1 - Your First Shader)",
+      "author": "Daniel Ilett"
+    },
+    {
+      "id": "jVNC0Z2p9qw",
+      "title": "Unity Shader Graph Basics (Part 2 - Textures and UVs)",
+      "author": "Daniel Ilett"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Shader%20Graph%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Shader Graph",
+    "URP",
+    "Lit Shader Graph"
+  ],
+  "at": "2026-11-12T02:59:20.990064+00:00"
+}

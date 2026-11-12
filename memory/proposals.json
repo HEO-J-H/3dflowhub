@@ -34787,5 +34787,53 @@
     "id": "p-984809e9b8",
     "verdict": "agent",
     "reason": "PR #64 및 #65 코드 변경 사항과 테스트 통과 여부 검토 및 승인 처리는 AI 에이전트가 자동화 파이프라인이나 코드를 통해 수행할 수 있습니다."
+  },
+  {
+    "at": "2026-11-12T02:59:11+00:00",
+    "kind": "proposal",
+    "id": "p-17c3792dfc",
+    "title": "로컬 파이프라인 예외 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 triposr_runner.py 및 mesh_from_image.py 관련 예외 처리 및 로그 메시지 개선 작업이 진행되었으나, 이를 검증할 단위 테스트가 추가로 필요합니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 오류 및 파일 로드 실패 상황에 대한 단위 테스트 케이스를 추가합니다.",
+    "expected": "로컬 파이프라인 예외 처리의 안정성이 높아지고 회귀 버그를 방지합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T02:59:11+00:00",
+    "kind": "proposal",
+    "id": "p-27c3c4495b",
+    "title": "웹 브라우저 PBR 텍스처 생성 에러 핸들링 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 환경에서 PBR 변환 시 사용자 UI 피드백 및 안내 문구 보강 작업이 진행되었습니다.",
+    "proposal": "web/js/ 에러 발생 시 사용자 인터페이스에 경고 메시지와 안내 가이드를 명확히 표시하도록 예외 처리 코드를 보완합니다.",
+    "expected": "웹 버전 이용 시 사용자 경험과 에러 대응력이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T02:59:39.946101+00:00",
+    "kind": "decision",
+    "id": "p-17c3792dfc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T02:59:39.978342+00:00",
+    "kind": "decision",
+    "id": "p-27c3c4495b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
   }
 ]
