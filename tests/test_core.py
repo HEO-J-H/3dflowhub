@@ -341,18 +341,24 @@ def test_merge_json_unions_lists_and_keeps_max():
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
 
 
-def test_filter_offtpic_homonyms():
-    # 1. CG/3D 전문 문맥이 없는 동음이의어 등장 시 오탐 판정 및 차단 테스트
-    assert core.filter_offtpic_homonyms("Discovery of ancient Maya civilization in the jungle") is False
-    assert core.filter_offtpic_homonyms("Best kitchen blender for smoothie recipes") is False
-    assert core.filter_offtpic_homonyms("Unity stock shares drop in market economy") is False
-    assert core.filter_offtpic_homonyms("Nuclear nuke missile test in international politics") is False
+def test_filter_strict_offtopic():
+    # 1. 5중 이상 정밀 검증: 일반 명사 도구명(Maya, Unity, Nuke, Blender 등) 등장 시 무관 맥락 차단
+    assert core.filter_strict_offtopic("Discovery of ancient Maya civilization in the jungle") is False
+    assert core.filter_strict_offtopic("Best kitchen blender for smoothie recipes with food processor") is False
+    assert core.filter_strict_offtopic("Unity stock shares drop in market economy dividend") is False
+    assert core.filter_strict_offtopic("Nuclear nuke missile test in international politics") is False
+    assert core.filter_strict_offtopic("Harry Houdini magic escape illusionist show") is False
 
-    # 2. 주변에 CG/3D 전문 문맥 키워드가 함께 등장하면 정상으로 판정
-    assert core.filter_offtpic_homonyms("Blender 3D modeling and geometry nodes tutorial workflow", tool_name="blender") is True
-    assert core.filter_offtpic_homonyms("Autodesk Maya character rigging and animation rendering", tool_name="maya") is True
-    assert core.filter_offtpic_homonyms("Foundry Nuke VFX compositing pipeline update") is True
-    assert core.filter_offtpic_homonyms("General tech news without any homonyms") is True
+    # 2. CG/3D 전문 문맥 및 포맷 토큰이 충분히 공존하는 경우 정상 통과
+    assert core.filter_strict_offtopic("Blender 3D modeling and geometry nodes tutorial workflow with Python and USD", tool_name="blender") is True
+    assert core.filter_strict_offtopic("Autodesk Maya character rigging and animation rendering pipeline", tool_name="maya") is True
+    assert core.filter_strict_offtopic("Foundry Nuke VFX compositing pipeline update") is True
+    assert core.filter_strict_offtopic("General tech news without any homonyms") is True
+
+
+def test_filter_offtpic_homonyms():
+    assert core.filter_offtpic_homonyms("Discovery of ancient Maya civilization in the jungle") is False
+    assert core.filter_offtpic_homonyms("Blender 3D modeling workflow", tool_name="blender") is True
 
 
 def test_filter_homonym_3d_content():
