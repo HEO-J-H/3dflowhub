@@ -34427,5 +34427,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T16:34:24+00:00",
+    "kind": "proposal",
+    "id": "p-5d5b7bf41a",
+    "title": "로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #63 및 #65가 승인 대기 상태로 남아있음",
+    "proposal": "GitHub에서 PR #63(TripoSR 예외 로깅) 및 PR #65(메시 생성 예외 메시지 상세화)의 변경 사항과 테스트 결과를 확인하고 최종 병합을 진행합니다.",
+    "expected": "로컬 파이프라인 실행 시 오류 발생 원인을 명확히 파악하고 안정성을 높임",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T16:34:24+00:00",
+    "kind": "proposal",
+    "id": "p-380fd01310",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 실행에서 패치 적용에 실패한 입력 검증 테스트 보완 필요",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 RGBA, RGB 등 다양한 이미지 포맷 입력 시의 검증 테스트를 정확히 구현하여 코딩 에이전트가 통과할 수 있도록 수정합니다.",
+    "expected": "입력 데이터 오류로 인한 파이프라인 중단 방지 및 테스트 커버리지 향상",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T16:34:48.536825+00:00",
+    "kind": "decision",
+    "id": "p-5d5b7bf41a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T16:34:48.573654+00:00",
+    "kind": "decision",
+    "id": "p-380fd01310",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
