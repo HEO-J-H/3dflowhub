@@ -35873,5 +35873,53 @@
     "kind": "applied",
     "id": "p-c1d28b237d",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] review=revise tests=True security=[] approve=False"
+  },
+  {
+    "at": "2026-11-12T08:00:12+00:00",
+    "kind": "proposal",
+    "id": "p-1b7954e151",
+    "title": "대기 중인 핵심 파이프라인 PR (#63, #64, #65) 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 에이전트 실행 결과 PR #63, #64, #65가 각각 TripoSR 예외 로깅 및 예외 처리 로그 개선 건으로 승인 대기 중입니다.",
+    "proposal": "GitHub 저장소에서 PR #63, #64, #65의 테스트 통과 여부와 변경된 백엔드 서비스 코드를 최종 확인하고 병합을 진행합니다.",
+    "expected": "로컬 파이프라인의 예외 상황 및 에러 로그가 상세히 출력되어 사용자 및 운영 디버깅이 용이해집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T08:00:12+00:00",
+    "kind": "proposal",
+    "id": "p-1932bb73cf",
+    "title": "깃허브 RAG 오픈소스 활용 가이드 문서 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사장님 요청 사항으로 깃허브 RAG 오픈소스의 Pix2Poly 반영 가능성 검토가 접수되었습니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 신규 작성하여 RAG 오픈소스(예: LangChain 기반 코드 검색 등)가 3D 생성 및 PBR 파이프라인에 미치는 영향과 적용 가능 여부를 문서화합니다.",
+    "expected": "프로젝트 범위 내에서 RAG 도입 타당성을 객관적으로 평가하고 불필요한 아키텍처 확장을 방지합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T08:00:32.513197+00:00",
+    "kind": "decision",
+    "id": "p-1b7954e151",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 대기 중인 핵심 파이프라인 PR (#63, #64, #65) 최종 점검 ",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T08:00:32.553805+00:00",
+    "kind": "decision",
+    "id": "p-1932bb73cf",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
   }
 ]
