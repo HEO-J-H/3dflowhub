@@ -15,3 +15,4 @@
 | 11/10 | 사이트맵 '일시적인 처리 오류' | 주소 한글을 인코딩 안 함 | 사이트맵 주소는 모두 %인코딩 | inspect_site 사이트맵 한글 |
 | 11/10 | 목록에 깨진 그림 상자 | 논문 그림 주소에 번호 두 번 | 그림은 저장 전·후 실제로 열어 봄 | visuals.check_post_images, inspect_site |
 | 11/05 | 같은 직접 작업이 6번·11번 반복 | 제목만 바꾼 같은 과제 | 같은 파일을 고치는 제안은 중복 | manager.similar_open, rag-integration.md |
+| 11/12 | Pix2Poly PR #64: 기능 변화 없이 'PR #60 검토 완료' 문구만 | 'PR 검토·승인' 과제를 코딩 에이전트가 맡음 | PR 검토·승인·병합·독촉은 에이전트 과제로 넣지 않음(사람·Claude 몫) | agents.HUMAN_ONLY |

@@ -38,3 +38,9 @@ def test_radar_filters():
 def test_only_original_pages_indexed():
     import build_site
     assert not build_site.post_indexed({"id": "a", "sections": [{"body": "x" * 900}]})  # 요약 소식은 검색 제외
+
+
+def test_pr_review_tasks_not_for_agent():
+    import agents
+    assert agents.HUMAN_ONLY.search("PR #60 및 #61 검토 및 승인 처리")
+    assert not agents.HUMAN_ONLY.search("웹 브라우저 PBR 변환 UI 피드백 보강")

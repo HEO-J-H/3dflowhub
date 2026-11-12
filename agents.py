@@ -79,14 +79,17 @@ def files_for(task: str) -> set[str]:
     return CATEGORY_FILES.get(m.group(2), {"core.py"}) | {"tests/test_agent_tasks.py"}
 
 
+HUMAN_ONLY = re.compile(r"PR\s*#?\d+.*(검토|승인|머지|병합|독촉|리뷰)|(검토|승인|머지|병합|리뷰).*PR\s*#?\d+")
+
+
 def queue_manager_tasks() -> list[str]:
     """수락됐지만 자동 실행 행동이 없는 AI 관리자 제안(이 저장소 몫)을 코딩 에이전트 할 일로 등록 (한 번만)."""
     import manager
     text = TODO.read_text(encoding="utf-8")
     added = []
     for p in manager.manual_todo(SITE):
-        if p["id"] in text:
-            continue
+        if p["id"] in text or HUMAN_ONLY.search(p.get("title", "")):
+            continue  # PR 검토·승인·병합은 사람(또는 Claude) 몫 — 에이전트가 맡으면 'PR #60 검토 완료' 같은 가짜 변경을 만듦 (Pix2Poly PR #64)
         what = re.sub(r"\s+", " ", f"{p['title']}: {p.get('proposal', '')}")[:220]
         added.append(f"- [ ] (agent) [{p['id']}|{p.get('category') or '운영·비용'}] {what}")
     if added:
