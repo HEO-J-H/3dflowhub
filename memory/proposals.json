@@ -34134,5 +34134,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T23:31:31+00:00",
+    "kind": "proposal",
+    "id": "p-876ed215bc",
+    "title": "PR #68 웹 PBR 상태 UI 마크업 검토 및 병합",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 PR #68이 'pending' 상태로 대기 중이며 사용자 피드백 및 UI 안내 문구 보강 필요",
+    "proposal": "GitHub에서 PR #68의 변경 사항(backend/static/index.html 등)을 검토하고 테스트 통과 확인 후 승인 및 병합",
+    "expected": "웹 PBR 변환 과정에서 로딩 스피너 및 완료 메시지가 사용자에게 명확히 전달됨",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T23:31:31+00:00",
+    "kind": "proposal",
+    "id": "p-b2e4f6a918",
+    "title": "로컬 파이프라인 입력 검증 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 실행에서 입력 검증 테스트 관련 held 상태 발생, 안정적인 입력 처리 필요",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 다양한 이미지 포맷 입력 테스트를 보완하고 코딩 에이전트를 통해 검증",
+    "expected": "로컬 파이프라인의 예외 처리 안정성 및 코드 커버리지 향상",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T23:31:56.219495+00:00",
+    "kind": "decision",
+    "id": "p-876ed215bc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR 상태 UI 마크업 변경 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T23:31:56.264203+00:00",
+    "kind": "decision",
+    "id": "p-b2e4f6a918",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
