@@ -1,0 +1,89 @@
+{
+  "id": "unity-gameobjects-and-components-3321",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입문",
+  "name": "GameObjects and Components",
+  "title": "GameObject 와 Component — Unity 의 기본 구조",
+  "summary": "Unity의 모든 오브젝트의 기본이 되는 GameObject와 기능과 속성을 부여하는 Component의 구조를 이해하고 다룹니다. 가상 공간에 대상을 배치하고 시각적·물리적 성질을 조립하는 핵심 개념입니다.",
+  "when": [
+    "새로운 캐릭터나 건물을 3D 씬(Scene)에 배치하고 싶을 때",
+    "오브젝트에 충돌 판정(Collision)이나 물리 법칙(Physics)을 적용하고 싶을 때",
+    "Script를 붙여 움직임이나 게임 로직을 제어하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 창의 빈 공간에서 Mouse 우클릭을 합니다.",
+    "Create Empty를 눌러 빈 GameObject를 생성하거나 3D Object에서 기본 도형을 선택합니다.",
+    "Hierarchy 창에서 생성된 오브젝트를 클릭하여 선택합니다.",
+    "Inspector 패널에서 현재 오브젝트에 부착된 Transform, Mesh Filter 등의 Component들을 확인합니다.",
+    "Inspector 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 원하는 컴포넌트 이름(예: Rigidbody)을 입력하고 엔터를 눌러 부착합니다."
+  ],
+  "params": [
+    {
+      "name": "Transform",
+      "desc": "오브젝트의 위치, 회전, 크기(Position, Rotation, Scale)를 결정하는 기본 컴포넌트입니다."
+    },
+    {
+      "name": "Mesh Filter",
+      "desc": "3D 모델의 형태(Mesh 데이터)를 지정하여 Viewport에 모양을 전달합니다."
+    },
+    {
+      "name": "Mesh Renderer",
+      "desc": "소재(Material)와 결합하여 3D 모델이 화면에 실제로 보이도록 렌더링합니다."
+    },
+    {
+      "name": "Box Collider",
+      "desc": "직육면체 형태의 물리적 충돌 영역을 정의합니다."
+    },
+    {
+      "name": "Rigidbody",
+      "desc": "중력과 힘(Force) 등 물리 시뮬레이션을 오브젝트에 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "떨어지는 사과 만들기",
+      "steps": [
+        "Hierarchy 창에서 3D Object → Sphere를 생성합니다.",
+        "Inspector 하단의 Add Component를 누릅니다.",
+        "Rigidbody를 검색하여 추가하고 Play 버튼을 눌러 중력에 의해 떨어지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "플레이어 이동 Script 연결",
+      "steps": [
+        "Hierarchy 창에서 빈 GameObject를 생성하고 이름을 Player로 바꿉니다.",
+        "미리 작성한 C# Script 파일을 Inspector 패널로 드래그 앤 드롭하여 부착합니다.",
+        "Play를 눌러 입력키에 반응하는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Transform 컴포넌트를 삭제하거나 수정하려고 함 → Transform은 GameObject의 필수 요소로 삭제할 수 없습니다.",
+    "Mesh Renderer가 꺼져 있음 → Inspector 상단의 체크박스가 해제되어 오브젝트가 보이지 않는지 확인하고 켭니다."
+  ],
+  "related": [
+    "Prefab",
+    "ScriptableObject",
+    "Layer",
+    "Tag"
+  ],
+  "videos": [
+    {
+      "id": "9Nf2_ds5y8c",
+      "title": "Game Objects and Components - Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "XPV87KmhVuA",
+      "title": "Unity in under 10 Minutes! - Episode 1: GameObjects and Components",
+      "author": "Natty GameDev"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20GameObjects%20and%20Components",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T02:21:19.932142+00:00"
+}

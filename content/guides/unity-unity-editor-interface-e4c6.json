@@ -1,0 +1,97 @@
+{
+  "id": "unity-unity-editor-interface-e4c6",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입문",
+  "name": "Unity Editor interface",
+  "title": "화면 구성 — Scene·Game·Hierarchy·Inspector·Project",
+  "summary": "Unity Editor 인터페이스는 씬 구성, 에셋 관리, 게임 테스트 및 속성 조정을 한 화면에서 통합 관리하는 작업 공간입니다. 복잡한 3D 게임 및 Interactive 콘텐츠 제작의 중심이 됩니다.",
+  "when": [
+    "새로운 프로젝트를 생성하고 기본 Viewport 레이아웃을 파악할 때",
+    "3D 모델, 머티리얼, Script 등의 에셋을 배치하고 관리할 때",
+    "게임 오브젝트의 위치를 조정하고 인스펙터에서 속성을 수정할 때"
+  ],
+  "steps": [
+    "Unity Hub를 실행하고 원하는 프로젝트 버전을 선택하여 Unity Editor를 엽니다.",
+    "상단 메뉴 바(Menu Bar)에서 Window → General을 선택하여 Scene, Game, Hierarchy 창을 확인합니다.",
+    "중앙의 Scene 뷰에서 Mouse 우클릭과 W, E, R Hotkey를 이용해 Viewport를 탐색하고 오브젝트를 조작합니다.",
+    "좌측 Hierarchy 패널에서 현재 씬에 배치된 오브젝트 계층 구조를 확인하고 선택합니다.",
+    "우측 Inspector 패널에서 선택된 오브젝트의 Transform과 컴포넌트 속성값을 확인하고 수정합니다.",
+    "하단 Project 패널(또는 Assets 폴더)에서 3D 모델이나 텍스처 파일을 드래그하여 씬에 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Scene",
+      "desc": "3D 공간에서 게임 오브젝트를 배치하고 편집하는 메인 Viewport"
+    },
+    {
+      "name": "Game",
+      "desc": "플레이어 시점에서 게임이 실제로 실행되는 화면을 미리 확인"
+    },
+    {
+      "name": "Hierarchy",
+      "desc": "현재 씬에 존재하는 모든 게임 오브젝트의 부모-자식 계층 구조 표시"
+    },
+    {
+      "name": "Inspector",
+      "desc": "선택한 오브젝트의 컴포넌트, 좌표, 머티리얼 등의 속성 상세 표시"
+    },
+    {
+      "name": "Project",
+      "desc": "프로젝트 폴더 내의 모든 에셋(모델, 텍스처, Script) 관리"
+    },
+    {
+      "name": "Console",
+      "desc": "디버그 메시지, 경고 및 에러 로그를 출력하는 패널"
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 오브젝트 배치 및 이동",
+      "steps": [
+        "Hierarchy 패널 빈 곳을 우클릭하고 3D Object → Cube를 선택합니다.",
+        "Scene 뷰에서 Hotkey W를 눌러 Move Gizmo를 활성화합니다.",
+        "축 화살표를 드래그하여 큐브의 위치를 원하는 곳으로 이동합니다."
+      ]
+    },
+    {
+      "title": "인스펙터에서 컴포넌트 속성 변경",
+      "steps": [
+        "Hierarchy 패널에서 큐브 오브젝트를 클릭하여 선택합니다.",
+        "Inspector 패널의 Transform 컴포넌트에서 Scale 값을 X: 2, Y: 1, Z: 1로 입력합니다.",
+        "Scene 뷰에서 오브젝트의 크기가 가로로 늘어난 것을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scene 뷰에서 조작이 안 됨 → Hierarchy에서 올바른 오브젝트가 선택되었는지 확인하고 F 키를 눌러 포커스",
+    "에셋 파일을 찾을 수 없음 → Project 패널의 상단 검색창이나 해당 폴더 경로 확인",
+    "플레이 모드에서 수정한 값이 초기화됨 → Play 모드가 켜진 상태에서 수정했으므로, 종료 후 다시 값 입력"
+  ],
+  "related": [
+    "Scene View",
+    "Inspector Panel",
+    "Project Browser",
+    "Game View"
+  ],
+  "videos": [
+    {
+      "id": "D7v2pjke5sc",
+      "title": "The Unity Interface Overview -  Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "RzP9f-aZFjI",
+      "title": "Unity Basics In Just 10 Minutes!",
+      "author": "Unitea"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Unity%20Editor%20interface",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity Hub",
+    "Unity Editor"
+  ],
+  "at": "2026-11-12T02:21:11.737399+00:00"
+}

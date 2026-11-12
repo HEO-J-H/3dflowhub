@@ -1,0 +1,97 @@
+{
+  "id": "unity-scene-view-navigation-5c12",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입문",
+  "name": "Scene view navigation",
+  "title": "Scene 뷰 이동·회전·확대",
+  "summary": "Unity Scene view navigation은 3D 씬 내부를 자유롭게 이동하고 관찰하여 오브젝트를 정밀하게 배치할 수 있게 해줍니다. 카메라를 회전, 이동, 확대하며 작업 공간을 효율적으로 탐색합니다.",
+  "when": [
+    "씬에 배치된 3D 모델이나 UI 요소를 다양한 각도에서 확인할 때",
+    "특정 오브젝트 위치로 빠르게 카메라를 포커스하여 작업할 때",
+    "대형 오픈월드 씬에서 넓은 지역을 빠르게 이동하며 탐색할 때"
+  ],
+  "steps": [
+    "Unity 에디터를 열고 씬 뷰(Scene View) 창을 활성화합니다.",
+    "오른쪽 Mouse 버튼(RMB)을 누른 채 Mouse를 움직여 카메라를 회전(Look Around)합니다.",
+    "Mouse 휠(Mouse Scroll)을 굴리거나 Alt + 오른쪽 Mouse 버튼(RMB) 드래그로 씬을 확대/축소(Zoom)합니다.",
+    "손바닥 도구(Hand Tool, Q 키)를 선택하거나 Mouse 휠 버튼(MMB)을 누른 채 드래그하여 씬을 이동(Pan)합니다.",
+    "오브젝트를 선택한 상태에서 키보드 F 키를 눌러 해당 오브젝트를 Viewport 정중앙에 포커스합니다.",
+    "오른쪽 Mouse 버튼(RMB)을 누른 상태에서 WASD 키(또는 화살표 키)를 사용하여 1인칭 시점처럼 씬을 자유롭게 비행(Flythrough)합니다."
+  ],
+  "params": [
+    {
+      "name": "Pivot / Center",
+      "desc": "회전 중심 기준을 오브젝트 피벗 또는 중심점으로 전환합니다."
+    },
+    {
+      "name": "Local / Global",
+      "desc": "오브젝트 조작 축을 로컬(자체 회전값) 또는 월드 기준으로 변경합니다."
+    },
+    {
+      "name": "View Toggle (2D/3D)",
+      "desc": "2D GUI 작업용 정면 뷰와 3D 원근 뷰 사이를 전환합니다."
+    },
+    {
+      "name": "Gizmo Toggle",
+      "desc": "씬 뷰 우측 상단의 기즈모 표시 여부를 제어합니다."
+    },
+    {
+      "name": "Lighting Toggle",
+      "desc": "씬 뷰 내부의 조명 계산을 켜거나 꺼서 성능을 최적화합니다."
+    },
+    {
+      "name": "Render Mode",
+      "desc": "Shaded, Wireframe 등 씬 뷰의 렌더링 방식을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "넓은 지형(Terrain) 탐색하기",
+      "steps": [
+        "Hierarchy 창에서 Terrain 오브젝트를 선택합니다.",
+        "Scene view에 Mouse를 올리고 F 키를 눌러 지형 전체를 화면에 맞춥니다.",
+        "오른쪽 Mouse 버튼(RMB)을 누른 채 WASD 키로 지형 위를 비행하며 디테일을 확인합니다."
+      ]
+    },
+    {
+      "title": "작은 소품(Prop) 정밀 배치하기",
+      "steps": [
+        "배치할 소품 오브젝트를 선택하고 F 키를 눌러 가깝게 확대합니다.",
+        "Alt 키를 누른 채 Mouse 좌측 버튼(LMB)으로 오브젝트 주위를 회전하며 각도를 확인합니다.",
+        "필요시 Mouse 휠로 세밀하게 줌인하여 벽면에 정확히 밀착시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "오브젝트를 찾지 못하고 길을 잃음 → 오브젝트를 선택한 상태에서 F 키를 눌러 뷰를 재설정합니다.",
+    "카메라 회전 속도가 너무 빠르거나 느림 → Scene view 우측 상단의 ⚙️(Settings) 아이콘을 눌러 Camera Speed 값을 조절합니다.",
+    "원근감이 이상하게 느껴짐 → Orthographic 모드가 켜져 있는지 확인하고 Perspective 모드로 전환합니다."
+  ],
+  "related": [
+    "Hierarchy",
+    "Inspector",
+    "Game View",
+    "ProBuilder"
+  ],
+  "videos": [
+    {
+      "id": "DhZy0vTcj1o",
+      "title": "Unity Studio – Scene View Navigation",
+      "author": "Unity"
+    },
+    {
+      "id": "eAgFm3kHeCk",
+      "title": "Unity Scene View Explained – Beginner Tutorial (#6)",
+      "author": "UnitySite — Learn Unity & Game Design"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Scene%20view%20navigation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "Scene View"
+  ],
+  "at": "2026-11-12T02:21:16.129851+00:00"
+}
