@@ -1,0 +1,80 @@
+{
+  "id": "substance-3d-channel-packing-orm-dc5d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Channel packing (ORM)",
+  "title": "채널 패킹(ORM)",
+  "summary": "Substance 3D Painter에서 여러 흑백 텍스처 맵을 하나의 이미지 파일의 R, G, B 채널에 나누어 담아 게임 엔진의 메모리와 드로우 콜을 최적화하는 기능입니다.",
+  "when": [
+    "Unreal Engine이나 Unity 같은 실시간 게임 엔진으로 텍스처를 내보낼 때",
+    "AO, Roughness, Metallic 맵을 하나로 합쳐 파일 용량과 메모리 대역폭을 줄이고 싶을 때",
+    "PBR Shader가 ORM(Occlusion, Roughness, Metallic) 패킹 형식을 요구할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 상단 메뉴 바에서 File → Export Textures를 클릭하여 Export 창을 엽니다.",
+    "Configuration 탭으로 이동하여 기존 설정(예: Unreal Engine)을 복제하거나 새로운 Custom Configuration을 만듭니다.",
+    "Output Templates 패널에서 새로운 RGB 마스크 맵을 생성하고 채널 슬롯에 각각 Red, Green, Blue 출력을 할당합니다.",
+    "Red 채널에 Ambient Occlusion, Green 채널에 Roughness, Blue 채널에 Metallic 맵을 연결합니다.",
+    "Export 탭으로 돌아와 방금 만든 설정(Preset)을 선택하고 Export 버튼을 클릭해 텍스처를 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "RGB Channels",
+      "desc": "하나의 이미지 파일에 세 개의 독립된 흑백 맵을 채널별로 압축하여 저장합니다."
+    },
+    {
+      "name": "Output Template",
+      "desc": "사용할 엔진이나 Shader 규칙에 맞게 텍스처 채널 조합을 정의하는 규칙 파일입니다."
+    },
+    {
+      "name": "File Format",
+      "desc": "채널 패킹 시 압축 손실이 없는 PNG 또는 TGA 포맷을 주로 선택하여 데이터 손상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine용 ORM 맵 제작",
+      "steps": [
+        "Export Configuration에서 새 프리셋을 생성합니다.",
+        "R 채널에 AO, G 채널에 Roughness, B 채널에 Metallic을 드래그하여 배치합니다.",
+        "파일명 접미사를 _ORM으로 설정하고 PNG 형식으로 내보냅니다."
+      ]
+    },
+    {
+      "title": "커스텀 게임 엔진 최적화",
+      "steps": [
+        "엔진 Shader 사양에 맞춰 알파 채널(A)까지 포함한 RGBA 패킹 구조를 설계합니다.",
+        "Substance Painter의 Export 맵 설정에서 각 채널에 올바른 텍스처 소스를 매핑합니다.",
+        "텍스처를 추출하여 엔진 Import 설정에서 sRGB 체크를 해제합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "채널 순서 혼동 → AO, Roughness, Metallic의 배치 순서가 엔진 Shader의 입력 채널과 일치하는지 반드시 확인합니다.",
+    "sRGB 감마 적용 오류 → 데이터성 맵(Roughness, Metallic, AO)이 포함된 패킹 텍스처는 엔진에서 sRGB 옵션을 끄고 임포트해야 합니다."
+  ],
+  "related": [
+    "Export Textures",
+    "Texture Set Settings",
+    "Ambient Occlusion",
+    "Roughness"
+  ],
+  "videos": [
+    {
+      "id": "T8xomQKGhqc",
+      "title": "ORM packing saves you time, storage, and hassle. #tips #howto #digitalart #gamedev #substancepainter",
+      "author": "levistone_dev"
+    },
+    {
+      "id": "zGAVGRK0yvM",
+      "title": "Channel Packing In Substance Painter | Channel Packing Series",
+      "author": "Get Learnt w/ Chunck"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Channel%20packing%20%28ORM%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T01:49:14.532631+00:00"
+}

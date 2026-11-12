@@ -1,0 +1,98 @@
+{
+  "id": "substance-3d-pbr-basics-albedo-roughness-metallic-7d34",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "PBR basics (albedo, roughness, metallic)",
+  "title": "PBR 기초",
+  "summary": "Substance 3D의 PBR(물리 기반 렌더링) 기초는 Albedo, Roughness, Metallic 맵을 조합하여 현실적인 표면 질감을 표현하는 핵심 프로세스입니다. 다양한 조명 환경에서 실제 재질과 같은 광학적 반응을 일관되게 구현합니다.",
+  "when": [
+    "게임 캐릭터나 프롭의 금속, 가죽, 플라스틱 등 실제와 같은 표면 질감을 제작할 때",
+    "건축 시각화에서 벽돌, 콘크리트, 유리 등 다양한 건축 자재의 디테일을 표현할 때",
+    "PBR 텍스처 맵을 3ds Max, Blender, Unreal Engine 등 외부 3D DCC 및 게임 엔진으로 내보내어 동일한 퀄리티를 유지할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 또는 Designer를 실행하고 새 프로젝트(File → New)를 엽니다.",
+    "Mesh 또는 Graph Template에서 PBR Shader(예: Metal/Roughness 워크플로우)를 선택합니다.",
+    "Texture Set Settings에서 텍스처 Resolution(예: 2048x2048)와 맵 채널을 설정합니다.",
+    "Layers 패널에서 Fill Layer를 추가하여 기본 Albedo 색상과 패턴을 지정합니다.",
+    "Roughness 슬라이더를 조절하여 표면의 거친 정도와 반사광의 퍼짐을 설정합니다.",
+    "Metallic 채널을 조절하여 도체(금속)와 부도체(비금속)의 특성을 구분합니다.",
+    "Export Textures 메뉴를 통해 Albedo, Roughness, Metallic, Normal 맵 파일을 출력합니다."
+  ],
+  "params": [
+    {
+      "name": "Albedo",
+      "desc": "빛의 반사를 제외한 오브젝트의 순수한 표면 고유 색상과 무늬를 결정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 미세한 거칠기를 조절하여 하이라이트와 반사광의 선명함을 제어합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "재질이 금속인지 비금속인지 정의하며, 금속일 경우 주변광 반사 색상이 Albedo를 따릅니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "폴리곤을 추가하지 않고도 표면의 미세한 요철과 입체감을 시각적으로 표현합니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "구조물 사이의 틈새나 그림자가 닿지 않는 어두운 영역을 음영으로 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "녹슨 철제 파이프 제작",
+      "steps": [
+        "Fill Layer에 어두운 회색 Albedo와 낮은 Roughness를 적용하여 기본 철판을 만듭니다.",
+        "Smart 머티리얼(Smart Material)을 드래그하여 이음새와 모서리에 녹(Rust) 표현을 추가합니다.",
+        "Normal 채널을 통해 부식으로 패인 표면의 미세한 요철을 더합니다."
+      ]
+    },
+    {
+      "title": "무광 플라스틱 케이스 제작",
+      "steps": [
+        "단색 Albedo를 적용하여 플라스틱의 기본 색상을 지정합니다.",
+        "Roughness 값을 높여 표면 반사를 확산시키고 무광 질감을 연출합니다.",
+        "Sub-1mm 노이즈 맵을 Bump 채널에 약하게 주어 미세한 사출 흔적을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Metallic 값에 중간값을 애매하게 설정함 → Metallic은 완전한 금속(1) 혹은 비금속(0)으로 설정해야 물리적으로 정확합니다.",
+    "Albedo 맵에 조명 음영(AO)이 포함됨 → Albedo는 순수 색상만 담아야 하며, 음영은 별도의 AO 맵이나 조명으로 처리해야 합니다.",
+    "Roughness와 Glossiness 혼동 → Substance의 표준은 Roughness(거칠기) 기반이므로 반대로 설정하면 반사 질감이 반대로 나타납니다."
+  ],
+  "related": [
+    "Principled BSDF",
+    "OmniPBR",
+    "Substance 3D Designer",
+    "Substance 3D Painter"
+  ],
+  "videos": [
+    {
+      "id": "d6oVxZb6qmc",
+      "title": "PBR Guide for 3D Artists: Albedo, Normal, Metallic, Roughness Explained by a Technical Artist",
+      "author": "Needle"
+    },
+    {
+      "id": "ClaeyPdRjA0",
+      "title": "textures in videogames. PBR Metallic Roughness #digitalart #videogames #substancepainter",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20PBR%20basics%20%28albedo%2C%20roughness%2C%20metallic%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Designer",
+    "File",
+    "New",
+    "Mesh",
+    "Graph Template"
+  ],
+  "at": "2026-11-12T01:49:25.425180+00:00"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "substance-3d-color-space-for-textures-d6a2",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Color space for textures",
+  "title": "텍스처 색 공간",
+  "summary": "Substance 3D Painter에서 텍스처 이미지의 색상 공간(Color Space)을 올바르게 설정하여, 노멀 맵이나 컬러 텍스처가 왜곡되지 않고 정확한 물리적 색상으로 표현되도록 관리하는 기능입니다.",
+  "when": [
+    "베이스 컬러나 알베도 텍스처를 불러올 때 색감이 너무 밝거나 탁해 보일 때",
+    "노멀 맵이나 roughness 같은 데이터 맵을 임포트했는데 표면이 깨져 보일 때",
+    "다른 DCC 툴이나 게임 엔진과 렌더링 결과물의 색상 차이를 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Painter에서 프로젝트를 열거나 생성합니다.",
+    "상단 메뉴 바에서 File > Import Resources 를 선택합니다.",
+    "불러올 텍스처 이미지를 추가하고, Import your resources to 창에서 하단의 Color Space 드롭다운 메뉴를 확인합니다.",
+    "컬러 이미지인 경우 sRGB, 노멀 맵이나 데이터 맵인 경우 Linear 또는 Raw를 선택합니다.",
+    "좌측 하단의 Import 세팅에서 프로젝트 또는 셰이어 전용으로 저장 위치를 설정하고 Import 버튼을 누릅니다.",
+    "텍스처 셰프(Texture Set Settings)나 레이어 속성에서 텍스처가 올바르게 반영되었는지 Viewport로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "sRGB",
+      "desc": "베이스 컬러나 알베도처럼 눈에 보이는 색상 정보를 담은 텍스처에 적용합니다."
+    },
+    {
+      "name": "Linear / Raw",
+      "desc": "노멀 맵, 러프니스, 메탈릭 등 색상이 아닌 수치 데이터 값을 다루는 텍스처에 적용합니다."
+    },
+    {
+      "name": "Auto-detect",
+      "desc": "파일 포맷과 이름 규칙에 따라 색상 공간을 자동으로 감지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "베이스 컬러 텍스처 적용하기",
+      "steps": [
+        "외부에서 제작한 컬러 텍스처를 Import Resources 창에 드래그합니다.",
+        "Color Space 옵션을 sRGB로 설정합니다.",
+        "Texture Set Settings의 Base Color 슬롯에 텍스처를 드래그하여 연결합니다."
+      ]
+    },
+    {
+      "title": "노멀 맵 데이터 왜곡 방지하기",
+      "steps": [
+        "디테일이 담긴 노멀 맵 이미지를 임포트합니다.",
+        "Color Space를 Linear 또는 Raw로 변경합니다.",
+        "Normal 슬롯에 적용해 표면의 음영이 의도대로 정확히 표현되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 맵에 sRGB를 적용함 → 표면 조명이 이상하게 깨지거나 울퉁불퉁해짐. Color Space를 Linear나 Raw로 변경하여 해결합니다.",
+    "컬러 텍스처에 Raw를 적용함 → 색상이 지나치게 어둡거나 채도가 빠져 보임. Color Space를 sRGB로 설정합니다."
+  ],
+  "related": [
+    "Display Settings",
+    "Texture Set Settings",
+    "Export Textures",
+    "Color Profile"
+  ],
+  "videos": [
+    {
+      "id": "hDiYqODGoHg",
+      "title": "Substance 3D Painter & ACES - 01 - Color Space Fundamentals | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "wcpz9_stKgs",
+      "title": "Substance 3D Painter Textures into Unreal Engine 5 Including Emission",
+      "author": "James, How Do I?"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Color%20space%20for%20textures",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "File",
+    "Import Resources",
+    "Import",
+    "Color Space"
+  ],
+  "at": "2026-11-12T01:49:19.220811+00:00"
+}
