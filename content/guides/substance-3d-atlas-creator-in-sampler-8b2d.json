@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-atlas-creator-in-sampler-8b2d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "Atlas creator in Sampler",
+  "title": "Sampler 아틀라스",
+  "summary": "Substance 3D Sampler의 Atlas Creator는 여러 개별 텍스처와 요소를 하나의 아틀라스 맵으로 자동 배치하고 정렬해 주는 도구입니다. 복잡한 에셋의 드로우 콜을 줄이고 효율적으로 텍스처와 소스를 관리할 수 있습니다.",
+  "when": [
+    "게임 배경에 들어갈 풀, 나뭇잎, 돌멩이 등 여러 작은 소스를 하나의 텍스처 아틀라스로 묶을 때",
+    "건축 시각화에서 벽돌이나 타일 파편들을 효율적으로 한 장의 맵에 정리할 때",
+    "드로우 콜 최적화가 필요한 실시간 엔진용 로우폴리 에셋을 제작할 때"
+  ],
+  "steps": [
+    "Adobe Substance 3D Sampler를 실행하고 새 프로젝트를 만듭니다.",
+    "Assets 패널에서 Atlas Creator 필터를 검색하여 캔버스나 레이어 스택에 드래그하여 추가합니다.",
+    "Layer Stack 또는 Properties 패널에서 Input 영역에 병합할 개별 텍스처와 소스 이미지들을 불러옵니다.",
+    "Properties 패널에서 패딩(Padding), 정렬(Alignment), 크기 조절 옵션을 조절하여 요소 간격을 맞춥니다.",
+    "출력된 Albedo, Normal, Roughness 아틀라스 맵을 확인하고 디스크에 Export 합니다."
+  ],
+  "params": [
+    {
+      "name": "Input",
+      "desc": "아틀라스로 병합할 개별 소스 이미지나 텍스처를 입력합니다."
+    },
+    {
+      "name": "Padding",
+      "desc": "각 요소 사이의 간격을 조절하여 밉맵 생성 시 텍스처가 깨지는 현상을 방지합니다."
+    },
+    {
+      "name": "Layout Mode",
+      "desc": "요소들을 배치하는 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "아틀라스 내부의 개별 요소 크기를 조절합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "요소들의 무작위 회전 값을 주어 자연스러운 배치를 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "풀과 나뭇잎 아틀라스 제작",
+      "steps": [
+        "다양한 나뭇잎 소스 이미지를 Input에 등록합니다.",
+        "Layout Mode를 조정하여 겹치지 않게 배치합니다.",
+        "Padding 값을 높여 텍스처 간 간격을 확보합니다."
+      ]
+    },
+    {
+      "title": "데칼(Decal) 시트 생성",
+      "steps": [
+        "낙서, 오염 등의 데칼 텍스처들을 모아 불러옵니다.",
+        "Scale을 조절해 크기를 균일하게 맞춥니다.",
+        "Albedo와 Normal 맵을 함께 출력합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Padding 값이 너무 좁음 → 밉맵(Mipmap) 단계에서 인접한 텍스처 색상이 섞이는 현상 발생 (Padding 값을 2px 이상으로 늘려 해결)",
+    "소스 이미지의 Resolution가 제각각임 → 아틀라스 내에서 Resolution 저하 발생 (사전에 소스 이미지 크기를 통일하여 입력)"
+  ],
+  "related": [
+    "Atlas Maker",
+    "Substance 3D Designer",
+    "Substance 3D Painter",
+    "Material Blend"
+  ],
+  "videos": [
+    {
+      "id": "GkcObacojRA",
+      "title": "Understanding Substance 3D Atlas Assets | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "Ci1D76j0wKs",
+      "title": "Lace material with Substance 3D Sampler \"Image to Texture\" (+ Cinema 4D)",
+      "author": "Anna Natter"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Atlas%20creator%20in%20Sampler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Adobe Substance 3D Sampler",
+    "Assets",
+    "Atlas Creator"
+  ],
+  "at": "2026-11-12T01:09:05.574837+00:00"
+}

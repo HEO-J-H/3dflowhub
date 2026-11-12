@@ -1,0 +1,93 @@
+{
+  "id": "substance-3d-substance-stager-scene-setup-36c2",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "스테이저",
+  "name": "Substance Stager scene setup",
+  "title": "Stager 장면 구성",
+  "summary": "Substance Stager에서 3D 모델을 불러오고 환경 조명과 카메라를 배치하여 제품 렌더링을 위한 장면(Scene)을 구성하는 필수 단계입니다.",
+  "when": [
+    "Substance Painter나 ZBrush에서 제작한 3D 모델을 보기 좋은 제품 패키지나 렌더 컷으로 만들 때",
+    "HDR 환경 조명과 재질(Material)을 적용하여 사실적인 실내·외 스튜디오 샷을 연출할 때",
+    "카메라 구도를 잡고 최종 이미지를 고해상도로 렌더링할 때"
+  ],
+  "steps": [
+    "Substance Stager를 실행하고 빈 프로젝트(New Project)를 엽니다.",
+    "상단 메뉴 바에서 File > Import를 클릭하거나, 에셋 패널에서 3D 모델(FBX, OBJ, USD 등)을 Viewport로 드래그 앤 드롭합니다.",
+    "Scene 패널에서 불러온 모델을 선택하고, 툴바의 Move, Rotate, Scale 툴(Hotkey W, E, R)을 사용하여 위치를 조정합니다.",
+    "Assets 패널의 Environment 탭에서 원하는 HDR 배경(Environment)을 골라 Viewport에 적용합니다.",
+    "Materials 패널에서 원하는 재질을 모델의 세부 파츠(Mesh part)에 드래그하여 입힙니다.",
+    "Camera 패널에서 구도를 맞춘 뒤, Render 모드로 전환하여 최종 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Environment Intensity",
+      "desc": "HDR 조명의 밝기를 조절합니다."
+    },
+    {
+      "name": "Environment Rotation",
+      "desc": "HDR 배경을 회전시켜 빛의 방향과 그림자를 바꿉니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "렌더링할 이미지의 Resolution(픽셀 크기)를 설정합니다."
+    },
+    {
+      "name": "Focal Length",
+      "desc": "카메라의 화각(초점 거리)을 조절하여 원근감을 조정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "재질 표면의 거칠기 감도를 조절하여 광택을 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "화장품 용기 제품 렌더링 샷 만들기",
+      "steps": [
+        "용기 3D 모델(OBJ/FBX)을 Stager Viewport에 드래그 앤 드롭합니다.",
+        "Environment 탭에서 'Studio Soft Box' HDR을 적용하여 부드러운 그림자를 만듭니다.",
+        "Materials에서 유리(Glass)와 플라스틱 재질을 각 파츠에 드래그하여 입힙니다.",
+        "Camera 뷰를 맞추고 Render 탭에서 이미지로 저장합니다."
+      ]
+    },
+    {
+      "title": "바닥면(Ground Plane) 그림자 연출",
+      "steps": [
+        "상단 메뉴에서 Edit > Create > Ground Plane을 선택해 바닥을 만듭니다.",
+        "Scene 패널에서 모델이 바닥 위에 정확히 안착하도록 위치(Move)를 맞춥니다.",
+        "Environment 조명을 돌려 제품 하단에 자연스러운 접촉 그림자(Contact Shadow)를 유도합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모델이 Viewport에 보이지 않음 → Scene 패널에서 모델을 선택하고 F 키를 눌러 Viewport 중앙으로 포커스를 맞춥니다.",
+    "텍스처나 재질이 깨져서 보임 → 모델의 UV가 올바르게 펴져 있는지 확인하고, FBX 파일 Import 시 Materials 포함 여부를 체크합니다."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Substance 3D Sampler",
+    "Substance 3D Designer",
+    "Universal Scene Description (USD)"
+  ],
+  "videos": [
+    {
+      "id": "BMUKegrZOgs",
+      "title": "What is Adobe Substance 3D?",
+      "author": "Michael Tanzillo"
+    },
+    {
+      "id": "Tpa24oaJDqE",
+      "title": "The Complete Substance 3D Training Course - The Introduction",
+      "author": "Michael Tanzillo"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Stager%20scene%20setup",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance Stager",
+    "New Project"
+  ],
+  "at": "2026-11-12T01:09:13.200858+00:00"
+}

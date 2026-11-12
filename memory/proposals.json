@@ -34404,5 +34404,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 TripoSR 예외 처리 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T01:09:00+00:00",
+    "kind": "proposal",
+    "id": "p-e29f76fda8",
+    "title": "PR #63 최종 검토 및 머지 가이드 확인",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #63이 생성되어 승인 대기 중이며 로컬 파이프라인의 TripoSR 예외 로깅 보완 코드가 포함되어 있습니다.",
+    "proposal": "GitHub에서 PR #63의 변경 내역과 테스트 결과를 최종 확인하고 병합을 진행합니다.",
+    "expected": "로컬 환경에서 TripoSR 실행 시 예외 발생 원인을 명확히 파악할 수 있어 디버깅 효율이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/63",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T01:09:00+00:00",
+    "kind": "proposal",
+    "id": "p-b6a0e80a3e",
+    "title": "로컬 파이프라인 TripoSR 예외 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "triposr_runner.py의 예외 로깅 개선에 맞춰 단위 테스트를 통한 검증이 필요합니다.",
+    "proposal": "backend/tests/test_triposr.py 파일에 GPU 메모리 부족 및 모델 로드 실패 상황에 대한 모의 테스트 케이스를 추가합니다.",
+    "expected": "예외 상황에서의 로그 출력 및 오류 메시지 반환의 안정성을 자동 테스트로 보장합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T01:09:00+00:00",
+    "kind": "proposal",
+    "id": "p-4e7ca2999f",
+    "title": "웹 브라우저 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 PBR 텍스처 변환 오류 처리 보완 작업이 완료되었으나 관련 프론트엔드 테스트 보강이 유효합니다.",
+    "proposal": "web/ 테스트 Script 또는 관련 JS 모듈에 이미지 처리 실패 시 에러 메시지 표시 로직을 검증하는 테스트를 추가합니다.",
+    "expected": "브라우저 환경에서 변환 실패 시 사용자 피드백의 신뢰성과 완성도가 높아집니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T01:09:30.849351+00:00",
+    "kind": "decision",
+    "id": "p-e29f76fda8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #63 최종 검토 및 머지 진행",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T01:09:30.887307+00:00",
+    "kind": "decision",
+    "id": "p-b6a0e80a3e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 TripoSR 예외 처리 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T01:09:30.923763+00:00",
+    "kind": "decision",
+    "id": "p-4e7ca2999f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
   }
 ]

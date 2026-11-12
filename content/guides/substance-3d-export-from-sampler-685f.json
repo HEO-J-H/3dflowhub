@@ -1,0 +1,93 @@
+{
+  "id": "substance-3d-export-from-sampler-685f",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "Export from Sampler",
+  "title": "Sampler Export",
+  "summary": "Substance 3D Sampler에서 제작하거나 변환한 머티리얼과 텍스처를 glTF, USD, FBX 등 다양한 포맷으로 내보내 외부 3D DCC 툴이나 게임 엔진에서 사용하는 기능입니다. 실시간 렌더링이나 게임 에셋 제작 파이프라인을 효율적으로 연결합니다.",
+  "when": [
+    "Substance 3D Sampler에서 만든 절차적 머티리얼을 Blender나 Unreal Engine으로 가져갈 때",
+    "포토스캔한 표면 데이터를 웹 표준 포맷인 glTF나 USD로 내보내 공유할 때",
+    "타일링 텍스처 맵들을 개별 이미지(Albedo, Normal, Roughness 등)로 추출할 때"
+  ],
+  "steps": [
+    "Substance 3D Sampler를 실행하고 내보낼 프로젝트나 머티리얼을 엽니다.",
+    "화면 우측 상단 또는 메뉴 바에서 Export 패널이나 버튼을 클릭합니다.",
+    "Export 설정 창에서 파일 포맷(예: glTF, USD, FBX, EXR 등)을 선택합니다.",
+    "저장할 경로(Directory)를 지정하고 Resolution와 채널 옵션을 확인합니다.",
+    "하단의 Export 버튼을 클릭하여 파일을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Export Target",
+      "desc": "내보낼 파일의 포맷(glTF, USD, FBX 등)을 결정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력될 텍스처 맵의 Resolution(예: 2048x2048, 4096x4096)를 설정합니다."
+    },
+    {
+      "name": "File Format",
+      "desc": "이미지 맵의 포맷(PNG, JPEG, EXR 등)을 선택합니다."
+    },
+    {
+      "name": "Maps",
+      "desc": "Export에 포함할 텍스처 채널(Base Color, Normal, Roughness 등)을 선택합니다."
+    },
+    {
+      "name": "Mesh",
+      "desc": "머티리얼이 적용될 3D 모델(Plane, Sphere 등)을 함께 내보낼지 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine용 머티리얼 Export",
+      "steps": [
+        "Sampler에서 완성된 머티리얼의 Export 설정 창을 엽니다.",
+        "Export Target을 Unreal Engine 프리셋으로 선택합니다.",
+        "Resolution를 2K 또는 4K로 지정한 뒤 Export를 실행합니다.",
+        "추출된 텍스처 맵들을 Unreal Engine Content Browser로 드래그하여 가져옵니다."
+      ]
+    },
+    {
+      "title": "웹용 glTF 에셋 Export",
+      "steps": [
+        "Sampler에서 3D 모델에 적용된 상태의 머티리얼을 확인합니다.",
+        "Export 설정에서 포맷을 glTF 또는glb로 선택합니다.",
+        "Mesh와 텍스처가 모두 포함되도록 옵션을 체크합니다.",
+        "파일을 내보내 WebGL 뷰어에서 렌더링 결과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 Resolution가 너무 낮게 설정됨 → Export 설정에서 Resolution 값을 2K 또는 4K로 높여서 다시 내보냅니다.",
+    "필요한 맵 채널이 누락됨 → Export Maps 목록에서 누락된 채널(예: Roughness, Metallic)이 체크되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Substance 3D Designer",
+    "Substance 3D Stager",
+    "Unreal Engine"
+  ],
+  "videos": [
+    {
+      "id": "F3DTive0Urg",
+      "title": "Substance 3D Sampler First Steps: Image to Material | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "vz5j4X6Baw4",
+      "title": "Create PBR Materials From a Single Image in Substance 3D Sampler | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Export%20from%20Sampler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Sampler",
+    "Export"
+  ],
+  "at": "2026-11-12T01:09:09.196034+00:00"
+}
