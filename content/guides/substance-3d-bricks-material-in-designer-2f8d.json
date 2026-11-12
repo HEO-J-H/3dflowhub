@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-bricks-material-in-designer-2f8d",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Bricks material in Designer",
+  "title": "벽돌 재질 만들기",
+  "summary": "Substance 3D Designer에서 벽돌 벽이나 보도블록 같은 반복적인 석재 패턴을 정교한 노드 조합으로 생성하는 핵심 워크플로우입니다.",
+  "when": [
+    "건축 시각화에서 외벽이나 바닥의 벽돌 패턴을 절차적(Procedural)으로 만들 때",
+    "게임 배경 제작 중 타일링이 자연스럽고 Resolution에 구애받지 않는 벽돌 재질이 필요할 때",
+    "벽돌 사이의 시멘트(Mortar) 간격이나 마모, 변형을 수치로 세밀하게 제어해야 할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Graph View에서 Tab 키를 누릅니다.",
+    "검색창에 Brick Generator를 입력하고 노드를 생성하여 기본 벽돌 배열을 만듭니다.",
+    "Tile Sampler 또는 Brick Generator 노드의 파라미터 창에서 X/Y Count 값으로 벽돌의 개수를 조절합니다.",
+    "Edge Detect 노드를 연결하여 벽돌 사이의 Mortar(줄눈) 영역을 마스크로 추출합니다.",
+    "Blend 노드를 사용하여 Brick Generator의 높이(Height) 맵과 노이즈(Noise)를 합성해 거친 표면 질감을 더합니다.",
+    "Normal 노드와 Roughness 노드를 연결하여 Viewport에서 입체적인 벽돌 표면을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "X Amount",
+      "desc": "가로 방향으로 배열되는 벽돌의 개수를 지정합니다."
+    },
+    {
+      "name": "Y Amount",
+      "desc": "세로 방향으로 배열되는 벽돌의 개수를 지정합니다."
+    },
+    {
+      "name": "Mortar Size",
+      "desc": "벽돌 사이의 간격(줄눈) 너비를 조절합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "벽돌 모서리의 경사(깎임) 정도를 부드럽게 조절합니다."
+    },
+    {
+      "name": "Random Offset",
+      "desc": "행마다 벽돌이 어긋나게 배치되는 지그재그 패턴을 만듭니다."
+    },
+    {
+      "name": "Global Scale",
+      "desc": "생성된 전체 벽돌 패턴의 크기를 일괄 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Classic 적갈색 벽돌 외벽",
+      "steps": [
+        "Brick Generator 노드로 기본 교차 배열 벽돌을 생성합니다.",
+        "Uniform Color 노드와 Blend 노드를 결합하여 붉은색 계열의 Base Color를 입힙니다.",
+        "Slope Blur 노드를 추가해 벽돌 표면에 자연스러운 풍화 흔적을 줍니다."
+      ]
+    },
+    {
+      "title": "헤링본(Herringbone) 패턴 보도블록",
+      "steps": [
+        "Brick Generator의 Pattern 스타일을 변경하여 V자 형태의 헤링본 구조를 만듭니다.",
+        "Transform 2D 노드로 각도를 회전하고 비율을 정렬합니다.",
+        "Ambient Occlusion 노드를 연결해 블록 사이의 깊이감을 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mortar Size를 너무 넓게 설정하여 벽돌 간격이 과도하게 벌어짐 → Mortar Size 값을 낮추고 Bevel 값을 조절하여 균형을 맞춥니다.",
+    "High-pass나 Edge Detect 없이 바로 Normal 맵을 추출해 입체감이 안 보임 → Height 맵 단계를 거친 뒤 Normal 노드를 연결합니다.",
+    "타일링 반복 무늬가 눈에 띄게 드러남 → Multi-angle 노드나 Randomize 파라미터를 조절해 개별 벽돌에 무작위 변형을 줍니다."
+  ],
+  "related": [
+    "Tile Sampler",
+    "Edge Detect",
+    "Slope Blur",
+    "Ambient Occlusion"
+  ],
+  "videos": [
+    {
+      "id": "zo4bSpv8GV8",
+      "title": "Create Realistic Grunge Brick in Substance Designer | Full Live Tutorial",
+      "author": "B Visual"
+    },
+    {
+      "id": "TAwTNnxlvRM",
+      "title": "Stylized Materials with Substance Designer - Introduction | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Bricks%20material%20in%20Designer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T00:29:07.093793+00:00"
+}

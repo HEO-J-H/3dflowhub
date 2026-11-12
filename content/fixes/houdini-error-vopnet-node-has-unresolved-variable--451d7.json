@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-vopnet-node-has-unresolved-variable--451d7",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Vopnet node has unresolved variable references",
+  "title": "Error: Vopnet node has unresolved variable references",
+  "summary": "Houdini에서 Vopnet node has unresolved variable references 오류는 VOP 네트워크 내부에서 참조하려는 변수나 속성 이름이 존재하지 않거나 잘못 입력되었을 때 발생하는 경고 및 오류 메시지입니다.",
+  "causes": [
+    "VOP 네트워크 내에서 선언되지 않았거나 이름이 틀린 변수를 Bind 노드나 Parameter 노드에서 호출한 경우",
+    "Point VOP 또는 Primitive VOP 등에서 외부 지오메트리 속성(Attribute) 이름을 잘못 입력한 경우",
+    "상위 네트워크나 VEX 코드로 전달되어야 할 인풋 연결이 누락되었거나 끊어진 경우"
+  ],
+  "steps": [
+    "오류가 발생한 Vopnet 노드를 더블클릭하여 내부 네트워크로 들어갑니다.",
+    "네트워크 뷰(Network View)에서 빨간색 경고 아이콘이나 잘못된 참조를 나타내는 Bind, Parameter, Attribute 노드를 찾습니다.",
+    "해당 노드의 파라미터 패널에서 Variable Name 또는 Attribute Name 입력란의 오탈자를 확인하고 올바른 이름으로 수정합니다.",
+    "상위 노드나 지오메트리로부터 전달받아야 하는 속성이 실제로 존재하는지 Geometry Spreadsheet에서 확인합니다.",
+    "필요한 경우 Bind 노드 대신 명시적으로 Input을 연결하거나 올바른 데이터 타입(Type)으로 설정합니다."
+  ],
+  "check": [
+    "노드 네트워크 상단과 파라미터 패널에서 빨간색 오류 배지가 사라지는지 확인합니다.",
+    "모든 경고가 해결된 후 지오메트리가 정상적으로 Cook(연산)되는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "VOP 네트워크 내부에서 변수를 생성하거나 호출할 때 대소문자와 스펠링을 엄격하게 확인합니다.",
+    "외부 속성을 참조하기 전 Geometry Spreadsheet를 통해 해당 속성이 활성화되어 있는지 먼저 점검합니다."
+  ],
+  "keywords": [
+    "Houdini VOP 오류",
+    "Vopnet unresolved variable",
+    "Houdini VEX 변수 오류",
+    "Bind 노드 에러",
+    "Houdini 속성 참조 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T00:29:17+00:00"
+}

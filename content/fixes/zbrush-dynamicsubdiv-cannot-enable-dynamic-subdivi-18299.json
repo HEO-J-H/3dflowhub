@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-dynamicsubdiv-cannot-enable-dynamic-subdivi-18299",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "DynamicSubdiv: Cannot enable dynamic subdivision on meshes with open holes",
+  "title": "DynamicSubdiv: Cannot enable dynamic subdivision on meshes with open holes",
+  "summary": "ZBrush에서 'DynamicSubdiv: Cannot enable dynamic subdivision on meshes with open holes' 경고는 열린 구멍(Open Hole)이 있는 메쉬에 다이내믹 서브디비전을 켤 수 없을 때 나타나는 메시지입니다.",
+  "causes": [
+    "메쉬에 열린 구멍이나 누락된 폴리곤(면)이 존재하여 Topology가 닫혀있지 않은 경우",
+    "GoZ나 외부 3D 프로그램에서 가져온 모델에 결합되지 않은 열린 경계면이 있는 경우",
+    "ZModeler나 DeletePolygon 등으로 면을 지운 상태에서 Dynamic Subdivision을 켜려고 시도한 경우"
+  ],
+  "steps": [
+    "Tool 팔레트를 열고 Geometry 탭에서 Dynamic Subdiv를 잠시 닫습니다.",
+    "Tool 팔레트 하단의 Modify Topology 탭을 엽니다.",
+    "Close Holes 버튼을 클릭하여 메쉬의 열린 구멍을 자동으로 메웁니다.",
+    "구멍이 너무 크거나 자동으로 막히지 않는 경우, ZModeler 브러시(B-Z-M)나 Close Holes 기능을 사용해 수동으로 구멍을 막습니다.",
+    "구멍이 모두 닫힌 것을 확인한 후, 다시 Geometry 탭의 Dynamic Subdiv를 켭니다."
+  ],
+  "check": [
+    "Dynamic Subdiv 버튼을 눌렀을 때 경고 메시지 없이 부드러운 곡면 미리보기가 활성화되는지 확인합니다.",
+    "Tool 팔레트의 Mesh Integrity나 Tool > Geometry > Check Mesh를 실행하여 Topology 오류가 없는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 툴에서 모델을 가져올 때 항상 면이 정상적으로 닫혀있는지(Manifold) 확인합니다.",
+    "ZBrush에서 면을 삭제하거나 편집한 후에는 반드시 닫힌 상태를 유지한 채 Dynamic Subdivision을 적용합니다."
+  ],
+  "keywords": [
+    "ZBrush DynamicSubdiv 구멍",
+    "Cannot enable dynamic subdivision",
+    "ZBrush 닫힌 면 오류",
+    "Close Holes ZBrush",
+    "Dynamic Subdivision 비활성화"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T00:29:22+00:00"
+}

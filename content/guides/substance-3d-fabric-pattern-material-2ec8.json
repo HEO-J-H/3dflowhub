@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-fabric-pattern-material-2ec8",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Fabric pattern material",
+  "title": "천 무늬 재질",
+  "summary": "Substance 3D에서 직물의 실밥과 직조 패턴을 정교하게 표현하여 의류나 패브릭 소파 등의 사실적인 표면을 만드는 재질 생성 기능입니다.",
+  "when": [
+    "의류, 커튼, 패브릭 소파 등 천 재질의 표면 질감을 사실적으로 표현할 때",
+    "직물의 두께감과 실의 엮임 구조(직조감)를 노멀 맵과 러프니스 맵으로 구현할 때",
+    "Substance 3D Designer에서 절차적(Procedural) 방식으로 다양한 패턴의 천 재질을 제작할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 또는 Designer를 실행하고 프로젝트를 엽니다.",
+    "Assets 패널에서 Fabric 관련 Smart 머티리얼 또는 패턴 노드를 검색합니다.",
+    "3D Viewport의 모델 표면으로 드래그 앤 드롭하여 재질을 적용합니다.",
+    "Properties 패널 또는 노드 그래프에서 Scale, Normal Intensity, Roughness 값을 조정하여 직물의 크기와 입체감을 맞춥니다.",
+    "Viewport에서 실밥과 직조 패턴이 자연스럽게 표현되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "패브릭 패턴의 반복 크기를 조절하여 직물의 눈(간격)을 키우거나 줄입니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "실이 엮인 입체감과 깊이감을 조절하여 표면의 요철을 강하게 만듭니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 천의 광택이나 매트한 느낌을 결정합니다."
+    },
+    {
+      "name": "Pattern Angle",
+      "desc": "직물의 결 방향을 회전시켜 배치합니다."
+    },
+    {
+      "name": "Base Color",
+      "desc": "패브릭의 기본 색상이나 염색 톤을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "패브릭 소파 텍스처링",
+      "steps": [
+        "Substance 3D Painter에서 소파 모델을 불러옵니다.",
+        "Texture Set Settings 패널에서 Bake Mesh Maps를 실행합니다.",
+        "Assets에서 패브릭 머티리얼을 드래그하여 적용하고 Scale을 높여 소파 크기에 맞춥니다."
+      ]
+    },
+    {
+      "title": "절차적 패턴 생성",
+      "steps": [
+        "Substance 3D Designer의 Graph View에서 Tab 키를 누릅니다.",
+        "Fabric 관련 노드를 검색하여 생성하고 Tile Sampler와 연결합니다.",
+        "파라미터를 조절하여 원하는 직조 패턴을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scale 값을 너무 작게 설정해 실밥 패턴이 깨져 보이는 경우 → Scale 값을 높여 타일 간격을 적당히 조절합니다.",
+    "Bake Mesh Maps를 생략하여 노멀과 앰비언트 오클루전이 어색하게 얹어지는 경우 → Texture Set Settings에서 맵을 먼저 베이킹합니다."
+  ],
+  "related": [
+    "Tile Sampler",
+    "Material painting",
+    "Bake Mesh Maps",
+    "Substance 3D Designer"
+  ],
+  "videos": [
+    {
+      "id": "XXaArGsSuHw",
+      "title": "Make a Lace Fabric in Substance 3D Sampler | Materials in Minutes #5 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "kio3cgLff54",
+      "title": "Create Jeans Fabric in Substance 3D Sampler | Materials in Minutes #7 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Fabric%20pattern%20material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Designer",
+    "Assets",
+    "Fabric",
+    "Smart"
+  ],
+  "at": "2026-11-12T00:29:15.220696+00:00"
+}
