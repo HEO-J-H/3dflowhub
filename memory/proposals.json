@@ -34783,5 +34783,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T20:58:38+00:00",
+    "kind": "proposal",
+    "id": "p-5bf01c77ec",
+    "title": "깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "소유자 메시지(i: 0)에서 깃허브 RAG 오픈소스 반영 검토 요청이 있었으며, 코딩 에이전트의 안정적인 구현을 위해 설계 가이드가 필요합니다.",
+    "proposal": "docs/agent-guides/github_rag_integration.md를 신규 생성하여 Pix2Poly 프로젝트 구조에 적합한 RAG 오픈소스 라이선스, 요구 사양 및 연동 방안을 작성합니다.",
+    "expected": "외부 오픈소스 도입 시 라이선스 및 아키텍처 검증 기준을 명확히 하여 안전한 후속 개발 기반 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T20:58:38+00:00",
+    "kind": "proposal",
+    "id": "p-0546eded9d",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "이전 실행에서 패치 적용 실패로 held 상태였던 backend/tests/test_mesh_from_image.py 입력 검증 테스트 보완 작업을 다시 시도합니다.",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 다양한 이미지 포맷(RGBA, RGB, 잘못된 포맷 등)에 대한 검증 유닛 테스트 코드를 명확히 추가합니다.",
+    "expected": "로컬 파이프라인의 입력 안정성 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T20:58:58.868622+00:00",
+    "kind": "decision",
+    "id": "p-5bf01c77ec",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T20:58:58.896184+00:00",
+    "kind": "decision",
+    "id": "p-0546eded9d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
