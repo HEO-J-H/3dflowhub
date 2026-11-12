@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-levels-and-histogram-scan-97b6",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Levels and Histogram Scan",
+  "title": "Levels·Histogram Scan",
+  "summary": "Substance 3D의 Levels와 Histogram Scan은 텍스처의 밝기, 대비, 마스크 범위를 정밀하게 조절하여 디테일을 살리거나 거친 마스크를 다듬는 필수 절차적 노드입니다.",
+  "when": [
+    "흑백 마스크의 경계를 더 선명하고 단단하게 만들고 싶을 때",
+    "텍스처의 전체적인 밝기나 어두운 영역의 깊이감을 조절하고 싶을 때",
+    "노이즈나 그라데이션에서 특정 영역만 잘라내어 날카로운 경계의 웨어(Wear) 효과를 만들 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 또는 Designer에서 프로젝트를 엽니다.",
+    "Layers 패널 또는 Graph 뷰에서 Levels나 Histogram Scan 효과를 적용할 레이어(Layer) 또는 마스크를 선택합니다.",
+    "Effects 아이콘(더하기 모양 또는 마스크 아이콘)을 클릭하고 Levels 또는 Histogram Scan을 선택합니다.",
+    "Properties 패널에서 그래프 또는 슬라이더를 조정하여 원하는 밝기나 마스크 범위를 설정합니다.",
+    "Viewport에서 텍스처와 마스크의 대비 및 경계면이 자연스럽게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Level Min",
+      "desc": "어두운 영역의 기준점을 높여 블랙 영역을 확장합니다."
+    },
+    {
+      "name": "Level Max",
+      "desc": "밝은 영역의 기준점을 낮추어 화이트 영역을 확장합니다."
+    },
+    {
+      "name": "Position",
+      "desc": "Histogram Scan에서 마스크가 열리는 위치와 범위를 이동합니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "마스크 경계면의 날카로움과 대비를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 엣지 마스크 경계 다듬기",
+      "steps": [
+        "Mesh Map에서 Curvature를 가져와 마스크로 추가합니다.",
+        "Effects에서 Levels를 추가합니다.",
+        "Level Max와 Min을 조절하여 모서리의 하얀 선을 더 얇고 선명하게 만듭니다."
+      ]
+    },
+    {
+      "title": "절차적 노이즈로 먼지(Dust) 효과 만들기",
+      "steps": [
+        "Noise 노드를 상단 면에 투영합니다.",
+        "Histogram Scan 노드를 추가 연결합니다.",
+        "Position과 Contrast를 조절해 상단에만 쌓인 먼지 마스크를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크가 완전히 하얗게 변함 → Level Max나 Contrast 값이 너무 높기 때문이며, 슬라이더를 낮추어 조절합니다.",
+    "효과가 전혀 보이지 않음 → 올바른 레이어나 마스크의 Effects 슬롯에 추가되었는지 Layers 패널을 다시 확인합니다."
+  ],
+  "related": [
+    "Substance 3D Filter",
+    "Blur",
+    "Sharpen",
+    "Curve"
+  ],
+  "videos": [
+    {
+      "id": "p9wcmJBFyGA",
+      "title": "Substance: Mastering Levels & Histogram | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "121musCoEDE",
+      "title": "Fingerprints and Smudges with Histogram Scan Filter - Substance Painter Tutorial for Beginners",
+      "author": "Reins  Academy"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Levels%20and%20Histogram%20Scan",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Designer",
+    "Layers",
+    "Graph",
+    "Levels",
+    "Histogram Scan"
+  ],
+  "at": "2026-11-12T00:09:14.925284+00:00"
+}

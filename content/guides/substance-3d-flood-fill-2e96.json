@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-flood-fill-2e96",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Flood Fill",
+  "title": "Flood Fill — 조각별 무작위",
+  "summary": "Substance 3D의 Flood Fill은 베이크된 컬러 ID나 그래디언트 마스크의 인접한 영역을 단일 픽셀 클릭으로 순식간에 채워 독립된 무작위 값이나 패턴을 만드는 유용한 필터입니다. 복잡한 형태에 각기 다른 색상이나 재질을 빠르게 분배할 때 사용합니다.",
+  "when": [
+    "ID 맵을 기반으로 서로 다른 조각(예: 모자이크 타일, 벽돌)에 무작위 색상을 주고자 할 때",
+    "기하학적 패턴이나 반복되는 오브젝트에 각각 다른 위치나 회전 값을 부여할 때",
+    "하나의 텍스처 안에서 개별 영역을 마스크로 분리해 세부 텍스처를 입힐 때"
+  ],
+  "steps": [
+    "Layers 패널에서 Fill Layer를 추가하거나 마스크를 생성합니다.",
+    "Layers 패널의 Mask 또는 채널에 마스크를 우클릭하고 Add Filter를 선택합니다.",
+    "Properties 패널의 Filter 드롭다운에서 Flood Fill을 검색해 추가합니다.",
+    "Flood Fill 노드 위에 추가로 Flood Fill To Gradient, Flood Fill To Color 등의 후속 필터를 쌓아 올립니다.",
+    "Viewport 또는 2D View에서 채우고자 하는 영역을 클릭해 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "색상 경계선을 인식하는 허용 오차 범위를 조절합니다."
+    },
+    {
+      "name": "Sample",
+      "desc": "참조할 텍스처 채널이나 ID 맵 소스를 지정합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "선택된 영역의 마스크 반전 여부를 결정합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "무작위로 생성되는 색상이나 패턴의 조합 순서를 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 무늬 무작위 색상 분배",
+      "steps": [
+        "Brick 패턴너로 만든 ID 맵을 준비합니다.",
+        "마스크에 Flood Fill 필터를 적용합니다.",
+        "그 위에 Flood Fill to Random Grayscale 필터를 얹어 각 벽돌마다 다른 명도를 부여합니다."
+      ]
+    },
+    {
+      "title": "모자이크 타일 개별 회전 및 스케일",
+      "steps": [
+        "타일 형태의 ID 맵에 Flood Fill 필터를 추가합니다.",
+        "Flood Fill to Position 필터를 연결해 각 타일 위치를 잡습니다.",
+        "Flood Fill to Random Transform 필터로 타일의 각도를 미세하게 틀어줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "ID 맵 경계가 흐릿한 경우 → Bake 시 Anti-aliasing 설정을 높이거나 ID 맵의 엣지를 선명하게 수정합니다.",
+    "클릭해도 영역이 채워지지 않는 경우 → Flood Fill 노드 아래에 작동할 후속 필터(Flood Fill to Color 등)가 추가되었는지 확인합니다."
+  ],
+  "related": [
+    "Flood Fill to Color",
+    "Flood Fill to Random Grayscale",
+    "Flood Fill to Position",
+    "Color Selection"
+  ],
+  "videos": [
+    {
+      "id": "WVYVb_dsLGw",
+      "title": "How to Use the Flood Fill Node in #SubstanceDesigner #Shorts",
+      "author": "Sem Lagrand"
+    },
+    {
+      "id": "q2S1dOzk2RY",
+      "title": "Substance Designer Tutorial - Flood Fills",
+      "author": "Johnny Nodes"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Flood%20Fill",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "Fill Layer",
+    "Mask",
+    "Add Filter",
+    "Properties",
+    "Filter"
+  ],
+  "at": "2026-11-12T00:09:22.254723+00:00"
+}

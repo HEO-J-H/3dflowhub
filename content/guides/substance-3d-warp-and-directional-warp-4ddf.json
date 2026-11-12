@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-warp-and-directional-warp-4ddf",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Warp and Directional Warp",
+  "title": "Warp — 일그러뜨리기",
+  "summary": "Substance 3D의 Warp와 Directional Warp는 텍스처나 패턴에 흐름이나 왜곡을 주어 유기적인 질감과 자연스러운 마모 효과를 만드는 노드입니다. 마치 물결이 이는 듯한 형태나 바람에 날리는 듯한 결을 더할 때 유용합니다.",
+  "when": [
+    "목재나 대리석 텍스처에 미세한 결의 흐름을 자연스럽게 꺾어줄 때",
+    "철판 표면에 흐르는 듯한 용접 자국이나 부식 텍스처를 만들 때",
+    "천이나 가죽 패턴에 주름과 장력을 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Substance 3D Designer(또는 Painter)의 Graph/Layer 뷰를 엽니다.",
+    "Library 패널에서 Warp 또는 Directional Warp 노드를 검색하여 작업 영역에 추가합니다.",
+    "Warp 노드의 Main Input(첫 번째 입력)에 왜곡할 기본 텍스처나 패턴을 연결합니다.",
+    "Intensity Input(두 번째 입력)에 그레이스케일 노이즈나 패턴을 연결하여 왜곡의 형태를 지정합니다.",
+    "Properties 패널에서 Intensity 값을 조절하여 왜곡의 강도를 설정합니다.",
+    "2D/3D Viewport에서 결과물을 확인하며 디테일을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "텍스처가 왜곡되는 전체적인 강도를 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "Directional Warp에서 텍스처가 밀려나는 방향의 각도를 설정합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "왜곡 연산의 품질과 샘플링 횟수를 결정하여 정밀도를 높입니다."
+    },
+    {
+      "name": "Mode",
+      "desc": "왜곡 계산 방식을 선택하여 결과의 느낌을 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "나무 결 흐름 만들기",
+      "steps": [
+        "Tile Generator로 기본 줄무늬 패턴을 생성합니다.",
+        "Perlin Noise 노드를 Warp 노드의 Intensity 입력에 연결합니다.",
+        "Intensity 값을 낮게 주어 곧은 선을 미세하게 휘게 만듭니다."
+      ]
+    },
+    {
+      "title": "방향성 있는 금속 스크래치",
+      "steps": [
+        "Grunge 노드로 거친 점 패턴을 준비합니다.",
+        "Directional Warp를 추가하고 Angle을 90도로 설정합니다.",
+        "한쪽 방향으로 길게 늘어진 금속 결이나 빗물 자국을 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Intensity 값을 너무 높게 설정함 → 결과물이 알아보기 힘들 정도로 깨지므로 값을 낮게 조절합니다.",
+    "입력 노드의 Resolution가 너무 낮음 → 왜곡 과정에서 계단 현상이 생기므로 충분한 Resolution의 노이즈를 사용합니다."
+  ],
+  "related": [
+    "Perlin Noise",
+    "Tile Generator",
+    "Grunge Map",
+    "Blur HQ"
+  ],
+  "videos": [
+    {
+      "id": "6_8CCf6v-uM",
+      "title": "Warp Projection in Substance 3D Painter | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "SkdPX5e178w",
+      "title": "Substance Designer For Beginners - Directional warp",
+      "author": "3DGameArt"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Warp%20and%20Directional%20Warp",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Painter",
+    "Graph",
+    "Layer",
+    "Library",
+    "Warp"
+  ],
+  "at": "2026-11-12T00:09:18.510623+00:00"
+}
