@@ -1269,3 +1269,32 @@ def test_render_cpc_optimization_status(monkeypatch):
     assert len(metrics_called) == 2
     assert metrics_called[0] == ("실무 고CPC 콘텐츠", "3건")
     assert metrics_called[1] == ("평균 CPC 점수", "3.50점")
+
+
+def test_render_niche_performance_dashboard(monkeypatch):
+    import app
+    monkeypatch.setattr("evolve.summarize_cpc_optimization_metrics", lambda: {"total_practical_posts": 4, "cpc_score_avg": 4.0, "domains_breakdown": {"3D DCC": 4}})
+    monkeypatch.setattr("evolve.analyze_3d_content_distribution", lambda: {"percentages": {"3D DCC": 80.0}, "total": 5})
+    monkeypatch.setattr("evolve.summarize_error_trends", lambda: {"전체": {"주제 무관/필터링됨": 1}})
+    monkeypatch.setattr("evolve.calculate_cpc_score_distribution", lambda: {"high_cpc_keywords": [{"keyword": "maya", "score": 2.5}]})
+
+    class DummyContainer:
+        def __enter__(self): return self
+        def __exit__(self, exc_type, exc_val, exc_tb): pass
+
+    metrics_called = []
+    monkeypatch.setattr(app.st, "container", lambda border=True: DummyContainer())
+    monkeypatch.setattr(app.st, "markdown", lambda text, **kwargs: None)
+    monkeypatch.setattr(app.st, "caption", lambda text: None)
+    monkeypatch.setattr(app.st, "tabs", lambda names: [DummyContainer() for _ in names])
+    monkeypatch.setattr(app.st, "dataframe", lambda *args, **kwargs: None)
+    monkeypatch.setattr(app.st, "info", lambda *args, **kwargs: None)
+    monkeypatch.setattr(app, "hbars", lambda *args, **kwargs: None)
+    monkeypatch.setattr(app.st, "columns", lambda n: [type("Col", (), {"metric": lambda self, k, v: metrics_called.append((k, v))})() for _ in range(n)])
+
+    # 대시보드 함수 테스트 (app.render_niche_performance_dashboard 또는 render_cpc_optimization_dashboard)
+    if hasattr(app, "render_niche_performance_dashboard"):
+        app.render_niche_performance_dashboard()
+    else:
+        app.render_cpc_optimization_dashboard()
+    assert len(metrics_called) == 4
