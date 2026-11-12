@@ -34955,5 +34955,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 TripoSR 예외 처리 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T03:59:35+00:00",
+    "kind": "proposal",
+    "id": "p-9f998d8068",
+    "title": "로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 TripoSR 예외 로깅 및 메시지 정교화 작업(PR #63)과 연계하여 단위 테스트 추가 필요",
+    "proposal": "backend/tests/test_triposr.py 파일에 모델 로드 실패 및 VRAM 부족 상황을 모사하는 단위 테스트 케이스 추가",
+    "expected": "로컬 파이프라인의 예외 안정성 검증 강화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T03:59:35+00:00",
+    "kind": "proposal",
+    "id": "p-687bf73d58",
+    "title": "깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사장님 요청 사항 '깃허브 RAG 오픈소스 검토'에 대한 구체적 적용 방안 문서화 필요",
+    "proposal": "docs/rag-integration.md 파일을 신규 작성하여 Pix2Poly 프로젝트 구조에 적합한 가볍고 유용한 RAG 오픈소스(예: LocalAI, Qdrant 등)의 적용 가능성과 요구 사양 정리",
+    "expected": "향후 문서 검색 및 AI 가이드 기능 도입을 위한 기술 검토 완료",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T03:59:58.353813+00:00",
+    "kind": "decision",
+    "id": "p-9f998d8068",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 오류 처리 단위 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T03:59:58.393782+00:00",
+    "kind": "decision",
+    "id": "p-687bf73d58",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
   }
 ]
