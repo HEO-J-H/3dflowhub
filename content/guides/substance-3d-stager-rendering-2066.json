@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-stager-rendering-2066",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "스테이저",
+  "name": "Stager rendering",
+  "title": "Stager 렌더",
+  "summary": "Substance 3D Stager에서 고품질 물리 기반 렌더링(PBR)을 수행하여 제품의 최종 시각적 결과물을 완성하는 필수 과정입니다. 실시간 Viewport와 패스 Tracing을 결합하여 사진 같은 이미지를 빠르게 얻을 수 있습니다.",
+  "when": [
+    "3D 제품 모델링과 재질 배치가 완료되어 최종 포트폴리오 이미지를 제작할 때",
+    "실제 사진과 구별하기 어려운 사실적인 반사, 그림자, 조명 효과를 표현하고 싶을 때",
+    "클라이언트 검토 및 마케팅용 고해상도 렌더링 이미지를 출력할 때"
+  ],
+  "steps": [
+    "우측 상단 툴바에서 Render 모드 탭을 클릭하여 렌더링 작업 영역으로 전환합니다.",
+    "왼쪽 씬(Scene) 패널과 카메라 뷰를 조정하여 렌더링할 구도를 최종 확정합니다.",
+    "오른쪽 Render 패널의 Settings 탭에서 Image Size와 Quality(Samples) 옵션을 설정합니다.",
+    "Environment 조명과 재질(Material)의 러프니스, 메탈릭 값을 확인하여 반사 효과를 다듬습니다.",
+    "Render 패널 하단의 Render 버튼을 누르고, 저장할 파일 형식(PNG, PSD 등)과 경로를 지정하여 이미지를 출력합니다."
+  ],
+  "params": [
+    {
+      "name": "Quality",
+      "desc": "렌더링 품질과 노이즈 제거 수준을 결정하는 샘플링 횟수를 조절합니다."
+    },
+    {
+      "name": "Image Size",
+      "desc": "출력될 이미지의 Resolution(픽셀 크기)를 지정합니다."
+    },
+    {
+      "name": "Environment",
+      "desc": "장면 전체를 비추는 HDRI 조명 환경의 밝기와 회전 값을 조절합니다."
+    },
+    {
+      "name": "Ray Tracing",
+      "desc": "빛의 반사와 굴절을 물리적으로 정확하게 계산하여 사실감을 높입니다."
+    },
+    {
+      "name": "Denoising",
+      "desc": "적은 샘플 수에서도 렌더링 이미지의 노이즈를 부드럽게 제거해 줍니다."
+    },
+    {
+      "name": "File Format",
+      "desc": "결과물을 저장할 파일 확장자(PNG, PSD 등)와 투명 배경 여부를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 패키지 Viewport 최종 렌더링",
+      "steps": [
+        "Render 모드로 전환하여 카메라 구도를 고정합니다.",
+        "Quality 값을 높여 그림자 경계면의 노이즈를 줄입니다.",
+        "Render 버튼을 눌러 고해상도 PNG 파일로 저장합니다."
+      ]
+    },
+    {
+      "title": "투명 배경(Alpha)을 활용한 마케팅 컷 제작",
+      "steps": [
+        "Render 설정에서 Background 옵션을 투명으로 체크합니다.",
+        "PSD 포맷으로 지정하여 레이어가 분리되도록 설정합니다.",
+        "Render를 실행해 합성 작업에 용이한 결과물을 추출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 심하게 발생함 → Quality(Samples) 값을 너무 낮게 설정했기 때문이며, 샘플 수를 높이거나 Denoising을 활성화합니다.",
+    "렌더링 속도가 지나치게 느림 → 이미지 Resolution가 너무 높거나 하드웨어 사양에 비해 과도한 Ray Tracing 옵션이 켜져 있으므로 Resolution를 낮추고 테스트합니다."
+  ],
+  "related": [
+    "Substance 3D Stager scene setup",
+    "Substance 3D Painter Iray 렌더",
+    "Substance 3D Sampler",
+    "Substance 3D Designer"
+  ],
+  "videos": [
+    {
+      "id": "iS7Juk7sovI",
+      "title": "Start Adobe Substance 3D Stager | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "-d52ugsGpPc",
+      "title": "Substance 3D Stager First Steps | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Stager%20rendering",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T01:19:19.264602+00:00"
+}

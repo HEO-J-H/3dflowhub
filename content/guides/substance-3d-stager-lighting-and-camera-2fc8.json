@@ -1,0 +1,88 @@
+{
+  "id": "substance-3d-stager-lighting-and-camera-2fc8",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "스테이저",
+  "name": "Stager lighting and camera",
+  "title": "Stager 조명·카메라",
+  "summary": "Substance 3D Stager에서 Environment 조명과 Camera 설정을 조정하여 제품에 맞는 현실적인 빛을 만들고 구도를 잡는 필수 단계입니다.",
+  "when": [
+    "3D 모델을 불러온 뒤 제품의 재질과 형태가 가장 잘 보이도록 조명을 배치할 때",
+    "실제 사진 같은 환경(HDRI) 반사와 그림자를 자연스럽게 연출하고 싶을 때",
+    "상업용 제품 광고처럼 정교한 카메라 앵글과 심도(Depth of Field)를 표현할 때"
+  ],
+  "steps": [
+    "우측 패널에서 Environment 탭을 선택하여 기본 조명 환경을 엽니다.",
+    "Environment 패널의 Image 슬롯에서 원하는 HDRI 배경 이미지를 선택하거나 파일을 불러옵니다.",
+    "Environment 회전(Rotation) 값을 조절하여 제품에 닿는 빛과 반사의 방향을 맞춥니다.",
+    "좌측 패널 또는 상단에서 Camera 뷰로 전환하고, Viewport에서 원하는 구도를 맞춥니다.",
+    "Camera 패널에서 Focal Length와 Focus Distance를 조절하여 원근감과 아웃포커싱(심도)을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "환경 조명 전체의 밝기를 조절합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "조명과 배경 HDRI의 각도를 회전시켜 빛의 방향을 바꿉니다."
+    },
+    {
+      "name": "Focal Length",
+      "desc": "카메라의 화각을 조절하여 광각 또는 망원 느낌을 줍니다."
+    },
+    {
+      "name": "Focus Distance",
+      "desc": "초점이 맺히는 거리를 조절하여 특정 영역을 선명하게 만듭니다."
+    },
+    {
+      "name": "Blur Amount",
+      "desc": "초점 외 영역(심도)의 흐림 정도를 강하게 또는 약하게 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 제품 스튜디오 조명 연출",
+      "steps": [
+        "Environment 탭에서 스튜디오 형태의 HDRI 이미지를 불러옵니다.",
+        "Rotation 값을 조정하여 제품 하이라이트가 모서리에 예쁘게 맺히도록 맞춥니다.",
+        "Intensity를 높여 금속의 반사 질감을 선명하게 살립니다."
+      ]
+    },
+    {
+      "title": "제품 아웃포커싱(심도) 강조",
+      "steps": [
+        "Camera 뷰에서 제품이 화면 중앙에 오도록 구도를 잡습니다.",
+        "Camera 패널에서 Depth of Field 옵션을 활성화합니다.",
+        "Focus Distance를 제품의 앞부분에 맞추고 배경이 부드럽게 흐려지도록 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛의 방향이 어색하고 반사가 생기지 않음 → Environment Rotation 값을 돌려 빛의 입사각을 변경합니다.",
+    "제품 전체가 흐리게 나옴 → Focus Distance가 잘못 지정되었으므로 제품 표면을 클릭하여 초점 거리를 다시 맞춥니다."
+  ],
+  "related": [
+    "Substance 3D Stager scene setup",
+    "Substance 3D Materials",
+    "Substance 3D Export",
+    "Physical Camera"
+  ],
+  "videos": [
+    {
+      "id": "AAE_0vDTc7c",
+      "title": "Setting up Cameras with Substance 3D Stager | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "RAp-FDXadfc",
+      "title": "SUBSTANCE 3D - Lesson 16 - 3D Scenes Using Stager, Import Models, Lights, Cameras, RayTracing Render",
+      "author": "jbdtube"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Stager%20lighting%20and%20camera",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T01:19:15.144960+00:00"
+}
