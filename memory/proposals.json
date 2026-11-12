@@ -33971,5 +33971,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T15:13:38+00:00",
+    "kind": "proposal",
+    "id": "p-8753352f16",
+    "title": "깃허브 RAG 오픈소스 연동 가이드 문서 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 요청 메시지 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘'에 대응",
+    "proposal": "docs/agent-guides/rag_integration.md 파일을 생성하여 Pix2Poly 로컬 및 웹 파이프라인 문서 검색에 활용 가능한 RAG 오픈소스 구조와 연동 절차를 정리합니다.",
+    "expected": "개발자와 사용자가 3D 모델링 파이프라인 관련 기술 문서를 쉽게 탐색하고 연동할 수 있는 가이드 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T15:13:38+00:00",
+    "kind": "proposal",
+    "id": "p-4845cf0523",
+    "title": "로컬 파이프라인 예외 처리 PR #63, #65 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "agent_runs에서 PR #63(TripoSR 예외 로깅) 및 PR #65(예외 처리 로그 메시지 상세화)가 승인 대기 상태로 유지됨",
+    "proposal": "GitHub에서 PR #63과 #65의 테스트 결과와 변경된 예외 처리 코드를 검토하고 머지 진행",
+    "expected": "로컬 파이프라인 구동 시 발생할 수 있는 오류 상황에서 명확한 로그와 메시지를 제공하여 안정성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T15:13:38+00:00",
+    "kind": "proposal",
+    "id": "p-1d5864b302",
+    "title": "웹 브라우저 PBR 변환 UI 피드백 보완 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 패치 적용 실패 건([p-d296e1182c])을 보완하여 web/index.html의 DOM 구조에 맞게 상태 메시지 Script 수정",
+    "proposal": "web/index.html과 관련 JS 파일에서 정확한 DOM 셀렉터를 지정하여 PBR 텍스처 변환 상태와 로딩 스피너 UI가 안정적으로 표시되도록 수정",
+    "expected": "웹 브라우저에서 PBR 변환 과정의 진행 상황을 사용자가 명확하게 인지할 수 있도록 UI 피드백 개선",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T15:14:16.596180+00:00",
+    "kind": "decision",
+    "id": "p-8753352f16",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T15:14:16.620486+00:00",
+    "kind": "decision",
+    "id": "p-4845cf0523",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T15:14:16.646689+00:00",
+    "kind": "decision",
+    "id": "p-1d5864b302",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 UI 피드백 및 안내 문구 보강",
+    "auto": true
   }
 ]
