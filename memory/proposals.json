@@ -33701,5 +33701,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-12T14:33:44+00:00",
+    "kind": "proposal",
+    "id": "p-33160d6a21",
+    "title": "깃허브 RAG 오픈소스 연동 검토 및 문서 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사장님 요청 사항으로 깃허브 RAG 오픈소스를 Pix2Poly에 반영할 수 있는 방안 검토 필요",
+    "proposal": "docs/agent-guides/rag_integration.md 파일을 생성하여 오픈소스 RAG 도구들의 라이선스 및 3D 파이프라인 연동 가능성 분석",
+    "expected": "3D 파이프라인 문서 및 코드 탐색 효율 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T14:33:44+00:00",
+    "kind": "proposal",
+    "id": "p-103451a99b",
+    "title": "웹 브라우저 PBR 변환 상태 메시지 UI 보완 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 패치 적용 시 backend/static/index.html 경로 일치 문제로 held 처리됨",
+    "proposal": "web/ 또는 backend/static/ 경로의 실제 DOM 구조를 정확히 확인하여 PBR 텍스처 변환 상태 안내 문구 및 로딩 스피너 제어 JS 수정",
+    "expected": "사용자가 브라우저에서 PBR 변환 진행 상황을 명확히 인지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T14:33:44+00:00",
+    "kind": "proposal",
+    "id": "p-f17bfb2974",
+    "title": "로컬 파이프라인 대기 중인 PR (#63, #65) 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #63 및 #65가 승인 대기 상태로 남아 있음",
+    "proposal": "GitHub 상에서 PR #63(TripoSR 예외 로깅) 및 PR #65(예외 처리 로그 상세화)의 테스트 결과를 확인하고 사람 승인 요청",
+    "expected": "로컬 파이프라인 예외 처리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pulls",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T14:35:41.263261+00:00",
+    "kind": "decision",
+    "id": "p-33160d6a21",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T14:35:41.302337+00:00",
+    "kind": "decision",
+    "id": "p-103451a99b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T14:35:41.338973+00:00",
+    "kind": "decision",
+    "id": "p-f17bfb2974",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 예외 처리 PR #63 및 #65 점검",
+    "auto": true
   }
 ]
