@@ -1,0 +1,94 @@
+{
+  "id": "substance-3d-material-reference-and-color-values-42b5",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "공통",
+  "name": "Material reference and color values",
+  "title": "실제 재질 색 값",
+  "summary": "Substance 3D의 재질 참조와 색상 값 관리는 PBR 표준에 기반하여 사실적인 표면 질감과 정확한 컬러를 유지하는 핵심 작업입니다.",
+  "when": [
+    "실제 현실의 물리적 표면(금속, 플라스틱, 가죽 등)의 정확한 PBR 속성을 구현할 때",
+    "프로젝트 전반에 걸쳐 일관된 컬러 팔레트와 텍스처 값을 적용할 때",
+    "Substance 3D Painter와 Substance 3D Designer 간의 재질 데이터를 호환할 때"
+  ],
+  "steps": [
+    "Substance 3D Painter 또는 Sampler를 실행하고 프로젝트를 엽니다.",
+    "Assets 패널에서 원하는 Material 또는 Color 프리셋을 검색합니다.",
+    "Layer 패널에서 Fill Layer를 생성하여 재질을 모델에 적용합니다.",
+    "Properties 패널에서 Base Color, Roughness, Metallic 등의 값을 세부 조정합니다.",
+    "3D Viewport에서 결과물을 확인하고 Viewport 렌더 설정(Environment 등)을 전환하며 점검합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "표면의 순수한 색상 또는 알베도 맵을 결정합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "표면이 금속인지 비금속인지 0과 1 사이의 값으로 설정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 하이라이트와 반사의 선명도를 바꿉니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "표면의 미세한 굴곡을 가짜 입체감으로 표현합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "실제 지형이나 깊이감을 주어 디테일한 변위를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "표준 금속 재질 설정",
+      "steps": [
+        "Fill Layer를 생성합니다.",
+        "Metallic 값을 1.0(최대)으로 올립니다.",
+        "Roughness 값을 0.2로 낮추어 매끄러운 금속 광택을 만듭니다."
+      ]
+    },
+    {
+      "title": "무광 플라스틱 표현",
+      "steps": [
+        "Fill Layer를 생성합니다.",
+        "Metallic 값을 0으로 설정합니다.",
+        "Base Color에서 원하는 색상을 고르고 Roughness를 0.6으로 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "비금속(Dielectric)에 Metallic 값을 1로 설정함 → Metallic은 순수 금속이 아니면 반드시 0(흑백 값의 0%)이어야 합니다.",
+    "Base Color에 과도한 음영을 넣음 → PBR 텍스처의 Base Color에는 라이팅에 의한 그림자가 포함되면 안 되며 순수 색상 값만 넣어야 합니다."
+  ],
+  "related": [
+    "Fill Layer",
+    "Color Selection",
+    "Texture Set Settings",
+    "Export Textures"
+  ],
+  "videos": [
+    {
+      "id": "4Aczbu1fPXI",
+      "title": "Mastering Values First: Hand-Painted Textures in Substance 3D Painter",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "8biEy1D30Bc",
+      "title": "Hand Painted Workflow in Substance 3D Painter | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Material%20reference%20and%20color%20values",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Painter",
+    "Sampler",
+    "Assets",
+    "Material",
+    "Color"
+  ],
+  "at": "2026-11-12T02:09:06.246273+00:00"
+}
