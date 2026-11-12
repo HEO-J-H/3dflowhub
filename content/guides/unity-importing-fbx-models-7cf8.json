@@ -1,0 +1,95 @@
+{
+  "id": "unity-importing-fbx-models-7cf8",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "가져오기",
+  "name": "Importing FBX models",
+  "title": "FBX 모델 가져오기 — 스케일·축·재질",
+  "summary": "FBX 포맷의 3D 모델을 Unity의 Project 창으로 가져와 씬(Scene)에서 사용할 수 있는 Prefab 및 Prefab Variant로 변환하는 기초 작업입니다. 메쉬, 머티리얼, 애니메이션 설정을 한 번에 관리합니다.",
+  "when": [
+    "외부 3D DCC(Blender, 3ds Max 등)에서 제작한 모델링 데이터를 Unity 프로젝트에 처음 불러올 때",
+    "FBX 파일에 포함된 머티리얼과 텍스처를 프로젝트 내에 자동으로 추출하여 적용할 때",
+    "캐릭터의 리깅 및 애니메이션 클립을 함께 임포트하여 Animator에 연결할 때"
+  ],
+  "steps": [
+    "Unity 에디터의 Project 창에서 가져올 FBX 파일을 드래그하여 원하는 폴더에 넣습니다.",
+    "Project 창에서 해당 FBX 파일을 클릭하여 Inspector 창에서 세부 설정을 엽니다.",
+    "Model 탭에서 Scale Factor를 확인하고, 3D DCC 단위와 일치하도록 설정한 뒤 Apply 버튼을 누릅니다.",
+    "Materials 탭에서 Material Creation Mode를 'Use External Materials (Legacy)' 또는 'Standard (auto-mapped)'로 설정합니다.",
+    "설정이 완료되면 Inspector 창 하단의 Apply 버튼을 클릭하여 저장합니다.",
+    "Project 창에서 모델을 Viewport(Scene)나 Hierarchy 창으로 드래그하여 배치합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale Factor",
+      "desc": "모델의 전체 크기 비율을 조절합니다 (Unity는 1유닛 = 1미터 기준)."
+    },
+    {
+      "name": "Mesh Compression",
+      "desc": "메쉬 데이터의 압축률을 설정하여 빌드 용량을 줄입니다."
+    },
+    {
+      "name": "Generate Colliders",
+      "desc": "메쉬 기반의 Mesh Collider를 자동으로 생성합니다."
+    },
+    {
+      "name": "Material Creation Mode",
+      "desc": "FBX 내부에 포함된 머티리얼을 추출하거나 외부 텍스처와 매핑합니다."
+    },
+    {
+      "name": "Import Animation",
+      "desc": "FBX 파일에 포함된 애니메이션 클립을 가져올지 여부를 결정합니다."
+    },
+    {
+      "name": "Normals",
+      "desc": "법선(Normal) 데이터를 계산하거나 외부 파일에서 가져올지 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축물 및 환경 배경 프랍 가져오기",
+      "steps": [
+        "Project 창에 건물의 FBX 파일을 드래그하여 임포트합니다.",
+        "Inspector 창의 Model 탭에서 Scale Factor를 확인하여 크기를 맞춥니다.",
+        "Generate Colliders 옵션을 체크하여 플레이어가 통과하지 못하도록 설정합니다.",
+        "Hierarchy 창에 배치하여 씬 구성을 완료합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 및 애니메이션 데이터 분리하기",
+      "steps": [
+        "캐릭터 FBX 파일을 Project 창에 넣고 Animation 탭을 선택합니다.",
+        "Take Name에서 포함된 애니메이션 클립을 확인하고 필요한 구간만 설정합니다.",
+        "Apply를 눌러 설정을 적용한 뒤, 씬에 캐릭터를 배치하고 Animator 컴포넌트를 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "유닛 단위 차이로 모델이 너무 크거나 작게 나옴 → Inspector의 Scale Factor 값을 조정하여 재적용",
+    "머티리얼이 하얗게(Magenta) 깨짐 → Materials 탭에서 Textures 경로를 확인하고 Extract Materials 실행",
+    "충돌 처리가 안 되어 캐릭터가 통과함 → Model 탭에서 Generate Colliders 옵션 체크 확인"
+  ],
+  "related": [
+    "Prefab",
+    "Mesh Renderer",
+    "Animator",
+    "Material"
+  ],
+  "videos": [
+    {
+      "id": "qLWorPgtQPw",
+      "title": "Importing FBX models the right way - Unity Tutorial (Rotation & Scale Fix)",
+      "author": "GameBient Studio"
+    },
+    {
+      "id": "1XemiQUKobI",
+      "title": "How to Fix Missing Textures in Unity After Importing FBX Models (2025)",
+      "author": "Farm Boy Tech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Importing%20FBX%20models",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T02:49:41.349909+00:00"
+}

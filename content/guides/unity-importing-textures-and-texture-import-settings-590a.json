@@ -1,0 +1,94 @@
+{
+  "id": "unity-importing-textures-and-texture-import-settings-590a",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "가져오기",
+  "name": "Importing textures and texture import settings",
+  "title": "텍스처 가져오기·압축 설정",
+  "summary": "Unity에 이미지 파일을 Texture 2D로 가져와 3D 모델의 머티리얼에 적용할 수 있는 실시간 렌더링용 에셋으로 변환하는 기초 작업입니다. 색상(Albedo), 노멀(Normal Map), 거칠기 등 텍스처 성격에 맞는 압축 및 채널 설정을 지정합니다.",
+  "when": [
+    "3D 모델에 색상이나 질감을 입히기 위해 외부에서 제작한 이미지 파일을 Unity 프로젝트로 처음 가져올 때",
+    "평면 이미지를 입체적인 요철감으로 표현하기 위해 Normal Map 설정을 변경해야 할 때",
+    "게임 최적화를 위해 텍스처의 해상도나 압축 포맷을 용도에 맞게 조절해야 할 때"
+  ],
+  "steps": [
+    "탐색기의 이미지 파일을 Unity의 Project 패널 내 Assets 폴더 안의 원하는 위치로 드래그 앤 드롭하여 가져옵니다.",
+    "Project 패널에서 해당 텍스처 에셋을 클릭하여 선택합니다.",
+    "우측 Inspector 패널에서 Texture Type을 용도(예: Default, Normal map 등)에 맞게 변경합니다.",
+    "Advanced 또는 기본 설정 항목에서 Texture Compression 포맷과 Max Size를 프로젝트 환경에 맞게 조절합니다.",
+    "패널 하단의 Apply 버튼을 클릭하여 변경 사항을 최종 적용합니다.",
+    "씬 뷰나 Material의 Albedo/Normal 슬롯에 텍스처를 드래그하여 적용 결과가 올바른지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Texture Type",
+      "desc": "텍스처의 용도를 지정합니다 (Default, Normal map, Sprite 등)."
+    },
+    {
+      "name": "sRGB (Color Texture)",
+      "desc": "색상 텍스처의 감마 정원 공간을 보정합니다 (노멀이나 마스크 맵은 체크 해제)."
+    },
+    {
+      "name": "Create From Grayscale",
+      "desc": "흑백 이미지를 기반으로 노멀 맵(Normal Map) 데이터를 생성합니다."
+    },
+    {
+      "name": "Max Size",
+      "desc": "텍스처의 최대 Resolution를 제한하여 메모리 사용량을 조절합니다."
+    },
+    {
+      "name": "Compression",
+      "desc": "플랫폼별 압축 방식을 선택하여 빌드 용량을 최적화합니다."
+    },
+    {
+      "name": "Wrap Mode",
+      "desc": "이미지 경계면의 반복 표시 방식을 결정합니다 (Repeat 또는 Clamp)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Albedo(컬러) 텍스처 설정",
+      "steps": [
+        "Project 패널에서 컬러 이미지 선택하기",
+        "Inspector에서 Texture Type을 Default로 유지하고 sRGB 체크 확인하기",
+        "Max Size를 적절히 설정한 뒤 Apply 누르기"
+      ]
+    },
+    {
+      "title": "Normal Map(노멀) 텍스처 설정",
+      "steps": [
+        "Project 패널에서 노멀 이미지 선택하기",
+        "Inspector에서 Texture Type을 Normal map으로 변경하기",
+        "상단에 나타나는 Fix Now 경고가 있다면 클릭하여 수정하고 Apply 누르기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Normal Map에 sRGB가 켜져 있는 경우 → Inspector에서 sRGB(Color Texture) 체크를 해제하고 Fix Now를 실행하세요.",
+    "텍스처가 너무 흐리거나 깨져 보이는 경우 → Max Size 값이 너무 낮게 설정되어 있는지 확인하고 Resolution를 높이세요.",
+    "텍스처를 수정했는데 화면에 반영되지 않는 경우 → Inspector 하단의 Apply 버튼을 눌렀는지 확인하세요."
+  ],
+  "related": [
+    "Material",
+    "Shader Graph",
+    "Mesh Renderer",
+    "FBX Importer"
+  ],
+  "videos": [
+    {
+      "id": "lgWxuUWWc8U",
+      "title": "How to Change Default Import Settings For Textures In Unity",
+      "author": "Max O'Didily"
+    },
+    {
+      "id": "-6xk-Vfslig",
+      "title": "Unity Texture Import Settings",
+      "author": "Unity Videos (Julien Lynge)"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Importing%20textures%20and%20texture%20import%20settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T02:49:49.929328+00:00"
+}
