@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-designer-cook-error-evaluating-functi-1ec07",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Cook] Error evaluating function in bitmap node",
+  "title": "Designer: [Cook] Error evaluating function in bitmap node",
+  "summary": "Substance 3D Designer에서 Designer: [Cook] Error evaluating function in bitmap node 오류는 비트맵 노드 내부의 함수나 커스텀 픽셀 프로세서(Pixel Processor) 연산식에서 수식 오류 또는 0으로 나누기 같은 수학적 예외가 발생했을 때 나타납니다.",
+  "causes": [
+    "Pixel Processor 노드 내부의 FxMap 또는 함수 그래프에서 0으로 나누기(Division by zero) 등 잘못된 수학 연산 발생",
+    "입력으로 연결된 텍스처나 비트맵 데이터가 누락되었거나 포맷이 호환되지 않음",
+    "함수 그래프에서 정의되지 않은 변수나 잘못된 채널(Channel)을 참조",
+    "Substance 3D Designer 구버전과 최신 프로젝트 파일 간의 함수 노드 호환성 문제"
+  ],
+  "steps": [
+    "오류가 발생한 Bitmap 노드 또는 Pixel Processor 노드를 더블 클릭하여 내부 그래프(Graph)로 들어갑니다.",
+    "그래프 내에서 색상 채널이나 수학 연산을 담당하는 노드들을 점검하여 0으로 나누기나 잘못된 연산식이 있는지 확인합니다.",
+    "Inspector 패널에서 함수 내부의 변수 이름, 입력 이미지 연결 상태, 데이터 타입이 올바른지 검토합니다.",
+    "문제가 되는 연산 노드의 수식을 수정하거나, Safeguard(예: Max나 Clamp 노드)를 추가하여 예외 상황을 방지합니다.",
+    "그래프를 저장하고 뷰포트나 Explorer에서 출력이 정상적으로 연산(Cook)되는지 확인합니다."
+  ],
+  "check": [
+    "Explorer 창과 2D Viewport에서 해당 비트맵 노드의 에러 마크가 사라지고 결과 이미지가 정상적으로 렌더링되는지 확인합니다.",
+    "Node Graph에서 더 이상 Cook 오류 로그가 출력되지 않는지 로그 패널을 확인합니다."
+  ],
+  "prevent": [
+    "Pixel Processor나 함수 그래프 작성 시 분모가 0이 되지 않도록 Clamp나 Add 노드를 함께 사용합니다.",
+    "사용자 정의 함수 작성 전 입력 데이터의 채널과 데이터 타입(Float, Vector 등)이 올바른지 미리 확인합니다."
+  ],
+  "keywords": [
+    "Substance Designer 에러",
+    "bitmap node 오류",
+    "Error evaluating function",
+    "Pixel Processor 에러",
+    "Designer Cook 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T03:29:48+00:00"
+}

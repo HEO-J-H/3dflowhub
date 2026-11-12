@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-hydra-failed-to-re-d5987",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.hydra] Failed to render USD primitive due to unsupported shader",
+  "title": "Kit: [Error] [omni.hydra] Failed to render USD primitive due to unsupported shad",
+  "summary": "NVIDIA Omniverse에서 USD 씬을 렌더링할 때, 지정된 Shader를 현재 렌더러(Hydra 델리게이트)가 지원하지 않아 렌더링이 실패하는 오류입니다. 주로 타 3D DCC에서 가져온 커스텀 셰이더나 MaterialX/UsdPreviewSurface 외의 비표준 재질이 올바르게 변환되지 않았을 때 발생합니다.",
+  "causes": [
+    "다른 DCC(Maya, Blender 등)에서 생성된 독점 셰이더나 호환되지 않는 재질 노드가 USD에 포함된 경우",
+    "현재 사용 중인 Hydra 렌더러(예: RTX Real-Time, RTX Path Traced)가 해당 Shader 네트워크를 지원하지 않는 경우",
+    "MaterialX 또는 UsdPreviewSurface 스키마가 올바르게 설정되지 않았거나 깨진 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 오류가 발생하는 USD Primitive 선택",
+    "Property 패널에서 해당 메쉬에 할당된 Material(재질) 및 Shader 바인딩 확인",
+    "표준 셰이더인 UsdPreviewSurface 또는 MaterialX 기반의 표준 노드로 Shader 재할당",
+    "필요시 Omniverse Create 또는 USD Composer의 Material Graph에서 호환되지 않는 노드 제거",
+    "툴바에서 Hydra 렌더러(Hydra Delegate)를 다른 옵션(예: OmniPBR 기반 렌더러)으로 변경하여 호환성 테스트"
+  ],
+  "check": [
+    "Viewport에서 해당 Shader가 깨지지 않고 정상적으로 렌더링되는지 확인",
+    "Console 창에 더 이상 [omni.hydra] 관련 Shader 에러 메시지가 출력되지 않는지 확인"
+  ],
+  "prevent": [
+    "타 DCC에서 USD로 Export할 때 Shader를 UsdPreviewSurface 또는 MaterialX 표준으로 변환",
+    "Omniverse 워크플로우에 맞는 표준 PBR 재질 라이브러리 사용 권장"
+  ],
+  "keywords": [
+    "Omniverse Shader 오류",
+    "Hydra render error",
+    "USD primitive failed to render",
+    "unsupported shader 옴니버스",
+    "Omni hydra error"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T03:29:51+00:00"
+}

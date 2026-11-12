@@ -1,0 +1,101 @@
+{
+  "id": "unity-animator-controller-and-states-2e2d",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animator Controller and states",
+  "title": "Animator Controller — 상태와 전환",
+  "summary": "Unity Animator Controller는 캐릭터나 오브젝트의 상태(대기, 이동, 공격 등) 변화와 애니메이션 재생 흐름을 관리하는 상태 머신 기반의 제어 시스템입니다.",
+  "when": [
+    "캐릭터가 키보드 입력에 따라 대기 상태에서 뛰는 상태로 자연스럽게 전환될 때",
+    "몬스터가 피격, 공격, 사망 등 다양한 애니메이션 클립을 상황에 맞게 재생해야 할 때",
+    "복잡한 조건에 따라 애니메이션 간의 전환(Transition) 타이밍과 블렌딩을 제어할 때"
+  ],
+  "steps": [
+    "Project 창에서 우클リック > Create > Animator Controller를 선택하여 새 Controller를 생성합니다.",
+    "씬의 캐릭터 GameObject를 선택하고 Inspector 패널의 Animator 컴포넌트의 Controller 슬롯에 방금 만든 Controller를 드래그하여 할당합니다.",
+    "Animator 창(Window > Animation > Animator)을 열고, Grid 빈 공간에서 우클릭 > Create State > Empty를 선택해 새 State를 만듭니다.",
+    "기본 제공되는 Entry 상태에서 우클릭 > Make Transition을 선택해 첫 번째 재생될 State와 연결합니다.",
+    "Parameters 탭에서 '+' 버튼을 눌러 Float, Int, Bool, Trigger 등의 파라미터를 추가하여 전환 조건을 만듭니다.",
+    "Transition 선을 클릭하고 Inspector 패널에서 Has Exit Time 및 Conditions 값을 설정하여 상태 전환 규칙을 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Motion",
+      "desc": "해당 상태(State)에서 재생할 애니메이션 클립(Animation Clip)을 연결합니다."
+    },
+    {
+      "name": "Speed",
+      "desc": "애니메이션의 재생 속도를 배율로 조절합니다."
+    },
+    {
+      "name": "Mirror",
+      "desc": "애니메이션의 좌우 반전 여부를 결정합니다."
+    },
+    {
+      "name": "Has Exit Time",
+      "desc": "현재 애니메이션이 특정 비율만큼 재생된 후에 다음 전환으로 넘어갈지 여부를 결정합니다."
+    },
+    {
+      "name": "Conditions",
+      "desc": "상태 전환이 일어나기 위해 만족해야 하는 파라미터 조건 목록입니다."
+    },
+    {
+      "name": "Transition Duration",
+      "desc": "이전 애니메이션에서 다음 애니메이션으로 부드럽게 섞이며 넘어가는(Blending) 시간입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Idle에서 Walk로 이동 전환 만들기",
+      "steps": [
+        "Idle 상태와 Walk 상태를 Animator 창에 배치합니다.",
+        "Parameters에 Float 타입의 'Speed' 파라미터를 추가합니다.",
+        "Idle에서 Walk로 향하는 Transition 선을 연결하고, Conditions에 Speed > 0.1 조건을 추가합니다.",
+        "스위치 백을 위해 Walk에서 Idle로 향하는 Transition도 만들고 조건을 Speed < 0.1로 설정합니다."
+      ]
+    },
+    {
+      "title": "공격 Trigger 애니메이션 실행하기",
+      "steps": [
+        "Parameters에 Trigger 타입의 'Attack' 파라미터를 추가합니다.",
+        "어떤 상태에서든 공격 상태로 갈 수 있도록 Any State에서 Attack 상태로 Transition을 연결합니다.",
+        "Conditions에 Attack 트리거를 등록하고 Has Exit Time을 해제하여 즉시 반응하도록 설정합니다.",
+        "애니메이션 재생이 끝나면 자동으로 원래 상태로 돌아오도록 Exit으로 향하는 Transition을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "상태 전환 조건(Condition)을 추가했는데도 반응이 없음 → Parameters의 이름 오탈자나 대소문자 확인 및 파라미터 타입(Float/Int 등) 불일치 수정",
+    "애니메이션이 끊기거나 뚝뚝 전환됨 → Transition 패널에서 Has Exit Time 체크 여부와 Transition Duration(블렌딩 시간) 값 조정",
+    "Controller가 작동하지 않고 가만히 있음 → GameObject의 Animator 컴포넌트에 Controller 에셋이 올바르게 할당되었는지 확인"
+  ],
+  "related": [
+    "Animation Clip",
+    "Avatar Mask",
+    "Blend Tree",
+    "Character Controller"
+  ],
+  "videos": [
+    {
+      "id": "tveRasxUabo",
+      "title": "Unity 2021 Animator Controller Beginner Tutorial",
+      "author": "Jayanam"
+    },
+    {
+      "id": "zRbCdVqJjd8",
+      "title": "How to Create an ANIMATOR CONTROLLER in Unity | Unity Tutorial for Beginners 2023 (Updated)",
+      "author": "Rigor Mortis Tortoise"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Animator%20Controller%20and%20states",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Animator Controller",
+    "Controller"
+  ],
+  "at": "2026-11-12T03:29:27.487759+00:00"
+}

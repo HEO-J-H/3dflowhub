@@ -1,0 +1,40 @@
+{
+  "id": "substance-3d-painter-baking-missing-bake-results-b-f976a",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Missing bake results because of overlapping UVs",
+  "title": "Painter: [Baking] Missing bake results because of overlapping UVs",
+  "summary": "Substance 3D Painter에서 메시 맵 Baking 중 UV가 겹쳐서(Overlapping UVs) 텍스처를 올바르게 추출할 수 없을 때 발생하는 오류 메시지입니다. 겹친 영역에서 노멀 맵이나 ID 맵 등이 정상적으로 투영되지 않습니다.",
+  "causes": [
+    "로우 폴리곤 모델의 UV 좌표가 동일한 공간(U 0~1 범위 내)에 겹쳐져 있는 경우",
+    "대칭(Symmetry) 작업 후 UV를 분리하지 않고 그대로 Baking을 시도한 경우",
+    "자동 UV(Auto Unwrap) 기능 사용 시 섬(Island) 정렬 오류로 일부 면이 겹친 경우"
+  ],
+  "steps": [
+    "Substance 3D Painter의 Texture Set Settings 패널에서 Baking 모드로 진입합니다.",
+    "오류가 발생한 메시의 UV 레이아웃을 확인하기 위해 3D Viewport에서 View 메뉴를 열거나 외부 3D DCC(Blender, Maya 등) 툴을 실행합니다.",
+    "Blender 등의 툴에서 에디트 모드로 진입 후 A 키를 눌러 모든 요소를 선택합니다.",
+    "UV 메뉴에서 Unwrap을 다시 실행하거나, Overlap된 UV 섬을 수동으로 이동(Move) 또는 패킹(Pack Islands)하여 겹침을 해제합니다.",
+    "UDIM을 사용하는 경우 UV 좌표가 올바른 타일 영역에 배치되어 있는지 확인합니다.",
+    "수정된 모델을 FBX 또는 OBJ 형식으로 다시 Export 합니다.",
+    "Substance 3D Painter에서 Mesh(메시)를 다시 불러오거나 Reload한 뒤 Baking을 재실행합니다."
+  ],
+  "check": [
+    "Baking 진행 시 에러 로그에 'Missing bake results because of overlapping UVs' 경고 문구가 더 이상 나타나지 않는지 확인합니다.",
+    "Texture Set List의 각 맵(Normal, AO 등)에 왜곡이나 깨짐 없이 디테일이 정상적으로 투영되었는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "모델링 대칭 작업 완료 후 Baking 전 반드시 UV 편집기에서 겹친 면이 없는지 확인하는 습관을 들입니다.",
+    "Blender나 Maya에서 UV Pack 단계를 거칠 때 마진(Margin) 값을 주어 섬 간의 간격을 확보합니다."
+  ],
+  "keywords": [
+    "Substance Painter Baking 오류",
+    "Overlapping UVs 섭스",
+    "메시 맵 Baking 실패",
+    "UV 겹침 해결",
+    "Painter 텍스처 Baking 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T03:29:46+00:00"
+}

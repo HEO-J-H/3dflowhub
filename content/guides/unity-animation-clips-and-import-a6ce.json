@@ -1,0 +1,101 @@
+{
+  "id": "unity-animation-clips-and-import-a6ce",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animation clips and import",
+  "title": "애니메이션 클립 가져오기·자르기",
+  "summary": "Unity의 Animation Clips 가져오기 및 Import 설정은 외부 3D 프로그램에서 제작한 FBX 애니메이션 데이터를 Unity 에디터에서 재생 가능한 클립으로 나누고 최적화하는 기초 작업입니다.",
+  "when": [
+    "캐릭터 걷기·뛰기 애니메이션 FBX 파일을 Unity 프로젝트로 처음 가져올 때",
+    "하나의 FBX 파일에 포함된 여러 개의 애니메이션(예: 대기, 공격, 사망)을 구간별 클립으로 분할할 때",
+    "루프(Loop) 재생이나 모션 압축 설정을 조정하여 게임 성능을 최적화할 때"
+  ],
+  "steps": [
+    "탐색기의 애니메이션이 포함된 FBX 파일을 Unity 에디터의 Project 창으로 드래그 앤 드롭하여 가져옵니다.",
+    "Project 창에서 해당 FBX 파일을 클릭하고, 우측 Inspector 패널에서 Rig 탭을 선택하여 Animation Type을 Humanoid 또는 Generic으로 설정한 후 Apply 버튼을 클릭합니다.",
+    "Inspector 패널에서 Animations 탭을 선택하여 전체 애니메이션 데이터의 세부 설정을 엽니다.",
+    "AnimationClip 리스트 하단의 '+' 버튼을 클릭하여 새로운 애니메이션 클립 구간을 추가합니다.",
+    "Start 프레임과 End 프레임을 지정하여 원하는 동작(예: Idle, Walk) 구간만 자릅니다.",
+    "Loop Time 옵션을 체크하여 걷기나 대기 동작이 반복 재생되도록 설정합니다.",
+    "하단의 Apply 버튼을 클릭하여 설정을 저장하고, 뷰포트나 Animator Controller에서 재생을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Animation Type",
+      "desc": "아마추어 구조를 Humanoid, Generic, Legacy 중 선택하여 리깅 방식을 지정합니다."
+    },
+    {
+      "name": "Loop Time",
+      "desc": "애니메이션 클립이 끝난 뒤 처음으로 돌아와 무한 반복 재생되도록 활성화합니다."
+    },
+    {
+      "name": "Loop Pose",
+      "desc": "루프 구간의 시작점과 끝점의 자세를 부드럽게 보간하여 끊김 현상을 방지합니다."
+    },
+    {
+      "name": "Start / End",
+      "desc": "FBX 파일 내에서 개별 애니메이션 클립으로 사용할 프레임의 시작과 끝 범위를 지정합니다."
+    },
+    {
+      "name": "Curves",
+      "desc": "애니메이션 재생 중 특정 커스텀 속성이나 머티리얼 값이 함께 변하도록 데이터를 추가합니다."
+    },
+    {
+      "name": "Events",
+      "desc": "애니메이션 특정 프레임에 함수를 호출하여 사운드 재생이나 타격 판정을 발생시키는 이벤트를 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 걷기 애니메이션을 루프 클립으로 설정하기",
+      "steps": [
+        "Project 창에서 캐릭터 FBX 파일을 선택합니다.",
+        "Inspector 패널의 Animations 탭에서 걷기 구간 프레임을 지정합니다.",
+        "Loop Time 체크박스를 활성화하고 Apply를 누릅니다."
+      ]
+    },
+    {
+      "title": "하나의 FBX에서 대기(Idle)와 공격(Attack) 클립 분리하기",
+      "steps": [
+        "Animations 탭에서 기본 클립을 확인하고 '+' 버튼을 눌러 클립을 추가합니다.",
+        "첫 번째 클립의 이름을 Idle로 바꾸고 프레임 범위를 0~30으로 설정합니다.",
+        "두 번째 클립의 이름을 Attack으로 바꾸고 프레임 범위를 31~60으로 설정한 뒤 Apply를 누릅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션이 제자리에서 미끄러지는 현상 → Loop Pose 옵션을 체크하여 시작과 끝의 포즈를 보정합니다.",
+    "캐릭터 팔다리가 꺾이는 현상 → Rig 탭의 Animation Type이 올바른지(예: Humanoid) 확인하고 Configure에서 본 매핑을 점검합니다."
+  ],
+  "related": [
+    "Skeletal Mesh import",
+    "Animator Controller",
+    "Avatar Mask",
+    "Blend Tree"
+  ],
+  "videos": [
+    {
+      "id": "-FhvQDqmgmU",
+      "title": "How to Animate Characters in Unity 3D | Importing Free Characters and Animations from Mixamo",
+      "author": "iHeartGameDev"
+    },
+    {
+      "id": "AdQz2wStdLY",
+      "title": "How to Setup Animator and Animations in Unity 2D",
+      "author": "Wild Cockatiel Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Animation%20clips%20and%20import",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "FBX",
+    "Unity",
+    "Project",
+    "Inspector",
+    "Rig",
+    "Animation Type"
+  ],
+  "at": "2026-11-12T03:29:36.376929+00:00"
+}
