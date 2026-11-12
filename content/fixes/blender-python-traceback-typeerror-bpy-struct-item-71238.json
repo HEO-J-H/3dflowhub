@@ -1,0 +1,38 @@
+{
+  "id": "blender-python-traceback-typeerror-bpy-struct-item-71238",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... TypeError: bpy_struct: item assignment: droptarget type mismatch",
+  "title": "Python: Traceback ... TypeError: bpy_struct: item assignment: droptarget type mi",
+  "summary": "Blender Python Script 실행 중 잘못된 데이터 타입이나 유형의 객체를 속성에 할당하려고 할 때 발생하는 TypeError입니다. 주로 API가 요구하는 데이터 구조나 클래스 형태와 일치하지 않는 값을 대입할 때 나타납니다.",
+  "causes": [
+    "bpy_struct 속성에 문자열이나 숫자 등 호환되지 않는 기본 데이터 타입을 직접 대입한 경우",
+    "지정된 속성이나 포인터가 요구하는 데이터 블록(Data-block) 대신 다른 타입의 객체를 전달한 경우",
+    "Blender API 버전 업그레이드에 따라 속성의 데이터 구조나 타입이 변경되었으나 코드가 반영되지 않은 경우"
+  ],
+  "steps": [
+    "Script 콘솔이나 오류 발생 지점의 Traceback 메시지를 확인하여 문제가 된 라인과 속성 이름을 파악합니다.",
+    "Blender Python API 공식 문서에서 해당 속성(Property)이 요구하는 정확한 데이터 타입이나 클래스를 확인합니다.",
+    "할당하려는 값의 타입이 일치하는지 확인하고, 필요한 경우 올바른 데이터 블록(예: bpy.types.Material, bpy.types.Object 등)을 생성하거나 참조하도록 코드를 수정합니다.",
+    "외부 변수나 사용자 입력값을 전달하는 경우, type() 함수나 isinstance()를 사용하여 대입 전 유효성 검사 로직을 추가합니다.",
+    "텍스트 에디터에서 Script를 저장한 뒤 다시 실행하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "콘솔창에 Traceback 오류 메시지 없이 Script가 정상적으로 완료됩니다.",
+    "대상 속성에 값이 올바르게 할당되어 뷰포트나 데이터에 정상적으로 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "Blender Python Script 작성 시 API 문서나 dir() 함수를 통해 속성 및 데이터 타입을 미리 확인합니다.",
+    "Script 내에 타입 예외 처리를 위한 try-except 구문을 적용하여 예기치 않은 타입 불일치에 대비합니다."
+  ],
+  "keywords": [
+    "Blender Python 에러",
+    "droptarget type mismatch",
+    "TypeError bpy_struct",
+    "Blender Python 타입 오류",
+    "bpy_struct item assignment"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T06:40:14+00:00"
+}

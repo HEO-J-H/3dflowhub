@@ -1,0 +1,37 @@
+{
+  "id": "blender-error-cannot-unwrap-no-seams-selected-or-m-cb91e",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot unwrap: no seams selected or mesh is empty",
+  "title": "Error: Cannot unwrap: no seams selected or mesh is empty 오류 해결 방법",
+  "summary": "Blender에서 UV 언랩(Unwrap)을 시도할 때 시점 선택이나 심(Seam)이 지정되지 않았거나 메시 데이터가 비어 있어서 발생하는 오류입니다.",
+  "causes": [
+    "UV를 펼치기 위한 심(Seam)이 전혀 지정되지 않은 경우",
+    "선택한 오브젝트나 에디트 모드의 메시가 완전히 비어(Empty) 있는 경우",
+    "아무런 면(Face)이나 Vertex도 선택되지 않은 상태에서 언랩을 실행한 경우"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "A 키를 눌러 메시의 모든 요소를 선택합니다.",
+    "U 키를 누르고 Unify나 Smart UV Project를 실행하거나, 원하는 모서리를 선택한 뒤 Mouse 우클릭을 눌러 Mark Seam을 지정합니다.",
+    "심(Seam)이 올바르게 지정되었는지 확인한 후, 다시 U 키를 누르고 Unwrap을 실행합니다."
+  ],
+  "check": [
+    "UV Editing 워크스페이스에서 UV 섬(Islands)들이 Viewport에 정상적으로 펼쳐지는지 확인합니다.",
+    "오류 메시지 없이 언랩 작업이 완료되고 툴바에 결과 설정 패널이 나타나는지 확인합니다."
+  ],
+  "prevent": [
+    "언랩을 실행하기 전에 항상 오브젝트에 엣지 심(Seam)이 올바르게 표시되어 있는지 확인합니다.",
+    "메시 편집 작업 중 빈 오브젝트나 불필요한 빈 데이터가 생성되지 않도록 관리합니다."
+  ],
+  "keywords": [
+    "Blender UV 오류",
+    "cannot unwrap no seams selected",
+    "Blender uv 펴기 에러",
+    "mesh is empty",
+    "Blender 심 안 됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-12T06:40:16+00:00"
+}
