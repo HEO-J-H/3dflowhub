@@ -1,0 +1,91 @@
+{
+  "id": "substance-3d-substance-sampler-image-to-material-a156",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "Substance Sampler image to material",
+  "title": "Sampler — 사진으로 재질",
+  "summary": "Substance Sampler의 Image to Material 기능을 사용하여 한 장의 사진이나 텍스처에서 Base Color, Normal, Roughness, Height 등의 PBR 맵을 자동으로 추출합니다.",
+  "when": [
+    "실제 촬영한 벽돌, 아스팔트, 나무 바닥 등의 사진을 게임용 3D 재질로 빠르게 변환할 때",
+    "웹에서 구한 단일 텍스처 이미지에 입체감과 질감을 부여하여 실시간 렌더링에 사용할 때",
+    "수작업으로 맵을 만들기 번거로운 배경 소스나 자연물 텍스처를 손쉽게 생성할 때"
+  ],
+  "steps": [
+    "Substance Sampler를 실행하고 새 프로젝트(New Project)를 생성합니다.",
+    "상단 메뉴 Bar에서 File 또는 Import 를 통해 소스 이미지를 드래그 앤 드롭으로 Viewport에 가져옵니다.",
+    "Assets 또는 Filters 패널에서 Image to Material 필터를 선택하여 이미지에 적용합니다.",
+    "Properties 패널에서 Light, Tiling, Normal 강도 등의 파라미터를 조절하여 타일링과 입체감을 맞춥니다.",
+    "Export 버튼을 눌러 생성된 PBR 맵(Base Color, Normal, Roughness, Height)을 원하는 포맷으로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Tiling",
+      "desc": "텍스처가 상하좌우로 자연스럽게 반복되도록 이음새를 조절합니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "표면의 요철과 입체감의 깊이를 조절합니다."
+    },
+    {
+      "name": "Roughness Balance",
+      "desc": "표면의 반사 거칠기 정도를 전체적으로 조정합니다."
+    },
+    {
+      "name": "Light Equalizer",
+      "desc": "사진 촬영 시 발생한 불균일한 그림자와 빛 번짐을 제거합니다."
+    },
+    {
+      "name": "Auto Crop",
+      "desc": "입력된 이미지의 왜곡된 외곽 영역을 자동으로 잘라냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "아스팔트 바닥 재질 변환",
+      "steps": [
+        "아스팔트 바닥 사진을 불러옵니다.",
+        "Image to Material 필터를 적용하여 타일링 간격을 맞춥니다.",
+        "Normal Intensity를 높여 자갈의 입체감을 살립니다."
+      ]
+    },
+    {
+      "title": "벽돌 벽 텍스처 제작",
+      "steps": [
+        "정면에서 촬영한 벽돌 사진을 드래그하여 가져옵니다.",
+        "Light Equalizer를 켜서 그늘진 부분을 보정합니다.",
+        "Roughness 맵을 조정하여 벽돌의 매트한 질감을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진에 강한 그림자가 남아 있는 경우 → Light Equalizer 옵션을 활성화하여 조명을 평탄화합니다.",
+    "텍스처 이음새가 어색하게 끊어지는 경우 → Tiling 세팅에서 블렌딩 영역과 반복 간격을 다시 조절합니다."
+  ],
+  "related": [
+    "Tile Sampler",
+    "Brick Generator",
+    "Substance 3D Designer",
+    "Substance 3D Painter"
+  ],
+  "videos": [
+    {
+      "id": "F3DTive0Urg",
+      "title": "Substance 3D Sampler First Steps: Image to Material | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "vz5j4X6Baw4",
+      "title": "Create PBR Materials From a Single Image in Substance 3D Sampler | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Substance%20Sampler%20image%20to%20material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance Sampler",
+    "New Project"
+  ],
+  "at": "2026-11-12T00:49:15.899668+00:00"
+}

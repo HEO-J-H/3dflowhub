@@ -1,0 +1,95 @@
+{
+  "id": "substance-3d-make-it-tile-dc79",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "디자이너",
+  "name": "Make It Tile",
+  "title": "Make It Tile — 이음새 없애기",
+  "summary": "Substance 3D의 Make It Tile은 타일링 텍스처의 경계면에서 발생하는 이음새와 반복 패턴을 자연스럽게 없애주는 핵심 필터 기능입니다.",
+  "when": [
+    "텍스처를 오브젝트에 반복 배치할 때 경계선에 끊기는 느낌이 들 때",
+    "단일 소스 이미지로 심리스(Seamless) 타일링 재질을 빠르게 만들고 싶을 때",
+    "패턴 반복으로 인한 인위적인 격자 무늬나 반복 자국(Repeating pattern)을 제거할 때"
+  ],
+  "steps": [
+    "Substance 3D Designer 또는 Painter에서 프로젝트를 열고 텍스처를 그래프 또는 레이어에 가져옵니다.",
+    "Library 패널 또는 Filter 검색창에서 Make It Tile 노드(또는 필터)를 찾습니다.",
+    "작업 중인 그래프 뷰(Graph View)에 Make It Tile 노드를 배치하고 기존 텍스처와 연결합니다.",
+    "Properties 패널에서 블렌딩 방식과 반복 강도를 조절하여 이음새를 확인합니다.",
+    "2D/3D Viewport에서 타일링을 반복(Tiling)하여 이음새가 자연스럽게 이어지는지 최종 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Blending",
+      "desc": "경계면을 섞어주는 알고리즘 방식을 선택합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "패턴의 크기나 텍스처 스케일을 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "텍스처의 중심 위치를 이동하여 이음새 위치를 변경합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "패턴 합성의 무작위성을 변경하여 반복감을 줄입니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "경계 부근을 부드럽게 만들어 이음새를 감춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽 텍스처 심리스 만들기",
+      "steps": [
+        "벽돌 소스 이미지를 Substance 3D에 로드합니다.",
+        "Make It Tile 노드를 연결하여 사방 경계선을 정렬합니다.",
+        "Blending 옵션을 조절해 벽돌 사이의 모르타르 선을 자연스럽게 잇습니다."
+      ]
+    },
+    {
+      "title": "나무 바닥 패턴 반복 줄이기",
+      "steps": [
+        "우드 플로어 텍스처에 Make It Tile 노드를 적용합니다.",
+        "Random Seed를 변경해 반복되는 나이든 패턴의 위치를 분산시킵니다.",
+        "Viewport에서 Tiling 값을 높여 바닥 면적에 텍스처를 반복 적용해 테스트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경계선이 너무 흐려짐 → Blur 값을 낮추고 Blending 방식을 변경하세요.",
+    "반복 무늬가 여전히 눈에 띔 → Random Seed 값을 바꾸거나 Offset을 조절하세요.",
+    "텍스처 디테일이 뭉개짐 → Scale과 High-frequency 유지 옵션을 다시 확인하세요."
+  ],
+  "related": [
+    "Tile Generator",
+    "Blur High Pass",
+    "Blend",
+    "Levels"
+  ],
+  "videos": [
+    {
+      "id": "hZK2MHC2mQw",
+      "title": "Stone tiles - Substance Designer tutorial for beginners",
+      "author": "hbitproject"
+    },
+    {
+      "id": "heT7gwKagKc",
+      "title": "How To Fix Textures Using Adobe Substance 3D Sampler - Make it Tile",
+      "author": "247 Creative Secrets"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Make%20It%20Tile",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance 3D Designer",
+    "Painter",
+    "Library",
+    "Filter",
+    "Make It Tile"
+  ],
+  "at": "2026-11-12T00:49:12.131257+00:00"
+}
