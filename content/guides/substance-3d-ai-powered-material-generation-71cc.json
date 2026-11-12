@@ -1,0 +1,92 @@
+{
+  "id": "substance-3d-ai-powered-material-generation-71cc",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "AI-powered material generation",
+  "title": "AI 재질 생성",
+  "summary": "Substance 3D의 AI 기반 머티리얼 생성 기능은 텍스트 프롬프트나 단 한 장의 사진으로 물리 기반 렌더링(PBR) 텍스처를 빠르고 정교하게 만들어 주는 워크플로우입니다.",
+  "when": [
+    "참고 이미지만 있고 세부 타일링 텍스처를 빠르게 만들어야 할 때",
+    "텍스트로 아이디어를 입력해 세상에 없는 독창적인 판타지 재질을 생성할 때",
+    "기존 스캔 소스의 이음새(Seam)를 없애고 심리스(Seamless) 타일링 재질로 변환할 때"
+  ],
+  "steps": [
+    "Substance 3D Sampler 또는 Substance 3D Designer를 실행하고 새 프로젝트(New Project)를 생성합니다.",
+    "상단 메뉴 Bar에서 File 또는 Import를 통해 레퍼런스 이미지(JPG, PNG)를 불러옵니다.",
+    "AI 기반 기능인 Image to Material 또는 Text to Texture(Sampler/Designer 최신 버전) 노드를 선택합니다.",
+    "파라미터 패널에서 디테일 수준과 AI 모델 옵션을 조정하고 Generate 버튼을 누릅니다.",
+    "생성된 Base Color, Normal, Roughness, Height 맵을 확인하고 Viewport에서 결과물을 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Image to Material",
+      "desc": "단 한 장의 사진에서 AI가 분석하여 PBR 맵 세트를 자동으로 추출합니다."
+    },
+    {
+      "name": "Text to Texture",
+      "desc": "입력한 텍스트 Prompt를 기반으로 고품질의 타일링 가능한 재질을 생성합니다."
+    },
+    {
+      "name": "Tile Generator",
+      "desc": "생성된 패턴을 Viewport 전체에 균일하게 반복 배치합니다."
+    },
+    {
+      "name": "Seamless",
+      "desc": "텍스처의 경계선 부근 이음새를 자연스럽게 연결하여 반복 패턴의 어색함을 없앱니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 빛 반사 광택을 제어합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "표면의 입체감과 깊이감을 조절하여 실감 나는 요철을 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오래된 벽돌 벽 재질 생성",
+      "steps": [
+        "벽돌 사진을 Sampler에 드래그하여 불러옵니다.",
+        "Image to Material 기능을 활성화하여 노멀 및 하이트 맵을 추출합니다.",
+        "Roughness와 Color 밸런스를 조절하여 빈티지한 느낌을 살립니다."
+      ]
+    },
+    {
+      "title": "판타지 질감 텍스트 생성",
+      "steps": [
+        "Designer에서 Text to Texture 노드를 생성합니다.",
+        "Prompt 창에 'Magical glowing crystal surface'를 입력합니다.",
+        "AI 생성 결과물에 Color Adjust 노드를 연결해 색상을 보정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution가 너무 낮은 사진 사용 → 원본 이미지는 가급적 고해상도(2K 이상)를 사용해야 AI가 디테일을 정확히 추출합니다.",
+    "빛 반사가 심한 사진 입력 → 그림자나 하이라이트가 강한 사진은 평탄화(Lighting Adjustment) 처리를 먼저 거쳐야 노멀 맵이 왜곡되지 않습니다."
+  ],
+  "related": [
+    "Substance 3D Sampler",
+    "Substance 3D Designer",
+    "Substance 3D Painter",
+    "Image to Material"
+  ],
+  "videos": [
+    {
+      "id": "vz5j4X6Baw4",
+      "title": "Create PBR Materials From a Single Image in Substance 3D Sampler | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "VAj4jFfMAvk",
+      "title": "Create a Brick Wall Material in Substance 3D Sampler | Materials in Minutes #4 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20AI-powered%20material%20generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T00:59:21.226076+00:00"
+}

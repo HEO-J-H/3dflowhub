@@ -1,0 +1,96 @@
+{
+  "id": "substance-3d-tileable-photos-in-sampler-b3df",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "Tileable photos in Sampler",
+  "title": "사진 타일링",
+  "summary": "Substance 3D Sampler의 Tileable photos 기능을 사용하여 일반 사진이나 텍스처를 경계선 없이 자연스럽게 이어지는 심리스(Seamless) 타일링 팩으로 변환합니다.",
+  "when": [
+    "스마트폰이나 카메라로 촬영한 바닥재, 아스팔트, 벽돌 등의 사진을 타일형 텍스처로 만들 때",
+    "웹에서 구한 텍스처 소스의 좌우 또는 상하 이음새(Seam)를 없애고 싶을 때",
+    "게임이나 3D 씬의 대면적 지형 및 벽면에 반복 배치할 무한 텍스처가 필요할 때"
+  ],
+  "steps": [
+    "Substance Sampler를 실행하고 New Project를 생성합니다.",
+    "상단 Asset 패널이나 파일 탐색기에서 타일링할 원본 사진을 Viewport로 드래그 앤 드롭하여 불러옵니다.",
+    "Layers 패널에서 Image to Material 필터 또는 Tileable filters 카테고리에서 Tileable photos(또는 Make it Tile)를 선택합니다.",
+    "Properties 패널에서 이음새가 만나는 영역을 보정하고 블렌딩(Blending) 강도를 조절하여 경계선을 없앱니다.",
+    "Viewport에서 텍스처가 끊김 없이 자연스럽게 반복되는지 확인하고 최종 결과물을 Export 합니다."
+  ],
+  "params": [
+    {
+      "name": "Blending",
+      "desc": "이음새 부분의 텍스처를 자연스럽게 섞어 경계선을 지워줍니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "타일링 패턴의 중심 축을 이동하여 이음새 위치를 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "텍스처의 전체적인 크기와 반복 빈도를 조절합니다."
+    },
+    {
+      "name": "Light Equalizer",
+      "desc": "촬영 시 생긴 불균일한 그림자나 빛 번짐을 자동으로 보정합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "이미지의 기울어진 각도를 회전하여 수평을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "보도블록 사진으로 타일링 재질 만들기",
+      "steps": [
+        "스마트폰으로 촬영한 보도블록 사진을 Sampler에 불러옵니다.",
+        "Tileable photos 필터를 적용하여 이음새 경계선을 제거합니다.",
+        "Light Equalizer를 켜서 울퉁불퉁한 그림자 영역을 평탄하게 정리합니다.",
+        "PBR 맵(Base Color, Normal, Roughness)과 함께 프로젝트로 내보냅니다."
+      ]
+    },
+    {
+      "title": "잔디 텍스처 이음새 없애기",
+      "steps": [
+        "단색 반복 패턴이 눈에 띄는 잔디 사진을 가져옵니다.",
+        "Blending 옵션을 높여서 타일과 타일 사이의 반복되는 경계선을 부드럽게 뭉갭니다.",
+        "3D Viewport의 Plane 모델에 적용해 반복 무늬가 어색하지 않은지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진의 빛 번짐이 심한 상태에서 타일링 적용 → Light Equalizer를 먼저 사용하여 조명을 균일하게 맞춘 후 타일링을 진행하세요.",
+    "기울어진 사진 그대로 타일링 적용 → Angle 조절 및 Crop 기능을 사용해 이미지를 반듯하게 정렬한 뒤 변환하세요."
+  ],
+  "related": [
+    "Image to Material",
+    "Tile Sampler",
+    "Substance 3D Painter",
+    "Substance 3D Designer"
+  ],
+  "videos": [
+    {
+      "id": "F3DTive0Urg",
+      "title": "Substance 3D Sampler First Steps: Image to Material | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    },
+    {
+      "id": "VAj4jFfMAvk",
+      "title": "Create a Brick Wall Material in Substance 3D Sampler | Materials in Minutes #4 | Adobe Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Tileable%20photos%20in%20Sampler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance Sampler",
+    "New Project",
+    "Asset",
+    "Viewport",
+    "Layers",
+    "Image"
+  ],
+  "at": "2026-11-12T00:59:25.167577+00:00"
+}

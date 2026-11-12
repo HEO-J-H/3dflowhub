@@ -1,0 +1,89 @@
+{
+  "id": "substance-3d-sampler-layers-and-filters-ff91",
+  "tool": "Substance 3D",
+  "domain": "3D DCC",
+  "group": "샘플러",
+  "name": "Sampler layers and filters",
+  "title": "Sampler 레이어·필터",
+  "summary": "Substance 3D Sampler의 레이어와 필터(Layers and Filters)는 텍스처와 재질을 비파괴적으로 쌓고 실시간으로 수정하는 절차적 작업 시스템입니다.",
+  "when": [
+    "하나의 베이스 재질 위에 먼지, 긁힘, 스크래치 등의 세부 효과를 추가할 때",
+    "여러 개의 필터와 조절 노드를 쌓아 원본 손상 없이 다양한 변형을 줄 때",
+    "텍스처 레이어의 순서와 블렌드 모드를 조절하여 자연스러운 합성을 원할 때"
+  ],
+  "steps": [
+    "Substance Sampler를 실행하고 프로젝트를 엽니다.",
+    "우측 Layers 패널에서 효과를 적용할 레이어를 선택합니다.",
+    "Layers 패널 상단의 Add Layer 또는 Add Effect 아이콘을 클릭합니다.",
+    "메뉴에서 원하는 Filter 또는 Adjustment 노드를 선택하여 추가합니다.",
+    "Properties 패널에서 파라미터 값을 조절하여 Viewport의 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "하위 레이어와 상위 레이어가 섞이는 방식을 결정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "현재 레이어나 필터의 전체적인 불투명도를 조절합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "적용된 필터 효과나 노멀/하이트 맵의 강도를 조절합니다."
+    },
+    {
+      "name": "Color Balance",
+      "desc": "레이어의 색상 톤, 채도, 밝기를 비파괴적으로 보정합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "텍스처나 마스크의 경계를 부드럽게 흐리게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 표면 녹(Rust) 표현",
+      "steps": [
+        "금속 베이스 재질 레이어 위에 새 필터 레이어를 추가합니다.",
+        "오가닉 필터나 더스트 필터를 선택해 구석진 곳에 녹을 배치합니다.",
+        "Color Balance로 녹의 색상을 진한 주황색으로 맞춥니다."
+      ]
+    },
+    {
+      "title": "표면 스크래치 추가",
+      "steps": [
+        "기존 재질 위에 새 믹스 레이어를 올립니다.",
+        "스크래치 패턴 필터를 적용하고 하이트(Height) 채널만 활성화합니다.",
+        "Intensity를 조절해 파인 자국이 자연스럽게 보이도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이어 순서가 잘못됨 → 상위 레이어가 하위 레이어의 효과를 덮어씌우므로 Layers 패널에서 순서를 드래그하여 바로잡습니다.",
+    "블렌드 모드 미적용으로 색이 탁해짐 → Multiply나 Screen 등 알맞은 Blend Mode로 변경합니다.",
+    "불필요한 필터 과다 사용으로 속도 저하 → 레이어를 병합(Flatten)하거나 불필요한 필터를 삭제합니다."
+  ],
+  "related": [
+    "Image to Material",
+    "Substance 3D Painter",
+    "Anchor Point",
+    "Environment Light"
+  ],
+  "videos": [
+    {
+      "id": "rE8RGbBfurs",
+      "title": "Quick Start: Adobe Substance 3D Sampler",
+      "author": "SARKAMARI"
+    },
+    {
+      "id": "GjGkFA0x7c0",
+      "title": "Enhance Material Details w/ Upscale & Layer Resolution Modes in Substance 3D Sampler | Substance 3D",
+      "author": "Adobe Substance 3D"
+    }
+  ],
+  "doc": "https://helpx.adobe.com/search.html#q=Substance%203D%20Sampler%20layers%20and%20filters",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-12T00:59:16.889213+00:00"
+}
