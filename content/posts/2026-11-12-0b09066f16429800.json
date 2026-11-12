@@ -1,0 +1,60 @@
+{
+  "title_ko": "After Effects 네이티브 GPU 플러그인 Ether 공개",
+  "title": "I built Ether - a native GPU volumetric energy & plasma plugin for After Effects that renders in 8-15ms per frame",
+  "url": "https://www.reddit.com/r/vfx/comments/1xtztqx/i_built_ether_a_native_gpu_volumetric_energy/",
+  "domain": "VFX",
+  "category": "After Effects",
+  "topic": "플러그인·스크립트",
+  "tags": [
+    "After Effects",
+    "Ether",
+    "플러그인",
+    "VFX",
+    "GPU 렌더링",
+    "애프터 이펙트"
+  ],
+  "summary": "After Effects에서 3D 카메라와 연동되는 네이티브 C++ 및 OpenGL 기반의 볼륨감 있는 에너지와 플라즈마 렌더링 플러그인 Ether가 개발되었습니다.",
+  "insight": "기존 2D 빔 생성 도구는 3D 카메라를 회전하면 평면 레이어라는 약점이 그대로 노출됩니다. Ether는 네이티브 C++과 OpenGL 기반의 커스텀 GPU Shader 엔진을 탑재해 프레임당 8~15ms 속도로 작동합니다. 무거운 변위나 글로우를 겹쳐 가짜 플라즈마를 만들 때 생기는 프레임 저하를 방지합니다.",
+  "try_it": [
+    "After Effects의 네이티브 3D 공간에서 Ether 플러그인을 불러와 3D 카메라와 연동합니다.",
+    "카메라를 궤도 운동시키며 평면 형태가 아닌 3D 볼륨 필드로 렌더링되는지 확인합니다.",
+    "프레임당 8~15ms 수준의 GPU Shader 엔진 렌더링 속도를 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Ether 플러그인의 개발 배경",
+      "body": "기존의 빠른 2D 빔 생성 도구들은 3D 카메라를 회전할 때 평면인 것이 드러나는 한계가 있었습니다. 이를 해결하기 위해 After Effects의 네이티브 3D 공간에서 부드럽게 재생되는 진정한 볼륨감 있는 에너지를 구현하고자 직접 커스텀 GPU Shader 엔진을 제작했습니다. Auto-Orient를 적용한 평면 레이어 방식에서 벗어나 입체적인 표현이 가능합니다."
+    },
+    {
+      "heading": "C++ 및 OpenGL 기반 성능",
+      "body": "네이티브 C++ 및 OpenGL로 작성된 이 플러그인은 프레임당 8~15ms의 렌더링 속도를 기록합니다. 무거운 변위나 글로우 효과를 중첩하여 가짜 볼륨 플라즈마를 만들 때 발생하는 Viewport 프레임 저하 문제를 해결합니다. GPU 연산을 직접 활용해 복잡한 시각 효과에서도 쾌적한 작업 환경을 유지합니다."
+    },
+    {
+      "heading": "After Effects 3D 카메라 연동",
+      "body": "Auto-Orient를 사용한 평면 레이어가 아닌 진정한 3D 볼륨 필드가 GPU에서 렌더링됩니다. After Effects 3D 카메라가 주변을 자연스럽게 궤도 운동할 수 있도록 지원합니다. 카메라 움직임에 따라 에너지와 플라즈마의 입체감이 정확하게 유지됩니다."
+    },
+    {
+      "heading": "하드웨어 환경 확장",
+      "body": "최근 스냅드래곤 PC 환경에서도 어도비의 주요 응용프로그램이 에뮬레이션 방식이 아닌 네이티브 코드로 작동하기 시작했습니다. ARM 아키텍처 하드웨어의 연산 능력을 그대로 활용하는 환경이 조성되고 있습니다. 이와 같은 하드웨어 최적화 흐름과 맞물려 플러그인의 구동 성능도 뒷받침됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ether는 어떤 Software를 위한 플러그인인가요?",
+      "a": "After Effects를 위해 제작된 네이티브 C++ 및 OpenGL 기반 플러그인입니다."
+    },
+    {
+      "q": "기존 2D 빔 도구들과 어떤 차이가 있나요?",
+      "a": "가짜 2D 평면 일루전 대신 3D 카메라가 주변을 회전할 수 있는 진정한 3D 볼륨 에너지를 구현합니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/YoVEHo6GN9c/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=YoVEHo6GN9c"
+  },
+  "collected_at": "2026-11-12T15:02:48.923403+00:00",
+  "notion_id": "",
+  "id": "2026-11-12-0b09066f16429800",
+  "img_tried": true,
+  "enriched": "2026-11-12"
+}
