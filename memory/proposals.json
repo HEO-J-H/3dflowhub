@@ -34893,5 +34893,53 @@
     "id": "p-2085aca77f",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 완료된 PR 검토 및 머지 작업들과 유사한 내용으로, 최근 커밋 기록 및 끝낸 제안 목록에서 이미 처리된 이력이 확인됩니다."
+  },
+  {
+    "at": "2026-11-12T21:19:00+00:00",
+    "kind": "proposal",
+    "id": "p-6c7d13cada",
+    "title": "로컬 파이프라인 입력 검증 단위 테스트 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 실행에서 '변경 없음'으로 held 상태였던 backend/tests/test_mesh_from_image.py 입력 검증 테스트 코드를 안전하게 보완 필요",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 다양한 이미지 입력 포맷에 대한 검증 유닛 테스트 코드를 명확히 추가 및 수정",
+    "expected": "로컬 파이프라인 입력 처리의 안정성 확보 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T21:19:00+00:00",
+    "kind": "proposal",
+    "id": "p-2a045d785f",
+    "title": "웹 브라우저 PBR 변환 상태 JS 예외 처리 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 held 상태였던 웹 브라우저 UI 피드백 및 안내 문구 보강 작업을 DOM 요소 안전 조작 방식으로 재설계",
+    "proposal": "web/index.html 및 관련 Script에서 PBR 변환 로딩 및 완료 상태 메시지가 DOM에서 누락되었을 때의 예외 처리 로직 추가",
+    "expected": "웹 버전 사용자에게 명확하고 안정적인 변환 상태 피드백 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-12T21:19:43.918867+00:00",
+    "kind": "decision",
+    "id": "p-6c7d13cada",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-12T21:19:43.960760+00:00",
+    "kind": "decision",
+    "id": "p-2a045d785f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
   }
 ]
