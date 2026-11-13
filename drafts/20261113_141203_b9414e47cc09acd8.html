@@ -1,0 +1,21 @@
+<!-- TITLE: Blender 5.3 프로젝트 설정 추가 — 파일별 자산 및 설정 분리 | TAGS: Blender,Asset Browser,OpenColorIO,프로젝트 관리,파일 구조,블렌더,업데이트·출시 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://code.blender.org/2026/11/project-setup-whats-in-and-whats-next/" target="_blank" rel="noopener nofollow"><img src="https://code.blender.org/wp-content/uploads/2026/11/project_setup-480x270.jpg" alt="Blender 5.3 프로젝트 설정 추가 — 파일별 자산 및 설정 분리" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://code.blender.org/2026/11/project-setup-whats-in-and-whats-next/" target="_blank" rel="noopener nofollow">code.blender.org</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Blender 5.3에 도입된 Project Setup 시스템은 각 프로젝트마다 고유한 설정, 자산 라이브러리, 공유 변수를 분리하여 관리할 수 있게 합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 업데이트·출시</p>
+<h2>프로젝트 루트 디렉토리와 project.toml 구조</h2>
+<p>Blender 5.3은 폴더 트리 내에서 .blender_project 폴더를 감지하여 프로젝트 세션을 활성화합니다. 이 폴더 내부의 project.toml 파일은 Blender가 직접 관리하며 설정 정보를 평문 파일 형태로 저장합니다. 외부 스크립트나 버전 관리 시스템을 통해 쉽게 추적하고 수정할 수 있는 것이 특징입니다.</p>
+<h2>변수 및 경로 Template 지원</h2>
+<p>출력 파일 경로에 {project_root} 변수를 사용하여 드라이브나 컴퓨터가 바뀌어도 상대 경로 설정 없이 참조를 유지할 수 있습니다. 시퀀스 코드나 캐릭터 이름 같은 커스텀 변수를 정의하면 프로젝트 전체의 경로 Template에 일괄 반영됩니다.</p>
+<h2>자산 라이브러리 및 OpenColorIO 개별 지정</h2>
+<p>프로젝트마다 고유한 자산 라이브러리를 지정하여 Asset Browser, Asset Shelves, Add 메뉴에서 바로 활용할 수 있습니다. 또한 ACES 1.3, ACES 2.0 또는 커스텀 설정 등 프로젝트 단위로 OpenColorIO 구성을 고정할 수 있습니다.</p>
+<h2>Blender 5.4 이후의 개선 계획</h2>
+<p>이어지는 Blender 5.4 개발 목표에는 프로젝트 자체의 애드온 저장소 폴더 제공이 포함됩니다. 모든 작업자가 동일한 도구와 애드온 설정을 공유할 수 있도록 개선 작업이 진행 중입니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Blender 5.3에 도입된 project.toml 기반 Project Setup은 모든 프로젝트가 전역 설정을 공유하던 기존 방식에서 벗어나 자산 라이브러리와 OpenColorIO 구성을 폴더 단위로 분리합니다. 팀 작업 시 렌더링 경로와 색상 파이프라인을 일치시켜 설정 오류를 줄이고 버전 관리 시스템과의 연동성을 높여줍니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender에서 프로젝트는 어떻게 활성화되나요?</b><br/>A. 오픈하려는 .blend 파일의 상위 폴더 트리에서 .blender_project 폴더를 검색하여 발견하면 해당 프로젝트가 활성화됩니다. 또한 File &gt; Project &gt; Open 메뉴를 통해 프로젝트 폴더 경로를 직접 지정할 수도 있습니다.</p>
+<p><b>Q. 기존 사용자 환경설정과 프로젝트 설정이 충돌하면 어떻게 되나요?</b><br/>A. 프로젝트 설정은 사용자 환경설정보다 항상 우선 적용되도록 설계되었습니다. 따라서 프로젝트 내에 정의된 자산 라이브러리와 애드온 등이 전역 설정보다 먼저 로드됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-13-5fc62afcec6cb9c9.html">Blender 채용 정보 모음 — 11월 13일 기준</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-13-59897f95de7a6b54.html">Blender 5.3 Procedural 다이아몬드 머티리얼 제작 법</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-13-82201d6f10783db0.html">Blender 5.3 신규 버전 출시 소식과 주요 변경점</a></li></ul>
+<hr/><p>원문:<a href="https://code.blender.org/2026/11/project-setup-whats-in-and-whats-next/" target="_blank" rel="noopener nofollow">Project Setup: What’s In and What’s Next</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -38034,5 +38034,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T14:12:08+00:00",
+    "kind": "proposal",
+    "id": "p-bef9c5eead",
+    "title": "백엔드 메시 생성 서비스 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "최근 이미지 입력 검증 관련 패치 적용 및 테스트에서 반복적인 실패/건너뜀 발생",
+    "proposal": "backend/tests/test_mesh_from_image.py에 단순화된 이미지 입력 포맷 및 예외 처리 테스트 케이스를 명확하게 추가합니다.",
+    "expected": "메시 생성 서비스의 안정성 확보 및 테스트 통과율 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T14:12:08+00:00",
+    "kind": "proposal",
+    "id": "p-8eb1a68054",
+    "title": "웹 브라우저 PBR 상태 표시 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68에서 웹 PBR 상태 안내 UI 마크업이 변경되었으나 핵심 코드 변경으로 승인 대기 중",
+    "proposal": "web/tests/ 또는 프론트엔드 테스트 환경에 PBR 변환 UI 상태 변화를 검증하는 Script를 추가합니다.",
+    "expected": "웹 브라우저에서의 PBR 변환 상태 안내 UI 신뢰성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T14:13:12.987548+00:00",
+    "kind": "decision",
+    "id": "p-bef9c5eead",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 메쉬 생성 서비스 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T14:13:13.037018+00:00",
+    "kind": "decision",
+    "id": "p-8eb1a68054",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 UI 상태 표시 자동 테스트 추가",
+    "auto": true
   }
 ]
