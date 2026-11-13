@@ -155,6 +155,11 @@ def review(site: str, force: bool = False) -> dict | None:
             pending[int(r["i"])]["reply"] = str(r["text"])[:1500]
         except (KeyError, ValueError, IndexError, TypeError):
             continue
+    # 답을 빠뜨려도 한 번 검토한 요청은 '답함'으로 — 안 그러면 매 검토마다 같은 요청으로 같은 제안을 또 만듦
+    # (Pix2Poly '깃허브 RAG 검토' 요청이 11/04 이후 계속 다시 제안된 일, 2026-11-14)
+    for m in pending:
+        if not m.get("reply"):
+            m["reply"] = ("검토해 제안으로 올렸습니다: " + ", ".join(e["title"] for e in evs)[:600]) if evs else "검토함 — 이번에는 새 제안 없음"
     rep.update({"at": now, "summary": core.fix_terms(str(out.get("summary", "")))[:800],
                 "watch": str(out.get("watch", ""))[:300], "proposals": [e["title"] for e in evs]})
     core._save_json(report_path(site), rep)
