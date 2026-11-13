@@ -36334,5 +36334,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 에러 핸들링 유닛 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T07:50:41+00:00",
+    "kind": "proposal",
+    "id": "p-3ec962c80c",
+    "title": "웹 브라우저 PBR 상태 메시지 JS 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 브라우저 PBR 변환 상태 UI 마크업 정돈 작업(PR #68)이 완료되었으나, 관련 JS DOM 조작 부의 패치 적용이 held 상태로 남음",
+    "proposal": "web/index.html 및 관련 JS Script 파일에서 PBR 텍스처 변환 진행 상태 및 완료 메시지를 명확히 출력하는 DOM 조작 로직 보완",
+    "expected": "웹 버전 사용자에게 PBR 변환 상태를 직관적으로 전달",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T07:50:41+00:00",
+    "kind": "proposal",
+    "id": "p-dcca6bbb2d",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 런에서 입력 검증 테스트 추가 작업이 변경 없음으로 held 상태였음",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷(RGBA, RGB, 잘못된 포맷 등)에 대한 입력 검증 유닛 테스트 코드 보강",
+    "expected": "백엔드 입력 처리의 안정성 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T07:51:06.845115+00:00",
+    "kind": "decision",
+    "id": "p-3ec962c80c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T07:51:06.883887+00:00",
+    "kind": "decision",
+    "id": "p-dcca6bbb2d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]
