@@ -34614,5 +34614,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 오류 처리 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T01:09:21+00:00",
+    "kind": "proposal",
+    "id": "p-c23edb1b15",
+    "title": "웹 PBR 변환 오류 처리 유닛 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 웹 PBR 상태 안내 UI를 정돈하고 승인 대기 중이며, 관련 에러 핸들링 및 상태 메시지 표시를 검증할 테스트가 필요함",
+    "proposal": "web/ 또는 backend/tests/ 폴더 내에 웹 브라우저 PBR 변환 실패 시 에러 메시지가 DOM에 올바르게 노출되는지 검증하는 유닛 테스트를 추가합니다.",
+    "expected": "PBR 변환 실패 시 사용자 피드백 안정성 확보 및 UI 관련 회귀 방지",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T01:09:21+00:00",
+    "kind": "proposal",
+    "id": "p-bbad20c57c",
+    "title": "로컬 파이프라인 입력 검증 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 실행에서 입력 검증 테스트 추가 시도가 held 되었으며, 다양한 이미지 포맷(RGBA, RGB, 잘못된 포맷)에 대한 테스트 보강이 필요함",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 비정상적인 이미지 포맷 입력 시 발생하는 예외 처리를 검증하는 테스트 케이스를 명시적으로 추가합니다.",
+    "expected": "로컬 백엔드 서비스의 입력 데이터 예외 처리 신뢰성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T01:10:24.018772+00:00",
+    "kind": "decision",
+    "id": "p-c23edb1b15",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 오류 처리 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T01:10:24.052244+00:00",
+    "kind": "decision",
+    "id": "p-bbad20c57c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
   }
 ]

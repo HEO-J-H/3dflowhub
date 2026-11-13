@@ -1,0 +1,94 @@
+{
+  "id": "dcc-pixyz-studio-data-preparation-3a35",
+  "tool": "기타 DCC",
+  "domain": "3D DCC",
+  "group": "CAD 최적화",
+  "name": "Pixyz Studio Data Preparation",
+  "title": "Pixyz Studio로 대형 CAD 데이터를 게임 엔진용으로 최적화하는 방법",
+  "summary": "Pixyz Studio의 데이터 준비(Data Preparation) 기능은 복잡하고 무거운 엔지니어링 CAD 데이터를 게임 엔진이나 실시간 3D 시각화에 적합한 가벼운 폴리곤 메시로 최적화하는 핵심 워크플로입니다.",
+  "when": [
+    "CATIA, SolidWorks, STEP 등 무거운 CAD 데이터를 실시간 3D 엔진(Unreal Engine 등)에 불러오기 전에 최적화할 때",
+    "렌더링이나 게임 플레이에 불필요한 내부 숨겨진 파츠나 중복 지오메트리를 제거하여 폴리곤 수를 줄일 때",
+    "대규모 엔지니어링 어셈블리 모델의 구조를 정리하고 드로우 콜(Draw Call)을 최적화할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 File → Open 또는 CAD 파일을 드래그 앤 드롭하여 모델을 불러옵니다.",
+    "왼쪽 Product Structure(트리) 패널에서 어셈블리 구조를 확인하고 불필요한 내부 파츠를 선택하여 삭제합니다.",
+    "메뉴 바에서 CAD → Repair Mesh 또는 Optimize Mesh 기능을 실행하여 지오메트리 오류를 수정합니다.",
+    "Decimate To Target 또는 Polygon Reduction 기능을 사용하여 폴리곤 밀도를 낮추고 용량을 최적화합니다.",
+    "오른쪽 Inspector 패널에서 결과물의 폴리곤 수와 구조를 확인한 후 File → Export를 통해 원하는 포맷(FBX, USD 등)으로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Tessellation Tolerance",
+      "desc": "CAD의 수학적 곡선을 폴리곤 메시로 변환할 때의 정밀도를 조절합니다."
+    },
+    {
+      "name": "Target Polygon Count",
+      "desc": "지오메트리 최적화 시 목표로 하는 최종 폴리곤 개수입니다."
+    },
+    {
+      "name": "Delete Hidden Parts",
+      "desc": "외부에서 보이지 않는 내부 파츠를 자동으로 감지하여 삭제합니다."
+    },
+    {
+      "name": "Repair Mesh",
+      "desc": "찢어진 면이나 깨진 노멀 등 메시의 결함을 자동으로 수정합니다."
+    },
+    {
+      "name": "Generate LOD Chain",
+      "desc": "원거리 렌더링을 위한 다단계 디테일(LOD) 에셋을 자동으로 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 내부 은닉 파츠 제거",
+      "steps": [
+        "Product Structure 패널에서 전체 차량 어셈블리를 선택합니다.",
+        "Optimization 메뉴에서 숨겨진 내부 부품을 찾는 기능을 실행합니다.",
+        "Viewport에서 보이지 않는 파츠가 선택되면 일괄 삭제하여 용량을 줄입니다."
+      ]
+    },
+    {
+      "title": "CAD 파일 폴리곤 리덕션",
+      "steps": [
+        "복잡한 기계 부품 메시를 선택합니다.",
+        "Polygon Reduction(또는 Decimate) 옵션을 엽니다.",
+        "시각적 품질이 유지되는 한도 내에서 타겟 폴리곤 비율을 낮추고 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Tessellation 수치를 너무 낮게 설정함 → 곡선 면이 각져 보이거나 깨짐. 가시성에 지지 않는 최소한의 값으로 조정하세요.",
+    "중요한 내부 구조까지 삭제함 → 애니메이션이나 조립 시 필요한 파츠가 사라짐. Product Structure에서 수동으로 예외 처리를 확인하세요.",
+    "스케일 단위 오류로 인해 엔진에서 크기가 다르게 나옴 → Import 시 Unit 설정(mm, cm 등)을 원본 CAD 규격에 맞게 확인하세요."
+  ],
+  "related": [
+    "Tessellation",
+    "Polygon Reduction",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B8%B0%ED%83%80%20DCC%20Pixyz%20Studio%20Data%20Preparation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "File",
+    "Open",
+    "CAD"
+  ],
+  "at": "2026-11-13T01:09:36.931366+00:00"
+}

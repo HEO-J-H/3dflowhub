@@ -1,0 +1,101 @@
+{
+  "id": "zbrush-normal-map-export-0dc3",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "맵",
+  "name": "Normal map export",
+  "title": "노멀 맵 Export",
+  "summary": "ZBrush에서 제작한 고해상도 조각 모델의 디테일을 로우폴리곤 모델에 적용할 수 있도록 노멀 맵(Normal Map) 파일로 추출하는 기능입니다. 게임 엔진이나 다른 3D DCC 툴에서 가볍고 정교한 표면 질감을 표현할 때 사용합니다.",
+  "when": [
+    "하이폴리곤 모델의 미세한 스컬프팅 디테일을 로우폴리곤 게임 캐릭터에 적용할 때",
+    "Subdivision 레벨이 높아 무거워진 모델을 실시간 렌더링용으로 최적화할 때",
+    "Substance Painter나 Blender 등 다른 Software로 모델과 맵을 넘겨 작업할 때"
+  ],
+  "steps": [
+    "Subdivision History가 있는 경우, 노멀 맵을 추출할 최하위 레벨(Lowest Level)로 이동합니다 (Shift+D 또는 Ctrl+D 사용).",
+    "Tool 팔레트에서 Normal Map 카테고리를 엽니다.",
+    "필요에 따라 Tangent 또는 Adaptive 등의 옵션을 켭니다.",
+    "Create Normal Map 버튼을 클릭하여 맵을 생성합니다.",
+    "생성된 맵을 확인한 뒤 Clone Normal 버튼을 눌러 Texture 팔레트로 복사합니다.",
+    "Texture 팔레트에서 해당 맵을 선택하고 Export를 눌러 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Create Normal Map",
+      "desc": "현재 모델의 세밀한 디테일을 계산하여 노멀 맵을 생성합니다."
+    },
+    {
+      "name": "Tangent",
+      "desc": "표면의 곡면 방향(탄젠트 공간)을 기준으로 노멀 맵을 계산합니다."
+    },
+    {
+      "name": "Adaptive",
+      "desc": "메시의 왜곡을 줄이고 더 정확한 노멀 맵을 계산하도록 보정합니다."
+    },
+    {
+      "name": "SmoothUV",
+      "desc": "UV 경계면의 부드러움을 유지하여 이음새가 벌어지는 현상을 방지합니다."
+    },
+    {
+      "name": "FlipR / FlipG",
+      "desc": "타 3D Software와의 호환성을 위해 적색/녹색 채널 방향을 반전시킵니다."
+    },
+    {
+      "name": "Clone Normal",
+      "desc": "생성된 노멀 맵을 Texture 팔레트로 복사하여 파일로 내보낼 수 있게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 갑옷 디테일 추출",
+      "steps": [
+        "갑옷 모델의 Subdiv 레벨을 1로 낮춘 후 UV가 펴져 있는지 확인합니다.",
+        "Tool → Normal Map에서 Create Normal Map을 실행합니다.",
+        "Clone Normal을 눌러 텍스처로 복사한 뒤 파일로 저장합니다.",
+        "Unreal Engine이나 Substance Painter에 모델과 노멀 맵을 함께 불러와 적용합니다."
+      ]
+    },
+    {
+      "title": "몬스터 피부 주름 표현",
+      "steps": [
+        "스컬프팅이 완료된 몬스터 모델의 최하위 서브디비전 레벨로 이동합니다.",
+        "Tool → Normal Map 메뉴에서 Adaptive와 Tangent 옵션을 활성화합니다.",
+        "Create Normal Map을 클릭하여 피부의 미세한 주름 맵을 생성합니다.",
+        "Texture 메뉴에서 16-bit 또는 32-bit 포맷으로 맵을 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 겹쳐 있거나 펴지지 않음 → UV Master 등을 이용해 UV를 먼저 깔끔하게 펴야 합니다.",
+    "최하위 레벨이 아닌 상태에서 추출함 → 로우폴리곤 모델과 폴리곤 개수가 맞지 않아 맵이 깨지므로 최하위 서브디비전 레벨로 이동한 뒤 추출해야 합니다.",
+    "내보낸 맵의 상하가 뒤집힘 → 타 Software(예: Blender, Unreal Engine)에서 노멀 맵의 녹색 채널(Green Channel) 방향을 반전(Invert)하거나 ZBrush에서 FlipG 옵션을 켜고 다시 추출합니다."
+  ],
+  "related": [
+    "Displacement Map",
+    "Subdivision Levels",
+    "UV Master",
+    "Texture Map"
+  ],
+  "videos": [
+    {
+      "id": "ozL-HMhouI4",
+      "title": "Zbrush Export Normal Map | Tutorial",
+      "author": "Alex Weinberg"
+    },
+    {
+      "id": "xWrxagYzG5A",
+      "title": "Exporting Normal and Displacement Maps with HD Geometry Details from Zbrush #zbrushtuts #zbrush #art",
+      "author": "Khas 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Normal%20map%20export",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Subdivision History",
+    "Lowest Level",
+    "Tool",
+    "Normal Map"
+  ],
+  "at": "2026-11-13T01:09:32.338180+00:00"
+}
