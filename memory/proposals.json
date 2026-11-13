@@ -36550,5 +36550,65 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 검토 및 머지 처리",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T09:01:09.658039+00:00",
+    "kind": "report",
+    "id": "r-2026-11-13T09:01",
+    "text": "총 1,490건의 콘텐츠와 최근 7일간 415건의 글이 수집되었으며, 가이드 비중(80%)에 집중하여 독자가 실제로 학습할 수 있는 환경을 강화하고 있습니다. 다만 검색 유입과 조회수 확대를 위해 인기 도구 및 에버그린 가이드의 깊이 있는 보강이 계속 필요합니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.8,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자가 와서 실제로 공부할 수 있는 에버그린 기초 가이드 중심 운영 원칙에 따라 가이드 제작 비중을 80%로 배분합니다."
+  },
+  {
+    "at": "2026-11-13T09:01:12+00:00",
+    "kind": "proposal",
+    "id": "p-ce8f516e98",
+    "title": "웹 브라우저 PBR 변환 상태 메시지 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68 병합 완료 이후 웹 브라우저 PBR UI 변환 상태 메시지에 대한 안정성 검증 필요",
+    "proposal": "web/tests/ 또는 관련 테스트 파일에 PBR 변환 상태 DOM 변경 및 스피너 동작을 검증하는 단위 테스트 코드를 추가합니다.",
+    "expected": "웹 브라우저 인터페이스의 상태 안내 UI 신뢰성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T09:01:12+00:00",
+    "kind": "proposal",
+    "id": "p-5f7e0584b3",
+    "title": "로컬 파이프라인 입력 검증 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "과거 패치 적용 실패 및 백엔드 입력 안정성 확보 필요성",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷 입력 검증 테스트 케이스를 명시적으로 보강합니다.",
+    "expected": "잘못된 포맷 입력 시 백엔드 예외 처리의 견고함 증가",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T09:01:47.320236+00:00",
+    "kind": "decision",
+    "id": "p-ce8f516e98",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T09:01:47.350602+00:00",
+    "kind": "decision",
+    "id": "p-5f7e0584b3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 유닛 테스트 보강",
+    "auto": true
   }
 ]
