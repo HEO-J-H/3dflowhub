@@ -1,0 +1,93 @@
+{
+  "id": "maya-script-editor-and-mel-ad3e",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "Script Editor and MEL",
+  "title": "Script Editor·MEL",
+  "summary": "Maya의 Script Editor는 MEL과 Python 코드를 작성하고 실행하여 반복 작업을 자동화하거나 커스텀 툴을 만드는 핵심 개발 도구입니다.",
+  "when": [
+    "반복적인 수작업을 자동화 Script로 처리하고 싶을 때",
+    "뷰포트나 아웃라이너에서 수행한 UI 조작의 내부 MEL 명령어를 확인하고 싶을 때",
+    "커스텀 툴이나 간단한 리깅 제어 코드를 작성하고 테스트할 때"
+  ],
+  "steps": [
+    "Windows 메뉴를 엽니다.",
+    "General Editors를 선택합니다.",
+    "Script Editor를 클릭하여 실행합니다.",
+    "상단 탭에서 MEL 또는 Python 탭을 선택합니다.",
+    "에디터 창에 코드를 입력하고, 상단의 파란색 Play 버튼(Execute)을 누릅니다."
+  ],
+  "params": [
+    {
+      "name": "History",
+      "desc": "Maya에서 수행한 모든 작업의 MEL 명령어 기록을 보여줍니다."
+    },
+    {
+      "name": "Input",
+      "desc": "Script 코드를 직접 작성하고 실행하는 입력 영역입니다."
+    },
+    {
+      "name": "Execute",
+      "desc": "선택한 코드 또는 전체 코드를 실행합니다."
+    },
+    {
+      "name": "Clear History",
+      "desc": "기록 창의 모든 텍스트를 지웁니다."
+    },
+    {
+      "name": "Save Script",
+      "desc": "현재 작성 중인 Script를 파일로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 오브젝트 이름 출력하기",
+      "steps": [
+        "Script Editor를 엽니다.",
+        "Python 탭을 선택합니다.",
+        "print(cmds.ls(selection=True)) 코드를 입력합니다.",
+        "Execute 버튼을 눌러 결과 확인"
+      ]
+    },
+    {
+      "title": "큐브 생성 자동화",
+      "steps": [
+        "MEL 탭을 선택합니다.",
+        "polyCube -w 2 -h 2 -d 2; 코드를 입력합니다.",
+        "Execute 버튼을 눌러 2x2x2 크기의 큐브를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "MEL과 Python 탭 혼동 → 각 언어 문법에 맞는 탭에서 코드를 실행하세요.",
+    "세미콜론(;) 누락 → MEL 명령어 끝에는 반드시 세미콜론을 붙여야 합니다."
+  ],
+  "related": [
+    "Python",
+    "Node Editor",
+    "Hypergraph",
+    "Outliner"
+  ],
+  "videos": [
+    {
+      "id": "Xpyt0N4ErKM",
+      "title": "Audrey II - Maya Project Tutorial - Part 17 - Leaf Controllers & MEL Script",
+      "author": "LXH Digital Design & Fantasy Fabrication"
+    },
+    {
+      "id": "lFm4WL8bX1U",
+      "title": "Maya LT - Mel scripting",
+      "author": "Peterschinegg & Kanisco Bulgaria"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Script%20Editor%20and%20MEL",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Windows",
+    "General Editors",
+    "Script Editor"
+  ],
+  "at": "2026-11-13T00:39:38.992746+00:00"
+}
