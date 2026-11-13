@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-xmd-and-fibermesh-468d",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기타",
+  "name": "XMD and Fibermesh",
+  "title": "FiberMesh — 털",
+  "summary": "ZBrush의 Fibermesh와 XMD 브러시 시스템은 캐릭터의 머리카락, 동물 털, 잔디, 그리고 세밀한 표면 디테일을 직관적으로 생성하고 조형하는 강력한 도구입니다.",
+  "when": [
+    "캐릭터의 머리카락, 수염, 눈썹을 자연스럽게 제작할 때",
+    "동물의 털이나 잔디, 카펫 같은 파이버(Fiber) 요소를 모델에 심을 때",
+    "XMD 브러시를 활용해 끈, 바늘, 지퍼 등의 복잡한 형태를 빠르게 스케줄링할 때"
+  ],
+  "steps": [
+    "SubTool 팔레트에서 털을 생성할 메쉬 오브젝트를 선택합니다.",
+    "Tool 메뉴 패널에서 Fibermesh 하위 메뉴를 확장합니다.",
+    "Preview 버튼을 눌러(또는 소형 Viewport에서) 기본 생성된 파이버의 형태를 확인합니다.",
+    "MaxFibers, Length, G1(Gravity) 등의 슬라이더 값을 조절하여 밀도와 길이를 맞춥니다.",
+    "Accept 버튼을 눌러 파이버를 별도의 SubTool 레이어로 확정합니다.",
+    "Move, Groom 등의 브러시를 선택하여 Viewport에서 직접 털의 결을 빗어 정리합니다."
+  ],
+  "params": [
+    {
+      "name": "MaxFibers",
+      "desc": "생성되는 전체 파이버(가닥)의 최대 수량을 조절합니다."
+    },
+    {
+      "name": "Length",
+      "desc": "파이버 가닥의 기본 길이를 설정합니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "파이버가 아래로 처지는 중력 효과의 강도를 조절합니다."
+    },
+    {
+      "name": "Bending",
+      "desc": "파이버 가닥이 휘어지는 정도와 곡률을 설정합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "파이버의 기본 색상 및 베이스 맵 채색 옵션을 결정합니다."
+    },
+    {
+      "name": "Hume/Clump",
+      "desc": "파이버 가닥들이 자연스럽게 뭉치고 헝클어지는 효과를 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "동물 털 표현",
+      "steps": [
+        "동물 메쉬의 몸체 영역을 Mask로 지정합니다.",
+        "Fibermesh 메뉴에서 MaxFibers 값을 높이고 길이를 짧게 설정합니다.",
+        "Accept 후 Groom Hair 브러시로 결을 따라 빗어줍니다."
+      ]
+    },
+    {
+      "title": "잔디밭 만들기",
+      "steps": [
+        "평면(Plane) 메쉬를 준비하고 상단 면에 마스크를 칠합니다.",
+        "Fibermesh 설정에서 Gravity를 낮추고 Bending을 주어 무작위성을 높입니다.",
+        "Accept 한 뒤 Scale 변형으로 크기를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "밀도가 너무 높게 설정되어 Viewport가 멈춤 → MaxFibers 값을 낮추거나 Preview 상태에서 수치를 먼저 조절하세요.",
+    "마스크가 없는 상태에서 Fibermesh를 실행함 → 원하는 영역에만 털을 생성하려면 미리 Mask를 칠한 뒤 Accept 하세요.",
+    "털이 메쉬 내부로 파묻힘 → Normal 방향 수치를 조절하거나 Move 브러시로 위치를 빼내세요."
+  ],
+  "related": [
+    "Groom Brushes",
+    "SubTool",
+    "Masking",
+    "Curve Brushes"
+  ],
+  "videos": [
+    {
+      "id": "VEXJMSPikko",
+      "title": "ZBrush 4R2b Basics of FiberMesh",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "uSly5pKIbwc",
+      "title": "ZBrush 4R2b Morph Target Guided with FiberMesh",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20XMD%20and%20Fibermesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-13T02:50:15.200884+00:00"
+}

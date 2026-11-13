@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-noisemaker-b711",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기타",
+  "name": "NoiseMaker",
+  "title": "NoiseMaker",
+  "summary": "ZBrush NoiseMaker는 모델 표면에 절차적(Procedural) 노이즈 패턴을 주어 피부 질감, 암석의 거친 표면, 가죽 질감 등을 빠르고 디테일하게 생성하는 기능입니다.",
+  "when": [
+    "캐릭터 피부나 크리처의 미세한 모공과 주름을 자연스럽게 표현할 때",
+    "갑옷이나 무기 표면에 금속의 미세한 부식이나 스크래치 질감을 더할 때",
+    "돌, 벽돌, 콘크리트 등 건축 자재의 거칠고 불규칙한 표면을 만들 때"
+  ],
+  "steps": [
+    "ZBrush에서 디테일을 적용할 SubTool을 선택합니다. (참고: 노이즈를 선명하게 표현하려면 폴리곤 밀도가 충분해야 합니다.)",
+    "Tool 팔레트에서 Surface 메뉴를 엽니다.",
+    "Surface 서브 팔레트 아래에 있는 Noise 버튼을 클릭하여 NoiseMaker 대화 상자를 엽니다.",
+    "대화 상자에서 원하는 노이즈 프리셋을 선택하거나 세부 파라미터(Alpha, Scale, Strength 등)를 조정합니다.",
+    "OK 버튼을 눌러 노이즈 설정을 적용합니다.",
+    "Apply to Mesh 버튼을 클릭하여 모델의 지오메트리에 노이즈를 실제로 반영(변형)시킵니다."
+  ],
+  "params": [
+    {
+      "name": "Noise Plugin",
+      "desc": "적용할 절차적 노이즈의 알고리즘이나 패턴 종류를 선택합니다."
+    },
+    {
+      "name": "Alpha",
+      "desc": "노이즈 형태를 잡는 데 사용할 알파 맵을 불러와 적용합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "노이즈 패턴의 크기(반복 주기)를 조절합니다."
+    },
+    {
+      "name": "Strength",
+      "desc": "노이즈가 모델 표면에 튀어나오거나 들어가는 깊이(강도)를 조절합니다."
+    },
+    {
+      "name": "Color Blend",
+      "desc": "노이즈와 함께 모델의 폴리페인트(색상) 영역에 영향을 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "암석 표면 질감 만들기",
+      "steps": [
+        "Tool 팔레트의 Surface 메뉴에서 Noise를 엽니다.",
+        "거친 질감의 노이즈 프리셋을 선택하고 Scale을 높여 패턴을 크게 만듭니다.",
+        "Strength 값을 조절하여 바위의 파인 홈과 돌출부를 강조한 뒤 Apply to Mesh를 누릅니다."
+      ]
+    },
+    {
+      "title": "가죽 장비 디테일 추가",
+      "steps": [
+        "가죽 재질의 SubTool을 선택하고 NoiseMaker를 실행합니다.",
+        "미세한 입자의 노이즈 패턴을 선택하고 Scale을 낮게 설정합니다.",
+        "Strength를 낮게 주어 은은한 가죽 표면의 결을 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "폴리곤 밀도가 부족할 때 → Divide(Ctrl+D)를 실행해 메시의 Resolution를 높인 후 NoiseMaker를 적용합니다.",
+    "노이즈가 너무 거칠거나 안 보일 때 → Scale과 Strength 값이 모델의 크기에 맞지 않는 상태이므로 값을 조절합니다."
+  ],
+  "related": [
+    "Morph Target",
+    "FiberMesh",
+    "Surface",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "PlkjREVQ2bg",
+      "title": "How to Add Surface Details in ZBrush | NoiseMaker & Alphas",
+      "author": "Nexttut"
+    },
+    {
+      "id": "_5JT9cwxtms",
+      "title": "Noisemaker in ZBrush for easy details",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20NoiseMaker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "SubTool",
+    "Tool",
+    "Surface",
+    "Noise",
+    "NoiseMaker"
+  ],
+  "at": "2026-11-13T02:50:19.069597+00:00"
+}
