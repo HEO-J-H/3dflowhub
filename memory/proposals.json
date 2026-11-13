@@ -36406,5 +36406,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR UI 변경 최종 확인 및 머지",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T08:10:42+00:00",
+    "kind": "proposal",
+    "id": "p-97cfb85d18",
+    "title": "로컬 파이프라인 입력 검증 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전에 패치 적용 실패로 보류되었던 백엔드 입력 검증 테스트 항목을 재정비하여 안정성을 높입니다.",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷(RGBA, RGB, 잘못된 포맷 등) 예외 처리 테스트를 다시 작성하고 코딩 에이전트가 검증하도록 합니다.",
+    "expected": "잘못된 입력 이미지로 인한 로컬 파이프라인 예외 처리 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T08:10:42+00:00",
+    "kind": "proposal",
+    "id": "p-20a36d0b02",
+    "title": "웹 브라우저 PBR 상태 메시지 JS 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 상태 UI 마크업 정돈(PR #68)과 연계하여 사용자 피드백을 명확히 합니다.",
+    "proposal": "web/index.html 및 관련 JS Script에서 로딩 스피너 및 PBR 텍스처 변환 완료 상태 메시지를 일관성 있게 출력하도록 DOM 조작 로직을 보완합니다.",
+    "expected": "브라우저 내 PBR 변환 과정에서 사용자 경험(UX) 직관성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T08:11:03.394707+00:00",
+    "kind": "decision",
+    "id": "p-97cfb85d18",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T08:11:03.431584+00:00",
+    "kind": "decision",
+    "id": "p-20a36d0b02",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 상태 메시지 JS 보완",
+    "auto": true
   }
 ]
