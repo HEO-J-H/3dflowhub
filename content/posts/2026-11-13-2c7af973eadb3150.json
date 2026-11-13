@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting ReCan-GS — 동적 재구성의 방해 요소 제거",
+  "title_ko": "ReCan-GS: 동적 장면을 위한 4D Gaussian Splatting 방해 요소 제거",
   "title": "Reconstruct What You Can: Distractor-free 4D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2611.16259v1",
   "domain": "AI 3D",
@@ -8,53 +8,93 @@
   "tags": [
     "Gaussian Splatting",
     "4D Reconstruction",
-    "WACV 2027",
-    "Computer Vision",
-    "Neural Rendering"
+    "Dynamic Scenes",
+    "Distractor Removal",
+    "Jacobian Uncertainty"
   ],
-  "summary": "ReCan-GS는 변형 필드의 야코비안 기반 민감도 점수를 활용하여 일관된 피사체 모션과 과도한 가림 요소를 분리하는 4D Gaussian Splatting 프레임워크입니다.",
-  "insight": "WACV 2027에 채택된 본 논문은 캐주얼 비디오에서 유효한 피사체 움직임을 유지하면서 과도한 가림 요소나 그림자, 볼륨 효과를 분리하는 방안을 제시합니다. 기존 동적 재구성 방식들은 정적 씬을 가정해 유효한 모션을 억제하거나 모든 관측치를 함께 모델링하여 고스팅 현상과 불안정한 지오메트리를 유발했습니다. ReCan-GS는 학습된 변형 필드로부터 야코비안 기반 변형 민감도 점수를 도출하여 재구성 모호성의 지표로 삼습니다. 이를 통해 사전 학습된 세그멘터나 마스크 없이도 연기나 안개 같은 볼륨 효과와 광학적 아티팩트를 처리할 수 있습니다.",
+  "summary": "ReCan-GS는 변형 필드의 Jacobian 기반 불확실성 지표를 활용해 동적 장면에서 방해 요소를 분리하고 방해 요소 없는 4D Gaussian Splatting 복원을 수행합니다.",
+  "insight": "이 연구는 3D 아티스트와 실무자가 영상 기반 4D 재구성 시 번거로운 수동 마스킹 작업 없이도 방해 요소를 자동으로 걸러내는 가능성을 보여줍니다. 향후 캐주얼 영상으로부터 깨끗한 동적 3D 캐릭터나 오브젝트를 추출하는 파이프라인의 효율성을 크게 높일 수 있을 것으로 기대됩니다.",
   "try_it": [
-    "야코비안 기반 변형 민감도 점수를 활용하여 4D Gaussian Splatting에서 일관된 모션과 가림 요소를 분리하는 로직을 검토합니다.",
-    "사전 학습된 세그멘터나 마스크 없이 연기, 안개, 그림자 같은 방해 요소를 처리하는 파이프라인 설계를 테스트합니다.",
-    "동적 Core Gaussians와 뷰별 Distractor Gaussians의 분리 및 사후 프루닝 방식을 실험합니다."
+    "공식 프로젝트 페이지(https://recan-gs.github.io)에 방문하여 ReCan-GS의 동적 재구성 및 연기 제거 데모 영상을 확인합니다.",
+    "GitHub 이슈 및 소스 관련 안내는 논문 연계 링크를 통해 접근할 수 있습니다."
   ],
   "sections": [
     {
-      "heading": "ReCan-GS 프레임워크와 변형 민감도 점수",
-      "body": "기존 동적 재구성은 정적 씬 가정으로 유효한 모션을 억제하거나 모든 관측치를 함께 모델링해 고스팅 현상을 유발했습니다. ReCan-GS는 학습된 변형 필드로부터 야코비안 기반 변형 민감도 점수를 유도하여 재구성 모호성의 지표로 삼습니다. 이를 통해 일관된 씬 콘텐츠와 일관되지 않은 관측치를 분리합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "캐주얼 비디오에서 동적 3D 장면을 복원할 때, 일시적 가려짐(occluder), 그림자, 볼륨 효과 등이 유효한 주체 모션과 충돌을 일으켜 고스트 현상이나 불안정한 지오메트리를 유발합니다. 기존 정적 방해 요소 제거 방법은 움직이는 대상을 노이즈로 취급해 실패하고, 일반 동적 복원 방법은 모든 관측을 함께 모델링해 아티팩트를 낳습니다."
     },
     {
-      "heading": "Core Gaussians와 Distractor Gaussians 분리",
-      "body": "산출된 점수는 동적 Core Gaussians와 뷰별 Distractor Gaussians로 분리하는 기준이 됩니다. 또한 민감도가 높은 Core Gaussians를 사후 프루닝하는 데도 활용됩니다. 이 과정에서 별도의 마스크나 사전 학습된 세그멘터, 매체 특화 감독 없이도 작동합니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 방해 요소를 물체의 정체성이나 속도가 아닌 '변형 공간의 불안정성(deformation-space instability)'으로 정의합니다. 학습된 변형 필드의 Jacobian으로부터 유도된 불확실성 점수를 이용해, 기하학적으로 일관된 콘텐츠는 동적 Core Gaussians로 라우팅하고 일관되지 않은 관측은 뷰별 Distractor Gaussians로 분리합니다."
     },
     {
-      "heading": "공간 가림 요소와 볼륨 효과 제거 검증",
-      "body": "동일한 기준은 공간적 가림 요소, 광학적 아티팩트, 시간에 따라 진화하는 연기나 안개 제거를 지원합니다. 합성 및 실제 동적 씬과 합성 연기·안개 씬을 통한 실험에서 평가된 방해 요소 체계 전반에 걸쳐 유용성이 입증되었습니다."
+      "heading": "방법 구조",
+      "body": "ReCan-GS 파이프라인은 안정적인 장면 내용을 모델링하는 Core Gaussians와 뷰별 과도 현상을 포착하는 Distractor Gaussians의 두 가지 기하학적 레이어로 장면을 분해합니다. Core Gaussians는 8층 256폭의 MLP로 구현된 변형 필드 N을 통해 시간 t와 정준 위치에 따른 오프셋을 예측하며, 이 변형 필드의 Jacobian 공분산으로부터 불확실성 신호를 도출합니다."
     },
     {
-      "heading": "동적 씬 캡처에서의 적용 한계 극복",
-      "body": "캐주얼 비디오 촬영 환경에서는 예기치 못한 가림이나 일시적인 그림자가 발생하기 쉽습니다. ReCan-GS는 이러한 비일관적 관측치를 수학적 민감도 점수를 바탕으로 걸러냅니다. 따라서 복잡한 마스킹 작업 없이도 깨끗한 4D 재구성을 도모할 수 있습니다."
+      "heading": "결과 및 검증",
+      "body": "합성과 실제 동적 장면, 그리고 연기 및 안개(fog/smoke) 합성 장면에서 평가를 진행했습니다. 마스크나 사전 학습된 분할기, 매체 특화 슈퍼비전 없이도 공간적 가려짐, 광도학적 아티팩트, 진화하는 연기·안개 같은 볼륨 방해 요소를 제거할 수 있음을 입증했습니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "본 논문의 방법은 동적 장면 내의 일시적 방해 요소와 볼륨 안개·연기 제거에 주로 설계되어 있으며, 표준 정적 방해 요소 벤치마크에서의 성능은 상대적으로 제한적입니다. 또한 높은 불확실성 점수가 항상 유효한 모션의 실패를 의미하지는 않으며 관측 커버리지에 영향을 받습니다."
+    },
+    {
+      "heading": "코드 및 프로젝트 공개",
+      "body": "연구진은 프로젝트 페이지(https://recan-gs.github.io)와 GitHub 이슈 리포트 링크를 제공하고 있으며, 본문 텍스트 내에서 관련 구현 및 실험 결과를 공개하고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "ReCan-GS는 어떤 문제를 해결하나요?",
-      "a": "캐주얼 비디오에서 동적 재구성 시 발생하는 유효 모션 억제와 고스팅 현상, 불안정한 지오메트리 문제를 해결합니다."
+      "q": "ReCan-GS는 방해 요소를 어떻게 정의합니까?",
+      "a": "물체의 속도나 외형이 아니라, 공유 정준 공간에서 일관되지 않은 변형 제약을 유발하는 관측을 변형 공간 불안정성으로 정의합니다."
     },
     {
-      "q": "마스크나 사전 학습된 세그멘터가 필요한가요?",
-      "a": "아니요. 마스크나 사전 학습된 세그멘터, 매체 특화 감독 없이도 변형 민감도 점수를 통해 가림 요소와 볼륨 효과를 분리할 수 있습니다."
+      "q": "변형 필드 MLP는 어떤 구조를 사용합니까?",
+      "a": "DeformableGS 등과 유사하게 정준 위치와 시간을 입력받아 위치, 회전, 스케일 오프셋을 예측하는 8층, 256폭의 MLP를 사용합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.16259v1/imgs/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.16259v1/imgs/pipeline.png",
+        "caption": "Figure 2 : An overview of our ReCan-GS pipeline. The scene is modeled with two components: dynamic Core Gaussians ( G G ) and per-view Distractor Gaussians ( G d ​ i ​ s ​ t G_{dist} ). An MLP deforms the core Gaussians over time ( t t ). A Jacobian-based uncertainty signal, derived from the deforma",
+        "caption_ko": "그림 1: 노이즈가 있는 동적 단안 프레임(a)에서 재구성 가능한 모션(초록색)과 불가능한 모션(빨간색)을 분해하여(b) 디테일을 유지하며 방해 없는 동적 복원(c)을 수행합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.16259v1/imgs/dyn_results_references_corrected.png",
+        "caption": "Figure 3 : Qualitative results on dynamic scenes with distractors. Columns 2–3 are dynamic reconstruction methods that jointly model all motion, often producing ghosting from transient occluders. Columns 4–5 are standard distractor-removal methods that assume a static scene and therefore struggle wi",
+        "caption_ko": "그림 2: ReCan-GS 파이프라인 개요. 동적 Core Gaussians와 뷰별 Distractor Gaussians 두 가지 구성 요소로 장면을 모델링하며, Jacobian 기반 불확실성 신호가 최적화를 유도합"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.16259v1/imgs/smoke_results_references_corrected.png",
+        "caption": "Figure 4 : Smoke removal results. ReCan-GS separates slow-moving volumetric distractors from the core scene by detecting deformation-space instability, enabling clean smoke-free reconstructions where appearance-based methods leave residual haze.",
+        "caption_ko": "그림 3: 방해 요소가 있는 동적 장면에서의 정성적 결과 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.16259v1/imgs/ablation/uncertainty_speed.png",
+        "caption": "Figure 5 : Uncertainty vs. Motion and Coverage. Uncertainty decreases as the number of camera views increases, indicating that the metric captures reconstructability rather than raw motion magnitude.",
+        "caption_ko": "그림 4: 연기 제거 결과. ReCan-GS가 변형 공간 불안정을 감지하여 느리게 움직이는 볼륨 방해 요소를 분리합니다."
+      }
+    ]
   },
   "collected_at": "2026-11-13T05:50:09.440906+00:00",
   "notion_id": "",
   "id": "2026-11-13-2c7af973eadb3150",
   "img_tried": true,
   "enriched": "2026-11-13",
-  "img_ok": "2026-11-13T06:00:24+00:00"
+  "img_ok": "2026-11-13T06:00:24+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-13T06:41:00+00:00"
 }
