@@ -38185,5 +38185,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 검토 및 머지 처리",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T14:52:34+00:00",
+    "kind": "proposal",
+    "id": "p-60012927b1",
+    "title": "웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 입력 검증 테스트가 패치 적용 실패로 보류된 상태이며 웹 브라우저 전용 로직의 안정성 검증이 필요합니다.",
+    "proposal": "web/ 디렉토리 내에 브라우저용 이미지 전처리 및 높이맵 메시 생성 함수에 대한 간단한 단위 테스트 파일을 추가하여 회귀를 방지합니다.",
+    "expected": "웹 클라이언트 측 PBR 및 메시 변환 로직의 품질 안정화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T14:52:34+00:00",
+    "kind": "proposal",
+    "id": "p-be6fafcc61",
+    "title": "PR #68 웹 PBR UI 변경 최종 승인 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 대기 중이며 웹 PBR 상태 안내 DOM 구조 정돈이 반영되어 있습니다.",
+    "proposal": "GitHub에서 PR #68의 코드 변경 사항과 PBR 상태 표시 UI 동작을 최종 검토하고 머지 처리를 진행합니다.",
+    "expected": "사용자에게 명확한 PBR 변환 진행 상태 안내 제공",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T14:53:05.276583+00:00",
+    "kind": "decision",
+    "id": "p-60012927b1",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T14:53:05.306710+00:00",
+    "kind": "decision",
+    "id": "p-be6fafcc61",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR UI 변경 최종 확인 및 머지",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T14:53:08.818135+00:00",
+    "kind": "triage",
+    "id": "p-60012927b1",
+    "verdict": "agent",
+    "reason": "웹 브라우저용 이미지 전처리 및 높이맵 메시 생성 함수에 대한 단위 테스트 파일을 추가하는 작업은 코드를 수정하여 자동화할 수 있습니다."
   }
 ]
