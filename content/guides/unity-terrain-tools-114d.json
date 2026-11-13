@@ -1,0 +1,95 @@
+{
+  "id": "unity-terrain-tools-114d",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "환경",
+  "name": "Terrain tools",
+  "title": "Terrain — 지형 만들기",
+  "summary": "Unity Terrain Tools는 브러시 기반의 직관적인 인터페이스로 섬, 산맥, 계곡 등의 자연 지형을 빠르고 부드럽게 조각할 수 있는 강력한 내장 툴셋입니다.",
+  "when": [
+    "오픈월드 게임이나 대규모 야외 배경의 베이스 지형을 구축할 때",
+    "산봉우리, 언덕, 분화구 등 자연스러운 높낮이 변화를 브러시로 직접 빚어내고 싶을 때",
+    "텍스처 페인팅과 나무, 풀 등의 자연물을 지형 위에 대량으로 배치할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 우클릭 후 3D Object → Terrain을 선택하여 씬에 지형을 생성합니다.",
+    "Inspector 창에서 Terrain 상단의 세 번째 아이콘(Paint Terrain)을 선택하고 드롭다운에서 Raise/Lower Terrain을 고릅니다.",
+    "Brush 목록에서 원하는 브러시 형태를 선택하고 Brush Size와 Opacity 값을 조절합니다.",
+    "Scene 뷰에서 지형 위를 Mouse로 클릭하거나 드래그하여 산이나 언덕의 높낮이를 올리거나 낮춥니다.",
+    "Terrain 컴포넌트의 설정(Gear 아이콘)에서 Terrain Width와 Terrain Length, Height를 조절해 전체 크기를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Raise/Lower Terrain",
+      "desc": "Mouse 드래그로 지형의 높이를 높이거나 낮추는 브러시 기능입니다."
+    },
+    {
+      "name": "Set Height",
+      "desc": "지정한 목표 높이로 지형을 평탄하게 고정하거나 맞출 때 사용합니다."
+    },
+    {
+      "name": "Smooth Height",
+      "desc": "거칠게 파인 지형이나 급경사면의 높낮이를 부드럽게 블러 처리합니다."
+    },
+    {
+      "name": "Paint Texture",
+      "desc": "지형 표면 위에 잔디, 흙, 바위 등의 레이어 텍스처를 브러시로 칠합니다."
+    },
+    {
+      "name": "Brush Size",
+      "desc": "지형 편집에 사용하는 브러시의 전체 크기를 조절합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "브러시가 지형에 작용하는 강도와 속도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웅장한 산맥 만들기",
+      "steps": [
+        "Raise/Lower Terrain 브러시를 선택하고 크기를 크게 설정합니다.",
+        "화면 드래그로 거대한 산의 줄기를 길게 끌어올립니다.",
+        "Smooth Height 브러시로 거친 모서리를 부드럽게 다듬습니다."
+      ]
+    },
+    {
+      "title": "계곡과 강줄기 파내기",
+      "steps": [
+        "Shift 키를 누른 상태에서 Raise/Lower Terrain 브러시를 사용합니다.",
+        "지형이 아래로 파여 들어가는 것을 확인하며 강줄기 형태를 그립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지형이 너무 깨지거나 각져 보임 → Smooth Height 브러시로 해당 구역을 문질러 부드럽게 정돈합니다.",
+    "브러시 반응이 너무 느리거나 안 먹힘 → Terrain 컴포넌트의 Brush Size와 Opacity 값이 너무 낮게 설정되었는지 확인합니다."
+  ],
+  "related": [
+    "Paint Texture",
+    "Paint Trees",
+    "Paint Details",
+    "Terrain Settings"
+  ],
+  "videos": [
+    {
+      "id": "smnLYvF40s4",
+      "title": "How to build beautiful landscapes in Unity using Terrain Tools | Tutorial",
+      "author": "Unity"
+    },
+    {
+      "id": "4yTUMiuhjK4",
+      "title": "Introduction to Terrains | Unity Terrain Basics (2023) | EP1",
+      "author": "Yeahlowflicker"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Terrain%20tools",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "D Object",
+    "Terrain"
+  ],
+  "at": "2026-11-13T00:19:31.470786+00:00"
+}

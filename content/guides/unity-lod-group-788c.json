@@ -1,0 +1,92 @@
+{
+  "id": "unity-lod-group-788c",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "LOD Group",
+  "title": "LOD Group — 거리별 디테일",
+  "summary": "Unity의 LOD Group 컴포넌트는 카메라와의 거리에 따라 폴리곤 수가 다른 3D 모델(LOD 0~N)을 자동으로 교체하여 렌더링 성능을 최적화하는 기능입니다.",
+  "when": [
+    "오픈월드나 대규모 씬에서 멀리 있는 오브젝트의 폴리곤 부하를 줄이고 싶을 때",
+    "모바일 플랫폼이나 저사양 기기에서 프레임 레이트를 방어할 때",
+    "카메라와 가까워질수록 고해상도 모델로 매끄럽게 전환해야 할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 LOD Group을 적용할 루트 3D 모델을 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "LOD Group을 검색하여 컴포넌트를 추가합니다.",
+    "메시가 포함된 하위 GameObject들을 Inspector의 LOD 수준(LOD 0, LOD 1 등) 박스로 드래그하여 할당합니다.",
+    "Scene 뷰와 Game 뷰를 보며 LOD 카메라를 이동하거나 Inspector의 수치 바를 조절하여 전환 시점을 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "LOD 0",
+      "desc": "가장 가까운 거리에서 보이는 최고 Resolution의 원본 모델입니다."
+    },
+    {
+      "name": "LOD 1",
+      "desc": "중간 거리에서 폴리곤을 줄여 렌더링 부하를 낮추는 중간 단계 모델입니다."
+    },
+    {
+      "name": "LOD 2",
+      "desc": "먼 거리에서 폴리곤을 대폭 줄여서 보여주는 저해상도 모델입니다."
+    },
+    {
+      "name": "Cull",
+      "desc": "설정된 거리보다 멀어지면 오브젝트를 렌더링에서 완전히 제외합니다."
+    },
+    {
+      "name": "Fade Mode",
+      "desc": "LOD 단계가 전환될 때 디졸브 효과 등으로 부드럽게 교체되도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "숲속의 나무 최적화",
+      "steps": [
+        "하이폴리곤 원본 나무 모델을 LOD 0에 등록합니다.",
+        "가지와 잎을 간소화한 미드폴리곤 모델을 LOD 1에 등록합니다.",
+        "실루엣만 남긴 로우폴리곤 모델을 LOD 2에 등록하고 가장 멀리 배치합니다."
+      ]
+    },
+    {
+      "title": "배경 건물 배치",
+      "steps": [
+        "창문과 장식이 모두 포함된 건물을 LOD 0에 지정합니다.",
+        "창문 모델링을 텍스처로 대체한 단순화된 매쉬를 LOD 1에 지정합니다.",
+        "멀리서 보일 때 화면에서 차지하는 비율이 작으므로 Cull 단계를 짧게 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "LOD 단계 간 시각적 형태 차이가 너무 큼 → 단계가 바뀔 때 오브젝트가 튀어 보이는 현상(Pop) 발생, 실루엣을 유사하게 맞추기",
+    "서브메시나 머티리얼 슬롯 개수가 다름 → LOD 전환 시 누락이나 렌더링 오류 발생, 머티리얼 구조 일치시키기",
+    "LOD 전환 거리가 너무 가까움 → 성능 개선 효과가 미미함, Scene 뷰에서 실제 카메라 거리 테스트하기"
+  ],
+  "related": [
+    "Occlusion Culling",
+    "Static Batching",
+    "Lightmapping",
+    "Mesh Simplifier"
+  ],
+  "videos": [
+    {
+      "id": "Id2ZiHc1Dvs",
+      "title": "Unity LOD Group | Level of Detail | IMPROVE GAME PERFORMANCE | MAKE GAME RUN SMOOTH | @Unity3DSchool",
+      "author": "Unity3D School"
+    },
+    {
+      "id": "ifNyVS2_6f8",
+      "title": "MAKE YOUR GAME RUN SMOOTH - Unity LOD Tutorial",
+      "author": "Brackeys"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20LOD%20Group",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "LOD Group"
+  ],
+  "at": "2026-11-13T00:19:35.716983+00:00"
+}

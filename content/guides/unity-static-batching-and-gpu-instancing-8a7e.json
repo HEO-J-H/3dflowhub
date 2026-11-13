@@ -1,0 +1,85 @@
+{
+  "id": "unity-static-batching-and-gpu-instancing-8a7e",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Static batching and GPU instancing",
+  "title": "배칭·GPU 인스턴싱으로 가볍게",
+  "summary": "Unity의 Static Batching과 GPU Instancing은 수많은 오브젝트를 렌더링할 때 드로우 콜(Draw Call)을 획기적으로 줄여 프레임 레이트를 높여주는 성능 최적화 핵심 기술입니다.",
+  "when": [
+    "동일한 3D 모델(에셋)을 씬 전체에 수백 개 이상 반복 배치할 때",
+    "움직이지 않는 고정된 배경 오브젝트(바위, 나무, 건물 등)의 퍼포먼스를 개선할 때",
+    "모바일 또는 저사양 플랫폼에서 렌더링 부하를 줄이고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 최적화할 오브젝트들을 선택하거나 그룹화합니다.",
+    "Inspector 창 우측 상단의 Static 드롭다운 메뉴를 엽니다.",
+    "Static Batching을 적용하려면 Static 체크박스 중 Batching Static을 체크합니다.",
+    "GPU Instancing을 적용하려면 오브젝트에 적용된 Material의 Inspector 창에서 Enable GPU Instancing을 체크합니다.",
+    "Game 뷰와 Stats 패널을 열어 드로우 콜 수치와 Batch 횟수가 줄어든 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Batching Static",
+      "desc": "오브젝트를 정적으로 간주해 빌드 타임에 하나로 결합합니다."
+    },
+    {
+      "name": "Enable GPU Instancing",
+      "desc": "동일한 메쉬를 가진 여러 객체를 단 한 번의 드로우 콜로 GPU에서 그립니다."
+    },
+    {
+      "name": "Batch Count",
+      "desc": "렌더링 시 CPU가 GPU로 명령을 보내는 횟수(낮을수록 성능 유리)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "숲 환경의 나무 배치 최적화",
+      "steps": [
+        "동일한 나무 모델 수백 그루를 씬에 배치합니다.",
+        "나무 메쉬에 사용된 Material을 선택합니다.",
+        "Material Inspector에서 Enable GPU Instancing을 체크합니다."
+      ]
+    },
+    {
+      "title": "도시 빌딩 군집 Static Batching",
+      "steps": [
+        "움직이지 않는 건물 오브젝트들을 모두 선택합니다.",
+        "Inspector 상단의 Static 드롭다운에서 Batching Static을 체크합니다.",
+        "씬을 저장하고 라이트를 베이크하여 최적화를 마무리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "움직이는(Smart 오브젝트나 캐릭터 등) 대상에 Batching Static 적용 → 움직이지 않는 고정 오브젝트에만 Static을 체크하세요.",
+    "서로 다른 Material을 사용하면서 GPU Instancing 기대 → 동일한 Material을 공유해야 GPU Instancing이 작동합니다.",
+    "메모리 사용량 증가를 고려하지 않고 무조건 Static Batching 적용 → Static Batching은 정점 데이터를 복제하여 메모리를 더 쓰므로 적정 수준을 유지하세요."
+  ],
+  "related": [
+    "Instanced Static Mesh",
+    "PointInstancer",
+    "LOD Group",
+    "Occlusion Culling"
+  ],
+  "videos": [
+    {
+      "id": "vm95z0PwGD4",
+      "title": "Boost Your Unity Game Speed With Powerful GPU Instancing And Batching",
+      "author": "git-amend"
+    },
+    {
+      "id": "ukeVmQbZP_I",
+      "title": "Unity optimization tip: GPU instancing",
+      "author": "Gamedev With Mark"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Static%20batching%20and%20GPU%20instancing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Inspector",
+    "Static"
+  ],
+  "at": "2026-11-13T00:19:39.136394+00:00"
+}
