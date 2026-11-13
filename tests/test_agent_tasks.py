@@ -206,11 +206,20 @@ def test_conflict_markers_block_merge(tmp_path, monkeypatch):
     assert agents.conflict_files() == ["a.py"]
 
 
-def test_ai_allocation_weights_for_guides():
+def test_ai_allocation_weights_for_guides(monkeypatch, tmp_path):
+    """남은 가이드 주제가 있으면 가이드 몫이 최소 비율(GUIDES_MIN_SHARE) 이상 — 오늘 실제 AI 여력과 무관하게 고정 조건으로."""
+    import core
+    import guides
     import manager
-    plan = manager.plan_today() if hasattr(manager, "plan_today") else {"guides_now": 4, "news_now": 2, "roundups_now": 2}
-    # 가이드 AI 할당 비중이 0.5 (뉴스 0.25, 라운드업 0.25) 구조에 부합하는지 검증
-    assert plan.get("guides_now", 4) >= 2
+    monkeypatch.setattr(core, "llm_capacity_left", lambda: 300)
+    monkeypatch.setattr(manager, "board", lambda: {"report": {}, "proposals": []})
+    monkeypatch.setattr(guides, "pending", lambda: [("Blender", "g", "n", "t", None)] * 50)
+    monkeypatch.setattr(manager, "_roundup_candidates", lambda: 3)
+    monkeypatch.setattr(manager, "done_today", lambda kst=False: {"news": 0, "guides": 0, "roundups": 0})
+    monkeypatch.setattr(manager, "PLAN_PATH", tmp_path / "plan.json")
+    plan = manager.plan_today()
+    assert plan["alloc"]["guides"] >= manager.GUIDES_MIN_SHARE
+    assert plan["news_per_run"] >= 1
 
 
 def test_ai_3d_gaussian_splatting_catalog_included():

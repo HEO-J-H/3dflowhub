@@ -1035,7 +1035,7 @@ def test_operator_tips_and_trust_labels(monkeypatch, tmp_path):
     core.set_tip("p:x2", "팁")
     html = build_site.post_html({"id": "x2", "title_ko": "제목", "domain": "3D DCC", "category": "Blender",
                                  "url": "https://e.x/", "summary": "요약", "insight": "해설"}, "../", [])
-    assert "운영자 한마디" in html and "AI 해설" in html and "에디터 코멘트" not in html and "오류 제보" in html
+    assert "운영자 한마디" in html and "3dflowhub 해설" in html and "에디터 코멘트" not in html and "오류 제보" in html
 
 
 def test_performance_table_title_stats(monkeypatch):
