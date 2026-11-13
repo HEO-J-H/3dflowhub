@@ -37698,5 +37698,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 UI 상태 표시 자동 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T13:01:45+00:00",
+    "kind": "proposal",
+    "id": "p-1525f5f8f0",
+    "title": "웹 PBR 상태 UI 표시 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 웹 브라우저 PBR 상태 안내 UI 변경 건으로 승인 대기 중이며, 관련 UI 상태 표시의 안정성 검증이 필요합니다.",
+    "proposal": "web/tests/ 또는 frontend 테스트 환경에 PBR 상태 메시지 및 스피너 DOM 전환을 검증하는 단위를 추가합니다.",
+    "expected": "웹 PBR 변환 상태 UI의 회귀 오류를 방지하고 사용자 피드백 신뢰성을 높입니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T13:01:45+00:00",
+    "kind": "proposal",
+    "id": "p-a6b96b63b1",
+    "title": "백엔드 이미지 입력 에지 케이스 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 로컬 파이프라인 입력 검증 테스트가 일부 패치 실패로 보류되었으나, 안정적인 입력 처리를 위한 검증 필요성이 큽니다.",
+    "proposal": "backend/tests/test_mesh_from_image.py 파일에 잘못된 파일 포맷 및 빈 이미지 입력에 대한 예외 처리 테스트를 추가합니다.",
+    "expected": "로컬 파이프라인의 입력 안정성과 예외 처리 견고성을 향상시킵니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T13:02:11.208933+00:00",
+    "kind": "decision",
+    "id": "p-1525f5f8f0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 UI 상태 표시 자동 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T13:02:11.244826+00:00",
+    "kind": "decision",
+    "id": "p-a6b96b63b1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 이미지 입력 에지 케이스 테스트 보강",
+    "auto": true
   }
 ]
