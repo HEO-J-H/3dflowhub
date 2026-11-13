@@ -35137,5 +35137,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR 상태 UI 마크업 변경 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T02:59:49+00:00",
+    "kind": "proposal",
+    "id": "p-706666a6f8",
+    "title": "로컬 파이프라인 입력 검증 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "로컬 파이프라인 입력 검증 테스트 추가 작업이 held 상태였으므로 단위를 더 쪼개어 안전하게 재시도 필요",
+    "proposal": "backend/tests/test_mesh_from_image.py에 입력 이미지 포맷 오류 검증 테스트 코드를 추가합니다.",
+    "expected": "잘못된 포맷 입력 시 백엔드 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T02:59:49+00:00",
+    "kind": "proposal",
+    "id": "p-3279061a93",
+    "title": "웹 브라우저 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 상태 메시지 및 UI 피드백 관련 패치들이 일치 문제로 held 상태였음",
+    "proposal": "web/index.html과 연동되는 JS Script 영역의 에러 핸들링 유닛 테스트 또는 예외 처리 구문을 보완합니다.",
+    "expected": "웹 브라우저 환경에서 텍스처 변환 실패 시 사용자 피드백 명확화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T03:00:16.927838+00:00",
+    "kind": "decision",
+    "id": "p-706666a6f8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T03:00:16.966456+00:00",
+    "kind": "decision",
+    "id": "p-3279061a93",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 변환 에러 핸들링 보완",
+    "auto": true
   }
 ]

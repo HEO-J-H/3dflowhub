@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-text-3d-and-vector-shapes-842e",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기타",
+  "name": "Text 3D and Vector Shapes",
+  "title": "Text 3D",
+  "summary": "ZBrush의 Text 3D와 Vector Shapes는 2D 텍스트나 벡터 실루엣을 3D 메쉬로 변환하여 스컬프팅 모델에 입체적인 로고나 타이포그래피를 쉽게 추가하는 기능입니다.",
+  "when": [
+    "캐릭터 갑옷이나 무기에 입체적인 각인이나 로고를 새길 때",
+    "제품 디자인이나 하드서페이스 모델에 타이포그래피를 넣을 때",
+    "벡터 실루엣을 기반으로 빠르게 3D 형태를 생성하고 싶을 때"
+  ],
+  "steps": [
+    "상단 Tool 팔레트에서 기본 3D 메쉬(예: PolyMesh3D)를 선택합니다.",
+    "Tool 메뉴 하단의 SubTool 탭에서 Insert를 클릭하여 Text 3D 및 Vector Shapes를 불러옵니다.",
+    "Tool 메뉴에서 Text 3D & Vector Shapes 서브 메뉴를 열어 텍스트 내용을 입력하거나 벡터 셰이프를 선택합니다.",
+    "Font 옵션을 조정하여 원하는 서체를 선택하고 두께와 베벨 값을 설정합니다.",
+    "Gizmo 3D(Hotkey W)를 사용하여 텍스트 메쉬의 위치와 크기를 대상 모델에 맞게 배치합니다.",
+    "Live Boolean 또는 Remesh를 활용하여 메쉬를 결합하거나 스컬프팅을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "3D 공간에 생성할 텍스트 내용을 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "시스템에 설치된 폰트를 선택하여 3D 타이포그래피를 생성합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "텍스트나 벡터 셰이프의 돌출 두께를 조절합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "텍스트 모서리에 깎임이나 부드러운 경사면을 만듭니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "텍스트 메쉬의 폴리곤 밀도와 곡선 부드러움을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "SF 갑옷에 부대 마크 각인하기",
+      "steps": [
+        "Insert 기능으로 벡터 셰이프 로고를 불러옵니다.",
+        "Gizmo 3D로 갑옷 표면에 로고를 살짝 파묻히도록 배치합니다.",
+        "Live Boolean을 활성화하여 갑옷 메쉬에서 로고 모양만큼 파여지도록 결합합니다."
+      ]
+    },
+    {
+      "title": "타이포그래피 명패 제작하기",
+      "steps": [
+        "Text 3D 메뉴에서 원하는 문구를 입력하고 Depth를 높여 입체감을 줍니다.",
+        "Bevel 옵션을 조절해 모서리를 부드럽게 다듬습니다.",
+        "Dynamesh를 실행해 베이스 플레이트와 텍스트를 하나의 메쉬로 합칩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스트 메쉬가 너무 깨져서 보임 → Resolution 값을 높여 폴리곤 밀도를 늘려줍니다.",
+    "Live Boolean 적용 시 면이 뒤집힘 → Flip Normals를 실행하거나 Normal 방향을 확인합니다."
+  ],
+  "related": [
+    "Live Boolean",
+    "Gizmo 3D",
+    "Dynamesh",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "2NdyWGnDdD0",
+      "title": "ZBRUSH 4R8  -  TEXT 3D & VECTOR SHAPES",
+      "author": "RaveeCG Tutorials"
+    },
+    {
+      "id": "MgcM8WMn13g",
+      "title": "Easy 3D text with @MaxonZBrush 👩🏻‍💻 #3dmodeling #zbrush #zbrushtutorial",
+      "author": "Sophia 🫀"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Text%203D%20and%20Vector%20Shapes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tool",
+    "PolyMesh3D",
+    "SubTool",
+    "Insert",
+    "Text 3D",
+    "Vector Shapes"
+  ],
+  "at": "2026-11-13T02:59:58.469700+00:00"
+}
