@@ -1,0 +1,93 @@
+{
+  "id": "zbrush-dynamics-cloth-simulation-62e7",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기타",
+  "name": "Dynamics (cloth simulation)",
+  "title": "Dynamics — 천 시뮬레이션",
+  "summary": "ZBrush Dynamics는 실시간 물리 시뮬레이션을 활용해 스컬프팅 모델에 자연스러운 천 주름이나 충돌을 적용하는 기능입니다. 철사를 구부리듯 옷감이나 액세서리를 모델에 입체적으로 밀착시킬 때 씁니다.",
+  "when": [
+    "캐릭터에게 셔츠나 망토 등 천 재질의 의상을 자연스럽게 입힐 때",
+    "쿠션이나 소파 등 푹신한 오브젝트 위에 다른 오브젝트를 떨어뜨려 무게감을 표현할 때",
+    "밧줄이나 리본 같은 소품을 복잡한 형태로 꼬거나 걸쳐놓을 때"
+  ],
+  "steps": [
+    "1. SubTool 팔레트에서 천 시뮬레이션을 적용할 메쉬 오브젝트를 선택합니다.",
+    "2. Tool 메뉴 → Dynamics 팔레트를 엽니다.",
+    "3. Gravity 등의 물리 옵션을 확인하고 상단의 Cloth 버튼 또는 시뮬레이션 활성화 버튼을 누릅니다.",
+    "4. 스페이스바(Spacebar)를 눌러 시뮬레이션을 재생하거나 멈추며 메쉬가 주름지며 떨어지는 과정을 확인합니다.",
+    "5. 결과가 마음에 들면 Dynamics를 끄고 스컬프팅 브러시로 디테일을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Gravity",
+      "desc": "중력의 세기와 방향을 조절하여 천이 아래로 처지는 힘을 결정합니다."
+    },
+    {
+      "name": "Inflation",
+      "desc": "메쉬 내부로 공기를 주입하듯 부풀려 빵빵한 볼륨감을 만듭니다."
+    },
+    {
+      "name": "Collision Volume",
+      "desc": "다른 오브젝트와의 충돌 판정 두께와 간격을 설정합니다."
+    },
+    {
+      "name": "Cloth",
+      "desc": "기본 메쉬에 천 고유의 유연성과 주름 형성 성질을 부여합니다."
+    },
+    {
+      "name": "Painter",
+      "desc": "마스크나 시뮬레이션 영향력을 브러시로 직접 칠해서 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 어깨에 망토 걸치기",
+      "steps": [
+        "1. 캐릭터 바디 위에 얇은 Plane 메쉬를 망토 모양으로 배치합니다.",
+        "2. Dynamics 팔레트에서 Cloth 옵션을 활성화합니다.",
+        "3. 스페이스바를 눌러 캐릭터 어깨와 목에 망토가 자연스럽게 흘러내리도록 시뮬레이션합니다."
+      ]
+    },
+    {
+      "title": "쿠션 위에 올라간 오브젝트 표현",
+      "steps": [
+        "1. 쿠션 형태의 SubTool과 그 위에 떠 있는 구 형태의 SubTool을 준비합니다.",
+        "2. 두 오브젝트 모두 충돌(Collision) 설정이 켜져 있는지 확인합니다.",
+        "3. 구를 아래로 떨어뜨리거나 Dynamics를 실행하여 쿠션이 눌리는 주름을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤 수가 너무 적음 → ZRemesher나 Divide를 사용하여 촘촘한 폴리곤 구조를 먼저 만드세요.",
+    "시뮬레이션이 굳어버림 → DynaMesh 상태에서 바로 시뮬레이션하지 말고 적절히 분할된 SubTool 상태에서 진행하세요.",
+    "오브젝트가 서로 통과함 → Collision Volume 값을 높이거나 두께를 주어 충돌 오류를 방지하세요."
+  ],
+  "related": [
+    "ZRemesher",
+    "SubTool",
+    "DynaMesh",
+    "Move topological"
+  ],
+  "videos": [
+    {
+      "id": "9fHh79qaWFo",
+      "title": "Cloth Simulation in Zbrush!",
+      "author": "Triangle Animation Academy"
+    },
+    {
+      "id": "F_CHgwCQgQ4",
+      "title": "ZBrush - DYNAMIC Clothing Brushes (In 2 MINUTES!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Dynamics%20%28cloth%20simulation%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "SubTool",
+    "Tool",
+    "Dynamics"
+  ],
+  "at": "2026-11-13T02:40:18.038334+00:00"
+}

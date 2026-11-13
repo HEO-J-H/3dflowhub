@@ -35065,5 +35065,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T02:40:02+00:00",
+    "kind": "proposal",
+    "id": "p-1b56583043",
+    "title": "로컬 파이프라인 입력 검증 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 에이전트 실행에서 로컬 파이프라인 입력 검증 테스트 추가 시도가 변경 없음으로 held 상태였음",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷 및 잘못된 입력에 대한 예외 처리 테스트 케이스를 직접 추가합니다.",
+    "expected": "로컬 파이프라인의 입력 데이터 안정성 및 예외 처리 견고성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T02:40:02+00:00",
+    "kind": "proposal",
+    "id": "p-4e2c216e0b",
+    "title": "웹 브라우저 PBR 텍스처 변환 에러 핸들링 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 상태 UI 마크업 정돈 및 에러 피드백 관련 작업들이 필요함",
+    "proposal": "web/index.html 및 관련 JS Script에서 PBR 변환 실패 시 사용자에게 명확한 에러 메시지와 재시도 가이드를 제공하도록 DOM 조작 로직을 보완합니다.",
+    "expected": "브라우저 전용 PBR 툴 사용 시 사용자 경험(UX) 오류 인지율 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T02:41:08.219505+00:00",
+    "kind": "decision",
+    "id": "p-1b56583043",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T02:41:08.261539+00:00",
+    "kind": "decision",
+    "id": "p-4e2c216e0b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 텍스처 변환 오류 처리 보완",
+    "auto": true
   }
 ]

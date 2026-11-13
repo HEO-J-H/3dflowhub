@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-file-line-x-found-polygon-components-wi-8dc5a",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Found polygon components with zero area or zero length edges",
+  "title": "# Error: file: line X: Found polygon components with zero area or zero length ed",
+  "summary": "Maya에서 0의 면적을 가진 폴리곤(Zero area faces)이나 길이가 0인 모서리(Zero length edges)가 발견되었을 때 나타나는 오류입니다. 잘못된 모델링 데이터로 인해 렌더링 오류, 스킨닝 및 리깅 문제, 혹은 다른 Software로의 Export 실패를 유발합니다.",
+  "causes": [
+    "익스트루드(Extrude)나 컷(Cut) 작업 중 정점이나 면이 겹치거나 제자리에서 밀려남",
+    "브이알(Boolean) 연산 후 정리되지 않은 비정상적인 폴리곤 조각 생성",
+    "외부 파일(OBJ, FBX 등)을 임포트하는 과정에서 손상되거나 왜곡된 지오메트리 데이터"
+  ],
+  "steps": [
+    "문제가 되는 오브젝트를 선택하고 상단 메뉴 바에서 Mesh > Cleanup...을 클릭하여 옵션 창을 엽니다.",
+    "Cleanup 옵션 창에서 'Operation'을 'Cleanup matching polygons'로 설정합니다.",
+    "항목 중 'Faces with zero area'와 'Edges with zero length' 옵션을 체크합니다.",
+    "필요에 따라 'Scope'를 'Modify selected objects'로 설정한 뒤 하단의 'Apply' 버튼을 눌러 일괄 정리합니다."
+  ],
+  "check": [
+    "수행 후 Script 에디터(Script Editor)에 해당 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Channel Box나 Attribute Editor 또는 Maya Cleanup의 리포트를 통해 문제가 되던 컴포넌트가 제거되었는지 확인합니다."
+  ],
+  "prevent": [
+    "모델링 작업 중 주기적으로 Mesh > Cleanup 기능을 실행하여 비정상적인 Topology를 미리 정리합니다.",
+    "부울(Boolean) 연산이나 복잡한 익스트루드 작업 후에는 반드시 겹치는 정점(Merge Vertices)을 확인합니다."
+  ],
+  "keywords": [
+    "Maya zero area faces",
+    "Maya 0 면적 오류",
+    "Maya zero length edges",
+    "Maya 폴리곤 오류 해결",
+    "Maya Cleanup"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T02:40:26+00:00"
+}

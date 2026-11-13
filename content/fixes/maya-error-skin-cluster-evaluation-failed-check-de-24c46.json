@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-skin-cluster-evaluation-failed-check-de-24c46",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "Error: Skin cluster evaluation failed. Check dependency graph.",
+  "title": "Error: Skin cluster evaluation failed. Check dependency graph. 오류 해결 방법",
+  "summary": "Maya에서 스킨 클러스터(Skin Cluster) 연산 중 문제가 발생했을 때 출력되는 오류 메시지입니다. 주로 뼈대와 지오메트리 간의 데이터 처리 오류나 디펜던시 그래프(Dependency Graph) 상의 연결 문제로 인해 발생합니다.",
+  "causes": [
+    "지오메트리에 히스토리(History)가 꼬였거나 불필요한 노드가 얽혀 있는 경우",
+    "바인드 포즈(Bind Pose)가 손상되었거나 메시의 Vertex 번호/개수가 변경된 경우",
+    "다른 플러그인이나 커스텀 노드와의 충돌로 인해 평가(Evaluation)가 실패한 경우"
+  ],
+  "steps": [
+    "메인 메뉴에서 Edit > Delete by Type > History를 실행하여 불필요한 노드 히스토리를 정리합니다.",
+    "Outliner나 Node Editor를 열어 skinCluster 노드와 연관된 왜곡된 연결이나 끊어진 노드를 확인합니다.",
+    "문제가 지속될 경우, 기존 스킨을 언바인드(Unbind Skin)한 후 올바른 바인드 포즈 상태에서 다시 스킨을 적용합니다.",
+    "Script Editor를 열어 오류 발생 시 구체적으로 어떤 노드와 메시에서 실패했는지 에러 로그를 확인합니다."
+  ],
+  "check": [
+    "Viewport에서 캐릭터의 뼈대를 움직였을 때 메시가 깨짐 없이 정상적으로 따라오는지 확인합니다.",
+    "Script Editor에 더 이상 'Skin cluster evaluation failed' 관련 에러가 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "스킨 작업 완료 후 불필요한 히스토리를 정리하기 전에 반드시 백업 파일을 남깁니다.",
+    "웨이트 수정 작업 중에는 지오메트리의 Vertex 구조나 Topology를 임의로 변경하지 않습니다."
+  ],
+  "keywords": [
+    "Maya 스킨 에러",
+    "Skin cluster evaluation failed",
+    "디펜던시 그래프 오류",
+    "Maya 바인드 에러",
+    "스킨 클러스터 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T02:40:28+00:00"
+}

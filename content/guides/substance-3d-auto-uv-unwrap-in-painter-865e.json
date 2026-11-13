@@ -5,18 +5,18 @@
   "group": "페인터",
   "name": "Auto UV unwrap in Painter",
   "title": "Painter 자동 UV",
-  "summary": "Substance 3D Painter의 Auto UV unwrap 기능은 별도의 외부 3D DCC 툴을 거치지 않고, 로우 폴리곤 모델에 자동으로 UV 시머를 생성하고 펼쳐주는 기능입니다. 텍스처 페인팅과 맵 Baking을 빠르게 시작할 수 있도록 돕습니다.",
+  "summary": "Substance 3D Painter의 Auto UV unwrap 및 Mesh Maps Baking 기능은 별도의 외부 3D DCC 툴을 거치지 않고, 로우 폴리곤 모델에 자동으로 UV 시머를 생성하며 하이폴리곤과의 정합성을 고려한 깨끗한 맵 추출을 지원합니다.",
   "when": [
     "외부 툴에서 UV 작업을 미리 하지 않고 모델링 파일을 바로 가져왔을 때",
     "하드 서페이스 모델의 빠른 텍스처링을 위해 급하게 UV를 펴야 할 때",
-    "수동 UV 전개 과정에서 발생하는 시간 소모를 줄이고 싶을 때"
+    "하이폴리곤과 로우폴리곤 모델 간의 Baking 아티팩트를 줄이고 깨끗한 맵을 추출하고 싶을 때"
   ],
   "steps": [
-    "Substance 3D Painter를 실행하고 텍스처링할 3D 모델(OBJ, FBX 등)을 불러옵니다.",
+    "Substance 3D Painter를 실행하고 하이폴리곤과 로우폴리곤 3D 모델을 불러옵니다.",
+    "프로젝트 설정 및 Texture Sets 구성을 올바르게 분리하여 머티리얼 관리를 준비합니다.",
     "메뉴 바에서 Texture Set Settings 또는 관련 Mesh Maps 패널을 확인합니다.",
     "Bake Mesh Maps 또는 관련 Auto UV 메뉴 옵션을 선택합니다.",
-    "옵션 창에서 Auto Unwrap 또는 관련 하드 서페이스 자동 UV 관련 항목을 활성화합니다.",
-    "설정을 확인하고 Baking 또는 실행 버튼을 눌러 UV 전개와 맵 추출을 완료합니다."
+    "옵션 창에서 Auto Unwrap 또는 노멀 및 AO 오류 최소화를 위한 Baking 파라미터를 설정하고 실행하여 맵 추출을 완료합니다."
   ],
   "params": [
     {
@@ -28,12 +28,12 @@
       "desc": "기계나 건축물 같은 각진 하드 서페이스 모델에 최적화된 알고리즘을 적용합니다."
     },
     {
-      "name": "Quick Bake",
-      "desc": "빠른 속도로 메시 맵과 Baking 과정을 처리합니다."
+      "name": "Localized AO / Global AO",
+      "desc": "로컬 및 글로벌 앰비언트 오클루전의 차이를 활용해 캐릭터 텍스처링의 음영 표현 정밀도를 높입니다."
     },
     {
-      "name": "Auto Rebake",
-      "desc": "모델이나 설정 변경 시 맵을 자동으로 다시 계산합니다."
+      "name": "Quick Bake",
+      "desc": "빠른 속도로 메시 맵과 Baking 과정을 처리합니다."
     }
   ],
   "examples": [
@@ -46,17 +46,17 @@
       ]
     },
     {
-      "title": "외부 툴 없이 급하게 모델 수정하기",
+      "title": "아티팩트 없는 실시간 캐릭터 Baking",
       "steps": [
-        "UV가 누락된 로우 폴리곤 모델을 불러옵니다.",
-        "자동 UV 기능을 적용하여 Viewport에서 즉시 패딩 상태를 확인합니다.",
-        "바로 Smart 머티리얼을 드래그하여 페인팅을 시작합니다."
+        "하이폴리곤과 로우폴리곤 모델의 구조적 정합성을 검토합니다.",
+        "Texture Sets를 올바르게 분리한 후 Baking 메뉴에서 노멀 맵과 AO 오류를 최소화하도록 파라미터를 조정합니다.",
+        "Localized AO와 Global AO 특성을 활용해 표면 깨짐 현상을 방지하고 완성도를 높입니다."
       ]
     }
   ],
   "mistakes": [
     "스케일 값이 왜곡된 모델에 바로 적용하는 경우 → 오브젝트 모드에서 Ctrl+A를 눌러 스케일을 먼저 적용(Apply Scale)합니다.",
-    "너무 복잡한 유기농 캐릭터에 하드 서페이스용 자동 UV를 쓰는 경우 → 왜곡이 생길 수 있으므로 모델 용도에 맞는 옵션을 선택합니다."
+    "하이폴리곤과 로우폴리곤 간의 형태적 차이가 큰 상태에서 바로 Baking하는 경우 → 후속 단계에서 노멀 맵이나 AO 오류가 발생하므로 사전에 구조적 정합성을 확인합니다."
   ],
   "related": [
     "Bake Mesh Maps",
@@ -88,11 +88,19 @@
     "Bake Mesh Maps"
   ],
   "at": "2026-11-11T02:15:08.058136+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-12-fa91e42840a0183c",
-      "title": "Substance 3D Painter 실시간 캐릭터 Baking 튜토리얼",
-      "url": "https://www.youtube.com/watch?v=0JDgzJvA1QU"
+      "at": "2026-11-13T02:40:37+00:00",
+      "what": "Substance 3D Painter 실시간 캐릭터 Baking 과정에서 하이·로우폴리곤 정합성 검토, 텍스처 세트 분리, 아티팩트 방지를 위한 Baking 파라미터 및 AO 설정 내용이 추가되었습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D Painter 실시간 캐릭터 Baking 튜토리얼",
+          "url": "https://www.youtube.com/watch?v=0JDgzJvA1QU"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-12-fa91e42840a0183c"
+      ]
     }
   ]
 }

@@ -1,0 +1,40 @@
+{
+  "id": "3ds-max-dx11-viewport-initialization-failed-or-not-027ff",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "DX11 viewport initialization failed or not supported",
+  "title": "DX11 viewport initialization failed or not supported 오류 해결 방법",
+  "summary": "DX11 viewport initialization failed or not supported는 3ds Max가 DirectX 11 그래픽 Driver를 기반으로 Viewport를 초기화하지 못했거나 현재 하드웨어/Driver가 이를 지원하지 않을 때 발생하는 오류입니다.",
+  "causes": [
+    "그래픽 카드 Driver가 오래되었거나 손상되어 DirectX 11 기능을 정상적으로 지원하지 못하는 경우",
+    "원격 데스크톱(RDP) 환경이나 가상 머신(VM)에서 하드웨어 가속 없이 3ds Max를 실행하는 경우",
+    "그래픽 카드 또는 내장 GPU가 DirectX 11 사양을 충족하지 못하는 경우",
+    "3ds Max 설정 파일(.ini) 손상으로 인해 Viewport Driver가 잘못 로드된 경우"
+  ],
+  "steps": [
+    "그래픽 카드 제조사(NVIDIA, AMD 등) 공식 웹사이트에서 최신 Driver를 다운로드하여 클린 설치를 진행합니다.",
+    "3ds Max를 실행할 수 없는 경우, Windows 시작 메뉴 또는 설치 폴더에서 Change Graphics Mode 유틸리티를 실행합니다.",
+    "Viewport Driver 설정 창에서 기존 DirectX 11 대신 DirectX 9 또는 Nitrous Software로 변경하고 적용합니다.",
+    "3ds Max가 정상적으로 켜진다면 Customize 메뉴의 Preferences → Viewports 탭에서 Driver Display Driver 버튼을 눌러 상태를 확인합니다.",
+    "원격 접속 환경이라면 Windows 장치 관리자에서 디스플레이 어댑터가 올바르게 잡혀 있는지 확인하고 하드웨어 가속 설정을 점검합니다."
+  ],
+  "check": [
+    "3ds Max가 튕김 현상 없이 정상적으로 실행되며 Viewport 화면이 깨지지 않고 나타나는지 확인합니다.",
+    "Customize → Preferences → Viewports 탭의 Choose Driver에서 현재 사용 중인 Driver가 정상 적용되었는지 확인합니다."
+  ],
+  "prevent": [
+    "그래픽 카드 Driver를 주기적으로 최신 버전으로 업데이트합니다.",
+    "원격 데스크톱 사용 시 가상 GPU 지원 환경을 구축하거나 전용 원격 제어 솔루션을 사용합니다.",
+    "3ds Max 권장 하드웨어 사양을 충족하는 GPU를 시스템에 장착합니다."
+  ],
+  "keywords": [
+    "3ds Max DX11 Viewport 오류",
+    "DX11 viewport initialization failed",
+    "3ds Max Viewport Driver 변경",
+    "DirectX 11 not supported 3ds Max",
+    "3ds Max 실행 오류 화면 깨짐"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T02:40:20+00:00"
+}
