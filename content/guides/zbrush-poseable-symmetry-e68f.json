@@ -1,0 +1,86 @@
+{
+  "id": "zbrush-poseable-symmetry-e68f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "기타",
+  "name": "Poseable symmetry",
+  "title": "Poseable Symmetry",
+  "summary": "Poseable Symmetry는 비대칭 포즈를 취한 모델에서도 한쪽을 수정하면 다른 쪽 대칭 위치에 그대로 반영되도록 돕는 ZBrush의 고급 대칭 기능입니다.",
+  "when": [
+    "캐릭터의 팔다리를 벌리거나 굽히는 등 포즈를 취한 상태에서 양쪽을 동시에 수정하고 싶을 때",
+    "일반 Symmetry(X)가 비대칭 포즈 때문에 올바르게 작동하지 않을 때",
+    "비대칭 구조의 모델에서 특정 부위의 대칭적 스컬프팅이 필요할 때"
+  ],
+  "steps": [
+    "ZBrush를 실행하고 대칭을 적용할 비대칭 포즈의 모델을 로드합니다.",
+    "오른쪽 트레이 또는 툴 바에서 Transform 팔레트를 엽니다.",
+    "Transform 팔레트 하단의 Posable Symmetry 섹션을 찾습니다.",
+    "Poseable Symmetry 버튼을 클릭하여 활성화합니다.",
+    "필요한 경우 Masking이나 Tolerance 설정을 조정하여 대칭 영역을 맞춥니다.",
+    "Viewport에서 스컬프팅 브러시를 사용하여 대칭 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Poseable Symmetry",
+      "desc": "포즈가 취해진 모델에서 대칭 스컬프팅을 활성화합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "비대칭 정도가 심한 모델에서 대칭 인식 허용 오차를 조절합니다."
+    },
+    {
+      "name": "Masking",
+      "desc": "특정 영역을 대칭 계산에서 제외하거나 포함하도록 마스크를 활용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "비대칭 포즈의 캐릭터 얼굴 수정",
+      "steps": [
+        "캐릭터가 고개를 돌린 포즈 상태에서 Poseable Symmetry를 켭니다.",
+        "Standard 브러시로 한쪽 눈썹 주변을 스컬프팅합니다.",
+        "반대쪽 눈썹에 대칭으로 적용되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "구부러진 팔의 갑옷 디테일 추가",
+      "steps": [
+        "팔을 굽힌 상태의 모델에 Poseable Symmetry를 활성화합니다.",
+        "Mask Brush로 비대칭이 심한 손목 부위를 정리합니다.",
+        "DamStandard 브러시로 양쪽 팔에 주름을 동시에 파냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "포즈가 너무 심하게 뒤틀려 대칭 축을 찾지 못함 → Tolerance 값을 높이거나 부분적으로 마스크를 칠한 뒤 시도합니다.",
+    "일반 Symmetry(X)와 혼동하여 포즈 모델에서 작동하지 않음 → 반드시 Transform 팔레트에서 Poseable Symmetry 전용 옵션을 켜야 합니다."
+  ],
+  "related": [
+    "Symmetry",
+    "Radial Symmetry",
+    "Transform",
+    "Smart Mask"
+  ],
+  "videos": [
+    {
+      "id": "O9fU0Ts_3To",
+      "title": "Sculpting a Dynamic Pose using Posable Symmetry in zBrush",
+      "author": "3D Tutorials by Alan Balodi"
+    },
+    {
+      "id": "EZAQwFfbiYw",
+      "title": "Zbrush - Symmetry Out of World Center",
+      "author": "Filiwonkka"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Poseable%20symmetry",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Transform",
+    "Posable Symmetry",
+    "Poseable Symmetry"
+  ],
+  "at": "2026-11-13T02:30:27.589626+00:00"
+}
