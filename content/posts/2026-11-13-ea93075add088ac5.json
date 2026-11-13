@@ -1,48 +1,55 @@
 {
-  "title_ko": "ThermalSplat 논문 발표 — 포즈 없는 열화상 Gaussian Splatting",
+  "title_ko": "ThermalSplat — 포즈 없는 희소시점 열화상 3D 재구성",
   "title": "ThermalSplat: Generalizable Pose-Free Gaussian Splatting for Sparse-View Thermal 3D Reconstruction",
   "url": "https://arxiv.org/abs/2611.15435v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
     "ThermalSplat",
-    "열화상 3D",
-    "WACV 2027"
+    "Gaussian Splatting",
+    "Thermal Imaging",
+    "Sparse-View",
+    "3D Reconstruction",
+    "AI 3D"
   ],
-  "summary": "ThermalSplat은 카메라 포즈 추정이나 RGB 가이드 없이 단 몇 장의 열화상 이미지만으로 3D 장면을 곧바로 재구성하는 피드포워드 Gaussian Splatting 프레임워크입니다.",
-  "insight": "기존 열화상 3D 재구성은 밀집 촬영과 별도의 씬별 최적화에 의존했던 한계를 극복하고 단일 피드포워드 패스로 결과를 도출합니다. 저조도 구조 매칭과 온도 불연속성 감독을 도입해 구조가 붕괴되는 현상을 막았습니다. RGB 카메라 정보나 정렬된 데이터셋 없이 순수 열화상 데이터만으로 작동하므로 탐색 및 구조 또는 자율주행 영역에서 적용 범위가 넓습니다.",
-  "try_it": [
-    "WACV 2027에 채택된 ThermalSplat 논문 초안과 아키텍처 세부 내용을 arXiv:2611.15435에서 확인합니다.",
-    "희소 뷰 열화상 이미지만으로 3D 장면을 구성하는 피드포워드 방식을 기존 씬별 최적화 방식과 비교 검토합니다."
-  ],
+  "summary": "ThermalSplat은 카메라 포즈나 RGB 보조 없이 희소시점 열화상 이미지에서 직접 3D Gaussian Splatting을 수행하는 최초의 일반화된 피드포워드 프레임워크입니다.",
+  "insight": "이 기술은 향후 야간 수색 구조나 건축물 열화상 진단에서 카메라 포즈 측정 장비 없이 소수의 열화상 사진만으로 3D 공간 모델을 구축하는 데 활용될 수 있는 가능성을 보여줍니다. 3D 아티스트와 실무자들은 별도의 RGB 가이드나 복잡한 SfM 정렬 과정 없이 열화상 데이터만으로 지오메트리를 확보하는 워크플로를 기대해 볼 수 있습니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "ThermalSplat 핵심 접근 방식과 구조",
-      "body": "열화상 이미지는 저텍스처 성질과 시점별 방사율 때문에 기존 포즈 추정기와 3D Gaussian Splatting 파이프라인이 쉽게 실패합니다. ThermalSplat은 카메라 포즈를 미리 알 필요 없이 희소 뷰 열화상 이미지에서 곧바로 3D 장면을 재구성합니다. 씬별 최적화 과정을 생략하여 연산 비용을 크게 줄였습니다."
+      "heading": "연구 배경 및 한계",
+      "body": "열화상 카메라는 완전한 어둠이나 연기 속에서도 감지할 수 있지만, 질감과 대조도가 낮아 기존 Structure-from-Motion(SfM) 파이프라인이나 피드포워드 포즈 추정기(예: VGGT)가 실패합니다. 또한 기존 열화상 3D 재구성 방법들은 조밀한 촬영, 비싼 최적화, 그리고 정렬된 RGB-열화상 데이터셋에 의존합니다."
     },
     {
-      "heading": "소프트 센서스 손실과 경계 구조 손실",
-      "body": "밝기 변화에 강건한 구조 매칭을 위해 소프트 센서스 손실을 활용합니다. 또한 온도 불연속성을 명시적으로 감독하는 경계 구조 손실을 적용했습니다. 이를 통해 열화상 특유의 어려운 조건에서도 선명한 3D 재구성을 달성합니다."
+      "heading": "ThermalSplat 핵심 아이디어",
+      "body": "본 논문은 대규모 포즈 프리 다중 뷰 기하학 백본인 NAS3R을 기반으로 열화상 도메인에 맞게 조정된 ThermalSplat을 제안합니다. 실내, 실외, 항공 장면을 아우르는 다중 소스 열화상 훈련 코퍼스를 구축하여 단일 피드포워드 패스로 미지의 장르를 재구성합니다."
     },
     {
-      "heading": "기존 밀집 촬영 방식과의 성능 비교",
-      "body": "다양한 출처의 데이터셋으로 학습된 ThermalSplat은 보지 못한 씬도 한 번의 패스로 재구성합니다. 씬별 최적화에 의존하는 기존 열화상 방식과 비교해 희소 뷰 환경에서 우위를 점합니다. 심지어 기존 방식이 이상적인 밀집 촬영 환경에서 작동할 때와 비교해도 뛰어난 지각적 충실도를 보여줍니다."
+      "heading": "손실 함수와 아키텍처",
+      "body": "비전 트랜스포머(ViT) 인코더로 토큰화된 이미지를 카메라 헤드, 딥스 헤드, Gaussian 헤드를 통해 처리합니다. 섭씨 온도 불연속성을 명시적으로 감독하는 경계 구조 손실(boundary structure loss)과 밝기 불변 국소 강도 매칭을 위한 소프트 센서스 손실(soft census loss)을 적용하여 시점 의존적 방사율 문제를 해결합니다."
     },
     {
-      "heading": "순수 열화상 환경에서의 활용성",
-      "body": "기존의 많은 접근 방식은 신뢰할 수 있는 카메라 포즈와 초기 포인트 클라우드를 얻기 위해 정렬된 RGB-열화상 데이터셋에 의존했습니다. 이로 인해 포즈를 알 수 없는 순수 열화상 환경에서는 사용할 수 없는 제약이 있었습니다. ThermalSplat은 이러한 병목을 깨고 카메라 포즈나 RGB 가이드 없이 동작합니다."
+      "heading": "실험 결과 및 수치",
+      "body": "Thermal Scenes(Hand, Dark, Fire3, Tower, UAV6, Bldg) 테스트에서 2시점 희소 입력 시 COLMAP, VGGT, VGGSfM 등은 거의 등록에 실패하거나 0개의 3D 포인트를 추출한 반면, ThermalSplat은 훈련 데이터 없이도 단일 패스로 다중 뷰 일관성을 가진 선명한 재구성을 수행합니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "열화상 이미지 특유의 저해상도와 시점 의존적 방사율로 인해 극도로 제한된 희소시점 환경에서 미세한 구조적 세부 표현에 제약이 있을 수 있으며, 대규모 다중 소스 열화상 데이터셋 학습에 의존합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "논문 본문 내 직접적인 오픈소스 코드 링크는 제공되지 않으나, 향후 관련 연구 및 구현체 확장을 위한 기반을 다지고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "ThermalSplat은 RGB 이미지가 꼭 필요한가요?",
-      "a": "아니오. RGB 가이드나 알려진 카메라 포즈 없이 순수 열화상 이미지 페어만으로 작동합니다."
+      "q": "ThermalSplat은 기존 3D 재구성 방식과 무엇이 다른가요?",
+      "a": "카메라 포즈, RGB 가이드, 또는 장면별 최적화(per-scene optimization)를 전혀 요구하지 않고 희소시점 열화상 이미지에서 직접 3D Gaussian Splatting을 수행합니다."
     },
     {
-      "q": "기존 열화상 3D 재구성 방식과의 가장 큰 차이는 무엇인가요?",
-      "a": "비싼 연산 비용이 드는 씬별 최적화 과정을 거치지 않고, 단일 피드포워드 패스로 즉시 3D 장면을 생성한다는 점입니다."
+      "q": "열화상 이미지의 낮은 대조도와 경계 흐림 문제를 어떻게 해결하나요?",
+      "a": "온도 불연속성을 유지하는 경계 구조 손실(boundary structure loss)과 밝기 불변 국소 강도 매칭을 위한 소프트 센서스 손실(soft census loss)을 사용합니다."
     }
   ],
   "media": {
@@ -54,6 +61,16 @@
   "id": "2026-11-13-ea93075add088ac5",
   "img_tried": true,
   "enriched": "2026-11-13",
-  "enriched_at": "skip",
-  "img_ok": "2026-11-13T03:29:45+00:00"
+  "enriched_at": "2026-11-13T04:30:35+00:00",
+  "img_ok": "2026-11-13T03:29:45+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2
 }
