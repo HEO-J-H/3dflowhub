@@ -1,0 +1,50 @@
+{
+  "title_ko": "Kosmo-GFM 3D 씬 재구성 및 Gaussian Splatting 최적화 논문",
+  "title": "Kosmo-GFM: A Production-Ready Geometry Foundation Model",
+  "url": "https://arxiv.org/abs/2611.16840v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Kosmo-GFM",
+    "Gaussian Splatting",
+    "NeRF",
+    "3D 재구성",
+    "PoseEngine"
+  ],
+  "summary": "카메라 파라미터와 깊이, 동적 3D 포인트를 예측하는 지오메트리 파운데이션 모델 Kosmo-GFM과 이를 활용한 씬 재구성 파이프라인이 공개되었습니다.",
+  "insight": "PoseEngine Flash는 혼합 정밀도 연산으로 2.62시간의 실행 시간을 기록하여 GLUEMAP 대비 4% 수준의 속도를 보여줍니다. 대규모 3D 씬 복원 및 카메라 포즈 최적화 속도를 극적으로 단축하려는 연구원에게 적합합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Kosmo-GFM 아키텍처와 핵심 구성 요소",
+      "body": "본 시스템은 지오메트리 파운데이션 모델인 GFM, 포즈 최적화 엔진인 PoseEngine, 그리고 KosmoWorld의 감독 데이터로 구성됩니다. GFM은 이미지와 비디오 입력으로부터 카메라 파라미터와 깊이, 교차 뷰 대응 관계, 동적 3D 포인트를 직접 예측합니다. 이어 PoseEngine이 기하학적 최적화를 결합해 씬 레벨의 카메라 포즈와 지오메트리를 복원합니다."
+    },
+    {
+      "heading": "SpatialBench 벤치마크 성능 결과",
+      "body": "SpatialBench의 Sparse 및 Medium 서브셋 평가에서 GFM은 비교 군 중 가장 낮은 절대 상대 깊이 오차와 5도 기준 최고 상대 포즈 AUC를 달성했습니다. 또한 평가된 5개 데이터셋 전반에서 동적 포인트와 씬 플로우에 대한 평균 엔드포인트 오차가 가장 낮았습니다."
+    },
+    {
+      "heading": "PoseEngine과 PoseEngine Flash의 연산 속도",
+      "body": "34개 씬을 기준으로 포즈 AUC를 측정한 결과 PoseEngine은 1도, 3도, 5도 임계값 모두에서 최고 성능을 기록했습니다. 누적 실행 시간은 14.07시간으로 GLUEMAP의 69.67시간 대비 약 20% 수준입니다. PoseEngine Flash는 혼합 정밀도를 적용해 2.62시간으로 단축하여 GLUEMAP의 약 4% 속도를 제공합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Kosmo-GFM은 어떤 역할을 하는 모델인가요?",
+      "a": "이미지와 비디오에서 카메라 파라미터, 깊이, 교차 뷰 대응 관계, 동적 3D 포인트를 예측하는 지오메트리 파운데이션 모델입니다."
+    },
+    {
+      "q": "PoseEngine Flash의 연산 시간은 기존 방식과 비교해 얼마나 단축되나요?",
+      "a": "혼합 정밀도 연산을 통해 2.62시간 만에 완료되어 GLUEMAP 실행 시간의 약 4% 수준으로 단축됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.16840v1/kosmo-gfm-tracking-reconstruction.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-13T07:10:58.819414+00:00",
+  "notion_id": "",
+  "id": "2026-11-13-8c2d23e485701934",
+  "img_tried": true
+}
