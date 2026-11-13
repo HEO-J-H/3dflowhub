@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-mesh-contains-multiple-subdivision-levels-f-1671e",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Mesh contains multiple subdivision levels. Freeze or delete them to proceed with this operation.",
+  "title": "Mesh contains multiple subdivision levels. Freeze or delete them 오류 해결 방법",
+  "summary": "ZBrush에서 서브디비전 레벨이 남아 있는 상태로 메쉬의 구조를 변경하는 작업(예: ZRemesher, Dynamesh, 일부 플러그인 실행 등)을 시도할 때 발생하는 오류 메시지입니다.",
+  "causes": [
+    "SubTool에 2개 이상의 Subdivision Level이 남아 있는 상태에서 Topology 변경 작업을 실행한 경우",
+    "Dynamesh나 ZRemesher 등 베이스 메쉬 상태에서만 작동하는 기능을 고도화된 레벨에서 실행한 경우"
+  ],
+  "steps": [
+    "Tool 팔레트를 엽니다.",
+    "Geometry 서브 팔레트를 확장합니다.",
+    "Subdivision Levels 슬라이더가 최고 레벨로 되어 있는지 확인합니다.",
+    "메쉬의 기존 세밀한 디테일을 유지하고 싶다면 Freeze Subdivision Levels 버튼을 클릭하여 잠시 고정합니다.",
+    "디테일을 유지할 필요가 없다면 Delete Lower 또는 Delete Higher 버튼을 눌러 레벨을 정리합니다.",
+    "원하는 구조 변경 작업(예: ZRemesher, Dynamesh)을 다시 실행합니다."
+  ],
+  "check": [
+    "Geometry 서브 팔레트의 Subdivision Levels에서 레벨 정보가 사라졌거나 1개로 고정되었는지 확인합니다.",
+    "작업 실행 시 더 이상 에러 팝업이 뜨지 않고 기능이 정상 수행되는지 확인합니다."
+  ],
+  "prevent": [
+    "구조를 변경하거나 재토폴로지 작업을 하기 전에 항상 Subdivision Level이 정리되어 있는지 확인하는 습관을 들입니다.",
+    "디테일을 보존해야 하는 작업이라면 Freeze 기능을 먼저 사용합니다."
+  ],
+  "keywords": [
+    "ZBrush 에러",
+    "Mesh contains multiple subdivision levels",
+    "서브디비전 삭제",
+    "Freeze Subdivision Levels",
+    "ZBrush Topology 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T08:51:27+00:00"
+}

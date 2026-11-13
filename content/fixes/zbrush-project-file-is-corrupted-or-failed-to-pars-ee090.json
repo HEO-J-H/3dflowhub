@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-project-file-is-corrupted-or-failed-to-pars-ee090",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Project file is corrupted or failed to parse header data",
+  "title": "Project file is corrupted or failed to parse header data 오류 해결 방법",
+  "summary": "Project file is corrupted or failed to parse header data 오류는 ZBrush에서 프로젝트 파일(.ZPR)을 불러올 때 파일 손상이나 헤더 데이터 손상으로 인해 정상적으로 읽어들이지 못할 때 발생합니다.",
+  "causes": [
+    "저장 중 비정상 종료(강제 종료, 정전 등)로 인한 파일 데이터 손상",
+    "네트워크 드라이브나 외장 저장소에서 파일을 읽는 도중 발생한 전송 오류",
+    "구버전 ZBrush에서 저장된 파일이 최신 버전과의 호환성 문제나 파싱 오류를 일으킨 경우"
+  ],
+  "steps": [
+    "ZBrush를 실행하고 File 메뉴로 이동합니다.",
+    "Tool 또는 Project 하위의 QuickSave 폴더(공식 기본 경로: 사용자 문서의 ZBrushData 폴더 내 QuickSave 폴더)를 엽니다.",
+    "손상된 프로젝트 파일과 가장 시간대가 비슷한 QuickSave(.ZPR) 파일을 찾아 엽니다.",
+    "만약 전체 프로젝트 파일(.ZPR)이 완전히 손상되었다면, 가장 최근에 저장한 개별 서브툴 파일(.ZTL)이나 OBJ, GoZ 데이터를 대신 불러와 복구합니다."
+  ],
+  "check": [
+    "ZBrush Viewport에 툴 모델이 정상적으로 로드되며 메시 데이터가 깨지지 않는지 확인합니다.",
+    "Tool 팔레트에서 서브툴 목록과 폴리곤 수(PolyCount)가 올바르게 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "중요한 작업 중에는 틈틈이 File 메뉴의 Save As를 통해 버전을 나누어 별도 파일로 저장합니다.",
+    "QuickSave 간격과 최대 저장 개수를 Preferences > QuickSave 메뉴에서 적절히 설정하여 백업본을 확보합니다.",
+    "안정적인 로컬 SSD 드라이브에 프로젝트를 저장하고 작업합니다."
+  ],
+  "keywords": [
+    "ZBrush 파일 손상",
+    "ZPR 파일 안 열림",
+    "failed to parse header data",
+    "Project file is corrupted",
+    "ZBrush 퀵사이브 복구"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T08:51:29+00:00"
+}
