@@ -1,0 +1,18 @@
+<!-- TITLE: ThermalSplat 논문 발표 — 포즈 없는 열화상 Gaussian Splatting | TAGS: Gaussian Splatting,ThermalSplat,열화상 3D,WACV 2027,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — ThermalSplat은 카메라 포즈 추정이나 RGB 가이드 없이 단 몇 장의 열화상 이미지만으로 3D 장면을 곧바로 재구성하는 피드포워드 Gaussian Splatting 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>ThermalSplat 핵심 접근 방식과 구조</h2>
+<p>열화상 이미지는 저텍스처 성질과 시점별 방사율 때문에 기존 포즈 추정기와 3D Gaussian Splatting 파이프라인이 쉽게 실패합니다. ThermalSplat은 카메라 포즈를 미리 알 필요 없이 희소 뷰 열화상 이미지에서 곧바로 3D 장면을 재구성합니다. 씬별 최적화 과정을 생략하여 연산 비용을 크게 줄였습니다.</p>
+<h2>소프트 센서스 손실과 경계 구조 손실</h2>
+<p>밝기 변화에 강건한 구조 매칭을 위해 소프트 센서스 손실(soft census loss)을 활용합니다. 또한 온도 불연속성을 명시적으로 감독하는 경계 구조 손실을 적용했습니다. 이를 통해 열화상 특유의 어려운 조건에서도 선명한 3D 재구성을 달성합니다.</p>
+<h2>기존 밀집 촬영 방식과의 성능 비교</h2>
+<p>다양한 출처의 데이터셋으로 학습된 ThermalSplat은 보지 못한 씬도 한 번의 패스로 재구성합니다. 씬별 최적화에 의존하는 기존 열화상 방식과 비교해 희소 뷰 환경에서 우위를 점합니다. 심지어 기존 방식이 이상적인 밀집 촬영 환경에서 작동할 때와 비교해도 뛰어난 지각적 충실도를 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 열화상 3D 재구성이 밀집 촬영과 별도의 씬별 최적화에 의존했던 한계를 극복하고 단일 피드포워드 패스로 결과를 도출합니다. 저조도 구조 매칭과 온도 불연속성 감독을 도입해 구조가 붕괴되는 현상을 막았습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. ThermalSplat은 RGB 이미지가 꼭 필요한가요?</b><br/>A. 아니오. RGB 가이드나 알려진 카메라 포즈 없이 순수 열화상 이미지 페어만으로 작동합니다.</p>
+<p><b>Q. 기존 열화상 3D 재구성 방식과의 가장 큰 차이는 무엇인가요?</b><br/>A. 비싼 연산 비용이 드는 씬별 최적화 과정을 거치지 않고, 단일 피드포워드 패스로 즉시 3D 장면을 생성한다는 점입니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-8087654ae50fe2aa.html">RetinexGS: 저조도 RAW 기반 3D Gaussian Splatting</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-d9d89f3c06316df3.html">GEMOR-GS: 3D Gaussian‑Splatting SLAM 정밀 매핑·재위치 추정</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-11-c9b000613fb8ba10.html">DepthGS: 깊이 가이드 Gaussian Splatting으로 고품질 표면 재구성</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.15435v1" target="_blank" rel="noopener nofollow">ThermalSplat: Generalizable Pose-Free Gaussian Splatting for Sparse-View Thermal 3D Reconstruction</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
