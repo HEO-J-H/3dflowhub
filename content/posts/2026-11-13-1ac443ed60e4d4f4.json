@@ -1,0 +1,54 @@
+{
+  "title_ko": "Gaussian Splatting Topology 변화 처리 Topo-4DGS 논문",
+  "title": "Topology-Aware 4D Gaussian Splatting for Egocentric Videos",
+  "url": "https://arxiv.org/abs/2611.16012v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "4DGS",
+    "Topo-4DGS",
+    "TopoEgo",
+    "동적 씬 재구성"
+  ],
+  "summary": "단안 시점 영상에서 물체의 분할·합병 같은 Topology 변화를 다루기 위해 Gaussian의 동적 활성화와 파트별 강체 변환을 결합한 새로운 재구성 방법인 Topo-4DGS가 발표되었습니다.",
+  "insight": "Topo-4DGS는 고정된 표현의 변형에 의존해오던 기존 4D Gaussian Splatting 방식의 한계를 극복하기 위해 Gaussian을 동적으로 활성화하거나 비활성화합니다. 일상적인 상호작용 중 발생하는 표면 생성 및 소멸 과정을 정확하게 모델링하여 후속 프레임의 시각적 오류를 줄여줍니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "단안 시점 영상의 Topology 변화 한계",
+      "body": "체화된 인공지능 분야에서는 단안 시점 영상으로부터 동적 씬과 객체를 재구성하는 것이 중요합니다. 하지만 기존 4D Gaussian Splatting 방식들은 자르기, 조립하기, 열기, 닫기 등 Topology 변화가 동반되는 일상적인 상호작용을 처리하는 데 어려움을 겪어왔습니다."
+    },
+    {
+      "heading": "고정 표현 변형 방식의 시각적 오류",
+      "body": "기존 방법들은 고정된 표현을 변형하는 방식을 사용하기 때문에 표면이 갈라지거나 합쳐지거나 새로운 표면이 드러나는 이벤트에서 심각한 시각적 인공물이 발생합니다. 이로 인해 세밀한 상호작용이 포함된 동적 장면의 정확한 복원이 불가능했습니다."
+    },
+    {
+      "heading": "TopoEgo 벤치마크와 Topo-4DGS 도입",
+      "body": "연구진은 분할, 융합, 열기, 닫기 등의 Topology 변화를 다루는 최초의 벤치마크인 TopoEgo와 함께 Topology 인지 재구성 방법인 Topo-4DGS를 제안합니다. 이 방법은 상호작용하는 파트에 독립적인 강체 변환을 할당하여 파트 수준의 모션을 모델링합니다."
+    },
+    {
+      "heading": "Gaussian 동적 활성화 및 성능",
+      "body": "표면이 나타나거나 사라지거나 분리될 때 Gaussian을 동적으로 활성화하거나 비활성화하는 방식을 사용합니다. 광범위한 실험 결과, Topo-4DGS는 Topology 변화가 발생하는 프레임 전반에서 기존 최신 4D Gaussian Splatting 방법들보다 뛰어난 성능을 보여줍니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Topo-4DGS는 어떤 문제를 해결하기 위한 기술인가요?",
+      "a": "단안 시점 영상에서 물체의 자르기, 조립하기, 열기, 닫기 등 Topology 변화가 일어나는 일상적인 상호작용을 4D Gaussian Splatting이 정확하게 재구성하지 못하던 문제를 해결합니다."
+    },
+    {
+      "q": "기존 4D Gaussian Splatting 방식과 무엇이 다르나요?",
+      "a": "기존 방식은 고정된 표현을 변형하는 데 그쳐 표면이 갈라지거나 합쳐질 때 오류가 생기지만, Topo-4DGS는 파트별 강체 변환과 Gaussian의 동적 활성화·비활성화를 결합하여 표면 변화를 처리합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.16012v1/teaser.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-13T05:50:13.177229+00:00",
+  "notion_id": "",
+  "id": "2026-11-13-1ac443ed60e4d4f4",
+  "img_tried": true
+}

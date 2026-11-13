@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logshaders-warning-shader-compiler-o-bcd7c",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogShaders: Warning: Shader compiler output: error: unrecognized option",
+  "title": "LogShaders: Warning: Shader compiler output: error: unrecognized option 오류 해결 방법",
+  "summary": "Unreal Engine에서 Shader 컴파일 중 알 수 없는 옵션이나 인수가 전달되었을 때 발생하는 경고 및 빌드 실패 메시지입니다. 주로 구형 플랫폼용 Shader 컴파일러 인수가 최신 버전에서 변경되었거나 잘못된 커스텀 인수가 사용될 때 나타납니다.",
+  "causes": [
+    "Custom Material Node 또는 외부 Shader 파일(.usf/.ush)에 지원되지 않는 컴파일러 인수(Compiler Argument)가 포함된 경우",
+    "Unreal Engine 엔진 버전을 업그레이드하면서 구형 Shader 플러그인이나 구문이 호환되지 않는 경우",
+    "프로젝트 설정(Project Settings)의 Shader 관련 추가 명령줄 인수에 오타가 있는 경우"
+  ],
+  "steps": [
+    "Output Log 패널에서 'error: unrecognized option' 메시지 바로 위에 표시되는 잘못된 파일 경로와 옵션 이름을 확인합니다.",
+    "문제가 발생한 Custom Material Node 내부의 HLSL 코드나 커스텀 Shader(.usf) 파일을 엽니다.",
+    "컴파일러에 전달되는 인자 중 최신 버전에서 제거되었거나 오타가 있는 옵션을 수정하거나 삭제합니다.",
+    "Project Settings → Rendering 또는 Platforms에서 사용자 정의 Shader 플래그(Shader Compiler Flags) 항목을 검토합니다.",
+    "Engine/Shaders 또는 프로젝트의 Intermediate, Saved 폴더를 삭제하고 에디터를 재시작하여 Shader 캐시를 초기화합니다."
+  ],
+  "check": [
+    "Output Log에 'error: unrecognized option' 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "Material Editor에서 Shader가 정상적으로 컴파일되어 정상적인 프리뷰가 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "엔진 버전을 업그레이드할 때는 커스텀 Shader 코드와 렌더링 관련 플러그인의 호환성을 먼저 검토합니다.",
+    "비공식 Shader 컴파일러 옵션이나 구형 HLSL 구문 사용을 지양합니다."
+  ],
+  "keywords": [
+    "unrecognized option",
+    "Unreal Engine Shader 에러",
+    "Shader compiler output",
+    "Unreal 컴파일 오류",
+    "Custom Material Node 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-13T05:50:35+00:00"
+}
