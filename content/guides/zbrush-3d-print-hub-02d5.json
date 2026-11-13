@@ -1,0 +1,88 @@
+{
+  "id": "zbrush-3d-print-hub-02d5",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "3D Print Hub",
+  "title": "3D Print Hub — 출력용",
+  "summary": "ZBrush 3D Print Hub는 3D 프린팅을 위한 모델 익스포트, 크기 조정, STL/OBJ 파일 출력을 빠르고 정확하게 처리해 주는 플러그인입니다.",
+  "when": [
+    "작업한 ZBrush 모델을 3D 프린터용 STL 파일로 내보낼 때",
+    "실제 출력물 크기에 맞춰 밀리미터(mm) 단위로 정확하게 크기를 조절할 때",
+    "서브디비전 레벨이 높은 모델을 프린트하기 적절한 폴리곤 수로 최적화할 때"
+  ],
+  "steps": [
+    "ZBrush 상단 메뉴에서 Zplugin을 클릭합니다.",
+    "목록에서 3D Print Hub를 선택하여 패널을 엽니다.",
+    "Scale mm 버튼을 눌러 모델의 실제 출력 크기를 밀리미터 단위로 입력합니다.",
+    "Update Size to mm를 눌러 크기 설정을 모델에 적용합니다.",
+    "Export 선택 항목에서 원하는 파일 형식(STL 등)을 지정합니다.",
+    "Export As 버튼을 눌러 파일을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale mm",
+      "desc": "모델의 실제 물리적 크기를 밀리미터 단위로 설정합니다."
+    },
+    {
+      "name": "Update Size to mm",
+      "desc": "입력한 밀리미터 크기를 현재 툴에 반영합니다."
+    },
+    {
+      "name": "Export As",
+      "desc": "설정된 파일 포맷(STL, OBJ, VRML 등)으로 모델을 저장합니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "모델의 부피를 계산하여 출력 소모량을 미리 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "피규어 모델 STL 파일로 Export",
+      "steps": [
+        "Zplugin에서 3D Print Hub를 엽니다.",
+        "Scale mm에서 높이를 150mm로 입력합니다.",
+        "Export As 버튼으로 STL 파일을 저장합니다."
+      ]
+    },
+    {
+      "title": "출력 전 모델 부피 및 치수 확인",
+      "steps": [
+        "Scale mm 메뉴에서 현재 크기를 확인합니다.",
+        "Volume 버튼을 눌러 예상 레진/필라멘트 양을 가늠합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위 미설정으로 모델 크기가 너무 작게 출력됨 → Scale mm에서 올바른 밀리미터 값을 입력하고 Update Size를 실행하세요.",
+    "폴리곤 수가 너무 많아 파일이 깨짐 → Decimation Master를 먼저 사용하여 폴리곤 수를 최적화한 후 익스포트하세요."
+  ],
+  "related": [
+    "Decimation Master",
+    "3D Print Exporter",
+    "Dynamesh",
+    "ZRemesh"
+  ],
+  "videos": [
+    {
+      "id": "iOgjvLQtJ8I",
+      "title": "How to Work with 3D Print Hub in Zbrush? | Lesson 6 | Chapter 14 | Zbrush 2021.5 Essentials Training",
+      "author": "zinteractive"
+    },
+    {
+      "id": "A65O4G1BVCY",
+      "title": "Creating Keys for 3D Printing in zBrush Tutorial",
+      "author": "3D Tutorials by Alan Balodi"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%203D%20Print%20Hub",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Zplugin",
+    "D Print Hub"
+  ],
+  "at": "2026-11-13T02:20:37.560349+00:00"
+}

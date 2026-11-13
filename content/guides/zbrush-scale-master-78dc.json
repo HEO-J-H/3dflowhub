@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-scale-master-78dc",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "Scale Master",
+  "title": "Scale Master — 실제 크기",
+  "summary": "Scale Master는 ZBrush에서 하위 도구(SubTool)나 전체 모델의 실제 물리적 크기(미니미터·인치 등)와 비율을 정밀하게 측정하고 조절하는 플러그인입니다.",
+  "when": [
+    "3D 프린팅을 위해 모델의 실제 출력 크기(mm)를 정확히 맞출 때",
+    "다른 DCC 툴(Maya, 3ds Max 등)에서 가져온 모델의 크기 단위를 맞출 때",
+    "여러 개의 SubTool 크기를 한 번에 일괄적으로 조절할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Zplugin → Scale Master를 클릭하여 플러그인 패널을 엽니다.",
+    "BBox Size 버튼을 눌러 현재 선택된 SubTool의 가로, 세로, 높이 실제 크기 값을 측정합니다.",
+    "New Size 입력창에 원하는 실제 치수 값을 입력합니다.",
+    "Scale SubTools 또는 Scale Scene 버튼을 클릭하여 모델의 크기를 변경합니다.",
+    "Viewport에서 모델의 크기가 변경되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "BBox Size",
+      "desc": "현재 선택된 SubTool의 3차원 실제 바운딩 박스 크기를 측정합니다."
+    },
+    {
+      "name": "New Size",
+      "desc": "변경하고자 하는 목표 실제 치수 값을 입력합니다."
+    },
+    {
+      "name": "Scale SubTools",
+      "desc": "입력한 치수에 맞춰 선택된 SubTool의 크기를 실제로 조절합니다."
+    },
+    {
+      "name": "Scale Scene",
+      "desc": "씬에 포함된 모든 SubTool을 일괄적으로 비율에 맞춰 조절합니다."
+    },
+    {
+      "name": "Set Bind to Axis",
+      "desc": "특정 축(X, Y, Z)을 기준으로 크기를 고정하거나 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 프린팅을 위한 실제 mm 크기 설정",
+      "steps": [
+        "Zplugin → Scale Master를 엽니다.",
+        "BBox Size를 눌러 현재 기본 크기를 확인합니다.",
+        "New Size에 원하는 출력 높이(예: 100mm)를 입력합니다.",
+        "Scale SubTools를 클릭하여 모델 크기를 확정합니다."
+      ]
+    },
+    {
+      "title": "여러 SubTool 일괄 크기 조절",
+      "steps": [
+        "조절할 여러 SubTool이 포함된 씬을 준비합니다.",
+        "Scale Master 패널에서 Scale Scene 옵션을 활성화합니다.",
+        "기준이 될 치수를 입력한 뒤 일괄 변환을 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단위를 확인하지 않고 숫자를 입력함 → BBox Size로 현재 단위를 먼저 확인하고 값을 입력합니다.",
+    "일부 SubTool만 크기가 틀어짐 → 개별 SubTool 크기 조절 시 Scale SubTools와 Scale Scene의 차이를 확인합니다."
+  ],
+  "related": [
+    "SubTool",
+    "Transpose Master",
+    "Deformation",
+    "Geometry"
+  ],
+  "videos": [
+    {
+      "id": "X-JqryNf9xg",
+      "title": "Scale Master - Pixologic's ZBrush Plugin",
+      "author": "Maxon ZBrush"
+    },
+    {
+      "id": "bICt_XruvQM",
+      "title": "#AskZBrush - How to Set Scene Scale and Export Your Models in ZBrush",
+      "author": "Maxon ZBrush"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Scale%20Master",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Zplugin",
+    "Scale Master"
+  ],
+  "at": "2026-11-13T02:20:41.046994+00:00"
+}

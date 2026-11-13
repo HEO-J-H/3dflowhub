@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-10T19:03:08.565579+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 127,
-      "candidates_passed": 81,
-      "offtopic": 32,
-      "short": 0,
-      "prefiltered": 22,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "d71112b7",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-10T19:13:10.980288+00:00",
       "collected": 1,
       "saved": 1,
@@ -7723,6 +7698,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-13T02:20:14.011994+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 97,
+      "candidates_passed": 62,
+      "offtopic": 20,
+      "short": 0,
+      "prefiltered": 24,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "2f958fcd",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7818,7 +7820,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-07 [성찰] 일반 명사 동음이의어(Nuke, Houdini 등)로 인한 허위 수집을 막고 Maya·3ds Max·Blender 중심의 실무 튜토리얼과 스크립트 비중을 집중해야 검색 유입과 애드센스 RPM이 높아집니다.",
     "2026-11-07 [성찰] 검색 유입과 체류 시간을 극대화하려면 Maya·3ds Max·Blender 등 실무 툴 중심의 튜토리얼 및 스크립트 활용법에 집중하고 동음이의어 노이즈를 철저히 차단해야 합니다.",
     "2026-11-07 [성찰] 검색 의도에 맞는 툴·키워드 중심 제목과 1,500자 이상 깊이 있는 본문이 페이지뷰와 RPM을 동시에 끌어올린다.",
     "2026-11-07 [성찰] 동음이의어 및 일반 명사 도구명(Nuke, Unity, Houdini 등)으로 인한 오수집을 막기 위해 3D·CG 전용 문맥 검증 필터를 강화하고, 3ds Max와 Blender의 실무 스크립트 및 튜토리얼 콘텐츠에 집중해야 합니다.",
@@ -7937,7 +7938,8 @@
     "2026-11-13 [evolve.summarize_high_cpc_niche(): 고단가 실] 신규 함수 구현 시 코딩 규칙과 기존 테스트 구조를 준수하면 한 번에 승인받을 수 있다.",
     "2026-11-13 [evolve.summarize_high_cpc_niche(): 고단가 실] 테스트 실패 — E       KeyError: 'total_practical_posts' / FAILED tests/test_core.py::test_summarize_cpc_optimization_metrics - KeyError: 'total_practical_posts' 보안: ['병합 충돌 표시가 남은 파일: evolve.py, evolve.py,",
     "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 마크다운 문서(.md)에는 코드를 설명용 스니펫으로만 넣고, 실제 테스트 코드는 항상 tests/ 디렉토리의 Python 파일로 작성하자.",
-    "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 문서 파일(.md)에는 테스트 코드를 넣지 않고 마크다운 내용만 작성해야 합니다."
+    "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 문서 파일(.md)에는 테스트 코드를 넣지 않고 마크다운 내용만 작성해야 합니다.",
+    "2026-11-13 [성찰] 동음이의어 필터를 20중으로 강화하고 고단가 실무 튜토리얼 및 애드온 관련 검색 유입 주제에 집중하여 비관련 글을 완전히 차단해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7979,7 +7981,7 @@
     ]
   },
   "category_counts": {
-    "Game Engine/Unity": 83,
+    "Game Engine/Unity": 84,
     "AI 3D/가우시안 스플래팅": 107,
     "VFX/스튜디오·작품": 166,
     "AI 3D/로보틱스·월드모델": 31,
@@ -10705,14 +10707,16 @@
     15146674138166097187,
     16403487640927464693,
     13862291722467486628,
-    1193870097323132784
+    1193870097323132784,
+    17745413495278300164,
+    15940492309576632210
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2746,
-    "Game Engine": 2746,
-    "VFX": 2746,
-    "AI 3D": 2746
+    "3D DCC": 2747,
+    "Game Engine": 2747,
+    "VFX": 2747,
+    "AI 3D": 2747
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
