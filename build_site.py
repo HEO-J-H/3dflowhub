@@ -521,6 +521,8 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .fb button{min-width:48px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:20px;cursor:pointer}
 .fb button:hover{border-color:var(--accent)}.fb button.on{background:var(--accent-soft);border-color:var(--accent)}
 .fb.done button:not(.on){opacity:.4}.fb-msg{font-weight:400;color:var(--muted);font-size:14px}
+.srcbox{border:1px solid var(--line);border-radius:16px;padding:6px 18px 16px;margin:18px 0;background:var(--surface)}
+.srcbox h2{font-size:18px;margin:12px 0 6px}.srcbox ul{margin:0 0 12px;padding-left:18px}.srcbox li{margin:6px 0;line-height:1.55}
 .updbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--surface)}
 .updbox ul{margin:6px 0 0;padding-left:18px}.updbox li{font-size:14px;margin:3px 0}
 .vids{display:grid;gap:14px;margin:18px 0}.vids.two{grid-template-columns:1fr 1fr}
@@ -1480,7 +1482,7 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
              + (f' › <a href="{root}{cat_url(p["domain"], p.get("category") or "기타")}{TOPIC_SLUG[p["topic"]]}/">'
                 f'{e(p["topic"])}</a>' if p.get("topic") in TOPIC_SLUG else "") + ' · '
              f'{kst_date(p.get("collected_at") or "")}</div><h1>{e(p["title_ko"])}</h1>',
-             f'<p class="aiby">🤖 원문을 AI 가 한국어로 요약·해설한 글입니다'
+             f'<p class="aiby">🤖 원문 핵심을 짧게 정리하고 3dflowhub 해설·실습을 덧붙인 글입니다'
              + (' · 커뮤니티 토론·튜토리얼을 참고해 실무 내용을 보강했습니다' if p.get("refs") or p.get("videos") else "")
              + ' · 정확한 내용은 원문 기준 · '
              f'{report_button("[3dflowhub] 오류 제보: " + p["title_ko"][:40], "오류 제보")}</p>']
@@ -1508,20 +1510,28 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
                                                        for c in code) if code else "논문에 공개 코드 링크 없음") + "</p>")
     if tip:
         parts.append(f'<div class="optip"><b>✍️ 운영자 한마디</b><p>{e(tip)}</p></div>')
-    for s in p.get("sections") or []:
-        parts.append(f'<h2>{e(s.get("heading", ""))}</h2><p>{e(s.get("body", ""))}</p>')  # 보강 섹션도 같은 모양
+    # 원문 요약은 짧게(핵심 4줄 + 원문 링크), 3dflowhub 만의 내용(해설·직접 해 보기·함께 익히기·커뮤니티 종합)을 중심으로
+    # (2026-11-13 애드센스 '가치가 별로 없는 콘텐츠' — 남의 기사를 길게 다시 쓴 페이지가 사이트의 얼굴이 되지 않게)
+    src_secs = [x for x in p.get("sections") or [] if isinstance(x, dict) and not x.get("added")]
+    own_secs = [x for x in p.get("sections") or [] if isinstance(x, dict) and x.get("added")]
+    if src_secs:
+        def first(t: str) -> str:
+            t = (t or "").strip()
+            m2 = re.search(r"^(.{20,160}?[.!?다요])(\s|$)", t)
+            return (m2.group(1) if m2 else t[:140]).strip()
+        bullets = "".join(f'<li><b>{e(x.get("heading", ""))}</b> — {e(first(x.get("body", "")))}</li>' for x in src_secs[:4])
+        parts.append(f'<section class="srcbox"><h2>📰 원문 핵심</h2><ul>{bullets}</ul>'
+                     f'<a class="btn ghost" href="{e(p["url"])}" target="_blank" rel="noopener nofollow">원문 전체 보기 →</a></section>')
     if p.get("insight"):
-        parts.append(f'<h2>💡 AI 해설 (실무 관점)</h2><blockquote>{e(p["insight"])}</blockquote>')
+        parts.append(f'<h2>💡 3dflowhub 해설</h2><blockquote>{e(p["insight"])}</blockquote>')
+    for x in own_secs:  # 커뮤니티 토론·자료를 근거로 우리가 종합한 섹션 (출처 번호 포함)
+        parts.append(f'<h2>{e(x.get("heading", ""))}</h2><p>{e(x.get("body", ""))}</p>')
     tries = [t for t in (p.get("try_it") or []) if isinstance(t, str) and t.strip()]
     if tries:
         parts.append("<h2>🛠 직접 해 보기</h2><ol>" + "".join(f"<li>{e(t)}</li>" for t in tries) + "</ol>")
     if p.get("learn"):
         parts.append("<h2>🎓 이 소식과 함께 익히기</h2><ul>" + "".join(
             f'<li><a href="{root}{e(x["url"])}">{e(x["title"])}</a></li>' for x in p["learn"]) + "</ul>")
-    faq = [f for f in p.get("faq") or [] if f.get("q")]
-    if faq:
-        parts.append("<h2>❓ 자주 묻는 질문</h2>" + "".join(
-            f'<details><summary>Q. {e(f["q"])}</summary><p>{e(f.get("a", ""))}</p></details>' for f in faq))
     if p.get("videos"):
         parts.append('<h2>🎬 관련 튜토리얼</h2><div class="vids' + (" two" if len(p["videos"]) > 1 else "") + '">'
                      + "".join(yt_facade(v) for v in p["videos"]) + "</div>" + YT_JS)
@@ -1536,7 +1546,7 @@ def post_html(p: dict, root: str, related: list[dict]) -> str:
     parts.append(newsletter_box(root))
     tags = "".join(f'<a>#{e(t)}</a>' for t in p.get("tags") or [])
     parts.append(f'<p class="tags">{tags}</p><hr><p>원문: <a href="{e(p["url"])}" target="_blank" rel="noopener nofollow">'
-                 f'{e(p.get("title") or p["url"])}</a></p><p class="crumb">본 글은 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>')
+                 f'{e(p.get("title") or p["url"])}</a></p><p class="crumb">원문의 저작권은 출처에 있습니다. 이 페이지는 핵심 소개와 해설·실습 안내입니다.</p>')
     return "<article>" + "".join(parts) + "</article>"
 
 
