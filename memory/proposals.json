@@ -39300,5 +39300,60 @@
     "id": "p-83734827aa",
     "verdict": "agent",
     "reason": "Microsoft TRELLIS 선택 엔진 관련 PR #69와 #70이 머지되어 백엔드 단위 테스트 파일 작성 코드를 수정하는 작업이 가능합니다."
+  },
+  {
+    "at": "2026-11-13T20:12:56+00:00",
+    "kind": "proposal",
+    "id": "p-998347f74a",
+    "title": "Microsoft TRELLIS 연동 모듈 초안 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/agent-guides/trellis_engine.md 문서가 PR #70을 통해 작성되었으며 TRELLIS 선택 엔진 단위 테스트 추가가 수락된 상태입니다.",
+    "proposal": "backend/app/services/trellis_runner.py 파일을 신규 생성하고 TRELLIS 모델을 선택 엔진으로 연동하는 기초 인터페이스와 테스트 코드를 작성합니다.",
+    "expected": "TRELLIS 3D 생성 엔진을 로컬 파이프라인에서 선택적으로 사용할 수 있는 기반 마련",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T20:12:56+00:00",
+    "kind": "proposal",
+    "id": "p-f1843bde53",
+    "title": "PR #68 웹 PBR UI 변경 최종 확인 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68(웹 브라우저 PBR 상태 안내 UI 마크업 정돈)이 승인 대기 상태로 남아 있습니다.",
+    "proposal": "GitHub에서 PR #68의 코드 변경 사항과 테스트 결과를 검토하고 이상이 없으면 머지 처리를 진행합니다.",
+    "expected": "웹 브라우저 PBR 변환 상태 표시 UI 안정화 및 사용자 경험 개선",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T20:13:18.357883+00:00",
+    "kind": "decision",
+    "id": "p-998347f74a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T20:13:18.404832+00:00",
+    "kind": "decision",
+    "id": "p-f1843bde53",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR UI 변경 최종 확인 및 머지",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T20:13:20.318620+00:00",
+    "kind": "triage",
+    "id": "p-998347f74a",
+    "verdict": "agent",
+    "reason": "Microsoft TRELLIS 연동을 위한 백엔드 파일 생성 및 테스트 코드 작성은 코드 수정으로 해결 가능한 작업입니다."
   }
 ]
