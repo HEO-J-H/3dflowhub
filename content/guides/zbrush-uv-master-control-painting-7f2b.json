@@ -1,0 +1,92 @@
+{
+  "id": "zbrush-uv-master-control-painting-7f2b",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "UV",
+  "name": "UV Master Control Painting",
+  "title": "UV Master 경계 지정",
+  "summary": "UV Master Control Painting은 ZBrush UV Master에서 특정 영역의 UV 왜곡을 줄이거나 솔륨(Seam) 위치를 사용자가 직접 붓으로 제어하여 펼치는 기능입니다.",
+  "when": [
+    "자동 UV Master 결과에서 얼굴이나 로고 같은 중요 부위가 찌그러질 때",
+    "텍스처 심(Seam)이 눈에 띄는 정면이나 측면에 생기는 것을 방지하고 싶을 때",
+    "특정 영역의 UV 밀도를 더 높이거나 낮게 조절하고 싶을 때"
+  ],
+  "steps": [
+    "ZBrush에서 UV를 펼칠 SubTool 모델을 선택합니다.",
+    "상단 메뉴 바에서 Zplugin → UV Master를 클릭하여 패널을 엽니다.",
+    "Control Painting 영역에서 Protect(보호) 또는 Attract(당김) 브러시를 선택합니다.",
+    "모델 표면에 직접 브러시로 칠해 UV 왜곡을 방지하거나 늘어날 부위를 지정합니다.",
+    "Unwrap 버튼을 클릭하여 설정된 컨트롤 페인팅을 반영해 UV를 생성합니다."
+  ],
+  "params": [
+    {
+      "name": "Protect",
+      "desc": "칠한 영역의 UV 왜곡을 최소화하고 형태를 유지합니다."
+    },
+    {
+      "name": "Attract",
+      "desc": "칠한 영역 쪽으로 UV가 모이거나 늘어나도록 유도합니다."
+    },
+    {
+      "name": "Erase",
+      "desc": "칠해진 Protect 또는 Attract 효과를 지웁니다."
+    },
+    {
+      "name": "Unwrap",
+      "desc": "컨트롤 페인팅 설정을 반영하여 최종 UV를 계산합니다."
+    },
+    {
+      "name": "Check Seams",
+      "desc": "UV 솔(Seam)이 생성되는 위치를 Viewport에서 시각적으로 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 왜곡 방지",
+      "steps": [
+        "Protect 브러시를 선택합니다.",
+        "캐릭터 얼굴 정면에 칠하여 눈, 코, 입의 UV 늘어남을 막습니다.",
+        "Unwrap을 눌러 얼굴 UV를 깨끗하게 유지합니다."
+      ]
+    },
+    {
+      "title": "의상 솔(Seam) 위치 숨기기",
+      "steps": [
+        "Protect 브러시로 의상 앞면과 소매 보이콧 부위를 칠합니다.",
+        "Attract 브러시로 옷 안쪽 절개선을 유도합니다.",
+        "Unwrap을 실행해 솔 자국이 눈에 띄지 않게 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Protect와 Attract 브러시 효과가 반대로 적용됨 → Eraser 브러시로 지우고 브러시 모드를 다시 확인",
+    "Unwrap을 누르지 않고 결과를 확인함 → 페인팅 후 반드시 Unwrap 버튼을 다시 클릭"
+  ],
+  "related": [
+    "UV Master",
+    "Polypaint",
+    "SubTool",
+    "Decimation Master"
+  ],
+  "videos": [
+    {
+      "id": "aDmcooc-zXU",
+      "title": "Quick Unwrap a head in Zbrush (UV Master) with control painting",
+      "author": "Vladi Dan (CGI)"
+    },
+    {
+      "id": "re6s4MKjpbQ",
+      "title": "ZBrush UV Master Explained — Easiest Way to Unwrap Your Models!",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20UV%20Master%20Control%20Painting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "UV",
+    "SubTool"
+  ],
+  "at": "2026-11-13T00:49:37.025145+00:00"
+}
