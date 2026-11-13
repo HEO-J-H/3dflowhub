@@ -1,0 +1,90 @@
+{
+  "id": "maya-custom-shelf-button-from-script-4b4d",
+  "tool": "Maya",
+  "domain": "3D DCC",
+  "group": "스크립트",
+  "name": "Custom shelf button from script",
+  "title": "Script를 Shelf 버튼으로",
+  "summary": "Maya에서 자주 사용하는 MEL이나 Python Script를 커스텀 쉘프(Shelf) 버튼으로 등록하여 클릭 한 번에 실행할 수 있도록 만드는 기능입니다.",
+  "when": [
+    "반복적으로 실행하는 Script 작업을 단축키나 클릭 한 번으로 빠르게 처리하고 싶을 때",
+    "팀원들과 공유할 파이프라인 툴이나 커스텀 유틸리티를 UI 형태로 배치할 때",
+    "복잡한 명령어 입력을 생략하고 작업 효율을 높이고 싶을 때"
+  ],
+  "steps": [
+    "Maya 상단 메뉴 바에서 Windows → General Editors → Script Editor 를 엽니다.",
+    "Script Editor 창 하단의 Python 또는 MEL 탭에서 실행할 Script 코드를 작성하거나 붙여넣습니다.",
+    "Mouse 드래그로 쉘프에 등록할 Script 코드 전체를 선택합니다.",
+    "선택한 코드를 Mouse로 꾹 눌러서 Maya 상단 원하는 Shelf 영역으로 드래그 앤 드롭합니다.",
+    "팝업 메뉴가 나타나면 사용할 언어(Python 또는 MEL)를 선택하여 버튼을 생성합니다.",
+    "생성된 쉘프 버튼을 우클릭하여 Edit 를 선택한 후, Shelves 탭의 Icon Label 과 Tooltip 을 수정해 알아보기 쉽게 정리합니다.",
+    "Viewport에서 쉘프 버튼을 클릭하여 Script가 정상적으로 실행되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Shelf Name",
+      "desc": "새로운 커스텀 쉘프 탭을 생성하거나 관리하는 이름 설정입니다."
+    },
+    {
+      "name": "Icon Label",
+      "desc": "쉘프 버튼 위에 표시될 짧은 텍스트 이름입니다."
+    },
+    {
+      "name": "Tooltip",
+      "desc": "Mouse를 올렸을 때 나타나는 Script 설명 툴팁입니다."
+    },
+    {
+      "name": "Command",
+      "desc": "버튼을 클릭했을 때 실행될 실제 MEL 또는 Python 코드 내용입니다."
+    },
+    {
+      "name": "Source Type",
+      "desc": "코드가 작성된 언어 타입(MEL 또는 Python)을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "선택한 오브젝트 이름 일괄 변경 Script 등록",
+      "steps": [
+        "Script Editor의 Python 탭에 접두사 추가 Script 코드를 작성합니다.",
+        "코드를 드래그하여 Custom 쉘프에 드롭합니다.",
+        "오브젝트를 선택하고 쉘프 버튼을 눌러 이름이 변경되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "자주 쓰는 렌더 설정 자동 적용 버튼",
+      "steps": [
+        "Render Settings를 변경하는 Python 코드를 Script Editor에 입력합니다.",
+        "코드를 드래그하여 쉘프에 버튼으로 등록합니다.",
+        "새로운 씬을 열고 버튼을 눌러 설정이 한 번에 적용되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "MEL 코드를 Python 탭에 드래그하여 등록함 → Script Editor 하단의 언어 탭(MEL/Python)과 쉘프 버튼의 Source Type이 일치하는지 확인합니다.",
+    "코드가 너무 길어 가독성이 떨어짐 → 긴 코드는 별도의 .py 파일로 저장하고, 쉘프 버튼에는 해당 파일을 불러오는 import 문만 등록합니다."
+  ],
+  "related": [
+    "Script Editor",
+    "Hotkey Editor",
+    "Plug-in Manager",
+    "Expression Editor"
+  ],
+  "videos": [
+    {
+      "id": "N3_HFLWghP8",
+      "title": "Create Shelf Button for Rig Controls in Maya | Custom Script to select Rig control in Maya Tip-18",
+      "author": "Zeeshan Academy"
+    },
+    {
+      "id": "BBm4Vv9y2NA",
+      "title": "5 Essential Shelf Buttons - Maya Tutorial",
+      "author": "Cube Cutter"
+    }
+  ],
+  "doc": "https://help.autodesk.com/view/MAYAUL/2026/ENU/?query=Maya%20Custom%20shelf%20button%20from%20script",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-13T00:59:33.259983+00:00"
+}

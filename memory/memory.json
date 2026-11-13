@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-10T17:44:01.035298+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 135,
-      "candidates_passed": 93,
-      "offtopic": 27,
-      "short": 0,
-      "prefiltered": 22,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "d38cc5dd",
-      "visuals": 0,
-      "enriched": 1,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-10T17:53:23.427709+00:00",
       "collected": 1,
       "saved": 0,
@@ -7723,6 +7696,33 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-13T00:59:10.813269+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 110,
+      "candidates_passed": 76,
+      "offtopic": 22,
+      "short": 0,
+      "prefiltered": 21,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "648b48c8",
+      "visuals": 0,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7818,7 +7818,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-06 [성찰] 동음이의어 및 일반 명사로 인한 오수집을 방지하기 위해 3D/CG 전용 맥락 검증을 강화하고, 검색 유입이 입증된 Maya·3ds Max·Blender 중심의 튜토리얼 및 스크립트 콘텐츠 비중을 대폭 높여야 합니다.",
     "2026-11-06 [성찰] 실무 검색 유입이 입증된 3ds Max, Maya, Blender 등 3D DCC 툴의 구체적인 스크립트·튜토리얼 콘텐츠 비중을 집중 확대하고 동음이의어 필터를 강화해야 합니다.",
     "2026-11-06 [성찰] 실무 검색 유입이 입증된 3ds Max 및 Maya의 무료 스크립트와 튜토리얼 중심 콘텐츠가 블로그 체류 시간과 가치를 극대화합니다.",
     "2026-11-06 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
@@ -7937,7 +7936,8 @@
     "2026-11-12 [[p-984809e9b8|사이트·UX] PR #64및#65코드변경사항검토] Regularly audit PR changes against core playbook rules to maintain code quality and test integrity.",
     "2026-11-12 [[p-26ebad3dc5|사이트·UX] 웹 브라우저 PBR 상태 안내 U] UI 상태 안내 DOM 구조 변경 시 사용자 피드백(스피너 및 완료 메시지)의 가시성과 접근성을 우선 고려하자.",
     "2026-11-12 [성찰] 일반 명사 도구명(Nuke, Unity 등)의 오동작을 막기 위해 12중 컨텍스트 필터를 적용하고, 실무 튜토리얼 및 스크립트 등 고단가 검색 유입 주제에 집중해야 합니다.",
-    "2026-11-12 [성찰] 일반 명사 도구명(Nuke, Unity 등)의 오탐색을 막기 위해 15중 컨텍스트 필터를 적용하고, 검색 유입이 높은 Maxscript 및 실무 튜토리얼·애드온 중심의 고단가 콘텐츠 비중을 대폭 확대해야 합니다."
+    "2026-11-12 [성찰] 일반 명사 도구명(Nuke, Unity 등)의 오탐색을 막기 위해 15중 컨텍스트 필터를 적용하고, 검색 유입이 높은 Maxscript 및 실무 튜토리얼·애드온 중심의 고단가 콘텐츠 비중을 대폭 확대해야 합니다.",
+    "2026-11-13 [성찰] 일반 명사 및 동음이의어(Maya, Unity, Nuke 등)로 인한 오탐지를 줄이기 위해 18중 컨텍스트 필터를 적용하고, 검색 유입이 입증된 Maxscript 및 튜토리얼·플러그인 중심의 실무 가이드 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7992,7 +7992,7 @@
     "Game Engine/UEFN·Fortnite": 6,
     "AI 3D/3D 생성 AI": 66,
     "VFX/Nuke": 16,
-    "Game Engine/기타 엔진": 119,
+    "Game Engine/기타 엔진": 120,
     "VFX/After Effects": 56,
     "VFX/Houdini FX": 11,
     "3D DCC/기타 DCC": 75,
@@ -10689,14 +10689,16 @@
     3358297003474336312,
     11371634541106318390,
     2147028246219194165,
-    18217992677866136614
+    18217992677866136614,
+    10986039541240448504,
+    514110356461790878
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2738,
-    "Game Engine": 2738,
-    "VFX": 2738,
-    "AI 3D": 2738
+    "3D DCC": 2739,
+    "Game Engine": 2739,
+    "VFX": 2739,
+    "AI 3D": 2739
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

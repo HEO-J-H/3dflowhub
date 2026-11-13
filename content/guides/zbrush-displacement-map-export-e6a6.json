@@ -1,0 +1,103 @@
+{
+  "id": "zbrush-displacement-map-export-e6a6",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "맵",
+  "name": "Displacement map export",
+  "title": "디스플레이스먼트 맵 Export",
+  "summary": "ZBrush의 고밀도 모델(Sculpt) 디테일을 텍스처로 추출하여 로우폴리곤 모델에 적용할 수 있는 흑백 높이맵(Displacement Map)을 생성합니다.",
+  "when": [
+    "게임 엔진이나 렌더러에서 사용할 로우폴리곤 모델에 미세한 표면 디테일을 살리고 싶을 때",
+    "지형(Terrain)이나 피부의 주름, 갑옷의 미세한 흠집을 가벼운 맵으로 표현하고 싶을 때",
+    "Substance Painter나 다른 3D DCC 툴로 디테일 데이터를 넘겨야 할 때"
+  ],
+  "steps": [
+    "최상위 서브디비전 레벨에서 모델의 UV가 올바르게 펴져 있는지 확인합니다.",
+    "Tool 팔레트에서 Geometry 서브팔레트를 열고 SubD 슬라이더를 이용해 가장 낮은 레벨(Lowest Level, 예: Level 1)로 이동합니다.",
+    "Tool 팔레트에서 Displacement 서브팔레트를 엽니다.",
+    "Create Disp 버튼을 클릭하여 디스플레이스먼트 맵을 생성합니다.",
+    "생성된 맵을 확인하려면 Alpha 팔레트에서 결과를 선택한 뒤, Clone Disp 버튼을 눌러 텍스처로 복사합니다.",
+    "Texture 팔레트로 이동하여 Flip V 버튼을 눌러 이미지 상하를 반전시킨 후 Export를 클릭하여 16비트 EXR 또는 TIFF 형식으로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Create Disp",
+      "desc": "현재 최상위 레벨과 최하위 레벨의 차이를 계산하여 디스플레이스먼트 맵을 생성합니다."
+    },
+    {
+      "name": "Mode",
+      "desc": "벡터(Vector) 방식 또는 일반 그레이스케일 높이맵 방식을 선택합니다."
+    },
+    {
+      "name": "Dpth",
+      "desc": "맵의 깊이(강도) 값을 설정하여 돌출 및 오목한 정도를 조절합니다."
+    },
+    {
+      "name": "Mid",
+      "desc": "기준이 되는 중간 회색값(Midpoint)을 지정합니다."
+    },
+    {
+      "name": "Adaptive",
+      "desc": "UV 경계면과 디테일 영역에 샘플링을 최적화하여 맵 품질을 높입니다."
+    },
+    {
+      "name": "Clone Disp",
+      "desc": "생성된 디스플레이스먼트 맵을 Alpha 및 Texture 팔레트로 복사합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 피부 주름 맵 추출",
+      "steps": [
+        "SubD 레벨 1에서 UV를 확인합니다.",
+        "SubD 레벨을 최고 단계로 올려 조형된 피부 주름을 정돈합니다.",
+        "Displacement 서브팔레트에서 Create Disp를 실행합니다.",
+        "결과물을 EXR 파일로 내보내어 Unreal Engine이나 Blender의 디스플레이스먼트 슬롯에 연결합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 패널 라인 및 볼트 표현",
+      "steps": [
+        "하드서페이스 모델의 엣지와 패널 라인을 스컬프팅합니다.",
+        "가장 낮은 레벨로 내려간 뒤 Dpth 값을 조절합니다.",
+        "Create Disp로 높이맵을 생성하고 텍스처로 복사합니다.",
+        "Flip V 적용 후 저장하여 렌더러의 Bump 또는 Displacement 채널에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 겹쳐 있거나 펴지지 않음 → UV Master 또는 외부 툴을 이용해 겹치지 않는 올바른 UV를 먼저 펴야 합니다.",
+    "내보낸 맵이 상하 반전됨 → Texture 팔레트에서 Flip V를 누르지 않고 저장했기 때문이며, 저장 전 반드시 Flip V를 실행합니다.",
+    "낮은 SubD 레벨에서 디테일이 깨짐 → 최하위 레벨이 너무 고폴리곤이거나 형태가 변형된 상태이므로 정밀한 베이스 메쉬 상태에서 추출해야 합니다."
+  ],
+  "related": [
+    "Normal Map",
+    "UV Master",
+    "Multi Map Exporter",
+    "Subdivides"
+  ],
+  "videos": [
+    {
+      "id": "H5GDlxGk-ao",
+      "title": "How to Export High Resolution Details From Zbrush to Blender | Displacement Maps | Quick Tutorial",
+      "author": "Aneesh Arts"
+    },
+    {
+      "id": "hHV3M7bTOnI",
+      "title": "Displacement Map Setup | ZBrush, Maya and Blender Workflow",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Displacement%20map%20export",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "UV",
+    "Tool",
+    "Geometry",
+    "SubD",
+    "Lowest Level",
+    "Level 1"
+  ],
+  "at": "2026-11-13T00:59:37.767253+00:00"
+}
