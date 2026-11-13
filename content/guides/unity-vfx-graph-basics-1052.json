@@ -1,0 +1,101 @@
+{
+  "id": "unity-vfx-graph-basics-1052",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "VFX",
+  "name": "VFX Graph basics",
+  "title": "VFX Graph — GPU Particle",
+  "summary": "Unity VFX Graph는 GPU 기반으로 수백만 개의 Particle을 실시간으로 시뮬레이션하고 제어하는 노드 기반 시각적 툴입니다. 복잡한 파판, 불꽃, 연기 등 대규모 시각 효과를 고성능으로 구현할 때 사용합니다.",
+  "when": [
+    "수만 개 이상의 Particle을 멈춤 없이 부드럽게 렌더링해야 할 때",
+    "GPU 가속을 활용해 복잡한 물리 연산과 시뮬레이션을 구현할 때",
+    "노드 네트워크를 연결하여 정교하고 동적인 커스텀 시각 효과를 만들 때"
+  ],
+  "steps": [
+    "Unity 에디터의 Project 창에서 우클릭합니다.",
+    "Create → Visual Effect → Visual Effect Graph를 선택하여 에셋을 생성합니다.",
+    "씬 뷰(Scene View)에 해당 에셋을 드래그하여 드롭합니다.",
+    "생성된 에셋을 더블클릭하여 VFX Graph 창을 엽니다.",
+    "Context 노드와 Operator 노드를 연결하여 Particle의 생성, 이동, 렌더링 설정을 구성합니다.",
+    "Viewport와 Inspector 창에서 결과물을 실시간으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Spawn",
+      "desc": "초당 생성되는 Particle의 개수나 방출 타이밍을 제어합니다."
+    },
+    {
+      "name": "Initialize",
+      "desc": "Particle이 처음 생성될 때의 수명, 크기, 초기 속도 등을 설정합니다."
+    },
+    {
+      "name": "Update",
+      "desc": "Particle이 생존해 있는 동안 매 프레임 적용되는 힘과 움직임을 제어합니다."
+    },
+    {
+      "name": "Output",
+      "desc": "Particle이 화면에 그려지는 렌더링 방식과 머티리얼을 지정합니다."
+    },
+    {
+      "name": "Capacity",
+      "desc": "시스템이 동시에 유지할 수 있는 최대 Particle 개수를 설정합니다."
+    },
+    {
+      "name": "Bounds",
+      "desc": "Particle 시스템의 컬링(Culling)과 최적화를 위한 영역을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "마법진 불꽃 효과",
+      "steps": [
+        "Initialize 블록에서 Particle의 초기 위치를 원형(Circle) 형태로 설정합니다.",
+        "Update 블록에 Force 노드를 추가해 위로 솟구치는 중력 반대 방향의 힘을 줍니다.",
+        "Output Particle Quad를 사용하여 불꽃 텍스처를 적용하고 블렌드 모드를 Additive로 바꿉니다."
+      ]
+    },
+    {
+      "title": "떨어지는 빗방울",
+      "steps": [
+        "Spawn 블록에서 Constant Rate를 높여 비가 내리는 밀도를 조절합니다.",
+        "Initialize 블록에서 수명을 짧게 설정하고 초기 속도를 아래쪽(Y축 음수)으로 지정합니다.",
+        "Output Particle Mesh를 사용하여 실제 빗방울 3D 모델을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "URP 또는 HDRP가 아닌 기본 렌더 파이프라인(Built-in) 프로젝트에서 사용함 → 호환되는 렌더 파이프라인 패키지로 프로젝트 환경을 변경합니다.",
+    "Capacity 값을 너무 높게 설정해 프레임 저하가 발생함 → 씬에 필요한 적정 수치로 용량을 낮추거나 최적화합니다.",
+    "Bounds 범위를 너무 작게 잡아 Particle이 카메라 시야에서 사라짐 → Scene 뷰에서 Bounds즈를 시각적으로 확인하며 크기를 넓혀줍니다."
+  ],
+  "related": [
+    "Shader Graph",
+    "Universal Render Pipeline",
+    "High Definition Render Pipeline",
+    "Particle System"
+  ],
+  "videos": [
+    {
+      "id": "TJGYXUoTmSU",
+      "title": "The Complete Beginner’s Guide to VFX Graph in Unity 6",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "7bMOhNUA1bI",
+      "title": "Unity VFX Graph - Magic Orb Effect Tutorial",
+      "author": "Gabriel Aguiar Prod."
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20VFX%20Graph%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "Project",
+    "Create",
+    "Visual Effect",
+    "Visual Effect Graph",
+    "Scene View"
+  ],
+  "at": "2026-11-13T00:09:42.674611+00:00"
+}

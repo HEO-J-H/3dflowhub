@@ -1,0 +1,100 @@
+{
+  "id": "unity-rigidbody-and-colliders-0285",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리",
+  "name": "Rigidbody and Colliders",
+  "title": "Rigidbody·Collider — 물리 기초",
+  "summary": "Unity의 Rigidbody와 Collider는 3D 오브젝트에 중력, 무게, 물리 충돌 같은 물리 법칙을 부여하는 핵심 컴포넌트입니다. 가상 공간에서 서로 부딪히고 자연스럽게 떨어지는 시뮬레이션을 만듭니다.",
+  "when": [
+    "캐릭터나 소품이 바닥에 떨어지거나 벽에 부딪히게 만들 때",
+    "당구공이나 볼링핀처럼 여러 오브젝트가 서로 밀고 튕겨 나가는 상호작용이 필요할 때",
+    "문이나 상자 등 물리력을 받아 열리거나 움직이는 Interactive 오브젝트를 만들 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 물리적 상호작용을 적용할 3D 모델(Mesh) 오브젝트를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 'Rigidbody'를 입력하고 선택하여 오브젝트에 무게와 중력을 부여합니다.",
+    "다시 Add Component를 클릭하고 오브젝트 형태에 맞는 Collider(예: Box Collider, Sphere Collider, Mesh Collider)를 추가합니다.",
+    "Scene 뷰에서 초록색 외곽선으로 표시되는 Collider의 크기와 위치를 오브젝트에 맞게 조절합니다.",
+    "상단의 Play 버튼을 눌러 Viewport에서 오브젝트가 중력에 의해 떨어지고 충돌하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mass",
+      "desc": "오브젝트의 질량을 설정하며 충돌 시 밀고 나가는 힘에 영향을 줍니다."
+    },
+    {
+      "name": "Drag",
+      "desc": "공기 저항을 조절하여 이동 속도가 자연스럽게 줄어들도록 만듭니다."
+    },
+    {
+      "name": "Use Gravity",
+      "desc": "체크하면 중력의 영향을 받아 아래로 떨어집니다."
+    },
+    {
+      "name": "Is Kinematic",
+      "desc": "체크하면 물리 법칙을 무시하고 애니메이션이나 Script로만 움직입니다."
+    },
+    {
+      "name": "Is Trigger",
+      "desc": "충돌하여 밀려나는 대신 구역 통과 여부를 감지하는 센서로 작동합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "Physics Material을 연결해 마찰력이나 탄성(반발력)을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "탁자에 놓인 컵과 사물들",
+      "steps": [
+        "컵 오브젝트에 Rigidbody와 Mesh Collider를 추가합니다.",
+        "탁자 오브젝트에는 Rigidbody 없이 Box Collider만 추가하여 고정합니다.",
+        "Play를 눌러 컵이 탁자 위로 떨어져 안정적으로 멈추는지 확인합니다."
+      ]
+    },
+    {
+      "title": "튕겨 나가는 공 만들기",
+      "steps": [
+        "Sphere 오브젝트에 Rigidbody와 Sphere Collider를 추가합니다.",
+        "Project 창에서 Create → Physics Material을 생성하고 Bounciness 값을 높입니다.",
+        "Sphere의 Collider 컴포넌트 내 Material 항목에 방금 만든 물리 재질을 드래그하여 넣습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Rigidbody가 없는 오브젝트끼리 충돌함 → 최소 한 개의 오브젝트에는 Rigidbody가 있어야 물리 충돌이 계산됩니다.",
+    "오브젝트가 공중에 멈춰 있거나 떨어지지 않음 → Is Kinematic 옵션이 켜져 있는지 확인하고 체크를 해제합니다.",
+    "캐릭터가 바닥을 뚫고 떨어짐 → 바닥 오브젝트에 Collider가 누락되었거나 비활성화되어 있는지 확인합니다."
+  ],
+  "related": [
+    "GameObject and Components",
+    "Physics Material",
+    "Character Controller",
+    "Raycast"
+  ],
+  "videos": [
+    {
+      "id": "7LVOeNalTFA",
+      "title": "HOW TO CREATE PHYSICS IN UNITY 🎮 | Rigidbody And Colliders In Unity |  | Unity Tutorial",
+      "author": "Dani Krossing"
+    },
+    {
+      "id": "Y3xkgpCukow",
+      "title": "Rigidbody in Unity - Everything You Need to Know",
+      "author": "AnanDEV"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Rigidbody%20and%20Colliders",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Mesh",
+    "Inspector",
+    "Add Component",
+    "Rigidbody"
+  ],
+  "at": "2026-11-13T00:09:34.820493+00:00"
+}
