@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-11T06:05:13.931637+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 88,
-      "candidates_passed": 54,
-      "offtopic": 21,
-      "short": 0,
-      "prefiltered": 20,
-      "llm_fallbacks": [
-        "groq"
-      ],
-      "strategy_ver": "e6a3f472",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-11T06:15:17.331740+00:00",
       "collected": 0,
       "saved": 0,
@@ -7686,6 +7662,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-13T13:22:10.349308+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 78,
+      "candidates_passed": 46,
+      "offtopic": 23,
+      "short": 0,
+      "prefiltered": 16,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "648b48c8",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7781,7 +7784,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-07 [성찰] 동음이의어 및 일반 명사 도구명(Nuke, Unity, Houdini 등)으로 인한 오수집을 막기 위해 3D·CG 전용 문맥 검증 필터를 강화하고, 3ds Max와 Blender의 실무 스크립트 및 튜토리얼 콘텐츠에 집중해야 합니다.",
     "2026-11-07 [성찰] 일반 명사 및 동음이의어(Nuke, Unity 등)의 오수집을 막는 정밀 필터링을 유지하면서 실무 검색 수요가 높은 튜토리얼과 스크립트 정보를 집중 공략해야 합니다.",
     "2026-11-07 [성찰] 오수집되는 동음이의어(Nuke, Unity 등)를 철저히 차단하고 검색 유입이 높은 3ds Max 맥스스크립트 및 실무 애드온·튜토리얼 콘텐츠에 집중하여 가치를 높여야 합니다.",
     "2026-11-07 [core.is_low_depth(): 콘텐츠 길이·키워드 밀도 기반 저깊] 콘텐츠 품질 관리와 테스트 주도 구현은 안정적인 시스템 운영의 핵심입니다.",
@@ -7900,7 +7902,8 @@
     "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 문서 파일(.md)에는 테스트 코드를 넣지 않고 마크다운 내용만 작성해야 합니다.",
     "2026-11-13 [성찰] 동음이의어 필터를 20중으로 강화하고 고단가 실무 튜토리얼 및 애드온 관련 검색 유입 주제에 집중하여 비관련 글을 완전히 차단해야 합니다.",
     "2026-11-13 [성찰] 오동일명 및 일반 명사 단어(Nuke, Maya, Unity 등)로 인한 오프토픽을 차단하기 위해 30중 전문 컨텍스트 필터를 적용하고, 검색 유입이 검증된 Maxscript 및 애드온 실무 튜토리얼 비중을 대폭 높여야 합니다.",
-    "2026-11-13 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추기 위해 수집 단계에서 CG 컨텍스트 필터를 25중으로 강화하고, Maxscript와 실무 튜토리얼 같은 고단가 검색 유입 키워드에 집중해야 합니다."
+    "2026-11-13 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추기 위해 수집 단계에서 CG 컨텍스트 필터를 25중으로 강화하고, Maxscript와 실무 튜토리얼 같은 고단가 검색 유입 키워드에 집중해야 합니다.",
+    "2026-11-13 [성찰] 일반 명사 및 동음이의어(Maya, Unity, Nuke 등)로 인한 오탐지를 방지하기 위해 20중 이상의 3D/CG 전문 컨텍스트 필터를 적용하고, 실무 검색 유입이 입증된 튜토리얼·스크립트·가격 비교 중심의 고단가 콘텐츠 비중을 대폭 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7943,7 +7946,7 @@
     ]
   },
   "category_counts": {
-    "Game Engine/Unity": 84,
+    "Game Engine/Unity": 85,
     "AI 3D/가우시안 스플래팅": 112,
     "VFX/스튜디오·작품": 168,
     "AI 3D/로보틱스·월드모델": 31,
@@ -10703,14 +10706,15 @@
     366209319505340389,
     15395461716861474366,
     3092566126196949638,
-    6349247944115363133
+    6349247944115363133,
+    5265253835974355961
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2812,
-    "Game Engine": 2812,
-    "VFX": 2812,
-    "AI 3D": 2812
+    "3D DCC": 2813,
+    "Game Engine": 2813,
+    "VFX": 2813,
+    "AI 3D": 2813
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
