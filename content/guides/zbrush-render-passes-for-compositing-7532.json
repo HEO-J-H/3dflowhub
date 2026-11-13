@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-render-passes-for-compositing-7532",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Render passes for compositing",
+  "title": "렌더 패스",
+  "summary": "ZBrush Render Passes는 Diffuse, Shadow, Depth 등의 렌더 요소를 개별 이미지 파일로 분리하여 Photoshop이나 합성 프로그램에서 자유롭게 보정할 수 있게 해주는 기능입니다.",
+  "when": [
+    "캐릭터의 피부 톤, 그림자, 하이라이트를 합성 단계에서 세밀하게 조절하고 싶을 때",
+    "포커스(Depth of Field) 효과나 안개(Fog) 효과를 후가공으로 자연스럽게 넣고 싶을 때",
+    "머리카락이나 복잡한 파츠의 윤곽을 선명하게 따기 위해 마스크 패스가 필요할 때"
+  ],
+  "steps": [
+    "Document 메뉴를 열고 ZBrush 작업창의 Resolution(Width, Height)를 원하는 크기로 설정한 뒤 Resize를 누릅니다.",
+    "Tool 패널에서 모델을 불러와 Viewport에 배치하고 PolyF나 Material을 확인합니다.",
+    "Render 메뉴에서 Render Passes 탭을 열고 원하는 패스(예: Shadows, AO, Depth, Diffuse)를 활성화합니다.",
+    "Render 메뉴 상단의 BPR (Best Render) 버튼을 누르거나 Shift+R을 눌러 렌더링을 실행합니다.",
+    "Render 메뉴의 BPR Filters 또는 각 패스 아래의 Save As 버튼을 눌러 개별 패스 이미지를 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Shadows",
+      "desc": "오직 그림자 정보만 흑백으로 분리하여 추출합니다."
+    },
+    {
+      "name": "AO (Ambient Occlusion)",
+      "desc": "면이 겹치는 부위의 음영을 계산하여 입체감을 극대화합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "카메라와의 거리에 따른 깊이(Z-depth) 정보를 흑백 그라데이션으로 출력합니다."
+    },
+    {
+      "name": "SubToolID",
+      "desc": "각 서브툴을 서로 다른 색상으로 구분하여 마스크로 활용할 수 있게 합니다."
+    },
+    {
+      "name": "Mask",
+      "desc": "모델의 마스크 영역을 별도의 패스로 추출합니다."
+    },
+    {
+      "name": "Reflections",
+      "desc": "재질의 반사광 정보만 따로 분리하여 강조합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "합성 프로그램에서 그림자와 볼륨감 조절하기",
+      "steps": [
+        "Render Passes에서 Shadows와 AO 패스를 각각 활성화합니다.",
+        "Shift+R을 눌러 BPR 렌더링을 수행한 뒤 이미지를 저장합니다.",
+        "Photoshop에서 기본 렌더 이미지 위에 패스들을 불러오고 레이어 블렌딩 모드를 Multiply로 설정합니다."
+      ]
+    },
+    {
+      "title": "Depth 패스를 이용한 아웃포커싱(DOF) 효과",
+      "steps": [
+        "Render Passes에서 Depth 패스를 활성화하고 BPR 렌더링을 실행합니다.",
+        "Photoshop의 Lens Blur 필터나 After Effects의 채널 블러에 Depth 패스를 소스로 연결합니다.",
+        "초점이 맞을 거리와 강도를 조절하여 전경이나 배경을 부드럽게 흐립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Standard 렌더를 사용해 패스가 제대로 나오지 않음 → 해결: 반드시 BPR (Shift+R) 렌더링을 실행해야 렌더 패스가 계산됩니다. → 반드시 BPR (Shift+R) 렌더링을 실행해야 렌더 패스가 계산됩니다.",
+    "캔버스 Resolution가 낮아 합성 시 이미지가 깨짐 → 해결: 렌더링 전에 Document 크기를 작업할 최종 Resolution로 먼저 맞추어야 합니다. → 렌더링 전에 Document 크기를 작업할 최종 Resolution로 먼저 맞추어야 합니다."
+  ],
+  "related": [
+    "BPR (Best Preview Render)",
+    "ZIntensity",
+    "Material",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "kWRLC7b-vwM",
+      "title": "How to Render a Clown Pass in Zbrush",
+      "author": "Art of Akrosh"
+    },
+    {
+      "id": "AwQAOBunP_s",
+      "title": "ZBrush Render Passes: Posing, Clown Pass, AO & Depth for Photoshop",
+      "author": "Nexttut"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Render%20passes%20for%20compositing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Document",
+    "ZBrush",
+    "Resolution",
+    "Width",
+    "Height",
+    "Resize"
+  ],
+  "at": "2026-11-13T01:49:55.003918+00:00"
+}

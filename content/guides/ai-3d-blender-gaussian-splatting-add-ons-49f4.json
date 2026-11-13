@@ -1,0 +1,93 @@
+{
+  "id": "ai-3d-blender-gaussian-splatting-add-ons-49f4",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "가우시안 스플래팅",
+  "name": "Blender Gaussian Splatting add-ons",
+  "title": "Blender용 Gaussian Splatting 애드온 활용 가이드",
+  "summary": "Blender에서 최신 3D Gauss Splatting(.ply) 데이터를 직접 불러와 실시간으로 조각하고 렌더링할 수 있는 애드온 사용법입니다. 스캔한 실물 데이터를 별도의 변환 없이 3D 씬에 빠르게 배치할 수 있습니다.",
+  "when": [
+    "실물 스캔 데이터(.ply)를 Blender 씬에 빠르게 불러와 배경이나 소품으로 배치할 때",
+    "복잡한 3D 모델링 대신 Gaussian 스플랫 기반의 경량화된 실사 객체를 활용할 때",
+    "실시간 Viewport에서 Gauss 스플랫 데이터의 위치와 스케일을 직관적으로 조작할 때"
+  ],
+  "steps": [
+    "Kiri Innovations 또는 제공되는 공식 출처에서 '3DGS Render' 애드온(.zip)을 다운로드합니다.",
+    "Blender를 실행한 뒤 Edit Menu > Preferences > Add-ons 탭으로 이동합니다.",
+    "우측 상단의 Install 버튼을 눌러 다운로드한 애드온 파일을 선택하고 활성화(체크)합니다.",
+    "3D Viewport에서 N 키를 눌러 사이드바를 열고, 새로 추가된 3DGS 탭을 선택합니다.",
+    "Import 버튼을 클릭하여 작업하려는 .ply 포맷의 Gaussian 스플랫 파일을 불러옵니다.",
+    "Viewport Shading을 Rendered 모드로 변경하여 실시간 렌더링 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Point Size",
+      "desc": "Viewport에서 Gaussian 점들의 기본 표시 크기를 조절합니다."
+    },
+    {
+      "name": "Opacity Threshold",
+      "desc": "투명도 기준값을 설정하여 불필요한 노이즈 영역을 걸러냅니다."
+    },
+    {
+      "name": "Render Quality",
+      "desc": "렌더링 시 세밀함과 연산 속도의 균형을 조정합니다."
+    },
+    {
+      "name": "Bake Lighting",
+      "desc": "씬 내의 조명 정보를 Gaussian 데이터에 반영합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화에 스캔한 나무 배치하기",
+      "steps": [
+        "3DGS 탭에서 나무 형태의 .ply 파일을 불러옵니다.",
+        "G 키와 R 키를 사용해 건축물 주변 빈 공간에 배치합니다.",
+        "Cycles 또는 Eevee 렌더러로 전환하여 주변 조명과 어우러지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "실내 인테리어에 소품 스캔 데이터 추가하기",
+      "steps": [
+        "가구나 소품이 담긴 Gaussian 스플랫 데이터를 씬으로 임포트합니다.",
+        "S 키를 눌러 크기를 씬 스일에 맞게 조절합니다.",
+        "카메라 뷰를 맞추고 렌더링 테스트를 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지원하지 않는 포맷 가져오기 → 반드시 .ply 확장자의 Gaussian 스플랫 데이터인지 확인하세요.",
+    "Viewport Shading 설정 오류 → 솔리드 모드에서는 점이 보이지 않으므로 Rendered 모드로 전환하세요.",
+    "스케일 단위 어긋남 → Import 직후 모델이 너무 크거나 작으면 Object Properties에서 Scale 값을 조절하세요."
+  ],
+  "related": [
+    "3D Gaussian Splatting",
+    "Geometry Nodes",
+    "Cycles",
+    "Eevee"
+  ],
+  "videos": [
+    {
+      "id": "iO48fxcsAys",
+      "title": "SkySplat (free): Gaussian Splatting in Blender made easy",
+      "author": "Nicko16"
+    },
+    {
+      "id": "A1T9uJtq0cI",
+      "title": "Gaussian Splatting in Blender (fast + free)",
+      "author": "Nicko16"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Blender%20Gaussian%20Splatting%20add-ons",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Kiri Innovations",
+    "DGS Render",
+    "Blender",
+    "Edit Menu",
+    "Preferences",
+    "Add"
+  ],
+  "at": "2026-11-13T01:49:58.903575+00:00"
+}
