@@ -1,0 +1,98 @@
+{
+  "id": "unity-profiler-basics-c558",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Profiler basics",
+  "title": "Profiler — 느린 곳 찾기",
+  "summary": "Unity Profiler는 게임의 CPU, GPU, 메모리, 렌더링 성능을 실시간으로 분석하고 병목 현상을 찾아내는 핵심 성능 측정 툴입니다.",
+  "when": [
+    "게임 실행 중 프레임 드랍(Stuttering)이나 렉이 발생하여 원인을 찾을 때",
+    "모바일 기기나 저사양 PC에서 메모리 사용량과 가비지 컬렉션(GC)을 최적화할 때",
+    "GPU 렌더링 부하가 높은 셰이더나 드로우 콜(Draw Call) 문제를 진단할 때"
+  ],
+  "steps": [
+    "Unity 에디터 상단 메뉴 바에서 Window → Analysis → Profiler를 선택해 프로파일러 창을 엽니다.",
+    "에디터 상단의 Play 버튼을 눌러 게임을 실행하고 프로파일링 데이터를 수집합니다.",
+    "프로파일러 창 상단의 CPU Usage, GPU Usage, Memory 등 주요 카테고리 그래프를 클릭해 상세 Timeline을 확인합니다.",
+    "상단 드롭다운 메뉴에서 에디터 자체 부하를 제외하기 위해 'Deep Profiling' 또는 'Profiler Connected' 설정을 확인합니다.",
+    "Timeline에서 특정 프레임을 클릭하고 Hierarchy 뷰로 전환하여 가장 많은 시간을 소모하는 함수나 Script를 파악합니다."
+  ],
+  "params": [
+    {
+      "name": "CPU Usage",
+      "desc": "Script, 물리 연산, 애니메이션 등 CPU가 소모하는 처리 시간을 프레임 단위로 분석합니다."
+    },
+    {
+      "name": "GPU Usage",
+      "desc": "그래픽 카드가 렌더링 및 Shader 연산에 소모하는 부하를 측정합니다."
+    },
+    {
+      "name": "Memory",
+      "desc": "텍스처, 오디오, 에셋 등이 사용하는 RAM 및 VRAM 메모리 용량을 추적합니다."
+    },
+    {
+      "name": "Rendering",
+      "desc": "드로우 콜(Draw Call), 배치 수, 세팅된 삼각형 개수 등을 확인합니다."
+    },
+    {
+      "name": "Timeline",
+      "desc": "프레임 내에서 각 작업이 실행된 순서와 소모 시간을 시각적 바(Bar) 형태로 보여줍니다."
+    },
+    {
+      "name": "Hierarchy",
+      "desc": "소모 시간이 긴 함수나 메서드를 목록 형태로 정렬하여 병목 구간을 찾습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "프레임 드랍 원인(GC Alloc) 찾기",
+      "steps": [
+        "Profiler 창에서 CPU Usage 모듈을 선택합니다.",
+        "상단 보기 방식을 Timeline에서 Hierarchy로 변경합니다.",
+        "GC Alloc 컬럼을 클릭하여 메모리를 가장 많이 할당하는 Script를 정렬합니다.",
+        "해당 Script의 Update() 함수 내 불필요한 문자열 연산이나 new 키워드 사용을 수정합니다."
+      ]
+    },
+    {
+      "title": "드로우 콜(Draw Call) 과다 확인",
+      "steps": [
+        "Profiler 창에서 Rendering 모듈을 활성화합니다.",
+        "Batches와 Draw Calls 수치를 확인하여 목표 기준을 초과하는지 검토합니다.",
+        "Material 결합(Texture Atlasing) 및 Static Batching 적용 여부를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Development Build가 아닌 Release/Editor 환경에서 측정함 → 실제 빌드 환경과 성능 차이가 발생하므로 Standalone Development Build(Autoconnect Profiler 체크)로 테스트하세요.",
+    "Deep Profiling을 항상 켜두고 측정함 → 모든 C# 메서드 호출을 추적해 오버헤드가 발생하므로, 정확한 함수 분석 시에만 켜고 평소에는 끕니다."
+  ],
+  "related": [
+    "Frame Debugger",
+    "Memory Profiler",
+    "Quality Settings",
+    "Graphics Settings"
+  ],
+  "videos": [
+    {
+      "id": "xjsqv8nj0cw",
+      "title": "Unity Profiler Walkthrough & Tutorial | Unity",
+      "author": "Unity"
+    },
+    {
+      "id": "sBpXiJ9G3OY",
+      "title": "Introduction to the Profiler - Unity Official Tutorials",
+      "author": "Unity"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Profiler%20basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "Window",
+    "Analysis",
+    "Profiler"
+  ],
+  "at": "2026-11-13T00:29:29.224046+00:00"
+}
