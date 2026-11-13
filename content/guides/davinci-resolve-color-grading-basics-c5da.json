@@ -1,0 +1,94 @@
+{
+  "id": "davinci-resolve-color-grading-basics-c5da",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "Color Grading",
+  "name": "Color Grading Basics",
+  "title": "DaVinci Resolve 컬러 그레이딩 및 노드 기초 가이드",
+  "summary": "DaVinci Resolve의 Color 페이지를 활용해 영상의 전체적인 색감을 잡고 룩(Look)을 완성하는 기초 컬러 그레이딩 방법입니다. 씬 전체의 톤을 맞추고 분위기를 연출할 때 사용합니다.",
+  "when": [
+    "촬영본의 화이트 밸런스나 노출이 씬마다 다를 때",
+    "영화나 드라마처럼 특정한 감성적인 분위기를 연출하고 싶을 때",
+    "인물 피부톤을 자연스럽고 일관되게 보정해야 할 때"
+  ],
+  "steps": [
+    "하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 그레이딩 인터페이스로 이동합니다.",
+    "Viewer 상단의 Light / Color 아이콘을 켜거나 Hotkey Alt+C를 눌러 Color Wheel 패널을 활성화합니다.",
+    "Lift, Gamma, Gain 노브를 드래그하여 각각 어두운 영역, 중간 영역, 밝은 영역의 밝기와 색감을 조절합니다.",
+    "노드(Node) 창에서 우클릭 후 Add Serial Node를 선택하여 새로운 보정 레이어를 추가합니다.",
+    "Scopes(Waveform, Vectorscope)를 켜서 노출 과다나 색상 왜곡이 없는지 수치로 확인합니다.",
+    "Viewer에서 결과를 실시간으로 확인하며 최종 룩을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Lift",
+      "desc": "영상의 어두운 영역(Shadow)의 밝기와 색감을 조절합니다."
+    },
+    {
+      "name": "Gamma",
+      "desc": "영상의 중간 영역(Midtone)의 밝기와 색감을 조절합니다."
+    },
+    {
+      "name": "Gain",
+      "desc": "영상의 밝은 영역(Highlight)의 밝기와 색감을 조절합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "전체 톤의 밝기와 색상을 동시에 이동시킵니다."
+    },
+    {
+      "name": "Saturation",
+      "desc": "영상 전체의 채도를 높이거나 낮춥니다."
+    },
+    {
+      "name": "Contrast",
+      "desc": "밝은 부분과 어두운 부분의 대비를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 같은 시네마틱 톤(Teal & Orange) 적용",
+      "steps": [
+        "Gain 노브를 약간 주황빛(Orange) 쪽으로 이동시켜 하이라이트에 온기를 줍니다.",
+        "Lift 노브를 청록빛(Teal) 쪽으로 이동시켜 섀도우 톤을 차갑게 만듭니다.",
+        "새로운 Serial Node를 추가하고 Saturation을 살짝 낮춰 차분한 톤을 만듭니다."
+      ]
+    },
+    {
+      "title": "물 빠진 촬영본(Log) 기본 노출 및 대비 복구",
+      "steps": [
+        "Waveform Scope를 보며 Lift를 내려 검정 기준점(0)을 맞춥니다.",
+        "Gain을 올려 흰색 기준점(100)을 맞춥니다.",
+        "Gamma를 조절해 인물이나 피사체의 디테일이 잘 보이도록 중간 톤을 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모니터 밝기만 믿고 작업하다가 다른 기기에서 너무 어둡거나 밝게 보임 → Waveform Scope와 Vectorscope 수치를 항상 함께 확인하세요.",
+    "한 개의 노드에 모든 보정을 몰아서 작업함 → Serial Node를 분리(노출, 컬러, 비주얼 룩 순서)하여 체계적으로 관리하세요.",
+    "채도를 과도하게 올려 피부톤이 깨짐 → Vectorscope의 Skin Tone Indicator 선을 참고하여 피부톤을 유지하세요."
+  ],
+  "related": [
+    "Color Wheels",
+    "Curves",
+    "Qualifier",
+    "Power Windows"
+  ],
+  "videos": [
+    {
+      "id": "YbDRl_xugJo",
+      "title": "NEW to DaVinci Resolve?  Color Grading - Tutorial",
+      "author": "Darren Mostyn"
+    },
+    {
+      "id": "jK_nYq4ZpgY",
+      "title": "How to Color Grade in DaVinci Resolve for Beginners!",
+      "author": "Think Media"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Color%20Grading%20Basics",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-13T01:29:52.635003+00:00"
+}

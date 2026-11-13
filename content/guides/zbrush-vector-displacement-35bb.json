@@ -1,0 +1,89 @@
+{
+  "id": "zbrush-vector-displacement-35bb",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "맵",
+  "name": "Vector displacement",
+  "title": "Vector Displacement",
+  "summary": "ZBrush Vector Displacement는 기존 흑백 높이맵과 달리 XYZ 모든 방향으로 깊이감과 언더컷이 포함된 입체적인 디테일을 스컬프팅 모델에서 추출하여 로우폴리곤 모델에 적용할 수 있는 기능입니다.",
+  "when": [
+    "일반 Normal Map이나 Displacement Map으로 표현하기 힘든 깊은 홈이나 언더컷이 있는 디테일을 맵으로 추출할 때",
+    "게임 로우폴리곤 모델에 하이폴리곤의 입체적인 돌출 및 파인 구조를 그대로 살려야 할 때",
+    "다른 3D DCC(Blender, Maya 등)나 게임 엔진으로 복잡한 스컬프팅 형태를 가볍게 전달할 때"
+  ],
+  "steps": [
+    "최상위 서브디비전 레벨(Highest SubD)에서 모델의 UV가 겹치지 않게 올바르게 펴져 있는지 확인합니다.",
+    "상단 메뉴바에서 Zplugin → Vector Displacement Map 메뉴를 엽니다.",
+    "Export 옵션에서 적절한 파일 포맷(EXR 등 32비트 포맷 권장)과 좌표계(Tangent Space 등)를 설정합니다.",
+    "Create VDM 버튼을 클릭하여 벡터 디스플레이스먼트 맵 파일을 생성하고 저장합니다.",
+    "대상 로우폴리곤 모델에 맵을 적용하고 Viewport에서 입체적인 디테일이 살아나는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Create VDM",
+      "desc": "현재 서브툴의 벡터 디스플레이스먼트 맵을 생성합니다."
+    },
+    {
+      "name": "Tangent Space",
+      "desc": "표면의 탄젠트 방향을 기준으로 벡터 맵을 계산합니다."
+    },
+    {
+      "name": "Adaptive",
+      "desc": "모델의 UV 및 폴리곤 분포에 맞춰 맵 추출 품질을 최적화합니다."
+    },
+    {
+      "name": "SubDiv Level",
+      "desc": "디테일을 추출할 기준 서브디비전 레벨을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽의 깊은 균열과 파인 홈 표현",
+      "steps": [
+        "하이폴리곤 벽 모델에서 돌출된 균열을 스컬프팅합니다.",
+        "Zplugin에서 Vector Displacement Map 기능을 실행하여 VDM을 추출합니다.",
+        "로우폴리곤 벽 모델에 맵을 연결하여 입체감을 부여합니다."
+      ]
+    },
+    {
+      "title": "갑옷 표면의 돌출된 장식과 문양",
+      "steps": [
+        "기본 갑옷 모델 위에 언더컷이 있는 복잡한 장식을 조각합니다.",
+        "VDM을 생성하고 32비트 EXR 포맷으로 저장합니다.",
+        "렌더러나 엔진에서 벡터 디스플레이스먼트를 적용해 실루엣을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 겹쳐 있거나 밖으로 튀어나간 경우 → UV를 다시 펴고 오버랩이 없는 상태에서 맵을 추출합니다.",
+    "일반 8비트 포맷으로 저장하여 계단 현상이 생기는 경우 → 데이터 손실이 없는 32비트 EXR 포맷으로 저장합니다."
+  ],
+  "related": [
+    "Displacement Map",
+    "Multi Map Exporter",
+    "Normal Map",
+    "SubTool"
+  ],
+  "videos": [
+    {
+      "id": "A3HUb3HUb9c",
+      "title": "Vector Displacement Map from ZBrush to Maya Setup",
+      "author": "FlippedNormals"
+    },
+    {
+      "id": "MfO-9JgQLBA",
+      "title": "Create Your Own Vector Displacement Brushes with ZBrush in 10 Minutes",
+      "author": "Abe Leal 3D"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Vector%20displacement",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Highest SubD",
+    "UV",
+    "Zplugin",
+    "Vector Displacement Map"
+  ],
+  "at": "2026-11-13T01:29:48.160874+00:00"
+}
