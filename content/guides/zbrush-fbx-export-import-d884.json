@@ -1,0 +1,96 @@
+{
+  "id": "zbrush-fbx-export-import-d884",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "내보내기",
+  "name": "FBX Export Import",
+  "title": "FBX Export·가져오기",
+  "summary": "ZBrush에서 제작한 하이폴리곤 스컬프팅 모델을 FBX 포맷으로 내보내고 다른 DCC 툴이나 게임 엔진으로 가져오는 방법입니다. 고밀도 메쉬와 텍스처를 효율적으로 전달하기 위한 필수 설정 과정을 다룹니다.",
+  "when": [
+    "ZBrush에서 스컬프팅한 캐릭터나 프랍을 Unreal Engine이나 Unity 같은 게임 엔진으로 가져갈 때",
+    "Blender, Maya, 3ds Max 등 다른 DCC 툴에서 리토폴로지나 리깅 작업을 진행할 때",
+    "서로 다른 작업자 간에 에셋을 FBX 포맷으로 공유하고 파이프라인을 연동할 때"
+  ],
+  "steps": [
+    "ZBrush 우측의 Tool 팔레트에서 내보내거나 가져올 서브툴(SubTool)을 선택합니다.",
+    "상단 메뉴에서 Tool → Export 또는 Tool → Import를 클릭합니다.",
+    "Export 시 Tool → Export 옵션 패널에서 축 방향(FlipAxis 등)과 스케일 값을 확인합니다.",
+    "SubTool 팔레트 하단의 All 버튼을 켜면 모든 서브툴을 하나의 FBX 파일로 일괄 내보낼 수 있습니다.",
+    "다른 툴에서 가져온 FBX 모델은 Tool 팔레트에서 드래그하여 Viewport에 배치하고 Edit (T) 키를 눌러 편집 모드로 전환합니다."
+  ],
+  "params": [
+    {
+      "name": "SubTool",
+      "desc": "여러 개의 오브젝트(메쉬)를 레이어처럼 관리하며 개별 또는 일괄 Export 설정"
+    },
+    {
+      "name": "Export",
+      "desc": "선택한 모델을 FBX 등 지정한 포맷으로 저장"
+    },
+    {
+      "name": "Import",
+      "desc": "외부에서 제작된 FBX 파일이나 메쉬를 ZBrush로 불러오기"
+    },
+    {
+      "name": "Scale",
+      "desc": "내보내거나 가져올 때 모델의 전체 크기 비율 조정"
+    },
+    {
+      "name": "GoZ",
+      "desc": "Maya, Blender 등 외부 DCC 툴과 원클릭으로 메쉬를 실시간 왕복 전송"
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 엔진용 캐릭터 FBX Export",
+      "steps": [
+        "SubTool 팔레트에서 캐릭터의 각 파츠를 확인합니다.",
+        "Tool → Export 메뉴를 클릭하여 .fbx 포맷을 선택합니다.",
+        "Unreal Engine이나 Unity로 파일을 가져와 Import 설정을 확인합니다."
+      ]
+    },
+    {
+      "title": "Blender로 베이스 메쉬 전달하기",
+      "steps": [
+        "ZBrush에서 대략적인 형태의 스컬프팅 메쉬를 준비합니다.",
+        "Tool → Export를 통해 FBX 파일로 저장합니다.",
+        "Blender에서 File → Import → FBX를 통해 모델을 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "편집 모드가 꺼진 상태에서 Export 시도 → Viewport에서 모델을 선택하고 T 키(Edit Mode)를 켠 후 Export",
+    "지나치게 높은 폴리곤 수로 인한 파일 깨짐 → Decimation Master를 사용하여 폴리곤을 적절히 줄인 후 Export",
+    "축 방향이 뒤틀려 가져와지는 현상 → Export 설정에서 축(Axis) 옵션을 확인하고 타겟 툴에 맞춰 조정"
+  ],
+  "related": [
+    "Decimation Master",
+    "GoZ",
+    "SubTool",
+    "FBX Export Import"
+  ],
+  "videos": [
+    {
+      "id": "Ik6946gROcQ",
+      "title": "Exporting All Subtools to a Single .OBJ File - ZBrush to Maya Tutorial",
+      "author": "Reins  Academy"
+    },
+    {
+      "id": "iTqjINAo0HY",
+      "title": "004 FBX And GoZ Export",
+      "author": "Michael Pavlovich"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20FBX%20Export%20Import",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Tool",
+    "SubTool",
+    "Export",
+    "Import",
+    "FlipAxis"
+  ],
+  "at": "2026-11-13T02:10:11.779175+00:00"
+}
