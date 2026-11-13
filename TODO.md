@@ -70,7 +70,7 @@
 
 - [x] (agent) core.filter_strict_offtopic(): 일반 명사 도구명 등장 시 CG/3D 전문 문맥 키워드 부재 여부를 5중 이상으로 정밀 검증하여 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
 - [x] (agent) evolve.summarize_high_cpc_niche(): 고단가 실무 3D 툴 및 애드온 관련 콘텐츠의 성과 요약 리포트를 집계하여 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
-- [ ] (agent) app.render_strict_niche_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
+- [x] (agent) app.render_strict_niche_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
 - [ ] (agent:보류) core.filter_strict_offtopic(): 일반 명사 도구명(Nuke, Unity, Maya 등)에 대해 5중 이상의 다중 맥락 키워드 검증을 수행하여 비관련 오인 유입을 강력하게 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가 — [4] 패치 적용 실패: ['core.py: search 블록이 정확히 1회 일치하지 않음']
-- [ ] (agent) evolve.summarize_niche_performance(): 실무 검색 유입이 높은 3ds Max Maxscript 및 Blender 애드온 관련 고단가 콘텐츠의 성과와 도메인 분포 지표를 집계하여 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [ ] (agent:보류) evolve.summarize_niche_performance(): 실무 검색 유입이 높은 3ds Max Maxscript 및 Blender 애드온 관련 고단가 콘텐츠의 성과와 도메인 분포 지표를 집계하여 리포트로 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가 — 같은 과제 2회 실패 — 마지막 사유: [4] tests=False security=[] — 리뷰 생략
 - [ ] (agent) app.render_niche_performance_dashboard(): Streamlit 현황판에 고단가 실무 3D 콘텐츠의 도메인별 성과 요약과 오프토픽 차단 현황을 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
