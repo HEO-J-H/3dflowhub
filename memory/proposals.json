@@ -35521,5 +35521,91 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 유닛 테스트 보강",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T04:40:56+00:00",
+    "kind": "proposal",
+    "id": "p-eb43c35949",
+    "title": "PR #68 웹 PBR UI 변경 최종 확인 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 현재 승인 대기 상태로 머지되지 않고 남아 있음",
+    "proposal": "GitHub에서 PR #68의 코드 변경 사항과 테스트 결과를 확인하고 수동 머지 또는 승인 처리 진행",
+    "expected": "웹 브라우저 PBR 상태 안내 UI가 정상적으로 반영되어 사용자 피드백 개선",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T04:40:56+00:00",
+    "kind": "proposal",
+    "id": "p-71611f8619",
+    "title": "백엔드 입력 검증 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 입력 검증 테스트 추가 시도(p-9eea3f45cd)가 변경 없음으로 held 상태 처리됨",
+    "proposal": "backend/tests/test_mesh_from_image.py에 다양한 이미지 포맷 입력 검증 유닛 테스트 코드를 명시적으로 작성 및 추가",
+    "expected": "로컬 파이프라인 입력 처리 안정성 및 테스트 커버리지 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T04:40:56+00:00",
+    "kind": "proposal",
+    "id": "p-c569084702",
+    "title": "웹 PBR 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 변환 관련 에러 핸들링 보완 작업이 반복적으로 보류됨",
+    "proposal": "web/ 또는 backend/static/ 영역의 PBR 변환 실패 시 발생하는 에러 메시지 처리 로직에 대한 프론트엔드 유닛 테스트 추가",
+    "expected": "브라우저 환경에서의 예외 상황 대응력 강화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T04:41:35.916989+00:00",
+    "kind": "decision",
+    "id": "p-eb43c35949",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 웹 PBR UI 변경 최종 확인 및 머지",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T04:41:35.962836+00:00",
+    "kind": "decision",
+    "id": "p-71611f8619",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 백엔드 입력 검증 유닛 테스트 보강",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T04:41:36.012924+00:00",
+    "kind": "decision",
+    "id": "p-c569084702",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T04:41:39.787199+00:00",
+    "kind": "triage",
+    "id": "p-c569084702",
+    "verdict": "done_already",
+    "reason": "웹 브라우저 PBR 변환 에러 핸들링 및 유닛 테스트 관련 내용은 이미 끝낸 제안과 최근 커밋에서 반영되었습니다."
+  },
+  {
+    "at": "2026-11-13T04:41:39.832352+00:00",
+    "kind": "decision",
+    "id": "p-c569084702",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 브라우저 PBR 변환 에러 핸들링 및 유닛 테스트 관련 내용은 이미 끝낸 제안과 최근 커밋에서 반영되었습니다."
   }
 ]
