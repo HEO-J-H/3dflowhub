@@ -90,5 +90,13 @@
   "grounded": false,
   "images": [],
   "menu_path": [],
-  "at": "2026-11-12T03:19:44.456097+00:00"
+  "at": "2026-11-12T03:19:44.456097+00:00",
+  "qa_at": "2026-11-13T15:24:38+00:00",
+  "qa": {
+    "score": 9,
+    "defects": [
+      "일부 UI 조작 단계에서 컴포넌트 이름과 메뉴 경로가 URP(Universal Render Pipeline) 기준인지 URP/Built-in 혼용인지 명확히 분리되지 않았습니다."
+    ],
+    "fix_hint": "유니티 렌더 파이프라인(URP, HDRP, Built-in)에 따른 Volume 설정 및 컴포넌트 추가 경로를 명확하게 구분하여 작성해 주세요."
+  }
 }
