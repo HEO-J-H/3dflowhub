@@ -1,0 +1,94 @@
+{
+  "id": "zbrush-turntable-recording-df45",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "렌더링",
+  "name": "Turntable recording",
+  "title": "Turntable 영상",
+  "summary": "ZBrush에서 작업한 3D 모델의 전후좌우를 360도 회전하며 감상할 수 있는 턴테이블(Turntable) 영상을 쉽고 빠르게 녹화하는 기능입니다. 포트폴리오나 작업물 공유를 위한 고화질 영상 제작에 필수적입니다.",
+  "when": [
+    "완성된 캐릭터나 모델의 전체 실루엣을 360도 영상으로 남기고 싶을 때",
+    "포트폴리오 제출용 턴테이블 시퀀스를 렌더링해야 할 때",
+    "클라이언트나 팀원에게 작업 결과물을 빠르게 공유할 때"
+  ],
+  "steps": [
+    "ZBrush 우측 셰프(Shelf)에서 Movie 메뉴를 클릭합니다.",
+    "Movie 팔레트 내의 Turntable 버튼을 클릭하여 회전 테스트를 진행합니다.",
+    "Movie > Modifiers 서브팔레트에서 Spin Frames 값을 조절하여 회전 속도와 프레임 수를 설정합니다.",
+    "Render 메뉴에서 Shadows와 Best 렌더 옵션을 활성화하여 고화질로 설정합니다.",
+    "Movie 팔레트에서 Record 버튼을 누르면 모델이 자동으로 회전하며 녹화가 시작됩니다.",
+    "녹화가 완료되면 Movie > Save 버튼을 눌러 MP4 또는 GIF 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Spin Frames",
+      "desc": "한 바퀴 회전하는 동안 캡처할 총 프레임 수를 설정합니다."
+    },
+    {
+      "name": "Frames",
+      "desc": "녹화할 전체 애니메이션 프레임의 길이를 결정합니다."
+    },
+    {
+      "name": "Axis",
+      "desc": "모델이 회전할 기준 축(X, Y, Z)을 선택합니다."
+    },
+    {
+      "name": "Speed",
+      "desc": "턴테이블 회전 재생 속도를 조절합니다."
+    },
+    {
+      "name": "PingPong",
+      "desc": "정방향 회전 후 역방향으로 왕복 재생하도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "포트폴리오용 캐릭터 턴테이블 제작",
+      "steps": [
+        "Movie 팔레트에서 Spin Frames를 360으로 설정해 부드러운 회전을 만듭니다.",
+        "Render > BPR을 켜서 고품질 조명과 그림자를 적용합니다.",
+        "Record를 눌러 한 바퀴 회전 영상을 녹화합니다."
+      ]
+    },
+    {
+      "title": "웹 공유용 빠른 무한 반복 GIF 생성",
+      "steps": [
+        "Spin Frames를 120으로 낮춰 가벼운 파일 용량을 유도합니다.",
+        "Movie > Modifiers에서 PingPong 옵션을 켭니다.",
+        "녹화 후 GIF 포맷으로 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "회전 중 모델이 화면 밖으로 벗어남 → Transform > Actual Size 또는 Frame(F 키)을 눌러 모델을 화면 정중앙에 맞춘 뒤 녹화하세요.",
+    "녹화 영상의 렌더 품질이 낮음 → 녹화 전 Render 메뉴에서 Best 렌더나 BPR이 활성화되어 있는지 확인하세요."
+  ],
+  "related": [
+    "BPR (Best Preview Render)",
+    "Timeline",
+    "Movie",
+    "Turntable"
+  ],
+  "videos": [
+    {
+      "id": "79c9h0nPnyI",
+      "title": "ZBrush Turntable tutorial",
+      "author": "Merk"
+    },
+    {
+      "id": "q-ulprPSXrQ",
+      "title": "CGI 3D Tutorial : \"Turntables in Zbrush\" - by 3dmotive",
+      "author": "TheCGBros"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Turntable%20recording",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "ZBrush",
+    "Shelf",
+    "Movie",
+    "Turntable"
+  ],
+  "at": "2026-11-13T02:00:32.953804+00:00"
+}
