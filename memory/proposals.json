@@ -34662,5 +34662,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 입력 검증 테스트 추가",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T01:19:51+00:00",
+    "kind": "proposal",
+    "id": "p-589336ba7c",
+    "title": "웹 PBR 변환 에러 핸들링 유닛 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 대기 중이며 웹 UI 관련 마크업 정돈이 진행됨에 따라 자바스크립트 에러 핸들링 검증 필요",
+    "proposal": "web/ 또는 backend/tests/ 폴더에 웹 브라우저 PBR 텍스처 변환 오류 시 예외 처리 동작을 확인하는 유닛 테스트 추가",
+    "expected": "웹 PBR 기능의 안정성 및 예외 대응력 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T01:19:51+00:00",
+    "kind": "proposal",
+    "id": "p-fef21dd267",
+    "title": "로컬 파이프라인 입력 검증 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 로컬 파이프라인 관련 머지가 완료되었으나 다양한 이미지 포맷 입력에 대한 추가 검증 필요",
+    "proposal": "backend/app/services/mesh_from_image.py 파일 내 입력 이미지 포맷 검증 로직 점검 및 예외 메시지 명확화",
+    "expected": "잘못된 입력으로 인한 서버 오류 방지 및 디버깅 용이성 증대",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T01:20:25.741119+00:00",
+    "kind": "decision",
+    "id": "p-589336ba7c",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 PBR 텍스처 변환 유닛 테스트 추가 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T01:20:25.777074+00:00",
+    "kind": "decision",
+    "id": "p-fef21dd267",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 TripoSR 예외 처리 보완",
+    "auto": true
   }
 ]

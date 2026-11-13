@@ -1,0 +1,99 @@
+{
+  "id": "zbrush-multi-map-exporter-af4f",
+  "tool": "ZBrush",
+  "domain": "3D DCC",
+  "group": "맵",
+  "name": "Multi Map Exporter",
+  "title": "Multi Map Exporter",
+  "summary": "ZBrush Multi Map Exporter는 디테일한 스컬프팅 모델에서 Normal, Displacement, Texture 등 다양한 맵을 한 번에 일괄 추출(Batch Export)할 수 있는 플러그인입니다. 여러 개의 서브툴(SubTool)이나 맵을 반복해서 수동으로 추출할 때 발생하는 시간을 크게 줄여줍니다.",
+  "when": [
+    "캐릭터나 프랍의 High-poly 모델에서 Normal Map과 Displacement Map을 한 번에 추출해야 할 때",
+    "여러 개의 SubTool을 가진 복잡한 에셋의 텍스처와 맵을 일괄 Export 할 때",
+    "게임 엔진이나 다른 3D DCC 툴(Blender, Maya 등)로 넘기기 전 맵 Baking 자동화가 필요할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 Zplugin → Multi Map Exporter 순서로 클릭하여 패널을 엽니다.",
+    "추출하고자 하는 맵 종류(Normal, Displacement, Cavity, Texture 등)의 체크박스를 활성화합니다.",
+    "각 맵 버튼을 클릭하여 세부 옵션(파일 형식, Resolution, Flip 등)을 설정합니다.",
+    "Export Options에서 파일 저장 경로(Dir)를 지정하고 파일명 접두사(Prefix)를 입력합니다.",
+    "하단의 Create All Maps 버튼을 클릭하여 일괄 추출을 시작합니다.",
+    "지정한 폴더에서 완성된 맵 파일들을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Normal",
+      "desc": "노멀 맵 추출 기능을 활성화하고 설정 창을 엽니다."
+    },
+    {
+      "name": "Displacement",
+      "desc": "디스플레이스먼트 맵 추출 기능을 활성화하고 설정 창을 엽니다."
+    },
+    {
+      "name": "Width / Height",
+      "desc": "추출할 맵의 Resolution(픽셀 크기)를 설정합니다."
+    },
+    {
+      "name": "SubTools",
+      "desc": "선택된 SubTool만 추출할지, 모든 SubTool을 일괄 추출할지 선택합니다."
+    },
+    {
+      "name": "FlipY",
+      "desc": "타겟 렌더러에 맞춰 노멀 맵의 Y축 방향을 반전시킵니다."
+    },
+    {
+      "name": "Create All Maps",
+      "desc": "설정된 모든 맵을 지정된 경로에 한 번에 일괄 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 Normal Map 일괄 추출",
+      "steps": [
+        "SubTool 패널에서 로우폴리곤 상태(Lowest Level)를 확인합니다.",
+        "Zplugin → Multi Map Exporter를 엽니다.",
+        "Normal 체크박스를 켜고 Resolution를 2048 또는 4096으로 설정합니다.",
+        "Create All Maps를 눌러 모든 파츠의 노멀 맵을 한 번에 저장합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 디스플레이스먼트 맵 추출",
+      "steps": [
+        "디테일이 조각된 High-poly 모델의 서브디비전 레벨을 최고 단계에 둡니다.",
+        "Multi Map Exporter에서 Displacement 옵션을 활성화합니다.",
+        "32-bit 형식과 적절한 맵 사이즈를 지정합니다.",
+        "Create All Maps를 실행해 렌더러용 높이 맵을 추출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV가 펴져 있지 않음 → UV Master나 외부 툴을 사용해 모델의 UV를 먼저 전개한 뒤 추출해야 합니다.",
+    "서브디비전 레벨이 최상단이나 최하단으로 맞지 않음 → Normal Map 추출 시에는 최하단 레벨로 이동 후 추출해야 오류가 없습니다.",
+    "지정된 경로 오류 → 저장 폴더가 올바르게 설정되지 않아 파일이 저장되지 않으므로 사전에 Dir 경로를 꼭 확인합니다."
+  ],
+  "related": [
+    "UV Master",
+    "SubTool",
+    "Project All",
+    "GoZ"
+  ],
+  "videos": [
+    {
+      "id": "IlzZCqEWfdU",
+      "title": "Zbrush Multi Map Exporter - Correctly exporting UDIMs and Displacement",
+      "author": "Michael Wilde"
+    },
+    {
+      "id": "Ddy0Y7B_gAw",
+      "title": "Normal & Displacement Maps from ZBrush – Multi Map Exporter to Maya",
+      "author": "Vertmode"
+    }
+  ],
+  "doc": "https://help.maxon.net/search?q=ZBrush%20Multi%20Map%20Exporter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Zplugin",
+    "Multi Map Exporter"
+  ],
+  "at": "2026-11-13T01:20:02.538426+00:00"
+}
