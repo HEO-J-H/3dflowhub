@@ -1167,6 +1167,40 @@ def test_summarize_error_trends(monkeypatch, tmp_path):
     assert trends["3D DCC"].get("주제 무관/필터링됨", 0) >= 1
 
 
+def test_summarize_high_cpc_niche(monkeypatch, tmp_path):
+    import evolve
+    monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
+    monkeypatch.setattr(core, "STRATEGY_PATH", tmp_path / "strategy.json")
+    (tmp_path / "posts").mkdir(parents=True, exist_ok=True)
+
+    core._save_json(tmp_path / "posts" / "p1.json", {
+        "domain": "3D DCC",
+        "category": "3ds Max",
+        "title_ko": "3ds Max Maxscript automation and V-Ray shader plugin addon",
+        "summary": "Maxscript guide.",
+        "tags": ["maxscript", "plugin"],
+        "sections": [{"heading": "Script", "body": "Advanced Maxscript workflow."}]
+    })
+    core._save_json(tmp_path / "posts" / "p2.json", {
+        "domain": "VFX",
+        "category": "Houdini",
+        "title_ko": "Houdini FX simulation tutorial",
+        "summary": "Houdini guide.",
+        "tags": ["houdini"],
+        "sections": [{"heading": "Sim", "body": "Python and procedural setup."}]
+    })
+
+    report = evolve.summarize_high_cpc_niche()
+    assert report["total_practical_posts"] == 2
+    assert "3D DCC" in report["domains_breakdown"]
+    assert "VFX" in report["domains_breakdown"]
+    assert report["cpc_score_avg"] > 0.0
+    assert len(report["top_practical_posts"]) == 2
+
+    strat = core._load_json(tmp_path / "strategy.json", {})
+    assert "high_cpc_niche_metrics" in strat
+
+
 def test_summarize_cpc_optimization_metrics(monkeypatch, tmp_path):
     import evolve
     monkeypatch.setattr(core, "POSTS_DIR", tmp_path / "posts")
@@ -1197,7 +1231,7 @@ def test_summarize_cpc_optimization_metrics(monkeypatch, tmp_path):
     assert len(metrics["top_practical_posts"]) == 1
 
     strat = core._load_json(tmp_path / "strategy.json", {})
-    assert "cpc_optimization_metrics" in strat
+    assert "high_cpc_niche_metrics" in strat
 
 
 def test_render_practical_content_metrics(monkeypatch):
