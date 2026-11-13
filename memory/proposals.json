@@ -39451,5 +39451,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 검토 및 머지 처리",
     "auto": true
+  },
+  {
+    "at": "2026-11-13T21:13:17+00:00",
+    "kind": "proposal",
+    "id": "p-39936f4f14",
+    "title": "PR #68 웹 PBR 상태 안내 UI 검토 및 머지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #68이 승인 대기(pending) 상태로 남아 있어 웹 브라우저 PBR 상태 안내 UI 반영이 지연되고 있습니다.",
+    "proposal": "GitHub에서 PR #68의 코드 변경 사항(backend/static/index.html 또는 web/index.html)을 검토하고 문제가 없으면 머지 처리를 진행합니다.",
+    "expected": "사용자가 웹 브라우저에서 PBR 생성 상태를 명확하게 확인 가능",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/68",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T21:13:17+00:00",
+    "kind": "proposal",
+    "id": "p-6cf3a2ad70",
+    "title": "Microsoft TRELLIS 선택 엔진 모듈 구현 가이드 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "TRELLIS 설계 문서와 브랜치 작업(PR #69, #70)이 완료되었으나 실제 파이프라인 연동 구현이 남아 있습니다.",
+    "proposal": "docs/agent-guides/trellis_engine.md에 정의된 단계에 따라 backend/app/services/에 TRELLIS 선택 엔진 연동 초안 코드 작성 및 단위 테스트 추가를 위한 PR 준비",
+    "expected": "고품질 3D 생성 선택 엔진 다각화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-13T21:13:44.062262+00:00",
+    "kind": "decision",
+    "id": "p-39936f4f14",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #68 검토 및 머지 처리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T21:13:44.110058+00:00",
+    "kind": "decision",
+    "id": "p-6cf3a2ad70",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-13T21:13:46.253447+00:00",
+    "kind": "triage",
+    "id": "p-6cf3a2ad70",
+    "verdict": "agent",
+    "reason": "Microsoft TRELLIS 선택 엔진 모듈 구현 및 단위 테스트 추가는 코드 수정으로 해결 가능한 작업입니다."
   }
 ]
