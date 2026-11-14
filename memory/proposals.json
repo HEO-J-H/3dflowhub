@@ -36773,5 +36773,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 파일 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-14T17:16:54+00:00",
+    "kind": "proposal",
+    "id": "p-1b55c823e1",
+    "title": "깃허브 RAG 오픈소스 연계 가이드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너 메시지: '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘' 및 이전 rag_review.md 스킵 이력",
+    "proposal": "docs/rag_review.md 문서를 수정하여 Pix2Poly(3D 메시/PBR 생성) Pipeline 3D 에셋 문서화 및 Prompt 검색 증강에 RAG를 활용하는 구체적인 아키텍처 초안을 작성합니다.",
+    "expected": "오너의 RAG 반영 요청에 대한 명확한 기술 검토 결과 제공 및 문서화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T17:16:54+00:00",
+    "kind": "proposal",
+    "id": "p-8778793f4d",
+    "title": "웹 브라우저 높이맵 단위 테스트 파일 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "이전 과제 [p-60012927b1]에서 tests=False로 held 상태인 웹 브라우저 높이맵 테스트 미완료",
+    "proposal": "web/ 디렉토리 내에 브라우저용 이미지 전처리 및 높이맵 메시 생성 함수에 대한 간단한 Jest/Vitest 단위 테스트 파일을 추가하여 회귀를 방지합니다.",
+    "expected": "웹 클라이언트 측 높이맵 생성 로직의 안정성 확보 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T17:17:13.840888+00:00",
+    "kind": "decision",
+    "id": "p-1b55c823e1",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T17:17:13.871366+00:00",
+    "kind": "decision",
+    "id": "p-8778793f4d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 파일 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T17:17:15.237279+00:00",
+    "kind": "triage",
+    "id": "p-1b55c823e1",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 '깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토' 및 관련 RAG 검토 태스크들이 포함되어 있어 중복되거나 이미 완료된 작업입니다."
+  },
+  {
+    "at": "2026-11-14T17:17:15.267730+00:00",
+    "kind": "decision",
+    "id": "p-1b55c823e1",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토' 및 관련 RAG 검토 태스크들이 포함되어 있어 중복되거나 이미 완료된 작업입니다."
   }
 ]
