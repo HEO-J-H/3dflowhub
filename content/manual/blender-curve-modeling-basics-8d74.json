@@ -1,0 +1,122 @@
+{
+  "id": "blender-curve-modeling-basics-8d74",
+  "guide_id": "blender-curve-modeling-basics-8d74",
+  "tool": "Blender",
+  "name": "Curve modeling basics",
+  "title": "커브 모델링 기초",
+  "overview": "Blender의 커브(Curve)는 점과 직선의 집합인 폴리곤 메쉬와 달리, 수학적 함수(보간법)를 기반으로 부드러운 선과 곡면을 정의하는 오브젝트입니다. 적은 데이터로 매끄러운 형태를 만들 수 있어 로고 디자인, 길 따라 움직이는 애니메이션 경로, 파이프 형태의 입체 조형 등에 유용하게 쓰입니다.",
+  "access": "Viewport에서 Shift + A 키를 누른 뒤 Curve 메뉴에서 선택하거나, 우측 상단 Outliner에서 확인합니다. Viewport 검색(F3 또는 Space)에서 'Curve'를 검색하여 생성할 수도 있습니다.",
+  "options": [
+    {
+      "name": "Resolution Preview U",
+      "value": "기본값 12",
+      "effect": "Viewport에서 커브의 곡선 세밀도를 결정하여 부드러움을 조절합니다.",
+      "tip": "작업 중에는 낮게 유지하여 성능을 확보하고, 렌더링 시 Resolution U 값을 높여 매끄럽게 표현합니다."
+    },
+    {
+      "name": "Extrude",
+      "value": "기본값 0m",
+      "effect": "커브의 단면을 양쪽으로 두께나 돌출 양을 입혀 3D 입체 형태로 만듭니다.",
+      "tip": "글자나 로고 형태를 만들 때 두께를 부여하는 가장 빠른 방법입니다."
+    },
+    {
+      "name": "Bevel Depth",
+      "value": "기본값 0m",
+      "effect": "커브 주위에 원형 파이프나 튜브 형태의 두께를 생성합니다.",
+      "tip": "케이블, 전선, 네온사인, 파이프 구조물을 만들 때 매우 유용합니다."
+    },
+    {
+      "name": "Fill Mode",
+      "value": "Full / Half / Front / Back",
+      "effect": "Extrude나 Bevel이 적용된 커브의 양 끝단 단면을 채우는 방식을 설정합니다.",
+      "tip": "입체 로고를 밀폐된 솔리드(Solid) 메쉬로 만들 때 Full 모드를 사용합니다."
+    },
+    {
+      "name": "Radius",
+      "value": "기본값 1.0 (Alt + S)",
+      "effect": "특정 컨트롤 포인트 주변의 베벨 두께나 단면 크기를 국소적으로 조절합니다.",
+      "tip": "끝이 뾰족해지는 식물 줄기나 눈물 모양의 케이블 단면을 만들 때 유용합니다."
+    },
+    {
+      "name": "Tilt",
+      "value": "기본값 0° (Ctrl + T)",
+      "effect": "컨트롤 포인트를 기준으로 커브 자체를 비틀어 꼬임 효과를 줍니다.",
+      "tip": "나선형 계단이나 리본이 회전하는 형태를 만들 때 활용합니다."
+    },
+    {
+      "name": "Path Animation",
+      "value": "Evaluate Time",
+      "effect": "오브젝트가 커브 경로를 따라 이동하는 애니메이션을 제어합니다.",
+      "tip": "카메라 무빙 패스나 자동차 주행 경로 설정 시 필수적으로 사용됩니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Object Mode",
+      "desc": "씬 전체에서 커브 오브젝트를 이동, 회전, 스케일링하거나 Modifier를 적용하는 모드입니다."
+    },
+    {
+      "name": "Edit Mode",
+      "desc": "Tab 키로 진입하며, 컨트롤 포인트(Control Point)와 핸들을 조작하여 곡선의 형태를 정밀하게 편집하는 모드입니다."
+    },
+    {
+      "name": "Draw Mode",
+      "desc": "마우스나 펜으로 Viewport에 자유롭게 선을 그려 곧바로 커브로 변환하는 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "네온사인 및 전선 케이블 제작",
+      "steps": [
+        "Shift + A 키를 눌러 Bezier 커브를 생성합니다.",
+        "Tab 키를 눌러 Edit Mode로 진입한 후 G, E 키로 원하는 경로의 형태를 잡습니다.",
+        "Properties 패널의 Object Data Properties(곡선 아이콘)로 이동합니다.",
+        "Geometry 항목의 Bevel Depth 값을 올려 둥근 케이블 두께를 만듭니다.",
+        "Shading을 Smooth로 설정하고 Emission 재질을 부여하여 네온사인을 완성합니다."
+      ]
+    },
+    {
+      "title": "입체 텍스트(로고) 제작",
+      "steps": [
+        "Shift + A 키를 눌러 Text 오브젝트를 생성합니다.",
+        "Tab 키로 텍스트를 입력하고, Object Data Properties의 Font 탭에서 글꼴을 불러옵니다.",
+        "상단 메뉴에서 Object → Convert → Curve 를 선택하여 텍스트를 커브 데이터로 변환합니다.",
+        "Object Data Properties의 Geometry 탭에서 Extrude 값을 주어 두께를 입힙니다.",
+        "필요시 Bevel Depth를 살짝 주어 모서리를 부드럽게 다듬습니다."
+      ]
+    },
+    {
+      "title": "커브를 활용한 오브젝트 애니메이션 경로 설정",
+      "steps": [
+        "Shift + A 키로 Path 또는 Bezier 커브를 생성하여 이동할 경로를 만듭니다.",
+        "움직일 오브젝트(예: 카메라 또는 구)를 선택합니다.",
+        "Object Constraints 패널에서 Add Object Constraint → Follow Path를 추가합니다.",
+        "Target 항목에서 생성한 커브를 스포이트로 지정합니다.",
+        "Animate Path 버튼을 눌러 지정된 프레임 동안 경로를 따라 이동하도록 설정합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Resolution Preview U 값이 지나치게 높으면 Viewport 연산이 느려지므로 작업 중에는 낮게 유지합니다.",
+    "Bevel Depth나 Extrude가 적용된 커브는 렌더 시 많은 폴리곤을 생성하므로 메쉬 변환 시 폴리곤 수를 확인해야 합니다.",
+    "복잡한 씬에서는 불필요한 커브 데이터를 Mesh로 미리 변환하거나 숨겨(Hide) 리소스를 절약합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Bevel Depth를 올렸는데 커브가 일그러지거나 찌그러져 보입니다.",
+      "fix": "Object Mode에서 Ctrl + A 키를 누르고 Scale을 적용(Apply Scale)해 줍니다. 스케일 값이 1.0이 아니면 커브 두께가 왜곡됩니다."
+    },
+    {
+      "symptom": "커브의 방향이 반대로 뒤집혀 있어 Follow Path 애니메이션이 거꾸로 작동합니다.",
+      "fix": "Edit Mode에서 모든 포인트를 선택(A)한 후, 상단 메뉴 Curve → Switch Direction을 실행하여 커브 방향을 바로잡습니다."
+    },
+    {
+      "symptom": "컨트롤 포인트를 이동해도 곡선이 부드럽게 이어지지 않고 꺾입니다.",
+      "fix": "컨트롤 포인트를 선택하고 Mouse 우클릭 후 Set Handle Type을 'Automatic' 또는 'Aligned'로 변경하여 핸들 속성을 재설정합니다."
+    }
+  ],
+  "versions": "Blender 3.x 및 4.x 버전에서 커브 데이터 구조와 기본 Geometry Nodes 연동 방식이 개선되었으나, 기본적인 Bezier/NURBS 커브 편집 및 베벨 옵션 Hotkey(Alt + S, Ctrl + T)는 동일하게 유지됩니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/curves/introduction.html",
+  "grounded": true,
+  "at": "2026-11-14T03:45:29+00:00"
+}
