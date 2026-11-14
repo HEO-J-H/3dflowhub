@@ -37016,5 +37016,60 @@
     "kind": "applied",
     "id": "p-1a0d8b45ff",
     "result": "사람 할 일 — 1. GitHub 저장소의 Pull Requests 페이지(#71, #72, #73, #74)에 접속합니다.\n2. 각 PR의 자동 테스트(CI) 통과 여부와 코드 변경 내용을 검토합니다.\n3. 문제가 없으면 수동으로 머지를 진행하고, 피드백이 필요한 경우 코멘트를 남깁니다."
+  },
+  {
+    "at": "2026-11-14T18:37:33+00:00",
+    "kind": "proposal",
+    "id": "p-3fe4af033f",
+    "title": "PR #71~#74 통합 테스트 및 최종 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #71부터 #74까지 Microsoft TRELLIS 및 이미지 유효성 검증 관련 핵심 파이프라인 변경 사항이 승인 대기 중입니다.",
+    "proposal": "backend/tests/ 디렉토리 내에 PR #71~#74 관련 통합 테스트 코드를 실행하고 파이프라인 안정성을 최종 검증합니다.",
+    "expected": "핵심 파이프라인 변경 사항이 메인 브랜치에 안전하게 병합되어 다중 각도 3D 생성 및 입력 검증 기능이 정상 동작합니다.",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/71",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T18:37:33+00:00",
+    "kind": "proposal",
+    "id": "p-05b24ab5c0",
+    "title": "웹 브라우저 높이맵 메시 단위 테스트 파일 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "웹 브라우저 높이맵 메시 생성 단위 테스트가 보류 상태였으나, 화면/브라우저 처리 안정성을 위해 테스트 코드를 보완할 필요가 있습니다.",
+    "proposal": "web/tests/ (또는 관련 web Script 위치)에 높이맵 전처리 및 메시 생성 함수에 대한 단위 테스트 파일을 명확히 작성합니다.",
+    "expected": "브라우저 환경에서의 높이맵 메시 생성 회귀 오류를 방지하고 웹 버전 신뢰도를 높입니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T18:38:15.904359+00:00",
+    "kind": "decision",
+    "id": "p-3fe4af033f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T18:38:15.948623+00:00",
+    "kind": "decision",
+    "id": "p-05b24ab5c0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 파일 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T18:38:19.766419+00:00",
+    "kind": "triage",
+    "id": "p-3fe4af033f",
+    "verdict": "agent",
+    "reason": "백엔드 통합 테스트 실행 및 파이프라인 안정성 검증은 코드로 수행할 수 있는 작업입니다."
   }
 ]
