@@ -1,0 +1,54 @@
+{
+  "title_ko": "NVIDIA cuPhoton xBeam — GPU 기반 블랙홀 간섭계 연산",
+  "title": "Run GPU-Powered Black Hole Interferometry with NVIDIA cuPhoton",
+  "url": "https://developer.nvidia.com/blog/run-gpu-powered-black-hole-interferometry-with-nvidia-cuphoton/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "NVIDIA cuPhoton",
+    "xBeam",
+    "블랙홀",
+    "간섭계",
+    "GPU 가속"
+  ],
+  "summary": "NVIDIA cuPhoton의 xBeam은 GPU를 활용해 이벤트 호라이즌 텔레스코프의 전압 레코딩을 가시성 데이터로 변환하며 대규모 데이터셋을 초고속으로 처리합니다.",
+  "insight": "NVIDIA Vera Rubin NVL72 시스템과 GPUDirect Storage를 조합해 10 TB 데이터를 70초 만에 처리하며 기존 CPU 대비 460배 빠른 속도를 보여줍니다. 전파 천문학 및 대규모 데이터 처리 작업 흐름에서 방대한 가시성 데이터 생성 속도를 극적으로 높여줍니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Event Horizon Telescope와 전파 간섭계 데이터",
+      "body": "블랙홀은 먼 거리에 있어 관측하기 어렵기 때문에 여러 전파 천문대 관측소를 초장기선 간섭계로 연결하여 신호를 수집합니다. 각 관측소는 밀리미터 및 서브밀리미터 전파 신호를 고속 전압 스트림으로 기록하며 이들을 동기화하여 상세한 이미지를 재구성합니다."
+    },
+    {
+      "heading": "cuPhoton xBeam의 GPU 기반 연산 구조",
+      "body": "NVIDIA cuPhoton의 xBeam은 VDIF 프레임을 입력받아 지연 및 프린지 보정을 적용하고 FFT를 통한 채널화와 스테이션 쌍 간의 교차 곱셈을 수행합니다. 최종 가시성 데이터는 DiFX SWIN 또는 xbeam-v1 형식으로 기록되어 후속 보정 및 이미지 재구성 단계로 전달됩니다."
+    },
+    {
+      "heading": "Vera Rubin NVL72 시스템에서의 성능 측정",
+      "body": "NVIDIA Vera Rubin NVL72 시스템에서 64개의 GPU와 GPUDirect Storage 호환 모드를 활용해 xBeam은 10 TB 규모의 데이터셋을 70초 만에 처리했습니다. 이는 x86 CPU 기준선의 31,992초 대비 460배 향상된 수치입니다."
+    },
+    {
+      "heading": "다중 GPU 및 노드 확장 구성",
+      "body": "단일 노드에서는 --devices 옵션을 사용하고 여러 노드에 걸쳐서는 --shard-count 및 --shard-index 파라미터를 지정해 관측 시간을 분할할 수 있습니다. 생성된 부분 SWIN 출력은 merge-shards 도구를 통해 하나의 완전한 가시성 세트로 결합됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA cuPhoton xBeam은 어떤 작업을 수행하나요?",
+      "a": "전파 망원경에서 수집된 고속 전압 레코딩을 간섭계 연산을 통해 가시성 데이터로 변환하는 GPU 가속 코렐레이터 역할을 수행합니다."
+    },
+    {
+      "q": "10 TB 데이터셋 처리에는 얼마나 걸리나요?",
+      "a": "64개의 GPU와 GPUDirect Storage를 탑재한 NVIDIA Vera Rubin NVL72 시스템에서 70초가 소요됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/black-hole-interferometry-featured.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-14T01:24:11.260534+00:00",
+  "notion_id": "",
+  "id": "2026-11-14-8fc5d8ced20e6bdd",
+  "img_ok": "2026-11-14T01:24:11+00:00"
+}
