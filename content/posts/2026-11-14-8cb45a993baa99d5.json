@@ -1,0 +1,60 @@
+{
+  "title_ko": "Unreal Engine Steam 및 Epic 게임 도전과제 연동 팁",
+  "title": "4 things I wish I knew before setting up Steam and Epic achievements in Unreal Engine",
+  "url": "https://www.reddit.com/r/unrealengine/comments/1xv7o4x/4_things_i_wish_i_knew_before_setting_up_steam/",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Unreal Engine",
+    "Steam",
+    "Epic Games Store",
+    "도전과제",
+    "온라인 서브시스템",
+    "언리얼 엔진"
+  ],
+  "summary": "Unreal Engine에서 Steam과 Epic Games Store 도전과제 및 통계를 연동할 때 겪는 대표적인 시행착오와 해결 방법을 정리했습니다.",
+  "insight": "Unreal Engine 환경에서 플랫폼 연동 작업을 진행할 때 PIE 모드와 스탠드어론 실행의 차이를 인지하는 것이 핵심입니다. DefaultEngine.ini 파일의 설정 누락은 로그에 정확한 단서가 남지 않아 디버깅 시간을 소모하게 만듭니다. 순차적인 배열 규칙을 엄격하게 지키고 빌드 후 외부 클라이언트 환경에서 직접 테스트해야 시행착오를 줄일 수 있습니다.",
+  "try_it": [
+    "Steam 클라이언트를 실행하고 로그인한 상태에서 Unreal Engine 프로젝트를 Standalone Game 모드로 실행합니다.",
+    "DefaultEngine.ini 파일의 도전과제 ID가 Achievement_0_Id부터 시작해 중간 번호 누락 없이 연속 배열되었는지 확인합니다.",
+    "패키지 빌드를 진행하여 에디터 외부 환경에서 도전과제 연동 동작을 최종 검증합니다."
+  ],
+  "sections": [
+    {
+      "heading": "PIE 모드 테스트의 한계",
+      "body": "Steam은 Play-In-Editor(PIE) 내부에서 절대 인증되지 않습니다. App ID나 온라인 서브시스템 플러그인을 점검하느라 시간을 낭비하지 말고 항상 Steam 클라이언트에 로그인된 상태에서 Standalone Game 창으로 실행해야 합니다. 에디터 내부 실행 방식으로는 올바른 세션 정보를 가져올 수 없습니다."
+    },
+    {
+      "heading": "DefaultEngine.ini 배열 설정 오류",
+      "body": "Steam 도전과제 ID는 DefaultEngine.ini 파일에 Achievement_0_Id, Achievement_1_Id 형태로 연속해서 선언해야 합니다. 중간에 번호가 누락되거나 잘못되면 엔진이 오류 로그를 출력하지 않아 원인 파악이 어렵습니다. 설정값 사이에 빈틈이 없도록 배열 인덱스를 철저히 검토해야 합니다."
+    },
+    {
+      "heading": "온라인 서브시스템 연동 점검",
+      "body": "Unreal Engine 프로젝트에서 올바른 온라인 서브시스템 플러그인이 활성화되어 있는지 확인해야 합니다. Steam과 Epic Games Store 각각의 요구 사항에 맞게 설정 파일과 모듈 종속성을 구성하는 작업이 선행되어야 합니다. 잘못된 구성은 빌드 단계나 패키징 과정에서 예기치 않은 오류를 유발합니다."
+    },
+    {
+      "heading": "패키지 빌드 기반 검증",
+      "body": "에디터 환경을 벗어나 실제 패키징된 빌드 파일을 통해 도전과제 및 통계 시스템을 테스트해야 합니다. 외부 배포 플랫폼의 클라이언트가 정상적으로 실행되는 상태에서만 API 호출 결과가 정확하게 반환됩니다. 로컬 테스트 환경과 실제 플랫폼 환경의 차이를 항상 염두에 두어야 합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Unreal Engine에서 Steam 도전과제가 작동하지 않을 때 무엇을 확인해야 하나요?",
+      "a": "PIE 모드가 아닌 Standalone Game 창으로 실행 중인지, 그리고 Steam 클라이언트가 로그인되어 있는지 먼저 확인해야 합니다."
+    },
+    {
+      "q": "DefaultEngine.ini에서 도전과제 ID는 어떻게 입력해야 하나요?",
+      "a": "Achievement_0_Id, Achievement_1_Id와 같이 순서대로 누락 없이 연속된 배열 형태로 입력해야 정상적으로 인식됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/CXUHAjw8L9I/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=CXUHAjw8L9I"
+  },
+  "collected_at": "2026-11-14T17:26:36.279042+00:00",
+  "notion_id": "",
+  "id": "2026-11-14-8cb45a993baa99d5",
+  "img_tried": true,
+  "enriched": "2026-11-14"
+}
