@@ -1,0 +1,21 @@
+<!-- TITLE: Unreal Engine 5.8 3D 카메라 플러그인 구현 | TAGS: Unreal Engine,GameplayCameras,Camera Plugin,C++,Agentic Gameplay Camera,언리얼 엔진,플러그인·스크립트 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Keyframe 없이 실시간으로 작동하는 Unreal Engine 5.8용 3차원 카메라 플러그인 제작 사례입니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 플러그인·스크립트</p>
+<h2>Unreal Engine 5.8 카메라 시스템 구현</h2>
+<p>Unreal Engine 5.8 기반으로 제작된 Agentic Gameplay Camera 플러그인은 Keyframe 없이 게임 플레이 중 실시간으로 카메라 움직임을 처리합니다. 에픽게임즈의 기본 GameplayCameras를 대체하는 것이 아니라 그 상단에 얹혀 작동하는 구조를 취합니다.</p>
+<h2>데이터 어셋 기반 모드 및 상태 관리</h2>
+<p>탐색, 근접전, 락온, 조준 등 다양한 카메라 모드와 웅크리기, 달리과 같은 캐릭터 상태는 별도의 코드 작성 없이 데이터 어셋과 DataTables를 통해 관리됩니다. 이를 통해 전투 상황이나 지형 변화에 유연하게 대응합니다.</p>
+<h2>시네마틱 샷 구성 및 장애물 회피</h2>
+<p>캐릭터가 최종적으로 위치하는 지점을 중심으로 시네마틱 샷이 자동 프레이밍되어 전투 장소가 이동해도 샷이 안정적으로 유지됩니다. 카메라가 위치할 자리에 벽 등 장애물이 가로막을 경우 자동으로 다른 앵글로 전환됩니다.</p>
+<h2>C++ 소스 및 연동 플러그인 구성</h2>
+<p>해당 시스템은 C++ 소스를 포함하고 있으며, 게임플레이 카메라는 여전히 베타 단계입니다. 락온 기능을 사용하려면 별도의 Targeting 플러그인과의 연동이 필요합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unreal Engine 5.8 환경에서 에픽게임즈의 기본 GameplayCameras 위에 얹어 작동하는 에이전트 기반 카메라 시스템입니다. 코드 작성 없이 데이터 어셋과 DataTables만으로 탐색, 근접전, 락온, 조준 모드를 제어하여 개발 공수를 줄입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 이 카메라 플러그인은 어떤 엔진 버전에서 작동하나요?</b><br/>A. Unreal Engine 5.8 버전을 기준으로 제작되었습니다.</p>
+<p><b>Q. Keyframe 작업이 필요한가요?</b><br/>A. Keyframe을 전혀 사용하지 않으며 게임 내에서 실시간으로 카메라가 작동합니다.</p>
+<p><b>Q. 락온 기능 사용 시 추가로 필요한 것이 있나요?</b><br/>A. 락온 기능 구동을 위해서는 별도의 Targeting 플러그인이 함께 요구됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-8cb45a993baa99d5.html">Unreal Engine Steam 및 Epic 게임 도전과제 연동 팁</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-f8199f67750ec004.html">Unreal Engine Fab 에셋 환불 절차 논란</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-0a065cbf017e8942.html">Unreal Engine C++ 메뉴 킷 — 반복 메뉴 제작 단축</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/unrealengine/comments/1xvyh70/matched_the_game_cameras_of_phantom_blade_zero/" target="_blank" rel="noopener nofollow">Matched the game cameras of Phantom Blade Zero, God of War, Wukong and more in UE 5.8, nothing keyframed (my camera plugin)</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,64 @@
+{
+  "title_ko": "Unreal Engine 5.8 3D 카메라 플러그인 구현",
+  "title": "Matched the game cameras of Phantom Blade Zero, God of War, Wukong and more in UE 5.8, nothing keyframed (my camera plugin)",
+  "url": "https://www.reddit.com/r/unrealengine/comments/1xvyh70/matched_the_game_cameras_of_phantom_blade_zero/",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "플러그인·스크립트",
+  "tags": [
+    "Unreal Engine",
+    "GameplayCameras",
+    "Camera Plugin",
+    "C++",
+    "Agentic Gameplay Camera",
+    "언리얼 엔진"
+  ],
+  "summary": "Keyframe 없이 실시간으로 작동하는 Unreal Engine 5.8용 3차원 카메라 플러그인 제작 사례입니다.",
+  "insight": "Unreal Engine 5.8 환경에서 에픽게임즈의 기본 GameplayCameras 위에 얹어 작동하는 에이전트 기반 카메라 시스템입니다. 코드 수정 없이 데이터 어셋과 DataTables만으로 탐색, 근접전, 락온, 조준 모드를 제어하여 구현 공수를 덜어냅니다. 시네마틱 샷 자동 프레이밍과 장애물 회피 기능을 통해 전투 상황이나 지형 변화가 잦은 환경에서도 카메라 앵글이 안정적으로 유지됩니다.",
+  "try_it": [
+    "Unreal Engine 5.8 프로젝트 환경에서 C++ 소스를 포함한 Agentic Gameplay Camera 플러그인을 세팅합니다.",
+    "DataTables와 데이터 어셋을 구성하여 탐색, 근접전, 조준 등 카메라 모드를 연결합니다.",
+    "Targeting 플러그인을 활성화하여 락온 기능과의 연동 테스트를 진행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Unreal Engine 5.8 카메라 시스템 구현",
+      "body": "Unreal Engine 5.8 기반으로 제작된 Agentic Gameplay Camera 플러그인은 Keyframe 없이 게임 플레이 중 실시간으로 카메라 움직임을 처리합니다. 에픽게임즈의 기본 GameplayCameras를 대체하는 것이 아니라 그 상단에 얹혀 작동하는 구조를 취합니다. 게임플레이 카메라는 현재 베타 단계로 제공됩니다."
+    },
+    {
+      "heading": "데이터 어셋 기반 모드 및 상태 관리",
+      "body": "탐색, 근접전, 락온, 조준 등 다양한 카메라 모드와 웅크리기, 달리기와 같은 캐릭터 상태는 별도의 코드 작성 없이 데이터 어셋과 DataTables를 통해 관리됩니다. 이를 통해 전투 상황이나 지형 변화에 유연하게 대응합니다. 시스템은 C++ 소스를 함께 포함하고 있습니다."
+    },
+    {
+      "heading": "시네마틱 샷 구성 및 장애물 회피",
+      "body": "캐릭터가 최종적으로 위치하는 지점을 중심으로 시네마틱 샷이 자동 프레이밍되어 전투 장소가 이동해도 샷이 안정적으로 유지됩니다. 카메라가 위치할 자리에 벽 등 장애물이 가로막을 경우 자동으로 다른 앵글로 전환됩니다. 복잡한 레벨 디자인에서도 수동 조정 없이 시야 확보가 가능합니다."
+    },
+    {
+      "heading": "연동 및 필수 플러그인 구성",
+      "body": "해당 시스템은 C++ 소스 코드를 포함하여 빌드 및 연동 작업을 거쳐야 합니다. 락온 기능을 정상적으로 사용하려면 별도의 Targeting 플러그인과의 연동 작업이 필수적입니다. 프로젝트의 입력 및 캐릭터 상태 세팅과 데이터 어셋 구조를 일치시키는 것이 중요합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 카메라 플러그인은 어떤 엔진 버전에서 작동하나요?",
+      "a": "Unreal Engine 5.8 버전을 기준으로 제작되었습니다."
+    },
+    {
+      "q": "Keyframe 작업이 필요한가요?",
+      "a": "Keyframe을 전혀 사용하지 않으며 게임 내에서 실시간으로 카메라가 작동합니다."
+    },
+    {
+      "q": "락온 기능 사용 시 추가로 필요한 것이 있나요?",
+      "a": "락온 기능 구동을 위해서는 별도의 Targeting 플러그인이 함께 요구됩니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/aUoWnb-Gg-Q/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=aUoWnb-Gg-Q"
+  },
+  "collected_at": "2026-11-14T17:57:05.551676+00:00",
+  "notion_id": "",
+  "id": "2026-11-14-56595dcec7f1a86f",
+  "img_tried": true,
+  "enriched": "2026-11-14"
+}

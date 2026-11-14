@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-12T12:00:54.344635+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 90,
-      "candidates_passed": 47,
-      "offtopic": 29,
-      "short": 0,
-      "prefiltered": 23,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "32212da8",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-12T12:10:59.439429+00:00",
       "collected": 1,
       "saved": 0,
@@ -7725,6 +7700,33 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-14T17:57:00.863263+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 74,
+      "candidates_passed": 37,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 19,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "a3e04def",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7820,7 +7822,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-08 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비율을 줄이기 위해 3D/CG 전문 맥락 필터를 더욱 강화해야 합니다.",
     "2026-11-08 [[p-8370bc2097|사이트·UX] PR #47 백엔드 PBR 및 U] 외부 URL 인게스트 기능 추가 시 다양한 포맷과 비정상적인 입력값에 대한 예외 처리를 철저히 검증해야 한다.",
     "2026-11-08 [[p-43ea959527|사이트·UX] 경량 RAG 엔드포인트 프로토타입] 테스트 실패 — E       assert 404 == 200 / E        +  where 404 = <Response [404 Not Found]>.status_code / FAILED backend/tests/test_core.py::test_rag_query_endpoint - assert 404 == 200",
     "2026-11-08 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D/CG 전문 맥락 필터를 더욱 강화하고 실무 검색량이 높은 튜토리얼 및 애드온 중심의 콘텐츠를 집중 발행해야 합니다.",
@@ -7939,7 +7940,8 @@
     "2026-11-14 [core.filter_cg_context_strict(): 일반 명사 도] 일반 명사 도구명을 다룰 때는 5중 이상의 맥락 검증을 통해 오프토픽 뉴스를 완벽히 차단해야 한다.",
     "2026-11-14 [PR #26 다시 하기 — backend/app/services/mesh] 입력값 검증 함수는 예외를 명확히 발생시키고 세부 오류 메시지를 반환하여 디버깅을 쉽게 만들어야 합니다.",
     "2026-11-14 [성찰] 동음이의어 필터를 45중으로 한층 더 강화하고 Maxscript 및 플러그인·애드온 중심의 실무 튜토리얼 유입을 극대화해야 합니다.",
-    "2026-11-14 [성찰] 동음이의어 필터를 55중으로 강화하고 실무 튜토리얼 및 애드온 관련 고단가 검색 키워드 중심의 제목을 구성해야 검색 유입과 페이지뷰를 극대화할 수 있습니다."
+    "2026-11-14 [성찰] 동음이의어 필터를 55중으로 강화하고 실무 튜토리얼 및 애드온 관련 고단가 검색 키워드 중심의 제목을 구성해야 검색 유입과 페이지뷰를 극대화할 수 있습니다.",
+    "2026-11-14 [성찰] 동음이의어(Nuke, Unity 등)의 오탐지를 막기 위해 65중 컨텍스트 필터를 적용하고, 실무 튜토리얼 및 맥스스크립트(Maxscript) 등 검색 유입이 확실한 고단가 키워드 중심의 포스팅을 강화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7992,7 +7994,7 @@
     "VFX/스튜디오·작품": 180,
     "AI 3D/로보틱스·월드모델": 32,
     "3D DCC/Blender": 152,
-    "Game Engine/Unreal Engine": 153,
+    "Game Engine/Unreal Engine": 154,
     "AI 3D/기타 AI 3D": 46,
     "Game Engine/Godot": 34,
     "3D DCC/Cinema 4D": 31,
@@ -10864,14 +10866,16 @@
     38597839282254117,
     1634244279306407661,
     132483888534019977,
-    3861084713766278188
+    3861084713766278188,
+    16741359368493873287,
+    1284388298352099586
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 2982,
-    "Game Engine": 2982,
-    "VFX": 2982,
-    "AI 3D": 2982
+    "3D DCC": 2983,
+    "Game Engine": 2983,
+    "VFX": 2983,
+    "AI 3D": 2983
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
