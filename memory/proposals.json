@@ -34823,5 +34823,208 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 파일 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-14T09:05:21.617825+00:00",
+    "kind": "report",
+    "id": "r-2026-11-14T09:05",
+    "text": "총 1,543개의 콘텐츠가 구축되었으며 최근 7일간 414개가 추가되어 안정적인 성장세를 보이고 있습니다. 다만 최근 30일 조회수가 855회로 다소 낮아, 뉴스 중심에서 검색 유입에 유리한 기초 가이드 중심으로 배분을 전환하여 방문자 학습 경험을 강화해야 합니다.",
+    "allocation": {
+      "news": 0.1,
+      "guides": 0.9,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자들의 장기적인 학습과 검색 유입 확대를 위해 에버그린 성격의 기초 가이드 제작 비중을 90%로 대폭 늘립니다."
+  },
+  {
+    "at": "2026-11-14T09:05:21.617825+00:00",
+    "kind": "proposal",
+    "id": "p-0670708a70",
+    "title": "검색 유입 강화를 위한 기초 가이드 비중 확대",
+    "category": "콘텐츠",
+    "evidence": "뉴스 조회수가 206회인 반면 가이드 조회수는 112회에 그쳐 에버그린 콘텐츠 확충과 검색 유입 강화가 필요합니다.",
+    "proposal": "AI 일일 할당량 배분을 뉴스 0.1, 가이드 0.9로 조정하여 3D DCC 및 Game Engine 기초 가이드 제작에 집중합니다.",
+    "expected": "검색엔진을 통한 장기 유입 증가 및 독자의 실질적인 학습 효과 향상",
+    "effort": "낮음",
+    "action": {
+      "type": "set_config",
+      "key": "llm_daily_budget",
+      "value": 280
+    },
+    "risk": "high"
+  },
+  {
+    "at": "2026-11-14T09:05:21.617825+00:00",
+    "kind": "proposal",
+    "id": "p-9a496022b6",
+    "title": "Blender 지오메트리 노드 심화 기초 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 Blender(42회)와 Unreal Engine(44회) 관련 도구의 관심도가 높게 나타났습니다.",
+    "proposal": "Blender 도구군에 'Geometry Nodes' 핵심 기능과 응용법을 다루는 기초 가이드 주제를 추가합니다.",
+    "expected": "Blender 실무 사용자들의 검색 유입 및 체류 시간 증대",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Blender",
+      "group": "Geometry Nodes",
+      "name": "Geometry Nodes",
+      "title_ko": "Blender 지오메트리 노드 기초 및 프로시절 모델링 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-14T09:05:21.617825+00:00",
+    "kind": "proposal",
+    "id": "p-4c459e1da4",
+    "title": "Unreal Engine 나나이트 및 루멘 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "Game Engine 중 Unreal Engine 관련 관심도가 44회로 높으나 심화 가이드 자원이 부족합니다.",
+    "proposal": "Unreal Engine 도구군에 Nanite 및 Lumen 최적화와 설정법을 다루는 기초 가이드 주제를 추가합니다.",
+    "expected": "게임 개발 및 3D 실무자의 유입 확대",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Unreal Engine",
+      "group": "Rendering",
+      "name": "Nanite and Lumen",
+      "title_ko": "Unreal Engine 나나이트 및 루멘 성능 최적화 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-14T09:05:21.755968+00:00",
+    "kind": "decision",
+    "id": "p-9a496022b6",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:05:21.801432+00:00",
+    "kind": "decision",
+    "id": "p-4c459e1da4",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:05:21.870876+00:00",
+    "kind": "applied",
+    "id": "p-9a496022b6",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-14T09:05:21.918739+00:00",
+    "kind": "applied",
+    "id": "p-4c459e1da4",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-14T09:05:24+00:00",
+    "kind": "proposal",
+    "id": "p-bc709fd938",
+    "title": "PR #71 Microsoft TRELLIS 머지 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #71 (https://github.com/HEO-J-H/Pix2Poly/pull/71)이 승인 대기 상태로 머지 대기 중입니다.",
+    "proposal": "GitHub에서 PR #71의 테스트 결과와 라이선스를 최종 확인하고 머지 진행",
+    "expected": "다중 각도 3D 생성 선택 엔진 연동 기능 반영",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/71",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T09:05:24+00:00",
+    "kind": "proposal",
+    "id": "p-f6b5dfc7cd",
+    "title": "웹 브라우저 높이맵 단위 테스트 보완 재설계",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 높이맵 메시 생성 단위 테스트가 tests=False로 리뷰 생략 및 보류되었습니다.",
+    "proposal": "web/ 디렉토리 내 테스트 파일 구조를 단순화하고 Jest 또는 기본 브라우저 모사 테스트 환경을 정비하여 재시도",
+    "expected": "브라우저 전처리 및 높이맵 생성 회귀 방지 확보",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T09:05:52.113226+00:00",
+    "kind": "proposal",
+    "id": "p-8a8bfca9aa",
+    "title": "[모니터링] 사적연금·ISA 분리과세 소득 건보료 부과 검토",
+    "by": "⚖️ 규정 감시",
+    "site": "life-after-60",
+    "source": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE85SGJkOGlmQ21JUWt4SHBiemxHblNON1ltTkF0bHJPUl9kS21ldDR0NmhpUGRZdHk3WVpWLXRSeHZCRkZ5Q3hRYVByWDNHMUNVc2kxNg?oc=5",
+    "category": "사이트·UX",
+    "evidence": "사적연금, ISA, 배당 소득 등에 대한 건강보험료 부과 검토 보도 (매일경제, 2026-11-04)",
+    "proposal": "건강보험료 계산 로직 및 안내 문구에 사적연금·ISA 분리과세 소득 관련 건보료 부과 논의 동향을 모니터링 항목으로 참고 반영 검토",
+    "expected": "은퇴 시뮬레이션 시 건강보험료 예측 정확도 제고 및 사용자 주의 환기",
+    "effort": "보통",
+    "action": null
+  },
+  {
+    "at": "2026-11-14T09:05:54.630415+00:00",
+    "kind": "proposal",
+    "id": "p-5c1584aff9",
+    "title": "5060 가독성 향상을 위한 주요 입력 폼 레이아웃 개선",
+    "by": "🎨 디자이너 (은퇴)",
+    "site": "life-after-60",
+    "source": "",
+    "category": "사이트·UX",
+    "evidence": "독자층이 50~60대로 숫자와 작은 버튼 인식이 중요하나, 모바일 환경에서 입력 필드와 버튼 간격이 좁음",
+    "proposal": "메인 입력 폼 및 시뮬레이션 실행 버튼의 최소 높이를 48px로 확대하고, 핵심 자산 입력 항목 간의 여백(gap)을 넓혀 터치 오류 방지 및 가독성 개선",
+    "expected": "모바일 및 태블릿 환경에서 50~60대 사용자의 입력 편의성과 체류 시간 증가",
+    "effort": "낮음",
+    "action": null
+  },
+  {
+    "at": "2026-11-14T09:06:24.473071+00:00",
+    "kind": "decision",
+    "id": "p-5c1584aff9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:06:24.516698+00:00",
+    "kind": "decision",
+    "id": "p-8a8bfca9aa",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:06:24.559671+00:00",
+    "kind": "decision",
+    "id": "p-bc709fd938",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: Microsoft TRELLIS PR #71 머지 전 최종 점검 및 테스",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:06:24.602813+00:00",
+    "kind": "decision",
+    "id": "p-f6b5dfc7cd",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 파일 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T09:06:27.148892+00:00",
+    "kind": "triage",
+    "id": "p-5c1584aff9",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 이미 '입력 라벨 글자 키우고 모바일 터치 영역 44px 이상으로 (어르신 가독성)' 등의 작업이 반영되었습니다."
+  },
+  {
+    "at": "2026-11-14T09:06:27.193054+00:00",
+    "kind": "decision",
+    "id": "p-5c1584aff9",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 이미 '입력 라벨 글자 키우고 모바일 터치 영역 44px 이상으로 (어르신 가독성)' 등의 작업이 반영되었습니다."
   }
 ]

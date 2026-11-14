@@ -1,0 +1,92 @@
+{
+  "id": "unreal-engine-nanite-and-lumen-2f5d",
+  "tool": "Unreal Engine",
+  "domain": "Game Engine",
+  "group": "Rendering",
+  "name": "Nanite and Lumen",
+  "title": "Unreal Engine Nanite 및 Lumen 성능 최적화 기초 가이드",
+  "summary": "Nanite과 Lumen은 Unreal Engine에서 고밀도 폴리곤 에셋과 실시간 동적 전역 조명을 성능 저하 없이 구현해 주는 핵심 그래픽 시스템입니다.",
+  "when": [
+    "수백만 폴리곤에 달하는 고해상도 스캔 에셋이나 영화 등급의 3D 모델을 게임 Viewport에 그대로 배치할 때",
+    "실내외 환경에서 물리적으로 정확한 간접광과 반사광을 실시간으로 계산하고 싶을 때",
+    "별도의 복잡한 라이트맵 Baking(Lightmass Baking) 작업 없이 동적 조명 환경을 구축할 때"
+  ],
+  "steps": [
+    "Content Browser에서 Nanite을 적용할 Static Mesh 에셋을 더블 클릭하여 개별 에디터 창을 엽니다.",
+    "Details 패널에서 Nanite Settings 섹션을 찾고 Enable Nanite 체크박스를 활성화합니다.",
+    "Project Settings의 Rendering 섹션에서 Lumen이 Global Illumination과 Reflections의 기본 메서드로 설정되어 있는지 확인합니다.",
+    "Main Toolbar의 Lit 뷰모드 상단 View Modes 메뉴에서 Nanite Visualization을 선택해 클러스터와 삼각형 상태를 검사합니다.",
+    "Scene에 Post Process Volume을 배치하고 Details 패널에서 Lumen 관련 노출 및 반사 옵션을 최종 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Enable Nanite",
+      "desc": "선택한 정적 메시(Static Mesh)에 Nanite 가상 지오메트리 시스템을 활성화합니다."
+    },
+    {
+      "name": "Position Precision",
+      "desc": "지오메트리 정밀도를 조절하여 대형 에셋의 정밀도 오류나 시각적 왜곡을 방지합니다."
+    },
+    {
+      "name": "Global Illumination",
+      "desc": "장면 전체의 간접광 계산 방식을 Lumen 또는 Ray Tracing 등으로 설정합니다."
+    },
+    {
+      "name": "Reflections",
+      "desc": "표면 반사 품질을 Lumen 리얼타임 반사로 설정하여 실시간 반사광을 구현합니다."
+    },
+    {
+      "name": "Software Ray Tracing",
+      "desc": "하드웨어 레이 Tracing 가속이 없는 환경에서도 Lumen 간접광을 작동하게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "영화 품질의 고밀도 바위 에셋 배치",
+      "steps": [
+        "지구 표면 스캔 데이터 등 수백만 폴리곤의 바위 FBX 파일을 Content Browser로 임포트합니다.",
+        "에셋 에디터 창을 열고 Details 패널에서 Enable Nanite를 체크합니다.",
+        "Viewport에 바위 에셋을 여러 개 복제하여 배치하고 프레임 저하가 없는지 확인합니다."
+      ]
+    },
+    {
+      "title": "실시간 주야간 변화가 있는 건축 실내 조명 세팅",
+      "steps": [
+        "Directional Light와 Sky Atmosphere를 배치하여 태양광을 만듭니다.",
+        "Project Settings에서 Lumen Global Illumination이 활성화되어 있는지 확인합니다.",
+        "창문을 통해 들어오는 태양광이 실내 바닥과 벽면에 반사되어 자연스럽게 퍼지는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Nanite이 적용되지 않는 투명 머티리얼이나 스켈레탈 메시(Skeletal Mesh)에 Nanite를 강제로 켜려고 함 → Nanite를 지원하는 정적 메시(Static Mesh) 및 오투명/불투명 머티리얼 조합에서만 사용하세요.",
+    "Lumen 사용 시 Viewport 프레임레이트가 심하게 떨어짐 → Project Settings에서 Software Ray Tracing 대신 하드웨어 가속 설정을 켜거나 Lumen Scalability 설정을 낮추세요."
+  ],
+  "related": [
+    "Nanite",
+    "Lumen",
+    "Virtual Shadow Maps",
+    "Post Process Volume"
+  ],
+  "videos": [
+    {
+      "id": "E-gKXGu0KNE",
+      "title": "Unreal Engine 5 : New Nanite and Lumen Technology",
+      "author": "Coreb Games"
+    },
+    {
+      "id": "h5_4vAMqye4",
+      "title": "Unreal Engine 5 Lumen Tutorial - Beginner Friendly (UE5)",
+      "author": "Tinkr Academy"
+    }
+  ],
+  "doc": "https://dev.epicgames.com/community/search?query=Unreal%20Engine%20Nanite%20and%20Lumen",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Nanite",
+    "Static Mesh"
+  ],
+  "at": "2026-11-14T09:06:05.659140+00:00"
+}
