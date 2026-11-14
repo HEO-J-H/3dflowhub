@@ -1,0 +1,108 @@
+{
+  "id": "blender-convert-curve-to-mesh-6d98",
+  "guide_id": "blender-convert-curve-to-mesh-6d98",
+  "tool": "Blender",
+  "name": "Convert curve to mesh",
+  "title": "커브를 메시로 변환",
+  "overview": "Blender의 Convert to Mesh 기능은 비파괴적인 곡선(Curve) 데이터를 Vertex, 에지, 폴리곤으로 구성된 정적 메쉬(Mesh) 데이터로 영구적으로 전환합니다. 제어점(Control Point) 기반의 부드러운 곡선 구조를 폴리곤 편집이 가능한 상태로 확정 지을 때 사용하며, 모델링의 후반부 정밀 편집이나 게임 엔진 Export 전 단계에 필수적입니다.",
+  "access": "Object Mode 상태에서 상단 메뉴 Object → Convert → Mesh 를 선택합니다. 또는 Viewport에서 우클릭 후 Convert to → Mesh 로 실행할 수 있습니다. 별도의 기본 Hotkey는 없으나 Quick Favorites(Q)에 등록해 자주 사용합니다.",
+  "options": [
+    {
+      "name": "Resolution Preview U",
+      "value": "기본값 12",
+      "effect": "값이 너무 낮으면 꺾여 보이고, 너무 높으면 폴리곤이 과도하게 생성되므로 곡선의 곡률에 맞춰 적절히 조절합니다.",
+      "tip": "변환 전 미리보기 Resolution와 일치시켜야 Viewport에서 보던 형태 그대로 메쉬가 생성됩니다."
+    },
+    {
+      "name": "Fill Mode",
+      "value": "기본값 Both (또는 Front, Back, None)",
+      "effect": "None은 뚫린 관 형태, Both는 양쪽 끝을 모두 평면 폴리곤으로 막아줍니다.",
+      "tip": "파이프나 전선 모델링 시 단면이 막혀야 할 때는 Both를 선택합니다."
+    },
+    {
+      "name": "Extrude",
+      "value": "",
+      "effect": "평면 곡선에 깊이감을 부여해 벽체나 리본 형태를 만들 때 유용합니다.",
+      "tip": "Extrude 값이 클수록 모서리 베벨(Bevel) 적용 시 형태가 풍부해집니다."
+    },
+    {
+      "name": "Bevel Depth",
+      "value": "",
+      "effect": "케이블, 밧줄, 난간 등을 만들 때 Geometry Nodes 없이 수동으로 두께를 주는 주된 방법입니다.",
+      "tip": "Bevel Resolution을 함께 높여주어야 원형 파이프 단면이 매끄럽게 표현됩니다."
+    },
+    {
+      "name": "Keep Original",
+      "value": "애드온 또는 환경에 따라 다름",
+      "effect": "수정을 대비해 원본을 남겨두는 것이 안전합니다.",
+      "tip": "작업 파일 용량이 걱정된다면 변환 전 원본을 별도 컬렉션에 백업해 둡니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "2D Curve Conversion",
+      "desc": "Z축 두께가 없는 평면 곡선을 메쉬로 변환합니다. Fill Mode 설정에 따라 로고나 텍스트 형태의 단면이 채워집니다."
+    },
+    {
+      "name": "3D Curve Conversion",
+      "desc": "공간 상에서 3차원 좌표로 꺾인 곡선을 변환합니다. Extrude나 Bevel Depth가 적용된 상태라면 입체적인 튜브 형태의 메쉬로 확정됩니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "케이블 및 전선 모델링",
+      "steps": [
+        "Shift+A → Curve → Path를 생성하여 전선이 지나갈 경로를 그립니다.",
+        "Curve 속성(Green Curve Icon)의 Geometry 탭에서 Bevel Depth 값을 높여 두께를 만듭니다.",
+        "Object Mode에서 Path를 선택하고 Object → Convert → Mesh를 실행합니다.",
+        "Tab 키를 눌러 Edit Mode로 진입한 후, 루프 컷(Ctrl+R)을 추가해 자연스럽게 늘어지는 모양을 스컬프팅합니다."
+      ]
+    },
+    {
+      "title": "텍스트 로고 입체 타이포그래피",
+      "steps": [
+        "Shift+A → Text로 원하는 문구를 입력하고 Font 탭에서 굵은 서체를 지정합니다.",
+        "Object → Convert → Mesh를 선택해 텍스트를 폴리곤 데이터로 바꿉니다.",
+        "Tab 키를 눌러 Edit Mode로 들어가고, A키로 전체 선택 후 E키를 눌러 입체 두께를 돌출(Extrude)시킵니다.",
+        "Alt+N키를 눌러 Recalculate Outside로 법선(Normal) 방향을 바르게 정렬합니다."
+      ]
+    },
+    {
+      "title": "건축용 난간 및 파이프 프레임 제작",
+      "steps": [
+        "Bezier Curve를 이용해 계단 경사면을 따라 난간 경로를 잡습니다.",
+        "Geometry 파라미터에서 Bevel Depth로 금속 파이프 두께를 실시간 확인합니다.",
+        "Object → Convert → Mesh를 실행하여 곡선을 편집 가능한 파이프 메쉬로 고정합니다.",
+        "Material 탭에서 메탈 재질을 할당하고, 필요 시 모서리에 Subdivision Surface를 적용합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Resolution Preview U 값이 과도하게 높으면 변환 순간 폴리곤 수가 수십만 개로 폭증하여 Blender가 멈출 수 있습니다.",
+    "Bevel Resolution이 높을 때 곡선 길이자체가 길면 메쉬 변환 후 엣지 루프가 과도하게 생성되므로 적정 값으로 낮춘 뒤 변환합니다.",
+    "복잡한 텍스트나 수십 개의 곡선을 한 번에 Convert 할 경우 씬이 무거워지므로 필요한 오브젝트 단위로 나누어 변환합니다.",
+    "변환 직후에는 필요 없는 내부 면이나 겹치는 Vertex가 발생할 수 있으므로 M키(Merge) → By Distance로 불필요한 점을 정리합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "변환된 메쉬가 원형이 아니라 각진 육각형 모양으로 나옵니다.",
+      "fix": "변환 전 Curve 속성에서 Bevel Resolution 값이 너무 낮게 설정되어 있는지 확인하고 값을 올린 뒤 다시 변환합니다."
+    },
+    {
+      "symptom": "메쉬로 변환한 뒤에 곡선의 제어점(Control Point)을 조절할 수 없습니다.",
+      "fix": "Convert to Mesh는 비파괴 곡선 데이터를 파괴적인 폴리곤 메쉬로 확정하는 기능이므로, 수정이 필요하다면 변환 전 원본 Curve를 복제해 두어야 합니다."
+    },
+    {
+      "symptom": "메쉬 변환 후 렌더링 시 표면이 검게 깨지거나 어둡게 나옵니다.",
+      "fix": "Edit Mode에서 전체 선택(A) 후 Alt+N을 눌러 Recalculate Outside를 실행해 면의 방향(Normal)을 바깥쪽으로 정렬합니다."
+    },
+    {
+      "symptom": "파이프 형태로 변환했는데 양 끝 단면이 구멍 난 채로 뚫려 있습니다.",
+      "fix": "변환 전 Fill Mode가 None으로 되어 있는지 확인하고, Both로 변경하거나 변환 후 Viewport에서 F키로 직접 면을 채워줍니다."
+    }
+  ],
+  "versions": "Blender 3.x 및 4.x 버전에 걸쳐 Convert 메뉴 구조는 동일하게 유지되고 있으며, 4.x 대에서는 Geometry Nodes와의 연계 작업 후 최종 메쉬 확정 용도로 자주 쓰입니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Convert%20curve%20to%20mesh",
+  "grounded": false,
+  "at": "2026-11-14T01:34:39+00:00"
+}

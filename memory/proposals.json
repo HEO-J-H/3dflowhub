@@ -34595,5 +34595,66 @@
     "kind": "applied",
     "id": "p-60012927b1",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] tests=False security=[] — 리뷰 생략"
+  },
+  {
+    "at": "2026-11-14T01:34:23+00:00",
+    "kind": "proposal",
+    "id": "p-fcd5d22009",
+    "title": "웹 브라우저 높이맵 메시 생성 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 높이맵 메시 생성 단위 테스트 추가 작업이 테스트 부족으로 보류(held)되었습니다.",
+    "proposal": "web/ 디렉토리에 Jest 또는 간단한 브라우저 모듈 테스트 코드를 추가하여 전처리 및 메시 생성 함수의 회귀를 방지합니다.",
+    "expected": "웹 버전 코드 안정성 확보 및 자동 머지 가능",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T01:34:23+00:00",
+    "kind": "proposal",
+    "id": "p-2e62c58111",
+    "title": "Microsoft TRELLIS PR #71 검토 및 승인 요청",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #71이 핵심 코드 변경으로 인해 GitHub에서 승인을 기다리고 있습니다.",
+    "proposal": "GitHub에서 PR #71(Microsoft TRELLIS 연동)의 파이프라인 코드와 테스트 결과를 검토하고 머지합니다.",
+    "expected": "다중 각도 3D 생성 선택 엔진 도입 완료",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/71",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T01:34:52.396669+00:00",
+    "kind": "decision",
+    "id": "p-fcd5d22009",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T01:34:52.429475+00:00",
+    "kind": "decision",
+    "id": "p-2e62c58111",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T01:34:54.114000+00:00",
+    "kind": "triage",
+    "id": "p-2e62c58111",
+    "verdict": "human",
+    "reason": "외부 플랫폼인 GitHub에서 PR #71을 최종 검토하고 머지하는 작업은 관리자의 권한과 승인이 필수적입니다."
+  },
+  {
+    "at": "2026-11-14T01:34:54.144677+00:00",
+    "kind": "applied",
+    "id": "p-2e62c58111",
+    "result": "사람 할 일 — 1. GitHub 저장소의 Pull Requests 메뉴로 이동합니다.\n2. #71 PR(Microsoft TRELLIS 연동)을 선택하여 변경된 파이프라인 코드와 테스트 결과를 검토합니다.\n3. 이상이 없으면 Merge 버튼을 눌러 승인 및 반영합니다."
   }
 ]
