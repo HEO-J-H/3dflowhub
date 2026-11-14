@@ -1930,8 +1930,8 @@ def filter_homonym_3d_content(item: dict) -> bool:
     return True
 
 
-def filter_strict_offtopic(text: str, tool_name: str = "") -> bool:
-    """일반 명사 도구명(Nuke, Unity, Maya, Blender 등) 등장 시 CG/3D 전문 문맥 키워드 부재 여부를 5중 이상으로 정밀 검증하여 차단하는 함수."""
+def filter_cg_context_strict(text: str, tool_name: str = "") -> bool:
+    """일반 명사 도구명(Nuke, Unity, Maya, Blender 등) 등장 시 5중 이상 다중 CG/3D 맥락 검증을 강화하여 오프토픽 뉴스를 완벽히 차단하는 함수."""
     if not isinstance(text, str) or not text.strip():
         return True
     t_lower = text.lower()
@@ -1963,7 +1963,7 @@ def filter_strict_offtopic(text: str, tool_name: str = "") -> bool:
 
     for topic in irrelevant_general_topics:
         if topic in t_lower:
-            log.info("5중 정밀 필터(filter_strict_offtopic) - 무관 일반 토픽 감지 차단: %s", topic)
+            log.info("5중 정밀 필터(filter_cg_context_strict) - 무관 일반 토픽 감지 차단: %s", topic)
             return False
 
     has_3d_context = sum(1 for ctx in professional_3d_contexts if ctx in t_lower)
@@ -1979,10 +1979,15 @@ def filter_strict_offtopic(text: str, tool_name: str = "") -> bool:
             if matched_bad:
                 # 무관 맥락이 존재하고, 3D 전문 문맥 점수가 기준 미달(최소 2개 이상 혹은 API 포맷 동반)인 경우 철저히 차단
                 if has_3d_context < 2 and not has_format_context:
-                    log.info("5중 정밀 필터(filter_strict_offtopic) 차단: 툴 '%s' 및 무관 키워드 '%s' 감지, 3D 전문 문맥 부족 (점수: %d)", tool, matched_bad, has_3d_context)
+                    log.info("5중 정밀 필터(filter_cg_context_strict) 차단: 툴 '%s' 및 무관 키워드 '%s' 감지, 3D 전문 문맥 부족 (점수: %d)", tool, matched_bad, has_3d_context)
                     return False
 
     return True
+
+
+def filter_strict_offtopic(text: str, tool_name: str = "") -> bool:
+    """하위 호환성 유지용 래퍼 함수 (내부적으로 filter_cg_context_strict 호출)."""
+    return filter_cg_context_strict(text, tool_name)
 
 
 def filter_offtpic_homonyms(text: str, tool_name: str = "") -> bool:

@@ -341,19 +341,24 @@ def test_merge_json_unions_lists_and_keeps_max():
     assert m["runs"] == [{"at": 1}, {"at": 2}] and m["cnt"] == {"x": 5, "y": 1} and m["lessons"] == ["a", "b"]
 
 
-def test_filter_strict_offtopic():
-    # 1. 5중 이상 정밀 검증: 일반 명사 도구명(Maya, Unity, Nuke, Blender 등) 등장 시 무관 맥락 차단
-    assert core.filter_strict_offtopic("Discovery of ancient Maya civilization in the jungle") is False
-    assert core.filter_strict_offtopic("Best kitchen blender for smoothie recipes with food processor") is False
-    assert core.filter_strict_offtopic("Unity stock shares drop in market economy dividend") is False
-    assert core.filter_strict_offtopic("Nuclear nuke missile test in international politics") is False
-    assert core.filter_strict_offtopic("Harry Houdini magic escape illusionist show") is False
+def test_filter_cg_context_strict():
+    # 1. 5중 이상 다중 CG/3D 맥락 검증: 일반 명사 도구명(Maya, Unity, Nuke, Blender 등) 등장 시 무관 맥락 차단
+    assert core.filter_cg_context_strict("Discovery of ancient Maya civilization in the jungle") is False
+    assert core.filter_cg_context_strict("Best kitchen blender for smoothie recipes with food processor") is False
+    assert core.filter_cg_context_strict("Unity stock shares drop in market economy dividend") is False
+    assert core.filter_cg_context_strict("Nuclear nuke missile test in international politics") is False
+    assert core.filter_cg_context_strict("Harry Houdini magic escape illusionist show") is False
 
     # 2. CG/3D 전문 문맥 및 포맷 토큰이 충분히 공존하는 경우 정상 통과
-    assert core.filter_strict_offtopic("Blender 3D modeling and geometry nodes tutorial workflow with Python and USD", tool_name="blender") is True
-    assert core.filter_strict_offtopic("Autodesk Maya character rigging and animation rendering pipeline", tool_name="maya") is True
-    assert core.filter_strict_offtopic("Foundry Nuke VFX compositing pipeline update") is True
-    assert core.filter_strict_offtopic("General tech news without any homonyms") is True
+    assert core.filter_cg_context_strict("Blender 3D modeling and geometry nodes tutorial workflow with Python and USD", tool_name="blender") is True
+    assert core.filter_cg_context_strict("Autodesk Maya character rigging and animation rendering pipeline", tool_name="maya") is True
+    assert core.filter_cg_context_strict("Foundry Nuke VFX compositing pipeline update") is True
+    assert core.filter_cg_context_strict("General tech news without any homonyms") is True
+
+
+def test_filter_strict_offtopic():
+    assert core.filter_strict_offtopic("Discovery of ancient Maya civilization in the jungle") is False
+    assert core.filter_strict_offtopic("Blender 3D modeling workflow", tool_name="blender") is True
 
 
 def test_filter_offtpic_homonyms():
