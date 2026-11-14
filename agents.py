@@ -195,10 +195,25 @@ def reset_files(files: set[str]) -> None:
 
 
 # ─────────────────────────── 작업 선택 ───────────────────────────
+def _closed_on_board(task: str) -> bool:
+    """과제의 제안이 현황판에서 이미 완료·거절됐나 — 사람(또는 Claude)이 직접 처리한 일을 에이전트가 또 하지 않게
+    (Pix2Poly PR #71: 11/14 에 직접 끝낸 TRELLIS 과제를 에이전트가 다시 맡아 기능 변화 없는 PR 을 만듦)."""
+    m = PROPOSAL_TAG.search(task)
+    if not m:
+        return False
+    try:
+        import manager
+        st = {p["id"]: p["status"] for p in manager.board()["proposals"]}
+    except Exception:  # noqa: BLE001
+        return False
+    return st.get(m.group(1)) in ("done", "rejected")
+
+
 def next_task() -> str | None:
     """AI 관리자 제안(사람이 수락한 일)을 먼저, 그다음 에이전트 스스로 만든 과제."""
     tasks = [l[len("- [ ] (agent)"):].strip() for l in TODO.read_text(encoding="utf-8").splitlines()
              if l.startswith("- [ ] (agent)")]
+    tasks = [t for t in tasks if not _closed_on_board(t)]  # 현황판에서 이미 끝낸(완료·거절) 제안은 하지 않음
     # 가이드가 있는 과제(사람이 설계를 정해 둔 단계) → 사람이 수락한 제안 → 에이전트가 스스로 만든 과제
     return next((t for t in tasks if GUIDE_TAG.search(t)),
                 next((t for t in tasks if PROPOSAL_TAG.search(t)), tasks[0] if tasks else None))

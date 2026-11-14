@@ -44,3 +44,13 @@ def test_pr_review_tasks_not_for_agent():
     import agents
     assert agents.HUMAN_ONLY.search("PR #60 및 #61 검토 및 승인 처리")
     assert not agents.HUMAN_ONLY.search("웹 브라우저 PBR 변환 UI 피드백 보강")
+
+
+def test_agent_skips_tasks_closed_on_board(monkeypatch):
+    import agents
+    import manager
+    monkeypatch.setattr(manager, "board", lambda: {"proposals": [{"id": "p-aaaaaaaaaa", "status": "done"},
+                                                                {"id": "p-bbbbbbbbbb", "status": "accepted"}]})
+    assert agents._closed_on_board("[p-aaaaaaaaaa|콘텐츠] TRELLIS 도입")
+    assert not agents._closed_on_board("[p-bbbbbbbbbb|콘텐츠] 새 일")
+    assert not agents._closed_on_board("에이전트가 스스로 만든 과제")
