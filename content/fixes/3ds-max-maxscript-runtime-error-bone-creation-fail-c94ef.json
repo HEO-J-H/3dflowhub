@@ -1,0 +1,37 @@
+{
+  "id": "3ds-max-maxscript-runtime-error-bone-creation-fail-c94ef",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Runtime error: Bone creation failed due to invalid transform",
+  "title": "MAXScript: Runtime error: Bone creation failed due to invalid transform 오류 해결 방법",
+  "summary": "MAXScript를 사용하여 뼈대(Bone)를 생성하는 도중 유효하지 않은 트랜스폼(Transform) 데이터나 행렬 값으로 인해 런타임 오류가 발생하여 생성이 중단되는 현상입니다.",
+  "causes": [
+    "생성하려는 Bone의 위치, 회전, 스케일 값을 담은 Matrix3 값이 0으로 채워지거나 NaN(Not a Number) 등 비정상적인 값일 때",
+    "존재하지 않거나 파괴된 노드를 기준 삼아 Bone 변환을 계산하려고 시도할 때",
+    "단위(Unit) 설정 충돌이나 비정상적인 스케일이 적용된 상위 오브젝트 아래에서 Script로 뼈대를 생성할 때"
+  ],
+  "steps": [
+    "MAXScript Listener(F11)를 열어 오류가 발생한 정확한 Script 라인과 전달된 transform 값을 확인합니다.",
+    "Script 코드 내에서 Bone을 생성하는 함수(예: Bone or BoneSys.createBone) 호출 전 인자로 전달되는 Matrix3 행렬이 올바른지 검사합니다.",
+    "행렬 검증 시 `matrix3 1` 또는 유효한 좌표값인지 확인하고, 값이 0이거나 비정상적일 경우 기본값(Identity Matrix)으로 초기화합니다.",
+    "재설정된 트랜스폼 값을 적용한 뒤 Script를 다시 실행하여 Bone이 정상 생성되는지 확인합니다."
+  ],
+  "check": [
+    "MAXScript Listener에 더 이상 'Bone creation failed due to invalid transform' 오류가 출력되지 않는지 확인합니다.",
+    "Viewport에 지정한 위치와 회전 값대로 정상적인 Bone 오브젝트가 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "MAXScript에서 좌표나 행렬을 다룰 때 항상 사전에 값이 유효한지(Not zero, Not undefined) 조건문으로 검증합니다.",
+    "외부 파일이나 데이터에서 좌표를 읽어와 생성할 경우, 데이터 정제(Sanitization) 단계를 추가합니다."
+  ],
+  "keywords": [
+    "MAXScript 본 생성 오류",
+    "MAXScript Bone creation failed",
+    "인바이럴드 트랜스폼 오류",
+    "invalid transform 3ds Max",
+    "맥스 뼈대 생성 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T03:14:30+00:00"
+}

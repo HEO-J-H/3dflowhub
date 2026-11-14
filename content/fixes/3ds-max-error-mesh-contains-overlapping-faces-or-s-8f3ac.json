@@ -1,0 +1,40 @@
+{
+  "id": "3ds-max-error-mesh-contains-overlapping-faces-or-s-8f3ac",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: Mesh contains overlapping faces or self-intersections",
+  "title": "Error: Mesh contains overlapping faces or self-intersections 오류 해결 방법",
+  "summary": "3ds Max에서 메시 편집 중 면이 서로 겹치거나 자체 교차(Self-intersection)할 때 발생하는 오류 메시지입니다. Modifier 시뮬레이션, 언랩(Unwrap), 부울(Boolean) 연산 등에서 정상적인 계산을 방해합니다.",
+  "causes": [
+    "Extrude, Bevel, Inset 등의 모델링 작업 중 실수로 면이 안쪽으로 뒤집히거나 과도하게 밀려 들어간 경우",
+    "ProBoolean이나 컷팅 작업 후 잘못된 Topology가 생성된 경우",
+    "대칭(Symmetry) Modifier 적용 시 중앙 접합면 처리가 잘못된 경우"
+  ],
+  "steps": [
+    "문제가 발생하는 오브젝트를 선택하고 Command Panel의 Modify 탭으로 갑니다.",
+    "Modifier List에서 STL Check Modifier를 추가합니다.",
+    "STL Check 파트롤 패널의 Check 하위 메뉴에서 Check 항목을 'Faces'로 설정하고 'Sel Coplanar' 또는 'Intersection' 옵션을 켭니다.",
+    "Viewport에서 빨갛게 표시되는 겹치거나 교차하는 면의 위치를 확인합니다.",
+    "Modifier List 위에 Edit Poly Modifier를 추가하거나 에디터블 폴리 상태로 돌아갑니다.",
+    "Sub-object Level 4(Polygon)에서 문제가 되는 교차 면들을 수동으로 선택하여 삭제(Delete)하거나 위치를 재조정합니다.",
+    "자동 정리를 원할 경우, Graphite Modeling Tools의 Geometry All 탭에서 'Make Planar'나 'Retopology'를 활용하거나 프로오퍼레이션 결과물의 겹침을 수정합니다."
+  ],
+  "check": [
+    "Modifier List에 STL Check를 다시 적용했을 때 오류 경고나 빨간색 선택 면이 더 이상 나타나지 않는지 확인합니다.",
+    "TurboSmooth나 OpenSubdiv Modifier를 적용했을 때 찌그러짐 없이 부드럽게 형태가 유지되는지 확인합니다."
+  ],
+  "prevent": [
+    "Extrude나 Bevel 실행 시 Mouse 드래그로 면이 역전(Flip)되지 않도록 수치를 직접 입력하거나 적당히 조절합니다.",
+    "복잡한 부울(Boolean) 연산 직후에는 반드시 와이어프레임을 확인하여 겹친 면이 생겼는지 점검합니다."
+  ],
+  "keywords": [
+    "3ds Max overlapping faces 오류",
+    "메시 자체 교차 해결",
+    "STL Check 3ds Max",
+    "Mesh contains overlapping faces",
+    "폴리곤 겹침 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T03:14:28+00:00"
+}

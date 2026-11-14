@@ -1,0 +1,40 @@
+{
+  "id": "blender-error-non-manifold-edge-vertex-detected-in-3f654",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Non-manifold edge / vertex detected in solidify modifier",
+  "title": "Error: Non-manifold edge / vertex detected in solidify modifier 오류 해결 방법",
+  "summary": "Blender에서 Solidify Modifier를 적용할 때 메시의 구조가 비정상적(Non-manifold)이어서 두께를 계산할 수 없을 때 발생하는 오류입니다. 열린 구멍, 겹친 면, 또는 엣지에 3개 이상의 면이 붙어 있는 구조 때문에 발생합니다.",
+  "causes": [
+    "메시에 닫히지 않은 열린 구멍(Open boundaries)이 존재함",
+    "하나의 엣지에 3개 이상의 면이 연결된 Non-manifold 구조가 포함됨",
+    "정밀한 모델링 과정에서 중복된 Vertex(Duplicate vertices)나 겹친 면이 생성됨",
+    "법선(Normals) 방향이 일치하지 않고 뒤집힌 면이 섞여 있음"
+  ],
+  "steps": [
+    "오브젝트를 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+    "메시 전체를 선택한 뒤(A 키), 상단 메뉴에서 Mesh -> Clean Up -> Merge by Distance를 실행하여 중복 Vertex를 정리합니다.",
+    "Mesh -> Clean Up -> Non Manifold를 실행하여 비정상적인 구조를 자동으로 선택합니다.",
+    "선택된 비정상 부위의 면이나 엣지를 삭제(X -> Faces/Edges)하거나 구조를 수정합니다.",
+    "Alt + N 키를 누르고 Recalculate Outside를 선택하여 법선(Normals) 방향을 바깥쪽으로 통일합니다."
+  ],
+  "check": [
+    "Solidify Modifier를 다시 추가했을 때 오류 메시지가 사라지고 두께가 정상적으로 생성되는지 확인합니다.",
+    "오버레이(Overlays) 메뉴에서 Non-Manifold 옵션을 켜고 Viewport에 빨간색 경고선이 표시되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "모델링 중간중간 M 키(Merge -> By Distance)를 눌러 중복 Vertex를 정리합니다.",
+    "익스트루드나 컷팅 작업 시 내부 면이나 겹치는 지오메트리가 생기지 않도록 주의합니다.",
+    "Modifier 적용 전 항상 법선(Normals) 방향이 올바른지 확인합니다."
+  ],
+  "keywords": [
+    "솔리디파이 오류",
+    "Non-manifold edge",
+    "Blender 두께 오류",
+    "Solidify modifier 에러",
+    "메시 정리하기"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T03:14:25+00:00"
+}
