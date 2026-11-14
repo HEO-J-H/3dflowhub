@@ -1,0 +1,38 @@
+{
+  "id": "maya-warning-found-multiple-transform-nodes-with-t-20c3f",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Warning: Found multiple transform nodes with the same name in namespace",
+  "title": "# Warning: Found multiple transform nodes with the same name in namespace 오류 해결 ",
+  "summary": "Maya에서 네임스페이스 내에 동일한 이름을 가진 Transform 노드가 여러 개 존재할 때 발생하는 경고 메시지입니다. 주로 에셋을 병합(Import)하거나 참조(Reference)할 때 이름 충돌이 발생하여 Maya가 어떤 노드를 지칭해야 할지 혼란스러워할 때 나타납니다.",
+  "causes": [
+    "동일한 이름의 오브젝트나 에셋을 이미 네임스페이스가 있는 상태에서 중복 Import 또는 Reference 한 경우",
+    "외부 파일 간의 이름 중돌로 인해 네임스페이스 병합 과정에서 동일한 Transform 노드 이름이 중복 생성된 경우",
+    "스크립트나 자동화 도구를 통해 노드를 생성할 때 네임스페이스 규칙이 올바르게 적용되지 않은 경우"
+  ],
+  "steps": [
+    "Outliner 창을 열고 Display 메뉴에서 'DAG Objects Only' 체크를 해제하여 Transform 노드와 Shape 노드를 모두 확인합니다.",
+    "메뉴 바에서 Windows > General Editors > Namespace Editor를 열어 네임스페이스 구조를 확인합니다.",
+    "메뉴 바에서 Modify > Prefix Hierarchy Names 또는 Edit > Rename 등을 사용하여 충돌하는 노드 이름을 수동으로 변경합니다.",
+    "멜(MEL) Script를 사용하여 중복 이름을 가진 노드를 일괄 정리합니다: `ls -ni \"namespace:nodeName\"`",
+    "불필요한 중복 참조나 네임스페이스를 File > Reference Editor에서 제거하거나 재지정(Unreference / Remove)합니다."
+  ],
+  "check": [
+    "Script Editor에서 해당 경고 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Outliner와 Viewport에서 오브젝트들이 올바른 네임스페이스와 독립된 이름으로 정상 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 파일을 Reference 하거나 Import 할 때 항상 고유한 네임스페이스(Unique Namespace) 옵션을 사용합니다.",
+    "에셋 제작 단계에서부터 일관된 명명 규칙(Naming Convention)을 적용합니다."
+  ],
+  "keywords": [
+    "Maya 네임스페이스 오류",
+    "Warning Found multiple transform nodes",
+    "Maya 중복 이름 에러",
+    "Maya Reference 오류",
+    "Outliner 노드 이름 충돌"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T06:15:08+00:00"
+}

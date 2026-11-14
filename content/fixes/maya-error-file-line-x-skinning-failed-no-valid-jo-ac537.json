@@ -1,0 +1,38 @@
+{
+  "id": "maya-error-file-line-x-skinning-failed-no-valid-jo-ac537",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Skinning failed. No valid joints selected.",
+  "title": "# Error: file: line X: Skinning failed. No valid joints selected. 오류 해결 방법",
+  "summary": "Maya에서 스킨(Skin) 바인딩을 시도할 때 선택된 조인트가 없거나 유효하지 않아 발생하는 오류입니다.",
+  "causes": [
+    "메시(Mesh)와 조인트(Joint)를 동시에 올바르게 선택하지 않은 경우",
+    "선택한 조인트가 계층 구조(Hierarchy)에 포함되어 있지 않거나 지오메트리와 연결되지 않은 경우",
+    "그룹 노드나 Transform 노드만 선택하고 실제 Joint를 선택하지 않은 경우"
+  ],
+  "steps": [
+    "Outliner에서 바인딩할 폴리곤 메시를 먼저 선택합니다.",
+    "Shift 키를 누른 상태에서 바인딩에 사용할 루트 조인트(Root Joint) 또는 개별 조인트들을 다중 선택합니다.",
+    "상단 메뉴에서 Rigging 세트로 전환한 후 Skin → Bind Skin 옵션 박스를 엽니다.",
+    "Bind to 설정이 'Selected joints'로 되어 있는지 확인하고, 필요시 옵션을 조정합니다.",
+    "Bind Skin 버튼을 클릭하여 스킨 바인딩을 다시 실행합니다."
+  ],
+  "check": [
+    "Viewport에서 메시가 조인트의 움직임에 따라 올바르게 변형(Deformation)되는지 확인합니다.",
+    "Channel Box나 Attribute Editor에서 메시에 skinCluster 노드가 정상적으로 연결되었는지 확인합니다."
+  ],
+  "prevent": [
+    "바인딩 작업 시 Outliner나 Viewport에서 메시와 조인트가 정확하게 선택되었는지 Selection 상태를 먼저 확인하는 습관을 들입니다.",
+    "조인트 계층 구조를 사전에 정리하고 루트 조인트(Root Joint)를 명확히 지정해 둡니다."
+  ],
+  "keywords": [
+    "Maya Skinning failed",
+    "Maya 스킨 바인딩 오류",
+    "No valid joints selected",
+    "Maya 스킨 실패",
+    "Bind Skin 조인트 선택"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T06:15:06+00:00"
+}
