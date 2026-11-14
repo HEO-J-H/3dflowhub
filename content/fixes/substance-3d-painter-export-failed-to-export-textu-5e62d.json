@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-painter-export-failed-to-export-textu-5e62d",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Export] Failed to export textures because output directory is read-only",
+  "title": "Painter: [Export] Failed to export textures because output directory is read-onl",
+  "summary": "Substance 3D Painter에서 텍스처를 내보낼(Export) 때 지정한 출력 폴더에 쓰기 권한이 없어 발생하는 오류입니다. OS 권한 설정이나 OneDrive 같은 클라우드 동기화 프로그램으로 인해 폴더가 잠겨 있을 때 나타납니다.",
+  "causes": [
+    "Windows Defender Controlled Folder Access(제어된 폴더 액세스) 또는 서드파티 백신 프로그램이 Painter의 파일 생성을 차단함",
+    "선택한 출력 폴더가 '읽기 전용'으로 설정되어 있거나 현재 사용자 계정에 쓰기 권한이 없음",
+    "OneDrive, Dropbox 등 클라우드 동기화 서비스가 해당 폴더나 파일을 백그라운드에서 점유하고 있음",
+    "네트워크 공유 폴더(NAS) 또는 권한이 제한된 시스템 폴더(C:\\Program Files 등)를 출력 경로로 지정함"
+  ],
+  "steps": [
+    "Substance 3D Painter를 종료한 후, 아이콘을 우클릭하여 '관리자 권한으로 실행(Run as administrator)'을 선택합니다.",
+    "Export 창에서 Output Directory 경로 옆의 폴더 아이콘을 클릭해 사용 권한이 확실한 로컬 경로(예: D:\\Projects\\Textures)로 저장 위치를 변경합니다.",
+    "Windows 탐색기에서 대상 폴더를 우클릭한 후 '속성(Properties)'을 열고, '읽기 전용' 체크박스가 채워져 있다면 해제합니다.",
+    "Windows 보안 설정에서 '바이러스 및 위협 방지' -> '랜섬웨어 방지' -> '제어된 폴더 액세스를 통해 앱 허용'에서 Substance 3D Painter를 예외 항목으로 추가합니다.",
+    "다시 File -> Export Textures를 실행하여 텍스처를 내보냅니다."
+  ],
+  "check": [
+    "Export 창에서 오류 메시지가 사라지고 Export 버튼이 활성화되는지 확인합니다.",
+    "지정한 출력 폴더에 새로운 텍스처 파일(.png, .exr 등)들이 정상적으로 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "텍스처 출력 경로는 시스템 폴더나 동기화되는 클라우드 폴더 대신 전용 작업 드라이브의 로컬 경로를 사용합니다.",
+    "중요 프로젝트 폴더는 백신 프로그램의 예외(실시간 검사 제외) 목록에 미리 등록해 둡니다."
+  ],
+  "keywords": [
+    "Substance Painter 텍스처 Export 오류",
+    "read only 폴더 저장 실패",
+    "Failed to export textures",
+    "Painter 권한 오류",
+    "출력 디렉터리 읽기 전용"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T00:14:01+00:00"
+}

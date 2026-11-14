@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-compose-usd-b03b3",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to compose USD layers due to conflicting root opinions",
+  "title": "Stage Error: Failed to compose USD layers due to conflicting root opinions 오류 해결",
+  "summary": "Stage Error: Failed to compose USD layers due to conflicting root opinions 오류는 NVIDIA Omniverse에서 여러 USD 레이어를 병합(Composition)할 때, 최상위(Root) 레이어 간에 동일한 프림(Prim) 속성이나 스키마에 대해 서로 모순되는 의견(Opinions)이 충돌하여 합성에 실패할 때 발생합니다.",
+  "causes": [
+    "서로 다른 서브레이어(Sublayers)나 참조(References) 파일에서 동일한 USD 프림의 속성(Attribute)이나 변환 값(Transform)을 서로 다른 값으로 오버라이드하고 있는 경우",
+    "상위 레이어의 무효화(Over) 선언과 하위 레이어의 정의(Def) 선언 간에 의견 충돌이 발생한 경우",
+    "다수의 아티스트가 동시에 USD 파일을 편집하면서 동일한 오브젝트의 루트 Opinion을 다르게 설정하여 머지(Merge) 충돌이 난 경우"
+  ],
+  "steps": [
+    "Omniverse Kit 또는 Application의 Stage 패널을 열어 충돌이 발생하는 루트 레이어와 서브레이어 구조를 확인합니다.",
+    "Layer 패널에서 각 레이어의 순서(Stack Order)를 검토합니다. USD는 아래에 있는 레이어가 위쪽 레이어에 의해 덮어씌워지므로 순서가 잘못되었는지 확인하세요.",
+    "Property 패널에서 문제가 되는 프림을 선택하고, 초록색이나 주황색으로 표시되는 오버라이드(Over)된 속성 중 출처가 잘못된 값을 우클릭하여 'Clear Opinion' 또는 'Remove Override'를 실행합니다.",
+    "텍스트 에디터로 USD(.usd, .usda) 파일을 직접 열어 rootLayer 의견 충돌을 일으키는 over 구문이나 conflicting opinions 블록을 찾아 수정합니다."
+  ],
+  "check": [
+    "콘솔 창이나 로그(Log)에서 'Failed to compose USD layers' 에러 메시지가 사라지고 씬이 정상적으로 로드되는지 확인합니다.",
+    "Stage 패널에서 오브젝트들이 경고 없이 올바른 속성과 위치로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "USD 협업 작업 시 레이어 구조(Layer Architecture) 원칙을 세워 최상위 레이어에서 직접 수정하기보다 오버레이 레이어(Overlay Layer)를 분리하여 관리합니다.",
+    "동일한 프림에 대한 중복 오버라이드가 발생하지 않도록 팀 내 에셋 제작 가이드라인을 공유합니다."
+  ],
+  "keywords": [
+    "Omniverse USD 충돌",
+    "Failed to compose USD layers",
+    "conflicting root opinions",
+    "USD 레이어 합성 오류",
+    "Omniverse 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T00:14:09+00:00"
+}

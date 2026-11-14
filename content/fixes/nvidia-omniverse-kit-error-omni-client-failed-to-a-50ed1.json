@@ -1,0 +1,39 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-client-failed-to-a-50ed1",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.client] Failed to authenticate user session against Nucleus server",
+  "title": "Kit: [Error] [omni.client] Failed to authenticate user session against Nucleus s",
+  "summary": "Kit: [Error] [omni.client] Failed to authenticate user session against Nucleus server 메시지는 NVIDIA Omniverse에서 Nucleus 서버로 접속할 때 사용자 인증(로그인 세션)이 실패했음을 나타내는 오류입니다.",
+  "causes": [
+    "Omniverse Launcher 또는 Kit 앱에서 로그인 세션이 만료됨",
+    "Enterprise 환경에서 잘못된 자격 증명이나 SSO(Single Sign-On) 인증 오류 발생",
+    "로컬 캐시된 인증 토큰(Token) 파일 손상",
+    "Nucleus 서버와 클라이언트 간의 네트워크 시간 동기화 불일치"
+  ],
+  "steps": [
+    "NVIDIA Omniverse Launcher를 열고 우측 상단의 프로필을 클릭한 뒤 Sign Out을 선택합니다.",
+    "Launcher에 올바른 계정 정보로 다시 로그인(Sign In)하여 새로운 인증 세션을 발급받습니다.",
+    "Kit 기반 앱(USD Composer, Code 등)을 완전히 종료한 후 재시작합니다.",
+    "문제가 지속될 경우, 로컬 사용자 폴더 내의 Omniverse 인증 캐시 디렉터리(예: %localappdata%\\ov\\data\\Kit)에서 손상된 토큰 파일을 삭제합니다.",
+    "Enterprise 환경인 경우 시스템 관리자에게 Nucleus 서버의 사용자 권한 및 Active Directory 연동 상태를 확인 요청합니다."
+  ],
+  "check": [
+    "Kit 앱 재시작 시 콘솔 창에 [omni.client] 관련 인증 오류 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "Nucleus 서버의 에셋과 라이브 세션에 정상적으로 접속 및 편집이 가능한지 확인합니다."
+  ],
+  "prevent": [
+    "자리 비움이나 장시간 작업 중 세션 만료에 대비해 정기적으로 Launcher 로그인 상태를 유지합니다.",
+    "회사 네트워크 변경이나 SSO 정책 업데이트 후에는 반드시 Omniverse 계정을 재인증합니다."
+  ],
+  "keywords": [
+    "Omniverse 인증 오류",
+    "Failed to authenticate user session",
+    "Nucleus 서버 로그인 실패",
+    "omni.client 인증 실패",
+    "Omniverse 토큰 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-14T00:14:06+00:00"
+}
