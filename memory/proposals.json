@@ -35280,5 +35280,67 @@
     "id": "p-57298e71f7",
     "v": "done",
     "note": "AI 관리자 자동 정리(duplicate): 동일한 높이맵 테스트 관련 과제가 반복되어 이미 거절(held) 또는 정리된 내용과 겹칩니다."
+  },
+  {
+    "at": "2026-11-14T10:25:43+00:00",
+    "kind": "proposal",
+    "id": "p-b908fa82a6",
+    "title": "웹 브라우저 높이맵 테스트 방식 개편",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 높이맵 메시 생성 단위 테스트가 반복적으로 보류(held)되고 있습니다.",
+    "proposal": "web/ 디렉토리 내 테스트 방식을 단순화하고, Jest 또는 브라우저 내장 단언문을 활용해 가벼운 테스트 파일 형태로 재설계합니다.",
+    "expected": "테스트 통과율 상승 및 브라우저 버전 회귀 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T10:25:43+00:00",
+    "kind": "proposal",
+    "id": "p-d48082eef8",
+    "title": "RAG 검토 문서를 축소하여 간이 적용",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "깃허브 RAG 오픈소스 반영 타당성 검토가 동일한 과제 실패로 2회 이상 스킵되었습니다.",
+    "proposal": "docs/rag_review.md 작성을 단순화하고, Pix2Poly 툴 가이드 검색에 적용 가능한 최소한의 요약본 형태로 전환합니다.",
+    "expected": "막혀 있던 운영 과제 해소 및 RAG 연동 타당성 명확화",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T10:26:01.826159+00:00",
+    "kind": "decision",
+    "id": "p-b908fa82a6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 테스트 방식 개선",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T10:26:01.859164+00:00",
+    "kind": "decision",
+    "id": "p-d48082eef8",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T10:26:04.095725+00:00",
+    "kind": "triage",
+    "id": "p-d48082eef8",
+    "verdict": "duplicate",
+    "reason": "이미 완료된 '깃허브 RAG 오픈소스 검토 문서 범위 명확화' 및 관련 RAG 타당성 검토 태스크들과 중복되는 내용입니다."
+  },
+  {
+    "at": "2026-11-14T10:26:04.126900+00:00",
+    "kind": "decision",
+    "id": "p-d48082eef8",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(duplicate): 이미 완료된 '깃허브 RAG 오픈소스 검토 문서 범위 명확화' 및 관련 RAG 타당성 검토 태스크들과 중복되는 내용입니다."
   }
 ]
