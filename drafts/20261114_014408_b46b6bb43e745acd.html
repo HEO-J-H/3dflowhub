@@ -1,0 +1,19 @@
+<!-- TITLE: NVIDIA cuDLA — Jetson AGX Orin Python DLA 추론 | TAGS: cuDLA,Jetson AGX Orin,Python,NVIDIA,AI Inference,파이썬,업데이트·출시 | CATEGORY: AI 3D/NVIDIA Isaac Sim | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/run-native-dla-inference-in-python-on-nvidia-jetson-agx-orin-using-cudla/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/08/dla-inference.webp" alt="NVIDIA cuDLA — Jetson AGX Orin Python DLA 추론" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/run-native-dla-inference-in-python-on-nvidia-jetson-agx-orin-using-cudla/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA cuDLA를 통해 Python 환경에서 Jetson AGX Orin의 DLA 하드웨어를 직접 제어하고 하이브리드 추론을 수행할 수 있습니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA Isaac Sim › 업데이트·출시</p>
+<h2>cuda.bindings.cudla 모듈의 등장</h2>
+<p>cuda-bindings 13.3.0 버전부터 제공되는 cuda.bindings.cudla 모듈은 Cython 기반으로 생성된 Python 레이어입니다. C++ 작성 없이도 cuDLA C++ API를 직접 호출할 수 있으며 하이브리드 모드 작업 흐름을 지원합니다. JetPack을 통해 제공되는 libcudla.so 런타임을 Python Application에서 곧바로 활용 가능합니다.</p>
+<h2>9단계 추론 라이프사이클 관리</h2>
+<p>CUDA 초기화부터 하이브리드 모드 DLA 장치 생성, 메모리 내 컴파일된 로더 로드, 텐서 서술자 분석이 수행됩니다. 이어 GPU 버퍼 할당, cuDLA 버퍼 등록, 전처리된 입력 복사, CUDA 스트림 작업 제출 및 동기화를 거쳐 결과를 읽어옵니다. 모든 실패 사례는 Python 예외를 발생시켜 표준 try/finally 구문으로 안전하게 처리할 수 있습니다.</p>
+<h2>GPU와 DLA의 하이브리드 연동</h2>
+<p>Jetson AGX Orin에서 DLA는 컨볼루션과 풀링 같은 고정 연산을 처리하여 전력 효율을 높이고 GPU 부하를 줄입니다. CUDA 스트림이 DLA 추론과 GPU의 전·후처리 작업을 동시에 조율합니다. 임베디드 플랫폼을 넘어 Windows AI 개발자 노트북 환경인 NVIDIA RTX Spark에서도 동일한 Python API를 사용할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">cuda-bindings 13.3.0에 포함된 cuda.bindings.cudla 모듈을 통해 C++ 작성 없이 Python Script만으로 DLA 하드웨어 가속 추론을 오케스트레이션할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. cuda.bindings.cudla 모듈은 어떤 버전부터 포함되어 있나요?</b><br/>A. cuda-bindings 13.3.0 버전부터 CUDA Python 프로젝트의 일부로 포함되어 제공됩니다.</p>
+<p><b>Q. cuDLA를 Python에서 사용할 때 에러 처리는 어떻게 하나요?</b><br/>A. 모든 cuDLA 호출은 실패 시 Python 예외를 발생시키므로 표준 try/finally 구문을 통한 정리와 cudla.Status 열거형을 이용한 세밀한 에러 처리가 가능합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-10-27-9794b201a214a494.html">NVIDIA Isaac Sim — 에이전트로 Microduck 걷기 시뮬레이션</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-8fc5d8ced20e6bdd.html">NVIDIA cuPhoton xBeam — GPU 기반 블랙홀 간섭계 연산</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-a8d538480c9f2c23.html">Sandflow Sand3D 오픈 소스 3D 모델 데이터셋 공개</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/run-native-dla-inference-in-python-on-nvidia-jetson-agx-orin-using-cudla/" target="_blank" rel="noopener nofollow">Run Native DLA Inference in Python on NVIDIA Jetson AGX Orin Using cuDLA</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
