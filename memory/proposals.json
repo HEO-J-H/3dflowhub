@@ -34776,5 +34776,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-14T02:14:07+00:00",
+    "kind": "proposal",
+    "id": "p-1a586e04c7",
+    "title": "웹 브라우저 높이맵 메시 생성 단위 테스트 재작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 높이맵 메시 생성 단위 테스트 추가 과제가 테스트 누락(tests=False)으로 보류되었습니다.",
+    "proposal": "web/ 디렉토리 내 JavaScript 기반 높이맵 전처리 및 메시 생성 함수에 대한 Jest/Mocha 단위 테스트 파일을 명확한 테스트 코드와 함께 작성합니다.",
+    "expected": "브라우저 측 회귀 오류 방지 및 코드 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T02:14:07+00:00",
+    "kind": "proposal",
+    "id": "p-964f4d6e1c",
+    "title": "깃허브 RAG 오픈소스 검토 문서 범위 명확화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "RAG 오픈소스 반영 타당성 검토 문서(docs/rag_review.md) 작업이 동일 사유로 2회 이상 실패/보류되었습니다.",
+    "proposal": "docs/rag_review.md 문서에 3D 생성 툴(Pix2Poly)에서의 실효성 한계를 명시하고, 비동기 파이프라인 연계 방안만 간단히 요약하도록 범위를 대폭 축소합니다.",
+    "expected": "반복 실패 중단 및 RAG 검토 문서의 성공적인 머지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-14T02:14:32.967234+00:00",
+    "kind": "decision",
+    "id": "p-1a586e04c7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T02:14:33.014910+00:00",
+    "kind": "decision",
+    "id": "p-964f4d6e1c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-14T02:14:35.680399+00:00",
+    "kind": "triage",
+    "id": "p-964f4d6e1c",
+    "verdict": "agent",
+    "reason": "깃허브 RAG 오픈소스 검토 문서(docs/rag_review.md)의 범위를 축소하고 Pix2Poly 한계 및 비동기 파이프라인 연계 방안을 명시하는 작업은 코드 및 문서 수정으로 해결할 수 있습니다."
   }
 ]
