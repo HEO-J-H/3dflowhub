@@ -1,0 +1,58 @@
+{
+  "title_ko": "CORTAO 소스코드 공개 — EVE Online 개발사의 실시간 SSAO",
+  "title": "EVE Online Dev Open-Sources Its Physically Based SSAO Technology",
+  "url": "https://80.lv/articles/eve-online-dev-open-sources-its-physically-based-ssao-technology/",
+  "domain": "Game Engine",
+  "category": "기타 엔진",
+  "topic": "업데이트·출시",
+  "tags": [
+    "CORTAO",
+    "SSAO",
+    "Carbon",
+    "EVE Online",
+    "레이트레이싱"
+  ],
+  "summary": "EVE Online 개발사가 화면 공간 정보를 활용해 성능 저하 없이 정확한 음영을 구현하는 CORTAO 기술을 Carbon 엔진 프레임워크를 통해 오픈소스화했습니다.",
+  "insight": "다니엘 이스헤덴(Daniel Isheden)이 개발하고 EVE Frontier에 도입된 CORTAO는 사전 베이크된 데이터 없이 실시간으로 작동합니다. GTAO 방식과 비교해 복잡한 장면에서의 깊이 불연속성을 보수적으로 처리하여 카메라 이동 시 발생하는 어두운 후광과 시야 의존적 차폐 현상을 줄여줍니다.",
+  "try_it": [
+    "Carbon 엔진 프레임워크 공식 저장소에서 CORTAO 소스코드를 내려받습니다.",
+    "프로젝트에 CORTAO를 통합하고 기존 SSAO 또는 GTAO 환경과 렌더링 성능을 비교합니다.",
+    "낮은 샘플 카운트 환경에서 수렴 품질과 디테일 표현력을 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "CORTAO 기술 개요와 배경",
+      "body": "EVE Online 개발사인 페니스 크리에이션스(Fenris Creations)가 Carbon 엔진 프레임워크를 통해 CORTAO(Circular Occluder Ray-Traced Ambient Occlusion) 기술을 오픈소스화했습니다. 수석 렌더링 엔지니어인 다니엘 이스헤덴이 독립 프로젝트로 시작한 이 기술은 현재 정식 제작 도구로 발전했습니다. 개발사는 우주 생존 MMO인 EVE Frontier에 이 기술을 적용하여 대규모 오픈스페이스와 거대 구조물 등 다양한 환경에서 성능을 검증했습니다."
+    },
+    {
+      "heading": "화면 공간 기반 차폐 계산 방식",
+      "body": "CORTAO는 현재 화면에 보이는 정보를 기반으로 주변 표면을 원형 차폐물로 표현하여 주변광 차단 방식을 계산합니다. 사전 베이크된 씬 데이터가 필요하지 않기 때문에 플레이어가 지속적으로 건물을 짓고 변형하는 환경에 적합합니다. 카메라가 이동할 때 객체 주변에 나타나는 어두운 후광이나 부자연스러운 음영 변화를 줄여 시각적 안정성을 높입니다."
+    },
+    {
+      "heading": "기존 GTAO 기술과의 차이점",
+      "body": "개발사에 따르면 CORTAO는 하드웨어 레이트레이싱에 버금가는 물리적 정확도를 화면 공간 정보만으로 제공합니다. 복잡한 장면의 깊이 불연속성을 보수적으로 처리하여 GTAO의 시야 의존적 차폐 현상을 피합니다. 또한 낮은 샘플 카운트에서도 수렴 품질이 대폭 향상되어 로엔드 하드웨어 환경에서도 우수한 결과를 냅니다."
+    },
+    {
+      "heading": "소스코드 및 문서 이용 안내",
+      "body": "그래픽스 프로그래머들은 CORTAO 소스코드를 실험하고 자신의 프로젝트에 맞게 수정하여 기여할 수 있습니다. 개발 과정에 인공지능은 전혀 개입되지 않았습니다. 원본 소스코드와 Carbon 최적화 버전은 공식 저장소에서 내려받을 수 있으며 관련 벤치마크와 시각적 비교 자료도 함께 제공됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "CORTAO는 어떤 게임 엔진이나 프레임워크에서 사용할 수 있나요?",
+      "a": "EVE Online 개발사인 페니스 크리에이션스의 Carbon 엔진 프레임워크를 통해 오픈소스로 공개되었으며 관련 소스코드는 공식 저장소에서 확인할 수 있습니다."
+    },
+    {
+      "q": "기존 GTAO와 비교해 어떤 장점이 있나요?",
+      "a": "하드웨어 레이트레이싱에 준하는 물리적 정확도를 제공하면서도 화면 공간 정보를 활용하며, 낮은 샘플 카운트에서도 더 높은 품질의 결과물을 생성해 로엔드 하드웨어에 유리합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51020/images/6af744775c9b7/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=GUQ2kDgGT-c"
+  },
+  "collected_at": "2026-11-14T01:14:12.997525+00:00",
+  "notion_id": "",
+  "id": "2026-11-14-cbe48881f5542210",
+  "img_ok": "2026-11-14T01:14:18+00:00"
+}
