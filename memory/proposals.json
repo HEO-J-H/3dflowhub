@@ -34876,5 +34876,53 @@
     "id": "p-5edde37abe",
     "verdict": "agent",
     "reason": "Simulator 메인 화면과 결과 하단의 면책 조항 글자 크기 및 색상 대비를 CSS 코드 수정으로 직접 개선할 수 있습니다."
+  },
+  {
+    "at": "2026-11-15T15:30:28+00:00",
+    "kind": "proposal",
+    "id": "p-529e95e7b2",
+    "title": "PR #77 URL 파이프라인 검증 및 테스트 코드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "현재 PR #77이 승인 대기 상태이며 백엔드 URL 스키마 및 유효성 검증 관련 코드가 대기 중입니다.",
+    "proposal": "backend/tests/ 폴더에 URL 파이프라인 입력값 검증 및 예외 처리 테스트를 추가하여 안전성을 검증합니다.",
+    "expected": "URL 입력 오류로 인한 백엔드 예외를 방지하고 파이프라인 안정성이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/77",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T15:30:28+00:00",
+    "kind": "proposal",
+    "id": "p-87f324fc84",
+    "title": "웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 기능을 강화하기 위해 브라우저 단의 메시 생성 로직 검증이 필요합니다.",
+    "proposal": "web/ 디렉토리 내 JavaScript/TypeScript 기반 높이맵 메시 생성 알고리즘 단위 테스트를 추가합니다.",
+    "expected": "서버 통신 없이 브라우저에서 수행되는 3D 변환 품질과 성능을 지속적으로 보장합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T15:30:51.807137+00:00",
+    "kind": "decision",
+    "id": "p-529e95e7b2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #77 머지 후 브라우저 URL 파이프라인 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-15T15:30:51.844908+00:00",
+    "kind": "decision",
+    "id": "p-87f324fc84",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "auto": true
   }
 ]
