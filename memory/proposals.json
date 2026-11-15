@@ -36237,5 +36237,36 @@
     "kind": "applied",
     "id": "p-5128e32c54",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] 패치 적용 실패: 변경 없음"
+  },
+  {
+    "at": "2026-11-15T23:02:09+00:00",
+    "kind": "proposal",
+    "id": "p-e155de1b35",
+    "title": "보류된 TripoSR 단위 테스트 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "패치 적용 실패로 held 상태인 TripoSR 오류 처리 단위 테스트 보강 작업 재시도 필요",
+    "proposal": "backend/tests/test_triposr.py 파일의 테스트 코드 오류 원인을 파악하고 패치를 정상 적용하여 테스트를 통과시킵니다.",
+    "expected": "로컬 파이프라인 안정성 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T23:02:32.304281+00:00",
+    "kind": "decision",
+    "id": "p-e155de1b35",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-15T23:02:34.753508+00:00",
+    "kind": "triage",
+    "id": "p-e155de1b35",
+    "verdict": "agent",
+    "reason": "backend/tests/test_triposr.py 파일의 단위 테스트 오류 원인 파악 및 패치 적용은 코드로 해결할 수 있는 작업입니다."
   }
 ]
