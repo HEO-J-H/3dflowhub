@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-vellum-solver-constraint-violation-o-409c1",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Vellum solver: Constraint violation or bad geometry input",
+  "title": "Error: Vellum solver: Constraint violation or bad geometry input 오류 해결 방법",
+  "summary": "Error: Vellum solver: Constraint violation or bad geometry input 에러는 Houdini에서 Vellum 시뮬레이션 중 잘못된 지오메트리 입력값(중복 포인트, 붕괴된 면 등)이 들어왔거나, 제약 조건(Constraint)이 너무 극단적으로 왜곡되어 계산이 파탄 났을 때 발생합니다.",
+  "causes": [
+    "Vellum Source나 Constraint 노드에 들어가는 메쉬가 겹쳐 있거나(Self-intersection) 부서진 폴리곤(Degenerated primitives)을 포함하고 있습니다.",
+    "스트레치(Stretch)나 벤드(Bend) 제약 조건의 값이나 서브스텝(Substeps)이 부족하여 급격한 변형을 견디지 못하고 지오메트리가 찢어졌습니다.",
+    "Pin(고정점)이나 목표(Target)로 지정된 포인트 번호(Point Group/Attribute)가 비어 있거나 잘못 연결되었습니다."
+  ],
+  "steps": [
+    "Network View에서 Vellum Solver 노드를 더블 클릭하여 안쪽으로 들어간 뒤, 문제가 발생한 특정 프레임(Timeline)을 찾습니다.",
+    "Solver 직전의 지오메트리 네트워크에 Blast 노드나 Clean 노드를 추가하여 중복 포인트, 제로 면(Zero-area primitives)을 제거합니다.",
+    "Vellum Constraint 노드(예: Vellum Cloth, Vellum Hair 등)의 Substeps 값을 기존보다 2배 이상 높여(예: 10에서 20으로) 계산 정밀도를 높입니다.",
+    "Constraint 파라미터에서 Stretchness나 Pressure 등의 강도(Stiffness) 값이 너무 높지 않은지 확인하고 수치를 낮춥니다.",
+    "Scene View에서 Display Options를 켜고 빨간색으로 경고가 표시되는 부서진 제약 조건 Primitive를 확인합니다."
+  ],
+  "check": [
+    "Timeline을 재생했을 때 Vellum Solver 노드에서 빨간색 에러 마크가 사라지고 시뮬레이션이 끊김 없이 진행되는지 확인합니다.",
+    "Geometry Spreadsheet에서 vellum_constraint 속성이나 포인트 위치 값에 NaN(Not a Number)이나 Inf 값이 더 이상 나타나지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "Vellum 시뮬레이션을 적용하기 전에 반드시 PolyDoctor나 Clean 노드를 거쳐 입력 메쉬의 위상(Topology) 결함을 미리 정리합니다.",
+    "천이나 로프를 배치할 때 초기 상태부터 서로 겹치지 않게 간격을 두고 Vellum Rest Length를 설정합니다."
+  ],
+  "keywords": [
+    "Houdini 벨룸 에러",
+    "Vellum solver constraint violation",
+    "Houdini Vellum bad geometry",
+    "벨룸 시뮬레이션 붕괴",
+    "Houdini Vellum 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T00:27:57+00:00"
+}

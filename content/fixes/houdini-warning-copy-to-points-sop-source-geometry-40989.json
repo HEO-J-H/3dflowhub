@@ -1,0 +1,38 @@
+{
+  "id": "houdini-warning-copy-to-points-sop-source-geometry-40989",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Warning: Copy to points sop: Source geometry has no points",
+  "title": "Warning: Copy to points sop: Source geometry has no points 오류 해결 방법",
+  "summary": "Houdini에서 Copy to Points 노드를 사용할 때, 복사해서 붙여넣을 소스(Source) 지오메트리(첫 번째 입력)에 포인트가 하나도 존재하지 않아 복사 작업을 수행할 수 없을 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "Copy to Points 노드의 첫 번째 입력(Source, Geometry)에 연결된 노드의 지오메트리에 포인트가 전혀 생성되지 않은 경우",
+    "Point SOP, Scatter SOP, Add SOP 등의 필터링이나 조건 설정으로 인해 모든 포인트가 삭제된 경우",
+    "파일(File SOP)이나 다른 노드에서 잘못된 경로를 참조하여 빈 지오메트리가 입력된 경우"
+  ],
+  "steps": [
+    "네트워크 뷰에서 Copy to Points 노드의 첫 번째 입력단(파란색 와이어)에 연결된 노드를 확인합니다.",
+    "연결된 노드를 선택하고 Viewport 우측 상단의 디스플레이 플래그(Display Flag)를 켜서 지오메트리가 정상적으로 존재하는지 확인합니다.",
+    "Geometry Spreadsheet 패널을 열어 Point 탭에서 총 포인트 개수(Point Count)가 0인지 확인합니다.",
+    "소스 지오메트리를 생성하는 노드(예: Box, Sphere 등)의 파라미터에서 포인트를 생성하는 옵션이 켜져 있는지 확인하거나, Add SOP 등을 사용해 포인트를 명시적으로 추가합니다.",
+    "불필요한 Delete SOP나 Blast SOP가 포인트를 모두 지우고 있지 않은지 점검하고 범위를 조정합니다."
+  ],
+  "check": [
+    "Geometry Spreadsheet에서 소스 지오메트리의 Point Count가 1 이상으로 표시되는지 확인합니다.",
+    "Viewport에서 Copy to Points 노드의 결과물에 인스턴스들이 정상적으로 복제되어 나타나는지 확인합니다."
+  ],
+  "prevent": [
+    "복사할 소스 모델링 작업 시 항상 Geometry Spreadsheet를 통해 포인트가 올바르게 생성되었는지 먼저 확인하는 습관을 들입니다.",
+    "Delete SOP나 Group SOP로 포인트를 필터링할 때 실수로 전체 포인트가 선택 해제되거나 삭제되지 않도록 조건을 꼼꼼히 설정합니다."
+  ],
+  "keywords": [
+    "Houdini Copy to Points 경고",
+    "Source geometry has no points",
+    "Houdini 소스 지오메트리 포인트 없음",
+    "Copy to points 에러 해결",
+    "포인트 카운트 0 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T00:27:59+00:00"
+}

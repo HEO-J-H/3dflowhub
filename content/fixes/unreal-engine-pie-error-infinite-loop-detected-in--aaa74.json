@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-pie-error-infinite-loop-detected-in--aaa74",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "PIE error: Infinite loop detected in function / script",
+  "title": "PIE error: Infinite loop detected in function / script 오류 해결 방법",
+  "summary": "Unreal Engine에서 블루프린트나 함수 실행 중 While Loop 또는 재귀(Recursion) 호출로 인해 무한 루프가 감지되어 강제로 실행이 중단되었을 때 발생하는 오류입니다.",
+  "causes": [
+    "While Loop 노드의 종료 조건(Condition)이 충족되지 않아 영원히 반복되는 경우",
+    "함수가 종료 조건 없이 자기 자신을 계속해서 호출하는 재귀(Recursion) 오류가 발생한 경우",
+    "매 반복마다 루프 내부의 변수 값이 갱신되지 않는 로직 오류가 있는 경우"
+  ],
+  "steps": [
+    "Output Log 패널에서 오류가 발생한 블루프린트 에셋 이름과 노드 위치를 확인합니다.",
+    "해당 블루프린트 에디터를 열고 While Loop 또는 함수 그래프를 찾습니다.",
+    "Loop의 조건문(Condition) 연결 상태를 확인하고, 루프 내부에서 조건 변수가 정상적으로 업데이트되는지 점검합니다.",
+    "재귀 함수인 경우, 반드시 종료 조건(Base Case)이 존재하여 함수 호출이 멈추도록 로직을 수정합니다.",
+    "컴파일(Compile) 후 저장하고 에디터에서 플레이(PIE)를 다시 실행하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "PIE 실행 시 Output Log에 'Infinite loop detected' 경고나 에러가 더 이상 출력되지 않습니다.",
+    "게임이 멈추거나(Hang) 프레임 드랍 없이 정상적으로 루프를 탈출하여 다음 로직이 실행됩니다."
+  ],
+  "prevent": [
+    "While Loop 대신 For Loop를 사용하거나 반복 횟수(Max Loop Count)를 제한하여 무한 루프를 원천 차단합니다.",
+    "복잡한 반복 로직은 Tick 이벤트 대신 타이머(Timer)나 수 프레임에 걸쳐 분산 처리하는 방식을 고려합니다."
+  ],
+  "keywords": [
+    "Unreal 무한루프 오류",
+    "PIE Infinite loop detected",
+    "블루프린트 멈춤 현상",
+    "While Loop 오류",
+    "Unreal 런타임 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T00:27:54+00:00"
+}
