@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-designer-cook-error-evaluating-functi-d444b",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Cook] Error evaluating function in pixel processor node",
+  "title": "Designer: [Cook] Error evaluating function in pixel processor node 오류 해결 방법",
+  "summary": "Substance 3D Designer에서 Designer: [Cook] Error evaluating function in pixel processor node 오류는 Pixel Processor 노드 내부의 커스텀 픽셀 함수나 수학적 연산식에서 예외가 발생하여 렌더링에 실패했음을 의미합니다.",
+  "causes": [
+    "Pixel Processor 내부 그래프에서 0으로 나누기(Division by zero) 같은 수학적 예외 발생",
+    "존재하지 않거나 잘못된 입력 데이터(Sampler) 참조",
+    "HLSL 또는 GLSL 기반 커스텀 함수(Function) 내부의 문법 오류"
+  ],
+  "steps": [
+    "Explorer 창에서 오류가 발생한 Substance 그래프(.sbs)를 엽니다.",
+    "Graph 뷰에서 문제가 되는 Pixel Processor 노드를 찾아 더블 클릭하여 내부 하위 그래프로 진입합니다.",
+    "내부 연산 노드들을 확인하며 수학적 오류(Division, Modulo 등)를 유발할 수 있는 값이 있는지 검토합니다.",
+    "Sampler 노드가 올바른 외부 텍스처를 참조하고 있는지 확인합니다.",
+    "필요한 경우 연산식에 수치 예외 방지(Safe division 등) 처리를 추가하고, 상위 그래프로 나와 F5 키를 눌러 재연산(Re-cook)합니다."
+  ],
+  "check": [
+    "Graph 뷰와 2D View에서 노드의 오류 표시가 사라지고 텍스처가 정상적으로 렌더링되는지 확인합니다.",
+    "Log 패널에 더 이상 [Cook] 관련 에러 메시지가 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "Pixel Processor 내부에서 나눗셈 연산을 할 때는 분모에 항상 0 방지용 미세 값(Epsilon)을 더하거나 조건문을 사용합니다.",
+    "커스텀 함수나 노드 네트워크를 수정할 때마다 중간 결과를 2D View에서 수시로 확인합니다."
+  ],
+  "keywords": [
+    "Substance 3D Designer 오류",
+    "Pixel Processor 에러",
+    "Cook Error evaluating function",
+    "픽셀 프로세서 0으로 나누기",
+    "Substance 쿡 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T03:38:56+00:00"
+}

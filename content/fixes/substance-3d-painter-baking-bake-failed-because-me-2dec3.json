@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-baking-bake-failed-because-me-2dec3",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Bake failed because mesh contains missing or invalid tangent space",
+  "title": "Painter: [Baking] Bake failed because mesh contains missing or invalid tangent s",
+  "summary": "Substance 3D Painter에서 메시 맵 Baking을 수행할 때, 모델에 탄젠트 공간(Tangent Space) 데이터가 없거나 손상되어 노멀 맵이나 암비언트 오클루전 등을 올바르게 계산하지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "임포트된 3D 파일(FBX, OBJ 등)에 노멀 방향이나 탄젠트/바이탄젠트(Tangent/Binormal) 데이터가 포함되지 않았거나 누락된 경우",
+    "익스포트 과정에서 탄젠트 공간 계산 옵션이 꺼져 있었거나 메쉬 구조가 잘못된 경우",
+    "Substance 3D Painter가 메쉬의 법선(Normals) 정보를 올바르게 읽어내지 못한 경우"
+  ],
+  "steps": [
+    "3D DCC 툴(Blender, Maya, 3ds Max 등)에서 해당 모델을 다시 엽니다.",
+    "모델의 페이스(Face)와 Vertex에 법선(Normals)이 올바르게 설정되어 있는지 확인하고, 필요시 법선 재계산(Recalculate Normals)을 수행합니다.",
+    "모델을 익스포트할 때 Tangents와 Binormals(혹은 Smooth Groups) 데이터를 포함하도록 옵션을 체크합니다.",
+    "Substance 3D Painter에서 File > Update to Project file 메뉴를 통해 수정된 메쉬를 다시 불러옵니다.",
+    "Baking Mesh Maps 창의 Common 설정에서 Normal 세팅이 올바른 Tangent space로 지정되어 있는지 확인하고 Baking을 다시 시도합니다."
+  ],
+  "check": [
+    "Baking 재시도 시 '[Baking] Bake failed because mesh contains missing or invalid tangent space' 오류 메시지가 사라지고 Baking이 정상 완료되는지 확인합니다.",
+    "3D Viewport에서 노멀 맵과 오클루전 결과물이 깨짐 없이 매끄럽게 표현되는지 확인합니다."
+  ],
+  "prevent": [
+    "3D 모델을 익스포트할 때 항상 탄젠트 및 비탄젠트(Tangent and Binormal) 데이터 옵션을 포함하여 내보냅니다.",
+    "Substance 3D Painter로 메쉬를 가져오기 전에 DCC 툴에서 법선 방향과 UV, 스케일(Apply Scale)을 정리하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Substance Painter Baking 오류",
+    "invalid tangent space",
+    "메시 맵 Baking 실패",
+    "탄젠트 공간 오류",
+    "Painter normal bake fail"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T03:38:54+00:00"
+}

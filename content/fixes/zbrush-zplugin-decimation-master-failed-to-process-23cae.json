@@ -1,0 +1,39 @@
+{
+  "id": "zbrush-zplugin-decimation-master-failed-to-process-23cae",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: Decimation Master failed to process mesh due to open boundaries",
+  "title": "Zplugin: Decimation Master failed to process mesh due to open boundaries 오류 해결 방",
+  "summary": "ZBrush에서 Decimation Master를 실행할 때 메쉬에 뚫린 구멍(Open Boundaries)이나 비정상적인 면이 존재하여 연산을 진행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬의 일부가 열려 있어서 완전한 닫힌 볼륨(Closed Volume) 형태를 유지하지 못함",
+    "뚫린 구멍이나 비정상적인 면(Non-manifold edges)이 포함되어 있음",
+    "다이나메시(Dynamesh)나 즈레메셔(ZRemesher) 작업 후 미세한 구멍이 생성됨"
+  ],
+  "steps": [
+    "Tool 패널에서 문제가 발생하는 SubTool을 선택합니다.",
+    "Geometry 패널의 Modify Topology 탭을 엽니다.",
+    "Close Holes 버튼을 클릭하여 열린 구멍을 자동으로 막습니다.",
+    "구멍이 너무 크거나 자동으로 막기 어려울 때는 ZModeler 브러시나 Close Holes 기능을 사용하여 수동으로 닫아줍니다.",
+    "Geometry 패널의 Mesh Integrity 탭에서 Check Mesh를 실행하여 오류를 확인하고 수정합니다.",
+    "Zplugin 메뉴의 Decimation Master로 돌아와 Pre-process Current SubTool을 다시 실행합니다."
+  ],
+  "check": [
+    "Pre-process Current SubTool 연산이 오류 메시지 없이 정상적으로 완료되는지 확인합니다.",
+    "Viewport에서 디세메이션(Decimation)이 적용된 모델의 폴리곤이 깨짐 없이 줄어들었는지 확인합니다."
+  ],
+  "prevent": [
+    "Decimation Master를 실행하기 전에 항상 Mesh Integrity 검사를 수행합니다.",
+    "모델링 작업 중 열린 면이나 비정상적인 엣지가 생기지 않도록 관리합니다."
+  ],
+  "keywords": [
+    "Decimation Master 오류",
+    "open boundaries",
+    "ZBrush 폴리곤 줄이기 오류",
+    "구멍 뚫린 메쉬",
+    "Mesh Integrity"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T03:38:50+00:00"
+}

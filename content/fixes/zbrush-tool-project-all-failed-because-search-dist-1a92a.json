@@ -1,0 +1,37 @@
+{
+  "id": "zbrush-tool-project-all-failed-because-search-dist-1a92a",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Tool: Project All failed because search distance is too small",
+  "title": "Tool: Project All failed because search distance is too small 오류 해결 방법",
+  "summary": "ZBrush에서 Project All 기능을 실행할 때, 서브툴 간의 거리가 설정된 Search 거리 값보다 멀어서 디테일을 투영하지 못할 때 발생하는 오류입니다. 소스 메쉬와 타겟 메쉬가 서로 너무 떨어져 있거나 Search 슬라이더 값이 너무 낮게 설정되어 있습니다.",
+  "causes": [
+    "소스 메쉬와 타겟 메쉬의 물리적 위치가 너무 멀리 떨어져 있는 경우",
+    "Tool 팔레트의 Projection 서브메뉴에서 Search 슬라이더 값이 너무 작게 설정된 경우",
+    "두 메쉬의 크기(Scale) 차이가 너무 커서 투영 영역을 벗어난 경우"
+  ],
+  "steps": [
+    "Tool 팔레트를 열고 Projection 서브메뉴를 확장합니다.",
+    "Search 슬라이더의 값을 기본값보다 높게(예: 0.02에서 점진적으로 증가) 조절합니다.",
+    "Gizmo 3D(W 키)를 사용하여 두 서브툴의 위치가 서로 겹치거나 가깝게 정렬되어 있는지 확인합니다.",
+    "Geometry 서브메뉴에서 SMT(Smooth)나 Subdivide를 통해 메쉬의 단계를 맞춘 후 Project All을 다시 시도합니다."
+  ],
+  "check": [
+    "Project All 버튼을 눌렀을 때 오류 메시지가 뜨지 않고 타겟 메쉬에 디테일이 정상적으로 투영되는지 확인합니다.",
+    "Viewport에서 두 메쉬의 겹침 상태와 디테일 반영 여부를 시각적으로 확인합니다."
+  ],
+  "prevent": [
+    "투영 작업을 수행하기 전에 두 서브툴의 위치와 크기가 일치하는지 먼저 확인합니다.",
+    "새로운 프로젝트나 다른 파일에서 메쉬를 가져올 때 GoZ나 Import 스케일(Scale) 설정을 통일합니다."
+  ],
+  "keywords": [
+    "ZBrush Project All 오류",
+    "search distance is too small",
+    "ZBrush 디테일 투영 실패",
+    "Project All 안됨",
+    "ZBrush 프로젝션 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-15T03:38:52+00:00"
+}
