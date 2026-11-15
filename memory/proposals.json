@@ -34630,5 +34630,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #77 머지 후 브라우저 URL 파이프라인 검증",
     "auto": true
+  },
+  {
+    "at": "2026-11-15T14:50:20+00:00",
+    "kind": "proposal",
+    "id": "p-c80be51797",
+    "title": "PR #77 URL 파이프라인 백엔드 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/url_ingest.py 관련 PR #77이 승인 대기 중이며 백엔드 기능 검증 필요",
+    "proposal": "backend/tests/test_url_ingest.py 내 URL 스키마 검증 및 다운로드 로직 테스트를 실행하고 결과를 리포트합니다.",
+    "expected": "URL 수집 파이프라인의 안정성 확보 및 머지 가능 상태 도달",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/77",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T14:50:20+00:00",
+    "kind": "proposal",
+    "id": "p-e8de796f35",
+    "title": "웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 버전의 핵심 기능인 높이맵 메시 생성에 대한 자동화된 검증 필요",
+    "proposal": "web/tests/ (또는 프론트엔드 테스트 환경)에 높이맵 변환 로직 단위 테스트 Script를 추가합니다.",
+    "expected": "브라우저 단독 처리 기능의 무결성 보장",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T14:50:49.593174+00:00",
+    "kind": "decision",
+    "id": "p-c80be51797",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #77 머지 후 브라우저 URL 파이프라인 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-15T14:50:49.631653+00:00",
+    "kind": "decision",
+    "id": "p-e8de796f35",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "auto": true
   }
 ]
