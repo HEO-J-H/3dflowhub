@@ -1,0 +1,56 @@
+{
+  "title_ko": "3ds Max 2024.2 충돌 — Corona 13 Access Violation",
+  "title": "**Title: 3ds Max 2024.2 randomly crashing in Corona 13 — Access Violation (0xC0000005)**",
+  "url": "https://www.reddit.com/r/3dsmax/comments/1xuvzel/title_3ds_max_20242_randomly_crashing_in_corona/",
+  "domain": "3D DCC",
+  "category": "3ds Max",
+  "topic": "플러그인·스크립트",
+  "tags": [
+    "3ds Max",
+    "Corona",
+    "Access Violation",
+    "WinDbg",
+    "크래시",
+    "3ds 맥스"
+  ],
+  "summary": "3ds Max 2024.2 환경에서 Corona 13 구동 중 발생하는 Access Violation(0xC0000005) 크래시 원인 분석 및 해결 대책입니다.",
+  "insight": "빌드 26.2.0.22013 환경에서 구버전으로 제작된 씬 파일을 불러올 때 Viewport 조작 중 예외 코드가 발생합니다. WinDbg 미니덤프 분석을 통해 렌더러 플러그인과 호환성 문제를 사전에 진단해야 합니다. 3ds Max가 예기치 않은 오류로 강제 종료될 때는 손상된 환경 설정이나 플러그인 충돌 여부를 함께 점검하는 절차가 필요합니다.",
+  "try_it": [
+    "WinDbg를 이용해 덤프 파일 내 예외 코드 0xC0000005 발생 지점을 확인합니다.",
+    "Corona 13 및 V-Ray가 공존하는 시스템에서 렌더러 플러그인 로드 상태를 점검합니다.",
+    "구버전 씬 파일을 열 때 발생하는 뷰포트 조작 방식을 변경하여 충돌 여부를 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "3ds Max 2024.2 및 Corona 13 환경 크래시 증상",
+      "body": "사용자는 Windows 11 Pro, AMD Ryzen 9 5900X, NVIDIA RTX 3060, 64GB RAM 시스템에서 작업 중입니다. 3ds Max 2024.2(build 26.2.0.22013)와 Corona 13.2.57.6608 조합에서 특정 작업 없이 Viewport에서 무작위로 크래시가 발생합니다. Application error 메시지가 뜨며 프로그램이 멈추는 현상이 반복됩니다."
+    },
+    {
+      "heading": "구버전 씬 파일 호환성 및 다중 렌더러 환경",
+      "body": "문제가 발생한 씬 파일은 이전 버전의 Corona에서 제작되었을 가능성이 높습니다. 시스템에는 V-Ray도 함께 설치되어 있어 렌더러 간 충돌 여부를 확인해야 합니다. 서로 다른 렌더러 플러그인이 공존하는 환경에서 메모리 주소 충돌이 발생할 수 있습니다."
+    },
+    {
+      "heading": "WinDbg 미니덤프 분석과 예외 코드 0xC0000005",
+      "body": "크래시 미니덤프 파일을 WinDbg로 분석한 결과 예외 코드 0xC0000005(Access Violation)가 기록되었습니다. 메모리 접근 위반 오류로 인해 Viewport 작업 중 예기치 않은 종료가 유발됩니다. 렌더러 플러그인이 지정된 메모리 영역 외의 공간을 참조할 때 이 코드가 나타납니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "3ds Max에서 0xC0000005 크래시는 왜 발생하나요?",
+      "a": "메모리 접근 위반(Access Violation)을 뜻하며, 구버전 씬 파일의 호환성 문제나 렌더러 플러그인 간 충돌로 인해 주로 발생합니다."
+    },
+    {
+      "q": "WinDbg로 크래시 원인을 어떻게 확인하나요?",
+      "a": "생성된 미니덤프 파일을 WinDbg에서 열어 예외 코드와 호출 스택을 분석하면 어떤 모듈에서 메모리 오류가 일어났는지 추적할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/YHXsyT-zoXI/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=YHXsyT-zoXI"
+  },
+  "collected_at": "2026-11-15T15:50:38.724024+00:00",
+  "notion_id": "",
+  "id": "2026-11-15-73c9506723bd0f54",
+  "img_tried": true,
+  "enriched": "2026-11-15"
+}

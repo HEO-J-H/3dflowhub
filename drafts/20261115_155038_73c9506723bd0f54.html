@@ -1,0 +1,18 @@
+<!-- TITLE: 3ds Max 2024.2 충돌 — Corona 13 Access Violation | TAGS: 3ds Max,Corona,Access Violation,WinDbg,크래시,3ds 맥스,플러그인·스크립트 | CATEGORY: 3D DCC/3ds Max | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 3ds Max 2024.2 환경에서 Corona 13 구동 중 발생하는 Access Violation(0xC0000005) 크래시 원인 분석 및 해결 대책입니다.</p>
+<p style="color:#888;">분류: 3D DCC › 3ds Max › 플러그인·스크립트</p>
+<h2>3ds Max 2024.2 및 Corona 13 환경 크래시 증상</h2>
+<p>사용자는 Windows 11 Pro, AMD Ryzen 9 5900X, NVIDIA RTX 3060, 64GB RAM 시스템에서 작업 중입니다. 3ds Max 2024.2(build 26.2.0.22013)와 Corona 13.2.57.6608 조합에서 특정 작업 없이 Viewport에서 무작위로 크래시가 발생합니다.</p>
+<h2>구버전 씬 파일 호환성 및 다중 렌더러 환경</h2>
+<p>문제가 발생한 씬 파일은 이전 버전의 Corona에서 제작되었을 가능성이 높습니다. 시스템에는 V-Ray도 함께 설치되어 있어 렌더러 간 충돌 여부를 확인해야 합니다.</p>
+<h2>WinDbg 미니덤프 분석과 예외 코드 0xC0000005</h2>
+<p>크래시 미니덤프 파일을 WinDbg로 분석한 결과 예외 코드 0xC0000005(Access Violation)가 기록되었습니다. 메모리 접근 위반 오류로 인해 Viewport 작업 중 예기치 않은 종료가 유발됩니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">빌드 26.2.0.22013 환경에서 구버전으로 제작된 씬 파일을 불러올 때 Viewport 조작 중 예외 코드가 발생합니다. WinDbg 미니덤프 분석을 통해 렌더러 플러그인과 호환성 문제를 사전에 진단해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 3ds Max에서 0xC0000005 크래시는 왜 발생하나요?</b><br/>A. 메모리 접근 위반(Access Violation)을 뜻하며, 구버전 씬 파일의 호환성 문제나 렌더러 플러그인 간 충돌로 인해 주로 발생합니다.</p>
+<p><b>Q. WinDbg로 크래시 원인을 어떻게 확인하나요?</b><br/>A. 생성된 미니덤프 파일을 WinDbg에서 열어 예외 코드와 호출 스택을 분석하면 어떤 모듈에서 메모리 오류가 일어났는지 추적할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-15-9a737516ff8062a7.html">3ds Max Absolute Transform Mode와 Offset Mode 차이</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-15-c4b2196d3ca6c010.html">3ds Max용 Malbers Biped Ragdoll 1.0 출시</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-c9bd654c9363c2f4.html">3ds Max 영화·VFX 고급 학습 자료 부족 현상과 대안</a></li></ul>
+<hr/><p>원문:<a href="https://www.reddit.com/r/3dsmax/comments/1xuvzel/title_3ds_max_20242_randomly_crashing_in_corona/" target="_blank" rel="noopener nofollow">**Title: 3ds Max 2024.2 randomly crashing in Corona 13 — Access Violation (0xC0000005)**</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
