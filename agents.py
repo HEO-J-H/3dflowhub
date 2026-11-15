@@ -504,6 +504,8 @@ def apply_pr_decisions(site: str) -> list[str]:
         if re.search(rf"^- \[ \] \(agent\)[^\n]*PR #{n}\b", text, re.M):
             return  # 사람이 이미 이 PR 을 대체하는 과제(가이드 단계 등)를 적어 둠
         task = PROPOSAL_TAG.sub("", re.sub(r"^agent:\s*", "", title)).strip()
+        if task.startswith("PR #") and "다시 하기" in task[:20]:
+            return  # 이미 '다시 하기' 였던 PR 을 또 다시 하기로 돌리지 않음 (#15→#18→#20→#22→#25 처럼 끝없이 이어짐)
         text += f"\n- [ ] (agent) PR #{n} 다시 하기 — {task[:120]} · 사람 요청: {note[:200]}\n"
         requests.put(f"{api}/contents/{cfg['todo']}", headers=h, timeout=30, json={
             "message": f"chore(agent): PR #{n} 수정 요청을 과제로 [skip ci]", "sha": cur["sha"],
