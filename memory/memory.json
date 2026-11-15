@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-12T23:59:37.802859+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 108,
-      "candidates_passed": 68,
-      "offtopic": 25,
-      "short": 0,
-      "prefiltered": 24,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "648b48c8",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-13T00:09:16.853620+00:00",
       "collected": 1,
       "saved": 1,
@@ -7694,6 +7669,31 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-15T02:28:08.375457+00:00",
+      "collected": 0,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 100,
+      "candidates_passed": 62,
+      "offtopic": 23,
+      "short": 0,
+      "prefiltered": 20,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "3263f7a8",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7789,7 +7789,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-08 [[p-c23b4c92f0|운영·비용] RAG 통합 관련 PR #47 진행] PR 검토 독촉 시 의존성 있는 후속 로직을 함께 점검하면 통합 속도를 높일 수 있다.",
     "2026-11-08 [[p-246d67a028|콘텐츠] 웹/로컬 PBR 텍스처 생성 프로세스 ] 문서 파일(.md)에는 테스트 코드를 작성하지 말고 실제 가이드 내용만 포함해야 합니다.",
     "2026-11-08 [성찰] 오수집(동음이의어) 비율을 낮추고 3ds Max Maxscript 및 Blender 애드온처럼 검색 유입이 입증된 실무 튜토리얼과 스크립트 콘텐츠 비중을 높여야 합니다.",
     "2026-11-08 [성찰] 오수집율을 낮추고 검색 유입이 검증된 실무 튜토리얼 및 플러그인 콘텐츠를 집중 발행해야 합니다.",
@@ -7908,7 +7907,8 @@
     "2026-11-14 [core.filter_duplicate_content(): 최근 수집된 ] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-14 [[p-3fe4af033f|사이트·UX] PR #71~#74 통합 테스트 ] 신규 PR 통합 시 기존 테스트 스위트와 독립적으로 동작하는지 모킹(mocking)을 철저히 확인하자.",
     "2026-11-14 [PR #51 다시 하기 — RAG 통합 관련 PR #47 진행 독촉: 프] 최신 main 기준 충돌 없는 변경 사항은 빠르게 다시 적용하여 프로젝트 흐름을 유지한다.",
-    "2026-11-15 [성찰] 동음이의어 필터를 강화하고 검색 유입이 검증된 Maxscript, 애드온, 실무 튜토리얼 중심의 고단가 콘텐츠를 확대하여 오프토픽을 줄이고 유효 수집률을 높여야 합니다."
+    "2026-11-15 [성찰] 동음이의어 필터를 강화하고 검색 유입이 검증된 Maxscript, 애드온, 실무 튜토리얼 중심의 고단가 콘텐츠를 확대하여 오프토픽을 줄이고 유효 수집률을 높여야 합니다.",
+    "2026-11-15 [성찰] 동음이의어(Nuke, Maya, Unity 등)에 대한 필터를 대폭 강화하여 저품질 및 무관한 기사 수집을 원천 차단하고, 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 콘텐츠에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -10869,10 +10869,10 @@
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3032,
-    "Game Engine": 3032,
-    "VFX": 3032,
-    "AI 3D": 3032
+    "3D DCC": 3033,
+    "Game Engine": 3033,
+    "VFX": 3033,
+    "AI 3D": 3033
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
