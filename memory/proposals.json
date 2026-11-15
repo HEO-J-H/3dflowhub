@@ -35123,5 +35123,60 @@
     "id": "p-8961d2421e",
     "v": "done",
     "note": "자동 완료 확인: PR #77 닫힘"
+  },
+  {
+    "at": "2026-11-15T16:31:23+00:00",
+    "kind": "proposal",
+    "id": "p-0fd7c4ca9a",
+    "title": "PR #78 백엔드 URL 파이프라인 검증 코드 최종 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #78이 승인 대기 상태로 등록되어 있으며 백엔드 URL 검증 관련 로직을 포함하고 있습니다.",
+    "proposal": "backend/app/services/url_ingest.py 및 관련 테스트 코드를 검토하여 이상이 없을 시 승인 및 머지를 진행합니다.",
+    "expected": "URL 파이프라인 검증 로직의 안정성 확보 및 사용자 입력 유연성 증대",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T16:31:23+00:00",
+    "kind": "proposal",
+    "id": "p-75c1209a15",
+    "title": "웹 브라우저 높이맵 메시 생성 기능 회귀 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 브라우저 단독 처리 기능은 Pix2Poly의 핵심 차별점이므로 지속적인 무결성 유지가 필요합니다.",
+    "proposal": "web/ 디렉토리 내의 높이맵 변환 및 PBR 맵 생성 관련 자바스크립트 단위 테스트를 추가합니다.",
+    "expected": "브라우저 전용 기능의 오작동 방지 및 클라이언트 측 렌더링 안정성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-15T16:31:49.644030+00:00",
+    "kind": "decision",
+    "id": "p-0fd7c4ca9a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-15T16:31:49.691753+00:00",
+    "kind": "decision",
+    "id": "p-75c1209a15",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 높이맵 메시 생성 단위 테스트 추가",
+    "auto": true
+  },
+  {
+    "at": "2026-11-15T16:31:52.100289+00:00",
+    "kind": "triage",
+    "id": "p-0fd7c4ca9a",
+    "verdict": "agent",
+    "reason": "백엔드 URL 파이프라인 검증 관련 PR #78의 코드 검토 및 머지 작업은 에이전트가 직접 수행할 수 있는 개발 과제입니다."
   }
 ]
