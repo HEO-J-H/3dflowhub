@@ -348,12 +348,53 @@ def conflict_files() -> list[str]:
     return out
 
 
+_STR = re.compile(r"""(?:[rbfu]{0,2})("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')""")
+_PRNUM = re.compile(r"PR\s*#\d+")
+
+
+def substance_problems(diff: str) -> list[str]:
+    """기능 변화 없는 PR 걸러내기 (Pix2Poly #71~#78: 설명 문장·별칭·문자열만 바꾸고 '문구가 있나'만 확인하는 테스트).
+    소스(테스트·문서·.agent 제외)에서 문자열·주석을 빼고 비교해 남는 변경이 없으면 반려. 코드에 PR 번호를 적는 것도 반려."""
+    adds: list[str] = []
+    dels: list[str] = []
+    prnum = False
+    cur = ""
+    for line in diff.splitlines():
+        if line.startswith("+++ "):
+            cur = line[6:] if line.startswith("+++ b/") else ""
+            continue
+        if line.startswith("--- ") or not cur:
+            continue
+        if cur.startswith((".agent/", "docs/")) or "/tests/" in "/" + cur or cur.endswith((".md", ".txt", ".json")):
+            continue
+        if line[:1] not in "+-":
+            continue
+        body = line[1:]
+        if line[0] == "+" and _PRNUM.search(body):
+            prnum = True
+        code = _STR.sub('""', body).split("#", 1)[0].split("//", 1)[0].strip()
+        if not code or code in ('""', '"""'):
+            continue
+        (adds if line[0] == "+" else dels).append(code)
+    out = []
+    left = list(adds)
+    for d in dels:
+        if d in left:
+            left.remove(d)
+    if not left:
+        out.append("기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)")
+    if prnum:
+        out.append("코드·설명에 PR 번호를 적음 — 기록은 git 이력에 남으니 코드에는 쓰지 않음")
+    return out
+
+
 def qa(diff: str) -> dict:
     tests = subprocess.run(list(TEST_CMD), cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
     added = "\n".join(l for l in diff.splitlines() if l.startswith("+") and not l.startswith("+++"))
     security = [f"위험 함수 사용: {m}" for m in set(DANGEROUS.findall(added))]
     security += ["비밀값 하드코딩 의심"] if SECRET.search(added) else []
     security += [f"병합 충돌 표시가 남은 파일: {', '.join(cf[:3])}"] if (cf := conflict_files()) else []
+    security += substance_problems(diff)  # 검증 담당: 기능 변화 없는 PR 은 사람에게 올리기 전에 반려
     return {"tests_passed": tests.returncode == 0, "test_output": tests.stdout[-1500:], "security": security}
 
 

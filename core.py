@@ -253,7 +253,15 @@ def _load_json(path: Path, default):
 
 def _save_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp = path.with_name(path.name + ".tmp")  # 임시 파일에 다 쓴 뒤 바꿔치기 — 쓰다 멈춰도 반쪽 JSON 이 남지 않음
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    for i in range(5):
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError:  # Windows 에서 다른 프로그램이 잠깐 잡고 있을 때
+            time.sleep(0.2 * (i + 1))
+    os.replace(tmp, path)
 
 
 apply_custom_domains()  # 대시보드에서 추가한 수집 분야 반영
