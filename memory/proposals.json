@@ -35063,5 +35063,29 @@
     "id": "p-7c0b392f55",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 TripoSR 실패 테스트 과제를 기존 test_core 테스트로 대체하여 보류 항목을 완료 처리하였음."
+  },
+  {
+    "at": "2026-11-16T17:05:41+00:00",
+    "kind": "proposal",
+    "id": "p-5d745f6d66",
+    "title": "TripoSR 단위 테스트 파일 재구성 및 경로 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 파일이 패치 적용 실패로 반복해서 held 상태를 기록했습니다.",
+    "proposal": "backend/tests/test_triposr.py 파일의 충돌 및 문법 오류 원인을 점검하고, 독립적으로 실행 가능한 간소화된 TripoSR 테스트 코드로 재작성합니다.",
+    "expected": "로컬 파이프라인의 핵심 단위 테스트가 정상적으로 통과되며 빌드 안정성이 높아집니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T17:06:03.053507+00:00",
+    "kind": "decision",
+    "id": "p-5d745f6d66",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 단위 테스트 파일 경로 및 내용 재정비",
+    "auto": true
   }
 ]
