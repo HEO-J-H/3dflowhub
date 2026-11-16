@@ -427,6 +427,10 @@ def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> in
 
 def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     """아직 없는 주제를 생성. AI 할당 비중(guides 0.5)에 맞춰 기본 생성량 확대."""
+    try:  # 주제 보충은 '오늘 만들 몫이 0' 이어도 먼저 — 남은 주제가 없으면 배분이 0이 되어 영영 보충이 안 되던 문제 (11/17)
+        refill_topics()
+    except Exception as e:
+        core.log.info("가이드 주제 보충 건너뜀: %s", e)
     budget = int(core.load_config().get("llm_daily_budget", 500))
     if max_new <= 0 or (gate and core.llm_budget_left() < budget * 0.3):
         return []
@@ -434,10 +438,6 @@ def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     made_today = sum(1 for g in load_all() if (g.get("at") or "").startswith(today))
     max_new = min(max_new, max(0, int(core.load_config().get("guides_daily_max", GUIDES_DAILY_MAX)) - made_today))
-    try:
-        refill_topics()
-    except Exception as e:
-        core.log.info("가이드 주제 보충 건너뜀: %s", e)
     done = []
     have_titles = {(x.get("tool"), _norm(x.get("title", ""))) for x in load_all() if not x.get("qa_redo")}
     for t in pending()[:max_new]:

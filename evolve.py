@@ -885,6 +885,7 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             # AI 할당 비중 재조정: news 0.25, guides 0.5, roundups 0.25
             guides_count = plan.get("guides_now", 6) if auto else 6
             made = guides.write_guides(guides_count, gate=False) if auto else guides.write_guides(6)
+            strategy = core.load_strategy()  # write_guides 가 저장한 새 주제(guide_topics)를 옛 사본으로 덮어쓰지 않게
             if made:
                 strategy["history"] = (strategy.get("history", []) + [{"at": _now(), "guides": made}])[-30:]
         except Exception as e:
