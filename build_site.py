@@ -1435,30 +1435,35 @@ def build_weekly(posts: list[dict]) -> None:
     (root_dir / "index.html").write_text(page(f"주간 요약 - {SITE_TITLE}", body, "../"), encoding="utf-8")
 
 
-def indexnow_submit(hours: int = 3) -> str:
-    """IndexNow: 최근 N시간 내 새 글 URL 을 검색엔진(네이버·Bing·Yandex·Seznam·Yep 공유)에 즉시 알림.
-    키 파일은 static/<32자리hex>.txt 로 사이트 루트(/)에 배포되어 있어야 한다."""
+def indexnow_submit(hours: int = 3, full: bool = False) -> str:
+    """IndexNow: 새로 생기거나 바뀐 '검색 공개' 페이지를 검색엔진(네이버·Bing·Yandex·Seznam·Yep 공유)에 즉시 알림.
+    전에는 최근 뉴스 글만 보냈는데 뉴스는 대부분 검색 제외(noindex)라 헛수고였고, 핵심인 기초 가이드는 빠져 있었음 (11/17).
+    full=True 면 사이트맵 전체 (도메인 이전 직후 1회). 키 파일은 static/<32자리hex>.txt 로 사이트 루트에 배포."""
     import requests
     keys = [f.stem for f in (ROOT / "static").glob("*.txt") if re.fullmatch(r"[0-9a-f]{32}", f.stem)]
     if not keys:
         return "키 파일 없음"
-    cutoff = (datetime.utcnow().timestamp() - hours * 3600)
-    urls = []
-    for p in load_posts():
-        try:
-            ts = datetime.fromisoformat((p.get("collected_at") or "").replace("Z", "+00:00")).timestamp()
-        except ValueError:
-            continue
-        if ts >= cutoff:
-            urls.append(f"{BASE_URL}/p/{p['id']}.html")
-    if not urls:
-        return "새 글 없음"
-    urls += [f"{BASE_URL}/", f"{BASE_URL}/sitemap.xml"]
+    if full:
+        urls = re.findall(r"<loc>([^<]+)</loc>", (OUT / "sitemap.xml").read_text(encoding="utf-8"))
+    else:
+        cutoff = datetime.now(timezone.utc).timestamp() - hours * 3600
+
+        def recent(at: str) -> bool:
+            try:
+                return datetime.fromisoformat((at or "").replace("Z", "+00:00")).timestamp() >= cutoff
+            except ValueError:
+                return False
+        urls = [f"{BASE_URL}/p/{p['id']}.html" for p in load_posts() if post_indexed(p) and recent(p.get("collected_at"))]
+        import guides as _g
+        urls += [f"{BASE_URL}/{learn_url(g)}" for g in _g.load_all() if recent(g.get("at"))]
+        if not urls:
+            return "새 페이지 없음"
+        urls += [f"{BASE_URL}/", f"{BASE_URL}/learn/"]
     body = {"host": BASE_URL.split("/")[2], "key": keys[0], "keyLocation": f"{BASE_URL}/{keys[0]}.txt",
-            "urlList": urls[:10000]}
-    r = requests.post("https://api.indexnow.org/indexnow", json=body, timeout=20,
+            "urlList": list(dict.fromkeys(urls))[:10000]}
+    r = requests.post("https://api.indexnow.org/indexnow", json=body, timeout=30,
                       headers={"Content-Type": "application/json; charset=utf-8"})
-    return f"{len(urls)}개 URL → HTTP {r.status_code}"
+    return f"{len(body['urlList'])}개 URL → HTTP {r.status_code}"
 
 
 THIN_CHARS = 600  # 본문이 이보다 짧고 3D 전문 용어도 적으면 '얇은 글'(현재 약 15%) — 검색 노출 제외(noindex), 사이트에는 유지
@@ -2271,10 +2276,11 @@ def build() -> dict:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--backfill", action="store_true", help="노션 글을 content/posts 로 복원")
-    ap.add_argument("--indexnow", action="store_true", help="최근 새 글을 IndexNow(네이버·Bing 등)에 알림 (배포 후)")
+    ap.add_argument("--indexnow", action="store_true", help="최근 새 페이지를 IndexNow(네이버·Bing 등)에 알림 (배포 후)")
+    ap.add_argument("--indexnow-all", action="store_true", help="사이트맵 전체를 IndexNow 에 알림 (도메인 이전 등 1회)")
     a = ap.parse_args()
-    if a.indexnow:
-        print("IndexNow:", indexnow_submit())
+    if a.indexnow or a.indexnow_all:
+        print("IndexNow:", indexnow_submit(full=a.indexnow_all))
         raise SystemExit(0)
     if a.backfill:
         print("노션 복원:", backfill_from_notion(), "개")
