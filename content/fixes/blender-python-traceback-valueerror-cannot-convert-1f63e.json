@@ -1,0 +1,37 @@
+{
+  "id": "blender-python-traceback-valueerror-cannot-convert-1f63e",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... ValueError: Cannot convert None to a matrix",
+  "title": "Python: Traceback ... ValueError: Cannot convert None to a matrix 오류 해결 방법",
+  "summary": "Blender Python Script 실행 중 행렬(Matrix) 데이터가 필요한 인자나 함수에 None 값이 전달되어 발생하는 오류입니다. 주로 존재하지 않는 오브젝트를 참조하거나 데이터를 올바르게 가져오지 못했을 때 발생합니다.",
+  "causes": [
+    "bpy.data.objects.get() 등으로 오브젝트를 찾지 못했음에도 None 객체를 행렬 연산에 그대로 사용한 경우",
+    "Edit Mode 상태에서 Object Mode 전용 변환 속성이나 함수를 호출한 경우",
+    "Python API 함수 반환값이 누락되었거나 잘못된 경로를 참조한 경우"
+  ],
+  "steps": [
+    "Script 에디터(Text Editor)에서 오류가 발생한 줄 번호를 확인합니다.",
+    "오브젝트나 데이터 블록을 호출하는 코드 주변에 조건문을 추가하여 대상이 존재하는지 확인합니다 (예: if obj is not None:).",
+    "bpy.data.objects['이름'] 대신 .get('이름')을 사용하여 오브젝트가 없을 때 None을 반환하는 상황에 대비합니다.",
+    "Edit Mode에서 실행 중인 스크립트라면 bpy.ops.object.mode_set(mode='OBJECT')를 추가하여 Object Mode로 전환한 뒤 행렬을 가져오도록 수정합니다."
+  ],
+  "check": [
+    "Script를 다시 실행했을 때 Console 창에 Traceback 오류가 더 이상 나타나지 않는지 확인합니다.",
+    "Viewport에서 대상 오브젝트의 행렬 변환(Matrix)이 정상적으로 적용되는지 확인합니다."
+  ],
+  "prevent": [
+    "오브젝트나 본(Bone)을 호출할 때는 항상 존재 여부를 검사하는 예외 처리 코드를 작성합니다.",
+    "Blender Python API 문서에서 각 함수가 반환하는 데이터 타입(Return Type)을 미리 확인합니다."
+  ],
+  "keywords": [
+    "Blender Python 오류",
+    "ValueError Cannot convert None to a matrix",
+    "bpy data objects None",
+    "Blender Python 매트릭스 에러",
+    "Python None to matrix 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T07:03:23+00:00"
+}

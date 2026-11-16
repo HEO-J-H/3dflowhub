@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-maxscript-runtime-error-point3-not-valid-f-1b6f3",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Runtime error: Point3 not valid for parameter",
+  "title": "MAXScript: Runtime error: Point3 not valid for parameter 오류 해결 방법",
+  "summary": "MAXScript 실행 중 Point3 데이터 타입이 요구되는 파라미터 자리에 잘못된 값이나 다른 타입의 데이터가 전달되어 발생하는 런타임 오류입니다.",
+  "causes": [
+    "함수나 속성에 전달된 좌표 또는 벡터 값이 3차원 배열([x, y, z]) 형식이 아닐 때",
+    "실수형(Float)이나 정수형(Integer) 단일 값 또는 2차원(Point2) 데이터가 잘못 입력되었을 때",
+    "변수 선언이 누락되었거나 계산 과정에서 정의되지 않은(Undefined) 값이 Point3 변수에 할당되었을 때"
+  ],
+  "steps": [
+    "MAXScript Listener (F11)를 열어 오류가 발생한 정확한 라인 번호와 코드를 확인합니다.",
+    "오류가 난 줄에서 사용된 함수나 속성(예: .pos, .rotation 등)에 대입되는 변수의 값을 print나 format 명령어로 출력합니다.",
+    "전달되는 값이 올바른 Point3 형식인지 확인합니다. (예: [0.0, 0.0, 0.0])",
+    "필요한 경우 [x, y, z] 형태로 명시적 형변환을 수행하거나 올바른 데이터 타입으로 값을 수정합니다.",
+    "수정된 Script를 재실행하여 정상 작동하는지 검증합니다."
+  ],
+  "check": [
+    "MAXScript Listener 창에 더 이상 'Runtime error: Point3 not valid for parameter' 메시지가 출력되지 않습니다.",
+    "Script가 중단없이 끝까지 정상 실행되며 Viewport의 객체가 의도한 대로 생성 또는 수정됩니다."
+  ],
+  "prevent": [
+    "함수 인자나 속성에 값을 대입하기 전 typeOf 함수를 사용하여 데이터 타입을 검증하는 예외 처리(try-catch)를 추가합니다.",
+    "좌표 데이터를 다룰 때는 항상 명시적으로 Point3 리터럴 형식([x, y, z])을 사용합니다."
+  ],
+  "keywords": [
+    "MAXScript 오류",
+    "Point3 not valid",
+    "3ds Max Script 에러",
+    "Runtime error Point3",
+    "MAXScript 트랜스폼 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T07:03:25+00:00"
+}
