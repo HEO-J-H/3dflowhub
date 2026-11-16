@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-16T09:43:45+00:00",
+  "at": "2026-11-16T15:48:19+00:00",
   "checked": 1491,
   "mechanical_count": 135,
   "mechanical_by_problem": [
@@ -1760,6 +1760,36 @@
       "score": 10,
       "defects": [],
       "fix_hint": "공식 문서의 필수 전제 조건과 파라미터 설정을 정확히 반영하여 가이드를 작성합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "3ds-max-polygon-count-and-statistics-9524",
+      "title": "폴리곤 수 보기(Statistics)",
+      "score": 8,
+      "defects": [
+        "통계 토글 단축키(7) 사용 시 뷰포트 오버레이 활성화 과정이 조금 더 시각적으로 묘사되면 좋음",
+        "TurboSmooth 등의 모디파이어 뷰포트/렌더 설정 차이에 대한 설명이 다소 압축되어 있음"
+      ],
+      "fix_hint": "단축키와 뷰포트 메뉴 경로 등 기초적인 3ds Max 기능 설명 시, 초보자도 메뉴 위치를 쉽게 찾을 수 있도록 단계를 명확히 구분해 주세요."
+    },
+    {
+      "kind": "guide",
+      "id": "pixyz-studio-tessellation-of-cad-models-42b7",
+      "title": "테셀레이션 — CAD 곡면을 폴리곤으로",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "공식 문서의 핵심 파라미터와 메뉴 경로를 정확히 유지하면서 실무 중심의 가이드 흐름을 계속 유지하세요."
+    },
+    {
+      "kind": "fix",
+      "id": "nvidia-omniverse-failed-to-connect-to-nucleus-serv-2ac54",
+      "title": "Failed to connect to Nucleus Server: Connection refused 해결 방법",
+      "score": 8,
+      "defects": [
+        "콘텐츠 내 '옴니버스 뉴클리어스 오류'라는 표현이 있으나, 브랜드 고유 명칭인 Nucleus는 '뉴클리어스' 대신 원문 그대로 표기하는 것이 정확합니다.",
+        "Windows 서비스 관리자(services.msc) 항목에서 구체적인 서비스 이름이나 필수 포트 번호(예: 3080 외 기타 포트)에 대한 추가 설명이 다소 부족합니다."
+      ],
+      "fix_hint": "소프트웨어 및 서비스 명칭은 공식 영문 명칭을 일관되게 유지하고 주요 포트 번호나 서비스명을 명확히 기재하세요."
     }
   ],
   "avg_score": 9.0,
