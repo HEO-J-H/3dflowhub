@@ -1,0 +1,97 @@
+{
+  "id": "photoshop-vanishing-point-9e5d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 제작",
+  "name": "Vanishing Point",
+  "title": "소실점 — 원근감을 유지하면서 3D 구조물 표면에 텍스처를 자연스럽게 부착하는 기능",
+  "summary": "Vanishing Point는 이미지의 원근감을 자동으로 인식하여, 원근 Grid에 맞춰 텍스처를 자연스럽게 왜곡하고 합성할 수 있는 Photoshop의 강력한 기능입니다.",
+  "when": [
+    "건물의 벽면이나 창문에 간판, 포스터, 그래피티 등의 평면 이미지를 원근감에 맞춰 완벽하게 합성할 때",
+    "원근감이 들어간 바닥이나 상자에 타일 패턴이나 로고를 왜곡 없이 자연스럽게 넣고 싶을 때",
+    "사진 속 입체적인 공간의 표면 각도에 맞춰 텍스처를 정밀하게 수정하고 이어 붙일 때"
+  ],
+  "steps": [
+    "작업할 이미지를 Photoshop에서 연 뒤, Filter 메뉴에서 Vanishing Point (Ctrl+Alt+V)를 선택합니다.",
+    "작업 창이 뜨면 Plane Tool (C)을 선택하고, 이미지 속 원근감이 있는 표면의 모서리 4점을 클릭하여 Grid 평면을 만듭니다.",
+    "Grid 선이 파란색으로 변하며 원근 면이 정확히 잡혔는지 확인합니다. (빨간색이면 모서리 점을 조정하여 교정합니다.)",
+    "합성할 텍스처 이미지를 복사(Ctrl+C)한 뒤, Vanishing Point 대화 상자 안에서 붙여넣기(Ctrl+V)를 합니다.",
+    "텍스처 레이어를 생성한 Grid 안으로 드래그하면 원근감에 맞춰 자동으로 왜곡되어 배치됩니다.",
+    "Transform Tool (T)을 이용해 크기와 위치를 최종 조절한 뒤 OK를 눌러 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Plane Tool",
+      "desc": "이미지 속 원근감의 기준이 되는 4개의 모서리를 지정하여 평면 Grid를 만듭니다."
+    },
+    {
+      "name": "Marquee Tool",
+      "desc": "이미지의 특정 영역을 선택하여 복사하거나 원근 Grid 안에서 이동시킬 때 사용합니다."
+    },
+    {
+      "name": "Transform Tool",
+      "desc": "Grid 위에 배치된 텍스처의 크기 조절, 회전, 변형을 수행합니다."
+    },
+    {
+      "name": "Brush Tool",
+      "desc": "원근 평면 내부에서 주변 텍스처와 자연스럽게 어우러지도록 직접 칠해서 수정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "합성된 텍스처의 투명도를 조절하여 배경과의 조화를 맞춥니다."
+    },
+    {
+      "name": "Heal",
+      "desc": "텍스처 합성 시 주변 픽셀과 색상 및 질감을 자연스럽게 블렌딩합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건물 외벽에 홍보용 간판 합성하기",
+      "steps": [
+        "건물 외벽 사진을 연 후 Vanishing Point 대화 상자를 실행합니다.",
+        "Plane Tool로 건물 벽면의 사각형 모서리를 따라 원근 Grid를 생성합니다.",
+        "준비한 간판 이미지를 붙여넣은 뒤 Grid 영역 안으로 이동시켜 원근에 맞게 배치합니다."
+      ]
+    },
+    {
+      "title": "바닥 타일 패턴 자연스럽게 채우기",
+      "steps": [
+        "바닥 면이 보이는 사진에서 Vanishing Point를 실행하고 Plane Tool로 바닥 영역을 지정합니다.",
+        "타일 텍스처를 복사하여 Grid 안으로 가져와 원근에 맞게 정렬합니다.",
+        "크기를 조절하고 주변 이음새를 정리하여 OK를 누릅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Grid 선이 빨간색으로 표시됨 → 원근 면의 각도가 잘못되었거나 사각형 비율이 맞지 않으므로 Plane Tool의 모서리 점을 다시 조정합니다.",
+    "텍스처가 Grid에 맞지 않고 깨짐 → 붙여넣기 전 소스 이미지의 Resolution가 너무 낮거나 잘못된 영역을 복사했는지 확인하고 고해상도 소스를 사용합니다."
+  ],
+  "related": [
+    "Photoshop 3D Paint Drop",
+    "Smart Objects",
+    "Puppet Warp",
+    "Perspective Warp"
+  ],
+  "videos": [
+    {
+      "id": "TrfGc6z5m9E",
+      "title": "The Magic of VANISHING POINT in Photoshop",
+      "author": "WeJustClickme"
+    },
+    {
+      "id": "HqE1dtKSktQ",
+      "title": "Adobe Photoshop Vanishing Point Tutorial 2023",
+      "author": "Photoshop Pro"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Vanishing%20Point",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Filter",
+    "Vanishing Point"
+  ],
+  "at": "2026-11-16T16:43:59.417835+00:00"
+}
