@@ -130,7 +130,7 @@ def collect(cfg: dict | None = None, runs: list[dict] | None = None, last_run: d
             out.append(_alert("info", "기초 가이드 준비된 주제를 모두 작성함" + (f" (오늘 {made}개)" if made else ""),
                               "새 주제는 AI 관리자가 다음 분석 때 자동으로 제안·추가합니다 (직접 추가: guides.py)"))
         elif left <= 5:
-            out.append(_alert("info", f"기초 가이드 남은 주제 {left}개", "곧 소진 — 새 주제가 필요합니다"))
+            out.append(_alert("info", f"기초 가이드 남은 주제 {left}개", "곧 소진 — 10개 미만이면 하루 한 번 AI 가 가이드 적은 도구부터 공식 기능 주제를 자동 보충합니다"))
     except Exception:
         pass
 

@@ -380,6 +380,51 @@ def passes_quality(g: dict) -> bool:
     return len(g.get("steps") or []) >= 4 and len(g.get("params") or []) >= 2 and bool(g.get("grounded") or g.get("videos"))
 
 
+def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> int:
+    """남은 주제가 min_left 개 미만이면 하루 한 번, 가이드가 적은 도구부터 공식 기능 이름을 AI 로 받아 주제 보충.
+    (전에는 관리자 제안 → 수락을 거쳐 3개씩만 늘어 주제가 바닥남, 2026-11-16) 추가한 개수를 돌려준다."""
+    if len(pending()) >= min_left:
+        return 0
+    strategy = core.load_strategy()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if strategy.get("guide_refill_day") == today:
+        return 0
+    from collections import Counter
+    made = load_all()
+    cnt = Counter(g.get("tool") for g in made)
+    # 목록(CATALOG)에 없지만 가이드가 1~2개뿐인 도구(V-Ray·Photoshop 등)도 포함 — 적은 도구부터
+    cands = ({t[0] for t in CATALOG} | set(cnt)) - {"기타 DCC", None, ""}
+    tools = sorted(cands, key=lambda t: cnt.get(t, 0))[:tools_n]
+    known = {(t[0], t[2].lower()) for t in CATALOG + extra_topics()} | {(g.get("tool"), str(g.get("name", "")).lower()) for g in made}
+    topics = strategy.setdefault("guide_topics", [])
+    added = 0
+    for tool in tools:
+        have = sorted(n for (tl, n) in known if tl == tool)[:150]
+        prompt = (f"Tool: {tool}. Already covered features (do not repeat): {', '.join(have)}. "
+                  f"List {per_tool} more REAL features/commands/workflows of {tool} that exist in the official documentation "
+                  "and that a beginner-to-intermediate Korean 3D artist would search for. No invented names, no plugins. "
+                  'Return JSON: {"topics":[{"group":"한국어 분류","name":"Official English name","title_ko":"Name — 한국어 한 줄 설명"}]}')
+        try:
+            out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor. Output JSON only.",
+                                            max_tokens=900, json_mode=True)) or {}
+        except Exception as e:
+            core.log.info("가이드 주제 보충 실패(%s): %s", tool, e)
+            break
+        for x in (out.get("topics") or [])[:per_tool]:
+            if not isinstance(x, dict):
+                continue
+            g, n, t = (str(x.get(k, "")).strip()[:60] for k in ("group", "name", "title_ko"))
+            if not (g and n and t) or (tool, n.lower()) in known:
+                continue
+            known.add((tool, n.lower()))
+            topics.append([tool, g, n, t, None])
+            added += 1
+    strategy["guide_refill_day"] = today
+    core._save_json(core.STRATEGY_PATH, strategy)
+    core.log.info("가이드 주제 자동 보충: %d개 (%s)", added, ", ".join(tools))
+    return added
+
+
 def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     """아직 없는 주제를 생성. AI 할당 비중(guides 0.5)에 맞춰 기본 생성량 확대."""
     budget = int(core.load_config().get("llm_daily_budget", 500))
@@ -389,6 +434,10 @@ def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     made_today = sum(1 for g in load_all() if (g.get("at") or "").startswith(today))
     max_new = min(max_new, max(0, int(core.load_config().get("guides_daily_max", GUIDES_DAILY_MAX)) - made_today))
+    try:
+        refill_topics()
+    except Exception as e:
+        core.log.info("가이드 주제 보충 건너뜀: %s", e)
     done = []
     have_titles = {(x.get("tool"), _norm(x.get("title", ""))) for x in load_all() if not x.get("qa_redo")}
     for t in pending()[:max_new]:
