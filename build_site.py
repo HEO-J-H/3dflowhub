@@ -39,7 +39,7 @@ OUT = ROOT / "_site"
 SITE_TITLE = "3dflowhub"
 SITE_DESC = ("3ds Max·Blender·Houdini·언리얼의 기본 기능을 영상과 따라 하기로 익히고, "
              "전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리합니다.")
-BASE_URL = "https://heo-j-h.github.io/3dflowhub"  # 커스텀 도메인 연결 시 변경
+BASE_URL = "https://3dflowhub.kr/3dflowhub"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
 TOPIC_SLUG = {"업데이트·출시": "update", "튜토리얼·팁": "tutorial", "플러그인·스크립트": "plugin",
               "작품·제작 사례": "showcase", "업계 소식": "news", "연구·논문": "research", "리뷰·비교": "review"}

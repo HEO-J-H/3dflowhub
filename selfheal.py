@@ -350,7 +350,7 @@ def reports_to_todo() -> list[str]:
         if key in seen:
             continue
         seen.add(key)
-        url = "https://heo-j-h.github.io" + page
+        url = "https://3dflowhub.kr" + page
         now = manager._now()
         pid = "p-" + hashlib.md5(f"{now}{key}".encode()).hexdigest()[:10]
         pm = _re.search(r"/p/([^/]+)\.html", page)

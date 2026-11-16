@@ -21,7 +21,7 @@ import requests
 import core
 
 DIR = core.ROOT / "content" / "events"
-UA = {"User-Agent": "Mozilla/5.0 (3dflowhub events; +https://heo-j-h.github.io/3dflowhub/)"}
+UA = {"User-Agent": "Mozilla/5.0 (3dflowhub events; +https://3dflowhub.kr/3dflowhub/)"}
 KST = timezone(timedelta(hours=9))
 WEVITY = "https://www.wevity.com/"
 WEVITY_CATS = {21: "게임/소프트웨어", 10: "영상/UCC/사진", 19: "디자인/캐릭터/웹툰", 26: "예체능/미술/음악", 24: "건축/건설/인테리어"}

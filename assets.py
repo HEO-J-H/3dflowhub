@@ -17,7 +17,7 @@ import requests
 import core
 
 PATH = core.ROOT / "content" / "assets.json"
-UA = {"User-Agent": "3dflowhub asset digest (+https://heo-j-h.github.io/3dflowhub/)"}
+UA = {"User-Agent": "3dflowhub asset digest (+https://3dflowhub.kr/3dflowhub/)"}
 KEEP = 600  # 출처가 늘어 보관 개수도 늘림
 TYPE_KO = {"texture": "텍스처·재질", "hdri": "HDRI", "model": "3D 모델"}
 

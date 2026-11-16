@@ -19,7 +19,7 @@ import requests
 import core
 
 PATH = core.ROOT / "content" / "radar.json"
-UA = {"User-Agent": "3dflowhub-radar/1.0 (+https://heo-j-h.github.io/3dflowhub/)"}
+UA = {"User-Agent": "3dflowhub-radar/1.0 (+https://3dflowhub.kr/3dflowhub/)"}
 HF_TASKS = ["image-to-3d", "text-to-3d"]
 GH_TOPICS = ["gaussian-splatting", "3d-reconstruction", "nerf", "text-to-3d", "image-to-3d", "blender-addon", "photogrammetry"]
 CIVITAI_TAGS = ["3d", "game asset", "isometric", "low poly"]  # texture 태그엔 인쇄 질감 등 3D 와 무관한 것이 섞임

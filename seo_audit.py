@@ -16,7 +16,7 @@ from urllib.parse import unquote, urljoin, urlparse
 import core
 
 SITE = core.ROOT / "_site"
-BASE = "https://heo-j-h.github.io/3dflowhub/"
+BASE = "https://3dflowhub.kr/3dflowhub/"
 
 
 def _url_of(f: Path, site: Path = SITE) -> str:

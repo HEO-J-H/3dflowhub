@@ -1,0 +1,70 @@
+{
+ "version": "0.0.1",
+ "configurations": [
+  {
+   "name": "pix2poly-web",
+   "runtimeExecutable": "python",
+   "runtimeArgs": [
+    "-m",
+    "http.server",
+    "8765",
+    "-d",
+    "D:/Pix2Poly/web"
+   ],
+   "port": 8765
+  },
+  {
+   "name": "dashboard",
+   "runtimeExecutable": "python",
+   "runtimeArgs": [
+    "-m",
+    "streamlit",
+    "run",
+    "app.py",
+    "--server.headless",
+    "true",
+    "--server.port",
+    "8501"
+   ],
+   "port": 8501
+  },
+  {
+   "name": "pix2poly-local",
+   "runtimeExecutable": "python",
+   "runtimeArgs": [
+    "-m",
+    "uvicorn",
+    "app.main:app",
+    "--app-dir",
+    "D:/Pix2Poly/backend",
+    "--port",
+    "8000"
+   ],
+   "port": 8000
+  },
+  {
+   "name": "life60",
+   "runtimeExecutable": "python",
+   "runtimeArgs": [
+    "-m",
+    "http.server",
+    "8766",
+    "-d",
+    "D:/은퇴"
+   ],
+   "port": 8766
+  },
+  {
+   "name": "site",
+   "runtimeExecutable": "python",
+   "runtimeArgs": [
+    "-m",
+    "http.server",
+    "8767",
+    "-d",
+    "D:/3dflowhub/_site"
+   ],
+   "port": 8767
+  }
+ ]
+}

@@ -59,7 +59,7 @@ password_gate()
 REVENUE_CSV = Path(core.ROOT) / "memory" / "revenue.csv"
 GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)
-SITE_URL = "https://heo-j-h.github.io/3dflowhub/"
+SITE_URL = "https://3dflowhub.kr/3dflowhub/"
 INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}
 
 # 화면 스타일 — 휴먼 인터페이스 원칙: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
@@ -1108,7 +1108,7 @@ with t_rev:
     perf = core._load_json(core.ROOT / "memory" / "performance.json", {})
     pages_perf = perf.get("pages") or {}
     latest = perf.get("latest", {})
-    site_url = "https://heo-j-h.github.io/3dflowhub/"
+    site_url = "https://3dflowhub.kr/3dflowhub/"
 
     # ── 1) 메인 채널: GitHub Pages ─────────────────────────────
     st.subheader("🌐 GitHub Pages (메인 채널)")

@@ -16,18 +16,18 @@ import core
 
 SITES: dict[str, dict] = {
     "3dflowhub": {
-        "name": "🧊 3dflowhub", "url": "https://heo-j-h.github.io/3dflowhub/", "repo": "HEO-J-H/3dflowhub",
+        "name": "🧊 3dflowhub", "url": "https://3dflowhub.kr/3dflowhub/", "repo": "HEO-J-H/3dflowhub",
         "kind": "curation", "about": "3D·게임엔진·VFX·AI 3D 소식과 기초 가이드 (한국어 큐레이션·학습 사이트)",
     },
     "life-after-60": {
-        "name": "💰 life-after-60", "url": "https://heo-j-h.github.io/life-after-60/", "repo": "HEO-J-H/life-after-60",
+        "name": "💰 life-after-60", "url": "https://3dflowhub.kr/life-after-60/", "repo": "HEO-J-H/life-after-60",
         "kind": "app", "about": "60세 은퇴 목표 자산·연금·ISA·세금을 반영한 월별 현금흐름 시뮬레이터 (브라우저 로컬 계산)",
         "raw": "https://raw.githubusercontent.com/HEO-J-H/life-after-60/main/",
         "rules": "법규·세무·계산식·시뮬 로직은 자동 변경 금지 — 제안 또는 PR 만, 머지는 사람. "
                  "도구 안내용이며 법률·투자 자문이 아님을 항상 유지.",
     },
     "pix2poly": {
-        "name": "🧱 Pix2Poly", "url": "https://heo-j-h.github.io/Pix2Poly/", "repo": "HEO-J-H/Pix2Poly",
+        "name": "🧱 Pix2Poly", "url": "https://3dflowhub.kr/Pix2Poly/", "repo": "HEO-J-H/Pix2Poly",
         "kind": "tool", "about": "사진 한 장으로 3D 메시·PBR 텍스처를 만드는 웹 툴 (웹: 브라우저 처리 / 로컬: FastAPI·TripoSR·COLMAP)",
         "raw": "https://raw.githubusercontent.com/HEO-J-H/Pix2Poly/main/",
         "rules": "코드 변경은 코딩 에이전트가 테스트를 통과시킨 뒤에만. 테스트·문서·화면 등 위험이 낮은 변경만 자동 머지, "

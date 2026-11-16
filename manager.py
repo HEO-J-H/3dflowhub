@@ -613,7 +613,7 @@ def review(force: bool = False) -> dict | None:
                 "reason": p.get("note", ""), "applied": p.get("applied")}
                for p in b["proposals"] if p["status"] != "new"][:20]
     prompt = (
-        "You are the AI site manager of 3dflowhub (https://heo-j-h.github.io/3dflowhub/), an automated Korean "
+        "You are the AI site manager of 3dflowhub (https://3dflowhub.kr/3dflowhub/), an automated Korean "
         f"curation site about {core.domain_topics()}. Mission: keep evolving the site — analyze metrics, find "
         "weaknesses, and propose concrete improvements to the human owner, who decides.\n"
         f"Metrics (last ~7 days / recent runs): {json.dumps(snapshot(), ensure_ascii=False, default=str)[:5000]}\n"

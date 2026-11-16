@@ -21,7 +21,7 @@ import core
 
 ROLES_PATH = core.ROOT / "memory" / "roles.json"     # 역할 이벤트: hire / pause / resume / run
 OUTBOX_PATH = core.ROOT / "memory" / "outbox.json"   # 홍보 대기함 이벤트: item / status
-SITE = "https://heo-j-h.github.io/3dflowhub/"
+SITE = "https://3dflowhub.kr/3dflowhub/"
 DELIVERABLES = ("promo", "proposal", "note", "image", "check", "qa")
 DEFAULT_CHANNELS = ["네이버 카페 (3D 커뮤니티)", "X (트위터)", "인스타그램 캡션", "디스코드"]
 

@@ -937,7 +937,7 @@ def test_staff_marketer_outbox_and_hiring(monkeypatch, tmp_path):
     monkeypatch.setattr(core, "llm_budget_left", lambda: 200)
     monkeypatch.setattr(staff, "_context", lambda role: {})
     fake = {"promo": [{"channel": "X (트위터)", "title": "Bend", "body": "3ds Max Bend 정리",
-                       "url": "https://heo-j-h.github.io/3dflowhub/learn/x/"},
+                       "url": "https://3dflowhub.kr/3dflowhub/learn/x/"},
                       {"channel": "디스코드", "body": "외부 링크", "url": "https://evil.example/"}],
             "proposal": [{"title": "검색 기회: Bend", "category": "검색(SEO)", "evidence": "노출 50", "proposal": "제목 개선",
                           "effort": "낮음", "action": None}], "note": "홍보 2건"}
@@ -978,7 +978,7 @@ def test_designer_image_deliverable(monkeypatch, tmp_path):
     monkeypatch.setattr(staff, "_context", lambda role: {})
     fake = {"image": [{"format": "square", "kicker": "3ds Max", "headline": "Bend 로 파이프 휘기", "sub": "영상과 따라 하기",
                        "points": ["Angle", "Limits"], "theme": "3d-dcc", "channel": "인스타그램", "caption": "#3dsMax",
-                       "url": "https://heo-j-h.github.io/3dflowhub/learn/x/"}], "note": "이미지 1장"}
+                       "url": "https://3dflowhub.kr/3dflowhub/learn/x/"}], "note": "이미지 1장"}
     monkeypatch.setattr(core, "llm", lambda *a, **k: _j.dumps(fake, ensure_ascii=False))
     role = {"id": "r-design", "name": "🎨 디자이너", "mission": "홍보 이미지", "deliverables": ["image"],
             "every_hours": 24, "daily_calls": 1}

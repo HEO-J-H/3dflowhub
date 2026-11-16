@@ -2383,7 +2383,7 @@ def site_rows() -> list[dict]:
     return rows
 
 
-SITE_URL = "https://heo-j-h.github.io/3dflowhub/"
+SITE_URL = "https://3dflowhub.kr/3dflowhub/"
 
 
 def fetch_dashboard_rows(limit: int = 500) -> list[dict]:
