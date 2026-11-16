@@ -16,7 +16,8 @@ from urllib.parse import quote
 
 import core
 
-SITE_URL = os.getenv("GSC_SITE_URL", "https://heo-j-h.github.io/3dflowhub/")
+SITE_URL = os.getenv("GSC_SITE_URL", "sc-domain:3dflowhub.kr")
+OLD_SITE_URL = "https://heo-j-h.github.io/3dflowhub/"  # 도메인 이전 전 속성 — 새 속성에 서비스 계정 권한이 없으면 여기로
 GSC_PATH = core.ROOT / "memory" / "search_console.json"
 SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
 
@@ -33,10 +34,20 @@ def _session():
 
 
 def _query(sess, dimension: str, days: int, limit: int) -> list[dict]:
+    try:
+        return _query_site(sess, SITE_URL, dimension, days, limit)
+    except Exception as e:
+        if SITE_URL == OLD_SITE_URL:
+            raise
+        core.log.warning("Search Console 새 속성(%s) 실패 → 예전 속성: %s", SITE_URL, e)
+        return _query_site(sess, OLD_SITE_URL, dimension, days, limit)
+
+
+def _query_site(sess, site: str, dimension: str, days: int, limit: int) -> list[dict]:
     end = date.today() - timedelta(days=2)  # 검색 데이터는 2~3일 늦게 확정
     body = {"startDate": str(end - timedelta(days=days)), "endDate": str(end),
             "dimensions": [dimension], "rowLimit": limit}
-    url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(SITE_URL, safe='')}/searchAnalytics/query"
+    url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(site, safe='')}/searchAnalytics/query"
     r = sess.post(url, json=body, timeout=30)
     r.raise_for_status()
     return [{"key": row["keys"][0], "clicks": row.get("clicks", 0), "impressions": row.get("impressions", 0),
