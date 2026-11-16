@@ -206,9 +206,12 @@ def status_panel() -> None:
     st.progress(1.0 if not cap else min(1.0, used / (used + cap)),
                 text=f"AI 남은 여력 {cap}회 · 오늘 {used + sum(fb.values())}회 사용"
                 + (" · 주 한도 소진(16~17시 리셋)" if q["exhausted"] else ""))
-    st.caption(f"주 공급자 {used}/{budget}회" + "".join(f" · 예비 {k} {v}회" for k, v in fb.items())
-               + f" · 예비 {core.FALLBACK_RESERVE}회는 비상용")
-    if q["learned_limit"] and q["learned_limit"] < budget:
+    fcap = int(cfg.get("llm_fallback_daily", core.FALLBACK_DAILY))
+    names = list(dict.fromkeys(core.fallback_seen() + list(fb)))  # 오늘 아직 0회여도 최근 쓰인 예비 키는 보여 줌
+    st.caption(f"기본 Gemini {used}/{budget}회"
+               + "".join(f" · {core.FALLBACK_LABEL.get(k, k)} {fb.get(k, 0)}/{fcap}회" for k in names)
+               + f" · 예비 중 {core.FALLBACK_RESERVE}회는 비상용 (한도는 매일 16~17시 리셋)")
+    if q["learned_limit"] and q["learned_limit"] < budget * 0.85:
         st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
     pages = [r for r in runs if r["name"].endswith("pages")]
     if pages:

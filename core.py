@@ -648,9 +648,11 @@ def llm_quota_status() -> dict:
     # "_void": 잘못 기록된 날(분당 제한 오인) — 병합이 키 삭제를 되살리므로 지우지 않고 무효 목록으로 표시
     void = set(q.get("_void") or [])
     q = {d: n for d, n in q.items() if not d.startswith("_") and d not in void}
-    hits = [v for v in q.values() if isinstance(v, int) and v > 0]
+    # 최근 14일만, 가장 낮은 값 대신 중간값 — 한 달 전 한 번 막힌 122회가 계속 '실제 한도'로 남아 경고가 뜨던 문제 (11/16)
+    since = (datetime.strptime(llm_day(), "%Y-%m-%d") - timedelta(days=14)).strftime("%Y-%m-%d")
+    hits = sorted(v for d, v in q.items() if d >= since and isinstance(v, int) and v > 0)
     return {"exhausted": llm_day() in q, "at_count": q.get(llm_day()),
-            "learned_limit": min(hits[-7:]) if hits else None}
+            "learned_limit": hits[len(hits) // 2] if hits else None}
 
 
 def _mark_quota_exhausted() -> None:
@@ -686,6 +688,17 @@ def _fallback_count(name: str, exhausted: bool = False) -> None:
     else:
         day[name] = day.get(name, 0) + 1
     _save_json(LLM_FALLBACK_PATH, data)
+
+
+FALLBACK_LABEL = {"gemini2": "추가 Gemini 키", "groq": "Groq", "cerebras": "Cerebras", "openrouter": "OpenRouter"}
+
+
+def fallback_seen(days: int = 7) -> list[str]:
+    """최근 며칠 사이 실제로 쓰인 예비 공급자 (현황판은 GitHub 비밀키를 못 보므로 사용 기록으로 판단)."""
+    data = _load_json(LLM_FALLBACK_PATH, {})
+    since = (datetime.strptime(llm_day(), "%Y-%m-%d") - timedelta(days=days)).strftime("%Y-%m-%d")
+    seen = {k for d, v in data.items() if d >= since and isinstance(v, dict) for k in v if not k.endswith("!")}
+    return [f["name"] for f in FALLBACK_PROVIDERS if f["name"] in seen]
 
 
 def llm_fallback_usage() -> dict:
