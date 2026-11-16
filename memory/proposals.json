@@ -35765,5 +35765,60 @@
     "kind": "applied",
     "id": "p-e85a53212a",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] 패치 적용 실패: ['backend/tests/test_core.py: search 블록이 정확히 1회 일치하지 않음']"
+  },
+  {
+    "at": "2026-11-16T19:46:29+00:00",
+    "kind": "proposal",
+    "id": "p-8e6962b940",
+    "title": "docs/local-pipeline.md 문서 업데이트 분할 반영",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 docs/local-pipeline.md 업데이트 작업이 패치 적용 실패([4] 패치 적용 실패)로 보류되었습니다.",
+    "proposal": "docs/local-pipeline.md 파일에 TripoSR VRAM 권장 사양 및 설정 내용을 충돌 없이 반영하도록 단일 섹션 단위로 나누어 수정합니다.",
+    "expected": "로컬 파이프라인 가이드 문서가 정상적으로 업데이트되어 사용자 안내가 개선됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T19:46:29+00:00",
+    "kind": "proposal",
+    "id": "p-4c79180408",
+    "title": "승인 대기 중인 PR #78 및 #79 최종 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "현재 핵심 코드 변경이 포함된 PR #78 및 #79가 승인 대기 상태로 머물러 있습니다.",
+    "proposal": "GitHub 저장소에서 PR #78(url_ingest.py 검증 로직)과 PR #79(웹 브라우저 PBR 변환 UI 보강)의 변경 내용을 최종 확인하고 머지를 준비합니다.",
+    "expected": "핵심 기능 및 UI 개선 사항이 메인 브랜치에 안전하게 반영됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T19:46:55.154702+00:00",
+    "kind": "decision",
+    "id": "p-8e6962b940",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T19:46:55.189534+00:00",
+    "kind": "decision",
+    "id": "p-4c79180408",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 승인 대기 중인 핵심 PR #78 검토 및 최종 병합",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T19:46:56.688423+00:00",
+    "kind": "triage",
+    "id": "p-8e6962b940",
+    "verdict": "agent",
+    "reason": "docs/local-pipeline.md 문서의 단일 섹션 단위 수정은 코드 및 문서 수정 작업을 통해 해결할 수 있습니다."
   }
 ]
