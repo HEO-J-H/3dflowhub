@@ -36652,5 +36652,29 @@
     "id": "p-abe3436a7c",
     "verdict": "agent",
     "reason": "웹 인터페이스 스타일 수정 및 상태 표시 요소 보정은 AI 코딩 에이전트가 직접 파일 수정 및 테스트 검증을 수행하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-16T23:56:55+00:00",
+    "kind": "proposal",
+    "id": "p-edd866aaa3",
+    "title": "held 상태 TripoSR 단위 테스트 단순화 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 파일 관련 패치 적용이 잇달아 held 상태('변경 없음' 또는 'search 블록 불일치')로 남아 있습니다.",
+    "proposal": "backend/tests/test_triposr.py의 복잡한 패치 블록을 단일 함수 검증 형태로 단순화하여 코딩 에이전트가 정상적으로 적용하도록 수정합니다.",
+    "expected": "테스트 패치 성공 및 TripoSR 예외 처리 검증 완료",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T23:57:21.573671+00:00",
+    "kind": "decision",
+    "id": "p-edd866aaa3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 단위 테스트 과제 분할 및 정리",
+    "auto": true
   }
 ]
