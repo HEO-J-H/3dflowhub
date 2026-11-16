@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-render-3d-file-98c3",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "렌더링 및 출력",
+  "name": "Render 3D File",
+  "title": "3D 파일 렌더링 — 레이요레이싱 엔진을 사용하여 3D 씬을 고품질 이미지로 최종 출력",
+  "summary": "Photoshop의 Render 3D File 기능은 3D DCC에서 제작한 3D 모델(OBJ, USD, FBX 등)을 Photoshop으로 불러와 2D 레이어 환경에서 조명, 재질, 카메라 뷰를 조정하고 렌더링하는 기능입니다.",
+  "when": [
+    "3D 배경이나 오브젝트 위에 2D 합성 작업을 바로 이어서 진행하고 싶을 때",
+    "별도의 무거운 3D 렌더러를 켜지 않고 빠르고 간단하게 조명과 카메라 앵글을 테스트할 때",
+    "제품 패키지 디자인 시안에 3D 모델을 배치하고 라벨 그래픽을 합성할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 File → Open을 눌러 3D 파일(OBJ, 3D 파일 등)을 불러옵니다.",
+    "레이어 패널에서 3D 레이어가 선택된 상태로 3D 패널(Window → 3D)을 엽니다.",
+    "3D 패널에서 카메라, 메시, 재질, 조명(Infinite Light 등)을 선택해 Properties 패널에서 세부 속성을 조정합니다.",
+    "작업 영역 하단의 이동/회전 툴(Move, Rotate, Scale, 3D Orbit)을 사용하여 Viewport에서 시점과 배치를 맞춥니다.",
+    "상단 메뉴바에서 3D → Render 3D Layer를 클릭하여 고품질 최종 렌더링을 시작합니다.",
+    "렌더링이 완료되면 일반 2D 레이어로 변환하거나(Rasterize) PSD 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Scene",
+      "desc": "전체 3D 씬의 카메라 뷰와 전역 설정을 관리하는 최상단 항목입니다."
+    },
+    {
+      "name": "Infinite Light",
+      "desc": "태양광처럼 평행하게 비추는 조명으로, 각도와 그림자 부드러움을 조절합니다."
+    },
+    {
+      "name": "Render Settings",
+      "desc": "안티에일리어싱 품질과 레이트레이싱 샘플링 수준을 설정하여 렌더 퀄리티를 결정합니다."
+    },
+    {
+      "name": "Diffuse",
+      "desc": "3D 모델의 기본 컬러 텍스처나 확산 반사 색상을 지정합니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "흑백 맵을 이용해 표면에 미세한 요철과 질감 효과를 줍니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도와 불투명한 영역을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "패키지 목업에 그래픽 합성하기",
+      "steps": [
+        "박스 형태의 3D OBJ 파일을 Photoshop으로 불러옵니다.",
+        "3D 패널에서 표면 재질(Diffuse)을 더블 클릭하여 Smart 오브젝트로 열린 2D 텍스처에 라벨 디자인을 그립니다.",
+        "저장 후 3D Viewport로 돌아와 Render 3D Layer를 실행하여 입체적인 목업을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "렌더링 시간이 너무 오래 걸림 → 3D 패널의 Render Settings에서 안티에일리어싱 품질을 낮추거나 중간에 Esc를 눌러 취소할 수 있습니다.",
+    "모델 표면이 깨지거나 검게 나옴 → 3D 파일의 Normal(법선) 방향이 뒤집혔거나 조명 설정이 잘못된 경우이므로 Infinite Light 위치를 재조정합니다.",
+    "파일 용량이 지나치게 커짐 → 3D 레이어가 포함된 상태로 저장되면 용량이 커지므로 작업 완료 후 2D로 래스터화(Rasterize 3D)합니다."
+  ],
+  "related": [
+    "3D Panel",
+    "Properties Panel",
+    "Timeline",
+    "Smart Objects"
+  ],
+  "videos": [
+    {
+      "id": "Hy-4YASstgQ",
+      "title": "3D Render Post Production in Photoshop - Step by Step",
+      "author": "Nuno Silva"
+    },
+    {
+      "id": "QohSkFDP_Es",
+      "title": "Rendering Post-production | Photoshop (for 3D ARTISTS)",
+      "author": "Learn Corona Renderer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Render%203D%20File",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Open",
+    "OBJ",
+    "Window",
+    "Infinite Light",
+    "Properties"
+  ],
+  "at": "2026-11-16T16:37:05.110824+00:00"
+}

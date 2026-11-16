@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-mesh-from-layer-847f",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "UV 및 메쉬",
+  "name": "Mesh from Layer",
+  "title": "레이어에서 메시 — 2D 알파 채널이나 실루엣을 바탕으로 기본 3D 지오메트리(Extrusion) 생성",
+  "summary": "Photoshop의 Mesh from Layer 기능은 2D 레이어의 투명하지 않은 영역을 기반으로 3D 메쉬를 자동으로 생성해 주는 도구입니다. 복잡한 로고나 일러스트를 빠르게 3D 입체 오브젝트로 변환할 때 사용합니다.",
+  "when": [
+    "2D 그래픽이나 텍스트에 입체감을 주어 3D 공간에 배치하고 싶을 때",
+    "Photoshop 작업물에서 간단한 형태의 3D 모델 소스를 빠르게 추출할 때",
+    "별도의 3D 모델링 프로그램 없이 2D 소스를 바탕으로 입체 모형을 만들 때"
+  ],
+  "steps": [
+    "1. 배경이 분리된 투명 PNG 레이어나 텍스트 레이어를 준비합니다.",
+    "2. 상단 메뉴 바에서 3D > New Mesh from Layer > Preset 또는 Mesh Presets 를 선택합니다.",
+    "3. 하위 메뉴에서 원하는 입체 형태(예: Depth Map, Cone 등)를 클릭합니다.",
+    "4. 3D workspace로 전환되어 레이어 형태를 기반으로 생성된 메쉬를 확인합니다.",
+    "5. Properties 패널에서 두께, 팽창 등의 세부 3D 속성을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Texture Mapping",
+      "desc": "2D 레이어 이미지를 3D 메쉬의 표면에 입히는 방식 설정"
+    },
+    {
+      "name": "Depth",
+      "desc": "생성되는 3D 메쉬의 두께나 깊이감 조절"
+    },
+    {
+      "name": "Extusion Depth",
+      "desc": "단면을 바깥쪽으로 밀어내어 돌출시키는 깊이 값"
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 로고를 입체 간판으로 변환",
+      "steps": [
+        "1. 투명 배경의 로고 이미지 레이어를 선택합니다.",
+        "2. 3D > New Mesh from Layer > Mesh Preset > Depth Map을 실행합니다.",
+        "3. Properties 패널에서 Extrusion Depth를 높여 두께감을 줍니다."
+      ]
+    },
+    {
+      "title": "텍스트 타이포그래피 3D 입체 효과",
+      "steps": [
+        "1. 글자 레이어를 생성하고 크기와 위치를 정합니다.",
+        "2. 3D > New Mesh from Layer > Text Layer를 선택합니다.",
+        "3. 3D Viewport에서 카메라 각도를 조절하여 입체 글자를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "배경이 분리되지 않은 단색 배경 레이어 선택 → 배경까지 3D 메쉬로 변환되므로 반드시 알파 채널이나 투명 배경인지 확인하세요.",
+    "Resolution가 너무 낮은 2D 이미지 사용 → 메쉬의 모서리가 깨지거나 울퉁불퉁해지므로 고해상도 소스를 사용하세요."
+  ],
+  "related": [
+    "New 3D Extrusion from Selected Layer",
+    "3D Panel",
+    "Properties Panel",
+    "Quick Selection"
+  ],
+  "videos": [
+    {
+      "id": "3gxcIn8L__w",
+      "title": "Layers for Beginners | Photoshop CC Tutorial",
+      "author": "Pixel & Bracket"
+    },
+    {
+      "id": "-Q1WqWbvBhY",
+      "title": "Photoshop - 3D Menu - New Mesh from Layer",
+      "author": "Ðramenon Curator of [ Jax Signal ] "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Mesh%20from%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "PNG",
+    "New Mesh",
+    "Layer",
+    "Preset",
+    "Mesh Presets"
+  ],
+  "at": "2026-11-16T16:34:08.882742+00:00"
+}
