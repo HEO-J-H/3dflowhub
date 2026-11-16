@@ -543,6 +543,16 @@ footer .cols{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:12px}footer
 .scard{display:grid;gap:4px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);text-decoration:none}
 .scard img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--surface-2)}
 .scard .k{font-size:12px;opacity:.75}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:16px}
+.acard{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.aplay{position:relative;display:block;width:100%;aspect-ratio:16/10;padding:0;border:0;cursor:pointer;background:var(--surface-2)}
+.aplay img{width:100%;height:100%;object-fit:cover;display:block}
+.aplay .pl{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font-size:14px;font-weight:600}
+.aplay:hover .pl,.aplay:focus-visible .pl{background:var(--accent)}
+.aframe{display:block;width:100%;aspect-ratio:16/10;border:0}
+.acard figcaption{display:grid;gap:4px;padding:12px 14px}
+.acard .k{font-size:13px;opacity:.8}.acard .k a{color:var(--accent)}
+.acard .n{font-size:14px;line-height:1.6}
 .nl{display:grid;gap:6px;margin:28px 0;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .nl span,.nl small{font-size:13px;opacity:.8}.nl div{display:flex;gap:8px;flex-wrap:wrap}
 .nl input{flex:1;min-width:180px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
@@ -1107,10 +1117,17 @@ def build_recipes(recipes_: list[dict], posts: list[dict]) -> None:
     (root_dir / "index.html").write_text(page(f"실무 파이프라인 - {SITE_TITLE}", body, "../", extra_head='<meta name="robots" content="noindex,follow">'), encoding="utf-8")
 
 
+def showcase_indexable() -> bool:
+    import showcase
+    return len(showcase.published()) + len(showcase.auto_items()) >= showcase.INDEX_MIN
+
+
 def build_showcase() -> None:
-    """이번 주 작품: 작가 허락을 받은 커뮤니티 포트폴리오만 (showcase.published)."""
+    """이번 주 작품: 작가 허락을 받은 작품(showcase.published) + 작가가 임베드를 허용한 작품 자동 소개(auto_items).
+    3D·영상은 누를 때만 불러옴(속도). 작품이 INDEX_MIN 개 미만이면 검색 제외 (빈 페이지가 심사에 불리)."""
     import showcase
     items = showcase.published()
+    auto = showcase.auto_items()
     folder = OUT / "showcase"
     folder.mkdir(exist_ok=True)
     cards = "".join(
@@ -1118,13 +1135,35 @@ def build_showcase() -> None:
         + (f'<img src="{e(i["image"])}" alt="{e(i["title"])}" loading="lazy">' if i.get("image") else "")
         + f'<span class="t">{e(i["title"])}</span><span class="k">{e(i["artist"])}'
         + (f' · {e(i["note"])}' if i.get("note") else "") + "</span></a>" for i in items)
-    body = ('<div class="doc"><h1>이번 주 작품</h1><p class="desc">커뮤니티에 올라온 멋진 3D 작업을 <b>작가님 허락을 받아</b> 소개합니다. '
-            '작품을 누르면 원본 페이지로 이동합니다. 소개를 원하시거나 내리기를 원하시면 '
+
+    def auto_card(i: dict) -> str:
+        src = "Sketchfab 3D" if i["kind"] == "sketchfab" else "YouTube"
+        play = "▶ 3D로 돌려 보기" if i["kind"] == "sketchfab" else "▶ 영상 재생"
+        artist = (f'<a href="{e(i["artist_url"])}" target="_blank" rel="noopener">{e(i["artist"])}</a>'
+                  if i.get("artist_url") else e(i["artist"]))
+        return (f'<figure class="acard"><button class="aplay" type="button" data-embed="{e(i["embed"])}" '
+                f'aria-label="{e(i["title"])} {play}">'
+                + (f'<img src="{e(i["thumb"])}" alt="" loading="lazy">' if i.get("thumb") else "")
+                + f'<span class="pl">{play}</span></button><figcaption><b>{e(i["title"])}</b>'
+                f'<span class="k">{artist} · {src} · <a href="{e(i["url"])}" target="_blank" rel="noopener">원본 보기</a></span>'
+                f'<span class="n">👀 볼 포인트: {e(i["note"])}</span></figcaption></figure>')
+
+    acards = "".join(auto_card(i) for i in auto)
+    js = ('<script>document.querySelectorAll(".aplay").forEach(function(b){b.addEventListener("click",function(){'
+          'var f=document.createElement("iframe");f.src=b.dataset.embed+(b.dataset.embed.indexOf("?")>-1?"&":"?")+"autostart=1&autoplay=1";'
+          'f.allow="autoplay; fullscreen; xr-spatial-tracking";f.allowFullscreen=true;f.title=b.getAttribute("aria-label");'
+          'f.className="aframe";b.replaceWith(f);});});</script>')
+    body = ('<div class="doc"><h1>이번 주 작품</h1><p class="desc">눈여겨볼 3D 작업을 <b>작가 이름·원본 링크와 함께</b> 소개하고, '
+            '무엇을 보면 배울 게 있는지 짧게 짚어 드립니다. 3D 모델과 영상은 작가가 다른 사이트에 넣기를 허용한 것만, '
+            'Sketchfab·YouTube 의 공식 넣기 기능으로 보여 줍니다(이 사이트에 저장하지 않음). 소개를 원하시거나 내리기를 원하시면 '
             + mail_link("[3dflowhub] 이번 주 작품 문의", "알려 주세요") + '.</p></div>'
-            + (f'<div class="sgrid">{cards}</div>' if cards else '<p>첫 소개 작품을 준비하고 있습니다.</p>')
+            + (f'<h2 class="sec">작가 허락을 받은 작품</h2><div class="sgrid">{cards}</div>' if cards else "")
+            + (f'<h2 class="sec">3D·영상으로 보는 이번 주 작품</h2><div class="agrid">{acards}</div>{js}' if acards else "")
+            + ("" if cards or acards else '<p>첫 소개 작품을 준비하고 있습니다.</p>')
             + newsletter_box("../"))
-    (folder / "index.html").write_text(page(f"이번 주 작품 - {SITE_TITLE}", body, "../", desc="허락을 받아 소개하는 3D 작가 작품",
-                                            canonical=f"{BASE_URL}/showcase/"), encoding="utf-8")
+    head = "" if showcase_indexable() else '<meta name="robots" content="noindex,follow">'
+    (folder / "index.html").write_text(page(f"이번 주 작품 - {SITE_TITLE}", body, "../", desc="작가 이름·원본 링크와 함께 소개하는 이번 주 3D 작품과 볼 포인트",
+                                            canonical=f"{BASE_URL}/showcase/", extra_head=head), encoding="utf-8")
 
 
 def build_resources() -> None:
@@ -2197,7 +2236,7 @@ def build() -> dict:
            [f"{BASE_URL}/weekly/{w}/" for w in sorted({w for w in (iso_week(p) for p in posts) if w})] + \
            [f"{BASE_URL}/learn/"] + [f"{BASE_URL}/{learn_url(g)}" for g in learn_guides] + \
            [f"{BASE_URL}/guide/"] + [f"{BASE_URL}/{guide_url(r['domain'], r['tool'])}" for r in roundups] + \
-           [f"{BASE_URL}/resources/", f"{BASE_URL}/showcase/"] + \
+           [f"{BASE_URL}/resources/"] + ([f"{BASE_URL}/showcase/"] if showcase_indexable() else []) + \
            ([f"{BASE_URL}/assets/"] if n_assets else []) + \
            [f"{BASE_URL}/fix/"] + [f"{BASE_URL}/fix/{x['id']}/" for x in ref_fixes] + \
            [f"{BASE_URL}/changes/"] + [f"{BASE_URL}/changes/{x['id']}/" for x in ref_changes] + \

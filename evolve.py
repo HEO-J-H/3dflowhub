@@ -950,6 +950,15 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("무료 에셋 모음 실패: %s", e)
         strategy["assets_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    if force or _due(strategy, "showcase_at", 6 * 86400):  # 이번 주 작품 자동 소개 (주 1회, AI 1회)
+        try:
+            import showcase
+            n_sc = showcase.collect_auto()
+            log.info("이번 주 작품 자동 소개: %d개 추가", n_sc)
+        except Exception as e:
+            log.warning("이번 주 작품 자동 소개 실패: %s", e)
+        strategy["showcase_at"] = _now()
+        core._save_json(core.STRATEGY_PATH, strategy)
     runs_c = [r.get("candidates") for r in core.load_memory().get("runs", [])[-12:] if "candidates" in r]
     starving = bool(runs_c) and sum(runs_c) / len(runs_c) < 8   # 새 글 후보가 바닥 → 출처 발굴을 당겨서
     if force or starving and _due(strategy, "sources_at", 6 * 3600) or _due(strategy, "sources_at", 7 * 86400):
