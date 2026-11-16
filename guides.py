@@ -389,6 +389,9 @@ def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> in
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     if strategy.get("guide_refill_day") == today:
         return 0
+    last_try = strategy.get("guide_refill_try") or ""
+    if last_try and (datetime.now(timezone.utc) - datetime.fromisoformat(last_try)).total_seconds() < 3 * 3600:
+        return 0  # 실패했으면 3시간 뒤 다시
     from collections import Counter
     made = load_all()
     cnt = Counter(g.get("tool") for g in made)
@@ -409,6 +412,7 @@ def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> in
                                             max_tokens=900, json_mode=True)) or {}
         except Exception as e:
             core.log.info("가이드 주제 보충 실패(%s): %s", tool, e)
+            strategy["guide_refill_note"] = f"{tool}: {str(e)[:160]}"
             break
         for x in (out.get("topics") or [])[:per_tool]:
             if not isinstance(x, dict):
@@ -419,7 +423,12 @@ def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> in
             known.add((tool, n.lower()))
             topics.append([tool, g, n, t, None])
             added += 1
-    strategy["guide_refill_day"] = today
+    strategy["guide_refill_try"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    if added:
+        strategy["guide_refill_day"] = today  # 성공한 날만 '오늘 끝' — 실패·0개면 3시간 뒤 다시
+        strategy.pop("guide_refill_note", None)
+    elif "guide_refill_note" not in strategy:
+        strategy["guide_refill_note"] = "AI 응답에서 새 주제를 찾지 못함 (형식·중복)"
     core._save_json(core.STRATEGY_PATH, strategy)
     core.log.info("가이드 주제 자동 보충: %d개 (%s)", added, ", ".join(tools))
     return added
