@@ -1,0 +1,37 @@
+{
+  "id": "unreal-engine-loginit-display-randinit-failed-due--1c8e3",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogInit: Display: RandInit() failed due to invalid platform parameters",
+  "title": "LogInit: Display: RandInit() failed due to invalid platform parameters 오류 해결 방법",
+  "summary": "LogInit: Display: RandInit() failed due to invalid platform parameters 오류는 Unreal Engine이 초기화 과정에서 난수 생성기(Random Number Generator)를 설정할 때 플랫폼 파라미터가 잘못되었거나 인식되지 않아 발생합니다.",
+  "causes": [
+    "지원하지 않거나 손상된 타겟 플랫폼 설정으로 프로젝트를 빌드하거나 실행할 때",
+    "Engine 또는 Project 설정 파일(DefaultEngine.ini 등)의 난수 관련 구성이 손상되었을 때",
+    "오래된 엔진 버전에서 최신 플랫폼 SDK와의 충돌이 발생할 때"
+  ],
+  "steps": [
+    "프로젝트 폴더 내의 Saved 디렉토리와 Intermediate 디렉토리를 삭제하여 캐시된 설정 및 빌드 파일을 초기화합니다.",
+    "Config/DefaultEngine.ini 파일을 열어 플랫폼 관련 파라미터나 잘못 수정된 설정 값이 있는지 확인하고 수정합니다.",
+    "Unreal Editor를 닫고 해당 .uproject 파일을 우클릭하여 Generate Visual Studio project files를 실행한 뒤 다시 빌드합니다.",
+    "Epic Games Launcher를 통해 엔진 설치 파일의 무결성 검사(Verify)를 진행하여 누락되거나 손상된 파일을 복구합니다."
+  ],
+  "check": [
+    "Unreal Editor를 다시 실행했을 때 Output Log에 더 이상 RandInit 관련 에러가 출력되지 않는지 확인합니다.",
+    "프로젝트가 정상적으로 로드되며 플레이(Play) 버튼을 눌렀을 때 크래시 없이 실행되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 설정(Project Settings)이나 플랫폼 관련 설정 파일을 직접 수정할 때는 백업을 유지합니다.",
+    "엔진 버전을 업그레이드할 때 타겟 플랫폼 SDK가 올바르게 설치되었는지 확인합니다."
+  ],
+  "keywords": [
+    "RandInit failed",
+    "invalid platform parameters",
+    "Unreal Engine 초기화 오류",
+    "LogInit 에러",
+    "Unreal 크래시 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T00:52:40+00:00"
+}

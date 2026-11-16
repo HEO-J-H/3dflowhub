@@ -1,0 +1,40 @@
+{
+  "id": "blender-error-non-manifold-edge-vertex-detected-in-948c3",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Non-manifold edge / vertex detected in Boolean operation",
+  "title": "Error: Non-manifold edge / vertex detected in Boolean operation 오류 해결 방법",
+  "summary": "Blender에서 Boolean 연산(Union, Difference, Intersect)을 수행할 때, 메시의 구조가 비정상적(Non-manifold)이어서 연산 기준을 계산할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메시에 닫히지 않은 열린 구멍(Open Boundary)이 존재할 때",
+    "면의 법선(Normal) 방향이 서로 뒤집혀 있거나 일관되지 않을 때",
+    "엣지 하나에 3개 이상의 면이 붙어 있는 복잡한 중첩 구조가 있을 때",
+    "두께가 없는 0의 면적(Zero-area face)이나 겹쳐진 Vertex가 존재할 때"
+  ],
+  "steps": [
+    "Edit Mode(Tab)로 진입합니다.",
+    "Mesh → Clean Up → Merge by Distance를 실행하여 겹쳐진 Vertex를 정리합니다.",
+    "Mesh → Clean Up → Non Manifold를 실행해 비정상적인 요소를 선택합니다.",
+    "Mesh → Normals → Recalculate Outside(Shift+N)를 실행하여 법선 방향을 통일합니다.",
+    "필요한 경우 닫힌 면이 되도록 F 키로 구멍을 채웁니다.",
+    "Boolean 수정자(Modifier)로 돌아와 연산을 다시 시도합니다."
+  ],
+  "check": [
+    "Boolean 연산이 에러 없이 정상적으로 수행되고 결과 메시가 깨지지 않는지 확인합니다.",
+    "오버레이 메뉴에서 Face Orientation을 켰을 때 모든 면이 파란색(외부)으로 올바르게 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "Boolean 연산을 수행하기 전 대상 오브젝트가 항상 닫힌 솔리드(Closed Solid) 상태인지 확인합니다.",
+    "모델링 중간에 3D Print Toolbox 애드온의 Check를 활용하여 Non-manifold 요소를 미리 점검합니다."
+  ],
+  "keywords": [
+    "Blender 불린 오류",
+    "Non-manifold edge vertex",
+    "Blender 불린 안됨",
+    "Mesh Clean Up",
+    "Blender Boolean Non-manifold"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T00:52:33+00:00"
+}
