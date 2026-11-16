@@ -22,7 +22,7 @@ import requests
 
 import core
 
-UA = {"User-Agent": "3dflowhub-research/1.0 (+https://3dflowhub.kr/3dflowhub/)"}
+UA = {"User-Agent": "3dflowhub-research/1.0 (+https://3dflowhub.kr/)"}
 MIN_CHARS = 1500           # 보강 후 본문 최소 분량 (수익화 플레이북 기준)
 WEAK_CHARS = 1200          # 이보다 짧으면 보강 대상
 DISCOURSE = {

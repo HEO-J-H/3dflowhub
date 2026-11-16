@@ -28,7 +28,7 @@ import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import quote, unquote
+from urllib.parse import urlparse, quote, unquote
 
 from urllib.parse import urlparse
 
@@ -39,7 +39,7 @@ OUT = ROOT / "_site"
 SITE_TITLE = "3dflowhub"
 SITE_DESC = ("3ds Max·Blender·Houdini·언리얼의 기본 기능을 영상과 따라 하기로 익히고, "
              "전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리합니다.")
-BASE_URL = "https://3dflowhub.kr/3dflowhub"  # 커스텀 도메인 연결 시 변경
+BASE_URL = "https://3dflowhub.kr"  # 커스텀 도메인 연결 시 변경
 PAGE_SIZE = 30
 TOPIC_SLUG = {"업데이트·출시": "update", "튜토리얼·팁": "tutorial", "플러그인·스크립트": "plugin",
               "작품·제작 사례": "showcase", "업계 소식": "news", "연구·논문": "research", "리뷰·비교": "review"}
@@ -1398,7 +1398,7 @@ def build_weekly(posts: list[dict]) -> None:
 
 def indexnow_submit(hours: int = 3) -> str:
     """IndexNow: 최근 N시간 내 새 글 URL 을 검색엔진(네이버·Bing·Yandex·Seznam·Yep 공유)에 즉시 알림.
-    키 파일은 static/<32자리hex>.txt 로 사이트 루트(/3dflowhub/)에 배포되어 있어야 한다."""
+    키 파일은 static/<32자리hex>.txt 로 사이트 루트(/)에 배포되어 있어야 한다."""
     import requests
     keys = [f.stem for f in (ROOT / "static").glob("*.txt") if re.fullmatch(r"[0-9a-f]{32}", f.stem)]
     if not keys:
@@ -2097,7 +2097,8 @@ def build() -> dict:
         encoding="utf-8")
 
     # 404 페이지 (GitHub Pages 가 없는 주소에 이 파일을 보여줌 → 어느 경로에서든 동작하도록 절대 경로)
-    abs_root = "/" + BASE_URL.split("://", 1)[1].split("/", 1)[1].strip("/") + "/"
+    _path = urlparse(BASE_URL).path.strip("/")
+    abs_root = "/" + (_path + "/" if _path else "")  # 사용자 도메인이면 "/", github.io 하위 경로면 "/3dflowhub/"
     nf = (f'<div class="doc"><h1>페이지를 찾을 수 없어요</h1><p class="desc">주소가 바뀌었거나 삭제된 글일 수 있습니다. '
           f'위 검색창에 도구 이름(예: Blender, 3ds Max)이나 기능(예: Bend)을 입력해 보세요.</p>'
           f'<div class="actions"><a class="btn primary" href="{abs_root}">홈으로</a> '
@@ -2223,6 +2224,7 @@ def build() -> dict:
                                          f"<url><loc>{e(u)}</loc>" + (f"<lastmod>{lastmod[u]}</lastmod>" if lastmod.get(u) else "")
                                          + "</url>" for u in urls)
                                      + "</urlset>", encoding="utf-8")
+    (OUT / "CNAME").write_text("3dflowhub.kr" + chr(10), encoding="utf-8")  # 사용자 도메인 (Pages 설정의 Custom domain 과 같아야 함)
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
     return {"posts": len(posts), "boards": len(by_cat) + len(core.DOMAINS)}
 

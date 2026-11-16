@@ -65,7 +65,7 @@ def published() -> list[dict]:
 
 def request_message(item: dict, lang: str = "ko") -> str:
     """작가에게 보낼 허락 요청문 (사람이 복사해 개별 전송). 대량 발송 금지."""
-    site = "https://3dflowhub.kr/3dflowhub/showcase/"
+    site = "https://3dflowhub.kr/showcase/"
     if lang == "en":
         return (f"Hi {item['artist']},\n\nI run 3dflowhub, a small Korean site for 3D artists (DCC, game engines, VFX). "
                 f"I really liked your work \"{item['title']}\" ({item['url']}) and would love to feature it in our "

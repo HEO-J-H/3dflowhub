@@ -350,7 +350,7 @@ def reports_to_todo() -> list[str]:
         if key in seen:
             continue
         seen.add(key)
-        url = "https://3dflowhub.kr" + page
+        url = "https://3dflowhub.kr" + _re.sub(r"^/3dflowhub(?=/)", "", page)  # 이전 통계 경로도 새 주소로
         now = manager._now()
         pid = "p-" + hashlib.md5(f"{now}{key}".encode()).hexdigest()[:10]
         pm = _re.search(r"/p/([^/]+)\.html", page)

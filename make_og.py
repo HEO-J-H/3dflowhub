@@ -39,7 +39,7 @@ def make(name, title, sub, c1, c2):
     d.text((250, 130), "3dflowhub", font=font(78), fill=(255, 255, 255))
     d.text((90, 330), title, font=font(92), fill=(255, 255, 255))
     d.text((92, 450), sub, font=font(40), fill=(235, 240, 255))
-    d.text((92, 545), "3dflowhub.kr/3dflowhub", font=font(30), fill=(220, 228, 255))
+    d.text((92, 545), "3dflowhub.kr", font=font(30), fill=(220, 228, 255))
     OUT.mkdir(parents=True, exist_ok=True)
     img.save(OUT / f"{name}.png", optimize=True)
 

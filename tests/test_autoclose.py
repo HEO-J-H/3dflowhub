@@ -44,7 +44,7 @@ def test_reports_become_todo(tmp_path, monkeypatch):
     assert selfheal.reports_to_todo() == ["방문자 오류 제보: 내용이 틀려요"]
     assert selfheal.reports_to_todo() == []          # 같은 제보는 한 번만
     todo = manager.manual_todo()
-    assert todo and "3dflowhub.kr/3dflowhub/p/x.html" in todo[0]["proposal"]
+    assert todo and "3dflowhub.kr/p/x.html" in todo[0]["proposal"]
 
 
 def test_auto_verdict_rules():

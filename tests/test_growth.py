@@ -101,7 +101,7 @@ def test_iso_tz():
 
 def test_promo_body_gets_link():
     import staff
-    u = "https://3dflowhub.kr/life-after-60/?utm_source=kakao"
+    u = "https://heo-j-h.github.io/life-after-60/?utm_source=kakao"
     assert staff.with_link("소개합니다.\n\n👉 시뮬레이터 해보기:", u).endswith("해보기: " + u)
     assert staff.with_link("소개합니다.", u).endswith("👉 " + u)
     assert staff.with_link("링크 " + u, u).count(u) == 1

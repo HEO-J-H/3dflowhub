@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
 
 ROOT = Path(__file__).parent / "_site"
-BASE = "https://example.invalid/3dflowhub/"
+BASE = "https://example.invalid/"
 
 
 def broken_links() -> dict[str, str]:
@@ -19,10 +19,10 @@ def broken_links() -> dict[str, str]:
             if "${" in href or href.startswith(("http", "mailto:", "javascript:", "data:")):
                 continue  # 외부 링크·JS 템플릿 제외
             path = urlparse(urljoin(BASE + rel, href)).path
-            if not path.startswith("/3dflowhub/"):
+            if not path.startswith("/"):
                 bad.setdefault(path, rel)
                 continue
-            target = ROOT / unquote(path[len("/3dflowhub/"):])
+            target = ROOT / unquote(path[1:])
             if path.endswith("/"):
                 target = target / "index.html"
             if not target.exists():
