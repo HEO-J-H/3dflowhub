@@ -1,0 +1,53 @@
+{
+  "title_ko": "NVIDIA cuPotential — 분자 동역학 시뮬레이션 가속",
+  "title": "Accelerate Molecular Dynamics Simulations with Accurate, Flexible Primitives Using NVIDIA cuPotential",
+  "url": "https://developer.nvidia.com/blog/accelerate-molecular-dynamics-simulations-with-accurate-flexible-primitives-using-nvidia-cupotential/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA cuPotential",
+    "OpenMM",
+    "GPU 가속",
+    "분자 동역학"
+  ],
+  "summary": "NVIDIA cuPotential은 모듈형 C API Primitive를 제공하여 주기적 경계 조건 하의 장거리 상호작용 평가를 최적화하고 분자 동역학 시뮬레이션을 가속합니다.",
+  "insight": "NVIDIA cuPotential은 OpenMM 플러그인을 통해 비결합력과 랑방 적분기를 대체하며 24,000~400,000개 원자 시스템에서 2배에서 3배 이상의 처리량 속도 향상을 보여줍니다.",
+  "try_it": [
+    "conda 환경에서 Linux용 NVIDIA cuPotential 런타임과 OpenMM 플러그인을 빌드합니다.",
+    "Python 휠을 설치하고 제공되는 분자 동역학 예제를 실행합니다.",
+    "OpenMM 기존 코드에 플러그인을 드롭인 방식으로 통합하여 성능을 측정합니다."
+  ],
+  "sections": [
+    {
+      "heading": "NVIDIA cuPotential의 모듈형 C API 구성",
+      "body": "NVIDIA cuPotential은 분자 동역학 시뮬레이션에서 계산 병목인 장거리 상호작용 평가를 최적화하는 모듈형 C API Primitive를 제공합니다. 개발자는 스택의 여러 레이어에서 특정 컴포넌트를 선택하여 워크로드를 가속할 수 있습니다. 컷오프 기반 상호작용 평가기와 전하 확산 함수 같은 직접 공간 및 역공간 유틸리티를 포함합니다."
+    },
+    {
+      "heading": "OpenMM 플러그인 통합 및 속도 향상",
+      "body": "이 라이브러리는 OpenMM에 쉽게 통합할 수 있는 전용 플러그인을 제공하여 비결합력, 랑방 적분기, 몬테카를로 바로스탯을 최소한의 코드 수정으로 대체합니다. T4부터 RTX PRO 6000 Blackwell까지의 GPU 아키텍처 벤치마크 결과, 24,000~400,000개 원자 시스템에서 NPT 조건 기준 2배에서 3배 이상의 엔드투엔드 속도 향상을 기록했습니다."
+    },
+    {
+      "heading": "C2 연속 분할 및 확산 함수를 통한 정확도 개선",
+      "body": "D. E. Shaw Research 및 Flatiron Institute와 공동 개발한 새로운 C2 연속 분할 및 확산 함수는 표준 Ewald 및 u-시리즈 방법에 비해 낮은 Grid Resolution와 축소된 컷오프에서도 목표 정확도를 달성합니다. 10ns 동안의 에너지 드리프트 측정 결과 cuPotential은 기본 PME 설정 대비 드리프트를 수백 배 줄여 생체 분자 시뮬레이션 요구 사항을 충족합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVIDIA cuPotential은 어떤 시뮬레이션 엔진을 지원하나요?",
+      "a": "현재 개발자 에코시스템에서 널리 쓰이는 OpenMM과의 통합 플러그인을 제공하며 최소한의 코드 변경으로 드롭인 교체가 가능합니다."
+    },
+    {
+      "q": "기존 Ewald 방법에 비해 어떤 점이 개선되었나요?",
+      "a": "새로운 C2 연속 분할 및 확산 함수를 적용하여 더 낮은 Grid Resolution와 축소된 컷오프에서도 목표 정확도를 유지하며 에너지 드리프트를 수백 배 줄였습니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/healthcare-cupotential.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-16T22:46:14.659453+00:00",
+  "notion_id": "",
+  "id": "2026-11-16-2be1284eeb479683",
+  "img_ok": "2026-11-16T22:46:15+00:00"
+}
