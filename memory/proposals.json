@@ -35930,5 +35930,77 @@
     "id": "p-b5e24ed807",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 'TripoSR 단위 테스트 파일 오류 정비' 및 '보류된 TripoSR 테스트 오류 원인 분석 및 파일 분할' 등이 포함되어 있어 이미 반영된 과제입니다."
+  },
+  {
+    "at": "2026-11-16T20:35:51+00:00",
+    "kind": "proposal",
+    "id": "p-72a70b7802",
+    "title": "승인 대기 중인 PR #78 및 #79 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #78 및 #79가 핵심 코드 변경으로 생성되어 운영자의 승인을 대기 중입니다.",
+    "proposal": "GitHub 저장소에서 PR #78과 PR #79의 변경 내용을 최종 확인하고 머지 여부를 결정합니다.",
+    "expected": "대기 중인 핵심 기능 및 UI 개선 사항이 메인 브랜치에 반영됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T20:35:51+00:00",
+    "kind": "proposal",
+    "id": "p-e8afd6339a",
+    "title": "보류된 TripoSR 테스트 오류 원인 단순화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 관련 패치 적용 실패로 작업이 held 상태로 반복 중입니다.",
+    "proposal": "복잡한 패치 대신 기존 test_core.py와 충돌하지 않는 독립된 최소 단위 테스트 파일을 작성하여 테스트 통과를 유도합니다.",
+    "expected": "코딩 에이전트의 반복적인 패치 실패 병목을 해소하고 테스트 안정성을 확보합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T20:35:51+00:00",
+    "kind": "proposal",
+    "id": "p-0926390e40",
+    "title": "깃허브 RAG 오픈소스 검토 범위 제한 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "사용자가 깃허브 RAG 오픈소스 반영을 요청했으나 Pix2Poly 교본 범위(사진→3D 메시 변환) 밖입니다.",
+    "proposal": "문서나 이슈를 통해 Pix2Poly는 3D 생성 툴이므로 텍스트 RAG 기능은 범위 외임을 명시하고 안내합니다.",
+    "expected": "프로젝트의 핵심 정체성과 무관한 기능 혼선을 방지합니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T20:36:13.861328+00:00",
+    "kind": "decision",
+    "id": "p-72a70b7802",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 승인 대기 중인 핵심 PR #78 검토 및 최종 병합",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T20:36:13.898274+00:00",
+    "kind": "decision",
+    "id": "p-e8afd6339a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 테스트 오류 원인 분석 및 파일 분할",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T20:36:13.936069+00:00",
+    "kind": "decision",
+    "id": "p-0926390e40",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 검토 문서 범위 명확화",
+    "auto": true
   }
 ]
