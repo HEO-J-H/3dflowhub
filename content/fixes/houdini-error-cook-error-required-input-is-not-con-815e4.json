@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-cook-error-required-input-is-not-con-815e4",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Cook error: Required input is not connected",
+  "title": "Error: Cook error: Required input is not connected 오류 해결 방법",
+  "summary": "Houdini에서 'Error: Cook error: Required input is not connected' 오류는 필수 입력 포트(Input)가 비어 있는 노드 데이터를 평가(Cook)하려고 할 때 발생합니다. 노드 연산에 반드시 필요한 소스나 지오메트리가 연결되지 않아 중단된 상태입니다.",
+  "causes": [
+    "필수 입력 포트(파란색 또는 보라색 화살표 등)에 상위 노드가 연결되지 않음",
+    "노드를 복사하거나 병합하는 과정에서 와이어(Wire)가 끊어짐",
+    "머지(Merge)나 스위치(Switch) 노드에 빈 커넥션이 남아 있는 상태에서 상위 노드를 평가함"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 에러가 발생한 빨간색 배지(Error Badge)가 붙은 노드를 확인합니다.",
+    "노드 위에 Mouse를 올리거나 더블 클릭하여 노드 상태 창에서 어떤 입력 포트(예: Input 1)가 비어 있는지 확인합니다.",
+    "필요한 상위 노드(예: Geometry, Curve 등)의 출력을 해당 입력 포트에 드래그하여 와이어로 연결합니다.",
+    "상위 노드 연결이 완료된 후, 디스플레이 플래그(Display Flag)를 재설정하거나 노드를 선택한 상태에서 키보드 Shift+R 또는 Ctrl+B를 눌러 다시 쿠키(Recook)합니다."
+  ],
+  "check": [
+    "노드에 표시되던 빨간색 에러 배지가 사라지고 정상 상태(초록색 또는 회색)로 바뀝니다.",
+    "Viewport에 결과 지오메트리나 데이터가 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "노드를 새로 생성할 때 빈 입력 포트가 방치되지 않도록 연결 상태를 먼저 확인하는 습관을 들입니다.",
+    "노드 네트워크를 정리(Layout All, L 키)할 때 와이어가 우발적으로 끊어지지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "Houdini 필수입력 오류",
+    "Cook error Required input is not connected",
+    "Houdini 노드 연결 에러",
+    "Houdini input not connected",
+    "Houdini 쿠크 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T04:02:26+00:00"
+}

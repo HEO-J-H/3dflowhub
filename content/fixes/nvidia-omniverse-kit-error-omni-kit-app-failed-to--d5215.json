@@ -1,0 +1,40 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-kit-app-failed-to--d5215",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.kit.app] Failed to load extension due to unresolved dependencies",
+  "title": "Kit: [Error] [omni.kit.app] Failed to load extension due to unresolved dependenc",
+  "summary": "NVIDIA Omniverse에서 확장 기능(Extension)이 요구하는 종속성(Dependency) 패키지를 찾지 못해 로딩에 실패할 때 발생하는 오류입니다. 주로 필수 확장 버전 불일치나 누락된 서드파티 모듈로 인해 발생합니다.",
+  "causes": [
+    "필요한 상위 확장 기능(Dependency Extension)이 활성화되지 않았거나 누락된 경우",
+    "확장 설정 파일(extension.toml)에 명시된 종속성 버전과 실제 설치된 버전이 맞지 않는 경우",
+    "오프라인 환경에서 원격 레포지토리의 종속성 패키지를 내려받지 못한 경우",
+    "Omniverse 캐시 손상으로 인해 확장 레지스트리 정보를 올바르게 읽지 못하는 경우"
+  ],
+  "steps": [
+    "Kit App 콘솔이나 로그를 확인하여 누락된 종속성 확장 이름과 필요한 버전을 파악합니다.",
+    "Extension Manager(Extensions 창)를 엽니다.",
+    "검색창에 누락된 확장 이름을 입력하고 검색합니다.",
+    "해당 확장을 찾았다면 Enable 체크박스를 켜거나 최신 버전으로 업데이트합니다.",
+    "만약 로컬 개발 중인 커스텀 확장이라면 extension.toml 파일의 [dependencies] 섹션에 올바른 확장 이름과 버전 범위가 지정되어 있는지 확인합니다.",
+    "문제가 지속될 경우 Omniverse 캐시 폴더를 정리하고 Application을 재시작합니다."
+  ],
+  "check": [
+    "Application 재시작 시 콘솔 창에 [omni.kit.app] 관련 종속성 오류 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "Extension Manager에서 모든 필수 확장들이 초록색 활성화 상태로 정상 로드되었는지 확인합니다."
+  ],
+  "prevent": [
+    "새로운 확장 기능을 추가하거나 배포할 때 extension.toml 파일의 종속성 설정을 정확히 작성합니다.",
+    "팀 내 협업 시 필요한 확장 리스트와 버전을 공유하여 환경 차이를 최소화합니다."
+  ],
+  "keywords": [
+    "Omniverse 오류",
+    "확장 기능 로드 실패",
+    "omni.kit.app",
+    "Failed to load extension",
+    "종속성 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T04:02:33+00:00"
+}

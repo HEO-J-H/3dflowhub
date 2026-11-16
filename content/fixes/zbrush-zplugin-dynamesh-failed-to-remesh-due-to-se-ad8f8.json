@@ -1,0 +1,39 @@
+{
+  "id": "zbrush-zplugin-dynamesh-failed-to-remesh-due-to-se-ad8f8",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: DynaMesh failed to remesh due to self-intersection or non-closed mesh",
+  "title": "Zplugin: DynaMesh failed to remesh due to self-intersection or non-closed mesh 오",
+  "summary": "ZBrush에서 DynaMesh를 실행할 때 메쉬가 스스로 겹치거나(Self-intersection) 뚫린 면(Non-closed mesh)이 존재하여 리메시 연산을 완료할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬의 두께가 너무 얇거나 교차하여 Self-intersection(자기 교차)이 발생한 경우",
+    "메쉬 일부에 구멍이 뚫려 있어 완전한 닫힌 볼륨(Closed volume) 형태를 이루지 못한 경우",
+    "익스트루드나 마스크 작업 중 비정상적인 면(Non-manifold geometry)이 생성된 경우"
+  ],
+  "steps": [
+    "Tool Palette > Geometry > DynaMesh 메뉴에서 Resolution 값을 잠시 낮추거나 설정을 확인합니다.",
+    "Tool Palette > Geometry > Mesh Integrity 메뉴에서 Check Mesh를 눌러 오류가 있는지 진단합니다.",
+    "Mesh Integrity 하단의 Fix Mesh를 클릭하여 뚫린 구멍이나 비정상적인 폴리곤을 자동으로 수정합니다.",
+    "메쉬가 심하게 꼬인 부분은 ZModeler 브러시나 Standard 브러시로 겹친 영역을 펴거나 정리합니다.",
+    "수정이 어렵다면 Tool Palette > Deformation > Polish나 Close Holes 기능을 사용하여 구멍을 막아줍니다.",
+    "문제가 해결된 상태에서 다시 DynaMesh 버튼을 클릭하여 리메시를 수행합니다."
+  ],
+  "check": [
+    "DynaMesh를 실행했을 때 에러 메시지가 뜨지 않고 폴리곤 구조가 자연스럽게 재정렬되는지 확인합니다.",
+    "Tool Palette의 Polyframe(Shift+F)을 켜고 메쉬 전체에 구멍이나 겹침 없이 균일한 사각형 Grid가 형성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "DynaMesh를 실행하기 전 브러시 작업 시 면이 서로 겹치거나 지나치게 얇아지지 않도록 주의합니다.",
+    "복잡한 구조를 만들기 전 Mesh Integrity 검사를 수시로 진행하여 비정상적인오류 요소를 미리 제거합니다."
+  ],
+  "keywords": [
+    "다이나메시 오류",
+    "DynaMesh failed",
+    "ZBrush self-intersection",
+    "ZBrush 구멍 메우기",
+    "Mesh Integrity"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-16T04:02:28+00:00"
+}
