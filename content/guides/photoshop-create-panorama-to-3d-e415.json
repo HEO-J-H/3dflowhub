@@ -1,0 +1,83 @@
+{
+  "id": "photoshop-create-panorama-to-3d-e415",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "이미지 기반 조명",
+  "name": "Create Panorama to 3D",
+  "title": "3D 파노라마 만들기 — 구면 파노라마 이미지를 활용해 3D 뷰어용 환경 맵(HDRI) 제작",
+  "summary": "Photoshop의 Photomerge와 3D Panorama 기능을 활용해 여러 장의 파노라마 사진을 연결하고 입체적인 360도 공간 환경으로 변환합니다.",
+  "when": [
+    "여러 장의 360도 파노라마 사진을 하나의 입체 공간으로 잇고 싶을 때",
+    "3D 배경이나 렌더링 환경으로 사용할 구면 배경(HDRI/Skybox)을 제작할 때",
+    "사진 데이터를 기반으로 간단한 3D 공간감을 빠르게 시각화하고 싶을 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 File → Automate → Photomerge 를 엽니다.",
+    "Use 드롭다운에서 Panorama 를 선택하고, Browse 버튼을 눌러 촬영한 파노라마 사진들을 불러옵니다.",
+    "Layout 옵션(Spherical 등)을 선택하고 OK를 눌러 사진들을 하나의 심리스(Seamless) 파노라마 이미지로 스티칭합니다.",
+    "스티칭된 레이어들을 병합한 후, 상단 메뉴바에서 3D → New Mesh from Layer → Panorama Preview → Spherical Panorama 를 선택합니다.",
+    "3D Workspace로 전환되면 Viewport에서 Mouse로 공간을 회전하며 입체적인 파노라마 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Layout",
+      "desc": "파노라마 사진들이 합성될 투영 방식(Auto, Perspective, Spherical 등)을 결정합니다."
+    },
+    {
+      "name": "Blend Images together",
+      "desc": "사진 간의 밝기 차이와 경계선을 자연스럽게 블렌딩하여 이음새를 없애줍니다."
+    },
+    {
+      "name": "Vignette Removal",
+      "desc": "렌즈 주변부 어두워짐 현상(비네팅)을 자동으로 보정하여 균일한 밝기를 만듭니다."
+    },
+    {
+      "name": "Geometric Distortion Correction",
+      "desc": "렌즈 왜곡으로 인해 휘어진 직선과 수평을 자동으로 교정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D Viewport 배경용 HDRI 스카이박스 제작",
+      "steps": [
+        "Photomerge로 360도 구면 파노라마 이미지를 완성합니다.",
+        "3D Panorama 기능을 실행하여 구형 메쉬로 변환합니다.",
+        "3D 메뉴에서 파일을 내보내어 3ds Max나 Blender의 환경 조명 맵으로 활용합니다."
+      ]
+    },
+    {
+      "title": "가상 부동산 및 실내 공간 프리뷰",
+      "steps": [
+        "여러 장의 실내 사진을 Photomerge로 정렬합니다.",
+        "Spherical Panorama 뷰를 활성화해 클라이언트가 내부를 둘러볼 수 있는 시각 자료를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진 겹침 구간 부족 → 최소 30% 이상 겹치도록 촬영한 후 다시 Photomerge를 실행합니다.",
+    "노출 차이로 인한 이음새 발생 → 블렌드 옵션(Blend Images together)을 켜거나 사진 촬영 시 노출 값을 고정합니다."
+  ],
+  "related": [
+    "Photomerge",
+    "3D Panorama",
+    "Environment and HDRI",
+    "Spherical Panorama"
+  ],
+  "videos": [
+    {
+      "id": "zvMUd4jFgMg",
+      "title": "How to Make a 360° Panorama Illustration Using Adobe Photoshop",
+      "author": "Oneshi Press"
+    },
+    {
+      "id": "TqFiXYzF-Wc",
+      "title": "How to Make a Digital Art 360° PANORAMA with Photoshop",
+      "author": "Aaron Rutten"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Create%20Panorama%20to%203D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-16T16:24:58.488684+00:00"
+}

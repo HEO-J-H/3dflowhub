@@ -34853,5 +34853,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 검토 문서 범위 명확화",
     "auto": true
+  },
+  {
+    "at": "2026-11-16T16:20:25+00:00",
+    "kind": "proposal",
+    "id": "p-b656243dcb",
+    "title": "보류된 TripoSR 단위 테스트 패치 경로 재점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 파일 수정이 패치 적용 실패로 held 상태임",
+    "proposal": "backend/tests/test_triposr.py 파일의 구조와 테스트 케이스를 다시 확인하여 코딩 에이전트가 정상적으로 패치를 적용할 수 있도록 내용을 분할 및 수정합니다.",
+    "expected": "TripoSR 단위 테스트가 정상적으로 통과되며 코드 안정성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T16:20:25+00:00",
+    "kind": "proposal",
+    "id": "p-a1e1b5e07c",
+    "title": "웹 브라우저 PBR 안내 문서 및 사용자 가이드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "웹 브라우저 처리 방식에 대한 사용자 피드백 및 안내 문구 보강 필요성 제기됨",
+    "proposal": "web/index.html 또는 관련 안내 문서에 PBR 맵 생성 과정과 브라우저 처리 제약 사항에 대한 설명 문구를 명확하게 추가합니다.",
+    "expected": "사용자가 웹 버전의 기능을 정확히 이해하고 오류 혼선을 줄임",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T16:26:16.752328+00:00",
+    "kind": "decision",
+    "id": "p-b656243dcb",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 단위 테스트 수정",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T16:26:16.786014+00:00",
+    "kind": "decision",
+    "id": "p-a1e1b5e07c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T16:26:20.205671+00:00",
+    "kind": "triage",
+    "id": "p-a1e1b5e07c",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 끝낸 제안에 이미 웹 브라우저 PBR 안내 문서 및 사용자 가이드 관련 내용이 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-16T16:26:20.237110+00:00",
+    "kind": "decision",
+    "id": "p-a1e1b5e07c",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안에 이미 웹 브라우저 PBR 안내 문서 및 사용자 가이드 관련 내용이 반영되어 있습니다."
   }
 ]

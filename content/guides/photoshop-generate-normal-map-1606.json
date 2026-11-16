@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-generate-normal-map-1606",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "노멀맵 생성",
+  "name": "Generate Normal Map",
+  "title": "노멀 맵 생성 필터 — 디퓨즈 소스 이미지로부터 입체감 있는 노멀 데이터 맵 추출",
+  "summary": "Photoshop의 Generate Normal Map 필터를 사용하여 디퓨즈 텍스처나 흑백 이미지로부터 3D 렌더링에 바로 사용할 수 있는 노멀 맵(Normal Map)을 빠르게 생성합니다.",
+  "when": [
+    "단색 사진이나 텍스처에서 폴리곤 추가 없이 입체감 있는 디테일을 표현하고 싶을 때",
+    "외부 3D 툴 없이 Photoshop에서 직접 빠르게 노멀 맵 초안을 제작해야 할 때",
+    "벽돌, 콘크리트, 가죽 등 텍스처 소스에서 범프 및 디테일 맵을 추출할 때"
+  ],
+  "steps": [
+    "Photoshop에서 노멀 맵을 만들 이미지를 불러옵니다 (RGB Color 모드 확인).",
+    "상단 메뉴 바에서 Filter > 3D > Generate Normal Map을 선택합니다.",
+    "3D 미리보기 대화상자가 열리면, Viewport에서 회전하며 입체감을 확인합니다.",
+    "우측 패널의 Detail Scale, Blur 등 슬라이더를 조절하여 노멀 맵의 강도와 세밀함을 맞춥니다.",
+    "OK 버튼을 눌러 필터를 적용하고, 결과물을 노멀 맵용 파일로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Detail Scale",
+      "desc": "노멀 맵에 반영될 디테일의 크기와 주파수를 조절합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "이미지 경계를 부드럽게 만들어 노멀 맵의 거친 노이즈를 줄입니다."
+    },
+    {
+      "name": "Invert X",
+      "desc": "X축(빨간색 채널) 방향의 법선 반사를 반전시킵니다."
+    },
+    {
+      "name": "Invert Y",
+      "desc": "Y축(초록색 채널) 방향의 법선 반사를 반전시킵니다 (DirectX/OpenGL 노멀 호환용)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 텍스처 노멀 맵 제작",
+      "steps": [
+        "벽돌 사진을 Photoshop에 불러옵니다.",
+        "Filter > 3D > Generate Normal Map을 실행합니다.",
+        "Detail Scale을 높여 벽돌 표면의 질감을 살린 뒤 적용합니다."
+      ]
+    },
+    {
+      "title": "금속 패널 흠집 표현",
+      "steps": [
+        "스크래치 패턴 흑백 이미지를 준비합니다.",
+        "Generate Normal Map 필터를 적용해 미세한 흠집의 입체감을 만듭니다.",
+        "3D 툴의 Normal 슬롯에 연결해 금속 재질감을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컬러 이미지를 그대로 변환하여 색상 정보가 왜곡됨 → 흑백(Grayscale) 변환 후 필터 적용",
+    "DirectX와 OpenGL의 Y축 방향 반전 확인 누락으로 빛 방향이 어색함 → Invert Y 옵션 토글로 수정"
+  ],
+  "related": [
+    "Substance 3D Sampler",
+    "Height and Roughness from Diffuse",
+    "3ds Max Normal Bump",
+    "Adobe Photoshop"
+  ],
+  "videos": [
+    {
+      "id": "u3msJjQVv64",
+      "title": "Photoshop - How to create a seamless diffuse, normal and bump map",
+      "author": "Esmael Alhroub"
+    },
+    {
+      "id": "YJqWHsllczY",
+      "title": "NORMAL MAP in Photoshop",
+      "author": "Saeed Mandegar Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Generate%20Normal%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "RGB Color",
+    "Filter",
+    "Generate Normal Map"
+  ],
+  "at": "2026-11-16T16:23:27.240164+00:00"
+}
