@@ -5,7 +5,7 @@
   "group": "페인터",
   "name": "Substance Painter baking mesh maps",
   "title": "Substance Painter 맵 Baking",
-  "summary": "Substance 3D Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 최신 12.1 및 12.2 버전에서는 하드 서페이스 자동 UV(Auto Unwrap), Quick Bake, Auto Rebake 기능이 추가되었으며, 모델 선택과 Bake 준비 과정 및 불필요한 반복 단계를 간소화하여 작업 속도를 높였습니다. 또한 Skew Correction 페인팅, 엣지 프로텍션(Edge Protection), 지오메트리 랩핑(Warp to Geometry) 설정을 통해 투영 정확도와 안정성이 크게 향상되었습니다.",
+  "summary": "Substance 3D Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 최신 버전과 더불어, 최근 베이크된 메시 맵을 자동으로 할당하고 재베이크 후 원클릭으로 갱신해 주는 무료 플러그인(레딧 사용자 /u/MR_WACKER 제작)이 공개되어 수동 슬롯 교체의 번거로움을 줄일 수 있게 되었습니다. 또한 하드 서페이스 자동 UV(Auto Unwrap), Quick Bake, Auto Rebake 기능이 추가되어 작업 속도가 향상되었으며, Skew Correction 페인팅, 엣지 프로텍션(Edge Protection), 지오메트리 랩핑(Warp to Geometry) 설정을 통해 투영 정확도가 크게 향상되었습니다.",
   "when": [
     "로우 폴리곤 모델에 하이 폴리곤의 스컬프팅 디테일을 노말 맵으로 입히고 싶을 때",
     "Smart Materials가 모서리나 홈을 자동으로 인식해 먼지나 마모 효과를 주게 하고 싶을 때",
@@ -15,9 +15,9 @@
     "Substance 3D Painter에서 프로젝트를 열고 텍스처를 적용할 로우 폴리곤 모델을 준비합니다.",
     "필요시 하드 서페이스 자동 UV(Auto Unwrap) 기능을 적용해 UV를 전개하고,개선된 모델 선택 및 Bake 준비 단계를 거쳐 Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
     "Bake Mesh Maps 창에서 Common 탭의 Output Size(해상도)와 상단 탭에서 베이킹할 맵들을 선택합니다.",
-    "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다.",
+    "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다. (필요 시 메시 맵 자동 할당 무료 플러그인을 활용하여 반복 연결 과정을 단축합니다.)",
     "Max Front/Rear 방사 거리(Distance) 값을 조절하거나 최신 버전의 Skew Correction 페인팅(브러시, Polygon Fill, Edge Protection, Warp to Geometry 활용)을 이용해 투영 범위를 세밀하게 맞춥니다.",
-    "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성하고, Quick Bake 및 Auto Rebake를 활용해 수정 사항을 즉시 갱신합니다."
+    "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성하고, Quick Bake, Auto Rebake 및 원클릭 갱신 플러그인을 활용해 수정 사항을 즉시 갱신합니다."
   ],
   "params": [
     {
@@ -190,6 +190,19 @@
         "p:2026-11-09-c057afb736da95a8"
       ],
       "skipped": true
+    },
+    {
+      "at": "2026-11-16T16:15:12+00:00",
+      "what": "Substance 3D Painter의 반복적인 메시 맵 연결과 재베이크 갱신 작업을 줄여주는 무료 플러그인(메시 맵 자동 할당 및 원클릭 갱신) 정보를 요약 및 단계에 추가했습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D Painter 메시 맵 자동 할당 무료 플러그인",
+          "url": "https://www.reddit.com/r/3dsmax/comments/1xxrodb/i_made_a_free_substance_3d_painter_plugin_that/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-16-c72ebe9f8e8d5b82"
+      ]
     }
   ]
 }

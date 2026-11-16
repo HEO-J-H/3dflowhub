@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-pattern-maker-e874",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 제작",
+  "name": "Pattern Maker",
+  "title": "패턴 만들기 — 3D 모델에 반복 적용할 수 있는 심리스(Seamless) 텍스처 타일 생성",
+  "summary": "Photoshop의 Pattern Maker(또는 패턴 정의 기능)는 이미지의 특정 영역을 무한히 반복되는 심리스(Seamless) 패턴으로 변환하여 3D 텍스처나 배경 소스로 활용하는 기능입니다.",
+  "when": [
+    "3D 모델에 적용할 타일링 가능한 벽돌, 콘크리트, 직물 텍스처를 만들 때",
+    "웹 배경이나 일러스트레이션에 반복되는 무늬를 채워 넣을 때",
+    "이미지 경계선이 끊기지 않는 자연스러운 심리스(Seamless) 패턴을 빠르게 제작할 때"
+  ],
+  "steps": [
+    "Photoshop을 실행하고 패턴으로 만들 이미지를 불러옵니다.",
+    "Rectangular Marquee Tool(M)을 사용하여 반복될 텍스처의 정사각형 영역을 선택합니다.",
+    "상단 메뉴에서 Edit → Define Pattern을 클릭합니다.",
+    "Pattern Name 대화 상자에서 생성할 패턴의 이름을 입력하고 OK를 누릅니다.",
+    "새로운 레이어나 3D 맵핑 소스에서 Edit → Fill(Shift+F5)을 선택합니다.",
+    "Contents 항목을 Pattern으로 설정하고, Custom Pattern에서 방금 저장한 패턴을 선택한 후 OK를 눌러 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Define Pattern",
+      "desc": "선택한 이미지 영역을 새로운 패턴 프리셋으로 등록합니다."
+    },
+    {
+      "name": "Pattern Stamp Tool",
+      "desc": "브러시처럼 드래그하여 등록된 패턴을 캔버스 위에 직접 칠합니다."
+    },
+    {
+      "name": "Pattern Overlay",
+      "desc": "레이어 스타일에 패턴을 실시간 타일링 형태로 입힙니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "패턴의 크기를 확대하거나 축소하여 타일 간격을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 벽돌 벽 배경 텍스처 제작",
+      "steps": [
+        "벽돌 사진을 정면이 보이도록 Crop Tool로 자릅니다.",
+        "Offset 필터를 사용하여 경계면의 이음새를 중앙으로 모아 수정합니다.",
+        "Edit → Define Pattern으로 벽돌 패턴을 저장합니다.",
+        "새 캔버스에 Fill 기능으로 채워 타일링 여부를 확인합니다."
+      ]
+    },
+    {
+      "title": "3D 의상용 체크 패턴 원단 만들기",
+      "steps": [
+        "정사각형 캔버스를 만들고 교차하는 선을 그려 체크 무늬를 디자인합니다.",
+        "Edit → Define Pattern을 눌러 패턴 프리셋으로 등록합니다.",
+        "3D 모델의 Base Color 맵 영역에 Pattern Overlay 또는 Fill로 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경계선이 맞지 않아 반복할 때 선이 생김 → Offset 필터나 Clone Stamp Tool(S)로 가장자리를 먼저 정리한 뒤 패턴으로 등록하세요.",
+    "패턴의 스케일이 너무 큼 → Pattern Overlay나 Fill 옵션에서 Scale 값을 낮추어 타일 간격을 조절하세요."
+  ],
+  "related": [
+    "Substance 3D Sampler",
+    "Tile Sampler",
+    "Pattern Stamp Tool",
+    "Offset Filter"
+  ],
+  "videos": [
+    {
+      "id": "s_H2v62FssI",
+      "title": "Pattern Tutorial Made Easy | Adobe Photoshop",
+      "author": "Adobe Photoshop"
+    },
+    {
+      "id": "UHCNQe-qtYU",
+      "title": "How to repeat pattern easily in photoshop 2024",
+      "author": "GFX OM"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Pattern%20Maker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Rectangular Marquee Tool",
+    "Edit",
+    "Define Pattern"
+  ],
+  "at": "2026-11-16T16:13:03.252291+00:00"
+}

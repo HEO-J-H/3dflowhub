@@ -34805,5 +34805,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 승인 대기 중인 핵심 PR #78 검토 및 최종 병합",
     "auto": true
+  },
+  {
+    "at": "2026-11-16T16:09:43+00:00",
+    "kind": "proposal",
+    "id": "p-12b883c1f5",
+    "title": "보류된 TripoSR 단위 테스트 파일 재구성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 파일이 패치 적용 실패로 반복해서 held 상태입니다.",
+    "proposal": "backend/tests/test_triposr.py의 코드를 점검하고, 충돌을 피할 수 있도록 테스트 코드를 간소화하여 재작성합니다.",
+    "expected": "단위 테스트가 정상 통과되어 로컬 파이프라인 안정성이 확보됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T16:09:43+00:00",
+    "kind": "proposal",
+    "id": "p-1fbafe32eb",
+    "title": "깃허브 RAG 오픈소스 활용 방안 검토 문서 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사장님 요청 사항으로 깃허브 RAG 오픈소스 검토 및 반영 지시가 있습니다.",
+    "proposal": "docs/rag_integration.md 파일을 신규 생성하여 외부 RAG 오픈소스 중 3D Prompt 및 메타데이터 검색에 활용할 수 있는 방안을 정리합니다.",
+    "expected": "RAG 도입 방향성이 명확해지고 후속 개발의 기준이 마련됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-16T16:15:42.021383+00:00",
+    "kind": "decision",
+    "id": "p-12b883c1f5",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 단위 테스트 수정",
+    "auto": true
+  },
+  {
+    "at": "2026-11-16T16:15:42.061921+00:00",
+    "kind": "decision",
+    "id": "p-1fbafe32eb",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 검토 문서 범위 명확화",
+    "auto": true
   }
 ]

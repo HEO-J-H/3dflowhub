@@ -1,0 +1,88 @@
+{
+  "id": "photoshop-3d-paint-drop-ba65",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 페인팅",
+  "name": "3D Paint Drop",
+  "title": "3D 페인트 드롭 — 2D 레이어 작업을 3D 모델의 표면에 직접 투영하여 그리는 워크플로우",
+  "summary": "Photoshop의 3D Paint Drop은 2D 평면 환경에서 수정한 이미지를 왜곡 없이 3D 모델의 표면에 완벽하게 투영하여 입히는 기능입니다. 3D 공간의 입체감을 유지하면서 텍스처를 자연스럽게 합성할 수 있습니다.",
+  "when": [
+    "3D 모델의 특정 면에 왜곡 없는 평면 그래픽이나 로고를 정확하게 넣고 싶을 때",
+    "복잡한 UV 전개도 위에서 직접 그리기보다 익숙한 2D 캔버스 편집을 활용하고 싶을 때",
+    "기존 2D 사진이나 일러스트를 3D 오브젝트 표면에 자연스럽게 밀착시키고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 파일 또는 3D 레이어를 엽니다.",
+    "3D Viewport에서 텍스처를 투영하고 수정할 특정 표면이나 뷰를 정합니다.",
+    "3D 메뉴에서 3D Paint Drop 명령을 선택하여 2D 편집 창으로 전환합니다.",
+    "열린 2D 캔버스(Smart Object 또는 별도 창)에서 원하는 그래픽, 텍스트, 브러시 작업을 수행합니다.",
+    "편집을 완료한 후 2D 창을 저장하고 닫으면 3D 모델 표면에 자동으로 결과물이 투영됩니다.",
+    "3D Viewport에서 투영된 상태를 확인하고 필요시 3D Rotate Tool이나 Move Tool로 위치를 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "투영되는 텍스처와 기존 3D 표면 사이의 불투명도를 조절합니다."
+    },
+    {
+      "name": "Blending Mode",
+      "desc": "기존 3D 텍스처와 새로운 투영 레이어 간의 합성 방식을 결정합니다."
+    },
+    {
+      "name": "Projection Plane",
+      "desc": "이미지가 3D 표면에 투영될 기준 평면이나 카메라 시점을 설정합니다."
+    },
+    {
+      "name": "Texture Channel",
+      "desc": "Diffuse, Bump, Specular 등 어떤 채널에 페인트를 적용할지 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 패키지 상자에 라벨과 바코드 투영하기",
+      "steps": [
+        "상자 모델이 있는 3D 파일을 엽니다.",
+        "Paint Drop을 실행하여 2D 편집 캔버스를 엽니다.",
+        "준비한 바코드와 라벨 이미지를 캔버스 위에 배치합니다.",
+        "저장하여 3D 박스 정면에 라벨이 깔끔하게 입혀진 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "자동차 차체에 데칼(스티커) 그래픽 넣기",
+      "steps": [
+        "차량 3D 모델의 원하는 측면 뷰를 3D Viewport에서 맞춥니다.",
+        "3D Paint Drop을 실행해 2D 캔버스 상태로 전환합니다.",
+        "측면 도어 위치에 맞추어 Racing 데칼 그래픽을 그려 넣습니다.",
+        "창을 닫아 곡면의 굴곡에 맞춰 데칼이 투영되도록 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투영 위치가 어긋남 → 3D Viewport의 카메라 시점(Camera View)을 먼저 정확히 맞춘 후 Paint Drop을 실행하세요.",
+    "텍스처 Resolution가 깨짐 → 원본 2D 캔버스 파일의 Resolution(DPI 및 픽셀 크기)가 너무 낮지 않은지 확인하세요.",
+    "다른 채널에 그려짐 → 페인트를 적용하기 전에 Material Properties 패널에서 올바른 채널(예: Diffuse)이 선택되었는지 확인하세요."
+  ],
+  "related": [
+    "Substance 3D Stencils and projection",
+    "Blender Texture Paint brushes",
+    "Substance 3D Projection painting from ph",
+    "Photoshop 3D Materials"
+  ],
+  "videos": [
+    {
+      "id": "EXQKzdA8MO8",
+      "title": "How to use the 3D material eyedropper tool & 3D Material Drop Tool l Adobe Photoshop l Class 10",
+      "author": "4U DESIGNERS"
+    },
+    {
+      "id": "ouviTuZUB4E",
+      "title": "Liquid Paint Marbling Effect in Photoshop",
+      "author": "Dansky"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Paint%20Drop",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-16T16:11:37.605239+00:00"
+}
