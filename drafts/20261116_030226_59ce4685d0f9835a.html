@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting 희소 뷰 과적합 방지 SLD 논문 발표 | TAGS: Gaussian Splatting,스파스 뷰,과적합,논문,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 희소 뷰 3D Gaussian Splatting에서 발생하는 과적합을 해결하기 위해 계보 기반 드롭아웃(SLD)과 균등 밀집화(LBD) 기법을 제안한 연구입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>희소 뷰 3D Gaussian Splatting의 과적합 문제</h2>
+<p>제한된 수의 이미지만 주어지면 씬 지오메트리를 제약하기 어려워 과적합이 발생합니다. 기존의 개별 드롭아웃 방식은 주변 Gaussian의 보상 효과 때문에 효과가 떨어지는 한계가 있습니다.</p>
+<h2>Stage-wise Lineage-aware Dropout(SLD) 기법</h2>
+<p>동일한 창시자에서 복제나 분할을 통해 파생된 Gauss 원시인들의 집합을 계보 가족으로 정의합니다. SLD는 구조적 정규화 단계에서는 계보 가족 단위의 드롭아웃을 적용하고, 후기 정제 단계에서는 개별 드롭아웃으로 전환합니다.</p>
+<h2>Lineage-Balanced Densification(LBD) 적용</h2>
+<p>확장된 후보 풀을 구성하고 평균 그래디언트 점수 및 기존 자손 크기에 따라 밀집화 예산을 재할당합니다. 밀집화 과정에서 계보의 특성을 반영하여 균형 잡힌 Gaussian 생성 및 정리가 이루어집니다.</p>
+<h2>LLFF 및 MipNeRF360 데이터셋 실험 결과</h2>
+<p>LLFF, MipNeRF360, Blender 데이터셋을 활용한 실험을 통해 희소 뷰 복원 부문에서 경쟁력 있는 성능을 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">제한된 뷰 환경에서 Gaussian 간의 보상 효과를 분석해 구조화된 정규화 방식을 적용합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. SLD 기법은 왜 도입되었나요?</b><br/>A. 희소 뷰 3D Gaussian Splatting에서 제한된 이미지로 인한 과적합을 막고, 주변 Gaussian의 보상 효과를 극복하기 위해 도입되었습니다.</p>
+<p><b>Q. LBD는 어떤 역할을 하나요?</b><br/>A. 밀집화 단계에서 후보 풀을 확장하고 평균 그래디언트와 자손 크기에 따라 예산을 재할당하여 효율적인 최적화를 돕습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-15-649bb79e01d6705c.html">Insta360 X6 Spatial Capture Gaussian Splatting 테스트</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-2ccb90c92ac005d0.html">Gaussian Splatting 빌보드 규모 적용 사례</a></li><li><a href="https://heo-j-h.github.io/3dflowhub/p/2026-11-14-1f89aa1781772c07.html">Gaussian Splatting과 일반 카메라로 식물 디지털 트윈 제작</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.17752v1" target="_blank" rel="noopener nofollow">Stage-wise Lineage-aware Dropout for Sparse-View 3D Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,74 @@
+{
+  "title_ko": "Stage-wise Lineage-aware Dropout: Sparse-View 3DGS",
+  "title": "Stage-wise Lineage-aware Dropout for Sparse-View 3D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.17752v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "Sparse-view",
+    "Dropout",
+    "Densification",
+    "Lineage"
+  ],
+  "summary": "제한된 뷰에서 3D Gaussian Splatting의 과적합을 막기 위해 Gauss 원조의 혈통(Lineage Family)을 기반으로 단계별 드롭아웃과 균형 잡힌 밀집화를 수행하는 방법입니다.",
+  "insight": "이 연구의 혈통 기반 접근법은 향후 희소 뷰 재구성에서 Gauss 분포의 구조적 안정성을 높이는 방향으로 응용될 수 있습니다. (가능성) 3D 아티스트들이 적은 소스 이미지로 3D 모델을 복원할 때 과적합을 줄이고 세부 디테일을 정교하게 다듬는 알고리즘의 기초로 활용될 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "희소 뷰(Sparse-view) 환경에서는 관측 이미지가 적어 3D Gaussian Splatting(3DGS)이 쉽게 과적합되며, 보지 않은 시점에서는 왜곡이나 부유물 아티팩트가 생깁니다. 기존 독립적 드롭아웃은 주변 Gauss가 빈 곳을 채우는 보상 효과 때문에 효과가 떨어지는 한계가 있습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "초기화 시점의 Gauss(Founder)와 복제·분할로 파생된 자손들을 하나의 혈통 가족(Lineage family)으로 묶어 관리합니다. 통계에 따르면 95%의 가족은 23개 이하의 멤버를 가지며, 같은 가족의 멤버들은 공간적으로 군집하는 특성을 보입니다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "제안하는 SLD(Stage-wise Lineage-aware Dropout)는 구조 정규화 단계에서 혈통 가족 단위로 드롭아웃을 적용하고, 세부 묘사 정밀화 단계 이후에는 개별 Gauss 드롭아웃으로 전환합니다. 또한 LBD(Lineage-Balanced Densification)를 통해 확장된 후보 풀을 만들고 가족별 평균 기울기 점수와 자손 수에 따라 밀집화 예산을 재할당합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "LLFF, MipNeRF360, Blender 데이터셋을 사용한 실험에서 희소 뷰 재구성 성능 측면에서 경쟁력 있는 결과를 달성했습니다. 실험 중 가족 드롭아웃 비율이 동일할 때 개별 Gauss가 동시에 탈락할 확률은 약 4.09%로 나타났습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문 본문에서는 혈통 가족의 공간적 군집과 보상 효과를 다루었으나, 매우 복잡한 동적 장면이나 비정형 데이터에서의 한계점이나 실시간 처리 속도에 대한 구체적인 수치는 제한적으로 다루어집니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본문에는 코드나 데이터셋 자체의 공식 오픈소스 GitHub 링크가 직접 명시되어 있지 않으며, LLFF, MipNeRF360, Blender 표준 벤치마크를 활용하여 실험을 진행했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "혈통 가족(Lineage family)이란 무엇인가요?",
+      "a": "초기화 단계에서 생성된 원조 Gauss(Founder)와 이후 복제 또는 분할 연산을 통해 파생된 모든 자손 가우스들의 집합을 의미합니다."
+    },
+    {
+      "q": "Stage-wise Lineage-aware Dropout(SLD)은 언제 전체 가족 드롭아웃을 멈추나요?",
+      "a": "훈련 과정을 웜업, 구조 정규화, 세부 정밀화 단계로 나눌 때, 전환점(ts) 이후부터는 전체 가족 드롭아웃 대신 개별 Gauss 드롭아웃으로 전환합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.17752v1/3.1.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-16T03:02:26.057274+00:00",
+  "notion_id": "",
+  "id": "2026-11-16-59ce4685d0f9835a",
+  "img_tried": true,
+  "enriched": "2026-11-16",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-16T03:02:42+00:00"
+}
