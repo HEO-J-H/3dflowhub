@@ -36072,5 +36072,43 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T13:20:24+00:00",
+    "kind": "proposal",
+    "id": "p-f83166b1cd",
+    "title": "TripoSR 단위 테스트 경로 단순화 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 및 test_core.py 관련 패치 적용 실패로 여러 건의 작업이 held 상태입니다.",
+    "proposal": "backend/tests/test_triposr.py의 복잡한 패치 블록을 단일 함수 검증 중심으로 분할하여 코딩 에이전트가 쉽게 적용할 수 있도록 재작성합니다.",
+    "expected": "held 상태인 TripoSR 테스트를 정상 통과시켜 파이프라인 신뢰성을 확보합니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T13:23:07.984634+00:00",
+    "kind": "decision",
+    "id": "p-f83166b1cd",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T13:23:10.397788+00:00",
+    "kind": "triage",
+    "id": "p-f83166b1cd",
+    "verdict": "done_already",
+    "reason": "이미 TripoSR 관련 테스트 경로 정비와 문서 보완 작업들이 반복적으로 수행되어 최근 커밋과 끝낸 제안에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-17T13:23:10.446465+00:00",
+    "kind": "decision",
+    "id": "p-f83166b1cd",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 TripoSR 관련 테스트 경로 정비와 문서 보완 작업들이 반복적으로 수행되어 최근 커밋과 끝낸 제안에 반영되었습니다."
   }
 ]

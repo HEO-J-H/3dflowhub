@@ -1,0 +1,21 @@
+<!-- TITLE: Godot 4 게임 엔진에서 구현하는 지면 안개 효과 제작법 | TAGS: Godot,Godot 4,Shader,게임 개발,VFX,고도 엔진,튜토리얼·팁 | CATEGORY: Game Engine/Godot | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/free-ocarina-of-time-remake-style-ground-fog-in-godot/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51063/images/6afc527052890/contain_1200x630.jpg" alt="Godot 4 게임 엔진에서 구현하는 지면 안개 효과 제작법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/free-ocarina-of-time-remake-style-ground-fog-in-godot/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/2GxvYk9YeN4" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 인디 개발자 AtSaturn이 Godot 4.8 Beta 3을 활용해 플레이어를 따라다니며 유체처럼 반응하는 지면 안개 Shader를 무료로 공개했습니다.</p>
+<p style="color:#888;">분류: Game Engine › Godot › 튜토리얼·팁</p>
+<h2>Godot 4에서 구현된 지면 안개 효과의 특징</h2>
+<p>인디 게임 개발자 AtSaturn이 제작한 이 프로젝트는 레트로 감성의 안개 효과를 모티브로 합니다. 플레이어를 따라다니며 지형 위에 밀착되고, 캐릭터가 지나갈 때 유체처럼 밀려나는 원형 안개 패치를 제공합니다. 실제 Volumetric 포그를 사용하지 않고 Shader가 적용된 메시를 활용하여 가벼운 성능을 유지합니다.</p>
+<h2>Godot 4.8 Beta 3 환경과 Jolt Physics 활용</h2>
+<p>개발 과정에서 Godot 4.8 Beta 3 버전과 Forward+ 렌더링, Jolt Physics 물리 엔진이 사용되었습니다. 전체 프로젝트 소스 코드와 디버그 씬이 함께 제공되어 다운로드 후 즉시 실행하여 작동 방식을 확인할 수 있습니다. 웹 데모 버전도 지원되어 브라우저에서 직접 테스트가 가능합니다.</p>
+<h2>프로젝트 적용 및 Inspector 파라미터 조절 방법</h2>
+<p>자신의 프로젝트에 적용하려면 안개 폴더를 복사한 뒤 플레이어 노드의 자식으로 GroundFog 노드를 배치하면 됩니다. Inspector 패널에서 안개의 높이, 밀도, 색상, 조명, 바람 효과, 리필 속도, 물리적 밀림 강도를 세밀하게 조정할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Godot 4.8 Beta 3의 Forward+ 렌더링과 Jolt Physics를 결합해 실제 Volumetric 포그 없이도 가벼운 메시와 Shader만으로 최적화된 안개 효과를 구현했습니다. 저사양 하드웨어에서도 원활하게 작동하여 인디 게임 프로젝트의 성능 부담을 크게 덜어줍니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 이 지면 안개 효과는 어떤 Godot 버전에서 제작되었나요?</b><br/>A. Godot 4.8 Beta 3 버전에서 제작되었으며, Forward+ 렌더링과 Jolt Physics를 기반으로 구동됩니다.</p>
+<p><b>Q. 실제 Volumetric 포그를 사용하는 방식인가요?</b><br/>A. 아닙니다. 무거운 Volumetric 포그 대신 Shader가 적용된 가벼운 메시를 사용하여 저사양 하드웨어에서도 최적화된 성능을 냅니다.</p>
+<p><b>Q. 프로젝트 파일은 어디서 얻을 수 있고 어떻게 적용하나요?</b><br/>A. 개발자가 공개한 다운로드 링크를 통해 프로젝트 전체를 받을 수 있으며, fog 폴더를 복사해 플레이어의 자식 노드로 추가한 뒤 레이어만 설정하면 됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-14-172ca083b3bd0d77.html">Godot 엔진 기반 Generals 리메이크 프로젝트 공개</a></li><li><a href="https://3dflowhub.kr/p/2026-11-14-557e01abfb444e06.html">Godot Engine, 2027년까지 JetBrains 지원 연장</a></li><li><a href="https://3dflowhub.kr/p/2026-11-11-3e856e2fa3e06152.html">Godot 엔진으로 2D 게임 제작: Roblox 대안</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/free-ocarina-of-time-remake-style-ground-fog-in-godot/" target="_blank" rel="noopener nofollow">Free Ocarina Of Time Remake-Style Ground Fog In Godot</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
