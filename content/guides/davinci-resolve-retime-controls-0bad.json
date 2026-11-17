@@ -1,0 +1,102 @@
+{
+  "id": "davinci-resolve-retime-controls-0bad",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Retime Controls",
+  "title": "Retime Controls — 속도 변화 구간을 세밀하게 제어하는 속도 램핑(Speed Ramping)",
+  "summary": "DaVinci Resolve의 Retime Controls는 클립의 재생 속도를 자유롭게 조절하여 슬로우 모션이나 패스트 모션을 구현하는 핵심 기능입니다.",
+  "when": [
+    "액션 씬의 타격감을 살리기 위해 특정 구간만 느리게(슬로우 모션) 만들 때",
+    "지루한 이동 구간이나 빈 장면을 빠르게 넘어가도록(패스트 모션) 압축할 때",
+    "영상의 특정 프레임을 멈춰 세워(Freeze Frame) 강조하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Edit Page로 진입합니다.",
+    "Timeline에서 속도를 조절할 클립을 Mouse 우클릭합니다.",
+    "컨텍스트 메뉴에서 Change Clip Speed 또는 Retime Controls를 선택합니다 (Hotkey Ctrl + R).",
+    "클립 상단에 나타난 Retime Controls 바의 드롭다운 화살표를 클릭합니다.",
+    "Add Speed Point를 선택하여 속도를 다르게 가져갈 구간을 나눕니다.",
+    "속도 조절 바의 퍼센트(%) 값을 변경하거나 드래그하여 원하는 속도로 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Change Clip Speed",
+      "desc": "클립 전체의 재생 속도와 지속 시간을 일괄 조절합니다."
+    },
+    {
+      "name": "Retime Controls",
+      "desc": "클립 위에 속도 조절 바를 띄워 구간별로 세밀한 속도 제어를 가능하게 합니다."
+    },
+    {
+      "name": "Add Speed Point",
+      "desc": "선택한 프레임 위치에 속도 변화 지점을 생성하여 구간을 분할합니다."
+    },
+    {
+      "name": "Freeze Frame",
+      "desc": "특정 프레임을 지정된 시간 동안 멈춰 있는 정지 화면으로 만듭니다."
+    },
+    {
+      "name": "Retime Curve",
+      "desc": "곡선 그래프를 이용해 속도 변화를 부드러운 가속과 감속으로 만듭니다."
+    },
+    {
+      "name": "Optical Flow",
+      "desc": "프레임 사이를 보간하여 슬로우 모션 재생 시 끊김 없이 부드럽게 처리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "역동적인 액션 씬 슬로우 모션",
+      "steps": [
+        "Edit Page에서 클립을 선택하고 Ctrl + R을 눌러 Retime Controls를 활성화합니다.",
+        "타격이 일어나는 순간 앞뒤로 Add Speed Point를 추가해 구간을 나눕니다.",
+        "가운데 구간의 속도를 40%로 낮추어 슬로우 모션을 적용합니다.",
+        "Inspector의 Retime Process를 Optical Flow로 설정하여 끊김을 방지합니다."
+      ]
+    },
+    {
+      "title": "중요한 순간 정지 화면(Freeze Frame)",
+      "steps": [
+        "Timeline의 재생 헤드를 멈추고 싶은 프레임에 위치시킵니다.",
+        "클립 우클릭 후 Add Speed Point를 적용하여 해당 프레임을 분할합니다.",
+        "분할된 짧은 구간의 드롭다운 메뉴에서 Freeze Frame을 선택합니다.",
+        "정지 화면 구간의 모서리를 늘려 유지 시간을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "속도를 지나치게 낮추었을 때 화면이 뚝뚝 끊기는 현상 → Inspector 패널의 Retime Process를 Optical Flow 또는 Frame Blend로 변경하여 해결합니다.",
+    "속도를 변경한 뒤 Audio 싱크가 밀리는 현상 → Clip 속성에서 Link Clip 해제 후 Audio를 별도로 조정하거나 Ripple Sequence 옵션을 확인합니다."
+  ],
+  "related": [
+    "Retime Curve",
+    "Optical Flow",
+    "Speed Change",
+    "Keyframe"
+  ],
+  "videos": [
+    {
+      "id": "I64jnYfbkg0",
+      "title": "How To Use Retime Controls In DaVinci Resolve (Tutorial 2026)",
+      "author": "Just Kristers"
+    },
+    {
+      "id": "vo3fBKVNhyQ",
+      "title": "Set a CUSTOM ReTime Speed - DaVinci Resolve for NOOBS! - Tip #43",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Retime%20Controls",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Edit Page",
+    "Timeline",
+    "Mouse",
+    "Change Clip Speed",
+    "Retime Controls"
+  ],
+  "at": "2026-11-17T08:28:21.751092+00:00"
+}

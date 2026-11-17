@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-new-3d-light-4203",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조명 및 렌더",
+  "name": "New 3D Light",
+  "title": "New 3D Light — 새 3D 조명 추가",
+  "summary": "Photoshop의 New 3D Light 기능은 2D 이미지 레이어 환경에서 가상의 3D 조명을 추가하여 입체감과 그림자 효과를 연출하는 도구입니다. 평면적인 그래픽에 자연스러운 빛의 방향과 강도를 부여할 때 사용합니다.",
+  "when": [
+    "2D 일러스트나 사진에 입체적인 조명과 그림자를 더하고 싶을 때",
+    "Photoshop 내에서 3D 텍스트나 오브젝트에 새로운 광원을 추가할 때",
+    "여러 개의 조명으로 씬의 분위기와 입체감을 극대화하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop 레이어 패널에서 조명을 적용할 3D 레이어나 3D 변환된 레이어를 선택합니다.",
+    "상단 메뉴 바에서 3D 메뉴를 클릭합니다.",
+    "New Light 서브메뉴로 이동합니다.",
+    "원하는 조명 유형(Point Light, Spot Light, Infinite Light 등)을 선택합니다.",
+    "Properties 패널에서 조명의 색상, 강도, 위치를 조정하여 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Light Type",
+      "desc": "조명의 종류(포인트, 스팟, 인피니트 등)를 선택합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "조명의 밝기와 강도를 조절합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "조명에 의해 생기는 그림자의 활성화 여부와 부드러움을 설정합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "조명에서 발산되는 빛의 색상을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 텍스트에 입체 조명 추가하기",
+      "steps": [
+        "텍스트 레이어를 우클릭하여 New 3D Extrusion from Selected Layer를 실행합니다.",
+        "3D 메뉴에서 New Light → Point Light를 선택합니다.",
+        "Properties 패널에서 조명의 위치를 텍스트 앞쪽으로 이동시킵니다.",
+        "Intensity 값을 높여 텍스트의 입체감을 강조합니다."
+      ]
+    },
+    {
+      "title": "스팟 라이트로 특정 영역 강조하기",
+      "steps": [
+        "3D 레이어가 선택된 상태에서 3D → New Light → Spot Light를 선택합니다.",
+        "기즈모를 이용해 스팟 라이트의 각도와 원뿔 범위를 조절합니다.",
+        "렌더링을 통해 빛이 집중되는 효과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명이 보이지 않음 → 3D 레이어가 선택되어 있는지 확인하고 Properties 패널에서 조명 가시성을 켭니다.",
+    "그림자가 너무 거칠게 나옴 → Light의 Shadow 설정에서 Softness 값을 조절하여 부드럽게 만듭니다.",
+    "빛이 과다하게 밝음 → Intensity 값을 낮추거나 조명과 오브젝트의 거리를 조절합니다."
+  ],
+  "related": [
+    "New 3D Postcard from Layer",
+    "Render 3D File",
+    "New 3D Extrusion from Selected Layer",
+    "3D Scene Panel"
+  ],
+  "videos": [
+    {
+      "id": "lAq8vGBkmgc",
+      "title": "Master the NEW \"Light Layer\" in Photoshop! (New Feature)",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "_ypt07_CCnA",
+      "title": "Photoshop Just Changed Lighting Forever 🤯 (New Relight Tool)",
+      "author": "grapexels"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%203D%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New Light"
+  ],
+  "at": "2026-11-17T08:28:17.970305+00:00"
+}
