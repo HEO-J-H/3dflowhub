@@ -1,0 +1,97 @@
+{
+  "id": "davinci-resolve-tracker-a18e",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "Tracker",
+  "title": "Tracker — 모션 그래픽과 요소를 영상에 정밀하게 합성하는 2D 트래킹",
+  "summary": "DaVinci Resolve의 Tracker는 영상 속 피사체나 특정 영역의 움직임을 자동으로 추적하여, 그래픽, 텍스트, Effect 등을 자연스럽게 고정하거나 따라붙게 만드는 강력한 합성 도구입니다.",
+  "when": [
+    "움직이는 자동차 번호판이나 사람의 얼굴을 모자이크로 가려야 할 때",
+    "흔들리는 벽면이나 간판에 새로운 로고나 텍스처를 감쪽같이 합성할 때",
+    "특정 오브젝트의 이동 궤적을 추출해 다른 요소에 애니메이션을 연동할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 탭에서 Fusion 페이지로 이동합니다.",
+    "노드 에디터에서 Tracker 노드를 추가하거나, 상단 툴바에서 Tracker 아이콘을 클릭해 생성합니다.",
+    "Viewer 창에 나타난 트래킹 패턴 박스를 추적하고자 하는 대상 위치에 배치합니다.",
+    "Inspector 패널에서 Tracker 타입(Point, Area 등)과 모드를 설정합니다.",
+    "Inspector 패널의 Track Forward 버튼을 눌러 프레임 단위로 움직임을 추적합니다.",
+    "추적이 완료되면 Operation 모드를 Match Move 등으로 변경하여 다른 요소를 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Tracker Type",
+      "desc": "추적할 대상의 특성에 따라 Point나 Area 등을 선택하여 추적 알고리즘을 결정합니다."
+    },
+    {
+      "name": "Track Forward",
+      "desc": "현재 프레임에서 영상의 앞쪽 방향으로 움직임을 자동 추적합니다."
+    },
+    {
+      "name": "Track Backward",
+      "desc": "현재 프레임에서 영상의 뒤쪽 방향으로 역방향 추적을 수행합니다."
+    },
+    {
+      "name": "Operation",
+      "desc": "추적한 데이터를 바탕으로 화면을 안정화(Stabilize)하거나 오브젝트를 일치(Match Move)시킵니다."
+    },
+    {
+      "name": "Pattern Size",
+      "desc": "추적할 영역의 기준이 되는 패턴 상자의 크기를 조절하여 정확도를 높입니다."
+    },
+    {
+      "name": "Search Area",
+      "desc": "매 프레임마다 패턴을 탐색할 주변 범위의 크기를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "움직이는 스마트폰 화면에 영상 합성하기",
+      "steps": [
+        "스마트폰 화면의 네 모서리를 4-Point Tracker로 지정합니다.",
+        "합성할 영상 미디어 노드를 Tracker 노드에 연결합니다.",
+        "Operation을 Corner Pin으로 설정해 화면 비율에 맞게 고정합니다."
+      ]
+    },
+    {
+      "title": "인물 얼굴 모자이크 처리하기",
+      "steps": [
+        "얼굴의 특징적인 부위에 Point Tracker를 배치합니다.",
+        "Track Forward로 움직임을 끝까지 추적합니다.",
+        "Blur 노드나 Pixelate Effect를 Tracker 데이터에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조도가 급격히 변하거나 피사체가 가려질 때 → 중간 프레임에서 수동으로 트래커 위치를 보정(Keyframe 수정)한 뒤 다시 추적하세요.",
+    "트래킹 박스가 배경의 유사한 무늬를 따라갈 때 → Pattern Size와 Search Area 범위를 줄여 고유한 영역만 지정하세요."
+  ],
+  "related": [
+    "Planar Tracker",
+    "Camera Tracker",
+    "Stabilizer",
+    "Corner Pin"
+  ],
+  "videos": [
+    {
+      "id": "AYYA7YywfZ8",
+      "title": "How To MOTION TRACK Objects In Davinci Resolve",
+      "author": "Davinci Made Simple"
+    },
+    {
+      "id": "TKRBoK70Y7w",
+      "title": "DaVinci Resolve Power Windows and Tracking in 3 Minutes",
+      "author": "JayAreTV"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Tracker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "Tracker"
+  ],
+  "at": "2026-11-17T08:48:22.816807+00:00"
+}

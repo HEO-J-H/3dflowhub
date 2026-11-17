@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-15T05:18:33.004530+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 84,
-      "candidates_passed": 44,
-      "offtopic": 24,
-      "short": 0,
-      "prefiltered": 21,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "9cd5a020",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-15T05:28:50.950920+00:00",
       "collected": 0,
       "saved": 0,
@@ -7278,6 +7253,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-17T08:47:35.567291+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 106,
+      "candidates_passed": 51,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 36,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "1512b5c5",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7373,7 +7373,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
     "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
     "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다.",
     "2026-11-09 [성찰] 오수집되는 동음이의어(Nuke, Unity, Houdini 등)를 철저히 차단하고 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 위주로 콘텐츠를 구성해야 광고 수익과 트래픽을 동시에 극대화할 수 있습니다.",
@@ -7492,7 +7491,8 @@
     "2026-11-16 [성찰] 동음이의어 필터를 1200중으로 강화하여 무관한 일반 명사 유입을 줄이고 패스율을 개선했으나, 여전히 불필요한 프리필터 및 오프토픽을 낮추기 위해 컨텍스트 검증을 더욱 정교화해야 합니다.",
     "2026-11-17 [성찰] 동음이의어 필터를 2000중으로 대폭 강화하여 일반 명사 뉴스의 유입을 원천 차단하고, 실무 튜토리얼 및 애드온 관련 고단가 키워드에 집중해야 합니다.",
     "2026-11-17 [성찰] 동음이의어 필터를 강화하여 3D 및 CG와 무관한 일반 명사 뉴스의 유입을 철저히 차단하고, 실무 중심의 튜토리얼 및 애드온 활용법 콘텐츠에 집중해야 합니다.",
-    "2026-11-17 [성찰] 검색 의도에 맞는 툴명+키워드 앞 배치와 1500자 이상 깊이 있는 콘텐츠가 페이지뷰와 RPM을 크게 끌어올린다."
+    "2026-11-17 [성찰] 검색 의도에 맞는 툴명+키워드 앞 배치와 1500자 이상 깊이 있는 콘텐츠가 페이지뷰와 RPM을 크게 끌어올린다.",
+    "2026-11-17 [성찰] 동음이의어(Nuke, Unity 등)로 인한 비관련 뉴스가 여전히 많으므로 컨텍스트 필터를 대폭 강화하고 실무 튜토리얼 및 스크립트 위주의 고단가 키워드에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -10636,14 +10636,15 @@
     3193623896543207926,
     3487690472172329780,
     13336309817992912966,
-    5929132414239616338
+    5929132414239616338,
+    1621370848229298852
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3320,
-    "Game Engine": 3320,
-    "VFX": 3320,
-    "AI 3D": 3320
+    "3D DCC": 3321,
+    "Game Engine": 3321,
+    "VFX": 3321,
+    "AI 3D": 3321
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

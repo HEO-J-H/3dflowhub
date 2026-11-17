@@ -34711,5 +34711,53 @@
     "id": "p-72467058d3",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 관련 문서화 작업이 최근 끝낸 제안 및 문서에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-17T08:48:01+00:00",
+    "kind": "proposal",
+    "id": "p-fb60dad950",
+    "title": "held 상태 TripoSR 테스트 과제 경로 및 패치 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 test_triposr 및 docs/local-pipeline.md 관련 패치가 '변경 없음' 또는 'search 블록이 정확히 1회 일치하지 않음' 오류로 held 상태임",
+    "proposal": "backend/tests/test_core.py 및 관련 테스트 파일의 구조를 점검하고, 패치 대상 파일 경로와 검색 블록을 정확히 맞춰 재시도합니다.",
+    "expected": "보류 중인 TripoSR 테스트 과제가 정상적으로 실행 및 통과되어 파이프라인 신뢰도가 높아집니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T08:48:01+00:00",
+    "kind": "proposal",
+    "id": "p-a0223250d9",
+    "title": "승인 대기 중인 PR #78 및 #79 최종 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #78 및 #79가 승인 대기 중 상태로 머지 대기 중",
+    "proposal": "GitHub 저장소에서 PR #78(URL 검증 관련)과 PR #79(웹 브라우저 PBR 변환 UI 피드백)의 변경 사항을 최종 확인하고 병합을 진행합니다.",
+    "expected": "핵심 파이프라인 및 UI 개선 사항이 main 브랜치에 반영됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T08:48:39.778409+00:00",
+    "kind": "decision",
+    "id": "p-fb60dad950",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 테스트 경로 오류 및 held 작업 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T08:48:39.806427+00:00",
+    "kind": "decision",
+    "id": "p-a0223250d9",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
+    "auto": true
   }
 ]
