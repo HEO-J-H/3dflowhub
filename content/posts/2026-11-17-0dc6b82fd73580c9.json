@@ -39,9 +39,33 @@
     {
       "heading": "현장 적용 방안",
       "body": "디지털 모델을 현지 제작업체에 전달하고, 3D 프린터로 부품을 출력합니다. 출력된 부품을 조립해 현장에 설치하면 교체 주기가 크게 줄어듭니다. 이후 RTX Spark 렌더링 결과를 활용해 사용 후기 영상을 제작하면 홍보 효과도 얻을 수 있습니다."
+    },
+    {
+      "heading": "AI 3D Model Generator 활용 단계",
+      "body": "AI 3D Model Generator는 텍스트 설명만으로 3D 프린터용 파일을 즉시 생성합니다. 1) 원하는 침대 형태와 주요 사양을 간단히 입력합니다. 2) 생성된 모델 파일을 다운로드하고, Blender 또는 3ds Max에서 열어 세부 치수와 구조를 검증합니다. 3) 필요에 따라 디테일을 추가하거나 강도 분석을 위해 Modifier(예: Subdivision Surface)를 적용합니다. 4) 최종 파일을 STL 또는 OBJ 형식으로 저장해 현지 3D 프린터에 전달하면, 별도 CAD 작업 없이 바로 출력이 가능합니다.",
+      "added": true
+    },
+    {
+      "heading": "RTX Spark 기반 실시간 렌더링 설정 방법",
+      "body": "Adobe와 Nvidia가 공동 개발한 RTX Spark는 AI 기반 텍스처 생성과 레이 Tracing을 실시간으로 제공해 고품질 시각 자료를 빠르게 만들 수 있습니다. 사용자는 Blender의 Eevee 혹은 Cycles에서 RTX Spark 플러그인을 활성화하고, ‘AI Texture’ 옵션을 켜면 AI가 자동으로 재질을 보강합니다. 이후 ‘Ray Tracing’ 옵션을 ON 하면 실시간으로 반사·그림자 효과가 적용돼, 후원자 설득용 프레젠테이션이나 현장 교육용 영상을 즉시 렌더링할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "디지털 설계 파일 현장 적용 팁",
+      "body": "디지털 모델을 현지 제작 파트너와 공유할 때는 파일 포맷과 버전을 명확히 지정합니다. 1) 모델을 FBX 또는 OBJ 형식으로 저장하고, 메타데이터에 ‘BedDimensions’, ‘MaterialSpec’ 등을 기재합니다. 2) 파일 전송 후, 파트너에게 ‘Print Settings’(Layer Height, Infill Rate)와 조립 순서를 포함한 간단한 매뉴얼를 제공하면 현장 적용 속도가 크게 향상됩니다. 3) 조립이 완료된 후 RTX Spark 렌더링 결과를 활용해 사용 후기 영상을 제작하면 홍보 효과를 극대화할 수 있습니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "AI 3D Model Generator로 만든 모델을 Blender에서 바로 수정하려면 어떤 파일 형식을 사용해야 하나요?",
+      "a": "AI 3D Model Generator는 기본적으로 STL과 OBJ 형식으로 출력합니다. Blender에서는 OBJ를 열면 재질과 UV 정보가 유지되므로 바로 수정이 가능하고, STL은 단순 메쉬이므로 필요 시 재질을 새로 지정해야 합니다."
+    },
+    {
+      "q": "RTX Spark를 사용해 실시간 렌더링을 할 때 최소 권장 GPU 사양은 무엇인가요?",
+      "a": "RTX Spark는 Nvidia RTX 시리즈 GPU를 전제로 설계되었습니다. 최소 RTX 2060 이상을 권장하지만, 고품질 텍스처와 레이 Tracing을 원한다면 RTX 3060 이상을 사용하는 것이 좋습니다."
+    }
+  ],
   "media": {
     "image": "https://i.ytimg.com/vi/I4rbuWbNUoc/hqdefault.jpg",
     "video": "https://www.youtube.com/watch?v=I4rbuWbNUoc"
@@ -51,5 +75,23 @@
   "id": "2026-11-17-0dc6b82fd73580c9",
   "img_tried": true,
   "enriched": "2026-11-17",
-  "img_ok": "2026-11-17T22:21:28+00:00"
+  "img_ok": "2026-11-17T22:21:28+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "lx9lr6EWGsY",
+      "title": "Welding @ the Lawrence College & Career Center/Peaslee Tech",
+      "author": "Lawrence College & Career Center Lawrence, KS"
+    },
+    {
+      "id": "9psj09X_ZHY",
+      "title": "Peaslee Tech 2018 Tour",
+      "author": "Dwayne Peaslee Technical Training Center"
+    }
+  ],
+  "enriched_at": "2026-11-17T22:33:11+00:00",
+  "quality": {
+    "before": 749,
+    "after": 1630
+  }
 }
