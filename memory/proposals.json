@@ -37240,5 +37240,66 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 브라우저 PBR 안내 UI 텍스트 정교화",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T18:19:49+00:00",
+    "kind": "proposal",
+    "id": "p-3fb39b6e15",
+    "title": "held 상태 TripoSR 테스트 경로 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 agent_runs에서 backend/tests/test_triposr.py 및 관련 패치가 패치 적용 실패(held)로 반복 중단됨",
+    "proposal": "backend/tests/test_triposr.py 파일의 패치 충돌 원인을 분석하고 단순화된 테스트 코드로 재구성하여 안전하게 병합되도록 조치",
+    "expected": "held 상태 작업 해소 및 테스트 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T18:19:49+00:00",
+    "kind": "proposal",
+    "id": "p-c7d1261141",
+    "title": "PR #79 승인 대기 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에 PR #79(웹 브라우저 PBR 변환 UI 피드백 및 안내 문구 보강)가 승인 대기 상태로 등록되어 있음",
+    "proposal": "GitHub에서 PR #79의 변경 사항을 최종 확인하고 사람이 직접 머지할 수 있도록 안내",
+    "expected": "웹 UI 사용자 경험 개선 사항의 신속한 반영",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/79",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T18:20:24.607795+00:00",
+    "kind": "decision",
+    "id": "p-3fb39b6e15",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 테스트 경로 오류 및 held 작업 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T18:20:24.647656+00:00",
+    "kind": "decision",
+    "id": "p-c7d1261141",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T18:20:27.469897+00:00",
+    "kind": "triage",
+    "id": "p-c7d1261141",
+    "verdict": "human",
+    "reason": "PR #79의 변경 사항 최종 확인 및 머지는 사람이 직접 GitHub에서 수행해야 합니다."
+  },
+  {
+    "at": "2026-11-17T18:20:27.506296+00:00",
+    "kind": "applied",
+    "id": "p-c7d1261141",
+    "result": "사람 할 일 — 1. GitHub 저장소의 Pull Requests 페이지로 이동합니다.\n2. PR #79의 변경 사항을 검토합니다.\n3. 이상이 없다면 머지 버튼을 눌러 병합을 완료합니다."
   }
 ]
