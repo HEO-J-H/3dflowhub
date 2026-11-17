@@ -1,0 +1,37 @@
+{
+  "id": "substance-3d-designer-baking-failed-to-bake-curvat-d4ee0",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Baking] Failed to bake curvature because high-poly mesh has no normals",
+  "title": "Designer: [Baking] Failed to bake curvature because high-poly mesh has no normal",
+  "summary": "Substance 3D Designer에서 Curvature 메시 맵을 베이킹할 때 하이 폴리곤 모델에 노멀(Normal) 데이터가 존재하지 않아 곡률 계산에 실패할 때 발생하는 오류입니다.",
+  "causes": [
+    "하이 폴리곤 모델을 익스포트할 때 노멀(Normal) 데이터 옵션이 누락된 경우",
+    "OBJ 등의 포맷으로 내보내는 과정에서 법선 데이터가 유실되거나 손상된 경우",
+    "스컬프팅 툴이나 3D DCC에서 하이 폴리곤 모델의 법선이 올바르게 계산되지 않았거나 면이 뒤집힌 경우"
+  ],
+  "steps": [
+    "하이 폴리곤 모델을 생성한 원본 3D DCC(Blender, ZBrush, 3ds Max 등)나 CAD 툴을 엽니다.",
+    "모델의 노멀(Normal) 또는 법선 데이터가 활성화되어 있는지 확인하고 다시 계산(Recalculate Normals)합니다.",
+    "모델을 FBX 또는 OBJ 포맷으로 다시 익스포트할 때 'Normals'(또는 'Export Normals') 옵션이 체크되어 있는지 확인합니다.",
+    "Substance 3D Designer에서 문제가 있던 하이 폴리곤 모델을 새로 익스포트한 파일로 교체(Reload 또는 재임포트)합니다.",
+    "Bake Mesh Maps 창을 열고 Curvature 맵을 다시 베이킹합니다."
+  ],
+  "check": [
+    "Baking 프로세스가 오류 없이 완료되고 엣지와 곡률 부근에 Curvature 맵이 정상적으로 생성되는지 확인합니다."
+  ],
+  "prevent": [
+    "하이 폴리곤 모델을 익스포트할 때는 항상 노멀(Normal) 데이터 포함 옵션이 켜져 있는지 확인하는 습관을 들입니다.",
+    "Substance 3D Designer로 메스를 가져오기 전에 3D DCC에서 법선 방향(Face Orientation)을 미리 점검합니다."
+  ],
+  "keywords": [
+    "Designer Baking 오류",
+    "Curvature 맵 Baking 실패",
+    "high-poly mesh has no normals",
+    "하이폴리곤 노멀 없음",
+    "Substance Designer Baking"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T08:10:09+00:00"
+}

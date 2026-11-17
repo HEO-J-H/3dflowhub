@@ -1,0 +1,37 @@
+{
+  "id": "blender-error-cannot-weld-overlapping-vertices-wit-bc739",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot weld overlapping vertices with auto merge enabled",
+  "title": "Error: Cannot weld overlapping vertices with auto merge enabled 오류 해결",
+  "summary": "Blender에서 Auto Merge가 켜진 상태로 정점을 서로 너무 가깝게 이동하거나 병합할 때 발생하는 경고 및 오류 메시지입니다. 겹치거나 중복된 정점을 자동으로 합치려는 과정에서 위상(Topology) 충돌이 발생할 때 나타납니다.",
+  "causes": [
+    "메시 편집 중 정점을 다른 정점 위치로 드래그하여 Auto Merge 임계값(Threshold) 범위 내로 진입시킨 경우",
+    "Auto Merge 옵션이 켜진 상태에서 대칭(Symmetry) 또는 미러 편집 중 중앙 부근 정점들이 서로 겹치는 경우",
+    "지나치게 좁은 영역에 많은 정점이 밀집해 있어 자동 병합 조건이 잘못 트리거된 경우"
+  ],
+  "steps": [
+    "상단 헤더 또는 상단 우측 옵션 메뉴에서 Auto Merge 체크박스를 해제하여 임시로 자동 병합을 중단합니다.",
+    "Mesh 메뉴(또는 Hotkey M)에서 Merge by Distance를 실행하여 원하지 않는 중복 정점을 수동으로 정리합니다.",
+    "Edit Mode에서 A를 눌러 전체 정점을 선택한 후, Mesh -> Clean Up -> Merge by Distance를 실행해 미세한 중복 정점을 제거합니다.",
+    "오류가 발생한 부위의 정점을 선택하고 G를 눌러 안전한 거리만큼 이동시킵니다."
+  ],
+  "check": [
+    "Viewport에서 정점을 이동할 때 더 이상 'Cannot weld overlapping vertices with auto merge enabled' 경고가 출력되지 않는지 확인합니다.",
+    "Mesh Statistics에서 Vertex 수가 의도치 않게 줄어들지 않았는지 확인합니다."
+  ],
+  "prevent": [
+    "정밀한 모델링 작업 중에는 Auto Merge 기능을 끄고 필요할 때만 수동으로 Merge by Distance를 사용합니다.",
+    "Auto Merge를 반드시 켜야 하는 경우 임계값(Threshold)을 기본값보다 더 낮게 설정합니다."
+  ],
+  "keywords": [
+    "Blender 오토 머지 오류",
+    "Cannot weld overlapping vertices",
+    "Blender Auto Merge 경고",
+    "정점 자동 병합 오류",
+    "Blender Merge by Distance"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T08:10:20+00:00"
+}

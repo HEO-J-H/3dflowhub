@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-resolve-pay-1f03c",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to resolve payload reference in USD layer",
+  "title": "Stage Error: Failed to resolve payload reference in USD layer 오류 해결 방법",
+  "summary": "NVIDIA Omniverse에서 USD 레이어를 로드할 때 페이로드(Payload)로 연결된 외부 에셋의 경로를 찾지 못해 발생하는 오류입니다. 주로 참조된 파일의 이동, 삭제 또는 잘못된 상대 경로 설정이 원인입니다.",
+  "causes": [
+    "페이로드로 연결된 외부 USD 파일이나 에셋이 다른 폴더로 이동되었거나 삭제됨",
+    "상대 경로(Relative Path)의 기준점이 되는 루트 디렉터리가 변경됨",
+    "네트워크 드라이브 또는 클라우드 스토리지 경로의 권한 문제 또는 연결 끊김"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱에서 Stage 패널을 열어 오류가 발생하는 페이로드 요소를 확인합니다.",
+    "Property 패널에서 해당 페이로드의 Payload Path 또는 Asset Path 속성을 검사합니다.",
+    "원인 파일이 실제로 존재하는지 파일 탐색기나 Nucleus 서버에서 경로를 확인합니다.",
+    "경로가 잘못된 경우, Property 패널에서 올바른 절대 경로(Absolute Path) 또는 정확한 상대 경로로 다시 지정합니다.",
+    "필요한 경우 스테이지를 리로드(Reload)하거나 Application을 재시작하여 적용합니다."
+  ],
+  "check": [
+    "Stage 패널에서 더 이상 빨간색 오류 아이콘이나 경고 문구가 표시되지 않는지 확인합니다.",
+    "Viewport에서 누락되었던 에셋이 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "USD 프로젝트 내 외부 에셋과 레퍼런스는 가급적 상대 경로를 사용하되 프로젝트 폴더 구조를 유지합니다.",
+    "에셋을 이동하거나 공유할 때는 Omniverse Nucleus 또는 USD Export 기능을 이용해 종속성을 함께 관리합니다."
+  ],
+  "keywords": [
+    "Omniverse payload 오류",
+    "USD stage load failed",
+    "Failed to resolve payload",
+    "Omniverse 에셋 누락",
+    "USD 레퍼런스 경로 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T08:10:17+00:00"
+}

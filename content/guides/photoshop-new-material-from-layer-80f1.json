@@ -1,0 +1,90 @@
+{
+  "id": "photoshop-new-material-from-layer-80f1",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 및 머티리얼",
+  "name": "New Material from Layer",
+  "title": "New Material from Layer — 레이어에서 새 머티리얼 생성",
+  "summary": "Photoshop의 New Material from Layer 기능은 2D 이미지나 텍스트 레이어의 픽셀 정보를 바탕으로 3D 모델에 적용할 텍스처 맵 세트(Base Color, Roughness, Normal 등)를 자동으로 생성해 주는 도구입니다.",
+  "when": [
+    "평면 2D 일러스트나 로고를 3D 오브젝트에 입힐 입체감 있는 재질로 빠르게 변환할 때",
+    "웹이나 게임용 에셋에 사용할 타일링 가능한 텍스처 소스를 단일 이미지로부터 추출할 때",
+    "3D Software로 넘어가기 전 2D 그래픽 기반의 러프한 머티리얼 시안을 테스트할 때"
+  ],
+  "steps": [
+    "배경이 분리된 투명 PNG 레이어 또는 텍스처로 사용할 이미지를 Photoshop 레이어 패널에 준비합니다.",
+    "상단 메뉴 바에서 3D > New Material from Layer를 선택하고, 원하는 맵 유형(예: Diffuse, Bump, Roughness 등)을 고릅니다.",
+    "대화 상자에서 각 맵의 강도와 세부 옵션을 조절한 뒤 확인을 누릅니다.",
+    "생성된 3D Material 패널에서 각 채널별 텍스처 상태를 확인하고 세부 수치를 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "레이어의 색상 정보를 바탕으로 기본 컬러 맵을 생성합니다."
+    },
+    {
+      "name": "Bump Height",
+      "desc": "명암과 투명도 경계로 표면의 요철 깊이감을 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "재질 표면의 거칠기 정도를 정의하여 반사광을 제어합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "입체적인 표면 방향 정보를 픽셀 단위의 노멀 맵으로 변환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 로고를 입체감 있는 3D 배지 재질로 변환",
+      "steps": [
+        "투명 배경의 로고 PNG 파일을 불러옵니다.",
+        "3D > New Material from Layer > Bump Map을 선택하여 음각 효과를 줍니다.",
+        "Material 패널에서 Roughness를 낮춰 금속성 느낌을 더합니다."
+      ]
+    },
+    {
+      "title": "벽돌 패턴 이미지로 타일링 재질 만들기",
+      "steps": [
+        "정방향의 심리스 벽돌 이미지를 준비합니다.",
+        "3D > New Material from Layer를 통해 Normal 및 Roughness 맵을 동시 생성합니다.",
+        "3D Viewport에서 샘플 오브젝트에 적용해 타일 간격을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "배경 투명이 안 된 레이어 선택 → 배경을 제거한 투명 PNG 또는 알파 채널이 있는 레이어로 다시 시도합니다.",
+    "Resolution가 너무 낮은 이미지 사용 → 디테일한 맵 생성이 어렵으므로 가급적 고해상도 소스를 사용합니다."
+  ],
+  "related": [
+    "Mesh from Layer",
+    "Substance 3D Sampler",
+    "Normal Map",
+    "Roughness Map"
+  ],
+  "videos": [
+    {
+      "id": "3gxcIn8L__w",
+      "title": "Layers for Beginners | Photoshop CC Tutorial",
+      "author": "Pixel & Bracket"
+    },
+    {
+      "id": "YTT8cgypdpA",
+      "title": "NEW Photoshop AI Feature Lets You Control Your Edits with a simple Slider - Dynamic Layer",
+      "author": "Smart Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%20Material%20from%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "PNG",
+    "Photoshop",
+    "New Material",
+    "Layer",
+    "Diffuse",
+    "Bump"
+  ],
+  "at": "2026-11-17T08:09:18.941106+00:00"
+}

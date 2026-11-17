@@ -1,0 +1,87 @@
+{
+  "id": "davinci-resolve-fast-review-31e3",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷 페이지",
+  "name": "Fast Review",
+  "title": "Fast Review — JKL 키를 이용한 빠른 영상 검토 및 재생 속도 조절 워크플로우",
+  "summary": "DaVinci Resolve의 Fast Review는 Timeline 전체를 빠르게 훑어보며 불필요한 프레임을 덜어내고 컷 편집 속도를 극대화하는 검토 기능입니다.",
+  "when": [
+    "촬영본이나 러프 컷 Timeline 전체를 빠르게 재생하며 전체 흐름을 점검할 때",
+    "인터뷰나 다큐멘터리 영상에서 불필요한 공백과 NG 컷을 빠르게 골라낼 때",
+    "마감 직전 대량의 푸티지를 짧은 시간 안에 시각적으로 검수해야 할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Cut Page 또는 Edit Page로 진입합니다.",
+    "Timeline 패널에서 재생 헤드를 검토할 시작 지점에 놓습니다.",
+    "상단 메뉴바에서 Workspace → Fast Review를 선택하거나 지정된 Hotkey를 입력합니다.",
+    "재생 속도와 방향을 조절하면서 푸티지를 빠르게 훑어봅니다.",
+    "필요한 구간에 마커나 In/Out 포인트를 지정하여 편집을 이어갑니다."
+  ],
+  "params": [
+    {
+      "name": "Shuttle Speed",
+      "desc": "영상의 재생 속도와 배율을 조절하여 빠르게 넘겨볼 수 있습니다."
+    },
+    {
+      "name": "In/Out Points",
+      "desc": "빠르게 검토하는 도중 필요한 구간의 시작과 끝을 설정합니다."
+    },
+    {
+      "name": "Markers",
+      "desc": "검토 중 수정이 필요한 프레임에 색상별 메모와 표식을 남깁니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 영상 NG 컷 빠르게 솎아내기",
+      "steps": [
+        "Cut Page에서 인터뷰 Timeline을 엽니다.",
+        "Fast Review를 실행하여 배속을 높여 재생합니다.",
+        "말이 끊기는 지점에 마커를 찍고 즉시 트림합니다."
+      ]
+    },
+    {
+      "title": "대형 VFX 샷 러프 검수",
+      "steps": [
+        "완성된 렌더 프레임 시퀀스 Timeline을 불러옵니다.",
+        "Fast Review를 통해 누락된 프레임이나 오류 컷을 빠르게 확인합니다.",
+        "문제가 있는 구간을 체크하여 후반 작업 팀에 전달합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "너무 빠른 속도로 재생하여 미세한 Audio 싱크나 렌더 오류를 놓치는 경우 → 적정 배속을 유지하고 중요한 구간은 일반 재생으로 다시 확인합니다.",
+    "Hotkey 꼬임으로 Fast Review가 실행되지 않는 경우 → Keyboard Customization에서 Hotkey 설정을 초기화하거나 재할당합니다."
+  ],
+  "related": [
+    "Cut Page",
+    "Dynamic Trim Mode",
+    "Source Tape",
+    "Ripple Edit"
+  ],
+  "videos": [
+    {
+      "id": "LwDNRrk-RcI",
+      "title": "DaVinci Resolve Speed Editor Review and Tutorial | Can It Replace Your Mouse & Keyboard For Editing?",
+      "author": "Remy Leonard"
+    },
+    {
+      "id": "hQrwSIDpfew",
+      "title": "The DaVinci Resolve Speed Editor - Misunderstood Genius? (Edit FASTER, more FOCUSED and ORGANIZED)",
+      "author": "andré sjøberg"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fast%20Review",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut Page",
+    "Edit Page",
+    "Timeline",
+    "Workspace",
+    "Fast Review"
+  ],
+  "at": "2026-11-17T08:09:22.433251+00:00"
+}
