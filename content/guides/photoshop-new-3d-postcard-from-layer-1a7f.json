@@ -1,0 +1,88 @@
+{
+  "id": "photoshop-new-3d-postcard-from-layer-1a7f",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 환경",
+  "name": "New 3D Postcard from Layer",
+  "title": "New 3D Postcard from Layer — 레이어에서 새 3D 엽서 생성",
+  "summary": "Photoshop의 New 3D Postcard from Layer 기능은 2D 이미지 레이어를 3D 공간에 배치할 수 있는 평면 3D 메쉬로 변환해 주는 도구입니다. 2D 일러스트나 사진에 간단한 3D 입체감과 조명 효과를 줄 때 사용합니다.",
+  "when": [
+    "2D 이미지나 사진에 원근감과 3D 조명 효과를 빠르게 적용하고 싶을 때",
+    "포스터나 간판 일러스트를 3D 공간 상에 입체적으로 세워두고 싶을 때",
+    "복잡한 모델링 없이 2D 소스를 바탕으로 간단한 3D 합성 작업을 시작할 때"
+  ],
+  "steps": [
+    "작업할 2D 이미지나 텍스트 레이어를 Photoshop 레이어 패널에서 선택합니다.",
+    "상단 메뉴 바에서 3D > New 3D Postcard from Layer를 클릭합니다.",
+    "작업 공간이 3D Workspace로 전환되면서 레이어가 평면 3D 포스카드 메쉬로 변환됩니다.",
+    "Properties 패널과 Move Tool을 사용해 3D 공간에서 오브젝트의 위치와 회전값을 조절합니다.",
+    "Viewport에서 평면이 3D 공간에 자연스럽게 배치되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "레이어의 투명도 정보를 3D 머티리얼의 투명 채널에 반영합니다."
+    },
+    {
+      "name": "Base Color",
+      "desc": "2D 레이어의 픽셀 색상을 3D 메쉬의 기본 컬러 맵으로 적용합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 값을 조절하여 반사 광택의 퍼짐 정도를 제어합니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "이미지의 명암 정보를 바탕으로 표면에 미세한 입체감을 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 공간에 세워지는 포스터 그래픽",
+      "steps": [
+        "포스터 디자인 레이어를 준비하고 New 3D Postcard from Layer를 실행합니다.",
+        "3D Rotate Tool을 사용해 포스터를 약간 비스듬하게 회전시킵니다.",
+        "3D 조명을 추가하여 입체적인 그림자가 생기도록 연출합니다."
+      ]
+    },
+    {
+      "title": "입체감이 살아있는 2D 간판 일러스트",
+      "steps": [
+        "배경이 분리된 간판 로고 레이어를 선택합니다.",
+        "New 3D Postcard from Layer로 3D 공간에 배치합니다.",
+        "카메라 시점을 조절하여 원근감이 느껴지는 뷰를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이어가 잠겨 있거나 Smart 오브젝트 상태여서 메뉴가 비활성화됨 → 레이어 우클릭 후 Rasterize Layer나 Convert to Normal Layer를 실행합니다.",
+    "3D 공간에서 오브젝트가 보이지 않음 → 3D Workspace가 올바르게 켜져 있는지 확인하고 카메라 뷰를 Reset합니다."
+  ],
+  "related": [
+    "New Mesh from Layer",
+    "New Material from Layer",
+    "3D Postcard",
+    "3D Extrusion"
+  ],
+  "videos": [
+    {
+      "id": "_tM-Wvk5HdI",
+      "title": "How to make a postcard in perspective Photoshop 2023 #photoshoptutorial",
+      "author": "Learn Adobe"
+    },
+    {
+      "id": "omu7b_FDJRI",
+      "title": "How To Create a Vintage Postcard Design (Illustrator & Photoshop Tutorial)",
+      "author": "Spoon Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%203D%20Postcard%20from%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New 3D Postcard",
+    "Layer"
+  ],
+  "at": "2026-11-17T08:18:52.302656+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "davinci-resolve-adjustment-clip-42dd",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Adjustment Clip",
+  "title": "Adjustment Clip — 여러 클립에 동시에 효과와 색보정을 적용하는 투명 레이어",
+  "summary": "Adjustment Clip은 Timeline 위 빈 트랙에 배치하여 아래에 있는 여러 클립에 동시에 효과나 색보정을 적용할 수 있는 투명 클립입니다.",
+  "when": [
+    "여러 클립 전체에 동일한 색보정(LUT나 Grade)을 한 번에 적용할 때",
+    "여러 클립이 겹치는 구간에 공통 효과(예: Blur, Glow, Transform)를 줄 때",
+    "Timeline 편집을 유지한 채 특정 구간에만 일괄 전환 효과나 오버레이를 넣을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve Edit 페이지에서 Timeline 상단에 새로운 Video Track을 추가합니다 (우클릭 → Add Track).",
+    "Effects Library 패널을 엽니다 (상단 좌측 Effects 버튼 클릭).",
+    "Effects 목록에서 Adjustment Clip을 드래그하여 새로 만든 비디오 트랙 위로 올립니다.",
+    "Adjustment Clip의 길이를 Mouse로 드래그하여 효과를 적용할 클립 구간만큼 조절합니다.",
+    "Adjustment Clip을 선택한 상태로 Color 페이지나 Inspector 패널에서 원하는 효과를 적용합니다.",
+    "Timeline Viewport에서 아래 클립들에 효과가 일괄 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Composite Mode",
+      "desc": "아래 레이어와 클립이 섞이는 방식을 설정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "조정 클립 전체의 투명도를 조절합니다."
+    },
+    {
+      "name": "Zoom / Position",
+      "desc": "아래 놓인 클립들의 화면 크기와 위치를 통째로 변형합니다."
+    },
+    {
+      "name": "Retime and Scaling",
+      "desc": "클립의 속도 및 프레임 스케일링 방식을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "전체 영상에 일괄 필름 그레인 및 색감 보정 적용",
+      "steps": [
+        "영상 클립들 위에 새 비디오 트랙을 만들고 Adjustment Clip을 올립니다.",
+        "Adjustment Clip의 길이를 전체 편집 구간에 맞게 늘립니다.",
+        "Color 페이지로 이동해 Film Grain 효과를 추가합니다."
+      ]
+    },
+    {
+      "title": "특정 씬 전환 구간에 통째로 줌인 효과 주기",
+      "steps": [
+        "전환이 일어나는 클립 구간 위에 Adjustment Clip을 배치합니다.",
+        "Inspector 패널에서 Transform의 Zoom 수치를 조절하여 Keyframe을 넣습니다.",
+        "재생하여 부드럽게 확대되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Adjustment Clip이 아래가 아닌 빈 공간이나 잘못된 트랙에 놓임 → 클립 순서와 트랙 번호(V2, V3 등)를 확인하고 효과를 줄 클립 바로 위 트랙으로 이동합니다.",
+    "Adjustment Clip에 효과를 주었는데 화면에 변화가 없음 → Inspector나 Color 페이지에서 현재 Adjustment Clip이 올바르게 선택되었는지 확인합니다."
+  ],
+  "related": [
+    "Color Page",
+    "Effects Library",
+    "Inspector",
+    "Compound Clip"
+  ],
+  "videos": [
+    {
+      "id": "Xhll7bB8NZ0",
+      "title": "How to Use Adjustment Clips in DaVinci Resolve",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "EnUo38iv2uE",
+      "title": "How to use the Adjustment clip in Davinci Resolve 5 Tricks",
+      "author": "Creator Sergeant - Julian Woldan"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Adjustment%20Clip",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve Edit",
+    "Timeline",
+    "Video Track",
+    "Add Track",
+    "Effects Library",
+    "Effects"
+  ],
+  "at": "2026-11-17T08:18:56.041322+00:00"
+}
