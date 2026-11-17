@@ -1,0 +1,91 @@
+{
+  "id": "v-ray-vrayblendmtl-0090",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 셰이딩",
+  "name": "VRayBlendMtl",
+  "title": "VRayBlendMtl — 여러 개의 재질을 레이어 형태로 혼합하여 복잡한 표면을 만드는 Shader",
+  "summary": "V-Ray의 VRayBlendMtl은 여러 개의 재질(Material)을 층층이 겹쳐서 금속 위의 페인트 벗김, 땀과 먼지가 묻은 가죽, 코팅된 나무처럼 복잡하고 사실적인 표면을 표현하는 블렌딩 재질입니다.",
+  "when": [
+    "페인트가 벗겨진 녹슨 금속 표면을 표현할 때",
+    "광택 코팅이 올라간 목재나 카본 파이버를 만들 때",
+    "먼지나 물기가 얹어진 복합 재질을 구현할 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor Hotkey M 를 눌러 Material Editor 창을 엽니다.",
+    "Material / Map Browser 에서 V-Ray 카테고리 아래 VRayBlendMtl 을 찾아 슬롯에 적용합니다.",
+    "Base Mtl 슬롯에 가장 밑에 깔릴 기본 재질(예: 금속 재질)을 연결합니다.",
+    "Coat Mtl 0(또는 Sub-mtl) 슬롯에 얹어질 재질(예: 페인트 재질)을 연결합니다.",
+    "Blend Amount 값이나 Map 슬롯에 흑백 텍스처(Mask)를 연결하여 두 재질이 섞이는 영역을 조절합니다.",
+    "Viewport에서 결과물을 확인하며 Blend 값과 맵의 타일링을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Mtl",
+      "desc": "가장 아래에 깔리는 기본이 되는 재질을 연결합니다."
+    },
+    {
+      "name": "Coat Mtl 0",
+      "desc": "기본 재질 위에 겹쳐서 표현할 첫 번째 레이어 재질을 연결합니다."
+    },
+    {
+      "name": "Blend 0",
+      "desc": "기본 재질과 코팅 재질의 혼합 비율을 결정합니다. (0은 Base, 1은 Coat)"
+    },
+    {
+      "name": "Additive mode",
+      "desc": "재질을 섞을 때 어둡게 겹치지 않고 빛을 더하는 방식으로 혼합합니다."
+    },
+    {
+      "name": "Texmap blend",
+      "desc": "맵을 이용해 블렌딩할 때 사용할 텍스처 채널을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "페인트 벗겨진 철제 드럼통",
+      "steps": [
+        "Base Mtl에 거친 녹슨 철(VRayMtl) 재질을 연결합니다.",
+        "Coat Mtl에 파란색 페인트(VRayMtl) 재질을 연결합니다.",
+        "Blend 슬롯에 긁힌 자국 모양의 흑백 마스크 맵을 연결하여 철제 표면이 드러나게 만듭니다."
+      ]
+    },
+    {
+      "title": "바니시 코팅된 원목 테이블",
+      "steps": [
+        "Base Mtl에 무광 나이테 텍스처가 적용된 나무 재질을 연결합니다.",
+        "Coat Mtl에 반짝이는 유광 클리어 코팅 재질을 연결합니다.",
+        "Blend 값을 낮게 설정하여 전체적으로 매끄러운 코팅 광택만 은은하게 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크 맵이 보이지 않음 → Blend 슬롯에 연결된 텍스처의 UV 코디네이트나 타일링 설정을 확인합니다.",
+    "렌더링이 너무 어둡거나 이상하게 나옴 → Additive mode 체크박스를 켜거나 섞이는 두 재질의 Diffuse/Reflection 값을 점검합니다."
+  ],
+  "related": [
+    "VRayMtl",
+    "VRayDirt",
+    "VRayTriplanarTex",
+    "UVW Map"
+  ],
+  "videos": [
+    {
+      "id": "qQk-C_g8C3I",
+      "title": "V-Ray | Procedural RUSTY METAL Shader | VRayBlendMtl, Procedural Masks, VRayDirt, AO & VRayBumpMtl",
+      "author": "Jonas Noell"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayBlendMtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor Hotkey M",
+    "Material Editor",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayBlendMtl"
+  ],
+  "at": "2026-11-17T09:48:55.971369+00:00"
+}
