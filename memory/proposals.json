@@ -36206,5 +36206,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T13:50:11+00:00",
+    "kind": "proposal",
+    "id": "p-e8226b1697",
+    "title": "held 상태 TripoSR 테스트 경로 분할 및 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 관련 패치 적용 실패 및 held 상태 반복 발생",
+    "proposal": "backend/tests/test_triposr.py의 복잡한 패치 블록을 더 작고 단순한 단일 테스트 함수 단위로 쪼개어 코딩 에이전트가 처리하기 쉽게 재작성합니다.",
+    "expected": "테스트 패치 실패를 방지하고 코딩 에이전트의 자동 머지 성공률을 높입니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T13:50:11+00:00",
+    "kind": "proposal",
+    "id": "p-86a5f6e7bc",
+    "title": "GitHub RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자 요청 메시지(0): 깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘",
+    "proposal": "docs/rag-integration.md 파일을 새로 생성하여 웹 툴과 로컬 Pipeline 문서 검색 RAG 오픈소스를 연동할 때의 기술적 타당성과 제약 사항을 정리합니다.",
+    "expected": "사용자의 RAG 오픈소스 반영 요청에 대한 명확한 기술 검토 문서 제공",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T13:53:59.749796+00:00",
+    "kind": "decision",
+    "id": "p-e8226b1697",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T13:53:59.783618+00:00",
+    "kind": "decision",
+    "id": "p-86a5f6e7bc",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
   }
 ]
