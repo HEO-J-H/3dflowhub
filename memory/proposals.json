@@ -36594,5 +36594,90 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 테스트 경로 오류 및 held 작업 정리",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T15:29:07+00:00",
+    "kind": "proposal",
+    "id": "p-da43f4bdd3",
+    "title": "held 상태 TripoSR 테스트 경로 분할 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 및 관련 단위 테스트가 패치 적용 실패로 여러 차례 held 상태로 남음",
+    "proposal": "backend/tests/test_triposr.py 내의 복잡한 패치 블록을 단일 함수 테스트 단위로 쪼개어 코딩 에이전트가 충돌 없이 적용할 수 있도록 수정합니다.",
+    "expected": "TripoSR 단위 테스트가 정상 통과되어 held 상태 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T15:29:09+00:00",
+    "kind": "proposal",
+    "id": "p-4f67adb3d7",
+    "title": "5060 타겟 네이버 은퇴 준비 카페 맞춤형 시뮬레이션 안내",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "콘텐츠",
+    "evidence": "최근 프로모션 채널 중 네이버 블로그와 카페 중심으로 포스팅이 진행 중이나, 5060 세대가 실제로 궁금해하는 퇴직금 연금 수령과 ISA 만기 활용 사례 중심의 안내가 유용함.",
+    "proposal": "네이버 은퇴 준비 및 재테크 카페 게시용으로 '퇴직금 연금 수령 시 월별 현금흐름 변화'를 시각적으로 설명하는 가이드 문구 3종을 작성하여 홍보팀에 전달",
+    "expected": "타겟 커뮤니티 유입 및 도구 활용도 증가",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T15:30:22.974061+00:00",
+    "kind": "proposal",
+    "id": "p-d3568693e6",
+    "title": "TRELLIS 모델 통합 검토 (CVPR'25)",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "사이트·UX",
+    "evidence": "스타수 14321개 및 MIT 라이선스를 가진 고품질 3D 생성 모델",
+    "proposal": "현재 README 및 웹 데모에서 언급된 Microsoft TRELLIS(MIT 라이선스, GPU 필요)를 로컬 백엔드의 선택 엔진(triposr_runner와 유사한 인터페이스)으로 통합하여 다중 각도/단일 이미지 3D 생성 품질 향상",
+    "expected": "오픈소스 기반 고품질 3D 생성 옵션 추가로 다중 각도 결과물의 텍스처 및 구조 완성도 상승",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-17T15:30:56.966914+00:00",
+    "kind": "decision",
+    "id": "p-d3568693e6",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T15:30:57.002963+00:00",
+    "kind": "decision",
+    "id": "p-4f67adb3d7",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T15:30:57.038290+00:00",
+    "kind": "decision",
+    "id": "p-da43f4bdd3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T15:31:00.282820+00:00",
+    "kind": "triage",
+    "id": "p-d3568693e6",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 Microsoft TRELLIS 선택 엔진 설계 및 관련 웹 계산 테스트 작업이 이미 반영되었습니다."
+  },
+  {
+    "at": "2026-11-17T15:31:00.318941+00:00",
+    "kind": "decision",
+    "id": "p-d3568693e6",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 Microsoft TRELLIS 선택 엔진 설계 및 관련 웹 계산 테스트 작업이 이미 반영되었습니다."
   }
 ]
