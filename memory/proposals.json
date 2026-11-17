@@ -35228,5 +35228,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 테스트 과제 단순화 및 재시도",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T10:19:05+00:00",
+    "kind": "proposal",
+    "id": "p-1c915dafb5",
+    "title": "held 상태 TripoSR 문서 수정 태스크 단순화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 docs/local-pipeline.md 관련 태스크가 패치 적용 실패(held)로 반복 중단됨",
+    "proposal": "docs/local-pipeline.md 파일 하단에 TripoSR VRAM 및 CUDA 권장 사양 안내 단락을 아주 단순한 텍스트 형태로 직접 추가하도록 과제를 재분할합니다.",
+    "expected": "패치 적용 충돌을 방지하고 로컬 파이프라인 안내 문서를 정상적으로 갱신합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:19:05+00:00",
+    "kind": "proposal",
+    "id": "p-86125086c3",
+    "title": "승인 대기 중인 핵심 PR #78 및 #79 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #78(URL 수집 검증 관련) 및 PR #79(웹 브라우저 PBR UI 피드백)가 승인 대기 상태로 남아 있음",
+    "proposal": "GitHub 저장소에서 PR #78과 PR #79의 변경 내용을 최종 확인하고 머지 여부를 결정합니다.",
+    "expected": "핵심 기능 개선 사항이 메인 브랜치에 반영되어 파이프라인 완성도가 높아집니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:23:58.067408+00:00",
+    "kind": "decision",
+    "id": "p-1c915dafb5",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:23:58.113051+00:00",
+    "kind": "decision",
+    "id": "p-86125086c3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:24:00.580352+00:00",
+    "kind": "triage",
+    "id": "p-1c915dafb5",
+    "verdict": "done_already",
+    "reason": "docs/gpu-worker.md 및 관련 커밋을 통해 TripoSR 관련 문서 보강 과제가 이미 충족되었거나 완료 처리되었습니다."
+  },
+  {
+    "at": "2026-11-17T10:24:00.625053+00:00",
+    "kind": "decision",
+    "id": "p-1c915dafb5",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): docs/gpu-worker.md 및 관련 커밋을 통해 TripoSR 관련 문서 보강 과제가 이미 충족되었거나 완료 처리되었습니다."
   }
 ]

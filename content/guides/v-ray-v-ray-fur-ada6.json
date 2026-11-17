@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-v-ray-fur-ada6",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 및 최적화",
+  "name": "V-Ray Fur",
+  "title": "V-Ray Fur — 잔디, 카펫, 털 등을 가볍고 사실적으로 생성하는 절차적 모피 시스템",
+  "summary": "V-Ray Fur는 3ds Max 등의 Viewport 메쉬 표면에 잔디, 카펫, 동물 털 같은 수많은 가닥을 가볍고 사실적으로 렌더링해 주는 절차적 모디파이어입니다.",
+  "when": [
+    "골프장이나 정원의 짧은 잔디나 풀밭을 표현할 때",
+    "실내 건축 렌더링에서 카펫이나 러그의 질감을 살릴 때",
+    "동물의 짧은 털이나 모피 효과를 가볍게 표현할 때"
+  ],
+  "steps": [
+    "잔디나 카펫을 심을 기준 메쉬 오브젝트를 선택합니다.",
+    "상단 메뉴 바에서 Create -> V-Ray -> VRayFur를 클릭합니다.",
+    "Viewport에서 드래그하여 VRayFur 아이콘을 생성하거나 오브젝트에 적용합니다.",
+    "Command Panel -> Modify 탭으로 이동하여 VRayFur 파라미터를 엽니다.",
+    "Length, Thickness, Bend 등의 값을 조절하여 털의 형태를 잡고 V-Ray로 렌더링하여 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Length",
+      "desc": "털 가닥의 전체 길이를 결정합니다."
+    },
+    {
+      "name": "Thickness",
+      "desc": "털 가닥의 두께를 조절합니다."
+    },
+    {
+      "name": "Gravity",
+      "desc": "중력의 영향을 받아 털이 아래로 처지는 정도를 설정합니다."
+    },
+    {
+      "name": "Bend",
+      "desc": "털이 자연스럽게 휘어지는 곡률을 조절합니다."
+    },
+    {
+      "name": "Density",
+      "desc": "단위 면적당 생성되는 털 가닥의 밀도와 개수를 지정합니다."
+    },
+    {
+      "name": "Taper",
+      "desc": "털의 끝부분으로 갈수록 가늘어지는 정도를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "정원 잔디 표현하기",
+      "steps": [
+        "지형 메쉬를 선택하고 VRayFur를 적용합니다.",
+        "Length를 낮게(예: 20mm), Density를 높여 촘촘하게 설정합니다.",
+        "Gravity와 Bend를 약간 주어 자연스러운 잔디 결을 만듭니다."
+      ]
+    },
+    {
+      "title": "거실 카펫 제작하기",
+      "steps": [
+        "바닥 면적에 맞는 플레인 메쉬를 준비하고 VRayFur를 추가합니다.",
+        "Length를 짧게 설정하고 Thickness를 두껍게 조절합니다.",
+        "V-Ray Material을 지정하여 부드러운 패브릭 질감을 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Density 값이 너무 높음 → 렌더링 시간이 과도하게 길어짐: Density를 낮추고 V-Ray Fur의 자체 최적화 기능을 활용하세요.",
+    "털 방향이 불규칙함 → 표면 법선(Normal) 방향 문제: 기준 메쉬의 Normal을 확인하고 필요시 Reset XForm을 진행하세요."
+  ],
+  "related": [
+    "Hair and Fur",
+    "V-Ray Material",
+    "VRayDisplacementMod",
+    "Scatter"
+  ],
+  "videos": [
+    {
+      "id": "uFWY8GKRfAA",
+      "title": "Quick Vray 5 Fur Tutorial in 3Ds Max #RedefineFX",
+      "author": "RedefineFX | Jesse Pitela"
+    },
+    {
+      "id": "eboX6GB7GKM",
+      "title": "How to CREATE a FURY FABRIC in V-Ray for SketchUp",
+      "author": "Chahoud Cursos"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Fur",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "V-Ray",
+    "VRayFur"
+  ],
+  "at": "2026-11-17T10:20:49.179552+00:00"
+}
