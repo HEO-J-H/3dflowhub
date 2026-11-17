@@ -35976,5 +35976,29 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 Pix2Poly 반영 타당성 검토",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T12:38:38+00:00",
+    "kind": "proposal",
+    "id": "p-ad12c62a6d",
+    "title": "held 상태 TripoSR 테스트 과제 단순화 및 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_core.py 및 test_triposr.py 관련 패치 적용 실패로 여러 차례 held 상태로 남음",
+    "proposal": "backend/tests/test_triposr.py 파일의 복잡한 패치 대신 단일 함수 단위의 단순한 예외 처리 검증 테스트로 범위를 좁혀 코딩 에이전트에 재할당",
+    "expected": "테스트 통과율 회복 및 held 상태 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T12:39:40.018956+00:00",
+    "kind": "decision",
+    "id": "p-ad12c62a6d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
   }
 ]
