@@ -1,0 +1,60 @@
+{
+  "title_ko": "V-Ray와 Corona로 이해하는 Global Illumination",
+  "title": "Why Renders Look Flat: Global Illumination Explained",
+  "url": "https://blog.chaos.com/what-is-global-illumination-rendering",
+  "domain": "3D DCC",
+  "category": "V-Ray·Corona",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "V-Ray",
+    "Corona",
+    "Global Illumination",
+    "렌더링",
+    "아키텍처럴 비주얼라이제이션",
+    "브이레이"
+  ],
+  "summary": "Global Illumination의 개념과 렌더링 결과물이 밋밋해 보이는 이유를 분석합니다.",
+  "insight": "모델링과 머티리얼을 정교하게 제작해도 밋밋한 느낌이 가시지 않는다면 간접광의 상호작용을 점검해야 합니다. V-Ray의 Brute Force와 Light Cache 또는 Corona의 Path Tracing과 UHD Cache 솔루션을 통해 간접광 계산 방식을 조절하면 어두운 구역의 밝기와 색상 전달을 자연스럽게 교정할 수 있습니다. 노출과 재질 반사율, 직접 조명 간의 관계를 함께 파악하는 것이 정확한 광원 표현의 출발점입니다.",
+  "try_it": [
+    "장면의 렌더 결과물이 어색할 때 머티리얼이나 조명을 먼저 바꾸지 말고 직접 조명과 간접 조명, 노출, 재질 반사율이 어떻게 상호작용하는지 점검합니다.",
+    "목재 바닥에서 흰색 벽으로 이어지는 컬러 블리딩 현상과 그늘진 영역의 밝기 분포를 관찰하여 간접광이 올바르게 전달되는지 평가합니다.",
+    "V-Ray 환경에서는 Brute Force와 Light Cache 조합을 활용해 정확한 간접광 계산을 수행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Global Illumination의 개념",
+      "body": "Global Illumination은 렌더링에서 간접 조명으로 불리며, 빛이 한 표면에서 다른 표면으로 반사되는 현상을 말합니다. 모델링과 머티리얼이 잘 제작되었음에도 렌더링 결과물이 밋밋해 보이는 주된 원인을 설명해 줍니다. 렌더러는 간접광 상호작용을 계산하거나 근사치로 구하기 위해 알고리즘을 사용합니다. 건축 시각화를 다루는 작업자에게 이 개념은 실시간 및 프로덕션 렌더링의 조명을 평가하는 탄탄한 토대가 됩니다."
+    },
+    {
+      "heading": "직접 조명과 간접 조명의 차이",
+      "body": "태양이나 램프 등 광원에서 직접 도달하는 빛은 직접 조명입니다. 빛이 바닥에 닿은 뒤 인접한 벽면으로 반사되어 그늘진 곳의 대비를 낮추고 색상을 전달하는 빛은 간접 조명입니다. 두 조명이 함께 작용하여 장면 전체의 조명을 형성합니다. 렌더 설정의 GI 관련 항목은 주로 원래 광원에서 오는 직접광보다는 이러한 간접광 기여도에 초점을 맞춥니다."
+    },
+    {
+      "heading": "이미지에서 확인하는 GI의 변화",
+      "body": "간접 조명 기여도는 컬러 블리딩, 그늘진 영역의 조명, 깊은 공간으로의 빛 분포를 통해 평가할 수 있습니다. 따뜻한 색상의 목재 바닥이 인접한 흰색 벽에 색을 반사하는 현상 등이 대표적입니다. 직사광선을 받지 않는 표면이라도 바닥이나 벽에서 반사된 빛으로 인해 어두운 영역의 디테일이 살아나고 과도한 대비가 완화됩니다."
+    },
+    {
+      "heading": "V-Ray와 Corona의 GI 엔진",
+      "body": "V-Ray에서는 Brute Force와 Light Cache가 관련 GI 엔진으로 사용됩니다. V-Ray의 Global Illumination은 이 두 엔진을 결합해 정확한 간접광과 빠른 계산을 동시에 제공합니다. Corona에서는 Path Tracing과 UHD Cache가 주요 솔루션으로 활용됩니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "렌더링 이미지가 밋밋해 보이는 이유는 무엇인가요?",
+      "a": "모델과 머티리얼이 잘 만들어졌더라도 Global Illumination(간접광 반사)이 제대로 반영되지 않으면 밋밋하게 느껴질 수 있습니다."
+    },
+    {
+      "q": "V-Ray에서 사용하는 주요 GI 엔진은 무엇인가요?",
+      "a": "V-Ray에서는 Brute Force와 Light Cache를 간접광 계산에 사용합니다."
+    }
+  ],
+  "media": {
+    "image": "https://blog.chaos.com/hubfs/Light-Override-Materials_A--1920x1080-401e237c-2818-4dac-b572-e714a2725e43.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-17T14:49:23.090251+00:00",
+  "notion_id": "",
+  "id": "2026-11-17-4e8b115ccbaa03cb",
+  "img_ok": "2026-11-17T14:49:23+00:00",
+  "enriched": "2026-11-17"
+}
