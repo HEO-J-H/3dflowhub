@@ -1,0 +1,99 @@
+{
+  "id": "v-ray-v-ray-physical-camera-df08",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "카메라 및 노출",
+  "name": "V-Ray Physical Camera",
+  "title": "V-Ray Physical Camera — 실제 카메라의 물리적 요소로 노출과 구도를 제어하는 기능",
+  "summary": "V-Ray Physical Camera는 실제 카메라의 작동 원리를 그대로 시뮬레이션하여 현실적인 노출, 심도, 모션 블러를 제어하는 3ds Max용 V-Ray 표준 카메라입니다.",
+  "when": [
+    "실제 카메라의 ISO, Shutter Speed, F-Number로 노출을 정밀하게 제어하고 싶을 때",
+    "아웃포커싱(Depth of Field) 효과를 자연스럽게 연출하고 싶을 때",
+    "실제 촬영 장비의 스펙을 3D 렌더링에 그대로 반영하여 실사 같은 결과물을 만들 때"
+  ],
+  "steps": [
+    "Create 패널(상단 탭)에서 Cameras 아이콘(Standard)을 선택합니다.",
+    "드롭다운 메뉴에서 V-Ray를 선택한 후 V-Ray Physical Camera를 클릭합니다.",
+    "Viewport에서 클릭 후 드래그하여 카메라와 타겟 지점을 배치합니다.",
+    "C 키를 눌러 Viewport의 시점을 방금 생성한 카메라 뷰로 전환합니다.",
+    "Modify 패널에서 Camera Parameters를 열어 Exposure, F-Number 등의 값을 조절합니다.",
+    "Viewport에서 결과 확인 후 V-Ray Frame Buffer(VFB)로 렌더링하여 노출을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "카메라의 형태(Still, Movie, Video 등)를 선택하여 기본 셔터 속도나 프레임 레이트를 결정합니다."
+    },
+    {
+      "name": "FOV (Field of View)",
+      "desc": "화각을 조절하여 Viewport에 담기는 장면의 넓이를 결정합니다."
+    },
+    {
+      "name": "F-Number",
+      "desc": "조리개 값으로, 낮을수록 아웃포커싱이 강해지고 화면이 밝아집니다."
+    },
+    {
+      "name": "Shutter Speed",
+      "desc": "셔터 속도로, 값이 낮을수록(느릴수록) 빛을 많이 받아 화면이 밝아지고 모션 블러가 강해집니다."
+    },
+    {
+      "name": "ISO",
+      "desc": "센서의 빛 민감도로, 높을수록 화면이 밝아지지만 노이즈가 증가할 수 있습니다."
+    },
+    {
+      "name": "Vignetting",
+      "desc": "실제 카메라 렌즈 특유의 주변부 어두워짐(비네팅) 효과를 시뮬레이션합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "아웃포커싱(심도)이 적용된 인물 클로즈업 샷",
+      "steps": [
+        "Camera Parameters에서 Depth of field 옵션을 활성화합니다.",
+        "Focus Distance를 조절하여 인물에 초점을 맞춥니다.",
+        "F-Number 값을 낮게(예: f/2.8) 설정하여 배경을 부드럽게 흐리게 만듭니다."
+      ]
+    },
+    {
+      "title": "야간 실내 조명 환경에서 노출 맞추기",
+      "steps": [
+        "ISO 값을 400~800 정도로 높여 센서 감도를 올립니다.",
+        "Shutter Speed를 낮춰(느리게) 충분한 광량을 확보합니다.",
+        "V-Ray Frame Buffer의 Exposure 보정을 함께 활용해 최종 밝기를 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노출이 너무 밝거나 어두워짐 → Exposure 체크박스가 켜져 있는지 확인하고 Shutter Speed나 ISO 값을 조절하세요.",
+    "초점이 맞지 않고 전체가 흐려짐 → Target Distance와 Focus Distance가 피사체 위치에 정확히 맞닿아 있는지 확인하세요."
+  ],
+  "related": [
+    "3ds Max Physical Camera",
+    "V-Ray Frame Buffer",
+    "V-Ray Sun",
+    "Depth of Field"
+  ],
+  "videos": [
+    {
+      "id": "dB4975f2yRc",
+      "title": "Working with camera settings and lens effects in V-Ray for 3ds Max",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "5thRvrv7hVg",
+      "title": "Working with camera settings and lens effects in V-Ray for SketchUp",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Physical%20Camera",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Cameras",
+    "Standard",
+    "V-Ray",
+    "V-Ray Physical Camera"
+  ],
+  "at": "2026-11-17T10:31:14.317281+00:00"
+}

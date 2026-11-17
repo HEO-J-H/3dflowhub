@@ -35290,5 +35290,76 @@
     "id": "p-1c915dafb5",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): docs/gpu-worker.md 및 관련 커밋을 통해 TripoSR 관련 문서 보강 과제가 이미 충족되었거나 완료 처리되었습니다."
+  },
+  {
+    "at": "2026-11-17T10:30:21+00:00",
+    "kind": "proposal",
+    "id": "p-2a07e16bec",
+    "title": "held 상태 TripoSR 테스트 과제 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 관련 테스트가 패치 적용 실패로 여러 번 held 상태가 됨",
+    "proposal": "backend/tests/test_triposr.py 대신 기존 안정적인 테스트 파일인 backend/tests/test_core.py 내에 TripoSR 예외 처리 검증 코드를 최소한으로 추가하여 패치 충돌을 방지합니다.",
+    "expected": "테스트 통과율 회복 및 held 상태 작업 해소",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:30:21+00:00",
+    "kind": "proposal",
+    "id": "p-8680934e34",
+    "title": "깃허브 RAG 오픈소스 활용 검토 및 적용 가이드",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "owner_decisions 및 owner messages에서 깃허브 RAG 오픈소스 반영 요청이 접수됨",
+    "proposal": "docs/rag-integration.md 파일을 신규 생성하여 로컬 툴 환경에서 경량 벡터 검색 오픈소스(예: Chroma, FAISS 등)를 활용하는 아키텍처와 라이선스 검토 내용을 정리합니다.",
+    "expected": "사용자 요청 사항 문서화 및 향후 RAG 도입 기준 마련",
+    "effort": "보통",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:30:28.320138+00:00",
+    "kind": "proposal",
+    "id": "p-704def7c02",
+    "title": "모바일 가이드 카드 UI 개선",
+    "by": "🎨 디자이너",
+    "site": "3dflowhub",
+    "source": "https://3dflowhub.kr/learn/gaussian-splatting-pipeline-b65f/",
+    "category": "사이트·UX",
+    "evidence": "가이드 조회 비중이 높으나 모바일 화면에서 카드 컴포넌트의 터치 영역과 여백이 좁아 탐색 효율이 떨어짐",
+    "proposal": "모바일 뷰에서 기초 가이드 카드 하단 여백을 넓히고 CTA 버튼 터치 영역을 44px 이상으로 확대",
+    "expected": "모바일 사용자 가이드 체류 시간 및 페이지 이동률 향상",
+    "effort": "낮음",
+    "action": null
+  },
+  {
+    "at": "2026-11-17T10:32:02.847338+00:00",
+    "kind": "decision",
+    "id": "p-704def7c02",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 모바일 가이드 카드 UI 레이아웃 개선",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:32:02.883648+00:00",
+    "kind": "decision",
+    "id": "p-2a07e16bec",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 단위 테스트 과제 분할 및 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:32:02.916719+00:00",
+    "kind": "decision",
+    "id": "p-8680934e34",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
   }
 ]
