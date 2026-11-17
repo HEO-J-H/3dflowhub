@@ -951,6 +951,14 @@ def evolve(stats: dict | None = None, force: bool = False) -> dict:
             log.warning("무료 에셋 모음 실패: %s", e)
         strategy["assets_at"] = _now()
         core._save_json(core.STRATEGY_PATH, strategy)
+    try:  # 주간 요약 메일 (월요일 오전 8시 이후 첫 실행, 주 1회, AI 안 씀)
+        import weekly_mail
+        r = weekly_mail.run()
+        if r != "발송 시각 아님":
+            log.info("주간 요약 메일: %s", r)
+        strategy = core.load_strategy()
+    except Exception as e:
+        log.warning("주간 요약 메일 실패: %s", e)
     if force or _due(strategy, "showcase_at", 6 * 86400):  # 이번 주 작품 자동 소개 (주 1회, AI 1회)
         try:
             import showcase
