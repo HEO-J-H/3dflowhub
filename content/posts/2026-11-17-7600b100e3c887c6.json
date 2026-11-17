@@ -1,0 +1,49 @@
+{
+  "title_ko": "Gaussian Splatting 3D 분할을 위한 VODA 볼류메트릭 감독",
+  "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+  "url": "https://arxiv.org/abs/2611.21383v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "3D Segmentation",
+    "NeurIPS 2026",
+    "VODA"
+  ],
+  "summary": "NeurIPS 2026에 채택된 VODA는 기존 렌더링 기반 3D Gaussian 분할의 한계를 극복하기 위해 로컬 깊이 구조를 활용하는 볼류메트릭 감독 기법을 제안합니다.",
+  "insight": "VODA는 알파 블렌딩 피처 감독이 가려진 Gaussian을 약하게 학습시키는 문제를 해결하기 위해 깊이 클러스터를 직접 감독합니다. Gaussian Splatting 객체 편집 및 제거 작업에서 기여도가 낮은 프리미티브까지 정확하게 복구할 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "기존 렌더링 기반 3D Gaussian 분할의 한계",
+      "body": "기존의 3D Gaussian 분할 방법들은 주로 렌더링된 뷰를 통해 학습되고 평가됩니다. 이 과정에서 알파 블렌딩 피처 감독은 지배적인 기여자에 학습이 집중되어 가려지거나 기여도가 낮은 Gaussian이 약하게 감독되는 불일치가 발생합니다. 그 결과 불완전한 3D 선택에서도 겉보기에는 정확한 렌더링 마스크가 만들어질 수 있습니다."
+    },
+    {
+      "heading": "VODA 볼류메트릭 감독 기법의 작동 방식",
+      "body": "VODA는 플러그앤플레이 방식으로 사용할 수 있는 새로운 감독 오브젝티브입니다. 로컬 깊이 구조를 이용해 픽셀별 기여자를 그룹화하고, 선택된 깊이 클러스터 내의 모든 Gaussian을 직접 감독합니다. 단순한 기여도 가중치 기반 그래디언트 전달 방식을 우회하여 볼류메트릭 완전성을 높입니다."
+    },
+    {
+      "heading": "Removal-3D 벤치마크와 성능 평가",
+      "body": "연구진은 볼류메트릭 완전성을 평가하기 위해 합성 객체 제거 벤치마크인 Removal-3D와 예측 및 정답 깊이 변화를 비교하는 Removal Depth Error 지표를 도입했습니다. 4가지 렌더링 기반 베이스라인과 비교했을 때 VODA는 Removal-3D에서 볼류메트릭 분할 성능을 일관되게 향상시켰으며 LERF와 ScanNet에서도 동등하거나 더 나은 성능을 유지했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "VODA는 어떤 문제를 해결하기 위해 제안되었나요?",
+      "a": "기존 렌더링 기반 분할에서 알파 블렌딩이 지배적 기여자에게만 학습을 집중시켜 가려진 Gaussian이 약하게 감독되는 문제를 해결합니다."
+    },
+    {
+      "q": "Removal-3D 벤치마크는 무엇을 측정하나요?",
+      "a": "볼류메트릭 완전성을 평가하기 위한 합성 객체 제거 벤치마크로, Removal Depth Error를 통해 예측된 깊이 변화를 측정합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.21383v1/motivation.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-17T14:58:48.413415+00:00",
+  "notion_id": "",
+  "id": "2026-11-17-7600b100e3c887c6",
+  "img_tried": true
+}
