@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-merge-3d-layers-86ae",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 메시 및 모델",
+  "name": "Merge 3D Layers",
+  "title": "Merge 3D Layers — 3D 레이어 병합",
+  "summary": "Photoshop의 Merge 3D Layers 기능은 개별적인 3D 레이어들을 하나의 공통된 3D 공간으로 병합하여, 하나의 카메라 뷰와 조명 아래에서 함께 편집하고 렌더링할 수 있게 해줍니다.",
+  "when": [
+    "서로 다른 3D 모델(OBJ, USD 등)을 하나의 화면에 불러와서 조화롭게 배치하고 싶을 때",
+    "여러 개의 3D 오브젝트가 동일한 카메라 뷰와 환경 조명을 공유해야 할 때",
+    "복수의 3D 레이어를 하나로 묶어 파일 구조를 단순화하고 렌더링 부하를 줄이고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop 상단의 3D Workspace 로 전환합니다.",
+    "Layers 패널에서 병합하려는 두 개 이상의 3D 레이어를 선택합니다 (Ctrl + 클릭 또는 Shift + 클릭).",
+    "Layers 패널 하단의 메뉴 버튼을 누르거나 레이어 패널 우클릭 메뉴를 엽니다.",
+    "Merge 3D Layers 메뉴를 클릭하여 선택한 레이어들을 하나의 3D 레이어로 통합합니다.",
+    "Viewport에서 3D Gizmo를 사용하여 병합된 오브젝트들의 상대적인 위치와 회전 값을 최종 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Layers",
+      "desc": "3D 공간 정보를 포함하고 있는 개별 레이어들의 목록입니다."
+    },
+    {
+      "name": "Merge 3D Layers",
+      "desc": "선택한 복수의 3D 레이어를 단일 3D 공간과 씬 구조로 병합합니다."
+    },
+    {
+      "name": "3D Gizmo",
+      "desc": "Viewport 상에서 3D 오브젝트의 이동, 회전, 스케일을 제어하는 축입니다."
+    },
+    {
+      "name": "Current View",
+      "desc": "현재 카메라가 바라보고 있는 시점입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "배경 모델과 캐릭터 모델 합치기",
+      "steps": [
+        "배경(Background.obj)과 캐릭터(Character.obj) 파일을 각각 Photoshop에 불러옵니다.",
+        "Layers 패널에서 두 3D 레이어를 동시에 선택합니다.",
+        "Mouse 우클릭 후 Merge 3D Layers를 실행합니다.",
+        "통합된 3D 씬 내에서 캐릭터의 위치를 배경 위에 알맞게 배치합니다."
+      ]
+    },
+    {
+      "title": "다중 오브젝트 조명 일치시키기",
+      "steps": [
+        "서로 다른 소스에서 가져온 3D 오브젝트 레이어들을 준비합니다.",
+        "Merge 3D Layers를 통해 하나의 3D 씬으로 병합합니다.",
+        "공통 3D Light를 생성하여 모든 오브젝트에 동일한 그림자와 하이라이트가 적용되도록 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 2D 레이어와 3D 레이어를 함께 선택한 경우 → 3D 레이어끼리만 다중 선택한 뒤 Merge 3D Layers를 실행해야 합니다.",
+    "병합 후 원하지 않게 오브젝트가 겹치거나 사라진 경우 → 3D Camera 도구와 Gizmo를 사용해 각 오브젝트의 로컬 위치와 Z축 깊이를 확인합니다.",
+    "Photoshop의 3D 기능 지원 중단 버전(최신 버전 일부)에서 메뉴를 찾는 경우 → 구버전 호환성을 확인하거나 3D 전용 DCC 툴(Blender 등)에서 레이어를 병합해 가져옵니다."
+  ],
+  "related": [
+    "3D Scene",
+    "3D Camera",
+    "3D Light",
+    "3D Extrusion"
+  ],
+  "videos": [
+    {
+      "id": "4Zhf0ZIpKo4",
+      "title": "How to blend and merge two diffrent layers in photoshop 2024",
+      "author": "GFX OM"
+    },
+    {
+      "id": "CxzDquQlVLU",
+      "title": "🎆Merge 3D Layers | Photoshop CC Tutorial #365/365",
+      "author": "Yes I'm a Designer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Merge%203D%20Layers",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "D Workspace",
+    "Layers",
+    "Merge 3D Layers"
+  ],
+  "at": "2026-11-17T08:58:14.251623+00:00"
+}

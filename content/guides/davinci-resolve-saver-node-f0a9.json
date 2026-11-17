@@ -1,0 +1,95 @@
+{
+  "id": "davinci-resolve-saver-node-f0a9",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "Saver Node",
+  "title": "Saver Node — 퓨전 컴포지션을 Timeline이 아닌 외부 파일로 직접 렌더링하는 노드",
+  "summary": "DaVinci Resolve Fusion 페이지에서 컴포지션의 결과물을 특정 포맷과 경로로 디스크에 직접 저장하는 출력 노드입니다. 복잡한 효과나 애니메이션을 이미지 시퀀스나 영상 파일로 렌더링할 때 필수적으로 사용합니다.",
+  "when": [
+    "Fusion 컴포지션 작업 결과를 EXR, PNG 등 이미지 시퀀스로 출력할 때",
+    "무거운 Fusion Effect를 선렌더링(Pre-render)하여 편집 Timeline의 부하를 줄일 때",
+    "외부 3D 및 VFX 파이프라인으로 렌더링된 숏을 내보낼 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단의 Fusion 페이지 탭을 클릭해 진입합니다.",
+    "노드 뷰(Nodes View)에서 빈 곳을 클릭하고 Shift+Space를 눌러 Select Tool 창을 엽니다.",
+    "검색창에 'Saver'를 입력하고 Enter를 눌러 Saver 노드를 생성합니다.",
+    "출력하려는 렌더 결과물 노드의 출력 포인트를 Saver 노드의 입력 포인트에 연결합니다.",
+    "Saver 노드를 선택한 후 Inspector 패널의 File 버튼을 눌러 저장할 경로와 파일명을 지정합니다.",
+    "Edit 페이지로 돌아가거나 Fusion 메뉴에서 렌더를 실행하여 결과물이 저장되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "File",
+      "desc": "저장될 파일의 경로, 파일명, 확장자(EXR, PNG, MOV 등)를 지정합니다."
+    },
+    {
+      "name": "Format",
+      "desc": "출력할 파일 포맷의 상세 설정(압축 방식 등)을 변경합니다."
+    },
+    {
+      "name": "Create Intermediate Directories",
+      "desc": "지정한 경로에 폴더가 없을 경우 자동으로 폴더를 생성합니다."
+    },
+    {
+      "name": "Start Frame",
+      "desc": "시퀀스 파일 저장 시 시작 프레임 번호를 설정합니다."
+    },
+    {
+      "name": "End Frame",
+      "desc": "렌더링이 끝나는 프레임 번호를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "EXR 이미지 시퀀스 Export",
+      "steps": [
+        "Saver 노드를 생성하고 MediaOut 노드 앞에 배치합니다.",
+        "File 설정에서 이름을 shot_01.####.exr 형식으로 지정합니다.",
+        "Format을 OpenEXR로 선택하고 압축 옵션을 조정합니다."
+      ]
+    },
+    {
+      "title": "무거운 Fusion Effect 선렌더링",
+      "steps": [
+        "Particle이나 복잡한 3D 씬이 포함된 노드 끝단에 Saver를 연결합니다.",
+        "렌더 범위를 Timeline 전체로 맞추고 파일을 디스크에 저장합니다.",
+        "저장된 이미지 시퀀스를 Loader 노드로 불러와 Timeline 속도를 최적화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파일 경로를 지정하지 않아 렌더 시 에러 발생 → Inspector의 File 브라우저 버튼을 눌러 올바른 저장 폴더와 파일명을 먼저 입력합니다.",
+    "프레임 범위가 맞지 않아 파일이 잘림 → Render Range 설정에서 Start와 End 프레임이 작업 구간과 일치하는지 확인합니다."
+  ],
+  "related": [
+    "Loader",
+    "MediaOut",
+    "Render Range",
+    "OpenEXR"
+  ],
+  "videos": [
+    {
+      "id": "ek-bi00npbk",
+      "title": "DaVinci Resolve Fusion Saver Node",
+      "author": "bdsCovered"
+    },
+    {
+      "id": "ruajWWDY598",
+      "title": "Resolve 21's NEW Saver Variables for Fusion Renders",
+      "author": "Creative Video Tips"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Saver%20Node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "Nodes View",
+    "Select Tool",
+    "Saver"
+  ],
+  "at": "2026-11-17T08:58:18.394120+00:00"
+}
