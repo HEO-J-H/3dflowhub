@@ -1,0 +1,102 @@
+{
+  "id": "gaussian-splatting-pipeline-b65f",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "AI 3D",
+  "name": "Gaussian Splatting Pipeline",
+  "title": "Gaussian Splatting 3D 재구성 기초 가이드",
+  "summary": "Gaussian Splatting은 수많은 3D Gaussian Primitive를 사용하여 실시간으로 고화질 3D 공간과 장면을 재구성하고 렌더링하는 최신 신경렌더링 기술입니다.",
+  "when": [
+    "실제 공간이나 오브젝트를 사진 촬영 기반으로 빠르게 3D 모델로 변환하고 싶을 때",
+    "기존 NeRF 방식보다 훨씬 빠른 속도로 실시간 Interactive 렌더링을 구현하고자 할 때",
+    "복잡한 디테일과 투명한 질감이 포함된 실사 기반의 3D 환경을 구축할 때"
+  ],
+  "steps": [
+    "대상 오브젝트나 공간을 다양한 각도에서 일정한 겹침(Overlap)을 유지하며 고해상도 사진이나 영상으로 촬영합니다.",
+    "COLMAP 등의 구조 광학(Structure from Motion, SfM) 도구를 사용하여 카메라 포즈와 초기 스파스 포인트 클라우드(Sparse Point Cloud)를 계산합니다.",
+    "Gaussian Splatting 학습 Software(예: Nerfstudio, LGM 등)를 실행하고 이미지 데이터셋 경로를 입력합니다.",
+    "훈련(Train) 프로세스를 시작하여 3D Gaussian 포인트들의 위치, 공분산, 색상, 불투명도(Opacity)를 최적화합니다.",
+    "학습이 완료된 PLY 또는 스플랫(Splat) 파일 형식을 뷰어나 엔진에 임포트하여 실시간으로 렌더링 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "모델 최적화를 위해 학습을 반복하는 총 횟수로 높을수록 품질이 향상됩니다."
+    },
+    {
+      "name": "Densification",
+      "desc": "오차가 큰 지역의 Gaussian을 분할하거나 복제하여 디테일을 채워주는 빈도입니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "각 Gaussian Primitive의 투명도를 결정하여 부드러운 블렌딩을 조절합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "Gaussian 타원의 크기를 조절하여 공간 채우기 밀도와 표면 부드러움에 영향을 줍니다."
+    },
+    {
+      "name": "SH Degree",
+      "desc": "구면 조화 함수(Spherical Harmonics) 차수로 시점에 따른 빛의 반사와 색상 변화를 표현합니다."
+    },
+    {
+      "name": "Learning Rate",
+      "desc": "Gaussian 파라미터가 갱신되는 속도로 수렴 안정성과 학습 품질을 좌우합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 디지털 트윈 구축",
+      "steps": [
+        "스마트폰이나 DSLR로 방 안을 걸어가며 동영상 촬영",
+        "프레임 추출 후 COLMAP으로 카메라 포즈 추정",
+        "Gaussian Splatting 파이프라인으로 학습 진행",
+        "웹 뷰어를 통해 실시간으로 탐색 가능한 3D 실내 공간 완성"
+      ]
+    },
+    {
+      "title": "문화재 및 소형 오브젝트 스캔",
+      "steps": [
+        "턴테이블을 이용해 오브젝트 주변을 고밀도로 촬영",
+        "배경 제거(Masking) 작업을 거쳐 불필요한 노이즈 차단",
+        "Gaussian Splatting을 통해 미세한 질감까지 학습",
+        "게임 엔진이나 AR 뷰어에 모델을 내보내어 배치"
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진의 겹침 부족 및 모션 블러 발생 → 동일 영역이 충분히 여러 각도에서 보이도록 선명하게 재촬영합니다.",
+    "투명하거나 반사되는 표면(유리, 거울) 아티팩트 → 편광 필터를 사용하거나 반사면을 마스킹하여 학습 데이터에서 제외합니다.",
+    "GPU 메모리 부족(OOM) 오류 발생 → 이미지 Resolution를 낮추거나 배치 크기(Batch Size)를 조절하여 학습을 진행합니다."
+  ],
+  "related": [
+    "Neural Radiance Fields",
+    "COLMAP",
+    "Nerfstudio",
+    "Instant-NGP"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "Tnij_xHEnXc",
+      "title": "What is 3D Gaussian Splatting?",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Gaussian%20Splatting%20Pipeline",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Overlap",
+    "COLMAP",
+    "Structure",
+    "Motion",
+    "SfM",
+    "Sparse Point Cloud"
+  ],
+  "at": "2026-11-17T09:38:47.743663+00:00"
+}

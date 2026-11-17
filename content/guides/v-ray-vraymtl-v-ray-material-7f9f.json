@@ -1,0 +1,99 @@
+{
+  "id": "v-ray-vraymtl-v-ray-material-7f9f",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 셰이딩",
+  "name": "VRayMtl - V-Ray Material",
+  "title": "VRayMtl — 범용적이고 물리적으로 정확한 표준 V-Ray 재질 설정 방법",
+  "summary": "VRayMtl (V-Ray Material)은 V-Ray 렌더러의 표준 물리 기반 재질(PBR)로, 금속·유리·플라스틱 등 거의 모든 현실 세계의 표면을 사실적으로 표현합니다.",
+  "when": [
+    "건축 시각화에서 사실적인 유리, 콘크리트, 목재 재질을 표현할 때",
+    "제품 디자인에서 유광 플라스틱이나 브러시드 메탈(금속) 재질을 만들 때",
+    "V-Ray 렌더러를 사용하여 가장 표준적이고 빠른 렌더링 결과물을 얻고 싶을 때"
+  ],
+  "steps": [
+    "3ds Max에서 M 키를 눌러 Material Editor를 엽니다.",
+    "Material/Map Browser에서 V-Ray 카테고리를 확장하고 VRayMtl을 더블 클릭하여 슬롯에 추가합니다.",
+    "Diffuse 슬롯 옆의 박스를 클릭하여 원하는 텍스처 맵(예: Bitmap)을 연결합니다.",
+    "완성된 VRayMtl 재질을 Viewport의 3D 모델에 드래그하여 적용합니다.",
+    "Material Editor에서 Reflect, Refract 값을 조절하여 반사와 투명도를 세팅한 뒤 V-Ray 프레임 버퍼로 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "물체의 기본 표면 색상이나 텍스처를 결정합니다."
+    },
+    {
+      "name": "Reflect",
+      "desc": "표면의 반사 강도와 색상을 설정하여 금속이나 유광 재질을 만듭니다."
+    },
+    {
+      "name": "Glossiness",
+      "desc": "반사의 거칠기를 조절하여 매끄러운 표면부터 거친 무광 표면까지 표현합니다."
+    },
+    {
+      "name": "Refract",
+      "desc": "빛의 투과율과 굴절을 설정하여 유리나 물 같은 투명한 재질을 만듭니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "지오메트리 수정 없이 텍스처의 명암을 이용해 표면의 요철(울퉁불퉁한 질감)을 표현합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "물리의 굴절률(Index of Refraction)을 조절하여 유리나 물의 꺾임 정도를 사실적으로 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "투명한 유리 컵 만들기",
+      "steps": [
+        "VRayMtl을 생성하고 Diffuse 색상을 검정색(0)으로 설정합니다.",
+        "Reflect와 Refract 값을 최대로(하얗게) 올립니다.",
+        "Refract의 IOR 값을 1.52(일반 유리 기준)로 입력합니다."
+      ]
+    },
+    {
+      "title": "무광 플라스틱 가구 표현",
+      "steps": [
+        "VRayMtl의 Diffuse에 원하는 플라스틱 색상을 지정합니다.",
+        "Reflect 값을 낮게 설정하고, Glossiness 값을 0.6~0.7로 낮춰 부드러운 반사를 만듭니다.",
+        "Bump 맵에 미세한 노이즈 맵을 연결하여 플라스틱 사출 흔적을 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Diffuse에 너무 밝은 흰색을 사용함 → 현실의 실제 재질 반사율을 고려해 순수한 흰색(255)은 피하고 밝은 회색을 사용합니다.",
+    "Reflect Glossiness를 1.0 그대로 둠 → 완벽한 거울처럼 보여 부자연스러우므로 약간 낮춰 자연스러운 반사를 만듭니다."
+  ],
+  "related": [
+    "VRayMtl Two-Sided Material",
+    "VRayBlendMtl",
+    "VRayBitmap",
+    "VRayLight"
+  ],
+  "videos": [
+    {
+      "id": "f8X2V_NtrSs",
+      "title": "Water Material Creation - V-Ray for Rhino",
+      "author": "Tom Budd"
+    },
+    {
+      "id": "tA_KkoKXyrQ",
+      "title": "Material Creation - V-Ray for Rhino - PBR Materials",
+      "author": "Tom Budd"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayMtl%20-%20V-Ray%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Material Editor",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayMtl"
+  ],
+  "at": "2026-11-17T09:38:42.465289+00:00"
+}
