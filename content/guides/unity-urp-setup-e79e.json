@@ -1,0 +1,101 @@
+{
+  "id": "unity-urp-setup-e79e",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "Game Engine",
+  "name": "URP Setup",
+  "title": "Unity URP 렌더 파이프라인 기초 세팅 방법",
+  "summary": "Unity Universal Render Pipeline (URP)은 모바일, PC, 콘솔 등 다양한 플랫폼에서 높은 성능과 일관된 그래픽 품질을 제공하는 현대적인 스크립터블 렌더 파이프라인입니다. 씬과 머티리얼을 URP 전용 에셋으로 변환하여 효율적인 라이팅과 렌더링을 구현할 수 있습니다.",
+  "when": [
+    "모바일 게임이나 멀티플랫폼 프로젝트를 개발할 때",
+    "실시간 라이팅과 Shader 그래프(Shader Graph)를 활용해 비주얼을 개선하고 싶을 때",
+    "Unity 7 및 최신 표준에 맞춰 프로젝트의 렌더링 성능을 최적화할 때"
+  ],
+  "steps": [
+    "Unity Hub를 열고 새 프로젝트를 생성할 때 Universal 3D Template을 선택합니다.",
+    "기존 프로젝트인 경우, Window 패키지 관리자(Package Manager)에서 Universal RP 패키지를 설치합니다.",
+    "Project 창에서 Mouse 우클릭 후 Create → Rendering → Universal Render Pipeline → Pipeline Asset (Forward Renderer)을 생성합니다.",
+    "Edit → Project Settings → Graphics로 이동하여 Scriptable Render Pipeline Settings 슬롯에 방금 만든 URP 에셋을 할당합니다.",
+    "Edit → Render Pipeline → Upgrade Project Materials to UniversalRP Materials를 실행하여 기존 머티리얼을 URP용으로 변환합니다.",
+    "Hierarchy 창에서 새로운 렌더링 설정이 적용된 Viewport와 라이팅 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Rendering Path",
+      "desc": "오브젝트를 렌더링하는 방식을 Forward 또는 Deferred 등으로 설정합니다."
+    },
+    {
+      "name": "HDR",
+      "desc": "고다이내믹레인지(HDR) 컬러를 활성화하여 빛의 밝기 표현을 풍부하게 만듭니다."
+    },
+    {
+      "name": "Anti Aliasing",
+      "desc": "계단 현상(메시 가장자리 깨짐)을 줄이기 위해 MSAA 배수를 설정합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자 활성화 여부와 최대 렌더링 거리, Resolution를 조절합니다."
+    },
+    {
+      "name": "Post-processing",
+      "desc": "블룸, 톤맵핑 등 후처리 효과 사용 여부를 전역으로 제어합니다."
+    },
+    {
+      "name": "Opaque Layer Mask",
+      "desc": "특정 레이어의 불투명 오브젝트만 선별하여 렌더링합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 캐주얼 게임 최적화 셋업",
+      "steps": [
+        "Universal Render Pipeline 에셋의 Shadow Distance를 낮춰 성능을 확보합니다.",
+        "Anti Aliasing을 2x MSAA로 설정해 모바일 발열을 줄입니다.",
+        "불필요한 Post 프로세싱 효과를 끄고 가볍게 유지합니다."
+      ]
+    },
+    {
+      "title": "Shader 그래프(Shader Graph) 활용",
+      "steps": [
+        "URP가 적용된 프로젝트에서 Create → Shader Graph → URP → Lit Shader를 생성합니다.",
+        "노드 편집기에서 커스텀 텍스처와 PBR 속성을 연결합니다.",
+        "머티리얼에 Shader를 적용하고 씬에서 결과를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Built-in Shader(Standard Shader) 사용 → Edit → Render Pipeline 메뉴에서 URP 머티리얼로 업그레이드 실행",
+    "URP 에셋을 Project Settings의 Graphics에 할당 누락 → Inspector에서 URP Pipeline Asset 슬롯이 비어 있는지 확인 후 드래그하여 등록",
+    "타겟 플랫폼과 맞지 않는 과도한 섀도우 Resolution 설정 → URP 에셋의 Shadows 세부 항목에서 Max Distance와 Resolution을 낮춤"
+  ],
+  "related": [
+    "Universal Render Pipeline",
+    "Shader Graph",
+    "Volume",
+    "URP 렌더 파이프라인 고르기"
+  ],
+  "videos": [
+    {
+      "id": "932zZeSWbXE",
+      "title": "Unity URP: A Beginner’s Guide to Setting Up Your Project",
+      "author": "Bliz Studio"
+    },
+    {
+      "id": "S2lLAwuVqKU",
+      "title": "Tutorial How to set up a URP Project in Unity with Our Asset Pack",
+      "author": "Jermesa Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20URP%20Setup",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity Hub",
+    "Universal 3D Template",
+    "Window",
+    "Package Manager",
+    "Universal RP",
+    "Project"
+  ],
+  "at": "2026-11-17T09:28:25.576376+00:00"
+}

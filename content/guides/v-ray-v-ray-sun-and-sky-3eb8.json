@@ -1,0 +1,100 @@
+{
+  "id": "v-ray-v-ray-sun-and-sky-3eb8",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "라이팅 및 조명",
+  "name": "V-Ray Sun and Sky",
+  "title": "V-Ray Sun and Sky — 현실적인 태양광과 대기 환경을 시뮬레이션하는 시스템",
+  "summary": "V-Ray Sun and Sky는 현실적인 야외 태양광과 대기 환경을 물리적으로 정확하게 시뮬레이션하는 라이팅 시스템입니다. 태양의 위치에 따라 하늘의 색상과 조도 변화가 자동으로 연출됩니다.",
+  "when": [
+    "건축 외관(Exterior) 렌더링에서 자연스러운 주간 자연광을 연출할 때",
+    "야외 풍경이나 대규모 지형 씬에서 시간대별 분위기를 빠르게 테스트할 때",
+    "실내 씬으로 들어오는 창가 햇빛과 확산된 하늘 빛을 표현할 때"
+  ],
+  "steps": [
+    "3ds Max 메인 툴바에서 Create 패널(Hotkey 4)로 이동합니다.",
+    "Lights 카테고리에서 V-Ray를 선택한 뒤 V-Ray Sun 버튼을 클릭합니다.",
+    "Viewport 드래그 앤 드롭으로 태양의 위치(Target)와 광원(Sun)을 배치합니다.",
+    "자동 생성 여부 묻는 창에서 V-Ray Sky 환경맵을 함께 생성(Yes)합니다.",
+    "Modify 패널에서 Intensity Multiplier와 Size Multiplier 값을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity Multiplier",
+      "desc": "태양광의 전체 밝기를 조절합니다."
+    },
+    {
+      "name": "Size Multiplier",
+      "desc": "태양 디스크의 크기를 조절하여 그림자 경계의 부드러움(Softness)을 바꿉니다."
+    },
+    {
+      "name": "Turbidity",
+      "desc": "대기 중 먼지나 오염 농도를 조절하여 하늘의 탁함과 색상을 변경합니다."
+    },
+    {
+      "name": "Ozone",
+      "desc": "오존층 흡수율을 조절하여 노을 질 때의 푸르거나 붉은 색감을 미세 조정합니다."
+    },
+    {
+      "name": "Filter Color",
+      "desc": "태양광이 통과할 때의 전체적인 색상 필터를 적용합니다."
+    },
+    {
+      "name": "Shadow Bias",
+      "desc": "그림자 시작 위치를 조정하여 깨짐이나 누락 현상을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "한낮의 밝은 건축 외관 연출",
+      "steps": [
+        "V-Ray Sun을 높게 배치하여 정오의 태양 위치를 잡습니다.",
+        "Intensity Multiplier를 기본값 또는 약간 높여 강한 직사광을 만듭니다.",
+        "Size Multiplier를 조절해 적당한 선명도의 그림자를 생성합니다."
+      ]
+    },
+    {
+      "title": "석양 시간대 노을 분위기 연출",
+      "steps": [
+        "V-Ray Sun을 지평선 근처 낮게 배치합니다.",
+        "Turbidity 값을 높여 대기를 탁하게 만들고 붉은 노을 빛을 유도합니다.",
+        "Environment 맵에 연결된 V-Ray Sky와 태양의 각도를 일치시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "태양을 너무 낮게 배치함 → 지평선 아래로 내려간 태양은 빛이 차단되므로 높이를 확인하세요.",
+    "노출 과다 발생 → V-Ray Physical Camera를 함께 사용하거나 Intensity Multiplier를 낮추세요.",
+    "그림자가 너무 날카로움 → Size Multiplier 값을 키워 부드러운 그림자를 만드세요."
+  ],
+  "related": [
+    "V-Ray Physical Camera",
+    "V-Ray Dome Light",
+    "V-Ray Environment",
+    "V-Ray Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "O_VqV0Ab7OI",
+      "title": "Vray Sun & Sky Quick Tutorial in 3Ds Max | RedefineFX",
+      "author": "RedefineFX | Jesse Pitela"
+    },
+    {
+      "id": "M9102J65Ac0",
+      "title": "V-Ray for SketchUp tutorial — Lighting, pt.1: using the Sun and Sky system",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Sun%20and%20Sky",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Create",
+    "Hotkey 4",
+    "Lights",
+    "V-Ray",
+    "V-Ray Sun"
+  ],
+  "at": "2026-11-17T09:28:34.640335+00:00"
+}

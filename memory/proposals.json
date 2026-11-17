@@ -35030,5 +35030,59 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T09:28:16.207790+00:00",
+    "kind": "applied",
+    "id": "p-e2a0f5d1ad",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-17T09:28:19+00:00",
+    "kind": "proposal",
+    "id": "p-e20f435c6d",
+    "title": "held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 및 test_core.py 관련 패치 적용 실패(held)가 반복 발생함",
+    "proposal": "backend/tests/test_triposr.py 파일의 단위 테스트 패치 대상을 단일 함수 검증 형태로 단순화하여 코딩 에이전트가 재시도하도록 설정",
+    "expected": "보류된 TripoSR 단위 테스트 통과 및 파이프라인 안정성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T09:28:19+00:00",
+    "kind": "proposal",
+    "id": "p-c69bb0d3b3",
+    "title": "승인 대기 중인 PR #78 및 #79 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #78(url_ingest 검증 보강)과 PR #79(웹 브라우저 PBR 변환 UI 안내 보강)가 승인 대기 상태임",
+    "proposal": "GitHub 저장소에서 PR #78과 PR #79의 변경 사항을 최종 확인하고 머지 진행",
+    "expected": "핵심 코드 변경 사항의 메인 브랜치 반영 완료",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T09:28:56.053502+00:00",
+    "kind": "decision",
+    "id": "p-e20f435c6d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T09:28:56.100172+00:00",
+    "kind": "decision",
+    "id": "p-c69bb0d3b3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
+    "auto": true
   }
 ]
