@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-14T21:07:24.659883+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 62,
-      "candidates_passed": 30,
-      "offtopic": 17,
-      "short": 0,
-      "prefiltered": 22,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "302b7064",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-14T21:17:00.844366+00:00",
       "collected": 0,
       "saved": 0,
@@ -7648,6 +7623,31 @@
         "short post",
         "low depth"
       ]
+    },
+    {
+      "at": "2026-11-17T00:36:34.074170+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 72,
+      "candidates_passed": 35,
+      "offtopic": 24,
+      "short": 0,
+      "prefiltered": 18,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d0b07fc2",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "question thread"
+      ]
     }
   ],
   "good_keywords": [
@@ -7743,7 +7743,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-09 [성찰] 동음이의어(Nuke, Unity 등)의 오수집을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용하고, Maxscript나 애드온처럼 검색 유입이 검증된 실무형 콘텐츠를 집중 발행해야 합니다.",
     "2026-11-09 [성찰] 오수집된 동음이의어 비관련 기사 비율을 줄이기 위해 컨텍스트 필터를 엄격히 적용하고 검색 유입이 높은 툴 중심의 실무 튜토리얼과 애드온 콘텐츠를 집중 발행해야 합니다.",
     "2026-11-09 [evolve.analyze_3d_content_distribution()] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
@@ -7862,7 +7861,8 @@
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — 59 passed, 1 warning in 2.58s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
     "2026-11-16 [성찰] 동음이의어 필터를 1000중으로 강화한 결과 오프토픽 비율이 크게 낮아졌으므로, 실무 튜토리얼 및 애드온 관련 고단가 키워드 중심의 수집 전략을 더욱 공고히 해야 합니다.",
-    "2026-11-16 [성찰] 동음이의어 필터를 1200중으로 강화하여 무관한 일반 명사 유입을 줄이고 패스율을 개선했으나, 여전히 불필요한 프리필터 및 오프토픽을 낮추기 위해 컨텍스트 검증을 더욱 정교화해야 합니다."
+    "2026-11-16 [성찰] 동음이의어 필터를 1200중으로 강화하여 무관한 일반 명사 유입을 줄이고 패스율을 개선했으나, 여전히 불필요한 프리필터 및 오프토픽을 낮추기 위해 컨텍스트 검증을 더욱 정교화해야 합니다.",
+    "2026-11-17 [성찰] 동음이의어 필터를 2000중으로 대폭 강화하여 일반 명사 뉴스의 유입을 원천 차단하고, 실무 튜토리얼 및 애드온 관련 고단가 키워드에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -10985,14 +10985,15 @@
     58565282315736322,
     1307778037603676290,
     10054200845635862442,
-    14704572972943998992
+    14704572972943998992,
+    13530447542189628608
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3300,
-    "Game Engine": 3300,
-    "VFX": 3300,
-    "AI 3D": 3300
+    "3D DCC": 3301,
+    "Game Engine": 3301,
+    "VFX": 3301,
+    "AI 3D": 3301
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
