@@ -1,0 +1,101 @@
+{
+  "id": "davinci-resolve-delta-keyer-781b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "Delta Keyer",
+  "title": "델타 키어 — 그린스크린(Chroma Key) 배경을 정교하게 분리해내는 고급 키잉 노드",
+  "summary": "Delta Keyer는 그린스크린·블루스크린 촬영 영상에서 피사체를 정밀하게 추출하는 고품질 키잉 툴입니다.",
+  "when": [
+    "피사체와 배경이 단색(그린/블루) 화면으로 촬영된 경우",
+    "머리카락·반투명 소재 등 섬세한 가장자리를 보존해야 할 때",
+    "키잉 후 색상 보정·합성을 바로 이어서 할 경우"
+  ],
+  "steps": [
+    "Color 페이지 → Nodes 패널에서 빈 노드 우클릭 → Add OFX → ResolveFX → Delta Keyer 선택",
+    "키잉할 클립을 Delta Keyer 노드에 연결 (Drag & Drop)",
+    "Inspector에서 Clip Black, Clip White 슬라이더로 키 범위 조정",
+    "Softness 로 가장자리 부드러움 조절 후 필요 시 Despill 활성화",
+    "필요하면 Denoise와 Edge Blur 로 노이즈·경계 잡음 보정"
+  ],
+  "params": [
+    {
+      "name": "Clip Black",
+      "desc": "키 영역을 시작하는 밝기 임계값, 높일수록 배경이 더 많이 제거됩니다"
+    },
+    {
+      "name": "Clip White",
+      "desc": "키 영역을 끝내는 밝기 임계값, 낮출수록 피사체가 더 많이 포함됩니다"
+    },
+    {
+      "name": "Softness",
+      "desc": "키 가장자리 부드러움 정도, 값이 클수록 경계가 부드러워집니다"
+    },
+    {
+      "name": "Despill",
+      "desc": "피사체 색상에 섞인 배경 색을 보정해 피부 톤을 회복합니다"
+    },
+    {
+      "name": "Denoise",
+      "desc": "키 영역 내 노이즈를 감소시켜 깨끗한 알파를 만듭니다"
+    },
+    {
+      "name": "Edge Blur",
+      "desc": "키 경계에 추가 블러를 적용해 인공적인 경계선을 완화합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 그린스크린 키잉",
+      "steps": [
+        "Delta Keyer 노드 추가",
+        "Clip Black을 0.2, Clip White를 0.8 로 설정",
+        "Softness 0.05, Despill 켜기",
+        "결과를 Fusion 페이지로 보내 합성"
+      ]
+    },
+    {
+      "title": "반투명 머리카락 키잉",
+      "steps": [
+        "Delta Keyer 노드 추가",
+        "Clip Black을 낮게(0.1) 설정, Clip White를 높게(0.9) 설정",
+        "Softness 0.1, Denoise 활성화",
+        "Edge Blur 0.02 로 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Clip Black 값을 너무 낮게 설정 → 배경이 남아 키가 불완전해짐 → Clip Black을 올려 배경 제거 강화",
+    "Despill을 끄면 피부 색이 녹색에 물듦 → Despill을 켜고 Hue Offset 조정",
+    "Softness를 과도하게 높임 → 피사체 가장자리가 흐려짐 → Softness 값을 낮추고 Edge Blur로 보완"
+  ],
+  "related": [
+    "Primatte Keyer",
+    "Ultra Key",
+    "Fusion Connect",
+    "Color Page"
+  ],
+  "videos": [
+    {
+      "id": "je3Xw0plsbA",
+      "title": "Simple Davinci Resolve Fusion Delta Keyer Tutorial!",
+      "author": "Martin Leon Lindstedt"
+    },
+    {
+      "id": "14zlrGFu0mw",
+      "title": "How To Use The Delta Keyer In Davinci Resolve 18.5",
+      "author": "RobCreates"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Delta%20Keyer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Color",
+    "Nodes",
+    "Add OFX",
+    "ResolveFX",
+    "Delta Keyer"
+  ],
+  "at": "2026-11-17T01:58:32.233701+00:00"
+}
