@@ -35423,5 +35423,67 @@
     "id": "p-140da3e4e6",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): docs/local-pipeline.md 문서 점검 및 관련 마크다운·링크 정비는 이미 완료된 제안과 최근 커밋에서 다루어졌습니다."
+  },
+  {
+    "at": "2026-11-17T10:48:45+00:00",
+    "kind": "proposal",
+    "id": "p-0e3cfbbff2",
+    "title": "보류된 TripoSR 단위 테스트 과제 단순화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 관련 패치 적용이 반복해서 실패(held) 처리됨",
+    "proposal": "backend/tests/test_triposr.py의 복잡한 패치 블록을 단순화하고, 예외 처리 테스트 코드를 소규모 함수 단위로 나누어 코딩 에이전트가 쉽게 적용할 수 있도록 재작성",
+    "expected": "TripoSR 단위 테스트가 정상 통과하며 보류 상태 해소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:48:45+00:00",
+    "kind": "proposal",
+    "id": "p-60c2ec32ba",
+    "title": "로컬 파이프라인 TripoSR 실행 안내서 문서 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 관련 에이전트 실행에서 search 블록 일치 실패로 보류됨",
+    "proposal": "docs/local-pipeline.md 문서 하단에 VRAM 권장 사양 및 CUDA 설정 안내를 간결한 Markdown 형태로 추가하여 패치 충돌 방지",
+    "expected": "로컬 실행 문서 가독성 향상 및 자동 머지 가능한 문서 정비 완료",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:49:20.312071+00:00",
+    "kind": "decision",
+    "id": "p-0e3cfbbff2",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 테스트 과제 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:49:20.355235+00:00",
+    "kind": "decision",
+    "id": "p-60c2ec32ba",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:49:22.500796+00:00",
+    "kind": "triage",
+    "id": "p-60c2ec32ba",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 TripoSR 안내 관련 과제는 docs/gpu-worker.md 로 이미 충족되어 완료 처리되었습니다."
+  },
+  {
+    "at": "2026-11-17T10:49:22.538749+00:00",
+    "kind": "decision",
+    "id": "p-60c2ec32ba",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 TripoSR 안내 관련 과제는 docs/gpu-worker.md 로 이미 충족되어 완료 처리되었습니다."
   }
 ]
