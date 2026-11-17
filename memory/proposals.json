@@ -37301,5 +37301,74 @@
     "kind": "applied",
     "id": "p-c7d1261141",
     "result": "사람 할 일 — 1. GitHub 저장소의 Pull Requests 페이지로 이동합니다.\n2. PR #79의 변경 사항을 검토합니다.\n3. 이상이 없다면 머지 버튼을 눌러 병합을 완료합니다."
+  },
+  {
+    "at": "2026-11-17T18:29:44+00:00",
+    "kind": "proposal",
+    "id": "p-acb65a1a6a",
+    "title": "TripoSR 테스트 패치 오류 분석 및 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 파일 관련 패치 적용 실패가 반복됨",
+    "proposal": "backend/tests/test_triposr.py의 search 블록과 테스트 구조를 점검하여 코딩 에이전트가 안전하게 적용할 수 있도록 패치 범위를 축소·수정",
+    "expected": "보류 중인 TripoSR 테스트가 정상 통과되어 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T18:29:44+00:00",
+    "kind": "proposal",
+    "id": "p-c5ad667b14",
+    "title": "오픈소스 RAG 검토 가이드 초안 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사장님 요청 사항으로 깃허브 RAG 오픈소스 검토 반영 요구됨",
+    "proposal": "docs/rag-evaluation.md 파일을 신규 생성하여 Pix2Poly 프로젝트 구조에 적합한 경량 오픈소스 RAG 라이브러리(예: LlamaIndex/Chroma 등)의 상업적 라이선스 및 도입 타당성 검토 문서 작성",
+    "expected": "오픈소스 RAG 도입 여부를 명확히 판단할 수 있는 기준 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T18:30:26.563596+00:00",
+    "kind": "decision",
+    "id": "p-acb65a1a6a",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T18:30:26.600096+00:00",
+    "kind": "decision",
+    "id": "p-c5ad667b14",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-evaluation.md 오픈소스 RAG 검토 가이드 작",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T18:30:27.575528+00:00",
+    "kind": "decision",
+    "id": "p-c7d1261141",
+    "v": "done",
+    "note": "자동 완료 확인: PR #79 닫힘"
+  },
+  {
+    "at": "2026-11-17T18:30:29.541073+00:00",
+    "kind": "triage",
+    "id": "p-acb65a1a6a",
+    "verdict": "done_already",
+    "reason": "TripoSR 테스트 패치 및 관련 오류 정비 작업은 이미 완료된 제안 및 최근 커밋에서 반영 및 처리되었습니다."
+  },
+  {
+    "at": "2026-11-17T18:30:29.576868+00:00",
+    "kind": "decision",
+    "id": "p-acb65a1a6a",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): TripoSR 테스트 패치 및 관련 오류 정비 작업은 이미 완료된 제안 및 최근 커밋에서 반영 및 처리되었습니다."
   }
 ]
