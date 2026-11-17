@@ -1,0 +1,100 @@
+{
+  "id": "v-ray-v-ray-denoiser-d463",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "카메라 및 노출",
+  "name": "V-Ray Denoiser",
+  "title": "V-Ray Denoiser — AI 또는 딥러닝 기술을 활용해 렌더링 이미지의 잔여 노이즈를 자동으로 부드럽",
+  "summary": "V-Ray Denoiser는 렌더링 후 이미지의 노이즈를 자동으로 제거해 깨끗한 결과물을 빠르게 얻을 수 있게 해줍니다.",
+  "when": [
+    "샘플 수를 낮게 설정해 렌더 시간을 단축하고 싶을 때",
+    "인테리어·제품 등 정밀한 디테일이 필요하지만 노이즈가 눈에 띄는 경우",
+    "애니메이션 시퀀스의 일관된 노이즈 제거가 필요할 때"
+  ],
+  "steps": [
+    "Render Setup (F10) → V-Ray 탭 → Denoiser 섹션에서 Enable Denoiser 체크",
+    "Denoiser Type을 V-Ray Denoiser(또는 Intel Open Image Denoise)로 선택",
+    "Denoiser Strength와 Radius 값을 기본값으로 둔 뒤 필요 시 조정",
+    "렌더 후 V-Ray Frame Buffer(VFB)에서 Settings → Denoiser → Apply 클릭 (자동 적용 시 생략)",
+    "렌더 결과를 저장하면 노이즈가 제거된 이미지가 저장됩니다"
+  ],
+  "params": [
+    {
+      "name": "Enable Denoiser",
+      "desc": "Denoiser 기능을 활성화합니다"
+    },
+    {
+      "name": "Denoiser Type",
+      "desc": "사용할 노이즈 제거 알고리즘 선택 (V-Ray Denoiser, Intel OID, NVIDIA OptiX)"
+    },
+    {
+      "name": "Strength",
+      "desc": "노이즈 감소 강도, 높을수록 부드러워짐"
+    },
+    {
+      "name": "Radius",
+      "desc": "노이즈 탐지 영역 크기, 값이 클수록 넓은 영역을 평균"
+    },
+    {
+      "name": "Threshold",
+      "desc": "노이즈로 판단할 최소 차이값, 낮을수록 더 많이 적용"
+    },
+    {
+      "name": "Output",
+      "desc": "노이즈 제거 대상 (Color, Albedo, Normal) 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인테리어 조명 렌더링 노이즈 제거",
+      "steps": [
+        "샘플 수를 64로 낮게 설정",
+        "V-Ray Denoiser 활성화 → Strength 0.8, Radius 0.5 적용",
+        "렌더 후 VFB에서 Apply 클릭",
+        "노이즈가 사라진 깨끗한 실내 이미지 확인"
+      ]
+    },
+    {
+      "title": "제품 렌더링에서 빠른 결과 얻기",
+      "steps": [
+        "샘플 수 32, Adaptive Subdivision 사용",
+        "Denoiser Type을 Intel Open Image Denoise로 선택",
+        "Strength 0.7, Radius 0.4 설정",
+        "렌더 후 바로 VFB에서 자동 적용 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "샘플 수를 너무 낮게 잡고 Denoiser만 켜면 디테일이 흐려짐 → 샘플 수를 최소 32~64로 유지하고 Strength를 낮게 조정",
+    "VFB에서 Denoiser를 활성화하지 않아 렌더 결과가 그대로 표시 → VFB Settings → Denoiser → Enable 체크",
+    "Denoiser Output을 Color만 선택해 알베도·노멀 정보를 무시 → 알베도·노멀도 포함해 잡음 감소 효과 극대화"
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "V-Ray Sampling",
+    "V-Ray Render Elements",
+    "V-Ray AI Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "5w3vwKlJN-4",
+      "title": "Vray Speed up Renders with Denoiser #shorts",
+      "author": "Untextured Nerd"
+    },
+    {
+      "id": "jhnBwX1szgY",
+      "title": "render setup for vray 6 full free workshop - lesson 12 - vray denoiser",
+      "author": "3d.artist.Mashayekhi"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Denoiser",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "V-Ray",
+    "Denoiser",
+    "Enable Denoiser"
+  ],
+  "at": "2026-11-17T02:08:32.652744+00:00"
+}

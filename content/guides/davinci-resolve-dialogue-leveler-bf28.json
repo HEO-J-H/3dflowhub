@@ -1,0 +1,101 @@
+{
+  "id": "davinci-resolve-dialogue-leveler-bf28",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트 페이지",
+  "name": "Dialogue Leveler",
+  "title": "다이얼로그 레벨러 — 대사 Audio의 들쑥날쑥한 음량을 자동으로 균일하게 맞춰주는 기능",
+  "summary": "Dialogue Leveler는 대화 음성의 레벨을 자동으로 균일하게 맞춰 주는 Audio 효과입니다.",
+  "when": [
+    "다양한 인물의 대화가 섞여 있어 볼륨 차이가 크게 날 때",
+    "마이크 거리·볼륨 차이로 인해 일부 대사가 너무 작게 들릴 때",
+    "전체 대화 트랙을 빠르게 정규화하고 싶을 때"
+  ],
+  "steps": [
+    "Fairlight 페이지를 엽니다",
+    "Effects Library → Audio FX → Dialogue → Dialogue Leveler 를 찾아 클립에 드래그하거나 트랙에 적용합니다",
+    "Inspector 패널에서 Dialogue Leveler 를 선택합니다",
+    "필요에 따라 Input Gain, Target Loudness 등 파라미터를 조정합니다",
+    "재생해 보며 레벨이 균일해졌는지 확인합니다"
+  ],
+  "params": [
+    {
+      "name": "Input Gain",
+      "desc": "입력 신호의 기본 볼륨을 조절합니다"
+    },
+    {
+      "name": "Target Loudness",
+      "desc": "목표 loudness(LUFS) 값을 설정해 전체 대화 레벨을 맞춥니다"
+    },
+    {
+      "name": "Range",
+      "desc": "최대 증폭/감쇄 범위를 dB 단위로 제한합니다"
+    },
+    {
+      "name": "Attack",
+      "desc": "볼륨 상승 반응 속도를 ms 단위로 설정합니다"
+    },
+    {
+      "name": "Release",
+      "desc": "볼륨 감소 반응 속도를 ms 단위로 설정합니다"
+    },
+    {
+      "name": "Output Gain",
+      "desc": "처리 후 최종 출력 볼륨을 추가로 조절합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 영상 대화 레벨 정규화",
+      "steps": [
+        "클립을 선택하고 Dialogue Leveler 적용",
+        "Target Loudness 를 -23 LUFS 로 설정",
+        "Range 를 6 dB 로 제한",
+        "재생 후 모든 인물의 목소리가 비슷하게 들리는지 확인"
+      ]
+    },
+    {
+      "title": "다중 캐릭터 씬의 대화 균형 맞추기",
+      "steps": [
+        "전체 대화 트랙에 Dialogue Leveler 삽입",
+        "Input Gain 로 전체 볼륨을 약간 높임",
+        "Attack/Release 를 50 ms 로 설정해 부드러운 변화를 확보",
+        "Output Gain 로 최종 레벨을 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 클립에 직접 적용하지 않고 트랙에만 적용 → 트랙 전체에 적용되므로 원치 않는 부분까지 레벨링될 수 있음. 필요 시 개별 클립에 별도 적용",
+    "Range 값을 너무 크게 설정 → 잡음까지 증폭돼 깨끗하지 않은 소리가 될 수 있음. 적절히 6~8 dB 로 제한",
+    "Target Loudness 를 너무 낮게 설정 → 대화가 전체적으로 얇아짐. 일반 방송 기준 -23 LUFS 정도가 적당"
+  ],
+  "related": [
+    "Noise Reduction",
+    "Compressor",
+    "EQ",
+    "Fairlight Mixer"
+  ],
+  "videos": [
+    {
+      "id": "C-Ea8EJO5C0",
+      "title": "The RIGHT way to use Dialogue Leveler in Davinci Resolve",
+      "author": "Duan van Schalkwyk"
+    },
+    {
+      "id": "_Mvvh-RoSpU",
+      "title": "How To LEVEL DIALOGUE in DaVinci Resolve FAST (New Built in Dialogue Leveler)",
+      "author": "Alli and Will"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Dialogue%20Leveler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Fairlight",
+    "Effects Library",
+    "Audio FX",
+    "Dialogue",
+    "Dialogue Leveler"
+  ],
+  "at": "2026-11-17T02:08:56.850433+00:00"
+}
