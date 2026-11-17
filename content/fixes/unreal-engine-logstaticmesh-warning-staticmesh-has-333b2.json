@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logstaticmesh-warning-staticmesh-has-333b2",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogStaticMesh: Warning: StaticMesh has degenerate triangles on LOD 0",
+  "title": "LogStaticMesh: Warning: StaticMesh has degenerate triangles on LOD 0 경고 해결",
+  "summary": "Unreal Engine에서 Static Mesh 에셋의 LOD 0(기본 LOD)에 면적이 0이거나 거의 없어 렌더링할 수 없는 퇴화된 삼각형(degenerate triangles)이 포함되어 있을 때 발생하는 경고 메시지입니다. 렌더링 결함, 조명 Bake 오류, 혹은 충돌(Collision) 생성 시 문제를 유발할 수 있습니다.",
+  "causes": [
+    "3D 모델링 툴(Blender, 3ds Max 등)에서 제작 당시 극단적으로 찌그러지거나 겹쳐진 폴리곤이 포함된 경우",
+    "FBX 파일 Import 과정에서 Import 설정의 지나치게 공격적인 웰드(Weld)나 리덕션 옵션으로 인해 면이 무너진 경우",
+    "아주 작은 크기의 디테일이나 얇은 두께의 오브젝트가 Viewport 스케일로 인해 깨진 경우"
+  ],
+  "steps": [
+    "Content Browser에서 문제가 발생하는 Static Mesh 에셋을 더블 클릭하여 Static Mesh Editor를 엽니다.",
+    "Details 패널에서 Build Settings 섹션을 찾고, Use Full Precision UVs나 Recompute Normals 등의 옵션을 확인합니다.",
+    "Build Settings의 Distance Field Resolution이나 Generate Lightmap UVs 설정을 조정하고 상단의 Apply Changes 버튼을 누릅니다.",
+    "원인 메시지가 지속될 경우, 원본 3D DCC 툴(Blender, 3ds Max 등)에서 에셋을 열고 Merge, Clean Up 또는 Delete Loose/Degenerate Faces 기능을 실행해 잘못된 폴리곤을 정리합니다.",
+    "수정된 에셋을 다시 FBX로 내보낸 뒤 Unreal Engine에서 Reimport 합니다."
+  ],
+  "check": [
+    "Static Mesh Editor에서 에셋을 재임포트한 후 Output Log 창에 해당 경고 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport에서 메시의 깨진 면이나 비정상적인 섀도우 아티팩트가 사라졌는지 시각적으로 확인합니다."
+  ],
+  "prevent": [
+    "3D DCC 툴에서 모델링 작업 완료 후 익스포트 전 반드시 중복 Vertex 제거(Merge by Distance 등)와 노멀 정렬을 수행합니다.",
+    "Unreal Engine FBX Import 옵션에서 웰드 임계값(Weld Threshold)을 너무 높게 설정하지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "StaticMesh has degenerate triangles",
+    "Unreal 스태틱메시 경고",
+    "퇴화된 삼각형 해결",
+    "LogStaticMesh Warning",
+    "Unreal LOD 0 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T11:21:09+00:00"
+}

@@ -5,7 +5,7 @@
   "group": "입문",
   "name": "Omniverse use cases (digital twin, robotics, design review)",
   "title": "활용 분야 — 디지털 트윈·로보틱스·디자인 리뷰",
-  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 현대자동차, 두산, SK, LG 등 국내 대기업들과의 물리 AI 및 스마트 제조 공장 자동화·로보틱스 검증 협력, ABB Robotics와의 물리 AI 교육 프로그램 협력, 해양 파력 에너지를 데이터센터 전력원으로 전환하는 연구, 그리고 Rockwell Automation의 Emulate3D 통합을 통한 산업용 시뮬레이션 및 AI 기반 공장 설계 고도화 등이 활발히 진행되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 다양한 3D DCC 툴과 실시간으로 협업하고, 물리 기반 시뮬레이션과 실시간 레이 트레이싱을 수행하는 개방형 플랫폼입니다. USD(Universal Scene Description)를 기반으로 거대한 가상 세계를 통합하며, 최근 현대자동차, 두산, SK, LG 등 국내 대기업들과의 물리 AI 및 스마트 제조 공장 자동화·로보틱스 검증 협력, ABB Robotics와의 물리 AI 교육 프로그램 협력, 해양 파력 에너지를 데이터센터 전력원으로 전환하는 연구, 그리고 Rockwell Automation의 Emulate3D 통합(USD 기반 실시간 협업 및 시각적 완성도 강화, 단 정확도 검증 수치는 미공개되어 도입 전 자체 테스트 권장)을 통한 산업용 시뮬레이션 및 AI 기반 공장 설계 고도화 등이 활발히 진행되고 있습니다.",
   "when": [
     "여러 아티스트가 3ds Max, Blender, Unreal Engine 등 서로 다른 툴의 데이터를 실시간으로 동기화하며 작업할 때",
     "현대자동차, 두산, SK, LG 등 국내 대기업들의 제조 현장 적용 사례를 포함한 공장 자동화, 물류 센터, 스마트 시티, 건설 현장 및 의료 분야의 대규모 디지털 트윈(Digital Twin) 환경을 구축할 때",
@@ -53,7 +53,7 @@
     },
     {
       "name": "Emulate3D",
-      "desc": "Rockwell Automation의 산업용 시뮬레이션 플랫폼으로, NVIDIA Omniverse와 통합되어 대규모 공장 레이아웃과 실시간 물리 시뮬레이션을 USD 기반으로 연결하고 가상 검증 속도를 높입니다."
+      "desc": "Rockwell Automation의 산업용 시뮬레이션 플랫폼으로, NVIDIA Omniverse와 통합되어 USD 기반 실시간 협업과 시각적 완성도를 강화하며, 도입 시 정확도 검증 수치 미공개에 따른 자체 테스트가 권장됩니다."
     }
   ],
   "examples": [
@@ -94,13 +94,14 @@
       "steps": [
         "Rockwell Automation의 Emulate3D와 NVIDIA Omniverse를 연동하여 대규모 공장 레이아웃 에셋을 USD 기반으로 로드합니다.",
         "실시간 물리 시뮬레이션과 고품질 시각화 환경을 결합해 공장 가동 전 발생할 수 있는 병목 현상과 물리적 충돌 요소를 미리 파악합니다.",
-        "시뮬레이션 결과 데이터를 기반으로 즉각적인 피드백을 반영하여 디지털 팩토리 설계의 정확도와 검증 속도를 높입니다."
+        "정확도 검증 수치가 공식 공개되지 않았으므로 도입 전 현장 오차 범위 확인을 위한 자체 벤치마크 테스트를 거쳐 피드백을 반영합니다."
       ]
     }
   ],
   "mistakes": [
     "USD 포맷으로 변환하기 전 원본 툴에서 스케일이나 트랜스폼이 초기화되지 않음 → 대상을 선택하고 Apply Scale 또는 Reset Transform 실행 후 내보내기",
-    "Nucleus 서버 연결이 끊긴 상태에서 Live Sync를 시도함 → Omniverse Launcher에서 Nucleus 서비스 상태와 로그인 확인"
+    "Nucleus 서버 연결이 끊긴 상태에서 Live Sync를 시도함 → Omniverse Launcher에서 Nucleus 서비스 상태와 로그인 확인",
+    "Rockwell Emulate3D 연동 시 물리 시뮬레이션 정확도 데이터가 미공개된 상태로 현장에 바로 적용함 → 도입 전 자체 벤치마크 테스트와 현장 오차 범위 검증 선행 필요"
   ],
   "related": [
     "Universal Scene Description (USD)",
@@ -230,6 +231,19 @@
         "p:2026-11-16-bc00976834f0bd75"
       ],
       "skipped": true
+    },
+    {
+      "at": "2026-11-17T11:22:44+00:00",
+      "what": "Rockwell Emulate3D와 NVIDIA Omniverse 연동 시 USD 기반 협업 및 시각적 완성도 강화 내용과 함께, 공식 정확도 검증 수치가 미공개되어 도입 전 자체 벤치마크 테스트와 오차 검증이 필요하다는 실무적 주의사항을 반영했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 연동된 Rockwell Emulate3D",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPMjZIS2NvX09id2dQWUVJNEI5dVlYeXpFRkFuWldiY0M5a0JnYXlVVlFjVVNEUGJrU3Q1QnVqYklCUHVXQ014cTVtVUdmSHF2Z1FOTU5jb2JKXzhWZkZBejEyVnZnTTdzMEg3Y1Jya29YYzA2UnNUZGY5bWdWNUZ3Tm1STzlydU9OX1JoLUVObnhkbGtub2xFc2t6ZllqeXRGVnVMbkl4akk2ZnVBdkV4X1ROSVdkSU93Y24zbjlfVUhZWnFQYV92TTBsdmJhQ2hTSHdieU9n?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-17-7d3cefc8e161c2e2"
+      ]
     }
   ],
   "qa": {
