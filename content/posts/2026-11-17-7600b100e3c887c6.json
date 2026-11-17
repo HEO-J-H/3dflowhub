@@ -1,41 +1,54 @@
 {
-  "title_ko": "Gaussian Splatting 3D 분할을 위한 VODA 볼류메트릭 감독",
+  "title_ko": "3D Gaussian 세분화를 위한 볼륨 기반 감독 기법 VODA",
   "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
   "url": "https://arxiv.org/abs/2611.21383v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "3D Segmentation",
-    "NeurIPS 2026",
-    "VODA"
+    "3D Gaussian Splatting",
+    "Segmentation",
+    "Volumetric Supervision",
+    "VODA",
+    "Removal-3D"
   ],
-  "summary": "NeurIPS 2026에 채택된 VODA는 기존 렌더링 기반 3D Gaussian 분할의 한계를 극복하기 위해 로컬 깊이 구조를 활용하는 볼류메트릭 감독 기법을 제안합니다.",
-  "insight": "VODA는 알파 블렌딩 피처 감독이 가려진 Gaussian을 약하게 학습시키는 문제를 해결하기 위해 깊이 클러스터를 직접 감독합니다. Gaussian Splatting 객체 편집 및 제거 작업에서 기여도가 낮은 프리미티브까지 정확하게 복구할 수 있습니다.",
+  "summary": "VODA는 렌더링 손실의 한계를 극복하고 3D Gaussian Splatting에서 가려진 가우스까지 객체 세분화 품질을 높이는 볼륨 감독 기법입니다.",
+  "insight": "VODA는 렌더링 마스크만 그럴듯하게 만들고 내부 Gauss를 놓치던 기존 3DGS 세분화의 한계를 보완하여, 향후 복잡한 객체 편집이나 객체 단위 추출 작업 시 내부까지 정확하게 덩어리를 분리하는 데 도움을 줄 수 있는 가능성이 있습니다. 실무에서 객체 지우기나 파츠 분할 시 겉면만 남고 속이 비는 오류를 줄이는 파이프라인 개선에 기여할 것으로 기대해 볼 수 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "기존 렌더링 기반 3D Gaussian 분할의 한계",
-      "body": "기존의 3D Gaussian 분할 방법들은 주로 렌더링된 뷰를 통해 학습되고 평가됩니다. 이 과정에서 알파 블렌딩 피처 감독은 지배적인 기여자에 학습이 집중되어 가려지거나 기여도가 낮은 Gaussian이 약하게 감독되는 불일치가 발생합니다. 그 결과 불완전한 3D 선택에서도 겉보기에는 정확한 렌더링 마스크가 만들어질 수 있습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 3D Gaussian Segmentation(3DGS) 방법들은 렌더링된 2D 뷰를 통해 학습되고 평가됩니다. 이로 인해 알파 블렌딩 피처 감독이 주요 기여자에만 집중되고, 가려지거나 기여도가 낮은 Gauss는 약하게 감독되어 완전하지 않은 3D 선택을 초래하는 문제가 있습니다."
     },
     {
-      "heading": "VODA 볼류메트릭 감독 기법의 작동 방식",
-      "body": "VODA는 플러그앤플레이 방식으로 사용할 수 있는 새로운 감독 오브젝티브입니다. 로컬 깊이 구조를 이용해 픽셀별 기여자를 그룹화하고, 선택된 깊이 클러스터 내의 모든 Gaussian을 직접 감독합니다. 단순한 기여도 가중치 기반 그래디언트 전달 방식을 우회하여 볼류메트릭 완전성을 높입니다."
+      "heading": "핵심 아이디어",
+      "body": "VODA는 깊이 구조(depth structure)를 활용하여 픽셀당 기여자를 깊이 클러스터로 그룹화합니다. 기여도 가중치 경향을 우회하고 선택된 깊이 클러스터 내의 모든 Gauss를 직접 감독하여 완전한 3D 객체 세분화를 달성합니다."
     },
     {
-      "heading": "Removal-3D 벤치마크와 성능 평가",
-      "body": "연구진은 볼류메트릭 완전성을 평가하기 위해 합성 객체 제거 벤치마크인 Removal-3D와 예측 및 정답 깊이 변화를 비교하는 Removal Depth Error 지표를 도입했습니다. 4가지 렌더링 기반 베이스라인과 비교했을 때 VODA는 Removal-3D에서 볼류메트릭 분할 성능을 일관되게 향상시켰으며 LERF와 ScanNet에서도 동등하거나 더 나은 성능을 유지했습니다."
+      "heading": "방법",
+      "body": "깊이 인식 래스터라이저(depth-aware rasterizer)를 사용해 연속된 기여자들 사이의 깊이 간격이 임계값을 초과할 때 분할합니다. 이후 총 기여도가 가장 큰 클러스터를 타겟으로 선택하고, 분리된 렌더링 피처 기반의 의사 타겟(pseudo-target)을 생성하여 해당 클러스터의 모든 Gauss에 직접 피처 손실을 적용합니다."
+    },
+    {
+      "heading": "결과 및 평가",
+      "body": "저자들은 볼륨 완전성을 평가하기 위해 합성 객체 제거 벤치마크인 Removal-3D와 Removal Depth Error(RDE) 지표를 도입했습니다. 네 가지 렌더링 기반 베이스라인(28, 5, 29, 10) 전반에 걸쳐 Removal-3D에서 볼륨 세분화를 일관되게 향상시켰으며 LERF와 ScanNet 성능을 유지하거나 개선했습니다."
+    },
+    {
+      "heading": "한계점",
+      "body": "논문 본문에서는 별도의 명시적인 한계점 세부 사항을 다루지 않았으나, 렌더링 기반 학습 프레임워크와 결합된 플러그앤플레이(plug-and-play) 객체로 설계되어 기존 베이스라인의 피처 표현과 추론 시 선택 절차에 의존하는 구조적 제약이 있을 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "본 논문에서는 벤치마크 Removal-3D를 소개하며, arXiv 2611.21383v1 문서를 통해 연구 내용을 발표했습니다. 다만 깃허브 코드 링크는 논문 HTML Template 피드백 이슈 링크만 포함되어 있으며 구체적인 공식 코드 저장소 링크는 본문 텍스트 내에 명시되지 않았습니다."
     }
   ],
   "faq": [
     {
-      "q": "VODA는 어떤 문제를 해결하기 위해 제안되었나요?",
-      "a": "기존 렌더링 기반 분할에서 알파 블렌딩이 지배적 기여자에게만 학습을 집중시켜 가려진 Gaussian이 약하게 감독되는 문제를 해결합니다."
+      "q": "VODA는 기존 베이스라인의 어떤 부분을 수정하나요?",
+      "a": "VODA는 피처 감독(feature supervision) 방식만 수정하며, 베이스라인의 재구성된 씬, 피처 표현, 추론 시점의 선택 절차는 그대로 유지합니다."
     },
     {
-      "q": "Removal-3D 벤치마크는 무엇을 측정하나요?",
-      "a": "볼류메트릭 완전성을 평가하기 위한 합성 객체 제거 벤치마크로, Removal Depth Error를 통해 예측된 깊이 변화를 측정합니다."
+      "q": "Removal-3D와 Removal Depth Error(RDE)는 무엇인가요?",
+      "a": "Removal-3D는 대상 제거 전후의 정답 깊이 맵이 쌍을 이루는 합성 실내 씬 벤치마크이며, RDE는 정답 깊이 변화와 예측된 Gauss 제거에 따른 깊이 변화를 비교하는 측정 지표입니다."
     }
   ],
   "media": {
@@ -46,5 +59,16 @@
   "notion_id": "",
   "id": "2026-11-17-7600b100e3c887c6",
   "img_tried": true,
-  "img_ok": "2026-11-17T15:09:12+00:00"
+  "img_ok": "2026-11-17T15:09:12+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-17T15:52:12+00:00"
 }
