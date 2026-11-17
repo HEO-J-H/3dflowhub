@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-open-texture-917c",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 및 머티리얼",
+  "name": "Open Texture",
+  "title": "Open Texture — 3D 텍스처 소스 편집을 위해 열기",
+  "summary": "Photoshop의 Open Texture 기능은 3D 모델에 적용된 텍스처를 개별 2D 이미지 파일로 열어 정밀하게 수정할 수 있게 해주는 워크플로우입니다. 2D 그래픽 편집 툴의 강력한 브러시와 필터를 3D 텍스처 작업에 그대로 활용할 수 있습니다.",
+  "when": [
+    "3D 모델의 특정 텍스처 맵(Diffuse, Normal 등)을 Photoshop에서 직접 세밀하게 리터칭하고 싶을 때",
+    "UV 경계면이나 복잡한 굴곡의 텍스처 수정 작업 중 왜곡을 줄이고 싶을 때",
+    "기존에 제작된 2D 그래픽 소스를 3D 표면 위에 정확한 위치로 합성할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 파일 또는 3D 레이어를 엽니다.",
+    "Layers 패널 또는 3D 패널에서 수정할 텍스처가 포함된 재질(Material)을 선택합니다.",
+    "3D 패널의 Properties 탭에서 편집하려는 텍스처 채널(예: Diffuse) 아이콘을 클릭합니다.",
+    "팝업 메뉴에서 Open Texture를 선택하여 해당 텍스처를 별도의 2D 문서 창으로 엽니다.",
+    "열린 2D 텍스처 문서에서 필요한 브러시나 레이어 작업을 수행하고 저장(Ctrl+S)합니다.",
+    "원래의 3D Viewport 창으로 돌아와 텍스처가 실시간으로 모델에 반영되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Panel",
+      "desc": "3D 모델의 레이어, 재질, 조명 계층 구조를 관리하는 패널"
+    },
+    {
+      "name": "Properties Panel",
+      "desc": "선택한 3D 오브젝트나 재질, 텍스처의 상세 속성을 설정하는 패널"
+    },
+    {
+      "name": "Open Texture",
+      "desc": "선택된 3D 재질의 텍스처 맵을 2D 편집 창으로 불러오는 기능"
+    },
+    {
+      "name": "Save Texture",
+      "desc": "2D 창에서 수정한 텍스처 내용을 3D 파일에 즉시 업데이트하는 기능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 의상에 로고 그래픽 추가하기",
+      "steps": [
+        "3D 패널에서 의상 재질을 선택하고 Diffuse 텍스처에서 Open Texture를 실행합니다.",
+        "열린 2D 텍스처 문서 위에 준비한 로고 이미지 레이어를 올립니다.",
+        "위치를 맞추고 저장(Ctrl+S)하여 3D 모델에 로고가 입혀지는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "하드서페이스 표면 흠집 및 웨어 앤 테어 표현",
+      "steps": [
+        "Bump 또는 Roughness 텍스처를 Open Texture로 2D 창에 엽니다.",
+        "새 레이어를 만들고 브러시를 이용해 모서리 부근에 스크래치와 얼룩을 그립니다.",
+        "파일을 저장하고 3D Viewport로 돌아와 재질의 반사 및 요철 변화를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 수정 후 저장하지 않음 → 반드시 Ctrl+S로 저장해야 3D Viewport에 반영됩니다.",
+    "잘못된 UV 영역에 그림 → 텍스처의 UV 배치와 모델의 메쉬 구조를 미리 확인해야 합니다.",
+    "원본 파일 경로 유실 → 외부 텍스처 링크가 끊어지지 않도록 프로젝트 파일을 올바르게 관리합니다."
+  ],
+  "related": [
+    "3D Paint Drop",
+    "Texture Coordinate",
+    "Shader Editor",
+    "UV Mapping"
+  ],
+  "videos": [
+    {
+      "id": "ZpWU9FnbTAw",
+      "title": "Photoshop tutorial on editing with textures| 2 simple editing methods adding texture to your images.",
+      "author": "Creative Photography with Lori Lankford "
+    },
+    {
+      "id": "t48RQjlRrKA",
+      "title": "Plastic Texture Overlay Adobe Photoshop Tutorial #shorts",
+      "author": "Joshua Small Photography"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Open%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Material",
+    "Properties",
+    "Diffuse",
+    "Open Texture"
+  ],
+  "at": "2026-11-17T09:09:07.348291+00:00"
+}

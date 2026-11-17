@@ -1,0 +1,97 @@
+{
+  "id": "davinci-resolve-hdr-color-grading-8baa",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "HDR Color Grading",
+  "title": "HDR Color Grading — 영역별 정밀 제어가 가능한 최신 HDR 팔레트 그레이딩",
+  "summary": "DaVinci Resolve의 HDR Color Grading 도구를 활용해 넓은 다이나믹 레인지를 가진 영상의 하이라이트와 섀도우 디테일을 정교하게 살려내는 고급 컬러 보정 방법입니다. 표준 컬러휠보다 세분화된 톤 존(Tone Zone)을 제어하여 영화 같은 룩을 완성합니다.",
+  "when": [
+    "로그(Log) 프로파일로 촬영된 원본 영상을 HDR 규격에 맞게 톤 맵핑하고 싶을 때",
+    "밝은 하늘의 클립과 어두운 그림자 영역의 디테일을 동시에 살려내야 할 때",
+    "영화나 OTT 플랫폼 송출용 HDR 마스터링 및 감성적인 룩(Look)을 연출할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 그레이딩 인터페이스로 이동합니다.",
+    "Nodes 패널에서 Mouse 우클릭 후 Add Node → Add Serial 노드를 추가하여 HDR 전용 노드를 생성합니다.",
+    "Viewer 상단 또는 Color 페이지 중단의 팔레트 메뉴에서 HDR Color Wheels 아이콘(돌림판 모양)을 클릭합니다.",
+    "HDR Palette 인터페이스에서 Global, Shadow, Dark, Light, Highlight 등 각 톤 존의 Wheel과 Dial 값을 조정합니다.",
+    "Viewer에서 하이라이트 클리핑이 발생하지 않는지 확인하며 최종 룩을 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Global",
+      "desc": "영상의 모든 톤 영역을 전체적으로 이동하거나 밝기를 조절합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "가장 어두운 영역의 블랙 레벨과 디테일을 독립적으로 제어합니다."
+    },
+    {
+      "name": "Dark",
+      "desc": "섀도우 바로 위 영역의 미세한 중간-어두운 톤을 세밀하게 조절합니다."
+    },
+    {
+      "name": "Light",
+      "desc": "하이라이트 바로 아래 영역의 밝기와 콘트라스트를 부드럽게 잡아줍니다."
+    },
+    {
+      "name": "Highlight",
+      "desc": "가장 밝은 영역의 클리핑을 막고 화이트 디테일을 복구합니다."
+    },
+    {
+      "name": "Exposure",
+      "desc": "스톱(Stop) 단위로 전체적인 노출 값을 직관적으로 증감시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "역광 촬영 영상의 어두운 피사체 살리기",
+      "steps": [
+        "HDR Palette에서 Shadow 및 Dark 존의 다이얼을 시계 방향으로 돌려 암부를 밝힙니다.",
+        "Highlight 존의 값을 내려 눈부신 역광 부분의 하이라이트 클리핑을 억제합니다."
+      ]
+    },
+    {
+      "title": "시네마틱한 고대비 HDR 룩 연출",
+      "steps": [
+        "Global 휠로 전체적인 노출과 밸런스를 맞춥니다.",
+        "Highlight와 Shadow의 대비(Contrast) 슬라이더를 조절해 극적인 입체감을 부여합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 HDR 보정으로 노이즈가 심해짐 → Shadow 존을 너무 많이 올리지 말고 Noise Reduction 노드를 함께 활용하세요.",
+    "하이라이트 디테일이 영구적으로 깨짐 → 원본이 이미 클리핑된 경우이므로 Exposure 값을 낮추어 복구 가능한 영역인지 먼저 확인하세요."
+  ],
+  "related": [
+    "Color Wheels",
+    "Curves",
+    "Scopes",
+    "Color Management"
+  ],
+  "videos": [
+    {
+      "id": "quzmXmt4vkE",
+      "title": "Master Cinematic HDR Color Grading Like A Pro - DaVinci Resolve Tutorial",
+      "author": "Pascal Basel"
+    },
+    {
+      "id": "dTDhnDds4qU",
+      "title": "HDR Color Grading in DaVinci Resolve - Setup and Export Settings for HLG and PQ",
+      "author": "Evan Schneider"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20HDR%20Color%20Grading",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "Nodes",
+    "Mouse",
+    "Add Node",
+    "Add Serial"
+  ],
+  "at": "2026-11-17T09:09:12.861388+00:00"
+}
