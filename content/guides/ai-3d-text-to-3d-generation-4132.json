@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-text-to-3d-generation-4132",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "텍스트 투 3D 생성",
+  "name": "Text-to-3D Generation",
+  "title": "Text-to-3D Generation — Prompt 입력만으로 3D 모델을 즉시 생성하는 워크플로우",
+  "summary": "텍스트 Prompt만으로 3D 모델을 자동 생성하고, 바로 DCC 툴에 가져와 작업을 이어갈 수 있는 AI 3D 워크플로우입니다.",
+  "when": [
+    "신속하게 컨셉 모델이 필요할 때",
+    "복잡한 형태를 손으로 모델링하기 어려울 때",
+    "다양한 디자인 변형을 빠르게 시험하고 싶을 때"
+  ],
+  "steps": [
+    "Tool → File → New → Text‑to‑3D Project (Ctrl+N)",
+    "Prompt 입력란에 원하는 설명을 입력하고, Guidance Scale·Steps 등 파라미터를 조정한다",
+    "Generate 버튼 클릭 (Ctrl+Enter) – 모델이 클라우드에서 실시간으로 생성된다",
+    "Viewport에 미리보기가 나타나면 Export → FBX/GLB (Ctrl+E) 로 저장한다",
+    "저장한 파일을 Blender·Maya·Unreal 등 DCC 툴에 Import (Ctrl+I) 후 바로 사용한다"
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성하고자 하는 형태와 스타일을 설명하는 텍스트"
+    },
+    {
+      "name": "Guidance Scale",
+      "desc": "Prompt와의 일치 정도, 높을수록 정확하지만 창의성 감소"
+    },
+    {
+      "name": "Steps",
+      "desc": "추론 단계 수, 많을수록 디테일 향상"
+    },
+    {
+      "name": "Seed",
+      "desc": "재현성을 위한 난수값, 동일 Seed면 동일 결과"
+    },
+    {
+      "name": "Negative Prompt",
+      "desc": "제외하고 싶은 요소를 명시"
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력 메쉬 Resolution, 보통 256~512 사이"
+    }
+  ],
+  "examples": [
+    {
+      "title": "모던 목재 의자 모델링",
+      "steps": [
+        "Prompt에 \"modern wooden chair, low poly\" 입력",
+        "Guidance Scale 7.5, Steps 50 설정 후 Generate",
+        "Export → GLB 저장",
+        "Blender에서 Import 후 Material 적용"
+      ]
+    },
+    {
+      "title": "SF 스타일 레이저 총",
+      "steps": [
+        "Prompt에 \"sci‑fi laser gun, high detail\" 입력",
+        "Resolution 512, Negative Prompt \"plastic\" 추가",
+        "Generate 후 FBX Export",
+        "Unreal Engine에 Import 후 Lumen 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Prompt가 모호함 → 구체적인 형태·재질·스타일을 추가한다",
+    "생성 메쉬가 비다각형·법선 뒤집힘 → Blender의 Mesh → Clean Up → Make Manifold 로 정리한다",
+    "스케일이 실제와 다름 → Import 후 Object → Apply Scale (Ctrl+A) 로 정규화한다"
+  ],
+  "related": [
+    "Neural4D",
+    "Meshy Edit",
+    "Substance 3D AI Material Generation",
+    "Stable Diffusion 3D"
+  ],
+  "videos": [
+    {
+      "id": "Ukp8MgVLuc4",
+      "title": "🎥 Tripo Studio Tutorial | Text-to-3D Model Generation",
+      "author": "Tripo AI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Text-to-3D%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-17T02:48:25.565837+00:00"
+}
