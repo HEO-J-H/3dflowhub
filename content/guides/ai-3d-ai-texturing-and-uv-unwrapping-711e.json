@@ -1,0 +1,103 @@
+{
+  "id": "ai-3d-ai-texturing-and-uv-unwrapping-711e",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 텍스처링 및 UV",
+  "name": "AI Texturing and UV Unwrapping",
+  "title": "AI Texturing and UV Unwrapping — 3D 모델에 자동으로 UV를 펴고 고품질 텍스처 ",
+  "summary": "AI 기반 텍스처 생성과 자동 UV 언래핑을 한 번에 수행해 모델에 고품질 텍스처를 빠르게 입힙니다.",
+  "when": [
+    "복잡한 모델에 손쉽게 UV를 배치하고 싶을 때",
+    "AI Prompt만으로 기본 텍스처를 빠르게 만들고 싶을 때",
+    "시간이 부족한 Prototype 작업에 적용할 때"
+  ],
+  "steps": [
+    "Modeling 툴(Blender, 3ds Max 등)에서 모델을 선택하고 Export → FBX 로 저장한다",
+    "AI 텍스처링 툴(예: Substance 3D Sampler)에서 Import → FBX 파일을 불러온다",
+    "Prompt 입력 후 Generate 버튼을 눌러 AI가 만든 Material을 적용한다",
+    "툴 내 UV Auto‑Unwrap 기능을 실행한다 (Menu: Tools → AI UV Unwrap)",
+    "생성된 UV를 UV Editor에서 확인하고 필요 시 Island Margin 값 조정 후 Pack한다",
+    "Export → Texture Set (PNG/TGA) 및 UV Layout (OBJ) 파일을 저장한다"
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "텍스처 스타일을 설명하는 문장"
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력 텍스처 Resolution (예: 2048)"
+    },
+    {
+      "name": "Angle",
+      "desc": "UV 자동 언래핑 시 최대 허용 각도"
+    },
+    {
+      "name": "Island Margin",
+      "desc": "UV 섬 사이 간격"
+    },
+    {
+      "name": "Stretch",
+      "desc": "UV 왜곡 허용 범위"
+    },
+    {
+      "name": "Export Path",
+      "desc": "파일 저장 위치"
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 텍스처링",
+      "steps": [
+        "FBX 로 캐릭터 모델을 Export",
+        "Sampler 에서 \"Sci‑fi 전투복\" Prompt 입력 → Generate",
+        "AI UV Unwrap 실행 → Island Margin 0.02 설정",
+        "텍스처와 UV 레이아웃을 PNG 로 Export"
+      ]
+    },
+    {
+      "title": "건축 시각화 모델 UV 자동 언래핑",
+      "steps": [
+        "건물 모델을 FBX 로 Export",
+        "Sampler 에서 \"우드 파넬 텍스처\" Prompt 입력 → Generate",
+        "AI UV Unwrap 실행 → Angle 45°, Stretch 0.1 설정",
+        "UV Layout 을 OBJ 로 Export 후 렌더 엔진에 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 겹침 → UV Editor에서 Pack 후 Island Margin 늘리기",
+    "스케일 미적용 → 모델을 Import 전 Apply Scale 실행",
+    "Prompt가 모호함 → 구체적인 재질·색상·패턴 설명 추가"
+  ],
+  "related": [
+    "Smart UV Project",
+    "Mark Seam",
+    "Substance 3D Painter",
+    "UV Packmaster"
+  ],
+  "videos": [
+    {
+      "id": "YMmdkBZ7PMI",
+      "title": "Smart UV: AI Just Solved UV Unwrapping (And It's Crazy Good)",
+      "author": "Stefan 3D AI"
+    },
+    {
+      "id": "1vw39QCcQjg",
+      "title": "AI Just Solved UV Unwrapping and It's Crazy Good - Smart UV",
+      "author": "Stefan 3D AI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Texturing%20and%20UV%20Unwrapping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Modeling",
+    "Blender",
+    "Max",
+    "Export",
+    "FBX",
+    "AI"
+  ],
+  "at": "2026-11-17T03:08:33.582180+00:00"
+}
