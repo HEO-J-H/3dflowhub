@@ -36825,5 +36825,29 @@
     "kind": "applied",
     "id": "p-931299c5bc",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] tests=True security=['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)'] — 리뷰 생략"
+  },
+  {
+    "at": "2026-11-17T16:09:45+00:00",
+    "kind": "proposal",
+    "id": "p-28ba164d78",
+    "title": "backend/tests/test_triposr.py 경로 정비 및 안정화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 에이전트 실행에서 TripoSR 단위 테스트 패치가 패치 적용 실패(held)로 반복 중단됨",
+    "proposal": "backend/tests/test_triposr.py 파일의 테스트 경로를 점검하고, 코딩 에이전트가 단독으로 정상 적용할 수 있도록 패치 블록 단순화",
+    "expected": "TripoSR 단위 테스트 정상 통과 및 held 상태 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T16:10:27.461614+00:00",
+    "kind": "decision",
+    "id": "p-28ba164d78",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 경로 및 패치 오류",
+    "auto": true
   }
 ]
