@@ -35825,5 +35825,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T12:09:05+00:00",
+    "kind": "proposal",
+    "id": "p-b99bf3ac07",
+    "title": "보류된 TripoSR 단위 테스트 경로 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 파일 관련 패치 적용 실패 및 held 상태 반복 발생",
+    "proposal": "backend/tests/test_triposr.py 내 테스트 대상 함수 경로를 점검하고 충돌하는 patch 블록을 단순화하여 다시 코딩 에이전트에 할당합니다.",
+    "expected": "TripoSR 단위 테스트 정상 통과 및 held 상태 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T12:09:05+00:00",
+    "kind": "proposal",
+    "id": "p-931299c5bc",
+    "title": "로컬 파이프라인 안내 문서 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 업데이트 과제에서 search 블록 불일치로 패치가 보류됨",
+    "proposal": "docs/local-pipeline.md 파일의 실제 목차와 일치하도록 search 블록을 수정하여 안전하게 문서 보완을 완료합니다.",
+    "expected": "로컬 파이프라인 가이드 문서 정확도 향상",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T12:09:39.728800+00:00",
+    "kind": "decision",
+    "id": "p-b99bf3ac07",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 보류된 TripoSR 단위 테스트 수정",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T12:09:39.773648+00:00",
+    "kind": "decision",
+    "id": "p-931299c5bc",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T12:09:41.977223+00:00",
+    "kind": "triage",
+    "id": "p-931299c5bc",
+    "verdict": "agent",
+    "reason": "docs/local-pipeline.md 파일의 목차와 search 블록 불일치 문제는 코드 및 문서 수정으로 직접 해결할 수 있는 과제입니다."
   }
 ]
