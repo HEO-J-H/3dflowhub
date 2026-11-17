@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-fairlight-fx-266b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트 페이지",
+  "name": "Fairlight FX",
+  "title": "Fairlight FX — 다이내믹스, EQ 등 내장 Audio Effect를 활용한 사운드 보정",
+  "summary": "DaVinci Resolve의 Fairlight FX는 Audio 클립이나 트랙에 전문적인 사운드 효과와 보정을 실시간으로 적용해 주는 Audio 플러그인 모음입니다.",
+  "when": [
+    "인터뷰나 대사의 볼륨이 들쑥날쑥할 때 음량을 균일하게 맞추고 싶을 때",
+    "녹음된 목소리에 섞인 거슬리는 저주파 노이즈나 치찰음을 제거할 때",
+    "장면에 맞는 공간감과 깊이감을 더하기 위해 리버브나 에코 효과를 줄 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 메뉴에서 Fairlight 페이지로 이동합니다.",
+    "Timeline에서 Audio 효과를 적용할 클립 또는 트랙을 선택합니다.",
+    "화면 우측 상단의 Effects Library 패널을 엽니다.",
+    "Audio FX 목록에서 원하는 효과(예: Dialogue Leveler, Noise Reduction 등)를 찾습니다.",
+    "선택한 효과를 Timeline의 Audio 클립으로 직접 드래그하여 드롭합니다.",
+    "Inspector 패널에서 적용된 Fairlight FX의 세부 파라미터를 조절하여 사운드를 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Dialogue Leveler",
+      "desc": "대화 음성의 볼륨을 자동으로 분석하여 일정한 수준으로 맞춰 줍니다."
+    },
+    {
+      "name": "Voice Isolation",
+      "desc": "AI를 활용해 배경 소음 속에서 목소리만 깨끗하게 분리해 줍니다."
+    },
+    {
+      "name": "Noise Reduction",
+      "desc": "지속적인 배경 노이즈(바람 소리, 에어컨 소음 등)를 감지하여 제거합니다."
+    },
+    {
+      "name": "Reverb",
+      "desc": "공간의 크기와 반사음을 조절해 소리에 울림과 현장감을 더합니다."
+    },
+    {
+      "name": "Graphic EQ",
+      "desc": "주파수 대역별로 볼륨을 조절하여 음색을 밝거나 묵직하게 다듬습니다."
+    },
+    {
+      "name": "Compressor",
+      "desc": "가장 큰 소리와 가장 작은 소리의 음량 차이를 줄여 사운드를 단단하게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카페 녹음 파일에서 배경 소음 제거하기",
+      "steps": [
+        "Fairlight 페이지에서 노이즈가 포함된 Audio 클립을 선택합니다.",
+        "Effects Library에서 Noise Reduction 효과를 클립에 드래그하여 적용합니다.",
+        "Inspector 패널에서 Auto 모드를 켜거나 Learn 버튼을 눌러 노이즈 프로파일을 학습시킵니다.",
+        "Amount 값을 조절하여 목소리가 찌그러지지 않는 선에서 노이즈를 제거합니다."
+      ]
+    },
+    {
+      "title": "여러 화자의 Audio 볼륨 균일하게 맞추기",
+      "steps": [
+        "대화가 포함된 Audio 트랙 전체를 선택합니다.",
+        "Effects Library에서 Dialogue Leveler를 찾아 트랙에 적용합니다.",
+        "Inspector 패널의 Dialogue Leveler 설정 창을 엽니다.",
+        "Process Amount와 Target Level을 조절하여 전체 대화 톤을 일정하게 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "효과를 너무 과도하게 적용하여 목소리가 로봇처럼 변함 → Amount 및 Threshold 값을 낮추고 원본 소스와 블렌딩하세요.",
+    "모노 Audio 트랙에 스테레오 전용 FX를 적용하여 소리가 한쪽만 들림 → 트랙 포맷(모노/스테레오)을 먼저 확인하고 올바른 FX를 적용하세요.",
+    "원하지 않는 배경음까지 같이 증폭됨 → Dynamics나 EQ를 적용하기 전에 Voice Isolation이나 Noise Reduction을 먼저 체인에 연결하세요."
+  ],
+  "related": [
+    "Fairlight",
+    "Dialogue Leveler",
+    "Voice Isolation",
+    "Dynamic Zoom"
+  ],
+  "videos": [
+    {
+      "id": "eUqhsH_YW6o",
+      "title": "12 NEW Fairlight Audio Effects | DaVinci Resolve 15 Tutorial",
+      "author": "Chris' Tutorials"
+    },
+    {
+      "id": "jd6tlw6GK3Q",
+      "title": "Guide to EVERY Audio Effect in DaVinci Resolve 17 Fairlight",
+      "author": "Chris' Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20FX",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight"
+  ],
+  "at": "2026-11-17T08:38:21.821881+00:00"
+}

@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-spherical-panorama-903f",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 환경",
+  "name": "Spherical Panorama",
+  "title": "Spherical Panorama — 구형 파노라마 작업 영역 및 Viewport",
+  "summary": "Photoshop의 Spherical Panorama 기능을 사용하여 360도 구면 파노라마 이미지를 평면 캔버스에서 직접 왜곡 없이 편집하고 3D 환경 맵으로 활용할 수 있습니다.",
+  "when": [
+    "3D 뷰어와 게임 엔진에서 사용할 배경 환경 맵(HDRI)의 이음새나 결함을 자연스럽게 수정할 때",
+    "360도 파노라마 사진 위에 로고, 텍스트, 오브젝트를 입체감 있게 합성할 때",
+    "VR 및 웹 기반 3D 공간 시각화용 구면 이미지를 정밀하게 리터칭할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 File → Open을 눌러 편집할 360도 파노라마 이미지를 불러옵니다.",
+    "상단 메뉴바에서 3D → Spherical Panorama → New Panorama Layer From Selected Layer를 선택합니다.",
+    "레이어가 구면 파노라마 레이어로 변환되면, 상단 메뉴바에서 3D → Spherical Panorama → 3D Panorama Layer Viewer를 열어 360도 공간을 미리 확인합니다.",
+    "브러시, 스탬프 툴 등을 사용하여 뷰어 창이나 평면 캔버스에서 직접 이음새와 왜곡된 부분을 수정합니다.",
+    "편집이 완료되면 3D → Spherical Panorama → Export Panorama를 선택하여 수정된 360도 이미지를 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "New Panorama Layer From Selected Layer",
+      "desc": "선택한 평면 이미지를 360도 구면 파노라마 편집용 레이어로 변환합니다."
+    },
+    {
+      "name": "3D Panorama Layer Viewer",
+      "desc": "구면 파노라마를 360도 회전하며 실시간으로 확인할 수 있는 전용 뷰어 창을 엽니다."
+    },
+    {
+      "name": "Export Panorama",
+      "desc": "편집 완료된 레이어를 표준 360도 구면 이미지 파일로 내보냅니다."
+    },
+    {
+      "name": "Field of View (FOV)",
+      "desc": "파노라마 뷰어에서 카메라의 화각을 조절하여 시야를 넓히거나 좁힙니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "HDRI 배경 이미지 이음새 수정",
+      "steps": [
+        "3D Panorama Layer Viewer를 열어 양쪽 끝이 만나는 이음새 부위를 찾습니다.",
+        "클론 스탬프 툴(Clone Stamp Tool)을 사용하여 끊어진 텍스처를 자연스럽게 연결합니다.",
+        "뷰어를 돌려가며 이음새가 눈에 띄지 않는지 확인하고 저장합니다."
+      ]
+    },
+    {
+      "title": "360도 공간에 로고 합성하기",
+      "steps": [
+        "합성할 로고 이미지를 평면 레이어 상태로 파노라마 문서 위에 가져옵니다.",
+        "3D Panorama Layer Viewer를 보며 로고가 부착될 위치와 각도를 맞춥니다.",
+        "구면 파노라마 레이어와 병합하여 공간에 완벽히 밀착된 결과물을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 레이어 상태로 직접 브러시 리터칭을 함 → 3D Panorama Layer로 변환 후 편집해야 왜곡 없이 수정됩니다.",
+    "화면 비율이 2:1이 아닌 이미지를 불러옴 → Spherical Panorama 기능은 반드시 가로세로 비율이 2:1인 360도 이미지에서 정상 작동합니다."
+  ],
+  "related": [
+    "Photomerge",
+    "Gaussian Splatting",
+    "Environment Map",
+    "HDRI"
+  ],
+  "videos": [
+    {
+      "id": "rzL3vTYU-bQ",
+      "title": "How To Edit 360 Spherical PANORAMAS in Photoshop CC 2018 - BEST Non-Destructive Workflow",
+      "author": "Photoshop Training Channel"
+    },
+    {
+      "id": "vMdMDp2hVuA",
+      "title": "Adobe Photoshop 2025 Tricks - How to make Panorama Planet Effect #ducthangds",
+      "author": "DucThang Ds"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Spherical%20Panorama",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Open",
+    "Spherical Panorama",
+    "New Panorama Layer From Selected Layer"
+  ],
+  "at": "2026-11-17T08:38:17.290968+00:00"
+}

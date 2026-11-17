@@ -34649,5 +34649,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T08:38:07+00:00",
+    "kind": "proposal",
+    "id": "p-3451fd6c71",
+    "title": "held 상태 TripoSR 테스트 과제 단순화 및 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 agent_runs에서 TripoSR 단위 테스트 및 문서 관련 과제들이 패치 적용 실패로 held 상태로 기록되었습니다.",
+    "proposal": "backend/tests/test_triposr.py 파일의 복잡한 패치 블록을 단순화하여 단일 테스트 함수로 재구성하고 코딩 에이전트가 정상적으로 통과시키도록 합니다.",
+    "expected": "held 상태였던 TripoSR 테스트 과제가 성공적으로 완료되며 테스트 커버리지가 안정화됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T08:38:07+00:00",
+    "kind": "proposal",
+    "id": "p-72467058d3",
+    "title": "docs/gpu-worker.md 오픈소스 RAG 검토 내용 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사용자 메시지에서 깃허브 RAG 오픈소스 검토 반영 요청이 있었으며, 관련 검토 사항이 이미 정리되어 있습니다.",
+    "proposal": "docs/gpu-worker.md 또는 관련 문서 파일에 오픈소스 RAG 기술의 Pix2Poly 파이프라인 접목 가능성과 제외 사유를 명확히 기록합니다.",
+    "expected": "사용자 요청에 부응하는 투명한 기술 검토 문서가 마련됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T08:38:39.109385+00:00",
+    "kind": "decision",
+    "id": "p-3451fd6c71",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T08:38:39.158538+00:00",
+    "kind": "decision",
+    "id": "p-72467058d3",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T08:38:41.182544+00:00",
+    "kind": "triage",
+    "id": "p-72467058d3",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 검토 및 관련 문서화 작업이 최근 끝낸 제안 및 문서에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-17T08:38:41.226919+00:00",
+    "kind": "decision",
+    "id": "p-72467058d3",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 관련 문서화 작업이 최근 끝낸 제안 및 문서에 반영되어 있습니다."
   }
 ]
