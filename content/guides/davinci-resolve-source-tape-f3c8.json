@@ -1,0 +1,93 @@
+{
+  "id": "davinci-resolve-source-tape-f3c8",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷 페이지",
+  "name": "Source Tape",
+  "title": "소스 테이프 — 모든 클립을 Timeline에 길게 늘여서 빠르게 훑어보고 편집하는 기능",
+  "summary": "Source Tape는 DaVinci Resolve의 Cut 페이지에서 여러 클립을 하나의 긴 테이프처럼 이어 붙여 Timeline 전체를 빠르게 훑어볼 수 있게 해 주는 기능입니다.",
+  "when": [
+    "드론 샷이나 인터뷰 원본처럼 방대한 양의 비디오 클립을 순서대로 빠르게 검토해야 할 때",
+    "컷 편집을 시작하기 전, 불필요한 테이크를 걸러내고 마음에 드는 구간을 빠르게 찾을 때",
+    "Timeline에 일일이 클립을 올리고 내리는 번거로움 없이 연속으로 재생하며 훑어볼 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단에서 Cut 페이지 아이콘을 클릭하여 이동합니다.",
+    "상단 미디어 폴더(Media Pool)에서 편집할 클립들이 들어있는 빈 폴더나 이벤트를 선택합니다.",
+    "좌측 상단의 보기 옵션(View Options)에서 Source Tape 아이콘을 클릭합니다.",
+    "Viewport(Viewer)에 폴더 내 모든 클립이 하나의 긴 비디오 테이프처럼 연속으로 연결되어 표시됩니다.",
+    "J·K·L 키나 Mouse 스크롤을 이용해 빠르게 탐색하며 필요한 구간을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Source Tape",
+      "desc": "폴더 내의 모든 클립을 Timeline 순서대로 길게 이어 붙여 보여줍니다."
+    },
+    {
+      "name": "J·K·L Shuttle",
+      "desc": "역재생, 일시정지, 정재생 및 속도 가속을 제어합니다."
+    },
+    {
+      "name": "Smart Insertion",
+      "desc": "소스 테이프에서 선택한 구간을 메인 Timeline의 가장 적절한 위치에 자동으로 삽입합니다."
+    },
+    {
+      "name": "Append",
+      "desc": "현재 Timeline 커서 위치와 상관없이 메인 Timeline의 맨 끝에 클립을 이어 붙입니다."
+    },
+    {
+      "name": "Review Cut",
+      "desc": "편집된 전체 결과를 처음부터 빠르게 다시 재생하며 검토합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다수의 드론 풍경 샷에서 베스트 컷 빠르게 고르기",
+      "steps": [
+        "드론 영상 폴더를 생성하고 모든 클립을 담습니다.",
+        "Cut 페이지에서 Source Tape를 활성화하여 전체 비행 영상을 연속으로 재생합니다.",
+        "마음에 드는 순간에 In/Out 점을 지정하고 Timeline에 즉시 추가합니다."
+      ]
+    },
+    {
+      "title": "인터뷰 원본 영상에서 NG 컷 빠르게 걸러내기",
+      "steps": [
+        "인터뷰이의 전체 녹화 파일들이 들어있는 폴더를 Source Tape로 엽니다.",
+        "말이 매끄럽게 이어진 구간만 확인하며 Timeline에 차례대로 Append 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "클립 정렬 순서가 뒤죽박죽인 상태에서 Source Tape를 켬 → 미디어 풀에서 파일 이름을 날짜나 타임코드 순으로 미리 정렬 후 실행",
+    "Cut 페이지가 아닌 Edit 페이지에서 찾으려고 함 → Source Tape는 Cut 페이지 전용 기능이므로 페이지를 전환하여 사용"
+  ],
+  "related": [
+    "Cut Page",
+    "Smart Insertion",
+    "Append",
+    "Dual Timeline"
+  ],
+  "videos": [
+    {
+      "id": "uT1i9EFy3tM",
+      "title": "how to use Resolve Source Tape (explained by a Pro)",
+      "author": "Darren Mostyn"
+    },
+    {
+      "id": "KaIvfaEiYmo",
+      "title": "There's a new FASTER way to cut on the EDIT page in DaVinci Resolve 20 #davinciresolve",
+      "author": "MrAlexTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Source%20Tape",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut",
+    "Media Pool",
+    "View Options",
+    "Source Tape"
+  ],
+  "at": "2026-11-17T01:16:56.909851+00:00"
+}
