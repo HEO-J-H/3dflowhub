@@ -1,0 +1,37 @@
+{
+  "id": "zbrush-tool-uv-master-failed-to-unwrap-because-tex-cfd3f",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Tool: UV Master failed to unwrap because texture map size exceeds limit",
+  "title": "Tool: UV Master failed to unwrap because texture map size exceeds limit 오류 해결 방법",
+  "summary": "ZBrush의 UV Master 플러그인에서 자동 UV 언래핑을 수행할 때, 설정된 텍스처 맵 크기 제한을 초과하여 처리에 실패할 때 발생하는 오류 메시지입니다.",
+  "causes": [
+    "UV Master 패널의 Texture Size 설정 값이 시스템이나 모델이 처리할 수 있는 최대 크기보다 높게 지정된 경우",
+    "하이 폴리곤 모델의 폴리곤 수가 지나치게 많아 UV 생성 시 메모리 한계를 초과하는 경우",
+    "다중 SubTool 처리 시 과도한 Resolution가 한 번에 요청된 경우"
+  ],
+  "steps": [
+    "Zplugin 메뉴에서 UV Master를 실행합니다.",
+    "UV Master 패널 하단의 Texture Size 슬라이더 값을 확인합니다.",
+    "기본 설정된 값(예: 4096 등)을 낮춥니다 (예: 2048 또는 1024).",
+    "필요한 경우 SubTool의 폴리곤 수를 Decimation Master 등으로 줄입니다.",
+    "다시 Unwrap 버튼을 눌러 UV를 생성합니다."
+  ],
+  "check": [
+    "오류 메시지 없이 UV가 정상적으로 생성되며, Flat Flatten 버튼을 눌렀을 때 Viewport에 왜곡 없는 UV가 펼쳐집니다."
+  ],
+  "prevent": [
+    "작업 중인 모델의 폴리곤 밀도와 목적에 맞는 적절한 텍스처 크기를 미리 설정합니다.",
+    "초고해상도 작업이 필요한 경우 모델을 분할하거나 SubTool 단위로 나누어 UV를 생성합니다."
+  ],
+  "keywords": [
+    "ZBrush UV Master 오류",
+    "texture map size exceeds limit",
+    "UV Master 안됨",
+    "ZBrush UV 펴기 실패",
+    "텍스처 크기 초과"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T01:28:09+00:00"
+}

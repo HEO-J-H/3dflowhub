@@ -1,0 +1,39 @@
+{
+  "id": "unreal-engine-logrenderer-warning-texture-streamin-02fbb",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogRenderer: Warning: Texture streaming pool over budget",
+  "title": "LogRenderer: Warning: Texture streaming pool over budget 오류 해결 방법",
+  "summary": "Unreal Engine에서 텍스처 스트리밍 풀(Texture Streaming Pool)에 할당된 VRAM 용량을 초과했을 때 발생하는 경고 메시지입니다. 뷰포트나 렌더링 시 텍스처 메모리 부족으로 인해 텍스처가 흐리게 보이거나 성능 저하가 발생할 수 있습니다.",
+  "causes": [
+    "씬에 사용된 텍스처들의 총 Resolution와 밉맵(Mipmap) 크기가 현재 설정된 스트리밍 풀 크기(Texture Streaming Pool Size)를 초과한 경우",
+    "너무 높거나 불필요하게 4K/8K 이상의 고해상도 텍스처를 과도하게 사용한 경우",
+    "레벨 인스턴스나 스트리밍 레벨이 많아 동시에 로드되는 텍스처 용량이 급증한 경우"
+  ],
+  "steps": [
+    "출력 창(Output Log)이나 콘솔 창을 엽니다.",
+    "콘솔 창에 'r.Streaming.PoolSize [메모리 크기(MB)]' 명령어를 입력하여 풀 사이즈를 일시적으로 늘립니다 (예: r.Streaming.PoolSize 2048).",
+    "영구적인 해결을 위해 Project Settings 패널을 엽니다.",
+    "Engine > Rendering > Textures 항목으로 이동합니다.",
+    "Texture Streaming Pool Size 값을 현재 사용 중인 GPU VRAM 용량에 맞게 상향 조정합니다(예: 2048 또는 4096 MB 이상).",
+    "프로젝트를 저장하고 에디터를 재시작합니다."
+  ],
+  "check": [
+    "콘솔 창에 'Stat Streaming' 명령어를 입력하여 Pool Size 예산(Over Budget) 경고가 사라졌는지 확인합니다.",
+    "Viewport에서 텍스처가 정상적인 Resolution로 선명하게 로드되는지 확인합니다."
+  ],
+  "prevent": [
+    "텍스처 Import 시 최대 Resolution(Max Texture Size) 설정을 프로젝트 사양에 맞게 최적화합니다.",
+    "사용하지 않는 텍스처는 불필요하게 높은 밉맵을 유지하지 않도록 관리합니다."
+  ],
+  "keywords": [
+    "Unreal 텍스처 메모리 부족",
+    "Texture streaming pool over budget",
+    "Unreal 풀 사이즈 늘리기",
+    "스튜리밍 풀 오버 버젯",
+    "Unreal VRAM 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T01:28:04+00:00"
+}

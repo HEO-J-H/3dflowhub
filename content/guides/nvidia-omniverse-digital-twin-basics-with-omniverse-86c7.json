@@ -5,12 +5,13 @@
   "group": "디지털 트윈",
   "name": "Digital twin basics with Omniverse",
   "title": "디지털 트윈 기초",
-  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint), 해양 파력(데이터센터 전력 공급) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint 및 Rockwell Automation Emulate3D 통합을 통한 산업용 자동화 시뮬레이션 고도화), 해양 파력(데이터센터 전력 공급) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
   "when": [
     "서로 다른 3D 툴(Blender, 3ds Max, Maya 등)을 사용하는 팀원들과 실시간 협업이 필요할 때",
     "공장, 도시, 대형 건축물, 의료 및 AI 팩토리 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
     "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때",
-    "해양 파력 에너지를 데이터센터 전력원으로 전환하는 시뮬레이션을 수행할 때"
+    "해양 파력 에너지를 데이터센터 전력원으로 전환하는 시뮬레이션을 수행할 때",
+    "Rockwell Automation Emulate3D와 연동하여 산업용 자동화 라인과 물류 시스템을 USD 기반 고품질 실시간 3D 환경에서 가상 검증할 때"
   ],
   "steps": [
     "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 로컬 또는 원격으로 시작합니다.",
@@ -18,7 +19,8 @@
     "Omniverse Nucleus 서버에 새로운 프로젝트용 USD 스테이지(Stage)를 생성하거나 OpenUSD 레이어 기반의 파이프라인을 구성합니다.",
     "각 DCC 툴에서 모델링 데이터를 수정하면 Omniverse Viewport에 실시간으로 반영되는 것을 확인합니다.",
     "Render Settings 패널에서 RTX Renderer와 Path Tracing 모드를 켜서 고품질 결과를 확인합니다.",
-    "Physics 패널에서 강체(Rigid Body)와 충돌(Collision) 속성을 부여해 시뮬레이션을 실행합니다."
+    "Physics 패널에서 강체(Rigid Body)와 충돌(Collision) 속성을 부여해 시뮬레이션을 실행합니다.",
+    "Emulate3D 등 산업용 자동화 솔루션과 연동하여 CAD 및 물류 데이터를 USD 포맷으로 불러와 가상 공장 검증을 수행합니다."
   ],
   "params": [
     {
@@ -60,7 +62,7 @@
       "steps": [
         "CAD 데이터를 USD 형식으로 변환하여 Stage에 임포트합니다.",
         "OpenUSD 레이어 분리 기법을 활용해 팀별 수정 사항을 원본 손상 없이 관리합니다.",
-        "PhysX 시뮬레이션을 실행하여 제품 이동 경로, 전력 및 냉각 분석 등 병목 구간을 테스트합니다."
+        "Emulate3D와 연동하여 로봇과 물류 시스템의 물리적 거동을 검증하고, PhysX 시뮬레이션을 실행하여 병목 구간을 테스트합니다."
       ]
     },
     {
@@ -74,7 +76,8 @@
   ],
   "mistakes": [
     "로컬 Nucleus 서버가 실행되지 않았는데 Live Sync를 켠 경우 → Omniverse Launcher에서 Nucleus 서비스가 정상 작동 중인지 확인하고 재연결합니다.",
-    "외부 DCC 툴에서 스케일(Scale) 값이 1이 아닌 상태로 업로드되어 물리 시뮬레이션이 어긋나는 경우 → 각 툴에서 Freeze Transforms 또는 Apply Scale을 실행한 뒤 다시 동기화합니다."
+    "외부 DCC 툴에서 스케일(Scale) 값이 1이 아닌 상태로 업로드되어 물리 시뮬레이션이 어긋나는 경우 → 각 툴에서 Freeze Transforms 또는 Apply Scale을 실행한 뒤 다시 동기화합니다.",
+    "Emulate3D 및 외부 자동화 시스템 연동 시 USD 호환성이나 그래픽 드라이버 버전이 맞지 않아 시뮬레이션 데이터가 누락되는 경우 → 최신 드라이버와 USD 호환 상태를 점검하고 제어 로직과 3D 에셋 간의 동기화 주기를 재설정합니다."
   ],
   "related": [
     "Universal Scene Description",
@@ -135,18 +138,29 @@
       "source_keys": [
         "p:2026-11-06-b69433aac4c14dde"
       ]
+    },
+    {
+      "at": "2026-11-17T01:28:16+00:00",
+      "what": "NVIDIA Omniverse가 Rockwell Automation의 Emulate3D와 결합하여 산업용 자동화 및 AI 기반 공장 설계를 고도화한 최신 연동 소식을 요약 및 활용 예시에 반영했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse, Emulate3D와 결합하여 산업용 시뮬레이션 고도화",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSEwxRFU1aGhLRmQ2V2pHRWxxbjNSOGVoTXlIMlY0SThTS2trbk14VHozLVRtWWV0bEpzZnJpNjU5S1E1RG5sa29yYW5ZSElNQ0FxaUxaaUstVjdIcE1xT1VwaXFaU3R0TktyUG8yQ1pLUTN5R2ZjQW00amtXRE5TR2xNS1B2YWJNNUZqMFFrX3JHMHBQWVR0QlgzQks?oc=5"
+        },
+        {
+          "title": "NVIDIA Omniverse, Emulate3D에 통합",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOaThfWk5aQzk1TFRMeUo0X21Bc2RzNmtvT1NNWVpsYlRLZ3pITGNIU1hQd1VnUDNuYXdFdGZJZUhmZ0ZqQnVHQldBLWJUZHYzSkhoLUowdExtQjk5S3hBaDZXQlNhTXJJUEdfazE1ZDBpRGc2bUM3NWRlM2FsNXdRdU92Q1ZkQmtZQU0tOWJYNWFKWDJfZGdpMlRPNTE0blZoRnY3UDlIQnFTY2NKUjExZ0xBLVUtRGVSTlE?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-16-8d57b9c0460c70c6",
+        "p:2026-11-16-bc00976834f0bd75"
+      ]
     }
   ],
   "qa": {
     "score": 10,
     "defects": [],
     "fix_hint": "현재의 명확한 구조와 정확한 공식 영문 UI 명칭 및 실습 단계를 계속 유지합니다."
-  },
-  "refresh_with": [
-    {
-      "key": "p:2026-11-16-8d57b9c0460c70c6",
-      "title": "NVIDIA Omniverse, Emulate3D와 결합하여 산업용 시뮬레이션 고도화",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSEwxRFU1aGhLRmQ2V2pHRWxxbjNSOGVoTXlIMlY0SThTS2trbk14VHozLVRtWWV0bEpzZnJpNjU5S1E1RG5sa29yYW5ZSElNQ0FxaUxaaUstVjdIcE1xT1VwaXFaU3R0TktyUG8yQ1pLUTN5R2ZjQW00amtXRE5TR2xNS1B2YWJNNUZqMFFrX3JHMHBQWVR0QlgzQks?oc=5"
-    }
-  ]
+  }
 }

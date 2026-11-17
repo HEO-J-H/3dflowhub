@@ -36910,5 +36910,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 단위 테스트 과제 분할 및 정리",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T01:27:39+00:00",
+    "kind": "proposal",
+    "id": "p-a116e82169",
+    "title": "TripoSR 테스트 경로 오류 및 held 작업 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 TripoSR 관련 테스트 과제들이 패치 적용 실패로 held 상태입니다.",
+    "proposal": "backend/tests/ 폴더 내 테스트 파일 구조를 점검하고 불필요하거나 중복된 테스트 패치 시도를 정리합니다.",
+    "expected": "코딩 에이전트의 불필요한 실패 반복을 막고 안정적인 테스트 환경을 유지합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T01:27:39+00:00",
+    "kind": "proposal",
+    "id": "p-d185bec3c3",
+    "title": "깃허브 오픈소스 RAG 활용 가능성 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 메시지(i: 0)에서 깃허브 RAG 오픈소스 검토 및 반영을 요청했습니다.",
+    "proposal": "docs/ 폴더에 깃허브 오픈소스 RAG 분석 및 Pix2Poly 문서/가이드 검색 적용 가능성에 대한 검토 문서를 작성합니다.",
+    "expected": "사용자 요청에 부응하는 기술 검토 자료가 마련되고 향후 기능 확장 방향이 명확해집니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T01:28:35.005427+00:00",
+    "kind": "decision",
+    "id": "p-a116e82169",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T01:28:35.038361+00:00",
+    "kind": "decision",
+    "id": "p-d185bec3c3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 활용 검토 및 적용 가이드 작성",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T01:28:36.980606+00:00",
+    "kind": "triage",
+    "id": "p-a116e82169",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 TripoSR 테스트 경로 및 파일 오류 정비 관련 내용이 다수 포함되어 있어 이미 반영되었습니다."
+  },
+  {
+    "at": "2026-11-17T01:28:37.011199+00:00",
+    "kind": "decision",
+    "id": "p-a116e82169",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 TripoSR 테스트 경로 및 파일 오류 정비 관련 내용이 다수 포함되어 있어 이미 반영되었습니다."
   }
 ]

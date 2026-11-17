@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-usd-import-failed-because-prim-type--a9585",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: USD import failed because prim type is not supported",
+  "title": "Error: USD import failed because prim type is not supported 오류 해결 방법",
+  "summary": "Error: USD import failed because prim type is not supported 오류는 Houdini에서 USD 파일을 임포트할 때, 현재 버전이나 노드가 지원하지 않는 프림(Prim) 타입이 포함되어 있을 때 발생하는 메시지입니다.",
+  "causes": [
+    "Houdini 버전이 지원하지 않는 최신 USD 스펙이나 커스텀 프림 타입이 포함된 경우",
+    "다른 DCC 툴에서 고유의 플러그인 데이터나 독점 스키마로 익스포트한 Prim이 포함된 경우",
+    "USD 파일 내부에 손상되거나 잘못 정의된 Prim Schema 구조가 있는 경우"
+  ],
+  "steps": [
+    "Houdini를 최신 프로덕션 빌드(Production Build) 또는 최신 정식 버전으로 업데이트합니다.",
+    "USD Import 노드(예: Sublayer, Reference 등) 대신 LOP 네트워크의 Scene Import나 File/LOP 노드 설정을 확인합니다.",
+    "Geometry Primitives로 변환할 수 없는 커스텀 Prim 타입인 경우, 소스 툴(Maya, Houdini 등)에서 표준 USD 스키마(Mesh, Xform 등)로 다시 익스포트합니다.",
+    "텍스트 에디터나 usdview를 통해 USD 파일을 열어 문제가 되는 Prim의 type 속성을 확인하고 수정합니다."
+  ],
+  "check": [
+    "Houdini Viewport와 LOP 네트워크에서 에러 메시지 없이 USD 데이터가 정상적으로 로드되는지 확인합니다.",
+    "Scene Graph Tree에서 해당 Prim이 올바른 타입(Mesh, Scope 등)으로 인식되는지 확인합니다."
+  ],
+  "prevent": [
+    "USD 익스포트 시 비표준 커스텀 프림이나 특정 툴 전용 스키마 대신 표준 USD 스키마를 사용합니다.",
+    "팀 내 Pipeline 사용하는 Houdini 버전과 USD 라이브러리 버전을 통일합니다."
+  ],
+  "keywords": [
+    "Houdini USD 오류",
+    "USD import failed",
+    "prim type is not supported",
+    "Houdini USD Import 실패",
+    "USD prim 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-17T01:28:06+00:00"
+}

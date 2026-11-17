@@ -1,0 +1,88 @@
+{
+  "id": "davinci-resolve-dynamic-zoom-6ee6",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Dynamic Zoom",
+  "title": "다이내믹 줌 — 별도의 Keyframe 없이 영상에 자동으로 줌 인 및 줌 아웃 효과를 주는 기능",
+  "summary": "DaVinci Resolve의 Dynamic Zoom은 별도의 Keyframe 설정 없이 클립의 시작과 끝 프레임만으로 화면 확대 및 축소(줌 인/아웃) 효과를 자동으로 생성해 주는 기능입니다.",
+  "when": [
+    "정적인 인물 인터뷰나 풍경 영상에 자연스러운 카메라 무빙을 주고 싶을 때",
+    "복잡한 Keyframe 작업 없이 빠르게 화면을 강조(Punch in)하고 싶을 때",
+    "사진 슬라이드쇼나 다큐멘터리 스타일의 편집을 효율적으로 제작할 때"
+  ],
+  "steps": [
+    "Cut 페이지 또는 Edit 페이지의 Timeline에서 효과를 적용할 클립을 선택합니다.",
+    "Inspector 패널을 열고 Video 탭 아래에 있는 Dynamic Zoom 항목을 찾습니다.",
+    "Dynamic Zoom 체크박스를 클릭하여 기능을 활성화합니다.",
+    "미리보기 화면(Viewer) 하단 좌측의 오버레이 메뉴에서 Swap 버튼을 눌러 줌 인과 줌 아웃 방향을 전환합니다.",
+    "빨간색(시작 프레임)과 녹색(끝 프레임) 테두리 박스의 크기와 위치를 드래그하여 조정합니다.",
+    "Timeline 재생 버튼을 눌러 줌 효과가 자연스럽게 작동하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Dynamic Zoom",
+      "desc": "기능을 켜고 꺼서 자동 줌 효과를 활성화합니다."
+    },
+    {
+      "name": "Swap",
+      "desc": "시작 프레임(빨간색)과 끝 프레임(녹색)의 줌 방향을 서로 바꿉니다."
+    },
+    {
+      "name": "Ease",
+      "desc": "줌의 시작과 끝 속도를 부드럽게(가속/감속) 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 인터뷰 시선 집중 줌 인",
+      "steps": [
+        "Timeline 클립에 Dynamic Zoom을 켭니다.",
+        "시작 프레임(빨간색 박스)을 전체 화면 크기로 유지합니다.",
+        "끝 프레임(녹색 박스)을 인물의 얼굴 크기에 맞게 줄여줍니다."
+      ]
+    },
+    {
+      "title": "풍경 영상 서서히 넓어지는 줌 아웃",
+      "steps": [
+        "Timeline 클립에 Dynamic Zoom을 켭니다.",
+        "Inspector에서 Swap 버튼을 눌러 방향을 반대로 바꿉니다.",
+        "시작 프레임 박스를 좁게 만들어 특정 피사체를 확대하고, 끝 프레임은 전체 화면으로 넓힙니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "박스 비율이 원본 영상 비율과 다를 때 발생함 → Inspector의 Zoom 버스를 Fit이나 Crop 등의 올바른 비율로 설정합니다.",
+    "인물의 얼굴이 프레임 밖으로 벗어남 → 시작과 끝 박스의 중심점을 인물의 위치에 맞게 이동시킨 후 크기를 조절합니다."
+  ],
+  "related": [
+    "Transform",
+    "Crop",
+    "Keyframe Editor",
+    "Camera Tracker"
+  ],
+  "videos": [
+    {
+      "id": "6GlvVPc9CCI",
+      "title": "DaVinci Resolve 20 Quick Tip:  Instant Motion with Dynamic Zoom 🥇",
+      "author": "Jason Yadlovski"
+    },
+    {
+      "id": "u5gfawlt2Ww",
+      "title": "Dynamic ZOOM - DaVinci Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Dynamic%20Zoom",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Cut",
+    "Edit",
+    "Timeline",
+    "Inspector",
+    "Video",
+    "Dynamic Zoom"
+  ],
+  "at": "2026-11-17T01:27:52.733490+00:00"
+}

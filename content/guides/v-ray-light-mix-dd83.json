@@ -1,0 +1,89 @@
+{
+  "id": "v-ray-light-mix-dd83",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 환경",
+  "name": "Light Mix",
+  "title": "Light Mix — 렌더링 후 라이트의 색상과 세기를 실시간으로 조절하고 라이트 렌더 elementy를 생",
+  "summary": "V-Ray Light Mix는 렌더링을 다시 하지 않고도 Viewport에서 실시간으로 개별 라이트의 색상과 밝기를 조절할 수 있는 강력한 후가공 기능입니다. 조명 연출 수정 시간을 획기적으로 줄여줍니다.",
+  "when": [
+    "인테리어 씬에서 주광과 간접 조명, 스포트라이트의 밝기 비율을 정교하게 맞추고 싶을 때",
+    "야간 씬과 주간 씬의 분위기를 하나의 렌더링 결과물에서 테스트하고 싶을 때",
+    "클라이언트 피드백에 따라 특정 조명의 색온도나 세기를 즉각적으로 수정해야 할 때"
+  ],
+  "steps": [
+    "V-Ray Asset Editor를 엽니다.",
+    "Render Elements 탭으로 이동하여 Add Render Element 버튼을 누릅니다.",
+    "LightMix 요소를 추가하여 렌더 엘리먼트 목록에 포함시킵니다.",
+    "씬을 평소처럼 렌더링(Render)합니다.",
+    "V-Ray Frame Buffer(VFB)의 상단 채널 드롭다운에서 LightMix를 선택합니다.",
+    "List 탭에서 개별 라이트나 그룹의 RGB Color와 Intensity 값을 조절하여 결과를 실시간으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "선택한 라이트의 밝기 배율을 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "선택한 라이트의 빛 색상과 온도(Kelvin)를 변경합니다."
+    },
+    {
+      "name": "Groups",
+      "desc": "여러 라이트를 하나로 묶어 동시에 제어할 수 있게 그룹화합니다."
+    },
+    {
+      "name": "Save to Scene",
+      "desc": "LightMix에서 조정한 라이트 설정을 실제 3D 씬의 라이트 파라미터에 그대로 반영합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "거실 주광과 간접 조명 밸런스 맞추기",
+      "steps": [
+        "LightMix 패널에서 천장 간접등 그룹을 선택합니다.",
+        "Intensity 값을 낮춰 창문으로 들어오는 자연광과 대비를 줍니다.",
+        "Save to Scene을 눌러 씬에 값을 확정합니다."
+      ]
+    },
+    {
+      "title": "주간 씬을 야간 씬 분위기로 전환하기",
+      "steps": [
+        "창문을 비추는 Directional Light(태양광)의 Intensity를 0으로 낮춥니다.",
+        "실내 조명들의 Intensity와 Color 온도를 높여 야간 인공조명 느낌을 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "LightMix 엘리먼트를 추가하지 않고 렌더링함 → Render Elements 탭에서 LightMix를 먼저 추가한 뒤 렌더링해야 합니다.",
+    "수정한 값을 씬에 적용하지 않음 → LightMix에서 맞춘 세팅을 유지하려면 반드시 Save to Scene 버튼을 눌러야 씬에 저장됩니다."
+  ],
+  "related": [
+    "Render Elements",
+    "V-Ray Frame Buffer",
+    "Cryptomatte",
+    "Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "cmln_qvQAmU",
+      "title": "V-Ray Lightmix | Quick Fix",
+      "author": "Chaos Theory"
+    },
+    {
+      "id": "2J5twxBO3S8",
+      "title": "The VRay Light Mix feature in V-Ray allows you to adjust the intensity and color of lights",
+      "author": "Cad By Simplified Academy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Light%20Mix",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "V-Ray Asset Editor",
+    "Render Elements",
+    "Add Render Element",
+    "LightMix"
+  ],
+  "at": "2026-11-17T01:27:48.873052+00:00"
+}
