@@ -5,98 +5,84 @@
   "group": "애니메이션",
   "name": "Biped basics",
   "title": "Biped — 바이페드 기초",
-  "summary": "Biped는 3ds Max에 내장된 인체 리깅·애니메이션 프리셋 시스템으로, 빠르게 기본 인체 골격을 만들고 모션을 적용할 수 있으며, Biped Mode Tools를 통해 세부 부위 제어와 포징 작업을 단일 패널로 통합 관리할 수 있습니다. 최근 Malbers Biped Ragdoll 1.0이 출시되어 기본 Biped나 본 스켈레톤을 물리 기반 래그돌로 전환하고 원클릭으로 Keyframe Baking을 수행할 수 있습니다.",
+  "summary": "Biped는 3ds Max에 내장된 인체 리깅 및 애니메이션 프리셋 시스템으로, 별도의 본 구조를 처음부터 만들지 않고도 빠르게 인체 골격을 생성하고 모션을 적용할 수 있습니다.",
   "when": [
-    "간단한 캐릭터 애니메이션을 빠르게 만들 때",
-    "Prototype 단계에서 인체 동작을 테스트할 때",
-    "게임 엔진용 스켈레톤을 빠르게 준비할 때",
-    "크리처나 동물 캐릭터처럼 목, 척추, 날개, 꼬리 등 세부 관절 제어가 많을 때",
-    "Ragdoll 물리 반응을 빠르게 테스트하고 싶을 때"
+    "게임 캐릭터나 인간형 아바타의 기본 스켈레톤과 리깅을 빠르게 구축할 때",
+    "Footstep 시스템을 활용해 걷기나 뛰기 애니메이션을 효율적으로 제작할 때",
+    "FBX 모션 캡처 데이터나 외부 애니메이션을 캐릭터에 빠르게 리타겟팅할 때"
   ],
   "steps": [
-    "Create → Systems → Biped → Biped 로 Biped 객체 생성",
-    "Biped 를 바닥에 맞추고 필요하면 Align 툴로 위치 조정",
-    "Animation → Motion Mixer 열어 Motion Mixer 패널 표시",
-    "Motion Mixer 에서 원하는 프리셋(예: Walk, Run) 선택",
-    "Body 파라미터에서 Leg Length·Arm Length 등 비율 조정",
-    "Biped Mode Tools 통합 패널을 활용해 목, 척추, 날개, 꼬리 등 세부 신체 부위 포징 및 충돌·웨이브 효과 제어",
-    "Malbers Biped Ragdoll 1.0 활성화 → 물리 시뮬레이션 전환 및 원클릭 Keyframe Baking 실행"
+    "Create 패널(상단 탭)에서 Systems(기하학 형태 아이콘)를 선택합니다.",
+    "Object Type 버튼에서 Biped를 클릭합니다.",
+    "Viewport 드래그 앤 드롭으로 캐릭터의 크기에 맞춰 Biped 골격을 생성합니다.",
+    "Command Panel의 Motion 탭(지점 형태 아이콘)으로 이동하여 Biped 설정을 엽니다.",
+    "Figure 모드를 켜서 캐릭터 체형에 맞게 뼈대의 위치와 비율을 조정합니다.",
+    "Figure 모드를 끄고 Viewport에서 포징이나 애니메이션 Keyframe 작업을 시작합니다."
   ],
   "params": [
     {
-      "name": "Body",
-      "desc": "전체 몸통 크기와 비율을 조정합니다"
+      "name": "Figure Mode",
+      "desc": "Biped의 기본 체형과 뼈대 비율을 수정할 때 활성화하는 모드입니다."
     },
     {
-      "name": "Leg Length",
-      "desc": "다리 길이 설정으로 키 높이를 맞춥니다"
+      "name": "Footsteps",
+      "desc": "발걸음 기반의 보행 애니메이션을 생성하고 편집하는 시스템입니다."
     },
     {
-      "name": "Arm Length",
-      "desc": "팔 길이를 조절해 포즈 범위를 확대합니다"
+      "name": "Body Type",
+      "desc": "Skeleton, Classic 등 기본 Biped의 체형 프리셋을 선택합니다."
     },
     {
-      "name": "Foot Height",
-      "desc": "발바닥 높이로 착지 위치를 미세 조정합니다"
+      "name": "Arms",
+      "desc": "팔의 링크 구조 및 손가락 관절 개수를 설정합니다."
     },
     {
-      "name": "Pelvis Height",
-      "desc": "골반 높이로 몸통 중심을 이동합니다"
+      "name": "Legs",
+      "desc": "다리의 링크 구조 및 발가락 관절 개수를 설정합니다."
     },
     {
-      "name": "Scale",
-      "desc": "전체 Biped 스케일을 비례적으로 확대·축소합니다"
+      "name": "Tail",
+      "desc": "척추나 꼬리 부위의 링크 개수를 추가하거나 줄입니다."
     }
   ],
   "examples": [
     {
-      "title": "게임 캐릭터 기본 워크 사이클",
+      "title": "인간형 캐릭터 체형 맞춤 설정",
       "steps": [
-        "Biped 생성 → Motion Mixer 에서 Walk 프리셋 선택",
-        "Foot Height 로 착지 지점 맞춤",
-        "Loop 옵션 활성화 → 애니메이션 확인",
-        "FBX 로 Export"
+        "Motion 탭에서 Figure Mode를 활성화합니다.",
+        "Move와 Rotate 툴을 사용하여 팔다리와 척추 뼈대를 캐릭터의 메시 위치에 정확히 맞춥니다.",
+        "Figure Mode를 해제하여 포징 및 애니메이션 상태로 돌아갑니다."
       ]
     },
     {
-      "title": "간단한 손 흔들기 애니메이션",
+      "title": "기본 보행 애니메이션 제작",
       "steps": [
-        "Biped 생성 → Motion Mixer 에서 Wave 프리셋 선택",
-        "Arm Length 로 팔 길이 조정",
-        "Angle 파라미터로 손목 회전 보강",
-        "키프레임 확인 후 저장"
-      ]
-    },
-    {
-      "title": "Ragdoll 전환 및 베이킹 테스트",
-      "steps": [
-        "Biped 또는 본 스켈레톤 생성 후 모션 적용",
-        "Malbers Biped Ragdoll 1.0 툴을 통해 물리 시뮬레이션 래그돌로 전환",
-        "원클릭 키프레임 베이킹(Keyframe Baking)을 실행해 타임라인에 애니메이션 반영"
+        "Motion 탭의 Footstep Mode를 켭니다.",
+        "Create Footsteps를 선택하고 Viewport에 발걸음 자국을 배치합니다.",
+        "Play 버튼을 눌러 자동으로 생성된 걷기 모션을 확인합니다."
       ]
     }
   ],
   "mistakes": [
-    "뼈대가 바닥에 떠 있음 → Align 툴 또는 Position Y 값을 0 으로 맞춤",
-    "스케일 적용 안 함 → 애니메이션 전 Ctrl+A 로 Apply Scale 실행",
-    "모션이 루프되지 않음 → Motion Mixer 의 Loop 체크박스 활성화"
+    "Figure 모드를 켜지 않은 채 뼈대 위치를 이동함 → 반드시 Motion 탭에서 Figure Mode를 켠 후 뼈대를 수정해야 애니메이션 왜곡을 방지할 수 있습니다.",
+    "스킨(Skin) 바인딩 후 불필요하게 Biped 크기를 스케일 툴로 키움 → 스케일 툴 대신 Figure 모드와 파라미터 패널을 사용해 비율을 조절해야 합니다."
   ],
   "related": [
-    "CAT",
     "Skin",
-    "IK Solver",
-    "Motion Mixer"
+    "Biped Mode Tools",
+    "Malbers Biped Ragdoll",
+    "Motion Capture"
   ],
   "videos": [
-    {
-      "id": "_1HVom9CMKg",
-      "title": "3ds max biped rig tutorial for beginners",
-      "author": "OKTechi"
-    },
     {
       "id": "zJz2HtPUolk",
       "title": "Biped Footsteps in 3ds Max",
       "author": "Michael Brown"
+    },
+    {
+      "id": "LYp0FMU-yM4",
+      "title": "Tutorial \"Biped Animation Basics\" Part 1 -3DS MAX",
+      "author": "DarkSaintStudios"
     }
   ],
   "doc": "https://help.autodesk.com/view/3DSMAX/2026/ENU/?query=3ds%20Max%20Biped%20basics",
@@ -105,61 +91,8 @@
   "menu_path": [
     "Create",
     "Systems",
+    "Object Type",
     "Biped"
   ],
-  "at": "2026-11-02T02:49:49.201028+00:00",
-  "updates": [
-    {
-      "at": "2026-11-02T15:31:11+00:00",
-      "what": "3ds Max Biped 애니메이션 작업을 단일 패널에서 제어할 수 있는 Biped Mode Tools 관련 내용을 반영하여 단계와 활용 상황을 업데이트했습니다.",
-      "sources": [
-        {
-          "title": "3ds Max Biped Mode Tools 출시 — 애니메이션 편의성 개선",
-          "url": "https://www.reddit.com/r/3dsmax/comments/1xjqbn4/biped_mode_tools_for_3ds_max_made_for_all_the/"
-        },
-        {
-          "title": "3ds Max Biped 애니메이터를 위한 새로운 제작 툴 공개",
-          "url": "https://www.reddit.com/r/3dsmax/comments/1xiv9vf/just_created_this_new_tool_for_all_souls_that/"
-        }
-      ],
-      "source_keys": [
-        "p:2026-10-30-104f1f2a6ac580bd",
-        "p:2026-10-29-8cc1e24123ba5dd0"
-      ]
-    },
-    {
-      "at": "2026-11-08T02:18:26+00:00",
-      "what": "Biped에 곧 추가될 Ragdoll Tool 정보를 요약·단계·예제로 추가했습니다.",
-      "sources": [
-        {
-          "title": "3ds Max Biped 래그돌 제작 도구 개발 소식",
-          "url": "https://www.reddit.com/r/3dsmax/comments/1xq8m3t/i_always_missed_a_way_to_do_ragdolls_with_biped_i/"
-        }
-      ],
-      "source_keys": [
-        "p:2026-11-07-a006aaec99b3e252"
-      ]
-    },
-    {
-      "at": "2026-11-15T15:51:16+00:00",
-      "what": "3ds Max용 Malbers Biped Ragdoll 1.0 정식 출시에 맞춰, 물리 기반 래그돌 전환과 원클릭 Keyframe Baking 내용을 가이드에 반영했습니다.",
-      "sources": [
-        {
-          "title": "3ds Max용 Malbers Biped Ragdoll 1.0 출시",
-          "url": "https://www.reddit.com/r/3dsmax/comments/1xwi3pz/malbers_biped_ragdoll_10_is_out_for_3ds_max/"
-        }
-      ],
-      "source_keys": [
-        "p:2026-11-15-c4b2196d3ca6c010"
-      ]
-    }
-  ],
-  "qa": {
-    "score": 8,
-    "defects": [
-      "실제 존재하지 않거나 공식 출시되지 않은 'Biped Ragdoll Tool (개발 중)' 및 'Biped Mode Tools 통합 패널' 같은 가상의 메뉴·기능 언급",
-      "Motion Mixer 패널 경로 및 걷기/달리기 기본 프리셋 제공 방식에 대한 설명의 정확성 부족"
-    ],
-    "fix_hint": "공식 문서에 없는 미래 기능이나 가상의 툴 이름을 단정적으로 적지 말고, 현재 버전에 실제로 존재하는 3ds Max의 표준 메뉴 경로와 기능만을 기반으로 작성하세요."
-  }
+  "at": "2026-11-17T20:20:42.405769+00:00"
 }
