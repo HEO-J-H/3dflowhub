@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-14T23:07:35.650710+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 57,
-      "candidates_passed": 23,
-      "offtopic": 22,
-      "short": 0,
-      "prefiltered": 18,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "302b7064",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-14T23:17:34.591373+00:00",
       "collected": 0,
       "saved": 0,
@@ -7657,6 +7632,32 @@
         "off-topic",
         "question thread"
       ]
+    },
+    {
+      "at": "2026-11-17T02:38:40.241567+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 29,
+      "candidates_passed": 9,
+      "offtopic": 20,
+      "short": 0,
+      "prefiltered": 4,
+      "llm_fallbacks": [
+        "groq"
+      ],
+      "strategy_ver": "91f348d2",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7752,7 +7753,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-09 [evolve.analyze_3d_content_distribution()] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-09 [[p-1f3968740c|운영·비용] URL 검증 및 RAG 연동 PR ] 외부 URL 검증 및 RAG 연동 기능 추가 시 예외 처리를 철저히 하면 안정성이 높아집니다.",
     "2026-11-09 [PR #40 다시 하기 — backend/app/services/url_] Always verify URL scheme and protocol validation thoroughly before merging ingestion services.",
     "2026-11-09 [성찰] 동음이의어 및 비관련 도구명 필터링을 더욱 엄격하게 적용하여 오수집률을 낮추고, Maxscript, 애드온 튜토리얼 등 검색 의도가 명확한 고단가 실무 콘텐츠에 집중해야 합니다.",
@@ -7871,7 +7871,8 @@
     "2026-11-16 [성찰] 동음이의어 필터를 1000중으로 강화한 결과 오프토픽 비율이 크게 낮아졌으므로, 실무 튜토리얼 및 애드온 관련 고단가 키워드 중심의 수집 전략을 더욱 공고히 해야 합니다.",
     "2026-11-16 [성찰] 동음이의어 필터를 1200중으로 강화하여 무관한 일반 명사 유입을 줄이고 패스율을 개선했으나, 여전히 불필요한 프리필터 및 오프토픽을 낮추기 위해 컨텍스트 검증을 더욱 정교화해야 합니다.",
     "2026-11-17 [성찰] 동음이의어 필터를 2000중으로 대폭 강화하여 일반 명사 뉴스의 유입을 원천 차단하고, 실무 튜토리얼 및 애드온 관련 고단가 키워드에 집중해야 합니다.",
-    "2026-11-17 [성찰] 동음이의어 필터를 강화하여 3D 및 CG와 무관한 일반 명사 뉴스의 유입을 철저히 차단하고, 실무 중심의 튜토리얼 및 애드온 활용법 콘텐츠에 집중해야 합니다."
+    "2026-11-17 [성찰] 동음이의어 필터를 강화하여 3D 및 CG와 무관한 일반 명사 뉴스의 유입을 철저히 차단하고, 실무 중심의 튜토리얼 및 애드온 활용법 콘텐츠에 집중해야 합니다.",
+    "2026-11-17 [성찰] 검색 의도에 맞는 툴명+키워드 앞 배치와 1500자 이상 깊이 있는 콘텐츠가 페이지뷰와 RPM을 크게 끌어올린다."
   ],
   "categories": {
     "VFX": [
@@ -7921,7 +7922,7 @@
     ]
   },
   "category_counts": {
-    "Game Engine/Unity": 101,
+    "Game Engine/Unity": 102,
     "AI 3D/가우시안 스플래팅": 118,
     "VFX/스튜디오·작품": 190,
     "AI 3D/로보틱스·월드모델": 33,
@@ -11007,14 +11008,15 @@
     9557206963472586976,
     4060137927180908860,
     4764881047688479857,
-    14520135738371823154
+    14520135738371823154,
+    10394312338642571520
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3312,
-    "Game Engine": 3312,
-    "VFX": 3312,
-    "AI 3D": 3312
+    "3D DCC": 3313,
+    "Game Engine": 3313,
+    "VFX": 3313,
+    "AI 3D": 3313
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

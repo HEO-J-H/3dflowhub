@@ -1,0 +1,102 @@
+{
+  "title_ko": "Unity 로드맵 2026 — CoreCLR 전환과 URP 도입",
+  "title": "Unite Tokyo Roadmap",
+  "url": "https://www.youtube.com/watch?v=gJV4fZ7dpQw",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "업계 소식",
+  "tags": [
+    "Unity",
+    "CoreCLR",
+    "URP",
+    "Roadmap",
+    "Unity7",
+    "유니티"
+  ],
+  "summary": "Unite Tokyo 2026에서 Unity 7 로드맵을 공개하며 Mono에서 CoreCLR로 전환하고 Built‑in Render Pipeline을 URP로 대체한다는 계획을 발표했습니다.",
+  "insight": "CoreCLR 도입으로 스크립트 수정 후 에디터 재시작 없이 바로 반영되면, 반복 작업 시간이 눈에 띄게 줄어듭니다. URP 전환은 최신 GPU 기능을 활용해 라이트맵과 포스트 프로세싱 품질을 높이면서도 퍼포먼스를 유지합니다. Unity 6.7 베타에서 제공되는 협업 툴은 팀원 간 변경 사항을 실시간으로 공유해 충돌을 최소화합니다. 이러한 변화는 한국의 프리랜서와 스튜디오 모두에게 프로젝트 일정 단축과 품질 향상의 기회를 제공합니다.",
+  "try_it": [
+    "새 프로젝트를 만들 때 Scripting Backend를 CoreCLR(.NET 5/6) 옵션으로 선택한다.",
+    "기존 프로젝트는 Unity 7 마이그레이션 가이드를 따라 Built‑in Render Pipeline을 URP로 전환한다.",
+    "Unity 6.7 베타를 설치해 실시간 협업 툴을 체험하고 팀 내 워크플로를 점검한다.",
+    "CoreCLR 전환 후 스크립트 수정 시 에디터가 즉시 반영되는지 간단한 테스트 씬으로 확인한다."
+  ],
+  "sections": [
+    {
+      "heading": "CoreCLR 전환 발표",
+      "body": "발표자는 Mono에서 CoreCLR로 전환한다는 점을 강조했습니다. CoreCLR는 .NET 5/6 기반으로, 기존 Mono보다 성능과 호환성이 개선됩니다. 도메인 리로드가 제거돼 Script 변경 시 에디터가 즉시 업데이트됩니다. 개발자는 코드 수정 후 재시작 없이 결과를 확인할 수 있어 작업 흐름이 매끄러워집니다."
+    },
+    {
+      "heading": "Built‑in Render Pipeline → URP 전환",
+      "body": "Unity 7부터 Built‑in Render Pipeline이 공식적으로 폐지됩니다. 대신 Universal Render Pipeline(URP)으로 마이그레이션을 권장하며, URP는 최신 GPU 기능을 효율적으로 활용합니다. 기존 파이프라인 사용 프로젝트는 단계별 전환 가이드를 제공받게 됩니다. URP는 라이트맵, 쉐도우, 포스트 프로세싱을 통합 관리해 품질과 퍼포먼스 균형을 맞춥니다."
+    },
+    {
+      "heading": "팀 협업 및 버전 관리 개선",
+      "body": "Unity 6.7에서는 협업 기능이 강화돼 팀원 간 변경 사항을 실시간으로 동기화합니다. 새로운 버전 관리 도구는 충돌 감지를 자동화하고, 커밋 히스토리를 시각화해 작업 흐름을 투명하게 만듭니다. 이와 함께 에디터 내에서 바로 리뷰를 진행할 수 있어 피드백 루프가 짧아집니다. 스튜디오 규모와 관계없이 동일한 협업 경험을 제공한다는 점이 큰 장점입니다."
+    },
+    {
+      "heading": "반복 작업 단축과 그래픽·연산 성능 향상",
+      "body": "Unity 7은 스크립트 도메인 리로드 제거 외에도 에디터 재컴파일 시간을 크게 단축합니다. 그래픽 스택은 URP와 함께 레이 트레이싱, GPU 파티클 등 최신 기능을 지원해 시각적 퀄리티를 끌어올립니다. 연산 성능은 .NET 6 기반 CoreCLR와 최적화된 렌더러 덕분에 CPU·GPU 활용 효율이 상승합니다. 이러한 개선은 복잡한 씬을 다루는 한국 3D 아티스트에게 실질적인 작업 시간 절감 효과를 줍니다."
+    },
+    {
+      "heading": "Unite Tokyo 2026 로드맵 개요",
+      "body": "Unite Tokyo 2026 행사에서 Tarrah Alexis, Jason Mann, James Stone이 Unity의 장기 로드맵을 설명했습니다. 핵심 내용은 CoreCLR 도입, URP 전환, 그리고 Unity 7 출시 일정입니다. 발표는 향후 제품 출시와 기능에 대한 기대감을 제시했습니다. 한국 커뮤니티는 이 로드맵을 바탕으로 교육 커리큘럼과 파이프라인 전략을 재정비할 필요가 있습니다."
+    },
+    {
+      "heading": "CoreCLR 전환이 작업 흐름에 주는 실무적 이점",
+      "body": "Unity 7에서 CoreCLR(.NET 5/6 기반)로 전환하면 도메인 리로드가 사라져 Script 수정 후 에디터를 재시작할 필요가 없습니다. 개발자는 코드 변경 즉시 에디터가 업데이트되므로 반복 테스트 시간이 크게 단축됩니다. 또한 Mono 대비 성능과 호환성이 향상돼 복잡한 로직이나 대규모 프로젝트에서도 CPU·GPU 활용 효율이 상승합니다. 이 점을 활용해 기존에 Script 컴파일 대기 시간에 지연되던 작업을 바로 확인하고, 빠른 피드백 루프를 구축할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "URP 마이그레이션 단계별 실전 가이드",
+      "body": "Built‑in Render Pipeline이 공식 폐지되고 URP로 전환되는 Unity 7에서는 단계별 마이그레이션 가이드를 제공합니다. 먼저 프로젝트 설정에서 Render Pipeline Asset을 URP Asset으로 교체하고, 기존 머티리얼을 URP 호환 쉐이더로 자동 변환합니다. 라이트맵, 쉐도우, Post 프로세싱은 URP가 통합 관리하므로 별도 설정 없이 품질과 퍼포먼스 균형을 맞출 수 있습니다. 마이그레이션 후에는 씬 뷰와 게임 뷰에서 렌더링 결과를 비교해 차이를 확인하고, 필요 시 URP 설정을 미세 조정해 최적화합니다.",
+      "added": true
+    },
+    {
+      "heading": "팀 협업·버전 관리 기능 활용 팁",
+      "body": "Unity 6.7부터 강화된 협업 기능은 팀원 간 변경 사항을 실시간으로 동기화합니다. 새로운 버전 관리 도구는 충돌 감지를 자동화하고 커밋 히스토리를 시각화해 누가 어떤 파일을 수정했는지 한눈에 파악할 수 있습니다. 에디터 내에서 바로 리뷰를 진행할 수 있으므로 피드백 루프가 짧아지고, 스튜디오 규모와 관계없이 일관된 협업 경험을 제공합니다. 실무에서는 ‘Sync’ 버튼을 정기적으로 눌러 최신 상태를 유지하고, 충돌이 발생하면 자동 제안된 해결 방안을 적용해 작업 중단 시간을 최소화하세요.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "Unity 7에서 Mono는 완전히 사라지나요?",
+      "a": "네, Unity 7부터 CoreCLR가 기본 스크립팅 백엔드가 되며 Mono는 더 이상 지원되지 않을 예정입니다."
+    },
+    {
+      "q": "CoreCLR 전환 후 기존 Mono 기반 Script는 그대로 사용할 수 있나요?",
+      "a": "네, CoreCLR는 .NET 5/6 기반이지만 기존 Mono Script와 높은 호환성을 유지합니다. 다만 일부 오래된 API는 경고가 표시될 수 있으니 컴파일 로그를 확인하고 필요 시 업데이트하면 됩니다."
+    },
+    {
+      "q": "URP로 마이그레이션 시 기존 라이트맵은 어떻게 유지하나요?",
+      "a": "URP는 라이트맵을 통합 관리하므로 마이그레이션 과정에서 라이트맵 데이터가 자동으로 변환됩니다. 전환 후 ‘Lighting’ 창에서 라이트맵 설정을 검토하고, 필요 시 리베이킹을 수행하면 기존 퀄리티를 유지할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/gJV4fZ7dpQw/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=gJV4fZ7dpQw"
+  },
+  "collected_at": "2026-11-17T02:38:44.172311+00:00",
+  "notion_id": "",
+  "id": "2026-11-17-32a9e80030f69b53",
+  "img_tried": true,
+  "enriched": "2026-11-17",
+  "refs": [],
+  "videos": [
+    {
+      "id": "ZWX5TfR1UAI",
+      "title": "Unite Tokyo Keynote",
+      "author": "Unity"
+    },
+    {
+      "id": "gJV4fZ7dpQw",
+      "title": "Unite Tokyo Roadmap",
+      "author": "Unity"
+    }
+  ],
+  "enriched_at": "2026-11-17T02:41:27+00:00",
+  "quality": {
+    "before": 1152,
+    "after": 2001
+  }
+}

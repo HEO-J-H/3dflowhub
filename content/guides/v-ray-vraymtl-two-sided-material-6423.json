@@ -1,0 +1,102 @@
+{
+  "id": "v-ray-vraymtl-two-sided-material-6423",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "머티리얼 및 텍스처",
+  "name": "VRayMtl (Two-Sided Material)",
+  "title": "V-Ray Two-Sided Material — 나뭇잎이나 커튼처럼 앞뒤 면에 서로 다른 텍스처를 적용하거나",
+  "summary": "VRayMtl Two‑Sided Material는 양면에 서로 다른 Shader를 적용해 얇은 물체나 투명한 표면을 올바르게 렌더링합니다.",
+  "when": [
+    "얇은 플라스틱 판, 나뭇잎 등 양면이 모두 보이는 경우",
+    "투명하거나 반투명한 물체의 앞·뒤 색상을 다르게 표현하고 싶을 때",
+    "머티리얼을 두께 없이 단일 폴리곤으로 만들고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser → 우클릭 → V‑Ray → Material → VRayMtl 선택",
+    "Material Editor에서 새 VRayMtl을 씬에 드래그",
+    "Material Parameters → General → Two‑Sided 체크",
+    "Front Material 슬롯에 기본 텍스처·Shader 연결",
+    "Back Material 슬롯에 뒤쪽용 텍스처·Shader 연결 (예: 투명 PNG)",
+    "Back Material → Blend Mode 를 Transparent 로 설정 (필요 시)",
+    "V‑Ray Frame Buffer 에서 렌더 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Two‑Sided",
+      "desc": "양면 렌더링을 활성화합니다"
+    },
+    {
+      "name": "Back Material",
+      "desc": "뒷면에 적용할 별도 머티리얼을 지정합니다"
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "뒷면 머티리얼의 투명/불투명 방식을 선택합니다"
+    },
+    {
+      "name": "Opacity",
+      "desc": "뒷면 투명도를 조절합니다 (0~1)"
+    },
+    {
+      "name": "Reflection",
+      "desc": "뒷면 반사 강도를 설정합니다"
+    },
+    {
+      "name": "Refraction",
+      "desc": "뒷면 굴절 효과를 제어합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "나뭇잎(양면 텍스처)",
+      "steps": [
+        "VRayMtl 생성 → Two‑Sided 활성화",
+        "Front Material에 잎사귀 색상 텍스처 연결",
+        "Back Material에 알파 채널이 있는 투명 PNG 연결",
+        "Blend Mode 를 Transparent 로 설정"
+      ]
+    },
+    {
+      "title": "유리창(양면 반사·투과)",
+      "steps": [
+        "VRayMtl 생성 → Two‑Sided 활성화",
+        "Front Material에 반사·굴절 설정, Diffuse 0%",
+        "Back Material에 동일 VRayMtl 복제 후 Opacity 0.2 적용",
+        "Blend Mode 를 Transparent 로 유지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Two‑Sided 미설정 → 뒤쪽이 검게 보임 → Two‑Sided 체크 후 Back Material 지정",
+    "Back Material에 투명 텍스처 없이 Opacity 0 설정 → 완전 투명해져 보이지 않음 → Opacity 값을 0~1 사이로 조정",
+    "Blend Mode 를 Opaque 로 두면 투명 효과가 적용되지 않음 → Transparent 로 변경"
+  ],
+  "related": [
+    "VRayMtl",
+    "VRayBlendMtl",
+    "VRayFastSss2",
+    "VRayMaterialID"
+  ],
+  "videos": [
+    {
+      "id": "Ip4qeg8Da6c",
+      "title": "Vray 2sided material",
+      "author": "Hussain Tabi"
+    },
+    {
+      "id": "tSDHIgRzzy0",
+      "title": "V-Ray 2Sided Material & Onyx Texture in 3ds Max   خامة V-Ray 2Sided وحجر الأونيكس في 3ds Max",
+      "author": "Arkan Arch"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayMtl%20%28Two-Sided%20Material%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "Ray",
+    "Material",
+    "VRayMtl"
+  ],
+  "at": "2026-11-17T02:40:26.434000+00:00"
+}
