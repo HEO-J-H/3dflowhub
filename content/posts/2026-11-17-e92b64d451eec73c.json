@@ -1,0 +1,56 @@
+{
+  "title_ko": "Blender Geometry Nodes로 구현한 슬릿 스캔 큐브 변형",
+  "title": "This Trippy Cube Transformation Will Make Your Brain Hurt",
+  "url": "https://80.lv/articles/this-trippy-cube-transformation-will-make-your-brain-hurt/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "업계 소식",
+  "tags": [
+    "Blender",
+    "Geometry Nodes",
+    "Repeat Zone",
+    "슬릿 스캔",
+    "절차적 애니메이션",
+    "블렌더",
+    "지오메트리 노드"
+  ],
+  "summary": "아티스트 Ernestas \"higgsas\" Grigonis가 Blender의 Geometry Nodes와 Repeat Zone을 활용해 시간차 슬릿 스캔 효과를 3D 큐브 애니메이션으로 구현했습니다.",
+  "insight": "Blender의 Geometry Nodes에서 Repeat Zone 내부에 중첩(nested) 반복 구조를 적용하면 별도의 고프레임렌더링이나 보간 없이도 정교한 시간차 슬릿 스캔 애니메이션을 직접 계산할 수 있습니다.",
+  "try_it": [
+    "Blender에서 Geometry Nodes 에디터를 엽니다.",
+    "Repeat Zone 노드를 추가하고 시간 경과에 따른 반복 애니메이션 로직을 구성합니다.",
+    "Boolean 및 Extrude 노드를 연결하여 절차적인 슬라이스 형태를 만듭니다."
+  ],
+  "sections": [
+    {
+      "heading": "Geometry Nodes와 Repeat Zone의 결합",
+      "body": "아티스트 Ernestas \"higgsas\" Grigonis는 Blender의 Geometry Nodes를 활용해 슬릿 스캔 기법을 3D 공간에 구현했습니다. Repeat Zone을 사용하여 각 Procedural 애니메이션 반복을 시간 순으로 진전시킨 후, Boolean과 extrude 연산으로 평면 슬라이스를 만듭니다. 수직 방향으로 한 번 더 분할해야 하므로 중첩된 Repeat Zone 노드 구조가 사용되었습니다."
+    },
+    {
+      "heading": "합성 대신 기하학적 제어를 택한 이유",
+      "body": "Compositing 단계에서 슬릿 스캔 효과를 만드는 것이 더 간단할 수 있지만, 시간 진행을 정확하게 제어하려면 극단적으로 높은 프레임 레이트로 렌더링하거나 프레임 보간에 의존해야 합니다. 이러한 방식은 원하던 시각적 품질을 내기 어렵기 때문에 지오메트리 단계에서의 직접적인 연산이 채택되었습니다."
+    },
+    {
+      "heading": "Ouroboros 변형 실험과 추가 사례",
+      "body": "최신 실험에서 이 아티스트는 큐브가 자기 자신의 꼬리를 먹는 오로보로스(Ouroboros) 형태로 변형되는 과정을 선보였습니다. 또한 아티스트 Mingwei Lim(CMZW) 역시 Blender의 Repeat Zone을 활용해 Devil May Cry 스타일의 절단 효과를 제작하며 관련 노드의 응용 가능성을 넓히고 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Blender에서 슬릿 스캔 큐브 효과는 어떤 기능으로 만들었나요?",
+      "a": "Blender의 Geometry Nodes 안에서 Repeat Zone을 활용하여 시간차 애니메이션을 반복 생성하고, Boolean과 Extrude 연산을 통해 슬라이스를 만들어 구현했습니다."
+    },
+    {
+      "q": "합성 대신 Geometry Nodes를 쓴 이유는 무엇인가요?",
+      "a": "Compositing으로 구현하려면 고프레임렌더링이나 프레임 보간이 필요해 정밀한 시간 제어가 어려우므로, 지오메트리 단계에서 직접 처리하는 방식을 선택했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51064/images/6afc5f7244385/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=DKH9mFatZGQ"
+  },
+  "collected_at": "2026-11-17T14:19:32.316975+00:00",
+  "notion_id": "",
+  "id": "2026-11-17-e92b64d451eec73c",
+  "img_ok": "2026-11-17T14:19:32+00:00"
+}
