@@ -1,0 +1,107 @@
+{
+  "id": "davinci-resolve-magic-mask-ac6c",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색상 페이지",
+  "name": "Magic Mask",
+  "title": "매직 마스크 — 인물이나 사물을 인공지능이 자동으로 추적하여 마스크를 생성하는 기능",
+  "summary": "Magic Mask는 DaVinci Resolve Color 페이지에서 AI 기반 자동 마스크를 생성·트래킹하여 피사체를 빠르게 분리하고 색보정·효과 적용을 가능하게 하는 도구입니다.",
+  "when": [
+    "인물·동물 등 움직이는 피사체를 별도로 색보정하고 싶을 때",
+    "배경과 피사체를 빠르게 분리해 VFX 레이어링을 할 때",
+    "복잡한 마스크를 손으로 그리기 어려운 장면에 자동 마스크가 필요할 때"
+  ],
+  "steps": [
+    "Color 페이지 → Timeline에서 클립 선택",
+    "툴바의 Magic Mask 아이콘(마법봉) 클릭",
+    "Mode 드롭다운에서 Add(추가) 또는 Subtract(제거) 선택",
+    "Brush Size 슬라이더로 적당한 크기 조정 후, 피사체 위에 클릭·드래그",
+    "Track Forward 버튼(Hotkey Ctrl+F) 클릭하여 프레임 전체에 자동 트래킹",
+    "필요 시 Strength 슬라이더로 마스크 경계 부드러움 조정",
+    "마스크가 완성되면 Color Wheels 등으로 원하는 색보정 적용"
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "Add는 마스크 추가, Subtract는 마스크 영역 삭제"
+    },
+    {
+      "name": "Brush Size",
+      "desc": "마스크를 그릴 브러시 크기"
+    },
+    {
+      "name": "Strength",
+      "desc": "마스크 경계의 부드러움 정도"
+    },
+    {
+      "name": "Tracking",
+      "desc": "프레임 전체에 자동 추적을 수행"
+    },
+    {
+      "name": "Refine Edge",
+      "desc": "마스크 가장자리 세부 조정"
+    },
+    {
+      "name": "Temporal Smoothing",
+      "desc": "시간 축에서 마스크 흔들림을 감소"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부 색보정",
+      "steps": [
+        "Magic Mask로 인물 전체를 마스크",
+        "Track Forward로 전체 클립에 적용",
+        "Color Wheels에서 피부 톤만 조정"
+      ]
+    },
+    {
+      "title": "달리는 자동차에 색상 강조",
+      "steps": [
+        "Add 모드로 자동차 외곽 마스크",
+        "Tracking 후 Strength 낮춰 경계 부드럽게",
+        "Hue vs Hue 툴로 자동차 색상만 강조"
+      ]
+    },
+    {
+      "title": "배경 나무 제거 후 교체",
+      "steps": [
+        "Subtract 모드로 나무 영역 마스크",
+        "Tracking 후 마스크가 정확히 잡히면 Fusion 페이지로 전송",
+        "새 배경 이미지와 합성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "마스크 모드가 Add가 아닌 Subtract로 설정 → 피사체가 제거됨 → 올바른 Mode 선택",
+    "Brush Size를 너무 작게 설정 → 트래킹 시 누락된 부분 발생 → Brush Size 확대 후 다시 페인팅",
+    "Tracking을 수행하지 않음 → 프레임마다 마스크가 고정 → Track Forward 클릭"
+  ],
+  "related": [
+    "Color Wheels",
+    "Qualifier",
+    "Power Window",
+    "Planar Tracker"
+  ],
+  "videos": [
+    {
+      "id": "uJkHytJhNg8",
+      "title": "DaVinci Resolve Magic Mask Tutorial for Beginners",
+      "author": "Camp Films"
+    },
+    {
+      "id": "UB7mOG9eNxg",
+      "title": "NEW Magic Mask 2 in DaVinci Resolve Studio 20 is INCREDIBLE! Full Tutorial & Examples",
+      "author": "MrAlexTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Magic%20Mask",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Color",
+    "Timeline",
+    "Magic Mask"
+  ],
+  "at": "2026-11-17T02:18:00.783195+00:00"
+}
