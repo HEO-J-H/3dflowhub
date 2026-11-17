@@ -1,0 +1,106 @@
+{
+  "id": "davinci-resolve-color-warper-1adc",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색상 페이지",
+  "name": "Color Warper",
+  "title": "컬러 워퍼 — 색상 Grid를 시각적으로 밀고 당겨서 특정 색조를 직관적으로 변경하는 기능",
+  "summary": "Color Warper는 색상 공간을 2D Grid로 직접 변형해 색조·채도·밝기를 자유롭게 재매핑하는 노드입니다.",
+  "when": [
+    "특정 색 영역(예: 피부톤)만 미세하게 보정하고 싶을 때",
+    "전체적인 색조를 독특한 스타일(테일‑오렌지, 시네마틱)로 변형할 때",
+    "그린 스크린 등 색상 스필을 비선형적으로 제거하고 싶을 때"
+  ],
+  "steps": [
+    "Color 페이지 → Node Graph에서 빈 공간 우클릭 → Add OFX → Color Warper 선택",
+    "또는 Shift+Space → ‘Color Warper’ 입력 후 Add",
+    "Inspector 패널에서 ‘Show Grid’를 켜고 Grid 크기(Grid Size)를 적절히 설정",
+    "Viewport에서 Grid 포인트를 드래그해 원하는 색 변환을 적용",
+    "‘Strength’ 슬라이더로 변형 강도를 조절하고 ‘Blend’로 원본과 혼합"
+  ],
+  "params": [
+    {
+      "name": "Show Grid",
+      "desc": "Grid 표시·숨김을 토글합니다"
+    },
+    {
+      "name": "Grid Size",
+      "desc": "Grid 포인트 간 간격을 조정해 정밀도 설정"
+    },
+    {
+      "name": "Strength",
+      "desc": "색 변형 강도를 조절합니다"
+    },
+    {
+      "name": "Blend",
+      "desc": "원본 이미지와 변형 이미지의 혼합 비율"
+    },
+    {
+      "name": "Reset",
+      "desc": "Grid 포인트를 초기 상태로 되돌립니다"
+    },
+    {
+      "name": "Output",
+      "desc": "변형된 색을 출력 채널에 매핑합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "피부톤 일관성 보정",
+      "steps": [
+        "피부 영역에 해당하는 Grid 포인트를 선택",
+        "포인트를 살짝 끌어 피부톤을 중간 톤으로 맞춤",
+        "Strength를 낮게 설정해 자연스러운 보정 완성"
+      ]
+    },
+    {
+      "title": "테일‑오렌지 시네마틱 룩",
+      "steps": [
+        "그림자 영역 포인트를 파란‑청색으로 이동",
+        "하이라이트 영역 포인트를 주황‑노란색으로 이동",
+        "Blend를 70%로 높여 원본과 섞어 부드러운 색조 변환"
+      ]
+    },
+    {
+      "title": "그린 스크린 색 스필 제거",
+      "steps": [
+        "그린 스필이 있는 영역 포인트를 왼쪽(녹색)에서 오른쪽(중성)으로 이동",
+        "Strength를 50% 이하로 낮춰 부드럽게 보정",
+        "결과를 확인하고 필요 시 포인트를 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Grid가 보이지 않음 → ‘Show Grid’를 켜고 ‘Grid Size’를 늘리세요",
+    "Primary 색 보정 뒤에 적용 → 색 보정 순서를 ‘Primary → Color Warper → Secondary’ 로 바꾸세요",
+    "과도한 변형으로 밴딩 발생 → ‘Strength’를 낮추고 ‘Grid Size’를 늘려 부드럽게 만드세요"
+  ],
+  "related": [
+    "Color Wheels",
+    "Curves",
+    "Qualifiers",
+    "Hue vs Hue"
+  ],
+  "videos": [
+    {
+      "id": "4bLA7ske4p8",
+      "title": "DaVinci Resolve Chroma Color Warper in 3 Minutes",
+      "author": "JayAreTV"
+    },
+    {
+      "id": "D6GDV1c3LJs",
+      "title": "WHEN to use this NEW Color Warper Feature ?",
+      "author": "Darren Mostyn"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Color%20Warper",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Color",
+    "Node Graph",
+    "Add OFX",
+    "Color Warper"
+  ],
+  "at": "2026-11-17T02:28:08.158776+00:00"
+}

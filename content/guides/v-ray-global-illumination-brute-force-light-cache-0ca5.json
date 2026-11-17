@@ -1,0 +1,100 @@
+{
+  "id": "v-ray-global-illumination-brute-force-light-cache-0ca5",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 환경",
+  "name": "Global Illumination (Brute Force + Light Cache)",
+  "title": "Global Illumination (Brute Force + Light Cache) — 사실적인 간접 조명",
+  "summary": "V-Ray의 Global Illumination은 Brute Force와 Light Cache 두 엔진을 결합해 정확한 간접광과 빠른 계산을 동시에 제공합니다.",
+  "when": [
+    "복잡한 실내·실외 씬에서 부드러운 간접광이 필요할 때",
+    "노이즈를 최소화하면서 렌더 시간을 합리적으로 유지하고 싶을 때",
+    "Bake 없이 실시간 프리뷰와 최종 렌더 모두 같은 GI 설정을 쓰고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup (F10) → V-Ray 탭 → Settings → Global Illumination 클릭",
+    "Primary Engine을 \"Brute Force\", Secondary Engine을 \"Light Cache\" 로 선택",
+    "Brute Force → Subdivisions → Min 200, Max 2000 (필요에 따라 조정)",
+    "Light Cache → Subdivisions → 4000, Use Adaptive Sampling 체크",
+    "Render (F9) 로 테스트 후 필요 시 Subdivisions 값 조정"
+  ],
+  "params": [
+    {
+      "name": "Primary Engine",
+      "desc": "Brute Force – 정확한 GI 계산, 노이즈 감소"
+    },
+    {
+      "name": "Secondary Engine",
+      "desc": "Light Cache – 빠른 캐시 기반 보조 GI"
+    },
+    {
+      "name": "Brute Force Subdivisions",
+      "desc": "샘플 수, 높을수록 노이즈 감소"
+    },
+    {
+      "name": "Light Cache Subdivisions",
+      "desc": "캐시 샘플 수, 품질에 직접 영향"
+    },
+    {
+      "name": "Use Adaptive Sampling",
+      "desc": "Light Cache에서 샘플을 자동 조절, 효율 향상"
+    },
+    {
+      "name": "Max Bounces",
+      "desc": "광선 반사 횟수, GI 깊이 제어 (보통 2~3)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 조명 – 부드러운 간접광",
+      "steps": [
+        "HDRI와 인테리어 라이트 배치",
+        "Brute Force Subdivisions Min 300 Max 2500 설정",
+        "Light Cache Subdivisions 5000, Adaptive Sampling 활성화",
+        "Render (F9) 로 결과 확인"
+      ]
+    },
+    {
+      "title": "외부 건축 프리뷰 – 빠른 렌더",
+      "steps": [
+        "Outdoor 씬에 태양광과 환경광 설정",
+        "Brute Force Subdivisions Min 100 Max 800 설정",
+        "Light Cache Subdivisions 2500, Adaptive Sampling 켜기",
+        "Render (F9) 로 빠르게 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Subdivisions 값을 너무 낮게 설정 → 노이즈 발생 → 값을 높이거나 Adaptive Sampling 켜기",
+    "Light Cache를 끄고 Brute Force만 사용 → 렌더 시간이 급증 → Light Cache 활성화",
+    "Max Bounces를 0으로 설정 → 간접광이 전혀 나오지 않음 → 최소 2~3으로 설정"
+  ],
+  "related": [
+    "V-Ray Denoiser",
+    "V-Ray Render Elements",
+    "V-Ray Material",
+    "V-Ray Settings"
+  ],
+  "videos": [
+    {
+      "id": "bsSVE8tUjyA",
+      "title": "What is Global Illumination | Light Mix not working? | Brute Force / Light Cache workaround.",
+      "author": "Jake Denham"
+    },
+    {
+      "id": "MHXhKnGiUQc",
+      "title": "3- Vray Global illumination (Light cache)",
+      "author": "corgneer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Global%20Illumination%20%28Brute%20Force%20%2B%20Light%20Cache%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "V-Ray",
+    "Settings",
+    "Global Illumination"
+  ],
+  "at": "2026-11-17T02:27:41.273942+00:00"
+}
