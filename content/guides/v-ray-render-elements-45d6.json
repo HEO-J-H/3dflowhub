@@ -1,0 +1,84 @@
+{
+  "id": "v-ray-render-elements-45d6",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 및 최적화",
+  "name": "Render Elements",
+  "title": "Render Elements — 합성(Compositing)을 위해 라이팅, 반사, 그림자 등을 패스별로 따",
+  "summary": "V-Ray Render Elements는 렌더 결과를 Diffuse, Specular, Reflection 등 개별 레이어로 분리해 합성에 활용할 수 있게 하는 기능입니다.",
+  "when": [
+    "재질별 색보정이 필요할 때",
+    "반사·투명·그림자 등 특정 패스만 별도로 조정하고 싶을 때",
+    "다양한 조명·렌더링 효과를 레이어로 나눠 후처리 파이프라인을 구축할 때"
+  ],
+  "steps": [
+    "Rendering 메뉴 → Render Setup (F10) 열기",
+    "V-Ray 탭 → Render Elements 버튼 클릭",
+    "Add 버튼 → 원하는 Element (예: Diffuse, Specular, Reflection 등) 선택",
+    "각 Element 를 선택하고 Enabled 체크 확인 후 OK 로 닫기",
+    "렌더 실행 (Render 버튼 또는 Shift+Q) 후 V-Ray Frame Buffer 에서 각 패스 확인"
+  ],
+  "params": [
+    {
+      "name": "Element Name",
+      "desc": "출력될 레이어 이름, 기본값은 선택한 패스와 동일"
+    },
+    {
+      "name": "Enabled",
+      "desc": "활성화 여부, 체크하면 해당 패스가 렌더에 포함"
+    },
+    {
+      "name": "Output File",
+      "desc": "파일 저장 경로·이름, 지정하면 자동으로 별도 EXR 등으로 저장"
+    },
+    {
+      "name": "Mask",
+      "desc": "마스크 옵션, 특정 객체만 해당 패스에 포함"
+    }
+  ],
+  "examples": [
+    {
+      "title": "재질 별 색보정",
+      "steps": [
+        "Diffuse Element 추가 → 렌더 → VFB 에서 Diffuse 레이어 저장",
+        "Photoshop에서 Diffuse 레이어만 색조정 후 원본과 합성"
+      ]
+    },
+    {
+      "title": "반사 강조 효과",
+      "steps": [
+        "Reflection Element 추가 → 렌더 → Reflection 레이어를 별도 강화 후 합성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Element 를 추가했지만 Enabled 를 해제 → 렌더에 포함되지 않음 → Enabled 체크 후 재렌더",
+    "Output File 경로를 지정하지 않아 레이어가 VFB 에만 표시 → 원하는 포맷으로 저장하려면 Output File 설정"
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "V-Ray Denoiser",
+    "V-Ray Render Settings",
+    "V-Ray Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "AOe-GeVlg20",
+      "title": "Render Elements in SketchUp V-Ray. How to use  them and Improve Your Visualization",
+      "author": "Educk"
+    },
+    {
+      "id": "99860347R7Y",
+      "title": "Raw Light Render Element - VRay for Rhino 7 - Tutorial",
+      "author": "Tom Budd"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Render%20Elements",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Rendering",
+    "Render Setup"
+  ],
+  "at": "2026-11-17T01:48:00.165415+00:00"
+}
