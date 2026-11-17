@@ -1,0 +1,95 @@
+{
+  "id": "photoshop-render-settings-0593",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조명 및 렌더",
+  "name": "Render Settings",
+  "title": "Render Settings — 3D 렌더링 품질 및 레이트레이싱 설정",
+  "summary": "Photoshop의 3D 렌더 설정(Render Settings)은 3D 레이어의 라이팅, 섀도우, 앤티앨리어싱 및 품질을 제어하여 최종 시각적 결과물을 완성하는 기능입니다. Viewport의 실시간 미리보기 품질과 최종 렌더링 품질을 관리할 수 있습니다.",
+  "when": [
+    "3D 모델이나 텍스트에 정교한 라이팅과 그림자를 적용하고 싶을 때",
+    "최종 렌더링을 진행하기 전 화질과 속도의 균형을 맞추고 싶을 때",
+    "Photoshop 내부에서 3D 씬의 레이 Tracing 및 샘플링 품질을 높여야 할 때"
+  ],
+  "steps": [
+    "Photoshop을 열고 3D 레이어가 포함된 문서를 준비합니다.",
+    "Layers 패널에서 3D 레이어를 선택합니다.",
+    "상단 메뉴에서 Window → 3D를 선택하여 3D 패널을 엽니다.",
+    "3D 패널의 최상단 아이콘 중 4번째 'Current View' 옆의 'Render' 또는 씬 전체 설정을 클릭합니다.",
+    "Properties 패널에서 Quality 및 Ray Tracing 옵션을 조정하여 렌더 품질을 설정합니다.",
+    "상단 메뉴의 3D → Render 3D Layer를 실행하여 최종 고품질 렌더링을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Quality",
+      "desc": "렌더링의 전반적인 품질과 샘플링 수준을 조절합니다."
+    },
+    {
+      "name": "Ray Tracing",
+      "desc": "빛의 반사와 그림자를 물리적으로 정확하게 계산합니다."
+    },
+    {
+      "name": "Anti-Aliasing",
+      "desc": "3D 객체의 가장자리를 부드럽게 처리하여 계단 현상을 줄입니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자의 부드러움과 Resolution를 조절합니다."
+    },
+    {
+      "name": "Illumination",
+      "desc": "씬 전체의 조명 밝기와 반사광 세기를 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 타이포그래피 금속 질감 최종 출력",
+      "steps": [
+        "3D 텍스트 레이어를 선택하고 Properties 패널에서 소재를 금속(Metal)으로 설정합니다.",
+        "Render Settings에서 Ray Tracing과 Quality를 높여 정교한 반사를 유도합니다.",
+        "3D → Render 3D Layer를 실행하여 픽셀 노이즈가 제거된 고품질 이미지를 얻습니다."
+      ]
+    },
+    {
+      "title": "빠른 Viewport 미리보기 확인",
+      "steps": [
+        "작업 중인 3D 씬의 속도 향상을 위해 Properties 패널에서 Quality를 낮춤 설정합니다.",
+        "카메라 앵글과 라이트 위치를 빠르게 배치합니다.",
+        "최종 작업 시에만 Quality와 Ray Tracing 값을 최상단으로 올립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "작업 초기부터 Quality를 너무 높게 설정함 → Viewport 반응 속도가 지나치게 느려지므로, 작업 중에는 낮게 설정하고 최종 출력 시에만 높입니다.",
+    "Ray Tracing 옵션을 켠 채로 Viewport를 회전함 → 렌더링 계산으로 인해 버벅임이 발생하므로, 움직일 때는 끄거나 간소화된 뷰어 모드를 사용합니다."
+  ],
+  "related": [
+    "3D Materials",
+    "3D Lights",
+    "3D Cameras",
+    "Render 3D Layer"
+  ],
+  "videos": [
+    {
+      "id": "mlQKaxeqOzg",
+      "title": "Best Photoshop Export Settings for HIGH QUALITY 🔥",
+      "author": "Sports Photoshop Tutorials"
+    },
+    {
+      "id": "whm0kDw7lus",
+      "title": "Photoshop 2020 | Fast Post-Production (Amazing Render)",
+      "author": "Oner Oncer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Render%20Settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Window",
+    "Current View",
+    "Render"
+  ],
+  "at": "2026-11-17T09:19:06.527430+00:00"
+}

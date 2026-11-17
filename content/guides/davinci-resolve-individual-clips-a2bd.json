@@ -1,0 +1,89 @@
+{
+  "id": "davinci-resolve-individual-clips-a2bd",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전달 페이지",
+  "name": "Individual Clips",
+  "title": "Individual Clips — Timeline의 각 클립을 개별 소스 파일로 분할 렌더링",
+  "summary": "DaVinci Resolve의 Color 페이지에서 여러 클립이 하나의 릴(Reel)로 묶여 있거나 트랜지션으로 연결된 상태에서, 개별 클립 단위로 독립적인 컬러 그레이딩과 노드 작업을 수행할 수 있도록 전환하는 기능입니다.",
+  "when": [
+    "하나의 긴 클립이나 복수의 샷이 겹쳐 있는 Timeline에서 특정 클립만 따로 색보정하고 싶을 때",
+    "트랜지션(Transition) 앞뒤 클립이 서로 영향을 주지 않고 개별적으로 수정되어야 할 때",
+    "컬러 페이지 뷰어 하단에서 전체 Timeline 보기와 개별 클립 보기를 전환해야 할 때"
+  ],
+  "steps": [
+    "하단 네비게이션 바에서 Color 페이지 아이콘을 클릭하여 이동합니다.",
+    "컬러 페이지 중앙 하단의 Timeline 뷰어 영역을 확인합니다.",
+    "Timeline 뷰어 상단 또는 우측 상단에 있는 클립 보기 모드 버튼을 클릭합니다.",
+    "기본 설정인 'Timeline'에서 'Individual Clips'로 모드를 변경합니다.",
+    "Timeline에 연결된 클립들이 각각 독립된 개별 클립 아이콘으로 나뉘어 표시되는 것을 확인합니다.",
+    "원하는 개별 클립을 선택하고 Node 패널에서 독립적인 색보정 작업을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Timeline",
+      "desc": "전체 Timeline 흐름과 트랜지션을 포함한 상태로 클립을 한 번에 묶어서 봅니다."
+    },
+    {
+      "name": "Individual Clips",
+      "desc": "Timeline의 연결 상태를 무시하고 각 클립을 독립된 단위로 분리하여 봅니다."
+    },
+    {
+      "name": "Nodes",
+      "desc": "선택한 개별 클립에 적용된 색보정 및 효과 노드 구조를 표시합니다."
+    },
+    {
+      "name": "Clip Gallery",
+      "desc": "개별 클립별로 스틸 샷을 저장하고 그레이딩을 비교할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "트랜지션으로 이어진 두 클립의 독립 색보정",
+      "steps": [
+        "Color 페이지로 이동하여 하단 모드를 Individual Clips로 설정합니다.",
+        "트랜지션이 걸려 있는 앞쪽 클립을 선택합니다.",
+        "Node 패널에서 루미나스 및 채도를 조절하여 뒤쪽 클립과 분리된 보정을 완성합니다."
+      ]
+    },
+    {
+      "title": "중첩된 컷 편집 구간에서 특정 샷만 수정",
+      "steps": [
+        "Timeline에서 여러 개의 쇼트가 촘촘히 쪼개진 구간을 확인합니다.",
+        "Individual Clips 모드를 켜서 썸네일 단위로 클립을 분리합니다.",
+        "문제가 되는 특정 클립만 선택하여 화이트 밸런스를 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 Timeline에 한 번에 그레이딩을 적용하려는데 색이 따로 먹힙니다 → Individual Clips 모드가 켜져 있는지 확인하고 Timeline 모드로 변경하세요.",
+    "트랜지션 구간에서 색이 급격하게 튀거나 어색합니다 → Individual Clips로 분리된 각 클립의 노드 연결 상태와 그레이딩 매칭을 점검하세요."
+  ],
+  "related": [
+    "Render Cache",
+    "Source Tape",
+    "Color wheels",
+    "Node Graph"
+  ],
+  "videos": [
+    {
+      "id": "EraVFB6fHy8",
+      "title": "HOW TO Export Clips from one Timeline as INDIVIDUAL Files in Davinci Resolve | Tutorial",
+      "author": "DAWIET"
+    },
+    {
+      "id": "q9mNCpawpb0",
+      "title": "How to Batch Export Individual Clips in DaVinci Resolve 19",
+      "author": "Alli and Will"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Individual%20Clips",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Color",
+    "Timeline",
+    "Individual Clips"
+  ],
+  "at": "2026-11-17T09:19:10.647198+00:00"
+}

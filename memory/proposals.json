@@ -34908,5 +34908,127 @@
     "id": "p-4e8c273a62",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 최근 커밋에서 입력 라벨 글자 확대 및 모바일 터치 영역 44px 이상 확보 작업이 반영되었습니다."
+  },
+  {
+    "at": "2026-11-17T09:18:29.079663+00:00",
+    "kind": "report",
+    "id": "r-2026-11-17T09:18",
+    "text": "총 1,657개의 콘텐츠가 구축되었으며 최근 7일간 347개의 신규 소식이 안정적으로 수집되었습니다. 가이드 중심의 배분과 알찬 콘텐츠 확충을 통해 방문자가 깊이 있는 학습을 이어갈 수 있도록 유도하고 있습니다.",
+    "allocation": {
+      "news": 0.2,
+      "guides": 0.8,
+      "roundups": 0.0
+    },
+    "allocation_reason": "방문자가 오래 머물며 학습할 수 있도록 에버그린 기초 가이드 비중을 높이고 최신 업계 소식을 균형 있게 배치합니다."
+  },
+  {
+    "at": "2026-11-17T09:18:29.079663+00:00",
+    "kind": "proposal",
+    "id": "p-745907fb94",
+    "title": "AI 3D 가우시안 스플래팅 실무 가이드 추가",
+    "category": "콘텐츠",
+    "evidence": "AI 3D 분야에서 Gaussian Splatting 관련 소식이 23건 수집되며 꾸준한 관심을 받고 있습니다.",
+    "proposal": "Gaussian Splatting의 기본 개념과 3D 공간 재구성 파이프라인을 정리한 가이드 토픽을 등록합니다.",
+    "expected": "최신 AI 3D 트렌드에 관심 있는 실무자와 연구자의 유입이 확대됩니다.",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "가우시안 스플래팅",
+      "group": "AI 3D",
+      "name": "Gaussian Splatting Pipeline",
+      "title_ko": "가우시안 스플래팅 3D 재구성 기초 가이드"
+    },
+    "risk": "low"
+  },
+  {
+    "at": "2026-11-17T09:18:29.166367+00:00",
+    "kind": "decision",
+    "id": "p-745907fb94",
+    "v": "accepted",
+    "note": "자동 모드: 자동 수락",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T09:18:29.209853+00:00",
+    "kind": "applied",
+    "id": "p-745907fb94",
+    "result": "반영 완료"
+  },
+  {
+    "at": "2026-11-17T09:18:41+00:00",
+    "kind": "proposal",
+    "id": "p-c56912dea4",
+    "title": "held 상태 TripoSR 테스트 경로 정리 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 및 backend/tests/test_core.py 관련 패치 적용 실패(변경 없음 또는 search 블록 불일치)가 반복되었습니다.",
+    "proposal": "backend/tests/test_triposr.py의 파일 경로와 내용을 재확인하고, 테스트 범위를 단일 함수 단위로 쪼개어 패치 충돌 없이 안전하게 적용될 수 있도록 수정합니다.",
+    "expected": "held 상태로 정체된 TripoSR 단위 테스트 과제를 정상화하고 코딩 에이전트 실행 성공률을 높입니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T09:18:41+00:00",
+    "kind": "proposal",
+    "id": "p-076c2a1f34",
+    "title": "PR #78 및 #79 최종 검토 및 머지 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #78 및 PR #79가 승인 대기 상태로 존재하며 핵심 파이프라인 및 웹 UI 개선 사항을 담고 있습니다.",
+    "proposal": "GitHub에서 PR #78(url_ingest 검증 강화)과 PR #79(웹 브라우저 PBR 변환 UI 피드백)의 변경 내용을 최종 확인하고 머지 여부를 결정합니다.",
+    "expected": "대기 중인 주요 기능 개선 사항이 메인 브랜치에 반영되어 사용자 경험과 안정성이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T09:18:57.502004+00:00",
+    "kind": "proposal",
+    "id": "p-e2a0f5d1ad",
+    "title": "Unity 관련 기초 가이드 확충 제안",
+    "by": "📣 마케터",
+    "site": "3dflowhub",
+    "source": "https://3dflowhub.kr/p/2026-11-17-32a9e80030f69b53.html",
+    "category": "콘텐츠",
+    "evidence": "최근 7일간 Unity 관련 소식은 27건 수집되었으나, 기초 가이드 목록에는 관련 학습 내용이 부족합니다.",
+    "proposal": "Unity URP 및 CoreCLR 전환 흐름에 맞춘 초급자용 세팅 기초 가이드 주제를 추가합니다.",
+    "expected": "Unity 유저들의 유입 경로 다각화 및 실무 검색 만족도 상승",
+    "effort": "보통",
+    "action": {
+      "type": "guide_topic",
+      "tool": "Unity",
+      "group": "Game Engine",
+      "name": "URP Setup",
+      "title_ko": "Unity URP 렌더 파이프라인 기초 세팅 방법"
+    }
+  },
+  {
+    "at": "2026-11-17T09:19:55.099599+00:00",
+    "kind": "decision",
+    "id": "p-e2a0f5d1ad",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T09:19:55.130135+00:00",
+    "kind": "decision",
+    "id": "p-c56912dea4",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 테스트 경로 오류 및 held 작업 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T09:19:55.159078+00:00",
+    "kind": "decision",
+    "id": "p-076c2a1f34",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
+    "auto": true
   }
 ]
