@@ -1,0 +1,92 @@
+{
+  "id": "v-ray-v-ray-scene-4545",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 씬 관리",
+  "name": "V-Ray Scene",
+  "title": "V-Ray Scene — 다른 3D 씬 데이터를 참조 형태로 불러와서 효율적으로 렌더링하는 기능",
+  "summary": "V-Ray Scene(.vrscene)은 조명, 재질, 카메라, 지오메트리 데이터를 포함한 전체 씬 설정을 외부 파일로 내보내고 불러오는 기능입니다. 거대한 씬을 가볍게 참조하여 메모리를 절약하고 협업 효율을 높입니다.",
+  "when": [
+    "수백만 개의 폴리곤과 복잡한 재질이 포함된 외부 씬을 메인 프로젝트에 가볍게 불러와야 할 때",
+    "다른 3D DCC(Maya, Houdini 등)에서 작업한 V-Ray 셋업을 3ds Max로 완벽하게 가져와 렌더링할 때",
+    "렌더팜이나 타 시스템으로 무거운 씬 데이터를 빠르고 안전하게 전달해야 할 때"
+  ],
+  "steps": [
+    "3ds Max에서 내보낼 씬 설정을 완료한 뒤, 상단 메뉴에서 V-Ray 툴바 또는 Export 메뉴를 열어 V-Ray Scene(.vrscene) 파일로 저장합니다.",
+    "새로운 3ds Max 프로젝트를 열고, 상단 메뉴 바에서 Create → Geometry → V-Ray를 선택하거나 Import 메뉴를 엽니다.",
+    "Command Panel에서 V-Ray Scene 오브젝트를 Viewport에 생성하고 클릭합니다.",
+    "Modify 패널의 File 경로 설정에서 저장해 둔 .vrscene 파일을 불러옵니다.",
+    "Viewport 디스플레이 모드를 조절하여 Viewport 속도를 최적화하고 렌더링 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "File Path",
+      "desc": "불러올 .vrscene 파일의 경로와 이름을 지정합니다."
+    },
+    {
+      "name": "Animation",
+      "desc": "외부 씬에 포함된 애니메이션 재생 여부 및 Timeline 오프셋을 설정합니다."
+    },
+    {
+      "name": "Display Mode",
+      "desc": "Viewport에서 오브젝트를 표시하는 방식(Bounding Box, Mesh 등)을 정합니다."
+    },
+    {
+      "name": "Override Materials",
+      "desc": "외부 씬의 재질을 무시하고 현재 씬의 기본 재질로 대체하여 렌더링합니다."
+    },
+    {
+      "name": "Node List",
+      "desc": "가져온 .vrscene 내부의 특정 오브젝트나 그룹 구조를 확인하고 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대규모 조경 숲 세트 참조",
+      "steps": [
+        "별도로 제작된 고품질 나무 숲 씬을 .vrscene 파일로 저장합니다.",
+        "메인 건축 시각화 씬에서 V-Ray Scene을 생성하고 해당 파일을 불러옵니다.",
+        "Viewport에서는 Bounding Box로 가볍게 위치를 잡고 최종 렌더링을 수행합니다."
+      ]
+    },
+    {
+      "title": "부서 간 에셋 공유 및 렌더링",
+      "steps": [
+        "라이팅 아티스트가 완성한 조명 및 카메라 셋업을 .vrscene으로 내보냅니다.",
+        "에셋 제작 팀의 메인 파일에 V-Ray Scene으로 참조하여 일관된 룩을 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파일 경로가 상대 경로로 꼬여 렌더링 시 오브젝트가 보이지 않음 → 절대 경로로 지정하거나 에셋 트래킹(Asset Tracking)에서 경로를 재설정합니다.",
+    "외부 씬의 유닛(Unit) 스케일이 달라 크기가 너무 크거나 작게 나옴 → Export 전 3ds Max 시스템 단위를 통일하거나 스케일 값을 조정합니다."
+  ],
+  "related": [
+    "V-Ray Proxy",
+    "V-Ray Material",
+    "V-Ray Mesh Light",
+    "Asset Tracking"
+  ],
+  "videos": [
+    {
+      "id": "1mUAUmqCvBk",
+      "title": "Vray for SketchUp  — Getting Started (How to Create Your First Photorealistic Rendering)",
+      "author": "SketchUp School"
+    },
+    {
+      "id": "OtGYY2Hhuc8",
+      "title": "V-Ray for SketchUp tutorial — Introduction to series",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Scene",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "V-Ray",
+    "Export",
+    "V-Ray Scene"
+  ],
+  "at": "2026-11-17T10:39:30.329635+00:00"
+}
