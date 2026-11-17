@@ -36350,5 +36350,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 경로 및 패치 오류",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T14:30:50+00:00",
+    "kind": "proposal",
+    "id": "p-ea6310a7dc",
+    "title": "docs/rag-evaluation.md 오픈소스 RAG 검토 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 요청 메시지 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘' 반영 필요",
+    "proposal": "docs/rag-evaluation.md 파일을 새로 생성하여 3D 파이프라인 문서화 및 코드 검색용 오픈소스 RAG 적용 타당성과 라이선스를 검토합니다.",
+    "expected": "오픈소스 RAG 도입 타당성을 명확히 문서화하고 향후 개발 방향을 수립합니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T14:30:50+00:00",
+    "kind": "proposal",
+    "id": "p-84512c3c28",
+    "title": "backend/tests/test_triposr.py 단순화 및 패치 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전 agent_runs에서 TripoSR 테스트 패치가 '패치 적용 실패: 변경 없음'으로 여러 차례 held 상태 기록됨",
+    "proposal": "backend/tests/test_triposr.py 파일의 복잡한 패치 블록을 단순화하여 단일 테스트 함수로 재구성하고 코딩 에이전트가 정상 적용하도록 합니다.",
+    "expected": "held 상태인 TripoSR 테스트 오류를 해결하고 테스트 통과율을 높입니다.",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T14:32:05.131284+00:00",
+    "kind": "decision",
+    "id": "p-ea6310a7dc",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T14:32:05.173684+00:00",
+    "kind": "decision",
+    "id": "p-84512c3c28",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 경로 및 패치 오류",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T14:32:14.902322+00:00",
+    "kind": "triage",
+    "id": "p-ea6310a7dc",
+    "verdict": "done_already",
+    "reason": "docs/rag-evaluation.md 오픈소스 RAG 검토 가이드 작성 및 유사 RAG 검토 과제들이 이미 끝낸 제안 및 최근 커밋 내용에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-17T14:32:14.946294+00:00",
+    "kind": "decision",
+    "id": "p-ea6310a7dc",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): docs/rag-evaluation.md 오픈소스 RAG 검토 가이드 작성 및 유사 RAG 검토 과제들이 이미 끝낸 제안 및 최근 커밋 내용에 반영되어 있습니다."
   }
 ]
