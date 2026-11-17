@@ -35681,5 +35681,53 @@
     "id": "p-89710d05e3",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 완료된 제안 목록에 '웹 버전 PBR 렌더링 안내 UI 문구 미세 보정' 및 'web/index.html 브라우저 PBR 안내 문구 정비' 항목으로 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-17T11:38:38+00:00",
+    "kind": "proposal",
+    "id": "p-b6cf6a617b",
+    "title": "보류된 TripoSR 단위 테스트 경로 단순화 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_core.py 또는 test_triposr.py 관련 패치 적용 실패(held 상태)가 반복됨",
+    "proposal": "backend/tests/test_triposr.py의 테스트 대상 함수 경로를 명확히 하고 간결한 어서션으로 구성하여 코딩 에이전트가 정상 반영하도록 수정",
+    "expected": "TripoSR 예외 처리 및 오류 반환 테스트가 통과되어 코드 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T11:38:38+00:00",
+    "kind": "proposal",
+    "id": "p-e9da0c565f",
+    "title": "로컬 파이프라인 문서 링크 및 포맷 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 및 docs/gpu-worker.md 문서 정비가 진행되었으나 전체 링크 정리가 필요함",
+    "proposal": "docs/local-pipeline.md 내 상대 경로 링크와 마크다운 서식을 점검하여 깨진 링크가 없도록 수정",
+    "expected": "사용자와 개발자가 로컬 파이프라인 가이드를 원활하게 열람",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T11:39:49.399352+00:00",
+    "kind": "decision",
+    "id": "p-b6cf6a617b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T11:39:49.430819+00:00",
+    "kind": "decision",
+    "id": "p-e9da0c565f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 문서 링크 및 포맷 점검",
+    "auto": true
   }
 ]
