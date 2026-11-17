@@ -35156,5 +35156,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 단위 테스트 과제 분할 및 정리",
     "auto": true
+  },
+  {
+    "at": "2026-11-17T09:59:52+00:00",
+    "kind": "proposal",
+    "id": "p-b9d87b7f57",
+    "title": "held 상태 TripoSR 테스트 과제 단순화 및 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 및 test_core.py 관련 테스트 패치 적용이 반복적으로 실패(held 상태)함",
+    "proposal": "backend/tests/test_triposr.py 내의 복잡한 패치 블록을 단순화하여, 코딩 에이전트가 단일 파일 단위로 안전하게 테스트를 추가하고 통과시킬 수 있도록 과제를 분할합니다.",
+    "expected": "보류된 TripoSR 단위 테스트가 정상적으로 통과되며 테스트 커버리지 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T09:59:52+00:00",
+    "kind": "proposal",
+    "id": "p-ec2ff11de8",
+    "title": "승인 대기 중인 핵심 PR #78 및 #79 검토 안내",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #78(url_ingest.py 검증 로직 개선) 및 PR #79(웹 브라우저 PBR 변환 UI 피드백 보강)가 승인 대기 상태로 머물러 있음",
+    "proposal": "GitHub에서 PR #78 및 #79의 변경 내용을 최종 확인하고, 운영자 권한으로 머지 결정을 내려 파이프라인과 UI 개선사항을 반영합니다.",
+    "expected": "핵심 기능 개선 사항이 메인 브랜치에 반영되어 사용자 경험 향상",
+    "effort": "낮음",
+    "source": "https://github.com/HEO-J-H/Pix2Poly/pull/78",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T10:02:49.866261+00:00",
+    "kind": "decision",
+    "id": "p-b9d87b7f57",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 TripoSR 테스트 경로 단순화 및 재시도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T10:02:49.898470+00:00",
+    "kind": "decision",
+    "id": "p-ec2ff11de8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #78 및 PR #79 검토 안내 정리",
+    "auto": true
   }
 ]

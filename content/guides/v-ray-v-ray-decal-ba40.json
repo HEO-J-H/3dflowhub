@@ -1,0 +1,94 @@
+{
+  "id": "v-ray-v-ray-decal-ba40",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 셰이딩",
+  "name": "V-Ray Decal",
+  "title": "V-Ray Decal — 입체적인 모델링 수정 없이 표면에 스티커나 로고를 투영하는 기능",
+  "summary": "V-Ray Decal은 3D 모델의 UV 언랩 작업 없이도 표면에 스티커처럼 텍스처나 범프(Bump) 디테일을 덧붙일 수 있는 투영 기능입니다. 벽의 낙서, 바닥의 흠집, 균열 등을 모델링 수정 없이 간편하게 표현할 수 있습니다.",
+  "when": [
+    "UV 정렬 작업 없이 기존 모델 표면에 로고나 스티커를 빠르게 붙이고 싶을 때",
+    "건축 외벽이나 바닥에 콘크리트 얼룩, 긁힘, 빗물 자국 등의 디테일을 더할 때",
+    "복잡한 지형(Terrain)이나 굴곡진 표면에 핏자국이나 낙서 같은 요소를 자연스럽게 투영할 때"
+  ],
+  "steps": [
+    "V-Ray Toolbar 또는 Create 패널에서 V-Ray Decal 아이콘을 선택하여 씬에 생성합니다.",
+    "Decal 오브젝트의 위치와 크기(Gizmo)를 조정하여 디테일을 표현할 표면 근처에 배치합니다.",
+    "Material Editor를 열고 새로운 V-Ray Material을 생성한 뒤, Decal에 적용할 텍스처를 Diffuse와 Bump 슬롯에 연결합니다.",
+    "생성한 머티리얼을 V-Ray Decal 오브젝트에 드래그하여 할당합니다.",
+    "Modify 패널에서 Projection 어트리뷰트와 Size, Width, Height 값을 조절하여 투영 영역을 맞춥니다.",
+    "V-Ray Frame Buffer(VFB)로 렌더링을 실행하여 표면에 디테일이 올바르게 맺혔는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "데칼 투영 상자의 가로 크기를 조절합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "데칼 투영 상자의 세로 크기를 조절합니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "표면 안쪽과 바깥쪽으로 투영이 적용되는 깊이 범위를 설정합니다."
+    },
+    {
+      "name": "Angle Limit",
+      "desc": "표면 법선과 투영 각도의 한계를 설정하여 측면 늘어짐을 방지합니다."
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "기존 표면 머티리얼과 데칼 텍스처가 섞이는 방식을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "아스팔트 바닥의 맨홀 뚜껑 및 균열 표현",
+      "steps": [
+        "아스팔트 도로 모델 위에 V-Ray Decal을 배치합니다.",
+        "균열 및 노면 표시 텍스처를 Decal 머티리얼에 연결합니다.",
+        "Depth 값을 조절해 도로 표면에 자연스럽게 파고들도록 맞춥니다."
+      ]
+    },
+    {
+      "title": "콘크리트 벽면의 오염 자국(Water Stain)",
+      "steps": [
+        "깨끗한 콘크리트 벽 모델 앞에 수직으로 V-Ray Decal을 정렬합니다.",
+        "세로로 흘러내리는 텍스처와 범프 맵을 설정합니다.",
+        "Angle Limit을 조절해 측면 벽이나 모서리에 넘쳐흐르지 않도록 제한합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Decal이 표면에 보이지 않음 → Decal 오브젝트의 높이(Z축)나 Depth 값이 너무 작거나 투영 방향이 반대로 되어 있는지 확인합니다.",
+    "텍스처가 측면 늘어남(Stretching) 현상을 보임 → Angle Limit 값을 낮추어 가파른 각도의 표면에는 투영되지 않도록 제한합니다.",
+    "범프 디테일이 적용되지 않음 → V-Ray Decal 머티리얼의 Bump 채널에 텍스처가 정상적으로 연결되었는지 확인합니다."
+  ],
+  "related": [
+    "V-Ray Material",
+    "VRayDisplacementMod",
+    "ShapeMerge",
+    "Unreal Engine Decal"
+  ],
+  "videos": [
+    {
+      "id": "8c6mAZqacsg",
+      "title": "V-Ray 5 Update! The new V-Ray Decal | InDepth Tutorials",
+      "author": "Chaos Theory"
+    },
+    {
+      "id": "cN3CRI7QHQg",
+      "title": "V-Ray for SketchUp — Adding realistic stickers and labels to curved objects",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Decal",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "V-Ray Toolbar",
+    "Create",
+    "V-Ray Decal"
+  ],
+  "at": "2026-11-17T10:00:51.703950+00:00"
+}
