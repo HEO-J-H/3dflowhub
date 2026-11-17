@@ -36110,5 +36110,53 @@
     "id": "p-f83166b1cd",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 TripoSR 관련 테스트 경로 정비와 문서 보완 작업들이 반복적으로 수행되어 최근 커밋과 끝낸 제안에 반영되었습니다."
+  },
+  {
+    "at": "2026-11-17T13:30:02+00:00",
+    "kind": "proposal",
+    "id": "p-35491f6b53",
+    "title": "held 상태 TripoSR 테스트 경로 단순화 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 backend/tests/test_triposr.py 및 test_core.py 관련 패치 적용이 여러 차례 '변경 없음' 또는 '일치하지 않음'으로 held 처리됨",
+    "proposal": "backend/tests/test_triposr.py 파일의 복잡한 패치 블록을 단일 테스트 함수 형태로 단순화하여 재시도",
+    "expected": "held 상태인 테스트 과제가 정상 통과되어 자동화 파이프라인의 병목 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T13:30:02+00:00",
+    "kind": "proposal",
+    "id": "p-17e0545230",
+    "title": "GitHub RAG 오픈소스 Pix2Poly 반영 타당성 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "owner_decisions에 RAG 오픈소스 관련 거절 이력이 다수 있으며 운영자가 관련 검토를 요청함",
+    "proposal": "Pix2Poly가 사진을 3D 메시로 변환하는 툴이라는 점에 비추어 RAG 기능 도입 대신 로컬 파이프라인 안내 문서나 오류 가이드 보강으로 방향 선회 검토",
+    "expected": "핵심 범위에 집중하여 불필요한 코드 복잡도 방지 및 명확한 가이드 제공",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-17T13:34:29.970176+00:00",
+    "kind": "decision",
+    "id": "p-35491f6b53",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TripoSR 단위 테스트 경로 단순화 분할",
+    "auto": true
+  },
+  {
+    "at": "2026-11-17T13:34:30.020548+00:00",
+    "kind": "decision",
+    "id": "p-17e0545230",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: GitHub 오픈소스 RAG 관련 Pix2Poly 적용 가능성 검토",
+    "auto": true
   }
 ]
