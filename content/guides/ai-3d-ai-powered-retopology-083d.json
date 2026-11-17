@@ -1,0 +1,88 @@
+{
+  "id": "ai-3d-ai-powered-retopology-083d",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 리토폴로지",
+  "name": "AI-powered Retopology",
+  "title": "AI-powered Retopology — 불규칙한 메쉬를 애니메이션용 사각형 위상(Quad) 구조로 정리",
+  "summary": "AI‑powered Retopology는 인공지능을 이용해 고해상도 메쉬를 자동으로 깔끔한 Quad Topology로 재구성해 줍니다.",
+  "when": [
+    "스캔 데이터·스컬프팅 모델처럼 폴리곤 수가 너무 많을 때",
+    "애니메이션·리깅을 위해 저폴리곤 퀘드 메쉬가 필요할 때",
+    "수동 Retopology에 너무 많은 시간이 소요될 때"
+  ],
+  "steps": [
+    "Retopology 할 오브젝트를 선택합니다.",
+    "Command Panel → Modify 탭 → Modifier List 에서 AI Retopology 를 선택합니다.",
+    "AI Retopology 패널에서 Target Polygon Count 와 Preserve Details 를 설정합니다.",
+    "Generate 버튼 (Hotkey: Ctrl+G) 을 눌러 AI 가 자동으로 새 메쉬를 생성하도록 합니다.",
+    "생성된 메쉬를 확인하고, 필요하면 Apply 버튼으로 기존 오브젝트와 교체합니다."
+  ],
+  "params": [
+    {
+      "name": "Target Polygon Count",
+      "desc": "목표 폴리곤 수를 지정해 디테일 수준을 조절합니다."
+    },
+    {
+      "name": "Preserve Details",
+      "desc": "고해상도 디테일을 유지할 정도를 설정합니다."
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "기존 UV 레이아웃을 그대로 유지합니다."
+    },
+    {
+      "name": "Preserve Normals",
+      "desc": "법선 방향을 보존해 쉐이딩 오류를 방지합니다."
+    },
+    {
+      "name": "Adaptive Subdivision",
+      "desc": "복잡한 영역에만 더 많은 폴리곤을 배분합니다."
+    },
+    {
+      "name": "Output Mesh Name",
+      "desc": "생성된 메쉬의 이름을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 얼굴 Retopology",
+      "steps": [
+        "고해상도 얼굴 스컬프팅 메쉬 선택 → AI Retopology 적용",
+        "Target Polygon Count 를 15k 로 설정 → Preserve Details 를 High 로 선택",
+        "Generate 후 결과 메쉬를 Viewport에서 확인, 눈에 띄는 디테일 손실이 없으면 Apply"
+      ]
+    },
+    {
+      "title": "배관 파이프 Retopology",
+      "steps": [
+        "스캔한 파이프 메쉬 선택 → AI Retopology 열기",
+        "Target Polygon Count 를 5k 로 설정, Adaptive Subdivision 켜기",
+        "Generate 후 파이프의 곡선이 부드럽게 재구성되면 Apply"
+      ]
+    }
+  ],
+  "mistakes": [
+    "목표 폴리곤 수를 너무 낮게 설정 → 디테일 손실 발생 → 적절한 값으로 재설정",
+    "스케일 적용을 하지 않음 → AI 가 비정상적인 비율로 메쉬를 생성 → Ctrl+A 로 Apply Scale 후 재시도",
+    "Preserve UVs 를 끄고 진행 → UV가 사라짐 → Preserve UVs 를 켜고 다시 실행"
+  ],
+  "related": [
+    "Subdivision Surface",
+    "UV Unwrap",
+    "Normal Map Baking",
+    "Mesh Decimation"
+  ],
+  "videos": [
+    {
+      "id": "1_7xRSyeLUc",
+      "title": "Quadify Ultra — AI-Powered Retopology for Blender 5.0 | One Click. Five Algorithms. ML Routing.",
+      "author": "Quadify Tools"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI-powered%20Retopology",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-17T02:58:47.468596+00:00"
+}
