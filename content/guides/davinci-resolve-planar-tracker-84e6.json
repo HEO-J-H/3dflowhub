@@ -1,0 +1,102 @@
+{
+  "id": "davinci-resolve-planar-tracker-84e6",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "Planar Tracker",
+  "title": "플래너 트래커 — 화면의 표면을 추적하여 그래픽이나 텍스트를 자연스럽게 합성하는 기능",
+  "summary": "DaVinci Resolve의 Planar Tracker는 영상 속 평면 표면의 움직임을 추적하여 그래픽, 텍스처, 로고 등을 자연스럽게 합성하는 기능입니다.",
+  "when": [
+    "움직이는 자동차 번호판이나 스마트폰 화면에 다른 영상을 합성할 때",
+    "흔들리는 벽면이나 간판에 로고와 그래픽을 고정할 때",
+    "영상의 특정 영역에 모자이크나 텍스처를 자연스럽게 입힐 때"
+  ],
+  "steps": [
+    "DaVinci Resolve의 Fusion 페이지로 이동하여 MediaIn 노드와 MediaOut 노드를 확인합니다.",
+    "MediaIn 노드를 선택하고, 상단 툴바에서 Planar Tracker 아이콘을 클릭하여 노드를 추가합니다.",
+    "Viewport에서 추적할 평면 영역의 모서리를 따라 4개의 점을 찍어 사각형 영역을 설정합니다.",
+    "Inspector 패널의 Planar Tracker 탭에서 Track Forward 버튼을 눌러 영상을 분석합니다.",
+    "Operation 드롭다운 메뉴를 Corner Pin 또는 Perspective로 변경하여 합성할 소스를 연결합니다.",
+    "Viewport에서 결과 확인 후 MediaOut 노드에 연결하여 렌더링을 마칩니다."
+  ],
+  "params": [
+    {
+      "name": "Track Forward",
+      "desc": "현재 프레임에서 영상의 앞쪽으로 평면 영역을 추적합니다."
+    },
+    {
+      "name": "Operation",
+      "desc": "추적 데이터를 바탕으로 텍스처를 입힐 방식을 선택합니다 (Corner Pin 등)."
+    },
+    {
+      "name": "Reference Time",
+      "desc": "트래킹 메쉬와 소스 이미지가 완벽하게 일치하는 기준 프레임을 지정합니다."
+    },
+    {
+      "name": "Motion Blur",
+      "desc": "빠른 움직임이 있는 영상에 자연스러운 모션 블러 효과를 더합니다."
+    },
+    {
+      "name": "Show Mesh",
+      "desc": "Viewport에 추적 중인 평면 Grid 메쉬의 표시 여부를 결정합니다."
+    },
+    {
+      "name": "Create Planar Transform",
+      "desc": "추적된 데이터를 별도의 Transform 노드로 분리하여 정밀하게 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "흔들리는 스마트폰 화면 교체",
+      "steps": [
+        "Fusion 페이지에서 스마트폰 화면 영상에 Planar Tracker 노드를 연결합니다.",
+        "화면 모서리에 맞춰 트래킹 영역을 지정하고 Track Forward로 분석합니다.",
+        "새로운 화면 이미지를 MediaIn으로 불러와 Planar Tracker 노드에 연결합니다.",
+        "Operation을 Corner Pin으로 설정하여 화면 크기에 맞게 정렬합니다."
+      ]
+    },
+    {
+      "title": "벽면 그래픽 합성 및 로고 삽입",
+      "steps": [
+        "카메라가 움직이는 벽면 영상에 Planar Tracker를 적용합니다.",
+        "벽돌이나 타일의 평면 영역을 선택하고 모션을 추적합니다.",
+        "합성할 로고 이미지를 노드 그래프에 추가하고 Tracker에 연결합니다.",
+        "Perspective 옵션을 켜서 원근감에 맞게 로고가 왜곡되도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "트래킹 영역에 장애물이 지나감 → 장애물이 가리는 구간은 수동으로 Keyframe을 수정하거나 마스크를 활용해 영역을 분리합니다.",
+    "빛 반사나 질감 부족으로 트래킹이  튀는 현상 → Contrast와 Luminance 설정을 조절하거나 트래킹 영역을 텍스처가 선명한 부분으로 재설정합니다.",
+    "원근감이 맞지 않고 로고가 떠 보이는 현상 → Reference Time 프레임을 다시 설정하고 Operation 모드를 Perspective로 변경합니다."
+  ],
+  "related": [
+    "Tracker",
+    "Corner Pin",
+    "Planar Transform",
+    "Camera Tracker"
+  ],
+  "videos": [
+    {
+      "id": "AtdNNzFdjDM",
+      "title": "Master the Planar Tracker to create awesome effects in DaVinci Resolve",
+      "author": "Creator Sergeant - Julian Woldan"
+    },
+    {
+      "id": "F-Pr1GGmyVU",
+      "title": "Dead Simple Guide to the Planar Tracker in Fusion - DaVinci Resolve Basics",
+      "author": "Casey Faris"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Planar%20Tracker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "MediaIn",
+    "MediaOut",
+    "Planar Tracker"
+  ],
+  "at": "2026-11-17T01:37:12.872463+00:00"
+}

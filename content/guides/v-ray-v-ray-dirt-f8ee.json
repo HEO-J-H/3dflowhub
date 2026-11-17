@@ -1,0 +1,97 @@
+{
+  "id": "v-ray-v-ray-dirt-f8ee",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "머티리얼 및 텍스처",
+  "name": "V-Ray Dirt",
+  "title": "V-Ray Dirt — 오브젝트의 모서리와 틈새에 먼지나 마모 효과를 주어 웨더링 표현을 하는 텍스처 맵",
+  "summary": "V-Ray Dirt는 오브젝트의 접점, 모서리, 오클루전 영역에 먼지나 마모 효과를 절차적으로 생성해주는 맵입니다. 3D 모델링에 손으로 직접 텍스처를 칠하지 않고도 자연스러운 웨더링을 구현합니다.",
+  "when": [
+    "건축 시각화에서 벽면 모서리와 창틀 아래에 먼지나 물곰뜸 흔적을 표현할 때",
+    "하드서페이스 모델의 엣지 부분에 페인트가 벗겨진 마모 효과를 줄 때",
+    "오브젝트들 간의 접촉면에 자연스러운 그림자나 암부 오염을 더할 때"
+  ],
+  "steps": [
+    "Material Editor에서 V-Ray Material을 생성하고 Diffuse 또는 Bump 슬롯을 클릭합니다.",
+    "Material/Map Browser에서 V-Ray Dirt를 선택하여 적용합니다.",
+    "V-Ray Dirt의 파라미터 패널에서 Radius 값을 조절하여 오염이 퍼지는 범위를 설정합니다.",
+    "Occluded color(어두운 색)와 Unoccluded color(밝은 색)를 조정하여 먼지나 녹의 색상을 지정합니다.",
+    "렌더링을 실행하여 모서리와 접점에 오염 효과가 자연스럽게 들어갔는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "오염이나 모서리 효과가 퍼져나가는 거리를 씬 단위로 설정합니다."
+    },
+    {
+      "name": "Occluded color",
+      "desc": "오목한 부분이나 접촉면에 적용될 색상(주로 어두운 먼지나 녹 색상)을 지정합니다."
+    },
+    {
+      "name": "Unoccluded color",
+      "desc": "돌출된 평평한 면에 적용될 기본 색상을 지정합니다."
+    },
+    {
+      "name": "Distribution",
+      "desc": "오염이 중심에서 퍼져나가는 감쇠 곡선과 분포도를 조절합니다."
+    },
+    {
+      "name": "Falloff",
+      "desc": "효과가 사라지는 경계면의 부드러움을 설정합니다."
+    },
+    {
+      "name": "Subdivs",
+      "desc": "V-Ray Dirt 샘플링 품질을 높여 노이즈를 줄이고 부드러운 그라데이션을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 벽면 모서리 먼지 표현",
+      "steps": [
+        "콘크리트 디퓨즈 맵에 V-Ray Dirt를 Blend 메인 맵으로 연결합니다.",
+        "Radius 값을 키워 벽돌 모서리를 따라 넓은 먼지 흔적을 만듭니다.",
+        "Occluded color를 어두운 회색톤으로 설정합니다."
+      ]
+    },
+    {
+      "title": "금속 파이프 접합부 녹 표현",
+      "steps": [
+        "금속 재질의 Bump 또는 Reflection 슬롯에 V-Ray Dirt를 넣습니다.",
+        "Radius를 좁게 설정하여 파이프가 만나는 틈새에만 효과를 집중시킵니다.",
+        "Occluded color를 붉은 녹 색상으로 지정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Radius 값이 너무 클 때 → 오브젝트 전체가 어둡게 변하므로 스케일에 맞춰 Radius를 낮게 조절합니다.",
+    "렌더링 결과물에 자글자글한 노이즈가 생길 때 → V-Ray Dirt의 Subdivs 값을 높이거나 라이트 캐시 설정을 확인합니다."
+  ],
+  "related": [
+    "V-Ray Ambient Occlusion",
+    "V-Ray EdgeTex",
+    "V-Ray Blend Mtl",
+    "Substance 3D Painter Generators"
+  ],
+  "videos": [
+    {
+      "id": "nHWVB0ggCgk",
+      "title": "Add Realistic Dirt to V-Ray Materials (3ds Max)",
+      "author": "After Box"
+    },
+    {
+      "id": "uQ0Qa4GrquI",
+      "title": "Quick Realistic Materials in V-Ray 6 for Rhino (TUTORIAL)",
+      "author": "Daniel Kuzev"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Dirt",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "V-Ray Material",
+    "Diffuse",
+    "Bump"
+  ],
+  "at": "2026-11-17T01:37:08.476484+00:00"
+}

@@ -35,6 +35,21 @@
     {
       "heading": "재질 및 디테일 구현",
       "body": "건축 마감재의 질감과 유리, 금속 등의 반사 특성이 렌더링 상에서 어떻게 구현되는지 세부적으로 관찰할 수 있습니다. 대규모 매싱부터 미세한 인테리어 소품까지 V-Ray 재질 시스템이 적용된 사례를 제공합니다. 실무에서 유사한 컨셉을 다룰 때 참고할 만한 시각적 기준을 제시합니다."
+    },
+    {
+      "heading": "V-Ray 갤러리 조명 설정 실전 팁",
+      "body": "ArchDaily에 공개된 V-Ray 건축 렌더링 갤러리에서는 물리적 태양·하늘(V-Ray Sun, V-Ray Sky)과 HDRI 환경을 활용한 조명 구성이 상세히 드러난다. 실제 프로젝트 결과물을 통해 자연광이 실내에 유입되는 경로와 인공 조명이 만든 분위기를 비교 분석할 수 있다. 이를 내 작업에 적용하려면 V-Ray Sun을 배치하고, V-Ray Sky 혹은 HDRI 맵을 배경에 지정한 뒤, V-Ray Light(Area, Spot 등)로 보조 조명을 추가한다. 마지막으로 V-Ray Denoiser를 활성화해 노이즈를 최소화하면 갤러리와 유사한 깨끗한 결과를 얻을 수 있다.",
+      "added": true
+    },
+    {
+      "heading": "V-Ray 재질 및 디테일 구현 포인트",
+      "body": "갤러리의 각 프로젝트는 V-Ray 재질 시스템을 이용해 반사율·투명도·거칠기 등을 정밀하게 조정한 사례를 제공한다. 대규모 매시(건물 외벽)부터 미세한 인테리어 소품까지 재질 파라미터가 어떻게 적용됐는지 확인할 수 있다. 실무에서 비슷한 컨셉을 구현하려면 V-Ray Material을 생성하고, Reflectivity와 Refraction 값을 실제 재료 특성에 맞게 설정한다. 금속·유리 재질은 Fresnel IOR을 조정하고, Bump/Normal 맵을 추가해 표면 디테일을 강화한다. 이렇게 하면 갤러리와 동일한 수준의 사실적인 재질 표현이 가능하다.",
+      "added": true
+    },
+    {
+      "heading": "갤러리 활용 워크플로우 제안",
+      "body": "ArchDaily 갤러리를 효과적으로 활용하려면 먼저 웹에서 관심 프로젝트를 선택하고, 스크린샷·렌더링 파라미터(카메라, 조명, 재질) 정보를 기록한다. 그런 다음 V-Ray가 지원되는 DCC(3ds Max, SketchUp, Rhino 등)에서 동일한 환경을 재현한다. 조명은 V-Ray Sun·Sky·HDRI, 재질은 V-Ray Material 에디터를 사용해 갤러리와 일치하도록 설정한다. 최종적으로 V-Ray Frame Buffer의 Region Render 기능으로 특정 영역만 빠르게 테스트하고, Denoiser를 적용해 품질을 검증한다. 이 과정을 반복하면 갤러리에서 얻은 레퍼런스를 내 프로젝트에 직접 적용할 수 있다.",
+      "added": true
     }
   ],
   "faq": [
@@ -45,6 +60,14 @@
     {
       "q": "어디서 이 갤러리를 확인할 수 있나요?",
       "a": "건축 전문 플랫폼인 ArchDaily 웹사이트에서 해당 갤러리 페이지를 열람할 수 있습니다."
+    },
+    {
+      "q": "갤러리에서 본 조명 설정을 내 프로젝트에 적용하려면 어떤 절차가 필요한가요?",
+      "a": "먼저 갤러리에서 사용된 V-Ray Sun·Sky 혹은 HDRI 정보를 확인한다. DCC에서 V-Ray Sun을 배치하고, V-Ray Sky 혹은 동일한 HDRI를 배경에 적용한다. 보조 조명이 필요하면 V-Ray Light(Area, Spot 등)를 추가하고, 조명 강도와 색 온도를 맞춘다. 마지막으로 V-Ray Denoiser를 켜서 노이즈를 제거하면 갤러리와 유사한 조명 결과를 얻을 수 있다."
+    },
+    {
+      "q": "재질 파라미터를 빠르게 검증하려면 어떤 기능을 활용하면 좋나요?",
+      "a": "V-Ray Frame Buffer의 Region Render와 Interactive Rendering 모드를 활용한다. 원하는 재질이 적용된 영역만 선택해 실시간으로 결과를 확인하고, Reflectivity·Refraction·Fresnel IOR 값을 조정한다. 또한 V-Ray Denoiser를 켜면 노이즈가 감소된 최종 이미지를 바로 확인할 수 있어, 갤러리와 동일한 재질 품질을 빠르게 검증할 수 있다."
     }
   ],
   "media": {
@@ -55,5 +78,19 @@
   "notion_id": "",
   "id": "2026-11-17-8f25a0ba03a7f6c1",
   "img_tried": true,
-  "enriched": "2026-11-17"
+  "enriched": "2026-11-17",
+  "img_ok": "2026-11-17T01:36:47+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "If0LK_5Uq1U",
+      "title": "6 FREE AI ARCHITECTURE RENDERING tools compared 😮 #architecture",
+      "author": "Salmaan Mohamed"
+    }
+  ],
+  "enriched_at": "2026-11-17T01:37:53+00:00",
+  "quality": {
+    "before": 702,
+    "after": 1694
+  }
 }
