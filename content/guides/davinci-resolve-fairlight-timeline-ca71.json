@@ -1,0 +1,90 @@
+{
+  "id": "davinci-resolve-fairlight-timeline-ca71",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "오디오 (Fairlight)",
+  "name": "Fairlight Timeline",
+  "title": "페어라이트 Timeline — 서브프레임 단위의 정밀한 Audio 편집과 믹싱을 지원하는 사운드 공간",
+  "summary": "DaVinci Resolve의 Fairlight Timeline은 Audio 편집과 믹싱을 트랙과 클립 단위로 정밀하게 다루는 전문 작업 공간입니다.",
+  "when": [
+    "동영상 클립에 포함된 여러 Audio 채널의 볼륨과 싱크를 맞출 때",
+    "대사와 배경음악, 효과음의 밸런스를 트랙별로 세밀하게 조절할 때",
+    "페이드인, 페이드아웃, Audio 전환 효과를 시각적으로 편집할 때"
+  ],
+  "steps": [
+    "하단 내비게이션 바에서 Fairlight 페이지 아이콘을 클릭하여 Fairlight 작업 공간으로 이동합니다.",
+    "상단 메뉴 View → Timeline View Options를 열어 Waveform 및 Audio Track 설정을 활성화합니다.",
+    "Timeline 패널에서 편집할 Audio 트랙을 확인하고, Selection Mode(A)를 선택해 클립을 선택합니다.",
+    "Mouse 드래그나 핸들을 이용해 클립의 볼륨(Clip Gain)과 페이드 인·아웃 구간을 조절합니다.",
+    "필요한 경우 툴바에서 Split(Ctrl+\\) 도구를 사용하여 Audio 클립을 자르고 타이밍을 정렬합니다.",
+    "Inspector 패널에서 Equalizer 및 Dynamics 효과를 켜고 파라미터를 미세 조정합니다.",
+    "Fairlight Timeline 우측의 Mixer 패널에서 최종 Master 트랙 레벨을 확인하며 Audio 출력을 점검합니다."
+  ],
+  "params": [
+    {
+      "name": "Clip Gain",
+      "desc": "선택한 Audio 클립의 전체 볼륨을 데시벨(dB) 단위로 조절합니다."
+    },
+    {
+      "name": "Fade Handle",
+      "desc": "클립의 시작과 끝에 Audio가 서서히 커지거나 작아지도록 페이드 구간을 설정합니다."
+    },
+    {
+      "name": "Audio Track Layers",
+      "desc": "하나의 트랙 내에 여러 Audio 테이크를 겹쳐서 관리하고 선택할 수 있습니다."
+    },
+    {
+      "name": "Bus Assign",
+      "desc": "Audio 트랙을 특정 서브믹스나 마스터 버스로 라우팅하여 그룹 제어합니다."
+    },
+    {
+      "name": "Automation Mode",
+      "desc": "볼륨이나 팬 등의 변화를 Timeline 상에서 Keyframe으로 실시간 기록합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대사 Audio 볼륨 균일하게 맞추기",
+      "steps": [
+        "Timeline에서 목소리가 녹음된 Audio 트랙을 선택합니다.",
+        "소리가 너무 큰 구간을 Split(Ctrl+\\) 도구로 자릅니다.",
+        "해당 클립의 Clip Gain 핸들을 내려 주변 Audio와 볼륨 크기를 맞춥니다."
+      ]
+    },
+    {
+      "title": "배경음악 페이드아웃 적용하기",
+      "steps": [
+        "배경음악이 끝나는 지점의 Audio 클립을 확인합니다.",
+        "클립 우측 상단의 페이드 핸들을 왼쪽으로 드래그합니다.",
+        "Timeline 재생을 통해 음악이 부드럽게 줄어드는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모니터링 스피커/헤드폰 음량이 너무 커서 믹싱이 작게 되는 실수 → Master 미터가 -6dB에서 -12dB 사이를 유지하도록 볼륨을 맞춥니다.",
+    "Audio 클립의 피크(Peak)가 0dB를 넘어서 빨간색으로 표시되는 실수 → Clip Gain을 낮추거나 Dynamics의 Limiter를 적용해 클리핑을 방지합니다."
+  ],
+  "related": [
+    "Fairlight FX",
+    "Fairlight Mixer",
+    "Audio Effects",
+    "Bus Assign"
+  ],
+  "videos": [
+    {
+      "id": "sxLz6r-Vqms",
+      "title": "DaVinci Resolve's Fairlight Page for COMPLETE NOOBS!",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "DVhSX3LVrCQ",
+      "title": "10 FAIRLIGHT Timeline TIPS You Should Know!  |  DaVinci Resolve 18",
+      "author": "Jason Yadlovski"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20Timeline",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-18T14:08:27.695687+00:00"
+}
