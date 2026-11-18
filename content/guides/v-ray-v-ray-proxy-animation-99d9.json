@@ -1,0 +1,86 @@
+{
+  "id": "v-ray-v-ray-proxy-animation-99d9",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 최적화",
+  "name": "V-Ray Proxy (Animation)",
+  "title": "V-Ray Proxy (Animation) — 애니메이션이 포함된 대용량 지오메트리를 효율적으로 불러오는 프",
+  "summary": "V-Ray Proxy (Animation)은 애니메이션이 포함된 복잡한 지오메트리 데이터를 외부 파일(.vrmesh)로 저장하고 불러와 Viewport 성능을 유지하며 렌더링하는 기능입니다.",
+  "when": [
+    "바람에 흔들리는 나무나 풀 같은 복잡한 군집 애니메이션을 렌더링할 때",
+    "캐릭터 클로스(의상)나 모션 애니메이션 데이터의 용량이 너무 커서 Viewport가 무거워질 때",
+    "동일한 애니메이션 오브젝트를 씬 내에 여러 개 복제하여 효율적으로 배치할 때"
+  ],
+  "steps": [
+    "애니메이션이 완료된 3D 오브젝트를 선택합니다.",
+    "상단 메뉴 바에서 V-Ray 메뉴를 열거나 쿼드 메뉴(우클릭)를 실행합니다.",
+    "V-Ray Scene Export 또는 Mesh Export 옵션을 선택합니다.",
+    "Export 설정 창에서 Export Animation 옵션을 활성화하고 프레임 범위를 지정합니다.",
+    ".vrmesh 파일로 저장한 뒤, File > Import > Proxy 를 통해 씬에 불러옵니다.",
+    "Viewport에서 재생을 눌러 애니메이션이 올바르게 동기화되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Animation Type",
+      "desc": "애니메이션 재생 방식(Loop, Once, Ping Pong 등)을 설정합니다."
+    },
+    {
+      "name": "Start Frame",
+      "desc": "프록시 애니메이션이 시작되는 첫 프레임을 지정합니다."
+    },
+    {
+      "name": "Playback Rate",
+      "desc": "애니메이션 재생 속도를 조절합니다."
+    },
+    {
+      "name": "Frame Offset",
+      "desc": "애니메이션 시작 시점을 밀거나 당겨서 타이밍을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "바람에 흔들리는 숲 표현",
+      "steps": [
+        "바람 애니메이션이 적용된 나무 한 그루를 선택합니다.",
+        "Animation 옵션을 켜고 .vrmesh 파일로 내보냅니다.",
+        "나무 프록시를 씬에 여러 개 복제하여 배치합니다.",
+        "각 프록시의 Frame Offset 값을 다르게 주어 자연스러운 군집 움직임을 만듭니다."
+      ]
+    },
+    {
+      "title": "군중 시뮬레이션 렌더링",
+      "steps": [
+        "걷는 애니메이션이 포함된 캐릭터를 준비합니다.",
+        "V-Ray Proxy로 애니메이션 데이터를 내보냅니다.",
+        "메모리 부하 없이 대규모 인원 배치를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션 Export 시 프레임 범위를 잘못 지정함 → Export 설정에서 Start/End 프레임을 정확히 입력하세요.",
+    "프록시 복제 후 움직임이 모두 똑같음 → Frame Offset 값을 개별적으로 변경하여 타이밍을 어긋나게 만드세요."
+  ],
+  "related": [
+    "V-Ray Proxy",
+    "V-Ray Scene",
+    "Point Deform",
+    "VRayInstancer"
+  ],
+  "videos": [
+    {
+      "id": "oyS3Nbu5TAU",
+      "title": "How to use Proxy in V-Ray",
+      "author": "Architecture Inspirations"
+    },
+    {
+      "id": "PRlEjsmCz_M",
+      "title": "V-Ray for SketchUp tutorial — Creating and exporting animations",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Proxy%20%28Animation%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-18T17:14:41.756469+00:00"
+}
