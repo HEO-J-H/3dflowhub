@@ -1,31 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-16T14:54:53.013743+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 76,
-      "candidates_passed": 31,
-      "offtopic": 26,
-      "short": 0,
-      "prefiltered": 23,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "8be776a7",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "question thread"
-      ]
-    },
-    {
       "at": "2026-11-16T15:04:49.487136+00:00",
       "collected": 1,
       "saved": 0,
@@ -6754,6 +6729,30 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-18T21:28:21.017192+00:00",
+      "collected": 2,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 77,
+      "candidates_passed": 38,
+      "offtopic": 19,
+      "short": 0,
+      "prefiltered": 31,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "946587b2",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic"
+      ]
     }
   ],
   "good_keywords": [
@@ -6849,7 +6848,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-10 [성찰] 검색 유입이 검증된 Maxscript 및 블렌더 애드온 같은 실무 튜토리얼·플러그인 주제에 집중하고 동음이의어 오수집을 철저히 차단해야 합니다.",
     "2026-11-10 [성찰] 동음이의어 및 비전문 텍스트를 철저히 필터링하고 Maxscript, 애드온, 튜토리얼 등 실무 검색 수요가 높은 고단가 주제에 집중해야 합니다.",
     "2026-11-10 [성찰] 동음이의어와 일반 명사로 인한 오수집(Off-topic) 비율을 낮추기 위해 맥락 필터링을 한층 강화해야 합니다.",
     "2026-11-10 [성찰] 동음이의어(Maya, Unity, Nuke 등)로 인한 비관련 기사 유입이 오수집률을 높이고 있으므로, 3D/CG 전용 문맥 검증 필터를 더욱 강화해야 합니다.",
@@ -6968,7 +6966,8 @@
     "2026-11-18 [성찰] 동음이의어 필터링과 실무 중심의 튜토리얼·스크립트 주제 선별을 강화하여 오프토픽을 줄이고 검색 유입 가치를 극대화해야 합니다.",
     "2026-11-18 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추고, 3D/CG 전용 필터를 강화하여 고단가 실무 튜토리얼 및 애드온 중심의 유입을 극대화해야 합니다.",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: open-source-review.md guide must exist / E       assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-sou",
-    "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-source-review.md').exists / FAILED backend/tests/tes"
+    "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-source-review.md').exists / FAILED backend/tests/tes",
+    "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐지를 막기 위해 수집 단계에서 3D/CG 전용 소프트웨어 컨텍스트 필터를 엄격히 적용해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7149,8 +7148,6 @@
     "AI 3D/NeRF": "가우시안 스플래팅"
   },
   "title_hashes": [
-    6043955431407813890,
-    13943462210023850070,
     8903182336526300404,
     11205521298098508964,
     7242806522341172644,
@@ -10148,14 +10145,16 @@
     4914894167931156971,
     13788730507878860939,
     9071316779370161594,
-    7836467873018115751
+    7836467873018115751,
+    1246383459627975554,
+    11368869840960638297
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3472,
-    "Game Engine": 3472,
-    "VFX": 3472,
-    "AI 3D": 3472
+    "3D DCC": 3473,
+    "Game Engine": 3473,
+    "VFX": 3473,
+    "AI 3D": 3473
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
