@@ -1,0 +1,102 @@
+{
+  "id": "v-ray-v-ray-toon-mtl-6a39",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Toon Mtl",
+  "title": "V-Ray Toon Mtl — 3D 모델에 만화나 일러스트 스타일의 외곽선과 툰 Shading을 적용하는 재질",
+  "summary": "V-Ray Toon Mtl은 3D 오브젝트에 만화나 일러스트 스타일의 아웃라인과 툰 Shading 효과를 더해주는 재질(Material)입니다. 3D 모델에 손그림 같은 감성을 부여하여 비주얼 스타일라이제이션 작업을 도모합니다.",
+  "when": [
+    "3D 건축 시각화나 제품 렌더링에 웹툰 또는 스케치북 스타일의 감성을 더하고 싶을 때",
+    "카툰 렌더링(NPR) 스타일의 애니메이션이나 일러스트풍 씬을 제작할 때",
+    "3D 오브젝트의 외곽선을 깔끔하게 강조하여 형태감을 뚜렷하게 만들고 싶을 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor(M)를 엽니다.",
+    "Material 브라우저에서 V-Ray 탭 또는 General 탭을 통해 V-Ray Toon Mtl을 생성합니다.",
+    "원하는 기본 재질(예: V-Ray Mtl)을 V-Ray Toon Mtl의 Base Material 슬롯에 연결합니다.",
+    "Line Width와 Line Color 파라미터를 조절하여 외곽선의 두께와 색상을 설정합니다.",
+    "완성된 V-Ray Toon Mtl을 Viewport의 오브젝트에 드래그하여 적용합니다.",
+    "V-Ray Frame Buffer(VFB)에서 렌더링을 실행하여 외곽선과 툰 Shading 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Material",
+      "desc": "외곽선 내부에 적용될 기본 재질을 연결하는 슬롯입니다."
+    },
+    {
+      "name": "Line Width",
+      "desc": "오브젝트 외곽선의 두께를 픽셀 또는 월드 유닛 기준으로 설정합니다."
+    },
+    {
+      "name": "Line Color",
+      "desc": "아웃라인의 색상을 지정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "외곽선의 투명도를 조절합니다."
+    },
+    {
+      "name": "Normal Threshold",
+      "desc": "표면 각도가 급격히 꺾이는 부위에 추가 선을 생성할 임계값을 설정합니다."
+    },
+    {
+      "name": "Overlap Threshold",
+      "desc": "오브젝트가 겹치는 부분의 선 두께나 생성 여부를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹툰 스타일 건물 외관 시각화",
+      "steps": [
+        "건축물 모델링에 Diffuse 색상이 지정된 V-Ray Mtl을 준비합니다.",
+        "V-Ray Toon Mtl의 Base Material에 해당 재질을 연결합니다.",
+        "Line Width 값을 작게 설정하여 도면이나 일러스트 같은 외곽선을 만듭니다.",
+        "V-Ray로 렌더링하여 깔끔한 스케치풍 건축 뷰를 완성합니다."
+      ]
+    },
+    {
+      "title": "카툰 스타일 오브젝트 렌더링",
+      "steps": [
+        "소품 모델링에 단색의 V-Ray Mtl을 적용합니다.",
+        "V-Ray Toon Mtl로 감싸고 Line Color를 어두운 남색 계열로 변경합니다.",
+        "Normal Threshold를 조절해 내부 디테일 선을 적절히 살립니다.",
+        "카툰 애니메이션에 어울리는 셀셰이딩 느낌의 결과물을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선이 너무 두껍거나 뭉개짐 → Line Width 값을 낮추거나 씬의 단위를 확인하여 적정 두께로 수정합니다.",
+    "내부 구조선이 너무 지저분하게 나옴 → Normal Threshold 값을 높여서 불필요한 선이 생기지 않도록 조절합니다.",
+    "렌더링 시 선이 보이지 않음 → Base Material이 올바르게 연결되었는지, 재질이 오브젝트에 적용되었는지 Material Editor에서 확인합니다."
+  ],
+  "related": [
+    "V-Ray Mtl",
+    "VRayEdgesTex",
+    "V-Ray Frame Buffer",
+    "V-Ray Dome Light"
+  ],
+  "videos": [
+    {
+      "id": "uQ0Qa4GrquI",
+      "title": "Quick Realistic Materials in V-Ray 6 for Rhino (TUTORIAL)",
+      "author": "Daniel Kuzev"
+    },
+    {
+      "id": "f8X2V_NtrSs",
+      "title": "Water Material Creation - V-Ray for Rhino",
+      "author": "Tom Budd"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Toon%20Mtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Material",
+    "V-Ray",
+    "General",
+    "V-Ray Toon Mtl"
+  ],
+  "at": "2026-11-18T16:14:22.567660+00:00"
+}
