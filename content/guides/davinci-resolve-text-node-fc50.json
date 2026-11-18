@@ -1,0 +1,100 @@
+{
+  "id": "davinci-resolve-text-node-fc50",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "시각효과 및 모션그래픽 (Fusion)",
+  "name": "Text+ Node",
+  "title": "텍스트+ 노드 — 퓨전 페이지에서 3D 공간감과 애니메이션을 적용할 수 있는 타이틀 생성기",
+  "summary": "DaVinci Resolve Fusion 페이지에서 고품질 벡터 기반 자막과 타이틀 애니메이션을 제작하고 제어하는 핵심 노드입니다. Resolution 저하 없이 정교한 2D/3D 텍스트 효과를 만들 때 사용합니다.",
+  "when": [
+    "영상의 오프닝 타이틀이나 자막바를 고해상도로 만들 때",
+    "Keyframe을 이용해 글자가 나타나거나 사라지는 애니메이션을 줄 때",
+    "텍스트에 테두리, 그림자, 외곽선 효과를 섬세하게 넣고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단의 Fusion 페이지 탭을 클릭하여 진입합니다.",
+    "노드 뷰(Nodes View) 빈 곳을 클릭하고 Shift+Space를 눌러 Select Tool 창을 엽니다.",
+    "검색창에 Text+를 입력하고 Enter를 눌러 노드를 생성합니다.",
+    "Text+ 노드를 MediaOut 노드와 연결합니다.",
+    "Inspector 패널의 Text 탭에서 원하는 문구를 입력하고 폰트와 크기를 설정합니다.",
+    "Viewport에서 결과물을 확인하고 애니메이션 Keyframe을 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "Text",
+      "desc": "화면에 표시될 실제 텍스트 내용을 입력합니다."
+    },
+    {
+      "name": "Font",
+      "desc": "사용할 서체와 굵기(Style)를 선택합니다."
+    },
+    {
+      "name": "Size",
+      "desc": "텍스트의 전체 크기를 조절합니다."
+    },
+    {
+      "name": "Tracking",
+      "desc": "글자 사이의 간격(자간)을 조절합니다."
+    },
+    {
+      "name": "Line Spacing",
+      "desc": "여러 줄로 된 텍스트의 줄 간격을 조절합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "텍스트의 회전 각도를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "한 줄 타이틀 자막 만들기",
+      "steps": [
+        "Text+ 노드를 생성하고 MediaOut에 연결합니다.",
+        "Text 탭에서 'Title' 문구를 입력하고 Size를 키웁니다.",
+        "Center 파라미터를 조절해 화면 하단에 배치합니다."
+      ]
+    },
+    {
+      "title": "글자가 서서히 나타나는 페이드인 애니메이션",
+      "steps": [
+        "Timeline 플레이헤드를 0프레임에 놓고 Alpha 값을 0으로 설정한 뒤 Keyframe을 켭니다.",
+        "플레이헤드를 30프레임으로 이동합니다.",
+        "Alpha 값을 1로 올려 글자가 나타나도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 Text 노드와 혼동하여 벡터 옵션을 찾지 못함 → 반드시 Shift+Space에서 Text+ (Text Plus) 노드를 생성했는지 확인",
+    "Inspector 패널이 비어 있음 → 노드 뷰에서 Text+ 노드를 클릭하여 선택 상태로 만들어야 패널에 속성이 표시됨",
+    "글자가 렌더되지 않음 → Text+ 노드의 출력 화살표가 MediaOut 노드에 올바르게 연결되었는지 확인"
+  ],
+  "related": [
+    "Saver Node",
+    "Merge Node",
+    "Transform Node",
+    "Background Node"
+  ],
+  "videos": [
+    {
+      "id": "Ho4ZQE7_T_Y",
+      "title": "All About Text+ Nodes - Fusion Nodes 101 Tutorial",
+      "author": "Casey Faris"
+    },
+    {
+      "id": "WLt9LiVLO_A",
+      "title": "DaVinci Resolve 20 Fusion Text+ Node Modifiers",
+      "author": "bdsCovered"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Text%2B%20Node",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "Nodes View",
+    "Select Tool",
+    "Text"
+  ],
+  "at": "2026-11-18T13:24:47.896878+00:00"
+}

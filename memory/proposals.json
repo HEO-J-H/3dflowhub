@@ -34529,5 +34529,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T13:24:20+00:00",
+    "kind": "proposal",
+    "id": "p-52736d1355",
+    "title": "웹 버전 PBR 내보내기 안내 메시지 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 GLB·OBJ·PBR 내려받기 오류 처리 및 성공 경로 확인이 완료되었으나, 사용자 피드백을 위한 상태 알림 문구를 더 명확히 다듬을 필요가 있음.",
+    "proposal": "web/index.html 파일의 PBR 다운로드 및 상태 표시 줄 문구를 아티스트 친화적인 표현으로 정비",
+    "expected": "웹 브라우저 상에서 3D 텍스처 내보내기 시 사용자 혼선 방지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T13:24:20+00:00",
+    "kind": "proposal",
+    "id": "p-1a33e3a991",
+    "title": "backend/tests/test_core.py 안정성 강화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "테스트 코드 관련 반복 과제들이 중복 제안으로 거절되었으나 코어 파이프라인의 회귀 방지를 위해 기본 테스트의 견고함을 재확인할 필요가 있음.",
+    "proposal": "backend/tests/test_core.py 파일 내 기본 높이맵 및 메시 생성 로직 검증 테스트를 점검하고 예외 상황 처리 보완",
+    "expected": "코딩 에이전트가 자동 머지할 수 있는 안전한 테스트 기반 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T13:25:13.665648+00:00",
+    "kind": "decision",
+    "id": "p-52736d1355",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T13:25:13.710336+00:00",
+    "kind": "decision",
+    "id": "p-1a33e3a991",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T13:25:21.757268+00:00",
+    "kind": "triage",
+    "id": "p-52736d1355",
+    "verdict": "done_already",
+    "reason": "웹 버전 GLB·OBJ·PBR 내려받기 및 상태 표시 줄 관련 문구 정비와 오류 처리는 이미 최근 커밋과 완료된 제안을 통해 충분히 반영되었습니다."
+  },
+  {
+    "at": "2026-11-18T13:25:21.801536+00:00",
+    "kind": "decision",
+    "id": "p-52736d1355",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 버전 GLB·OBJ·PBR 내려받기 및 상태 표시 줄 관련 문구 정비와 오류 처리는 이미 최근 커밋과 완료된 제안을 통해 충분히 반영되었습니다."
   }
 ]
