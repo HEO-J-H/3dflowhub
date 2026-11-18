@@ -38482,5 +38482,81 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 단위 테스트 경로 ",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T12:23:42+00:00",
+    "kind": "proposal",
+    "id": "p-cfd9d6a2fb",
+    "title": "docs/rag-integration.md 기초 가이드 신규 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너 메시지: '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘' 및 이전 RAG 문서 관련 과제 반복 보류",
+    "proposal": "docs/rag-integration.md 파일을 신규 생성하여 Pix2Poly 로컬/웹 환경에 적용 가능한 라이선스(MIT/Apache-2.0) 오픈소스 RAG 모델들의 장단점과 구현 범위를 정리합니다.",
+    "expected": "오너의 RAG 오픈소스 검토 요청에 대한 명확한 기술 문서 기반 마련",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:23:42+00:00",
+    "kind": "proposal",
+    "id": "p-63b639ad30",
+    "title": "backend/tests/test_core.py 테스트 코드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 test_core.py 관련 search 블록 불일치로 인한 반복 held 발생",
+    "proposal": "backend/tests/test_core.py 파일 내 테스트 케이스의 search/replace 블록 구조를 현재 소스에 맞게 정확히 정렬하여 코딩 에이전트가 정상적으로 통과시키도록 합니다.",
+    "expected": "테스트 통과 및 백엔드 테스트 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:24:48.638892+00:00",
+    "kind": "decision",
+    "id": "p-cfd9d6a2fb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T12:24:48.690095+00:00",
+    "kind": "decision",
+    "id": "p-63b639ad30",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T12:24:52.425849+00:00",
+    "kind": "triage",
+    "id": "p-cfd9d6a2fb",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 RAG 검토 및 관련 가이드 문서 작성(docs/rag-evaluation.md, docs/gpu-worker.md 등)이 완료되어 반영되었습니다."
+  },
+  {
+    "at": "2026-11-18T12:24:52.472694+00:00",
+    "kind": "decision",
+    "id": "p-cfd9d6a2fb",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 RAG 검토 및 관련 가이드 문서 작성(docs/rag-evaluation.md, docs/gpu-worker.md 등)이 완료되어 반영되었습니다."
+  },
+  {
+    "at": "2026-11-18T12:25:01.875043+00:00",
+    "kind": "triage",
+    "id": "p-63b639ad30",
+    "verdict": "done_already",
+    "reason": "테스트 코드 보완 및 관련 에이전트 반복 과제는 이미 최근 커밋과 끝낸 제안 목록에서 반영 및 처리되었습니다."
+  },
+  {
+    "at": "2026-11-18T12:25:01.920482+00:00",
+    "kind": "decision",
+    "id": "p-63b639ad30",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 테스트 코드 보완 및 관련 에이전트 반복 과제는 이미 최근 커밋과 끝낸 제안 목록에서 반영 및 처리되었습니다."
   }
 ]
