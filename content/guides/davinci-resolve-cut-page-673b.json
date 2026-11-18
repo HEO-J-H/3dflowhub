@@ -1,0 +1,97 @@
+{
+  "id": "davinci-resolve-cut-page-673b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 (Cut/Edit)",
+  "name": "Cut Page",
+  "title": "컷 페이지 — 빠른 Timeline 조작과 Smart 인서트가 가능한 고속 편집 공간",
+  "summary": "DaVinci Resolve의 Cut Page는 Timeline 전체를 빠르게 훑어보며 대규모 컷 편집과 러프 컷을 초고속으로 완성할 수 있는 전용 편집 공간입니다.",
+  "when": [
+    "수많은 원본 영상(Footage)을 빠르게 확인하고 필요한 구간만 건져낼 때",
+    "유튜브나 숏폼처럼 빠른 템포의 컷 편집과 트랜지션 적용이 연속으로 필요할 때",
+    "노트북이나 싱글 모니터 환경에서 Timeline 확대·축소 없이 전체 흐름을 한눈에 파악할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 상단 내비게이션 바에서 Cut Page 탭을 클릭하여 진입합니다.",
+    "좌측 상단의 Media Pool에서 편집할 클립들을 선택해 하단 Timeline으로 드래그합니다.",
+    "Timeline 상단의 Dual Timeline 뷰를 활용해 상단에는 전체 소스, 하단에는 상세 Timeline을 띄웁니다.",
+    "J, K, L 키를 이용해 재생, 일시정지, 배속 감상하며 불필요한 프레임을 빠르게 걸러냅니다.",
+    "Smart 인디케이터(Smart Indicator)가 나타나는 지점에서 커트(Split) 아이콘이나 Hotkey를 눌러 불필요한 구간을 정리합니다.",
+    "우측 Inspector 패널에서 Transform, Audio, Retime 등의 설정을 세부 조정하여 완성도를 높입니다."
+  ],
+  "params": [
+    {
+      "name": "Smart Indicator",
+      "desc": "Timeline Mouse 위치에 따라 자동으로 컷이나 삽입을 결정해주는 지능형 가이드선입니다."
+    },
+    {
+      "name": "Source Tape",
+      "desc": "Media Pool의 모든 클립을 하나의 긴 테이프처럼 연결해 휠 하나로 빠르게 훑어볼 수 있습니다."
+    },
+    {
+      "name": "Fast Review",
+      "desc": "긴 영상을 길이에 맞춰 스마트하게 압축 재생하여 빠르게 검토할 수 있게 돕습니다."
+    },
+    {
+      "name": "Close Up",
+      "desc": "클립의 인물을 자동으로 감지해 원클릭으로 화면을 확대(화면 전환)해 줍니다."
+    },
+    {
+      "name": "Retime Controls",
+      "desc": "속도 조절, 슬로우 모션, Freeze 프레임을 직관적인 UI로 즉시 적용합니다."
+    },
+    {
+      "name": "Transitions",
+      "desc": "자주 쓰는 디졸브나 와이프 등의 전환 효과를 드래그 앤 드롭으로 클립 사이에 넣습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대량의 브이로그 원본 1차 컷 편집하기",
+      "steps": [
+        "Source Tape 모드를 켜고 J, K, L 키를 활용해 전체 영상을 빠르게 재생합니다.",
+        "마음에 드는 순간에 I(In)와 O(Out)를 눌러 범위를 지정합니다.",
+        "F10(Insert) 또는 F11(Overwrite)을 눌러 Timeline에 순식간에 배치합니다."
+      ]
+    },
+    {
+      "title": "인터뷰 영상에서 묵음(말없는 구간) 한 번에 제거하기",
+      "steps": [
+        "Timeline 메뉴에서 Detect Silence 기능을 실행합니다.",
+        "민감도와 최소 지속 시간을 슬라이더로 조절하여 불필요한 공백을 찾습니다.",
+        "Delete 버튼을 눌러 공백 구간을 일괄 삭제하고 컷을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "정밀한 Audio 싱크나 Keyframe 애니메이션 작업을 Cut Page에서 하려다 세부 조절이 안 되는 경우 → Edit Page로 전환하여 작업하세요.",
+    "Smart Indicator의 위치가 엉뚱한 곳에 잡혀 원치 않는 곳에 클립이 삽입되는 경우 → Mouse 포인터와 Timeline 스냅 위치를 확인하고 배치하세요.",
+    "Source Tape 모드에서 클립 정렬 순서가 꼬여 원하는 흐름이 안 나오는 경우 → Media Pool의 정렬 기준(Name, Timecode 등)을 먼저 맞추세요."
+  ],
+  "related": [
+    "Edit Page",
+    "Media Pool",
+    "Fast Review",
+    "DaVinci Resolve Studio"
+  ],
+  "videos": [
+    {
+      "id": "85W8E7VRmU4",
+      "title": "Speed Editing in DaVinci Resolve's Cut Page",
+      "author": "Stocksy United - Stock Photography & Video Co-op"
+    },
+    {
+      "id": "Saewb-MUxvo",
+      "title": "How to Use DaVinci Resolve Cut Page - Beginners Guide 2026",
+      "author": "TechGuidePro"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Cut%20Page",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut Page"
+  ],
+  "at": "2026-11-18T13:07:17.254797+00:00"
+}
