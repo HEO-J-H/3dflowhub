@@ -34433,5 +34433,53 @@
     "id": "p-931299c5bc",
     "v": "done",
     "note": "docs/local-pipeline.md 는 저장소에 없는 파일 — 같은 내용은 docs/gpu-worker.md 에 있음. 보류 과제 완료 처리, 에이전트가 없는 파일을 고치라는 과제는 앞으로 건너뜀(agents.missing_target)"
+  },
+  {
+    "at": "2026-11-18T12:53:10+00:00",
+    "kind": "proposal",
+    "id": "p-375732f332",
+    "title": "docs/local-pipeline.md 문서 구조 간소화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs에서 docs/local-pipeline.md 수정 과제가 search 블록 불일치로 반복 실패 및 스킵됨",
+    "proposal": "docs/local-pipeline.md 전체 파일을 덮어쓰기 방식으로 안전하게 갱신하여 VRAM 권장 사양 및 로컬 실행 가이드 안내 확정",
+    "expected": "반복되는 패치 실패 원인 제거 및 정확한 가이드 제공",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:53:10+00:00",
+    "kind": "proposal",
+    "id": "p-ddedd2c766",
+    "title": "backend/tests/test_triposr.py 독립 실행형 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_triposr.py 관련 테스트 패치 및 경로 문제로 인한 보류 이력 존재",
+    "proposal": "GPU 환경이 없는 곳에서도 안전하게 스킵되도록 test_triposr.py의 pytest 데코레이터와 예외 처리를 단순화",
+    "expected": "CI 및 로컬 테스트 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:53:56.402217+00:00",
+    "kind": "decision",
+    "id": "p-375732f332",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md 문서 보완 및 링크 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T12:53:56.441129+00:00",
+    "kind": "decision",
+    "id": "p-ddedd2c766",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
   }
 ]
