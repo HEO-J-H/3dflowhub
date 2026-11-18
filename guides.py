@@ -380,7 +380,7 @@ def passes_quality(g: dict) -> bool:
     return len(g.get("steps") or []) >= 4 and len(g.get("params") or []) >= 2 and bool(g.get("grounded") or g.get("videos"))
 
 
-def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> int:
+def refill_topics(min_left: int = 30, tools_n: int = 5, per_tool: int = 8) -> int:
     """남은 주제가 min_left 개 미만이면 하루 한 번, 가이드가 적은 도구부터 공식 기능 이름을 AI 로 받아 주제 보충.
     (전에는 관리자 제안 → 수락을 거쳐 3개씩만 늘어 주제가 바닥남, 2026-11-16) 추가한 개수를 돌려준다."""
     if len(pending()) >= min_left:
@@ -410,10 +410,13 @@ def refill_topics(min_left: int = 10, tools_n: int = 4, per_tool: int = 8) -> in
         try:
             out = core._parse_json(core.llm(prompt, system="You are a senior 3D instructor. Output JSON only.",
                                             max_tokens=900, json_mode=True)) or {}
-        except Exception as e:
+        except core.LLMBudgetExceeded as e:
+            strategy["guide_refill_note"] = f"AI 한도: {str(e)[:120]}"
+            break
+        except Exception as e:  # 한 도구의 응답 형식 오류(예: V-Ray 'Extra data')로 나머지 도구까지 멈추지 않게
             core.log.info("가이드 주제 보충 실패(%s): %s", tool, e)
             strategy["guide_refill_note"] = f"{tool}: {str(e)[:160]}"
-            break
+            continue
         for x in (out.get("topics") or [])[:per_tool]:
             if not isinstance(x, dict):
                 continue
