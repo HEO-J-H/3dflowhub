@@ -1,0 +1,97 @@
+{
+  "id": "v-ray-vraycarpaintmtl-af30",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "VRayCarPaintMtl",
+  "title": "VRayCarPaintMtl — 자동차 도색 특유의 플레이크(반짝이)와 다층 코팅을 표현하는 전문 재질",
+  "summary": "V-Ray의 VRayCarPaintMtl은 자동차 도색 특유의 미세한 금속 입자(Flake)와 여러 겹의 투명 클리어 코트(Clear Coat) 광택을 정교하게 표현하는 특화된 셰이더입니다.",
+  "when": [
+    "자동차 외관이나 금속성 하이엔드 제품의 페인트 표면을 렌더링할 때",
+    "빛의 각도에 따라 색이 변하는 플레이크(Flake) 효과를 사실적으로 표현하고 싶을 때",
+    "깊이감 있는 클리어 코트 반사와 오렌지 필(Orange Peel) 질감을 동시에 주고 싶을 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor (Shortcut: M)를 엽니다.",
+    "Material / Map Browser에서 V-Ray 탭을 펼치고 VRayCarPaintMtl을 선택하여 슬롯에 적용합니다.",
+    "모델링된 오브젝트를 선택하고 Assign Material to Selection 버튼을 눌러 재질을 할당합니다.",
+    "Attribute Editor 또는 Material Parameter 패널에서 Base color를 설정하여 기본 페인트 색상을 정합니다.",
+    "Flake 옵션을 활성화하고 Flake scale과 Density 값을 조절해 미세한 금속 입자의 크기와 조밀함을 맞춥니다.",
+    "Clear coat 관련 파라미터에서 Glossiness와 IOR 값을 조절해 투명 코팅층의 반사 광택을 다듬습니다.",
+    "라이트를 배치하고 IPR(Interactive Production Rendering)을 켜서 Viewport에서 반사 질감을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base color",
+      "desc": "페인트의 전체적인 기본 색상을 결정합니다."
+    },
+    {
+      "name": "Flake scale",
+      "desc": "표면을 반짝이게 만드는 금속 입자들의 크기를 조절합니다."
+    },
+    {
+      "name": "Flake density",
+      "desc": "표면에 흩뿌려진 금속 입자의 밀도와 조밀함을 설정합니다."
+    },
+    {
+      "name": "Flake glossiness",
+      "desc": "금속 입자 표면에서 일어나는 반사의 선명함과 거칠기를 조절합니다."
+    },
+    {
+      "name": "Clear coat color",
+      "desc": "페인트 위에 얹어지는 투명 코팅층의 색상과 필터 효과를 부여합니다."
+    },
+    {
+      "name": "Orange peel",
+      "desc": "실제 자동차 도색 표면처럼 미세하게 울퉁불퉁한 귤껍질 질감을 더해줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스포츠카 메탈릭 레드 도색",
+      "steps": [
+        "Base color를 진한 와인 붉은색으로 지정합니다.",
+        "Flake scale을 작게 설정해 미세하고 고급스러운 금속 입자를 표현합니다.",
+        "Clear coat glossiness를 높여 단단하고 매끄러운 코팅 광택을 연출합니다."
+      ]
+    },
+    {
+      "title": "무광 펄 프리미엄 세단",
+      "steps": [
+        "Base color를 짙은 회색으로 설정합니다.",
+        "Clear coat glossiness를 낮추어 빛이 은은하게 퍼지는 무광 느낌을 줍니다.",
+        "Flake density를 조절해 어두운 곳에서도 은은하게 반짝이는 펄 입자를 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플레이크 크기가 너무 클 때 → Flake scale 값을 낮추고 뷰포트나 IPR로 입자의 세밀함을 다시 확인합니다.",
+    "하이라이트가 너무 인위적일 때 → Clear coat glossiness와 IOR 값을 현실적인 범위로 낮춰줍니다.",
+    "렌더링 시 노이즈가 심할 때 → V-Ray Settings에서 Light Cache나 Universal/Bucket 렌더링 샘플링 값을 올려줍니다."
+  ],
+  "related": [
+    "VRayBlendMtl",
+    "VRayMtl",
+    "VRayLight",
+    "VRayScannedMtl"
+  ],
+  "videos": [
+    {
+      "id": "fz21DCLWyDM",
+      "title": "Vray Car Paint Tutorial Material (VrayCarPaintMtl):  Vray Car Paint + Plus Download",
+      "author": "Adam Z - Learn Archviz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayCarPaintMtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Shortcut",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayCarPaintMtl"
+  ],
+  "at": "2026-11-18T17:04:35.311738+00:00"
+}
