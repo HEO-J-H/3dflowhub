@@ -90,3 +90,6 @@
 - [x] (agent) core.filter_cg_context_validated(): 일반 명사 도구명 등장 시 다중 CG/3D 전문 맥락 검증을 강화하여 오프토픽 뉴스를 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
 - [x] (agent) evolve.summarize_validated_cg_metrics(): 고단가 실무 3D 툴 및 애드온 관련 콘텐츠의 성과 요약과 도메인 분포 지표를 집계하여 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
 - [x] (agent) app.render_validated_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
+- [x] (agent) core.filter_cg_context_ultimate(): 일반 명사 도구명 등장 시 다중 CG/3D 전문 맥락 검증을 엄격히 수행하여 오프토픽 뉴스를 완전히 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [x] (agent) evolve.summarize_ultimate_cg_metrics(): 고단가 실무 3D 툴 및 애드온 관련 콘텐츠 성과와 도메인 분포 지표를 집계하여 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [ ] (agent) app.render_ultimate_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하는 렌더링 함수 구현 및 tests/test_core.py에 테스트 추가
