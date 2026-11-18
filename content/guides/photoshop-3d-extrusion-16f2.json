@@ -1,0 +1,97 @@
+{
+  "id": "photoshop-3d-extrusion-16f2",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "3D Extrusion",
+  "title": "3D 돌출 — 2D 레이어와 텍스트를 입체적인 3D 객체로 변환",
+  "summary": "Photoshop의 3D Extrusion 기능은 2D 레이어나 텍스트, 패스의 실루엣을 바탕으로 입체적인 3D 메쉬를 생성해 주는 도구입니다. 복잡한 로고나 타이포그래피를 간단하게 3D 입체 오브젝트로 변환할 때 사용합니다.",
+  "when": [
+    "평면 2D 로고나 텍스트에 두께를 주어 입체적인 타이틀을 만들 때",
+    "일러스트나 실루엣 패스를 바탕으로 빠르게 3D 모델 형태를 추출할 때",
+    "3D 공간에서 평면 그래픽에 깊이감과 입체적인 조명 효과를 주고 싶을 때"
+  ],
+  "steps": [
+    "작업할 2D 이미지, 텍스트, 또는 Work Path 레이어를 Photoshop 레이어 패널에서 선택합니다.",
+    "상단 메뉴 바에서 3D > New 3D Extrusion from Selected Layer (또는 Selected Path)를 클릭합니다.",
+    "작업 공간이 3D Workspace로 전환되며, 선택한 레이어가 입체적인 3D Extrusion 메쉬로 변환됩니다.",
+    "Properties 패널에서 Extrusion Depth 값을 조절하여 3D 오브젝트의 두께를 설정합니다.",
+    "3D Viewport의 기즈모(Gizmo)를 사용해 오브젝트의 위치, 회전, 각도를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrusion Depth",
+      "desc": "3D 오브젝트의 두께와 깊이감을 조절합니다."
+    },
+    {
+      "name": "Shape Preset",
+      "desc": "측면 단면(Bevel)의 모양과 꺾임 형태를 선택합니다."
+    },
+    {
+      "name": "Width",
+      "desc": "베벨(Bevel) 효과의 크기와 너비를 조절합니다."
+    },
+    {
+      "name": "Contour",
+      "desc": "베벨 곡선의 세부 형태와 프로파일을 변경합니다."
+    },
+    {
+      "name": "Deformation",
+      "desc": "오브젝트를 구부리거나 비틀어 변형합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 입체 로고 제작",
+      "steps": [
+        "투명 배경의 로고 PNG 레이어를 준비하고 선택합니다.",
+        "3D > New 3D Extrusion from Selected Layer를 실행합니다.",
+        "Properties 패널에서 Extrusion Depth를 높여 로고에 두께를 부여합니다.",
+        "Materials 옵션에서 금속이나 유리 재질을 적용하여 완성합니다."
+      ]
+    },
+    {
+      "title": "입체 타이포그래피 타이틀",
+      "steps": [
+        "Horizontal Type Tool로 원하는 텍스트를 입력합니다.",
+        "3D > New 3D Extrusion from Selected Layer를 선택합니다.",
+        "Properties 패널의 Shape Preset에서 둥근 베벨(Bevel)을 선택합니다.",
+        "3D 조명과 카메라 뷰를 조정하여 입체 타이틀을 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "레이어에 배경이 남아있는 경우 → 배경을 투명하게 분리(Transparency)하거나 패스로 변환한 뒤 Extrusion을 적용하세요.",
+    "Extrusion Depth를 너무 높게 설정해 메쉬가 깨지는 경우 → Properties 패널에서 Depth 값을 낮추고 세그먼트 단면을 정리하세요.",
+    "3D 레이어 편집 중 Viewport가 멈추거나 무거워질 경우 → 3D Workspace 패널에서 불필요한 조명을 끄거나 렌더 품질을 낮추세요."
+  ],
+  "related": [
+    "Mesh from Layer",
+    "New 3D Postcard from Layer",
+    "Text object",
+    "Extrude"
+  ],
+  "videos": [
+    {
+      "id": "L31u4DthC1A",
+      "title": "Photoshop 3D Extrusion For Beginners",
+      "author": "Graphicxtras Affinity Tutorials"
+    },
+    {
+      "id": "Fg72UkPWsPw",
+      "title": "Adobe Photoshop \"3D Text Extrusion Basics\" Wk293",
+      "author": "Sebastian Bleak"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Extrusion",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Work Path",
+    "Photoshop",
+    "New 3D Extrusion",
+    "Selected Layer",
+    "Selected Path"
+  ],
+  "at": "2026-11-18T14:30:54.942039+00:00"
+}

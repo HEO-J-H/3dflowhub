@@ -1,0 +1,34 @@
+{
+  "id": "zbrush-zplugin-uv-master-failed-because-mesh-has-m-020c9",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: UV Master failed because mesh has multiple subtools selected",
+  "title": "Zplugin: UV Master failed because mesh has multiple subtools selected 오류 해결",
+  "summary": "ZBrush의 UV Master 플러그인을 실행할 때 여러 개의 서브툴(SubTool)이 동시에 선택되어 있거나 다중 선택 상태여서 UV를 생성할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "SubTool 팔레트에서 여러 개의 서브툴이 활성화(멀티셀렉트)되어 있는 경우",
+    "폴리그룹(Polygroup)이나 폴더 단위로 일괄 처리하려다 다중 선택 상태가 유지된 경우"
+  ],
+  "steps": [
+    "SubTool 팔레트에서 현재 문제가 발생하는 단일 서브툴만 클릭하여 선택합니다.",
+    "다른 서브툴이 다중 선택(Multi-select)되어 있는지 확인하고 해제합니다.",
+    "Zplugin 메뉴에서 UV Master를 엽니다.",
+    "Unwrap 버튼을 다시 클릭하여 UV를 생성합니다."
+  ],
+  "check": [
+    "SubTool 팔레트에서 대상 메쉬 하나만 선택된 상태로 UV Master의 Unwrap 연산이 정상적으로 완료되는지 확인합니다."
+  ],
+  "prevent": [
+    "여러 서브툴을 한 번에 처리하려면 UV Master의 폴더 단위 처리 기능을 사용하거나 개별 서브툴을 하나씩 선택하여 작업합니다."
+  ],
+  "keywords": [
+    "ZBrush UV Master 오류",
+    "multiple subtools selected",
+    "Zplugin UV Master 실패",
+    "ZBrush UV 펴기 오류",
+    "서브툴 다중선택 UV"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T14:32:16+00:00"
+}

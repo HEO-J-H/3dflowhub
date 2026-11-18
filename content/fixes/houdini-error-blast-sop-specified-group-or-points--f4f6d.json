@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-blast-sop-specified-group-or-points--f4f6d",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Blast sop: Specified group or points are empty",
+  "title": "Error: Blast sop: Specified group or points are empty 오류 해결",
+  "summary": "Error: Blast sop: Specified group or points are empty 에러는 Houdini에서 Blast SOP 노드가 삭제 대상으로 지정한 그룹이나 포인트가 비어 있거나 존재하지 않을 때 발생하는 오류입니다.",
+  "causes": [
+    "Blast SOP 노드의 Group 파라미터에 입력한 이름의 그룹이 실제 지오메트리에 존재하지 않는 경우",
+    "이전 노드에서 선택(Select)이나 그룹 생성 노드(Group SOP)가 잘못되어 대상 포인트나 프레미티브가 선택되지 않은 경우",
+    "애니메이션 Timeline이 변경되면서 특정 프레임에서 해당 그룹 데이터가 사라진 경우"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 문제가 발생하는 Blast SOP 노드를 더블클릭하여 진입하거나 선택합니다.",
+    "파라미터 뷰(Parameter View) 또는 노드 UI에서 Group 입력란을 확인합니다.",
+    "그룹 이름의 철자가 올바른지 확인하거나, 드롭다운 메뉴 및 그룹 선택 버튼을 통해 존재하는 올바른 그룹을 다시 지정합니다.",
+    "Blast SOP 노드 바로 앞단에 있는 노드(예: Group SOP, Select 노드 등)를 선택하여 Viewport에서 실제로 선택된 지오메트리가 존재하는지 확인합니다."
+  ],
+  "check": [
+    "Blast SOP 노드의 파라미터 창에서 빨간색 경고 표시나 에러 메시지가 사라지는지 확인합니다.",
+    "Viewport에서 지정된 영역이 올바르게 삭제되었는지 결과 지오메트리를 확인합니다."
+  ],
+  "prevent": [
+    "그룹 이름을 직접 타이핑하기보다 파라미터 창의 드롭다운이나 Viewport 선택 기능을 사용하여 오타를 방지합니다.",
+    "상위 노드에서 데이터가 유실되지 않았는지 Display Flag를 이전 노드에 두고 단계별로 확인하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Houdini Blast 에러",
+    "Specified group or points are empty",
+    "Blast sop 오류",
+    "Houdini 그룹 에러",
+    "Blast SOP 비어있음"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T14:32:07+00:00"
+}

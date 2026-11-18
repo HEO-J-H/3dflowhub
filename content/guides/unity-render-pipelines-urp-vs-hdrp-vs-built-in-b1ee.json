@@ -5,11 +5,11 @@
   "group": "입문",
   "name": "Render pipelines (URP vs HDRP vs Built-in)",
   "title": "렌더 파이프라인 고르기 — URP·HDRP·Built-in",
-  "summary": "Unity의 렌더 파이프라인은 게임과 프로젝트의 그래픽 품질, 플랫폼 성능, 타겟 디바이스에 맞춰 렌더링 방식을 선택하는 핵심 시스템입니다. Unity 7부터는 기존 Built-in Render Pipeline이 공식 폐지되고 URP로 전면 전환됩니다.",
+  "summary": "Unity의 렌더 파이프라인은 게임과 프로젝트의 그래픽 품질, 플랫폼 성능, 타겟 디바이스에 맞춰 렌더링 방식을 선택하는 핵심 시스템입니다. Unity 7부터는 기존 Built-in Render Pipeline이 공식 폐지되고 URP로 전면 전환되며, Surface Cache GI 기반의 실시간 간접광 연산 기능이 추가되었습니다.",
   "when": [
     "기존 레거시 프로젝트를 Unity 7 URP로 마이그레이션할 때",
     "모바일, PC, 콘솔을 아우르는 범용성과 최신 URP 그래픽 기능을 활용할 때",
-    "AAA급 고품질 그래픽, 실시간 레이 Tracing, 라이트맵·포스트 프로세싱 통합 관리가 필요할 때"
+    "라이트맵 Baking 없이 Surface Cache GI를 이용해 동적 환경과 애니메이션 캐릭터의 실시간 간접광을 처리할 때"
   ],
   "steps": [
     "Unity Editor를 실행하고 Projects 탭에서 새 프로젝트(New Project)를 생성하거나 기존 프로젝트를 엽니다.",
@@ -25,8 +25,8 @@
       "desc": "URP의 전반적인 품질과 렌더링 기능을 제어하며 라이트맵, 섀도우, 포스트 프로세싱을 통합 관리하는 핵심 설정 파일입니다."
     },
     {
-      "name": "HDRenderPipelineAsset",
-      "desc": "HDRP의 물리 기반 조명과 고품질 Post 프로세싱을 관장하는 설정 파일입니다."
+      "name": "Surface Cache GI",
+      "desc": "라이트맵 Baking 과정 없이 동적 지오메트리와 애니메이션 캐릭터의 간접광을 실시간으로 계산하는 URP의 글로벌 일루미네이션 시스템입니다."
     },
     {
       "name": "Rendering Path",
@@ -105,6 +105,19 @@
       ],
       "source_keys": [
         "p:2026-11-17-32a9e80030f69b53"
+      ]
+    },
+    {
+      "at": "2026-11-18T14:32:35+00:00",
+      "what": "Unity 7 URP의 Surface Cache GI 실시간 간접광 기능과 관련 파라미터가 가이드에 추가되었습니다.",
+      "sources": [
+        {
+          "title": "Unity Atrio — Surface Cache GI 기반 실시간 렌더링 샘플",
+          "url": "https://www.youtube.com/watch?v=QfXsGwrBgVg"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-18-e3e9303e0cb9d596"
       ]
     }
   ]
