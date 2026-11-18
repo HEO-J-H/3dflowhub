@@ -1,0 +1,99 @@
+{
+  "id": "v-ray-v-ray-falloff-c988",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 최적화",
+  "name": "V-Ray Falloff",
+  "title": "V-Ray Falloff — 카메라와의 거리나 법선 각도에 따라 색상과 투명도가 그라데이션되는 맵",
+  "summary": "V-Ray Falloff는 카메라와의 각도나 표면의 방향에 따라 두 가지 색상이나 텍스트를 부드럽게 혼합해 주는 절차적 맵입니다. 프레넬 효과를 구현하거나 가장자리가 빛나는 림 라이팅 같은 세련된 쉐이딩을 만들 때 필수적입니다.",
+  "when": [
+    "유리나 물 표면에서 시선 각도에 따라 반사율이 변하는 프레넬(Fresnel) 효과를 만들 때",
+    "오브젝트의 가장자리(Edge)에만 빛이 나는 듯한 림 라이팅이나 펠트·벨벳 같은 천 질감을 표현할 때",
+    "두 가지 서로 다른 색상이나 텍스트를 시점(Camera Direction) 기준으로 자연스럽게 블렌딩할 때"
+  ],
+  "steps": [
+    "Slate Material Editor를 엽니다. (M 키)",
+    "Material/Map Browser에서 V-Ray 맵 카테고리 아래에 있는 VRayFalloff를 찾아 작업 영역으로 드래그합니다.",
+    "VRayFalloff 노드를 V-Ray 머티리얼의 Diffuse나 Reflection 등 원하는 슬롯에 연결합니다.",
+    "Parameters 패널에서 Type 드롭다운 메뉴를 열고 Perpendicular/Parallel 또는 Fresnel 방식을 선택합니다.",
+    "Color 1과 Color 2 슬롯에 각각 원하시는 색상이나 텍스트맵을 지정합니다.",
+    "Viewport와 Render Setup(F10)을 통해 렌더링 결과물을 확인하고 Mix Curve를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "폴오프 계산 기준을 결정합니다 (Perpendicular/Parallel, Fresnel 등)."
+    },
+    {
+      "name": "Color 1",
+      "desc": "카메라를 정면으로 바라보는 표면 영역에 적용될 색상 또는 맵입니다."
+    },
+    {
+      "name": "Color 2",
+      "desc": "시선과 평행하거나 가장자리에 위치한 표면 영역에 적용될 색상 또는 맵입니다."
+    },
+    {
+      "name": "Mix Curve",
+      "desc": "Color 1과 Color 2 사이의 혼합 비율과 그라데이션 전환 곡선을 세밀하게 조절합니다."
+    },
+    {
+      "name": "Direction",
+      "desc": "폴오프 효과를 계산할 기준 축이나 방향(Custom Direction)을 설정합니다."
+    },
+    {
+      "name": "IOR",
+      "desc": "Type을 Fresnel로 설정했을 때 굴절률(Index of Refraction) 값으로 감쇠 범위를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벨벳(Velvet) 패브릭 천 질감 제작",
+      "steps": [
+        "VRayFalloff 맵을 VRayMtl의 Diffuse 슬롯에 연결합니다.",
+        "Color 1에는 어두운 베이스 원단 색상을, Color 2에는 빛을 받아 밝아지는 하이라이트 색상을 넣습니다.",
+        "Type을 Perpendicular/Parallel로 설정하고 Mix Curve를 조절하여 가장자리 광택을 부드럽게 만듭니다."
+      ]
+    },
+    {
+      "title": "자동차 도장면 프레넬 엣지 효과",
+      "steps": [
+        "VRayFalloff 맵을 반사(Reflection)나 틴트 컬러 슬롯에 연결합니다.",
+        "Type을 Fresnel로 설정하고 IOR 값을 차체 재질에 맞게 조절합니다.",
+        "가장자리 영역의 반사율을 강조하여 입체감이 살아나는 도장면을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 뷰가 아닌 탑 뷰나 다른 Viewport에서 결과를 확인하는 실수 → 반드시 ActiveShade나 프로덕션 렌더러를 통해 카메라 시점에서 확인하세요.",
+    "Color 1과 Color 2의 색상 대비가 너무 약한 실수 → 흑백 또는 강렬한 보색을 먼저 테스트하여 감쇠 방향을 파악한 뒤 원하는 색상으로 조정하세요."
+  ],
+  "related": [
+    "VRayMtl",
+    "VRayBlendMtl",
+    "VRayDirt",
+    "Color Correction"
+  ],
+  "videos": [
+    {
+      "id": "UKI35NvAFww",
+      "title": "How To Create Fast & Realistic Water Caustics In V-Ray",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "qinn4iX1GyI",
+      "title": "Fabric Falloff Material in V-Ray Next for SketchUp",
+      "author": "S2VR ArchVIZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Falloff",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Slate Material Editor",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayFalloff"
+  ],
+  "at": "2026-11-18T16:24:19.724394+00:00"
+}
