@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-kit-registry-core--c50d4",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.kit.registry.core] Failed to download extension archive from server",
+  "title": "Kit: [Error] [omni.kit.registry.core] Failed to download extension archive from ",
+  "summary": "Kit: [Error] [omni.kit.registry.core] Failed to download extension archive from server 메시지는 NVIDIA Omniverse에서 확장 기능(Extension) 패키지를 원격 서버(Extension Registry)로부터 다운로드하는 데 실패했을 때 발생하는 오류입니다.",
+  "causes": [
+    "로컬 네트워크 또는 방화벽 설정으로 인해 NVIDIA Omniverse 확장 서버(Registry)에 대한 접근이 차단된 경우",
+    "프록시(Proxy) 서버나 VPN 설정 문제로 인해 외부 패키지 다운로드 요청이 실패한 경우",
+    "NVIDIA Omniverse 서버 측의 일시적인 네트워크 장애 또는 점검 중인 경우"
+  ],
+  "steps": [
+    "컴퓨터의 인터넷 연결 상태를 확인하고 웹 브라우저에서 외부망 접속이 정상적인지 점검합니다.",
+    "Windows 방화벽이나 사내 네트워크 방화벽에서 NVIDIA Omniverse 관련 도메인 및 포트(HTTP/HTTPS)가 차단되어 있는지 확인합니다.",
+    "프록시 서버 환경인 경우, 시스템 환경 변수나 Omniverse Launcher 설정에서 올바른 프록시 정보가 입력되었는지 확인합니다.",
+    "NVIDIA Omniverse Launcher를 완전히 종료(시스템 트레이 포함)한 후 관리자 권한으로 다시 실행합니다.",
+    "로컬 캐시 폴더 내 손상된 임시 다운로드 파일을 정리하기 위해 'omni.kit.registry.core' 관련 캐시 디렉터리를 삭제 후 재시도합니다."
+  ],
+  "check": [
+    "NVIDIA Omniverse Kit App이나 Launcher를 다시 실행했을 때 확장 기능 다운로드 오류 로그가 더 이상 발생하지 않는지 확인합니다.",
+    "필요한 확장 기능이 정상적으로 설치 및 활성화되어 뷰포트나 UI에 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "네트워크 환경 변경(방화벽 정책 수정 등) 시 NVIDIA Omniverse 통신에 필요한 포트와 도메인을 예외 처리합니다.",
+    "사내 보안 정책상 프록시를 사용하는 경우 오프라인 모드나 내부 미러 서버(Registry Mirror) 구성을 검토합니다."
+  ],
+  "keywords": [
+    "Omniverse extension download error",
+    "omni.kit.registry.core Failed to download",
+    "옴니버스 확장 기능 다운로드 실패",
+    "Omniverse 방화벽 오류",
+    "Kit registry core error"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T08:16:11+00:00"
+}

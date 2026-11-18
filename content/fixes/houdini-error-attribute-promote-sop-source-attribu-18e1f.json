@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-attribute-promote-sop-source-attribu-18e1f",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Attribute promote sop: Source attribute not found",
+  "title": "Error: Attribute promote sop: Source attribute not found 오류 해결",
+  "summary": "Error: Attribute promote sop: Source attribute not found는 Houdini의 Attribute Promote SOP에서 지정한 원본 어트리뷰트(Source Attribute)가 입력 지오메트리 데이터에 존재하지 않을 때 발생하는 오류입니다.",
+  "causes": [
+    "Attribute Promote SOP의 Source Name 파라미터에 오타가 있거나 대소문자가 잘못 입력된 경우",
+    "이전 노드에서 해당 어트리뷰트가 삭제되었거나 아직 생성되지 않은 경우",
+    "지정한 어트리뷰트가 Point, Primitive, Vertex, Detail 등 다른 데이터 레벨에 존재하여 찾지 못하는 경우"
+  ],
+  "steps": [
+    "Network View에서 해당 Attribute Promote SOP 노드를 더블클릭하여 파라미터 패널을 엽니다.",
+    "Original Name 파라미터(또는 Source Attribute 입력란)에 입력된 어트리뷰트 이름의 스펠링과 대소문자를 확인합니다.",
+    "Geometry Spreadsheet 패널을 열어 현재 입력 지오메트리에 원하는 어트리뷰트가 실제로 존재하는지 Point, Primitive, Vertex 탭에서 확인합니다.",
+    "이전 노드에서 Attribute Create SOP나 Wrangle 등을 통해 해당 어트리뷰트가 올바르게 생성되고 있는지 네트워크를 거슬러 올라가며 확인합니다.",
+    "이름이 올바르다면 From Class와 To Class 설정이 올바른 레벨(예: Point에서 Primitive로)을 가리키고 있는지 점검합니다."
+  ],
+  "check": [
+    "노드 붉은색 경고 아이콘이 사라지고 정상 상태(Green)로 돌아오는지 확인합니다.",
+    "Geometry Spreadsheet에서 변환된 Target 어트리뷰트가 의도한 값과 함께 올바르게 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "어트리뷰트 이름을 직접 타이핑하기보다 파라미터 드롭다운 메뉴나 Attribute Create SOP에서 사용한 이름을 복사하여 붙여넣습니다.",
+    "Attribute Promote 노드 연결 전 Geometry Spreadsheet를 통해 어트리뷰트 존재 여부를 먼저 습관화합니다."
+  ],
+  "keywords": [
+    "Houdini Source attribute not found",
+    "Attribute Promote 오류",
+    "Houdini 어트리뷰트 에러",
+    "Source attribute not found",
+    "Attribute Promote SOP"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T08:16:04+00:00"
+}
