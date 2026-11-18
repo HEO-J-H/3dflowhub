@@ -1,0 +1,95 @@
+{
+  "id": "photoshop-save-material-d07d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Save Material",
+  "title": "재질 저장 — 커스텀 제작한 3D 재질 프리셋을 별도 파일로 저장",
+  "summary": "Photoshop의 Save Material 기능은 3D 모델에 적용된 텍스처, 질감, 재질 속성을 패키지로 저장하여 다른 3D 프로젝트에서 재사용할 수 있게 해주는 기능입니다.",
+  "when": [
+    "정밀하게 수정한 커스텀 3D 재질을 다른 모델에도 동일하게 적용하고 싶을 때",
+    "자주 사용하는 금속, 가죽, 콘크리트 등의 텍스처 프리셋 라이브러리를 구축할 때",
+    "팀원 간에 일관된 3D 머티리얼 에셋을 공유하고 관리해야 할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 씬을 엽니다.",
+    "Layers 패널에서 3D 모델의 특정 메시나 파트를 선택합니다.",
+    "Properties 패널에서 Material 탭을 열고 원하는 재질 설정을 완료합니다.",
+    "Properties 패널의 Material 메뉴 아이콘을 클릭합니다.",
+    "메뉴에서 Save Material...을 선택합니다.",
+    "파일 저장 창이 나타나면 원하는 경로에 .mat 또는 관련 포맷으로 재질 파일을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "재질의 기본 색상 및 텍스처 맵을 지정합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 하이라이트의 퍼짐을 결정합니다."
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속성 재질의 반사 특성을 0에서 1 사이의 값으로 설정합니다."
+    },
+    {
+      "name": "Bump / Normal",
+      "desc": "표면의 미세한 요철과 입체감을 부여하는 맵을 관리합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도 및 알파 채널을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "동일한 금속 재질을 여러 3D 오브젝트에 복제하기",
+      "steps": [
+        "첫 번째 모델에 완성된 금속 재질을 Properties 패널에서 조정합니다.",
+        "Save Material...을 실행해 metal_preset.mat 파일로 저장합니다.",
+        "두 번째 3D 모델을 불러온 뒤 Load Material을 통해 저장한 파일을 불러와 적용합니다."
+      ]
+    },
+    {
+      "title": "커스텀 가죽 텍스처 라이브러리 구축",
+      "steps": [
+        "Diffuse와 Bump 맵을 조합하여 가죽 재질을 정밀하게 세팅합니다.",
+        "Properties 패널에서 Save Material...을 눌러 에셋 폴더에 저장합니다.",
+        "이후 가죽 질감이 필요한 다른 가구 3D 모델 작업 시 즉시 불러와 시간을 단축합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처 소스 경로 유실 → 저장 시 관련 텍스처 이미지 파일이 다른 경로로 이동하거나 삭제되지 않도록 에셋 폴더를 미리 정리합니다.",
+    "잘못된 레이어 선택 → Layers 패널에서 3D 레이어 내부의 정확한 메시는 선택하지 않고 2D 레이어를 선택한 경우 Material 메뉴가 활성화되지 않습니다."
+  ],
+  "related": [
+    "Open Texture",
+    "Render 3D File",
+    "Paint brush presets",
+    "3D Layers"
+  ],
+  "videos": [
+    {
+      "id": "7EjorOn7jAs",
+      "title": "How to Save & Export - Photoshop for Beginners | Lesson 10",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "SmZlszxysrA",
+      "title": "60 Second Photoshop Tutorial : Save Images (JPEG, PNG, BMP, TIFF, etc) -HD-",
+      "author": "RiverCityGraphix"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Save%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Properties",
+    "Material",
+    "Save Material"
+  ],
+  "at": "2026-11-18T15:24:41.858482+00:00"
+}
