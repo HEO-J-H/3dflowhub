@@ -9,13 +9,15 @@
   "when": [
     "샘플 수를 낮게 설정해 렌더 시간을 단축하고 싶을 때",
     "인테리어·제품 등 정밀한 디테일이 필요하지만 노이즈가 눈에 띄는 경우",
-    "애니메이션 시퀀스의 일관된 노이즈 제거가 필요할 때"
+    "애니메이션 시퀀스의 일관된 노이즈 제거가 필요할 때",
+    "ArchDaily 갤러리 레퍼런스를 참고하여 자연광 및 인공 조명 렌더링을 깔끔하게 다듬고 싶을 때"
   ],
   "steps": [
     "Render Setup (F10) → V-Ray 탭 → Denoiser 섹션에서 Enable Denoiser 체크",
     "Denoiser Type을 V-Ray Denoiser(또는 Intel Open Image Denoise)로 선택",
     "Denoiser Strength와 Radius 값을 기본값으로 둔 뒤 필요 시 조정",
     "렌더 후 V-Ray Frame Buffer(VFB)에서 Settings → Denoiser → Apply 클릭 (자동 적용 시 생략)",
+    "V-Ray Sun, Sky, HDRI 환경 및 V-Ray Material 설정을 완료한 뒤 V-Ray Denoiser를 활성화해 노이즈를 최소화",
     "렌더 결과를 저장하면 노이즈가 제거된 이미지가 저장됩니다"
   ],
   "params": [
@@ -62,6 +64,15 @@
         "Strength 0.7, Radius 0.4 설정",
         "렌더 후 바로 VFB에서 자동 적용 확인"
       ]
+    },
+    {
+      "title": "ArchDaily 갤러리 레퍼런스 기반 조명 및 디노이징 워크플로우",
+      "steps": [
+        "V-Ray Sun 및 V-Ray Sky/HDRI 맵을 배치해 자연광과 외부 환경 구성",
+        "V-Ray Material을 이용해 실제 재료 특성에 맞게 Reflectivity와 Refraction 설정",
+        "V-Ray Frame Buffer의 Region Render로 특정 영역 테스트",
+        "V-Ray Denoiser를 활성화해 갤러리처럼 노이즈 없는 깨끗한 최종 결과물 확인"
+      ]
     }
   ],
   "mistakes": [
@@ -97,11 +108,19 @@
     "Enable Denoiser"
   ],
   "at": "2026-11-17T02:08:32.652744+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-17-8f25a0ba03a7f6c1",
-      "title": "V-Ray 건축 렌더링 갤러리 공개",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQT0ppNDhrcWwxWWtBd3ZUZEFEb0JnNEM0clZHV2ZMNUY3a1Vmb0lLU2JLV19PM3d4VG9lVnlKdFNmLWw2NWgtdVIyS0RDQW1WcW40cmQ0MU1EVktERmRZMHY4VDVoZ2tWTG1WQ0hZX2psQTAzbGJYOHFSMVFiWDhhcF94SWdfWWhtOWRkS3dqV3B6WDlVbFp4aS1LQjF1VFZ3Nzh5SFlfVTd0bVRKZXlDcmFyUnZNbUo2V1Q1SU1SY01HT3F4b3g3SVI1Z1lVYjh2Q0pJSTBQMUlYbUZKcWZmZnRHdmpXY1NCV2lwRlo5cHE2Yy0wcXIzRmJaSlBRZWlCR1E?oc=5"
+      "at": "2026-11-18T11:23:58+00:00",
+      "what": "ArchDaily V-Ray 건축 렌더링 갤러리 공개 소식을 반영하여, 물리적 태양·하늘(Sun/Sky) 및 재질 설정과 V-Ray Denoiser를 연계하는 실무 활용 가이드와 예시를 추가했습니다.",
+      "sources": [
+        {
+          "title": "V-Ray 건축 렌더링 갤러리 공개",
+          "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQT0ppNDhrcWwxWWtBd3ZUZEFEb0JnNEM0clZHV2ZMNUY3a1Vmb0lLU2JLV19PM3d4VG9lVnlKdFNmLWw2NWgtdVIyS0RDQW1WcW40cmQ0MU1EVktERmRZMHY4VDVoZ2tWTG1WQ0hZX2psQTAzbGJYOHFSMVFiWDhhcF94SWdfWWhtOWRkS3dqV3B6WDlVbFp4aS1LQjF1VFZ3Nzh5SFlfVTd0bVRKZXlDcmFyUnZNbUo2V1Q1SU1SY01HT3F4b3g3SVI1Z1lVYjh2Q0pJSTBQMUlYbUZKcWZmZnRHdmpXY1NCV2lwRlo5cHE2Yy0wcXIzRmJaSlBRZWlCR1E?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-17-8f25a0ba03a7f6c1"
+      ]
     }
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logtexture-warning-texture-streaming-90546",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogTexture: Warning: Texture streaming pool is over budget by XX MB",
+  "title": "LogTexture: Warning: Texture streaming pool is over budget 경고 해결",
+  "summary": "Unreal Engine에서 씬에 배치된 텍스처들이 허용된 VRAM 스트리밍 풀 용량을 초과하여 로드되었을 때 발생하는 경고 메시지입니다. 텍스처 Resolution 저하, 팝인 현상 또는 성능 저하로 이어질 수 있습니다.",
+  "causes": [
+    "씬에 사용된 텍스처의 총 용량이 기본 설정된 Texture Streaming Pool 크기를 초과함",
+    "너무 높은 Resolution(예: 4K, 8K)의 텍스처가 다수 사용됨",
+    "LOD나 밉맵(Mipmap) 설정이 올바르게 되어 있지 않음"
+  ],
+  "steps": [
+    "Output Log 패널에서 초과된 정확한 용량(XX MB)을 확인합니다.",
+    "콘솔 창(~ 키)을 열고 'r.Streaming.PoolSize [메가바이트 값]'을 입력하여 풀 크기를 일시적으로 늘립니다 (예: r.Streaming.PoolSize 2000).",
+    "영구적으로 수정하려면 프로젝트의 Config/DefaultEngine.ini 파일의 [SystemSettings] 섹션에 'r.Streaming.PoolSize=2000' (원하는 MB 값)을 추가합니다.",
+    "Editor 내에서 텍스처 뷰어(Texture Viewer)나 'ListTextures' 콘솔 명령어로 용량을 많이 차지하는 텍스처를 식별합니다.",
+    "대형 텍스처의 Max Texture Size를 낮추거나 밉맵 설정을 점검합니다."
+  ],
+  "check": [
+    "Output Log에서 'LogTexture: Warning: Texture streaming pool is over budget' 경고 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport에서 콘솔 명령어로 'stat Streaming'을 입력하여 Pool Size가 초과 상태(붉은색)를 벗어났는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 초기 단계부터 타겟 플랫폼의 VRAM 사양에 맞춰 Texture Streaming Pool 크기를 적절히 설정합니다.",
+    "불필요하게 높은 Resolution(4K 이상)의 텍스처 사용을 피하고 압축 포맷(BC7 등)을 올바르게 적용합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 텍스처 스트리밍 풀",
+    "Texture streaming pool over budget",
+    "Unreal VRAM 부족 경고",
+    "r.Streaming.PoolSize",
+    "텍스처 메모리 초과"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T11:23:51+00:00"
+}

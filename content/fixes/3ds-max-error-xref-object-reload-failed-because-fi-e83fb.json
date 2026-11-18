@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-xref-object-reload-failed-because-fi-e83fb",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: XRef object reload failed because file path is invalid or missing",
+  "title": "Error: XRef object reload failed because file path is invalid or missing 오류 해결",
+  "summary": "‘Error: XRef object reload failed because file path is invalid or missing’은 3ds Max에서 외부 참조(XRef)된 객체의 원본 파일 경로를 찾지 못하거나 파일이 누락되어 다시 불러오지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "XRef 원본 맥스(.max) 파일이 다른 폴더로 이동되었거나 삭제됨",
+    "네트워크 드라이브 경로 연결이 끊어졌거나 접근 권한이 없음",
+    "파일 이름이나 폴더 경로에 허용되지 않는 특수문자 또는 잘못된 문자가 포함됨"
+  ],
+  "steps": [
+    "메뉴바에서 References 메뉴를 열고 Configure User Paths를 선택합니다.",
+    "External Files 탭에서 누락된 XRef 파일의 경로를 확인하고, Modify 버튼을 눌러 올바른 폴더 경로로 다시 지정합니다.",
+    "또는 File 메뉴의 References 서브메뉴에서 XRef Objects / XRef Scenes 관리 창을 엽니다.",
+    "목록에서 문제가 된 XRef 항목을 선택하고 경로(Path)를 새 위치로 업데이트하거나 재조정합니다.",
+    "필요한 경우 XRef 파일 경로를 절대 경로(Absolute Path) 대신 상대 경로(Relative Path)로 변경하여 유연성을 높입니다."
+  ],
+  "check": [
+    "3ds Max 씬을 저장한 후 다시 열었을 때 XRef 객체가 누락 없이 Viewport에 정상적으로 표시되는지 확인합니다.",
+    "References 관리 창에서 모든 XRef 항목의 상태가 정상(Found 또는 Loaded)으로 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 폴더 구조를 통일하고, 외부 참조 파일은 항상 동일한 프로젝트 디렉토리 내부나 상대 경로를 활용해 관리합니다.",
+    "파일이나 폴더 이름을 임의로 변경하기 전에 3ds Max 씬과의 연결 상태를 먼저 확인합니다."
+  ],
+  "keywords": [
+    "3ds Max XRef 오류",
+    "XRef 경로 누락",
+    "외부 참조 파일 로드 실패",
+    "XRef object reload failed",
+    "맥스 XRef 경로 수정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T11:23:40+00:00"
+}

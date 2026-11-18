@@ -1,0 +1,39 @@
+{
+  "id": "maya-error-file-line-x-weight-normalization-failed-71520",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Weight normalization failed for vertex components",
+  "title": "# Error: file: line X: Weight normalization failed for vertex components 오류 해결",
+  "summary": "Maya에서 스킨 웨이트(Skin Weight)를 정규화(Normalize)하는 과정에서 0이 아닌 합계를 유지하지 못하거나 계산 오류가 발생할 때 나타나는 오류입니다. 비정상적인 Vertex 데이터나 극단적인 웨이트 값으로 인해 발생합니다.",
+  "causes": [
+    "일부 Vertex에 연결된 조인트 웨이트의 합이 0이거나 정규화 허용 오차를 벗어난 경우",
+    "모델링 데이터 손상이나 겹친 Vertex로 인해 웨이트 계산이 실패한 경우",
+    "락(Lock)이 걸린 조인트와 언락된 조인트 간의 웨이트 분배 충돌"
+  ],
+  "steps": [
+    "오류가 발생한 버텍스나 오브젝트를 선택합니다.",
+    "메인 메뉴에서 Windows > General Editors > Component Editor를 엽니다.",
+    "Component Editor의 Skin Weights 탭에서 값이 비정상적이거나 0으로 채워진 Vertex를 확인합니다.",
+    "메인 메뉴에서 Skin > Prune Small Weights를 실행하여 영향력이 미미한 0에 가까운 웨이트를 정리합니다.",
+    "메인 메뉴에서 Skin > Normalize Weights를 수동으로 실행하거나 Skin Cluster 노드의 Normalize Weights 속성을 Interactive 또는 Post로 변경합니다.",
+    "Mesh > Cleanup 기능을 사용하여 Zero area faces나 Zero length edges 등 모델링 결함을 먼저 수정합니다."
+  ],
+  "check": [
+    "Component Editor나 Paint Skin Weights Tool에서 해당 Vertex의 웨이트 합이 정확히 1(또는 100%)이 되는지 확인합니다.",
+    "웨이트를 수정하거나 페인팅할 때 더 이상 Script Editor에 동일한 오류 메시지가 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "스킨 바인딩 전 메쉬의 히스토리를 지우고 Transform을 초기화(Freeze Transformations)합니다.",
+    "웨이트 작업 중에는 극단적인 수치 입력보다는 Smooth Tool이나 Prune Small Weights를 활용하여 깔끔한 상태를 유지합니다."
+  ],
+  "keywords": [
+    "Maya 웨이트 오류",
+    "Weight normalization failed",
+    "Maya 스킨 웨이트 정규화",
+    "Component Editor 웨이트",
+    "Maya 스킨 오류 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-18T11:23:49+00:00"
+}
