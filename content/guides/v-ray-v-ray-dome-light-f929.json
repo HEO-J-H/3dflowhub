@@ -1,0 +1,100 @@
+{
+  "id": "v-ray-v-ray-dome-light-f929",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "V-Ray Dome Light",
+  "title": "V-Ray Dome Light — HDRI 환경광과 이미지 기반 조명을 생성하는 라이트 도구",
+  "summary": "V-Ray Dome Light는 3ds Max, Maya 등의 씬 전체를 감싸는 반구형 광원을 생성하여 HDRI 맵으로 자연스러운 환경광과 사실적인 반사를 만드는 조명 도구입니다.",
+  "when": [
+    "야외 풍경이나 실내 공간에 HDRI를 활용한 사실적인 자연광을 줄 때",
+    "제품 렌더링 시 부드러운 전방위 반사와 균일한 조명을 얻고 싶을 때",
+    "배경(Background)과 렌더링되는 오브젝트의 조명을 완벽하게 일치시키고 싶을 때"
+  ],
+  "steps": [
+    "3ds Max 상단 메뉴 바에서 Create → Lights → V-Ray를 선택합니다.",
+    "Command Panel에서 VRayDomeLight를 클릭하고 Viewport 아무 곳이나 클릭하여 생성합니다.",
+    "Modify 패널에서 Parameters 롤아웃을 엽니다.",
+    "Texmap 체크박스를 켜고(On) 바로 아래 맵 버튼에 HDRI 파일을 드래그하거나 슬롯을 열어 Bitmap으로 불러옵니다.",
+    "Mapping 유형을 Spherical 또는 Environment로 설정하여 텍스처 정렬을 맞춥니다.",
+    "Intensity Multiplier 값을 조절해 조명 밝기를 맞추고 Viewport에서 결과 확인 후 렌더링합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity Multiplier",
+      "desc": "돔 라이트의 전체적인 밝기를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "텍스처를 쓰지 않을 때 단색 조명 색상을 지정합니다."
+    },
+    {
+      "name": "Texmap",
+      "desc": "HDRI 등 외부 이미지 맵을 연결하여 환경광으로 사용합니다."
+    },
+    {
+      "name": "Mapping",
+      "desc": "HDRI 투영 방식을 설정합니다 (Spherical, Cylindrical 등)."
+    },
+    {
+      "name": "Invisible",
+      "desc": "렌더링 시 배경에 돔 라이트의 소스(구체)가 보이지 않도록 숨깁니다."
+    },
+    {
+      "name": "Affect Reflections",
+      "desc": "오브젝트 표면에 HDRI 반사가 나타나도록 활성화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실외 건축 시각화 스튜디오 셋업",
+      "steps": [
+        "VRayDomeLight를 씬 중앙에 배치합니다.",
+        "Texmap에 낮 시간대의 야외 HDRI 맵을 연결합니다.",
+        "Rotate 도구를 이용해 HDRI 태양광 방향과 씬의 그림자 방향을 맞춥니다.",
+        "Intensity Multiplier를 높여 밝은 야외 광원 세기를 확보합니다."
+      ]
+    },
+    {
+      "title": "자동차 스튜디오 반사광 연출",
+      "steps": [
+        "스튜디오 전용 그라데이션 HDRI를 Dome Light의 Texmap에 넣습니다.",
+        "Invisible을 켜서 배경 지평선은 감추고 반사만 남깁니다.",
+        "Dome Light를 회전시켜 자동차 바디에 하이라이트 라인을 정교하게 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "HDRI가 너무 어둡게 나옴 → Intensity Multiplier 값을 높이거나 맵의 Output에서 RGB Level을 조절하세요.",
+    "배경에 돔 라이트의 흰색 구체가 그대로 보임 → Options 롤아웃에서 Invisible 체크박스를 켜서 해결하세요.",
+    "그림자가 너무 부드러워 형태가 안 나옴 → HDRI 이미지 자체의 태양광 콘트라스트가 부족한 것이므로, 썬 라이트(VRaySun)를 함께 배치하세요."
+  ],
+  "related": [
+    "VRaySun",
+    "VRayPhysicalCamera",
+    "V-Ray Frame Buffer",
+    "HDRI Link"
+  ],
+  "videos": [
+    {
+      "id": "KvENeBSVPqI",
+      "title": "How to use DOME LIGHT and HDRI for Exterior Lighting | Vray for Sketchup",
+      "author": "Architecture Inspirations"
+    },
+    {
+      "id": "fXHG3tSykEA",
+      "title": "How to use Dome Light in Vray for Beginner | Vray | Sketchup",
+      "author": "Sketchup Tutorial "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Dome%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Create",
+    "Lights",
+    "V-Ray"
+  ],
+  "at": "2026-11-18T15:47:31.929776+00:00"
+}
