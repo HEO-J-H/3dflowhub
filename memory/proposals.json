@@ -38365,5 +38365,36 @@
     "kind": "applied",
     "id": "p-42e3c1f1b4",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] tests=True security=['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)'] — 리뷰 생략"
+  },
+  {
+    "at": "2026-11-18T11:52:59+00:00",
+    "kind": "proposal",
+    "id": "p-222204d429",
+    "title": "웹 버전 메시 내보내기 오류 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 문서 수정 과제들이 반복적으로 중단(skipped)되어 새로운 소스코드로 방향 전환 필요",
+    "proposal": "web/index.js 내 GLB/OBJ Export 실패 시 사용자에게 명확한 안내 토스트 메시지를 출력하도록 예외 처리를 추가합니다.",
+    "expected": "파일 내보내기 실패 시 원인을 쉽게 파악할 수 있어 사용자 경험이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T11:53:48.803235+00:00",
+    "kind": "decision",
+    "id": "p-222204d429",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T11:53:51.275302+00:00",
+    "kind": "triage",
+    "id": "p-222204d429",
+    "verdict": "agent",
+    "reason": "웹 버전 GLB/OBJ 내보내기 실패 시 예외 처리 및 토스트 메시지 출력 기능은 소스코드 수정으로 직접 해결할 수 있는 개발 과제입니다."
   }
 ]

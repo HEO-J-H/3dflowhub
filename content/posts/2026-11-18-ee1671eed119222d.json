@@ -1,0 +1,59 @@
+{
+  "title_ko": "Blender Click Joints 애드온 — 3D 프린팅 볼 조인트 제작",
+  "title": "Click Joints: free add-on that cuts printable ball joints and shows how far they bend",
+  "url": "https://www.blendernation.com/2026/11/18/click-joints-free-add-on-that-cuts-printable-ball-joints-and-shows-how-far-they-bend/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "플러그인·스크립트",
+  "tags": [
+    "Blender",
+    "3D 프린팅",
+    "볼 조인트",
+    "애드온",
+    "STL",
+    "블렌더"
+  ],
+  "summary": "Blender에서 3D 프린팅용 볼 조인트와 핀 조인트를 모델에 직접 자르고 굽힘 범위를 시각적으로 검증하는 무료 오픈소스 애드온입니다.",
+  "insight": "GPL-3.0 라이선스로 배포되는 이 무료 애드온은 8방향 충돌 감지 기능을 통해 조인트 출력 후 조립 실패 가능성을 Software 상에서 미리 줄여줍니다.",
+  "try_it": [
+    "Blender에서 3D 모델을 불러옵니다.",
+    "Click Joints 애드온을 실행하여 볼 조인트와 핀 조인트의 공차 수치를 밀리미터 단위로 입력합니다.",
+    "8방향 굽힘 시뮬레이션을 돌려 충돌 부위가 빨간색으로 표시되는지 확인하고 STL 또는 3MF로 내보냅니다."
+  ],
+  "sections": [
+    {
+      "heading": "Click Joints 애드온의 기본 기능과 3D 프린팅 지원",
+      "body": "Click Joints는 3D 프린터 출력물에 필요한 볼 앤 소켓이나 핀 조인트를 메쉬에 간편하게 결합할 수 있는 오픈소스 확장 프로그램입니다. 사용자가 밀리미터 단위로 직접 설정한 공차(clearance)를 반영해 조인트를 자르며, 파트별로 각각 STL이나 3MF 파일로 내보낼 수 있습니다. Blender 4.2 LTS 및 5.2 LTS 버전에서 테스트를 거쳤습니다."
+    },
+    {
+      "heading": "8방향 굽힘 범위 시뮬레이션과 충돌 감지",
+      "body": "개발자 Thijs(Dortus)에 따르면 이 도구는 볼 조인트가 8방향으로 움직일 때 부품끼리 충돌하기 전까지 얼마나 꺾이는지 측정합니다. 측정된 가동 범위는 모델 위에 직접 표시되며, 한계 이상으로 꺾을 경우 충돌하는 지점이 빨간색으로 변합니다. 절단면에 표시되는 고리 모양 가이드를 통해 벽 두께가 3D 프린팅에 충분한지 눈으로 판별할 수 있습니다."
+    },
+    {
+      "heading": "오픈소스 배포와 검증 환경",
+      "body": "이 애드온은 GPL-3.0-or-later 라이선스로 제공되는 무료 오픈소스 프로젝트입니다. 실제 Blender 환경에서 매 버전을 자동으로 테스트하여 안정성을 확보하고 있습니다. 모든 결합 및 굽힘 검사는 3D 프린터로 직접 출력하기 전 Blender 내부 Viewport에서 이루어집니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Click Joints는 어떤 Blender 버전에서 사용할 수 있나요?",
+      "a": "Blender 4.2 LTS 및 5.2 LTS 버전에서 테스트되었습니다."
+    },
+    {
+      "q": "출력 전 결합 부위가 잘 맞는지 어떻게 확인하나요?",
+      "a": "애드온이 8방향으로 조인트가 꺾이는 범위를 계산해 모델에 표시하며, 충돌 지점은 빨간색으로 변해 시각적으로 검증할 수 있습니다."
+    },
+    {
+      "q": "파일 Export 형식은 무엇을 지원하나요?",
+      "a": "파트당 하나의 파일로 나누어 STL 또는 3MF 포맷으로 내보낼 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.blendernation.com/wp-content/uploads/2026/11/blendernation-1456x6721-1-800x450.jpg.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-18T11:52:55.971348+00:00",
+  "notion_id": "",
+  "id": "2026-11-18-ee1671eed119222d",
+  "img_ok": "2026-11-18T11:52:56+00:00"
+}
