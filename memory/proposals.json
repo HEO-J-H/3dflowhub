@@ -38396,5 +38396,67 @@
     "id": "p-222204d429",
     "verdict": "agent",
     "reason": "웹 버전 GLB/OBJ 내보내기 실패 시 예외 처리 및 토스트 메시지 출력 기능은 소스코드 수정으로 직접 해결할 수 있는 개발 과제입니다."
+  },
+  {
+    "at": "2026-11-18T12:03:55+00:00",
+    "kind": "proposal",
+    "id": "p-f820d50ff3",
+    "title": "웹 버전 PBR 텍스처 미리보기 안내 UI 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 메시 Export 오류 처리 보완 작업이 완료되었으나, 브라우저 환경에서의 PBR 텍스처(Albedo/Normal/Roughness) 적용 안내 문구가 다소 부족합니다.",
+    "proposal": "web/index.html 내 PBR 텍스처 적용 영역에 브라우저 실시간 렌더링 안내 문구를 명확하고 간결하게 추가합니다.",
+    "expected": "사용자가 웹 버전에서 PBR 텍스처 작동 방식을 직관적으로 이해할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:03:55+00:00",
+    "kind": "proposal",
+    "id": "p-eacfce164d",
+    "title": "backend/tests/test_triposr.py 단위 테스트 독립성 확보",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs 기록에서 backend/tests/test_triposr.py 패치 적용 및 테스트 실행이 경로 문제 등으로 반복해서 held 처리되었습니다.",
+    "proposal": "backend/tests/test_triposr.py 파일의 모듈 Import 경로 및 패치 대상을 점검하여 외부 환경 의존성 없이 단위 테스트가 안정적으로 수행되도록 수정합니다.",
+    "expected": "코딩 에이전트가 테스트를 정상 통과시켜 자동 머지 또는 안전한 PR 생성이 가능해집니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T12:04:31.740755+00:00",
+    "kind": "decision",
+    "id": "p-f820d50ff3",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T12:04:31.777568+00:00",
+    "kind": "decision",
+    "id": "p-eacfce164d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 단위 테스트 경로 ",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T12:04:33.180091+00:00",
+    "kind": "triage",
+    "id": "p-f820d50ff3",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 '웹 브라우저 PBR 렌더링 안내 UI 검증' 및 'web/index.html 브라우저 PBR 안내 문구 정비'가 포함되어 있어 반영된 내용입니다."
+  },
+  {
+    "at": "2026-11-18T12:04:33.210804+00:00",
+    "kind": "decision",
+    "id": "p-f820d50ff3",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '웹 브라우저 PBR 렌더링 안내 UI 검증' 및 'web/index.html 브라우저 PBR 안내 문구 정비'가 포함되어 있어 반영된 내용입니다."
   }
 ]
