@@ -1,0 +1,93 @@
+{
+  "id": "v-ray-v-ray-fur-clipping-guide-b321",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "V-Ray Fur (Clipping/Guide)",
+  "title": "V-Ray Fur (Guides) — 가이드 스플라인을 활용하여 정교한 카펫이나 잔디를 연출하는 워크플로우",
+  "summary": "V-Ray Fur의 Clipping과 Guide 기능을 활용하면 불필요한 영역의 털을 잘라내거나 가이드라인으로 형태와 방향을 정교하게 제어할 수 있습니다.",
+  "when": [
+    "잔디밭 사이에 길이나 보도블록이 지나가도록 털을 특정 영역만 숨기고 싶을 때",
+    "동물의 털 가렛이나 머리카락의 흐름, 가르마를 자연스럽게 연출하고 싶을 때",
+    "카펫이나 러그의 특정 패턴 모양대로 털을 다듬고 싶을 때"
+  ],
+  "steps": [
+    "잔디나 털을 생성할 메쉬 오브젝트를 선택하고 Command Panel -> Modify 탭에서 VRayFur를 적용합니다.",
+    "Clipping을 적용하려면 맵(Map) 채널 또는 흑백 마스크 텍스처를 준비합니다.",
+    "Modifier List 아래쪽의 VRayFur 파트에서 Clipping 롤아웃을 열고 Map 슬롯에 텍스처나 맵을 연결합니다.",
+    "Guide 털을 사용하려면 스라인(Spline)이나 별도의 가이드 메쉬를 준비합니다.",
+    "Guide 롤아웃에서 Add 버튼을 누르고 Viewport의 가이드 오브젝트를 선택하여 털의 흐름을 제어합니다.",
+    "Viewport에서 렌더링 결과(V-Ray Frame Buffer)를 확인하며 Clipping과 Guide 수치를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Use clipping",
+      "desc": "맵의 밝기 값(흑백)을 이용해 털이 생성될 영역과 잘려 나갈 영역을 결정합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "Clipping 맵의 검은색과 흰색 영역을 반전시켜 털이 나오는 위치를 바꿉니다."
+    },
+    {
+      "name": "Direct",
+      "desc": "가이드 스라인의 방향과 힘을 조절하여 털이 눕거나 뻗는 방향을 정밀하게 제어합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "가이드라인이 미치는 영향력의 크기와 범위를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "잔디밭 사이로 난 오솔길 표현",
+      "steps": [
+        "지형 메쉬에 VRayFur를 적용해 전체 잔디를 심습니다.",
+        "길 모양의 검은색 영역이 포함된 흑백 마스크 텍스처를 제작합니다.",
+        "Clipping 롤아웃의 Map 슬롯에 텍스처를 연결하여 길 부근의 잔디를 지웁니다."
+      ]
+    },
+    {
+      "title": "동물 캐릭터의 털 가르마 정렬",
+      "steps": [
+        "캐릭터 머리 부위에 VRayFur를 생성합니다.",
+        "머릿결 방향대로 Spline 라인을 배치합니다.",
+        "Guide 롤아웃에서 해당 Spline들을 추가하여 털이 갈라지는 형태를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Clipping 맵이 보이지 않거나 반대로 적용됨 → 맵의 채널(Map Channel) 번호가 올바르지 않거나 Invert 옵션을 확인하세요.",
+    "Guide 털이 형태를 따르지 않고 엉뚱하게 뻗음 → 가이드 스라인의 Vertex 방향(Normal)과 피벗 위치를 확인하세요.",
+    "렌더링 시 털의 밀도가 너무 높아 멈춤 → Viewport Display 수치를 낮추고 Render 시의 Density만 높여서 테스트하세요."
+  ],
+  "related": [
+    "VRayFur",
+    "Hair and Fur",
+    "V-Ray Asset Browser",
+    "V-Ray Material"
+  ],
+  "videos": [
+    {
+      "id": "o_sJf_1SRhI",
+      "title": "How to Create Realistic Grass/Fur in SketchUp with V-Ray Fur | Quick Tutorial",
+      "author": "CAD Square"
+    },
+    {
+      "id": "SBnjmZKkNrg",
+      "title": "Getting Started Rendering in Vray (EP 6) Creating GRASS IN VRAY for SketchUp with Vray Fur",
+      "author": "The Rendering Essentials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Fur%20%28Clipping/Guide%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Command Panel",
+    "Modify",
+    "VRayFur",
+    "Clipping",
+    "Map",
+    "Modifier List"
+  ],
+  "at": "2026-11-18T16:54:39.873258+00:00"
+}
