@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-16T05:23:15.216818+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 37,
-      "candidates_passed": 2,
-      "offtopic": 19,
-      "short": 0,
-      "prefiltered": 22,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "efa71c27",
-      "visuals": 1,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "short post",
-        "low depth",
-        "low 3d depth"
-      ]
-    },
-    {
       "at": "2026-11-16T05:32:33.941332+00:00",
       "collected": 0,
       "saved": 0,
@@ -6744,6 +6717,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-18T11:08:03.615480+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 41,
+      "candidates_passed": 22,
+      "offtopic": 19,
+      "short": 0,
+      "prefiltered": 6,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "2aadf258",
+      "visuals": 0,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6839,7 +6839,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-10 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오수집 비중을 줄이고 Maxscript나 애드온 같은 실무 밀착형 검색 유입 주제에 집중해야 합니다.",
     "2026-11-10 [validate_url_scheme(): URL 스킴을 http/http] 외부 입력이나 URL을 다룰 때는 스킴(http/https)을 엄격히 검증하여 보안 취약점을 예방하자.",
     "2026-11-10 [validate_url_scheme(): URL 스킴을 http/http] ",
     "2026-11-10 [[p-f0cb5e9af4|운영·비용] RAG 통합 PR 생성 및 자동 머] Automate routine low-risk PR workflows with proper labelling and CI validation checks.",
@@ -6958,7 +6957,8 @@
     "2026-11-17 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오프토픽 뉴스를 철저히 필터링하고 고검색 의도의 실무 튜토리얼 및 스크립트 주제에 집중해야 검색 유입과 애드센스 가치를 높일 수 있습니다.",
     "2026-11-17 [성찰] 동음이의어(Nuke, Unity, Maya 등)로 인한 오탐지를 줄이기 위해 5000중 이상으로 컨텍스트 필터를 강화하고, 3ds Max 및 Blender의 실무 튜토리얼·스크립트 중심의 고단가 키워드 집중 공략이 필수적입니다.",
     "2026-11-17 [성찰] 동음이의어 필터를 5000중으로 강화하여 오탑픽률을 낮추고, 툴 이름과 실무 검색 키워드를 앞세운 25~45자 제목과 1,500자 이상의 깊이 있는 튜토리얼·스크립트 콘텐츠에 집중하여 검색 유입과 체류 시간을 높여야 합니다.",
-    "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐색을 막기 위해 필터를 강화하고, 실무 튜토리얼 및 스크립트 등 검색 의도가 높은 고단가 주제에 집중해야 합니다."
+    "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐색을 막기 위해 필터를 강화하고, 실무 튜토리얼 및 스크립트 등 검색 의도가 높은 고단가 주제에 집중해야 합니다.",
+    "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐지를 막기 위해 3D·CG 소프트웨어 문맥 필터를 더욱 강화하고, 검색 유입이 입증된 툴 중심의 튜토리얼과 스크립트 콘텐츠 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7021,7 +7021,7 @@
     "Game Engine/UEFN·Fortnite": 6,
     "AI 3D/3D 생성 AI": 72,
     "VFX/Nuke": 16,
-    "Game Engine/기타 엔진": 138,
+    "Game Engine/기타 엔진": 139,
     "VFX/After Effects": 61,
     "VFX/Houdini FX": 12,
     "3D DCC/기타 DCC": 90,
@@ -7139,7 +7139,6 @@
     "AI 3D/NeRF": "가우시안 스플래팅"
   },
   "title_hashes": [
-    6416526437129742230,
     17356712557931906036,
     2550867621708832158,
     545876959368856908,
@@ -10138,14 +10137,15 @@
     17582128624461509263,
     1231697959867917360,
     3720809832740232238,
-    7032511587415793753
+    7032511587415793753,
+    2212125771362261580
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3420,
-    "Game Engine": 3420,
-    "VFX": 3420,
-    "AI 3D": 3420
+    "3D DCC": 3421,
+    "Game Engine": 3421,
+    "VFX": 3421,
+    "AI 3D": 3421
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
