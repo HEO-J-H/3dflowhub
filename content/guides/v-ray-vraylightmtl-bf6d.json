@@ -1,0 +1,95 @@
+{
+  "id": "v-ray-vraylightmtl-bf6d",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "VRayLightMtl",
+  "title": "VRayLightMtl — 지오메트리를 자체 발광 광원으로 만들어주는 자발광 재질",
+  "summary": "VRayLightMtl은 V-Ray에서 3D 오브젝트 자체를 발광체로 만들어 주변을 비추는 광원(Light) 역할을 하거나 네온사인 같은 시각 효과를 내는 재질입니다.",
+  "when": [
+    "네온사인, 형광등, LED 패널처럼 스스로 빛을 내는 오브젝트를 표현할 때",
+    "대형 라이트 패널을 대신해 부드럽고 넓은 면광원(Area Light) 효과를 만들 때",
+    "사이언스 픽션(Sci-Fi) 복도나 우주선 내부의 발광 라인을 연출할 때"
+  ],
+  "steps": [
+    "3ds Max Material Editor(Hotkey M)를 열어 슬롯을 비웁니다.",
+    "Material/Map Browser에서 V-Ray 카테고리 내의 VRayLightMtl을 선택하여 생성합니다.",
+    "Diffuse 슬롯에 원하는 발광 색상이나 텍스처를 연결하고, Intensity(강도)와 Color(색온도 또는 RGB) 값을 조절합니다.",
+    "발광 재질을 적용할 3D 오브젝트를 선택하고 Mouse 우클릭 후 Assign Material to Selection을 누릅니다.",
+    "V-Ray Frame Buffer(VFB)에서 렌더링을 실행하여 발광 효과와 주변 조명 밝기를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "발광하는 빛의 기본 색상을 설정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "발광 재질이 뿜어내는 빛의 밝기(강도)를 조절합니다."
+    },
+    {
+      "name": "Units",
+      "desc": "밝기를 측정하는 단위(Lumens, Watts 등)를 선택하여 실무 기준에 맞춥니다."
+    },
+    {
+      "name": "Texture",
+      "desc": "발광면에 이미지나 맵을 연결하여 특정 무늬의 빛을 표현합니다."
+    },
+    {
+      "name": "Multiply by Color mapping",
+      "desc": "컬러 맵핑 설정에 따라 발광 강도가 영향을 받을지 결정합니다."
+    },
+    {
+      "name": "Emit light on back side",
+      "desc": "오브젝트의 뒷면에서도 빛이 발산되도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 글자 제작",
+      "steps": [
+        "텍스트나 모양(Shape) 오브젝트에 Extrude Modifier를 적용합니다.",
+        "VRayLightMtl을 생성하고 Color를 밝은 분홍색이나 파란색으로 지정합니다.",
+        "Intensity 값을 높여 주변이 은은하게 물들도록 설정한 뒤 렌더링합니다."
+      ]
+    },
+    {
+      "title": "천장 매립형 LED 조널 바",
+      "steps": [
+        "천장에 얇은 박스 형태의 씬 지오메트리를 배치합니다.",
+        "VRayLightMtl을 적용하고 Units를 Lumens로 설정해 현실적인 광량 값을 입력합니다.",
+        "바닥과 벽면에 빛이 부드럽게 퍼지는지 확인하며 Intensity를 미세 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Intensity 값이 너무 낮아 빛이 보이지 않음 → Units 단위를 확인하고 Intensity 값을 대폭 높입니다.",
+    "장면 전체가 지나치게 밝아짐(Overexposure) → 발광체의 Intensity를 낮추거나 V-Ray 카메라의 Exposure 값을 조절합니다.",
+    "발광면 주변에 노이즈가 심함 → V-Ray Global Illumination(GI) 세팅의 Subdivs나 Light Cache 샘플 수를 늘립니다."
+  ],
+  "related": [
+    "VRayLight",
+    "VRayMtl",
+    "V-Ray Frame Buffer",
+    "VRayDenoiser"
+  ],
+  "videos": [
+    {
+      "id": "HyTdmdxXVTM",
+      "title": "Lec17 Vray light material - VRayLightMtl -   (Vray Course )",
+      "author": "Mohamed Gamal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayLightMtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max Material Editor",
+    "Hotkey M",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayLightMtl"
+  ],
+  "at": "2026-11-18T18:14:59.795939+00:00"
+}
