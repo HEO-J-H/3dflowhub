@@ -1175,19 +1175,27 @@ with t_rev:
             else:
                 st.success("저장됨 — 다음 사이트 배포부터 적용됩니다.")
 
-    st.markdown("**✅ GitHub Pages 수익화 체크리스트**")
+    # 휴먼 인터페이스: 끝난 일은 접고 남은 일만 앞에 (진행률로 한눈에)
+    _base = (core.load_config().get("site_base_url") or __import__("build_site").BASE_URL)
     checks = [
         ("Google Search Console 등록·사이트맵 제출", True),
         ("광고·제휴 문의 페이지 (/contact/)", True),
         ("개인정보처리방침 페이지 (/privacy/) — 애드센스 필수", True),
         ("방문 통계 연결 (GoatCounter)", bool(cfg.get("goatcounter_code"))),
-        ("본인 도메인 연결 (애드센스 승인 조건)", "github.io" not in core._load_json(core.CONFIG_PATH, {}).get("site_base_url", "github.io")),
+        ("본인 도메인 연결 (애드센스 승인 조건)", "github.io" not in _base),
         ("애드센스 게시자 ID 등록", bool(cfg.get("adsense_client"))),
         ("네이버 서치어드바이저 등록", bool(cfg.get("naver_site_verification"))),
         ("뉴스레터 구독 칸 (Buttondown)", bool(cfg.get("newsletter_buttondown"))),
     ]
-    for label, ok in checks:
-        st.markdown(f"{'✅' if ok else '⬜'} {label}")
+    _done = [l for l, ok in checks if ok]
+    _left = [l for l, ok in checks if not ok]
+    st.markdown(f"**✅ 수익화 준비 {len(_done)}/{len(checks)}**" + (" — 모두 끝났어요" if not _left else f" — 남은 일 {len(_left)}개"))
+    st.progress(len(_done) / len(checks))
+    for label in _left:
+        st.markdown(f"⬜ {label}")
+    with st.expander(f"끝난 항목 {len(_done)}개 보기"):
+        for label in _done:
+            st.markdown(f"✅ {label}")
 
     st.divider()
     # ── 2) 보조 채널: 티스토리 ─────────────────────────────────
@@ -1218,6 +1226,13 @@ with t_rev:
     sc = core._load_json(gsc.GSC_PATH, {})
     if sc.get("queries"):
         st.caption(f"최근 {sc.get('days', 28)}일 · 갱신 {ago(sc.get('at', ''))} — AI가 이 검색어를 키워드·전략에 반영합니다")
+        _q = pd.DataFrame(sc["queries"])
+        k1, k2, k3 = st.columns(3)
+        k1.metric("검색어", f"{len(_q)}개")
+        k2.metric("노출", int(_q.get("impressions", pd.Series(dtype=int)).sum()))
+        k3.metric("클릭", int(_q.get("clicks", pd.Series(dtype=int)).sum()))
+        if len(_q) < 10:
+            st.caption("ℹ️ 새 도메인(3dflowhub.kr)으로 옮긴 지 얼마 안 돼 데이터가 적어요. 보통 2~4주 뒤부터 쌓입니다.")
         g1, g2 = st.columns(2)
         with g1:
             st.markdown("**노출 많은 검색어**")
