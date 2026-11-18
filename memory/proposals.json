@@ -35706,5 +35706,67 @@
     "id": "p-5340150135",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에서 반복 실패한 문서 과제를 정리하고 docs/gpu-worker.md 등으로 충족 처리를 마쳤습니다."
+  },
+  {
+    "at": "2026-11-18T22:28:26+00:00",
+    "kind": "proposal",
+    "id": "p-2ddb66d769",
+    "title": "docs/local-pipeline.md 목차 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 관련 문서 과제에서 search 블록 불일치로 인한 held가 반복 발생함",
+    "proposal": "docs/local-pipeline.md 파일의 기존 마크다운 구조를 확인하고, 실제 존재하는 목차 태그에 맞추어 VRAM 권장 사양과 CUDA 설정 절차 안내를 명확하고 안전하게 수정",
+    "expected": "문서 업데이트 과정의 오류 및 반복 held 해소",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:28:26+00:00",
+    "kind": "proposal",
+    "id": "p-a09d0dfe8b",
+    "title": "backend/tests/test_core.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "핵심 파이프라인과 웹/로컬 연동 안정성을 위해 추가적인 단위 테스트 필요",
+    "proposal": "backend/tests/test_core.py에 기본 메시 생성 및 예외 처리 흐름을 검증하는 소규모 테스트 케이스 추가",
+    "expected": "코드 변경 시 안정성 확보 및 자동 테스트 통과율 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:28:59.524585+00:00",
+    "kind": "decision",
+    "id": "p-2ddb66d769",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T22:28:59.555743+00:00",
+    "kind": "decision",
+    "id": "p-a09d0dfe8b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T22:29:01.180816+00:00",
+    "kind": "triage",
+    "id": "p-2ddb66d769",
+    "verdict": "done_already",
+    "reason": "'로컬 파이프라인 문서 링크 및 포맷 점검' 및 'docs/local-pipeline.md 문서 보완' 등 이미 유사한 문서 정비 작업이 완료 목록에 다수 존재합니다."
+  },
+  {
+    "at": "2026-11-18T22:29:01.211862+00:00",
+    "kind": "decision",
+    "id": "p-2ddb66d769",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): '로컬 파이프라인 문서 링크 및 포맷 점검' 및 'docs/local-pipeline.md 문서 보완' 등 이미 유사한 문서 정비 작업이 완료 목록에 다수 존재합니다."
   }
 ]
