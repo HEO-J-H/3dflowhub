@@ -35484,5 +35484,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T19:55:22+00:00",
+    "kind": "proposal",
+    "id": "p-317f1ddb07",
+    "title": "PR #1 검토 및 보완 방향 정리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 '엔진 이름만 추가됨 — 실제 img2threejs 호출과 결과 파일까지 구현 필요' 사유로 보류되어 있음",
+    "proposal": "img2threejs 호출 및 결과 파일 생성 로직을 포함하도록 PR #1의 보완 범위를 명확히 정리하고 코딩 에이전트 과제로 재배정",
+    "expected": "핵심 파이프라인 기능의 실제 동작 보장",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T19:55:22+00:00",
+    "kind": "proposal",
+    "id": "p-2785c15c76",
+    "title": "backend/tests/test_core.py 단위 테스트 코드 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "과거 TripoSR 및 코어 테스트 관련 패치 적용 실패 건이 다수 발생함",
+    "proposal": "backend/tests/test_core.py 파일의 구조를 점검하고 현재 파이프라인과 일치하도록 테스트 코드를 단순하고 안정적으로 수정",
+    "expected": "코딩 에이전트 테스트 통과율 향상 및 자동 머지 활성화",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T19:55:56.082359+00:00",
+    "kind": "decision",
+    "id": "p-317f1ddb07",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T19:55:56.129007+00:00",
+    "kind": "decision",
+    "id": "p-2785c15c76",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T19:55:56.921400+00:00",
+    "kind": "decision",
+    "id": "p-317f1ddb07",
+    "v": "done",
+    "note": "자동 완료 확인: PR #1 닫힘"
   }
 ]
