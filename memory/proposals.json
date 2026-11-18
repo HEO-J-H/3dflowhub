@@ -35816,5 +35816,36 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T23:05:40+00:00",
+    "kind": "proposal",
+    "id": "p-70ad09b7c9",
+    "title": "backend/app/services/ heightmap_service.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 문서 및 테스트 관련 과제들이 반복 실패 상태로 멈춰 있으므로, 핵심 서비스인 heightmap_service.py에 대한 직접적이고 안전한 단위 테스트를 추가하여 안정성을 높입니다.",
+    "proposal": "backend/tests/test_heightmap.py 파일을 신규 생성하여 단일 이미지 높이맵 및 PBR 맵 생성 로직이 CPU 환경에서 예외 없이 동작하는지 검증하는 테스트를 작성합니다.",
+    "expected": "핵심 파이프라인의 회귀 오류를 방지하고 테스트 커버리지를 향상시킵니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T23:06:22.259520+00:00",
+    "kind": "decision",
+    "id": "p-70ad09b7c9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T23:06:24.398526+00:00",
+    "kind": "triage",
+    "id": "p-70ad09b7c9",
+    "verdict": "agent",
+    "reason": "백엔드 서비스에 대한 단위 테스트 추가는 코드로 직접 해결할 수 있는 작업입니다."
   }
 ]
