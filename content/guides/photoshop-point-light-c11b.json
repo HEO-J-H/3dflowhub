@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-point-light-c11b",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Point Light",
+  "title": "점 조명 — 전구처럼 한 지점에서 사방으로 빛을 발사하는 라이트 추가",
+  "summary": "Photoshop의 Point Light(포인트 라이트)는 3D 레이어 환경에서 전구처럼 모든 방향으로 빛을 발산하여 국소적인 공간을 밝히고 입체감을 부여하는 3D 조명 기능입니다.",
+  "when": [
+    "실내 인테리어 씬에서 탁상용 스탠드나 천장 전구의 광원을 표현할 때",
+    "캐릭터나 3D 오브젝트의 특정 부분에 집중적인 하이라이트와 부드러운 그림자를 만들 때",
+    "어두운 배경 속에서 은은하게 퍼지는 주변광 효과를 연출할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 3D를 선택하고 New Light to Scene 서브메뉴로 이동합니다.",
+    "New Point Light를 클릭하여 씬에 새로운 포인트 라이트를 생성합니다.",
+    "Properties 패널에서 Intensity(강도), Color(색상), Falloff(감쇠) 값을 조절합니다.",
+    "Viewport의 3D 조명 기즈모를 드래그하여 씬 내에서 원하는 위치로 라이트를 이동합니다.",
+    "작업 영역을 렌더링하여 빛의 확산과 그림자 상태를 최종 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기와 강도를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "빛의 색상을 변경하여 다양한 분위기를 연출합니다."
+    },
+    {
+      "name": "Falloff",
+      "desc": "빛이 거리에 따라 감쇠하는 범위를 설정합니다."
+    },
+    {
+      "name": "Shadow Darkness",
+      "desc": "라이트에 의해 생기는 그림자의 진한 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "탁상용 스탠드 전구 표현하기",
+      "steps": [
+        "스탠드 셰이드 내부의 정확한 위치에 Point Light를 배치합니다.",
+        "Intensity 값을 낮추고 Falloff 범위를 좁혀 국소적인 영역만 밝히도록 설정합니다.",
+        "Warm(따뜻한) 계열의 Color를 적용해 전구 느낌을 줍니다."
+      ]
+    },
+    {
+      "title": "어두운 밤거리 가로등 효과 내기",
+      "steps": [
+        "가로등 헤드 아래쪽에 Point Light를 생성합니다.",
+        "Intensity를 높여 주변 바닥과 오브젝트에 강한 빛과 방사형 그림자를 만듭니다.",
+        "Shadow Darkness를 조절하여 야간의 대비를 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛이 너무 강해 오브젝트가 하얗게 날아감 → Properties 패널에서 Intensity 값을 낮추거나 Falloff 범위를 조절합니다.",
+    "그림자가 너무 거칠거나 깨져 보임 → 3D 레이어의 품질 설정이나 Light의 Softness 옵션을 확인합니다.",
+    "오브젝트가 어둡고 빛이 반영되지 않음 → Point Light의 위치가 3D 오브젝트 바깥이나 너무 먼 곳에 있는지 Gizmo를 통해 확인합니다."
+  ],
+  "related": [
+    "Infinite Light",
+    "Spot Light",
+    "Infinite Light",
+    "3D Material"
+  ],
+  "videos": [
+    {
+      "id": "OLPGAyoIVvo",
+      "title": "Spotlight Effect - Short Photoshop Tutorial",
+      "author": "Obaeda Korani"
+    },
+    {
+      "id": "TS_Ma0QFU7Q",
+      "title": "How To Create A Spotlight Effect - Photoshop Tutorial",
+      "author": "Willmadeit Academy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Point%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New Light",
+    "Scene",
+    "New Point Light"
+  ],
+  "at": "2026-11-18T15:04:59.849050+00:00"
+}
