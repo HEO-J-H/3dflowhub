@@ -35644,5 +35644,67 @@
     "id": "p-1b8aadc434",
     "verdict": "agent",
     "reason": "제시된 가이드를 바탕으로 경량 RAG 통합 방안을 설계하고 작은 단위 과제로 분할하는 작업은 코드 및 문서 수정으로 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-18T22:16:56+00:00",
+    "kind": "proposal",
+    "id": "p-40e5036444",
+    "title": "PR #1 img2threejs 실제 구현 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 '엔진 이름만 추가됨 — 실제 img2threejs 호출과 결과 파일 구현 필요' 사유로 보류 상태입니다.",
+    "proposal": "backend/app/services/ 삼차원 변환 로직에 실제 img2threejs 연동 코드 및 결과 파일(model.obj/glb) 생성 처리를 구현하고 테스트를 추가합니다.",
+    "expected": "실제 동작하는 3D 변환 엔진 추가로 기능 완성도 향상",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:16:56+00:00",
+    "kind": "proposal",
+    "id": "p-5340150135",
+    "title": "실패한 문서 과제 정리 및 재시도 방지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 관련 안내서 문서화 과제들이 패치 적용 실패 및 반복 실패로 중단되었습니다.",
+    "proposal": "중단된 로컬 파이프라인 문서 수정 작업을 별도의 충돌 없는 파일이나 정확한 search 블록 구조로 재구성하여 제안합니다.",
+    "expected": "에이전트 작업 성공률 제고 및 문서 정확성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:17:42.391227+00:00",
+    "kind": "decision",
+    "id": "p-40e5036444",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T22:17:42.442444+00:00",
+    "kind": "decision",
+    "id": "p-5340150135",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T22:17:45.044134+00:00",
+    "kind": "triage",
+    "id": "p-5340150135",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 및 최근 커밋에서 반복 실패한 문서 과제를 정리하고 docs/gpu-worker.md 등으로 충족 처리를 마쳤습니다."
+  },
+  {
+    "at": "2026-11-18T22:17:45.088864+00:00",
+    "kind": "decision",
+    "id": "p-5340150135",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에서 반복 실패한 문서 과제를 정리하고 docs/gpu-worker.md 등으로 충족 처리를 마쳤습니다."
   }
 ]
