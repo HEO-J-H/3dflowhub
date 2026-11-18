@@ -1,0 +1,94 @@
+{
+  "id": "v-ray-vraymtlwrapper-4d79",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "VRayMtlWrapper",
+  "title": "VRayMtlWrapper — 오브젝트에 그림자 받기 및 매트(Matte) 처리를 위한 래퍼 재질",
+  "summary": "VRayMtlWrapper는 기본 재질에 맷 아이디(MatID), 섀도우캐치(Shadow catcher), 글로벌 일루미네이션(GI) 조절 등 고급 렌더링 속성을 추가해 주는 래퍼 재질입니다. 주로 합성 작업(Compositing)과 배경과의 자연스러운 그림자 합성을 위해 사용합니다.",
+  "when": [
+    "3D 오브젝트를 실사 백그라운드 영상이나 사진 위에 합성하여 그림자만 자연스럽게 표현하고 싶을 때",
+    "특정 오브젝트의 렌더 엘리먼트(Render Elements)나 맷(Matte) 채널을 따로 분리하여 리터치 작업을 편하게 하고 싶을 때",
+    "씬 전체의 글로벌 일루미네이션(GI)에 오브젝트가 미치는 영향력(Receive/Generate GI)을 세부적으로 제어하고 싶을 때"
+  ],
+  "steps": [
+    "M 키를 눌러 Material Editor를 엽니다.",
+    "새로운 재질 슬롯을 클릭하고 Material/Map Browser에서 V-Ray 탭의 VRayMtlWrapper를 선택합니다.",
+    "Base material 슬롯에 기존에 사용하던 표준 재질(예: VRayMtl)을 연결하거나 할당합니다.",
+    "Parameter 롤아웃에서 Matte surface 옵션을 체크하여 오브젝트를 투명하게 만들고 그림자만 남깁니다.",
+    "Alpha contribution 값을 조절하여 알파 채널에서의 투명도와 마스크 영역을 설정합니다.",
+    "Viewport에서 합성할 오브젝트에 이 재질을 적용하고 V-Ray로 렌더링하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base material",
+      "desc": "래퍼로 감싸서 속성을 추가할 기본이 되는 실제 재질을 지정합니다."
+    },
+    {
+      "name": "Matte surface",
+      "desc": "오브젝트를 투명하게 처리하고 배경에 드리워진 그림자나 반사만 남깁니다."
+    },
+    {
+      "name": "Alpha contribution",
+      "desc": "알파 채널에 반영되는 오브젝트의 투명도 및 마스크 강도를 조절합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "매트 표면에 빛이 가려져 생기는 그림자 표현 여부와 색상을 제어합니다."
+    },
+    {
+      "name": "Affect alpha",
+      "desc": "그림자 영역이 알파 채널에 영향을 미치도록 설정하여 합성을 용이하게 합니다."
+    },
+    {
+      "name": "Generate GI",
+      "desc": "이 재질이 적용된 오브젝트가 주변으로 간접광(GI)을 반사하는 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실사 배경 위에 3D 자동차 그림자 합성하기",
+      "steps": [
+        "바닥에 플레인 오브젝트를 생성하고 카메라 구도에 맞게 배치합니다.",
+        "VRayMtlWrapper를 생성하고 Matte surface를 체크합니다.",
+        "Shadows와 Affect alpha를 활성화하여 바닥에 떨어지는 그림자만 알파 채널과 함께 추출합니다."
+      ]
+    },
+    {
+      "title": "특정 오브젝트만 백그라운드에서 숨기고 간접광 받기",
+      "steps": [
+        "주변 오브젝트로부터 빛과 반사를 받아야 하는 가상의 물체를 배치합니다.",
+        "VRayMtlWrapper의 Base material에 적절한 반사 재질을 연결합니다.",
+        "Matte surface는 끈 상태로 유지하면서 GI 관련 배율만 조절하여 라이팅을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Matte surface를 켰는데도 오브젝트가 검은색 상자로 나옵니다. → Shadows 옵션이나 백그라운드 라이트 세팅을 확인하고 알파 채널 설정을 점검하세요.",
+    "합성할 때 그림자 경계가 너무 부자연스럽습니다. → Affect alpha 체크박스를 켜고 라이트의 섀도우 세부 설정을 조절하세요."
+  ],
+  "related": [
+    "VRayMtl",
+    "VRayLight",
+    "Render Elements",
+    "VRayPlane"
+  ],
+  "videos": [
+    {
+      "id": "FuhnGFgeg3U",
+      "title": "VRayMtlWrapper",
+      "author": "SiChen Lin"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayMtlWrapper",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayMtlWrapper"
+  ],
+  "at": "2026-11-18T17:25:34.487667+00:00"
+}
