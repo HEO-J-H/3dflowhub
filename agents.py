@@ -209,11 +209,25 @@ def _closed_on_board(task: str) -> bool:
     return st.get(m.group(1)) in ("done", "rejected")
 
 
+_PATH_IN_TASK = re.compile(r"(?<![\w/])((?:[\w-]+/)*[\w.-]+\.(?:py|js|mjs|html|css|md|json|yml|yaml|toml))")
+_CREATE_WORDS = re.compile(r"새로|새 파일|생성|만들|작성|신규|create|new file", re.I)
+
+
+def missing_target(task: str) -> list[str]:
+    """과제가 '고치라는' 파일이 저장소에 하나도 없으면 그 경로들 (만들라는 과제는 제외).
+    Pix2Poly 의 docs/local-pipeline.md 처럼 없는 파일을 고치라는 과제가 패치 실패로 계속 되풀이되던 문제 (11/18)."""
+    paths = list(dict.fromkeys(_PATH_IN_TASK.findall(task)))
+    if not paths or _CREATE_WORDS.search(task):
+        return []
+    return paths if all(not (ROOT / p).exists() for p in paths) else []
+
+
 def next_task() -> str | None:
     """AI 관리자 제안(사람이 수락한 일)을 먼저, 그다음 에이전트 스스로 만든 과제."""
     tasks = [l[len("- [ ] (agent)"):].strip() for l in TODO.read_text(encoding="utf-8").splitlines()
              if l.startswith("- [ ] (agent)")]
     tasks = [t for t in tasks if not _closed_on_board(t)]  # 현황판에서 이미 끝낸(완료·거절) 제안은 하지 않음
+    tasks = [t for t in tasks if not missing_target(t)]  # 없는 파일을 고치라는 과제는 하지 않음 (패치 실패 반복)
     # 가이드가 있는 과제(사람이 설계를 정해 둔 단계) → 사람이 수락한 제안 → 에이전트가 스스로 만든 과제
     return next((t for t in tasks if GUIDE_TAG.search(t)),
                 next((t for t in tasks if PROPOSAL_TAG.search(t)), tasks[0] if tasks else None))

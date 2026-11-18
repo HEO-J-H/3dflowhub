@@ -35,3 +35,13 @@ def test_noop_pr_is_rejected():
 
 def test_real_change_passes():
     assert agents.substance_problems(REAL) == []
+
+
+def test_missing_target(tmp_path, monkeypatch):
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "gpu-worker.md").write_text("x", encoding="utf-8")
+    monkeypatch.setattr(agents, "ROOT", tmp_path)
+    assert agents.missing_target("docs/local-pipeline.md 파일의 목차를 수정") == ["docs/local-pipeline.md"]
+    assert agents.missing_target("docs/gpu-worker.md 에 VRAM 내용 보완") == []
+    assert agents.missing_target("docs/new-guide.md 문서를 새로 작성") == []
+    assert agents.missing_target("로딩 속도 개선") == []
