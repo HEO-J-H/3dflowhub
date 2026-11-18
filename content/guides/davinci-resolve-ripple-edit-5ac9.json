@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-ripple-edit-5ac9",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 (Cut/Edit)",
+  "name": "Ripple Edit",
+  "title": "리플 편집 — 클립을 추가하거나 삭제할 때 뒷부분의 클립을 자동으로 당겨주는 편집 모드",
+  "summary": "DaVinci Resolve의 Ripple Edit(리플 편집)은 Timeline에서 클립을 자르거나 이동할 때 빈 공간(Gap)이 생기지 않도록 뒤쪽 클립들을 자동으로 밀어주거나 당겨주는 핵심 편집 기능입니다.",
+  "when": [
+    "인터뷰 영상이나 브이로그에서 불필요한 공백(Dead Space)을 빠르게 제거할 때",
+    "특정 클립의 길이를 늘이거나 줄여서 전체 Timeline의 총 길이를 자동으로 조절할 때",
+    "중간에 새로운 클립을 삽입하면서 뒤에 있는 모든 클립을 자연스럽게 뒤로 밀어내고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단에서 Edit 페이지 아이콘을 클릭하여 Timeline 편집 화면으로 이동합니다.",
+    "Timeline 툴바(Timeline Toolbar)에서 Selection Mode 옆에 있는 Ripple Edit Mode 아이콘을 클릭하거나 Hotkey T를 누릅니다.",
+    "편집할 클립의 모서리(시작점 또는 끝점)에 Mouse를 올립니다. Mouse 커서가 양방향 화살표와 괄호 모양으로 바뀝니다.",
+    "Mouse 드래그를 통해 클립의 길이를 조절합니다. 뒤쪽 클립들이 빈틈없이 자동으로 당겨지거나 밀려나는 것을 확인합니다.",
+    "편집이 끝나면 Hotkey A를 눌러 일반 Selection Mode로 돌아옵니다."
+  ],
+  "params": [
+    {
+      "name": "Ripple Edit Mode",
+      "desc": "클립의 길이를 조절할 때 뒤쪽 클립을 자동으로 이동시켜 빈 공간을 없애는 모드입니다."
+    },
+    {
+      "name": "Selection Mode",
+      "desc": "기본 선택 및 이동 모드로, 다른 클립의 위치를 건드리지 않고 개별 클립만 조작합니다."
+    },
+    {
+      "name": "Trim Edit Mode",
+      "desc": "두 클립 사이의 인접한 컷 편집점을 동시에 조절하여 전체 Timeline 길이를 유지합니다."
+    },
+    {
+      "name": "Dynamic Zoom",
+      "desc": "Keyframe 없이 클립의 시작과 끝을 지정해 화면 확대 및 축소 효과를 자동 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 영상에서 말 없는 멈춤 구간(Dead Space) 삭제하기",
+      "steps": [
+        "Hotkey T를 눌러 Ripple Edit Mode를 활성화합니다.",
+        "말이 멈춘 구간의 시작점이나 끝점을 드래그하여 길이를 줄입니다.",
+        "뒤의 모든 인터뷰 클립이 자동으로 앞으로 당겨져 공백이 사라지는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "Timeline 중간에 새로운 B-Roll 클립 삽입하기",
+      "steps": [
+        "Media Pool에서 사용할 클립을 Timeline의 기존 클립 사이로 드래그합니다.",
+        "Ripple Edit 상태에서 클립을 넣으면 뒤에 있던 클립들이 새로운 클립의 길이만큼 자동으로 밀려납니다.",
+        "Timeline에 빈 공간(Gap)이 생기지 않았는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 Selection Mode(Hotkey A) 상태에서 클립을 잘라내어 빈 공간(Gap)이 생김 → Hotkey T를 눌러 Ripple Edit Mode로 전환하거나 빈 공간을 우클릭해 Ripple Delete를 실행합니다.",
+    "원치 않는 트랙의 클립까지 함께 밀려남 → Timeline 헤더의 Auto Track Selector(비디오/Audio 트랙 활성화 아이콘)를 확인하여 필요한 트랙만 리플 편집이 적용되도록 설정합니다."
+  ],
+  "related": [
+    "Dynamic Zoom",
+    "Source Tape",
+    "Individual Clips",
+    "Blade Edit Mode"
+  ],
+  "videos": [
+    {
+      "id": "6R7tP9_GcoU",
+      "title": "How to use Ripple Editing in DaVinci Resolve to edit faster",
+      "author": "DaVinci Dojo"
+    },
+    {
+      "id": "ve38J2Z3EIQ",
+      "title": "What is Ripple Editing (Rippling) in DaVinci Resolve - Beginner Tutorial",
+      "author": "VideoEditingCentral"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Ripple%20Edit",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Edit",
+    "Timeline",
+    "Timeline Toolbar",
+    "Selection Mode",
+    "Ripple Edit Mode"
+  ],
+  "at": "2026-11-18T13:14:11.680114+00:00"
+}
