@@ -1,0 +1,93 @@
+{
+  "id": "v-ray-v-ray-edge-tex-3cee",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 최적화",
+  "name": "V-Ray Edge Tex",
+  "title": "V-Ray Edge Tex — 모델의 모서리를 둥글게 렌더링하거나 웨어(마모) 효과를 주는 텍스처",
+  "summary": "V-Ray Edge Tex는 3D 모델링의 모서리(Edge)나 틈새 영역을 인식하여 두께감 있는 선이나 마모 효과를 절차적으로 표현해주는 맵입니다. 텍스처 좌표(UV)를 펼칠 필요 없이 렌더링 시점에 자동으로 모서리를 찾아내어 웨더링이나 라인 렌더링에 유용합니다.",
+  "when": [
+    "복잡한 기계 모델이나 건축물의 날카로운 모서리에 미세한 페인트 까짐이나 먼지 효과를 줄 때",
+    "UV 매핑 작업 없이 렌더링만으로 모델의 윤곽선이나 모서리 강조 표현이 필요할 때",
+    "V-Ray Material의 Bump나 Diffuse 슬롯에 연결하여 자연스러운 엣지 웨더링을 구현할 때"
+  ],
+  "steps": [
+    "Material Editor (Hotkey M)를 열고 V-Ray Material을 생성합니다.",
+    "Diffuse 또는 Bump 슬롯 옆의 빈 칸(또는 맵 버튼)을 클릭하여 Material/Map Browser를 엽니다.",
+    "목록에서 V-Ray 탭 또는 Maps 카테고리에서 V-Ray Edge Tex를 선택합니다.",
+    "V-Ray Edge Tex 파라미터 패널에서 Width 값을 조절하여 모서리 두께를 설정합니다.",
+    "Color A와 Color B를 각각 모서리 색상과 배경 색상으로 설정한 뒤 메인 머티리얼에 적용합니다.",
+    "Viewport에서 오브젝트에 머티리얼을 할당하고 V-Ray Frame Buffer로 렌더링하여 모서리 선을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "모서리 선의 두께를 픽셀 또는 월드 유닛 기준으로 설정합니다."
+    },
+    {
+      "name": "Color A",
+      "desc": "모서리(Edge) 영역에 표시될 색상을 지정합니다."
+    },
+    {
+      "name": "Color B",
+      "desc": "모서리를 제외한 나머지 배경 영역에 표시될 색상을 지정합니다."
+    },
+    {
+      "name": "Edges",
+      "desc": "모든 에지(All Edges) 또는 삼각형의 내부 에지(Triangulated Edges) 표시 여부를 결정합니다."
+    },
+    {
+      "name": "Pixel mode",
+      "desc": "두께 단위를 픽셀 단위로 고정할지 여부를 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축물 외벽 모서리 페인트 마모 표현",
+      "steps": [
+        "V-Ray Blend Material을 생성하여 기본 콘크리트 텍스처와 페인트 텍스처를 준비합니다.",
+        "Blend Amount 슬롯에 V-Ray Edge Tex를 연결합니다.",
+        "Width 값을 미세하게 조절하여 건물의 외각 모서리에만 페인트가 벗겨진 듯한 효과를 줍니다."
+      ]
+    },
+    {
+      "title": "기계 부품 에지 라인 강조 (카툰/토이스탈)",
+      "steps": [
+        "V-Ray Material의 Diffuse 슬롯에 V-Ray Edge Tex를 연결합니다.",
+        "Color A를 진한 검은색, Color B를 흰색으로 설정합니다.",
+        "Width 값을 적절히 높여 모델의 입체적인 윤곽선이 돋보이게 렌더링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Width 값이 너무 작아 모서리가 보이지 않음 → 유닛 스케일에 맞춰 Width 값을 키우거나 Pixel mode 옵션을 조정합니다.",
+    "폴리곤 분할(Segment)이 너무 부족하여 모서리가 각지게 나옴 → MeshSmooth나 TurboSmooth를 적용해 엣지 흐름을 부드럽게 만들어 줍니다."
+  ],
+  "related": [
+    "V-Ray Dirt",
+    "V-Ray Blend Material",
+    "Chamfer",
+    "VRayMtl"
+  ],
+  "videos": [
+    {
+      "id": "N9XuHhEAv2Q",
+      "title": "Fillet/chamfer effect with Vray Edges Tex",
+      "author": "Learning Channel by P.O-studio"
+    },
+    {
+      "id": "90Fn7gp4j8Y",
+      "title": "Realistic Edges in Vray  #sketchup #3dmodelingsoftware",
+      "author": "Trimble SketchUp"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Edge%20Tex",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "V-Ray Material"
+  ],
+  "at": "2026-11-18T16:37:38.820679+00:00"
+}
