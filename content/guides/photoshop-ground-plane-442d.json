@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-ground-plane-442d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Ground Plane",
+  "title": "지면 평면 — 3D 공간 내에서 바닥면 표시 및 그림자 기준점 조절",
+  "summary": "Photoshop의 Ground Plane(그라운드 플레인)은 3D 공간에 기준이 되는 바닥면을 표시하여 3D 모델이 공중에 떠 있지 않고 자연스럽게 놓이도록 돕는 가이드 시각화 기능입니다.",
+  "when": [
+    "3D 모델을 바닥에 정확히 밀착시키고 싶을 때",
+    "바닥면에 비치는 그림자나 반사 효과를 확인하고 싶을 때",
+    "카메라 시점에서 공간의 원근감과 수평을 맞추고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 View(보기)를 클릭합니다.",
+    "Show(표시) 서브메뉴로 이동합니다.",
+    "3D Ground Plane(3D 그라운드 플레인)을 선택하여 바닥면 표시를 켭니다.",
+    "3D Gizmo를 사용하여 모델을 바닥면(Ground Plane)에 맞춰 이동시킵니다.",
+    "Viewport에서 모델이 바닥에 자연스럽게 안착되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Show Ground Plane",
+      "desc": "3D Viewport에 기준 바닥면 표시 여부를 토글합니다."
+    },
+    {
+      "name": "Ground Plane Opacity",
+      "desc": "바닥면 Grid의 투명도를 조절하여 시야 방해를 줄입니다."
+    },
+    {
+      "name": "Snap to Ground Plane",
+      "desc": "이동 시 3D 모델을 바닥면에 자동으로 자석처럼 밀착시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 제품 모델을 바닥에 정확히 배치하기",
+      "steps": [
+        "View 메뉴에서 3D Ground Plane을 활성화합니다.",
+        "Move Tool을 선택해 제품 모델의 피벗을 아래로 내립니다.",
+        "그라운드 플레인 그리드선에 모델 하단이 닿도록 조절합니다."
+      ]
+    },
+    {
+      "title": "바닥 그림자 및 반사 효과 정렬하기",
+      "steps": [
+        "Ground Plane 표시가 켜진 상태에서 3D Light 레이어를 선택합니다.",
+        "빛의 위치를 조절하여 모델의 그림자가 바닥에 올바르게 떨어지는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "그라운드 플레인이 보이지 않음 → View > Show > 3D Ground Plane 옵션이 켜져 있는지 확인합니다.",
+    "모델이 바닥을 뚫고 들어감 → 3D Gizmo의 세로(Y축) 화살표를 드래그하여 위로 올려줍니다.",
+    "바닥면이 원근감과 어긋남 → 카메라 뷰 각도(Camera View)를 기본 정면이나 측면으로 재설정합니다."
+  ],
+  "related": [
+    "New Point Light",
+    "3D Gizmo",
+    "Camera View",
+    "3D Material"
+  ],
+  "videos": [
+    {
+      "id": "wCDZpdBaIAM",
+      "title": "How to Match 3D Ground Planes With a Vanishing Point Using Photoshop CS6 Extended",
+      "author": "Tuts+ Design"
+    },
+    {
+      "id": "iNutyWf6yNc",
+      "title": "Creating a 3D Ground Plane to Match an Image in Photoshop",
+      "author": "Eric Renno"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Ground%20Plane",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "View",
+    "Show",
+    "D Ground Plane"
+  ],
+  "at": "2026-11-18T15:35:34.527014+00:00"
+}
