@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-export-3d-layer-1f4d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Export 3D Layer",
+  "title": "3D 레이어 Export — 작업한 3D 모델을 OBJ, STL 등의 포맷으로 저장",
+  "summary": "Photoshop의 Export 3D Layer 기능은 Photoshop 내에서 생성하거나 편집한 3D 오브젝트를 OBJ, 3D PDF, U3D 등의 표준 3D 포맷으로 내보내는 기능입니다. 외부 3D DCC 툴이나 웹 뷰어에서 활용할 수 있도록 모델 데이터를 저장합니다.",
+  "when": [
+    "Photoshop의 3D 페인팅이나 간단한 텍스트 압출(Extrusion) 결과물을 다른 3D 툴에서 수정하고 싶을 때",
+    "클라이언트나 동료에게 3D 시안을 상호작용 가능한 3D PDF 형태로 공유하고자 할 때",
+    "웹 또는 문서용으로 가벼운 3D 에셋 포맷(OBJ, U3D)이 필요할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 파일을 엽니다.",
+    "Layers 패널에서 내보낼 3D 레이어를 선택합니다.",
+    "상단 메뉴에서 3D > Export 3D Layer를 클릭합니다.",
+    "대화 상자에서 저장할 파일 형식(예: Wavefront/OBJ, U3D 등)을 선택합니다.",
+    "파일 이름을 입력하고 저장(Save) 버튼을 눌러 Export를 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "3D File Format",
+      "desc": "Wavefront/OBJ, U3D, Flash 3D 등 내보낼 파일 포맷을 선택합니다."
+    },
+    {
+      "name": "Texture Options",
+      "desc": "3D 모델에 적용된 텍스처(Diffuse, Bump 등)를 별도 폴더로 함께 내보냅니다."
+    },
+    {
+      "name": "Export Mesh",
+      "desc": "지오메트리 구조의 폴리곤 메시 데이터를 파일로 변환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 타이포그래피를 OBJ로 Export",
+      "steps": [
+        "텍스트 레이어에 3D New 3D Extrusion from Selected Layer를 적용합니다.",
+        "Layers 패널에서 3D 레이어를 선택합니다.",
+        "3D > Export 3D Layer를 실행하고 Wavefront/OBJ 포맷을 선택합니다.",
+        "Blender나 3ds Max로 가져와 추가 모델링을 진행합니다."
+      ]
+    },
+    {
+      "title": "Interactive 3D PDF 문서 제작",
+      "steps": [
+        "Photoshop에서 간단한 3D 오브젝트 배치를 완료합니다.",
+        "3D > Export 3D Layer 메뉴를 엽니다.",
+        "파일 형식을 3D PDF 또는 U3D로 지정하여 저장합니다.",
+        "PDF 뷰어에서 3D 모델을 회전하며 볼 수 있는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "2D 레이어가 선택된 상태에서 메뉴가 비활성화됨 → Layers 패널에서 3D 아이콘이 있는 레이어를 선택하세요.",
+    "텍스처 경로가 깨져서 모델이 하얗게 보임 → OBJ 파일과 함께 생성된 텍스처 이미지 폴더를 같은 경로에 유지하세요."
+  ],
+  "related": [
+    "3D LUT Export",
+    "New 3D Extrusion from Selected Layer",
+    "Substance 3D Modeler",
+    "USD Composer"
+  ],
+  "videos": [
+    {
+      "id": "M9Ncy3xNHmE",
+      "title": "How to Export Layers in Photoshop (to PNG or JPG)",
+      "author": "Photoshop Impact - with Wade McMaster"
+    },
+    {
+      "id": "pS4SYxXk2Vc",
+      "title": "Photoshop Tutorial: Quickly Export Layers into Images",
+      "author": "RiverCityGraphix"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Export%203D%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Export 3D Layer"
+  ],
+  "at": "2026-11-18T14:38:07.436187+00:00"
+}

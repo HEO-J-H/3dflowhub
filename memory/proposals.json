@@ -34831,5 +34831,91 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 버전 PBR 렌더링 안내 UI 문구 미세 보정",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T14:36:45+00:00",
+    "kind": "proposal",
+    "id": "p-4a1f41e605",
+    "title": "backend/tests/test_core.py 안정화 및 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_core.py 관련 테스트 보완 제안들이 연속으로 거절되거나 보류되었으나, 핵심 코어 파이프라인의 테스트 안정성은 필수적입니다.",
+    "proposal": "backend/tests/test_core.py에서 실패하거나 불안정한 단위 테스트 케이스를 점검하고, 엣지 케이스에서의 예외 처리 검증 코드를 보완합니다.",
+    "expected": "로컬 파이프라인 및 핵심 서비스의 테스트 통과율 향상 및 안정적인 자동 머지 기반 마련",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T14:36:45+00:00",
+    "kind": "proposal",
+    "id": "p-70cc970d57",
+    "title": "web/index.html UI 문구 및 오류 처리 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 PBR 및 메시 Export 관련 안내 문구 정비가 완료 단계에 있으며, 사용자 경험을 한 층 더 매끄럽게 다듬을 필요가 있습니다.",
+    "proposal": "web/index.html 및 관련 Script에서 파일 Export 실패 시 표시되는 에러 메시지와 로딩 상태 표시 줄의 문구를 직관적으로 수정합니다.",
+    "expected": "웹 버전 사용자 인터페이스의 완성도 및 피드백 명확성 제고",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T14:36:45+00:00",
+    "kind": "proposal",
+    "id": "p-d25423eae3",
+    "title": "docs/local-pipeline.md 문서 구조 간소화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 문서 업데이트 관련 패치 적용에서 search 블록 불일치로 보류된 이력이 있습니다.",
+    "proposal": "docs/local-pipeline.md 파일의 실제 목차와 본문 내용을 대조하여 정확한 search 블록으로 수정하고, VRAM 권장 사양 안내를 간결하게 정리합니다.",
+    "expected": "로컬 파이프라인 설정 문서의 가독성 향상 및 에이전트 패치 성공률 제고",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T14:40:20.653219+00:00",
+    "kind": "decision",
+    "id": "p-4a1f41e605",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T14:40:20.699230+00:00",
+    "kind": "decision",
+    "id": "p-70cc970d57",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T14:40:20.741306+00:00",
+    "kind": "decision",
+    "id": "p-d25423eae3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md 문서 보완 및 링크 정리",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T14:40:29.197947+00:00",
+    "kind": "triage",
+    "id": "p-70cc970d57",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 끝낸 제안 내역에 웹 버전 Export 오류 처리 및 안내 문구 정비 내용이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-18T14:40:29.240809+00:00",
+    "kind": "decision",
+    "id": "p-70cc970d57",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안 내역에 웹 버전 Export 오류 처리 및 안내 문구 정비 내용이 이미 반영되어 있습니다."
   }
 ]
