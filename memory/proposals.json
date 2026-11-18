@@ -35768,5 +35768,53 @@
     "id": "p-2ddb66d769",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): '로컬 파이프라인 문서 링크 및 포맷 점검' 및 'docs/local-pipeline.md 문서 보완' 등 이미 유사한 문서 정비 작업이 완료 목록에 다수 존재합니다."
+  },
+  {
+    "at": "2026-11-18T22:49:01+00:00",
+    "kind": "proposal",
+    "id": "p-4890504b1d",
+    "title": "PR #1 img2threejs 엔진 실제 구현 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며 실제 img2threejs 호출과 오류 처리 테스트 보완이 요구됨",
+    "proposal": "backend/app/services/img2threejs_runner.py 및 관련 테스트 파일에 실제 엔진 호출 로직과 예외 처리 코드를 구현하고 테스트 통과 확인",
+    "expected": "외형적 엔진 추가가 아닌 실제 동작하는 img2threejs 파이프라인 확보",
+    "effort": "높음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:49:01+00:00",
+    "kind": "proposal",
+    "id": "p-8dd62999b6",
+    "title": "backend/tests/test_core.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "기본 코어 파이프라인의 안정성 검증을 위해 단위 테스트 커버리지 유지 필요",
+    "proposal": "backend/tests/test_core.py 파일에 높이맵 메시 및 기본 PBR 변환 함수에 대한 추가 검증 테스트 케이스 작성",
+    "expected": "코드 변경 시 회귀 오류 방지 및 핵심 파이프라인 안정성 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T22:49:53.565204+00:00",
+    "kind": "decision",
+    "id": "p-4890504b1d",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T22:49:53.596067+00:00",
+    "kind": "decision",
+    "id": "p-8dd62999b6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
   }
 ]
