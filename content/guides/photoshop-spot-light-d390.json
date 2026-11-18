@@ -1,0 +1,99 @@
+{
+  "id": "photoshop-spot-light-d390",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Spot Light",
+  "title": "스포트라이트 — 원뿔 형태로 특정 영역을 집중적으로 비추는 조명 설정",
+  "summary": "Photoshop의 Spot Light(스팟 라이트)는 3D 레이어 환경에서 무대 조명이나 손전등처럼 원뿔 모양의 집중된 빛을 비추어 특정 피사체를 극적으로 강조하는 조명 기능입니다.",
+  "when": [
+    "스튜디오 세팅에서 모델의 얼굴이나 특정 제품에 시선을 집중시킬 때",
+    "어두운 배경 속에서 피사체만 원형 빛으로 비추는 연출이 필요할 때",
+    "무대 조명이나 가로등 같은 인공적인 지향성 광원을 표현할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 3D를 선택하고 New Light to Scene 서브메뉴로 이동합니다.",
+    "New Spot Light를 클릭하여 장면에 새로운 스팟 라이트를 추가합니다.",
+    "Properties 패널에서 Light Color, Intensity, Cone Angle 등을 조절하여 빛의 성질을 설정합니다.",
+    "3D Gizmo를 사용하여 스팟 라이트의 위치와 방향을 원하는 곳으로 정렬합니다.",
+    "Viewport에서 조명의 감쇠와 그림자 영역을 확인하고 최종 렌더링을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Light Color",
+      "desc": "조명에서 발사되는 빛의 색상을 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기 강도를 조절하여 광원의 세기를 설정합니다."
+    },
+    {
+      "name": "Cone Angle",
+      "desc": "빛이 퍼져나가는 원뿔의 각도를 조절하여 비추는 영역의 크기를 바꿉니다."
+    },
+    {
+      "name": "Hotspot",
+      "desc": "원뿔 내부에서 빛이 가장 밝게 유지되는 중심 영역의 크기를 결정합니다."
+    },
+    {
+      "name": "Falloff",
+      "desc": "광원으로부터 멀어질수록 빛이 감쇠하는 거리를 설정합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "해당 조명에 의해 생성되는 그림자의 활성화 여부와 부드러움을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스튜디오 제품 촬영 연출",
+      "steps": [
+        "New Spot Light로 메인 광원을 생성합니다.",
+        "Cone Angle을 좁혀 제품 상단에만 빛이 모이도록 설정합니다.",
+        "Gizmo를 이용해 제품 전면 사선 위에서 아래로 조명을 비춥니다."
+      ]
+    },
+    {
+      "title": "무대 위의 인물 조명",
+      "steps": [
+        "3D 캐릭터 모델 위에 Spot Light를 배치합니다.",
+        "Intensity를 높여 강렬한 대비를 만듭니다.",
+        "Shadow를 활성화하여 바닥에 떨어지는 원형 그림자를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛의 범위가 너무 좁음 → Cone Angle 값을 넓히거나 Hotspot을 조절하여 빛의 영역을 확보합니다.",
+    "조명 위치가 엉뚱한 곳을 향함 → 3D Gizmo의 회전축을 사용하여 피사체 중심을 정확히 조준합니다.",
+    "그림자가 너무 딱딱함 → Light 속성에서 Shadow 부드러움(Softness) 옵션을 높여 자연스럽게 만듭니다."
+  ],
+  "related": [
+    "Point Light",
+    "Infinite Light",
+    "Infinite Light",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "OLPGAyoIVvo",
+      "title": "Spotlight Effect - Short Photoshop Tutorial",
+      "author": "Obaeda Korani"
+    },
+    {
+      "id": "l8e4ezcua9c",
+      "title": "2025: How to add spotlight effect in photoshop",
+      "author": "Photoland Photography"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Spot%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New Light",
+    "Scene",
+    "New Spot Light"
+  ],
+  "at": "2026-11-18T15:14:16.336579+00:00"
+}

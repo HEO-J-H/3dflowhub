@@ -35020,5 +35020,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-integration.md 기초 가이드 신규 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-18T15:14:00+00:00",
+    "kind": "proposal",
+    "id": "p-f33315c025",
+    "title": "backend/tests/test_triposr.py 단위 테스트 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "agent_runs 내에서 TripoSR 단위 테스트 오류로 인해 패치 적용이 실패하고 보류된 이력이 있음",
+    "proposal": "backend/tests/test_triposr.py 파일의 테스트 코드 오류 원인을 재검토하고, 격리 환경에서 정상 동작하도록 단언문과 목(mock) 설정을 수정",
+    "expected": "테스트 통과 및 코딩 에이전트 자동 병합 안정화",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T15:14:00+00:00",
+    "kind": "proposal",
+    "id": "p-85909c11eb",
+    "title": "docs/local-pipeline.md 문서 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "docs/local-pipeline.md 관련 문서 수정 과제가 search 블록 불일치 등으로 여러 차례 보류 및 스킵됨",
+    "proposal": "docs/local-pipeline.md 파일의 실제 구조와 정확히 일치하는 search/replace 블록을 구성하여 VRAM 권장 사양 및 CUDA 설정 안내를 안전하게 반영",
+    "expected": "로컬 파이프라인 사용자 안내서 정확도 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T15:14:33.932398+00:00",
+    "kind": "decision",
+    "id": "p-f33315c025",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_triposr.py 파일 오류 분석 및",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T15:14:33.980667+00:00",
+    "kind": "decision",
+    "id": "p-85909c11eb",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/local-pipeline.md 문서 보완 및 링크 정리",
+    "auto": true
   }
 ]
