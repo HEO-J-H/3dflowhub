@@ -34591,5 +34591,53 @@
     "id": "p-52736d1355",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 웹 버전 GLB·OBJ·PBR 내려받기 및 상태 표시 줄 관련 문구 정비와 오류 처리는 이미 최근 커밋과 완료된 제안을 통해 충분히 반영되었습니다."
+  },
+  {
+    "at": "2026-11-18T13:33:26+00:00",
+    "kind": "proposal",
+    "id": "p-5cfe37666e",
+    "title": "backend/tests/test_core.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "과거 여러 차례 테스트 관련 과제가 중복 및 거절로 처리되었으나 핵심 백엔드 안정성을 위해 독립적인 코어 테스트 보강이 필요함",
+    "proposal": "backend/tests/test_core.py 파일에 간단한 이미지 높이맵 생성 및 PBR 맵 변환 로직에 대한 단위 테스트를 추가하여 회귀 오류를 방지합니다.",
+    "expected": "백엔드 핵심 로직 변경 시 테스트 자동 검증력 강화",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T13:33:26+00:00",
+    "kind": "proposal",
+    "id": "p-5bbaad8aa3",
+    "title": "web/index.html 브라우저 PBR 안내 문구 정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 PBR 및 메시 Export 오류 처리 보완이 완료된 상태에서 사용자 안내 문구를 더욱 명확히 다듬을 필요가 있음",
+    "proposal": "web/index.html 파일의 PBR 텍스처 미리보기 및 상태 표시 줄 안내 문구를 직관적으로 수정합니다.",
+    "expected": "웹 사용자 경험 및 오류 대처 가이드 명확화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-18T13:34:22.211069+00:00",
+    "kind": "decision",
+    "id": "p-5cfe37666e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/tests/test_core.py 테스트 코드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-18T13:34:22.248858+00:00",
+    "kind": "decision",
+    "id": "p-5bbaad8aa3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: web/index.html 브라우저 PBR 안내 문구 정비",
+    "auto": true
   }
 ]

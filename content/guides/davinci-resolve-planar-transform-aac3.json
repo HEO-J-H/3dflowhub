@@ -1,0 +1,94 @@
+{
+  "id": "davinci-resolve-planar-transform-aac3",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "시각효과 및 모션그래픽 (Fusion)",
+  "name": "Planar Transform",
+  "title": "플래นาร์ 트랜스폼 — 표면의 원근감에 맞춰 그래픽이나 소스를 자연스럽게 합성하는 노드",
+  "summary": "DaVinci Resolve의 Planar Transform은 Planar Tracker로 추출한 평면의 모션 데이터를 바탕으로 그래픽, 로고, 텍스트 등을 원근감과 왜곡에 맞춰 정확하게 고정하거나 합성하는 기능입니다.",
+  "when": [
+    "영상의 움직이는 빌보드나 간판에 새로운 로고나 광고 영상을 감쪽같이 합성할 때",
+    "달리는 자동차의 번호판이나 스마트폰 화면에 그래픽을 정밀하게 밀착시킬 때",
+    "원근감과 회전이 포함된 평면 표면 위에 텍스트나 효과를 자연스럽게 얹고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 탭에서 Fusion 페이지로 이동합니다.",
+    "Planar Tracker를 사용해 추적을 마친 클립 노드를 준비합니다.",
+    "노드 에디터에서 배경 클립 뒤에 Planar Transform 노드를 연결하거나, Tracker 노드 속성에서 Transform 생성을 선택합니다.",
+    "Inspector 패널에서 Operation 모드를 Corner Pin 등으로 설정하여 그래픽이 붙을 영역의 왜곡을 제어합니다.",
+    "MediaOut 노드에 연결하여 Viewport에서 그래픽이 평면의 움직임에 맞게 자연스럽게 합성되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Operation",
+      "desc": "트래킹 데이터를 바탕으로 수행할 합성 방식을 선택합니다 (예: Corner Pin, Perspective 등)."
+    },
+    {
+      "name": "Reference Time",
+      "desc": "패턴과 텍스처 배치의 기준이 되는 프레임 시점을 지정합니다."
+    },
+    {
+      "name": "Corner Pin",
+      "desc": "네 모서리의 좌표를 조절하여 사각형 그래픽을 평면의 원근감에 맞게 왜곡합니다."
+    },
+    {
+      "name": "Invert Transform",
+      "desc": "트래킹 방향을 반대로 뒤집어 원근 왜곡을 상쇄하거나 역방향으로 적용합니다."
+    },
+    {
+      "name": "Motion Blur",
+      "desc": "빠른 움직임이 있는 영상에서 합성된 그래픽에 자연스러운 모션 블러를 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "움직이는 스마트폰 화면에 앱 UI 합성하기",
+      "steps": [
+        "스마트폰 화면 영역을 Planar Tracker로 추적합니다.",
+        "앱 UI 이미지 노드를 가져와 Planar Transform 노드에 연결합니다.",
+        "Corner Pin 모드를 사용하여 UI의 네 모서리를 스마트폰 화면 모서리에 맞춥니다.",
+        "재생하여 화면의 기울기와 움직임에 UI가 완벽히 고정되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "도로 위 간판 로고 교체하기",
+      "steps": [
+        "기존 간판의 평면 영역을 Planar Tracker로 분석합니다.",
+        "새로운 로고 이미지를 Fusion 노드 네트워크에 추가합니다.",
+        "Planar Transform을 통해 로고에 원근 왜곡을 적용하고 위치를 맞춥니다.",
+        "합성된 결과물의 가장자리를 확인하고 필요시 Mask를 더해 다듬습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "기준 프레임(Reference Time)을 잘못 설정함 → 트래킹 데이터가 어긋날 때 올바른 프레임을 다시 기준점으로 지정합니다.",
+    "원근 왜곡이 맞지 않음 → Operation 모드가 잘못 선택되었는지 확인하고 Corner Pin 좌표를 재조정합니다."
+  ],
+  "related": [
+    "Planar Tracker",
+    "Tracker",
+    "Corner Pin",
+    "Transform"
+  ],
+  "videos": [
+    {
+      "id": "W6RxpK9QABM",
+      "title": "How to corner pin with planar Tracker and planar transform in Davinci Resolve!",
+      "author": "CreatorReality"
+    },
+    {
+      "id": "ALnmtC4eVeE",
+      "title": "DaVinci Resolve Fusion Planar Tracker and Planar Transform Nodes",
+      "author": "bdsCovered"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Planar%20Transform",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "Planar Tracker"
+  ],
+  "at": "2026-11-18T13:33:55.221037+00:00"
+}
