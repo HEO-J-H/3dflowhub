@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-v-ray-hair-next-mtl-0c46",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Hair Next Mtl",
+  "title": "V-Ray Hair Next Mtl — 사실적인 머리카락과 털의 하이라이트 및 반사를 표현하는 전용 재질",
+  "summary": "V-Ray Hair Next Mtl은 V-Ray에서 3ds Max Hair and Fur나 V-Ray Proxy 등의 머리카락·털 가닥을 사실적으로 렌더링하기 위해 특화된 전용 재질입니다. 빛의 투과와 반사를 정밀하게 계산하여 자연스러운 실크나 머릿결 질감을 표현합니다.",
+  "when": [
+    "캐릭터의 머리카락이나 동물 털을 실사 수준의 퀄리티로 렌더링할 때",
+    "카펫이나 러그 같은 섬세한 섬유질 디테일을 표현할 때",
+    "빛이 머리카락을 통과할 때 생기는 하이라이트(Glint) 효과를 연출할 때"
+  ],
+  "steps": [
+    "메쉬 오브젝트에 머리카락이나 털(Hair and Fur Modifier 등)을 생성합니다.",
+    "Material Editor (M 키)를 열고 슬롯을 선택한 뒤, Material/Map Browser에서 V-Ray Material을 누르고 V-Ray Hair Next Mtl을 선택합니다.",
+    "Diffuse 컬러 항목에서 머리카락의 기본 색상을 설정합니다.",
+    "Transmission 패널에서 빛이 가닥을 통과하는 투과(Translucency) 정도를 조절합니다.",
+    "Specular 패널에서 반사 광원의 위치와 광택(Glossiness) 값을 조절하여 머릿결의 하이라이트를 만듭니다.",
+    "완성된 V-Ray Hair Next Mtl을 Viewport의 털 오브젝트에 드래그하여 적용하고 V-Ray 렌더러로 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "머리카락과 털의 기본 색상을 결정합니다."
+    },
+    {
+      "name": "Transmission",
+      "desc": "빛이 머리카락 가닥을 통과할 때의 투과 색상과 강도를 설정합니다."
+    },
+    {
+      "name": "Primary Specular",
+      "desc": "머리카락 표면에 맺히는 첫 번째 반사 하이라이트의 크기와 광택을 조절합니다."
+    },
+    {
+      "name": "Secondary Specular",
+      "desc": "내부 반사로 인해 생기는 두 번째 하이라이트(글린트) 효과를 설정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "가닥의 투명도나 끝부분이 가늘어지는 페이드 효과를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "사람 캐릭터의 금발 머리카락 렌더링",
+      "steps": [
+        "Hair and Fur Modifier로 두피에 머리카락 가닥을 생성합니다.",
+        "V-Ray Hair Next Mtl을 적용하고 Diffuse를 밝은 노란색으로 설정합니다.",
+        "Primary Specular Glossiness 값을 높여 실크 같은 매끄러운 하이라이트를 만듭니다."
+      ]
+    },
+    {
+      "title": "동물의 갈색 털 표현",
+      "steps": [
+        "동물 모델링 표면에 털 메쉬 또는 가닥 시스템을 배치합니다.",
+        "V-Ray Hair Next Mtl의 Transmission 값을 조정하여 빛이 털 사이로 부드럽게 스며들게 합니다.",
+        "Secondary Specular를 이용해 자연스러운 털의 윤기를 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "재질이 적용되지 않고 검게 나오는 경우 → 오브젝트에 올바른 UV가 없거나 V-Ray Hair Next Mtl이 올바른 털 채널에 할당되지 않았는지 확인합니다.",
+    "렌더링 시간이 지나치게 오래 걸리는 경우 → Subdivs 값이 너무 높게 설정되어 있는지 확인하고 적정 값으로 낮춥니다."
+  ],
+  "related": [
+    "Hair and Fur",
+    "V-Ray Material",
+    "V-Ray Proxy",
+    "V-Ray Fur"
+  ],
+  "videos": [
+    {
+      "id": "w_SRyEjC_jM",
+      "title": "V-Ray Next for Maya Courseware – 3.1 New Hair Shader",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "VzP_YCBfFYU",
+      "title": "V-Ray Fur & Wax in 3ds Max | Complete Step-by-Step Guide",
+      "author": "Romas Noreika"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Hair%20Next%20Mtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hair",
+    "Fur Modifier",
+    "Material Editor",
+    "Material",
+    "Map Browser",
+    "V-Ray Material"
+  ],
+  "at": "2026-11-18T15:57:50.684270+00:00"
+}
