@@ -1,0 +1,89 @@
+{
+  "id": "davinci-resolve-scene-cut-detector-74e0",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색보정 (Color)",
+  "name": "Scene Cut Detector",
+  "title": "씬 컷 디텍터 — 렌더링된 통영상 파일에서 컷 앤 컷 구간을 자동으로 감지하여 컷별로 분할하는 기능",
+  "summary": "DaVinci Resolve의 Scene Cut Detector는 이미 렌더링되어 컷이 나뉘어 있는 영상 파일에서 자동으로 컷 편집점을 찾아 각각의 클립으로 분할해 주는 기능입니다.",
+  "when": [
+    "통째로 렌더링된 과거 영상 파일이나 완성본 비디오에서 개별 컷을 다시 추출해야 할 때",
+    "수많은 컷이 포함된 뮤직비디오나 인터뷰 영상을 빠르게 재편집할 때",
+    "수동으로 Timeline을 일일이 자르며 컷을 나누는 시간을 단축하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Media Pool에 컷을 나눌 영상 클립을 불러옵니다.",
+    "상단 메뉴바에서 File → Scene Cut Detector... 를 선택하여 전용 창을 엽니다.",
+    "Scene Cut Detector 창에서 Detect 버튼을 클릭하여 영상의 변화를 감지하고 컷 점을 찾습니다.",
+    "오른쪽 미리보기 화면에서 감지된 컷 점을 확인하며 필요한 경우 수동으로 추가하거나 삭제합니다.",
+    "창 하단의 Add Cuts to Timeline 버튼을 클릭하여 편집 중인 Timeline으로 분할된 클립들을 보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Sensitivity",
+      "desc": "장면 전환 감지 민감도로, 높일수록 미세한 변화도 컷으로 인식합니다."
+    },
+    {
+      "name": "Detect",
+      "desc": "영상의 프레임 변화를 분석하여 자동으로 컷 편집점을 찾아내는 실행 버튼입니다."
+    },
+    {
+      "name": "Add Cuts to Timeline",
+      "desc": "감지된 컷 편집점들을 현재 Timeline의 클립에 즉시 반영하여 잘라냅니다."
+    },
+    {
+      "name": "Preview",
+      "desc": "선택한 컷 전환 지점 전후의 영상을 미리 재생하여 정확히 나뉘었는지 확인합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "완성된 영상에서 개별 샷 분리하기",
+      "steps": [
+        "Media Pool의 완성된 영상을 우클릭하거나 File 메뉴에서 Scene Cut Detector를 엽니다.",
+        "Detect를 눌러 자동으로 컷이 나뉘는 지점을 생성합니다.",
+        "Add Cuts to Timeline을 눌러 Timeline에 낱개 클립들로 배치합니다."
+      ]
+    },
+    {
+      "title": "오인식된 컷 수정하기",
+      "steps": [
+        "Scene Cut Detector 창의 미리보기를 확인하며 잘못 잘린 지점을 찾습니다.",
+        "불필요한 컷 점은 삭제하고, 누락된 곳은 클릭하여 수동으로 컷을 추가합니다.",
+        "수정이 완료되면 Timeline에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명이 깜빡이거나 페이드인이 들어간 구간에서 너무 많은 불필요한 컷이 생기는 경우 → Sensitivity 값을 낮추거나 수동으로 컷 점을 삭제합니다.",
+    "화면 전환이 매우 서서히 일어나는 디졸브 구간을 감지하지 못하는 경우 → 컷 점이 누락된 위치를 확인하고 Timeline에서 직접 칼툴(Blade Tool, B)로 잘라냅니다."
+  ],
+  "related": [
+    "Dynamic Zoom",
+    "Fast Review",
+    "Cut Page",
+    "Blade Tool"
+  ],
+  "videos": [
+    {
+      "id": "FAE0XDdqibY",
+      "title": "How to Use Scene Cut Detection in DaVinci Resolve Full Tutorial + Fixes",
+      "author": "Transient Mobile"
+    },
+    {
+      "id": "XDWr3WU4XmU",
+      "title": "AUTOMATICALLY Cut Scenes from Footage in DaVinci Resolve!",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Scene%20Cut%20Detector",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Media Pool",
+    "File",
+    "Scene Cut Detector"
+  ],
+  "at": "2026-11-18T14:00:04.533821+00:00"
+}
