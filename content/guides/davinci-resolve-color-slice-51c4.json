@@ -1,0 +1,95 @@
+{
+  "id": "davinci-resolve-color-slice-51c4",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색보정 (Color)",
+  "name": "Color Slice",
+  "title": "컬러 슬라이스 — 6벡터 기반으로 특정 색상을 정밀하게 분할하고 조절하는 HDR 컬러 그레이딩 도구",
+  "summary": "Color Slice는 DaVinci Resolve의 Color 페이지에서 6가지 핵심 색상 영역(Skin, Forest, Ocean 등)을 개별 슬라이더로 조작하여 빠르고 정밀하게 특정 톤을 보정하는 도구입니다.",
+  "when": [
+    "인물의 피부 톤(Skin Tone)만 자연스럽게 유지하면서 배경 색감을 바꾸고 싶을 때",
+    "푸른 하늘이나 초록색 숲 같은 특정 자연물 색상의 밀도와 채도를 직관적으로 조절할 때",
+    "전체적인 룩(Look)을 해치지 않고 특정 색상 영역의 밝기와 채도를 미세하게 교정할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 그레이딩 인터페이스로 이동합니다.",
+    "Color 페이지의 중앙 패널(Primary Wheels 옆 또는 팔레트 탭)에서 Color Slice 아이콘을 클릭해 활성화합니다.",
+    "노드 그래프(Node Graph)에서 새 노드를 생성합니다 (Alt+S).",
+    "Color Slice 패널의 휠이나 슬라이더(Skin, Custom 등)를 조절하여 원하는 색상 영역의 톤을 변경합니다.",
+    "Viewer 하단의 상호작용 도구나 영역 제한(Qualifier)을 함께 활용해 선택된 색상 범위를 정밀하게 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Skin",
+      "desc": "인물의 피부 톤 영역을 독립적으로 제어하여 색조와 밝기를 맞춥니다."
+    },
+    {
+      "name": "Forest",
+      "desc": "자연의 녹색 및 풀잎 계열의 색상 채도와 명도를 조절합니다."
+    },
+    {
+      "name": "Ocean",
+      "desc": "바다나 물, 청색 계열의 영역을 타겟팅하여 깊이감을 더합니다."
+    },
+    {
+      "name": "Custom",
+      "desc": "사용자가 직접 원하는 색상 대역을 지정하여 세부적으로 보정합니다."
+    },
+    {
+      "name": "Density",
+      "desc": "선택한 색상 영역의 컬러 깊이와 진하기를 전체적으로 밀도 있게 조절합니다."
+    },
+    {
+      "name": "Hue",
+      "desc": "각 슬라이더 영역별 색상의 기준 각도를 미세하게 회전시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부 톤 살리기",
+      "steps": [
+        "Color 페이지에서 새 직렬 노드를 생성합니다.",
+        "Color Slice 패널의 Skin 영역 슬라이더를 선택합니다.",
+        "Density와 Hue 값을 조절하여 인물의 피부 붉은기를 잡고 생기를 더합니다."
+      ]
+    },
+    {
+      "title": "야외 풍경 색감 강조",
+      "steps": [
+        "Forest 및 Ocean 슬라이더를 활성화합니다.",
+        "초록색과 파란색 영역의 채도를 높여 시각적인 대비를 극대화합니다.",
+        "전체 밸런스가 틀어지지 않도록 Density 값을 미세하게 낮춰 자연스러움을 유지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "특정 색상 영역을 과도하게 조절하여 피부나 배경에 아티팩트(깨짐 현상)가 발생함 → Density와 채도 값을 낮추고 넓은 노드에서 전체 밸런스를 먼저 맞춘 뒤 적용하세요.",
+    "기본 Primary Wheels 대신 Color Slice만으로 전체 노출을 맞추려 함 → 전체적인 밝기와 대비는 Primary Wheels로 잡은 후, 세부 색상 보정용으로 Color Slice를 사용하세요."
+  ],
+  "related": [
+    "Color Warper",
+    "HDR Color Grading",
+    "Qualifier",
+    "Color Wheels"
+  ],
+  "videos": [
+    {
+      "id": "hRJdY6nO1Io",
+      "title": "COLOR-SLICE tool in Davinci Resolve: Everything you need to know!",
+      "author": "Duan van Schalkwyk"
+    },
+    {
+      "id": "54ufgxhOCHQ",
+      "title": "Brand New COLOR SLICE tool in Davinci Resolve 19!",
+      "author": "Color Grading Insights"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Color%20Slice",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color"
+  ],
+  "at": "2026-11-18T13:48:32.113514+00:00"
+}
