@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-infinite-light-37ae",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기능",
+  "name": "Infinite Light",
+  "title": "무한 조명 — 태양광처럼 평행하게 전체 장면에 빛을 비추는 라이트 생성",
+  "summary": "Photoshop의 Infinite Light(무한광)는 3D 레이어 환경에서 멀리 떨어진 태양처럼 평행한 빛을 비추어 씬 전체에 방향성 있는 조명과 그림자를 생성하는 3D 라이팅 기능입니다.",
+  "when": [
+    "3D 오브젝트나 텍스트에 태양광처럼 일정한 방향의 자연스러운 그림자를 만들 때",
+    "야외 환경이나 대규모 3D 씬 전체를 비추는 메인 키 라이트(Key Light)가 필요할 때",
+    "3D 합성 작업에서 배경 이미지의 광원 방향과 3D 모델의 조명을 일치시킬 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴에서 3D를 선택하고 New Light to Scene 서브메뉴로 이동합니다.",
+    "New Infinite Light를 선택하여 씬에 무한광을 추가합니다.",
+    "Properties 패널에서 Intensity(광원 세기)와 Color(색상)를 설정합니다.",
+    "3D Viewport에서 기즈모(Gizmo)를 드래그하거나 Properties 패널의 Angle 값을 조절하여 빛의 방향을 맞춥니다.",
+    "Viewport에서 3D 레이어를 렌더링(Render)하여 최종 조명과 그림자 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기 세기를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "조명의 색상을 변경합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "조명에 의한 그림자 생성 여부와 부드러움(Softness)을 설정합니다."
+    },
+    {
+      "name": "Active",
+      "desc": "현재 조명의 켜기/끄기 상태를 토글합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 태양광 연출",
+      "steps": [
+        "Infinite Light를 생성하고 Angle을 조절하여 빛이 비스듬하게 들어오도록 배치합니다.",
+        "Color 값을 약간 노란빛이 감도는 주간 색상으로 설정합니다.",
+        "Shadow를 활성화하여 3D 모델 바닥에 선명한 그림자가 생기도록 만듭니다."
+      ]
+    },
+    {
+      "title": "제품 렌더링 메인 키 라이트",
+      "steps": [
+        "3D 제품 모델 우측 상단 방향으로 Infinite Light를 배치합니다.",
+        "Intensity를 높여 제품의 입체적인 하이라이트를 강조합니다.",
+        "반대편에 약한 Point Light나 Image-Based Light를 추가해 어두운 암부를 보완합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛의 방향이 Viewport에서 엉뚱한 곳을 향함 → Properties 패널의 수치 입력이나 기즈모를 정면/측면 뷰에서 다시 확인하여 조정합니다.",
+    "그림자가 너무 딱딱하고 부드럽지 않음 → Properties 패널에서 Shadow 옵션의 Softness 값을 높여 부드러운 그림자로 수정합니다.",
+    "조명을 추가했는데 화면이 변하지 않음 → 3D 레이어가 선택되어 있는지 확인하고 Viewport를 최종 렌더링 상태로 전환합니다."
+  ],
+  "related": [
+    "Point Light",
+    "Spot Light",
+    "Image-Based Light",
+    "3D Gizmo"
+  ],
+  "videos": [
+    {
+      "id": "UuyzMAaOnZg",
+      "title": "Photoshop NEW 2026 Light Adjustment Tutorial | Windows Lighting How To",
+      "author": "Photoshop Super Easy (Graphicxtras)"
+    },
+    {
+      "id": "oCCamnMJhJg",
+      "title": "How to add INSANE Lighting in Photoshop",
+      "author": "PRKR"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Infinite%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New Light",
+    "Scene",
+    "New Infinite Light"
+  ],
+  "at": "2026-11-18T14:56:44.445672+00:00"
+}
