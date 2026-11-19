@@ -36327,5 +36327,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 실제 연동 테스트 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T23:09:27+00:00",
+    "kind": "proposal",
+    "id": "p-0ecfe90d28",
+    "title": "PR #1 연동 테스트 및 구현 코드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며, img2threejs 실제 연동과 예외 처리 테스트 보완이 필요합니다.",
+    "proposal": "backend/app/services 경로의 파이프라인 코드와 backend/tests/에 img2threejs 호출 예외 및 정상 반환 테스트 코드를 작성합니다.",
+    "expected": "PR #1 승인 요건 충족 및 파이프라인 신뢰성 확보",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T23:09:27+00:00",
+    "kind": "proposal",
+    "id": "p-01bd387a39",
+    "title": "실패한 문서 가이드 과제 재구성 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "rag-integration.md 및 open-source-review.md 관련 과제들이 'held' 상태로 반복 실패했습니다.",
+    "proposal": "파일 내용을 더 작게 쪼개어 docs/agent-guides/ 하위에 단계별로 생성하도록 과제를 재등록합니다.",
+    "expected": "문서 작업의 성공률 제고 및 에이전트 블로킹 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T23:10:15.220217+00:00",
+    "kind": "decision",
+    "id": "p-0ecfe90d28",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T23:10:15.249489+00:00",
+    "kind": "decision",
+    "id": "p-01bd387a39",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T23:10:16.220893+00:00",
+    "kind": "decision",
+    "id": "p-0ecfe90d28",
+    "v": "done",
+    "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-19T23:10:17.921372+00:00",
+    "kind": "triage",
+    "id": "p-01bd387a39",
+    "verdict": "agent",
+    "reason": "실패한 문서 가이드 과제를 작게 쪼개어 단계별로 생성하는 작업은 AI 에이전트가 코드와 파일을 수정하여 해결할 수 있습니다."
   }
 ]

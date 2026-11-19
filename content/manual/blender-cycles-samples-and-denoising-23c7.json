@@ -1,0 +1,125 @@
+{
+  "id": "blender-cycles-samples-and-denoising-23c7",
+  "guide_id": "blender-cycles-samples-and-denoising-23c7",
+  "tool": "Blender",
+  "name": "Cycles samples and denoising",
+  "title": "Cycles 샘플·디노이즈",
+  "overview": "Blender Cycles 렌더러는 물리 기반 경로 추적(Path Tracing) 방식을 사용하여 빛을 계산하므로, 픽셀당 충분한 샘플 수(Samples)가 확보되지 않으면 노이즈(자글거림)가 발생합니다. 샘플 수를 높여 물리적 정확도를 올리는 동시에 Denoising 알고리즘을 적용하여 적은 샘플로도 깨끗한 최종 이미지를 빠르게 얻을 수 있도록 돕습니다.",
+  "access": "Properties 패널 → Render Properties (카메라 아이콘) 탭 → Sampling 패널 및 Denoising 섹션",
+  "options": [
+    {
+      "name": "Render Samples",
+      "value": "기본값 1024 (권장: 128~512)",
+      "effect": "최종 렌더링 시 이미지의 품질과 노이즈 수준을 결정합니다. 수치가 높을수록 노이즈가 줄어들지만 렌더 시간이 비례해서 증가합니다.",
+      "tip": "오프라인 렌더 시 Adaptive Sampling을 켜면 노이즈가 적은 영역의 샘플링을 자동으로 조절해 시간을 아낄 수 있습니다."
+    },
+    {
+      "name": "Viewport Samples",
+      "value": "기본값 32 또는 64",
+      "effect": "Viewport에서 Rendered 모드로 작업할 때 실시간으로 계산되는 샘플 수입니다.",
+      "tip": "작업 중 버벅인다면 낮추고, 라이팅을 정확히 확인하려면 64~128 정도로 설정합니다."
+    },
+    {
+      "name": "Denoising Render",
+      "value": "체크박스 (기본 켜짐)",
+      "effect": "렌더링 완료 후 또는 렌더링 중에 백그라운드에서 디노이저를 실행해 노이즈를 제거합니다.",
+      "tip": "애니메이션 작업 시 프레임 간 깜빡임(Flicker)을 줄이려면 OptiX 또는 OpenImageDenoise의 Temporal 옵션을 고려하세요."
+    },
+    {
+      "name": "Denoising Device",
+      "value": "OptiX / OpenImageDenoise",
+      "effect": "디노이징 처리를 CPU로 할지 GPU로 할지 지정합니다.",
+      "tip": "NVIDIA GPU를 사용중이라면 OptiX가 압도적으로 빠르며 실시간 Viewport 디노이징에도 유리합니다."
+    },
+    {
+      "name": "Clamp Direct",
+      "value": "기본값 0.0 (비활성화)",
+      "effect": "직접 조명에서 발생하는 지나치게 밝은 픽셀(Fireflies)의 광량을 제한합니다.",
+      "tip": "금속이나 유리 반사에서 하이라이트가 죽지 않을 정도로만(예: 10.0) 값을 설정합니다."
+    },
+    {
+      "name": "Clamp Indirect",
+      "value": "기본값 0.0 (비활성화)",
+      "effect": "간접 조명 바운스에서 발생하는 반사 노이즈와 반딧불 현상(Fireflies)을 억제합니다.",
+      "tip": "실내 어두운 곳에서 반사광 노이즈가 심할 때 1.0~5.0 사이로 값을 주면 효과적입니다."
+    },
+    {
+      "name": "Passes Albedo",
+      "value": "자동 활성화",
+      "effect": "디노이저가 오브젝트의 고유 색상(Albedo)과 그림자·노이즈를 구분하도록 돕는 보조 데이터 패스입니다.",
+      "tip": "텍스처 디테일이 디노이저에 의해 뭉개지는 현상을 방지합니다."
+    },
+    {
+      "name": "Passes Normal",
+      "value": "자동 활성화",
+      "effect": "표면의 굴곡과 법선 정보를 디노이저에 전달하여 모서리 디테일을 보존합니다.",
+      "tip": "범프나 노말 맵의 디테일이 흐려지는 것을 막아줍니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "OptiX",
+      "desc": "NVIDIA RTX 그래픽카드의 AI 코어(Tensor Core)를 활용하는 실시간 및 렌더 디노이저로 매우 빠릅니다."
+    },
+    {
+      "name": "OpenImageDenoise (OIDN)",
+      "desc": "Intel이 개발한 오픈소스 AI 디노이저로, CPU와 AMD/Intel/NVIDIA 모든 GPU(환원 계산)에서 안정적으로 동작합니다."
+    },
+    {
+      "name": "None",
+      "desc": "디노이징을 적용하지 않고 순수 샘플링 결과물만 출력합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "실내 건축 시각화(ArchViz) 노이즈 잡기",
+      "steps": [
+        "Properties → Render Properties → Sampling 패널에서 Render Samples를 256으로 설정합니다.",
+        "Light Paths 탭에서 Max Bounces의 Indirect Light 값을 낮추거나 Clamp Indirect를 1.0으로 설정합니다.",
+        "Denoising 섹션에서 Render를 켜고 Device를 OptiX로 선택합니다.",
+        "F12를 눌러 렌더링 후 Viewport에서 노이즈가 깔끔하게 제거되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "애니메이션 렌더링 시 디노이저 깜빡임 방지",
+      "steps": [
+        "Render Properties → Sampling → Denoising 섹션으로 이동합니다.",
+        "Denoising Pass를 Combined 외에 Albedo와 Normal 패스가 활성화되어 있는지 확인합니다.",
+        "OpenImageDenoise를 선택하고 Pass Type을 Full로 설정합니다.",
+        "시퀀스 렌더링 후 영상 재생 시 프레임 간 지글거림이 최소화되었는지 검토합니다."
+      ]
+    },
+    {
+      "title": "저사양 PC를 위한 Viewport 최적화",
+      "steps": [
+        "Properties → Render Properties → Sampling 패널을 엽니다.",
+        "Viewport Samples 값을 16 또는 32로 낮춥니다.",
+        "Viewport Denoising 항목을 체크하여 실시간으로 화면이 부드럽게 정돈되도록 설정합니다.",
+        "Viewport Shading 메뉴에서 Rendered 모드로 전환해 빠른 피드백을 확인합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "렌더 시간이 너무 길다면 Samples를 무조건 올리기보다 Denoising(OptiX)을 켜고 샘플 수를 낮추는 것이 효율적입니다.",
+    "유리나 물 등 투명한 재질이 많을 때는 Light Paths의 Total 및 Transmission 바운스 수를 낮추면 렌더 속도가 빨라집니다.",
+    "GPU 렌더링 시 System 설정에서 CUDA 또는 OptiX(NVIDIA), HIP(AMD), OneAPI(Intel) 장치가 올바르게 체크되어 있는지 확인하세요."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "디노이저 적용 후 텍스처의 세밀한 폰트나 패턴이 문지른 것처럼 뭉개집니다.",
+      "fix": "Samples 수를 약간 높이거나, Denoising 패스 설정에서 Albedo 및 Normal 데이터가 올바르게 전달되고 있는지 확인합니다."
+    },
+    {
+      "symptom": "렌더링 이미지 군데군데 하얗게 반짝이는 점(Fireflies)이 사라지지 않습니다.",
+      "fix": "Sampling 패널의 Clamp Indirect 값을 1.0~10.0 사이로 설정하여 과도한 반사 광량을 제한합니다."
+    },
+    {
+      "symptom": "OptiX 디노이징 옵션이 활성화되지 않거나 선택할 수 없습니다.",
+      "fix": "사용 중인 그래픽카드가 NVIDIA RTX/GTX 시리즈인지 확인하고, Edit → Preferences → System에서 OptiX 디바이스가 체크되어 있는지 확인합니다."
+    }
+  ],
+  "versions": "Blender 3.0 이후부터 OptiX 및 OIDN 통합 디노이징 워크플로가 기본 패널로 표준화되었으며, 버전이 올라갈수록 실시간 Viewport 디노이징 성능이 대폭 개선되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cycles%20samples%20and%20denoising",
+  "grounded": true,
+  "at": "2026-11-19T23:09:53+00:00"
+}
