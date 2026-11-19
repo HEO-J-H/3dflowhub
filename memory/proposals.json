@@ -34553,5 +34553,53 @@
     "id": "p-d1d6d8666f",
     "verdict": "agent",
     "reason": "backend/tests/test_mesh_pipeline.py 테스트 파일 생성 및 단위 테스트 작성 작업은 코드 수정으로 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-19T09:09:53+00:00",
+    "kind": "proposal",
+    "id": "p-0f8bfd4dc8",
+    "title": "PR #1 img2threejs 엔진 실제 구현 및 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며 단순 이름만 추가된 상태에서 실제 img2threejs 호출과 에러 핸들링 구현이 필요합니다.",
+    "proposal": "backend/app/services/img2threejs_runner.py와 관련 테스트 파일에 실제 엔진 호출 로직 및 예외 처리 테스트를 구현하여 PR을 재검토하도록 합니다.",
+    "expected": "실제 동작하는 3D 변환 엔진 확장 및 테스트 신뢰도 향상",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T09:09:53+00:00",
+    "kind": "proposal",
+    "id": "p-bcff77c5cf",
+    "title": "실패한 문서 과제 정리 및 단순화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "docs/local-pipeline.md 관련 문서 과제가 search 블록 불일치 등으로 반복 실패 및 스킵되었습니다.",
+    "proposal": "실패한 문서 과제 대기열을 정리하고, search 블록 대신 전체 파일 덮어쓰기나 단순한 텍스트 보완 방식으로 과제를 재등록합니다.",
+    "expected": "불필요한 과제 실패 누적 방지 및 문서 업데이트 정상화",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T09:10:30.058153+00:00",
+    "kind": "decision",
+    "id": "p-0f8bfd4dc8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 엔진 구현 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T09:10:30.085826+00:00",
+    "kind": "decision",
+    "id": "p-bcff77c5cf",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 실패한 문서 과제 정리 및 재시도 방지",
+    "auto": true
   }
 ]
