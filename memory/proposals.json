@@ -35180,5 +35180,67 @@
     "id": "p-ecd38457f3",
     "v": "done",
     "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-19T14:38:38+00:00",
+    "kind": "proposal",
+    "id": "p-cd72f0cc10",
+    "title": "PR #1 img2threejs 실제 연동 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 남아 있으며, img2threejs 호출 및 예외 처리 테스트 검증이 필요합니다.",
+    "proposal": "backend/tests/test_img2threejs.py 파일을 생성하여 img2threejs 엔진 연동 시 정상 동작 및 예외 처리 케이스에 대한 단위 테스트를 작성합니다.",
+    "expected": "PR #1의 검토 기준을 충족하고 실제 연동 안정성을 확보합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T14:38:38+00:00",
+    "kind": "proposal",
+    "id": "p-ec23087999",
+    "title": "RAG 오픈소스 반영 가이드 최종 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "오너의 RAG 오픈소스 반영 요청에 따라 관련 문서들이 작성 및 정리되었습니다.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 최종 검토하여 라이선스(MIT/Apache-2.0) 및 CPU/GPU 요구사항 명세를 보완합니다.",
+    "expected": "향후 RAG 관련 외부 코드 도입 시 명확한 기준을 제공합니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T14:41:03.726790+00:00",
+    "kind": "decision",
+    "id": "p-cd72f0cc10",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 실제 연동 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T14:41:03.762364+00:00",
+    "kind": "decision",
+    "id": "p-ec23087999",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T14:41:13.313869+00:00",
+    "kind": "triage",
+    "id": "p-ec23087999",
+    "verdict": "done_already",
+    "reason": "docs/agent-guides/rag-integration.md 문서와 오픈소스 라이선스 검토 내용이 이미 최근 커밋과 끝낸 제안에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-19T14:41:13.344517+00:00",
+    "kind": "decision",
+    "id": "p-ec23087999",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): docs/agent-guides/rag-integration.md 문서와 오픈소스 라이선스 검토 내용이 이미 최근 커밋과 끝낸 제안에 반영되어 있습니다."
   }
 ]
