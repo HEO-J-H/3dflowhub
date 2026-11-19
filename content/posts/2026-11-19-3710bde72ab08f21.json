@@ -40,6 +40,21 @@
     {
       "heading": "향후 적용 계획",
       "body": "현재는 개념 단계이며, 구체적인 출시 일정이나 기능 상세는 아직 공개되지 않았다. Epic Games는 차기 업데이트에 베타 테스트를 포함시킬 가능성을 열어두고 있다. 개발자 커뮤니티의 피드백을 받아 기능을 다듬을 예정이다."
+    },
+    {
+      "heading": "AI 에이전트를 활용한 자동 파라미터 조정",
+      "body": "Unreal Engine 5.9 프리뷰에서 AI 에이전트를 활성화하면 엔진이 실시간으로 메모리 사용량·GPU 부하·프레임 타임을 모니터링하고, Shader 옵션·LOD 설정·Post 프로세스 효과를 자동으로 최적화한다. 개발자는 별도 Script를 작성할 필요 없이 프로젝트 설정에서 ‘AI Agent’ 플러그인을 켜고, 목표 품질(예: 라이트맵 품질)과 성능(예: 목표 프레임 레이트)을 지정하면 엔진이 내부 파라미터를 조정한다. 이 과정은 빌드 단계에서도 적용돼 컴파일 옵션을 자동 최적화한다. 결과적으로 하드웨어 사양이 다른 팀에서도 일관된 비주얼 품질을 유지할 수 있다.",
+      "added": true
+    },
+    {
+      "heading": "AI 에이전트를 이용한 병렬 빌드 워크플로",
+      "body": "5.9 프리뷰에서는 여러 개발자가 동시에 AI 에이전트에게 작업을 할당받아 엔진 전체를 7일 만에 재구축했다. 에이전트는 빌드 Script에 삽입돼 코드 충돌을 최소화하고 빌드 오류를 자동으로 해결한다. 실무에서는 ‘Build Automation’ 옵션을 켜고, 에이전트가 관리할 모듈을 지정하면 기존 수동 빌드보다 빠른 반복이 가능하다. 아직 베타 단계이므로 프로젝트에 적용하려면 차기 업데이트 베타 테스트에 참여해야 한다.",
+      "added": true
+    },
+    {
+      "heading": "AI 에이전트 활용 참고 영상",
+      "body": "다음 영상에서 Unreal Engine 내부에 AI 에이전트를 적용해 빌드와 파라미터 최적화를 수행하는 과정을 확인할 수 있다. 1) “Epic Games Used AI Agents to Build Unreal Engine Itself! 🤯” – AI 에이전트가 빌드 파이프라인에 어떻게 삽입되는지 시연. 2) “Unreal Engine 6 is COOKED” – 차기 엔진 버전에서 AI 기반 자동화 기능이 어떻게 확장될지 예고한다. 영상은 공식 Epic Games 채널에서 확인 가능하다.",
+      "added": true
     }
   ],
   "faq": [
@@ -50,6 +65,14 @@
     {
       "q": "언제부터 사용 가능해지나요?",
       "a": "기사에서는 구체적인 적용 시점을 밝히지 않았다."
+    },
+    {
+      "q": "AI 에이전트를 프로젝트에 적용하려면 어떤 설정을 해야 하나요?",
+      "a": "Unreal Engine 5.9 프리뷰에서 ‘Edit → Plugins’ 메뉴에서 ‘AI Agent’ 플러그인을 활성화하고, ‘Project Settings → AI Agent’에서 목표 품질·성능 지표를 입력하면 엔진이 자동으로 파라미터를 조정합니다."
+    },
+    {
+      "q": "베타 테스트에 참여하려면 어떻게 신청하나요?",
+      "a": "Epic Games는 차기 업데이트에 베타 테스트를 포함할 가능성을 열어두고 있으니, Unreal Engine 포럼이나 ‘Unreal Engine Insider’ 프로그램에 가입해 베타 초대장을 신청하면 됩니다."
     }
   ],
   "media": {
@@ -61,5 +84,23 @@
   "id": "2026-11-19-3710bde72ab08f21",
   "img_tried": true,
   "enriched": "2026-11-19",
-  "img_ok": "2026-11-19T00:39:19+00:00"
+  "img_ok": "2026-11-19T00:39:19+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "LJOwSwMYif0",
+      "title": "Epic Games Used AI Agents to Build Unreal Engine Itself! 🤯",
+      "author": "GotMotion AI"
+    },
+    {
+      "id": "oOn_2xeZJKY",
+      "title": "Unreal Engine 6 is COOKED",
+      "author": "Cobra Code"
+    }
+  ],
+  "enriched_at": "2026-11-19T01:01:07+00:00",
+  "quality": {
+    "before": 752,
+    "after": 1588
+  }
 }
