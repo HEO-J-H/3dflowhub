@@ -1,0 +1,60 @@
+{
+  "title_ko": "Unreal Engine 디버깅 — Output Log와 MCP Inspector 활용법",
+  "title": "How to Debug Unreal MCP with the Output Log & MCP Inspector",
+  "url": "https://www.youtube.com/watch?v=RvtqksJix-Y",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Unreal Engine",
+    "Unreal MCP",
+    "Output Log",
+    "MCP Inspector",
+    "디버깅",
+    "언리얼 엔진"
+  ],
+  "summary": "Unreal MCP 툴 호출 오류를 Output Log와 공식 MCP Inspector를 사용하여 독립적으로 검증하고 해결하는 방법을 설명합니다.",
+  "insight": "AI 에이전트 없이 MCP Inspector를 사용해 툴을 직접 호출하면 Prompt 문제가 아니라 툴이나 서버 자체의 오류인지 단번에 판별할 수 있습니다. 툴 호출 과정에서 오가는 요청을 명확하게 추적하면 실패 지점을 빠르게 좁힐 수 있습니다. 에디터 내부의 상태와 외부 서버 간의 통신에서 발생하는 변수를 배제하고 테스트하는 것이 핵심입니다.",
+  "try_it": [
+    "Unreal Engine에서 Output Log 창을 열어 실시간으로 출력되는 MCP 관련 로그를 확인합니다.",
+    "공식 MCP Inspector 클라이언트를 실행하여 AI 에이전트를 거치지 않고 툴을 직접 호출합니다.",
+    "Inspector 환경에서 툴 호출이 실패하는지 확인하여 서버 설정과 Prompt 문제를 분리합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Output Log를 통한 MCP 활동 추적",
+      "body": "Unreal Engine의 Output Log 창에서는 현재 실행 중인 MCP 관련 로그를 실시간으로 확인할 수 있습니다. 툴 호출 과정에서 어떤 요청이 오갔는지 추적하여 실패 지점을 정확히 파악할 수 있는 단서를 제공합니다."
+    },
+    {
+      "heading": "MCP Inspector를 활용한 독립적 툴 호출",
+      "body": "MCP Inspector는 오픈 표준을 위해 제작된 공식 디버깅 클라이언트입니다. AI 에이전트를 거치지 않고 직접 툴을 나열하고 호출할 수 있어, 에이전트 연동 과정에서 발생하는 변수를 배제하고 테스트할 수 있습니다."
+    },
+    {
+      "heading": "서버와 툴 오류의 명확한 분리 진단",
+      "body": "MCP Inspector 환경에서도 툴 호출이 실패한다면 원인은 Prompt가 아니라 툴 자체나 서버 설정에 있습니다. 문제의 원인이 어디에 있는지 신속하게 좁혀 불필요한 디버깅 시간을 줄여줍니다."
+    },
+    {
+      "heading": "Unreal MCP 툴 호출 검증",
+      "body": "Unreal MCP를 활용하는 동안 발생하는 툴 호출 오류를 Output Log와 공식 MCP Inspector를 사용해 독립적으로 검증합니다. 두 도구를 함께 활용하면 문제의 원인을 명확하게 분리하여 진단할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "MCP Inspector는 무엇인가요?",
+      "a": "오픈 MCP 표준을 위해 제공되는 공식 디버깅 클라이언트로, AI 에이전트를 통하지 않고 툴을 직접 호출하여 테스트할 수 있는 도구입니다."
+    },
+    {
+      "q": "툴 호출 실패의 원인이 프롬프트인지 툴 자체인지 어떻게 구별하나요?",
+      "a": "AI 에이전트를 배제한 채 MCP Inspector를 통해 직접 툴을 호출했을 때 실패한다면, Prompt가 아니라 툴이나 서버 설정에 문제가 있는 것입니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/RvtqksJix-Y/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=RvtqksJix-Y"
+  },
+  "collected_at": "2026-11-19T20:49:41.234519+00:00",
+  "notion_id": "",
+  "id": "2026-11-19-622318e5747e26da",
+  "img_tried": true,
+  "enriched": "2026-11-19"
+}
