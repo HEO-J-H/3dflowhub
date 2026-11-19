@@ -5,66 +5,70 @@
   "group": "3D 메시 및 모델",
   "name": "Split Mesh",
   "title": "Split Mesh — 3D 메시 분할",
-  "summary": "Photoshop의 Split Mesh 기능은 3D 메시를 여러 개의 독립된 조각이나 그룹으로 분할하여 세부 편집이 가능하도록 쪼개는 도구입니다. 복잡한 3D 모델의 특정 영역을 분리하거나 개별 파트로 나눌 때 사용합니다.",
+  "summary": "Photoshop의 Split Mesh 기능은 복잡한 3D 모델을 여러 개의 독립된 그룹이나 파트로 분할하여 개별적으로 편집할 수 있게 쪼개는 도구입니다. 하나의 덩어리로 된 3D 오브젝트에서 특정 영역을 세부적으로 관리할 때 사용합니다.",
   "when": [
-    "통짜로 생성된 3D 모델의 특정 부위를 개별 오브젝트로 분리하고 싶을 때",
-    "3D 로고나 타이포그래피의 파트별 영역을 따로 편집하거나 텍스처를 다르게 적용할 때",
-    "메시의 연결 구조를 끊어 독립적인 서브셋(Subset)으로 관리할 필요가 있을 때"
+    "하나의 3D 모델을 여러 개의 독립된 파트로 나누어 수정하고 싶을 때",
+    "복잡한 3D 오브젝트의 특정 영역을 분리하여 개별 텍스처를 적용할 때",
+    "3D 프린팅이나 파츠별 애니메이션을 위해 오브젝트를 해체해야 할 때"
   ],
   "steps": [
     "Photoshop에서 3D 레이어가 포함된 작업 파일을 엽니다.",
     "Layers 패널에서 편집할 3D 레이어를 선택합니다.",
-    "상단 메뉴 바에서 3D > Split Mesh를 클릭합니다.",
-    "Properties 패널 또는 3D 패널에서 분리된 메시(Sub-meshes)가 목록에 나타나는지 확인합니다.",
-    "Viewport에서 개별 메시를 선택하여 이동하거나 독립적으로 편집합니다."
+    "상단 메뉴 바에서 3D > Split Mesh를 선택합니다.",
+    "Properties 패널에서 분할된 그룹과 메시 구조를 확인합니다.",
+    "Move Tool이나 3D Axis를 사용해 분리된 각 파트를 이동하거나 수정합니다."
   ],
   "params": [
     {
+      "name": "3D Layer",
+      "desc": "분할할 3D 오브젝트가 포함된 레이어 선택"
+    },
+    {
       "name": "Split Mesh",
-      "desc": "선택한 3D 레이어의 메시를 개별 그룹이나 독립된 파트로 쪼갭니다."
+      "desc": "선택한 3D 모델을 독립된 메시 파트로 나누는 기능"
     },
     {
-      "name": "Sub-meshes",
-      "desc": "분할된 각각의 메시 구성 요소를 목록으로 표시하고 관리합니다."
+      "name": "Properties Panel",
+      "desc": "분할된 메시 그룹의 속성과 구조를 확인하고 관리하는 패널"
     },
     {
-      "name": "3D Panel",
-      "desc": "분할된 메시의 계층 구조와 재질을 확인하고 선택합니다."
+      "name": "Layers Panel",
+      "desc": "작업 중인 2D 및 3D 레이어의 목록과 상태를 표시하는 패널"
     }
   ],
   "examples": [
     {
-      "title": "3D 로고 파트별 분리",
+      "title": "기계 모델 파트 분리",
       "steps": [
-        "투명 PNG로 제작된 2D 로고를 불러와 New Mesh from Layer로 3D 변환합니다.",
-        "3D 메뉴에서 Split Mesh를 실행하여 글자나 도형 단위로 메시를 쪼갭니다.",
-        "3D 패널에서 각 글자를 선택해 위치를 조절하거나 다른 재질을 부여합니다."
+        "기계 부품 3D 모델을 불러옵니다.",
+        "3D > Split Mesh를 실행하여 연결된 메시를 개별 파트로 나눕니다.",
+        "Layers 패널에서 특정 부품 파트만 선택해 위치를 이동합니다."
       ]
     },
     {
-      "title": "입체 형태의 독립 부품화",
+      "title": "캐릭터 오브젝트 개별 편집",
       "steps": [
-        "통합된 3D 오브젝트 레이어를 선택합니다.",
-        "Split Mesh를 적용해 연결된 메시 그룹을 해제합니다.",
-        "필요 없는 조각을 삭제하거나 개별적으로 이동합니다."
+        "캐릭터가 착용한 액세서리 3D 모델을 선택합니다.",
+        "Split Mesh를 적용해 본체와 액세서리를 독립된 레이어로 분리합니다.",
+        "각 파트별로 다른 재질과 색상을 적용합니다."
       ]
     }
   ],
   "mistakes": [
-    "일반 2D 레이어에서 바로 실행하는 실수 → 반드시 3D 레이어로 변환(New 3D Extrusion from Layer 등)된 상태인지 확인하세요.",
-    "합쳐진 단일 메시에만 적용되어 원하는 만큼 쪼개지지 않는 실수 → 메시 구조상 독립된 연결 부위가 있어야 분할됩니다."
+    "2D 레이어 선택 상태에서 실행함 → 3D 레이어를 선택한 후 Split Mesh를 실행해야 합니다.",
+    "단일 메시가 아닌 경우 분할되지 않음 → 닫힌 지오메트리 구조의 3D 모델인지 확인합니다."
   ],
   "related": [
-    "New Mesh from Layer",
+    "Mesh from Layer",
+    "New 3D Layer from File",
     "Merge 3D Layers",
-    "3D Extrusion",
-    "3D Print Settings"
+    "3D Printing Settings"
   ],
   "videos": [
     {
-      "id": "fVOYv8HdMxI",
-      "title": "Split Meshes In Two | Bisect Tool | Blender Quickie",
-      "author": "PIXXO 3D"
+      "id": "Yb_da0GDgdU",
+      "title": "How to Split a Photoshop Image into 2/4 Parts",
+      "author": "The Learning Zone"
     },
     {
       "id": "Und37Uvrogo",
@@ -80,5 +84,5 @@
     "Layers",
     "Split Mesh"
   ],
-  "at": "2026-11-17T08:48:12.023797+00:00"
+  "at": "2026-11-19T20:30:27.028469+00:00"
 }
