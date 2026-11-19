@@ -1,0 +1,39 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-export-usd--cccf7",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to export USD file due to write permission denied",
+  "title": "Stage Error: Failed to export USD file due to write permission denied 오류 해결",
+  "summary": "NVIDIA Omniverse Kit 앱에서 USD 파일을 내보내거나 저장할 때, 대상 폴더나 파일에 쓰기 권한이 없어 발생하는 오류입니다. 주로 읽기 전용 파일이거나 시스템 폴더 접근 제한 때문에 발생합니다.",
+  "causes": [
+    "저장하려는 대상 파일이나 폴더가 읽기 전용(Read-only)으로 설정되어 있는 경우",
+    "현재 사용자 계정에 해당 디렉터리에 대한 쓰기 권한이 없는 경우",
+    "다른 프로그램이나 백그라운드 프로세스가 해당 USD 파일을 열어 잠궈(Lock) 둔 경우",
+    "Windows Program Files 등 관리자 권한이 필요한 시스템 경로에 저장을 시도한 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 현재 작업 중인 USD 레이어의 파일 경로와 저장 위치를 확인합니다.",
+    "Windows 탐색기에서 저장하려는 폴더로 이동한 뒤, Mouse 우클릭하여 속성(Properties)을 엽니다.",
+    "일반(General) 탭 하단의 '읽기 전용(Read-only)' 체크 해제 후 적용(Apply)을 누릅니다.",
+    "권한 문제가 지속될 경우, Omniverse Kit 앱을 종료하고 Mouse 우클릭하여 '관리자 권한으로 실행(Run as administrator)'합니다.",
+    "파일 이름이나 경로에 한글, 특수문자, 공백이 포함되어 있다면 File > Save As를 통해 영문 경로로 다시 저장합니다."
+  ],
+  "check": [
+    "File > Save 또는 Export를 다시 실행했을 때 오류 메시지 없이 저장이 완료되는지 확인합니다.",
+    "Stage 패널에서 해당 USD 레이어의 상태가 정상적으로 저장된 상태로 업데이트되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 파일은 권한 제한이 없는 로컬 드라이브의 전용 작업 폴더에 저장합니다.",
+    "외장 드라이브나 네트워크 공유 폴더를 사용할 때는 사전에 쓰기 권한이 부여되어 있는지 확인합니다."
+  ],
+  "keywords": [
+    "Omniverse USD 저장 오류",
+    "Failed to export USD file",
+    "쓰기 권한 없음",
+    "Stage Error permission denied",
+    "USD 파일 Export 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T08:14:23+00:00"
+}

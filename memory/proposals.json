@@ -34316,5 +34316,60 @@
     "id": "p-8df743dd72",
     "v": "done",
     "note": "GLB 변환 중 버튼 잠금·⏳ 상태 표시, 형식 안내 한 줄 추가"
+  },
+  {
+    "at": "2026-11-19T08:12:15+00:00",
+    "kind": "proposal",
+    "id": "p-b23efc474f",
+    "title": "backend/tests/test_heightmap.py 단위 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services/heightmap_service.py 관련 테스트가 추가되었으나 예외 상황 처리 검증이 필요합니다.",
+    "proposal": "backend/tests/test_heightmap.py 에 비정상 입력값(빈 이미지, 잘못된 크기)에 대한 예외 처리 테스트 케이스를 추가합니다.",
+    "expected": "높이맵 메시 및 PBR 생성 파이프라인의 안정성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:12:15+00:00",
+    "kind": "proposal",
+    "id": "p-b1e2f4817c",
+    "title": "PR #1 img2threejs 엔진 구현 세분화 과제 등록",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "PR #1이 'revise' 상태로 남아 있으며, 실제 img2threejs 호출과 결과 파일 반환 처리 구현이 필요합니다.",
+    "proposal": "docs/agent-guides/img2threejs-impl.md를 작성하여 img2threejs 엔진의 실제 호출 함수 정의와 예외 처리 절차를 문서화합니다.",
+    "expected": "향후 코딩 에이전트가 명확한 가이드를 바탕으로 PR #1의 핵심 기능을 구현할 수 있도록 유도",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:15:13.011508+00:00",
+    "kind": "decision",
+    "id": "p-b23efc474f",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:15:13.045086+00:00",
+    "kind": "decision",
+    "id": "p-b1e2f4817c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:15:16.284656+00:00",
+    "kind": "triage",
+    "id": "p-b1e2f4817c",
+    "verdict": "agent",
+    "reason": "docs/agent-guides/img2threejs-impl.md 문서를 작성하여 함수 정의와 예외 처리 절차를 구체화하는 작업은 코드 및 문서 수정으로 해결할 수 있습니다."
   }
 ]
