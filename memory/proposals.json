@@ -35526,5 +35526,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: docs/agent-guides/rag-integration-guide.",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T16:48:59+00:00",
+    "kind": "proposal",
+    "id": "p-7efafe5998",
+    "title": "heightmap_service 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "backend/app/services/heightmap_service 관련 테스트 파일이 부족하며, 안전한 로컬 파이프라인 검증이 필요합니다.",
+    "proposal": "backend/tests/test_heightmap_service.py 파일을 새로 작성하여 높이맵 생성 및 PBR 맵 출력 로직을 테스트합니다.",
+    "expected": "핵심 서비스의 안정성이 높아지고 코딩 에이전트의 자동 머지가 원활해집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T16:48:59+00:00",
+    "kind": "proposal",
+    "id": "p-2e0228a56e",
+    "title": "로컬 파이프라인 안내 문서 재정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 수정 작업이 목차 불일치 및 패치 적용 실패로 반복 헬드되었습니다.",
+    "proposal": "docs/local-pipeline.md 파일의 실제 목차와 본문 내용을 단순화하여 안전하게 수정합니다.",
+    "expected": "문서 관련 헬드 상태를 해소하고 사용자 안내 정확도를 높입니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T16:49:44.621565+00:00",
+    "kind": "decision",
+    "id": "p-7efafe5998",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T16:49:44.653659+00:00",
+    "kind": "decision",
+    "id": "p-2e0228a56e",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 로컬 파이프라인 안내 문서 수정",
+    "auto": true
   }
 ]
