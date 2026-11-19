@@ -1,0 +1,55 @@
+{
+  "title_ko": "NVIDIA Cosmos: 두 Prompt만으로 물리 AI 데이터셋 구축",
+  "title": "Build Training-Ready Physical AI Datasets with Two Prompts in NVIDIA Cosmos",
+  "url": "https://developer.nvidia.com/blog/build-training-ready-physical-ai-datasets-with-two-prompts-in-nvidia-cosmos/",
+  "domain": "AI 3D",
+  "category": "NVIDIA Cosmos",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "NVIDIA",
+    "Cosmos",
+    "DataFactory",
+    "SyntheticData",
+    "AI"
+  ],
+  "summary": "NVIDIA Cosmos Data Factory는 두 개의 Prompt만으로 물리 AI 학습용 데이터셋을 자동으로 구축하고 라벨링합니다.",
+  "insight": "두 Prompt만으로 전체 데이터 파이프라인을 자동화하면, 3D 아티스트가 반복적인 라벨링 작업에 소요되는 시간을 크게 줄일 수 있습니다. 특히, 드라이브 시나리오나 결함 이미지처럼 특수 상황을 만들 때 별도 모델을 학습시키지 않아도 되므로 초기 투자 비용이 낮아집니다. 클라우드 기반 서비스이기 때문에 로컬 하드웨어 사양에 구애받지 않고 확장성을 확보할 수 있습니다.",
+  "try_it": [
+    "NVIDIA Omniverse Launcher를 실행하고 Cosmos Data Factory를 선택합니다.",
+    "코딩 에이전트에 첫 번째 Prompt를 입력해 레포지토리를 복제하고 환경을 설정합니다.",
+    "두 번째 Prompt에 \"Run Driving Scenario blueprint\"와 같은 명령을 넣어 원하는 시나리오를 생성합니다.",
+    "결과물을 USD 또는 FBX 포맷으로 내보내어 현재 사용 중인 3D 툴에 임포트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "CDF Orchestration 핵심 스킬",
+      "body": "CDF Orchestration은 모든 블루프린트 실행을 한 번에 관리합니다. 클러스터에 필요한 서비스를 자동 배포하고 단계별 워크플로를 조정합니다. 이 스킬 하나만 있으면 다섯 개 레퍼런스 블루프린트를 동일한 환경에서 구동할 수 있습니다."
+    },
+    {
+      "heading": "두 Prompt로 워크플로 시작하기",
+      "body": "첫 번째 Prompt에 \"Clone the CDF Orchestration repository, then run orchestration preflight and setup\"을 입력하면 레포지토리를 복제하고 사전 점검을 수행합니다. 사전 점검이 통과하면 환경 설정이 완료돼 블루프린트 실행 준비가 됩니다. 두 번째 Prompt에 원하는 사용 사례 명령을 넣으면 데이터 수집·증강·라벨링까지 자동으로 진행됩니다."
+    },
+    {
+      "heading": "다섯 가지 블루프린트 활용 예시",
+      "body": "Driving Scenario 블루프린트는 자율주행 차량 훈련용 도로 씬을 생성합니다. Image Augmentation은 검색·재식별을 위한 이미지 속성 변형을 제공합니다. Weather & Lighting 블루프린트는 비디오에 날씨·조명 변화를 입혀 다양한 환경을 시뮬레이션합니다. Rare Event 블루프린트는 드물게 발생하는 사고 영상을 합성하고, Defect Image 블루프린트는 시각 검사용 결함 이미지를 자동 생성합니다."
+    },
+    {
+      "heading": "성능·비용 지표",
+      "body": "NVIDIA는 RTX PRO 6000 Blackwell 8GPU 서버에서 일일 처리량을 테스트했습니다. 데이터셋 조립 속도가 최대 60배 빨라졌으며, 시나리오 생성 비용은 45배 절감되었습니다. 기존 수작업 대비 대규모 시나리오를 빠르게 만들 수 있어 프로젝트 일정 단축에 직접적인 도움이 됩니다."
+    },
+    {
+      "heading": "3D 파이프라인과 연계하기",
+      "body": "생성된 데이터는 USD, FBX 등 표준 포맷으로 내보낼 수 있어 Maya, Blender, Unreal Engine 등 기존 툴과 바로 연결됩니다. 라벨링된 메쉬와 애니메이션은 VFX나 시뮬레이션 단계에서 바로 활용할 수 있습니다. 또한, Omniverse와 연동하면 실시간 협업 환경에서도 결과물을 검증할 수 있습니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/cosmos-gif-500x282.gif",
+    "video": "https://www.youtube.com/watch?v=D47jNWtzPsI"
+  },
+  "collected_at": "2026-11-19T00:39:18.742563+00:00",
+  "notion_id": "",
+  "id": "2026-11-19-e0a5680da648bf1e",
+  "img_ok": "2026-11-19T00:39:18+00:00",
+  "enriched": "2026-11-19"
+}
