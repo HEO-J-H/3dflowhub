@@ -622,6 +622,83 @@ a.read{opacity:.62}a.read .t::after,a.read .kicker::after{content:" · 읽음";f
 .lt-th{width:64px;height:36px;border-radius:6px;object-fit:cover;flex:none;background:var(--accent-soft)}
 .lt-ph{display:grid;place-items:center;font-size:16px}.lt-t{flex:1;min-width:0;line-height:1.35}
 .lt-v{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:2px 8px}
+
+/* ═══ 디자인 v2 (2026-11-20) — 'AI 템플릿 티' 걷어내기: 종이 톤 + 단색 포인트 1개 + 헤어라인 구획 + 각진 모서리 ═══
+   60% 뉴트럴 배경 · 30% 서피스/선 · 10% 포인트(버밀리온, 3D 뷰포트 선택 하이라이트 느낌). 그림자·그라데이션·뜨는 호버 없음. */
+:root{
+  --bg:#F7F7F5;--surface:#FFFFFF;--surface-2:#F1F1EE;--text:#1C1917;--text-2:#3A3633;--muted:#6B6661;
+  --line:#E2E4E9;--accent:#C2410C;--accent-2:#C2410C;--accent-soft:rgba(194,65,12,.07);
+  --glass:rgba(247,247,245,.92);--shadow:none;--shadow-lift:none;--r-lg:6px;--r:6px;--r-sm:4px;--hero:var(--surface);
+  --serif:"Noto Serif KR","Nanum Myeongjo",serif;--sans:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#121316;--surface:#1A1C20;--surface-2:#16181B;--text:#E8E6E3;--text-2:#C9C6C1;--muted:#8E8A85;
+  --line:#2A2D34;--accent:#F97316;--accent-2:#F97316;--accent-soft:rgba(249,115,22,.10);--glass:rgba(18,19,22,.94);
+}}
+body{font-family:var(--sans);font-feature-settings:"tnum" 0}
+h1,h2.sec,.card .t,.cards.lead-grid .card:first-child .t,article h1,article h2,.feat .ft{font-family:var(--serif);font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:21px;margin:44px 0 0;padding-bottom:10px;border-bottom:1px solid var(--text)}
+h2.sec a{font-family:var(--sans);font-size:14px}
+h2.sec+*{margin-top:0}
+/* 데이터 요소는 고정폭 — 버전·마감·개수·분류 */
+.badge,.n,small.n,.card .kicker,.card .meta,.gcard .k,.evmeta .dd,.evmeta .pill,.mp-chip,.k,.rank a:before,.stats b,.hero .stats,.dd-mono,time{font-family:var(--mono);letter-spacing:0}
+.card .kicker,.gcard .k{text-transform:none;font-size:11.5px;font-weight:500}
+/* 모서리·그림자·그라데이션 정리 */
+.card,.box,.tile,.board,.links a,.step,article,.rank,.gcard,.acard,.scard,.nl,.srcbox,.updbox,.menupath,.params,.ex .box,.docfig,.lpath a,.fb,dialog.repdlg{
+  box-shadow:none!important;border:1px solid var(--line);border-radius:var(--r)}
+.btn,.tabs a,nav.domains a,.pager a,.badge,.evmeta .dd,.gcard .th.v::after,.aplay .pl,.doc .pill,.nl button,.nl input,.search input,.iconbtn,.dd summary,.mnav summary,.ddm a,.msec a,.codebar button,.codebar a{border-radius:4px!important}
+.ddm{box-shadow:0 1px 0 var(--line)!important;border:1px solid var(--line)!important;border-radius:6px!important}
+.logo .mark{box-shadow:none;border-radius:4px}
+.logo .w3d{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--accent)}
+header{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:var(--glass)!important}
+/* 호버: 뜨거나 확대되지 않고 선·명도만 */
+.card:hover,.gcard:hover,.evcard:hover{transform:none!important;border-color:var(--text-2)}
+.card:hover .img img,.gcard:hover img,.evcard:hover .img img,.wall-item:hover img{transform:none!important;filter:none!important}
+.rv{opacity:1!important;transform:none!important}
+.card .img.ph{background:var(--surface-2)}
+.evmeta .dd.hot{background:var(--accent);color:#fff}
+.btn.primary{background:var(--text);color:var(--bg)}.btn.primary:hover{color:var(--bg);filter:none;background:var(--accent)}
+.btn.ghost{color:var(--text);border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--text)}
+nav.domains a{border:1px solid var(--line);background:transparent}
+nav.domains a.on{background:var(--text);color:var(--bg)}
+.tabs a.on,.pager a.on{background:var(--text);border-color:var(--text);color:var(--bg)}
+/* 장식 아이콘(이모지) 숨김 — 텍스트 라벨만 */
+.mi,.box h3>span[aria-hidden],.evph{display:none!important}
+.lt-th.lt-ph{font-size:0}
+/* 에디토리얼 리스트: 박스 없이 가로선 */
+.rank{background:transparent;border:0;padding:0}
+.rank a{border-bottom:1px solid var(--line)}
+.rank a:before{font-size:14px;color:var(--muted);font-weight:500}
+.links{gap:0!important;border-top:1px solid var(--line)}
+.links a{border:0!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;background:transparent;padding:14px 0}
+article{max-width:72ch}
+/* 홈 v2 */
+.intro{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin:28px 0 4px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.intro h1{margin:0;font-size:clamp(24px,3.2vw,32px)}
+.intro p{margin:4px 0 0;color:var(--muted);font-size:15px;max-width:60ch}
+.intro .stats{display:flex;gap:18px;font-size:13px;color:var(--muted)}.intro .stats b{color:var(--text);font-weight:600;margin-right:4px}
+.qnav{display:flex;flex-wrap:wrap;gap:0;margin:0;border-bottom:1px solid var(--line)}
+.qnav a{padding:12px 16px 12px 0;margin-right:16px;font-size:15px;font-weight:600;color:var(--text-2)}
+.qnav a:hover{color:var(--accent)}
+.feat{display:grid;grid-template-columns:65fr 35fr;gap:32px;margin-top:20px}
+.feat .fmain img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:var(--r);background:var(--surface-2)}
+.feat .fk{display:block;margin:12px 0 4px;font:500 12px/1 var(--mono);color:var(--accent)}
+.feat .ft{display:block;font-size:clamp(20px,2.4vw,28px);line-height:1.3}
+.feat .fs{color:var(--muted);margin:8px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.feat ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--text)}
+.feat ol li a{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
+.feat ol .k{display:block;font-size:11.5px;color:var(--muted);margin-bottom:3px}
+.feat ol .t{font-weight:600;line-height:1.4}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.dlist{list-style:none;margin:0;padding:0}
+.dlist li a{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.dlist .t{font-weight:600;line-height:1.4}.dlist .k{grid-column:1;font-size:12px;color:var(--muted)}
+.dlist .d{grid-row:1/3;grid-column:2;font:600 13px/1 var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+.dlist .d.hot{color:var(--accent)}
+.split h2.sec{margin-top:40px}
+details.dd,details.mnav{border:0!important;padding:0!important;margin:0!important;background:none!important}
+@media (max-width:820px){.feat,.split{grid-template-columns:1fr;gap:8px}.intro .stats{flex-wrap:wrap}}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -642,7 +719,7 @@ def og_default(domain: str = "") -> str:
 
 def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE_DESC, canonical: str = "",
          extra_head: str = "") -> str:
-    nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(DOMAIN_ICON[d])} {e(d)}</a>'
+    nav = "".join(f'<a href="{root}{cat_url(d)}" class="{"on" if d == domain_on else ""}">{e(d)}</a>'
                   for d in board_domains())
     if desc == SITE_DESC and root:  # 하위 페이지가 사이트 기본 설명을 그대로 쓰면 구글이 중복으로 봄 → 페이지 제목을 앞에
         desc = f"{title.rsplit(' - ', 1)[0]} — {SITE_DESC}"
@@ -656,9 +733,12 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 {og_default(domain_on) if 'og:image' not in extra_head else ''}
 {head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
-<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F7F7F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Noto+Serif+KR:wght@600;700&display=swap">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
@@ -758,8 +838,8 @@ def nav_tail(root: str) -> str:
     sheet = site_nav(root)[1]
     return (f'<a class="iconbtn" href="{root}saved/" aria-label="저장한 글" title="저장한 글">☆</a>'
             f'<details class="mnav"><summary aria-label="메뉴 열기"><span aria-hidden="true">☰</span> 메뉴</summary>'
-            f'<div class="sheet"><div class="sheet-in">{sheet}<div class="msec"><a href="{root}about/">📘 소개</a>'
-            f'<a href="{root}contact/">✉️ 문의</a></div></div></div></details>')
+            f'<div class="sheet"><div class="sheet-in">{sheet}<div class="msec"><a href="{root}about/">소개</a>'
+            f'<a href="{root}contact/">문의</a></div></div></div></details>')
 
 
 def site_ld() -> str:
@@ -2023,40 +2103,67 @@ def build() -> dict:
     mosaic = "".join(f'<img src="{e(p["media"]["image"])}" alt="" loading="lazy" referrerpolicy="no-referrer">'
                      for p in pool[:24])
     mosaic_pool = json.dumps([p["media"]["image"] for p in pool], ensure_ascii=False)
+    # 홈 v2 — 위에서 아래로 '브리핑 → 실무 인덱스 → 레이더 → 그림' 순으로 밀도가 높아짐 (거대 히어로·이모지·3열 카드 반복 없음)
+    feat_main = next((p for p in posts[:40] if (p.get("media") or {}).get("image") and p.get("summary")), None)
+    side = [p for p in (popular([p for p in posts if iso_week(p) == weeks[0]], 6, days=10) if weeks else posts[:6])
+            if not feat_main or p["id"] != feat_main["id"]][:5]
+    feat_html = ""
+    if feat_main:
+        feat_html = (
+            f'<section class="feat" aria-label="이번 주 핵심"><a class="fmain" href="{{ROOT}}p/{e(feat_main["id"])}.html">'
+            f'<img src="{e(feat_main["media"]["image"])}" alt="" loading="eager" referrerpolicy="no-referrer">'
+            f'<span class="fk">{e(feat_main.get("category") or feat_main["domain"])} · {kst_date(feat_main.get("collected_at") or "")}</span>'
+            f'<span class="ft">{e(feat_main["title_ko"])}</span><p class="fs">{e(feat_main.get("summary") or "")}</p></a>'
+            f'<div><ol>' + "".join(
+                f'<li><a href="{{ROOT}}p/{e(p["id"])}.html"><span class="k">{e(p.get("category") or p["domain"])}</span>'
+                f'<span class="t">{e(p["title_ko"])}</span></a></li>' for p in side)
+            + (f'</ol><p style="margin:12px 0 0;font-size:14px"><a href="{{ROOT}}weekly/{weeks[0]}/">이번 주 요약 전체 →</a></p>' if weeks else "</ol>")
+            + '</div></section>')
+
+    def _ev_row(x: dict) -> str:
+        try:
+            left = (datetime.fromisoformat(x["deadline"]).date() - datetime.now(timezone(timedelta(hours=9))).date()).days
+        except ValueError:
+            left = None
+        d = "오늘" if left == 0 else (f"D-{left}" if left is not None and left > 0 else "")
+        return (f'<li><a href="{e(x["url"])}" target="_blank" rel="noopener"><span class="t">{e(x["title"])}</span>'
+                f'<span class="d{" hot" if left is not None and left <= 7 else ""}">{d}</span>'
+                f'<span class="k">{e(x["kind"])}{" · " + e(x["host"]) if x.get("host") else ""}</span></a></li>')
+    ev_rows = "".join(_ev_row(x) for x in _ev.load_all()[:6])
+    radar = [p for p in posts if p["domain"] == "AI 3D" or (p.get("topic") or "").startswith("AI")][:6]
+    radar_rows = "".join(
+        f'<li><a href="{{ROOT}}p/{e(p["id"])}.html"><span class="t">{e(p["title_ko"])}</span>'
+        f'<span class="d">{kst_date(p.get("collected_at") or "")[5:]}</span>'
+        f'<span class="k">{e(p.get("category") or p["domain"])}</span></a></li>' for p in radar)
+    split_html = ""
+    if ev_rows or radar_rows:
+        split_html = ('<div class="split">'
+                      + (f'<section><h2 class="sec">AI 3D 레이더 <a href="{{ROOT}}radar/">전체 →</a></h2><ul class="dlist">{radar_rows}</ul></section>' if radar_rows else "")
+                      + (f'<section><h2 class="sec">마감 임박 공모전·게임 잼 <a href="{{ROOT}}events/">전체 →</a></h2><ul class="dlist">{ev_rows}</ul></section>' if ev_rows else "")
+                      + '</div>')
     home_head = (
-        f'<section class="hero">'
-        + (f'<div class="hero-mosaic" aria-hidden="true" data-pool="{e(mosaic_pool)}"><div class="hm-track">{mosaic}{mosaic}</div></div>'
-           if mosaic else "")
-        + f'<h1>3D 툴, 기초부터 <br>최신 소식까지 한곳에서</h1>'
-        f'<p>3ds Max·Blender·Houdini·언리얼의 기본 기능을 <b>영상과 따라 하기</b>로 익히고, '
-        f'전 세계 3D·VFX·AI 3D 소식은 매일 한국어로 정리해 둡니다.</p>'
-        f'<div class="actions"><a class="btn primary" href="{{ROOT}}learn/">기초 가이드 시작하기</a>'
-        f'<a class="btn ghost" href="{{ROOT}}weekly/">이번 주 요약 →</a></div>'
-        f'<div class="stats"><span><b data-count="{len(learn_guides)}">{len(learn_guides)}</b>기초 가이드</span>'
-        f'<span><b data-count="{len(posts)}">{len(posts)}</b>정리된 소식</span>'
-        f'<span><b data-count="{tools_n}">{tools_n}</b>도구 게시판</span><span><b data-count="{len(weeks)}">{len(weeks)}</b>주간 요약</span></div></section>'
-        + (f'<h2 class="sec">🔥 지금 눈에 띄는 작업·소식</h2><div class="wall">{wall_html}</div>' if len(wall) >= 5 else "")
-        + '<p class="quick"><a class="btn ghost" href="{ROOT}compare/">⚖️ 작업별 툴 비교</a>'
-          '<a class="btn ghost" href="{ROOT}fix/">🛠 오류 해결</a>'
-          '<a class="btn ghost" href="{ROOT}changes/">🆕 버전별 바뀐 점</a>'
-          '<a class="btn ghost" href="{ROOT}assets/">🎁 무료 텍스처·HDRI</a>'
-          '</p>'
-        + (f'<h2 class="sec">🏆 마감 임박 공모전·게임 잼 <a href="{{ROOT}}events/">전체 보기 →</a></h2>'
-           f'<div class="cards">{ev_cards}</div>' if ev_cards else "")
+        f'<section class="intro"><div><h1>3D 툴, 기초부터 최신 소식까지</h1>'
+        f'<p>3ds Max·Blender·Houdini·언리얼 기본 기능을 영상과 따라 하기로, 3D·VFX·AI 3D 소식은 매일 한국어로.</p></div>'
+        f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>소식</span>'
+        f'<span><b>{tools_n}</b>도구</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
+        '<nav class="qnav" aria-label="바로 가기"><a href="{ROOT}learn/">기초 가이드</a><a href="{ROOT}fix/">오류 해결</a>'
+        '<a href="{ROOT}changes/">버전별 바뀐 점</a><a href="{ROOT}compare/">작업별 툴 비교</a>'
+        '<a href="{ROOT}assets/">무료 텍스처·HDRI</a><a href="{ROOT}weekly/">주간 요약</a></nav>'
+        + feat_html
+        + split_html
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'
            if learn_tiles else "")
-        +
-        f'<h2 class="sec">분야별 소식 게시판</h2><div class="grid">{"".join(tiles)}</div>' +
-        guide_sec +
-        f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
-        f'{week_card}'
+        + (f'<h2 class="sec">지금 눈에 띄는 작업</h2><div class="wall">{wall_html}</div>' if len(wall) >= 5 else "")
+        + f'<h2 class="sec">분야별 소식 게시판</h2><div class="grid">{"".join(tiles)}</div>'
+        + guide_sec
+        + f'<h2 class="sec">많이 본 글</h2><div class="rank">{rank}</div>'
         f'<h2 class="sec">최신 글</h2><div class="cards lead-grid">{latest}</div>'
         f'<h2 class="sec">사이트 안내</h2><div class="links">'
-        f'<a href="{{ROOT}}about/"><b>📘 소개</b><span>3dflowhub는 어떤 곳인가요</span></a>'
-        f'<a href="{{ROOT}}weekly/"><b>🗓️ 주간 요약</b><span>한 주의 흐름을 한눈에</span></a>'
-        f'<a href="{{ROOT}}guide/"><b>🧭 도구별 정리</b><span>도구마다 한 달 흐름과 핵심</span></a>'
-        f'<a href="{{ROOT}}feed.xml"><b>📡 RSS 구독</b><span>새 글을 바로 받아보기</span></a>'
-        f'<a href="{{ROOT}}contact/"><b>✉️ 문의·제보</b><span>자료 제보·의견·저작권 요청</span></a></div>'
+        f'<a href="{{ROOT}}about/"><b>소개 · 큐레이션 기준</b><span>무엇을 어떻게 고르고 정리하는지</span></a>'
+        f'<a href="{{ROOT}}weekly/"><b>주간 요약</b><span>매주 월요일 갱신</span></a>'
+        f'<a href="{{ROOT}}guide/"><b>도구별 정리</b><span>도구마다 한 달 흐름과 핵심</span></a>'
+        f'<a href="{{ROOT}}feed.xml"><b>RSS 구독</b><span>새 글이 올라오면 바로</span></a>'
+        f'<a href="{{ROOT}}contact/"><b>문의·제보</b><span>자료 제보·의견·저작권 요청</span></a></div>'
         f'<h2 class="sec">전체 글</h2>')
     board_pages(posts, OUT, "", "전체 글", home_head, "", header_more='<h1>전체 글</h1>')
 
