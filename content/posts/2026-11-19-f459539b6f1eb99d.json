@@ -1,0 +1,59 @@
+{
+  "title_ko": "Godot 기반 인디 게임 Glenmara 개발기",
+  "title": "This cosy Godot-made indie game makes you feel like a still life artist",
+  "url": "https://www.creativebloq.com/features/this-cosy-godot-made-indie-game-makes-you-feel-like-a-still-life-artist",
+  "domain": "Game Engine",
+  "category": "Godot",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Godot",
+    "인디게임",
+    "Shader",
+    "렌더링",
+    "게임개발",
+    "고도 엔진"
+  ],
+  "summary": "스코틀랜드의 인디 스튜디오 Bit Loom Games가 Godot 엔진을 활용해 정지화면 미술 시뮬레이션 게임 Glenmara를 제작한 과정과 커스텀 Shader 구축 방식입니다.",
+  "insight": "프로그래머 Henry Pullan은 Unity에서 Godot으로 전환하면서 이미지 처리 파이프라인의 차이를 극복하기 위해 모든 Shader를 처음부터 직접 작성했습니다.",
+  "try_it": [
+    "Godot 엔진을 실행하고 프로젝트 설정에서 커스텀 셰이더를 생성합니다.",
+    "여러 셰이더 효과를 순차적으로 스택하는 노드 구조를 테스트합니다.",
+    "실시간 렌더링 대신 프레임 단위 처리 방식을 적용하여 결과물을 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Glenmara: Still Life Artist 게임 개요",
+      "body": "스코틀랜드 던디에 위치한 4인조 인디 스튜디오 Bit Loom Games가 개발한 Glenmara는 정물화를 소재로 한 캐주얼 시뮬레이션 게임입니다. 전통적인 과일 바구니 외에도 현대적인 장난감이나 일상 오브젝트를 자유롭게 배치할 수 있습니다. 플레이어는 직접 그림을 그리는 대신 오브젝트를 배치하고 필터를 적용해 게임이 렌더링하도록 만듭니다."
+    },
+    {
+      "heading": "규칙과 실패 상태가 없는 디자인",
+      "body": "이 게임은 전통적인 구도 규칙이나 점수 매기기 방식을 배제하고 창작의 자유에 집중했습니다. 유화, 수채화뿐만 아니라 모자이크, 셀셰이딩, 픽셀 아트 등 다양한 필터를 중첩해서 사용할 수 있습니다. 플레이어가 어떤 방식으로 화면을 구성하든 게임 내에서 실패 상태가 발생하지 않습니다."
+    },
+    {
+      "heading": "Godot 엔진 기반 커스텀 Shader 구축",
+      "body": "Bit Loom Games는 첫 Godot 기반 프로젝트인 이 게임을 위해 모든 아트 스타일 Shader를 처음부터 새로 제작했습니다. 프로그래머 Henry Pullan은 Unity와 다른 Godot의 이미지 처리 방식에 맞춰 GPU 데이터를 다루는 새로운 방식을 설계했습니다. 실시간 연산 대신 여러 프레임에 걸쳐 이미지를 처리하는 방식을 택했습니다."
+    },
+    {
+      "heading": "효과 스택을 통한 다양한 아트 스타일 구현",
+      "body": "개발팀은 여러 Shader 라이브러리를 조합하여 다양한 시각적 결과물을 만들어내는 시스템을 구축했습니다. 필터를 서로 겹쳐서 독특한 레트로 및 회화적 스타일을 연출할 수 있습니다. 이 과정에서 Godot의 유연한 Shader 작성 능력이 핵심적인 역할을 했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Glenmara는 어떤 엔진으로 개발되었나요?",
+      "a": "오픈소스 게임 엔진인 Godot을 사용하여 제작되었습니다."
+    },
+    {
+      "q": "게임 내에서 사용할 수 있는 그래픽 스타일은 무엇인가요?",
+      "a": "유화, 수채화, 모자이크, 셀셰이딩, 픽셀 아트 등 다양한 필터와 스타일을 지원하며 효과를 서로 겹쳐서 사용할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.mos.cms.futurecdn.net/gDRfgLtpX9nRDBdmWijDvb-1600-80.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-19T13:17:53.595084+00:00",
+  "notion_id": "",
+  "id": "2026-11-19-f459539b6f1eb99d",
+  "img_ok": "2026-11-19T13:17:53+00:00"
+}
