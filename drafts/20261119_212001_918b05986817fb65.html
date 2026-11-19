@@ -1,0 +1,21 @@
+<!-- TITLE: Unreal Engine MCP 툴셋과 커스텀 도구 제작법 | TAGS: Unreal Engine,ModelContextProtocol,Python,C++,AI Agent,언리얼 엔진,파이썬,튜토리얼·팁 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unreal Engine 프로젝트에서 AI 에이전트가 사용하는 툴셋과 툴 레지스트리, 툴 검색, Python 및 C++ 기반 커스텀 도구 제작 방법을 설명합니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 튜토리얼·팁</p>
+<h2>툴셋과 툴 레지스트리의 구조</h2>
+<p>AI 에이전트가 프로젝트에서 수행하는 모든 작업은 툴셋에서 시작됩니다. 툴셋과 툴 레지스트리가 상호작용하여 에이전트가 필요한 기능을 호출할 수 있도록 준비합니다.</p>
+<h2>툴 검색과 디스커버리 도구 제한</h2>
+<p>수백 개의 기능이 존재할 때 툴 검색 기능은 에이전트에게 전체 목록 대신 단 3개의 디스커버리 도구만 노출합니다. 이 방식을 통해 에이전트가 혼란 없이 필요한 기능을 정확히 찾도록 유도합니다.</p>
+<h2>ModelContextProtocol.RefreshTools 활용 시점</h2>
+<p>새로운 도구를 추가하거나 설정을 변경한 뒤에는 ModelContextProtocol.RefreshTools를 실행해야 합니다. 이 과정은 레지스트리를 갱신하여 에이전트가 최신 도구 목록을 인식하게 만듭니다.</p>
+<h2>Python과 C++을 이용한 커스텀 도구 제작</h2>
+<p>작업 스타일에 맞추어 Python이나 C++로 자신만의 커스텀 툴셋을 구축할 수 있습니다. 프로젝트 환경에 맞춰 필요한 명령과 에이전트 연동 방식을 직접 확장하는 구조입니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">ModelContextProtocol.RefreshTools 명령어를 활용하면 수백 개의 도구 중 3개의 디스커버리 도구만 에이전트에 노출하여 탐색 효율을 유지할 수 있습니다. 자체 제작 시 Python과 C++ 환경에서 도구 레지스트리를 확장하는 방식을 적용합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 에이전트가 수백 개의 도구 대신 3개만 보는 이유는 무엇인가요?</b><br/>A. 툴 검색 기능이 에이전트에게 방대한 목록 대신 3개의 디스커버리 도구만 먼저 노출하여 효율적인 탐색을 돕기 때문입니다.</p>
+<p><b>Q. ModelContextProtocol.RefreshTools는 언제 실행해야 하나요?</b><br/>A. 새로운 커스텀 도구를 만들거나 툴 레지스트리에 변경 사항이 생겼을 때 실행하여 에이전트의 도구 목록을 갱신합니다.</p>
+<p><b>Q. 커스텀 툴셋은 어떤 언어로 만들 수 있나요?</b><br/>A. 작업 환경에 따라 Python 또는 C++를 사용하여 직접 구축할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-19-622318e5747e26da.html">Unreal Engine 디버깅 — Output Log와 MCP Inspector 활용법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-f6524b5df1063201.html">Unreal Engine MCP Terminal 플러그인 사용법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-1d13a0adf287574f.html">Unreal Engine 5.8 Unreal MCP 연동 가이드</a></li></ul>
+<hr/><p>원문:<a href="https://www.youtube.com/watch?v=ekLlS4Csu8w" target="_blank" rel="noopener nofollow">Unreal MCP Toolsets Explained: Tool Registry, Tool Search &amp; Custom Tools</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
