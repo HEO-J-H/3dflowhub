@@ -1,0 +1,39 @@
+{
+  "id": "unreal-engine-logd3d12rhi-error-direct3ddevice-cre-28e66",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogD3D12RHI: Error: Direct3DDevice::CreateCommittedResource failed with E_OUTOFMEMORY",
+  "title": "LogD3D12RHI: Error: Direct3DDevice::CreateCommittedResource failed with E_OUTOFM",
+  "summary": "LogD3D12RHI: Error: Direct3DDevice::CreateCommittedResource failed with E_OUTOFMEMORY 에러는 Unreal Engine에서 GPU 메모리(VRAM)나 시스템 메모리가 부족하여 DirectX 12 리소스 할당에 실패하고 크래시가 발생할 때 나타납니다.",
+  "causes": [
+    "GPU VRAM 용량을 초과하는 고해상도 텍스처(예: 4K/8K)나 방대한 나이트/지오메트리 데이터 로드",
+    "Nanite 또는 Lumen이 활성화된 상태에서 구형 GPU나 VRAM이 부족한 그래픽카드로 프로젝트 실행",
+    "에디터 내 텍스처 스트리밍(Texture Streaming) 풀 사이즈 초과",
+    "백그라운드에서 실행 중인 다른 3D DCC(Blender, Maya)나 게임 엔진과의 메모리 경합"
+  ],
+  "steps": [
+    "Unreal Engine 에디터에서 Edit -> Project Settings 로 이동합니다.",
+    "Rendering 섹션 또는 검색창에서 Texture Streaming Pool Size 항목을 찾습니다.",
+    "기본 설정된 VRAM 풀 크기 값을 현재 GPU 사양에 맞게 적절히 늘려줍니다 (예: 2048 또는 4096 등 시스템에 맞춰 조정).",
+    "콘텐츠 브라우저에서 용량이 과도하게 큰 텍스처 에셋들을 선택한 뒤, Texture Group 또는 Maximum Texture Size를 낮추어 VRAM 사용량을 최적화합니다.",
+    "프로젝트에서 당장 사용하지 않는 거대한 레벨이나 에셋을 언로드하고, 필요시 Nanite나 V-Ray/Lumen 설정을 조절합니다."
+  ],
+  "check": [
+    "Output Log에서 더 이상 Direct3DDevice::CreateCommittedResource failed with E_OUTOFMEMORY 에러가 발생하지 않고 에디터가 정상 작동하는지 확인합니다.",
+    "Stat RHI 명령어를 입력하여 VRAM 사용량이 풀 사이즈 한도 내로 안정적으로 유지되는지 확인합니다."
+  ],
+  "prevent": [
+    "대형 에셋을 임포트할 때는 타겟 플랫폼의 VRAM 용량을 고려하여 텍스처 Resolution(Maximum Texture Size)를 제한합니다.",
+    "프로젝트 세팅에서 텍스처 스트리밍과 메모리 예산을 수시로 모니터링합니다."
+  ],
+  "keywords": [
+    "Unreal E_OUTOFMEMORY",
+    "Direct3DDevice CreateCommittedResource",
+    "Unreal VRAM 부족 크래시",
+    "Texture Streaming Pool Size",
+    "LogD3D12RHI 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T11:21:36+00:00"
+}

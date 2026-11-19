@@ -1,0 +1,39 @@
+{
+  "id": "maya-error-file-line-x-found-multiple-shapes-under-1dd65",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Found multiple shapes under the same transform node",
+  "title": "# Error: file: line X: Found multiple shapes under the same transform node 해결 방법",
+  "summary": "Maya에서 하나의 Transform 노드 아래에 2개 이상의 Shape 노드가 종속되어 구조적 충돌이 발생할 때 출력되는 오류입니다. 주로 잘못된 본딩, Script 실행 오류, 혹은 에셋 머지 과정에서 발생합니다.",
+  "causes": [
+    "MEL 또는 Python Script를 통한 잘못된 노드 생성 및 부모 자식 관계 설정",
+    "에셋 Import나 레퍼런스(Reference) 병합 과정에서의 구조적 데이터 오염",
+    "수동으로 Outliner에서 Transform과 Shape 노드의 계층 구조를 강제로 잘못 연결한 경우"
+  ],
+  "steps": [
+    "Outliner 창에서 Display 메뉴의 Shapes 옵션을 활성화하여 Transform 노드 하위의 Shape 노드들을 확인합니다.",
+    "문제가 되는 Transform 노드를 확장하여 중복 연결된 Shape 노드들을 확인합니다.",
+    "키보드 화살표 키나 Mouse를 사용하여 분리하려는 Shape 노드를 선택합니다.",
+    "메인 메뉴에서 Edit > Unparent를 실행하거나 Hotkey Shift + P를 눌러 잘못 연결된 Shape 노드를 상위 계층으로 빼냅니다.",
+    "필요한 경우 중복되거나 손상된 Shape 노드를 선택하고 Delete 키를 눌러 삭제합니다.",
+    "필요시 Mel 창이나 Script Editor에 'parent -s -r [Shape노드이름] [Transform노드이름];' 명령어를 입력하여 올바른 Shape를 정식 Transform 노드 아래로 재지정합니다."
+  ],
+  "check": [
+    "Script Editor나 Viewport에서 해당 에러 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Outliner에서 하나의 Transform 노드 아래에 단 하나의 Shape 노드만 정상적으로 종속되어 있는지 확인합니다."
+  ],
+  "prevent": [
+    "노드 계층 구조를 변경하는 커스텀 Script 작성 시 Shape 노드와 Transform 노드의 1:1 관계를 엄격히 검증합니다.",
+    "외부에서 에셋을 가져올(Import) 때 네임스페이스와 노드 명칭 충돌 방지 옵션을 철저히 관리합니다."
+  ],
+  "keywords": [
+    "Maya multiple shapes",
+    "Transform node shape 오류",
+    "Found multiple shapes",
+    "Maya 에러 해결",
+    "Outliner shape 정리"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T11:21:34+00:00"
+}

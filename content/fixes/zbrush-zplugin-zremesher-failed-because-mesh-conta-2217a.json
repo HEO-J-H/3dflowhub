@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-zplugin-zremesher-failed-because-mesh-conta-2217a",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: ZRemesher failed because mesh contains open boundaries or thin walls",
+  "title": "Zplugin: ZRemesher failed because mesh contains open boundaries or thin walls 해결",
+  "summary": "ZBrush에서 ZRemesher를 실행할 때 메쉬에 뚫린 구멍(Open Boundaries)이나 두께가 없는 극단적인 얇은 벽(Thin walls)이 존재하여 Retopology 연산을 진행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬의 일부가 뚫려 있어 완전한 닫힌 볼륨(Closed Volume) 형태가 아닌 경우",
+    "두께가 거의 없는 평면(Plane) 형태나 지나치게 얇은 두께의 면이 포함된 경우",
+    "비정상적인오류 면(Non-manifold geometry)이나 겹친 지오메트리가 존재하는 경우"
+  ],
+  "steps": [
+    "Tool > Geometry > Modify Topology 메뉴로 이동합니다.",
+    "Close Holes 버튼을 클릭하여 메쉬의 열린 구멍을 막아줍니다.",
+    "Tool > Geometry > Mesh Integrity > Check Mesh를 실행하여 오류 요소를 검사하고 수정합니다.",
+    "오류가 지속될 경우 Tool > Geometry > DynaMesh를 낮은 Resolution으로 적용하거나 얇은 면을 두껍게 다듬습니다.",
+    "ZRemesher를 다시 실행하여 연산이 정상적으로 진행되는지 확인합니다."
+  ],
+  "check": [
+    "ZRemesher 실행 시 에러 메시지 없이 정상적으로 Retopology 결과물이 생성되는지 확인합니다.",
+    "Tool > Geometry > Mesh Integrity에서 'No problems found' 메시지가 나타나는지 확인합니다."
+  ],
+  "prevent": [
+    "스컬프팅 중 메쉬가 찢어지거나 구멍이 생기지 않았는지 수시로 확인합니다.",
+    "두께가 필요한 오브젝트 작업 시 너무 얇은 면만 남지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "ZRemesher 오류",
+    "open boundaries",
+    "thin walls",
+    "ZBrush Retopology 실패",
+    "Mesh Integrity"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T11:21:41+00:00"
+}
