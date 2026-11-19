@@ -1,0 +1,88 @@
+{
+  "id": "blender-curve-to-mesh-node-e9b8",
+  "guide_id": "blender-curve-to-mesh-node-e9b8",
+  "tool": "Blender",
+  "name": "Curve to Mesh node",
+  "title": "Curve to Mesh — 커브에 단면",
+  "overview": "Blender의 Geometry Nodes 환경에서 1차원 곡선(Curve) 데이터에 2차원 프로파일 단면을 적용하여 입체적인 3차원 폴리곤 메쉬(Mesh)로 실시간 변환하는 노드입니다. 수학적 커브 구조를 유지하면서도 두께와 캡을 가진 완전한 지오메트리를 Procedural 방식으로 생성할 수 있어 케이블, 파이프, 넝쿨 등을 제작할 때 핵심적인 역할을 합니다.",
+  "access": "Geometry Nodes 에디터(Node Editor)에서 Shift+A 키를 누른 뒤, 검색창에 'Curve to Mesh'를 입력하거나 Mesh 카테고리에서 선택하여 노드 네트워크에 추가합니다.",
+  "options": [
+    {
+      "name": "Curve",
+      "value": "Geometry Socket",
+      "effect": "메쉬로 변환할 대상 원본 곡선 데이터를 입력받습니다.",
+      "tip": "입력되는 곡선 데이터의 Resolution가 낮으면 생성된 메쉬가 각져 보일 수 있습니다."
+    },
+    {
+      "name": "Profile Curve",
+      "value": "Geometry Socket",
+      "effect": "커브를 따라 생성될 단면 모양을 결정하는 프로파일 곡선 데이터를 입력받습니다.",
+      "tip": "Curve Circle 노드를 연결하면 원형 파이프를 만들 수 있고, 별도의 커브를 연결해 독특한 형태의 몰딩을 만들 수 있습니다."
+    },
+    {
+      "name": "Fill Caps",
+      "value": "Boolean (True/False / 기본값: False)",
+      "effect": "변환된 튜브형 메쉬의 시작점과 끝점의 열린 단면을 채워 평평한 면(N-gon)으로 막아줍니다.",
+      "tip": "내부가 보이지 않는 밀폐된 고체 형태를 만들 때 활성화합니다."
+    },
+    {
+      "name": "Mesh",
+      "value": "Geometry Socket",
+      "effect": "변환 작업이 완료된 최종 폴리곤 메쉬 데이터를 출력합니다.",
+      "tip": "출력된 메쉬는 Set Material이나 Set Shade Smooth 노드를 거쳐 렌더링 준비를 마칩니다."
+    }
+  ],
+  "modes": [],
+  "recipes": [
+    {
+      "title": "파이프 및 케이블 번들 제작",
+      "steps": [
+        "1. Shift+A를 눌러 Bezier Curve를 생성하고 형태를 원하는 경로로 구부립니다.",
+        "2. Modifier 패널에서 Geometry Nodes를 추가하고 노드 에디터를 엽니다.",
+        "3. Curve to Mesh 노드를 Group Input과 Group Output 사이에 배치합니다.",
+        "4. Shift+A로 Curve Circle 노드를 추가하고 Curve to Mesh의 Profile Curve 입력단자에 연결합니다.",
+        "5. Curve Circle의 Radius 값을 조절하여 파이프의 두께를 설정하고 Viewport에서 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "단면 캡이 있는 건축용 몰딩 생성",
+      "steps": [
+        "1. 경로가 될 메인 커브 오브젝트에 Geometry Nodes Modifier를 추가합니다.",
+        "2. Curve to Mesh 노드를 연결하고 Profile Curve에 직사각형 형태의 단면 커브를 연결합니다.",
+        "3. Fill Caps 옵션을 체크하여 몰딩의 양 끝단 단면을 마감합니다.",
+        "4. Set Material 노드를 연결하여 벽면 몰딩 재질을 할당합니다."
+      ]
+    },
+    {
+      "title": "두께가 점진적으로 변하는 유기농 넝쿨 제작",
+      "steps": [
+        "1. Curve to Mesh 노드 앞단에 Set Curve Radius 노드를 추가합니다.",
+        "2. Spline Parameter 노드의 Factor 출력을 Set Curve Radius의 Radius 입력에 연결합니다.",
+        "3. Profile Curve로 작은 Curve Circle을 연결하여 시작과 끝의 두께가 다른 테이퍼 형태의 넝쿨을 완성합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "원본 커브의 Resolution 값이 너무 높으면 폴리곤 수가 급격히 증가하여 Viewport가 느려질 수 있으므로 적절한 값으로 유지합니다.",
+    "Profile Curve로 사용되는 곡선 오브젝트의 제어점 개수 역시 전체 메쉬 연산량에 영향을 주므로 단순한 형태를 유지하는 것이 좋습니다.",
+    "복잡한 다중 커브(Instance나 분기된 커브)를 한 번에 처리할 때는 Join Geometry 전후의 연산 부하를 모니터링합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "커브를 연결했는데 Viewport에 아무것도 나타나지 않습니다.",
+      "fix": "Profile Curve 입력단자에 Curve Circle 등 유효한 단면 데이터가 정상적으로 연결되어 있는지 확인하세요."
+    },
+    {
+      "symptom": "생성된 파이프 메쉬의 단면이 지나치게 각져 보입니다.",
+      "fix": "Profile Curve로 사용된 커브(예: Curve Circle)의 Resolution 값을 높여 세밀도를 증가시킵니다."
+    },
+    {
+      "symptom": "Fill Caps를 켜도 렌더링 시 끝면이 깨지거나 구멍이 뚫립니다.",
+      "fix": "원본 커브가 닫힌(Closed) 형태인지 열린 형태인지 확인하고, N-gon 구조의 정렬 상태를 점검합니다."
+    }
+  ],
+  "versions": "Blender 3.0 이상에서 Geometry Nodes 시스템 도입과 함께 정식 지원되었으며, 이후 버전에서 Fill Caps 등 세부 제어 옵션이 안정화되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Curve%20to%20Mesh%20node",
+  "grounded": true,
+  "at": "2026-11-19T21:08:28+00:00"
+}
