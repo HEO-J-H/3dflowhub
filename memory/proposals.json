@@ -35670,5 +35670,77 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T17:59:37+00:00",
+    "kind": "proposal",
+    "id": "p-dfba046423",
+    "title": "PR #1 img2threejs 연동 및 오류 처리 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 멈춰 있으며, 실제 img2threejs 호출과 오류 반환 테스트가 필요함.",
+    "proposal": "backend/app/services 내에서 img2threejs 호출 실패 시 높이맵 대체 대신 명확한 예외 처리 및 에러 코드를 반환하도록 수정하고, backend/tests/test_img2threejs.py에 관련 테스트 추가",
+    "expected": "PR #1 승인 및 연동 기능 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T17:59:37+00:00",
+    "kind": "proposal",
+    "id": "p-8c01e1576b",
+    "title": "RAG 오픈소스 반영 검토 및 설계 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사장님 요청 사항 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영'에 대응하기 위함.",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 생성하여 LangChain 또는 LlamaIndex 기반 오픈소스의 라이선스(MIT/Apache-2.0)와 Pix2Poly 문서 검색 적용 방안 문서화",
+    "expected": "RAG 도입을 위한 명확한 기준 마련 및 개발 착수 준비",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T17:59:37+00:00",
+    "kind": "proposal",
+    "id": "p-67e7aef90b",
+    "title": "헬드된 문서 가이드 작업 정리 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 파이프라인 및 오픈소스 리뷰 관련 문서 작업이 여러 차례 held/skipped 상태로 반복됨.",
+    "proposal": "docs/local-pipeline.md 문서의 낡은 목차 블록을 정리하고 수정을 소단위로 나누어 에이전트가 안전하게 커밋할 수 있도록 과제 분할",
+    "expected": "문서 업데이트 병목 해소 및 최신 가이드 유지",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T18:00:12.792563+00:00",
+    "kind": "decision",
+    "id": "p-dfba046423",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 실제 연동 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T18:00:12.830749+00:00",
+    "kind": "decision",
+    "id": "p-8c01e1576b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 오너 RAG 오픈소스 반영 검토 가이드 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T18:00:12.863442+00:00",
+    "kind": "decision",
+    "id": "p-67e7aef90b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 헬드된 문서 가이드 작업 정리 및 분할",
+    "auto": true
   }
 ]
