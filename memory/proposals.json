@@ -34450,5 +34450,53 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: 실패한 문서 과제 정리 및 재시도 방지",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T08:40:31+00:00",
+    "kind": "proposal",
+    "id": "p-ae2f446009",
+    "title": "실패한 문서 과제 정리 및 단순화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "docs/local-pipeline.md 관련 과제들이 반복적으로 held 상태를 기록했습니다.",
+    "proposal": "docs/local-pipeline.md 파일 수정 대신 새로운 가이드 문서를 생성하는 방식으로 우회하여 문서화 작업을 안전하게 완료합니다.",
+    "expected": "반복되는 에이전트 실행 실패 방지 및 원활한 문서화",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:40:31+00:00",
+    "kind": "proposal",
+    "id": "p-15f6a026b5",
+    "title": "backend/app/services 단위 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/tests/test_heightmap.py가 성공적으로 추가된 바 있으며, 핵심 서비스의 안정성 확보가 필요합니다.",
+    "proposal": "backend/app/services/pbr_generator.py의 추가 기능에 대한 작은 단위 테스트를 backend/tests/에 추가합니다.",
+    "expected": "핵심 파이프라인의 회귀 오류 예방 및 코드 안정성 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:41:15.473142+00:00",
+    "kind": "decision",
+    "id": "p-ae2f446009",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 실패한 문서 과제 정리 및 재시도 방지",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:41:15.507558+00:00",
+    "kind": "decision",
+    "id": "p-15f6a026b5",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
+    "auto": true
   }
 ]
