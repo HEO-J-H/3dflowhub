@@ -1,0 +1,38 @@
+{
+  "id": "blender-error-cannot-merge-vertices-because-no-ver-c70df",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot merge vertices because no vertices are selected",
+  "title": "Error: Cannot merge vertices because no vertices are selected 해결 방법",
+  "summary": "Blender에서 정점 병합(Merge) 명령을 실행했으나 편집 모드에서 선택된 정점이 전혀 없을 때 발생하는 오류입니다. 메시의 요소를 지정하지 않고 Hotkey를 눌러 명령을 호출하면 나타납니다.",
+  "causes": [
+    "Edit Mode에서 정점, 엣지, 면이 아무것도 선택되지 않은 상태에서 병합 Hotkey(M 키)를 누른 경우",
+    "이전 작업 후 선택 해제(Alt + A)된 상태를 인지하지 못한 채 병합을 시도한 경우",
+    "Mesh 데이터가 비어 있거나 오브젝트 모드(Object Mode)에서 잘못 명령을 입력한 경우"
+  ],
+  "steps": [
+    "Tab 키를 눌러 오브젝트 모드에서 Edit Mode로 진입합니다.",
+    "키보드 상단의 1, 2, 3 키를 눌러 각각 Vertex, Edge, Face 셀렉션 모드 중 하나로 전환합니다.",
+    "Viewport에서 병합하려는 대상 정점들을 Mouse 드래그나 Box Select(B 키), Circle Select(C 키)로 정확히 선택합니다.",
+    "선택된 정점이 붉은색(기본 설정 기준 활성화 상태)으로 변했는지 확인합니다.",
+    "다시 M 키를 누르고 원하는 병합 옵션(At Center, At Cursor, Collapse 등)을 선택합니다."
+  ],
+  "check": [
+    "M 키를 눌렀을 때 'Merge' 메뉴 팝업이 정상적으로 뜨고 작업이 수행되는지 확인합니다.",
+    "Viewport에서 정점들이 지정한 위치로 깔끔하게 합쳐지는지 확인합니다."
+  ],
+  "prevent": [
+    "병합 명령을 실행하기 전 Viewport에서 선택된 정점 개수(Viewport 상단 통계 정보)를 습관적으로 확인합니다.",
+    "Hotkey 입력 전 항상 대상 메시 요소가 올바르게 하이라이트 되었는지 체크합니다."
+  ],
+  "keywords": [
+    "Blender 정점 병합 오류",
+    "Cannot merge vertices",
+    "Blender no vertices selected",
+    "Blender M키 오류",
+    "Blender vertex merge 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T14:33:23+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-hydra-failed-to-lo-b5ce2",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.hydra] Failed to load RTX renderer due to incompatible driver version",
+  "title": "Kit: [Error] [omni.hydra] Failed to load RTX renderer due to incompatible driver",
+  "summary": "NVIDIA Omniverse에서 RTX 렌더러를 초기화하는 동안 현재 장치(GPU)의 그래픽스 Driver 버전이 요구 사양을 만족하지 못해 렌더링 엔진 로딩이 실패하는 오류입니다.",
+  "causes": [
+    "GPU Driver 버전이 최신 Omniverse Kit 앱이 요구하는 최소 버전보다 낮을 때",
+    "GPU 업그레이드 또는 Windows 업데이트 후 Driver 파일이 손상되었거나 충돌이 발생할 때",
+    "다중 GPU 환경에서 기본 디스플레이 Driver가 정상적으로 동기화되지 않을 때"
+  ],
+  "steps": [
+    "사용 중인 NVIDIA GPU 모델에 맞는 최신 Studio Driver 또는 Game Ready Driver를 NVIDIA 공식 홈페이지에서 다운로드합니다.",
+    "그래픽 Driver 설치 시 'Clean Install(클린 설치)' 옵션을 선택하여 이전 Driver의 잔여 파일을 완전히 제거합니다.",
+    "시스템을 완전히 재부팅하여 새로운 Driver가 메모리에 올바르게 로드되도록 합니다.",
+    "NVIDIA Omniverse Launcher를 실행하고 앱(Kit, Create, View 등)을 다시 시작하여 RTX 렌더러가 정상 로드되는지 확인합니다."
+  ],
+  "check": [
+    "Omniverse 앱 실행 시 콘솔 창이나 로그 파일에 'Failed to load RTX renderer' 에러 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "Viewport에서 RTX Real-Time 또는 RTX Path Traced 렌더 모드가 정상적으로 활성화되고 화면이 깨지지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "새로운 Omniverse Kit 버전이나 앱 업데이트를 진행하기 전에 NVIDIA GPU Driver를 항상 권장 최신 버전으로 유지합니다.",
+    "GPU Driver 자동 업데이트 툴보다는 정기적으로 수동 업데이트 및 클린 설치를 진행하여 환경 충돌을 예방합니다."
+  ],
+  "keywords": [
+    "Omniverse RTX 렌더러 오류",
+    "Failed to load RTX renderer",
+    "incompatible driver version",
+    "옴니버스 Driver 업데이트",
+    "omni.hydra RTX 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-19T14:33:05+00:00"
+}

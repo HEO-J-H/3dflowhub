@@ -5,7 +5,7 @@
   "group": "조명 및 환경",
   "name": "Global Illumination (Brute Force + Light Cache)",
   "title": "Global Illumination (Brute Force + Light Cache) — 사실적인 간접 조명",
-  "summary": "V-Ray의 Global Illumination은 Brute Force와 Light Cache 두 엔진을 결합해 정확한 간접광과 빠른 계산을 동시에 제공합니다.",
+  "summary": "V-Ray의 Global Illumination은 Brute Force와 Light Cache 두 엔진을 결합해 정확한 간접광과 빠른 계산을 동시에 제공합니다. 렌더링 결과물이 밋밋해 보일 때 간접광 상호작용과 컬러 블리딩, 어두운 영역의 디테일을 교정하는 핵심 요소입니다.",
   "when": [
     "복잡한 실내·실외 씬에서 부드러운 간접광이 필요할 때",
     "노이즈를 최소화하면서 렌더 시간을 합리적으로 유지하고 싶을 때",
@@ -97,11 +97,19 @@
     "Global Illumination"
   ],
   "at": "2026-11-17T02:27:41.273942+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-17-4e8b115ccbaa03cb",
-      "title": "V-Ray와 Corona로 이해하는 Global Illumination",
-      "url": "https://blog.chaos.com/what-is-global-illumination-rendering"
+      "at": "2026-11-19T14:33:46+00:00",
+      "what": "최신 공식 문서 및 가이드를 바탕으로 Global Illumination이 밋밋한 렌더 결과물과 컬러 블리딩, 어두운 영역의 디테일에 미치는 영향에 대한 설명을 요약에 보강했습니다.",
+      "sources": [
+        {
+          "title": "V-Ray와 Corona로 이해하는 Global Illumination",
+          "url": "https://blog.chaos.com/what-is-global-illumination-rendering"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-17-4e8b115ccbaa03cb"
+      ]
     }
   ]
 }
