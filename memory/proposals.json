@@ -35304,5 +35304,29 @@
     "id": "p-9a2c47ad7a",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 및 최근 커밋에서 반복 실패한 문서 과제 정리와 분할 작업이 반영되었습니다."
+  },
+  {
+    "at": "2026-11-19T15:16:42+00:00",
+    "kind": "proposal",
+    "id": "p-beff8128e6",
+    "title": "backend/app/services/heightmap_service 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "backend/app/services/heightmap_service.py 관련 단위 테스트가 과거 거절되었으나, 파이프라인 안정성을 위해 핵심 서비스 로직의 테스트 보강이 여전히 필요합니다.",
+    "proposal": "backend/tests/test_heightmap_service.py 파일을 새로 작성하여 heightmap 생성 및 PBR 맵 반환에 대한 유닛 테스트를 구현하고 코딩 에이전트를 통해 검증합니다.",
+    "expected": "핵심 서비스의 무결성을 높이고 향후 PR 승인 시 안정성을 확보합니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T15:22:43.150981+00:00",
+    "kind": "decision",
+    "id": "p-beff8128e6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
+    "auto": true
   }
 ]
