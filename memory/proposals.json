@@ -34498,5 +34498,60 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: backend/app/services/ heightmap_service.",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T08:58:30+00:00",
+    "kind": "proposal",
+    "id": "p-d1d6d8666f",
+    "title": "backend/tests/test_mesh_pipeline.py 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "backend/app/services의 높이맵 및 메시 생성 서비스에 대한 단위 테스트를 보강하여 안정성을 높여야 합니다.",
+    "proposal": "backend/tests/test_mesh_pipeline.py 파일을 생성하여 메시 생성 및 PBR 맵 출력 결과의 무결성을 검증하는 테스트 코드를 작성합니다.",
+    "expected": "핵심 파이프라인 변경 전 안정성 확보 및 자동 머지 가능한 테스트 범위 확대",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:58:30+00:00",
+    "kind": "proposal",
+    "id": "p-e8613d3559",
+    "title": "PR #1 img2threejs 엔진 실제 구현 브랜치 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "대기 중인 PR #1(img2threejs 엔진 구현 세분화) 건이 revise 상태로 남아 있습니다.",
+    "proposal": "img2threejs 호출 결과 파일 생성 실패 시 heightfield로 무단 대체하는 대신 명확한 예외를 반환하고 관련 테스트를 작성하는 보완 코드를 준비합니다.",
+    "expected": "오류 상황에서의 명확한 피드백 제공 및 PR 승인 조건 충족",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:59:01.300198+00:00",
+    "kind": "decision",
+    "id": "p-d1d6d8666f",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:59:01.336284+00:00",
+    "kind": "decision",
+    "id": "p-e8613d3559",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 실제 구현 보완 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:59:02.463325+00:00",
+    "kind": "triage",
+    "id": "p-d1d6d8666f",
+    "verdict": "agent",
+    "reason": "backend/tests/test_mesh_pipeline.py 테스트 파일 생성 및 단위 테스트 작성 작업은 코드 수정으로 해결할 수 있습니다."
   }
 ]
