@@ -35352,5 +35352,107 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 실제 연동 테스트 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-19T15:37:37+00:00",
+    "kind": "proposal",
+    "id": "p-2554f779f8",
+    "title": "헬드된 문서 과제 정리 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "agent_runs에서 docs/agent-guides/img2threejs-impl.md 및 local-pipeline.md 문서 과제들이 반복적으로 held 상태를 기록함",
+    "proposal": "실패한 문서 과제들의 범위를 더 작게 쪼개어 단일 파일 수정 단위로 재설정하고, 충돌하는 패치 블록을 정리합니다.",
+    "expected": "문서 생성 과제가 정상적으로 완료되어 에이전트 대기열이 해소됩니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T15:37:37+00:00",
+    "kind": "proposal",
+    "id": "p-223a163fa9",
+    "title": "PR #1 재검토 및 구현 가이드 연동",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "pending_pr_decisions에 PR #1(img2threejs 연동)이 revise 상태로 대기 중이며 실제 호출 및 예외 처리 테스트 보완이 필요함",
+    "proposal": "PR #1의 요구사항인 img2threejs 엔진 연동 및 예외 처리 테스트 코드를 backend/tests/ 디렉토리에 추가하여 승인 대기 상태를 해소합니다.",
+    "expected": "오래 대기 중인 핵심 기능 PR의 테스트 통과 및 최종 반영을 위한 준비가 완료됩니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T15:37:58+00:00",
+    "kind": "proposal",
+    "id": "p-0d033ce5a3",
+    "title": "5060 사용자 대상 은퇴 계산 결과 화면 가독성 점검",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "면책 조항 및 모바일 터치 영역 개선이 완료되었으나, 주요 결과 차트 및 월별 현금흐름 표의 5060 사용자 시인성 추가 점검 필요",
+    "proposal": "결과 화면의 주요 숫자 및 요약 텍스트 크기를 확대하고 대비를 높이는 UI 점검 진행",
+    "expected": "어르신 사용자의 가독성 및 시뮬레이션 결과 이해도 향상",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T15:40:22.763546+00:00",
+    "kind": "proposal",
+    "id": "p-fd27867fce",
+    "title": "TRELLIS 모델 도입 검토",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "사이트·UX",
+    "evidence": "스타 14,355개 기록, CVPR'25 Spotlight 선정 모델",
+    "proposal": "microsoft/TRELLIS 저장소의 구조화된 3D latents 기술을 다중 이미지 3D 파이프라인(multiview.md)에 선택 엔진으로 연동 검토",
+    "expected": "다중 뷰 이미지 기반 3D 생성 품질 및 세밀한 디테일 표현력 향상",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-19T15:45:31.035142+00:00",
+    "kind": "decision",
+    "id": "p-fd27867fce",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: TRELLIS 모델 통합 검토 (CVPR'25)",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T15:45:31.071095+00:00",
+    "kind": "decision",
+    "id": "p-0d033ce5a3",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T15:45:31.101846+00:00",
+    "kind": "decision",
+    "id": "p-2554f779f8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 헬드된 문서 가이드 작업 정리 및 분할",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T15:45:31.134778+00:00",
+    "kind": "decision",
+    "id": "p-223a163fa9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T15:45:32.123146+00:00",
+    "kind": "decision",
+    "id": "p-223a163fa9",
+    "v": "done",
+    "note": "자동 완료 확인: PR #1 닫힘"
   }
 ]
