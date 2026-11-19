@@ -34378,5 +34378,77 @@
     "id": "p-b1e2f4817c",
     "v": "done",
     "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-19T08:30:00+00:00",
+    "kind": "proposal",
+    "id": "p-2a9fe345e4",
+    "title": "RAG 오픈소스 검토 및 반영 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "사장님 요청 사항 '깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영 할 수 있는게 있으면 반영해줘' 및 docs/agent-guides/rag-integration.md 존재",
+    "proposal": "docs/agent-guides/rag-integration.md를 참고하여 Pix2Poly 웹 UI 도움말 검색에 적용 가능한 가벼운 클라이언트 측 검색(BM25 또는 정적 인덱스) 방안을 구체화하고 파일 구조를 제안합니다.",
+    "expected": "사용자가 툴 사용법이나 에러 해결책을 빠르게 찾을 수 있는 경량 검색 기능 설계 확립",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:30:00+00:00",
+    "kind": "proposal",
+    "id": "p-2e41c40b4a",
+    "title": "PR #1 img2threejs 엔진 구현 세분화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "pending_pr_decisions에 PR #1이 'revise' 상태로 대기 중이며 실제 img2threejs 호출 구현 필요",
+    "proposal": "backend/app/services/ 내에 img2threejs 호출 로직을 구현하고, 환경 미비 시 대체 대신 명확한 예외 반환 및 관련 테스트 코드를 작성합니다.",
+    "expected": "오랫동안 대기 중인 PR #1의 요구사항을 충족하고 파이프라인 신뢰성 향상",
+    "effort": "높음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:30:00+00:00",
+    "kind": "proposal",
+    "id": "p-59dec72ac8",
+    "title": "반복 실패한 문서 과제 정리 및 재시도 방지",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "agent_runs에서 docs/local-pipeline.md 관련 작업이 동일 사유로 반복 실패 및 skipped 처리됨",
+    "proposal": "실패 원인인 git diff search 블록 불일치 문제를 해결하기 위해 해당 문서 수정 작업을 잠시 중단하고 다른 테스트 코드 정비 작업으로 전환합니다.",
+    "expected": "불필요한 에이전트 실행 실패를 줄이고 시스템 자원 절약",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-19T08:31:02.890815+00:00",
+    "kind": "decision",
+    "id": "p-2a9fe345e4",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: docs/rag-evaluation.md 오픈소스 RAG 검토 가이드 작",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:31:02.921240+00:00",
+    "kind": "decision",
+    "id": "p-2e41c40b4a",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 엔진 구현 세분화 과제 등록",
+    "auto": true
+  },
+  {
+    "at": "2026-11-19T08:31:02.950250+00:00",
+    "kind": "decision",
+    "id": "p-59dec72ac8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 실패한 문서 과제 정리 및 재시도 방지",
+    "auto": true
   }
 ]
