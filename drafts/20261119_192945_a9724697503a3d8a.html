@@ -1,0 +1,20 @@
+<!-- TITLE: Houdini Vellum 시뮬레이션으로 구현한 스파이더맨 장난감 | TAGS: Houdini,Vellum,시뮬레이션,Point Deform,후디니,작품·제작 사례 | CATEGORY: 3D DCC/Houdini | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/this-spider-man-simulation-brings-back-memories-of-sticky-wall-crawler-toys/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51098/images/6aff3d98a1d37/contain_1200x630.jpg" alt="Houdini Vellum 시뮬레이션으로 구현한 스파이더맨 장난감" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/this-spider-man-simulation-brings-back-memories-of-sticky-wall-crawler-toys/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/8cSdJkPKrDQ" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Houdini의 Vellum 역학을 활용해 벽에 끈끈하게 달라붙는 스파이더맨 장난감의 물리적 움직임을 시뮬레이션한 제작 과정입니다.</p>
+<p style="color:#888;">분류: 3D DCC › Houdini › 작품·제작 사례</p>
+<h2>Vellum 시뮬레이션을 위한 프록시 모델 준비</h2>
+<p>아티스트 Duncan Tune은 Sketchfab에서 구한 스파이더맨 모델과 크롤링 애니메이션 프레임을 활용해 시뮬레이션을 준비했습니다. Vellum 시뮬레이션의 안정성을 위해 전체 모델에 걸쳐 균일한 크기의 삼각형 구조를 유지하도록 저폴리곤 프록시 메시를 제작하고 VDB를 사용해 하나의 지오메트리로 결합했습니다.</p>
+<h2>Tetrahedral Stretch 제약과 점진적 접착 파열</h2>
+<p>신축성 있는 늘어남과 젤리 같은 흔들림을 표현하기 위해 tetrahedral stretch 제약을 적용했습니다. 벽면은 고정된 클로스 표면으로 설정하고 스파이더맨과의 사이에 접착 제약을 생성했으며, 중력에 따라 접착 임계값이 서서히 무너지도록 노이즈를 결합해 자연스러운 낙하 동작을 만들어냈습니다.</p>
+<h2>Point Deform을 이용한 원본 모델 교체와 렌더링</h2>
+<p>시뮬레이션 캐시 생성 후 Point Deform 노드와 For-Each 루프를 활용해 저폴리곤 프록시 메시를 원본 모델로 정확하게 치환했습니다. 서브스퍼스 스캐터링(SSS)을 적용하여 얇게 늘어나는 손가락과 팔다리 부위에 빛이 투과되는 고무 질감을 표현했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">8초 분량의 시뮬레이션을 캐시하는 데 12시간이 소요되며, 접착 임계값에 노이즈를 적용해 중력에 따라 몸체의 일부가 벽에서 자연스럽게 떨어지는 움직임을 구현합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 스파이더맨 시뮬레이션에서 어떤 제약 방식을 사용했나요?</b><br/>A. 천이나 압력 방식 대신 tetrahedral stretch 방식을 사용하여 젤리와 같은 흔들림과 볼륨이 유지되는 신축성을 구현했습니다.</p>
+<p><b>Q. 시뮬레이션된 저폴리곤 모델을 원본 모델로 어떻게 바꿨나요?</b><br/>A. Point Deform 노드와 For-Each 루프를 사용해 이전에 생성한 class 및 ID 속성을 기준으로 프록시 메시를 원본 고해상도 모델로 교체했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-16-d969572498922d82.html">Houdini로 구현한 사자 털과 수작업 비늘 제작 사례</a></li><li><a href="https://3dflowhub.kr/p/2026-11-12-427dcb758eaec095.html">Houdini 절차적 판타지 환경 제작 워크숍 공개</a></li><li><a href="https://3dflowhub.kr/p/2026-11-07-ac6de7194fd74c3e.html">Houdini 유체 시뮬레이션 마스터 클래스 공개</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/this-spider-man-simulation-brings-back-memories-of-sticky-wall-crawler-toys/" target="_blank" rel="noopener nofollow">This Spider-Man Simulation Brings Back Memories Of Sticky Wall-Crawler Toys</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
