@@ -37969,5 +37969,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 및 오류 처리 구현",
     "auto": true
+  },
+  {
+    "at": "2026-11-20T19:13:38+00:00",
+    "kind": "proposal",
+    "id": "p-e9304c4f6b",
+    "title": "PR #1 img2threejs 연동 예외 처리 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 '엔진 이름만 추가됨' 사유로 revise(수정 요청) 상태로 대기 중이며, img2threejs 미지원 환경에서의 명확한 오류 반환 및 테스트 필요",
+    "proposal": "backend/app/services 디렉토리 내 img2threejs 호출 로직에 예외 처리를 추가하고 backend/tests/ 폴더에 관련 예외 테스트 코드를 작성합니다.",
+    "expected": "PR #1의 요구사항을 충족하고 정식 승인으로 진행될 수 있습니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T19:13:38+00:00",
+    "kind": "proposal",
+    "id": "p-ff1ac6adea",
+    "title": "홀드된 웹 UI 높이맵 테스트 과제 경로 재정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 agent_runs에서 웹 UI 높이맵 메시 생성 기능 테스트가 '패치 적용 실패' 또는 'held' 상태로 반복 발생함",
+    "proposal": "web/ 디렉토리 내 테스트 파일 구조와 경로를 재검토하고, 브라우저 환경에서 높이맵 변환 로직 검증 Script를 단순화하여 다시 등록합니다.",
+    "expected": "웹 UI 테스트 과제가 정상적으로 수행되어 코드 무결성이 높아집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T19:14:23.068215+00:00",
+    "kind": "decision",
+    "id": "p-e9304c4f6b",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 예외 처리 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T19:14:23.100807+00:00",
+    "kind": "decision",
+    "id": "p-ff1ac6adea",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T19:14:24.886193+00:00",
+    "kind": "triage",
+    "id": "p-ff1ac6adea",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 '보류된 웹 UI 높이맵 테스트 검증 및 재정비'가 포함되어 있으며 관련 코드가 반영되었습니다."
+  },
+  {
+    "at": "2026-11-20T19:14:24.916030+00:00",
+    "kind": "decision",
+    "id": "p-ff1ac6adea",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '보류된 웹 UI 높이맵 테스트 검증 및 재정비'가 포함되어 있으며 관련 코드가 반영되었습니다."
   }
 ]
