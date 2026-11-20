@@ -1,0 +1,55 @@
+{
+  "title_ko": "Godot 4 픽셀 아트 3D 변환 렌더링 기술 분석",
+  "title": "Hades Meets EarthBound In This Dreamlike Pixel-Art Roguelite",
+  "url": "https://80.lv/articles/hades-meets-earthbound-in-this-dreamlike-pixel-art-roguelite/",
+  "domain": "Game Engine",
+  "category": "Godot",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Godot",
+    "GDExtension",
+    "C++",
+    "픽셀 아트",
+    "로그라이트",
+    "고도 엔진"
+  ],
+  "summary": "인디 게임 Everrest 개발팀이 Godot 4와 C++ GDExtension을 활용해 2:1 등각투영 픽셀 아트 세계를 3D 공간으로 매끄럽게 전환하는 기술을 공개했습니다.",
+  "insight": "Godot 4의 3D 렌더러와 맞춤형 C++ GDExtension 프레임워크를 결합하면 2D 픽셀 아트 스프라이트에 실제 높이와 깊이 물리 연산을 부여할 수 있습니다. 전환 순간 3D 방을 복제해 2D 화면을 투영하는 방식을 통해 시각적 끊김 없는 카메라 회전 연출이 가능합니다.",
+  "try_it": [
+    "Godot 4 프로젝트에서 C++ GDExtension 환경을 설정합니다.",
+    "등각투영(Isometric) 2D 스프라이트 레이어에 높이와 깊이 값을 정의하는 커스텀 노드를 작성합니다.",
+    "카메라 전환 프레임에서 렌더링된 2D 이미지를 3D 메시 공간에 투영하는 스크립트를 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "C++ GDExtension 기반의 커스텀 3D 엔진 레이어",
+      "body": "YesNinja Games는 Godot 4 엔진 위에 C++ GDExtension으로 작성된 커스텀 프레임워크를 구축했습니다. 이 시스템은 모든 평면 픽셀 아트 스프라이트에 고유한 높이와 물리, 깊이 값을 부여합니다. 이를 통해 고전적인 픽셀 아트 외형을 유지하면서도 점프와 낙하, 투척 같은 입체적인 상호작용이 가능해집니다."
+    },
+    {
+      "heading": "등각투영 픽셀 아트와 3D 카메라의 동기화 트릭",
+      "body": "등각투영 픽셀 아트는 타일 너비가 높이의 정확히 두 배인 드로잉 컨벤션이므로 일반 3D 카메라는 대상을 너무 높게 그립니다. 개발팀은 3D 방을 압축하여 2D 픽셀에 정확히 일치시키는 카메라 매개변수를 계산했습니다. 카메라가 회전하는 순간 게임은 3D 방을 즉시 재구축하고 직전 프레임의 2D 이미지를 투영하여 시각적 이음새를 완전히 감춥니다."
+    },
+    {
+      "heading": "로딩 화면을 숨기는 원활한 공간 전환 연출",
+      "body": "숲 지역의 끝부분은 별 모양의 문을 통과하는 방식으로 자연스러운 로딩 화면 역할을 수행합니다. 플레이어가 문으로 들어가면 그 뒤편에서 다음 층의 레벨이 구축되며 기존의 등각투영 2D 각도로 돌아옵니다. 이 단일 시퀀스를 구현하는 데 약 2주일의 개발 기간이 소요되었습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Everrest는 어떤 게임 엔진으로 제작되었나요?",
+      "a": "Godot 4 엔진을 기반으로 하며 자체 개발한 C++ GDExtension 프레임워크를 상위에 올려 제작되었습니다."
+    },
+    {
+      "q": "2D 픽셀 아트에서 3D 회전으로 전환할 때 생기는 이음새는 어떻게 해결하나요?",
+      "a": "전환 직전 프레임의 2D 렌더링 이미지를 동일한 카메라 각도로 3D 방에 투영하여 끊김 없이 자연스럽게 이어지도록 처리합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51107/images/6b004aa8a86bb/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=xW0wpslbFyA"
+  },
+  "collected_at": "2026-11-20T14:02:15.102603+00:00",
+  "notion_id": "",
+  "id": "2026-11-20-fde72b231a6ad843",
+  "img_ok": "2026-11-20T14:02:15+00:00"
+}
