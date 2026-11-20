@@ -21,7 +21,7 @@
   "params": [
     {
       "name": "Output Log",
-      "desc": "실행 결과와 오류 메시지를 확인하는 패널입니다."
+      "desc": "실행 결과와 오류 메시지를 확인하는 패널입니다. Unreal MCP 툴 호출 과정에서 오가는 요청과 실시간 로그를 추적하여 실패 지점을 파악하는 데도 활용됩니다."
     },
     {
       "name": "Python Editor Script Plugin",
@@ -30,6 +30,10 @@
     {
       "name": "Editor Utility Widget",
       "desc": "Python Script를 UI 버튼과 연결해 실행할 수 있는 도구입니다."
+    },
+    {
+      "name": "MCP Inspector",
+      "desc": "오픈 표준을 위해 제작된 공식 디버깅 클라이언트입니다. AI 에이전트를 거치지 않고 툴을 직접 호출하여 서버와 툴 자체의 오류를 독립적으로 검증합니다."
     }
   ],
   "examples": [
@@ -48,11 +52,20 @@
         "Python 반복문을 통해 각 액터의 Transform 좌표 값을 가져옵니다.",
         "일정한 간격으로 X 또는 Y 좌표를 재설정하여 정렬합니다."
       ]
+    },
+    {
+      "title": "Unreal MCP 툴 호출 오류 독립 검증",
+      "steps": [
+        "Window → Developer Tools → Output Log 창을 열어 실시간으로 MCP 관련 로그를 확인합니다.",
+        "MCP Inspector를 실행하여 AI 에이전트를 거치지 않고 툴을 직접 나열하고 호출합니다.",
+        "인스펙터와 로그를 통해 실패 지점을 추적하고 툴 자체의 문제인지 판별합니다."
+      ]
     }
   ],
   "mistakes": [
     "플러그인 미활성화 → Edit → Plugins에서 Python Editor Script Plugin이 켜져 있는지 확인합니다.",
-    "Output Log 입력 모드 오류 → 로그창 하단의 입력 필드가 Python으로 지정되어 있는지 확인합니다."
+    "Output Log 입력 모드 오류 → 로그창 하단의 입력 필드가 Python으로 지정되어 있는지 확인합니다.",
+    "MCP 툴 호출 오류 시 프롬프트만 수정 → Output Log와 MCP Inspector를 활용해 에이전트 변수를 배제하고 툴 또는 서버 설정 자체의 문제인지 독립적으로 진단해야 합니다."
   ],
   "related": [
     "Editor Utility Widget",
@@ -82,11 +95,19 @@
     "Python Editor Script Plugin"
   ],
   "at": "2026-11-08T01:11:36.586077+00:00",
-  "refresh_with": [
+  "updates": [
     {
-      "key": "p:2026-11-19-622318e5747e26da",
-      "title": "Unreal Engine 디버깅 — Output Log와 MCP Inspector 활용법",
-      "url": "https://www.youtube.com/watch?v=RvtqksJix-Y"
+      "at": "2026-11-20T14:19:20+00:00",
+      "what": "Unreal Engine 디버깅 과정에서 Output Log와 공식 MCP Inspector를 활용해 MCP 툴 호출 오류를 독립적으로 검증하고 진단하는 내용이 파라미터, 활용 예시, 자주 하는 실수에 추가되었습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 디버깅 — Output Log와 MCP Inspector 활용법",
+          "url": "https://www.youtube.com/watch?v=RvtqksJix-Y"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-19-622318e5747e26da"
+      ]
     }
   ]
 }

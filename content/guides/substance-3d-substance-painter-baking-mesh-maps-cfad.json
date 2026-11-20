@@ -5,7 +5,7 @@
   "group": "페인터",
   "name": "Substance Painter baking mesh maps",
   "title": "Substance Painter 맵 Baking",
-  "summary": "Substance 3D Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 최신 버전과 더불어, 최근 베이크된 메시 맵을 자동으로 할당하고 재베이크 후 원클릭으로 갱신해 주는 무료 플러그인(레딧 사용자 /u/MR_WACKER 제작)이 공개되어 수동 슬롯 교체의 번거로움을 줄일 수 있게 되었습니다. 또한 하드 서페이스 자동 UV(Auto Unwrap), Quick Bake, Auto Rebake 기능이 추가되어 작업 속도가 향상되었으며, Skew Correction 페인팅, 엣지 프로텍션(Edge Protection), 지오메트리 랩핑(Warp to Geometry) 설정을 통해 투영 정확도가 크게 향상되었습니다.",
+  "summary": "Substance 3D Painter의 Mesh Maps Baking은 로우 폴리곤 모델에 하이 폴리곤의 디테일을 투영하고 머티리얼이 올바르게 렌더링되도록 맵을 추출하는 핵심 기능입니다. 최근 12.2 업데이트를 통해 Texture Set Highlight, Paint Cage, 업그레이드된 Polygon Tool Select 기능이 추가되어 복잡한 에셋 베이킹 시 발생하는 지오메트리 오염 문제를 직접 해결할 수 있게 되었습니다. 또한 최근 베이크된 메시 맵을 자동으로 할당하고 재베이크 후 원클릭으로 갱신해 주는 무료 플러그인(레딧 사용자 /u/MR_WACKER 제작)이 공개되어 수동 슬롯 교체의 번거로움을 줄였으며, 자동 Re-baking과 Mesh Name Baking을 통해 작업 속도가 향상되었습니다.",
   "when": [
     "로우 폴리곤 모델에 하이 폴리곤의 스컬프팅 디테일을 노말 맵으로 입히고 싶을 때",
     "Smart Materials가 모서리나 홈을 자동으로 인식해 먼지나 마모 효과를 주게 하고 싶을 때",
@@ -16,8 +16,8 @@
     "필요시 하드 서페이스 자동 UV(Auto Unwrap) 기능을 적용해 UV를 전개하고,개선된 모델 선택 및 Bake 준비 단계를 거쳐 Texture Set Settings 패널로 이동하여 Bake Mesh Maps 버튼을 클릭합니다.",
     "Bake Mesh Maps 창에서 Common 탭의 Output Size(해상도)와 상단 탭에서 베이킹할 맵들을 선택합니다.",
     "Match 옵션을 'By Mesh Name'으로 설정하고, 고유한 High Definition Meshes 파일(_high 등)을 슬롯에 불러옵니다. (필요 시 메시 맵 자동 할당 무료 플러그인을 활용하여 반복 연결 과정을 단축합니다.)",
-    "Max Front/Rear 방사 거리(Distance) 값을 조절하거나 최신 버전의 Skew Correction 페인팅(브러시, Polygon Fill, Edge Protection, Warp to Geometry 활용)을 이용해 투영 범위를 세밀하게 맞춥니다.",
-    "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성하고, Quick Bake, Auto Rebake 및 원클릭 갱신 플러그인을 활용해 수정 사항을 즉시 갱신합니다."
+    "Max Front/Rear 방사 거리(Distance) 값을 조절하거나 12.2 버전의 Texture Set Highlight 및 Paint Cage(Skew Correction 페인팅 등) 기능을 이용해 복잡한 에셋의 투영 범위와 지오메트리 오염을 세밀하게 제어합니다.",
+    "하단의 Bake 버튼을 눌러 노말, 곡률, 오클루전 등의 맵을 일괄 생성하고, Quick Bake, 자동 Re-baking(Auto Rebake) 및 원클릭 갱신 플러그인을 활용해 수정 사항을 즉시 갱신합니다."
   ],
   "params": [
     {
@@ -65,7 +65,7 @@
   ],
   "mistakes": [
     "메시 이름이 일치하지 않아 엉뚱한 부위에 디테일이 투영됨 → Match 옵션을 By Mesh Name으로 바꾸고 접미사 설정 확인",
-    "Baking 결과물에 검은색 노이즈나 깨짐(Cageless 이슈)이 발생함 → Max Front/Rear 거리를 조절하거나 Skew Correction 페인팅, Edge Protection, Warp to Geometry 기능으로 투사 거리를 직접 제어하여 해결",
+    "Baking 결과물에 검은색 노이즈나 깨짐(Cageless 이슈) 및 지오메트리 오염이 발생함 → Max Front/Rear 거리를 조절하거나 12.2 버전의 Texture Set Highlight 및 Paint Cage(Skew Correction 페인팅 등) 기능으로 투사 거리를 직접 제어하여 해결",
     "UV 이음새가 찢어져 하얗게 선이 생김 → Dilate 값을 기본값(2~4 pixel) 이상으로 높여 해결"
   ],
   "related": [
@@ -211,13 +211,19 @@
         "p:2026-11-18-431d5bd393c26350"
       ],
       "skipped": true
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-19-5b915d1f30bf8bed",
-      "title": "Substance 3D 12.2 업데이트 Baking 도구 분석",
-      "url": "https://www.youtube.com/watch?v=i4jJcMkyhG0"
+      "at": "2026-11-20T14:19:18+00:00",
+      "what": "Substance 3D 12.2 업데이트에 추가된 Texture Set Highlight, Paint Cage, 업그레이드된 Polygon Tool Select 기능을 반영하여 복잡한 에셋의 베이킹 오염 방지 및 제어 방법을 보완했습니다.",
+      "sources": [
+        {
+          "title": "Substance 3D 12.2 업데이트 Baking 도구 분석",
+          "url": "https://www.youtube.com/watch?v=i4jJcMkyhG0"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-19-5b915d1f30bf8bed"
+      ]
     }
   ]
 }

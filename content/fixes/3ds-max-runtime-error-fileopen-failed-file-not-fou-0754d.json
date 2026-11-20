@@ -1,0 +1,37 @@
+{
+  "id": "3ds-max-runtime-error-fileopen-failed-file-not-fou-0754d",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "-- Runtime error: FileOpen failed: File not found",
+  "title": "-- Runtime error: FileOpen failed: File not found 해결 방법",
+  "summary": "-- Runtime error: FileOpen failed: File not found는 3ds Max에서 MacroScript(MAXScript)나 외부 플러그인이 실행되거나 파일을 불러오는 과정에서 지정된 경로의 파일을 찾지 못했을 때 발생하는 런타임 오류입니다.",
+  "causes": [
+    "Script 코드 내에 지정된 파일 경로가 잘못되었거나 오타가 있는 경우",
+    "불러오려는 텍스처, 씬, 혹은 데이터 파일이 삭제되었거나 다른 폴더로 이동된 경우",
+    "네트워크 드라이브(NAS) 경로의 연결이 끊어졌거나 권한 문제가 발생한 경우"
+  ],
+  "steps": [
+    "MAXScript Listener(F11) 창을 열어 오류가 발생한 정확한 라인 번호와 파일 경로를 확인합니다.",
+    "에러 메시지에 나타난 파일 경로가 실제 디스크에 존재하는지 탐색기를 통해 확인합니다.",
+    "Script 내의 경로 지정 방식을 상대 경로(Relative Path) 또는 유효한 절대 경로로 수정합니다.",
+    "네트워크 경로인 경우 드라이브 문자가 올바르게 연결되어 있는지 확인하거나 로컬 경로로 파일을 복사하여 테스트합니다."
+  ],
+  "check": [
+    "MAXScript 코드를 다시 실행했을 때 Listener 창에 더 이상 FileOpen failed 오류가 출력되지 않는지 확인합니다.",
+    "파일이 정상적으로 로드되어 뷰포트나 씬에 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "절대 경로 대신 3ds Max 프로젝트 폴더 구조에 기반한 상대 경로를 사용합니다.",
+    "외부 파일 의존성이 있는 Script를 배포할 때 에셋 파일이 누락되지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "3ds Max FileOpen failed",
+    "MAXScript File not found",
+    "MacroScript 파일 오픈 오류",
+    "3ds Max 런타임 에러",
+    "파일 찾을수 없음 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T14:19:08+00:00"
+}

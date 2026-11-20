@@ -1,0 +1,127 @@
+{
+  "id": "blender-displace-modifier-f215",
+  "guide_id": "blender-displace-modifier-f215",
+  "tool": "Blender",
+  "name": "Displace modifier",
+  "title": "Displace — 텍스처로 높낮이",
+  "overview": "Blender의 Displace Modifier는 텍스처나 이미지의 흑백 명암 값을 이용해 메쉬의 Vertex를 법선(Normal) 또는 지정한 축 방향으로 밀어내거나 당기는 변형 도구입니다. 지형의 산봉우리, 벽돌 벽의 요철, 혹은 파도치는 물결 같은 복잡한 입체 디테일을 폴리곤을 직접 조각하지 않고 가볍게 표현할 수 있습니다.",
+  "access": "Properties 패널에서 렌치 아이콘(Modifier Properties) 클릭 -> Add Modifier -> Deform 분류에서 Displace 선택. 또는 Viewport에서 오브젝트 선택 후 Ctrl+2(Subdivision Surface Hotkey 등과 혼동 주의) 대신 검색창(F3 또는 Spacebar)에서 'Displace'를 검색하여 추가할 수 있습니다.",
+  "options": [
+    {
+      "name": "Texture",
+      "value": "없음(New 가능)",
+      "effect": "변형에 사용할 이미지 또는 절차적 텍스처(Clouds, Noise 등)를 지정합니다.",
+      "tip": "텍스처 슬롯 옆의 작은 아이콘(Texture Properties로 이동)을 눌러 세부 속성을 즉시 편집할 수 있습니다."
+    },
+    {
+      "name": "Direction",
+      "value": "Normal / X / Y / Z / Custom Normal",
+      "effect": "텍스처의 값이 메쉬를 어느 방향으로 밀어낼지 결정합니다.",
+      "tip": "일반적인 지형이나 표면 요철은 기본값인 Normal을 사용하고, 평면을 한쪽 방향으로만 올릴 때는 Z축을 선택합니다."
+    },
+    {
+      "name": "Displacement Mode",
+      "value": "Real / Vector / RGB to XYZ",
+      "effect": "변형 방식을 결정합니다. 일반적인 흑백 텍스처는 Real을 사용합니다.",
+      "tip": "벡터 맵이나 특수한 Baking 결과물을 사용할 때는 Vector 모드로 변경하여 X, Y, Z 채널을 모두 활용합니다."
+    },
+    {
+      "name": "Strength",
+      "value": "기본값 1.0",
+      "effect": "텍스처가 메쉬를 밀어내는 전체적인 강도(높낮이의 폭)를 조절합니다.",
+      "tip": "값이 너무 크면 메쉬가 찢어지거나 과도하게 튀어나오므로, 미세한 조절은 소수점 단위(예: 0.05)로 입력합니다."
+    },
+    {
+      "name": "Midlevel",
+      "value": "기본값 0.5",
+      "effect": "변형이 일어나지 않는 기준 흑백 값입니다. 회색(0.5)을 기준으로 검은색은 안으로, 흰색은 밖으로 움직입니다.",
+      "tip": "텍스처의 평균 명암에 따라 0 또는 1로 설정하여 전체적인 오브젝트의 볼륨 유지를 돕습니다."
+    },
+    {
+      "name": "Texture Coordinates",
+      "value": "UV / Generated / Object / Local",
+      "effect": "텍스처가 공간상에 매핑되는 기준 좌표계를 설정합니다.",
+      "tip": "오브젝트가 움직여도 텍스처가 고정되게 하려면 Object를 선택하고 빈 엠티(Empty) 오브젝트를 연결하는 것이 좋습니다."
+    },
+    {
+      "name": "Object",
+      "value": "오브젝트 선택",
+      "effect": "Texture Coordinates가 Object일 때 좌표의 기준이 될 다른 오브젝트(Empty 등)를 지정합니다.",
+      "tip": "Empty 오브젝트를 회전시키거나 이동하여 텍스처의 위치를 실시간으로 애니메이션할 수 있습니다."
+    },
+    {
+      "name": "Vertex Group",
+      "value": "버텍스 그룹 이름",
+      "effect": "특정 Vertex 그룹에만 Displace 효과를 부분적으로 적용합니다.",
+      "tip": "가중치(Weight) 페인팅을 활용하면 가장자리는 변형되지 않고 가운데만 부풀어 오르는 연출이 가능합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Real Mode",
+      "desc": "일반적인 흑백(Grayscale) 이미지나 절차적 텍스처의 명암 값을 사용해 단일 방향으로 높낮이를 조절하는 기본 모드입니다."
+    },
+    {
+      "name": "Vector Mode",
+      "desc": "RGB 채널 각각을 X, Y, Z축의 변형 벡터로 사용하여 메쉬를 입체적으로 비틀거나 사방으로 밀어내는 고급 모드입니다."
+    },
+    {
+      "name": "RGB to XYZ Mode",
+      "desc": "텍스처의 빨강, 초록, 파랑 색상 값을 각각 X, Y, Z 좌표의 이동 값으로 변환하여 정밀한 표면 왜곡을 만듭니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "Subdivision Surface와 결합한 하이폴리곤 지형 제작",
+      "steps": [
+        "Plane 오브젝트를 생성하고 Tab 키를 눌러 Edit Mode에서 Mouse 우클릭 -> Subdivide를 여러 번 실행해 폴리곤을 촘촘하게 만듭니다.",
+        "Modifiers 탭에서 Subdivision Surface Modifier를 추가하여 표면을 더욱 부드럽게 세분화합니다.",
+        "그 위에 Displace Modifier를 추가하고 New 버튼을 눌러 텍스처를 연결합니다.",
+        "Texture 탭에서 Type을 Clouds 또는 Voronoi로 변경하고 Size와 Depth를 조절하여 자연스러운 산봉우리 형태를 만듭니다.",
+        "Displace Modifier의 Strength와 Midlevel을 조절해 최종 높낮이를 맞춥니다."
+      ]
+    },
+    {
+      "title": "Empty 오브젝트를 이용한 애니메이션 물결 효과",
+      "steps": [
+        "충분한 세그먼트를 가진 Plane을 만들고 Displace Modifier를 적용합니다.",
+        "Texture Coordinates를 Object로 설정하고, 씬에 Empty(Plain Axes) 오브젝트를 생성해 연결합니다.",
+        "Texture Type을 Noise로 설정하고 Strength를 낮게(예: 0.1) 설정합니다.",
+        "Empty 오브젝트를 Z축 방향으로 이동하거나 회전시키는 Keyframe 애니메이션을 줍니다.",
+        "Viewport에서 재생(Spacebar)하여 잔잔하게 일렁이는 물결 표면을 확인합니다."
+      ]
+    },
+    {
+      "title": "Vertex Group을 활용한 부분 볼륨 팽창",
+      "steps": [
+        "Cube나 UV Sphere 오브젝트를 생성하고 Subdivision Surface Modifier를 적용합니다.",
+        "Object Data Properties에서 Vertex Groups에 새 그룹을 만들고, Weight Paint 모드에서 부풀어 오를 부위만 칠합니다.",
+        "Displace Modifier를 추가하고 생성한 Vertex Group을 지정합니다.",
+        "Texture를 연결하여 특정 부위에만 디테일한 엠보싱 효과나 혹이 돋아난 형태를 표현합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Displace Modifier는 메쉬의 Vertex 밀도에 직접 의존하므로, 폴리곤이 너무 적으면 텍스처 디테일이 깨지고, 너무 많으면 Viewport가 느려집니다.",
+    "Subdivision Surface Modifier와 함께 사용할 때는 반드시 Displace Modifier를 Subdivision 아래(더 나중 순서)에 두어야 부드러운 고해상도 변형이 가능합니다.",
+    "복잡한 실시간 절차적 텍스처 대신 베이크된 이미지 텍스처를 사용하면 연산 부하를 크게 줄일 수 있습니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "텍스처를 넣었는데 오브젝트가 사방으로 찢어지거나 이상하게 변형됩니다.",
+      "fix": "오브젝트의 스케일 값이 1.0으로 적용(Apply Scale)되어 있는지 확인하세요. Ctrl+A -> Scale을 실행한 뒤 확인합니다."
+    },
+    {
+      "symptom": "울퉁불퉁한 디테일이 표현되지 않고 모서리만 전체적으로 커집니다.",
+      "fix": "메쉬 오브젝트의 폴리곤 수가 너무 부족한 상태입니다. Tab 키를 눌러 Edit Mode로 진입 후 Mouse 우클릭 -> Subdivide를 실행하거나 Subdivision Surface Modifier를 추가하세요."
+    },
+    {
+      "symptom": "텍스처 이미지를 바꿨는데 변형에 반영되지 않습니다.",
+      "fix": "Texture 탭에서 이미지 파일이 제대로 로드되었는지, 그리고 Image 패널의 Source가 Correctly Set 되었는지 확인하고, Modifier 탭에서 올바른 텍스처가 선택되어 있는지 재확인하세요."
+    }
+  ],
+  "versions": "Blender 4.0 이상 버전에서는 Modifier UI가 전면 개편되어 검색 기능이 강화되었으며, 노드 기반 Modifier와의 연동성이 향상되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Displace%20modifier",
+  "grounded": true,
+  "at": "2026-11-20T14:20:00+00:00"
+}
