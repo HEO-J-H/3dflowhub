@@ -37359,5 +37359,106 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 연동 테스트 및 구현 코드 보완",
     "auto": true
+  },
+  {
+    "at": "2026-11-20T15:43:31+00:00",
+    "kind": "proposal",
+    "id": "p-a25e3681b0",
+    "title": "PR #1 img2threejs 연동 테스트 및 예외 처리 분할 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며, img2threejs 호출 오류 시 heightfield로 대체하지 않고 명확한 오류 반환 및 테스트 보완이 요구됨",
+    "proposal": "backend/app/services/img2threejs_runner.py와 관련 테스트 파일에 명확한 예외 처리 로직 및 단위 테스트를 분할하여 작성합니다.",
+    "expected": "PR #1의 요구사항을 충족하고 파이프라인의 안정성을 높입니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T15:43:33+00:00",
+    "kind": "proposal",
+    "id": "p-e56056f0b8",
+    "title": "5060 사용자를 위한 연금 수령시기별 시뮬레이션 활용법 안내",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "최근 50~60대 가독성 향상과 면책 조항 강화가 완료되었으나(완료 7건), 실제 은퇴 Simulator 사용법에 대한 안내 가이드를 보완하면 체류 시간을 높일 수 있습니다.",
+    "proposal": "메인 Simulator 화면 상단 또는 하단에 '국민연금 수령시기별 현금흐름 비교 방법' 3단계 팁 카드를 추가합니다.",
+    "expected": "처음 방문한 50~60대 사용자가 시뮬레이터 입력 항목을 쉽게 이해하고 활용할 수 있습니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T15:43:33+00:00",
+    "kind": "proposal",
+    "id": "p-9be3bbcb49",
+    "title": "네이버 은퇴 준비 커뮤니티 맞춤형 홍보 문구 정비",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "콘텐츠",
+    "evidence": "새로운 홍보 아이디어(ISA 만기금 전환, 국민연금 연기수령 비교)가 등록되어 있으나 실제 확산 및 채널 점검이 필요합니다.",
+    "proposal": "50~60대 은퇴 준비 네이버 카페 및 카카오톡 오픈채팅에서 개인정보 저장 없는 브라우저 로컬 계산 장점을 강조하는 홍보 문구를 정리합니다.",
+    "expected": "타겟 사용자의 신뢰도와 사이트 유입률을 높일 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T15:44:34.923607+00:00",
+    "kind": "proposal",
+    "id": "p-6fb6c29e76",
+    "title": "Microsoft TRELLIS를 여러 각도 AI 엔진으로 도입",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "수집",
+    "evidence": "스타수 14,362개, MIT 라이선스, CVPR 2025 Spotlight 논문 공식 저장소",
+    "proposal": "backend/app/services 경로에 microsoft/TRELLIS를 선택 엔진으로 추가하여 다중 각도 이미지-3D 생성 품질을 대폭 향상",
+    "expected": "오픈소스 MIT 라이선스로 상업적 이용이 안전하며, 정교한 3D 라텐트 구조 기반의 고품질 메시 생성 가능",
+    "effort": "높음",
+    "action": {
+      "type": "guide_topic",
+      "tool": "python",
+      "group": "ai",
+      "name": "trellis_runner",
+      "title_ko": "Microsoft TRELLIS 연동"
+    }
+  },
+  {
+    "at": "2026-11-20T15:45:27.138110+00:00",
+    "kind": "decision",
+    "id": "p-6fb6c29e76",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: Microsoft TRELLIS를 다중 각도 3D 생성 선택 엔진으로 도",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T15:45:27.178147+00:00",
+    "kind": "decision",
+    "id": "p-e56056f0b8",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T15:45:27.217838+00:00",
+    "kind": "decision",
+    "id": "p-9be3bbcb49",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T15:45:27.258018+00:00",
+    "kind": "decision",
+    "id": "p-a25e3681b0",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 및 오류 처리 구현",
+    "auto": true
   }
 ]
