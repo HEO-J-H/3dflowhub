@@ -36776,5 +36776,36 @@
     "id": "p-f4b552fe2c",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 라이선스 검토 및 관련 문서 작성 작업이 완료되었거나 끝낸 제안에 포함되어 있습니다."
+  },
+  {
+    "at": "2026-11-20T11:02:41+00:00",
+    "kind": "proposal",
+    "id": "p-ecbecfd2d8",
+    "title": "PR #1 img2threejs 연동 및 오류 처리 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1에서 엔진 이름만 추가된 상태로 반려되었으며, 실제 img2threejs 호출과 예외 처리 구현이 요구됩니다.",
+    "proposal": "backend/app/services 내에서 img2threejs 호출 로직을 구현하고, 사용할 수 없는 환경일 경우 조용히 대체하는 대신 명확한 오류를 반환하도록 수정합니다.",
+    "expected": "핵심 3D 변환 파이프라인의 신뢰성 확보 및 PR #1 승인 요건 충족",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T11:03:33.943752+00:00",
+    "kind": "decision",
+    "id": "p-ecbecfd2d8",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T11:03:34.789425+00:00",
+    "kind": "decision",
+    "id": "p-ecbecfd2d8",
+    "v": "done",
+    "note": "자동 완료 확인: PR #1 닫힘"
   }
 ]
