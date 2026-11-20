@@ -104,62 +104,6 @@
   ],
   "history": [
     {
-      "at": "2026-11-18T23:54:28+00:00",
-      "refresh": {
-        "found": 3,
-        "updated": []
-      }
-    },
-    {
-      "at": "2026-11-19T00:50:23+00:00",
-      "guides": [
-        "Densification — 학습 과정에서 디테일 표현을 위해 Gaussian 포인트를 분기하고 생성하는 핵심 알고"
-      ]
-    },
-    {
-      "at": "2026-11-19T01:01:07+00:00",
-      "enriched": [
-        "Toy Story 30주년 회고 — Jason Katz가 말하는 스토리  (731→1615자)",
-        "NVIDIA Cosmos: 두 Prompt만으로 물리 AI 데이터셋 구축 (1029→2020자)",
-        "Unreal Engine, 에이전트 AI 도입으로 유연성 강화 (752→1588자)"
-      ]
-    },
-    {
-      "at": "2026-11-19T01:10:19+00:00",
-      "manual": [
-        "Curve — 커브 따라 휘기"
-      ]
-    },
-    {
-      "at": "2026-11-19T08:12:08+00:00",
-      "lesson": "동음이의어(Maya, Nuke, Unity 등)로 인한 오탐지를 방지하기 위해 수집 단계에서 철저한 3D·CG 문맥 검증과 고단가 스크립트·애드온 주제 중심의 필터링 강화가 필수적입니다.",
-      "changes": [
-        "독자 관심 도구: {'3D DCC': ['Maya', '3D Painter', '3ds Max'], 'VFX': ['Houdini']}",
-        "도메인 비중: {'3D DCC': 0.281, 'Game Engine': 0.25, 'VFX': 0.229, 'AI 3D': 0.24}",
-        "지침 롤백 f98bcb21(점수 -5.269) → 946587b2(점수 -3.45)",
-        "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D"
-      ]
-    },
-    {
-      "at": "2026-11-19T08:12:15+00:00",
-      "site_managers": [
-        "pix2poly: 제안 2개"
-      ]
-    },
-    {
-      "at": "2026-11-19T08:12:29+00:00",
-      "staff": [
-        {
-          "role": "🧪 QA",
-          "note": "전체 1595건 기계 검사: 문제 28건 그림·영상 없음 7, 상투어 반복(파이프라인·워크플로·효율) 6, 상투어 반복(파이프라인·효율·유용합니다) 2 / AI 검수 평균 8.9점; 최근: Node Editor 9점; Variant 전환하기 9점; SubTool — 부품 관리 9점"
-        }
-      ]
-    },
-    {
-      "at": "2026-11-19T08:14:12+00:00",
-      "assets": 1
-    },
-    {
       "at": "2026-11-19T08:14:34+00:00",
       "refs": [
         "Designer: [Baking] Failed to bake ambient occlusion because ray-tracing device i",
@@ -939,9 +883,70 @@
       "manual": [
         "Cycles와 EEVEE 차이"
       ]
+    },
+    {
+      "at": "2026-11-20T08:03:41+00:00",
+      "lesson": "AI 일일 한도 소진 문제가 발생하였으므로 API 호출 효율을 높이고, 동음이의어(Nuke, Unity, Houdini 등)의 오탐을 완벽히 차단하여 불필요한 LLM 소모를 줄여야 합니다.",
+      "changes": [
+        "독자 관심 도구: {'3D DCC': ['Maya', '3D Painter', '3ds Max'], 'VFX': ['Houdini']}",
+        "도메인 비중: {'3D DCC': 0.288, 'Game Engine': 0.247, 'VFX': 0.227, 'AI 3D': 0.237}",
+        "편집 가이드 유지 — 현재 버전 평가 중 (2/3회)",
+        "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D"
+      ]
+    },
+    {
+      "at": "2026-11-20T08:03:48+00:00",
+      "site_managers": [
+        "pix2poly: 제안 1개"
+      ]
+    },
+    {
+      "at": "2026-11-20T08:04:03+00:00",
+      "staff": [
+        {
+          "role": "🧪 QA",
+          "note": "전체 1608건 기계 검사: 문제 22건 상투어 반복(파이프라인·워크플로·효율) 6, 그림·영상 없음 6, 상투어 반복(파이프라인·효율·유용합니다) 2 / AI 검수 평균 8.9점; 최근: Stage Error: Failed to c 8점; MultiRes — 단계별 폴리곤 감소 9점; Layered Shader 8점"
+        }
+      ]
+    },
+    {
+      "at": "2026-11-20T08:05:18+00:00",
+      "assets": 1
+    },
+    {
+      "at": "2026-11-20T08:05:44+00:00",
+      "refs": [
+        "Error: File export failed because the selected object is frozen or hidden 해결 방법",
+        "# Error: file: line X: Attribute is locked or connected and cannot be modified 해",
+        "Warning: PolyReduce sop: Target polygon count is higher than source geometry 해결",
+        "Tool: SubTool merge failed because active subtool has subdivision levels 해결 방법"
+      ]
+    },
+    {
+      "at": "2026-11-20T08:05:44+00:00",
+      "tuned": [
+        "visuals_posts_per_run 35→25 (post_image_pct 98.5 / 목표 90)",
+        "compare_daily 8→7 (compare_coverage_pct 100.0 / 목표 100)"
+      ]
+    },
+    {
+      "at": "2026-11-20T08:05:52+00:00",
+      "refresh": {
+        "found": 1,
+        "updated": [
+          "guide:blender-shade-smooth-and-auto-smooth-033c",
+          "guide:houdini-vellum-hair-and-grains-e15f"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-20T08:06:06+00:00",
+      "manual": [
+        "Data Transfer — 노멀·UV 옮기기"
+      ]
     }
   ],
-  "strategy_updated_at": "2026-11-20T01:12:03+00:00",
+  "strategy_updated_at": "2026-11-20T08:03:41+00:00",
   "taxonomy_updated_at": "2026-11-19T16:07:16+00:00",
   "domain_weights": {
     "3D DCC": 0.288,
@@ -949,7 +954,7 @@
     "VFX": 0.275,
     "AI 3D": 0.25
   },
-  "pages_at": "2026-11-20T01:11:19+00:00",
+  "pages_at": "2026-11-20T08:03:35+00:00",
   "note_versions": {
     "f365403b": [
       "제목은 핵심 도구/제품명과 검색 키워드를 앞쪽에 배치하여 25~45자 내외로 작성합니다.",
@@ -2159,8 +2164,8 @@
       "DaVinci Resolve"
     ]
   },
-  "roundups_at": "2026-11-20T01:24:09+00:00",
-  "guides_at": "2026-11-20T01:24:09+00:00",
+  "roundups_at": "2026-11-20T08:04:32+00:00",
+  "guides_at": "2026-11-20T08:04:32+00:00",
   "guide_topics": [
     [
       "3ds Max",
@@ -3958,16 +3963,16 @@
   ],
   "notes_updated_at": "2026-11-20T01:12:03+00:00",
   "recipes_at": "2026-11-02T14:10:41+00:00",
-  "enrich_at": "2026-11-20T00:42:26+00:00",
-  "refs_at": "2026-11-19T23:51:26+00:00",
-  "assets_at": "2026-11-19T20:41:26+00:00",
+  "enrich_at": "2026-11-20T08:04:40+00:00",
+  "refs_at": "2026-11-20T08:05:44+00:00",
+  "assets_at": "2026-11-20T08:05:18+00:00",
   "sources_at": "2026-11-15T12:19:53+00:00",
-  "manual_at": "2026-11-20T01:14:53+00:00",
-  "compare_at": "2026-11-19T23:51:27+00:00",
-  "scorecard_at": "2026-11-19T20:41:26+00:00",
-  "refresh_at": "2026-11-19T23:51:27+00:00",
-  "events_at": "2026-11-19T20:41:20+00:00",
-  "papers_at": "2026-11-20T01:13:47+00:00",
+  "manual_at": "2026-11-20T08:06:06+00:00",
+  "compare_at": "2026-11-20T08:06:06+00:00",
+  "scorecard_at": "2026-11-20T08:05:44+00:00",
+  "refresh_at": "2026-11-20T08:05:52+00:00",
+  "events_at": "2026-11-20T08:05:14+00:00",
+  "papers_at": "2026-11-20T08:05:52+00:00",
   "radar_at": "2026-11-19T20:40:25+00:00",
   "showcase_at": "2026-11-16T15:08:06+00:00",
   "guide_refill_day": "2026-11-15",

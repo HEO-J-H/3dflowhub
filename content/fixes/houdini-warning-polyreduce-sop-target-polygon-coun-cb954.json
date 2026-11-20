@@ -1,0 +1,36 @@
+{
+  "id": "houdini-warning-polyreduce-sop-target-polygon-coun-cb954",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Warning: PolyReduce sop: Target polygon count is higher than source geometry",
+  "title": "Warning: PolyReduce sop: Target polygon count is higher than source geometry 해결",
+  "summary": "Houdini의 PolyReduce SOP 노드에서 목표 폴리곤 수(Target Polygon Count)가 원본 지오메트리의 실제 폴리곤 수보다 높게 설정되었을 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "Target Percentage 모드 대신 Target Count 모드를 사용하면서 원본보다 높은 숫자를 입력한 경우",
+    "이전 노드에서 폴리곤 수가 줄어들었으나 PolyReduce 노드의 목표 수치가 업데이트되지 않은 경우",
+    "애니메이션이나 시뮬레이션 과정에서 프레임별 폴리곤 수가 변하여 특정 프레임에서 원본 폴리곤 수가 목표치보다 적어진 경우"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 해당 PolyReduce SOP 노드를 더 클릭하여 파라미터 창을 엽니다.",
+    "Parameters 패널에서 Reduction 표기 방식이 Target Count로 되어 있는지 확인합니다.",
+    "Target Count 값을 원본 지오메트리의 폴리곤 수보다 낮게 수정하거나, Keep Percentage 옵션으로 변경하여 비율(예: 50%)로 조절합니다.",
+    "만약 프레임마다 메시가 변하는 경우, 파라미터에서 현재 프레임의 폴리곤 수를 확인한 후 최소값에 맞춰 목표치를 조정합니다."
+  ],
+  "check": [
+    "네트워크 뷰의 PolyReduce SOP 노드 아이콘에 나타났던 경고(Warning) 아이콘과 메시지가 사라지는지 확인합니다.",
+    "시각화(Display) 플래그를 켜고 Viewport에서 모델의 폴리곤이 의도대로 감소했는지 확인합니다."
+  ],
+  "prevent": [
+    "절대적인 폴리곤 수(Target Count) 입력보다는 백분율(Target Percentage) 옵션을 사용하여 동적으로 폴리곤을 줄입니다.",
+    "입력 지오메트리의 면 수를 가늠할 수 없을 때는 Node Info 창(MMB 클릭)을 통해 현재 폴리곤(Polygon) 개수를 먼저 확인합니다."
+  ],
+  "keywords": [
+    "Houdini PolyReduce 경고",
+    "PolyReduce target polygon count",
+    "Houdini 폴리듀스 에러",
+    "Target polygon count is higher than source"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T08:05:40+00:00"
+}

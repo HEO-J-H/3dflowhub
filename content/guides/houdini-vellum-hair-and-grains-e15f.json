@@ -56,6 +56,14 @@
         "Vellum Grains 노드를 적용하여 입자 간의 충돌 속성을 부여합니다.",
         "바닥 오브젝트와 충돌하도록 콜라이더를 설정하고 애니메이션을 재생합니다."
       ]
+    },
+    {
+      "title": "Vellum을 활용한 접착식 장난감 물리 시뮬레이션",
+      "steps": [
+        "저폴리곤 프록시 메시를 제작하고 VDB를 이용해 하나의 지오메트리로 결합합니다.",
+        "Tetrahedral Stretch 제약과 점진적 접착 파열(Adhesion) 노이즈를 적용하여 중력에 따라 벽에서 떨어지는 움직임을 구현합니다.",
+        "Point Deform 노드와 For-Each 루프를 활용해 저폴리곤 프록시 메시를 원본 모델로 교체합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -100,13 +108,19 @@
         "p:2026-11-18-05ec4b33c95f8fc9"
       ],
       "skipped": true
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-19-a9724697503a3d8a",
-      "title": "Houdini Vellum 시뮬레이션으로 구현한 스파이더맨 장난감",
-      "url": "https://80.lv/articles/this-spider-man-simulation-brings-back-memories-of-sticky-wall-crawler-toys/"
+      "at": "2026-11-20T08:05:52+00:00",
+      "what": "Houdini Vellum을 활용한 접착식 물리 시뮬레이션 및 프록시 메시 치환 활용 예시를 추가했습니다.",
+      "sources": [
+        {
+          "title": "Houdini Vellum 시뮬레이션으로 구현한 스파이더맨 장난감",
+          "url": "https://80.lv/articles/this-spider-man-simulation-brings-back-memories-of-sticky-wall-crawler-toys/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-19-a9724697503a3d8a"
+      ]
     }
   ]
 }

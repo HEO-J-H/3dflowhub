@@ -88,5 +88,14 @@
     "Surface",
     "Layered Shader"
   ],
-  "at": "2026-11-09T09:37:06.774912+00:00"
+  "at": "2026-11-09T09:37:06.774912+00:00",
+  "qa_at": "2026-11-20T08:04:03+00:00",
+  "qa": {
+    "score": 8,
+    "defects": [
+      "Hypershade의 Create 탭 경로 및 노드 생성 방식이 최신 Maya 버전과 일부 상이할 수 있습니다.",
+      "Layered Shader는 레거시 셰이더이므로 Arnold 기반의 aiLayerRgba 등 현대적인 워크플로우에 대한 안내가 보완되면 좋습니다."
+    ],
+    "fix_hint": "최신 Maya 버전의 표준 워크플로우(예: Arnold 셰이더 및 Node Editor 활용)를 반영하여 메뉴 경로와 셰이더 종류를 정확히 명시해 주세요."
+  }
 }

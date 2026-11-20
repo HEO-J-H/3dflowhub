@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-file-export-failed-because-the-selec-ca8fd",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: File export failed because the selected object is frozen or hidden",
+  "title": "Error: File export failed because the selected object is frozen or hidden 해결 방법",
+  "summary": "'Error: File export failed because the selected object is frozen or hidden'은 3ds Max에서 씬을 Export할 때, 선택된 객체 중 얼려 있거나(Frozen) 숨겨진(Hidden) 항목이 포함되어 있어 Export가 중단될 때 발생하는 오류입니다.",
+  "causes": [
+    "Export 옵션에서 'Export Selected(선택 항목 Export)'를 활성화한 상태에서 숨겨진 객체나 얼려진 객체가 선택 범위에 포함된 경우",
+    "오래된 3ds Max 버전이나 특정 플러그인(FBX, OBJ 등) 사용 시 숨겨진 지오메트리를 처리하지 못하는 경우",
+    "그룹(Group) 내부에 숨겨지거나 얼려진 하위 객체가 포함되어 있는 경우"
+  ],
+  "steps": [
+    "메인 툴바의 Edit 패널 또는 Edit 메뉴에서 Unhide All과 Unfreeze All을 실행하여 모든 객체를 화면에 표시합니다.",
+    "키보드 H 키를 눌러 Select From Scene 대화상자를 열고, 불필요하게 숨겨지거나 잠겨 있는 객체가 있는지 목록에서 확인합니다.",
+    "내보내려는 객체만 정확히 드래그하거나 선택(Select)한 뒤, 메인 메뉴의 File > Export > Export Selected를 실행합니다.",
+    "그룹화된 객체라면 해당 그룹을 열고(Open), Export 대상이 아닌 숨겨진 파트가 선택되어 있지 않은지 확인합니다.",
+    "필요한 경우 해당 객체들의 Freeze 및 Hide 상태를 해제한 뒤 다시 Export를 시도합니다."
+  ],
+  "check": [
+    "오류 메시지 창 없이 Export 설정(Format 옵션 등) 창이 정상적으로 뜨는지 확인합니다.",
+    "지정한 경로에 내보낸 파일(FBX, OBJ 등)이 정상적으로 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "Export를 수행하기 전 Viewport에서 필요한 객체만 남기고 불필요한 객체는 레이어(Layer) 단위로 완전히 분리하거나 관리합니다.",
+    "Export Selected 대신 전체 씬을 내보내거나, 내보낼 객체들만 별도의 3ds Max 파일로 병합(Merge)하여 내보냅니다."
+  ],
+  "keywords": [
+    "3ds Max export failed frozen hidden",
+    "맥스 Export 오류",
+    "File export failed selected object frozen",
+    "맥스 오브젝트 숨김 Export 오류",
+    "3ds Max FBX export error"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T08:05:24+00:00"
+}

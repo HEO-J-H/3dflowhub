@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-file-line-x-attribute-is-locked-or-conn-4e60c",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Attribute is locked or connected and cannot be modified",
+  "title": "# Error: file: line X: Attribute is locked or connected and cannot be modified 해",
+  "summary": "Maya에서 잠겨 있거나(Locked) 다른 노드에 연결된(Connected) 어트리뷰트를 MEL 스크립트나 애니메이션 키 등으로 수정하려 할 때 발생하는 오류입니다.",
+  "causes": [
+    "Channel Box나 Attribute Editor에서 해당 어트리뷰트가 잠겨(Lock Attribute) 있는 경우",
+    "애니메이션 커브, 표현식(Expression), 혹은 노드 간 연결(Connection)에 의해 값이 제어되고 있는 경우",
+    "참조(Reference)된 파일의 어트리뷰트를 오버라이드 없이 직접 수정하려고 시도하는 경우"
+  ],
+  "steps": [
+    "Channel Box에서 문제가 되는 어트리뷰트 이름을 Mouse 우클릭하고 'Unlock Attribute'를 선택합니다.",
+    "멜(MEL) 명령어를 사용하여 강제로 잠금을 해제하려면 Script Editor에 'setAttr -l false 노드이름.어트리뷰트이름;'을 입력하고 실행합니다.",
+    "Connection Editor나 Node Editor를 열어 해당 어트리뷰트에 연결된 인바운드 커넥션을 확인하고 필요시 끊습니다(Disconnect).",
+    "참조된 파일의 경우 Reference Editor에서 해당 노드가 속한 파일을 오버라이드(File > Namespace Options 등)하거나 원본 파일에서 수정합니다."
+  ],
+  "check": [
+    "Channel Box에서 어트리뷰트 값이 회색(잠김)에서 흰색(편집 가능)으로 변경되었는지 확인합니다.",
+    "스크립트나 UI 슬라이더를 통해 값을 변경했을 때 오류 메시지 없이 정상적으로 값이 수정되는지 확인합니다."
+  ],
+  "prevent": [
+    "중요한 채널이나 실수로 변경되면 안 되는 변수는 의도적으로 잠그되, 수정이 필요할 때는 반드시 잠금을 해제하고 작업합니다.",
+    "릭(Rig) 컨트롤러나 애니메이션 제어 시 직접 트랜스폼을 건드리는 대신 연결된 커넥션 구조를 먼저 파악합니다."
+  ],
+  "keywords": [
+    "Maya 어트리뷰트 오류",
+    "Attribute is locked or connected",
+    "Maya 잠긴 속성 해제",
+    "멜 setAttr 잠금 해제",
+    "Maya 채널 잠김"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T08:05:28+00:00"
+}

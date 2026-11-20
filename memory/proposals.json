@@ -36475,5 +36475,29 @@
     "id": "p-b055500d38",
     "verdict": "agent",
     "reason": "새로운 RAG 서비스 구현 및 테스트 작성 작업이 아직 진행되지 않았음"
+  },
+  {
+    "at": "2026-11-20T08:03:48+00:00",
+    "kind": "proposal",
+    "id": "p-dd13b82cda",
+    "title": "PR #1 img2threejs 연동 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며 실제 img2threejs 호출 및 예외 처리가 필요함",
+    "proposal": "backend/app/services/triposr_runner.py 또는 관련 모듈에서 img2threejs 연동 실패 시 조용히 대체하지 않고 명확한 예외를 반환하도록 수정하고 관련 테스트 코드 작성",
+    "expected": "파이프라인의 예외 처리 안정성 확보 및 PR #1 승인 진행 가능",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T08:06:24.591720+00:00",
+    "kind": "decision",
+    "id": "p-dd13b82cda",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 연동 테스트 및 구현 코드 보완",
+    "auto": true
   }
 ]
