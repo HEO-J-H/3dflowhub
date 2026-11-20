@@ -1,0 +1,125 @@
+{
+  "id": "blender-delete-vs-dissolve-ccd1",
+  "guide_id": "blender-delete-vs-dissolve-ccd1",
+  "tool": "Blender",
+  "name": "Delete vs Dissolve",
+  "title": "Delete와 Dissolve 차이",
+  "overview": "Blender의 Delete와 Dissolve은 메시 요소를 제거하는 두 가지 핵심 명령어입니다. Delete는 선택한 요소와 그에 종속된 면, 엣지, 정점을 구조째로 도려내어 구멍을 만들고, Dissolve는 요소를 부드럽게 소멸시키며 주변 면과 엣지를 자연스럽게 병합하여 깔끔한 Topology를 유지합니다.",
+  "access": "Edit Mode에서 X 키 또는 Delete 키를 누르면 'Delete' 및 'Dissolve' 메뉴 팝업이 나타납니다. 상단 메뉴 바의 Mesh 메뉴에서도 Delete 및 Dissolve 항목을 찾을 수 있습니다.",
+  "options": [
+    {
+      "name": "Vertices",
+      "value": "",
+      "effect": "선택한 정점과 그에 연결된 모든 엣지 및 면을 통째로 삭제하여 구멍을 생성합니다.",
+      "tip": "오브젝트에 구멍을 뚫거나 완전히 끊어내고 싶을 때 사용합니다."
+    },
+    {
+      "name": "Edges",
+      "value": "",
+      "effect": "선택한 엣지를 삭제하며, 해당 엣지와 연결되었던 면들도 함께 제거되어 빈 공간을 만듭니다.",
+      "tip": "면의 경계를 허물고 열린 경계선(Boundary)을 만들 때 유용합니다."
+    },
+    {
+      "name": "Faces",
+      "value": "",
+      "effect": "선택한 면만 제거하고 테두리의 엣지와 정점은 그대로 남겨둡니다.",
+      "tip": "내부가 텅 빈 박스나 입체를 만들 때 활용합니다."
+    },
+    {
+      "name": "Dissolve Vertices",
+      "value": "",
+      "effect": "정점을 제거하면서 주변 면들을 하나로 병합하여 빈 공간 없이 메웁니다.",
+      "tip": "불필요한 정점을 지워 Topology를 간소화하고 N-gon을 정리할 때 필수적입니다."
+    },
+    {
+      "name": "Dissolve Edges",
+      "value": "",
+      "effect": "엣지를 제거하되 구멍을 만들지 않고 양쪽의 인접한 면을 하나로 합칩니다.",
+      "tip": "루프 컷(Loop Cut) 등으로 생긴 불필요한 가로/세로 선을 제거할 때 사용합니다."
+    },
+    {
+      "name": "Dissolve Faces",
+      "value": "",
+      "effect": "인접한 여러 면들을 하나로 병합하여 거대한 단일 면으로 만듭니다.",
+      "tip": "여러 개의 작은 면을 하나의 평면으로 통합할 때 유용합니다."
+    },
+    {
+      "name": "Limited Dissolve",
+      "value": "Angle: 5° (기본값)",
+      "effect": "지정한 각도(Angle) 임계값 이내에 있는 평면상의 불필요한 정점과 엣지를 자동으로 일괄 제거합니다.",
+      "tip": "CAD 데이터나 스캔 모델의 수많은 쓸모없는 정점을 단번에 줄일 때 강력합니다."
+    },
+    {
+      "name": "Collapse",
+      "value": "",
+      "effect": "선택한 요소들을 각 그룹의 중심점으로 수렴시켜 하나의 점이나 선으로 찌그러트립니다.",
+      "tip": "엣지나 면을 한 점으로 모아 삼각뿔 형태나 뾰족한 끝을 만들 때 씁니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Vertex Mode (정점 모드)",
+      "desc": "1 키로 진입하며, 개별 점 단위로 Delete 또는 Dissolve를 수행합니다."
+    },
+    {
+      "name": "Edge Mode (엣지 모드)",
+      "desc": "2 키로 진입하며, 선분 단위로 메시 구조를 수정합니다."
+    },
+    {
+      "name": "Face Mode (면 모드)",
+      "desc": "3 키로 진입하며, 폴리곤 면 단위로 삭제 및 병합을 처리합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "불필요한 Edge Loop 깔끔하게 제거하기",
+      "steps": [
+        "Tab 키를 눌러 Edit Mode로 진입하고 2 키를 눌러 Edge 셀렉션 모드로 전환합니다.",
+        "Alt + 클릭으로 제거하려는 엣지 루프(Edge Loop) 전체를 선택합니다.",
+        "X 키를 누르고 'Dissolve Edges'를 선택합니다.",
+        "구멍이 생기지 않고 주변 면들이 자연스럽게 합쳐졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "CAD 모델의 평면 영역 폴리곤 최적화",
+      "steps": [
+        "정리할 메시 오브젝트를 선택하고 Edit Mode에 진입합니다.",
+        "A 키를 눌러 전체 메시를 선택합니다.",
+        "X 키를 누르고 'Limited Dissolve'를 선택합니다.",
+        "하단 오퍼레이터 패널에서 Angle 값을 조절하여 매끄러운 평면의 정점 개수를 최소화합니다."
+      ]
+    },
+    {
+      "title": "오브젝트에 내부가 보이는 구멍 뚫기",
+      "steps": [
+        "Tab 키를 눌러 Edit Mode로 진입하고 3 키를 눌러 Face 셀렉션 모드로 바꿉니다.",
+        "구멍을 뚫을 대상 면들을 Mouse로 선택합니다.",
+        "X 키를 누르고 'Faces'를 선택합니다.",
+        "면만 제거되고 테두리 엣지가 남아 내부가 들여다보이는지 확인합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "수백만 개의 폴리곤을 가진 고밀도 메시에서 일괄적으로 Delete나 Dissolve를 실행하면 일시적인 멈춤 현상이 발생할 수 있습니다.",
+    "복잡한 모델의 Topology를 정리할 때는 전체 선택(A)보다 필요한 영역만 부분적으로 나누어 Dissolve를 실행하는 것이 안전합니다.",
+    "Modifier Stack에 Subdivision Surface 등이 활성화되어 있다면 수정 중 Viewport 버벅임이 심해지므로 편집 시 잠시 끄는 것을 권장합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Edges나 Vertices를 Delete로 지웠는데 의도치 않게 주변 면까지 전부 사라집니다.",
+      "fix": "Delete는 구조를 완전히 끊어내는 명령어입니다. 면을 유지하고 선만 없애려면 Delete 대신 'Dissolve Edges'를 사용하세요."
+    },
+    {
+      "symptom": "Dissolve Vertices를 실행했는데 정점이 남거나 찌그러진 선이 생깁니다.",
+      "fix": "주변에 숨겨진 중복 정점이 있거나 엣지가 얽혀 있을 수 있습니다. M 키를 누르고 'By Distance'를 실행해 Vertex를 정리한 후 다시 시도하세요."
+    },
+    {
+      "symptom": "Limited Dissolve 적용 시 필요한 모서리 형태까지 각도가 무너져 뭉개집니다.",
+      "fix": "하단 팝업 메뉴의 Angle 값을 기본값(5°)보다 낮게 조절하여 각진 경계선이 보존되도록 임계값을 타이트하게 설정하세요."
+    }
+  ],
+  "versions": "최신 Blender 버전에서는 메시 편집 시 실시간 Topology 계산 속도가 최적화되었으며, Limited Dissolve 알고리즘의 경계선 유지 능력이 향상되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Delete%20vs%20Dissolve",
+  "grounded": true,
+  "at": "2026-11-20T12:13:17+00:00"
+}
