@@ -37687,5 +37687,36 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 연동 예외 처리 테스트 분할 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-20T17:03:16+00:00",
+    "kind": "proposal",
+    "id": "p-3897474b82",
+    "title": "PR #1 img2threejs 예외 처리 및 테스트 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며, 이전 패치 적용 실패 및 반복 거절된 아이디어를 피해 명확한 오류 반환과 테스트 코드를 작성해야 함",
+    "proposal": "backend/app/services/img2threejs.py 내 실제 호출 오류 시 높이맵으로 자동 대체하는 대신 명확한 예외를 반환하도록 수정하고, backend/tests/test_img2threejs_error.py 테스트 파일을 추가",
+    "expected": "PR #1의 요구사항을 충족하여 승인 대기 상태 해소 및 파이프라인 무결성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T17:03:50.311383+00:00",
+    "kind": "decision",
+    "id": "p-3897474b82",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T17:03:52.534391+00:00",
+    "kind": "triage",
+    "id": "p-3897474b82",
+    "verdict": "agent",
+    "reason": "backend/app/services/img2threejs.py 내 예외 처리 수정 및 테스트 파일 추가는 AI 에이전트가 코드를 수정하여 해결할 수 있는 작업입니다."
   }
 ]
