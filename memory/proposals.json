@@ -38086,5 +38086,67 @@
     "id": "p-021408f56e",
     "verdict": "agent",
     "reason": "실패한 패치 과제들의 대상 파일 경로 검증 및 명세 수정은 코딩 에이전트가 자동화된 스크립트나 코드를 통해 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-20T19:33:27+00:00",
+    "kind": "proposal",
+    "id": "p-40a11ed8de",
+    "title": "PR #1 img2threejs 예외 처리 테스트 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 '엔진 이름만 추가됨' 사유로 보류 중이며, 실제 img2threejs 호출 예외 처리 테스트 코드가 필요함",
+    "proposal": "backend/tests/test_img2threejs_exception.py 파일을 신규 작성하여 img2threejs 호출 불가 시 명확한 예외 반환을 검증하는 테스트 코드 추가",
+    "expected": "PR #1 검토 요건인 예외 처리 및 테스트 보완 충족",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T19:33:27+00:00",
+    "kind": "proposal",
+    "id": "p-2894c249a3",
+    "title": "웹 UI 높이맵 변환 단위 테스트 코드 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 UI 높이맵 메시 생성 기능 테스트 강화 과제가 held 상태로 남아있음",
+    "proposal": "web/ 디렉토리 내 JavaScript 높이맵 변환 로직에 대한 간단한 단위 테스트 또는 브라우저 콘솔 검증 가이드 문서 작성",
+    "expected": "웹 버전 자바스크립트 처리 안정성 확보 및 테스트 커버리지 보완",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T19:33:56.799741+00:00",
+    "kind": "decision",
+    "id": "p-40a11ed8de",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 예외 처리 및 테스트 보완",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T19:33:56.832680+00:00",
+    "kind": "decision",
+    "id": "p-2894c249a3",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T19:33:58.346664+00:00",
+    "kind": "triage",
+    "id": "p-2894c249a3",
+    "verdict": "done_already",
+    "reason": "웹 UI 높이맵 변환 테스트와 관련된 과제는 이미 끝낸 제안 목록의 '웹 UI 높이맵 테스트 파일 신규 작성 및 검증' 등을 통해 충분히 반영되었습니다."
+  },
+  {
+    "at": "2026-11-20T19:33:58.376606+00:00",
+    "kind": "decision",
+    "id": "p-2894c249a3",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 웹 UI 높이맵 변환 테스트와 관련된 과제는 이미 끝낸 제안 목록의 '웹 UI 높이맵 테스트 파일 신규 작성 및 검증' 등을 통해 충분히 반영되었습니다."
   }
 ]
