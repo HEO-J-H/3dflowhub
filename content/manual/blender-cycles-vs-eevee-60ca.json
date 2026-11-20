@@ -1,0 +1,185 @@
+{
+  "id": "blender-cycles-vs-eevee-60ca",
+  "guide_id": "blender-cycles-vs-eevee-60ca",
+  "tool": "Blender",
+  "name": "Cycles vs EEVEE",
+  "title": "Cycles와 EEVEE 차이",
+  "overview": "Cycles는 물리 기반 경로 추적 엔진으로 광선의 실제 경로를 시뮬레이션해 정확한 조명·재질 효과를 계산합니다. EEVEE는 실시간 레이 Tracing 엔진으로 화면 공간 효과와 쉐이더를 활용해 빠르게 결과를 보여주며, Blender 5.3에서 각각 Dispersion·Anisotropic Roughness와 Material Lighting Nodes가 추가되었습니다.",
+  "access": "Properties 패널 → Render 탭 → Render Engine 드롭다운에서 Cycles 또는 EEVEE 선택합니다. Hotkey는 없지만, 상단 검색창에 “Render Engine”을 입력해 바로 접근할 수 있습니다.",
+  "options": [
+    {
+      "name": "Render Engine",
+      "value": "",
+      "effect": "Cycles는 경로 추적, EEVEE는 실시간 레이 Tracing을 사용합니다",
+      "tip": "작업 목적에 따라 엔진을 전환해 품질·속도 균형을 맞추세요"
+    },
+    {
+      "name": "Samples",
+      "value": "Render: 1‑1024 (기본 128), Viewport: 1‑256 (기본 64)",
+      "effect": "값이 높을수록 노이즈 감소, 렌더 시간이 증가합니다",
+      "tip": "Cycles에서는 Adaptive Sampling을 켜고, EEVEE는 Viewport Samples만 조정하면 충분합니다"
+    },
+    {
+      "name": "Bounces",
+      "value": "0‑64 (기본 12)",
+      "effect": "광선 반사·굴절 횟수를 정의해 광원·투명도 정확도에 영향을 줍니다",
+      "tip": "투명 재질이 많을 때만 높이고, 그 외엔 4‑6 정도로 제한하세요"
+    },
+    {
+      "name": "Denoising",
+      "value": "OptiX, OpenImageDenoise, NLM (기본 Off)",
+      "effect": "렌더 후 노이즈를 자동으로 제거해 깨끗한 이미지 제공",
+      "tip": "Cycles 최종 렌더에만 켜고, Viewport에서는 끄는 것이 성능에 좋습니다"
+    },
+    {
+      "name": "Ambient Occlusion",
+      "value": "On/Off, Distance (0‑10)",
+      "effect": "EEVEE에서 접촉면 그림자를 강화해 깊이감 부여",
+      "tip": "강도는 낮게(0.1‑0.3) 유지하면 과도한 어두움 방지"
+    },
+    {
+      "name": "Screen Space Reflections",
+      "value": "On/Off, Max Roughness (0‑1)",
+      "effect": "EEVEE에서 화면 공간 반사를 실시간으로 제공",
+      "tip": "반사 대상이 적을 때만 켜고, Max Roughness를 0.2‑0.4로 제한하면 잡음 감소"
+    },
+    {
+      "name": "Bloom",
+      "value": "On/Off, Threshold (0‑1)",
+      "effect": "밝은 영역 주변에 빛 번짐 효과를 추가합니다",
+      "tip": "스틸 이미지보다 애니메이션에 더 유용합니다"
+    },
+    {
+      "name": "Light & Shadow Linking",
+      "value": "On/Off",
+      "effect": "EEVEE에서 특정 라이트와 오브젝트 간 그림자 영향을 제어합니다",
+      "tip": "복잡한 씬에서 불필요한 라이트를 끄면 성능 향상"
+    },
+    {
+      "name": "Dispersion",
+      "value": "On/Off, Amount (0‑1)",
+      "effect": "Cycles에서 유리·투명 재질 내부 무지개 색 분산을 구현합니다",
+      "tip": "값을 0.05‑0.1 사이로 두면 과도한 색 번짐을 방지"
+    },
+    {
+      "name": "Anisotropic Roughness",
+      "value": "On/Off, Anisotropy (0‑1)",
+      "effect": "Cycles에서 거칠기의 방향성을 정밀 제어해 금속·브러시 효과 구현",
+      "tip": "Anisotropy를 0.5 정도로 설정하면 자연스러운 금속 표면 표현"
+    },
+    {
+      "name": "Material Lighting Nodes",
+      "value": "",
+      "effect": "EEVEE에서 재질 조명 흐름을 세밀히 제어하는 새로운 노드 집합",
+      "tip": "노드 연결을 시각화해 빠르게 디버깅하세요"
+    },
+    {
+      "name": "Device",
+      "value": "CPU / GPU (CUDA, OptiX, Metal)",
+      "effect": "렌더링을 수행할 하드웨어를 선택합니다",
+      "tip": "가능하면 GPU를 선택하고, 메모리 초과 시 CPU로 전환"
+    },
+    {
+      "name": "Simplify",
+      "value": "Viewport: 0‑1, Render: 0‑1",
+      "effect": "전체 씬의 폴리곤·텍스처 Resolution를 제한해 렌더 속도 개선",
+      "tip": "프리뷰 단계에서 0.5 이하로 낮추면 인터랙션이 매끄럽습니다"
+    },
+    {
+      "name": "Volumetric Bounces",
+      "value": "0‑64 (기본 4)",
+      "effect": "볼륨 안에서 광선 반사·굴절 횟수를 정의합니다",
+      "tip": "볼륨 효과가 필요 없을 때 0으로 설정해 큰 성능 향상"
+    }
+  ],
+  "modes": [
+    {
+      "name": "Viewport Rendering",
+      "desc": "Properties → Render 탭 → Viewport Samples를 조정해 실시간 미리보기를 제공합니다. EEVEE는 즉시, Cycles는 Adaptive Sampling으로 점진적 품질 향상이 가능합니다"
+    },
+    {
+      "name": "Final Render",
+      "desc": "Render → Render Image (F12) 로 최종 이미지를 출력합니다. Cycles는 전체 샘플링·디노이징을 적용하고, EEVEE는 설정된 Viewport Samples와 Post 프로세스를 그대로 사용합니다"
+    },
+    {
+      "name": "Hybrid Workflow",
+      "desc": "작업 중에는 EEVEE로 빠르게 확인하고, 최종 출력 시 Cycles로 전환해 고품질 결과를 얻는 방식입니다"
+    },
+    {
+      "name": "Layered Rendering",
+      "desc": "EEVEE와 Cycles를 각각 다른 View Layer에 배치해, Compositing 단계에서 두 엔진의 결과를 혼합할 수 있습니다"
+    }
+  ],
+  "recipes": [
+    {
+      "title": "고품질 제품 렌더링 (Cycles)",
+      "steps": [
+        "Properties → Render 탭에서 Render Engine을 Cycles로 선택",
+        "Sampling 섹션에서 Render Samples를 256으로 설정",
+        "Bounces를 12, Volumetric Bounces를 4로 지정",
+        "Material에 Dispersion과 Anisotropic Roughness를 활성화",
+        "Render → Render Image (F12) 후 Denoising을 켜서 노이즈 제거"
+      ]
+    },
+    {
+      "title": "실시간 애니메이션 프리뷰 (EEVEE)",
+      "steps": [
+        "Render Engine을 EEVEE로 전환",
+        "Viewport Samples를 64로 설정",
+        "Ambient Occlusion과 Screen Space Reflections를 켜고 거리·거칠기 값을 조정",
+        "Bloom과 Motion Blur를 필요에 따라 활성화",
+        "Play Animation (Alt+A) 하면서 실시간 피드백 확인"
+      ]
+    },
+    {
+      "title": "Material Lighting Nodes 활용 (EEVEE)",
+      "steps": [
+        "EEVEE 엔진 선택 후 Material Properties에서 새로운 Material Lighting Nodes 추가",
+        "노드 에디터에서 Light Probe, Shadow Catcher, Emission 노드를 연결",
+        "노드 파라미터에서 Intensity와 Color를 조정해 원하는 분위기 구현",
+        "Viewport에서 실시간 반영 확인 후 Render Image 실행"
+      ]
+    },
+    {
+      "title": "투명 유리와 무지개 효과 (Cycles)",
+      "steps": [
+        "Cycles 엔진 선택 후 유리 재질에 Principled BSDF 사용",
+        "Dispersion 옵션을 On으로 설정하고 Amount를 0.07로 지정",
+        "Roughness를 0으로 낮추고 IOR을 1.45로 설정",
+        "Render → Render Image 실행 후 결과 확인"
+      ]
+    }
+  ],
+  "performance": [
+    "샘플 수를 필요 최소 수준으로 낮추고 Adaptive Sampling을 활성화하면 Cycles 렌더 시간을 크게 단축할 수 있습니다",
+    "EEVEE에서는 Screen Space Reflections와 Bloom 같은 Post 프로세스를 필요에 따라 끄면 프레임률이 크게 올라갑니다",
+    "GPU가 지원되는 경우 Device를 GPU(CUDA/OptiX/Metal)로 설정하고, 메모리 초과 시에는 CPU로 전환하세요",
+    "Simplify 옵션으로 Viewport 폴리곤 수와 텍스처 Resolution를 제한하면 복잡한 씬에서도 부드러운 인터랙션이 가능합니다"
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "렌더 이미지에 노이즈가 많이 보인다",
+      "fix": "Cycles에서는 Samples를 2배 이상 늘리거나 Adaptive Sampling을 켜고, Denoising을 활성화하세요"
+    },
+    {
+      "symptom": "EEVEE에서 반사가 전혀 나타나지 않는다",
+      "fix": "Screen Space Reflections를 On으로 전환하고, Max Roughness 값을 0.3 이하로 낮추세요"
+    },
+    {
+      "symptom": "투명 재질이 검은색으로 출력된다",
+      "fix": "Cycles에서 Material의 Transmission과 Roughness를 올바르게 설정하고, Bounces를 최소 8 이상으로 늘리세요"
+    },
+    {
+      "symptom": "렌더가 매우 느리게 진행된다",
+      "fix": "Device를 GPU로 전환하고, Simplify와 Adaptive Sampling을 사용해 연산량을 감소시키세요"
+    },
+    {
+      "symptom": "EEVEE에서 그림자가 끊겨 보인다",
+      "fix": "Light → Light Settings에서 Shadow Mode를 ‘ESM’ 또는 ‘VSM’으로 바꾸고, Shadow Cube Size를 높이세요"
+    }
+  ],
+  "versions": "Blender 5.3에서 Cycles에 Dispersion·Anisotropic Roughness가 추가되었으며, EEVEE에 Material Lighting Nodes와 Light Linking 기능이 도입되었습니다. 이전 버전에서는 해당 옵션이 존재하지 않으니 UI가 보이지 않을 경우 버전을 확인하세요.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Cycles%20vs%20EEVEE",
+  "grounded": true,
+  "at": "2026-11-20T01:14:53+00:00"
+}
