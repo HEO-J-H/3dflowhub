@@ -1,0 +1,55 @@
+{
+  "title_ko": "Blender 볼륨 스무딩 기능 – 무게 페인팅 품질 향상",
+  "title": "Clever Weight-Painting Tool For Better Character Deformations",
+  "url": "https://80.lv/articles/clever-weight-painting-tool-for-better-character-deformations/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "플러그인·스크립트",
+  "tags": [
+    "Blender",
+    "Smooth Weights",
+    "Volume Smoothing",
+    "weight painting",
+    "rigging",
+    "블렌더"
+  ],
+  "summary": "Smooth Weights 애드온의 Volume Smoothing 모드가 연결되지 않은 메쉬 사이에서도 무게를 부드럽게 조정한다.",
+  "insight": "Volume Smoothing은 토폴로지가 아닌 거리 기반으로 가중치를 혼합해, 어깨·팔꿈치처럼 겹치거나 틈이 있는 부위에서도 급격한 변형을 방지한다. 이 방식은 복잡한 의상과 본 사이 경계를 자연스럽게 이어주어 리깅 작업 시간을 단축한다. Blender 리깅 아티스트가 바로 적용하면 변형 품질이 눈에 띄게 개선된다.",
+  "try_it": [
+    "Smooth Weights 애드온을 설치하고, 편집하고자 하는 메쉬를 선택한 뒤 Volume Smoothing 옵션을 활성화한다.",
+    "cvELD Edit Paint를 열어 Edit Mode에서 여러 본에 동시에 무게를 페인팅하고, 클리핑 보정 툴로 의상과 몸통 사이의 작은 틈을 메운다.",
+    "Blender 5.3의 뷰포트 디노이저를 켜서 무게 페인팅 결과를 실시간으로 확인하고, 필요 시 Volume Smoothing 파라미터를 조정한다."
+  ],
+  "sections": [
+    {
+      "heading": "Smooth Weights 애드온 소개",
+      "body": "Brave Rabbit이 만든 Smooth Weights 애드온은 Blender용 무게 페인팅 보조 도구다. Volume Smoothing 모드를 포함해 다양한 스무딩 옵션을 제공한다. 이 애드온은 리깅 작업 시 무게 전이를 부드럽게 만들고, 복잡한 의상과 본 사이의 경계를 정리한다."
+    },
+    {
+      "heading": "Volume Smoothing 작동 원리",
+      "body": "Volume Smoothing은 메쉬 간 물리적 연결 여부와 관계없이, 각 버텍스와 주변 버텍스 사이 거리를 기준으로 가중치를 평균한다. 토폴로지 기반 스무딩과 달리, 겹치거나 빈 공간이 있는 영역에서도 매끄러운 전이가 가능하다. 결과적으로 어깨·팔꿈치와 같은 복잡한 부위에서 급격한 변형이 크게 감소한다."
+    },
+    {
+      "heading": "실제 리깅 사례: 어깨·팔꿈치와 의상 경계",
+      "body": "Flat 아티스트는 사이보그 닌자 캐릭터의 어깨와 겨드랑이 부분에서 Volume Smoothing을 활용해 급격한 무게 변화를 억제했다. 의상과 본 사이에 작은 틈이 있어도 가중치가 자연스럽게 이어져, 메쉬가 찢어지거나 끼어드는 현상이 최소화되었다. 이 접근법은 복잡한 레이어드 아머를 가진 캐릭터에도 동일하게 적용할 수 있다."
+    },
+    {
+      "heading": "Flat 아티스트의 워크플로와 추가 툴",
+      "body": "Flat은 무게 페인팅 단계에서 cvELD Edit Paint를 사용한다. cvELD는 Edit Mode를 떠나지 않고 여러 본에 동시에 페인팅할 수 있어 작업 흐름을 끊김 없이 유지한다. 또한, cvELD의 클리핑·갭 보정 툴을 이용해 의상과 몸통 사이의 작은 틈을 빠르게 메꿀 수 있다."
+    },
+    {
+      "heading": "Blender 5.3과 연계 가능한 새로운 기능",
+      "body": "Blender 5.3이 출시되면서 3D Gaussian Splats와 DLSS 디노이저 등 최신 기능이 추가되었다. 이러한 기능은 고해상도 스컬프팅이나 실시간 뷰포트에서 무게 페인팅 결과를 더 정확히 확인하는 데 도움이 된다. Volume Smoothing과 함께 사용하면, 복잡한 지오메트리에서도 안정적인 리깅 결과를 얻을 수 있다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51097/images/6aff30044fdea/contain_1200x630.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-20T00:52:17.351325+00:00",
+  "notion_id": "",
+  "id": "2026-11-20-a8194af2e7f887a0",
+  "img_ok": "2026-11-20T00:52:17+00:00",
+  "enriched": "2026-11-20"
+}
