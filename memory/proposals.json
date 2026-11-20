@@ -37663,5 +37663,29 @@
     "id": "p-ed4859c32c",
     "verdict": "agent",
     "reason": "docs/agent-guides/ 및 테스트 파일 경로를 재점검하여 코딩 에이전트가 패치를 올바르게 적용할 수 있도록 과제 설명을 수정하는 작업은 코드 및 문서 수정으로 해결 가능합니다."
+  },
+  {
+    "at": "2026-11-20T16:53:08+00:00",
+    "kind": "proposal",
+    "id": "p-1a77429ae1",
+    "title": "PR #1 img2threejs 연동 테스트 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 남아 있으며, img2threejs 호출 오류 시 heightfield로 무단 대체하지 않고 명확한 예외 반환과 이를 검증하는 테스트가 필요합니다.",
+    "proposal": "backend/app/services/img2threejs_runner.py 및 backend/tests/test_img2threejs.py 파일을 검토하여 예외 처리 테스트 코드를 명확히 구현합니다.",
+    "expected": "PR #1의 요구사항을 충족하고 예외 처리 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T16:53:58.603436+00:00",
+    "kind": "decision",
+    "id": "p-1a77429ae1",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 연동 예외 처리 테스트 분할 작성",
+    "auto": true
   }
 ]
