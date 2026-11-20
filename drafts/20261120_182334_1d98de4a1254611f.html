@@ -1,0 +1,20 @@
+<!-- TITLE: Unity NTC 및 UGK 발표 — VRAM 30% 절감 | TAGS: Unity,NTC,UGK,Sentis,URP,유니티,업데이트·출시 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unity가 발표한 Neural Texture Compression과 Unity Graphics Kernel은 VRAM 사용량과 디스크 용량을 30% 줄이고 렌더링 성능을 개선합니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 업데이트·출시</p>
+<h2>Neural Texture Compression 도입 배경</h2>
+<p>Unity Neural은 엔진 전반의 연산 성능을 가속화하고 메모리 사용량을 줄이기 위해 설계된 핵심 기술입니다. 기존 전통적인 포맷을 넘어선 압축률을 제공하며, 대형 씬에서 리소스 부담을 낮춥니다.</p>
+<h2>Unity Sentis를 활용한 텍스처 학습</h2>
+<p>NTC는 Unity Editor에 기본 통합되어 개발자가 직접 자신의 데이터로 모델을 학습할 수 있습니다. Unity Sentis를 활용해 손실을 최소화하면서 텍스처를 압축하는 방식입니다.</p>
+<h2>Atrio 샘플 씬 벤치마크 결과</h2>
+<p>Atrio 샘플 씬을 활용한 테스트에서 NTC는 텍스처 VRAM을 약 30% 줄였고, 전체 디스크 용량도 30% 감소시켰습니다. 시각적 품질 손실을 최소화하면서 빌드 크기를 최적화할 수 있습니다.</p>
+<h2>Universal Render Pipeline 연동 및 하드웨어 가속</h2>
+<p>Shader Model 6.10 하드웨어 가속을 지원하는 파트너들과 협력하여 Universal Render Pipeline 내부에서 고속 추론을 지원합니다. 실시간 렌더링 환경에서 성능 저하 없이 압축 텍스처를 처리합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Atrio 샘플 씬 기준 VRAM과 디스크 용량이 30% 감소하여 모바일 및 대형 오픈월드 빌드 용량 압박을 직접적으로 덜어냅니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Neural Texture Compression은 어떤 Unity 패키지와 연동되나요?</b><br/>A. Unity Sentis와 연동되어 에디터 내에서 직접 모델을 학습하고 텍스처를 압축할 수 있습니다.</p>
+<p><b>Q. NTC를 적용했을 때 실제 절감되는 용량은 얼마나 되나요?</b><br/>A. Atrio 샘플 씬 벤치마크 기준 텍스처 VRAM과 전체 디스크 크기 모두 약 30% 감소하는 결과가 확인되었습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-19-1f525ff1d15a710f.html">Unity 엔진으로 제작된 정물화 달걀 배치 인디 게임 소개</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-59d43bb1b8045a5e.html">Unity 6.7 및 Unity 7 2D 기능 업데이트 소식</a></li><li><a href="https://3dflowhub.kr/p/2026-11-18-a10f27d2f81cc467.html">Unity 6로 전환되는 Phasmophobia Resonance 업데이트</a></li></ul>
+<hr/><p>원문:<a href="https://www.youtube.com/watch?v=gFWJb3YVVE4" target="_blank" rel="noopener nofollow">Unity Texture Compression (NTC) and Unity Graphics Kernel (UGK)</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,59 @@
+{
+  "title_ko": "Unity NTC 및 UGK 발표 — VRAM 30% 절감",
+  "title": "Unity Texture Compression (NTC) and Unity Graphics Kernel (UGK)",
+  "url": "https://www.youtube.com/watch?v=gFWJb3YVVE4",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Unity",
+    "NTC",
+    "UGK",
+    "Sentis",
+    "URP",
+    "유니티"
+  ],
+  "summary": "Unity가 발표한 Neural Texture Compression과 Unity Graphics Kernel은 VRAM 사용량과 디스크 용량을 30% 줄이고 렌더링 성능을 개선합니다.",
+  "insight": "Atrio 샘플 씬 기준 VRAM과 디스크 용량이 30% 감소하여 모바일 및 대형 오픈월드 빌드 용량 압박을 직접적으로 덜어냅니다.",
+  "try_it": [
+    "Unity Editor에서 Sentis 패키지를 설치합니다.",
+    "자체 텍스처 데이터로 Neural Texture Compression 모델 학습을 실행합니다.",
+    "Universal Render Pipeline 설정에서 VRAM 및 디스크 용량 변화를 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Neural Texture Compression 도입 배경",
+      "body": "Unity Neural은 엔진 전반의 연산 성능을 가속화하고 메모리 사용량을 줄이기 위해 설계된 핵심 기술입니다. 기존 전통적인 포맷을 넘어선 압축률을 제공하며, 대형 씬에서 리소스 부담을 낮춥니다."
+    },
+    {
+      "heading": "Unity Sentis를 활용한 텍스처 학습",
+      "body": "NTC는 Unity Editor에 기본 통합되어 개발자가 직접 자신의 데이터로 모델을 학습할 수 있습니다. Unity Sentis를 활용해 손실을 최소화하면서 텍스처를 압축하는 방식입니다."
+    },
+    {
+      "heading": "Atrio 샘플 씬 벤치마크 결과",
+      "body": "Atrio 샘플 씬을 활용한 테스트에서 NTC는 텍스처 VRAM을 약 30% 줄였고, 전체 디스크 용량도 30% 감소시켰습니다. 시각적 품질 손실을 최소화하면서 빌드 크기를 최적화할 수 있습니다."
+    },
+    {
+      "heading": "Universal Render Pipeline 연동 및 하드웨어 가속",
+      "body": "Shader Model 6.10 하드웨어 가속을 지원하는 파트너들과 협력하여 Universal Render Pipeline 내부에서 고속 추론을 지원합니다. 실시간 렌더링 환경에서 성능 저하 없이 압축 텍스처를 처리합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Neural Texture Compression은 어떤 Unity 패키지와 연동되나요?",
+      "a": "Unity Sentis와 연동되어 에디터 내에서 직접 모델을 학습하고 텍스처를 압축할 수 있습니다."
+    },
+    {
+      "q": "NTC를 적용했을 때 실제 절감되는 용량은 얼마나 되나요?",
+      "a": "Atrio 샘플 씬 벤치마크 기준 텍스처 VRAM과 전체 디스크 크기 모두 약 30% 감소하는 결과가 확인되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/gFWJb3YVVE4/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=gFWJb3YVVE4"
+  },
+  "collected_at": "2026-11-20T18:23:34.733461+00:00",
+  "notion_id": "",
+  "id": "2026-11-20-1d98de4a1254611f",
+  "img_tried": true
+}
