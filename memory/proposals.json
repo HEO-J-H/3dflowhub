@@ -37522,5 +37522,60 @@
     "id": "p-8e372d02ad",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 검토 및 관련 가이드 작성이 끝낸 제안 및 최근 커밋에 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-20T16:13:17+00:00",
+    "kind": "proposal",
+    "id": "p-43b6b4eefd",
+    "title": "웹 UI 높이맵 테스트 파일 보완 및 실행 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 UI 높이맵 관련 테스트 과제들이 패치 적용 실패 등으로 홀드 상태에 머물러 있습니다.",
+    "proposal": "web/ 디렉토리 내 높이맵 변환 로직에 대한 단위 테스트 파일을 명확히 분리 작성하고 검증 절차를 문서화합니다.",
+    "expected": "웹 브라우저 환경에서의 메시 변환 무결성 확보",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T16:13:17+00:00",
+    "kind": "proposal",
+    "id": "p-9f41815257",
+    "title": "PR #1 연동 예외 처리 테스트 분할 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1(img2threejs 실제 연동)이 예외 처리 및 테스트 보완을 이유로 'revise' 상태로 대기 중입니다.",
+    "proposal": "backend/tests/test_mesh_pipeline.py에 img2threejs 호출 실패 시 명확한 예외 반환을 검증하는 테스트 케이스를 추가합니다.",
+    "expected": "핵심 파이프라인의 오류 처리 투명성 향상 및 PR 승인 조건 충족",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T16:13:49.295410+00:00",
+    "kind": "decision",
+    "id": "p-43b6b4eefd",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 웹 UI 높이맵 테스트 파일 신규 작성 및 검증",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T16:13:49.335396+00:00",
+    "kind": "decision",
+    "id": "p-9f41815257",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T16:13:51.131369+00:00",
+    "kind": "triage",
+    "id": "p-9f41815257",
+    "verdict": "agent",
+    "reason": "backend/tests/test_mesh_pipeline.py에 예외 처리 검증 테스트 케이스를 추가하는 작업은 코드 수정으로 해결할 수 있습니다."
   }
 ]
