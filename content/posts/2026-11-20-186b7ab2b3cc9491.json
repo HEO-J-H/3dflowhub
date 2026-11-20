@@ -1,0 +1,60 @@
+{
+  "title_ko": "Unreal Engine 5로 카리브해 도시 환경 제작하는 방법",
+  "title": "Building Detailed Caribbean-Inspired City Environment In Unreal Engine 5",
+  "url": "https://80.lv/articles/building-detailed-caribbean-inspired-city-environment-in-unreal-engine-5/",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unreal Engine 5",
+    "ZBrush",
+    "Modular Kit",
+    "Vertex Painting",
+    "Environment Art",
+    "언리얼 엔진",
+    "지브러시"
+  ],
+  "summary": "3D 환경 아티스트 Santiago Forero가 Unreal Engine 5를 활용해 카리브해 건축 양식의 도시 거리를 제작한 과정과 모듈러 킷 구성 방법을 설명합니다.",
+  "insight": "Unreal Engine 5에서 Vertex Painting과 RGB 마스킹을 결합해 별도의 텍스처 셋 없이도 브릭, 플라스터, 흙 사이의 자연스러운 마테리얼 변주를 만들어냅니다.",
+  "try_it": [
+    "Unreal Engine 5에서 모듈러 벽체 메쉬를 가져옵니다.",
+    "Vertex Paint 모드에 진입하여 브릭과 플라스터 영역을 브러시로 칠해 마테리얼 브레이크업을 줍니다.",
+    "ZBrush에서 스컬프팅한 하이폴리 오브젝트를 로우폴리로 베이크한 뒤 RGB 마스크를 적용해 텍스처 반복을 줄여봅니다."
+  ],
+  "sections": [
+    {
+      "heading": "레퍼런스 수집과 Blockout 단계",
+      "body": "아바나, 카르타헤나, 산토도밍고 등의 도시 건축물을 분석해 웨더링된 플라스터, 노출된 벽돌, 다채로운 벽면과 발코니 자료를 수집했습니다. 배경의 성당을 주시선으로 삼고 좁은 거리가 이를 향하도록 유도하는 구성을 Blockout 단계에서 확정했습니다."
+    },
+    {
+      "heading": "모듈러 킷과 호환 가능한 파츠 설계",
+      "body": "1층 벽면, 2층 파츠, 발코니, 문으로 구성된 모듈러 킷을 제작해 다양한 건물 파사드를 조합할 수 있도록 설계했습니다. 모든 문과 벽 조합이 기존 모듈과 맞물리도록 규격을 통일하여 반복감을 줄이고 작업 유연성을 높였습니다."
+    },
+    {
+      "heading": "ZBrush 스컬프팅과 머티리얼 Baking",
+      "body": "문과 수레 같은 주요 프롭은 ZBrush에서 하이폴리곤 스컬프팅을 거쳐 Low-Poly 메쉬로 Bake 처리했습니다. RGB 마스킹 기술을 적용해 에셋마다 별도의 텍스처 셋을 만들지 않고도 머티리얼 라이브러리의 다양한 표면 표현을 공유할 수 있었습니다."
+    },
+    {
+      "heading": "Unreal Engine 5 Vertex 페인팅 활용",
+      "body": "모델링과 UV 언랩이 끝난 에셋을 Unreal Engine 5로 가져와 Vertex 페인팅을 수행했습니다. 벽돌과 플라스터, 오염 물질 간의 경계면에 자연스러운 마테리얼 변화를 주어 단조로움을 없애고 공간의 깊이감을 더했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 프로젝트에서 주요 포컬 포인트는 무엇인가요?",
+      "a": "배경에 배치된 성당이 주요 포컬 포인트이며, 좁은 거리와 라이팅을 통해 시선이 자연스럽게 성당으로 향하도록 유도했습니다."
+    },
+    {
+      "q": "모듈러 킷 제작 시 중점을 둔 부분은 무엇인가요?",
+      "a": "어떤 문과 벽 조합이든 호환되도록 상호 교체성을 높이고, 반복적인 느낌을 방지하면서도 일관성을 유지하는 데 집중했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51103/images/6b00190c21f9a/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=OP3_B-Cukk8"
+  },
+  "collected_at": "2026-11-20T10:01:55.217067+00:00",
+  "notion_id": "",
+  "id": "2026-11-20-186b7ab2b3cc9491",
+  "img_ok": "2026-11-20T10:01:55+00:00"
+}
