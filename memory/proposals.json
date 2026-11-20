@@ -38356,5 +38356,36 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: RAG 오픈소스 라이선스 검토 문서 작성",
     "auto": true
+  },
+  {
+    "at": "2026-11-20T21:54:51+00:00",
+    "kind": "proposal",
+    "id": "p-05c667bff7",
+    "title": "RAG 사용 예시 UI 버튼 삽입",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 기능이 백엔드에만 존재하면 사용자에게 노출되지 않음",
+    "proposal": "web/ 디렉터리의 `index.html`에 '도움말 검색' 버튼을 추가하고, 클릭 시 `/rag/query` API를 호출해 결과를 모달에 표시한다. 관련 JS 코드는 `web/static/rag.js`에 두고, 최소 UI 테스트를 `web/tests/rag_ui.test.js`에 작성한다.",
+    "expected": "사용자 접근성 향상 및 기능 인지도 상승",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T21:56:18.609261+00:00",
+    "kind": "decision",
+    "id": "p-05c667bff7",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T21:56:21.076629+00:00",
+    "kind": "triage",
+    "id": "p-05c667bff7",
+    "verdict": "agent",
+    "reason": "새 UI 버튼 추가와 관련 파일 작성은 아직 완료되지 않았으며 코드 수정으로 해결 가능"
   }
 ]
