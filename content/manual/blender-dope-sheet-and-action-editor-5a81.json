@@ -1,0 +1,129 @@
+{
+  "id": "blender-dope-sheet-and-action-editor-5a81",
+  "guide_id": "blender-dope-sheet-and-action-editor-5a81",
+  "tool": "Blender",
+  "name": "Dope Sheet and Action Editor",
+  "title": "Dope Sheet — 키 시간 조절",
+  "overview": "Blender의 Dope Sheet와 Action Editor는 오브젝트와 캐릭터의 애니메이션 Keyframe을 표 형식으로 관리하고, 독립된 애니메이션 데이터 블록(Action)을 생성·조절하는 핵심 에디터입니다. 내부적으로는 씬 내 모든 채널의 채널 데이터(Channel Data)를 시간 축에 따라 매핑하여 타이밍을 직관적으로 편집할 수 있게 도와줍니다.",
+  "access": "1. 상단 에디터 타입 아이콘(Timeline 또는 다른 에디터의 좌측 상단 아이콘)을 클릭하고 Dope Sheet를 선택합니다.\n2. Hotkey Shift+F3를 눌러 현재 창을 Dope Sheet로 전환합니다.\n3. Viewport 하단의 Timeline 창에서 헤더의 에디터 타입 전환 버튼을 클릭하여 변경합니다.",
+  "options": [
+    {
+      "name": "Action",
+      "value": "데이터 블록 슬롯",
+      "effect": "오브젝트에 할당된 독립적인 애니메이션 데이터 블록을 선택하거나 생성합니다.",
+      "tip": "여러 오브젝트가 동일한 액션을 공유하게 만들거나 독립된 액션으로 분리할 때 사용합니다."
+    },
+    {
+      "name": "Fake User (F)",
+      "value": "버튼 형태 (기본: 꺼짐)",
+      "effect": "사용자가 없는 액션 데이터가 다른 씬으로 이동하거나 저장 후 재부팅될 때 삭제되지 않도록 메모리에 보호합니다.",
+      "tip": "재사용할 애니메이션 액션이라면 반드시 활성화(F 아이콘 켜기)해 두어야 유실을 방지할 수 있습니다."
+    },
+    {
+      "name": "Push Down",
+      "value": "버튼 형태",
+      "effect": "현재 액션을 NLA Editor의 새로운 트랙(Track)으로 밀어내어 스트립 형태로 변환합니다.",
+      "tip": "여러 개의 독립적인 액션을 순차적으로 조합하거나 반복(Loop)시키기 직전에 누릅니다."
+    },
+    {
+      "name": "Summary",
+      "value": "토글 버튼",
+      "effect": "선택된 오브젝트들의 모든 Keyframe을 하나의 요약 행(Summary Row)으로 압축하여 보여줍니다.",
+      "tip": "전체 애니메이션의 타이밍을 전체적으로 늘리거나 줄일 때 요약 행을 선택하고 G 키를 누르면 유용합니다."
+    },
+    {
+      "name": "Auto Snapping",
+      "value": "No Snapping / Step / Nearest Frame 등",
+      "effect": "Keyframe을 이동할 때 프레임 단위나 초 단위 Grid에 자동으로 스냅되도록 설정합니다.",
+      "tip": "정밀한 프레임 정렬을 위해 Nearest Frame 또는 Step으로 설정하는 것을 권장합니다."
+    },
+    {
+      "name": "Filter by Name",
+      "value": "텍스트 검색창",
+      "effect": "입력한 키워드와 일치하는 채널이나 본(Bone) 이름만 필터링하여 에디터에 표시합니다.",
+      "tip": "복잡한 리깅 구조에서 특정 본(예: arm.L)의 Keyframe만 빠르게 찾을 때 사용합니다."
+    },
+    {
+      "name": "Show Hidden",
+      "value": "아이콘 토글",
+      "effect": "숨겨진(Hidden) 오브젝트나 뼈대의 애니메이션 채널까지 에디터에 표시합니다.",
+      "tip": "레이어나 컬렉션으로 숨긴 오브젝트의 Keyframe이 보이지 않을 때 켭니다."
+    },
+    {
+      "name": "Transform Pivot Point",
+      "value": "Bounding Box Center / Median Point 등",
+      "effect": "여러 Keyframe을 동시에 스케일링하거나 회전할 때 기준이 되는 피벗 지점을 결정합니다.",
+      "tip": "Keyframe 간격을 벌리거나 좁힐 때 Median Point를 기준으로 삼으면 직관적입니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Dope Sheet",
+      "desc": "모든 오브젝트와 뼈대의 애니메이션 Keyframe을 Timeline 상에 점(Dot) 형태로 표시하여 전체 타이밍과 간격을 조절하는 기본 모드입니다."
+    },
+    {
+      "name": "Action Editor",
+      "desc": "현재 선택된 오브젝트에 지정된 단일 애니메이션 데이터 블록(Action)의 이름과 세부 채널을 관리하며, 새로운 액션을 생성하거나 전환하는 모드입니다."
+    },
+    {
+      "name": "Shape Key Editor",
+      "desc": "오브젝트의 셰이프 키(Shape Key) 애니메이션 Keyframe만 모아서 편집할 수 있는 모드입니다."
+    },
+    {
+      "name": "Grease Pencil",
+      "desc": "그리스 펜슬(Grease Pencil) 드로잉 및 프레임 타이밍을 조절하기 위한 전용 모드입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "여러 오브젝트의 애니메이션 타이밍 전체 연장하기",
+      "steps": [
+        "Dope Sheet 헤더에서 Summary 토글 아이콘을 켭니다.",
+        "맨 위에 생성된 Summary 행의 모든 Keyframe을 A 키로 전체 선택합니다.",
+        "S 키를 누르고 Mouse를 움직여 Keyframe 간격을 원하는 만큼 넓힙니다.",
+        "Viewport에서 Space를 눌러 전체적인 재생 속도가 느려졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "새로운 액션을 만들어 대기(Idle) 동작과 걷기(Walk) 동작 분리하기",
+      "steps": [
+        "Action Editor 모드에서 현재 작업 중인 액션 이름을 'Idle'로 지정합니다.",
+        "Action 슬롯 우측의 Unlink(X) 버튼을 눌러 새 액션 슬롯을 준비합니다.",
+        "New(방패+플러스) 버튼을 클릭하여 새 액션 데이터 블록을 생성하고 이름을 'Walk'로 바꿉니다.",
+        "새로운 Keyframe을 찍어 걷기 애니메이션을 작성하고 액션 간 전환이 정상적인지 확인합니다."
+      ]
+    },
+    {
+      "title": "애니메이션 액션을 NLA 에디터로 보내어 반복 재생하기",
+      "steps": [
+        "Action Editor에서 반복하고 싶은 액션을 활성화합니다.",
+        "Action Editor 헤더나 속성 영역에 있는 Push Down 버튼을 클릭합니다.",
+        "에디터 타입을 NLA Editor로 전환하여 방금 밀어낸 액션 스트립이 트랙에 생성된 것을 확인합니다.",
+        "스트립을 선택하고 N 키를 눌러 Sidebar를 연 뒤, Repeat 값을 원하는 횟수만큼 올립니다."
+      ]
+    }
+  ],
+  "performance": [
+    "복잡한 캐릭터 리깅이나 수백 개의 오브젝트가 씬에 있을 경우 Dope Sheet가 무거워질 수 있습니다. Filter by Name 기능을 활용해 필요한 채널만 표시하세요.",
+    "Show Hidden 옵션이 켜져 있으면 불필요한 데이터까지 연산하므로, 숨겨진 오브젝트의 키가 필요 없다면 끕니다.",
+    "애니메이션 작업 중 Viewport 재생 프레임이 떨어진다면 Playback 동기화 옵션을 'Frame Dropping'으로 설정하여 타이밍을 정확히 유지하세요."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "씬을 저장하고 다시 켜보니 작업했던 애니메이션 액션이 사라졌습니다.",
+      "fix": "사용자가 할당되지 않은 액션은 씬을 나갈 때 자동 삭제됩니다. 액션 이름 옆의 Fake User (F) 버튼을 클릭해 보호 상태로 만드세요."
+    },
+    {
+      "symptom": "Dope Sheet에서 Keyframe을 선택하고 G 키로 이동하려는데 프레임 단위로 딱 맞아떨어지지 않습니다.",
+      "fix": "에디터 헤더의 Auto Snapping 옵션이 'No Snapping'으로 설정되어 있을 수 있습니다. 'Step' 또는 'Nearest Frame'으로 변경하세요."
+    },
+    {
+      "symptom": "오브젝트를 선택했는데 Dope Sheet에 아무런 Keyframe도 표시되지 않습니다.",
+      "fix": "에디터 모드가 잘못되었거나 해당 오브젝트에 아직 애니메이션 Keyframe이 생성되지 않은 상태입니다. I 키를 눌러 로커토/로테이션 키를 먼저 입력하세요."
+    }
+  ],
+  "versions": "Blender 4.0 이후 버전부터는 액션(Action) 데이터 관리 체계가 애니메이션 데이터 블록 구조와 연동되는 방식이 일부 개선되었으나, Dope Sheet와 Action Editor의 기본적인 Keyframe 편집 및 조작법은 동일하게 유지됩니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dope%20Sheet%20and%20Action%20Editor",
+  "grounded": true,
+  "at": "2026-11-20T20:24:56+00:00"
+}
