@@ -1,0 +1,111 @@
+{
+  "id": "blender-dissolve-edges-and-vertices-8805",
+  "guide_id": "blender-dissolve-edges-and-vertices-8805",
+  "tool": "Blender",
+  "name": "Dissolve edges and vertices",
+  "title": "Dissolve — 지우되 면 유지",
+  "overview": "Blender의 Dissolve(디졸브) 명령어는 메시 구조에서 불필요한 Vertex, 엣지, 면을 주변 구조를 파괴하지 않고 자연스럽게 소멸시키는 기능입니다. Delete 명령어가 요소를 도려내어 구멍을 만드는 것과 달리, Dissolve는 인접한 면들을 병합하여 깔끔한 Topology와 쿼드(Quad) 흐름을 유지합니다.",
+  "access": "Edit Mode 진입 후 X 키 또는 Delete 키 입력 → 컨텍스트 메뉴에서 선택, 혹은 Mesh 메뉴 → Delete / Dissolve Edges / Dissolve Vertices 경로로 접근 가능합니다.",
+  "options": [
+    {
+      "name": "Dissolve Vertices",
+      "value": "",
+      "effect": "선택한 Vertex를 제거하고, 연결되어 있던 인접 면들을 하나로 병합하여 구멍 없이 메꿉니다.",
+      "tip": "불필요한 교차점이나 엣지 루프상의 단일 Vertex를 정리할 때 유용합니다."
+    },
+    {
+      "name": "Dissolve Edges",
+      "value": "",
+      "effect": "선택한 엣지를 제거하며, 엣지의 양 끝에 있던 Vertex가 플로팅 상태가 되지 않도록 주변 면을 결합합니다.",
+      "tip": "엣지 루프를 제거하여 폴리곤 구조를 단순화할 때 주로 사용합니다."
+    },
+    {
+      "name": "Dissolve Faces",
+      "value": "",
+      "effect": "인접한 여러 개의 면을 하나로 병합하여 거대한 n-gon 면을 만듭니다.",
+      "tip": "평면 영역의 불필요한 세그먼트를 통합하여 와이어프레임을 정리할 때 유용합니다."
+    },
+    {
+      "name": "Dissolve Workspace / Limited Dissolve",
+      "value": "Angle Limit: 5.0°",
+      "effect": "지정한 각도 임계값(Angle) 이내의 평탄한 영역에 있는 불필요한 Vertex와 엣지를 자동으로 일괄 정리합니다.",
+      "tip": "하드 표면(Hard Surface) 모델링에서 불필요하게 쪼개진 평면 영역의 폴리곤을 한 번에 최적화할 때 필수적입니다."
+    },
+    {
+      "name": "Dissolve Unused",
+      "value": "Checkbox",
+      "effect": "면이나 엣지에 속하지 않고 홀로 남겨진 고립된 Vertex(Isolated Vertices)를 함께 정리합니다.",
+      "tip": "정리 작업 후 잔여물이 남지 않도록 항상 켜두는 것이 좋습니다."
+    },
+    {
+      "name": "Delimit",
+      "value": "Boundary / Material / Seam / Sharp / UVs",
+      "effect": "Limited Dissolve 사용 시 경계선, 머티리얼 경계, Seam, Sharp 에지, UV 경계선을 기준으로 디졸브 범위를 제한합니다.",
+      "tip": "UV나 머티리얼이 끊기는 영역이 의도치 않게 합쳐지는 것을 방지합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Vertex Mode (1)",
+      "desc": "Vertex 단위로 선택하여 디졸브를 수행하며, 해당 점과 연결된 엣지 데이터가 정리됩니다."
+    },
+    {
+      "name": "Edge Mode (2)",
+      "desc": "엣지 단위로 선택하여 디졸브를 수행하며, 루프 형태의 엣지 흐름을 제거할 때 효과적입니다."
+    },
+    {
+      "name": "Face Mode (3)",
+      "desc": "선택한 면들을 하나로 병합하여 불필요한 면 분할을 없앱니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "불필요한 엣지 루프(Edge Loop) 제거하여 폴리곤 최적화하기",
+      "steps": [
+        "Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "Alt + 클릭으로 제거하고자 하는 엣지 루프를 전체 선택합니다.",
+        "X 키를 누르고 'Dissolve Edges'를 선택합니다.",
+        "Viewport에서 면이 깨지지 않고 엣지만 깔끔하게 사라졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "Limited Dissolve로 평면 영역 폴리곤 수 줄이기",
+      "steps": [
+        "최적화할 오브젝트를 선택하고 Tab 키로 Edit Mode에 진입합니다.",
+        "A 키를 눌러 전체 메시를 선택합니다.",
+        "X 키(또는 Mesh 메뉴)를 누르고 'Limited Dissolve'를 선택합니다.",
+        "화면 왼쪽 아래 뜨는 파라미터 패널에서 Angle Limit 값을 조절하여 평면의 폴리곤을 병합합니다."
+      ]
+    },
+    {
+      "title": "고립된 Vertex(Isolated Vertices) 일괄 청소하기",
+      "steps": [
+        "오브젝트의 Edit Mode에서 우측 상단이나 Hotkey를 이용해 Vertex Select 모드로 전환합니다.",
+        "Mesh 메뉴 -> Cleanup -> Delete Loose를 실행합니다.",
+        "면이나 엣지에 속하지 않고 떠있던 불필요한 버텍스들이 자동으로 제거됩니다."
+      ]
+    }
+  ],
+  "performance": [
+    "하이폴리곤 메시에서 Limited Dissolve를 과도한 각도 값으로 실행하면 계산 부하가 발생할 수 있습니다. 필요한 영역만 선택(Border Select)하여 실행하세요.",
+    "정리 작업 전후로 M 키 -> By Distance를 통해 겹쳐 있는 중복 Vertex(Double Vertices)를 먼저 정리하면 디졸브 오류를 예방할 수 있습니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Dissolve Edges를 실행했는데 엣지만 지워지고 Vertex가 그대로 남습니다.",
+      "fix": "엣지를 디졸브할 때 양 끝 Vertex가 면의 구조상 유지되어야 하는 경우 Vertex가 남을 수 있습니다. X 키 메뉴에서 'Dissolve Vertices'를 사용하거나 고립된 Vertex를 따로 정리하세요."
+    },
+    {
+      "symptom": "Limited Dissolve 실행 시 모델의 외곽 실루엣 형태가 찌그러집니다.",
+      "fix": "Angle Limit 값이 너무 높게 설정되어 완만한 곡면까지 강제로 병합되었기 때문입니다. 값을 낮추거나(예: 1°~5°) Delimit 옵션에서 Seam이나 Sharp를 체크하여 외곽 형태를 보호하세요."
+    },
+    {
+      "symptom": "Dissolve 후 노멀(Normal) 방향이 뒤집히거나 렌더링 시 어둡게 깨집니다.",
+      "fix": "구조가 병합되면서 면의 방향이 꼬였을 수 있습니다. Edit Mode에서 Shift + N 키를 눌러 Normals를 재계산(Recalculate Outside)하세요."
+    }
+  ],
+  "versions": "Blender 3.x 및 4.x 버전 모두 동일한 Hotkey(X)와 메뉴 구조를 유지하며, 최신 버전에서는 Limited Dissolve의 Delimit 옵션 세부 항목이 더욱 세분화되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dissolve%20edges%20and%20vertices",
+  "grounded": true,
+  "at": "2026-11-20T16:23:47+00:00"
+}
