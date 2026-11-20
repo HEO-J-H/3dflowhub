@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-baking-bake-failed-because-lo-1effd",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Bake failed because low-poly and high-poly meshes do not share UV space",
+  "title": "Painter: [Baking] Bake failed because low-poly and high-poly meshes do not share",
+  "summary": "Substance 3D Painter에서 메시 맵을 베이킹할 때 로우 폴리곤과 하이 폴리곤 모델이 동일한 UV 공간을 공유하지 않거나 UV 배치 상태가 달라 텍스처 전송에 실패할 때 발생하는 오류입니다.",
+  "causes": [
+    "로우 폴리곤 모델과 하이 폴리곤 모델의 UV 셸(Shell) 배치나 좌표계가 서로 다를 때",
+    "하이 폴리곤 모델에 UV 데이터가 아예 존재하지 않거나 잘못 생성되었을 때",
+    "FBX 또는 OBJ 파일로 모델을 익스포트할 때 UV 관련 옵션이 누락되었을 때"
+  ],
+  "steps": [
+    "3D DCC 툴(Blender, Maya, 3ds Max 등)에서 로우 폴리곤과 하이 폴리곤 모델의 UV가 올바르게 펴져 있는지 확인합니다.",
+    "하이 폴리곤 모델에 별도의 UV가 필요 없는 경우(노멀만 추출하는 경우), Baking 설정(Bake Mesh Maps)에서 High Definition Meshes의 UV 관련 옵션을 확인합니다.",
+    "Substance 3D Painter의 Bake Mesh Maps 창에서 Match 옵션을 Always에서 By Mesh Name으로 변경하여 이름 기준으로 매칭을 시도합니다.",
+    "필요한 경우 하이 폴리곤 모델에도 로우 폴리곤과 동일한 UV를 생성하거나, 동일한 0-1 UV 스페이스 내에 배치합니다.",
+    "모델을 다시 익스포트한 뒤 Substance 3D Painter에서 Mesh를 리로드하고 Baking을 재시도합니다."
+  ],
+  "check": [
+    "Bake Mesh Maps 창에서 오류 메시지 없이 Baking 진행률이 100%까지 완료되는지 확인합니다.",
+    "Normal 맵과 Ambient Occlusion 맵이 누락 없이 정상적으로 생성되었는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "하이 폴리곤 모델을 제작하거나 익스포트할 때 로우 폴리곤의 UV 레이아웃을 기준으로 작업하거나 공유합니다.",
+    "DCC 툴에서 모델을 익스포트할 때 UV 채널 옵션이 활성화되어 있는지 항상 확인합니다."
+  ],
+  "keywords": [
+    "Substance Painter Baking 오류",
+    "share UV space",
+    "로우 폴리곤 하이 폴리곤 UV",
+    "Bake failed UV",
+    "서브스탠스 페인터 Baking 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T11:13:03+00:00"
+}

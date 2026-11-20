@@ -1,0 +1,37 @@
+{
+  "id": "blender-python-traceback-runtimeerror-error-batch--55a1c",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Python: Traceback ... RuntimeError: Error: Batch export: active object is not a mesh",
+  "title": "Python: Traceback ... RuntimeError: Error: Batch export: active object is not a ",
+  "summary": "Blender에서 일괄 Export(Batch Export) 관련 스크립트나 Export 연산을 실행할 때, 활성화된 오브젝트가 메쉬(Mesh) 타입이 아니어서 발생하는 오류입니다.",
+  "causes": [
+    "선택된 활성 오브젝트(Active Object)가 카메라, 라이트, 빈 오브젝트(Empty), 혹은 커브(Curve) 등으로 지정되어 있음",
+    "아무 오브젝트도 선택되지 않았거나 모든 선택이 해제된 상태에서 Export 연산이 호출됨",
+    "Python Script 자동화 과정에서 메쉬가 아닌 객체를 대상으로 Export 함수가 실행됨"
+  ],
+  "steps": [
+    "3D Viewport에서 내보내려는 대상 메쉬 오브젝트를 Mouse 좌클릭하여 선택합니다.",
+    "선택된 오브젝트 중 가장 마지막에 선택되어 흰색 윤곽선으로 활성화된 오브젝트(Active Object)가 메쉬인지 확인합니다.",
+    "만약 커브나 서페이스(Surface) 등 다른 타입이라면, 오브젝트 선택 후 Object 모드에서 Object 메뉴 > Convert 로 이동하여 Mesh로 변환합니다.",
+    "Python Script를 사용하는 경우, Script 내부에서 bpy.context.active_object가 메쉬(mesh)인지 확인하는 조건문(if obj.type == 'MESH':)을 추가합니다."
+  ],
+  "check": [
+    "오브젝트를 선택한 상태에서 Viewport 상단 정보 표시줄이나 Outliner에서 해당 오브젝트의 아이콘이 메쉬 형태인지 확인합니다.",
+    "Script를 다시 실행했을 때 Traceback 오류 없이 일괄 Export가 정상적으로 완료되는지 확인합니다."
+  ],
+  "prevent": [
+    "배치 Export Script를 작성하거나 실행할 때 대상 컬렉션이나 선택 영역 내에 비메쉬(Non-mesh) 객체가 포함되지 않도록 필터링합니다.",
+    "작업 중 활성 오브젝트가 의도치 않게 변경되지 않았는지 Outliner 패널에서 항상 확인하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Blender 일괄 Export 오류",
+    "Batch export active object is not a mesh",
+    "Blender Python 오류",
+    "메쉬 변환 오류",
+    "RuntimeError Batch export"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T11:13:08+00:00"
+}

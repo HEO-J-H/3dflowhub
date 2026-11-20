@@ -1,0 +1,38 @@
+{
+  "id": "blender-error-cannot-unwrap-overlapping-uv-islands-b5dae",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot unwrap: overlapping UV islands detected",
+  "title": "Error: Cannot unwrap: overlapping UV islands detected 오류 해결 방법",
+  "summary": "Blender에서 UV 언랩(Unwrap)을 수행할 때, 기존 UV 아일랜드들이 서로 겹치거나 포개져 있어 정상적인 텍스처 패킹이 불가능할 때 발생하는 경고 및 오류 메시지입니다.",
+  "causes": [
+    "이미 UV가 펼쳐진 상태에서 중복 패킹이나 재언랩을 실행했을 때",
+    "대칭(Symmetry) 복사나 미러 Modifier 적용 전후로 UV 영역이 겹칠 때",
+    "복잡한 메시 구조에서 Seam(심) 경계가 올바르게 분리되지 않았을 때"
+  ],
+  "steps": [
+    "Edit Mode에서 A 키를 눌러 전체 메시를 선택합니다.",
+    "UV 메뉴 또는 UV Editor 창에서 UVs → Pack Islands를 실행합니다.",
+    "Pack Islands 옵션 패널에서 Margin 값을 조절하여 아일랜드 간 간격을 확보합니다.",
+    "겹침이 심한 경우 UV Editor에서 L 키로 아일랜드를 개별 선택하여 G 키로 이동해 수동으로 분리합니다.",
+    "필요시 UVs → Minimize Stretch 또는 Average Island Scale을 실행해 왜곡과 겹침을 정돈합니다."
+  ],
+  "check": [
+    "UV Editor에서 더 이상 빨간색이나 노란색으로 경고되는 겹침 영역이 보이지 않는지 확인합니다.",
+    "체커 패턴(Checker Texture)을 적용했을 때 텍스처 왜곡이나 겹침 없이 고르게 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "UV 언랩 전 Mesh → Clean Up 메뉴를 통해 중복 정점이나 빈 페이스를 먼저 정리합니다.",
+    "미러 Modifier를 적용(Apply)하기 전에 UV를 미리 펴거나, UV 레이아웃 공간을 충분히 확보합니다."
+  ],
+  "keywords": [
+    "Blender 겹침 UV 오류",
+    "Cannot unwrap overlapping UV islands",
+    "Blender UV 패킹 에러",
+    "UV 아일랜드 겹침 해결",
+    "Pack Islands 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T11:13:06+00:00"
+}

@@ -5,13 +5,13 @@
   "group": "디지털 트윈",
   "name": "Digital twin basics with Omniverse",
   "title": "디지털 트윈 기초",
-  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint 및 Rockwell Automation Emulate3D 통합을 통한 산업용 자동화 시뮬레이션 고도화 — 단, 물리 시뮬레이션 정밀도는 현장 도입 전 자체 벤치마크 검증 권장), 해양 파력(데이터센터 전력 공급) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
+  "summary": "NVIDIA Omniverse는 서로 다른 3D DCC 툴의 데이터를 실시간으로 동기화하고 협업하는 개방형 플랫폼입니다. USD(Universal Scene Description) 기반으로 여러 아티스트가 동시에 가상 환경을 구축하고 디지털 트윈을 시뮬레이션할 수 있으며, 최근 의료(AI 폐 디지털 트윈), 건설(Procore 파트너십), AI 팩토리(DSX Blueprint 및 Rockwell Automation Emulate3D 통합을 통한 Automation Fair 2026 가상 공장 솔루션 공개 및 산업용 자동화 시뮬레이션 고도화 — 단, 물리 시뮬레이션 정밀도는 현장 도입 전 자체 벤치마크 검증 권장), 해양 파력(데이터센터 전력 공급) 등 다양한 산업군으로 생태계가 확장되고 있습니다.",
   "when": [
     "서로 다른 3D 툴(Blender, 3ds Max, Maya 등)을 사용하는 팀원들과 실시간 협업이 필요할 때",
     "공장, 도시, 대형 건축물, 의료 및 AI 팩토리 등 복잡한 대규모 환경의 디지털 트윈(Digital Twin)을 구축할 때",
     "실시간 물리 시뮬레이션과 패스 트레이싱 렌더링을 하나의 뷰포트에서 동시에 확인하고 싶을 때",
     "해양 파력 에너지를 데이터센터 전력원으로 전환하는 시뮬레이션을 수행할 때",
-    "Rockwell Automation Emulate3D와 연동하여 산업용 자동화 라인과 물류 시스템을 USD 기반 고품질 실시간 3D 환경에서 가상 검증할 때 (단, 물리 연산 정확도 데이터는 공개되지 않아 현장 검증 필요)"
+    "Rockwell Automation Emulate3D 및 Automation Fair 2026 신규 솔루션과 연동하여 산업용 자동화 라인과 물류 시스템을 USD 기반 고품질 실시간 3D 환경에서 가상 검증할 때 (단, 물리 연산 정확도 데이터는 공개되지 않아 현장 검증 필요)"
   ],
   "steps": [
     "NVIDIA Omniverse Launcher를 실행하고 Nucleus 서버를 로컬 또는 원격으로 시작합니다.",
@@ -20,7 +20,7 @@
     "각 DCC 툴에서 모델링 데이터를 수정하면 Omniverse Viewport에 실시간으로 반영되는 것을 확인합니다.",
     "Render Settings 패널에서 RTX Renderer와 Path Tracing 모드를 켜서 고품질 결과를 확인합니다.",
     "Physics 패널에서 강체(Rigid Body)와 충돌(Collision) 속성을 부여해 시뮬레이션을 실행합니다.",
-    "Emulate3D 등 산업용 자동화 솔루션과 연동하여 CAD 및 물류 데이터를 USD 포맷으로 불러와 가상 공장 검증을 수행합니다. (물리 시뮬레이션 오차 범위는 자체 벤치마크로 별도 확인)"
+    "Emulate3D 등 Automation Fair 2026에서 강조된 산업용 자동화 솔루션과 연동하여 CAD 및 물류 데이터를 USD 포맷으로 불러와 가상 공장 검증을 수행합니다. (물리 시뮬레이션 오차 범위는 자체 벤치마크로 별도 확인)"
   ],
   "params": [
     {
@@ -62,7 +62,7 @@
       "steps": [
         "CAD 데이터를 USD 형식으로 변환하여 Stage에 임포트합니다.",
         "OpenUSD 레이어 분리 기법을 활용해 팀별 수정 사항을 원본 손상 없이 관리합니다.",
-        "Emulate3D와 연동하여 로봇과 물류 시스템의 물리적 거동을 검증하고, PhysX 시뮬레이션을 실행하여 병목 구간을 테스트합니다. (단, 물리 연산 정확도 수치는 공개되지 않았으므로 현장 도입 전 자체 벤치마크 필수)"
+        "Emulate3D 및 Automation Fair 2026 연동 솔루션과 연동하여 로봇과 물류 시스템의 물리적 거동을 검증하고, PhysX 시뮬레이션을 실행하여 병목 구간을 테스트합니다. (단, 물리 연산 정확도 수치는 공개되지 않았으므로 현장 도입 전 자체 벤치마크 필수)"
       ]
     },
     {
@@ -77,7 +77,7 @@
   "mistakes": [
     "로컬 Nucleus 서버가 실행되지 않았는데 Live Sync를 켠 경우 → Omniverse Launcher에서 Nucleus 서비스가 정상 작동 중인지 확인하고 재연결합니다.",
     "외부 DCC 툴에서 스케일(Scale) 값이 1이 아닌 상태로 업로드되어 물리 시뮬레이션이 어긋나는 경우 → 각 툴에서 Freeze Transforms 또는 Apply Scale을 실행한 뒤 다시 동기화합니다.",
-    "Emulate3D 연동 시 시각적 완성도만 믿고 물리 시뮬레이션의 정확도 검증을 생략하는 경우 → 공개된 정밀도 데이터가 없으므로 현장 도입 전 자체 벤치마크 테스트와 제어 로직 검증을 반드시 선행해야 합니다."
+    "Emulate3D 및 Automation Fair 2026 연동 시 시각적 완성도만 믿고 물리 시뮬레이션의 정확도 검증을 생략하는 경우 → 공개된 정밀도 데이터가 없으므로 현장 도입 전 자체 벤치마크 테스트와 제어 로직 검증을 반드시 선행해야 합니다."
   ],
   "related": [
     "Universal Scene Description",
@@ -181,6 +181,19 @@
       ],
       "source_keys": [
         "p:2026-11-18-b176854916ed94d3"
+      ]
+    },
+    {
+      "at": "2026-11-20T11:13:22+00:00",
+      "what": "Rockwell Automation의 Automation Fair 2026 가상 공장 솔루션 공개 및 Emulate3D 통합 관련 최신 내용을 반영하여 가이드 문서를 업데이트했습니다.",
+      "sources": [
+        {
+          "title": "NVIDIA Omniverse 기반 가상 공장 확장 발표",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0tLWRjcmZkTl9GekIxRklzdU4yeURsWndNWVhfc2I4THIwSnRGNUF0SmwyQ3psWkVRWUpvOEVfMGhGTWQtWGUwV2ZrSWZfbEJwWFFj?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-20-6b210a71e8a04243"
       ]
     }
   ],

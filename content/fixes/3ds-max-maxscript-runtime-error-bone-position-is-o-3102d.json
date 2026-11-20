@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-maxscript-runtime-error-bone-position-is-o-3102d",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Runtime error: Bone position is outside the bounding box",
+  "title": "MAXScript: Runtime error: Bone position is outside the bounding box 해결 방법",
+  "summary": "MAXScript를 사용하여 뼈대(Bone)를 생성하거나 위치를 지정할 때, 지정된 좌표가 3ds Max 씬(Scene)의 허용 바운딩 박스(Bounding Box) 범위를 벗어나 런타임 오류가 발생하는 현상입니다.",
+  "causes": [
+    "Script 변수나 계산 과정에서 좌표(Position) 값이 비정상적으로 큰 숫자로 입력되었거나 무한대(Infinity)로 수렴한 경우",
+    "단위(Unit) 설정이 맞지 않아 미세한 객체나 거대 스케일 객체 기준으로 뼈대 좌표가 오계산된 경우",
+    "타겟 오브젝트의 위치(Pivot/Transform)가 원점(0,0,0)에서 터무니없이 멀리 떨어져 있는 경우"
+  ],
+  "steps": [
+    "MAXScript Listener(F11) 또는 Script 에디터에서 오류가 발생한 라인을 확인합니다.",
+    "뼈대를 생성하거나 이동시키는 코드(예: bone create, b.pos 등)에 전달되는 위치 좌표 변수 값을 print 명령어로 출력하여 범위를 검토합니다.",
+    "좌표 값이 씬의 허용 범위를 넘지 않도록 위치 값(Point3)에 대한 클램프(Clamp) 처리를 추가합니다.",
+    "Customize → Units Setup에서 씬의 기본 단위가 정확하게 설정되어 있는지 확인합니다.",
+    "문제가 되는 오브젝트의 Reset XForm을 실행하거나 피벗 중심을 원점(0,0,0) 근처로 재조정합니다."
+  ],
+  "check": [
+    "Script를 다시 실행했을 때 'Bone position is outside the bounding box' 오류 메시지 없이 뼈대가 정상 생성되는지 확인합니다.",
+    "생성된 뼈대의 위치(Transform) 값이 Viewport 내에 올바르게 배치되었는지 검토합니다."
+  ],
+  "prevent": [
+    "Script 내에서 좌표 데이터를 다룰 때 유효성 검사(Validation) 로직을 포함하여 비정상적인 값이 입력되지 않도록 방어 코드를 작성합니다.",
+    "외부 파일에서 좌표 데이터를 불러올 경우 스케일과 단위 시스템이 일치하는지 사전에 검증합니다."
+  ],
+  "keywords": [
+    "MAXScript 뼈대 오류",
+    "Bone position outside bounding box",
+    "3ds Max 런타임 오류",
+    "MAXScript 좌표 오류",
+    "Bone 생성 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-20T11:13:10+00:00"
+}
