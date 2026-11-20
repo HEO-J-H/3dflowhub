@@ -36389,5 +36389,91 @@
     "id": "p-01bd387a39",
     "verdict": "agent",
     "reason": "실패한 문서 가이드 과제를 작게 쪼개어 단계별로 생성하는 작업은 AI 에이전트가 코드와 파일을 수정하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-20T00:02:08+00:00",
+    "kind": "proposal",
+    "id": "p-d235b40415",
+    "title": "RAG 통합 설계 가이드 작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "agent_runs에 ‘RAG 통합 설계 가이드 작성’ 작업이 held 상태(2026-11-18)로 기록됨",
+    "proposal": "docs/agent-guides/rag-integration.md 파일을 새로 만들고, MIT/Apache‑2.0 라이선스가 허용되는 RAG 라이브러리(LangChain, LlamaIndex 등)와 GPU/CPU 요구사항, 호출 흐름, 예외 처리 방안을 정리합니다.",
+    "expected": "외부 코드 도입 전 명확한 설계 기준이 확보돼 PR 승인 속도가 빨라지고, 라이선스·보안 위험을 사전에 차단합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T00:02:08+00:00",
+    "kind": "proposal",
+    "id": "p-f0e75bed07",
+    "title": "RAG 라이선스·요구사항 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "콘텐츠",
+    "evidence": "‘오픈소스 3D 변환 라이브러리 라이선스 분석’ 작업이 held(2026-11-18) 상태이며, RAG 도입 전 라이선스 검토가 필요함",
+    "proposal": "docs/agent-guides/open-source-rag-review.md 파일에 후보 라이브러리(LangChain, LlamaIndex, Haystack 등)의 라이선스(MIT/Apache‑2.0)와 GPU/CPU 요구사항, 상업 이용 가능 여부를 표로 정리합니다.",
+    "expected": "법적·기술 리스크를 명확히 파악해 안전한 외부 모델 도입을 지원하고, 향후 PR 리뷰 시 근거 자료가 제공됩니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T00:02:08+00:00",
+    "kind": "proposal",
+    "id": "p-b055500d38",
+    "title": "간단한 RAG 서비스 프로토타입 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "사용자 요청 ‘깃허브 RAG 오픈소스를 검토해서 Pix2Poly에 반영해줘’와 보류 중인 설계·라이선스 작업이 연계됨",
+    "proposal": "선정된 MIT/Apache‑2.0 라이브러리를 사용해 backend/app/services/rag_service.py 모듈을 추가하고, 간단한 텍스트 검색·생성 API 엔드포인트를 구현합니다. 동시에 backend/tests/test_rag_service.py 단위 테스트를 작성하고, requirements.txt에 라이브러리를 추가한 PR을 생성합니다.",
+    "expected": "RAG 기능의 초기 동작을 검증해 향후 문서·예시 자동 생성, 사용자 질문 응답 등 고부가가치 기능 개발 기반을 마련합니다.",
+    "effort": "높음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T00:03:49.140576+00:00",
+    "kind": "decision",
+    "id": "p-d235b40415",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T00:03:49.185709+00:00",
+    "kind": "decision",
+    "id": "p-f0e75bed07",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: 깃허브 RAG 오픈소스 라이선스 및 요구사항 검토",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T00:03:49.235258+00:00",
+    "kind": "decision",
+    "id": "p-b055500d38",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T00:03:54.993071+00:00",
+    "kind": "triage",
+    "id": "p-d235b40415",
+    "verdict": "agent",
+    "reason": "새 파일 docs/agent-guides/rag-integration.md 를 작성하는 작업은 기존에 비슷한 문서가 있지만 정확히 동일한 파일은 아직 없으며, 코드 수정이 아닌 문서 생성이므로 AI가 자동으로 처리 가능함"
+  },
+  {
+    "at": "2026-11-20T00:04:18.140719+00:00",
+    "kind": "triage",
+    "id": "p-b055500d38",
+    "verdict": "agent",
+    "reason": "새로운 RAG 서비스 구현 및 테스트 작성 작업이 아직 진행되지 않았음"
   }
 ]
