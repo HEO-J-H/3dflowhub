@@ -37146,5 +37146,60 @@
     "id": "p-f8e027ba20",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 이미 높이맵 및 PBR 단위 테스트가 추가되어 완료된 항목입니다."
+  },
+  {
+    "at": "2026-11-20T14:32:43+00:00",
+    "kind": "proposal",
+    "id": "p-1bb1b94178",
+    "title": "PR #1 실제 img2threejs 연동 및 오류 처리 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 대기 중이며, 단순 엔진 이름 추가가 아닌 실제 img2threejs 호출과 실패 시 명확한 오류 반환 및 테스트가 필요합니다.",
+    "proposal": "backend/app/services/img2threejs_runner.py 파일에서 실제 subprocess 또는 API 호출 로직을 구현하고 예외 발생 시 높이맵으로 자동 대체하지 않고 에러를 반환하도록 수정",
+    "expected": "외부 3D 변환 엔진 연동의 신뢰성 확보 및 PR #1 승인 완료",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T14:32:43+00:00",
+    "kind": "proposal",
+    "id": "p-d2708ab562",
+    "title": "정체된 문서 가이드 및 테스트 과제 재정비",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 agent_runs에서 docs/agent-guides/img2threejs-impl.md 작성 및 test_mesh_pipeline.py 추가 과제들이 '패치 적용 실패: 변경 없음'으로 반복 정체되었습니다.",
+    "proposal": "해당 과제들을 더 작은 단위로 쪼개어 코딩 에이전트가 단일 파일 단위로 쉽게 패치할 수 있도록 재정의합니다.",
+    "expected": "에이전트 과제 수행 성공률 향상 및 백로그 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T14:33:17.720386+00:00",
+    "kind": "decision",
+    "id": "p-1bb1b94178",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 및 오류 처리 구현",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T14:33:17.752792+00:00",
+    "kind": "decision",
+    "id": "p-d2708ab562",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T14:33:19.275537+00:00",
+    "kind": "triage",
+    "id": "p-d2708ab562",
+    "verdict": "agent",
+    "reason": "정체된 문서 가이드 및 테스트 과제를 코딩 에이전트가 단일 파일 단위로 쉽게 처리할 수 있도록 더 작은 단위로 분할하여 패치 가능하게 재정의하는 작업입니다."
   }
 ]
