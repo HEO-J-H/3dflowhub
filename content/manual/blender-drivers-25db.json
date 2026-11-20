@@ -1,0 +1,150 @@
+{
+  "id": "blender-drivers-25db",
+  "guide_id": "blender-drivers-25db",
+  "tool": "Blender",
+  "name": "Drivers",
+  "title": "Drivers — 값 연결",
+  "overview": "Driver는 한 객체의 속성 값을 다른 객체·커스텀 프로퍼티·수식에 연결해, Keyframe 없이 실시간으로 자동 제어합니다. 내부적으로는 의존성 Graph에 변수를 등록하고, 프레임 변화 시마다 표현식을 평가해 결과값을 적용합니다.",
+  "access": "속성(예: Rotation Z)을 Mouse 우클릭 → Add Driver. 또는 Graph Editor 좌측 모드 드롭다운에서 Drivers 모드 선택. Dope Sheet → Drivers 모드에서도 접근 가능. 검색창에 “Add Driver” 입력 후 실행.",
+  "options": [
+    {
+      "name": "Type",
+      "value": "Average, Sum, Min, Max, Multiply, Divide",
+      "effect": "여러 변수를 조합할 연산 방식을 지정합니다.",
+      "tip": "다중 변수 평균이 필요하면 ‘Average’를, 비율 연산은 ‘Multiply’가 편리합니다."
+    },
+    {
+      "name": "Variable Type",
+      "value": "Single Property, Transform Channel, Self, Custom Property",
+      "effect": "Driver가 참조할 데이터 종류를 정의합니다.",
+      "tip": "Transform Channel은 위치·회전·스케일 중 하나를 직접 선택할 수 있어 직관적입니다."
+    },
+    {
+      "name": "Target ID",
+      "value": "Object, Bone, Curve 등",
+      "effect": "값을 읽어올 대상 데이터를 지정합니다.",
+      "tip": "같은 이름을 가진 여러 객체가 있으면 정확히 선택하도록 ‘Object’ 리스트에서 확인하세요."
+    },
+    {
+      "name": "Data Path",
+      "value": "예: location.x, rotation_euler.z 등",
+      "effect": "대상 객체 내부에서 구체적인 속성 경로를 지정합니다.",
+      "tip": "우클릭 → Copy Data Path 로 경로를 정확히 복사하면 오타를 방지할 수 있습니다."
+    },
+    {
+      "name": "Transform Channel",
+      "value": "X, Y, Z",
+      "effect": "Transform Channel 변수일 때 어느 축을 사용할지 선택합니다.",
+      "tip": "회전 연동 시 Z축을 선택하면 ‘Rotation Z’와 직접 매핑됩니다."
+    },
+    {
+      "name": "Space",
+      "value": "World Space, Local Space, Pose Space 등",
+      "effect": "좌표계 변환을 적용해 값을 읽어옵니다.",
+      "tip": "World Space를 쓰면 부모 객체의 변환 영향을 받지 않아 독립적인 제어가 가능합니다."
+    },
+    {
+      "name": "Use Self",
+      "value": "True/False",
+      "effect": "현재 객체 자체의 속성을 변수로 사용할지 결정합니다.",
+      "tip": "‘Self’를 켜면 같은 오브젝트 내 다른 속성을 쉽게 연결할 수 있습니다."
+    },
+    {
+      "name": "Expression",
+      "value": "Python expression (예: var * 2 + sin(frame))",
+      "effect": "변수와 Python 연산자를 조합해 복잡한 수식을 정의합니다.",
+      "tip": "복잡한 수식은 ‘Modifiers’ 탭에 분리해 관리하면 가독성이 높아집니다."
+    },
+    {
+      "name": "Modifiers",
+      "value": "Generator, Averaged, Polynomial, Stepped, Envelope 등",
+      "effect": "Expression 앞에 추가적인 변환(예: 시간 기반 반복) 을 적용합니다.",
+      "tip": "‘Generator’는 프레임에 비례해 값이 증가하도록 자동 생성합니다."
+    },
+    {
+      "name": "Update Dependencies",
+      "value": "Auto, Manual",
+      "effect": "Driver 업데이트 시점을 제어합니다.",
+      "tip": "많은 Driver가 있을 때는 ‘Manual’로 바꾸고 필요 시 ‘Update Dependencies’ 버튼을 눌러 성능을 최적화하세요."
+    },
+    {
+      "name": "Driver Range",
+      "value": "Min/Max limits (optional)",
+      "effect": "Driver 결과값에 제한을 걸어 과도한 값 변화를 방지합니다.",
+      "tip": "값이 음수가 되면 안 되는 경우 Min = 0을 설정해 안전하게 사용합니다."
+    },
+    {
+      "name": "Interpolation",
+      "value": "Linear, Constant, Bezier (for keyframed drivers)",
+      "effect": "Keyframe이 있는 경우 결과값 보간 방식을 지정합니다.",
+      "tip": "Keyframe 없는 순수 수식 Driver에는 보통 ‘Linear’가 적합합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Single Variable Mode",
+      "desc": "하나의 변수만 연결해 간단히 제어합니다. 가장 기본적인 Driver 형태이며 실시간 피드백이 빠릅니다."
+    },
+    {
+      "name": "Expression Mode",
+      "desc": "여러 변수를 조합하거나 Python 함수를 사용해 복잡한 연산을 수행합니다. 수식 입력창에 직접 코드를 작성합니다."
+    },
+    {
+      "name": "Modifier Stack Mode",
+      "desc": "Expression 앞에 여러 Modifier를 쌓아 시간 기반, 주기적, 다항식 변환 등을 단계별로 적용합니다."
+    },
+    {
+      "name": "Self‑Reference Mode",
+      "desc": "같은 오브젝트 내부 속성을 서로 연결해 내부 자동 애니메이션을 구현합니다. ‘Use Self’ 옵션을 활성화합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "오브젝트 회전 연동 (다른 오브젝트 회전 따라가기)",
+      "steps": [
+        "Driver를 적용할 오브젝트의 Rotation Z 속성을 우클릭 → Add Driver.",
+        "Driver 편집창에서 Variable → Add Variable 선택.",
+        "Variable Type을 ‘Transform Channel’으로 설정하고 Target ID에 회전 기준이 될 오브젝트를 지정한다.",
+        "Data Path에 ‘rotation_euler.z’를 입력하고 Space를 ‘World Space’로 설정한다.",
+        "Expression에 ‘var’만 남겨 두면 1:1 연동이 완료된다."
+      ]
+    },
+    {
+      "title": "다중 변수 평균으로 스케일 자동 조절",
+      "steps": [
+        "스케일을 제어할 오브젝트의 Scale X 속성을 우클릭 → Add Driver.",
+        "Variable → Add Variable 두 번 추가하고 각각 다른 오브젝트의 Scale X을 지정한다.",
+        "각 Variable의 Data Path를 ‘scale.x’로 설정한다.",
+        "Driver 옵션 ‘Type’에서 ‘Average’를 선택한다.",
+        "Expression을 비워두면 평균값이 바로 적용된다."
+      ]
+    },
+    {
+      "title": "Keyframe 없는 자동 파도 효과 (시간 기반 Sin 함수)",
+      "steps": [
+        "파도 메쉬의 Z 위치에 우클릭 → Add Driver.",
+        "Variable → Add Variable → Variable Type을 ‘Single Property’로 선택하고 Target ID에 ‘Scene’ 객체를 지정한다.",
+        "Data Path에 ‘frame_current’(현재 프레임) 를 입력한다.",
+        "Expression에 ‘sin(var * 0.1) * 0.5’ 입력한다.",
+        "Viewport에서 Timeline을 재생하면 메쉬가 부드럽게 파동한다."
+      ]
+    },
+    {
+      "title": "커스텀 프로퍼티 UI로 조명 강도 제어",
+      "steps": [
+        "조명 오브젝트에 ‘Custom Property’를 추가하고 이름을 ‘Intensity’로 설정한다.",
+        "조명 강도(Strength) 속성을 우클릭 → Add Driver.",
+        "Variable → Add Variable → Variable Type을 ‘Custom Property’로 선택",
+        "Target ID에 조명 오브젝트",
+        "Data Path에",
+        ""
+      ]
+    }
+  ],
+  "performance": [],
+  "troubleshoot": [],
+  "versions": "",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Drivers",
+  "grounded": true,
+  "at": "2026-11-20T22:36:35+00:00"
+}
