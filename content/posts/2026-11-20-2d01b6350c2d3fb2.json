@@ -1,0 +1,55 @@
+{
+  "title_ko": "NVIDIA Nemotron AI 에이전트 툴 콜링 파서 구현 방법",
+  "title": "Build Tool-Calling Parsers in Rust with AI Agents",
+  "url": "https://developer.nvidia.com/blog/build-tool-calling-parsers-in-rust-with-ai-agents/",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Rust",
+    "NVIDIA Nemotron",
+    "AI 에이전트",
+    "LLM",
+    "파서"
+  ],
+  "summary": "NVIDIA는 frontend-crates를 활용해 언어 모델의 툴 콜 출력을 구조화된 이벤트로 변환하는 Rust 기반 파서 구현 가이드를 공개했습니다.",
+  "insight": "frontend-crates 저장소의 Rust 컴포넌트는 손상되거나 불완전한 대형 언어 모델의 툴 콜 출력을 구조화된 이벤트로 안전하게 변환합니다.",
+  "try_it": [
+    "frontend-crates 저장소에서 소스 코드와 테스트 픽스처를 확인합니다.",
+    "UNIFIED.* 사례를 기반으로 로컬 GOLDEN 테스트 셋을 설정합니다.",
+    "모델의 문법에 맞춰 파서를 구현하고 로컬 conformance 리포트로 결과를 검증합니다."
+  ],
+  "sections": [
+    {
+      "heading": "frontend-crates의 역할과 구조화",
+      "body": "frontend-crates는 언어 모델 출력에서 툴 콜을 파싱하여 애플리케이션용 구조화된 이벤트로 변환하는 재사용 가능한 Rust 컴포넌트 모음입니다. 파서는 모델 의도를 추측하는 대신 문서화된 복구 규칙을 따라 손상되거나 불완전하며 스트리밍되는 입력을 처리합니다."
+    },
+    {
+      "heading": "Conformance Corpus와 테스트",
+      "body": "공유된 Conformance Corpus는 모델별 입력과 예상되는 GOLDEN 출력을 쌍으로 묶어 Beam, GPT-OSS, Muse Spark, NVIDIA Nemotron 등 다양한 모델 가족군에서 UNIFIED.* 테스트 케이스를 재사용할 수 있게 합니다. 개발자는 UNIFIED.* 사례에 맞춘 GOLDEN 테스트 셋을 정의하고 로컬 conformance 리포트로 결과를 검증합니다."
+    },
+    {
+      "heading": "구문 및 의미적 오류 처리",
+      "body": "모델이 인자나 툴 콜 프레임을 닫지 않거나 요청에 없는 도구를 호출하는 경우 파서와 서빙 레이어가 각각 구문 오류와 의미적 오류를 다르게 감지합니다. 가이드 디코딩은 모델의 마커와 인자 스키마에 생성을 제한하여 잘못된 호출을 줄이지만 파서 복구 검사는 잘림 현상과 의미 오류를 위해 여전히 필요합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "frontend-crates는 어떤 역할을 하나요?",
+      "a": "언어 모델 출력에서 툴 콜을 파싱하여 Application이 활용할 수 있는 구조화된 이벤트로 변환하는 Rust 기반 컴포넌트입니다."
+    },
+    {
+      "q": "파서 오류는 어떻게 처리되나요?",
+      "a": "구문 오류나 존재하지 않는 도구 호출 같은 의미적 오류에 대해 파서와 서빙 레이어가 각각 수신된 호출을 보고하고 검증합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/agentic-ai-rl-gym-1024x576-1.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-20T14:42:26.735105+00:00",
+  "notion_id": "",
+  "id": "2026-11-20-2d01b6350c2d3fb2",
+  "img_ok": "2026-11-20T14:42:26+00:00",
+  "enriched_at": "skip"
+}
