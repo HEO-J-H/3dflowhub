@@ -38179,5 +38179,29 @@
     "id": "p-b304456fc1",
     "v": "done",
     "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-20T19:55:28+00:00",
+    "kind": "proposal",
+    "id": "p-591e50e2d6",
+    "title": "PR #1 img2threejs 연동 및 예외 처리 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1이 'revise' 상태로 남아 있으며, img2threejs 호출 불가 시 대체 동작 대신 명확한 예외 반환과 테스트가 필요함",
+    "proposal": "backend/app/services/triposr_runner.py 및 관련 서비스 파일에서 img2threejs 미사용 시 높이맵 대체 대신 명세화된 예외를 반환하도록 수정하고, backend/tests/test_triposr_runner.py에 해당 예외 처리 테스트 케이스 추가",
+    "expected": "PR #1의 요구사항을 충족하여 핵심 3D 변환 파이프라인의 예외 안정성 확보",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T19:55:57.796905+00:00",
+    "kind": "decision",
+    "id": "p-591e50e2d6",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 예외 처리 및 테스트 보완",
+    "auto": true
   }
 ]
