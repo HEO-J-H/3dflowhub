@@ -1,0 +1,19 @@
+<!-- TITLE: NVIDIA DAQIRI — 실시간 AI 데이터 수집 라이브러리 업데이트 | TAGS: NVIDIA DAQIRI,GPU,엣지 컴퓨팅,실시간 데이터 수집,AI 인프라,업데이트·출시 | CATEGORY: AI 3D/NVIDIA Omniverse | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/electron-energy-loss-spectroscopy.webp" alt="NVIDIA DAQIRI — 실시간 AI 데이터 수집 라이브러리 업데이트" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA DAQIRI 라이브러리 최신 Release는 하드웨어 패킷 재정렬과 ibverbs 엔진을 도입해 고대역폭 센서 데이터를 디스크 기록 없이 GPU 메모리로 직접 처리합니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA Omniverse › 업데이트·출시</p>
+<h2>NVIDIA DAQIRI와 GPU 네이티브 데이터 수집</h2>
+<p>NVIDIA DAQIRI는 고대역폭 센서와 악기 데이터를 디스크에 먼저 기록하지 않고 GPU 준비 워크플로로 직접 이동시키는 Software 정의 데이터 수집 라이브러리입니다. NVIDIA Holoscan 플랫폼 라이브러리로 작동하며 측정용 센서와 과학 분석 및 AI 추론을 위한 Programming 가능한 GPU 플랫폼을 연결합니다. 이를 통해 기존 이더넷 지원 장비에 처리 및 피드백 기능을 추가하거나 새로운 장비의 수집 제약 조건을 처음부터 재설정할 수 있습니다.</p>
+<h2>고동적 범위 전자 현미경 카메라 사례 연구</h2>
+<p>로런스 버클리 국립연구소의 Molecular Foundry에서 개발한 고동적 범위 전자 현미경 카메라는 강한 신호와 미세한 신호를 동시에 포착합니다. 기존 방식은 두 가지 최적화된 수집 과정을 연속으로 거쳐야 했으나 이 새로운 카메라는 초당 500기가비트 이상의 데이터를 생성하며 실험 중 실시간으로 처리할 수 있습니다. NVIDIA DAQIRI는 감지기 패킷을 GPU 메모리로 직접 수신하여 실험 진행 중 프레임 조립, 보정, 에너지 손실 스펙트럼 축소를 실시간으로 수행합니다.</p>
+<h2>최신 Release의 핵심 성능 개선 사항</h2>
+<p>최신 DAQIRI Release는 NVIDIA ConnectX-7 이상의 네트워크 카드에서 하드웨어 패킷 재정렬 기능을 추가했습니다. 작은 패킷 크기에서 코어당 처리량을 거의 두 배로 늘려주는 ibverbs 엔진이 탑재되었습니다. 또한 직접 폴링 모드를 통해 2~4 µs 수준의 Application 송수신 지연 시간을 실현합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NVIDIA ConnectX-7 이상의 네트워크 카드에서 직접 폴링 모드를 활성화하면 2~4 µs의 송수신 지연 시간을 기록합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NVIDIA DAQIRI란 무엇인가요?</b><br/>A. 고대역폭 센서 및 장비 데이터를 디스크 저장 과정 없이 GPU 메모리로 직접 전달하여 실시간 분석과 AI 추론을 수행할 수 있게 돕는 NVIDIA Holoscan 플랫폼 라이브러리입니다.</p>
+<p><b>Q. 최신 DAQIRI Release에서 개선된 성능은 무엇인가요?</b><br/>A. NVIDIA ConnectX-7 이상의 네트워크 카드용 하드웨어 패킷 재정렬, 작은 패킷 크기에서 처리량을 거의 두 배로 높인 ibverbs 엔진, 2~4 µs 지연 시간을 제공하는 직접 폴링 모드가 추가되었습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-20-fdf247289ced7fca.html">NVIDIA Dynamo — 강화학습 롤아웃 병목 현상 해결</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-15bef5a6ba34e7c8.html">NVIDIA RTX Spark 컴팩트 데스크톱 출시</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-83e1c9e5f5bba717.html">NVIDIA RTX Spark PC 최대 128GB 출시</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/" target="_blank" rel="noopener nofollow">Enabling Real-Time AI for Scientific Instruments with GPU-Native Data Acquisition</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

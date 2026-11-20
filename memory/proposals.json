@@ -37084,5 +37084,67 @@
     "v": "rejected",
     "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 및 오류 처리 구현",
     "auto": true
+  },
+  {
+    "at": "2026-11-20T14:23:54+00:00",
+    "kind": "proposal",
+    "id": "p-f8e027ba20",
+    "title": "웹 UI 높이맵 테스트 파일 신규 작성 및 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 UI 높이맵 변환 로직 테스트 케이스 보강 및 기능 테스트 강화 작업이 accepted_work에 포함되어 있으나 실제 파일 단위의 명확한 테스트 보완이 필요함.",
+    "proposal": "web/tests/ 또는 프론트엔드 테스트 디렉토리에 높이맵 변환 결과 검증을 위한 단위 테스트 Script를 추가합니다.",
+    "expected": "웹 브라우저 상에서 동작하는 높이맵 메시 생성 로직의 무결성이 안정적으로 검증됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T14:23:54+00:00",
+    "kind": "proposal",
+    "id": "p-e9ac2aa7af",
+    "title": "PR #1 img2threejs 연동 테스트 코드 보완",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1 관련 요구사항에서 엔진 미지원 시 오류 반환 및 결과 파일 검증 테스트 코드가 요구됨.",
+    "proposal": "backend/tests/test_img2threejs_pipeline.py 파일을 생성하여 img2threejs 호출 예외 처리 및 결과 반환 규격을 테스트합니다.",
+    "expected": "핵심 파이프라인의 예외 상황 대응력이 높아지고 승인 대기 중인 PR #1의 리뷰 기준을 충족합니다.",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T14:24:47.329878+00:00",
+    "kind": "decision",
+    "id": "p-f8e027ba20",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T14:24:47.360119+00:00",
+    "kind": "decision",
+    "id": "p-e9ac2aa7af",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 테스트 코드 개선",
+    "auto": true
+  },
+  {
+    "at": "2026-11-20T14:24:49.386078+00:00",
+    "kind": "triage",
+    "id": "p-f8e027ba20",
+    "verdict": "done_already",
+    "reason": "최근 커밋에서 이미 높이맵 및 PBR 단위 테스트가 추가되어 완료된 항목입니다."
+  },
+  {
+    "at": "2026-11-20T14:24:49.417016+00:00",
+    "kind": "decision",
+    "id": "p-f8e027ba20",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋에서 이미 높이맵 및 PBR 단위 테스트가 추가되어 완료된 항목입니다."
   }
 ]
