@@ -36807,5 +36807,29 @@
     "id": "p-ecbecfd2d8",
     "v": "done",
     "note": "자동 완료 확인: PR #1 닫힘"
+  },
+  {
+    "at": "2026-11-20T11:22:19+00:00",
+    "kind": "proposal",
+    "id": "p-af976813b9",
+    "title": "PR #1 img2threejs 실제 연동 오류 처리 및 테스트 구현",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "PR #1 관련하여 엔진 이름 추가 외에 실제 img2threejs 호출과 결과 파일 반환 및 예외 처리 검증이 필요함",
+    "proposal": "backend/app/services/ 내부의 파이프라인 코드에서 img2threejs 호출 실패 시 조용히 대체하지 않고 명확한 오류를 반환하도록 수정하고 관련 테스트를 작성합니다.",
+    "expected": "외부 엔진 연동 시 예외 상황에 대한 안전한 오류 처리 및 코드 품질 향상",
+    "effort": "높음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-20T11:23:39.591989+00:00",
+    "kind": "decision",
+    "id": "p-af976813b9",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: PR #1 img2threejs 연동 및 오류 처리 구현",
+    "auto": true
   }
 ]
