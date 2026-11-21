@@ -1,51 +1,54 @@
 {
-  "title_ko": "Gaussian Splatting 수중 복원 논문 NIRJALA 공개",
+  "title_ko": "NIRJALA: 3차원 Gaussian Splatting의 수중 복원 성능 향상",
   "title": "NIRJALA: Draining the Sea out of Gaussian Splatting with Three-Path Optics and Reversible Physics",
   "url": "https://arxiv.org/abs/2611.23450v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "수중 3D",
-    "NeRF",
-    "Blender Cycles",
-    "AI 3D",
-    "블렌더"
+    "3D Gaussian Splatting",
+    "Underwater 3D Reconstruction",
+    "Scattering Media",
+    "Novel View Synthesis",
+    "TRIVENI"
   ],
-  "summary": "NIRJALA는 수중 환경에서 전방 산란과 가역 물리 모델을 결합해 물의 영향을 제거하고 3D Gaussian Splatting의 복원 품질을 높이는 새로운 프레임워크입니다.",
-  "insight": "실제 SeaThru-NeRF 씬에서 LPIPS를 0.175로 낮추고 44 FPS로 렌더링을 수행하여 수중 3D 재구성의 정확도를 끌어올립니다.",
-  "try_it": [
-    "Blender Cycles를 열고 SAJALA 벤치마크 데이터셋 환경을 설정합니다.",
-    "TRIVENI 3패치 이미지 형성 모델을 적용해 수중 산란과 직접 투사 항을 분리합니다.",
-    "복원된 수중 3D Gaussian Splatting 결과물의 PSNR 및 depth AbsRel 수치를 비교합니다."
-  ],
+  "summary": "수중 3D 재구성에서 물의 영향(흡수·산소·전방 산소)을 정확히 분리하기 위해 3경로 광학 모델과 가역적 물리 앵커를 결합한 새로운 3D Gaussian Splatting 프레임워크입니다.",
+  "insight": "이 연구의 3경로 광학 모델(TRIVENI)과 가역적 물리 앵커 기법은 향후 수중 3D 스캔 및 해양 고고학 모델링 작업에서 색상 왜곡과 부유물(floater) 문제를 크게 줄여줄 가능성이 있습니다. 특히 3D Gaussian Splatting 기반의 수중 실시간 렌더링 Pipeline 수중 카메라 촬영 데이터의 기하학적 정밀도를 높이는 데 실무적 영감을 줍니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "TRIVENI 3패치 이미지 형성 모델",
-      "body": "수중 사진은 감쇠된 장면 광 radiance, 후방 산란광, 전방 산란된 빛이 혼합되어 나타납니다. 기존 방식은 후방 산란과 직접 투사만 모델링하여 거리 지수 감쇠로 인해 역전파 이득이 무한대로 커지는 문제가 있었습니다. TRIVENI 모델은 거리 포화형 전방 산란 항을 추가하여 모든 거리에서 역전파 이득이 유계 상태를 유지하도록 설계되었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "수중 촬영 사진이나 영상은 물의 흡수와 산란(후방 산소, 전방 산소)으로 인해 색상이 왜곡되고 거리마다 빛의 감쇠가 다르게 일어납니다. 기존의 2텀(two-term) 수중 이미지 형성 모델 기반 Gaussian Splatting 방법들은 역수 계산 시 게인(gain)이 거리(range)에 따라 무한대로 증가하여 색상 오류와 지오메트리 왜곡을 유발하는 문제가 있었습니다."
     },
     {
-      "heading": "PRATIBIMBA 가역 물리 앵커와 SAMARASA",
-      "body": "유연한 Neural Network 수중 모델을 10개 파라미터의 물리 모델과 양방향으로 연결하는 PRATIBIMBA를 도입했습니다. 이를 통해 장면 콘텐츠가 물속에 가려지는 현상을 방지합니다. SAMARASA는 거리 구간별 색상 사전 분포를 포함한 물리 기반 목적 함수들을 하나로 통합합니다."
+      "heading": "핵심 아이디어: TRIVENI 3경로 모델",
+      "body": "본 논문에서는 기존의 직진 투과(direct transmission)와 후방 산소(backscatter) 외에 거리 포화형 전방 산소(forward scattering) 기여도를 추가한 TRIVENI 모델을 제안합니다. 이를 통해 역변환 게인이 모든 거리에서 유계(bounded)로 유지됨을 수학적으로 증명하였고, 감쇠 및 후방 산소 추정 오차가 색상에 미치는 전파 양상을 분석했습니다."
     },
     {
-      "heading": "SAJALA 벤치마크 데이터셋 구축",
-      "body": "수중 제거 성능을 정량적으로 평가하기 위해 Blender Cycles 경로 추적(path-traced)을 활용해 SAJALA 벤치마크를 구축했습니다. 제어된 수중 색상과 탁도 속에서 무수분 이미지, 깊이, 노멀 정보를 함께 제공합니다. 이를 통해 기존 방식 대비 PSNR을 24.34에서 24.76 dB로 향상시켰습니다."
+      "heading": "PRATIBIMBA와 SAMARASA를 통한 제약",
+      "body": "PRATIBIMBA는 유연한 Neural Network 수중 모델을 10개 파라미터의 전역 물리 모델과 복원-재형성(recover-then-re-form) 방향으로 연결하여, 장면의 텍스처가 수중 모델 속에 숨는 것을 방지합니다. 또한 SAMARASA는 범위별(range-binned) 그레이월드 프리오(grey-world prior)를 포함한 물리 기반 목적 함수들을 모아 학습을 안정화합니다."
     },
     {
-      "heading": "실제 씬 렌더링 성능과 평가 한계",
-      "body": "실제 SeaThru-NeRF 수중 씬에서 LPIPS를 0.194에서 0.175로 낮추면서 초당 44 프레임(FPS)의 렌더링 속도를 기록했습니다. 논문 저자들은 수중 환경에서 외형 지표와 지오메트리가 서로 일치하지 않는 구간과 평가 방식의 한계점에 대해서도 함께 다룹니다."
+      "heading": "SAJALA 평가 수치와 성능",
+      "body": "논문 저자들이 Blender Cycles에서 패스 Tracing으로 제작한 30개 장면의 수중 평가 스위트인 SAJALA에서, NIRJALA는 기존 가장 강력한 베이스라인 대비 렌더링 PSNR을 24.34에서 24.76 dB로 높이고, 깊이 AbsRel을 0.109에서 0.091로 낮추었습니다. 실제 SeaThru-NeRF 데이터셋에서는 LPIPS를 0.194에서 0.175로 낮추며 초당 44 프레임(44 FPS)으로 렌더링을 수행합니다."
+    },
+    {
+      "heading": "Limitations 및 한계점",
+      "body": "본 논문은 외형 지표(appearance metrics)와 기하학적 정확도가 수중 환경에서 서로 상반되게 움직일 수 있는 한계를 지적하며, 자체 평가 수치들이 보여주지 못하는 복잡한 해양 환경 속 광학적 한계와 평가 지표의 제약 사항을 함께 논의합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 본문에서 GitHub 저장소 링크(arXiv HTML 피드백 및 LaTeXML 관련 링크 외)를 직접적인 소스코드 저장소로 명시하지는 않았으나, SAJALA 합성 평가 Suite 구축 및 30개 수중 장면 데이터를 활용한 벤치마크 결과를 상세히 공개하고 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "NIRJALA는 기존 수중 Gaussian Splatting 방식과 무엇이 다릅니까?",
-      "a": "기존 방식은 단순 지수 감쇠 전송률로 물을 제거해 역전파 이득이 발산하는 문제가 있었으나, NIRJALA는 전방 산란 항을 추가한 TRIVENI 모델로 이득을 유계 상태로 유지합니다."
+      "q": "기존 2텀 모델과 비교하여 TRIVENI 모델이 가지는 수학적 장점은 무엇인가요?",
+      "a": "기존 2텀 모델은 역변환 시 거리에 따라 게인이 지수 함수적으로 증가하지만, TRIVENI는 거리 포화형 전방 산소항을 추가하여 역변환 게인이 모든 거리에서 유계(bounded) 상태를 유지하도록 보장합니다."
     },
     {
-      "q": "SAJALA 벤치마크는 어떻게 제작되었습니까?",
-      "a": "Blender Cycles를 이용해 수중 환경의 탁도와 색상을 제어하며 무수분 이미지, 깊이, 노멀 맵을 함께 경로 추적 방식으로 30개 씬을 구축했습니다."
+      "q": "저자들이 직접 구축한 SAJALA 평가 Suite는 어떤 특징이 있나요?",
+      "a": "SAJALA는 통제된 물의 색상과 탁도 아래에서 Blender Cycles를 통해 패스 트레이싱된 30개의 합성 수중 장면 세트로, 물 없는 기준 이미지, 깊이, 노멀 정보를 함께 제공합니다."
     }
   ],
   "media": {
@@ -56,5 +59,16 @@
   "notion_id": "",
   "id": "2026-11-21-f2d2257cdac7c142",
   "img_tried": true,
-  "img_ok": "2026-11-21T19:48:28+00:00"
+  "img_ok": "2026-11-21T19:48:28+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T20:48:40+00:00"
 }
