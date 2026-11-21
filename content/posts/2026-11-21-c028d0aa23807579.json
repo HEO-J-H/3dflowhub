@@ -1,46 +1,54 @@
 {
-  "title_ko": "Gaussian Splatting 3D 생성 모델 VideoRNG 논문 발표",
+  "title_ko": "VideoRNG: 생성형 비디오 모델에서 조명 가능한 Neural Network Gauss 생성",
   "title": "VideoRNG: Relightable Neural Gaussians from Generative Video Models",
   "url": "https://arxiv.org/abs/2611.25338v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "VideoRNG",
     "Gaussian Splatting",
-    "3D 생성 AI",
-    "NeRF",
-    "컴퓨터 비전",
-    "연구논문"
+    "Neural Rendering",
+    "3D Generation",
+    "NVIDIA"
   ],
-  "summary": "텍스트나 단일 이미지에서 조명 조절이 가능한 Gaussian Splatting 3D 에셋을 생성하는 VideoRNG 방법론을 제안합니다.",
-  "insight": "기존 3D 생성 방식이 고정된 조명을 베이킹하던 한계를 넘어, 비디오 디퓨전 백본을 활용해 재조명이 가능한 Neural Network Gaussian 표현 방식을 구현합니다.",
+  "summary": "텍스트나 단일 이미지로부터 재질과 조명이 자유로운 3D 에셋을 생성하는 2단계 파이프라인인 VideoRNG를 소개합니다.",
+  "insight": "이 기술이 상용화되면 아티스트가 털이나 깃털 같은 복잡한 요소를 수작업으로 모델링하고 텍스처링하는 데 소모하는 시간을 크게 줄일 수 있을 것으로 보입니다. 특히 텍스트나 이미지 한 장으로 조명 변화에 유연하게 대응하는 3D 에셋을 얻을 수 있어, 실시간 게임 엔진이나 VFX Pipeline의 활용도가 높아질 가능성이 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "VideoRNG 방법론의 2단계 구조",
-      "body": "본 연구는 표면 메시나 물리 기반 재질 모델을 가정하지 않고 텍스트 프롬프트나 단일 이미지로부터 3D 에셋을 생성하는 2단계 접근법을 제시합니다. 사전 학습된 비디오 디퓨전 백본에서 미세 조정된 비디오 생성기가 먼저 카메라 포즈와 조명이 알려진 구조화된 RGBA 턴테이블 시퀀스를 생성합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 3D 생성 모델은 서피스 메시(Surface Mesh)와 PBR(Physically Based Rendering) 재질로 제한되어 있어 털, 깃털, 거미줄처럼 미세한 기하학적 구조나 복잡한 빛의 산란을 표현하기 어렵습니다. 또한 일반적인 Gauss 스플레이팅(Gaussian Splatting) 생성기는 특정 조명을 외형에 고정시켜 버리는 문제가 있어, 본 논문은 이러한 한계를 극복하고자 합니다."
     },
     {
-      "heading": "비디오 VAE 잠재 프레임과 Gaussian 매핑",
-      "body": "선택된 턴테이블 프레임의 비디오 VAE 잠재 프레임을 학습된 Neural Network 외형 특성을 가진 수백만 개의 비방향성 Gaussian으로 직접 매핑하는 피드포워드 대형 재구성 모델을 사용합니다. 공유 방향 디코더와 확률적 Gaussian 레이 트레이서를 통해 새로운 시점과 조명 아래에서 복사도(radiance)를 계산합니다."
+      "heading": "핵심 아이디어",
+      "body": "VideoRNG는 뉴럴 Directional 어피어런스(Neural Directional Appearance)와 확률적 Gauss 레이 Tracing(Stochastic Gaussian Ray Tracing)을 결합한 rtRNG(Ray-traced Relightable Neural Gaussians) 표현 방식을 도입합니다. 메시나 분석적 재질 모델 없이도 비디오 생성 모델과 대형 재건 모델(LRM)을 활용해 정교한 3D 에셋을 직접 예측합니다."
     },
     {
-      "heading": "고주파 외형 보존과 대규모 재구성 최적화",
-      "body": "기하학을 학습하는 동안 고주파 외형을 보존하기 위해 깊이 앵커 외형 학습 기법을 도입했습니다. 또한 전경 토큰 선택과 비용 인식 분산 샘플링을 적용하여 수백만 개의 Gaussian 재구성을 실무적으로 처리할 수 있게 만들었습니다."
+      "heading": "방법 (2단계 파이프라인)",
+      "body": "1단계에서는 미세 조정된 비디오 생성 모델이 알려진 카메라 포즈와 조명 아래에서 구조화된 RGBA 턴테이블 시퀀스를 생성합니다. 2단계에서는 전경 토큰 선택과 비용 분산 샘플링을 거쳐, 비디오 VAE 레이턴트 프레임을 학습된 Neural Network 외형 피처를 가진 수백만 개의 이방성 Gauss(Anisotropic Gaussians)로 직접 매핑합니다. 또한 깊이 앵커 외형 학습(Depth-anchored appearance training)을 통해 미세한 디테일을 보존합니다."
     },
     {
-      "heading": "복잡한 털과 깃털 에셋 생성 결과",
-      "body": "털, 깃털, 거미줄과 같이 기존 기하학적 표현으로 표현하기 까다로웠던 복잡한 에셋을 생성할 수 있습니다. 생성된 결과물은 실시간으로 렌더링하고 조명을 재조정하여 실제 장면에 통합할 수 있습니다."
+      "heading": "결과 및 성능",
+      "body": "NVIDIA RTX A6000 GPU에서 숨겨진 너비 64의 에셋별 디코더를 사용할 때, 1280×720 Resolution와 1 spp(sample per pixel)에서 프레임당 약 50ms의 속도로 렌더링됩니다. 퍼 코트, 황철석 결정 클러스터, 나방, 거미줄, 타조 깃털, 로봇 피겨, 벌집 등 복잡한 에셋을 생성할 수 있습니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문 본문에서 직접 언급된 명시적인 한계는 다루지 않았으나, 대규모 확산 모델과 Gauss 레이 Tracing을 결합하므로 상당한 연산 자원이 필요하며, 생성된 rtRNG 에셋은 전용 디코더와 렌더링 파이프라인 지원이 필수적입니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 본문에 포함된 링크는 arXiv HTML 피드백 및 LaTeXML 관련 GitHub 저장소만 존재하며, VideoRNG 모델의 공식 소스 코드나 데이터셋 공개 여부는 본문에 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "VideoRNG는 어떤 입력으로부터 3D 에셋을 생성하나요?",
-      "a": "텍스트 프롬프트나 단일 이미지를 입력으로 받아 조절 가능한 3D 에셋을 생성합니다."
+      "q": "VideoRNG는 어떤 입력으로부터 3D 에셋을 만드나요?",
+      "a": "텍스트 Prompt 또는 단일 이미지로부터 3D 에셋을 생성합니다."
     },
     {
-      "q": "기존 Gaussian Splatting 생성기와 어떤 차이가 있나요?",
-      "a": "기존 생성기는 고정된 조명을 외형에 베이킹하는 반면, VideoRNG는 렌더링 과정에서 조명을 다시 설정할 수 있는 재조명(relightable) 기능을 지원합니다."
+      "q": "렌더링 속도와 해설 환경은 어떻게 되나요?",
+      "a": "NVIDIA RTX A6000 GPU에서 1280×720 Resolution, 1 spp 기준으로 프레임당 약 50ms의 렌더링 속도를 기록합니다."
     }
   ],
   "media": {
@@ -51,5 +59,16 @@
   "notion_id": "",
   "id": "2026-11-21-c028d0aa23807579",
   "img_tried": true,
-  "img_ok": "2026-11-21T15:07:05+00:00"
+  "img_ok": "2026-11-21T15:07:05+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T16:37:52+00:00"
 }
