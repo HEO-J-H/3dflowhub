@@ -33870,5 +33870,36 @@
     "id": "p-442437035d",
     "v": "done",
     "note": "이미 있음 — backend/tests/test_web_js.py, 백엔드 test_heightmap.py"
+  },
+  {
+    "at": "2026-11-21T23:58:46+00:00",
+    "kind": "proposal",
+    "id": "p-e4fc8d917c",
+    "title": "RAG 엔드포인트 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근에 RAG UI 버튼 추가 시도(p-05c667bff7) 가 보류 중이며, 테스트가 없음.",
+    "proposal": "backend/tests/test_rag_endpoint.py 파일을 만들고, `/rag/query` API 가 정상 JSON 응답을 반환하는지 검증한다. 테스트 통과 시 자동 머지.",
+    "expected": "RAG 기능 안정성 확보 및 CI 통과율 향상.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T23:59:53.913891+00:00",
+    "kind": "decision",
+    "id": "p-e4fc8d917c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T23:59:55.855869+00:00",
+    "kind": "triage",
+    "id": "p-e4fc8d917c",
+    "verdict": "agent",
+    "reason": "테스트 파일 추가와 자동 머지는 코드 수정으로 해결 가능"
   }
 ]
