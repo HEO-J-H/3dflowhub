@@ -36,6 +36,16 @@
     {
       "heading": "LED 볼륨을 활용한 동시 캡처",
       "body": "촬영 감독벤 세퍼(Ben Saffer)가 이끄는 슈퍼비전 VP(Supervision VP) 팀이 Virtual 프로덕션을 담당하여 가상 조명과 물리적 조명을 하나로 연동했습니다. 창밖의 LED 월에서 나오는 빛이 연기자의 얼굴과 소품 표면에 그대로 반사되어 자연스러운 상호 작용을 만들어냈습니다. 그린 스크린이나 사전 렌더링된 배경을 사용하는 방식 대신 실시간 인카메라 VFX 방식을 채택해 별도의 추정 작업 없이 물리적 세트와 가상 배경을 한 번에 담아냈습니다."
+    },
+    {
+      "heading": "Unreal Engine LED 볼륨과 인카메라 VFX 활용 팁",
+      "body": "런던 패션대학의 'SNTIENT 2.0' 제작 사례에서 보듯, LED 월을 활용한 가상 생산(Virtual Production)은 그린 스크린 공정을 줄이고 물리적 세트와 가상 배경을 동시에 담아내는 데 유용합니다. 창밖 LED 월에서 발산되는 광원이 연기자의 피부와 소품 표면에 자연스럽게 반사되도록 세팅하면 실사와 가상 환경 간의 이질감을 크게 낮출 수 있습니다. 렌더링 대기 시간을 없애고 현장에서 즉각적인 수정이 필요한 경우 Unreal Engine 5의 실시간 Viewport와 인카메라 VFX 워크플로를 도입해 보세요.",
+      "added": true
+    },
+    {
+      "heading": "VDB 포그와 채도 조정을 통한 LED 월 카메라 최적화",
+      "body": "LED 월 촬영 시 배경이 지나치게 어둡거나 안개가 짙으면 카메라 렌즈를 통해 들어오는 시각적 질감이 의도와 다르게 표현될 수 있습니다. 디콘 놀스 총괄 책임자의 사례처럼, 단순한 안개 효과 대신 세밀한 VDB 포그를 적용하고 양을 줄여 가시성을 확보하는 것이 좋습니다. 또한 가상 도시 창문의 채도를 높여 LED 패널의 블랙 표현력과 강한 대비를 이루도록 조절하면, 카메라 렌즈에 잡히는 장면의 깊이감과 몰입도를 효과적으로 끌어올릴 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -50,6 +60,14 @@
     {
       "q": "LED 월을 사용할 때 조명 처리는 어떻게 이루어졌나요?",
       "a": "가상 배경과 물리적 세트의 조명을 통합 제어하여 스크린에서 발산되는 불빛이 연기자의 얼굴과 세트 표면에 자연스럽게 반사되도록 동시에 캡처했습니다."
+    },
+    {
+      "q": "생성형 AI 대신 Unreal Engine을 선택한 이유는 무엇인가요?",
+      "a": "초기에는 생성형 AI 방식을 시도했으나 Resolution 저하와 시각적 완성도에 한계가 있어, 실시간 수정과 세밀한 제어가 가능한 Unreal Engine 5 환경으로 선회했습니다."
+    },
+    {
+      "q": "실물 세트와 가상 배경의 자연스러운 조화를 위해 어떤 조명 기법을 사용했나요?",
+      "a": "Supervision VP 팀은 LED 볼륨을 활용해 가상 조명과 물리적 조명을 연동했으며, 창밖 LED 월의 빛이 연기자와 소품에 반사되도록 인카메라 VFX 방식을 적용했습니다."
     }
   ],
   "media": {
@@ -59,5 +77,23 @@
   "collected_at": "2026-11-21T14:07:22.278336+00:00",
   "notion_id": "",
   "id": "2026-11-21-52da68081f774614",
-  "img_ok": "2026-11-21T14:07:22+00:00"
+  "img_ok": "2026-11-21T14:07:22+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "fyGckWcevCQ",
+      "title": "Unreal Engine Environment Realism Breakdown – Season 2 | WW2 Destroyed City (Episode 1) #tutorial",
+      "author": "PolyBoost"
+    },
+    {
+      "id": "STqt92VF3KM",
+      "title": "Create Entire Cities Automatically With PCG Splines! Procedural Content Generation in Unreal Engine",
+      "author": "Aziel Arts"
+    }
+  ],
+  "enriched_at": "2026-11-21T18:58:36+00:00",
+  "quality": {
+    "before": 1085,
+    "after": 1631
+  }
 }
