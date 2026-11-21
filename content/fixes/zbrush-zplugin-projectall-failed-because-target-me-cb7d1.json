@@ -1,0 +1,33 @@
+{
+  "id": "zbrush-zplugin-projectall-failed-because-target-me-cb7d1",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: ProjectAll failed because target mesh has no subdivision levels",
+  "title": "Zplugin: ProjectAll failed because target mesh has no subdivision levels 해결 방법",
+  "summary": "ZBrush에서 UV Master나 기타 플러그인을 실행할 때 대상 메쉬에 서브디비전(Subdivision) 레벨이 없어 계산을 진행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "서브디비전(Subdivision) 레벨이 전혀 생성되지 않은 기본 Base 메쉬 상태에서 레벨 기반 플러그인을 실행한 경우",
+    "동일한 서브툴(SubTool) 내에서 다이내메시(Dynamesh)나 젤리 빈(ZRemesh) 등을 거치며 기존의 서브디비전 히스토리가 초기화된 경우"
+  ],
+  "steps": [
+    "Tool 팔레트의 Geometry 패널을 엽니다.",
+    "Divide 버튼을 클릭하여 최소 1단계 이상의 서브디비전 레벨을 생성합니다.",
+    "필요한 경우 Shift 키를 누르고 부드러운 브러시로 디테일을 올린 뒤 다시 플러그인을 실행합니다."
+  ],
+  "check": [
+    "Geometry 패널의 SDiv 슬라이더 값이 1 이상으로 활성화되고, 플러그인 실행 시 오류 메시지 없이 정상 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "플러그인 작업 전 대상 서브툴에 서브디비전 레벨이 존재하는지 Geometry 패널에서 미리 확인합니다."
+  ],
+  "keywords": [
+    "ZBrush 오류",
+    "ProjectAll failed",
+    "subdivision levels",
+    "Zplugin 오류",
+    "ZBrush 플러그인 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T11:16:59+00:00"
+}

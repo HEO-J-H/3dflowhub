@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-tool-gozbrush-was-unable-to-launch-the-targ-419e2",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Tool: GoZBrush was unable to launch the target application because path is missing",
+  "title": "Tool: GoZBrush was unable to launch the target application because path is missi",
+  "summary": "‘Tool: GoZBrush was unable to launch the target application because path is missing’ 오류는 ZBrush에서 GoZ를 통해 외부 3D 프로그램으로 데이터를 넘길 때, 연동할 프로그램의 실행 파일 경로가 설정되어 있지 않거나 누락되어 발생합니다.",
+  "causes": [
+    "ZBrush Preferences 메뉴에 외부 3D 프로그램(Maya, 3ds Max, Cinema 4D 등)의 경로가 지정되지 않았거나 초기화된 경우",
+    "외부 3D 프로그램이 업데이트되면서 실행 파일(.exe)의 설치 경로가 변경된 경우",
+    "GoZ 설정 파일이 손상되었거나 권한 문제로 경로 정보를 읽지 못하는 경우"
+  ],
+  "steps": [
+    "ZBrush 상단 메뉴에서 Preferences 탭을 엽니다.",
+    "Preferences 하위 메뉴에서 GoZ 항목을 선택합니다.",
+    "연동하려는 대상 프로그램(예: Maya, 3ds Max 등)의 경로 설정 버튼을 클릭합니다.",
+    "해당 프로그램의 실제 설치 폴더에 있는 실행 파일(.exe) 경로를 직접 지정합니다.",
+    "경로 지정이 완료되면 Preferences 탭에서 'Store Config'를 클릭하여 설정을 저장합니다."
+  ],
+  "check": [
+    "ZBrush에서 모델을 선택하고 GoZ 버튼을 눌렀을 때 외부 프로그램이 정상적으로 실행되는지 확인합니다.",
+    "외부 프로그램으로 메시와 서브디비전 데이터가 깨짐 없이 넘어오는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 3D 프로그램을 재설치하거나 업데이트한 경우 ZBrush의 GoZ 경로 설정을 다시 확인합니다.",
+    "ZBrush 환경 설정 변경 후 반드시 Preferences → Store Config를 실행하여 설정을 저장합니다."
+  ],
+  "keywords": [
+    "GoZ 경로 오류",
+    "ZBrush GoZ 런치 에러",
+    "GoZ unable to launch",
+    "ZBrush 외부 프로그램 연동",
+    "GoZ path missing"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T11:17:01+00:00"
+}

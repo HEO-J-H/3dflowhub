@@ -1,0 +1,39 @@
+{
+  "id": "houdini-error-file-cache-sop-failed-to-write-bgeo--50ee1",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: File cache sop: Failed to write bgeo sequence because directory does not exist",
+  "title": "Error: File cache sop: Failed to write bgeo sequence because directory does not ",
+  "summary": "Error: File cache sop: Failed to write bgeo sequence because directory does not exist 에러는 Houdini에서 File Cache SOP 노드로 지오메트리를 캐싱하거나 내보낼 때, 저장하려는 상위 폴더 경로가 실제로 존재하지 않아 발생하는 오류입니다.",
+  "causes": [
+    "저장 경로(Path)에 지정한 폴더가 컴퓨터 파일 시스템에 생성되어 있지 않음",
+    "변수($HIP, $JOB 등)를 잘못 사용하여 엉뚱한 경로를 가리키고 있음",
+    "경로에 한글이나 허용되지 않는 특수문자가 포함되어 있음"
+  ],
+  "steps": [
+    "Houdini 네트워크 뷰에서 문제가 발생한 File Cache SOP 노드를 더블클릭하거나 파라미터 패널을 엽니다.",
+    "Save to Disk 버튼 바로 위에 있는 File 파라미터의 경로를 확인합니다.",
+    "경로에 포함된 폴더들이 실제로 존재하는지 파일 탐색기에서 확인합니다.",
+    "경로 입력창 우측의 폴더 아이콘을 클릭하여 올바른 저장 폴더를 다시 지정하거나 새로 만듭니다.",
+    "또는 File 파라미터 경로 옆에 있는 Create Intermediate Directories 옵션을 체크하여 Houdini가 폴더를 자동으로 생성하도록 설정합니다.",
+    "경로를 올바르게정한 뒤 Save to Disk 버튼을 다시 눌러 캐시를 생성합니다."
+  ],
+  "check": [
+    "File Cache SOP 노드의 파라미터 창에서 빨간색 에러 메시지가 사라지고 정상적으로 디스크에 파일이 써지는지 확인합니다.",
+    "지정한 폴더 경로에 .bgeo 또는 .bgeo.sc 시퀀스 파일이 생성되었는지 파일 탐색기에서 확인합니다."
+  ],
+  "prevent": [
+    "새로운 파일이나 프로젝트를 시작할 때 수동으로 디렉토리를 만드는 대신 Create Intermediate Directories 옵션을 적극 활용합니다.",
+    "파일 경로에는 가급적 영문, 숫자, 언더바(_)만 사용하여 경로 인식 오류를 예방합니다."
+  ],
+  "keywords": [
+    "Houdini 파일 캐시 에러",
+    "File cache sop 오류",
+    "Failed to write bgeo sequence",
+    "Houdini directory does not exist",
+    "파일 캐시 경로 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T11:16:57+00:00"
+}

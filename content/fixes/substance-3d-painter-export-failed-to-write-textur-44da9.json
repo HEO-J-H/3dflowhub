@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-export-failed-to-write-textur-44da9",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Export] Failed to write texture map because file is locked by another application",
+  "title": "Painter: [Export] Failed to write texture map because file is locked by another ",
+  "summary": "Substance 3D Painter에서 텍스처를 내보내(Export) 저장할 때, 대상 파일을 다른 프로그램(Photoshop, 3ds Max, Blender, 이미지 뷰어 등)이 열고 있어 쓰기 잠금(Lock)이 걸렸을 때 발생하는 오류입니다.",
+  "causes": [
+    "동일한 이름의 텍스처 파일을 다른 이미지 뷰어 나 Photoshop 등에서 미리 열어두어 파일 핸들이 해제되지 않은 경우",
+    "이미 게임 엔진이나 3D DCC(Maya, 3ds Max, Blender 등)에 해당 텍스처가 로드되어 백그라운드에서 점유 중인 경우",
+    "네트워크 드라이브나 클라우드 동기화 폴더(OneDrive, Dropbox 등)가 실시간 동기화 중 파일을 잠근 경우"
+  ],
+  "steps": [
+    "현재 열려 있는 Substance 3D Painter의 Export 설정에서 저장 경로와 파일 이름을 확인합니다.",
+    "Windows 탐색기나 다른 프로그램에서 해당 텍스처 파일을 열어두었다면 모두 닫습니다.",
+    "3ds Max, Maya, Blender, Unreal Engine 등 해당 텍스처를 사용 중인 3D 앱을 잠시 끄거나 프로젝트를 언로드합니다.",
+    "Substance 3D Painter에서 File 메뉴 또는 Export Textures 버튼을 다시 눌러 Export를 시도합니다.",
+    "문제가 계속되면 저장 경로를 로컬 드라이브의 다른 폴더(예: 임시 폴더)로 변경하여 내보낸 뒤 이동합니다."
+  ],
+  "check": [
+    "오류 메시지 없이 'Export successful' 알림이 뜨는지 확인합니다.",
+    "지정한 폴더에 최신 수정 시간으로 텍스처 파일이 정상 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "텍스처를 대량으로 Export 전, 외부 프로그램에서 해당 파일을 열어둔 채 작업하는 습관을 피합니다.",
+    "실시간 동기화가 이루어지는 클라우드 폴더 바로 아래에 작업물을 직접 저장하는 것을 지양합니다."
+  ],
+  "keywords": [
+    "Painter 텍스처 Export 오류",
+    "file is locked by another application",
+    "Painter Export Failed",
+    "서브스탠스 페인터 텍스처 저장 실패",
+    "파일 잠김 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T11:17:03+00:00"
+}
