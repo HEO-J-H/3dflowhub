@@ -1,0 +1,54 @@
+{
+  "title_ko": "PaveSplat Gaussian Splatting Resolution 강건성 논문 분석",
+  "title": "PaveSplat: Resolution-Robust Feed-Forward Gaussian Splatting with Residually Corrected Surface-Aligned Covariances",
+  "url": "https://arxiv.org/abs/2611.26045v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "ACCV 2026",
+    "Surfel",
+    "RealEstate10K",
+    "DL3DV"
+  ],
+  "summary": "PaveSplat은 Resolution가 변경되어도 Gaussian Splatting 렌더링에서 구멍이 생기지 않도록 잔차 기반 표면 정렬 공분산을 예측하는 피드포워드 방식입니다.",
+  "insight": "ACCV 2026에 채택된 PaveSplat은 기존 픽셀 기반 피드포워드 Gaussian Splatting에서 깊이 기반 표면 프레임이 불안정할 때 발생하는 렌더링 구멍 문제를 해결합니다. 단일 패스로 예측된 서펠의 방향을 잔차 쿼터니언으로 보정하여 고해상도 재렌더링 시에도 밀도를 유지합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "PaveSplat의 Resolution 저하 문제 해결 방식",
+      "body": "기존 피드포워드 3D Gaussian Splatting 방법은 예측된 깊이에서 표면 정렬 공분산을 분석적으로 계산합니다. 하지만 깊이 기반 프레임이 불안정한 영역에서는 서펠의 방향이 틀어져 고해상도 재렌더링 시 빈 공간(구멍)이 드러나는 한계가 있습니다. PaveSplat은 분석적 공분산을 초기값으로 유지하면서 아이덴티티로 초기화된 단위 쿼터니언 잔차를 추가하여 이를 극복합니다."
+    },
+    {
+      "heading": "서펠 방향 보정을 통한 표면 정렬",
+      "body": "추가된 잔차 쿼터니언은 렌더링 품질을 실제로 개선할 수 있는 영역에서만 서펠의 방향을 재조정합니다. 분석적 프레임이 잘못 조준된 서펠들을 다시 표면 위로 정확히 정렬시켜 1배율부터 8배율까지의 다양한 스케일에서 시각적 결함을 줄입니다."
+    },
+    {
+      "heading": "RealEstate10K 및 DL3DV 벤치마크 성능",
+      "body": "RealEstate10K 데이터셋에서 PaveSplat은 모든 스케일 범위(1x-8x)에서 단일 픽셀당 단일 Gaussian을 사용하는 방법 중 가장 높은 PSNR, SSIM, LPIPS 점수를 기록했습니다. 제로샷 DL3DV 평가에서도 모든 스케일에서 PSNR 부문 선두를 유지하며 우수한 일반화 성능을 증명했습니다."
+    },
+    {
+      "heading": "고해상도 재렌더링 커버리지 분석",
+      "body": "네이티브 Resolution에서의 성능 향상 폭은 크지 않지만, 네트워크를 재실행하지 않고 동일한 예측 결과를 더 높은 디스플레이 Resolution로 렌더링할 때 진가가 나타납니다. 커버리지 구멍 분석 결과, 고해상도 재렌더링 환경에서 기존 베이스라인보다 커버되지 않는 픽셀 수가 훨씬 적은 것으로 확인되었습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "PaveSplat은 어떤 문제를 해결하나요?",
+      "a": "피드포워드 Gaussian Splatting에서 고해상도로 재렌더링할 때 깊이 기반 프레임 오류로 인해 표면에 구멍이 생기는 문제를 해결합니다."
+    },
+    {
+      "q": "기존 방식과의 차별점은 무엇인가요?",
+      "a": "분석적 표면 정렬 공분산을 초기값으로 삼되, 렌더링 품질을 높이는 방향으로만 작동하는 단위 쿼터니언 잔차를 더해 서펠 방향을 보정합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.26045v1/fig-teaser.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-21T13:56:54.042428+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-07936d5f0e3ebb57",
+  "img_tried": true
+}
