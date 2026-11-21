@@ -38791,5 +38791,113 @@
     "id": "p-3179e6507e",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안 목록에 held 태스크 정리 및 분할과 관련된 과제들이 이미 반복적으로 처리 및 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-21T15:47:23+00:00",
+    "kind": "proposal",
+    "id": "p-4579090299",
+    "title": "5060 사용자 대상 연금 수령시기 시뮬레이션 활용 가이드 보완",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "사이트·UX",
+    "evidence": "이전 유사 제안들이 3D 사이트 혼동으로 거절되었으나, 본 사이트는 60세 은퇴 목표 월별 현금흐름 계산기이므로 국민연금 수령 시기별 차이를 사용자가 쉽게 파악할 수 있는 안내 문구가 필요합니다.",
+    "proposal": "메인 입력 화면 하단에 '국민연금 수령시기별 월별 현금흐름 비교 방법' 안내 툴팁 또는 짧은 도움말 섹션을 추가합니다.",
+    "expected": "사용자가 연금 수령 시기 조정에 따른 현금흐름 변화를 직관적으로 이해하고 시뮬레이터 활용도가 높아집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T15:47:23+00:00",
+    "kind": "proposal",
+    "id": "p-530896affa",
+    "title": "은퇴 준비 커뮤니티 맞춤형 시뮬레이션 홍보 문구 정비",
+    "by": "🧭 💰 life-after-60 관리자",
+    "site": "life-after-60",
+    "category": "운영·비용",
+    "evidence": "네이버 블로그 및 카페 채널에 다수의 홍보 항목이 등록되어 있으나, '개인정보 서버 저장 없음'과 '브라우저 로컬 계산'의 신뢰성 포인트를 강조한 문구 보강이 필요합니다.",
+    "proposal": "마케팅 홍보 문구에 '브라우저에서 안전하게 바로 계산되는 개인정보 걱정 없는 무료 Simulator'라는 핵심 신뢰 메시지를 통일하여 적용합니다.",
+    "expected": "은퇴 준비 타겟층의 도구 신뢰도 및 유입률 상승",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/life-after-60/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T15:48:20.993784+00:00",
+    "kind": "proposal",
+    "id": "p-02b56ffdeb",
+    "title": "TRELLIS 모델을 멀티뷰 엔진으로 연동 제안",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/microsoft/TRELLIS",
+    "category": "사이트·UX",
+    "evidence": "GitHub 별 14,364개, MIT 라이선스(상업 이용 가능)",
+    "proposal": "미국 CVPR'25 Spotlight에 선정된 오픈소스 Structured 3D Latents 기반 모델인 microsoft/TRELLIS를 Pix2Poly의 여러 각도 사진 → 3D AI 파이프라인에 선택 엔진으로 추가합니다.",
+    "expected": "멀티뷰 3D 생성 품질 및 세부 디테일 향상",
+    "effort": "높음",
+    "action": null
+  },
+  {
+    "at": "2026-11-21T15:48:20.993784+00:00",
+    "kind": "proposal",
+    "id": "p-b034ac1736",
+    "title": "AssetFurnace 이미지-3D 파이프라인 참고",
+    "by": "🔭 기술 동향",
+    "site": "pix2poly",
+    "source": "https://github.com/Bingeljell/image-to-3dlab",
+    "category": "운영·비용",
+    "evidence": "GitHub 별 1,238개, Apache-2.0 라이선스",
+    "proposal": "Bingeljell/image-to-3dlab 저장소의 에셋 파이프라인 구조를 참고하여 로컬 실행 환경에서 리깅 및 애니메이션 연동 편의성을 검토합니다.",
+    "expected": "게임 에셋 제작 워크플로우 효율 증대",
+    "effort": "보통",
+    "action": null
+  },
+  {
+    "at": "2026-11-21T15:48:55.215189+00:00",
+    "kind": "decision",
+    "id": "p-02b56ffdeb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T15:48:55.247670+00:00",
+    "kind": "decision",
+    "id": "p-b034ac1736",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T15:48:55.276793+00:00",
+    "kind": "decision",
+    "id": "p-4579090299",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T15:48:55.305634+00:00",
+    "kind": "decision",
+    "id": "p-530896affa",
+    "v": "rejected",
+    "note": "AI 자동 결정: 사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T15:48:56.749769+00:00",
+    "kind": "triage",
+    "id": "p-02b56ffdeb",
+    "verdict": "agent",
+    "reason": "TRELLIS 오픈소스 모델을 파이프라인의 선택 엔진으로 추가하는 작업은 코드 수정과 모듈 연동을 통해 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-21T15:48:57.628761+00:00",
+    "kind": "triage",
+    "id": "p-b034ac1736",
+    "verdict": "agent",
+    "reason": "Bingeljell/image-to-3dlab 오픈소스 저장소의 파이프라인 구조를 분석하고 로컬 실행 환경에서 리깅 및 애니메이션 연동 편의성을 검토하는 작업은 코드 수정 및 리서치로 해결할 수 있습니다."
   }
 ]
