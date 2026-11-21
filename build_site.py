@@ -919,6 +919,17 @@ def row(p: dict, root: str) -> str:
 MIN_INDEXABLE = 3  # 글이 이보다 적은 하위 게시판은 noindex (얇은 페이지가 사이트 품질 평가를 떨어뜨리지 않도록)
 
 
+def video_date(ts: str) -> str:
+    """VideoObject.uploadDate: 날짜만·빈 값도 항상 시간대까지 붙은 ISO 8601 (Search Console 'uploadDate 시간대 누락·값 잘못됨' 경고 대응)."""
+    try:
+        d = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+    except ValueError:
+        d = datetime.now(timezone.utc)
+    if d.tzinfo is None:
+        d = d.replace(tzinfo=timezone(timedelta(hours=9)))
+    return d.isoformat(timespec="seconds")
+
+
 def card(p: dict, root: str) -> str:
     img = (p.get("media") or {}).get("image")
     pic = (f'<div class="img"><img src="{e(img)}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>' if img
@@ -1412,7 +1423,7 @@ def build_learn(guides_: list[dict], posts: list[dict] | None = None) -> None:
         if vids:
             how_to["video"] = {"@type": "VideoObject", "name": vids[0]["title"], "embedUrl": f"https://www.youtube.com/embed/{vids[0]['id']}",
                                "thumbnailUrl": f"https://i.ytimg.com/vi/{vids[0]['id']}/hqdefault.jpg",
-                               "uploadDate": g.get("at", "")[:10], "description": g.get("summary", "")}
+                               "uploadDate": video_date(g.get("at", "")), "description": g.get("summary", "")}
         body = (
             f'<article class="doc guide"><p class="crumb"><a href="{root}learn/">기초 가이드</a> › {e(g["tool"])} › {e(g["group"])}</p>'
             f'<h1>{e(guide_h1(g))}</h1>'

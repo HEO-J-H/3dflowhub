@@ -12,6 +12,7 @@ AI 한도: 뉴스 수집 몫(core.NEWS_RESERVE)을 남기고 여유가 있을 �
 from __future__ import annotations
 
 import hashlib
+import re
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -21,6 +22,10 @@ EVERY = timedelta(hours=24)
 MAX_PROPOSALS = 3
 NEED_CALLS = 5          # 실행 조건: 뉴스 몫을 남기고 이만큼 여유
 SITES_WITH_MANAGER = ("pix2poly", "life-after-60")
+
+
+# 실제 기능이 아니라 '과제를 다루는 과제' — PR #80 점검·머지 안내, 보류/정체 과제 재정비·재적용·분할 (2026-11-22, 16건 쌓임)
+META_TASK = re.compile(r"PR\s*#?\d+|held|홀드|보류된|정체된|재정비|재적용|재등록|재구성 및 분할|머지 (안내|준비)|과제 (경로|명세)")
 
 
 def _now() -> str:
@@ -139,6 +144,8 @@ def review(site: str, force: bool = False) -> dict | None:
     evs = []
     for p in (out.get("proposals") or [])[:MAX_PROPOSALS]:
         if not isinstance(p, dict) or not p.get("title") or manager.similar_open(str(p["title"]), site, str(p.get("proposal", ""))):
+            continue
+        if META_TASK.search(f'{p["title"]} {p.get("proposal", "")}'):  # 과제에 대한 과제(PR 점검·보류 과제 재정비)는 만들지 않음
             continue
         evs.append({"at": now, "kind": "proposal", "id": "p-" + hashlib.md5(f"{now}{site}{p['title']}".encode()).hexdigest()[:10],
                     "title": str(p["title"])[:80], "by": f"🧭 {s['name']} 관리자", "site": site,

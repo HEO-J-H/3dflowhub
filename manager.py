@@ -94,8 +94,11 @@ def similar_open(title: str, site: str, text: str = "") -> bool:
     import re as _re
     words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", title))
     files = set(_FILE_RE.findall(f"{title} {text}"))
+    # 최근 30일 안에 끝낸(done) 제안도 중복으로 봄 — 끝낸 과제가 이름만 바꿔 다시 올라오던 일 (Pix2Poly RAG·높이맵 테스트, 2026-11-20)
+    since = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
     for p in board()["proposals"]:
-        if (p.get("site") or "3dflowhub") != site or p["status"] not in ("new", "held", "accepted"):
+        recent_done = p["status"] == "done" and str(p.get("decided_at", "")) >= since
+        if (p.get("site") or "3dflowhub") != site or (p["status"] not in ("new", "held", "accepted") and not recent_done):
             continue
         other = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", p["title"]))
         if words and len(words & other) / max(1, min(len(words), len(other))) >= 0.6:
