@@ -1,0 +1,18 @@
+<!-- TITLE: NativeSeg: Qwen3.8-27B 기반 3D CT 네이티브 VLM 세그멘테이션 | TAGS: NativeSeg,Qwen3.8-27B,3D CT,VLM,LoRA,연구·논문 | CATEGORY: AI 3D/기타 AI 3D | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Qwen3.8-27B LoRA 기반의 NativeSeg는 외부 SAM 디코더 없이 2D 공간 시각 토큰만으로 3D CT 볼륨의 덴스 마스크 디코딩과 다중 라운드 로컬 줌을 수행합니다.</p>
+<p style="color:#888;">분류: AI 3D › 기타 AI 3D › 연구·논문</p>
+<h2>NativeSeg 아키텍처와 외부 디코더 제거</h2>
+<p>기존 의료 비전 언어 모델들은 1D 벡터를 거쳐 외부 Segment Anything Model 디코더로 넘기거나 손실 있는 이산 코드북을 사용했습니다. NativeSeg는 LoRA를 적용한 Qwen3.8-27B 백본 위에서 2D 공간 시각 토큰을 직접 활용해 덴스 마스크 디코딩을 수행합니다. 이를 통해 볼륨 삼중 분류, 공간 오차 자가 진단, 다중 라운드 로컬 줌을 하나의 프레임워크 내에서 처리합니다.</p>
+<h2>볼륨 트리이지와 네이티브 존재 게이트</h2>
+<p>CT 볼륨에서 80% 이상의 장기 Prompt 슬라이스는 타겟 목표를 포함하지 않는 빈 슬라이스입니다. NativeSeg는 5슬라이스 U-Net 경로와 결합된 상위 레이어 2D 토큰에서 신뢰도 맵을 디코딩합니다. 네이티브 존재 게이트(&lt;pres&gt;)를 통해 독립 평가의 91% 이상에서 불필요한 줌 연산을 멈추고 효율적인 연산을 보장합니다.</p>
+<h2>다중 스케일 오차 게이트와 성능 지표</h2>
+<p>불확실한 경계 영역은 20셀 다중 스케일 오차 게이트(&lt;err&gt;)를 통해 국소화하며, 예측된 오차가 감소할 때만 줌된 업데이트를 수용합니다. 성인 CT 데이터 학습 결과, 동일 백본의 이산 코드북 및 1D [SEG] 방식 대비 Round 0 DSC가 각각 +19.81, +7.04포인트 향상되었습니다. 제로샷 페디아트릭 평가에서도 87.04%의 DSC를 기록하며 2D nnU-Net, 3D SegVol, 3D VoxTell 등의 결과를 안전하게 보정합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">NativeSeg는 LoRA로 적응된 Qwen3.8-27B 백본을 활용해 기존 외부 Segment Anything Model 연동 방식의 비효율성을 극복하고 성인 CT 기준 86.81%의 DSC를 달성합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NativeSeg는 어떤 모델 백본을 기반으로 합니까?</b><br/>A. Low Rank Adaptation(LoRA)이 적용된 Qwen3.8-27B 모델을 기반으로 구축되었습니다.</p>
+<p><b>Q. 기존 의료 VLM과 비교해 어떤 점이 개선되었습니까?</b><br/>A. 외부 Segment Anything Model 디코더나 손실 있는 이산 코드북을 거치지 않고, VLM 내부의 2D 공간 시각 토큰 위에서 직접 덴스 마스크 디코딩과 공간 오차 자가 진단을 수행합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-20-2d01b6350c2d3fb2.html">NVIDIA Nemotron AI 에이전트 툴 콜링 파서 구현 방법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-20-97d4824f75e7a470.html">NVIDIA RTX Spark, 컴팩트 데스크톱에서 Always‑On 로컬 AI 지원</a></li><li><a href="https://3dflowhub.kr/p/2026-11-19-fd8c6b406a5c20d5.html">NVIDIA RTX Spark AI 소형 데스크톱 출시 소식</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.24443v1" target="_blank" rel="noopener nofollow">NativeSeg: Native Vision Language Segmentation of 3D Computed Tomography via Spatial Visual Tokens and Verified Local Zoom</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

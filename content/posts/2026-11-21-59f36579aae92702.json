@@ -1,0 +1,79 @@
+{
+  "title_ko": "NativeSeg: 외부 SAM 없는 3D CT Native VLM 세그멘테이션",
+  "title": "NativeSeg: Native Vision Language Segmentation of 3D Computed Tomography via Spatial Visual Tokens and Verified Local Zoom",
+  "url": "https://arxiv.org/abs/2611.24443v1",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "NativeSeg",
+    "3D CT",
+    "Vision Language Model",
+    "Segmentation",
+    "Qwen3.8-27B",
+    "LoRA"
+  ],
+  "summary": "NativeSeg는 외부 Segment Anything Model(SAM) 헤드 없이 Qwen3.8-27B 비전 언어 모델의 2D 공간 시각 토큰을 직접 활용하여 3D CT 볼륨을 정밀 분할하고 오류를 자체 진단하는 프레임워크입니다.",
+  "insight": "의료 3D 데이터 처리를 다루는 실무자나 연구자에게 이 연구는 대형 비전 언어 모델이 외부 분할 툴에 의존하지 않고 자체적인 공간 토큰과 오류 검증만으로 고정밀 3D 볼륨 세그멘테이션을 수행할 수 있는 가능성을 보여줍니다. 향후 3D 비전 AI Pipeline 복잡한 외부 모듈 결합을 줄이고 모델 내부의 Native 추론 능력을 극대화하는 아키텍처 설계에 유용한 참고가 될 수 있습니다.",
+  "try_it": [
+    "GitHub 저장소(https://github.com/step-out/NativeSeg)에 접속합니다.",
+    "Hugging Face(https://huggingface.co/ChengqianMa/NativeSeg)에서 제공하는 가중치를 확인합니다.",
+    "제공된 코드를 활용하여 3D CT 세그멘테이션 및 네이티브 로컬 줌 파이프라인을 실습합니다."
+  ],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "기존 의료용 비전 언어 모델(VLM)은 전체 슬라이스 맥락과 미세한 경계 정밀도를 동시에 요구하는 3D CT(Computed Tomography) 세그멘테이션에서 외부 SAM 디코더에 1D [SEG] 벡터를 전달하거나 이산 코드북을 사용하는 등 비네이티브(non-native) 방식을 사용합니다. 또한 전체 장기 촉진 슬라이스의 80% 이상에서 타겟 장기가 존재하지 않는 비어 있는 슬라이스 문제가 발생합니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "NativeSeg는 외부 SAM 디코더나 이산 Mask 양자화 없이, LoRA(Low-Rank Adaptation)가 적용된 Qwen3.8-27B 백본의 2D 공간 시각 토큰 상에서 직접 조밀한 Mask 디코딩, 볼륨별 스크리닝, 공간 오류 자체 진단, 다중 라운드 로컬 줌을 수행합니다. 5슬라이스 U-Net 경로와 결합하여 원래 슬라이스 좌표에서 픽셀 단위 신뢰도 맵을 디코딩합니다."
+    },
+    {
+      "heading": "방법과 작동 단계",
+      "body": "1단계(Round 0): Native presence 토큰(<pres>)을 통해 타겟이 없는 빈 슬라이스를 스크리닝하고 U-Net 경로와 결합된 2D 공간 시각 토큰으로 초기 Mask를 예측합니다. 2단계: 다중 스케일 error 토큰(<err>)이 Mask 오버레이를 검사하여 전역 및 사분면/미세 영역별로 오분류된 픽셀 영역을 예측합니다. 3단계: 예측된 오류가 감소하는 경우에만 줌 업데이트를 수락하며, 3D 축 방향 연속성을 유지합니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "성인 TotalSegmentator 평가에서 성인 학습 분할 기준으로 이산 코드북 및 1D [SEG] 브로드캐스트 베이스라인 대비 Round 0 DSC를 각각 +19.81 포인트, +7.04 포인트 향상시켰습니다. 성인 데이터셋에서 86.81%, 제로샷 소아 데이터셋에서 87.04%의 DSC를 달성했으며 2D nnU-Net, 3D SegVol, 3D VoxTell 등의 외부 전문가 모델 성능을 안전하게 개선했습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문에서는 성인 CT 학습을 기반으로 검증되었으며 3D CT 볼륨 전반에서 빈 슬라이스 스크리닝과 로컬 줌을 처리하지만 외부 데이터나 다양한 스캐너 환경에서의 세부적인 한계점이나 계산 비용에 대한 전체 복잡도는 추가적인 최적화가 필요할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "저자들은 공식 GitHub 저장소(https://github.com/step-out/NativeSeg)와 Hugging Face 가중치(https://huggingface.co/ChengqianMa/NativeSeg)를 공개하여 연구와 재현을 지원합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NativeSeg는 외부 SAM 디코더를 사용합니까?",
+      "a": "아니오. NativeSeg는 외부 SAM 디코더를 사용하지 않고 VLM 내부의 2D 공간 시각 토큰을 직접 활용하여 밀집 Mask를 디코딩합니다."
+    },
+    {
+      "q": "타겟 장기가 없는 빈 슬라이스는 어떻게 처리합니까?",
+      "a": "Native 존재 토큰(<pres>)을 사용하여 0라운드에서 빈 슬라이스를 스크리닝하고 불필요한 줌과 오탐지를 방지합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.24443v1/overview.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-21T15:38:09.517188+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-59f36579aae92702",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/step-out/NativeSeg"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T15:38:57+00:00"
+}
