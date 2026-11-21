@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-usd-core-failed-to-fb2b0",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.usd.core] Failed to resolve asset path due to invalid URI schema",
+  "title": "Kit: [Error] [omni.usd.core] Failed to resolve asset path due to invalid URI sch",
+  "summary": "NVIDIA Omniverse에서 USD 씬을 불러올 때 잘못된 URI 스키마 형식으로 인해 에셋 파일 경로를 해석하지 못해 발생하는 오류입니다. 주로 잘못된 URL 인코딩이나 지원되지 않는 프로토콜 사용이 원인입니다.",
+  "causes": [
+    "USD 파일 내부 또는 참조(Reference) 경로에 잘못된 URI 스키마(예: 잘못된 슬래시 방향, 누락된 콜론 등)가 포함된 경우",
+    "Windows 로컬 파일 경로를 사용할 때 올바른 file:/// 형식을 따르지 않고 백슬래시(\\)를 그대로 사용한 경우",
+    "원격 서버(Nucleus 등) 주소나 http/https 링크가 올바르게 포맷되지 않은 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 오류를 일으키는 USD Primitive 또는 참조된 에셋을 선택합니다.",
+    "Property 패널에서 문제가 되는 속성(예: asset path, reference path)의 경로 문자열을 확인합니다.",
+    "로컬 경로인 경우 백슬래시(\\)를 슬래시(/)로 변경하고, 올바른 절대 경로 또는 상대 경로 규칙을 적용합니다.",
+    "원격 에셋인 경우 Nucleus 서버 주소나 URI 스키마(omniverse:// 또는 http:// 등)가 정확히 입력되었는지 확인합니다.",
+    "USD 파일을 저장한 후 Stage를 새로고침(Reload)하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "Console 창에 [omni.usd.core] 관련 경로 해석 오류(Failed to resolve asset path)가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport에서 누락되었던 3D 모델이나 텍스처 에셋이 정상적으로 로드되어 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "USD 파일 간 참조를 설정할 때는 가급적 상대 경로를 사용하고 일관된 슬래시(/) 방향을 유지합니다.",
+    "외부 DCC에서 USD를 내보낼(Export) 때 텍스처 및 에셋 경로가 올바르게 변환되었는지 사전에 검토합니다."
+  ],
+  "keywords": [
+    "Omniverse 경로 오류",
+    "USD asset path failed",
+    "invalid URI schema",
+    "omni.usd.core 에러",
+    "옴니버스 텍스처 누락"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T14:19:02+00:00"
+}

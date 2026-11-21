@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-designer-baking-bake-failed-because-h-bf046",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Baking] Bake failed because high-poly mesh has invalid bounding box",
+  "title": "Designer: [Baking] Bake failed because high-poly mesh has invalid bounding box 해",
+  "summary": "Substance 3D Designer에서 메시 맵을 베이킹할 때 하이 폴리곤 모델의 바운딩 박스(Bounding Box) 데이터가 손상되었거나 유효하지 않아 계산을 완료할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "하이 폴리곤 모델을 익스포트할 때 바운딩 박스 데이터가 누락되었거나 손상된 경우",
+    "모델의 정점(Vertex) 좌표 중에 무한대(Infinity) 값이나 숫자가 아닌(NaN) 비정상적인 데이터가 포함된 경우",
+    "외부 3D DCC 툴에서 지오메트리를 극단적으로 변형한 뒤 스케일이나 트랜스폼이 초기화되지 않은 경우"
+  ],
+  "steps": [
+    "3ds Max, Blender, Maya 등 원본 3D DCC 툴에서 하이 폴리곤 모델을 다시 엽니다.",
+    "Blender의 경우 오브젝트를 선택하고 Ctrl+A를 눌러 'All Transforms'를 적용하여 스케일과 회전 값을 초기화합니다.",
+    "메시의 깨진 면이나 비정상적인 Vertex가 있는지 확인하고 수정(Clean up) 기능을 실행합니다.",
+    "하이 폴리곤 모델을 FBX 또는 OBJ 포맷으로 다시 익스포트합니다.",
+    "Substance 3D Designer에서 기존 하이 폴리곤 모델을 제거하고 새로 익스포트한 모델로 교체하여 Baking을 다시 시도합니다."
+  ],
+  "check": [
+    "Baking 대화 상자에서 오류 메시지가 사라지고 Baking 진행률이 정상적으로 100% 완료되는지 확인합니다.",
+    "Viewport에서 생성된 메시 맵(Normal, Curvature 등)이 깨짐 없이 올바르게 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "3D DCC 툴에서 모델을 익스포트하기 전 항상 트랜스폼(Transform)을 초기화하는 습관을 들입니다.",
+    "지오메트리 수정 작업 후 비정상적인 노드나 손상된 정점이 남지 않았는지 확인합니다."
+  ],
+  "keywords": [
+    "Substance Designer Baking 오류",
+    "High-poly mesh has invalid bounding box",
+    "바운딩 박스 오류",
+    "Designer Bake 실패",
+    "하이폴리곤 노멀 Baking"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T14:19:00+00:00"
+}
