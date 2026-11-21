@@ -1,0 +1,50 @@
+{
+  "title_ko": "Gaussian Splatting 기반의 CryoGaussian 단백질 구조 복원",
+  "title": "CryoGaussian: Heterogeneous Cryo-EM Reconstruction Made Explicit with Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.26128v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "Cryo-EM",
+    "3D Reconstruction",
+    "AI 3D",
+    "Neural Rendering"
+  ],
+  "summary": "CryoGaussian은 Gaussian Splatting 방식을 활용하여 단일 입자 극저온 전자현미경(cryo-EM) 데이터에서 단백질 분자의 불균일한 구조를 명시적으로 복원하는 연구 논문입니다.",
+  "insight": "Gaussian Splatting의 미분 가능한 래스터라이저를 cryo-EM 투영에 맞게 최적화하여 학습 시간을 최대 28배 단축했습니다. 복잡한 단백질 구조 변형을 다루는 연구자에게 새로운 3D 표현 대안을 제시합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "CryoGaussian의 명시적 Gaussian 밀도 표현",
+      "body": "본 연구는 노이즈가 많은 단일 입자 극저온 전자현미경 이미지로부터 거대분자 구조를 명시적 Gaussian 밀도 표현으로 직접 피팅합니다. 대비 전달 함수(CTF)로 변조된 정사영 선 적분을 미분 가능한 래스터라이저를 통해 렌더링합니다. Gaussian의 수는 분자 밀도의 공간적 지원을 기반으로 추정되며, 최소 크기는 입자 이미지의 나이퀴스트 주파수에 의해 제한됩니다."
+    },
+    {
+      "heading": "구성적 및 형태적 변이 학습 메커니즘",
+      "body": "입자 이미지 전반의 구성 및 형태 변이를 포착하기 위해, 각 Gaussian의 기본 위치, 진폭, 스케일을 공동으로 변조하는 잠재 변수를 학습합니다. 추론된 잠재 변수에 조건화된 Gaussian을 피팅하여 각 구조적 상태를 개별적으로 재구성합니다. 이를 통해 희문 상태나 미세한 연속적 변이를 Resolution 저하 없이 분석할 수 있습니다."
+    },
+    {
+      "heading": "CryoBench 벤치마크 및 실험 데이터 검증",
+      "body": "CryoBench 평가에서 구성 및 형태적 불균일성 모두 최고 수준의 재구성 정확도를 달성했습니다. 50S 리보솜 소단위의 희귀 구성 상태(전체 Particle의 1.3%)와 프리 카탈리틱 스플라이소솜의 연속적인 형태 운동을 성공적으로 분해했습니다. 래스터라이저 추가 최적화를 통해 학습 시간을 12.8배에서 28.0배까지 단축했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "CryoGaussian은 어떤 문제를 해결하나요?",
+      "a": "기존 단일 입자 cryo-EM 분석에서 포착하기 힘들었던 희귀하고 일시적인 구성 상태와 미세한 연속적 형태 변이를 명시적 Gaussian Splatting을 통해 고해상도로 복원합니다."
+    },
+    {
+      "q": "학습 속도 개선 폭은 얼마나 되나요?",
+      "a": "Gaussian 래스터라이저를 가산적 cryo-EM 투영에 맞추어 최적화함으로써 기존 방식 대비 12.8배에서 28.0배 빠른 학습 시간을 기록했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.26128v1/cuhksz.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-21T13:46:38.240632+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-dfede93e19aa3987",
+  "img_tried": true
+}
