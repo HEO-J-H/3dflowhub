@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting 수중 복원 논문 NIRJALA 공개 | TAGS: Gaussian Splatting,수중 3D,NeRF,Blender Cycles,AI 3D,블렌더,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NIRJALA는 수중 환경에서 전방 산란과 가역 물리 모델을 결합해 물의 영향을 제거하고 3D Gaussian Splatting의 복원 품질을 높이는 새로운 프레임워크입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>TRIVENI 3패치 이미지 형성 모델</h2>
+<p>수중 사진은 감쇠된 장면 광 radiance, 후방 산란광, 전방 산란된 빛이 혼합되어 나타납니다. 기존 방식은 후방 산란과 직접 투사만 모델링하여 거리 지수 감쇠로 인해 역전파 이득이 무한대로 커지는 문제가 있었습니다. TRIVENI 모델은 거리 포화형 전방 산란 항을 추가하여 모든 거리에서 역전파 이득이 유계 상태를 유지하도록 설계되었습니다.</p>
+<h2>PRATIBIMBA 가역 물리 앵커와 SAMARASA</h2>
+<p>유연한 Neural Network 수중 모델을 10개 파라미터의 물리 모델과 양방향으로 연결하는 PRATIBIMBA를 도입했습니다. 이를 통해 장면 콘텐츠가 물속에 가려지는 현상을 방지합니다. SAMARASA는 거리 구간별 색상 사전 분포를 포함한 물리 기반 목적 함수들을 하나로 통합합니다.</p>
+<h2>SAJALA 벤치마크 데이터셋 구축</h2>
+<p>수중 제거 성능을 정량적으로 평가하기 위해 Blender Cycles 경로 추적(path-traced)을 활용해 SAJALA 벤치마크를 구축했습니다. 제어된 수중 색상과 탁도 속에서 무수분 이미지, 깊이, 노멀 정보를 함께 제공합니다. 이를 통해 기존 방식 대비 PSNR을 24.34에서 24.76 dB로 향상시켰습니다.</p>
+<h2>실제 씬 렌더링 성능과 평가 한계</h2>
+<p>실제 SeaThru-NeRF 수중 씬에서 LPIPS를 0.194에서 0.175로 낮추면서 초당 44 프레임(FPS)의 렌더링 속도를 기록했습니다. 논문 저자들은 수중 환경에서 외형 지표와 지오메트리가 서로 일치하지 않는 구간과 평가 방식의 한계점에 대해서도 함께 다룹니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">실제 SeaThru-NeRF 씬에서 LPIPS를 0.175로 낮추고 44 FPS로 렌더링을 수행하여 수중 3D 재구성의 정확도를 끌어올립니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NIRJALA는 기존 수중 Gaussian Splatting 방식과 무엇이 다릅니까?</b><br/>A. 기존 방식은 단순 지수 감쇠 전송률로 물을 제거해 역전파 이득이 발산하는 문제가 있었으나, NIRJALA는 전방 산란 항을 추가한 TRIVENI 모델로 이득을 유계 상태로 유지합니다.</p>
+<p><b>Q. SAJALA 벤치마크는 어떻게 제작되었습니까?</b><br/>A. Blender Cycles를 이용해 수중 환경의 탁도와 색상을 제어하며 무수분 이미지, 깊이, 노멀 맵을 함께 경로 추적 방식으로 30개 씬을 구축했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-21-9408ea987e29feb7.html">Facet-SLAM: 실시간 트라이앵글 Splatting SLAM</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-af3c8811fd86dc33.html">Gaussian Splatting RAPID 논문 분석 — 5배 빠른 3D 재구성</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-23857c1118db5596.html">Gaussian Splatting 공공안전 웨비나 개최 소식</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.23450v1" target="_blank" rel="noopener nofollow">NIRJALA: Draining the Sea out of Gaussian Splatting with Three-Path Optics and Reversible Physics</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
