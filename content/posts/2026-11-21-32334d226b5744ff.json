@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting 원리 적용한 원자 토모그래피 연구",
+  "title_ko": "Gaussian Splatoms: 원자 전자 토모그래피의 3D 원자 구조 복원",
   "title": "Gaussian Splatoms: Direct Atomic Structure Identification in Electron Tomography",
   "url": "https://arxiv.org/abs/2611.23444v1",
   "domain": "AI 3D",
@@ -7,53 +7,91 @@
   "topic": "연구·논문",
   "tags": [
     "Gaussian Splatting",
-    "원자 토모그래피",
-    "3D Gaussian",
-    "전자 현미경",
-    "AI 3D"
+    "Atomic Electron Tomography",
+    "3D Reconstruction",
+    "Electron Microscopy",
+    "Materials Science"
   ],
-  "summary": "컴퓨터 비전의 Gaussian Splatting 기법을 전자 토모그래피에 접목하여 3D 원자 구조를 정밀하게 재구성하는 새로운 원자 중심 Parameterization 방법론을 제안합니다.",
-  "insight": "기존 격자 기반 복셀 표현 방식의 한계를 깨고, 3D Gaussian 모델을 활용해 원자 단위의 구조를 물리적으로 타당하게 재구성합니다. 23,000개의 철-백금 나노파트클 실험 데이터를 통해 저선량 및 제한된 측정 환경에서도 기존 방식보다 정확한 결과를 낸다는 점이 입증되었습니다. 멀티슬라이스 전자 프티코그래피 등 원자 레졸루션 이미징 분야 전반에 폭넓은 가능성을 제공합니다.",
-  "try_it": [
-    "arXiv:2611.23444 논문 원문을 통해 원자 중심 파라미터화 수식과 3D Gaussian 모델링 구조를 확인합니다.",
-    "기존 복셀 기반 전자 토모그래피 데이터와 3D Gaussian 기반 재구성 결과를 비교하여 물리적 사전 정보 적용 방식을 분석합니다."
-  ],
+  "summary": "본 논문은 컴퓨터 비전의 Gaussian Splatting 기법에서 착안하여, 복셀 격자 대신 3D Gaussian으로 개별 원자를 직접 모델링하는 원자 전자 토모그래피(AET) 재구성 방법인 Gaussian Splatoms를 소개합니다.",
+  "insight": "이 연구는 컴퓨터 비전의 3D Gaussian Splatting 개념을 재료과학의 원자 레벨 이미징에 직접 적용해 볼륨 데이터의 한계를 극복했습니다. 향후 고해상도 3D 스캔 데이터를 다루는 3D 아티스트나 VFX Pipeline 노이즈가 많은 스캔 본을 정밀한 개별 오브젝트 단위로 재구성하는 새로운 최적화 패러다임으로 응용될 가능성이 있습니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "기존 복셀 한계를 극복하는 원자 중심 3D Gaussian 모델링",
-      "body": "기존의 격자 기반 복셀 표현 방식에서 벗어나, 샘플을 일련의 원자 목록으로 모델링합니다. 각 원자는 학습된 위치, 스케일, 진폭을 가진 3D Gaussian으로 정의되어 물리적 법칙을 쉽게 반영할 수 있습니다. 원자의 등방성, 최소 원자 간 거리, 현실적인 원자 반지름 등의 물리적 사전 정보를 자연스럽게 통합합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "원자 전자 투과 현미경(AET)은 2D 투영 측정값으로부터 재료의 3D 원자 구조를 복원합니다. 그러나 기계적 오차, 누락된 각도 범위(missing wedge), 적은 전자 선량(low electron dose)에 따른 노이즈로 인해 기존 복셀(voxel) 기반 볼륨 재구성 방식은 왜곡과 모호성을 겪으며, 후처리 원자 추적 단계에서 수작업 보정이 필수적입니다."
     },
     {
-      "heading": "제한된 측정 및 저선량 환경에서의 강인함",
-      "body": "시뮬레이션을 통해 제안하는 방법론이 실제 이미징 환경의 난제에 대응하는 능력을 검증했습니다. 제한된 측정 횟수와 낮은 전자선량 조건에서도 기존 복셀 베이스라인보다 더 높은 강인함을 보여줍니다. 노이즈가 많은 데이터에서도 정확한 구조 파악이 가능합니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 복셀 대신 원자를 데이터의 기본 단위로 설정하고, 각 원자를 위치, 크기(scale), 진폭(amplitude)을 가진 3D Gaussian으로 표현합니다. 이를 통해 원자의 구형 대칭성(isotropy), 최소 원자 간 거리, 물리적으로 타당한 원자 반경 등의 물리적 사전 정보를 최적화 과정에 직접 적용할 수 있습니다."
     },
     {
-      "heading": "실험 데이터 기반 철-백금 나노파트클 재구성 결과",
-      "body": "23,000개의 원자로 구성된 철-백금 나노파트클 실험 데이터를 활용해 성능을 입증했습니다. 기존에 발표된 볼륨 기반 재구성 결과와 비교했을 때 물리적으로 훨씬 타당한 구조를 도출해 냅니다. 원자 Resolution 이미징 분야 전반에 폭넓게 적용할 수 있는 가능성을 제시합니다."
+      "heading": "방법",
+      "body": "최적화 절차는 1단계로 3D Gaussian 모델로부터 토모그래피 투영을 시뮬레이션하고 획득한 측정값과 비교합니다. 2단계로 손실(loss)을 계산하여 원자 파라미터에 대한 그래디언트 업데이트를 수행합니다. 최적화 과정에서 알고리즘이 원자의 수를 동적으로 조절하며, 회전 및 병진 오정렬도 함께 해결합니다."
     },
     {
-      "heading": "멀티슬라이스 전자 프티코그래피 확장성",
-      "body": "이번에 제안된 원자 중심 파라미터화 방식은 단순한 토모그래피 복원을 넘어섭니다. 멀티슬라이스 전자 프티코그래피를 비롯한 다양한 원자 레졸루션 이미징 모달리티에 곧바로 적용할 수 있습니다. 복셀 구조의 해상도 한계에 부딪혔던 복잡한 재구성 문제에서 대안이 됩니다."
+      "heading": "결과",
+      "body": "실험 데이터인 23,000개의 원자로 구성된 철-백금(FePt) 나노입자 재구성 결과, 수작업으로 보정된 기준 구조와 비교하여 코어 부품 원자의 98%를 복원했으며 원자 위치의 평균 제곱근 거리(RMSD)는 0.32 Å를 기록했습니다. 또한 표면 영역에서도 왜곡 없이 물리적으로 타당한 결정 구조를 생성했습니다."
+    },
+    {
+      "heading": "아직 못 하는 것",
+      "body": "논문 본문에서 명시된 한계점은 표면 영역에서 누락된 각도 범위(missing wedge) 아티팩트가 여전히 존재하며, 실험 조건에 따라 복잡한 노이즈 환경에서의 추가적인 최적화와 검증이 필요하다는 점입니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "논문 내 명시된 공개 저장소 링크는 GitHub 이슈 리포트용(https://github.com/arXiv/html_feedback, https://github.com/brucemiller/LaTeXML)이며, Gaussian Splatoms 소스 코드의 직접적인 퍼블릭 저장소 주소는 본문 텍스트에 기재되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "이 연구에서 도입한 Gaussian Splatting 기반 모델의 핵심 개념은 무엇인가요?",
-      "a": "기존의 복셀 격자 대신 각각이 위치, 스케일, 진폭을 지닌 3D Gaussian 형태의 원자 리스트로 시료를 모델링하는 방식입니다."
+      "q": "Gaussian Splatoms는 시료를 어떤 방식으로 표현합니까?",
+      "a": "기존의 복셀(voxel) 격자 대신 학습된 위치, 크기, 진폭을 가진 3D Gaussian 리스트(원자 단위)로 시료를 모델링합니다."
     },
     {
-      "q": "실제 실험에서 어떤 시료와 비교 검증을 거쳤나요?",
-      "a": "23,000개의 원자로 이루어진 철-백금 나노파트클 실험 데이터를 사용하여 기존 볼륨 재구성 방식보다 우수한 결과를 확인했습니다."
+      "q": "철-백금(FePt) 나노입자 실험에서 기존 기준 구조와 비교해 어떤 성능을 보였습니까?",
+      "a": "수작업으로 보정된 기준 구조 코어에 있는 원자의 98%를 복원했으며, 원자 위치 간 RMSD는 0.32 Å를 달성했습니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.23444v1/figures/method_overview.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.23444v1/figures/method_overview.png",
+        "caption": "Figure 1: Gaussian Splatoms recovers atomic structures from atomic electron tomography (AET). (a) A nanoparticle sits on a tilt stage and rotates through a series of angles. At each angle, a detector records a 2D projection of the transmitted electron beam. The limited set of tilt angles produces a ",
+        "caption_ko": "그림 1: Gaussian Splatoms가 AET(원자 전자 토모그래피)로부터 원자 구조를 복원하는 과정"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.23444v1/experiment_results.png",
+        "caption": "Figure 2: Experimental iron-platinum (FePt) nanoparticle reconstruction with our Gaussian Splatoms approach, compared to a baseline reconstruction with Generalized Fourier Iterative Reconstruction (GENFIRE) [ 37 ] . We show the reconstructed central slice of atoms ( b,e ) and its Fourier transform (",
+        "caption_ko": "그림 2: 철-백금(FePt) 나노입자의 실험적 재구성 결과와 GENFIRE 베이스라인 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.23444v1/fept_summary_recons_genfire_inr_rows_quantem.png",
+        "caption": "Figure 3: Gaussian Splatoms reconstructions are robust to challenging imaging conditions. ( a ) We simulate an iron-platinum nanoparticle ( b ) under standard imaging conditions as well as ( c ) large missing wedge, ( d ) large angular step and ( e ) low electron dose. In each case, we visualize the",
+        "caption_ko": "그림 3: 까다로운 이미징 조건(누락된 각도, 큰 각도 간격, 낮은 전자 선량)에 대한 Gaussian Splatoms의 강건성"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.23444v1/fept_simulation.png",
+        "caption": "Figure 1: Simulation Procedure. We generate the data for our simulation studies via a 4-step procedure. Beginning with a list of atomic coordinates and species, we use abTEM [ 19 ] to compute its electrostatic potential. We then use a linear tomographic forward model scaled to a given electron dose ",
+        "caption_ko": ""
+      }
+    ]
   },
   "collected_at": "2026-11-21T19:48:27.973485+00:00",
   "notion_id": "",
   "id": "2026-11-21-32334d226b5744ff",
   "img_tried": true,
   "enriched": "2026-11-21",
-  "img_ok": "2026-11-21T19:58:00+00:00"
+  "img_ok": "2026-11-21T19:58:00+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T20:08:56+00:00"
 }
