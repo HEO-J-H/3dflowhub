@@ -1,0 +1,50 @@
+{
+  "title_ko": "Facet-SLAM: 실시간 Triangle Splatting SLAM 논문",
+  "title": "Facet-SLAM: Real-Time Triangle Splatting SLAM",
+  "url": "https://arxiv.org/abs/2611.23935v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "SLAM",
+    "Gaussian Splatting",
+    "RGB-D",
+    "Jetson AGX Orin",
+    "Delaunay"
+  ],
+  "summary": "Desktop GPU에서 100 FPS로 구동되며 표면 정확도를 높인 최초의 실시간 triangle splatting SLAM 시스템인 Facet-SLAM 논문이 공개되었습니다.",
+  "insight": "이 논문은 기존 Gaussian Splatting 기반 SLAM의 조잡한 표면 기하학 문제를 해결하기 위해 트래커와 맵퍼의 역할을 분리합니다. Desktop GPU 환경에서 약 100 FPS를 달성하고 Jetson AGX Orin에서 센서 속도로 구동되어 실시간 3D 재구성 연구에 직접적인 대안을 제시합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "Triangle Splatting 기반 SLAM의 한계와 접근",
+      "body": "기존 밀집 SLAM 시스템은 광범위한 렌더링 성능을 보여주나 표면 기하학이 부실하고 메시 추출 단계가 필요합니다. 반면 triangle splatting은 정점을 연결된 메시로 바로 삼각분할할 수 있는 표면 Primitive를 제공합니다. 그러나 광도 측정 방식의 트래킹에 의존하여 센서 속도에 맞추기에는 속도가 지나치게 느리다는 단점이 존재합니다."
+    },
+    {
+      "heading": "트래커와 맵퍼의 역할 분리 전략",
+      "body": "Facet-SLAM은 빠른 기하학적 등록을 위해 트래커와 맵퍼의 역할을 명확히 분리합니다. 트래커는 융합된 깊이에서 각 삼각형의 중심점을 설정하고 GICP를 통해 프레임을 중심점에 등록합니다. 맵퍼는 변수 변경을 통해 비이동 업데이트로 제한되어 최적화 중 삼각형이 관측된 표면에서 이탈하는 문제를 방지합니다."
+    },
+    {
+      "heading": "성능 및 Replica 벤치마크 결과",
+      "body": "본 시스템은 Desktop GPU에서 약 100 FPS의 경쟁력 있는 트래킹 정확도를 달성하며 Jetson AGX Orin에서 센서 속도로 실행됩니다. 광도 측정 방식과 비교하여 20배 이상 빠르고 렌더링 품질을 유지하면서 표면 정확도를 향상시킵니다. Replica 데이터셋에서 Delaunay 메시의 chamfer 거리를 1.55 cm에서 0.86 cm로 단축했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Facet-SLAM은 어떤 하드웨어 환경에서 구동되나요?",
+      "a": "Desktop GPU에서 약 100 FPS로 구동되며 엣지 디바이스인 Jetson AGX Orin에서도 센서 속도로 작동합니다."
+    },
+    {
+      "q": "기존 Gaussian Splatting 기반 SLAM과 어떤 차이가 있나요?",
+      "a": "기존 방식과 달리 표면 Primitive를 삼각형으로 직접 삼각분할하여 별도의 메시 추출 과정 없이 연결된 메시를 생성하며 표면 정확도를 대폭 높였습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.23935v1/fig/systemv2.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-21T16:57:42.157873+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-9408ea987e29feb7",
+  "img_tried": true
+}
