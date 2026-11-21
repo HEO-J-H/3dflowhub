@@ -101,4 +101,7 @@
 - [x] (agent) app.render_master_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하여 렌더링하는 함수 구현 및 tests/test_core.py에 테스트 추가
 - [x] (agent) core.filter_cg_context_supreme(): 일반 명사 도구명 등장 시 8중 다중 CG/3D 전문 맥락 검증을 철저히 수행하여 오프토픽 뉴스를 완전히 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
 - [x] (agent) evolve.summarize_supreme_cg_metrics(): 고단가 실무 3D 툴 및 애드온 관련 콘텐츠 성과와 도메인 분포 지표를 정밀하게 집계하여 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
-- [ ] (agent) app.render_supreme_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하여 렌더링하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [x] (agent) app.render_supreme_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하여 렌더링하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [x] (agent) core.filter_cg_context_titan(): 일반 명사 도구명 등장 시 9중 다중 CG/3D 전문 맥락 검증을 철저히 수행하여 오프토픽 뉴스를 완전히 차단하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [ ] (agent) evolve.summarize_titan_cg_metrics(): 고단가 실무 3D 툴 및 애드온 관련 콘텐츠 성과와 도메인 분포 지표를 정밀하게 집계하여 반환하는 함수 구현 및 tests/test_core.py에 테스트 추가
+- [ ] (agent) app.render_titan_cg_dashboard(): Streamlit 현황판에 고단가 실무 콘텐츠 집중도와 오프토픽 차단 결과를 시각화하여 렌더링하는 함수 구현 및 tests/test_core.py에 테스트 추가
