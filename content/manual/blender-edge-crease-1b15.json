@@ -1,0 +1,105 @@
+{
+  "id": "blender-edge-crease-1b15",
+  "guide_id": "blender-edge-crease-1b15",
+  "tool": "Blender",
+  "name": "Edge Crease",
+  "title": "Edge Crease — 서브디비전 모서리 세우기",
+  "overview": "Blender의 Edge Crease는 Subdivision Surface Modifier가 적용된 상태에서도 추가적인 엣지 루프(Edge Loop)를 추가하지 않고 특정 엣지의 날카로움을 제어하는 내부 웨이트(Weight) 시스템입니다. 지오메트리를 추가로 생성하지 않기 때문에 모델링의 Topology를 깔끔하게 유지하면서 하드서페이스의 단단한 각을 표현할 수 있습니다.",
+  "access": "Edit Mode 진입 후 Shift + E Hotkey 입력, 또는 3D Viewport 우측 Sidebar(N 키)의 Item 탭 내 Transform 패널 하단 Mean Crease 슬라이더 조절, 또는 상단 메뉴 Edge > Edge Crease 선택",
+  "options": [
+    {
+      "name": "Mean Crease",
+      "value": "0.0 ~ 1.0 (기본값 0.0)",
+      "effect": "선택한 엣지의 주름(Crease) 강도를 조절하여 Subdivision Surface 적용 시 부드러워지는 정도를 제어합니다.",
+      "tip": "값을 정확히 1.0으로 설정하면 완전히 날카로운 각이 형성됩니다."
+    },
+    {
+      "name": "Levels Viewport",
+      "value": "0 ~ 6 (기본값 1)",
+      "effect": "Subdivision Surface Modifier에서 Viewport에 실시간으로 보여지는 서브디비전 단계를 설정합니다.",
+      "tip": "작업 중에는 1 또는 2로 낮게 유지하여 Viewport 성능을 확보합니다."
+    },
+    {
+      "name": "Render",
+      "value": "0 ~ 6 (기본값 2)",
+      "effect": "Cycles 또는 Eevee 렌더링 시 적용될 서브디비전 세분화 단계를 결정합니다.",
+      "tip": "최종 렌더링 품질을 위해 Viewport 단계보다 높게 설정합니다."
+    },
+    {
+      "name": "Use Creases",
+      "value": "체크박스 (기본값 켜짐)",
+      "effect": "Subdivision Surface Modifier 내에서 Edge Crease 데이터의 반영 여부를 전체적으로 켜고 끕니다.",
+      "tip": "Modifier의 Advanced 롤아웃에서 확인 가능하며, 엣지 크리저와 Vertex 크리저를 개별 토글할 수 있습니다."
+    },
+    {
+      "name": "Boundary Smooth",
+      "value": "All / Keep Corners 등 (기본값 All)",
+      "effect": "오픈 Base 메쉬의 경계선이나 코너가 서브디비전될 때 크리스 및 모서리가 처리되는 방식을 결정합니다.",
+      "tip": "하드서페이스 패널 모델링 시 모서리 왜곡을 막기 위해 Keep Corners 설정을 자주 활용합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Edge Crease Mode",
+      "desc": "Edge Select 모드에서 개별 엣지 단위로 Shift + E를 입력하여 크리즈 값을 부여하는 기본 방식입니다."
+    },
+    {
+      "name": "Vertex Crease Mode",
+      "desc": "Vertex Select 모드에서 Shift + V를 입력하여 특정 정점(Vertex)을 중심으로 수렴하는 서브디비전 왜곡을 방지하는 방식입니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "추가 엣지 없이 단단한 하드서페이스 패널 제작",
+      "steps": [
+        "Cube 오브젝트를 생성하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "Ctrl + R을 눌러 루프 컷을 최소한으로 추가한 뒤 모양을 잡습니다.",
+        "날카로워야 할 외곽 엣지들을 선택합니다.",
+        "Shift + E를 누르고 Mouse를 바깥쪽으로 밀어 Mean Crease 값을 1.0으로 설정합니다.",
+        "Object Mode로 돌아와 Subdivision Surface Modifier를 추가하고 Viewport 레벨을 2로 설정해 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "실린더 형태의 홀더에 날카로운 홈 표현",
+      "steps": [
+        "Cylinder 오브젝트를 생성하고 상단 캡 페이스를 삭제합니다.",
+        "Solidify Modifier를 추가하여 두께를 부여합니다.",
+        "Subdivision Surface Modifier를 추가하여 전체적인 면을 부드럽게 만듭니다.",
+        "오픈 엣지 라인을 Alt + 클릭으로 루프 선택합니다.",
+        "Shift + E를 입력해 Mean Crease 값을 1.0으로 주어 입구 단면을 날카롭게 고정합니다."
+      ]
+    },
+    {
+      "title": "Subdivision Surface와 Crease 가중치 애니메이션",
+      "steps": [
+        "오브젝트의 특정 엣지에 Mean Crease 값을 부여합니다.",
+        "Sidebar의 Item 탭에서 Mean Crease 수치 위에 Mouse를 올리고 I 키를 눌러 Keyframe을 삽입합니다.",
+        "타임라인바를 이동시킨 후 Mean Crease 값을 0으로 변경하고 다시 I 키를 눌러 Keyframe을 추가합니다.",
+        "애니메이션 재생 시 오브젝트가 부드럽게 뭉개졌다가 날카로운 각을 이루는 변형 효과를 확인합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Edge Crease 자체는 지오메트리를 생성하지 않아 메쉬 데이터 용량이 가볍습니다.",
+    "성능 저하의 주원인은 Subdivision Surface Modifier의 Viewport Levels 값이므로 작업 중에는 1 이하로 유지합니다.",
+    "고해상도 메쉬에 과도한 크리즈가 적용되면 노멀 계산에 미세한 연산 부하가 발생할 수 있습니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Edge Crease를 적용했는데 모서리가 부드럽게 유지되지 않고 둥글게 무너집니다.",
+      "fix": "오브젝트에 Subdivision Surface Modifier가 추가되어 있는지, 그리고 Modifier 설정에서 Use Creases 옵션이 켜져 있는지 확인하세요."
+    },
+    {
+      "symptom": "크리즈를 넣었으나 모서리가 비대칭으로 찌그러지거나 이상하게 꺾입니다.",
+      "fix": "Object Mode에서 Ctrl + A를 눌러 Scale 값이 1.0으로 정상 적용(Apply)되었는지 확인하고 메쉬의 Normal 방향을 재정렬합니다."
+    },
+    {
+      "symptom": "Shift + E Hotkey를 눌렀는데 값이 조절되지 않고 다른 기능이 실행됩니다.",
+      "fix": "Edit Mode의 Edge Select 상태(숫자 2 키)인지 확인하고, 상단 메뉴 바의 Edge > Edge Crease를 통해 수동으로 실행해 보세요."
+    }
+  ],
+  "versions": "Blender 4.0 이후 버전에서는 하드서페이스 워크플로우 개선과 함께 Crease 오버레이 가시성이 향상되었으며, 기존 버전과 동일한 방식을 유지합니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Edge%20Crease",
+  "grounded": true,
+  "at": "2026-11-21T10:17:14+00:00"
+}
