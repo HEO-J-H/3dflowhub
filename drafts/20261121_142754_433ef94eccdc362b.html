@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting 3D 가상 피팅 GS-VTON-MVT 논문 | TAGS: Gaussian Splatting,3D VTON,ControlNet,Multi-View Transformer,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Gaussian Splatting으로 표현된 인물의 의상을 일관성 있게 교체하기 위해 다중 시점 트랜스포머와 지오메트리 가이드 ControlNet을 결합한 3D 가상 피팅 프레임워크 GS-VTON-MVT를 제안합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>GS-VTON-MVT 프레임워크 개요</h2>
+<p>사람의 3D Gaussian Splatting 캡처본에 새로운 의상을 입힐 때 모든 렌더링 시점에서 동일한 의상 디테일을 유지하는 3단계 프레임워크입니다. 묵시적 및 명시적 3D 추론을 결합하여 텍스처 드리프트와 흐린 프린트, 왜곡된 지오메트리 문제를 해결합니다.</p>
+<h2>다중 시점 인페인팅 트랜스포머</h2>
+<p>학습 뷰 세트를 전체 cross-view self-attention과 함께 공동으로 편집합니다. 수동으로 선택한 기준 뷰와 고정된 가중치에 의존하던 기존의 휴리스틱 방식 대신, 시점 간 대응 관계를 직접 학습하도록 설계되었습니다.</p>
+<h2>지오메트리 가이드 Multimodal ControlNet</h2>
+<p>의상 이미지와 함께 현재 Gaussian Splatting 상태에서 렌더링된 깊이 및 표면 노멀 정보를 디퓨전 에디터에 조건값으로 입력합니다. 시각적 단서가 부족한 영역에 명시적 구조 정보를 공급하여 일관성을 보완합니다.</p>
+<h2>포즈 적응형 페르소나 인식 어텐션</h2>
+<p>현재 뷰와 기준 뷰 특징 사이의 고정된 블렌딩 가중치를 카메라 포즈 근접성에서 파생된 가중치로 대체합니다. 벤치마크 테스트에서 기존 범용 3D 에디터 대비 향상된 사용자 선호도와 일관성을 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">기존 3D 가상 피팅 방식들이 학습 뷰를 개별적으로 수정해 텍스처 밀림 현상을 유발하던 문제를 해결하기 위해, cross-view self-attention을 적용하여 시점 간 정합성을 학습합니다. 3D-VTONBench 벤치마크에서 FID, KID, LPIPS 지표를 개선하여 다중 시점 일관성을 높였습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. GS-VTON-MVT는 어떤 문제를 해결하기 위한 기술인가요?</b><br/>A. Gaussian Splatting으로 구현된 3D 인물 모델에 새로운 의상을 입힐 때 각 시점마다 의상 디테일이 어긋나 텍스처가 밀리거나 흐려지는 문제를 해결합니다.</p>
+<p><b>Q. 기존 3D 가상 피팅 방식과의 차이점은 무엇인가요?</b><br/>A. 기존 방식은 학습 뷰를 개별적으로 수정하고 수동으로 선택한 기준 뷰와 고정 가중치로 융합했으나, 본 논문은 다중 시점 트랜스포머와 포즈 적응형 어텐션을 통해 시점 간 정합성을 학습합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-21-07936d5f0e3ebb57.html">PaveSplat Gaussian Splatting Resolution 강건성 논문 분석</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-dfede93e19aa3987.html">Gaussian Splatting 기반의 CryoGaussian 단백질 구조 복원</a></li><li><a href="https://3dflowhub.kr/p/2026-11-17-7600b100e3c887c6.html">3D Gaussian 세분화를 위한 볼륨 기반 감독 기법 VODA</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.25979v1" target="_blank" rel="noopener nofollow">Multi-View Transformer with Geometry-Guided Multi-Modal ControlNet for 3D Virtual Try-On</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

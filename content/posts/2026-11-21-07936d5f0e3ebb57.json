@@ -1,5 +1,5 @@
 {
-  "title_ko": "PaveSplat Gaussian Splatting Resolution 강건성 논문 분석",
+  "title_ko": "PaveSplat: 고해상도 렌더링을 위한 Gauss Splatting",
   "title": "PaveSplat: Resolution-Robust Feed-Forward Gaussian Splatting with Residually Corrected Surface-Aligned Covariances",
   "url": "https://arxiv.org/abs/2611.26045v1",
   "domain": "AI 3D",
@@ -7,40 +7,48 @@
   "topic": "연구·논문",
   "tags": [
     "Gaussian Splatting",
-    "ACCV 2026",
+    "Feed-Forward",
     "Surfel",
-    "RealEstate10K",
-    "DL3DV"
+    "Covariance",
+    "Resolution-Robust"
   ],
-  "summary": "PaveSplat은 Resolution가 변경되어도 Gaussian Splatting 렌더링에서 구멍이 생기지 않도록 잔차 기반 표면 정렬 공분산을 예측하는 피드포워드 방식입니다.",
-  "insight": "ACCV 2026에 채택된 PaveSplat은 기존 픽셀 기반 피드포워드 Gaussian Splatting에서 깊이 기반 표면 프레임이 불안정할 때 발생하는 렌더링 구멍 문제를 해결합니다. 단일 패스로 예측된 서펠의 방향을 잔차 쿼터니언으로 보정하여 고해상도 재렌더링 시에도 밀도를 유지합니다.",
+  "summary": "PaveSplat은 Resolution가 높아져도 서텔 표면 커버리지가 유지되도록 잔여 쿼터니언 회전을 결합한 피드포워드 Gauss Splatting 방법입니다.",
+  "insight": "이 연구의 접근 방식이 향후 일반화된 뷰 합성(feed-forward novel view synthesis) 파이프라인에 도입된다면, 단 몇 장의 이미지로 예측한 3D 장면을 고해상도 모니터나 출력용으로 확대 렌더링할 때 발생하는 메쉬 및 서텔의 구멍 메우기 작업 시간을 크게 줄여줄 가능성이 있습니다. 특히 수동으로 표면 노멀과 탄젠트를 교정하던 단계를 줄이고 네트워크가 기하학적 정합성을 유지하도록 돕는 유용한 방향성이 될 수 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "PaveSplat의 Resolution 저하 문제 해결 방식",
-      "body": "기존 피드포워드 3D Gaussian Splatting 방법은 예측된 깊이에서 표면 정렬 공분산을 분석적으로 계산합니다. 하지만 깊이 기반 프레임이 불안정한 영역에서는 서펠의 방향이 틀어져 고해상도 재렌더링 시 빈 공간(구멍)이 드러나는 한계가 있습니다. PaveSplat은 분석적 공분산을 초기값으로 유지하면서 아이덴티티로 초기화된 단위 쿼터니언 잔차를 추가하여 이를 극복합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 피드포워드 Gauss Splatting의 공분산 추정 방식은 두 가지 한계가 있습니다. 완전히 학습된 공분산은 학습 Resolution에서는 괜찮아 보이지만 크기가 통제되지 않아 고해상도 재렌더링 시 구멍(홀)이 생깁니다. 반면 해석학적(analytic) 방법은 예측된 깊이에서 표면 프레임을 유도하여 표면 연속성을 보장하지만 깊이가 불확실한 영역에서 방향 정렬이 잘못되거나 표면을 느슨하게 커버하는 문제가 있습니다."
     },
     {
-      "heading": "서펠 방향 보정을 통한 표면 정렬",
-      "body": "추가된 잔차 쿼터니언은 렌더링 품질을 실제로 개선할 수 있는 영역에서만 서펠의 방향을 재조정합니다. 분석적 프레임이 잘못 조준된 서펠들을 다시 표면 위로 정확히 정렬시켜 1배율부터 8배율까지의 다양한 스케일에서 시각적 결함을 줄입니다."
+      "heading": "핵심 아이디어",
+      "body": "PaveSplat은 해석학적 공분산을 초기값으로 유지하면서, 표면 탄젠트에 맞춘 프레임을 구축하고 학습 가능한 경량 단위 쿼터니언 잔여 값(unit-quaternion residual, $\\Delta q$)을 더합니다. 이를 통해 렌더링 품질을 실제로 개선할 수 있는 영역에서만 서텔(surfel)의 방향을 재정렬합니다."
     },
     {
-      "heading": "RealEstate10K 및 DL3DV 벤치마크 성능",
-      "body": "RealEstate10K 데이터셋에서 PaveSplat은 모든 스케일 범위(1x-8x)에서 단일 픽셀당 단일 Gaussian을 사용하는 방법 중 가장 높은 PSNR, SSIM, LPIPS 점수를 기록했습니다. 제로샷 DL3DV 평가에서도 모든 스케일에서 PSNR 부문 선두를 유지하며 우수한 일반화 성능을 증명했습니다."
+      "heading": "방법 (단계)",
+      "body": "먼저 DepthSplat 백본에서 예측된 깊이, 불투명도, 색상 및 회전 파라미터를 얻습니다. 다음으로 표면 정렬 선행 조건(surface-aligned prior)을 통해 붉은 표면 탄젠트에 정렬된 축을 가진 해석학적 프레임을 설정합니다. 마지막으로 항등원(identity)으로 초기화된 회전 잔여 값($\\Delta q$)을 후조합하여 최종 공분산 $\\mathbf{\\Sigma}$를 구성합니다."
     },
     {
-      "heading": "고해상도 재렌더링 커버리지 분석",
-      "body": "네이티브 Resolution에서의 성능 향상 폭은 크지 않지만, 네트워크를 재실행하지 않고 동일한 예측 결과를 더 높은 디스플레이 Resolution로 렌더링할 때 진가가 나타납니다. 커버리지 구멍 분석 결과, 고해상도 재렌더링 환경에서 기존 베이스라인보다 커버되지 않는 픽셀 수가 훨씬 적은 것으로 확인되었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "RealEstate10K 데이터셋에서 PaveSplat은 모든 스케일($1\\times$–$8\\times$)의 단일 Gauss-퍼-픽셀(single-Gaussian-per-pixel) 방법 중 가장 우수한 PSNR, SSIM, LPIPS를 기록했습니다. 제로샷(zero-shot) DL3DV에서도 모든 스케일에서 그룹 내 최고 PSNR을 기록하며 SSIM과 LPIPS에서 상위권을 차지했습니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "기본 DepthSplat 백본의 깊이 추정 성능과 단일 패스 피드포워드 구조의 한계에 영향을 받으며, 깊이가 완전히 불량한 영역이나 극단적인 텍스처리스(textureless) 환경에서는 해석학적 프레임의 제약이 완전히 해소되지 않을 수 있습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "논문 본문에서 별도의 공식 코드 저장소 링크나 데이터셋 공개 주소를 명시하지 않았으며, 향후 GitHub 이슈 등을 통해 관리될 가능성이 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "PaveSplat은 어떤 문제를 해결하나요?",
-      "a": "피드포워드 Gaussian Splatting에서 고해상도로 재렌더링할 때 깊이 기반 프레임 오류로 인해 표면에 구멍이 생기는 문제를 해결합니다."
+      "q": "PaveSplat은 기존 SurfSplat과 비교하여 어떤 점이 다릅니까?",
+      "a": "SurfSplat의 해석학적 공분산을 초기값으로 유지하면서, 쿼터니언 잔여 회전($\\Delta q$)을 추가하여 필요한 위치에서만 서텔 방향을 재정렬합니다."
     },
     {
-      "q": "기존 방식과의 차별점은 무엇인가요?",
-      "a": "분석적 표면 정렬 공분산을 초기값으로 삼되, 렌더링 품질을 높이는 방향으로만 작동하는 단위 쿼터니언 잔차를 더해 서펠 방향을 보정합니다."
+      "q": "Resolution가 높아질 때 어떤 성능 이점이 있습니까?",
+      "a": "트레이닝 Resolution가 아닌 더 높은 디스플레이 Resolution로 재렌더링할 때 서텔이 표면을 더 촘촘히 메워 구멍(holes)이 적게 발생합니다."
     }
   ],
   "media": {
@@ -51,5 +59,16 @@
   "notion_id": "",
   "id": "2026-11-21-07936d5f0e3ebb57",
   "img_tried": true,
-  "img_ok": "2026-11-21T14:07:22+00:00"
+  "img_ok": "2026-11-21T14:07:22+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T14:32:31+00:00"
 }

@@ -1,0 +1,73 @@
+{
+  "title_ko": "GS-VTON-MVT — 3D 가상 피팅을 위한 다중시점 트랜스포머",
+  "title": "Multi-View Transformer with Geometry-Guided Multi-Modal ControlNet for 3D Virtual Try-On",
+  "url": "https://arxiv.org/abs/2611.25979v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "Virtual Try-On",
+    "Transformer",
+    "ControlNet",
+    "3D-VTONBench"
+  ],
+  "summary": "다중시점 트랜스포머와 기하학적 제어넷을 결합하여 3D 가상 피팅 시 시점 간 일관성과 기하학적 정밀도를 높이는 프레임워크를 제안합니다.",
+  "insight": "이 연구의 다중시점 트랜스포머와 기하학적 제어넷 접근법은 향후 Avatar 제작 및 원격 실종(telepresence) 분야에서 의류 교체 시 시점 변화에 따른 시각적 떨림을 줄이는 파이프라인 설계에 활용될 수 있는 가능성을 보여줍니다. 다만 실제 실무 제작 환경에 곧바로 도입되기 위해서는 추가적인 최적화와 연산 비용 검증이 필요해 보입니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "해결하려는 문제",
+      "body": "기존 3D 가상 피팅(VTON) 파이프라인은 개별 학습 뷰를 독립적으로 편집하고 수동 휴리스틱으로 결합하여, 텍스처 표류나 흐려짐 및 왜곡된 기하학적 형태를 유발합니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "GS-VTON-MVT는 묵시적 3D 추론과 명시적 기하학적 안내를 결합하여 일관된 3D Gaussian Splatting(3DGS) 피팅을 구현하는 3단계 프레임워크입니다."
+    },
+    {
+      "heading": "제안하는 3단계 방법",
+      "body": "(i) 전체 교차 뷰 셀프 어텐션을 통한 다중시점 인페인팅 트랜스포머, (ii) 의류 이미지와 3DGS 상태의 깊이·표면 법선을 활용하는 기하학적 안내 다중 모달 ControlNet, (iii) 카메라 포즈 근접성에 기반한 포즈 적응형 페르소나 인식 어텐션을 적용합니다."
+    },
+    {
+      "heading": "논문 성능 및 결과",
+      "body": "3D-VTONBench 벤치마크에서 일반 목적 3D 편집기 및 이전 3D 피팅 방식 대비 FID, KID, LPIPS 기반 교차 뷰 일관성, 사용자 선호도에서 향상된 성능을 보입니다."
+    },
+    {
+      "heading": "아직 해결하지 못한 한계점",
+      "body": "복잡한 자체 가림 현상이나 극단적인 포즈 변화에서는 여전히 3D 표현의 정밀도 유지가 어렵고 완벽하지 않은 영역이 존재합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문 내에 저작권 및 벤치마크(3D-VTONBench) 관련 언급이 있으며, GitHub 이슈 리포트 링크 등이 제공되었으나 별도의 공식 소스코드 저장소 링크는 본문에 직접 기재되지 않았습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "GS-VTON-MVT는 몇 단계 프레임워크로 구성되나요?",
+      "a": "다중시점 인페인팅 트랜스포머, 기하학적 안내 다중 모달 ControlNet, 포즈 적응형 페르소나 인식 어텐션을 포함하는 3단계 프레임워크로 구성됩니다."
+    },
+    {
+      "q": "어떤 벤치마크에서 성능이 평가되었나요?",
+      "a": "3D-VTONBench 벤치마크에서 평가되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.25979v1/methodology.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-21T14:27:53.931712+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-433ef94eccdc362b",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T14:31:23+00:00"
+}
