@@ -233,3 +233,17 @@ def test_manager_blocks_kitchen_feed_action():
     import manager
     act = {"type": "add_feed", "domain": "3D DCC", "url": "https://example.com/kitchen/rss"}
     assert manager._valid_action(act) is None
+
+
+def test_guide_card_compact_view_badge():
+    import build_site
+    g = {
+        "id": "blender-bevel",
+        "title": "Blender Bevel 튜토리얼",
+        "tool": "Blender",
+        "group": "Modeling",
+        "summary": "베벨 모디파이어 사용법",
+        "params": [{"name": "Width", "desc": "폭"}]
+    }
+    html = build_site.guide_card(g, "../")
+    assert "⚙️ Width" in html or "badge" in html

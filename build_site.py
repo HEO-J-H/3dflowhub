@@ -1323,7 +1323,16 @@ def guide_card(g: dict, root: str) -> str:
     v = (g.get("videos") or [None])[0]
     th = (f'<div class="th v" style="background-image:url(https://i.ytimg.com/vi/{e(v["id"])}/mqdefault.jpg)"></div>' if v
           else f'<div class="th" aria-hidden="true"></div>')
-    return (f'<a class="gcard" href="{root}{learn_url(g)}">{th}<div class="b"><span class="k">{e(g["tool"])} · {e(g["group"])}</span>'
+    # 컴팩트 뷰 가이드 카드 상단 고정 뱃지 (핵심 파라미터 또는 Hotkey 요약 정보 표시)
+    badge_info = ""
+    params = g.get("params") or []
+    if params:
+        p0 = params[0]
+        badge_info = f'<span class="badge" title="핵심 파라미터">⚙️ {e(p0.get("name", ""))}</span>'
+    elif g.get("mistakes"):
+        badge_info = '<span class="badge" title="Hotkey / Tip">⚡ 실무 팁</span>'
+    return (f'<a class="gcard" href="{root}{learn_url(g)}">{th}<div class="b"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">'
+            f'<span class="k">{e(g["tool"])} · {e(g["group"])}</span>{badge_info}</div>'
             f'<span class="t">{e(g["title"])}</span><span class="s">{e(g.get("summary", "")[:70])}</span></div></a>')
 
 
