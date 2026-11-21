@@ -39016,5 +39016,74 @@
     "kind": "applied",
     "id": "p-ff6900dcbb",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] tests=True security=['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)'] — 리뷰 생략"
+  },
+  {
+    "at": "2026-11-21T20:58:13+00:00",
+    "kind": "proposal",
+    "id": "p-8c5a7556d4",
+    "title": "RAG 도움말 검색 UI 구성 및 테스트 분할 재적용",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "이전에 패치 적용 실패로 held 처리된 RAG UI 연동 작업(web/index.html 및 web/static/rag.js)이 대기 중입니다.",
+    "proposal": "web/index.html에 도움말 검색 버튼을 추가하고, web/static/rag.js와 web/tests/rag_ui.test.js로 파일을 분할하여 코딩 에이전트가 단일 패치로 안전하게 적용할 수 있도록 과제를 재구성합니다.",
+    "expected": "오너 요청인 RAG 오픈소스 활용 기능의 웹 UI 연동 및 테스트 통과",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T20:58:13+00:00",
+    "kind": "proposal",
+    "id": "p-53c4f667f1",
+    "title": "웹 UI 높이맵 테스트 파일 경로 정비 및 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 UI 높이맵 메시 생성 기능 테스트 강화 태스크가 경로 문제로 held 상태에 머물러 있습니다.",
+    "proposal": "web/ 디렉토리 내 JavaScript 높이맵 변환 로직에 대한 테스트 케이스 파일 경로를 명확히 지정하여 코딩 에이전트가 자동으로 머지할 수 있도록 과제를 수정합니다.",
+    "expected": "브라우저 기반 높이맵 변환 기능의 안정성 확보 및 테스트 커버리지 향상",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T20:58:40.864306+00:00",
+    "kind": "decision",
+    "id": "p-8c5a7556d4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T20:58:40.896604+00:00",
+    "kind": "decision",
+    "id": "p-53c4f667f1",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-21T20:58:42.144162+00:00",
+    "kind": "triage",
+    "id": "p-8c5a7556d4",
+    "verdict": "agent",
+    "reason": "web/index.html 및 관련 스크립트 파일을 분할하여 RAG 도움말 검색 UI를 구현하는 코드 수정 작업입니다."
+  },
+  {
+    "at": "2026-11-21T20:58:42.863697+00:00",
+    "kind": "triage",
+    "id": "p-53c4f667f1",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 '홀드된 웹 UI 높이맵 테스트 과제 경로 재정비' 및 관련 테스트 파일 보완 내역이 반복해서 포함되어 있어 이미 반영된 일입니다."
+  },
+  {
+    "at": "2026-11-21T20:58:42.893430+00:00",
+    "kind": "decision",
+    "id": "p-53c4f667f1",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '홀드된 웹 UI 높이맵 테스트 과제 경로 재정비' 및 관련 테스트 파일 보완 내역이 반복해서 포함되어 있어 이미 반영된 일입니다."
   }
 ]
