@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-19T16:48:50.201826+00:00",
-      "collected": 2,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 100,
-      "candidates_passed": 62,
-      "offtopic": 16,
-      "short": 0,
-      "prefiltered": 31,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "a5011fc8",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-19T16:58:37.347301+00:00",
       "collected": 2,
       "saved": 1,
@@ -6504,6 +6480,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-21T21:38:20.466018+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 64,
+      "candidates_passed": 16,
+      "offtopic": 19,
+      "short": 0,
+      "prefiltered": 39,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "f2aaf669",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6599,7 +6602,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-12 [[p-984809e9b8|사이트·UX] PR #64및#65코드변경사항검토] Regularly audit PR changes against core playbook rules to maintain code quality and test integrity.",
     "2026-11-12 [[p-26ebad3dc5|사이트·UX] 웹 브라우저 PBR 상태 안내 U] UI 상태 안내 DOM 구조 변경 시 사용자 피드백(스피너 및 완료 메시지)의 가시성과 접근성을 우선 고려하자.",
     "2026-11-12 [성찰] 일반 명사 도구명(Nuke, Unity 등)의 오동작을 막기 위해 12중 컨텍스트 필터를 적용하고, 실무 튜토리얼 및 스크립트 등 고단가 검색 유입 주제에 집중해야 합니다.",
     "2026-11-12 [성찰] 일반 명사 도구명(Nuke, Unity 등)의 오탐색을 막기 위해 15중 컨텍스트 필터를 적용하고, 검색 유입이 높은 Maxscript 및 실무 튜토리얼·애드온 중심의 고단가 콘텐츠 비중을 대폭 확대해야 합니다.",
@@ -6718,7 +6720,8 @@
     "2026-11-21 [성찰] 검색 유입과 체류 시간을 높이기 위해 3D DCC, 게임 엔진, VFX 실무 가이드 및 애드온·스크립트 중심의 고단가 콘텐츠 비중을 늘리고 동음이의어 필터링을 더욱 엄격히 적용해야 합니다.",
     "2026-11-21 [성찰] 동음이의어(핵, 인물, 정치 등) 필터링을 더욱 엄격히 적용하고 고CPC 실무 튜토리얼과 검색 최적화 제목을 유지하여 저품질 유입을 줄여야 합니다.",
     "2026-11-21 [[p-ff6900dcbb|운영·비용] PR #80 핵심 파이프라인 변경 ] 테스트 실패 — 64 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
-    "2026-11-21 [[p-ff6900dcbb|운영·비용] PR #80 핵심 파이프라인 변경 ] 테스트 실패 — 63 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']"
+    "2026-11-21 [[p-ff6900dcbb|운영·비용] PR #80 핵심 파이프라인 변경 ] 테스트 실패 — 63 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
+    "2026-11-21 [성찰] 동음이의어(핵, 인물명 등)로 인한 오수집 비중을 강력하게 차단하고, 실무 검색 유입이 높은 애드온 및 스크립트 가이드에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6775,7 +6778,7 @@
     "VFX/스튜디오·작품": 229,
     "AI 3D/로보틱스·월드모델": 36,
     "3D DCC/Blender": 188,
-    "Game Engine/Unreal Engine": 203,
+    "Game Engine/Unreal Engine": 204,
     "AI 3D/기타 AI 3D": 56,
     "Game Engine/Godot": 49,
     "3D DCC/Cinema 4D": 33,
@@ -6912,7 +6915,6 @@
     "Game Engine/Construct 3": "Construct"
   },
   "title_hashes": [
-    3572376503765133790,
     18223183870466443204,
     6934829108600574118,
     10436726101473932706,
@@ -9911,14 +9913,15 @@
     9521876280895613345,
     11697842871479654274,
     15065967655117751813,
-    2733372588313419779
+    2733372588313419779,
+    15823539931096725612
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3745,
-    "Game Engine": 3745,
-    "VFX": 3745,
-    "AI 3D": 3745
+    "3D DCC": 3746,
+    "Game Engine": 3746,
+    "VFX": 3746,
+    "AI 3D": 3746
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
