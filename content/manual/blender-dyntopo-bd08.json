@@ -1,0 +1,109 @@
+{
+  "id": "blender-dyntopo-bd08",
+  "guide_id": "blender-dyntopo-bd08",
+  "tool": "Blender",
+  "name": "Dyntopo",
+  "title": "Dyntopo — 동적 토폴로지",
+  "overview": "Blender의 Dyntopo(Dynamic Topology)는 스컬프팅 브러시가 닿는 실시간 위치에서만 Topology를 동적으로 쪼개고(Subdivide) 합치는(Collapse) 기능입니다. 사전에 고밀도 메쉬를 준비할 필요 없이, 디지털 점토를 빚듯 자유롭게 형태의 돌출과 변형을 반복할 수 있습니다.",
+  "access": "3D Viewport 상단 헤더 메뉴의 Dyntopo 체크박스 클릭 | Viewport에서 상단 헤더의 드롭다운 메뉴 및 사이드바(N 키)의 Tool 탭 내 Dyntopo 패널 확인",
+  "options": [
+    {
+      "name": "Detail Type",
+      "value": "Relative Detail / Constant Detail / Brush Detail / Manual",
+      "effect": "폴리곤을 쪼개는 기준 방식을 결정합니다.",
+      "tip": "일반적인 유기체 스컬프팅에는 카메라 거리에 따라 밀도가 유지되는 Relative Detail을 권장합니다."
+    },
+    {
+      "name": "Detail Size",
+      "value": "1px ~ 40px (기본값 12px)",
+      "effect": "생성될 폴리곤 조각의 상대적 또는 절대적 크기를 제어합니다.",
+      "tip": "값이 너무 작으면 폴리곤 수가 폭증하여 Viewport가 느려지므로 작업 초기에는 굵직한 형태 위주로 크게 설정합니다."
+    },
+    {
+      "name": "Refine Method",
+      "value": "Subdivide / Collapse / Subdivide Collapse",
+      "effect": "브러시 스트로크 동안 면을 나누거나 합치는 연산 방식을 정합니다.",
+      "tip": "Subdivide Collapse를 선택해야 불필요하게 늘어난 면이 자동으로 줄어들어 깨끗한 와이어프레임이 유지됩니다."
+    },
+    {
+      "name": "Detail Flood Fill",
+      "value": "버튼 클릭",
+      "effect": "설정된 디테일 값에 맞춰 전체 오브젝트의 폴리곤 밀도를 균일하게 재배치합니다.",
+      "tip": "부분적으로 밀도가 깨졌을 때 전체 메쉬를 한 번에 정리하기 위해 사용합니다."
+    },
+    {
+      "name": "Faces Limit",
+      "value": "숫자 입력",
+      "effect": "Dyntopo 작동 시 생성될 수 있는 최대 폴리곤 면 수를 제한합니다.",
+      "tip": "메모리 부족이나 시스템 다운을 방지하기 위해 하이 폴리곤 작업 시 안전장치로 설정합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Relative Detail",
+      "desc": "카메라 Viewport에서의 거리와 브러시 크기를 기준으로 폴리곤 밀도를 계산합니다. 멀리서 보면 면이 굵고, 가까이서 보면 세밀해집니다."
+    },
+    {
+      "name": "Constant Detail",
+      "desc": "카메라 거리와 상관없이 오브젝트 전역에 일정한 크기의 폴리곤 밀도를 유지합니다. Detail Flood Fill을 통해 전체 크기를 고정할 때 유용합니다."
+    },
+    {
+      "name": "Brush Detail",
+      "desc": "브러시의 물리적 크기에 비례하여 디테일 수준이 결정됩니다."
+    },
+    {
+      "name": "Manual",
+      "desc": "사용자가 수동으로 특정 영역의 메쉬를 리파인(Refine)하도록 제어합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "기괴한 생명체 유기적 형태 초안 잡기",
+      "steps": [
+        "기본 큐브나 스피어를 생성하고 Sculpt Mode로 전환합니다 (Ctrl+Tab).",
+        "Dyntopo를 활성화하고 Detail Type을 Relative Detail로 설정합니다.",
+        "Snake Hook 브러시를 선택하고 Viewport에서 드래그하여 팔다리와 뿔 등 돌출된 형태를 빠르게 뽑아냅니다.",
+        "Detail Flood Fill을 실행하여 늘어난 폴리곤 간격을 전체적으로 균일하게 다듬습니다."
+      ]
+    },
+    {
+      "title": "클레이 스컬프팅 후 표면 매끄럽게 정리하기",
+      "steps": [
+        "Clay Strips 브러시로 볼륨감을 더해가며 근육이나 옷주름의 큰 덩어리를 만듭니다.",
+        "Smooth 브러시(Shift 키 누른 채 드래그)를 사용하여 거친 표면을 부드럽게 문지릅니다.",
+        "Refine Method를 Subdivide Collapse로 설정해 불필요한 고밀도 삼각면을 최적화합니다."
+      ]
+    },
+    {
+      "title": "Dyntopo 스컬프 후 Retopology 준비하기",
+      "steps": [
+        "Dyntopo로 자유롭게 형태를 완성한 뒤, Object Mode로 돌아옵니다.",
+        "Properties → Modifier 탭에서 Quad Remesh 또는 Remesh Modifier를 추가합니다.",
+        "애니메이션과 리깅이 가능한 정돈된 사각형(Quad) 중심의 Topology로 변환합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "Dyntopo 활성화 상태에서 폴리곤 수가 수백만 개를 넘어가면 브러시 지연(Lag) 현상이 발생합니다.",
+    "Detail Size 값을 지나치게 낮게 설정하면 한 번의 브러시 터치로도 폴리곤 수가 폭증하므로 주의합니다.",
+    "성능 저하가 발생할 경우 Object Mode에서 Ctrl+A를 눌러 Scale을 반드시 1.0으로 Apply(적용)합니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "Dyntopo 체크박스가 활성화되지 않거나 회색으로 비활성화되어 있습니다.",
+      "fix": "오브젝트에 커스텀 Modifier가 남아있거나, 메쉬가 복합 오브젝트일 수 있습니다. Object Mode에서 Ctrl+A를 눌러 Scale을 적용하고, 불필요한 Modifier를 Apply하거나 삭제한 뒤 다시 시도합니다."
+    },
+    {
+      "symptom": "브러시를 칠할 때 면이 찢어지거나 구멍이 생깁니다.",
+      "fix": "메쉬에 비정상적인 노멀(Normal)이나 중복된 Vertex가 존재할 수 있습니다. Edit Mode로 전환 후 Alt+M 또는 M을 눌러 'By Distance'로 머지(Merge)를 수행하고 노멀을 재계산(Shift+N)합니다."
+    },
+    {
+      "symptom": "스컬프팅 도중 프로그램이 갑자기 멈추거나 꺼집니다.",
+      "fix": "Detail Size 값이 너무 작아 폴리곤 한계치를 초과했기 때문입니다. Faces Limit 옵션을 활성화하여 최대 면 수를 제한하고 작업합니다."
+    }
+  ],
+  "versions": "Blender 2.8x 이후 버전부터 Dyntopo 연산 알고리즘이 개선되어 복잡한 하드서페이스 및 유기농 스컬프팅 모두에서 성능이 향상되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/search.html?q=Blender%20Dyntopo",
+  "grounded": true,
+  "at": "2026-11-21T08:08:28+00:00"
+}

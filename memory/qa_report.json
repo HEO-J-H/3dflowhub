@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-20T20:14:09+00:00",
-  "checked": 1624,
+  "at": "2026-11-21T08:06:19+00:00",
+  "checked": 1626,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -2131,6 +2131,35 @@
         "시각 자료(이미지 또는 영상)가 포함되어 있지 않습니다."
       ],
       "fix_hint": "가이드 문서에는 항상 실제 작동 화면을 보여주는 이미지나 애니메이션 GIF를 함께 배치해야 합니다."
+    },
+    {
+      "kind": "fix",
+      "id": "substance-3d-gpu-timeout-detected-tdr-10c7b",
+      "title": "GPU timeout detected (TDR) 오류와 Substance 3D Painter 안정화 방법",
+      "score": 9,
+      "defects": [
+        "Texture Set Resolution의 'Resolution'은 한글 UI 기준 '해상도'로 표기하거나 통일하는 것이 좋습니다."
+      ],
+      "fix_hint": "소프트웨어 UI 메뉴나 설정명을 적을 때는 한글 용어와 영문 고유 명사를 혼용하기보다 공식 명칭을 정확히 일치시켜 작성해 주세요."
+    },
+    {
+      "kind": "guide",
+      "id": "davinci-resolve-render-cache-594b",
+      "title": "렌더 캐치 — 무거운 효과나 퓨전 컴포지션을 미리 렌더링하여 실시간 재생을 원활하게 만드는 기능",
+      "score": 9,
+      "defects": [],
+      "fix_hint": "공식 UI 메뉴 경로와 기능 설명이 정확하고 따라 하기 쉽게 잘 작성되었습니다."
+    },
+    {
+      "kind": "guide",
+      "id": "blender-mix-shader-and-mix-color-4d24",
+      "title": "Mix — 재질·색 섞기",
+      "score": 8,
+      "defects": [
+        "MixRGB 노드는 최신 블렌더 버전에서 Mix 노드로 통합되었으나 MixRGB라는 표기가 혼재됨",
+        "트러블슈팅 항목 중 텍스처 좌표 오류 해결법이 다소 간결하여 초보자가 따라 하기 어려움"
+      ],
+      "fix_hint": "최신 블렌더 버전에 맞춘 정확한 노드 명칭(Mix 노드 등)을 사용하고, 단계별 가이드를 더 명확히 작성하세요."
     }
   ],
   "avg_score": 9.0,

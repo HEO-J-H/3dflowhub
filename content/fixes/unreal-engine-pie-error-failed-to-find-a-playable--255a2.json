@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-pie-error-failed-to-find-a-playable--255a2",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "PIE error: Failed to find a playable world for spawning player",
+  "title": "PIE error: Failed to find a playable world for spawning player 해결 방법",
+  "summary": "Unreal Engine에서 Play in Editor(PIE)를 실행할 때 플레이어를 스폰할 수 있는 유효한 월드나 레벨이 존재하지 않거나 시작 레벨이 지정되지 않아 발생하는 오류입니다.",
+  "causes": [
+    "현재 프로젝트에 열려 있거나 로드된 레벨(Level)이 없는 경우",
+    "Project Settings에서 기본 시작 레벨(Default Map)이 잘못 지정되었거나 비어 있는 경우",
+    "World Settings에 지정된 Game Mode 설정이 누락되었거나 플레이어 스폰을 지원하지 않는 경우"
+  ],
+  "steps": [
+    "Content Browser에서 로드하고자 하는 레벨(.umap 파일)을 더블클릭하여 엽니다.",
+    "메뉴 바에서 File → Save Current로 현재 레벨을 저장합니다.",
+    "Edit → Project Settings를 엽니다.",
+    "왼쪽 메뉴에서 Maps & Modes로 이동합니다.",
+    "Default Maps 항목에서 Editor Startup Map과 Game Default Map에 올바른 레벨이 지정되어 있는지 확인하고 선택합니다."
+  ],
+  "check": [
+    "상단 툴바의 Play 버튼을 눌렀을 때 에러 없이 에디터 내에서 게임이 정상적으로 실행되는지 확인합니다.",
+    "Output Log에 플레이어 스폰 성공 메시지가 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "새로운 레벨을 생성한 직후 반드시 Project Settings의 Default Maps를 업데이트합니다.",
+    "프로젝트 빌드 및 에디터 재시작 전 항상 현재 작업 중인 레벨을 저장합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 플레이어 스폰 오류",
+    "PIE error Failed to find a playable world",
+    "Unreal 월드 없음 오류",
+    "Default Map 설정",
+    "플레이어 Controller 스폰 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T08:07:41+00:00"
+}

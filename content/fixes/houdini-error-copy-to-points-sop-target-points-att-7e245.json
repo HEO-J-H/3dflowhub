@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-copy-to-points-sop-target-points-att-7e245",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Copy to points sop: Target points attribute P not found",
+  "title": "Error: Copy to points sop: Target points attribute P not found 해결 방법",
+  "summary": "Error: Copy to points sop: Target points attribute P not found는 Houdini의 Copy to Points 노드 두 번째 입력(Target Points)에 위치 정보를 담고 있는 기본 어트리뷰트인 P(Position)가 존재하지 않을 때 발생하는 오류입니다.",
+  "causes": [
+    "두 번째 입력에 연결된 Geometry Nodes가 포인트 데이터를 전혀 생성하지 않았거나 비어 있는 경우",
+    "Point Wrangle이나 Attribute Delete 등의 노드에서 실수로 P 어트리뷰트를 삭제한 경우",
+    "입력된 지오메트리가 포인트가 아닌 단순 볼륨(VDB)이나 Primitive 상태로만 존재하는 경우"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Copy to Points 노드의 두 번째 입력(Target Points)에 연결된 이전 노드를 확인합니다.",
+    "연결된 노드(예: Scatter, Grid, Add 등)의 파라미터 창에서 포 포인트가 정상적으로 생성되고 있는지 확인합니다.",
+    "만약 Primitive만 있다면 Scatter SOP 등을 중간에 추가하여 포인트를 생성합니다.",
+    "Point Wrangle이나 Attribute Delete 노드에서 P 어트리뷰트가 실수로 삭제되었는지 확인하고 이를 제거합니다.",
+    "필요한 경우 Add SOP를 연결하고 Points 탭에서 'Add Point' 옵션을 켜서 수동으로 포인트 P를 생성합니다."
+  ],
+  "check": [
+    "Viewport에서 디스플레이 플래그를 두 번째 입력의 대상 노드에 놓고 포인트 번호(Display Points)가 표시되는지 확인합니다.",
+    "Copy to Points 노드의 오류 메시지가 사라지고 정상적으로 지오메트리가 복제되는지 확인합니다."
+  ],
+  "prevent": [
+    "포인트를 다루는 노드 네트워크에서는 항상 Geometry Spreadsheet를 열어 P 어트리뷰트가 유지되는지 확인하는 습관을 들입니다.",
+    "Attribute Delete 노드를 사용할 때 P 같은 필수 기본 어트리뷰트는 삭제 목록에 포함되지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "Houdini Copy to Points 오류",
+    "Target points attribute P not found",
+    "Houdini P 어트리뷰트 없음",
+    "Copy to points P 에러",
+    "Houdini 포인트 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T08:07:44+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logskinnedmesh-warning-bone-has-no-w-e20e8",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogSkinnedMesh: Warning: Bone has no weighting and will not animate correctly",
+  "title": "LogSkinnedMesh: Warning: Bone has no weighting and will not animate correctly 해결",
+  "summary": "Unreal Engine에서 스켈레탈 메시의 특정 본(Bone)에 Vertex 가중치(Weight)가 전혀 할당되지 않아 애니메이션이 올바르게 재생되지 않을 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "3D 툴(Blender, Maya 등)에서 스킨닝 작업 중 실수로 일부 본에 Vertex가 연결되지 않았거나 가중치가 0인 경우",
+    "메시를 쪼개거나 결합하는 과정에서 본 가중치 데이터가 손실되었거나 유실된 경우",
+    "Import 과정에서 본 이름(Bone Name) 불일치로 인해 가중치 매핑이 어긋난 경우"
+  ],
+  "steps": [
+    "Blender나 Maya 등 원본 3D DCC 툴로 돌아가 문제가 발생한 본을 찾습니다.",
+    "Weight Paint 모드에서 해당 본을 선택하고 가중치가 누락된 Vertex 영역에 가중치를 부여합니다.",
+    "모든 본에 최소 하나 이상의 Vertex가 올바르게 웨이트(Weight)되어 있는지 확인합니다.",
+    "FBX 파일로 다시 Export를 수행합니다.",
+    "Unreal Engine Content Browser에서 기존 스켈레탈 메시를 우클릭하고 Reimport를 실행하여 수정된 파일을 불러옵니다."
+  ],
+  "check": [
+    "Unreal Engine Output Log에서 해당 본(Bone)과 관련된 'Bone has no weighting' 경고 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Persona(애니메이션 에디터) Viewport에서 해당 본이 포함된 애니메이션을 재생했을 때 메시가 왜곡 없이 올바르게 움직이는지 확인합니다."
+  ],
+  "prevent": [
+    "3D DCC 툴에서 스킨닝 작업 완료 후, Unreal Engine으로 Export 전에 Clean Up 또는 Purge 기능을 통해 빈 본이나 웨이트가 없는 본을 미리 정리합니다.",
+    "스킨 바인딩 시 Max Influences 값을 확인하고 가중치가 누락된 영역이 없는지 체크합니다."
+  ],
+  "keywords": [
+    "Bone has no weighting",
+    "스켈레탈 메시 경고",
+    "Unreal Engine 애니메이션 오류",
+    "본 웨이트 누락",
+    "LogSkinnedMesh Warning"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-21T08:07:39+00:00"
+}
