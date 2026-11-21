@@ -1,0 +1,113 @@
+{
+  "id": "blender-edge-slide-gg-e56d",
+  "guide_id": "blender-edge-slide-gg-e56d",
+  "tool": "Blender",
+  "name": "Edge Slide (GG)",
+  "title": "Edge Slide — 엣지 따라 버텍스 이동",
+  "overview": "Blender의 Edge Slide(GG)는 선택한 엣지를 인접한 면의 위를 따라 미끄러지듯 이동시키는 핵심 모델링 도구입니다. 메쉬의 전체적인 볼륨이나 곡률을 해치지 않고 디테일의 위치를 정밀하게 재조정할 수 있어 Topology 수정에 필수적입니다.",
+  "access": "Edit Mode 진입 후 상단 메뉴바의 Edge ‣ Edge Slide, 또는 Hotkey G를 두 번 연속 누르기(GG), 혹은 3D Viewport 상단 메뉴의 Mesh ‣ Edge ‣ Edge Slide",
+  "options": [
+    {
+      "name": "Factor",
+      "value": "-1.0 ~ 1.0",
+      "effect": "인접한 엣지 방향으로 슬라이드하는 방향과 양을 결정합니다. 값 -1과 1은 인접한 엣지 끝까지 완전히 이동시킵니다.",
+      "tip": "수치 직접 입력이나 Mouse 드래그를 통해 정밀한 위치 조절이 가능합니다."
+    },
+    {
+      "name": "Even",
+      "value": "E 키 (Toggle)",
+      "effect": "기본 백분율 이동 대신, 모든 Vertex가 인접한 Vertex로부터 동일한 절대 거리를 유지하도록 정렬합니다.",
+      "tip": "균일한 간격의 Topology가 필요할 때 유용하게 쓰입니다."
+    },
+    {
+      "name": "Flipped",
+      "value": "F 키 (Toggle)",
+      "effect": "Even 모드가 활성화된 상태에서 기준이 되는 인접 Vertex의 방향을 반대로 바꿉니다.",
+      "tip": "Even 모드 적용 후 엣지 정렬 방향이 어긋날 때 토글하여 바로잡습니다."
+    },
+    {
+      "name": "Clamp",
+      "value": "Alt 또는 C 키 (Toggle)",
+      "effect": "엣지가 인접한 면의 경계 외부로 벗어나는 것을 제한하여 메쉬가 뒤틀리는 것을 방지합니다.",
+      "tip": "복잡한 곡면에서 슬라이드 범위를 안전하게 제한할 때 켭니다."
+    },
+    {
+      "name": "Mirror Editing",
+      "value": "Mesh Symmetry 연동",
+      "effect": "메쉬의 반대편에 있는 대칭 엣지도 함께 슬라이드합니다.",
+      "tip": "대칭 구조의 캐릭터나 오브젝트 작업 시 좌우 균형을 유지하는 데 필수적입니다."
+    },
+    {
+      "name": "Correct UVs",
+      "value": "체크박스",
+      "effect": "Vertex 이동에 맞춰 UV 좌표를 자동으로 보정하여 텍스처 늘어남이나 왜곡을 방지합니다.",
+      "tip": "이미 텍스처링과 엉킨 언랩이 끝난 모델의 엣지를 수정할 때 반드시 켜야 합니다."
+    }
+  ],
+  "modes": [
+    {
+      "name": "Standard Slide Mode",
+      "desc": "선택한 엣지의 상대적 길이기준(백분율)으로 모든 Vertex가 비례하여 이동하는 기본 방식입니다."
+    },
+    {
+      "name": "Even Mode",
+      "desc": "E 키를 눌러 활성화하며, 인접 Vertex로부터의 절대 거리를 일치시켜 간격을 균일하게 정렬합니다."
+    }
+  ],
+  "recipes": [
+    {
+      "title": "캐릭터 얼굴 근형(Loop) 흐름 개선",
+      "steps": [
+        "Object Mode에서 캐릭터 모델을 선택하고 Tab 키를 눌러 Edit Mode로 진입합니다.",
+        "Alt + 클릭으로 수정할 얼굴 윤곽의 Edge Loop를 선택합니다.",
+        "G 키를 두 번 눌러 Edge Slide 툴을 활성화합니다.",
+        "Mouse를 움직여 뺨과 눈 주변의 메쉬 흐름을 자연스럽게 맞추고 LMB로 확정합니다."
+      ]
+    },
+    {
+      "title": "하드 서페이스 하이라이트 라인 정렬",
+      "steps": [
+        "하드 서페이스 모델의 각진 부분 근처 엣지 루프를 선택합니다.",
+        "G를 두 번 누르고 E 키를 눌러 Even 모드를 활성화합니다.",
+        "인접 면과의 간격을 일정하게 유지하며 스페큘러 하이라이트가 맺히는 위치를 정밀 조정합니다.",
+        "LMB로 확정하고 필요시 Adjust Last Operation 패널에서 Factor 값을 미세 조정합니다."
+      ]
+    },
+    {
+      "title": "텍스처 왜곡 없는 서브디비전 디테일 추가",
+      "steps": [
+        "이미 UV 맵핑이 완료된 오브젝트의 디테일 엣지를 선택합니다.",
+        "G를 두 번 눌러 Edge Slide를 실행합니다.",
+        "옵션 패널에서 Correct UVs를 활성화합니다.",
+        "엣지를 원하는 위치로 이동시켜도 텍스처가 왜곡되지 않는 것을 확인하고 확정합니다."
+      ]
+    }
+  ],
+  "performance": [
+    "밀도가 극도로 높은 고하이폴리 메쉬(수백만 폴리곤)에서 Edge Slide를 실행하면 계산에 지연이 생길 수 있습니다.",
+    "성능 저하가 발생할 경우, 불필요한 Subdivison Surface Modifier를 잠시 끄거나(Viewport Visibility 비활성화) Edit Mode에서 작업하십시오.",
+    "Mesh Symmetry 옵션은 대칭 Vertex 계산을 동반하므로 대형 메쉬에서는 반응 속도가 느려질 수 있습니다."
+  ],
+  "troubleshoot": [
+    {
+      "symptom": "엣지가 인접한 면의 바깥쪽으로 무리하게 튀어나가 메쉬가 꼬입니다.",
+      "fix": "Clamp 옵션(Hotkey C 또는 Alt)을 활성화하여 엣지가 경계 면 내부에서만 이동하도록 제한하십시오."
+    },
+    {
+      "symptom": "Even 모드를 켰을 때 Vertex 간격이 반대 방향으로 정렬됩니다.",
+      "fix": "Flipped 옵션(Hotkey F)을 눌러 기준이 되는 인접 Vertex 방향을 반대로 전환하십시오."
+    },
+    {
+      "symptom": "엣지를 슬라이드하고 나니 텍스처가 심하게 일그러집니다.",
+      "fix": "작업 완료 후 Adjust Last Operation 패널(좌측 하단 팝업)에서 Correct UVs 옵션을 체크하거나 작업 전 미리 켜두십시오."
+    },
+    {
+      "symptom": "G 키를 두 번 눌렀는데 Vertex가 아닌 Edge 전체가 이동하지 않고 한쪽 점만 움직입니다.",
+      "fix": "상단 모드에서 Edge Select 모드(숫자 2 키)가 활성화되어 있는지 확인하고 에지 루프를 올바르게 선택했는지 점검하십시오."
+    }
+  ],
+  "versions": "Blender 2.8x 및 3.x, 4.x 대에 이르러 Adjust Last Operation 패널과 Hotkey(G 두 번) 체계는 동일하게 유지되고 있으며, 최신 버전에서는 성능 최적화와 Correct UVs 알고리즘이 더욱 안정화되었습니다.",
+  "doc": "https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html",
+  "grounded": true,
+  "at": "2026-11-21T12:21:55+00:00"
+}

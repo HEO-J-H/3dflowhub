@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-19T05:15:08.876539+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/19 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-19T05:25:23.305342+00:00",
       "collected": 0,
       "saved": 0,
@@ -6255,6 +6243,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-21T12:16:42.210394+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 74,
+      "candidates_passed": 36,
+      "offtopic": 18,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "10465991",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6350,7 +6365,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-12 [core.filter_strict_offtopic(): 일반 명사 도구명] 테스트 실패 — FAILED tests/test_core.py::test_filter_strict_offtopic - AssertionError: assert False is True 보안: ['병합 충돌 표시가 남은 파일: core.py, core.py, core.py']",
     "2026-11-12 [[p-38e4a00ec2|운영·비용] PR #60 검토 및 로컬 파이프라] 외부 PR 병합 전 반드시 자동화 테스트 결과와 코드 변경 범위를 재확인하여 파이프라인 안정성을 유지한다.",
     "2026-11-12 [[p-9eea3f45cd|운영·비용] 로컬 파이프라인 입력 검증 테스트 ] ",
     "2026-11-12 [성찰] 동음이의어(Nuke, Maya, Unity 등)에 대한 필터를 대폭 강화하여 비관련 기사 유입을 원천 차단하고, 실무 튜토리얼 및 스크립트 위주의 고단가 검색 키워드 공략이 필수적입니다.",
@@ -6469,7 +6483,8 @@
     "2026-11-21 [성찰] 검색 유입과 고단가 RPM을 극대화하려면 단순 요약을 넘어 Maxscript, 애드온, 플러그인 등 실무 적용 가이드와 구체적인 수치를 포함한 1,500자 이상의 독창적 콘텐츠를 작성해야 합니다.",
     "2026-11-21 [[p-fb2e76d5f9|사이트·UX] 모바일 가이드 카드 UI 개선: ] 모바일 UI 개선 시 핵심 정보(핫키, 파라미터)를 뱃지 형태로 상단 고정하면 가독성과 직관성이 크게 향상된다.",
     "2026-11-21 [[p-05c667bff7|사이트·UX] RAG 사용 예시 UI 버튼 삽입] ",
-    "2026-11-21 [[p-05c667bff7|사이트·UX] RAG 사용 예시 UI 버튼 삽입] "
+    "2026-11-21 [[p-05c667bff7|사이트·UX] RAG 사용 예시 UI 버튼 삽입] ",
+    "2026-11-21 [성찰] 동음이의어 관련 오탐색(off-topic)을 철저히 차단하고, Maya·3ds Max·Blender 등 고단가 실무 가이드 및 애드온·스크립트 중심의 구체적인 콘텐츠를 작성해야 검색 유입과 애드센스 RPM을 극대화할 수 있습니다."
   ],
   "categories": {
     "VFX": [
@@ -6534,7 +6549,7 @@
     "Game Engine/UEFN·Fortnite": 6,
     "AI 3D/3D 생성 AI": 72,
     "VFX/Nuke": 16,
-    "Game Engine/기타 엔진": 154,
+    "Game Engine/기타 엔진": 155,
     "VFX/After Effects": 67,
     "VFX/Houdini FX": 12,
     "3D DCC/기타 DCC": 101,
@@ -6663,7 +6678,6 @@
     "Game Engine/Construct 3": "Construct"
   },
   "title_hashes": [
-    17645655513838018142,
     14467342112480307220,
     3680450934517294631,
     4258591135715567078,
@@ -9662,14 +9676,15 @@
     9225375373156614787,
     13400821490992047222,
     9122355518584047656,
-    18248581233382509192
+    18248581233382509192,
+    17631610770278569222
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3689,
-    "Game Engine": 3689,
-    "VFX": 3689,
-    "AI 3D": 3689
+    "3D DCC": 3690,
+    "Game Engine": 3690,
+    "VFX": 3690,
+    "AI 3D": 3690
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
