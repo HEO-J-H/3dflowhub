@@ -1,42 +1,58 @@
 {
-  "title_ko": "Facet-SLAM: 실시간 Triangle Splatting SLAM 논문",
+  "title_ko": "Facet-SLAM: 실시간 트라이앵글 Splatting SLAM",
   "title": "Facet-SLAM: Real-Time Triangle Splatting SLAM",
   "url": "https://arxiv.org/abs/2611.23935v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "Facet-SLAM",
+    "Triangle Splatting",
     "SLAM",
-    "Gaussian Splatting",
     "RGB-D",
-    "Jetson AGX Orin",
-    "Delaunay"
+    "GICP",
+    "3D Vision"
   ],
-  "summary": "Desktop GPU에서 100 FPS로 구동되며 표면 정확도를 높인 최초의 실시간 triangle splatting SLAM 시스템인 Facet-SLAM 논문이 공개되었습니다.",
-  "insight": "이 논문은 기존 Gaussian Splatting 기반 SLAM의 조잡한 표면 기하학 문제를 해결하기 위해 트래커와 맵퍼의 역할을 분리합니다. Desktop GPU 환경에서 약 100 FPS를 달성하고 Jetson AGX Orin에서 센서 속도로 구동되어 실시간 3D 재구성 연구에 직접적인 대안을 제시합니다.",
-  "try_it": [],
+  "summary": "RGB-D 카메라를 위해 삼각형 Primitive 기반으로 실시간 구동과 정확한 표면 지오메트리를 동시에 달성한 최초의 SLAM 시스템입니다.",
+  "insight": "이 기술이 상용화되면 실시간 AR·VR 및 로봇 내비게이션 분야에서 별도의 후처리 메쉬 변환 과정 없이 즉시 활용 가능한 고정밀 3D 표면 맵을 얻을 수 있을 것으로 기대됩니다. 특히 모바일 및 임베디드 하드웨어(Jetson AGX Orin 등)에서의 실시간 구동 가능성은 현장 스캔 및 실시간 시각화 작업의 효율을 크게 높여줄 수 있습니다.",
+  "try_it": [
+    "논문에서 공개 예정으로 밝힌 GitHub 저장소(https://github.com/edward62740/Facet-SLAM)를 방문합니다.",
+    "추후 소스 코드가 업로드되면 로컬 환경 또는 Jetson AGX Orin 기기에 클론하여 RGB-D 센서와 연동해 테스트를 진행합니다."
+  ],
   "sections": [
     {
-      "heading": "Triangle Splatting 기반 SLAM의 한계와 접근",
-      "body": "기존 밀집 SLAM 시스템은 광범위한 렌더링 성능을 보여주나 표면 기하학이 부실하고 메시 추출 단계가 필요합니다. 반면 triangle splatting은 정점을 연결된 메시로 바로 삼각분할할 수 있는 표면 Primitive를 제공합니다. 그러나 광도 측정 방식의 트래킹에 의존하여 센서 속도에 맞추기에는 속도가 지나치게 느리다는 단점이 존재합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 3D Gaussian Splatting 기반 SLAM은 렌더링 품질은 뛰어나지만 표면 지오메트리가 부족하고 별도의 메쉬 추출 또는 퓨전 단계를 거쳐야 합니다. 삼각형 Primitive 기반의 TS-SLAM은 직접 연결된 메쉬를 얻을 수 있지만 포토메트릭 트레이킹 방식이 느려 실시간 센서 레이트 동작이 불가능했습니다."
     },
     {
-      "heading": "트래커와 맵퍼의 역할 분리 전략",
-      "body": "Facet-SLAM은 빠른 기하학적 등록을 위해 트래커와 맵퍼의 역할을 명확히 분리합니다. 트래커는 융합된 깊이에서 각 삼각형의 중심점을 설정하고 GICP를 통해 프레임을 중심점에 등록합니다. 맵퍼는 변수 변경을 통해 비이동 업데이트로 제한되어 최적화 중 삼각형이 관측된 표면에서 이탈하는 문제를 방지합니다."
+      "heading": "핵심 아이디어",
+      "body": "트래커와 맵퍼의 역할을 명확히 분리합니다. 트래커는 융합된 깊이 정보로부터 각 삼각형의 중심점을 설정하고 GICP(Generalized Iteric Closest Point)를 통해 프레임을 등록하며, 맵퍼는 변수 치환(change of variables)을 통해 평행 이동이 없는 업데이트로 제한합니다."
     },
     {
-      "heading": "성능 및 Replica 벤치마크 결과",
-      "body": "본 시스템은 Desktop GPU에서 약 100 FPS의 경쟁력 있는 트래킹 정확도를 달성하며 Jetson AGX Orin에서 센서 속도로 실행됩니다. 광도 측정 방식과 비교하여 20배 이상 빠르고 렌더링 품질을 유지하면서 표면 정확도를 향상시킵니다. Replica 데이터셋에서 Delaunay 메시의 chamfer 거리를 1.55 cm에서 0.86 cm로 단축했습니다."
+      "heading": "방법",
+      "body": "시스템은 GPU와 CPU에서 병렬로 실행됩니다. 맵퍼는 삼각형 맵을 렌더링하여 최적화하되 각 삼각형 정점들의 평균 위치가 깊이 측정값 𝜇에 머물도록 제약하고, 트래커는 GICP를 이용해 모든 깊이 프레임을 이 중심점들에 등록하여 Keyframe과 포즈를 맵퍼에 전달합니다."
+    },
+    {
+      "heading": "결과",
+      "body": "Desktop GPU에서 약 100 FPS, Jetson AGX Orin 임베디드 플랫폼에서 센서 레이트로 구동됩니다. Replica 데이터셋에서 Delaunay 메쉬의 챔퍼 거리를 기존 1.55 cm에서 0.86 cm로 줄이며 표면 정확도를 개선했습니다."
+    },
+    {
+      "heading": "아직 못 하는 것",
+      "body": "포토메트릭 렌더링 품질 측면에서 일부 기존 삼각형 Splatting 방식과 비교해 트레이드오프가 존재하며, 실내 RGB-D 데이터셋 중심의 평가로 인해 다양한 조명이나 대규모 야외 환경에서의 검증은 추가 연구가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "저자는 구현 코드를 https://github.scom/edward62740/Facet-SLAM에 공개할 예정이라고 밝혔습니다."
     }
   ],
   "faq": [
     {
-      "q": "Facet-SLAM은 어떤 하드웨어 환경에서 구동되나요?",
-      "a": "Desktop GPU에서 약 100 FPS로 구동되며 엣지 디바이스인 Jetson AGX Orin에서도 센서 속도로 작동합니다."
+      "q": "Facet-SLAM은 어떤 카메라를 지원하나요?",
+      "a": "논문에 따르면 RGB-D 카메라를 지원합니다."
     },
     {
-      "q": "기존 Gaussian Splatting 기반 SLAM과 어떤 차이가 있나요?",
-      "a": "기존 방식과 달리 표면 Primitive를 삼각형으로 직접 삼각분할하여 별도의 메시 추출 과정 없이 연결된 메시를 생성하며 표면 정확도를 대폭 높였습니다."
+      "q": "Desktop GPU에서 대략 몇 FPS로 동작하나요?",
+      "a": "Desktop GPU에서 약 100 FPS로 구동됩니다."
     }
   ],
   "media": {
@@ -47,5 +63,17 @@
   "notion_id": "",
   "id": "2026-11-21-9408ea987e29feb7",
   "img_tried": true,
-  "img_ok": "2026-11-21T17:07:17+00:00"
+  "img_ok": "2026-11-21T17:07:17+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/edward62740/Facet-SLAM."
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-21T17:58:21+00:00"
 }
