@@ -38563,5 +38563,29 @@
     "id": "p-3221662ce3",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 완료된 제안 목록에 '홀드된 웹 UI 높이맵 테스트 과제 경로 재정비' 및 관련 테스트 분할 작업들이 반영되어 있음"
+  },
+  {
+    "at": "2026-11-21T10:36:20+00:00",
+    "kind": "proposal",
+    "id": "p-37d28ba794",
+    "title": "held 태스크 파일 경로 재검토 및 분할",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "agent_runs에서 패치 적용 실패(backend/tests/test_core.py search 블록 불일치 등)로 held 상태인 과제들이 존재합니다.",
+    "proposal": "실패한 패치 대상 파일의 실제 존재 여부와 경로를 다시 확인하고, 코딩 에이전트가 단일 파일 단위로 안전하게 적용할 수 있도록 과제 명세를 분할합니다.",
+    "expected": "패치 실패율 감소 및 held 상태 태스크의 정상 처리",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-21T10:36:52.372672+00:00",
+    "kind": "decision",
+    "id": "p-37d28ba794",
+    "v": "rejected",
+    "note": "AI 자동 결정: 이미 있는 일과 같음: held 상태 테스트 과제 파일 경로 재검토 및 분할",
+    "auto": true
   }
 ]
