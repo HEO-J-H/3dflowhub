@@ -1,0 +1,18 @@
+<!-- TITLE: MergeableRF 3D Gaussian Splatting 조명 합성 연구 | TAGS: 3D Gaussian Splatting,NeRF,Relighting,Radiance Fields,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 독립적으로 학습된 복수의 래디언스 필드 파라미터를 직접 결합하여 재조명을 구현하는 MergeableRF 기법이 발표되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>MergeableRF 핵심 작동 원리</h2>
+<p>빛의 선형성에 기반하여, 여러 기준 광원 아래에서 학습된 래디언스 필드의 파라미터를 직접 결합하는 방식입니다. 독립적으로 학습된 모델들을 단순히 합치는 것만으로는 올바른 이미지 조합이 나오지 않는 한계를 극복하기 위해 공통 지오메트리와 각 기준 광원별 독립 어피어런스 네트워크를 구성합니다. 동일한 초기화 상태에서 출발하여 파라미터 조합이 이미지의 선형 조합을 재현하도록 학습시키는 merge-aware training을 적용합니다.</p>
+<h2>타겟 환경맵 적용과 렌더링 파이프라인</h2>
+<p>목표 HDR 환경맵이 주어지면 이에 대응하는 기준 광원 계수를 계산합니다. 이 계수를 바탕으로 개별 어피어런스 네트워크 파라미터를 단일 모델로 병합하여 최종 재조명 렌더링을 수행합니다. 이미지 블렌딩 방식과 달리 시점당 단 한 번의 렌더링 패스만 거치므로 연산 부담이 적습니다.</p>
+<h2>지원 포맷 및 실험 결과</h2>
+<p>본 기법은 NeRF와 3D Gaussian Splatting 방식을 모두 지원합니다. 별도의 머티리얼 추정이나 추가 재조명 네트워크, 타겟 최적화 과정이 필요 없습니다. 합성 데이터셋인 Neural Gaffer 오브젝트와 실제 OLATverse 캡처 환경을 이용한 실험에서 기존 다중 광원 관측 데이터 기반 학습 방법들과 동등한 수준의 재조명 품질을 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">별도의 재조명 네트워크나 머티리얼 추정 과정 없이 파라미터 병합만으로 HDR 환경맵 조명 변경을 시점당 1회 렌더링 패스로 수행합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. MergeableRF는 어떤 3D 렌더링 모델을 지원하나요?</b><br/>A. NeRF와 3D Gaussian Splatting 방식을 모두 지원하여 파라미터 병합 기반 재조명을 구현합니다.</p>
+<p><b>Q. 기존 이미지 블렌딩 방식과의 차이점은 무엇인가요?</b><br/>A. 이미지 블렌딩과 달리 네트워크 파라미터 자체를 병합하므로 시점당 단 한 번의 렌더링 패스로 재조명 결과물을 얻을 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-21-4ab38ddfd895d1cf.html">Gaussian Splatting 초해상도 기술 AGSR 논문 발표</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-433ef94eccdc362b.html">GS-VTON-MVT — 3D 가상 피팅을 위한 다중시점 트랜스포머</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-07936d5f0e3ebb57.html">PaveSplat: 고해상도 렌더링을 위한 Gauss Splatting</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.25523v1" target="_blank" rel="noopener nofollow">Multi-View Relighting with Mergeable Radiance Fields</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
