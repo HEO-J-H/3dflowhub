@@ -1,0 +1,95 @@
+{
+  "title_ko": "Godot 4 Steam 빌드 전 체크리스트 8가지",
+  "title": "Before Your First Steam Build in Godot 4: An Eight-Point Export Checklist for Small Teams - GameDev.net",
+  "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPN0FfQ1hiVkVjRkQ3M1M1SGpXdFV3aXZjSTE4OVpJZVhvZ2JHV0RLV25rbGQtUnI1YzZMd2VXOVhVVk14Z1BxbnE3SXNPM3J6RjNDTzBIVlE5SWZzMXpjVTh4TzVGcktGekp6cXYtQVh0cVFlNGZ3UGtJNDRQYlNfdjBPbUtJdUZmTURCQ2xVOUk4R19pWHc?oc=5",
+  "domain": "Game Engine",
+  "category": "Godot",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Godot4",
+    "Steam",
+    "Export",
+    "Build",
+    "Checklist",
+    "고도 엔진"
+  ],
+  "summary": "Godot 4에서 Steam용 게임을 처음 배포할 때 필요한 8가지 설정 항목을 정리한 체크리스트입니다.",
+  "insight": "8개의 체크포인트를 모두 점검하면 작은 팀도 Steam 빌드 실패를 크게 줄일 수 있습니다. Steamworks SDK를 프로젝트 루트에 정확히 배치하고, Export Preset에 앱 ID와 인증서를 입력하는 단계가 핵심입니다.",
+  "try_it": [
+    "Godot 4 프로젝트를 열고 Export → Presets → Add → Steam을 선택한다.",
+    "Steamworks SDK를 다운로드해 프로젝트 폴더에 복사하고, Export Preset의 ‘Steamworks SDK Path’를 지정한다.",
+    "앱 ID와 인증서 정보를 입력한 뒤, ‘Export Project’로 Windows 빌드를 실행해본다."
+  ],
+  "sections": [
+    {
+      "heading": "1. Steamworks SDK 준비",
+      "body": "Steamworks SDK는 Steam 파트너 사이트에서 무료로 다운로드할 수 있습니다. 압축을 풀어 프로젝트 루트에 ‘steamworks_sdk’ 폴더를 만든 뒤, Godot 4 Export Preset에서 경로를 지정합니다. SDK 버전은 Godot 4와 호환되는 최신 버전을 사용해야 합니다."
+    },
+    {
+      "heading": "2. Export Preset에 Steam 옵션 추가",
+      "body": "Export → Presets 메뉴에서 ‘Add…’를 클릭하고 ‘Steam’ Template을 선택합니다. ‘Steam App ID’, ‘Steam Build Directory’, ‘Steamworks SDK Path’를 각각 입력합니다. 이 설정이 없으면 Steam 빌드 시 실행 파일이 정상적으로 패키징되지 않습니다."
+    },
+    {
+      "heading": "3. 인증서와 앱 ID 입력",
+      "body": "Steam 파트너 대시보드에서 발급받은 앱 ID와 배포용 인증서를 Export Preset에 입력합니다. 인증서는 ‘steam_appid.txt’ 파일에 저장하고, 빌드 폴더에 복사해 두어야 합니다. 잘못된 ID나 누락된 인증서는 Steam Client에서 실행 오류를 일으킵니다."
+    },
+    {
+      "heading": "4. 파일 시스템 권한 설정",
+      "body": "Steam은 특정 파일 구조를 요구합니다. ‘steamapps/common/YourGame’ 폴더에 실행 파일과 데이터 파일을 배치하고, ‘userdata’ 폴더는 쓰기 권한을 부여합니다. Godot 4 Export 옵션에서 ‘Include PCK in EXE’를 켜면 파일 관리가 간편해집니다."
+    },
+    {
+      "heading": "5. 테스트 빌드 실행",
+      "body": "설정이 완료되면 ‘Export Project’ 버튼을 눌러 Windows용 빌드를 생성합니다. 생성된 exe 파일을 Steamworks SDK에 포함된 ‘steamclient.dll’과 함께 실행해 정상 동작을 확인합니다. 로그에 ‘SteamAPI_Init() succeeded’가 표시되면 성공적인 초기화입니다."
+    },
+    {
+      "heading": "6. 배포 전 최종 검증",
+      "body": "Steamworks SDK의 ‘SteamPipe’ 툴을 사용해 빌드 파일을 업로드하고, Steam 테스트 서버에서 실행해봅니다. 오류가 없으면 파트너 대시보드에서 ‘Ready to Release’ 상태로 전환합니다. 이 단계에서 발견되는 작은 설정 오류가 배포 지연의 주요 원인입니다."
+    },
+    {
+      "heading": "Steam 빌드 오류 디버깅 팁",
+      "body": "Steam 빌드가 정상적으로 동작하지 않을 경우, 먼저 로그 창에서 ‘SteamAPI_Init() succeeded’ 메시지가 출력되는지 확인합니다. 이 메시지가 없으면 SDK 경로, App ID, 인증서 파일이 올바르게 설정되지 않은 경우가 대부분입니다. Steamworks SDK에 포함된 SteamPipe 툴을 이용해 빌드 파일을 업로드하고 테스트 서버에서 실행해 보면, 파일 구조 오류나 누락된 PCK 파일을 빠르게 찾을 수 있습니다. 또한 ‘Include PCK in EXE’를 켰는지 확인하고, ‘userdata’ 폴더에 쓰기 권한이 부여돼 있는지 검증합니다. 오류가 지속될 경우, Export Preset의 Steam 옵션(Steam App ID, Steam Build Directory, Steamworks SDK Path)을 다시 한 번 점검하고, 최신 호환 SDK 버전을 사용했는지 확인하십시오.",
+      "added": true
+    },
+    {
+      "heading": "Godot 4 Steam 빌드 시 권장 파일 시스템 구조",
+      "body": "Steam은 게임 파일을 특정 폴더 구조에 배치하도록 요구합니다. 프로젝트 루트에 ‘steamapps/common/YourGame’ 폴더를 만들고, 여기 안에 실행 파일(.exe)과 데이터 파일(.pck)을 넣습니다. 사용자 데이터가 저장되는 ‘userdata’ 폴더는 쓰기 권한이 필요하므로, 빌드 전 파일 탐색기에서 해당 폴더의 속성을 ‘읽기·쓰기’로 설정합니다. Godot 4 Export 옵션에서 ‘Include PCK in EXE’를 활성화하면 실행 파일 하나에 모든 데이터를 포함시켜 배포가 간편해집니다. 이 구조를 따르지 않으면 Steam Client가 파일을 찾지 못해 실행 오류가 발생할 수 있습니다.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "Steamworks SDK는 어디서 다운로드하고 어떻게 프로젝트에 연결하나요?",
+      "a": "Steamworks SDK는 Steam 파트너 사이트에서 무료로 다운로드할 수 있습니다. 압축을 푼 뒤 프로젝트 루트에 ‘steamworks_sdk’ 폴더를 만들고, Godot 4 Export Preset의 ‘Steamworks SDK Path’에 해당 폴더 경로를 지정하면 연동이 완료됩니다."
+    },
+    {
+      "q": "Steam 빌드 후 테스트용 실행 파일을 어떻게 검증하나요?",
+      "a": "‘Export Project’로 Windows 빌드를 만든 뒤, 생성된 exe 파일을 Steamworks SDK에 포함된 ‘steamclient.dll’과 함께 실행합니다. 로그에 ‘SteamAPI_Init() succeeded’가 표시되면 Steam API 초기화가 성공한 것이며, 정상 동작을 확인한 것입니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/q10Sk8mpkIA/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=q10Sk8mpkIA"
+  },
+  "collected_at": "2026-11-21T22:18:30.708939+00:00",
+  "notion_id": "",
+  "id": "2026-11-21-7e955b6b9194585b",
+  "img_tried": true,
+  "refs": [],
+  "videos": [
+    {
+      "id": "rQ9mDxvuoeA",
+      "title": "Build Your First Steam Multiplayer Game in Godot | Full Tutorial",
+      "author": "IcyEngine"
+    },
+    {
+      "id": "lGZ4RaC4O2w",
+      "title": "The 4 Essential Building Blocks of Every Godot Game",
+      "author": "GDQuest"
+    }
+  ],
+  "enriched_at": "2026-11-21T22:20:14+00:00",
+  "quality": {
+    "before": 1059,
+    "after": 1859
+  }
+}
