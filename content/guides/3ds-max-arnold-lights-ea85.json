@@ -5,7 +5,7 @@
   "group": "렌더링",
   "name": "Arnold lights",
   "title": "Arnold 조명 설정",
-  "summary": "3ds Max의 기본 렌더러인 Arnold에서 현실적인 조명과 자연스러운 빛의 감쇠를 표현하는 광원 시스템입니다. 물리적 정확성을 바탕으로 실내외 렌더링의 품질을 높여주며, 최신 업데이트로 Arnold Viewport 성능이 개선되어 실시간 라이팅 확인이 더욱 빨라졌습니다.",
+  "summary": "3ds Max의 기본 렌더러인 Arnold에서 현실적인 조명과 자연스러운 빛의 감쇠를 표현하는 광원 시스템입니다. 3ds Max 2027.3 업데이트로 Viewport 내 Arnold 렌더링이 통합되어 별도의 IPR 창 없이 작업 화면에서 직접 최종 품질의 조명과 재질을 확인할 수 있게 되었습니다.",
   "when": [
     "실내 인테리어 씬에서 창문을 통해 들어오는 자연광을 연출할 때",
     "스튜디오 환경에서 제품 디테일을 살리는 반사광과 키 라이트를 세팅할 때",
@@ -16,7 +16,7 @@
     "드롭다운 메뉴에서 Arnold를 선택합니다.",
     "원하는 광원(예: Skydome Light, Quad Light 등)을 뷰포트에 클릭하여 생성합니다.",
     "Modify 패널에서 Intensity와 Exposure 값을 조절해 광원의 밝기를 맞춥니다.",
-    "Color 온도나 텍스처를 연결하여 빛의 성격을 디테일하게 설정하고, 개선된 Arnold Viewport를 통해 실시간으로 결과를 확인합니다."
+    "Color 온도나 텍스처를 연결하여 빛의 성격을 디테일하게 설정하고, 3ds Max 2027.3의 통합 Viewport Arnold를 통해 외부 렌더 창 없이 실시간으로 결과를 확인합니다."
   ],
   "params": [
     {
@@ -50,7 +50,7 @@
       "steps": [
         "Create 패널에서 Arnold > Quad Light를 생성합니다.",
         "제품 위쪽 전면에 배치하고 Size를 키워 부드러운 하이라이트를 만듭니다.",
-        "Exposure 값을 높여 제품 표면에 자연스러운 반사를 유도하고 Arnold Viewport에서 실시간 확인합니다."
+        "Exposure 값을 높여 제품 표면에 자연스러운 반사를 유도하고 Viewport Arnold로 실시간 확인합니다."
       ]
     },
     {
@@ -106,6 +106,19 @@
       ],
       "source_keys": [
         "p:2026-11-20-20af0b9caa25fba3"
+      ]
+    },
+    {
+      "at": "2026-11-22T17:23:06+00:00",
+      "what": "3ds Max 2027.3 버전의 Viewport 내 Arnold 렌더링 통합 내용을 반영하여 요약과 따라 하기 단계가 갱신되었습니다.",
+      "sources": [
+        {
+          "title": "3ds Max 2027.3 출시 — Viewport Arnold와 에이전틱 작업",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNcXhyV2p0dVFaUkEtMEhDbkRhN0tLMV9ydGlQalp3ak9Mc1lMMVhwQ2dtT21meHBrWmVhcndGbnpfWFJCNGN0d1FkdmpKWGtVUnJzZzlkVkQ5a2F0QnJpelVYVFUyalE1S0hrcENCcFhfVDlGNGs2TzgzMWZNVmJCT19VbnNSMXVlbzdQeWpSNXJDM3ZvcDhRemU3TVlsQnY2ekpiVE4wVHNLQQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-22-373156f09df538c1"
       ]
     }
   ]
