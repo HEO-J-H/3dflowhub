@@ -33,13 +33,19 @@ def _session():
     return AuthorizedSession(service_account.Credentials.from_service_account_info(info, scopes=[SCOPE]))
 
 
+USED: dict = {}  # 이번 수집에서 실제로 읽은 속성 (현황판에 표시 — 새 도메인인지 예전 주소인지)
+
+
 def _query(sess, dimension: str, days: int, limit: int) -> list[dict]:
     try:
-        return _query_site(sess, SITE_URL, dimension, days, limit)
+        rows = _query_site(sess, SITE_URL, dimension, days, limit)
+        USED["site"] = SITE_URL
+        return rows
     except Exception as e:
         if SITE_URL == OLD_SITE_URL:
             raise
         core.log.warning("Search Console 새 속성(%s) 실패 → 예전 속성: %s", SITE_URL, e)
+        USED["site"], USED["error"] = OLD_SITE_URL, str(e)[:200]
         return _query_site(sess, OLD_SITE_URL, dimension, days, limit)
 
 
@@ -61,7 +67,7 @@ def collect(days: int = 28) -> dict | None:
         return None
     sess = _session()
     data = {"at": core.datetime.now(core.timezone.utc).isoformat(), "days": days,
-            "queries": _query(sess, "query", days, 100), "pages": _query(sess, "page", days, 100)}
+            "queries": _query(sess, "query", days, 100), "pages": _query(sess, "page", days, 100), **USED}
     core._save_json(GSC_PATH, data)
     core.log.info("Search Console: 검색어 %d개, 페이지 %d개", len(data["queries"]), len(data["pages"]))
     return data

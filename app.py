@@ -1231,7 +1231,13 @@ with t_rev:
         k1.metric("검색어", f"{len(_q)}개")
         k2.metric("노출", int(_q.get("impressions", pd.Series(dtype=int)).sum()))
         k3.metric("클릭", int(_q.get("clicks", pd.Series(dtype=int)).sum()))
-        if len(_q) < 10:
+        _site = sc.get("site", "")
+        if _site.startswith("sc-domain:"):
+            st.caption(f"✅ 새 도메인 속성({_site.removeprefix('sc-domain:')})에서 정상 수집 중"
+                       + (" — 옮긴 지 얼마 안 돼 데이터가 적어요. 보통 2~4주 뒤부터 쌓입니다." if len(_q) < 10 else ""))
+        elif _site:
+            st.warning(f"예전 주소({_site})에서 읽는 중 — 새 속성 권한 확인 필요: {sc.get('error', '')}")
+        elif len(_q) < 10:
             st.caption("ℹ️ 새 도메인(3dflowhub.kr)으로 옮긴 지 얼마 안 돼 데이터가 적어요. 보통 2~4주 뒤부터 쌓입니다.")
         g1, g2 = st.columns(2)
         with g1:
