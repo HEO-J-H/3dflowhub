@@ -655,7 +655,6 @@ header{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;bac
 /* 호버: 뜨거나 확대되지 않고 선·명도만 */
 .card:hover,.gcard:hover,.evcard:hover{transform:none!important;border-color:var(--text-2)}
 .card:hover .img img,.gcard:hover img,.evcard:hover .img img,.wall-item:hover img{transform:none!important;filter:none!important}
-.rv{opacity:1!important;transform:none!important}
 .card .img.ph{background:var(--surface-2)}
 .evmeta .dd.hot{background:var(--accent);color:#fff}
 .btn.primary{background:var(--text);color:var(--bg)}.btn.primary:hover{color:var(--bg);filter:none;background:var(--accent)}
@@ -754,6 +753,38 @@ h2.sec{justify-content:flex-start}h2.sec a{margin-left:auto}
 .links{border-top:0}.links a{background:var(--surface)!important;border-radius:var(--r)!important;box-shadow:var(--clay);padding:16px 18px!important;border:0!important;margin-bottom:8px}
 footer{background:#09090B;color:#A1A1AA;border-radius:32px 32px 0 0;margin-top:64px}footer a{color:#FAFAFA}
 .logo .w3d{color:var(--accent)}
+
+/* ═══ 동적 레이어 (2026-11-22, 참고: Gridx 벤토·티커, Aixor 스크롤 등장) — 움직임 줄이기 설정이면 모두 멈춤 ═══ */
+.bento{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:20px}
+.bento>*{position:relative;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--clay);padding:22px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s}
+.bento .b-intro{grid-row:span 2;justify-content:space-between;gap:14px}
+.bento h1{margin:0;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.035em}
+.bento p{margin:0;color:var(--muted);max-width:46ch}.bento .btn{align-self:flex-start}
+.b-lab{font:600 11.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.b-lab::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:7px;vertical-align:1px}
+.b-stat b{font:700 clamp(34px,4vw,52px)/1 var(--sans);letter-spacing:-.04em}.b-stat span{color:var(--muted);font-size:14px;margin-top:6px}
+.b-tile b{font-size:19px;margin-top:8px}
+.bento i{position:absolute;right:16px;top:16px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-style:normal;
+  background:var(--bg);transition:transform .35s cubic-bezier(.2,.7,.2,1),background .3s,color .3s}
+.bento a:hover{transform:translateY(-3px)}.bento a:hover i{transform:rotate(45deg);background:var(--accent);color:#fff}
+.bento .dark{background:#18181B;color:#fff}.bento .dark .b-lab{color:#A1A1AA}.bento .dark i{background:#27272A}
+.btn .arr{display:inline-block;transition:transform .3s}.btn:hover .arr{transform:translate(2px,-2px) rotate(45deg)}
+.bento a::after,.card::after,.gcard::after,.box::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(253,58,37,.10),transparent 70%)}
+.card,.gcard,.box{position:relative}
+.bento a:hover::after,.card:hover::after,.gcard:hover::after,.box:hover::after{opacity:1}
+.ticker{margin:16px 0 0;overflow:hidden;border-radius:99px;background:var(--surface);box-shadow:var(--clay);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk-track{display:flex;gap:18px;align-items:center;width:max-content;padding:13px 0;animation:tk 70s linear infinite;font-size:14px;font-weight:600}
+.tk-track span{color:var(--accent)}.ticker:hover .tk-track{animation-play-state:paused}
+@keyframes tk{to{transform:translateX(-50%)}}
+.rv{opacity:0;transform:translateY(22px) scale(.985);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.card .img img,.gcard img{transition:transform .8s cubic-bezier(.2,.7,.2,1)!important}
+.card:hover .img img,.gcard:hover img{transform:scale(1.04)!important}
+@media (max-width:820px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(108px,auto);gap:10px}.bento>*{padding:16px}.bento i{width:30px;height:30px;right:12px;top:12px}.bento .b-intro{grid-column:1/-1;grid-row:auto}}
+@media (prefers-reduced-motion:reduce){.tk-track{animation:none}.rv{opacity:1;transform:none}.bento a:hover,.bento a:hover i{transform:none}}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
@@ -2217,13 +2248,21 @@ def build() -> dict:
                       + (f'<section><h2 class="sec">마감 임박 공모전·게임 잼 <a href="{{ROOT}}events/">전체 →</a></h2><ul class="dlist">{ev_rows}</ul></section>' if ev_rows else "")
                       + '</div>')
     home_head = (
-        f'<section class="intro"><div><h1>3D 툴, 기초부터 최신 소식까지</h1>'
-        f'<p>3ds Max·Blender·Houdini·언리얼 기본 기능을 영상과 따라 하기로, 3D·VFX·AI 3D 소식은 매일 한국어로.</p></div>'
-        f'<div class="stats"><span><b>{len(learn_guides)}</b>기초 가이드</span><span><b>{len(posts)}</b>소식</span>'
-        f'<span><b>{tools_n}</b>도구</span><span><b>{len(weeks)}</b>주간 요약</span></div></section>'
-        '<nav class="qnav" aria-label="바로 가기"><a href="{ROOT}learn/">기초 가이드</a><a href="{ROOT}fix/">오류 해결</a>'
-        '<a href="{ROOT}changes/">버전별 바뀐 점</a><a href="{ROOT}compare/">작업별 툴 비교</a>'
-        '<a href="{ROOT}assets/">무료 텍스처·HDRI</a><a href="{ROOT}weekly/">주간 요약</a></nav>'
+        f'<section class="bento" aria-label="3dflowhub 한눈에">'
+        f'<div class="b-intro"><span class="b-lab">3D 학습 아카이브 · 매일 갱신</span><h1>3D 툴, 기초부터<br>최신 소식까지</h1>'
+        f'<p>3ds Max·Blender·Houdini·언리얼 기본 기능을 영상과 따라 하기로, 3D·VFX·AI 3D 소식은 매일 한국어로.</p>'
+        f'<a class="btn primary" href="{{ROOT}}learn/">기초 가이드 시작 <span class="arr" aria-hidden="true">↗</span></a></div>'
+        f'<a class="b-stat" href="{{ROOT}}learn/"><b data-count="{len(learn_guides)}">{len(learn_guides)}</b><span>기초 가이드</span><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-stat" href="{{ROOT}}weekly/"><b data-count="{len(posts)}">{len(posts)}</b><span>정리된 소식</span><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-tile" href="{{ROOT}}fix/"><span class="b-lab">문제 해결</span><b>오류 해결</b><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-tile" href="{{ROOT}}changes/"><span class="b-lab">업데이트</span><b>버전별 바뀐 점</b><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-tile" href="{{ROOT}}compare/"><span class="b-lab">비교</span><b>작업별 툴 비교</b><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-tile dark" href="{{ROOT}}assets/"><span class="b-lab">무료</span><b>텍스처·HDRI</b><i aria-hidden="true">↗</i></a>'
+        f'<a class="b-tile" href="{{ROOT}}events/"><span class="b-lab">일정</span><b>공모전·게임 잼</b><i aria-hidden="true">↗</i></a>'
+        f'</section>'
+        + (f'<div class="ticker" aria-label="최신 글"><div class="tk-track">'
+           + ("".join(f'<a href="{{ROOT}}p/{e(p["id"])}.html">{e(p["title_ko"])}</a><span aria-hidden="true">✦</span>' for p in posts[:12]) * 2)
+           + '</div></div>')
         + feat_html
         + split_html
         + (f'<h2 class="sec">도구별 기초 배우기 <a href="{{ROOT}}learn/">전체 보기 →</a></h2><div class="grid">{learn_tiles}</div>'

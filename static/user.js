@@ -146,7 +146,7 @@
 // 살아 있는 화면: 카드·섹션이 스크롤하면 부드럽게 나타나고, 첫 화면 숫자가 올라감 (움직임 줄이기 설정이면 그대로 둠)
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-  const els = document.querySelectorAll('.card, .gcard, .evcard, .wall-item, h2.sec, .tile, .row');
+  const els = document.querySelectorAll('.card, .gcard, .evcard, .wall-item, h2.sec, .tile, .row, .box, .feat, .split > section, .links a');
   const io = new IntersectionObserver((ents) => ents.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
   }), { rootMargin: '0px 0px -40px 0px' });
@@ -155,7 +155,7 @@
     if (r.top < innerHeight) return;  // 첫 화면에 이미 보이는 것은 그대로 (깜빡임 없이)
     el.classList.add('rv'); el.style.transitionDelay = (i % 4) * 60 + 'ms'; io.observe(el);
   });
-  document.querySelectorAll('.hero [data-count]').forEach((b) => {
+  document.querySelectorAll('[data-count]').forEach((b) => {
     const n = +b.dataset.count; if (!n) return;
     const t0 = performance.now(), dur = 900;
     const step = (t) => { const k = Math.min(1, (t - t0) / dur); b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))).toLocaleString('ko-KR');
@@ -176,4 +176,15 @@
   const imgs = box.querySelectorAll('img');  // 같은 줄을 두 번 이어 붙여 끊김 없이 흐름 → 앞·뒤 절반에 같은 순서
   const half = imgs.length / 2;
   imgs.forEach((im, i) => { const u = pick[i % half % pick.length]; if (u) im.src = u; });
+})();
+
+// 스포트라이트: 카드 위 마우스 위치를 CSS 변수로 (터치 기기·움직임 줄이기에서는 안 함)
+(function () {
+  if (!matchMedia('(hover: hover)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('pointermove', (ev) => {
+    const el = ev.target.closest && ev.target.closest('.bento a, .card, .gcard, .box');
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (ev.clientX - r.left) + 'px'); el.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  }, { passive: true });
 })();
