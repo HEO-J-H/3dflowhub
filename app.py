@@ -63,46 +63,82 @@ SITE_URL = "https://3dflowhub.kr/"
 INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}
 
 # 화면 스타일 — 휴먼 인터페이스 원칙: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
-st.markdown("""<style>
+_DARK = getattr(getattr(st.context, "theme", None), "type", "light") == "dark"
+_CLAY = ("0 7.77px 2.21px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -5px 0 #111111,inset 0 2px 0 rgba(255,255,255,.05)" if _DARK else
+         "0 7.77px 16px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -5px 0 rgba(0,0,0,.05),inset 0 3px 0 rgba(255,255,255,.6)")
+_PANEL = "#18181B" if _DARK else "#F7F7F7"
+# 화면 스타일 — 휴먼 인터페이스: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
+# 디자인: 사이트와 같은 톤(Aigocy 참고) — 징크 뉴트럴, 빨간 포인트 1개, 둥근 입체 카드, 알약 버튼·탭, 제목 앞 빨간 점
+st.markdown(("""<style>
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{--clay:__CLAY__;--panel:__PANEL__;--accent:#FD3A25;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+html,body,.stApp,[data-testid="stMarkdownContainer"],button,input,textarea,select{font-family:"Urbanist","Pretendard Variable","Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif !important}
 .block-container{max-width:1180px;padding-top:2.2rem !important}
-h1{font-size:1.6rem !important;letter-spacing:-.02em;padding:.1rem 0 .2rem !important}
-h2{font-size:1.25rem !important;letter-spacing:-.01em}
-h3{font-size:1.05rem !important}
-[data-testid="stMetric"]{background:var(--secondary-background-color);border-radius:14px;padding:14px 16px}
-[data-testid="stMetricLabel"] p{font-size:13px;opacity:.75}
-[data-testid="stMetricValue"]{font-size:1.6rem;font-weight:700}
-div[data-testid="stVerticalBlockBorderWrapper"]{border-radius:14px}
-.stButton button,.stDownloadButton button,.stLinkButton a,[data-testid="stBaseButton-secondary"],[data-testid="stBaseButton-primary"]{min-height:44px;border-radius:12px;font-weight:600}
-button:focus-visible,a:focus-visible,[role="tab"]:focus-visible{outline:3px solid #0071e3 !important;outline-offset:2px}
-/* 탭: 글자만 있는 줄 대신 누르기 쉬운 알약 모양 */
-[data-testid="stTabs"] [role="tablist"]{gap:4px;flex-wrap:wrap;border-bottom:none}
-[data-testid="stTabs"] [role="tab"]{min-height:40px;padding:0 14px;border-radius:999px;background:var(--secondary-background-color)}
-[data-testid="stTabs"] [role="tab"][aria-selected="true"]{background:#0071e3}
-[data-testid="stTabs"] [role="tab"][aria-selected="true"] p{color:#fff}
+h1{font-size:clamp(1.6rem,3vw,2.3rem) !important;font-weight:800 !important;letter-spacing:-.03em;padding:.1rem 0 .2rem !important}
+h2{font-size:1.3rem !important;font-weight:700 !important;letter-spacing:-.02em}
+h3{font-size:1.1rem !important;font-weight:700 !important;letter-spacing:-.01em}
+/* 섹션 제목 앞 빨간 점 — 어디서 새 덩어리가 시작되는지 한눈에 */
+.block-container h2::before,.block-container h3::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:10px;vertical-align:.18em}
+section[data-testid="stSidebar"] h3::before{display:none}
+/* 숫자 카드: 둥글고 입체적, 숫자는 크게 */
+[data-testid="stMetric"]{background:var(--panel);border-radius:20px;padding:16px 18px;box-shadow:var(--clay)}
+[data-testid="stMetricLabel"] p{font-size:13px;opacity:.7;font-weight:600}
+[data-testid="stMetricValue"]{font-size:1.9rem;font-weight:800;letter-spacing:-.03em}
+[data-testid="stMetricDelta"]{font-family:var(--mono)}
+/* 테두리 상자·접기 상자 = 카드 */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVerticalBlock"]){border-radius:22px}
+[data-testid="stVerticalBlockBorderWrapper"][style*="border"],div[data-testid="stVerticalBlockBorderWrapper"].st-emotion-cache-border{background:var(--panel)}
+[data-testid="stExpander"] details{border:0 !important;border-radius:20px !important;background:var(--panel);box-shadow:var(--clay)}
+[data-testid="stExpander"] summary{min-height:48px;font-weight:600}
+/* 버튼: 알약, 기본 버튼은 검정·눌린 그림자, 누르면 빨강 */
+.stButton button,.stDownloadButton button,.stLinkButton a,[data-testid="stBaseButton-secondary"],[data-testid="stBaseButton-primary"]{min-height:44px;border-radius:999px !important;font-weight:600;transition:transform .2s,background .2s}
+[data-testid="stBaseButton-secondary"],.stLinkButton a{background:var(--panel) !important;border:0 !important;box-shadow:var(--clay)}
+[data-testid="stBaseButton-primary"]{background:#18181B !important;color:#fff !important;border:0 !important;
+  box-shadow:inset 0 -3px 0 #080808,inset 0 1px 0 rgba(255,255,255,.3),0 3px 3px rgba(0,0,0,.14),0 10px 14px rgba(0,0,0,.10)}
+[data-testid="stBaseButton-primary"]:hover{background:var(--accent) !important}
+.stButton button:hover,.stLinkButton a:hover{transform:translateY(-1px)}
+button:focus-visible,a:focus-visible,[role="tab"]:focus-visible{outline:3px solid var(--accent) !important;outline-offset:2px}
+/* 탭: 알약, 선택된 탭은 검정 */
+[data-testid="stTabs"] [role="tablist"]{gap:6px;flex-wrap:wrap;border-bottom:none;padding:4px 0 8px}
+[data-testid="stTabs"] [role="tab"]{min-height:42px;padding:0 16px;border-radius:999px;background:var(--panel);box-shadow:var(--clay)}
+[data-testid="stTabs"] [role="tab"][aria-selected="true"]{background:#18181B}
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] p{color:#fff;font-weight:700}
 [data-testid="stTabs"] [data-baseweb="tab-highlight"],[data-testid="stTabs"] [data-baseweb="tab-border"]{display:none}
-/* 알림 상자는 조금 작게 — 화면을 덮지 않게 */
-[data-testid="stAlert"]{border-radius:12px}
+/* 세그먼트(사이트 선택 등) */
+[data-testid="stButtonGroup"] button{border-radius:999px !important;min-height:40px}
+[data-testid="stButtonGroup"] button[aria-checked="true"],[data-testid="stButtonGroup"] button[kind*="Active"]{background:#18181B !important;color:#fff !important}
+/* 알림·표·입력 */
+[data-testid="stAlert"]{border-radius:16px}
 [data-testid="stAlert"] p{font-size:.92rem}
-.todo-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid rgba(128,128,128,.18)}
+[data-testid="stDataFrame"]{border-radius:16px;overflow:hidden;box-shadow:var(--clay)}
+[data-baseweb="input"],[data-baseweb="select"]>div,[data-baseweb="textarea"]{border-radius:14px !important}
+[data-testid="stProgress"] [role="progressbar"]>div>div{background:var(--accent) !important}
+/* 할 일 줄 */
+.todo-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(128,128,128,.18)}
 .todo-row:first-of-type{border-top:none}
-.todo-row .ttl{font-weight:600}.todo-row small{opacity:.7;display:block;margin-top:2px}
-.glance{opacity:.75;font-size:.9rem;margin:-.4rem 0 .8rem}
+.todo-row>span{font:600 11px/1.9 var(--mono);padding:0 8px;border-radius:999px;background:rgba(253,58,37,.1);color:var(--accent);white-space:nowrap}
+.todo-row .ttl{font-weight:700}.todo-row small{opacity:.7;display:block;margin-top:2px}
+.glance{opacity:.7;font-size:.9rem;margin:-.4rem 0 1rem}
 .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .hdr-links a{margin-right:14px;text-decoration:none}
+/* 사이드바: 떠 있는 패널 */
+section[data-testid="stSidebar"]{background:transparent}
+section[data-testid="stSidebar"]>div{background:var(--panel);margin:10px;border-radius:24px;box-shadow:var(--clay)}
 section[data-testid="stSidebar"] h3{font-size:15px;margin-top:6px}
 @media (max-width: 640px){
   .block-container{padding:3.2rem .75rem 2rem !important}
-  h1{font-size:1.35rem !important}
-  [data-testid="stMetricValue"]{font-size:1.25rem}
-  [data-testid="stMetric"]{padding:10px 12px}
+  h1{font-size:1.45rem !important}
+  [data-testid="stMetricValue"]{font-size:1.35rem}
+  [data-testid="stMetric"]{padding:12px 14px;border-radius:16px}
   [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]){flex-wrap:wrap !important;gap:8px !important}
   [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"]{
     flex:1 1 calc(50% - 8px) !important;min-width:calc(50% - 8px) !important;width:auto !important}
-  [data-testid="stTabs"] [role="tab"]{padding:0 10px}
+  [data-testid="stTabs"] [role="tab"]{padding:0 12px}
   [data-testid="stTabs"] [role="tab"] p{font-size:.88rem}
 }
 @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
-</style>""", unsafe_allow_html=True)
+</style>""").replace("__CLAY__", _CLAY).replace("__PANEL__", _PANEL), unsafe_allow_html=True)
 
 cfg = core.load_config()
 

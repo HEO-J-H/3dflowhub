@@ -27,6 +27,9 @@ SITES_WITH_MANAGER = ("pix2poly", "life-after-60")
 # 실제 기능이 아니라 '과제를 다루는 과제' — PR #80 점검·머지 안내, 보류/정체 과제 재정비·재적용·분할 (2026-11-22, 16건 쌓임)
 META_TASK = re.compile(r"PR\s*#?\d+|held|홀드|보류된|정체된|재정비|재적용|재등록|재구성 및 분할|머지 (안내|준비)|과제 (경로|명세)")
 
+# 결정 기록으로 닫은 주제 — 다시 제안하지 않음 (Pix2Poly RAG: docs/agent-guides/rag-integration.md, 같은 과제 20번 넘게 재제안)
+CLOSED_TOPICS = {"pix2poly": re.compile(r"\bRAG\b|rag_|/rag/")}
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -145,7 +148,7 @@ def review(site: str, force: bool = False) -> dict | None:
     for p in (out.get("proposals") or [])[:MAX_PROPOSALS]:
         if not isinstance(p, dict) or not p.get("title") or manager.similar_open(str(p["title"]), site, str(p.get("proposal", ""))):
             continue
-        if META_TASK.search(f'{p["title"]} {p.get("proposal", "")}'):  # 과제에 대한 과제(PR 점검·보류 과제 재정비)는 만들지 않음
+        if META_TASK.search(f'{p["title"]} {p.get("proposal", "")}') or                 (CLOSED_TOPICS.get(site) and CLOSED_TOPICS[site].search(f'{p["title"]} {p.get("proposal", "")}')):  # 과제에 대한 과제(PR 점검·보류 과제 재정비)는 만들지 않음
             continue
         evs.append({"at": now, "kind": "proposal", "id": "p-" + hashlib.md5(f"{now}{site}{p['title']}".encode()).hexdigest()[:10],
                     "title": str(p["title"])[:80], "by": f"🧭 {s['name']} 관리자", "site": site,
