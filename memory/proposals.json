@@ -33901,5 +33901,29 @@
     "id": "p-e4fc8d917c",
     "verdict": "agent",
     "reason": "테스트 파일 추가와 자동 머지는 코드 수정으로 해결 가능"
+  },
+  {
+    "at": "2026-11-22T00:29:06+00:00",
+    "kind": "proposal",
+    "id": "p-73825b152c",
+    "title": "RAG UI 테스트 커버리지 확대",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG UI 버튼 추가 제안이 거절됐지만 기존 UI(❓ 도움말) 존재, 현재 UI 테스트 파일 부족",
+    "proposal": "web/tests/rag_ui.test.js에 기존 도움말 모달 열기·닫기, API 호출 성공/실패 시 UI 반응 테스트를 추가한다. 테스트가 통과하면 CI에 포함한다.",
+    "expected": "UI 안정성 확보·버그 조기 탐지·CI 품질 향상",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T00:34:52.046453+00:00",
+    "kind": "decision",
+    "id": "p-73825b152c",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
   }
 ]
