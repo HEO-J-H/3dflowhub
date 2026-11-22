@@ -34103,5 +34103,67 @@
     "id": "p-1579604fcb",
     "verdict": "agent",
     "reason": "backend/app/services/ 파이프라인 모듈의 예외 처리 보강 및 테스트 작성은 AI 코딩 에이전트가 직접 수행할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-22T11:12:17+00:00",
+    "kind": "proposal",
+    "id": "p-3b76a4c921",
+    "title": "로컬 파이프라인 에러 응답 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "로컬 FastAPI 파이프라인 예외 처리 및 에러 메시지 보강 작업은 완료되었으나, 관련 예외 상황에 대한 백엔드 유닛 테스트 케이스를 추가하여 안정성을 검증할 필요가 있음.",
+    "proposal": "backend/tests/test_api.py 또는 관련 테스트 파일에 잘못된 입력 이미지나 지원하지 않는 엔진 지정 시 발생하는 에러 응답(400/500) 테스트 케이스 추가",
+    "expected": "파이프라인 예외 처리의 견고함 향상 및 회귀 방지",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T11:12:17+00:00",
+    "kind": "proposal",
+    "id": "p-fe4971d68b",
+    "title": "웹 버전 PBR 텍스처 생성 결과물 다운로드 기능 검증",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 버전 PBR 텍스처 생성 유닛 테스트는 보강되었으나, 브라우저 환경에서 생성된 Albedo/Normal/Roughness 맵의 다운로드 버튼 및 UI 흐름을 최종 확인해야 함.",
+    "proposal": "web/ 디렉토리 내 PBR 텍스처 생성 및 저장 관련 JS 로직과 UI 버튼 동작을 수동 검증하고 관련 문서(docs/) 업데이트",
+    "expected": "사용자가 웹에서 PBR 텍스처를 원활하게 확인하고 내려받을 수 있도록 보장",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T11:13:54.600160+00:00",
+    "kind": "decision",
+    "id": "p-3b76a4c921",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T11:13:54.643571+00:00",
+    "kind": "decision",
+    "id": "p-fe4971d68b",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T11:14:14.162834+00:00",
+    "kind": "triage",
+    "id": "p-3b76a4c921",
+    "verdict": "agent",
+    "reason": "백엔드 FastAPI 파이프라인의 에러 응답 유닛 테스트 추가 작업은 코드 수정으로 자동화하여 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-22T11:14:16.095295+00:00",
+    "kind": "triage",
+    "id": "p-fe4971d68b",
+    "verdict": "agent",
+    "reason": "웹 버전 PBR 텍스처 생성 결과물 다운로드 UI와 JS 로직의 수동 검증 및 관련 문서 업데이트는 코드로 직접 수행할 수 있는 작업입니다."
   }
 ]
