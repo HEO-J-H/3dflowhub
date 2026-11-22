@@ -34072,5 +34072,36 @@
     "id": "p-2df8ed486e",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안 내역에 웹 버전 PBR 텍스처 단위 테스트 및 관련 기능이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-22T10:41:39+00:00",
+    "kind": "proposal",
+    "id": "p-1579604fcb",
+    "title": "로컬 FastAPI 파이프라인 예외 처리 및 에러 메시지 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #80 및 과거 파이프라인 관련 변경에서 나타난 것처럼 Runtime 예외 처리가 불분명한 구간 존재",
+    "proposal": "backend/app/services/ 파이프라인 모듈에서 GPU 자원 부족이나 파일 누락 시 명확한 HTTP 에러 코드와 메시지를 반환하도록 예외 처리 보강 및 관련 테스트 작성",
+    "expected": "사용자 및 디버깅 시 오류 원인 파악 용이성 증대",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T10:42:26.992439+00:00",
+    "kind": "decision",
+    "id": "p-1579604fcb",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T10:42:32.933486+00:00",
+    "kind": "triage",
+    "id": "p-1579604fcb",
+    "verdict": "agent",
+    "reason": "backend/app/services/ 파이프라인 모듈의 예외 처리 보강 및 테스트 작성은 AI 코딩 에이전트가 직접 수행할 수 있는 작업입니다."
   }
 ]
