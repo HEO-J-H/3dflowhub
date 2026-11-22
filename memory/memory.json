@@ -1,33 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-20T14:23:22.427791+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 68,
-      "candidates_passed": 32,
-      "offtopic": 13,
-      "short": 0,
-      "prefiltered": 32,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "647b95e4",
-      "visuals": 3,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "short post",
-        "low depth",
-        "low 3d depth"
-      ]
-    },
-    {
       "at": "2026-11-20T14:32:38.050121+00:00",
       "collected": 1,
       "saved": 0,
@@ -6246,6 +6219,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-22T16:51:49.873694+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 48,
+      "candidates_passed": 11,
+      "offtopic": 20,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "4e62a1c9",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6341,7 +6341,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-13 [evolve.summarize_high_cpc_niche(): 고단가 실] 테스트 실패 — E       KeyError: 'total_practical_posts' / FAILED tests/test_core.py::test_summarize_cpc_optimization_metrics - KeyError: 'total_practical_posts' 보안: ['병합 충돌 표시가 남은 파일: evolve.py, evolve.py,",
     "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 마크다운 문서(.md)에는 코드를 설명용 스니펫으로만 넣고, 실제 테스트 코드는 항상 tests/ 디렉토리의 Python 파일로 작성하자.",
     "2026-11-13 [[p-7b5ecfcde1|운영·비용] 깃허브 RAG 오픈소스 Pix2Po] 문서 파일(.md)에는 테스트 코드를 넣지 않고 마크다운 내용만 작성해야 합니다.",
     "2026-11-13 [성찰] 동음이의어 필터를 20중으로 강화하고 고단가 실무 튜토리얼 및 애드온 관련 검색 유입 주제에 집중하여 비관련 글을 완전히 차단해야 합니다.",
@@ -6460,7 +6459,8 @@
     "2026-11-22 [성찰] 동음이의어나 무관한 뉴스를 철저히 필터링하고 Maxscript, 툴 비교, 실무 튜토리얼 등 고CPC 검색 의도에 맞춘 콘텐츠에 집중해야 합니다.",
     "2026-11-22 [[p-fe4971d68b|사이트·UX] 웹 버전 PBR 텍스처 생성 결과] UI 버튼 동작 및 JS 로직 검증 시 브라우저 호환성과 파일 다운로드 트리거 동작을 꼼꼼히 확인해야 한다.",
     "2026-11-22 [[p-fe4971d68b|사이트·UX] 웹 버전 PBR 텍스처 생성 결과] 테스트 실패 — 64 passed, 1 warning in 2.25s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
-    "2026-11-22 [성찰] 동음이의어 필터링을 더욱 엄격하게 적용하여 3D·게임·VFX 실무 문맥과 무관한 수집 오류(오프토픽)를 완전히 차단하고 검색 유입을 극대화해야 합니다."
+    "2026-11-22 [성찰] 동음이의어 필터링을 더욱 엄격하게 적용하여 3D·게임·VFX 실무 문맥과 무관한 수집 오류(오프토픽)를 완전히 차단하고 검색 유입을 극대화해야 합니다.",
+    "2026-11-22 [성찰] 동음이의어 필터링을 더욱 강화하여 CG·게임·VFX 실무와 무관한 오탐지 뉴스를 원천 차단하고, 실무 튜토리얼 및 스크립트 위주의 고CPC 콘텐츠로 검색 유입을 극대화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6513,7 +6513,7 @@
   },
   "category_counts": {
     "Game Engine/Unity": 119,
-    "AI 3D/가우시안 스플래팅": 140,
+    "AI 3D/가우시안 스플래팅": 141,
     "VFX/스튜디오·작품": 229,
     "AI 3D/로보틱스·월드모델": 36,
     "3D DCC/Blender": 191,
@@ -6654,8 +6654,6 @@
     "Game Engine/Construct 3": "Construct"
   },
   "title_hashes": [
-    8791237685330625314,
-    3580986411615261700,
     14651973725329918423,
     5519484535430586237,
     6093589491347858795,
@@ -9653,14 +9651,16 @@
     10472136080272821700,
     1225305777439254856,
     9448611121295182022,
-    9476492965744394246
+    9476492965744394246,
+    14550071626946710619,
+    2350946802336014465
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3814,
-    "Game Engine": 3814,
-    "VFX": 3814,
-    "AI 3D": 3814
+    "3D DCC": 3815,
+    "Game Engine": 3815,
+    "VFX": 3815,
+    "AI 3D": 3815
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

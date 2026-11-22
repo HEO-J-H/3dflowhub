@@ -1,0 +1,59 @@
+{
+  "title_ko": "AbacusGS Gaussian Splatting 정렬 방식 한계 극복 기술",
+  "title": "AbacusGS: Gaussian Splatting without Per-Splat Sorting - GameDev.net",
+  "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOOTd2Ymlnc19jY3NnbWltMlEyZzFnOWhxOENnZmFaM1FrQlFfcXhLYjVRWHBKMGRpNTFHR3hsejhhT2liZmFSRGczZGxvVl84Skt1UDg0NFFFb2JVbE9JblpPOVllZEc3RHBaU25SV0dQMkItZTVpUTFaZUVSOTM5S2JKbEE3bUFhd0VSeA?oc=5",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "AbacusGS",
+    "실시간 렌더링",
+    "3D 비전",
+    "연구 논문"
+  ],
+  "summary": "AbacusGS는 기존 Gaussian Splatting의 필수 과정이었던 개별 Splat 정렬 단계를 생략하여 렌더링 속도와 연산 효율을 높이는 새로운 접근법을 제시합니다.",
+  "insight": "기존 Gaussian Splatting 렌더링의 병목 현상인 실시간 정렬 연산을 우회하는 새로운 알고리즘 구조를 제안한다. 대규모 실시간 씬 데이터를 다루는 제작 환경에서 메모리 대역폭 부담을 줄이는 대안이 될 수 있다. 매 프레임 카메라 거리순으로 모든 Splat를 정렬해야 했던 기존의 구조적 한계를 수학적 모델로 해결한다.",
+  "try_it": [
+    "기존 Gaussian Splatting 씬에서 매 프레임 발생하는 정렬 연산 부하와 프레임 드랍 발생 지점을 계측한다.",
+    "AbacusGS 알고리즘 구조를 적용하여 대규모 3D 데이터 렌더링 시의 메모리 대역폭 변화를 확인한다.",
+    "실시간 Interactive Application 환경에서 정렬 단계 생략 전후의 프레임 레이트 차이를 비교한다."
+  ],
+  "sections": [
+    {
+      "heading": "개별 Splat 정렬 문제와 AbacusGS의 접근법",
+      "body": "기존 Gaussian Splatting 기법은 시점이 바뀔 때마다 모든 Splat를 카메라 거리순으로 정렬해야 하는 연산 부하가 존재했다. AbacusGS는 이러한 매 프레임의 정렬 과정을 없애는 새로운 수학적 모델을 도입한다. 이를 통해 GPU 병목 현상을 줄이고 렌더링 구조를 단순화한다."
+    },
+    {
+      "heading": "실시간 렌더링 성능과 연산 속도 개선",
+      "body": "정렬 단계가 사라지면서 대규모 3D 씬을 로드하고 출력할 때 발생하는 지연 시간이 줄어든다. 게임 엔진이나 실시간 Interactive Application에서 더 높은 프레임 레이트를 유지할 수 있는 가능성을 보여준다. 메모리 관리 측면에서도 기존 방식 대비 이점을 제공한다."
+    },
+    {
+      "heading": "렌더링 파이프라인의 구조적 단순화",
+      "body": "기존 방식은 카메라 시점이 변경될 때마다 정렬 알고리즘을 반복 실행해야 하므로 연산 자원이 소모되었다. AbacusGS는 정렬 단계를 생략하여 GPU 스케줄링의 부담을 낮춘다. 결과적으로 렌더링 과정에서 발생하는 불필요한 대기 시간을 제거한다."
+    },
+    {
+      "heading": "대규모 씬 데이터 처리의 변화",
+      "body": "수많은 Splat로 구성된 복잡한 3D 공간을 다룰 때 정렬 연산은 항상 성능 저하의 주원인이었다. 본 기술은 정렬 부하를 없애 촘촘한 데이터 구성에서도 일정한 속도를 유지한다. 실시간 인터랙션이 필수적인 분야에서 속도 저하 문제를 완화한다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "AbacusGS는 어떤 문제를 해결하나요?",
+      "a": "Gaussian Splatting 렌더링 시 매 프레임마다 수행해야 했던 개별 Splat 정렬(Per-Splat Sorting) 과정을 완전히 생략하여 연산 속도를 높입니다."
+    },
+    {
+      "q": "기존 Gaussian Splatting과 무엇이 다른가요?",
+      "a": "거리 기반 정렬 알고리즘에 의존하지 않고도 시점 변화에 따른 정확한 렌더링 결과를 유지하도록 설계된 점이 가장 큰 차이점입니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/gKQFfHSt3HA/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=gKQFfHSt3HA"
+  },
+  "collected_at": "2026-11-22T16:51:54.130080+00:00",
+  "notion_id": "",
+  "id": "2026-11-22-e82925b52ed88a82",
+  "img_tried": true,
+  "enriched": "2026-11-22"
+}
