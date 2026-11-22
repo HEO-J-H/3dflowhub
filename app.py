@@ -61,12 +61,10 @@ GH_REPO = os.getenv("GH_REPO", "HEO-J-H/3dflowhub")
 GH_PAT = os.getenv("GH_PAT", "")  # workflow_dispatch 원격 트리거용 (repo: actions write)
 SITE_URL = "https://3dflowhub.kr/"
 INTERVAL_MIN = {"계속": 10, "10분 단위": 10, "1시간 단위": 60, "하루 단위": 1440, "1주일 단위": 10080}
-
-# 화면 스타일 — 휴먼 인터페이스 원칙: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
-_DARK = getattr(getattr(st.context, "theme", None), "type", "light") == "dark"
-_CLAY = ("0 7.77px 2.21px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -5px 0 #111111,inset 0 2px 0 rgba(255,255,255,.05)" if _DARK else
-         "0 7.77px 16px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -5px 0 rgba(0,0,0,.05),inset 0 3px 0 rgba(255,255,255,.6)")
-_PANEL = "#18181B" if _DARK else "#F7F7F7"
+# 패널·그림자는 글자색(currentColor)에서 계산 — 라이트/다크 어느 쪽이든 자동으로 맞음
+# (서버에서 테마를 짐작하면 클라우드에서 틀려 라이트 화면에 검은 카드가 나왔음, 2026-11-22)
+_CLAY = "0 6px 14px rgba(0,0,0,.07),0 2px 3px rgba(0,0,0,.08),inset 0 -4px 0 rgba(0,0,0,.06)"
+_PANEL = "color-mix(in srgb, currentColor 4%, transparent)"
 # 화면 스타일 — 휴먼 인터페이스: 중요한 것 먼저(할 일·이상), 한 화면 한 목적, 44px 터치, 또렷한 위계, 읽기 좋은 폭
 # 디자인: 사이트와 같은 톤(Aigocy 참고) — 징크 뉴트럴, 빨간 포인트 1개, 둥근 입체 카드, 알약 버튼·탭, 제목 앞 빨간 점
 st.markdown(("""<style>
@@ -102,7 +100,7 @@ button:focus-visible,a:focus-visible,[role="tab"]:focus-visible{outline:3px soli
 /* 탭: 알약, 선택된 탭은 검정 */
 [data-testid="stTabs"] [role="tablist"]{gap:6px;flex-wrap:wrap;border-bottom:none;padding:4px 0 8px}
 [data-testid="stTabs"] [role="tab"]{min-height:42px;padding:0 16px;border-radius:999px;background:var(--panel);box-shadow:var(--clay)}
-[data-testid="stTabs"] [role="tab"][aria-selected="true"]{background:#18181B}
+[data-testid="stTabs"] [role="tab"][aria-selected="true"]{background:var(--accent)}
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] p{color:#fff;font-weight:700}
 [data-testid="stTabs"] [data-baseweb="tab-highlight"],[data-testid="stTabs"] [data-baseweb="tab-border"]{display:none}
 /* 세그먼트(사이트 선택 등) */
