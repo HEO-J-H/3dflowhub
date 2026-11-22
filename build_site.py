@@ -796,7 +796,13 @@ footer{background:#09090B;color:#A1A1AA;border-radius:32px 32px 0 0;margin-top:6
 .pager .pg-count{font:600 14px/1 var(--mono);color:var(--text)}
 .pager .pg-count::first-letter{color:var(--accent)}
 .pager .pg-nav.off{opacity:.3;box-shadow:none!important}
+
+/* 화면 모드 버튼 (자동 ◐ → 라이트 ☀ → 다크 ☾) */
+.themebtn{border:0;background:none;cursor:pointer;font:inherit}
+.themebtn span{display:none;font-size:18px;line-height:1}
+html:not([data-theme]) .th-auto,html[data-theme=light] .th-light,html[data-theme=dark] .th-dark{display:inline}
 """
+CSS_VER = __import__("hashlib").md5(CSS.encode()).hexdigest()[:8]  # 스타일이 바뀌면 주소가 바뀌어 예전 캐시를 안 씀
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
 <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/>
@@ -836,7 +842,8 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Urbanist:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="{root}assets/style.css"></head><body>
+<script>try{{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}}catch(e){{}}</script>
+<link rel="stylesheet" href="{root}assets/style.css?v={CSS_VER}"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
 {site_nav(root)[0]}
@@ -933,7 +940,9 @@ def site_nav(root: str) -> str:
 def nav_tail(root: str) -> str:
     """검색창 오른쪽: 저장(아이콘) + 모바일 '메뉴' 시트."""
     sheet = site_nav(root)[1]
-    return (f'<a class="iconbtn" href="{root}saved/" aria-label="저장한 글" title="저장한 글">☆</a>'
+    return (f'<button class="iconbtn themebtn" type="button" aria-label="화면 모드: 자동" title="화면 모드 (자동 → 라이트 → 다크)">'
+            f'<span class="th-auto" aria-hidden="true">◐</span><span class="th-light" aria-hidden="true">☀</span><span class="th-dark" aria-hidden="true">☾</span></button>'
+            f'<a class="iconbtn" href="{root}saved/" aria-label="저장한 글" title="저장한 글">☆</a>'
             f'<details class="mnav"><summary aria-label="메뉴 열기"><span aria-hidden="true">☰</span> 메뉴</summary>'
             f'<div class="sheet"><div class="sheet-in">{sheet}<div class="msec"><a href="{root}about/">소개</a>'
             f'<a href="{root}contact/">문의</a></div></div></div></details>')
@@ -1025,6 +1034,31 @@ def video_date(ts: str) -> str:
     if d.tzinfo is None:
         d = d.replace(tzinfo=timezone(timedelta(hours=9)))
     return d.isoformat(timespec="seconds")
+
+
+def themed_css(css: str) -> str:
+    """기기 설정(자동) + 사이트의 라이트/다크 버튼 둘 다 되게: 다크 규칙마다 두 벌을 만듦.
+    ① 기기가 다크이고 사용자가 '라이트'를 고르지 않았을 때 ② 사용자가 '다크'를 골랐을 때 (html[data-theme])."""
+    out, i, key = [], 0, "@media (prefers-color-scheme:dark){"
+    while True:
+        j = css.find(key, i)
+        if j < 0:
+            out.append(css[i:])
+            break
+        out.append(css[i:j])
+        k, depth = j + len(key), 1
+        while depth:
+            depth += {"{": 1, "}": -1}.get(css[k], 0)
+            k += 1
+        body = css[j + len(key):k - 1]
+
+        def pre(prefix: str) -> str:
+            return re.sub(r"(^|})\s*([^{}@]+)\{", lambda m: m.group(1) + ",".join(
+                (prefix if sel.strip() == ":root" else prefix + " " + sel.strip()) for sel in m.group(2).split(",")) + "{", body)
+        out.append(key + pre("html:not([data-theme=light])") + "}" + pre("html[data-theme=dark]"))
+        i = k
+    return ("".join(out) + "\nhtml{color-scheme:light dark}html[data-theme=light]{color-scheme:light}"
+            "html[data-theme=dark]{color-scheme:dark}\n")
 
 
 def card(p: dict, root: str) -> str:
@@ -2125,7 +2159,7 @@ def build() -> dict:
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "assets").mkdir(parents=True)
-    (OUT / "assets" / "style.css").write_text(CSS, encoding="utf-8")
+    (OUT / "assets" / "style.css").write_text(themed_css(CSS), encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     static = ROOT / "static"  # 검색엔진 소유확인 파일 등 그대로 복사 (예: Google Search Console html)
     if static.exists():

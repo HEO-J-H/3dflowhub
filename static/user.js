@@ -188,3 +188,22 @@
     el.style.setProperty('--mx', (ev.clientX - r.left) + 'px'); el.style.setProperty('--my', (ev.clientY - r.top) + 'px');
   }, { passive: true });
 })();
+
+// 화면 모드 버튼: 자동(기기 설정) → 라이트 → 다크 → 자동. 고른 값은 이 브라우저에 기억
+(function () {
+  const btn = document.querySelector('.themebtn');
+  if (!btn) return;
+  const NAMES = { auto: '자동', light: '라이트', dark: '다크' };
+  const cur = () => document.documentElement.dataset.theme || 'auto';
+  const show = () => btn.setAttribute('aria-label', '화면 모드: ' + NAMES[cur()]);
+  show();
+  btn.addEventListener('click', () => {
+    const next = { auto: 'light', light: 'dark', dark: 'auto' }[cur()];
+    if (next === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = next;
+    try { next === 'auto' ? localStorage.removeItem('theme') : localStorage.setItem('theme', next); } catch (e) { /* 무시 */ }
+    show();
+    const tip = document.createElement('div');
+    tip.className = 'reptoast'; tip.textContent = '화면 모드: ' + NAMES[next];
+    document.body.appendChild(tip); setTimeout(() => tip.remove(), 1400);
+  });
+})();
