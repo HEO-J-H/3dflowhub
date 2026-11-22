@@ -1,0 +1,55 @@
+{
+  "title_ko": "Unreal Engine 5 프레임 타임 예산 설정 방법",
+  "title": "Setting a Frame-Time Budget for an Unreal Engine 5 Game: Eight Checks Before Your First Alpha - GameDev.net",
+  "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQ0t6ODRrT1VOblc1OGgzNGdSM29hUlZpRHhfX2IyY2lGQUNtVHg2SXNhX3gxcXJ2cHZ5Y2tsNS1yWlRqSDhPdmZOYnZLMmstRS02RUdCcXpfSVUwMnJPX1kzb1RwLTAtYkljVHhhbmliYXRVZ1l3RDJDeXJFTTRqZ3AtT0lFcUtiZWRoNlNSdV8yZlhlRUE?oc=5",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Unreal Engine",
+    "프레임 타임",
+    "알파 테스트",
+    "최적화",
+    "프로파일링",
+    "언리얼 엔진"
+  ],
+  "summary": "알파 단계 진입 전 Unreal Engine 5 프로젝트의 성능 목표를 잡기 위한 여덟 가지 프레임 타임 예산 설정 기준입니다.",
+  "insight": "알파 테스트를 앞둔 개발 단계에서는 Nanite와 Lumen 같은 고성능 기능을 무작정 켜기보다 16.6ms(60fps) 또는 33.3ms(30fps) 목표에 맞춰 각 서브시스템별 허용 밀리초를 미리 배분해야 합니다. 구체적인 프레임 예산 할당은 CPU와 GPU 병목 현상을 조기에 발견하여 빌드 전체가 멈추는 리스크를 방지합니다.",
+  "try_it": [
+    "Unreal Engine 5에서 Ctrl+Shift+H 단축키를 눌러 기본 성능 통계 오버레이를 켭니다.",
+    "콘솔 창에 stat Unit을 입력하여 Game, Draw, GPU 처리 밀리초를 실시간으로 확인합니다.",
+    "현재 타겟 플랫폼의 목표 프레임 레이트에 맞춰 허용 가능한 최대 밀리초 한계를 문서에 기록합니다."
+  ],
+  "sections": [
+    {
+      "heading": "첫 알파 테스트 전 프레임 타임 예산이 필수인 이유",
+      "body": "알파 버전 제작에 들어가기 전 성능 기준선을 정하지 않으면 후반부 최적화 작업에 과도한 시간이 소요됩니다. 60fps 목표인 16.6ms 혹은 30fps 목표인 33.3ms 전체 예산을 CPU와 GPU 사이에 어떻게 나눌지 미리 확정해야 합니다. 각 시스템이 차지하는 몫을 명확히 하면 특정 파트의 과부하를 즉시 파악할 수 있습니다."
+    },
+    {
+      "heading": "알파 빌드 전 점검해야 할 여덟 가지 핵심 항목",
+      "body": "렌더링, 물리 연산, 에셋 로딩, 네트워킹 등 게임 플레이를 구성하는 주요 영역별로 허용 리소스 한도를 설정합니다. Nanite 지오메트리와 Lumen 조명 시스템이 프로젝트의 하드웨어 타겟에 부합하는지 수치로 검증합니다. 드로우 콜 수와 섀도우 맵 Resolution 같은 고비용 요소를 사전에 제한하여 예산 초과를 방지합니다."
+    },
+    {
+      "heading": "프로파일링 도구를 활용한 실시간 예산 모니터링",
+      "body": "Unreal Engine 내장 프로파일링 기능을 사용해 각 프레임이 소모하는 정확한 밀리초를 측정합니다. 에디터 Viewport와 독립된 스탠드얼론 빌드에서 수치를 확인해야 실제 하드웨어 성능을 정확히 반영할 수 있습니다. 예산을 초과하는 서브시스템을 조기에 발견해 기획 단계에서 리소스를 수정합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Unreal Engine 5에서 프레임 타임 예산은 언제 설정해야 하나요?",
+      "a": "첫 번째 알파 빌드를 만들기 전, 핵심 시스템과 에셋이 대규모로 결합하기 전에 설정하는 것이 가장 이상적입니다."
+    },
+    {
+      "q": "프레임 타임 목표는 보통 어떻게 잡나요?",
+      "a": "60fps를 목표로 할 때는 전체 프레임 타임을 16.6ms 이내로 잡고, CPU와 GPU에 각각 균등하게 예산을 배분합니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/DxBKmQ-0kfw/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=DxBKmQ-0kfw"
+  },
+  "collected_at": "2026-11-22T15:21:58.770549+00:00",
+  "notion_id": "",
+  "id": "2026-11-22-05cdb7c00fd82016",
+  "img_tried": true
+}
