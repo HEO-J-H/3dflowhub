@@ -785,6 +785,17 @@ footer{background:#09090B;color:#A1A1AA;border-radius:32px 32px 0 0;margin-top:6
 .card:hover .img img,.gcard:hover img{transform:scale(1.04)!important}
 @media (max-width:820px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(108px,auto);gap:10px}.bento>*{padding:16px}.bento i{width:30px;height:30px;right:12px;top:12px}.bento .b-intro{grid-column:1/-1;grid-row:auto}}
 @media (prefers-reduced-motion:reduce){.tk-track{animation:none}.rv{opacity:1;transform:none}.bento a:hover,.bento a:hover i{transform:none}}
+
+/* 페이지 번호: 지금 페이지를 한눈에 — 빨간 원 + 굵게 + 살짝 크게, 나머지는 옅게 (참고: Aigocy·GridX 페이지네이션) */
+.pager{gap:8px}
+.pager a.pg-num,.pager .pg-nav{background:var(--surface)!important;color:var(--muted)!important;box-shadow:var(--clay)!important;border:0!important;font-weight:600}
+.pager a.pg-num{width:44px;height:44px;min-width:44px;padding:0;border-radius:50%!important}
+.pager a.pg-num:hover,.pager a.pg-nav:hover{color:var(--text)!important;transform:translateY(-2px)}
+.pager a.pg-num.on{background:var(--accent)!important;color:#fff!important;font-weight:800;transform:scale(1.14);
+  box-shadow:0 0 0 4px var(--accent-soft),0 8px 18px rgba(253,58,37,.35)!important;pointer-events:none}
+.pager .pg-count{font:600 14px/1 var(--mono);color:var(--text)}
+.pager .pg-count::first-letter{color:var(--accent)}
+.pager .pg-nav.off{opacity:.3;box-shadow:none!important}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
