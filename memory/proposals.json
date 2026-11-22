@@ -34034,5 +34034,43 @@
     "id": "p-e4fc8d917c",
     "v": "rejected",
     "note": "rag-integration.md 결정: 무거운 RAG 안 넣음, 도움말 검색은 이미 동작 — 이 주제는 이제 자동 차단"
+  },
+  {
+    "at": "2026-11-22T10:31:44+00:00",
+    "kind": "proposal",
+    "id": "p-2df8ed486e",
+    "title": "웹 버전 PBR 텍스처 생성 유닛 테스트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "최근 웹 UI 높이맵 및 RAG 관련 테스트 과제들이 반복적으로 패치 실패 및 held 상태로 남아 있음",
+    "proposal": "web/ 디렉터리 내 Albedo·Normal·Roughness 등 PBR 텍스처 변환 유틸리티 함수에 대한 Jest/Mocha 기반 단위 테스트 코드를 명확한 파일 경로(web/tests/pbr.test.js)로 신규 작성",
+    "expected": "웹 브라우저 단독 실행 환경에서의 PBR 맵 생성 품질과 안정성을 코드 수준에서 보장",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T10:32:20.063569+00:00",
+    "kind": "decision",
+    "id": "p-2df8ed486e",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T10:32:21.855537+00:00",
+    "kind": "triage",
+    "id": "p-2df8ed486e",
+    "verdict": "done_already",
+    "reason": "최근 커밋과 끝낸 제안 내역에 웹 버전 PBR 텍스처 단위 테스트 및 관련 기능이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-22T10:32:21.887322+00:00",
+    "kind": "decision",
+    "id": "p-2df8ed486e",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안 내역에 웹 버전 PBR 텍스처 단위 테스트 및 관련 기능이 이미 반영되어 있습니다."
   }
 ]
