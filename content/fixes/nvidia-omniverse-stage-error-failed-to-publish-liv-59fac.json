@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-publish-liv-59fac",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to publish live edits because layer is locked by another user",
+  "title": "Stage Error: Failed to publish live edits because layer is locked by another use",
+  "summary": "NVIDIA Omniverse에서 Live 세션 중 다른 사용자가 USD 레이어를 편집 중이거나 잠금(Lock)을 설정하여, 나의 편집 내용을 서버에 게시(Publish)하지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "다른 사용자가 동일한 USD 레이어 또는 Primitive를 체크아웃하거나 잠금 상태로 유지 중인 경우",
+    "Nucleus 서버와의 일시적인 네트워크 끊김으로 인해 레이어 소유권(Lock) 상태 동기화가 지연된 경우",
+    "이전 Live 세션 비정상 종료로 인해 서버에 잔류 잠금이 남아 있는 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 해당 레이어나 오브젝트의 잠금 아이콘 및 편집자 상태를 확인합니다.",
+    "동동 작업 중인 다른 사용자에게 해당 레이어의 잠금을 해제(Unlock)해 달라고 요청합니다.",
+    "잠금을 해제할 수 없는 경우, 해당 변경 사항을 로컬에 별도 USD 파일로 백업(Export Layer)합니다.",
+    "Omniverse Kit 앱(USD Composer 등)을 재시작하거나 Nucleus 서버에 재연결하여 세션을 새로 고칩니다.",
+    "필요한 경우 Admin 권한으로 Nucleus 서버 패널에 접속하여 잔류 잠금을 강제 해제(Force Unlock)합니다."
+  ],
+  "check": [
+    "Stage 패널에서 대상 레이어의 잠금 표시가 사라지고 편집 상태가 정상으로 돌아왔는지 확인합니다.",
+    "Publish 버튼을 다시 눌렀을 때 오류 메시지 없이 변경 사항이 서버에 정상적으로 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "동동 작업 시 서브 레이어(Sub-layer)를 분리하여 서로 다른 사용자가 같은 파일을 동시에 수정하지 않도록 파이프라인을 구성합니다.",
+    "Live 세션 종료 시에는 반드시 세션을 안전하게 나가고 편집 중이던 잠금을 수동으로 해제합니다."
+  ],
+  "keywords": [
+    "Omniverse Live 편집 오류",
+    "Stage Error Failed to publish live edits",
+    "USD 레이어 잠금 해제",
+    "Nucleus 파일 잠김 해결",
+    "오미니버스 동시 편집 충돌"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-22T08:12:04+00:00"
+}

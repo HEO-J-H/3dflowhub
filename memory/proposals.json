@@ -33925,5 +33925,81 @@
     "v": "accepted",
     "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
     "auto": true
+  },
+  {
+    "at": "2026-11-22T08:10:55+00:00",
+    "kind": "proposal",
+    "id": "p-e377cff419",
+    "title": "RAG API 테스트 검증 스크립트 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 엔드포인트 테스트 추가 제안이 수락되었으나 관련 패치 적용이 held 상태이므로, 백엔드 테스트 파일에서 RAG API 응답 검증 단계를 명확히 분리하여 재작성합니다.",
+    "proposal": "backend/tests/test_rag.py 파일에 /rag/query 엔드포인트의 모의(mock) 응답 및 정상 동작 여부를 확인하는 단위를 추가합니다.",
+    "expected": "RAG API 테스트 커버리지가 안정적으로 확보되어 자동 머지가 가능해집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/3dflowhub/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T08:10:55+00:00",
+    "kind": "proposal",
+    "id": "p-b7e976a7b9",
+    "title": "웹 UI RAG 도움말 모달 연동 가이드 문서화",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "RAG 오픈소스 활용 기능 웹 UI 연동 검토가 완료 상태이며, 사용자가 쉽게 참고할 수 있도록 가이드 정리가 필요합니다.",
+    "proposal": "docs/agent-guides/rag_integration.md 문서에 웹 브라우저 환경에서 RAG 기능과 UI 모달이 연동되는 방식을 정리합니다.",
+    "expected": "사용자와 개발자가 RAG 연동 구조를 명확히 파악할 수 있습니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-22T08:12:36.202668+00:00",
+    "kind": "decision",
+    "id": "p-e377cff419",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T08:12:36.236659+00:00",
+    "kind": "decision",
+    "id": "p-b7e976a7b9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-22T08:12:41.374583+00:00",
+    "kind": "triage",
+    "id": "p-e377cff419",
+    "verdict": "agent",
+    "reason": "backend/tests/test_rag.py 파일에 단위를 추가하는 코드 수정 작업이므로 에이전트가 처리할 수 있습니다."
+  },
+  {
+    "at": "2026-11-22T08:12:46.427225+00:00",
+    "kind": "triage",
+    "id": "p-b7e976a7b9",
+    "verdict": "done_already",
+    "reason": "RAG 오픈소스 연동 및 관련 가이드 문서화 작업이 이미 끝낸 제안 목록과 기존 완료 내역에 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-22T08:12:46.458992+00:00",
+    "kind": "decision",
+    "id": "p-b7e976a7b9",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): RAG 오픈소스 연동 및 관련 가이드 문서화 작업이 이미 끝낸 제안 목록과 기존 완료 내역에 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-22T08:12:47.398775+00:00",
+    "kind": "triage",
+    "id": "p-73825b152c",
+    "verdict": "agent",
+    "reason": "웹 프론트엔드 테스트 파일에 도움말 모달과 API 호출에 대한 유닛 테스트를 추가하는 작업으로 코드로 해결할 수 있습니다."
   }
 ]
