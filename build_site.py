@@ -699,15 +699,70 @@ article{max-width:72ch}
 .split h2.sec{margin-top:40px}
 details.dd,details.mnav{border:0!important;padding:0!important;margin:0!important;background:none!important}
 @media (max-width:820px){.feat,.split{grid-template-columns:1fr;gap:8px}.intro .stats{flex-wrap:wrap}}
+
+/* ═══ 디자인 v3 (2026-11-22) — 참고 소스 'Aigocy' 톤: 징크 뉴트럴 + 레드 포인트 1개, 둥근 알약 버튼, 입체감 있는 부드러운 카드,
+   떠 있는 알약형 상단바, 섹션 제목 위 작은 빨간 라벨. 정보 구조(2:1 피처드·리스트)는 v2 그대로. ═══ */
+:root{
+  --bg:#EDECEC;--surface:#F7F7F7;--surface-2:#E4E4E7;--text:#09090B;--text-2:#3F3F46;--muted:#71717A;
+  --line:#D4D4D8;--accent:#FD3A25;--accent-2:#FD3A25;--accent-soft:rgba(253,58,37,.08);--glass:rgba(237,236,236,.86);
+  --r-lg:24px;--r:16px;--r-sm:8px;
+  --clay:0 7.77px 16px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -6px 0 rgba(0,0,0,.05),inset 0 3px 0 rgba(255,255,255,.6);
+  --clay-dark:inset 0 -3px 0 #080808,inset 0 1px 0 rgba(255,255,255,.30),0 2.77px 2.21px rgba(0,0,0,.12),0 3px 3px rgba(0,0,0,.14),0 12px 10px rgba(0,0,0,.10);
+  --sans:"Urbanist","Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --serif:var(--sans);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#09090B;--surface:#18181B;--surface-2:#27272A;--text:#FAFAFA;--text-2:#D4D4D8;--muted:#A1A1AA;
+  --line:#27272A;--accent:#FF3B26;--accent-2:#FF3B26;--accent-soft:rgba(255,59,38,.12);--glass:rgba(24,24,27,.86);
+  --clay:0 7.77px 2.21px rgba(0,0,0,.06),0 3px 3px rgba(0,0,0,.10),inset 0 -6px 0 #111111,inset 0 3px 0 rgba(255,255,255,.06);
+}}
+body{font-family:var(--sans)}
+h1,h2.sec,.card .t,.feat .ft,article h1,article h2{font-family:var(--sans);font-weight:700;letter-spacing:-.02em}
+/* 떠 있는 알약형 상단바 */
+header{background:var(--bg)!important;border-bottom:0!important;padding-top:12px}
+header .top{background:var(--surface);border-radius:99px;padding:6px 8px 6px 18px;box-shadow:var(--clay)}
+header nav.domains{padding:10px 4px 2px}
+/* 섹션 제목: 위에 빨간 점 라벨 느낌, 아래 굵은 선 대신 여백 */
+h2.sec{border-bottom:0;padding-bottom:0;margin:56px 0 18px;font-size:clamp(24px,3vw,32px)}
+h2.sec::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:10px;align-self:center;flex:none}
+h2.sec{justify-content:flex-start}h2.sec a{margin-left:auto}
+/* 카드·패널: 둥글고 입체적 (테두리 대신 부드러운 그림자) */
+.card,.box,.tile,.board,.step,article,.gcard,.acard,.scard,.nl,.srcbox,.updbox,.menupath,.ex .box,.docfig,.lpath a,.fb,dialog.repdlg{
+  border:0!important;border-radius:var(--r-lg)!important;box-shadow:var(--clay)!important;background:var(--surface)}
+.card .img,.gcard .th,.feat .fmain img,.wall-item{border-radius:calc(var(--r-lg) - 8px)}
+.card .img{margin:8px 8px 0;border-radius:16px}
+.card:hover,.gcard:hover,.evcard:hover{border-color:transparent}
+/* 버튼·탭: 알약 */
+.btn,.tabs a,nav.domains a,.pager a,.badge,.evmeta .dd,.nl button,.nl input,.search input,.iconbtn,.dd summary,.mnav summary,.codebar button,.codebar a,.doc .pill{border-radius:99px!important}
+.ddm a,.msec a{border-radius:12px!important}.ddm{border-radius:20px!important;box-shadow:var(--clay)!important;border:0!important}
+.btn.primary,nav.domains a.on,.tabs a.on,.pager a.on,.nl button{background:#18181B!important;color:#fff!important;border-color:#18181B!important;box-shadow:var(--clay-dark)}
+.btn.primary:hover{background:var(--accent)!important}
+.btn.ghost,nav.domains a{background:var(--surface);border:0!important;box-shadow:var(--clay)}
+.search input{background:var(--bg);border:0}
+/* 홈 v2 블록을 새 톤으로 */
+.intro{border-bottom:0;background:var(--surface);border-radius:var(--r-lg);padding:28px;box-shadow:var(--clay);margin-top:20px}
+.intro h1{font-size:clamp(28px,4.2vw,48px);line-height:1.08}
+.qnav{border-bottom:0;gap:8px;margin:16px 0 0}
+.qnav a{margin:0;padding:10px 16px;border-radius:99px;background:var(--surface);box-shadow:var(--clay);font-size:14px}
+.feat ol{border-top:0}.feat ol li a{padding:14px 16px;border-bottom:1px solid var(--line)}
+.feat>div{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--clay);padding:8px 4px}
+.feat .fmain{display:block}.feat .fk{color:var(--accent)}
+.split>section{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--clay);padding:4px 20px 12px}
+.split h2.sec{margin:22px 0 8px;font-size:22px}
+.dlist .d.hot{color:#fff;background:var(--accent);padding:4px 8px;border-radius:99px}
+.rank a{border-bottom:1px solid var(--line)}
+.links{border-top:0}.links a{background:var(--surface)!important;border-radius:var(--r)!important;box-shadow:var(--clay);padding:16px 18px!important;border:0!important;margin-bottom:8px}
+footer{background:#09090B;color:#A1A1AA;border-radius:32px 32px 0 0;margin-top:64px}footer a{color:#FAFAFA}
+.logo .w3d{color:var(--accent)}
 """
 
 LOGO_SVG = """<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
 <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/>
 <stop offset=".55" stop-color="#5e5ce6"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs>
-<rect width="64" height="64" rx="15" fill="url(#lg)"/>
+<rect width="64" height="64" rx="18" fill="#18181B"/>
 <ellipse class="orbit" cx="32" cy="33" rx="25" ry="10" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2.2" transform="rotate(-22 32 33)"/>
 <path d="M32 13 L48 22 L32 31 L16 22 Z" fill="#fff"/><path d="M16 22 L32 31 L32 50 L16 41 Z" fill="#fff" fill-opacity=".72"/>
-<path d="M48 22 L32 31 L32 50 L48 41 Z" fill="#fff" fill-opacity=".45"/><circle cx="54.5" cy="22.5" r="3" fill="#fff"/></svg>"""
+<path d="M48 22 L32 31 L32 50 L48 41 Z" fill="#fff" fill-opacity=".45"/><circle cx="54.5" cy="22.5" r="3.4" fill="#FD3A25"/></svg>"""
 
 SEARCH_JS = ""  # 검색은 static/search.js (한/영 자판 변환·여러 단어·키보드 이동)
 
@@ -733,12 +788,12 @@ def page(title: str, body: str, root: str, domain_on: str = "", desc: str = SITE
 {og_default(domain_on) if 'og:image' not in extra_head else ''}
 {head_scripts()}
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="{root}feed.xml">
-<meta name="theme-color" content="#F7F7F5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#EDECEC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{root}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Noto+Serif+KR:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Urbanist:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="{root}assets/style.css"></head><body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header><div class="wrap"><div class="top"><a class="logo" href="{root}" aria-label="{SITE_TITLE} 홈">{LOGO_SVG}<span class="word" aria-hidden="true"><span class="w3d">3d</span><span class="wflow">flow</span><span class="whub">hub</span></span></a>
