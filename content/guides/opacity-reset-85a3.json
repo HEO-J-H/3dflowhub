@@ -1,0 +1,84 @@
+{
+  "id": "opacity-reset-85a3",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 및 최적화",
+  "name": "Opacity Reset",
+  "title": "Opacity Reset — 투명도 값을 초기화하여 불필요한 플로터(Floater) 노이즈를 제거하는 최적화",
+  "summary": "Opacity Reset(불투명도 초기화)은 3D Gaussian Splatting(3DGS) 최적화 과정에서 Gaussian의 투명도 값을 정기적으로 리셋하여 수렴이 정체된 불필요한 노이즈를 제거하는 기법입니다. 학습 중 중요도가 낮아진 Gaussian을 효과적으로 가지치기(Pruning)할 수 있도록 돕습니다.",
+  "when": [
+    "트레이닝 과정에서 렌더링 결과물이 뿌옇거나 불필요한 플로터(Floating artifact) 노이즈가 많이 발생할 때",
+    "일정 Iteration(반복 횟수)을 지난 후 학습 손실(Loss) 감소가 정체될 때",
+    "배경이나 경계 영역에 쓸데없이 짙은 Gaussian이 누적되어 디테일이 떨어질 때"
+  ],
+  "steps": [
+    "3D Gaussian Splatting 학습 설정 파일(config.py 또는 train.py)을 엽니다.",
+    "Optimization 파라미터 섹션에서 Opacity Reset 관련 설정 항목을 찾습니다.",
+    "일정 간격(예: 3000 Iteration마다)으로 불투명도를 특정 값으로 재설정하는 옵션을 활성화합니다.",
+    "학습을 실행하여 설정된 주기에 따라 Opacity Reset이 자동으로 적용되는지 Terminal 로그에서 확인합니다.",
+    "뷰포트나 평가 렌더링을 통해 플로터 노이즈가 줄어들고 선명도가 개선되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity Reset Interval",
+      "desc": "Gaussian의 불투명도를 초기화할 학습 반복 횟수(Iteration) 주기입니다."
+    },
+    {
+      "name": "Reset Value",
+      "desc": "초기화 시점에 Gaussian 불투명도에 적용할 기준 값 또는 스케일입니다."
+    },
+    {
+      "name": "Pruning Threshold",
+      "desc": "초기화 후 불투명도가 너무 낮아져서 제거(Prune)될 Gaussian의 기준 한계값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공중에 떠 있는 플로터 노이즈 제거",
+      "steps": [
+        "학습 중 50% 지점에서 화면 주변부에 잔여 노이즈가 쌓인 것을 확인합니다.",
+        "Opacity Reset 주기를 기존보다 짧게 설정하여 불필요한 Gaussian을 강제로 낮춥니다.",
+        "이후 Densification(밀집화)과 Pruning이 재작동하도록 두고 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "디테일이 뭉개지는 장면의 선명도 개선",
+      "steps": [
+        "오래 수렴된 모델의 투명도 값이 포화되어 경계선이 뭉개지는 현상을 파악합니다.",
+        "Opacity Reset을 적용해 수렴 상태를 일부 해제하고 새로운 그라디언트에 반응하도록 유도합니다.",
+        "정제된 구조 위주로 디테일이 다시 살아나는지 렌더링 결과로 검증합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지나치게 짧은 주기로 초기화 설정 → 학습이 전혀 수렴하지 못하고 모델이 계속 초기화됨 (해결: 표준 설정인 3000 Iteration 간격 유지)",
+    "Pruning Threshold를 너무 높게 설정 → 중요한 디테일 구까지 통째로 삭제됨 (해결: 기본값에서 미세하게 조정하며 시각적 결과 확인)"
+  ],
+  "related": [
+    "Adaptive Density Control",
+    "Densification",
+    "Pruning",
+    "Position Gradient"
+  ],
+  "videos": [
+    {
+      "id": "rI4mTInJcy8",
+      "title": "Gaussian Splatting Blending Master Opacity Settings",
+      "author": "Joshua de Bruin"
+    },
+    {
+      "id": "6fcOSeC4tck",
+      "title": "Understanding opacity for Gaussians - Gaussian Splatting",
+      "author": "Convolve AI "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Opacity%20Reset",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D Gaussian Splatting",
+    "Optimization",
+    "Opacity Reset"
+  ],
+  "at": "2026-11-23T16:08:34.327005+00:00"
+}

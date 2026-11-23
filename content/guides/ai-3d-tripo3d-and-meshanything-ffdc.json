@@ -1,0 +1,93 @@
+{
+  "id": "ai-3d-tripo3d-and-meshanything-ffdc",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 메시 생성",
+  "name": "Tripo3D and MeshAnything",
+  "title": "AI 이미지 투 3D 메시 생성 툴 비교 및 실무 적용",
+  "summary": "Tripo3D로 텍스트나 이미지를 입체적인 3D 메쉬로 생성한 뒤, MeshAnything으로 깨끗한 Topology의 Low-Poly 에셋으로 변환하는 AI 3D 워크스페이스 가이드입니다.",
+  "when": [
+    "컨셉 아트나 스케치를 기반으로 빠르게 3D 에셋을 프로토타이핑할 때",
+    "AI가 생성한 복잡하고 지저분한 메쉬를 게임 엔진에 즉시 쓸 수 있는 구조로 정리할 때",
+    "수동 Retopology 시간을 줄이고 게임 레디 캐릭터나 프랍을 제작할 때"
+  ],
+  "steps": [
+    "1. 웹 브라우저에서 Tripo3D에 접속하여 텍스트 Prompt 입력 또는 2D 이미지를 업로드합니다.",
+    "2. Generate 버튼을 눌러 초기 3D 메쉬를 생성하고, 결과물을 확인합니다.",
+    "3. 생성된 모델을 FBX 또는 OBJ 포맷으로 다운로드합니다.",
+    "4. MeshAnything 플랫폼 또는 플러그인에 다운로드한 메쉬를 임포트합니다.",
+    "5. Retopology 옵션을 설정하고 Generate를 실행하여 사각형(Quad) 중심의 깔끔한 메쉬로 변환합니다.",
+    "6. 최종 결과물의 폴리곤 수를 확인하고 필요한 경우 에셋을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성하고자 하는 3D 에셋의 형태와 특징을 텍스트로 설명합니다."
+    },
+    {
+      "name": "Image to 3D",
+      "desc": "2D 이미지를 입력하여 입체적인 3D 구조로 변환합니다."
+    },
+    {
+      "name": "Target Polycount",
+      "desc": "MeshAnything 변환 시 목표로 하는 폴리곤(Triangle/Quad) 수를 지정합니다."
+    },
+    {
+      "name": "Quad Mesh",
+      "desc": "출력물을 애니메이션에 적합한 사각형 중심의 Topology로 구성합니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "대칭 형태의 모델을 양쪽 균형이 맞도록 자동 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임용 판타지 검 제작",
+      "steps": [
+        "Tripo3D에 'Fantasy sword, game asset' 텍스트 Prompt를 입력합니다.",
+        "생성된 검 메쉬를 다운로드하여 MeshAnything에 임포트합니다.",
+        "Quad Mesh 옵션을 켜고 폴리곤 수를 최적화하여 내보냅니다."
+      ]
+    },
+    {
+      "title": "캐릭터 프랍(물병) Retopology",
+      "steps": [
+        "스케치 이미지를 Tripo3D에 업로드하여 입체 물병 모델을 얻습니다.",
+        "MeshAnything에서 Target Polycount를 낮게 설정하여 Low-Poly 버전으로 변환합니다.",
+        "Substance 3D Painter로 넘겨 텍스처링을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "AI 생성 메쉬에 비정상적인 구멍이나 겹침(Self-Intersection) 발생 → Tripo3D에서 세부 Prompt를 수정하거나 시점을 변경하여 재생성",
+    "MeshAnything 변환 후 디테일이 너무 많이 사라짐 → Target Polycount 값을 높여서 재실행",
+    "축(Pivot) 정렬이 어긋남 → 3D DCC(Blender 등)에서 Origin을 모델 중앙으로 재설정 후 사용"
+  ],
+  "related": [
+    "Hyper3D",
+    "Quady3D AI",
+    "Sketch-to-3D Workflow",
+    "Gaussian Splatting"
+  ],
+  "videos": [
+    {
+      "id": "NtIQP6fxMWk",
+      "title": "How to Create ANYTHING with AI 3D Printing | Tripo AI Full Tutorial",
+      "author": "3Digiprints"
+    },
+    {
+      "id": "XsomeIzzJqg",
+      "title": "Tripo AI Tutorial: Create Game-Ready 3D Assets with AI (Smart Mesh P2.0)",
+      "author": "Digital Product Wizard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Tripo3D%20and%20MeshAnything",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Tripo3D",
+    "Prompt"
+  ],
+  "at": "2026-11-23T16:08:28.105839+00:00"
+}

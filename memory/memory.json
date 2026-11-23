@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-21T12:06:42.107451+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 87,
-      "candidates_passed": 42,
-      "offtopic": 23,
-      "short": 0,
-      "prefiltered": 33,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "10465991",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-21T12:16:42.210394+00:00",
       "collected": 1,
       "saved": 1,
@@ -6576,6 +6552,30 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-23T16:07:06.616677+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 87,
+      "candidates_passed": 30,
+      "offtopic": 23,
+      "short": 0,
+      "prefiltered": 44,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "005c0307",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic"
+      ]
     }
   ],
   "good_keywords": [
@@ -6671,7 +6671,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-13 [성찰] 동음이의어 필터를 강화하고 Maxscript 및 튜토리얼 등 검색 유입이 입증된 고단가 실무 콘텐츠에 집중하여 오프토픽 페널티를 줄여야 합니다.",
     "2026-11-14 [성찰] 동음이의어 필터를 40중으로 한층 더 고도화하고, 검색 유입이 검증된 실무 튜토리얼 및 애드온 관련 고단가 주제를 집중 편성하여 비관련 기사 유입을 원천 차단하고 검색 효율을 극대화해야 합니다.",
     "2026-11-14 [[p-12794ef36a|콘텐츠] Microsoft TRELLIS를 다중] 새로운 3D 생성 엔진 도입 시 로컬과 클라우드 연동 요구사항을 명확히 정의하고 데이터 구조에 맞추어 설계해야 오류를 방지할 수 있습니다.",
     "2026-11-14 [[p-60012927b1|운영·비용] 웹 브라우저 높이맵 메시 생성 단위] 테스트 실패 — E       TypeError: heightfield_mesh() got an unexpected keyword argument 'grid' / FAILED backend/tests/test_core.py::test_web_heightmap_mesh_preprocessing_unit - TypeError: heightfield_mesh()",
@@ -6790,7 +6789,8 @@
     "2026-11-23 [[p-1579604fcb|운영·비용] 로컬 FastAPI 파이프라인 예외] FastAPI 백엔드 파이프라인에서 GPU 부족이나 파일 누락 같은 하드웨어/입력 예외는 500 대신 422 또는 503과 명확한 메시지로 반환해야 디버깅이 쉽다.",
     "2026-11-23 [성찰] 동음이의어 필터링을 더욱 엄격히 적용하고 Maxscript나 튜토리얼 등 실무 검색 의도에 맞는 고CPC 키워드 중심의 콘텐츠 제작을 강화해야 합니다.",
     "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 65 passed, 1 warning in 1.48s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
-    "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 64 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']"
+    "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 64 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
+    "2026-11-23 [성찰] 동음이의어 필터링을 더욱 강화하여 게임·VFX 실무와 무관한 일반 뉴스를 차단하고, 고CPC 실무 가이드 및 검색 유입이 높은 도구 중심 콘텐츠 발행 비중을 극대화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6984,7 +6984,6 @@
     "Game Engine/Construct 3": "Construct"
   },
   "title_hashes": [
-    17292041971164306972,
     757803776156434546,
     17707032347987514443,
     13856110660212212973,
@@ -9983,14 +9982,15 @@
     11272389252022740474,
     10679913389165269095,
     8771364515247009796,
-    10682611713054026438
+    10682611713054026438,
+    9546397745874759739
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3921,
-    "Game Engine": 3921,
-    "VFX": 3921,
-    "AI 3D": 3921
+    "3D DCC": 3922,
+    "Game Engine": 3922,
+    "VFX": 3922,
+    "AI 3D": 3922
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
