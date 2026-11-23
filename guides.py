@@ -352,7 +352,9 @@ def extra_topics() -> list[tuple]:
 def pending() -> list[tuple]:
     have = {p.stem for p in GUIDE_DIR.glob("*.json")} if GUIDE_DIR.exists() else set()
     have -= {g["id"] for g in load_all() if g.get("qa_redo")}  # QA 가 6점 미만 → 다시 만들기
-    todo = [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have]
+    failed = core.load_strategy().get("guide_failed") or {}
+    # 두 번 만들어 봐도 품질 미달(근거 문서·영상 없음 등)인 주제는 빼기 — 큐 맨 앞에 남아 매 실행 AI 를 쓰고 가이드는 0개였음 (2026-11-24)
+    todo = [t for t in CATALOG + extra_topics() if slug(t[0], t[2]) not in have and failed.get(slug(t[0], t[2]), 0) < 2]
     # 도구별로 번갈아 (한 도구만 몰아서 쓰지 않게) — 도구 안에서는 목록 순서 유지
     by_tool: dict[str, list] = {}
     for t in todo:
@@ -459,8 +461,12 @@ def write_guides(max_new: int = 4, gate: bool = True) -> list[str]:
             g = make_guide(*t)
         except core.LLMBudgetExceeded:
             break
-        if g and not passes_quality(g):
+        if not g or not passes_quality(g):
             core.log.info("가이드 품질 미달로 저장 안 함: %s", t[3])
+            st = core.load_strategy()
+            fails = st.setdefault("guide_failed", {})
+            fails[slug(t[0], t[2])] = fails.get(slug(t[0], t[2]), 0) + 1
+            core._save_json(core.STRATEGY_PATH, st)
             continue
         if g:
             core._save_json(GUIDE_DIR / f"{g['id']}.json", g)

@@ -762,6 +762,25 @@ def _consume_llm_budget() -> None:
     today[LLM_SOURCE] = today.get(LLM_SOURCE, 0) + 1
     usage[day] = today
     _save_json(LLM_USAGE_PATH, usage)
+    _record_purpose(day)
+
+
+LLM_PURPOSE_PATH = Path(__file__).parent / "memory" / "llm_purpose.json"  # 일별·작업별 AI 호출 수 (어디서 한도를 쓰는지)
+
+
+def _record_purpose(day: str) -> None:
+    """AI 를 부른 곳(모듈.함수)을 하루 단위로 셈 — '오늘 266회 썼는데 결과물 2개' 같은 낭비를 찾기 위해 (2026-11-24)."""
+    import inspect
+    who = "?"
+    for fr in inspect.stack()[2:12]:
+        mod = Path(fr.filename).stem
+        if mod != "core":
+            who = f"{mod}.{fr.function}"
+            break
+    data = {d: v for d, v in _load_json(LLM_PURPOSE_PATH, {}).items() if d >= day[:8] + "01"}
+    today = data.setdefault(day, {})
+    today[who] = today.get(who, 0) + 1
+    _save_json(LLM_PURPOSE_PATH, data)
 
 
 def llm(prompt: str, system: str = "You are a concise assistant.", max_tokens: int = 800,
