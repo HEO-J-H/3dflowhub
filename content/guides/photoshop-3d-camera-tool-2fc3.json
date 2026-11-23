@@ -1,0 +1,94 @@
+{
+  "id": "photoshop-3d-camera-tool-2fc3",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조작 및 네비게이션",
+  "name": "3D Camera Tool",
+  "title": "3D 카메라 도구 — 3D 공간에서 시점(Orbit, Pan, Zoom)을 조작하는 기능",
+  "summary": "Photoshop의 3D Camera Tool은 2D 작업 공간에서 3D 레이어의 카메라 시점을 직관적으로 회전, 이동, 확대/축소하여 원하는 각도를 잡을 수 있게 해주는 기능입니다.",
+  "when": [
+    "3D 모델이나 텍스트 레이어의 구도를 잡고 싶을 때",
+    "2D 이미지 위에 3D 오브젝트를 자연스럽게 합성할 각도를 맞출 때",
+    "복잡한 수치 입력 없이 Mouse 드래그로 카메라 뷰를 빠르게 조작하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop을 열고 3D 레이어나 3D 파일(.obj, .fbx 등)을 불러옵니다.",
+    "Layers 패널에서 해당 3D 레이어를 선택하여 활성화합니다.",
+    "도구 상자(Toolbar)에서 Move Tool(V)을 선택하거나 3D 패널을 엽니다.",
+    "옵션 바(Options Bar) 또는 3D 축 제어 아이콘에서 3D Camera Tool (Rotate, Roll, Pan, Slide, Scale) 중 원하는 조작 모드를 선택합니다.",
+    "Viewport 화면을 Mouse로 클릭하고 드래그하여 카메라 시점을 원하는 각도와 구도로 조정합니다.",
+    "Properties 패널에서 카메라의 Field of View(FOV)나 거리 값을 미세 조정하여 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Rotate Camera",
+      "desc": "Mouse 드래그로 카메라를 중심점 기준으로 회전하여 시점을 바꿉니다."
+    },
+    {
+      "name": "3D Roll Camera",
+      "desc": "카메라를 z축 기준으로 기울여 화면을 회전시킵니다."
+    },
+    {
+      "name": "3D Pan Camera",
+      "desc": "카메라의 시선 방향은 유지한 채 상하좌우로 시점을 이동합니다."
+    },
+    {
+      "name": "3D Slide Camera",
+      "desc": "카메라 위치 자체를 평면 상에서 수평 또는 수직으로 이동합니다."
+    },
+    {
+      "name": "3D Scale Camera",
+      "desc": "오브젝트와의 거리를 조절하여 화면을 확대하거나 축소합니다."
+    },
+    {
+      "name": "Field of View",
+      "desc": "카메라의 화각을 조절하여 원근감을 과장하거나 완화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 로고 입체감 있는 구도 잡기",
+      "steps": [
+        "Photoshop에서 3D 텍스트 레이어를 생성합니다.",
+        "3D Camera Tool 중 Rotate를 선택하여 텍스트가 비스듬하게 보이도록 회전합니다.",
+        "Pan과 Scale을 이용해 화면 중앙에 알맞은 크기로 배치합니다."
+      ]
+    },
+    {
+      "title": "배경 이미지와 3D 오브젝트 각도 맞추기",
+      "steps": [
+        "배경 2D 레이어 위에 3D 모델을 불러옵니다.",
+        "3D Camera Tool로 배경의 소실점에 맞춰 모델의 회전 각도를 조절합니다.",
+        "Field of View 값을 조절해 배경의 원근감과 3D 모델의 원근감을 일치시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "2D 레이어가 선택된 상태에서 조작 안 됨 → Layers 패널에서 반드시 3D 레이어를 선택했는지 확인하세요.",
+    "원하는 방향으로 회전되지 않고 화면이 엉뚱하게 움직임 → 옵션 바에서 올바른 3D Camera Tool 아이콘(Rotate, Pan, Scale 등)이 선택되었는지 확인하세요.",
+    "오브젝트가 Viewport 화면 밖으로 사라짐 → 3D 축 제어기에서 Reset Camera를 누르거나 Zoom/Scale 도구로 시점을 초기화하세요."
+  ],
+  "related": [
+    "3D Axis",
+    "3D Materials",
+    "3D Lights",
+    "Properties Panel"
+  ],
+  "videos": [
+    {
+      "id": "Axa38beTBvo",
+      "title": "How to use the 3D Camera Tool in After Effects!",
+      "author": "MOBOX Graphics"
+    },
+    {
+      "id": "FG412YUKk-8",
+      "title": "EFFECTCRAFT - 3D Camera Tutorial ( 7 TIP AND TRICKS )",
+      "author": "Nijat Ibrahimli"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Camera%20Tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T17:27:29.524999+00:00"
+}

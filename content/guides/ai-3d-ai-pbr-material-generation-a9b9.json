@@ -1,0 +1,96 @@
+{
+  "id": "ai-3d-ai-pbr-material-generation-a9b9",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI PBR Material Generation",
+  "title": "AI PBR 머티리얼 생성 — 단일 이미지로부터 러프니스, 메탈릭, 디스플레이스먼트 등 실사 텍스처 맵 세트",
+  "summary": "AI PBR Material Generation은 텍스트 프롬프트나 단일 이미지만으로 타일링 가능한 실감 나는 PBR 머티리얼(Albedo, Normal, Roughness, Height 등)을 자동으로 생성하는 기술입니다.",
+  "when": [
+    "프로젝트 초기 비주얼 콘셉트를 빠르게 잡고 타일링 소스를 제작해야 할 때",
+    "독특한 질감이나 판타지 환경에 쓰일 커스텀 텍스처를 손쉽게 만들고자 할 때",
+    "기존 사진 소스에서 고품질의 노멀 맵이나 러프니스 맵을 즉시 추출해야 할 때"
+  ],
+  "steps": [
+    "AI Material Generator 웹 플랫폼이나 DCC(Blender, Substance) 내장 AI 플러그인을 엽니다.",
+    "Text-to-Material 탭을 선택하고 생성하고자 하는 표면의 특징을 영어 Prompt로 상세히 입력합니다.",
+    "Reference Image를 사용하는 경우, 대상 질감이 선명하게 나온 소스 이미지를 업로드합니다.",
+    "Generate 버튼을 눌러 Albedo, Normal, Roughness, Height 등 PBR 맵 세트를 생성합니다.",
+    "생성된 맵의 Seam(이음새)을 확인하고 Tiling 옵션을 조정해 심리스(Seamless) 상태로 만듭니다.",
+    "Export 메뉴를 통해 각 맵을 지정된 폴더로 내보내고 3D 뷰포트나 게임 엔진에 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성할 머티리얼의 형태, 재질, 색상 등을 텍스트로 정의합니다."
+    },
+    {
+      "name": "Tileable / Seamless",
+      "desc": "텍스처 상하좌우 경계가 자연스럽게 이어지도록 타일링 속성을 부여합니다."
+    },
+    {
+      "name": "Normal Intensity",
+      "desc": "노멀 맵의 요철 깊이와 입체감의 강도를 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거친 정도를 제어하여 반사광의 퍼짐을 결정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력되는 텍스처 Resolution(예: 1K, 2K, 4K)를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공장 바닥용 콘크리트 텍스처 생성",
+      "steps": [
+        "Prompt에 'cracked industrial concrete floor with oil stains' 입력",
+        "Tileable 옵션을 활성화하여 반복 패턴 자연스럽게 조정",
+        "Normal Intensity를 높여 크랙의 입체감을 강조하고 Export"
+      ]
+    },
+    {
+      "title": "판타지 게임용 이끼 낀 돌벽 제작",
+      "steps": [
+        "참조 이미지(Reference Image)로 실제 돌벽 사진 업로드",
+        "Text Prompt로 'overgrown green moss on ancient stone wall' 추가",
+        "Roughness와 Height 맵을 함께 추출하여 엔진에 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Prompt에 구체적인 재질 특성이 누락되어 엉뚱한 패턴이 생성됨 → 재질의 상태, 색상, 거칠기를 명확한 단어로 추가합니다.",
+    "타일링 옵션을 끄고 텍스처를 추출하여 Viewport에서 이음새가 선명하게 드러남 → 생성 단계에서 Seamless 또는 Tileable 체크박스를 활성화합니다.",
+    "노멀 강도가 과도하게 높게 설정되어 빛 반사가 부자연스러움 → Normal Intensity 값을 낮추거나 Height 맵의 스케일을 조절합니다."
+  ],
+  "related": [
+    "Substance Sampler",
+    "Geometry Nodes",
+    "Displacement Map",
+    "Vertex Weight Proximity Modifier"
+  ],
+  "videos": [
+    {
+      "id": "HKEMFgMLdYQ",
+      "title": "AI PBR Material Snap: How to get ready-to-go materials from a reference image using AI",
+      "author": "D5 Official"
+    },
+    {
+      "id": "qPQwPV2MNeE",
+      "title": "👀 NEW PBR Texture Generation Method 😍",
+      "author": "Blackout Creatively"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20PBR%20Material%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI Material Generator",
+    "DCC",
+    "Blender",
+    "Substance",
+    "AI"
+  ],
+  "at": "2026-11-23T17:27:13.724230+00:00"
+}
