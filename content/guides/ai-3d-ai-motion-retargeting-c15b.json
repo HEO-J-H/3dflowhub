@@ -1,0 +1,85 @@
+{
+  "id": "ai-3d-ai-motion-retargeting-c15b",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 애니메이션 및 리깅",
+  "name": "AI Motion Retargeting",
+  "title": "AI 모션 리타겟팅 — 서로 다른 체형의 3D 캐릭터 간에 Motion Capture 애니메이션을 자동으로 이식하는 기능",
+  "summary": "AI Motion Retargeting은 AI 기반 기술을 활용하여 서로 다른 뼈대 구조를 가진 캐릭터 간에 애니메이션을 빠르고 자연스럽게 옮겨주는 도구입니다.",
+  "when": [
+    "동일하지 않은 체형과 프로포션을 가진 캐릭터 간에 모션 캡처 데이터를 빠르게 공유하고 싶을 때",
+    "수동 IK 맵핑 작업으로 인해 관절 꺾임이나 미끄러짐 현상이 심하게 발생할 때",
+    "다수의 인간형 및 비인간형 캐릭터에 대량의 애니메이션 데이터를 일괄 적용해야 할 때"
+  ],
+  "steps": [
+    "AI 모션 리타게팅 툴이나 플러그인 인터페이스를 엽니다.",
+    "Source Skeleton에 원본 애니메이션이 포함된 캐릭터 모델을 지정합니다.",
+    "Target Skeleton에 애니메이션을 적용할 대상 캐릭터 모델을 지정합니다.",
+    "AI Auto-Detect 또는 Match Bones 기능을 실행하여 관절 뼈대 매핑을 자동 정렬합니다.",
+    "Preview Viewport에서 애니메이션을 재생하여 관절 왜곡이나 발 미끄러짐을 확인합니다.",
+    "Export 버튼을 눌러 리타게팅된 애니메이션 클립을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto-Detect",
+      "desc": "AI가 두 캐릭터의 관절 위치와 구조를 분석하여 자동으로 뼈대를 연결합니다."
+    },
+    {
+      "name": "Target Retargeting Profile",
+      "desc": "대상 캐릭터의 체형과 프로포션에 맞춰 모션 보정 방식을 설정합니다."
+    },
+    {
+      "name": "Foot IK Correction",
+      "desc": "바닥에 닿는 발이 미끄러지는 현상을 AI가 감지하여 자연스럽게 보정합니다."
+    },
+    {
+      "name": "Blend Weight",
+      "desc": "원본 모션 데이터와 대상 캐릭터의 기본 포즈 사이의 반영 비율을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "휴대폰 모션 캡처 데이터를 게임 캐릭터에 적용하기",
+      "steps": [
+        "Source Skeleton에 스마트폰으로 녹화한 모션 캡처 FBX 파일을 불러옵니다.",
+        "Target Skeleton에 Unreal Engine / Unity용 게임 캐릭터 모델을 지정합니다.",
+        "AI Auto-Detect로 뼈대를 맞춘 뒤 Preview로 어깨와 손목의 꺾임을 확인합니다."
+      ]
+    },
+    {
+      "title": "체형이 다른 몬스터 캐릭터에 인간형 애니메이션 이식하기",
+      "steps": [
+        "Source Skeleton에 기본 휴머노이드 걷기 애니메이션을 할당합니다.",
+        "Target Skeleton에 팔다리가 긴 크리처 모델을 선택합니다.",
+        "Target Retargeting Profile을 조정하여 체형 차이로 인한 팔다리 관절 오류를 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "T-Pose나 A-Pose 정렬 불일치 → 두 캐릭터의 기본 바인드 포즈를 동일하게 맞춘 뒤 리타게팅을 실행합니다.",
+    "스케일 단위 차이로 인한 크기 오류 → 모델을 불러올 때 유닛 스케일(Unit Scale)을 1:1로 일치시킵니다."
+  ],
+  "related": [
+    "IK Retargeter",
+    "Humanoid",
+    "Animation Retargeting",
+    "Motion Capture"
+  ],
+  "videos": [
+    {
+      "id": "GHg73pDCIho",
+      "title": "MotionGen — AI Motion Generation + Auto-Retargeting in Blender",
+      "author": "NELSIG"
+    },
+    {
+      "id": "j5wfOF1JrJA",
+      "title": "DeepMotion to Unreal Engine 5 | Animation Retargeting Tutorial | AI Motion Capture",
+      "author": "Cobra Code"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Motion%20Retargeting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T19:02:11.996245+00:00"
+}

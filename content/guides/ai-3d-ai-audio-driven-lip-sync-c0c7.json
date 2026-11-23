@@ -1,0 +1,94 @@
+{
+  "id": "ai-3d-ai-audio-driven-lip-sync-c0c7",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "오디오 반응형",
+  "name": "AI Audio-Driven Lip Sync",
+  "title": "AI Audio 기반 립싱크 — 음성 파일의 주파수와 발음을 분석하여 3D 캐릭터의 입모양 애니메이션을 자동 생",
+  "summary": "AI Audio-Driven Lip Sync는 Audio 파일의 음성 파형을 분석하여 3D 캐릭터의 립싱크와 입술 움직임을 자동으로 생성해 주는 AI 기반 애니메이션 기술입니다.",
+  "when": [
+    "게임 캐릭터의 대사 컷씬이나 NPC의 실시간 대화 애니메이션을 빠르게 제작할 때",
+    "수작업 립싱크(Keyframing) 작업으로 소모되는 시간을 크게 단축하고 싶을 때",
+    "Audio 음성에 맞춰 턱, 입술, 혀의 자연스러운 움직임을 일관되게 구현해야 할 때"
+  ],
+  "steps": [
+    "1. Content Browser 또는 관련 앱 런처(NVIDIA Omniverse 등)에서 AI Audio-Driven Lip Sync 툴을 실행합니다.",
+    "2. File → Import Mesh 경로를 통해 립싱크를 적용할 3D 캐릭터 메쉬 또는 페이셜 뼈대를 불러옵니다.",
+    "3. Audio 트랙 영역에 대사가 담긴 Audio 파일을 Import 하여 캐릭터와 싱크를 맞춥니다.",
+    "4. Audio Player Controller를 재생하여 음성에 따른 캐릭터의 입 모양 변화를 실시간 Viewport에서 확인합니다.",
+    "5. Details 패널 또는 속성 창에서 파라미터 값을 조정하여 입술 개폐 크기와 발음 감도를 정교하게 다듬습니다.",
+    "6. 최종 립싱크 애니메이션 데이터를 FBX 또는 USD 포맷으로 Export 하여 DCC 툴이나 게임 엔진으로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Audio Track",
+      "desc": "분석 및 립싱크 생성을 위해 불러온 Audio 파일을 지정하는 슬롯입니다."
+    },
+    {
+      "name": "Lip Open Multiplier",
+      "desc": "음성에 반응하는 입술의 벌어지는 최대 크기와 강도를 조절합니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "Audio 파형 분석으로 인한 떨림을 줄이고 입 모양 전환을 부드럽게 만들어 줍니다."
+    },
+    {
+      "name": "Emotion Intensity",
+      "desc": "음성의 톤과 뉘앙스에 따라 얼굴 표정이나 미세한 제스처의 강도를 조절합니다."
+    },
+    {
+      "name": "Language Model",
+      "desc": "입력된 Audio의 언어 특성을 AI가 분석하여 발음 정확도를 높이는 설정입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 캐릭터 대사 자동 립싱크",
+      "steps": [
+        "1. NPC 캐릭터 메쉬와 음성 대사 파일을 툴에 불러옵니다.",
+        "2. Audio Track에 파일을 연결하여 자동으로 입 모양이 생성되는 것을 확인합니다.",
+        "3. Smoothing 값을 조절하여 발음 전환의 부드러움을 최적화합니다.",
+        "4. 애니메이션 데이터를 FBX로 내보내어 Unreal Engine 시퀀서에 적용합니다."
+      ]
+    },
+    {
+      "title": "실시간 버튜버(VTuber) 스트리밍 연동",
+      "steps": [
+        "1. 마이크 입력 소스를 Audio Track 대신 실시간 Live Audio로 설정합니다.",
+        "2. Lip Open Multiplier 값을 높여 마이크 음성에 민감하게 반응하도록 맞춥니다.",
+        "3. Viewport에서 실시간 립싱크 출력을 확인하고 방송 송출 프로그램과 연동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio 볼륨이 너무 작거나 노이즈가 심함 → Audio 전처리를 통해 노이즈를 제거하고 볼륨을 균일하게 맞춘 뒤 다시 임포트합니다.",
+    "캐릭터의 페이셜 뼈대 이름이나 BlendShape 축이 표준과 다름 → 공식 가이드에 명시된 표준 명명 규칙(Naming Convention)에 맞춰 리깅 구조를 수정합니다."
+  ],
+  "related": [
+    "NVIDIA Omniverse Audio2Face",
+    "AI Face Rigging and Blendshapes",
+    "UNOMi AI Lip Sync",
+    "Unreal Engine MetaHuman Animator"
+  ],
+  "videos": [
+    {
+      "id": "xX8gMLZJUs0",
+      "title": "How to Create AI Lip Sync Videos with OpenArt AI (Full Tutorial)",
+      "author": "Henry AI"
+    },
+    {
+      "id": "mrtbpRnwhpg",
+      "title": "How to Add Lip Sync to AI Videos (5 Methods Compared)",
+      "author": "Daisy Studios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Audio-Driven%20Lip%20Sync",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "NVIDIA Omniverse",
+    "AI Audio-Driven Lip Sync"
+  ],
+  "at": "2026-11-23T19:02:04.178317+00:00"
+}
