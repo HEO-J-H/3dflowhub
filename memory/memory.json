@@ -1,28 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-20T23:03:58.509168+00:00",
-      "collected": 2,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 80,
-      "candidates_passed": 48,
-      "offtopic": 17,
-      "short": 0,
-      "prefiltered": 24,
-      "llm_fallbacks": [],
-      "strategy_ver": "1c826663",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "오늘 LLM 호출 한도(280회) 도달 | groq: 429 하루 한도: '{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m56dywyveeyafdzdkg8k263j` service tier `on_demand` on t' — 남은 2건은 리셋 후"
-      ]
-    },
-    {
       "at": "2026-11-20T23:13:21.435447+00:00",
       "collected": 0,
       "saved": 0,
@@ -6205,6 +6183,30 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-23T01:23:19.643852+00:00",
+      "collected": 0,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 59,
+      "candidates_passed": 18,
+      "offtopic": 19,
+      "short": 0,
+      "prefiltered": 32,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "86621390",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic"
+      ]
     }
   ],
   "good_keywords": [
@@ -6300,7 +6302,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-13 [성찰] 오동일명 및 일반 명사 단어(Nuke, Maya, Unity 등)로 인한 오프토픽을 차단하기 위해 30중 전문 컨텍스트 필터를 적용하고, 검색 유입이 검증된 Maxscript 및 애드온 실무 튜토리얼 비중을 대폭 높여야 합니다.",
     "2026-11-13 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추기 위해 수집 단계에서 CG 컨텍스트 필터를 25중으로 강화하고, Maxscript와 실무 튜토리얼 같은 고단가 검색 유입 키워드에 집중해야 합니다.",
     "2026-11-13 [성찰] 일반 명사 및 동음이의어(Maya, Unity, Nuke 등)로 인한 오탐지를 방지하기 위해 20중 이상의 3D/CG 전문 컨텍스트 필터를 적용하고, 실무 검색 유입이 입증된 튜토리얼·스크립트·가격 비교 중심의 고단가 콘텐츠 비중을 대폭 높여야 합니다.",
     "2026-11-13 [성찰] 일반 명사 도구명의 오탐지를 막기 위해 25중 컨텍스트 필터를 적용하고, 실무에 유용한 스크립트·애드온·튜토리얼 중심의 고단가 콘텐츠를 확대해야 합니다.",
@@ -6419,7 +6420,8 @@
     "2026-11-22 [성찰] 동음이의어 필터링을 더욱 강화하여 CG·게임·VFX 실무와 무관한 오탐지 뉴스를 원천 차단하고, 실무 튜토리얼 및 스크립트 위주의 고CPC 콘텐츠로 검색 유입을 극대화해야 합니다.",
     "2026-11-22 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집을 완벽히 차단하고, 검색 유입이 높은 실무 튜토리얼 및 스크립트 가이드에 집중해야 합니다.",
     "2026-11-22 [[p-b916634532|사이트·UX] Sprint3D 파이프라인 최적화] 최신 3D 생성 논문의 파이프라인 최적화 기법은 백엔드 성능 병목 해결에 직접적인 도움이 된다.",
-    "2026-11-22 [[p-b916634532|사이트·UX] Sprint3D 파이프라인 최적화] 최신 3D 생성 논문의 파이프라인 최적화 기법 도입 시 백엔드 처리 속도와 자원 효율성을 우선 검토한다."
+    "2026-11-22 [[p-b916634532|사이트·UX] Sprint3D 파이프라인 최적화] 최신 3D 생성 논문의 파이프라인 최적화 기법 도입 시 백엔드 처리 속도와 자원 효율성을 우선 검토한다.",
+    "2026-11-23 [성찰] 동음이의어(핵, 주가, 인물 등)에 의한 오수집을 막기 위해 CG·게임 실무 문맥 필터링을 강화하고, 검색 유입이 검증된 실무 가이드 및 고CPC 키워드 중심의 콘텐츠 발행에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -9616,10 +9618,10 @@
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3865,
-    "Game Engine": 3865,
-    "VFX": 3865,
-    "AI 3D": 3865
+    "3D DCC": 3866,
+    "Game Engine": 3866,
+    "VFX": 3866,
+    "AI 3D": 3866
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
