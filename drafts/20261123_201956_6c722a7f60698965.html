@@ -1,0 +1,19 @@
+<!-- TITLE: Unity 멀티 물리 씬으로 구현한 XREAL AURA XR 아케이드 | TAGS: Unity,XR,Physics,Owlchemy Labs,Android XR,유니티,작품·제작 사례 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://unity.com/blog/hyper-visor-xreal-aura-physics-scenes" target="_blank" rel="noopener nofollow"><img src="https://cdn.sanity.io/images/fuvbjjlp/production/e2140e0ea12c50f5e3143edc1de881c9d1e526f5-1024x500.png" alt="Unity 멀티 물리 씬으로 구현한 XREAL AURA XR 아케이드" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://unity.com/blog/hyper-visor-xreal-aura-physics-scenes" target="_blank" rel="noopener nofollow">unity.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Owlchemy Labs가 Unity 멀티 물리 씬과 에너지 스트림 인터랙션을 활용해 XREAL AURA 기기용 XR 아케이드 게임 Hyper Visor를 개발한 기술적 방법을 공개합니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 작품·제작 사례</p>
+<h2>Hyper Visor와 몰입형 XR 아케이드 설계</h2>
+<p>Owlchemy Labs는 일상적인 주변 환경을 게임 공간으로 전환하는 XR 아케이드 경험인 Hyper Visor를 개발했습니다. 플레이어는 신비로운 에너지 스트림을 손목 제스처로 발사해 현실 속 균열을 파괴하고 다양한 보스 전과 도전을 수행합니다. 별도의 UI 창을 띄우지 않고 게임플레이 속에서 자연스럽게 대상을 조준하도록 설계되었습니다.</p>
+<h2>물리 기반 인터랙션과 UI 통합</h2>
+<p>모든 대상은 Rigidbody를 가진 물리 오브젝트로 구현되어 에너지 빔과 상호작용합니다. 별도의 UI 시스템을 사용하는 대신 타겟 자체가 UI 역할을 겸하도록 설계하여 학습 곡선을 낮추었습니다. 설정 메뉴의 각 버튼도 물리 타겟으로 이루어져 있으며, 에너지 빔을 비추면 원형의 라이프 링이 줄어들며 작동합니다.</p>
+<h2>멀티 물리 씬을 활용한 월드 및 일시정지 분리</h2>
+<p>전통적인 일시정지 방식 대신 각 시스템이 고유의 월드와 클럭을 참조할 수 있도록 구조화되었습니다. 모든 시스템은 Instantiate 대신 _world.Spawn()을 호출하며, 월드 조회는 Awake() 시점의 gameObject.scene 매핑을 사용합니다. 각 월드가 독립된 물리 씬에 존재하므로 씬 핸들을 통해 정밀한 제어가 가능합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">멀티 물리 씬 구조를 도입하여 플레이어 월드, 게임플레이 월드, 일시정지 월드의 시간과 물리 시뮬레이션을 완벽하게 분리합니다. UI 시스템을 별도로 두지 않고 모든 메뉴 조작을 물리 오브젝트와 Rigidbody 상호작용으로 통합하여 일관된 조작감을 제공합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Hyper Visor에서 UI 조작은 어떻게 이루어지나요?</b><br/>A. 별도의 UI 캔버스를 사용하지 않으며, 게임플레이 타겟과 동일하게 물리 속성이 부여된 3D 오브젝트에 에너지 빔을 비추어 조작합니다.</p>
+<p><b>Q. 일시정지 기능은 어떤 아키텍처로 구현되었나요?</b><br/>A. 시간과 물리 시뮬레이션을 분리하기 위해 각 오브젝트가 고유의 씬과 연동된 물리 씬 속에서 동작하도록 멀티 물리 씬 구조를 적용했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-23-98650dc9a47ef23b.html">Unity VRChat Avatar 은하계 Shader 제작 기법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-265c64aaf7042dd6.html">Unity 7 ECS 도입으로 GameObject와 데이터 지향 설계 통합</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-8f5befbd75b02d51.html">Unity 툴 Tendril Wrap — 오브젝트를 감싸는 Procedural 덩굴 생성</a></li></ul>
+<hr/><p>원문:<a href="https://unity.com/blog/hyper-visor-xreal-aura-physics-scenes" target="_blank" rel="noopener nofollow">Tearing through reality: The tech behind Hyper Visor on XREAL AURA</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

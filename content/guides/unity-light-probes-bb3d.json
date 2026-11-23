@@ -1,0 +1,90 @@
+{
+  "id": "unity-light-probes-bb3d",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "라이팅 및 렌더링",
+  "name": "Light Probes",
+  "title": "라이트 프로브 — 움직이는 오브젝트에 주변 조명과 간접광을 전달하는 컴포넌트",
+  "summary": "Unity의 Light Probes는 라이트맵(Lightmap) 정보가 없는 동적 오브젝트(Dynamic Object)에 주변 조명과 간접광을 부드럽게 전달하여 배경과 자연스럽게 어우러지게 만드는 시스템입니다.",
+  "when": [
+    "플레이어 캐릭터나 움직이는 적 오브젝트가 어두운 실내에서 밝은 야외로 이동할 때 조명이 자연스럽게 변해야 할 때",
+    "정적(Static)으로 굽기(Bake) 힘든 움직이는 소품(Prop)에 주변 환경의 간접광을 적용하고 싶을 때",
+    "실시간 조명(Realtime Light)의 연산 부하를 줄이면서 간접광 효과를 가볍게 구현하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 우클릭 후 GameObject → Light → Light Probe Group을 선택하여 씬에 프로브 그룹을 생성합니다.",
+    "Scene 뷰를 보며 Inspector 패널에서 Edit Probes 버튼을 클릭하여 프로브(노란색 구체)의 위치를 이동 및 복제(Ctrl+D)합니다.",
+    "조명을 받을 동적 오브젝트를 선택하고, Inspector 패널의 Mesh Renderer 컴포넌트에서 Light Probes 옵션이 Blend Probes로 설정되어 있는지 확인합니다.",
+    "Window → Rendering → Lighting 메뉴를 엽니다.",
+    "Lighting 창의 Lightmapping 탭 하단에서 Generate Lighting 버튼을 클릭하여 라이트맵과 라이트 프로브 데이터를 함께 굽습니다(Bake).",
+    "Scene 뷰의 드롭다운(Draw Mode)에서 Light Probes를 선택해 프로브가 올바르게 조명을 수집했는지 시각적으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Edit Probes",
+      "desc": "프로브 구체들을 선택, 이동, 복제하여 배치 공간을 수정합니다."
+    },
+    {
+      "name": "Add Probe",
+      "desc": "선택된 프로브에 새로운 프로브를 추가합니다."
+    },
+    {
+      "name": "Remove Selected",
+      "desc": "선택한 프로브 구체를 삭제합니다."
+    },
+    {
+      "name": "Light Probes (Renderer 설정)",
+      "desc": "오브젝트가 프로브의 조명 보간(Interpolation)을 받을 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "어두운 복도를 걸어가는 플레이어 캐릭터",
+      "steps": [
+        "복도 내부와 입구 주변에 Light Probe Group을 촘촘히 배치합니다.",
+        "캐릭터 Mesh Renderer의 Light Probes 옵션을 켭니다.",
+        "라이트를 굽고 캐릭터가 이동할 때 복도의 빛과 그림자 변화를 확인합니다."
+      ]
+    },
+    {
+      "title": "실시간으로 움직이는 엘리베이터 안의 상자 소품",
+      "steps": [
+        "엘리베이터 내부 공간을 감싸도록 Light Probe 구체들을 3차원 격자 형태로 배치합니다.",
+        "엘리베이터 부모 오브젝트 아래에 프로브 그룹을 위치시켜 함께 움직이게 합니다.",
+        "조명을 굽고 엘리베이터가 움직여도 상자의 라이팅이 유지되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프로브 간격이 너무 넓음 → 캐릭터가 지나갈 때 갑자기 밝아지거나 어두워지는 현상 발생. 씬의 조명 변화가 심한 곳일수록 프로브를 촘촘히 배치합니다.",
+    "Dynamic 오브젝트가 아닌 Static 오브젝트에 Light Probes를 사용함 → 정적 오브젝트는 기본적으로 라이트맵(Lightmap)을 사용하므로 Mesh Renderer 설정을 확인합니다."
+  ],
+  "related": [
+    "Reflection Probe",
+    "Lightmap",
+    "Directional Light",
+    "Universal Render Pipeline"
+  ],
+  "videos": [
+    {
+      "id": "_E0JXOZDTKA",
+      "title": "HIGH QUALITY LIGHTING using Light Probes - Unity Tutorial",
+      "author": "Brackeys"
+    },
+    {
+      "id": "T13h3So6oFU",
+      "title": "Unity VR Optimization : Light Probes",
+      "author": "Fist Full of Shrimp"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Light%20Probes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "GameObject",
+    "Light",
+    "Light Probe Group"
+  ],
+  "at": "2026-11-23T20:20:08.107486+00:00"
+}
