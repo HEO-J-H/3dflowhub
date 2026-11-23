@@ -33751,5 +33751,74 @@
     "id": "p-bd9012ceac",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 최근 커밋과 끝낸 제안 내역에 웹 UI 문서 정비 및 에러 응답 테스트(test_errors.py) 관련 검증과 문서화 작업이 이미 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-23T13:47:32+00:00",
+    "kind": "proposal",
+    "id": "p-4cbc6cbb85",
+    "title": "웹 UI 브라우저 PBR 텍스처 변환 안정성 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "사이트·UX",
+    "evidence": "웹 PBR 다운로드 기능과 관련 단위 테스트가 완료되었으나 브라우저 환경별 예외 상황 처리를 추가로 점검할 필요가 있습니다.",
+    "proposal": "web/ 디렉토리 내 PBR 생성 Script에서 텍스처 캔버스 렌더링 실패 시 사용자에게 알림을 주는 에러 핸들링 로직을 보완합니다.",
+    "expected": "웹 버전에서 이미지 처리 중 예외 발생 시 디버깅이 쉬워지고 사용자 경험이 향상됩니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-23T13:47:32+00:00",
+    "kind": "proposal",
+    "id": "p-7af0e6146b",
+    "title": "로컬 FastAPI 파이프라인 정적 분석 및 테스트 유지보수",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_errors.py를 통해 에러 응답 검증이 도입되었으나, 지속적인 코드 정합성 유지가 필요합니다.",
+    "proposal": "backend/tests/ 내 기존 유닛 테스트들의 실행 시간을 점검하고 불필요하게 중복된 모의 테스트 코드를 정리합니다.",
+    "expected": "CI 빌드 속도가 빨라지고 로컬 백엔드 테스트의 신뢰성이 높아집니다.",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-23T13:51:02.000232+00:00",
+    "kind": "decision",
+    "id": "p-4cbc6cbb85",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-23T13:51:02.032465+00:00",
+    "kind": "decision",
+    "id": "p-7af0e6146b",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-23T13:51:03.359380+00:00",
+    "kind": "triage",
+    "id": "p-4cbc6cbb85",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 '웹 버전 PBR 텍스처 생성 결과물 다운로드 기능 검증' 및 관련 유닛 테스트 항목이 포함되어 있어 이미 반영된 작업입니다."
+  },
+  {
+    "at": "2026-11-23T13:51:03.389430+00:00",
+    "kind": "decision",
+    "id": "p-4cbc6cbb85",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '웹 버전 PBR 텍스처 생성 결과물 다운로드 기능 검증' 및 관련 유닛 테스트 항목이 포함되어 있어 이미 반영된 작업입니다."
+  },
+  {
+    "at": "2026-11-23T13:51:09.740967+00:00",
+    "kind": "triage",
+    "id": "p-7af0e6146b",
+    "verdict": "agent",
+    "reason": "backend/tests/ 내 유닛 테스트 실행 시간 점검 및 중복된 모의 테스트 코드 정리는 코드를 직접 수정하여 해결할 수 있는 작업입니다."
   }
 ]
