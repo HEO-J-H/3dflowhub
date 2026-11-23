@@ -1,0 +1,103 @@
+{
+  "id": "v-ray-vrayvolumegrid-d18f",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 최적화",
+  "name": "VRayVolumeGrid",
+  "title": "VRayVolumeGrid — 불, 연기, 안개 및 VDB 볼륨 데이터를 렌더링하기 위한 Grid 도구",
+  "summary": "V-Ray의 VRayVolumeGrid는 OpenVDB, Field3D, Phoenix FD 등의 볼륨 캐시 데이터를 V-Ray 렌더러에서 직접 읽어와 연기, 불, 구름 등을 실시간으로 렌더링하는 볼륨 렌더링용 기하학적 오브젝트입니다.",
+  "when": [
+    "Houdini나 EmberGen 등에서 시뮬레이션한 VDB 볼륨 캐시를 3ds Max나 Maya에서 렌더링할 때",
+    "폭발, 화재, 농구공 같은 복잡한 연기 및 불 효과를 고품질로 표현할 때",
+    "구름, 안개, 유체 등의 대기 효과를 씬에 자연스럽게 합성할 때"
+  ],
+  "steps": [
+    "3ds Max 또는 Maya Viewport에서 Create 패널(또는 메인 메뉴)로 이동합니다.",
+    "V-Ray 카테고리에서 VRayVolumeGrid를 선택하고 Viewport에 드래그하여 생성합니다.",
+    "Modify 패널(또는 Attribute Editor)의 V-Ray Volume Grid 속성으로 이동합니다.",
+    "File 파라미터에서 렌더링할 VDB 또는 F3D 캐시 파일 경로를 지정합니다.",
+    "Render Style을 Smoke 또는 Fire로 설정하고, Viewport에서 볼륨의 위치와 크기를 확인합니다.",
+    "Interactive Rendering을 실행하여 볼륨의 밀도와 색상을 확인하고 마무리합니다."
+  ],
+  "params": [
+    {
+      "name": "File",
+      "desc": "불러올 VDB, F3D 또는 Phoenix FD 캐시 파일 경로를 지정합니다."
+    },
+    {
+      "name": "Render Style",
+      "desc": "볼륨을 연기, 불, 혹은 메시(Mesh) 형태로 렌더링할지 방식을 선택합니다."
+    },
+    {
+      "name": "Smoke Opacity",
+      "desc": "연기 볼륨의 불투명도와 밀도감을 조절합니다."
+    },
+    {
+      "name": "Fire Tint",
+      "desc": "화염의 색상과 온도에 따른 발광 색상을 조절합니다."
+    },
+    {
+      "name": "Step Size",
+      "desc": "레이 마칭(Ray Marching) 샘플링 간격으로, 디테일과 렌더링 속도에 영향을 줍니다."
+    },
+    {
+      "name": "Lighting",
+      "desc": "씬 내의 라이트가 볼륨을 통과하며 산란하는 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VDB 연기 시뮬레이션 렌더링",
+      "steps": [
+        "VRayVolumeGrid를 씬에 생성합니다.",
+        "File 경로에 Houdini에서 내보낸 VDB 연기 캐시를 불러옵니다.",
+        "Render Style을 Smoke로 맞추고 Smoke Opacity를 조절합니다.",
+        "V-Ray Light를 배치하여 연기에 그림자와 입체감을 부여합니다."
+      ]
+    },
+    {
+      "title": "폭발 화재 표현",
+      "steps": [
+        "VRayVolumeGrid를 생성하고 폭발 VDB 파일을 지정합니다.",
+        "Render Style을 Fire로 설정합니다.",
+        "Fire Tint와 Intensity를 높여 강렬한 화염을 연출합니다.",
+        "IPR(Interactive Production Rendering)을 켜고 불꽃의 밝기를 실시간 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "캐시 파일 경로를 찾지 못함 → 파일 경로에 한글이나 특수문자가 없는지 확인하고 절대 경로로 다시 지정합니다.",
+    "렌더링 시 볼륨이 보이지 않음 → Step Size 값이 너무 크거나 V-Ray 조명이 씬에 없는지 확인합니다.",
+    "렌더링 시간이 지나치게 오래 걸림 → Step Size 값을 키우거나 Volumetric Raymarching 샘플링 옵션을 낮춥니다."
+  ],
+  "related": [
+    "Phoenix FD",
+    "OpenVDB",
+    "V-Ray Light",
+    "VRayMtl"
+  ],
+  "videos": [
+    {
+      "id": "EHxMDbSgfM4",
+      "title": "V-Ray Next for 3ds Max Courseware – 2.3.1 Volume Grid Texture Steps",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "3aVXzR7mV_E",
+      "title": "Rendering Clouds - 3ds max using VrayVolumeGrid",
+      "author": "MAK CGI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayVolumeGrid",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Maya Viewport",
+    "Create",
+    "V-Ray",
+    "VRayVolumeGrid",
+    "Viewport"
+  ],
+  "at": "2026-11-23T16:28:04.008817+00:00"
+}
