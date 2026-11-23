@@ -5,78 +5,94 @@
   "group": "스컬프트",
   "name": "Sculpt Mode basics",
   "title": "Sculpt Mode — 조각 시작하기",
-  "summary": "Blender의 Sculpt Mode는 디지털 점토를 빚듯 자유롭게 모델링의 형태를 변형하고 세부 디테일을 조각하는 기능입니다.",
+  "summary": "Sculpt Mode는 디지털 점토처럼 오브젝트를 자유롭게 변형하고 디테일을 실시간으로 조각할 수 있는 Blender의 스컬프팅 환경입니다.",
   "when": [
-    "캐릭터의 얼굴, 근육, 주름 등 유기적인 형태를 자연스럽게 빚을 때",
-    "바위, 나무 껍질, 천의 주름 등 불규칙하고 복잡한 질감을 표현할 때",
-    "기본 모델링 위에 하이 폴리곤 디테일을 추가하여 스컬프팅 작업을 할 때"
+    "유기적인 캐릭터 형태를 만들 때",
+    "표면에 고해상도 디테일(주름·흉터·피부 질감)을 추가하고 싶을 때",
+    "기존 메쉬를 크게 변형해 새로운 형태를 만들 때"
   ],
   "steps": [
-    "Viewport에서 스컬프팅할 오브젝트를 선택합니다.",
-    "상단 모드 전환 메뉴에서 Object Mode를 Sculpt Mode로 변경합니다 (단축키: Ctrl+Tab 누른 뒤 2 선택).",
-    "사이드바나 Active Tool and Workspace Settings 탭에서 원하는 브러시를 선택합니다.",
-    "Viewport 빈 공간에서 드래그하여 메쉬를 조각합니다. (좌클릭: 브러시 적용, Ctrl+좌클릭: 반대 효과)",
-    "디테일이 부족할 경우 Dyntopo를 켜거나 Multiresolution Modifier를 추가하여 세밀한 폴리곤을 확보합니다."
+    "Object Mode에서 스컬프팅할 오브젝트 선택",
+    "Ctrl+Tab → Sculpt Mode 로 전환 (또는 상단 모드 메뉴에서 Sculpt 선택)",
+    "툴바(Tool Shelf)에서 원하는 Brush 선택 (예: Draw)",
+    "Radius와 Strength를 조절하고 Viewport에서 브러시로 형태를 변형",
+    "필요 시 Dyntopo를 Enable → Detail Size 조정 후 디테일 추가",
+    "작업이 끝나면 Object Mode 로 돌아가 Apply Scale 등 최종 정리"
   ],
   "params": [
     {
       "name": "Radius",
-      "desc": "브러시의 크기를 조절합니다."
+      "desc": "브러시의 영향을 미치는 원형 영역 크기"
     },
     {
       "name": "Strength",
-      "desc": "브러시가 메쉬에 미치는 힘의 강도를 조절합니다."
+      "desc": "브러시가 메쉬에 가하는 변형 강도"
     },
     {
       "name": "Dyntopo",
-      "desc": "브러시가 닿는 부위의 폴리곤을 실시간으로 실시간 분할·통합합니다."
+      "desc": "동적 Topology를 켜면 메쉬가 자동으로 재분할되어 디테일 추가가 가능"
     },
     {
-      "name": "Symmetry",
-      "desc": "특정 축을 기준으로 좌우 대칭 스컬프팅을 활성화합니다."
+      "name": "Detail Size",
+      "desc": "Dyntopo 사용 시 새로 생성되는 삼각형의 크기"
     },
     {
-      "name": "Auto Smooth",
-      "desc": "브러시 스트로크 후 표면을 자동으로 매끄럽게 정리합니다."
+      "name": "Smooth",
+      "desc": "메쉬 표면을 부드럽게 정리하는 브러시"
+    },
+    {
+      "name": "Grab",
+      "desc": "메쉬 전체를 잡아당겨 큰 형태 변형을 할 때 사용"
     }
   ],
   "examples": [
     {
-      "title": "캐릭터 얼굴 베이스 형태 잡기",
+      "title": "캐릭터 얼굴에 주름 만들기",
       "steps": [
-        "Symmetry 설정에서 X축 대칭을 켭니다.",
-        "Grab 브러시로 코와 턱의 위치를 크게 당겨 형태를 잡습니다.",
-        "Clay Strips 브러시로 눈두덩이와 광대뼈의 볼륨을 채웁니다."
+        "Multiresolution Modifier를 추가하고 높은 레벨 설정",
+        "Sculpt Mode → Draw Brush 선택",
+        "Radius를 작게, Strength를 중간으로 설정",
+        "얼굴 표면에 짧은 스트로크로 주름을 그려 넣음"
       ]
     },
     {
-      "title": "자연스러운 돌 바위 제작",
+      "title": "파이프를 휘어지게 만들기",
       "steps": [
-        "Cube 오브젝트를 Subdivision Surface로 부드럽게 만든 뒤 Sculpt Mode로 진입합니다.",
-        "Scrape 브러시와 Flatten 브러시로 단면을 깎아내어 돌의 각진 면을 만듭니다.",
-        "Crease 브러시로 갈라진 틈과 금 간 자국을 그려 넣습니다."
+        "Object Mode에서 파이프 메쉬 선택",
+        "Ctrl+Tab → Sculpt Mode",
+        "Grab Brush 선택",
+        "전체 파이프를 클릭 후 드래그해 원하는 곡선 형태로 변형"
+      ]
+    },
+    {
+      "title": "판에 금속 스크래치 텍스처 추가",
+      "steps": [
+        "Sculpt Mode → Scratch Brush 선택",
+        "Strength를 낮게, Radius를 작게 설정",
+        "표면에 짧은 선을 반복해 스크래치 효과 구현"
       ]
     }
   ],
   "mistakes": [
-    "스케일이 틀어진 상태에서 스컬프팅 → Object 모드에서 반드시 Ctrl+A -> Apply Scale을 실행한 뒤 스컬프팅을 시작하세요.",
-    "초반부터 너무 높은 폴리곤으로 작업 → 저해상도 단계에서 큰 형태를 먼저 잡은 뒤 세부 디테일로 올라가세요."
+    "브러시 크기를 너무 작게 설정 → Radius를 키워서 다시 시도",
+    "Apply Scale를 하지 않음 → 메쉬가 비정상적으로 변형 → Object → Apply → Scale 실행",
+    "Dyntopo를 켜지 않음 → 세부 디테일을 추가할 수 없음 → Dyntopo Enable 후 Detail Size 조정"
   ],
   "related": [
     "Multiresolution Modifier",
-    "Remesh",
     "Subdivision Surface",
-    "Vertex Paint"
+    "Mask Brush",
+    "Texture Paint"
   ],
   "videos": [
     {
-      "id": "_Lc0hSoJTDc",
-      "title": "Learn the BASICS of Sculpting in Blender 4.5 | Beginner Tutorial",
-      "author": "Blender With Dani"
-    },
-    {
       "id": "Lxem4yMs5Dg",
       "title": "Sculpting for Complete Beginners! (Blender Tutorial)",
+      "author": "Ryan King Art"
+    },
+    {
+      "id": "6YI-5hyMKYg",
+      "title": "Head Sculpting for Beginners (Blender Course Trailer)",
       "author": "Ryan King Art"
     }
   ],
@@ -84,24 +100,9 @@
   "grounded": false,
   "images": [],
   "menu_path": [
-    "Viewport",
     "Object Mode",
-    "Sculpt Mode"
+    "Sculpt Mode",
+    "Sculpt"
   ],
-  "at": "2026-10-31T01:39:35.930482+00:00",
-  "updates": [
-    {
-      "at": "2026-11-03T14:19:36+00:00",
-      "what": "새로운 Blender 스컬프팅 보조 애드온(CL Sculpt Assistant) 출시 소식이 있어 가이드 내용에 영향이 없음을 확인하고 유지했습니다.",
-      "sources": [
-        {
-          "title": "Blender 조각 작업을 혁신하는 새 플러그인 CL Sculpt Assistant 출시",
-          "url": "https://80.lv/articles/blender-gets-handy-new-assistant-tool-for-sculpting/"
-        }
-      ],
-      "source_keys": [
-        "p:2026-10-29-303e76ae715a6664"
-      ]
-    }
-  ]
+  "at": "2026-11-23T02:25:39.849997+00:00"
 }
