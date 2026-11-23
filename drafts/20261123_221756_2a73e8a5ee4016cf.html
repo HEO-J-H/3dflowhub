@@ -1,0 +1,20 @@
+<!-- TITLE: Unity CLI와 AI 기반 Vive 코딩 실무 가이드 | TAGS: Unity,CLI,Vive 코딩,C#,AI 에이전트,유니티,업데이트·출시 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://unity.com/blog/ai-vibe-coding-vs-buying-managed-infrastructure" target="_blank" rel="noopener nofollow"><img src="https://img.youtube.com/vi/DgNrgZeJOxQ/hqdefault.jpg" alt="Unity CLI와 AI 기반 Vive 코딩 실무 가이드" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://unity.com/blog/ai-vibe-coding-vs-buying-managed-infrastructure" target="_blank" rel="noopener nofollow">unity.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/DgNrgZeJOxQ" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unity가 새롭게 공개한 CLI와 AI 기반 Vive 코딩을 통해 에디터 내부에서 C# Script와 씬 로직을 효율적으로 구축하는 방법과 인프라 관리 방안을 소개합니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 업데이트·출시</p>
+<h2>Unity CLI와 에디터 내 Eval 명령 활용</h2>
+<p>새롭게 출시된 Unity CLI는 대형 언어 모델과 AI 에이전트가 주요 명령어와 Runtime 실행에 접근할 수 있도록 간소화된 인터페이스를 제공합니다. 특히 Eval 명령은 도메인 리로드 없이 C# 코드를 Unity Editor 내에서 곧바로 실행할 수 있어 반복 작업 속도를 단축합니다. 개발자는 CI/CD 설정을 안정적으로 구축할 수 있으며, 디자이너는 씬 로직 조립이나 네비게이션 설정 등을 빠르게 처리할 수 있습니다.</p>
+<h2>Vive 코딩의 적절한 적용 영역</h2>
+<p>AI 에이전트를 통한 Vive 코딩은 Unity 작업 상단에 얹어지는 기능과 UI, 커스텀 에디터 도구, 애니메이션과 Audio를 연결하는 C# Script 구현에 가장 효과적입니다. 프로젝트 초기 설정, 씬 제작, 성능 최적화 작업 등을 자연어 Prompt로 처리할 수 있습니다. 이를 통해 반복적인 Prototyping 과정에서 작업 흐름을 유연하게 유지할 수 있습니다.</p>
+<h2>관리형 인프라와 자체 구축의 경계</h2>
+<p>에이전트가 Unity의 거의 모든 영역에 접근할 수 있게 되면서 독자적인 자산 관리자나 트랜스코더를 직접 구축하고 싶은 유혹이 생기기 쉽습니다. 그러나 독점 CAD Import, 자산 관리, 보안, 버전 관리, 컴플라이언스 및 멀티유저 작업 등 하중을 견뎌야 하는 기반 시설은 Unity의 관리형 인프라에 의존해야 합니다. 프로덕션 시스템은 여전히 철저한 테스트와 접근 제어, 장기적인 유지보수 체계가 필요합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unity CLI에 추가된 Eval 명령은 도메인 리로드 없이 에디터 내에서 C# 코드를 직접 실행하여 에이전트 기반 작업 속도를 크게 높여줍니다. CAD 임포트나 보안 같은 하중을 받는 기반 인프라는 관리형 서비스를 유지하고, UI나 커스텀 에디터 도구 등 상단 기능 구현에 AI를 활용하는 것이 핵심입니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Unity CLI의 Eval 명령은 어떤 역할을 하나요?</b><br/>A. 도메인 리로드 과정 없이 Unity Editor 내부에서 C# 코드를 직접 실행할 수 있도록 지원하여 AI 에이전트와 연동한 작업 속도를 높여줍니다.</p>
+<p><b>Q. Vive 코딩으로 구현하기 가장 적합한 작업은 무엇인가요?</b><br/>A. Unity 에디터 상단에서 작동하는 커스텀 도구 제작, UI Prototyping, 애니메이션 및 Audio 로직을 연결하는 C# Script 작성에 가장 유리합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-23-6c722a7f60698965.html">Unity 멀티 물리 씬으로 구현한 XREAL AURA XR 아케이드</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-98650dc9a47ef23b.html">Unity VRChat Avatar 은하계 Shader 제작 기법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-265c64aaf7042dd6.html">Unity 7 ECS 도입으로 GameObject와 데이터 지향 설계 통합</a></li></ul>
+<hr/><p>원문:<a href="https://unity.com/blog/ai-vibe-coding-vs-buying-managed-infrastructure" target="_blank" rel="noopener nofollow">Real-time 3D with Unity Industry: What to vibe code with Unity CLI and when to rely on the foundational infrastructure</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
