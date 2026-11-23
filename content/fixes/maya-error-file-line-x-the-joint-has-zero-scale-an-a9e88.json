@@ -1,0 +1,38 @@
+{
+  "id": "maya-error-file-line-x-the-joint-has-zero-scale-an-a9e88",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: The joint has zero scale and cannot be oriented",
+  "title": "# Error: file: line X: The joint has zero scale and cannot be oriented 오류 해결법",
+  "summary": "Maya에서 스케일 값이 0인 조인트를 오리엔트(Joint Orient)하려고 할 때 발생하는 오류입니다. 영(0)의 스케일 때문에 회전 축 계산이 불가능하여 스크립트나 명령어가 중단됩니다.",
+  "causes": [
+    "조인트를 생성하거나 스케일링하는 과정에서 특정 축의 Scale 값이 실수로 0으로 설정된 경우",
+    "다른 오브젝트나 그룹을 언패어런트(Unparent)하거나 스케일을 조절하다가 조인트 계층에 0 스케일이 상속된 경우",
+    "임포트한 FBX나 외부 파일에서 손상된 트랜스폼(Transform) 데이터가 포함되어 있는 경우"
+  ],
+  "steps": [
+    "Channel Box 또는 Attribute Editor에서 문제가 발생한 조인트를 선택합니다.",
+    "Transform 속성의 Scale X, Scale Y, Scale Z 값이 0으로 되어 있는지 확인합니다.",
+    "0으로 설정된 Scale 값을 1로 변경합니다 (필요한 경우 세 축 모두 1로 설정).",
+    "스케일 값을 고정하려면 Modify 메뉴에서 Freeze Transformations를 실행합니다.",
+    "MEL 또는 Python Script로 일괄 처리 중이라면, 스케일이 0인 조인트를 건너뛰거나 스케일을 1로 초기화하는 예외 처리를 추가합니다."
+  ],
+  "check": [
+    "조인트의 Scale 값이 모두 1로 정상 설정되었는지 확인합니다.",
+    "Joint Orient 명령어나 Script를 다시 실행했을 때 오류 메시지 없이 정상 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "조인트를 편집할 때는 실수로 Scale 채널을 건드리지 않도록 주의합니다.",
+    "리깅 에셋을 Export 전에 모든 조인트의 Freeze Transformations를 습관화합니다."
+  ],
+  "keywords": [
+    "Maya 조인트 오류",
+    "The joint has zero scale",
+    "joint orient 에러",
+    "Maya 스케일 0",
+    "리그 스킨 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T11:07:24+00:00"
+}
