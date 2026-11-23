@@ -1,0 +1,40 @@
+{
+  "id": "blender-operator-bpy-ops-object-modifier-apply-pol-65379",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Operator bpy.ops.object.modifier_apply.poll() failed, context is incorrect",
+  "title": "Operator bpy.ops.object.modifier_apply.poll() failed, context is incorrect - 해결 ",
+  "summary": "Operator bpy.ops.object.modifier_apply.poll() failed, context is incorrect는 현재 컨텍스트(활성 오브젝트·모드·오브젝트 종류)가 적용 연산에 맞지 않아 실행되지 않았다는 의미입니다.",
+  "causes": [
+    "활성 오브젝트가 없거나 선택이 해제돼 있다",
+    "Object Mode가 아니라 Edit Mode 등 다른 모드에 있다",
+    "Modifier를 적용하려는 대상이 Mesh가 아닌 다른 타입(예: Curve, Light)이다",
+    "Script에서 UI 컨텍스트를 올바르게 전달하지 않았다"
+  ],
+  "steps": [
+    "3D Viewport에서 적용하려는 오브젝트를 클릭해 선택하고, 마지막으로 선택된 오브젝트가 활성 오브젝트가 되도록 확인한다 (Outliner에서 파란 점이 보인다).",
+    "Ctrl+Tab 또는 상단 모드 스위처에서 Object Mode 로 전환한다.",
+    "오브젝트가 Mesh 타입인지 확인한다 (Properties → Object Data 탭에 Mesh 아이콘이 표시됨).",
+    "Modifier 탭에서 적용하려는 Modifier를 선택하고 Apply 버튼을 클릭한다. UI가 불가능한 경우, Script에서는 다음과 같이 호출한다:\n```python\nobj = bpy.context.active_object\nif obj and obj.type == 'MESH':\n    bpy.ops.object.modifier_apply(modifier=\"ModifierName\")\n```",
+    "Script를 백그라운드에서 실행한다면, 올바른 컨텍스트를 강제한다:\n```python\nwith bpy.context.temp_override(area='VIEW_3D', region='WINDOW', space_data=bpy.context.space_data, active_object=obj):\n    bpy.ops.object.modifier_apply(modifier=\"ModifierName\")\n```"
+  ],
+  "check": [
+    "Modifier가 스택에서 사라지고, 오브젝트가 변형된 상태가 Viewport에 바로 반영된다",
+    "콘솔에 오류 메시지가 더 이상 출력되지 않는다"
+  ],
+  "prevent": [
+    "오퍼레이터를 호출하기 전에 항상 active_object와 mode를 명시적으로 설정한다",
+    "Modifier를 적용하기 전, obj.type == 'MESH' 를 검사한다",
+    "Script에서 UI 컨텍스트가 필요할 경우 temp_override 로 올바른 영역을 전달한다"
+  ],
+  "keywords": [
+    "bpy.ops.object.modifier_apply.poll() failed",
+    "Blender modifier apply context error",
+    "modifier apply runtimeerror",
+    "Blender Python active object",
+    "Blender apply modifier script"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T02:35:37+00:00"
+}

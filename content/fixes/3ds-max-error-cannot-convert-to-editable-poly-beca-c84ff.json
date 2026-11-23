@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-cannot-convert-to-editable-poly-beca-c84ff",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: Cannot convert to Editable Poly because object is an instance",
+  "title": "Error: Cannot convert to Editable Poly because object is an instance - 해결 방법",
+  "summary": "Instance 객체는 직접 Editable Poly 로 변환할 수 없으며, 먼저 Instance를 해제(Unique)해야 변환이 가능합니다.",
+  "causes": [
+    "선택한 오브젝트가 Instance 형태이다",
+    "복제된 Instance를 그대로 Convert to → Editable Poly 로 시도했다",
+    "Instance가 레이어나 그룹에 포함돼 있어 바로 변환이 차단된다"
+  ],
+  "steps": [
+    "객체를 선택한다",
+    "메인 메뉴에서 Edit → Make Unique 를 클릭해 Instance를 해제한다",
+    "다시 객체를 선택하고 오른쪽 클릭 → Convert To → Convert to Editable Poly 를 선택한다",
+    "또는 Modify 패널에서 Modifier List 에서 Editable Poly 를 적용한다"
+  ],
+  "check": [
+    "Modifier Stack에 ‘Editable Poly’가 표시되는지 확인한다",
+    "객체 선택 시 체인 아이콘(Instance 표시)이 사라졌는지 확인한다"
+  ],
+  "prevent": [
+    "복제(Copy) 대신 Instance를 사용할 때는 Editable Poly 변환이 필요 없도록 설계한다",
+    "Instance를 편집해야 할 경우 바로 Make Unique 로 고유 오브젝트로 만든다",
+    "레이어·그룹 관리 시 Instance와 Editable Poly 오브젝트를 구분해 놓는다"
+  ],
+  "keywords": [
+    "3ds Max Instance Editable Poly 변환 오류",
+    "Cannot convert to Editable Poly because object is an instance",
+    "Instance 해제 방법",
+    "Make Unique 3ds Max",
+    "Editable Poly 변환 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T02:36:21+00:00"
+}

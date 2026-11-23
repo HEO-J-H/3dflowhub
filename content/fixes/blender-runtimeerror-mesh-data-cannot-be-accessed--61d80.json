@@ -1,0 +1,38 @@
+{
+  "id": "blender-runtimeerror-mesh-data-cannot-be-accessed--61d80",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "RuntimeError: Mesh data cannot be accessed while in edit mode",
+  "title": "RuntimeError: Mesh data cannot be accessed while in edit mode - 해결 방법",
+  "summary": "RuntimeError: Mesh data cannot be accessed while in edit mode 메시지는 Blender가 Edit Mode 상태에서 메쉬 데이터를 직접 접근하려 할 때 발생합니다.",
+  "causes": [
+    "Python Script가 Edit Mode에 있는 상태에서 mesh.data 속성에 직접 접근했을 때",
+    "bmesh.from_mesh 혹은 mesh.from_pydata 등을 Edit Mode에서 호출했을 때",
+    "mesh.calc_normals, mesh.update 등 메쉬 데이터를 수정하는 API를 Edit Mode에서 사용했을 때"
+  ],
+  "steps": [
+    "Edit Mode를 종료하고 Object Mode로 전환합니다( Tab 키 또는 3D View → Object Mode).",
+    "Script에서 mesh 데이터를 접근하기 전에 bpy.ops.object.mode_set(mode='OBJECT') 로 Object Mode로 전환합니다.",
+    "필요하다면 작업이 끝난 뒤 bpy.ops.object.mode_set(mode='EDIT') 로 다시 Edit Mode로 돌아갑니다.",
+    "Edit Mode에서 메쉬를 편집해야 할 경우 bmesh.from_edit_mesh(bpy.context.object.data) 로 bmesh 객체를 만든 뒤 작업하고, bmesh.update_edit_mesh(bpy.context.object.data) 로 업데이트합니다."
+  ],
+  "check": [
+    "Script를 다시 실행했을 때 RuntimeError 가 발생하지 않으면 정상입니다.",
+    "Viewport에서 메쉬 변경 사항이 바로 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "메쉬 데이터를 읽거나 쓸 때는 항상 Object Mode에서 접근합니다.",
+    "Edit Mode에서 메쉬를 편집해야 하면 bmesh.from_edit_mesh / bmesh.update_edit_mesh 를 사용합니다.",
+    "자동화 Script에 mode 전환 코드를 기본 Template으로 포함합니다."
+  ],
+  "keywords": [
+    "RuntimeError Mesh data cannot be accessed while in edit mode",
+    "Blender 메쉬 데이터 편집 모드 오류",
+    "Edit Mode Python 메쉬 접근",
+    "bmesh from_edit_mesh 사용법",
+    "Blender RuntimeError 메쉬 데이터"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T02:36:03+00:00"
+}
