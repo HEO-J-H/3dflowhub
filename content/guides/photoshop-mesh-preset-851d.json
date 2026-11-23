@@ -1,0 +1,101 @@
+{
+  "id": "photoshop-mesh-preset-851d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "메쉬 및 형태 변형",
+  "name": "Mesh Preset",
+  "title": "메쉬 사전 설정 — 캔버스, 원통, 구 등 기본 3D 형태를 빠르게 생성",
+  "summary": "Photoshop의 Mesh Preset 기능은 2D 레이어나 패스 형태를 바탕으로 미리 정의된 3D 기본 입체 형상으로 변환해 주는 도구입니다. 복잡한 모델링 과정 없이도 평면 그래픽을 빠르게 3D 프리셋 오브젝트로 만들 수 있습니다.",
+  "when": [
+    "2D 로고나 아이콘을 캔버스 위에서 빠르게 3D 입체 형태로 만들 때",
+    "평면 일러스트나 텍스트를 원통(Cylinder)이나 구(Sphere) 등의 기본 프리셋에 감싸듯 배치할 때",
+    "별도의 3D 프로그램 없이 Photoshop 환경에서 간단한 3D 입체 효과를 적용하고 싶을 때"
+  ],
+  "steps": [
+    "배경이 분리된 투명 PNG 이미지 레이어 또는 텍스트 레이어를 준비합니다.",
+    "상단 메뉴 바에서 3D > New 3D Postcard from Layer 또는 3D > New Mesh from Layer를 실행합니다.",
+    "Workspace를 3D로 전환하고, 3D 패널에서 생성된 메쉬 레이어를 선택합니다.",
+    "Properties 패널의 Mesh Preset 드롭다운 메뉴에서 원하는 3D 형태(예: Cylinder, Sphere 등)를 선택합니다.",
+    "Viewport에서 기즈모(Gizmo)를 사용해 크기와 각도를 조절하고, 3D 레이어 패널에서 세부 속성을 마무리합니다.",
+    "Viewport에서 입체적인 프리셋 형태가 반영된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mesh Preset",
+      "desc": "적용할 3D 기본 형태(Cylinder, Sphere, Cone 등)를 선택합니다."
+    },
+    {
+      "name": "Extrusion Depth",
+      "desc": "메쉬가 입체적으로 튀어나오는 두께와 깊이를 조절합니다."
+    },
+    {
+      "name": "Deformation",
+      "desc": "선택한 프리셋에 맞춰 2D 그래픽이 변형되는 방식을 지정합니다."
+    },
+    {
+      "name": "Texture",
+      "desc": "메쉬 표면에 매핑되는 2D 레이어 이미지의 소스를 관리합니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "메쉬 표면의 경계선을 부드럽게 다듬어 계단 현상을 줄입니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "선택한 3D 프리셋 오브젝트의 전체 크기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원통형 캔 디자인 시각화",
+      "steps": [
+        "라벨 디자인이 포함된 2D 레이어를 준비합니다.",
+        "3D > New Mesh from Layer를 실행합니다.",
+        "Properties 패널에서 Mesh Preset을 Cylinder로 선택합니다.",
+        "원통 형태로 감싸진 라벨의 이음새를 확인합니다."
+      ]
+    },
+    {
+      "title": "입체 구형 배지 만들기",
+      "steps": [
+        "원형 로고 그래픽 레이어를 선택합니다.",
+        "3D 메뉴에서 새로운 메쉬를 생성합니다.",
+        "Mesh Preset에서 Sphere 프리셋을 적용합니다.",
+        "구체 표면에 밀착된 로고의 입체감을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투명 배경이 아닌 흰색 배경이 포함된 레이어 선택 → 배경을 제거하고 알파 채널이 포함된 PNG 레이어만 선택합니다.",
+    "2D 레이어가 너무 작거나 Resolution가 낮음 → 고해상도 레이어를 사용하고 텍스처 선명도를 높입니다.",
+    "3D Workspace가 활성화되지 않음 → 상단 메뉴 Workspace에서 3D 레이아웃을 선택해 패널을 활성화합니다."
+  ],
+  "related": [
+    "Mesh from Layer",
+    "New 3D Postcard from Layer",
+    "Extrusion Depth",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "6wg8uFuBd6Y",
+      "title": "Mesh Presets and Path Extrusions to Create a 3D Object in Photoshop",
+      "author": "Katy Miller"
+    },
+    {
+      "id": "ZyWJxU4OwY4",
+      "title": "Photoshop 3D Presets - Using 3D Mesh Presets Tutorial",
+      "author": "SEO Skills"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Mesh%20Preset",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "PNG",
+    "New 3D Postcard",
+    "Layer",
+    "New Mesh"
+  ],
+  "at": "2026-11-23T17:37:24.871544+00:00"
+}

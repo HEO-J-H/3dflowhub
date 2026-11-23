@@ -1,0 +1,94 @@
+{
+  "id": "davinci-resolve-adr-panel-6c71",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트 페이지",
+  "name": "ADR Panel",
+  "title": "ADR 패널 — 후시 녹음(대사 자동 교체)을 정확하게 타이밍에 맞춰 녹음하고 관리할 수 있는 도구",
+  "summary": "DaVinci Resolve의 ADR Panel은 자동 대사 보정(Automated Dialogue Replacement) 작업을 위한 전문 녹음 및 관리 도구입니다. 배우가 Studio에서 원본 대사를 재녹음하고 타이밍에 맞춰 정확히 싱크를 맞출 수 있습니다.",
+  "when": [
+    "현장 소음이나 바람 소리로 인해 원본 대사의 음질이 떨어져 재녹음이 필요할 때",
+    "배우의 감정선이나 딕션을 수정하기 위해 Studio에서 대사를 다시 덧입힐 때",
+    "여러 명의 성우나 배우가 참여하는 프로젝트에서 체계적으로 대사를 교체하고 관리할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 탭에서 Fairlight 페이지를 엽니다.",
+    "상단 메뉴 바에서 Fairlight → ADR 을 선택하거나 Hotkey를 확인해 ADR 패널을 활성화합니다.",
+    "ADR 패널의 Cue 목록에서 녹음할 타임코드 구간과 대사 내용을 등록합니다.",
+    "입력(Input) 소스와 모니터링 트랙을 설정한 뒤, Pre-roll(사전 재생) 시간을 지정합니다.",
+    "Record 버튼을 눌러 비프음(Beep) 신호에 맞춰 대사 녹음을 진행합니다.",
+    "녹음된 테이크(Take)를 확인하고 트랙에서 타이밍과 볼륨을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Cue List",
+      "desc": "녹음해야 할 대사 구간과 타임코드를 관리하는 목록입니다."
+    },
+    {
+      "name": "Pre-roll",
+      "desc": "녹음 시작 전 배우가 준비할 수 있도록 재생을 미리 시작하는 시간입니다."
+    },
+    {
+      "name": "Beep",
+      "desc": "녹음 직전 박자에 맞춰 신호음을 주어 타이밍을 잡도록 돕습니다."
+    },
+    {
+      "name": "Take",
+      "desc": "동일한 대사를 여러 번 녹음한 시도 횟수별로 버전을 관리합니다."
+    },
+    {
+      "name": "Source",
+      "desc": "마이크 입력 장치와 Audio 인터페이스 채널을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 촬영 장면 대사 재녹음",
+      "steps": [
+        "Fairlight 페이지의 ADR 패널을 엽니다.",
+        "바람 소리가 섞인 야외 대사 구간을 Cue로 등록합니다.",
+        "Studio 마이크를 연결하고 Pre-roll을 설정해 녹음합니다."
+      ]
+    },
+    {
+      "title": "외국어 더빙 및 싱크 맞추기",
+      "steps": [
+        "번역된 대사 Script를 Cue List에 입력합니다.",
+        "원어민 배우가 화면을 보며 비프음에 맞춰 더빙을 진행합니다.",
+        "Take별로 가장 자연스러운 Audio 클립을 선택합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "녹음 트랙 설정 오류 → Input 패널에서 마이크 입력 소스가 올바르게 지정되었는지 확인합니다.",
+    "박자가 맞지 않는 문제 → Pre-roll 및 Beep 설정 값을 조절하여 배우가 리듬을 타고 들어올 수 있게 합니다."
+  ],
+  "related": [
+    "Dialogue Leveler",
+    "Fairlight FX",
+    "Bus Assign",
+    "Bussing"
+  ],
+  "videos": [
+    {
+      "id": "gBOVIZwgzeo",
+      "title": "How to Use ADR in Davinci Resolve Fairlight",
+      "author": "Cory McCabe ▽ Behind The Film"
+    },
+    {
+      "id": "-zsm0s1o8Bg",
+      "title": "How to use the ADR Panel in Davinci Resolve 18 | DaVinci Resolve 18 Tutorial",
+      "author": "Diegetic Audio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20ADR%20Panel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight",
+    "ADR",
+    "Hotkey"
+  ],
+  "at": "2026-11-23T17:37:19.396571+00:00"
+}

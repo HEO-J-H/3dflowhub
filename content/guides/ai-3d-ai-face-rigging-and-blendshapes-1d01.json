@@ -1,0 +1,100 @@
+{
+  "id": "ai-3d-ai-face-rigging-and-blendshapes-1d01",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Face Rigging and Blendshapes",
+  "title": "AI 얼굴 리깅 및 BlendShape — 3D 캐릭터 얼굴에 립싱크와 표정 애니메이션용 뼈대와 셰이프를 자동 생성",
+  "summary": "AI 기반 안면 리깅 및 블렌드쉐이프 생성 기술은 음성 데이터나 Audio, 또는 얼굴 스캔 영상만으로 3D 캐릭터의 립싱크와 표정 애니메이션을 자동으로 만들어 주는 작업 방식입니다.",
+  "when": [
+    "수백 개의 ARKit 블렌드쉐이프를 수동으로 빚기 너무 오래 걸릴 때",
+    "Audio 트랙(음성)만으로 자연스러운 턱과 입술 움직임을 빠르게 생성해야 할 때",
+    "애니메이션 스타일이나 분리된 파트를 가진 캐릭터에 표준 표정 셋을 일괄 적용할 때"
+  ],
+  "steps": [
+    "Content Browser 또는 앱 런처에서 AI Face Rigging / Audio2Face 툴을 실행합니다.",
+    "File → Import Mesh 경로를 통해 대상 3D 캐릭터 메쉬(USD, FBX, OBJ)를 불러옵니다.",
+    "Viewport에서 캐릭터의 눈, 코, 입, 턱 주요 랜드마크(Landmark) 위치를 정렬합니다.",
+    "Audio 소스(WAV 파일)를 로드하거나 AI 추론 버튼을 눌러 블렌드쉐이프 애니메이션을 계산합니다.",
+    "Details 패널 또는 스킨 가중치 속성에서 표정 강도(Weight)를 미세 조정합니다.",
+    "File → Export Blendshapes 경로를 통해 생성된 Keyframe과 타겟 데이터를 FBX 또는 USD로 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Blendshapes",
+      "desc": "표정 변화를 나타내는 타겟 메쉬 형태의 집합입니다."
+    },
+    {
+      "name": "Weight",
+      "desc": "특정 블렌드쉐이프가 적용되는 강도(0.0 ~ 1.0)를 조절합니다."
+    },
+    {
+      "name": "Landmark",
+      "desc": "AI가 얼굴 특징점을 인식하기 위해 지정하는 기준점입니다."
+    },
+    {
+      "name": "Max Influence",
+      "desc": "Vertex 당 영향을 주는 최대 본(Bone) 개수를 설정합니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "AI가 생성한 표정 변화의 노이즈를 줄이고 부드럽게 다듬습니다."
+    },
+    {
+      "name": "Audio Gain",
+      "desc": "입력된 음성 신호의 크기를 키워 턱과 입술의 움직임 폭을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "음성 파일 기반 실시간 립싱크 생성",
+      "steps": [
+        "Audio2Face 툴을 열고 캐릭터 메쉬를 불러옵니다.",
+        "WAV 음성 파일을 Audio 트랙에 드래그하여 임포트합니다.",
+        "Lipsync 노드에서 턱과 입술 움직임의 민감도를 조정합니다.",
+        "Timeline 재생을 통해 립싱크 결과를 확인합니다."
+      ]
+    },
+    {
+      "title": "ARKit 표준 표정 셋 자동 생성",
+      "steps": [
+        "중립 표정의 캐릭터 페이스 메쉬를 AI 리깅 툴에 로드합니다.",
+        "Generate Blendshapes 기능을 실행하여 52개 ARKit 타겟을 만듭니다.",
+        "눈 깜빡임과 미소 쉐이프의 외형을 에디터에서 확인합니다.",
+        "게임 엔진 연동을 위해 FBX 포맷으로 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Topology 정렬 오류 → 메쉬의 축(Pivot)이 중앙에 있지 않거나 스케일이 1이 아닐 때 발생하므로, Apply Scale 후 재시도합니다.",
+    "입술 움직임이 둔감함 → Audio Gain 값이 너무 낮거나 랜드마크 위치가 입술 중심에서 벗어났기 때문이므로 위치를 재조정합니다.",
+    "표정 변형 시 메쉬가 찢어짐 → 가중치(Weight) 겹침 문제이므로 Smoothing 필터를 적용하거나 인접 Vertex 웨이트를 수정합니다."
+  ],
+  "related": [
+    "Audio2Face",
+    "Blendshapes",
+    "ARKit",
+    "mGear"
+  ],
+  "videos": [
+    {
+      "id": "HGLpmuEViBw",
+      "title": "3D Model Rigging  with Meshy AI! #meshyai #3dmodel",
+      "author": "Fractilians"
+    },
+    {
+      "id": "HJ9fPb2Lciw",
+      "title": "How to Rig and Animate a 3D Model with AI (No Manual Rigging)",
+      "author": "Kinemo"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Face%20Rigging%20and%20Blendshapes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "AI Face Rigging",
+    "Audio2Face"
+  ],
+  "at": "2026-11-23T17:37:15.307039+00:00"
+}
