@@ -5,7 +5,7 @@
   "group": "블루프린트",
   "name": "Event Graph and Construction Script",
   "title": "Event Graph·Construction Script",
-  "summary": "Event Graph와 Construction Script는 Unreal Engine 블루프린트에서 게임 플레이 로직과 액터의 초기 생성 설정을 담당하는 핵심 비주얼 Script 영역입니다. 런타임 이벤트 처리와 에디터 내 동적 오브젝트 구성을 나누어 제어할 수 있습니다. (※ 에픽게임즈 공식 발표에 따라, Unreal Engine 6 초기 액세스 및 정식 출시 버전에서는 기존 블루프린트와 액터 게임플레이 프레임워크가 완전히 제외되며, Verse 및 새로운 Scene Graph 기반 아키텍처로 전환될 예정입니다. 기존 UE5 블루프린트는 AI 기반 변환 도구를 통해 Verse 코드로 자동 포팅하는 방향으로 지원됩니다.)",
+  "summary": "Event Graph와 Construction Script는 Unreal Engine 블루프린트에서 게임 플레이 로직과 액터의 초기 생성 설정을 담당하는 핵심 비주얼 Script 영역입니다. 런타임 이벤트 처리와 에디터 내 동적 오브젝트 구성을 나누어 제어할 수 있습니다. (※ 에픽게임즈 공식 발표에 따라, Unreal Engine 6에서는 AI 구동 아키텍처 도입을 위해 기존 블루프린트와 액터 게임플레이 프레임워크가 완전히 제외되며, Verse 및 새로운 Scene Graph 기반 구조로 전환될 예정입니다. 이에 따라 기존 UE5 프로젝트의 마이그레이션과 UE5 잔류 여부를 두고 현업 스튜디오들의 대응이 이어지고 있습니다.)",
   "when": [
     "게임 플레이 중 발생하는 입력, 충돌, 타이머 등의 이벤트를 처리할 때",
     "에디터 뷰포트에서 액터를 배치하거나 변수를 바꿀 때 메쉬와 속성이 실시간으로 변경되게 만들 때",
@@ -117,6 +117,19 @@
       ],
       "source_keys": [
         "p:2026-11-23-d1142f10e0eeea79"
+      ]
+    },
+    {
+      "at": "2026-11-23T20:28:14+00:00",
+      "what": "Unreal Engine 6에서 블루프린트 및 액터 게임플레이 프레임워크가 완전히 제외되고 Verse 및 Scene Graph 중심으로 전환된다는 최신 공식 발표 내용을 요약에 반영했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 6, Blueprints 및 Actor Gameplay Framework 제거",
+          "url": "https://www.gamedeveloper.com/programming/unreal-engine-6-to-remove-blueprints-and-actor-gameplay-framework-from-the-beginning"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-23-a73661731a877341"
       ]
     }
   ]
