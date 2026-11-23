@@ -1,0 +1,95 @@
+{
+  "id": "sh-degree-e1e8",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 및 최적화",
+  "name": "SH Degree",
+  "title": "SH Degree — 구면 조화 함수 차수를 조절하여 뷰에 따른 조명 변화 표현력을 설정하는 파라미터",
+  "summary": "Gaussian Splatting에서 빛의 반사와 시점에 따른 색상 변화(View-dependent appearance)를 표현하는 구면 조화 함수(Spherical Harmonics)의 차수를 설정합니다. 값이 높을수록 복잡하고 정교한 조명 효과를 표현할 수 있습니다.",
+  "when": [
+    "복잡한 반사광이나 하이라이트가 있는 금속 및 유리 재질을 스캔할 때",
+    "다양한 각도에서 들어오는 광원의 변화를 정밀하게 재현하고 싶을 때",
+    "파일 용량과 렌더링 성능을 유지하면서 시점별 디테일을 최적화할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습(Training) Software를 실행합니다.",
+    "훈련 설정(Training Settings) 또는 하이퍼파라미터 패널을 엽니다.",
+    "SH Degree(Spherical Harmonics Degree) 파라미터 항목을 찾습니다.",
+    "원하는 차수(보통 0에서 3 사이)를 입력하거나 선택합니다.",
+    "학습을 진행하여 뷰에 따른 광원 반사 변화를 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "SH Degree",
+      "desc": "구면 조화 함수의 차수로, 시점에 따른 색상 변화의 정밀도를 결정합니다."
+    },
+    {
+      "name": "Degree 0",
+      "desc": "기본적인 Base 컬러만 표현하며, 시점에 따른 조명 변화가 없습니다."
+    },
+    {
+      "name": "Degree 1",
+      "desc": "기본적인 입체감과 부드러운 조명 방향성을 추가합니다."
+    },
+    {
+      "name": "Degree 2",
+      "desc": "표면의 중간 수준의 반사와 디테일한 광원 변화를 표현합니다."
+    },
+    {
+      "name": "Degree 3",
+      "desc": "가장 복잡하고 정교한 반사 및 하이라이트를 재현합니다 (기본값으로 자주 사용)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질 오브젝트 스캔",
+      "steps": [
+        "하이퍼파라미터 설정에서 SH Degree를 3으로 설정합니다.",
+        "빛의 반사가 심한 표면의 디테일이 유지되는지 확인합니다.",
+        "학습 후 카메라를 움직여 하이라이트 위치가 자연스럽게 변하는지 테스트합니다."
+      ]
+    },
+    {
+      "title": "용량 최적화가 필요한 웹 뷰어용 모델",
+      "steps": [
+        "SH Degree를 1 또는 2로 낮게 설정합니다.",
+        "불필요하게 커진 `.ply` 파일 용량이 줄어드는지 확인합니다.",
+        "모바일이나 웹 환경에서 렌더링 프레임 레이트가 안정적인지 점검합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "SH Degree를 무조건 높게 설정함 → 파일 용량이 지나치게 커지고 렌더링이 무거워지므로 모델 성격에 맞춰 2~3으로 조절하세요.",
+    "정적인 조명 환경인데 높은 차수를 사용함 → 연산 리소스만 낭비되므로 단순한 조명 환경이라면 낮은 차수를 사용하세요."
+  ],
+  "related": [
+    "3D Gaussian Splatting",
+    "Spherical Harmonics",
+    "COLMAP",
+    "NeRF"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "xbpYkrBMoUU",
+      "title": "Gaussian Splatting tutorial with free software, images and batch files",
+      "author": "Kilian Eisenegger"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20SH%20Degree",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "Training",
+    "Software",
+    "Training Settings",
+    "SH Degree",
+    "Spherical Harmonics Degree"
+  ],
+  "at": "2026-11-23T16:17:01.793283+00:00"
+}

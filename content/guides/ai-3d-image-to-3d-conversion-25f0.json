@@ -1,0 +1,96 @@
+{
+  "id": "ai-3d-image-to-3d-conversion-25f0",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "이미지 투 3D 변환",
+  "name": "Image-to-3D Conversion",
+  "title": "Image-to-3D Conversion — 단일 2D 이미지를 입체적인 3D 에셋으로 변환하는 기능",
+  "summary": "AI 3D 이미지 투 3D 변환 기능은 2D 이미지나 컨셉 아트를 단 몇 초 만에 입체적인 3D 메쉬 에셋으로 자동 변환해 주는 기술입니다. 복잡한 모델링 초기 단계를 건너뛰고 빠르게 형태를 잡을 때 유용합니다.",
+  "when": [
+    "컨셉 아트나 2D 스케치 시안을 입체적인 3D 모델로 빠르게 시각화해야 할 때",
+    "게임 배경이나 소품 제작 초기 단계에서 Prototype 에셋을 대량으로 만들 때",
+    "복잡한 유기체나 소품의 Base 메쉬(Base Mesh)를 효율적으로 생성하고 싶을 때"
+  ],
+  "steps": [
+    "1. 웹 브라우저에서 AI 3D 생성 플랫폼(예: Tripo3D, Meshy)에 접속합니다.",
+    "2. Image-to-3D 또는 Upload Image 메뉴를 선택하여 2D 이미지 파일을 업로드합니다.",
+    "3. 이미지의 전면각(Front View)과 Mask 영역을 확인하고 정렬 상태를 조정합니다.",
+    "4. Generate 또는 Convert 버튼을 클릭하여 초기 3D 메쉬 생성을 시작합니다.",
+    "5. 생성된 3D 모델의 결과물을 Viewport에서 돌려보며 형태를 확인합니다.",
+    "6. FBX 또는 OBJ 형식으로 3D 에셋을 다운로드하여 후반 작업 툴로 가져옵니다."
+  ],
+  "params": [
+    {
+      "name": "Image Weight",
+      "desc": "입력한 2D 이미지의 형태와 디테일을 3D 결과물에 얼마나 강하게 반영할지 조절합니다."
+    },
+    {
+      "name": "Polycount",
+      "desc": "생성될 3D 메쉬의 폴리곤 면(Face) 개수와 밀도를 설정합니다."
+    },
+    {
+      "name": "Texture Resolution",
+      "desc": "결과물에 입혀질 텍스처 맵의 Resolution 품질을 지정합니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "좌우 대칭 형태의 에셋을 만들 때 대칭 구조를 강제합니다."
+    },
+    {
+      "name": "PBR Material",
+      "desc": "컬러 맵 외에 러프니스(Roughness), 노멀(Normal) 등 물리 기반 렌더링 텍스처를 함께 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "판타지 무기 컨셉 아트를 3D 소품으로 변환",
+      "steps": [
+        "검(Sword) 일러스트 이미지를 업로드합니다.",
+        "Image Weight 값을 높여 검날의 날카로운 실루엣을 유지합니다.",
+        "Generate를 실행하여 3D 검 메쉬를 얻은 뒤 다운로드합니다."
+      ]
+    },
+    {
+      "title": "스타일리즈드 건물 소품 시각화",
+      "steps": [
+        "건축물 정면 렌더링 이미지를 준비하여 업로드합니다.",
+        "Polycount를 낮게 설정해 심플한 Low-Poly 메쉬를 생성합니다.",
+        "다운로드한 에셋을 3ds Max나 Blender로 가져와 스케일을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution가 낮거나 그림자가 심한 이미지 사용 → 윤곽선이 뚜렷하고 배경이 단색인 정면 이미지를 사용합니다.",
+    "Topology가 울퉁불퉁하게 생성됨 → MeshAnything 같은 Retopology 툴이나 Modifier를 거쳐 흐름을 정리합니다.",
+    "실제 스케일과 비율이 틀어짐 → 3D DCC Software에서 가져온 뒤 Grid에 맞춰 스케일(Scale)을 재설정합니다."
+  ],
+  "related": [
+    "MeshAnything",
+    "Tripo3D",
+    "Meshy",
+    "Quad Remesher"
+  ],
+  "videos": [
+    {
+      "id": "uoMMLq8UvTs",
+      "title": "How to Turn an Image into a 3d Print Model - Super EASY!",
+      "author": "3D Print Dood"
+    },
+    {
+      "id": "dsRiQTtuksc",
+      "title": "Hi3D V3.0 Review: AI Image to 3D Model From One Photo",
+      "author": "Use New AI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Image-to-3D%20Conversion",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI 3D",
+    "Tripo3D",
+    "Meshy",
+    "Image",
+    "Upload Image"
+  ],
+  "at": "2026-11-23T16:16:56.694158+00:00"
+}
