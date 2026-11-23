@@ -1,0 +1,89 @@
+{
+  "id": "davinci-resolve-sync-bin-003a",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷 페이지",
+  "name": "Sync Bin",
+  "title": "싱크 빈 — 멀티캠 및 Audio/비디오 소스를 타임코드 기준으로 자동 동기화하여 편집하는 기능",
+  "summary": "DaVinci Resolve의 Sync Bin은 여러 대의 카메라와 Audio 소스를 타임코드나 파형을 기준으로 완벽히 동기화하여, 실시간으로 앵글을 전환하며 편집할 수 있는 강력한 멀티캠 작업 공간입니다.",
+  "when": [
+    "인터뷰나 토크쇼처럼 여러 대의 카메라로 동시에 촬영한 영상을 실시간으로 스위칭하며 편집할 때",
+    "Live 공연이나 행사 영상에서 멀티 앵글 소스를 빠르게 컷 편집하고 싶을 때",
+    "Audio와 여러 비디오 트랙의 싱크를 자동으로 맞추고 효율적인 멀티캠 뷰로 작업할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 탭에서 Cut 페이지로 이동합니다.",
+    "상단 메뉴 바에서 View → Show Sync Bin을 선택하여 Sync Bin 패널을 활성화합니다.",
+    "Media Pool에서 동기화할 클립들을 선택하고 우클릭하여 타임코드 또는 Audio 파형 기준으로 멀티캠 클립을 생성합니다.",
+    "Sync Bin 패널에서 다중 카메라 앵글을 실시간으로 확인하면서 재생 중에 숫자 키 또는 컷 버튼으로 앵글을 전환합니다.",
+    "Timeline에서 생성된 컷 편집본을 확인하고 세부 트림(Trim) 편집으로 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Sync Bin",
+      "desc": "현재 타임코드 위치에 맞는 모든 카메라와 Audio 소스를 실시간으로 보여주는 패널입니다."
+    },
+    {
+      "name": "Source Viewer",
+      "desc": "여러 카메라의 앵글을 동시에 모니터링하고 선택할 수 있는 멀티뷰 인터페이스입니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "각 카메라 소스에 지정된 트랙이나 카메라 번호 레이블입니다."
+    },
+    {
+      "name": "Sync Options",
+      "desc": "타임코드, Audio 파형, 혹은 마커를 기준으로 소스를 정렬하는 설정입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 영상 실시간 컷 편집",
+      "steps": [
+        "정면 카메라와 측면 카메라 소스를 Sync Bin에 불러옵니다.",
+        "Audio 파형을 기준으로 두 소스의 싱크를 정확히 맞춥니다.",
+        "영상을 재생하며 키보드 Hotkey로 정면과 측면 앵글을 실시간 전환합니다."
+      ]
+    },
+    {
+      "title": "멀티캠 Live 공연 편집",
+      "steps": [
+        "여러대의 카메라와 마스터 마이크 Audio를 멀티캠 클립으로 묶습니다.",
+        "Cut 페이지의 Sync Bin에서 전체 앵글을 한눈에 보며 리듬에 맞춰 컷을 나눕니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio 파형 불일치로 싱크가 어긋나는 경우 → 마커를 수동으로 추가하거나 타임코드가 일치하는지 먼저 확인합니다.",
+    "Sync Bin이 활성화되지 않는 경우 → Cut 페이지가 아닌 Edit 페이지에 있는지 확인하고 반드시 Cut 페이지에서 View 메뉴를 엽니다."
+  ],
+  "related": [
+    "Multicam Editing",
+    "ADR Panel",
+    "Fairlight",
+    "Cut Page"
+  ],
+  "videos": [
+    {
+      "id": "iBec-68zrhc",
+      "title": "DaVinci Resolve How To: Sync Bin",
+      "author": "Scan Pro Video"
+    },
+    {
+      "id": "7LoYeWJgSoQ",
+      "title": "How to FIX Sync Bin - SPEED EDITOR Multicam DaVinci Resolve 17 Tutorial",
+      "author": "Creative Video Tips"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Sync%20Bin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut",
+    "View",
+    "Show Sync Bin",
+    "Sync Bin"
+  ],
+  "at": "2026-11-23T18:08:27.910635+00:00"
+}

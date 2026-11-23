@@ -1,0 +1,88 @@
+{
+  "id": "ai-3d-ai-inpainting-for-3d-textures-1424",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Inpainting for 3D Textures",
+  "title": "AI 3D 텍스처 인페인팅 — 3D 모델 표면의 누락되거나 어색한 텍스처 영역을 주변 환경에 맞춰 자연스럽게",
+  "summary": "AI 3D Inpainting for Textures는 3D 모델의 특정 영역에 AI 생성 기술을 활용해 자연스러운 텍스처와 디테일을 채워 넣는 기능입니다. 텍스처 수정이나 이음새 보완 작업을 빠르고 정교하게 처리할 수 있습니다.",
+  "when": [
+    "3D 모델의 특정 부분에만 새로운 재질이나 패턴을 자연스럽게 합성하고 싶을 때",
+    "텍스처 심(Seam) 부근의 어색한 이음새나 빈 공간을 AI로 메우고 싶을 때",
+    "기존 텍스처의 스타일을 유지하면서 특정 영역의 디자인만 변경하고 싶을 때"
+  ],
+  "steps": [
+    "3D 텍스처링 소프트웨어나 AI 3D 툴을 실행하고 대상 모델을 불러옵니다.",
+    "Viewport에서 텍스처를 수정할 영역을 Brush나 Lasso 툴로 선택(Masking)합니다.",
+    "AI Inpainting 패널을 열고 Prompt 창에 원하는 텍스처 스타일이나 디테일을 영문으로 입력합니다.",
+    "Generate 버튼을 클릭하여 선택한 영역에 AI 텍스처가 생성되는 것을 확인합니다.",
+    "결과물이 마음에 들면 Accept를 눌러 모델에 텍스처를 Bake합니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성할 텍스처의 재질과 스타일을 설명하는 텍스트 입력창입니다."
+    },
+    {
+      "name": "Masking Brush",
+      "desc": "AI가 Inpainting을 수행할 영역을 직접 칠해서 지정하는 브러시입니다."
+    },
+    {
+      "name": "Creativity",
+      "desc": "기존 모델의 구조를 얼마나 유지하며 AI가 자유롭게 생성할지 조절합니다."
+    },
+    {
+      "name": "Seam Blending",
+      "desc": "기존 텍스처와 새로 생성된 텍스처의 경계면을 부드럽게 연결합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성되는 텍스처 맵의 Resolution를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "낡은 갑옷에 스크래치와 녹 표현 추가하기",
+      "steps": [
+        "갑옷 모델의 모서리 영역을 Mask로 선택합니다.",
+        "Prompt에 'rusted metal scratches'를 입력합니다.",
+        "Generate를 실행하여 자연스러운 부식 효과를 적용합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 의상의 특정 패턴 수정하기",
+      "steps": [
+        "의상 텍스처 중 수정할 부위를 브러시로 선택합니다.",
+        "Prompt에 원하는 직물 패턴이나 자수 디자인을 입력합니다.",
+        "Seam Blending 값을 조절하여 주변 천 재질과 자연스럽게 이습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mask 영역이 너무 넓어 원하지 않는 부분까지 변경됨 → Mask 브러시의 크기와 강도를 낮추고 정밀하게 다시 칠합니다.",
+    "텍스처 경계선에 이질적인 자국이 남음 → Seam Blending 옵션을 활성화하거나 블렌드 단계를 높여 해결합니다."
+  ],
+  "related": [
+    "Substance 3D Sampler",
+    "Gaussian Splatting",
+    "Texture Projection",
+    "AI Style Transfer"
+  ],
+  "videos": [
+    {
+      "id": "YuH455-CyrM",
+      "title": "Tripo AI Tutorial - 2026 | How to Make Game-Ready 3D Models (4K Textures)",
+      "author": "Dan - Smart Tutorials"
+    },
+    {
+      "id": "iHK_MQlwEis",
+      "title": "Create Stunning 3D Models & Textures With AI  - Full AI Animation Tutorial",
+      "author": "AIAnimation - Jon Draper"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Inpainting%20for%203D%20Textures",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T18:08:19.342123+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "id": "photoshop-3d-painting-cdcd",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 페인팅",
+  "name": "3D Painting",
+  "title": "3D 페인팅 — 2D 브러시로 3D 모델 표면 위에 직접 색상과 질감 칠하기",
+  "summary": "Photoshop에서 3D 모델 표면에 직접 텍스처나 색상을 칠하여 사실적인 질감을 표현하는 기능입니다. 평면 캔버스처럼 브러시로 모델에 직접 그림을 그릴 수 있습니다.",
+  "when": [
+    "3D 모델의 특정 위치에 로고나 데칼을 자연스럽게 배치할 때",
+    "별도의 UV 텍스처를 펴지 않고 간단하게 색상이나 웨더링을 얹고 싶을 때",
+    "ZBrush나 Blender에서 모델링한 오브젝트에 빠른 초벌 채색을 할 때"
+  ],
+  "steps": [
+    "3D 모델을 불러오기 위해 File > Open 또는 3D 패널을 통해 3D 오브젝트(.obj, .fbx 등) 파일을 엽니다.",
+    "Layers 패널에서 칠하고자 하는 3D 레이어나 텍스처 채널(Diffuse, Normal 등)을 선택합니다.",
+    "3D Viewport에서 모델을 회전하거나 확대하여 칠할 영역을 확인합니다.",
+    "도구 모음에서 Brush Tool (Hotkey B)을 선택하고 크기와 불투명도를 설정합니다.",
+    "모델 표면에 Mouse로 직접 브러시를 드래그하여 텍스처나 색상을 칠합니다.",
+    "3D 패널 또는 Properties 패널에서 텍스처 저장 및 수정 사항을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "모델 표면의 기본 색상과 무늬를 결정하는 채널입니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "흑백 명암을 이용해 표면에 미세한 입체감과 요철을 부여합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "브러시나 레이어의 투명도를 조절하여 칠해지는 강도를 바꿉니다."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 지나갈 때 물감이 나오는 속도와 밀도를 조절합니다."
+    },
+    {
+      "name": "Projection",
+      "desc": "2D 이미지를 3D 표면에 왜곡 없이 투영하여 칠할 때 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모델 표면에 데칼(로고) 부착하기",
+      "steps": [
+        "Project 패널에서 칠할 텍스처 파일을 불러옵니다.",
+        "Brush Tool을 선택하고 텍스처 설정에서 브러시 팁을 해당 이미지로 변경합니다.",
+        "3D Viewport에서 모델의 원하는 위치를 클릭하여 로고를 찍습니다."
+      ]
+    },
+    {
+      "title": "모서리 웨더링(까진 효과) 직접 그려넣기",
+      "steps": [
+        "Layers 패널에서 새로운 Paint Layer를 추가합니다.",
+        "브러시 색상을 밝은 회색이나 녹슨 철 색상으로 변경합니다.",
+        "모델의 뾰족한 모서리 부위를 따라 브러시로 가볍게 긁어주듯 칠합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 매핑이 되어있지 않거나 겹쳐 있는 경우 → 3D 모델의 UV를 먼저 정리한 후 다시 불러와야 합니다.",
+    "잘못된 채널(예: Bump 대신 Diffuse)에 브러시를 칠한 경우 → Layers 패널에서 올바른 텍스처 채널을 선택했는지 확인합니다.",
+    "카메라 시점이 모델과 너무 멀거나 각도가 틀어진 경우 → 3D Rotate Tool로 시점을 조준한 뒤 다시 칠합니다."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Texture Set Settings",
+    "UV Editing",
+    "Brush Tool"
+  ],
+  "videos": [
+    {
+      "id": "F0cBOxSjAtk",
+      "title": "Painting 3D models in Photoshop: myth or workflow?",
+      "author": "N-hance School "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Painting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Open"
+  ],
+  "at": "2026-11-23T18:08:24.071290+00:00"
+}

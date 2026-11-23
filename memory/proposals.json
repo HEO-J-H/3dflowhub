@@ -34020,5 +34020,43 @@
     "id": "p-4e1eeb9978",
     "verdict": "agent",
     "reason": "백엔드 파이프라인 모듈의 예외 로깅 방식 정비 및 에러 메시지 포맷 통일은 코드를 수정하여 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-23T18:08:13+00:00",
+    "kind": "proposal",
+    "id": "p-d34c377fe4",
+    "title": "로컬 FastAPI 파이프라인 에러 처리 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #87 (로컬 FastAPI 파이프라인 예외 처리 및 에러 메시지 보강) 대기 중 및 backend/tests/ 디렉토리 테스트 강화 기조",
+    "proposal": "backend/tests/test_pipeline_exceptions.py에 잘못된 입력 이미지나 VRAM 부족 상황을 모사한 단위 테스트 코드를 추가하여 예외 처리 견고성 검증",
+    "expected": "로컬 파이프라인의 예외 상황 대응력 향상 및 안정적인 API 응답 보장",
+    "effort": "낮음",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-23T18:08:50.075563+00:00",
+    "kind": "decision",
+    "id": "p-d34c377fe4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-23T18:08:51.332564+00:00",
+    "kind": "triage",
+    "id": "p-d34c377fe4",
+    "verdict": "done_already",
+    "reason": "이미 끝낸 제안 목록에 로컬 파이프라인 에러 응답 및 유닛 테스트 관련 항목들이 다수 존재하여 기 반영된 작업으로 판단됩니다."
+  },
+  {
+    "at": "2026-11-23T18:08:51.363181+00:00",
+    "kind": "decision",
+    "id": "p-d34c377fe4",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 로컬 파이프라인 에러 응답 및 유닛 테스트 관련 항목들이 다수 존재하여 기 반영된 작업으로 판단됩니다."
   }
 ]
