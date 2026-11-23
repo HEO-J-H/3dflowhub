@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-23T02:24:44+00:00",
-  "checked": 1640,
+  "at": "2026-11-23T08:25:04+00:00",
+  "checked": 1648,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -2323,6 +2323,33 @@
         "존재하지 않는 ‘CL Sculpt Assistant’ 플러그인 및 날짜를 삽입해 신뢰성 저하"
       ],
       "fix_hint": "공식 문서와 일치하는 내용만 사용하고, UI 이름은 영문 그대로 표기하며, 반드시 이미지·영상 등 시각 자료를 포함하고 허위 정보를 넣지 말아야 합니다."
+    },
+    {
+      "kind": "fix",
+      "id": "maya-error-file-line-x-found-polygon-components-wi-8dc5a",
+      "title": "# Error: file: line X: Found polygon components with zero area or zero length ed",
+      "score": 8,
+      "defects": [
+        "브이알(Boolean)이라는 오탈자가 포함되어 있습니다.",
+        "텍스트 본문 내에 불릿 포인트나 문단 구분이 부족하여 가독성이 다소 떨어집니다."
+      ],
+      "fix_hint": "오타를 철저히 검수하고 마크다운 리스트를 활용하여 따라 하기 쉽도록 가독성을 높여주세요."
+    },
+    {
+      "kind": "manual",
+      "id": "blender-curve-to-mesh-node-e9b8",
+      "title": "Curve to Mesh — 커브에 단면",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "공식 문서의 입력 소켓과 옵션, 실무 활용 절차가 정확하게 반영된 모범적인 매뉴얼입니다."
+    },
+    {
+      "kind": "guide",
+      "id": "zbrush-freeze-subdivision-levels-cf56",
+      "title": "Freeze Subdivision Levels",
+      "score": 9,
+      "defects": [],
+      "fix_hint": "공식 UI 명칭과 절차를 명확히 유지하고, 주의사항을 간결하게 정리하여 실무 학습 가이드의 완성도를 높입니다."
     }
   ],
   "avg_score": 9.0,
