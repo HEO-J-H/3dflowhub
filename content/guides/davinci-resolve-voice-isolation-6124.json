@@ -1,0 +1,84 @@
+{
+  "id": "davinci-resolve-voice-isolation-6124",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트 페이지",
+  "name": "Voice Isolation",
+  "title": "보이스 아이솔레이션 — Neural Network 엔진을 활용해 배경 소음을 제거하고 목소리만 선명하게 추출하는 기능",
+  "summary": "Voice Isolation은 인공신경망 기술을 활용해 Audio 트랙에서 주변 소음이나 배경음을 제거하고 사람의 목소리만 깨끗하게 분리해 주는 DaVinci Resolve의 Audio 복구 도구입니다.",
+  "when": [
+    "야외 촬영이나 소음이 심한 현장에서 녹음된 대사의 배경 소음을 제거할 때",
+    "마이크와 거리가 멀어 울림이나 에코가 섞인 보컬 Audio를 정리할 때",
+    "별도의 외부 Audio 편집 프로그램 없이 Timeline에서 바로 목소리를 선명하게 살려야 할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Fairlight 탭을 클릭하여 Audio 편집 페이지로 이동합니다.",
+    "Timeline에서 노이즈를 제거할 Audio 클립을 Mouse로 선택합니다.",
+    "화면 우측 상단의 Inspector 패널을 열고 Audio 탭을 활성화합니다.",
+    "Audio Effect 목록에서 Voice Isolation 섹션을 찾고 체크박스 또는 활성화 버튼을 클릭합니다.",
+    "Amount 슬라이더를 조절하여 목소리의 자연스러움을 유지하면서 주변 소음이 차단되는 정도를 맞춥니다.",
+    "Audio를 재생하여 노이즈 제거 상태를 확인하고 필요한 경우 값을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Voice Isolation",
+      "desc": "Audio 클립에서 AI 기반으로 목소리를 분리하고 주변 소음을 제거하는 기능의 켜기/끄기입니다."
+    },
+    {
+      "name": "Amount",
+      "desc": "목소리 분리 및 노이즈 제거 강도를 0%에서 100% 사이로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카페 인터뷰 영상 소음 제거",
+      "steps": [
+        "Fairlight 페이지에서 인터뷰 Audio 클립을 선택합니다.",
+        "Inspector의 Audio 탭에서 Voice Isolation을 켭니다.",
+        "기본값 상태에서 배경 음악과 손님 소리 등이 지워지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "울림이 심한 공간 녹음 보정",
+      "steps": [
+        "반사음이 많은 방에서 녹음된 대화 클립을 선택합니다.",
+        "Voice Isolation을 활성화하여 룸 어쿠스틱과 에코를 억제합니다.",
+        "목소리가 너무 로봇처럼 변하지 않도록 Amount 값을 80% 내외로 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도하게 높은 값을 적용해 목소리가 변조되거나 로봇 소리처럼 들림 → Amount 값을 낮추어 자연스러운 목소리와 노이즈 차단의 균형을 맞춥니다.",
+    "배경 음악이 깔린 트랙 전체에 적용하여 배경 음악까지 손실됨 → 대사(Dialogue) 트랙 단독 Audio에만 적용하거나 Fairlight의 개별 트랙 Instance로 분리해 적용합니다."
+  ],
+  "related": [
+    "Dialogue Leveler",
+    "Fairlight FX",
+    "Equalizer",
+    "Dynamics"
+  ],
+  "videos": [
+    {
+      "id": "9k7-OtG2lAE",
+      "title": "New Voice Isolation is INSANE! DaVinci Resolve Tutorial",
+      "author": "Darren Mostyn"
+    },
+    {
+      "id": "7jeLxTwHXJQ",
+      "title": "Completely REMOVE Background Noise! -Voice Isolation - DaVincie Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Voice%20Isolation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight",
+    "Audio",
+    "Timeline",
+    "Mouse",
+    "Inspector"
+  ],
+  "at": "2026-11-23T18:37:23.387187+00:00"
+}

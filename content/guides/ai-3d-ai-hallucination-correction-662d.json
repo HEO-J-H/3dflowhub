@@ -1,0 +1,95 @@
+{
+  "id": "ai-3d-ai-hallucination-correction-662d",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "후가공 및 보정",
+  "name": "AI Hallucination Correction",
+  "title": "AI 환각 보정 — NeRF나 3D 생성물에서 발생하는 노이즈와 왜곡된 아티팩트를 자동으로 감지하고 수정하는",
+  "summary": "AI 3D 생성 모델이 만든 불완전한 기하 구조나 왜곡된 형태를 교정하여 실무에서 사용할 수 있는 정밀한 3D 모델로 다듬는 기능입니다.",
+  "when": [
+    "텍스트나 단일 이미지 기반 AI 3D 생성물에 찌그러진 면이나 구멍이 발생했을 때",
+    "생성된 3D 모델의 비대칭 구조나 잘못된 위상(Topology)을 바로잡아야 할 때",
+    "게임 엔진이나 3D DCC 툴에서 후속 작업을 하기 전 형태를 안정화할 때"
+  ],
+  "steps": [
+    "AI로 생성된 3D 모델을 3D DCC 툴 또는 AI 3D 프로세싱 Software로 불러옵니다.",
+    "Inspector 또는 Modify 패널에서 Hallucination Correction 또는 Mesh Cleanup 옵션을 활성화합니다.",
+    "Threshold 값을 조절하여 AI가 생성한 불필요한 돌출부나 깨진 폴리곤을 감지합니다.",
+    "Correct 또는 Reconstruct 버튼을 눌러 비정상적인 지오메트리를 자동으로 재구성합니다.",
+    "Sculpt 모드나 Brush 툴을 사용해 잔여 왜곡 부위를 수동으로 다듬습니다.",
+    "Viewport에서 Topology와 노멀(Normal) 방향이 정상적으로 정렬되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Hallucination Threshold",
+      "desc": "AI가 생성한 비정상적인 왜곡과 아티팩트를 감지하고 교정하는 민감도를 조절합니다."
+    },
+    {
+      "name": "Surface Smoothness",
+      "desc": "교정된 표면의 울퉁불퉁한 면을 부드럽게 다듬어 매끄러운 굴곡을 만듭니다."
+    },
+    {
+      "name": "Symmetry Lock",
+      "desc": "캐릭터나 대칭형 오브젝트 작업 시 양쪽 형태가 균형 있게 교정되도록 고정합니다."
+    },
+    {
+      "name": "Topology Remesh",
+      "desc": "깨진 폴리곤 구조를 균일한 사각형 또는 삼각형 Grid로 재정렬합니다."
+    },
+    {
+      "name": "Detail Preservation",
+      "desc": "교정 과정에서 원본 AI 모델의 핵심 디테일과 특징이 손실되지 않도록 보호합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "AI 생성 캐릭터 얼굴 비대칭 교정",
+      "steps": [
+        "Symmetry Lock 옵션을 켜서 좌우 대칭 기준선을 설정합니다.",
+        "Hallucination Threshold 값을 높여 찌그러진 눈과 코 주변의 아티팩트를 감지합니다.",
+        "Correct를 실행한 뒤 Smooth 브러시로 경계면을 자연스럽게 연결합니다."
+      ]
+    },
+    {
+      "title": "텍스트로 생성된 기계 부품의 떠다니는 면 제거",
+      "steps": [
+        "Mesh Cleanup 패널에서 고립된 폴리곤(Loose Geometry)을 선택합니다.",
+        "Delete를 눌러 불필요한 파편을 제거합니다.",
+        "Holes Fill 기능을 사용하여 뚫린 단면을 막고 표면을 매끄럽게 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 Threshold 설정으로 원본의 중요한 형태까지 지워짐 → Threshold 값을 낮추고 수동 브러시로 보완",
+    "Symmetry Lock을 끄고 비대칭 캐릭터를 교정해 얼굴이 더 비틀어짐 → 대칭 축(Axis)을 정확히 지정한 후 교정 실행",
+    "교정 직후 Topology 정렬을 하지 않아 렌더링 시 깨짐 현상 발생 → Remesh 또는 Retopology 과정을 거쳐 사각형 구조 확보"
+  ],
+  "related": [
+    "Gaussian Splatting",
+    "Remesh",
+    "Decimate To Target",
+    "Substance 3D Painter"
+  ],
+  "videos": [
+    {
+      "id": "ZFKvTIADp0k",
+      "title": "Tuning Your AI Model to Reduce Hallucinations",
+      "author": "IBM Technology"
+    },
+    {
+      "id": "KtsQTGbdT5g",
+      "title": "🤖 Stop AI Hallucinations: 3 Model Customization Secrets",
+      "author": "AWS Developers"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Hallucination%20Correction",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "D DCC",
+    "AI 3D",
+    "Software"
+  ],
+  "at": "2026-11-23T18:37:19.107022+00:00"
+}
