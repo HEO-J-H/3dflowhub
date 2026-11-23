@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-3d-asset-tagging-and-categorization-13c3",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 에셋 검색 및 관리",
+  "name": "AI 3D Asset Tagging and Categorization",
+  "title": "AI 3D 에셋 태깅 및 분류 — 라이브러리에 있는 수많은 3D 모델을 AI가 형태와 용도에 따라 자동으로 ",
+  "summary": "AI 3D Asset Tagging and Categorization은 수많은 3D 모델과 텍스처 에셋을 AI가 자동으로 분석하여 알맞은 태그와 카테고리로 정리해 주는 기능입니다. 복잡한 에셋 라이브러리에서 원하는 오브젝트를 몇 초 만에 찾아 작업 시간을 대폭 줄여줍니다.",
+  "when": [
+    "수천 개가 넘는 3D 모델과 텍스처를 수동으로 분류하기에 시간이 너무 오래 걸릴 때",
+    "외부에서 다운로드받은 에셋의 이름이 불규칙하고 정돈되지 않아 검색이 안 될 때",
+    "프로젝트 간 에셋 공유 및 라이브러리 표준화를 빠르고 정확하게 구축하고 싶을 때"
+  ],
+  "steps": [
+    "AI 기반 에셋 매니저(예: Blender Asset Browser 애드온, PureRef, 또는 전용 3D Asset Management 툴)를 실행합니다.",
+    "정리하고자 하는 3D 에셋 폴더를 선택하거나 드래그하여 에셋 라이브러리에 불러옵니다.",
+    "자동 분류(Auto Tagging / AI Categorization) 메뉴를 클릭하여 AI 분석을 시작합니다.",
+    "AI가 추출한 메타데이터와 태그 목록(머티리얼, 형태, 폴리곤 수 등)을 확인합니다.",
+    "잘못 분류된 태그가 있다면 수정하고, 최종 라이브러리에 저장(Save to Library)합니다."
+  ],
+  "params": [
+    {
+      "name": "Auto Tagging",
+      "desc": "에셋의 형태와 특징을 AI가 분석해 자동으로 키워드 태그를 생성합니다."
+    },
+    {
+      "name": "Confidence Threshold",
+      "desc": "AI가 태그를 부여할 때 적용할 최소 신뢰도 값으로, 높일수록 정확한 태그만 남습니다."
+    },
+    {
+      "name": "Batch Processing",
+      "desc": "선택한 폴더 안의 수많은 3D 파일을 한 번에 일괄 분석합니다."
+    },
+    {
+      "name": "Custom Category",
+      "desc": "AI가 분류한 카테고리 외에 사용자가 직접 정렬 기준을 추가합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 시각화용 가구 에셋 대량 정리",
+      "steps": [
+        "수백 개의 가구 3D 모델 폴더를 에셋 매니저에 드래그합니다.",
+        "Auto Tagging 기능을 실행하여 의자, 테이블, 조명 등으로 자동 분류합니다.",
+        "검색창에 'Chair'를 입력해 원하는 가구를 즉시 찾아 Viewport에 배치합니다."
+      ]
+    },
+    {
+      "title": "게임 배경용 프랍(Prop) 메타데이터 일괄 생성",
+      "steps": [
+        "제작사가 다른 파편, 상자, 통 등의 프랍 에셋을 선택합니다.",
+        "Confidence Threshold를 조절하여 불필요한 태그를 걸러냅니다.",
+        "게임 엔진 연동을 위한 태그 표준화 구조로 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "불분명한 형태의 추상적 에셋에 과도하게 의존함 → 수동으로 주요 태그 1~2개를 먼저 입력한 뒤 AI 분석을 실행합니다.",
+    "신뢰도(Confidence Threshold)를 너무 낮게 설정함 → 연관 없는 엉뚱한 태그가 대량 생성되므로 기준값을 70% 이상으로 높입니다."
+  ],
+  "related": [
+    "Asset Browser",
+    "Chaos Cosmos",
+    "AI 3D Model Generation",
+    "Metadata Manager"
+  ],
+  "videos": [
+    {
+      "id": "qysG0f6xF2o",
+      "title": "Turn AI 3D Models Into PRO Assets in Blender & Unity | AI Model Cleanup Tutorial",
+      "author": "UnityQueenGame"
+    },
+    {
+      "id": "vwj3BBnl4mY",
+      "title": "I Tested 6 AI Image to 3D Models for Game Assets (2026)",
+      "author": "Building Aeon"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%203D%20Asset%20Tagging%20and%20Categorization",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "Blender Asset Browser",
+    "PureRef",
+    "D Asset Management"
+  ],
+  "at": "2026-11-23T19:59:36.788328+00:00"
+}
