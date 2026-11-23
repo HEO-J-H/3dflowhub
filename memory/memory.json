@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-21T17:57:35.001107+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 66,
-      "candidates_passed": 26,
-      "offtopic": 24,
-      "short": 0,
-      "prefiltered": 27,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "fb83bd92",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-21T18:07:38.084801+00:00",
       "collected": 1,
       "saved": 1,
@@ -6576,6 +6552,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-23T22:31:23.549303+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 62,
+      "candidates_passed": 11,
+      "offtopic": 22,
+      "short": 0,
+      "prefiltered": 38,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "756e30b9",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6671,7 +6674,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-14 [core.filter_cg_context_strict(): 일반 명사 도] 일반 명사 도구명을 다룰 때는 5중 이상의 맥락 검증을 통해 오프토픽 뉴스를 완벽히 차단해야 한다.",
     "2026-11-14 [PR #26 다시 하기 — backend/app/services/mesh] 입력값 검증 함수는 예외를 명확히 발생시키고 세부 오류 메시지를 반환하여 디버깅을 쉽게 만들어야 합니다.",
     "2026-11-14 [성찰] 동음이의어 필터를 45중으로 한층 더 강화하고 Maxscript 및 플러그인·애드온 중심의 실무 튜토리얼 유입을 극대화해야 합니다.",
     "2026-11-14 [성찰] 동음이의어 필터를 55중으로 강화하고 실무 튜토리얼 및 애드온 관련 고단가 검색 키워드 중심의 제목을 구성해야 검색 유입과 페이지뷰를 극대화할 수 있습니다.",
@@ -6790,7 +6792,8 @@
     "2026-11-23 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집 비중이 높으므로, 수집 단계에서 CG/VFX/게임 실무 문맥 검증 필터를 대폭 강화하여 저품질 콘텐츠 유입을 원천 차단해야 합니다.",
     "2026-11-23 [성찰] 동음이의어 노이즈를 완벽히 차단하고 Maxscript 및 플러그인 등 실무 중심의 튜토리얼 콘텐츠에 집중하여 검색 유입 품질을 높여야 합니다.",
     "2026-11-23 [성찰] 동음이의어 필터링과 실무 중심의 고CPC 키워드(Maxscript, 플러그인, 튜토리얼 등) 집중 배치를 통해 오프토픽 비율을 낮추고 검색 유입을 극대화해야 합니다.",
-    "2026-11-23 [성찰] 동음이의어 필터링을 더욱 엄격하게 적용하여 무관한 수집(오프토픽) 비율을 낮추고, 실무 중심의 고CPC 가이드와 스크립트 튜토리얼 비중을 높여야 합니다."
+    "2026-11-23 [성찰] 동음이의어 필터링을 더욱 엄격하게 적용하여 무관한 수집(오프토픽) 비율을 낮추고, 실무 중심의 고CPC 가이드와 스크립트 튜토리얼 비중을 높여야 합니다.",
+    "2026-11-23 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집 비중이 높으므로, 수집 단계에서 CG·게임·VFX 실무 문맥 검증 필터를 대폭 강화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6879,7 +6882,7 @@
     "AI 3D/NVIDIA Isaac Sim": 4,
     "AI 3D/Hexels": 1,
     "Game Engine/Source Engine": 1,
-    "AI 3D/NVIDIA Omniverse": 43,
+    "AI 3D/NVIDIA Omniverse": 44,
     "3D DCC/NVIDIA Omniverse": 10,
     "AI 3D/NVIDIA DSX": 7,
     "Game Engine/RPG Maker": 1,
@@ -6991,7 +6994,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    6243470023987861720,
     2883941852786355561,
     449308287704296492,
     1983836653832800193,
@@ -9990,14 +9992,15 @@
     2747266217674003321,
     7097834055109100099,
     9995744916117409347,
-    1051107949742933246
+    1051107949742933246,
+    10651034684308059206
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3956,
-    "Game Engine": 3956,
-    "VFX": 3956,
-    "AI 3D": 3956
+    "3D DCC": 3957,
+    "Game Engine": 3957,
+    "VFX": 3957,
+    "AI 3D": 3957
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
