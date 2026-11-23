@@ -247,9 +247,43 @@ def status_panel() -> None:
                + f" · 예비 중 {core.FALLBACK_RESERVE}회는 비상용 (한도는 매일 16~17시 리셋)")
     if q["learned_limit"] and q["learned_limit"] < budget * 0.85:
         st.caption(f"⚠️ 실제 Gemini 한도 약 {q['learned_limit']}회 — 설정값을 낮추세요")
+    ai_purpose_panel()
     pages = [r for r in runs if r["name"].endswith("pages")]
     if pages:
         st.caption(f"사이트 배포 {ago(pages[0]['created_at']) if pages[0].get('created_at') else '최근'} · {'✅' if pages[0]['conclusion'] == 'success' else '⏳' if pages[0]['conclusion'] is None else '❌'}")
+
+# AI 를 부른 모듈 → 사람이 읽는 이름 (memory/llm_purpose.json)
+PURPOSE_LABEL = {"core": "소식 요약·번역", "evolve": "자율 진화", "guides": "기초 가이드", "agents": "코딩 에이전트(Pix2Poly)",
+                 "staff": "AI 팀", "site_manager": "사이트별 관리자", "manager": "AI 관리자", "qa": "품질 검사",
+                 "showcase": "작품 소개", "weekly_mail": "주간 메일", "roundups": "도구별 정리", "fixes": "오류 해결",
+                 "enrich": "글 보강", "recipes": "레시피", "events": "공모전", "radar": "AI 3D 레이더", "selfheal": "자동 복구",
+                 "gsc": "검색 유입", "alerts": "알림", "monetize": "수익"}
+
+
+def ai_purpose_panel() -> None:
+    """오늘 AI 를 어디에 썼나 — 많이 쓴 순서, 결과물이 없는데 많이 쓰면 경고 (2026-11-24 가이드 0개에 266회 사건)."""
+    data = core._load_json(core.ROOT / "memory" / "llm_purpose.json", {}).get(core.llm_day()) or {}
+    if not data:
+        st.caption("작업별 AI 사용: 다음 수집부터 기록됩니다")
+        return
+    by_mod: dict[str, int] = {}
+    for who, n in data.items():
+        mod = who.split(".")[0]
+        by_mod[mod] = by_mod.get(mod, 0) + int(n)
+    total = sum(by_mod.values()) or 1
+    top = sorted(by_mod.items(), key=lambda kv: -kv[1])
+    with st.expander(f"🔎 오늘 AI 어디에 썼나 · 1위 {PURPOSE_LABEL.get(top[0][0], top[0][0])} {top[0][1]}회"):
+        for mod, n in top[:8]:
+            st.progress(n / total, text=f"{PURPOSE_LABEL.get(mod, mod)} · {n}회 ({n * 100 // total}%)")
+        made = {}
+        try:
+            import manager
+            made = manager.done_today()
+        except Exception:  # noqa: BLE001
+            pass
+        if by_mod.get("guides", 0) >= 30 and not made.get("guides"):
+            st.warning(f"기초 가이드에 {by_mod['guides']}회 썼는데 오늘 만든 가이드 0개 — 주제가 품질 기준에서 계속 떨어지는지 확인")
+        st.caption("AI 하루 기준(16~17시 리셋) · 함수별 자세히: memory/llm_purpose.json")
 
 
 @st.fragment(run_every="3s")  # 수집 중엔 3초마다 진행 상태 자동 갱신 (새로고침 불필요)
