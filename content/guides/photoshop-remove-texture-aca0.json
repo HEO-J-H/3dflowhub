@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-remove-texture-aca0",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 및 재질",
+  "name": "Remove Texture",
+  "title": "텍스처 제거 — 3D 재질 슬롯에 적용된 맵을 삭제하는 기능",
+  "summary": "Photoshop의 Remove Texture 기능은 3D 모델의 특정 맵 슬롯에 연결된 텍스처를 제거하여 기본 재질 상태로 되돌리는 도구입니다.",
+  "when": [
+    "3D 모델에 잘못 적용된 텍스처를 완전히 지우고 다시 시작할 때",
+    "불필요한 범프나 러프니스 맵을 제거하여 재질을 단순화할 때",
+    "새로운 텍스처를 덮어쓰기 전 기존 맵을 깔끔하게 초기화할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 문서를 엽니다.",
+    "Layers 패널에서 텍스처를 제거할 3D 레이어를 선택합니다.",
+    "Properties 패널에서 텍스처가 적용된 해당 맵 슬롯(예: Base Color, Bump 등)을 찾습니다.",
+    "맵 슬롯의 썸네일이나 드롭다운 메뉴를 클릭합니다.",
+    "메뉴에서 Remove Texture를 선택하여 텍스처 연결을 해제합니다.",
+    "Viewport에서 모델의 해당 맵이 사라지고 기본 머티리얼로 돌아갔는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "모델의 기본 색상 및 패턴 맵 슬롯입니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "표면의 요철과 입체감을 주는 맵 슬롯입니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기와 반사광을 조절하는 맵 슬롯입니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "투명도를 제어하는 맵 슬롯입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "잘못 들어간 텍스처 초기화",
+      "steps": [
+        "Properties 패널에서 문제가 있는 맵 슬롯을 찾습니다.",
+        "드롭다운 메뉴를 열고 Remove Texture를 선택합니다.",
+        "Viewport에서 텍스처가 깔끔하게 지워졌는지 확인합니다."
+      ]
+    },
+    {
+      "title": "단색 머티리얼로 변경",
+      "steps": [
+        "기존에 적용된 모든 텍스처 맵을 순서대로 제거합니다.",
+        "Base Color 슬롯에 새 단색을 지정하여 단순한 재질을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "전체 3D 레이어가 아닌 일반 2D 레이어를 선택함 → Layers 패널에서 3D 레이어가 선택되었는지 확인하세요.",
+    "잘못된 맵 슬롯의 텍스처를 지움 → Properties 패널의 맵 이름(Base Color, Bump 등)을 다시 확인하세요."
+  ],
+  "related": [
+    "Load Texture",
+    "Open Texture",
+    "Save Texture",
+    "Properties Panel"
+  ],
+  "videos": [
+    {
+      "id": "ZpWU9FnbTAw",
+      "title": "Photoshop tutorial on editing with textures| 2 simple editing methods adding texture to your images.",
+      "author": "Creative Photography with Lori Lankford "
+    },
+    {
+      "id": "eXZGATXB6vk",
+      "title": "How to remove paper texture from scanned artwork in Photoshop",
+      "author": "Steve Lambert (madeofsquares)"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Remove%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Properties",
+    "Base Color",
+    "Bump",
+    "Remove Texture"
+  ],
+  "at": "2026-11-23T17:57:44.239727+00:00"
+}

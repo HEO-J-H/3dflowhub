@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-style-transfer-for-3d-391a",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Style Transfer for 3D",
+  "title": "3D AI 스타일 전송 — 3D 모델의 지오메트리나 텍스처에 특정 아트 스타일이나 2D 그림체를 학습시켜 적",
+  "summary": "AI Style Transfer for 3D는 2D 이미지의 예술적 화풍이나 질감을 3D 모델의 표면에 자동으로 입혀주는 AI 기반 변환 기술입니다. 텍스처 수작업 없이도 다양한 스타일의 3D 에셋을 빠르게 프로토타이핑할 수 있습니다.",
+  "when": [
+    "동일한 3D 모델을 애니메이션풍, 유화풍, Low-Poly 등 다양한 화풍으로 빠르게 변환하고 싶을 때",
+    "콘셉트 아트의 질감과 분위기를 3D Prototype에 즉시 적용해 시각화 테스트를 할 때",
+    "게임이나 웹 환경에서 사용할 스타일라이즈드 에셋을 대량으로 제작하기 전 시안을 뽑을 때"
+  ],
+  "steps": [
+    "AI Style Transfer를 지원하는 전용 Software(또는 플러그인)를 실행하고 Base 3D 모델을 불러옵니다.",
+    "Import 또는 Source Image 슬롯에서 원하는 화풍이나 질감이 담긴 2D 레퍼런스 이미지를 업로드합니다.",
+    "Style Weight, Content Preservation 등의 파라미터를 조절하여 형태 유지력과 스타일 반영 비율을 맞춥니다.",
+    "Generate 또는 Process 버튼을 눌러 AI가 모델 표면에 텍스처와 스타일을 입히는 연산을 실행합니다.",
+    "결과물 Viewport에서 텍스처 매핑 상태를 확인하고, 필요시 디테일 영역을 브러시로 수정합니다.",
+    "Export 메뉴를 통해 변환된 텍스처 맵 또는 스타일라이즈드 3D 모델 파일을 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Style Weight",
+      "desc": "레퍼런스 이미지의 화풍과 질감을 3D 모델에 반영하는 강도를 조절합니다."
+    },
+    {
+      "name": "Content Preservation",
+      "desc": "원본 3D 모델의 지오메트리 형태와 구조적 특징을 유지하는 비율을 설정합니다."
+    },
+    {
+      "name": "Texture Resolution",
+      "desc": "생성되는 결과물 텍스처 맵의 Resolution(예: 1024px, 2048px)를 결정합니다."
+    },
+    {
+      "name": "Prompt Input",
+      "desc": "텍스트 Prompt를 함께 입력해 스타일의 세부 요소를 추가로 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실사풍 3D 건축 모델을 애니메이션 일러스트풍으로 변환하기",
+      "steps": [
+        "건축 3D 모델(FBX)을 AI 스타일 변환 툴에 임포트합니다.",
+        "셀셰이딩과 두꺼운 외곽선이 특징인 2D 애니메이션 배경 이미지를 레퍼런스로 지정합니다.",
+        "Style Weight를 높이고 처리를 실행하여 애니메이션 렌더링 스타일을 얻습니다."
+      ]
+    },
+    {
+      "title": "단색 캐릭터 모델에 수채화 질감 입히기",
+      "steps": [
+        "캐릭터 3D Base 모델을 준비하고 수채화 터치가 담긴 텍스처 이미지를 준비합니다.",
+        "AI 툴에서 텍스처 매핑 영역을 지정하고 Style Transfer를 적용합니다.",
+        "결과물을 확인하고 경계면을 다듬어 수채화풍 일러스트 느낌의 캐릭터를 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UV 매핑이 겹치거나 왜곡된 모델 사용 → 텍스처가 심하게 깨지거나 찢어지므로 사전에 깔끔한 UV Unwrapping을 진행하세요.",
+    "Style Weight를 지나치게 높임 → 원본 3D 모델의 형태가 무너지므로 Content Preservation 값을 함께 높여 형태를 유지하세요."
+  ],
+  "related": [
+    "Substance 3D Painter",
+    "Gaussian Splatting",
+    "Generative AI",
+    "UV Unwrapping"
+  ],
+  "videos": [
+    {
+      "id": "u9YSe7nW3j0",
+      "title": "How to use Controllable Style Transfer with Mago | AI RENDERING Tutorial | Mago V3 Tutorial",
+      "author": "Mago AI"
+    },
+    {
+      "id": "9RCCKGk7U_g",
+      "title": "How To Use the AI Transfer Style in D5 Render - (Add Your Own Style)",
+      "author": "Danny Loza"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Style%20Transfer%20for%203D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI Style Transfer",
+    "Software",
+    "Base 3D"
+  ],
+  "at": "2026-11-23T17:57:37.442473+00:00"
+}

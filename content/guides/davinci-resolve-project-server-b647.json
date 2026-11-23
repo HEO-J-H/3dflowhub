@@ -1,0 +1,90 @@
+{
+  "id": "davinci-resolve-project-server-b647",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전체 설정",
+  "name": "Project Server",
+  "title": "프로젝트 서버 — 여러 작업자가 네트워크를 통해 동일한 프로젝트에 동시에 접속하여 협업하는 시스템",
+  "summary": "DaVinci Resolve Project Server는 여러 명의 편집자와 아티스트가 동일한 프로젝트 파일에 실시간으로 접속하여 협업할 수 있도록 지원하는 데이터베이스 관리 도구입니다.",
+  "when": [
+    "동일한 프로젝트에서 여러 명의 편집자, 컬러리스트, 사운드 디자이너가 동시에 작업해야 할 때",
+    "외장 하드를 물리적으로 주고받는 방식 대신 네트워크를 통해 프로젝트를 중앙 집중식으로 관리하고 싶을 때",
+    "프로젝트 변경 사항을 실시간으로 동기화하여 버전 충돌 없이 대규모 후반 작업을 진행할 때"
+  ],
+  "steps": [
+    "컴퓨터에 DaVinci Resolve Project Server 프로그램을 설치하고 실행합니다.",
+    "서버 화면 좌측 하단의 Start Server 버튼을 눌러 데이터베이스 서비스를 활성화합니다.",
+    "New Database 버튼을 클릭하고 데이터베이스 이름을 입력하여 새로운 공용 DB를 생성합니다.",
+    "DaVinci Resolve 메인 프로그램을 실행하고 Project Library 창의 Network 탭으로 이동합니다.",
+    "Add 버튼을 누르고 Project Server가 설치된 컴퓨터의 IP 주소와 데이터베이스 이름을 입력하여 연결합니다.",
+    "연결된 네트워크 라이브러리 내에서 새 프로젝트를 생성하거나 기존 프로젝트를 마이그레이션하여 팀원들과 공유합니다."
+  ],
+  "params": [
+    {
+      "name": "Start Server",
+      "desc": "프로젝트 데이터베이스 서비스를 시작하거나 중지합니다."
+    },
+    {
+      "name": "New Database",
+      "desc": "새로운 팀 프로젝트 관리를 위한 독립된 데이터베이스를 생성합니다."
+    },
+    {
+      "name": "Backup",
+      "desc": "데이터 손실 방지를 위해 현재 프로젝트 데이터베이스를 백업합니다."
+    },
+    {
+      "name": "Restore",
+      "desc": "백업 파일로부터 기존 프로젝트 데이터베이스를 복원합니다."
+    },
+    {
+      "name": "IP Address",
+      "desc": "Client 작업자들이 서버에 접속하기 위해 입력하는 네트워크 주소입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로컬 네트워크(LAN)를 통한 편집팀 협업",
+      "steps": [
+        "사내 메인 워크스테이션에 Project Server를 설치하고 서비스를 실행합니다.",
+        "각 편집자의 DaVinci Resolve에서 서버 IP로 네트워크 라이브러리를 연결합니다.",
+        "공용 Timeline을 생성하여 컷 편집과 컬러 그레이딩 작업을 동시에 진행합니다."
+      ]
+    },
+    {
+      "title": "원격 작업자와의 프로젝트 공유",
+      "steps": [
+        "VPN 또는 고정 IP 환경에 Project Server를 구성합니다.",
+        "원격지에 있는 아티스트가 외부 네트워크를 통해 동일한 Project Library에 접속합니다.",
+        "실시간으로 변경되는 Timeline과 주석을 확인하며 후반 작업을 조율합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "방화벽 설정 문제로 접속 불가 → 운영체제 방화벽에서 DaVinci Resolve 및 Project Server 포트를 허용으로 설정합니다.",
+    "잘못된 IP 주소 입력 → 서버가 실행 중인 컴퓨터의 올바른 로컬 또는 공인 IP 주소를 다시 확인하여 입력합니다.",
+    "데이터베이스 백업 소홀 → 정기적으로 Backup 기능을 사용하여 예기치 않은 시스템 오류에 대비합니다."
+  ],
+  "related": [
+    "Blackmagic Cloud",
+    "DaVinci Resolve Studio",
+    "Collaboration",
+    "Project Library"
+  ],
+  "videos": [
+    {
+      "id": "W8ksqmDXeL0",
+      "title": "Ultimate Guide to Davinci Resolve 19 Multi-User Editing (step by step)",
+      "author": "John’s Films"
+    },
+    {
+      "id": "2jSxQfLOR2s",
+      "title": "The EASIEST WAY to Collaborate - DaVinci Resolve Multi-User Guide",
+      "author": "Creative Video Tips"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Project%20Server",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T17:57:41.273389+00:00"
+}
