@@ -1,0 +1,22 @@
+<!-- TITLE: Unity 6 기반 코옵 게임 Haunted Paws 개발 인터뷰 | TAGS: Unity 6,Unity Netcode,Blender,Wwise,게임 개발,블렌더,유니티,작품·제작 사례 | CATEGORY: Game Engine/Unity | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/play-as-puppies-rescue-your-owner-from-haunted-mansion-in-this-co-op-game/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51124/images/6b03fc6678c90/contain_1200x630.jpg" alt="Unity 6 기반 코옵 게임 Haunted Paws 개발 인터뷰" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/play-as-puppies-rescue-your-owner-from-haunted-mansion-in-this-co-op-game/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/3yvwdLXXfjo" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 인디 개발사 LazyFlock이 Unity 6 URP와 자체 제작 툴을 활용해 두 마리의 강아지가 유령 저택에서 주인을 구하는 코옵 퍼즐 어드벤처 Haunted Paws를 개발한 과정과 기술적 도전 과제를 공개했습니다.</p>
+<p style="color:#888;">분류: Game Engine › Unity › 작품·제작 사례</p>
+<h2>Haunted Paws 프로젝트 배경</h2>
+<p>LazyFlock 팀은 반려견에 대한 애정과 호러 게임 Little Nightmares에서 영감을 받아 Haunted Paws를 기획했습니다. 두 마리의 강아지가 협동하여 void에 물든 저택에서 주인 Maya를 구출하는 스토리 중심의 코옵 퍼즐 어드벤처입니다.</p>
+<h2>Unity 6 URP와 커스텀 개발 툴</h2>
+<p>이 게임은 Unity 6 URP 엔진을 기반으로 제작되었으며 Wwise로 Audio를 처리하고 Blender로 모델링과 물리 시뮬레이션을 구현했습니다. 개발진은 Unity 내부에 레이아웃용 Scene-view 모드와 코드 없이 퍼즐을 연결하는 시각적 로직 모드 등 다양한 자체 툴을 구축해 작업 속도를 높였습니다.</p>
+<h2>강아지의 행동을 활용한 코옵 메커니즘</h2>
+<p>플레이어는 땅 파기, 냄새 맡기, 짖기, 아이템 운반 등의 행동을 활용해 퍼즐을 해결합니다. 짖는 소리로 적을 유인하거나 두 강아지가 동시에 레버를 당기는 등 상호작용이 핵심입니다.</p>
+<h2>멀티플레이어 동기화와 최적화</h2>
+<p>Unity Netcode와 Steam을 연동해 로컬 및 온라인 코옵을 지원하며 호스트가 권한을 갖고 다른 플레이어의 게임을 예측하는 방식으로 반응성을 높였습니다. 타이밍이 중요한 플랫폼과 컷씬 동기화 문제를 자동 테스트 봇을 통해 조기에 해결했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unity 6 URP 환경에서 커스텀 Scene-view 모드와 로직 게이트 시스템을 자체 구축해 디자이너가 코드 없이 퍼즐을 조립할 수 있도록 구현했습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Haunted Paws는 어떤 엔진으로 제작되었나요?</b><br/>A. Unity 6 URP를 기반으로 제작되었습니다.</p>
+<p><b>Q. 멀티플레이어 구현에는 어떤 기술이 사용되었나요?</b><br/>A. Unity Netcode와 Steam을 연동하여 온라인 플레이를 지원합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-23-2a73e8a5ee4016cf.html">Unity CLI와 AI 기반 Vive 코딩 실무 가이드</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-6c722a7f60698965.html">Unity 멀티 물리 씬으로 구현한 XREAL AURA XR 아케이드</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-98650dc9a47ef23b.html">Unity VRChat Avatar 은하계 Shader 제작 기법</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/play-as-puppies-rescue-your-owner-from-haunted-mansion-in-this-co-op-game/" target="_blank" rel="noopener nofollow">Play As Puppies &amp; Rescue Your Owner From Haunted Mansion In This Co-Op Game</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

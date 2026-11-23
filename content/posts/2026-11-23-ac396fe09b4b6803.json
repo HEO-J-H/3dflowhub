@@ -1,0 +1,60 @@
+{
+  "title_ko": "Unity 6 기반 코옵 게임 Haunted Paws 개발 인터뷰",
+  "title": "Play As Puppies & Rescue Your Owner From Haunted Mansion In This Co-Op Game",
+  "url": "https://80.lv/articles/play-as-puppies-rescue-your-owner-from-haunted-mansion-in-this-co-op-game/",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unity 6",
+    "Unity Netcode",
+    "Blender",
+    "Wwise",
+    "게임 개발",
+    "블렌더",
+    "유니티"
+  ],
+  "summary": "인디 개발사 LazyFlock이 Unity 6 URP와 자체 제작 툴을 활용해 두 마리의 강아지가 유령 저택에서 주인을 구하는 코옵 퍼즐 어드벤처 Haunted Paws를 개발한 과정과 기술적 도전 과제를 공개했습니다.",
+  "insight": "Unity 6 URP 환경에서 커스텀 Scene-view 모드와 로직 게이트 시스템을 자체 구축해 디자이너가 코드 없이 퍼즐을 조립할 수 있도록 구현했습니다.",
+  "try_it": [
+    "Unity 6 에디터에서 URP 렌더 파이프라인 설정을 확인합니다.",
+    "Scene-view 모드를 커스텀하여 카메라와 조명 레이아웃 도구를 구성해 봅니다.",
+    "Unity Netcode 환경에서 멀티플레이어 동기화 테스트를 진행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Haunted Paws 프로젝트 배경",
+      "body": "LazyFlock 팀은 반려견에 대한 애정과 호러 게임 Little Nightmares에서 영감을 받아 Haunted Paws를 기획했습니다. 두 마리의 강아지가 협동하여 void에 물든 저택에서 주인 Maya를 구출하는 스토리 중심의 코옵 퍼즐 어드벤처입니다."
+    },
+    {
+      "heading": "Unity 6 URP와 커스텀 개발 툴",
+      "body": "이 게임은 Unity 6 URP 엔진을 기반으로 제작되었으며 Wwise로 Audio를 처리하고 Blender로 모델링과 물리 시뮬레이션을 구현했습니다. 개발진은 Unity 내부에 레이아웃용 Scene-view 모드와 코드 없이 퍼즐을 연결하는 시각적 로직 모드 등 다양한 자체 툴을 구축해 작업 속도를 높였습니다."
+    },
+    {
+      "heading": "강아지의 행동을 활용한 코옵 메커니즘",
+      "body": "플레이어는 땅 파기, 냄새 맡기, 짖기, 아이템 운반 등의 행동을 활용해 퍼즐을 해결합니다. 짖는 소리로 적을 유인하거나 두 강아지가 동시에 레버를 당기는 등 상호작용이 핵심입니다."
+    },
+    {
+      "heading": "멀티플레이어 동기화와 최적화",
+      "body": "Unity Netcode와 Steam을 연동해 로컬 및 온라인 코옵을 지원하며 호스트가 권한을 갖고 다른 플레이어의 게임을 예측하는 방식으로 반응성을 높였습니다. 타이밍이 중요한 플랫폼과 컷씬 동기화 문제를 자동 테스트 봇을 통해 조기에 해결했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Haunted Paws는 어떤 엔진으로 제작되었나요?",
+      "a": "Unity 6 URP를 기반으로 제작되었습니다."
+    },
+    {
+      "q": "멀티플레이어 구현에는 어떤 기술이 사용되었나요?",
+      "a": "Unity Netcode와 Steam을 연동하여 온라인 플레이를 지원합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51124/images/6b03fc6678c90/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=3yvwdLXXfjo"
+  },
+  "collected_at": "2026-11-23T22:42:10.205843+00:00",
+  "notion_id": "",
+  "id": "2026-11-23-ac396fe09b4b6803",
+  "img_ok": "2026-11-23T22:42:10+00:00"
+}
