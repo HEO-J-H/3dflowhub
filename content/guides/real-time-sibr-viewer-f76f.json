@@ -1,0 +1,84 @@
+{
+  "id": "real-time-sibr-viewer-f76f",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "렌더링 및 뷰어",
+  "name": "Real-time SIBR Viewer",
+  "title": "Real-time SIBR Viewer — 학습된 Gaussian 씬을 실시간 Interactive로 확인하고 카메라 경로를 ",
+  "summary": "SIBR Viewer는 3D Gaussian Splatting 학습 결과를 실시간으로 고화질 감상하고 검증할 수 있는 공식 실시간 뷰어입니다. 방대한 Gauss 프시미티브 데이터를 끊김 없이 부드럽게 렌더링합니다.",
+  "when": [
+    "Gaussian Splatting 학습이 끝난 결과물의 렌더링 품질을 실시간으로 확인하고 싶을 때",
+    "웹 브라우저가 아닌 로컬 환경에서 원본 Resolution와 퍼포먼스로 3D 씬을 검증할 때",
+    "카메라 포즈와 렌더링 결과물의 오류를 디버깅할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습(Training) 완료 후 생성된 출력(Output) 폴더 안의 SIBR 관련 빌드 경로로 이동합니다.",
+    "명령 Prompt(Command Prompt)나 Terminal을 열고 SIBR Viewer 실행 파일을 호출합니다.",
+    "실행 명령어 뒤에 학습된 데이터셋 경로와 SIBR 바이너리 경로를 인자로 입력합니다 (예: --path [Dataset_Path]).",
+    "뷰어 창이 열리면 Mouse 좌클릭 드래그로 회전, 우클릭 드래그로 이동, 스크롤로 줌을 조작합니다.",
+    "화면상에서 실시간으로 프레임레이트(FPS)와 렌더링 품질을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "path",
+      "desc": "학습된 Gaussian 데이터 및 COLMAP 결과가 포함된 씬 폴더 경로 지정"
+    },
+    {
+      "name": "resolution",
+      "desc": "렌더링 Resolution 배율을 조절하여 성능과 화질 최적화"
+    },
+    {
+      "name": "max_sh_degree",
+      "desc": "구면 harmonics(SH) 차수를 조절하여 색상 디테일과 연산 부하 조정"
+    },
+    {
+      "name": "vsync",
+      "desc": "수직 동기화를 켜거나 꺼서 프레임 레이트 고정 또는 해제"
+    }
+  ],
+  "examples": [
+    {
+      "title": "학습 결과 실시간 프리뷰",
+      "steps": [
+        "출력 폴더 내 SIBR 실행 파일 준비",
+        "명령어 창에 씬 경로 입력 후 실행",
+        "뷰어에서 카메라를 움직여 사각지대 확인"
+      ]
+    },
+    {
+      "title": "렌더링 성능(FPS) 테스트",
+      "steps": [
+        "뷰어 실행 후 기본 퍼포먼스 모니터링 켜기",
+        "Resolution 옵션을 조절하며 프레임 변화 체크",
+        "고부하 구간의 Gauss 밀집도 분석"
+      ]
+    }
+  ],
+  "mistakes": [
+    "경로 오입력(경로에 한글이나 공백 포함) → 영문 및 짧은 경로로 폴더를 이동하여 실행",
+    "CUDA 버전 호환성 문제로 뷰어 실행 즉시 꺼짐 → 사용 중인 PyTorch 및 CUDA Runtime 버전 확인 후 재빌드"
+  ],
+  "related": [
+    "Gaussian Splatting",
+    "COLMAP",
+    "PLY Export",
+    "NeRF"
+  ],
+  "videos": [
+    {
+      "id": "gqJCWyYPtXQ",
+      "title": "[2023 SIGGRAPH] 3D Gaussian Splatting for Real Time Radiance Field Rendering",
+      "author": "딥러닝논문읽기모임"
+    },
+    {
+      "id": "xxQr61ifoqM",
+      "title": "Open Gaussian Splatting PLY files and create videos in SIBR-viewer",
+      "author": "Olli Huttunen"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Real-time%20SIBR%20Viewer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T16:47:20.991362+00:00"
+}

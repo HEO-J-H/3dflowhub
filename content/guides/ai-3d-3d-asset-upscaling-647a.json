@@ -1,0 +1,84 @@
+{
+  "id": "ai-3d-3d-asset-upscaling-647a",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "3D 에셋 업스케일링",
+  "name": "3D Asset Upscaling",
+  "title": "3D Asset Upscaling — 저해상도 3D 모델과 텍스처의 디테일을 AI로 고도화",
+  "summary": "AI 기반 3D 에셋 Upscaling(3D Asset Upscaling)은 저해상도 3D 모델이나 텍스처, 그리고 Gaussian Splatting 데이터의 Resolution와 디테일을 인공지능으로 복원하고 증폭하는 기술입니다. 폴리곤 구조를 유지하면서 표면 디테일과 텍스처 선명도를 높여줍니다.",
+  "when": [
+    "저화질 스캔 데이터나 포토그래메트리 결과물의 디테일을 살리고 싶을 때",
+    "게임 엔진이나 실시간 렌더링에 넣기 전 에셋의 Resolution를 가볍게 높이고 싶을 때",
+    "오래된 저폴리곤 모델이나 텍스처를 최신 퀄리티로 리마스터링할 때"
+  ],
+  "steps": [
+    "프로젝트 환경에 맞는 AI 3D Upscaling 도구 또는 플러그인을 실행합니다.",
+    "업스케일할 대상 모델(Mesh) 또는 텍스처(Texture Map)를 Import 합니다.",
+    "옵션 패널에서 Upscale Factor 또는 Target Resolution을 설정합니다.",
+    "Noise Reduction 및 Detail Enhancement 강도를 조절하여 노이즈를 제어합니다.",
+    "Generate 또는 Process 버튼을 눌러 연산을 실행하고 결과를 확인합니다.",
+    "결과물 모델을 FBX 또는 USD 형식으로 Export 하여 DCC 툴에서 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "Upscale Factor",
+      "desc": "원본 대비 해상도나 디테일 배율을 결정합니다."
+    },
+    {
+      "name": "Detail Enhancement",
+      "desc": "표면의 미세한 질감과 주름의 선명도를 조절합니다."
+    },
+    {
+      "name": "Noise Reduction",
+      "desc": "AI 연산 과정에서 생기는 자글거림이나 아티팩트를 줄여줍니다."
+    },
+    {
+      "name": "Target Resolution",
+      "desc": "출력될 텍스처 또는 메쉬의 최종 Resolution를 지정합니다."
+    },
+    {
+      "name": "Preserve Topology",
+      "desc": "업스케일 시 원본 모델의 폴리곤 흐름과 구조를 유지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저해상도 스캔 모델 디테일 복원",
+      "steps": [
+        "포토그래메트리 스캔 결과물을 업스케일 툴에 불러옵니다.",
+        "Preserve Topology 옵션을 켜서 형태 변형을 방지합니다.",
+        "Detail Enhancement 값을 올려 피부나 의상의 질감을 살립니다."
+      ]
+    },
+    {
+      "title": "Gaussian Splatting 퀄리티 개선",
+      "steps": [
+        "학습 완료된 포인트 클라우드 또는 Splat 데이터를 로드합니다.",
+        "Upscale Factor를 2x로 설정하여 밀도를 높입니다.",
+        "렌더링 시 블러 현상이 줄어들었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 디테일 증강으로 인한 인공물(Artifact) 발생 → Detail Enhancement 값을 낮추고 노이즈 억제 옵션을 함께 조절합니다.",
+    "Topology 붕괴 → Preserve Topology 또는 Edge Protection 옵션을 활성화하여 형태 유지력을 높입니다."
+  ],
+  "related": [
+    "Gaussian Splatting",
+    "Photogrammetry",
+    "Normal Bump",
+    "Decimate"
+  ],
+  "videos": [
+    {
+      "id": "gpqnd8fGKzY",
+      "title": "ComfyUI to Ureal and Unity, Making Game assets: 3d Models, Terrains, Skydome, materials.",
+      "author": "Vladimir Chopine [GeekatPlay]"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%203D%20Asset%20Upscaling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T16:47:16.804241+00:00"
+}

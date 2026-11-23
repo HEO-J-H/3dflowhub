@@ -1,0 +1,95 @@
+{
+  "id": "v-ray-vrayies-b3fd",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "VRayIES",
+  "title": "VRayIES — 실제 조명 제조사의 IES 배광 데이터를 불러와 사실적인 조명을 연출하는 라이트",
+  "summary": "VRayIES는 실제 조명 제조사에서 제공하는 IES(Illuminating Engineering Society) 파일의 배광 데이터를 불러와 실제 조명 기구의 빛 퍼짐과 감쇠를 사실적으로 재현하는 라이트 도구입니다.",
+  "when": [
+    "실제 다운라이트, 펜던트 조명, 월셔 등의 배광 패턴을 정확히 표현해야 할 때",
+    "건축 인테리어 시각화에서 벽면에 맺히는 빛의 곡선과 음영을 실물처럼 만들 때",
+    "상업 공간이나 외관 파사드의 간접 조명 및 투사등 효과를 구현할 때"
+  ],
+  "steps": [
+    "3ds Max 상단 메뉴 바에서 Create → Lights → V-Ray를 선택합니다.",
+    "Command Panel의 Create 탭에서 VRayIES 버튼을 클릭합니다.",
+    "Viewport에서 조명이 위치할 지점을 클릭하여 생성합니다.",
+    "Modify 탭으로 이동하여 IES file 파생 항목에서 제조사 IES 파일을 불러옵니다.",
+    "Viewport와 Render Setup을 통해 빛의 방향과 Intensity(강도)를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "IES file",
+      "desc": "조명 제조사의 배광 데이터(.ies) 파일을 불러옵니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "조명의 밝기와 광도를 조절합니다."
+    },
+    {
+      "name": "Power (lumens)",
+      "desc": "Lumen 단위로 실제 조명의 광출력을 설정합니다."
+    },
+    {
+      "name": "Color temperature",
+      "desc": "켈빈(K) 값으로 빛의 색온도를 조절합니다."
+    },
+    {
+      "name": "Target",
+      "desc": "조명이 비추는 지점을 지정하는 타겟 활성화 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 다운라이트 배치",
+      "steps": [
+        "천장 아래 위치에 VRayIES를 생성합니다.",
+        "Modify 탭에서 다운라이트 제조사 IES 파일을 로드합니다.",
+        "Intensity 값을 조절하여 바닥에 떨어지는 빛의 밝기를 맞춥니다."
+      ]
+    },
+    {
+      "title": "벽면 월셔 조명 표현",
+      "steps": [
+        "벽체에서 일정한 거리를 두고 VRayIES를 설치합니다.",
+        "배광 패턴이 벽면을 타고 위아래로 퍼지도록 회전시킵니다.",
+        "Color temperature 값을 조정하여 따뜻한 실내 분위기를 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛이 너무 어둡거나 보이지 않음 → Intensity 값이나 Power(lumens) 수치가 너무 낮으므로 값을 크게 높여 확인합니다.",
+    "IES 파일의 빛 모양이 이상함 → 조명 오브젝트의 Z축 회전 방향이나 노멀 상태를 점검하고 타겟 위치를 재조정합니다."
+  ],
+  "related": [
+    "V-Ray Dome Light",
+    "V-Ray Light",
+    "V-Ray Scene",
+    "Corona Light"
+  ],
+  "videos": [
+    {
+      "id": "JBLENBigYWk",
+      "title": "How to use IES LIGHT | Vray ies lighting| 3dsmax|photomatric ies|#vraylighting #3dsmax #vray",
+      "author": "Sunil Rawat"
+    },
+    {
+      "id": "SE1RaP1Qz40",
+      "title": "IES Lights in 3ds Max & VRay | VRayIES",
+      "author": "Margarita Nikita"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayIES",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Create",
+    "Lights",
+    "V-Ray",
+    "Command Panel",
+    "VRayIES"
+  ],
+  "at": "2026-11-23T16:47:25.016666+00:00"
+}
