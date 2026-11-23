@@ -1,0 +1,19 @@
+<!-- TITLE: NVIDIA cuDSS 1.0 출시 — 대규모 엔지니어링 시뮬레이션 가속 | TAGS: NVIDIA cuDSS,GPU 가속,시뮬레이션,선형 방정식,VFX,업데이트·출시 | CATEGORY: AI 3D/NVIDIA Omniverse | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/" target="_blank" rel="noopener nofollow"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2024/06/DatacenterKV-2.png" alt="NVIDIA cuDSS 1.0 출시 — 대규모 엔지니어링 시뮬레이션 가속" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/" target="_blank" rel="noopener nofollow">developer.nvidia.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NVIDIA cuDSS 1.0 라이브러리가 정식 출시되어 엔지니어링 및 과학 시뮬레이션에서 GPU 기반 선형 시스템 해법을 프로덕션 환경에 제공합니다.</p>
+<p style="color:#888;">분류: AI 3D › NVIDIA Omniverse › 업데이트·출시</p>
+<h2>cuDSS 1.0의 주요 성능 향상</h2>
+<p>실제 반도체 설계, 구조 해석, 유체 역학 벤치마크 매트릭스에서 Intel MKL 대비 분석 단계 2.5배, 수치 factorization 5.9배, 삼각형 해법 151배의 기하 평균 속도 향상을 기록했습니다. 응용 프로그램은 이 세 가지 단계를 조합하여 전체적인 연산 시간을 단축할 수 있습니다.</p>
+<h2>수치 안정성 및 피벗 최적화</h2>
+<p>대칭 불확정(symmetric indefinite) 시스템을 위해 HSL MC64와 Bunch-Kaufman 피벗팅이 기본 활성화되었습니다. 이를 통해 불안정한 피벗을 줄이고 SuiteSparse 매트릭스에서 노름 기준 상대 후방 오차를 최대 10자리수까지 개선했습니다.</p>
+<h2>Hybrid 메모리와 시스템 최적화</h2>
+<p>GPU HBM과 CPU DRAM 사이에 데이터를 분산하는 Hybrid 메모리 모드가 도입되어 대규모 VLSI 케이스에서 장치 메모리 요구량을 약 30% 절감합니다. 광범위한 멀티 GPU 환경 없이 단일 GPU로 대형 문제를 해결할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Intel MKL 대비 삼각형 해법(triangular solve)에서 최대 151배의 성능 향상을 기록하며 대규모 반도체 및 구조 해석 시뮬레이션의 병목을 해소합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. cuDSS 1.0은 어떤 시뮬레이션 분야에 유용한가요?</b><br/>A. 구조 역학, 전산 유체 역학(CFD), 회로 시뮬레이션, 전력망 분석 등 대규모 희소 선형 시스템(sparse linear system)을 다루는 엔지니어링 및 과학 시뮬레이션에 활용됩니다.</p>
+<p><b>Q. Hybrid 메모리 모드는 어떤 장점이 있나요?</b><br/>A. GPU HBM과 CPU DRAM을 동시에 활용하여 메모리 부족 문제를 해결하며, 대규모 문제에서 최소 장치 메모리 요구량을 약 30% 낮추고 단일 GPU 구동 범위를 넓혀줍니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-23-f6eb5bdb405fe182.html">NVIDIA RTX Spark PC 공개 — 128GB 메모리 탑재</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-fde8342060743f5b.html">NVIDIA RTX Spark Desktop과 DGX Spark HPC 키트 출시</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-d1340615a55d3fc6.html">NVIDIA RTX Spark Desktop 출시 - 로컬 AI</a></li></ul>
+<hr/><p>원문:<a href="https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/" target="_blank" rel="noopener nofollow">Accelerating Direct Sparse Solvers for Computational Engineering with NVIDIA cuDSS 1.0</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
