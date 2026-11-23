@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-ai-auto-weight-painting-6872",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Auto-Weight Painting",
+  "title": "AI 오토 웨이트 페인팅 — 캐릭터 3D 모델과 스켈레톤 뼈대를 연동할 때 관절 가중치를 AI가 자연스럽게 ",
+  "summary": "AI Auto-Weight Painting은 캐릭터 메쉬와 뼈대(Skeleton) 사이의 웨이트(Weight) 값을 인공지능이 자동으로 계산하여 부드러운 스킨 변형을 만들어 주는 기술입니다. 수작업으로 Vertex 무게를 칠하는 번거로운 과정을 줄여 애니메이션 준비 시간을 대폭 단축합니다.",
+  "when": [
+    "복잡한 다중 관절 캐릭터에 수동 웨이트 작업 시간이 부족할 때",
+    "빠른 Prototyping이나 배경 군중 캐릭터용 리깅을 대량으로 처리할 때",
+    "AI 자동 리깅(AI Automatic Rigging) 직후 어깨나 고관절 등의 꺾임 부위를 빠르게 교정하고 싶을 때"
+  ],
+  "steps": [
+    "캐릭터 3D 메쉬와 생성된 뼈대(Armature/Skeleton)가 올바른 위치에 정렬되어 있는지 확인합니다.",
+    "AI Auto-Weight 기능을 제공하는 플랫폼(예: Blender Add-on, 믹스모 기반 툴, 또는 전용 AI 3D Software)의 리깅 및 웨이트 메뉴를 엽니다.",
+    "메쉬와 뼈대를 모두 선택한 상태에서 AI Auto-Weight(또는 Voxel Weight 등) 실행 버튼을 누릅니다.",
+    "인공지능이 메쉬의 볼륨과 관절 위치를 분석하여 웨이트 값을 자동 계산할 때까지 기다립니다.",
+    "Viewport에서 포즈 모드(Pose Mode)로 전환하여 관절을 움직여 보고 웨이트가 자연스럽게 분배되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Voxel Resolution",
+      "desc": "복셀 기반 계산 시 메쉬를 샘플링하는 Resolution 세밀도를 조절합니다."
+    },
+    {
+      "name": "Max Influences",
+      "desc": "하나의 Vertex에 영향을 미칠 수 있는 최대 본(Bone) 개수를 제한합니다."
+    },
+    {
+      "name": "Smooth Iterations",
+      "desc": "계산된 웨이트 경계를 부드럽게 다듬는 횟수를 설정합니다."
+    },
+    {
+      "name": "Threshold",
+      "desc": "미세한 영향력을 가진 웨이트 값을 제거하여 노이즈를 줄입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "휴대폰 게임용 인간형 캐릭터 빠른 리깅",
+      "steps": [
+        "T-Pose 상태의 캐릭터 OBJ 또는 FBX 파일을 불러옵니다.",
+        "AI Auto-Weight 도구를 실행하여 기본 스키닝을 적용합니다.",
+        "팔과 다리를 90도로 꺾어 겹침 현상이 없는지 확인합니다."
+      ]
+    },
+    {
+      "title": "사족 보행 몬스터 캐릭터 웨이트 분배",
+      "steps": [
+        "네 발로 서 있는 크리처 메쉬에 뼈대를 맞춥니다.",
+        "AI 기반 웨이트 페인팅 옵션에서 몸체와 다리 연결부를 정밀 계산합니다.",
+        "몸통과 허벅지 접합부의 찌그러짐을 브러시로 살짝 보정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬에 빈틈(Hole)이나 열린 면이 있는 경우 → 표면을 닫고(Close Holes) 논매니폴드 지오메트리를 정리한 뒤 다시 시도합니다.",
+    "캐릭터와 본의 스케일 값이 1이 아닌 경우 → 오브젝트 모드에서 Scale을 1.0으로 적용(Apply Scale)한 후 웨이트를 다시 생성합니다."
+  ],
+  "related": [
+    "AI Automatic Rigging",
+    "Bind Skin",
+    "Weight Paint",
+    "Armature"
+  ],
+  "videos": [
+    {
+      "id": "YfeDIT7gAI4",
+      "title": "Blender: FIX Mis-Averaged Weight Painting (Auto-Normalize)",
+      "author": "Royal Skies"
+    },
+    {
+      "id": "18DnUBJQB9I",
+      "title": "EASY And COMPLETE Weight Painting ! Master Skin Weights & Character Rigging | Blender 5.2",
+      "author": "Proj Prod Blender "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Auto-Weight%20Painting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Armature",
+    "Skeleton",
+    "AI Auto-Weight",
+    "Blender Add",
+    "AI 3D Software"
+  ],
+  "at": "2026-11-23T17:47:32.159879+00:00"
+}

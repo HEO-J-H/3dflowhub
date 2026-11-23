@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-load-texture-ecd3",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "텍스처 및 재질",
+  "name": "Load Texture",
+  "title": "텍스처 불러오기 — 3D 재질의 맵(Diffuse, Bump 등)에 이미지 파일을 적용",
+  "summary": "Photoshop Load Texture 기능은 3D 모델에 적용할 외부 2D 이미지 파일을 불러와 텍스처 맵 슬롯에 연결하는 기본적인 3D 텍스처링 도구입니다.",
+  "when": [
+    "3D 모델의 표면에 나무, 철판, 천 등의 세밀한 이미지 질감을 입히고 싶을 때",
+    "외부에서 제작하거나 다운로드한 2D 텍스처 파일을 3D 프로젝트에 적용할 때",
+    "Base Color나 Normal 맵 등의 이미지 소스를 3D 레이어 속성에 직접 할당할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 문서를 엽니다.",
+    "Layers 패널에서 텍스처를 적용할 3D 레이어를 선택합니다.",
+    "Properties 패널에서 텍스처를 넣을 맵 슬롯(예: Base Color) 옆의 폴더 아이콘을 클릭합니다.",
+    "메뉴에서 Load Texture를 선택하고 컴퓨터에서 불러올 이미지 파일(PNG, JPG 등)을 지정합니다.",
+    "Viewport에서 이미지가 3D 모델 표면에 올바르게 투영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "모델의 기본 색상과 무늬를 결정하는 텍스처 맵을 불러옵니다."
+    },
+    {
+      "name": "Bump / Normal",
+      "desc": "표면의 요철과 입체감을 표현할 흑백 또는 노멀 맵 이미지를 불러옵니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 하이라이트의 퍼짐을 제어하는 맵을 불러옵니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "투명도를 제어하여 특정 영역을 뚫거나 반투명하게 만드는 맵을 불러옵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "상자에 나무 상자 텍스처 입히기",
+      "steps": [
+        "3D 상자 모델의 레이어를 선택합니다.",
+        "Properties 패널의 Base Color 슬롯에서 Load Texture를 클릭합니다.",
+        "준비된 나무 질감 JPG 파일을 선택해 불러옵니다."
+      ]
+    },
+    {
+      "title": "콘크리트 벽면에 요철(Normal) 추가하기",
+      "steps": [
+        "콘크리트 3D 모델 레이어를 선택합니다.",
+        "Properties 패널의 Bump 슬롯 옆 메뉴를 엽니다.",
+        "Load Texture를 선택해 콘크리트 노멀 맵 이미지를 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지원하지 않는 파일 형식 선택 → PNG, PSD 또는 JPG 등 Photoshop이 읽을 수 있는 표준 이미지 형식인지 확인합니다.",
+    "잘못된 맵 슬롯에 이미지 로드 → Base Color와 Normal 맵의 위치가 바뀌었는지 Properties 패널에서 슬롯 이름을 확인합니다."
+  ],
+  "related": [
+    "New Material from Layer",
+    "Open Texture",
+    "Bitmap",
+    "Diffuse Color"
+  ],
+  "videos": [
+    {
+      "id": "ZpWU9FnbTAw",
+      "title": "Photoshop tutorial on editing with textures| 2 simple editing methods adding texture to your images.",
+      "author": "Creative Photography with Lori Lankford "
+    },
+    {
+      "id": "T6iyQUKg_Ow",
+      "title": "How to Import Textures to Photoshop : Photoshop Tricks & Skills",
+      "author": "eHowTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Load%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Properties",
+    "Base Color",
+    "Load Texture",
+    "PNG"
+  ],
+  "at": "2026-11-23T17:47:39.226961+00:00"
+}

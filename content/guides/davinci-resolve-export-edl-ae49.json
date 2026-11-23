@@ -1,0 +1,92 @@
+{
+  "id": "davinci-resolve-export-edl-ae49",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전달 페이지",
+  "name": "Export EDL",
+  "title": "EDR Export — 편집 Timeline 정보를 다른 편집 Software와 호환되는 파일 형식으로 내보내는 기능",
+  "summary": "DaVinci Resolve의 Export EDL 기능은 Timeline의 컷 편집 정보와 타임코드 데이터를 표준 Edit Decision List 파일로 내보내는 도구입니다. 다른 편집 프로그램이나 Audio 후반 작업(DAW) 시스템으로 프로젝트를 넘길 때 주로 사용합니다.",
+  "when": [
+    "DaVinci Resolve에서 편집한 컷 타이밍을 다른 편집 Software(Adobe Premiere Pro, Final Cut Pro 등)로 전달할 때",
+    "Fairlight 페이지에서 작업한 Audio 컷 정보를 Pro Tools 등의 외부 Audio 편집 툴로 넘길 때",
+    "온라인 종합 편집이나 색보정을 위해 가벼운 컷 데이터만 추출하여 전달해야 할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve의 Edit 페이지 또는 Cut 페이지에서 내보낼 Timeline을 선택합니다.",
+    "메뉴 바에서 File → Export → Timeline... 을 클릭합니다.",
+    "파일 형식(Files of type) 드롭다운 메뉴에서 EDL (*.edl)을 선택합니다.",
+    "저장할 경로와 파일 이름을 지정하고 Save 버튼을 누릅니다.",
+    "EDL Export 옵션 창이 나타나면 트랙 및 타임코드 설정 값을 확인한 후 Export를 클릭합니다."
+  ],
+  "params": [
+    {
+      "name": "Timeline",
+      "desc": "내보낼 Timeline 범위나 비디오 트랙을 지정합니다."
+    },
+    {
+      "name": "Use unique file names",
+      "desc": "미디어 클립의 파일 이름을 고유하게 유지하여 링크 오류를 방지합니다."
+    },
+    {
+      "name": "Export audio tracks",
+      "desc": "Audio 클립의 편집 정보도 EDL에 함께 포함할지 여부를 결정합니다."
+    },
+    {
+      "name": "Drop Frame",
+      "desc": "타임코드 프레임 드롭 설정을 Timeline 설정과 일치시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Audio 후반 작업(Pro Tools)으로 컷 데이터 전달하기",
+      "steps": [
+        "DaVinci Resolve에서 최종 컷 편집이 완료된 Timeline을 엽니다.",
+        "File → Export → Timeline...을 선택하고 EDL 포맷을 지정합니다.",
+        "Audio 트랙 포함 옵션을 켜고 파일을 저장합니다.",
+        "생성된 EDL 파일을 Pro Tools Audio 엔지니어에게 전달합니다."
+      ]
+    },
+    {
+      "title": "다른 편집 툴로 러프 컷 Timeline 공유하기",
+      "steps": [
+        "가편집이 끝난 Timeline을 선택합니다.",
+        "File → Export 메뉴에서 EDL 포맷으로 컷 리스트를 추출합니다.",
+        "상대방의 편집 프로그램에서 EDL 파일을 임포트하여 컷 위치를 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio 트랙이 누락됨 → Export 옵션에서 Export audio tracks 체크 여부를 확인합니다.",
+    "클립 링크가 끊어짐 → 타임코드가 일치하지 않거나 미디어 파일 경로가 변경되었는지 확인합니다."
+  ],
+  "related": [
+    "Deliver Page",
+    "XML Export",
+    "AAF Export",
+    "Fairlight"
+  ],
+  "videos": [
+    {
+      "id": "rHUnp8aMsHg",
+      "title": "How to export edl from davinci resolve?",
+      "author": "Quick FAQ"
+    },
+    {
+      "id": "Sp6xjl6nWvg",
+      "title": "Exporting EDL and CSV file from DaVinci Resolve and Importing it in Nuendo as Cycle Markers",
+      "author": "DarkWhite Productions"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Export%20EDL",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Edit",
+    "Cut",
+    "Timeline",
+    "File",
+    "Export"
+  ],
+  "at": "2026-11-23T17:47:35.597533+00:00"
+}
