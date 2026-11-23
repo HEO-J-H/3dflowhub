@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-cad-assembly-decomposition-f5b5",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 데이터 변환 및 CAD",
+  "name": "AI CAD Assembly Decomposition",
+  "title": "AI CAD 어셈블리 분해 — 복잡한 CAD 조립품 데이터를 개별 파츠와 구조별로 자동 분리하여 3D 파이프",
+  "summary": "AI CAD Assembly Decomposition은 복잡하게 결합된 대형 엔지니어링 CAD 어셈블리 데이터를 AI와 알고리즘을 통해 개별 부품 단위로 자동 분해하고 구조화하는 최신 워크플로입니다.",
+  "when": [
+    "수천 개의 부품이 얽힌 거대한 자동차나 기계 CAD 데이터를 게임 엔진용으로 분해해야 할 때",
+    "복잡한 어셈블리 구조를 수작업으로 하나씩 해체하는 시간을 줄이고 싶을 때",
+    "개별 부품별로 애니메이션이나 인터랙션 설정을 적용하기 위해 구조를 정리할 때"
+  ],
+  "steps": [
+    "Pixyz Studio 또는 AI 기반 CAD 데이터 준비 툴을 실행합니다.",
+    "File > Open을 통해 복잡한 어셈블리가 포함된 원본 CAD 파일(STEP, IGES 등)을 불러옵니다.",
+    "왼쪽 Product Structure(트리) 패널에서 전체 어셈블리 노드가 선택되었는지 확인합니다.",
+    "메뉴 바에서 Scene 또는 Optimize Mesh 카테고리로 이동하여 Assembly Decomposition 기능을 실행합니다.",
+    "대화 상자에서 부품 분해 기준(Tolerance 및 접촉면 기반 분리 등) 옵션을 설정하고 Execute를 누릅니다.",
+    "오른쪽 Inspector와 Product Structure 패널에서 개별 부품으로 깨끗하게 분해된 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "부품 간의 결합과 면을 인식하는 정밀도 허용 오차를 설정합니다."
+    },
+    {
+      "name": "Detect Hidden Parts",
+      "desc": "외부에서 보이지 않는 내부 중복 부품을 자동으로 찾아내어 분리하거나 제거합니다."
+    },
+    {
+      "name": "Separate Bodies",
+      "desc": "하나의 파일로 뭉쳐진 솔리드 바디들을 개별 독립 부품 메시로 쪼갭니다."
+    },
+    {
+      "name": "Group by Material",
+      "desc": "동일한 머티리얼 속성을 가진 부품들을 그룹화하여 계층 구조를 정리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 엔진 어셈블리 분해",
+      "steps": [
+        "엔진 CAD 파일을 불러옵니다.",
+        "Assembly Decomposition을 실행하여 수백 개의 부품을 개별 파츠로 분리합니다.",
+        "각 부품별로 독립적인 폴리곤 최적화를 적용합니다."
+      ]
+    },
+    {
+      "title": "기계 장치 인터랙션 구조 정리",
+      "steps": [
+        "전체 기계 CAD 어셈블리를 로드합니다.",
+        "Tolerance 값을 조절하여 결합된 기어와 커버를 정확하게 분해합니다.",
+        "Product Structure에서 구동 부품만 따로 선택해 애니메이션 구조를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "허용 오차(Tolerance)를 너무 낮게 설정함 → 부품들이 과도하게 쪼개지거나 깨짐. 기준치를 점진적으로 높여가며 테스트하세요.",
+    "계층 구조(Product Structure) 확인 누락 → 부품이 분해되었으나 원치 않는 그룹으로 묶임. 실행 전 부품 트리를 먼저 정리하세요."
+  ],
+  "related": [
+    "Pixyz Studio",
+    "Product Structure (Tree)",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "SzgVpbiezbk",
+      "title": "From Blank Screen to Full CAD Assembly with Leo AI",
+      "author": "Leo AI"
+    },
+    {
+      "id": "ck8Wc_65_04",
+      "title": "From PDF to 3D Assembly with AI in nanoCAD MCP",
+      "author": "NanoCAD Mexico"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20CAD%20Assembly%20Decomposition",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "AI",
+    "CAD"
+  ],
+  "at": "2026-11-23T19:32:23.469124+00:00"
+}

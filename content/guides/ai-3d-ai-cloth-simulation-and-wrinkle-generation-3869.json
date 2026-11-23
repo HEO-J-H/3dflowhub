@@ -1,0 +1,87 @@
+{
+  "id": "ai-3d-ai-cloth-simulation-and-wrinkle-generation-3869",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 시뮬레이션 및 다이나믹스",
+  "name": "AI Cloth Simulation and Wrinkle Generation",
+  "title": "AI 의상 시뮬레이션 및 주름 생성 — 캐릭터의 움직임에 맞춰 자연스러운 옷감의 주름과 드레이프를 실시간으로",
+  "summary": "AI Cloth Simulation and Wrinkle Generation은 인공지능 기술을 활용해 3D 의류와 천의 자연스러운 주름과 드레이프를 빠르고 정교하게 생성하는 기능입니다. 복잡한 물리 계산 없이도 사실적인 옷감의 질감과 형태를 자동으로 구현합니다.",
+  "when": [
+    "캐릭터 의류 모델링 시 자연스러운 주름과 드레이프를 빠르게 만들 때",
+    "수동 스컬프팅으로 표현하기 어려운 미세한 옷감의 질감을 구현할 때",
+    "시뮬레이션 연산 시간을 단축하고 고품질의 천 형태를 얻고 싶을 때"
+  ],
+  "steps": [
+    "1. 옷감을 적용할 3D 캐릭터 또는 기본 메쉬 오브젝트를 준비합니다.",
+    "2. AI 3D 플러그인 또는 관련 생성 AI 도구의 패널을 엽니다.",
+    "3. 대상 메쉬를 선택하고 의류 피팅 또는 Wrinkle Generation 옵션을 활성화합니다.",
+    "4. 주름의 강도와 밀도를 설정한 뒤 Generate 또는 Run 버튼을 눌러 연산합니다.",
+    "5. 결과물을 확인하고 Viewport에서 불완전한 부분을 브러시로 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Wrinkle Density",
+      "desc": "생성되는 주름의 조밀함과 개수를 조절합니다."
+    },
+    {
+      "name": "Cloth Tension",
+      "desc": "옷감이 몸에 감기는 타이트함과 장력의 정도를 설정합니다."
+    },
+    {
+      "name": "Gravity Scale",
+      "desc": "시뮬레이션 시 적용되는 중력의 방향과 세기를 제어합니다."
+    },
+    {
+      "name": "Stiffness",
+      "desc": "천의 뻣뻣함 정도를 조절하여 두꺼운 옷감이나 얇은 실크를 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 티셔츠 주름 생성",
+      "steps": [
+        "1. 캐릭터 바디 모델 위에 기본 티셔츠 메쉬를 배치합니다.",
+        "2. AI Wrinkle Generation 도구를 실행하여 주름을 자동 생성합니다.",
+        "3. Tension 값을 조절해 몸에 자연스럽게 밀착되도록 수정합니다."
+      ]
+    },
+    {
+      "title": "망토 및 드레스 드레이프 연출",
+      "steps": [
+        "1. 늘어진 망토 오브젝트를 선택합니다.",
+        "2. AI Cloth Simulation을 적용해 중력에 따른 자연스러운 처짐을 만듭니다.",
+        "3. 결과 메쉬를 고정(Freeze)하고 디테일을 정리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 와이어프레임이 너무 거칠어 주름이 깨지는 경우 → Subdivide나 재조형으로 폴리곤 밀도를 높인 뒤 다시 적용합니다.",
+    "캐릭터와 옷이 서로 겹쳐서 뚫고 나오는 경우 → Collision 마진 값을 조절하거나 피팅 범위를 재설정합니다."
+  ],
+  "related": [
+    "Cloth",
+    "Marvelous Designer",
+    "ZBrush Cloth Brush",
+    "Substance Sampler"
+  ],
+  "videos": [
+    {
+      "id": "2M8R_OS6hgI",
+      "title": "Noob vs Pro Artist: 3D Clothing Design #blender #blendertutorial #clothsimulation #blendercommunity",
+      "author": "Blend Tweaks"
+    },
+    {
+      "id": "FcvJ0xQyRxQ",
+      "title": "A Virtual TryOn Demo with Real-Time Clothing Simulation",
+      "author": "Huamin Wang"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Cloth%20Simulation%20and%20Wrinkle%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI 3D",
+    "AI"
+  ],
+  "at": "2026-11-23T19:32:19.017297+00:00"
+}
