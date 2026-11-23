@@ -1,0 +1,87 @@
+{
+  "id": "davinci-resolve-clone-tool-0db0",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "미디어 페이지",
+  "name": "Clone Tool",
+  "title": "클론 툴 — 카메라 메모리 카드의 촬영 원본을 여러 대상 폴더에 안전하게 동시 백업하는 기능",
+  "summary": "DaVinci Resolve의 Clone Tool은 촬영 현장에서 메모리카드나 외장 SSD의 영상 파일을 안전하고 정확하게 여러 대상 폴더로 동시 백업해 주는 데이터 관리 도구입니다.",
+  "when": [
+    "촬영이 끝난 후 메모리카드의 원본 소스를 안전하게 다중 백업할 때",
+    "백업 중 파일 손상이나 누락 여부를 체크섬(Checksum) 검증을 통해 확인해야 할 때",
+    "현장에서 여러 대의 카메라로 촬영한 대용량 미디어를 체계적으로 정리할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 하단 탭에서 'Media' 페이지로 이동합니다.",
+    "상단 메뉴 바에서 'DaVinci Resolve' 또는 파일 메뉴를 통해 'Clone Tool' 창을 엽니다.",
+    "왼쪽 영역의 'Source' 패널에 백업할 메모리카드나 드라이브를 드래그 앤 드롭하여 추가합니다.",
+    "오른쪽 영역의 'Destination' 패널에서 백업본이 저장될 폴더를 지정합니다.",
+    "하단의 'Clone' 버튼을 클릭하여 백업을 시작하고 체크섬 검증이 완료될 때까지 대기합니다.",
+    "Viewport와 로그에서 백업 성공 여부를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Source",
+      "desc": "백업할 원본 메모리카드 또는 폴더를 지정합니다."
+    },
+    {
+      "name": "Destination",
+      "desc": "백업 파일이 저장될 대상 드라이브 또는 폴더를 지정합니다."
+    },
+    {
+      "name": "Checksum",
+      "desc": "파일 복사 후 원본과 백업본의 무결성을 검증하는 알고리즘을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "촬영 현장 메모리카드 이중 백업",
+      "steps": [
+        "메모리카드를 컴퓨터에 연결합니다.",
+        "Clone Tool을 열고 Source에 메모리카드를 등록합니다.",
+        "서로 다른 외장 SSD 2개를 Destination에 각각 추가합니다.",
+        "Clone을 실행하여 동시 백업 및 검증을 마칩니다."
+      ]
+    },
+    {
+      "title": "안전한 체크섬 기반 백업",
+      "steps": [
+        "Clone Tool 창을 엽니다.",
+        "Checksum 옵션을 MD5 또는 SHA 형식으로 설정합니다.",
+        "대용량 RAW 영상 소스를 Source에 지정하고 복사를 진행합니다.",
+        "완료 후 오류 로그를 확인하여 데이터 손실이 없음을 보장받습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "체크섬 검증 옵션을 끄고 백업하기 → 대용량 파일 복사 중 발생할 수 있는 미세한 데이터 손상을 놓칠 수 있으므로 항상 검증 옵션을 켭니다.",
+    "원본과 동일한 물리적 드라이브를 백업 폴더로 지정하기 → 드라이브 장애 시 원본과 백업이 모두 소실되므로 반드시 별도의 외장 매체를 Destination으로 지정합니다."
+  ],
+  "related": [
+    "Media Pool",
+    "Multicam Editing",
+    "Smart Bins",
+    "Data Burn-In"
+  ],
+  "videos": [
+    {
+      "id": "TNUJYAqbO9o",
+      "title": "How to use the DaVinci Resolve Clone Tool - Backing up Footage!",
+      "author": "Daniel Grindrod"
+    },
+    {
+      "id": "kvo1N7lPjMo",
+      "title": "How to use the DaVinci Resolve clone tool!",
+      "author": "Camera Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Clone%20Tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Media",
+    "Clone Tool"
+  ],
+  "at": "2026-11-23T18:47:08.014121+00:00"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "ai-3d-ai-cad-to-polygon-conversion-929c",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "CAD 및 역설계",
+  "name": "AI CAD to Polygon Conversion",
+  "title": "AI CAD 폴리곤 변환 — 정밀한 CAD 공학용 데이터를 게임 엔진에서 사용 가능한 최적의 폴리곤 메시로 ",
+  "summary": "AI를 활용해 복잡한 CAD 데이터를 게임 엔진과 3D DCC에서 사용할 수 있는 가벼운 폴리곤 메시로 자동 변환하는 최신 워크플로입니다. 수작업 Retopology 없이도 깨끗한 Topology와 최적화된 구조를 빠르게 얻을 수 있습니다.",
+  "when": [
+    "복잡한 엔지니어링 CAD 데이터를 게임 엔진(Unreal Engine, Unity)에 실시간으로 올려야 할 때",
+    "수작업으로 Retopology를 하기에는 부품 수가 너무 많고 형태가 복잡할 때",
+    "건축이나 제품 디자인 CAD 파일을 3D 시각화 및 AR/VR 에셋으로 빠르게 전환해야 할 때"
+  ],
+  "steps": [
+    "1. Pixyz Studio 또는 AI 기반 3D 변환 툴을 실행하고 원본 CAD 파일(STEP, CATPart 등)을 드래그 앤 드롭하여 불러옵니다.",
+    "2. 왼쪽 Product Structure 패널에서 전체 모델 구조와 어셈블리 상태를 확인합니다.",
+    "3. Mesh 메뉴에서 Decimate To Target 또는 자동 폴리곤 변환(Polygonize) 옵션을 선택합니다.",
+    "4. 대화 상자에서 허용 오차(Tolerance)와 목표 폴리곤 수(Target Polygon Count)를 설정합니다.",
+    "5. Execute 버튼을 눌러 AI 기반 변환 프로세스를 실행합니다.",
+    "6. Viewport에서 깨끗한 메시 구조와 법선(Normals) 방향을 확인하고, 필요한 경우 Repair Mesh를 실행합니다.",
+    "7. File → Export 를 통해 최적화된 FBX 또는 USD 형식으로 에셋을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "CAD 곡면을 폴리곤으로 변환할 때 허용되는 표면 오차 범위로, 낮을수록 정밀하지만 폴리곤이 늘어납니다."
+    },
+    {
+      "name": "Target Polygon Count",
+      "desc": "변환 후 생성될 폴리곤(삼각형)의 목표 개수를 지정하여 용량을 최적화합니다."
+    },
+    {
+      "name": "Repair Mesh",
+      "desc": "변환 과정에서 발생한 열린 구멍이나 겹치는 면을 자동으로 감지하고 수정합니다."
+    },
+    {
+      "name": "Generate LOD Chain",
+      "desc": "카메라 거리에 따라 단계별로 사용할 수 있는 최적화된 저해상도 모델(LOD)을 한 번에 생성합니다."
+    },
+    {
+      "name": "Keep UVs",
+      "desc": "CAD 데이터에 포함된 기존 UV 좌표나 자동 생성된 UV 레이웃을 유지합니다."
+    },
+    {
+      "name": "Optimize Hierarchy",
+      "desc": "불필요한 빈 노드나 중첩된 어셈블리 구조를 정리하여 Scene 트리를 가볍게 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 엔진 부품 CAD의 실시간 게임 엔진용 최적화",
+      "steps": [
+        "1. STEP 형식의 복잡한 엔진 CAD 파일을 불러옵니다.",
+        "2. 숨겨진 내부 부품과 불필요한 나사산을 제거(Remove Hidden Parts)합니다.",
+        "3. Polygonize 옵션에서 Tolerance 값을 조절해 폴리곤 수를 대폭 줄입니다.",
+        "4. FBX로 내보내어 Unreal Engine 프로젝트에 임포트합니다."
+      ]
+    },
+    {
+      "title": "건축 외장 패널 CAD 데이터를 AR/VR용 가벼운 에셋으로 변환",
+      "steps": [
+        "1. 대형 건축 CAD 모델을 툴에 임포트합니다.",
+        "2. Decimate To Target 기능을 사용하여 매끄러운 평면은 폴리곤을 줄이고 곡선부는 유지합니다.",
+        "3. Repair Mesh로 누락된 면을 채운 후 USD 형식으로 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지나치게 낮은 Tolerance 설정 → CAD의 곡면이 깨지거나 각져 보임 (해결: Tolerance 값을 낮추고 재변환)",
+    "스케일 및 단위 설정 오류 → Viewport에서 모델이 너무 크거나 작게 보임 (해결: Import 시 Unit 설정 확인)",
+    "내부 은선 및 불필요한 파츠 방치 → 폴리곤 용량이 과도하게 무거워짐 (해결: 변환 전 숨겨진 파츠 제거)"
+  ],
+  "related": [
+    "Pixyz Studio",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "_8x7QIEEGvk",
+      "title": "Magic Conversion: Turn ANY Photo into a Perfect CAD File 🛠️ #ai #autocad #cad #engineering",
+      "author": "Image to cad"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20CAD%20to%20Polygon%20Conversion",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "AI",
+    "CAD",
+    "STEP",
+    "CATPart"
+  ],
+  "at": "2026-11-23T18:47:13.326405+00:00"
+}

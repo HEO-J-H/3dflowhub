@@ -1,0 +1,98 @@
+{
+  "id": "ai-3d-ai-fluid-and-smoke-simulation-4022",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "시각 효과",
+  "name": "AI Fluid and Smoke Simulation",
+  "title": "AI 유체 및 연기 시뮬레이션 — 딥러닝을 활용해 복잡한 액체와 연기의 물리 효과를 빠르고 정확하게 계산하는",
+  "summary": "AI 기반 유체 및 연기 시뮬레이션은 Machine Learning 알고리즘을 활용해 복잡한 난류와 유체 역학을 실시간에 가깝게 생성하고 고도화하는 기술입니다. 전통적인 수치 계산의 한계를 보완하여 사실적인 불, 연기, 액체 효과를 빠르고 효율적으로 제작할 수 있습니다.",
+  "when": [
+    "전통적인 Mantaflow 시뮬레이션으로 복잡한 난류나 디테일을 표현하기 시간이 부족할 때",
+    "실시간 Viewport에서 연기나 불꽃의 움직임을 확인하며 즉각적으로 아트 디렉션을 수정하고 싶을 때",
+    "고해상도 유체 시뮬레이션의 계산 시간을 획기적으로 단축하고 싶을 때"
+  ],
+  "steps": [
+    "AI 시뮬레이션 플러그인 또는 AI 기능이 탑재된 Software(예: Blender AI 애드온, Houdini ML 유체 툴 등)를 활성화합니다.",
+    "시뮬레이션을 적용할 기준 오브젝트(Emitter / Flow)를 선택합니다.",
+    "AI 패널 또는 Modifier 패널에서 AI Fluid / Smoke Generator 옵션을 실행합니다.",
+    "Prompt 또는 사전 학습된 Machine Learning 모델을 선택하여 유체의 거동 스타일을 지정합니다.",
+    "Resolution 및 Detail Scale 파라미터를 조절하여 시뮬레이션 Resolution를 맞춥니다.",
+    "시뮬레이션을 Bake하거나 실시간으로 재생하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "시뮬레이션 Grid의 세밀함을 결정하여 연기와 유체의 디테일을 제어합니다."
+    },
+    {
+      "name": "Vorticity",
+      "desc": "연기나 유체 외곽의 소용돌이와 난류의 거친 정도를 조절합니다."
+    },
+    {
+      "name": "AI Detail Enhancement",
+      "desc": "AI 모델을 활용해 저해상도 시뮬레이션에 고해상도 미세 디테일을 인공적으로 생성합니다."
+    },
+    {
+      "name": "Time Scale",
+      "desc": "시뮬레이션 재생 속도를 느리거나 빠르게 조절합니다."
+    },
+    {
+      "name": "Density",
+      "desc": "연기나 가스의 밀도와 불투명도를 결정합니다."
+    },
+    {
+      "name": "Diffusion",
+      "desc": "연기가 주변 공기로 퍼져나가는 확산 속도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "화염 및 폭발 연기 생성",
+      "steps": [
+        "구형 메쉬를 생성하고 불이 뿜어져 나올 위치에 배치합니다.",
+        "AI 화염 생성 프리셋을 적용하고 Density와 Flame Height를 높입니다.",
+        "Viewport에서 화염의 상승 모션을 확인하고 불필요한 노이즈를 정리합니다."
+      ]
+    },
+    {
+      "title": "바람에 흩날리는 잔향 연기",
+      "steps": [
+        "라인 형태의 패스 또는 메쉬를 준비합니다.",
+        "AI Smoke Flow를 적용한 뒤 외부 Force Field와 연결합니다.",
+        "AI 디테일 업스케일러를 켜서 얇고 자연스러운 연기 선을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "AI 디테일 값을 너무 높여 불필요한 아티팩트(노이즈)가 생기는 경우 → AI Detail Enhancement 값을 낮추고 기본 Resolution을 먼저 확보하세요.",
+    "시뮬레이션 스케일이 실제 세계와 맞지 않아 연기가 너무 빨리 솟구치는 경우 → Domain 오브젝트의 전체 크기(Scale)를 확인하고 Ctrl+A로 스케일을 적용(Apply Scale)하세요."
+  ],
+  "related": [
+    "Mantaflow",
+    "Quick Smoke",
+    "Force Field",
+    "Geometry Nodes"
+  ],
+  "videos": [
+    {
+      "id": "cNMRDD0nMYE",
+      "title": "AI Fluid Simulation in NVIDIA Omniverse | Custom Kit Extensions",
+      "author": "Benjamin Volzke"
+    },
+    {
+      "id": "zoOx81-SQZk",
+      "title": "Quantum Fluid Simulation (Schrödinger's Smoke) - Realtime interactive fluid simulation",
+      "author": "Red Lotus Studio: Build & Destroy 3D Physics Sim"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Fluid%20and%20Smoke%20Simulation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "Software",
+    "Blender AI",
+    "Houdini ML"
+  ],
+  "at": "2026-11-23T18:47:04.313187+00:00"
+}
