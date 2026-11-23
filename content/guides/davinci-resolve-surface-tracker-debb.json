@@ -1,0 +1,93 @@
+{
+  "id": "davinci-resolve-surface-tracker-debb",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "Surface Tracker",
+  "title": "서페이스 트래커 — 휘어지거나 움직이는 3D 표면에 텍스처와 그래픽을 자연스럽게 부착하는 기능",
+  "summary": "DaVinci Resolve의 Surface Tracker는 울퉁불퉁하거나 휘어진 3D 표면의 미세한 굴곡과 움직임을 정밀하게 추적하여, 그래픽이나 텍스처를 자연스럽게 밀착시키는 고급 합성 기능입니다.",
+  "when": [
+    "인물의 움직이는 티셔츠나 피부 위에 로고나 문신을 자연스럽게 합성할 때",
+    "울퉁불퉁한 벽면이나 곡면 패널 위에 그래픽을 완벽하게 밀착시킬 때",
+    "역동적으로 변하는 3D 물체의 표면 텍스처를 수정하거나 교체할 때"
+  ],
+  "steps": [
+    "하단 탭에서 Fusion 페이지로 이동합니다.",
+    "MediaIn 노드를 선택하고, 상단 툴바에서 Surface Tracker 아이콘을 클릭하여 노드를 추가합니다.",
+    "Inspector 패널에서 추적할 표면 영역을 지정하고, Mesh Grid를 활성화합니다.",
+    "Track Forward 버튼을 눌러 영상의 움직임에 따라 표면 Grid가 피사체를 추적하도록 실행합니다.",
+    "합성할 그래픽 소스 노드를 Surface Tracker 노드에 연결하여 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Surface Tracker",
+      "desc": "입체적인 표면의 굴곡과 모션을 분석하여 3D 매핑 데이터를 생성합니다."
+    },
+    {
+      "name": "Mesh Density",
+      "desc": "표면을 추적하는 Grid(격자)의 촘촘함을 조절하여 미세한 굴곡 표현력을 높입니다."
+    },
+    {
+      "name": "Track Forward",
+      "desc": "현재 프레임을 기준으로 영상의 뒷부분을 향해 Tracking을 실행합니다."
+    },
+    {
+      "name": "Interactive Mode",
+      "desc": "사용자가 직접 포인트를 수정하며 Tracking 정확도를 수동으로 보정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "합성된 그래픽 소스의 투명도를 조절하여 배경과의 조화를 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 티셔츠에 로고 합성하기",
+      "steps": [
+        "Fusion 페이지에서 인물 영상에 Surface Tracker 노드를 연결합니다.",
+        "티셔츠의 가슴 영역에 둥근 Mesh Grid를 배치합니다.",
+        "Tracking을 실행하여 옷 주름에 따라 Grid가 왜곡되는지 확인합니다.",
+        "로고 이미지를 연결하고 옷의 굴곡에 맞춰 자연스럽게 합성합니다."
+      ]
+    },
+    {
+      "title": "곡면 벽면에 그래픽 간판 붙이기",
+      "steps": [
+        "원근감과 굴곡이 있는 벽면 영상을 불러옵니다.",
+        "Surface Tracker로 벽면 영역을 지정하고 Mesh를 세밀하게 조절합니다.",
+        "Tracking 완료 후 간판 그래픽 소스를 입력하여 벽에 고정시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "복잡한 주름이나 격렬한 움직임으로 Tracking이 튀는 경우 → Mesh Density를 높이고 키프레임마다 Interactive Mode로 수동 보정합니다.",
+    "평평한 2D 표면인데 Surface Tracker를 사용하는 경우 → 복잡한 굴곡이 없다면 가벼운 Planar Tracker나 Planar Transform을 사용합니다."
+  ],
+  "related": [
+    "Planar Tracker",
+    "Planar Transform",
+    "Tracker",
+    "Grid Warp"
+  ],
+  "videos": [
+    {
+      "id": "J4zPPuYaOm4",
+      "title": "Put a VIDEO CLIP on Your T-Shirt! Surface Tracker Tutorial DaVinci Resolve 19",
+      "author": "Joris Hermans"
+    },
+    {
+      "id": "mmxPiKJtsjw",
+      "title": "Texturing of Complex Surfaces (Track Anything) - Davinci Resolve Tutorial",
+      "author": "Jamie Fenn"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Surface%20Tracker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Fusion",
+    "MediaIn",
+    "Surface Tracker"
+  ],
+  "at": "2026-11-23T18:29:23.500541+00:00"
+}

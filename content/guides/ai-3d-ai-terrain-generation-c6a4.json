@@ -1,0 +1,93 @@
+{
+  "id": "ai-3d-ai-terrain-generation-c6a4",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "지형 및 환경",
+  "name": "AI Terrain Generation",
+  "title": "AI 지형 생성 — 위성 사진이나 텍스트 설명을 바탕으로 리얼한 3D 산악 및 지형 데이터를 생성하는 기능",
+  "summary": "AI 3D Terrain Generation은 텍스트 프롬프트나 높이 지도(Heightmap)를 활용해 사실적인 3D 지형과 자연 환경을 자동으로 생성하는 워크플로우입니다.",
+  "when": [
+    "게임 레벨 디자인이나 오픈월드 배경을 위한 거대한 지형 초안을 빠르게 만들 때",
+    "산맥, 협곡, 평야 등 자연스러운 지형의 높낮이와 세부 디테일을 자동 생성할 때",
+    "수동으로 스컬프팅하기 번거로운 광활한 지형 Base를 구축할 때"
+  ],
+  "steps": [
+    "AI 지형 생성 툴 또는 DCC 툴의 AI Terrain 패널을 엽니다.",
+    "Prompt 입력란에 생성하고 싶은 지형의 특징(예: rugged mountain, snowy peak, canyon)을 영문으로 입력합니다.",
+    "Resolution, Height Scale, Seed 등의 기본 파라미터를 설정합니다.",
+    "Generate 버튼을 클릭하여 AI가 지형 메시와 높이 지도를 생성할 때까지 기다립니다.",
+    "결과물 지형을 확인하고, 필요시 디테일 브러시나 에디터 툴로 후가공합니다.",
+    "Export 버튼을 눌러 FBX 또는 OBJ 포맷으로 지형 모델을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성할 지형의 형태와 스타일을 텍스트로 설명하는 입력란입니다."
+    },
+    {
+      "name": "Height Scale",
+      "desc": "지형의 최대 높낮이와 수직 기복을 조절합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성되는 지형 메시의 폴리곤 밀도와 디테일 수준을 결정합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "무작위 생성의 기준값을 변경하여 다른 형태의 지형 변형을 만듭니다."
+    },
+    {
+      "name": "Guidance Scale",
+      "desc": "Prompt 명령어에 지형이 얼마나 엄격하게 반응할지 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오픈월드 게임용 산맥 지형 제작",
+      "steps": [
+        "Prompt에 'massive rocky mountain range with snow peaks'를 입력합니다.",
+        "Height Scale을 높여 험준한 봉우리를 강조합니다.",
+        "Generate를 실행해 거대한 산맥 Base 메시를 얻습니다."
+      ]
+    },
+    {
+      "title": "사막 협곡 배경 제작",
+      "steps": [
+        "Prompt에 'arid desert canyon with layered sandstone'을 입력합니다.",
+        "Resolution을 높여 침식된 절벽의 디테일을 살립니다.",
+        "내보낸 모델을 Unreal Engine의 Landscape 시스템에 가져와 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지형 폴리곤이 너무 과도하게 생성됨 → Resolution 값을 낮추거나 Decimate 옵션을 적용합니다.",
+    "원하는 지형 형태가 나오지 않음 → Prompt에 스타일과 지형 특징을 더 구체적으로 적고 Seed 값을 변경합니다."
+  ],
+  "related": [
+    "Text-to-3D Generation",
+    "World Labs Atlas",
+    "Sloyd AI",
+    "Displacement Map"
+  ],
+  "videos": [
+    {
+      "id": "rSrHyTaZVVA",
+      "title": "Best 3D Terrain Generation Software",
+      "author": "InspirationTuts"
+    },
+    {
+      "id": "ybkVzr5Q7GM",
+      "title": "🏔️ Real-World Landscapes in Unreal Engine with Nwiro AI Pro | AI Terrain Generation | Tutorial",
+      "author": "NwiroAI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Terrain%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "DCC",
+    "AI Terrain"
+  ],
+  "at": "2026-11-23T18:29:27.467443+00:00"
+}

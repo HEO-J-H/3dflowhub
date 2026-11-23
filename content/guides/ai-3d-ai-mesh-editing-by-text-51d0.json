@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-mesh-editing-by-text-51d0",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "프롬프트 편집",
+  "name": "AI Mesh Editing by Text",
+  "title": "텍스트 기반 3D 메시 편집 — 자연어 Prompt를 입력하여 기존 3D 모델의 특정 부분을 수정하거나 변형하는",
+  "summary": "AI Mesh Editing by Text 기능은 텍스트 Prompt만으로 3D 모델의 특정 부분을 수정하는 AI 기술입니다. 기존 전체 재생성 방식과 달리 원하는 영역만 골라서 디테일을 바꿀 수 있습니다.",
+  "when": [
+    "생성된 3D 모델의 특정 부위(예: 무기, 장신구, 표정)만 빠르게 수정하고 싶을 때",
+    "전체 형태는 유지하면서 세부 텍스처나 구조만 변경하고 싶을 때",
+    "복잡한 폴리곤 수정 작업 없이 텍스트로 자연스럽게 디테일을 더하고 싶을 때"
+  ],
+  "steps": [
+    "1. 3D AI 플랫폼(예: Meshy 등)에서 수정할 3D 모델을 불러옵니다.",
+    "2. Edit 모드 또는 Mask 툴을 선택합니다.",
+    "3. Viewport에서 수정하고 싶은 특정 영역을 브러시로 드래그하여 선택(Mask)합니다.",
+    "4. Text Prompt 입력창에 변경하고 싶은 내용을 영어로 구체적으로 적습니다.",
+    "5. Generate 버튼을 눌러 AI가 지정된 영역만 수정하도록 실행합니다.",
+    "6. 결과물을 확인한 뒤 마음에 들면 Apply를 눌러 모델에 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Mask Brush",
+      "desc": "수정할 영역을 칠해서 지정하는 브러시 도구입니다."
+    },
+    {
+      "name": "Prompt",
+      "desc": "선택한 영역을 어떻게 바꿀지 지시하는 텍스트 입력창입니다."
+    },
+    {
+      "name": "Creativity",
+      "desc": "AI가 기존 형태를 얼마나 유지할지, 얼마나 창의적으로 바꿀지 조절합니다."
+    },
+    {
+      "name": "Symmetry",
+      "desc": "대칭 구조의 모델을 수정할 때 양쪽을 동일하게 반영합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 갑옷 디자인 변경하기",
+      "steps": [
+        "캐릭터 가슴 부위 갑옷 영역을 Mask Brush로 칠합니다.",
+        "Prompt에 'dragon scale armor design'을 입력합니다.",
+        "Generate를 실행하여 갑옷 표면만 비늘 질감으로 바꿉니다."
+      ]
+    },
+    {
+      "title": "검의 손잡이 형태 수정하기",
+      "steps": [
+        "검의 Handle(손잡이) 부분만 마스킹합니다.",
+        "Prompt에 'ornate gold leather wrap handle'을 입력합니다.",
+        "결과를 확인하고 Apply하여 모델에 반영합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원하지 않는 영역까지 수정됨 → Mask Brush의 크기와 강도(Strength)를 조절하고 수정 범위를 정밀하게 다시 칠합니다.",
+    "Prompt 결과가 엉뚱하게 나옴 → 애매한 표현 대신 'add metal spikes'처럼 구체적이고 명확한 영문 단어로 Prompt를 수정합니다.",
+    "수정 후 경계면 부자연스러움 → Creativity 값을 낮추고 주변 영역과의 연결 부위를 자연스럽게 블렌딩합니다."
+  ],
+  "related": [
+    "Meshy Edit",
+    "Text-to-3D",
+    "AI Mesh Generation",
+    "Texture Painting"
+  ],
+  "videos": [
+    {
+      "id": "WE1Hu2fNpk8",
+      "title": "Meshy 7 Review: The BEST AI 3D Model Generator? (4K Models & 8K Textures)",
+      "author": "Thomas Crypto"
+    },
+    {
+      "id": "ouHL_Rlebss",
+      "title": "Ep.1 Mesh editing (sculpting) - From AI to Game-ready",
+      "author": "Stefan 3D AI"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Mesh%20Editing%20by%20Text",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D AI",
+    "Meshy"
+  ],
+  "at": "2026-11-23T18:29:19.821791+00:00"
+}
