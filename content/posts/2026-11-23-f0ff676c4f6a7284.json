@@ -1,0 +1,58 @@
+{
+  "title_ko": "Gaussian Splatting·PennyGS – RTX 3060에서 4K 학습 6분 25초",
+  "title": "PennyGS: Full Resolution 3DGS Training in Minutes on Consumer GPUs",
+  "url": "https://arxiv.org/abs/2611.27525v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "PennyGS",
+    "4K training",
+    "consumer GPU",
+    "speedup",
+    "tile SSIM"
+  ],
+  "summary": "PennyGS는 RTX 3060 같은 일반 소비자 GPU에서도 4K Resolution 3D Gaussian Splatting을 6분 25초에 학습시켜 기존 방법보다 최소 3.9배 빠르게 처리합니다.",
+  "insight": "RTX 3060에서 4K Mip‑NeRF 360 씬을 6분 25초에 학습할 수 있다는 점은 고가의 RTX 4090 없이도 개인 제작자가 전체 Resolution 3DGS를 실시간에 가깝게 실험할 수 있게 합니다.",
+  "try_it": [
+    "GitHub에서 PennyGS 레포를 클론하고 README의 기본 명령어로 4K 씬을 실행한다",
+    "학습 로그에서 전체 단계 시간과 GPU 메모리 사용량을 확인한다",
+    "동일 씬을 기존 3DGS 구현과 비교해 학습 속도와 메모리 차이를 기록한다"
+  ],
+  "sections": [
+    {
+      "heading": "전체 Resolution 4K 학습 구현",
+      "body": "PennyGS는 평면 RGB 색상과 방향성 원뿔 불투명도를 갖는 경량 스플랫을 사용해 메모리와 연산량을 최소화한다. 투영과 키 방출을 하나의 연산으로 결합해 파이프라인 단계 수를 줄였다."
+    },
+    {
+      "heading": "핵심 최적화 기술",
+      "body": "전방 레스터화에서는 스트라이드 픽셀 샘플링을 도입해 연산량을 감소시켰으며, 근사 타일 SSIM 손실을 적용해 품질을 유지하면서 비용을 낮췄다. 역방향에서는 스플랫당 워프 단위 레스터화와 희소 Adam 업데이트를 결합했다."
+    },
+    {
+      "heading": "벤치마크 결과",
+      "body": "30k 스텝 예산 하에 Mip‑NeRF 360과 Tanks&Temples 4K 데이터셋을 테스트했으며, 네 가지 소비자 GPU 모두 10개 방법 중 가장 빠른 성능을 보였다. RTX 3060에서는 6분 25초, 메모리 사용량은 2 GB 이하였다."
+    },
+    {
+      "heading": "메모리 및 품질 균형",
+      "body": "최대 2 GB GPU 메모리로 동작하면서도 경쟁적인 시각 품질을 유지한다. 이는 기존 연구용 GPU가 요구하던 8 GB 이상 메모리와 비교해 큰 차이를 만든다."
+    },
+    {
+      "heading": "제한 사항 및 향후 작업",
+      "body": "현재는 4K Resolution와 30k 스텝에 최적화돼 있어 더 높은 해상도나 스텝 수에서는 추가 최적화가 필요하다. 향후 다중 GPU 확장과 동적 씬 지원이 계획 중이다"
+    }
+  ],
+  "faq": [
+    {
+      "q": "PennyGS는 어떤 GPU에서 사용할 수 있나요?",
+      "a": "RTX 3060, 3070, 3080, 3090 등 일반 소비자용 NVIDIA GPU에서 2 GB 이하 메모리로 동작한다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.27525v1/figures/teaser/counter_ours.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-23T04:04:10.221467+00:00",
+  "notion_id": "",
+  "id": "2026-11-23-f0ff676c4f6a7284",
+  "img_tried": true
+}
