@@ -811,6 +811,31 @@ header .top{position:relative}
   #results:not([hidden]){position:fixed;top:76px;left:10px;right:10px;margin:0!important;max-height:calc(100dvh - 96px);overflow-y:auto;
     z-index:75;border-radius:20px!important;box-shadow:0 18px 50px rgba(0,0,0,.25)!important;background:var(--surface)}
 }
+
+/* 검색 결과 페이지 — 통상적인 검색 결과: 종류 탭 · 건수 · 경로 · 제목 · 설명 · 날짜, 검색어 강조 */
+.srp{max-width:820px;margin:0 auto}
+.srp h1{margin:28px 0 14px}
+.srp-form{display:flex;gap:8px}
+.srp-form input{flex:1;height:52px;padding:0 20px;font-size:17px;border:0;border-radius:99px;background:var(--surface);box-shadow:var(--clay);color:var(--text)}
+.srp-form button{flex:none;white-space:nowrap;height:52px;padding:0 24px;border:0;border-radius:99px;background:#18181B;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
+.srp-form button:hover{background:var(--accent)}
+.srp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+.srp-tabs button{min-height:40px;padding:0 16px;border:0;border-radius:99px;background:var(--surface);box-shadow:var(--clay);color:var(--text-2);font:600 14px/1 var(--sans);cursor:pointer}
+.srp-tabs button[aria-selected=true]{background:var(--accent);color:#fff}
+.srp-tabs button span{font-family:var(--mono);opacity:.75;margin-left:6px}
+.srp-meta{color:var(--muted);font-size:14px;margin:10px 0}
+.srp-list{list-style:none;margin:0;padding:0}
+.srp-list li{padding:18px 4px;border-bottom:1px solid var(--line)}
+.srp-list .p{font:500 12.5px/1.3 var(--mono);color:var(--muted)}
+.srp-list .p b{color:var(--accent);font-weight:600;font-family:var(--sans);margin-right:6px}
+.srp-list a.t{display:block;font-size:19px;font-weight:700;line-height:1.35;margin:5px 0 4px;color:var(--text)}
+.srp-list a.t:hover{color:var(--accent);text-decoration:underline}
+.srp-list .s{margin:0;color:var(--text-2);font-size:15px;line-height:1.55}
+.srp-list .d{font:500 12.5px var(--mono);color:var(--muted);margin-right:6px}
+.srp-list mark,.row mark{background:rgba(253,58,37,.16);color:inherit;border-radius:3px;padding:0 1px}
+.srp-empty{padding:28px 4px;color:var(--text-2)}.srp-empty ul{margin:8px 0 0;padding-left:20px}
+#results .row.all{display:block;font-weight:700;color:var(--accent);border-bottom:1px solid var(--line)}
+@media (max-width:640px){.srp-form button{padding:0 18px}.srp-list a.t{font-size:17px}}
 """
 CSS_VER = __import__("hashlib").md5(CSS.encode()).hexdigest()[:8]  # 스타일이 바뀌면 주소가 바뀌어 예전 캐시를 안 씀
 
@@ -2416,6 +2441,19 @@ def build() -> dict:
         '<div class="board" id="saved-list"></div>', "../", extra_head='<meta name="robots" content="noindex">'),
         encoding="utf-8")
 
+    # 검색 결과 페이지 (static/search.js 가 ?q= 로 그림) — 상단 검색에서 Enter 를 누르면 여기로
+    (OUT / "search").mkdir(exist_ok=True)
+    (OUT / "search" / "index.html").write_text(page(
+        f"검색 - {SITE_TITLE}",
+        '<div class="srp"><h1 id="srp-title">검색</h1>'
+        '<form class="srp-form" role="search" action="./" method="get"><input id="srp-q" name="q" type="search" '
+        'placeholder="도구·기능·오류 메시지로 찾기 (예: Blender 모디파이어)" aria-label="검색어" autocomplete="off">'
+        '<button type="submit">검색</button></form>'
+        '<div class="srp-tabs" id="srp-tabs" role="tablist" aria-label="결과 종류"></div>'
+        '<p class="srp-meta" id="srp-meta" aria-live="polite"></p><ol class="srp-list" id="srp-list"></ol>'
+        '<nav class="pager" id="srp-more"></nav></div>', "../", extra_head='<meta name="robots" content="noindex">'),
+        encoding="utf-8")
+
     # 404 페이지 (GitHub Pages 가 없는 주소에 이 파일을 보여줌 → 어느 경로에서든 동작하도록 절대 경로)
     _path = urlparse(BASE_URL).path.strip("/")
     abs_root = "/" + (_path + "/" if _path else "")  # 사용자 도메인이면 "/", github.io 하위 경로면 "/3dflowhub/"
@@ -2488,10 +2526,13 @@ def build() -> dict:
 
     # 검색 인덱스·RSS·사이트맵
     # 검색 인덱스: 글(p) + 기초 가이드(g) + 도구별 정리(r). o = 원문 영어 제목(영어 검색용)
+    # s = 요약 한 줄(검색 결과 페이지의 설명), d = 날짜 — 결과가 맞는지 열기 전에 판단할 수 있게
     index = [{"u": f"p/{p['id']}.html", "k": "p", "t": p["title_ko"], "o": p.get("title", "")[:120],
-              "c": f'{p["domain"]} › {p.get("category") or ""}', "g": " ".join(p.get("tags") or [])} for p in posts]
+              "c": f'{p["domain"]} › {p.get("category") or ""}', "g": " ".join(p.get("tags") or []),
+              "s": (p.get("summary") or "")[:90], "d": kst_date(p.get("collected_at") or "")} for p in posts]
     index += [{"u": learn_url(g), "k": "g", "t": g["title"], "o": f"{g['tool']} {g['name']}",
-               "c": f"{g['tool']} › {g['group']}", "g": " ".join(g.get("related") or [])} for g in learn_guides]
+               "c": f"{g['tool']} › {g['group']}", "g": " ".join(g.get("related") or []),
+               "s": (g.get("summary") or "")[:90]} for g in learn_guides]
     index += [{"u": guide_url(r["domain"], r["tool"]), "k": "r", "t": r["title"], "o": r["tool"],
                "c": f"{r['domain']} › {r['tool']}", "g": ""} for r in roundups]
     index += [{"u": f"recipes/{r['id']}/", "k": "r", "t": r["title"], "o": f"{r['host']} {r['category']}",

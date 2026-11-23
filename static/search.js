@@ -5,7 +5,7 @@
 (function () {
   const q = document.getElementById('q');
   const box = document.getElementById('results');
-  if (!q || !box) return;
+  if (!q) return;
   let idx = null, ALIAS = {};
   const HOVER = matchMedia('(hover: hover)').matches;  // 키보드 안내는 마우스 환경에서만
   const esc = s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
@@ -92,37 +92,53 @@
     return scored.sort((a, b) => b[0] - a[0]).map(x => x[1]);
   }
 
+  async function load() {
+    if (!idx) { const d = await (await fetch(ROOT + 'search.json')).json(); idx = d.i || d; ALIAS = d.a || {}; }
+  }
+  // 오타 보정까지 한 검색: [결과, 실제로 쓴 검색어]
+  function find(v) {
+    let h = search(v), used = '';
+    if (!h.length) {
+      const alt = /[ㄱ-ㅣ가-힣]/.test(v) ? ko2en(v) : (/^[a-zA-Z\s]+$/.test(v) ? en2ko(v) : '');
+      if (alt && alt !== v) { const h2 = search(alt); if (h2.length) { h = h2; used = alt; } }
+    }
+    return [h, used];
+  }
+  function mark(text, v) {  // 검색어 강조
+    let out = esc(text);
+    norm(v).split(' ').filter(w => w.length > 0).forEach(w => {
+      const forms = ALIAS[w] ? [w, ALIAS[w]] : [w];
+      forms.forEach(f => { out = out.replace(new RegExp('(' + f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>'); });
+    });
+    return out;
+  }
+  const srpUrl = v => ROOT + 'search/?q=' + encodeURIComponent(v);
   const KIND = {p: '', g: '📚 기초 가이드', r: '🧭 도구별 정리'};
   let hits = [], sel = -1;
   function render(v, used) {
     box.hidden = false;
     const note = used ? `<div class="row s">‘${esc(v)}’ 결과가 없어 <b>‘${esc(used)}’</b>(으)로 검색했어요 (한/영 자판 전환)</div>` : '';
-    box.innerHTML = note + (hits.length
-      ? `<div class="row s">${hits.length}건${hits.length > 30 ? ' · 상위 30건' : ''}${HOVER ? ' · Enter 첫 결과 열기 · Esc 닫기' : ''}</div>` +
+    box.innerHTML = `<a class="row all" href="${srpUrl(v)}">‘${esc(v)}’ 검색 결과 전체 보기 (${hits.length}건) →</a>` + note + (hits.length
+      ? `<div class="row s">${hits.length}건${hits.length > 30 ? ' · 상위 30건' : ''}${HOVER ? ' · Enter 전체 결과 · ↑↓ 고르기 · Esc 닫기' : ''}</div>` +
         hits.slice(0, 30).map((p, i) => `<a class="row${i === sel ? ' on' : ''}" href="${ROOT}${p.u}"><span>` +
-          `<span class="t">${esc(p.t)}</span><br><span class="s">${KIND[p.k] ? KIND[p.k] + ' · ' : ''}${esc(p.c)}</span></span></a>`).join('')
+          `<span class="t">${mark(p.t, v)}</span><br><span class="s">${KIND[p.k] ? KIND[p.k] + ' · ' : ''}${esc(p.c)}</span></span></a>`).join('')
       : '<div class="row">검색 결과 없음 — 도구 이름(예: Blender, 3ds Max)이나 기능 이름(예: Bend, Geometry Nodes)으로 찾아보세요</div>');
   }
 
   let timer = null;
-  q.addEventListener('input', () => {
+  if (box) q.addEventListener('input', () => {
     clearTimeout(timer);
     timer = setTimeout(async () => {
       const v = q.value.trim();
       if (!v) { box.innerHTML = ''; box.hidden = true; return; }
-      if (!idx) { const d = await (await fetch(ROOT + 'search.json')).json(); idx = d.i || d; ALIAS = d.a || {}; }
-      hits = search(v); sel = -1;
-      let used = '';
-      if (!hits.length) {  // 한/영 자판 오타 보정
-        const alt = /[ㄱ-ㅣ가-힣]/.test(v) ? ko2en(v) : (/^[a-zA-Z\s]+$/.test(v) ? en2ko(v) : '');
-        if (alt && alt !== v) { const h2 = search(alt); if (h2.length) { hits = h2; used = alt; } }
-      }
+      await load();
+      let used; [hits, used] = find(v); sel = -1;
       render(v, used);
     }, 120);
   });
   q.addEventListener('keydown', e => {
-    const links = box.querySelectorAll('a.row');
-    if (e.key === 'Escape') { q.value = ''; box.innerHTML = ''; box.hidden = true; return; }
+    const links = box ? box.querySelectorAll('a.row:not(.all)') : [];
+    if (e.key === 'Escape') { q.value = ''; if (box) { box.innerHTML = ''; box.hidden = true; } return; }
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       if (!links.length) return;
       e.preventDefault();
@@ -130,12 +146,52 @@
       links.forEach((a, i) => a.classList.toggle('on', i === sel));
       links[sel].scrollIntoView({block: 'nearest'});
     }
-    if (e.key === 'Enter' && links.length && !e.isComposing) { e.preventDefault(); location.href = links[Math.max(sel, 0)].href; }
+    if (e.key === 'Enter' && !e.isComposing && q.value.trim()) {
+      e.preventDefault();
+      const items = box ? box.querySelectorAll('a.row:not(.all)') : [];
+      location.href = sel >= 0 && items[sel] ? items[sel].href : srpUrl(q.value.trim());
+    }
   });
   // 결과 창 바깥을 누르면 닫기 (모바일에서 결과 창이 화면을 덮으므로)
-  document.addEventListener('click', e => {
+  if (box) document.addEventListener('click', e => {
     if (!box.hidden && !box.contains(e.target) && e.target !== q) box.hidden = true;
   });
-  q.addEventListener('focus', () => { if (q.value.trim() && box.innerHTML) box.hidden = false; });
+  if (box) q.addEventListener('focus', () => { if (q.value.trim() && box.innerHTML) box.hidden = false; });
+  // ── 검색 결과 페이지 (/search/?q=) ─────────────────────────────────────
+  (async function () {
+    const list = document.getElementById('srp-list');
+    if (!list) return;
+    const v = (new URLSearchParams(location.search).get('q') || '').trim();
+    const sq = document.getElementById('srp-q'), meta = document.getElementById('srp-meta');
+    const tabs = document.getElementById('srp-tabs'), more = document.getElementById('srp-more');
+    sq.value = v; q.value = v;
+    if (!v) { sq.focus(); meta.textContent = '찾고 싶은 도구·기능·오류 메시지를 입력하세요.'; return; }
+    document.title = `‘${v}’ 검색 결과 - 3dflowhub`;
+    document.getElementById('srp-title').textContent = `‘${v}’ 검색 결과`;
+    meta.textContent = '찾는 중…';
+    await load();
+    const [all, used] = find(v);
+    const term = used || v;
+    const GROUPS = [['all', '전체', () => true], ['g', '기초 가이드', p => p.k === 'g'], ['p', '소식·글', p => p.k === 'p'], ['r', '정리·레시피', p => p.k === 'r']];
+    let cur = 'all', shown = 20;
+    function draw() {
+      const f = GROUPS.find(g => g[0] === cur)[2], hits = all.filter(f);
+      tabs.innerHTML = GROUPS.map(([k, name, fn]) => { const n = all.filter(fn).length;
+        return n || k === 'all' ? `<button type="button" role="tab" data-k="${k}" aria-selected="${k === cur}">${name}<span>${n}</span></button>` : ''; }).join('');
+      meta.innerHTML = (used ? `‘${esc(v)}’ 결과가 없어 <b>‘${esc(used)}’</b>(으)로 찾았어요 (한/영 자판 전환) · ` : '')
+        + `${hits.length.toLocaleString('ko-KR')}건` + (hits.length > 1 ? ' · 제목에 검색어가 들어간 것부터' : '');
+      list.innerHTML = hits.length ? hits.slice(0, shown).map(p => `<li><div class="p"><b>${p.k === 'g' ? '기초 가이드' : p.k === 'r' ? '정리' : '소식'}</b>${esc(p.c)}</div>`
+        + `<a class="t" href="${ROOT}${p.u}">${mark(p.t, term)}</a>`
+        + `<p class="s">${p.d ? `<span class="d">${esc(p.d)}</span>` : ''}${p.s ? mark(p.s, term) : (p.o ? mark(p.o, term) : '')}</p></li>`).join('')
+        : `<li class="srp-empty"><b>‘${esc(v)}’에 맞는 결과가 없어요.</b><ul><li>단어 수를 줄여 보세요 (예: “Blender 모디파이어 미러” → “미러”)</li>`
+          + `<li>도구 이름을 영어·한글로 바꿔 보세요 (Blender ↔ 블렌더)</li><li>오류는 메시지의 핵심 단어로 찾아보세요</li></ul></li>`;
+      more.innerHTML = hits.length > shown ? `<a href="#" class="pg-nav" id="srp-next">결과 더 보기 (${hits.length - shown}건 남음)</a>` : '';
+      const nx = document.getElementById('srp-next');
+      if (nx) nx.onclick = e => { e.preventDefault(); shown += 20; draw(); };
+    }
+    tabs.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) { cur = b.dataset.k; shown = 20; draw(); } });
+    draw();
+  })();
+
   window.__3dflowhub_search = {ko2en, en2ko, search: v => { return idx ? search(v) : []; }};  // 테스트용
 })();
