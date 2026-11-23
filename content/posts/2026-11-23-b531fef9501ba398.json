@@ -1,53 +1,97 @@
 {
-  "title_ko": "Gaussian Splatting 기반 풍력 블레이드 3D 복원",
+  "title_ko": "BladeR: UAV 이미지 기반 풍력 발전기 블레이드 3D 재구성",
   "title": "BladeR: Scalable, Shape-Guided 3D Reconstruction of Wind Turbine Blades from UAV Imagery",
   "url": "https://arxiv.org/abs/2611.27407v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
-  "tags": [],
-  "summary": "드론 촬영 이미지를 활용해 풍력 터빈 블레이드를 고해상도 3D로 정밀 복원하는 Gaussian Splatting 기반 파이프라인 BladeR 연구 논문입니다.",
-  "insight": "풍력 터빈 블레이드 검사 데이터는 텍스처 부족과 심한 조명 변화가 겹쳐 기존 알고리즘으로는 정밀한 형태 측정이 까다롭습니다. BladeR은 GPS 및 IMU 데이터와 블레이드 형태 사전 정보를 결합해 키포인트 매칭의 정확도를 높였습니다. 또한 45 메가픽셀에 달하는 원본 Resolution 이미지를 직접 다루며 리딩 에지 영역의 디테일을 적응형으로 살려냅니다. VISAPP 2026 학회에서 발표된 이 연구는 드론 점검 이미지 처리의 한계를 극복하는 단면을 보여줍니다.",
-  "try_it": [
-    "VISAPP 2026에 발표된 BladeR 논문 본문을 통해 계층적 희소 재구성 전략과 GPS/IMU 데이터 결합 방식을 검토합니다.",
-    "타일 기반 Gaussian Splatting 프레임워크를 활용하여 초고해상도 UAV 이미지 처리 구조를 연구에 적용합니다."
+  "tags": [
+    "BladeR",
+    "Gaussian Splatting",
+    "UAV Imagery",
+    "3D Reconstruction",
+    "Wind Turbine Blades"
   ],
+  "summary": "드론으로 촬영한 45MP 고해상도 풍력 터빈 블레이드 이미지를 GPS/IMU 데이터와 블레이드 형상 사전 정보를 활용해 확장성 있게 3D로 재구성하는 파이프라인을 제안합니다.",
+  "insight": "고해상도 드론 촬영 데이터에서 대규모 3D 모델을 효율적으로 처리해야 하는 건축 시각화나 대형 구조물 점검 분야에 응용될 수 있습니다. 특히 Gaussian Splatting을 대형 산업용 자산 검사에 적용할 때 메모리 한계를 극복하는 타일링 기법으로 참고할 만합니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "BladeR 파이프라인의 핵심 구조",
-      "body": "GPS 및 IMU 데이터와 블레이드 형태 사전 정보를 결합한 계층적 희소 재구성 전략을 사용합니다. 이를 통해 조명 변화가 심하고 텍스처가 부족한 드론 이미지에서도 정확한 키포인트 매칭을 수행합니다. 복잡한 외부 환경에서 촬영된 데이터의 구조적 정합성을 확보하는 데 중점을 둡니다."
+      "heading": "무엇을 풀려는가",
+      "body": "풍력 터빈 블레이드의 구조적 무결성은 에너지 생산에 매우 중요하며, 마모 및 초기 손상을 정확히 탐지하기 위해 정밀한 3D 재구성이 필요합니다. 드론 기반 검사는 표준화되어 있지만 고해상도 이미지의 약한 질감, 조명 변화, 높은 연산 비용 등의 문제가 있습니다."
     },
     {
-      "heading": "45MP 고해상도 이미지 처리",
-      "body": "타일 기반 Gaussian Splatting 프레임워크를 도입하여 45 메가픽셀에 달하는 원본 Resolution 이미지를 직접 처리합니다. 블레이드를 배경으로부터 정확하게 분리하고 세부 디테일 복원 성능을 끌어올립니다. 고해상도 데이터로 인한 연산 병목 현상을 타일 단위 연산으로 완화합니다."
+      "heading": "핵심 아이디어",
+      "body": "GPS/IMU 데이터와 블레이드 형상 사전(shape prior)을 활용하여 전체 Resolution 이미지에서 전면(leading edge)에 집중하는 계층적 희소 재구성 전략과 타일 기반 Gaussian Splatting 프레임워크를 결합했습니다."
     },
     {
-      "heading": "리딩 에지 디테일 적응형 강화",
-      "body": "풍력 블레이드의 구조적 건전성 평가에서 핵심이 되는 리딩 에지 영역의 미세 손상을 포착합니다. Gaussian Splatting의 렌더링 과정에서 해당 영역의 텍스처와 형태 복원을 집중적으로 보정합니다. 마모와 초기 손상을 정밀하게 수치화하는 기반을 제공합니다."
+      "heading": "방법 (단계)",
+      "body": "먼저 DepthAnythingV2와 동적 영역 확장(seeded region growing)을 통해 배경 마스킹과 블레이드 중심 타일링을 수행합니다. 이후 SAM(Segment Anything)으로 Mask를 정제하고, 두 단계 희소 재구성을 거쳐 최종적으로 타일 기반 Gaussian Splatting으로 상세한 3D 모델을 생성합니다."
     },
     {
-      "heading": "성능 검증 및 연구 성과",
-      "body": "기존 상용 및 오픈소스 베이스라인과의 비교 검증을 거쳤습니다. 모델의 완전성과 세부 묘사 정확도 측면에서 유의미한 향상 결과를 보였습니다. 관련 연구 결과는 VISAPP 2026 학회 논문집을 통해 공개되었습니다."
+      "heading": "결과 (논문 수치)",
+      "body": "45 MP 카메라로 촬영한 2개의 운영 중인 블레이드 데이터셋(Blade 1: 104장, Blade 2: 121장)을 대상으로 검증하였으며, 상용 및 오픈소스 베이스라인 모델에 비해 모델 완성도와 세부 묘사에서 상당한 향상을 보였습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문에서는 실무 검사 데이터를 다루었으나, 극단적인 기상 조건이나 매우 복잡한 배경 속에서 실시간 처리나 완전 자동화에는 추가적인 최적화가 필요할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본 논문은 VISAPP 2026에서 발표되었으며, 리포지토리나 구체적인 소스코드 공개 링크는 본문 내 공식적으로 명시되어 있지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "BladeR은 어떤 데이터를 입력으로 사용하나요?",
-      "a": "UAV 드론이 촬영한 고해상도 검사 이미지와 GPS/IMU 센서 데이터를 함께 입력받아 처리합니다."
+      "q": "어떤 카메라와 데이터셋이 사용되었나요?",
+      "a": "DJI Zenmuse P1 카메라(45 MP, 35 mm 초점 거리)를 탑재한 드론으로 촬영한 운영 중인 2개의 풍력 발전기 블레이드 이미지(Blade 1: 104장, Blade 2: 121장)가 사용되었습니다."
     },
     {
-      "q": "이 연구에서 다루는 핵심 기술은 무엇인가요?",
-      "a": "형태 사전 정보를 활용한 계층적 희소 재구성 기법과 고해상도 이미지를 위한 타일 기반 Gaussian Splatting 프레임워크를 결합한 점이 핵심입니다."
+      "q": "배경 분리는 어떻게 수행되나요?",
+      "a": "다운스케일된 이미지에서 DepthAnythingV2로 단안 깊이를 추정하고, 가장 가까운 픽셀을 시드(seed)로 하는 동적 씨앗 영역 성장(seeded region growing) 전략을 사용하여 Mask를 생성합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.27407v1/high_lvl_pipeline.jpg",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.27407v1/high_lvl_pipeline.jpg",
+        "caption": "Figure 1: Multi-view 3D reconstruction. Images are acquired from multiple viewpoints. SfM reconstructs sparse 3D points 𝐱 i \\mathbf{x}_{i} and camera poses 𝒫 j \\mathcal{P}_{j} from keypoint matches 𝐮 i , j \\mathbf{u}_{i,j} across images 𝐈 j \\mathbf{I}_{j} . GS initializes Gaussians on the recovered ",
+        "caption_ko": "그림 1: 다중시점 3D 재구성 개요. SfM은 키포인트 매칭으로부터 희소 3D 점과 카메라 포즈를 재구성합니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.27407v1/image_samples.jpg",
+        "caption": "Figure 2: Representative images of both blades captured from each flight line.",
+        "caption_ko": "그림 2: 각 비행 경로에서 촬영된 두 블레이드의 대표 이미지."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.27407v1/high_lvl_diagram.png",
+        "caption": "Figure 3: High-level overview of BladeR , our proposed 3D reconstruction pipeline.",
+        "caption_ko": "그림 3: 제안하는 3D 재구성 파이프라인 BladeR의 고수준 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.27407v1/preprocessing.jpg",
+        "caption": "Figure 4: Preprocessing pipeline. The coarse stage (top row) estimates monocular depth from a downscaled image, generates a mask via seeded region growing, and computes tile coordinates (Alg. 1 ). In the fine stage, tiles are processed at full resolution, and SAM refines the coarse masks.",
+        "caption_ko": "그림 4: 전처리 파이프라인. 조잡한 단계와 정밀한 단계로 나뉘며 타일 좌표를 계산하고 SAM으로 마스크를 정제합니다."
+      }
+    ]
   },
   "collected_at": "2026-11-23T08:35:15.317223+00:00",
   "notion_id": "",
   "id": "2026-11-23-b531fef9501ba398",
   "img_tried": true,
   "enriched": "2026-11-23",
-  "img_ok": "2026-11-23T08:44:47+00:00"
+  "img_ok": "2026-11-23T08:44:47+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-23T09:05:41+00:00"
 }
