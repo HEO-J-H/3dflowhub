@@ -1,0 +1,37 @@
+{
+  "id": "blender-error-cannot-join-meshes-with-different-ma-27ac4",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot join meshes with different materials without assigning material slots",
+  "title": "Error: Cannot join meshes with different materials without assigning material sl",
+  "summary": "Blender에서 서로 다른 머티리얼 슬롯 구조를 가진 오브젝트들을 하나로 합칠 때(Ctrl+J), 머티리얼 정리가 먼저 필요함을 경고하는 메시지입니다.",
+  "causes": [
+    "합치려는 오브젝트 간에 머티리얼 슬롯의 개수나 이름, 순서가 서로 다를 때",
+    "일부 오브젝트에만 머티리얼이 할당되어 있고 나머지는 비어 있을 때"
+  ],
+  "steps": [
+    "오브젝트 모드에서 합치고자 하는 대상 오브젝트들을 모두 선택합니다.",
+    "Properties 패널의 Material (구형 아이콘) 탭을 엽니다.",
+    "각 오브젝트의 머티리얼 슬롯 구성이 일치하는지 확인합니다.",
+    "필요한 경우 각 오브젝트에 동일한 머티리얼 슬롯을 미리 추가하거나 정리합니다.",
+    "필요하다면 Join(Ctrl+J) 대신 Modifier(Modifiers)의 Boolean을 사용하거나 머티리얼을 통일한 뒤 다시 시도합니다."
+  ],
+  "check": [
+    "오브젝트들을 선택하고 Ctrl+J를 눌렀을 때 경고 메시지 없이 하나의 메쉬로 합쳐지는지 확인합니다.",
+    "합쳐진 오브젝트의 Material 탭에서 슬롯들이 올바르게 병합되었는지 확인합니다."
+  ],
+  "prevent": [
+    "메쉬를 합치기 전에 대상 오브젝트들의 머티리얼 슬롯과 이름을 동일하게 맞추는 습관을 들입니다.",
+    "여러 오브젝트를 병합할 때 기본 머티리얼 상태를 미리 점검합니다."
+  ],
+  "keywords": [
+    "Blender 메쉬 합치기 오류",
+    "Cannot join meshes with different materials",
+    "Blender 머티리얼 슬롯 에러",
+    "Ctrl J 머티리얼 경고",
+    "오브젝트 결합 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T08:05:24+00:00"
+}

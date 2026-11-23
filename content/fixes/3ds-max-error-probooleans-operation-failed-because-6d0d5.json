@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-probooleans-operation-failed-because-6d0d5",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: ProBooleans operation failed because operand geometry is invalid",
+  "title": "Error: ProBooleans operation failed because operand geometry is invalid 오류 해결법",
+  "summary": "‘Error: ProBooleans operation failed because operand geometry is invalid’은 3ds Max에서 ProBoolean 연산을 수행할 때 피연산자(Operand) 객체의 지오메트리 구조가 손상되었거나 잘못되어 계산에 실패할 때 발생하는 오류입니다.",
+  "causes": [
+    "피연산자 객체에 겹친 면(Overlapping faces), 열린 엣지(Open edges), 뒤집힌 법선(Inverted normals) 등의 Topology 오류가 있는 경우",
+    "객체에 스케일이나 회전 값이 리셋되지 않고 변형(Transform)이 남아 있는 경우",
+    "면이 없거나(Zero-area faces) 부피가 없는(Zero-volume) 붕괴된 지오메트리가 포함된 경우"
+  ],
+  "steps": [
+    "문제가 되는 피연산자 객체를 선택합니다.",
+    "Modifier List에서 Edit Poly 또는 XForm Modifier를 적용한 뒤 Collapse하여 변형 값을 초기화합니다.",
+    "Modifier List에서 STL Check Modifier를 추가하여 객체에 Open Edges나 Multi-Edges 같은 오류가 있는지 확인합니다.",
+    "Edit Poly Modifier의 Sub-object 3(Polygon) 레벨에서 Select By ID 또는 Error 검출 기능을 사용해 잘못된 면을 수동으로 정리합니다.",
+    "Geometry 카테고리의 Compound Objects에서 ProBoolean을 다시 시도하거나, 연산 전 ProOptimizer 또는 Reset XForm을 적용합니다."
+  ],
+  "check": [
+    "Viewport에서 ProBoolean 연산이 깨짐 현상 없이 정상적으로 결합·차집합·교집합 결과로 나타나는지 확인합니다.",
+    "Modifier 스택에 에러 메시지 없이 결과 객체가 Editable Poly 형태로 깔끔하게 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "ProBoolean 연산을 수행하기 전에 대상 객체들에 Reset XForm을 먼저 실행합니다.",
+    "Boolean 연산 전 STL Check나 ProOptimizer를 통해 원본 메시의 Topology 무결성을 미리 점검합니다."
+  ],
+  "keywords": [
+    "ProBoolean 오류",
+    "3ds Max ProBoolean failed",
+    "지오메트리 오류 해결",
+    "오브젝트 병합 실패",
+    "operand geometry is invalid"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T08:05:30+00:00"
+}

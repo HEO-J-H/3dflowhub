@@ -1,0 +1,37 @@
+{
+  "id": "3ds-max-maxscript-runtime-error-matrix3-not-invert-29271",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Runtime error: Matrix3 not invertible",
+  "title": "MAXScript: Runtime error: Matrix3 not invertible 오류 해결법",
+  "summary": "MAXScript: Runtime error: Matrix3 not invertible 오류는 3ds Max에서 스케일 값이 0이거나 행렬의 역행렬을 계산할 수 없는 잘못된 Matrix3 데이터가 연산에 사용될 때 발생하는 Runtime 오류입니다.",
+  "causes": [
+    "오브젝트나 뼈대의 특정 축 스케일 값이 0으로 설정되어 역행렬을 구할 수 없는 경우",
+    "Script 내에서 유효하지 않은 좌표나 회전 값이 담긴 행렬(Matrix3)을 생성하여 전달한 경우",
+    "부모-자식 트랜스폼 연산 중 붕괴된 행렬 데이터가 누적된 경우"
+  ],
+  "steps": [
+    "MAXScript Listener(F11)를 열어 오류가 발생한 정확한 코드 라인과 변수 상태를 확인합니다.",
+    "문제가 되는 오브젝트를 선택하고 Command Panel -> Utilities 탭 -> Reset XForm을 실행하거나 스케일 값이 0인지 확인합니다.",
+    "코드 내에서 Matrix3 생성 시 스케일 요소가 0이 되지 않도록 예외 처리 코드를 추가합니다.",
+    "행렬 연산 전 해당 Matrix3 값이 invertible 한지 검사하는 조건을 Script에 포함합니다."
+  ],
+  "check": [
+    "MAXScript 코드를 다시 실행했을 때 Listener 창에 더 이상 Runtime error가 발생하지 않는지 확인합니다.",
+    "Viewport에서 대상 오브젝트나 뼈대의 트랜스폼과 스케일이 정상적으로 유지되는지 확인합니다."
+  ],
+  "prevent": [
+    "Script로 행렬 연산을 수행하기 전에 항상 스케일 값이 0이 아닌지 확인하는 검증 로직을 작성합니다.",
+    "오브젝트 변환 작업 시 정밀도 손실이나 비정상적인 스케일 누적을 방지합니다."
+  ],
+  "keywords": [
+    "Matrix3 not invertible",
+    "MAXScript 오류",
+    "3ds Max Runtime 에러",
+    "행렬 역행렬 오류",
+    "MAXScript Matrix3"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-23T08:05:28+00:00"
+}
