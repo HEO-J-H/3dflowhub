@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-normal-map-generation-26a2",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Normal Map Generation",
+  "title": "AI 노멀맵 생성 — 2D 이미지나 텍스처에서 입체적인 디테일을 담은 노멀맵을 자동 생성하는 기능",
+  "summary": "AI 기반 노멀 맵 생성 툴을 사용하여 평면 이미지나 로우 폴리곤 에셋에서도 고품질의 입체감과 미세 디테일을 빠르게 추출합니다. 텍스처 제작 시간을 대폭 줄여주는 최신 워크플로우입니다.",
+  "when": [
+    "복잡한 스릴트(Sculpt) 작업 없이 2D 디퓨즈 이미지에서 즉시 노멀 맵을 뽑고 싶을 때",
+    "게임 배경 소스나 타일링 텍스처의 입체감을 빠르게 강화해야 할 때",
+    "기존 노멀 맵 변환 방식보다 더 정교한 딥러닝 기반의 디테일이 필요할 때"
+  ],
+  "steps": [
+    "AI 노멀 맵 생성기(예: Substance Sampler, XNormal AI 플러그인 또는 웹 기반 AI 서비스)를 실행합니다.",
+    "변환할 소스 이미지(Diffuse / Albedo)를 임포트합니다 (RGB Color 모드 확인).",
+    "AI 모델 옵션 또는 프리셋(예: Photo to Normal, Surface Details)을 선택합니다.",
+    "생성된 노멀 맵의 강도(Intensity)와 디테일(Detail Level) 슬라이더를 조절하여 입체감을 맞춥니다.",
+    "결과물을 16-bit PNG 또는 TGA 형식으로 익스포트(Export)하여 3D 뷰포트나 Shader에 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "노멀 맵이 표면에 미치는 입체감과 깊이의 전체 강도를 조절합니다."
+    },
+    {
+      "name": "Level of Detail",
+      "desc": "AI가 추출하는 미세 주름이나 작은 홈 등의 디테일 밀도를 설정합니다."
+    },
+    {
+      "name": "Invert Green",
+      "desc": "노멀 맵의 녹색(Green) 채널 반전을 통해 광원 방향 오류를 수정합니다."
+    },
+    {
+      "name": "Edge Awareness",
+      "desc": "오브젝트의 외곽선이나 큰 경계선이 왜곡되지 않도록 보호합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 타일 텍스처 입체감 부여",
+      "steps": [
+        "벽돌 평면 사진을 AI 노멀 맵 제너레이터에 불러옵니다.",
+        "Surface 디테일 프리셋을 선택하고 Intensity를 높여 줄눈의 깊이감을 강조합니다.",
+        "결과물을 저장한 뒤 Substance 3D Painter나 게임 엔진에 적용합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 가죽 갑옷 표면 질감 생성",
+      "steps": [
+        "가죽 패턴의 2D 텍스처를 소스로 입력합니다.",
+        "AI 필터를 적용하여 미세한 가죽 결 노멀 데이터를 추출합니다.",
+        "Roughness 맵과 함께 연결하여 실감 나는 재질을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 맵 반전 오류(빛이 반대로 들어오는 현상) → Invert Green 또는 Flip Y 옵션을 체크하여 해결합니다.",
+    "지나치게 높은 Intensity 설정으로 인한 노이즈 발생 → 강도를 낮추고 Edge Awareness 값을 조절하여 부드럽게 만듭니다.",
+    "저해상도 소스 사용으로 인한 계단 현상 → Upscaling을 거친 후 AI 노멀 맵을 생성합니다."
+  ],
+  "related": [
+    "Normal Map",
+    "Height to Normal",
+    "Substance Sampler",
+    "Principled BSDF"
+  ],
+  "videos": [
+    {
+      "id": "z4tz6UWLr_g",
+      "title": "AI-Based Normal Map Creation",
+      "author": "Edukix"
+    },
+    {
+      "id": "H-13KG5UeDY",
+      "title": "AI Normalmap Generator, AI PBR Textures Generator",
+      "author": "Tools Crazy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Normal%20Map%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "Substance Sampler",
+    "XNormal AI"
+  ],
+  "at": "2026-11-23T16:56:50.477548+00:00"
+}

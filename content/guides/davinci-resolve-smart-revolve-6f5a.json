@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-smart-revolve-6f5a",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷 페이지",
+  "name": "Smart Revolve",
+  "title": "Smart 리볼브 — AI를 활용하여 Timeline의 편집점을 자동으로 분석하고 조정하는 기능",
+  "summary": "DaVinci Resolve의 Smart Revolve는 3D 공간 속 객체 회전이나 카메라 시점 변화에 맞춰 그래픽 요소나 Effect의 원근과 위치를 지능적으로 추적하여 정렬하는 기능입니다.",
+  "when": [
+    "카메라가 움직이는 3D 공간에 텍스트나 그래픽을 자연스럽게 고정할 때",
+    "복잡한 회전 운동을 하는 피사체 위에 Effect를 정밀하게 밀착시킬 때",
+    "수동 Tracking만으로 왜곡이 생기는 회전 구간의 모션 그래픽을 보정할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Color 페이지 또는 Fusion 페이지로 이동합니다.",
+    "Inspector 패널에서 Tracker 또는 3D Tracker 관련 항목을 활성화합니다.",
+    "추적할 객체나 영역을 지정하고 Smart Revolve 옵션을 선택합니다.",
+    "Tracking 버튼을 눌러 영상의 프레임별 회전과 원근 변화를 분석합니다.",
+    "결과를 확인하고 Viewport에서 오버레이된 그래픽의 정렬 상태를 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Smart Revolve",
+      "desc": "객체의 3D 회전과 원근 변화를 지능적으로 추적하여 정렬합니다."
+    },
+    {
+      "name": "Tracker Type",
+      "desc": "포인트, 영역, 3D 등 추적 알고리즘의 방식을 선택합니다."
+    },
+    {
+      "name": "Reference Frame",
+      "desc": "Tracking 계산과 정렬의 기준이 되는 특정 프레임을 지정합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "Tracking 경로의 떨림을 줄이고 부드러운 움직임으로 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "회전하는 3D 물체에 텍스트 고정하기",
+      "steps": [
+        "영상에서 회전하는 오브젝트를 선택합니다.",
+        "Smart Revolve 기능을 켜고 회전축을 설정합니다.",
+        "텍스트 요소를 연결하여 회전에 맞춰 자연스럽게 따라오도록 만듭니다."
+      ]
+    },
+    {
+      "title": "카메라 패닝 구간의 모션 그래픽 정렬",
+      "steps": [
+        "카메라가 빠르게 회전하는 컷을 불러옵니다.",
+        "Tracking 영역을 지정한 뒤 Smart Revolve로 원근 왜곡을 보정합니다.",
+        "그래픽 요소가 공간에 단단히 고정되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Tracking 영역의 대비가 너무 낮아 미끄러짐 발생 → 대비가 뚜렷한 포인트를 수동으로 추가하거나 영역을 다시 지정합니다.",
+    "카메라 모션 블러가 심해 추적이 실패함 → 노출이나 셔터스피드가 선명한 프레임을 Reference Frame으로 재설정합니다."
+  ],
+  "related": [
+    "Planar Tracker",
+    "3D Tracker",
+    "Scene Cut Detector",
+    "Cut Page"
+  ],
+  "videos": [
+    {
+      "id": "ajTD1DxZv74",
+      "title": "Save Hours Editing with Smart Bins & Power Bins in DaVinci Resolve",
+      "author": "Yes Jmo"
+    },
+    {
+      "id": "JKx3oJWc1Zw",
+      "title": "How to Smart Reframe FOR FREE in DaVinci Resolve | Tutorial",
+      "author": "Joris Hermans"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Smart%20Revolve",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "Fusion",
+    "Inspector",
+    "Tracker",
+    "D Tracker"
+  ],
+  "at": "2026-11-23T16:56:54.287107+00:00"
+}
