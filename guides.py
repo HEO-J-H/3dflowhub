@@ -181,6 +181,18 @@ def doc_link(tool: str, name: str, url: str | None) -> str:
     return url or DOC_SEARCH.get(tool, "https://www.google.com/search?q={q}").format(q=quote(f"{tool} {name}"))
 
 
+_STOP = {"tutorial", "modifier", "and", "the", "for", "with", "how", "use", "using", "tool", "tools"}
+
+
+def _video_words(query: str) -> list[str]:
+    """영상 제목과 맞춰 볼 핵심 단어 — 붙여 쓴 이름은 쪼갬(VRayAmbientOcclusion → vray·ambient·occlusion), and·the 등은 뺌.
+    (붙여 쓴 이름·'and' 때문에 맞는 영상도 탈락 → 자동 보충 주제가 전부 품질 미달, 2026-11-24)"""
+    parts = []
+    for w in re.findall(r"[A-Za-z0-9]+", query):
+        parts += re.findall(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+[A-Za-z]*", w) or [w]
+    return list(dict.fromkeys(p.lower() for p in parts if len(p) > 2 and p.lower() not in _STOP))
+
+
 def find_videos(query: str, n: int = 2) -> list[dict]:
     """유튜브 검색 → 임베드 가능한 영상 n개 (제목·채널은 oEmbed 로 확인)."""
     try:
@@ -189,7 +201,7 @@ def find_videos(query: str, n: int = 2) -> list[dict]:
     except requests.RequestException:
         return []
     out = []
-    words = [w.lower() for w in re.findall(r"[A-Za-z0-9]+", query) if len(w) > 2 and w.lower() not in ("tutorial", "modifier")]
+    words = _video_words(query)
     for vid in ids:
         try:
             o = requests.get("https://www.youtube.com/oembed", timeout=15,
@@ -294,9 +306,20 @@ def _site_context(q: str) -> str:
         return ""
 
 
+def _tool_en(tool: str) -> str:
+    """한글 도구 이름 → 영어 (가우시안 스플래팅 → Gaussian Splatting) — 영상 검색은 영어 제목이 대부분."""
+    extra = {"가우시안 스플래팅": "Gaussian Splatting", "AI 3D": "AI 3D model", "포토그래메트리": "Photogrammetry"}
+    if tool in extra:
+        return extra[tool]
+    for canon, (_rx, ko) in core.GLOSSARY.items():
+        if ko and ko.replace(" ", "") == tool.replace(" ", ""):
+            return canon
+    return tool
+
+
 def make_guide(tool: str, group: str, name: str, title_ko: str, url: str | None) -> dict | None:
     domain = next((d for d, cats in core.SEED_CATEGORIES.items() if any(tool in c for c in cats)), "3D DCC")
-    videos = find_videos(f"{tool} {name} tutorial")
+    videos = find_videos(f"{tool} {name} tutorial") or find_videos(f"{_tool_en(tool)} {name} tutorial") or find_videos(f"{name} tutorial")
     doc = _doc_text(url)
     site = _site_context(f"{tool} {name} {title_ko}")
     prompt = (site + (
