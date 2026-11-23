@@ -1,0 +1,90 @@
+{
+  "id": "bounding-box-clipping-9baa",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "출력 및 편집",
+  "name": "Bounding Box Clipping",
+  "title": "Bounding Box Clipping — 학습 영역을 제한하여 원치 않는 배경이나 배경 노이즈를 자르는 워",
+  "summary": "Gaussian Splatting(3D Gaussian Splatting) 뷰어 및 편집 툴에서 바운딩 박스(Bounding Box)를 이용해 불필요한 배경이나 외부 노이즈를 잘라내는 최적화 기능입니다. 작업 영역만 남겨 렌더링 성능을 높이고 시각적 방해 요소를 제거합니다.",
+  "when": [
+    "스캔 데이터 주변에 떠 있는 허공의 플로터(Floater) 노이즈를 제거할 때",
+    "건축 스캔이나 3D 모델에서 특정 방이나 오브젝트만 남기고 잘라낼 때",
+    "전체 씬이 너무 무거워 뷰어 성능과 렌더링 속도를 개선하고 싶을 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 편집 툴(예: SuperSplat, Luma AI 등)에서 프로젝트를 엽니다.",
+    "메뉴 또는 툴바에서 Clipping Box 또는 Bounding Box 모드를 활성화합니다.",
+    "Viewport에 나타난 3차원 상자(Bounding Box)의 핸들을 드래그하여 남길 영역을 조절합니다.",
+    "Crop 또는 Invert 기능(선택 영역 내부 또는 외부 제거)을 적용합니다.",
+    "Viewport에서 불필요한 영역이 깨끗하게 잘렸는지 확인하고 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Bounding Box",
+      "desc": "Gaussian을 잘라낼 영역을 지정하는 3차원 상자 가이드입니다."
+    },
+    {
+      "name": "Crop",
+      "desc": "상자 내부 또는 외부의 Gaussian 포인트를 잘라냅니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "클리핑 상자의 안쪽과 바깥쪽 선택 영역을 반전시킵니다."
+    },
+    {
+      "name": "Reset Box",
+      "desc": "바운딩 박스 크기와 위치를 초기 상태로 되돌립니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 스캔에서 배경 제거하기",
+      "steps": [
+        "Bounding Box 모드를 켭니다.",
+        "상자 크기를 줄여 중심의 건물만 상자 안에 넣습니다.",
+        "Crop을 실행해 주변의 불필요한 나무와 바닥을 지웁니다."
+      ]
+    },
+    {
+      "title": "실내 공간에서 특정 방만 분리하기",
+      "steps": [
+        "Bounding Box를 원하는 방의 크기에 맞게 조절합니다.",
+        "다른 방이나 복도 영역이 상자 바깥으로 나가도록 배치합니다.",
+        "잘라낸 결과물을 별도 파일로 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필요한 모델 일부가 잘려나감 → 바운딩 박스 크기를 넓히거나 세부 핸들 조절로 영역 재지정",
+    "배경을 지웠는데 허공에 노이즈가 남음 → Opacity Reset을 먼저 실행한 뒤 클리핑 수행"
+  ],
+  "related": [
+    "Opacity Reset",
+    "Gaussian Pruning",
+    "Point Cloud Editing",
+    "Level of Detail"
+  ],
+  "videos": [
+    {
+      "id": "W6Gi5m8tFoQ",
+      "title": "Bounding Boxes",
+      "author": "SOLIDWORKS"
+    },
+    {
+      "id": "iOoCpUDpESo",
+      "title": "Crop Gaussian Splats with a Bounding Box | GSOPs TouchDesigner",
+      "author": "Lake Heckaman"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Bounding%20Box%20Clipping",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "SuperSplat",
+    "Luma AI",
+    "Clipping Box",
+    "Bounding Box"
+  ],
+  "at": "2026-11-23T16:36:57.607011+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "ai-3d-point-cloud-to-mesh-1fea",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "포인트 클라우드 메싱",
+  "name": "Point Cloud to Mesh",
+  "title": "Point Cloud to Mesh — 스캔된 포인트 클라우드 데이터를 매끄러운 다각형 메쉬로 변환",
+  "summary": "AI 3D Point Cloud to Mesh 기능은 LiDAR 스캔이나 포토그래메트리로 얻은 불완전한 점구름(Point Cloud) 데이터를 매끄러운 3D 폴리곤 메시(Mesh)로 자동 변환합니다.",
+  "when": [
+    "실제 건물이나 지형의 스캔 데이터를 3D 모델링 작업용 Base 메시로 쓸 때",
+    "역설계(Reverse Engineering)를 위해 3D 스캔 결과물을 CAD나 DCC 툴에 가져갈 때",
+    "잡음(Noise)이 섞인 점구름 데이터를 깔끔한 표면을 가진 오브젝트로 정리할 때"
+  ],
+  "steps": [
+    "1. 스캔된 점구름(Point Cloud) 데이터를 3D Software 또는 AI 프로세싱 툴로 임포트합니다.",
+    "2. Point Cloud 선택 후, 메뉴 바에서 Mesh 또는 Reconstruction 관련 기능을 엽니다.",
+    "3. 표면 재구성(Surface Reconstruction) 또는 Poisson Reconstruction 옵션을 선택합니다.",
+    "4. Octree Depth 및 Density 값을 조절하여 메시의 디테일과 밀도를 맞춥니다.",
+    "5. 실행(Execute / Generate) 버튼을 눌러 점구름을 폴리곤 메시로 변환합니다.",
+    "6. Viewport에서 생성된 메시의 노멀 방향과 홀(Hole) 여부를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Octree Depth",
+      "desc": "메시의 세밀함과 Resolution를 결정합니다. 값이 높을수록 디테일이 살아나지만 폴리곤이 늘어납니다."
+    },
+    {
+      "name": "Point Weight",
+      "desc": "점 데이터에 표면이 얼마나 밀착될지를 조절합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "변환된 메시 표면의 노이즈를 부드럽게 다듬어 줍니다."
+    },
+    {
+      "name": "Target Triangle Count",
+      "desc": "변환 후 생성될 폴리곤(삼각형)의 목표 개수를 지정합니다."
+    },
+    {
+      "name": "Remove Isolated Pieces",
+      "desc": "스캔 데이터의 본체와 떨어진 미세한 찌꺼기(점·파편) 메시를 자동 제거합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 실측 스캔 데이터 정리",
+      "steps": [
+        "LiDAR로 스캔한 실내 점구름 데이터를 불러옵니다.",
+        "Point Cloud to Mesh 기능을 실행하여 벽면과 바닥의 기본 메시를 생성합니다.",
+        "필요 없는 외부 잡음 메시를 델리트(Delete) 키로 지워 정리합니다."
+      ]
+    },
+    {
+      "title": "조각품 스캔 후 스디비전 편집 준비",
+      "steps": [
+        "유물 스캔 점구름을 가져와 Poisson Reconstruction을 적용합니다.",
+        "메시 밀도를 높게 설정하여 유물의 미세한 질감 형태를 살립니다.",
+        "ZBrush나 Blender로 넘겨 디테일 스컬프팅을 이어갑니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메시 표면이 울퉁불퉁하고 구멍이 뚫림 → Octree Depth 값을 높이거나 포인트 노멀(Normal) 방향을 재계산합니다.",
+    "컴퓨터가 멈추거나 다운됨 → 점구름 데이터가 너무 무거우므로 사전에 다운샘플링(Downsample)으로 점 개수를 줄입니다."
+  ],
+  "related": [
+    "Tessellate Point Clouds",
+    "Poisson Reconstruction",
+    "Decimate",
+    "Gaussian Splatting"
+  ],
+  "videos": [
+    {
+      "id": "m43usERF33M",
+      "title": "How to Turn a Point Cloud to a Mesh Using CloudCompare",
+      "author": "EveryPoint"
+    },
+    {
+      "id": "q9l_4EaHgJI",
+      "title": "How to Convert Point Clouds to 3D BIM Models Automatically",
+      "author": "Constriq"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20Point%20Cloud%20to%20Mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Point Cloud",
+    "D Software",
+    "AI"
+  ],
+  "at": "2026-11-23T16:36:53.694699+00:00"
+}
