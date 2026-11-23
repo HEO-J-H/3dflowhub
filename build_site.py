@@ -801,6 +801,16 @@ footer{background:#09090B;color:#A1A1AA;border-radius:32px 32px 0 0;margin-top:6
 .themebtn{border:0;background:none;cursor:pointer;font:inherit}
 .themebtn span{display:none;font-size:18px;line-height:1}
 html:not([data-theme]) .th-auto,html[data-theme=light] .th-light,html[data-theme=dark] .th-dark{display:inline}
+
+/* 모바일 검색: 누르면 상단바 전체 폭으로 펼치고, 결과는 상단바 바로 아래 고정 창으로 (스크롤 위치와 상관없이 보이게, 2026-11-23) */
+header .top{position:relative}
+@media (max-width:820px){
+  .search:focus-within{position:absolute;left:6px;right:6px;top:50%;transform:translateY(-50%);z-index:80;width:auto!important;max-width:none!important}
+  .search:focus-within input{width:100%!important;height:44px;font-size:16px;background:var(--surface);box-shadow:var(--clay)}
+  .search input{font-size:16px}
+  #results:not([hidden]){position:fixed;top:76px;left:10px;right:10px;margin:0!important;max-height:calc(100dvh - 96px);overflow-y:auto;
+    z-index:75;border-radius:20px!important;box-shadow:0 18px 50px rgba(0,0,0,.25)!important;background:var(--surface)}
+}
 """
 CSS_VER = __import__("hashlib").md5(CSS.encode()).hexdigest()[:8]  # 스타일이 바뀌면 주소가 바뀌어 예전 캐시를 안 씀
 

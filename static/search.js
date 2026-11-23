@@ -132,5 +132,10 @@
     }
     if (e.key === 'Enter' && links.length && !e.isComposing) { e.preventDefault(); location.href = links[Math.max(sel, 0)].href; }
   });
+  // 결과 창 바깥을 누르면 닫기 (모바일에서 결과 창이 화면을 덮으므로)
+  document.addEventListener('click', e => {
+    if (!box.hidden && !box.contains(e.target) && e.target !== q) box.hidden = true;
+  });
+  q.addEventListener('focus', () => { if (q.value.trim() && box.innerHTML) box.hidden = false; });
   window.__3dflowhub_search = {ko2en, en2ko, search: v => { return idx ? search(v) : []; }};  // 테스트용
 })();
