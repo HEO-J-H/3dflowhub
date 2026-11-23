@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-21T13:16:43.001543+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 73,
-      "candidates_passed": 34,
-      "offtopic": 18,
-      "short": 0,
-      "prefiltered": 31,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "1c826663",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-21T13:27:11.478579+00:00",
       "collected": 1,
       "saved": 0,
@@ -6582,6 +6558,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-23T17:17:18.837969+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 73,
+      "candidates_passed": 30,
+      "offtopic": 24,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "6cb19055",
+      "visuals": 0,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6677,7 +6680,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-14 [성찰] 동음이의어 필터를 40중으로 한층 더 고도화하고, 검색 유입이 검증된 실무 튜토리얼 및 애드온 관련 고단가 주제를 집중 편성하여 비관련 기사 유입을 원천 차단하고 검색 효율을 극대화해야 합니다.",
     "2026-11-14 [[p-12794ef36a|콘텐츠] Microsoft TRELLIS를 다중] 새로운 3D 생성 엔진 도입 시 로컬과 클라우드 연동 요구사항을 명확히 정의하고 데이터 구조에 맞추어 설계해야 오류를 방지할 수 있습니다.",
     "2026-11-14 [[p-60012927b1|운영·비용] 웹 브라우저 높이맵 메시 생성 단위] 테스트 실패 — E       TypeError: heightfield_mesh() got an unexpected keyword argument 'grid' / FAILED backend/tests/test_core.py::test_web_heightmap_mesh_preprocessing_unit - TypeError: heightfield_mesh()",
     "2026-11-14 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오프토픽 뉴스가 수집을 가로막고 있으므로, 3D/CG 전용 문맥 검증 필터를 50중으로 대폭 강화하여 유효 수집률과 점수를 개선해야 합니다.",
@@ -6796,7 +6798,8 @@
     "2026-11-23 [성찰] 동음이의어 필터링을 더욱 엄격히 적용하고 Maxscript나 튜토리얼 등 실무 검색 의도에 맞는 고CPC 키워드 중심의 콘텐츠 제작을 강화해야 합니다.",
     "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 65 passed, 1 warning in 1.48s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 64 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
-    "2026-11-23 [성찰] 동음이의어 필터링을 더욱 강화하여 게임·VFX 실무와 무관한 일반 뉴스를 차단하고, 고CPC 실무 가이드 및 검색 유입이 높은 도구 중심 콘텐츠 발행 비중을 극대화해야 합니다."
+    "2026-11-23 [성찰] 동음이의어 필터링을 더욱 강화하여 게임·VFX 실무와 무관한 일반 뉴스를 차단하고, 고CPC 실무 가이드 및 검색 유입이 높은 도구 중심 콘텐츠 발행 비중을 극대화해야 합니다.",
+    "2026-11-23 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집 비중이 높으므로, 수집 단계에서 CG/VFX/게임 실무 문맥 검증 필터를 대폭 강화하여 저품질 콘텐츠 유입을 원천 차단해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6851,7 +6854,7 @@
   "category_counts": {
     "Game Engine/Unity": 121,
     "AI 3D/가우시안 스플래팅": 144,
-    "VFX/스튜디오·작품": 231,
+    "VFX/스튜디오·작품": 232,
     "AI 3D/로보틱스·월드모델": 36,
     "3D DCC/Blender": 196,
     "Game Engine/Unreal Engine": 210,
@@ -6997,8 +7000,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    20768792075058484,
-    15318333212537990432,
     16200730219827301581,
     10751219486727837825,
     431285844238051312,
@@ -9996,14 +9997,16 @@
     9284930534527976007,
     5776285470545039712,
     4357773023360194192,
-    1211629762374137090
+    1211629762374137090,
+    11857256069581352016,
+    18036029633917743639
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3928,
-    "Game Engine": 3928,
-    "VFX": 3928,
-    "AI 3D": 3928
+    "3D DCC": 3929,
+    "Game Engine": 3929,
+    "VFX": 3929,
+    "AI 3D": 3929
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

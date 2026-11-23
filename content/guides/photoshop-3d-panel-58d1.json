@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-3d-panel-58d1",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 패널 및 관리",
+  "name": "3D Panel",
+  "title": "3D 패널 — 3D 장면의 메쉬, 재질, 조명을 관리하는 핵심 컨트롤 패널",
+  "summary": "Photoshop 3D Panel은 3D 레이어의 씬 구성 요소, 조명, 재질, 카메라 설정을 한눈에 관리하고 편집하는 제어 패널입니다. 평면적인 2D 작업 환경에서 3D 오브젝트의 세부 속성을 정밀하게 조작할 수 있습니다.",
+  "when": [
+    "Photoshop에서 불러온 3D 오브젝트나 텍스트의 재질(Material)을 변경할 때",
+    "씬 안에 배치된 3D 조명의 위치, 색상, 강도를 세부적으로 조정할 때",
+    "카메라 뷰를 고정하거나 렌더링 품질 및 설정을 변경할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어나 3D로 변환된 레이어를 선택합니다.",
+    "상단 메뉴 바에서 Window → 3D 를 클릭하여 3D 패널을 화면에 엽니다.",
+    "3D 패널 상단의 계층 구조(Scene, Mesh, Material, Light)에서 편집할 요소를 클릭합니다.",
+    "선택한 요소에 따라 하단 속성 영역에서 수치나 옵션을 변경합니다.",
+    "Viewport에서 결과물을 확인하고 상단 3D 조작 툴바나 패널 수치를 미세 조정합니다.",
+    "작업이 끝나면 3D 패널 최상단의 Scene을 선택하고 Render 버튼을 눌러 최종 렌더링을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Scene",
+      "desc": "3D 씬 전체의 공통 설정, 카메라, 렌더링 품질을 관리합니다."
+    },
+    {
+      "name": "Environment",
+      "desc": "씬의 전반적인 조명 환경 및 이미지 기반 조명(IBL)을 설정합니다."
+    },
+    {
+      "name": "Mesh",
+      "desc": "선택한 3D 모델의 지오메트리 및 변형 속성을 확인합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "오브젝트의 색상, 질감, 반사율, 범프 맵 등의 표면 속성을 편집합니다."
+    },
+    {
+      "name": "Infinite Light",
+      "desc": "태양광처럼 일정한 방향으로 빛을 비추는 조명의 각도와 색상을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 텍스트 표면에 금속 재질 적용하기",
+      "steps": [
+        "텍스트 레이어 우클릭 후 New 3D Extrusion from Selected Layer를 선택합니다.",
+        "3D 패널에서 텍스트의 Material 항목을 클릭합니다.",
+        "Properties 패널의 Diffuse 및 Specular 슬롯에 금속 질감 텍스처를 적용합니다.",
+        "Roughness 값을 낮추어 반사 광택을 선명하게 만듭니다."
+      ]
+    },
+    {
+      "title": "3D 조명 각도 수정하여 입체감 살리기",
+      "steps": [
+        "3D 패널 목록에서 Infinite Light 1을 선택합니다.",
+        "Properties 패널에서 조명의 색상과 강도(Intensity)를 높입니다.",
+        "Viewport에서 직접 조명 기즈모를 드래그하여 그림자 방향을 이동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "3D 패널에서 Mesh가 아닌 Scene이 선택된 상태로 재질을 바꾸려 함 → 3D 패널 목록에서 정확한 Material 하위 항목을 클릭했는지 확인하세요.",
+    "렌더링이 너무 느리거나 Viewport가 멈춤 → Scene 설정에서 Render Preset을 낮게 설정하거나 대안 뷰 모드를 사용하세요.",
+    "조명이나 오브젝트가 화면 밖으로 사라짐 → 3D 패널에서 해당 요소를 더블 클릭하여 Viewport 중앙으로 정렬하세요."
+  ],
+  "related": [
+    "New 3D Light",
+    "Properties Panel",
+    "Layer Panel",
+    "3D Extrusion"
+  ],
+  "videos": [
+    {
+      "id": "HyK2Yn0kHUQ",
+      "title": "3d Wall Panels - How to install them - Tutorial - Easy!",
+      "author": "The Catalan Designer"
+    },
+    {
+      "id": "_kJlQBnKsVY",
+      "title": "How I put up the 3D wall panels",
+      "author": "kirst"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Panel",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T17:17:54.702276+00:00"
+}

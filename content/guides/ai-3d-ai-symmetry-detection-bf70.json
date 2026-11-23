@@ -1,0 +1,84 @@
+{
+  "id": "ai-3d-ai-symmetry-detection-bf70",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 파이프라인",
+  "name": "AI Symmetry Detection",
+  "title": "AI 대칭 감지 — 비대칭 스캔 데이터나 3D 모델의 대칭축을 자동으로 분석하고 바로잡아주는 기능",
+  "summary": "AI Symmetry Detection은 스캔 데이터나 AI로 생성된 비대칭 3D 모델의 중심축을 자동으로 찾아 완벽한 좌우 대칭 구조로 정렬하고 수정하는 고급 AI 3D 처리 기능입니다.",
+  "when": [
+    "포토그래메트리나 3D 스캔 결과물이 미세하게 비대칭일 때",
+    "AI 3D 생성 모델의 좌우 균형을 빠르게 맞추고 싶을 때",
+    "대칭 Topology를 재구축하거나 Retopology 작업을 준비할 때"
+  ],
+  "steps": [
+    "AI 3D 파이프라인 또는 대칭 분석 도구를 실행하고 모델을 로드합니다.",
+    "상단 메뉴나 AI 패널에서 Mesh 또는 Geometry 항목을 엽니다.",
+    "Symmetry Detection 또는 Detect Symmetry 버튼을 클릭합니다.",
+    "Viewport에서 AI가 감지한 대칭 축(X, Y, Z)과 중심 평면의 위치를 확인합니다.",
+    "결과가 올바르면 Apply 또는 Fix를 눌러 대칭 상태를 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "Symmetry Axis",
+      "desc": "대칭 기준이 되는 축(X, Y, Z)을 지정합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "비대칭 오차를 감지하는 허용 범위를 조절합니다."
+    },
+    {
+      "name": "Auto Center",
+      "desc": "모델의 중심점을 자동으로 계산해 대칭 평면에 맞춥니다."
+    },
+    {
+      "name": "Weld Threshold",
+      "desc": "중앙 맞춤 시 맞닿는 Vertex를 하나로 병합하는 거리입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스캔한 얼굴 모델 대칭 맞추기",
+      "steps": [
+        "얼굴 3D 스캔 데이터를 프로그램에 불러옵니다.",
+        "Symmetry Detection을 실행하여 중앙 축을 찾습니다.",
+        "오차가 있는 영역의 허용 값을 조정하고 적용합니다."
+      ]
+    },
+    {
+      "title": "AI 생성 캐릭터 정렬하기",
+      "steps": [
+        "AI 텍스트 투 3D로 생성된 캐릭터 오브젝트를 선택합니다.",
+        "Auto Center와 Symmetry Axis를 X축으로 설정합니다.",
+        "좌우 균형이 맞춰진 모델을 확인하고 대칭 편집을 시작합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "중심축이 틀어진 상태에서 감지 실행 → 오브젝트의 중심점(Pivot)을 먼저 월드 원점으로 재정렬합니다.",
+    "허용치(Tolerance)를 너무 높게 설정해 세부 디테일이 손상됨 → 값을 낮추고 점진적으로 조절합니다."
+  ],
+  "related": [
+    "Mesh Symmetry",
+    "Symmetry (X key)",
+    "Poseable Symmetry",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "V3OJB7hXUwc",
+      "title": "26MT016 AI Assisted smart Symmetry detection system",
+      "author": "CIVTRONICS"
+    },
+    {
+      "id": "4K2E70JY42g",
+      "title": "26MT016 AI Assisted Smart symmetry detection system 9x16",
+      "author": "CIVTRONICS"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Symmetry%20Detection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T17:17:44.231378+00:00"
+}
