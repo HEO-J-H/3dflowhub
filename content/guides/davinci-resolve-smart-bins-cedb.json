@@ -1,0 +1,95 @@
+{
+  "id": "davinci-resolve-smart-bins-cedb",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전체 기능",
+  "name": "Smart Bins",
+  "title": "Smart 빈 — 메타데이터 조건에 따라 미디어가 자동으로 분류되어 정리되는 Smart 폴더",
+  "summary": "Smart Bins는 DaVinci Resolve의 Media Pool에서 사용자가 설정한 메타데이터 조건에 따라 클립을 자동으로 분류하고 모아주는 동적 폴더 기능입니다.",
+  "when": [
+    "프로젝트 내의 수많은 클립 중에서 특정 카메라나 해상도별 클립을 자동으로 모아서 관리하고 싶을 때",
+    "특정 키워드나 태그가 입력된 숏들만 골라내어 빠른 편집 작업을 진행할 때",
+    "수동으로 폴더를 정리하는 번거로움 없이 메타데이터 기반으로 에셋을 상시 분류하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단에서 Cut 페이지 또는 Edit 페이지로 이동합니다.",
+    "좌측 상단의 Media Pool 패널에서 Master 아래에 있는 Smart Bins 항목을 우클릭합니다.",
+    "컨텍스트 메뉴에서 Add Smart Bin 을 선택하여 새로운 Smart 빈 생성 대화 상자를 엽니다.",
+    "Smart Bin Name에 이름을 입력하고, Match 조건을 설정하기 위한 규칙(예: Shot, Scene, Keywords, Resolution 등)을 지정합니다.",
+    "OK 버튼을 클릭하면 조건에 부합하는 클립들이 자동으로 해당 Smart Bin 내부로 필터링되어 표시됩니다."
+  ],
+  "params": [
+    {
+      "name": "Smart Bin Name",
+      "desc": "생성할 Smart 빈의 이름을 지정합니다."
+    },
+    {
+      "name": "Match",
+      "desc": "모든 조건(All) 또는 일부 조건(Any) 중 하나를 만족할지 여부를 결정합니다."
+    },
+    {
+      "name": "Media Pool Properties",
+      "desc": "클립 이름, Resolution, 프레임 레이트 등 필터링 기준이 될 속성을 선택합니다."
+    },
+    {
+      "name": "Operator",
+      "desc": "is, contains, begins with 등 조건 비교 방식을 설정합니다."
+    },
+    {
+      "name": "Value",
+      "desc": "검색 및 분류에 사용할 구체적인 텍스트나 숫자 값을 입력합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "4K Resolution 클립 자동 분류하기",
+      "steps": [
+        "Smart Bins 우클릭 후 Add Smart Bin을 선택합니다.",
+        "조건 설정 창에서 Video Resolution 속성을 선택합니다.",
+        "값을 3840 x 2160으로 지정하고 저장하여 4K 클립만 자동으로 모읍니다."
+      ]
+    },
+    {
+      "title": "특정 카메라 소스 모으기",
+      "steps": [
+        "Smart Bins 우클릭 후 Add Smart Bin을 선택합니다.",
+        "Camera ID 또는 Reel 메타데이터 조건을 선택합니다.",
+        "카메라 번호나 이름을 입력하여 해당 기기의 소스만 실시간으로 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조건에 맞는 클립이 나타나지 않음 → 클립에 해당 메타데이터(Keywords, Shot 등)가 실제로 입력되어 있는지 확인하세요.",
+    "수동으로 클립이 드래그 앤 드롭으로 안 들어감 → Smart Bins는 메타데이터 조건으로 자동 분류되는 폴더이므로 직접 클립을 넣을 수 없습니다. 대신 메타데이터를 수정해야 합니다."
+  ],
+  "related": [
+    "Media Pool",
+    "Metadata",
+    "Power Bins",
+    "Source Tape"
+  ],
+  "videos": [
+    {
+      "id": "iW1RvZXI3ow",
+      "title": "Automatic Folders with SMART BINS - Work SMARTER! - Davinci Resolve 17",
+      "author": "MrAlexTech"
+    },
+    {
+      "id": "UnojZ_J5oUM",
+      "title": "This one feature will save you hours in Davinci Resolve",
+      "author": "MrAlexTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Smart%20Bins",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut",
+    "Edit",
+    "Media Pool",
+    "Master",
+    "Smart Bins"
+  ],
+  "at": "2026-11-23T19:20:52.613623+00:00"
+}

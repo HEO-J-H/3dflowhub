@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-21T15:07:01.676180+00:00",
-      "collected": 2,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 60,
-      "candidates_passed": 28,
-      "offtopic": 19,
-      "short": 0,
-      "prefiltered": 24,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "5c0485d0",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-21T15:17:03.758557+00:00",
       "collected": 2,
       "saved": 2,
@@ -6582,6 +6558,30 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-23T19:20:33.599594+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 53,
+      "candidates_passed": 14,
+      "offtopic": 23,
+      "short": 0,
+      "prefiltered": 27,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "005c0307",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic"
+      ]
     }
   ],
   "good_keywords": [
@@ -6677,7 +6677,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-14 [[p-60012927b1|운영·비용] 웹 브라우저 높이맵 메시 생성 단위] 테스트 실패 — E       TypeError: heightfield_mesh() got an unexpected keyword argument 'grid' / FAILED backend/tests/test_core.py::test_web_heightmap_mesh_preprocessing_unit - TypeError: heightfield_mesh()",
     "2026-11-14 [성찰] 동음이의어(Nuke, Unity 등)로 인한 오프토픽 뉴스가 수집을 가로막고 있으므로, 3D/CG 전용 문맥 검증 필터를 50중으로 대폭 강화하여 유효 수집률과 점수를 개선해야 합니다.",
     "2026-11-14 [core.filter_cg_context_strict(): 일반 명사 도] 일반 명사 도구명을 다룰 때는 5중 이상의 맥락 검증을 통해 오프토픽 뉴스를 완벽히 차단해야 한다.",
     "2026-11-14 [PR #26 다시 하기 — backend/app/services/mesh] 입력값 검증 함수는 예외를 명확히 발생시키고 세부 오류 메시지를 반환하여 디버깅을 쉽게 만들어야 합니다.",
@@ -6796,7 +6795,8 @@
     "2026-11-23 [[p-6297b88f78|사이트·UX] 웹 UI PBR 다운로드 기능 E] 테스트 실패 — 64 passed, 1 warning in 1.46s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-23 [성찰] 동음이의어 필터링을 더욱 강화하여 게임·VFX 실무와 무관한 일반 뉴스를 차단하고, 고CPC 실무 가이드 및 검색 유입이 높은 도구 중심 콘텐츠 발행 비중을 극대화해야 합니다.",
     "2026-11-23 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집 비중이 높으므로, 수집 단계에서 CG/VFX/게임 실무 문맥 검증 필터를 대폭 강화하여 저품질 콘텐츠 유입을 원천 차단해야 합니다.",
-    "2026-11-23 [성찰] 동음이의어 노이즈를 완벽히 차단하고 Maxscript 및 플러그인 등 실무 중심의 튜토리얼 콘텐츠에 집중하여 검색 유입 품질을 높여야 합니다."
+    "2026-11-23 [성찰] 동음이의어 노이즈를 완벽히 차단하고 Maxscript 및 플러그인 등 실무 중심의 튜토리얼 콘텐츠에 집중하여 검색 유입 품질을 높여야 합니다.",
+    "2026-11-23 [성찰] 동음이의어 필터링과 실무 중심의 고CPC 키워드(Maxscript, 플러그인, 튜토리얼 등) 집중 배치를 통해 오프토픽 비율을 낮추고 검색 유입을 극대화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6997,7 +6997,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    141323986756166808,
     17520569670565973592,
     2371660080700476313,
     1173515566981429285,
@@ -9996,14 +9995,15 @@
     6125203722712285732,
     6107804742847378993,
     10334717835409038539,
-    10804159560906276303
+    10804159560906276303,
+    7474806817997444002
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3939,
-    "Game Engine": 3939,
-    "VFX": 3939,
-    "AI 3D": 3939
+    "3D DCC": 3940,
+    "Game Engine": 3940,
+    "VFX": 3940,
+    "AI 3D": 3940
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

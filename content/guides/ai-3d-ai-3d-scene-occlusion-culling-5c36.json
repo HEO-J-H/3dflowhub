@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-ai-3d-scene-occlusion-culling-5c36",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 씬 최적화 및 뷰포트",
+  "name": "AI 3D Scene Occlusion Culling",
+  "title": "AI 씬 오클루전 컬링 — 카메라 시야에서 보이지 않는 오브젝트를 AI가 판단하여 렌더링 부하를 줄이는 최적",
+  "summary": "AI 3D Scene Occlusion Culling은 카메라 시야에서 가려져 보이지 않는 3D 객체나 Gaussian Splatting 데이터를 실시간으로 감지하고 렌더링에서 제외하여 성능을 극대화하는 최적화 기법입니다.",
+  "when": [
+    "복잡한 실내 씬이나 도시 환경에서 수많은 오브젝트로 인해 프레임 레이트가 떨어질 때",
+    "AI 기반 3D 생성 데이터나 대규모 Gaussian Splatting 씬을 실시간 엔진에서 구동해야 할 때",
+    "모바일 기기나 VR 헤드셋 등 제한된 하드웨어 자원에서 최적의 성능을 확보해야 할 때"
+  ],
+  "steps": [
+    "Unreal Engine 또는 3D 엔진의 프로젝트 설정(Project Settings)에서 Occlusion Culling 활성화 옵션을 확인합니다.",
+    "Outliner 창에서 컬링을 적용할 씬의 대형 정적(Static) 오브젝트와 Gaussian Splatting 노드를 선택합니다.",
+    "Details 패널에서 Rendering 세부 항목으로 이동하여 Is Occluder 및 Occludable 체크박스가 켜져 있는지 확인합니다.",
+    "Viewport에서 카메라를 이동하며 시야각(Frustum) 및 가려짐에 따라 객체가 정상적으로 숨겨지는지 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Occlusion Culling",
+      "desc": "시야에서 가려진 오브젝트의 렌더링 연산을 원천적으로 차단합니다."
+    },
+    {
+      "name": "Is Occluder",
+      "desc": "다른 오브젝트를 가리는 차단체로서의 역할을 활성화합니다."
+    },
+    {
+      "name": "Screen Size",
+      "desc": "컬링을 판정할 화면 상의 최소 픽셀 크기 임계값을 설정합니다."
+    },
+    {
+      "name": "Bounds Scale",
+      "desc": "오브젝트의 컬링 경계 상자(Bounding Box) 크기를 배율로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 시각화 씬 최적화",
+      "steps": [
+        "벽과 문 등 주요 구조물에 Is Occluder 옵션을 켭니다.",
+        "방 내부에 배치된 가구와 소품들이 벽 뒤에서 불필요하게 렌더링되지 않도록 설정합니다.",
+        "플레이어 시점을 전환하며 프레임 레이트 상승을 확인합니다."
+      ]
+    },
+    {
+      "title": "대규모 AI 3D 도시 렌더링",
+      "steps": [
+        "빌딩 외벽과 대형 구조물을 메인 차단체로 지정합니다.",
+        "빌딩 사이에 가려진 군중 및 소형 프롭 객체들의 컬링 거리를 조절합니다.",
+        "메모리 사용량과 드로우 콜(Draw Call) 감소를 모니터링합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투명하거나 구멍이 뚫린 오브젝트가 차단체로 지정됨 → 해당 객체 뒤의 숨겨진 모델이 렌더되지 않는 공백 현상 발생. 복잡한 투명 물체는 Is Occluder를 끕니다.",
+    "너무 작은 오브젝트까지 컬링 판정에 포함됨 → 오히려 CPU 연산 부하가 증가함. Screen Size 임계값을 높여 조정합니다."
+  ],
+  "related": [
+    "Nanite",
+    "Lumen",
+    "Frustum Culling",
+    "Level of Detail"
+  ],
+  "videos": [
+    {
+      "id": "LIj-wkI2EOk",
+      "title": "Stop Baking Occlusion Culling the Wrong Way! Do It the Right Way | Unity Optimization #4",
+      "author": "Devbyte"
+    },
+    {
+      "id": "fBcf8b_9Wm8",
+      "title": "Voxelica Tutorial: GPU Occlusion Culling",
+      "author": "Fraktalia"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%203D%20Scene%20Occlusion%20Culling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unreal Engine",
+    "Project Settings",
+    "Occlusion Culling",
+    "Outliner",
+    "Static",
+    "Gaussian Splatting"
+  ],
+  "at": "2026-11-23T19:20:56.273253+00:00"
+}
