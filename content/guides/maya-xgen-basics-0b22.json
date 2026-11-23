@@ -104,5 +104,14 @@
     "XGen",
     "Create XGen Description"
   ],
-  "at": "2026-11-10T04:51:30.905049+00:00"
+  "at": "2026-11-10T04:51:30.905049+00:00",
+  "qa_at": "2026-11-23T14:41:06+00:00",
+  "qa": {
+    "score": 8,
+    "defects": [
+      "XGen Collection Type 항목에 Splines, Guides, or Mesh 대신 실제 Maya UI의 Splines, File, Custom Geometry 등이 정확하게 기재되면 더 좋습니다.",
+      "동물 털 생성 시 Collection Type으로 Mesh를 선택하는 부분은 실제 Maya XGen 워크플로우와 다소 차이가 있을 수 있습니다."
+    ],
+    "fix_hint": "Maya XGen의 공식 UI 메뉴 경로와 Collection Type 옵션을 정확하게 검증하여 작성해주세요."
+  }
 }
