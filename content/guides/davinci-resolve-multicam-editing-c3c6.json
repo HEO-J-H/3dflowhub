@@ -1,0 +1,90 @@
+{
+  "id": "davinci-resolve-multicam-editing-c3c6",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Multicam Editing",
+  "title": "멀티캠 편집 — 여러 대의 카메라로 촬영한 소스를 동기화하고 실시간으로 스위칭하며 편집하는 워크플로",
+  "summary": "DaVinci Resolve의 Multicam Editing 기능은 여러 대의 카메라로 동시 촬영한 소스를 하나로 묶어, 재생 중에 실시간으로 카메라 앵글을 전환하며 편집할 수 있는 강력한 도구입니다.",
+  "when": [
+    "인터뷰나 토크쇼처럼 여러 대의 카메라로 동시에 촬영한 영상을 편집할 때",
+    "Live 공연이나 행사 영상을 다양한 앵글로 빠르게 교체하며 편집할 때",
+    "멀티캠 소스의 Audio 웨이브폼이나 타임코드를 이용해 자동으로 완벽하게 동기화하고 싶을 때"
+  ],
+  "steps": [
+    "Media Pool에서 동기화할 모든 클립을 선택하고 우클릭하여 'Create New Multicam Clip Using Selected Clips'를 선택합니다.",
+    "Create Multicam Clip 대화 상자에서 동기화 기준(Sound, Timecode 등)을 설정하고 생성합니다.",
+    "Cut 페이지 또는 Edit 페이지의 Timeline에 생성된 Multicam 클립을 올립니다.",
+    "Workspace 메뉴 → Video 뷰어 설정에서 'Multicam Viewer'를 활성화하여 다중 뷰어 모드로 전환합니다.",
+    "재생(Space) 중에 숫자 키보드(1, 2, 3...) 또는 뷰어의 화면을 클릭하여 실시간으로 앵글을 전환합니다."
+  ],
+  "params": [
+    {
+      "name": "Sync Using",
+      "desc": "Audio 웨이브폼, 타임코드, 마커 등 클립을 정렬할 기준을 선택합니다."
+    },
+    {
+      "name": "Detect clips from same camera",
+      "desc": "같은 카메라로 촬영된 클립들을 동일한 앵글 트랙으로 자동 그룹화합니다."
+    },
+    {
+      "name": "Angle Name",
+      "desc": "각 카메라 소스에 고유한 앵글 이름을 지정하여 트랙을 구분합니다."
+    },
+    {
+      "name": "Switch Multicam Audio",
+      "desc": "앵글 전환 시 영상과 함께 Audio도 해당 카메라인풋으로 같이 전환할지 설정합니다."
+    },
+    {
+      "name": "Flatten Multicam Clip",
+      "desc": "편집이 끝난 멀티캠 클립을 일반 단일 클립 트랙 구조로 병합하여 확정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2채널 카메라 인터뷰 편집",
+      "steps": [
+        "정면 샷과 측면 샷 클립을 Media Pool에서 선택합니다.",
+        "Audio파형 기준으로 Multicam Clip을 생성합니다.",
+        "Multicam Viewer를 띄운 뒤 재생하며 1번과 2번 키로 컷을 교체합니다."
+      ]
+    },
+    {
+      "title": "Live 공연 영상 제작",
+      "steps": [
+        "메인 Audio 마스터 트랙을 기준으로 여러 대의 카메라 클립을 동기화합니다.",
+        "음악 비트에 맞춰 실시간으로 카메라 앵글을 전환하여 뮤직비디오 편집본을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio 파형이 일치하지 않아 동기화가 틀어짐 → 클립의 마이크 수음 상태를 확인하고 수동 Sync Points를 추가합니다.",
+    "숫자 키(1, 2, 3)를 눌러도 앵글이 전환되지 않음 → Multicam Viewer 모드가 활성화되어 있는지 뷰어 상단 설정을 확인합니다."
+  ],
+  "related": [
+    "Fairlight",
+    "Cut Page",
+    "Color Page",
+    "Dual Timeline"
+  ],
+  "videos": [
+    {
+      "id": "WgzUvtRgeCM",
+      "title": "How to Edit with Multiple Camera Angles in DaVinci Resolve 20 | Multicam Editing",
+      "author": "DaVinci Dojo"
+    },
+    {
+      "id": "4DV_lyku7pU",
+      "title": "How to Edit a Multicam Music Video in DaVinci Resolve - Easy workflow!",
+      "author": "Casey Faris"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Multicam%20Editing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Media Pool",
+    "Create New Multicam Clip Using Selected Clips"
+  ],
+  "at": "2026-11-23T17:07:24.440605+00:00"
+}

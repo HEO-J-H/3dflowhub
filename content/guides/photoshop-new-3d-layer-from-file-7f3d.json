@@ -1,0 +1,94 @@
+{
+  "id": "photoshop-new-3d-layer-from-file-7f3d",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 기본 생성",
+  "name": "New 3D Layer from File",
+  "title": "파일에서 새 3D 레이어 — 외부 3D 모델 파일을 불러와 작업 레이어로 생성",
+  "summary": "Photoshop의 New 3D Layer from File 기능은 외부 3D 모델 파일을 불러와 Photoshop 레이어 패널에 3D 레이어로 배치하고 가벼운 텍스처링과 렌더링을 수행할 수 있게 해 주는 도구입니다.",
+  "when": [
+    "외부 3D 모델(OBJ, STL, U3D 등)을 Photoshop에서 빠르게 확인하고 가벼운 텍스처 수정을 하고 싶을 때",
+    "2D 일러스트나 그래픽 디자인 배경에 간단한 3D 오브젝트를 합성하고 싶을 때",
+    "복잡한 3D DCC 툴을 켜지 않고 Photoshop 내에서 3D 모델의 위치와 조명을 간단히 조절할 때"
+  ],
+  "steps": [
+    "Photoshop을 실행하고 상단 메뉴 바에서 File → Open을 선택하여 불러올 3D 파일(예: .obj 파일)을 엽니다.",
+    "또는 기존 2D 작업 파일에서 상단 메뉴 바의 3D → New 3D Layer from File을 선택하여 모델을 불러옵니다.",
+    "레이어 패널에서 생성된 3D 레이어가 선택되어 있는지 확인합니다.",
+    "3D 패널과 Properties 패널을 사용하여 모델의 재질, 조명, 카메라 시점을 조절합니다.",
+    "툴바에서 3D Rotate나 3D Translate 툴을 선택해 Viewport에서 직접 모델의 위치와 각도를 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Mode",
+      "desc": "Viewport에서 3D 오브젝트를 회전, 이동, 확대/축소할 때 사용하는 조작 모드를 전환합니다."
+    },
+    {
+      "name": "Preset",
+      "desc": "미리 설정된 조명이나 렌더링 스타일을 빠르게 적용합니다."
+    },
+    {
+      "name": "Render Settings",
+      "desc": "Viewport의 렌더링 품질을 드래프트(Draft) 또는 최종 고품질(Ray Traced)로 설정합니다."
+    },
+    {
+      "name": "Diffuse",
+      "desc": "3D 모델의 기본 표면 색상이나 텍스처 맵을 지정합니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "텍스처의 명암을 이용해 모델 표면에 요철(입체감)을 부여합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 일러스트에 간단한 3D 소품 배치하기",
+      "steps": [
+        "2D 배경 작업 파일에서 3D → New 3D Layer from File을 클릭하여 준비된 3D 소품 파일(.obj)을 불러옵니다.",
+        "3D Move 툴을 사용하여 소품을 일러스트의 원근감에 맞게 배치합니다.",
+        "3D 조명 패널에서 광원의 각도를 일러스트의 빛 방향과 일치시킵니다."
+      ]
+    },
+    {
+      "title": "3D 모델 표면 텍스처 간단 수정하기",
+      "steps": [
+        "New 3D Layer from File로 3D 모델을 불러온 뒤 3D 패널에서 메쉬 재질을 선택합니다.",
+        "Diffuse 텍스처 슬롯을 클릭하고 Edit Texture를 선택해 2D 텍스처 레이어 창을 엽니다.",
+        "열린 2D 캔버스에 간단한 그래픽을 그린 뒤 저장하면 3D 모델 표면에 실시간 반영됩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지원하지 않는 파일 형식 오류 → OBJ, STL, U3D, DAE 등 Photoshop이 지원하는 표준 3D 포맷으로 변환 후 불러옵니다.",
+    "모델이 보이지 않거나 화면 밖으로 벗어난 경우 → 3D View 패널에서 카메라 시점을 기본값(Default View)으로 재설정합니다.",
+    "렌더링 속도가 지나치게 느려지는 경우 → 렌더 설정(Render Settings)을 레이트레이싱에서 드래프트 모드로 낮춰 작업합니다."
+  ],
+  "related": [
+    "New 3D Postcard from Layer",
+    "New Material from Layer",
+    "Spherical Panorama",
+    "3D Print"
+  ],
+  "videos": [
+    {
+      "id": "eRXiKAVKwnE",
+      "title": "Photoshop’s New Image to 3D Feature Is Wild! | #shorts @dopemotions",
+      "author": "Dope Motions"
+    },
+    {
+      "id": "YTT8cgypdpA",
+      "title": "NEW Photoshop AI Feature Lets You Control Your Edits with a simple Slider - Dynamic Layer",
+      "author": "Smart Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%203D%20Layer%20from%20File",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "File",
+    "Open",
+    "New 3D Layer"
+  ],
+  "at": "2026-11-23T17:07:28.654511+00:00"
+}
