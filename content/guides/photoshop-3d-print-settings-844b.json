@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-3d-print-settings-844b",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "내보내기 및 렌더링",
+  "name": "3D Print Settings",
+  "title": "3D 인쇄 설정 — 3D 모델을 실제 3D 프린터 출력용 파일로 최적화 및 Export",
+  "summary": "Photoshop의 3D Print Settings는 3D 모델을 실제 3D 프린터로 출력하기 위해 크기, 재질, 지지대(Support) 등을 설정하고 STL 또는 OBJ 포맷으로 내보내는 기능입니다.",
+  "when": [
+    "Photoshop에서 작업한 3D 타이포그래피나 간단한 오브젝트를 3D 프린터로 출력하고 싶을 때",
+    "출력물 크기(mm, inch)와 두께를 정밀하게 조절해야 할 때",
+    "오버häng(공중 부양) 구간을 지지할 Support 구조를 미리 확인하고 설정할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델 레이어를 선택합니다.",
+    "상단 메뉴에서 3D → 3D Print Settings를 클릭합니다.",
+    "Printer 드롭다운 메뉴에서 사용할 3D 프린터 기종을 선택합니다.",
+    "Volume 단위와 Scale 값을 조절하여 실제 출력할 물리적 크기를 설정합니다.",
+    "Surface 및 Support 옵션을 체크하여 서포트 생성 여부와 채움(Infill) 밀도를 결정합니다.",
+    "Export 버튼을 눌러 STL 또는 OBJ 파일로 저장한 뒤 슬라이서 프로그램으로 가져갑니다."
+  ],
+  "params": [
+    {
+      "name": "Printer",
+      "desc": "사용할 3D 프린터 기종을 선택하여 출력 영역과 방식을 결정합니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "프린터 빌드 플레이트 내에서의 모델 위치와 크기를 확인합니다."
+    },
+    {
+      "name": "Surface",
+      "desc": "출력물 표면의 마감 방식과 두께를 조절합니다."
+    },
+    {
+      "name": "Support",
+      "desc": "오버행 영역에 지지대 구조를 자동으로 추가하거나 설정합니다."
+    },
+    {
+      "name": "Detail",
+      "desc": "메시의 Resolution를 조절하여 출력물의 정밀도를 높이거나 낮춥니다."
+    },
+    {
+      "name": "Export",
+      "desc": "설정된 3D 데이터를 3D 프린팅용 파일(STL, OBJ)로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 타이포그래피 입체 출력",
+      "steps": [
+        "텍스트 레이어에 3D Extrusion을 적용합니다.",
+        "3D Print Settings 창을 열고 프린터 기종을 선택합니다.",
+        "Scale을 조정하여 실제 책상에 놓을 크기로 맞춘 뒤 STL로 내보냅니다."
+      ]
+    },
+    {
+      "title": "복잡한 형태의 오버행 보정",
+      "steps": [
+        "공중에 뜬 형태가 포함된 3D 모델을 불러옵니다.",
+        "3D Print Settings의 Support 옵션을 활성화합니다.",
+        "프린팅 시 무너지지 않는지 미리보기로 확인 후 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "출력 크기가 너무 작거나 큼 → Scale mm 단위를 확인하고 실제 프린터 빌드 볼륨에 맞게 재조정합니다.",
+    "얇은 두께로 인해 출력 중 부러짐 → Surface 및 Minimum Thickness 설정을 높여 충분한 두께를 확보합니다."
+  ],
+  "related": [
+    "3D Print Hub",
+    "3D Extrusion",
+    "Export 3D Layer",
+    "3D Scene"
+  ],
+  "videos": [
+    {
+      "id": "Kx5Fd4zkJZU",
+      "title": "Prepare an Image for Print in Photoshop - Step-by-Step",
+      "author": "The Visual Center"
+    },
+    {
+      "id": "p-G49kTgbuQ",
+      "title": "❗PHOTOSHOP SETTINGS TO USE FOR ART PRINTS?",
+      "author": "PermaJet"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Print%20Settings",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-23T18:18:35.324350+00:00"
+}

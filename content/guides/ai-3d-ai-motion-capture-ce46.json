@@ -1,0 +1,95 @@
+{
+  "id": "ai-3d-ai-motion-capture-ce46",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "애니메이션 및 리깅",
+  "name": "AI Motion Capture",
+  "title": "AI 모션 캡처 — 단일 비디오 영상에서 휴머노이드 3D 캐릭터 애니메이션을 실시간으로 추출하는 기능",
+  "summary": "AI 모션 캡처는 비디오 영상만으로 사람이나 동물의 움직임을 분석해 3D 캐릭터 애니메이션 데이터(FBX/USD 등)로 변환하는 기술입니다.",
+  "when": [
+    "고가의 모션 캡처 장비나 Studio를 이용하기 어려울 때",
+    "스마트폰이나 인터넷에서 구한 비디오 소스로 빠르게 애니메이션을 제작하고 싶을 때",
+    "애니메이션 블로킹(Blocking) 작업 시간을 단축하고 싶을 때"
+  ],
+  "steps": [
+    "움직임이 선명하고 가려짐(Occlusion)이 적은 소스 비디오 파일을 준비합니다.",
+    "AI 모션 캡처 Software 또는 웹 서비스에 비디오를 임포트합니다.",
+    "캐릭터의 뼈대(Skeleton)와 비디오 속 인물의 관절 위치를 정렬합니다.",
+    "Tracking 또는 처리(Process) 버튼을 눌러 AI가 관절 회전값을 추출하도록 실행합니다.",
+    "결과물을 Viewport에서 확인한 뒤, 튀는 프레임(Jitter)이나 미끄러지는 발(Foot Sliding)을 보정합니다.",
+    "최종 애니메이션 데이터를 FBX 또는 USD 형식으로 익스포트합니다."
+  ],
+  "params": [
+    {
+      "name": "Confidence Threshold",
+      "desc": "AI가 관절 위치를 신뢰하는 기준값으로, 높이면 노이즈가 줄어들지만 극단적인 움직임이 끊길 수 있습니다."
+    },
+    {
+      "name": "Smoothing",
+      "desc": "추출된 애니메이션 커브의 떨림을 부드럽게 필터링합니다."
+    },
+    {
+      "name": "Floor Contact",
+      "desc": "캐릭터의 발이 공중에 뜨거나 바닥을 뚫고 들어가지 않도록 지면 충돌을 보정합니다."
+    },
+    {
+      "name": "Scale Correction",
+      "desc": "소스 비디오 인물의 체형과 3D 캐릭터 간의 비율 차이를 맞춰줍니다."
+    },
+    {
+      "name": "Frame Rate",
+      "desc": "초당 프레임 수를 설정하여 3D 프로젝트 Timeline과 일치시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "춤추는 캐릭터 Cinematic 제작",
+      "steps": [
+        "댄스 영상 소스를 AI 모션 캡처 툴에 로드합니다.",
+        "휴머노이드 릭(Humanoid Rig)을 매핑하고 Tracking을 실행합니다.",
+        "Blender나 3ds Max로 가져와 캐릭터 메시에 적용합니다.",
+        "손가락 디테일과 시선 처리를 수동으로 다듬습니다."
+      ]
+    },
+    {
+      "title": "게임용 기본 걷기/뛰기 사이클 추출",
+      "steps": [
+        "제자리 걸음이나 단거리 이동 영상 준비합니다.",
+        "루프(Loop) 구간을 설정하여 모션을 잘라냅니다.",
+        "Root Motion 옵션을 켜서 이동 값을 캐릭터 본에 반영합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 앵글이 자주 바뀌거나 조명이 어두운 경우 → 정면에서 촬영된 고화질 단일 소스나 멀티뷰 소스로 교체합니다.",
+    "캐릭터의 체형 비율이 소스 인물과 크게 달라 관절이 꺾이는 경우 → T-Pose / A-Pose 기준을 맞추고 리타기팅(Retargeting) 옵션을 조정합니다.",
+    "바닥에서 발이 미끄러지는 현상 → Foot Locking 또는 Floor Contact 옵션을 활성화합니다."
+  ],
+  "related": [
+    "SOMA Retargeter",
+    "ControlNet",
+    "USD",
+    "FBX"
+  ],
+  "videos": [
+    {
+      "id": "FgGSKwnliJE",
+      "title": "FREE AI Motion Capture?! #ai #blendertutorial",
+      "author": "Brock Creative"
+    },
+    {
+      "id": "j5wfOF1JrJA",
+      "title": "DeepMotion to Unreal Engine 5 | Animation Retargeting Tutorial | AI Motion Capture",
+      "author": "Cobra Code"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Motion%20Capture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Occlusion",
+    "AI",
+    "Software"
+  ],
+  "at": "2026-11-23T18:18:31.222392+00:00"
+}
