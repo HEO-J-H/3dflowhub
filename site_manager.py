@@ -25,7 +25,7 @@ SITES_WITH_MANAGER = ("pix2poly", "life-after-60")
 
 
 # 실제 기능이 아니라 '과제를 다루는 과제' — PR #80 점검·머지 안내, 보류/정체 과제 재정비·재적용·분할 (2026-11-22, 16건 쌓임)
-META_TASK = re.compile(r"PR\s*#?\d+|held|홀드|보류된|정체된|재정비|재적용|재등록|재구성 및 분할|머지 (안내|준비)|과제 (경로|명세)")
+META_TASK = re.compile(r"PR\s*\(?#?\d+|승인 대기 중인 PR|held|홀드|보류된|정체된|재정비|재적용|재등록|재구성 및 분할|머지 (안내|준비)|과제 (경로|명세)")
 
 # 결정 기록으로 닫은 주제 — 다시 제안하지 않음 (Pix2Poly RAG: docs/agent-guides/rag-integration.md, 같은 과제 20번 넘게 재제안)
 CLOSED_TOPICS = {"pix2poly": re.compile(r"\bRAG\b|rag_|/rag/")}

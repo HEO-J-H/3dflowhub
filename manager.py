@@ -92,6 +92,10 @@ def similar_open(title: str, site: str, text: str = "") -> bool:
     제목 단어가 60% 이상 겹치거나, 같은 파일을 고치자는 제안이 이미 있으면 중복
     (Pix2Poly 'docs/web-optimization.md' 과제가 제목만 바꿔 6번 올라온 일, 2026-11-05)."""
     import re as _re
+    import site_manager as _sm  # 과제를 다루는 메타 과제·닫은 주제는 어느 직원이 올리든 중복으로 취급 (staff·qa 경로 포함)
+    blob = f"{title} {text}"
+    if _sm.META_TASK.search(blob) or (_sm.CLOSED_TOPICS.get(site) and _sm.CLOSED_TOPICS[site].search(blob)):
+        return True
     words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", title))
     files = set(_FILE_RE.findall(f"{title} {text}"))
     # 최근 30일 안에 끝낸(done) 제안도 중복으로 봄 — 끝낸 과제가 이름만 바꿔 다시 올라오던 일 (Pix2Poly RAG·높이맵 테스트, 2026-11-20)
