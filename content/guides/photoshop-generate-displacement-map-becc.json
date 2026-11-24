@@ -1,0 +1,101 @@
+{
+  "id": "photoshop-generate-displacement-map-becc",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Generate Displacement Map",
+  "title": "Generate Displacement Map — 텍스처의 명암을 이용해 실제 메시 형태를 변형하는 디스플레",
+  "summary": "Photoshop의 3D > Generate Displacement Map 명령은 고해상도 이미지(스컬프, 사진 등)에서 흑백 높이맵을 추출해 Low-Poly 모델에 적용할 수 있는 디스플레이스먼트 맵을 만들고 저장합니다.",
+  "when": [
+    "고밀도 스컬프나 사진을 Low-Poly 텍스처로 변환하고 싶을 때",
+    "다른 툴(Blender, Substance Painter 등)에서 사용할 16‑bit 디스플레이스먼트 맵이 필요할 때",
+    "UV가 올바르게 펼쳐진 모델에 정확한 높이 정보를 입히고 싶을 때"
+  ],
+  "steps": [
+    "고해상도 이미지를 열고 Image > Mode > 8 Bits/Channel 또는 16 Bits/Channel 로 전환",
+    "필요하면 Image > Adjustments > Convert to Grayscale 로 흑백 변환",
+    "3D > Generate Displacement Map 선택 (Hotkey 없음)",
+    "Map Size, Blur, Invert, Midtone, Scale 등 파라미터 설정 후 OK 클릭",
+    "생성된 디스플레이스먼트 맵을 16‑bit PSD 또는 EXR 형식으로 File > Save As 저장"
+  ],
+  "params": [
+    {
+      "name": "Map Size",
+      "desc": "출력 맵 Resolution (예: 2048 × 2048)"
+    },
+    {
+      "name": "Blur",
+      "desc": "노이즈 감소를 위한 Gaussian 블러 강도"
+    },
+    {
+      "name": "Invert",
+      "desc": "흑백 값을 반전시켜 높낮이 방향을 바꿈"
+    },
+    {
+      "name": "Midtone",
+      "desc": "중간 톤 기준을 조정해 전체 높이 범위 스케일링"
+    },
+    {
+      "name": "Scale",
+      "desc": "높이값 전체 배율, 값이 클수록 변형이 크게 나타남"
+    },
+    {
+      "name": "Output Format",
+      "desc": "저장 포맷 선택 (16‑bit PSD, EXR 등)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "스컬프 디테일을 Low-Poly 모델에 적용",
+      "steps": [
+        "고해상도 ZBrush 스컬프를 PSD로 열고 흑백 변환",
+        "3D > Generate Displacement Map → Map Size 4096, Blur 2, Scale 1.0 설정",
+        "생성된 맵을 16‑bit PSD로 저장",
+        "Substance Painter에서 Low-Poly 메쉬에 Displacement Map 적용"
+      ]
+    },
+    {
+      "title": "실제 사진을 지형 디스플레이스먼트로 변환",
+      "steps": [
+        "위성 사진을 Photoshop에 불러와 흑백 변환",
+        "3D > Generate Displacement Map → Invert 체크, Scale 0.8 설정",
+        "EXR 형식으로 저장 후 Unreal Engine에 Height Map으로 Import"
+      ]
+    }
+  ],
+  "mistakes": [
+    "색상 이미지 그대로 사용 → 흑백 변환 후 진행해야 정확한 높이값이 얻어집니다",
+    "Map Size를 원본보다 낮게 설정 → 디테일 손실이 발생합니다. 필요 Resolution에 맞게 2048 이상 권장",
+    "16‑bit 저장을 놓침 → 8‑bit 파일은 높이 단계가 제한돼 품질이 크게 떨어집니다. 반드시 16‑bit PSD/EXR 로 저장"
+  ],
+  "related": [
+    "Generate Normal Map",
+    "Generate Bump Map",
+    "Export Wavefront OBJ",
+    "New 3D Layer from File"
+  ],
+  "videos": [
+    {
+      "id": "LJ7DVOFf1Ro",
+      "title": "BETTER way to make displacement maps in photoshop",
+      "author": "photoshopCAFE"
+    },
+    {
+      "id": "SxbD2VVW89Q",
+      "title": "Displacement Map in Photoshop #photoshoptips #photoshoptutorial",
+      "author": "That T-shirt Dude"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Generate%20Displacement%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Image",
+    "Mode",
+    "Bits",
+    "Channel",
+    "Adjustments",
+    "Convert"
+  ],
+  "at": "2026-11-24T01:00:01.870723+00:00"
+}

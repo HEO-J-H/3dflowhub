@@ -1,0 +1,99 @@
+{
+  "id": "ai-3d-ai-facial-motion-capture-d952",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 애니메이션 및 리깅",
+  "name": "AI Facial Motion Capture",
+  "title": "AI 페이셜 모션 캡처 — 웹캠이나 비디오 소스에서 얼굴 표정을 실시간으로 추출하여 3D 캐릭터에 적용하는 ",
+  "summary": "AI Facial Motion Capture는 비디오에서 얼굴 표정을 분석해 3D 캐릭터의 얼굴 애니메이션(FBX/USD 등)으로 변환합니다.",
+  "when": [
+    "실시간 캐릭터 대화·컷신에 실제 배우 표정을 적용하고 싶을 때",
+    "다양한 배우·동물의 얼굴 움직임을 하나의 리깅에 재사용하려 할 때",
+    "모션 캡처 Studio 없이 저예산 프로젝트에서 얼굴 애니메이션을 만들고 싶을 때"
+  ],
+  "steps": [
+    "AI Facial Motion Capture Software 실행 → File → Import Video (Ctrl+I) 로 비디오 파일을 불러온다",
+    "Analyze → Facial Capture 를 선택하고 자동 Tracking을 시작한다",
+    "Result 창에서 얼굴 Tracking 품질을 확인하고 필요 시 Manual Refine 로 미세 조정한다",
+    "Export → FBX (Ctrl+E) 로 애니메이션 데이터를 저장하고 3D DCC(Blender, Maya 등)로 임포트한다",
+    "Import 후 캐릭터의 Blend Shape 또는 Bone에 매핑하고 재생해 결과를 확인한다"
+  ],
+  "params": [
+    {
+      "name": "Tracking Sensitivity",
+      "desc": "Tracking 민감도 – 움직임이 빠를수록 값을 높이면 잡음이 줄어듭니다"
+    },
+    {
+      "name": "Occlusion Handling",
+      "desc": "가려짐 보정 – 얼굴이 가려질 때 보간 방식을 선택합니다"
+    },
+    {
+      "name": "Expression Blend",
+      "desc": "표정 블렌드 – 원본 비디오와 목표 캐릭터 간 표정 차이를 보정합니다"
+    },
+    {
+      "name": "Output Format",
+      "desc": "출력 포맷 – FBX 또는 USD 중 선택합니다"
+    },
+    {
+      "name": "Frame Rate",
+      "desc": "프레임 레이트 – 비디오와 동일하게 설정하면 Timeline 정렬이 쉬워집니다"
+    },
+    {
+      "name": "Landmark Model",
+      "desc": "랜드마크 모델 – 사용되는 얼굴 포인트 모델을 지정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "게임 NPC 대화 애니메이션",
+      "steps": [
+        "배우가 대본을 읽는 영상을 1080p 30fps 로 촬영",
+        "AI Facial Motion Capture → Import Video → Facial Capture 실행",
+        "Export → FBX 로 저장 후 Unreal Engine에 Import",
+        "Character Blueprint에서 FBX를 Blend Shape에 연결"
+      ]
+    },
+    {
+      "title": "VR MetaHuman 실시간 표정 적용",
+      "steps": [
+        "Webcam 영상을 실시간 스트리밍으로 입력",
+        "AI Facial Motion Capture → Live Capture 모드 활성화",
+        "Export → USD 스트리밍으로 Unreal Engine에 전송",
+        "MetaHuman 캐릭터에 실시간 표정 매핑"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Tracking 품질이 낮음 → 조명과 배경을 단순화하고 고해상도 영상을 사용한다",
+    "가려짐이 많음 → 카메라 각도를 바꾸고 Occlusion Handling 옵션을 ‘Advanced’ 로 설정한다",
+    "Export 포맷 불일치 → 대상 DCC의 요구 포맷(FBX vs USD)을 확인하고 맞는 Output Format 선택"
+  ],
+  "related": [
+    "AI Motion Capture",
+    "AI Motion Retargeting",
+    "Blend Shapes",
+    "Face Tracker"
+  ],
+  "videos": [
+    {
+      "id": "0wdFTAGtFFo",
+      "title": "Free Video to Motion Capture - Body + Face + Fingers!",
+      "author": "Onur Erdurak"
+    },
+    {
+      "id": "kMNEUUGI_Rs",
+      "title": "FREE AI Motion Capture Software That Runs Locally on Your PC! 🤯",
+      "author": "CuriousLab"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Facial%20Motion%20Capture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI Facial Motion Capture Software",
+    "File",
+    "Import Video"
+  ],
+  "at": "2026-11-24T01:01:00.058377+00:00"
+}

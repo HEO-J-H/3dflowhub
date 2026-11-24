@@ -1,0 +1,99 @@
+{
+  "id": "v-ray-v-ray-frame-buffer-vfb-2644",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 설정 및 최적화",
+  "name": "V-Ray Frame Buffer (VFB)",
+  "title": "V-Ray Frame Buffer — 렌더링 결과물을 확인하고 색상 보정 및 레이어 합성 작업을 수행하는 전",
+  "summary": "V-Ray Frame Buffer(VFB)는 V-Ray 전용 뷰어로, 실시간 렌더 결과 확인·노출·색보정·렌더 요소 관리 등을 한 화면에서 할 수 있습니다.",
+  "when": [
+    "전체 렌더 결과를 바로 확인하고 미세 조정이 필요할 때",
+    "렌더 요소를 개별 레이어로 추출해 합성 작업을 할 때",
+    "지역 렌더(Region Render)로 특정 영역만 빠르게 재렌더링하고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup (F10) → V-Ray 탭 → V-Ray Frame Buffer 체크 후 Render 버튼 클릭",
+    "렌더가 시작되면 VFB가 자동으로 열립니다. 또는 Shift+Q 로 VFB를 바로 열 수 있습니다",
+    "VFB 상단 툴바에서 Exposure, White Balance 등 파라미터를 조정하면 실시간으로 반영됩니다",
+    "Region Render이 필요하면 G 키를 눌러 영역을 드래그하고 다시 Render 버튼을 클릭합니다"
+  ],
+  "params": [
+    {
+      "name": "Exposure",
+      "desc": "노출값을 조절해 전체 밝기를 늘리거나 줄입니다"
+    },
+    {
+      "name": "White Balance",
+      "desc": "색온도를 조절해 색감을 따뜻하게·차갑게 맞춥니다"
+    },
+    {
+      "name": "Color Mapping",
+      "desc": "Reinhard·Linear 등 색 매핑 방식을 선택해 대비를 제어합니다"
+    },
+    {
+      "name": "Render Elements",
+      "desc": "VFB에서 바로 선택·시각화해 레이어별 출력 확인이 가능합니다"
+    },
+    {
+      "name": "Denoiser",
+      "desc": "VFB 내부에서 AI 디노이저를 켜면 노이즈를 실시간으로 감소시킵니다"
+    },
+    {
+      "name": "Zoom",
+      "desc": "Mouse 휠·Ctrl+드래그로 이미지 확대·축소가 가능합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "밤 장면 노출 보정",
+      "steps": [
+        "Render → VFB 열기",
+        "Exposure 슬라이더를 오른쪽으로 이동해 밝기 상승",
+        "White Balance를 약간 푸르게 조정해 차가운 느낌 강화",
+        "변경 사항이 만족스러우면 Save Image 클릭"
+      ]
+    },
+    {
+      "title": "창문 부분만 고해상도 재렌더",
+      "steps": [
+        "VFB에서 G 키 눌러 Region Render 활성화",
+        "창문 영역을 드래그하여 선택",
+        "Render 버튼을 다시 눌러 선택 영역만 재렌더",
+        "완료 후 전체 이미지와 합성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "변경 후 바로 저장하지 않음 → Apply 버튼을 누르거나 재렌더링해야 반영됩니다",
+    "VFB를 비활성화하고 Render → System Frame Buffer 사용 → V-Ray 전용 기능을 사용할 수 없습니다 → V-Ray Frame Buffer 옵션을 켜세요",
+    "Region Render 후 영역을 해제하지 않아 전체 재렌더가 안 됨 → G 키를 다시 눌러 영역 선택을 해제합니다"
+  ],
+  "related": [
+    "Render Elements",
+    "V-Ray Denoiser",
+    "V-Ray Toon Mtl",
+    "V-Ray Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "IoBXqwxbxw8",
+      "title": "V-Ray for SketchUp tutorial — V-Ray Frame Buffer and post-processing",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "zusDKr5SfFE",
+      "title": "3 Tips on V-Ray Frame Buffer",
+      "author": "S2VR ArchVIZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Frame%20Buffer%20%28VFB%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "V-Ray",
+    "V-Ray Frame Buffer",
+    "Render"
+  ],
+  "at": "2026-11-24T01:00:31.423055+00:00"
+}
