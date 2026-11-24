@@ -1,0 +1,100 @@
+{
+  "id": "unity-addressables-31d0",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "프로젝트 관리",
+  "name": "Addressables",
+  "title": "어드레서블 — 에셋을 효율적으로 로컬 및 원격으로 관리하고 로드하는 현대적인 Package 시스템",
+  "summary": "Addressables은 Unity에서 에셋을 비동기 로드·언로드하고 빌드 시에 효율적으로 패키징하는 시스템입니다.",
+  "when": [
+    "대규모 프로젝트에서 에셋 로딩 최적화가 필요할 때",
+    "플랫폼별 에셋 번들 관리가 필요할 때",
+    "Runtime에 동적으로 에셋을 교체하거나 업데이트할 때"
+  ],
+  "steps": [
+    "Window → Package Manager에서 \"Addressables\" Package를 Install",
+    "Window → Asset Management → Addressables → Groups 로 Addressable Settings 창을 연다",
+    "에셋을 선택 → Inspector에서 \"Addressable\" 체크 후 원하는 Address 입력",
+    "Addressables → Build → New Build → Default Build Script 로 그룹을 빌드",
+    "Script에서 Addressables.LoadAssetAsync<T>(\"Address\") 로 에셋 로드",
+    "로드된 핸들을 Addressables.Release(handle) 로 해제"
+  ],
+  "params": [
+    {
+      "name": "Addressable",
+      "desc": "에셋을 Addressables 시스템에 포함시킴"
+    },
+    {
+      "name": "Address",
+      "desc": "Runtime에 사용할 고유 문자열 키"
+    },
+    {
+      "name": "Group",
+      "desc": "에셋을 묶어 빌드·로드 정책을 지정"
+    },
+    {
+      "name": "Build Script",
+      "desc": "빌드 시 적용되는 Script (Default Build Script 권장)"
+    },
+    {
+      "name": "Remote Load Path",
+      "desc": "서버에서 에셋을 다운로드할 URL Template"
+    },
+    {
+      "name": "Asset Bundle Compression",
+      "desc": "번들 압축 방식 (LZ4 권장)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어 캐릭터 스킨 교체",
+      "steps": [
+        "스킨 텍스처를 Addressable로 설정하고 Address 입력",
+        "Script에서 Addressables.LoadAssetAsync<Texture2D>(\"Skin_01\") 호출",
+        "로드된 텍스처를 머티리얼의 MainTex에 적용"
+      ]
+    },
+    {
+      "title": "레벨 씬을 비동기 로드",
+      "steps": [
+        "씬 파일을 Addressable로 설정하고 Address 입력",
+        "Addressables.LoadSceneAsync(\"Level_02\",LoadSceneMode.Additive) 호출",
+        "필요 시 Addressables.UnloadSceneAsync 로 언로드"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Address를 중복 설정 → 중복 로드 오류 발생, 각 에셋의 Address를 고유하게 수정",
+    "빌드 후 Remote Load Path를 지정하지 않음 → Runtime에 다운로드 실패, Player Settings 또는 Addressable Profiles에 올바른 URL 입력",
+    "Compression을 LZMA로 설정 → 로드 시 디코딩 지연, LZ4 압축으로 변경 권장"
+  ],
+  "related": [
+    "AssetBundle",
+    "Addressables Profiles",
+    "Addressables Groups",
+    "Remote Content"
+  ],
+  "videos": [
+    {
+      "id": "wEuFAA-Ktwc",
+      "title": "What are Addressables in Unity and How to use to them | Unity Tutorial",
+      "author": "Game Dev Mike"
+    },
+    {
+      "id": "RZSl4iR-ZtQ",
+      "title": "Unity Addressables Sample Project [Load Asset from Remote ]| Memory Management",
+      "author": "Nested Mango"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Addressables",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Package Manager",
+    "Addressables",
+    "Package",
+    "Install"
+  ],
+  "at": "2026-11-24T00:40:48.627949+00:00"
+}

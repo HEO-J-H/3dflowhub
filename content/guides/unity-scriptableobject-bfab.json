@@ -1,0 +1,108 @@
+{
+  "id": "unity-scriptableobject-bfab",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "스크립팅",
+  "name": "ScriptableObject",
+  "title": "ScriptableObject — 에디터와 Runtime에서 재사용 가능한 데이터 자산을 만들 수 있는 클래스",
+  "summary": "ScriptableObject는 에디터에서 데이터 에셋을 만들고 Runtime에 공유할 수 있는 경량 객체입니다.",
+  "when": [
+    "여러 씬에서 동일한 설정 데이터를 재사용하고 싶을 때",
+    "데이터를 코드와 분리해 유지보수를 간편하게 할 때",
+    "에디터 전용 데이터(예: 레벨 디자인, 아이템 스탯)를 에셋 형태로 저장하고 싶을 때"
+  ],
+  "steps": [
+    "Assets 폴더에서 우클릭 → Create → C# Script, 파일명을 MyData.cs 로 지정",
+    "Script를 열고 class MyData : ScriptableObject { public int value; public Color color; } 위에 [CreateAssetMenu(fileName = \"NewMyData\", menuName = \"Data/MyData\")] 추가",
+    "저장 후 Unity가 컴파일될 때까지 기다림",
+    "Project 창에서 우클릭 → Create → Data → MyData 선택하여 ScriptableObject 에셋 생성",
+    "생성된 에셋을 선택하고 Inspector에서 value와 color 값을 원하는대로 편집"
+  ],
+  "params": [
+    {
+      "name": "CreateAssetMenu",
+      "desc": "메뉴에 에셋 생성 옵션을 추가해 빠르게 인스턴스화"
+    },
+    {
+      "name": "Asset name",
+      "desc": "Project 창에 표시되는 에셋 파일명"
+    },
+    {
+      "name": "Menu name",
+      "desc": "Create 메뉴에 표시되는 경로와 이름"
+    },
+    {
+      "name": "File name",
+      "desc": "새 에셋을 만들 때 기본 파일명"
+    },
+    {
+      "name": "Inspector",
+      "desc": "선택한 ScriptableObject의 필드를 편집하는 패널"
+    },
+    {
+      "name": "Project Window",
+      "desc": "에셋을 관리하고 생성·삭제하는 창"
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 스탯 관리",
+      "steps": [
+        "MyData Script에 int health, int attack 필드 추가",
+        "ScriptableObject 에셋을 만든 뒤 각 캐릭터별 스탯 입력",
+        "MonoBehaviour에서 public MyData characterData; 로 선언하고 에셋을 할당"
+      ]
+    },
+    {
+      "title": "레벨 설정 데이터",
+      "steps": [
+        "LevelData 클래스에 float timeLimit, string[] enemyPrefabs 필드 정의",
+        "CreateAssetMenu 으로 레벨별 에셋 생성",
+        "LevelManager Script에서 해당 에셋을 로드해 레벨 초기화에 사용"
+      ]
+    },
+    {
+      "title": "사운드 설정 프로파일",
+      "steps": [
+        "AudioProfile ScriptableObject에 AudioClip[] clips, float volume 필드 추가",
+        "프로파일 에셋을 만들고 각 클립과 볼륨 설정",
+        "AudioManager에서 프로파일을 참조해 일괄 재생 및 볼륨 조절"
+      ]
+    }
+  ],
+  "mistakes": [
+    "[CreateAssetMenu] 어트리뷰트를 빼먹음 → 메뉴에 생성 옵션이 없어져 직접 Script로 AssetDatabase.CreateAsset 사용 필요",
+    "Runtime에서 ScriptableObject 필드를 직접 수정 → 에디터에 저장되지 않음 → 변경을 반영하려면 AssetDatabase.SaveAssets 호출",
+    "여러 오브젝트가 같은 ScriptableObject Instance를 공유해 의도치 않은 값 변경 → 각각 별도 Instance를 만들거나 Clone 메서드 사용"
+  ],
+  "related": [
+    "AssetDatabase",
+    "MonoBehaviour",
+    "Addressable Assets",
+    "EditorUtility"
+  ],
+  "videos": [
+    {
+      "id": "PVOVIxNxxeQ",
+      "title": "Better Data with Scriptable Objects in Unity! (Tutorial)",
+      "author": "Unity"
+    },
+    {
+      "id": "7jxS8HIny3Q",
+      "title": "What are Scriptable Objects? (EXTREMELY Useful, Make your games Designer Friendly)",
+      "author": "Code Monkey"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20ScriptableObject",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Assets",
+    "Create",
+    "Script",
+    "MyData",
+    "ScriptableObject",
+    "Color"
+  ],
+  "at": "2026-11-24T00:41:17.766859+00:00"
+}

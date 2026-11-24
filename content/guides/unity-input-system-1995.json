@@ -1,0 +1,99 @@
+{
+  "id": "unity-input-system-1995",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "입력",
+  "name": "Input System",
+  "title": "Input System — 새로운 입력 매핑 프레임워크로 키보드·Mouse·게임패드·터치 입력을 관리",
+  "summary": "Unity Input System은 입력을 데이터 기반으로 관리해 키보드·Mouse·게임패드 등을 유연하게 매핑하고 컨텍스트별로 전환할 수 있게 합니다.",
+  "when": [
+    "다양한 입력 장치를 동시에 사용하고 싶을 때",
+    "플레이어 행동을 UI와 게임플레이 등 컨텍스트별로 다르게 처리하고 싶을 때",
+    "Runtime에 입력 리바인딩을 제공하고 싶을 때"
+  ],
+  "steps": [
+    "Window → Package Manager 에서 Input System Package를 설치한다",
+    "Edit → Project Settings → Player → Active Input Handling 을 Input System Package (New) 로 설정하고 재시작한다",
+    "Assets 폴더 빈 공간 우클릭 → Create → Input Actions 로 Input Action Asset 을 만든다",
+    "Asset을 열고 Action Map 을 추가한 뒤 Action 을 생성하고 Action Type(Press, Value 등)과 Binding 을 지정한다",
+    "Script에서 using UnityEngine.InputSystem; 로 네임스페이스를 추가하고 InputAction 변수를 선언·Enable() 하여 사용한다"
+  ],
+  "params": [
+    {
+      "name": "Action Type",
+      "desc": "입력 동작의 종류(Press, Value, Button 등)를 정의합니다"
+    },
+    {
+      "name": "Binding",
+      "desc": "키·버튼·축 등을 실제 입력 디바이스에 연결합니다"
+    },
+    {
+      "name": "Interactions",
+      "desc": "입력 시점(Press, Hold, Tap 등)을 세부 제어합니다"
+    },
+    {
+      "name": "Processors",
+      "desc": "입력 값을 변환(Deadzone, Normalize 등)합니다"
+    },
+    {
+      "name": "Expected Control Type",
+      "desc": "바인딩이 기대하는 컨트롤 종류를 지정해 오류를 방지합니다"
+    },
+    {
+      "name": "Composite",
+      "desc": "여러 입력을 하나의 액션으로 결합(예: WASD 이동)합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어 이동",
+      "steps": [
+        "Action Map \"Gameplay\" 에 \"Move\" Action 생성, Type을 Value 로 설정",
+        "Binding에 Composite → 2D Vector 선택 후 WASD 키 각각 위/아래/좌/우에 매핑",
+        "Script에서 InputAction move = asset.FindAction(\"Gameplay/Move\"); move.Enable();",
+        "Update()에서 Vector2 dir = move.ReadValue<Vector2>(); 캐릭터를 dir 로 이동"
+      ]
+    },
+    {
+      "title": "UI 버튼 클릭",
+      "steps": [
+        "Action Map \"UI\" 에 \"Click\" Action 생성, Type을 Button 으로 설정",
+        "Binding에 Mouse leftButton 과 Gamepad buttonSouth 를 추가",
+        "Script에서 InputAction click = asset.FindAction(\"UI/Click\"); click.performed += ctx => OnClick();",
+        "OnClick() 에 UI 버튼 클릭 로직 구현"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Binding을 하나만 지정해 다른 Controller가 작동하지 않음 → 필요한 모든 디바이스에 대해 별도 Binding을 추가한다",
+    "Active Input Handling을 기존 Input Manager 로 두어 충돌 발생 → Project Settings에서 Input System Package (New) 로 변경하고 재시작한다",
+    "InputAction을 Enable 하지 않아 입력이 무시됨 → Script에서 action.Enable() 호출을 잊지 않는다"
+  ],
+  "related": [
+    "Input Action Asset",
+    "Input Action Map",
+    "Input Binding",
+    "Input Processor"
+  ],
+  "videos": [
+    {
+      "id": "ONlMEZs9Rgw",
+      "title": "Unity's NEW input system in 13 minutes",
+      "author": "BiteMe Games"
+    },
+    {
+      "id": "TiTKAseu17A",
+      "title": "Unity Input System in Unity 6 (1/7): Input Action Editor",
+      "author": "Unity"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Input%20System",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Package Manager",
+    "Input System Package"
+  ],
+  "at": "2026-11-24T00:41:49.700840+00:00"
+}

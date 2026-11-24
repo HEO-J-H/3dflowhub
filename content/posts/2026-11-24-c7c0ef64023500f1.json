@@ -1,0 +1,92 @@
+{
+  "title_ko": "NVIDIA DCGM – 과학 작업의 Joule당 성과 측정 방법",
+  "title": "Connecting Energy Use to Scientific Output with Science per Joule",
+  "url": "https://developer.nvidia.com/blog/connecting-energy-use-to-scientific-output-with-science-per-joule/",
+  "domain": "AI 3D",
+  "category": "NVIDIA DCGM",
+  "topic": "리뷰·비교",
+  "tags": [
+    "GPU 텔레메트리",
+    "과학 효율",
+    "NVIDIA HGX H100",
+    "GB200 NVL72",
+    "Science per Joule"
+  ],
+  "summary": "NVIDIA DCGM을 활용해 GB200 NVL72와 HGX H100 시스템의 과학 워크로드 효율을 Joule당 산출량으로 직접 비교했습니다.",
+  "insight": "GPU 전력만 보면 GB200 NVL72와 HGX H100의 차이가 작게 보이지만, 전체 전력을 고려하면 GB200 NVL72가 실제 산출량 기준에서 확연히 앞선다. 3D 아티스트가 복잡한 씬을 렌더링할 때도 결과물당 전력(예: 이미지당 kJ)을 측정하면 비용 효율이 높은 GPU를 선택할 근거가 된다. 시스템 레벨 전력 차이가 적은 경우, GPU 효율이 전체 작업 효율을 좌우한다는 점을 기억하자.",
+  "try_it": [
+    "NVIDIA DCGM을 설치하고, 렌더링 작업을 실행하면서 GPU 전력을 로그 파일에 저장한다.",
+    "동일 씬을 동일 해상도·샘플 수로 두 대의 GPU(예: GB200 NVL72와 HGX H100)에서 각각 실행해 결과물당 전력 소비를 계산한다.",
+    "시스템 전력계(UPS 또는 전력 모니터)를 연결해 GPU 외 부품 전력도 함께 기록한다.",
+    "측정된 데이터를 스프레드시트에 정리해 이미지당 kJ, 프레임당 kJ 등 KPI를 도출한다"
+  ],
+  "sections": [
+    {
+      "heading": "측정 경계와 방법 정의",
+      "body": "에너지 효율을 비교하려면 동일 워크로드를 같은 실행 단계에서 측정해야 한다. 본문에서는 GPU 전력, 시스템 전력, 작업 단계 전체를 포함한 ‘전체 전력’ 기준을 사용했다. NVIDIA DCGM은 GPU 전력만 제공하지만, 시스템 레벨 전력은 별도 전력계로 측정했다."
+    },
+    {
+      "heading": "LAMMPS 시뮬레이션 결과",
+      "body": "GB200 NVL72 랙(72 GPU)과 HGX H100 서버(9대, 총 72 GPU)를 4가지 LAMMPS 시뮬레이션(Lennard‑Jones, Tersoff, ReaxFF/C, SNAP)에서 테스트했다. 동일 8‑GPU 복제 작업을 9번 실행했으며, GB200 NVL72는 9–17% 높은 atom‑timesteps per joule를 보였다. 이는 같은 GPU 수로 더 많은 원자‑시간을 처리한다는 의미다."
+    },
+    {
+      "heading": "ICON 기후 모델링 결과",
+      "body": "ICON 워크로드에서는 GB200 NVL72가 40% 적은 GPU(72 GPU)로도 HGX H100(120 GPU) 대비 약 20% 더 많은 simulated days per joule를 기록했다. 실행 시간은 거의 동일했으며, 이는 전력 제한이 있는 HPC 환경에서 실제 과학 산출량을 기준으로 플랫폼을 선택해야 함을 보여준다. 시스템 레벨 전력 측정 결과, 비GPU 구성 요소의 전력 소비는 두 플랫폼에서 비슷했다."
+    },
+    {
+      "heading": "AI 추론 워크로드와 과학당 전력",
+      "body": "단일 B200 GPU에서 OpenFold3와 RFD4‑Proteina를 실행한 결과, 문제 규모와 워크로드 특성에 따라 predictions per kilojoule이 크게 달라졌다. 이는 GPU 전력만으로는 AI 기반 과학 작업의 효율을 완전히 파악할 수 없음을 시사한다. 동일한 전력 제한(1,000 W) 하에서도 작업별 전력 효율 차이가 존재한다."
+    },
+    {
+      "heading": "3D 작업에 적용 가능한 교훈",
+      "body": "렌더링이나 시뮬레이션에서도 ‘science per joule’과 유사하게 결과물당 전력 소비를 측정하면 하드웨어 선택이 명확해진다. DCGM을 이용해 GPU 전력을 실시간으로 기록하고, 전력계로 시스템 전체 전력을 함께 모니터링하면 실제 비용 절감 포인트를 찾을 수 있다. 동일 파일 크기·해상도·샘플 수로 테스트하면 플랫폼 간 비교가 객관적이다."
+    },
+    {
+      "heading": "시스템 전체 전력 측정을 위한 외부 전력계 연동 방법",
+      "body": "GPU 전력 외에 시스템 전체 전력(CPU, 메모리, 스토리지 등)을 파악하려면 별도 전력계를 설치해야 합니다. 전력계는 서버 전원 공급 장치(PDU) 혹은 전원 플러그에 연결하고, 1 Hz 이상의 샘플링을 권장합니다. DCGM 로그와 전력계 기록의 타임스탬프를 동기화하기 위해 NTP를 사용하거나, 시작 시점에 동일한 마커(예: ‘START’)를 출력해 두 데이터를 매칭합니다. 두 데이터셋을 합쳐 전체 전력(시스템 + GPU) 프로파일을 만들면 실제 비용과 효율을 정확히 비교할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "3D 렌더링·시뮬레이션에 ‘per joule’ 효율 적용 팁",
+      "body": "3D 아티스트가 렌더링 효율을 joule당 결과물로 평가하려면, 동일한 씬 파일·Resolution·샘플 수로 테스트를 설계합니다. 먼저 DCGM과 외부 전력계를 동시에 동작시키고, 렌더링을 시작하기 전 ‘dcgm‑monitor’와 전력계 기록을 시작합니다. 렌더링이 끝난 뒤 총 GPU 전력(kWh)과 시스템 전력(kWh)을 합산하고, 최종 이미지 수 혹은 프레임 수로 나누어 ‘render‑minutes per joule’ 혹은 ‘image per joule’를 산출합니다. 이 지표를 여러 하드웨어 구성에 적용하면, 비용 대비 품질을 최적화하는 선택이 가능합니다.",
+      "added": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "DCGM을 설치하고 바로 전력 데이터를 얻으려면 어떻게 해야 하나요?",
+      "a": "NVIDIA 공식 사이트에서 DCGM Package를 다운로드하고, Linux에서는 ‘sudo dpkg -i nvidia-dcgm…’ 로 설치합니다. 설치 후 ‘dcgm‑discover’ 로 서버를 탐색하고, ‘dcgm‑exporter’를 백그라운드에서 실행해 메트릭을 수집합니다. ‘dcgm‑cli ‑i 0 ‑p show power usage’ 명령으로 현재 GPU 전력을 확인할 수 있습니다."
+    },
+    {
+      "q": "GPU 전력만으로는 충분하지 않은 이유는?",
+      "a": "GPU 전력은 연산에 직접 쓰이는 에너지만, 실제 HPC·렌더링 환경에서는 CPU, 메모리, 스토리지, 냉각 시스템 등 비GPU 부품이 전체 전력의 30~40%를 차지합니다. 따라서 전체 전력 대비 작업량을 평가하지 않으면 하드웨어 선택 시 비용 효율을 오판하게 됩니다. 기사에서 제시한 ‘system‑level power measurement’가 바로 이러한 전체 효율을 파악하는 방법입니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/science-per-joule-featured.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-24T00:38:08.982393+00:00",
+  "notion_id": "",
+  "id": "2026-11-24-c7c0ef64023500f1",
+  "img_ok": "2026-11-24T00:39:05+00:00",
+  "enriched": "2026-11-24",
+  "refs": [],
+  "videos": [
+    {
+      "id": "RyUT-GBFwiI",
+      "title": "Tech Talk - Nvidia DCGM Integration with SuperCloud Composer",
+      "author": "SuperCloud Composer"
+    },
+    {
+      "id": "ANkrJmk52iw",
+      "title": "NCA-AIIO 24/26: Monitoring GPUs with DCGM | NVIDIA AI Infrastructure and Operations Associate",
+      "author": "Core Concept Learning"
+    }
+  ],
+  "enriched_at": "2026-11-24T00:42:22+00:00",
+  "quality": {
+    "before": 1083,
+    "after": 1678
+  }
+}
