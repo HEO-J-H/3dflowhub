@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-camera-view-a448",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 뷰 및 카메라",
+  "name": "Camera View",
+  "title": "카메라 보기 — 저장된 카메라 뷰포인트나 표준 시점으로 전환하는 기능",
+  "summary": "Photoshop Camera View는 3D 공간에서 카메라 시점을 설정하고 렌더링 뷰를 제어하여 합성이나 Matte Painting 작업 시 원근감을 맞추는 기능입니다.",
+  "when": [
+    "3D 오브젝트와 2D 배경 합성 시 카메라 원근감을 일치시킬 때",
+    "Matte Painting 작업에서 투시선에 맞춰 카메라 앵글을 고정할 때",
+    "다양한 구도의 카메라 뷰를 저장하고 전환하며 작업할 때"
+  ],
+  "steps": [
+    "상단 메뉴에서 Window → 3D 를 선택하여 3D 패널을 엽니다.",
+    "3D 패널의 최상단 씬 아이콘에서 Current View 를 클릭합니다.",
+    "Properties 패널에서 Camera 드롭다운 메뉴를 열어 원하는 카메라 뷰를 선택합니다.",
+    "Viewport 상단의 View 툴바를 사용하여 카메라의 Position, Field of View 등을 조절합니다.",
+    "Viewport에서 카메라가 고정된 상태로 최종 렌더링 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Current View",
+      "desc": "현재 Viewport에서 바라보는 카메라 시점을 나타냅니다."
+    },
+    {
+      "name": "Field of View",
+      "desc": "화각을 조절하여 광각 또는 망원 효과를 냅니다."
+    },
+    {
+      "name": "Distance",
+      "desc": "카메라와 타겟 지점 사이의 거리를 조절합니다."
+    },
+    {
+      "name": "Perspective",
+      "desc": "원근감의 강도를 조절하여 왜곡을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 배경과 2D 캐릭터 합성",
+      "steps": [
+        "3D 패널에서 3D 배경 레이어를 선택합니다.",
+        "Camera View를 조정하여 2D 캐릭터의 원근감과 시점을 일치시킵니다.",
+        "Properties 패널에서 Field of View 값을 배경 소스와 동일하게 맞춥니다."
+      ]
+    },
+    {
+      "title": "다양한 구도 저장 및 비교",
+      "steps": [
+        "원하는 앵글로 카메라 뷰를 설정합니다.",
+        "3D 패널에서 새로운 카메라를 추가하여 현재 뷰를 저장합니다.",
+        "필요할 때마다 카메라 뷰를 전환하며 구도를 비교합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원근감이 맞지 않는 경우 → Field of View 값을 조절하여 배경 원근감과 일치시킵니다.",
+    "원하지 않게 카메라가 틀어지는 경우 → Current View를 고정한 뒤 툴바에서 락(Lock) 기능을 활성화합니다."
+  ],
+  "related": [
+    "3D Layer",
+    "Properties Panel",
+    "Match Perspective",
+    "Vanishing Point"
+  ],
+  "videos": [
+    {
+      "id": "7I2om8kPh7o",
+      "title": "Photoshop Beta Update: Change Camera Angles",
+      "author": "Kim de Been"
+    },
+    {
+      "id": "1ZaDdGStzY8",
+      "title": "AUTOMATICALLY Fix Perspective Distortions in Photoshop - Automatic Upright in Camera RAW Tutorial",
+      "author": "Photoshop Training Channel"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Camera%20View",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Current View",
+    "Properties",
+    "Camera"
+  ],
+  "at": "2026-11-24T09:40:43.663659+00:00"
+}
