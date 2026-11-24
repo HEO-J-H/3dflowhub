@@ -1,0 +1,92 @@
+{
+  "id": "pixyz-studio-create-bounding-box-152a",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "피시즈 스튜디오 기능",
+  "name": "Create Bounding Box",
+  "title": "Create Bounding Box — 선택한 부품이나 전체 어셈블리의 최소 바운딩 박스(Bounding B",
+  "summary": "Pixyz Studio의 Create Bounding Box 기능은 복잡한 CAD 모델 주변에 단순화된 육면체(Bounding Box) 바운딩 지오메트리를 생성하여, 충돌 검사나 대략적인 공간 점유 파악을 빠르게 수행하도록 돕는 최적화 도구입니다.",
+  "when": [
+    "대형 CAD 어셈블리의 충돌 감지(Clash Detection) 연산 속도를 높여야 할 때",
+    "실시간 렌더링이나 AR/VR 환경에서 복잡한 부품을 단순한 볼륨으로 대체할 때",
+    "다운스트림 Application으로 Export 전 대략적인 크기와 공간 점유를 확인하고자 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "화면 왼쪽의 Product Structure 패널에서 바운딩 박스를 생성할 부품 또는 어셈블리를 선택합니다.",
+    "상단 메뉴 바에서 Mesh 또는 Optimize Mesh를 선택한 뒤 Create Bounding Box 기능을 실행합니다.",
+    "표시되는 대화 상자에서 바운딩 박스 생성 옵션(정확도, 계층 구조 반영 여부 등)을 설정합니다.",
+    "Execute 버튼을 눌러 실행합니다.",
+    "Viewport와 Product Structure 패널에서 새로 생성된 Bounding Box 지오메트리가 올바르게 추가되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Target",
+      "desc": "바운딩 박스를 생성할 대상 부품이나 선택 영역을 지정합니다."
+    },
+    {
+      "name": "Precision",
+      "desc": "모델 외형에 얼마나 밀착되게 박스를 만들지 정확도를 조절합니다."
+    },
+    {
+      "name": "Oriented Box",
+      "desc": "모델의 회전 각도에 맞춘 정렬된 박스를 생성할지 여부를 설정합니다."
+    },
+    {
+      "name": "Combine",
+      "desc": "선택한 여러 부품의 바운딩 박스를 하나로 합쳐서 생성할지 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "엔진룸 어셈블리 충돌 영역 간소화",
+      "steps": [
+        "Product Structure 패널에서 엔진 부품 서브어셈블리를 선택합니다.",
+        "Create Bounding Box를 실행하여 외곽 형태의 단순한 박스를 생성합니다.",
+        "원본 고해상도 지오메트리는 숨기고 박스 모델만 남겨 충돌 테스트에 활용합니다."
+      ]
+    },
+    {
+      "title": "대형 공장 레이아웃 배치 공간 확보",
+      "steps": [
+        "복잡한 기계 설비 CAD 모델들을 전체 선택합니다.",
+        "Create Bounding Box를 실행해 공간 점유 형태를 파악합니다.",
+        "가벼워진 박스 모델을 레이아웃 Viewport에 배치하여 간섭을 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원본 부품이 유지된 채 박스가 겹쳐서 보임 → 원본 메시는 숨기기(Hide) 처리하거나 삭제하여 충돌 중복을 방지합니다.",
+    "박스가 너무 크게 생성됨 → 선택한 대상의 비정상적인 축이나 숨겨진 서브 파트가 포함되었는지 확인하고 재시도합니다."
+  ],
+  "related": [
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain",
+    "Create Welds"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Create%20Bounding%20Box",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Mesh",
+    "Optimize Mesh",
+    "Create Bounding Box"
+  ],
+  "at": "2026-11-24T11:50:37.874088+00:00"
+}

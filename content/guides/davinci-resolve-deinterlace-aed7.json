@@ -1,0 +1,88 @@
+{
+  "id": "davinci-resolve-deinterlace-aed7",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Deinterlace",
+  "title": "디인터레이스 — 인터레이스 영상을 프로그레시브로 변환하는 설정",
+  "summary": "인터레이스(Interlaced) 방식으로 촬영된 비디오 소스의 홀수 필들과 짝수 필드를 합쳐 프로그레시브(Progressive) 영상으로 변환해 주는 기능입니다. 빗살무늬 아티팩트를 제거하고 선명한 화질을 확보합니다.",
+  "when": [
+    "구형 방송 장비나 테이프로 촬영된 아카이브 영상을 편집할 때",
+    "인터레이스(1080i 등)로 인코딩된 소스를 유튜브나 웹용(1080p)으로 내보낼 때",
+    "빠른 움직임에서 빗살무늬(Comb Artifacts)가 나타날 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Media Pool에 인터레이스 영상 클립을 불러옵니다.",
+    "Edit 페이지 또는 Cut 페이지의 Timeline에 해당 클립을 배치합니다.",
+    "Inspector 패널을 열고 Video 탭 아래로 스크롤하여 Retime and Scaling 또는 Clip Attributes 영역을 확인합니다.",
+    "클립을 Mouse 우클릭하여 Clip Attributes를 선택합니다.",
+    "Video 탭의 Field Dominance 항목을 확인하고 Deinterlace 옵션을 활성화합니다.",
+    "미리보기 Viewport에서 빗살무늬가 사라지고 부드럽게 재생되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Deinterlace",
+      "desc": "인터레이스 필드를 결합하여 빗살무늬 아티팩트를 제거합니다."
+    },
+    {
+      "name": "Field Dominance",
+      "desc": "상위 필드(Upper)와 하위 필드(Lower) 중 어떤 필드를 먼저 처리할지 결정합니다."
+    },
+    {
+      "name": "Retime Process",
+      "desc": "프레임 속도 변환 시 디인터레이싱 및 광학 흐름(Optical Flow) 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구형 방송용 인터레이스 소스 변환",
+      "steps": [
+        "Media Pool에서 1080i 클립 우클릭 후 Clip Attributes 선택",
+        "Video 탭에서 Field Dominance를 Upper Field First로 지정",
+        "Deinterlace 옵션 체크 후 저장"
+      ]
+    },
+    {
+      "title": "Timeline 일괄 적용 및 확인",
+      "steps": [
+        "Timeline에 여러 인터레이스 클립 배치",
+        "Inspector에서 필요한 클립 선택 후 디인터레이스 적용",
+        "Color 페이지나 재생 창에서 모서리 떨림 현상 점검"
+      ]
+    }
+  ],
+  "mistakes": [
+    "프로그레시브 소스에 디인터레이스를 적용함 → 불필요한 화질 저하가 발생하므로 인터레이스 소스에만 적용합니다.",
+    "상/하위 필드 순서(Field Dominance)를 반대로 설정함 → 화면이 심하게 떨리거나 깨지므로 원본 소스의 필드 우위 값을 정확히 확인합니다."
+  ],
+  "related": [
+    "Clip Attributes",
+    "Retime and Scaling",
+    "Optical Flow",
+    "Color Page"
+  ],
+  "videos": [
+    {
+      "id": "9ZwcuHDnqW4",
+      "title": "Interlacing Bildartefakte beheben in Davinci Resolve",
+      "author": "MeinVideoStudio"
+    },
+    {
+      "id": "p8baVQb765k",
+      "title": "[OUTDATED] How to make an INTERLACING EFFECT in Davinci Resolve!",
+      "author": "HalfAnAtom"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Deinterlace",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Media Pool",
+    "Edit",
+    "Cut",
+    "Timeline",
+    "Inspector"
+  ],
+  "at": "2026-11-24T11:52:26.655902+00:00"
+}
