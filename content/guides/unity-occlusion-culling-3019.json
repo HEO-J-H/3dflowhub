@@ -1,0 +1,88 @@
+{
+  "id": "unity-occlusion-culling-3019",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "Occlusion Culling",
+  "title": "오클루전 컬링 — 카메라에 보이지 않는 오브젝트를 렌더링에서 제외하여 성능을 높이는 최적화 기능",
+  "summary": "Unity의 Occlusion Culling은 카메라 시야에서 완전히 가려져 보이지 않는 오브젝트를 렌더링 연산에서 제외하여 프레임 레이트를 극적으로 높여주는 핵심 최적화 기능입니다.",
+  "when": [
+    "실내 건축 인테리어처럼 벽이나 문으로 가려진 방이 많은 씬을 제작할 때",
+    "복잡한 도시 환경이나 미로처럼 시야각이 제한된 대규모 레벨을 최적화할 때",
+    "모바일 기기나 저사양 플랫폼에서 원활한 프레임 레이트를 유지해야 할 때"
+  ],
+  "steps": [
+    "씬에 배치된 벽, 바닥, 기둥 등 시야를 가리는 오브젝트들을 선택하고 Inspector 패널 우측 상단의 Static 드롭다운에서 Occluder Static을 체크합니다.",
+    "카메라에 의해 가려질 대상 오브젝트들을 선택하고 Static 드롭다운에서 Occludee Static을 체크합니다.",
+    "Window 메뉴에서 Rendering → Occlusion Culling을 선택하여 오클루전 컬링 Windows를 엽니다.",
+    "Occlusion Culling Windows의 Bake 탭으로 이동하여 Smallest Occluder, Smallest Hole, Backface Threshold 값을 씬 규모에 맞게 설정합니다.",
+    "하단의 Bake 버튼을 눌러 PVS(Potentially Visible Set) 데이터를 생성합니다.",
+    "Scene 뷰 상단의 Occlusion 시각화 토글을 켜서 컬링 영역이 올바르게 계산되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Smallest Occluder",
+      "desc": "오클루더로 인식할 오브젝트의 최소 크기로, 값이 작을수록 정밀하지만 Bake 시간이 길어집니다."
+    },
+    {
+      "name": "Smallest Hole",
+      "desc": "오브젝트 사이의 구멍이나 틈새를 통해 카메라가 반대편을 볼 수 있는지 판정하는 기준 크기입니다."
+    },
+    {
+      "name": "Backface Threshold",
+      "desc": "오클루더 계산 시 백페이스 컬링을 최적화하기 위한 임계값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 복도와 방 구조 최적화",
+      "steps": [
+        "모든 복도 벽과 문에 Occluder Static을 설정합니다.",
+        "방 내부의 가구와 소품들에 Occludee Static을 설정합니다.",
+        "Occlusion Culling Windows에서 Bake를 실행하여 문 닫힌 방의 오브젝트가 렌더링되지 않도록 합니다."
+      ]
+    },
+    {
+      "title": "오픈월드 지형 구조물 가리기",
+      "steps": [
+        "거대한 암석과 산악 지형 메시를 Occluder Static으로 지정합니다.",
+        "지형 뒤편에 숨겨진 세부 오브젝트들을 Occludee Static으로 지정합니다.",
+        "플레이어 시야가 암석에 가려질 때 뒤쪽 연산이 생략되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "동적으로 움직이는 캐릭터나 오브젝트에 Static을 체크함 → Dynamic 오브젝트는 Occlusion Culling 대상이 아니므로 Static을 해제하고 Occlusion Area나 Light Probe 그룹을 활용합니다.",
+    "Smallest Occluder 값을 지나치게 작게 설정함 → Bake 데이터 용량이 폭발적으로 증가하므로 씬 크기에 맞는 적당한 값을 유지합니다."
+  ],
+  "related": [
+    "Frustum Culling",
+    "LOD Group",
+    "Occlusion Area",
+    "Rendering Statistics"
+  ],
+  "videos": [
+    {
+      "id": "7bZ4OIA0wRQ",
+      "title": "Unity Occlusion Culling Tutorial",
+      "author": "Freedom Coding"
+    },
+    {
+      "id": "hv2CUi2eeBY",
+      "title": "Use Occlusion Culling like a PRO | unity advanced tutorial",
+      "author": "Nerd Head"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Occlusion%20Culling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Inspector",
+    "Static",
+    "Occluder Static",
+    "Occludee Static",
+    "Window",
+    "Rendering"
+  ],
+  "at": "2026-11-24T00:08:03.486741+00:00"
+}

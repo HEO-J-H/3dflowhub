@@ -1,0 +1,101 @@
+{
+  "id": "unity-audio-source-and-audio-listener-0f7d",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오",
+  "name": "Audio Source and Audio Listener",
+  "title": "Audio 소스 및 리스너 — 3차원 공간감을 포함한 배경음악과 효과음 재생 설정",
+  "summary": "Audio Source는 3D 공간에서 사운드를 재생하고, Audio Listener는 플레이어의 귀 역할을 하여 사운드를 수신합니다. Unity에서 입체 음향을 구현하는 가장 기초적인 Audio 시스템입니다.",
+  "when": [
+    "오픈월드 게임에서 플레이어로부터 멀어질수록 몬스터 울음소리가 작아지게 만들 때",
+    "폭포나 모닥불 같은 월드 오브젝트 위치에 실감 나는 현장감을 더할 때",
+    "배경음악(BGM)이나 UI 버튼 클릭 음처럼 거리와 상관없이 항상 똑같이 들려야 할 때"
+  ],
+  "steps": [
+    "Hierarchy 패널 빈 공간을 Mouse 우클릭하고 Audio → Audio Source를 선택하여 사운드를 재생할 오브젝트를 생성합니다.",
+    "Scene 뷰에서 사운드를 발생시킬 오브젝트를 선택하고, Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 Audio Listener를 입력하고 선택하여 카메라나 플레이어 오브젝트에 부착합니다 (기본적으로 Main Camera에 기본 생성되어 있습니다).",
+    "Audio Source 컴포넌트의 AudioClip 슬롯에 재생할 Audio 파일(WAV, MP3 등)을 드래그 앤 드롭합니다.",
+    "Inspector 패널의 Play On Awake(시작 시 재생)와 Spatial Blend 값을 조절하여 2D 사운드 또는 3D 입체 음향으로 설정합니다.",
+    "Scene 뷰에서 파란색 와이어프레임 구체(최소/최대 거리)를 확인하며 소리가 들리는 범위를 Mouse로 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "AudioClip",
+      "desc": "재생할 Audio 파일(에셋)을 지정합니다."
+    },
+    {
+      "name": "Play On Awake",
+      "desc": "게임 오브젝트가 활성화되거나씬이 시작될 때 사운드를 즉시 재생합니다."
+    },
+    {
+      "name": "Loop",
+      "desc": "사운드가 끝나면 처음부터 다시 무한 반복 재생합니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "사운드의 기본 출력 크기를 조절합니다."
+    },
+    {
+      "name": "Spatial Blend",
+      "desc": "0으로 설정하면 2D(모든 위치에서 동일하게 들림), 1로 설정하면 3D(거리와 방향에 따라 다르게 들림)가 됩니다."
+    },
+    {
+      "name": "3D Sound Settings (Min/Max Distance)",
+      "desc": "소리가 최대로 커지는 최소 거리와 소리가 완전히 사라지는 최대 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모닥불 주변 3D 입체 사운드 배치",
+      "steps": [
+        "Hierarchy에서 모닥불 오브젝트를 선택하고 Audio Source 컴포넌트를 추가합니다.",
+        "불 타는 소리 Audio 파일을 AudioClip에 할당하고 Play On Awake와 Loop를 체크합니다.",
+        "Spatial Blend 값을 1(3D)로 설정하여 거리가 멀어지면 소리가 작아지게 만듭니다.",
+        "Min Distance를 2, Max Distance를 15로 설정해 모닥불 근처에서만 소리가 나도록 조절합니다."
+      ]
+    },
+    {
+      "title": "거리감 없는 2D 배경음악(BGM) 재생",
+      "steps": [
+        "Hierarchy에서 빈 오브젝트를 만들고 이름을 BGM_Manager로 지정합니다.",
+        "Audio Source 컴포넌트를 추가하고 배경음악 파일을 AudioClip에 넣습니다.",
+        "Play On Awake와 Loop를 체크하고, Spatial Blend 값을 0(2D)으로 설정합니다.",
+        "플레이어의 위치와 상관없이 씬 전체에 일정한 볼륨으로 음악이 재생되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "씬 안에 Audio Listener가 두 개 이상 존재함 → 카메라나 플레이어 중 단 하나의 오브젝트에만 Audio Listener를 남겨두고 중복된 것은 제거합니다.",
+    "3D 공간인데 Spatial Blend가 0으로 설정되어 있음 → Spatial Blend 값을 1로 올려야 3D 거리 감쇠 효과가 적용됩니다.",
+    "소리가 전혀 들리지 않음 → Audio Source의 Mute가 켜져 있거나 Audio Mixer의 마스터 볼륨이 0으로 낮춰져 있는지 확인합니다."
+  ],
+  "related": [
+    "Audio Mixer",
+    "Audio Low Pass Filter",
+    "Audio Reverb Zone",
+    "Camera"
+  ],
+  "videos": [
+    {
+      "id": "1BMJFgK68IU",
+      "title": "Audio Sources & Listeners - Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "vUqzHeeX980",
+      "title": "Unity's Audio Section (Audio Filters and Audio Listeners) EVERYTHING You Need To Know!!",
+      "author": "RoBust Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Source%20and%20Audio%20Listener",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Mouse",
+    "Audio",
+    "Audio Source"
+  ],
+  "at": "2026-11-24T00:08:12.284642+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "unity-canvas-and-ui-scaler-a5af",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "UI 디자인",
+  "name": "Canvas and UI Scaler",
+  "title": "캔버스 및 UI 스케일러 — 다양한 Resolution와 화면 비율에 대응하는 사용자 인터페이스 레이아웃 구성",
+  "summary": "Unity의 Canvas와 UI Scaler는 다양한 Resolution와 화면 비율에서 게임 UI가 깨지지 않고 일관되게 보이도록 정렬하고 크기를 자동으로 조절하는 핵심 시스템입니다.",
+  "when": [
+    "모바일 기기마다 다른 화면 비율과 노치 디자인에 UI가 잘리지 않도록 대응할 때",
+    "PC나 콘솔 등 Resolution가 크게 변하는 환경에서 폰트나 버튼 크기를 일정하게 유지할 때",
+    "풀HD(1080p) 기준으로 디자인된 UI 요소를 다양한 디스플레이 크기에 맞게 자동 스케일링할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 우클릭 후 UI → Canvas를 선택해 캔버스를 생성합니다.",
+    "생성된 Canvas 오브젝트를 선택한 뒤, Inspector 패널에서 Canvas Scaler 컴포넌트를 확인합니다.",
+    "UI Scale Mode를 'Scale With Screen Size'로 변경합니다.",
+    "Reference Resolution에 디자인 기준 Resolution(예: 1920 x 1080)를 입력합니다.",
+    "Screen Match Mode를 'Match'로 설정하고 Match 슬라이더를 0.5(너비와 높이 중간 균형)로 조절합니다.",
+    "Scene 뷰에서 Game 뷰의 Resolution를 바꿔가며 UI가 의도대로 반응하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "UI Scale Mode",
+      "desc": "화면 크기에 따라 UI 크기를 조절하는 방식을 결정합니다."
+    },
+    {
+      "name": "Reference Resolution",
+      "desc": "UI를 디자인할 때 기준으로 삼은 Resolution(너비, 높이)를 설정합니다."
+    },
+    {
+      "name": "Screen Match Mode",
+      "desc": "기준 Resolution와 실제 화면 Resolution가 다를 때 크기를 맞추는 방식을 정합니다."
+    },
+    {
+      "name": "Match",
+      "desc": "가로(Width)와 세로(Height) 중 어느 쪽을 기준으로 스케일링할지 비율을 정합니다."
+    },
+    {
+      "name": "Reference Pixels Per Unit",
+      "desc": "UI 이미지 1유닛당 포함될 픽셀 수를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 게임 Resolution 대응 설정하기",
+      "steps": [
+        "Canvas 선택 후 Canvas Scaler의 UI Scale Mode를 Scale With Screen Size로 설정",
+        "Reference Resolution에 1080 x 1920(세로 화면 기준) 입력",
+        "Match 값을 1(Height 기준)로 설정하여 세로 길이에 맞춰 UI가 비례하도록 고정"
+      ]
+    },
+    {
+      "title": "UI 버튼이 Resolution 변경 시 위치가 틀어질 때 고정하기",
+      "steps": [
+        "버튼 오브젝트의 Rect Transform 컴포넌트 선택",
+        "Anchor Preset을 클릭하여 화면 구석(예: 우측 상단)으로 앵커 지정",
+        "Pivot과 Pos X, Pos Y 값을 조정해 화면 모서리 기준으로 고정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "UI Scale Mode를 기본값(Constant Pixel Size)으로 둔 채 모바일 Resolution를 테스트함 → 모바일 화면에서 UI가 너무 작거나 크게 보입니다. Scale With Screen Size로 변경하세요.",
+    "Reference Resolution을 설정하지 않고 UI를 배치함 → 디스플레이 Resolution가 바뀔 때마다 UI가 제각각 흩어집니다. 디자인 기준 Resolution를 먼저 입력하세요."
+  ],
+  "related": [
+    "Rect Transform",
+    "SafeArea",
+    "Layout Group",
+    "UI Toolkit"
+  ],
+  "videos": [
+    {
+      "id": "BNndkW4Oqno",
+      "title": "Unity Canvas UI - Scale and Adapt to the device screen size! (Unity Editor Tips)",
+      "author": "A Bit Of Game Dev"
+    },
+    {
+      "id": "1OwQflHq5kg",
+      "title": "Unity UI canvas modes and canvas scaler explained",
+      "author": "Christina Creates Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Canvas%20and%20UI%20Scaler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Canvas"
+  ],
+  "at": "2026-11-24T00:08:07.463495+00:00"
+}
