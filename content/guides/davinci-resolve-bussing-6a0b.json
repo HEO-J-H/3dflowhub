@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-bussing-6a0b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트",
+  "name": "Bussing",
+  "title": "버스ing — 여러 Audio 트랙을 묶어서 그룹으로 제어하는 라우팅 기능",
+  "summary": "DaVinci Resolve의 Bussing(버스)은 여러 Audio 트랙의 신호를 하나로 묶어 동시에 제어하고 효과를 적용하는 Audio 라우팅 기능입니다. 복잡한 사운드 믹싱을 체계적으로 관리할 때 사용합니다.",
+  "when": [
+    "대사, 배경음악, 효과음 등 성격이 같은 여러 트랙의 전체 볼륨을 한 번에 조절할 때",
+    "여러 악기나 보컬 트랙에 동일한 Reverb나 Compressor 효과를 공통으로 적용할 때",
+    "전체 믹스 완성도를 높이기 위해 최종 출력 전 마스터링 단계를 거치고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 메뉴에서 Fairlight 페이지로 이동합니다.",
+    "상단 메뉴바에서 Fairlight → Bussing 로 이동하거나 Mixer 패널의 Output 섹션을 확인합니다.",
+    "Mixer 패널에서 버스로 보낼 Audio 트랙의 Bus Assign 슬롯(또는 상단 번호)을 클릭합니다.",
+    "연결할 Bus(예: Bus 1, Bus 2 등)를 선택하여 해당 트랙의 신호를 버스로 라우팅합니다.",
+    "Mixer 패널에 생성된 Bus 채널 스트립에서 볼륨 페이더를 조절하거나 Fairlight FX를 추가하여 제어합니다.",
+    "Viewport와 Audio 미터에서 신호가 올바르게 묶여 출력되는지 확인하면 완료됩니다."
+  ],
+  "params": [
+    {
+      "name": "Bus Assign",
+      "desc": "선택한 Audio 트랙의 신호를 특정 버스 채널로 보내는 라우팅 설정입니다."
+    },
+    {
+      "name": "Bus Format",
+      "desc": "버스의 출력 방식을 Mono, Stereo, 5.1, 7.1 등 채널 구성으로 설정합니다."
+    },
+    {
+      "name": "Volume Fader",
+      "desc": "버스로 묶인 전체 트랙의 최종 출력 볼륨을 조절합니다."
+    },
+    {
+      "name": "Fairlight FX",
+      "desc": "버스 채널에 EQ, Dynamics 등의 Audio 효과를 일괄 적용합니다."
+    },
+    {
+      "name": "Mute / Solo",
+      "desc": "해당 버스 채널만 음소거하거나 단독으로 모니터링합니다."
+    },
+    {
+      "name": "Panner",
+      "desc": "버스 채널의 좌우 스테레오 음상 위치를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 대사 트랙의 볼륨 일괄 제어",
+      "steps": [
+        "모든 캐릭터 대사 트랙의 Bus Assign을 Bus 1로 설정합니다.",
+        "Mixer 패널에서 Bus 1 페이더를 이용해 대사 전체의 볼륨을 동시에 조절합니다.",
+        "배경음악과 겹칠 때 대사 그룹 전체를 손쉽게 줄여 밸런스를 맞춥니다."
+      ]
+    },
+    {
+      "title": "공통 공간감(Reverb) 적용",
+      "steps": [
+        "효과음 트랙들을 Bus 2로 묶어줍니다.",
+        "Bus 2 채널 스트립의 Effects 슬롯에서 Reverb 플러그인을 추가합니다.",
+        "모든 효과음에 일관된 공간감이 적용되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "트랙이 버스로 연결되지 않음 → Mixer 패널에서 Bus Assign이 올바른 번호로 켜져 있는지 확인합니다.",
+    "소리가 중복되어 클리핑(Clipping) 발생 → 트랙 볼륨과 버스 볼륨이 동시에 너무 높지 않은지 페이더를 낮춰 해결합니다."
+  ],
+  "related": [
+    "Fairlight FX",
+    "Dynamics",
+    "EQ",
+    "Main Output"
+  ],
+  "videos": [
+    {
+      "id": "LZPJoS0CqC4",
+      "title": "DaVinci Resolve Fairlight Bussing In 3 Minutes",
+      "author": "JayAreTV"
+    },
+    {
+      "id": "wqQHRt1JUP0",
+      "title": "How to Create and Assign Audio to BUS in Davinci Resolve",
+      "author": "One Minute Premiere"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Bussing",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight",
+    "Bussing",
+    "Mixer",
+    "Output"
+  ],
+  "at": "2026-11-24T12:03:03.140757+00:00"
+}

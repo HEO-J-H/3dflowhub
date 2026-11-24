@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-solid-color-834e",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "Solid Color",
+  "title": "솔리드 컬러 — 배경이나 마스크용 단색 제너레이터를 생성하는 노드",
+  "summary": "Solid Color는 DaVinci Resolve의 Edit 또는 Cut 페이지에서 단색 배경이나 자막용 플레이트를 빠르게 생성하는 제너레이터입니다. 투명한 공간을 채우거나 자막, 그래픽 요소의 Base로 활용합니다.",
+  "when": [
+    "타이틀이나 자막 아래에 가독성을 높이기 위한 단색 배경을 넣을 때",
+    "투명 배경 영상의 뒤나 끊긴 컷 사이에 깔끔한 솔리드 컬러 배경을 채울 때",
+    "트랜지션이나 컬러 그레이딩 테스트용 순수 단색 클립이 필요할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Cut 또는 Edit 페이지로 이동합니다.",
+    "좌측 상단의 Effects 라이브러리를 열고 Toolbox 카테고리에서 Generators를 선택합니다.",
+    "Generators 목록에서 Solid Color 아이콘을 Timeline의 비디오 트랙(V2 또는 V1) 위로 드래그하여 올립니다.",
+    "Timeline에서 Solid Color 클립을 선택하고 Inspector 패널을 엽니다.",
+    "Inspector 패널의 Generator 탭에서 Color 색상 상자를 클릭하여 원하는 단색으로 변경합니다.",
+    "Viewer Viewport에서 단색 배경이 올바르게 채워졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "솔리드 클립에 적용할 단색을 선택하는 컬러 피커입니다."
+    },
+    {
+      "name": "Composite Mode",
+      "desc": "아래 Timeline 레이어와 섞이는 블렌딩 방식을 설정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "솔리드 컬러의 투명도를 조절하여 배경 비치는 정도를 바꿉니다."
+    },
+    {
+      "name": "Zoom",
+      "desc": "솔리드 컬러 클립의 크기를 확대하거나 축소합니다."
+    },
+    {
+      "name": "Position X / Y",
+      "desc": "화면 내에서 솔리드 컬러의 가로·세로 위치를 이동합니다."
+    },
+    {
+      "name": "Rotation Angle",
+      "desc": "솔리드 컬러 플레인을 회전시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자막 가독성을 높이는 반투명 배경 만들기",
+      "steps": [
+        "Timeline 자막 클립 바로 아래 비디오 트랙에 Solid Color를 올립니다.",
+        "Inspector에서 원하는 어두운 단색을 선택합니다.",
+        "Opacity 값을 낮추어 반투명한 자막 박스를 완성합니다."
+      ]
+    },
+    {
+      "title": "화면 전환용 단색 플래시 효과",
+      "steps": [
+        "컷 씬 사이에 짧은 길이의 Solid Color(흰색)를 배치합니다.",
+        "Inspector의 Opacity에 Keyframe을 주어 밝아졌다가 어두워지게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "비디오 트랙 순서 오류 → Solid Color가 메인 영상 위에 올라가 화면 전체를 가리는 경우, 트랙을 아래(V1)로 내리거나 블렌딩 모드를 변경합니다.",
+    "단색 경계선 깨짐 → 프로젝트 Resolution와 Solid Color 클립 설정이 맞지 않는 경우, 클립의 Transform 속성에서 Zoom 값을 확인합니다."
+  ],
+  "related": [
+    "Text+",
+    "Adjustment Clip",
+    "Fusion Composition",
+    "Color Page"
+  ],
+  "videos": [
+    {
+      "id": "n_LxKe6Lvbs",
+      "title": "Solid Color generators are AWESOME! - Davinci Resolve 17 Tutorial",
+      "author": "MrAlexTech"
+    },
+    {
+      "id": "K9SbsGsCOKg",
+      "title": "How to Set a Solid Color Background in Davinci Resolve",
+      "author": "Forty Frames Learning"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Solid%20Color",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut",
+    "Edit",
+    "Effects",
+    "Toolbox",
+    "Generators"
+  ],
+  "at": "2026-11-24T12:02:38.770404+00:00"
+}
