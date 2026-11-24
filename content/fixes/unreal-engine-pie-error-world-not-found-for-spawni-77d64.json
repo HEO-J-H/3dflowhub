@@ -1,0 +1,37 @@
+{
+  "id": "unreal-engine-pie-error-world-not-found-for-spawni-77d64",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "PIE error: World not found for spawning actor",
+  "title": "PIE error: World not found for spawning actor 오류 해결법",
+  "summary": "PIE error: World not found for spawning actor 오류는 Unreal Engine에서 Play in Editor(PIE)를 실행하거나 Blueprint에서 액터를 스폰할 때 유효한 월드(World) 컨텍스트를 찾지 못해 발생하는 오류입니다.",
+  "causes": [
+    "유효한 월드(World)가 로드되지 않은 상태에서 SpawnActor 함수가 호출되었습니다.",
+    "월드가 아직 완전히 초기화되지 않은 타이밍에 스폰 로직이 실행되었습니다.",
+    "멀티플레이어 환경이나 서브 레벨 스트리밍 중 잘못된 월드 컨텍스트를 참조했습니다."
+  ],
+  "steps": [
+    "Blueprint Graph에서 SpawnActor 노드에 연결된 World Context 핀이 올바른 유효한 오브젝트를 참조하고 있는지 확인합니다.",
+    "C++ 코드에서 SpawnActor를 호출할 때 GetWorld()가 nullptr를 반환하는지 검사하고 유효성 검사 코드를 추가합니다.",
+    "게임 시작 직후나 비동기 레벨 로딩 중인 초기화 단계라면 월드 로드가 완료된 이후로 스폰 타이밍을 지연시킵니다.",
+    "Project Settings에서 Default Maps의 시작 레벨(Startup Map)과 게임 모드 설정이 올바르게 지정되어 있는지 확인합니다."
+  ],
+  "check": [
+    "에디터에서 Play 버튼을 눌러 PIE를 실행했을 때 Output Log에 해당 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "스폰된 액터가 Viewport와 World Outliner에 정상적으로 생성되는지 확인합니다."
+  ],
+  "prevent": [
+    "액터를 스폰하기 전 항상 World Context의 유효성(Is Valid)을 체크하는 습관을 들입니다.",
+    "비동기 로딩이나 레벨 전환 시점에 의존하는 스폰 로직은 GameState나 GameMode의 이벤트 바인딩을 활용해 안전한 타이밍에 실행합니다."
+  ],
+  "keywords": [
+    "Unreal Engine PIE error",
+    "World not found for spawning actor",
+    "Unreal 스폰 오류",
+    "SpawnActor 월드 없음",
+    "PIE World Context 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T08:15:10+00:00"
+}

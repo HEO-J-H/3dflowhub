@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-polyextrude-sop-invalid-or-missing-i-f0862",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: PolyExtrude sop: Invalid or missing input geometry",
+  "title": "Error: PolyExtrude sop: Invalid or missing input geometry 오류 해결법",
+  "summary": "'Error: PolyExtrude sop: Invalid or missing input geometry'는 Houdini에서 PolyExtrude 노드가 계산을 수행할 때 필수 입력 데이터(지오메트리)가 누락되었거나 손상되어 전달되었을 때 발생하는 오류입니다.",
+  "causes": [
+    "PolyExtrude 노드의 Input(연결선)이 비어 있거나 올바른 Geometry Nodes에 연결되지 않았습니다.",
+    "상단 노드에서 지오메트리가 삭제되었거나 비어 있는(Empty) 프레임/상태입니다.",
+    "입력된 지오메트리에 필수 데이터(Primitive 또는 Point)가 존재하지 않습니다."
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 PolyExtrude 노드의 Input 1번 포트가 활성화된 Geometry Nodes와 올바르게 연결되어 있는지 확인합니다.",
+    "연결된 상단 노드를 선택하고 디스플레이 플래그(Display/Render Flag, 파란색/보라색 원 아이콘)를 켜서 실제로 지오메트리가 존재하는지 확인합니다.",
+    "상단 노드의 파라미터나 지오메트리 스프레드시트(Geometry Spreadsheet)를 열어 포인트와 Primitive 개수가 0보다 큰지 확인합니다.",
+    "필요한 경우 Null 노드를 PolyExtrude 앞에 추가하여 데이터 흐름을 명확하게 정리합니다.",
+    "문제가 지속될 경우 PolyExtrude 노드를 삭제하고 Tab 키를 눌러 새로 생성한 뒤 다시 연결합니다."
+  ],
+  "check": [
+    "PolyExtrude 노드의 에러 아이콘이 사라지고 정상적으로 Viewport에 돌출(Extrude) 결과가 나타납니다.",
+    "지오메트리 스프레드시트에서 Primitive 데이터가 정상적으로 출력되는지 확인합니다."
+  ],
+  "prevent": [
+    "네트워크를 연결할 때 연결선이 끊어지거나 빈 노드가 입력으로 들어가지 않도록 주의합니다.",
+    "조건문이나 Delete 노드 사용 시 지오메트리가 완전히 사라지는 상황을 방지하기 위해 Null 노드로 중간 단계를 백업합니다."
+  ],
+  "keywords": [
+    "Houdini PolyExtrude 오류",
+    "Invalid or missing input geometry",
+    "Houdini sop 에러",
+    "폴리 extrude 오류 해결",
+    "Houdini 입력 지오메트리 누락"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T08:15:12+00:00"
+}

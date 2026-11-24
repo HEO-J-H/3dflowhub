@@ -1,0 +1,92 @@
+{
+  "id": "v-ray-v-ray-exposure-value-ev-0407",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "카메라 및 노출",
+  "name": "V-Ray Exposure Value (EV)",
+  "title": "V-Ray Exposure Value (EV) — 물리적 카메라와 V-Ray 렌더 설정에서 노출 값을 조절하",
+  "summary": "V-Ray Exposure Value (EV)는 실제 카메라의 노출 제어 원리를 빌려 렌더링 이미지의 전체적인 밝기를 정밀하게 조절하는 기능입니다. 빛의 양을 직관적인 수치로 통제하여 과도하게 밝거나 어두운 씬을 균형 있게 맞춥니다.",
+  "when": [
+    "실내 인테리어 렌더링에서 창밖의 밝은 햇빛과 어두운 실내의 노출 차이를 조절할 때",
+    "야간 외관 씬에서 조명 강도를 일일이 높이지 않고 카메라 감도와 노출로 전체 밝기를 끌어올릴 때",
+    "여러 컷의 렌더링 이미지 간 전체적인 밝기 톤을 일관되게 맞추고 싶을 때"
+  ],
+  "steps": [
+    "3ds Max Viewport에서 기존에 배치된 V-Ray Physical Camera를 선택합니다.",
+    "Command Panel의 Modify 탭으로 이동합니다.",
+    "Camera 파라미터 그룹을 열고 Exposure 옵션에 체크하여 활성화합니다.",
+    "Exposure value (EV) 수치 입력창을 클릭합니다.",
+    "값을 낮추면(예: 10 이하) 화면이 밝아지고, 높이면(예: 15 이상) 화면이 어두워집니다.",
+    "V-Ray Frame Buffer(VFB)에서 렌더링을 실행하여 바뀐 밝기를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Exposure",
+      "desc": "노출 제어 전체 기능을 켜고 끄는 스위치입니다."
+    },
+    {
+      "name": "Exposure value (EV)",
+      "desc": "카메라의 노출 단계를 결정하는 수치로, 값이 클수록 어두워지고 작을수록 밝아집니다."
+    },
+    {
+      "name": "F-number",
+      "desc": "조리개 구경의 크기로, 심도(Depth of Field)와 노출 밝기를 동시에 조절합니다."
+    },
+    {
+      "name": "Shutter speed",
+      "desc": "셔터가 열려 있는 시간으로, 모션 블러 효과와 화면 밝기에 영향을 줍니다."
+    },
+    {
+      "name": "ISO",
+      "desc": "센서의 빛 민감도로, 수치가 높을수록 씬이 밝아지며 노이즈가 증가할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "어두운 실내 씬 전체 밝기 확보",
+      "steps": [
+        "V-Ray Physical Camera의 Exposure value (EV) 기본값을 확인합니다.",
+        "수치를 기본값보다 2~3 단계 낮게(예: 14에서 11로) 입력합니다.",
+        "VFB에서 렌더링을 다시 실행하여 실내 디테일이 잘 보이는지 확인합니다."
+      ]
+    },
+    {
+      "title": "대낮 야외 건축 렌더링 노출 안정화",
+      "steps": [
+        "햇빛이 너무 강해 하얗게 타오르는 영역(Burn)을 확인합니다.",
+        "Exposure value (EV)를 높여(예: 13에서 15로) 전체적인 노출을 낮춥니다.",
+        "Highlight burn 옵션을 함께 조절하여 밝은 영역의 디테일을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "EV 값을 극단적으로 높이거나 낮춤 → 조명 라이트를 수정하는 대신 카메라 EV 값을 적정 범위 내(일반적으로 9~15 사이)에서 조절하세요.",
+    "ISO나 Shutter speed와 중복으로 밝기를 키워 노이즈 발생 → 카메라 파라미터 전체의 조합을 확인하고 EV 값 하나로 전체 노출을 먼저 맞추세요."
+  ],
+  "related": [
+    "V-Ray Physical Camera",
+    "V-Ray Frame Buffer",
+    "V-Ray Light",
+    "Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "omhvPfIbEtM",
+      "title": "Corona Render, Exposure Control — also for V-Ray!",
+      "author": "Learn Corona Renderer"
+    },
+    {
+      "id": "BHQyjedb1OQ",
+      "title": "V-Ray Next for SketchUp – Automatic exposure and white balance",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Exposure%20Value%20%28EV%29",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max Viewport",
+    "V-Ray Physical Camera"
+  ],
+  "at": "2026-11-24T08:13:19.343849+00:00"
+}

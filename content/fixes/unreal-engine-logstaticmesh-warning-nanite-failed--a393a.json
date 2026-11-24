@@ -1,0 +1,41 @@
+{
+  "id": "unreal-engine-logstaticmesh-warning-nanite-failed--a393a",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogStaticMesh: Warning: Nanite failed to build because mesh has open boundaries or non-manifold geometry",
+  "title": "LogStaticMesh: Warning: Nanite failed to build because mesh has open boundaries ",
+  "summary": "Unreal Engine에서 Nanite 빌드를 시도할 때 스태틱 메시의 면이 뚫려 있거나(Open Boundaries) 비정상적인 구조(Non-manifold geometry)가 감지되어 Nanite 클러스터 생성이 실패할 때 발생하는 경고 메시지입니다.",
+  "causes": [
+    "메쉬의 일부 면이 삭제되어 구멍(Open Boundaries)이 뚫려 있는 경우",
+    "하나의 엣지에 3개 이상의 면이 공유되거나 내부 면이 겹쳐 있는 Non-manifold geometry가 존재하는 경우",
+    "외부 3D DCC(Blender, Maya, 3ds Max 등)에서 모델링 중 실수로 생성된 비정상적인 버텍스나 엣지",
+    "Import 과정에서 지나치게 세밀한 면이 깨져서 생성된 Topology 오류"
+  ],
+  "steps": [
+    "3D DCC 도구(Blender, Maya 등)에서 해당 스태틱 메쉬를 다시 엽니다.",
+    "메쉬의 구멍을 찾기 위해 선택 모드(Select) 또는 메쉬 정리(Cleanup / Mesh Check) 기능을 실행합니다.",
+    "Blender의 경우 Edit Mode에서 Alt + Shift + Click으로 열린 엣지 루프를 확인하고 F 키나 Fill로 구멍을 막습니다.",
+    "Non-manifold 엣지를 수정하기 위해 Blender에서는 Select > All by Trait > Non Manifold를 사용하여 잘못된 요소를 찾고 정리합니다.",
+    "수정이 완료된 메쉬를 다시 FBX나 USD 형식으로 익스포트합니다.",
+    "Unreal Engine의 Content Browser에서 기존 메쉬를 Mouse 우클릭하고 Reimport를 선택하거나 새 파일을 임포트합니다.",
+    "스태틱 메쉬 에디터(Static Mesh Editor) Details 패널에서 Nanite 설정을 다시 활성화하고 Apply Changes를 누릅니다."
+  ],
+  "check": [
+    "Unreal Engine Output Log에서 LogStaticMesh 경고 메시지가 더 이상 나타나지 않는지 확인합니다.",
+    "스태틱 메쉬 에디터 Viewport에서 Viewport Mode를 Nanite Visualization으로 변경했을 때 메쉬가 정상적으로 빌드되었는지 확인합니다."
+  ],
+  "prevent": [
+    "3D DCC에서 모델링 작업을 마친 후 반드시 Clean Up 또는 Non-manifold 검사 기능을 실행하여 결함을 사전에 제거합니다.",
+    "외부 캐드(CAD) 데이터를 임포트할 때 Pixyz Studio 등을 통해 사전에 솔리드(Solid) 결합 및 불필요한 면 정리를 거칩니다."
+  ],
+  "keywords": [
+    "Nanite failed to build",
+    "open boundaries non-manifold geometry",
+    "Unreal Nanite 오류",
+    "스태틱 메시 Nanite 실패",
+    "Non-manifold 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T08:15:01+00:00"
+}

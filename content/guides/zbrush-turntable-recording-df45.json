@@ -90,5 +90,14 @@
     "Movie",
     "Turntable"
   ],
-  "at": "2026-11-13T02:00:32.953804+00:00"
+  "at": "2026-11-13T02:00:32.953804+00:00",
+  "qa_at": "2026-11-24T08:12:26+00:00",
+  "qa": {
+    "score": 8,
+    "defects": [
+      "ZBrush에서 Turntable 녹화 시 BPR 렌더링은 Movie > Modifiers에서 BPR 옵션을 켜야 턴테이블 동작 중에 매 프레임 적용됩니다.",
+      "Movie 팔레트 내에 Save 버튼이 아니라 Movie > Save As를 통해 저장합니다."
+    ],
+    "fix_hint": "ZBrush의 Movie 및 BPR 렌더링 관련 메뉴 경로와 저장 기능을 공식 명칭에 맞게 정확히 검증하여 작성하세요."
+  }
 }
