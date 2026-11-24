@@ -1,0 +1,91 @@
+{
+  "id": "v-ray-v-ray-aerial-perspective-5658",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "효과 및 유틸리티",
+  "name": "V-Ray Aerial Perspective",
+  "title": "V-Ray Aerial Perspective — 대기 중의 안개와 먼지 효과를 simulation하여 원근감",
+  "summary": "V-Ray Aerial Perspective는 대기의 깊이감과 원근에 따른 공기 중 입자 효과를 시뮬레이션하여, 멀리 있는 오브젝트가 대기에 의해 희미해지고 채도가 낮아지는 현상을 자연스럽게 표현하는 맵입니다.",
+  "when": [
+    "광활한 야외 풍경이나 건축 시각화 렌더링에서 공간의 깊이감을 더하고 싶을 때",
+    "멀리 있는 산이나 건물이 대기 중에 자연스럽게 파묻히는 느낌을 주고 싶을 때",
+    "안개나 대기 효과를 Post 프로세싱 없이 렌더링 단계에서 사실적으로 처리하고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup 창을 엽니다 (F10 키).",
+    "Environment 탭으로 이동하여 Atmosphere 슬롯을 클릭합니다.",
+    "Effect 목록에서 V-Ray Aerial Perspective를 선택하고 추가합니다.",
+    "Visibility Distance 값을 조절하여 대기 효과가 시작되는 거리를 설정합니다.",
+    "Intensity나 Environment Color를 조절하여 대기의 밀도와 색감을 맞춥니다.",
+    "Viewport에서 렌더링을 실행하여 원근감이 자연스럽게 표현되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Visibility Distance",
+      "desc": "오브젝트가 대기 속에서 완전히 보이지 않게 되는 기준 거리입니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "대기 원근 효과의 전체적인 강도를 조절합니다."
+    },
+    {
+      "name": "Environment Color",
+      "desc": "대기 안개의 기본 색상을 설정합니다."
+    },
+    {
+      "name": "Use Environment",
+      "desc": "장면의 환경(Environment) 설정을 대기 색상에 반영할지 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대규모 건축 외관 조감도",
+      "steps": [
+        "Render Setup에서 Environment에 V-Ray Aerial Perspective를 추가합니다.",
+        "Visibility Distance를 장면에 맞는 미터 단위 거리로 크게 설정합니다.",
+        "Intensity를 조절하여 원경의 건물들이 배경과 부드럽게 섞이도록 만듭니다."
+      ]
+    },
+    {
+      "title": "산악 지형 풍경 렌더링",
+      "steps": [
+        "지형 모델링과 카메라 뷰를 준비합니다.",
+        "V-Ray Aerial Perspective를 적용하고 Environment Color를 푸른빛 하늘색으로 맞춥니다.",
+        "가장 먼 산 능선이 대기에 가려 채도가 낮아지는 것을 확인하며 밀도를 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Visibility Distance 값을 너무 작게 설정함 → 장면 전체가 안개에 파묻혀 오브젝트가 전혀 보이지 않으므로 장면에 맞는 실제 단위를 고려해 값을 크게 늘려줍니다.",
+    "Intensity를 너무 높게 설정함 → 원근감이 과장되어 부자연스러워지므로 값을 낮추어 은은한 대기 느낌만 살려줍니다."
+  ],
+  "related": [
+    "V-Ray Dirt",
+    "Environment and Effects",
+    "V-Ray Sun",
+    "V-Ray Physical Camera"
+  ],
+  "videos": [
+    {
+      "id": "ujGAuX6-gNk",
+      "title": "AERIAL PERSPECTIVE VRAY TUTORIAL",
+      "author": "Learn 3d Tutorials"
+    },
+    {
+      "id": "OBRGtO2bkts",
+      "title": "V-Ray Aerial Perspective: Realistic Haze in Seconds",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Aerial%20Perspective",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "Environment",
+    "Atmosphere",
+    "Effect",
+    "V-Ray Aerial Perspective"
+  ],
+  "at": "2026-11-24T08:42:59.635449+00:00"
+}

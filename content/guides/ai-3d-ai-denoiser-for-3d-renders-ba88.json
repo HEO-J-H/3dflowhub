@@ -1,0 +1,95 @@
+{
+  "id": "ai-3d-ai-denoiser-for-3d-renders-ba88",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 렌더링",
+  "name": "AI Denoiser for 3D Renders",
+  "title": "AI 3D 렌더 디노이저 — 패스 Tracing 및 패스 렌더링 결과물의 노이즈를 딥러닝으로 실시간 제거하여 렌더",
+  "summary": "AI Denoiser for 3D Renders는 딥러닝과 인공지능 기술을 활용해 적은 샘플 수(Samples)로 렌더링된 이미지의 잔여 노이즈를 빠르고 깨끗하게 제거해 줍니다. 렌더링 시간을 획기적으로 줄이면서도 프로덕션 급의 결과물을 얻을 수 있는 필수 기능입니다.",
+  "when": [
+    "마감 기한이 촉박하여 렌더링 샘플 수를 높이지 못하고 노이즈가 발생했을 때",
+    "실내 인테리어 씬에서 간접광(GI) 반사로 인해 미세한 점 형태의 노이즈가 많이 남을 때",
+    "애니메이션 시퀀스 렌더링 시 프레임 간 노이즈 튐(Flickering) 현상을 줄이고 싶을 때"
+  ],
+  "steps": [
+    "사용 중인 3D DCC 또는 렌더러의 Render Setup (F10) 창을 엽니다.",
+    "Render Elements 또는 Render Settings 탭으로 이동하여 Denoising 채널을 추가하거나 활성화합니다.",
+    "Denoiser 엔진으로 AI 기반 알고리즘(예: NVIDIA OptiX Denoiser 또는 Intel Open Image Denoise)을 선택합니다.",
+    "필요에 따라 Pass 또는 Mode를 설정하고 뷰포트나 프레임 버퍼(VFB)에서 결과를 확인합니다.",
+    "최종 렌더링을 실행하여 디노이징된 깨끗한 이미지 레이어를 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Denoiser Type",
+      "desc": "사용할 AI 알고리즘(NVIDIA OptiX, Intel Open Image Denoise 등)을 선택합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "디노이저가 분석할 입력 데이터의 품질을 결정하는 기본 렌더 샘플 수입니다."
+    },
+    {
+      "name": "Blend",
+      "desc": "원본 렌더 이미지와 디노이징된 결과물의 혼합 비율을 조절합니다."
+    },
+    {
+      "name": "Presets",
+      "desc": "디노이징 강도(Mild, Default, Strong)를 빠르게 설정합니다."
+    },
+    {
+      "name": "Render Elements",
+      "desc": "디노이징을 별도의 패스(Pass)로 분리하여 후반 작업에서 제어할 수 있게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 시각화 렌더링 노이즈 제거",
+      "steps": [
+        "Render Setup에서 V-Ray 또는 Corona 렌더러의 Denoiser 요소를 추가합니다.",
+        "Denoiser Engine을 NVIDIA AI Denoiser로 설정합니다.",
+        "렌더링을 실행하고 프레임 버퍼에서 디노이즈된 결과가 즉시 반영되는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "Blender Cycles 빠른 애니메이션 렌더링",
+      "steps": [
+        "Properties 패널의 Render Properties 탭으로 이동합니다.",
+        "Sampling 섹션에서 OpenImageDenoise를 활성화하고 Pass를 Albedo와 Normal로 설정합니다.",
+        "Viewport Shading을 Rendered로 놓고 노이즈가 실시간으로 정제되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "너무 낮은 샘플 수로 렌더링 → AI가 텍스처 디테일을 뭉개거나 수화물 패턴 같은 얼룩을 생성함. 최소한의 기본 샘플(Min Samples)을 확보한 후 AI 디노이저를 적용하세요.",
+    "애니메이션 작업 시 프레임별 디노이즈 튐 현상 발생 → Temporal(시간축) 안정화 옵션이 꺼져 있는지 확인하고 애니메이션 전용 디노이즈 모드나 패스를 사용하세요."
+  ],
+  "related": [
+    "V-Ray Denoiser",
+    "Intel Open Image Denoise",
+    "NVIDIA OptiX Denoiser",
+    "Cycles Denoising"
+  ],
+  "videos": [
+    {
+      "id": "AyjmkC_gs1U",
+      "title": "Quick Tip: Using Houdini's AI Denoiser for Faster, Cleaner Renders with Alan Tinka",
+      "author": "cgcircuitLLC"
+    },
+    {
+      "id": "BQsc7NZFZr4",
+      "title": "Octane  4 ~ How To Use AI Denoiser to Speed up Your Renders",
+      "author": "Solomon Jagwe"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Denoiser%20for%203D%20Renders",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D DCC",
+    "Render Setup",
+    "Render Elements",
+    "Render Settings",
+    "Denoising",
+    "Denoiser"
+  ],
+  "at": "2026-11-24T08:43:25.170471+00:00"
+}

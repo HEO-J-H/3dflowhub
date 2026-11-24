@@ -1,0 +1,80 @@
+{
+  "id": "photoshop-save-3d-layer-192e",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 렌더링 및 출력",
+  "name": "Save 3D Layer",
+  "title": "Save 3D Layer — 작업 중인 3D 레이어 파일과 텍스처를 별도로 저장하기",
+  "summary": "Photoshop의 Save 3D Layer 기능은 작업 중인 3D 모델과 텍스처, 조명 설정을 하나의 레이어 상태로 온전히 저장하여 향후 다른 작업에서 불러와 재사용하거나 편집할 수 있게 해주는 기능입니다.",
+  "when": [
+    "Photoshop에서 편집한 3D 모델과 텍스처를 나중에 다시 수정해야 할 때",
+    "3D 레이어 상태를 유지한 채 다른 PSD 파일로 안전하게 옮기고 싶을 때",
+    "외부 3D DCC 툴로 넘기기 전 Photoshop 내에서 최종 레이어 상태를 백업할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델링과 텍스처 수정 작업이 포함된 파일을 엽니다.",
+    "Layers 패널에서 저장하고자 하는 3D 레이어를 선택합니다.",
+    "메뉴 바에서 3D → Save 3D Layer 를 클릭합니다.",
+    "파일 저장 대화 상자에서 원하는 저장 경로와 파일 이름을 지정합니다.",
+    "저장된 파일(.3d 또는 .psd 내 3D 레이어)을 확인하여 정상적으로 백업되었는지 검토합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Layer",
+      "desc": "저장 및 관리할 대상이 되는 Photoshop 내의 3D 오브젝트 레이어"
+    },
+    {
+      "name": "Save 3D Layer",
+      "desc": "현재 3D 상태와 텍스처를 전용 포맷으로 저장하는 명령"
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 로고 디자인 백업",
+      "steps": [
+        "Layers 패널에서 완성된 3D 로고 레이어를 선택합니다.",
+        "3D → Save 3D Layer 를 실행해 프로젝트 폴더에 백업 파일을 생성합니다.",
+        "추후 수정 요청 시 해당 파일을 불러와 텍스처를 손쉽게 수정합니다."
+      ]
+    },
+    {
+      "title": "Package 3D 목업 저장",
+      "steps": [
+        "Package 래핑이 완료된 3D 모델 레이어를 지정합니다.",
+        "Save 3D Layer를 통해 텍스처와 재질 정보를 포함한 상태로 저장합니다.",
+        "다른 디자인 시안 작업 시 동일한 3D 레이어를 불러와 그래픽만 교체합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "일반 레이어가 선택된 상태에서 메뉴가 비활성화되는 실수 → Layers 패널에서 반드시 3D 아이콘이 표시된 3D 레이어를 선택했는지 확인합니다.",
+    "텍스처 파일 경로가 유실되는 실수 → 3D 레이어 저장 시 외부 소스 파일(이미지 등)을 함께 관리하거나 임베드 상태를 확인합니다."
+  ],
+  "related": [
+    "Export 3D Layer",
+    "Save Material",
+    "3D Printing",
+    "New 3D Layer from File"
+  ],
+  "videos": [
+    {
+      "id": "VHNJMVurvvM",
+      "title": "Separate Objects into Independent Layer in Photoshop",
+      "author": "DS GRAPHICS"
+    },
+    {
+      "id": "B27khwLLjmY",
+      "title": "Export Photoshop layers the fast way",
+      "author": "James Barnard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Save%203D%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Save 3D Layer"
+  ],
+  "at": "2026-11-24T08:42:49.990769+00:00"
+}
