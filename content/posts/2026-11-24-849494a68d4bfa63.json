@@ -1,59 +1,95 @@
 {
-  "title_ko": "ArgsWorld 논문 분석 — 3DGS 복원과 자율회귀 디퓨전",
+  "title_ko": "ArgsWorld — 3DGS 씬 재구성·생성·외삽을 통합한 자귀귀속형 확산 트랜스포머",
   "title": "ArgsWorld: Unifying 3DGS Scene Reconstruction, Generation and Extrapolation with Autoregressive Diffusion Transformer",
   "url": "https://arxiv.org/abs/2611.28792v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "ArgsWorld",
-    "Gaussian Splatting",
-    "디퓨전 트랜스포머",
-    "3D 생성 AI",
-    "월드 모델"
+    "3DGS",
+    "Diffusion Transformer",
+    "World Model",
+    "Scene Reconstruction",
+    "ArgsWorld"
   ],
-  "summary": "ArgsWorld는 자율회귀 디퓨전 트랜스포머를 활용해 단일·다중 뷰 이미지와 텍스트로부터 명시적인 Gaussian Splatting 3D 장면을 직접 생성하고 복원하는 연구입니다.",
-  "insight": "기존 비디오 디퓨전 모델은 RGB 프레임 출력에 머물러 로보틱스나 시뮬레이션에 곧바로 쓰기 어려웠습니다. ArgsWorld는 생성 과정에서 명시적인 Gaussian Splatting 3D 씬을 함께 출력해 후속 에셋 활용성을 높입니다. 단일 뷰와 다중 뷰 데이터를 혼합하고 자신이 만든 과거 기록으로 학습하는 3D Self-Forcing Distillation 방식을 도입해 일관성을 잡았습니다.",
+  "summary": "ArgsWorld는 입력된 카메라 궤적과 참조 이미지로부터 명시적인 3D Gaussian Splatting(3DGS) 씬을 재구성하고, 자귀귀속형(autoregressive) 확산 트랜스포머를 통해 새로운 시점을 생성 및 외삽하는 통합 월드 모델입니다.",
+  "insight": "이 모델이 향후 실무에 도입된다면, 단 몇 장의 참조 이미지나 텍스트 Prompt만으로 일관성 있는 3D Gaussian Splatting 씬을 자동으로 확장하고 생성하는 작업이 가능해질 것으로 보입니다. 특히 카메라 궤적이 끊긴 상태에서도 씬을 외삽할 수 있어 대규모 가상 환경 구축이나 시뮬레이션 배경 제작에 큰 도움이 될 수 있습니다. (가능성)",
   "try_it": [
-    "arXiv:2611.28792 원문 논문을 통해 자율회귀 디퓨전 트랜스포머 구조를 확인한다.",
-    "3D Gaussian Splatting과 비디오 디퓨전 모델의 결합 방식을 프로젝트 페이지에서 검토한다."
+    "ArgsWorld 프로젝트 페이지(https://m4a1tastegood.github.io/ArgsWorld/)에 방문하여 관련 데모 및 소스코드 공개 여부와 가이드를 확인해 보세요."
   ],
   "sections": [
     {
-      "heading": "ArgsWorld의 자율회귀 디퓨전 아키텍처",
-      "body": "ArgsWorld는 확산 트랜스포머를 기반으로 과거의 이미지 잠재 표현과 새로운 뷰의 노이즈 잠재 표현을 동시에 처리합니다. 과거 이미지 잠재 표현은 고정된 상태로 유지하면서 새로운 영역이 시야에 들어올 때 장면에 대한 Gaussian 표현을 지속해서 갱신합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 비디오 확산 모델은 시각적 생성 성능이 뛰어나지만 주로 RGB 프레임만 출력할 뿐 명시적인 3D Gaussian Splatting(3DGS) 씬 표현을 제공하지 못합니다. 이로 인해 학습된 비주얼 월드 동역학을 로보틱스, 시뮬레이션, 렌더링 등의 다운스트림 3D 자산으로 바로 활용하기 어려운 간극이 존재합니다."
     },
     {
-      "heading": "3D Self-Forcing Distillation 학습 방식",
-      "body": "모델은 단일 뷰 및 다중 뷰 데이터 혼합을 활용하여 자신이 직접 생성한 과거 기록을 바탕으로 학습을 진행합니다. 생성 시점과 추가 카메라 뷰 모두에서 직접적인 이미지 잠재 표현과 Gaussian 렌더링 잠재 표현을 함께 감독하는 분포 일치 방식을 적용했습니다."
+      "heading": "핵심 아이디어",
+      "body": "ArgsWorld는 단일 카메라 조건부 오토레그레시브 확산 3DGS 모델을 사용하여 포즈가 지정된 이미지로부터 씬을 재구성하고, 이미지 또는 텍스트 Prompt로부터 씬을 생성하며, 확장된 궤적을 따라 씬을 외삽합니다. 확산 트랜스포머(DiT)는 각 청크(chunk)마다 깨끗한 과거 이미지 latent와 새로운 뷰의 노이즈 latent를 함께 처리하며, 3D Self-Forcing Distillation을 통해 자가 생성된 히스토리 위에서 모델을 학습시킵니다."
     },
     {
-      "heading": "3D 씬 복원과 생성 및 외삽 통합",
-      "body": "제안된 모델은 포즈가 지정된 이미지로부터 3D 씬을 복원하고, 이미지나 텍스트 Prompt를 통해 새로운 씬을 생성하는 기능을 하나로 통합합니다. 또한 끝점이 끊어진 카메라 세그먼트 사이의 씬 외삽 작업까지 일관되게 처리할 수 있습니다."
+      "heading": "방법 (단계)",
+      "body": "3D 적응 단계를 거쳐 Wan2.2-TI2V-5B 백본을 초기화한 뒤, 궤적을 순차적인 카메라 청크(C_1, …, C_B)로 나눕니다. 각 디노이징 단계에서 양방향 어텐션을 통해 현재 뷰의 깨끗한 latent를 예측하고, 디코더를 통해 모든 처리된 뷰의 3DGS 씬을 갱신합니다. 이후 렌더링 latent를 다시 노이즈 처리하여 다음 단계의 입력으로 사용합니다."
     },
     {
-      "heading": "로보틱스와 시뮬레이션을 위한 확장성",
-      "body": "기존 세계 모델들이 단순히 2D 비디오 생성에 그쳤던 한계를 넘어서 명시적인 3DGS 씬 출력을 지원합니다. 이를 통해 로보틱스 환경 구축이나 시뮬레이션 렌더링 등 실제 3D 파이프라인에서 바로 활용할 수 있는 데이터 형태를 제공합니다."
+      "heading": "결과 및 성능",
+      "body": "실험 결과, ArgsWorld는 여러 3D 씬 모델링 작업에서 최첨단(SOTA) 성능을 달성함을 입증했습니다. 포즈가 지정된 다중 뷰 이미지로부터 정확한 3D Gaussian 씬을 재구성하고 일관성 있는 뷰 생성을 수행합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "논문에서 프로젝트 페이지(https://m4a1tastegood.github.io/ArgsWorld/)가 제공되며, GitHub 이슈 링크 및 HTML 피드백 관련 기본 문서가 언급되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "ArgsWorld는 어떤 모델인가요?",
-      "a": "자율회귀 디퓨전 트랜스포머를 사용하여 2D RGB 프레임 출력을 넘어 명시적인 Gaussian Splatting 3D 씬 표현까지 동시에 생성하는 모델입니다."
+      "q": "ArgsWorld는 어떤 백본 아키텍처를 기반으로 하나요?",
+      "a": "카메라 조건부가 적용된 Wan2.2-TI2V-5B 확산 트랜스포머(DiT) 백본을 기반으로 합니다."
     },
     {
-      "q": "어떤 작업들을 수행할 수 있나요?",
-      "a": "포즈드 이미지 기반의 3D 씬 복원, 텍스트나 이미지 Prompt 기반의 씬 생성, 카메라 세그먼트 간의 씬 외삽 작업을 모두 처리할 수 있습니다."
+      "q": "모델 학습에는 어떤 방식이 사용되나요?",
+      "a": "단일 뷰 및 다중 뷰 데이터 혼합을 사용하여 자가 생성된 히스토리 위에서 학습하는 3D Self-Forcing Distillation 방식을 사용합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.28792v1/first.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.28792v1/first.png",
+        "caption": "Figure 1 : ArgsWorld is an a uto r egressive 3D GS world model that unifies 3D scene reconstruction, trajectory-guided view generation, and open-ended scene extrapolation. It reconstructs a 3D Gaussian scene from posed views (blue), generates views along the trajectory (green), and extrapolates alon",
+        "caption_ko": "그림 1: 포즈가 지정된 뷰로부터 3D Gaussian 씬을 재구성하고, 궤적을 따라 뷰를 생성하며, 수직 및 공중 카메라 경로를 따라 외삽하는 ArgsWorld의 구조"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28792v1/argsworld_inference.png",
+        "caption": "Figure 2 : ArgsWorld inference. (a) We process a camera trajectory in successive chunks, using available reference images to condition the first chunk. Multiple input images enable scene reconstruction, while a single input image supports open-ended scene generation.\n(b) Each DiT call attends jointl",
+        "caption_ko": "그림 2: successive chunks 단위로 카메라 궤적을 처리하고 디퓨전 트랜스포머(DiT)가 과거 히스토리와 현재 뷰를 함께 처리하는 추론 과정"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28792v1/argsworld_distillation.png",
+        "caption": "Figure 3 : 3D Self-Forcing Distillation. We replay a shared denoising step in each chunk and apply DMD to the direct RGB latents and both rendering branches. The input-view render latents also match the final chunk’s clean RGB context.",
+        "caption_ko": "그림 3: 각 청크에서 공유 디노이징 단계를 리플레이하고 직접 RGB latent와 렌더링 브랜치에 분포 매칭(DMD)을 적용하는 3D Self-Forcing Distillation"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28792v1/reconstruction.png",
+        "caption": "Figure 4 : Qualitative multi-view reconstruction. ArgsWorld reconstructs scenes from two or four posed reference images. Blue borders mark inputs and red borders mark synthesized views. The diagrams at left show the camera trajectories.",
+        "caption_ko": "그림 4: 2장 또는 4장의 포즈가 지정된 참조 이미지로부터 씬을 재구성하는 정성적 다중 뷰 재구성 결과 (파란색 테두리는 입력, 빨간색 테두리는 합성된 뷰)"
+      }
+    ]
   },
   "collected_at": "2026-11-24T13:04:24.024853+00:00",
   "notion_id": "",
   "id": "2026-11-24-849494a68d4bfa63",
   "img_tried": true,
   "enriched": "2026-11-24",
-  "img_ok": "2026-11-24T13:10:30+00:00"
+  "img_ok": "2026-11-24T13:10:30+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-24T13:53:34+00:00"
 }
