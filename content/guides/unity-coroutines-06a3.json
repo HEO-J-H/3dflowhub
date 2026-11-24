@@ -1,0 +1,99 @@
+{
+  "id": "unity-coroutines-06a3",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "스크립팅",
+  "name": "Coroutines",
+  "title": "Coroutines — 프레임 단위로 비동기 로직을 쉽게 구현할 수 있는 Unity 코루틴",
+  "summary": "Unity의 Coroutines는 프레임 단위가 아닌 시간 흐름을 제어해 비동기 작업을 순차적으로 수행하도록 도와줍니다.",
+  "when": [
+    "짧은 지연 후에 이벤트를 실행하고 싶을 때",
+    "반복적인 타이머나 페이드 효과처럼 일정 간격으로 로직을 실행할 때",
+    "씬 로드·오브젝트 생성 등 비동기 작업을 메인 스레드에서 차단 없이 진행할 때"
+  ],
+  "steps": [
+    "Assets → Create → C# Script 로 새 Script를 만든다",
+    "Script에 IEnumerator 반환 타입의 메서드를 정의하고 내부에 yield return 구문을 넣는다",
+    "예: IEnumerator Fade(){ yield return new WaitForSeconds(2f); /* 페이드 로직 */ }",
+    "필요한 위치에서 StartCoroutine(Fade()) 를 호출한다 (예: Start() 혹은 버튼 이벤트)",
+    "코루틴을 중단해야 하면 StopCoroutine(Fade()) 혹은 StopAllCoroutines() 로 종료한다"
+  ],
+  "params": [
+    {
+      "name": "IEnumerator",
+      "desc": "코루틴 함수의 반환 타입, yield 구문 사용 가능"
+    },
+    {
+      "name": "StartCoroutine",
+      "desc": "코루틴 실행, IEnumerator 메서드 전달"
+    },
+    {
+      "name": "StopCoroutine",
+      "desc": "특정 코루틴 중단"
+    },
+    {
+      "name": "yield return new WaitForSeconds",
+      "desc": "지정 초만큼 대기 후 다음 단계 실행"
+    },
+    {
+      "name": "yield return null",
+      "desc": "다음 프레임까지 대기"
+    },
+    {
+      "name": "yield return StartCoroutine",
+      "desc": "다른 코루틴을 중첩 실행"
+    }
+  ],
+  "examples": [
+    {
+      "title": "지연된 Particle 재생",
+      "steps": [
+        "Start() 안에서 StartCoroutine(PlayAfterDelay()) 호출",
+        "IEnumerator PlayAfterDelay(){ yield return new WaitForSeconds(1.5f); particleSystem.Play(); }"
+      ]
+    },
+    {
+      "title": "반복적인 색상 깜빡임",
+      "steps": [
+        "Update() 대신 코루틴으로 깜빡임 로직 구현",
+        "IEnumerator Blink(){ while(true){ renderer.material.color = Color.red; yield return new WaitForSeconds(0.5f); renderer.material.color = Color.white; yield return new WaitForSeconds(0.5f); } }",
+        "Start() 에서 StartCoroutine(Blink()) 시작"
+      ]
+    }
+  ],
+  "mistakes": [
+    "IEnumerator 반환 타입을 놓침 → 코루틴이 실행되지 않음, 함수 선언을 IEnumerator 로 수정",
+    "yield 구문을 빼먹음 → 코루틴이 즉시 종료, 필요한 지연에 yield return null 혹은 WaitForSeconds 추가",
+    "매 프레임마다 StartCoroutine 호출 → 메모리와 CPU 과부하, 호출을 한 번만 하거나 조건부로 호출하고 필요 시 StopCoroutine 사용"
+  ],
+  "related": [
+    "Async/Await",
+    "Update",
+    "Invoke",
+    "UnityEvent"
+  ],
+  "videos": [
+    {
+      "id": "5L9ksCs6MbE",
+      "title": "C# Coroutines in Unity! - Intermediate Scripting Tutorial",
+      "author": "Unity"
+    },
+    {
+      "id": "kUP6OK36nrM",
+      "title": "Coroutines in Unity (how & when to use them)",
+      "author": "Game Dev Beginner"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Coroutines",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Assets",
+    "Create",
+    "Script",
+    "IEnumerator",
+    "IEnumerator Fade",
+    "WaitForSeconds"
+  ],
+  "at": "2026-11-24T00:50:15.369174+00:00"
+}

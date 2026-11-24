@@ -1,0 +1,99 @@
+{
+  "id": "photoshop-generate-bump-map-84c4",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Generate Bump Map",
+  "title": "Generate Bump Map — 디퓨즈 맵을 기반으로 입체적인 범프 맵 생성하기",
+  "summary": "Generate Bump Map 필터는 디퓨즈(Albedo) 이미지를 기반으로 높이 정보를 추출해 Bump Map을 빠르게 생성합니다.",
+  "when": [
+    "디퓨즈 텍스처만 있을 때 Bump Map이 필요할 때",
+    "게임 엔진용 저해상도 Bump Map을 만들고 싶을 때",
+    "실시간 렌더링에서 간단한 표면 디테일을 추가하고 싶을 때"
+  ],
+  "steps": [
+    "이미지를 Photoshop에 열고 RGB Color 모드인지 확인합니다.",
+    "Layer 패널에서 원본 레이어를 복제합니다 (Ctrl+J).",
+    "복제 레이어를 선택한 상태에서 Filter > 3D > Generate Bump Map 메뉴를 엽니다.",
+    "Preview 창에서 Scale·Detail·Invert 등을 조정하고 결과를 확인합니다.",
+    "설정이 만족스러우면 OK를 눌러 Bump Map 레이어를 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "높이 변화량을 조절합니다. 값이 클수록 요철이 크게 보입니다."
+    },
+    {
+      "name": "Detail",
+      "desc": "세부 디테일 강도를 조절합니다. 낮추면 부드러운 효과가 됩니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "높이 방향을 뒤집습니다. 빛이 반대 방향으로 들어올 때 사용합니다."
+    },
+    {
+      "name": "Clamp",
+      "desc": "값 범위를 제한해 과도한 요철을 방지합니다."
+    },
+    {
+      "name": "Gamma",
+      "desc": "밝기 보정을 통해 중간 톤의 높이 변화를 조절합니다."
+    },
+    {
+      "name": "Smooth",
+      "desc": "결과 Bump Map을 부드럽게 블러 처리합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "돌 바위 표면에 간단한 요철 추가",
+      "steps": [
+        "돌 텍스처를 열고 레이어 복제",
+        "Filter > 3D > Generate Bump Map 실행",
+        "Scale=30, Detail=20, Smooth=2 설정 후 OK"
+      ]
+    },
+    {
+      "title": "목재 판에 결 방향 강조",
+      "steps": [
+        "목재 디퓨즈 이미지 복제",
+        "Generate Bump Map 실행 → Invert 체크",
+        "Scale=15, Detail=10, Clamp=1 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scale 값을 과하게 설정 → 결과가 거칠어지니 Scale를 낮춰 주세요.",
+    "Invert 옵션을 놓치면 빛 방향이 반대로 표시 → 필요 시 Invert를 활성화합니다.",
+    "Bump Map을 바로 Normal Map으로 사용하려고 함 → Bump → Normal 변환 플러그인(예: NVIDIA Texture Tools)으로 변환하세요."
+  ],
+  "related": [
+    "Generate Normal Map",
+    "Generate Height Map",
+    "Channel Mixer",
+    "Layer Styles"
+  ],
+  "videos": [
+    {
+      "id": "u3msJjQVv64",
+      "title": "Photoshop - How to create a seamless diffuse, normal and bump map",
+      "author": "Esmael Alhroub"
+    },
+    {
+      "id": "RY6OH_o8krw",
+      "title": "Creating Simple Bump Map With Photoshop Tutorial",
+      "author": "c123hris CG & Photography Channel"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Generate%20Bump%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "RGB Color",
+    "Layer",
+    "Filter",
+    "Generate Bump Map"
+  ],
+  "at": "2026-11-24T00:51:03.919406+00:00"
+}

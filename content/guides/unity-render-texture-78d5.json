@@ -1,0 +1,80 @@
+{
+  "id": "unity-render-texture-78d5",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "렌더링",
+  "name": "Render Texture",
+  "title": "Render Texture — 카메라 출력을 텍스처로 저장해 UI·미니맵·Post 프로세싱 등에 활용",
+  "summary": "Render Texture는 카메라 출력이나 기타 그래픽을 텍스처로 저장해 실시간 재사용이 가능한 버퍼입니다.",
+  "when": [
+    "실시간 미니맵이나 보안 카메라 화면을 만들 때",
+    "Post 프로세싱 효과(블러·워터 디스토션 등)를 별도 텍스처에 적용할 때",
+    "다중 패스 렌더링(리플렉션·Post 프로세스)에서 중간 결과를 저장할 때"
+  ],
+  "steps": [
+    "Assets → Create → Render Texture 클릭하여 새 Render Texture 생성",
+    "Inspector에서 Width·Height 값을 원하는 Resolution로 설정하고 Format(예: ARGB32) 선택",
+    "Camera 컴포넌트 → Target Texture 필드에 만든 Render Texture 드래그",
+    "Material을 만든 뒤 Shader 속성에 새 Texture를 할당(예: _MainTex)",
+    "필요 시 Script에서 Graphics.Blit 로 렌더링 결과를 텍스처에 복사"
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "텍스처 가로 Resolution"
+    },
+    {
+      "name": "Height",
+      "desc": "텍스처 세로 Resolution"
+    },
+    {
+      "name": "Depth Buffer",
+      "desc": "깊이 정보를 저장, 깊이 기반 효과에 필요"
+    },
+    {
+      "name": "Color Format",
+      "desc": "색상 저장 방식, ARGB32·HDR 등"
+    },
+    {
+      "name": "Enable Mip Maps",
+      "desc": "멀티스케일링 시 텍스처 품질 유지"
+    },
+    {
+      "name": "Anti Aliasing",
+      "desc": "샘플링 수, 가장자리 계단 현상 감소"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 미니맵",
+      "steps": [
+        "Render Texture 생성",
+        "메인 카메라의 Target Texture에 할당",
+        "UI Canvas에 RawImage 추가 후 Texture에 할당"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "h5T83Ctp4PA",
+      "title": "A Quick Intro to Unity's Render Textures! | Unity 2019+",
+      "author": "CG Smoothie"
+    },
+    {
+      "id": "tRTbPGalJXk",
+      "title": "How to Use Render Textures in Unity: Tutorial Video w/ Platypus Entertainment Camera Materials",
+      "author": "Platypus Entertainment"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Render%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Assets",
+    "Create",
+    "Render Texture"
+  ],
+  "at": "2026-11-24T00:50:40.361441+00:00"
+}
