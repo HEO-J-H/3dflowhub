@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting 기반 방향성 객체 탐지 기법 GSDet 발표",
+  "title_ko": "GSDet: 3D Gaussian Splatting 기반 회전 객체 탐지 프레임워크",
   "title": "GSDet: Gaussian Splatting for Oriented Object Detection",
   "url": "https://arxiv.org/abs/2611.30602v1",
   "domain": "AI 3D",
@@ -7,49 +7,95 @@
   "topic": "연구·논문",
   "tags": [
     "Gaussian Splatting",
-    "객체 탐지",
-    "AI 3D",
-    "컴퓨터 비전",
-    "IJCAI 2025"
+    "Oriented Object Detection",
+    "Computer Vision",
+    "Deep Learning",
+    "GSDet"
   ],
-  "summary": "Gaussian Splatting 원리를 3D 공간의 방향성 객체 탐지에 적용하여 기존 앵커 및 쿼리 방식의 한계를 극복한 새로운 프레임워크 GSDet이 공개되었습니다.",
-  "insight": "DIOR-R 데이터셋에서 AP_50 기준 0.7%의 성능 향상을 기록한 이 기법은 이미지 특징 기반 3D 피처 공간에서 Gaussian을 최적화합니다.",
-  "try_it": [],
+  "summary": "Gaussian Splatting 개념을 회전 객체 탐지(Oriented Object Detection)에 최초로 도입하여 앵커나 쿼리 없이 무작위 3D Gaussian으로 객체를 탐지하는 새로운 프레임워크입니다.",
+  "insight": "이 방식이 발전하면 향후 3D 실무에서 씬 복원뿐만 아니라 객체 탐지 및 바운딩 박스 추정 영역까지 Gaussian Splatting 기술이 폭넓게 확장될 가능성이 있습니다. 특히 수동으로 앵커를 설계하던 번거로움을 줄이고, 동적으로 Gaussian 수를 조절하는 방식은 효율적인 객체 인식 파이프라인 설계에 영감을 줄 수 있습니다.",
+  "try_it": [
+    "공식 GitHub 저장소(https://github.com/wokaikaixinxin/GSDet)에 접속합니다. 저장소 페이지가 정상적으로 열리는지 확인합니다.",
+    "제공된 가이드에 따라 DIOR-R 및 DOTA 데이터셋 환경을 설정하고 코드를 클론합니다. 의존성 패키지가 올바르게 설치되었는지 확인합니다.",
+    "적응형 제어 및 추론 설정을 적용하여 GSDet 모델의 학습 및 평가를 실행합니다. AP 50 평가 수치가 논문 결과와 유사하게 재현되는지 확인합니다."
+  ],
   "sections": [
     {
-      "heading": "기존 방향성 객체 탐지의 한계",
-      "body": "기존의 컨볼루션 Neural Network이나 트랜스포머 기반 탐지기들은 사전 정의된 앵커나 쿼리와 같은 객체 후보군에 의존합니다. 이러한 방식은 공간 정보를 효과적으로 포착하는 데 한계가 있어 정밀한 방향성 객체 탐지에 제약이 있었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존의 CNN 기반 앵커(Anchor)나 트랜스포머 기반 쿼리(Query) 같은 사전 정의된 객체 후보 방식은 공간 정보를 효과적으로 포착하기 어렵습니다. 저자들은 이 한계를 극복하고자 회전 객체 탐지 문제를 Gaussian Splatting 관점으로 재해석합니다."
     },
     {
-      "heading": "GSDet의 Gaussian Splatting 활용 방식",
-      "body": "연구팀은 방향성 객체 탐지를 Gaussian Splatting 문제로 재정의하는 새로운 프레임워크를 제안합니다. 이미지 특징으로부터 구축된 3D 피처 공간 내에서 3D Gaussian을 활용해 객체를 표현하며, 이를 이미지 평면에 투영하여 2D Gaussian을 거쳐 회전된 박스로 변환합니다."
+      "heading": "핵심 아이디어",
+      "body": "이미지 특징(Image features)으로부터 3D 특징 공간을 구축하고, 여기에 무작위로 초기화된 3D Gaussian(3D Gaussians)을 배치합니다. 이 3D 가우시안들은 앙상블된 평균, 비등방성 공분산(Anisotropic covariance), 신뢰도 점수를 최적화하는 데 사용됩니다."
     },
     {
-      "heading": "동적 제어와 최적화 알고리즘",
-      "body": "무작위로 초기화된 3D Gaussian의 평균, 이방성 공분산, 신뢰도 점수는 3D Gaussian 샘플링을 포함하는 디코더를 통해 최적화됩니다. 또한 추론 과정에서 적응형 제어와 동적 개수의 Gaussian을 사용할 수 있어 뛰어난 유연성을 제공합니다."
+      "heading": "방법과 파이프라인",
+      "body": "최적화된 3D Gaussian은 이미지 평면으로 투영되어 2D Gaussian을 형성하고, 최종적으로 분해 과정을 거쳐 회전 박스(Oriented boxes)로 변환됩니다. 3D Gaussian 샘플링을 결합한 디코더를 사용해 공간 특징을 추출하며, 추론 시 동적인 개수의 Gaussian과 적응형 제어(Adaptive control)를 지원합니다."
     },
     {
-      "heading": "주요 벤치마크 성능 검증",
-      "body": "DIOR-R, DOTA-v1.0, DOTA-v1.5 등 3개의 데이터셋을 통한 실험에서 적응형 제어를 적용했을 때 AP_50 기준 각각 0.7%, 0.3%, 0.55%의 성능 향상을 달성했습니다. 이는 기존 주류 탐지기들을 능가하는 수치입니다."
+      "heading": "논문 성능 결과",
+      "body": "적응형 제어를 적용해 3개의 데이터셋에서 평가한 결과, GSDet은 DIOR-R에서 AP 50 0.7%, DOTA-v1.0에서 0.3%, DOTA-v1.5에서 0.55%의 성능 향상을 기록하며 기존 주류 탐지기들을 웃도는 성능을 보였습니다."
+    },
+    {
+      "heading": "아직 못 하는 것 및 한계",
+      "body": "논문에서는 단일 시점에서 캡처된 이미지를 기준으로 z축 회전만을 고려하며, 복잡한 다중 시점 일관성이나 비정상적 Gaussian 수렴 문제에 대해서는 추가적인 검토가 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개",
+      "body": "연구에 사용된 소스 코드는 공식 GitHub 저장소(https://github.com/wokaikaixinxin/GSDet)를 통해 공개되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "GSDet은 어떤 학회에 발표된 연구인가요?",
-      "a": "IJCAI 2025에 채택된 컴퓨터 비전 및 패턴 인식 분야의 연구 논문입니다."
+      "q": "GSDet은 어떤 객체 후보 방식을 사용하나요?",
+      "a": "기존의 앵커, 리전 프로포설, 쿼리 대신 무작위로 초기화된 3D Gaussian을 객체 후보로 사용합니다."
     },
     {
-      "q": "기존 탐지기와 비교했을 때 어떤 점이 다른가요?",
-      "a": "사전 정의된 앵커나 쿼리를 사용하는 대신 Gaussian Splatting을 활용해 3D 공간 피처에서 객체를 탐지하고 동적으로 제어합니다."
+      "q": "3D Gaussian의 회전은 어떻게 처리되나요?",
+      "a": "이미지가 단일 시점에서 캡처되기 때문에 3D Gaussian은 z축을 중심으로만 회전하도록 설계되었습니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.30602v1/teaser1.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.30602v1/teaser1.png",
+        "caption": "Figure 1: (a) GS for rendering . The 3D Gaussians are initialized through SFM or random points and optimized for mean, covariance, opacity, and color. All image pixels are computed through a tile-based rasterizer. (b) GS for oriented object detection . Randomly initialized 3D Gaussians are placed in",
+        "caption_ko": "그림 1: (a) 렌더링용 GS와 (b) 회전 객체 탐지용 GS의 개념 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.30602v1/teaser_anchor.png",
+        "caption": "(a) Anchor",
+        "caption_ko": "그림 2: 다양한 객체 후보 방식의 비교 (안커, 프로포설, 쿼리, 랜덤 가우시안)"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.30602v1/teaser_anchor.png",
+        "caption": "(a) Anchor",
+        "caption_ko": "그림 2의 연속: 리전 프로포설 방식의 구조"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.30602v1/teaser_proposal.png",
+        "caption": "(b) Region proposal",
+        "caption_ko": "그림 2의 연속: 쿼리 및 앵커 방식의 상세 구조"
+      }
+    ]
   },
   "collected_at": "2026-11-24T11:22:11.980849+00:00",
   "notion_id": "",
   "id": "2026-11-24-7a3b7d7a7ff0ad38",
   "img_tried": true,
-  "img_ok": "2026-11-24T11:30:29+00:00"
+  "img_ok": "2026-11-24T11:30:29+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/wokaikaixinxin/GSDet"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-24T14:40:53+00:00"
 }
