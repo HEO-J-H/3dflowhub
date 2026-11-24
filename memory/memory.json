@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-22T06:48:58.136998+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/22 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-22T06:58:52.651102+00:00",
       "collected": 0,
       "saved": 0,
@@ -6729,6 +6717,32 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-24T13:56:58.384008+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 114,
+      "candidates_passed": 60,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 38,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "005c0307",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6824,7 +6838,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-14 [성찰] 동음이의어 필터를 65중 이상으로 강화하여 비관련 기사 유입을 줄이고, 3D DCC 및 툴 플러그인·스크립트 실무 튜토리얼 중심으로 콘텐츠를 발행해야 검색 유입과 애드센스 가치 모두를 높일 수 있습니다.",
     "2026-11-14 [core.validate_url_scheme_strict(): URL 스] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-14 [core.filter_duplicate_content(): 최근 수집된 ] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-14 [[p-3fe4af033f|사이트·UX] PR #71~#74 통합 테스트 ] 신규 PR 통합 시 기존 테스트 스위트와 독립적으로 동작하는지 모킹(mocking)을 철저히 확인하자.",
@@ -6943,7 +6956,8 @@
     "2026-11-24 [성찰] 실무 중심의 고CPC 툴·플러그인·스크립트 가이드가 검색 유입과 페이지뷰를 크게 끌어올린다.",
     "2026-11-24 [성찰] AI 일일 한도 소진 문제가 발생하였으므로 예비 API 라우팅을 점검하고, 주제와 무관한 동음이의어 수집을 철저히 차단하여 오프토픽 페널티를 줄여야 합니다.",
     "2026-11-24 [성찰] 동음이의어(핵, 주가, 인물)로 인한 오탐지를 줄이고 Maxscript, 플러그인, 튜토리얼 등 고CPC 실무 검색 의도에 집중해야 합니다.",
-    "2026-11-24 [성찰] 동음이의어 필터링을 강화하여 비실무 오탐지를 줄이고, Maya, Maxscript 등 조회수와 검색 유입이 입증된 고CPC 실무 가이드 및 애드온 튜토리얼 비중을 높여야 합니다."
+    "2026-11-24 [성찰] 동음이의어 필터링을 강화하여 비실무 오탐지를 줄이고, Maya, Maxscript 등 조회수와 검색 유입이 입증된 고CPC 실무 가이드 및 애드온 튜토리얼 비중을 높여야 합니다.",
+    "2026-11-24 [성찰] 실무 중심의 튜토리얼, 스크립트, 플러그인 활용법 콘텐츠가 검색 유입과 조회수 확보에 가장 유리하므로 동음이의어 노이즈를 철저히 차단하고 실무 가이드 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7003,7 +7017,7 @@
     "VFX/스튜디오·작품": 238,
     "AI 3D/로보틱스·월드모델": 37,
     "3D DCC/Blender": 200,
-    "Game Engine/Unreal Engine": 214,
+    "Game Engine/Unreal Engine": 215,
     "AI 3D/기타 AI 3D": 61,
     "Game Engine/Godot": 51,
     "3D DCC/Cinema 4D": 38,
@@ -7148,7 +7162,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    13388400478747734299,
     4686111290915041719,
     16335620636039523454,
     4803802347688389030,
@@ -10147,14 +10160,15 @@
     16799321501666197757,
     10091845811115980694,
     172544833087406496,
-    12069294127393144901
+    12069294127393144901,
+    13369217543494339716
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4005,
-    "Game Engine": 4005,
-    "VFX": 4005,
-    "AI 3D": 4005
+    "3D DCC": 4006,
+    "Game Engine": 4006,
+    "VFX": 4006,
+    "AI 3D": 4006
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
