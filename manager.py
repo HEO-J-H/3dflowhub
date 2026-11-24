@@ -443,8 +443,10 @@ def auto_verdict(p: dict, others: list[dict]) -> tuple[str, str]:
     act = p.get("action") or {}
     if act.get("type") == "set_config" and any(k in json.dumps(act, ensure_ascii=False) for k in HIGH_CONFIG_KEYS):
         return "", "계정·광고·예산 설정 변경이라 운영자 몫"
-    if growth.note_offtopic(text):
-        return "rejected", "사이트 주제(3D/CG·은퇴 설계·사진→3D)와 맞지 않음"
+    # 연금·은퇴·건보료 같은 단어는 3dflowhub 에서만 주제 밖 — 은퇴계산기에선 핵심 주제라 거르면 안 됨
+    # (모든 사이트에 적용돼 은퇴계산기 제안 14건이 '주제와 맞지 않음'으로 자동 거절됨, 2026-11-24)
+    if (p.get("site") or "3dflowhub") == "3dflowhub" and growth.note_offtopic(text):
+        return "rejected", "사이트 주제(3D/CG)와 맞지 않음"
     words = set(_re.findall(r"[가-힣A-Za-z0-9]{2,}", p.get("title", "")))
     for o in others:
         if o["id"] == p["id"] or (o.get("site") or "3dflowhub") != (p.get("site") or "3dflowhub"):
