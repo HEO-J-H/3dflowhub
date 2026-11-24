@@ -2315,8 +2315,24 @@ def build() -> dict:
         return (f'<li><a href="{e(x["url"])}" target="_blank" rel="noopener"><span class="t">{e(x["title"])}</span>'
                 f'<span class="d{" hot" if left is not None and left <= 7 else ""}">{d}</span>'
                 f'<span class="k">{e(x["kind"])}{" · " + e(x["host"]) if x.get("host") else ""}</span></a></li>')
-    ev_rows = "".join(_ev_row(x) for x in _ev.load_all()[:6])
-    radar = [p for p in posts if p["domain"] == "AI 3D" or (p.get("topic") or "").startswith("AI")][:6]
+    _seen_ev, _evs = set(), []
+    for x in _ev.load_all():  # 같은 공모전이 여러 출처에서 들어와 두 번 보이던 것 제거
+        k = re.sub(r"\W+", "", x.get("title", "")).lower()
+        if k and k not in _seen_ev:
+            _seen_ev.add(k)
+            _evs.append(x)
+    ev_rows = "".join(_ev_row(x) for x in _evs[:6])
+    # 레이더: 최신순이되 한 분야(예: 가우시안 스플래팅)가 다 차지하지 않게 분야당 2개까지
+    radar, _per = [], {}
+    for p in posts:
+        if not (p["domain"] == "AI 3D" or (p.get("topic") or "").startswith("AI")):
+            continue
+        c = p.get("category") or p["domain"]
+        if _per.get(c, 0) < 2:
+            _per[c] = _per.get(c, 0) + 1
+            radar.append(p)
+        if len(radar) >= 6:
+            break
     radar_rows = "".join(
         f'<li><a href="{{ROOT}}p/{e(p["id"])}.html"><span class="t">{e(p["title_ko"])}</span>'
         f'<span class="d">{kst_date(p.get("collected_at") or "")[5:]}</span>'
