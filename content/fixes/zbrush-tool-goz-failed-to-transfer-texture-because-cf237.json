@@ -1,0 +1,39 @@
+{
+  "id": "zbrush-tool-goz-failed-to-transfer-texture-because-cf237",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Tool: GoZ failed to transfer texture because UV coordinates are out of bounds",
+  "title": "Tool: GoZ failed to transfer texture because UV coordinates are out of bounds 오류",
+  "summary": "ZBrush에서 GoZ를 통해 외부 3D 프로그램(Maya, Blender 등)으로 텍스처를 넘길 때, UV 좌표가 0~1 범위를 벗어나거나 겹쳐서 전달에 실패할 때 발생하는 오류 메시지입니다.",
+  "causes": [
+    "모델의 UV 좌표가 기본 0~1 UV Space 바깥으로 튀어나와 있는 경우",
+    "UV Master 등의 플러그인 사용 후 UV 영역이 정돈되지 않았거나 오버플로우가 발생한 경우",
+    "멀티 파일이나 비정상적인 폴리그룹 분할로 인해 UV가 왜곡된 경우"
+  ],
+  "steps": [
+    "ZBrush에서 문제가 되는 서브툴(SubTool)을 선택합니다.",
+    "Tool 팔레트에서 UV Map 메뉴를 엽니다.",
+    "Morph UV 버튼을 눌러 Viewport에서 UV가 정상적으로 펼쳐져 있는지 확인합니다.",
+    "Tool 팔레ت에서 UV Master 메뉴를 열고 Unwrap을 다시 실행하거나, 외부 UV 편집 툴에서 UV를 0~1 공간 안으로 정렬합니다.",
+    "다시 Morph UV를 눌러 원래 3D 모델 상태로 돌아옵니다.",
+    "GoZ 버튼을 다시 눌러 외부 프로그램으로 전송을 시도합니다."
+  ],
+  "check": [
+    "GoZ 전송 시 오류팝업 없이 외부 프로그램으로 모델과 텍스처가 정상적으로 넘어오는지 확인합니다.",
+    "외부 프로그램의 UV Editor에서 모든 UV 쉘이 0~1 영역 내에 깔끔하게 배치되었는지 확인합니다."
+  ],
+  "prevent": [
+    "GoZ로 Export 전 항상 Morph UV를 통해 0~1 범위를 벗어난 UV 쉘이 없는지 점검합니다.",
+    "UV 작업 시 영역 바깥으로 튀어나간 Vertex가 생기지 않도록 주의합니다."
+  ],
+  "keywords": [
+    "ZBrush GoZ 텍스처 오류",
+    "UV coordinates out of bounds",
+    "GoZ 텍스처 전송 실패",
+    "ZBrush UV 범위 초과",
+    "GoZ failed to transfer texture"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T11:23:23+00:00"
+}

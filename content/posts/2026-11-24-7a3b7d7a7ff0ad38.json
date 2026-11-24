@@ -1,0 +1,54 @@
+{
+  "title_ko": "Gaussian Splatting 기반 방향성 객체 탐지 기법 GSDet 발표",
+  "title": "GSDet: Gaussian Splatting for Oriented Object Detection",
+  "url": "https://arxiv.org/abs/2611.30602v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "객체 탐지",
+    "AI 3D",
+    "컴퓨터 비전",
+    "IJCAI 2025"
+  ],
+  "summary": "Gaussian Splatting 원리를 3D 공간의 방향성 객체 탐지에 적용하여 기존 앵커 및 쿼리 방식의 한계를 극복한 새로운 프레임워크 GSDet이 공개되었습니다.",
+  "insight": "DIOR-R 데이터셋에서 AP_50 기준 0.7%의 성능 향상을 기록한 이 기법은 이미지 특징 기반 3D 피처 공간에서 Gaussian을 최적화합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "기존 방향성 객체 탐지의 한계",
+      "body": "기존의 컨볼루션 Neural Network이나 트랜스포머 기반 탐지기들은 사전 정의된 앵커나 쿼리와 같은 객체 후보군에 의존합니다. 이러한 방식은 공간 정보를 효과적으로 포착하는 데 한계가 있어 정밀한 방향성 객체 탐지에 제약이 있었습니다."
+    },
+    {
+      "heading": "GSDet의 Gaussian Splatting 활용 방식",
+      "body": "연구팀은 방향성 객체 탐지를 Gaussian Splatting 문제로 재정의하는 새로운 프레임워크를 제안합니다. 이미지 특징으로부터 구축된 3D 피처 공간 내에서 3D Gaussian을 활용해 객체를 표현하며, 이를 이미지 평면에 투영하여 2D Gaussian을 거쳐 회전된 박스로 변환합니다."
+    },
+    {
+      "heading": "동적 제어와 최적화 알고리즘",
+      "body": "무작위로 초기화된 3D Gaussian의 평균, 이방성 공분산, 신뢰도 점수는 3D Gaussian 샘플링을 포함하는 디코더를 통해 최적화됩니다. 또한 추론 과정에서 적응형 제어와 동적 개수의 Gaussian을 사용할 수 있어 뛰어난 유연성을 제공합니다."
+    },
+    {
+      "heading": "주요 벤치마크 성능 검증",
+      "body": "DIOR-R, DOTA-v1.0, DOTA-v1.5 등 3개의 데이터셋을 통한 실험에서 적응형 제어를 적용했을 때 AP_50 기준 각각 0.7%, 0.3%, 0.55%의 성능 향상을 달성했습니다. 이는 기존 주류 탐지기들을 능가하는 수치입니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "GSDet은 어떤 학회에 발표된 연구인가요?",
+      "a": "IJCAI 2025에 채택된 컴퓨터 비전 및 패턴 인식 분야의 연구 논문입니다."
+    },
+    {
+      "q": "기존 탐지기와 비교했을 때 어떤 점이 다른가요?",
+      "a": "사전 정의된 앵커나 쿼리를 사용하는 대신 Gaussian Splatting을 활용해 3D 공간 피처에서 객체를 탐지하고 동적으로 제어합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.30602v1/teaser1.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-24T11:22:11.980849+00:00",
+  "notion_id": "",
+  "id": "2026-11-24-7a3b7d7a7ff0ad38",
+  "img_tried": true
+}

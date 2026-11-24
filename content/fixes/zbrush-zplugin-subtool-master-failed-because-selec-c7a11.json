@@ -1,0 +1,33 @@
+{
+  "id": "zbrush-zplugin-subtool-master-failed-because-selec-c7a11",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: SubTool master failed because selected meshes have different polygon densities",
+  "title": "Zplugin: SubTool master failed because selected meshes have different polygon de",
+  "summary": "ZBrush에서 SubTool Master 기능을 사용할 때 선택된 여러 서브툴(SubTool) 간의 폴리곤 밀도(면 갯수 대비 디테일)가 서로 달라서 연산을 수행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "다중 서브툴을 한 번에 처리(Merge, Project 등)하려 하나 각 서브툴의 Subdivision 레벨이나 폴리곤 밀도가 완전히 다를 때",
+    "일부 서브툴에만 Decimation Master나 Divide가 적용되어 폴리곤 분산 상태가 불균일할 때"
+  ],
+  "steps": [
+    "SubTool 팔레트에서 문제가 되는 대상 서브툴들을 개별적으로 확인합니다.",
+    "Zplugin 메뉴에서 SubTool Master를 엽니다.",
+    "폴리곤 밀도를 통일할 서브툴들의 Subdivision 레벨을 맞추거나 Decimation Master를 사용해 폴리곤 구조를 정리합니다.",
+    "필요한 경우 SubTool Master의 여러 서브툴 일괄 처리 기능을 사용하기 전에 각 SubTool의 폴리곤 상태를 확인합니다."
+  ],
+  "check": [
+    "SubTool Master 기능을 다시 실행했을 때 에러 메시지 없이 정상적으로 연산이 진행되는지 확인합니다."
+  ],
+  "prevent": [
+    "여러 서브툴을 동시에 일괄 처리(Merge 또는 SubTool Master 기능)하기 전에 각 서브툴의 폴리곤 밀도와 Subdivision 레벨 상태를 미리 점검합니다."
+  ],
+  "keywords": [
+    "ZBrush SubTool master 오류",
+    "polygon densities 다름",
+    "SubTool Master failed",
+    "ZBrush 서브툴 밀도 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T11:23:21+00:00"
+}

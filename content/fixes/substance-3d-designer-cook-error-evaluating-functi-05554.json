@@ -1,0 +1,39 @@
+{
+  "id": "substance-3d-designer-cook-error-evaluating-functi-05554",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Cook] Error evaluating function in bitmap node because file path is inaccessible",
+  "title": "Designer: [Cook] Error evaluating function in bitmap node because file path is i",
+  "summary": "Substance 3D Designer에서 Designer: [Cook] Error evaluating function in bitmap node because file path is inaccessible 오류는 비트맵 노드가 참조하는 외부 이미지 파일의 경로를 찾을 수 없거나 접근 권한이 없을 때 발생합니다.",
+  "causes": [
+    "외부 이미지 파일이 삭제되었거나 다른 폴더로 이동된 경우",
+    "네트워크 드라이브나 외장 하드 연결이 끊어진 경우",
+    "파일 경로에 지원하지 않는 특수문자나 한글이 포함된 경우",
+    "프로젝트 파일(.sbs)을 다른 PC로 옮기면서 외부 소스 파일을 함께 패키징하지 않은 경우"
+  ],
+  "steps": [
+    "Substance 3D Designer에서 문제가 발생한 Bitmap 노드를 더블 클릭하여 속성(Properties) 패널을 엽니다.",
+    "Resource 링크 또는 File Path 항목에서 현재 지정된 파일 경로를 확인합니다.",
+    "메뉴 바에서 Edit > Preferences 혹은 Project Settings를 열어 외부 파일 경로(External Dependencies)를 확인합니다.",
+    "파일이 유실된 경우 속성 패널에서 Mouse 우클릭 후 Reload 또는 새로운 경로의 파일을 다시 지정합니다.",
+    "필요한 경우 메뉴 바에서 File > Archive(또는 Export with Dependencies)를 사용하여 소스 파일을 패키징합니다."
+  ],
+  "check": [
+    "노드 Graph 뷰에서 비트맵 노드의 빨간색 경고 표시와 Cook 오류 메시지가 사라지는지 확인합니다.",
+    "2D View 및 3D View에서 텍스처가 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트 작업 시 외부 소스 파일은 가능한 한 프로젝트 Package 폴더 내부나 일관된 디렉토리에 모아서 관리합니다.",
+    "다른 작업자와 협업하거나 PC를 이동할 때는 반드시 Archive 기능을 사용하여 모든 의존성 파일을 함께 묶어서 전달합니다."
+  ],
+  "keywords": [
+    "Substance Designer 비트맵 오류",
+    "file path is inaccessible",
+    "Bitmap node cook error",
+    "서브스탠스 디자이너 경로 오류",
+    "텍스처 유실 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T11:23:47+00:00"
+}

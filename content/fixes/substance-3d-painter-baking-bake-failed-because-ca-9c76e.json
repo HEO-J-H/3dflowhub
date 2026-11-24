@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-baking-bake-failed-because-ca-9c76e",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Bake failed because cage mesh has incorrect projection distance",
+  "title": "Painter: [Baking] Bake failed because cage mesh has incorrect projection distanc",
+  "summary": "Substance 3D Painter에서 Baking을 수행할 때 케이지(Cage) 메시의 투영 거리(Projection Distance) 설정이 잘못되었거나 케이지 파일이 올바르게 지정되지 않아 발생합니다.",
+  "causes": [
+    "케이지(Cage)로 지정한 외부 3D 파일의 형태나 스케일이 로우 폴리곤 모델과 일치하지 않는 경우",
+    "Painter의 Baking 옵션에서 Max Front/Back Distance 값이 너무 작거나 0으로 설정된 경우",
+    "익스포트된 케이지 메시에 노멀 데이터나 UV 좌표가 손상되었거나 누락된 경우"
+  ],
+  "steps": [
+    "Texture Set Settings 패널을 열고 Bake Mesh Maps 버튼을 클릭하여 Baking 창을 엽니다.",
+    "Common 탭의 Cage 항목에서 사용 중인 케이지 메시 파일이 올바르게 연결되었는지 확인합니다.",
+    "직접 케이지 파일을 사용하는 대신 Max Front 및 Max Back Distance 값을 사용하여 프로그램 내에서 가상의 케이지를 생성하도록 변경합니다.",
+    "Max Front와 Max Back Distance 값을 점진적으로 높여가며 하이 폴리곤 모델을 완전히 감싸도록 조정합니다.",
+    "오류가 발생했던 케이지 3D 모델을 다시 익스포트할 때 스케일(Scale)과 노멀 데이터가 포함되었는지 확인하고 재임포트합니다."
+  ],
+  "check": [
+    "Bake 버튼을 다시 눌렀을 때 오류 메시지 없이 Baking 진행률이 정상적으로 올라가는지 확인합니다.",
+    "생성된 노멀 맵과 암비언트 오클루전 맵에 깨짐 현상이나 투영 오류가 없는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "하이 폴리곤과 로우 폴리곤 모델을 익스포트할 때 단위(Unit)와 스케일 값을 통일합니다.",
+    "별도의 케이지 메시를 제작할 때는 로우 폴리곤 모델의 복제본을 활용하여 형태가 크게 어긋나지 않도록 관리합니다."
+  ],
+  "keywords": [
+    "Painter 케이지 오류",
+    "Bake failed cage mesh",
+    "Painter Baking 투영 거리",
+    "Substance Painter cage error",
+    "Max Front Back Distance 설정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T11:23:45+00:00"
+}

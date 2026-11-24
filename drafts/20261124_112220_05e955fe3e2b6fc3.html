@@ -1,0 +1,18 @@
+<!-- TITLE: Gaussian Splatting NNS-GS — 비지역적 산란 렌더링 | TAGS: Gaussian Splatting,NNS-GS,서브서스 스캐터링,조명,AI 3D,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — NNS-GS는 투명한 객체의 비지역적 서브서스 스캐터링을 학습하여 재조명이 가능한 Gaussian Splatting 모델을 제안합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>반투명 객체 재조명의 한계와 NNS-GS의 접근</h2>
+<p>투명한 객체는 표면 한쪽의 조명 변화가 서브서스 스캐터링을 통해 다른 곳의 외형에 영향을 줍니다. 기존 Gaussian 기반 산란 모델은 국소적 특징만 예측해 이러한 의존성을 포착하기 어려웠습니다. NNS-GS는 비지역적 산란과 기하학적 유도 국소 반사를 함께 학습합니다.</p>
+<h2>산란 모듈과 반사 모듈의 역할 분담</h2>
+<p>산란 모듈은 광원 가시 표면 영역의 조명이 뷰 공간의 음영 지점에 어떻게 기여하는지 학습합니다. 반사 모듈은 확산 응답을 공급하고 추가적인 기하학적 유도를 사용하여 스펙큘러 하이라이트와 선명한 그림자 경계를 포착합니다.</p>
+<h2>앵커 기반 점진적 학습과 성능 향상</h2>
+<p>구성 요소 혼합을 줄이고 제어 가능한 산란 외형을 지원하기 위해, 앵커 기반 점진적 학습은 스펙큘러 반사를 도입하기 전에 확산 산란 Base를 구축합니다. 캘리브레이션된 포인트 조명 아래에서 NNS-GS는 합성 및 실제 반투명 장면에 대해 기존 방법 대비 PSNR을 각각 2.47 dB, 0.81 dB 개선합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">합성 및 실제 반투명 장면에서 기존 방식 대비 평균 PSNR을 각각 2.47 dB, 0.81 dB 향상시켜 복잡한 빛의 산란을 정밀하게 표현합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. NNS-GS는 어떤 문제를 해결하기 위한 모델인가요?</b><br/>A. 투명한 객체에서 빛의 변화가 다른 영역에 영향을 주는 서브서스 스캐터링과 재조명 문제를 해결합니다.</p>
+<p><b>Q. 기존 방식과 비교해 어느 정도의 성능 향상이 있나요?</b><br/>A. 합성 및 실제 반투명 장면에서 기존 방법보다 평균 PSNR이 각각 2.47 dB, 0.81 dB 향상되었습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-24-7a3b7d7a7ff0ad38.html">Gaussian Splatting 기반 방향성 객체 탐지 기법 GSDet 발표</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-da87b32439fe314a.html">WildAnySplat: 야외 다중 뷰 Gaussian Splatting 논문</a></li><li><a href="https://3dflowhub.kr/p/2026-11-23-b531fef9501ba398.html">BladeR: UAV 이미지 기반 풍력 발전기 블레이드 3D 재구성</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.30351v1" target="_blank" rel="noopener nofollow">NNS-GS: Non-Local Neural Scattering for Relightable Gaussian Splatting</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
