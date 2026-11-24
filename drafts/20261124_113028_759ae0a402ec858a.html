@@ -1,0 +1,18 @@
+<!-- TITLE: Gaussian Splatting 기반 3D 탐지 적대적 공격 연구 | TAGS: 2D Gaussian Splatting,BEV,3D Object Detection,Adversarial Attack,Autonomous Driving,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 2D Gaussian Splatting을 활용해 자율주행 BEV 3D 객체 탐지기의 탐지 오류를 유도하는 Multimodal 적대적 공격 프레임워크 AdvMTO가 제안되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>AdvMTO 프레임워크와 2D Gaussian Splatting</h2>
+<p>연구진은 2D Gaussian Splatting의 배향된 서펠(surfel)을 이용해 객체의 외형, 기하학, 투명도를 단일 상태로 인코딩합니다. 이를 통해 카메라 이미지와 LiDAR 스캔라인 반사파를 동시에 생성합니다. 단일 모달리티에 국한되던 기존 공격 방식의 한계를 극복하기 위한 시도입니다.</p>
+<h2>Multimodal 및 시계열 센서 처리</h2>
+<p>AdvMTO는 탐지기 Native 처리를 거쳐 현재와 과거의 입력 데이터를 구성합니다. 융합 탐지기를 위해 각 Native 소스 스위프에서 LiDAR 반사파를 재생성합니다. 카메라 스트림의 시계열 지속성을 모델링하며 히스토리컬 BEV 메모리를 통해 그래디언트를 전파합니다.</p>
+<h2>기하학적 정제와 모달리티 교란</h2>
+<p>융합 탐지기의 경우 로컬 법선 방향을 따르는 경계가 있는 기하학적 정제를 통해 두 센서 모달리티를 모두 교란합니다. 각 detector에 최적화된 외형 섭동을 적용하여 탐지기를 우회합니다. nuScenes 데이터셋 실험을 통해 세 가지 BEV 탐지기에서 교통콘 탐지를 효과적으로 억제함을 입증했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">2D Gaussian Splatting의 외형, 기하학적 형태, 투명도 인코딩을 활용하여 카메라와 LiDAR 센서 데이터를 동시에 교란합니다. 자율주행 시뮬레이션 및 센서 융합 모델의 강건성 평가 연구에 활용할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. AdvMTO는 어떤 문제를 해결하기 위한 연구인가요?</b><br/>A. 자율주행의 BEV 기반 3D 객체 탐지기를 대상으로 하는 기존 적대적 공격들이 단일 모달리티나 현재 시점에만 집중하여 누적된 증거를 완전히 억제하지 못하는 한계를 해결합니다.</p>
+<p><b>Q. 2D Gaussian Splatting은 이 공격에서 어떤 역할을 하나요?</b><br/>A. 객체의 외형, 기하학, 투명도를 하나의 상태로 인코딩하여 카메라 이미지와 LiDAR 반사파를 모두 생성할 수 있는 기반을 제공합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-24-05e955fe3e2b6fc3.html">Gaussian Splatting NNS-GS — 비지역적 산란 렌더링</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-7a3b7d7a7ff0ad38.html">Gaussian Splatting 기반 방향성 객체 탐지 기법 GSDet 발표</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-da87b32439fe314a.html">WildAnySplat: 야외 다중 뷰 Gaussian Splatting 논문</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.30283v1" target="_blank" rel="noopener nofollow">AdvMTO: Multimodal and Temporal Adversarial Object Attacks via 2D Gaussian Splatting for BEV-Based 3D Object Detection</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

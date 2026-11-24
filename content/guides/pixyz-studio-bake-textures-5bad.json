@@ -1,0 +1,98 @@
+{
+  "id": "pixyz-studio-bake-textures-5bad",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "피시즈 스튜디오 기능",
+  "name": "Bake Textures",
+  "title": "Bake Textures — 고해상도 메쉬의 디테일과 텍스처를 Low-Poly 메쉬에 텍스처 맵으로 Baking",
+  "summary": "Pixyz Studio의 Bake Textures 기능은 복잡한 CAD 어셈블리 모델의 표면 디테일과 머티리얼 정보를 로우 폴리곤 메쉬로 투영하여 가벼운 텍스처(Normal, AO 등)로 추출하는 도구입니다.",
+  "when": [
+    "수백만 개의 폴리곤을 가진 복잡한 CAD 데이터를 실시간 엔진(Unreal Engine, Unity)용으로 최적화할 때",
+    "하이 폴리곤 모델의 미세한 모서리와 굴곡을 로우 폴리곤 모델의 Normal 맵으로 유지하고 싶을 때",
+    "렌더링 성능을 높이기 위해 고해상도 지오메트리를 가벼운 폴리곤과 텍스처 조합으로 교체할 때"
+  ],
+  "steps": [
+    "왼쪽 Product Structure 패널에서 하이 폴리곤 소스 모델과 로우 폴리곤 타겟 모델을 각각 준비합니다.",
+    "상단 메뉴 바에서 Mesh → Bake Textures를 선택하여 Baking 설정 대화 상자를 엽니다.",
+    "Source Mesh 항목에서 디테일을 제공할 하이 폴리곤 부품을 지정합니다.",
+    "Target Mesh 항목에서 텍스처를 적용할 로우 폴리곤 부품을 지정합니다.",
+    "Projection Distance 및 Resolution 등의 Baking 옵션을 설정합니다.",
+    "Execute 버튼을 눌러 Baking을 실행하고, Inspector 패널에서 결과 텍스처를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Source Mesh",
+      "desc": "디테일과 정보가 포함된 원본 하이 폴리곤 메쉬를 지정합니다."
+    },
+    {
+      "name": "Target Mesh",
+      "desc": "텍스처와 맵을 전달받을 로우 폴리곤 대상 메쉬를 지정합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "추출될 텍스처의 Resolution(예: 2048x2048)를 결정합니다."
+    },
+    {
+      "name": "Projection Distance",
+      "desc": "하이 폴리곤과 로우 폴리곤 사이의 레이캐스팅 투영 허용 거리를 설정합니다."
+    },
+    {
+      "name": "Normal Map",
+      "desc": "표면의 입체감과 미세한 디테일을 노멀 맵으로 추출합니다."
+    },
+    {
+      "name": "Ambient Occlusion",
+      "desc": "모델의 틈새와 그림자 정보를 담은 AO 맵을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "CAD 엔진용 로우 폴리곤 부품 최적화",
+      "steps": [
+        "Product Structure에서 고해상도 CAD 부품과 디시메이션된 로우 폴리곤 부품을 배치합니다.",
+        "Mesh → Bake Textures를 실행하여 Source와 Target을 각각 지정합니다.",
+        "Normal Map 옵션을 켜고 Resolution을 2048로 설정한 뒤 Execute를 누릅니다."
+      ]
+    },
+    {
+      "title": "기계 장치 앰비언트 오클루전(AO) 추출",
+      "steps": [
+        "복잡한 결합 부품의 하이 폴리곤과 로우 폴리곤 세트를 준비합니다.",
+        "Bake Textures 대화 상자에서 Ambient Occlusion 옵션을 활성화합니다.",
+        "투영 거리를 조정하여 부품 틈새의 음영이 자연스럽게 텍스처로 베이킹되도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Projection Distance가 너무 좁음 → 메쉬 투영이 누락되어 텍스처에 빈 구멍이 생깁니다. 거리를 조금씩 늘려가며 다시 시도하세요.",
+    "Target Mesh의 UV가 없음 → 텍스처를 담을 공간이 없어 Baking에 실패합니다. Baking 전에 UV 생성 기능을 먼저 실행하세요."
+  ],
+  "related": [
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain",
+    "Create UV"
+  ],
+  "videos": [
+    {
+      "id": "Qh5iJjSHR0Q",
+      "title": "How to Bake Textures in Blender",
+      "author": "Aaron Palmer"
+    },
+    {
+      "id": "egqIks_p_bg",
+      "title": "How to Bake Textures in Blender with NexBake (Full Tutorial)",
+      "author": "Morteza Shateri"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Bake%20Textures",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Product Structure",
+    "Mesh",
+    "Bake Textures",
+    "Baking"
+  ],
+  "at": "2026-11-24T11:33:08.750825+00:00"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-create-hidden-parts-removal-d114",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "피시즈 스튜디오 기능",
+  "name": "Create Hidden Parts Removal",
+  "title": "Create Hidden Parts Removal — 카메라 뷰나 외부에서 보이지 않는 내부 숨겨진 부품을 ",
+  "summary": "Pixyz Studio의 Create Hidden Parts Removal 기능은 카메라 시야나 외부에 노출되지 않는 내부 숨겨진 부품을 자동으로 감지하고 제거하여 CAD 모델의 폴리곤 수를 줄여주는 최적화 기능입니다.",
+  "when": [
+    "복잡한 CAD 조립품 내부의 보이지 않는 부품을 한 번에 정리하고 싶을 때",
+    "실시간 3D 엔진이나 렌더러로 가져가기 전에 파일 용량을 가볍게 최적화할 때",
+    "수동으로 숨겨진 파트를 하나씩 찾아 지우기에는 부품 수가 너무 많을 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 최적화할 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "왼쪽 Product Structure 패널에서 최적화할 부품이나 루트 노드를 선택합니다.",
+    "상단 메뉴 바에서 Optimize Mesh 또는 Defeaturing 관련 메뉴를 확인하거나 검색창(Quick Search)에 Create Hidden Parts Removal을 입력합니다.",
+    "실행 대화 상자가 나타나면 대상 영역과 감도(Tolerance) 옵션을 설정합니다.",
+    "Execute 버튼을 눌러 내부 숨겨진 부품을 자동으로 삭제하고 Viewport에서 결과가 반영된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "숨겨진 부품을 판단할 때 적용하는 허용 오차 거리 값입니다."
+    },
+    {
+      "name": "Viewpoint Density",
+      "desc": "가시성을 판단할 때 가상 카메라를 배치하는 밀도와 각도를 결정합니다."
+    },
+    {
+      "name": "Keep Openings",
+      "desc": "구멍이나 틈새를 통해 내부에 빛이나 시야가 닿을 수 있는 부품의 유지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 엔진룸 내부 숨겨진 볼트·너트 제거",
+      "steps": [
+        "엔진 전체 조립품을 Product Structure에서 선택합니다.",
+        "Create Hidden Parts Removal을 실행합니다.",
+        "외관 커버에 가려져 보이지 않는 내부 작은 체결 부품들이 일괄 삭제되는 것을 확인합니다."
+      ]
+    },
+    {
+      "title": "건축물 외장 패널 속 내부 구조물 정리",
+      "steps": [
+        "건축 CAD 모델의 외부 벽체와 내부 프레임을 불러옵니다.",
+        "시야 판별 허용 오차를 설정하고 알고리즘을 적용합니다.",
+        "외부에서 절대 보이지 않는 내부 보강재를 제거하여 폴리곤 수를 대폭 줄입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필요한 내부 부품까지 삭제됨 → Tolerance 값을 너무 넓게 잡았기 때문이며, 값을 낮추고 다시 실행합니다.",
+    "최적화 후 렌더링 시 구멍 사이로 뚫려 보여야 할 내부가 비어 보임 → Keep Openings 옵션을 활성화하여 해결합니다."
+  ],
+  "related": [
+    "Merge Parts By Regions",
+    "Decimate To Target",
+    "Repair Mesh",
+    "Generate LOD Chain"
+  ],
+  "videos": [
+    {
+      "id": "KeNc71zVtLU",
+      "title": "Pixyz Studio #21 | How to automatically remove hidden entities in Pixyz Studio?",
+      "author": "Pixyz"
+    },
+    {
+      "id": "X9POUxB29UY",
+      "title": "Pixyz Studio #14 | How to quickly select hidden entities in Pixyz Studio ?",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Create%20Hidden%20Parts%20Removal",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Optimize Mesh",
+    "Defeaturing",
+    "Quick Search"
+  ],
+  "at": "2026-11-24T11:33:52.515103+00:00"
+}
