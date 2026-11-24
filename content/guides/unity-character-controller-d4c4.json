@@ -1,0 +1,101 @@
+{
+  "id": "unity-character-controller-d4c4",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리 및 상호작용",
+  "name": "Character Controller",
+  "title": "캐릭터 Controller — 리지바디 없이 Script로 정교한 플레이어 이동과 충돌을 제어하는 컴포넌트",
+  "summary": "Character Controller는 Unity에서 물리 엔진을 사용하지 않고 캡슐 콜리전 기반의 간단한 이동·충돌을 구현하는 컴포넌트입니다.",
+  "when": [
+    "플레이어 캐릭터와 같이 직접 제어가 필요한 경우",
+    "간단한 NPC·Prototype 이동을 빠르게 구현하고 싶을 때",
+    "Rigidbody 없이 중력·점프만 필요한 1인칭/3인칭 게임에 적합할 때"
+  ],
+  "steps": [
+    "Hierarchy에서 캐릭터 모델(또는 Empty) 선택 → Inspector 상단의 Add Component 버튼 클릭 → Component → Physics → Character Controller 선택",
+    "Inspector에서 Height, Radius, Center 값을 캐릭터 크기에 맞게 조정 (예: Height = 2, Radius = 0.5)",
+    "필요 시 Slope Limit, Step Offset, Skin Width 를 환경에 맞게 설정",
+    "간단한 이동 Script를 작성하고 CharacterController.Move(…) 를 Update 에서 호출 (예: Ctrl+N 새 Script → 이름 지정 → 붙여넣기)"
+  ],
+  "params": [
+    {
+      "name": "Height",
+      "desc": "캡슐 전체 높이, 캐릭터 키와 일치시켜야 충돌이 정확합니다"
+    },
+    {
+      "name": "Radius",
+      "desc": "캡슐 반지름, 몸통 너비에 맞게 설정"
+    },
+    {
+      "name": "Center",
+      "desc": "캡슐 중심 위치, 모델의 발 위치와 맞추면 바닥에 끼는 현상을 방지"
+    },
+    {
+      "name": "Slope Limit",
+      "desc": "오른쪽 경사면을 오를 수 있는 최대 각도(°)"
+    },
+    {
+      "name": "Step Offset",
+      "desc": "작은 계단을 올라갈 수 있게 하는 높이값"
+    },
+    {
+      "name": "Skin Width",
+      "desc": "콜리전 표면과 실제 메쉬 사이의 여유 거리, 너무 작으면 튕김 현상이 발생"
+    }
+  ],
+  "examples": [
+    {
+      "title": "1인칭 플레이어 이동",
+      "steps": [
+        "Character Controller를 플레이어 오브젝트에 추가",
+        "Height = 2, Radius = 0.5 로 설정",
+        "SimpleMove Script(예: CharacterController.SimpleMove) 를 붙이고 WASD 입력 연결",
+        "Play 모드에서 땅 위를 자유롭게 움직이는지 확인"
+      ]
+    },
+    {
+      "title": "간단한 NPC 왕복 patrol",
+      "steps": [
+        "NPC 오브젝트에 Character Controller 추가",
+        "Slope Limit = 45°, Step Offset = 0.3 설정",
+        "Script에서 Move( direction * speed * Time.deltaTime ) 로 앞뒤 이동 구현",
+        "경계에 도달하면 방향을 반전시켜 왕복 이동 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "콜리전 높이가 모델보다 낮으면 발이 바닥에 끼어 움직이지 않는다 → Height 와 Center 를 모델에 맞게 늘린다",
+    "Slope Limit 을 0° 로 두면 경사면을 전혀 오를 수 없어 계단에 걸린다 → 적절한 각도(30~45°) 로 조정한다",
+    "Move 를 매 프레임 호출하지 않으면 캐릭터가 정지한다 → Update 혹은 FixedUpdate 에서 반드시 CharacterController.Move 를 호출한다"
+  ],
+  "related": [
+    "Rigidbody",
+    "NavMeshAgent",
+    "Animator",
+    "Physics Material"
+  ],
+  "videos": [
+    {
+      "id": "z3dequX5g_E",
+      "title": "How to make the Best Player Controller in Unity",
+      "author": "semikoder"
+    },
+    {
+      "id": "e94KggaEAr4",
+      "title": "How to Move Characters In Unity 3D | Character Controllers Explained",
+      "author": "iHeartGameDev"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Character%20Controller",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Empty",
+    "Inspector",
+    "Add Component",
+    "Component",
+    "Physics"
+  ],
+  "at": "2026-11-24T00:21:29.688667+00:00"
+}

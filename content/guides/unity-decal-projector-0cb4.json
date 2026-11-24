@@ -1,0 +1,74 @@
+{
+  "id": "unity-decal-projector-0cb4",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "시각 효과",
+  "name": "Decal Projector",
+  "title": "데칼 프로젝터 — 3D 표면에 핏자국, 흠집, 그래피티 등의 디테일 텍스처를 투영하는 기능",
+  "summary": "Unity Decal Projector는 3D 오브젝트 표면에 스티커처럼 텍스처를 투영해 디테일을 추가하는 컴포넌트입니다.",
+  "when": [
+    "벽·바닥에 총탄 자국·흠집 등 모델링 수정 없이 디테일을 넣을 때",
+    "건물 외벽에 낙서·포스터 등 2D 요소를 빠르게 배치하고 싶을 때",
+    "임시 UI 표시·범위 표시 등 게임 플레이 중 시각적 마크가 필요할 때"
+  ],
+  "steps": [
+    "Project Window → Create → Decal Projector (또는 Hierarchy 우클릭 → 3D Object → Decal Projector)",
+    "Hierarchy에서 생성된 Decal Projector를 선택",
+    "Inspector에서 Decal Material 필드에 Decal 전용 머티리얼을 할당",
+    "Transform 툴로 위치·회전·스케일을 표면에 맞게 조정",
+    "Inspector의 Size와 Angle 값을 원하는 크기·기울기로 설정",
+    "필요 시 Draw Distance와 Fade Scale 로 가시 범위와 페이드 강도를 조절"
+  ],
+  "params": [
+    {
+      "name": "Material",
+      "desc": "투영할 텍스처와 Shader가 포함된 머티리얼"
+    },
+    {
+      "name": "Size",
+      "desc": "데칼이 차지하는 X·Y·Z 크기"
+    },
+    {
+      "name": "Angle",
+      "desc": "표면에 대한 기울기(도)"
+    },
+    {
+      "name": "Draw Distance",
+      "desc": "카메라와 멀어질 때 사라지는 거리"
+    },
+    {
+      "name": "Fade Scale",
+      "desc": "거리 기반 페이드 강도 조절"
+    },
+    {
+      "name": "Affects Transparency",
+      "desc": "투명 영역을 포함할지 여부"
+    }
+  ],
+  "examples": [],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "5p8cKIu3P_8",
+      "title": "Decals in URP & HDRP | Unity Tutorial",
+      "author": "LlamAcademy"
+    },
+    {
+      "id": "zSMjTK8d7GQ",
+      "title": "URP Decals in Unity (Tutorial) by #SyntyStudios",
+      "author": "Synty Studios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Decal%20Projector",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project Window",
+    "Create",
+    "Decal Projector",
+    "Hierarchy",
+    "D Object"
+  ],
+  "at": "2026-11-24T00:22:29.697754+00:00"
+}

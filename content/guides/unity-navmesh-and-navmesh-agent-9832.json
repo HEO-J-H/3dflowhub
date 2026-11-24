@@ -1,0 +1,100 @@
+{
+  "id": "unity-navmesh-and-navmesh-agent-9832",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "월드 및 환경",
+  "name": "NavMesh and NavMesh Agent",
+  "title": "내비메시 및 내비메시 에이전트 — 3D 지형에서 장애물을 피해 이동하는 인공지능(AI) 길찾기 시스템",
+  "summary": "NavMesh는 Unity에서 AI 캐릭터가 이동 가능한 영역을 자동으로 생성하고, NavMesh Agent는 그 영역을 따라 목적지까지 이동하도록 하는 컴포넌트입니다.",
+  "when": [
+    "정적인 지형 위에서 AI 적이나 NPC가 이동해야 할 때",
+    "복잡한 레벨에 자동 경로 탐색을 적용하고 싶을 때",
+    "동적 장애물 회피와 목적지 도달이 필요할 때"
+  ],
+  "steps": [
+    "Window → AI → Navigation 열기",
+    "Navigation 창에서 Bake Settings 조정 후 Bake 클릭",
+    "이동할 오브젝트에 NavMesh Agent 컴포넌트 추가 (Add Component → NavMesh Agent)",
+    "Script에서 agent.SetDestination(목표Transform.position) 호출",
+    "필요 시 Off‑Mesh Link 생성 (GameObject → Navigation → Off‑Mesh Link)"
+  ],
+  "params": [
+    {
+      "name": "Speed",
+      "desc": "에이전트의 이동 속도"
+    },
+    {
+      "name": "Angular Speed",
+      "desc": "회전 속도"
+    },
+    {
+      "name": "Stopping Distance",
+      "desc": "목표에 도달하기 전 멈추는 거리"
+    },
+    {
+      "name": "Radius",
+      "desc": "에이전트 충돌 체적 반경"
+    },
+    {
+      "name": "Height",
+      "desc": "에이전트 높이"
+    },
+    {
+      "name": "Auto Traverse Off‑Mesh Link",
+      "desc": "오프‑메시 링크를 자동으로 통과 여부"
+    }
+  ],
+  "examples": [
+    {
+      "title": "플레이어를 따라다니는 적 AI",
+      "steps": [
+        "적 오브젝트에 NavMesh Agent 추가",
+        "EnemyAI Script에서 agent.SetDestination(player.transform.position) 호출",
+        "Update에서 목표 위치를 계속 갱신"
+      ]
+    },
+    {
+      "title": "점프 플랫폼을 연결하는 오프‑Mesh Link",
+      "steps": [
+        "두 플랫폼 사이에 Off‑Mesh Link 오브젝트 생성",
+        "Link Type을 Jump 로 설정",
+        "NavMesh Agent가 해당 링크에 도달하면 자동 점프"
+      ]
+    }
+  ],
+  "mistakes": [
+    "NavMesh를 Bake 하지 않음 → Navigation 창에서 Bake 클릭 후 다시 시도",
+    "Agent Radius가 너무 커서 좁은 통로에 갇힘 → Radius 값을 작게 조정",
+    "동적 장애물을 NavMesh에 포함시키지 않음 → 해당 오브젝트에 NavMeshObstacle 추가 후 Carve 옵션 활성화"
+  ],
+  "related": [
+    "NavMeshObstacle",
+    "Off‑Mesh Link",
+    "NavMeshSurface",
+    "Navigation"
+  ],
+  "videos": [
+    {
+      "id": "SMWxCpLvrcc",
+      "title": "AI Navigation 2.0 - NavMesh basics",
+      "author": "Unity"
+    },
+    {
+      "id": "aHFSDcEQuzQ",
+      "title": "NavMesh Basics - Introduction to the NavMeshSurface | AI Series Part 1 | Unity Tutorial",
+      "author": "LlamAcademy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20NavMesh%20and%20NavMesh%20Agent",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "AI",
+    "Navigation",
+    "Bake Settings",
+    "Bake",
+    "NavMesh Agent"
+  ],
+  "at": "2026-11-24T00:21:59.247094+00:00"
+}
