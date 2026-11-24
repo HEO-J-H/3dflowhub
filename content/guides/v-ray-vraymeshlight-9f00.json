@@ -1,0 +1,108 @@
+{
+  "id": "v-ray-vraymeshlight-9f00",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 환경",
+  "name": "VRayMeshLight",
+  "title": "VRayMeshLight — 일반 3D 오브젝트의 지오메트리를 발광 광원으로 변환하여 불규칙한 형태의 조명을",
+  "summary": "VRayMeshLight는 3D 오브젝트 자체를 면광원으로 변환해 실제 지오메트리 형태대로 빛을 방출하는 V‑Ray 기능입니다.",
+  "when": [
+    "복잡한 네온 사인이나 LED 패널처럼 면 전체에서 고르게 빛을 내야 할 때",
+    "실내 조명에서 실제 물체 형태와 색을 그대로 반영하고 싶을 때",
+    "고해상도 라이트맵을 만들거나 라이트 프로브 대신 면광을 사용하고 싶을 때"
+  ],
+  "steps": [
+    "Create → Geometry 메뉴에서 빛으로 사용할 메쉬를 만든다 (예: Plane, Box).",
+    "Material Editor (Hotkey M)를 열고 Material/Map Browser → V-Ray → VRayMeshLight을 선택한다.",
+    "생성한 메쉬를 선택하고 Material Slot에 VRayMeshLight 재질을 드래그한다.",
+    "V-Ray 렌더 설정 → Global Switches → Mesh Lights에서 ‘Enable Mesh Lights’를 체크한다.",
+    "Material 파라미터에서 Color, Intensity, Two Sided 등을 조정하고 Viewport에서 빛이 보이는지 확인한다."
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "빛의 색상을 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "광원의 밝기를 조절합니다."
+    },
+    {
+      "name": "Two Sided",
+      "desc": "양면에서 빛을 방출하도록 합니다."
+    },
+    {
+      "name": "Cast Shadows",
+      "desc": "메쉬 라이트가 그림자를 만들지 여부를 설정합니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "노이즈 감소를 위한 샘플 수를 지정합니다."
+    },
+    {
+      "name": "Spread",
+      "desc": "광원의 확산 각도를 조절해 부드러운 조명을 만듭니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온 사인 제작",
+      "steps": [
+        "Plane 메쉬를 만들고 VRayMeshLight 재질을 적용한다.",
+        "Color를 원하는 네온 색으로 설정하고 Intensity를 높인다.",
+        "Two Sided를 켜서 양면에서 빛이 나오게 한다."
+      ]
+    },
+    {
+      "title": "실내 LED 패널 조명",
+      "steps": [
+        "Box 메쉬를 만들고 크기를 패널 크기로 맞춘다.",
+        "VRayMeshLight 재질을 적용하고 Color를 차가운 백색으로 설정한다.",
+        "Spread 값을 늘려 부드러운 확산 조명을 만든다."
+      ]
+    },
+    {
+      "title": "외부 건물 파사드 조명",
+      "steps": [
+        "건물 외벽 메쉬에 VRayMeshLight 재질을 입힌다.",
+        "Intensity와 Color를 조절해 야경 효과를 만든다.",
+        "Two Sided를 켜서 내부와 외부 모두 빛이 나오게 한다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mesh Light 활성화 안 함 → V-Ray Global Switches에서 ‘Enable Mesh Lights’를 체크한다.",
+    "고폴리 메쉬 사용 → 불필요한 폴리곤을 줄이고 간단한 플레인/박스로 교체한다.",
+    "두 면 모두 켜지지 않음 → 재질의 ‘Two Sided’를 활성화하고 메쉬 노멀을 확인한다."
+  ],
+  "related": [
+    "VRayLightMtl",
+    "V-Ray Sun",
+    "V-Ray Dome Light",
+    "V-Ray IES Light"
+  ],
+  "videos": [
+    {
+      "id": "c1m7arZH06Q",
+      "title": "Vray mesh light/3ds max vray light tutorial/how to create mesh light in 3ds max @AXISARCHITECT",
+      "author": "AXIS ARCHITECT"
+    },
+    {
+      "id": "37ZnfE-Qgwg",
+      "title": "✅ Mesh Light in 3ds Max V-Ray | Turn Object into Light",
+      "author": " Deepak Verma CAD Softwares"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayMeshLight",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "Plane",
+    "Box",
+    "Material Editor",
+    "Hotkey M"
+  ],
+  "at": "2026-11-24T01:43:20.537002+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "photoshop-match-scene-to-3d-layer-c761",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 메시 및 모델링",
+  "name": "Match Scene to 3D Layer",
+  "title": "Match Scene to 3D Layer — 2D 이미지의 원근법에 맞춰 3D 카메라 뷰 정렬하기",
+  "summary": "Match Scene to 3D Layer는 2D 이미지와 3D 레이어의 카메라를 자동으로 일치시켜 자연스러운 합성을 가능하게 하는 Photoshop 기능입니다.",
+  "when": [
+    "2D 배경 사진을 3D 씬에 정확히 배치하고 싶을 때",
+    "3D 카메라와 동일한 원근을 가진 2D 레이어를 빠르게 만들고 싶을 때",
+    "다른 툴에서 만든 3D 씬을 Photoshop에서 보정하고자 할 때"
+  ],
+  "steps": [
+    "Window → Workspace → 3D 로 전환하고 3D 레이어를 선택합니다",
+    "3D 메뉴 → Match Scene to 3D Layer (Ctrl+Alt+M)를 실행합니다",
+    "Match Scene 대화상자에서 Use Background를 켜고 Match Camera 버튼을 클릭합니다",
+    "필요에 따라 Scale 슬라이더로 크기를 조정하고 OK를 눌러 적용합니다"
+  ],
+  "params": [
+    {
+      "name": "Use Background",
+      "desc": "배경 이미지를 카메라 매칭에 활용합니다"
+    },
+    {
+      "name": "Match Camera",
+      "desc": "현재 Viewport 카메라와 2D 레이어를 자동 정렬합니다"
+    },
+    {
+      "name": "Scale",
+      "desc": "매칭 후 2D 레이어의 크기를 비율로 조정합니다"
+    },
+    {
+      "name": "Depth",
+      "desc": "2D 레이어의 Z‑depth 위치를 미세 조정합니다"
+    },
+    {
+      "name": "Alignment",
+      "desc": "X/Y 축 정렬 옵션을 선택합니다"
+    },
+    {
+      "name": "Reset",
+      "desc": "모든 매칭 파라미터를 초기값으로 되돌립니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "도시 배경에 광고판 삽입",
+      "steps": [
+        "3D 레이어(도시)와 2D 광고판 이미지를 불러옵니다",
+        "3D → Match Scene to 3D Layer 실행",
+        "Match Camera 로 카메라를 맞춘 뒤 Scale 로 광고판 크기 조정",
+        "OK 후 Viewport에서 광고판이 건물에 정확히 부착된 것을 확인"
+      ]
+    },
+    {
+      "title": "렌더 테이블 위에 제품 사진 배치",
+      "steps": [
+        "3D 테이블 레이어와 제품 사진 레이어를 준비합니다",
+        "Match Scene to 3D Layer 실행 후 Use Background 활성화",
+        "Match Camera 로 카메라를 일치시키고 Depth 로 제품 높이 조정",
+        "Scale 로 크기를 맞추고 OK 클릭"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Scale 미조정 → 2D 레이어가 너무 크거나 작게 보임 → Scale 슬라이더로 적절히 조정",
+    "Use Background를 끈 상태에서 실행 → 카메라 매칭이 실패 → Use Background를 켜고 다시 시도",
+    "3D 레이어가 선택되지 않음 → 메뉴가 비활성화됨 → 먼저 3D 레이어를 선택"
+  ],
+  "related": [
+    "Vanishing Point",
+    "3D Camera Tracker",
+    "Smart Object",
+    "Render 3D Layer"
+  ],
+  "videos": [
+    {
+      "id": "0l0PwtutQIM",
+      "title": "Match Subject to the Background in Photoshop with This Easy Trick",
+      "author": "TechZoo"
+    },
+    {
+      "id": "7fvFPOJYjaw",
+      "title": "auto color match in Photoshop | Auto Blend Layers",
+      "author": "Smart Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Match%20Scene%20to%203D%20Layer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Workspace",
+    "Match Scene",
+    "D Layer"
+  ],
+  "at": "2026-11-24T01:42:47.850830+00:00"
+}
