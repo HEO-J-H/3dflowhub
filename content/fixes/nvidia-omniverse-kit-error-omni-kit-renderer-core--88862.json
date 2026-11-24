@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-kit-renderer-core--88862",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.kit.renderer.core] Failed to initialize Vulkan device due to outdated driver",
+  "title": "Kit: [Error] [omni.kit.renderer.core] Failed to initialize Vulkan device due to ",
+  "summary": "NVIDIA Omniverse에서 Vulkan 렌더링을 지원하기에 그래픽 카드 Driver 버전이 너무 오래되어 뷰포트나 렌더러가 초기화되지 못하는 오류입니다. GPU Driver를 최신 버전으로 업데이트해야 해결됩니다.",
+  "causes": [
+    "오래된 NVIDIA 그래픽스 Driver 버전 사용",
+    "OS 업데이트 후 Driver와 Runtime 간의 호환성 충돌",
+    "Vulkan API를 지원하지 않는 구형 GPU 아키텍처 사용"
+  ],
+  "steps": [
+    "NVIDIA 공식 웹사이트 또는 GeForce Experience를 실행합니다.",
+    "사용 중인 GPU 모델에 맞는 최신 Game Ready 또는 Studio Driver를 다운로드하여 설치합니다.",
+    "PC를 재부팅하여 새로운 Driver와 Vulkan Runtime을 시스템에 완전히 적용합니다.",
+    "NVIDIA Omniverse Kit 앱을 다시 실행하여 Viewport가 정상적으로 로드되는지 확인합니다."
+  ],
+  "check": [
+    "Omniverse 앱을 실행했을 때 콘솔창에 '[omni.kit.renderer.core] Vulkan device initialized successfully' 메시지가 표시되는지 확인합니다.",
+    "Viewport에 3D 씬과 레이 Tracing 화면이 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "그래픽스 Driver를 정기적으로 최신 상태로 유지합니다.",
+    "새로운 Omniverse 버전으로 업그레이드하기 전 권장 Driver 버전을 확인합니다."
+  ],
+  "keywords": [
+    "Omniverse Vulkan 오류",
+    "omni.kit.renderer.core Failed",
+    "Vulkan device outdated driver",
+    "Omniverse Driver 업데이트",
+    "Kit 초기화 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-24T14:31:21+00:00"
+}

@@ -5,11 +5,12 @@
   "group": "가져오기",
   "name": "Importing textures and texture import settings",
   "title": "텍스처 가져오기·압축 설정",
-  "summary": "Unity에 이미지 파일을 Texture 2D로 가져와 3D 모델의 머티리얼에 적용할 수 있는 실시간 렌더링용 에셋으로 변환하는 기초 작업입니다. 색상(Albedo), 노멀(Normal Map), 거칠기 등 텍스처 성격에 맞는 압축 및 채널 설정을 지정합니다.",
+  "summary": "Unity에 이미지 파일을 Texture 2D로 가져와 3D 모델의 머티리얼에 적용할 수 있는 실시간 렌더링용 에셋으로 변환하는 기초 작업입니다. 색상(Albedo), 노멀(Normal Map), 픽셀 아트 등 텍스처 성격에 맞는 압축 및 채널 설정을 지정하며, Preset Manager를 통해 자동화할 수 있습니다.",
   "when": [
     "3D 모델에 색상이나 질감을 입히기 위해 외부에서 제작한 이미지 파일을 Unity 프로젝트로 처음 가져올 때",
     "평면 이미지를 입체적인 요철감으로 표현하기 위해 Normal Map 설정을 변경해야 할 때",
-    "게임 최적화를 위해 텍스처의 해상도나 압축 포맷을 용도에 맞게 조절해야 할 때"
+    "게임 최적화를 위해 텍스처의 해상도나 압축 포맷을 용도에 맞게 조절해야 할 때",
+    "픽셀 아트나 특정 에셋의 Import 설정을 반복 작업 없이 자동으로 적용하고 싶을 때"
   ],
   "steps": [
     "탐색기의 이미지 파일을 Unity의 Project 패널 내 Assets 폴더 안의 원하는 위치로 드래그 앤 드롭하여 가져옵니다.",
@@ -90,5 +91,20 @@
   "grounded": false,
   "images": [],
   "menu_path": [],
-  "at": "2026-11-12T02:49:49.929328+00:00"
+  "at": "2026-11-12T02:49:49.929328+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T14:31:30+00:00",
+      "what": "Unity Preset Manager를 활용한 픽셀 아트 텍스처 및 에셋 Import 설정 자동화 내용이 추가되었습니다.",
+      "sources": [
+        {
+          "title": "Unity Preset Manager로 에셋 Import 설정 자동화하기",
+          "url": "https://www.youtube.com/shorts/0ytDMiE19a4"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-24-636845bc9d0cd1ba"
+      ]
+    }
+  ]
 }
