@@ -1,0 +1,103 @@
+{
+  "id": "v-ray-vrayflakesmtl-972d",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "VRayFlakesMtl",
+  "title": "VRayFlakesMtl — 자동차 도색이나 반짝이는 표면의 미세한 금속 입자(플레이크) 질감을 표현하는 재",
+  "summary": "VRayFlakesMtl은 금속 플레이크와 투명 클리어 코트를 조합해 자동차 도색·금속 표면의 반짝임을 정밀하게 표현하는 V-Ray 전용 셰이더입니다.",
+  "when": [
+    "자동차·오토바이 도색에 미세한 금속 입자 효과가 필요할 때",
+    "건축 시각화에서 금속 파널·스테인리스 표면에 은은한 반짝임을 줄 때",
+    "제품 렌더링에서 알루미늄·스틸 소재에 리얼한 플레이크 텍스처를 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Material Editor 열기 (Shortcut: M)",
+    "Material / Map Browser에서 V-Ray 탭을 펼치고 VRayFlakesMtl 선택",
+    "새 머티리얼에 적용 후 원하는 오브젝트에 드래그하거나 Assign Material 클릭",
+    "Parameters 패널에서 Flake Color·Size·Density 등 기본값을 조정",
+    "필요 시 Clear Coat Thickness와 Reflection Glossiness를 미세 조정",
+    "렌더 프리뷰에서 플레이크 반사와 클리어 코트 효과 확인 후 저장"
+  ],
+  "params": [
+    {
+      "name": "Flake Color",
+      "desc": "플레이크의 기본 색상을 지정합니다"
+    },
+    {
+      "name": "Flake Size",
+      "desc": "플레이크 입자의 평균 크기를 조절합니다"
+    },
+    {
+      "name": "Flake Density",
+      "desc": "플레이크가 표면에 얼마나 많이 배치될지 결정합니다"
+    },
+    {
+      "name": "Clear Coat Thickness",
+      "desc": "투명 클리어 코트 두께로 반사 강도와 광택을 제어합니다"
+    },
+    {
+      "name": "Reflection Glossiness",
+      "desc": "클리어 코트의 반사 선명도를 설정합니다"
+    },
+    {
+      "name": "Bump",
+      "desc": "플레이크와 클리어 코트에 미세한 요철을 추가합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 전면 도색",
+      "steps": [
+        "VRayFlakesMtl을 새 머티리얼로 생성",
+        "Flake Color를 은색, Size를 0.02, Density를 30%로 설정",
+        "Clear Coat Thickness를 0.5mm, Glossiness를 0.9로 높임",
+        "오브젝트에 적용 후 렌더링하면 금속 입자와 유광 코팅이 자연스럽게 결합된 결과 확인"
+      ]
+    },
+    {
+      "title": "건축 금속 파널",
+      "steps": [
+        "VRayFlakesMtl 선택 후 Flake Color를 짙은 회색, Size를 0.015로 설정",
+        "Density를 20%로 낮춰 은은한 반짝임 구현",
+        "Clear Coat Thickness를 0.3mm, Glossiness를 0.8로 조정",
+        "파널 전체에 적용해 실내 조명에서 은은히 빛나는 효과 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "플레이크 밀도 과다 → 노이즈가 심해짐 → Density 값을 낮추고 Sample Count를 늘림",
+    "클리어 코트 두께 과다 → 표면이 비현실적으로 두꺼워 보임 → Thickness 값을 0.1~0.5mm 사이로 조정",
+    "색 공간 미설정 → Flake Color가 과다 포화됨 → V-Ray → Color Mapping에서 Linear 색 공간 사용"
+  ],
+  "related": [
+    "VRayCarPaintMtl",
+    "VRayMtl",
+    "VRayBlendMtl",
+    "VRayMaterialLibrary"
+  ],
+  "videos": [
+    {
+      "id": "qQk-C_g8C3I",
+      "title": "V-Ray | Procedural RUSTY METAL Shader | VRayBlendMtl, Procedural Masks, VRayDirt, AO & VRayBumpMtl",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "MvTt9YtfCD8",
+      "title": "V-Ray | COLORFUL FLAKES Carpaint Shader",
+      "author": "Jonas Noell"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayFlakesMtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Shortcut",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayFlakesMtl"
+  ],
+  "at": "2026-11-24T01:31:28.486672+00:00"
+}

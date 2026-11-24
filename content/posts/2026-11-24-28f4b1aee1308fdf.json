@@ -1,0 +1,55 @@
+{
+  "title_ko": "NVIDIA AI 전력·냉각 테스트 – Vertiv ATLAS Lab 결과",
+  "title": "Vertiv ATLAS Lab Tests AI Power and Cooling for NVIDIA - Data Centre Magazine",
+  "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOelVZcmN6VGs5ZzJEVE5MMWN3clhsSDM1NUNlaTdTVFdBckFTczZzOTVha1FFQXVOWjJzTTVScmVaYTFBZElfZkRhVzhZbkl0N0lmUWhVSl9XOU9SU0hLUFVka016ZWJWVmhDazVHUGNWVTJxNXVHQWJiQ2xtVXZXcmJDNXRoZmZIcnM3QmZHaWRnbFJp?oc=5",
+  "domain": "AI 3D",
+  "category": "NVIDIA",
+  "topic": "업계 소식",
+  "tags": [
+    "Vertiv",
+    "NVIDIA",
+    "AI 전력",
+    "냉각 테스트",
+    "데이터센터"
+  ],
+  "summary": "Vertiv ATLAS Lab이 NVIDIA AI 시스템의 전력 소비와 냉각 성능을 테스트한 결과를 발표했습니다.",
+  "insight": "Vertiv ATLAS Lab의 테스트는 단순히 AI 가속기 전력만을 보는 것이 아니라, 실제 부하에 따른 냉각 응답까지 포함한 전체적인 에너지 프로파일을 제공한다는 점이 핵심이다. 3D 아티스트가 대규모 렌더링 팜을 운영하거나 고해상도 실시간 뷰를 사용할 때, 전력 피크와 열 발생을 미리 예측하면 하드웨어 과열을 방지하고 전기 비용을 절감할 수 있다. NVIDIA DCGM 같은 툴을 로컬 환경에 도입하면 GPU 전력과 온도를 실시간으로 확인하면서 작업 스케줄을 조정할 수 있다. 결국, 전력·냉각 데이터를 기반으로 작업 부하를 분산하거나, 필요 시 팬 속도를 조절하는 등 사전 대응이 가능해진다.",
+  "try_it": [
+    "NVIDIA DCGM을 설치하고 현재 사용 중인 GPU의 전력·온도 데이터를 실시간으로 모니터링한다.",
+    "고부하 렌더링 작업을 시작하기 전, 워크스테이션의 팬 속도를 최대치로 설정하거나 외부 냉각 장치를 가동한다.",
+    "작업 스케줄을 낮은 온도 시간대로 조정해 전력 피크와 열 발생을 분산시킨다.",
+    "전력 사용량이 급증하는 구간을 기록하고, 해당 구간에 불필요한 플러그인이나 백그라운드 프로세스를 종료한다."
+  ],
+  "sections": [
+    {
+      "heading": "테스트 목적",
+      "body": "Vertiv ATLAS Lab은 NVIDIA AI 하드웨어의 전력 사용량과 냉각 효율을 측정해 데이터센터 운영에 필요한 기준을 마련하고자 했습니다. 이를 통해 실제 서비스 환경에서 발생할 수 있는 전력·열 문제를 사전에 파악하려는 의도였습니다. 결과는 AI 가속기 배치와 전력 설계에 직접적인 참고 자료가 됩니다."
+    },
+    {
+      "heading": "테스트 대상",
+      "body": "테스트는 NVIDIA의 최신 AI 가속기 제품을 중심으로 진행되었습니다. 실제 워크로드를 적용해 전력·열 특성을 평가했으며, 일반적인 딥러닝 학습 및 추론 시나리오를 재현했습니다. 대상 기기는 데이터센터 수준의 전원·냉각 인프라와 연결된 상태였습니다."
+    },
+    {
+      "heading": "테스트 방법",
+      "body": "Vertiv ATLAS Lab은 전력 측정을 위해 NVIDIA DCGM을 활용했습니다. 워크로드 실행 중 GPU 전력, 시스템 전력, 그리고 전체 전력 소비를 실시간으로 기록했습니다. 동시에 온도 센서를 이용해 냉각 시스템의 응답 속도와 효율을 측정했으며, 부하 단계별로 데이터를 수집했습니다."
+    },
+    {
+      "heading": "주요 결과 요약",
+      "body": "테스트 결과, AI 가속기의 전력 소비는 워크로드 강도에 따라 크게 변동했으며, 냉각 시스템도 부하에 따라 가변적인 응답을 보였습니다. 전력·열 특성을 정확히 파악하면 데이터센터 설계 시 과도한 전력 공급이나 냉각 용량을 줄일 수 있습니다. 또한, 동일한 작업이라도 전력 효율을 높이기 위한 최적화 여지가 있음을 확인했습니다."
+    },
+    {
+      "heading": "3D 작업에 시사점",
+      "body": "GPU 기반 렌더링이나 실시간 시뮬레이션에서도 전력·냉각 관리가 핵심 요소가 됩니다. AI 가속기와 유사하게 고부하 작업 시 전력 피크가 발생하고, 냉각이 충분하지 않으면 성능 저하가 나타날 수 있습니다. 따라서 작업 환경에 맞는 전력 모니터링과 냉각 설계가 필요합니다. 데이터센터 수준의 측정 방법을 로컬 워크스테이션에도 적용하면 안정적인 작업이 가능합니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://i.ytimg.com/vi/1cRaxXa2KC0/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=1cRaxXa2KC0"
+  },
+  "collected_at": "2026-11-24T01:30:02.092392+00:00",
+  "notion_id": "",
+  "id": "2026-11-24-28f4b1aee1308fdf",
+  "img_tried": true,
+  "enriched": "2026-11-24"
+}

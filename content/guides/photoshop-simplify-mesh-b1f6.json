@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-simplify-mesh-b1f6",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 메시 및 모델링",
+  "name": "Simplify Mesh",
+  "title": "Simplify Mesh — 3D 모델의 폴리곤 수를 줄여 최적화하기",
+  "summary": "Simplify Mesh는 Photoshop의 3D 메시를 비파괴적으로 폴리곤 수를 줄여 파일 용량을 낮추고 작업 속도를 높이는 기능입니다.",
+  "when": [
+    "스캔한 고해상도 모델을 게임이나 AR에 사용할 때",
+    "텍스처가 적용된 모델의 UV가 깨지지 않게 유지하면서 최적화가 필요할 때",
+    "렌더링 또는 실시간 Viewport 성능을 개선하고 싶을 때"
+  ],
+  "steps": [
+    "3D 패널에서 작업할 오브젝트를 선택합니다.",
+    "메뉴 바에서 3D > Mesh > Simplify Mesh 를 선택합니다.",
+    "Simplify Mesh 대화창에서 원하는 옵션을 설정하고 OK 버튼을 클릭합니다.",
+    "옵션 적용 후 Viewport에서 메시가 줄어든 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Reduce By",
+      "desc": "줄일 폴리곤 비율을 퍼센트로 지정합니다."
+    },
+    {
+      "name": "Preserve Details",
+      "desc": "세부 형태를 최대한 유지합니다."
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "텍스처 UV 좌표를 보존하여 맵이 뒤틀리지 않게 합니다."
+    },
+    {
+      "name": "Preserve Normals",
+      "desc": "법선 방향을 유지해 쉐이딩 품질을 유지합니다."
+    },
+    {
+      "name": "Preserve Materials",
+      "desc": "재질 할당 정보를 그대로 유지합니다."
+    },
+    {
+      "name": "Max Edge Length",
+      "desc": "최대 에지 길이를 제한해 과도한 삼각형 생성을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스캔한 인체 모델을 게임용 Low-Poly로 변환",
+      "steps": [
+        "원본 모델을 Photoshop에 불러와 선택",
+        "Simplify Mesh → Reduce By 70% 설정, Preserve UVs 체크",
+        "OK 후 UV 맵을 확인하고 필요 시 재조정"
+      ]
+    },
+    {
+      "title": "웹용 제품 시각화 모델 용량 감소",
+      "steps": [
+        "제품 3D 모델 선택",
+        "Simplify Mesh → Reduce By 50%, Preserve Details 활성화",
+        "결과를 확인하고 파일 크기를 비교"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "5FTuZetSkCc",
+      "title": "Photoshop CC - How to Simplify meshes 3D new features tutorial",
+      "author": "Graphicxtras Affinity Tutorials"
+    },
+    {
+      "id": "XUzOZiZOiGI",
+      "title": "Photoshop 2015 - Simplify your 3D Mesh",
+      "author": "Ðramenon Curator of [ Jax Signal ] "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Simplify%20Mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Simplify Mesh"
+  ],
+  "at": "2026-11-24T01:30:56.850766+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "ai-3d-ai-procedural-prop-placement-a3d6",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 에셋 생성",
+  "name": "AI Procedural Prop Placement",
+  "title": "AI 절차적 프롭 배치 — 3D 환경 내에서 지정된 영역과 규칙에 맞춰 배경 소품을 자연스럽게 자동 분산 배",
+  "summary": "AI Procedural Prop Placement은 AI가 정의된 규칙에 따라 씬에 소품(rock, tree, lamp 등)을 자동으로 배치해 주는 기능입니다.",
+  "when": [
+    "대규모 환경에 수백~수천 개 소품을 빠르게 배치하고 싶을 때",
+    "수작업으로는 불규칙성이 부족한 자연스러운 배치를 원할 때",
+    "다양한 변형(스케일·회전·위치)을 한 번에 적용해 반복 작업을 줄이고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser → 오른쪽 클릭 → AI → Procedural Prop Placement 선택",
+    "레벨에 드래그하여 배치하고, Details 패널에서 Placement Rules 설정",
+    "Density, Scale Variation, Random Seed 등 파라미터를 조정",
+    "Generate 버튼을 클릭해 AI가 소품을 자동 배치",
+    "Viewport에서 결과를 확인하고 필요 시 Adjust 버튼으로 미세 조정"
+  ],
+  "params": [
+    {
+      "name": "Placement Rules",
+      "desc": "배치 기준(높이, 경사도, 표면 종류)을 정의합니다"
+    },
+    {
+      "name": "Density",
+      "desc": "단위 면적당 소품 개수를 설정합니다"
+    },
+    {
+      "name": "Scale Variation",
+      "desc": "소품 크기의 최소·최대 범위를 지정합니다"
+    },
+    {
+      "name": "Random Seed",
+      "desc": "무작위성을 고정해 재현 가능한 결과를 만듭니다"
+    },
+    {
+      "name": "Collision Check",
+      "desc": "소품 간 충돌을 방지해 겹침을 없앱니다"
+    },
+    {
+      "name": "Alignment",
+      "desc": "표면 법선에 맞춰 소품 회전을 자동 조정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "산악 지형에 바위 배치",
+      "steps": [
+        "Placement Rules에 ‘Height > 200’와 ‘Slope < 30°’ 추가",
+        "Density를 0.8로 설정",
+        "Scale Variation을 0.6~1.2로 지정",
+        "Generate 실행 → 바위가 고도와 경사에 맞게 흩어짐 확인"
+      ]
+    },
+    {
+      "title": "도시 거리 가로등 배치",
+      "steps": [
+        "Placement Rules에 ‘Surface = Road’와 ‘Distance > 5m’ 설정",
+        "Density를 0.3으로 낮게 설정",
+        "Alignment를 ‘Up Vector’로 지정",
+        "Generate 후 가로등이 도로 양쪽에 일정 간격으로 배치됨 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Density를 과도하게 높이면 프레임이 급격히 떨어집니다 → 적절한 값으로 낮추고 LOD 설정을 활용하세요",
+    "Collision Check를 끄면 소품이 겹쳐 보입니다 → 반드시 활성화하고 ‘Min Distance’ 옵션을 조정하세요",
+    "Scale Variation을 너무 크게 하면 비현실적인 크기의 소품이 생성됩니다 → 범위를 0.5~1.5 정도로 제한하세요"
+  ],
+  "related": [
+    "World Partition",
+    "Procedural Foliage",
+    "Geometry Nodes",
+    "AI Inpainting"
+  ],
+  "videos": [
+    {
+      "id": "dD5DebosIiE",
+      "title": "Procedural Prop Placement in Unity",
+      "author": "Procedural Worlds"
+    },
+    {
+      "id": "Nzu5RD4BG8g",
+      "title": "Procedural prop placement tool",
+      "author": "Rens van Mierlo"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Procedural%20Prop%20Placement",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "AI",
+    "Procedural Prop Placement"
+  ],
+  "at": "2026-11-24T01:31:49.046840+00:00"
+}
