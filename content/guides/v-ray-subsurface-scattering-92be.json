@@ -1,0 +1,97 @@
+{
+  "id": "v-ray-subsurface-scattering-92be",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "한국어 분류",
+  "name": "Subsurface Scattering",
+  "title": "Subsurface Scattering — 피부와 유사 물질을 위한 투과형 조명 효과",
+  "summary": "V-Ray Subsurface Scattering(SSS)은 빛이 오브젝트 표면 내부로 스며들어 산란된 후 빠져나오는 현상을 시뮬레이션하여, 피부나 대리석처럼 반투명하고 생동감 있는 재질을 표현하는 기능입니다.",
+  "when": [
+    "인물이나 크리처의 사람 피부(Skin), 귀, 코 끝을 표현할 때",
+    "초대리석(Marble), 옥(Jade) 같은 반투명한 광물 재질을 만들 때",
+    "양초 왁스, 과일(포도, 사과) 속살 등 빛이 은은하게 투과하는 질감을 낼 때"
+  ],
+  "steps": [
+    "Material Editor (Hotkey M)를 엽니다.",
+    "새로운 재질 슬롯에서 V-Ray 재질을 생성하거나 기존 VRayMtl을 선택합니다.",
+    "BRDF 설정 또는 Refraction 탭에서 Translucency 또는 Subsurface Scattering 옵션을 활성화합니다.",
+    "Scatter Color와 Radius 값을 조절하여 빛이 투과하는 색상과 깊이감을 설정합니다.",
+    "Diffuse와 Refraction 색상을 조절하여 기본 표면 질감과 투명도를 맞춥니다.",
+    "V-Ray Frame Buffer에서 렌더링을 실행하여 빛이 은은하게 퍼지는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Scatter Color",
+      "desc": "오브젝트 내부로 들어간 빛이 산란되면서 띠게 되는 색상을 결정합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "빛이 오브젝트 내부에서 퍼져나가는 거리(깊이)를 조절합니다. 값이 클수록 더 많이 투과합니다."
+    },
+    {
+      "name": "Translucency",
+      "desc": "얇은 오브젝트나 표면을 통과하는 빛의 투과 방식을 설정합니다."
+    },
+    {
+      "name": "Phase Function",
+      "desc": "빛이 내부에서 전방향 혹은 특정 방향으로 굴절되는 산란 특성을 제어합니다."
+    },
+    {
+      "name": "Refraction Color",
+      "desc": "재질 자체의 굴 refraction(투명도) 기본 색상을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부(Skin) 표현",
+      "steps": [
+        "VRayMtl의 Refraction 색상을 옅은 살구색으로 설정합니다.",
+        "Subsurface Scattering 옵션을 켜고 Scatter Color에 붉은 톤을 부여합니다.",
+        "Radius 값을 작게 설정해 코끝이나 귀 뒷부분에 붉은 빛이 투과되도록 만듭니다."
+      ]
+    },
+    {
+      "title": "대리석(Marble) 조각상",
+      "steps": [
+        "Diffuse에 대리석 텍스처를 연결하고 Refraction을 약간의 투명도로 설정합니다.",
+        "Scatter Color에 미세한 아이보리 톤을 넣고 Radius를 넓게 주어 깊은 투광 효과를 줍니다.",
+        "Reflection Glossiness를 조절해 매끄러운 광택을 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Radius 값이 너무 과도하게 설정됨 → 오브젝트가 빛을 너무 많이 받아 플라스틱이나 젤리처럼 변함. 실제 스케일에 맞는 적절한 수치로 낮춰야 합니다.",
+    "Diffuse 색상이 너무 진함 → SSS 효과가 묻혀버리므로, Diffuse와 Scatter Color의 비율을 균형 있게 조절해야 합니다.",
+    "조명과의 거리 무시 → SSS는 광원의 위치와 세기에 크게 영향을 받으므로 백라이트(Rim Light)를 함께 배치해 효과를 극대화해야 합니다."
+  ],
+  "related": [
+    "VRayMtl",
+    "VRayLight",
+    "VRayBitmap",
+    "VRayBlendMtl"
+  ],
+  "videos": [
+    {
+      "id": "TaQ-7OEBjuk",
+      "title": "V-Ray | How to make REALISTIC HUMAN SKIN | ALSurface, FastSSS2, Subsurface Scattering & Translucency",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "2IR-4DrqZZY",
+      "title": "V-Ray Excellence: Crafting Subsurface Scattering with AlSurface Shader",
+      "author": "VirtualBoy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Subsurface%20Scattering",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "V-Ray",
+    "VRayMtl",
+    "BRDF",
+    "Refraction"
+  ],
+  "at": "2026-11-24T09:12:28.045719+00:00"
+}

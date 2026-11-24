@@ -1,0 +1,83 @@
+{
+  "id": "photoshop-3d-rotate-tool-85de",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 툴",
+  "name": "3D Rotate Tool",
+  "title": "3D 회전 도구 — 객체를 회전축을 중심으로 회전",
+  "summary": "Photoshop의 3D Rotate Tool은 3D 공간 상에서 오브젝트를 X, Y, Z축 기준으로 회전시켜 원하는 각도와 방향으로 정밀하게 배치하는 기능입니다.",
+  "when": [
+    "3D 오브젝트의 방향을 틀어 입체적인 구도를 잡을 때",
+    "여러 3D 레이어의 시각적 균형을 맞추기 위해 각도를 조절할 때",
+    "원근감에 맞춰 오브젝트의 기울기를 자연스럽게 수정할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어나 3D 파일(.obj, .fbx 등)을 불러옵니다.",
+    "Layers 패널에서 회전하려는 3D 레이어를 선택하여 활성화합니다.",
+    "도구 상자(Toolbar)에서 3D Rotate Tool을 선택하거나 Hotkey(K)를 누릅니다.",
+    "Viewport에 나타나는 3D 기즈모(Gizmo)의 축(색상별 환형 라인)을 Mouse로 클릭하여 드래그합니다.",
+    "Viewport에서 오브젝트가 원하는 각도로 회전된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "X Rotate",
+      "desc": "오브젝트를 X축 기준으로 상하 기울입니다."
+    },
+    {
+      "name": "Y Rotate",
+      "desc": "오브젝트를 Y축 기준으로 좌우 회전합니다."
+    },
+    {
+      "name": "Z Rotate",
+      "desc": "오브젝트를 Z축 기준으로 평면 회전(뱅크)합니다."
+    },
+    {
+      "name": "Coordinates",
+      "desc": "월드(World) 또는 로컬(Local) 기준 좌표계를 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 Package 각도 조절",
+      "steps": [
+        "Package 3D 레이어를 선택합니다.",
+        "3D Rotate Tool을 실행합니다.",
+        "Y축 기즈모를 드래그하여 제품을 정면이 아닌 측면이 보이도록 회전합니다."
+      ]
+    },
+    {
+      "title": "입체 로고 배치",
+      "steps": [
+        "3D 텍스트 레이어를 선택합니다.",
+        "X축과 Z축을 미세하게 조절하여 바닥면에 자연스럽게 눕혀진 형태로 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "시점이 틀어진 상태에서 회전함 → 카메라 시점을 정면이나 측면으로 맞춘 뒤 기즈모를 조작하세요.",
+    "다른 축을 잘못 드래그함 → 기즈모의 색상별 축(X축: 빨강, Y축: 초록, Z축: 파랑)을 정확히 확인하고 드래그하세요."
+  ],
+  "related": [
+    "3D Move Tool",
+    "3D Scale Tool",
+    "3D Camera Tool",
+    "3D Axis"
+  ],
+  "videos": [
+    {
+      "id": "2k9lIsGazqc",
+      "title": "Insane NEW Photoshop Tool: Rotate ANY Photo in 3D!",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "ZSTDORrsJds",
+      "title": "3D Rotate any image in Photoshop",
+      "author": "Photoshop Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Rotate%20Tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-24T09:12:23.521360+00:00"
+}

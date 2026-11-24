@@ -1,0 +1,95 @@
+{
+  "id": "ai-3d-ai-cad-blueprint-to-3d-4beb",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 데이터 변환",
+  "name": "AI CAD Blueprint to 3D",
+  "title": "AI CAD Blueprint 투 3D — 2D 도면이나 청사진 이미지를 분석하여 기본 3D 볼륨과 솔리드 모델 데",
+  "summary": "AI 기술을 활용해 2D CAD 도면이나 스케치 청사진을 분석하고, 자동으로 3D 모델 구조와 메시 데이터로 변환합니다. 수동 모델링 시간을 획기적으로 줄여줍니다.",
+  "when": [
+    "2D CAD 도면이나 청사진을 바탕으로 빠르게 3D Blockout을 만들 때",
+    "건축 평면도나 기계 부품 스케치에서 입체 형상을 추출할 때",
+    "대량의 정면·측면 도면 데이터를 일괄적으로 3D 애셋으로 변환할 때"
+  ],
+  "steps": [
+    "Content Browser 또는 AI CAD Blueprint to 3D Import 패널을 엽니다.",
+    "변환할 2D CAD 파일(DWG, DXF) 또는 고해상도 청사진 이미지(PNG, JPG)를 업로드합니다.",
+    "Details 패널 또는 AI 파라미터 설정에서 Wall Thickness, Extrusion Height 값을 지정합니다.",
+    "Generate 버튼을 클릭하여 AI 분석 및 3D 메시 생성 프로세스를 실행합니다.",
+    "Viewport에서 생성된 3D 구조를 확인하고, 잘못 인식된 외곽선이나 결합부를 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrusion Height",
+      "desc": "2D 평면 도면을 위로 밀어올려 생성할 기본 높이 값을 설정합니다."
+    },
+    {
+      "name": "Wall Thickness",
+      "desc": "건축 도면의 벽체나 구조물 두께를 자동으로 인식하여 적용합니다."
+    },
+    {
+      "name": "Confidence Threshold",
+      "desc": "AI가 선을 인식하는 민감도를 조절하여 노이즈를 걸러냅니다."
+    },
+    {
+      "name": "Simplify Mesh",
+      "desc": "생성된 3D 모델의 불필요한 폴리곤을 줄여 최적화합니다."
+    },
+    {
+      "name": "Detect Openings",
+      "desc": "도면 내의 문과 창문 위치를 자동으로 감지하여 개구부를 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 평면도에서 3D 벽체 생성하기",
+      "steps": [
+        "2D 건축 평면도 이미지를 업로드합니다.",
+        "Wall Thickness를 실제 도면 스케일에 맞춰 조절합니다.",
+        "Generate를 실행해 기본 3D 벽체 구조를 얻습니다.",
+        "수동으로 문과 창문 개구부의 정밀도를 다듬습니다."
+      ]
+    },
+    {
+      "title": "기계 부품 2D 스케치 입체화하기",
+      "steps": [
+        "정면/측면 부품 스케치 청사진을 불러옵니다.",
+        "Extrusion Height로 두께감을 부여합니다.",
+        "Detect Openings를 켜서 홀(Hole) 가공 부위를 생성합니다.",
+        "생성된 메시를 CAD나 3D DCC 툴로 내보냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution가 너무 낮거나 흐린 도면을 사용함 → 고해상도 벡터 파일이나 선명한 흑백 청사진으로 교체합니다.",
+    "스케일과 치수 설정이 누락됨 → 도면의 기준 척도를 먼저 입력한 뒤 생성합니다.",
+    "복잡한 곡선 라인을 과도하게 단순화함 → Confidence Threshold 값을 낮추어 디테일을 살립니다."
+  ],
+  "related": [
+    "NVIDIA Cosmos",
+    "Geometry Nodes",
+    "Decimate To Target",
+    "Nanite"
+  ],
+  "videos": [
+    {
+      "id": "mEATiDgODj4",
+      "title": "Generate 3D CAD from Text | AI Converts Ideas Into Real Models #cad #arcitecture #engineering #ai",
+      "author": "Alamin"
+    },
+    {
+      "id": "0XZnPZIQHlI",
+      "title": "The BEST AI Tool for 3D Modeling? | SpeakCAD",
+      "author": "Print N Repeat"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20CAD%20Blueprint%20to%203D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Content Browser",
+    "AI CAD Blueprint",
+    "D Import"
+  ],
+  "at": "2026-11-24T09:12:18.180557+00:00"
+}
