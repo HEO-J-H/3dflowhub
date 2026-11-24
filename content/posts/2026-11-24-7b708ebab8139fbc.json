@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting 희소 뷰 최적화 논문 DecoFlat 발표",
+  "title_ko": "DecoFlat — 스파스 뷰 3D Gaussian Splatting의 평탄 최소점 최적화",
   "title": "Not All Directions Are Flat: Decomposed-Gradient Flatness for Sparse-View 3D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2611.28802v1",
   "domain": "AI 3D",
@@ -7,48 +7,86 @@
   "topic": "연구·논문",
   "tags": [
     "3D Gaussian Splatting",
+    "Sparse-View",
     "DecoFlat",
-    "희소 뷰",
-    "신경 렌더링",
-    "AI 3D 연구"
+    "Flat Minima",
+    "Optimization"
   ],
-  "summary": "희소 뷰 환경에서 3D Gaussian Splatting 학습 시 과적합을 방지하고 일반화 성능을 높이는 기울기 분해 기반 최적화 방법론 DecoFlat 논문이 공개되었습니다.",
-  "insight": "19페이지 분량의 본 논문은 뷰 간 일치하는 평행 기울기와 일치하지 않는 직교 기울기를 분리하여 교란 방향에 따른 일반화 성능 차이를 분석합니다. 기존 방식과 달리 재구성 기울기와 충돌하는 교란을 제거하는 보정 기법을 적용해 다양한 희소 뷰 Gaussian Splatting 모델에 플러그인 형태로 결합할 수 있습니다.",
+  "summary": "DecoFlat은 모든 뷰의 평균 gradient와 직교하는 성분으로 Gaussian을 교란하여 스파스 뷰 3D Gaussian Splatting(3DGS)의 일반화 성능을 높이는 플러그인 옵티마이저입니다.",
+  "insight": "향후 스파스 뷰(sparse-view) 기반의 복잡한 3D 재구성 작업에서 과적합을 줄이고 미세한 구조를 복원하는 데 유용하게 활용될 가능성이 있습니다. 아티스트들이 적은 소스 이미지로 고품질의 노블 뷰(novel view) 렌더링 결과를 얻는 파이프라인에 플러그인 형태로 적용될 수 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "희소 뷰 환경에서의 3D Gaussian Splatting 과적합 문제",
-      "body": "증강현실이나 로보틱스 분야에서는 데이터 수집 비용 문제로 적은 수의 입력 뷰만 활용하는 경우가 많습니다. 이처럼 시점 수가 부족한 희소 뷰 조건에서는 표준 3D Gaussian Splatting 알고리즘이 학습 뷰에 과적합되어 새로운 시점에서 렌더링 품질이 떨어집니다. 기존 최적화 방식은 무작위 노이즈나 학습 기울기를 이용해 평탄한 최소값으로 유도하지만 교란의 방향이 뷰 간 관계에 미치는 영향을 고려하지 못했습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "증강 현실이나 로보틱스 같은 응용 분야에서는 캡처 비용 때문에 소수의 입력 뷰(스파스 뷰)만 사용할 수 있습니다. 그러나 이러한 스파스 뷰 환경에서는 3D Gaussian Splatting(3DGS)이 학습 뷰에 과적합되어 보이지 않는 시점(unseen viewpoints)에서 성능이 저하되고 빈 공간에 플로터(floaters)가 생기는 문제가 발생합니다."
     },
     {
-      "heading": "기울기 분해를 통한 교란 방향 분석",
-      "body": "연구팀은 각 학습 뷰의 기울기를 모든 뷰의 평균 기울기와 일치하는 평행 성분과 뷰 간 의견이 갈리는 직교 성분으로 분해했습니다. 실험 결과 직교 성분 방향으로 교란을 주었을 때 일반화 성능이 향상되는 반면 평행 성분 방향의 교란은 그렇지 않음을 확인했습니다. 또한 평탄화 보정 과정이 재구성 기울기와 반대 방향으로 작용해 단계를 축소하거나 역전시키는 현상을 발견했습니다."
+      "heading": "핵심 아이디어: 방향의 중요성",
+      "body": "기존의 평탄 최소점(flat-minima) 최적화 방법들은 무작위 노이즈나 학습 gradient를 이용해 Gaussian을 교란하지만, 다른 학습 뷰들과의 관계 속에서 교란 방향이 가지는 의미를 무시합니다. 연구진은 각 뷰의 gradient를 모든 뷰의 평균 gradient에 평행한 성분과 직교하는 성분으로 분해했을 때, 직교 성분 방향으로 교란할 때만 일반화 성능이 향상된다는 사실을 발견했습니다."
     },
     {
-      "heading": "DecoFlat 알고리즘과 구면 삼림 색상 재스케줄링",
-      "body": "발견된 사실을 바탕으로 제안된 DecoFlat은 각 Gaussian을 무작위 노이즈와 함께 직교 성분 방향으로 교란합니다. 나아가 재구성 기울기와 상반되는 평탄화 보정 부분을 제거하는 충돌 인식 보정 기법을 도입했습니다. 추가로 시점 의존적 외형의 과적합을 억제하기 위해 구면 삼림 색상 매개변수의 재스케줄링을 함께 적용합니다."
+      "heading": "DecoFlat의 세 가지 구성 요소",
+      "body": "DecoFlat은 세 가지 핵심 요소를 적용합니다. 첫째, 각 Gaussian을 모든 뷰의 평균 gradient와 직교하는 성분으로만 이동시키는 직교 교란(orthogonal perturbation)을 수행합니다. 둘째, 재구성 단계를 방해하거나 역전시키는 교란 보정 부분을 제거하는 충돌 인식 보정(conflict-aware correction)을 도입합니다. 셋째, 뷰 종속적인 색상 과적합을 억제하기 위해 학습 초기 구면 조화 함수(SH) 색상을 고정 후 재초기화합니다."
     },
     {
-      "heading": "플러그인 형태의 최적화 성능 검증",
-      "body": "다양한 실험을 통해 DecoFlat이 기본 3D Gaussian Splatting뿐만 아니라 광범위한 희소 뷰 관련 최적화 기법들의 성능을 일관되게 개선함을 증명했습니다. 본 연구는 19페이지 분량의 텍스트와 13개의 그림, 11개의 표를 통해 상세한 실험 결과를 제시합니다. 아카이브에 제출된 본 논문은 컴퓨터 비전 및 패턴 인식 분야 연구진에게 희소 뷰 렌더링 개선 방안을 제공합니다."
+      "heading": "실험 결과",
+      "body": "논문에 따르면 DecoFlat은 바닐라 3DGS(3D Gaussian Splatting)뿐만 아니라 CoR-GS, SE-GS, DropGaussian 등 다양한 스파스 뷰 3DGS 방법들의 플러그인 옵티마이저로 작동하여 모든 베이스라인의 노블 뷰(novel views) 성능을 일관되게 향상시키고 기존 베이스라인이 왜곡하던 미세 구조를 복구합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "본 논문은 GitHub 이슈 및 관련 문서를 통해 구현과 관련된 내용을 다루고 있으며, 렌더링 시 현재 뷰만 렌더링하고 다른 뷰의 gradient는 캐시 C에서 읽어오는 gradient caching 방식을 활용합니다."
     }
   ],
   "faq": [
     {
-      "q": "DecoFlat은 어떤 문제를 해결하기 위한 방법인가요?",
-      "a": "입력 뷰가 부족한 희소 뷰 3D Gaussian Splatting 학습 시 발생하는 과적합과 미지의 시점에서의 품질 저하 문제를 해결합니다."
+      "q": "DecoFlat은 기존 3DGS의 표현 방식이나 렌더러를 변경하나요?",
+      "a": "아니오. DecoFlat은 표현 방식, 렌더러, 수퍼비전을 변경하지 않고 플러그인 옵티마이저로 작동합니다."
     },
     {
-      "q": "기존 평탄화 최적화와 DecoFlat의 차이점은 무엇인가요?",
-      "a": "기존 방식이 뷰 간 관계를 고려하지 않고 노이즈나 기울기를 주었던 것과 달리, DecoFlat은 기울기를 평행 성분과 직교 성분으로 분해하여 일반화에 도움되는 직교 방향으로만 교란을 적용합니다."
+      "q": "기존 평탄 최소점 최적화와 DecoFlat의 가장 큰 차이점은 무엇인가요?",
+      "a": "기존 방법들은 교란 방향을 다른 학습 뷰와 무관하게 선택하지만, DecoFlat은 모든 뷰의 평균 gradient를 기준으로 직교하는 성분을 찾아 교란 방향으로 활용합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.28802v1/figs/teaser_two_arrows.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.28802v1/figs/fig2_v6.png",
+        "caption": "Figure 2 : Conceptual illustration of the perturbation direction. The training loss is flat along the direction on which the views agree ( 𝐠 ∥ \\mathbf{g}_{\\parallel} ) and sharp along the one on which they disagree ( 𝐠 ⟂ \\mathbf{g}_{\\perp} ). 3DGS 1 falls into the sharp minimum, and SAP stays inside",
+        "caption_ko": "그림 2: 교란 방향에 대한 개념도. 학습 손실은 뷰들이 일치하는 방향(g_∥)에서는 평탄하고 불일치하는 방향(g_⊥)에서는 날카롭습니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28802v1/figs/overview_v3.png",
+        "caption": "Figure 3 : Overview of DecoFlat. (a) The orthogonal perturbation moves each Gaussian along the component of its gradient orthogonal to the average gradient of all views. (b) The conflict-aware correction drops the part of the correction 𝐝 \\mathbf{d} that opposes the gradient 𝐠 \\mathbf{g} . (c) Color",
+        "caption_ko": "그림 3: DecoFlat의 개요. (a) 직교 교란, (b) 충돌 인식 보정, (c) 색상 재스케줄링을 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28802v1/figs/sh_curves_a.png",
+        "caption": "Figure 4 : Generalization gap (LLFF, 3 views). Train and test loss of 3DGS and test loss with color rescheduling; test PSNR without and with it. Single run; Tab. 8 : mean over 5 runs.",
+        "caption_ko": "그림 4: 일반화 갭(LLFF, 3개 뷰). 색상 재스케줄링 적용 전후의 학습/테스트 손실 및 테스트 PSNR 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.28802v1/figs/gradient_caching.png",
+        "caption": "Figure 5 : Gradient caching. Only the current view is rendered; the gradients of the other views are read from the per-view cache C C , and their average 𝐠 ¯ \\bar{\\mathbf{g}} gives 𝐠 ∥ \\mathbf{g}_{\\parallel} and 𝐠 ⟂ \\mathbf{g}_{\\perp} .",
+        "caption_ko": "그림 5: Gradient 캐싱. 현재 뷰만 렌더링하고 다른 뷰의 gradient는 캐시 C에서 읽어와 평균 g_¯를 계산합니다."
+      }
+    ]
   },
   "collected_at": "2026-11-24T12:20:47.767706+00:00",
   "notion_id": "",
   "id": "2026-11-24-7b708ebab8139fbc",
-  "img_tried": true
+  "img_tried": true,
+  "img_ok": "2026-11-24T12:30:39+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-24T12:33:59+00:00"
 }
