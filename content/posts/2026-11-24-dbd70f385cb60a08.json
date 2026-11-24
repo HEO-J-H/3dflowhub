@@ -1,0 +1,58 @@
+{
+  "title_ko": "Blender 태블릿 버전 개발 계획 공개 — UI와 파일 연동",
+  "title": "Blender on Tablet: the plan for a first release",
+  "url": "https://www.blendernation.com/2026/11/24/blender-on-tablet-the-plan-for-a-first-release/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Blender",
+    "태블릿",
+    "iPad",
+    "Android",
+    "UI",
+    "블렌더"
+  ],
+  "summary": "Blender 개발팀이 태블릿 버전 출시를 위한 로드맵을 공개하고 Desktop 연동 및 터치 최적화 UI 개발 계획을 발표했습니다.",
+  "insight": "초기 빌드는 Wacom MovinkPad Pro나 M 시리즈 iPad Pro 같은 고성능 하드웨어를 타겟으로 삼아 파일 로딩과 저장 기능을 먼저 안정화합니다. 마우스나 키보드 연결을 전제로 출발하되, 점진적으로 터치와 펜 환경에 맞춘 컴팩트 UI를 도입하는 방식으로 진행됩니다.",
+  "try_it": [
+    "Blender 태블릿 개발 태스크(Tablet: Path to Release) 페이지에서 최신 빌드 목표와 지원 플랫폼을 확인합니다.",
+    "데스크톱과 태블릿 간 파일 연동 방식을 테스트하기 위한 씬 구성 계획을 세웁니다."
+  ],
+  "sections": [
+    {
+      "heading": "태블릿 출시 경로와 플랫폼 지원",
+      "body": "Blender 재단은 태블릿 버전을 최대한 빨리 출시하고 반복 수정하는 개발 방식을 택했습니다. 초기 플랫폼 지원의 핵심은 Desktop과 동일한 파일 로딩·저장 및 온라인 접근 기능을 구현하는 것입니다. 초기에는 키보드나 Mouse, 트랙패드가 연결된 상태에서 완벽하게 작동하는 것을 목표로 삼습니다."
+    },
+    {
+      "heading": "하드웨어 타겟과 빌드 시스템",
+      "body": "주요 하드웨어 타겟은 Wacom MovinkPad Pro 같은 고성능 안드로이드 태블릿과 M 시리즈 iPad Pro, iPad mini 8 등 최신 iOS 기기입니다. 개발팀은 매일 태블릿용 빌드를 생성하고 Google Play와 App Store에 지속적으로 테스트 배포를 진행할 예정입니다."
+    },
+    {
+      "heading": "터치 및 펜 입력 최적화 기능",
+      "body": "기존 Desktop UI를 유지하면서 터치와 펜에 맞춘 최적화가 이루어집니다. 주요 구현 항목에는 OS 가상 키보드 연동, 전역 오퍼레이터 검색, 클릭 가능한 상호작용 상태 표시줄, 그리고 수정자 및 Hotkey를 위한 플로팅 방사형 메뉴인 Modifier 휠이 포함됩니다."
+    },
+    {
+      "heading": "Desktop 연동과 컴팩트 UI 구조",
+      "body": "이동 중 오프라인 작업이나 소파에서의 작업, 감독의 읽기 전용 파일 검토 등 세 가지 사용 사례를 상정하고 있습니다. Continue on device와 Send to device 오퍼레이터를 통해 파일 전체 또는 데이터 블록 종속성을 기기 간에 주고받을 수 있습니다. 컴팩트 UI는 Viewport를 중심으로 필요한 편집기를 잠시 불러왔다 숨기는 터치 중심 인터페이스입니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Blender 태블릿 버전은 어떤 기기를 지원하나요?",
+      "a": "Wacom MovinkPad Pro 같은 고성능 안드로이드 태블릿과 M 시리즈 iPad Pro, iPad mini 8 등 최신 iOS 기기를 초기 하드웨어 타겟으로 설정하고 있습니다."
+    },
+    {
+      "q": "Desktop과 태블릿 간의 파일 작업은 어떻게 연동되나요?",
+      "a": "전체 파일을 다른 기기로 넘겨 작업을 이어가는 Continue on device와 파일의 일부와 종속성을 전송하는 Send to device 오퍼레이터를 도입할 예정입니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.blendernation.com/wp-content/uploads/2026/11/image-12.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-24T20:52:05.068736+00:00",
+  "notion_id": "",
+  "id": "2026-11-24-dbd70f385cb60a08",
+  "img_ok": "2026-11-24T20:52:05+00:00"
+}
