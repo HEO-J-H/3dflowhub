@@ -1,0 +1,97 @@
+{
+  "id": "photoshop-new-light-from-selection-be44",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조명 및 카메라",
+  "name": "New Light from Selection",
+  "title": "New Light from Selection — 선택 영역을 기반으로 새로운 3D 조명 생성하기",
+  "summary": "선택 영역에 맞춰 조명을 자동 배치해 해당 부분만 조명 효과를 적용합니다.",
+  "when": [
+    "특정 영역만 강조하고 싶을 때",
+    "복잡한 씬에서 부분 조명을 빠르게 추가하고 싶을 때",
+    "다른 라이트와 조합해 로컬 하이라이트를 만들고 싶을 때"
+  ],
+  "steps": [
+    "3D 레이어가 포함된 문서를 열고, 조명할 영역을 선택 툴로 지정한다",
+    "상단 메뉴 바에서 3D > New Light from Selection 클릭한다",
+    "자동으로 선택 영역 중심에 라이트가 생성되고 기본 Light Type이 Spot Light으로 설정된다",
+    "Properties 패널에서 Intensity·Color·Falloff·Shadow Type 등을 조정한다"
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "조명의 밝기를 조절합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "조명 색상을 지정합니다"
+    },
+    {
+      "name": "Falloff",
+      "desc": "거리 감쇠 정도를 설정합니다"
+    },
+    {
+      "name": "Shadow Type",
+      "desc": "그림자 종류를 선택합니다"
+    },
+    {
+      "name": "Cone Angle",
+      "desc": "스포트 라이트의 원뿔 각도를 조정합니다"
+    },
+    {
+      "name": "Decay",
+      "desc": "빛의 감쇠 방식을 선택합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 하이라이트",
+      "steps": [
+        "제품 부분을 사각형 선택 툴로 선택",
+        "3D > New Light from Selection 클릭",
+        "Spot Light 자동 생성",
+        "Intensity와 Color를 제품 색에 맞게 조정"
+      ]
+    },
+    {
+      "title": "캐릭터 얼굴 조명",
+      "steps": [
+        "얼굴 영역을 자유 선택 툴로 선택",
+        "3D > New Light from Selection 클릭",
+        "Spot Light 자동 생성",
+        "Falloff와 Cone Angle을 조절해 부드러운 조명 구현"
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 영역이 비어 있음 → 선택을 만든 후 다시 실행",
+    "라이트가 씬 전체에 퍼짐 → Light Type을 Spot Light으로 바꾸고 Cone Angle을 좁게 설정",
+    "조명 색상이 씬과 맞지 않음 → Color 파라미터를 원하는 색으로 교체"
+  ],
+  "related": [
+    "Spot Light",
+    "Point Light",
+    "New Light to Scene",
+    "Mesh from Layer"
+  ],
+  "videos": [
+    {
+      "id": "lAq8vGBkmgc",
+      "title": "Master the NEW \"Light Layer\" in Photoshop! (New Feature)",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "j1fB7GbTAVc",
+      "title": "There’s More to Photoshop’s New Light Adjustment Than You Think",
+      "author": "photoshopCAFE"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%20Light%20from%20Selection",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "New Light",
+    "Selection"
+  ],
+  "at": "2026-11-24T01:10:11.989163+00:00"
+}

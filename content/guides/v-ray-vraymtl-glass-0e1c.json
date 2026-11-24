@@ -1,0 +1,85 @@
+{
+  "id": "v-ray-vraymtl-glass-0e1c",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "VRayMtl - Glass",
+  "title": "VRayMtl - Glass — 투명도, 굴절, 아베(Abbe) 수 등을 설정하여 사실적인 유리 재질을 만드",
+  "summary": "VRayMtl의 Glass 재질은 물리 기반 투명·굴절 효과를 제공해 현실적인 유리를 구현합니다.",
+  "when": [
+    "실제 유리 창문·문·파사드 등 건축 시각화 시",
+    "반사·굴절이 강조되는 제품 렌더링(병·컵 등)",
+    "투명한 재질과 불투명 재질을 구분해야 할 경우"
+  ],
+  "steps": [
+    "M키를 눌러 Material Editor를 열고 새 Material Slot을 선택",
+    "Material/Map Browser에서 V-Ray→VRayMtl을 더블클릭",
+    "Material Type을 'VRayMtl'로 유지하고 'Diffuse' 색을 흰색으로 설정",
+    "Reflection 탭에서 'Reflection'을 활성화하고 Glossiness를 0.98 이상으로 설정",
+    "Refraction 탭에서 'Refraction'을 켜고 IOR을 1.5~1.6으로 입력",
+    "Transparency 값을 0~0.1로 낮춰 투명도 조절 후 객체에 적용"
+  ],
+  "params": [
+    {
+      "name": "Reflection",
+      "desc": "반사 강도, 값이 클수록 거울처럼 반사됩니다"
+    },
+    {
+      "name": "Reflection Glossiness",
+      "desc": "반사 표면의 선명도, 1에 가까울수록 깨끗한 유리"
+    },
+    {
+      "name": "Refraction",
+      "desc": "굴절 활성화, 투명 물체에 필수"
+    },
+    {
+      "name": "Refraction IOR",
+      "desc": "굴절률, 유리 기본값은 1.5~1.52"
+    },
+    {
+      "name": "Transparency",
+      "desc": "투명도, 0이면 완전 투명, 1이면 불투명"
+    },
+    {
+      "name": "Bump",
+      "desc": "표면 요철, 미세한 거칠기 표현"
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 유리 파사드",
+      "steps": [
+        "객체에 VRayMtl 적용",
+        "Refraction IOR을 1.52로 설정",
+        "Reflection Glossiness를 0.99로 높임",
+        "Thin Glass 옵션을 켜서 두께 효과 적용"
+      ]
+    }
+  ],
+  "mistakes": [],
+  "related": [],
+  "videos": [
+    {
+      "id": "o1P36zYUChw",
+      "title": "Create Realistic Vray Glass Material In Vray For SketchUp. Clean, Tinted, Frosted, Textured Glass.",
+      "author": "Educk"
+    },
+    {
+      "id": "KwZ4jzBjJBk",
+      "title": "Vray Glass material tutorial in 3ds max...",
+      "author": "Interior Gallery"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayMtl%20-%20Glass",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Material Slot",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayMtl"
+  ],
+  "at": "2026-11-24T01:10:45.427473+00:00"
+}

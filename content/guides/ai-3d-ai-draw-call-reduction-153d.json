@@ -1,0 +1,97 @@
+{
+  "id": "ai-3d-ai-draw-call-reduction-153d",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 최적화",
+  "name": "AI Draw Call Reduction",
+  "title": "AI 드로우 콜 감소 — 실시간 렌더링 성능 향상을 위해 3D 씬 내의 불필요한 메쉬와 머티리얼 배치를 자동",
+  "summary": "AI Draw Call Reduction은 AI 기반 자동 LOD 생성·메시 최적화 도구를 활용해 씬의 폴리곤 수와 텍스처 수를 줄여 드로우 콜을 최소화하고 실시간 성능을 높이는 방법입니다.",
+  "when": [
+    "수천~수만 개의 메쉬가 한 씬에 배치돼 프레임률이 급격히 떨어질 때",
+    "모바일·VR 등 제한된 GPU 메모리와 처리량을 목표 플랫폼에 배포할 때",
+    "수동 LOD 제작에 시간·인력이 부족하고 빠르게 최적화가 필요할 때"
+  ],
+  "steps": [
+    "툴 실행 → File > Import 로 최적화할 FBX/OBJ 파일을 불러옵니다.",
+    "메시 선택 후 오른쪽 Inspector 에서 Add > \"LOD Generator\" (AI‑based) 를 클릭합니다.",
+    "Parameters 패널에서 Reduction Ratio, Preserve UVs, Preserve Materials 등을 설정하고 Apply 클릭합니다.",
+    "생성된 LOD 그룹을 Export > Export LODs 로 저장하고, Unity/Unreal 프로젝트에 교체합니다.",
+    "엔진에서 LOD Group (Unity) 혹은 HISM (Unreal) 컴포넌트를 추가해 거리 기반 전환을 설정합니다."
+  ],
+  "params": [
+    {
+      "name": "Reduction Ratio",
+      "desc": "목표 폴리곤 수를 원본 대비 몇 퍼센트로 줄일지 지정합니다."
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "텍스처 매핑이 깨지지 않도록 UV 좌표를 유지합니다."
+    },
+    {
+      "name": "Preserve Materials",
+      "desc": "머티리얼 슬롯과 서브메시 구성을 그대로 보존합니다."
+    },
+    {
+      "name": "Target Triangle Count",
+      "desc": "각 LOD 별 목표 삼각형 수를 직접 입력합니다."
+    },
+    {
+      "name": "Preserve Edge Sharpness",
+      "desc": "날카로운 모서리와 실루엣을 유지하도록 옵션을 켭니다."
+    },
+    {
+      "name": "Generate LOD Group",
+      "desc": "자동으로 Unity LOD Group 또는 Unreal LOD 설정을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 RPG 캐릭터 최적화",
+      "steps": [
+        "캐릭터 FBX를 AI LOD Generator에 Import",
+        "Reduction Ratio 30% → Preserve UVs 체크",
+        "3단계 LOD 자동 생성 후 Export",
+        "Unity에 LOD Group 적용, 거리 10m/30m/70m 로 전환 설정"
+      ]
+    },
+    {
+      "title": "대규모 건축 씬에서 Instance 메쉬 최적화",
+      "steps": [
+        "건물 파트별 FBX를 한 번에 선택",
+        "Preserve Materials, Preserve Edge Sharpness 활성화",
+        "Target Triangle Count 5000 로 지정해 LOD1 생성",
+        "Unreal에 Hierarchical Instanced Static Mesh 로 교체, Cull Distance 설정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "노멀 Baking을 하지 않음 → LOD 적용 후 쉐이딩 오류 발생 → Apply > Bake Normals 먼저 수행",
+    "Reduction Ratio를 과도하게 낮춤 → 디테일 손실 → 30~50% 수준으로 테스트 후 조정",
+    "LOD 전환 거리 미설정 → 가까이서 저해상도 메쉬가 바로 보임 → LOD Group/HISM 의 Distance 값 지정"
+  ],
+  "related": [
+    "Static Batching",
+    "GPU Instancing",
+    "LOD Group",
+    "Hierarchical Instanced Static Mesh"
+  ],
+  "videos": [
+    {
+      "id": "XYh9EXFQOpA",
+      "title": "What are Drawcalls? #shorts #gamedev",
+      "author": "Cocos"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Draw%20Call%20Reduction",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Import",
+    "FBX",
+    "OBJ",
+    "Inspector",
+    "Add"
+  ],
+  "at": "2026-11-24T01:11:19.305483+00:00"
+}
