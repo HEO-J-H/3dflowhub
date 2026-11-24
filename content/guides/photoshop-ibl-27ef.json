@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-ibl-27ef",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조명 및 환경",
+  "name": "IBL",
+  "title": "이미지 기반 조명 — 주변광과 환경 반사를 조절하는 IBL 설정",
+  "summary": "Photoshop의 IBL(Image-Based Lighting)은 3D 레이어에 360도 HDRI 환경 맵을 적용하여 사실적인 주변광과 반사를 실시간으로 생성하는 조명 시스템입니다.",
+  "when": [
+    "3D 모델에 주변 환경과 조화를 이루는 자연스러운 반사를 주고 싶을 때",
+    "실사 백그라운드 이미지와 3D 합성 오브젝트의 라이팅을 일치시킬 때",
+    "별도의 복잡한 조명 세팅 없이 빠르게 고품질 렌더링 결과물을 만들 때"
+  ],
+  "steps": [
+    "Photoshop을 열고 3D 오브젝트나 모델이 포함된 문서를 준비합니다.",
+    "상단 메뉴 바에서 3D → New 3D Layer from File 또는 기존 3D 레이어를 선택합니다.",
+    "우측 하단의 3D 패널에서 Environment(환경) 아이콘을 클릭합니다.",
+    "Properties 패널에서 IBL 텍스처 슬롯을 클릭하고 Replace Texture를 선택합니다.",
+    "준비된 360도 HDRI 이미지 파일을 불러옵니다.",
+    "Properties 패널에서 Intensity(강도)와 Rotation(회전) 값을 조절하여 조명 위치를 맞춥니다.",
+    "Viewport에서 반사광과 조도가 자연스럽게 반영되었는지 확인하고 렌더링을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "IBL Texture",
+      "desc": "환경광과 반사를 생성할 360도 HDRI 이미지 맵을 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "환경 조명과 반사의 전체적인 밝기 강도를 조절합니다."
+    },
+    {
+      "name": "Rotation",
+      "desc": "HDRI 맵의 수평 회전 각도를 조절하여 조명과 반사 위치를 맞춥니다."
+    },
+    {
+      "name": "Ground Plane",
+      "desc": "오브젝트 하단에 바닥면과 그림자 영역을 생성하거나 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 제품 Package 렌더링",
+      "steps": [
+        "금속 재질이 적용된 3D Package 모델을 불러옵니다.",
+        "Studio 조명이 담긴 HDRI 맵을 IBL Texture에 적용합니다.",
+        "Rotation을 조절하여 제품 표면에 매끄러운 Studio 반사 라인을 만듭니다."
+      ]
+    },
+    {
+      "title": "실사 배경과 3D 오브젝트 합성",
+      "steps": [
+        "실사 배경 사진과 동일한 장소에서 촬영된 HDRI를 준비합니다.",
+        "Environment IBL에 해당 HDRI를 불러옵니다.",
+        "Intensity와 Ground Shadows를 조절하여 배경과 자연스럽게 어우러지게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "저해상도 이미지를 사용해 반사가 깨지는 현상 → 고해상도(.hdr 또는 .exr) 파일로 교체하세요.",
+    "조명 방향이 배경과 맞지 않는 현상 → 3D 패널에서 IBL Rotation 값을 회전하여 광원 방향을 맞추세요."
+  ],
+  "related": [
+    "Substance 3D Environment map and lightin",
+    "V-Ray Dome Light",
+    "NVIDIA Omniverse Dome Light",
+    "3ds Max Environment Map"
+  ],
+  "videos": [
+    {
+      "id": "uW5NzPXbUXw",
+      "title": "Setting an IBL in Photoshop 3D",
+      "author": "Michael Tweed (Design Draw)"
+    },
+    {
+      "id": "z5rZEK8joQY",
+      "title": "Photoshop CC Tutorial 3D: IBL Image Based Light",
+      "author": "dddanimation"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20IBL",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New 3D Layer",
+    "File",
+    "Environment",
+    "Properties",
+    "IBL"
+  ],
+  "at": "2026-11-24T09:23:31.500940+00:00"
+}

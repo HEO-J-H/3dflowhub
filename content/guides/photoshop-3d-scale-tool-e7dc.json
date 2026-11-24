@@ -1,0 +1,83 @@
+{
+  "id": "photoshop-3d-scale-tool-e7dc",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 툴",
+  "name": "3D Scale Tool",
+  "title": "3D 스케일 도구 — 객체의 크기를 비례적으로 조절",
+  "summary": "Photoshop 3D Scale Tool은 3D 레이어의 크기를 X, Y, Z 축별로 조절하거나 전체 비율을 확대·축소하는 도구입니다. 3D 공간 상에서 모델의 부피와 비율을 시각적으로 변형할 때 사용합니다.",
+  "when": [
+    "3D 모델을 가져온 뒤 주변 오브젝트와 크기가 맞지 않아 비율을 수정할 때",
+    "특정 축 방향으로만 모델을 늘리거나 줄여 변형을 주고 싶을 때",
+    "3D 씬 내부에서 원근감과 스케일을 정밀하게 맞추고자 할 때"
+  ],
+  "steps": [
+    "Layers 패널에서 크기를 조절할 3D 레이어나 3D Mesh를 선택합니다.",
+    "툴바(Tool Bar)에서 3D Rotate/Scale/Move 툴 중 3D Scale Tool을 선택합니다.",
+    "Viewport에 나타나는 3D 기즈모(Gizmo)에서 원하는 축(X, Y, Z)이나 중앙의 균등 크기 박스를 클릭합니다.",
+    "Mouse로 드래그하여 오브젝트의 크기를 원하는 비율로 조절합니다.",
+    "Properties 패널에서 수치를 직접 입력하여 정밀하게 크기를 맞춥니다.",
+    "Enter 키를 누르거나 Viewport 바깥을 클릭하여 스케일 조절을 확정합니다."
+  ],
+  "params": [
+    {
+      "name": "X Scale",
+      "desc": "X 축(가로) 방향으로의 크기를 조절합니다."
+    },
+    {
+      "name": "Y Scale",
+      "desc": "Y 축(세로) 방향으로의 크기를 조절합니다."
+    },
+    {
+      "name": "Z Scale",
+      "desc": "Z 축(깊이) 방향으로의 크기를 조절합니다."
+    },
+    {
+      "name": "Uniform Scale",
+      "desc": "모든 축의 비율을 유지하며 전체 크기를 확대·축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 로고 입체감 키우기",
+      "steps": [
+        "Layers 패널에서 3D 텍스트 레이어를 선택합니다.",
+        "3D Scale Tool을 선택하고 기즈모의 Z축 핸들을 잡습니다.",
+        "Mouse를 드래그하여 글자의 두께(깊이)를 늘려 입체감을 강조합니다."
+      ]
+    },
+    {
+      "title": "배경 소품 비율 맞추기",
+      "steps": [
+        "씬에 배치된 가구 3D 모델 레이어를 선택합니다.",
+        "3D Scale Tool을 활성화하고 중앙의 유니폼 스케일 영역을 클릭합니다.",
+        "전체 크기를 줄여 주변 배경과 자연스러운 비율을 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "기즈모의 단일 축 대신 전체 영역을 드래그하여 원치 않게 비율이 깨지는 경우 → Uniform Scale 영역을 정확히 클릭하거나 Properties 패널에서 비율을 잠그고 조절합니다.",
+    "스케일 조절 후 텍스처가 늘어나 깨져 보이는 경우 → 3D 레이어의 텍스처 맵핑 방식을 재적용하거나 UV 설정(Generate UVs)을 다시 실행합니다."
+  ],
+  "related": [
+    "3D Move Tool",
+    "3D Rotate Tool",
+    "3D Axis",
+    "Properties Panel"
+  ],
+  "videos": [
+    {
+      "id": "BMyQDNXYSrA",
+      "title": "How to use Content Aware Scale Photoshop Tutorial",
+      "author": "Photoshop Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Scale%20Tool",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Layers",
+    "D Mesh"
+  ],
+  "at": "2026-11-24T09:23:16.227413+00:00"
+}
