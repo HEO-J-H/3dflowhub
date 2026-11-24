@@ -1,0 +1,54 @@
+{
+  "title_ko": "CTLink: 텍스트 Prompt 기반 3D 흉부 CT 분할 모델",
+  "title": "CTLink: A Text-Prompted Segmentation Model for Linking Radiology Report Findings to 3D Chest CT Scans",
+  "url": "https://arxiv.org/abs/2611.31222v1",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "CTLink",
+    "3D Segmentation",
+    "Radiology",
+    "AI 3D",
+    "MICCAI 2026"
+  ],
+  "summary": "방사선과 판독문의 텍스트 소견을 3D 흉부 CT 스캔에 시각적으로 연동하는 텍스트 Prompt 기반 분할 모델 CTLink 연구 논문이 발표되었습니다.",
+  "insight": "4123건의 비조영 흉부 CT 스캔과 9547건의 분할 소견을 학습한 CTLink는 MICCAI 2026 ReXGrounding 챌린지 테스트 세트에서 히트 레이트 0.782, Instance F1 스코어 0.386을 기록했습니다. 의료 영상 3D 시각화 및 자동화 진단 모델 개발 과정에서 텍스트와 3D 공간 데이터의 정합성을 높이는 데 활용할 수 있습니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "ReXGroundingCTv2 데이터셋과 학습 규모",
+      "body": "CTLink는 4123건의 비조영 흉부 CT 스캔과 9547건의 세분화된 판독문 소견을 기반으로 학습되었습니다. 여기에는 1134건의 스캔과 1895건의 소견이 새로 주석 처리된 ReXGroundingCTv2 데이터셋이 포함됩니다."
+    },
+    {
+      "heading": "성능 평가 및 챌린지 결과",
+      "body": "ReXGroundingCT 검증 스캔 200건에서 CTLink는 히트 레이트 0.816, Instance F1 스코어 0.456, 평균 Dice 스코어 0.400을 달성했습니다. MICCAI 2026 ReXGrounding 챌린지 테스트 세트에서는 7개 모델의 앙상블이 48개 참가 팀 중 가장 높은 히트 레이트와 Instance F1 스코어를 기록했습니다."
+    },
+    {
+      "heading": "임상적 일치도와 현재의 한계점",
+      "body": "50건의 테스트 스캔을 독립된 방사선과 전문의들이 두 번 분할한 결과와 비교했을 때, CTLink는 전문의 간 일치도 수준과 같거나 그 이상의 성능을 보였습니다. 다만 확산형 비국소성 소견의 경우 범위 윤곽을 잡는 기준이 전문의 사이에서도 일관되지 않아 주된 한계점으로 남았습니다."
+    },
+    {
+      "heading": "오픈소스 모델 가중치 및 데이터셋 공개",
+      "body": "연구진은 CTLink 모델 가중치와 관련 데이터셋을 공식 아카이브 링크를 통해 공개했습니다. 연구 및 개발자는 관련 저장소에서 소스 코드와 데이터셋을 내려받아 직접 검증하고 활용할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "CTLink는 어떤 데이터를 사용하여 학습되었나요?",
+      "a": "4123건의 비조영 흉부 CT 스캔과 9547건의 세분화된 판독문 소견, 그리고 새로 구축된 ReXGroundingCTv2 데이터셋을 기반으로 학습되었습니다."
+    },
+    {
+      "q": "기존 공개 모델과 비교한 성능은 어떠한가요?",
+      "a": "검증 셋 기준 공개 텍스트 Prompt 분할 모델인 VoxTell보다 히트 레이트, Instance F1 스코어, 평균 Dice 스코어 모두 통계적으로 유의하게 높은 수치를 기록했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.31222v1/fig1_link.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-24T10:59:54.070115+00:00",
+  "notion_id": "",
+  "id": "2026-11-24-60b33fdf3f1595e5",
+  "img_tried": true
+}

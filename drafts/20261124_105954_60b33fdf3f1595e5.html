@@ -1,0 +1,20 @@
+<!-- TITLE: CTLink: 텍스트 Prompt 기반 3D 흉부 CT 분할 모델 | TAGS: CTLink,3D Segmentation,Radiology,AI 3D,MICCAI 2026,연구·논문 | CATEGORY: AI 3D/기타 AI 3D | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 방사선과 판독문의 텍스트 소견을 3D 흉부 CT 스캔에 시각적으로 연동하는 텍스트 Prompt 기반 분할 모델 CTLink 연구 논문이 발표되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 기타 AI 3D › 연구·논문</p>
+<h2>ReXGroundingCTv2 데이터셋과 학습 규모</h2>
+<p>CTLink는 4123건의 비조영 흉부 CT 스캔과 9547건의 세분화된 판독문 소견을 기반으로 학습되었습니다. 여기에는 1134건의 스캔과 1895건의 소견이 새로 주석 처리된 ReXGroundingCTv2 데이터셋이 포함됩니다.</p>
+<h2>성능 평가 및 챌린지 결과</h2>
+<p>ReXGroundingCT 검증 스캔 200건에서 CTLink는 히트 레이트 0.816, Instance F1 스코어 0.456, 평균 Dice 스코어 0.400을 달성했습니다. MICCAI 2026 ReXGrounding 챌린지 테스트 세트에서는 7개 모델의 앙상블이 48개 참가 팀 중 가장 높은 히트 레이트와 Instance F1 스코어를 기록했습니다.</p>
+<h2>임상적 일치도와 현재의 한계점</h2>
+<p>50건의 테스트 스캔을 독립된 방사선과 전문의들이 두 번 분할한 결과와 비교했을 때, CTLink는 전문의 간 일치도 수준과 같거나 그 이상의 성능을 보였습니다. 다만 확산형 비국소성 소견의 경우 범위 윤곽을 잡는 기준이 전문의 사이에서도 일관되지 않아 주된 한계점으로 남았습니다.</p>
+<h2>오픈소스 모델 가중치 및 데이터셋 공개</h2>
+<p>연구진은 CTLink 모델 가중치와 관련 데이터셋을 공식 아카이브 링크를 통해 공개했습니다. 연구 및 개발자는 관련 저장소에서 소스 코드와 데이터셋을 내려받아 직접 검증하고 활용할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">4123건의 비조영 흉부 CT 스캔과 9547건의 분할 소견을 학습한 CTLink는 MICCAI 2026 ReXGrounding 챌린지 테스트 세트에서 히트 레이트 0.782, Instance F1 스코어 0.386을 기록했습니다. 의료 영상 3D 시각화 및 자동화 진단 모델 개발 과정에서 텍스트와 3D 공간 데이터의 정합성을 높이는 데 활용할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. CTLink는 어떤 데이터를 사용하여 학습되었나요?</b><br/>A. 4123건의 비조영 흉부 CT 스캔과 9547건의 세분화된 판독문 소견, 그리고 새로 구축된 ReXGroundingCTv2 데이터셋을 기반으로 학습되었습니다.</p>
+<p><b>Q. 기존 공개 모델과 비교한 성능은 어떠한가요?</b><br/>A. 검증 셋 기준 공개 텍스트 Prompt 분할 모델인 VoxTell보다 히트 레이트, Instance F1 스코어, 평균 Dice 스코어 모두 통계적으로 유의하게 높은 수치를 기록했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-22-c11f05b30efe4315.html">Siemens, 적층 제조 자동화에 Agentic AI 도입</a></li><li><a href="https://3dflowhub.kr/p/2026-11-21-59f36579aae92702.html">NativeSeg: 외부 SAM 없는 3D CT Native VLM 세그멘테이션</a></li><li><a href="https://3dflowhub.kr/p/2026-11-20-2d01b6350c2d3fb2.html">NVIDIA Nemotron AI 에이전트 툴 콜링 파서 구현 방법</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.31222v1" target="_blank" rel="noopener nofollow">CTLink: A Text-Prompted Segmentation Model for Linking Radiology Report Findings to 3D Chest CT Scans</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
