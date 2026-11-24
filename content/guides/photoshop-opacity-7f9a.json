@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-opacity-7f9a",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 재질 및 텍스처",
+  "name": "Opacity",
+  "title": "불투명도 — 3D 표면의 투명 영역과 잘라내기 효과를 제어하는 텍스처 속성",
+  "summary": "Photoshop의 Opacity 기능은 레이어, 브러시, 텍스처 등의 투명도를 조절하여 자연스러운 합성 및 페인팅 효과를 만듭니다.",
+  "when": [
+    "3D 모델 표면에 반투명한 스티커나 마킹을 칠할 때",
+    "여러 레이어의 텍스처를 자연스럽게 섞을 때",
+    "유리나 천 같은 반투명 재질의 질감 맵을 제작할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델(.obj 또는 .fbx 등)을 불러옵니다.",
+    "Layers 패널에서 칠하고자 하는 대상 레이어를 선택합니다.",
+    "브러시 툴(Brush Tool, Hotkey B)을 선택합니다.",
+    "상단 옵션 바(Options Bar)에서 Opacity 값을 조절하여 브러시의 투명도를 설정합니다.",
+    "3D 모델 표면에 직접 드래그하여 투명도가 적용된 페인팅 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity",
+      "desc": "레이어 전체 또는 브러시 스트로크의 전반적인 투명도를 조절합니다."
+    },
+    {
+      "name": "Flow",
+      "desc": "브러시가 지나갈 때 색상이 칠해지는 속도와 누적 정도를 조절합니다."
+    },
+    {
+      "name": "Fill",
+      "desc": "레이어의 스타일 효과는 유지한 채 내부 픽셀의 투명도만 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "반투명 데칼 표현",
+      "steps": [
+        "새 레이어를 생성하고 Opacity를 50%로 낮춥니다.",
+        "데칼 브러시로 모델 표면에 그림을 그립니다.",
+        "배경과 자연스럽게 어우러지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "텍스처 블렌딩",
+      "steps": [
+        "두 개의 텍스처 레이어를 위아래로 배치합니다.",
+        "상단 레이어의 Opacity를 조절하여 하단 텍스처를 은은하게 드러냅니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Opacity 대신 Flow를 조절하여 원하지 않게 진하게 칠해짐 → 상단 옵션 바에서 Opacity 슬라이더를 직접 확인하고 조절합니다.",
+    "배경 레이어에서 투명도가 조절되지 않음 → 배경 레이어를 일반 레이어로 더블 클릭해 변환한 뒤 Opacity를 조절합니다."
+  ],
+  "related": [
+    "Brush Tool",
+    "Layers",
+    "Blend Mode",
+    "TextureSet Settings"
+  ],
+  "videos": [
+    {
+      "id": "ok9cVCETDeE",
+      "title": "Opacity vs Fill - Photoshop for Beginners | Lesson 3",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "bW5z39Pxdmw",
+      "title": "How to change The Opacity of an Image in Photoshop CS6",
+      "author": "KingTutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Opacity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Brush Tool",
+    "Hotkey B",
+    "Options Bar",
+    "Opacity"
+  ],
+  "at": "2026-11-24T09:31:15.615568+00:00"
+}

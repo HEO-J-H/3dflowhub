@@ -1,0 +1,82 @@
+{
+  "id": "photoshop-scene-b3e7",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 패널 및 속성",
+  "name": "Scene",
+  "title": "장면 — 전체 3D 씬 설정과 전역 렌더링 옵션을 관리하는 패널 탭",
+  "summary": "Photoshop의 Scene(씬)은 3D 공간에 배치된 모든 메쉬, 조명, 카메라 객체의 전체 계층 구조와 설정을 총괄하는 최상위 관리 컨테이너입니다. 3D 레이어 내부의 전체적인 요소를 한눈에 파악하고 전역 환경을 제어할 때 사용합니다.",
+  "when": [
+    "복잡한 3D 씬에서 여러 개의 메쉬 오브젝트와 카메라, 조명을 한 번에 관리하고 싶을 때",
+    "3D 환경의 배경(Environment) 색상이나 전역 조명 설정을 변경할 때",
+    "3D 레이어 전체의 렌더 품질이나 상호작용 속도를 조절해야 할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 Window → 3D 를 클릭하여 3D 패널을 엽니다.",
+    "3D 패널 최상단에 있는 Scene 항목을 클릭하여 선택합니다.",
+    "Properties 패널에서 3D 씬의 전역 속성 및 환경 설정을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Environment",
+      "desc": "3D 씬의 배경 색상, 이미지 기반 조명(IBL), 그림자 지면(Ground) 설정을 관리합니다."
+    },
+    {
+      "name": "Global Ambient",
+      "desc": "씬 전체에 그림자 없는 기본 환경광 색상을 부여하여 어두운 영역을 밝힙니다."
+    },
+    {
+      "name": "Rendering Presets",
+      "desc": "실시간 Viewport 및 최종 렌더링의 품질 수준과 레이트레이싱 옵션을 설정합니다."
+    },
+    {
+      "name": "Cross Section",
+      "desc": "3D 오브젝트의 내부를 단면으로 잘라서 볼 수 있는 절단면을 활성화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 배경 환경광 설정하기",
+      "steps": [
+        "3D 패널에서 Scene 항목을 선택합니다.",
+        "Properties 패널에서 Environment 탭을 클릭합니다.",
+        "Texture 옵션에서 이미지나 색상을 선택해 3D 씬의 반사 및 배경광을 변경합니다."
+      ]
+    },
+    {
+      "title": "오브젝트 단면 확인하기",
+      "steps": [
+        "3D 패널에서 Scene을 선택합니다.",
+        "Properties 패널에서 Cross Section 옵션을 체크합니다.",
+        "축과 오프셋 값을 조절하여 메쉬의 내부 구조를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "개별 메쉬를 수정하려는데 Scene이 선택되어 전체가 움직임 → 3D 패널에서 해당 메쉬나 조명 아이템을 직접 클릭하여 선택하세요.",
+    "배경 조명이 적용되지 않음 → Environment 탭의 IBL 강도(Intensity) 값이 0으로 되어 있는지 확인하세요."
+  ],
+  "related": [
+    "3D Panel",
+    "Render Settings",
+    "Infinite Light",
+    "Coordinates"
+  ],
+  "videos": [
+    {
+      "id": "34pTcSH06HA",
+      "title": "Fantasy Scene | Blur Background: Photoshop Tutorial",
+      "author": "Photoshop Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Scene",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Window",
+    "Scene"
+  ],
+  "at": "2026-11-24T09:31:12.366738+00:00"
+}
