@@ -1,0 +1,97 @@
+{
+  "id": "v-ray-vraytriplanartex-ee10",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "VRayTriplanarTex",
+  "title": "VRayTriplanarTex — UV展开 없이도 3D 오브젝트에 텍스처를 이음새 없이 자연스럽게 매핑해주는",
+  "summary": "VRayTriplanarTex는 복잡한 UV 펼치기 작업 없이도 3D 모델의 표면에 텍스처를 3차원 공간(X, Y, Z축)에서 삼면 투영 방식으로 자연스럽게 입혀주는 핵심 맵입니다.",
+  "when": [
+    "UV 좌표를 미리 펴지 않은 하이폴리곤 모델이나 CAD 데이터에 빠르게 텍스처를 넣을 때",
+    "지형이나 바위 같은 자연물 표면에 타일링 반복 무늬(Seam)를 눈에 띄지 않게 처리할 때",
+    "오브젝트의 모서리나 접합면에서 텍스처가 늘어나는 현상 없이 균일하게 매핑할 때"
+  ],
+  "steps": [
+    "Material Editor를 열고 V-Ray Material을 생성합니다.",
+    "Diffuse 또는 Bump 등 텍스처를 연결할 슬롯 옆의 버튼을 클릭합니다.",
+    "Material/Map Browser에서 VRayTriplanarTex를 검색하여 선택합니다.",
+    "Texture 슬롯에 원하는 비트맵 이미지를 불러옵니다.",
+    "Blend Amount 값을 조절하여 X, Y, Z축 투영 면이 만나는 경계 부위를 부드럽게 섞어줍니다.",
+    "Viewport에서 텍스처가 자연스럽게 적용되었는지 렌더링하여 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Texture",
+      "desc": "투영할 실제 이미지 파일이나 맵을 연결하는 슬롯입니다."
+    },
+    {
+      "name": "Blend Amount",
+      "desc": "삼면 투영이 만나는 경계면을 블렌딩하여 이음새를 부드럽게 만듭니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "텍스처의 전체적인 크기를 조절합니다."
+    },
+    {
+      "name": "Tiling Mode",
+      "desc": "텍스처 반복 방식을 설정합니다."
+    },
+    {
+      "name": "Space",
+      "desc": "월드 좌표계(World) 또는 오브젝트 좌표계(Object) 기준을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 벽 건축 모델링에 빠르게 텍스처 입히기",
+      "steps": [
+        "Material Editor에서 VRayMaterial을 생성합니다.",
+        "Diffuse 슬롯에 VRayTriplanarTex를 연결합니다.",
+        "Texture에 벽돌 이미지를 넣고 Scale 값을 조절해 크기를 맞춥니다.",
+        "복잡한 UV 전개 없이 건물 전체에 벽돌을 일관되게 적용합니다."
+      ]
+    },
+    {
+      "title": "자연물 지형에 바위 텍스처 적용하기",
+      "steps": [
+        "지형 오브젝트에 V-Ray Material을 할당합니다.",
+        "Bump 슬롯에 VRayTriplanarTex를 넣고 바위 노멀 맵을 연결합니다.",
+        "Blend Amount를 높여 가파른 경사면과 평면 사이의 이음새를 없앱니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경계면이 부자연스럽게 선으로 나타남 → Blend Amount 값을 높여 투영면 사이의 혼합 영역을 넓혀 해결합니다.",
+    "텍스처 크기가 너무 크거나 작음 → Scale 파라미터나 매핑 크기를 조절하여 스케일을 맞춥니다."
+  ],
+  "related": [
+    "V-Ray Dirt",
+    "VRayBitmap",
+    "V-Ray Material",
+    "UVW Mapping"
+  ],
+  "videos": [
+    {
+      "id": "6FalgHWkhKE",
+      "title": "V-Ray | How to RANDOMIZE your models | UVWRandomizer, Triplanar, Stochastic Tiling, MultiSubTex",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "I703Zst0Mog",
+      "title": "V-Ray Triplanar-Texture Tutorial",
+      "author": "Starsbirthvfx 3D Trainings"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20VRayTriplanarTex",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "V-Ray Material",
+    "Diffuse",
+    "Bump",
+    "Material",
+    "Map Browser"
+  ],
+  "at": "2026-11-24T09:01:21.224511+00:00"
+}
