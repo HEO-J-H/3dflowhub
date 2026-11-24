@@ -1,18 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-22T05:48:41.584483+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "llm_fallbacks": [],
-      "errors": [
-        "AI 일일 한도 소진 — 11/22 17:00 이후 다시 시도 (예비 AI 도 오늘 한도 소진)"
-      ]
-    },
-    {
       "at": "2026-11-22T05:58:28.777172+00:00",
       "collected": 0,
       "saved": 0,
@@ -6643,6 +6631,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-24T12:51:27.442349+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 95,
+      "candidates_passed": 40,
+      "offtopic": 26,
+      "short": 0,
+      "prefiltered": 39,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "005c0307",
+      "visuals": 0,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6738,7 +6753,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-14 [PR #24 다시 하기 — TRELLIS(MIT) 멀티뷰 3D 생성 엔진] 외부 3D 생성 엔진 통합 시 라이선스(MIT)와 파이프라인 호환성을 검토하고 기존 툴 비교 체계와 연동한다.",
     "2026-11-14 [성찰] 동음이의어 필터를 65중 이상으로 강화하여 비관련 기사 유입을 줄이고, 3D DCC 및 툴 플러그인·스크립트 실무 튜토리얼 중심으로 콘텐츠를 발행해야 검색 유입과 애드센스 가치 모두를 높일 수 있습니다.",
     "2026-11-14 [core.validate_url_scheme_strict(): URL 스] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-14 [core.filter_duplicate_content(): 최근 수집된 ] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
@@ -6857,7 +6871,8 @@
     "2026-11-24 [성찰] 실무 중심 고CPC 키워드와 1,500자 이상 상세 튜토리얼이 검색 유입과 AdSense 수익을 크게 높인다.",
     "2026-11-24 [성찰] 실무 중심의 고CPC 툴·플러그인·스크립트 가이드가 검색 유입과 페이지뷰를 크게 끌어올린다.",
     "2026-11-24 [성찰] AI 일일 한도 소진 문제가 발생하였으므로 예비 API 라우팅을 점검하고, 주제와 무관한 동음이의어 수집을 철저히 차단하여 오프토픽 페널티를 줄여야 합니다.",
-    "2026-11-24 [성찰] 동음이의어(핵, 주가, 인물)로 인한 오탐지를 줄이고 Maxscript, 플러그인, 튜토리얼 등 고CPC 실무 검색 의도에 집중해야 합니다."
+    "2026-11-24 [성찰] 동음이의어(핵, 주가, 인물)로 인한 오탐지를 줄이고 Maxscript, 플러그인, 튜토리얼 등 고CPC 실무 검색 의도에 집중해야 합니다.",
+    "2026-11-24 [성찰] 동음이의어 필터링을 강화하여 비실무 오탐지를 줄이고, Maya, Maxscript 등 조회수와 검색 유입이 입증된 고CPC 실무 가이드 및 애드온 튜토리얼 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6917,7 +6932,7 @@
     "VFX/스튜디오·작품": 237,
     "AI 3D/로보틱스·월드모델": 37,
     "3D DCC/Blender": 199,
-    "Game Engine/Unreal Engine": 213,
+    "Game Engine/Unreal Engine": 214,
     "AI 3D/기타 AI 3D": 61,
     "Game Engine/Godot": 51,
     "3D DCC/Cinema 4D": 38,
@@ -7062,7 +7077,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    2020008070079564070,
     17685701966092313815,
     13873363568227050512,
     162853689870116497,
@@ -10061,14 +10075,15 @@
     2422995595825284368,
     13573895099773080337,
     8499857689409844625,
-    6040828817569918436
+    6040828817569918436,
+    6886806713453796505
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 3999,
-    "Game Engine": 3999,
-    "VFX": 3999,
-    "AI 3D": 3999
+    "3D DCC": 4000,
+    "Game Engine": 4000,
+    "VFX": 4000,
+    "AI 3D": 4000
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
