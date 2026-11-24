@@ -1,0 +1,102 @@
+{
+  "id": "davinci-resolve-uv-map-cb96",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "퓨전 페이지",
+  "name": "UV Map",
+  "title": "UV 맵 — 3D 공간의 텍스처 좌표를 활용하여 Effect를 적용하는 워크플로우",
+  "summary": "DaVinci Resolve의 Fusion 페이지 내 UV Map 노드는 2D 텍스처를 3D 모델의 표면에 정확하게 매핑하고 왜곡을 제어할 수 있는 강력한 도구입니다.",
+  "when": [
+    "3D 오브젝트 표면에 로고나 텍스처를 왜곡 없이 정밀하게 입히고 싶을 때",
+    "Fusion 3D 공간에서 텍스처의 좌표와 방향을 동적으로 수정해야 할 때",
+    "복잡한 지오메트리 표면을 따라 텍스처가 자연스럽게 흘러가도록 제어할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단에서 Fusion 페이지로 이동합니다.",
+    "Node 뷰에서 3D 오브젝트 노드와 텍스처(MediaIn 또는 Background) 노드를 준비합니다.",
+    "Shift + Space 키를 눌러 Select Tool 창을 엽니다. 'UVMap'을 검색하여 추가합니다.",
+    "텍스처 노드 출력을 UVMap 노드의 입력에 연결하고, UVMap 노드를 3D 머티리얼 또는 3D 씬(Merge 3D)에 연결합니다.",
+    "Inspector 패널에서 UVMap 노드의 속성(Mapping Type, Scale, Offset 등)을 조정하여 텍스처 위치를 정렬합니다.",
+    "Viewer에서 3D Viewport를 확인하며 결과물이 올바르게 매핑되었는지 검증합니다."
+  ],
+  "params": [
+    {
+      "name": "Mapping Type",
+      "desc": "UV, Planar, Cylindrical, Spherical 등 텍스처 투영 방식을 선택합니다."
+    },
+    {
+      "name": "U Scale",
+      "desc": "가로 방향으로 텍스처의 타일링 반복 횟수나 크기를 조절합니다."
+    },
+    {
+      "name": "V Scale",
+      "desc": "세로 방향으로 텍스처의 타일링 반복 횟수나 크기를 조절합니다."
+    },
+    {
+      "name": "Offset U",
+      "desc": "가로 축을 기준으로 텍스처의 위치를 이동합니다."
+    },
+    {
+      "name": "Offset V",
+      "desc": "세로 축을 기준으로 텍스처의 위치를 이동합니다."
+    },
+    {
+      "name": "Angle",
+      "desc": "텍스처의 회전 각도를 조절하여 방향을 맞춥니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 로고 부착",
+      "steps": [
+        "Fusion 3D 공간에 평면 또는 상자 형태의 오브젝트를 배치합니다.",
+        "UVMap 노드를 추가하여 Mapping Type을 Planar로 설정합니다.",
+        "로고 이미지의 U Scale과 V Scale을 조절하여 크기를 맞춥니다.",
+        "Offset U와 Offset V를 이용해 오브젝트 중앙에 로고를 정확히 배치합니다."
+      ]
+    },
+    {
+      "title": "원통형 오브젝트 심리스 텍스처링",
+      "steps": [
+        "파이프나 캔 형태의 3D 메쉬를 불러옵니다.",
+        "UVMap 노드를 연결하고 Mapping Type을 Cylindrical로 변경합니다.",
+        "Angle 값을 조절하여 텍스처의 이음새를 시야에서 안보이는 곳으로 회전시킵니다.",
+        "U Scale을 높여 원통 표면에 텍스처가 반복되도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "텍스처가 아예 보이지 않음 → UVMap 노드가 텍스처와 3D 머티리얼 사이에 올바르게 연결되었는지 확인합니다.",
+    "텍스처가 심하게 늘어남 → Mapping Type이 오브젝트 형태와 일치하는지(예: 원통에는 Cylindrical) 확인하고 Scale 값을 재조정합니다."
+  ],
+  "related": [
+    "ImagePlane 3D",
+    "Merge 3D",
+    "Renderer 3D",
+    "Displace 3D"
+  ],
+  "videos": [
+    {
+      "id": "vg7UPIrUrf8",
+      "title": "DaVinci Resolve Fusion UV Map 3D Node",
+      "author": "bdsCovered"
+    },
+    {
+      "id": "mk-h40-GLGU",
+      "title": "Blender UV Textures to Davinci Resolve Workflow",
+      "author": "Digital Vector Studios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20UV%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fusion",
+    "Node",
+    "MediaIn",
+    "Background",
+    "Select Tool"
+  ],
+  "at": "2026-11-24T12:11:00.151431+00:00"
+}
