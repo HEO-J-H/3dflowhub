@@ -1,0 +1,83 @@
+{
+  "id": "photoshop-merge-meshes-941b",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 메시 편집",
+  "name": "Merge Meshes",
+  "title": "메시 병합 — 선택한 여러 3D 메시를 하나의 단일 메시 레이어로 결합",
+  "summary": "Photoshop의 Merge Meshes 기능은 3D 공간 내에 존재하는 여러 개의 독립된 메시 레이어를 하나로 결합하여 단일 3D 오브젝트로 관리할 수 있게 해줍니다.",
+  "when": [
+    "여러 개의 3D 파츠를 하나의 통일된 오브젝트로 묶어서 관리하고 싶을 때",
+    "하나의 3D 모델에 공통된 머티리얼이나 텍스처를 일괄 적용해야 할 때",
+    "3D 씬 내의 레이어 복잡도를 낮추고 작업 영역을 정리할 때"
+  ],
+  "steps": [
+    "Photoshop 상단 메뉴에서 Window → Workspace → 3D 를 선택하여 3D 작업 공간으로 전환합니다.",
+    "Layers 패널 또는 3D 패널에서 하나로 합치고자 하는 두 개 이상의 3D 메시 레이어를 선택합니다 (Ctrl + 클릭).",
+    "선택한 레이어 위에서 Mouse 우클릭을 합니다.",
+    "컨텍스트 메뉴에서 Merge Meshes를 선택합니다.",
+    "Viewport에서 여러 메시가 하나의 3D 오브젝트로 합쳐졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Layers",
+      "desc": "선택한 3D 레이어들의 목록을 표시하며 병합할 대상을 지정합니다."
+    },
+    {
+      "name": "3D Scene",
+      "desc": "전체 3D 공간과 카메라, 조명, 메시 구조를 계층적으로 보여줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "여러 부품으로 나뉜 3D 모델 결합하기",
+      "steps": [
+        "분리되어 임포트된 3D 파츠들을 Layers 패널에서 모두 선택합니다.",
+        "우클릭 후 Merge Meshes를 실행합니다.",
+        "하나로 합쳐진 3D 오브젝트를 이동 툴로 함께 조작합니다."
+      ]
+    },
+    {
+      "title": "공통 머티리얼 적용 준비",
+      "steps": [
+        "결합할 메시 레이어들을 선택합니다.",
+        "Merge Meshes를 사용하여 단일 메시로 만듭니다.",
+        "Properties 패널에서 텍스처를 한 번에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단일 메시가 아닌 2D 레이어가 선택됨 → 3D 레이어만 정확히 선택했는지 Layers 패널에서 확인합니다.",
+    "병합 후 UV 왜곡 발생 → 각 파츠의 기본 UV가 올바르게 펴져 있는지 사전에 확인합니다."
+  ],
+  "related": [
+    "Merge 3D Layers",
+    "Group 3D Layers",
+    "3D Scene",
+    "Properties"
+  ],
+  "videos": [
+    {
+      "id": "4Zhf0ZIpKo4",
+      "title": "How to blend and merge two diffrent layers in photoshop 2024",
+      "author": "GFX OM"
+    },
+    {
+      "id": "t33qGY7Iy3E",
+      "title": "How to merge shapes in photoshop",
+      "author": "Let's Not Waste Time"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Merge%20Meshes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Window",
+    "Workspace",
+    "Layers",
+    "Mouse",
+    "Merge Meshes"
+  ],
+  "at": "2026-11-24T09:51:28.345860+00:00"
+}
