@@ -1,0 +1,92 @@
+{
+  "id": "v-ray-v-ray-gpu-rendering-6fc1",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 설정 및 최적화",
+  "name": "V-Ray GPU Rendering",
+  "title": "V-Ray GPU Rendering — CPU 대신 그래픽카드(CUDA/RTX)를 활용하여 대규모 씬을 빠르",
+  "summary": "V-Ray GPU Rendering은 컴퓨터의 그래픽카드(GPU)를 활용하여 3D 렌더링 속도를 극대화하는 렌더링 엔진 기능입니다. 복잡한 장면을 CPU보다 훨씬 빠르게 시각화할 수 있습니다.",
+  "when": [
+    "대규모 건축 인테리어 씬에서 렌더링 시간을 단축해야 할 때",
+    "애니메이션 시퀀스를 빠르게 테스트하고 피드백을 받아야 할 때",
+    "복잡한 글로벌 일루미네이션과 반사·굴절 효과가 많은 씬을 다룰 때"
+  ],
+  "steps": [
+    "3ds Max 또는 Maya에서 V-Ray를 기본 렌더러로 설정합니다.",
+    "Render Setup 창(F10)을 엽니다.",
+    "Common 탭의 Render 드롭다운 메뉴에서 V-Ray GPU를 선택합니다.",
+    "Performance 패널에서 사용할 GPU(CUDA 또는 RTX) 장치를 체크합니다.",
+    "Render를 실행하여 뷰포트나 프레임 버퍼에서 빠른 속도를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Primary engines",
+      "desc": "1차 광산란을 계산할 알고리즘(Brute force 등)을 선택합니다."
+    },
+    {
+      "name": "Secondary engines",
+      "desc": "2차 광산란을 계산할 방식(Light cache 등)을 설정합니다."
+    },
+    {
+      "name": "Max depth",
+      "desc": "빛이 반사되고 굴절되는 최대 횟수를 조절합니다."
+    },
+    {
+      "name": "Ray bundle size",
+      "desc": "GPU 메모리 효율과 성능을 균형 있게 맞추기 위한 광선 묶음 크기입니다."
+    },
+    {
+      "name": "Out-of-core",
+      "desc": "GPU VRAM 용량을 초과하는 대형 씬을 시스템 메모리를 빌려 렌더링합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대형 건축 투시도 빠르게 뽑기",
+      "steps": [
+        "Render Setup에서 V-Ray GPU를 활성화합니다.",
+        "Out-of-core 메모리 옵션을 켜서 대형 CAD 지오메트리를 안정적으로 로드합니다.",
+        "Interactive 렌더링을 켜고 실시간으로 조명과 재질을 수정합니다."
+      ]
+    },
+    {
+      "title": "제품 광고 애니메이션 렌더링",
+      "steps": [
+        "Render Setup에서 RTX 모드를 선택하여 하드웨어 가속을 켭니다.",
+        "Denoiser를 활성화하여 적은 샘플 수에서도 노이즈 없는 결과물을 얻습니다.",
+        "프레임 시퀀스를 일괄 렌더링하여 제작 시간을 단축합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "VRAM 용량 초과로 렌더링이 멈춤 → Out-of-core 옵션을 켜거나 텍스처 Resolution를 낮추세요.",
+    "CPU 전용 플러그인이나 맵이 호환되지 않음 → V-Ray GPU가 지원하는 Native 맵과 재질을 사용하세요."
+  ],
+  "related": [
+    "V-Ray Denoiser",
+    "Light Cache",
+    "V-Ray Frame Buffer",
+    "Chaos Vantage"
+  ],
+  "videos": [
+    {
+      "id": "ayx0vuLbDns",
+      "title": "GPU Rendering in V-Ray 6 using Nvidia GeForce RTX Card",
+      "author": "Arch Viz Artist"
+    },
+    {
+      "id": "qunda5_PoYk",
+      "title": "V-Ray Render Setup for Interior Rendering in 3Ds Max | Fast & Easy!",
+      "author": "Saeed Mandegar Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20GPU%20Rendering",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Maya",
+    "V-Ray"
+  ],
+  "at": "2026-11-24T08:23:11.890528+00:00"
+}
