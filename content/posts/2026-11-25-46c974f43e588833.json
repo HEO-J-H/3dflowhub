@@ -1,0 +1,54 @@
+{
+  "title_ko": "Raspberry Pi용 Depth Anything V2 경량화 연구",
+  "title": "Seeing to Drive on a Single Board: Attention-Free Depth for Onboard Robot Navigation",
+  "url": "https://arxiv.org/abs/2611.32718v1",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "연구·논문",
+  "tags": [
+    "Raspberry Pi 5",
+    "Hailo-8L",
+    "Depth Anything V2",
+    "ResNet-34",
+    "Gaussian Splatting"
+  ],
+  "summary": "Raspberry Pi 5와 Hailo-8L NPU에서 실시간으로 동작하는 어텐션 없는 ResNet-34 U-Net 기반 깊이 추정 모델 연구입니다.",
+  "insight": "정수 연산 제약이 있는 NPU 환경에서 기존 비전 트랜스포머의 Softmax 병목 현상을 해결하기 위해 ResNet-34 U-Net 학생 모델로 증류하여 27.1 FPS의 속도와 0.99993의 Pearson 상관계수를 달성했습니다.",
+  "try_it": [
+    "논문에서 공개된 소스 코드와 사전 학습된 모델을 다운로드합니다.",
+    "Raspberry Pi 5와 Hailo-8L 하드웨어 환경을 설정합니다.",
+    "가우시안 스플래팅으로 재구성된 시뮬레이션 환경에서 실시간 깊이 추정 성능을 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Raspberry Pi 5와 Hailo-8L 하드웨어 제약",
+      "body": "소형 로봇은 제한된 전력과 연산 장치 환경에서 카메라 입력을 거리 센서로 전환해야 합니다. Raspberry Pi 5에 장착된 Hailo-8L NPU는 모든 레이어를 정수 연산으로 처리하지만, 기존의 Depth Anything V2 같은 비전 트랜스포머 모델을 그대로 양자화하면 대규모 정보 손실이 발생합니다. 449개의 토큰 중 91%의 Softmax 가중치가 int8 스텝 아래로 떨어지는 현상이 관찰되었습니다."
+    },
+    {
+      "heading": "ResNet-34 U-Net 기반 지식 증류",
+      "body": "연구팀은 양자화 대신 지식 증류 방식을 선택하여 2,450만 파라미터 규모의 Depth Anything V2-Large를 어텐션이 없는 ResNet-34 U-Net 구조의 학생 모델로 학습시켰습니다. 이 모델은 NPU에서 초당 27.1 프레임으로 구동되며, int8 출력 결과가 float 트윈 모델과 거의 일치하는 Pearson 0.99993을 기록했습니다."
+    },
+    {
+      "heading": "실외 주행 및 Gaussian Splatting 시뮬레이션 테스트",
+      "body": "실외 주행 테스트의 1,000개 스테레오 검증 포인트에서 벤더의 Depth Anything V2-Small 빌드와 대등한 정확도를 보이면서도 더 빠른 속도를 기록했습니다. 또한 Gaussian Splatting으로 재구성된 실제 마당 환경의 하드웨어 인 더 루프 테스트에서 충돌 없이 목표 지점에 도달했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "기존 Depth Anything V2를 NPU에 그대로 양자화하면 왜 문제가 되나요?",
+      "a": "비전 트랜스포머의 Softmax 가중치 중 다수가 int8 정수 연산 단계 아래로 떨어지면서 17~33%의 어텐션 매스가 손실되기 때문입니다."
+    },
+    {
+      "q": "어텐션 없는 ResNet-34 U-Net 모델의 성능은 어느 정도인가요?",
+      "a": "Hailo-8L 칩에서 초당 27.1 프레임으로 작동하며, float 기준 모델과 일치하는 0.99993의 Pearson 상관계수를 보여줍니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.32718v1/figures/fig_drive_views.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-25T13:48:13.603996+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-46c974f43e588833",
+  "img_tried": true
+}
