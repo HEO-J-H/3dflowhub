@@ -1,0 +1,86 @@
+{
+  "id": "davinci-resolve-proxy-generation-99d6",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "미디어 페이지",
+  "name": "Proxy Generation",
+  "title": "프록시 제너레이션 — 고해상도 작업용 저해상도 편집본을 생성하는 도구",
+  "summary": "DaVinci Resolve의 Proxy Generation은 고해상도 원본 영상의 해상도나 코덱을 낮게 변환하여 무거운 Timeline 재생을 부드럽게 만들어주는 편집 최적화 기능입니다.",
+  "when": [
+    "4K 또는 8K 고해상도 영상을 편집할 때 재생이 끊기거나 버벅일 때",
+    "노트북이나 사양이 낮은 시스템에서 3D 렌더링 시퀀스를 원활하게 검토할 때",
+    "여러 개의 비디오 트랙을 동시에 재생하며 편집 효율을 높이고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Media 페이지로 이동합니다.",
+    "Media Storage 패널에서 프록시를 생성할 고해상도 영상 클립을 선택합니다.",
+    "선택한 클립을 Mouse 우클릭하고 Proxy Generation... 메뉴를 클릭합니다.",
+    "프록시 코덱(예: ProRes Proxy 또는 DNxHR LB)과 Resolution를 선택하고 Generate 버튼을 누릅니다.",
+    "상단 메뉴 바에서 Playback → Proxy Handling → Prefer Proxies를 선택하여 프록시 적용을 활성화합니다."
+  ],
+  "params": [
+    {
+      "name": "Proxy Resolution",
+      "desc": "원본 대비 프록시 영상의 Resolution 비율을 조절합니다 (예: Original의 1/2, 1/4)."
+    },
+    {
+      "name": "Proxy Format",
+      "desc": "가벼운 편집을 위해 인코딩할 코덱을 선택합니다 (Apple ProRes 또는 Avid DNxHR 등)."
+    },
+    {
+      "name": "Use HQ Proxies",
+      "desc": "품질을 조금 더 유지하면서 가벼운 프록시 파일을 생성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "4K 60fps 3D 렌더링 시퀀스 부드럽게 재생하기",
+      "steps": [
+        "Media 페이지에서 렌더링된 이미지 시퀀스나 영상을 선택합니다.",
+        "Proxy Generation을 실행하여 1/4 Resolution의 ProRes Proxy로 생성합니다.",
+        "Edit 페이지로 이동하여 끊김 없이 Timeline 스럽핑을 테스트합니다."
+      ]
+    },
+    {
+      "title": "외장 하드 작업 시 임시 프록시로 속도 개선하기",
+      "steps": [
+        "프로젝트 설정에서 프록시 파일이 저장될 로컬 캐시 폴더를 지정합니다.",
+        "전체 소스 클립에 대해 일괄적으로 Proxy Generation을 수행합니다.",
+        "Playback 메뉴에서 프록시 모드가 켜져 있는지 확인하고 편집을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프록시를 생성했으나 적용되지 않음 → 상단 메뉴에서 Playback → Proxy Handling이 'Prefer Proxies'로 설정되어 있는지 확인하세요.",
+    "렌더링 시 프록시가 출력됨 → DaVinci Resolve는 최종 렌더링(Deliver 페이지) 시 자동으로 원본 고해상도 소스를 사용하므로 걱정하지 않아도 됩니다."
+  ],
+  "related": [
+    "Render Cache",
+    "Timeline Proxy Resolution",
+    "Super Scale",
+    "Media Management"
+  ],
+  "videos": [
+    {
+      "id": "7wSQBoLcBrA",
+      "title": "How to use Proxy Files to Edit SUPER FAST in DaVinci Resolve!",
+      "author": "Matt WhoisMatt Johnson"
+    },
+    {
+      "id": "YtXn5Lkr3KM",
+      "title": "How to create proxies in DaVinci Resolve",
+      "author": "RESO\\VED"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Proxy%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Media",
+    "Media Storage",
+    "Mouse",
+    "Proxy Generation"
+  ],
+  "at": "2026-11-25T00:53:31.326273+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "v-ray-v-ray-stucco-mtl-adf3",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Stucco Mtl",
+  "title": "V-Ray Stucco Mtl — 거친 회벽이나 스토코 질감을 사실적으로 표현하는 전용 재질",
+  "summary": "V-Ray Stucco Mtl은 건축 시각화에서 외벽 마감재인 스코치(Stucco)와 회벽의 거칠고 독특한 질감을 사실적으로 표현하기 위한 전용 재질입니다. 미세한 모래 입자와 요철감을 라이팅 계산에 반영하여 깊이감 있는 벽면을 만들어냅니다.",
+  "when": [
+    "모던 주택이나 빈티지 건물 외벽의 거친 회벽 마감을 표현할 때",
+    "실내 인테리어에서 플라스터(Plaster) 벽면의 미세한 요철과 질감을 낼 때",
+    "시멘트나 모르타르 표면의 세밀한 거칠기와 반사 특성을 구현할 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor (Hotkey: M)를 엽니다.",
+    "Material / Map Browser에서 V-Ray 탭을 열고 V-Ray Stucco Mtl을 선택하여 슬롯에 적용합니다.",
+    "Diffuse 슬롯에 스코치 색상이나 텍스처 맵을 연결합니다.",
+    "Bump 슬롯에 노이즈(Noise)나 범프 맵을 연결하여 표면의 거친 요철감을 더합니다.",
+    "Roughness와 Reflect 옵션을 조절하여 벽면의 건조한 무광 느낌이나 미세한 반사를 세팅합니다.",
+    "Viewport에서 재질을 오브젝트에 할당하고 V-Ray Frame Buffer로 렌더링하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "벽면의 기본 색상 또는 확산 반사 텍스처를 설정합니다."
+    },
+    {
+      "name": "Bump",
+      "desc": "스코치 특유의 거친 표면 요철과 입자감을 입체적으로 표현합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 빛의 반사 산란 범위를 결정합니다."
+    },
+    {
+      "name": "Reflection",
+      "desc": "벽면에 맺히는 미세한 하이라이트와 반사 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모던 건축물 외벽 스코치 마감",
+      "steps": [
+        "건물 외벽 오브젝트를 선택합니다.",
+        "V-Ray Stucco Mtl을 적용하고 Diffuse에 밝은 회색 계열 색상을 넣습니다.",
+        "Bump에 미세한 입자 맵을 연결하여 은은한 외벽 요철을 만듭니다."
+      ]
+    },
+    {
+      "title": "빈티지 인테리어 플라스터 벽면",
+      "steps": [
+        "실내 벽체 메쉬에 재질을 할당합니다.",
+        "Bump와 Roughness 값을 높여 거칠고 오래된 벽 느낌을 강조합니다.",
+        "렌더링을 통해 빛에 따른 그림자 질감을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Bump 세기가 너무 강함 → 범프 멀티플라이어(Bump Multiplier) 값을 낮추고 맵 스케일을 조절합니다.",
+    "표면이 너무 매끄러움 → Roughness 값을 높이거나 범프 맵의 세밀함을 보완합니다."
+  ],
+  "related": [
+    "VRayBlendMtl",
+    "VRayMtl",
+    "V-Ray Dirt",
+    "VRayNormalMap"
+  ],
+  "videos": [
+    {
+      "id": "6hggTMl9SEg",
+      "title": "Material Stucco Blanco VRay",
+      "author": "somagroup1"
+    },
+    {
+      "id": "GTNr2ELbjt4",
+      "title": "MATERIAL STUCCO-PARED REALISTA   | Vray 5 - Sketchup | 07 de 30",
+      "author": "Vertex 3D Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Stucco%20Mtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "V-Ray Stucco Mtl"
+  ],
+  "at": "2026-11-25T00:53:35.112889+00:00"
+}
