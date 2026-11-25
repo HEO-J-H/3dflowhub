@@ -1,0 +1,25 @@
+<!-- TITLE: Blender 목판화 일러스트 Shader — UV·텍스처 없는 노드 | TAGS: Blender,Eevee,Shader,목판화,Procedural,블렌더,플러그인·스크립트 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/this-blender-shader-turns-any-3d-object-into-woodcut-illustration/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51169/images/6b06d5048e9b3/contain_1200x630.jpg" alt="Blender 목판화 일러스트 Shader — UV·텍스처 없는 노드" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/this-blender-shader-turns-any-3d-object-into-woodcut-illustration/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/46WBnjkbGlc" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 타마스 롤페스(Tamás Rolfesz)가 제작한 목판화 일러스트 스타일의 Blender Procedural 셰이더입니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 플러그인·스크립트</p>
+<h2>트란실바니아 여행에서 영감을 받은 목판화 Shader</h2>
+<p>3D 아티스트 타마스 롤페스는 트란실바니아의 드라큘라 장식에서 아이디어를 얻어 이 Procedural Shader를 개발했습니다. 정지 이미지를 넘어 애니메이션에서도 전체 영화를 이 스타일로 제작할 수 있도록 구상되었습니다.</p>
+<h2>UV와 텍스처가 필요 없는 단일 머티리얼 구조</h2>
+<p>이 Shader는 UV 전개, 텍스처 맵, Geometry Nodes, 페인팅된 Mask 없이 작동합니다. 오브젝트에 머티리얼을 올리고 Eevee에서 렌더링하면 곧바로 판화 효과가 적용됩니다.</p>
+<h2>Shader to RGB로 빛을 데이터로 변환</h2>
+<p>Eevee의 Shader to RGB 노드를 이용해 조명 결과를 수치 데이터로 변환합니다. 세 개의 슬라이더를 통해 밝은 영역은 종이, 중간 영역은 해치, 어두운 영역은 잉크 영역으로 분할합니다.</p>
+<h2>오브젝트 스페이스 기반의 일정한 선 유지</h2>
+<p>모든 스트로크 연산은 스크린 스페이스가 아닌 오브젝트 스페이스에서 처리됩니다. 카메라가 움직여도 선이 흔들리지 않아 240프레임 분량의 애니메이션에서도 표면에 고정된 상태를 유지합니다.</p>
+<h2>세 가지 표면 유형과 세부 옵션</h2>
+<p>건축물과 캐릭터에 적합한 Basic, 꽃병과 기둥 같은 둥근 형태에 어울리는 Rounded, 나무 캐노피를 위한 Foliage 등 세 가지 표면 유형을 지원합니다. Depth Fade와 Contour Lines 기능을 통해 대기감과 외곽선을 더할 수 있습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Blender 5.1 이상 환경에서 Eevee 렌더러를 활용해 UV나 텍스처 작업 없이 단일 머티리얼만으로 목판화 질감을 구현할 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 이 Shader를 사용하려면 UV 맵을 펴야 하나요?</b><br/>A. 아니요. UV, 텍스처, 수동 셋업이 전혀 필요 없으며 어떤 메시든 드래그 앤 드롭으로 적용할 수 있습니다.</p>
+<p><b>Q. 애니메이션에서 선이 떨리는 현상이 발생하나요?</b><br/>A. 모든 연산이 오브젝트 스페이스에서 이루어지기 때문에 카메라와 오브젝트가 움직여도 선이 표면에 안정적으로 고정됩니다.</p>
+<p><b>Q. 어떤 버전의 Blender에서 사용할 수 있나요?</b><br/>A. Blender 5.1 및 그 이후 버전과 호환되며 데모 씬과 문서가 함께 제공됩니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-25-837e2d1ebf1a6a78.html">Wingfox AAA 게임 캐릭터 제작 마스터클래스 공개</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-6b8d2c7dfdf42768.html">Blender로 제작하는 PS1 스타일 캐릭터 모델링 가이드</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-dbd70f385cb60a08.html">Blender 태블릿 버전 개발 계획 공개 — UI와 파일 연동</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/this-blender-shader-turns-any-3d-object-into-woodcut-illustration/" target="_blank" rel="noopener nofollow">This Blender Shader Turns Any 3D Object Into Woodcut Illustration</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
