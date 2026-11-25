@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-v-ray-uvw-gen-triplanar-92ce",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "텍스처",
+  "name": "V-Ray UVW Gen Triplanar",
+  "title": "V-Ray 트라이플레너 텍스처 — UV 펼치기 없이 오브젝트에 텍스처를 자연스럽게 매핑하는 법",
+  "summary": "V-Ray UVW Gen Triplanar는 UV를 만들지 않아도 X·Y·Z 축으로 삼면 투영해 텍스처를 자연스럽게 매핑하는 노드입니다.",
+  "when": [
+    "UV가 없거나 깨끗하게 펼치기 어려운 복잡한 모델에 사용할 때",
+    "텍스처가 여러 방향으로 고르게 보이게 해야 할 때",
+    "실시간 작업 흐름을 빠르게 유지하고 싶을 때"
+  ],
+  "steps": [
+    "Material Editor 열기 → V-Ray Material 생성",
+    "Material Slot(예: Diffuse) 옆 ‘+’ 버튼 클릭 → V-Ray UVW Gen Triplanar 선택",
+    "생성된 UVW Gen Triplanar 노드에 텍스처(예: Bitmap) 연결",
+    "노드 파라미터에서 Scale·Blend·Rotation 등 필요값 조정",
+    "Material 적용 대상 오브젝트에 할당 → Viewport에서 텍스처가 삼면 투영되는지 확인"
+  ],
+  "params": [
+    {
+      "name": "Scale",
+      "desc": "텍스처 크기를 전체 모델에 비례해 조절"
+    },
+    {
+      "name": "Blend",
+      "desc": "세 축 투영 간 전환 강도, 0~1 값"
+    },
+    {
+      "name": "Rotation",
+      "desc": "텍스처 회전 각도, X·Y·Z 축별 입력"
+    },
+    {
+      "name": "Offset",
+      "desc": "텍스처 위치 오프셋, 축별 값"
+    },
+    {
+      "name": "Projection Mode",
+      "desc": "World 혹은 Object 좌표 기준 선택"
+    },
+    {
+      "name": "Clamp",
+      "desc": "값 초과 시 클램프 여부, 아티팩트 방지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "바위 모델에 무 UV 적용",
+      "steps": [
+        "V-Ray UVW Gen Triplanar에 바위 텍스처 연결",
+        "Scale을 0.5로 설정해 텍스처가 적당히 크게 보이게 함",
+        "Blend를 0.8로 높여 모든 면에서 매끄러운 전환 확보"
+      ]
+    },
+    {
+      "title": "건물 외벽에 벽돌 텍스처 적용",
+      "steps": [
+        "UV가 없는 건물 메시 선택 후 V-Ray UVW Gen Triplanar 연결",
+        "Projection Mode를 World로 바꾸어 전역 좌표 기준 투영",
+        "Scale을 0.2로 조정해 벽돌 패턴이 적절히 반복되게 함"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일을 기본값(1) 그대로 두면 텍스처가 너무 작게 보인다 → 모델 크기에 맞게 Scale 조정",
+    "Blend 값을 0으로 하면 축 경계가 뚜렷해져 이음새가 보인다 → 0.5~0.9 사이로 설정",
+    "Projection Mode를 Object로 남겨두면 회전된 오브젝트에 텍스처가 뒤틀린다 → 필요 시 World 모드로 전환"
+  ],
+  "related": [
+    "VRayTriplanarTex",
+    "UVW Generator",
+    "V-Ray Material",
+    "V-Ray Blend Material"
+  ],
+  "videos": [
+    {
+      "id": "BuGwr0Soee4",
+      "title": "V-Ray | Get RID of Texture Tiling  | UVWRandomizer",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "I703Zst0Mog",
+      "title": "V-Ray Triplanar-Texture Tutorial",
+      "author": "Starsbirthvfx 3D Trainings"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20UVW%20Gen%20Triplanar",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "V-Ray Material"
+  ],
+  "at": "2026-11-25T01:53:22.673724+00:00"
+}

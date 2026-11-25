@@ -1,0 +1,98 @@
+{
+  "id": "davinci-resolve-clean-plate-7e4a",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "시각 효과",
+  "name": "Clean Plate",
+  "title": "클린 플레이트 — 키오잉 및 로토스코핑 작업 시 배경을 깔끔하게 추출하는 퓨전 도구",
+  "summary": "Clean Plate 노드는 Fusion에서 주변 픽셀을 활용해 영상의 결함이나 원치 않는 오브젝트를 자동으로 채워 배경을 복원합니다.",
+  "when": [
+    "배경에 작은 물체가 섞여 있어 제거하고 싶을 때",
+    "촬영 중에 발생한 먼지·스크래치 등을 정리할 때",
+    "클립에 빈 공간(Mask)이나 구멍이 생겼을 때"
+  ],
+  "steps": [
+    "Fusion 페이지 열기 → MediaIn 노드 연결",
+    "Shift+Space → ‘Clean Plate’ 입력 후 Add",
+    "Clean Plate 노드를 MediaIn 뒤에 연결하고, 출력은 MediaOut에 연결",
+    "Inspector에서 Radius, Blend, Edge Softness 등 파라미터 조정",
+    "필요 시 Clean Plate 위에 Paint 노드로 세부 보정 후 MediaOut에 연결"
+  ],
+  "params": [
+    {
+      "name": "Radius",
+      "desc": "주변 픽셀을 탐색하는 반경, 클수록 넓은 영역을 채움"
+    },
+    {
+      "name": "Blend",
+      "desc": "채워진 영역과 원본 영상의 혼합 비율"
+    },
+    {
+      "name": "Edge Softness",
+      "desc": "경계 부드러움 정도, 높이면 자연스러운 전환"
+    },
+    {
+      "name": "Mode",
+      "desc": "‘Inpaint’와 ‘Fill’ 중 선택, 일반적으로 Inpaint 사용"
+    },
+    {
+      "name": "Threshold",
+      "desc": "픽셀 차이 허용 범위, 낮게 설정하면 세밀한 보정"
+    },
+    {
+      "name": "Iterations",
+      "desc": "보정 반복 횟수, 필요 시 증가시켜 품질 향상"
+    }
+  ],
+  "examples": [
+    {
+      "title": "촬영 중 보인 마이크 스탠드 제거",
+      "steps": [
+        "마이크가 보이는 프레임에 Clean Plate 적용",
+        "Radius를 15~20으로 설정하고 Blend 80% 적용",
+        "Edge Softness 2로 조정해 주변과 자연스럽게 연결"
+      ]
+    },
+    {
+      "title": "배경에 떠다니는 먼지 제거",
+      "steps": [
+        "노이즈가 있는 구간에 Clean Plate 노드 삽입",
+        "Threshold를 낮게, Iterations 2로 설정",
+        "결과를 확인하고 필요 시 Paint 노드로 미세 보정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "파라미터를 너무 크게 설정 → 배경이 흐려짐 → Radius와 Edge Softness를 낮춰 재조정",
+    "Clean Plate 노드를 MediaOut 앞에 놓지 않음 → 효과가 적용되지 않음 → 노드 순서를 MediaIn → Clean Plate → MediaOut 로 재배치",
+    "Threshold를 높게 잡아 원본 디테일 손실 → Threshold를 낮추고 필요 시 Paint로 보완"
+  ],
+  "related": [
+    "Delta Keyer",
+    "Paint",
+    "Planar Tracker",
+    "Fusion"
+  ],
+  "videos": [
+    {
+      "id": "a293qQ4mRZA",
+      "title": "DaVinci Resolve Fusion Clean Plate Node",
+      "author": "bdsCovered"
+    },
+    {
+      "id": "vScWu4Nqb4o",
+      "title": "Green Screen Keying in DaVinci Resolve | Clean Plate Workflow Tutorial",
+      "author": "Pandhan Virtual Production Studio "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Clean%20Plate",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Fusion",
+    "MediaIn",
+    "Clean Plate",
+    "Add"
+  ],
+  "at": "2026-11-25T01:53:50.684486+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "id": "v-ray-v-ray-interactive-rendering-29ba",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 설정",
+  "name": "V-Ray Interactive Rendering",
+  "title": "V-Ray Interactive 렌더링 — 뷰포트나 VFB에서 조명과 재질 변경 결과를 실시간으로 확인하는 법",
+  "summary": "V-Ray Interactive Rendering은 Viewport에서 실시간으로 렌더링 결과를 확인하며 라이트와 머티리얼을 즉시 조정할 수 있는 기능입니다.",
+  "when": [
+    "빠른 라이트 셋업 검증이 필요할 때",
+    "머티리얼 색·반사 등을 실시간으로 미세 조정하고 싶을 때",
+    "최종 렌더 전 라이트 밸런스와 노출을 미리 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup(F10) 열기",
+    "V-Ray 탭 → Interactive Rendering 체크",
+    "Viewport에서 V-Ray Interactive 버튼 클릭(또는 Shift+I)",
+    "라이트·머티리얼을 수정하면 Viewport가 실시간 업데이트",
+    "Render Settings → GI → Irradiance Map 등 품질 옵션 필요 시 조정",
+    "Interactive 종료 후 일반 Render 실행"
+  ],
+  "params": [
+    {
+      "name": "Resolution",
+      "desc": "출력 Resolution(픽셀 수)를 정의합니다."
+    },
+    {
+      "name": "Quality",
+      "desc": "실시간 렌더링 품질 수준을 조절합니다."
+    },
+    {
+      "name": "GI Engine",
+      "desc": "전역 조명 엔진 선택(예: Irradiance Map)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 조명 검증",
+      "steps": [
+        "라이트 추가",
+        "Interactive 시작",
+        "라이트 색·강도 조정",
+        "Viewport에서 결과 확인"
+      ]
+    },
+    {
+      "title": "금속 머티리얼 반사 확인",
+      "steps": [
+        "머티리얼 적용",
+        "Interactive 시작",
+        "반사 강도와 거칠기 조정",
+        "실시간 반사 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "GI 품질을 낮게 설정 → 노이즈가 많이 보임, Quality 옵션을 올리면 해결",
+    "Interactive 중에 씬을 이동하면 프레임이 멈춤 → 일시정지 후 다시 시작",
+    "렌더링 Resolution를 낮게 두고 작업 → 최종 결과와 차이 발생, 실제 Resolution로 테스트"
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "V-Ray Light Mix",
+    "ActiveShade",
+    "V-Ray Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "1mUAUmqCvBk",
+      "title": "Vray for SketchUp  — Getting Started (How to Create Your First Photorealistic Rendering)",
+      "author": "SketchUp School"
+    },
+    {
+      "id": "RoPWXyPhTdU",
+      "title": "Rendering Modes in V-Ray for SketchUp: Interactive, Progressive & Bucket",
+      "author": "AECO Space"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Interactive%20Rendering",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "V-Ray",
+    "Interactive Rendering"
+  ],
+  "at": "2026-11-25T01:54:21.734106+00:00"
+}
