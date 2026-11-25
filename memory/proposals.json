@@ -34846,5 +34846,36 @@
     "id": "p-dcf19f5ea5",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미지 투 3D 파이프라인 및 예외 처리 테스트 보강 관련 작업들이 이미 최근 커밋과 완료된 제안에 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-25T16:31:20+00:00",
+    "kind": "proposal",
+    "id": "p-0045889110",
+    "title": "메타데이터 로컬 DB 스키마 단위 테스트 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "accepted_work에 '이미지-3D 메타데이터 검색용 로컬 DB 스키마 설계'가 수락되어 있음",
+    "proposal": "backend/app/models/ 또는 backend/app/services/에 설계된 로컬 DB 스키마의 생성, 조회, 검색 쿼리가 정상 동작하는지 검증하는 단위 테스트 파일(backend/tests/test_metadata_db.py)을 작성합니다.",
+    "expected": "메타데이터 검색 기능의 안정성이 높아지고 향후 RAG 연동 시 기반 데이터 레이어가 탄탄해집니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-25T16:33:20.508246+00:00",
+    "kind": "decision",
+    "id": "p-0045889110",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-25T16:33:23.231422+00:00",
+    "kind": "triage",
+    "id": "p-0045889110",
+    "verdict": "agent",
+    "reason": "백엔드 메타데이터 로컬 DB 스키마 생성 및 검색 쿼리를 검증하는 단위 테스트 파일 작성은 코드 수정과 테스트 추가로 해결할 수 있습니다."
   }
 ]
