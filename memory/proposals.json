@@ -34808,5 +34808,43 @@
     "id": "p-92c6a6932e",
     "verdict": "agent",
     "reason": "백엔드 메타데이터 검색용 로컬 DB 스키마 파일 및 테스트 추가 작업이므로 코드로 해결 가능합니다."
+  },
+  {
+    "at": "2026-11-25T14:50:08+00:00",
+    "kind": "proposal",
+    "id": "p-dcf19f5ea5",
+    "title": "mesh_from_image 단위 테스트 예외 케이스 추가",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "PR #88이 승인 대기 중이며 이미지 채널 유효성 검증 기능 추가됨",
+    "proposal": "backend/tests/test_mesh_from_image.py에 잘못된 차원이나 빈 이미지 입력 시 발생하는 예외 테스트 케이스를 추가하여 커버리지를 높입니다.",
+    "expected": "메시 변환 파이프라인의 입력 오류 방어력 강화 및 안정성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-25T14:52:40.685832+00:00",
+    "kind": "decision",
+    "id": "p-dcf19f5ea5",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-25T14:52:50.242078+00:00",
+    "kind": "triage",
+    "id": "p-dcf19f5ea5",
+    "verdict": "done_already",
+    "reason": "이미지 투 3D 파이프라인 및 예외 처리 테스트 보강 관련 작업들이 이미 최근 커밋과 완료된 제안에 충분히 반영되어 있습니다."
+  },
+  {
+    "at": "2026-11-25T14:52:50.272587+00:00",
+    "kind": "decision",
+    "id": "p-dcf19f5ea5",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미지 투 3D 파이프라인 및 예외 처리 테스트 보강 관련 작업들이 이미 최근 커밋과 완료된 제안에 충분히 반영되어 있습니다."
   }
 ]
