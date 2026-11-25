@@ -1,0 +1,90 @@
+{
+  "id": "davinci-resolve-colorslice-ee8a",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러",
+  "name": "ColorSlice",
+  "title": "컬러 슬라이스 — 6벡터 스킨 및 컬러 영역을 직관적으로 분할하여 세밀하게 색감을 조절하는 컬러 페이지 팔레",
+  "summary": "Color Slice는 DaVinci Resolve Color 페이지에서 6가지 기본 색상 영역을 개별 슬라이더로 조정해 특정 톤을 정밀하게 보정하는 도구입니다.",
+  "when": [
+    "특정 피부톤이나 하늘색 등 개별 색상 영역만 빠르게 보정하고 싶을 때",
+    "HDR 영상에서 색상 영역별 밝기·채도를 독립적으로 조절해야 할 때",
+    "다른 컬러 툴에 비해 직관적인 슬라이더 조작으로 빠른 룩을 만들고 싶을 때"
+  ],
+  "steps": [
+    "Color 페이지 → 중앙 패널의 ‘Color Wheels’ 옆에 있는 ‘Color Slice’ 아이콘 클릭",
+    "툴바에서 원하는 색상 영역(Skin, Forest, Ocean 등) 선택",
+    "해당 슬라이더를 좌우·위아래로 드래그해 Hue, Saturation, Luminance를 조정",
+    "필요 시 ‘Reset’ 버튼으로 초기값 복구 후 다시 미세 조정"
+  ],
+  "params": [
+    {
+      "name": "Hue",
+      "desc": "색상의 회전값을 조절합니다"
+    },
+    {
+      "name": "Saturation",
+      "desc": "채도 강도를 조절합니다"
+    },
+    {
+      "name": "Luminance",
+      "desc": "밝기 레벨을 조절합니다"
+    },
+    {
+      "name": "Pivot",
+      "desc": "조정 기준이 되는 색상 중심을 이동합니다"
+    },
+    {
+      "name": "Reset",
+      "desc": "현재 영역의 모든 파라미터를 기본값으로 되돌립니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "피부톤 보정",
+      "steps": [
+        "Skin 영역 선택",
+        "Hue 슬라이더를 약간 왼쪽으로 이동해 붉은 기운 감소",
+        "Saturation을 약간 낮춰 자연스러운 톤 확보",
+        "Luminance를 살짝 올려 밝기 조정"
+      ]
+    },
+    {
+      "title": "하늘 색상 강화",
+      "steps": [
+        "Sky 영역 선택",
+        "Hue를 오른쪽으로 이동해 푸른색 강조",
+        "Saturation을 크게 올려 선명도 향상",
+        "Luminance를 약간 낮춰 깊이감 부여"
+      ]
+    }
+  ],
+  "mistakes": [
+    "슬라이더를 과도하게 움직여 색상이 비현실적으로 변함 → 작은 단계로 조정하고 ‘Reset’으로 원상복구 후 재시도",
+    "다른 영역을 선택하지 않고 같은 슬라이더를 계속 조정 → 현재 선택된 영역을 반드시 확인하고 필요 시 ‘Reset’ 후 다른 영역 선택",
+    "변경 후 바로 출력하지 않아 색상 변화를 놓침 → 뷰어에서 ‘Bypass Color Grades’를 끄고 최종 결과를 확인"
+  ],
+  "related": [
+    "Color Warper",
+    "Color Wheels",
+    "Qualifiers",
+    "Curves"
+  ],
+  "videos": [
+    {
+      "id": "hRJdY6nO1Io",
+      "title": "COLOR-SLICE tool in Davinci Resolve: Everything you need to know!",
+      "author": "Duan van Schalkwyk"
+    },
+    {
+      "id": "54ufgxhOCHQ",
+      "title": "Brand New COLOR SLICE tool in Davinci Resolve 19!",
+      "author": "Color Grading Insights"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20ColorSlice",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T01:33:46.431198+00:00"
+}
