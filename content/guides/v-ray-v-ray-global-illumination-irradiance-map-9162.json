@@ -1,0 +1,92 @@
+{
+  "id": "v-ray-v-ray-global-illumination-irradiance-map-9162",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "최적화",
+  "name": "V-Ray Global Illumination Irradiance Map",
+  "title": "V-Ray 일루미네이션 이라디언스 맵 — 간접 조명을 빠르게 계산하기 위한 전통적인 GI 방식",
+  "summary": "Irradiance Map은 V-Ray에서 저해상도 간접광을 빠르게 계산해 GI Base로 사용하는 캐시이며, 씬 전체의 조명 균형을 잡는 데 사용됩니다.",
+  "when": [
+    "실시간 Viewport 프리뷰가 필요할 때",
+    "복잡한 실내·외 씬에서 빠른 GI Base를 잡고 싶을 때",
+    "Light Cache와 조합해 품질을 높이고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup (F10) → GI 탭 → Global Illumination 켜기",
+    "GI Engine → Primary Engine 에서 \"Irradiance Map\" 선택",
+    "Irradiance Map → Settings 클릭 후 파라미터 설정",
+    "Apply 버튼을 눌러 캐시를 베이킹하고, Viewport에서 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Irradiance Subdivs",
+      "desc": "샘플 수를 늘리면 노이즈가 감소하지만 Baking 시간이 길어집니다"
+    },
+    {
+      "name": "Min/Max Rate",
+      "desc": "샘플 분포를 제어해 저조도 영역의 디테일을 보강합니다"
+    },
+    {
+      "name": "Color Threshold",
+      "desc": "색상 차이가 클 때 추가 샘플링을 수행해 경계선 품질을 높입니다"
+    },
+    {
+      "name": "Normal Threshold",
+      "desc": "법선 차이가 클 때 재샘플링해 굴곡면의 정확도를 유지합니다"
+    },
+    {
+      "name": "Clamp Irradiance",
+      "desc": "과다한 간접광을 제한해 과노출을 방지합니다"
+    },
+    {
+      "name": "Use Adaptive Subdivision",
+      "desc": "복잡한 영역에만 샘플을 늘려 효율을 높입니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 조명 Base 잡기",
+      "steps": [
+        "Irradiance Map을 Primary Engine 으로 설정",
+        "Min Rate 0.1, Max Rate 0.5 로 조정",
+        "Baking 후 Light Cache 를 Secondary Engine 으로 추가"
+      ]
+    },
+    {
+      "title": "야외 풍경에 빠른 GI 적용",
+      "steps": [
+        "Irradiance Subdivs 를 2000 으로 높게 설정",
+        "Clamp Irradiance 를 1.0 로 제한",
+        "Baking 후 Render Settings 에서 Final Gather 를 끄고 Light Cache 로 마무리"
+      ]
+    }
+  ],
+  "mistakes": [
+    "샘플 수가 너무 낮음 → Irradiance Subdivs 를 늘려 노이즈 감소",
+    "Clamp Irradiance 를 0 으로 설정 → 과다 노출 발생, 적절한 값(0.5~1.0)으로 조정",
+    "법선 임계값을 무시 → 굴곡면에서 섀도우가 깨짐, Normal Threshold 값을 0.2 정도로 올림"
+  ],
+  "related": [
+    "Light Cache",
+    "Brute Force",
+    "V-Ray Denoiser",
+    "V-Ray Material"
+  ],
+  "videos": [
+    {
+      "id": "NMtZqkFRoek",
+      "title": "How to Use Irradiance Maps in V-Ray",
+      "author": "Skill Segment"
+    },
+    {
+      "id": "pBvj-JPchnw",
+      "title": "Understanding Global Illumination (GI) in V-Ray | Fix Renders That Are Too Dark or Too Bright",
+      "author": "leonleon51"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Global%20Illumination%20Irradiance%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T02:06:03.511018+00:00"
+}
