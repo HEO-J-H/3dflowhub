@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-23T10:46:08.595815+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 62,
-      "candidates_passed": 19,
-      "offtopic": 18,
-      "short": 0,
-      "prefiltered": 35,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "6cb19055",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-23T10:55:40.957478+00:00",
       "collected": 0,
       "saved": 0,
@@ -6845,6 +6821,33 @@
         "off-topic",
         "short body"
       ]
+    },
+    {
+      "at": "2026-11-25T18:56:53.306947+00:00",
+      "collected": 2,
+      "saved": 2,
+      "published": 0,
+      "drafts": 2,
+      "publish_errors": 0,
+      "candidates": 117,
+      "candidates_passed": 63,
+      "offtopic": 27,
+      "short": 0,
+      "prefiltered": 33,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "69f9cd85",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6940,7 +6943,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-16 [[p-e155de1b35|사이트·UX] 보류된 TripoSR 단위 테스트] ",
     "2026-11-16 [[p-e155de1b35|사이트·UX] 보류된 TripoSR 단위 테스트] ",
     "2026-11-16 [성찰] 동음이의어(Nuke, Maya, Unity 등)로 인한 허위 유입과 무관한 뉴스를 철저히 차단하고, 실무 스크립트·애드온·가격/비교 등 검색 유입이 검증된 고단가 3D/CG 전문 주제에 집중하여 가치 있는 콘텐츠를 발행해야 합니다.",
     "2026-11-16 [성찰] 동음이의어(Maya, Unity, Nuke 등)로 인한 무관한 뉴스 유입을 막기 위해 3D·CG 전문 컨텍스트 필터를 엄격히 적용하고 실무 튜토리얼 및 애드온 관련 고단가 검색 주제에 집중해야 합니다.",
@@ -7059,7 +7061,8 @@
     "2026-11-25 [성찰] 동음이의어(핵, 주가 등) 필터를 강화하여 오답 수집률을 낮추고, 3ds Max Script 및 실무 튜토리얼 등 검증된 고CPC·고유입 주제에 집중해야 합니다.",
     "2026-11-25 [성찰] 실무 중심의 Maxscript, 애드온, 툴 버전 비교 등 구체적인 기술 가이드가 검색 유입과 페이지뷰를 높이는 핵심 요소임을 확인했습니다.",
     "2026-11-25 [성찰] 동음이의어 필터링을 더욱 강화하여 순수 CG·게임·VFX 실무 콘텐츠만 수집하고, 고CPC 실무 가이드 및 검색 유입이 검증된 Maxscript·블렌더 튜토리얼 비중을 높여야 합니다.",
-    "2026-11-25 [성찰] 오직 CG·게임·VFX 실무 맥락의 콘텐츠만 수집하고 고CPC 실무 가이드에 집중해야 광고 수익과 유입을 높일 수 있습니다."
+    "2026-11-25 [성찰] 오직 CG·게임·VFX 실무 맥락의 콘텐츠만 수집하고 고CPC 실무 가이드에 집중해야 광고 수익과 유입을 높일 수 있습니다.",
+    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 오수집 비중이 높으므로, 수집 단계에서 CG·게임·VFX 실무 문맥 검증 필터를 더욱 엄격히 적용해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7126,9 +7129,9 @@
     "3D DCC/Cinema 4D": 39,
     "3D DCC/ZBrush": 28,
     "Game Engine/UEFN·Fortnite": 6,
-    "AI 3D/3D 생성 AI": 79,
+    "AI 3D/3D 생성 AI": 80,
     "VFX/Nuke": 17,
-    "Game Engine/기타 엔진": 169,
+    "Game Engine/기타 엔진": 170,
     "VFX/After Effects": 67,
     "VFX/Houdini FX": 12,
     "3D DCC/기타 DCC": 120,
@@ -7266,8 +7269,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    15871523767366491066,
-    4216757004557741760,
     13508742488894771634,
     7553841838091954249,
     10633972201713321244,
@@ -10265,14 +10266,16 @@
     1370730377411462966,
     28609773828055296,
     13061974486342636386,
-    9268551554598767680
+    9268551554598767680,
+    81636204887933369,
+    151524818493843557
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4138,
-    "Game Engine": 4138,
-    "VFX": 4138,
-    "AI 3D": 4138
+    "3D DCC": 4139,
+    "Game Engine": 4139,
+    "VFX": 4139,
+    "AI 3D": 4139
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
