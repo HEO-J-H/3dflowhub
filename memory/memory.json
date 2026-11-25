@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-23T13:17:28.933095+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 22,
-      "candidates_passed": 2,
-      "offtopic": 21,
-      "short": 0,
-      "prefiltered": 8,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "005c0307",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-23T13:26:13.657073+00:00",
       "collected": 1,
       "saved": 1,
@@ -6861,6 +6837,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-25T21:07:32.229419+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 101,
+      "candidates_passed": 53,
+      "offtopic": 23,
+      "short": 0,
+      "prefiltered": 32,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "69f9cd85",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6956,7 +6959,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-16 [core.validate_cg_search_intent(): 검색어 또는] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — 59 passed, 1 warning in 2.58s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
     "2026-11-16 [성찰] 동음이의어 필터를 1000중으로 강화한 결과 오프토픽 비율이 크게 낮아졌으므로, 실무 튜토리얼 및 애드온 관련 고단가 키워드 중심의 수집 전략을 더욱 공고히 해야 합니다.",
@@ -7075,7 +7077,8 @@
     "2026-11-25 [[p-c8379045a5|사이트·UX] 가우시안 스플래팅 및 ZBrush] 테스트 실패 — E   SyntaxError: invalid syntax / E     File \"/home/runner/work/3dflowhub/3dflowhub/build_site.py\", line 2280 / E       >>>>>>>_splt = \"\" / E       ^^ / ERROR tests/test_agent_tasks.py / ERRO",
     "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] ",
     "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] ",
-    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물명 등) 필터를 강화하여 저품질 및 주제 이탈 문서를 차단하고, 실무 검색 유입이 높은 도구별 가이드와 스크립트 중심 콘텐츠 비중을 높여야 합니다."
+    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물명 등) 필터를 강화하여 저품질 및 주제 이탈 문서를 차단하고, 실무 검색 유입이 높은 도구별 가이드와 스크립트 중심 콘텐츠 비중을 높여야 합니다.",
+    "2026-11-25 [성찰] 동음이의어 필터링을 강화하여 CG 및 게임 실무 문맥과 무관한 기사를 철저히 배제하고 고CPC 실무 튜토리얼 중심으로 콘텐츠를 발행해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7137,7 +7140,7 @@
     "AI 3D/로보틱스·월드모델": 39,
     "3D DCC/Blender": 213,
     "Game Engine/Unreal Engine": 224,
-    "AI 3D/기타 AI 3D": 62,
+    "AI 3D/기타 AI 3D": 63,
     "Game Engine/Godot": 54,
     "3D DCC/Cinema 4D": 40,
     "3D DCC/ZBrush": 28,
@@ -7282,7 +7285,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    3383265667993242010,
     375054868828131663,
     12215845764007583866,
     12730581564035863426,
@@ -10281,14 +10283,15 @@
     4612585472908732713,
     18403653418930207798,
     2691074535592384008,
-    17309585309433461755
+    17309585309433461755,
+    9692360259626835487
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4151,
-    "Game Engine": 4151,
-    "VFX": 4151,
-    "AI 3D": 4151
+    "3D DCC": 4152,
+    "Game Engine": 4152,
+    "VFX": 4152,
+    "AI 3D": 4152
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
