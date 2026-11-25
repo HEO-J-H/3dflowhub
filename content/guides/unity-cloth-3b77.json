@@ -1,0 +1,100 @@
+{
+  "id": "unity-cloth-3b77",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리 및 시뮬레이션",
+  "name": "Cloth",
+  "title": "클로스 — 의류나 깃발 등 천의 자연스러운 물리 움직임과 바람 반응을 시뮬레이션하는 컴포넌트",
+  "summary": "Unity Cloth는 게임 엔진 내에서 캐릭터의 의복이나 깃발 등에 물리 법칙을 적용하여 자연스러운 천의 움직임과 주름을 실시간으로 시뮬레이션하는 컴포넌트입니다.",
+  "when": [
+    "캐릭터가 이동하거나 달릴 때 코트나 망토가 바람에 휘날리도록 만들 때",
+    "깃발이나 커튼 등 주변 환경 오브젝트가 물리적으로 움직이게 만들 때",
+    "천 재질의 액세서리가 캐릭터의 동작에 맞춰 자연스럽게 흔들리게 할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 천 시뮬레이션을 적용할 Skinned Mesh Renderer가 포함된 캐릭터 오브젝트를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 Cloth를 입력하고 선택하여 컴포넌트를 추가합니다.",
+    "Inspector의 Cloth 패널에서 Edit Cloth를 클릭하여 시뮬레이션에 사용할 Vertex를 선택합니다.",
+    "Constraints 탭에서 Max Distance 값을 조절하여 천이 늘어나는 범위를 설정합니다.",
+    "Scene 뷰에서 결과를 확인하며 Stretchy, Bending 등의 물리 속성 값을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Stretching Stiffness",
+      "desc": "천이 늘어나거나 줄어드는 것에 저항하는 정도를 조절합니다."
+    },
+    {
+      "name": "Bending Stiffness",
+      "desc": "천이 꺾이거나 접힐 때의 뻣뻣함 정도를 설정합니다."
+    },
+    {
+      "name": "Use Gravity",
+      "desc": "중력의 영향을 받아 천이 아래로 자연스럽게 처지도록 합니다."
+    },
+    {
+      "name": "Damping",
+      "desc": "천의 움직임 속도를 늦추고 진동을 줄여 안정감을 줍니다."
+    },
+    {
+      "name": "Friction",
+      "desc": "천이 다른 오브젝트나 자기 자신과 스칠 때의 마찰력을 조절합니다."
+    },
+    {
+      "name": "Sleep Threshold",
+      "desc": "움직임이 없을 때 시뮬레이션을 멈춰 성능을 최적화하는 기준값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 망토 휘날림 구현",
+      "steps": [
+        "망토 오브젝트에 Cloth 컴포넌트를 추가합니다.",
+        "Edit Cloth 모드에서 망토가 캐릭터 어깨에 고정될 상단 Vertex의 Max Distance를 0으로 설정합니다.",
+        "하단으로 갈수록 Max Distance 값을 높여 자유롭게 움직이도록 칠합니다."
+      ]
+    },
+    {
+      "title": "바람에 흔들리는 깃발",
+      "steps": [
+        "깃대와 맞닿은 깃발의 왼쪽 모서리 버텍스들을 고정(Max Distance = 0)합니다.",
+        "나머지 영역의 Max Distance 값을 높여 바람에 잘 날리도록 설정합니다.",
+        "Wind Zone을 생성하여 깃발이 바람 방향에 맞춰 펄럭이게 연동합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "메쉬의 폴리곤 수가 너무 적은 경우 → 충분한 세그먼트(폴리곤)를 가진 메쉬를 임포트하여 부드러운 주름이 잡히도록 합니다.",
+    "옷이 캐릭터 몸을 그대로 통과하는 경우 → Capsule Colliders 속성을 설정하여 캐릭터의 팔다리 콜라이더와 충돌하도록 지정합니다.",
+    "맥스 디스턴스 설정 누락으로 천이 고정되지 않고 떨어지는 경우 → Edit Cloth 모드에서 고정할 영역의 Vertex 선택 후 Max Distance를 0으로 설정합니다."
+  ],
+  "related": [
+    "Skinned Mesh Renderer",
+    "Character Controller",
+    "Wind Zone",
+    "Capsule Collider"
+  ],
+  "videos": [
+    {
+      "id": "7L8SxkfNpgg",
+      "title": "Cloth Simulation in Unity 6 - Creating a Cape",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "pZBEiS99VpM",
+      "title": "How to Use Cloth Simulation in Unity for Stunning Visuals",
+      "author": "3CodeCamp"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Cloth",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Skinned Mesh Renderer",
+    "Inspector",
+    "Add Component",
+    "Cloth"
+  ],
+  "at": "2026-11-25T00:43:01.034092+00:00"
+}

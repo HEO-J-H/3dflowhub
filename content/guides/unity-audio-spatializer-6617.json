@@ -1,0 +1,100 @@
+{
+  "id": "unity-audio-spatializer-6617",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오 및 사운드",
+  "name": "Audio Spatializer",
+  "title": "Audio 스페이셜라이저 — 3D 공간에서 소리의 방향성과 거리감, 잔향을 정밀하게 구현하는 3차원 사운드 기능",
+  "summary": "Unity의 Audio Spatializer는 사운드 소스에 3D 공간감을 부여하여, 청취자(Audio Listener)의 위치와 방향에 따라 소리의 거리와 방향을 실시간으로 계산해 들려주는 기능입니다.",
+  "when": [
+    "플레이어가 다가갈 때 소리가 점점 커지는 모닥불이나 엔진 소리를 구현할 때",
+    "적 캐릭터가 플레이어의 뒤나 측면에서 접근할 때 방향성을 알려주는 효과음을 낼 때",
+    "건물 안팎이나 장애물에 의해 소리가 왜곡되고 전달되는 몰입형 환경을 만들 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 3D 사운드를 발생시킬 오브젝트를 선택하거나 빈 공간을 우클릭하여 Create Empty를 누릅니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭하고 Audio Source를 검색해 추가합니다.",
+    "Audio Source 컴포넌트의 Audio Clip 슬롯에 재생할 사운드 파일을 드래그하여 연결합니다.",
+    "Spatial Blend 파라미터의 슬라이더를 0(2D)에서 1(3D) 방향으로 완전히 밀어 3D 공간 음향을 활성화합니다.",
+    "Inspector 패널의 Add Component에서 서드파티 Audio Spatializer 플러그인(예: Oculus Spatializer 등)을 추가합니다.",
+    "Scene 뷰에서 사운드 오브젝트 주변의 3D 사운드 감쇠 영역(Sphere Gizmo)을 확인하며 설정을 완료합니다."
+  ],
+  "params": [
+    {
+      "name": "Spatial Blend",
+      "desc": "2D 사운드와 3D 공간 음향의 비율을 조절합니다 (1로 설정 시 완전한 3D)."
+    },
+    {
+      "name": "Volume Rolloff",
+      "desc": "거리에 따른 음량 감소 방식을 설정합니다 (Logarithmic Rolloff 권장)."
+    },
+    {
+      "name": "Min Distance",
+      "desc": "사운드가 최대 음량으로 들리기 시작하는 최소 거리를 지정합니다."
+    },
+    {
+      "name": "Max Distance",
+      "desc": "사운드가 완전히 들리지 않게 되는 최대 거리를 지정합니다."
+    },
+    {
+      "name": "Spread",
+      "desc": "3D 스테레오 사운드의 각도 분산 폭을 조절하여 소리의 넓이감을 줍니다."
+    },
+    {
+      "name": "Doppler Level",
+      "desc": "이동하는 오브젝트의 속도에 따른 도플러 효과(음높이 변화) 세기를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "움직이는 순찰 로봇의 경보음",
+      "steps": [
+        "로봇 오브젝트에 Audio Source를 추가하고 경보음 클립을 할당합니다.",
+        "Spatial Blend 값을 1로 설정하여 완전한 3D 사운드로 전환합니다.",
+        "Max Distance를 조절해 로봇 근처에서만 경보음이 들리도록 제한합니다."
+      ]
+    },
+    {
+      "title": "동굴 속 물방울 떨어지는 소리",
+      "steps": [
+        "동굴 내부 특정 위치에 빈 오브젝트를 만들고 Audio Source를 부착합니다.",
+        "Loop 옵션을 체크하여 물방울 소리가 반복 재생되도록 설정합니다.",
+        "Logarithmic Rolloff와 적절한 Min/Max Distance로 동굴 안에서만 소리가 울리게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Spatial Blend를 0(2D) 상태로 둔 채 방향감이 안 느껴짐 → Spatial Blend를 1로 올려 3D로 변경하세요.",
+    "Max Distance가 너무 짧아 소리가 아예 들리지 않음 → Scene 뷰의 감쇠 구체 기즈모를 확인하고 거리를 늘리세요.",
+    "Audio Listener가 플레이어 카메라에 붙어있지 않음 → 메인 카메라(Main Camera)에 Audio Listener 컴포넌트가 있는지 확인하세요."
+  ],
+  "related": [
+    "Audio Source",
+    "Audio Listener",
+    "Audio Mixer",
+    "Audio Low Pass Filter"
+  ],
+  "videos": [
+    {
+      "id": "Ua0caV61t8Y",
+      "title": "3D Audio Spatialization | Audio in Unity Episode5",
+      "author": "SwishSwoosh"
+    },
+    {
+      "id": "5pmoP1ZOoNs",
+      "title": "Audio Visualization - Unity/C# Tutorial [Part 0 - Result]",
+      "author": "Peer Play"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Spatializer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Create Empty",
+    "Inspector",
+    "Add Component",
+    "Audio Source"
+  ],
+  "at": "2026-11-25T00:43:05.554724+00:00"
+}
