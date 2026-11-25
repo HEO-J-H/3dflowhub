@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-roughness-01a7",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Roughness",
+  "title": "Roughness — 3D 머티리얼 표면의 거칠기 속성을 조절하는 기능",
+  "summary": "Photoshop의 Roughness는 3D 오브젝트 표면의 거칠고 매끄러운 정도를 조절하여 빛의 산란과 하이라이트의 퍼짐을 표현하는 기능입니다. 재질의 질감을 세밀하게 제어해 플라스틱, 가죽, 금속 등의 리얼리티를 높여줍니다.",
+  "when": [
+    "유광 플라스틱 표면에 은은한 무광 매트 느낌을 주고 싶을 때",
+    "금속 표면의 반사가 거칠게 퍼지는 스크래치나 요철감을 표현할 때",
+    "가죽이나 천 같은 거친 질감의 표면 재질을 살리고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 오브젝트나 3D 레이어가 포함된 문서를 엽니다.",
+    "우측 하단의 3D 패널에서 Roughness를 적용할 3D 재질(Material) 레이어를 선택합니다.",
+    "3D 패널 하단의 Properties 패널에서 Material 속성 탭을 엽니다.",
+    "Roughness 항목을 찾거나 맵(Texture) 아이콘을 클릭합니다.",
+    "슬라이더를 조절하거나 흑백 거칠기 맵(Roughness Map)을 로드하여 표면의 거칠기 정도를 설정합니다.",
+    "Viewport에서 하이라이트와 반사의 퍼짐 상태를 확인하며 값을 미세 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기를 조절하여 하이라이트의 선명도와 반사 범위를 결정합니다."
+    },
+    {
+      "name": "Roughness Texture",
+      "desc": "흑백 이미지를 사용하여 부분별로 다른 거칠기 질감을 세밀하게 표현합니다."
+    },
+    {
+      "name": "Metalness",
+      "desc": "표면의 금속성을 설정하여 Roughness와 함께 재질의 반사 특성을 정의합니다."
+    },
+    {
+      "name": "Reflection",
+      "desc": "표면에 주변 환경이나 바닥면이 비치는 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "무광 플라스틱 케이스 제작",
+      "steps": [
+        "3D 패널에서 플라스틱 재질 레이어를 선택합니다.",
+        "Properties 패널에서 Roughness 값을 높여 하이라이트를 부드럽게 퍼트립니다.",
+        "Viewport에서 번들거림이 사라지고 매트한 플라스틱 느낌이 나는지 확인합니다."
+      ]
+    },
+    {
+      "title": "스크래치 난 금속 표면 표현",
+      "steps": [
+        "금속 재질의 Roughness 슬롯에 흠집 모양의 흑백 맵을 로드합니다.",
+        "Roughness 맵의 대비를 조절하여 긁힌 부위만 반사가 거칠어지도록 설정합니다.",
+        "빛에 비추었을 때 스크래치 부위의 광택이 다르게 반사되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Roughness 값을 너무 높여 표면이 완전히 탁해짐 → 슬라이더 값을 낮추고 적당한 하이라이트를 유지하세요.",
+    "거꾸로 된 흑백 맵 사용으로 반사가 반대로 적용됨 → 맵을 반전(Invert)하거나 흰색과 검은색 영역을 확인하세요."
+  ],
+  "related": [
+    "Reflection",
+    "Metalness",
+    "Shader",
+    "Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "MBRuNv-4GEQ",
+      "title": "How I Make Normal Map And Roughness Map In Photoshop",
+      "author": "zarus.m"
+    },
+    {
+      "id": "oUzhTDzU6nk",
+      "title": "PBR Textures in Photoshop Roughness",
+      "author": "Augustus Wendell"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Roughness",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Roughness",
+    "Material"
+  ],
+  "at": "2026-11-25T08:35:53.475088+00:00"
+}

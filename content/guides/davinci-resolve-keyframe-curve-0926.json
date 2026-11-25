@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-keyframe-curve-0926",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집",
+  "name": "Keyframe Curve",
+  "title": "Keyframe 커브 — 인스펙터 애니메이션의 가속도와 감속도를 Graph로 정밀하게 제어하는 편집 기능",
+  "summary": "DaVinci Resolve의 Keyframe Curve는 Timeline에서 애니메이션의 타이밍과 가속도를 Graph 곡선으로 정밀하게 제어하는 도구입니다. 마치 물리적인 속도감을 디자인하듯 움직임의 부드러움과 탄력을 직접 다듬습니다.",
+  "when": [
+    "로고나 타이틀이 화면에 등장할 때 자연스럽게 감속하며 멈추게 만들고 싶을 때",
+    "카메라 줌이나 팬(Pan) 움직임이 너무 기계적으로 딱딱하게 느껴질 때",
+    "Audio 볼륨이나 Effect 파라미터의 변화 속도를 부드럽게 조절하고 싶을 때"
+  ],
+  "steps": [
+    "Timeline에서 애니메이션(Keyframe)이 적용된 클립을 선택합니다.",
+    "Timeline 뷰어 하단 좌측의 다이아몬드 모양 아이콘(Keyframe) 또는 Timeline 클립의 Keyframe 버튼을 클릭합니다.",
+    "Timeline 하단에 열린 Keyframe 에디터 영역에서 곡선 아이콘(Curve Editor)을 활성화합니다.",
+    "Graph 상에 나타난 Keyframe 점들을 드래그하여 선택합니다.",
+    "상단 툴바에서 Ease In, Ease Out 또는 Bezier 핸들을 사용하여 곡선의 형태를 다듬습니다.",
+    "뷰어에서 재생(Space)하여 움직임의 타이밍을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Ease In",
+      "desc": "애니메이션의 시작 지점을 부드럽고 느리게 만듭니다."
+    },
+    {
+      "name": "Ease Out",
+      "desc": "애니메이션의 종료 지점을 부드럽고 느리게 멈추도록 만듭니다."
+    },
+    {
+      "name": "Linear",
+      "desc": "Keyframe 사이의 속도를 일정하게 유지합니다."
+    },
+    {
+      "name": "Bezier",
+      "desc": "핸들을 조작하여 곡선의 기울기를 자유롭게 세부 조정합니다."
+    },
+    {
+      "name": "Retime Curve",
+      "desc": "클립의 재생 속도를 곡선 Graph로 정밀하게 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로고 등장 페이드 및 스케일 애니메이션 부드럽게 만들기",
+      "steps": [
+        "로고 클립에 Scale과 Opacity Keyframe을 설정합니다.",
+        "Curve Editor를 열어 모든 Keyframe을 선택합니다.",
+        "Ease Out을 적용하여 멈출 때 서서히 감속하도록 만듭니다."
+      ]
+    },
+    {
+      "title": "화면 전환(Pan) 속도감 조정하기",
+      "steps": [
+        "Position Keyframe 간격을 조정하여 기본 타이밍을 잡습니다.",
+        "Curve Editor에서 Bezier 핸들을 당겨 출발할 때 가속하고 멈출 때 부드럽게 정지하도록 수정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Keyframe이 선택되지 않은 상태에서 Curve Editor를 조작함 → 반드시 Timeline이나 인스펙터에서 Keyframe을 먼저 선택한 후 곡선을 편집하세요.",
+    "과도한 Bezier 핸들 조작으로 값이 튀는 현상 발생 → 핸들을 지나치게 꺾지 말고 평평한 기울기부터 시작하세요."
+  ],
+  "related": [
+    "Keyframe",
+    "Retime Curve",
+    "Fusion Curve",
+    "Inspector"
+  ],
+  "videos": [
+    {
+      "id": "4Q0DLwnXZF0",
+      "title": "New Keyframe Editor - DaVinci Resolve 20",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "CdAZ_t5zSbM",
+      "title": "How to Ease Keyframes in less than 5 Mins! - DaVinci Resolve Tutorial for Beginners",
+      "author": "Casey Faris"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Keyframe%20Curve",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Timeline",
+    "Keyframe"
+  ],
+  "at": "2026-11-25T08:35:27.884002+00:00"
+}
