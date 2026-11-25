@@ -1,0 +1,56 @@
+{
+  "title_ko": "Blender로 제작한 수중 슈트 인어 캐릭터 애니메이션",
+  "title": "See This Deadlock-Like Stylized Animation of a Mermaid in a Water-Pumping Suit",
+  "url": "https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Blender",
+    "애니메이션",
+    "캐릭터",
+    "Geometry Nodes",
+    "Compositing",
+    "블렌더",
+    "지오메트리 노드"
+  ],
+  "summary": "맥스 후데츠가 Blender로 제작한 물이 채워진 수중 슈트를 입은 인어의 독창적인 스타일라이즈드 애니메이션 제작 기법을 소개합니다.",
+  "insight": "투명한 물과 튜브 내부 요소를 표현하기 위해 Compositing 단계에서 Rim Light 노드와 Cryptomatte 패스를 응용했습니다. 투명 소재가 패스에서 누락되는 문제를 해결하려고 별도의 렌더 패스와 머티리얼 오버라이드를 적용한 점이 실무 Compositing에 실질적인 힌트를 줍니다.",
+  "try_it": [
+    "Blender에서 튜브나 유리 재질이 Cryptomatte 패스에 잡히지 않을 때 별도의 렌더 패스와 머티리얼 오버라이드를 설정해 마스크를 분리해 보세요.",
+    "중력이 없는 jiggle bones와 Geometry Nodes의 Noise Texture를 조합해 수중 모발의 느린 움직임을 시뮬레이션해 보세요."
+  ],
+  "sections": [
+    {
+      "heading": "물로 가득 찬 독특한 컨셉의 수중 슈트",
+      "body": "아티스트 맥스 후데츠는 라스베이거스의 비 오는 밤을 배경으로 바닷속에서 나와 바이크에 주유하는 인어 캐릭터를 Blender로 구현했습니다. 인어의 꼬리는 배에 감겨 있고 두 다리는 로봇 의수로 대체된 설정입니다. 커다란 수중 슈트와 대비되는 작은 혼다 댓 기반의 바이크를 배치해 과장된 비례감을 강조했습니다."
+    },
+    {
+      "heading": "Geometry Nodes와 jiggle bones를 활용한 물속 모발 표현",
+      "body": "슈트 내부의 물과 튜브에는 실제 작은 물고기들이 헤엄치며 다니고 있으며, 이는 메인 리그에 연결된 커브를 따라 움직이도록 설정되었습니다. 인어의 머리카락이 물속에서 흐느끼듯 움직이도록 중력이 없는 jiggle bones와 Noise Texture를 결합한 Geometry Nodes를 적용했습니다."
+    },
+    {
+      "heading": "Compositing 패스를 활용한 발광 효과와 발췌",
+      "body": "슈트 내부의 투명하고 빛나는 수중 효과를 살리기 위해 컴포지터에서 Rim Light 노드를 사용했습니다. 투명한 머티리얼 특성상 Cryptomatte 노드에서 인식이 누락되는 문제를 해결하려고 해당 오브젝트만 따로 렌더링한 두 번째 패스와 머티리얼 오버라이드를 조합해 Mask를 추출했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "인어 슈트 안의 물고기 움직임은 어떻게 구현했나요?",
+      "a": "메인 리그에 커브를 연결하여 작은 물고기들이 튜브와 물통 안에서 헤엄치는 경로를 설정했습니다."
+    },
+    {
+      "q": "투명한 수중 슈트의 발광 효과는 어떤 방식으로 만들었나요?",
+      "a": "컴포지터에서 Rim Light 노드를 사용하되, 투명 머티리얼이 Cryptomatte에 잡히지 않아 별도의 렌더 패스와 머티리얼 오버라이드를 거쳐 Mask를 만들어 적용했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51168/images/6b06df5a850a1/contain_1200x630.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-25T13:37:15.851973+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-28dd369c64066948",
+  "img_ok": "2026-11-25T13:37:16+00:00",
+  "enriched_at": "skip"
+}

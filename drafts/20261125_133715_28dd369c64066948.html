@@ -1,0 +1,19 @@
+<!-- TITLE: Blender로 제작한 수중 슈트 인어 캐릭터 애니메이션 | TAGS: Blender,애니메이션,캐릭터,Geometry Nodes,Compositing,블렌더,지오메트리 노드,작품·제작 사례 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51168/images/6b06df5a850a1/contain_1200x630.jpg" alt="Blender로 제작한 수중 슈트 인어 캐릭터 애니메이션" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 맥스 후데츠가 Blender로 제작한 물이 채워진 수중 슈트를 입은 인어의 독창적인 스타일라이즈드 애니메이션 제작 기법을 소개합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 작품·제작 사례</p>
+<h2>물로 가득 찬 독특한 컨셉의 수중 슈트</h2>
+<p>아티스트 맥스 후데츠는 라스베이거스의 비 오는 밤을 배경으로 바닷속에서 나와 바이크에 주유하는 인어 캐릭터를 Blender로 구현했습니다. 인어의 꼬리는 배에 감겨 있고 두 다리는 로봇 의수로 대체된 설정입니다. 커다란 수중 슈트와 대비되는 작은 혼다 댓 기반의 바이크를 배치해 과장된 비례감을 강조했습니다.</p>
+<h2>Geometry Nodes와 jiggle bones를 활용한 물속 모발 표현</h2>
+<p>슈트 내부의 물과 튜브에는 실제 작은 물고기들이 헤엄치며 다니고 있으며, 이는 메인 리그에 연결된 커브를 따라 움직이도록 설정되었습니다. 인어의 머리카락이 물속에서 흐느끼듯 움직이도록 중력이 없는 jiggle bones와 Noise Texture를 결합한 Geometry Nodes를 적용했습니다.</p>
+<h2>Compositing 패스를 활용한 발광 효과와 발췌</h2>
+<p>슈트 내부의 투명하고 빛나는 수중 효과를 살리기 위해 컴포지터에서 Rim Light 노드를 사용했습니다. 투명한 머티리얼 특성상 Cryptomatte 노드에서 인식이 누락되는 문제를 해결하려고 해당 오브젝트만 따로 렌더링한 두 번째 패스와 머티리얼 오버라이드를 조합해 Mask를 추출했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">투명한 물과 튜브 내부 요소를 표현하기 위해 Compositing 단계에서 Rim Light 노드와 Cryptomatte 패스를 응용했습니다. 투명 소재가 패스에서 누락되는 문제를 해결하려고 별도의 렌더 패스와 머티리얼 오버라이드를 적용한 점이 실무 Compositing에 실질적인 힌트를 줍니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 인어 슈트 안의 물고기 움직임은 어떻게 구현했나요?</b><br/>A. 메인 리그에 커브를 연결하여 작은 물고기들이 튜브와 물통 안에서 헤엄치는 경로를 설정했습니다.</p>
+<p><b>Q. 투명한 수중 슈트의 발광 효과는 어떤 방식으로 만들었나요?</b><br/>A. 컴포지터에서 Rim Light 노드를 사용하되, 투명 머티리얼이 Cryptomatte에 잡히지 않아 별도의 렌더 패스와 머티리얼 오버라이드를 거쳐 Mask를 만들어 적용했습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-25-7942b5c97c236d62.html">lepoly 출시 — Sketchfab 창업자들이 만든 브라우저 기반 3D 자산 관리 플랫폼</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-8fdcdd0207106ead.html">Blender Avatar 의상 피팅 애드온 Outfit Refit 2.0·DrapeFix 출시</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-46afa2445ec3dc3c.html">Blender 목판화 일러스트 Shader — UV·텍스처 없는 노드</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit/" target="_blank" rel="noopener nofollow">See This Deadlock-Like Stylized Animation of a Mermaid in a Water-Pumping Suit</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
