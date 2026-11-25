@@ -1,0 +1,81 @@
+{
+  "id": "unity-uidocument-eac1",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "UI 및 인터페이스",
+  "name": "UIDocument",
+  "title": "UI 문서 — Unity에서 USS(스타일시트)와 UXML을 사용하여 웹 스타일의 최신 UI를 구축하는 컴포넌트",
+  "summary": "UIDocument는 Unity의 최신 UI 시스템인 UI Toolkit을 씬에 렌더링하고 관리하는 핵심 컴포넌트입니다. UXML 레이아웃과 USS 스타일시트를 연결하여 고성능의 벡터 기반 UI를 구성합니다.",
+  "when": [
+    "다양한 Resolution와 화면 비율에서 선명하게 유지되는 게임 UI를 제작할 때",
+    "기존 Canvas 방식보다 가볍고 확장성 있는 Runtime UI 구조를 설계할 때",
+    "CSS와 유사한 USS 스타일링으로 체계적인 UI 디자인을 적용할 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create → UI Toolkit → UI Document를 선택하여 새 에셋을 생성합니다.",
+    "Project 창에서 우클릭 후 Create → UI Toolkit → UXML Template과 USS StyleSheet를 각각 생성합니다.",
+    "생성한 UXML 파일을 더블 클릭하여 UI Builder를 열고 원하는 UI 요소(Button, Label 등)를 배치합니다.",
+    "Hierarchy 창에 빈 오브젝트를 만들거나 우클릭 후 UI → UI Document를 선택해 컴포넌트를 추가합니다.",
+    "Inspector 패널의 UI Document 컴포넌트 내 Source Asset 필드에 제작한 UXML 파일을 드래그하여 연결합니다.",
+    "Viewport와 Game 뷰에서 UI가 올바르게 렌더링되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Source Asset",
+      "desc": "렌더링할 UXML 레이아웃 파일을 지정합니다."
+    },
+    {
+      "name": "Panel Settings",
+      "desc": "Resolution 스케일링 방식과 렌더 모드를 설정하는 에셋입니다."
+    },
+    {
+      "name": "Visual Tree",
+      "desc": "현재 로드된 UI 요소들의 계층 구조를 보여줍니다."
+    },
+    {
+      "name": "Sorting Order",
+      "desc": "여러 UI Document 간의 렌더링 순서(레이어)를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "메인 메뉴 화면 구성",
+      "steps": [
+        "UI Builder에서 UXML을 열고 Background 이미지와 Start 버튼, Exit 버튼을 배치합니다.",
+        "USS 파일을 연결하여 버튼의 호버 및 클릭 시 색상 변화를 정의합니다.",
+        "Scene에 UI Document를 생성하고 해당 UXML을 연결하여 메인 화면을 완성합니다."
+      ]
+    },
+    {
+      "title": "인게임 HUD (체력 바) 제작",
+      "steps": [
+        "UI Builder에서 ProgressBar 요소를 배치하고 크기와 위치를 조정합니다.",
+        "C# Script를 작성하여 UIDocument.rootVisualElement를 통해 ProgressBar 컴포넌트를 가져옵니다.",
+        "플레이어 체력 값에 따라 progress 바의 value 속성을 실시간으로 업데이트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "UXML 연결 누락 → Inspector의 Source Asset 필드에 UXML 파일이 지정되어 있는지 확인합니다.",
+    "스타일 미적용 → USS 파일이 UXML 문서에 정상적으로 연결(Add Style Sheet)되었는지 확인합니다.",
+    "레이아웃 안 보임 → Panel Settings 에셋이 누락되었거나 Resolution 설정이 잘못되었는지 확인합니다."
+  ],
+  "related": [
+    "Canvas",
+    "UI Scaler",
+    "Render Texture",
+    "RectTransform"
+  ],
+  "videos": [
+    {
+      "id": "6sGV0217_CQ",
+      "title": "Unity 6.5 UI Toolkit: UIDocument to PanelRenderer Migration",
+      "author": "DevToolForge"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20UIDocument",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T00:22:44.297583+00:00"
+}

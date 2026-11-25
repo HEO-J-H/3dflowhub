@@ -1,0 +1,84 @@
+{
+  "id": "unity-dynamic-batching-7e4a",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "프로젝트 최적화",
+  "name": "Dynamic Batching",
+  "title": "다이나믹 배칭 — CPU 부담을 줄이기 위해 작은 메쉬들을 Runtime에 동적으로 결합하는 렌더링 최적화 기법",
+  "summary": "Unity의 Dynamic Batching은 움직이는 수많은 소형 오브젝트의 정점 데이터를 자동으로 묶어 드로우 콜(Draw Call)을 줄여주는 성능 최적화 기능입니다.",
+  "when": [
+    "화면에 동일한 머티리얼을 사용하는 작은 이동형 오브젝트가 수십 개 이상 동시에 나타날 때",
+    "정적(Static) 처리할 수 없어 Static Batching을 적용할 수 없는 움직이는 캐릭터나 아이템을 최적화할 때",
+    "GPU 부하는 낮지만 CPU 드로우 콜 병목으로 인해 프레임 레이트가 떨어질 때"
+  ],
+  "steps": [
+    "Project Settings 창을 엽니다 (Edit 메뉴 → Project Settings).",
+    "좌측 메뉴에서 Player 항목을 선택하고 Other Settings 탭으로 이동합니다.",
+    "Rendering 섹션에서 Dynamic Batching 체크박스를 활성화합니다.",
+    "씬에 배치된 오브젝트들의 Shader와 머티리얼이 서로 호환되는지 확인합니다.",
+    "Game 뷰와 Stats 오버레이를 켜고 드로우 콜 수치와 Batch Count 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Dynamic Batching",
+      "desc": "작은 동적 메쉬들을 CPU에서 모아 하나의 드로우 콜로 렌더링할지 여부를 결정합니다."
+    },
+    {
+      "name": "Vertex Count Limit",
+      "desc": "다이나믹 배칭에 포함될 수 있는 정점 수의 제한입니다 (일반적으로 300~900개 미만 메쉬에 적합)."
+    }
+  ],
+  "examples": [
+    {
+      "title": "떨어지는 금화 아이템 최적화",
+      "steps": [
+        "동일한 골드 머티리얼을 사용하는 수십 개의 동전 프리팹을 씬에 스폰합니다.",
+        "Project Settings의 Player에서 Dynamic Batching을 켭니다.",
+        "Frame Debugger를 열어 드로우 콜이 하나로 합쳐지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "군중 캐릭터의 간단한 파츠 최적화",
+      "steps": [
+        "단일 머티리얼을 공유하는 단순한 형태의 저폴리곤 군중 오브젝트들을 배치합니다.",
+        "각 메쉬의 정점 개수가 배칭 제한 조건에 맞는지 확인합니다.",
+        "플레이 모드에서 CPU 드로우 콜 감소를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 다른 머티리얼 사용 → 모든 오브젝트가 동일한 머티리얼을 공유하도록 수정해야 합니다.",
+    "과도하게 높은 정점 개수 → 폴리곤을 줄이거나 GPU Instancing으로 전환해야 합니다.",
+    "스케일 변환 문제 → 음수 스케일이나 비균등 스케일이 적용된 경우 배칭이 해제됩니다."
+  ],
+  "related": [
+    "Static Batching",
+    "GPU Instancing",
+    "SRP Batcher",
+    "Frame Debugger"
+  ],
+  "videos": [
+    {
+      "id": "vm95z0PwGD4",
+      "title": "Boost Your Unity Game Speed With Powerful GPU Instancing And Batching",
+      "author": "git-amend"
+    },
+    {
+      "id": "8D8A6gabwlU",
+      "title": "Static Batching, Explained. Free, Powerful Draw Call Optimization | Unity Tutorial",
+      "author": "LlamAcademy"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Dynamic%20Batching",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project Settings",
+    "Edit",
+    "Player",
+    "Other Settings",
+    "Rendering",
+    "Dynamic Batching"
+  ],
+  "at": "2026-11-25T00:22:47.621735+00:00"
+}
