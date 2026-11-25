@@ -1,0 +1,55 @@
+{
+  "title_ko": "NVIDIA GeForce 621.40 Driver SSD 마모 버그 공식 수정",
+  "title": "NVIDIA Releases Driver That Fixes SSD-Wearing Bug",
+  "url": "https://80.lv/articles/nvidia-releases-driver-that-fixes-ssd-wearing-bug/",
+  "domain": "AI 3D",
+  "category": "NVIDIA",
+  "topic": "업데이트·출시",
+  "tags": [
+    "NVIDIA",
+    "GeForce",
+    "Driver",
+    "SSD",
+    "DLSS"
+  ],
+  "summary": "NVIDIA가 백그라운드 파일 과다 쓰기로 인한 SSD 마모 문제를 해결한 GeForce Game Ready 621.40 WHQL Driver를 공식 배포했습니다.",
+  "insight": "GeForce Game Ready 621.40 WHQL Driver는 이전 버전에서 백그라운드 프로세스로 nvlog.nvlgstg 파일을 반복적으로 다시 쓰던 SSD 마모 버그를 정식 해결합니다. 주말 동안 배포된 621.35 Hotfix의 수정 내용을 정식 반영한 결과입니다. 또한 Chaos Vantage 환경에서 고해상도 렌더링 시 작동하지 않던 NVIDIA OptiX Denoiser 오류를 함께 수정하여 3D 아티스트의 제작 안정성을 높입니다.",
+  "try_it": [
+    "현재 시스템에 설치된 NVIDIA Driver 버전을 확인합니다.",
+    "NVIDIA 공식 경로를 통해 GeForce Game Ready 621.40 WHQL Driver로 업데이트합니다.",
+    "Chaos Vantage 실행 후 고해상도 렌더링 시 NVIDIA OptiX Denoiser 작동 여부를 점검합니다."
+  ],
+  "sections": [
+    {
+      "heading": "GeForce Game Ready 621.40 WHQL Driver 주요 수정 사항",
+      "body": "신규 621.40 버전은 백그라운드에서 발생하던 nvlog.nvlgstg 파일의 과도한 디스크 쓰기 오류를 수정하여 하드웨어 수명 저하 문제를 해결합니다. 주말 동안 배포된 621.35 Hotfix의 수정 내용을 정식 반영한 결과입니다. 하드웨어 마모를 방지하기 위해 구버전 사용자는 즉시 업데이트를 진행하는 편이 안전합니다."
+    },
+    {
+      "heading": "Chaos Vantage 및 미디어 재생 오류 수정",
+      "body": "Chaos Vantage 환경에서 고해상도 렌더링 시 NVIDIA OptiX Denoiser가 작동하지 않던 버그가 해결되었습니다. 또한 Windows 사진 및 미디어 플레이어에서 DJI D-Log H.265 영상 재생 시 색상이 올바르게 표시되지 않던 문제가 수정되었습니다. 디스플레이 및 렌더링 파이프라인에서 발생하던 시각적 오류들이 정돈되었습니다."
+    },
+    {
+      "heading": "게임 타이틀 최적화 및 DLSS 5 지원",
+      "body": "이번 Driver는 Warhammer 40,000: Dawn of War IV 전투 성능을 최적화하고 Assetto Corsa Rally에 DLSS 4.5 Dynamic Multi Frame Generation 지원을 추가합니다. 오픈월드 액션 어드벤처 RPG Where Winds Meet에는 3D-Guided Neural Rendering이 포함된 DLSS 5가 적용됩니다. 해당 기술들은 최신 그래픽스 기능을 작업물과 실시간 프리뷰 환경에 반영합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "GeForce 621.40 Driver는 어떤 문제를 수정하나요?",
+      "a": "이전 버전에서 백그라운드 파일인 nvlog.nvlgstg에 과도한 쓰기 작업을 반복하여 SSD 수명을 단축시키던 버그를 정식 수정합니다."
+    },
+    {
+      "q": "Chaos Vantage와 관련된 수정 사항은 무엇인가요?",
+      "a": "고해상도 환경에서 NVIDIA OptiX Denoiser가 실패하던 일반 버그가 해결되었습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51165/images/6b06be55d20de/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=58FagrSqC4M"
+  },
+  "collected_at": "2026-11-25T10:54:41.153231+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-1086bb91da5fc98c",
+  "img_ok": "2026-11-25T10:54:42+00:00",
+  "enriched": "2026-11-25"
+}
