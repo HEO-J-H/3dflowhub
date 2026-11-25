@@ -1,0 +1,20 @@
+<!-- TITLE: Gaussian Splatting 경량화 솔루션 AnyPrune 공개 | TAGS: 3D Gaussian Splatting,Pruning,AI 3D,Gaussian Splatting,Optimization,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 단일 전파 피드포워드 3D Gaussian Splatting 파이프라인을 재최적화 과정 없이 빠르게 가지치기하는 트랜스포머 기반 모듈 AnyPrune 논문이 공개되었습니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>AnyPrune의 핵심 개념과 등장 배경</h2>
+<p>피드포워드 방식의 3D Gaussian Splatting 파이프라인은 입력 뷰가 많을 때 장면 표현에 불필요한 Gaussian이 과도하게 생성되어 메모리와 저장 공간을 낭비합니다. 기존 가지치기 기법들은 비용이 많이 드는 재최적화를 거치거나 단순한 규칙에 의존해 정보 손실이 발생했습니다. AnyPrune은 트랜스포머 기반 구조를 활용해 추가 최적화 없이 불필요한 Gaussian을 제거합니다.</p>
+<h2>단일 GPU 환경에서의 단기 학습과 속도</h2>
+<p>고정된 타겟 피드포워드 파이프라인 위에서 짧은 단일 GPU 학습을 거쳐 파이프라인 특유의 중복 패턴을 학습합니다. 160만 개의 Gaussian 필드를 처리하는 데 약 5초가 소요되어 기존 병합이나 재최적화 방식보다 빠른 처리 속도를 보여줍니다.</p>
+<h2>렌더링 품질 유지 및 범용성 검증</h2>
+<p>다양한 피드포워드 파이프라인, 데이터셋, 입력 뷰 개수를 통틀어 기존 최적화 불필요 가지치기 방식보다 뛰어난 렌더링 품질을 달성합니다. 학습에 사용되지 않은 미지의 데이터셋에도 자연스럽게 일반화되는 성능을 실험으로 입증했습니다.</p>
+<h2>기존 파이프라인 내장 기능과의 결합</h2>
+<p>피드포워드 파이프라인 자체에 내장된 가지치기 기능과 결합하여 적절한 비율로 추가 가지치를 수행할 수 있습니다. 이 과정에서 렌더링 품질을 그대로 유지하거나 오히려 향상시키는 결과를 보여줍니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">160만 개의 Gaussian 필드를 소비자용 GPU에서 약 5초 만에 정리할 수 있어 기존 재최적화 방식의 속도 한계를 극복합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. AnyPrune은 어떤 문제를 해결하나요?</b><br/>A. 피드포워드 3D Gaussian Splatting에서 과도하게 생성되는 불필요한 Gaussian을 재최적화 없이 빠르고 효율적으로 제거합니다.</p>
+<p><b>Q. 160만 개 Gaussian 처리에는 얼마나 걸리나요?</b><br/>A. 소비자용 GPU 기준 약 5초가 소요되며, 기존 Gaussian 병합이나 재최적화 방식보다 훨씬 빠르게 작동합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-25-42d49f088d18d494.html">Lost on Campus — 야외 3DGS 기반 VLM 공간 추론 벤치마크</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-849494a68d4bfa63.html">ArgsWorld — 3DGS 씬 재구성·생성·외삽을 통합한 자귀귀속형 확산 트랜스포머</a></li><li><a href="https://3dflowhub.kr/p/2026-11-24-7b708ebab8139fbc.html">DecoFlat — 스파스 뷰 3D Gaussian Splatting의 평탄 최소점 최적화</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.32735v1" target="_blank" rel="noopener nofollow">AnyPrune: Optimization-Free Pruning for Any Feedforward 3D Gaussian Splatting Pipeline</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

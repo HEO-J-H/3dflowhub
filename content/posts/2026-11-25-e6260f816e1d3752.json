@@ -1,0 +1,54 @@
+{
+  "title_ko": "Gaussian Splatting 경량화 솔루션 AnyPrune 공개",
+  "title": "AnyPrune: Optimization-Free Pruning for Any Feedforward 3D Gaussian Splatting Pipeline",
+  "url": "https://arxiv.org/abs/2611.32735v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "Pruning",
+    "AI 3D",
+    "Gaussian Splatting",
+    "Optimization"
+  ],
+  "summary": "단일 전파 피드포워드 3D Gaussian Splatting 파이프라인을 재최적화 과정 없이 빠르게 가지치기하는 트랜스포머 기반 모듈 AnyPrune 논문이 공개되었습니다.",
+  "insight": "160만 개의 Gaussian 필드를 소비자용 GPU에서 약 5초 만에 정리할 수 있어 기존 재최적화 방식의 속도 한계를 극복합니다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "AnyPrune의 핵심 개념과 등장 배경",
+      "body": "피드포워드 방식의 3D Gaussian Splatting 파이프라인은 입력 뷰가 많을 때 장면 표현에 불필요한 Gaussian이 과도하게 생성되어 메모리와 저장 공간을 낭비합니다. 기존 가지치기 기법들은 비용이 많이 드는 재최적화를 거치거나 단순한 규칙에 의존해 정보 손실이 발생했습니다. AnyPrune은 트랜스포머 기반 구조를 활용해 추가 최적화 없이 불필요한 Gaussian을 제거합니다."
+    },
+    {
+      "heading": "단일 GPU 환경에서의 단기 학습과 속도",
+      "body": "고정된 타겟 피드포워드 파이프라인 위에서 짧은 단일 GPU 학습을 거쳐 파이프라인 특유의 중복 패턴을 학습합니다. 160만 개의 Gaussian 필드를 처리하는 데 약 5초가 소요되어 기존 병합이나 재최적화 방식보다 빠른 처리 속도를 보여줍니다."
+    },
+    {
+      "heading": "렌더링 품질 유지 및 범용성 검증",
+      "body": "다양한 피드포워드 파이프라인, 데이터셋, 입력 뷰 개수를 통틀어 기존 최적화 불필요 가지치기 방식보다 뛰어난 렌더링 품질을 달성합니다. 학습에 사용되지 않은 미지의 데이터셋에도 자연스럽게 일반화되는 성능을 실험으로 입증했습니다."
+    },
+    {
+      "heading": "기존 파이프라인 내장 기능과의 결합",
+      "body": "피드포워드 파이프라인 자체에 내장된 가지치기 기능과 결합하여 적절한 비율로 추가 가지치를 수행할 수 있습니다. 이 과정에서 렌더링 품질을 그대로 유지하거나 오히려 향상시키는 결과를 보여줍니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "AnyPrune은 어떤 문제를 해결하나요?",
+      "a": "피드포워드 3D Gaussian Splatting에서 과도하게 생성되는 불필요한 Gaussian을 재최적화 없이 빠르고 효율적으로 제거합니다."
+    },
+    {
+      "q": "160만 개 Gaussian 처리에는 얼마나 걸리나요?",
+      "a": "소비자용 GPU 기준 약 5초가 소요되며, 기존 Gaussian 병합이나 재최적화 방식보다 훨씬 빠르게 작동합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.32735v1/fig/qual/adaptivesplat-dial_v1/anyprune-070-view7.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-25T12:26:00.299857+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-e6260f816e1d3752",
+  "img_tried": true
+}
