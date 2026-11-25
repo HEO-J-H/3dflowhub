@@ -1,0 +1,101 @@
+{
+  "id": "v-ray-v-ray-rect-light-7483",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "V-Ray Rect Light",
+  "title": "V-Ray 사각형 라이트 — 창문이나 면광원 표현을 위한 직사각형 조명 설정",
+  "summary": "V-Ray Rect Light는 면 형태의 조명으로 넓은 영역에 부드러운 빛을 제공해 실내·Studio 조명에 적합합니다.",
+  "when": [
+    "넓은 면광원이 필요할 때 – 예: 창문·천장 조명",
+    "부드러운 그림자와 균일한 색온도가 요구되는 실내 씬",
+    "특정 영역만 강조하고 싶을 때 – 스포트와 달리 확산형 조명"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Create → Lights → V-Ray → V-Ray Rect Light 선택 (Hotkey: Shift+R)",
+    "Command Panel의 Lights 탭에서 VRayRectLight 아이콘 클릭 후 Viewport에 클릭해 위치 지정",
+    "필요하면 Mouse 드래그로 면의 Width·Height 를 조절하거나 Properties 패널에서 직접 입력",
+    "Properties 패널에서 Intensity·Color·Decay·Shadows 등을 설정하고 Viewport에서 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "빛의 밝기를 조절합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "조명의 색상을 지정합니다"
+    },
+    {
+      "name": "Width",
+      "desc": "조명의 가로 길이"
+    },
+    {
+      "name": "Height",
+      "desc": "조명의 세로 길이"
+    },
+    {
+      "name": "Decay",
+      "desc": "거리 감쇠 방식 (None, Inverse Square 등)"
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자 활성화 여부와 품질"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 천장 조명 만들기",
+      "steps": [
+        "Rect Light를 천장 중앙에 배치",
+        "Width·Height 를 천장 크기에 맞게 확대",
+        "Intensity 를 1.5~2.0으로 설정하고 Color 를 따뜻한 색으로 지정",
+        "Shadows 를 Soft 로 켜고 Softness 값을 0.5 정도 조정"
+      ]
+    },
+    {
+      "title": "큰 창문을 통한 자연광 시뮬레이션",
+      "steps": [
+        "Rect Light를 창문 프레임에 맞게 배치",
+        "Width·Height 를 창문 실제 크기로 입력",
+        "Color 를 햇빛 색(약 5600K)으로 설정",
+        "Decay 를 None 으로 두어 균일한 빛 제공",
+        "Shadows 를 Off 로 하여 투명한 빛 효과 구현"
+      ]
+    }
+  ],
+  "mistakes": [
+    "면 크기를 너무 작게 설정 → 빛이 국소화돼 어두워짐 → Width·Height 를 씬 규모에 맞게 확대",
+    "Decay 를 Inverse Square 로 설정했지만 거리 감쇠가 필요 없는 실내 → 밝기가 급감 → Decay 를 None 으로 변경",
+    "Shadows 를 Soft 로 켰지만 Softness 가 0이면 경직된 그림자 → Softness 값을 0.3~0.7 사이로 조정"
+  ],
+  "related": [
+    "V-Ray Plane Light",
+    "V-Ray Dome Light",
+    "V-Ray IES Light",
+    "V-Ray Sun Light"
+  ],
+  "videos": [
+    {
+      "id": "IljGIeCXdWg",
+      "title": "Getting Started Rendering in Vray (EP 4) - Interior Lighting in Vray Using Artificial Lighting",
+      "author": "The Rendering Essentials"
+    },
+    {
+      "id": "hSJn4FDHeOs",
+      "title": "V-Ray INTERIOR LIGHTING Set-up| SketchUp & V-Ray",
+      "author": "PRODESIGN"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Rect%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Lights",
+    "V-Ray",
+    "V-Ray Rect Light",
+    "Hotkey"
+  ],
+  "at": "2026-11-25T02:24:43.823407+00:00"
+}

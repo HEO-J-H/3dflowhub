@@ -1,0 +1,100 @@
+{
+  "id": "v-ray-v-ray-sphere-light-3294",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 렌더링",
+  "name": "V-Ray Sphere Light",
+  "title": "V-Ray 구형 라이트 — 부드러운 그림자를 만드는 구 형태의 광원 설정 방법",
+  "summary": "V-Ray Sphere Light는 구형 형태의 광원을 만들어 모든 방향으로 빛을 방출해 실내 보조광이나 강조광으로 활용합니다.",
+  "when": [
+    "넓은 영역에 부드러운 채광이 필요할 때",
+    "특정 오브젝트를 골고루 감싸는 라이트가 필요할 때",
+    "HDRI 없이 실내 조명을 빠르게 구성하고 싶을 때"
+  ],
+  "steps": [
+    "Create → Lights → V-Ray → VRaySphereLight (Hotkey: Shift+S)",
+    "Viewport에서 원하는 위치에 클릭하여 라이트 배치",
+    "Command Panel의 Lights 탭에서 Light Type이 Sphere인지 확인",
+    "Intensity, Color, Radius 등 파라미터를 조정하고 Viewport에서 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "빛의 강도를 조절합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "광원의 색상을 설정합니다"
+    },
+    {
+      "name": "Radius",
+      "desc": "구의 반지름을 지정해 빛의 퍼짐 범위를 조절합니다"
+    },
+    {
+      "name": "Decay",
+      "desc": "빛 감쇠 방식을 선택해 거리별 밝기 변화를 제어합니다"
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자 생성 여부를 켭니다"
+    },
+    {
+      "name": "Cast Shadows",
+      "desc": "오브젝트가 라이트에 의해 그림자를 만들지 여부를 설정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 전체 채광",
+      "steps": [
+        "천장 중앙에 Sphere Light 배치",
+        "Radius를 크게 설정해 방 전체에 고르게 빛이 퍼지게 함",
+        "Intensity를 0.8~1.0 정도로 조정",
+        "Shadows를 켜서 자연스러운 그림자 확보"
+      ]
+    },
+    {
+      "title": "제품 강조 라이트",
+      "steps": [
+        "제품 앞쪽에 작은 Radius의 Sphere Light 배치",
+        "Color를 따뜻한 색(예: 3500K)으로 설정",
+        "Intensity를 1.2~1.5로 높게 설정",
+        "Shadows를 끄고 부드러운 하이라이트 강조"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Radius를 너무 크게 설정 → 빛이 균일해져 형태가 사라짐 → Radius를 적절히 줄인다",
+    "Decay를 None으로 두면 거리 감쇠가 없어 비현실적 → Decay를 Inverse Square로 변경한다",
+    "Shadows를 비활성화해 그림자가 사라짐 → Shadows 옵션을 켜고 Shadow Density를 조정한다"
+  ],
+  "related": [
+    "VRayPlaneLight",
+    "VRayRectLight",
+    "VRayDomeLight",
+    "VRaySun"
+  ],
+  "videos": [
+    {
+      "id": "uB-sWbhHuJU",
+      "title": "Vray For Sketchup #1/3 -  Using Light Sphere in vray for sketchup",
+      "author": "Vray For SketchUp Tutorial Tips"
+    },
+    {
+      "id": "RwXmcobiA94",
+      "title": "How to create Vray mesh light & Sphere Light in 3ds max",
+      "author": "NK LEARNING"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Sphere%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Lights",
+    "V-Ray",
+    "VRaySphereLight",
+    "Hotkey"
+  ],
+  "at": "2026-11-25T02:23:52.462113+00:00"
+}

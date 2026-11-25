@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-consolidate-3183",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "미디어 관리",
+  "name": "Consolidate",
+  "title": "콘솔리데이트 — 프로젝트에 사용된 미디어 파일만 골라서 백업 및 용량을 최적화하는 기능",
+  "summary": "Consolidate는 프로젝트에 사용된 모든 미디어와 캐시 파일을 지정 폴더로 복사·정리해 보관 및 이동을 쉽게 합니다.",
+  "when": [
+    "프로젝트를 다른 컴퓨터로 옮길 때",
+    "장기 보관을 위해 파일을 정리하고 싶을 때",
+    "클립 경로가 깨져 미디어를 찾을 수 없을 때"
+  ],
+  "steps": [
+    "File → Project Manager 열기",
+    "프로젝트 리스트에서 대상 프로젝트를 오른쪽 클릭",
+    "Context 메뉴에서 Consolidate 선택",
+    "Destination 폴더 지정 후 Include 옵션 선택",
+    "Consolidate 버튼 클릭"
+  ],
+  "params": [
+    {
+      "name": "Destination",
+      "desc": "복사할 폴더 경로"
+    },
+    {
+      "name": "Include Source Media",
+      "desc": "원본 미디어 파일을 포함"
+    },
+    {
+      "name": "Include Optimized Media",
+      "desc": "Optimized Media 파일을 포함"
+    },
+    {
+      "name": "Include Proxy Media",
+      "desc": "Proxy 파일을 포함"
+    },
+    {
+      "name": "Include Render Cache",
+      "desc": "Render Cache 파일을 포함"
+    },
+    {
+      "name": "Delete Unused Files",
+      "desc": "프로젝트에 사용되지 않은 파일을 삭제"
+    }
+  ],
+  "examples": [
+    {
+      "title": "외부 하드디스크에 전체 프로젝트 백업",
+      "steps": [
+        "Project Manager에서 프로젝트 오른쪽 클릭 → Consolidate",
+        "Destination을 외부 HDD 폴더로 지정",
+        "All Include 옵션 체크",
+        "Consolidate 실행"
+      ]
+    },
+    {
+      "title": "깨진 클립 경로 복구",
+      "steps": [
+        "Consolidate 창에서 Destination 지정",
+        "Include Source Media만 체크",
+        "Consolidate 실행 후 프로젝트 열기"
+      ]
+    }
+  ],
+  "mistakes": [
+    "대상 폴더 용량 부족 → 충분한 여유 공간을 확인하고 다시 실행",
+    "Include Optimized Media를 빼고 실행 → 재렌더링 필요 → 옵션을 켜고 다시 Consolidate",
+    "원본 프로젝트 폴더를 Destination으로 선택 → 파일이 덮어써져 손실 → 다른 폴더 지정"
+  ],
+  "related": [
+    "Media Management",
+    "Render Cache",
+    "Optimized Media",
+    "Proxy Media"
+  ],
+  "videos": [
+    {
+      "id": "73DCUYzsYPA",
+      "title": "How to Merge Clips in DaVinci Resolve in 19 Seconds",
+      "author": "Teckers"
+    },
+    {
+      "id": "H4y1MOCNeUE",
+      "title": "Glue Clips Together into a Single Clip - DaVinci Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Consolidate",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Project Manager",
+    "Context",
+    "Consolidate"
+  ],
+  "at": "2026-11-25T02:24:12.700007+00:00"
+}
