@@ -1,0 +1,104 @@
+{
+  "id": "v-ray-v-ray-car-paint-material-2-4b6a",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "V-Ray Car Paint Material 2",
+  "title": "V-Ray 카 페인트 재질 2 — 자동차 도색의 메탈릭 플레이크와 다층 코팅 효과를 표현하는 법",
+  "summary": "VRayCarPaintMtl2는 자동차 도색의 Base 코트, 메탈 플레이크, 클리어 코트를 레이어링해 실감나는 반짝임과 투명도를 구현합니다.",
+  "when": [
+    "자동차 외관에 실제와 같은 금속 플레이크와 투명 클리어 코트를 적용하고 싶을 때",
+    "고급 차량 시각화·광고 렌더링에서 반사·광택을 정밀하게 제어해야 할 때",
+    "다층 코팅(Base·플레이크·클리어)으로 색상 변화를 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Material Editor 열기 (Shortcut: M)",
+    "Material / Map Browser → V-Ray 탭 → VRayCarPaintMtl2 선택 후 New Material 클릭",
+    "Base 코트 색상: Base Color 파라미터에 원하는 색상 지정",
+    "플레이크 설정: Flake → Color, Size, Density 조정",
+    "클리어 코트: Clear Coat → IOR, Glossiness, Thickness 값 입력",
+    "Reflection, Refraction, Bump 등 추가 옵션 필요 시 조정",
+    "오브젝트에 머티리얼 드래그 후 Render Settings에서 V-Ray 활성화"
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "Base 코트 색상, 전체 색조를 결정"
+    },
+    {
+      "name": "Flake Color",
+      "desc": "플레이크 색상, 금속 입자의 색을 지정"
+    },
+    {
+      "name": "Flake Size",
+      "desc": "플레이크 입자 크기, 작을수록 미세한 반짝임"
+    },
+    {
+      "name": "Flake Density",
+      "desc": "플레이크 밀도, 높을수록 반짝임이 강해짐"
+    },
+    {
+      "name": "Clear Coat IOR",
+      "desc": "클리어 코트 굴절률, 투명도와 반사 강도에 영향"
+    },
+    {
+      "name": "Clear Coat Glossiness",
+      "desc": "클리어 코트 광택, 0~1 사이 값으로 매끄러움 조절"
+    }
+  ],
+  "examples": [
+    {
+      "title": "스포츠카 외관에 반짝이는 파란색 도색 적용",
+      "steps": [
+        "Base Color를 파란색(HSV 210,100,80)으로 설정",
+        "Flake Color를 은색, Size 0.02, Density 0.5 지정",
+        "Clear Coat IOR 1.5, Glossiness 0.95 설정",
+        "렌더링 후 반사와 플레이크가 자연스럽게 보이는지 확인"
+      ]
+    },
+    {
+      "title": "고전적인 레트로 자동차에 은색 메탈 플레이트 효과",
+      "steps": [
+        "Base Color를 회색(HSV 0,0,70)으로 설정",
+        "Flake Color를 금색, Size 0.03, Density 0.8 지정",
+        "Clear Coat Thickness 0.2, Glossiness 0.9 적용",
+        "Bump에 Normal Map 추가해 표면 질감 강조"
+      ]
+    }
+  ],
+  "mistakes": [
+    "플레이크 Density를 0으로 설정 → 반짝임이 사라짐 → 적절히 0.2~0.7 사이 값으로 조정",
+    "Clear Coat IOR을 0으로 입력 → 비현실적인 투명도 → 1.4~1.6 범위 내 값 사용",
+    "Base 코트와 플레이트 색을 동일하게 설정 → 색 구분이 안 됨 → Base와 플레이크 색을 대비되게 선택"
+  ],
+  "related": [
+    "VRayFlakesMtl",
+    "VRayBlendMtl",
+    "VRayCarPaintMtl",
+    "VRayMaterial"
+  ],
+  "videos": [
+    {
+      "id": "1dqrstQol5Y",
+      "title": "Vray 2 Car Paint Example - 3DsMax 2013",
+      "author": "Crystal Lucina"
+    },
+    {
+      "id": "vzBpGebIck4",
+      "title": "V-Ray 2.0 for 3ds Max - Car Paint Material.mp4",
+      "author": "Ku Ku"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Car%20Paint%20Material%202",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Shortcut",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayCarPaintMtl2"
+  ],
+  "at": "2026-11-25T01:45:08.749839+00:00"
+}

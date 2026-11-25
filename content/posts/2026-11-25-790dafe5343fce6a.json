@@ -1,0 +1,65 @@
+{
+  "title_ko": "Godot 기반 Fable 리메이크 – Fable II·III 재현",
+  "title": "Fable: Return to Albion is a Godot-based remake of Fable II and Fable III - overkill.wtf",
+  "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1wUWppcVNmWmRiNDAtYVozcDNCdDE4S2J2NWtzLURibURWRWFKZ1RtVGpKaHFjUU4zbGZ1cXhDQldrRjFNMmhwMg?oc=5",
+  "domain": "Game Engine",
+  "category": "Godot",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Godot",
+    "Fable",
+    "remake",
+    "indie",
+    "fan project",
+    "고도 엔진"
+  ],
+  "summary": "Fable: Return to Albion은 Godot 엔진으로 만든 Fable II·III 리메이크 프로젝트다.",
+  "insight": "Godot Engine은 라이선스 비용이 없기 때문에 예산이 제한된 팀이 핵심 게임 로직을 구현하는 데 집중할 수 있다. 3D 모델은 Blender에서 glTF 형식으로 내보내면 Godot에서 바로 사용할 수 있어 파일 변환 단계가 간단하다. 내장된 라이트맵과 포스트프로세스 효과를 활용하면 최신 그래픽 품질을 별도 플러그인 없이 달성할 수 있다. 커뮤니티 포럼과 공식 문서가 활발해 문제 해결에 필요한 정보를 빠르게 찾을 수 있다.",
+  "try_it": [
+    "Godot Engine 최신 버전을 다운로드하고 실행한다.",
+    "Fable 리메이크 공개 저장소를 클론한 뒤 프로젝트 폴더를 연다.",
+    "Blender에서 간단한 캐릭터를 만들고 glTF 형식으로 내보낸 뒤 Godot에 임포트한다.",
+    "임포트된 모델에 기본 PBR 재질을 적용하고 라이트맵을 베이킹해 본다."
+  ],
+  "sections": [
+    {
+      "heading": "프로젝트 개요",
+      "body": "Fable: Return to Albion은 기존의 Fable II와 Fable III를 Godot Engine으로 재구성한 팬 메이드 리메이크이다. 원작의 스토리와 게임플레이를 유지하면서 최신 엔진의 기능을 활용한다. 현재 주요 퀘스트와 전투 시스템이 구현된 상태이며, 앞으로 지역 디자인과 NPC 대화가 추가될 예정이다."
+    },
+    {
+      "heading": "사용된 엔진",
+      "body": "이 프로젝트는 Godot Engine을 기반으로 제작되었다. Godot은 오픈소스이며 멀티플랫폼 배포가 가능해 커뮤니티 프로젝트에 적합하다. GDScript와 시각 스크립팅을 혼용해 로직을 구현하고, 씬 시스템을 활용해 레벨을 모듈화한다."
+    },
+    {
+      "heading": "목표와 범위",
+      "body": "주요 목표는 원작의 핵심 콘텐츠를 충실히 재현하면서도 그래픽과 UI를 현대화하는 것이다. 현재는 주요 퀘스트와 전투 시스템을 구현한 상태다. 향후에는 환경 효과와 음성 연출을 추가해 전체적인 몰입감을 높일 계획이다."
+    },
+    {
+      "heading": "그래픽 구현",
+      "body": "Godot의 3D 렌더러는 PBR 워크플로를 지원해 사실적인 재질 표현이 가능하다. 쉐이더 그래프를 이용해 커스텀 효과를 만들 수 있으며, 라이트맵 베이킹으로 정적 씬의 퍼포먼스를 최적화한다. 포스트프로세스 스택을 활용해 블룸, 색상 보정 등을 손쉽게 적용한다."
+    },
+    {
+      "heading": "모델링·애니메이션 파이프라인",
+      "body": "아티스트는 Blender에서 모델링·리깅을 진행하고, glTF 2.0 형식으로 내보낸다. Godot은 glTF를 바로 읽어들여 메터리얼과 스켈레톤 정보를 보존한다. 애니메이션은 Godot의 AnimationPlayer에 연결해 트리거와 블렌드 트리를 구성한다."
+    },
+    {
+      "heading": "커뮤니티와 지원",
+      "body": "Godot 공식 포럼과 Discord 채널에서는 비슷한 리메이크 프로젝트 사례를 공유한다. Godot Asset Library에서 무료 쉐이더와 UI 템플릿을 다운로드해 프로젝트에 적용할 수 있다. 정기적인 업데이트와 버그 픽스가 이루어지므로 최신 버전을 유지하는 것이 좋다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 리메이크는 공식 라이선스를 보유하고 있나요?",
+      "a": "아니요, 팬이 만든 비공식 프로젝트이며 원작사의 공식 승인이나 라이선스는 없다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/3JEtpkuDDBo/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=3JEtpkuDDBo"
+  },
+  "collected_at": "2026-11-25T01:43:01.029197+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-790dafe5343fce6a",
+  "img_tried": true,
+  "enriched": "2026-11-25"
+}

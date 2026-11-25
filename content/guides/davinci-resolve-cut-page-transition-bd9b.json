@@ -1,0 +1,98 @@
+{
+  "id": "davinci-resolve-cut-page-transition-bd9b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집",
+  "name": "Cut Page Transition",
+  "title": "컷 페이지 전환 — 컷 페이지에서 빠르게 트랜지션을 적용하고 편집하는 워크플로우",
+  "summary": "Cut Page의 Transition 도구는 클립 사이에 빠르게 트랜지션을 적용해 초고속 편집을 지원합니다.",
+  "when": [
+    "다중 카메라 컷을 연결할 때",
+    "러프 컷 후 매끄러운 흐름을 만들고 싶을 때",
+    "키보드 Hotkey로 빠르게 전환 효과를 넣고 싶을 때"
+  ],
+  "steps": [
+    "Cut Page 탭 클릭 → Media Pool에서 두 클립을 인접하게 Timeline에 배치",
+    "클립 사이에 Mouse 오른쪽 클릭 → Add Transition 선택 (또는 Ctrl+T)",
+    "Inspector 패널에서 원하는 Transition 이름(예: Cross Dissolve) 선택",
+    "Duration 값을 원하는 프레임 수(예: 12)로 조정"
+  ],
+  "params": [
+    {
+      "name": "Transition",
+      "desc": "클립 사이에 적용되는 효과"
+    },
+    {
+      "name": "Duration",
+      "desc": "트랜지션 길이(프레임)"
+    },
+    {
+      "name": "Ease In/Out",
+      "desc": "시작·끝 가속도 조절"
+    },
+    {
+      "name": "Flip",
+      "desc": "트랜지션 방향 반전"
+    },
+    {
+      "name": "Custom Curve",
+      "desc": "곡선 편집으로 타이밍 미세조정"
+    },
+    {
+      "name": "Opacity",
+      "desc": "전환 중 투명도 변화량"
+    }
+  ],
+  "examples": [
+    {
+      "title": "멀티캠 컷 연결",
+      "steps": [
+        "두 카메라 클립을 Timeline에 배치",
+        "클립 사이에 Add Transition (Ctrl+T)",
+        "Cross Dissolve 선택",
+        "Duration 8프레임 설정"
+      ]
+    },
+    {
+      "title": "시퀀스 시작에 Fade In",
+      "steps": [
+        "첫 클립 앞에 빈 클립 삽입",
+        "빈 클립과 첫 클립 사이에 Add Transition",
+        "Fade In 선택",
+        "Duration 12프레임 설정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "트랜지션이 보이지 않음 → 클립이 정확히 인접 배치되지 않았는지 확인하고 다시 적용",
+    "Duration이 너무 짧아 효과가 사라짐 → Inspector에서 Duration 값을 늘리기",
+    "잘못된 트랜지션 선택 → Inspector에서 다른 Transition 이름으로 교체"
+  ],
+  "related": [
+    "Fast Review",
+    "Sync Bin",
+    "Cut Page",
+    "Edit Page"
+  ],
+  "videos": [
+    {
+      "id": "85W8E7VRmU4",
+      "title": "Speed Editing in DaVinci Resolve's Cut Page",
+      "author": "Stocksy United - Stock Photography & Video Co-op"
+    },
+    {
+      "id": "PoMViwvZrw0",
+      "title": "Master the Cut Page in DaVinci Resolve: Complete Tutorial",
+      "author": "Yes Jmo"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Cut%20Page%20Transition",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Cut Page",
+    "Media Pool",
+    "Timeline"
+  ],
+  "at": "2026-11-25T01:44:38.063326+00:00"
+}
