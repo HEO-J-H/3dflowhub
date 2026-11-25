@@ -1,0 +1,93 @@
+{
+  "id": "davinci-resolve-cut-page-sync-bin-c8fd",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집",
+  "name": "Cut Page Sync Bin",
+  "title": "싱크 빈 — 멀티캠 및 Audio/비디오 소스를 타임코드 기준으로 동기화하여 빠르게 편집하는 컷 페이지 기능",
+  "summary": "DaVinci Resolve의 Sync Bin은 컷 페이지(Cut Page)에서 여러 대의 카메라 영상과 Audio 소스를 타임코드나 파형을 기준으로 자동 동기화하여 실시간으로 앵글을 전환하며 편집할 수 있는 강력한 멀티캠 작업 공간입니다.",
+  "when": [
+    "인터뷰나 토크쇼처럼 여러 대의 카메라로 동시 촬영한 소스를 빠르게 편집할 때",
+    "Live 공연이나 행사 영상을 각 앵글별로 실시간 스위칭하며 편집할 때",
+    "Audio 파형이나 타임코드를 이용해 복잡한 멀티 채널 소스를 한 번에 정렬할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Cut Page 탭을 클릭하여 컷 페이지로 진입합니다.",
+    "상단 메뉴 바에서 View → Show Sync Bin을 선택하거나 단추를 눌러 Sync Bin 패널을 활성화합니다.",
+    "Media Pool에서 동기화할 타임코드나 Audio가 포함된 클립들을 선택합니다.",
+    "선택한 클립을 우클릭하여 'Create New Timeline Using Selected Clips' 또는 멀티캠 클립을 생성합니다.",
+    "Cut Page의 Sync Bin 뷰에서 Timeline 재생(Space) 중에 숫자 키나 화면의 Angle 썸네일을 클릭하여 실시간으로 카메라 앵글을 전환합니다.",
+    "Viewport에서 전환된 컷들이 Timeline에 실시간으로 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Sync Bin",
+      "desc": "타임코드와 파형을 기준으로 정렬된 모든 카메라 앵글을 실시간으로 모아보는 패널입니다."
+    },
+    {
+      "name": "Source Timeline",
+      "desc": "여러 앵글의 소스가 시간 축에 맞춰 동시에 플레이되는 소스 Timeline 영역입니다."
+    },
+    {
+      "name": "Angle Viewer",
+      "desc": "각 카메라의 실시간 영상을 미리 보고 클릭 한 번으로 앵글을 교체하는 뷰어입니다."
+    },
+    {
+      "name": "Audio Follows Video",
+      "desc": "비디오 앵글을 전환할 때 해당 카메라의 Audio 트랙도 함께 전환되도록 설정합니다."
+    },
+    {
+      "name": "Timecode Sync",
+      "desc": "카메라 메타데이터의 타임코드를 읽어 완벽한 프레임 단위 동기화를 수행합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2채널 카메라 인터뷰 영상 실시간 편집",
+      "steps": [
+        "정면 카메라와 측면 카메라 소스를 미디어 풀에서 불러옵니다.",
+        "타임코드를 기준으로 동기화된 멀티캠 클립을 생성하고 컷 페이지의 Sync Bin에 등록합니다.",
+        "Timeline을 재생하며 인물 대사에 맞춰 정면과 측면 앵글을 실시간으로 전환합니다."
+      ]
+    },
+    {
+      "title": "Live 공연 멀티 앵글 스위칭",
+      "steps": [
+        "공연 현장을 촬영한 4대의 카메라 영상과 마스터 Audio를 준비합니다.",
+        "Audio 파형을 기준으로 동기화를 완료한 뒤 Sync Bin 패널을 엽니다.",
+        "음악 비트에 맞춰 각 앵글 번호 키를 눌러 가며 빠르게 컷 편집을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "타임코드가 맞지 않아 소스가 어긋남 → 미디어 풀 클립 우클릭 후 Audio 파형(Waveform) 기준으로 다시 동기화합니다.",
+    "Sync Bin 패널이 보이지 않음 → 상단 메뉴 View에서 Show Sync Bin이 체크되어 있는지 확인합니다.",
+    "앵글 전환 시 Audio가 튀거나 겹침 → Audio Follows Video 옵션이 켜져 있는지 확인하고 Audio 트랙 설정을 점검합니다."
+  ],
+  "related": [
+    "Cut Page",
+    "Multicam Editing",
+    "Sync Bin",
+    "Media Pool"
+  ],
+  "videos": [
+    {
+      "id": "iBec-68zrhc",
+      "title": "DaVinci Resolve How To: Sync Bin",
+      "author": "Scan Pro Video"
+    },
+    {
+      "id": "7LoYeWJgSoQ",
+      "title": "How to FIX Sync Bin - SPEED EDITOR Multicam DaVinci Resolve 17 Tutorial",
+      "author": "Creative Video Tips"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Cut%20Page%20Sync%20Bin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut Page"
+  ],
+  "at": "2026-11-25T01:13:02.885121+00:00"
+}

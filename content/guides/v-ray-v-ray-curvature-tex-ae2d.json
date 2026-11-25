@@ -1,0 +1,90 @@
+{
+  "id": "v-ray-v-ray-curvature-tex-ae2d",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Curvature Tex",
+  "title": "V-Ray Curvature Tex — 오브젝트의 곡률(오목/볼록)을 감지하여 웨어 앤 테어 효과를 주는 텍",
+  "summary": "V-Ray Curvature Tex는 3D 모델의 표면 곡률(기울기 변화)을 분석하여 볼록한 부분과 오목한 부분을 절차적(Procedural) 텍스처로 생성해 주는 맵입니다. UV 펼치기 없이도 자연스러운 웨더링, 오일 누출, 엣지 마모 효과를 렌더링할 수 있습니다.",
+  "when": [
+    "모델링의 모서리나 틈새에 자연스러운 마모(Wear & Tear) 효과를 줄 때",
+    "오목한 곳에 먼지나 때가 낀 듯한 웨더링 표현이 필요할 때",
+    "UV 매핑 작업 없이 퀵하게 흑백 Mask를 추출해 머티리얼을 섞을 때"
+  ],
+  "steps": [
+    "Material Editor (Hotkey M)를 엽니다.",
+    "V-Ray Material을 생성하고 Diffuse 또는 Bump 등의 슬롯을 클릭합니다.",
+    "Material/Map Browser에서 V-Ray Curvature Tex를 찾아 적용합니다.",
+    "Preview 창을 보며 Mode와 Radius 값을 조절하여 곡률 감지 범위를 맞춥니다.",
+    "생성된 흑백 맵을 Blend Material의 Mask나 컬러 코렉션 노드에 연결하여 렌더링 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "볼록한 영역, 오목한 영역 또는 전체 곡률 중 어떤 것을 추출할지 선택합니다."
+    },
+    {
+      "name": "Radius",
+      "desc": "곡률을 감지하는 반경의 크기를 조절합니다. 값이 클수록 넓은 영역에 영향을 줍니다."
+    },
+    {
+      "name": "Samples",
+      "desc": "곡률 계산 시 사용할 샘플 수를 설정하여 맵의 정밀도와 노이즈를 조절합니다."
+    },
+    {
+      "name": "Consider Bump",
+      "desc": "범프 맵으로 생성된 세부 굴곡까지 곡률 계산에 반영할지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 모서리 까짐 표현",
+      "steps": [
+        "V-Ray Curvature Tex의 Mode를 Convex로 설정합니다.",
+        "Radius 값을 작게 주어 뾰족한 엣지 부분만 흰색으로 감지되도록 맞춥니다.",
+        "이 맵을 V-Ray Blend Material의 Mask로 사용하여 Base 금속 위에 페인트 레이어를 얹습니다."
+      ]
+    },
+    {
+      "title": "구석진 곳의 먼지 표현",
+      "steps": [
+        "V-Ray Curvature Tex의 Mode를 Concave로 설정합니다.",
+        "Radius 값을 적당히 주어오목한 틈새에 어두운 영역이 생기도록 합니다.",
+        "Color Correction 등을 거쳐 Diffuse 슬롯의 먼지 색상 레이어에 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모서리에 아무 효과도 나타나지 않음 → Radius 값이 모델 크기에 비해 너무 작거나 클 수 있으므로 단위를 확인하고 값을 조절하세요.",
+    "렌더링 결과가 너무 거칠고 노이즈가 심함 → Samples 값이 너무 낮기 때문이므로 샘플 수를 높여서 부드럽게 만드세요."
+  ],
+  "related": [
+    "V-Ray Edge Tex",
+    "V-Ray Dirt",
+    "VRayEdges",
+    "V-Ray Blend Material"
+  ],
+  "videos": [
+    {
+      "id": "TgJFV-ebyCc",
+      "title": "V-Ray | SCRATCHED METAL Shader | Curvature Workflow",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "Sm4ytYzJYGA",
+      "title": "V-ray Curvature Map",
+      "author": "CihanOzkan"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Curvature%20Tex",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "V-Ray Material",
+    "Diffuse",
+    "Bump"
+  ],
+  "at": "2026-11-25T01:12:58.704254+00:00"
+}
