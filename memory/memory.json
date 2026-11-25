@@ -1,32 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-23T16:36:41.324086+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 64,
-      "candidates_passed": 19,
-      "offtopic": 22,
-      "short": 0,
-      "prefiltered": 33,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "6cb19055",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-23T16:46:56.101354+00:00",
       "collected": 1,
       "saved": 0,
@@ -6859,6 +6833,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-25T23:28:28.333441+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 121,
+      "candidates_passed": 58,
+      "offtopic": 24,
+      "short": 0,
+      "prefiltered": 47,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "69f9cd85",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6954,7 +6955,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
     "2026-11-16 [성찰] 동음이의어 필터를 1000중으로 강화한 결과 오프토픽 비율이 크게 낮아졌으므로, 실무 튜토리얼 및 애드온 관련 고단가 키워드 중심의 수집 전략을 더욱 공고히 해야 합니다.",
     "2026-11-16 [성찰] 동음이의어 필터를 1200중으로 강화하여 무관한 일반 명사 유입을 줄이고 패스율을 개선했으나, 여전히 불필요한 프리필터 및 오프토픽을 낮추기 위해 컨텍스트 검증을 더욱 정교화해야 합니다.",
     "2026-11-17 [성찰] 동음이의어 필터를 2000중으로 대폭 강화하여 일반 명사 뉴스의 유입을 원천 차단하고, 실무 튜토리얼 및 애드온 관련 고단가 키워드에 집중해야 합니다.",
@@ -7073,7 +7073,8 @@
     "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] ",
     "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물명 등) 필터를 강화하여 저품질 및 주제 이탈 문서를 차단하고, 실무 검색 유입이 높은 도구별 가이드와 스크립트 중심 콘텐츠 비중을 높여야 합니다.",
     "2026-11-25 [성찰] 동음이의어 필터링을 강화하여 CG 및 게임 실무 문맥과 무관한 기사를 철저히 배제하고 고CPC 실무 튜토리얼 중심으로 콘텐츠를 발행해야 합니다.",
-    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 허위 수집을 철저히 차단하고, 실무 튜토리얼 및 스크립트 위주의 고단가 검색 유입에 집중해야 합니다."
+    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물 이름 등)로 인한 허위 수집을 철저히 차단하고, 실무 튜토리얼 및 스크립트 위주의 고단가 검색 유입에 집중해야 합니다.",
+    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물 이름 등) 필터를 더욱 강화하고, Maya, Maxscript, 블렌더 튜토리얼 등 실제 검색 유입과 조회수가 입증된 고단가 실무 키워드에 수집 집중도를 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7142,7 +7143,7 @@
     "Game Engine/UEFN·Fortnite": 6,
     "AI 3D/3D 생성 AI": 81,
     "VFX/Nuke": 17,
-    "Game Engine/기타 엔진": 170,
+    "Game Engine/기타 엔진": 171,
     "VFX/After Effects": 68,
     "VFX/Houdini FX": 12,
     "3D DCC/기타 DCC": 120,
@@ -7280,7 +7281,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    2359979411571372545,
     2898441276710215800,
     5197304913796065755,
     5491154639133893657,
@@ -10279,14 +10279,15 @@
     8920443467237630793,
     3062193386903184391,
     5284398518916212140,
-    921461331508414997
+    921461331508414997,
+    11965052991031641745
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4165,
-    "Game Engine": 4165,
-    "VFX": 4165,
-    "AI 3D": 4165
+    "3D DCC": 4166,
+    "Game Engine": 4166,
+    "VFX": 4166,
+    "AI 3D": 4166
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
