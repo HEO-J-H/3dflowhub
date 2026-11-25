@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-23T12:05:51.746513+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 53,
-      "candidates_passed": 7,
-      "offtopic": 22,
-      "short": 0,
-      "prefiltered": 36,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "6cb19055",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-23T12:15:56.502599+00:00",
       "collected": 0,
       "saved": 0,
@@ -6850,6 +6826,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-25T20:06:33.711624+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 140,
+      "candidates_passed": 66,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 57,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "8262c995",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6945,7 +6948,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-16 [성찰] 동음이의어 필터를 1000중으로 강화하여 일반 명사 노이즈를 완벽히 차단하고, 실무 튜토리얼 및 스크립트 등 고단가 검색 의도 콘텐츠에 집중해야 합니다.",
     "2026-11-16 [core.validate_cg_search_intent(): 검색어 또는] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — 59 passed, 1 warning in 2.58s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-16 [[p-e85a53212a|사이트·UX] 로컬 파이프라인 TripoSR 실] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/local-pipeline.md').exists / FAILED backend/tests/test_core.py::test_l",
@@ -7064,7 +7066,8 @@
     "2026-11-25 [[p-c8379045a5|사이트·UX] 가우시안 스플래팅 및 ZBrush] 테스트 실패 — E       AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신 D-2') / FAILED tests/test_core.py::test_alerts_dday_and_order - AssertionError: assert '도메인 갱신 D-1' in ('자동 수집 실패', '도메인 갱신",
     "2026-11-25 [[p-c8379045a5|사이트·UX] 가우시안 스플래팅 및 ZBrush] 테스트 실패 — E   SyntaxError: invalid syntax / E     File \"/home/runner/work/3dflowhub/3dflowhub/build_site.py\", line 2280 / E       >>>>>>>_splt = \"\" / E       ^^ / ERROR tests/test_agent_tasks.py / ERRO",
     "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] ",
-    "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] "
+    "2026-11-25 [[p-0045889110|운영·비용] 메타데이터 로컬 DB 스키마 단위 ] ",
+    "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물명 등) 필터를 강화하여 저품질 및 주제 이탈 문서를 차단하고, 실무 검색 유입이 높은 도구별 가이드와 스크립트 중심 콘텐츠 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7122,7 +7125,7 @@
   "category_counts": {
     "Game Engine/Unity": 133,
     "AI 3D/가우시안 스플래팅": 155,
-    "VFX/스튜디오·작품": 254,
+    "VFX/스튜디오·작품": 255,
     "AI 3D/로보틱스·월드모델": 39,
     "3D DCC/Blender": 212,
     "Game Engine/Unreal Engine": 224,
@@ -7271,8 +7274,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    2210239674294045992,
-    9775956963381398921,
     10610903381017532548,
     11512652448709701229,
     2541844172818565376,
@@ -10270,14 +10271,16 @@
     2939196942633401031,
     6025973336744484777,
     8170605008849857713,
-    11967264756767802813
+    11967264756767802813,
+    41474678260917019,
+    11172428577587217618
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4145,
-    "Game Engine": 4145,
-    "VFX": 4145,
-    "AI 3D": 4145
+    "3D DCC": 4146,
+    "Game Engine": 4146,
+    "VFX": 4146,
+    "AI 3D": 4146
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
