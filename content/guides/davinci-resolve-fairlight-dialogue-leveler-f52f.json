@@ -1,0 +1,92 @@
+{
+  "id": "davinci-resolve-fairlight-dialogue-leveler-f52f",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "오디오",
+  "name": "Fairlight Dialogue Leveler",
+  "title": "다이얼로그 레벨러 — 대사 트랙의 음량 편차를 자동으로 균일하게 맞춰주는 페어라이트 Audio 도구",
+  "summary": "Dialogue Leveler는 대화 음성의 레벨을 자동으로 균일하게 맞춰주는 Audio 효과입니다.",
+  "when": [
+    "대화가 섞인 씬에서 음량 차이가 크게 날 때",
+    "다양한 마이크 거리·볼륨 차이로 레벨이 불균형할 때",
+    "다수의 클립을 빠르게 일관된 음량으로 맞춰야 할 때"
+  ],
+  "steps": [
+    "Fairlight 페이지를 엽니다 (하단 탭 클릭)",
+    "Effects Library → Audio FX → Dialogue → Dialogue Leveler 를 찾습니다",
+    "원하는 클립이나 트랙에 Dialogue Leveler 를 드래그하거나 오른쪽 클릭 → Add Effect 선택합니다",
+    "Inspector 패널에서 Dialogue Leveler 를 선택하고 옵션을 조정합니다"
+  ],
+  "params": [
+    {
+      "name": "Target Loudness",
+      "desc": "목표 음량(LUFS)으로 자동 정규화"
+    },
+    {
+      "name": "Threshold",
+      "desc": "레벨러가 작동을 시작하는 최소 음량"
+    },
+    {
+      "name": "Range",
+      "desc": "조정 가능한 최대 레벨 차이"
+    },
+    {
+      "name": "Attack",
+      "desc": "음량 상승 반응 속도"
+    },
+    {
+      "name": "Release",
+      "desc": "음량 감소 반응 속도"
+    },
+    {
+      "name": "Make‑Up Gain",
+      "desc": "정규화 후 전체 볼륨 보정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 씬 대화 음량 균일화",
+      "steps": [
+        "클립 선택 → Dialogue Leveler 적용",
+        "Target Loudness 를 -23 LUFS 로 설정",
+        "Apply 클릭"
+      ]
+    },
+    {
+      "title": "다중 캐릭터 대화 트랙 정리",
+      "steps": [
+        "트랙 전체 선택 → Dialogue Leveler 적용",
+        "Make‑Up Gain 자동 적용",
+        "Viewport에서 파형이 고르게 변했는지 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Target Loudness 를 너무 높게 설정 → 음성이 왜곡 → -23 LUFS 정도로 낮추고 재조정",
+    "Effect 를 트랙에만 적용했지만 개별 클립마다 레벨 차이가 남음 → 각 클립에 개별 적용하거나 Automation 사용",
+    "Threshold 를 0 dB 로 두면 레벨러가 작동하지 않음 → 적절한 음량 이하 값으로 조정"
+  ],
+  "related": [
+    "Fairlight Equalizer",
+    "Fairlight Compressor",
+    "Fairlight Noise Reduction",
+    "Fairlight ADR Panel"
+  ],
+  "videos": [
+    {
+      "id": "C-Ea8EJO5C0",
+      "title": "The RIGHT way to use Dialogue Leveler in Davinci Resolve",
+      "author": "Duan van Schalkwyk"
+    },
+    {
+      "id": "fw6y1Ns2CGg",
+      "title": "NEW Dialogue Leveler & Voice Isolation in Davinci Resolve 18.1",
+      "author": "Molin Guides"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20Dialogue%20Leveler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T01:24:40.400105+00:00"
+}

@@ -1,0 +1,108 @@
+{
+  "id": "v-ray-v-ray-scene-converter-49b0",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "유틸리티 및 최적화",
+  "name": "V-Ray Scene Converter",
+  "title": "V-Ray Scene Converter — 타사 렌더러의 재질과 라이트를 V-Ray 표준으로 일괄 변환하는 ",
+  "summary": "V-Ray Scene Converter는 다른 렌더러 또는 구버전 V-Ray에서 만든 재질·조명·프록시 등을 V-Ray 최신 포맷으로 일괄 변환해 주는 도구입니다.",
+  "when": [
+    "다른 렌더러(Arnold, Redshift 등)에서 V-Ray로 교체할 때",
+    "구버전 V-Ray(3.x·4.x) 씬을 최신 V-Ray(5.x 이상)로 업그레이드할 때",
+    "Autodesk Material library 항목이 포함된 레거시 씬을 열 때"
+  ],
+  "steps": [
+    "3ds Max 상단 메뉴에서 V-Ray → Scene Converter 선택 (Hotkey 없음)",
+    "Convert From 드롭다운에서 원본 렌더러(예: Arnold)를 선택",
+    "Convert To 드롭다운에서 V-Ray를 선택하고 변환 대상(재질, 조명, 프록시) 체크",
+    "Convert 버튼을 클릭하고 변환이 완료될 때까지 기다린 뒤 파일을 저장"
+  ],
+  "params": [
+    {
+      "name": "Convert Materials",
+      "desc": "재질을 V-Ray 재질(VRayMtl)로 변환"
+    },
+    {
+      "name": "Convert Lights",
+      "desc": "조명을 V-Ray 라이트 타입으로 변환"
+    },
+    {
+      "name": "Convert Proxies",
+      "desc": "프록시 객체를 V-Ray Proxy로 교체"
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "UV 좌표를 유지해 텍스처가 깨지지 않게 함"
+    },
+    {
+      "name": "Delete Original",
+      "desc": "변환 후 원본 노드를 자동 삭제"
+    },
+    {
+      "name": "Target Renderer",
+      "desc": "변환 후 사용할 V-Ray 버전 선택"
+    }
+  ],
+  "examples": [
+    {
+      "title": "구버전 V-Ray 씬 Upgrade",
+      "steps": [
+        "V-Ray → Scene Converter 열기",
+        "Convert From에 V-Ray 3.6 선택",
+        "Convert To에 V-Ray 5 선택",
+        "재질·조명 모두 체크 후 Convert 실행"
+      ]
+    },
+    {
+      "title": "Arnold 재질을 V-Ray 재질로 변환",
+      "steps": [
+        "V-Ray → Scene Converter 열기",
+        "Convert From에 Arnold 선택",
+        "Convert To에 V-Ray 선택",
+        "Convert Materials만 체크하고 변환"
+      ]
+    },
+    {
+      "title": "Autodesk Material library 제거",
+      "steps": [
+        "V-Ray → Scene Converter 열기",
+        "Convert From에 Autodesk Material 선택",
+        "Convert To에 V-Ray 선택",
+        "Delete Original 활성화 후 변환"
+      ]
+    }
+  ],
+  "mistakes": [
+    "변환 전 백업을 하지 않음 → 파일 → Save As 로 복사본을 만든 뒤 변환",
+    "지원되지 않는 노드를 변환 시도 → 변환 후 해당 노드를 수동으로 V-Ray 재질로 교체",
+    "UV 보존 옵션을 끄고 변환 → 텍스처가 뒤틀리면 Preserve UVs 를 켜고 다시 변환"
+  ],
+  "related": [
+    "VRayMtl",
+    "V-Ray Hair Next Mtl",
+    "V-Ray Proxy",
+    "V-Ray Render Settings"
+  ],
+  "videos": [
+    {
+      "id": "xOBx84PZMpw",
+      "title": "How to find and use the Vray Scene Converter option in 3ds Max",
+      "author": "Jake Denham"
+    },
+    {
+      "id": "eh_lB0d8DLw",
+      "title": "VRay Scene Converter in V-Ray 6",
+      "author": "3D but in Depth"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Scene%20Converter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "V-Ray",
+    "Scene Converter",
+    "Hotkey"
+  ],
+  "at": "2026-11-25T01:24:53.685633+00:00"
+}

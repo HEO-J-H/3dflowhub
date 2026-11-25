@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-v-ray-lens-effects-a9c0",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "카메라 및 이펙트",
+  "name": "V-Ray Lens Effects",
+  "title": "V-Ray Lens Effects — VFB 내에서 블룸 및 글레어 효과를 실시간으로 추가하는 기능",
+  "summary": "V-Ray Lens Effects는 렌즈 플레어·글레어·블룸·빛 번짐 등을 시뮬레이션해 렌더링 결과에 카메라 렌즈 특유의 시각적 효과를 추가합니다.",
+  "when": [
+    "밝은 광원(태양·전구) 주변에 실제 카메라 플레어를 표현하고 싶을 때",
+    "특정 오브젝트에 강조된 빛 번짐·글레어 효과를 적용해 분위기를 강화하고 싶을 때",
+    "렌더 후 추가 지오메트리를 만들지 않고 빠르게 아티스틱한 빛 효과를 넣고 싶을 때"
+  ],
+  "steps": [
+    "V-Ray Asset Editor 열기 (Shift+Ctrl+E)",
+    "Lens Effects 탭 → Add Lens Effect 클릭",
+    "Type 에서 Flare·Glare·Bloom 등 원하는 효과 선택",
+    "필요한 파라미터(Intensity, Threshold, Size, Color 등) 조정",
+    "Render Settings → V-Ray → Global Settings → Lens Effects 체크 확인",
+    "렌더 후 V-Ray Frame Buffer에서 효과가 적용된 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "효과 종류(Flare, Glare, Bloom 등)를 선택합니다"
+    },
+    {
+      "name": "Intensity",
+      "desc": "효과의 전체 밝기 강도"
+    },
+    {
+      "name": "Threshold",
+      "desc": "효과가 나타날 최소 밝기값, 낮을수록 더 많이 적용"
+    },
+    {
+      "name": "Size",
+      "desc": "플레어·글레어의 크기 조절"
+    },
+    {
+      "name": "Color",
+      "desc": "효과 색상, 기본은 화이트"
+    },
+    {
+      "name": "Ghosts",
+      "desc": "플레어에 나타나는 유령 이미지 수와 위치"
+    }
+  ],
+  "examples": [
+    {
+      "title": "야외 씬에 태양 플레어 추가",
+      "steps": [
+        "Lens Effects → Add Lens Effect → Type=Flare 선택",
+        "Threshold를 0.2 정도 낮게 설정",
+        "Size를 0.8로 늘리고 Intensity 0.7 적용",
+        "렌더 후 VFB에서 플레어가 태양 주변에 나타나는지 확인"
+      ]
+    },
+    {
+      "title": "실내 스포트라이트에 글레어 효과",
+      "steps": [
+        "Add Lens Effect → Type=Glare 선택",
+        "Intensity 0.6, Size 0.5 설정",
+        "Color를 약간 노란색으로 조정",
+        "Ghosts 수를 4로 늘려 다중 반사 효과 구현"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Lens Effects를 Render Settings에서 활성화하지 않음 → 효과가 전혀 보이지 않음",
+    "Threshold 값을 너무 높게 설정 → 밝은 부분에만 적용돼 기대 효과가 사라짐",
+    "Intensity를 과도하게 높여 씬이 과다 노출됨 → Intensity를 0.5~0.8 사이로 조절"
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "V-Ray Light Mix",
+    "V-Ray Render Elements",
+    "V-Ray Post Process"
+  ],
+  "videos": [
+    {
+      "id": "G7dP3G2K1oE",
+      "title": "Easy Bloom & Glare Tutorial with Vray in 3Ds Max (Lens Effects) #RedefineFX",
+      "author": "RedefineFX | Jesse Pitela"
+    },
+    {
+      "id": "quvtpdeKoYw",
+      "title": "How to Use Lens Effects in V-Ray for 3ds max",
+      "author": "tech-n-design"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Lens%20Effects",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T01:24:09.002535+00:00"
+}
