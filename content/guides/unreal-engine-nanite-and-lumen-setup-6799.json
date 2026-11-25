@@ -9,7 +9,7 @@
   "when": [
     "영화 수준의 하이폴리곤 3D 스캔 에셋을 별도의 최적화 없이 그대로 게임이나 장면에 배치할 때",
     "실내외 공간에서 실시간 빛의 반사와 간접광을 정교하게 표현하여 사실감을 높이고 싶을 때",
-    "전통적인 Baking 방식의 라이트맵 제작 과정을 생략하고 빠른 반복 작업이 필요할 때"
+    "전통적인 방식으로 라이트맵을 굽지 않고 다채로운 시간대(낮·해질녘·밤)의 조명을 빠르게 반복 검증할 때"
   ],
   "steps": [
     "Content Browser에서 Nanite을 적용할 Static Mesh 에셋을 더블 클릭하여 개별 에디터 창을 엽니다.",
@@ -68,6 +68,14 @@
         "Lumen 실시간 글로벌 일루미네이션을 적용하여 시간대 변화와 파괴 효과에 따른 동적 광원 변화를 처리합니다.",
         "실시간 빛 반사와 그림자, Riptide 웨이브 등 환경 요소를 조합해 전술적 전투 환경의 시각적 몰입감을 높입니다."
       ]
+    },
+    {
+      "title": "중동 시장 환경 조명 연출 (Lumen 및 라이트 조합 사례)",
+      "steps": [
+        "Directional Light로 주요 태양광과 그림자 각도를 잡고, Rect Light와 Spot Light를 조합해 건축물 면과 포인트 디테일을 살립니다.",
+        "HDRI 스카이 배경에 클라우드 카드를 겹쳐 낮·해질녘·밤 시간대에 따른 하늘 깊이와 분위기를 전환합니다.",
+        "Lumen 실시간 전역 조명을 활용해 따뜻한 오렌지(낮), 시안-블루(해질녘), 모래색·짙은 갈색(밤)의 색상 팔레트와 간접광을 자연스럽게 연결합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -114,13 +122,19 @@
       "source_keys": [
         "p:2026-11-15-617650e728e46461"
       ]
-    }
-  ],
-  "refresh_with": [
+    },
     {
-      "key": "p:2026-11-25-8233bea801cccb30",
-      "title": "Unreal Engine 5, 중동 시장 조명 사례 – Lumen 활용",
-      "url": "https://80.lv/articles/recreating-the-atmosphere-of-a-middle-eastern-market-in-unreal-engine-5/"
+      "at": "2026-11-25T11:09:00+00:00",
+      "what": "언리얼 엔진 5 Lumen을 활용한 중동 시장 환경 조명 사례를 바탕으로 다채로운 시간대 연출 및 라이트 조합 활용 예시를 추가했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine 5, 중동 시장 조명 사례 – Lumen 활용",
+          "url": "https://80.lv/articles/recreating-the-atmosphere-of-a-middle-eastern-market-in-unreal-engine-5/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-25-8233bea801cccb30"
+      ]
     }
   ]
 }

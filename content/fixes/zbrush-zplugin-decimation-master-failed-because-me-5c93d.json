@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-zplugin-decimation-master-failed-because-me-5c93d",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: Decimation Master failed because mesh has open holes",
+  "title": "Zplugin: Decimation Master failed because mesh has open holes 해결 방법",
+  "summary": "ZBrush에서 Decimation Master를 실행할 때 메쉬에 열린 구멍(Open Holes)이 존재하여 폴리곤 최적화 연산을 진행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬의 일부 면이 삭제되었거나 정상적으로 닫히지 않은 볼륨(Open Volume) 상태인 경우",
+    "GoZ 등을 통해 다른 프로그램에서 가져온 모델에 구멍이나 비정상적인 열린 경계(Open Boundaries)가 포함된 경우",
+    "다이나메쉬(Dynamesh)나  zremesh 작업 중 의도치 않게 구멍이 생겼으나 메꿔지지 않은 경우"
+  ],
+  "steps": [
+    "ZBrush의 Tool 팔레트에서 문제가 발생하는 SubTool을 선택합니다.",
+    "Tool > Geometry > Modify Topology 메뉴로 이동합니다.",
+    "Close Holes 버튼을 클릭하여 메쉬에 있는 열린 구멍들을 자동으로 메꿉니다.",
+    "구멍이 너무 크거나 복잡한 경우 ZModeler 브러시의 QGrid나 Bridge 기능을 사용해 직접 면을 채워줍니다.",
+    "구멍 수정이 완료된 후 다시 Zplugin > Decimation Master에서 Pre-process Current를 실행합니다."
+  ],
+  "check": [
+    "Pre-process Current를 실행했을 때 오류 메시지 없이 프로세스가 정상적으로 완료되는지 확인합니다.",
+    "Transparency(투명도) 모드를 켜서 Viewport 상에 뚫린 면이나 비정상적인 경계가 없는지 육안으로 확인합니다."
+  ],
+  "prevent": [
+    "Decimation Master를 실행하기 전에 항상 Tool > Geometry > Modify Topology > Check Mesh를 통해 오류를 미리 점검합니다.",
+    "외부 프로그램에서 모델링을 가져올 때(FBX, OBJ 등) 항상 단일 닫힌 볼륨(Closed Mesh) 상태인지 확인합니다."
+  ],
+  "keywords": [
+    "ZBrush Decimation Master 오류",
+    "open holes 오류",
+    "Zplugin 닫힌 구멍 해결",
+    "Decimation Master 실패",
+    "ZBrush Close Holes"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T11:08:33+00:00"
+}

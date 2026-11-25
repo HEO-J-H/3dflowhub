@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-kit-window-stage-f-0d8c0",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.kit.window.stage] Failed to attach stage due to USD context error",
+  "title": "Kit: [Error] [omni.kit.window.stage] Failed to attach stage due to USD context e",
+  "summary": "Kit: [Error] [omni.kit.window.stage] Failed to attach stage due to USD context error 오류는 NVIDIA Omniverse Kit 앱에서 새로운 USD 스테이지를 열거나 기존 씬에 연결(Attach)하는 과정에서 USD 컨텍스트 초기화에 실패할 때 발생합니다.",
+  "causes": [
+    "손상되었거나 잘못된 형식의 USD/USDA/USDC 파일을 열려고 시도할 때",
+    "이전 스테이지가 완전히 언로드되지 않은 상태에서 충돌이 발생할 때",
+    "메모리 부족 또는 비정상적인 참조(Reference) 경로로 인한 USD 컨텍스트 충돌"
+  ],
+  "steps": [
+    "NVIDIA Omniverse 앱을 완전히 종료하고 재시작하여 USD 컨텍스트를 초기화합니다.",
+    "Stage 패널 또는 Layer 패널에서 문제가 되는 USD 레이어나 서브레이어(Sublayer)를 언로드(Unload)합니다.",
+    "텍스트 편집기나 다른 3D DCC에서 USD 파일을 열어 구문 오류나 잘못된 파일 경로가 있는지 확인합니다.",
+    "새로운 빈 USD 스테이지(New Stage)를 생성한 후, 문제가 된 파일을 에셋 단위로 다시 가져오거나 참조(Reference)하여 정상 작동하는지 테스트합니다."
+  ],
+  "check": [
+    "Stage 패널에 대상 USD 씬이 오류 없이 정상적으로 로드되고 계층 구조가 표시되는지 확인합니다.",
+    "Console 패널에 더 이상 omni.kit.window.stage 관련 에러 로그가 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 3D DCC에서 USD 파일을 내보낼 때 경로와 이름에 특수문자나 잘못된 참조가 포함되지 않도록 주의합니다.",
+    "대형 씬을 작업할 때는 파일을 단일 레이어로 합치기보다 여러 레이어로 분할하여 관리합니다."
+  ],
+  "keywords": [
+    "Omniverse Stage 오류",
+    "USD context error",
+    "omni.kit.window.stage",
+    "USD 스테이지 연결 실패",
+    "NVIDIA Kit 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T11:08:50+00:00"
+}
