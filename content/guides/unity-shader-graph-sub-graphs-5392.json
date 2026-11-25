@@ -1,0 +1,89 @@
+{
+  "id": "unity-shader-graph-sub-graphs-5392",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "셰이더 및 머티리얼",
+  "name": "Shader Graph Sub-graphs",
+  "title": "Shader Graph 서브그래프 — 재사용 가능한 노드 모듈을 만들어 여러 Shader에서 공유하는 방법",
+  "summary": "Unity Shader Graph의 Sub-graphs는 복잡한 노드 네트워크를 하나로 묶어 재사용할 수 있게 해주는 기능입니다. 여러 Shader에서 공통으로 쓰이는 연산을 캡슐화하여 작업 효율을 높이고 Graph를 깔끔하게 유지합니다.",
+  "when": [
+    "여러 마스터 Shader에서 공통으로 반복되는 수학적 연산이나 텍스처 조합 로직을 재사용할 때",
+    "복잡한 Shader Graph의 가독성을 높이고 노드들을 하나의 블록으로 정리하고 싶을 때",
+    "팀원들과 공유할 수 있는 커스텀 Shader 효과나 유틸리티 노드를 제작할 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create → Shader Graph → Sub-graph를 선택하여 새 서브그래프 파일을 생성합니다.",
+    "생성된 서브그래프 파일을 더블클릭하여 Sub-graph 에디터를 엽니다.",
+    "Graph Inspector 패널에서 Blackboard 탭을 열고 + 버튼을 눌러 필요한 Input(입력)과 Output(출력) 프로퍼티를 추가합니다.",
+    "Workspace에서 노드들을 연결하여 원하는 연산 로직을 구성한 뒤, 최종 결과를 Sub Graph Output 노드에 연결합니다.",
+    "일반 Shader Graph를 열고, Project 창의 서브그래프 파일을 드래그하여 Graph 내부로 가져와 노드처럼 사용합니다."
+  ],
+  "params": [
+    {
+      "name": "Blackboard",
+      "desc": "서브그래프 내부에서 사용할 입력 및 출력 변수(Properties)를 관리하는 패널"
+    },
+    {
+      "name": "Sub Graph Output",
+      "desc": "서브그래프의 연산 결과를 외부 메인 Graph로 전달하는 최종 출력 노드"
+    },
+    {
+      "name": "Reference Name",
+      "desc": "스크립트나 다른 시스템에서 해당 프로퍼티를 식별하기 위해 사용하는 고유 영문 이름"
+    },
+    {
+      "name": "Type",
+      "desc": "프로퍼티의 데이터 형태(Float, Vector2, Vector3, Texture2D 등)를 지정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 UV 왜곡 효과 재사용",
+      "steps": [
+        "Sub-graph 내부에서 UV 입력과 노이즈 텍스처를 받아 UV 좌표를 왜곡하는 노드 네트워크를 구성합니다.",
+        "왜곡된 UV를 Sub Graph Output에 연결하고 저장합니다.",
+        "메인 Shader Graph에서 해당 서브그래프를 불러와 다양한 텍스처 샘플러의 UV 슬롯에 연결합니다."
+      ]
+    },
+    {
+      "title": "반복되는 림 라이트(Rim Light) 계산 모듈화",
+      "steps": [
+        "Normal과 View Direction 노드를 활용한 림 라이트 계산식을 서브그래프 안에서 만듭니다.",
+        "림 라이트의 강도(Intensity)와 색상(Color)을 Blackboard를 통해 외부에서 조절할 수 있도록 설정합니다.",
+        "여러 캐릭터 및 환경 Shader에 이 서브그래프를 공통으로 배치하여 일관된 림 효과를 줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "입력 프로퍼티의 타입 설정을 잘못 지정함 → Blackboard에서 올바른 데이터 타입(Float, Vector3 등)으로 수정합니다.",
+    "서브그래프 수정 후 저장(Save Asset)을 누르지 않음 → 메인 Graph에 변경 사항이 즉시 반영되지 않으므로 반드시 저장 버튼을 누릅니다."
+  ],
+  "related": [
+    "Shader Graph",
+    "Material Inspector",
+    "Custom Function Node",
+    "HLSL"
+  ],
+  "videos": [
+    {
+      "id": "zElng0TRsY8",
+      "title": "Unity SHADERGRAPH Episode 6: SubGraphs",
+      "author": "Wilmer Lin"
+    },
+    {
+      "id": "84A1FcQt9v4",
+      "title": "How To Use All 200+ Nodes in Unity Shader Graph",
+      "author": "Daniel Ilett"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Shader%20Graph%20Sub-graphs",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Shader Graph",
+    "Sub"
+  ],
+  "at": "2026-11-25T00:02:44.915785+00:00"
+}

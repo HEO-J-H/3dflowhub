@@ -1,0 +1,97 @@
+{
+  "id": "unity-animation-rigging-22ae",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animation Rigging",
+  "title": "애니메이션 리깅 — 2상자 구조나 역운동학(IK)을 활용해 Runtime에 본(Bone)을 동적으로 제어하는 Package",
+  "summary": "Unity Animation Rigging Package는 Runtime 중에 캐릭터 스켈레톤의 IK(Inverse Kinematics)와 절차적 애니메이션을 실시간으로 제어할 수 있게 해 주는 강력한 도구입니다.",
+  "when": [
+    "캐릭터의 발이 울퉁불퉁한 지형에 자연스럽게 밀착되도록 조정할 때",
+    "손이 특정 오브젝트나 무기를 정확하게 잡고 있도록 위치를 고정할 때",
+    "카메라를 바라보며 고개를 돌리는 등의 절차적 시선 처리가 필요할 때"
+  ],
+  "steps": [
+    "Package Manager에서 Animation Rigging Package를 설치합니다.",
+    "Hierarchy 창에서 캐릭터 아머리(Armature) 최상단 오브젝트에 Rig Builder 컴포넌트를 추가합니다.",
+    "캐릭터 아래에 빈 GameObject를 만들고 Rig 컴포넌트를 추가한 뒤, Rig Builder의 Rig Layers에 드래그하여 등록합니다.",
+    "Rig 오브젝트 하위에 Two Bone IK Constraint 등의 제약 조건(Constraint) 오브젝트를 생성합니다.",
+    "Constraint 컴포넌트의 Root, Mid, Tip Bone에 각각 해당하는 뼈를 연결하고, Target과 Hint 트랜스포프를 지정합니다.",
+    "Play 모드로 진입하여 Target을 이동시키며 IK가 정상적으로 동작하는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "제약 조건이 적용되는 강도를 조절합니다 (0은 비활성화, 1은 완전 적용)."
+    },
+    {
+      "name": "Root Bone",
+      "desc": "IK 체인이 시작되는 최상단 뼈를 지정합니다."
+    },
+    {
+      "name": "Mid Bone",
+      "desc": "IK 체인의 중간 관절(무릎이나 팔꿈치) 뼈를 지정합니다."
+    },
+    {
+      "name": "Tip Bone",
+      "desc": "IK 체인의 끝단(발목이나 손목) 뼈를 지정합니다."
+    },
+    {
+      "name": "Target",
+      "desc": "끝단 뼈가 따라갈 목표 Transform 오브젝트를 지정합니다."
+    },
+    {
+      "name": "Hint",
+      "desc": "중간 관절이 꺾이는 방향을 유도하는 위치 오브젝트를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "발 지형 맞춤 (Foot IK)",
+      "steps": [
+        "캐릭터 양쪽에 Two Bone IK Constraint를 각각 생성합니다.",
+        "레이캐스트(Raycast)를 이용해 발 밑 지형의 높이를 구합니다.",
+        "Target 오브젝트의 높이를 지형에 맞춰 실시간으로 이동시킵니다."
+      ]
+    },
+    {
+      "title": "무기 파지 (Weapon Grip)",
+      "steps": [
+        "손목 뼈를 Tip Bone으로 설정하는 IK Constraint를 생성합니다.",
+        "무기 오브젝트에 부착된 특정 위치 트랜스포프를 Target으로 지정합니다.",
+        "애니메이션 재생 중에도 손이 무기 손잡이 위치를 정확히 유지하도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Rig Builder 컴포넌트를 추가하지 않음 → Rig Layers에 레이어를 등록하고 초기화해야 Runtime에 작동합니다.",
+    "Bone 할당 순서 오류 → Root, Mid, Tip 뼈를 잘못된 슬롯에 넣으면 관절이 엉뚱한 방향으로 꺾입니다.",
+    "스케일 불일치 → 캐릭터 루트의 Scale이 1이 아닐 경우 IK 계산이 틀어지므로 반드시 Scale을 1로 Apply(정리)해야 합니다."
+  ],
+  "related": [
+    "Two Bone IK Constraint",
+    "Multi-Position Constraint",
+    "Multi-Rotation Constraint",
+    "Rig Builder"
+  ],
+  "videos": [
+    {
+      "id": "Htl7ysv10Qs",
+      "title": "Make your Characters Interactive! - Animation Rigging in Unity",
+      "author": "Brackeys"
+    },
+    {
+      "id": "LEwYmFT3xDk",
+      "title": "Make your Animations DYNAMIC with Animation Rigging! (Unity Tutorial)",
+      "author": "Code Monkey"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Animation%20Rigging",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Package Manager",
+    "Animation Rigging Package"
+  ],
+  "at": "2026-11-25T00:02:49.033530+00:00"
+}
