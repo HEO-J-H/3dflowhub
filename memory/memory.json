@@ -1,29 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-23T02:03:11.622301+00:00",
-      "collected": 0,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 51,
-      "candidates_passed": 11,
-      "offtopic": 20,
-      "short": 0,
-      "prefiltered": 30,
-      "llm_fallbacks": [
-        "groq"
-      ],
-      "strategy_ver": "6cb19055",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-23T02:13:35.953563+00:00",
       "collected": 0,
       "saved": 0,
@@ -6501,6 +6478,32 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-25T09:26:18.670795+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 44,
+      "candidates_passed": 20,
+      "offtopic": 24,
+      "short": 0,
+      "prefiltered": 4,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "676398f7",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -6596,7 +6599,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-15 [성찰] 동음이의어(Nuke, Maya, Unity 등)에 대한 다중 컨텍스트 필터를 강화하고 실무 튜토리얼 및 애드온 관련 고단가 검색 유입 콘텐츠를 집중 발행해야 합니다.",
     "2026-11-15 [성찰] 동음이의어(Maya, Unity, Nuke, Houdini 등)로 인한 오탐지를 방지하기 위해 3D/CG 전문 컨텍스트 필터를 200중으로 강화하고, 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 중심의 고단가 콘텐츠 비중을 높여야 합니다.",
     "2026-11-15 [성찰] 동음이의어 필터 강화를 통해 무관한 뉴스를 철저히 차단하고, 검색 유입이 검증된 Maxscript 및 애드온·튜토리얼 중심의 고단가 콘텐츠 비중을 높여야 합니다.",
     "2026-11-15 [PR #61 다시 하기 — 웹 브라우저 PBR 변환 UI 피드백 및 안내] 사용자 요청 UI/UX 개선 사항은 최신 main 기준에 정확히 맞추어 재적용해야 한다.",
@@ -6715,7 +6717,8 @@
     "2026-11-25 [성찰] 동음이의어 필터링과 실무 가이드 중심의 키워드 타겟팅을 강화하여 저품질 및 주제 이탈 문서를 줄여야 합니다.",
     "2026-11-25 [성찰] 검색 의도에 맞는 고CPC 툴·버전·플러그인 키워드와 1,500자 이상 실무 가이드를 결합하면 페이지뷰와 RPM이 동시에 상승한다.",
     "2026-11-25 [성찰] 동음이의어(핵, 주가, 인물 등) 필터를 강화하고 실무 가이드 중심의 고CPC 키워드(Maxscript, 플러그인, 버전 비교 등)에 집중해야 저품질 오탐을 줄이고 수익성을 높일 수 있습니다.",
-    "2026-11-25 [backend/app/services/mesh_from_image.py:] 입력 데이터 검증과 채널 수 체크는 배열 처리 유틸리티의 안정성을 높이는 핵심 요소이다."
+    "2026-11-25 [backend/app/services/mesh_from_image.py:] 입력 데이터 검증과 채널 수 체크는 배열 처리 유틸리티의 안정성을 높이는 핵심 요소이다.",
+    "2026-11-25 [성찰] 동음이의어 필터링을 더욱 강화하여 순수 CG·게임·VFX 실무와 무관한 뉴스 유입을 원천 차단하고, 검색 유입이 입증된 Maxscript, 플러그인, 튜토리얼 등 고CPC 실무 가이드에 집중해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -6786,7 +6789,7 @@
     "Game Engine/기타 엔진": 167,
     "VFX/After Effects": 67,
     "VFX/Houdini FX": 12,
-    "3D DCC/기타 DCC": 119,
+    "3D DCC/기타 DCC": 120,
     "3D DCC/Substance 3D": 49,
     "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 17,
@@ -6920,7 +6923,6 @@
     "AI 3D/NVIDIA Cosmos": "기타 AI 3D"
   },
   "title_hashes": [
-    2733774193019742343,
     14756860060937481693,
     13869086971573430754,
     15441489085228503105,
@@ -9919,14 +9921,15 @@
     361521918988026052,
     6217607675568313739,
     722116384161279392,
-    1910844666011322279
+    1910844666011322279,
+    10774761084513346861
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4088,
-    "Game Engine": 4088,
-    "VFX": 4088,
-    "AI 3D": 4088
+    "3D DCC": 4089,
+    "Game Engine": 4089,
+    "VFX": 4089,
+    "AI 3D": 4089
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
