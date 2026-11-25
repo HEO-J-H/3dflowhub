@@ -1,0 +1,89 @@
+{
+  "id": "photoshop-metalness-f1bf",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Metalness",
+  "title": "Metalness — 3D 표면의 금속성 질감을 설정하고 제어하는 옵션",
+  "summary": "Photoshop의 Metalness는 3D 오브젝트 표면의 금속성을 제어하여 빛의 반사 특성과 색상을 금속답게 만들어주는 텍스처 속성입니다. 비금속과 구별되는 고유의 반사광을 표현해 사실적인 금속 재질을 완성합니다.",
+  "when": [
+    "철, 구리, 알루미늄 같은 금속 재질의 3D 모델을 렌더링할 때",
+    "동전이나 메달처럼 금속과 비금속 경계가 섞인 표면을 텍스처링할 때",
+    "페인트가 벗겨져 안쪽의 금속 질감이 드러나는 노후화 표현을 할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 오브젝트나 3D 레이어가 포함된 파일을 엽니다.",
+    "우측 하단의 3D 패널(3D Panel)에서 Metalness 속성을 적용할 3D 재질(Material)을 선택합니다.",
+    "속성 패널(Properties Panel)에서 Metalness 항목을 확인합니다.",
+    "슬라이더 값을 조절하거나 흑백 맵(Texture)을 연결하여 금속성 영역을 지정합니다.",
+    "Viewport에서 빛의 반사 상태를 확인하며 최종 텍스처를 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Metalness",
+      "desc": "표면의 금속성을 0(비금속)과 1(완전한 금속) 사이의 값으로 조절합니다."
+    },
+    {
+      "name": "Roughness",
+      "desc": "금속 표면의 거칠기를 제어하여 하이라이트의 선명도를 조절합니다."
+    },
+    {
+      "name": "Base Color",
+      "desc": "금속 고유의 반사 색상과 알베도(Albedo) 맵을 설정합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도와 잘라내기 영역을 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "순금 메달 제작",
+      "steps": [
+        "3D 패널에서 메달 재질을 선택합니다.",
+        "Base Color를 황금색으로 지정합니다.",
+        "Metalness 값을 1.0으로 올려 완벽한 금속 반사를 만듭니다."
+      ]
+    },
+    {
+      "title": "녹슨 철제 파이프",
+      "steps": [
+        "파이프 3D 레이어를 선택합니다.",
+        "Metalness 슬라이더를 0.8 이상으로 설정해 금속 성질을 부여합니다.",
+        "별도의 Mask 맵을 사용해 녹슨 부분의 Metalness 값을 낮춰 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "비금속 재질(예: 플라스틱, 가죽)에 Metalness를 1로 설정함 → 값을 0으로 내려 비금속 고유의 반사로 수정합니다.",
+    "모든 금속의 Metalness를 무조건 1로 설정함 → 표면에 먼지나 코팅이 있는 경우 텍스처 맵을 사용해 부분적으로 낮춰줍니다."
+  ],
+  "related": [
+    "Roughness",
+    "Opacity",
+    "Base Color",
+    "Normal"
+  ],
+  "videos": [
+    {
+      "id": "lGbcuGt00So",
+      "title": "V-Ray Next for 3ds Max Courseware – 3.4 Metalness",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "cEAG1_2wUjo",
+      "title": "Metalness Maps Explained (PBR)",
+      "author": "Graffinity3D"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Metalness",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "D Panel",
+    "Metalness",
+    "Material"
+  ],
+  "at": "2026-11-25T08:44:45.937930+00:00"
+}

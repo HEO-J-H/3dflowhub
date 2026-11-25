@@ -1,0 +1,87 @@
+{
+  "id": "resolution-multiplier-503d",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 설정",
+  "name": "Resolution Multiplier",
+  "title": "Resolution Multiplier — 멀티 레졸루션 학습을 위한 Resolution 배율 설정",
+  "summary": "Resolution Multiplier는 Gaussian Splatting 학습 시 입력 이미지의 Resolution 배율을 조절하여 VRAM 사용량을 줄이고 학습 속도를 최적화하는 파라미터입니다.",
+  "when": [
+    "그래픽카드(VRAM) 용량이 부족하여 Out of Memory 오류가 발생할 때",
+    "고해상도 이미지 데이터셋으로 인해 학습 시간이 너무 오래 걸릴 때",
+    "초기 테스트 학습을 빠르게 진행하여 데이터셋과 카메라 포즈를 검증하고 싶을 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습 Software(예: Nerfstudio, Luma, SIBR 등)를 실행합니다.",
+    "Dataset 또는 Training 설정 패널을 엽니다.",
+    "Resolution Multiplier 또는 Downscale 설정 항목을 찾습니다.",
+    "원하는 배율(예: 0.5 또는 1/2)을 입력하거나 선택합니다.",
+    "학습(Train)을 시작하여 Viewport에서 렌더링 품질과 VRAM 사용량을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Resolution Multiplier",
+      "desc": "원본 이미지 Resolution에 곱해질 배율로, 학습 Resolution를 전체적으로 조절합니다."
+    },
+    {
+      "name": "Downscale Factor",
+      "desc": "이미지를 축소하는 비율을 설정하여 메모리 사용량을 직접적으로 줄입니다."
+    },
+    {
+      "name": "Max Resolution",
+      "desc": "입력 이미지의 최대 허용 Resolution를 제한하여 과도한 메모리 할당을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VRAM 부족 오류 해결",
+      "steps": [
+        "학습 중 Out of Memory 오류 발생 시 설정 패널을 엽니다.",
+        "Resolution Multiplier 값을 기존 1.0에서 0.5로 낮춥니다.",
+        "학습을 재시작하고 VRAM 사용량이 안정적인지 모니터링합니다."
+      ]
+    },
+    {
+      "title": "빠른 테스트 렌더링",
+      "steps": [
+        "대규모 데이터셋을 처음 불러와서 카메라 정렬 상태를 확인합니다.",
+        "Resolution Multiplier를 낮게 설정하여 학습 속도를 극대화합니다.",
+        "결과가 만족스러우면 값을 원래대로 돌려 최종 고화질 학습을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지나치게 낮은 값을 설정함 → 디테일이 무너지고 블러 처럼 보일 수 있으므로 최소한의 형태가 유지되는 선에서 조절합니다.",
+    "원본 이미지 비율을 무시함 → 비례가 깨지지 않도록 균등한 배율을 적용합니다."
+  ],
+  "related": [
+    "Image Downscaling",
+    "SH Degree",
+    "Iteration Control",
+    "COLMAP"
+  ],
+  "videos": [
+    {
+      "id": "PYr-LSOf2OY",
+      "title": "Gaussian Splatting for Free: The Ultimate Step-by-Step Guide (Capture, Process & Edit)",
+      "author": "MipMap"
+    },
+    {
+      "id": "-rTu3BfJYNw",
+      "title": "GAUSSIAN SPLATTING IN DAVINCI RESOLVE! #davinciresolve #edit #tutorial",
+      "author": "CloutVFX"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Resolution%20Multiplier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "Software",
+    "Nerfstudio",
+    "Luma",
+    "SIBR",
+    "Dataset"
+  ],
+  "at": "2026-11-25T08:44:34.066453+00:00"
+}
