@@ -1,5 +1,5 @@
 {
-  "title_ko": "Raspberry Pi용 Depth Anything V2 경량화 연구",
+  "title_ko": "라즈베리 파이 5와 Hailo-8L에서 구동되는 경량 깊이 추정",
   "title": "Seeing to Drive on a Single Board: Attention-Free Depth for Onboard Robot Navigation",
   "url": "https://arxiv.org/abs/2611.32718v1",
   "domain": "AI 3D",
@@ -9,46 +9,93 @@
     "Raspberry Pi 5",
     "Hailo-8L",
     "Depth Anything V2",
-    "ResNet-34",
-    "Gaussian Splatting"
+    "Monocular Depth",
+    "Edge AI"
   ],
-  "summary": "Raspberry Pi 5와 Hailo-8L NPU에서 실시간으로 동작하는 어텐션 없는 ResNet-34 U-Net 기반 깊이 추정 모델 연구입니다.",
-  "insight": "정수 연산 제약이 있는 NPU 환경에서 기존 비전 트랜스포머의 Softmax 병목 현상을 해결하기 위해 ResNet-34 U-Net 학생 모델로 증류하여 27.1 FPS의 속도와 0.99993의 Pearson 상관계수를 달성했습니다.",
+  "summary": "라즈베리 파이 5와 Hailo-8L NPU에서 비전 트랜스포머의 한계를 극복하고 실시간 27.1 FPS로 동작하는 어텐션 프리(Attention-Free) 깊이 추정 학생 모델을 제안합니다.",
+  "insight": "이 연구는 무거운 GPU 기반 AI 모델을 저전력 하드웨어 환경으로 경량화하는 아키텍처적 대안을 제시합니다. 3D 아티스트나 실무자들은 향후 모바일 및 엣지 기반 실시간 렌더링 검증, 온보드 비전 시스템, 혹은 소형 디바이스를 활용한 현장 Interactive 작업 흐름(워크플로)에서 유사한 증류 기법의 가능성을 엿볼 수 있습니다. (가능성)",
   "try_it": [
-    "논문에서 공개된 소스 코드와 사전 학습된 모델을 다운로드합니다.",
-    "Raspberry Pi 5와 Hailo-8L 하드웨어 환경을 설정합니다.",
-    "가우시안 스플래팅으로 재구성된 시뮬레이션 환경에서 실시간 깊이 추정 성능을 테스트합니다."
+    "공개된 GitHub 저장소(https://github.com/itaim18/DANIEL)에 접속합니다.",
+    "저장소에 업로드된 소스 코드와 사전 훈련된 모델 가중치를 내려받습니다.",
+    "라즈베리 파이 5 및 Hailo-8L 환경에서 제공된 가이드를 따라 어텐션 프리 학생 모델을 빌드하고 온보드 구동을 테스트합니다."
   ],
   "sections": [
     {
-      "heading": "Raspberry Pi 5와 Hailo-8L 하드웨어 제약",
-      "body": "소형 로봇은 제한된 전력과 연산 장치 환경에서 카메라 입력을 거리 센서로 전환해야 합니다. Raspberry Pi 5에 장착된 Hailo-8L NPU는 모든 레이어를 정수 연산으로 처리하지만, 기존의 Depth Anything V2 같은 비전 트랜스포머 모델을 그대로 양자화하면 대규모 정보 손실이 발생합니다. 449개의 토큰 중 91%의 Softmax 가중치가 int8 스텝 아래로 떨어지는 현상이 관찰되었습니다."
+      "heading": "무엇을 풀려는가",
+      "body": "소형 로봇은 단일 카메라와 몇 와트의 전력만으로 주변을 인식해야 하지만, 고성능 깊이 파운데이션 모델들은 데이터 센터용 GPU를 요구합니다. 이를 저전력 에지 디바이스인 Raspberry Pi 5와 Hailo-8L NPU(13-TOPS)에 그대로 양자화(Quantisation)하면 int8 제약으로 인해 장면의 큰 부분을 놓치거나 무너지는 문제가 발생합니다."
     },
     {
-      "heading": "ResNet-34 U-Net 기반 지식 증류",
-      "body": "연구팀은 양자화 대신 지식 증류 방식을 선택하여 2,450만 파라미터 규모의 Depth Anything V2-Large를 어텐션이 없는 ResNet-34 U-Net 구조의 학생 모델로 학습시켰습니다. 이 모델은 NPU에서 초당 27.1 프레임으로 구동되며, int8 출력 결과가 float 트윈 모델과 거의 일치하는 Pearson 0.99993을 기록했습니다."
+      "heading": "핵심 아이디어: int8 양자화의 한계와 어텐션 제거",
+      "body": "논문에서는 449개 토큰 환경에서 91%의 softmax 가중치가 int8의 단일 step 미만으로 떨어져 전체 어텐션 마의 17~33%를 손실한다는 점을 측정으로 증명했습니다. 이에 따라 단순 양자화 대신 어텐션, LayerNorm, softmax가 모두 없는 ResNet-34 U-Net 구조의 학생 모델을 Depth Anything V2-Large로부터 증류(Distil)하여 해결합니다."
     },
     {
-      "heading": "실외 주행 및 Gaussian Splatting 시뮬레이션 테스트",
-      "body": "실외 주행 테스트의 1,000개 스테레오 검증 포인트에서 벤더의 Depth Anything V2-Small 빌드와 대등한 정확도를 보이면서도 더 빠른 속도를 기록했습니다. 또한 Gaussian Splatting으로 재구성된 실제 마당 환경의 하드웨어 인 더 루프 테스트에서 충돌 없이 목표 지점에 도달했습니다."
+      "heading": "방법 및 구조",
+      "body": "학생 모델은 24.5M 파라미터로 구성되며, 288×512 RGB 이미지를 입력받아 전체 Resolution의 상대 깊이(disparity)를 출력합니다. 훈련 과정에서 MiDaS의 scale- and shift-invariant L1 손실과 4스케일 그라디언트 매칭을 사용했으며, 호라이즌 아래 행에 가중치를 높여 장애물이 바닥과 만나는 지점의 오인식을 줄였습니다. Compile 시 정규화는 HEF에 통합되며 NPU에서 35.1ms(전체 37.0ms, 초당 27.1 프레임)로 구동됩니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "400개의 시뮬레이션 프레임 벤치마크에서 본 논문의 학생 모델(v5)은 AbsRel 0.269(장애물 픽셀 기준 0.197), δ1 0.669를 기록하여 Hailo-8L에서 실행된 모든 모델 중 가장 높은 정확도를 보였습니다. 실제 로드 테스트 환경에서는 27.1 FPS의 속도를 기록했고, 10회 중 7.9±1.1회 충돌 없이 목표에 도달했습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "상대 깊이(relative depth)를 출력하므로 카메라 높이를 활용한 바닥 접촉 기 geometría를 통해 스케일 없는 미터법 거리를 추정해야 합니다. 완전한 3차원 절대 깊이를 카메라 단독으로 곧바로 도출하기에는 추가적인 기하학적 제약과 후처리 과정이 개입해야 하는 제약이 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "소스 코드, 사전 훈련된 모델 및 관련 데이터는 GitHub(https://github.com/itaim18/DANIEL)를 통해 공개되어 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "기존 Depth Anything V2를 NPU에 그대로 양자화하면 왜 문제가 되나요?",
-      "a": "비전 트랜스포머의 Softmax 가중치 중 다수가 int8 정수 연산 단계 아래로 떨어지면서 17~33%의 어텐션 매스가 손실되기 때문입니다."
+      "q": "왜 기존 트랜스포머 기반 모델을 Hailo-8L에서 그대로 쓰기 어려운가요?",
+      "a": "Hailo-8L은 모든 레이어를 8비트 정수 연산으로 실행하는데, 고유의 449개 토큰 환경에서 softmax 가중치의 91%가 int8의 단일 step보다 작아져 어텐션 질량을 잃고 장면의 일부를 지워버리기 때문입니다."
     },
     {
-      "q": "어텐션 없는 ResNet-34 U-Net 모델의 성능은 어느 정도인가요?",
-      "a": "Hailo-8L 칩에서 초당 27.1 프레임으로 작동하며, float 기준 모델과 일치하는 0.99993의 Pearson 상관계수를 보여줍니다."
+      "q": "학생 모델은 어떤 구조를 가지나요?",
+      "a": "어텐션, LayerNorm, softmax가 전혀 없는 ResNet-34 인코더와 U-Net 디코더 구조로 이루어져 있으며, 24.5M 파라미터를 가집니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.32718v1/figures/fig_drive_views.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.32718v1/figures/fig_drive_views.png",
+        "caption": "Fig. 1: What the car sees: one moment of an exterior drive on the real robot (hand-driven, November 2026). Top left, the\nrobot’s RGB camera (people blurred); top right, relative depth from our attention-free student, computed onboard on the\nHailo-8L; bottom left, RealSense D435 stereo depth, recorde",
+        "caption_ko": "그림 1: 로봇이 야외 주행 시 보는 화면: RGB 카메라(좌상), 어텐션 프리 학생 모델의 상대 깊이(우상), RealSense D435 스테레오 깊이(좌하), 적외선 이미지(우하)."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32718v1/figures/car.jpg",
+        "caption": "Fig. 2: The robot: a Traxxas rock crawler with a 0.56 × \\times 0.29 m footprint. The onboard system uses only the colour\nimage of the front camera; the camera’s stereo depth serves as a reference in Section IX . The Raspberry Pi 5 with the Hailo-8L AI\nHAT runs the whole system of Figure 3 and comman",
+        "caption_ko": "그림 2: 트랙사스 록 크롤러 기반의 로봇 실물과 탑재된 Raspberry Pi 5 및 Hailo-8L AI HAT 시스템."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32718v1/figures/fig_qual_real.png",
+        "caption": "Fig. 7: Depth computed on the Hailo-8L for four real robot frames (rows). Columns, left to right: the robot’s\ncamera image; the float Depth Anything V2-Large teacher on a GPU (the reference); our attention-free student (int8, on the chip,\n27 FPS); Hailo’s Model Zoo build of Depth Anything V2-Small; ",
+        "caption_ko": "그림 3: 온보드 시스템 구성도. NPU는 깊이 연산을 처리하고 CPU는 지도 및 제어를 담당."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32718v1/figures/fig_cloud_real.png",
+        "caption": "Fig. 8: One real camera frame lifted to metric 3D on the Pi. Top left: the robot camera image. Bottom left: relative depth\ncomputed on the Hailo-8L (int8, 35 ms). Right: the resulting point cloud of about 80,000 points, seen from behind the robot\n(grid: 0.5 m). Metric scale comes from the floor prof",
+        "caption_ko": "그림 4: 449개 토큰 입력 조건에서 int8 양자화 시 12개 트랜스포머 블록별로 발생하는 softmax 가중치 손실 측정 그래프."
+      }
+    ]
   },
   "collected_at": "2026-11-25T13:48:13.603996+00:00",
   "notion_id": "",
   "id": "2026-11-25-46c974f43e588833",
-  "img_tried": true
+  "img_tried": true,
+  "img_ok": "2026-11-25T14:05:30+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/itaim18/DANIEL"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-25T14:24:01+00:00"
 }

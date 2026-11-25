@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-skin-modifier-has-no-bones-assigned--17aef",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: Skin modifier has no bones assigned or vertex weights are empty",
+  "title": "Error: Skin modifier has no bones assigned or vertex weights are empty 해결",
+  "summary": "3ds Max에서 Skin Modifier가 적용되었으나 연결된 본(Bone)이 없거나 Vertex 웨이트(Vertex Weights)가 설정되지 않아 메쉬가 움직이지 않을 때 발생하는 오류입니다. 리깅 작업 중 본 할당이나 웨이트 분배 단계가 누락되었음을 뜻합니다.",
+  "causes": [
+    "Skin Modifier만 추가하고 Add Bones 버튼으로 뼈대를 연결하지 않은 경우",
+    "메쉬에 할당된 본은 있으나 인플루언스(Influence)나 Vertex 웨이트가 전혀 지정되지 않은 경우",
+    "Import 과정에서 본 구조가 유실되었거나 대상 뼈대 오브젝트가 삭제된 경우"
+  ],
+  "steps": [
+    "문제가 발생하는 메쉬를 선택하고 Command Panel → Modify 탭을 엽니다.",
+    "Modifier Stack에서 Skin Modifier를 선택합니다.",
+    "Parameters 롤아웃에서 Add Bones 버튼을 클릭합니다.",
+    "Select Bones 대화상자에서 연결할 Biped나 Bone 오브젝트들을 모두 선택하고 Select를 누릅니다.",
+    "뼈대가 추가된 후 Edit Envelopes 모드를 켜거나 Weight Table을 열어 Vertex 웨이트가 올바르게 할당되었는지 확인합니다."
+  ],
+  "check": [
+    "Viewport에서 본(Bone/Biped)을 움직였을 때 메쉬가 함께 변형되는지 확인합니다.",
+    "Modifier 패널의 Skin 설정에서 Assigned Bones 목록에 뼈대들이 정상적으로 등록되어 있는지 확인합니다."
+  ],
+  "prevent": [
+    "Skin Modifier를 추가한 직후 곧바로 Add Bones를 실행하여 뼈대를 연결하는 습관을 들입니다.",
+    "메쉬와 뼈대를 함께 선택한 상태에서 자동으로 Skin을 적용하는 기능을 활용합니다."
+  ],
+  "keywords": [
+    "3ds Max Skin 본 없음",
+    "Skin modifier has no bones",
+    "스키닝 본 연결 오류",
+    "3ds Max 웨이트 에러",
+    "Skin Add Bones"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T14:14:07+00:00"
+}

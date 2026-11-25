@@ -1,0 +1,34 @@
+{
+  "id": "blender-error-cannot-extrude-boundary-edges-in-ver-0b03d",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot extrude boundary edges in vertex select mode",
+  "title": "Error: Cannot extrude boundary edges in vertex select mode 해결 방법",
+  "summary": "Blender의 에디트 모드에서 Vertex 선택 모드일 때 경계선(Boundary Edge)을 직접 돌출(Extrude)하려고 시도하면 발생하는 오류 메시지입니다. Vertex 모드에서는 열린 테두리의 엣지 단위 돌출 연산을 수행할 수 없음을 뜻합니다.",
+  "causes": [
+    "Vertex Select 모드가 활성화된 상태에서 엣지나 면 단위의 전용 돌출(Extrude) 연산을 실행함",
+    "오픈된 메시(Open Mesh)의 경계 Vertex 하나만 선택된 상태에서 엣지 연산 계열을 적용함"
+  ],
+  "steps": [
+    "Viewport 상단 왼쪽의 Select Mode 메뉴에서 Edge Select 모드(2번 키) 또는 Face Select 모드(3번 키)로 전환합니다.",
+    "혹은 키보드 숫자 2 또는 3을 눌러 선택 모드를 변경합니다.",
+    "돌출하려는 경계선(Boundary Edge)이나 면을 다시 선택합니다.",
+    "E 키를 눌러 정상적으로 Extrude를 실행합니다."
+  ],
+  "check": [
+    "올바른 선택 모드(Edge 또는 Face)에서 E 키를 눌렀을 때 오류 메시지 없이 Viewport에서 면이나 엣지가 정상적으로 돌출되는지 확인합니다."
+  ],
+  "prevent": [
+    "경계선(Boundary Edge)을 따라 모델링을 확장하거나 깎아낼 때는 항상 Edge Select 모드(2)를 먼저 활성화하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Blender 경계선 돌출 오류",
+    "Cannot extrude boundary edges",
+    "Blender vertex select mode 오류",
+    "Blender 엣지 돌출 안됨",
+    "Extrude boundary edges 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T14:11:53+00:00"
+}

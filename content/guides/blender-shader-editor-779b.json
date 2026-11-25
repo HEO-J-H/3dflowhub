@@ -53,6 +53,14 @@
         "스크린톤이나 해치 텍스처 노드를 추가하여 손으로 그린 듯한 질감을 구현합니다.",
         "아웃라인 생성 접근법을 적용하여 캐릭터와 소품에 입체적인 만화풍 외곽선을 더합니다."
       ]
+    },
+    {
+      "title": "Blender 5.1 목판화 일러스트 Procedural 셰이더 설정",
+      "steps": [
+        "Eevee 렌더러 환경에서 오브젝트에 새 머티리얼을 생성하고 Shader Editor를 엽니다.",
+        "Shader to RGB 노드를 활용해 조명 결과를 수치 데이터로 변환하고, 밝은 영역(종이), 중간 영역(해치), 어두운 영역(잉크)으로 분할합니다.",
+        "오브젝트 스페이스 연산을 통해 카메라 이동에도 흔들리지 않는 표면 고정형 스트로크와 Depth Fade, Contour Lines 옵션을 조합합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -107,9 +115,21 @@
       "source_keys": [
         "p:2026-10-28-cfa49fca9c938db8"
       ]
+    },
+    {
+      "at": "2026-11-25T14:17:55+00:00",
+      "what": "Blender 5.1 이상 Eevee 환경에서 UV와 텍스처 없이 Shader to RGB 노드와 오브젝트 스페이스 연산으로 목판화 질감을 내는 Procedural 셰이더 활용 예시를 추가했습니다.",
+      "sources": [
+        {
+          "title": "Blender 목판화 일러스트 Shader — UV·텍스처 없는 노드",
+          "url": "https://80.lv/articles/this-blender-shader-turns-any-3d-object-into-woodcut-illustration/"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-25-46afa2445ec3dc3c"
+      ]
     }
   ],
-  "qa_at": "2026-11-10T14:25:45+00:00",
   "qa": {
     "score": 9,
     "defects": [],

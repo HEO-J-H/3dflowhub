@@ -1,5 +1,5 @@
 {
-  "title_ko": "Gaussian Splatting 경량화 솔루션 AnyPrune 공개",
+  "title_ko": "AnyPrune — 피드포워드 3D Gaussian Splatting 최적화 없는 프루닝 모듈",
   "title": "AnyPrune: Optimization-Free Pruning for Any Feedforward 3D Gaussian Splatting Pipeline",
   "url": "https://arxiv.org/abs/2611.32735v1",
   "domain": "AI 3D",
@@ -8,49 +8,85 @@
   "tags": [
     "3D Gaussian Splatting",
     "Pruning",
-    "AI 3D",
-    "Gaussian Splatting",
-    "Optimization"
+    "Feedforward 3DGS",
+    "Transformer",
+    "AnyPrune"
   ],
-  "summary": "단일 전파 피드포워드 3D Gaussian Splatting 파이프라인을 재최적화 과정 없이 빠르게 가지치기하는 트랜스포머 기반 모듈 AnyPrune 논문이 공개되었습니다.",
-  "insight": "160만 개의 Gaussian 필드를 소비자용 GPU에서 약 5초 만에 정리할 수 있어 기존 재최적화 방식의 속도 한계를 극복합니다.",
+  "summary": "AnyPrune은 추가적인 반복 최적화 없이 임의의 피드포워드 3D Gaussian Splatting 파이프라인 상에서 중복 Gaussian을 제거하고 렌더링 품질을 유지하는 트랜스포머 기반 모듈입니다.",
+  "insight": "AnyPrune과 같은 최적화 불필요 프루닝 기술이 대중화된다면, 대규모 3D 스캔 데이터나 AI 기반 피드포워드 3D 복구 결과물을 실시간 게임 엔진이나 모바일 디바이스에 가볍게 올리는 작업이 훨씬 수월해질 수 있습니다. 특히 추가적인 무거운 최적화 과정 없이 단 몇 초 만에 데이터 용량을 줄일 수 있어 실무 파이프라인의 효율성을 크게 높이는 데 기여할 것으로 기대됩니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "AnyPrune의 핵심 개념과 등장 배경",
-      "body": "피드포워드 방식의 3D Gaussian Splatting 파이프라인은 입력 뷰가 많을 때 장면 표현에 불필요한 Gaussian이 과도하게 생성되어 메모리와 저장 공간을 낭비합니다. 기존 가지치기 기법들은 비용이 많이 드는 재최적화를 거치거나 단순한 규칙에 의존해 정보 손실이 발생했습니다. AnyPrune은 트랜스포머 기반 구조를 활용해 추가 최적화 없이 불필요한 Gaussian을 제거합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 피드포워드 3D Gaussian Splatting(3DGS) 파이프라인은 단 한 번의 순전파로 씬을 재구성하지만, 렌더링에 불필요한 과도한 수의 Gaussian을 생성하여 메모리와 저장 공간을 낭비합니다. 기존 프루닝 방법들은 복구 과정에서 비용이 많이 드는 재최적화(re-optimization)를 거치거나 입력 이미지 정보를 충분히 활용하지 못하는 한계가 있습니다."
     },
     {
-      "heading": "단일 GPU 환경에서의 단기 학습과 속도",
-      "body": "고정된 타겟 피드포워드 파이프라인 위에서 짧은 단일 GPU 학습을 거쳐 파이프라인 특유의 중복 패턴을 학습합니다. 160만 개의 Gaussian 필드를 처리하는 데 약 5초가 소요되어 기존 병합이나 재최적화 방식보다 빠른 처리 속도를 보여줍니다."
+      "heading": "핵심 아이디어",
+      "body": "연구진은 동결된(frozen) 타겟 피드포워드 파이프라인 위에서 단기간의 단일 GPU 학습을 수행하여 파이프라인 특유의 중복 패턴을 학습하고 해결하는 AnyPrune을 제안합니다. 입력 이미지와 예측된 Gaussian을 바탕으로 트랜스포머 네트워크가 중요도 점수를 예측하며, 남겨진 Gaussian이 제거된 Gaussian을 보정할 수 있도록 파라미터를 조정합니다."
     },
     {
-      "heading": "렌더링 품질 유지 및 범용성 검증",
-      "body": "다양한 피드포워드 파이프라인, 데이터셋, 입력 뷰 개수를 통틀어 기존 최적화 불필요 가지치기 방식보다 뛰어난 렌더링 품질을 달성합니다. 학습에 사용되지 않은 미지의 데이터셋에도 자연스럽게 일반화되는 성능을 실험으로 입증했습니다."
+      "heading": "방법 (단계)",
+      "body": "1. 동결된 피드포워드 3DGS 파이프라인이 입력 뷰로부터 초기 Gaussian 필드를 예측합니다.\n2. 포인트 트랜스포머(point transformer)가 각 Gaussian의 중요도(keep logit)와 파라미터 조정값을 예측합니다.\n3. 스파시티 손실(sparsity term)과 포토메트릭 손실을 결합한 손실 함수로 네트워크를 단기 학습시킵니다.\n4. 추론 시 사용자가 지정한 예산(budget)이나 모델이 제안하는 씬별 비율에 따라 상위 Gaussian을 유지합니다."
     },
     {
-      "heading": "기존 파이프라인 내장 기능과의 결합",
-      "body": "피드포워드 파이프라인 자체에 내장된 가지치기 기능과 결합하여 적절한 비율로 추가 가지치를 수행할 수 있습니다. 이 과정에서 렌더링 품질을 그대로 유지하거나 오히려 향상시키는 결과를 보여줍니다."
+      "heading": "결과 (논문 수치)",
+      "body": "DL3DV 및 RealEstate10K, ACID 데이터셋 실험에서 AnyPrune은 기존 최적화 불필요 프루닝 방법들을 능가하는 성능을 보였습니다. Gaussian의 50%를 유지했을 때, 모든 파이프라인과 데이터셋, 2~32개 입력 뷰 평균에서 신규 뷰 PSNR이 경쟁 방법 대비 1.8 dB 향상되었습니다. 단일 소비자용 GPU에서 1.6백만 개의 Gaussian 필드를 약 5초 만에 프루닝합니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문에서는 피드포워드 3DGS 파이프라인을 블랙박스로 취급하여 폭넓은 호환성을 확보했으나, 완전한 per-scene 최적화 기반 3DGS의 복잡한 구조 전반에 걸친 범용성이나 실시간 스트리밍 환경에서의 세부 연동 제약 사항에 대해서는 구체적으로 다루지 않습니다."
     }
   ],
   "faq": [
     {
-      "q": "AnyPrune은 어떤 문제를 해결하나요?",
-      "a": "피드포워드 3D Gaussian Splatting에서 과도하게 생성되는 불필요한 Gaussian을 재최적화 없이 빠르고 효율적으로 제거합니다."
+      "q": "AnyPrune은 작동을 위해 추가적인 per-scene 최적화가 필요합니까?",
+      "a": "아니오. AnyPrune은 추가적인 씬별 반복 최적화(per-scene re-optimization) 없이 작동하는 최적화 불필요 프루닝 모듈입니다."
     },
     {
-      "q": "160만 개 Gaussian 처리에는 얼마나 걸리나요?",
-      "a": "소비자용 GPU 기준 약 5초가 소요되며, 기존 Gaussian 병합이나 재최적화 방식보다 훨씬 빠르게 작동합니다."
+      "q": "AnyPrune은 프루닝 비율을 어떻게 결정합니까?",
+      "a": "사용자가 원하는 Gaussian 개수 예산(k)에 맞춰 상위 중요도 로짓을 가진 Gaussian을 유지하거나, 모델이 제안하는 씬별 프루닝 비율(logit > 0)에 따라 결정합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.32735v1/fig/qual/adaptivesplat-dial_v1/anyprune-070-view7.jpg",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.32735v1/fig/qual/adaptivesplat-dial_v1/anyprune-070-view7.jpg",
+        "caption": "Figure A.11 : Every optimization-free pruning method on AdaptiveSplat (60%), on RealEstate10K scene 42 at 16 views (1,926,784 Gaussians). At 100%, AnyPrune only adjusts the Gaussians. Under each render: PSNR / SSIM / LPIPS of the shown view. In parentheses: the share kept by the pipeline’s internal ",
+        "caption_ko": "그림 A.11: 16개 뷰의 RealEstate10K 씬 42에서 AdaptiveSplat(60%)에 적용된 모든 최적화 불필요 프루닝 방법 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32735v1/fig/qual/offthegrid_v3/anyprune-070-view7.jpg",
+        "caption": "Figure A.12 : Every optimization-free pruning method on Off The Grid, on RealEstate10K scene 26 at 8 views (307,200 Gaussians). At 100%, AnyPrune only adjusts the Gaussians. Under each render: PSNR / SSIM / LPIPS of the shown view.",
+        "caption_ko": "그림 A.12: 8개 뷰의 RealEstate10K 씬 26에서 Off The Grid에 적용된 모든 최적화 불필요 프루닝 방법 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32735v1/fig/qual/yonosplat_v1/gt-view6.jpg",
+        "caption": "Figure A.13 : AnyPrune against the optimization-free pruning method with the highest PSNR on the shown view at each kept share. At 100%, AnyPrune only adjusts the Gaussians. Under each render: PSNR / SSIM / LPIPS of the shown view, in bold where better. In parentheses: the share kept by the pipeline",
+        "caption_ko": "그림 A.13: 유지된 공유 비율별로 표시된 뷰에서 가장 높은 PSNR을 가진 최적화 불필요 프루닝 방법과 AnyPrune 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32735v1/fig/qual/f4splat-dial_v0/gt-view0.jpg",
+        "caption": "Figure A.14 : AnyPrune against the optimization-free pruning method with the highest PSNR on the shown view at each kept share. At 100%, AnyPrune only adjusts the Gaussians. Under each render: PSNR / SSIM / LPIPS of the shown view, in bold where better. In parentheses: the share kept by the pipeline",
+        "caption_ko": "그림 A.14: 유지된 공유 비율별로 표시된 뷰에서 가장 높은 PSNR을 가진 최적화 불필요 프루닝 방법과 AnyPrune 비교"
+      }
+    ]
   },
   "collected_at": "2026-11-25T12:26:00.299857+00:00",
   "notion_id": "",
   "id": "2026-11-25-e6260f816e1d3752",
   "img_tried": true,
   "img_ok": "2026-11-25T12:35:35+00:00",
-  "enriched_at": "skip"
+  "enriched_at": "2026-11-25T14:21:03+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "paper_v": 2
 }
