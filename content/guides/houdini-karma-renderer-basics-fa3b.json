@@ -5,11 +5,11 @@
   "group": "렌더링",
   "name": "Karma renderer basics",
   "title": "Karma — 렌더 기초",
-  "summary": "Houdini Karma 렌더러는 USD 기반의 차세대 물리 기반 렌더러로, Solaris 작업 환경에서 사실적인 빛과 Shading을 고속으로 계산합니다.",
+  "summary": "Houdini Karma 렌더러는 USD 기반의 차세대 물리 기반 렌더러로, Solaris 작업 환경에서 사실적인 빛과 Shading을 고속으로 계산합니다. USD 프로덕션 구조를 바탕으로 대규모 씬 조립과 라이팅 작업을 통합하여 여러 샷에 걸쳐 일관된 스테이지를 유지합니다.",
   "when": [
-    "Houdini Solaris에서 USD 기반의 복잡한 씬을 렌더링할 때",
+    "Houdini Solaris에서 USD 기반의 복잡한 씬을 렌더링하고 레이어 구조로 대규모 에셋을 관리할 때",
     "USD MaterialX Shader를 사용하여 물리적으로 정확한 재질을 표현할 때",
-    "CPU와 GPU(Karma XPU)를 활용해 효율적으로 고화질 이미지를 뽑아낼 때"
+    "CPU와 GPU(Karma XPU)를 활용해 효율적으로 고화질 이미지를 뽑아내며 아티스트 간 협업 시 데이터 충돌을 줄일 때"
   ],
   "steps": [
     "Houdini 상단 데스크톱 메뉴에서 Solaris 레이아웃으로 전환합니다.",
@@ -88,10 +88,24 @@
     "Karma"
   ],
   "at": "2026-11-07T01:37:41.692742+00:00",
-  "qa_at": "2026-11-10T02:09:46+00:00",
   "qa": {
     "score": 10,
     "defects": [],
     "fix_hint": "공식 문서의 용어와 툴 경로를 정확히 반영하고 한국 3D 아티스트가 실무에서 바로 따라 할 수 있도록 논리적인 단계를 유지합니다."
-  }
+  },
+  "updates": [
+    {
+      "at": "2026-11-25T20:27:52+00:00",
+      "what": "Solari의 USD 기반 씬 조립, 레이어 구조를 통한 대규모 씬 관리 및 협업 효율성 관련 내용을 요약과 활용 시점에 추가했습니다.",
+      "sources": [
+        {
+          "title": "Houdini Karma 및 Solaris 도입 이유 정리",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQWVlMbjJpR0wzbnM0UHFZOUtrTGYteXJzQTNlRzA1aUpOcE15eW5TcWE3Mjhqa3hqdU1vTEdSYWx3cExQX2tQUnJFVGZ3eU54TFlNdzRBY2JkelRhWktHQ3o2NlJ5eXhEdXNvcDFUNEgybFBPZWRjemQ1WS1hTjBMUlBBQXBvVHl5Yl9oMmpfOC1WN3RLTWlN?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-25-d964c9129ce682e7"
+      ]
+    }
+  ]
 }
