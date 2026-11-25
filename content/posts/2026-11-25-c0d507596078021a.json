@@ -1,0 +1,54 @@
+{
+  "title_ko": "NVIDIA Cosmos 3 Nano 로컬 실행 방법",
+  "title": "How to Run NVIDIA Cosmos 3 on Local AI Devices Using Hugging Face Diffusers",
+  "url": "https://developer.nvidia.com/blog/how-to-run-nvidia-cosmos-3-on-local-ai-devices-using-hugging-face-diffusers/",
+  "domain": "AI 3D",
+  "category": "NVIDIA",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "NVIDIA Cosmos",
+    "Hugging Face",
+    "Diffusers",
+    "AI Video",
+    "로컬 AI"
+  ],
+  "summary": "12 GB VRAM 환경에서 시스템 RAM 오프로딩을 활용해 NVIDIA Cosmos 3 Nano 모델을 로컬에서 실행하는 가이드입니다.",
+  "insight": "NVIDIA Cosmos-Framework의 오프로딩 Package를 사용하면 12 GB VRAM 제원을 가진 그래픽카드에서도 720p 영상 생성 모델을 실행할 수 있습니다. 시스템 메모리와 PCIe 전송 의존도가 높아지므로 실시간 Interactive 작업보다는 배치 렌더링에 적합합니다.",
+  "try_it": [
+    "Python 3.12 및 CUDA가 지원되는 PyTorch 환경을 준비합니다.",
+    "cosmos-framework 저장소를 클론하고 diffusers-cpu-offloading 패키지를 설치합니다.",
+    "StreamingConfig와 torch.bfloat16 설정을 적용해 파이프라인을 빌드합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Cosmos-Framework 오프로딩 Package 구조",
+      "body": "NVIDIA Cosmos 3 Nano는 텍스트와 이미지 등 다양한 입력으로 영상을 생성하는 월드 파운데이션 모델입니다. 오프로딩 Package는 모델 가중치를 시스템 RAM에 저장하고 생성 과정에서 필요한 만큼 GPU로 전송하여 VRAM 부족 문제를 해결합니다. FP8 체크포인트를 함께 지원하여 메모리 사용량을 더욱 낮출 수 있습니다."
+    },
+    {
+      "heading": "Hugging Face Diffusers 기반 첫 영상 생성",
+      "body": "Linux 환경과 Python 3.12, CUDA 호환 PyTorch 빌드가 필요합니다. 저장소를 클론한 뒤 diffusers-cpu-offloading Package를 설치하고 파이프라인을 실행합니다. 첫 로딩 시 체크포인트를 다운로드하며 이후부터는 캐시된 파일을 재사용합니다."
+    },
+    {
+      "heading": "메모리 최적화와 FP8 체크포인트 활용",
+      "body": "기본 설정인 BF16과 PyTorch scaled dot-product attention을 사용하여 메모리 효율을 높일 수 있습니다. RTX 5070 등의 소비자용 GPU 환경에서 720p Resolution의 189프레임 영상을 생성할 수 있으며 하드웨어 제원에 맞는 오프로딩 옵션을 선택해야 합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "VRAM이 12 GB인 그래픽카에서도 실행할 수 있나요?",
+      "a": "네, Cosmos-Framework 오프로딩 Package를 통해 모델 가중치를 시스템 RAM에 보관하고 필요할 때만 GPU로 전송하므로 12 GB VRAM 환경에서도 구동이 가능합니다."
+    },
+    {
+      "q": "어떤 모달리티와 Resolution를 지원하나요?",
+      "a": "텍스트-투-비디오, 이미지-투-비디오, 비디오-투-비디오 등 7가지 생성 모달리티를 지원하며 720p Resolution의 영상 생성이 가능합니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/11/ai-model.webp",
+    "video": "https://www.youtube.com/watch?v=xJNYkG0T09c"
+  },
+  "collected_at": "2026-11-25T10:04:42.673565+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-c0d507596078021a",
+  "img_ok": "2026-11-25T10:04:42+00:00"
+}
