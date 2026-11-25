@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-file-line-x-the-referenced-node-is-lock-9461d",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: The referenced node is locked and cannot be deleted",
+  "title": "# Error: file: line X: The referenced node is locked and cannot be deleted 오류 해결",
+  "summary": "Maya에서 외부 파일 레퍼런스(Reference)로 불러온 노드나 에셋을 삭제 또는 수정하려 할 때, 해당 노드가 잠겨(Locked) 있어서 발생하는 오류입니다. 원본 레퍼런스 파일의 구조나 상위 어셈블리 설정으로 인해 삭제가 차단될 때 나타납니다.",
+  "causes": [
+    "레퍼런스 파일 내의 특정 노드나 그룹이 실수로 Lock 상태로 설정된 경우",
+    "상위 파일(Main Scene)에서 레퍼런스 노드에 에디트(Reference Edit)를 수행하여 잠금 속성이 부여된 경우",
+    "자동화 스크립트나 리깅 툴이 레퍼런스된 오브젝트를 강제로 삭제하거나 수정하려 할 때"
+  ],
+  "steps": [
+    "Channel Box 또는 Attribute Editor를 열어 오류가 발생한 노드를 선택합니다.",
+    "잠긴 어트리뷰트나 노드 상태를 확인하고, Unlock 명령을 실행합니다. MEL/Python 탭에 'setAttr \"nodeName.nodeState\" 0;' 또는 잠금 해제 명령을 입력합니다.",
+    "참조된 파일(Reference File) 자체의 문제라면, 원본 파일을 열어 해당 노드의 잠금을 해제한 뒤 저장합니다.",
+    "레퍼런스 에디터(Reference Editor)를 열어 해당 파일의 Reference Edits를 리프레시하거나 필요 없는 에디트를 제거(Remove Edits)합니다."
+  ],
+  "check": [
+    "오류가 발생했던 노드를 뷰포트나 Outliner에서 정상적으로 삭제하거나 수정할 수 있는지 확인합니다.",
+    "Script Editor에 에러 메시지 없이 명령이 성공적으로 실행되는지 확인합니다."
+  ],
+  "prevent": [
+    "레퍼런스된 에셋의 구조를 변경해야 할 때는 원본 파일을 직접 수정하거나 proper Reference Edits 워크플로우를 사용합니다.",
+    "불필요하게 노드나 어트리뷰트를 Lock 상태로 만드는 Script 실행을 주의합니다."
+  ],
+  "keywords": [
+    "Maya 레퍼런스 오류",
+    "The referenced node is locked",
+    "노드 삭제 오류",
+    "Maya reference lock 해제",
+    "채널박스 잠금"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T08:06:01+00:00"
+}

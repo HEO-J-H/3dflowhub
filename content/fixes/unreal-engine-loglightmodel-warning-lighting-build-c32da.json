@@ -1,0 +1,40 @@
+{
+  "id": "unreal-engine-loglightmodel-warning-lighting-build-c32da",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogLightModel: Warning: Lighting build failed. 0 objects total",
+  "title": "LogLightModel: Warning: Lighting build failed. 0 objects total 해결 방법",
+  "summary": "Unreal Engine에서 라이팅 빌드 중 씬 내의 모든 오브젝트(0 objects total) 라이팅 계산에 실패했을 때 발생하는 경고 메시지입니다. 주로 Lightmass 빌드 에이전트(Swarm Agent) 연결 문제, 레벨 내 라이팅 관련 설정 오류, 또는 쓰기 권한 문제로 발생합니다.",
+  "causes": [
+    "Swarm Agent 에이전트 프로세스가 정상적으로 실행되지 않거나 포트가 충돌하는 경우",
+    "레벨에 Static(정적) 라이팅을 지원하지 않거나 빌드할 수 없는 상태의 오브젝트만 존재하는 경우",
+    "프로젝트 폴더에 SwarmCache 또는 Saved 디렉토리 쓰기 권한이 부족한 경우",
+    "네트워크 드라이브 경로 문제로 인해 Swarm Agent가 로컬 캐시를 생성하지 못하는 경우"
+  ],
+  "steps": [
+    "Unreal 에디터를 닫고 작업 관리자(Ctrl + Shift + Esc)에서 SwarmAgent.exe 프로세스가 있다면 강제 종료합니다.",
+    "프로젝트 폴더 내의 Intermediate, Saved, DerivedDataCache 폴더를 삭제하여 캐시를 초기화합니다.",
+    "에디터를 다시 실행하고 Main Menu의 Window → Developer Tools → Swarm Agent를 열어 연결 상태를 확인합니다.",
+    "Swarm Agent의 Settings 탭에서 CacheFolder 경로가 올바른 로컬 드라이브를 가리키고 있는지 확인합니다.",
+    "레벨 내에 최소 하나 이상의 Light Source(Directional Light 등)가 Stationary 또는 Static 모드로 배치되어 있는지 확인합니다.",
+    "Build 메뉴에서 Build Lighting Only를 다시 실행하여 빌드가 정상적으로 완료되는지 확인합니다."
+  ],
+  "check": [
+    "Build Lighting Only 실행 시 'Lighting build successful' 메시지가 출력되며 Output Log에 0 objects total 경고가 사라지는지 확인합니다.",
+    "Viewport에서 라이팅이 정상적으로 구워져 그림자와 명암이 올바르게 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "프로젝트를 로컬 드라이브(SSD)에서 작업하여 네트워크 드라이브로 인한 캐시 접근 권한 문제를 예방합니다.",
+    "정기적으로 Intermediate와 Saved 폴더를 정리하여 손상된 캐시로 인한 빌드 실패를 방지합니다."
+  ],
+  "keywords": [
+    "Lighting build failed",
+    "0 objects total",
+    "라이팅 빌드 실패",
+    "Swarm Agent 오류",
+    "Unreal 라이트 빌드 안됨"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T08:06:04+00:00"
+}

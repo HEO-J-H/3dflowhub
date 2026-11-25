@@ -1,0 +1,83 @@
+{
+  "id": "pixyz-studio-merge-parts-18f8",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "제품 구조",
+  "name": "Merge Parts",
+  "title": "Merge Parts — 선택한 여러 부품을 하나의 메쉬로 결합하여 드로우 콜을 줄이는 기능",
+  "summary": "Pixyz Studio의 Merge Parts는 CAD 모델의 수많은 개별 부품을 조건에 따라 하나로 합쳐 드로우 콜을 줄이고 씬 구조를 단순화하는 최적화 기능입니다.",
+  "when": [
+    "수천 개의 부품으로 이루어진 대형 CAD 데이터를 게임 엔진이나 렌더러로 Export 전",
+    "동일한 재질(Material)을 공유하는 여러 개의 작은 메시를 하나로 병합할 때",
+    "트리 구조(Product Structure)를 정리하여 Viewport 성능을 높이고자 할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Mesh를 클릭합니다.",
+    "Mesh 메뉴 아래에서 Merge Parts를 선택합니다.",
+    "화면 우측 Inspector 패널의 대화 상자에서 병합 기준 옵션을 설정합니다.",
+    "설정이 완료되면 하단의 Execute 버튼을 눌러 부품을 병합합니다.",
+    "왼쪽 Product Structure 패널에서 병합된 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "By Material",
+      "desc": "동일한 머티리얼이 적용된 부품들을 하나의 메시로 그룹화하여 합칩니다."
+    },
+    {
+      "name": "By Name",
+      "desc": "부품의 이름이 유사하거나 일치하는 것끼리 묶어서 병합합니다."
+    },
+    {
+      "name": "Keep Hierarchy",
+      "desc": "병합 후에도 기존의 씬 계층 구조를 유지할지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "동일 재질 부품 통합",
+      "steps": [
+        "Product Structure 패널에서 대상 CAD 모델을 선택합니다.",
+        "Mesh 메뉴에서 Merge Parts를 실행합니다.",
+        "옵션을 By Material로 설정하고 Execute를 누릅니다."
+      ]
+    },
+    {
+      "title": "이름 기반 부품 정리",
+      "steps": [
+        "볼트나 너트 등 이름이 공통된 부품들을 확인합니다.",
+        "Merge Parts 대화 상자에서 By Name 방식을 선택합니다.",
+        "Execute를 눌러 동일 이름을 가진 파트들을 하나로 합칩니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 다른 머티리얼을 가진 부품을 무리하게 합침 → By Material 옵션과 머티리얼 할당 상태를 먼저 확인하세요.",
+    "애니메이션 대상 부품을 병합하여 움직임이 망가짐 → 움직여야 하는 파트는 병합 대상에서 제외하세요."
+  ],
+  "related": [
+    "Merge Parts By Regions",
+    "Create Hidden Parts Removal",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Merge%20Parts",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Mesh",
+    "Merge Parts"
+  ],
+  "at": "2026-11-25T08:05:32.713069+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "blender-error-cannot-execute-operator-in-edit-mode-71f3a",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot execute operator in Edit Mode",
+  "title": "Error: Cannot execute operator in Edit Mode 오류 해결 방법",
+  "summary": "Error: Cannot execute operator in Edit Mode 오류는 Blender에서 오브젝트 모드(Object Mode) 전용 연산이나 특정 애드온 기능을 에디트 모드 상태에서 실행하려고 할 때 발생하는 메시지입니다. 현재 작업 중인 모드와 실행하려는 기능이 서로 맞지 않음을 의미합니다.",
+  "causes": [
+    "에디트 모드(Edit Mode)에서 오브젝트 모드 전용 오퍼레이터나 기능을 실행한 경우",
+    "일부 외부 애드온(Add-on)의 기능이 오브젝트 모드에서만 작동하도록 설계되었으나 에디트 모드에서 호출된 경우",
+    "메시 구조나 데이터 레벨을 변경하는 도구를 잘못된 모드에서 실행한 경우"
+  ],
+  "steps": [
+    "키보드의 Tab 키를 눌러 현재 에디트 모드(Edit Mode)에서 오브젝트 모드(Object Mode)로 전환합니다.",
+    "상단 3D Viewport 좌측 상단의 모드 선택 드롭다운 메뉴를 클릭하여 Object Mode가 선택되어 있는지 확인합니다.",
+    "실행하고자 했던 기능이나 애드온 버튼을 오브젝트 모드 상태에서 다시 클릭하여 실행합니다.",
+    "만약 에디트 모드 내부에서 반드시 수행해야 하는 작업이라면, 해당 기능 대신 에디트 모드 전용 도구(예: Mesh 메뉴 또는 Hotkey)를 사용합니다."
+  ],
+  "check": [
+    "3D Viewport 상단 모드 표시가 Object Mode로 변경된 것을 확인합니다.",
+    "문제가 되었던 연산이나 애드온을 실행했을 때 에러 메시지 없이 정상적으로 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "작업을 시작하기 전 현재 Viewport의 편집 모드(Object Mode 또는 Edit Mode) 상태를 항상 확인하는 습관을 들입니다.",
+    "사용하는 애드온의 공식 문서나 툴팁을 확인하여 각 기능이 지원하는 모드를 미리 파악합니다."
+  ],
+  "keywords": [
+    "Cannot execute operator in Edit Mode",
+    "Blender 에디트모드 오류",
+    "Cannot execute operator",
+    "오브젝트모드 전환",
+    "Blender 애드온 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T08:05:48+00:00"
+}

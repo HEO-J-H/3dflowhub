@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-maxscript-runtime-error-bone-length-is-zer-5b348",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "MAXScript: Runtime error: Bone length is zero",
+  "title": "MAXScript: Runtime error: Bone length is zero 오류 해결 방법",
+  "summary": "MAXScript를 사용하여 뼈대(Bone)를 생성하거나 크기를 조절할 때, 본(Bone)의 길이를 나타내는 파라미터가 0으로 설정되어 발생하는 Runtime 오류입니다.",
+  "causes": [
+    "Script 연산 과정에서 본(Bone)의 길이 계산 값이 0이거나 음수로 입력된 경우",
+    "부모와 자식 본 사이의 거리 계산이 잘못되어 좌표 차이가 0인 경우",
+    "하드코딩된 본 생성 함수에서 length 파라미터가 누락되었거나 0으로 지정된 경우"
+  ],
+  "steps": [
+    "MAXScript Editor를 열고 오류가 발생한 Script 라인(Bone 생성 함수 부근)을 확인합니다.",
+    "Bone을 생성하는 코드(예: BoneNode = Bone headPos: ... tailPos: ...)에서 시작점과 끝점의 좌표가 동일하게 지정되어 있는지 확인합니다.",
+    "length 파라미터를 명시하는 코드라면 값이 0보다 큰 유효한 숫자가 들어가도록 수정합니다(예: bone len:10.0).",
+    "두 점 사이의 거리 계산(distance p1 p2) 결과가 0인지 확인하고, 0일 경우 최소 길이(예: 0.1)를 보정하는 조건문을 추가합니다.",
+    "Script를 다시 평가(Evaluate All)하고 Viewport에서 본이 정상적으로 생성되는지 확인합니다."
+  ],
+  "check": [
+    "MAXScript Listener 창에 Runtime 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "3ds Max Viewport에 지정된 크기의 본(Bone) 오브젝트가 정상적으로 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "본(Bone) 생성 Script 작성 시 길이나 좌표 차이가 0이 되는지 검사하는 예외 처리(if length > 0) 구문을 포함합니다.",
+    "사용자 입력값이나 외부 데이터를 받아 본을 생성할 때 최소 허용 길이를 강제하는 로직을 추가합니다."
+  ],
+  "keywords": [
+    "MAXScript Bone length is zero",
+    "3ds Max 뼈대 생성 오류",
+    "Bone 길이 0 오류",
+    "MAXScript Runtime 에러",
+    "MAXScript 본 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-25T08:05:50+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "pixyz-studio-repair-cad-e551",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "메쉬 최적화",
+  "name": "Repair CAD",
+  "title": "Repair CAD — CAD 데이터의 위상 오류와 틈새를 자동으로 수정하는 기능",
+  "summary": "Pixyz Studio의 Repair CAD(메쉬 수리) 기능은 CAD 데이터 변환 과정에서 깨지거나 구멍 난 면, 겹친 삼각형을 자동으로 정리하여 시각화와 게임 엔진 사용에 적합한 완전한 입체 모델로 만들어 줍니다.",
+  "when": [
+    "CAD 데이터를 폴리곤 메시로 변환한 후 면이 구멍 나 있거나 깨져 보일 때",
+    "실시간 렌더링이나 게임 엔진에 올리기 전 메쉬의 Topology 오류를 잡고 싶을 때",
+    "비정상적인 법선(Normal)이나 뒤집힌 면 때문에 렌더링이 깨질 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure 패널에서 수리할 파츠나 어셈블리를 선택합니다.",
+    "메뉴 바에서 Mesh를 클릭하고 Repair Mesh를 선택합니다.",
+    "대화 상자에서 공차(Tolerance) 및 수리 옵션을 설정하고 Execute를 누릅니다.",
+    "오른쪽 Inspector 패널에서 수리된 메쉬의 상태와 폴리곤 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Tolerance",
+      "desc": "면과 모서리를 병합하거나 구멍을 메울 때 허용되는 최대 오차 거리입니다."
+    },
+    {
+      "name": "Stitch Free Edges",
+      "desc": "끊어지거나 떨어져 있는 열린 모서리들을 서로 붙여 구멍을 메웁니다."
+    },
+    {
+      "name": "Remove Degenerate Triangles",
+      "desc": "면적이 없거나 찌그러진 불필요한 삼각형 폴리곤을 제거합니다."
+    },
+    {
+      "name": "Reorient Normals",
+      "desc": "뒤집히거나 방향이 잘못된 법선(Normal)을 바깥쪽으로 올바르게 정렬합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "구멍 난 기계 부품 면 메우기",
+      "steps": [
+        "Product Structure에서 구멍이 발생한 부품 선택",
+        "Mesh 메뉴에서 Repair Mesh 실행",
+        "Stitch Free Edges 옵션을 활성화하여 열린 모서리 연결"
+      ]
+    },
+    {
+      "title": "뒤집힌 법선 바로잡기",
+      "steps": [
+        "일부 면이 검게 보이거나 렌더링이 안 되는 파츠 선택",
+        "Mesh 메뉴의 Repair Mesh 창 열기",
+        "Reorient Normals 옵션을 켜고 Execute 실행"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Tolerance 값을 너무 크게 설정함 → 원본 형태가 뭉개지거나 디테일이 손실되므로 단위를 확인하며 조금씩 조절합니다.",
+    "어셈블리 전체를 무작정 선택함 → 필요한 파츠만 개별 선택하거나 범위를 지정해 수리해야 작업 속도가 빨라집니다."
+  ],
+  "related": [
+    "Decimate To Target",
+    "Optimize Mesh",
+    "Generate LOD Chain",
+    "Remesh"
+  ],
+  "videos": [
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    },
+    {
+      "id": "Hf8saRi902w",
+      "title": "009  Repair Mesh in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Repair%20CAD",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Mesh",
+    "Repair Mesh"
+  ],
+  "at": "2026-11-25T08:05:29.128468+00:00"
+}

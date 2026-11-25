@@ -1,11 +1,11 @@
 {
   "prompt_notes": [
-    "제목 앞에 핵심 툴명 + 고검색량 키워드(25~45자) 배치, 클릭 유도형 문구 금지",
-    "본문 최소 1,500자, H2·H3 구조와 메뉴·단축키·스크립트·버전 비교 등 구체적 실무 정보 제공",
-    "고CPC 주제(가격·버전·플러그인·Maxscript) 중심으로 튜토리얼·비교 작성",
-    "동일 카테고리 기존 포스트 2개 이상 자연스러운 내부 링크 삽입",
-    "FAQ 섹션 3~5개 포함해 검색 스니펫 노출과 체류시간 극대화",
-    "동음이의어는 CG·게임·VFX 실무 문맥에서만 수집하고, 저작권·광고 클릭 유도 문구 금지"
+    "제목은 핵심 툴명과 검색 의도 키워드를 25~45자 내로 앞에 배치한다",
+    "동음이의어(Nuke 핵, Unity 주가, Maya 인물 등)는 반드시 CG·게임·VFX 실무 문맥일 때만 수집한다",
+    "본문 1,500자 이상, 메뉴 경로·단축키·스크립트·실무 수치 등 독창적 정보를 포함한다",
+    "Maxscript, 플러그인, 버전 비교, 튜토리얼 등 고CPC 실무 가이드에 집중한다",
+    "동일 카테고리 기존 포스트 내부 링크를 2개 이상 자연스럽게 삽입한다",
+    "H2·H3 구조와 FAQ를 적용하여 검색 스니펫 노출과 체류시간을 극대화한다"
   ],
   "keyword_hints": {
     "3D DCC": [
@@ -108,41 +108,6 @@
     "https://rss.arxiv.org/rss/cs.GR"
   ],
   "history": [
-    {
-      "at": "2026-11-24T12:34:00+00:00",
-      "papers": [
-        "2026-11-24-e2ccd28f96d020e3",
-        "2026-11-24-da87b32439fe314a",
-        "2026-11-24-7b708ebab8139fbc"
-      ]
-    },
-    {
-      "at": "2026-11-24T12:43:26+00:00",
-      "site_managers": [
-        "pix2poly: 제안 0개"
-      ]
-    },
-    {
-      "at": "2026-11-24T12:53:59+00:00",
-      "lesson": "동음이의어 필터링을 강화하여 비실무 오탐지를 줄이고, Maya, Maxscript 등 조회수와 검색 유입이 입증된 고CPC 실무 가이드 및 애드온 튜토리얼 비중을 높여야 합니다.",
-      "changes": [
-        "독자 관심 도구: {'3D DCC': ['Maya', '3D Painter', '3ds Max', 'V-Ray·Corona'], 'VFX': ['Houdini'], 'Game Engine': ['UEFN·Fortnite']}",
-        "도메인 비중: {'3D DCC': 0.288, 'Game Engine': 0.247, 'VFX': 0.237, 'AI 3D': 0.227}",
-        "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D"
-      ]
-    },
-    {
-      "at": "2026-11-24T12:54:08+00:00",
-      "site_managers": [
-        "pix2poly: 제안 0개"
-      ]
-    },
-    {
-      "at": "2026-11-24T13:05:49+00:00",
-      "site_managers": [
-        "pix2poly: 제안 0개"
-      ]
-    },
     {
       "at": "2026-11-24T13:12:04+00:00",
       "site_managers": [
@@ -929,17 +894,60 @@
         "found": 3,
         "updated": []
       }
+    },
+    {
+      "at": "2026-11-25T08:04:49+00:00",
+      "lesson": "동음이의어(핵, 주가, 인물 등) 필터를 강화하고 실무 가이드 중심의 고CPC 키워드(Maxscript, 플러그인, 버전 비교 등)에 집중해야 저품질 오탐을 줄이고 수익성을 높일 수 있습니다.",
+      "changes": [
+        "독자 관심 도구: {'3D DCC': ['Maya', '3D Painter'], 'VFX': ['Houdini']}",
+        "도메인 비중: {'3D DCC': 0.301, 'Game Engine': 0.243, 'VFX': 0.233, 'AI 3D': 0.223}",
+        "지침 롤백 dfc2b7e0(점수 -12.0) → 676398f7(점수 -10.444)",
+        "검색 힌트 갱신: 3D DCC, Game Engine, VFX, AI 3D"
+      ]
+    },
+    {
+      "at": "2026-11-25T08:04:53+00:00",
+      "site_managers": [
+        "pix2poly: 제안 0개"
+      ]
+    },
+    {
+      "at": "2026-11-25T08:05:36+00:00",
+      "guides": [
+        "Repair CAD — CAD 데이터의 위상 오류와 틈새를 자동으로 수정하는 기능",
+        "Merge Parts — 선택한 여러 부품을 하나의 메쉬로 결합하여 드로우 콜을 줄이는 기능",
+        "Stitch — 떨어진 면들의 가장자리를 서로 연결하여 열린 틈을 메우는 기능"
+      ]
+    },
+    {
+      "at": "2026-11-25T08:06:04+00:00",
+      "refs": [
+        "Error: Cannot execute operator in Edit Mode 오류 해결 방법",
+        "MAXScript: Runtime error: Bone length is zero 오류 해결 방법",
+        "# Error: file: line X: The referenced node is locked and cannot be deleted 오류 해결",
+        "LogLightModel: Warning: Lighting build failed. 0 objects total 해결 방법"
+      ]
+    },
+    {
+      "at": "2026-11-25T08:06:30+00:00",
+      "refresh": {
+        "found": 0,
+        "updated": [
+          "guide:unity-asset-bundles-2204",
+          "guide:unreal-engine-nanite-and-lumen-2f5d"
+        ]
+      }
     }
   ],
-  "strategy_updated_at": "2026-11-25T02:04:32+00:00",
+  "strategy_updated_at": "2026-11-25T08:04:49+00:00",
   "taxonomy_updated_at": "2026-11-24T16:31:29+00:00",
   "domain_weights": {
-    "3D DCC": 0.292,
+    "3D DCC": 0.301,
     "Game Engine": 0.266,
     "VFX": 0.275,
     "AI 3D": 0.25
   },
-  "pages_at": "2026-11-25T02:15:34+00:00",
+  "pages_at": "2026-11-25T08:04:36+00:00",
   "note_versions": {
     "f365403b": [
       "제목은 핵심 도구/제품명과 검색 키워드를 앞쪽에 배치하여 25~45자 내외로 작성합니다.",
@@ -2316,8 +2324,8 @@
       "DaVinci Resolve"
     ]
   },
-  "roundups_at": "2026-11-25T02:35:44+00:00",
-  "guides_at": "2026-11-25T02:35:44+00:00",
+  "roundups_at": "2026-11-25T08:05:36+00:00",
+  "guides_at": "2026-11-25T08:05:36+00:00",
   "guide_topics": [
     [
       "3ds Max",
@@ -4215,25 +4223,152 @@
       "Keyframe Curve",
       "키프레임 커브 — 인스펙터 애니메이션의 가속도와 감속도를 그래프로 정밀하게 제어하는 편집 기능",
       null
+    ],
+    [
+      "가우시안 스플래팅",
+      "학습 설정",
+      "Iteration Control",
+      "Iteration Control — 학습 반복 횟수(iteration) 조절을 통한 최적화 설정 방법",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "학습 설정",
+      "Resolution Multiplier",
+      "Resolution Multiplier — 멀티 레졸루션 학습을 위한 해상도 배율 설정",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "데이터 관리",
+      "Camera Optimization",
+      "Camera Optimization — 카메라 포즈 오차 보정을 위한 최적화 워크플로우",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "데이터 관리",
+      "Unbounded Scenes",
+      "Unbounded Scenes — 배경이 무한히 넓은 야외 및 대규모 장소 학습 설정",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "뷰어 및 편집",
+      "Custom Viewer Controls",
+      "Custom Viewer Controls — 실시간 뷰어에서의 시점 조작 및 인터랙션 단축키",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "렌더링 및 출력",
+      "Video Rendering",
+      "Video Rendering — 학습된 3D 가우시안 모델의 카메라 패스 애니메이션 렌더링",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "트러블슈팅",
+      "Memory Management",
+      "Memory Management — VRAM 부족 방지를 위한 GPU 메모리 최적화 팁",
+      null
+    ],
+    [
+      "가우시안 스플래팅",
+      "트러블슈팅",
+      "Evaluation Metrics",
+      "Evaluation Metrics — PSNR, SSIM, LPIPS 지표를 통한 렌더링 품질 평가",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "메쉬 최적화",
+      "Repair CAD",
+      "Repair CAD — CAD 데이터의 위상 오류와 틈새를 자동으로 수정하는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "제품 구조",
+      "Merge Parts",
+      "Merge Parts — 선택한 여러 부품을 하나의 메쉬로 결합하여 드로우 콜을 줄이는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "메쉬 최적화",
+      "Stitch",
+      "Stitch — 떨어진 면들의 가장자리를 서로 연결하여 열린 틈을 메우는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "데이터 준비",
+      "Deforst",
+      "Deforst — 대칭 모델의 절반을 복제하거나 거울상 구조를 정리하는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "메쉬 최적화",
+      "Remesh",
+      "Remesh — 불규칙한 폴리곤 구조를 균일한 사각형 또는 삼각형 메쉬로 재생성하는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "제품 구조",
+      "Delete Metadata",
+      "Delete Metadata — 파일 용량 최적화를 위해 불필요한 속성 및 메타데이터를 일괄 삭제하는 기능",
+      null
+    ],
+    [
+      "Pixyz Studio",
+      "데이터 준비",
+      "Create Part from Planes",
+      "Create Part from Planes — 평면 컷을 기반으로 새로운 파트나 단면 형상을 생성하는 기능",
+      null
+    ],
+    [
+      "Photoshop",
+      "3D 텍스처 및 머티리얼",
+      "Roughness",
+      "Roughness — 3D 머티리얼 표면의 거칠기 속성을 조절하는 기능",
+      null
+    ],
+    [
+      "Photoshop",
+      "3D 텍스처 및 머티리얼",
+      "Metalness",
+      "Metalness — 3D 표면의 금속성 질감을 설정하고 제어하는 옵션",
+      null
+    ],
+    [
+      "Photoshop",
+      "3D 텍스처 및 머티리얼",
+      "Bump",
+      "Bump — 3D 표면의 미세한 요철과 질감 깊이를 표현하는 채널",
+      null
+    ],
+    [
+      "Photoshop",
+      "3D 텍스처 및 머티리얼",
+      "Normal",
+      "Normal — 3D 오브젝트 표면의 입체감을 디테일하게 살려주는 법선 맵 설정",
+      null
+    ],
+    [
+      "Photoshop",
+      "3D 렌더링 및 출력",
+      "Render",
+      "Render — 3D 작업물을 최종 고화질 이미지로 연산하고 출력하는 프로세스",
+      null
     ]
   ],
   "gsc_at": "2026-10-18T03:18:02+00:00",
   "gsc_try_at": "2026-11-24T16:13:24+00:00",
   "gsc_ok_at": "2026-11-24T16:13:25+00:00",
   "snapshots": [
-    {
-      "at": "2026-11-17T11:19:04+00:00",
-      "ver": "78fdecc9",
-      "notes": [
-        "제목은 툴명과 핵심 검색 키워드를 맨 앞에 배치하고 25~45자 이내로 엄격히 제한",
-        "본문은 1,500자 이상 유지하며 H2/H3 소제목과 FAQ 구조를 적용해 스니펫 노출 및 체류시간 확보",
-        "‘Nuke’, ‘Unity’, ‘Houdini’, ‘Maya’ 등 동음이의어는 3D/CG 소프트웨어 컨텍스트 필터를 2000중으로 강화하여 일반 명사 뉴스 유입 원천 차단",
-        "Maxscript, 애드온, 플러그인, 실무 튜토리얼 및 가격·비교 콘텐츠 등 고단가·고검색 의도 주제에 집중",
-        "동일 카테고리의 관련 글을 최소 2개 이상 본문에 자연스럽게 내부 링크하여 페이지뷰 상승 유도",
-        "공식 소스 인용 및 저작권·애드센스 가이드라인을 철저히 준수하여 정책 위반 리스크 전면 차단"
-      ],
-      "reason": "롤백: 78fdecc9(-11.933) → 1512b5c5(-11.667)"
-    },
     {
       "at": "2026-11-17T13:00:33+00:00",
       "ver": "1512b5c5",
@@ -4998,24 +5133,37 @@
         "H2·H3 구조와 FAQ를 적용하여 검색 스니펫 노출과 체류시간을 극대화한다"
       ],
       "reason": "성찰 갱신 (이전 676398f7: 23회, 점수 -9.466)"
+    },
+    {
+      "at": "2026-11-25T08:04:49+00:00",
+      "ver": "dfc2b7e0",
+      "notes": [
+        "제목 앞에 핵심 툴명 + 고검색량 키워드(25~45자) 배치, 클릭 유도형 문구 금지",
+        "본문 최소 1,500자, H2·H3 구조와 메뉴·단축키·스크립트·버전 비교 등 구체적 실무 정보 제공",
+        "고CPC 주제(가격·버전·플러그인·Maxscript) 중심으로 튜토리얼·비교 작성",
+        "동일 카테고리 기존 포스트 2개 이상 자연스러운 내부 링크 삽입",
+        "FAQ 섹션 3~5개 포함해 검색 스니펫 노출과 체류시간 극대화",
+        "동음이의어는 CG·게임·VFX 실무 문맥에서만 수집하고, 저작권·광고 클릭 유도 문구 금지"
+      ],
+      "reason": "롤백: dfc2b7e0(-12.0) → 676398f7(-10.444)"
     }
   ],
-  "notes_updated_at": "2026-11-25T02:04:32+00:00",
+  "notes_updated_at": "2026-11-25T08:04:49+00:00",
   "recipes_at": "2026-11-02T14:10:41+00:00",
-  "enrich_at": "2026-11-25T02:41:28+00:00",
-  "refs_at": "2026-11-25T02:41:28+00:00",
+  "enrich_at": "2026-11-25T08:05:39+00:00",
+  "refs_at": "2026-11-25T08:06:04+00:00",
   "assets_at": "2026-11-25T02:25:23+00:00",
   "sources_at": "2026-11-22T12:22:02+00:00",
-  "manual_at": "2026-11-25T01:13:19+00:00",
-  "compare_at": "2026-11-25T02:41:30+00:00",
+  "manual_at": "2026-11-25T08:06:52+00:00",
+  "compare_at": "2026-11-25T08:06:52+00:00",
   "scorecard_at": "2026-11-25T02:25:23+00:00",
-  "refresh_at": "2026-11-25T02:41:30+00:00",
+  "refresh_at": "2026-11-25T08:06:30+00:00",
   "events_at": "2026-11-25T02:25:17+00:00",
-  "papers_at": "2026-11-25T00:43:10+00:00",
+  "papers_at": "2026-11-25T08:06:30+00:00",
   "radar_at": "2026-11-24T21:23:13+00:00",
   "showcase_at": "2026-11-22T15:13:58+00:00",
   "guide_refill_day": "2026-11-15",
-  "guide_refill_try": "2026-11-25T00:42:56+00:00",
+  "guide_refill_try": "2026-11-25T08:05:21+00:00",
   "guide_refill_note": "V-Ray: Extra data: line 5 column 4 (char 150)",
   "high_cpc_niche_metrics": {
     "total_practical_posts": 529,
