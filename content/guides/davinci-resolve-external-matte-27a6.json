@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-external-matte-27a6",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색보정",
+  "name": "External Matte",
+  "title": "외장 매트 — 알파 채널 영상이나 별도의 Mask 파일을 컬러 페이지로 불러와 적용하는 방법",
+  "summary": "DaVinci Resolve External Matte는 외부 알파 채널 이미지를 비디오 클립에 결합하여 특정 영역만 투명하게 마스킹하거나 합성을 제어하는 기능입니다.",
+  "when": [
+    "외부 3D 프로그램이나 그래픽 툴에서 추출한 알파 채널 시퀀스를 합성할 때",
+    "복잡한 모양의 외곽선을 가진 그래픽 요소에 정확한 투명도를 적용할 때",
+    "실사 영상 위에 CG 요소를 얹고 피사체 간의 가림(Occlusion) 관계를 정리할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 'Color' 페이지로 이동합니다.",
+    "상단 노드 Graph 영역에서 우클릭하고 'Add Outside' 또는 'Add Splitter/Combiner Node'를 선택하여 새 노드를 만듭니다.",
+    "Media Pool에서 사용할 외부 매트 이미지나 비디오 클립을 Viewport 또는 노드 Graph로 드래그하여 가져옵니다.",
+    "외부 매트 클립의 파란색 출력 핀(Alpha)을 메인 노드의 파란색 입력 핀(External Matte)으로 드래그하여 연결합니다.",
+    "노드 Graph 또는 Keyer 탭에서 매트가 올바르게 적용되어 투명 영역이 확보되었는지 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "External Matte",
+      "desc": "노드에 외부 알파 채널 입력을 연결하여 Mask로 사용하는 포트입니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "매트의 투명 영역과 불투명 영역을 서로 반전시킵니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "매트의 경계면을 부드럽게 만들어 배경과 자연스럽게 블렌딩합니다."
+    },
+    {
+      "name": "Gain",
+      "desc": "매트의 알파 강도를 조절하여 Mask의 두께나 밀도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 렌더링 알파 채널 합성",
+      "steps": [
+        "Color 페이지에서 기본 메인 컬러 노드를 생성합니다.",
+        "별도로 렌더링된 검은색 바탕의 알파 시퀀스를 External Matte 노드로 연결합니다.",
+        "Viewport에서 캐릭터 외곽선에 맞춰 배경이 정확히 빠지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "텍스트 그래픽 마스킹",
+      "steps": [
+        "영상의 특정 도형 영역을 매트 소스로 활용합니다.",
+        "External Matte를 연결하여 영상 내부가 해당 도형 모양으로만 보이도록 자릅니다.",
+        "Blur 옵션을 주어 경계면에 부드러운 빛 번짐 효과를 더합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파란색 알파 핀이 아닌 RGB 핀을 잘못 연결함 → 파란색 출력 핀에서 파란색 입력 핀으로 다시 정확히 연결합니다.",
+    "외부 매트 클립의 Resolution가 메인 영상과 다름 → 매트 클립의 리졸루션이나 스케일을 메인 Timeline에 맞게 조정합니다."
+  ],
+  "related": [
+    "Solid Color",
+    "VRayMtlWrapper",
+    "Clone Tool",
+    "Delta Keyer"
+  ],
+  "videos": [
+    {
+      "id": "R0FhN6o2hME",
+      "title": "How to use Resolve's External Matte function",
+      "author": "Pro Colorist Blake Jones - How Do You Do That"
+    },
+    {
+      "id": "qtLpSXhkilo",
+      "title": "Using EXR Layers - External Matte Saver for Multi-mattes in DaVinci Resolve",
+      "author": "Editing Playbook"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20External%20Matte",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "Graph",
+    "Add Outside",
+    "Add Splitter",
+    "Combiner Node"
+  ],
+  "at": "2026-11-25T08:24:51.883580+00:00"
+}
