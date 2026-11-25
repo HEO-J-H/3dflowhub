@@ -1,0 +1,96 @@
+{
+  "id": "unity-custom-render-texture-22e6",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "셰이더 및 시각 효과",
+  "name": "Custom Render Texture",
+  "title": "커스텀 렌더 텍스처 — Shader와 Script를 활용해 텍스처를 실시간으로 업데이트하고 시뮬레이션하는 기능",
+  "summary": "Custom Render Texture는 Shader와 머티리얼을 활용해 실시간으로 텍스처를 업데이트하고 시뮬레이션할 수 있는 Unity의 강력한 기능입니다. 텍스처 자체를 캔버스 삼아 동적인 효과를 만들 때 사용합니다.",
+  "when": [
+    "캐릭터가 걸어갈 때 바닥에 물결이나 발자국이 남는 시뮬레이션을 구현할 때",
+    "실시간으로 움직이는 커스텀 웨이트 맵이나 페인트 텍스처가 필요할 때",
+    "표면 위로 비가 내리거나 파도가 치는 듯한 동적 노멀 맵을 만들 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create → Render Texture를 선택하여 새로운 렌더 텍스처를 생성합니다.",
+    "Inspector 패널에서 Texture Dimension을 Custom으로 변경하여 Custom Render Texture로 전환합니다.",
+    "Initialization Source를 Material 또는 Texture로 설정하여 초기 텍스처 상태를 지정합니다.",
+    "Update Mode를 OnDemand 또는 Realtime으로 설정하여 텍스처가 갱신되는 주기를 지정합니다.",
+    "Material 속성에 텍스처를 계산할 커스텀 Shader(Shader Graph 또는 Surface Shader)를 연결합니다.",
+    "Scene에 배치한 오브젝트의 머티리얼에 이 Custom Render Texture를 할당하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Update Mode",
+      "desc": "텍스처를 갱신하는 방식을 실시간(Realtime), 수동(OnDemand), 혹은 정지(Disabled)로 설정합니다."
+    },
+    {
+      "name": "Initialization Source",
+      "desc": "커스텀 렌더 텍스처가 처음 시작될 때 사용할 소스(Material, Texture, Empty)를 지정합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "텍스처의 픽셀 연산과 업데이트를 처리할 Shader 기반 머티리얼을 연결합니다."
+    },
+    {
+      "name": "Dimension",
+      "desc": "텍스처의 차원(2D, Cube 등)을 설정하며, Custom 선택 시 상세 옵션이 활성화됩니다."
+    },
+    {
+      "name": "Cubemap Face",
+      "desc": "큐브맵 형태일 때 렌더링할 특정 면을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실시간 발자국 시뮬레이션",
+      "steps": [
+        "Custom Render Texture의 Update Mode를 OnDemand로 설정합니다.",
+        "캐릭터의 위치 정보를 받는 Script를 작성하여 특정 좌표에 브러시 형태로 텍스처를 그립니다.",
+        "결과 텍스처를 지형 머티리얼의 Height 또는 Normal Map에 연결하여 움푹 파인 발자국을 표현합니다."
+      ]
+    },
+    {
+      "title": "동적 수면 파문 효과",
+      "steps": [
+        "Shader Graph를 이용해 파문(Ripple) 방정식을 계산하는 커스텀 Shader를 제작합니다.",
+        "Custom Render Texture의 Material에 해당 Shader를 할당하고 Update Mode를 Realtime으로 둡니다.",
+        "물체와 충돌하는 지점에 이벤트를 발생시켜 파문 텍스처가 지속적으로 퍼져나가도록 갱신합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Update Mode가 Realtime으로 과도하게 설정됨 → 필요한 순간에만 갱신되도록 OnDemand로 바꾸고 Script에서 텍스처의 Update()를 호출합니다.",
+    "Shader Graph에서 UV 좌표계가 잘못 설정됨 → Custom Render Texture 전용 UV 노드를 사용하고 있는지 확인합니다."
+  ],
+  "related": [
+    "Shader Graph",
+    "Render Texture",
+    "Particle System",
+    "Compute Shader"
+  ],
+  "videos": [
+    {
+      "id": "Ah2862Gz3_s",
+      "title": "Make Awesome Effects with RenderTextures! (Minimap, In-game TV, Camera to Texture)",
+      "author": "Code Monkey"
+    },
+    {
+      "id": "h5T83Ctp4PA",
+      "title": "A Quick Intro to Unity's Render Textures! | Unity 2019+",
+      "author": "CG Smoothie"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Custom%20Render%20Texture",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Render Texture",
+    "Inspector",
+    "Texture Dimension",
+    "Custom"
+  ],
+  "at": "2026-11-25T00:33:17.463796+00:00"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "unity-animation-retargeting-bff6",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "시네마틱 및 애니메이션",
+  "name": "Animation Retargeting",
+  "title": "애니메이션 리타겟팅 — 휴머노이드 골격 구조가 다른 3D 캐릭터 간에 애니메이션 데이터를 공유하고 적용하는 ",
+  "summary": "Unity Animation Retargeting은 서로 다른 뼈대 구조를 가진 Humanoid 캐릭터 간에 애니메이션을 공유하고 재배치하는 기능입니다.",
+  "when": [
+    "동일한 휴머노이드 뼈대를 사용하는 캐릭터들 사이에서 달리기, 점프 등 공용 애니메이션을 돌려쓸 때",
+    "에셋 스토어에서 다운로드한 외부 캐릭터 모델에 기존 프로젝트의 애니메이션 클립을 적용할 때",
+    "체형이 다른 캐릭터(예: 거구의 전사와 날렵한 도적)에게 동일한 모션을 자연스럽게 이식할 때"
+  ],
+  "steps": [
+    "Project 패널에서 애니메이션을 적용할 FBX 캐릭터 모델 파일을 선택합니다.",
+    "Inspector 패널 상단에서 Rig 탭을 클릭합니다.",
+    "Animation Type을 Humanoid로 변경하고 Apply 버튼을 누릅니다.",
+    "Configure 버튼을 클릭하여 본(Bone) 매핑 상태를 확인하고 필요시 수동으로 연결합니다.",
+    "Done 버튼을 눌러 설정 창을 닫고, Animator 컴포넌트에 애니메이션 Controller를 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Animation Type",
+      "desc": "캐릭터 뼈대 구조를 Generic, Legacy 또는 Humanoid 표준으로 지정합니다."
+    },
+    {
+      "name": "Avatar Definition",
+      "desc": "이 Avatar를 새로 생성할지(Create From This Model), 다른 모델과 공유할지(Copy From Other) 선택합니다."
+    },
+    {
+      "name": "Optimize Game Objects",
+      "desc": "계층 구조에서 불필요한 트랜스폼 게임 오브젝트를 숨겨 Runtime 성능을 최적화합니다."
+    },
+    {
+      "name": "Root Transform Translation",
+      "desc": "이동 애니메이션의 루트 본(Root Bone) 처리 방식을 설정합니다."
+    },
+    {
+      "name": "Stiffness",
+      "desc": "리타깃팅 시 관절이 꺾이는 부자연스러움을 줄이기 위해 강성 값을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 전사 캐릭터에 달리기 애니메이션 공유하기",
+      "steps": [
+        "Project 패널에서 FBX 모델의 Rig 탭에서 Humanoid Avatar를 생성합니다.",
+        "Animator 컴포넌트를 추가하고 애니메이션 Controller를 생성하여 할당합니다.",
+        "씬 뷰에서 재생 버튼을 눌러 달리기 애니메이션이 올바르게 출력되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "체형이 다른 몬스터 캐릭터에 걷기 모션 이식하기",
+      "steps": [
+        "Configure 메뉴로 들어가 초록색으로 표시되는 본 매핑 상태를 검사합니다.",
+        "빨간색으로 경고가 뜨는 누락된 본을 드래그하여 정확한 휴머노이드 본에 연결합니다.",
+        "Pose 드롭다운에서 Enforce T-Pose를 실행해 기본 자세를 맞춘 뒤 Apply합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "애니메이션이 찌그러지거나 이상하게 꺾임 → Rig 탭에서 Configure에 들어가 본 매핑(Mapping)이 잘못되었는지 확인하고 T-Pose 기준으로 재정렬합니다.",
+    "캐릭터가 제자리에서 미끄러짐(Foot Sliding) → 애니메이션 클립의 Root Transform 설정에서 Bake Into Pose 옵션을 체크하거나 바닥 높이 설정을 조정합니다."
+  ],
+  "related": [
+    "Avatar Mask",
+    "Animator Controller",
+    "Humanoid Rig",
+    "Animation Blending"
+  ],
+  "videos": [
+    {
+      "id": "fNgPkuMgWFg",
+      "title": "Animation Retargeting (Unity Tutorial)",
+      "author": "Ketra Games"
+    },
+    {
+      "id": "0o7SzYSsR-o",
+      "title": "Retargeting Humanoid Animations in Unity Tutorial",
+      "author": "Kevin Iglesias"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Animation%20Retargeting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "FBX",
+    "Inspector",
+    "Rig",
+    "Animation Type",
+    "Humanoid"
+  ],
+  "at": "2026-11-25T00:33:21.480239+00:00"
+}
