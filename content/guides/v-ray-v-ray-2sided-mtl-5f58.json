@@ -1,0 +1,94 @@
+{
+  "id": "v-ray-v-ray-2sided-mtl-5f58",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "머티리얼",
+  "name": "V-Ray 2Sided Mtl",
+  "title": "V-Ray 양면 재질 — 나뭇잎이나 커튼처럼 뒷면에도 빛이 투과되는 재질 설정",
+  "summary": "VRayMtl Two‑Sided Material는 얇은 오브젝트나 투명 표면의 앞·뒤 면에 서로 다른 쉐이더를 적용해 올바르게 렌더링합니다.",
+  "when": [
+    "나뭇잎·커튼처럼 얇고 양면에 다른 텍스처가 필요할 때",
+    "투명한 플라스틱·유리처럼 뒤쪽도 보이게 해야 할 때",
+    "두께가 없고 빛이 통과하는 얇은 메쉬에 정확한 반사·투과를 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Content Browser → 우클릭 → V‑Ray → Material → VRayMtl 선택",
+    "Material Editor(Hotkey M)에서 새 VRayMtl을 씬에 드래그",
+    "Material Parameters 탭에서 Two‑Sided 체크박스 활성화",
+    "앞면과 뒤면에 각각 원하는 Diffuse/Reflection 등 텍스처를 할당하고 Viewport에서 양면이 올바르게 보이는지 확인"
+  ],
+  "params": [
+    {
+      "name": "Two-Sided",
+      "desc": "양면 렌더링을 활성화해 앞·뒤 면을 별도 쉐이더로 처리"
+    },
+    {
+      "name": "Diffuse",
+      "desc": "앞면 색상·텍스처"
+    },
+    {
+      "name": "Back Diffuse",
+      "desc": "뒤면 색상·텍스처 (Two‑Sided 활성 시 표시)"
+    },
+    {
+      "name": "Reflection",
+      "desc": "앞면 반사 강도"
+    },
+    {
+      "name": "Back Reflection",
+      "desc": "뒤면 반사 강도"
+    },
+    {
+      "name": "Opacity",
+      "desc": "투명도 조절, 양면 모두 적용"
+    }
+  ],
+  "examples": [
+    {
+      "title": "나뭇잎 재질",
+      "steps": [
+        "VRayMtl을 만든 뒤 Two‑Sided 활성화",
+        "앞면 Diffuse에 초록색 텍스처, 뒤면 Diffuse에 알파가 투명한 텍스처 지정",
+        "Reflection을 낮게 설정해 자연스러운 잎광 구현",
+        "렌더링 후 양면이 올바르게 보이는지 확인"
+      ]
+    },
+    {
+      "title": "커튼 재질",
+      "steps": [
+        "VRayMtl 생성 → Two‑Sided 체크",
+        "앞면 Diffuse에 패턴 텍스처, 뒤면 Diffuse에 투명 알파 텍스처 지정",
+        "Opacity를 0.8 정도로 낮춰 얇은 느낌 강조",
+        "렌더링에서 빛이 통과해 뒤쪽이 보이면 성공"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Two‑Sided를 체크하지 않음 → 뒤면이 검은색으로 보임 → 체크 후 재렌더링",
+    "앞·뒤 텍스처를 동일하게 할당 → 양면 차이가 없어짐 → 각각 다른 텍스처를 지정",
+    "UV가 뒤면에 맞게 펼쳐지지 않음 → UV 레이아웃을 뒤면용으로 별도 언랩 → UV 수정 후 적용"
+  ],
+  "related": [
+    "VRayMtl",
+    "V-Ray Hair Mtl",
+    "V-Ray Hair Next Mtl",
+    "V-Ray Blend Mtl"
+  ],
+  "videos": [
+    {
+      "id": "tSDHIgRzzy0",
+      "title": "V-Ray 2Sided Material & Onyx Texture in 3ds Max   خامة V-Ray 2Sided وحجر الأونيكس في 3ds Max",
+      "author": "Arkan Arch"
+    },
+    {
+      "id": "Ip4qeg8Da6c",
+      "title": "Vray 2sided material",
+      "author": "Hussain Tabi"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%202Sided%20Mtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T02:35:31.033821+00:00"
+}

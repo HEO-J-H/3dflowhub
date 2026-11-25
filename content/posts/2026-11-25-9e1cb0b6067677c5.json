@@ -40,9 +40,33 @@
     {
       "heading": "앞으로의 업데이트 방향",
       "body": "Nvidia는 추가 모델과 툴을 지속적으로 제공하겠다고 밝혔습니다. 향후 인간형 로봇에 손가락·손목 자유도를 확대하고, AI 툴에 강화학습 옵션을 더할 예정입니다. 이러한 확장은 로봇 제어와 인간 동작 연구 모두에 새로운 실험 공간을 열어줄 것입니다."
+    },
+    {
+      "heading": "Isaac Sim에서 인간형 로봇 USD 모델 불러오기와 물리 파라미터 설정",
+      "body": "Isaac Sim에 포함된 인간형 로봇은 USD 형식으로 제공됩니다. Omniverse Content Browser에서 해당 USD 파일을 선택해 씬에 드래그하면 즉시 로드됩니다. 로봇이 배치된 후 Window 메뉴의 Simulation 창을 열어 물리 파라미터를 조정합니다. 여기서 충돌 형태와 관절 제한을 설정하면 인간 관절 구조가 실제 물리 엔진과 동일하게 동작합니다. 설정을 저장하고 Play 버튼을 눌러 시뮬레이션을 실행하면, 로봇의 움직임과 충돌 반응을 실시간으로 확인할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "AI 툴셋을 활용한 행동 학습 및 센서 시뮬레이션 워크플로우",
+      "body": "Isaac Sim에 새롭게 추가된 AI 툴셋은 행동 학습, 센서 시뮬레이션, 실시간 데이터 스트리밍 기능을 하나의 인터페이스에서 관리합니다. 먼저 로봇에 행동 Script를 연결하고, 학습 파라미터를 지정한 뒤 학습을 시작합니다. 학습이 진행되는 동안 센서 시뮬레이션을 통해 LiDAR·RGB‑D 데이터를 생성하고, 실시간 데이터 스트리밍 옵션을 켜면 해당 데이터가 외부 프로세스로 바로 전송됩니다. 학습이 완료되면 바로 Isaac Sim에서 행동을 실행해 응답 시간을 측정하고, 결과를 반복 학습 루프에 반영해 최적화할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "향후 업데이트와 실무 적용 시 고려사항",
+      "body": "NVIDIA는 향후 인간형 로봇에 손가락·손목 자유도를 확대하고, AI 툴에 강화학습 옵션을 추가할 계획이라고 밝혔습니다. 이러한 기능이 정식 제공되면, 정밀한 손 동작 제어와 복합적인 강화학습 파이프라인을 설계할 수 있게 됩니다. 현재 프로젝트에 적용할 때는, 향후 확장성을 고려해 모듈식 Script와 파라미터 파일을 준비해 두는 것이 좋습니다. 또한, 최신 버전이 출시되면 기존 시뮬레이션 설정을 백업하고 새로운 파라미터와 호환성을 테스트하는 절차를 권장합니다.",
+      "added": true
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "Isaac Sim에서 인간형 로봇을 처음 사용할 때 필요한 사전 준비는 무엇인가요?",
+      "a": "Omniverse 계정과 Isaac Sim 최신 버전이 설치되어 있어야 합니다. 인간형 로봇은 USD 파일 형태로 제공되므로, 해당 파일을 다운로드하고 Content Browser에 접근할 수 있는 권한이 필요합니다. 또한 GPU가 RTX 기반이면 물리 시뮬레이션과 AI 툴셋을 원활히 사용할 수 있습니다."
+    },
+    {
+      "q": "AI 툴셋의 센서 시뮬레이션 데이터를 외부 로봇 Software와 연동하려면 어떻게 해야 하나요?",
+      "a": "AI 툴셋에서 센서 시뮬레이션을 활성화하고 실시간 데이터 스트리밍 옵션을 켭니다. LiDAR·RGB‑D 데이터는 스트리밍 인터페이스를 통해 ROS Bridge 등 외부 통신 모듈로 전송할 수 있습니다. 전송된 데이터는 SLAM 알고리즘 등 로봇 Software에서 바로 사용해 학습 및 테스트에 활용할 수 있습니다."
+    }
+  ],
   "media": {
     "image": "https://i.ytimg.com/vi/roUZ7_Rsf5c/hqdefault.jpg",
     "video": "https://www.youtube.com/watch?v=roUZ7_Rsf5c"
@@ -52,5 +76,23 @@
   "id": "2026-11-25-9e1cb0b6067677c5",
   "img_tried": true,
   "enriched": "2026-11-25",
-  "img_ok": "2026-11-25T02:15:22+00:00"
+  "img_ok": "2026-11-25T02:15:22+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "r9CBp5QjtQM",
+      "title": "Day 1 with NVIDIA Isaac Sim: Building My First Robot",
+      "author": "Henri Learns"
+    },
+    {
+      "id": "-wHHJGRobww",
+      "title": "Train a Humanoid Robot | Start to Finish - Part 1 | Isaac Sim/Lab Arena",
+      "author": "Amarsbar"
+    }
+  ],
+  "enriched_at": "2026-11-25T02:36:52+00:00",
+  "quality": {
+    "before": 874,
+    "after": 1711
+  }
 }

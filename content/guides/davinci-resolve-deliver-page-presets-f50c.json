@@ -1,0 +1,94 @@
+{
+  "id": "davinci-resolve-deliver-page-presets-f50c",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전달 및 출력",
+  "name": "Deliver Page Presets",
+  "title": "딜리버 페이지 프리셋 — 유튜브, Netflix 등 플랫폼별 맞춤 렌더링 세팅 저장 방법",
+  "summary": "Deliver 페이지의 Preset은 자주 쓰는 렌더 설정을 미리 저장해 원클릭으로 출력할 수 있게 해줍니다.",
+  "when": [
+    "다양한 플랫폼(YouTube, Vimeo 등)용으로 빠르게 동일 포맷을 여러 클립에 적용할 때",
+    "Client에게 전달할 마스터 파일을 일정한 품질·코덱으로 일관되게 만들고 싶을 때",
+    "프로젝트마다 렌더 옵션을 일일이 확인하기 번거로울 때"
+  ],
+  "steps": [
+    "Shift+8 로 Deliver 페이지 열기",
+    "Preset 드롭다운에서 원하는 Preset 선택 (예: YouTube 1080p)",
+    "Inspector 패널에서 필요 시 Format·Resolution·Codec 등 세부 파라미터 조정",
+    "Browse 버튼 클릭 → 출력 폴더와 파일명 지정",
+    "Add to Render Queue 버튼 클릭",
+    "Render Queue 패널에서 Start Render 클릭"
+  ],
+  "params": [
+    {
+      "name": "Format",
+      "desc": "출력 파일 컨테이너 형식 (ex. MP4, QuickTime)"
+    },
+    {
+      "name": "Codec",
+      "desc": "영상 압축 방식 (ex. H.264, ProRes)"
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력 Resolution (ex. 1920x1080)"
+    },
+    {
+      "name": "Quality",
+      "desc": "압축 품질 레벨, 높은 값일수록 파일 용량 증가"
+    },
+    {
+      "name": "Audio Codec",
+      "desc": "Audio 압축 방식 (ex. AAC, PCM)"
+    },
+    {
+      "name": "File Name",
+      "desc": "출력 파일명 패턴, 변수 사용 가능"
+    }
+  ],
+  "examples": [
+    {
+      "title": "YouTube 1080p 업로드용",
+      "steps": [
+        "Preset → YouTube 1080p 선택",
+        "Destination 폴더 지정",
+        "Add to Render Queue → Start Render"
+      ]
+    },
+    {
+      "title": "고화질 마스터 파일 (Apple ProRes)",
+      "steps": [
+        "Preset → Custom 선택 후 Format을 QuickTime, Codec을 ProRes 422 HQ로 설정",
+        "Resolution을 4K(3840x2160)로 변경",
+        "Add to Render Queue → Start Render"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Preset 선택 후 Resolution을 확인하지 않아 원본 Resolution로 출력 → Resolution을 원하는 값으로 직접 수정",
+    "파일명에 한글·특수문자 포함 → 렌더 실패 → 영문·숫자만 사용하도록 파일명 수정",
+    "Render Queue에 작업을 추가하지 않은 채 Start Render 클릭 → 아무것도 렌더되지 않음 → Add to Render Queue 단계 확인"
+  ],
+  "related": [
+    "Render Queue",
+    "Delivery Settings",
+    "Timeline",
+    "Color Page"
+  ],
+  "videos": [
+    {
+      "id": "ISSg000DaU0",
+      "title": "The Complete Guide to the DaVinci Resolve Deliver Page",
+      "author": "Thom Lyons | Visual+Aid Productions"
+    },
+    {
+      "id": "fmOsnylTcgo",
+      "title": "Deliver Page SECRETS - DaVinci Resolve 20",
+      "author": "MrAlexTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Deliver%20Page%20Presets",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-25T02:35:44.874073+00:00"
+}

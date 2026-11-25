@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-24T20:23:28+00:00",
-  "checked": 1779,
+  "at": "2026-11-25T02:34:43+00:00",
+  "checked": 1822,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -2487,11 +2487,40 @@
       "score": 10,
       "defects": [],
       "fix_hint": "공식 문서의 노드 및 파라미터 이름을 정확히 반영하고, 명확한 단계별 가이드와 응용 사례를 유지합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "maya-playblast-cc9f",
+      "title": "Playblast — 미리보기 영상",
+      "score": 10,
+      "defects": [],
+      "fix_hint": ""
+    },
+    {
+      "kind": "guide",
+      "id": "unreal-engine-game-mode-and-player-controller-44f3",
+      "title": "Game Mode·Player Controller",
+      "score": 10,
+      "defects": [],
+      "fix_hint": ""
+    },
+    {
+      "kind": "guide",
+      "id": "houdini-divide-sop-ee20",
+      "title": "Divide — 면 나누기·보로노이 선",
+      "score": 5,
+      "defects": [
+        "\"Maximum Edges\" 파라미터를 \"Max Edges\" 로 잘못 표기함",
+        "Divide SOP에 실제 존재하지 않는 \"Grid 패턴\"·\"Spacing\" 옵션을 설명함",
+        "이미지·영상 등 시각 자료가 전혀 없어 학습에 어려움",
+        "메뉴·노드 연결 설명이 모호하고 정확한 경로를 제시하지 않음"
+      ],
+      "fix_hint": "공식 매뉴얼을 그대로 참고해 UI 명칭과 파라미터를 정확히 표기하고, 반드시 이미지·영상 등 시각 자료를 포함하세요."
     }
   ],
   "avg_score": 9.0,
   "low_by_kind": {
-    "guide": 6
+    "guide": 7
   },
   "redo_now": [
     "guide:houdini-polysplit-sop-f8b0"
