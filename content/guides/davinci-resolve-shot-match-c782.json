@@ -1,0 +1,109 @@
+{
+  "id": "davinci-resolve-shot-match-c782",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "색보정",
+  "name": "Shot Match",
+  "title": "샷 매치 — 다른 클립 간의 색감과 노출을 자동으로 일치시키는 컬러 페이지 기능",
+  "summary": "Shot Match는 현재 클립의 색상·노출을 선택한 기준 클립과 자동으로 일치시켜 일관된 영상 톤을 만들어 줍니다.",
+  "when": [
+    "다른 촬영 조건의 컷을 같은 씬에 연결할 때",
+    "다양한 카메라·조명으로 촬영된 B‑roll을 메인 영상에 맞출 때",
+    "CG 렌더와 실사 영상을 색감·밝기에서 통합하고 싶을 때"
+  ],
+  "steps": [
+    "Color 페이지로 이동한다 (Hotkey Shift+6).",
+    "Timeline 또는 Gallery에서 기준이 될 클립을 선택한다.",
+    "메인 클립을 선택한 뒤 오른쪽 클릭 → Shot Match 선택 (또는 메뉴 Color → Shot Match).",
+    "Shot Match 대화창에서 ‘Source Clip’에 기준 클립, ‘Target Clip’에 현재 클립을 확인하고 ‘Match Method’를 선택한 뒤 Apply 클릭한다."
+  ],
+  "params": [
+    {
+      "name": "Match Method",
+      "desc": "색·노출 매칭 방식(Luma, RGB, Log 등) 선택"
+    },
+    {
+      "name": "Luma Range",
+      "desc": "매칭에 사용할 밝기 구간 설정"
+    },
+    {
+      "name": "RGB Balance",
+      "desc": "R·G·B 채널 균형을 자동 보정"
+    },
+    {
+      "name": "Log Curve",
+      "desc": "Log 감마 곡선 적용 여부"
+    },
+    {
+      "name": "Apply to Nodes",
+      "desc": "매칭 결과를 적용할 노드 범위 지정"
+    },
+    {
+      "name": "Strength",
+      "desc": "매칭 강도(0‑100%) 조절"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인터뷰 컷 색 맞추기",
+      "steps": [
+        "A컷(실내 조명)과 B컷(야외 조명)을 Timeline에 배치",
+        "B컷을 기준 클립으로 선택",
+        "A컷을 타깃으로 Shot Match 실행",
+        "색감이 자연스럽게 일치하면 OK"
+      ]
+    },
+    {
+      "title": "B‑roll을 메인 씬에 맞추기",
+      "steps": [
+        "메인 씬 클립을 기준으로 지정",
+        "B‑roll 클립을 타깃으로 선택",
+        "Match Method를 ‘Luma’로 설정 후 Apply",
+        "B‑roll의 밝기·색상이 메인 씬과 조화"
+      ]
+    },
+    {
+      "title": "CG 렌더와 실사 매칭",
+      "steps": [
+        "실사 클립을 기준으로 선택",
+        "CG 렌더 클립을 타깃으로 지정",
+        "Match Method를 ‘Log’로 선택",
+        "Apply 후 노드에서 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "기준 클립을 선택하지 않음 → 매칭 결과가 엉뚱해짐 → 다시 선택하고 재실행",
+    "노출 차이가 너무 커서 Luma 매칭만 사용 → 색이 왜곡됨 → ‘RGB’ 또는 ‘Log’ 방식으로 전환",
+    "Shot Match 후 노드 순서가 뒤섞여 기존 보정이 사라짐 → 적용할 노드를 ‘Current Node’로 제한하거나 보정 노드를 재배열"
+  ],
+  "related": [
+    "Color Match",
+    "Gallery",
+    "Color Wheels",
+    "ResolveFX"
+  ],
+  "videos": [
+    {
+      "id": "_5Uxfnmix1g",
+      "title": "How to SHOT MATCH in Davinci Resolve!🧑‍💻🤝 #davinciresolve",
+      "author": " Aparicio Co"
+    },
+    {
+      "id": "5l3tFns6VrQ",
+      "title": "Shot Match With Just 2 Clicks In DaVinci Resolve 19 Color Page!",
+      "author": "Jason Yadlovski"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Shot%20Match",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Color",
+    "Hotkey Shift",
+    "Timeline",
+    "Gallery",
+    "Shot Match"
+  ],
+  "at": "2026-11-25T02:16:34.392424+00:00"
+}

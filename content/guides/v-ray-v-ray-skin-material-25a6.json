@@ -1,0 +1,101 @@
+{
+  "id": "v-ray-v-ray-skin-material-25a6",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "V-Ray Skin Material",
+  "title": "V-Ray 스킨 재질 — 인체 피부의 반투명함과 산란 효과를 정밀하게 표현하는 법",
+  "summary": "V-Ray Skin Material은 피부·대리석 등 반투명 물질에 빛이 내부에서 산란하는 효과를 구현합니다.",
+  "when": [
+    "인물·캐릭터 피부를 사실적으로 표현할 때",
+    "대리석·와인스톤 등 반투명 재질에 깊이감이 필요할 때",
+    "SSS가 적용된 재질을 빠르게 테스트하고 싶을 때"
+  ],
+  "steps": [
+    "Material Editor 열기 (Hotkey M)",
+    "새 재질 슬롯에서 V-Ray → VRaySkinMtl 선택 후 New Material 클릭",
+    "Material Type을 VRaySkinMtl 로 설정",
+    "Subsurface Color, Subsurface Radius, SSS Amount 등 주요 파라미터 조정",
+    "재질을 대상 오브젝트에 할당하고 Render View 로 결과 확인"
+  ],
+  "params": [
+    {
+      "name": "Subsurface Color",
+      "desc": "피부 내부 색상을 지정해 기본 톤을 설정합니다"
+    },
+    {
+      "name": "Subsurface Radius",
+      "desc": "빛이 내부에서 퍼지는 거리, 값이 클수록 깊은 투과 효과"
+    },
+    {
+      "name": "SSS Amount",
+      "desc": "산란 강도, 높을수록 부드러운 반투명 느낌"
+    },
+    {
+      "name": "Scatter Color",
+      "desc": "산란된 빛의 색상, 보조 색조를 추가합니다"
+    },
+    {
+      "name": "Scatter Amount",
+      "desc": "Scatter Color 의 영향 강도"
+    },
+    {
+      "name": "Bump",
+      "desc": "표면 거칠기를 추가해 디테일을 강화합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 얼굴 피부",
+      "steps": [
+        "VRaySkinMtl 생성",
+        "Subsurface Color 를 살구색(#F5C6A5) 로 설정",
+        "Subsurface Radius 를 0.5~1.0 사이로 조정",
+        "SSS Amount 를 0.8 로 높여 부드러운 빛 확산 확인"
+      ]
+    },
+    {
+      "title": "대리석 조각상",
+      "steps": [
+        "VRaySkinMtl 생성",
+        "Subsurface Color 를 연회색(#E0E0E0) 로 지정",
+        "Subsurface Radius 를 2.0 로 크게 설정",
+        "SSS Amount 를 0.6 으로 낮추고 Bump 맵으로 섬세한 결 맞춤"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Radius 값이 너무 작아 SSS 효과가 보이지 않음 → Radius 를 0.5 이상으로 증가시킵니다",
+    "오브젝트 스케일이 적용되지 않아 비례가 깨짐 → 적용 전 Ctrl+A 로 Apply Scale 후 재질 적용",
+    "Diffuse와 SSS를 동시에 높은 값으로 설정 → Diffuse 를 낮추고 SSS Amount 를 높여 자연스러운 투과감 확보"
+  ],
+  "related": [
+    "Subsurface Scattering",
+    "VRayMtl",
+    "VRayCarPaintMtl2",
+    "Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "2wgX3WiNleY",
+      "title": "How to Skin Shader in V-Ray for Cinema 4d",
+      "author": "MographPlus"
+    },
+    {
+      "id": "uQ0Qa4GrquI",
+      "title": "Quick Realistic Materials in V-Ray 6 for Rhino (TUTORIAL)",
+      "author": "Daniel Kuzev"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Skin%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "V-Ray",
+    "VRaySkinMtl",
+    "New Material"
+  ],
+  "at": "2026-11-25T02:17:05.109675+00:00"
+}

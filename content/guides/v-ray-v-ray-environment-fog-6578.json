@@ -1,0 +1,101 @@
+{
+  "id": "v-ray-v-ray-environment-fog-6578",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "환경 및 대기",
+  "name": "V-Ray Environment Fog",
+  "title": "V-Ray 엔바이론먼트 포그 — 장면에 볼륨감 있는 안개와 빛줄기(God Rays) 효과를 더하는 법",
+  "summary": "V-Ray Environment Fog는 씬 전체에 대기 안개를 적용해 원거리 오브젝트를 흐리게 하고 깊이감을 부여하는 환경 맵입니다.",
+  "when": [
+    "넓은 야외 씬에서 원근감과 대기 효과를 강조할 때",
+    "실내에 큰 창문이나 개방형 공간이 있어 배경 안개가 필요할 때",
+    "렌더에 자연스러운 색감 감소와 채도 저하를 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Render Setup(F10) 열기",
+    "Environment 탭 → Atmosphere 슬롯 클릭",
+    "Add → V-Ray Environment Fog 선택",
+    "Parameters 창에서 Fog Color, Fog Density 등 원하는 값 입력",
+    "필요 시 Fog Start와 Fog Height 로 범위 조절",
+    "렌더링 후 Viewport에서 안개가 적용된 모습을 확인"
+  ],
+  "params": [
+    {
+      "name": "Fog Color",
+      "desc": "안개의 기본 색상을 지정합니다"
+    },
+    {
+      "name": "Fog Density",
+      "desc": "안개의 농도를 조절합니다 (값이 클수록 짙어짐)"
+    },
+    {
+      "name": "Fog Start",
+      "desc": "안개가 시작되는 거리(카메라 기준)"
+    },
+    {
+      "name": "Fog Height",
+      "desc": "안개가 적용되는 최대 높이"
+    },
+    {
+      "name": "Fog Falloff",
+      "desc": "거리 증가에 따른 안개 감소 방식 (Linear/Exponential)"
+    },
+    {
+      "name": "Fog Mode",
+      "desc": "안개 적용 방식 선택 (Linear, Exponential)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "산악 풍경에 원근감 부여",
+      "steps": [
+        "V-Ray Environment Fog 추가",
+        "Fog Color를 회색 톤으로 설정",
+        "Fog Density를 0.02 정도로 낮게 설정",
+        "Fog Start를 500, Fog Height를 2000으로 지정"
+      ]
+    },
+    {
+      "title": "실내 큰 창문에 안개 효과",
+      "steps": [
+        "Fog Color를 차가운 파란색으로 설정",
+        "Fog Density를 0.05로 높게 설정",
+        "Fog Start를 0으로 설정해 카메라 바로 앞부터 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Fog Density가 너무 높음 → 값을 낮추어 안개 강도를 감소시킵니다",
+    "Fog Start가 카메라보다 멀어 안개가 보이지 않음 → Start 값을 카메라에 가깝게 조정합니다",
+    "안개가 하늘에까지 적용돼 색이 흐림 → Fog Height를 낮추거나 Fog Mode를 Linear로 변경합니다"
+  ],
+  "related": [
+    "V-Ray Aerial Perspective",
+    "V-Ray Atmosphere",
+    "V-Ray Distant Light",
+    "Exponential Height Fog"
+  ],
+  "videos": [
+    {
+      "id": "5zcRnGWarAY",
+      "title": "Vray Volumetric Lighting Tutorial in 3Ds Max (Environment Fog) | RedefineFX",
+      "author": "RedefineFX | Jesse Pitela"
+    },
+    {
+      "id": "LFDqi5I-5gQ",
+      "title": "Autodesk Maya: Creating Vray Environment Fog in 3 minutes",
+      "author": "Cristian Garcia Ameijenda"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Environment%20Fog",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "Environment",
+    "Atmosphere",
+    "Add",
+    "V-Ray Environment Fog"
+  ],
+  "at": "2026-11-25T02:16:04.471130+00:00"
+}
