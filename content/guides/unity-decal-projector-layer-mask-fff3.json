@@ -1,0 +1,95 @@
+{
+  "id": "unity-decal-projector-layer-mask-fff3",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "비주얼 효과",
+  "name": "Decal Projector Layer Mask",
+  "title": "데칼 프로젝터 레이어 Mask — 특정 오브젝트에만 데칼이 투영되도록 레이어를 설정하는 워크플로우",
+  "summary": "Unity의 Decal Projector Layer Mask는 특정 데칼이 영향을 줄 오브젝트를 레이어 단위로 세밀하게 필터링하는 기능입니다. 원하지 않는 오브젝트에 데칼이 투영되는 것을 방지합니다.",
+  "when": [
+    "캐릭터 몸에만 피 묻는 효과나 상처 데칼을 투영하고 싶을 때",
+    "바닥에만 흙먼지나 낙서 데칼을 적용하고 주변 지형이나 소품을 제외하고 싶을 때",
+    "특정 오브젝트 그룹에만 간섭하도록 데칼 노출을 제어해야 할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Decal Projector가 추가된 오브젝트를 선택합니다.",
+    "Inspector 창에서 Decal Projector 컴포넌트를 확인합니다.",
+    "Layer Mask 필드 드롭다운을 클릭합니다.",
+    "데칼이 투영될 타겟 레이어(예: Character 또는 Environment)를 체크합니다.",
+    "대상 오브젝트의 Layer 설정이 선택한 레이어와 일치하는지 확인하여 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Layer Mask",
+      "desc": "데칼 투영 영향을 받을 오브젝트의 레이어를 지정합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "데칼에 사용할 텍스처와 Shader가 포함된 머티리얼을 지정합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "데칼 프로젝터의 크기를 조절하여 투영 범위를 결정합니다."
+    },
+    {
+      "name": "Projection Angle Limit",
+      "desc": "표면 각도에 따라 데칼이 투영되는 임계값을 제한합니다."
+    },
+    {
+      "name": "Fade Factor",
+      "desc": "데칼의 투명도나 가장자리 페이드 효과를 조절합니다."
+    },
+    {
+      "name": "Draw Distance",
+      "desc": "카메라로부터 데칼이 렌더링되는 최대 거리를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 전용 상처 데칼 적용",
+      "steps": [
+        "Project 창에서 Character 레이어를 생성하고 캐릭터 오브젝트에 할당합니다.",
+        "Decal Projector의 Layer Mask를 Character 레이어로만 설정합니다.",
+        "캐릭터 주변의 배경 오브젝트에 데칼이 투영되지 않는지 확인합니다."
+      ]
+    },
+    {
+      "title": "바닥 균열 데칼 분리",
+      "steps": [
+        "바닥 오브젝트를 Ground 레이어로 설정합니다.",
+        "Decal Projector의 Layer Mask에서 Ground만 체크합니다.",
+        "벽이나 천장에 닿아도 바닥에만 균열이 생기도록 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원하지 않는 오브젝트에도 데칼이 묻어남 → 대상 오브젝트의 Layer 설정과 Decal Projector의 Layer Mask가 일치하는지 확인합니다.",
+    "데칼이 아예 보이지 않음 → Layer Mask에 선택된 레이어가 대상 오브젝트에 제대로 지정되었는지 확인하고 프로젝터 방향을 점검합니다."
+  ],
+  "related": [
+    "Decal Projector",
+    "Light Layers",
+    "Rendering Layers",
+    "Universal Render Pipeline"
+  ],
+  "videos": [
+    {
+      "id": "-4K4WQ-9tbk",
+      "title": "¿Cómo usar Decals en Unity? - Tutorial Decal Projector",
+      "author": "Ludibyte Games"
+    },
+    {
+      "id": "qX1YZC11iRU",
+      "title": "EASY fix for ANNOYING Decal Projection Issues in Unity URP",
+      "author": "Game World Engineer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Decal%20Projector%20Layer%20Mask",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Decal Projector"
+  ],
+  "at": "2026-11-25T00:13:16.189929+00:00"
+}

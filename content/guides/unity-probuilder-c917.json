@@ -1,0 +1,101 @@
+{
+  "id": "unity-probuilder-c917",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "월드 및 환경",
+  "name": "ProBuilder",
+  "title": "프로빌더 — Unity 에디터 내에서 직접 3D 레벨과 기본 Prototype 모델을 제작하는 공식 툴",
+  "summary": "ProBuilder는 Unity 에디터 안에서 직접 3D 모델링과 레벨 디자인을 수행할 수 있는 공식 툴셋입니다. 외부 DCC 툴로 전환하지 않고도 Prototype이나 게임 배경 에셋을 빠르게 제작할 수 있습니다.",
+  "when": [
+    "게임 개발 초기 단계에서 Prototype 레벨과 구조물을 빠르게 배치할 때",
+    "별도의 외주나 외부 모델링 없이 간단한 방, 계단, 문 같은 배경 에셋을 직접 만들 때",
+    "복잡한 지형 위에 올라갈 플랫폼이나 건물 외형을 신속하게 스케치하듯 제작할 때"
+  ],
+  "steps": [
+    "Unity 상단 메뉴에서 Window → Package Manager 를 엽니다.",
+    "Packages를 Unity Registry로 설정한 뒤 ProBuilder를 찾아 Install 합니다.",
+    "상단 메뉴 Tools → ProBuilder → ProBuilder Window 를 열어 에디터 창을 띄웁니다.",
+    "New Shape 버튼을 눌러 기본 도형(Cube, Cylinder 등)을 씬에 생성합니다.",
+    "오브젝트 선택 후 상단 툴바에서 Vertex, Edge, Face 모드를 선택해 세부 형태를 편집합니다.",
+    "Extrude 등의 도구를 사용해 면을 밀어내고 원하는 구조물로 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Extrude",
+      "desc": "선택한 면을 법선 방향으로 밀어내어 새로운 볼륨을 생성합니다."
+    },
+    {
+      "name": "Bevel",
+      "desc": "선택한 모서리나 꼭짓점을 깎아 부드러운 경사면을 만듭니다."
+    },
+    {
+      "name": "Subdivide",
+      "desc": "선택한 면이나 에지를 분할하여 더 많은 세부 편집점을 만듭니다."
+    },
+    {
+      "name": "Flip Normals",
+      "desc": "선택한 면의 법선 방향을 반전시켜 안과 밖이 뒤집힌 면을 수정합니다."
+    },
+    {
+      "name": "Merge Faces",
+      "desc": "둘 이상의 인접한 면을 하나로 합칩니다."
+    },
+    {
+      "name": "Material Editor",
+      "desc": "Prototype 오브젝트에 즉시 머티리얼과 텍스처를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "계단 구조물 제작",
+      "steps": [
+        "ProBuilder Window에서 Shape 메뉴를 엽니다.",
+        "Stair Primitive를 선택하고 씬에 생성합니다.",
+        "Inspector 또는 ProBuilder 창에서 Step Height와 Width 값을 조정합니다."
+      ]
+    },
+    {
+      "title": "벽면 창문 구멍 뚫기",
+      "steps": [
+        "기본 큐브를 배치하고 벽 두께와 크기로 조절합니다.",
+        "Face 모드에서 창문이 들어갈 위치의 면을 선택합니다.",
+        "Extrude 또는 Insert Edge Loop 기능을 활용해 구멍 모양의 면을 분할하고 삭제합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "면을 지웠는데 투명하게 보임 → Flip Normals를 실행하거나 Backface Culling 설정을 확인하여 법선을 바로잡습니다.",
+    "Vertex가 정확히 붙지 않고 틈이 벌어짐 → ProBuilder 툴바의 Vertex Merge 기능을 사용하거나 Snapping을 켜고 이동합니다.",
+    "콜라이더가 생성되지 않아 캐릭터가 통과함 → Mesh Collider 컴포넌트를 추가하거나 ProBuilder 설정에서 자동 콜라이더 옵션을 켭니다."
+  ],
+  "related": [
+    "Polybrush",
+    "Unity Terrain",
+    "Shader Graph",
+    "NavMesh"
+  ],
+  "videos": [
+    {
+      "id": "YsBniZ5ya7k",
+      "title": "ProBuilder for grey-boxing in Unity | Tutorial",
+      "author": "Unity"
+    },
+    {
+      "id": "qV2o1D1uWgE",
+      "title": "The Fastest Way to Design Levels in Unity 6? (Pro Builder Explained)",
+      "author": "DebugDevin"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20ProBuilder",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "Window",
+    "Package Manager",
+    "Packages",
+    "Unity Registry",
+    "ProBuilder"
+  ],
+  "at": "2026-11-25T00:13:12.604947+00:00"
+}

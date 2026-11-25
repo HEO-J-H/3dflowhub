@@ -1,0 +1,98 @@
+{
+  "id": "unity-audio-mixer-5964",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오",
+  "name": "Audio Mixer",
+  "title": "Audio 믹서 — 사운드 볼륨을 그룹화하고 효과(리버브, 피치 등)를 적용하여 Audio를 믹싱하는 도구",
+  "summary": "Unity의 Audio Mixer는 여러 Audio 소스의 볼륨, 피치, Effect를 그룹 단위로 묶어서 통합 제어하고 마스터링하는 Audio 라우팅 시스템입니다.",
+  "when": [
+    "배경음악(BGM), 효과음(SFX), 음성(Voice) 등 채널별 볼륨을 개별 그룹으로 묶어 한 번에 조절할 때",
+    "동굴이나 방 안 등 공간 변화에 따라 리버브(Reverb)나 저음 필터 같은 Audio Effect를 그룹 전체에 적용할 때",
+    "게임 내 상황(예: 플레이어 체력 저하 시)에 따라 Audio 전체의 톤을 동적으로 실시간 제어할 때"
+  ],
+  "steps": [
+    "Project 창 빈 공간을 Mouse 우클릭하고 Create → Audio Mixer를 선택하여 새로운 믹서 에셋을 생성합니다.",
+    "생성된 Audio Mixer 에셋을 Double-click하여 Audio Mixer 창을 엽니다.",
+    "Audio Mixer 창의 Groups 패널에서 기본 Master 그룹 하단에 우클릭하여 Add Child Group을 선택하고 BGM, SFX 등 원하는 그룹을 추가합니다.",
+    "Hierarchy 패널에서 사운드를 재생할 오브젝트를 선택하고, Inspector 패널의 Audio Source 컴포넌트에서 Output 항목에 생성한 Mixer 그룹을 드래그하여 연결합니다.",
+    "Audio Mixer 창에서 각 그룹의 Fader(슬라이더)를 조절하거나 Add Effect 버튼을 눌러 Effect를 추가하여 Viewport에서 사운드 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Volume",
+      "desc": "해당 그룹의 전체 음량을 데시벨(dB) 단위로 조절합니다."
+    },
+    {
+      "name": "Pitch",
+      "desc": "Audio의 재생 속도와 음고(높낮이)를 함께 조절합니다."
+    },
+    {
+      "name": "Attenuation",
+      "desc": "거리와 감쇠 곡선에 따라 Audio 소스의 볼륨이 줄어드는 방식을 제어합니다."
+    },
+    {
+      "name": "Effects",
+      "desc": "Lowpass, Highpass, Reverb 등 그룹에 적용할 Audio Effect 스택을 관리합니다."
+    },
+    {
+      "name": "Ducking",
+      "desc": "특정 그룹(예: 음성)이 재생될 때 다른 그룹(예: 배경음악)의 볼륨을 자동으로 줄입니다."
+    },
+    {
+      "name": "Snapshot",
+      "desc": "믹서의 모든 파라미터 상태를 저장하여 게임 상황에 따라 부드럽게 전환합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "BGM과 효과음 볼륨 분리 제어",
+      "steps": [
+        "Audio Mixer에 BGM과 SFX 자식 그룹을 각각 만듭니다.",
+        "배경음악 오브젝트의 Audio Source Output을 BGM 그룹에 연결합니다.",
+        "효과음 오브젝트들의 Output을 SFX 그룹에 일괄 연결합니다.",
+        "믹서 창에서 SFX 그룹의 Fader만 내려 배경음악과 효과음의 상대적 볼륨을 조절합니다."
+      ]
+    },
+    {
+      "title": "실내 공간 리버브 효과 부여",
+      "steps": [
+        "Audio Mixer 창의 Effects 영역에서 우클릭하여 Audio Effects → Reverb를 추가합니다.",
+        "실내 느낌이 나도록 Reverb 파라미터 값을 조정합니다.",
+        "실내에서 재생되어야 할 Audio Source들의 Output을 해당 리버브가 적용된 믹서 그룹으로 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio Source의 Output을 설정하지 않음 → Mixer 창에서 볼륨이나 Effect 조절이 반영되지 않으므로, 반드시 Audio Source의 Output에 Mixer 그룹을 연결해야 합니다.",
+    "스냅샷 전환 시 값이 튀는 현상 → 스냅샷 간 전환할 때 Transition Time 값을 0으로 두면 소리가 끊기거나 튀므로, 적절한 시간(초 단위)을 입력해 부드럽게 크로스페이드되도록 설정합니다."
+  ],
+  "related": [
+    "Audio Source",
+    "Audio Listener",
+    "Audio Clip",
+    "Audio Reverb Filter"
+  ],
+  "videos": [
+    {
+      "id": "vOaQp2x-io0",
+      "title": "Audio Mixer and Audio Mixer Groups - Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "IxHPzrEq1Tc",
+      "title": "Unity AUDIO MIXER Tutorial | Unity 2D Platformer Tutorial #17",
+      "author": "Rehope Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Mixer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Mouse",
+    "Create",
+    "Audio Mixer"
+  ],
+  "at": "2026-11-25T00:13:08.478875+00:00"
+}
