@@ -34901,5 +34901,36 @@
     "kind": "applied",
     "id": "p-0045889110",
     "result": "코딩 에이전트 보류 — 직접 처리 필요: [4] 패치 적용 실패: 변경 없음"
+  },
+  {
+    "at": "2026-11-25T23:47:41+00:00",
+    "kind": "proposal",
+    "id": "p-b2a3baa9d4",
+    "title": "로컬 DB 메타데이터 테스트 파일 구현 재시도",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "메타데이터 로컬 DB 스키마 단위 테스트 추가 작업이 패치 적용 실패로 held 상태입니다.",
+    "proposal": "backend/tests/test_metadata_db.py를 생성하여 로컬 DB 스키마 생성 및 검색 쿼리 검증 테스트 코드를 정확히 작성합니다.",
+    "expected": "로컬 DB 스키마의 안정성을 검증하고 향후 메타데이터 검색 기능의 기반을 다집니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-25T23:48:06.549701+00:00",
+    "kind": "decision",
+    "id": "p-b2a3baa9d4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-25T23:48:08.777677+00:00",
+    "kind": "triage",
+    "id": "p-b2a3baa9d4",
+    "verdict": "agent",
+    "reason": "backend/tests/test_metadata_db.py 생성 및 로컬 DB 스키마 검색 쿼리 검증 테스트 코드는 코드 수정으로 해결 가능한 과제입니다."
   }
 ]
