@@ -1,0 +1,95 @@
+{
+  "id": "v-ray-v-ray-hair-mtl-410f",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Hair Mtl",
+  "title": "V-Ray Hair Mtl — 머리카락과 털의 하이라이트와 반사를 정밀하게 제어하는 재질",
+  "summary": "V-Ray Hair Mtl은 3ds Max 등의 환경에서 머리카락이나 털 오브젝트를 물리적으로 정확하게 렌더링하기 위한 전용 재질입니다. 빛의 투과와 반사를 정밀하게 계산하여 실크처럼 부드러운 머릿결과 자연스러운 하이라이트를 표현합니다.",
+  "when": [
+    "캐릭터의 두피에 생성된 머리카락(Hair and Fur 등)에 사실적인 질감과 하이라이트를 부여할 때",
+    "동물 모델의 털이나 깃털에 빛이 투과하는 반사 효과를 적용할 때",
+    "카펫이나 잔디 등 미세한 섬유질 오브젝트의 시각적 완성도를 높일 때"
+  ],
+  "steps": [
+    "머리카락이나 털이 생성된 메쉬 오브젝트를 선택합니다.",
+    "Material Editor(Hotkey M)를 열고 새로운 재질 슬롯에서 V-Ray Material을 누른 뒤 V-Ray Hair Mtl을 선택합니다.",
+    "재질의 Diffuse 컬러 및 Translucency 옵션을 설정하여 기본 색상과 빛이 투과하는 정도를 조절합니다.",
+    "Primary Highlight와 Secondary Highlight 패널에서 하이라이트의 위치와 퍼짐 정도를 세부 조정합니다.",
+    "완성된 V-Ray Hair Mtl을 Viewport의 머리카락 오브젝트에 드래그하여 적용합니다.",
+    "V-Ray Frame Buffer에서 렌더링을 실행하여 머릿결의 하이라이트와 반사 상태를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Diffuse",
+      "desc": "머리카락과 털의 기본 색상을 설정합니다."
+    },
+    {
+      "name": "Translucency",
+      "desc": "빛이 머리카락을 통과할 때 발생하는 투과 효과와 산란을 조절합니다."
+    },
+    {
+      "name": "Primary Highlight",
+      "desc": "빛이 직접 닿는 주 하이라이트의 색상과 크기를 결정합니다."
+    },
+    {
+      "name": "Secondary Highlight",
+      "desc": "빛의 반사로 생기는 두 번째 하이라이트의 위치와 퍼짐을 조절합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "머리카락 가닥의 투명도와 끝부분의 부드러움을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "사람 캐릭터의 금발 머리카락 렌더링",
+      "steps": [
+        "Hair and Fur Modifier로 생성된 머리카락 가닥을 준비합니다.",
+        "V-Ray Hair Mtl을 생성하고 Diffuse를 밝은 금색으로 설정합니다.",
+        "Primary Highlight 값을 조절하여 부드러운 실크 질감의 하이라이트를 만듭니다.",
+        "렌더링을 실행하여 머릿결의 입체감을 확인합니다."
+      ]
+    },
+    {
+      "title": "동물(곰, 늑대 등)의 털 표현",
+      "steps": [
+        "털이 심어진 바디 메쉬를 선택하고 재질을 할당합니다.",
+        "V-Ray Hair Mtl의 Translucency를 높여 빛이 털 사이로 은은하게 통과하게 만듭니다.",
+        "Secondary Highlight를 조정해 털 끝에 맺히는 윤기를 표현합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하이라이트가 너무 강하게 튐 → Primary Highlight의 폭(Width) 값을 넓히고 글로스니스 수치를 낮춰 부드럽게 조정합니다.",
+    "머리카락이 너무 어둡고 밋밋해 보임 → Translucency 및 씬 내 조명(V-Ray Light)의 반사 설정과 강도를 높여줍니다."
+  ],
+  "related": [
+    "Hair and Fur",
+    "V-Ray Proxy",
+    "V-Ray Light",
+    "V-Ray Hair Next Mtl"
+  ],
+  "videos": [
+    {
+      "id": "4g3X0hRmlWA",
+      "title": "Ornatrix 101: Rendering hair with V-Ray and V-Ray RT",
+      "author": "Ephere"
+    },
+    {
+      "id": "HvdcdgavgtI",
+      "title": "Tutorial No.23 : How to use V-ray Hair material in VrayForC4d",
+      "author": "MographPlus"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Hair%20Mtl",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "V-Ray Material",
+    "V-Ray Hair Mtl"
+  ],
+  "at": "2026-11-25T01:02:59.642636+00:00"
+}
