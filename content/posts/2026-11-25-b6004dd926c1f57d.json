@@ -1,0 +1,59 @@
+{
+  "title_ko": "Unreal Engine 5.4 기반 인디 게임 Become 개발 사례",
+  "title": "The Making of Become: From AAA Games to a Microscopic Platformer",
+  "url": "https://80.lv/articles/the-making-of-become-from-aaa-games-to-a-microscopic-platformer/",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unreal Engine",
+    "Niagara",
+    "Vertex Shader",
+    "Indie Game",
+    "ProtoSeed Games",
+    "언리얼 엔진"
+  ],
+  "summary": "인디 개발사 ProtoSeed Games가 Unreal Engine 5.4의 Niagara와 vertex shader를 활용해 50만 마리의 군집 세포를 구현한 제작 과정을 공개했습니다.",
+  "insight": "Unreal Engine 5.4의 Niagara mesh particles와 vertex shader animation 조합은 수십만 개 객체를 렌더링할 때 CPU 부하를 낮추는 데 효과적입니다.",
+  "try_it": [
+    "Unreal Engine에서 Niagara 시스템을 새로 생성합니다.",
+    "Mesh Renderer 모듈을 추가하고 커스텀 메쉬를 지정합니다.",
+    "Vertex Shader 애니메이션 파라미터를 조절하여 군집의 움직임을 테스트합니다."
+  ],
+  "sections": [
+    {
+      "heading": "AAA 게임에서 인디 개발로의 전환",
+      "body": "Mafia 시리즈 제작에 참여했던 Valentin Wirth는 25년 전 보았던 BBC 다큐멘터리에서 영감을 받아 ProtoSeed Games를 설립했습니다. 대형 퍼블리셔가 승인하기 어려운 독창적인 인디 게임 Become을 개발하고 있으며 2027년 상반기 Steam 출시를 목표로 하고 있습니다."
+    },
+    {
+      "heading": "Unreal Engine 5.4 Niagara로 50만 개 세포 구현",
+      "body": "게임 내에서 플레이어는 수억 마리의 경쟁자 중 하나인 정자가 되어 난자를 향해 이동합니다. 개발자는 2D boids 시뮬레이션의 성능 한계를 극복하기 위해 Unreal Engine 5.4의 Niagara mesh particles를 채택했습니다. Vertex shader animation을 적용하여 최대 50만 마리에 달하는 거대한 세포 군집을 안정적으로 표현합니다."
+    },
+    {
+      "heading": "커스텀 포스와 군집 제어 시스템",
+      "body": "커스텀 커브와 힘을 적용하여 방대한 수의 정자 군집을 플레이어가 유도할 수 있도록 설계했습니다. 흐름에 따라 수천 마리의 세포가 휩쓸려가는 환경적 요소를 구현해 긴장감을 높였습니다. 점액 속에서 구출하는 '버디' 시스템을 통해 협력 플레이 요소도 더했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Become은 어떤 엔진과 버전으로 개발되나요?",
+      "a": "Unreal Engine 5.4를 사용하여 개발 중입니다."
+    },
+    {
+      "q": "수십만 개의 세포를 처리하는 최적화 방식은 무엇인가요?",
+      "a": "Niagara mesh particles와 vertex shader animation을 결합하여 성능을 확보하고 최대 50만 마리의 군집을 구현했습니다."
+    },
+    {
+      "q": "출시 일정과 플랫폼은 어떻게 되나요?",
+      "a": "2027년 상반기에 Steam을 통해 PC 버전으로 출시될 예정입니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51178/images/6b0745863c791/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=Hb4Pjyfs6IQ"
+  },
+  "collected_at": "2026-11-25T23:59:17.520845+00:00",
+  "notion_id": "",
+  "id": "2026-11-25-b6004dd926c1f57d",
+  "img_ok": "2026-11-25T23:59:17+00:00"
+}
