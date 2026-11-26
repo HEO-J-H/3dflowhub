@@ -1,0 +1,95 @@
+{
+  "id": "davinci-resolve-node-tree-2b9a",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "Node Tree",
+  "title": "Node Tree — 복잡한 다중 색보정 레이어를 구성하는 퓨전 방식의 컬러 노드 구조",
+  "summary": "DaVinci Resolve의 Node Tree는 레이어 방식이 아닌 독립된 노드들의 연결을 통해 색보정과 Effect를 비파괴적으로 쌓아가는 강력한 시스템입니다. 복잡한 영상 톤 조정과 세밀한 마스킹 작업을 체계적으로 관리할 때 사용합니다.",
+  "when": [
+    "전체 톤 보정과 피부톤 보정, 부분 마스킹(Power Window) 작업을 분리하여 관리하고 싶을 때",
+    "하나의 클립에 여러 개의 Effect와 키(Key) 추출을 순서대로 적용해야 할 때",
+    "이전 노드의 결과값을 다음 노드로 전달하여 복잡한 룩(Look)을 빌드업할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 그레이딩 인터페이스로 이동합니다.",
+    "우측 상단의 Node 패널에서 기본적으로 생성된 1번 노드(Corrector Node)를 확인합니다.",
+    "Hotkey Alt+S를 눌러 새로운 Serial Node(직렬 노드)를 추가합니다.",
+    "추가된 노드에서 Wheel 패널이나 Curves를 사용하여 원하는 색상 및 밝기 보정 값을 적용합니다.",
+    "필요시 Hotkey Alt+P를 눌러 Parallel Node(병렬 노드)를 추가해 영역별 독립 보정을 구성합니다.",
+    "Viewer 하단의 스틸 컷 저장 기능이나 뷰어 창에서 보정 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Serial Node",
+      "desc": "이전 노드의 출력값을 받아 다음 노드로 전달하는 기본 순차 연결 노드입니다."
+    },
+    {
+      "name": "Parallel Node",
+      "desc": "여러 노드의 보정값을 동등하게 병렬로 합쳐서 최종 출력하는 노드입니다."
+    },
+    {
+      "name": "Layer Mixer Node",
+      "desc": "위아래 레이어 개념으로 상하 노드의 합성(Blend) 모드를 조절하는 노드입니다."
+    },
+    {
+      "name": "Outside Node",
+      "desc": "이전 노드의 Power Window(Mask) 영역을 반전(Inverse)시켜 바깥쪽을 보정하는 노드입니다."
+    },
+    {
+      "name": "Splitter / Combiner",
+      "desc": "RGB 채널이나 YUV 채널을 분리하여 개별적으로 수정할 수 있게 쪼개고 합치는 노드입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부톤 분리 보정",
+      "steps": [
+        "1번 Serial Node에서 전체적인 영상의 콘트라스트와 밸런스를 맞춥니다.",
+        "Alt+S로 노드를 추가한 뒤 Qualifier 툴을 사용해 인물의 피부톤 영역만 선택합니다.",
+        "Hue와 Saturation을 조절해 피부 색감을 화사하게 보정합니다."
+      ]
+    },
+    {
+      "title": "배경 어둡게 누르기 (Vignette & Outside)",
+      "steps": [
+        "새로운 Serial Node를 추가하고 Power Window(원형 Mask)로 피규어 중심부를 지정합니다.",
+        "인물 안쪽을 밝게 보정한 뒤, Mouse 우클릭으로 Add Outside Node를 생성합니다.",
+        "자동으로 반전된 바깥쪽 영역(Outside)의 Gain과 Lift를 내려 배경을 어둡게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "모든 보정을 1번 노드 하나에 몰아서 작업함 → 기능별로 Serial Node를 나누어 비파괴 작업 환경을 구축합니다.",
+    "노드 순서(Signal Flow)를 고려하지 않음 → 노드는 왼쪽에서 오른쪽, 위에서 아래로 흐르므로 키(Key) 추출 노드는 보정 노드보다 앞에 두어야 합니다.",
+    "노드 이름을 지정하지 않아 복잡해짐 → 노드 우클릭 후 Node Label 기능을 사용하여 각 노드의 역할을 이름으로 적어둡니다."
+  ],
+  "related": [
+    "Power Window",
+    "Qualifier",
+    "Tracker",
+    "Curves"
+  ],
+  "videos": [
+    {
+      "id": "kdTMRQP_V7E",
+      "title": "The BEST Node Tree for ANY Camera! PRO Colorist (BBC, Netflix, Amazon)",
+      "author": "Darren Mostyn"
+    },
+    {
+      "id": "tRUrX_-GbzA",
+      "title": "MASTER Layer Nodes in 10 Mins! - A Pro DaVinci Resolve Tutorial",
+      "author": "Darren Mostyn"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Node%20Tree",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "Node",
+    "Corrector Node"
+  ],
+  "at": "2026-11-26T01:58:04.958243+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "photoshop-ambient-3424",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 머티리얼",
+  "name": "Ambient",
+  "title": "주변광(Ambient) — 3D 오브젝트의 음영과 주변 환경광이 닿는 영역을 조절하는 속성",
+  "summary": "Photoshop의 Ambient 조명 속성은 3D 레이어 환경에서 씬 전체에 균일한 기본 광원을 제공하여 어두운 영역의 디테일을 살려주는 전방향 환경 조명입니다. 메인 씬의 대비를 부드럽게 조절하여 3D 모델의 입체감을 자연스럽게 완성합니다.",
+  "when": [
+    "Directional Light만으로 그림자 영역이 너무 어둡게 묻힐 때",
+    "3D 오브젝트 전체에 고른 기본 밝기를 주어 디테일을 확인하고 싶을 때",
+    "야외나 실내 환경에서 반사광 및 주변광의 기본 세기를 잡고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop을 열고 3D 오브젝트나 모델이 포함된 문서를 준비합니다.",
+    "우측 하단의 3D 패널에서 조명 레이어(예: Infinite Light 또는 Environment)를 선택합니다.",
+    "Properties 패널에서 Light Type을 Ambient로 변경하거나 새로운 Ambient Light를 추가합니다.",
+    "Properties 패널의 Color 및 Intensity 슬라이더를 조절하여 주변광의 색상과 밝기를 설정합니다.",
+    "Viewport에서 3D 모델의 그림자와 어두운 면의 밝기가 부드럽게 조정되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Light Type",
+      "desc": "조명 유형을 Ambient로 설정하여 전방향 균일 광원을 생성합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "주변광의 전체적인 밝기와 강도를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "주변광이 3D 모델에 드리우는 기본 색상을 지정합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "주변광에 의해 생성되는 그림자 활성화 여부를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "어두운 틈새 밝기 보정",
+      "steps": [
+        "3D 패널에서 기존 조명이 닿지 않는 어두운 영역을 확인합니다.",
+        "Ambient Light를 추가하고 Intensity를 낮게 설정합니다.",
+        "그림자 속 구석진 면의 디테일이 살아나는지 Viewport에서 확인합니다."
+      ]
+    },
+    {
+      "title": "부드러운 전반적 톤 조정",
+      "steps": [
+        "Ambient Light 색상을 배경 톤에 맞게 은은한 푸른빛이나 회색으로 바꿉니다.",
+        "Intensity 값을 미세하게 조절하여 전체적인 3D 씬의 대비를 낮춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Intensity 값을 너무 높게 설정함 → 전체 씬이 하얗게 뜨고 입체감이 사라지므로 낮게 조절합니다.",
+    "모든 조명을 Ambient로만 구성함 → 입체감이 사라지고 평면적으로 보이므로 Directional Light와 조합합니다."
+  ],
+  "related": [
+    "Infinite Light",
+    "Point Light",
+    "Spot Light",
+    "IBL"
+  ],
+  "videos": [
+    {
+      "id": "43oqbWTrYX8",
+      "title": "Adobe Photoshop tips-Creating ambient lighting #photoshop #photoshoptutorial",
+      "author": "Linglan92"
+    },
+    {
+      "id": "NpNoOjDZQsE",
+      "title": "Ambient Occlusion in 3DS with compositing in Photoshop",
+      "author": "Paul Vesey"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Ambient",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Infinite Light",
+    "Environment",
+    "Properties",
+    "Light Type",
+    "Ambient"
+  ],
+  "at": "2026-11-26T01:58:00.098551+00:00"
+}
