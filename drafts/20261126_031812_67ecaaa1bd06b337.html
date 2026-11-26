@@ -1,0 +1,17 @@
+<!-- TITLE: OceanFix: 수중 3D 재구성을 위한 Sparse-View Diffusion | TAGS: 수중 3D,Sparse-View,Diffusion,Gaussian splatting,OceanFix,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — OceanFix는 레퍼런스 기반 Diffusion과 Gaussian splatting을 결합해 희소 시점 수중 3D 재구성의 시각적 결함을 감소시킨다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>OceanFix 개요</h2>
+<p>본 논문은 수중 환경에서 관측이 드문 경우에도 고품질 3D 재구성을 목표로 한다. Gaussian splatting의 효율성을 기반으로 하면서, 빛 감쇠와 백스캐터링으로 인한 시각적 왜곡을 보완한다. 레퍼런스 관측과 매체 특성을 활용해 Diffusion 모델을 훈련한다.</p>
+<h2>두 단계 학습 전략</h2>
+<p>첫 단계에서는 레퍼런스 이미지와 추정된 매체 특징을 이용해 수중 외관을 학습한다. 두 번째 단계에서는 카메라 포즈와 레퍼런스 깊이를 정렬해 구조적 복구를 진행한다. 상대 깊이(supervised) 신호만으로도 목표 뷰의 깊이 없이 복구가 가능하도록 설계되었다.</p>
+<h2>Medium-aware Distillation</h2>
+<p>복구된 뷰를 3D 씬에 전달할 때, 매체 인식(distillation) 과정을 적용한다. 이는 기하학적 복구 수요와 채널별 광학 가시성을 고려해 정보를 선택적으로 전이한다. 반복적인 렌더링‑복구‑증류 루프를 통해 미확인 영역을 점진적으로 개선한다.</p>
+<h2>실험 결과</h2>
+<p>다양한 수중 데이터셋에서 OceanFix를 평가했으며, 기존 Gaussian splatting 대비 시각적 아티팩트가 크게 감소했다. 정밀한 디테일 복구와 색상 일관성이 향상되었으며, 정량적 지표에서도 PSNR·SSIM이 상승했다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">두 단계 학습 전략으로 외관 적응을 먼저 수행하고, 이후 기하학 정제로 전환해 대상 뷰 깊이 없이도 구조적 복구가 가능해졌다, 이는 기존 방법이 깊이 정보를 요구하던 문제를 해결한다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-26-95efb994bf62d8f0.html">AnyCam4D: 임의 카메라 모델을 위한 4D Gaussian 렌더링</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-6bafb6b030070e36.html">Gaussian Splatting 초기화 개선 — ST‑SfM 논문 요약</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-223d1a5e82633bda.html">Gaussian Splatting 기반 옴니디렉셔널 LiDAR‑Depth SLAM 발표</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.34155v1" target="_blank" rel="noopener nofollow">OceanFix: Reference-Guided Diffusion for Sparse-View Underwater 3D Reconstruction</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

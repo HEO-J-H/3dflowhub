@@ -1,0 +1,87 @@
+{
+  "id": "davinci-resolve-subclip-7455",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집",
+  "name": "Subclip",
+  "title": "서브 클립 — 긴 원본 영상에서 특정 구간만 잘라내어 별도의 독립된 클립으로 만드는 기능",
+  "summary": "Subclip은 긴 클립에서 원하는 구간만 별도 클립으로 추출해 편집 Timeline에 바로 사용할 수 있게 하는 기능입니다.",
+  "when": [
+    "전체 영상 중 특정 장면만 빠르게 재사용하고 싶을 때",
+    "다른 프로젝트나 시퀀스에 동일 구간을 반복 삽입해야 할 때",
+    "색보정·효과 적용 전, 작업 구간을 미리 분할해 관리하고 싶을 때"
+  ],
+  "steps": [
+    "Media Pool에서 원본 클립을 선택하고, 클립을 더블클릭해 Source Viewer를 엽니다.",
+    "재생 헤드(In)와 Out 포인트를 원하는 구간에 각각 I 키와 O 키(또는 Mark In/Out 버튼)로 지정합니다.",
+    "Source Viewer 위쪽 메뉴바에서 Clip → Make Subclip… (또는 Ctrl+Alt+U) 를 선택합니다.",
+    "팝업에서 Subclip Name 입력 후 OK 클릭하면 Media Pool에 새 Subclip이 생성됩니다."
+  ],
+  "params": [
+    {
+      "name": "In/Out points",
+      "desc": "시작·끝 프레임을 지정해 추출 구간을 정의합니다"
+    },
+    {
+      "name": "Subclip Name",
+      "desc": "생성될 서브클립의 이름을 지정합니다"
+    },
+    {
+      "name": "Clip → Make Subclip…",
+      "desc": "선택 구간을 새로운 클립으로 저장하는 명령"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인트로 로고만 따로 사용",
+      "steps": [
+        "전체 영상에서 로고가 나오는 구간을 I와 O로 마크",
+        "Make Subclip 실행 후 ‘Intro_Logo’ 이름 지정",
+        "새 Subclip을 Timeline에 드래그해 다른 프로젝트에 재사용"
+      ]
+    },
+    {
+      "title": "색보정 전 구간 분할",
+      "steps": [
+        "색보정이 필요한 씬을 In/Out으로 마크",
+        "Make Subclip으로 ‘ColorGrade_01’ 생성",
+        "Color 페이지에서 해당 Subclip만 선택해 보정 적용"
+      ]
+    }
+  ],
+  "mistakes": [
+    "마크 포인트를 지정하지 않음 → 구간이 전체 클립으로 저장되니 반드시 I와 O를 설정",
+    "Subclip 이름을 중복 입력 → 기존 Subclip이 덮어써지니 고유 이름 사용",
+    "Make Subclip 후 원본 클립을 삭제 → Subclip은 원본을 참조하므로 원본 유지 필요"
+  ],
+  "related": [
+    "Scene Cut Detector",
+    "Dynamic Zoom",
+    "External Matte",
+    "Mark In/Out"
+  ],
+  "videos": [
+    {
+      "id": "_IJMxu8bUkI",
+      "title": "Subclip Editing Workflow in Davinci Resolve - Additive versus Subtractive Editing",
+      "author": "Joshua Kirk"
+    },
+    {
+      "id": "XSgo_zZ4IqU",
+      "title": "What is SubClip in DaVinci Resolve and Why You Should Know",
+      "author": "VideoEditingCentral"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Subclip",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Media Pool",
+    "Source Viewer",
+    "In",
+    "Out",
+    "Mark In",
+    "Clip"
+  ],
+  "at": "2026-11-26T03:19:03.962377+00:00"
+}

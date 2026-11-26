@@ -1,0 +1,97 @@
+{
+  "id": "learning-rate-schedule-3beb",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 및 최적화",
+  "name": "Learning Rate Schedule",
+  "title": "학습률 스케줄링 — 위치, 회전, 스케일 등 속성별 최적화 학습률 감쇠 설정",
+  "summary": "Learning Rate Schedule는 Gaussian Splatting 학습 중 학습률을 단계적으로 감소시켜 안정적인 수렴과 빠른 최적화를 돕는 파라미터 집합입니다.",
+  "when": [
+    "초기 학습 단계에서 빠른 수렴이 필요할 때",
+    "대규모 데이터셋(도시·주행)처럼 학습이 오래 걸릴 때",
+    "학습이 불안정해 손실이 진동하거나 발산할 때"
+  ],
+  "steps": [
+    "Training Configuration 파일(또는 GUI) → Optimization 탭 → Learning Rate Schedule 섹션을 연다",
+    "Enable 체크박스를 켜고 Schedule Type을 \"Exponential\" 혹은 \"Step\" 중 선택한다",
+    "Learning Rate에 초기값(예: 0.01)을 입력하고 Decay Steps와 Decay Factor(예: 1000, 0.5)를 설정한다",
+    "필요 시 Warmup Steps(예: 200)와 Min Learning Rate(예: 0.0001)를 추가한다",
+    "설정을 저장하고 학습을 시작한다"
+  ],
+  "params": [
+    {
+      "name": "Learning Rate",
+      "desc": "초기 학습률, 값이 클수록 초기 업데이트가 크게 진행됩니다"
+    },
+    {
+      "name": "Schedule Type",
+      "desc": "학습률 감소 방식, Exponential·Step·Cosine 등 선택"
+    },
+    {
+      "name": "Decay Steps",
+      "desc": "학습률을 감소시킬 단계 간격"
+    },
+    {
+      "name": "Decay Factor",
+      "desc": "각 Decay Steps마다 학습률을 곱하는 비율"
+    },
+    {
+      "name": "Warmup Steps",
+      "desc": "학습 초기에 학습률을 서서히 올리는 단계 수"
+    },
+    {
+      "name": "Min Learning Rate",
+      "desc": "학습률이 이 값 이하로 떨어지지 않음"
+    }
+  ],
+  "examples": [
+    {
+      "title": "작은 실내 씬 빠른 수렴",
+      "steps": [
+        "Learning Rate를 0.02, Schedule Type을 Exponential, Decay Steps 500, Decay Factor 0.7 설정",
+        "Warmup Steps 100, Min Learning Rate 0.0005 지정",
+        "학습을 실행하면 2k iteration 내에 손실이 급격히 감소"
+      ]
+    },
+    {
+      "title": "대규모 도시 씬 안정적 학습",
+      "steps": [
+        "Learning Rate 0.01, Schedule Type Step, Decay Steps 2000, Decay Factor 0.5 설정",
+        "Warmup Steps 500 추가",
+        "학습 전체 50k iteration 동안 손실이 점진적으로 감소"
+      ]
+    }
+  ],
+  "mistakes": [
+    "학습률을 너무 높게 설정 → 손실이 발산함 → Learning Rate를 0.5~1배 낮추고 Warmup Steps 추가",
+    "Decay Factor를 1에 가깝게 설정 → 학습률 감소가 거의 없어 과적합 위험 → Decay Factor를 0.5~0.9 사이로 조정"
+  ],
+  "related": [
+    "Resolution Multiplier",
+    "Camera Optimization",
+    "GPU Scheduling",
+    "Background Color"
+  ],
+  "videos": [
+    {
+      "id": "4FcW7OkIZLw",
+      "title": "How to Use Learning Rate Scheduling for Neural Network Training",
+      "author": "Mısra Turp"
+    },
+    {
+      "id": "DNxOqkYlayc",
+      "title": "Learning Rate Schedules 📉📈 Step Decay, Cosine, Cyclical & More",
+      "author": "Deep knowledge"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Learning%20Rate%20Schedule",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Training Configuration",
+    "GUI",
+    "Optimization",
+    "Learning Rate Schedule"
+  ],
+  "at": "2026-11-26T03:18:27.961026+00:00"
+}

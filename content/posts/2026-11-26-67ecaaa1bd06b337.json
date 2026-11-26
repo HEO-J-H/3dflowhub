@@ -1,0 +1,45 @@
+{
+  "title_ko": "OceanFix: 수중 3D 재구성을 위한 Sparse-View Diffusion",
+  "title": "OceanFix: Reference-Guided Diffusion for Sparse-View Underwater 3D Reconstruction",
+  "url": "https://arxiv.org/abs/2611.34155v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "수중 3D",
+    "Sparse-View",
+    "Diffusion",
+    "Gaussian splatting",
+    "OceanFix"
+  ],
+  "summary": "OceanFix는 레퍼런스 기반 Diffusion과 Gaussian splatting을 결합해 희소 시점 수중 3D 재구성의 시각적 결함을 감소시킨다.",
+  "insight": "두 단계 학습 전략으로 외관 적응을 먼저 수행하고, 이후 기하학 정제로 전환해 대상 뷰 깊이 없이도 구조적 복구가 가능해졌다, 이는 기존 방법이 깊이 정보를 요구하던 문제를 해결한다.",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "OceanFix 개요",
+      "body": "본 논문은 수중 환경에서 관측이 드문 경우에도 고품질 3D 재구성을 목표로 한다. Gaussian splatting의 효율성을 기반으로 하면서, 빛 감쇠와 백스캐터링으로 인한 시각적 왜곡을 보완한다. 레퍼런스 관측과 매체 특성을 활용해 Diffusion 모델을 훈련한다."
+    },
+    {
+      "heading": "두 단계 학습 전략",
+      "body": "첫 단계에서는 레퍼런스 이미지와 추정된 매체 특징을 이용해 수중 외관을 학습한다. 두 번째 단계에서는 카메라 포즈와 레퍼런스 깊이를 정렬해 구조적 복구를 진행한다. 상대 깊이(supervised) 신호만으로도 목표 뷰의 깊이 없이 복구가 가능하도록 설계되었다."
+    },
+    {
+      "heading": "Medium-aware Distillation",
+      "body": "복구된 뷰를 3D 씬에 전달할 때, 매체 인식(distillation) 과정을 적용한다. 이는 기하학적 복구 수요와 채널별 광학 가시성을 고려해 정보를 선택적으로 전이한다. 반복적인 렌더링‑복구‑증류 루프를 통해 미확인 영역을 점진적으로 개선한다."
+    },
+    {
+      "heading": "실험 결과",
+      "body": "다양한 수중 데이터셋에서 OceanFix를 평가했으며, 기존 Gaussian splatting 대비 시각적 아티팩트가 크게 감소했다. 정밀한 디테일 복구와 색상 일관성이 향상되었으며, 정량적 지표에서도 PSNR·SSIM이 상승했다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.34155v1/method_overview.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T03:18:12.236216+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-67ecaaa1bd06b337",
+  "img_tried": true
+}
