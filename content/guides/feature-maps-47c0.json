@@ -1,0 +1,104 @@
+{
+  "id": "feature-maps-47c0",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "렌더링 및 출력",
+  "name": "Feature Maps",
+  "title": "Feature Maps — 렌더링 패스를 통한 깊이 및 알파 채널 분리 출력",
+  "summary": "Feature Maps는 Gaussian Splatting 모델에 색상·디퓨즈·노멀·알베도 등 추가 속성을 부여해 고품질 렌더링과 재조명을 가능하게 합니다.",
+  "when": [
+    "복잡한 재질 표현이 필요할 때",
+    "동일한 Gaussian 포인트에 여러 텍스처 채널을 적용하고 싶을 때",
+    "렌더링 후 색상·조명 보정을 빠르게 수행하고 싶을 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 출력 폴더에서 Viewer (예: SIBR Viewer) 실행",
+    "Viewer UI → Feature Maps 탭을 클릭 (Hotkey: F)",
+    "Add Feature Map 버튼을 눌러 .exr/.png 등 텍스처 파일을 선택",
+    "맵 종류를 선택 (Color, Diffuse, Normal, Roughness 등) 후 Apply",
+    "Parameter 창에서 Blend Mode와 Strength를 조정",
+    "Viewport에서 결과를 확인하고 필요 시 재조정",
+    "Render → Export Video 혹은 Image Sequence 로 저장"
+  ],
+  "params": [
+    {
+      "name": "Blend Mode",
+      "desc": "맵과 기존 Gaussian 색상의 혼합 방식 (Add, Multiply 등)"
+    },
+    {
+      "name": "Strength",
+      "desc": "맵 적용 강도, 값이 클수록 효과가 강해짐"
+    },
+    {
+      "name": "UV Scale",
+      "desc": "텍스처 UV 스케일, 작은 값은 타일링 증가"
+    },
+    {
+      "name": "Offset",
+      "desc": "텍스처 오프셋, 위치 조정에 사용"
+    },
+    {
+      "name": "Channel",
+      "desc": "적용할 채널 선택 (Color, Normal, Roughness 등)"
+    },
+    {
+      "name": "Enable HDR",
+      "desc": "HDR 텍스처 사용 시 색상 범위 유지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "파이프 표면에 금속 질감 추가",
+      "steps": [
+        "Feature Maps 탭에서 Metalness 맵을 로드",
+        "Blend Mode를 Multiply, Strength를 0.8 로 설정",
+        "Normal Map을 추가해 표면 디테일 강화",
+        "렌더 후 금속 반사 효과 확인"
+      ]
+    },
+    {
+      "title": "건물 외벽에 벽돌 텍스처 적용",
+      "steps": [
+        "Color Map에 벽돌 .exr 파일을 로드",
+        "UV Scale을 0.5 로 조정해 타일링 감소",
+        "Roughness Map을 추가해 빛 반사 제어",
+        "Viewport에서 실제 조명과 섞인 결과 확인"
+      ]
+    }
+  ],
+  "mistakes": [
+    "맵 Resolution가 낮음 → 고해상도 텍스처로 교체",
+    "Blend Mode를 기본 Add 로 두고 Strength 과다 → 색상이 과포화 → Multiply 또는 Overlay 로 변경 후 Strength 낮추기",
+    "Normal Map을 Color Map으로 잘못 로드 → 표면이 왜곡 → 올바른 Channel 선택"
+  ],
+  "related": [
+    "Camera Path",
+    "Video Rendering",
+    "Anchor3DGS",
+    "Re-lighting"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "mQ4EHUpXj9Q",
+      "title": "3D Gaussian Splatting | How to Create 3D Gaussian Splatting From Drone Video Beginner Guide.",
+      "author": "UFLY UAS"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Feature%20Maps",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "Viewer",
+    "SIBR Viewer",
+    "Viewer UI",
+    "Feature Maps",
+    "Hotkey"
+  ],
+  "at": "2026-11-26T03:01:30.286425+00:00"
+}

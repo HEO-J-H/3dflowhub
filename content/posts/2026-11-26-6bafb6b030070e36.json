@@ -1,0 +1,55 @@
+{
+  "title_ko": "Gaussian Splatting 초기화 개선 — ST‑SfM 논문 요약",
+  "title": "ST-SfM: Spatio-Temporal Structure-from-Motion for Initialising 4D Gaussian Splatting",
+  "url": "https://arxiv.org/abs/2611.32231v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "ST‑SfM",
+    "Structure-from-Motion",
+    "4D Gaussian Splatting",
+    "PSNR 개선",
+    "동적 포인트"
+  ],
+  "summary": "ST‑SfM은 동기화된 다중 카메라 영상을 이용해 정적·동적 4D 포인트 클라우드를 추출해 Gaussian splatting 초기화를 개선한다.",
+  "insight": "ST‑SfM은 다중 카메라 셋업이 가능한 스튜디오 환경에서 바로 적용할 수 있다. 정적·동적 정보를 동시에 확보하므로, 기존에 별도로 진행하던 SfM과 움직임 추적을 하나의 단계로 통합한다. 초기화 품질이 높아지면 3DGS의 학습 시간도 단축되고, 최종 결과물의 시각적 일관성이 향상된다. 특히 실시간 렌더링이나 AR/VR 콘텐츠 제작 시, 움직이는 객체의 정확한 위치와 타이밍을 보존할 수 있다.",
+  "try_it": [
+    "동기화·보정된 다중 카메라 비디오를 준비하고, 각 카메라별 temporal‑median 이미지를 생성한다.",
+    "ST‑SfM 구현(오픈소스 코드가 제공된 경우) 혹은 자체 파이프라인에 정적 구조 검출과 STIP 기반 동적 검출을 적용한다.",
+    "얻은 희소 4D 포인트 클라우드를 3D Gaussian Splatting 초기값으로 전달하고, 기존 3DGS 학습을 실행한다.",
+    "무작위 초기화와 비교해 PSNR, SSIM, LPIPS를 측정해 품질 차이를 확인한다."
+  ],
+  "sections": [
+    {
+      "heading": "ST‑SfM 개요",
+      "body": "ST‑SfM은 Spatio‑Temporal Structure‑from‑Motion 기법으로, 동기화·보정된 다중 카메라 영상을 입력받아 정적 구조와 동적 움직임을 동시에 추출한다. 장면을 정적·동적 두 개의 분기로 나누어 각각 전용 파이프라인을 적용한다. 결과는 정적 3D 포인트와 시간 정보를 포함한 4D 포인트 클라우드다."
+    },
+    {
+      "heading": "정적 구조 검출",
+      "body": "각 카메라의 시간‑중간 이미지(temporal‑median)에서 정적 구조를 찾는다. 에피폴라 라인에 따라 매칭하고, 시간적 안정성을 위해 게이트 필터링을 적용한다. 이렇게 얻은 정적 포인트는 RANSAC 기반 삼각측량으로 3D 좌표를 복원한다."
+    },
+    {
+      "heading": "동적 움직임 검출",
+      "body": "동적 부분은 비디오 볼륨 전체에서 space‑time interest points(STIPs)를 탐지한다. STIPs는 HOG3D로 기술하고, 에피폴라 제약과 시간 일치를 동시에 만족하는 후보끼리만 매칭한다. Union‑find 트래킹으로 일관성 없는 병합을 차단하고, 서브‑프레임 시간까지 포함한 4D 포인트를 생성한다."
+    },
+    {
+      "heading": "4D 클라우드와 Gaussian Splatting 초기화",
+      "body": "ST‑SfM이 만든 희소 4D 포인트 클라우드를 초기값으로 사용하면, 기존의 무작위 초기화보다 빠르게 수렴한다. 정적 3D 포인트와 동적 4D 포인트가 모두 포함돼, 움직이는 객체까지 정확히 재현한다. 이 초기화는 3D Gaussian Splatting(3DGS) 파이프라인에 바로 삽입할 수 있다."
+    },
+    {
+      "heading": "실험 결과와 품질 향상",
+      "body": "N3DV 데이터셋에서 무작위 초기화와 비교했을 때, ST‑SfM 기반 초기화는 PSNR이 평균 0.8 dB, SSIM이 0.02, LPIPS가 0.03 상승했다. 특히 움직임이 큰 씬에서 초기 단계부터 디테일이 크게 개선된다. 이러한 정량적 향상은 downstream 렌더링이나 시각화 품질에도 직접적인 영향을 미친다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.32231v1/figs/init_check.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T02:57:54.352088+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-6bafb6b030070e36",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}

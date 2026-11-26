@@ -1,0 +1,108 @@
+{
+  "id": "photoshop-3d-postcard-c9c3",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "3D Postcard",
+  "title": "3D 엽서 — 평면 레이어를 3D 공간의 단면 평면으로 변환",
+  "summary": "2D 레이어를 평면 3D 메쉬로 변환해 3D 공간에 배치하고 조명·텍스처를 적용할 수 있는 기능입니다.",
+  "when": [
+    "2D 이미지에 간단한 입체감과 조명을 부여하고 싶을 때",
+    "텍스트 레이어를 3D 로고처럼 활용하고 싶을 때",
+    "빠르게 3D 프리뷰를 만들고 싶을 때"
+  ],
+  "steps": [
+    "레이어 패널에서 변환할 레이어를 선택합니다",
+    "상단 메뉴 바에서 3D > New 3D Postcard from Layer 를 클릭합니다",
+    "3D 레이어가 생성되고 기본 카메라·라이트가 표시됩니다",
+    "Properties 패널에서 Width·Height·Depth·Extrude Depth 값을 조정합니다",
+    "Move Tool(V) 로 위치를 이동하고 Rotate Tool(R) 로 회전합니다",
+    "Material 섹션에서 Diffuse 색상·텍스처를 원하는 대로 바꿉니다"
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "메시 가로 길이"
+    },
+    {
+      "name": "Height",
+      "desc": "메시 세로 길이"
+    },
+    {
+      "name": "Depth",
+      "desc": "메시 두께(기본 평면)"
+    },
+    {
+      "name": "Extrude Depth",
+      "desc": "메시를 입체적으로 돌출시키는 거리"
+    },
+    {
+      "name": "Material",
+      "desc": "표면 색상·텍스처를 지정합니다"
+    },
+    {
+      "name": "Lighting",
+      "desc": "기본 라이트 설정을 조정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "포스터에 입체 효과 주기",
+      "steps": [
+        "포스터 이미지 레이어 선택",
+        "3D > New 3D Postcard from Layer 실행",
+        "Extrude Depth를 5 mm 정도로 설정",
+        "Rotate Tool로 약간 기울여 Viewport에 배치"
+      ]
+    },
+    {
+      "title": "텍스트를 3D 로고로 만들기",
+      "steps": [
+        "텍스트 레이어 선택",
+        "New 3D Postcard from Layer 클릭",
+        "Depth를 10 mm로 늘리고 Material 색상 변경",
+        "Move Tool로 원하는 위치에 배치"
+      ]
+    },
+    {
+      "title": "제품 사진 배경을 3D 평면으로 변환",
+      "steps": [
+        "배경 레이어 선택",
+        "New 3D Postcard from Layer 실행",
+        "Width·Height를 사진 크기에 맞게 조정",
+        "Extrude Depth 0으로 두고 카메라 각도만 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Extrude Depth를 0으로 두면 평면 그대로 → Depth 값을 늘려 입체화",
+    "레이어가 Smart 오브젝트가 아니면 변환되지 않음 → 레이어를 Smart 오브젝트로 변환 후 시도",
+    "3D 레이어가 선택되지 않은 상태에서 Move Tool을 사용 → 3D 레이어를 선택하고 이동"
+  ],
+  "related": [
+    "Mesh Preset",
+    "Cross Section",
+    "3D Camera",
+    "3D Materials"
+  ],
+  "videos": [
+    {
+      "id": "omu7b_FDJRI",
+      "title": "How To Create a Vintage Postcard Design (Illustrator & Photoshop Tutorial)",
+      "author": "Spoon Graphics"
+    },
+    {
+      "id": "fyB2md8PBmE",
+      "title": "Photoshop tutorial - 3D Postcard Design",
+      "author": "Emir"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Postcard",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "New 3D Postcard",
+    "Layer"
+  ],
+  "at": "2026-11-26T03:02:06.260944+00:00"
+}
