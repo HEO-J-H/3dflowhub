@@ -1,0 +1,13 @@
+<!-- TITLE: RenderFM-Next Gaussian Splatting 모델로 의료 볼륨 렌더링 | TAGS: Gaussian Splatting,의료 렌더링,CT,MR,RenderFM-Next,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — RenderFM-Next는 3D CT 및 MR 스캔을 한 번의 피드포워드 패스로 예측하고 절단면과 전송 함수(TF) 편집을 실시간으로 지원하는 Gaussian Splatting 모델입니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>RenderFM-Next의 의료 볼륨 렌더링 한계 극복</h2>
+<p>기존 패스 트레이스 렌더링은 시점이나 전송 함수(TF)가 바뀔 때마다 다시 시작되어 프레임 레이트가 떨어집니다. 반면 RenderFM-Next는 단일 네트워크로 CT와 MR 데이터를 모두 처리하며, 전송 함수를 수정할 때마다 네트워크를 다시 실행할 필요가 없습니다. 또한 사전 연구의 연산자를 활용하여 클리핑 플레인이 볼륨을 정확하게 절단하도록 구현했습니다.</p>
+<h2>3mm Grid와 1.5mm 정밀화를 결합한 Gaussian 구조</h2>
+<p>이 모델은 전체 볼륨에 대해 3mm 크기의 거친 Gaussian을 예측한 뒤, 화질 개선에 도움이 되는 영역만 1.5mm 크기로 정밀화합니다. 소형 스코어 헤드가 정밀화 시 렌더링 오차를 줄일 수 있는 정도에 따라 Gaussian 순위를 매깁니다. 사용자 렌더링 시점에 정밀화할 비율을 직접 선택할 수 있으며 클리핑 플레인 인접 영역은 항상 정밀화되어 잘린 단면이 선명해집니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">CT와 MR 볼륨을 1600x1600 Resolution에서 4-6ms 속도로 렌더링하면서도 3mm 기본 Grid와 1.5mm 선택적 정밀화(refinement)를 통해 절단면의 경계 흐림 현상을 줄였습니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-26-5b14853185dddb8f.html">MERLoc: 3DGS를 활용한 동적 환경 로봇 로컬라이제이션</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-8f6045dc37bafea3.html">MEMO: 모든 프레임에서 메시를 추출하는 동적 3D Gaussian Splatting</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-e5743cc19ee64317.html">3DGS 2차 최적화 속도를 두 배 높이는 효율적 방법</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.34478v1" target="_blank" rel="noopener nofollow">Feed-Forward Adaptive Gaussian Splatting for Interactive Medical Volume Rendering</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
