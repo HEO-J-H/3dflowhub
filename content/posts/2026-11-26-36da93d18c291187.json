@@ -1,0 +1,58 @@
+{
+  "title_ko": "Gaussian Splatting 기반 로봇 경로 최적화 알고리즘 FOCI",
+  "title": "FOCI: Trajectory Optimization on Gaussian Splats for Gaussian Robots",
+  "url": "https://arxiv.org/abs/2611.33380v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "Gaussian Splatting",
+    "로보틱스",
+    "궤적 최적화",
+    "3DGS",
+    "오버랩 적분"
+  ],
+  "summary": "3D Gaussian Splatting 환경에서 로봇이 충돌 없이 이동 경로를 몇 초 만에 계산할 수 있는 FOCI 알고리즘이 발표되었습니다.",
+  "insight": "3D Gaussian Splatting 공간 정보를 로봇 경로 계획에 직접 활용하는 FOCI 알고리즘이 공개되었습니다. 기존 방식들은 통행 가능성을 과소평가하는 보수적인 경계 상자에 의존했으나, 이 연구는 로봇과 환경을 모두 Gaussian 형태로 표현합니다. 이를 통해 Gaussian 간의 오버랩 적분을 계산하여 좁은 틈새를 통과하는 방향 인식 경로를 몇 초 만에 산출합니다.",
+  "try_it": [
+    "논문에서 제공하는 FOCI 소스 코드를 확인하고 3D Gaussian Splatting 데이터셋과의 연동 구조를 파악합니다.",
+    "합성 및 실제 3D Gaussian Splatting 환경에서 보행 로봇이나 매니퓰레이터의 궤적 최적화 테스트를 진행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "FOCI 알고리즘과 Field Overlap Collision Integral",
+      "body": "새롭게 제안된 FOCI 알고리즘은 3D Gaussian Splatting 공간 정보 속에서 Gaussian 간의 오버랩 적분을 활용합니다. 이를 통해 로봇과 주변 환경 모두를 Gaussian 형태로 표현하여 충돌을 정밀하게 계산합니다. 연산 과정에서 불필요한 지연을 줄이고 공간 정보를 직접 활용하는 것이 특징입니다."
+    },
+    {
+      "heading": "다양한 로봇 형태와 환경 적용",
+      "body": "고정형 및 모바일 매니퓰레이터, 4족 보행 로봇, 무인 항공기 등 여러 로봇 형태에 적용할 수 있습니다. 정적 환경뿐만 아니라 동적인 Gaussian Splatting 환경까지 모두 처리합니다. 다양한 모폴로지에서 동일한 충돌 공식이 작동하도록 설계되었습니다."
+    },
+    {
+      "heading": "오차를 줄이는 방향 인식 경로 계획",
+      "body": "기존 방식들이 환경의 통행 가능성을 과소평가하던 보수적 경계 상자 방식을 탈피했습니다. Gaussian 표현 방식을 통해 로봇이 매우 좁고 협소한 공간을 통과할 수 있는 방향 인식 계획을 지원합니다. 기하학적 형태의 제약을 유연하게 극복하는 구조입니다."
+    },
+    {
+      "heading": "실제 환경에서의 연산 속도 검증",
+      "body": "수십만 개의 Gaussian으로 이루어진 합성 및 실제 3D Gaussian Splatting 환경에서 검증을 마쳤습니다. 보행 로봇, 비행 로봇, 매니퓰레이터의 충돌 없는 궤적을 몇 초 만에 산출합니다. 복잡한 3D 공간 데이터 기반에서도 실시간성에 가까운 성능을 보여줍니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "FOCI 알고리즘은 어떤 원리로 작동하나요?",
+      "a": "3D Gaussian Splatting 환경과 로봇을 Gaussian 형태로 함께 표현한 뒤, Gaussian 간의 오버랩 적분을 계산하여 충돌 없는 최적 경로를 도출합니다."
+    },
+    {
+      "q": "어떤 로봇 기종에 적용할 수 있나요?",
+      "a": "고정형·모바일 매니퓰레이터, 4족 보행 로봇, UAV 등 다양한 형태의 로봇에 적용 가능합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.33380v1/figures/Dynamic_Environment.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T10:59:21.299308+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-36da93d18c291187",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}
