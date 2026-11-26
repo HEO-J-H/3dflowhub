@@ -1,0 +1,39 @@
+{
+  "id": "houdini-error-bullet-solver-rigid-body-collision-s-73b8f",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Bullet solver: Rigid body collision shape generation failed",
+  "title": "Error: Bullet solver: Rigid body collision shape generation failed 해결",
+  "summary": "Houdini의 Bullet Solver에서 강체(Rigid Body) 간의 충돌 형태(Collision Shape)를 생성하지 못했을 때 발생하는 오류입니다. 주로 비정상적인 지오메트리나 닫히지 않은 메쉬 구조 때문에 발생합니다.",
+  "causes": [
+    "충돌 오브젝트의 메쉬가 닫혀 있지 않거나(Non-closed) 구멍이 뚫려 있는 경우",
+    "지오메트리에 폴리곤 법선(Normals)이 뒤집힌 면이 포함된 경우",
+    "스케일이 0이거나 면적이 없는(Degenerate) 제로 영역 폴리곤이 존재하는 경우",
+    "RBD Packed Object 또는 Convex Decomposition 노드에서 잘못된 충돌 형태(Collision Shape) 옵션을 선택한 경우"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 해당 오브젝트의 Geometry 레벨로 들어갑니다.",
+    "Tab 키를 누르고 Fuse 노드를 추가하여 미세하게 떨어진 포인트를 병합합니다.",
+    "Normal 노드를 추가하여 폴리곤 법선(Normals) 방향을 바깥쪽으로 일괄 정렬합니다.",
+    "Divide 노드나 Clean 노드를 추가하여 중복된 포인트와 제로 영역 폴리곤을 정리합니다.",
+    "RBD Packed Object 노드의 Collision 탭에서 Shape 옵션을 Convex Hull 또는 Concave Tree로 변경합니다."
+  ],
+  "check": [
+    "Houdini Viewport에서 시뮬레이션을 다시 재생했을 때 오류 메시지가 사라지는지 확인합니다.",
+    "Bullet Solver가 생성한 충돌 와이어프레임(Collision Wireframe)이 오브젝트 형태대로 정상적으로 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "시뮬레이션에 사용하기 전 SOP 레벨에서 항상 Clean 노드와 PolyDoctor 노드를 거쳐 지오메트리 오류를 사전에 제거합니다.",
+    "외부에서 가져온(FBX/USD 등) 모델은 시뮬레이션 전 반드시 올바른 스케일과 Transform을 적용(Freeze)합니다."
+  ],
+  "keywords": [
+    "Houdini Bullet Solver 오류",
+    "Rigid body collision shape generation failed",
+    "Houdini 강체 충돌 에러",
+    "RBD 충돌 형태 생성 실패",
+    "Houdini Bullet 시뮬레이션 멈춤"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T02:18:07+00:00"
+}

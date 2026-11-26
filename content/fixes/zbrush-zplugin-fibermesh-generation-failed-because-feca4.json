@@ -1,0 +1,34 @@
+{
+  "id": "zbrush-zplugin-fibermesh-generation-failed-because-feca4",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: FiberMesh generation failed because mask density is zero",
+  "title": "Zplugin: FiberMesh generation failed because mask density is zero 해결 방법",
+  "summary": "ZBrush에서 FiberMesh를 생성할 때 Mask 밀도가 0으로 설정되어 있어 털이나 섬유를 생성할 위치를 찾지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬에 Mask가 전혀 칠해지지 않았거나 Mask 밀도(Density) 슬라이더가 0으로 설정된 경우",
+    "이전 작업에서 사용한 Mask가 남아 있거나 잘못된 Mask 채널이 적용된 경우"
+  ],
+  "steps": [
+    "Tool 팔레트에서 FiberMesh 메뉴를 엽니다.",
+    "FiberMesh 하위 메뉴에서 Density 슬라이더 값을 확인합니다.",
+    "Density 값이 0으로 되어 있다면 원하는 밀도 값(예: 1 이상)으로 높여줍니다.",
+    "Mask 영역을 기준으로 Fiber를 생성하려면, 메쉬에 Mask를 먼저 칠한 뒤 Density와 Mask 관련 옵션을 조절합니다."
+  ],
+  "check": [
+    "Density 값을 올린 후 Preview 버튼을 눌러 Viewport에 FiberMesh 미리보기가 정상적으로 나타나는지 확인합니다."
+  ],
+  "prevent": [
+    "FiberMesh를 생성하기 전에 항상 Tool > FiberMesh 팔레트의 기본 밀도(Density) 설정값을 확인합니다."
+  ],
+  "keywords": [
+    "ZBrush FiberMesh 오류",
+    "mask density is zero",
+    "파이버메시 Mask 밀도",
+    "ZBrush 털 생성 안됨",
+    "FiberMesh 생성 실패"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T02:18:09+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "maya-error-file-line-x-skin-cluster-evaluation-fai-e7fb5",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Skin cluster evaluation failed for mesh",
+  "title": "# Error: file: line X: Skin cluster evaluation failed for mesh 해결 방법",
+  "summary": "Maya에서 특정 메시(Mesh)의 스킨 클러스터 연산 중 데이터 손상이나 비정상적인 Topology로 인해 발생하는 오류입니다. 주로 손상된 컴포넌트나 불필요한 히스토리로 인해 평가(Evaluation)가 실패할 때 나타납니다.",
+  "causes": [
+    "메시의 지오메트리 데이터가 손상되었거나 영(Zero) 면적의 폴리곤이 포함된 경우",
+    "오래된 컨스트럭션 히스토리(Construction History)가 스킨 바인딩과 충돌을 일으키는 경우",
+    "비정상적인 Vertex ID 변경이나 외부 파일 Import 과정에서의 데이터 불일치"
+  ],
+  "steps": [
+    "문제가 발생하는 메시를 선택하고, 메인 메뉴에서 Edit > Delete by Type > History를 실행하여 불필요한 히스토리를 정리합니다.",
+    "메시를 선택한 상태로 Mesh > Cleanup을 열어 Non-manifold geometry, Faces with zero area, Zero length edges 등을 체크하고 정리합니다.",
+    "여전히 문제가 지속된다면 스킨(Skin)을 완전히 언바인드(Unbind Skin)한 뒤, 히스토리를 지우고 다시 스킨을 바인딩합니다.",
+    "문제가 되는 메시를 Export Selected로 OBJ 또는 FBX 형식으로 내보낸 뒤 다시 임포트하여 Vertex ID와 Topology를 초기화합니다."
+  ],
+  "check": [
+    "히스토리를 정리하거나 재바인딩한 후, Timeline을 재생하거나 애니메이션을 움직여 오류 메시지가 다시 출력되지 않는지 확인합니다.",
+    "스킨 웨이트를 수정하거나 조인트를 회전시켰을 때 메시가 비정상적으로 튀거나 붕괴하지 않는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "모델링 작업 중 주기적으로 Edit > Delete by Type > History를 실행하여 히스토리를 관리합니다.",
+    "스킨 바인딩 작업을 하기 전 반드시 Mesh > Cleanup을 통해 깨끗한 Topology 상태를 유지합니다."
+  ],
+  "keywords": [
+    "Maya 스킨 오류",
+    "Skin cluster evaluation failed",
+    "Maya 스킨 클러스터 에러",
+    "Maya 웨이트 오류 해결",
+    "Maya mesh cleanup"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T02:18:02+00:00"
+}

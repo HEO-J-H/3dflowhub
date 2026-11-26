@@ -1,0 +1,98 @@
+{
+  "id": "davinci-resolve-split-screen-982e",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러",
+  "name": "Split Screen",
+  "title": "분할 화면 — 여러 샷의 색감을 한눈에 비교하고 매칭하는 기능",
+  "summary": "DaVinci Resolve의 Split Screen 효과는 여러 개의 영상 클립을 하나의 화면에 분할하여 동시에 보여주는 기능입니다. 화면 구성을 직관적으로 나누어 비교 영상이나 멀티 뷰 연출에 유용합니다.",
+  "when": [
+    "인터뷰나 대담 영상에서 두 명 이상의 화자를 동시에 보여줄 때",
+    "동일한 씬의 여러 테이크나 다른 카메라 앵글을 비교할 때",
+    "뮤직비디오나 타이틀 시퀀스에서 역동적인 멀티 뷰 화면을 구성할 때"
+  ],
+  "steps": [
+    "Edit 페이지의 Effects 라이브러리에서 'OpenFX' 또는 'Split Screen' 효과를 검색합니다.",
+    "동시에 보여주고 싶은 클립들을 Timeline의 비디오 트랙(V1, V2, V3...)에 수직으로 겹쳐서 배치합니다.",
+    "Inspector 패널에서 비디오 클립의 크기(Zoom)와 위치(Position)를 직접 조절하거나, Split Screen Effect를 해당 클립에 드래그 앤 드롭합니다.",
+    "Inspector의 Effects 탭에서 분할 레이아웃(Layout), 테두리 두께(Border Width), 색상(Color) 등을 세부 설정합니다.",
+    "프로그램 Viewport에서 화면 분할 상태를 확인하고 재생(Spacebar)하여 싱크를 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Layout",
+      "desc": "화면을 나누는 Grid 형태나 분할 방식을 선택합니다."
+    },
+    {
+      "name": "Border Width",
+      "desc": "분할된 화면과 화면 사이의 경계선 두께를 조절합니다."
+    },
+    {
+      "name": "Border Color",
+      "desc": "경계선의 색상을 변경합니다."
+    },
+    {
+      "name": "Pan",
+      "desc": "분할된 각 프레임 내에서 영상의 가로 위치를 조정합니다."
+    },
+    {
+      "name": "Tilt",
+      "desc": "분할된 각 프레임 내에서 영상의 세로 위치를 조정합니다."
+    },
+    {
+      "name": "Zoom",
+      "desc": "분할된 프레임 안에서의 영상 크기를 확대 또는 축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2분할 화면 비교 영상 만들기",
+      "steps": [
+        "Timeline에 비교할 두 개의 영상을 V1, V2 트랙에 위아래로 올립니다.",
+        "Split Screen 효과를 두 클립에 모두 적용합니다.",
+        "Inspector에서 2분할 레이아웃을 선택하고 각각의 Pan 값을 조절해 인물이 잘리지 않게 맞춥니다."
+      ]
+    },
+    {
+      "title": "멀티캠 스타일의 4분할 화면 구성",
+      "steps": [
+        "Timeline에 4개의 클립을 각각 V1부터 V4 트랙에 배치합니다.",
+        "각 클립의 타임코드나 Audio를 기준으로 동기화합니다.",
+        "Split Screen 효과의 4분할 레이아웃을 적용하여 각 화면의 위치를 정렬합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "영상의 비율이 맞지 않아 잘리는 현상 → Inspector의 Zoom과 Pan 값을 조절하여 피사체를 프레임 중앙에 맞추세요.",
+    "Audio가 겹쳐서 들리는 현상 → 필요 없는 트랙의 Audio 볼륨을 끄거나(Mute) Audio 클립을 삭제하세요.",
+    "버전별 Effect 경로 혼동 → Effects 라이브러리 검색창에 직접 'Split Screen'을 입력하여 빠르게 찾으세요."
+  ],
+  "related": [
+    "Multicam Editing",
+    "Color Slice",
+    "Adjustment Clip",
+    "Fusion Composition"
+  ],
+  "videos": [
+    {
+      "id": "jj8QIjQ3JPQ",
+      "title": "How to Make a Split Screen in DaVinci Resolve (Fast & Easy)",
+      "author": "Victor Melchor"
+    },
+    {
+      "id": "41wygOc8EeI",
+      "title": "How To Split Screens in Davinci Resolve 19 | EASY",
+      "author": "Molin Guides"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Split%20Screen",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Edit",
+    "Effects",
+    "OpenFX",
+    "Split Screen"
+  ],
+  "at": "2026-11-26T02:17:59.883508+00:00"
+}

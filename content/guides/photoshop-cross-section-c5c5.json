@@ -1,0 +1,92 @@
+{
+  "id": "photoshop-cross-section-c5c5",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 렌더링",
+  "name": "Cross Section",
+  "title": "단면(Cross Section) — 3D 모델의 내부를 확인하기 위해 특정 축을 기준으로 잘라내는 기능",
+  "summary": "Photoshop의 Cross Section(단면) 기능은 3D 모델이나 건축 시각화 렌더링 결과물의 내부 구조를 직관적으로 보여주기 위해 가상의 절단면을 만들어 보여주는 기능입니다. 3D 레이어 환경에서 특정 축을 기준으로 오브젝트를 잘라내어 단면을 확인하고 도면이나 그래픽 소스로 활용할 수 있습니다.",
+  "when": [
+    "3D 모델의 내부 구조나 조립 상태를 시각적으로 설명할 때",
+    "건축 평면도나 단면도 그래픽을 3D 렌더링과 합성할 때",
+    "제품 디자인의 단면 컷아웃(Cut-out) 이미지를 빠르게 제작할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 파일 또는 3D 레이어를 엽니다.",
+    "Layers 패널에서 해당 3D 레이어를 선택하고 3D 작업 영역(3D Workspace)으로 전환합니다.",
+    "3D 패널(3D Panel)에서 'Scene' 또는 해당 3D Mesh 항목을 선택합니다.",
+    "Properties 패널에서 Cross Section 아이콘(가위 또는 단면 아이콘)을 클릭하여 활성화합니다.",
+    "절단면(Slice Plane)의 축(X, Y, Z)과 위치(Offset) 값을 조절하여 원하는 단면 위치를 맞춥니다.",
+    "Viewport에서 잘려 나간 단면과 내부 구조가 올바르게 표시되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cross Section",
+      "desc": "3D 모델의 단면 보기 기능을 켜고 끕니다."
+    },
+    {
+      "name": "Plane",
+      "desc": "모델을 자를 기준 축(X, Y, Z Axis)을 선택합니다."
+    },
+    {
+      "name": "Offset",
+      "desc": "기준 평면의 위치를 이동하여 자를 위치를 조절합니다."
+    },
+    {
+      "name": "Flip",
+      "desc": "절단면을 기준으로 보여지는 영역의 방향을 반대로 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축물 내부 구조 단면 렌더링",
+      "steps": [
+        "건물 3D 모델 레이어를 선택합니다.",
+        "3D Properties에서 Z축 Cross Section을 활성화합니다.",
+        "Offset 값을 낮춰 지붕과 윗층을 잘라내고 평면도 뷰를 만듭니다."
+      ]
+    },
+    {
+      "title": "기계 부품 조립 단면 컷아웃",
+      "steps": [
+        "기계 실린더 3D 모델을 불러옵니다.",
+        "X축 Cross Section을 켜고 모델의 정중앙에 맞춥니다.",
+        "내부 피스톤 구조가 잘 보이도록 위치를 미세 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단면이 보이지 않음 → 3D 레이어가 아닌 일반 2D 래스터 레이어가 선택되어 있는지 확인하고 3D 패널에서 Mesh가 활성화되었는지 체크하세요.",
+    "원하지 않는 방향으로 잘림 → Properties 패널에서 Plane 축(X, Y, Z) 설정이 올바른지 확인하세요."
+  ],
+  "related": [
+    "3D Layers",
+    "Properties Panel",
+    "3D Extrude",
+    "Clipping Mask"
+  ],
+  "videos": [
+    {
+      "id": "10uOH2Ffo_o",
+      "title": "AutoCAD and Photoshop Tutorial Now Available: Drawing a Building Cross Section",
+      "author": "Pluralsight Courses and Tutorials"
+    },
+    {
+      "id": "8k6yXAYIKOE",
+      "title": "PHOTOSHOP FOR ARCHITECTURE - Illustrated Cross Section | AGA Play",
+      "author": "AGA Play"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Cross%20Section",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "D Workspace",
+    "D Panel",
+    "Scene",
+    "D Mesh"
+  ],
+  "at": "2026-11-26T02:17:55.507220+00:00"
+}

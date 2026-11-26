@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logmaterial-warning-material-express-e0f73",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogMaterial: Warning: Material expression node is disconnected",
+  "title": "LogMaterial: Warning: Material expression node is disconnected 해결 방법",
+  "summary": "Unreal Engine에서 머티리얼 Graph 내의 특정 표현식 노드가 다른 노드와 연결되지 않은 채 방치되어 있을 때 출력되는 경고 메시지입니다. 주로 사용하지 않는 노드를 지우지 않았거나 연결이 끊어진 상태로 Shader가 컴파일될 때 발생합니다.",
+  "causes": [
+    "머티리얼 에디터에서 노드를 생성한 후 출력 핀(Output Pin)이나 입력 핀(Input Pin)을 연결하지 않고 방치한 경우",
+    "기존에 연결되어 있던 노드를 실수로 삭제하거나 드래그하여 선이 끊어진 경우",
+    "커스텀 머티리얼 함수(Material Function) 내부에서 입력이나 출력이 누락된 경우"
+  ],
+  "steps": [
+    "Content Browser에서 경고가 발생한 머티리얼 에셋을 더블 클릭하여 Material Editor를 엽니다.",
+    "Graph 전체를 살펴보고 테두리가 주황색이거나 연결 선이 없는 고립된 Material Expression 노드를 찾습니다.",
+    "불필요한 노드라면 선택한 뒤 Delete 키를 눌러 삭제합니다.",
+    "반드시 사용해야 하는 노드라면 올바른 입력 핀과 출력 핀(예: Base Color, Roughness 등)에 연결합니다.",
+    "메뉴 바에서 Apply 버튼을 클릭하여 머티리얼을 다시 컴파일합니다."
+  ],
+  "check": [
+    "Material Editor 상단 또는 Output Log 패널에서 해당 머티리얼과 관련된 Warning 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport의 미리보기 메시 및 씬 내 오브젝트에 머티리얼이 정상적으로 적용되어 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "머티리얼 작업을 마친 후에는 반드시 Compile(Apply) 버튼을 눌러 에러와 경고가 없는지 확인하는 습관을 들입니다.",
+    "사용하지 않는 임시 노드는 즉시 삭제하여 Graph를 깔끔하게 유지합니다."
+  ],
+  "keywords": [
+    "Unreal Engine 머티리얼 경고",
+    "Material expression node is disconnected",
+    "Unreal 머티리얼 Compile 오류",
+    "연결되지 않은 노드 경고",
+    "LogMaterial Warning"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T02:18:04+00:00"
+}

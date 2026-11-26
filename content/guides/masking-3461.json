@@ -1,0 +1,89 @@
+{
+  "id": "masking-3461",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "데이터 준비",
+  "name": "Masking",
+  "title": "Masking — 불필요한 배경이나 움직이는 피사체를 학습에서 제외하기",
+  "summary": "Gaussian Splatting에서 불필요한 영역이나 방해 요소를 제거하기 위해 특정 구역을 마스킹(Masking)하여 숨기거나 편집하는 최적화 기능입니다. 원치 않는 Gaussian 포인트를 선택하여 렌더링에서 제외합니다.",
+  "when": [
+    "촬영 당시 포함된 삼각대나 촬영자를 Gaussian 씬에서 지우고 싶을 때",
+    "움직이는 행인이나 차량 등 원치 않는 동적 노이즈를 숨기고 싶을 때",
+    "특정 오브젝트 단위로 Gaussian 데이터를 분리하여 정밀하게 편집하고 싶을 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 뷰어 및 편집 툴(예: SuperSplat 등)에서 프로젝트 파일을 엽니다.",
+    "상단 툴바 또는 에디터 메뉴에서 Masking 또는 Brush Select 툴을 활성화합니다.",
+    "Viewport에서 지우거나 숨길 Gaussian 포인트 영역을 브러시나 폴리곤으로 드래그하여 선택합니다.",
+    "선택된 영역의 속성을 Delete 또는 Hide 로 설정하여 Viewport와 렌더링에서 제외합니다.",
+    "카메라 시점을 돌려 잔여 노이즈가 없는지 확인하고 프로젝트를 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Brush Size",
+      "desc": "Mask를 칠하거나 선택할 때 사용하는 브러시의 크기를 조절합니다."
+    },
+    {
+      "name": "Invert Mask",
+      "desc": "선택된 영역과 선택되지 않은 영역의 반전을 수행합니다."
+    },
+    {
+      "name": "Delete / Hide",
+      "desc": "선택된 Gaussian 포인트를 완전히 삭제하거나 화면에서 숨깁니다."
+    },
+    {
+      "name": "Opacity Threshold",
+      "desc": "투명도가 낮은 불필요한 Gaussian 노이즈를 일괄적으로 걸러냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "촬영용 삼각대 및 바닥 노이즈 제거",
+      "steps": [
+        "편집 툴에서 모델 하단의 삼각대 위치로 카메라를 이동합니다.",
+        "Masking 툴을 켜고 삼각대와 주변 바닥 노이즈 영역을 브러시로 정밀하게 칠합니다.",
+        "Delete 명령을 실행하여 바닥 노이즈를 깔끔하게 지웁니다."
+      ]
+    },
+    {
+      "title": "주변 불필요한 배경 오브젝트 숨기기",
+      "steps": [
+        "Lasso 또는 Polygon Select 툴을 선택합니다.",
+        "메인 오브젝트 주변의 방해되는 배경 건물을 감싸도록 영역을 지정합니다.",
+        "Hide 옵션을 적용하여 시각적 방해 요소를 없애고 메인 모델만 남깁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필요한 메인 모델 포인트까지 함께 선택되어 지워짐 → 브러시 크기를 줄이고 세밀한 Viewport 각도에서 다시 선택",
+    "삭제 후 저장하지 않아 편집 내용이 유실됨 → 편집 직후 프로젝트 파일(Save/Export)을 즉시 덮어쓰기 저장"
+  ],
+  "related": [
+    "Bounding Box Clipping",
+    "Unbounded Scenes",
+    "Level of Detail",
+    "Gaussian Splatting"
+  ],
+  "videos": [
+    {
+      "id": "aFERjBxK73E",
+      "title": "Creating and using masks in Postshot using Reality Capture - is it worth it for Gaussian Splatting ?",
+      "author": "Kristof Meirlaen (Kri-Soft)"
+    },
+    {
+      "id": "kzsAnQX8f5w",
+      "title": "Gaussian Splatting Tutorial (Colmap + Lichtfeld Studio)",
+      "author": "Versatile Vertices"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Masking",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "SuperSplat",
+    "Masking",
+    "Brush Select"
+  ],
+  "at": "2026-11-26T02:17:51.372073+00:00"
+}
