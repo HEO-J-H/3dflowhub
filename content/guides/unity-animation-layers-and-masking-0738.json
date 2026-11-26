@@ -1,0 +1,95 @@
+{
+  "id": "unity-animation-layers-and-masking-0738",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Animation Layers and Masking",
+  "title": "애니메이션 레이어 및 마스킹 — Avatar의 신체 부위별로 애니메이션을 나누어 동시에 재생하는 기능",
+  "summary": "Unity Animator의 Animation Layers와 Masking은 캐릭터의 상하체 움직임을 분리하거나 특정 부위별로 다른 애니메이션을 동시에 재생할 수 있게 해 주는 기능입니다.",
+  "when": [
+    "달리면서 상체로 총을 쏘는 애니메이션을 조합할 때",
+    "캐릭터의 하체는 걷는 동안 상체만 감정 표현(제스처)을 할 때",
+    "특정 본(Bone) 그룹에만 별도의 애니메이션 오버라이드를 적용할 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create > Avatar Mask를 선택하여 새 Mask 에셋을 생성합니다.",
+    "Avatar Mask 설정 창에서 Humanoid 탭을 열고 Mask를 씌울 신체 부위(상체 등)를 활성화합니다.",
+    "Animator Windows(Window > Animation > Animator)를 열고 Layers 탭으로 이동합니다.",
+    "새 레이어(+)를 추가하고 이름(예: UpperBody)을 지정합니다.",
+    "레이어 설정 톱니바퀴 아이콘을 클릭하고 Mask 항목에 방금 만든 Avatar Mask를 드래그하여 연결합니다.",
+    "Weight 값을 1로 설정하고 상체 애니메이션 스테이트를 배치하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Weight",
+      "desc": "해당 레이어의 애니메이션이 전체 캐릭터에 미치는 영향력을 조절합니다."
+    },
+    {
+      "name": "Mask",
+      "desc": "애니메이션을 적용하거나 제외할 신체 본(Bone) 영역을 지정합니다."
+    },
+    {
+      "name": "Blending",
+      "desc": "기본 레이어와 새 레이어의 애니메이션을 덮어쓰기(Override)할지 더하기(Additive)로 섞을지 결정합니다."
+    },
+    {
+      "name": "Sync",
+      "desc": "다른 레이어의 타이밍과 스테이트 구조를 그대로 동기화합니다."
+    },
+    {
+      "name": "IK Pass",
+      "desc": "해당 레이어에서 애니메이터 IK(Inverse Kinematics) 콜백을 활성화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "걷기 상태에서 상체 제스처 재생하기",
+      "steps": [
+        "Base 레이어에 걷기 애니메이션을 무한 반복으로 설정합니다.",
+        "새 UpperBody 레이어를 만들고 Mask에 Upper Body 부위를 체크합니다.",
+        "UpperBody 레이어에 제스처 애니메이션 클립을 연결합니다."
+      ]
+    },
+    {
+      "title": "Additive 블렌딩으로 부상 피격 모션 추가하기",
+      "steps": [
+        "Hit 레이어를 추가하고 Blending을 Additive로 변경합니다.",
+        "기본 움직임 위에 깜짝 놀라는 피격 애니메이션을 얹어 자연스럽게 합성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mask가 적용되지 않고 전체 몸이 움직임 → Avatar Mask에서 Humanoid 본 매핑이 올바르게 체크되었는지 확인하고 레이어 Weight가 1인지 확인합니다.",
+    "애니메이션이 부자연스럽게 떨림 → Override와 Additive 블렌딩 모드가 올바르게 선택되었는지 점검합니다."
+  ],
+  "related": [
+    "Animator Controller",
+    "Avatar Mask",
+    "Blend Tree",
+    "Animation State"
+  ],
+  "videos": [
+    {
+      "id": "7BwZgeBsYuk",
+      "title": "Take your Unity Character Animations to the Next Level with Animation Layers 💫",
+      "author": "Sunny Valley Studio"
+    },
+    {
+      "id": "pW6U_6i4l6o",
+      "title": "Easily Combine Animations in Unity | Animation Layers Explained",
+      "author": "Ketra Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Animation%20Layers%20and%20Masking",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Avatar Mask",
+    "Mask",
+    "Humanoid",
+    "Animator Windows"
+  ],
+  "at": "2026-11-26T00:38:25.007216+00:00"
+}

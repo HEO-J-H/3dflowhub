@@ -1,0 +1,103 @@
+{
+  "id": "unity-shader-graph-custom-functions-b838",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "셰이더 및 머티리얼",
+  "name": "Shader Graph Custom Functions",
+  "title": "Shader Graph 커스텀 함수 — HLSL 코드를 작성하여 Shader Graph 내에서 나만의 커스텀 연산을 수행하는 ",
+  "summary": "Unity Shader Graph에서 HLSL 코드를 직접 작성해 기본 노드로 표현하기 어려운 복잡한 수학적 연산이나 커스텀 효과를 구현하는 기능입니다.",
+  "when": [
+    "기본 제공되는 노드만으로는 구현하기 까다로운 독창적인 수학 공식이나 왜곡 효과를 만들 때",
+    "여러 개의 노드가 복잡하게 얽힌 네트워크를 하나의 간결한 커스텀 노드로 묶고 싶을 때",
+    "외부 HLSL 코드를 Shader Graph 안으로 가져와 재사용하고 싶을 때"
+  ],
+  "steps": [
+    "Project 창에서 우클릭 후 Create → Shader Graph → URP / HDRP → Blank Shader Graph를 선택해 엽니다.",
+    "Graph Inspector 패널에서 Blackboard를 열거나 빈 공간에서 우클릭 후 Create Node를 엽니다.",
+    "Custom Function 노드를 검색하여 Viewport에 추가합니다.",
+    "Custom Function 노드의 Type을 File 또는 String으로 설정합니다.",
+    "Inputs와 Outputs 목록에서 더하기(+) 버튼을 눌러 필요한 파라미터와 데이터 타입(Float, Vector3 등)을 정의합니다.",
+    "Type이 String일 경우 노드 내부의 Code 상자에 직접 HLSL 코드를 작성하거나, File일 경우 HLSL 파일을 연결합니다.",
+    "Save Asset 버튼을 눌러 Shader를 저장하고 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "코드를 직접 입력(String)할지 외부 파일(File)로 참조할지 결정합니다."
+    },
+    {
+      "name": "Inputs",
+      "desc": "노드 안으로 들어오는 매개변수 목록을 정의합니다."
+    },
+    {
+      "name": "Outputs",
+      "desc": "계산 결과로 내보낼 반환값 목록을 정의합니다."
+    },
+    {
+      "name": "Name",
+      "desc": "노드에 표시될 함수 이름을 설정합니다."
+    },
+    {
+      "name": "Code",
+      "desc": "String 모드일 때 HLSL 함수 로직을 직접 작성하는 편집 영역입니다."
+    },
+    {
+      "name": "Path",
+      "desc": "노드 메뉴에서 검색될 경로를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "커스텀 노이즈 왜곡 효과 구현",
+      "steps": [
+        "Custom Function 노드를 추가하고 Type을 String으로 설정합니다.",
+        "Input에 UV 좌표와 타임 값을 추가하고, Output에 왜곡된 Vector2 값을 추가합니다.",
+        "Code 박스에 삼각함수를 활용한 간단한 HLSL 왜곡 수식을 작성합니다.",
+        "결과 Output을 샘플러 노드의 UV 입력에 연결해 텍스처가 물결처럼 흔들리게 만듭니다."
+      ]
+    },
+    {
+      "title": "외부 HLSL 파일 연동",
+      "steps": [
+        "텍스트 편집기에서 재사용할 HLSL 함수 코드를 작성하고 .hlsl 확장자로 저장합니다.",
+        "Custom Function 노드의 Type을 File로 변경합니다.",
+        "Source 필드에 작성한 .hlsl 파일을 드래그하여 연결합니다.",
+        "Function 이름과 입출력 포트를 코드에 맞게 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "HLSL 문법 오류 발생 → 세미콜론(;) 누락이나 괄호 짝이 맞지 않는지 확인하고 콘솔창의 Compile 에러 메시지를 확인합니다.",
+    "데이터 타입 불일치 → 노드 입력 포트의 타입(Float, Vector2 등)과 HLSL 코드 내부의 변수 타입이 일치하는지 확인합니다."
+  ],
+  "related": [
+    "Sub-graphs",
+    "HLSL",
+    "Shader Graph",
+    "Sample Texture 2D"
+  ],
+  "videos": [
+    {
+      "id": "F8bAI6dIrto",
+      "title": "Unity Shader Graph Basics (Part 10 - Custom Functions)",
+      "author": "Daniel Ilett"
+    },
+    {
+      "id": "TbZYoSu1w8Y",
+      "title": "Unity Shader Graph Basics (Part 1 - Your First Shader)",
+      "author": "Daniel Ilett"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Shader%20Graph%20Custom%20Functions",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Shader Graph",
+    "URP",
+    "HDRP",
+    "Blank Shader Graph"
+  ],
+  "at": "2026-11-26T00:38:20.936513+00:00"
+}

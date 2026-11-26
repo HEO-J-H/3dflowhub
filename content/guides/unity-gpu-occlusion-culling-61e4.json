@@ -1,0 +1,88 @@
+{
+  "id": "unity-gpu-occlusion-culling-61e4",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "프로젝트 최적화",
+  "name": "GPU Occlusion Culling",
+  "title": "GPU 오클루전 컬링 — GPU를 활용하여 시야에서 벗어난 오브젝트의 렌더링을 생략하는 최적화 기능",
+  "summary": "Unity의 GPU Occlusion Culling은 카메라 시야에서 가려진 오브젝트를 CPU 대신 GPU에서 빠르게 판단하여 렌더링 부하를 덜어주는 고성능 최적화 기능입니다. 복잡한 대형 씬에서 프레임 레이트를 극적으로 높여줍니다.",
+  "when": [
+    "오픈월드나 대형 실내 건축 시각화처럼 수많은 오브젝트가 배치된 씬에서 프레임 저하가 발생할 때",
+    "기존 CPU 기반 Occlusion Culling으로 인해 오히려 CPU 연산 병목 현상이 생길 때",
+    "모바일 기기나 저사양 하드웨어 환경에서 렌더링 성능을 극한까지 끌어올려야 할 때"
+  ],
+  "steps": [
+    "Project 창에서 Mouse 우클릭 후 Rendering Settings 또는 관련 파이프라인 설정(URP / HDRP)을 엽니다.",
+    "Camera 컴포넌트 또는 렌더링 파이프라인 에셋에서 Occlusion Culling 옵션을 활성화합니다.",
+    "씬에 배치된 정적 오브젝트(벽, 기둥 등)를 선택하고 Inspector 패널 우측 상단의 Static 드롭다운에서 Occluder Static 또는 Occludee Static을 체크합니다.",
+    "Window 메뉴에서 Rendering → Occlusion Culling을 선택하여 Occlusion 창을 엽니다.",
+    "오른쪽 아래의 Bake 버튼을 눌러 컬링 데이터를 생성하고 Viewport에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Occluder Static",
+      "desc": "다른 오브젝트를 가리는 차폐물로서 작동하도록 지정합니다."
+    },
+    {
+      "name": "Occludee Static",
+      "desc": "다른 오브젝트에 의해 가려질 수 있는 대상임을 지정합니다."
+    },
+    {
+      "name": "Smallest Occluder",
+      "desc": "오클루전 계산에 포함할 차폐물의 최소 크기를 설정합니다. 값이 작을수록 정밀해집니다."
+    },
+    {
+      "name": "Smallest Hole",
+      "desc": "오브젝트 사이의 틈새를 통과해 카메라에 보일 수 있는 최소 구멍 크기를 지정합니다."
+    },
+    {
+      "name": "Backface Threshold",
+      "desc": "뒷면 컬링을 위한 임계값으로, 렌더링 최적화 효율을 조정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "대형 실내 복도 최적화",
+      "steps": [
+        "벽과 문 구조물에 Occluder Static을 적용합니다.",
+        "복도 안쪽에 배치된 소품들에 Occludee Static을 체크합니다.",
+        "Bake를 실행하여 코너를 돌았을 때 보이지 않는 방 내부 연산이 제외되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "도시 빌딩 군 렌더링 가속",
+      "steps": [
+        "대형 빌딩 메시들에 Occluder Static을 설정합니다.",
+        "빌딩 사이에 가려진 가로등과 차량에 Occludee Static을 부여합니다.",
+        "카메라 이동 시 시야각 바깥의 빌딩들이 렌더링에서 빠지는지 프레임 레이트로 검증합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "움직이는 동적 오브젝트(Dynamic Object)에 Static을 체크함 → Dynamic Occlusion Culling 설정 또는 별도 처리 적용",
+    "Bake를 수행하지 않아 씬 변경 사항이 반영되지 않음 → 씬을 수정할 때마다 Occlusion 창에서 다시 Bake 실행"
+  ],
+  "related": [
+    "Occlusion Culling",
+    "Frustum Culling",
+    "LOD Group",
+    "Rendering Pipeline"
+  ],
+  "videos": [
+    {
+      "id": "0PenzdQFlv0",
+      "title": "Unity Tip Tuesday: GPU Resident Drawer & GPU occlusion culling",
+      "author": "Unity"
+    },
+    {
+      "id": "7bZ4OIA0wRQ",
+      "title": "Unity Occlusion Culling Tutorial",
+      "author": "Freedom Coding"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20GPU%20Occlusion%20Culling",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T00:38:16.929553+00:00"
+}
