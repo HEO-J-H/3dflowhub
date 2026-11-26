@@ -1,5 +1,5 @@
 {
-  "title_ko": "WorldExpand: 단일 파노라마로 일관성 있는 3D 월드 생성",
+  "title_ko": "WorldExpand — 단일 파노라마로 일관성 있는 3D 세계 확장",
   "title": "WorldExpand: Building Coherent 3D Worlds via Sparse Joint Panoramic Expansion",
   "url": "https://arxiv.org/abs/2611.34810v1",
   "domain": "AI 3D",
@@ -7,54 +7,93 @@
   "topic": "연구·논문",
   "tags": [
     "WorldExpand",
+    "3D World Generation",
+    "Panorama",
     "Gaussian Splatting",
-    "3D 월드",
-    "파노라마 생성",
-    "NeRF"
+    "Diffusion"
   ],
-  "summary": "단일 파노라마 입력으로부터 Gaussian Splatting 기반 기하학적 웜프와 관측 지침을 활용해 교차 뷰 일관성을 갖춘 3D 월드를 구축하는 연구입니다.",
-  "insight": "단일 파노라마에서 출발해 전체 3D 환경을 만들 때, 기존 순차적 방식은 프레임이 늘어날수록 오차가 쌓이고 중복 연산이 발생한다. WorldExpand는 4개의 포즈 기반 파노라마를 동시에 합성해 이러한 한계를 우회한다. Gaussian Splatting 기반 워프를 거치기 때문에 기존 3D 재구성 단계로 곧바로 연결할 수 있다. 고해상도 생성 과정에서 어텐션 스케줄을 조절해 연산 비용을 낮춘 점도 특징이다.",
+  "summary": "단일 파노라마에서 희소하고 상호 보완적인 고해상도 파노라마를 공동 생성하여 3D 세계를 효율적으로 확장하는 프레임워크입니다.",
+  "insight": "이 연구는 게임이나 가상 프로덕션에서 360도 배경 소스를 기반으로 보이지 않는 사각지대나 코너 뒤편을 일관성 있게 확장할 때 연산 효율을 크게 높여주는 가능성을 보여줍니다. 향후 대규모 로밍 환경이나 메타버스 공간 제작 Pipeline 3D 씬 생성 속도를 단축하는 데 기여할 수 있습니다.",
   "try_it": [
-    "단일 360도 파노라마 이미지를 입력 소스로 준비해 공간 확장 알고리즘의 초기 데이터로 구성한다.",
-    "Coverage-Guided View Selection을 적용하여 정보량이 높은 타겟 영역과 불필요한 연산 영역을 분리한다.",
-    "Joint Panoramic Diffusion 단계에서 Gaussian Splatting 기반 워프를 거쳐 교차 뷰가 정렬된 파노라마 세트를 출력한다."
+    "프로젝트 웹페이지 방문 https://yuyangyin.github.io/WorldExpand_web/ 에 접속하여 데모 결과와 시각화 자료를 확인합니다."
   ],
   "sections": [
     {
-      "heading": "Coverage-Guided View Selection 기반 타겟 선정",
-      "body": "장면 적응형 사분면과 웜프 기반 커버리지 점수를 활용하여 정보량이 풍부한 타겟 위치를 식별한다. 불필요한 영역의 연산을 줄이고 3D 생성에 필수적인 디테일에 예산을 집중한다. 미지의 영역을 무작위로 넓히지 않고 꼭 필요한 뷰포인트만 정밀하게 타겟팅한다."
+      "heading": "무엇을 풀려는가",
+      "body": "단일 파노라마에서 3D 세계를 확장할 때 기존 밀집형 순차 생성 방식은 중복 정보가 많고 긴 경로에서 오차가 누적되며 독립 생성 방향 간 불일치가 발생합니다. 이 논문은 계산 비용을 줄이면서 3D 재구성 정확도를 높이는 희소 파노라마 표현을 제안합니다."
     },
     {
-      "heading": "Joint Panoramic Diffusion을 통한 동시 합성",
-      "body": "Gaussian Splatting 기반 기하학적 웜프를 적용하여 4개의 포즈가 정렬된 파노라마를 교차 뷰 일관성이 유지되도록 함께 생성한다. 독립적으로 생성된 방향 간의 시각적 불일치 문제를 방지한다. 인접 프레임 간의 중복 데이터를 줄이고 상호 보완적인 고해상도 관측 결과를 만들어낸다."
+      "heading": "핵심 아이디어",
+      "body": "정보가 풍부한 영역에 생성 예산을 집중하기 위해 'Coverage-Guided View Selection'으로 시야를 선정하고, Gaussian-splatting 기반 기하학적 워프를 활용한 'Joint Panoramic Diffusion'으로 4개의 포즈 기반 교차 뷰 일관성 파노라마를 동시에 합성합니다."
     },
     {
-      "heading": "전역-지역 어텐션 스케줄을 통한 연산 최적화",
-      "body": "진단 기반 스케줄을 통해 민감한 레이어에서만 전역 어텐션을 유지한다. 고해상도 공동 생성 과정에서 발생하는 학습 및 추론 비용을 대폭 낮춘다. 전체적인 연산 부하를 제어하면서도 시각적 품질 저하를 방어하는 구조다."
+      "heading": "방법 (단계)",
+      "body": "1단계에서는 소스 파노라마와 깊이 맵을 포인트 클라우드로 변환 후, 적응형 사분면 선택과 워프 기반 커버리지 점수(c_v)를 통해 4개의 목표 카메라 포즈를 결정합니다. 2단계에서는 진단 기반 전역-지역 어텐션 스케줄을 통해 고해상도 공동 생성의 연산 비용을 줄이며 4장의 파노라마를 합성합니다."
     },
     {
-      "heading": "명시적 3D 재구성 파이프라인 연동",
-      "body": "생성된 포즈 파노라마는 기존 재구성 파이프라인에 직접 입력되어 최종 3D 표현으로 변환된다. 가려진 영역 뒤편과 먼 구석의 컨텐츠를 복구하여 다양한 야외 장면 데이터셋에서 성능을 입증했다. 기존 파노라마 비디오 생성 방식과 비교해 더 빠른 속도로 일관성 높은 결과를 낸다."
+      "heading": "결과 (논문 수치)",
+      "body": "다양한 데이터셋에서 신규 뷰 합성(NVS) 및 다운스트림 3D 재구성 지표를 향상시켰으며, 기존 최신 파노라마 비디오 방식(Yang et al., 2025b) 대비 최대 8.6배 빠른 속도로 더 높은 Resolution의 관측 결과와 강한 교차 뷰 일관성을 보여주었습니다."
+    },
+    {
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문 본문에서 별도의 한계점을 상세히 다루지 않았으나, 기본적으로 입력된 단일 파노라마와 깊이 추정 품질(DepthMaster 등)에 결과가 의존할 수 있습니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "프로젝트 웹페이지(https://yuyangyin.github.io/WorldExpand_web/)와 텍스트 내 GitHub 이슈 링크가 언급되어 있으며, 구체적인 오픈소스 코드 저장소는 논문 내 프로젝트 페이지를 통해 접근할 수 있습니다."
     }
   ],
   "faq": [
     {
-      "q": "WorldExpand는 어떤 문제를 해결하나요?",
-      "a": "단일 파노라마에서 보이지 않던 사각지대를 확장할 때 기존 순차 생성 방식에서 발생하던 오차 누적과 시점 간 불일치 문제를 해결합니다."
+      "q": "WorldExpand는 목표 카메라 포즈를 어떻게 선정하나요?",
+      "a": "장면 경계에서 수평 메시 슬라이스를 추출하고 소스 주변의 동심원에 후보 카메라를 샘플링한 뒤, Gauss Splatting 워프를 이용해 새로운 콘텐츠를 얼마나 드러낼 수 있는지 측정하는 커버리지 점수(c_v)와 적응형 사분면 선택 방식을 사용합니다."
     },
     {
-      "q": "3D 월드 구축을 위해 어떤 기술을 사용하나요?",
-      "a": "Gaussian Splatting 기반 기하학적 웜프와 Joint Panoramic Diffusion을 결합하여 교차 뷰 일관성을 갖춘 고해상도 파노라마를 동시에 합성합니다."
+      "q": "기존 파노라마 비디오 방식과 비교하여 어떤 이점이 있나요?",
+      "a": "기존 밀집형 순차 생성 방식의 중복 정보와 오차 누적 문제를 해결하기 위해 희소하고 상호 보완적인 고해상도 파노라마를 공동 생성하며, 최대 8.6배 빠른 속도와 강한 교차 뷰 일관성을 제공합니다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.34810v1/teaser.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.34810v1/teaser.png",
+        "caption": "Figure 1: WorldExpand: Sparse joint panorama generation for 3D world expansion. Given a single panorama, previous panoramic-video methods ( Yang et al., 2025b ) rely on independently generated dense trajectories to explore multiple directions. These trajectories contain redundant observations, may c",
+        "caption_ko": "그림 1: WorldExpand의 희소 공동 파노라마 생성 개념도."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34810v1/method.png",
+        "caption": "Figure 2: Overview of WorldExpand. Given one panorama, we select four viewpoints that expose complementary unseen regions, jointly synthesize their panoramic observations with selective cross-view communication, and align multi-view depths to reconstruct an expanded Gaussian scene.",
+        "caption_ko": "그림 2: WorldExpand 전체 구조 개요."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34810v1/Fig/compare/genex_matrix3d_ours_two_cases_horizontal.png",
+        "caption": "Figure 4: Qualitative comparison on in-the-wild panoramas. A single video trajectory cannot reach all four directional target viewpoints, so GenEx ( Lu et al., 2025 ) and Matrix-3D ( Yang et al., 2025b ) each generate four independent clips. Their results exhibit ERP distortions, content collapse on",
+        "caption_ko": "그림 4: 인더와일드(In-the-wild) 파노라마 정성적 비교."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34810v1/pcd_compare.png",
+        "caption": "Figure 5: Additional in-the-wild 3D reconstruction comparisons. Across diverse panoramic inputs, WorldExpand produces stable, well-defined point-cloud structures. In contrast, Matrix-3D exhibits local point-cloud collapse and distorted geometric details, reflecting inconsistencies in its generated o",
+        "caption_ko": "그림 5: 추가적인 인더와일드 3D 재구성 비교."
+      }
+    ]
   },
   "collected_at": "2026-11-26T10:39:45.007675+00:00",
   "notion_id": "",
   "id": "2026-11-26-49a9761671e04843",
   "img_tried": true,
   "enriched": "2026-11-26",
-  "img_ok": "2026-11-26T10:49:51+00:00"
+  "img_ok": "2026-11-26T10:49:51+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T12:30:29+00:00"
 }
