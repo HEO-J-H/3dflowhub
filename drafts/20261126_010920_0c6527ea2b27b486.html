@@ -1,0 +1,20 @@
+<!-- TITLE: RetroEngine — C++와 Direct3D 12로 제작한 커스텀 게임 엔진 | TAGS: RetroEngine,C++,Direct3D 12,게임 엔진,던전 크롤러,작품·제작 사례 | CATEGORY: Game Engine/기타 엔진 | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/inside-retroengine-the-custom-engine-behind-the-king-s-surveyor/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51171/images/6b073cafc2d79/contain_1200x630.jpg" alt="RetroEngine — C++와 Direct3D 12로 제작한 커스텀 게임 엔진" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/inside-retroengine-the-custom-engine-behind-the-king-s-surveyor/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<div style="position:relative;padding-top:56.25%;margin:16px 0;"><iframe src="https://www.youtube.com/embed/FMHJOZgIxLU" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 1인 개발자 Alex Rybak이 C++와 Direct3D 12를 사용해 처음부터 직접 개발한 레트로 스타일 커스텀 게임 엔진 RetroEngine을 소개합니다.</p>
+<p style="color:#888;">분류: Game Engine › 기타 엔진 › 작품·제작 사례</p>
+<h2>C++와 Direct3D 12로 구축한 RetroEngine</h2>
+<p>RetroEngine은 1인 개발자 Alex Rybak이 C++와 Direct3D 12를 기반으로 완전히 새로 작성한 커스텀 게임 엔진입니다. 범용 엔진에 단순한 후처리기 필터를 얹은 형태가 아니라 디스플레이 모델 자체를 목표로 설계되었습니다.</p>
+<h2>하드웨어와 아날로그 디스플레이에서 얻은 영감</h2>
+<p>개발자는 어린 시절 사용하던 세가 제네시스, 닌텐도 Entertainment 시스템과 1998년산 CRT 텔레비전 환경에서 영감을 받았습니다. 군 복무 시절 위성 엔지니어로 근무한 경력과 Full Sail에서의 게임 아트 및 디자인 학위가 기술적 기반이 되었습니다.</p>
+<h2>스택 전체를 직접 소유하는 개발 방식</h2>
+<p>렌더러, 애니메이션 시스템, Audio 믹서, 세이브 시스템, Script 시퀀스, 월드 에디터까지 모든 Runtime 요소가 개발자의 독자적인 코드로 이루어져 있습니다. UI 편집에만 MIT 라이선스의 Dear ImGui를 예외적으로 사용하여 외부 엔진 업데이트에 종속되지 않는 독립성을 확보했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">C++와 Direct3D 12 기반으로 렌더러부터 Audio 믹서, 세이브 시스템까지 모든 Runtime 코드를 직접 작성해 레트로 디스플레이 질감을 구현했습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. RetroEngine은 어떤 기술 스택으로 개발되었나요?</b><br/>A. C++ 언어와 Direct3D 12 API를 기반으로 처음부터 직접 작성되었습니다.</p>
+<p><b>Q. 엔진 내부에서 서드파티 코드는 전혀 사용되지 않았나요?</b><br/>A. 에디터 UI 구성에만 몇 달의 개발 시간을 절약하기 위해 MIT 라이선스의 Dear ImGui를 사용했으며, 게임 Runtime 코드는 모두 독자 코드입니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-25-26479fecc9fc7272.html">Crimson Desert의 BlackSpace Engine, 50만 그루 나무 렌더링 성능 공개</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-5790ab9b013086c0.html">Fool&#x27;s Theory, The Witcher 3 프로젝트 애니메이터 채용</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-7fe48c3a956bfc6e.html">Rockstar, GTA 6 비공식 PC 포팅 프로젝트 차단</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/inside-retroengine-the-custom-engine-behind-the-king-s-surveyor/" target="_blank" rel="noopener nofollow">Inside RetroEngine, the Custom Engine Behind The King&#x27;s Surveyor</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>

@@ -1,0 +1,56 @@
+{
+  "title_ko": "NVIDIA RTX Blackwell용 NVFP4 어텐션 최적화 기법",
+  "title": "How to Optimize NVFP4 Attention on NVIDIA RTX Blackwell Through Register Recycling",
+  "url": "https://developer.nvidia.com/blog/how-to-optimize-nvfp4-attention-on-nvidia-rtx-blackwell-through-register-recycling/",
+  "domain": "AI 3D",
+  "category": "로보틱스·월드모델",
+  "topic": "연구·논문",
+  "tags": [
+    "NVIDIA RTX Blackwell",
+    "NVFP4",
+    "FlashInfer",
+    "월드 모델",
+    "어텐션 최적화"
+  ],
+  "summary": "NVIDIA RTX Blackwell GPU에서 레지스터 리사이클링과 SageAttention3 커널을 통해 NVFP4 어텐션 성능을 최대 1.64배 향상시키는 최적화 기법을 설명합니다.",
+  "insight": "NVIDIA RTX PRO 6000 Blackwell 아키텍처는 BF16 대비 하드웨어 가속 4비트 행렬 곱셈인 NVFP4를 제공하여 Tensor Core 처리량을 높입니다. 비디오 생성 모델과 월드 모델 추론에서 어텐션 연산은 MMA 병목을 겪는데, 이를 소프트맥스 이후 레지스터를 재사용하는 방식으로 해결합니다. FlashInfer 메인 브랜치에 병합된 이 커널은 실제 프로덕션 환경에서 LongLive, Helios, OmniDreams, Cosmos 3 Nano 등의 엔드투엔드 지연 시간을 줄이는 데 직접 적용할 수 있습니다.",
+  "try_it": [
+    "서브모듈과 함께 FlashInfer 메인 브랜치를 클론하고 소스 설치 가이드에 따라 환경을 설정합니다.",
+    "NVIDIA RTX Blackwell의 지원 어텐션 레이어에 SM120 NVFP4 어텐션 API를 통합합니다.",
+    "BF16 베이스라인과 비교하여 엔드투엔드 지연 시간과 출력 품질의 차이를 측정합니다.",
+    "Reactor의 실시간 모델 어텐션 통합 사례 문서를 참고하여 실제 서비스 트래픽에 커널을 배치하는 방식을 검토합니다."
+  ],
+  "sections": [
+    {
+      "heading": "NVIDIA RTX Blackwell의 NVFP4와 어텐션 병목 현상",
+      "body": "NVIDIA RTX Blackwell 아키텍처는 하드웨어 가속 4비트 행렬 곱셈을 지원하는 NVFP4를 도입하여 BF16보다 높은 Tensor Core 처리량을 제공합니다. 비디오 생성 모델에서 BF16 추론 시 어텐션은 주로 MMA 연산에 의해 병목이 발생하며, 이를 해결하기 위한 정교한 데이터 이동과 스케줄링 조율이 필요합니다. 데이터 센터 GPU와 달리 NVIDIA RTX Blackwell 시리즈(SM120)는 서로 다른 Tensor Core 구조를 사용하므로 기존 하드웨어별 파이프라인을 그대로 적용할 수 없습니다."
+    },
+    {
+      "heading": "레지스터 리사이클링을 통한 SageAttention3 커널 최적화",
+      "body": "최적화된 SageAttention3 커널은 각 N128 스코어 타일을 두 개의 N64 레지스터 슬롯으로 분할합니다. 소프트맥스 양자화 후 레지스터를 재사용함으로써 현재 타일의 남은 연산과 다음 타일의 QK 연산을 중첩시킵니다. 이 스케줄링 방식은 두 번째 전체 스코어 버퍼를 할당하지 않고도 Tensor Core 유휴 시간을 줄여 연산 효율을 높입니다."
+    },
+    {
+      "heading": "FlashInfer 통합 및 월드 모델 추론 성능 향상",
+      "body": "이 핵심 최적화 코드는 FlashInfer 메인 브랜치에 병합되어 광범위한 채택이 가능해졌습니다. Reactor는 실제 프로덕션 서빙 스택에 이 커널을 통합하여 LongLive, Helios, OmniDreams, Cosmos 3 Nano 워크로드에서 엔드투엔드 추론 지연 시간을 최대 15.34% 단축했습니다. SM120 NVFP4 어텐션 API를 지원되는 어텐션 레이어에 통합하면 실시간 고객 트래픽 환경에서 성능을 검증할 수 있습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "NVFP4 어텐션 최적화는 어떤 GPU 아키텍처를 지원하나요?",
+      "a": "NVIDIA RTX Blackwell 아키텍처(SM120)를 지원하며 NVIDIA RTX PRO 6000 Blackwell 시리즈 등에서 활용할 수 있습니다."
+    },
+    {
+      "q": "레지스터 리사이클링은 어텐션 성능을 어떻게 개선하나요?",
+      "a": "스코어 레지스터를 소프트맥스 출력 패킹 후 재활용하여 두 번째 전체 스코어 버퍼를 할당하지 않고도 Tensor Core의 유휴 시간을 줄이고 연산 효율을 높입니다."
+    }
+  ],
+  "media": {
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2025/10/floating-cubes.png",
+    "video": "https://www.youtube.com/watch?v=GV8fyZReOXY"
+  },
+  "collected_at": "2026-11-26T01:09:23.514200+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-f09aeb2897d18148",
+  "img_ok": "2026-11-26T01:09:23+00:00",
+  "enriched": "2026-11-26"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "davinci-resolve-qualifier-f23f",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "Qualifier",
+  "title": "Qualifier — 특정 색상을 선택하여 Mask와 키를 생성하는 컬러 그레이딩 도구",
+  "summary": "DaVinci Resolve의 Qualifier는 특정 색상이나 밝기를 정밀하게 선택하여 Mask를 만들고, 해당 영역만 독립적으로 색보정할 수 있는 핵심 도구입니다.",
+  "when": [
+    "인물의 피부 톤이나 특정 의상 색상을 다르게 바꾸고 싶을 때",
+    "하늘이나 바다 등 배경의 특정 색역만 골라 채도나 밝기를 강조할 때",
+    "화면 속 특정 오브젝트를 분리해 부분적으로 색상 보정을 적용할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 페이지로 이동합니다.",
+    "중앙 툴바에서 HSL, RGB, 3D 등 원하는 Qualifier 아이콘(스포이트 모양)을 선택합니다.",
+    "뷰어(Viewer) 패널에서 보정하고 싶은 색상 위로 Mouse를 가져간 뒤 클릭하여 샘플을 추출합니다.",
+    "Alt + H 키를 눌러 새로운 Serial Node를 생성하고, Highlight(Alt + Shift + H) 버튼을 켜서 선택된 영역(흰색)을 확인합니다.",
+    "Qualifier 패널 하단의 Clean Black, Clean White, Blur 슬라이더를 조절하여 선택 영역의 테두리를 깔끔하게 다듬습니다.",
+    "기본 Primaries Wheel이나 Curves를 사용해 선택된 영역의 색상(Color), 대비(Contrast), 채도(Saturation)를 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Picker",
+      "desc": "뷰어에서 드래그나 클릭으로 특정 색상을 샘플링하는 스포이트 도구"
+    },
+    {
+      "name": "Hue",
+      "desc": "선택한 색상의 색상(Hue) 대역 범위를 넓히거나 좁히는 슬라이더"
+    },
+    {
+      "name": "Saturation",
+      "desc": "선택한 색상의 채도(Saturation) 기준 범위를 조절하는 슬라이더"
+    },
+    {
+      "name": "Luma",
+      "desc": "선택한 영역의 밝기(Luminance) 범위를 제한하거나 확장하는 슬라이더"
+    },
+    {
+      "name": "Blur",
+      "desc": "선택 영역의 경계선(Edge)을 부드럽게 만들어 자연스럽게 블렌딩하는 슬라이더"
+    },
+    {
+      "name": "Inquire / Subtract",
+      "desc": "샘플링된 색상 영역에 색을 더하거나(Plus) 빼는(Minus) 모드 선택 버튼"
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부 톤 정밀 보정",
+      "steps": [
+        "Color 페이지에서 새 노드를 추가하고 Qualifier(HSL)를 선택합니다.",
+        "인물의 얼굴 피부 영역을 스포이트로 클릭합니다.",
+        "Highlight(Alt + Shift + H)를 켜서 피부만 정확히 선택되었는지 확인합니다.",
+        "Hue와 Saturation 범위를 조절한 뒤, Color Wheels로 피부 톤을 매끄럽게 보정합니다."
+      ]
+    },
+    {
+      "title": "특정 오브젝트 색상 변경(예: 자동차 색상)",
+      "steps": [
+        "새로운 Serial Node를 만들고 Qualifier로 차량의 도장면 색상을 샘플링합니다.",
+        "Clean Black과 Clean White를 높여 주변 배경을 마스킹에서 제외합니다.",
+        "Hue 슬라이더나 Hue vs Hue 커브를 활용해 차량 색상을 완전히 다른 색으로 변경합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경계선이 지저분하게 깨짐 → Clean Black과 Clean White 값을 미세하게 올리고 Blur를 약간 주어 테두리를 부드럽게 만듭니다.",
+    "원하지 않는 배경 영역까지 함께 선택됨 → Luma(밝기) 범위를 좁히거나 Minus 스포이트로 불필요한 색상을 제외합니다.",
+    "색보정 적용 후 경계가 부자연스러움 → Node의 Key 출력이 너무 딱딱하므로 Qualifier 패널의 Key Softness와 Blur를 조절합니다."
+  ],
+  "related": [
+    "Color Wheels",
+    "Curves",
+    "Power Window",
+    "Tracker"
+  ],
+  "videos": [
+    {
+      "id": "E7oog981GQI",
+      "title": "How to use your QUALIFIER tool BETTER in Davinci Resolve | Tutorial (FREE & STUDIO)",
+      "author": " Aparicio Co"
+    },
+    {
+      "id": "mAouzmeqBFw",
+      "title": "QUALIFIER - Isolate Any Object in Seconds #davinciresolve",
+      "author": "Waqas Qazi"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Qualifier",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "HSL",
+    "RGB",
+    "Qualifier"
+  ],
+  "at": "2026-11-26T01:09:51.235441+00:00"
+}

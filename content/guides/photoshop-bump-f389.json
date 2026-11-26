@@ -1,0 +1,103 @@
+{
+  "id": "photoshop-bump-f389",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Bump",
+  "title": "Bump — 3D 표면의 미세한 요철과 질감 깊이를 표현하는 채널",
+  "summary": "Photoshop의 Bump(오프셋/엠보싱) 기능은 흑백 이미지를 활용해 2D 평면 위에 미세한 요철과 질감을 입체적으로 표현하는 텍스처 기법입니다.",
+  "when": [
+    "3D 렌더링에 사용할 타일이나 벽돌의 범프(Bump) 맵 텍스처를 제작할 때",
+    "2D 일러스트나 UI 디자인에 가죽, 종이, 콘크리트 같은 사실적인 표면 질감을 더할 때",
+    "텍스트나 로고에 음각 및 양각 효과를 주어 깊이감을 표현할 때"
+  ],
+  "steps": [
+    "Photoshop을 실행하고 질감을 적용할 텍스처 이미지를 엽니다 (Shortcut: Ctrl + O).",
+    "컬러 이미지를 흑백으로 변환하기 위해 상단 메뉴에서 Image → Adjustments → Black & White를 선택합니다.",
+    "레이어 패널에서 질감을 적용할 레이어를 우클릭하여 Convert to Smart Object를 선택합니다.",
+    "상단 메뉴에서 Filter → 3D → Generate Bump Map을 선택하거나, 필터 갤러리의 Texture 필터를 활용합니다.",
+    "대화상자에서 흑백 밝기에 따른 요철의 높낮이와 세부 디테일을 조절합니다.",
+    "확인을 눌러 적용하고, 뷰포트나 레이어 블렌딩 모드를 통해 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Light Direction",
+      "desc": "가상 광원의 방향을 조절하여 옴니·Directional 빛에 따른 요철의 그림자 위치를 변경합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "범프 맵의 흑백 대비를 기반으로 튀어나오거나 들어가는 깊이(높낮이)의 강도를 조절합니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "흑백의 명암 반전을 통해 양각(Boss)과 음각(Deboss) 효과를 서로 바꿉니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "텍스처의 거친 모서리를 부드럽게 만들어 튀는 노이즈를 줄이고 자연스러운 경사를 만듭니다."
+    },
+    {
+      "name": "Texture Type",
+      "desc": "적용할 패턴 유형(Brick, Burlap, Canvas 등)을 선택해 기본 범프 소스를 생성합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "생성되는 패턴이나 필터 질감의 크기를 확대 또는 축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 외벽 범프 맵 제작",
+      "steps": [
+        "벽돌 사진을 불러와 Image → Adjustments → Desaturate (Shortcut: Ctrl + Shift + U)로 무채색으로 바꿉니다.",
+        "Levels (Shortcut: Ctrl + L)를 열어 흰색은 더 밝게, 검은색은 더 어둡게 대비를 강하게 조절합니다.",
+        "Filter → Blur → Gaussian Blur로 미세한 노이즈를 살짝 정리합니다.",
+        "저장하여 3D DCC의 Bump 또는 Normal 슬롯에 연결합니다."
+      ]
+    },
+    {
+      "title": "가죽 표면 텍스처 질감 만들기",
+      "steps": [
+        "새 캔버스를 열고 Filter → Filter Gallery → Texturizer에서 Texturizer 옵션을 선택합니다.",
+        "Texture 드롭다운에서 Canvas 또는 Burlap을 선택합니다.",
+        "Scaling과 Relief 값을 조절하여 미세한 가죽 조직의 요철을 만듭니다.",
+        "Opacity를 낮추어 기존 레이어와 자연스럽게 블렌딩합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "컬러 이미지 그대로 범프 맵으로 사용 → 색상의 밝고 어두움이 의도치 않은 높낮이를 만들므로 반드시 Grayscale이나 Black & White로 변환 후 사용하세요.",
+    "대비(Contrast)가 너무 약한 상태로 적용 → 밋밋하게 표현되므로 Levels나 Curves로 흑백 대비를 강하게 준 뒤 범프를 생성하세요.",
+    "Smart 오브젝트(Smart Object)로 변환하지 않고 필터 적용 → 원본 픽셀이 손상되어 수정이 불가능하므로 반드시 Smart 오브젝트로 변환 후 필터를 적용하세요."
+  ],
+  "related": [
+    "Normal Map",
+    "Displacement Map",
+    "Smart Object",
+    "Filter Gallery"
+  ],
+  "videos": [
+    {
+      "id": "u3msJjQVv64",
+      "title": "Photoshop - How to create a seamless diffuse, normal and bump map",
+      "author": "Esmael Alhroub"
+    },
+    {
+      "id": "yL4753iO4l4",
+      "title": "How to Create a Bump Map in Photoshop",
+      "author": "RenderNode"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Bump",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Shortcut",
+    "Image",
+    "Adjustments",
+    "Black",
+    "White"
+  ],
+  "at": "2026-11-26T01:09:46.823403+00:00"
+}

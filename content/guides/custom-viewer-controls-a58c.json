@@ -1,0 +1,86 @@
+{
+  "id": "custom-viewer-controls-a58c",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "뷰어 및 편집",
+  "name": "Custom Viewer Controls",
+  "title": "Custom Viewer Controls — 실시간 뷰어에서의 시점 조작 및 인터랙션 Hotkey",
+  "summary": "Custom Viewer Controls는 Gaussian Splatting 씬을 뷰어에서 탐색할 때 카메라 이동, 속도, 시점 조작 등을 사용자 입맛에 맞게 설정하는 기능입니다. 3D 공간을 자유롭고 정밀하게 관람할 수 있도록 돕습니다.",
+  "when": [
+    "학습된 Gaussian Splatting 씬의 디테일을 가까이서 세밀하게 살펴볼 때",
+    "대규모 야외 씬이나 건축물 모델을 부드럽게 탐색하고 싶을 때",
+    "시연이나 프레젠테이션을 위해 일정한 카메라 경로와 속도를 유지해야 할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 뷰어(SIBR Viewer 또는 커스텀 뷰어)를 실행하여 3D 씬을 엽니다.",
+    "키보드 W, A, S, D 키를 사용하여 전후좌우로 카메라를 이동합니다.",
+    "Mouse 우클릭을 누른 채 드래그하여 시점(Look At)을 회전시킵니다.",
+    "Shift 키를 누른 상태로 이동하여 카메라 이동 속도를 높이거나, Mouse 휠을 굴려 속도를 조절합니다.",
+    "뷰어 설정(Settings) 패널에서 Mouse 감도(Sensitivity)와 이동 속도(Move Speed) 파라미터를 조정하여 조작감을 최적화합니다.",
+    "Viewport에서 카메라가 원하는 속도와 부드러움으로 움직이는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Move Speed",
+      "desc": "카메라의 기본 이동 속도를 조절하여 넓은 공간이나 좁은 공간에 맞춤"
+    },
+    {
+      "name": "Mouse Sensitivity",
+      "desc": "Mouse 움직임에 따른 시점 회전 민감도를 설정"
+    },
+    {
+      "name": "Field of View (FOV)",
+      "desc": "카메라의 화각을 넓히거나 좁혀 원근감과 화면에 보이는 범위를 조절"
+    },
+    {
+      "name": "Near / Far Clip",
+      "desc": "렌더링되는 최소 및 최대 거리 지정으로 뷰어 클리핑 오류 방지"
+    }
+  ],
+  "examples": [
+    {
+      "title": "클로즈업 디테일 검수",
+      "steps": [
+        "Move Speed 값을 낮춰 미세한 이동 제어",
+        "관심 있는 오브젝트 근처로 카메라 접근",
+        "Mouse 우클릭 회전으로 표면 Gaussian 포인트 확인"
+      ]
+    },
+    {
+      "title": "대형 씬 전체 투어",
+      "steps": [
+        "Move Speed 값을 높여 넓은 공간 신속 이동",
+        "Shift 키와 조합하여 고속 비행 모드 활용",
+        "상공에서 전체 씬의 렌더링 품질 점검"
+      ]
+    }
+  ],
+  "mistakes": [
+    "이동 속도가 너무 빠른 경우 → Move Speed 값을 낮추거나 Mouse 휠로 속도를 줄여 해결합니다.",
+    "시점이 너무 민감하게 돌아가는 경우 → Mouse Sensitivity 파라미터를 낮춰 조절합니다.",
+    "가까이 갔을 때 모델이 잘려 보이는 경우 → Near Clip 값을 줄여 뷰어 클리핑 문제를 해결합니다."
+  ],
+  "related": [
+    "Real-time SIBR Viewer",
+    "PLY Export",
+    "Camera Trajectory",
+    "Gaussian Splatting Training"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "A1Gbycj0bWw",
+      "title": "How to Use The Nerfstudio Viewer With 3D Gaussian Splatting",
+      "author": "Pixel Reconstruct"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Custom%20Viewer%20Controls",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T01:09:42.552161+00:00"
+}
