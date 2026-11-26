@@ -1,0 +1,86 @@
+{
+  "id": "photoshop-filter-by-material-57ab",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 패널",
+  "name": "Filter By Material",
+  "title": "머티리얼별 필터(Filter By Material) — 3D 패널에서 특정 재질만 빠르게 찾아 편집하는 옵션",
+  "summary": "Filter By Material는 3D 레이어에서 지정한 머티리얼을 기준으로 해당 면만 선택하거나 Mask를 만드는 기능입니다.",
+  "when": [
+    "특정 머티리얼만 편집하고 싶을 때",
+    "머티리얼 별로 색상·텍스처를 교체할 때",
+    "복잡한 모델에서 특정 파트만 렌더링하거나 Mask를 만들 때"
+  ],
+  "steps": [
+    "3D 레이어를 선택한다",
+    "메뉴 > Filter > 3D > Filter By Material 를 연다",
+    "Popup에서 Material 드롭다운에서 대상 머티리얼을 선택한다",
+    "필요하면 Invert 를 체크하고 Feather 값을 조정한다",
+    "OK 를 클릭하면 선택이 활성화되고 레이어 Mask가 생성된다"
+  ],
+  "params": [
+    {
+      "name": "Material",
+      "desc": "선택할 머티리얼을 지정합니다"
+    },
+    {
+      "name": "Invert",
+      "desc": "선택을 반전시켜 나머지 면을 선택합니다"
+    },
+    {
+      "name": "Feather",
+      "desc": "선택 경계의 부드러움을 픽셀 단위로 조정합니다"
+    },
+    {
+      "name": "Tolerance",
+      "desc": "머티리얼 색상 차이를 허용 범위로 설정합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "플라스틱 재질 색상 교체",
+      "steps": [
+        "Filter By Material 로 플라스틱 머티리얼 선택",
+        "선택된 면에 새로운 Fill Color 적용"
+      ]
+    },
+    {
+      "title": "금속 머티리얼 Mask 저장",
+      "steps": [
+        "Filter By Material 로 금속 머티리얼 선택",
+        "레이어 Mask로 저장 후 별도 파일로 Export"
+      ]
+    }
+  ],
+  "mistakes": [
+    "동일한 이름의 머티리얼이 여러 개 있으면 원하는 면이 선택되지 않는다 → 레이어 패널에서 머티리얼 이름을 고유하게 바꾼다",
+    "Feather 값을 과도하게 크게 하면 경계가 흐려진다 → Feather 를 0~2px 로 낮춘다",
+    "Invert 옵션을 놓고 작업하면 반대 면이 선택된다 → 작업 전 Invert 체크 상태를 확인한다"
+  ],
+  "related": [
+    "New Material from Layer",
+    "Roughness",
+    "Material Editor",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "TDt2AxVm_7E",
+      "title": "Master Filters - Photoshop for Beginners | Lesson 9",
+      "author": "PiXimperfect"
+    },
+    {
+      "id": "sb62jDAhtuo",
+      "title": "Photoshop Smart Filter Explained in 2 Minutes",
+      "author": "Cristi Kerekes"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Filter%20By%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Filter",
+    "Filter By Material"
+  ],
+  "at": "2026-11-26T02:38:29.331683+00:00"
+}

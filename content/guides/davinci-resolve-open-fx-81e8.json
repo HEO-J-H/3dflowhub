@@ -1,0 +1,106 @@
+{
+  "id": "davinci-resolve-open-fx-81e8",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "합성/효과",
+  "name": "Open FX",
+  "title": "오픈 FX — Timeline 클립에 직접 적용하는 기본 시각 효과 및 플러그인 통합 메뉴",
+  "summary": "Open FX는 DaVinci Resolve Color 페이지에서 사용할 수 있는 외부 플러그인 기반 영상 효과 모음으로, 색보정·스타일링·디테일 작업을 확장합니다.",
+  "when": [
+    "특정 색감·스타일을 빠르게 적용하고 싶을 때",
+    "다른 툴에서 만든 전용 플러그인을 Resolve에서 사용하려 할 때",
+    "색보정 파이프라인에 고급 효과(노이즈 감소·키잉·렌즈 플레어 등)를 추가하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Color 페이지로 이동한다 (Shift+6)",
+    "좌측 상단의 OpenFX Library 탭을 클릭한다",
+    "사용할 OpenFX 플러그인을 찾아 Effects Library에서 드래그하여 노드 Graph에 연결한다 (또는 노드 오른쪽 클릭 → Add Tool → OpenFX 선택)",
+    "노드 선택 후 오른쪽 Inspector 패널에서 파라미터를 조정한다",
+    "필요하면 다른 OpenFX 노드와 연결해 체인 형태로 구성한다",
+    "Ctrl+S 로 프로젝트 저장 후, Deliver 페이지에서 렌더링한다"
+  ],
+  "params": [
+    {
+      "name": "Strength",
+      "desc": "효과 강도를 0~100% 사이로 조절합니다"
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "다른 레이어와 합성 방식을 선택합니다"
+    },
+    {
+      "name": "Threshold",
+      "desc": "노이즈 감소·키잉 등에서 기준값을 설정합니다"
+    },
+    {
+      "name": "Radius",
+      "desc": "블러·디퓨전 효과의 적용 범위를 정의합니다"
+    },
+    {
+      "name": "Color",
+      "desc": "색상 교정·톤 매핑 등에 사용할 색을 지정합니다"
+    },
+    {
+      "name": "Presets",
+      "desc": "미리 정의된 설정을 불러와 빠르게 적용합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "영상에 필름 그레인 추가",
+      "steps": [
+        "Color 페이지 → OpenFX Library → Grain 선택",
+        "노드에 드래그 후 Inspector에서 Grain Size와 Strength 조정",
+        "미리보기에서 필름 느낌 확인"
+      ]
+    },
+    {
+      "title": "배경 노이즈 제거",
+      "steps": [
+        "OpenFX Library → Noise Reduction 선택",
+        "노드 연결 후 Threshold와 Radius 값을 낮게 설정",
+        "노이즈가 사라진 화면 확인"
+      ]
+    },
+    {
+      "title": "렌즈 플레어 효과 삽입",
+      "steps": [
+        "OpenFX Library → Lens Flare 선택",
+        "노드 위치를 클립 앞에 배치",
+        "Intensity와 Color 파라미터로 강도와 색조 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "강도(Strength)를 100% 로 그대로 두면 원본 영상이 과도하게 가려짐 → 적절히 낮은 값으로 조정",
+    "Blend Mode를 ‘Add’ 로 설정하면 밝기가 폭발함 → ‘Overlay’ 또는 ‘Screen’ 등 적합한 모드로 변경",
+    "노드 체인 순서를 잘못 배치해 효과가 의도와 다르게 적용 → 원하는 순서대로 노드를 재배열하고 미리보기로 확인"
+  ],
+  "related": [
+    "OpenFX Library",
+    "Color Wheels",
+    "Qualifier",
+    "Power Window"
+  ],
+  "videos": [
+    {
+      "id": "QqXJPl44TeY",
+      "title": "My SECRET DaVinci Resolve Effect | PRO Tip",
+      "author": "Darren Mostyn"
+    },
+    {
+      "id": "QShfHqWFw9Y",
+      "title": "Learn 5 Essential Visual Effects in DaVinci Resolve 16 - Tutorial for Beginners",
+      "author": "Chris' Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Open%20FX",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "OpenFX Library"
+  ],
+  "at": "2026-11-26T02:38:55.566530+00:00"
+}
