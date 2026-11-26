@@ -1,0 +1,38 @@
+{
+  "id": "blender-error-active-object-is-not-a-mesh-d4949",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Active object is not a mesh",
+  "title": "Error: Active object is not a mesh — Blender 메시 변환 및 선택 오류 해결",
+  "summary": "Blender에서 메쉬 편집이나 연산을 수행할 때, 현재 활성화된 오브젝트(Active Object)가 메쉬(Mesh) 타입이 아니어서 발생하는 오류입니다. 카메라, 라이트, 빈 오브젝트(Empty) 등이 활성화된 상태에서 메쉬 전용 기능을 실행할 때 나타납니다.",
+  "causes": [
+    "현재 선택된 활성 오브젝트(주황색 테두리)가 메쉬가 아닌 카메라, 라이트, 곡선(Curve) 등 다른 타입인 경우",
+    "여러 오브젝트를 선택하고 연산을 실행했으나 마지막에 선택된 활성 오브젝트가 메쉬가 아닌 경우",
+    "Python Script 실행 중 bpy.context.active_object가 메쉬가 아닌 객체를 가리키고 있는 경우"
+  ],
+  "steps": [
+    "Viewport에서 연산을 적용하고자 하는 대상을 Mouse 왼쪽 클릭하여 선택합니다.",
+    "선택된 오브젝트가 메쉬(Mesh) 타입인지 Outliner 패널의 아이콘(삼각형 모형)을 확인합니다.",
+    "만약 다른 타입이라면 올바른 메쉬 오브젝트를 다시 클릭하여 활성화(주황색 외곽선 표시)합니다.",
+    "필요한 경우 Viewport에서 대상 오브젝트를 선택한 후 Mouse 우클릭하고 Convert To 에서 Mesh를 선택하여 메쉬로 변환합니다.",
+    "에디트 모드(Edit Mode) 진입이 필요한 작업이라면 Tab 키를 눌러 메쉬 데이터가 편집 가능한 상태인지 확인합니다."
+  ],
+  "check": [
+    "Viewport에서 원하는 오브젝트를 선택했을 때 상태 표시줄이나 Outliner에 'Mesh' 타입으로 표시되는지 확인합니다.",
+    "오류가 발생했던 기능을 다시 실행했을 때 정상적으로 작동하는지 확인합니다."
+  ],
+  "prevent": [
+    "스크립트나 자동화 도구를 작성할 때 연산 대상이 메쉬인지 확인하는 타입 검사(isinstance, type check) 구문을 추가합니다.",
+    "작업 중 Outliner를 수시로 확인하여 현재 활성화된 오브젝트가 올바른지 체크합니다."
+  ],
+  "keywords": [
+    "Blender Active object is not a mesh",
+    "Blender 활성 오브젝트 메쉬 오류",
+    "메쉬가 아닙니다 오류",
+    "Blender 에러 해결",
+    "Active object 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T08:12:35+00:00"
+}

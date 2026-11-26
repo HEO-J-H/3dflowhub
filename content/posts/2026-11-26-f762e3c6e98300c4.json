@@ -1,59 +1,98 @@
 {
-  "title_ko": "Gaussian Splatting: SprintGS로 학습 2.15배 가속",
+  "title_ko": "SprintGS: 3D Gaussian Splatting 학습 속도 2배 이상 개선",
   "title": "SprintGS: Eliminating Redundancy for Fast 3D Gaussian Splatting Training",
   "url": "https://arxiv.org/abs/2611.33796v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
+    "3D Gaussian Splatting",
     "SprintGS",
     "FastGS",
-    "3DGS",
-    "학습 속도",
-    "GPU 최적화"
+    "Rasterization",
+    "Fused Loss",
+    "Optimization"
   ],
-  "summary": "SprintGS는 FastGS 기반의 3D Gaussian Splatting 학습을 2.15배 빠르게 만들면서 품질을 유지합니다.",
-  "insight": "SprintGS는 FastGS 대비 2.15배 빠른 학습 속도를 제공해, 기존 5분 걸리던 장면 최적화를 2분 이하로 단축할 수 있습니다. 실시간 Viewport 피드백이 필요한 Interactive 콘텐츠 제작에 유용합니다.",
-  "try_it": [
-    "GitHub에서 SprintGS 코드를 클론한다.",
-    "FastGS 파이프라인 설정 파일에 `use_sprintgs=True` 를 추가한다.",
-    "동일 데이터셋으로 학습을 실행하고, 전체 학습 시간을 측정한다."
-  ],
+  "summary": "FastGS의 렌더링 래스터화와 손실 계산 중 발생하는 중복 연산을 제거하여 3D Gaussian Splatting 학습 시간을 대폭 단축하는 프레임워크입니다.",
+  "insight": "이 기술이 상용화되면 현장에서 캡처한 3D 씬을 확인하기 위해 수 분씩 기다리던 대기 시간이 줄어들어 작업 흐름(워크플로)이 빨라질 수 있습니다. 특히 모바일 기기나 제한된 하드웨어 환경에서 3D 씬 데이터를 다루는 아티스트들에게 유용한 대안이 될 가능성이 큽니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "핵심 아이디어: 스케줄드 타일 컬링",
-      "body": "SprintGS는 각 Gaussian이 영향을 미치는 타일만 남기도록 스케줄드 타일 컬링을 적용합니다. 초기에는 거친 footprint를 사용해 빠르게 제외 대상을 찾고, 학습 말미에 정밀 footprint로 교체합니다. 이 과정은 rasterization 단계의 불필요한 연산을 크게 줄입니다."
+      "heading": "무엇을 풀려는가",
+      "body": "3D Gaussian Splatting(3DGS)은 실시간 렌더링을 제공하지만 장시간의 학습(최적화) 시간이 필요합니다. FastGS 등은 Gauss 개수를 줄여 학습을 단축했으나, 래스터화 연산과 손실 계산(Loss computation)에서 여전히 중복 작업과 병목 현상이 발생합니다."
     },
     {
-      "heading": "손실 계산 최적화: 퓨즈드 로스",
-      "body": "기존 FastGS는 손실 맵을 별도로 생성해 이미지 그라디언트를 계산했지만, SprintGS는 forward pass에서 손실과 이미지 그라디언트를 동시에 계산하는 퓨즈드 로스를 도입했습니다. 손실 맵을 만들지 않으므로 loss 단계의 연산 비중이 크게 감소합니다."
+      "heading": "핵심 아이디어",
+      "body": "SprintGS는 FastGS를 기반으로 래스터화 과정의 중복을 제거하고 손실 계산 비용을 낮추는 4가지 핵심 구성 요소(예: Scheduled tile culling, Convergence-aware pruning, Shuffle-efficient backward pass, Fused loss)를 도입합니다."
     },
     {
-      "heading": "수렴 인식 프루닝",
-      "body": "SprintGS는 거의 투명해진 Gaussian을 자동으로 제거하는 수렴 인식 프루닝을 포함합니다. 모델이 수렴하면 불필요한 요소가 사라져 메모리 사용량이 감소하고, 남은 Gaussian에 집중해 학습이 진행됩니다."
+      "heading": "방법 (단계)",
+      "body": "훈련 과정에서 타일 할당 임계값을 동적으로 조절하는 Scheduled tile culling으로 Gauss가 영향을 미치는 타일 범위를 줄입니다. 또한 수렴된 투명 Gauss를 조기에 제거하는 Convergence-aware pruning과 순전파 과정에서 이미지 그래디언트를 함께 계산하는 Fused loss를 적용합니다."
     },
     {
-      "heading": "셔플 효율적인 역전파",
-      "body": "역전파 단계에서 GPU 스레드 간 데이터 교환을 최소화하도록 설계된 셔플 효율적인 역전파가 적용됩니다. 이는 전체 학습 시간에 작은지만 눈에 띄는 감소를 가져옵니다."
+      "heading": "결과 (논문 수치)",
+      "body": "SprintGS-Base는 동등한 품질 수준에서 FastGS-Base보다 2.15배 빠르게 학습을 완료하며, 고품질 설정에서는 1.81배 더 빠른 속도를 기록했습니다. 또한 다른 빠른 학습 방법이나 동적, 희소 뷰(sparse-view), 표면 재구성(surface reconstruction) 태스크도 가속화합니다."
     },
     {
-      "heading": "다른 빠른 학습 방법과의 호환",
-      "body": "SprintGS는 FastGS뿐 아니라 동적·희소 뷰 재구성, 표면 복원 등 다른 빠른 학습 프레임워크에도 가속 효과를 제공합니다. 기존 파이프라인에 적용하면 별도 구현 없이도 속도 향상을 기대할 수 있습니다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문에서는 FastGS 등 기존 빠른 3DGS 학습 파이프라인의 구조적 한계와 병목을 해결하는 데 초점을 맞추었으며, 복잡한 비정상 동적 장어에서의 추가적인 오버헤드나 기타 예외 상황에 대한 상세한 한계점은 본문 내에서 별도로 깊게 다뤄지지 않았습니다."
     },
     {
-      "heading": "성능 평가",
-      "body": "실험 결과 SprintGS는 FastGS 대비 2.15× 빠른 학습 속도를 보이며, 고품질 설정에서는 1.81× 가속되었습니다. PSNR·SSIM 차이는 거의 없으며, 동일한 품질을 유지하면서 시간 절감이 가능합니다."
+      "heading": "코드·데이터 공개 여부",
+      "body": "본 논문에서는 GitHub 이슈 리포트 링크 및 관련 오픈소스 기반 구현(Faster-GS, Taming-3DGS 등)을 활용한 실험 내용을 다루고 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "SprintGS는 어떤 기존 메서드를 기반으로 제작되었나요?",
+      "a": "FastGS를 기반으로 구축되었으며, Faster-GS 등에서 파생된 구현 최적화를 함께 적용합니다."
+    },
+    {
+      "q": "손실 계산 비용을 줄이기 위해 어떤 방식을 사용하나요?",
+      "a": "손실 맵 없이 순전파 단계에서 손실과 이미지 그래디언트를 함께 계산하는 Fused loss를 사용합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.33796v1/fig_breakdown.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.33796v1/fig_breakdown.png",
+        "caption": "Figure 1 : Training-time breakdown of 3DGS [ 24 ] and FastGS [ 46 ] over the 13 scenes of Mip-NeRF 360 [ 2 ] , Deep Blending [ 20 ] , and Tanks & Temples [ 28 ] .",
+        "caption_ko": "그림 1: Mip-NeRF 360, Deep Blending, Tanks & Temples 13개 씬에서의 3DGS와 FastGS 학습 시간 비교"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33796v1/fig_position.png",
+        "caption": "Figure 2 : Training time and PSNR of fast 3DGS training methods, averaged over the 13 scenes of Mip-NeRF 360 [ 2 ] , Deep Blending [ 20 ] , and Tanks & Temples [ 28 ] .\nThe marker area is proportional to the number of Gaussians.",
+        "caption_ko": "그림 2: 빠른 3DGS 학습 방법들의 학습 시간 및 PSNR 평균 비교 (마커 면적은 가우스 개수에 비례)"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33796v1/fig_flow.png",
+        "caption": "Figure 3 : Overview of SprintGS.\nGray boxes show one training iteration of the base method.\nEach colored box is a close-up of the step in which a component runs.\nF-A, F-B, and F-C (green) reduce redundant work in rasterization.\nF-D (purple) reduces the cost of the loss by computing the loss and its ",
+        "caption_ko": "그림 3: SprintGS의 전체 구조 요약도"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33796v1/fig_tile_culling.png",
+        "caption": "Figure 4 : Scheduled tile culling.\nTop: a Gaussian projected onto the tile grid at three iterations. The solid ellipse is\nthe footprint d i 2 ≤ δ i ​ ( τ ) d_{i}^{2}\\leq\\delta_{i}(\\tau) used for tile assignment, the dashed ellipse the exact footprint of Speedy-Splat [ 18 ] ( τ = ϵ \\tau=\\epsilon ), a",
+        "caption_ko": "그림 4: Scheduled tile culling 개념 및 타일 할당 임계값 변화"
+      }
+    ]
   },
   "collected_at": "2026-11-26T03:48:09.343149+00:00",
   "notion_id": "",
   "id": "2026-11-26-f762e3c6e98300c4",
   "img_tried": true,
   "enriched": "2026-11-26",
-  "img_ok": "2026-11-26T03:58:00+00:00"
+  "img_ok": "2026-11-26T03:58:00+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T08:12:45+00:00"
 }

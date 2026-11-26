@@ -1,55 +1,101 @@
 {
-  "title_ko": "NeRF 최적화: ProPolar 진행형 Polar 분해 기법",
+  "title_ko": "ProPolar: 암시적 신경 표현을 위한 점진적 극분해 최적화 기법",
   "title": "ProPolar: Progressive Polar Decomposition for Implicit Neural Representations",
   "url": "https://arxiv.org/abs/2611.33567v1",
   "domain": "AI 3D",
   "category": "기타 AI 3D",
   "topic": "연구·논문",
   "tags": [
+    "Implicit Neural Representation",
     "NeRF",
-    "INR",
-    "optimizer",
-    "rank scheduler",
-    "high‑frequency"
+    "Optimization",
+    "Polar Decomposition",
+    "Subspace Momentum"
   ],
-  "summary": "ProPolar는 INR 학습 시 저주파‑고주파 단계에 맞춰 서브스페이스 차원을 점진적으로 늘리는 새로운 모멘텀 최적화 기법이다.",
-  "insight": "ProPolar는 INR이 보이는 단계적 특성을 직접 반영한다는 점이 가장 큰 강점이다. 저주파 단계에서 불필요한 모멘텀을 최소화하고, 고주파 단계에선 새 서브스페이스가 즉시 활용되므로, 고해상도 뷰 합성을 목표로 하는 3D 아티스트에게 실질적인 품질 향상을 제공한다. 하이퍼파라미터 탐색 비용을 늘리지 않고도 PSNR을 끌어올릴 수 있다는 점은 프로젝트 일정이 촉박한 경우에도 매력적이다.",
+  "summary": "ProPolar는 암시적 신경 표현(INR) 학습의 조기 저주파 학습과 후기 고주파 복원 단계에 맞추어 모멘텀 부분공간의 랭크를 점진적으로 확장하는 적응형 최적화 기법입니다.",
+  "insight": "이 연구의 방식이 실제 3D 렌더링이나 NeRF 학습 파이프라인에 도입된다면, 대규모 좌표 기반 Neural Network 학습 시 초기 노이즈를 줄이고 디테일 회복 속도를 높이는 데 기여할 수 있습니다. (가능성) 특히 복잡한 고주파 세부 묘사가 필요한 시각화 작업에서 최적화 효율을 개선하는 대안으로 활용될 수 있습니다.",
   "try_it": [
-    "학습 스크립트에서 Adam → ProPolar 교체하고 rank scheduler를 초기 rank 1, 최종 rank 8로 설정한다.",
-    "rank‑aware learning‑rate scheduler를 활성화해 rank 증가 시 학습률을 최고값으로 유지한다.",
-    "NeRF 훈련 시 10 % 에폭마다 rank를 2씩 증가시켜 단계적 서브스페이스 확대를 적용한다.",
-    "검증 셋에서 PSNR 변화를 모니터링해 기존 옵티마이저 대비 0.3 dB 이상 상승 여부를 확인한다."
+    "공식 GitHub 저장소(https://github.com/pur3um/ProPolar)에 접속하여 소스 코드와 구현 예제를 확인합니다.",
+    "NeRF 또는 이미지 피팅 실험 스크립트를 참고하여 ProPolar 옵티마이저를 학습 파이프라인에 적용하고 기존 옵티마이저와 수렴 속도를 비교합니다."
   ],
   "sections": [
     {
-      "heading": "INR의 Coarse‑to‑Fine 학습 흐름",
-      "body": "Implicit Neural Representations는 학습 초기에 전역 저주파 구조를 형성하고, 이후 단계에서 지역 고주파 디테일을 정교화한다. 이 과정은 이미지 피팅, SISR, NeRF와 같은 작업에서 공통적으로 나타난다. 저주파와 고주파가 순차적으로 학습되기 때문에 옵티마이저가 두 단계의 특성을 구분해 주면 수렴이 빨라진다."
+      "heading": "무엇을 풀려는가",
+      "body": "암시적 신경 표현(INR, Implicit Neural Representations)은 학습 초기 단계에서 전역적인 저주파 구조를 먼저 학습하고, 이후 국소적인 고주파 세부 사항을 복원하는 coarse-to-fine 진행 과정을 거칩니다. 그러나 기존의 표준 최적화 기법들은 이러한 단계별 학습 특성을 반영하지 못하고 고정된 차원의 업데이트를 유지하여, 초기 단계에서 불필요한 고주파 성분이 섞이거나 후기 세부 복원 단계에서 성능이 제한되는 문제가 있습니다."
     },
     {
-      "heading": "전통 옵티마이저의 한계",
-      "body": "Adam이나 RMSProp은 모멘텀 버퍼에 전체 gradient 행렬을 저장한다. 초기 저주파 단계에서 고주파와 무관한 성분이 버퍼에 남아, 이후 고주파 복원 단계에서 불필요한 잡음을 유발한다. 결과적으로 수렴 속도가 늦어지고 최종 PSNR이 낮아지는 경향이 있다."
+      "heading": "핵심 아이디어",
+      "body": "논문에서는 모멘텀 행렬을 저랭크(low-rank) 부분공간 내에서 업데이트하는 서브스페이스 기반 모멘텀 최적화를 제안합니다. 초기에는 지배적인 저주파 방향에 집중하고, 학습이 진행됨에 따라 액티브 랭크 스케줄러(progressive active-rank scheduler)를 통해 부분공간을 점진적으로 확장하여 고주파 세부 복원이 가능하도록 설계되었습니다."
     },
     {
-      "heading": "ProPolar 설계 핵심",
-      "body": "ProPolar는 서브스페이스 기반 모멘텀을 도입하고, 두 개의 스케줄러를 함께 운영한다. rank scheduler는 훈련 초기에 rank를 1로 시작해 단계별로 차원을 8까지 확대한다. 동시에 rank‑aware learning‑rate scheduler는 차원 증가 시 학습률을 최고값으로 유지해 새로 추가된 서브스페이스가 고주파 복원에 바로 기여하도록 만든다."
+      "heading": "방법 (단계)",
+      "body": "ProPolar는 Gaussian 무작위 행렬과 얇은 QR 분해를 사용하여 모멘텀 행렬을 저랭크 부분공간에 투영하고, 5단계 뉴턴-슐츠(Newton-Schulz) 반복을 통해 극분해(polar decomposition)를 근사합니다. 초기화 단계(T0)에서 데이터 기반의 시작 랭크를 추정하고, 이후 코사인 성장 단계(Tg)를 거쳐 최대 랭크(r_max)까지 확장하며, 랭크가 확장되는 동안 피크 학습률을 유지하는 랭크 인지형 WSD 스케줄러를 함께 사용합니다."
     },
     {
-      "heading": "실험 결과 요약",
-      "body": "이미지 피팅, 단일 이미지 초해상도(SISR), NeRF 최적화 세 작업에서 ProPolar는 Adam·RMSProp 대비 수렴이 현저히 빨라졌다. 특히 고주파 복원 단계에서 PSNR이 평균 0.3 dB 이상 상승했다. 동일한 하이퍼파라미터 탐색 예산 하에서도 성능 차이가 유지되는 것이 확인되었다."
+      "heading": "결과 (논문 수치)",
+      "body": "이미지 피팅(image fitting), 단일 이미지 초해상도(SISR), 신경 방사 필드(NeRF) 최적화 실험에서 제안된 방법은 기존 경쟁 최적화 기법들보다 수렴 속도와 피크 재구성 품질(peak reconstruction quality)이 향상됨을 입증했습니다. 특히 트랜스포머/TPE 기반 하이퍼파라미터 최적화(HPO) 비교에서도 동일한 검색 예산 하에서 최상위 성능을 유지했습니다."
     },
     {
-      "heading": "NeRF에 바로 적용하는 방법",
-      "body": "NeRF 학습 스크립트에서 옵티마이저 객체를 ProPolar로 교체하고, rank scheduler와 learning‑rate scheduler를 함께 초기화한다. 초기 rank를 1로 두고, 10 % 에폭마다 rank를 2씩 증가시켜 최종 8에 도달하도록 설정한다. 학습률은 초기 peak 값을 유지하고, rank가 변할 때마다 동일하게 유지한다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "INR 학습의 최적화 과정에 특화되어 설계되었으며, 랭크 스케줄과 학습률 스케줄 간의 상호작용 및 다양한 하이퍼파라미터(T0, Tg, r_max 등) 설정에 대한 세심한 조정이 요구됩니다. 범용적인 심층 딥러닝 모델 전반에 대한 적용성은 본 논문의 주된 초점이 아닙니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "연구에 사용된 소스 코드는 공식 GitHub 저장소(https://github.com/pur3um/ProPolar)를 통해 공개되어 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "ProPolar가 기존 최적화 기법과 다른 주요 차이점은 무엇인가요?",
+      "a": "기존 최적화 기법들은 학습 전반에 걸쳐 고정된 차원의 업데이트를 사용하는 반면, ProPolar는 INR의 coarse-to-fine 학습 동역학에 맞춰 모멘텀 부분공간의 랭크를 점진적으로 확장합니다."
+    },
+    {
+      "q": "어떤 실험 환경에서 성능 향상이 검증되었나요?",
+      "a": "이미지 피팅, 단일 이미지 초해상도(SISR), 그리고 신경 방사 필드(NeRF) 최적화 실험에서 수렴 및 재구성 품질 향상이 검증되었습니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.33567v1/img/teaser8.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.33567v1/img/teaser8.png",
+        "caption": "Figure 1 : Overview. ProPolar introduces a progressive active-rank schedule r t r_{t} that expands the momentum subspace from dominant low-rank directions to higher-rank directions during INR training.\nFor the current rank budget, the orthonormal basis Q t ∈ ℝ m × r t Q_{t}\\in\\mathbb{R}^{m\\times r_{",
+        "caption_ko": "그림 1: ProPolar 개요. 학습 중 저주파 방향에서 고주파 방향으로 모멘텀 부분공간을 확장하는 점진적 활성 랭크 스케줄 r_t를 보여줍니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33567v1/img/overfitting/relu_adam_of_center_band.png",
+        "caption": "Table 2 : Overfitting performance on Kodak24. Quantitative comparison on ReLU MLP and SIREN. Each entry reports the mean\nover 24 images. Bold values indicate the best result.",
+        "caption_ko": "표 2: Kodak24 데이터셋에서의 오버fitting 성능 비교. ReLU MLP와 SIREN에 대한 정량적 비교 결과입니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33567v1/img/sdf/adam_armadillo.png",
+        "caption": "Figure 3 : Qualitative comparison for SDF overfitting. Geometry reconstructions and zoomed regions on Armadillo and Dragon.",
+        "caption_ko": "그림 3: SDF 오버fitting에 대한 정성적 비교. Armadillo 및 Dragon 모델의 지오메트리 재구성 및 확대 영역입니다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.33567v1/img/nerf_qual/m003_cropped.png",
+        "caption": "Figure 4 : Qualitative comparison on NeRF [ 25 ] scenes. On both the real-world Trex (LLFF) and the synthetic Ship (Blender) scenes, our method produces sharper fine-grained details than Muon [ 14 ] ,\nas highlighted in the zoom-in.",
+        "caption_ko": "그림 4: NeRF 장면에서의 정성적 비교. 실제 Trex(LLFF) 및 합성 Ship(Blender) 장면에서 선명한 세부 디테일을 보여줍니다."
+      }
+    ]
   },
   "collected_at": "2026-11-26T04:08:14.349911+00:00",
   "notion_id": "",
   "id": "2026-11-26-ea0da2489d011349",
   "img_tried": true,
-  "enriched": "2026-11-26"
+  "enriched": "2026-11-26",
+  "img_ok": "2026-11-26T08:11:55+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML",
+      "https://github.com/pur3um/ProPolar"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T08:12:22+00:00"
 }

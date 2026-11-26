@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-designer-cook-error-evaluating-functi-ccb5d",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Cook] Error evaluating function in graph because input pin is unconnected",
+  "title": "Designer: [Cook] Error evaluating function in graph because input pin is unconne",
+  "summary": "Substance 3D Designer에서 'Designer: [Cook] Error evaluating function in graph because input pin is unconnected' 오류는 Graph 내의 노드에서 필수 입력 핀(Input Pin)에 데이터나 연결이 누락되었을 때 렌더링(Cook) 과정에서 발생하는 문제입니다.",
+  "causes": [
+    "함수(Function) Graph 내부의 노드에서 필수 입력 핀에 아무것도 연결되지 않은 경우",
+    "커스텀 노드나 서브그래프(SubGraph)를 생성한 후 외부 인풋 데이터와 내부 노드가 제대로 연결되지 않은 경우",
+    "노드 복사 및 붙여넣기 과정에서 기존에 연결되어 있던 입력 핀 링크가 끊어진 경우"
+  ],
+  "steps": [
+    "Substance 3D Designer의 Explorer 뷰에서 오류가 발생한 Graph 또는 함수(Function)를 엽니다.",
+    "Graph 뷰 또는 Function 뷰에서 빨간색 경고 표시나 오류가 발생하는 노드를 찾습니다.",
+    "해당 노드의 Inspector 패널 및 입력 핀(Input Pin) 주변을 확인하여 연결이 누락된 핀을 파악합니다.",
+    "올바른 데이터 소스(상수 값, 다른 노드의 출력 핀, 혹은 Input 노드)를 해당 입력 핀에 연결합니다.",
+    "Graph를 저장하고 다시 렌더링(Cook)하여 오류가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "Explorer 뷰와 Graph 뷰에서 오류 및 경고 아이콘이 모두 사라졌는지 확인합니다.",
+    "2D/3D Viewport에서 텍스처가 정상적으로 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "함수 그래프나 서브그래프를 제작할 때 모든 필수 입력 핀에 기본값(Default Value)을 지정하거나 항상 연결을 유지합니다.",
+    "노드를 수정하거나 삭제하기 전후로 입력 핀 연결 상태를 꼼꼼히 확인합니다."
+  ],
+  "keywords": [
+    "Substance Designer 오류",
+    "input pin is unconnected",
+    "Error evaluating function in graph",
+    "서브그래프 연결 오류",
+    "디자이너 쿡 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T08:12:25+00:00"
+}

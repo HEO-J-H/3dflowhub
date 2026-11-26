@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-bind-materi-c193e",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to bind material because USD shader graph is invalid",
+  "title": "Stage Error: Failed to bind material because USD shader graph is invalid 해결",
+  "summary": "NVIDIA Omniverse에서 USD 머티리얼을 오브젝트에 바인딩(Bind)할 때, 연결된 Shader Graph의 구조나 노드 연결이 잘못되어 발생하는 오류입니다.",
+  "causes": [
+    "UsdShade 네트워크 내에서 필수 입력(Input) 또는 출력(Output) 포트가 누락되거나 잘못 연결된 경우",
+    "지원하지 않는 Shader 노드나 커스텀 타입이 USD 표준 규격에 맞지 않게 포함된 경우",
+    "머티리얼 바인딩 타겟(Material Binding) 패스나 프레임워크 설정이 올바르지 않은 경우"
+  ],
+  "steps": [
+    "Stage 패널 또는 Material Graph 편집기에서 문제가 발생한 UsdShade 머티리얼을 엽니다.",
+    "Shader Graph 내부의 노드 연결 상태를 확인하고, 빨간색 경고나 끊어진(Broken) 링크가 있는지 검토합니다.",
+    "필수 출력(예: surface, displacement) 포트에 올바른 Shader 노드의 출력이 정확히 연결되어 있는지 확인합니다.",
+    "잘못 연결된 노드 링크를 끊고(Disconnect) 표준 USD Preview Surface 또는 지원되는 Shader 노드로 다시 연결합니다.",
+    "변경 사항을 저장하고 스테이지(Stage)를 다시 로드하여 바인딩을 재시도합니다."
+  ],
+  "check": [
+    "Property 패널에서 머티리얼 바인딩이 정상적으로 완료되었는지 확인합니다.",
+    "Viewport에서 오브젝트에 머티리얼이 에러 없이 올바르게렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "DCC 툴에서 USD로 Export할 때 지원되는 표준 UsdShade Shader 구조를 사용합니다.",
+    "복잡한 커스텀 Shader 네트워크는 Omniverse로 가져오기 전 표준 노드로 Bake하거나 단순화합니다."
+  ],
+  "keywords": [
+    "Omniverse Shader 오류",
+    "USD 머티리얼 바인딩 실패",
+    "UsdShade graph invalid",
+    "NVIDIA Omniverse 렌더링 오류",
+    "USD shader graph error"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T08:12:30+00:00"
+}
