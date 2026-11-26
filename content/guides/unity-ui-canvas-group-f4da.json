@@ -1,0 +1,88 @@
+{
+  "id": "unity-ui-canvas-group-f4da",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "UI 및 인터페이스",
+  "name": "UI Canvas Group",
+  "title": "UI 캔버스 그룹 — 하위 UI 요소 전체의 투명도, 상호작용 여부, 레이아웃을 일괄 제어하는 컴포넌트",
+  "summary": "Unity의 UI Canvas Group은 캔버스 내 여러 UI 요소의 투명도(Alpha), 상호작용(Interactable), 블록킹(Block Raycasts)을 한 번에 제어하는 컴포넌트입니다. 계층 구조 전체에 일괄적인 페이드 인·아웃 효과를 줄 때 사용합니다.",
+  "when": [
+    "메뉴 창이나 팝업을 부드럽게 나타내거나 사라지게(Fade In/Out) 만들 때",
+    "특정 패널 전체를 한 번에 비활성화하여 Mouse 클릭을 막고 싶을 때",
+    "UI 요소 하나하나의 알파값을 건드리지 않고 그룹 단위로 투명도를 조절할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Canvas 그룹을 적용할 부모 UI GameObject를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "Canvas Group을 검색하여 컴포넌트를 추가합니다.",
+    "Inspector 패널의 Canvas Group 컴포넌트에서 Alpha, Interactable, Block Raycasts 값을 조절합니다.",
+    "Game 뷰나 Scene 뷰에서 UI 요소들의 투명도와 상호작용 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Alpha",
+      "desc": "그룹 내 모든 UI 요소의 투명도를 0(투명)에서 1(불투명) 사이로 일괄 조절합니다."
+    },
+    {
+      "name": "Interactable",
+      "desc": "체크 해제 시 그룹 내 버튼이나 토글 등의 상호작용이 차단됩니다."
+    },
+    {
+      "name": "Block Raycasts",
+      "desc": "체크 해제 시 Mouse 레이캐스트가 이 UI를 통과하여 아래에 있는 다른 요소를 클릭할 수 있습니다."
+    },
+    {
+      "name": "Ignore Parent Groups",
+      "desc": "상위 Canvas Group의 설정(알파값 등) 영향을 받지 않고 독립적으로 동작하게 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "팝업창 페이드인·아웃 애니메이션",
+      "steps": [
+        "팝업 패널에 Canvas Group 컴포넌트를 추가합니다.",
+        "Alpha 값을 0으로 설정해 숨깁니다.",
+        "스태틱 코드나 애니메이터를 통해 Alpha 값을 1로 서서히 변경합니다."
+      ]
+    },
+    {
+      "title": "일시정지 메뉴 비활성화",
+      "steps": [
+        "일시정지 UI 패널에 Canvas Group을 추가합니다.",
+        "Interactable과 Block Raycasts를 체크 해제합니다.",
+        "게임 플레이 중에 백그라운드 UI 클릭을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "자식 UI의 알파값을 개별 조절하려 함 → Canvas Group의 Alpha는 자식의 기존 알파값과 곱해져서 적용되므로 전체 제어용으로 사용해야 합니다.",
+    "상호작용은 막혔는데 클릭이 안 됨 → Block Raycasts 옵션이 켜져 있으면 투명해도 Mouse 입력을 막으므로 필요시 체크를 해제해야 합니다."
+  ],
+  "related": [
+    "Canvas",
+    "UI Scaler",
+    "UI Document",
+    "Graphic Raycaster"
+  ],
+  "videos": [
+    {
+      "id": "mrIugN0ztfU",
+      "title": "Unity UI Tutorial - Canvas Groups",
+      "author": "Cat Trap Studios"
+    },
+    {
+      "id": "t8xcHFMtLZQ",
+      "title": "Canvas Group in Unity",
+      "author": "Sloan Kelly"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20UI%20Canvas%20Group",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Canvas",
+    "UI GameObject"
+  ],
+  "at": "2026-11-26T00:48:02.011615+00:00"
+}

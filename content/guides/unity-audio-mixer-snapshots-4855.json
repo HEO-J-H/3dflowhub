@@ -1,0 +1,84 @@
+{
+  "id": "unity-audio-mixer-snapshots-4855",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오",
+  "name": "Audio Mixer Snapshots",
+  "title": "Audio 믹서 스냅샷 — 게임 상황에 따라 Audio 믹서의 파라미터 상태를 부드럽게 전환하는 기능",
+  "summary": "Unity Audio Mixer Snapshots는 믹서 내부의 볼륨, Effect, 피치 등의 파라미터 상태를 저장하고, 게임 내 상황에 따라 부드럽게 전환(Transition)하는 도구입니다.",
+  "when": [
+    "플레이어가 실내에서 실외로 이동할 때 배경음악과 환경음의 리버브를 전환할 때",
+    "게임이 일시정지(Pause) 상태가 되거나 메뉴 화면에 진입할 때 Audio 볼륨을 낮출 때",
+    "플레이어가 전투 상태에 돌입했을 때 전투 음악(Combat Theme)과 Effect를 강조할 때"
+  ],
+  "steps": [
+    "Project 창에서 Audio Mixer 에셋을 더블클릭하여 Audio Mixer 창을 엽니다.",
+    "Audio Mixer 창 우측 상단의 Snapshots 탭을 클릭합니다.",
+    "하단의 + 버튼을 눌러 새로운 Snapshot(예: Combat)을 생성합니다.",
+    "Snapshots 탭에서 기본 믹서 상태와 새로 만든 Snapshot을 선택하며 필요한 볼륨과 Effect 파라미터를 조절합니다.",
+    "Transition Time 값을 설정하여 스냅샷 간 전환 시간을 지정합니다.",
+    "Script에서 Snapshot.TransitionTo(float timeToReach) 함수를 호출하여 게임 내에서 스냅샷을 전환합니다."
+  ],
+  "params": [
+    {
+      "name": "Snapshots",
+      "desc": "믹서의 상태 저장 목록을 관리하고 추가·삭제하는 패널"
+    },
+    {
+      "name": "Transition Time",
+      "desc": "한 스냅샷에서 다른 스냅샷으로 전환되는 데 걸리는 시간(초)"
+    },
+    {
+      "name": "Weight",
+      "desc": "여러 스냅샷을 동시에 블렌딩할 때 각각의 반영 비율"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pause 메뉴 사운드 전환",
+      "steps": [
+        "Audio Mixer 창에서 Pause 스냅샷을 새로 만듭니다.",
+        "Pause 스냅샷을 활성화한 상태에서 Master 볼륨을 낮추고 LowPassFilter Effect를 적용합니다.",
+        "게임 일시정지 시 Script로 Pause 스냅샷을 TransitionTo()로 호출합니다."
+      ]
+    },
+    {
+      "title": "전투 상황 배경음악 전환",
+      "steps": [
+        "Combat 스냅샷을 생성하고 배경음악 그룹의 볼륨을 높입니다.",
+        "평화로운 탐험 상태와 전투 상태 스냅샷을 각각 설정합니다.",
+        "적을 만나는 순간 Combat 스냅샷으로 부드럽게 전환합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅샷 편집 모드에서 값을 바꿨는데 다른 스냅샷이 수정됨 → Audio Mixer 창에서 현재 수정 중인 Snapshot이 올바르게 선택되어 있는지 확인하세요.",
+    "전환 시간이 즉시 반영되지 않음 → Transition Time 값이 너무 길게 설정되어 있는지 확인하고 Script의 파라미터를 점검하세요."
+  ],
+  "related": [
+    "Audio Mixer",
+    "Audio Source",
+    "Audio Effects",
+    "Audio Listener"
+  ],
+  "videos": [
+    {
+      "id": "2nYyws0qJOM",
+      "title": "AudioMixer Snapshots - Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "tpRJdNCRCnY",
+      "title": "Unity Audio Mixer Groups and Snapshots",
+      "author": "Midnite Oil Software LLC"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Mixer%20Snapshots",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Audio Mixer"
+  ],
+  "at": "2026-11-26T00:47:58.541166+00:00"
+}

@@ -1,0 +1,100 @@
+{
+  "id": "unity-line-renderer-fa09",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "시각 효과",
+  "name": "Line Renderer",
+  "title": "라인 렌더러 — 월드 공간에 3D 선이나 궤적을 그려 레이저, 밧줄 등을 표현하는 컴포넌트",
+  "summary": "Unity의 Line Renderer는 3D 공간에 지정된 점들을 연결하여 선, 레이저, 궤적 등을 실시간으로 그릴 수 있는 컴포넌트입니다. 시각적인 효과나 디버깅 용도로 널리 쓰입니다.",
+  "when": [
+    "총기 발사 시 반짝이는 레이저 사이트나 궤적을 표현할 때",
+    "캐릭터 이동 경로 안내나 타겟 지정 선을 그릴 때",
+    "전기 스파크나 밧줄, 레이저 트랩 같은 시각 효과를 만들 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 빈 오브젝트를 우클릭하고 Create Empty를 선택하여 이름을 바꿉니다.",
+    "선택한 오브젝트의 Inspector 패널 하단에서 Add Component 버튼을 클릭합니다.",
+    "검색창에 Line Renderer를 입력하고 선택하여 컴포넌트를 추가합니다.",
+    "Inspector 패널의 Positions 속성에서 점의 개수(Size)를 설정하고 각 점의 좌표(X, Y, Z)를 입력합니다.",
+    "Materials 속성에 적절한 Material을 연결하여 선의 색상과 질감을 지정합니다.",
+    "Scene 뷰에서 선이 올바르게 그려졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Positions",
+      "desc": "선을 구성하는 3D 공간 상의 꼭짓점 위치와 개수 설정"
+    },
+    {
+      "name": "Width",
+      "desc": "선의 두께 조절, 커브 Graph를 통해 구간별 두께 변화 가능"
+    },
+    {
+      "name": "Color",
+      "desc": "선 전체의 시작과 끝 색상 그라데이션 설정"
+    },
+    {
+      "name": "Materials",
+      "desc": "선에 적용할 머티리얼 및 텍스처 지정"
+    },
+    {
+      "name": "Loop",
+      "desc": "첫 번째 점과 마지막 점을 연결하여 닫힌 도형으로 만들기"
+    },
+    {
+      "name": "Use World Space",
+      "desc": "체크 시 월드 좌표 기준, 해제 시 오브젝트 로컬 좌표 기준으로 선 고정"
+    }
+  ],
+  "examples": [
+    {
+      "title": "레이저 건 시각 효과",
+      "steps": [
+        "총구 위치에 Line Renderer가 있는 빈 오브젝트를 배치합니다.",
+        "Script로 매 프레임 시작점은 총구, 끝점은 레이캐스트 충돌 지점으로 Positions를 갱신합니다.",
+        "빛나는 발광(Emission) 머티리얼을 적용하여 레이저 느낌을 냅니다."
+      ]
+    },
+    {
+      "title": "그래플링 훅 로프 연결",
+      "steps": [
+        "플레이어와 갈고리 착지 지점 사이에 Line Renderer를 생성합니다.",
+        "발사 버튼을 누르면 Positions[0]은 플레이어, Positions[1]은 목표 지점으로 지정합니다.",
+        "이동하는 동안 두 점의 위치를 실시간으로 업데이트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "머티리얼을 지정하지 않아 선이 보이지 않음 → Sprites-Default 등 기본 Shader를 사용하는 머티리얼을 연결하세요.",
+    "Use World Space를 켜두어 오브젝트 이동 시 선이 엉뚱한 곳에 남음 → 의도에 맞게 World Space 체크 여부를 확인하세요.",
+    "선이 너무 얇아서 렌더링되지 않음 → Width 값을 더 크게 조정하세요."
+  ],
+  "related": [
+    "Trail Renderer",
+    "Particle System",
+    "Mesh Renderer",
+    "Character Controller"
+  ],
+  "videos": [
+    {
+      "id": "lq9DvOyEync",
+      "title": "Unity Basics - LineRenderer",
+      "author": "MetalStorm Games"
+    },
+    {
+      "id": "PMv2Y94DvqM",
+      "title": "UNITY 2D CARD GAME TUTORIAL WITH LINE RENDERER",
+      "author": "Burak KAYA"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Line%20Renderer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Create Empty",
+    "Inspector",
+    "Add Component",
+    "Line Renderer"
+  ],
+  "at": "2026-11-26T00:47:55.239136+00:00"
+}
