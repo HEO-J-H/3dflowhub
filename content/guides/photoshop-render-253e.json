@@ -1,0 +1,92 @@
+{
+  "id": "photoshop-render-253e",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 렌더링 및 출력",
+  "name": "Render",
+  "title": "Render — 3D 작업물을 최종 고화질 이미지로 연산하고 출력하는 프로세스",
+  "summary": "Photoshop의 Render 기능은 3D DCC에서 제작한 모델을 가져와 레이트레이싱 기반의 고품질 이미지로 최종 렌더링하는 도구입니다. 2D 리터칭 환경에서 곧바로 합성 작업을 수행할 수 있습니다.",
+  "when": [
+    "3D 모델을 외부 렌더러 없이 Photoshop에서 빠르게 최종 이미지로 출력하고 싶을 때",
+    "3D 캐릭터나 오브젝트를 2D 배경 위에 얹어 리터칭과 합성을 동시에 진행할 때",
+    "간단한 3D 타이포그래피나 로고를 텍스처와 함께 정지 화면으로 렌더링할 때"
+  ],
+  "steps": [
+    "상단 메뉴바에서 File → Open을 선택하여 작업할 3D 파일(OBJ, FBX 등)을 엽니다.",
+    "Layers 패널에서 3D 레이어를 선택하여 3D 작업 환경으로 진입합니다.",
+    "3D 패널에서 카메라 뷰와 조명(Light) 위치를 조정하여 구도를 맞춥니다.",
+    "3D 패널의 속성에서 재질(Material)과 텍스처를 확인하고 수정합니다.",
+    "상단 메뉴바에서 3D → Render 3D Layer를 실행하여 렌더링을 시작합니다.",
+    "Viewport에서 최종 렌더링 이미지가 완성되면 일반 레이어로 변환하여 후가정을 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Render Preset",
+      "desc": "품질과 속도를 조절하는 렌더링 사전 설정입니다."
+    },
+    {
+      "name": "Quality",
+      "desc": "레이트레이싱 샘플 수를 높여 노이즈를 줄이고 정밀도를 높입니다."
+    },
+    {
+      "name": "Ray Tracer",
+      "desc": "빛의 반사와 그림자를 계산하는 렌더링 엔진 방식을 선택합니다."
+    },
+    {
+      "name": "Infinite Light",
+      "desc": "씬 전반에 방향성 있는 빛을 비추어 그림자와 명암을 만듭니다."
+    },
+    {
+      "name": "Ground Plane",
+      "desc": "모델 하단에 바닥면을 생성하여 자연스러운 그림자와 반사를 표현합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "3D 로고 렌더링 및 합성",
+      "steps": [
+        "OBJ 포맷의 3D 로고 모델을 Photoshop으로 불러옵니다.",
+        "3D 패널에서 조명 각도를 조절해 입체감을 강조합니다.",
+        "Render 3D Layer를 실행해 고해상도로 렌더링합니다."
+      ]
+    },
+    {
+      "title": "제품 Package 시각화",
+      "steps": [
+        "Package 3D 메쉬를 열고 UV에 맞춘 라벨 텍스처를 적용합니다.",
+        "Ground Plane을 활성화해 바닥에 은은한 그림자를 생성합니다.",
+        "렌더링 완료 후 레이어 Mask로 배경을 분리합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "렌더링 도중 Viewport를 움직임 → 렌더링이 강제로 중단되므로 조절 완료 후 렌더링을 실행하세요.",
+    "컴퓨터 사양에 비해 과도한 Quality 설정 → 렌더링 시간이 지나치게 길어지므로 Preview로 먼저 확인하세요.",
+    "3D 레이어가 아닌 상태에서 저장 → 2D로 병합되어 수정이 불가하므로 작업용 PSD 파일을 따로 백업하세요."
+  ],
+  "related": [
+    "Render 3D File",
+    "Movie Capture",
+    "Video Rendering",
+    "Dimension"
+  ],
+  "videos": [
+    {
+      "id": "Kk0ckcQYlxM",
+      "title": "Making Textured Renders with a simple trick in Photoshop!",
+      "author": "Upstairs"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Render",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "File",
+    "Open",
+    "OBJ",
+    "FBX",
+    "Layers",
+    "Light"
+  ],
+  "at": "2026-11-26T01:28:16.405037+00:00"
+}

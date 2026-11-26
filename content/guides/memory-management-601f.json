@@ -1,0 +1,90 @@
+{
+  "id": "memory-management-601f",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "트러블슈팅",
+  "name": "Memory Management",
+  "title": "Memory Management — VRAM 부족 방지를 위한 GPU 메모리 최적화 팁",
+  "summary": "Memory Management는 3D Gaussian Splatting(3DGS) 학습 및 렌더링 시 VRAM(그래픽카드 메모리) 사용량을 최적화하여 OOM(Out of Memory) 오류를 방지하고 대규모 씬을 안정적으로 다루는 기술입니다.",
+  "when": [
+    "고해상도 이미지 데이터셋 학습 중 'CUDA Out of Memory' 오류가 발생할 때",
+    "수백 장 이상의 대형 스캔 데이터나 복잡한 씬을 처리할 때",
+    "저사양 GPU 환경에서 3DGS 학습 및 뷰어 실행 속도를 확보해야 할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습 Software(Nerfstudio, Luma, SIBR 등)를 실행합니다.",
+    "Training 패널 또는 Configuration 설정에서 Dataset/Resolution 관련 옵션을 찾습니다.",
+    "Image Downscaling 또는 Resolution Multiplier 값을 낮추어 입력 이미지 Resolution를 줄입니다.",
+    "Max Num Splats 또는 Prune 파라미터를 설정하여 불필요한 Gaussian 개수를 제한합니다.",
+    "학습 시작 전 GPU VRAM 모니터링 툴을 켜고 메모리 점유율을 확인합니다.",
+    "뷰어에서 SH(Spherical Harmonics) Degree를 낮추거나 압축(Compression) 옵션을 활성화하여 최종 메모리를 최적화합니다."
+  ],
+  "params": [
+    {
+      "name": "Image Downscaling",
+      "desc": "입력 이미지 Resolution를 축소하여 학습 초기 VRAM 사용량을 크게 줄입니다."
+    },
+    {
+      "name": "Resolution Multiplier",
+      "desc": "학습 및 렌더링 Resolution 배율을 조절해 메모리와 디테일의 균형을 맞춥니다."
+    },
+    {
+      "name": "Max Num Splats",
+      "desc": "생성되는 최대 Gaussian 개수를 제한하여 메모리 폭증을 방지합니다."
+    },
+    {
+      "name": "SH Degree",
+      "desc": "구면 조화 함수 차수를 낮추어 렌더링 및 저장 시 메모리 점유율을 줄입니다."
+    },
+    {
+      "name": "Batch Size",
+      "desc": "한 번에 처리하는 데이터 양을 조절하여 VRAM 한계를 넘지 않도록 합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "4K 고해상도 드론 촬영본 학습 시 메모리 초과 방지",
+      "steps": [
+        "Dataset 폴더의 이미지를 확인합니다.",
+        "학습 툴에서 Image Downscaling 값을 2로 설정합니다.",
+        "VRAM 사용량이 안전 범위 내로 들어오는지 확인하며 학습을 시작합니다."
+      ]
+    },
+    {
+      "title": "대형 건축물 스캔 데이터 경량화",
+      "steps": [
+        "포인트 클라우드 로드 후 Max Num Splats 제한을 설정합니다.",
+        "Pruning 빈도를 높여 불필요한 Gaussian을 빠르게 제거합니다.",
+        "최종 모델을 압축 포맷으로 익스포트합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Resolution를 무조건 낮추어 디테일이 다 깨짐 → Image Downscaling 값을 2 이상으로 올리기 전 1.5나 중간 Resolution로 테스트하기",
+    "Gaussian 개수를 너무 제한하여 렌더링이 흐려짐 → Max Num Splats 값을 씬 규모에 맞게 점진적으로 늘리기",
+    "VRAM 한계를 무시하고 배치 크기를 높임 → 하드웨어 사양에 맞춰 Batch Size를 낮추고 그래픽카드 모니터링하기"
+  ],
+  "related": [
+    "Image Downscaling",
+    "Resolution Multiplier",
+    "Adaptive Density Control",
+    "SH Degree"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "VkIJbpdTujE",
+      "title": "3D Gaussian Splatting! - Computerphile",
+      "author": "Computerphile"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Memory%20Management",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T01:28:10.989701+00:00"
+}
