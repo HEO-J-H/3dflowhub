@@ -1,0 +1,84 @@
+{
+  "id": "davinci-resolve-j-l-c-cuts-d26b",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷/에디트 페이지",
+  "name": "J-L-C Cuts",
+  "title": "J-L-C Cuts — 비디오와 Audio의 편집점을 다르게 가져가는 전문 편집 기법",
+  "summary": "DaVinci Resolve의 J-L-C Cuts는 Audio와 비디오의 편집점을 서로 다르게 어긋나게 만들어, 장면 전환을 자연스럽고 매끄럽게 연결해 주는 대화 편집 기법입니다.",
+  "when": [
+    "인물 간의 대화 장면에서 시선을 상대방에게 미리 주고받게 만들 때",
+    "장면 전환 시 Audio가 먼저 나와 다음 씬의 분위기를 미리 전달할 때",
+    "컷 전환의 단절감을 줄이고 부드러운 흐름을 연출하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Edit 페이지로 이동합니다.",
+    "Timeline에 대화가 포함된 영상 클립을 배치합니다.",
+    "Edit 페이지 툴바에서 Selection Mode(Hotkey A)가 활성화되어 있는지 확인합니다.",
+    "상단 메뉴바에서 Timeline → Link Clips 옵션을 끕니다(또는 Hotkey Ctrl+Alt+L).",
+    "Audio 클립의 가장자리를 드래그하여 비디오 클립보다 먼저 시작되거나(L-Cut) 나중에 끝나도록(J-Cut) 조정합니다.",
+    "Timeline Viewport에서 Audio와 비디오의 시작점이 어긋난 것을 확인하고 재생하여 자연스러움을 점검합니다."
+  ],
+  "params": [
+    {
+      "name": "Link Clips",
+      "desc": "Audio와 비디오 클립의 연결을 해제하여 각각 독립적으로 편집할 수 있게 합니다."
+    },
+    {
+      "name": "Selection Mode",
+      "desc": "Timeline에서 클립을 선택하고 이동하는 기본 편집 모드입니다."
+    },
+    {
+      "name": "Blade Edit Mode",
+      "desc": "클립을 특정 지점에서 정확하게 자를 때 사용합니다."
+    },
+    {
+      "name": "Audio Transition",
+      "desc": "Audio가 겹치는 구간에 적용하여 볼륨 변화를 부드럽게 만들어 줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 대화 씬에서 J-Cut 적용하기",
+      "steps": [
+        "Timeline에 두 인물의 대화 클립을 배치합니다.",
+        "Link Clips를 끄고 두 번째 인물의 Audio 시작점을 첫 번째 인물의 비디오보다 몇 프레임 앞으로 당깁니다.",
+        "화면이 바뀌기 전에 목소리가 먼저 들리도록 타이밍을 맞춥니다."
+      ]
+    },
+    {
+      "title": "장면 전환 시 L-Cut 적용하기",
+      "steps": [
+        "현재 씬의 Audio 클립 끝부분을 다음 씬의 비디오 시작점보다 뒤로 늘립니다.",
+        "화면은 이미 다음 씬으로 넘어갔지만 이전 씬의 대화나 효과음이 잠시 이어지게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Link Clips를 켠 상태로 Audio를 이동함 → 비디오와 Audio가 함께 밀리므로 반드시 Link Clips를 해제하고 편집하세요.",
+    "Audio 구간을 너무 길게 어긋나게 함 → 말하는 사람의 입모양과 소리가 심하게 불일치하므로 5~15프레임 내외로 자연스럽게 조절하세요."
+  ],
+  "related": [
+    "Scene Cut Detector",
+    "Smart Revolve",
+    "Audio Crossfade",
+    "Trim Edit Mode"
+  ],
+  "videos": [
+    {
+      "id": "Rtm0kV4plMA",
+      "title": "DaVinci Resolve Cut Page in Under 60 Min",
+      "author": "Ripple Training"
+    },
+    {
+      "id": "wK1izCuhF5M",
+      "title": "How To Cut Video Footage Like a PRO! - DaVinci Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20J-L-C%20Cuts",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T01:18:25.300130+00:00"
+}

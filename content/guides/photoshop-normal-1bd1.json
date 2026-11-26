@@ -1,0 +1,91 @@
+{
+  "id": "photoshop-normal-1bd1",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Normal",
+  "title": "Normal — 3D 오브젝트 표면의 입체감을 디테일하게 살려주는 법선 맵 설정",
+  "summary": "Photoshop의 Normal Filter(또는 3D Normal Map 생성 기능)는 2D 평면 이미지의 명암 정보를 바탕으로 표면의 미세한 입체감을 시뮬레이션하는 노멀 맵을 생성합니다.",
+  "when": [
+    "웹 및 게임용 로우 폴리곤 모델에 적용할 저비용 디테일 텍스처를 급하게 만들 때",
+    "Substance 3D나 외부 툴 없이 Photoshop만으로 심플한 범프·노멀 맵을 추출하고 싶을 때",
+    "콘셉트 아트나 2D 텍스처 소스에서 음각·양각의 입체적 하이트 정보를 노멀 맵으로 전환할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Filter → 3D → Generate Normal Map을 선택합니다.",
+    "대화상자(Properties) Viewport에서 실시간으로 생성되는 노멀 맵의 3D 입체감과 디테일을 확인합니다.",
+    "Filter Gallery 또는 Levels, Curves 조정을 통해 원본 소스의 대비(Contrast)를 높여 노멀 맵의 품질을 개선합니다.",
+    "Detail Light 옵션과 Blur 값을 조절하여 노멀 맵 표면의 거친 정도와 세부 텍스처를 다듬습니다.",
+    "작업이 완료되면 OK를 눌러 필터를 적용하고, 파일을 Normal Map 전용 포맷(PNG 또는 TIFF)으로 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Detail Light",
+      "desc": "노멀 맵 생성 시 적용되는 가상 조원의 각도와 강도를 조절하여 미세한 음영을 만듭니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "노이즈를 부드럽게 만들고 과도하게 날카로운 노멀 경계를 완화합니다."
+    },
+    {
+      "name": "Invert X",
+      "desc": "빨간색 채널(X축)의 법선 방향을 반전시켜 빛의 반사 방향을 바꿉니다."
+    },
+    {
+      "name": "Invert Y",
+      "desc": "초록색 채널(Y축)의 법선 방향을 반전시켜 게임 엔진 표준(DirectX/OpenGL)에 맞춥니다."
+    },
+    {
+      "name": "Level",
+      "desc": "노멀 맵의 전체적인 깊이감(Depth)과 돌출 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "콘크리트 벽돌 텍스처에서 노멀 맵 추출",
+      "steps": [
+        "콘크리트 벽돌 흑백 사진을 Photoshop으로 불러옵니다.",
+        "Levels(Ctrl+L) 조절을 통해 틈새와 표면의 대비를 강하게 만듭니다.",
+        "Filter → 3D → Generate Normal Map을 실행하여 입체감을 부여합니다."
+      ]
+    },
+    {
+      "title": "철판 패널 라인(Panel Line) 노멀 제작",
+      "steps": [
+        "빈 레이어에 선(Line) 툴로 기계 패널 홈 형태를 그립니다.",
+        "Outer Bevel 레이어 스타일을 주어 경사면을 만듭니다.",
+        "Smart 객체로 변환 후 Filter → 3D → Generate Normal Map을 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원본 이미지의 대비가 너무 낮음 → 노멀 맵의 입체감이 거의 나타나지 않으므로 Filter 적용 전 Levels나 Curves로 대비를 높여야 합니다.",
+    "게임 엔진에서 상하 반전 오류 발생 → DirectX와 OpenGL의 Y축 규격 차이로 인해 발생하며, Invert Y 옵션을 체크하여 해결합니다."
+  ],
+  "related": [
+    "Height to Normal",
+    "Normal Bump map",
+    "Substance 3D Designer",
+    "Blender Cycles"
+  ],
+  "videos": [
+    {
+      "id": "dKBav9IsRiU",
+      "title": "How to Generate Normal Map in Photoshop - Quick PS Tutorial",
+      "author": "Hassaan Vfx"
+    },
+    {
+      "id": "wcRvPRIVREA",
+      "title": "NPT (Normal PhotoTools) - Normal maps in Photoshop!",
+      "author": "Werebear Art"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Normal",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Filter",
+    "Generate Normal Map"
+  ],
+  "at": "2026-11-26T01:18:21.534589+00:00"
+}
