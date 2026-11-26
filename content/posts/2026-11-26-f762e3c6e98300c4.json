@@ -1,0 +1,58 @@
+{
+  "title_ko": "Gaussian Splatting: SprintGS로 학습 2.15배 가속",
+  "title": "SprintGS: Eliminating Redundancy for Fast 3D Gaussian Splatting Training",
+  "url": "https://arxiv.org/abs/2611.33796v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "SprintGS",
+    "FastGS",
+    "3DGS",
+    "학습 속도",
+    "GPU 최적화"
+  ],
+  "summary": "SprintGS는 FastGS 기반의 3D Gaussian Splatting 학습을 2.15배 빠르게 만들면서 품질을 유지합니다.",
+  "insight": "SprintGS는 FastGS 대비 2.15배 빠른 학습 속도를 제공해, 기존 5분 걸리던 장면 최적화를 2분 이하로 단축할 수 있습니다. 실시간 Viewport 피드백이 필요한 Interactive 콘텐츠 제작에 유용합니다.",
+  "try_it": [
+    "GitHub에서 SprintGS 코드를 클론한다.",
+    "FastGS 파이프라인 설정 파일에 `use_sprintgs=True` 를 추가한다.",
+    "동일 데이터셋으로 학습을 실행하고, 전체 학습 시간을 측정한다."
+  ],
+  "sections": [
+    {
+      "heading": "핵심 아이디어: 스케줄드 타일 컬링",
+      "body": "SprintGS는 각 Gaussian이 영향을 미치는 타일만 남기도록 스케줄드 타일 컬링을 적용합니다. 초기에는 거친 footprint를 사용해 빠르게 제외 대상을 찾고, 학습 말미에 정밀 footprint로 교체합니다. 이 과정은 rasterization 단계의 불필요한 연산을 크게 줄입니다."
+    },
+    {
+      "heading": "손실 계산 최적화: 퓨즈드 로스",
+      "body": "기존 FastGS는 손실 맵을 별도로 생성해 이미지 그라디언트를 계산했지만, SprintGS는 forward pass에서 손실과 이미지 그라디언트를 동시에 계산하는 퓨즈드 로스를 도입했습니다. 손실 맵을 만들지 않으므로 loss 단계의 연산 비중이 크게 감소합니다."
+    },
+    {
+      "heading": "수렴 인식 프루닝",
+      "body": "SprintGS는 거의 투명해진 Gaussian을 자동으로 제거하는 수렴 인식 프루닝을 포함합니다. 모델이 수렴하면 불필요한 요소가 사라져 메모리 사용량이 감소하고, 남은 Gaussian에 집중해 학습이 진행됩니다."
+    },
+    {
+      "heading": "셔플 효율적인 역전파",
+      "body": "역전파 단계에서 GPU 스레드 간 데이터 교환을 최소화하도록 설계된 셔플 효율적인 역전파가 적용됩니다. 이는 전체 학습 시간에 작은지만 눈에 띄는 감소를 가져옵니다."
+    },
+    {
+      "heading": "다른 빠른 학습 방법과의 호환",
+      "body": "SprintGS는 FastGS뿐 아니라 동적·희소 뷰 재구성, 표면 복원 등 다른 빠른 학습 프레임워크에도 가속 효과를 제공합니다. 기존 파이프라인에 적용하면 별도 구현 없이도 속도 향상을 기대할 수 있습니다."
+    },
+    {
+      "heading": "성능 평가",
+      "body": "실험 결과 SprintGS는 FastGS 대비 2.15× 빠른 학습 속도를 보이며, 고품질 설정에서는 1.81× 가속되었습니다. PSNR·SSIM 차이는 거의 없으며, 동일한 품질을 유지하면서 시간 절감이 가능합니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.33796v1/fig_breakdown.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T03:48:09.343149+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-f762e3c6e98300c4",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}

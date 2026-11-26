@@ -1,0 +1,15 @@
+<!-- TITLE: Gaussian Splatting: SprintGS로 학습 2.15배 가속 | TAGS: SprintGS,FastGS,3DGS,학습 속도,GPU 최적화,연구·논문 | CATEGORY: AI 3D/가우시안 스플래팅 | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — SprintGS는 FastGS 기반의 3D Gaussian Splatting 학습을 2.15배 빠르게 만들면서 품질을 유지합니다.</p>
+<p style="color:#888;">분류: AI 3D › 가우시안 스플래팅 › 연구·논문</p>
+<h2>핵심 아이디어: 스케줄드 타일 컬링</h2>
+<p>SprintGS는 각 Gaussian이 영향을 미치는 타일만 남기도록 스케줄드 타일 컬링을 적용합니다. 초기에는 거친 footprint를 사용해 빠르게 제외 대상을 찾고, 학습 말미에 정밀 footprint로 교체합니다. 이 과정은 rasterization 단계의 불필요한 연산을 크게 줄입니다.</p>
+<h2>손실 계산 최적화: 퓨즈드 로스</h2>
+<p>기존 FastGS는 손실 맵을 별도로 생성해 이미지 그라디언트를 계산했지만, SprintGS는 forward pass에서 손실과 이미지 그라디언트를 동시에 계산하는 퓨즈드 로스를 도입했습니다. 손실 맵을 만들지 않으므로 loss 단계의 연산 비중이 크게 감소합니다.</p>
+<h2>성능 평가</h2>
+<p>실험 결과 SprintGS는 FastGS 대비 2.15× 빠른 학습 속도를 보이며, 고품질 설정에서는 1.81× 가속되었습니다. 품질 측면에서는 PSNR·SSIM 차이가 거의 없으며, 다른 빠른 학습 방법이나 동적·희소 뷰 재구성에도 동일한 가속 효과를 나타냈습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">SprintGS는 FastGS 대비 2.15배 빠른 학습 속도를 제공해, 기존 5분 걸리던 장면 최적화를 2분 이하로 단축할 수 있습니다. 실시간 Viewport 피드백이 필요한 Interactive 콘텐츠 제작에 유용합니다.</blockquote>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-26-e267e9aeef184f48.html">Gaussian Splatting++: Drift·Floaters 억제로 중력 정렬 TDOM</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-e132cb6c80e406c4.html">Gaussian Splatting 기반 초음파 B-mode Novel-View 합성 연구</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-67ecaaa1bd06b337.html">OceanFix: 희소 뷰 수중 3D 재구성을 위한 레퍼런스 기반 확산 복구</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.33796v1" target="_blank" rel="noopener nofollow">SprintGS: Eliminating Redundancy for Fast 3D Gaussian Splatting Training</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
