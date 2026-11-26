@@ -1,0 +1,95 @@
+{
+  "id": "camera-optimization-b75d",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "데이터 관리",
+  "name": "Camera Optimization",
+  "title": "Camera Optimization — 카메라 포즈 오차 보정을 위한 최적화 워크플로우",
+  "summary": "Gaussian Splatting 학습 과정에서 사진 촬영 시 발생한 카메라 위치 오차를 미세 조정하여 3D 재구성 품질을 높이는 최적화 과정입니다.",
+  "when": [
+    "포인트 클라우드나 초기 재구성 결과물에서 형태가 흐리거나 이중으로 겹쳐 보일 때",
+    "스마트폰이나 드론 등으로 촬영하여 카메라 외부 파라미터 오차가 의심될 때",
+    "컬럼맵(COLMAP) 데이터 전처리 후 렌더링 품질을 한 단계 더 끌어올리고 싶을 때"
+  ],
+  "steps": [
+    "학습 설정(Training Configuration) 파일이나 GUI 인터페이스에서 Optimization 설정 패널을 엽니다.",
+    "Camera Optimization 옵션을 활성화(Enable)하여 학습 중 카메라 포즈(Position & Rotation)가 함께 갱신되도록 설정합니다.",
+    "학습 반복 횟수(Iterations) 중 카메라 최적화가 시작되는 시점(Start Iteration)과 종료 시점을 지정합니다.",
+    "Learning Rate(학습률) 패널에서 카메라 포즈 및 내부 파라미터(Intrinsics)의 갱신 속도를 조절합니다.",
+    "트레이닝을 실행하고 Viewport에서 잔물결이나 왜곡이 줄어드는지 실시간 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Camera Optimization",
+      "desc": "카메라 포즈 오차를 학습 과정에서 보정할지 여부를 결정합니다."
+    },
+    {
+      "name": "Position LR",
+      "desc": "카메라 위치(Position)가 이동하는 학습률을 조절합니다."
+    },
+    {
+      "name": "Rotation LR",
+      "desc": "카메라 회전(Rotation) 값이 보정되는 학습률을 조절합니다."
+    },
+    {
+      "name": "Focal Length Optimization",
+      "desc": "렌즈 초점 거리 오차가 있을 때 내부 파라미터를 함께 최적화합니다."
+    },
+    {
+      "name": "Start Iteration",
+      "desc": "기본 지오메트리가 잡힌 후 카메라 최적화를 시작할 반복 횟수입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "드론 촬영 영상의 위치 오차 보정",
+      "steps": [
+        "GPS 오차가 포함된 드론 촬영 이미지로 초기 SfM을 수행합니다.",
+        "Camera Optimization을 켜고 Rotation LR을 낮게 설정합니다.",
+        "건물 외벽의 텍스처 정렬 상태를 확인하며 학습을 진행합니다."
+      ]
+    },
+    {
+      "title": "핸드held 스마트폰 영상의 흔들림 보정",
+      "steps": [
+        "손떨림으로 인해 카메라 포즈 추정이 미흡한 데이터를 불러옵니다.",
+        "Position LR 값을 미세하게 조절하여 과도한 카메라 튀김 현상을 방지합니다.",
+        "렌더링 시 블러(Blur)가 줄어들고 선명해진 디테일을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "초기 카메라 포즈가 완전히 틀렸는데 최적화부터 실행함 → COLMAP SfM 재수행으로 올바른 초기 포즈 확보 후 최적화 진행",
+    "Learning Rate를 너무 높게 설정해 카메라가 엉뚱한 위치로 튐 → Position LR과 Rotation LR 값을 기본값보다 낮추어 재시도"
+  ],
+  "related": [
+    "COLMAP",
+    "3D Gaussian Splatting",
+    "Structure-from-Motion",
+    "Densification"
+  ],
+  "videos": [
+    {
+      "id": "OzUxL_UDMTk",
+      "title": "Gaussian Splatting Full Pipeline From Location Scan to Cinema 4D + Octane",
+      "author": "Jörg Kahlhöfer"
+    },
+    {
+      "id": "uXApLtQBpfo",
+      "title": "The Only Gaussian Splatting App You Need, and It’s Free (Spirula Studio)",
+      "author": "Trînc Gabriel"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Camera%20Optimization",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Training Configuration",
+    "GUI",
+    "Optimization",
+    "Camera Optimization",
+    "Enable",
+    "Position"
+  ],
+  "at": "2026-11-26T00:28:15.893455+00:00"
+}
