@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-26T15:10:52+00:00",
+  "at": "2026-11-26T21:12:01+00:00",
   "checked": 1917,
   "mechanical_count": 135,
   "mechanical_by_problem": [
@@ -2687,6 +2687,35 @@
       "score": 9,
       "defects": [],
       "fix_hint": "Maya의 공식 메뉴 경로와 핵심 기능(Combine, Separate, History 삭제 등)이 정확하게 작성되어 있어 이 상태를 유지합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "maya-lattice-deformer-5d27",
+      "title": "Lattice — 격자 변형",
+      "score": 9,
+      "defects": [
+        "Lattice Point 선택 방법 설명에서 '구성 요소 모드'라는 표현이 다소 모호하여 Maya의 F8 또는 우클릭 콤포넌트 선택 방식을 명시하면 더 좋습니다."
+      ],
+      "fix_hint": "Maya의 컴포넌트 모드 전환이나 핫키 설명은 F8 또는 우클릭 메뉴 이름인 Lattice Point 등의 명확한 표준 용어로 구체화해주세요."
+    },
+    {
+      "kind": "fix",
+      "id": "nvidia-omniverse-kit-error-omni-kit-registry-core--c50d4",
+      "title": "Kit: [Error] [omni.kit.registry.core] Failed to download extension archive from ",
+      "score": 8,
+      "defects": [
+        "문장 내에서 구두점 없이 여러 원인과 해결 방법이 나열되어 가독성이 떨어집니다.",
+        "캐시 디렉터리의 구체적인 경로(예: AppData 경로)가 빠져 있어 실무자가 직접 찾기 어렵습니다."
+      ],
+      "fix_hint": "오류 해결 가이드는 원인과 해결 방법을 번호 매기기나 글머리 기호로 구분하고 구체적인 경로를 함께 적어주세요."
+    },
+    {
+      "kind": "guide",
+      "id": "houdini-smooth-sop-22cb",
+      "title": "Smooth — 매끄럽게",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "공식 문서의 노드 기능과 파라미터 설명을 정확히 반영하고 영문 UI 명칭을 올바르게 사용하였습니다."
     }
   ],
   "avg_score": 9.0,
