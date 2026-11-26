@@ -1,0 +1,85 @@
+{
+  "id": "photoshop-add-to-mesh-5ba2",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 메시",
+  "name": "Add to Mesh",
+  "title": "메시에 추가(Add to Mesh) — 선택한 3D 레이어에 다른 3D 요소를 결합하는 기능",
+  "summary": "Photoshop의 Add to Mesh 기능은 기존 3D 메시 오브젝트에 새로운 3D 지오메트리를 추가하여 하나의 통합된 3D 레이어로 결합해 주는 도구입니다. 복잡한 형태의 3D 조형물을 만들거나 여러 부품을 하나의 오브젝트로 합칠 때 사용합니다.",
+  "when": [
+    "기존 3D 오브젝트에 새로운 형태의 3D 요소를 자연스럽게 덧붙이고 싶을 때",
+    "독립된 여러 3D 메시를 하나의 레이어로 관리하여 작업의 효율성을 높이고 싶을 때",
+    "2D 레이어 기반의 추가 도형을 기존 3D 씬 내부로 병합해야 할 때"
+  ],
+  "steps": [
+    "상단 메뉴 바에서 Window → Workspace → 3D를 선택하여 3D 작업 공간으로 전환합니다.",
+    "Layers 패널에서 작업할 기준이 되는 기존 3D 레이어를 선택합니다.",
+    "추가하려는 새로운 2D 또는 3D 요소를 준비하고 선택합니다.",
+    "상단 메뉴 바에서 3D > Add to Mesh를 클릭합니다.",
+    "3D 패널에서 결합된 메시 구조를 확인하고 속성을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "3D Panel",
+      "desc": "씬에 포함된 메시, 재질, 조명 등의 요소를 계층 구조로 관리하는 제어 패널"
+    },
+    {
+      "name": "Layers Panel",
+      "desc": "Photoshop에서 레이어의 순서와 3D 레이어 상태를 확인하고 선택하는 패널"
+    },
+    {
+      "name": "Scene",
+      "desc": "3D 공간 전체의 카메라와 조명, 루트 구조를 관리하는 최상위 항목"
+    },
+    {
+      "name": "Mesh",
+      "desc": "선택된 3D 오브젝트의 지오메트리 형태와 정점 데이터를 구성하는 속성"
+    }
+  ],
+  "examples": [
+    {
+      "title": "기존 3D 로고에 입체 심볼 추가하기",
+      "steps": [
+        "기본 3D로 변환된 텍스트 메시 레이어를 3D 패널에서 선택합니다.",
+        "추가할 심볼 형태의 레이어를 활성화합니다.",
+        "3D > Add to Mesh를 실행하여 두 형태를 하나의 3D 메시로 병합합니다."
+      ]
+    },
+    {
+      "title": "복합 3D 구조물 부품 결합",
+      "steps": [
+        "기준이 되는 Base 3D 오브젝트 레이어를 선택합니다.",
+        "결합할 세부 파츠 레이어를 준비한 뒤 메뉴에서 Add to Mesh를 적용합니다.",
+        "3D 축 기즈모를 이용해 결합된 파츠의 위치와 회전을 미세 조정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "2D 레이어가 아닌 일반 픽셀 레이어를 선택함 → 3D 레이어 상태인지 Layers 패널에서 먼저 확인하고 3D로 변환 후 적용하세요.",
+    "원하는 메시가 아닌 다른 레이어가 병합됨 → Layers 패널과 3D 패널에서 대상 레이어가 올바르게 선택되었는지 확인하세요."
+  ],
+  "related": [
+    "Merge Meshes",
+    "Mesh from Layer",
+    "3D Panel",
+    "New 3D Layer from File"
+  ],
+  "videos": [
+    {
+      "id": "GdDzy62GiO4",
+      "title": "How to Add Patterns to Clothing in Photoshop | Easy DIY Fashion Tutorial",
+      "author": "BD Tutorial Online"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Add%20to%20Mesh",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "Workspace",
+    "Layers",
+    "Add",
+    "Mesh"
+  ],
+  "at": "2026-11-26T02:28:43.854174+00:00"
+}

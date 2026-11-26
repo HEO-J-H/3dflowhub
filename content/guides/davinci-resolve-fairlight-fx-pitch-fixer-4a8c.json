@@ -1,0 +1,88 @@
+{
+  "id": "davinci-resolve-fairlight-fx-pitch-fixer-4a8c",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "오디오",
+  "name": "Fairlight FX Pitch Fixer",
+  "title": "피치 픽서 — 음성의 높낮이를 조절하여 Audio 결함을 수정하는 효과",
+  "summary": "Fairlight FX Pitch Fixer는 음성의 음높이(Pitch)를 실시간으로 보정하여 음정이 불안정한 보컬이나 대사의 음정을 맞추는 Audio 플러그인입니다.",
+  "when": [
+    "녹음된 대사의 음정이 흔들리거나 불안정할 때",
+    "특정 단어의 톤을 자연스럽게 수정하고 싶을 때",
+    "뮤직비디오나 보컬 음원의 피치를 미세하게 보정할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 메뉴에서 Fairlight 페이지로 이동합니다.",
+    "Timeline에서 피치 보정이 필요한 Audio 클립 또는 트랙을 선택합니다.",
+    "화면 우측 상단의 Effects Library 패널을 엽니다.",
+    "Audio FX에서 Pitch Fixer를 찾습니다.",
+    "선택한 Audio 클립이나 트랙에 Pitch Fixer를 드래그 앤 드롭합니다.",
+    "Inspector 패널에서 Pitch Fixer를 선택하여 세부 옵션을 조절합니다."
+  ],
+  "params": [
+    {
+      "name": "Retune Speed",
+      "desc": "음정 보정이 적용되는 속도를 조절합니다."
+    },
+    {
+      "name": "Pitch Shift",
+      "desc": "전체 Audio의 음높이를 반음 또는 센트 단위로 이동합니다."
+    },
+    {
+      "name": "Scale",
+      "desc": "보정에 사용할 음계(Major, Minor 등)를 설정합니다."
+    },
+    {
+      "name": "Bypass",
+      "desc": "효과를 일시적으로 끄고 원본 Audio와 비교합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "불안정한 대사 음정 보정",
+      "steps": [
+        "Fairlight 페이지에서 문제가 있는 대사 클립을 선택합니다.",
+        "Effects Library에서 Pitch Fixer를 클립에 적용합니다.",
+        "Inspector에서 Retune Speed를 조절하여 자연스러운 음정 변화를 만듭니다."
+      ]
+    },
+    {
+      "title": "목소리 톤 변조 (특수 효과)",
+      "steps": [
+        "효과를 줄 Audio 트랙에 Pitch Fixer를 드롭합니다.",
+        "Pitch Shift 값을 조절하여 목소리를 높이거나 낮춥니다.",
+        "Viewport에서 재생하며 톤이 어색하지 않은지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Retune Speed를 너무 빠르게 설정함 → 로봇 목소리처럼 부자연스러운 소리가 납니다. 속도를 낮추어 자연스럽게 조절하세요.",
+    "잘못된 Scale 설정 → 원하지 않는 음정으로 음이 끌려갑니다. 원곡이나 대사의 음계에 맞게 설정하세요."
+  ],
+  "related": [
+    "Dialogue Leveler",
+    "Fairlight FX",
+    "Voice Isolation",
+    "De-Hum"
+  ],
+  "videos": [
+    {
+      "id": "53IX0EQ-EY0",
+      "title": "How to Change Audio Pitch in DaVinci Resolve (Step-by-Step)",
+      "author": "How To Tutor"
+    },
+    {
+      "id": "QwW2Q61w_Yc",
+      "title": "Keyframe Pitch Your Audio Down - DaVinci Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20FX%20Pitch%20Fixer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight"
+  ],
+  "at": "2026-11-26T02:28:47.466188+00:00"
+}
