@@ -1,0 +1,21 @@
+<!-- TITLE: Blender와 Houdini로 2D 일러스트를 3D 판타지 마을로 구현하는 법 | TAGS: Blender,Houdini,Substance 3D Painter,ZBrush,UDIM,블렌더,후디니,지브러시,서브스턴스,작품·제작 사례 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://80.lv/articles/turning-whimsical-2d-town-into-cozy-3d-world/" target="_blank" rel="noopener nofollow"><img src="https://cdn.80.lv/api/upload/meta/51186/images/6b07e77490bbb/contain_1200x630.jpg" alt="Blender와 Houdini로 2D 일러스트를 3D 판타지 마을로 구현하는 법" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://80.lv/articles/turning-whimsical-2d-town-into-cozy-3d-world/" target="_blank" rel="noopener nofollow">80.lv</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 10년 경력의 3D 아티스트 Pedro Henrique Placido Silva가 2D 일러스트레이션을 Blender와 Houdini를 활용해 입체적인 판타지 마을 3D 환경으로 재현한 작업 과정을 공개했습니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 작품·제작 사례</p>
+<h2>2D 일러스트레이션을 3D 씬으로 옮기는 기초 블로킹</h2>
+<p>브라질 출신의 3D 아티스트 Pedro Henrique Placido Silva는 2D 일러스트레이션 속 판타지 마을을 3D 환경으로 구축했습니다. 원근선이 명확하지 않은 일러스트를 바탕으로 모델링할 때는 인간 중심의 비례 논리에서 벗어나 카메라 뷰 각도에 맞춰 크기와 거리를 조정하는 과감한 생략과 왜곡이 필요합니다. 전체적인 형태의 단순한 도형 블로킹에서 시작해 점진적으로 디테일을 더해나가는 방식을 취했습니다.</p>
+<h2>Blender와 Houdini를 이용한 타워 지붕 및 벽돌 절차적 모델링</h2>
+<p>타워 지붕 제작에는 Blender의 Geometry Nodes를 적용하여 유기적인 형태를 얻을 수 있도록 변형을 주었습니다. 집 벽돌의 경우 Houdini를 사용하여 면을 분리하고 압출한 뒤 베벨을 적용했으며, 이러한 절차적 작업은 Blender 환경에서도 충분히 구현할 수 있습니다. 계단 모서리의 부드러운 마감에는 ZBrush를 사용했습니다.</p>
+<h2>UDIM과 UVPackmaster를 활용한 효율적인 UDIM 텍스처링</h2>
+<p>다수의 오브젝트를 한 번에 텍스처링하는 Pipeline UDIM 조직화를 위해 UVPackmaster를 활용했습니다. UVPackmaster를 통해 각 오브젝트별 그룹을 생성하고 타일마다 자동으로 레이아웃을 정렬하여 대규모 에셋의 텍스처 작업 속도를 크게 높였습니다. 벽과 바닥 텍스처는 매끄러운 돌과 다공성 돌 재질을 조합하고 곡률 Mask를 적용해 자연스러운 가장자리 톤을 연출했습니다.</p>
+<h2>SpeedTree와 Substance 3D Painter로 완성하는 식생 에셋</h2>
+<p>마을을 채우는 식물과 관목, 넝쿨은 SpeedTree에서 모델링하고 여러 가지 변형을 제작했습니다. 식생 텍스처는 ZBrush에서 아틀라스 형태로 직접 제작한 후 Substance 3D Painter로 텍스처링을 완료했습니다. 꽃 모델은 SpeedTree에서 생성한 뒤 Split Any 모드로 메시를 적용하여 효율적으로 배치했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Blender의 Geometry Nodes와 Houdini를 연동하여 타워 지붕 변형과 벽돌 디테일을 절차적으로 처리한 점이 특징입니다. 복잡한 다중 오브젝트 텍스처링에는 UDIM과 UVPackmaster를 결합하여 작업 시간을 단축했습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 일러스트 기반 3D 모델링에서 원근감이 맞지 않을 때는 어떻게 해야 하나요?</b><br/>A. 카메라 뷰 각도를 고정하고 오브젝트의 크기와 거리를 의도적으로 왜곡하여 2D 일러스트의 감성과 구도를 최대한 맞추는 방식을 사용합니다.</p>
+<p><b>Q. 다수의 3D 오브젝트 텍스처링을 효율적으로 관리하는 방법은 무엇인가요?</b><br/>A. UVPackmaster와 UDIM을 결합하여 오브젝트별로 그룹을 나누고 각 타일에 UV를 자동으로 배치하는 방식을 적용하면 여러 에셋을 동시에 텍스처링하기 용이합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-26-204275b58e7da062.html">Blender 아늑한 판타지 마을 씬 제작 기법 정리</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-fa534e9c4b89e147.html">Blender 3ds Max 모델링 방식 도입 분석</a></li><li><a href="https://3dflowhub.kr/p/2026-11-26-b0555412b5f58527.html">Blender용 UnrealizeX 애드온 출시 — 단일 이미지로 3D 모델 일괄 생성</a></li></ul>
+<hr/><p>원문:<a href="https://80.lv/articles/turning-whimsical-2d-town-into-cozy-3d-world/" target="_blank" rel="noopener nofollow">Turning Whimsical 2D Town Into Cozy 3D World</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
