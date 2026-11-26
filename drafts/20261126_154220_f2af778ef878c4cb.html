@@ -1,0 +1,20 @@
+<!-- TITLE: Unreal Engine 5.8 Mesh Terrain 도입 가이드 | TAGS: Unreal Engine,Mesh Terrain,5.8,지형,플러그인,언리얼 엔진,튜토리얼·팁 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unreal Engine 5.8에 도입된 Mesh Terrain 실험적 플러그인을 활용해 동굴, 터널, 오버행 등 기존 높이맵 지형으로 구현하기 어려웠던 구조를 제작하는 방법을 다룹니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 튜토리얼·팁</p>
+<h2>Unreal Engine 5.8 Mesh Terrain 개요</h2>
+<p>Unreal Engine 5.8 버전에 추가된 Mesh Terrain은 삼각형 메시를 기반으로 지형을 구축합니다. 높이맵 방식으로는 표현하기 힘든 동굴, 터널, 오버행, 공중 섬 형태의 지형 제작을 지원합니다. Epic Games 교육 팀의 Office Hours 세션을 통해 해당 실험적 기능을 열고 작동 방식을 살펴봅니다.</p>
+<h2>플러그인 활성화 및 메시 파티션</h2>
+<p>사용자는 관련 플러그인을 직접 켜고 메시 파티션을 설정하여 작업 환경을 구축할 수 있습니다. 지형을 구성하기 위한 기본 영역을 정의하고 이후 단계로 넘어가는 기초 작업입니다.</p>
+<h2>비파괴 Modifier와 디테일 제어</h2>
+<p>메시, 텍스처, 노이즈, 불리언 Modifier를 비파괴 방식으로 스택하여 지형 형태를 수정할 수 있습니다. 또한 리메셔와 적응형 테셀레이션을 조합해 필요한 곳에 폴리곤 디테일을 집중시키거나 제어하는 것이 가능합니다.</p>
+<h2>지형 레이어 페인팅 및 Runtime 빌드</h2>
+<p>메시 파티션 정의를 바탕으로 지형 레이어를 직접 페인팅할 수 있습니다. 최종적으로 Runtime 환경에 맞춘 섹션 빌드 과정을 거쳐 게임 내 적용 방식을 완성합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">Unreal Engine 5.8의 새로운 Mesh Terrain 기능은 기존 높이맵 기반 지형의 한계를 극복하여 동굴이나 공중 섬 같은 복잡한 구조물을 삼각형 메시 기반으로 직접 구성할 수 있게 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Unreal Engine 5.8 Mesh Terrain은 어떤 지형에 적합한가요?</b><br/>A. 기존 높이맵 지형으로 표현할 수 없는 동굴, 터널, 오버행, 공중 섬 같은 복잡하고 입체적인 지형 제작에 적합합니다.</p>
+<p><b>Q. Mesh Terrain에서 디테일은 어떻게 제어하나요?</b><br/>A. 리메셔와 적응형 테셀레이션을 사용하여 지형의 세밀한 정도를 제어할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-26-9207a121d32db5ca.html">Unreal Engine 6 AI 코딩 도입과 스크립팅 기능 변화</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-b6004dd926c1f57d.html">Unreal Engine 5.4 기반 인디 게임 Become 개발 사례</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-6c4bb4b453e5670f.html">모듈러 에셋으로 중세 마을 씬 제작하는 팁</a></li></ul>
+<hr/><p>원문:<a href="https://www.youtube.com/watch?v=eD_4nV2sVwM" target="_blank" rel="noopener nofollow">Getting Started with Mesh Terrain in UE 5.8 | Epic Games Education Webinar</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
