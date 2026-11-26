@@ -1,0 +1,20 @@
+<!-- TITLE: WorldExpand: 단일 파노라마로 일관성 있는 3D 월드 생성 | TAGS: WorldExpand,Gaussian Splatting,3D 월드,파노라마 생성,NeRF,연구·논문 | CATEGORY: AI 3D/3D 생성 AI | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — 단일 파노라마 입력으로부터 Gaussian Splatting 기반 기하학적 웜프와 관측 지침을 활용해 교차 뷰 일관성을 갖춘 3D 월드를 구축하는 연구입니다.</p>
+<p style="color:#888;">분류: AI 3D › 3D 생성 AI › 연구·논문</p>
+<h2>Coverage-Guided View Selection 기반 타겟 선정</h2>
+<p>장면 적응형 사분면과 웜프 기반 커버리지 점수를 활용하여 정보량이 풍부한 타겟 위치를 식별합니다. 불필요한 영역의 연산을 줄이고 3D 생성에 필수적인 디테일에 예산을 집중합니다.</p>
+<h2>Joint Panoramic Diffusion을 통한 동시 합성</h2>
+<p>Gaussian Splatting 기반 기하학적 웜프를 적용하여 4개의 포즈가 정렬된 파노라마를 교차 뷰 일관성이 유지되도록 함께 생성합니다. 독립적으로 생성된 방향 간의 시각적 불일치 문제를 방지합니다.</p>
+<h2>전역-지역 어텐션 스케줄을 통한 연산 최적화</h2>
+<p>진단 기반 스케줄을 통해 민감한 레이어에서만 전역 어텐션을 유지합니다. 고해상도 공동 생성 과정에서 발생하는 학습 및 추론 비용을 대폭 낮춥니다.</p>
+<h2>명시적 3D 재구성 파이프라인 연동</h2>
+<p>생성된 포즈 파노라마는 기존 재구성 파이프라인에 직접 입력되어 최종 3D 표현으로 변환됩니다. 가려진 영역 뒤편과 먼 구석의 컨텐츠를 복구하여 다양한 야외 장면 데이터셋에서 성능을 입증했습니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">WorldExpand는 기존 순차적 생성 방식에서 발생하는 오차 누적과 중복 연산을 해결하기 위해 4개의 포즈 기반 파노라마를 동시에 합성합니다. Gaussian Splatting 기반 워프를 통해 3D 재구성 파이프라인으로 곧바로 연결할 수 있는 명시적 3D 표현을 만듭니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. WorldExpand는 어떤 문제를 해결하나요?</b><br/>A. 단일 파노라마에서 보이지 않던 사각지대를 확장할 때 기존 순차 생성 방식에서 발생하던 오차 누적과 시점 간 불일치 문제를 해결합니다.</p>
+<p><b>Q. 3D 월드 구축을 위해 어떤 기술을 사용하나요?</b><br/>A. Gaussian Splatting 기반 기하학적 웜프와 Joint Panoramic Diffusion을 결합하여 교차 뷰 일관성을 갖춘 고해상도 파노라마를 동시에 합성합니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-25-7194266b1868de25.html">Dear Upstairs Neighbors 단편 영화 상영</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-d9c41ab94e739654.html">생성형 AI 영화 &#x27;Gods Don&#x27;t Give Gifts&#x27; 아카데미 장편 애니메이션 부문 후보 제외</a></li><li><a href="https://3dflowhub.kr/p/2026-11-25-4010ccafb1bc3863.html">AI를 3D 작업에 가장 스마트하게 활용하는 방법 분석</a></li></ul>
+<hr/><p>원문:<a href="https://arxiv.org/abs/2611.34810v1" target="_blank" rel="noopener nofollow">WorldExpand: Building Coherent 3D Worlds via Sparse Joint Panoramic Expansion</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
