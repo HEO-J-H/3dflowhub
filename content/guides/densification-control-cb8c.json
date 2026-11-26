@@ -1,0 +1,98 @@
+{
+  "id": "densification-control-cb8c",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 및 최적화",
+  "name": "Densification Control",
+  "title": "밀집화 제어 — Gaussian의 생성 및 분할 빈도를 조절하는 학습 파라미터 설정",
+  "summary": "Densification Control은 3D Gaussian Splatting 학습 중 Gaussian 포인트를 언제, 얼마나 추가할지 조절해 렌더링 품질과 메모리 사용을 최적화합니다.",
+  "when": [
+    "초기 학습 단계에서 빠른 형태 복원을 원할 때",
+    "메모리 제한이 있는 환경에서 Gaussian 수를 제한하고 싶을 때",
+    "특정 디테일 영역에만 고밀도 포인트를 집중하고 싶을 때"
+  ],
+  "steps": [
+    "Nerfstudio(또는 Luma) 프로젝트 폴더에서 config.yaml 파일을 연다",
+    "Settings → Training Configuration 섹션으로 이동한다",
+    "Densification Control 블록을 추가하거나 기존 항목을 편집한다",
+    "Densify Start Iter, Densify Stop Iter, Densify Interval, Densify Threshold, Max Gaussians 값을 설정한다",
+    "파일 저장 후 nerfstudio-train(또는 luma-train) 명령을 실행한다"
+  ],
+  "params": [
+    {
+      "name": "Densify Start Iter",
+      "desc": "밀집화를 시작할 학습 반복 횟기"
+    },
+    {
+      "name": "Densify Stop Iter",
+      "desc": "밀집화를 종료할 학습 반복 횟기"
+    },
+    {
+      "name": "Densify Interval",
+      "desc": "밀집화가 실행되는 간격(반복 횟수)"
+    },
+    {
+      "name": "Densify Threshold",
+      "desc": "새 Gaussian을 생성할 최소 신뢰도 기준"
+    },
+    {
+      "name": "Max Gaussians",
+      "desc": "전체 Gaussian 수 상한값"
+    },
+    {
+      "name": "Densify Scale",
+      "desc": "생성되는 Gaussian의 초기 크기 비율"
+    }
+  ],
+  "examples": [
+    {
+      "title": "빠른 씬 프리뷰",
+      "steps": [
+        "Densify Start Iter을 0, Densify Stop Iter을 2000, Densify Interval을 100으로 설정",
+        "학습 초반에 포인트가 빠르게 늘어나 저해상도 미리보기를 즉시 확인"
+      ]
+    },
+    {
+      "title": "메모리 제한 상황에서 고품질 캐릭터",
+      "steps": [
+        "Max Gaussians를 2M으로 제한",
+        "Densify Threshold를 0.01로 높게 설정",
+        "불필요한 포인트 생성을 억제해 GPU 메모리 초과 방지"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Densify Interval을 너무 크게 설정 → 포인트가 거의 추가되지 않아 디테일 부족 → Interval을 50~100 사이로 조정",
+    "Densify Threshold 값을 너무 낮게 지정 → 메모리 초과 오류 발생 → Threshold를 0.01~0.05 수준으로 올림",
+    "Densify Start Iter을 Densify Stop Iter보다 크게 입력 → 설정 무시되고 기본값 적용 → 올바른 순서로 값 입력"
+  ],
+  "related": [
+    "Iteration Control",
+    "Adaptive Control",
+    "Pruning Control",
+    "Learning Rate Schedule"
+  ],
+  "videos": [
+    {
+      "id": "PYr-LSOf2OY",
+      "title": "Gaussian Splatting for Free: The Ultimate Step-by-Step Guide (Capture, Process & Edit)",
+      "author": "MipMap"
+    },
+    {
+      "id": "KaAxGr_xck4",
+      "title": "3D Gaussian Splatting in UNREAL ENGINE 5 is INSANE!",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Densification%20Control",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Nerfstudio",
+    "Luma",
+    "Settings",
+    "Training Configuration",
+    "Densification Control"
+  ],
+  "at": "2026-11-26T03:08:56.087478+00:00"
+}

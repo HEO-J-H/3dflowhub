@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-3d-model-8be1",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "3D Model",
+  "title": "3D 모델 — 가져온 3D 객체의 속성 및 구성 요소 관리",
+  "summary": "Photoshop의 3D Model 기능은 외부 3D 파일을 가져와 씬에 배치하고, 위치·스케일·재질을 편집해 2D 작업에 입체감을 더합니다.",
+  "when": [
+    "2D 레이아웃에 제품 모델을 삽입하고 싶을 때",
+    "조명·카메라를 직접 조정해 맞춤형 렌더링이 필요할 때",
+    "간단한 로고·텍스트 입체화와 같은 빠른 Prototype을 만들 때"
+  ],
+  "steps": [
+    "Window → 3D 를 클릭해 3D Panel을 엽니다.",
+    "3D Panel 하단의 Import 3D Model 아이콘을 눌러 OBJ/FBX 파일을 선택합니다.",
+    "Viewport에서 Move Tool(Ctrl+T)로 Position, Scale, Rotation을 조정합니다.",
+    "Properties 패널에서 Material 슬롯을 클릭해 기존 재질을 교체하거나 새 Material을 적용합니다.",
+    "3D Panel의 Render Settings 아이콘을 눌러 Render Settings를 열고 Render 버튼을 클릭합니다."
+  ],
+  "params": [
+    {
+      "name": "Position",
+      "desc": "오브젝트의 X/Y/Z 위치를 이동합니다"
+    },
+    {
+      "name": "Scale",
+      "desc": "오브젝트 크기를 비율로 조정합니다"
+    },
+    {
+      "name": "Rotation",
+      "desc": "오브젝트를 축을 중심으로 회전시킵니다"
+    },
+    {
+      "name": "Material",
+      "desc": "표면 재질과 텍스처를 지정합니다"
+    },
+    {
+      "name": "Lighting",
+      "desc": "씬에 적용되는 조명 종류와 강도를 설정합니다"
+    },
+    {
+      "name": "Render Settings",
+      "desc": "렌더 Resolution·품질·출력 포맷을 정의합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 라벨링",
+      "steps": [
+        "OBJ 형식의 제품 모델을 Import",
+        "Scale을 1.0으로 맞추고 Position을 중앙에 배치",
+        "Material에 라벨 텍스처를 적용",
+        "Render Settings에서 1920×1080 PNG 출력"
+      ]
+    },
+    {
+      "title": "로고 입체화",
+      "steps": [
+        "텍스트를 3D Extrude(3D → New 3D Extrusion from Selected Layer)로 변환",
+        "Scale을 0.5로 축소하고 Rotation으로 약간 기울임",
+        "Material에 메탈 재질 적용 후 반사 강도 조정",
+        "Render 후 배경 레이어와 합성"
+      ]
+    }
+  ],
+  "mistakes": [
+    "스케일이 실제와 다름 → Edit → Transform → Scale 로 정확히 조정 후 Apply",
+    "재질 알파가 투명하게 보임 → Material 속성에서 Opacity 값을 100% 로 설정",
+    "조명이 전혀 비추지 않음 → 3D Panel에서 Add Light → Point Light 추가 후 Intensity 증가"
+  ],
+  "related": [
+    "3D Panel",
+    "Scene Photoshop",
+    "Render Settings",
+    "Material Editor"
+  ],
+  "videos": [
+    {
+      "id": "WqB6WPW9PXE",
+      "title": "3D PHOTOSHOP - import and work with 3D MODELS in Adobe Photoshop (1 min tutorial)",
+      "author": "Žan Stermecki"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Model",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Window",
+    "D Panel"
+  ],
+  "at": "2026-11-26T03:09:27.147598+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-deliver-page-data-burn-in-2987",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "내보내기",
+  "name": "Deliver Page Data Burn-In",
+  "title": "데이터 번인 — 렌더링 영상 위에 샷 이름이나 타임코드를 텍스트로 오버레이하는 기능",
+  "summary": "Data Burn-In은 Deliver 페이지에서 렌더링되는 영상에 타임코드·클립명·프레임 번호 등 메타데이터를 실시간으로 오버레이합니다.",
+  "when": [
+    "Client에게 검토용 버전을 제공할 때 메타데이터를 바로 확인하고 싶을 때",
+    "방송·스트리밍 전송 전 프레임 번호·타임코드가 화면에 표시돼야 할 때",
+    "품질 검증(QA) 단계에서 영상과 함께 로그 정보를 함께 확인하고 싶을 때"
+  ],
+  "steps": [
+    "Shift+8 로 Deliver 페이지 열기",
+    "Inspector 패널에서 Data Burn-In 토글 켜기",
+    "Source 드롭다운에서 Timeline·Clip·Custom 중 선택",
+    "Fields 체크박스에서 표시할 항목(예: Timecode, Clip Name, Frame Number) 선택",
+    "Position 메뉴에서 화면 내 원하는 위치 지정",
+    "Font·Size·Opacity 등 스타일 옵션 조정",
+    "Add to Render Queue → Start Render"
+  ],
+  "params": [
+    {
+      "name": "Data Burn-In",
+      "desc": "오버레이 기능을 활성화·비활성화"
+    },
+    {
+      "name": "Source",
+      "desc": "메타데이터 원본 선택 (Timeline, Clip, Custom)"
+    },
+    {
+      "name": "Fields",
+      "desc": "표시할 메타데이터 항목 선택"
+    },
+    {
+      "name": "Position",
+      "desc": "화면 내 오버레이 위치 (Top‑Left, Bottom‑Right 등)"
+    },
+    {
+      "name": "Font",
+      "desc": "텍스트 글꼴·크기·색상 설정"
+    },
+    {
+      "name": "Opacity",
+      "desc": "오버레이 투명도 (0‑100%)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Client 검토용 – 타임코드·클립명 표시",
+      "steps": [
+        "Data Burn-In 켜기",
+        "Source를 Timeline으로 선택",
+        "Fields에 Timecode와 Clip Name 체크",
+        "Position을 Top‑Left 로 지정하고 Font 크기 24로 설정",
+        "렌더 시작"
+      ]
+    },
+    {
+      "title": "방송용 – 프레임 번호·레이어 표시",
+      "steps": [
+        "Data Burn-In 켜기",
+        "Source를 Custom으로 선택",
+        "Fields에 Frame Number와 Layer 체크",
+        "Position을 Bottom‑Right 로 지정, Opacity 80%",
+        "렌더 시작"
+      ]
+    }
+  ],
+  "mistakes": [
+    "필드 선택 안 함 → 오버레이가 보이지 않음 → Fields에서 최소 하나 이상 체크",
+    "Opacity 0% 설정 → 투명하게 사라짐 → Opacity 값을 30% 이상으로 조정",
+    "Position을 화면 외부에 지정 → 보이지 않음 → Position을 화면 안쪽으로 재조정"
+  ],
+  "related": [
+    "Sync Bin",
+    "Export EDL",
+    "Deliver Page Presets",
+    "Cut Page"
+  ],
+  "videos": [
+    {
+      "id": "J4G89JNRels",
+      "title": "DaVinci Resolve Data Burn-In in 3 Minutes",
+      "author": "JayAreTV"
+    },
+    {
+      "id": "u8Dz0Dr7PXs",
+      "title": "QuickTip DaVinci Resolve: Removing Data Burn In for export",
+      "author": "Lowepost"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Deliver%20Page%20Data%20Burn-In",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T03:09:31.792581+00:00"
+}
