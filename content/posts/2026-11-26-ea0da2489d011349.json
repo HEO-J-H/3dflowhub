@@ -1,0 +1,55 @@
+{
+  "title_ko": "NeRF 최적화: ProPolar 진행형 Polar 분해 기법",
+  "title": "ProPolar: Progressive Polar Decomposition for Implicit Neural Representations",
+  "url": "https://arxiv.org/abs/2611.33567v1",
+  "domain": "AI 3D",
+  "category": "기타 AI 3D",
+  "topic": "연구·논문",
+  "tags": [
+    "NeRF",
+    "INR",
+    "optimizer",
+    "rank scheduler",
+    "high‑frequency"
+  ],
+  "summary": "ProPolar는 INR 학습 시 저주파‑고주파 단계에 맞춰 서브스페이스 차원을 점진적으로 늘리는 새로운 모멘텀 최적화 기법이다.",
+  "insight": "ProPolar는 INR이 보이는 단계적 특성을 직접 반영한다는 점이 가장 큰 강점이다. 저주파 단계에서 불필요한 모멘텀을 최소화하고, 고주파 단계에선 새 서브스페이스가 즉시 활용되므로, 고해상도 뷰 합성을 목표로 하는 3D 아티스트에게 실질적인 품질 향상을 제공한다. 하이퍼파라미터 탐색 비용을 늘리지 않고도 PSNR을 끌어올릴 수 있다는 점은 프로젝트 일정이 촉박한 경우에도 매력적이다.",
+  "try_it": [
+    "학습 스크립트에서 Adam → ProPolar 교체하고 rank scheduler를 초기 rank 1, 최종 rank 8로 설정한다.",
+    "rank‑aware learning‑rate scheduler를 활성화해 rank 증가 시 학습률을 최고값으로 유지한다.",
+    "NeRF 훈련 시 10 % 에폭마다 rank를 2씩 증가시켜 단계적 서브스페이스 확대를 적용한다.",
+    "검증 셋에서 PSNR 변화를 모니터링해 기존 옵티마이저 대비 0.3 dB 이상 상승 여부를 확인한다."
+  ],
+  "sections": [
+    {
+      "heading": "INR의 Coarse‑to‑Fine 학습 흐름",
+      "body": "Implicit Neural Representations는 학습 초기에 전역 저주파 구조를 형성하고, 이후 단계에서 지역 고주파 디테일을 정교화한다. 이 과정은 이미지 피팅, SISR, NeRF와 같은 작업에서 공통적으로 나타난다. 저주파와 고주파가 순차적으로 학습되기 때문에 옵티마이저가 두 단계의 특성을 구분해 주면 수렴이 빨라진다."
+    },
+    {
+      "heading": "전통 옵티마이저의 한계",
+      "body": "Adam이나 RMSProp은 모멘텀 버퍼에 전체 gradient 행렬을 저장한다. 초기 저주파 단계에서 고주파와 무관한 성분이 버퍼에 남아, 이후 고주파 복원 단계에서 불필요한 잡음을 유발한다. 결과적으로 수렴 속도가 늦어지고 최종 PSNR이 낮아지는 경향이 있다."
+    },
+    {
+      "heading": "ProPolar 설계 핵심",
+      "body": "ProPolar는 서브스페이스 기반 모멘텀을 도입하고, 두 개의 스케줄러를 함께 운영한다. rank scheduler는 훈련 초기에 rank를 1로 시작해 단계별로 차원을 8까지 확대한다. 동시에 rank‑aware learning‑rate scheduler는 차원 증가 시 학습률을 최고값으로 유지해 새로 추가된 서브스페이스가 고주파 복원에 바로 기여하도록 만든다."
+    },
+    {
+      "heading": "실험 결과 요약",
+      "body": "이미지 피팅, 단일 이미지 초해상도(SISR), NeRF 최적화 세 작업에서 ProPolar는 Adam·RMSProp 대비 수렴이 현저히 빨라졌다. 특히 고주파 복원 단계에서 PSNR이 평균 0.3 dB 이상 상승했다. 동일한 하이퍼파라미터 탐색 예산 하에서도 성능 차이가 유지되는 것이 확인되었다."
+    },
+    {
+      "heading": "NeRF에 바로 적용하는 방법",
+      "body": "NeRF 학습 스크립트에서 옵티마이저 객체를 ProPolar로 교체하고, rank scheduler와 learning‑rate scheduler를 함께 초기화한다. 초기 rank를 1로 두고, 10 % 에폭마다 rank를 2씩 증가시켜 최종 8에 도달하도록 설정한다. 학습률은 초기 peak 값을 유지하고, rank가 변할 때마다 동일하게 유지한다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.33567v1/img/teaser8.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T04:08:14.349911+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-ea0da2489d011349",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}
