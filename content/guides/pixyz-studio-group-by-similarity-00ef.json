@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-group-by-similarity-00ef",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "데이터 최적화",
+  "name": "Group by similarity",
+  "title": "유사성 기반 그룹화 — 형태나 속성이 유사한 부품들을 자동으로 찾아 하나의 그룹으로 묶어주는 관리 기능",
+  "summary": "Pixyz Studio의 Group by similarity는 CAD 모델에서 이름이나 속성이 유사한 부품들을 자동으로 찾아 하나의 그룹으로 묶어주는 기능입니다. 복잡한 어셈블리 구조에서 수동으로 선택하는 번거로움 없이 정리를 빠르게 끝낼 수 있습니다.",
+  "when": [
+    "수천 개의 부품이 섞여 있는 거대한 CAD 어셈블리를 체계적으로 정리할 때",
+    "동일한 볼트, 너트, 표준 부품들을 한 번에 선택하여 관리하고 싶을 때",
+    "계층 구조가 엉망인 CAD 데이터를 Export 전 빠르게 분류할 때"
+  ],
+  "steps": [
+    "Pixyz Studio에서 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "왼쪽 Product Structure 패널에서 그룹화할 상위 어셈블리나 부품들을 선택합니다.",
+    "상단 메뉴 바에서 Scene을 클릭합니다.",
+    "드롭다운 메뉴에서 Group by similarity를 선택합니다.",
+    "열리는 대화 상자에서 이름 규칙이나 비교 옵션을 설정하고 Execute를 누릅니다.",
+    "왼쪽 Product Structure 패널에서 새로 생성된 그룹 폴더와 묶인 부품들을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Name",
+      "desc": "부품의 이름을 기준으로 유사성을 판단합니다."
+    },
+    {
+      "name": "Metadata",
+      "desc": "CAD 파일에 포함된 속성 데이터를 기준으로 그룹화합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "유사성을 판단할 때 허용할 오차 범위를 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "표준 볼트와 너트 일괄 정리",
+      "steps": [
+        "Product Structure 패널에서 전체 기계 모델을 선택합니다.",
+        "Scene 메뉴에서 Group by similarity를 실행합니다.",
+        "이름 규칙을 기준으로 볼트와 너트 부품들을 하나의 그룹으로 묶습니다."
+      ]
+    },
+    {
+      "title": "반복되는 패널 부품 그룹화",
+      "steps": [
+        "건축 외장재 CAD 데이터의 상위 노드를 선택합니다.",
+        "Group by similarity 대화 상자를 엽니다.",
+        "유사한 속성을 가진 패널들을 그룹화하여 이후 최적화 작업에 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "원하는 부품이 묶이지 않음 → 상위 어셈블리가 올바르게 선택되었는지 Product Structure 패널을 확인하세요.",
+    "너무 광범위하게 묶임 → 이름이나 메타데이터 비교 옵션을 더 엄격하게 조정하세요."
+  ],
+  "related": [
+    "Merge Parts By Regions",
+    "Instance And Prototype",
+    "Repair Mesh",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "EoRLThm6yIs",
+      "title": "Pixyz Studio #19 | How to convert native CAD to mesh using Pixyz Studio?",
+      "author": "Pixyz"
+    },
+    {
+      "id": "lhciH4yi1Ww",
+      "title": "Pixyz Studio 101: Simple optimization of a CAD model for Unity",
+      "author": "David Ménard"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Group%20by%20similarity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Scene",
+    "Group"
+  ],
+  "at": "2026-11-26T00:17:22.484397+00:00"
+}
