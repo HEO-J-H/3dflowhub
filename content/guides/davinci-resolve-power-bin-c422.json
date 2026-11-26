@@ -1,0 +1,86 @@
+{
+  "id": "davinci-resolve-power-bin-c422",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집",
+  "name": "Power Bin",
+  "title": "파워 빈 — 프로젝트 간에 에셋을 영구적으로 공유하고 재사용하는 저장소",
+  "summary": "Power Bins는 DaVinci Resolve의 모든 프로젝트 간에 에셋을 공유할 수 있는 전역 폴더 기능입니다. 자주 사용하는 로고, 사운드 효과, 인트로 Template 등을 한 번만 등록해 두면 어떤 프로젝트에서든 꺼내 쓸 수 있습니다.",
+  "when": [
+    "모든 프로젝트에서 공통으로 사용하는 로고나 워터마크를 반복해서 불러와야 할 때",
+    "자주 쓰는 효과음이나 배경 음악(BGM) 에셋 라이브러리를 중앙에서 관리하고 싶을 때",
+    "팀원들과 동일한 타이틀 Template이나 오프닝 시퀀스를 공유하여 작업할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 상단 메뉴 바에서 View를 클릭합니다.",
+    "목록에서 Show Power Bins에 체크하여 Media Pool 하단에 Power Bins 영역을 활성화합니다.",
+    "Power Bins 패널 하단 영역을 우클릭하고 New Bin을 선택해 새 폴더를 만듭니다.",
+    "자주 사용하는 클립이나 Timeline을 드래그하여 생성한 Power Bin 안으로 이동시킵니다.",
+    "새로운 프로젝트를 연 후, Power Bin에서 필요한 에셋을 Timeline으로 바로 드래그하여 사용합니다."
+  ],
+  "params": [
+    {
+      "name": "Show Power Bins",
+      "desc": "Media Pool 하단에 전역 폴더 영역을 표시하거나 숨깁니다."
+    },
+    {
+      "name": "New Bin",
+      "desc": "Power Bins 내부에서 에셋을 종류별로 정리할 하위 폴더를 생성합니다."
+    },
+    {
+      "name": "Media Pool",
+      "desc": "클립과 에셋을 관리하는 기본 패널로 Power Bins가 이 하단에 추가됩니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공통 인트로 및 로고 Template 재사용하기",
+      "steps": [
+        "기존 프로젝트에서 잘 만들어진 인트로 Timeline을 Power Bin으로 드래그합니다.",
+        "새 프로젝트를 생성하고 Show Power Bins를 켭니다.",
+        "Power Bin에 저장된 인트로 Timeline을 새 프로젝트의 Timeline으로 가져옵니다."
+      ]
+    },
+    {
+      "title": "자주 쓰는 효과음(SFX) 라이브러리 구축하기",
+      "steps": [
+        "Power Bin 내부에 'SFX'라는 새 폴더를 만듭니다.",
+        "자주 사용하는 쾅 소리, 전환 효과음 등의 Audio 파일을 해당 폴더에 드래그하여 넣습니다.",
+        "어떤 프로젝트를 열든 필요한 효과음을 즉시 Audio 트랙에 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Power Bin의 파일을 실수로 수정함 → Power Bin의 원본 파일이 변경되면 다른 프로젝트에도 영향을 주므로 주의하며, 필요시 복사해서 사용합니다.",
+    "다른 프로젝트에서 파일이 안 보임 → Master가 아닌 개별 프로젝트의 일반 Media Pool 폴더에 넣었기 때문이며, 반드시 Power Bins 영역 안에 에셋을 배치해야 합니다."
+  ],
+  "related": [
+    "Smart Bins",
+    "Media Pool",
+    "Timeline",
+    "Metadata"
+  ],
+  "videos": [
+    {
+      "id": "KTiRe_XrrNc",
+      "title": "Edit FASTER using Power Bins! - DaVinci Resolve for NOOBS! - Tip #51",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "UnojZ_J5oUM",
+      "title": "This one feature will save you hours in Davinci Resolve",
+      "author": "MrAlexTech"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Power%20Bin",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "View",
+    "Show Power Bins",
+    "Media Pool",
+    "Power Bins"
+  ],
+  "at": "2026-11-26T02:08:13.880999+00:00"
+}

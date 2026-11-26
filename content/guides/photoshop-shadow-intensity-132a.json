@@ -1,0 +1,90 @@
+{
+  "id": "photoshop-shadow-intensity-132a",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 조명",
+  "name": "Shadow Intensity",
+  "title": "그림자 강도(Shadow Intensity) — 3D 라이팅으로 인해 생성되는 그림자의 진하기 조절",
+  "summary": "Photoshop의 Shadow Intensity는 3D 레이어 환경에서 라이팅에 의해 생성되는 그림자의 진하기와 명암 대비를 조절하는 속성입니다. 그림자의 농도를 제어하여 장면에 깊이감과 입체감을 부여합니다.",
+  "when": [
+    "3D 오브젝트의 그림자가 너무 어둡거나 밝아 주변 배경과 어우러지지 않을 때",
+    "태양광이나 Studio 조명 아래에서 생기는 그림자의 선명도를 조절하고 싶을 때",
+    "합성된 3D 모델의 바닥 접지면 그림자를 자연스럽게 다듬어야 할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 작업 문서를 엽니다.",
+    "우측 패널 영역에서 3D 패널 탭을 클릭하여 씬의 구성 요소를 표시합니다.",
+    "3D 패널의 최상위 루트 또는 조명(Light) 항목을 선택합니다.",
+    "하단의 Properties 패널에서 라이트 속성 영역을 확인합니다.",
+    "Shadow Intensity 슬라이더 값을 드래그하여 그림자의 진하기를 조절합니다.",
+    "Viewport에서 그림자의 농도를 실시간으로 확인하며 적정 값으로 맞춥니다."
+  ],
+  "params": [
+    {
+      "name": "Shadow Intensity",
+      "desc": "그림자의 진하기와 명암 대비를 조절합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "광원 자체의 전체적인 밝기 강도를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "광원이 비추는 빛의 색상을 변경합니다."
+    },
+    {
+      "name": "Shadow Softness",
+      "desc": "그림자 경계선의 부드러움과 퍼짐 정도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 배경에 3D 가구 합성하기",
+      "steps": [
+        "3D 가구 레이어를 배치하고 Infinite Light를 추가합니다.",
+        "Properties 패널에서 Shadow Intensity를 낮춰 그림자를 연하게 만듭니다.",
+        "주변 배경의 실제 그림자 농도와 가구 그림자를 자연스럽게 맞춥니다."
+      ]
+    },
+    {
+      "title": "제품 Package 렌더링 강조하기",
+      "steps": [
+        "제품 모델의 3D 레이어를 선택하고 주광 조명을 선택합니다.",
+        "Shadow Intensity를 높여 제품 하단과 모서리의 그림자를 선명하게 만듭니다.",
+        "입체감을 극대화하여 시각적 주목도를 높입니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Shadow Intensity를 너무 높여 그림자가 검은색 덩어리로 뭉침 → 값을 낮추고 Shadow Softness를 조절하여 부드러운 그라데이션을 만듭니다.",
+    "주변 환경과 어울리지 않게 그림자가 너무 연함 → 배경 광원의 방향과 강도를 확인한 뒤 Shadow Intensity를 높여 입체감을 살립니다."
+  ],
+  "related": [
+    "Infinite Light",
+    "Infinite Light Settings",
+    "Shadow Softness",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "5TuhBcN9k8w",
+      "title": "How to Make most REALISTIC SHADOWS in Photoshop, 3 simple steps",
+      "author": "photoshopCAFE"
+    },
+    {
+      "id": "9v5YV6xzFsA",
+      "title": "🔥 Create Realistic Cast Shadows in Photoshop",
+      "author": "Photoshop Training Channel"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Shadow%20Intensity",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Light",
+    "Properties",
+    "Shadow Intensity"
+  ],
+  "at": "2026-11-26T02:08:10.126485+00:00"
+}
