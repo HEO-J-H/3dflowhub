@@ -1,32 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-24T13:20:35.979882+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 92,
-      "candidates_passed": 41,
-      "offtopic": 24,
-      "short": 0,
-      "prefiltered": 37,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "005c0307",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-24T13:30:40.867060+00:00",
       "collected": 1,
       "saved": 1,
@@ -6941,6 +6915,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-26T17:30:59.022458+00:00",
+      "collected": 2,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 118,
+      "candidates_passed": 40,
+      "offtopic": 30,
+      "short": 0,
+      "prefiltered": 59,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "bba6e590",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7036,7 +7037,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-17 [[p-931299c5bc|사이트·UX] 로컬 파이프라인 안내 문서 수정:] 테스트 실패 — 59 passed, 1 warning in 2.31s 보안: ['기능 변화 없음 — 문자열·주석·테스트만 바뀜 (코드 동작이 그대로인 PR 은 만들지 않음)']",
     "2026-11-17 [성찰] 동음이의어 필터링과 실무형 튜토리얼 및 스크립트·애드온 중심의 고단가 키워드 공략이 저품질 유입을 차단하고 검색 효율을 높이는 핵심입니다.",
     "2026-11-17 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오프토픽 뉴스를 철저히 필터링하고 고검색 의도의 실무 튜토리얼 및 스크립트 주제에 집중해야 검색 유입과 애드센스 가치를 높일 수 있습니다.",
     "2026-11-17 [성찰] 동음이의어(Nuke, Unity, Maya 등)로 인한 오탐지를 줄이기 위해 5000중 이상으로 컨텍스트 필터를 강화하고, 3ds Max 및 Blender의 실무 튜토리얼·스크립트 중심의 고단가 키워드 집중 공략이 필수적입니다.",
@@ -7155,7 +7155,8 @@
     "2026-11-26 [성찰] 오프토픽과 동음이의어(핵, 주가 등)를 강력하게 필터링하여 저품질 문서를 줄이고, 실무에서 검색 유입이 높은 튜토리얼 및 스크립트 가이드에 집중해야 합니다.",
     "2026-11-26 [성찰] 동음이의어(핵, 주가, 인물 등) 필터를 강화하여 저품질 오프토픽 수집을 원천 차단하고, 실제 검색 유입이 확인된 Maxscript 및 플러그인·실무 가이드 위주로 콘텐츠 깊이를 높여야 합니다.",
     "2026-11-26 [[p-b2a3baa9d4|운영·비용] 로컬 DB 메타데이터 테스트 파일 ] ",
-    "2026-11-26 [[p-b2a3baa9d4|운영·비용] 로컬 DB 메타데이터 테스트 파일 ] "
+    "2026-11-26 [[p-b2a3baa9d4|운영·비용] 로컬 DB 메타데이터 테스트 파일 ] ",
+    "2026-11-26 [성찰] 동음이의어(핵, 주가, 인물 등) 필터링을 엄격히 적용하여 무관한 주제 유입을 원천 차단하고, 실무 튜토리얼 및 스크립트 위주의 고CPC 콘텐츠 비중을 높여야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7241,7 +7242,7 @@
     "AI 3D/NeRF": 7,
     "VFX/V-Ray·Corona": 1,
     "3D DCC/3D Painter": 1,
-    "VFX/DaVinci Resolve": 72,
+    "VFX/DaVinci Resolve": 73,
     "3D DCC/Substance Painter": 1,
     "AI 3D/NVIDIA Mission Control": 2,
     "AI 3D/NVIDIA Isaac Sim": 5,
@@ -7365,8 +7366,6 @@
     "AI 3D/NVIDIA": "기타 AI 3D"
   },
   "title_hashes": [
-    7792354364602515784,
-    11590154565565465647,
     792809908083401496,
     9262304719093373627,
     11876925814528448635,
@@ -10364,14 +10363,16 @@
     8732177500237310805,
     16938527649182223147,
     10971342947655681024,
-    5306677164104879952
+    5306677164104879952,
+    1370788157476184095,
+    308945776783139792
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4249,
-    "Game Engine": 4249,
-    "VFX": 4249,
-    "AI 3D": 4249
+    "3D DCC": 4250,
+    "Game Engine": 4250,
+    "VFX": 4250,
+    "AI 3D": 4250
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

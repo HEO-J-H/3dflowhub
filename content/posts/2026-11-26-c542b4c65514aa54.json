@@ -1,0 +1,55 @@
+{
+  "title_ko": "DaVinci Resolve Sony A1 4K 422 ProRes 편집 방법",
+  "title": "Sony A1 /SI 4K 422 to Pro res HQ edit /Davinci resolve 21 - YouTube",
+  "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTFB0emlmS3BNYlZaT2UwbW1LNHFyLXVwUEZEcUs1UVhJQkJ2Wmp3eEtFOVcya25QRURSRkpvZU5uOHYwdw?oc=5",
+  "domain": "VFX",
+  "category": "DaVinci Resolve",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "DaVinci Resolve",
+    "Sony A1",
+    "ProRes",
+    "편집",
+    "색보정"
+  ],
+  "summary": "Sony A1 카메라의 4K 422 영상 파일을 DaVinci Resolve에서 ProRes HQ 코덱으로 편집하는 과정을 다룬 영상입니다.",
+  "insight": "DaVinci Resolve Timeline에서 카메라 원본 코덱을 고품질 중간 코덱인 ProRes HQ로 변환해 편집하면 무거운 4K 4:2:2 푸티지도 끊김 없이 원활하게 다룰 수 있습니다. 고해상도 작업용 저해상도 편집본을 생성하는 Proxy Generation 기능을 함께 사용하거나, Export 설정을 통해 인코딩 과정을 거치면 시스템 부하를 줄이면서 디테일 손실을 막을 수 있습니다. 색보정 작업과 타임라인 재생 성능을 동시에 확보하기 위한 방법입니다.",
+  "try_it": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Media 페이지로 이동합니다.",
+    "Media Storage 패널에서 프록시를 생성하거나 ProRes HQ로 변환할 고해상도 영상 클립을 선택합니다.",
+    "Export 설정에서 Apple ProRes HQ 코덱을 지정해 인코딩을 수행합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Sony A1 원본 파일 분석",
+      "body": "Sony A1 카메라가 기록하는 4K 4:2:2 영상 포맷은 압축률이 높아 일반적인 편집 환경에서 시스템 부하를 유발할 수 있습니다. 이를 해결하기 위해 중간 편집용 코덱 변환 과정이 필요합니다. 고해상도 원본의 압축 특성 때문에 타임라인 재생 시 프레임 드롭이 발생하기 쉽습니다."
+    },
+    {
+      "heading": "DaVinci Resolve 코덱 변환",
+      "body": "DaVinci Resolve의 Export 설정을 활용해 원본 소스를 Apple ProRes HQ 코덱으로 인코딩합니다. 이 과정은 색보정 작업 시 디테일 손실을 최소화하고 재생 성능을 높이는 데 기여합니다. 미디어 페이지와 스토리지 패널을 통해 변환 대상 클립을 정확하게 지정해야 합니다."
+    },
+    {
+      "heading": "Timeline 편집 최적화",
+      "body": "변환된 ProRes HQ 파일을 활용해 편집을 진행하면 Timeline 스러빙과 효과 적용 과정에서 프레임 드롭을 줄일 수 있습니다. 무거운 원본 대신 가벼운 중간 코덱이나 프록시를 불러와 작업 속도를 유지합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "DaVinci Resolve에서 ProRes HQ로 변환하려면 어떤 설정을 해야 하나요?",
+      "a": "Deliver 페이지의 Video 탭에서 Format을 QuickTime으로 지정하고 Codec을 Apple ProRes HQ로 선택하여 렌더링하면 됩니다."
+    },
+    {
+      "q": "왜 원본 대신 ProRes HQ로 변환해서 편집하나요?",
+      "a": "4K 4:2:2 원본 압축 포맷보다 편집용 중간 코덱인 ProRes HQ가 디코딩 부하를 줄여주어 Timeline 재생과 편집 반응 속도가 훨씬 빨라지기 때문입니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/B96cz7u0KJ4/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=B96cz7u0KJ4"
+  },
+  "collected_at": "2026-11-26T17:31:11.795764+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-c542b4c65514aa54",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}
