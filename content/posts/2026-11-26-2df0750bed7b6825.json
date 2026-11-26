@@ -1,0 +1,55 @@
+{
+  "title_ko": "Unity 게임에서 절단 및 고어 효과 구현하는 기술",
+  "title": "Creating Realistic Dismemberment & Gore Effects In Unity",
+  "url": "https://80.lv/articles/creating-realistic-dismemberment-gore-effects-in-unity/",
+  "domain": "Game Engine",
+  "category": "Unity",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unity",
+    "Gore",
+    "Compute Shader",
+    "Marching Cubes",
+    "Game Dev",
+    "유니티"
+  ],
+  "summary": "Unity 기반 사이드뷰 공포 게임에서 사전 베이킹된 메시와 컴퓨트 Shader를 활용해 사실적인 절단 및 혈흔 효과를 최적화하며 구현한 사례입니다.",
+  "insight": "컴퓨트 Shader와 Marching Cubes 알고리즘을 결합해 Particle을 연속적인 액체 메시로 변환하는 방식은 Runtime 연산 부하를 크게 낮추면서도 비주얼 완성도를 높이는 실용적인 대안입니다.",
+  "try_it": [
+    "Unity Editor에서 절단 대상 캐릭터의 메시와 크로스 섹션 UV를 미리 세팅해 보세요.",
+    "커스텀 Dismemberment Editor를 활용해 절단면과 마스크 데이터를 베이킹해 보세요.",
+    "컴퓨트 셰이더를 이용한 3D 그리드 기반 파티클 밀도 계산 루틴을 테스트해 보세요."
+  ],
+  "sections": [
+    {
+      "heading": "Dead Space 영감을 받은 사이드뷰 전투",
+      "body": "인디 개발사 SYLOPON은 사이드뷰 SF 호러 액션 게임인 THE IRONY를 Unity로 개발 중입니다. Dead Space에서 영감을 받아 전략적 부위 절단 전투를 사이드뷰 시점으로 재해석하는 과정에서 여러 기술적 과제에 직면했습니다. 캐릭터의 신체가 절단될 때 분출되는 피가 바닥과 벽에 영구적으로 흔적을 남기며 최적화까지 고려해야 했습니다."
+    },
+    {
+      "heading": "사전 베이킹된 절단 메시와 포즈 전환",
+      "body": "실시간 컷팅 대신 프로그래머가 개발한 커스텀 도구인 Dismemberment Editor를 통해 각 신체 부위의 절단면과 Mask를 미리 정의합니다. Cross 섹션을 검수하고 UV를 조정한 뒤 메시를 베이킹하여 Runtime 연산 부하를 줄입니다. 절단 이벤트 발생 시 오브젝트 풀에서 해당 부위를 가져와 원래 캐릭터의 본 포즈를 복사한 뒤 물리 Simulation을 시작합니다."
+    },
+    {
+      "heading": "혈흔 스프레이 곡선과 GPU 표면 생성",
+      "body": "실제 동맥 출혈의 압력 변화와 심장박동 곡선을 반영하기 위해 시간에 따라 감소하는 압력 곡선과 심장박동 곡선을 곱한 시스템을 구현했습니다. Particle을 연속적인 피 줄기로 표현하기 위해 컴퓨트 Shader로 3D Grid에 Particle 밀도를 기록하고 Marching Cubes 알고리즘을 적용하여 삼각형 메시를 생성합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "실시간 절단 대신 사전 Baking 방식을 선택한 이유는 무엇인가요?",
+      "a": "프레임마다 연산 부하가 분산되면 하드웨어 성능에 따라 정확한 절단 타이밍이 어긋날 수 있기 때문에, 정확한 타이밍에 신체 부위가 잘려 나가도록 미리 메시를 베이킹하는 방식을 채택했습니다."
+    },
+    {
+      "q": "바닥에 남는 혈흔의 최적화는 어떻게 해결했나요?",
+      "a": "Runtime 비용을 줄이기 위해 Unity Editor에서 혈흔을 받을 수 있는 표면의 메시와 공간 검색 데이터를 미리 생성해 두고, 절단 이벤트 발생 시 미리 준비된 메시로 교체하는 방식을 사용합니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51200/images/6b083e3ce6c78/contain_1200x630.jpg",
+    "video": "https://www.youtube.com/watch?v=2LUP4CcG86Q"
+  },
+  "collected_at": "2026-11-26T14:30:30.455562+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-2df0750bed7b6825",
+  "img_ok": "2026-11-26T14:30:30+00:00"
+}
