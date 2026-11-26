@@ -1,0 +1,93 @@
+{
+  "id": "custom-dataset-f3e0",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "데이터 준비",
+  "name": "Custom Dataset",
+  "title": "커스텀 데이터셋 — 스마트폰이나 외부 카메라로 촬영한 이미지를 학습용으로 변환하는 워크플로우",
+  "summary": "Gaussian Splatting의 Custom Dataset 기능은 사용자가 직접 촬영한 이미지 세트를 이용해 3D Gaussian Splatting 모델을 학습시켜 실시간 렌더링 가능한 3D 씬을 생성합니다.",
+  "when": [
+    "다양한 각도와 조명이 포함된 사진을 직접 촬영했을 때",
+    "공개 데이터셋이 프로젝트 요구와 맞지 않을 때",
+    "실시간 뷰어에서 고품질 3D 재구성을 테스트하고 싶을 때"
+  ],
+  "steps": [
+    "Terminal에서 프로젝트 폴더를 만들고 이미지 폴더(예: images/)에 사진을 넣습니다.",
+    "nerfstudio 명령어로 데이터셋을 초기화합니다: nerfstudio data --data-dir images/ --output-dir dataset/",
+    "COLMAP을 이용해 카메라 포즈를 추정합니다: nerfstudio preprocess --pipeline-name gaussian-splatting --data dataset/",
+    "Gaussian Splatting 학습을 시작합니다: nerfstudio train --pipeline-name gaussian-splatting --data dataset/ --output-dir output/",
+    "학습이 끝나면 nerfstudio view 로 결과를 실시간 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "max_num_points",
+      "desc": "최대 Gaussian 포인트 수, 많을수록 디테일 증가"
+    },
+    {
+      "name": "learning_rate",
+      "desc": "학습률, 값이 클수록 빠르게 수렴하지만 불안정할 수 있음"
+    },
+    {
+      "name": "num_iterations",
+      "desc": "전체 학습 반복 횟수"
+    },
+    {
+      "name": "background_color",
+      "desc": "배경 색상, 투명(0,0,0,0) 또는 흰색 등 선택"
+    },
+    {
+      "name": "use_viewer",
+      "desc": "학습 중 실시간 뷰어 표시 여부"
+    },
+    {
+      "name": "eval_interval",
+      "desc": "검증 이미지 렌더링 간격(스텝)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 방 재구성",
+      "steps": [
+        "스마트폰으로 방을 360° 촬영(30~50장)하고 images/에 저장",
+        "위 단계대로 데이터셋 생성·학습",
+        "nerfstudio view 로 방 내부를 자유롭게 탐색"
+      ]
+    },
+    {
+      "title": "소형 물체(머그컵) 스캔",
+      "steps": [
+        "머그컵을 회전시켜 20~30장 촬영, 배경을 단색으로 유지",
+        "데이터셋 초기화 후 학습(점수 500k 이하 권장)",
+        "학습 완료 후 PNG 시퀀스로 렌더링하거나 Unity/Unreal에 Export"
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지 파일명에 공백 → 파일명을 언더스코어(_)로 변경",
+    "카메라 포즈가 크게 틀릴 때 → COLMAP 재실행 후 Camera Optimization 옵션을 활성화",
+    "스케일이 맞지 않을 때 → 데이터셋 폴더에 scale_factor.txt 파일을 추가하거나 nerfstudio train 옵션에 --scale-factor 지정"
+  ],
+  "related": [
+    "COLMAP",
+    "Camera Optimization",
+    "Nerfstudio",
+    "3D Gaussian Splatting"
+  ],
+  "videos": [
+    {
+      "id": "Afmv_u4oqf8",
+      "title": "Training YOLOv8 for Car Part Segmentation | Custom Dataset Tutorial",
+      "author": "Pyresearch"
+    },
+    {
+      "id": "WdFZ4B74QuU",
+      "title": "Learn step-by-step how to train the Ultralytics YOLOv8 model using your custom dataset!",
+      "author": "Ultralytics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Custom%20Dataset",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T03:29:04.248476+00:00"
+}

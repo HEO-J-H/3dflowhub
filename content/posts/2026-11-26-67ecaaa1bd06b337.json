@@ -1,45 +1,91 @@
 {
-  "title_ko": "OceanFix: 수중 3D 재구성을 위한 Sparse-View Diffusion",
+  "title_ko": "OceanFix: 희소 뷰 수중 3D 재구성을 위한 레퍼런스 기반 확산 복구",
   "title": "OceanFix: Reference-Guided Diffusion for Sparse-View Underwater 3D Reconstruction",
   "url": "https://arxiv.org/abs/2611.34155v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "수중 3D",
-    "Sparse-View",
-    "Diffusion",
-    "Gaussian splatting",
-    "OceanFix"
+    "수중 3D 재구성",
+    "Diffusion 복구",
+    "Gaussian Splatting",
+    "Medium-aware Distillation"
   ],
-  "summary": "OceanFix는 레퍼런스 기반 Diffusion과 Gaussian splatting을 결합해 희소 시점 수중 3D 재구성의 시각적 결함을 감소시킨다.",
-  "insight": "두 단계 학습 전략으로 외관 적응을 먼저 수행하고, 이후 기하학 정제로 전환해 대상 뷰 깊이 없이도 구조적 복구가 가능해졌다, 이는 기존 방법이 깊이 정보를 요구하던 문제를 해결한다.",
+  "summary": "OceanFix는 레퍼런스 이미지와 확산 모델을 이용해 희소 뷰 수중 3D 재구성의 구조적 결함을 복구하고 Gaussian 장면을 반복적으로 정제합니다.",
+  "insight": "이 기술이 공개된다면, 수중 촬영이 제한적인 현장(예: 해양 조사, 수중 게임 에셋)에서 적은 사진만으로도 고품질 3D 모델을 빠르게 만들 수 있을 가능성이 있습니다. 또한 매체 인식 가중치를 활용한 정제 과정은 기존 수중 렌더링 파이프라인에 추가적인 품질 향상 단계로 통합될 수 있습니다.",
   "try_it": [],
   "sections": [
     {
-      "heading": "OceanFix 개요",
-      "body": "본 논문은 수중 환경에서 관측이 드문 경우에도 고품질 3D 재구성을 목표로 한다. Gaussian splatting의 효율성을 기반으로 하면서, 빛 감쇠와 백스캐터링으로 인한 시각적 왜곡을 보완한다. 레퍼런스 관측과 매체 특성을 활용해 Diffusion 모델을 훈련한다."
+      "heading": "문제 정의",
+      "body": "수중 이미지에서는 빛 감쇠와 백스캐터링 때문에 관측이 제한적이며, 희소 뷰에서는 기하학적 불확실성이 크게 증가합니다. 기존 NeRF·3DGS 기반 방법은 매체(Medium) 모델링만으로는 이러한 기하학적 부족을 해소하지 못합니다."
     },
     {
-      "heading": "두 단계 학습 전략",
-      "body": "첫 단계에서는 레퍼런스 이미지와 추정된 매체 특징을 이용해 수중 외관을 학습한다. 두 번째 단계에서는 카메라 포즈와 레퍼런스 깊이를 정렬해 구조적 복구를 진행한다. 상대 깊이(supervised) 신호만으로도 목표 뷰의 깊이 없이 복구가 가능하도록 설계되었다."
+      "heading": "핵심 아이디어",
+      "body": "레퍼런스 이미지와 매체 정보를 활용한 두 단계 확산 복구 모델을 제안합니다. 1단계는 수중 외관을 학습하고, 2단계에서는 카메라 자세와 레퍼런스 깊이 정보를 이용해 기하학적 정렬과 상대 깊이(supervision)를 적용합니다. 복구된 뷰는 매체 인식(distillation) 가중치를 통해 Gaussian 장면에 다시 주입됩니다."
     },
     {
-      "heading": "Medium-aware Distillation",
-      "body": "복구된 뷰를 3D 씬에 전달할 때, 매체 인식(distillation) 과정을 적용한다. 이는 기하학적 복구 수요와 채널별 광학 가시성을 고려해 정보를 선택적으로 전이한다. 반복적인 렌더링‑복구‑증류 루프를 통해 미확인 영역을 점진적으로 개선한다."
+      "heading": "방법 (단계)",
+      "body": "① Appearance Adaptation: 레퍼런스 RGB와 매체 디스크립터([B_r, f_r])를 키(key)로 사용해 U‑Net에 어텐션 라우터를 추가하고, 픽셀 MSE, LPIPS, Gram 손실을 최적화합니다.② Geometry Refinement: 외관 파라미터를 고정하고, 레퍼런스 깊이 D_r와 자세(R_tr, t_tr)를 이용해 레퍼런스 피처를 목표 뷰에 투영, 지원 가중치 m_t=A_r(1‑f_r)와 함께 어댑터에 입력합니다. 상대 깊이 손실 ℒ_depth는 Depth Anything V2 Large 추정값을 사용해 Smooth L1로 계산합니다.③ Iterative Rendering‑Repair‑Distillation: 복구된 가짜 뷰와 가중치를 주기적으로 업데이트하며 Gaussian 파라미터 θ와 매체 파라미터 φ를 최적화합니다."
     },
     {
-      "heading": "실험 결과",
-      "body": "다양한 수중 데이터셋에서 OceanFix를 평가했으며, 기존 Gaussian splatting 대비 시각적 아티팩트가 크게 감소했다. 정밀한 디테일 복구와 색상 일관성이 향상되었으며, 정량적 지표에서도 PSNR·SSIM이 상승했다."
+      "heading": "결과",
+      "body": "실험 결과, OceanFix는 희소 뷰 수중 3D 재구성에서 시각적 아티팩트를 감소시키고 세부 구조를 복원함을 보여줍니다(정량적 수치는 논문에 명시되지 않음). Figure 4와 Figure 5에서 기존 Difix3D+ 대비 더 선명한 전경과 일관된 배경을 확인할 수 있습니다."
+    },
+    {
+      "heading": "제한 사항·아직 못 하는 것",
+      "body": "논문에서는 현재 코드·데이터 공개 여부를 명시하지 않았으며, 실시간 Interactive 편집이나 대규모 장면에 대한 확장성에 대한 평가가 없습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "OceanFix는 어떤 입력을 필요로 하나요?",
+      "a": "레퍼런스 RGB 이미지, 해당 이미지의 매체 디스크립터([B_r, f_r]), 레퍼런스 깊이 D_r, 그리고 목표 카메라의 내부·외부 파라미터(K_t, P_t)를 사용합니다. 목표 뷰의 실제 깊이와 RGB는 추론 시 필요하지 않습니다."
+    },
+    {
+      "q": "복구 모델은 어떻게 학습되나요?",
+      "a": "두 단계 학습 전략을 사용합니다. 첫 단계에서는 레퍼런스 외관 적응을 위해 픽셀 MSE, LPIPS, Gram 손실을 최적화하고, 두 번째 단계에서는 외관 파라미터를 고정한 뒤 자세 정렬된 레퍼런스 피처와 상대 깊이 손실을 이용해 기하학 어댑터를 학습합니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.34155v1/method_overview.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.34155v1/method_overview.png",
+        "caption": "Figure 2 : Overview of OceanFix. (a) Rendered views are repaired for medium-aware distillation, with\npseudo-views and weights refreshed during refinement. A final repair\npass produces the output images.\n(b) Appearance adaptation learns reference RGB and medium conditioning.\n(c) Geometry refinement f",
+        "caption_ko": "Figure 2: OceanFix 전체 흐름 – 렌더링·복구·디스틸레이션 순환 과정"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34155v1/data-curation.png",
+        "caption": "Figure 3 : Training-pair construction. Sparse-view reconstruction, underfit checkpoints, and complementary pose clusters generate degraded renders paired with allowed GroundTruth.",
+        "caption_ko": "Figure 3: 학습용 페어 구성 – 희소 뷰와 보완 포즈 클러스터를 이용한 손상 렌더 생성"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34155v1/nusr-vis.png",
+        "caption": "Figure 4 : Qualitative comparison on NUSR. OceanFix achieves the best visual quality, with clearer foreground details and more consistent underwater backgrounds. Difix3D+ is fine-tuned on our underwater training pairs.",
+        "caption_ko": "Figure 4: NUSR 데이터셋에서의 정량·정성 비교 – OceanFix가 가장 선명한 전경과 일관된 배경을 제공"
+      },
+      {
+        "src": "https://arxiv.org/html/2611.34155v1/seanerf-vis.png",
+        "caption": "Figure 5 : Qualitative comparison on SeaThru-NeRF. OceanFix produces the most visually faithful reconstructions, preserving finer scene structures and more natural underwater appearance. Difix3D+ is fine-tuned on our underwater training pairs.",
+        "caption_ko": "Figure 5: SeaThru‑NeRF 데이터셋에서의 비교 – OceanFix가 세밀한 구조와 자연스러운 수중 외관을 유지"
+      }
+    ]
   },
   "collected_at": "2026-11-26T03:18:12.236216+00:00",
   "notion_id": "",
   "id": "2026-11-26-67ecaaa1bd06b337",
-  "img_tried": true
+  "img_tried": true,
+  "img_ok": "2026-11-26T03:28:25+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T03:30:12+00:00"
 }
