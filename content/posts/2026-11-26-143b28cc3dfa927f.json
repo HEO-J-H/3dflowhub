@@ -1,0 +1,73 @@
+{
+  "title_ko": "VersionGS: 버전 관리 기반 동적 Gaussian Splatting",
+  "title": "VersionGS: Compact and Motion-Robust Dynamic Gaussian Splatting via Versioned Gaussians",
+  "url": "https://arxiv.org/abs/2611.33374v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3D Gaussian Splatting",
+    "Dynamic 3DGS",
+    "VersionGS",
+    "Gaussian Splatting",
+    "Compression"
+  ],
+  "summary": "VersionGS는 빠른 모션에서도 품질 저하 없이 프레임별 Gaussian 상태를 효율적으로 인코딩하는 동적 Gaussian Splatting 방법입니다.",
+  "insight": "이 기술이 상용화되면 빠른 움직임이 많은 실사 캡처 영상이나 스포츠 중계를 웹과 모바일 뷰어에서 왜곡 없이 스트리밍하는 데 활용될 수 있습니다 (가능성). 기존 Neural Network 디코딩 방식과 달리 표준 3DGS 래스터라이저만으로 빠르게 재생할 수 있어 디바이스 부담을 줄이는 파이프라인으로 확장될 수 있습니다 (가능성).",
+  "try_it": [],
+  "sections": [
+    {
+      "heading": "무엇을 풀려는가",
+      "body": "기존 동적 Gaussian Splatting(3DGS) 방법들은 시간의 함수나 프레임 간 변형으로 변화를 표현하지만, 빠른 모션이 포함된 댄스 시퀀스 등에서는 고속 모션 프레임의 PSNR이 1.1–4.0 dB까지 크게 떨어지는 한계가 있습니다."
+    },
+    {
+      "heading": "핵심 아이디어",
+      "body": "VersionGS는 모션 모델 대신 프레임별 Gaussian 상태를 직접 저장합니다. GOP(Group of Pictures) 내에서 변하지 않는 Gaussian은 공유 딕셔너리의 기존 버전을 유지하고, 수정된 Gaussian만 새 버전으로 추가합니다."
+    },
+    {
+      "heading": "방법 (단계)",
+      "body": "선택적 순차 구축(selective sequential construction)을 통해 옵티컬 플로우, 사진 차이, 렌더링 오차 등으로 선택된 Gaussian만 정제하고 나머지는 유지합니다. 이후 딕셔너리 프루닝, 시뮬레이션 양자화 미세 조정, 이미지 기반 인코딩 단계를 거칩니다."
+    },
+    {
+      "heading": "결과 (논문 수치)",
+      "body": "DanceNet3D의 빠른 댄스 시퀀스에서 VersionGS는 최강 베이스라인보다 전경 PSNR을 2.7 dB 향상시켰으며, 가장 빠른 모션 프레임에서도 PSNR 감소가 0.3 dB 미만입니다. N3DV와 Technicolor에서는 TAD-GS 대비 각각 6.0배, 5.7배 적은 스토리지로 더 높은 PSNR을 달성했습니다."
+    },
+    {
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "논문 본문에서는 별도의 치명적인 한계점 구체적 언급 대신, 선택적 업데이트 과정에서 딕셔너리 관리와 프루닝 비율 조절을 통해 스토리지와 품질 간의 트레이드오프를 조정한다고 설명합니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "본문 리포트 페이지에 GitHub 이슈 신고 링크 및 LaTeX 변환 관련 링크는 존재하나, 본문 내에 VersionGS 소스 코드 공개 주소는 직접 명시되지 않았습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "VersionGS는 빠른 모션에서 왜 품질이 유지되나요?",
+      "a": "모션 모델이나 Neural Network을 거치지 않고 프레임별 Gaussian 상태를 직접 저장하며, 변경된 부분만 새 버전으로 추가하는 딕셔너리 구조를 사용하기 때문입니다."
+    },
+    {
+      "q": "재생 시 어떤 렌더러가 사용되나요?",
+      "a": "별도의 Neural Network 평가 없이 표준 3DGS 래스터라이저(3DGS rasterizer)를 사용하여 재생합니다."
+    }
+  ],
+  "media": {
+    "image": "https://arxiv.org/html/2611.33374v1/fig/teaser/bkf133_gt_view.png",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T11:32:07.919889+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-143b28cc3dfa927f",
+  "img_tried": true,
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T11:32:26+00:00"
+}
