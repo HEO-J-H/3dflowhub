@@ -1,0 +1,38 @@
+{
+  "id": "3ds-max-error-skin-weight-could-not-be-normalized--25d6a",
+  "kind": "fix",
+  "tool": "3ds Max",
+  "error": "Error: Skin weight could not be normalized because total weight is zero",
+  "title": "Error: Skin weight could not be normalized because total weight is zero — 3ds Ma",
+  "summary": "3ds Max에서 스킨(Skin) Modifier를 적용하거나 웨이트를 편집할 때, 특정 정점에 할당된 웨이트의 총합이 0이어서 정규화(Normalize)를 수행할 수 없을 때 발생하는 에러입니다.",
+  "causes": [
+    "웨이트가 전혀 칠해지지 않거나(0) 지워진 정점이 존재함",
+    "본(Bone)을 삭제하거나 바인드 포즈(Bind Pose)가 틀어진 상태에서 웨이트를 수정함",
+    "다른 오브젝트에서 웨이트를 복사·붙여넣는 과정에서 데이터가 누락됨"
+  ],
+  "steps": [
+    "Command Panel의 Modify 탭에서 Skin Modifier를 선택합니다.",
+    "Modifier Stack에서 Skin 아래의 Envelope를 열거나 Sub-object 레벨에서 Vertex를 선택합니다.",
+    "Weight Table 또는 Weight Tool 창을 열어 웨이트가 0인 정점을 찾습니다.",
+    "문제가 되는 정점에 영향력을 줄 본을 선택하고 Weight 값을 1 이상으로 수동 입력하거나, Normalize 옵션을 켭니다.",
+    "정점이 특정 본에 완전히 속하도록 Assign Tool을 사용하여 최소 하나의 본에 웨이트를 할당합니다."
+  ],
+  "check": [
+    "Skin Modifier의 웨이트 테이블에서 모든 정점의 웨이트 합계가 정상적으로 1로 유지되는지 확인합니다.",
+    "애니메이션 슬라이더를 움직이거나 본을 회전했을 때 해당 정점이 찌그러지지 않고 자연스럽게 따라오는지 Viewport에서 확인합니다."
+  ],
+  "prevent": [
+    "웨이트 작업을 하기 전 불필요한 Vertex가 없도록 Mesh 정리를 선행합니다.",
+    "본을 삭제하거나 바꿀 때는 반드시 Skin Modifier를 Collapse 하거나 백업을 남깁니다."
+  ],
+  "keywords": [
+    "3ds Max skin weight 에러",
+    "Skin weight could not be normalized",
+    "웨이트 총합 0 오류",
+    "맥스 스킨 정규화 에러",
+    "Weight Table 수정"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-26T11:20:25+00:00"
+}
