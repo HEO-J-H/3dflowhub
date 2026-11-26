@@ -1,0 +1,88 @@
+{
+  "id": "photoshop-illumination-d313",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 머티리얼",
+  "name": "Illumination",
+  "title": "조명(Illumination) — 3D 오브젝트 자체에서 빛을 발광하도록 설정하는 맵",
+  "summary": "Photoshop의 Illumination(조명 및 발광 표현)은 3D 렌더링 결과물이나 2D 텍스처에 자연스러운 빛의 방향성, 광원 효과, 네온 같은 자발광을 더해 시각적 완성도를 높이는 후가공 기술입니다.",
+  "when": [
+    "3D 렌더링 이미지에서 전구나 창문 등 발광부의 빛 퍼짐(Glow) 효과를 강화하고 싶을 때",
+    "Substance 3D나 V-Ray로 만든 Emissive(자발광) 텍스처 패스를 합성하여 리얼함을 살릴 때",
+    "2D 일러스트나 3D 배경 소스에 입체적인 빛과 그림자 분위기를 추가하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 렌더링 원본 이미지와 발광 영역만 분리된 Emissive 패스 파일을 엽니다.",
+    "발광 레이어를 복제하고 Filter → Blur → Gaussian Blur를 적용해 부드러운 빛 퍼짐(Glow)을 만듭니다.",
+    "레이어 블렌드 모드(Blend Mode)를 Screen 또는 Linear Dodge (Add)로 변경하여 밝기를 강조합니다.",
+    "Adjustment Layer (Curves 또는 Levels)를 추가하여 발광부의 강도와 대비를 조절합니다.",
+    "레이어 Mask(Layer Mask)를 추가하고 브러시(Brush) 툴로 빛이 닿지 않아야 할 부분을 정리합니다."
+  ],
+  "params": [
+    {
+      "name": "Gaussian Blur",
+      "desc": "빛이 주변으로 부드럽게 퍼져나가는 확산 범위를 조절합니다."
+    },
+    {
+      "name": "Blend Mode",
+      "desc": "이미지 간의 합성 방식을 결정하며, 밝게 만들 때는 Screen이나 Linear Dodge를 사용합니다."
+    },
+    {
+      "name": "Opacity",
+      "desc": "조명 효과 레이어의 전체적인 투명도를 조절하여 자연스러움을 맞춥니다."
+    },
+    {
+      "name": "Curves",
+      "desc": "빛의 밝기와 어두운 영역의 대비를 정밀하게 곡선으로 제어합니다."
+    },
+    {
+      "name": "Layer Mask",
+      "desc": "이미지의 특정 부분만 빛 효과가 적용되도록 가리거나 드러냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 간판 발광 표현",
+      "steps": [
+        "네온 텍스트 레이어를 복제한 뒤 Gaussian Blur를 적용해 빛의 번짐을 표현합니다.",
+        "블렌드 모드를 Linear Dodge (Add)로 설정해 밝기를 극대화합니다.",
+        "중심에 밝은 흰색 라인 레이어를 얹어 실제 네온관의 코어(Core)를 표현합니다."
+      ]
+    },
+    {
+      "title": "Sci-Fi 패널 자발광 합성",
+      "steps": [
+        "Substance 3D Painter에서 추출한 Emissive 채널 맵을 기본 렌더 위에 가져옵니다.",
+        "블렌드 모드를 Screen으로 설정하고 Opacity를 낮춰 자연스럽게 녹여냅니다.",
+        "Hue/Saturation을 조절해 발광부의 색상을 주변 환경과 어울리게 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "발광 효과가 지나치게 밝아 타버리는 현상 → Fill이나 Opacity를 낮추고 레이어 복제 강도를 조절합니다.",
+    "블러만 적용해 빛이 탁해지는 현상 → 밝은 코어 레이어를 위에 얹어 선명함을 유지합니다."
+  ],
+  "related": [
+    "Substance 3D Emissive 채널",
+    "VRayLightMtl",
+    "VRayMeshLight",
+    "Emissive Map"
+  ],
+  "videos": [
+    {
+      "id": "X_sWl8eFhkA",
+      "title": "introduction to islamic arts #art #artist #painting #illumination #illustration",
+      "author": "khat_nawesi"
+    },
+    {
+      "id": "w-JQ2PVo3dE",
+      "title": "lesson 1: how to start islamic illumination (islamic art/tezhip/biomorphs)",
+      "author": "khat_nawesi"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Illumination",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T01:49:49.488950+00:00"
+}
