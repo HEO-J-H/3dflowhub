@@ -1,64 +1,97 @@
 {
-  "title_ko": "M2R — 3D 메시 기반 실시간 Interactive 비디오 월드 모델 연구",
+  "title_ko": "Mesh to Remember: 실시간 영상 렌더링과 외관 지속 메모리",
   "title": "A Mesh to Remember: Persistent Appearance for Interactive Video Worlds",
   "url": "https://arxiv.org/abs/2611.32445v1",
   "domain": "AI 3D",
   "category": "기타 AI 3D",
   "topic": "연구·논문",
   "tags": [
-    "M2R",
-    "월드 모델",
-    "메시",
-    "비디오 렌더링",
-    "Interactive 3D"
+    "MeshMemory",
+    "RealTimeRendering",
+    "VideoDiffusion",
+    "3DInteraction",
+    "NVIDIA"
   ],
-  "summary": "메시 표면에 시각적 특징을 직접 저장하고 래스터화로 검색하여 일관성을 유지하는 실시간 720p 비디오 렌더러 M2R 논문이 발표되었습니다.",
-  "insight": "M2R은 표면 기반 특징 저장 덕분에 메모리 사용량이 프레임 수에 종속되지 않는다. 따라서 한국의 콘텐츠 스튜디오가 수천 개 오브젝트를 포함한 대형 씬을 실시간으로 스트리밍할 때도 안정적인 프레임 레이트를 기대할 수 있다. 제로샷 전이 능력은 기존에 별도 데이터셋을 구축해야 했던 작업을 크게 줄여, 빠른 프로토타이핑에 유리하다.",
-  "try_it": [
-    "프로젝트 페이지에서 M2R 코드를 클론하고 README에 따라 환경을 설정한다.",
-    "합성 데이터셋(예: ShapeNet 기반)으로 사전 학습된 모델을 실행해 720p·40FPS 영상을 확인한다.",
-    "자신이 만든 3D 메시(OBJ/FBX)를 M2R 파이프라인에 입력해 외형 영속성을 테스트한다.",
-    "멀티 에이전트 시뮬레이션을 구성해 에이전트 간 외형 일관성을 직접 비교한다."
-  ],
+  "summary": "M2R은 메쉬 표면에 렌더러 특징을 저장·재활용해 실시간(40 FPS) 720p 영상에서 객체와 에이전트 간 외관 일관성을 유지한다.",
+  "insight": "M2R을 활용하면 3D 아티스트가 실시간 Interactive 씬을 제작할 때, 물체를 이동시켜도 텍스처를 다시 그릴 필요 없이 외관이 자동으로 유지될 가능성이 있다. 또한 여러 에이전트가 동일한 씬을 관찰하면서도 서로가 만든 외관을 즉시 공유할 수 있어 협업 기반 콘텐츠 제작에 도움이 될 수 있다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "메시를 주소로 활용한 M2R 아키텍처",
-      "body": "M2R은 각 픽셀이 어떤 3D 표면을 보여주는지를 메시 자체에 저장한다. 오브젝트가 이동해도 해당 표면에 부착된 특징이 그대로 남아, 재방문 시 동일한 외형을 재생산한다. 이를 위해 메시를 래스터화해 특징을 읽어오는 몇 단계만 거치는 인과적 비디오 렌더러를 설계했다."
+      "heading": "무엇을 풀려는가",
+      "body": "Interactive 가상 세계에서 사진실감 렌더링과 지속적인 세계 상태를 동시에 제공하는 것이 어려운데, 기존 비디오 월드 모델은 장시간 상호작용 시 외관 일관성이 떨어지고, 3D 생성 모델은 외관이 현실감이 부족하다."
     },
     {
-      "heading": "실시간 720p·40FPS 렌더링",
-      "body": "M2R은 720p 해상도에서 40FPS를 실시간으로 출력한다. 프레임 수가 아니라 보이는 표면 면적에 비례해 메모리가 증가하므로, 대규모 인터랙티브 가상 공간에서도 안정적인 속도를 유지한다. 실험에서는 정적·동적·멀티 에이전트 벤치마크에서 기존 최신 방법보다 두 배 이상 높은 객체 영속성을 기록했다."
+      "heading": "핵심 아이디어",
+      "body": "메쉬는 각 픽셀 뒤의 표면을 고유하게 식별하므로, 렌더러가 생성한 특징을 메쉬 표면에 기록하고, 해당 표면이 다시 보이면 rasterizing을 통해 특징을 읽어온다. 이렇게 하면 외관이 물체와 함께 이동하고, 에이전트 간에 공유된다."
     },
     {
-      "heading": "멀티 에이전트 간 일관성 강화",
-      "body": "모든 관찰 에이전트가 동일한 외형 메모리를 공유한다. 결과적으로 에이전트 간 외형 일관성이 거의 두 배에 달한다. 이는 협업 시뮬레이션이나 멀티플레이어 환경에서 시각적 불일치를 크게 줄여준다."
+      "heading": "방법 (단계)",
+      "body": "1) 초기 프레임과 거친 무텍스처 메쉬를 입력으로 받는다. 2) 각 에이전트 뷰와 메쉬 렌더링을 조건으로 비디오 디퓨전 모델을 몇 단계(causal)로 실행한다. 3) 렌더링 후 생성된 키·값을 메쉬 표면 메모리에 저장한다. 4) 이후 프레임에서 메쉬를 rasterize해 해당 표면의 메모리를 조회하고, 이를 디퓨전 모델에 다시 제공한다."
     },
     {
-      "heading": "합성 데이터만으로 학습, 제로샷 전이",
-      "body": "M2R은 순수 합성 데이터로 학습했음에도 실내 스캔과 코딩 에이전트가 만든 가상 세계에 바로 적용된다. 실제 환경에서도 외형이 객체 이동 경로를 따라 정확히 유지된다. 별도의 파인튜닝 없이도 즉시 활용 가능한 점이 큰 장점이다."
+      "heading": "결과 (논문 수치)",
+      "body": "M2R은 720p 영상을 실시간(40 FPS)으로 렌더링하고, 메모리를 표면 면적 기준으로 18배 압축한다. 8,000프레임 롤아웃을 45 GiB GPU 메모리 안에 담으며, 정적·동적·멀티‑에이전트 벤치마크에서 객체 영속성을 2배 이상, 에이전트 간 일관성을 거의 2배 향상시켰다."
     },
     {
-      "heading": "한국 3D 아티스트가 활용할 수 있는 시나리오",
-      "body": "대규모 인터랙티브 전시, 실시간 가상 촬영, 멀티 사용자 VR 체험 등에 M2R을 적용하면 메모리 부담 없이 고해상도 영상을 제공한다. 기존 프록시 기반 파이프라인과 달리 외형 재현이 일관돼, 클라이언트가 자유롭게 이동해도 시각적 품질이 떨어지지 않는다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "현재는 합성 데이터로만 학습했으며, 실제 복잡한 재질·조명 변화를 완전히 재현하지 못한다. 또한 메모리 바운딩은 표면 면적에만 의존하므로, 매우 큰 씬에서는 압축 효율이 떨어질 수 있다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "프로젝트 페이지(https://research.nvidia.com/labs/sil/projects/m2r/)에서 논문과 데모 영상을 제공하지만, 코드 저장소는 논문에 명시되지 않았다."
     }
   ],
   "faq": [
     {
-      "q": "M2R은 어떤 문제를 해결하기 위한 기술인가요?",
-      "a": "기존 비디오 월드 모델이 사용자의 긴 상호작용 과정에서 시점 변화에 따라 오브젝트의 외형을 잊어버리거나 왜곡하던 일관성 저하 문제를 해결합니다."
+      "q": "M2R이 외관을 어떻게 기억하나요?",
+      "a": "메쉬 표면에 렌더러가 만든 키·값을 저장하고, 해당 표면이 다시 보일 때 rasterizing을 통해 메모리를 읽어온다."
     },
     {
-      "q": "M2R의 렌더링 속도와 Resolution는 어느 정도인가요?",
-      "a": "720p Resolution의 비디오를 초당 40 프레임(FPS) 속도로 실시간 렌더링할 수 있습니다."
+      "q": "실시간 성능은 어느 정도인가요?",
+      "a": "720p Resolution에서 40 FPS로 렌더링한다."
     }
   ],
   "media": {
     "image": "https://arxiv.org/html/2611.32445v1/main_teaser_v4.png",
-    "video": ""
+    "video": "",
+    "figures": [
+      {
+        "src": "https://arxiv.org/html/2611.32445v1/method_v4.png",
+        "caption": "Figure 2 : Method overview. M2R renders each agent’s view from the initial frame and renderings of a shared scene mesh.\nAs agent A explores, it stores generated keys and values in a surface memory, indexed by the mesh surfaces they depict.\nWhen agent B encounters the same surfaces, it retrieves and ",
+        "caption_ko": "Figure 1: 초기 프레임과 거친 메쉬를 입력으로 받아 모든 에이전트가 실시간으로 포토리얼리스틱 영상을 렌더링한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32445v1/surface_cells_v2.png",
+        "caption": "Figure 3 : Surface memory. We assign each pixel p p to the cell c c that contains its surface point 𝐱 ⁡ ( p ) \\mathbf{x}(p) in the object’s coordinate frame ( top ).\nAfter each chunk, we record the token that best covers each visible cell, keeping only the first and latest ( bottom left ).\nWhen we r",
+        "caption_ko": "Figure 2: 에이전트 A가 메쉬에 키·값을 저장하고, 에이전트 B가 같은 표면을 만나면 이를 재사용한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32445v1/moving_bin_v3.png",
+        "caption": "Figure 4 : Moving objects. A bin is seen at A (A1) and then moved to B while the camera looks away.\nGEN3C [ 67 ] indexes its 3D cache by world position, which leaves the bin’s appearance at A and nothing at B ( top ), and thus still renders the bin at A and none at B when the camera looks back (A2).",
+        "caption_ko": "Figure 3: 픽셀을 해당 표면 셀에 매핑하고, 셀당 첫 번째와 최신 토큰을 기록한다."
+      },
+      {
+        "src": "https://arxiv.org/html/2611.32445v1/gallery_scannetpp_v1_compact.png",
+        "caption": "Figure 5 : Static environments. We show a ScanNet++ rollout that returns to the input view ( A ) and revisits a generated view ( B ).\nLyra 2.0 and SolarWM H3 fail to preserve the input view ( bottom rows ), and AgentGarten alters the monitor by the window ( right insets ).\nAlthough trained only on s",
+        "caption_ko": "Figure 4: 움직이는 물체 예시 – 기존 방법은 세계 좌표에 색을 고정하지만 M2R은 물체와 함께 외관을 이동한다."
+      }
+    ]
   },
   "collected_at": "2026-11-26T02:38:06.183042+00:00",
   "notion_id": "",
   "id": "2026-11-26-45e00d6814e7f662",
   "img_tried": true,
-  "enriched": "2026-11-26"
+  "enriched": "2026-11-26",
+  "img_ok": "2026-11-26T02:47:46+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T02:50:15+00:00"
 }

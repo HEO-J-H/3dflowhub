@@ -1,0 +1,82 @@
+{
+  "id": "background-color-c47e",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "데이터 준비",
+  "name": "Background Color",
+  "title": "Background Color — 학습 및 뷰어 환경에서의 기본 배경색 변경",
+  "summary": "Background Color는 Gaussian Splatting 렌더링 시 Viewport·이미지의 배경 색을 지정하는 옵션입니다.",
+  "when": [
+    "실제 배경이 없는 야외 씬에서 하늘 색을 지정하고 싶을 때",
+    "알파 채널이 필요한 투명 배경을 출력하려 할 때",
+    "렌더 결과를 프레젠테이션용으로 색조정이 필요할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 툴(Nerfstudio·Luma 등) 실행 → 프로젝트 Settings 창 열기 (Ctrl+Shift+S)",
+    "Render 탭 → Background Color 항목 찾기",
+    "색상 선택기에서 원하는 색을 클릭하거나 RGB 값을 입력",
+    "Alpha 값을 0~1 로 조정해 투명 여부 설정 (필요 시)",
+    "Apply 또는 OK 클릭하여 저장"
+  ],
+  "params": [
+    {
+      "name": "Background Color",
+      "desc": "렌더링 배경의 RGB 색상"
+    },
+    {
+      "name": "Background Opacity",
+      "desc": "배경 투명도(0=투명,1=불투명)"
+    }
+  ],
+  "examples": [
+    {
+      "title": "하늘색을 파란색으로 설정",
+      "steps": [
+        "Outdoor 씬 로드 → Background Color를 #87CEEB 로 입력",
+        "Alpha를 1 로 유지 → 렌더 실행 → 하늘이 파란색으로 표시"
+      ]
+    },
+    {
+      "title": "투명 배경으로 PNG 시퀀스 출력",
+      "steps": [
+        "Background Color를 검은색으로 설정",
+        "Background Opacity를 0 으로 설정",
+        "Render → Output Format을 PNG (Alpha) 로 선택 → 렌더"
+      ]
+    }
+  ],
+  "mistakes": [
+    "배경 색을 검은색으로만 두고 알파를 1 로 남겨 투명 PNG가 나오지 않음 → Alpha를 0 으로 바꾸세요",
+    "RGB 값을 0~255 대신 0~1 로 입력해 색이 검게 보임 → 0~255 범위로 재입력하세요"
+  ],
+  "related": [
+    "Unbounded Scenes",
+    "Bounding Box Clipping",
+    "PLY Export",
+    "Environment Map"
+  ],
+  "videos": [
+    {
+      "id": "CVrpVbO8vPU",
+      "title": "How to change the Background color in a Geometry Dash level (Easy tutorial) #geometrydash #gd",
+      "author": "Gaming Guy"
+    },
+    {
+      "id": "QeV-75lZ2zU",
+      "title": "Geometry Dash Creator Tips 2: Multicolor Backgrounds",
+      "author": "CarrotySpice"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Background%20Color",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "Nerfstudio",
+    "Luma",
+    "Settings",
+    "Render",
+    "Background Color"
+  ],
+  "at": "2026-11-26T02:48:18.385631+00:00"
+}

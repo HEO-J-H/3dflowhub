@@ -1,0 +1,84 @@
+{
+  "id": "photoshop-3d-axis-3258",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 작업공간",
+  "name": "3D Axis",
+  "title": "3D 축(3D Axis) — Viewport 상에서 오브젝트를 정확하게 이동, 회전, 크기 조절하는 기즈모",
+  "summary": "Photoshop의 3D Axis는 3D 레이어의 위치·회전·스케일을 직관적인 축(gizmo)으로 조정할 수 있게 해 줍니다.",
+  "when": [
+    "복잡한 3D 오브젝트를 정확히 배치해야 할 때",
+    "여러 개의 3D 레이어를 동일한 기준점에 맞출 때",
+    "카메라 뷰와 무관하게 오브젝트의 로컬 축을 확인·조정하고 싶을 때"
+  ],
+  "steps": [
+    "Layers 패널에서 3D 레이어를 선택한다",
+    "Tools 패널에서 3D Axis Tool을 클릭하거나 Hotkey K를 누른다",
+    "Viewport에 나타난 축을 Mouse로 드래그해 이동·회전·스케일을 적용한다",
+    "필요하면 Properties 패널에서 Axis Length·Axis Color 등을 조정한다"
+  ],
+  "params": [
+    {
+      "name": "Axis Length",
+      "desc": "축의 길이를 늘려 멀리 있는 오브젝트도 정확히 잡을 수 있습니다"
+    },
+    {
+      "name": "Axis Color",
+      "desc": "축 색상을 바꿔 배경과 구분이 쉽습니다"
+    },
+    {
+      "name": "Snap to Grid",
+      "desc": "격자에 맞춰 이동하면 정밀 배치가 가능합니다"
+    },
+    {
+      "name": "Show Axis",
+      "desc": "축 표시 여부를 토글합니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 모델을 회전식 스탠드에 배치",
+      "steps": [
+        "3D 레이어를 선택하고 3D Axis Tool(K)으로 축을 클릭",
+        "축을 회전시켜 제품이 정면을 향하도록 조정",
+        "축을 위아래로 드래그해 스탠드 높이에 맞춤"
+      ]
+    },
+    {
+      "title": "건축 모델을 바닥에 정확히 맞추기",
+      "steps": [
+        "3D 레이어 선택 후 3D Axis Tool 활성화",
+        "축을 아래쪽으로 드래그해 바닥과 접촉",
+        "Properties에서 Axis Length를 짧게 줄여 미세 조정"
+      ]
+    }
+  ],
+  "mistakes": [
+    "축이 보이지 않음 → 3D 레이어가 선택되지 않았음. 레이어를 선택하고 다시 시도",
+    "축을 이동했는데 오브젝트가 움직이지 않음 → Move Tool이 활성화됨. 3D Axis Tool(K)으로 전환 후 조작",
+    "축 색상이 배경과 동일해 구분 어려움 → Properties 패널에서 Axis Color를 눈에 띄는 색으로 변경"
+  ],
+  "related": [
+    "3D Rotate Tool",
+    "3D Scale Tool",
+    "3D Move Tool",
+    "3D Camera"
+  ],
+  "videos": [
+    {
+      "id": "nGM7BuVKXAY",
+      "title": "Photoshop CS6|X,Y,Z axis tutorial|",
+      "author": "SquizlsFX"
+    },
+    {
+      "id": "4PfuBVOy05U",
+      "title": "How can I 3D-rotate an image around the y-axis in Photoshop? (6 Solutions!!)",
+      "author": "Roel Van de Paar"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%203D%20Axis",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-26T02:48:44.400909+00:00"
+}
