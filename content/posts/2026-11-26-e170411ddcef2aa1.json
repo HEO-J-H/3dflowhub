@@ -1,0 +1,61 @@
+{
+  "title_ko": "Houdini로 실물 스케일 모델 랠리 디오라마 구현하기",
+  "title": "Recreating the Scale Model Look of a Rally Diorama in Houdini",
+  "url": "https://80.lv/articles/recreating-the-scale-model-look-of-a-rally-diorama-in-houdini/",
+  "domain": "3D DCC",
+  "category": "Houdini",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Houdini",
+    "Solaris",
+    "Substance 3D Painter",
+    "Karma",
+    "USD",
+    "후디니",
+    "서브스턴스"
+  ],
+  "summary": "프레임 48의 3D 제너럴리스트 윌 호스킨이 Houdini의 절차적 툴셋과 Solaris USD 어셈블리를 활용해 실물 스케일 모델 랠리 디오라마의 질감을 재현한 제작 사례를 공개했습니다.",
+  "insight": "Karma 렌더러의 서브서피스 스캐터링(SSS)과 거칠기 맵에 가벼운 그런지를 조합해 플라스틱 모형 특유의 질감을 구현했습니다.",
+  "try_it": [
+    "Houdini의 groom 툴셋에서 커브와 헤어 스플라인을 생성해 솜이나 먼지 덩어리 형태를 구성해 보세요.",
+    "SideFX Labs Tree 툴과 지오메트리 산란 기능을 활용해 나뭇잎 대신 엉킨 플라스틱 와이어 패턴을 배치해 보세요.",
+    "Solaris에서 각각 제작한 에셋들을 USD 변수로 어셈블리하여 씬의 레이아웃을 관리해 보세요."
+  ],
+  "sections": [
+    {
+      "heading": "Solaris를 활용한 USD 에셋 어셈블리",
+      "body": "윌 호스킨은 자동차, 보트, 나무, 피규어를 각각 독립적인 스탠드얼론 에셋으로 제작한 뒤 Houdini의 Native USD 어셈블리 및 렌더링 툴인 Solaris에서 최종 씬으로 조립했습니다. 에셋 유형별로 .hip 파일을 분리하고 USD 변수를 생성해 레이아웃을 체계적으로 관리했습니다."
+    },
+    {
+      "heading": "Houdini groom 툴을 이용한 솜 먼지와 잔디 표현",
+      "body": "실제 디오라마에 사용되는 솜을 모방하기 위해 차량 먼지와 보트 물보라는 기본 형태에서 시작해 groom 툴셋의 헤어 스플라인으로 제작했습니다. Base 메시를 커스텀 형태로 스컬프팅한 뒤 헤어를 변형하여 손으로 뜯어낸 듯한 질감을 살렸고, 지오메트리 위에는 잔디를 심고 무작위성을 더했습니다."
+    },
+    {
+      "heading": "SideFX Labs와 VDB를 이용한 나무와 피규어 제작",
+      "body": "나무는 SideFX Labs Tree 툴을 활용했으며 전통적인 나뭇잎 대신 엉킨 플라스틱 와이어 패치를 흩뿌려 스케일 모델의 느낌을 냈습니다. Mixamo에서 가져온 캐릭터 모델과 포즈는 VDB로 변환한 뒤 형태를 부드럽게 다듬고 셔츠, 바지, 신발에 커스텀 컬러를 입히는 HDA를 거쳤습니다."
+    },
+    {
+      "heading": "Karma 렌더러와 Substance 3D Painter를 통한 플라스틱 Shading",
+      "body": "랠리 카 Base 모델은 형태를 다듬고 일부 조각을 병합해 사출 플라스틱 모형의 느낌을 내도록 구성했습니다. Substance 3D Painter로 데칼과 플라스틱 디테일을 추가한 후 Karma의 서브서피스 스캐터링을 적용해 플라스틱 재질을 완성했습니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "이 디오라마 제작에 사용된 주된 Software는 무엇인가요?",
+      "a": "Houdini를 메인 모델링 및 절차적 시스템 구축에 사용했으며, 텍스처 페인팅은 Substance 3D Painter, 씬 조립과 렌더링은 Solaris와 Karma를 사용했습니다."
+    },
+    {
+      "q": "스케일 모델 특유의 플라스틱 느낌은 어떻게 냈나요?",
+      "a": "Karma 렌더러의 서브서피스 스캐터링(SSS) 기능을 사용하고, 거칠기(roughness)와 범프 맵에 가벼운 그런지를 추가하여 모형 특유의 질감을 구현했습니다."
+    }
+  ],
+  "media": {
+    "image": "https://cdn.80.lv/api/upload/meta/51184/images/6b07d5cb00f7c/contain_1200x630.jpeg",
+    "video": "https://www.youtube.com/watch?v=J7RudU9RvyM"
+  },
+  "collected_at": "2026-11-26T20:41:03.308383+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-e170411ddcef2aa1",
+  "img_ok": "2026-11-26T20:41:03+00:00",
+  "enriched_at": "skip"
+}
