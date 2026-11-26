@@ -1,0 +1,93 @@
+{
+  "id": "unity-wind-zone-82de",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "월드 및 환경",
+  "name": "Wind Zone",
+  "title": "윈드 존 — 나무, 풀, Particle 등에 바람 효과를 적용하여 동적인 환경을 만드는 오브젝트",
+  "summary": "Unity의 Wind Zone은 씬(Scene) 전반에 바람의 방향과 세기를 부여하여 3D 나무, 초목, 천(Cloth) 시뮬레이션 오브젝트가 자연스럽게 흔들리도록 만드는 컴포넌트입니다.",
+  "when": [
+    "초원이나 숲 등 야외 환경에 바람이 불어 나뭇잎과 풀이 동적으로 흔들리게 만들 때",
+    "캐릭터의 망토나 깃발 등 Cloth 컴포넌트가 적용된 오브젝트에 바람의 힘을 줄 때",
+    "날씨 변화나 연출을 위해 바람의 세기(Main)와 난류(Turbulence)를 조절하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 창 우클릭 → Effects → Wind Zone을 선택하여 새로운 윈드 존 오브젝트를 생성합니다.",
+    "Scene 뷰에서 생성된 Wind Zone 오브젝트를 선택하고 이동(W) 및 회전(E) 툴로 바람의 위치와 부는 방향을 정렬합니다.",
+    "Inspector 패널에서 Wind Zone 컴포넌트의 Mode를 Directional 또는 Sphere 중 원하는 형태로 설정합니다.",
+    "Main 파라미터 값을 조절하여 기본 바람의 세기를 설정합니다.",
+    "Turbulence 파라미터 값을 조절하여 불규칙하고 자연스러운 바람의 떨림을 부여합니다.",
+    "Scene 뷰에서 나무나 천 오브젝트가 바람에 반응하여 정상적으로 흔들리는지 플레이(Ctrl+P) 모드에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Mode",
+      "desc": "바람의 영향 범위를 결정합니다 (Directional 또는 Sphere)."
+    },
+    {
+      "name": "Main",
+      "desc": "바람의 기본적인 세기와 밀어내는 힘을 조절합니다."
+    },
+    {
+      "name": "Turbulence",
+      "desc": "바람의 불규칙한 흔들림과 난류 효과의 강도를 조절합니다."
+    },
+    {
+      "name": "Pulse Frequency",
+      "desc": "바람이 강해졌다 약해지는 주기의 빈도를 설정합니다."
+    },
+    {
+      "name": "Pulse Magnitude",
+      "desc": "바람 주기의 강약 변화 폭을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "숲속 나뭇잎 바람 연출",
+      "steps": [
+        "Hierarchy 창에서 Wind Zone을 생성하고 숲 영역을 향하도록 배치합니다.",
+        "Mode를 Directional로 설정하고 Main 값을 1.0으로 올립니다.",
+        "Turbulence 값을 0.5로 설정하여 나뭇잎이 무작위로 살랑거리게 만듭니다."
+      ]
+    },
+    {
+      "title": "깃발 휘날리기",
+      "steps": [
+        "깃발 오브젝트에 Cloth 컴포넌트를 추가합니다.",
+        "깃발 근처에 Wind Zone을 배치하고 Mode를 Sphere로 설정합니다.",
+        "Radius 값을 조절하여 깃발 주변에만 바람 영향권이 닿도록 맞춥니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Wind Zone을 만들었는데 오브젝트가 안 움직여요 → 나무나 천 오브젝트의 Material 또는 컴포넌트에서 바람(Wind) 활성화 옵션이 켜져 있는지 확인하세요.",
+    "바람이 너무 강해서 오브젝트가 찢어져요 → Main 또는 Turbulence 수치를 낮추고, Cloth의 Stretching Stiffness를 높이세요."
+  ],
+  "related": [
+    "Cloth",
+    "Tree Creator",
+    "Terrain",
+    "Particle System"
+  ],
+  "videos": [
+    {
+      "id": "Bs7U_-D01w0",
+      "title": "Using Wind Zones to Make Trees Sway (Unity Tutorial)",
+      "author": "Ketra Games"
+    },
+    {
+      "id": "MQhrruXkemo",
+      "title": "Wind Zone erstellen - Terrain Engine - Unity",
+      "author": "nobreakpoints"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Wind%20Zone",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Effects",
+    "Wind Zone"
+  ],
+  "at": "2026-11-26T00:57:57.181492+00:00"
+}

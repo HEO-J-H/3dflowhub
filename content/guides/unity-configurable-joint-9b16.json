@@ -1,0 +1,98 @@
+{
+  "id": "unity-configurable-joint-9b16",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리 및 시뮬레이션",
+  "name": "Configurable Joint",
+  "title": "컨피기러블 조인트 — 두 리지드바디 사이의 물리적 연결과 회전 제한을 세밀하게 설정하는 컴포넌트",
+  "summary": "Unity의 Configurable Joint는 제한 없는 축 회전, 스프링, 모터, 리미트 등 물리 기반의 관절 연결을 정밀하게 제어할 수 있는 고급 컴포넌트입니다.",
+  "when": [
+    "래그돌(Ragdoll) 캐릭터의 물리 기반 팔다리 관절을 세밀하게 제어할 때",
+    "문이 경첩(Hinge)을 중심으로 특정 각도까지만 열리고 닫히게 만들 때",
+    "스프링이나 로프처럼 유연하게 늘어나거나 흔들리는 오브젝트를 연결할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 관절을 연결할 상위 오브젝트(예: 몸통)와 하위 오브젝트(예: 팔)를 각각 준비합니다.",
+    "하위 오브젝트를 선택한 상태에서 Inspector 창 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 Configurable Joint를 입력하고 선택하여 컴포넌트를 추가합니다.",
+    "Inspector 창의 Connected Body 필드에 상위 오브젝트의 Rigidbody 컴포넌트를 드래그하여 연결합니다.",
+    "Motion 설정(X Drive, Y Drive, Z Drive 등)을 Free, Limited, Locked 중 용도에 맞게 변경합니다."
+  ],
+  "params": [
+    {
+      "name": "Connected Body",
+      "desc": "이 관절이 연결될 대상 오브젝트의 Rigidbody를 지정합니다."
+    },
+    {
+      "name": "Motion",
+      "desc": "X, Y, Z 축 이동(Linear)과 회전(Angular)의 자유도를 Free, Limited, Locked로 설정합니다."
+    },
+    {
+      "name": "Low Twist Limit",
+      "desc": "회전 축 기준 최소 회전 한계 각도를 설정합니다."
+    },
+    {
+      "name": "High Twist Limit",
+      "desc": "회전 축 기준 최대 회전 한계 각도를 설정합니다."
+    },
+    {
+      "name": "Angular X Drive",
+      "desc": "스프링과 모터 힘을 이용해 목표 각도로 회전시키거나 유지합니다."
+    },
+    {
+      "name": "Projection Mode",
+      "desc": "관절이 과도하게 늘어나거나 찢어지는 현상을 방지하는 보정 방식을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제한된 각도로 열리는 문",
+      "steps": [
+        "문의 상위 프레임에 Rigidbody를 추가하고 Is Kinematic을 체크합니다.",
+        "문짝 오브젝트에 Rigidbody와 Configurable Joint를 추가합니다.",
+        "Connected Body에 문 프레임을 연결하고, Angular Y Motion을 Limited로 설정합니다."
+      ]
+    },
+    {
+      "title": "흔들리는 샹들리에 조명",
+      "steps": [
+        "천장에 고정된 앵커 오브젝트에 Rigidbody(Kinematic)를 배치합니다.",
+        "샹들리에 본체에 Rigidbody와 Configurable Joint를 추가합니다.",
+        "모든 Motion을 Free로 두고 Linear Limit을 설정해 줄에 매달린 것처럼 흔들리게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Connected Body를 비워둠 → 관절이 작동하지 않고 오브젝트가 바닥으로 떨어지므로 반드시 상위 Rigidbody를 연결하세요.",
+    "오브젝트 간 콜라이더 겹침 → 연결된 두 오브젝트의 Collider가 서로 충돌해 튕겨 나가므로 Ignore Collision 설정을 확인하세요.",
+    "과도한 드라이브 힘 설정 → Angular Drive의 Position Spring 값이 너무 크면 관절이 떨리거나 폭발하므로 값을 낮게 시작하세요."
+  ],
+  "related": [
+    "Character Joint",
+    "Hinge Joint",
+    "Spring Joint",
+    "Rigidbody"
+  ],
+  "videos": [
+    {
+      "id": "MElbAwhMvTc",
+      "title": "Fixed, Spring, Hinge, Character & Configurable Joint explained - Unity Tutorial",
+      "author": "DitzelGames"
+    },
+    {
+      "id": "Rqg9VTwJ2pU",
+      "title": "UNITY'S CONFIGURABLE JOINT TUTORIAL",
+      "author": "RoBust Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Configurable%20Joint",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Inspector",
+    "Add Component",
+    "Configurable Joint"
+  ],
+  "at": "2026-11-26T00:57:52.605861+00:00"
+}
