@@ -1,0 +1,55 @@
+{
+  "title_ko": "Gaussian Splatting++: Drift·Floaters 억제로 중력 정렬 TDOM",
+  "title": "Tortho-Gaussian++: Suppressing Geometric Drift and Floaters for Robust Gravity-Aligned TDOM Generation in Large-Scale Aerial Scenes",
+  "url": "https://arxiv.org/abs/2611.33905v1",
+  "domain": "AI 3D",
+  "category": "가우시안 스플래팅",
+  "topic": "연구·논문",
+  "tags": [
+    "3DGS",
+    "TDOM",
+    "UAV",
+    "Geometric Drift",
+    "Gravity Alignment"
+  ],
+  "summary": "Tortho‑Gaussian++은 3D Gaussian Splatting 학습 시 기하학적 Drift와 Floaters를 억제하고, 중력 정렬된 TDOM을 자동 생성하는 프레임워크입니다.",
+  "insight": "한국의 항공 사진 프로젝트에서 메모리 제한이 걸림돌이 되는 경우가 많습니다. 이 프레임워크는 그런 제약을 크게 완화해 작업 범위를 넓혀 줍니다. 또한 중력 정렬 덕분에 지도 제작 시 건물 외곽선이 정확히 수직으로 표현돼 후처리 작업이 줄어듭니다. PSNR 상승은 최종 시각물의 신뢰도를 높이며, 클라이언트에게 바로 보여줄 수 있는 품질을 제공합니다.",
+  "try_it": [
+    "프로젝트에 사용 중인 3DGS 파이프라인을 Tortho‑Gaussian++ 코드베이스로 교체한다",
+    "학습 스크립트에 geometric observability 분석 모듈을 활성화하고 프루닝 임계값을 기본값으로 둔다",
+    "중력 추정 단계에서 이미지 기반 중력 단서와 카메라 분포 사전을 제공한다",
+    "학습 후 TDOM을 렌더링해 건물 파사드가 수직인지 확인하고, 필요 시 nadir 뷰를 추가로 입력한다"
+  ],
+  "sections": [
+    {
+      "heading": "Geometric Observability 분석",
+      "body": "시점 광선 기반 관측 가능성을 정량화해 각 Gaussian의 기하학적 지원 정도를 평가합니다. 지원이 약한 주변 영역은 자동으로 프루닝되어 불안정한 구조를 제거합니다. 이 과정은 학습 초기에 불필요한 가우스를 걸러내어 전체 모델의 견고함을 높입니다."
+    },
+    {
+      "heading": "새 Gaussian 초기화와 Drift 억제",
+      "body": "밀도 증가 단계에서 생성된 Gaussian의 옵티마이저 상태를 특수하게 초기화합니다. 외부 사전 없이도 내부적으로 Drift와 Floaters를 억제해 기존 3DGS보다 안정적인 결과를 제공합니다. 초기화 전략은 가우스가 급격히 움직이는 현상을 근본적으로 차단합니다."
+    },
+    {
+      "heading": "중력 방향 추정 및 TDOM 렌더링",
+      "body": "이미지 기반 중력 단서, 카메라 분포 사전, nadir 뷰를 결합해 전역 중력 방향을 추정합니다. 추정된 중력 벡터를 기준으로 orthogonal projection을 수행해 기울어짐 없는 TDOM을 생성합니다. 결과 TDOM은 건물 파사드가 수직으로 정렬돼 시각적 왜곡이 최소화됩니다."
+    },
+    {
+      "heading": "학습 비용 절감 효과",
+      "body": "Tortho‑Gaussian++은 학습 시간, VRAM 사용량, Gaussian 수를 각각 45.5%, 47.2%, 58.6% 감소시킵니다. 대규모 UAV 항공 영상에서도 메모리 부족 문제를 크게 완화합니다. 비용 절감 덕분에 저사양 워크스테이션에서도 실험이 가능해집니다."
+    },
+    {
+      "heading": "PSNR 및 시각적 품질 향상",
+      "body": "다중 UAV 데이터셋에서 평균 PSNR가 기존 3DGS 대비 0.5‑3.5 dB 상승했습니다. Drift와 Floaters가 사라지면서 경계가 선명해지고 텍스처가 부드러워집니다. 중력 정렬 TDOM은 기울어짐에 의한 파사드 왜곡을 효과적으로 억제합니다."
+    }
+  ],
+  "faq": [],
+  "media": {
+    "image": "https://arxiv.org/html/2611.33905v1/pictures/muscle4.jpg",
+    "video": ""
+  },
+  "collected_at": "2026-11-26T03:38:49.172037+00:00",
+  "notion_id": "",
+  "id": "2026-11-26-e267e9aeef184f48",
+  "img_tried": true,
+  "enriched": "2026-11-26"
+}
