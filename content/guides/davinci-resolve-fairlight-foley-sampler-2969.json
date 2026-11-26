@@ -1,0 +1,87 @@
+{
+  "id": "davinci-resolve-fairlight-foley-sampler-2969",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "오디오",
+  "name": "Fairlight Foley Sampler",
+  "title": "Fairlight Foley Sampler — Audio 샘플을 건반처럼 연주하고 사운드를 디자인하는 도구",
+  "summary": "Fairlight Foley Sampler는 DaVinci Resolve의 Fairlight 페이지에서 발소리나 타격음 등의 효과음을 Audio 클립에 실시간으로 매핑하고 연주할 수 있는 샘플러 도구입니다.",
+  "when": [
+    "애니메이션이나 영상 장면에 맞추어 발소리(Foley) 효과음을 실시간으로 직접 연주해 넣을 때",
+    "단일 타격음이나 효과음 샘플의 피치와 타이밍을 정밀하게 조절하여 장면에 동기화할 때",
+    "외부 Audio 파일을 불러와 미디 키보드나 Mouse 클릭으로 간편하게 트리거하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 메뉴에서 Fairlight 페이지로 이동합니다.",
+    "상단 메뉴바에서 Fairlight → Foley Sampler를 선택하여 패널을 엽니다.",
+    "Foley Sampler 패널의 샘플 영역에 사용할 Audio 파일(WAV, MP3 등)을 드래그하여 등록합니다.",
+    "화면의 가상 패드나 연결된 입력 장치를 사용하여 원하는 타이밍에 사운드를 재생하고 Timeline에 녹음합니다.",
+    "Timeline에서 녹음된 Audio 클립의 볼륨과 싱크를 확인하고 필요한 경우 수정합니다."
+  ],
+  "params": [
+    {
+      "name": "Pitch",
+      "desc": "샘플 Audio의 음높이를 조절하여 소리의 톤을 바꿉니다."
+    },
+    {
+      "name": "Gain",
+      "desc": "로드된 개별 샘플의 출력 볼륨을 조절합니다."
+    },
+    {
+      "name": "Trigger",
+      "desc": "Mouse 클릭이나 외부 입력으로 샘플을 재생하는 방식을 설정합니다."
+    },
+    {
+      "name": "Start/End",
+      "desc": "Audio 샘플의 재생 시작점과 끝점을 잘라내어 원하는 구간만 사용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "캐릭터 발소리 동기화",
+      "steps": [
+        "Foley Sampler에 자갈 밟는 소리 파일을 드래그하여 등록합니다.",
+        "영상의 캐릭터 발걸음 타이밍에 맞춰 패드를 클릭하며 실시간으로 녹음합니다.",
+        "Timeline에서 박자가 어긋난 클립의 위치를 미세하게 조정합니다."
+      ]
+    },
+    {
+      "title": "타격음 레이어링",
+      "steps": [
+        "금속 타격음 샘플을 Foley Sampler 패널에 로드합니다.",
+        "Pitch 값을 낮추어 더 묵직하고 단단한 타격감으로 수정합니다.",
+        "액션 신의 타격 장면에 맞춰 사운드를 배치합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "샘플 소리가 재생되지 않음 → Foley Sampler 패널의 마스터 볼륨과 트랙 음소거 상태를 확인합니다.",
+    "타이밍이 한 박자씩 밀림 → Audio 트랙의 레이턴시 설정을 확인하거나 녹음 후 Timeline에서 클립을 직접 이동해 정렬합니다."
+  ],
+  "related": [
+    "Fairlight Timeline",
+    "Fairlight FX",
+    "Bussing",
+    "Audio Mixer"
+  ],
+  "videos": [
+    {
+      "id": "rss3Byp7T18",
+      "title": "Using the Foley Sampler in DaVinci Resolve 17",
+      "author": "Ripple Training"
+    },
+    {
+      "id": "csNH-3aXZFI",
+      "title": "Schnelleres Sound Design mit dem Foley Sampler in Davinci Resolve Fairlight",
+      "author": "MeinVideoStudio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20Foley%20Sampler",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight"
+  ],
+  "at": "2026-11-26T01:37:45.395723+00:00"
+}

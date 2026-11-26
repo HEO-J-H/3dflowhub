@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-diffuse-cdc4",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 머티리얼",
+  "name": "Diffuse",
+  "title": "확산(Diffuse) — 3D 모델의 기본 색상과 텍스처를 지정하는 머티리얼 채널",
+  "summary": "Photoshop의 Diffuse 맵은 3D 모델 표면의 기본 색상과 패턴을 결정하는 가장 핵심적인 컬러 텍스처 슬롯입니다. 모델에 실제 질감이나 그림자가 없는 순수한 색상 정보를 입혀 시각적인 완성도를 높입니다.",
+  "when": [
+    "3D 모델의 표면에 목재, 패브릭, 콘크리트 등 고유의 색상과 무늬를 입히고 싶을 때",
+    "Photoshop에서 직접 그린 2D 일러스트나 패턴을 3D 오브젝트의 표면에 정확히 감싸고 싶을 때",
+    "단색으로 처리된 기본 3D 형태에 시각적인 디테일과 사실감을 부여하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 파일을 엽니다.",
+    "Layers 패널에서 텍스처를 적용할 3D 레이어를 선택합니다.",
+    "Properties 패널로 이동하여 재질(Material) 항목을 선택합니다.",
+    "Diffuse 맵 슬롯(폴더 아이콘 또는 텍스처 미리보기)을 클릭합니다.",
+    "Remove Texture로 기존 맵을 비우거나, Load Texture를 선택하여 준비된 이미지 파일을 불러옵니다.",
+    "Viewport에서 3D 모델의 표면에 색상과 무늬가 올바르게 입혀졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Load Texture",
+      "desc": "3D 모델의 표면에 적용할 2D 이미지 파일을 불러옵니다."
+    },
+    {
+      "name": "Edit Texture",
+      "desc": "선택한 Diffuse 맵을 별도의 2D 문서로 열어 직접 수정할 수 있습니다."
+    },
+    {
+      "name": "Remove Texture",
+      "desc": "현재 슬롯에 연결된 Diffuse 텍스처를 제거하고 기본 상태로 되돌립니다."
+    },
+    {
+      "name": "UV Overlays",
+      "desc": "텍스처 편집 시 참고할 수 있도록 UV 전개도를 Viewport에 표시합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원목 가구 모델에 나이무늬 입히기",
+      "steps": [
+        "Layers 패널에서 가구 3D 레이어를 선택합니다.",
+        "Properties 패널의 Diffuse 슬롯을 클릭합니다.",
+        "Load Texture를 선택하고 준비된 나무 질감의 JPG 이미지를 불러옵니다.",
+        "Viewport에서 나이무늬가 가구 표면에 자연스럽게 매핑되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "로고가 새겨진 티셔츠 3D 모델 만들기",
+      "steps": [
+        "티셔츠 3D 모델의 Properties 패널에서 Diffuse 맵 슬롯을 엽니다.",
+        "Load Texture를 클릭하여 로고가 포함된 그래픽 이미지를 불러옵니다.",
+        "Edit Texture를 눌러 2D 텍스처 상에서 로고의 위치를 미세 조정합니다.",
+        "저장 후 3D Viewport로 돌아와 로고가 티셔츠 정면에 정확히 안착되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Diffuse 맵에 과도한 음영(Shadow)이 그려져 있는 경우 → 조명에 의해 이중 그림자가 생기므로 평탄하고 균일한 라이팅의 텍스처를 사용합니다.",
+    "텍스처 이미지가 늘어나거나 찌그러져 보이는 경우 → 모델의 UV 좌표가 올바르게 펴져 있는지 확인하거나 텍스처 비율을 재조정합니다."
+  ],
+  "related": [
+    "Remove Texture",
+    "New Material from Layer",
+    "Bump",
+    "Roughness"
+  ],
+  "videos": [
+    {
+      "id": "Q9KJphTJLBs",
+      "title": "Soft Airbrush Diffuse Effect | Photoshop Tutorial",
+      "author": "Doron Studio"
+    },
+    {
+      "id": "otyFI57FDsQ",
+      "title": "How to Use Diffuse Effects in Photoshop",
+      "author": "HOWZA: Photo & Video Editors"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Diffuse",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Properties",
+    "Material",
+    "Diffuse"
+  ],
+  "at": "2026-11-26T01:37:41.547680+00:00"
+}
