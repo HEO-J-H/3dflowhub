@@ -1,48 +1,56 @@
 {
-  "title_ko": "Gaussian Splatting 초기화 개선 — ST‑SfM 논문 요약",
+  "title_ko": "ST-SfM: 스페이스-타임 특징점으로 4D Gaussian Splatting 초기화하기",
   "title": "ST-SfM: Spatio-Temporal Structure-from-Motion for Initialising 4D Gaussian Splatting",
   "url": "https://arxiv.org/abs/2611.32231v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "ST‑SfM",
+    "Gaussian Splatting",
+    "4DGS",
     "Structure-from-Motion",
-    "4D Gaussian Splatting",
-    "PSNR 개선",
-    "동적 포인트"
+    "ST-SfM",
+    "Computer Vision"
   ],
-  "summary": "ST‑SfM은 동기화된 다중 카메라 영상을 이용해 정적·동적 4D 포인트 클라우드를 추출해 Gaussian splatting 초기화를 개선한다.",
-  "insight": "ST‑SfM은 다중 카메라 셋업이 가능한 스튜디오 환경에서 바로 적용할 수 있다. 정적·동적 정보를 동시에 확보하므로, 기존에 별도로 진행하던 SfM과 움직임 추적을 하나의 단계로 통합한다. 초기화 품질이 높아지면 3DGS의 학습 시간도 단축되고, 최종 결과물의 시각적 일관성이 향상된다. 특히 실시간 렌더링이나 AR/VR 콘텐츠 제작 시, 움직이는 객체의 정확한 위치와 타이밍을 보존할 수 있다.",
-  "try_it": [
-    "동기화·보정된 다중 카메라 비디오를 준비하고, 각 카메라별 temporal‑median 이미지를 생성한다.",
-    "ST‑SfM 구현(오픈소스 코드가 제공된 경우) 혹은 자체 파이프라인에 정적 구조 검출과 STIP 기반 동적 검출을 적용한다.",
-    "얻은 희소 4D 포인트 클라우드를 3D Gaussian Splatting 초기값으로 전달하고, 기존 3DGS 학습을 실행한다.",
-    "무작위 초기화와 비교해 PSNR, SSIM, LPIPS를 측정해 품질 차이를 확인한다."
-  ],
+  "summary": "다시점 비디오에서 추출한 시공간 특징점을 활용해 4D Gaussian Splatting(4DGS)을 효율적이고 정확하게 초기화하는 새로운 파이프라인 ST-SfM을 제안합니다.",
+  "insight": "이 기술이 상용화되거나 확장된다면 동적 캡처 데이터에서 4D Gaussian Splatting을 학습시킬 때 수동 정렬이나 무작위 초기화에 의존하던 과정을 크게 줄일 수 있을 것으로 보입니다. 특히 시간 축(t)과 공간 축(x, y, z)이 통합된 초기 점群(Point Cloud)을 얻을 수 있어, 실사 기반 동적 3D 아카이빙이나 VFX Pipeline 초기 수렴 속도를 높이는 데 기여할 가능성이 있습니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "ST‑SfM 개요",
-      "body": "ST‑SfM은 Spatio‑Temporal Structure‑from‑Motion 기법으로, 동기화·보정된 다중 카메라 영상을 입력받아 정적 구조와 동적 움직임을 동시에 추출한다. 장면을 정적·동적 두 개의 분기로 나누어 각각 전용 파이프라인을 적용한다. 결과는 정적 3D 포인트와 시간 정보를 포함한 4D 포인트 클라우드다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 4D Gaussian Splatting(4DGS) 방법들은 정적 씬과 달리 동적 씬을 초기화할 때 첫 프레임의 SfM/MVS 클라우드를 사용하거나 카메라 절두체 내에 무작위 점을 샘플링하여 시간 흐름에 따른 움직임 정보를 반영하지 못하는 한계가 있었습니다."
     },
     {
-      "heading": "정적 구조 검출",
-      "body": "각 카메라의 시간‑중간 이미지(temporal‑median)에서 정적 구조를 찾는다. 에피폴라 라인에 따라 매칭하고, 시간적 안정성을 위해 게이트 필터링을 적용한다. 이렇게 얻은 정적 포인트는 RANSAC 기반 삼각측량으로 3D 좌표를 복원한다."
+      "heading": "핵심 아이디어",
+      "body": "입력된 비디오 스트림을 (x, y, t) 볼륨으로 처리하여 정적 구조와 동적 관심점을 분리 검출합니다. 정적 구조는 시간 중앙값 이미지에서 추출하며, 동적 모션은 비디오 볼륨에서 공간-시간 관심점(STIP)을 감지하고 HOG3D로 기술합니다."
     },
     {
-      "heading": "동적 움직임 검출",
-      "body": "동적 부분은 비디오 볼륨 전체에서 space‑time interest points(STIPs)를 탐지한다. STIPs는 HOG3D로 기술하고, 에피폴라 제약과 시간 일치를 동시에 만족하는 후보끼리만 매칭한다. Union‑find 트래킹으로 일관성 없는 병합을 차단하고, 서브‑프레임 시간까지 포함한 4D 포인트를 생성한다."
+      "heading": "방법 (단계)",
+      "body": "알고리즘은 1) 카메라별 시간 중앙값 이미지에서 2D SIFT 키포인트 추출 및 안정성 검증, 2) 3D DoG 극값 검출 및 HOG3D 기술자를 이용한 STIP 검출, 3) 에피폴라 선 및 시간 제약(|Δt| ≤ 1 프레임)을 활용한 교차 검증 매칭, 4) Union-Find를 통한 멀티뷰 트랙 병합 및 RANSAC 삼각측량 순으로 진행됩니다."
     },
     {
-      "heading": "4D 클라우드와 Gaussian Splatting 초기화",
-      "body": "ST‑SfM이 만든 희소 4D 포인트 클라우드를 초기값으로 사용하면, 기존의 무작위 초기화보다 빠르게 수렴한다. 정적 3D 포인트와 동적 4D 포인트가 모두 포함돼, 움직이는 객체까지 정확히 재현한다. 이 초기화는 3D Gaussian Splatting(3DGS) 파이프라인에 바로 삽입할 수 있다."
+      "heading": "결과 (논문 수치)",
+      "body": "N3DV 씬에서 ST-SfM은 씬당 39k~113k개의 동적 포인트를 0.65~0.83 px 평균 재투영 오차로 재구성합니다. 검출 과정은 300프레임 비디오 볼륨 기준 카메라당 약 6초가 소요되며, 매칭 및 삼각측량은 씬당 2~20초가 걸립니다."
     },
     {
-      "heading": "실험 결과와 품질 향상",
-      "body": "N3DV 데이터셋에서 무작위 초기화와 비교했을 때, ST‑SfM 기반 초기화는 PSNR이 평균 0.8 dB, SSIM이 0.02, LPIPS가 0.03 상승했다. 특히 움직임이 큰 씬에서 초기 단계부터 디테일이 크게 개선된다. 이러한 정량적 향상은 downstream 렌더링이나 시각화 품질에도 직접적인 영향을 미친다."
+      "heading": "Limitations·아직 못 하는 것",
+      "body": "알고리즘은 알려진 카메라 내부/외부 파라미터(동기화된 멀티뷰 비디오 벤치마크 환경)를 전제로 하며, 동기화가 맞지 않는 카메라의 경우 동적 관측값이 이상치로 필터링되어 제외될 수 있습니다."
+    },
+    {
+      "heading": "코드·데이터 공개 여부",
+      "body": "본 논문은 arXiv(arXiv:2611.32231v1)를 통해 발표되었으며, 본문에 구체적인 오픈소스 코드 저장소 링크는 명시되지 않았습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "ST-SfM은 정적 포인트와 동적 포인트를 어떻게 구분해서 처리하나요?",
+      "a": "정적 브랜치는 카메라별 시간 중앙값 이미지에서 2D SIFT 키포인트를 추출하고 패치 변화를 검사하여 정적 구조를 파악하며, 동적 브랜치는 비디오 볼륨에서 3D DoG 극값과 HOG3D 기술자를 사용해 시간적 변화가 큰 공간-시간 관심점(STIP)을 검출합니다."
+    },
+    {
+      "q": "동적 포인트의 시간 좌표는 어떻게 결정되나요?",
+      "a": "각 동적 포인트는 매칭된 멀티뷰 관측값들의 서브프레임 시간 평균값인 융합된 시간(t*)을 할당받습니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.32231v1/figs/init_check.png",
     "video": ""
@@ -52,5 +60,16 @@
   "id": "2026-11-26-6bafb6b030070e36",
   "img_tried": true,
   "enriched": "2026-11-26",
-  "img_ok": "2026-11-26T03:08:15+00:00"
+  "img_ok": "2026-11-26T03:08:15+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T10:20:48+00:00"
 }

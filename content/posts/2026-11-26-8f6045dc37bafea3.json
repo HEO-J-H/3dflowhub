@@ -1,47 +1,52 @@
 {
-  "title_ko": "Gaussian Splatting 동적 씬 복원 연구 MEMO 공개",
+  "title_ko": "MEMO: 모든 프레임에서 메시를 추출하는 동적 3D Gaussian Splatting",
   "title": "A Mesh for Every Moment",
   "url": "https://arxiv.org/abs/2611.34939v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "Gaussian Splatting",
-    "동적 씬",
-    "메시 복원",
-    "Blender",
-    "연구 논문",
-    "블렌더"
+    "MEMO",
+    "3D Gaussian Splatting",
+    "Dynamic Scene",
+    "Mesh Reconstruction",
+    "Gaussian Processes"
   ],
-  "summary": "동적 씬의 Gaussian Splatting으로부터 매 프레임 정확한 메시를 추출하는 새로운 방법론인 MEMO 논문이 발표되었습니다.",
-  "insight": "Gaussian 프로세스에서 영감을 받은 모션 모델을 적용하여 고속 모션에서도 정확한 표면 메스를 추출할 수 있습니다.",
-  "try_it": [],
+  "summary": "다중 시점 동적 영상을 통해 매 프레임 정확한 지오메트리 메를 추출하는 새로운 3D Gaussian Splatting 기반 방법론 MEMO를 제안합니다.",
+  "insight": "이 연구는 Mask 처리되지 않은 복잡한 동적 장면에서도 깊이 융합 없이 Gaussian 필드에서 직접 고품질 메스를 매 프레임 추출할 수 있는 가능성을 보여줍니다. 향후 게임, VFX, AR/VR 분야에서 실시간으로 캡처된 동적 캐릭터나 오브젝트의 정확한 지오메트리를 확보하는 파이프라인에 기여할 수 있습니다.",
+  "try_it": [
+    "MEMO 프로젝트 페이지(https://memo-4d.github.io)에 방문하여 동적 3D 재구성 결과와 관련 데모 영상을 확인해 보세요."
+  ],
   "sections": [
     {
-      "heading": "MEMO 연구의 배경과 목적",
-      "body": "기존 동적 Gaussian Splatting 방식들은 외형만 모델링하거나 전경 Mask로 분리된 고립된 객체에 한정되었습니다. 또한 TSDF 융합이나 Poisson 재구성을 통해 메시를 복원하느라 고정 Grid 제약이 있었습니다. 연구진은 다중 동기화 카메라로 포착한 완전한 동적 씬의 기하학적 구조를 복원하는 MEMO 방식을 제안합니다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 동적 Gaussian Splatting(dynamic Gaussian splatting) 방법들은 주로 외형(appearance) 복원에 집중하며 표면 메시를 추출할 때 TSDF 융합이나 포아송 재구성(Poisson reconstruction)에 의존합니다. 이는 고정된 Grid로 인해 디테일이 떨어지고 Mask가 없는 완전한 동적 장면 전체를 다루기 어렵다는 한계가 있습니다."
     },
     {
-      "heading": "Gaussian 모션 모델과 트랙 기반 초기화",
-      "body": "핵심 알고리즘은 시간별 Gaussian 커널의 조합으로 각 Gaussian의 위치와 회전을 시간에 따라 표현합니다. 시퀀스 전반에 걸쳐 모든 Gaussian이 유효한 표면 요소를 유지하도록 설계되었습니다. 또한 빠르고 큰 모션 문제를 해결하기 위해 포인트 트랙에 각 Gaussian의 초기 궤적을 닫힌 형태로 맞추는 트랙 기반 초기화 방식을 적용했습니다."
+      "heading": "핵심 아이디어",
+      "body": "MEMO(a Mesh for Every MOment)는 Gaussian 프로세스(Gaussian processes)와 방사형 기저 함수(RBF)에서 영감을 받은 가우시안별 모션 모델을 도입합니다. 각 Gaussian의 위치와 회전을 시간별 Gaussian 커널의 조합으로 표현하여 전 시퀀스에 걸쳐 유효한 표면 요소로 유지되도록 합니다."
     },
     {
-      "heading": "Blender-Moments 벤치마크 평가",
-      "body": "매 프레임마다 그라운드 트루스 메시가 포함된 9개의 애니메이션 씬으로 구성된 새로운 벤치마크인 Blender-Moments를 통해 성능을 평가했습니다. 두 개의 실제 데이터셋에서도 테스트를 거쳤습니다. 그 결과 최신 방법들 가운데 가장 정확한 기하학적 복원 결과를 보여주었습니다."
+      "heading": "방법 및 초기화",
+      "body": "빠르고 큰 모션을 처리하기 위해 시퀀스 전체의 포인트 트랙에 Gaussian의 초기 궤적을 닫힌 형식(closed form)으로 피팅하는 트랙 기반 초기화 방식을 설계합니다. 훈련 중에는 광도 손실(photometric loss)과 함께 깊이 법선, 기하학적 법선, 방향성 법선 간의 손실을 최적화합니다."
     },
     {
-      "heading": "렌더링 품질과 학습 시간 경쟁력",
-      "body": "정확한 메시 추출 능력 외에도 새로운 시점 합성 성능과 학습 시간 측면에서 기존 최신 방법들과 동등한 수준의 경쟁력을 유지합니다. 프로젝트 페이지를 통해 추가적인 소스 코드와 상세 데이터셋 정보를 확인할 수 있습니다."
+      "heading": "결과 및 데이터셋",
+      "body": "매 프레임 그라운드 트루스 메시를 제공하는 9개의 애니메이션 뷰로 구성된 새로운 벤치마크 Blender-Moments와 Neural 3D Video, SelfCap 데이터셋에서 평가했습니다. MEMO는 최신 방법들보다 가장 정확한 동적 지오메트리를 재구성하면서도 신규 뷰 합성(novel-view synthesis)과 훈련 시간 면에서 경쟁력을 유지합니다."
+    },
+    {
+      "heading": "코드 및 프로젝트 공개",
+      "body": "연구진은 프로젝트 페이지(https://memo-4d.github.io)를 통해 결과물을 공개하고 있으며, 논문 구현과 관련된 소스 및 데이터셋 정보를 제공합니다."
     }
   ],
   "faq": [
     {
-      "q": "MEMO는 어떤 문제를 해결하기 위한 기술인가요?",
-      "a": "기존 동적 Gaussian Splatting 방식이 가진 고정 Grid 한계를 극복하고, 동적 씬에서 매 프레임마다 고정밀 메시를 추출하기 위해 개발되었습니다."
+      "q": "MEMO는 어떤 방식으로 Gaussian의 모션을 모델링합니까?",
+      "a": "Gaussian 프로세스와 RBF 네트워크에서 영감을 받아 각 Gaussian의 위치와 회전 변화를 시간별 Gaussian 커널의 선형 조합으로 표현합니다."
     },
     {
-      "q": "어떤 데이터셋에서 성능이 검증되었나요?",
-      "a": "매 프레임 그라운드 트루스 메시가 있는 9개 애니메이션 씬으로 이루어진 Blender-Moments 벤치마크와 두 개의 실제 촬영 데이터셋에서 검증되었습니다."
+      "q": "기존 동적 Gaussian 방법들과 비교해 어떤 데이터셋에서 평가되었습니까?",
+      "a": "저자들이 직접 구축한 9개 애니메이션 씬의 Blender-Moments 벤치마크와 Neural 3D Video, SelfCap 실제 데이터셋에서 평가되었습니다."
     }
   ],
   "media": {
@@ -52,5 +57,16 @@
   "notion_id": "",
   "id": "2026-11-26-8f6045dc37bafea3",
   "img_tried": true,
-  "img_ok": "2026-11-26T09:59:16+00:00"
+  "img_ok": "2026-11-26T09:59:16+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2,
+  "enriched_at": "2026-11-26T10:20:25+00:00"
 }

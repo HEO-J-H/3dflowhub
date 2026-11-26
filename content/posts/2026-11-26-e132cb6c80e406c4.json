@@ -1,48 +1,56 @@
 {
-  "title_ko": "Gaussian Splatting 기반 초음파 B-mode Novel-View 합성 연구",
+  "title_ko": "UPP-Gauss: 초음파 물리를 반영한 3D Gaussian Splatting",
   "title": "UPP-Gauss: Ultrasound Propagation Physics-informed Gaussian Splatting for B-mode Novel-View Synthesis",
   "url": "https://arxiv.org/abs/2611.33920v1",
   "domain": "AI 3D",
   "category": "가우시안 스플래팅",
   "topic": "연구·논문",
   "tags": [
-    "초음파",
-    "B-mode",
-    "Novel-View",
     "Gaussian Splatting",
-    "Physics-informed"
+    "Ultrasound",
+    "Novel-View Synthesis",
+    "Physics-informed",
+    "3DGS"
   ],
-  "summary": "UPP‑Gauss는 초음파 전파 물리 모델을 Gaussian Splatting에 결합해 B‑mode 영상의 새로운 시점 합성을 고품질·고속으로 구현한다.",
-  "insight": "UPP‑Gauss는 기존 3DGS 워크플로에 물리 모델을 직접 삽입함으로써, 초음파 영상의 시점 변화를 자연스럽게 재현한다. 3D 아티스트가 물리‑인포드 Gaussian을 활용하면, 단순 텍스처 매핑이 아니라 실제 파동 전파를 반영한 리얼리즘을 얻을 수 있다. 특히, 실시간 렌더링이 가능하니 인터랙티브 시뮬레이션이나 교육용 콘텐츠 제작에 바로 적용할 수 있다. 기존 NeRF 기반 파이프라인보다 메모리 사용량이 적어, 일반 GPU에서도 충분히 실행 가능하다.",
-  "try_it": [
-    "GitHub에서 공개된 UPP‑Gauss 코드를 클론하고, README에 안내된 샘플 데이터셋을 다운로드한다.",
-    "Python 환경에서 제공된 스크립트를 실행해 probe pose와 beam direction 파일을 로드하고, 3개의 Gaussian field를 샘플링한다.",
-    "Blender의 Python API를 이용해 생성된 acoustic map을 텍스처로 적용하고, 실시간 뷰포트에서 B‑mode 영상을 확인한다.",
-    "자신만의 초음파 프로브 경로 데이터를 추가해 새로운 시점에서의 합성 결과를 테스트한다."
-  ],
+  "summary": "음향 전파 물리 법칙을 3D Gaussian 표현에 통합하여 B모드 초음파 이미지를 정확하고 효율적으로 신규 시점 합성(novel-view synthesis)하는 UPP-Gauss 방법론을 제안합니다.",
+  "insight": "이 연구는 물리적 현상(음향 전파·산란·감쇠)을 3D Gaussian Splatting에 결합한 대표적인 사례로, 의료 초음파뿐만 아니라 물리 법칙을 고려해야 하는 특수 렌더링 파이프라인 설계에 시사점을 줍니다. (가능성) 향후 다양한 비광학적 매질 시뮬레이션이나 의학용 3D 비주얼라이제이션 툴 개발에 응용될 수 있습니다.",
+  "try_it": [],
   "sections": [
     {
-      "heading": "핵심 아이디어: 물리‑인포드 Gaussian Splatting",
-      "body": "UPP‑Gauss는 초음파 전파 물리를 명시적 Gaussian 표현에 통합한다. Probe pose와 beam propagation direction을 입력으로 삼아 3개의 3D Gaussian field를 샘플링한다. 이렇게 만든 acoustic map을 결합해 B‑mode 이미지를 합성한다. 기존 NeRF 기반 방식보다 연산량이 적어 실시간에 가까운 렌더링이 가능하다."
+      "heading": "무엇을 풀려는가",
+      "body": "기존 2D B모드 초음파 이미지는 시야각이 제한되어 3D 해부학적 구조를 유추하기 어렵습니다. 기존의 광학 기반 프로젝션 모델이나 신경 방사 필드(NeRF)는 초음파파가 조직을 통과하며 발생하는 산란, 반사, 감쇠, 그리고 프로브 포즈에 따른 외형 변화를 정확히 모델링하는 데 한계가 있으며 연산 비용이 큽니다."
     },
     {
-      "heading": "구조: 3개의 3D Gaussian 필드 샘플링",
-      "body": "각 Gaussian 필드는 조직 내부의 반사 특성을 다르게 모델링하도록 설계되었다. Probe pose에 따라 동적으로 샘플링되며, 각 필드에서 얻은 값은 초음파 전파 모델에 따라 가중합된다. 이 과정은 물리 기반 시뮬레이션과 데이터‑드리븐 렌더링을 자연스럽게 연결한다. 결과는 고해상도 B‑mode 영상으로 바로 출력된다."
+      "heading": "핵심 아이디어",
+      "body": "UPP-Gauss는 산란, 반사, 감쇠를 각각 독립적인 3D Gaussian 필드로 정의합니다. 프로브 포즈와 음향 빔 전파 방향을 이용해 이미징 평면에서 이 필드들을 샘플링하고, 국소 에코 형성과 깊이 방향 전파 손실을 결합하여 B모드 이미지를 합성합니다."
     },
     {
-      "heading": "성능 평가",
-      "body": "세 개의 서로 다른 데이터셋에서 UPP‑Gauss는 기존 최고 성능 베이스라인보다 평균 1.43 dB 높은 PSNR를 기록했다. 렌더링 시간은 NeRF 대비 크게 감소해, 동일한 하드웨어에서 실시간에 근접한 속도를 보인다. 정량적 결과는 논문에 제시된 표와 그래프에서 확인할 수 있다."
+      "heading": "방법 (단계)",
+      "body": "1. 프로브 포즈 기반으로 월드 좌표계의 2D 이미징 평면을 정의하고 Gaussian 필드 공간 응답을 계산합니다.\n2. 3D Gaussian 세트(산란·반사·감쇠)에서 가중치 응답을 합산해 산란 맵, 반사 맵, 감쇠 맵을 구성합니다.\n3. 음향 빔 방향을 구면 조화 함수(Spherical Harmonics, SH)로 파라미터화하여 방향에 따른 산란 변화를 모델링합니다.\n4. 국소 에코와 감쇠·반사 손실에 따른 깊이 방향 전파를 곱해 최종 B모드 강도를 계산하고 SSIM 및 MSE 조합 손실 함수로 최적화합니다."
     },
     {
-      "heading": "응용 가능성",
-      "body": "실시간 B‑mode 영상 합성은 의료 시뮬레이션, 교육용 가상 환자, 그리고 인터랙티브 진단 툴에 바로 적용될 수 있다. 3D 아티스트는 기존의 Gaussian Splatting 파이프라인에 초음파 전파 물리를 삽입해 새로운 시각화 효과를 만들 수 있다. 또한, 물리‑인포드 접근법은 다른 파동 기반 영상(예: 레이더, 초음파 탐사)에도 확장 가능하다."
+      "heading": "결과 (논문 수치)",
+      "body": "척추 팬텀, ex-vivo 돼지 근육, in-vivo 갑상선 등 3개의 음향학적으로 다양한 데이터셋에서 평가한 결과, UPP-Gauss는 각 데이터셋의 최고 성능 기준선 대비 PSNR을 평균 1.43 dB 향상시켰습니다. 척추 팬텀에서는 2.13 dB / 0.0277(PSNR/SSIM), 갑상선에서는 1.51 dB / 0.0749 향상되었습니다. 렌더링 비용은 NVIDIA RTX 3090 GPU 기준 프레임당 1.49 ms, 0.33 GFLOPs를 기록했습니다."
     },
     {
-      "heading": "제한점 및 향후 연구",
-      "body": "현재 구현은 3개의 고정된 Gaussian 필드에 의존하므로 복잡한 조직 구조를 완전히 재현하기엔 한계가 있다. Probe pose와 beam direction 외에 조직 비선형성이나 온도 변화 같은 추가 물리 파라미터를 포함하면 정확도가 더 높아질 것으로 보인다. 향후 연구에서는 가변 필드 수와 다중 스케일 Gaussian을 도입해 정밀도를 개선할 계획이다."
+      "heading": "Limitations 및 아직 못 하는 것",
+      "body": "논문에서는 복잡한 음향 전파를 명시적인 Gaussian으로 모델링하여 우수한 성능을 보였으나, 데이터셋 외의 초음파 이미징 환경이나 실시간 의료 현장의 다양한 변동성에 대한 일반화 한계는 추가 검증이 필요합니다."
+    },
+    {
+      "heading": "코드 및 데이터 공개 여부",
+      "body": "척추 팬텀 및 ex-vivo 돼지 근육 데이터셋은 공개된 데이터를 사용했으며, 논문 관련 코드 이슈 및 리포트는 GitHub(https://github./arXiv/html_feedback)을 통해 다루어지고 있습니다."
     }
   ],
-  "faq": [],
+  "faq": [
+    {
+      "q": "UPP-Gauss는 어떤 성분들을 Gaussian 필드로 표현합니까?",
+      "a": "산란(scattering), 반사(reflection), 감쇠(attenuation)의 세 가지 음향 컴포넌트를 각각 독립적인 이방성 Gaussian 세트로 표현합니다."
+    },
+    {
+      "q": "성능 평가는 어떤 지표와 데이터셋에서 이루어졌습니까?",
+      "a": "PSNR, SSIM, GMS, GMSD 지표를 사용하여 척추 팬텀, ex-vivo 돼지 근육, in-vivo 갑상선 데이터셋에서 평가되었습니다."
+    }
+  ],
   "media": {
     "image": "https://arxiv.org/html/2611.33920v1/Figures/overall.jpg",
     "video": ""
@@ -52,6 +60,16 @@
   "id": "2026-11-26-e132cb6c80e406c4",
   "img_tried": true,
   "enriched": "2026-11-26",
-  "enriched_at": "skip",
-  "img_ok": "2026-11-26T03:38:49+00:00"
+  "enriched_at": "2026-11-26T10:20:20+00:00",
+  "img_ok": "2026-11-26T03:38:49+00:00",
+  "refs": [],
+  "videos": [],
+  "paper": {
+    "code": [
+      "https://github.com/arXiv/html_feedback",
+      "https://github.com/brucemiller/LaTeXML"
+    ],
+    "license": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+  },
+  "paper_v": 2
 }
