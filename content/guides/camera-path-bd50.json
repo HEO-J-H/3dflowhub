@@ -1,0 +1,89 @@
+{
+  "id": "camera-path-bd50",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "카메라 및 최적화",
+  "name": "camera_path",
+  "title": "카메라 패스 — 카메라 애니메이션 및 비디오 렌더링을 위한 궤적 설정 기능",
+  "summary": "Gaussian Splatting 학습 결과물에서 설정한 카메라 경로(Camera Path)를 따라 이동하는 애니메이션 비디오를 렌더링하는 기능입니다. 3D 공간을 부드럽게 유영하는 듯한 고화질 영상 결과물을 추출할 수 있습니다.",
+  "when": [
+    "학습 완료된 3D Gaussian 모델의 시각적 결과물을 클라이언트나 포트폴리오용 영상으로 공유할 때",
+    "정지 화면을 넘어 공간의 입체감과 디테일을 입체적인 카메라 무빙으로 보여주고 싶을 때",
+    "SIBR 뷰어나 렌더링 Script를 통해 지정한 Keyframe 기반의 카메라 동선을 영상으로 출력할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습이 완료된 출력(Output) 폴더에서 SIBR 뷰어 실행 파일 또는 비디오 렌더링 Script를 엽니다.",
+    "뷰어 UI 또는 카메라 패스 설정 패널에서 원하는 시점에 Keyframe을 추가합니다.",
+    "Timeline이나 경로 제어 도구를 사용해 카메라의 이동 속도, 보간(Interpolation) 방식, 시점을 조정합니다.",
+    "Resolution 및 FPS 등 출력 옵션을 설정합니다.",
+    "Render 버튼을 눌러 비디오 시퀀스 또는 영상 파일 출력을 시작합니다.",
+    "Viewport에서 영상이 끊김 없이 부드럽게 재생되는지 최종 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Keyframe",
+      "desc": "카메라의 위치와 회전 값이 고정되는 특정 시간 또는 지점입니다."
+    },
+    {
+      "name": "Camera Path",
+      "desc": "키프레임들을 부드럽게 연결하여 카메라가 이동하는 전체 동선입니다."
+    },
+    {
+      "name": "Interpolation",
+      "desc": "Keyframe 사이의 이동을 직선 또는 부드러운 곡선 형태로 보간합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "렌더링될 최종 영상의 Resolution(Width x Height)를 설정합니다."
+    },
+    {
+      "name": "FPS",
+      "desc": "초당 프레임 수를 설정하여 영상의 부드러움 정도를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 인테리어 공간 1인칭 투어 영상 제작",
+      "steps": [
+        "실내 3D Gaussian 모델을 SIBR 뷰어로 엽니다.",
+        "현관 입구에서 시작해 거실 중심부로 진입하는 Keyframe을 순서대로 추가합니다.",
+        "카메라 높이와 시선을 자연스럽게 맞춘 뒤 렌더링을 실행합니다."
+      ]
+    },
+    {
+      "title": "오브젝트 360도 회전 쇼케이스 영상 제작",
+      "steps": [
+        "중앙의 대상 오브젝트를 중심으로 원형 궤적을 그리며 Keyframe을 배치합니다.",
+        "Interpolation을 스무스하게 설정하여 일정한 속도로 회전하도록 맞춥니다.",
+        "고해상도 비디오로 출력하여 제품 홍보용 소스로 활용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라 경로가 너무 급격하게 꺾임 → Keyframe 간의 거리를 넓히거나 부드러운 보간 옵션으로 변경합니다.",
+    "출력된 영상의 프레임이 끊겨 보임 → FPS 설정을 높이거나 렌더링 시 비디오 시퀀스(Image Sequence)로 추출 후 편집 프로그램에서 조합합니다."
+  ],
+  "related": [
+    "Video Rendering",
+    "Camera Optimization",
+    "SIBR Viewer",
+    "Training Configuration"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "EPZdzjAns6w",
+      "title": "How To Create 3D MODELS from 360 CAMERAS using GAUSSIAN SPLATTING",
+      "author": "Splatware"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20camera_path",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T03:02:49.930514+00:00"
+}
