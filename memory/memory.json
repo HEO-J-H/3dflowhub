@@ -1,32 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-25T12:45:05.088880+00:00",
-      "collected": 1,
-      "saved": 1,
-      "published": 0,
-      "drafts": 1,
-      "publish_errors": 0,
-      "candidates": 107,
-      "candidates_passed": 47,
-      "offtopic": 28,
-      "short": 0,
-      "prefiltered": 42,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "8262c995",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic",
-        "short post",
-        "low depth"
-      ]
-    },
-    {
       "at": "2026-11-25T12:55:06.147577+00:00",
       "collected": 1,
       "saved": 0,
@@ -7244,6 +7218,33 @@
         "prefiltered",
         "off-topic"
       ]
+    },
+    {
+      "at": "2026-11-27T16:25:18.857859+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 91,
+      "candidates_passed": 33,
+      "offtopic": 26,
+      "short": 0,
+      "prefiltered": 42,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d1364474",
+      "visuals": 1,
+      "enriched": 1,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7339,7 +7340,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-18 [성찰] 동음이의어 필터링과 실무 중심의 튜토리얼·스크립트 주제 선별을 강화하여 오프토픽을 줄이고 검색 유입 가치를 극대화해야 합니다.",
     "2026-11-18 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추고, 3D/CG 전용 필터를 강화하여 고단가 실무 튜토리얼 및 애드온 중심의 유입을 극대화해야 합니다.",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: open-source-review.md guide must exist / E       assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-sou",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-source-review.md').exists / FAILED backend/tests/tes",
@@ -7458,7 +7458,8 @@
     "2026-11-27 [성찰] 동음이의어 필터링을 강화하고 맥스크립트 및 실무 튜토리얼 등 고단가(CPC) 검색 유입을 유도하는 구체적인 실무 콘텐츠 제작에 집중해야 합니다.",
     "2026-11-27 [[p-2117272018|운영·비용] 메타데이터 테스트 파일 및 모델 구] 테스트 실패 — E       NameError: name 'TestClient' is not defined / FAILED backend/tests/test_metadata_db.py::test_pr8_retry_validation - NameError: name 'TestClient' is not defined 보안: ['기능 변화 없음 — 문자열·주석",
     "2026-11-27 [[p-2117272018|운영·비용] 메타데이터 테스트 파일 및 모델 구] 테스트 실패 — E       NameError: name 'TestClient' is not defined / FAILED backend/tests/test_metadata_db.py::test_pr8_retry_validation - NameError: name 'TestClient' is not defined 보안: ['기능 변화 없음 — 문자열·주석",
-    "2026-11-27 [성찰] 동음이의어(인물, 주식, 일반 단어) 필터를 강화하고 고CPC 실무 튜토리얼 및 스크립트 가이드에 집중해야 오탐지와 저품질 문서를 줄이고 검색 유입을 극대화할 수 있습니다."
+    "2026-11-27 [성찰] 동음이의어(인물, 주식, 일반 단어) 필터를 강화하고 고CPC 실무 튜토리얼 및 스크립트 가이드에 집중해야 오탐지와 저품질 문서를 줄이고 검색 유입을 극대화할 수 있습니다.",
+    "2026-11-27 [성찰] 동음이의어 필터링을 더욱 강화하여 비전문적 수집 오류(오프토픽)를 줄이고, 실무 검색 유입이 높은 Maxscript 및 Blender 가이드 중심의 고단가 콘텐츠 편성을 유지해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7557,7 +7558,7 @@
     "3D DCC/Procreate": 5,
     "AI 3D/AI Houdini": 1,
     "3D DCC/Mari": 1,
-    "3D DCC/Marvelous Designer": 1,
+    "3D DCC/Marvelous Designer": 2,
     "3D DCC/Kit": 1,
     "VFX/Blender": 1,
     "VFX/Unreal Engine": 11,
@@ -7668,7 +7669,6 @@
     "AI 3D/NVIDIA": "기타 AI 3D"
   },
   "title_hashes": [
-    18362704092780268467,
     319872100835867019,
     5794339644598947729,
     14450352710072511492,
@@ -10667,14 +10667,15 @@
     14561392756711759873,
     5845826566254842942,
     4784644705927505289,
-    4400342649545218744
+    4400342649545218744,
+    4261678774119745609
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4386,
-    "Game Engine": 4386,
-    "VFX": 4386,
-    "AI 3D": 4386
+    "3D DCC": 4387,
+    "Game Engine": 4387,
+    "VFX": 4387,
+    "AI 3D": 4387
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
