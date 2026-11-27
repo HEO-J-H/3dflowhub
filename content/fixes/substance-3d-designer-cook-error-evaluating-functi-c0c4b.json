@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-designer-cook-error-evaluating-functi-c0c4b",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Designer: [Cook] Error evaluating function in FX-Map node because parameters are out of range",
+  "title": "Designer: [Cook] Error evaluating function in FX-Map node because parameters are",
+  "summary": "Substance 3D Designer에서 'Designer: [Cook] Error evaluating function in FX-Map node because parameters are out of range' 오류는 FX-Map 노드 내부의 파라미터나 계산식에서 허용 범위를 벗어난 값을 입력했을 때 발생합니다.",
+  "causes": [
+    "FX-Map 내부의 수식이나 패턴 생성 노드에서 0으로 나누기(Division by zero) 같은 수학적 오류가 발생한 경우",
+    "회전(Rotation), 스케일(Scale), 반복 횟수(Iterations) 등의 파라미터에 허용 범위를 초과하는 비정상적인 값이 입력된 경우",
+    "입력된 이미지나 그레이스케일 데이터의 범위가 예상치 못한 값(음수 또는 너무 큰 값)을 가질 경우"
+  ],
+  "steps": [
+    "문제가 발생하는 FX-Map 노드를 더블 클릭하여 Graph 내부로 들어갑니다.",
+    "패턴 생성기(Pattern Generator), 사각형(Quad), 회전(Rotation) 등 연산이 수행되는 하위 노드들을 순서대로 선택합니다.",
+    "Property 패널에서 X Position, Y Position, Scale, Angle 등의 파라미터 슬라이더 값을 기본값이나 안전한 범위 내로 조정합니다.",
+    "수식 입력 필드(Function Graph)가 사용된 경우, 변수나 입력 핀의 값이 0이 되거나 범위를 초과하는지 확인하고 Clamp 노드 등을 추가해 값을 제한합니다.",
+    "Graph를 저장하고 2D View에서 렌더링(Cook) 결과가 정상적으로 출력되는지 확인합니다."
+  ],
+  "check": [
+    "2D View에서 해당 FX-Map 노드의 출력이 검은 화면이나 에러 표시 없이 정상적인 패턴으로 렌더링되는지 확인합니다.",
+    "Log 패널에 더 이상 'out of range' 관련 에러 메시지가 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "FX-Map 내부에서 수식을 작성할 때 Clamp 노드를 사용하여 입력 및 출력 값의 범위를 항상 제한합니다.",
+    "외부 파라미터를 연결할 때는 Min/Max 범위를 명확히 설정하여 비정상적인 값이 유입되지 않도록 방지합니다."
+  ],
+  "keywords": [
+    "Substance Designer FX-Map 오류",
+    "parameters out of range",
+    "FX-Map Cook Error",
+    "Substance 3D 디자이너 에러 해결",
+    "FX-Map 파라미터 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T08:23:47+00:00"
+}

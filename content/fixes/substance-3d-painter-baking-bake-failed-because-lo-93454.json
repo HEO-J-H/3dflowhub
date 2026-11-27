@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-baking-bake-failed-because-lo-93454",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Bake failed because low-poly and high-poly meshes have mismatched IDs",
+  "title": "Painter: [Baking] Bake failed because low-poly and high-poly meshes have mismatc",
+  "summary": "Substance 3D Painter에서 메시 맵을 베이킹할 때 로우 폴리곤과 하이 폴리곤 모델 간의 ID(Color Map 또는 Material ID) 설정이 일치하지 않아 텍스처 전송에 실패할 때 발생하는 오류입니다.",
+  "causes": [
+    "로우 폴리곤 모델과 하이 폴리곤 모델의 Material 이름이나 ID 지정 값이 서로 다를 때",
+    "Painter의 Baking 설정에서 Color Source 또는 Material ID 옵션이 잘못 지정되어 있을 때",
+    "하이 폴리곤 모델을 익스포트할 때 서브메시별 ID나 컬러 정보가 유실되었을 때"
+  ],
+  "steps": [
+    "Texture Set Settings 패널에서 Bake Mesh Maps 버튼을 클릭하여 Baking 설정 창을 엽니다.",
+    "Common 설정 탭에서 ID 관련 옵션(Color Source 등)이 올바른 채널이나 속성을 가리키고 있는지 확인합니다.",
+    "3D 모델링 툴(Blender, 3ds Max 등)로 돌아가 로우 폴리곤과 하이 폴리곤의 Material 이름 또는 Vertex Color/ID 설정이 정확히 일치하는지 확인합니다.",
+    "모델을 다시 FBX 또는 OBJ 형식으로 익스포트한 후 Substance 3D Painter에서 프로젝트를 업데이트하거나 새로 불러옵니다.",
+    "다시 Bake Mesh Maps를 실행하여 ID 맵 Baking이 정상적으로 완료되는지 확인합니다."
+  ],
+  "check": [
+    "Baking 진행 중 로그 창에 더 이상 ID mismatch 관련 오류가 표시되지 않고 Baking이 성공합니다.",
+    "Texture Set List 또는 ID 맵 슬롯에 각 파츠별 색상 영역이 정확하게 분리되어 렌더링됩니다."
+  ],
+  "prevent": [
+    "하이 폴리곤과 로우 폴리곤 모델을 제작할 때 Material 명칭이나 ID 체계를 사전에 통일합니다.",
+    "익스포트 시 Material 및 Vertex Color 옵션이 누락되지 않았는지 꼼꼼히 확인합니다."
+  ],
+  "keywords": [
+    "Substance Painter ID 오류",
+    "Baking 실패 ID",
+    "Bake failed mismatched IDs",
+    "서브스탠스 페인터 ID Baking",
+    "Mesh ID mismatch"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T08:23:44+00:00"
+}
