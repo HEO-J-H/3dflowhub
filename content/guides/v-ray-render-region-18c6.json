@@ -1,0 +1,82 @@
+{
+  "id": "v-ray-render-region-18c6",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 설정",
+  "name": "Render Region",
+  "title": "Render Region — 화면 일부만 선택적으로 렌더링하여 빠른 테스트",
+  "summary": "V-Ray의 Render Region은 뷰포트나 VFB에서 전체 렌더링 대신 지정한 특정 영역만 부분적으로 렌더링하여 테스트 시간을 대폭 줄여주는 기능입니다. 무거운 씬에서 수정 사항을 빠르게 확인할 때 필수적입니다.",
+  "when": [
+    "Resolution가 높은 씬에서 조명이나 머티리얼을 미세 조정하며 결과를 즉시 확인하고 싶을 때",
+    "특정 오브젝트나 구역의 렌더링 속도를 빠르게 테스트하고 싶을 때",
+    "전체 렌더링을 다시 하기 부담스러운 대형 씬에서 일부 영역만 고화질로 검토할 때"
+  ],
+  "steps": [
+    "3ds Max 메인 툴바에서 Render Setup (F10) 창을 엽니다.",
+    "V-Ray Frame Buffer (VFB)를 활성화하고 렌더링을 실행합니다.",
+    "VFB 창 하단 또는 상단 툴바에서 Render Region 아이콘을 클릭합니다.",
+    "VFB 화면 위에서 Mouse 드래그로 확인하고 싶은 영역의 사각형 박스를 지정합니다.",
+    "지정한 영역 안에서만 실시간으로 렌더링이 재계산되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Render Region",
+      "desc": "Mouse로 지정한 특정 영역만 렌더링하도록 활성화합니다."
+    },
+    {
+      "name": "Region Crop",
+      "desc": "지정한 영역 외의 부분은 잘라내고 해당 영역만 최종 이미지로 저장합니다."
+    },
+    {
+      "name": "VFB History",
+      "desc": "렌더 영역 수정 전후의 결과를 비교하여 차이를 확인할 수 있습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유리 머티리얼 반사 디테일 수정",
+      "steps": [
+        "창문 유리 부분에만 Render Region 박스를 지정합니다.",
+        "Reflect와 Glossiness 값을 조절합니다.",
+        "결과를 실시간으로 확인하며 최적의 값을 찾습니다."
+      ]
+    },
+    {
+      "title": "좁은 영역의 조명 밝기 테스트",
+      "steps": [
+        "어두운 구석의 스팟 라이트 조명 영역에 Render Region을 설정합니다.",
+        "Light의 Multiplier 값을 올려가며 밝기를 검토합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Render Region이 켜진 상태를 잊고 전체 렌더링을 걸어 일부만 나오는 경우 → VFB 툴바에서 Render Region 옵션을 해제합니다.",
+    "원하는 구역 외의 엉뚱한 곳이 지정된 경우 → VFB에서 영역 테두리를 Mouse로 다시 드래그하여 크기와 위치를 조정합니다."
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "Global Illumination",
+    "Render Setup",
+    "V-Ray IPR"
+  ],
+  "videos": [
+    {
+      "id": "-uQFbtY9mAk",
+      "title": "Viewport Rendering (VPR) in V-Ray 5 for SketchUp | Sketchup vray",
+      "author": "S2VR ArchVIZ"
+    },
+    {
+      "id": "yD-kalim5Es",
+      "title": "Best Render Settings Explained | Beginner | V-Ray for SketchUp",
+      "author": "UVA Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Render%20Region",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Render Setup"
+  ],
+  "at": "2026-11-27T00:42:39.763620+00:00"
+}
