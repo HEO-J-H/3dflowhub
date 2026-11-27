@@ -1,0 +1,102 @@
+{
+  "id": "photoshop-load-material-45ec",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D 텍스처 및 소재",
+  "name": "Load Material",
+  "title": "재질 불러오기 — 저장된 3D 재질 파일(.mtl 등)을 불러와 적용하는 기능",
+  "summary": "Photoshop의 Load Material 기능은 3D 모델에 외부 머티리얼 파일을 불러와 적용하는 텍스처링 도구입니다. 복잡한 PBR 재질 설정을 일괄적으로 불러와 3D 오브젝트에 빠르게 입힐 수 있습니다.",
+  "when": [
+    "다운로드한 외부 3D 머티리얼(Mtl 또는 Substance 파일 등)을 모델에 빠르게 적용할 때",
+    "여러 개의 맵 슬롯(Base Color, Normal, Roughness 등)에 텍스처를 수동으로 하나씩 넣기 번거로울 때",
+    "Photoshop 기반의 3D 시각화 작업에서 일관된 재질 프리셋을 불러와 쓸 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 모델이 포함된 문서를 엽니다.",
+    "Layers 패널에서 재질을 적용할 3D 레이어를 선택합니다.",
+    "Properties 패널로 이동하여 3D 재질 아이콘을 클릭합니다.",
+    "Material 설정 메뉴에서 Load Material을 선택합니다.",
+    "탐색기 창에서 불러올 머티리얼 파일(.mtl 등)을 선택하고 열기를 누릅니다.",
+    "Viewport에서 재질이 모델에 정상적으로 입혀졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base Color",
+      "desc": "오브젝트의 기본 색상과 텍스처를 결정하는 맵 슬롯"
+    },
+    {
+      "name": "Bump",
+      "desc": "표면의 미세한 요철과 질감을 가짜 입체감으로 표현"
+    },
+    {
+      "name": "Roughness",
+      "desc": "표면의 거칠기 정도를 조절하여 하이라이트와 반사율을 제어"
+    },
+    {
+      "name": "Opacity",
+      "desc": "재질의 투명도를 조절하여 유리나 천 등의 표현을 담당"
+    },
+    {
+      "name": "Metallic",
+      "desc": "금속 재질 특유의 반사 광채와 특성을 부여"
+    },
+    {
+      "name": "Normal",
+      "desc": "정밀한 벡터 값을 이용해 표면의 입체감을 극대화"
+    }
+  ],
+  "examples": [
+    {
+      "title": "금속 재질 텍스처 일괄 적용",
+      "steps": [
+        "Layers 패널에서 금속 3D 모델 레이어를 선택합니다.",
+        "Properties 패널에서 Load Material을 실행합니다.",
+        "준비된 금속 .mtl 프리셋 파일을 선택해 불러옵니다.",
+        "Base Color와 Roughness 값이 잘 적용되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "벽돌 패턴 머티리얼 입히기",
+      "steps": [
+        "벽돌 형태의 3D 오브젝트를 Photoshop에서 엽니다.",
+        "Material 설정에서 Load Material을 클릭합니다.",
+        "벽돌용 텍스처 세트가 포함된 머티리얼 파일을 불러옵니다.",
+        "Bump 슬롯의 강도를 조절하여 벽돌 홈의 깊이감을 살립니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "경로 오류 → 텍스처 이미지 파일이 머티리얼 파일과 같은 폴더에 있는지 확인합니다.",
+    "지원하지 않는 포맷 → Photoshop 3D 엔진에서 읽을 수 있는 표준 텍스처 포맷(PNG, JPG 등)인지 확인합니다.",
+    "스케일 깨짐 → UV 매핑이 올바르게 펴져 있지 않으면 불러온 재질이 찌그러지므로 UV 상태를 먼저 점검합니다."
+  ],
+  "related": [
+    "Load Texture",
+    "Substance 3D",
+    "3D LUT Export",
+    "Base Color"
+  ],
+  "videos": [
+    {
+      "id": "PdNLiT4Ql68",
+      "title": "ADDING TEXTURE/PATTERN/MATERIAL IN PHOTOSHOP|| IMPORT PATTERN| #PHOTOSHOP #TUTORIAL #LEARN #ADOBE",
+      "author": "PLUTORIALS"
+    },
+    {
+      "id": "rZtV8a7NPtQ",
+      "title": "Photoshop Tutorial: How to Change the Material of Objects",
+      "author": "Blue Lightning"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Load%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Layers",
+    "Properties",
+    "Material",
+    "Load Material"
+  ],
+  "at": "2026-11-27T01:44:19.348813+00:00"
+}
