@@ -1,0 +1,98 @@
+{
+  "id": "v-ray-v-ray-ambient-light-3557",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명 및 환경",
+  "name": "V-Ray Ambient Light",
+  "title": "V-Ray Ambient Light — 씬 전체에 균일한 주변광을 추가하여 그림자 영역을 밝혀주는 라이트",
+  "summary": "V-Ray Ambient Light는 씬 전체에 균일한 전방향 환경광을 제공하여, 렌더링 시 암부의 디테일을 살리고 대비를 부드럽게 조절하는 조명 기능입니다.",
+  "when": [
+    "직사광선이나 포인트 라이트만으로는 닿지 않는 어두운 코너나 틈새의 암부를 밝게 채우고 싶을 때",
+    "실내 인테리어 렌더링에서 전반적인 기본 밝기(Base 라이트)를 높여야 할 때",
+    "콘트라스트가 너무 강해 어두운 영역의 디테일이 완전히 묻힐 때 부드러운 느낌을 추가할 때"
+  ],
+  "steps": [
+    "3ds Max 또는 Maya 등 DCC 툴에서 V-Ray 렌더러가 활성화된 씬을 엽니다.",
+    "Create 패널 (또는 V-Ray Toolbar)에서 Lights 카테고리로 이동합니다.",
+    "Light 유형에서 V-Ray Light를 선택하거나 V-Ray 메뉴에서 Ambient Light를 생성합니다.",
+    "Viewport에 라이트를 배치하고 Modify (또는 Attribute Editor) 패널을 엽니다.",
+    "Type 옵션을 Ambient로 설정하거나 V-Ray Ambient Light 속성에서 강도와 색상을 조정합니다.",
+    "V-Ray Frame Buffer(VFB)에서 IPR(Interactive Production Rendering)을 켜고 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Color",
+      "desc": "ambient light가 씬 전체에 투사하는 기본 환경광의 색상을 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "주변광의 밝기 세기를 조절하여 전체적인 암부 밝기를 제어합니다."
+    },
+    {
+      "name": "Affect Diffuse",
+      "desc": "오브젝트의 확산 반사(Diffuse) 표면에 빛이 미칠 영향을 켜고 끕니다."
+    },
+    {
+      "name": "Affect Specular",
+      "desc": "표면의 하이라이트(Specular) 반사에 빛이 반영될지 여부를 결정합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "주변광에 의해 은은한 그림자가 생성되도록 활성화합니다."
+    },
+    {
+      "name": "Multiplier",
+      "desc": "라이트의 최종 출력을 배수로 증폭하여 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 건축 렌더링의 어두운 코너 채우기",
+      "steps": [
+        "창가에서 들어오는 빛이 닿지 않는 깊은 실내 공간에 V-Ray Ambient Light를 배치합니다.",
+        "Intensity 값을 낮게 설정하여 과도한 노출을 방지합니다.",
+        "Color를 약간의 푸른빛이나 따뜻한 톤으로 주어 공간의 기본 무드를 잡습니다."
+      ]
+    },
+    {
+      "title": "제품 디자인 컷의 암부 디테일 살리기",
+      "steps": [
+        "Studio 라이팅 세팅 완료 후 복잡한 파츠 사이의 그림자가 너무 어둡게 뭉칠 때 적용합니다.",
+        "Affect Diffuse를 켜고 Intensity를 미세하게 조절해 어두운 틈새를 부드럽게 밝힙니다.",
+        "Specular는 꺼서 불필요한 인위적 하이라이트가 생기지 않도록 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Intensity를 너무 높게 설정함 → 씬의 입체감과 깊이감이 사라지고 평면적으로 변합니다. 값을 낮추고 미세하게 조절하세요.",
+    "모든 그림자가 사라짐 → Ambient Light는 전방향 균일광이므로 과다 사용 시 그림자가 지워집니다. 간접광(GI)과 조화롭게 섞어 쓰세요."
+  ],
+  "related": [
+    "V-Ray Dome Light",
+    "V-Ray Sun",
+    "V-Ray Light",
+    "Global Illumination"
+  ],
+  "videos": [
+    {
+      "id": "1f5rYlW2M8Y",
+      "title": "V-Ray Interior Lighting tutorial: The Essentials/3ds Max& V-Ray",
+      "author": "ArchViz media by IK"
+    },
+    {
+      "id": "GsspwGcV-Z0",
+      "title": "V-Ray Next for 3ds Max – How to light an interior night scene",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Ambient%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Maya",
+    "DCC",
+    "V-Ray"
+  ],
+  "at": "2026-11-27T02:42:30.934469+00:00"
+}
