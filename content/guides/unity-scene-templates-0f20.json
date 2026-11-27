@@ -1,0 +1,90 @@
+{
+  "id": "unity-scene-templates-0f20",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "빌드 및 에디터",
+  "name": "Scene Templates",
+  "title": "씬 Template — 프로젝트 생성 시 일관된 환경과 구조를 유지하기 위한 커스텀 씬 Template 설정",
+  "summary": "Unity Scene Templates는 신규 프로젝트나 씬을 생성할 때 반복적인 환경 설정, 라이팅, 카메라, 기본 게임 오브젝트 배치를 자동화하여 작업 시작 시간을 단축하는 Template 기능입니다.",
+  "when": [
+    "동일한 환경(조명, 후가공, UI 레이아웃)을 가진 게임 레벨이나 씬을 반복해서 생성할 때",
+    "팀 내 아티스트와 프로그래머가 표준화된 씬 구조로 협업을 시작해야 할 때",
+    "Prototype 제작 시 매번 빈 씬에서 기본 세팅을 반복하는 수고를 덜고 싶을 때"
+  ],
+  "steps": [
+    "Project 창에서 Template으로 만들 씬을 우클릭하고 Create → Scene Template을 선택하여 Template 에셋을 생성합니다.",
+    "Project Settings → Scene Templates 메뉴를 엽니다.",
+    "Template 리스트에 생성한 Scene Template 에셋을 드래그하여 등록합니다.",
+    "File → New Scene 또는 Project 창에서 우클릭 → Create → Scene (from Template)을 선택합니다.",
+    "등록된 Template을 선택하고 Create Scene 버튼을 눌러 새 씬을 생성합니다.",
+    "Hierarchy 창에서 Template에 포함된 기본 오브젝트와 설정이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Template Asset",
+      "desc": "기반이 되는 원본 씬 에셋을 지정합니다."
+    },
+    {
+      "name": "Dependencies",
+      "desc": "씬 Template 생성 시 함께 복사되거나 참조될 종속 에셋을 관리합니다."
+    },
+    {
+      "name": "Instantiation Mode",
+      "desc": "새 씬을 만들 때 씬을 복제할지, 프리팹처럼 연결(Prefab Instance) 상태로 유지할지 결정합니다."
+    },
+    {
+      "name": "Description",
+      "desc": "팀원들이 Template의 용도를 쉽게 알 수 있도록 설명 문구를 작성합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "모바일 게임용 표준 UI 및 카메라 씬 구성",
+      "steps": [
+        "캔버스(Canvas), 메인 카메라, 기본 조명이 배치된 빈 씬을 준비합니다.",
+        "해당 씬을 Scene Template으로 등록합니다.",
+        "이후 새로운 레벨 씬을 만들 때 해당 Template을 선택하여 UI와 카메라 세팅을 통일합니다."
+      ]
+    },
+    {
+      "title": "건축 시각화용 Studio 라이팅 씬",
+      "steps": [
+        "HDRI 스카이박스, 반사 프로브(Reflection Probe), Post 프로세싱 볼륨이 세팅된 씬을 만듭니다.",
+        "Scene Templates 설정에서 기본 Template으로 지정합니다.",
+        "새 CAD 데이터를 불러올 때 동일한 조명 환경에서 바로 검토를 시작합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Template 원본 씬에 불필요한 테스트 오브젝트가 남아있는 경우 → 원본 씬을 정리한 뒤 Scene Template 에셋을 업데이트합니다.",
+    "종속된 에셋(머티리얼, 텍스처 등)이 누락되어 씬 생성 후 분홍색(Pink) 에러가 발생하는 경우 → Dependencies 항목에 필수 에셋이 포함되었는지 확인합니다."
+  ],
+  "related": [
+    "Preset Manager",
+    "Addressables",
+    "Scene Management",
+    "Post Processing"
+  ],
+  "videos": [
+    {
+      "id": "UBcjuvDx-JM",
+      "title": "Quick Scene Setups In Unity",
+      "author": "Warped Imagination"
+    },
+    {
+      "id": "PNm_JUJY6fw",
+      "title": "Create your own custom templates for the Unity Hub",
+      "author": "Unity"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Scene%20Templates",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Template",
+    "Create",
+    "Scene Template"
+  ],
+  "at": "2026-11-27T01:12:15.448838+00:00"
+}

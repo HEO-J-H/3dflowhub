@@ -1,0 +1,101 @@
+{
+  "id": "unity-sub-emitters-f6f0",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "이펙트",
+  "name": "Sub Emitters",
+  "title": "서브 에미터 — Particle 소멸 시 다른 Particle 시스템을 자식으로 생성하여 복합 효과를 만드는 기능",
+  "summary": "Unity의 Sub Emitters는 Particle이 소멸하거나 충돌할 때 새로운 Particle을 파생시켜 폭발, 불꽃 파편, 연쇄 효과 등의 복잡한 시각 효과를 쉽게 만들 수 있는 기능입니다.",
+  "when": [
+    "폭발할 때 사방으로 튀는 불꽃이나 파편을 표현할 때",
+    "불꽃이 터진 후 연기가 피어오르는 연쇄 효과를 만들 때",
+    "마법 탄환이 대상에 부딪히며 마법진이나 파편이 흩어지는 효과를 낼 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 우클릭 후 Effects → Particle System을 선택하여 메인 Particle(부모)을 생성합니다.",
+    "Inspector 창에서 아래로 스크롤하여 Sub Emitters 모듈을 찾고 체크박스를 활성화합니다.",
+    "Project 창에서 파생될 Particle(자식)로 사용할 다른 Particle System 프리팹을 만듭니다.",
+    "Sub Emitters 목록의 빈 공간에 자식 Particle System을 드래그하여 추가합니다.",
+    "트리거 조건(Death, Birth, Collision 등)과 상속 속도를 설정합니다.",
+    "Scene 뷰에서 Particle을 재생(Play)하여 부모 Particle 소멸 시 자식 Particle이 정상적으로 생성되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Sub Emitters",
+      "desc": "서브 이미터 모듈을 활성화하고 자식 Particle 시스템을 등록합니다."
+    },
+    {
+      "name": "Trigger",
+      "desc": "자식 Particle이 생성되는 시점(Birth, Death, Collision 등)을 결정합니다."
+    },
+    {
+      "name": "Sub-Emitter",
+      "desc": "파생될 대상이 되는 자식 Particle System 프리팹을 지정합니다."
+    },
+    {
+      "name": "Type",
+      "desc": "Particle이 생성될 때의 형태(Particle 또는 System)를 선택합니다."
+    },
+    {
+      "name": "Properties",
+      "desc": "부모의 속도나 크기 등을 자식에게 상속할지 여부를 설정합니다."
+    },
+    {
+      "name": "Inherit",
+      "desc": "부모 Particle의 속도(Velocity)나 색상을 자식에게 전달하는 비율을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "폭발 파편 효과",
+      "steps": [
+        "메인 폭발 입자 시스템의 Sub Emitters 모듈을 켭니다.",
+        "Trigger를 Death로 설정하여 입자가 사라질 때 파편이 나오게 합니다.",
+        "작은 돌멩이나 불똥 모양의 자식 프리팹을 연결합니다."
+      ]
+    },
+    {
+      "title": "불꽃에서 연기로의 전환",
+      "steps": [
+        "불꽃 입자 시스템의 Sub Emitters 모듈을 활성화합니다.",
+        "Trigger를 Death로 설정합니다.",
+        "서서히 퍼지는 연기 프리팹을 자식으로 등록하여 자연스러운 시각 효과를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "자식 Particle이 프리팹으로 만들어지지 않음 → Hierarchy의 GameObject를 Project 창으로 드래그하여 프리팹으로 만든 후 등록하세요.",
+    "Particle 수명이 너무 길어 부하 발생 → Sub Emitters의 Max Particles 수치를 확인하고 적절히 제한하세요.",
+    "자식 Particle이 보이지 않음 → 자식 Particle System의 Renderer 모듈에서 Material이 올바르게 지정되었는지 확인하세요."
+  ],
+  "related": [
+    "Particle System",
+    "Collision Module",
+    "Trigger Module",
+    "Renderer Module"
+  ],
+  "videos": [
+    {
+      "id": "W1MnQX2HJKY",
+      "title": "Becoming a Unity VFX Artist - 05 - Sub Emitters & Rain",
+      "author": "Brandon Garman"
+    },
+    {
+      "id": "nlLow7DbKkY",
+      "title": "Unity 3D Particle Sub Emitters: Making Fireworks",
+      "author": "Random Art Attack"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Sub%20Emitters",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Effects",
+    "Particle System",
+    "Particle",
+    "Inspector",
+    "Sub Emitters"
+  ],
+  "at": "2026-11-27T01:12:11.872517+00:00"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "photoshop-default-lighting-de3e",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "Default Lighting",
+  "title": "기본 조명 — 3D 장면의 기본 라이팅 프리셋 적용 및 관리",
+  "summary": "Photoshop Default Lighting은 3D 씬 내에 별도의 커스텀 조명을 추가하지 않았을 때 기본으로 제공되는 표준 조명 시스템입니다. 복잡한 라이팅 세팅 없이도 3D 오브젝트의 형태와 입체감을 빠르게 확인할 수 있습니다.",
+  "when": [
+    "새로운 3D 오브젝트나 3D 레이어를 생성하고 초기 형태를 확인할 때",
+    "별도의 복잡한 조명 연출 없이 텍스처와 재질의 기본 색상을 검토할 때",
+    "커스텀 조명을 배치하기 전, 전체적인 씬의 기본 가독성을 확보하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 Window → 3D 를 클릭하여 3D 패널을 엽니다.",
+    "3D 패널 최상단의 씬(Scene) 항목을 선택합니다.",
+    "3D 패널 하단의 속성(Properties) 패널에서 조명 관련 옵션을 확인합니다.",
+    "Viewport에서 기본 조명이 적용된 3D 오브젝트의 입체감과 음영을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Default Lighting",
+      "desc": "씬에 포함된 기본 조명의 활성화 여부를 토글합니다."
+    },
+    {
+      "name": "Light Color",
+      "desc": "기본 조명이 뿜어내는 빛의 색상을 설정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "기본 조명의 밝기 강도를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기본 입체감 확인",
+      "steps": [
+        "Photoshop에서 3D 파일이나 3D 변환 레이어를 불러옵니다.",
+        "Window → 3D를 눌러 3D 패널을 활성화합니다.",
+        "Scene을 선택해 Default Lighting이 켜져 있는지 확인합니다.",
+        "Viewport에서 회전 툴로 오브젝트를 돌려가며 음영을 체크합니다."
+      ]
+    },
+    {
+      "title": "커스텀 조명으로 전환 전 상태 점검",
+      "steps": [
+        "Default Lighting 상태에서 오브젝트의 표면 디테일을 확인합니다.",
+        "3D 패널에서 New Light to Scene을 눌러 새 조명을 추가합니다.",
+        "기본 조명과 비교하며 새로운 무한광이나 점광의 위치를 잡습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명을 추가했는데 전체 밝기가 변하지 않음 → Default Lighting이 여전히 켜져 있어 새 조명과 빛이 중첩되었을 수 있으므로 씬 설정을 확인합니다.",
+    "오브젝트가 너무 어둡게 보임 → 3D 패널의 속성에서 기본 조명의 Intensity 값이 너무 낮게 설정되어 있는지 확인합니다."
+  ],
+  "related": [
+    "Infinite Light",
+    "Point Light",
+    "Spot Light",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "JI0gaHmkUrU",
+      "title": "The secret to perfect lighting in Photoshop #photoshop #tutorial #shorts",
+      "author": "itchban"
+    },
+    {
+      "id": "IDRJcYEOM_o",
+      "title": "How To Add DRAMATIC Lighting in Photoshop! #photoshop #photography",
+      "author": "Rourke"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Default%20Lighting",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T01:12:18.602111+00:00"
+}
