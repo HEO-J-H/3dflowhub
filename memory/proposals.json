@@ -35965,5 +35965,43 @@
     "id": "p-82f7ef1f5e",
     "verdict": "agent",
     "reason": "기존 복잡한 테스트 파일 대신 단일 스키마 생성 검증을 위한 독립된 테스트 파일을 새로 작성하는 코딩 작업이므로 에이전트가 처리할 수 있습니다."
+  },
+  {
+    "at": "2026-11-27T22:36:01+00:00",
+    "kind": "proposal",
+    "id": "p-8d4b9cade4",
+    "title": "메타데이터 테스트 파일 초소형 단위로 분리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 관련 패치 적용이 반복해서 '변경 없음' 상태로 실패했습니다.",
+    "proposal": "backend/tests/test_metadata_db.py를 완전히 단일 기능(예: 단일 스키마 생성 테스트만 포함)으로 축소하여 작성합니다.",
+    "expected": "코딩 에이전트가 패치 충돌 없이 테스트 코드를 정상적으로 커밋할 수 있습니다.",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T22:36:19.612649+00:00",
+    "kind": "decision",
+    "id": "p-8d4b9cade4",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T22:36:21.111515+00:00",
+    "kind": "triage",
+    "id": "p-8d4b9cade4",
+    "verdict": "duplicate",
+    "reason": "이미 완료된 '로컬 DB 테스트 코드를 초소형 함수 단위로 재작성' 제안과 내용 및 목적이 일치합니다."
+  },
+  {
+    "at": "2026-11-27T22:36:21.141212+00:00",
+    "kind": "decision",
+    "id": "p-8d4b9cade4",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(duplicate): 이미 완료된 '로컬 DB 테스트 코드를 초소형 함수 단위로 재작성' 제안과 내용 및 목적이 일치합니다."
   }
 ]
