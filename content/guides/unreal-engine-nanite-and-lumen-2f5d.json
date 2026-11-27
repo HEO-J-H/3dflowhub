@@ -9,7 +9,7 @@
   "when": [
     "수백만 폴리곤에 달하는 고해상도 스캔 에셋이나 영화 등급의 3D 모델을 게임 Viewport에 그대로 배치할 때",
     "실내외 환경에서 물리적으로 정확한 간접광과 반사광을 실시간으로 계산하고 싶을 때",
-    "별도의 복잡한 라이트맵 Baking(Lightmass Baking) 작업 없이 동적 조명 환경을 구축할 때"
+    "대규모 아레나나 경기장처럼 복잡한 반사면과 광원이 많은 공간에서 라이트맵 Baking 없이 동적 조명 환경을 구축할 때"
   ],
   "steps": [
     "Content Browser에서 Nanite을 적용할 Static Mesh 에셋을 더블 클릭하여 개별 에디터 창을 엽니다.",
@@ -58,11 +58,11 @@
       ]
     },
     {
-      "title": "중동 시장 환경의 낮·해질녘·밤 조명 연출 (L1-L3 워크플로우)",
+      "title": "대형 아레나 경기장 실시간 조명 및 반사 시뮬레이션",
       "steps": [
-        "L1 단계에서 HDR 스카이와 Directional Light를 이용해 레퍼런스와 전체 분위기 및 색상 팔레트를 맞춥니다.",
-        "L2 단계에서 Rect Light와 Spot Light, 포그를 추가해 건축물 디테일과 특정 포인트를 강조합니다.",
-        "L3 단계에서 최종 디테일과 색감 대비를 다듬어 실시간 전역 조명과 그림자 깊이를 완성합니다."
+        "대규모 관중석과 복잡한 구조물이 포함된 경기장 3D 에셋을 뷰포트에 배치합니다.",
+        "Project Settings에서 Lumen Global Illumination과 Reflections을 활성화하여 라이트맵 Baking 대기 시간을 없앱니다.",
+        "하드웨어 및 소프트웨어 레이 트레이싱 옵션을 조절하여 복잡한 광원 배치와 반사 조건을 실시간으로 테스트합니다."
       ]
     }
   ],
@@ -122,6 +122,19 @@
       ],
       "source_keys": [
         "p:2026-11-25-8233bea801cccb30"
+      ]
+    },
+    {
+      "at": "2026-11-27T20:26:20+00:00",
+      "what": "대형 아레나 경기장 등 복잡한 실시간 조명 적용 사례를 바탕으로 활용 시나리오(when 및 examples)를 보강했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine Lumen 실시간 조명 적용 사례 분석",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9ZVmpPQWc5UTFQLWk0dTZyRm5CRGZ5ZXZQNkgwU0JyR2piX1k5S2hzQjFsYmZGMXdUMVlCUnF1RzVJY1pqV3NXS2hDSFVpalBLTFJBR2RneGRZQjhDUk85UzFQeXhVVmtSZExGX2Z0dUF4QkN3a19QZ0xjRjQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-27-a8b1619794041936"
       ]
     }
   ]

@@ -1,0 +1,58 @@
+{
+  "title_ko": "Blender 깃발 애니메이션과 Particle 효과 제작 가이드",
+  "title": "How Create Flowing Flag With Glowing Particles In Blender - 80 Level",
+  "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOUTh2OGlPd0pLY1lzOExUalhZdHRLdEljMC13XzRTc1N3NHpNbS1BY0hmVXZ1bVQtbkRYTElhdk9fTUJheXNTSUpsUjVQTVhkXzdxeEFiYXllMWo2R3RMZVZJRFJhN2E1cjN4NXdQT2gybDVZeHpMbEJ5bk1oRXZpdFI5UEMyVmNjanJvNkZ6NGVxb0tXaFhhOURwdG9ZQQ?oc=5",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "튜토리얼·팁",
+  "tags": [
+    "Blender",
+    "Geometry Nodes",
+    "Particle System",
+    "Simulation",
+    "VFX",
+    "블렌더",
+    "지오메트리 노드"
+  ],
+  "summary": "Blender에서 바람에 휘날리는 깃발과 빛나는 Particle 효과를 결합하여 제작하는 방법을 다룬 튜토리얼입니다.",
+  "insight": "깃발 시뮬레이션과 Particle 방출을 결합할 때는 복잡한 노드 구조 대신 Cloth 물리 연산과 기본 입자 시스템의 연동 방식을 정확히 이해하는 것이 작업 시간을 줄이는 지름길입니다. Cloth 수정자의 물리적 거동과 Particle의 방출 위치를 일치시키면 추가적인 연산 없이도 안정적인 시각적 조화를 얻을 수 있습니다. 또한 Emission 셰이더와 컴포지팅 단계의 후가공을 분리해 제어하면 렌더링 결과물의 완성도를 높이기 쉽습니다.",
+  "try_it": [
+    "Cloth 수정자가 적용된 메시의 Vertex Weights를 설정하여 깃발의 고정점과 움직이는 영역을 명확히 구분합니다.",
+    "바람(Wind) 포스필드의 세기를 조절하며 천이 휘날리는 주기를 시뮬레이션 재생을 통해 확인합니다.",
+    "Particle 방출 설정을 깃발 표면 메시로 지정하고 수명과 크기를 조절해 입자 밀도를 맞춥니다.",
+    "Emission 노드와 Compositing 탭의 Glare 노드를 연결해 빛 번짐 효과를 적용합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Cloth 시뮬레이션으로 깃발 움직임 만들기",
+      "body": "Blender의 Cloth 수정자와 바람(Wind) 포스필드를 활용하여 자연스럽게 휘날리는 깃발의 형태를 구현합니다. 고정될 Vertex 그룹을 Vertex Weights 설정으로 지정해 고정점과 움직이는 영역을 구분합니다. 바람의 세기와 천의 장력 값을 조절하여 물리적으로 타당한 움직임을 만듭니다."
+    },
+    {
+      "heading": "Particle 시스템을 활용한 빛나는 입자 배치",
+      "body": "깃발의 표면 메시에서 Particle이 생성되도록 설정하여 천의 움직임에 맞춰 입자들이 자연스럽게 따라오도록 만듭니다. 입자의 수명과 크기를 조절하여 밀도를 맞춥니다. 메시의 변형에 따라 입자가 왜곡되지 않도록 방출 설정을 점검합니다."
+    },
+    {
+      "heading": "Emission Shader로 Particle 발광 효과 완성",
+      "body": "Principled BSDF 대신 Emission 노드를 사용하여 Particle 자체에 빛나는 성질을 부여하고, Compositing 탭에서 Glare 노드를 추가해 빛 번짐 효과를 강조합니다. 발광 세기를 조절하여 장면 내 다른 오브젝트와의 밝기 균형을 맞춥니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "깃발 시뮬레이션이 찢어지거나 붕괴할 때 해결 방법은 무엇인가요?",
+      "a": "Cloth 설정의 Tension과 Compression 수치를 높이고, 서브스텝(Steps Per Second) 값을 올려주면 시뮬레이션 안정성이 높아집니다."
+    },
+    {
+      "q": "Particle이 깃발 표면에서 떨어져서 생성됩니다.",
+      "a": "Particle Settings의 Source 탭에서 Emit From 옵션을 Face에서 Vertices로 변경하거나 Offset 값을 확인해 보세요."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/kQ3wZ35saPI/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=kQ3wZ35saPI"
+  },
+  "collected_at": "2026-11-27T20:26:03.517616+00:00",
+  "notion_id": "",
+  "id": "2026-11-27-0f49a7d9bd2608e4",
+  "img_tried": true,
+  "enriched": "2026-11-27"
+}

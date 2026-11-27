@@ -76,6 +76,14 @@
         "HDRI 스카이 배경에 클라우드 카드를 겹쳐 낮·해질녘·밤 시간대에 따른 하늘 깊이와 분위기를 전환합니다.",
         "Lumen 실시간 전역 조명을 활용해 따뜻한 오렌지(낮), 시안-블루(해질녘), 모래색·짙은 갈색(밤)의 색상 팔레트와 간접광을 자연스럽게 연결합니다."
       ]
+    },
+    {
+      "title": "대형 아레나 가상화 구현 (Trojan Arena 사례)",
+      "steps": [
+        "Project Settings에서 Lumen GI와 Reflections가 켜져 있는지 확인합니다.",
+        "복잡한 기하학적 구조물과 관중석, 경기장 바닥에 광원 배치를 설정합니다.",
+        "라이트맵 Baking 과정 없이 Lumen의 실시간 전역 조명과 반사를 통해 빛의 상호작용과 시간대별 조명 조건을 즉시 테스트합니다."
+      ]
     }
   ],
   "mistakes": [
@@ -134,6 +142,19 @@
       ],
       "source_keys": [
         "p:2026-11-25-8233bea801cccb30"
+      ]
+    },
+    {
+      "at": "2026-11-27T20:26:18+00:00",
+      "what": "Trojan Arena 적용 사례를 바탕으로 대형 아레나와 관중석 같은 복잡한 구조물에서 라이트맵 베이킹 없이 Lumen 실시간 전역 조명을 활용하는 활용 예시를 추가했습니다.",
+      "sources": [
+        {
+          "title": "Unreal Engine Lumen 실시간 조명 적용 사례 분석",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9ZVmpPQWc5UTFQLWk0dTZyRm5CRGZ5ZXZQNkgwU0JyR2piX1k5S2hzQjFsYmZGMXdUMVlCUnF1RzVJY1pqV3NXS2hDSFVpalBLTFJBR2RneGRZQjhDUk85UzFQeXhVVmtSZExGX2Z0dUF4QkN3a19QZ0xjRjQ?oc=5"
+        }
+      ],
+      "source_keys": [
+        "p:2026-11-27-a8b1619794041936"
       ]
     }
   ]
