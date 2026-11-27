@@ -1,0 +1,91 @@
+{
+  "id": "test-split-227d",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 제어",
+  "name": "TEST SPLIT",
+  "title": "Test Split — 검증용 이미지 분할을 통한 정확한 성능 평가",
+  "summary": "Gaussian Splatting 학습 시 전체 이미지를 학습 셋과 테스트 셋으로 분할하여, 모델의 과적합을 방지하고 실제 렌더링 품질을 객관적으로 검증하는 전처리 단계입니다.",
+  "when": [
+    "새로운 데이터셋으로 학습을 시작하기 전 데이터의 일반화 성능을 검증하고 싶을 때",
+    "학습이 완료된 모델의 PSNR, SSIM, LPIPS 등의 평가 지표(Evaluation Metrics)를 정확하게 측정해야 할 때",
+    "특정 카메라 각도나 영역이 학습에 편향되지 않았는지 확인하고 싶을 때"
+  ],
+  "steps": [
+    "데이터셋 폴더 내에 images 디렉토리와 카메라 파라미터 파일(cameras.json 또는 COLMAP 결과)이 정상적으로 위치하는지 확인합니다.",
+    "Python Script 또는 사용 중인 3D Gaussian Splatting 학습 프레임워크(예: Nerfstudio, standard 3DGS)의 데이터 로더 설정을 엽니다.",
+    "데이터 분할 비율 옵션(예:--eval 또는 hold_every)을 확인하고 테스트 셋 추출 주기를 설정합니다.",
+    "통상적으로 8장의 학습 이미지마다 1장을 테스트 셋으로 지정(every 8th image)하여 검증용 폴더로 격리합니다.",
+    "학습 실행 시 지정된 Test Split 설정이 올바르게 적용되어 Viewport에서 테스트 이미지가 제외되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "eval",
+      "desc": "전체 이미지 중 테스트 셋으로 사용할 이미지를 분리하는 옵션입니다."
+    },
+    {
+      "name": "hold_every",
+      "desc": "지정된 간격(예: 8)마다 이미지를 테스트 셋으로 빼내는 주기 설정값입니다."
+    },
+    {
+      "name": "images",
+      "desc": "학습 및 평가에 사용되는 원본 이미지 소스가 저장된 경로입니다."
+    },
+    {
+      "name": "cameras.json",
+      "desc": "카메라 내부 및 외부 파라미터와 이미지 파일명이 매핑된 설정 파일입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "N 번째 이미지마다 테스트 셋으로 지정하기",
+      "steps": [
+        "데이터셋 설정 파일 또는 실행 인자에 --eval 파라미터를 추가합니다.",
+        "hold_every 값을 8로 설정하여 전체 이미지 중 12.5%를 테스트 용도로 분할합니다.",
+        "학습을 진행하며 콘솔창에 출력되는 Test set evaluation 손실 값을 모니터링합니다."
+      ]
+    },
+    {
+      "title": "수동으로 Test/Train 폴더 분리하기",
+      "steps": [
+        "원본 images 폴더를 복사하여 images_train 과 images_test 폴더를 생성합니다.",
+        "전체 카메라 궤적 중 교차 검증용으로 적합한 특정 각도의 이미지들을 images_test 로 이동합니다.",
+        "학습 설정 파일에서 각 폴더의 경로를 명시적으로 지정하여 학습을 실행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "학습 셋과 테스트 셋이 겹치는 경우 → 과적합(Overfitting)이 발생하여 실제 렌더링 품질 지표가 왜곡되므로 폴더를 완전히 분리합니다.",
+    "테스트 셋에 너무 적거나 편향된 이미지가 지정된 경우 → 정확한 품질 평가가 어려우므로 전체 공간을 고르게 대표하는 카메라 뷰를 테스트 셋으로 선정합니다."
+  ],
+  "related": [
+    "Evaluation Metrics",
+    "Undistort Images",
+    "COLMAP SfM Pipeline",
+    "Camera Parameters"
+  ],
+  "videos": [
+    {
+      "id": "TzwxTIa7ruk",
+      "title": "Easy, fast and free processing! Gaussian Splatting is the new standard!🔥 #gaussiansplatting",
+      "author": "Polycam"
+    },
+    {
+      "id": "RoomSN3JPc8",
+      "title": "Master OOOSplat: The Ultimate One-Click 3D Gaussian Splatting Guide",
+      "author": "Codonut"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20TEST%20SPLIT",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "COLMAP",
+    "Python Script",
+    "D Gaussian Splatting",
+    "Nerfstudio",
+    "DGS",
+    "Test Split"
+  ],
+  "at": "2026-11-27T02:32:49.446855+00:00"
+}

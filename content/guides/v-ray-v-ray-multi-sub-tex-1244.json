@@ -1,0 +1,93 @@
+{
+  "id": "v-ray-v-ray-multi-sub-tex-1244",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Multi-Sub Tex",
+  "title": "V-Ray Multi-Sub Tex — 하나의 오브젝트나 여러 ID를 가진 객체에 무작위 색상 및 텍스처를 ",
+  "summary": "V-Ray Multi-Sub Tex는 하나의 머티리얼 내에서 여러 오브젝트나 ID, 엘리먼트에 따라 서로 다른 색상이나 텍스처를 무작위로 할당해 주는 프로시절 맵입니다. UV 매핑이나 개별 머티리얼 생성 없이도 다양성을 부여할 수 있습니다.",
+  "when": [
+    "숲속의 나무나 돌멩이처럼 동일한 오브젝트가 반복되어 단조로워 보일 때",
+    "건물의 벽돌이나 타일마다 미세하게 색상 차이를 주어 자연스러운 질감을 만들 때",
+    "하나의 오브젝트에 여러 개의 Material ID가 설정되어 있어 각각 다른 텍스처를 입혀야 할 때"
+  ],
+  "steps": [
+    "Material Editor (Hotkey M)를 엽니다.",
+    "Diffuse 슬롯 또는 원하는 채널에 V-Ray Multi-Sub Tex를 추가합니다.",
+    "Get ID from 옵션에서 Object ID, Material ID, 또는 Random 중 원하는 기준을 선택합니다.",
+    "Add 버튼을 눌러 서브 컬러나 텍스처 슬롯을 추가하고 각각 다른 색상이나 이미지를 지정합니다.",
+    "Viewport 또는 Render Setup에서 V-Ray 렌더러를 실행하여 무작위로 적용된 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Get ID from",
+      "desc": "색상이나 텍스처를 분배할 기준(Material ID, Object ID, Random 등)을 선택합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "무작위로 색상이나 텍스처가 배정되는 패턴의 시드 값을 변경합니다."
+    },
+    {
+      "name": "Colors / Textures",
+      "desc": "각 ID 또는 무작위 슬롯에 들어갈 개별 색상이나 맵을 등록합니다."
+    },
+    {
+      "name": "Add",
+      "desc": "새로운 색상이나 텍스처 슬롯을 목록에 추가합니다."
+    },
+    {
+      "name": "Remove",
+      "desc": "선택한 색상이나 텍스처 슬롯을 목록에서 제거합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "벽돌 건물 외벽 무작위 색상 부여",
+      "steps": [
+        "건물 외벽 메시의 각 벽돌에 Material ID를 부여합니다.",
+        "V-Ray Multi-Sub Tex의 Get ID from을 Material ID로 설정합니다.",
+        "여러 개의 서로 다른 벽돌 톤 컬러를 슬롯에 등록하여 자연스러운 뉘앙스를 만듭니다."
+      ]
+    },
+    {
+      "title": "군중 씬 옷 색상 무작위 분배",
+      "steps": [
+        "동일한 캐릭터 클론 오브젝트들에 각각 고유한 Object ID를 지정합니다.",
+        "V-Ray Multi-Sub Tex의 Get ID from을 Object ID로 설정합니다.",
+        "파스텔톤의 다양한 컬러를 등록해 렌더링 시 옷 색상이 제각각 나오도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Object ID 기준 사용 시 모든 오브젝트의 ID가 0으로 동일함 → Object Properties에서 각 오브젝트의 Image ID 값을 다르게 수정합니다.",
+    "색상 변화가 전혀 보이지 않고 단일 색상만 나옴 → 슬롯에 컬러나 텍스처가 단 하나만 등록되어 있는지 확인하고 개수를 늘립니다."
+  ],
+  "related": [
+    "V-Ray Edge Tex",
+    "V-Ray Curvature Tex",
+    "V-Ray Dirt",
+    "V-Ray Material"
+  ],
+  "videos": [
+    {
+      "id": "EGB5FDW8o6g",
+      "title": "Batch loading of textures with VRayMultiSubTex",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "g-U7bXCJkTs",
+      "title": "V-Ray 2.0 for 3ds Max - V-Ray Multi Sub Tex",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Multi-Sub%20Tex",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Hotkey M",
+    "Diffuse",
+    "V-Ray Multi-Sub Tex"
+  ],
+  "at": "2026-11-27T02:32:53.117595+00:00"
+}

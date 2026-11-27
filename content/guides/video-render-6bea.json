@@ -1,0 +1,90 @@
+{
+  "id": "video-render-6bea",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "출력 및 변환",
+  "name": "VIDEO RENDER",
+  "title": "Video Render — 학습된 카메라 경로를 이용한 카메라 비디오 렌더링",
+  "summary": "Gaussian Splatting 학습 결과물로부터 카메라 경로(Camera Path)를 설정하고, 고화질 비디오 시퀀스로 최종 렌더링하여 영상 파일로 추출하는 기능입니다.",
+  "when": [
+    "학습이 완료된 3D Gaussian 모델을 클라이언트나 포트폴리오용 영상으로 공유해야 할 때",
+    "실내외 3D 스캔 씬을 부드러운 카메라 무빙과 함께 Cinematic 영상으로 제작할 때",
+    "정적인 3D 공간을 역동적인 패스로 탐색하는 결과물을 추출할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습이 완료된 출력(Output) 폴더에서 SIBR 뷰어 실행 파일 또는 렌더링 Script를 엽니다.",
+    "뷰어 UI 또는 카메라 패스 설정 패널에서 Keyframe 추가 모드를 활성화합니다.",
+    "원하는 카메라 위치와 각도로 이동한 뒤 Keyframe을 순서대로 등록합니다.",
+    "Timeline 또는 패스 설정에서 카메라가 이동할 속도와 보간(Interpolation) 방식을 조정합니다.",
+    "Render/Export 메뉴에서 Resolution, 프레임 레이트(FPS), 출력 포맷을 설정합니다.",
+    "렌더링 실행을 누르고 지정된 폴더에 이미지 시퀀스나 비디오 파일이 저장되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Keyframe",
+      "desc": "카메라의 위치와 회전 값이 저장되는 핵심 지점입니다."
+    },
+    {
+      "name": "Interpolation",
+      "desc": "Keyframe 사이의 카메라 이동 경로를 부드럽게 보간합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "출력될 비디오의 가로·세로 Resolution를 결정합니다."
+    },
+    {
+      "name": "FPS",
+      "desc": "초당 프레임 수를 설정하여 영상의 부드러움을 제어합니다."
+    },
+    {
+      "name": "Render Path",
+      "desc": "완료된 프레임이나 영상이 저장될 디렉토리 경로입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 인테리어 공간 Cinematic 투어",
+      "steps": [
+        "거실 입구에서 시작하여 창가 쪽으로 이어지는 3개의 Keyframe을 등록합니다.",
+        "Spline 보간 방식을 선택해 코너링을 부드럽게 만듭니다.",
+        "4K Resolution와 30 FPS로 설정한 뒤 비디오 렌더링을 실행합니다."
+      ]
+    },
+    {
+      "title": "제품 360도 회전 턴테이블 영상",
+      "steps": [
+        "오브젝트 중심을 기준으로 원형 궤도에 맞춰 여러 개의 Keyframe을 등간격으로 배치합니다.",
+        "카메라가 항상 중심을 바라보도록 Look-at 타겟을 고정합니다.",
+        "이미지 시퀀스로 추출한 뒤 편집 프로그램에서 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "카메라가 너무 빠르게 이동하여 화면이 흔들림 → Keyframe 간격을 넓히거나 패스 길이를 늘려 속도를 부드럽게 조정합니다.",
+    "렌더링 결과물의 Resolution가 낮거나 깨짐 → SIBR 뷰어 또는 렌더링 툴의 Resolution 설정 값을 확인하고 높입니다.",
+    "카메라가 엉뚱한 방향을 바라봄 → 각 Keyframe 설정 시 카메라 로테이션과 Look-at 타겟을 재확인합니다."
+  ],
+  "related": [
+    "Real-time SIBR Viewer",
+    "Evaluation Metrics",
+    "COLMAP",
+    "Gaussian Splatting Training"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "Xn4h0vJ-wYQ",
+      "title": "Generate 3D from ANY Video! │Gaussian Splatting Tutorial w/ Postshot",
+      "author": "Black Mixture"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20VIDEO%20RENDER",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T02:32:58.696596+00:00"
+}
