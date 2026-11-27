@@ -1,0 +1,95 @@
+{
+  "id": "unity-audio-filter-eb1f",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오",
+  "name": "Audio Filter",
+  "title": "Audio 필터 — 로우패스, 에코 등 사운드에 실시간 효과를 주는 컴포넌트",
+  "summary": "Unity의 Audio Filter는 Audio Source에 연결되어 실시간으로 Audio 신호에 주파수, 에코, 왜곡 등의 음향 효과를 추가하는 컴포넌트입니다. Audio에 공간의 특성이나 극적인 변형을 주어 몰입감을 높여줍니다.",
+  "when": [
+    "동굴이나 터널 같은 밀폐된 공간에서 메아리(Echo) 효과를 주고 싶을 때",
+    "플레이어가 물속에 잠겼을 때 고음역대가 차단된 먹먹한 사운드를 만들고 싶을 때",
+    "라디오 무전기 통신이나 전화 통화 음성처럼 특정 주파수를 걸러내고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 Audio Source 컴포넌트가 부착된 오브젝트를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 'Audio Filter'를 입력하거나 Audio 카테고리에서 원하는 필터(예: Audio Distortion Filter, Audio Reverb Filter 등)를 선택합니다.",
+    "추가된 Audio Filter 컴포넌트의 파라미터 값(예: Reverb, Decay Time, Distortion 등)을 조절하여 원하는 음향 효과를 만듭니다.",
+    "Scene 뷰나 Game 뷰에서 Play 버튼을 눌러 소리의 변화를 청취하며 세부 값을 조정합니다."
+  ],
+  "params": [
+    {
+      "name": "Distortion Level",
+      "desc": "Audio 신호의 왜곡 정도를 설정하여 거친 록 음악이나 깨지는 듯한 무전기 소리를 만듭니다."
+    },
+    {
+      "name": "LowPass CutoffFreq",
+      "desc": "설정된 주파수보다 높은 대역을 차단하여 물속이나 문 뒤에서 들리는 듯한 먹먹한 소리를 구현합니다."
+    },
+    {
+      "name": "Decay Time",
+      "desc": "Reverb 필터에서 잔향이 사라지는 데 걸리는 시간을 초 단위로 설정합니다."
+    },
+    {
+      "name": "Room",
+      "desc": "전체적인 방의 잔향 크기를 조절하여 공간의 규모감을 다릅니다."
+    },
+    {
+      "name": "Delay",
+      "desc": "Echo 필터에서 메아리가 반복되기 전의 지연 시간을 밀리초 단위로 설정합니다."
+    },
+    {
+      "name": "Decay Ratio",
+      "desc": "Echo 메아리가 반복될 때마다 줄어드는 소리의 비율을 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물속 잠김 효과 구현",
+      "steps": [
+        "Audio Source 컴포넌트가 있는 오브젝트에 Add Component로 Audio Low Pass Filter를 추가합니다.",
+        "Cutoff Frequency 값을 500Hz 이하로 낮추어 고음역대를 차단합니다.",
+        "플레이어가 물속에 들어갈 때 Script로 이 값을 제어해 사운드가 먹먹해지도록 연동합니다."
+      ]
+    },
+    {
+      "title": "동굴 속 메아리 추가",
+      "steps": [
+        "동굴 안에 위치한 Audio 오브젝트에 Add Component로 Audio Reverb Filter를 추가합니다.",
+        "ReverbPreset을 Cave 또는 Hallway로 변경하여 기본 공간감을 부여합니다.",
+        "Dry Level과 Room 값을 조정하여 실제 동굴 크기에 맞는 잔향을 완성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "필터 효과가 전혀 들리지 않음 → Audio Source의 Play On Awake가 꺼져 있거나 Audio 클립이 비어 있는지 확인합니다.",
+    "소리가 너무 찢어지고 왜곡됨 → Distortion Level이나 Reverb의 Gain 값을 과도하게 높게 설정했기 때문이며, 값을 낮추고 믹서 볼륨을 점검합니다."
+  ],
+  "related": [
+    "Audio Source",
+    "Audio Listener",
+    "Audio Mixer",
+    "Audio Spatializer"
+  ],
+  "videos": [
+    {
+      "id": "w9ZwwBMznj4",
+      "title": "Modulating Unity Audio Filters | Module 4 Lesson 3 | Unity Audio Mastery Course",
+      "author": "Henry Scott"
+    },
+    {
+      "id": "5iKoL-3MoZY",
+      "title": "Audio Filters in Unity You must know!",
+      "author": "Game Dev Companion"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Filter",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Audio Source"
+  ],
+  "at": "2026-11-27T00:52:13.874749+00:00"
+}

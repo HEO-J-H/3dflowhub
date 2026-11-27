@@ -1,0 +1,95 @@
+{
+  "id": "unity-realtime-global-illumination-51c6",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "라이팅",
+  "name": "Realtime Global Illumination",
+  "title": "실시간 전역 조명 — 라이트의 바운스 빛을 실시간으로 계산하는 기능",
+  "summary": "Unity Realtime Global Illumination은 라이트에서 나온 빛이 주변 표면에 반사되어 생기는 간접광과 바운스를 실시간으로 계산하여 자연스러운 음영을 만드는 시스템입니다. 정적(Static) 오브젝트뿐만 아니라 움직이는 오브젝트에도 빛의 상호작용을 반영합니다.",
+  "when": [
+    "시간대나 날씨 변화에 따라 빛과 그림자가 실시간으로 변하는 야외 또는 실내 씬을 만들 때",
+    "동적으로 생성되거나 움직이는 캐릭터와 오브젝트가 주변 환경광의 영향을 자연스럽게 받게 하고 싶을 때",
+    "라이트맵을 매번 굽는(Bake) 시간을 줄이면서 부드러운 간접 조명 효과를 유지하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Directional Light나 Point Light 같은 조명을 선택합니다.",
+    "Inspector 패널 상단의 Light Mode를 Realtime 또는 Mixed로 설정합니다.",
+    "Window 메뉴에서 Rendering → Lighting을 클릭하여 Lighting 창을 엽니다.",
+    "Lighting 창의 Scene 탭에서 Realtime Global Illumination 체크박스를 활성화합니다.",
+    "오브젝트의 Inspector 패널에서 Mesh Renderer의 Contribute GI 옵션이 켜져 있는지 확인합니다.",
+    "Scene 뷰 상단의 드롭다운 메뉴에서 Lighting Draw Mode를 Realtime Indirect로 변경하여 결과가 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Realtime Global Illumination",
+      "desc": "실시간 간접 조명 연산의 활성화 여부를 결정합니다."
+    },
+    {
+      "name": "Light Mode",
+      "desc": "조명의 연산 방식(Realtime, Baked, Mixed)을 선택합니다."
+    },
+    {
+      "name": "Contribute GI",
+      "desc": "개별 오브젝트가 글로벌 조명 연산에 참여할지 여부를 설정합니다."
+    },
+    {
+      "name": "Indirect Multiplier",
+      "desc": "간접광 반사 횟수나 강도를 조절하여 밝기를 키우거나 줄입니다."
+    },
+    {
+      "name": "Realtime Resolution",
+      "desc": "실시간 조명 계산에 사용되는 텍셀 Resolution를 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "주야간 실시간 변화가 있는 야외 씬",
+      "steps": [
+        "Directional Light의 Mode를 Realtime으로 설정합니다.",
+        "Lighting 창에서 Realtime Global Illumination을 켜줍니다.",
+        "태양 회전에 따라 지형과 건물 사이에 반사되는 간접광이 실시간으로 변하는지 확인합니다."
+      ]
+    },
+    {
+      "title": "움직이는 캐릭터에 주변광 적용하기",
+      "steps": [
+        "씬 내의 배경 오브젝트들에 Contribute GI 옵션을 켭니다.",
+        "캐릭터가 컬러풀한 벽 근처로 이동할 때 반사광(Color Bleeding)이 옷에 묻어나는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "사양을 낮추려고 모든 조명을 Realtime으로 설정함 → 실시간 GI와 합쳐져 모바일 및 저사양 PC에서 심각한 프레임 저하 발생, 중요 조명 외에는 Baked 또는 Mixed 활용",
+    "동적 오브젝트에 GI가 반영되지 않음 → 오브젝트나 메시 렌더러에 Contribute GI 옵션이 꺼져 있는지 확인하고 켬"
+  ],
+  "related": [
+    "Baked Global Illumination",
+    "Lightmapping",
+    "Reflection Probes",
+    "Light Probes"
+  ],
+  "videos": [
+    {
+      "id": "7VpMI77FNXY",
+      "title": "Unity’s NEW Realtime Surface Cache GI (SCGI) Explained (Unity 6.6 Alpha Tutorial)",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "7hKEU_v8WBs",
+      "title": "REALTIME LIGHTING in Unity (URP Version)",
+      "author": "GameDev Blueprint"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Realtime%20Global%20Illumination",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Directional Light",
+    "Point Light",
+    "Inspector",
+    "Light Mode",
+    "Realtime"
+  ],
+  "at": "2026-11-27T00:52:09.908959+00:00"
+}
