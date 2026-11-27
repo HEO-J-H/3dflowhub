@@ -1,0 +1,103 @@
+{
+  "id": "v-ray-v-ray-mesh-light-8262",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "라이팅",
+  "name": "V-Ray Mesh Light",
+  "title": "V-Ray Mesh Light — 임의의 3D 오브젝트를 광원으로 변환하는 방법",
+  "summary": "V-Ray Mesh Light는 일반 3D 지오메트리 오브젝트를 실제 빛을 내는 면광원으로 변환하는 기능입니다. 불규칙한 형태나 복잡한 구조물의 조명을 정교하게 표현할 때 사용합니다.",
+  "when": [
+    "네온사인이나 LED 조형물처럼 오브젝트 자체가 빛을 내야 할 때",
+    "불규칙한 곡선이나 독특한 형태의 조명 기구를 씬에 배치할 때",
+    "일반적인 표준 라이트(Plane, Sphere 등)로 표현하기 힘든 복잡한 모양의 광원이 필요할 때"
+  ],
+  "steps": [
+    "빛으로 사용할 3D 오브젝트를 씬에 생성하거나 선택합니다 (예: Line을 Extrude한 네온사인 글자, 복잡한 펜던트 조명 메쉬).",
+    "Command Panel에서 Create 탭 또는 V-Ray Toolbar를 확인하거나, Create → Lights → V-Ray 메뉴로 이동합니다.",
+    "라이트 드롭다운 또는 V-Ray 카테고리에서 VRayMeshLight를 선택합니다.",
+    "Viewport에서 빛으로 변환할 메쉬 오브젝트를 Mouse로 클릭하여 연결합니다.",
+    "Modify 패널에서 Intensity, Color 등의 라이트 옵션을 조절하여 빛의 세기와 색상을 설정합니다.",
+    "V-Ray Frame Buffer(VFB)를 열고 Render를 실행하여 조명 결과가 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "광원에서 방출되는 빛의 밝기(전체적인 광량)를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "빛의 색상이나 온도(Kelvin)를 설정합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "이 라이트에 의해 그림자가 생성될지 여부를 켭니다."
+    },
+    {
+      "name": "Affect Diffuse",
+      "desc": "오브젝트의 디퓨즈(기본 색상) 반사에 빛이 영향을 미칠지 설정합니다."
+    },
+    {
+      "name": "Affect Specular",
+      "desc": "오브젝트 표면에 하이라이트(광택 반사)를 만들어낼지 설정합니다."
+    },
+    {
+      "name": "Double-sided",
+      "desc": "메쉬의 양면 모두에서 빛이 발산되도록 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "네온사인 글자 조명 만들기",
+      "steps": [
+        "Text 스플라인을 그리고 Extrude Modifier를 적용해 3D 입체 글자를 만듭니다.",
+        "Create → Lights → V-Ray에서 VRayMeshLight를 선택하고 글자 메쉬를 클릭합니다.",
+        "Modify 패널에서 Intensity를 높이고 원하는 네온 색상으로 Color를 변경합니다.",
+        "Interactive Rendering을 켜고 글자가 주변 벽면에 은은한 빛과 그림자를 만드는지 확인합니다."
+      ]
+    },
+    {
+      "title": "디자인 펜던트 조명 갓 연출하기",
+      "steps": [
+        "특이한 곡선 형태의 갓 모델링을 준비합니다.",
+        "VRayMeshLight를 적용하여 갓 내부 안쪽 면이 광원 역할을 하도록 설정합니다.",
+        "Invisible 옵션을 켜서 광원 역할을 하는 메쉬 자체는 숨기고 빛만 발산되도록 연출합니다.",
+        "렌더링을 통해 하단으로 떨어지는 조명의 확산 범위를 점검합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "빛이 너무 약하거나 보이지 않음 → Intensity 값이 너무 낮거나 단위 설정이 잘못된 경우이므로 단위를 Lumens나 Watts로 변경하고 값을 높여줍니다.",
+    "원본 메쉬가 렌더링에 그대로 노출됨 → 조명만 남기고 메쉬 형태를 숨기고 싶을 때는 Mesh Light 옵션에서 Invisible을 체크합니다.",
+    "노이즈가 심하게 발생함 → 라이트의 서브디비전(Subdivs) 값이 낮거나 샘플링이 부족한 경우이므로 V-Ray Light 설정에서 샘플 값을 올려줍니다."
+  ],
+  "related": [
+    "VRayLightMtl",
+    "VRayLight",
+    "Material Editor",
+    "V-Ray Frame Buffer"
+  ],
+  "videos": [
+    {
+      "id": "GTbZ6zvXIwM",
+      "title": "How to setting vray  4 mesh light",
+      "author": "tsantoid"
+    },
+    {
+      "id": "zbgdyvVJHZk",
+      "title": "Vray Mesh Lights Quick Tutorial in 3Ds Max #RedefineFX",
+      "author": "RedefineFX | Jesse Pitela"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Mesh%20Light",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Line",
+    "Extrude",
+    "Command Panel",
+    "Create",
+    "V-Ray Toolbar",
+    "Lights"
+  ],
+  "at": "2026-11-27T02:12:48.600866+00:00"
+}

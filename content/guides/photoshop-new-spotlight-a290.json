@@ -1,0 +1,93 @@
+{
+  "id": "photoshop-new-spotlight-a290",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D 렌더링 및 조명",
+  "name": "New Spotlight",
+  "title": "새 스포트라이트 — 원추형으로 특정 영역을 집중 조명하는 스포트라이트를 추가하는 기능",
+  "summary": "Photoshop의 New Spotlight는 3D 공간에서 원뿔 형태의 집중된 빛을 비추어 특정 피사체를 극적으로 강조하고 무대 조명 같은 효과를 주는 조명 기능입니다.",
+  "when": [
+    "인물이나 제품 사진에서 무대 스포트라이트 같은 극적인 연출이 필요할 때",
+    "어두운 배경 속에서 특정 피사체만 집중적으로 밝혀 시선을 유도할 때",
+    "3D 오브젝트나 텍스트 레이어에 원뿔형 광원의 입체적인 그림자를 부여할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 레이어나 3D로 변환된 오브젝트가 포함된 문서를 엽니다.",
+    "상단 메뉴 바에서 3D 메뉴를 클릭합니다.",
+    "New Light to Scene 서브메뉴로 이동합니다.",
+    "New Spotlight를 클릭하여 씬에 새로운 스팟 라이트를 추가합니다.",
+    "Properties 패널에서 조명의 위치, 각도, 강도(Intensity)를 조절하여 원하는 영역을 비춥니다.",
+    "Viewport에서 조명의 빛 방향과 원뿔 범위가 피사체를 정확히 비추는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Intensity",
+      "desc": "조명의 밝기와 빛의 세기를 조절합니다."
+    },
+    {
+      "name": "Cone Angle",
+      "desc": "빛이 퍼져나가는 원뿔의 각도를 조절하여 비추는 영역의 크기를 결정합니다."
+    },
+    {
+      "name": "Hotspot",
+      "desc": "스포트라이트 중심부의 가장 밝은 영역의 크기를 설정합니다."
+    },
+    {
+      "name": "Falloff",
+      "desc": "빛이 거리에 따라 감쇠하는 정도를 조절합니다."
+    },
+    {
+      "name": "Shadow",
+      "desc": "조명에 의해 생성되는 그림자의 활성화 여부와 부드러움을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 광고 포스터의 무대 조명 연출",
+      "steps": [
+        "제품 3D 레이어를 배치한 뒤 3D 메뉴에서 New Spotlight를 추가합니다.",
+        "Properties 패널에서 Cone Angle을 좁혀 빛을 집중시킵니다.",
+        "Intensity를 높여 제품 중앙을 강하게 비추고 배경을 어둡게 만듭니다."
+      ]
+    },
+    {
+      "title": "입체 텍스트에 극적인 빛 비추기",
+      "steps": [
+        "3D로 변환된 텍스트 레이어 위측 비스듬한 위치에 New Spotlight를 생성합니다.",
+        "Gizmo를 이용해 조명의 위치를 텍스트 앞쪽으로 이동시킵니다.",
+        "Shadow 옵션을 켜서 텍스트 뒤로 깊이감 있는 그림자가 생기도록 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "조명 빛이 보이지 않음 → 3D 레이어 환경이 활성화되어 있는지 확인하고 Intensity 값을 높입니다.",
+    "그림자가 너무 딱딱하게 나옴 → Shadow 속성의 부드러움(Softness) 값을 조절해 자연스러운 그라데이션을 만듭니다."
+  ],
+  "related": [
+    "New Point Light",
+    "New Infinite Light",
+    "New Directional Light",
+    "3D Panel"
+  ],
+  "videos": [
+    {
+      "id": "OLPGAyoIVvo",
+      "title": "Spotlight Effect - Short Photoshop Tutorial",
+      "author": "Obaeda Korani"
+    },
+    {
+      "id": "d_BXICV6mus",
+      "title": "how to make spotlight effect in Photoshop 2025",
+      "author": "GFX OM"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20New%20Spotlight",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "New Light",
+    "Scene"
+  ],
+  "at": "2026-11-27T02:12:51.965311+00:00"
+}
