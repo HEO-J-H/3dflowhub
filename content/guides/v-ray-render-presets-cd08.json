@@ -1,0 +1,90 @@
+{
+  "id": "v-ray-render-presets-cd08",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "워크플로우",
+  "name": "Render Presets",
+  "title": "Render Presets — 자주 쓰는 렌더 설정을 프리셋으로 저장·불러오기",
+  "summary": "V-Ray Render Presets는 자주 사용하는 렌더링 설정값(품질, Resolution, GI 등)을 파일로 저장하고 불러와 일관된 퀄리티를 유지하고 작업 속도를 높여주는 기능입니다.",
+  "when": [
+    "동일한 프로젝트 내 여러 씬에서 렌더링 품질을 통일해야 할 때",
+    "초기 테스트 렌더링과 최종 프로덕션 렌더링 설정을 빠르게 전환할 때",
+    "스튜디오나 팀 내에서 표준화된 렌더 세팅을 공유할 때"
+  ],
+  "steps": [
+    "3ds Max 또는 Maya에서 V-Ray를 렌더러로 설정한 후 F10 키를 눌러 Render Setup 창을 엽니다.",
+    "Common 탭과 V-Ray 탭에서 렌더링 Resolution, Image Sampler, Global Illumination 등의 원하는 옵션을 세팅합니다.",
+    "Render Setup 창 하단의 Presets 버튼을 클릭하고 Save Preset을 선택합니다.",
+    "저장할 경로를 지정하고 .vrst 또는 .mat 등의 파일 형식으로 세팅 파일을 저장합니다.",
+    "다른 씬이나 프로젝트에서 Presets 버튼을 클릭하고 Load Preset을 선택해 저장한 파일을 불러옵니다.",
+    "Viewport에서 최종 렌더링(Shift+Q)을 실행해 설정이 올바르게 적용되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Save Preset",
+      "desc": "현재의 모든 렌더 설정 값을 파일로 저장합니다."
+    },
+    {
+      "name": "Load Preset",
+      "desc": "저장된 렌더 설정 파일을 불러와 현재 씬에 적용합니다."
+    },
+    {
+      "name": "All settings",
+      "desc": "프리셋 저장 시 모든 렌더러 파라미터를 포함합니다."
+    },
+    {
+      "name": "Render elements",
+      "desc": "패스(Render Elements) 설정까지 프리셋에 함께 포함하여 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "빠른 테스트 렌더링 세팅",
+      "steps": [
+        "Image Sampler를 Bucket에서 Progressive로 낮추고 Max Subdivs를 줄입니다.",
+        "Global Illumination을 끄거나 Irradiance Map으로 낮게 설정합니다.",
+        "Presets에서 'Test_Render.vrst'로 저장하여 시퀀스 확인용으로 사용합니다."
+      ]
+    },
+    {
+      "title": "최종 고품질 프로덕션 세팅",
+      "steps": [
+        "Image Sampler와 Denoiser 옵션을 프로덕션 수준으로 높입니다.",
+        "Light Cache와 Brute Force 서브다이비전을 충분히 올려 노이즈를 줄입니다.",
+        "Presets에서 'Final_Production.vrst'로 저장하여 최종 출력 시 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "프리셋을 불러왔는데 Resolution가 그대로입니다 → Render Setup의 Common 탭 옵션이 체크 해제되어 있는지 확인하고 다시 불러옵니다.",
+    "버전이 다른 V-Ray에서 프리셋이 깨집니다 → 호환되지 않는 구버전 설정값이 포함되었을 수 있으므로 주요 파라미터를 수동으로 재확인합니다."
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "Render Setup",
+    "Global Illumination",
+    "Denoiser"
+  ],
+  "videos": [
+    {
+      "id": "0sDLFw72PPc",
+      "title": "Render settings in V-Ray for 3ds Max explained",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "yD-kalim5Es",
+      "title": "Best Render Settings Explained | Beginner | V-Ray for SketchUp",
+      "author": "UVA Graphics"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Render%20Presets",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Maya",
+    "V-Ray",
+    "Render Setup"
+  ],
+  "at": "2026-11-27T01:52:14.451509+00:00"
+}
