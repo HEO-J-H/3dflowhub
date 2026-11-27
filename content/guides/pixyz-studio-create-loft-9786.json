@@ -1,0 +1,96 @@
+{
+  "id": "pixyz-studio-create-loft-9786",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "CAD 및 지오메트리 편집",
+  "name": "Create Loft",
+  "title": "Create Loft — 여러 단면 커브를 연결하여 3D 서피스 생성",
+  "summary": "Pixyz Studio의 Create Loft 기능은 서로 다른 단면 커브나 서피스 엣지들을 부드럽게 이어 붙여 입체적인 3D 형태를 생성하는 CAD 데이터 준비 도구입니다.",
+  "when": [
+    "복잡한 CAD 어셈블리에서 두 개의 분리된 개구부나 단면 사이를 매끄럽게 연결할 때",
+    "파이프, 호스, 날개 구조물 등 단면이 변화하는 유기적인 형태를 생성할 때",
+    "구멍이 뚫린 서피스 사이에 새로운 입체 면을 채워 넣을 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 모델을 불러온 뒤, Viewport에서 Loft로 연결할 대상 커브나 엣지들을 순서대로 선택합니다.",
+    "메뉴 바에서 Mesh 또는 Curve 관련 메뉴, 혹은 Context Menu(Mouse 우클릭)를 엽니다.",
+    "Create Loft (또는 Loft) 기능을 클릭하여 대화 상자를 엽니다.",
+    "Inspector 패널이나 팝업 옵션에서 Continuity, Tolerance 등의 파라미터를 조정합니다.",
+    "Execute 버튼을 눌러 결과 메시를 생성하고 Viewport에서 면이 올바르게 이어졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Continuity",
+      "desc": "연결되는 면 사이의 곡률 연속성(G0, G1, G2)을 설정합니다."
+    },
+    {
+      "name": "Tolerance",
+      "desc": "선택한 요소들 사이의 허용 오차 범위를 지정하여 미세한 틈을 보정합니다."
+    },
+    {
+      "name": "Flip Normals",
+      "desc": "생성되는 서피스의 법선(Normal) 방향을 반대로 뒤집습니다."
+    },
+    {
+      "name": "Close Loft",
+      "desc": "시작과 끝 단면을 서로 연결하여 원통형이나 닫힌 루프 형태로 만듭니다."
+    },
+    {
+      "name": "Max Edge Length",
+      "desc": "생성되는 폴리곤 메시의 최대 모서리 길이를 제한하여 디테일을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "서로 다른 두 구멍 사이 연결하기",
+      "steps": [
+        "두 개의 인접한 열린 엣지 루프를 각각 선택합니다.",
+        "Create Loft 기능을 실행하여 두 루프를 연결합니다.",
+        "Tolerance 값을 조절해 엣지가 정확히 맞물리도록 합니다."
+      ]
+    },
+    {
+      "title": "단면 커브를 이용한 입체 형태 생성",
+      "steps": [
+        "순서대로 배치된 단면 커브들을 차례대로 선택합니다.",
+        "Create Loft를 실행해 커브들을 통과하는 서피스를 생성합니다.",
+        "Continuity를 조정해 부드러운 곡면을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "선택 순서가 뒤섞임 → 단면이나 엣지를 일정한 방향과 순서대로 다시 선택합니다.",
+    "면의 법선 방향이 서로 다름 → Flip Normals 옵션을 켜서 면의 방향을 일치시킵니다.",
+    "허용 오차 범위 초과로 생성 실패 → Tolerance 값을 약간 늘려 다시 실행합니다."
+  ],
+  "related": [
+    "Stitch",
+    "Cap Holes",
+    "Revolve",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "mhOj9BGEAdM",
+      "title": "Top 7 Troubleshooting, Tips, & Tricks for using Pixyz Studio",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "3FefRon9UpQ",
+      "title": "Pixyz Studio #20  |   How to reduce a mesh using Pixyz Studio?",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Create%20Loft",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "Viewport",
+    "Loft",
+    "Mesh",
+    "Curve",
+    "Context Menu"
+  ],
+  "at": "2026-11-27T00:11:54.415593+00:00"
+}
