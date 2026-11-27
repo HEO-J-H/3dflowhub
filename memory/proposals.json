@@ -35738,5 +35738,36 @@
     "id": "p-66705eabc7",
     "v": "done",
     "note": "AI 관리자 자동 정리(done_already): 이미 끝낸 제안 목록에 '웹 버전(web/) 텍스처 미리보기 유닛 테스트 추가' 및 유사한 렌더링 테스트 항목들이 포함되어 있어 기 반영된 과제입니다."
+  },
+  {
+    "at": "2026-11-27T20:15:35+00:00",
+    "kind": "proposal",
+    "id": "p-d99f889113",
+    "title": "메타데이터 테스트 경로 단순화 및 헬퍼 분리",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 관련 작업에서 변경 없음 및 패치 적용 실패가 반복됨",
+    "proposal": "backend/tests/test_metadata_db.py를 소형 함수 단위로 쪼개고, 공통 DB 세션 헬퍼를 분리하여 패치 적용 실패 문제를 해결합니다.",
+    "expected": "테스트 파일 패치 적용 성공 및 CI 안정성 확보",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T20:15:54.950938+00:00",
+    "kind": "decision",
+    "id": "p-d99f889113",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T20:15:56.801935+00:00",
+    "kind": "triage",
+    "id": "p-d99f889113",
+    "verdict": "agent",
+    "reason": "백엔드 테스트 파일 분할 및 헬퍼 분리는 코드 수정으로 자동 해결할 수 있는 작업입니다."
   }
 ]
