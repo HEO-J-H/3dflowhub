@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-v-ray-vrayclipper-plane-ed88",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "지오메트리 및 이펙트",
+  "name": "V-Ray VRayClipper Plane",
+  "title": "V-Ray VRayClipper Plane — 씬의 특정 단면을 잘라내어 내부 구조나 단면 렌더링을 가능하게",
+  "summary": "V-Ray VRayClipper는 지오메트리를 실제로 수정하지 않고 렌더링 시 특정 평면을 기준으로 모델을 잘라내어 단면을 보여주는 강력한 도구입니다.",
+  "when": [
+    "건축 인테리어 렌더링에서 벽이나 천장을 잘라내어 내부 구조를 한눈에 보여주고 싶을 때",
+    "복잡한 기계 부품이나 제품의 단면도를 렌더링으로 표현해야 할 때",
+    "메시의 원본 데이터를 훼손하지 않고 비파괴 방식으로 단면 뷰를 연출하고 싶을 때"
+  ],
+  "steps": [
+    "Create 패널(상단 탭)에서 Geometry(파란색 구 아이콘)를 선택한 후 드롭다운에서 V-Ray를 선택합니다.",
+    "오브젝트 목록에서 VRayClipper 버튼을 클릭합니다.",
+    "Viewport 빈 공간을 클릭하고 드래그하여 VRayClipper 평면을 배치합니다.",
+    "Select and Move(W) 툴과 Rotate(E) 툴을 사용하여 자르고자 하는 위치와 방향으로 클리핑 평면을 이동·회전합니다.",
+    "Modify 패널에서 Parameters를 열고 Cut geometry 옵션이 켜져 있는지 확인합니다.",
+    "F9 키를 눌러 V-Ray 렌더링을 실행하고 단면이 올바르게 잘렸는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Cut geometry",
+      "desc": "체크하면 평면과 겹치는 지오메트리를 실제로 잘라내어 렌더링합니다."
+    },
+    {
+      "name": "Affect light",
+      "desc": "클리핑된 절단면 내부로 빛이 통과하여 자연스러운 실내 조명을 형성하도록 합니다."
+    },
+    {
+      "name": "Clip lights",
+      "desc": "클리핑 평면 바깥쪽의 라이트가 잘려나간 내부 영역에 미치는 영향을 제어합니다."
+    },
+    {
+      "name": "Material",
+      "desc": "단면이 잘린 단단한 절단면에 적용할 별도의 재질을 지정합니다."
+    },
+    {
+      "name": "Use object material",
+      "desc": "원본 오브젝트의 재질을 절단면 단면에 그대로 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "건축 단면도(Section Perspective) 렌더링",
+      "steps": [
+        "완성된 실내 건축 씬을 준비합니다.",
+        "VRayClipper 플레인을 생성하고 천장 바로 아래에 위치시킵니다.",
+        "Rotate 툴로 평면을 90도 회전시켜 벽면 측면을 자르도록 배치합니다.",
+        "F9 키를 눌러 건물 내부가 훤히 보이는 단면 컷을 렌더링합니다."
+      ]
+    },
+    {
+      "title": "제품 내부 구조 시각화",
+      "steps": [
+        "전자기기 3D 모델을 불러옵니다.",
+        "VRayClipper를 제품 중앙에 배치합니다.",
+        "Parameters에서 Cut geometry와 Use object material을 체크합니다.",
+        "렌더링을 실행하여 부품 내부가 깔끔하게 노출되는 이미지를 얻습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "클리핑 평면의 방향이 반대인 경우 → VRayClipper를 선택하고 Rotate 툴로 평면의 노멀 방향을 180도 뒤집습니다.",
+    "렌더링 시 단면이 잘리지 않고 그대로 나오는 경우 → Modify 패널에서 Cut geometry 옵션이 켜져 있는지 확인합니다.",
+    "절단면 안쪽이 검게 비어 보일 때 → Material 옵션에 적절한 단면 전용 머티리얼을 연결하거나 Use object material을 체크합니다."
+  ],
+  "related": [
+    "V-Ray Clipper",
+    "Photoshop 단면",
+    "ZBrush Clip 브러시",
+    "Edit Poly"
+  ],
+  "videos": [
+    {
+      "id": "62L2fPWtdRM",
+      "title": "Maya VRay clipper tutorial",
+      "author": "Maya Guy"
+    },
+    {
+      "id": "hcfP2dZ57MA",
+      "title": "How to use V-Ray Clipper Modifier in 3ds Max.  #3d #3dart #3dsmax #render #vray",
+      "author": "Lazy 3D Maker"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20VRayClipper%20Plane",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Create",
+    "Geometry",
+    "V-Ray"
+  ],
+  "at": "2026-11-27T03:22:50.356666+00:00"
+}

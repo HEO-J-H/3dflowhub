@@ -1,0 +1,88 @@
+{
+  "id": "v-ray-v-ray-vraybitmap-gamma-8fcf",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray VRayBitmap Gamma",
+  "title": "V-Ray VRayBitmap Gamma — 비트맵 텍스처의 감마 값과 색공간을 정밀하게 제어하는 텍스처 맵",
+  "summary": "V-Ray VRayBitmap Gamma는 텍스처 이미지의 감마(Gamma) 값을 조절하여 렌더링 시 밝기와 색상의 정확도를 맞추는 필수 옵션입니다. 잘못된 감마로 인해 어둡거나 지나치게 밝아지는 색상 왜곡을 방지합니다.",
+  "when": [
+    "텍스처 이미지가 뷰포트나 렌더 결과물에서 실제보다 너무 밝거나 어둡게 보일 때",
+    "Linear Workflow(선형 워크플로우) 환경에서 수동으로 텍스처 감마를 보정해야 할 때",
+    "외부에서 가져온 비정상적인 색상의 맵 파일을 올바른 컬러 스페이스로 맞출 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor (Shortcut: M)를 엽니다.",
+    "Material/Map Browser에서 V-Ray 카테고리를 찾거나 검색창에 VRayBitmap을 입력합니다.",
+    "VRayBitmap 노드를 슬롯에 드래그하여 생성하고, 사용할 이미지 파일을 선택합니다.",
+    "슬롯에서 VRayBitmap 노드를 더블 클릭하여 Parameter Editor를 엽니다.",
+    "Bitmap properties 롤아웃에서 Gamma 관련 옵션을 확인합니다.",
+    "Gamma 값을 목적에 맞게 수정(예: sRGB 보정을 위해 2.2 설정)하고 뷰포트나 V-Ray Frame Buffer에서 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Gamma",
+      "desc": "텍스처의 감마 곡선을 조절하여 밝기와 명암의 중간 톤을 보정합니다."
+    },
+    {
+      "name": "Adapt Gamma",
+      "desc": "파일 형식에 따라 감마 값을 자동으로 감지하여 적절하게 보정합니다."
+    },
+    {
+      "name": "Color Space",
+      "desc": "텍스처의 컬러 스페이스(sRGB, Linear 등)를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Diffuse 맵 감마 보정",
+      "steps": [
+        "VRayBitmap으로 컬러 텍스처를 불러옵니다.",
+        "Parameter Editor에서 Gamma 값을 2.2로 설정합니다.",
+        "Diffuse 파라미터에 연결하여 실제와 일치하는 밝기를 확인합니다."
+      ]
+    },
+    {
+      "title": "Roughness 맵 선형 유지",
+      "steps": [
+        "거칠기(Roughness) 텍스처를 VRayBitmap에 불러옵니다.",
+        "Gamma 값을 1.0(Linear)으로 고정합니다.",
+        "반사 맵의 물리적 정확도가 유지되는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Roughness나 Normal 맵에 Gamma 2.2를 적용함 → 맵의 물리적 값이 왜곡되므로 Gamma를 1.0(Linear)으로 설정해야 합니다.",
+    "이미지 편집 프로그램에서 이미지를 수정하고도 감마 중복 적용을 인지하지 못함 → 렌더링 결과가 지나치게 밝아지므로 Gamma 값을 재확인합니다."
+  ],
+  "related": [
+    "VRayBitmap",
+    "V-Ray Color Correct",
+    "VRayHDRI",
+    "Gamma"
+  ],
+  "videos": [
+    {
+      "id": "yRUXGSqPQAI",
+      "title": "V-Ray 5 for 3ds Max | How to apply gamma correction to your textures in VRayBitmap",
+      "author": "Sporadic Studio"
+    },
+    {
+      "id": "ET1JltqCWSY",
+      "title": "Gamma Corrections in 3ds Max + VRAY",
+      "author": "Saeed Mandegar Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20VRayBitmap%20Gamma",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Shortcut",
+    "Material",
+    "Map Browser",
+    "V-Ray",
+    "VRayBitmap"
+  ],
+  "at": "2026-11-27T03:22:53.847736+00:00"
+}
