@@ -1,0 +1,85 @@
+{
+  "id": "photoshop-merge-3d-bbed",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D 메쉬 및 편집",
+  "name": "Merge 3D",
+  "title": "3D 병합 — 여러 개의 독립된 3D 레이어를 하나로 합치는 기능",
+  "summary": "Photoshop의 Merge 3D 기능은 작업 공간 내에 존재하는 여러 개의 독립된 3D 메시 레이어를 하나로 결합하여 단일 3D 오브젝트로 관리할 수 있게 해줍니다.",
+  "when": [
+    "복잡한 3D 조립품의 여러 파츠를 하나의 통째 오브젝트로 묶고 싶을 때",
+    "3D 패널의 레이어 정리를 깔끔하게 줄이고 싶을 때",
+    "하나의 3D 파일이나 텍스처를 여러 메시 전체에 일괄 적용하고 싶을 때"
+  ],
+  "steps": [
+    "Photoshop 상단 메뉴에서 Window → Workspace → 3D 를 선택하여 3D 작업 공간으로 전환합니다.",
+    "Layers 패널 또는 3D 패널에서 하나로 합치고자 하는 두 개 이상의 3D 메시 레이어를 Ctrl 키를 누른 채 함께 선택합니다.",
+    "3D 패널 하단 또는 레이어 우클릭 메뉴에서 Merge 3D 를 선택합니다.",
+    "Viewport에서 선택한 메시들이 하나의 단일 3D 레이어로 결합되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Merge 3D",
+      "desc": "선택한 여러 개의 3D 메시 레이어를 하나의 단일 3D 오브젝트로 결합합니다."
+    },
+    {
+      "name": "Layers Panel",
+      "desc": "결합할 대상 3D 레이어를 선택하고 관리하는 패널입니다."
+    },
+    {
+      "name": "3D Panel",
+      "desc": "씬에 포함된 3D 메시, 재질, 조명 구조를 계층별로 보여줍니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로봇 모델 파츠 합치기",
+      "steps": [
+        "3D 패널에서 분리된 팔과 몸통 메시를 각각 선택합니다.",
+        "우클릭 후 Merge 3D를 실행합니다.",
+        "하나의 메시로 묶인 로봇을 이동 툴로 함께 조작합니다."
+      ]
+    },
+    {
+      "title": "건축물 소품 결합",
+      "steps": [
+        "창문과 프레임 메시 레이어를 다중 선택합니다.",
+        "Merge 3D를 적용해 단일 레이어로 만듭니다.",
+        "통합된 메시 전체에 동일한 재질(Material)을 할당합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "단일 레이어가 아닌 일반 2D 레이어가 선택됨 → 3D 메시 레이어만 정확히 다중 선택했는지 확인합니다.",
+    "병합 후 개별 수정이 불가능함 → 병합 전 원본 레이어를 백업해 둡니다."
+  ],
+  "related": [
+    "Merge Meshes",
+    "Merge Actors",
+    "Merge SOP",
+    "Group 3D"
+  ],
+  "videos": [
+    {
+      "id": "4Zhf0ZIpKo4",
+      "title": "How to blend and merge two diffrent layers in photoshop 2024",
+      "author": "GFX OM"
+    },
+    {
+      "id": "CO1CCUXcDGs",
+      "title": "Merge 2 Photos in Photoshop",
+      "author": "Photoshop Tutorials"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Merge%203D",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "Window",
+    "Workspace",
+    "Layers",
+    "Merge 3D"
+  ],
+  "at": "2026-11-27T02:22:32.827264+00:00"
+}

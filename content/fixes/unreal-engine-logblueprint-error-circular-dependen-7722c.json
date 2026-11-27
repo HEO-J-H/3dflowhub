@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logblueprint-error-circular-dependen-7722c",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogBlueprint: Error: Circular dependency detected when compiling blueprint",
+  "title": "LogBlueprint: Error: Circular dependency detected when compiling blueprint — Unreal",
+  "summary": "LogBlueprint: Error: Circular dependency detected when compiling blueprint 오류는 Unreal Engine에서 Blueprint를 컴파일할 때 서로 다른 블루프린트나 상속 관계에서 상호 참조(순환 참조)가 발생하여 엔진이 Compile 순서를 결정하지 못할 때 나타납니다.",
+  "causes": [
+    "Blueprint A가 Blueprint B를 변수나 컴포넌트로 참조하는 동시에, Blueprint B도 Blueprint A를 참조하는 상호 참조 구조",
+    "부모-자식 상속 관계에 있는 Blueprint 간의 잘못된 내부 함수 및 변수 참조",
+    "인터페이스를 거치지 않고 직접 클래스를 캐스팅(Cast)하는 과정에서의 순환 구조 형성"
+  ],
+  "steps": [
+    "오류 로그에 언급된 Blueprint 자산 경로를 확인하여 대상 Blueprint를 엽니다.",
+    "Graph 패널이나 My Blueprint 패널에서 다른 Blueprint를 직접 변수 타입이나 참조로 들고 있는 부분을 찾습니다.",
+    "두 Blueprint가 서로를 강하게 참조하고 있다면, 공통 데이터를 관리하는 Data Asset이나 Blueprint Interface로 의존성을 분리합니다.",
+    "Compile 버튼을 눌러 순환 참조 오류 메시지가 사라지는지 확인합니다.",
+    "에디터를 재시작하거나 DerivedDataCache 폴더를 정리하여 캐시된 Compile 오류를 초기화합니다."
+  ],
+  "check": [
+    "Output Log에서 해당 Blueprint Compile 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Blueprint Editor에서 정상적으로 Compile이 완료되고 성공(Compiled successfully) 메시지가 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "긴밀하게 결합되어야 하는 로직은 Blueprint Interface나 Event Dispatcher를 활용하여 느슨한 결합(Loose Coupling) 구조로 설계합니다.",
+    "자식 Blueprint가 부모의 세부 구현에 과도하게 의존하지 않도록 공통 기능을 분리합니다."
+  ],
+  "keywords": [
+    "Unreal Blueprint 순환 참조",
+    "Circular dependency detected",
+    "LogBlueprint Error",
+    "Blueprint Compile 오류",
+    "Unreal 에러 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T02:22:42+00:00"
+}

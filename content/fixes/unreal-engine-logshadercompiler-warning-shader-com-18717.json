@@ -1,0 +1,37 @@
+{
+  "id": "unreal-engine-logshadercompiler-warning-shader-com-18717",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogShaderCompiler: Warning: Shader compilation failed for material",
+  "title": "LogShaderCompiler: Warning: Shader compilation failed for material — Unreal Engine 머티리얼",
+  "summary": "Unreal Engine에서 머티리얼을 컴파일하는 동안 Shader 코드 생성이나 Compile 과정에서 오류가 발생하여 실패했음을 알리는 경고 및 오류 메시지입니다. 주로 잘못된 HLSL 코드, 커스텀 머티리얼 노드의 문법 오류, 또는 플랫폼 호환성 문제로 인해 발생합니다.",
+  "causes": [
+    "Custom Material Node 내부에 작성된 HLSL 코드의 문법 오류",
+    "머티리얼 Graph 내 지원되지 않는 연산이나 호환되지 않는 플랫폼 타겟팅",
+    "손상되거나 잘못 구성된 텍스처 샘플러 및 노드 연결 상태"
+  ],
+  "steps": [
+    "Content Browser에서 문제가 발생하는 해당 Material 에셋을 더블 클릭하여 Material Editor를 엽니다.",
+    "통계 및 출력 로그(Output Log)에서 어떤 노드나 픽셀/Vertex Shader 단계에서 Compile이 실패했는지 단서가 되는 에러 메시지를 확인합니다.",
+    "Custom 노드나 최근에 수정된 표현식 노드를 중심으로 노드 연결 상태와 내부 코드를 검토합니다.",
+    "문제가 되는 노드를 임시로 제거하거나 연결을 끊은 후 Apply 버튼을 눌러 Compile이 정상적으로 진행되는지 확인합니다.",
+    "필요한 경우 Material Details 패널에서 Usage 플래그(예: Used with Skeletal Meshes 등)나 플랫폼 설정을 점검합니다."
+  ],
+  "check": [
+    "Material Editor에서 Apply 버튼을 눌렀을 때 좌측 상단에 붉은색 Compile 에러 표시가 사라지고 정상적으로 렌더링되는지 확인합니다.",
+    "Output Log에 LogShaderCompiler 관련 붉은색 에러 메시지가 더 이상 출력되지 않는지 확인합니다."
+  ],
+  "prevent": [
+    "Custom 노드에 HLSL 코드를 작성할 때 사전에 문법과 변수 타입을 철저히 검증합니다.",
+    "대규모 머티리얼 수정 작업 전에는 반드시 버전을 백업하거나 변경 사항을 단계별로 컴파일하여 테스트합니다."
+  ],
+  "keywords": [
+    "Unreal Engine Shader Compile 실패",
+    "LogShaderCompiler Warning",
+    "머티리얼 Compile 에러",
+    "Unreal 커스텀 노드 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T02:22:44+00:00"
+}

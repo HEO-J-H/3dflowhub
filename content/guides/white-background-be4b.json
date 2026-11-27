@@ -1,0 +1,80 @@
+{
+  "id": "white-background-be4b",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 설정",
+  "name": "WHITE BACKGROUND",
+  "title": "White Background — 투명 배경 이미지 학습을 위한 흰색 배경 강제 설정",
+  "summary": "White Background는 Gaussian Splatting 렌더링 및 뷰어 환경에서 배경을 순수한 흰색으로 고정하여, 제품 촬영본처럼 깔끔한 결과물을 얻는 옵션입니다.",
+  "when": [
+    "상업용 제품이나 피규어 등 단독 객체(Object) 중심의 Splatting 결과물을 추출할 때",
+    "웹사이트나 포트폴리오에 배경 투명화 또는 흰색 배경으로 임베드해야 할 때",
+    "기본 검은색 배경에서 잘 구분이 안 되는 밝은 톤의 3D 씬을 확인할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 뷰어 또는 학습/편집 Software(예: Nerfstudio, SIBR, Luma 등)를 실행합니다.",
+    "Project Settings 또는 Viewport 설정 메뉴를 엽니다.",
+    "Rendering 또는 Environment 탭으로 이동합니다.",
+    "Background Color 옵션을 찾아 색상을 순수한 흰색(RGB: 255, 255, 255)으로 설정합니다.",
+    "Viewport 또는 Render 결과물에서 배경이 흰색으로 바뀌었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Background Color",
+      "desc": "렌더링 Viewport의 배경 색상을 지정합니다."
+    },
+    {
+      "name": "Background Mode",
+      "desc": "배경을 단색(Solid), 투명(Transparent), 또는 환경맵(Environment) 중 선택합니다."
+    },
+    {
+      "name": "Alpha Channel",
+      "desc": "투명 배경으로 Export 할 때 알파 채널 포함 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "이커머스 제품 Splatting 컷 제작",
+      "steps": [
+        "제품 Splatting 씬을 뷰어에서 엽니다.",
+        "Background Color를 흰색으로 지정합니다.",
+        "High-Resolution Render 기능을 사용하여 이미지로 저장합니다."
+      ]
+    },
+    {
+      "title": "웹 포트폴리오용 뷰어 세팅",
+      "steps": [
+        "웹 뷰어 설정 패널에 접속합니다.",
+        "배경 옵션을 Solid White로 고정합니다.",
+        "웹사이트 임베드 코드를 생성하여 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "투명 배경과 흰색 배경 혼동 → PNG 투명 출력이 필요할 때는 Background Mode를 Transparent로 설정해야 합니다.",
+    "조명 값과 배경색 충돌 → 흰색 배경에서 물체 주변의 반사나 플로팅 아티팩트가 두드러질 수 있으므로 Alpha Threshold나 불필요한 노이즈를 먼저 정리합니다."
+  ],
+  "related": [
+    "Background Color",
+    "Unbounded Scenes",
+    "Resolution Multiplier",
+    "SH Degree"
+  ],
+  "videos": [
+    {
+      "id": "Zh9chQoPcag",
+      "title": "Remove White Background From Logo - Short Photoshop Tutorial",
+      "author": "Lily & Basoah Studio"
+    },
+    {
+      "id": "VyM5ZYR3jxM",
+      "title": "How to separate the background of all white objects #thegraphiceffect #photoshoptutorial",
+      "author": "The Graphic Effect"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20WHITE%20BACKGROUND",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T02:22:29.753573+00:00"
+}

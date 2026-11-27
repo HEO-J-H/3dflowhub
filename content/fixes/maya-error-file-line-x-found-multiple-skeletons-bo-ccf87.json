@@ -1,0 +1,38 @@
+{
+  "id": "maya-error-file-line-x-found-multiple-skeletons-bo-ccf87",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Found multiple skeletons bound to the same mesh",
+  "title": "# Error: file: line X: Found multiple skeletons bound to the same mesh — Maya 스킨 중",
+  "summary": "Maya에서 하나의 메시(Mesh)에 2개 이상의 스켈레톤(Skeleton) 또는 조인트 체인이 바인딩되었을 때 발생하는 오류입니다. 잘못된 스킨 바인딩 작업이나 에셋 머지 과정에서 구조적 충돌을 유발합니다.",
+  "causes": [
+    "기존에 스킨이 바인딩된 메시지 위에 새로운 조인트 체인을 중복으로 Smooth Bind 하였을 때",
+    "서로 다른 캐릭터나 파츠를 머지(Merge/Import)하는 과정에서 히스토리 충돌이 발생했을 때",
+    "잘못된 Script 실행으로 인해 불필요한 SkinCluster 노드가 생성되었을 때"
+  ],
+  "steps": [
+    "문제가 되는 메시를 선택하고, 메인 메뉴에서 Modeling 또는 Animation 메뉴 세트로 전환합니다.",
+    "Skin 메뉴에서 Unbind Skin (또는 Detach Skin)을 실행하여 기존의 모든 스킨 바인딩을 완전히 제거합니다.",
+    "Outliner를 열어 메시 내부에 남아 있는 불필요한 Joint나 Transform 노드를 정리합니다.",
+    "메시를 선택한 후, 연결하려는 단 하나의 올바른 루트 조인트(Root Joint)만 선택하고 Bind Skin을 다시 실행합니다.",
+    "필요한 경우 MEL 또는 Python Script 창에서 'skinCluster' 노드를 조회하여 중복 연결 여부를 확인하고 정리합니다."
+  ],
+  "check": [
+    "파일을 다시드래그하거나 저장 후 불러왔을 때 Script Editor에 동일한 오류 메시지가 출력되지 않는지 확인합니다.",
+    "리깅된 조인트를 움직였을 때 메시가 의도한 대로 정상적으로 변형되는지 확인합니다."
+  ],
+  "prevent": [
+    "새로운 조인트에 바인딩하기 전 반드시 기존 스킨(Unbind Skin)을 먼저 해제합니다.",
+    "에셋을 머지(Import)하기 전에 각 파일의 조인트 계층 구조와 네이밍 규칙을 확인합니다."
+  ],
+  "keywords": [
+    "Maya multiple skeletons",
+    "Found multiple skeletons bound to the same mesh",
+    "Maya 스킨 중복 오류",
+    "스켈레톤 바인딩 에러",
+    "Unbind Skin 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T02:22:38+00:00"
+}

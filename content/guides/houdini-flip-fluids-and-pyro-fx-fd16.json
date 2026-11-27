@@ -1,0 +1,93 @@
+{
+  "id": "houdini-flip-fluids-and-pyro-fx-fd16",
+  "tool": "Houdini",
+  "domain": "3D DCC",
+  "group": "시뮬레이션",
+  "name": "FLIP Fluids and Pyro FX",
+  "title": "Houdini FLIP 유체 및 파이로 시뮬레이션 기초",
+  "summary": "Houdini FLIP Fluids와 Pyro FX는 물리 법칙을 기반으로 물, 액체, 불꽃, 연기 등의 유체 역학 현상을 정밀하게 시뮬레이션하는 강력한 도구입니다.",
+  "when": [
+    "물결, 파도, 강물 등 정교한 액체 움직임이 필요한 시뮬레이션",
+    "폭발, 화재, 횃불 등 불꽃과 열기를 표현하는 Effect 작업",
+    "연기, 안개, 먼지 등 공기 중으로 퍼지는 대기 효과 제작"
+  ],
+  "steps": [
+    "네트워크 뷰(Network View)에서 Tab 키를 누르고 Geometry 노드를 생성한 뒤 더블 클릭하여 들어갑니다.",
+    "Tab 키를 눌르고 FLIP Tank 또는 Pyro Source 노드를 생성하여 기본 소스를 만듭니다.",
+    "FLIP Solver 또는 Pyro Solver 노드를 추가하고 소스 노드와 연결합니다.",
+    "파라미터 패널에서 입자 분리 거리(Particle Separation)와 소스 밀도를 설정합니다.",
+    "Timeline 하단의 재생 버튼을 눌러 시뮬레이션 결과를 Viewport에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Particle Separation",
+      "desc": "입자 간격을 조절하여 시뮬레이션의 디테일과 Resolution를 결정합니다."
+    },
+    {
+      "name": "Substeps",
+      "desc": "프레임당 계산 횟수를 늘려 빠른 움직임에서 시뮬레이션이 깨지는 현상을 방지합니다."
+    },
+    {
+      "name": "Viscosity",
+      "desc": "액체의 끈적임 정도를 설정하여 물부터 꿀, 진흙까지 다양한 점성을 표현합니다."
+    },
+    {
+      "name": "Buoyancy",
+      "desc": "온도와 밀도 차이에 의해 연기와 불이 위로 떠오르는 힘을 조절합니다."
+    },
+    {
+      "name": "Dissipation",
+      "desc": "연기나 불이 시간이 지남에 따라 사라지는 속도를 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "물컵에 떨어지는 물방울",
+      "steps": [
+        "FLIP Tank로 물 채우기",
+        "Sphere 노드로 물방울 소스 생성",
+        "FLIP Solver로 충돌 계산"
+      ]
+    },
+    {
+      "title": "모닥불 화염 Effect",
+      "steps": [
+        "Pyro Source로 불꽃 발생 위치 지정",
+        "Pyro Solver로 연소 및 상승 기류 시뮬레이션",
+        "Volume Visualization으로 화염 렌더링 세팅"
+      ]
+    }
+  ],
+  "mistakes": [
+    "Particle Separation 값을 너무 낮게 설정함 → 시뮬레이션 속도가 지나치게 느려지거나 메모리가 부족할 수 있으므로 초기 테스트는 높은 값으로 시작하세요.",
+    "Substeps가 부족하여 물이 표면을 뚫고 나감 → Substeps 값을 올려 충돌 정밀도를 높여 해결합니다."
+  ],
+  "related": [
+    "FLIP Tank",
+    "Pyro Solver",
+    "Volume Visualization",
+    "Whitewater"
+  ],
+  "videos": [
+    {
+      "id": "4rBy2Vi1S50",
+      "title": "Merge FLIP & Oceans Seamlessly 🌊 | Cinematic FX & Render in Houdini 20.5 — All in Under 10 Mins!",
+      "author": "Node Flow"
+    },
+    {
+      "id": "FTmenVeW-pg",
+      "title": "Floating Object with Flip Simulation in Houdini | Houdini Flip Fluid Simulation",
+      "author": "vfxexpert"
+    }
+  ],
+  "doc": "https://www.sidefx.com/search/?q=Houdini%20FLIP%20Fluids%20and%20Pyro%20FX",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Network View",
+    "Geometry",
+    "FLIP Tank",
+    "Pyro Source"
+  ],
+  "at": "2026-11-27T02:22:36.209317+00:00"
+}
