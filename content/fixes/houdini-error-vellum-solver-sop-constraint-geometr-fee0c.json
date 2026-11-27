@@ -1,0 +1,38 @@
+{
+  "id": "houdini-error-vellum-solver-sop-constraint-geometr-fee0c",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Vellum solver sop: Constraint geometry contains NaN or invalid positions",
+  "title": "Error: Vellum solver sop: Constraint geometry contains NaN or invalid positions ",
+  "summary": "Error: Vellum solver sop: Constraint geometry contains NaN or invalid positions 오류는 Houdini에서 Vellum 시뮬레이션의 제약 조건(Constraint) 지오메트리에 0으로 나누기, 붕괴된 폴리곤, 또는 비정상적인 NaN(Not a Number) 좌표값이 포함되어 계산을 수행할 수 없을 때 발생합니다.",
+  "causes": [
+    "이전 노드에서 계산 오류나 0으로 나누기 등으로 인해 포인트 위치에 NaN 값이 생성된 경우",
+    "Vellum Constraint 노드에 입력된 지오메트리가 붕괴되었거나 제로 스케일(Zero scale) 상태인 경우",
+    "Transform 또는 Attribute VOP 등의 노드 연산 중 잘못된 매개변수 입력으로 좌표가 유효 범위를 벗어난 경우"
+  ],
+  "steps": [
+    "네트워크 뷰에서 Vellum Solver SOP의 입력 단자를 확인하여 제약 조건 데이터를 공급하는 Vellum Constraint 계열 노드를 찾습니다.",
+    "Vellum Constraint 노드 이전 단계에 Blast SOP 또는 Clean SOP를 배치하여 중복 포인트와 부적절한 지오메트리를 정리합니다.",
+    "Attribute Wrangle SOP를 추가하고 'if (isnan(@P)) @P = 0;' 코드를 입력하여 뷰포트나 지오메트리 내의 NaN 포인트를 강제로 보정합니다.",
+    "Null SOP를 Vellum Solver 직전에 연결하고 Geometry Spreadsheet를 열어 Position(@P) 및 속성 값에 NaN이나 Inf가 없는지 확인합니다.",
+    "문제가 지속될 경우 Vellum Constraint 노드의 Rest Length나 Stiffness 등 수치 설정을 기본값으로 재설정합니다."
+  ],
+  "check": [
+    "Geometry Spreadsheet에서 @P 속성 열에 빨간색 경고나 NaN/Inf 텍스트가 사라졌는지 확인합니다.",
+    "Vellum Solver SOP를 재실행했을 때 오류 메시지가 사라지고 시뮬레이션 캐시가 정상적으로 진행되는지 확인합니다."
+  ],
+  "prevent": [
+    "수식이나 VEX 코드를 작성할 때 0으로 나누기(Division by zero) 예외 처리를 항상 포함합니다.",
+    "시뮬레이션 입력 전 Clean SOP를 습관적으로 사용하여 잘못된 Topology와 중복 요소를 사전에 제거합니다."
+  ],
+  "keywords": [
+    "Houdini Vellum 오류",
+    "Constraint geometry contains NaN",
+    "Vellum solver NaN position",
+    "Houdini Vellum solver sop error",
+    "Vellum 제약 조건 오류 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T05:22:50+00:00"
+}

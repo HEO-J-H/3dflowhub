@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-zplugin-dynamesh-failed-because-mesh-has-ze-52a96",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: Dynamesh failed because mesh has zero thickness or open geometry",
+  "title": "Zplugin: Dynamesh failed because mesh has zero thickness or open geometry — ZBrush",
+  "summary": "ZBrush에서 DynaMesh를 실행할 때 메쉬에 두께가 전혀 없거나(Zero thickness) 뚫린 면(Open geometry)이 존재하여 볼륨 연산을 수행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "메쉬의 일부 면이 삭제되어 열려 있거나(Open boundaries), 정상적인 볼륨(Closed volume)을 형성하지 못한 경우",
+    "Extrude나 Plane 3D 등 두께가 없는 단면(Single-sided polygon) 메쉬에 DynaMesh를 적용한 경우",
+    "인접한 두 면이 너무 가깝거나 겹쳐서 노멀(Normal) 방향이 충돌하고 비정상적인 지오메트리를 만든 경우"
+  ],
+  "steps": [
+    "Tool > Geometry > DynaMesh 메뉴에서 그룹이 열려 있거나 뚫린 곳이 없는지 확인합니다.",
+    "Tool > Modify Topology > Close Holes를 실행하여 메쉬의 열린 구멍을 자동으로 막습니다.",
+    "Tool > Geometry > DynaMesh 설정에서 Thickness(두께) 값이 0으로 설정되어 있는지 확인하고 필요한 두께 값을 부여합니다.",
+    "두께가 없는 평면(Plane) 메쉬라면 Tool > SubTool > Extract 등을 사용해 볼륨(두께)을 먼저 생성합니다.",
+    "Tool > Display Properties > Flip을 통해 뒤집힌 면(Inverted normals)이 있는지 확인하고 수정합니다.",
+    "문제가 해결된 상태에서 다시 Tool > Geometry > DynaMesh 버튼을 클릭해 연산을 실행합니다."
+  ],
+  "check": [
+    "DynaMesh를 재적용했을 때 에러 팝업창 없이 폴리곤 그룹이 웰딩(Welding)되고 재메싱된 폴리곤 라인이 Viewport에 나타나는지 확인합니다."
+  ],
+  "prevent": [
+    "DynaMesh를 실행하기 전 항상 메쉬가 닫힌 볼륨(Closed watertight mesh) 형태를 유지하고 있는지 확인합니다.",
+    "단일 폴리곤 평면이나 얇은 시트(Sheet) 모델에는 DynaMesh 대신 기하학적 두께를 먼저 부여하거나 다른 Modifier를 사용합니다."
+  ],
+  "keywords": [
+    "ZBrush DynaMesh 오류",
+    "zero thickness open geometry",
+    "DynaMesh failed",
+    "ZBrush 구멍 막기",
+    "다이나메쉬 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T05:22:55+00:00"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "zbrush-zplugin-polypaint-from-texture-failed-becau-61f54",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: Polypaint from texture failed because UV map is missing",
+  "title": "Zplugin: Polypaint from texture failed because UV map is missing — ZBrush UV 맵 없음 ",
+  "summary": "ZBrush에서 Polypaint from texture 기능을 실행할 때 메쉬에 UV 맵이 존재하지 않아 텍스처 데이터를 정점 색상으로 변환하지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "선택한 서브툴(SubTool)에 UV 맵이 아예 생성되어 있지 않은 경우",
+    "UV가 없는 상태에서 텍스처를 곧바로 폴리페인트로 변환하려고 시도한 경우"
+  ],
+  "steps": [
+    "Tool 팔레트에서 대상 서브툴(SubTool)을 선택합니다.",
+    "Tool > UV Map 메뉴로 이동하여 원하는 UV 방식(예: UV Master, Headiti 등)을 이용해 UV를 생성합니다.",
+    "UV 생성 후 Tool > Texture Map 메뉴에서 텍스처가 올바르게 연결되어 있는지 확인합니다.",
+    "다시 Tool > Polypaint > Polypaint From Texture 버튼을 클릭하여 변환을 실행합니다."
+  ],
+  "check": [
+    "오류 메시지 없이 메쉬 표면에 텍스처 색상이 정점 단위(Polypaint)로 정상적으로 반영되는지 확인합니다."
+  ],
+  "prevent": [
+    "텍스처를 폴리페인트로 변환하기 전에 항상 UV 맵 존재 여부를 먼저 확인합니다."
+  ],
+  "keywords": [
+    "ZBrush 오류",
+    "Polypaint from texture failed",
+    "UV map is missing",
+    "ZBrush 폴리페인트 오류",
+    "UV 없음"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-27T05:22:56+00:00"
+}
