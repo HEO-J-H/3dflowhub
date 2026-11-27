@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-26T21:12:01+00:00",
-  "checked": 1917,
+  "at": "2026-11-27T03:12:33+00:00",
+  "checked": 1977,
   "mechanical_count": 135,
   "mechanical_by_problem": [
     [
@@ -2716,6 +2716,35 @@
       "score": 10,
       "defects": [],
       "fix_hint": "공식 문서의 노드 기능과 파라미터 설명을 정확히 반영하고 영문 UI 명칭을 올바르게 사용하였습니다."
+    },
+    {
+      "kind": "guide",
+      "id": "maya-arnold-render-view-b089",
+      "title": "Arnold Render View",
+      "score": 8,
+      "defects": [
+        "Arnold Render View 실행 경로에 한글 설명과 영문 메뉴명(Arnold > Open Render View)이 혼재되어 있으나 실제 Maya 인터페이스 표준에 맞게 더 명확히 다듬을 필요가 있습니다.",
+        "일부 UI 요소 및 파라미터(Camera, Resolution, Exposure 등)에 대한 설명이 다소 나열식입니다."
+      ],
+      "fix_hint": "Maya의 공식 메뉴 경로와 파라미터 이름을 정확한 영문 표기로 통일하고 단계별 실습 순서를 더 명확하게 작성하세요."
+    },
+    {
+      "kind": "fix",
+      "id": "3ds-max-maxscript-runtime-error-angle-must-be-grea-9fc6e",
+      "title": "MAXScript: Runtime error: Angle must be greater than zero 오류 해결",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "MAXScript 런타임 오류 해결 가이드의 원인과 해결 절차가 정확하며 공식 영문 UI 명칭이 잘 반영되어 있습니다."
+    },
+    {
+      "kind": "guide",
+      "id": "gltf-glb-export-c9e6",
+      "title": "GLTF/GLB Export — 모델을 GLTF/GLB 파일로 Export",
+      "score": 8,
+      "defects": [
+        "일부 후처리 툴(SuperSplat, Blender 등)마다 실제 Export 메뉴 위치와 이름이 다를 수 있으나 단일 경로로 고정되어 있음"
+      ],
+      "fix_hint": "다양한 소프트웨어의 구체적인 Export 메뉴 경로 차이를 명시하거나 일반적인 흐름으로 서술하세요."
     }
   ],
   "avg_score": 9.0,
