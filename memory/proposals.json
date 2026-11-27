@@ -35486,5 +35486,43 @@
     "id": "p-a9de4f009d",
     "verdict": "agent",
     "reason": "대형 파일 방식 대신 SQLite 인메모리 DB 스키마와 쿼리 테스트 코드를 작성하는 작업은 코드 수정과 파일 생성을 통해 AI 에이전트가 직접 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-27T15:04:49+00:00",
+    "kind": "proposal",
+    "id": "p-e0248ecbac",
+    "title": "로컬 DB 메타데이터 검색용 경량 오픈소스 검토",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "사장님 요청 사항(깃허브 RAG 오픈소스 검토) 및 로컬 DB 스키마 설계 완료 상태.",
+    "proposal": "docs/agent-guides/rag-opensource-review.md 문서를 추가하여 로컬 환경에서 가볍게 쓸 수 있는 임베디드 검색 라이브러리(예: DuckDB, SQLite FTS5 등)의 라이선스와 적용 방안을 정리합니다.",
+    "expected": "오픈소스 도입 기준(상업 이용 가능 여부, 경량성)에 부합하는 RAG/검색 기술 탐색",
+    "effort": "보통",
+    "source": "https://heo-j-h.github.io/Pix2Poly/",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T15:05:16.450695+00:00",
+    "kind": "decision",
+    "id": "p-e0248ecbac",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T15:05:18.938916+00:00",
+    "kind": "triage",
+    "id": "p-e0248ecbac",
+    "verdict": "done_already",
+    "reason": "이미 오픈소스 라이선스 검토 관련 문서와 기능이 커밋 및 끝낸 제안에 반영되어 있음"
+  },
+  {
+    "at": "2026-11-27T15:05:18.983439+00:00",
+    "kind": "decision",
+    "id": "p-e0248ecbac",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(done_already): 이미 오픈소스 라이선스 검토 관련 문서와 기능이 커밋 및 끝낸 제안에 반영되어 있음"
   }
 ]
