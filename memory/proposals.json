@@ -35455,5 +35455,36 @@
     "id": "p-707f21fbf7",
     "verdict": "agent",
     "reason": "대형 테스트 파일을 소형 단위로 분할하여 개별 테스트 함수 및 파일로 재구성하는 작업은 코드 수정과 테스트 파일 구조 개선을 통해 에이전트가 직접 해결할 수 있습니다."
+  },
+  {
+    "at": "2026-11-27T14:24:28+00:00",
+    "kind": "proposal",
+    "id": "p-a9de4f009d",
+    "title": "메타데이터 테스트 파일 신규 작성 및 경로 점검",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 과제가 변경 없음으로 반복 실패함",
+    "proposal": "기존 대형 파일 방식 대신 간단한 SQLite 메모리 DB 기반의 스키마 생성 및 기본 쿼리 테스트 코드를 backend/tests/test_metadata_db.py에 간결하게 새로 작성합니다.",
+    "expected": "테스트 통과 및 코딩 에이전트의 정체된 과제 해소",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T14:25:01.604631+00:00",
+    "kind": "decision",
+    "id": "p-a9de4f009d",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T14:25:03.634287+00:00",
+    "kind": "triage",
+    "id": "p-a9de4f009d",
+    "verdict": "agent",
+    "reason": "대형 파일 방식 대신 SQLite 인메모리 DB 스키마와 쿼리 테스트 코드를 작성하는 작업은 코드 수정과 파일 생성을 통해 AI 에이전트가 직접 해결할 수 있습니다."
   }
 ]
