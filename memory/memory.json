@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-25T15:37:33.157887+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 33,
-      "candidates_passed": 11,
-      "offtopic": 23,
-      "short": 0,
-      "prefiltered": 4,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "8262c995",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-25T15:45:25.967445+00:00",
       "collected": 1,
       "saved": 0,
@@ -7246,6 +7222,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-27T18:45:33.734404+00:00",
+      "collected": 1,
+      "saved": 0,
+      "published": 0,
+      "drafts": 0,
+      "publish_errors": 0,
+      "candidates": 96,
+      "candidates_passed": 33,
+      "offtopic": 25,
+      "short": 0,
+      "prefiltered": 49,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "97537d16",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7341,7 +7344,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-18 [성찰] 동음이의어(Maya, Nuke 등)로 인한 오탐지율을 낮추고, 3D/CG 전용 필터를 강화하여 고단가 실무 튜토리얼 및 애드온 중심의 유입을 극대화해야 합니다.",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: open-source-review.md guide must exist / E       assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-sou",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-source-review.md').exists / FAILED backend/tests/tes",
     "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐지를 막기 위해 수집 단계에서 3D/CG 전용 소프트웨어 컨텍스트 필터를 엄격히 적용해야 합니다.",
@@ -7460,7 +7462,8 @@
     "2026-11-27 [[p-2117272018|운영·비용] 메타데이터 테스트 파일 및 모델 구] 테스트 실패 — E       NameError: name 'TestClient' is not defined / FAILED backend/tests/test_metadata_db.py::test_pr8_retry_validation - NameError: name 'TestClient' is not defined 보안: ['기능 변화 없음 — 문자열·주석",
     "2026-11-27 [[p-2117272018|운영·비용] 메타데이터 테스트 파일 및 모델 구] 테스트 실패 — E       NameError: name 'TestClient' is not defined / FAILED backend/tests/test_metadata_db.py::test_pr8_retry_validation - NameError: name 'TestClient' is not defined 보안: ['기능 변화 없음 — 문자열·주석",
     "2026-11-27 [성찰] 동음이의어(인물, 주식, 일반 단어) 필터를 강화하고 고CPC 실무 튜토리얼 및 스크립트 가이드에 집중해야 오탐지와 저품질 문서를 줄이고 검색 유입을 극대화할 수 있습니다.",
-    "2026-11-27 [성찰] 동음이의어 필터링을 더욱 강화하여 비전문적 수집 오류(오프토픽)를 줄이고, 실무 검색 유입이 높은 Maxscript 및 Blender 가이드 중심의 고단가 콘텐츠 편성을 유지해야 합니다."
+    "2026-11-27 [성찰] 동음이의어 필터링을 더욱 강화하여 비전문적 수집 오류(오프토픽)를 줄이고, 실무 검색 유입이 높은 Maxscript 및 Blender 가이드 중심의 고단가 콘텐츠 편성을 유지해야 합니다.",
+    "2026-11-27 [성찰] 동음이의어(핵, 주식, 인물명 등)로 인한 오수집을 방지하기 위해 CG·게임·VFX 실무 문맥 검증 필터를 더욱 강화해야 합니다."
   ],
   "categories": {
     "VFX": [
@@ -7518,7 +7521,7 @@
   "category_counts": {
     "Game Engine/Unity": 141,
     "AI 3D/가우시안 스플래팅": 170,
-    "VFX/스튜디오·작품": 270,
+    "VFX/스튜디오·작품": 271,
     "AI 3D/로보틱스·월드모델": 40,
     "3D DCC/Blender": 227,
     "Game Engine/Unreal Engine": 235,
@@ -7670,7 +7673,6 @@
     "AI 3D/NVIDIA": "기타 AI 3D"
   },
   "title_hashes": [
-    18275367710491388296,
     12657117067814962221,
     9278198179369612568,
     13311987232114943027,
@@ -10669,14 +10671,15 @@
     1754164796905935978,
     15326402182831475702,
     11052428525898240,
-    10150277199858604875
+    10150277199858604875,
+    10066565963731698253
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4400,
-    "Game Engine": 4400,
-    "VFX": 4400,
-    "AI 3D": 4400
+    "3D DCC": 4401,
+    "Game Engine": 4401,
+    "VFX": 4401,
+    "AI 3D": 4401
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",
