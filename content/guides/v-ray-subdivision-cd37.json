@@ -1,0 +1,93 @@
+{
+  "id": "v-ray-subdivision-cd37",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "지오메트리",
+  "name": "Subdivision",
+  "title": "Subdivision — 저폴리 모델에 실시간 서브디비전 적용으로 디테일 향상",
+  "summary": "V-Ray Subdivision은 렌더링 시점에 지오메트리를 자동으로 세분화하여 폴리곤을 늘리지 않고도 매끄러운 곡면을 표현하는 렌더 타임 기능입니다.",
+  "when": [
+    "하이폴리곤 모델링으로 인해 Viewport 작업이 느려질 때",
+    "곡면 오브젝트의 실루엣이나 반사면을 부드럽게 표현하고 싶을 때",
+    "메모리를 절약하면서 고해상도 디테일 렌더링이 필요할 때"
+  ],
+  "steps": [
+    "Subdivision을 적용할 3ds Max 또는 Maya 오브젝트를 선택합니다.",
+    "오브젝트의 Properties 또는 V-Ray Object Properties 창을 엽니다.",
+    "V-Ray Subdivision 및 Displacement 항목을 찾습니다.",
+    "Subdivision 체크박스를 활성화합니다.",
+    "Max Subdivs 값을 조절하여 세분화 수준을 설정합니다.",
+    "Viewport가 아닌 V-Ray Frame Buffer(VFB)로 렌더링하여 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Subdivision",
+      "desc": "렌더링 시 서브디비전 활성화 여부를 결정합니다."
+    },
+    {
+      "name": "Max Subdivs",
+      "desc": "메쉬가 분할되는 최대 수준을 설정하여 곡면의 부드러움을 제어합니다."
+    },
+    {
+      "name": "Edge Length",
+      "desc": "픽셀 단위로 에지의 길이를 제한하여 세밀한 메쉬 분할을 제어합니다."
+    },
+    {
+      "name": "View Dependent",
+      "desc": "카메라와의 거리에 따라 서브디비전 수준을 자동으로 조절합니다."
+    },
+    {
+      "name": "Smoothness",
+      "desc": "노멀을 계산할 때 부드러움의 정도를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저폴리곤 자동차 차체 부드럽게 렌더링하기",
+      "steps": [
+        "로우폴리곤 차체 오브젝트를 선택합니다.",
+        "V-Ray Object Properties에서 Subdivision을 켭니다.",
+        "Max Subdivs를 3으로 설정하고 렌더링합니다."
+      ]
+    },
+    {
+      "title": "원형 기둥의 실루엣 각짐 해결하기",
+      "steps": [
+        "각져 보이는 원형 기둥 오브젝트를 선택합니다.",
+        "Object Properties에서 View Dependent 옵션을 켭니다.",
+        "Edge Length를 낮게 설정하여 부드러운 실루엣을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Max Subdivs 값을 너무 높게 설정함 → 렌더링 시간이 과도하게 늘어나므로 필요한 만큼만 낮춰서 사용합니다.",
+    "Viewport에서 바로 결과가 안 보인다고 당황함 → V-Ray 렌더 타임 기능이므로 VFB 렌더 결과 창에서 확인해야 합니다."
+  ],
+  "related": [
+    "Displacement",
+    "TurboSmooth",
+    "Subdivision Surface",
+    "V-Ray Proxy"
+  ],
+  "videos": [
+    {
+      "id": "cyueqWwMNmE",
+      "title": "Improving 3d renders & understanding V-Ray Subdivisions",
+      "author": "Oasim Karmieh"
+    },
+    {
+      "id": "78jRpW8wM24",
+      "title": "Vray subdivision script",
+      "author": "sadariya hiral"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Subdivision",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Subdivision",
+    "Max",
+    "Maya"
+  ],
+  "at": "2026-11-27T01:32:30.511508+00:00"
+}
