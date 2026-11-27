@@ -36034,5 +36034,43 @@
     "id": "p-0f2cf176a2",
     "verdict": "agent",
     "reason": "웹 버전 캔버스 렌더링 성능 최적화 스크립트(web/js/renderer.js 등) 수정은 AI 에이전트가 코드를 직접 작성하여 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-27T23:06:05+00:00",
+    "kind": "proposal",
+    "id": "p-ddc61530e9",
+    "title": "메타데이터 테스트를 단일 단순 파일로 재작성",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 관련 과제들이 변경 없음(held) 상태로 반복 실패하고 있음",
+    "proposal": "복잡한 분할 방식 대신 backend/tests/test_metadata_db.py를 가장 단순한 기본 스키마 생성 및 조회 검증 단일 테스트 코드로 전면 재작성합니다.",
+    "expected": "테스트 패치 적용 실패 문제를 해소하고 메타데이터 DB 기능을 안정적으로 검증",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T23:06:31.711827+00:00",
+    "kind": "decision",
+    "id": "p-ddc61530e9",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T23:06:33.885210+00:00",
+    "kind": "triage",
+    "id": "p-ddc61530e9",
+    "verdict": "duplicate",
+    "reason": "로컬 DB 테스트 코드를 초소형 함수 단위로 재작성 및 관련 메타데이터 테스트 분할 제안으로 이미 처리된 내용입니다."
+  },
+  {
+    "at": "2026-11-27T23:06:33.920212+00:00",
+    "kind": "decision",
+    "id": "p-ddc61530e9",
+    "v": "done",
+    "note": "AI 관리자 자동 정리(duplicate): 로컬 DB 테스트 코드를 초소형 함수 단위로 재작성 및 관련 메타데이터 테스트 분할 제안으로 이미 처리된 내용입니다."
   }
 ]
