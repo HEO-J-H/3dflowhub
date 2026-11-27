@@ -35165,5 +35165,36 @@
     "id": "p-f58b19afce",
     "verdict": "agent",
     "reason": "backend/tests/test_metadata_db.py 파일의 경로 및 스키마 구조 오류를 코드로 직접 수정하여 해결할 수 있는 할 일입니다."
+  },
+  {
+    "at": "2026-11-27T04:42:53+00:00",
+    "kind": "proposal",
+    "id": "p-e8ef1ae8ae",
+    "title": "메타데이터 DB 모델 및 테이블 정의 코드 보강",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 테스트 파일이 패치 적용 실패(변경 없음) 및 스키마 부재로 인해 반복적으로 held/skipped 되었습니다.",
+    "proposal": "backend/app/models/ 또는 services 내에 로컬 DB 메타데이터를 저장하고 조회할 수 있는 SQLAlchemy/SQLite 모델 클래스 및 초기화 코드를 명확히 정의합니다.",
+    "expected": "test_metadata_db.py가 참조할 모델이 정상 구현되어 단위 테스트가 성공적으로 통과합니다.",
+    "effort": "보통",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T04:43:16.079631+00:00",
+    "kind": "decision",
+    "id": "p-e8ef1ae8ae",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T04:43:17.814527+00:00",
+    "kind": "triage",
+    "id": "p-e8ef1ae8ae",
+    "verdict": "agent",
+    "reason": "백엔드 메타데이터 DB 모델 및 테이블 정의 코드는 SQLAlchemy/SQLite 모델 클래스 추가를 통해 코드로 해결할 수 있는 작업입니다."
   }
 ]
