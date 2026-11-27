@@ -1,30 +1,6 @@
 {
   "runs": [
     {
-      "at": "2026-11-25T17:15:50.525664+00:00",
-      "collected": 1,
-      "saved": 0,
-      "published": 0,
-      "drafts": 0,
-      "publish_errors": 0,
-      "candidates": 124,
-      "candidates_passed": 62,
-      "offtopic": 25,
-      "short": 0,
-      "prefiltered": 46,
-      "llm_fallbacks": [
-        "gemini2",
-        "groq"
-      ],
-      "strategy_ver": "69f9cd85",
-      "visuals": 0,
-      "enriched": 0,
-      "errors": [
-        "prefiltered",
-        "off-topic"
-      ]
-    },
-    {
       "at": "2026-11-25T17:27:15.351290+00:00",
       "collected": 1,
       "saved": 0,
@@ -7250,6 +7226,33 @@
         "low depth",
         "low 3d depth"
       ]
+    },
+    {
+      "at": "2026-11-27T19:55:32.546131+00:00",
+      "collected": 1,
+      "saved": 1,
+      "published": 0,
+      "drafts": 1,
+      "publish_errors": 0,
+      "candidates": 62,
+      "candidates_passed": 19,
+      "offtopic": 24,
+      "short": 0,
+      "prefiltered": 30,
+      "llm_fallbacks": [
+        "gemini2",
+        "groq"
+      ],
+      "strategy_ver": "d1364474",
+      "visuals": 0,
+      "enriched": 0,
+      "errors": [
+        "prefiltered",
+        "off-topic",
+        "short post",
+        "low depth",
+        "low 3d depth"
+      ]
     }
   ],
   "good_keywords": [
@@ -7345,7 +7348,6 @@
     "Godot physics engine"
   ],
   "lessons": [
-    "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: open-source-review.md guide must exist / E       assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-sou",
     "2026-11-18 [[p-760f72d5cc|콘텐츠] 오픈소스 3D 변환 라이브러리 라이선스] 테스트 실패 — E       AssertionError: assert False / E        +  where False = exists() / E        +    where exists = PosixPath('docs/agent-guides/open-source-review.md').exists / FAILED backend/tests/tes",
     "2026-11-18 [성찰] 동음이의어(Nuke, Unity 등)의 오탐지를 막기 위해 수집 단계에서 3D/CG 전용 소프트웨어 컨텍스트 필터를 엄격히 적용해야 합니다.",
     "2026-11-18 [성찰] 동음이의어(Unity, Nuke 등)의 오탐지를 막기 위해 3D·CG 전용 컨텍스트 필터를 강화하고, 실무 튜토리얼 및 에드온 중심의 고단가 검색 유입 콘텐츠에 집중해야 합니다.",
@@ -7464,7 +7466,8 @@
     "2026-11-27 [[p-2117272018|운영·비용] 메타데이터 테스트 파일 및 모델 구] 테스트 실패 — E       NameError: name 'TestClient' is not defined / FAILED backend/tests/test_metadata_db.py::test_pr8_retry_validation - NameError: name 'TestClient' is not defined 보안: ['기능 변화 없음 — 문자열·주석",
     "2026-11-27 [성찰] 동음이의어(인물, 주식, 일반 단어) 필터를 강화하고 고CPC 실무 튜토리얼 및 스크립트 가이드에 집중해야 오탐지와 저품질 문서를 줄이고 검색 유입을 극대화할 수 있습니다.",
     "2026-11-27 [성찰] 동음이의어 필터링을 더욱 강화하여 비전문적 수집 오류(오프토픽)를 줄이고, 실무 검색 유입이 높은 Maxscript 및 Blender 가이드 중심의 고단가 콘텐츠 편성을 유지해야 합니다.",
-    "2026-11-27 [성찰] 동음이의어(핵, 주식, 인물명 등)로 인한 오수집을 방지하기 위해 CG·게임·VFX 실무 문맥 검증 필터를 더욱 강화해야 합니다."
+    "2026-11-27 [성찰] 동음이의어(핵, 주식, 인물명 등)로 인한 오수집을 방지하기 위해 CG·게임·VFX 실무 문맥 검증 필터를 더욱 강화해야 합니다.",
+    "2026-11-27 [성찰] 동음이의어(정치·인물·주식) 이슈를 완벽히 차단하고 실무 최적화 가이드와 구체적인 스크립트·단축키 정보를 다룬 포스트가 검색 유입과 독자 만족도를 높입니다."
   ],
   "categories": {
     "VFX": [
@@ -7536,7 +7539,7 @@
     "Game Engine/기타 엔진": 179,
     "VFX/After Effects": 72,
     "VFX/Houdini FX": 12,
-    "3D DCC/기타 DCC": 128,
+    "3D DCC/기타 DCC": 129,
     "3D DCC/Substance 3D": 49,
     "VFX/Unreal 가상 프로덕션": 11,
     "AI 3D/AI 텍스처·렌더링": 17,
@@ -7674,7 +7677,6 @@
     "AI 3D/NVIDIA": "기타 AI 3D"
   },
   "title_hashes": [
-    2237485054883352649,
     14236345629482741338,
     4932023947699186736,
     4368714784226520264,
@@ -10673,14 +10675,15 @@
     11010634025741054438,
     2436526855775083944,
     442839578645397522,
-    2581064738104709152
+    2581064738104709152,
+    3104677933167497738
   ],
   "taxonomy_v2": true,
   "seed_rr": {
-    "3D DCC": 4407,
-    "Game Engine": 4407,
-    "VFX": 4407,
-    "AI 3D": 4407
+    "3D DCC": 4408,
+    "Game Engine": 4408,
+    "VFX": 4408,
+    "AI 3D": 4408
   },
   "glossary_learned": {
     "메타휴먼": "MetaHuman",

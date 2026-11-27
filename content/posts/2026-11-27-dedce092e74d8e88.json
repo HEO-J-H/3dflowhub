@@ -1,0 +1,68 @@
+{
+  "title_ko": "Cascadeur 2026.3 업데이트 — MetaHuman 얼굴 애니메이션과 IK 체인 추가",
+  "title": "Cascadeur 2026.3 Adds MetaHuman Faces and Tentacle Rigging",
+  "url": "https://www.awn.com/news/cascadeur-20263-adds-metahuman-faces-and-tentacle-rigging",
+  "domain": "3D DCC",
+  "category": "기타 DCC",
+  "topic": "업데이트·출시",
+  "tags": [
+    "Cascadeur",
+    "MetaHuman",
+    "Unreal Engine",
+    "IK Chains",
+    "Mocap Cleaning",
+    "언리얼 엔진",
+    "메타휴먼"
+  ],
+  "summary": "Nekki가 출시한 Cascadeur 2026.3은 MetaHuman 알파 얼굴 애니메이션 지원, 테일 및 텐타클용 IK 체인, Motion Capture 데이터 자동 정리 기능을 새롭게 도입했습니다.",
+  "insight": "Cascadeur 2026.3은 MetaHuman DNA 포맷을 직접 가져와 얼굴 리깅과 애니메이션을 처리할 수 있으며 Unreal Engine Live Link를 통해 바디, 얼굴, 카메라를 동시에 전송합니다. Claude Code 같은 외부 AI 어시스턴트가 Python API와 모델 콘텍스트 프로토콜(MCP)을 통해 자연어 명령으로 씬을 편집하는 기능도 포함되어 있습니다.",
+  "try_it": [
+    "Cascadeur 2026.3에서 MetaHuman DNA 파일을 임포트하여 얼굴 컨트롤러를 연결합니다.",
+    "Unreal Engine Live Link 설정에서 바디, 페이스, 카메라 스트리밍이 동시에 작동하는지 확인합니다.",
+    "IK 체인 툴셋을 사용해 꼬리나 촉수 구조의 리깅과 벤딩 상태를 조절합니다."
+  ],
+  "sections": [
+    {
+      "heading": "MetaHuman 알파 얼굴 애니메이션 및 Live Link 지원",
+      "body": "이번 업데이트는 에픽게임즈의 디지털 휴먼 포맷인 MetaHuman DNA를 확장 지원하여 애니메이터가 모델을 가져와 리깅하고 자체 얼굴 컨트롤러나 기존 애니메이션 데이터로 구동할 수 있게 합니다. Unreal Engine과의 Live 링크는 바디, 얼굴, 카메라 데이터를 한 번에 전송하도록 개선되었습니다."
+    },
+    {
+      "heading": "IK 체인을 이용한 유연한 크리처 리깅",
+      "body": "거미 다리, 꼬리, 촉수 등 유연한 구조를 빠르게 리깅하고 포즈를 잡을 수 있도록 새로운 IK 체인이 도입되었습니다. 전용 애니메이션 툴과 긴 체인을 위한 별도 툴셋이 추가되어 움직임과 굽힘, 비틀림 제어 시 더 부드러운 결과를 얻을 수 있습니다."
+    },
+    {
+      "heading": "로컬 환경에서 작동하는 Motion Capture 데이터 정리",
+      "body": "신규 도입된 Motion Capture 클리닝 툴은 애니메이션 데이터를 분석하여 지터, 미끄러짐, 사지의 잘못된 배치 등 흔한 캡처 오류를 자동으로 줄여줍니다. 외부 서버 연결 없이 로컬 환경에서 단독으로 실행됩니다."
+    },
+    {
+      "heading": "MCP와 Python API를 통한 외부 AI 어시스턴트 연동",
+      "body": "Cascadeur 2026.2에 도입된 내장 MCP 서버와 Python API를 확장하여 Claude Code 같은 외부 AI 어시스턴트가 자연어 명령으로 씬을 조작하고 애니메이션을 생성 또는 편집할 수 있습니다. 애니메이터는 AI가 수정한 결과물을 Cascadeur의 자체 툴로 세밀하게 다듬을 수 있습니다."
+    },
+    {
+      "heading": "애니메이션 레이어 확장 및 할인 프로모션",
+      "body": "애니메이션 레이어는 기존 에디티브(Additive) 방식에 오버라이드(Override) 타입이 추가되어 트랙별 토글과 가중치 조절이 가능해졌습니다. Nekki는 12월 7일까지 인디, 프로, 팀 연간 구독 플랜의 첫해 비용을 40% 할인하는 프로모션을 진행합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Cascadeur 2026.3에서 MetaHuman 애니메이션은 어떻게 작동하나요?",
+      "a": "MetaHuman DNA 포맷을 임포트하여 리깅을 마친 뒤 자체 얼굴 컨트롤러나 기존 애니메이션 데이터로 구동할 수 있으며 현재 알파 버전으로 제공됩니다."
+    },
+    {
+      "q": "Motion Capture 데이터 정리 기능은 외부 서버를 사용하나요?",
+      "a": "아니오. 외부 도구나 서버 연결 없이 로컬 환경에서 자체적으로 애니메이션을 분석해 지터와 미끄러짐 현상을 줄여줍니다."
+    },
+    {
+      "q": "외부 AI 어시스턴트로 어떻게 씬을 편집할 수 있나요?",
+      "a": "모델 콘텍스트 프로토콜(MCP)과 Cascadeur의 Python API를 통해 Claude Code 같은 외부 AI가 자연어 명령으로 씬 작업을 수행할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.awn.com/sites/default/files/styles/og_1200/public/image/attached/1081930-cascadeur1.jpg?itok=_DFM0hXl",
+    "video": "https://www.youtube.com/watch?v=jp6aI4KMWOY"
+  },
+  "collected_at": "2026-11-27T19:55:36.177634+00:00",
+  "notion_id": "",
+  "id": "2026-11-27-dedce092e74d8e88",
+  "img_ok": "2026-11-27T19:55:36+00:00"
+}
