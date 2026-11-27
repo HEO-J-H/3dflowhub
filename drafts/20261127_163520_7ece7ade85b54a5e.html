@@ -1,0 +1,16 @@
+<!-- TITLE: Unreal Engine 2.5D 호러 게임 절단 시스템 구축 가이드 | TAGS: Unreal Engine,호러 게임,절단 시스템,게임 개발,2.5D,언리얼 엔진,튜토리얼·팁 | CATEGORY: Game Engine/Unreal Engine | NOTION:  -->
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Unreal Engine을 활용해 2.5D 호러 게임에서 캐릭터 절단 시스템을 구현하는 제작 기법을 다룹니다.</p>
+<p style="color:#888;">분류: Game Engine › Unreal Engine › 튜토리얼·팁</p>
+<h2>2.5D 호러 장르를 위한 절단 연출 구조</h2>
+<p>2.5D 시점의 호러 게임에서는 시각적 몰입감을 높이기 위해 정밀한 절단 연출이 요구됩니다. 캐릭터가 피격당했을 때 특정 신체 부위가 분리되는 과정을 구현하기 위해 물리 기반의 연산 방식을 적용합니다. 80 Level 아티클은 개발 과정에서 마주치는 기술적 난제와 해결책을 다룹니다.</p>
+<h2>스켈레탈 메시 슬라이싱과 물리 설정</h2>
+<p>메시 절단 시스템은 사전에 분리된 파츠를 교체하거나 실시간으로 지오메트리를 자르는 방식을 사용합니다. Unreal Engine의 빌트인 기능과 커스텀 Blueprint를 결합해 파괴 지점을 정밀하게 제어합니다. 절단된 단면의 머티리얼 처리가 시각적 완성도를 결정합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">절단 시스템 구현에는 스켈레탈 메시의 슬라이싱 연산과 물리 애셋 파츠 분리 설정이 핵심입니다. Blueprint에서 타격 지점을 벡터로 계산해 지정된 뼈대를 기준으로 분리하는 구조를 설계해야 합니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. 어떤 게임 엔진을 기반으로 설명하나요?</b><br/>A. Unreal Engine을 활용한 구현 방법을 다루고 있습니다.</p>
+<p><b>Q. 절단 시스템 구현의 핵심 요소는 무엇인가요?</b><br/>A. 스켈레탈 메시의 물리 애셋 설정과 피격 지점의 벡터 계산을 통한 파츠 분리입니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-27-90fd3a3cf3b017d7.html">Unreal Engine 5 소비에트 모듈러 건축물 제작 기법</a></li><li><a href="https://3dflowhub.kr/p/2026-11-27-b235dd3694210268.html">Unreal Engine · DNEG 등 글로벌 VFX·게임사 채용 정보 40선</a></li><li><a href="https://3dflowhub.kr/p/2026-11-27-0aa61b5633646246.html">Unreal Engine 5로 제작하는 VR 게임 대규모 모듈러 건축 시스템</a></li></ul>
+<hr/><p>원문:<a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPa2xJdFh0VGstc0hCSkZjc3dhXzNJejkya3RjXy03WmNsRVpOSnYwRnBaRmhmTTNibG9zdWZLckVBMl84NmQtRzZsZVZhNDkxdU5VejdLNnA0VGZVeC1xNzI4S2x5czRnZW9IRWF5SVN3c1BzSW9tbm5fbU5hYmF1M1JpWQ?oc=5" target="_blank" rel="noopener nofollow">How To Build a Realistic Dismemberment System For 2.5D Horror Game - 80 Level</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
