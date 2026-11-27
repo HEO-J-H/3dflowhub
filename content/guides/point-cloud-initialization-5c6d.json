@@ -1,0 +1,93 @@
+{
+  "id": "point-cloud-initialization-5c6d",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "렌더링 및 출력",
+  "name": "Point Cloud Initialization",
+  "title": "포인트 클라우드 초기화 — 무작위 혹은 입력된 포인트 데이터로 Gaussian 초기 뼈대를 잡는 방식",
+  "summary": "Point Cloud Initialization은 2D 이미지들로부터 추출한 특징점을 바탕으로 Gaussian Splatting 학습을 시작할 초기 3D 포인트 클라우드를 생성하는 필수 단계입니다.",
+  "when": [
+    "COLMAP 등의 SfM 툴을 사용하여 다각도 사진에서 카메라 포즈와 3D 스파스 포인트를 추출할 때",
+    "랜덤 초기화 대신 정확한 지오메트리 구조를 바탕으로 Gaussian Splatting 학습을 안정화하고 싶을 때",
+    "실내외 복잡한 씬을 재구성할 때 초기 수렴 속도를 높이고 플로터(Floater)Artifact를 줄이고 싶을 때"
+  ],
+  "steps": [
+    "1단계: 대상 오브젝트나 공간을 일정한 오버랩(Overlap 60% 이상)을 유지하며 다각도에서 고해상도로 촬영합니다.",
+    "2단계: COLMAP 등의 Structure-from-Motion Software를 실행하고 이미지 폴더를 임포트합니다.",
+    "3단계: Feature Extraction 단계를 거쳐 이미지 간의 SIFT 특징점을 추출합니다.",
+    "4단계: Feature Matching 및 Image Matching을 수행하여 각 이미지의 상대적 카메라 포즈를 계산합니다.",
+    "5단계: Triangulation을 실행하여 3D Sparse Point Cloud 데이터를 생성하고, transforms.json 형식으로 익스포트합니다.",
+    "6단계: Gaussian Splatting 학습 파이프라인(예: Nerfstudio, 3D Gaussian Splatting Official)의 데이터셋 경로에 생성된 초기 포인트 클라우드를 불러옵니다."
+  ],
+  "params": [
+    {
+      "name": "Feature Extractor",
+      "desc": "이미지에서 매칭할 키포인트와 디스크립터를 추출하는 알고리즘 설정입니다."
+    },
+    {
+      "name": "Max Image Size",
+      "desc": "특징점 추출 시 처리할 이미지의 최대 Resolution로, 메모리와 속도에 영향을 줍니다."
+    },
+    {
+      "name": "Match Type",
+      "desc": "Sequential 또는 Exhaustive 중 이미지 간 매칭 방식을 선택합니다."
+    },
+    {
+      "name": "Point Cloud Export",
+      "desc": "삼각측량으로 생성된 3D 포인트를 .ply 또는 포맷으로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 오브젝트 3D 스캔",
+      "steps": [
+        "오브젝트 주변을 회전하며 100장 이상의 고해상도 사진 촬영",
+        "COLMAP으로 Feature Extraction 및 Matching 수행",
+        "Sparse Point Cloud를 생성하여 초기 Gaussian 위치로 지정"
+      ]
+    },
+    {
+      "title": "드론을 이용한 건축물 외관 재구성",
+      "steps": [
+        "건축물 상공에서 다양한 고도와 각도로 오버랩 유지하며 항공 촬영",
+        "SfM 파이프라인을 통해 카메라 포즈 추정 및 3D 포인트 클라우드 빌드",
+        "초기화된 포인트 클라우드를 기반으로 Gaussian Splatting 학습 시작"
+      ]
+    }
+  ],
+  "mistakes": [
+    "사진의 오버랩(Overlap) 부족 → 특징점 매칭 실패로 빈약한 포인트 클라우드가 생성되므로 촬영 시 겹침 구간을 늘립니다.",
+    "모션 블러나 초점 흐림 사진 포함 → 노이즈 포인트가 대거 생성되므로 선명한 프레임만 골라 재추출합니다.",
+    "스케일 및 좌표계 미설정 → 씬이 비정상적으로 기울어지므로 Colmap 모델 변환 시 올바른 축 설정을 확인합니다."
+  ],
+  "related": [
+    "Gaussian Splatting Pipeline",
+    "Transforms.json",
+    "COLMAP",
+    "Nerfstudio"
+  ],
+  "videos": [
+    {
+      "id": "-HKUhwLlF24",
+      "title": "PointGauss: Point Cloud-Guided Multi-Object Segmentation for Gaussian Splatting",
+      "author": "성균관대학교 스마트팩토리융합학과"
+    },
+    {
+      "id": "Brd6CXw7lf4",
+      "title": "What is Gaussian Splatting? A Visual Intro from Point Clouds",
+      "author": "Takashi Yoshinaga"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Point%20Cloud%20Initialization",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Overlap 60",
+    "COLMAP",
+    "Structure",
+    "Motion Software",
+    "Feature Extraction",
+    "SIFT"
+  ],
+  "at": "2026-11-27T00:22:13.229869+00:00"
+}

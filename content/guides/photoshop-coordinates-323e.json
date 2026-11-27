@@ -1,0 +1,80 @@
+{
+  "id": "photoshop-coordinates-323e",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "Coordinates",
+  "title": "좌표 — 3D 공간에서 객체의 위치, 회전, 크기를 수치로 정확하게 조절",
+  "summary": "Photoshop Coordinates는 3D 공간 상에서 오브젝트의 위치(Position), 회전(Rotation), 크기(Scale) 값을 수치로 정확하게 입력하고 제어하는 패널입니다.",
+  "when": [
+    "Mouse 드래그 대신 정확한 수치로 3D 오브젝트를 배치할 때",
+    "여러 개의 3D 레이어 정렬이나 간격을 동일하게 맞출 때",
+    "오브젝트의 회전 각도를 특정 각도로 딱 맞춰서 고정할 때"
+  ],
+  "steps": [
+    "Layers 패널에서 수치를 조절할 3D 레이어나 메쉬를 선택합니다.",
+    "상단 메뉴에서 Window > 3D를 선택하여 3D 패널을 엽니다.",
+    "3D 패널 하단 또는 Properties 패널에서 Coordinate 탭(좌표 아이콘)을 클릭합니다.",
+    "X, Y, Z 입력 칸에 원하는 Position(위치), Rotation(회전), Scale(크기) 값을 직접 입력합니다.",
+    "Enter를 눌러 변경된 수치를 Viewport에 즉시 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Position X/Y/Z",
+      "desc": "3D 공간에서 오브젝트의 가로, 세로, 높이 위치를 정확한 단위(px 등)로 이동합니다."
+    },
+    {
+      "name": "Orientation X/Y/Z",
+      "desc": "오브젝트의 각 축 기준 회전 각도를 도(Degree) 단위로 설정합니다."
+    },
+    {
+      "name": "Scale X/Y/Z",
+      "desc": "각 축 방향으로 오브젝트의 크기를 비율 또는 수치로 확대·축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "정확한 바닥면에 오브젝트 배치하기",
+      "steps": [
+        "Layers 패널에서 3D 모델 레이어를 선택합니다.",
+        "Properties 패널의 Coordinates 탭을 엽니다.",
+        "Position Y 값을 0 또는 기준 바닥 높이 수치로 입력하여 정렬합니다."
+      ]
+    },
+    {
+      "title": "정삼각형 각도로 오브젝트 회전하기",
+      "steps": [
+        "회전할 3D 오브젝트를 선택합니다.",
+        "Coordinates 탭의 Rotation Y 입력란을 클릭합니다.",
+        "정확한 각도인 45 또는 90을 입력하고 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "글로벌 좌표와 로컬 좌표를 혼동하여 엉뚱한 방향으로 이동함 → Properties 패널에서 기준 좌표계(World/Object) 설정을 확인합니다.",
+    "소수점 입력 실수로 모델이 화면 밖으로 사라짐 → Coordinates 수치를 0,0,0(Origin)으로 초기화한 뒤 다시 조절합니다."
+  ],
+  "related": [
+    "3D Axis",
+    "3D Scale Tool",
+    "3D Rotate Tool",
+    "3D Move Tool"
+  ],
+  "videos": [
+    {
+      "id": "mYh-ZQ-bpCg",
+      "title": "Polar Coordinates | Photoshop Tutorial #polarcoordinates #photoshop #tutorial",
+      "author": "Novela Film Academy"
+    },
+    {
+      "id": "SYoYG1E9Gjo",
+      "title": "How to Design Polar Coordinates Creative Artwork in Adobe Photoshop",
+      "author": "Rean Design"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Coordinates",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T00:22:16.343788+00:00"
+}
