@@ -1,0 +1,96 @@
+{
+  "id": "v-ray-light-select-2a11",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "조명",
+  "name": "Light Select",
+  "title": "Light Select — 씬 내 특정 라이트만 선택해 빠르게 미리보기",
+  "summary": "V-Ray Light Select는 렌더링된 이미지에서 개별 라이트의 기여도를 분리하여 채널로 추출하는 렌더 엘리먼트 도구입니다. 합성(Compositing) 단계에서 조명의 색상과 강도를 자유롭게 조절할 수 있게 해줍니다.",
+  "when": [
+    "Post 프로덕션 단계에서 특정 조명만 밝기를 조절하고 싶을 때",
+    "키 라이트와 필 라이트의 색상을 렌더링 후 독립적으로 변경하고 싶을 때",
+    "Client 피드백에 따라 라이팅 수정 후 전체 렌더링을 다시 걸기 시간 없을 때"
+  ],
+  "steps": [
+    "3ds Max 상단 메뉴 바에서 Rendering → Render Setup (Hotkey F10)을 엽니다.",
+    "Render Setup 창에서 Render Elements 탭을 클릭합니다.",
+    "Add 버튼을 눌러 Render Elements 대화 상자를 엽니다.",
+    "목록에서 VRayLightSelect를 찾아 선택하고 OK를 누릅니다.",
+    "생성된 VRayLightSelect를 선택한 뒤, Parameter 패널에서 Lights 목록의 (+) 버튼을 누릅니다.",
+    "Viewport에서 분리하고 싶은 개별 라이트를 클릭하여 추가합니다.",
+    "Render를 실행하고 V-Ray Frame Buffer의 Channel 드롭다운에서 해당 Light Select 요소를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Lights",
+      "desc": "선택한 Render Element에 포함될 개별 조명(Light)들의 목록을 관리합니다."
+    },
+    {
+      "name": "Include/Exclude",
+      "desc": "조명을 포함하거나 제외할 방식을 설정하여 세부 채널을 분리합니다."
+    },
+    {
+      "name": "Affect diffuse",
+      "desc": "디퓨즈 반사광에 대한 조명 기여도를 채널에 포함할지 여부를 결정합니다."
+    },
+    {
+      "name": "Affect specular",
+      "desc": "스펙큘러 하이라이트에 대한 조명 기여도를 채널에 포함할지 여부를 결정합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "추출된 라이트 채널의 전체적인 색상 틴트를 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 인테리어 창가 조명 밝기 조절",
+      "steps": [
+        "Render Elements 탭에서 VRayLightSelect를 추가합니다.",
+        "햇빛을 담당하는 V-Ray Sun을 Light Select 목록에 등록합니다.",
+        "VFB에서 창가 햇빛 채널의 노출 값을 올려 실내 분위기를 화사하게 바꿉니다."
+      ]
+    },
+    {
+      "title": "제품 광고 림 라이트(Rim Light) 색상 변경",
+      "steps": [
+        "제품 외곽을 강조하는 백라이트에 대한 Light Select 요소를 생성합니다.",
+        "렌더링 완료 후 합성 프로그램이나 VFB에서 해당 채널의 컬러만 푸른빛으로 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "라이트를 추가했는데 렌더 엘리먼트 목록이 비어있음 → Render Elements 탭의 Lights 목록에 해당 라이트가 정확히 등록되었는지 확인합니다.",
+    "합성 프로그램에서 채널을 조절해도 변화가 없음 → 렌더링 시 EXR 등의 멀티채널 포맷으로 저장되었는지, 32-bit float 형식이 맞는지 확인합니다."
+  ],
+  "related": [
+    "V-Ray Frame Buffer",
+    "Render Elements",
+    "VRayDomeLight",
+    "VRayCryptomatte"
+  ],
+  "videos": [
+    {
+      "id": "VQISe90BzHg",
+      "title": "V-Ray 2.0 for 3ds Max - V-Ray Light Select",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "wwNORBWwYn8",
+      "title": "V-Ray for 3ds Max — Light Select: Full Mode",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Light%20Select",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Max",
+    "Rendering",
+    "Render Setup",
+    "Hotkey F10",
+    "Render Elements",
+    "Add"
+  ],
+  "at": "2026-11-27T02:02:16.238280+00:00"
+}

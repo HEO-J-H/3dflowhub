@@ -1,0 +1,86 @@
+{
+  "id": "gltf-glb-export-c9e6",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "출력 포맷",
+  "name": "GLTF/GLB Export",
+  "title": "GLTF/GLB Export — 모델을 GLTF/GLB 파일로 Export",
+  "summary": "Gaussian Splatting으로 학습된 3D 씬 데이터를 표준 웹 3D 포맷인 glTF/GLB 파일로 변환하여 내보내는 기능입니다. 웹 브라우저나 다양한 3D 엔진에서 별도의 플러그인 없이 Gaussian 씬을 가볍고 빠르게 공유할 수 있습니다.",
+  "when": [
+    "웹사이트나 포트폴리오에 3D Gaussian Splatting 결과물을 인터랙티브하게 임베드할 때",
+    "외부 3D 뷰어, 게임 엔진, AR/VR Application으로 Splatting 에셋을 전달할 때",
+    "무거운 학습 원본 데이터를 가볍고 표준화된 웹용 파일 형식으로 패키징할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습(Training)이 완료된 출력 폴더(Output)나 후처리 툴(예: SuperSplat, Luma AI, Blender Add-on 등)을 엽니다.",
+    "Export 메뉴인 File → Export 또는 Export Scene 메뉴를 선택합니다.",
+    "파일 포맷 드롭다운에서 glTF 2.0 또는 GLB(Binary) 형식을 선택합니다.",
+    "텍스처 압축 및 포인트 클라우드/메쉬 변환 옵션을 목적에 맞게 설정합니다.",
+    "저장 경로와 파일 이름을 지정하고 Export 버튼을 눌러 결과물을 생성합니다.",
+    "뷰어 프로그램에서 glb 파일을 열어 Viewport 상의 Splatting 결과물과 컬러가 올바르게 나오는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Format",
+      "desc": "단일 파일로 압축되는 GLB 또는 텍스처가 분리되는 glTF 중에서 Export 형식을 선택합니다."
+    },
+    {
+      "name": "Include Splats",
+      "desc": "Gaussian 포인트 데이터를 Export 대상에 포함합니다."
+    },
+    {
+      "name": "Mesh Conversion",
+      "desc": "Gaussian 데이터를 표준 폴리곤 메쉬나 포인트 클라우드로 변환하여 엔진 호환성을 높입니다."
+    },
+    {
+      "name": "Compression",
+      "desc": "웹 전송 속도를 높이기 위해 Draco 또는 Meshopt 압축을 적용합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "웹 브라우저용 3D 제품 쇼케이스 제작",
+      "steps": [
+        "Splatting 툴에서 제품 모델의 학습을 완료합니다.",
+        "File → Export에서 GLB 형식을 선택합니다.",
+        "Draco 압축을 켜서 파일 용량을 최적화합니다.",
+        "웹 뷰어에 업로드하여 Interactive 렌더링을 확인합니다."
+      ]
+    },
+    {
+      "title": "AR/VR 앱용 씬 에셋 전달",
+      "steps": [
+        "후처리 툴에서 불필요한 배경 플로터를 클리핑합니다.",
+        "Export 메뉴에서 glTF 2.0 및 텍스처 임베드 옵션을 활성화합니다.",
+        "엔진 Import 폴더에 파일을 저장하고 에셋으로 불러옵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파일 용량이 너무 큼 → Draco 압축 옵션을 활성화하여 용량을 줄입니다.",
+    "웹에서 컬러가 왜곡됨 → 텍스처 색공간(Color Space)이 sRGB로 올바르게 설정되었는지 확인합니다."
+  ],
+  "related": [
+    "PLY Export",
+    "USD Export",
+    "glTF 2.0 Import",
+    "Mesh Decimation"
+  ],
+  "videos": [
+    {
+      "id": "VgZZ4tpj2P0",
+      "title": "How to export to gltf and glb format out of Substance Painter",
+      "author": "Thomas Tucker"
+    },
+    {
+      "id": "i82_Rx1OUe0",
+      "title": "Master Exporting in Blender - Fix GLB/glTF Exports and Learn Why They Break",
+      "author": "Deayan Studios"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20GLTF/GLB%20Export",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T02:02:12.600886+00:00"
+}
