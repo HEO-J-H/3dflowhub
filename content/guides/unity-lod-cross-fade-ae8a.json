@@ -1,0 +1,89 @@
+{
+  "id": "unity-lod-cross-fade-ae8a",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "최적화",
+  "name": "LOD Cross Fade",
+  "title": "LOD Cross 페이드 — LOD 단계 전환 시 부드러운 디졸브 효과를 주어 깜빡임을 줄이는 최적화 기법",
+  "summary": "Unity의 LOD Cross Fade는 카메라 거리에 따라 레벨 오브 셋(LOD)이 전환될 때 발생하는 갑작스러운 팝핑 현상을 부드러운 페이드 효과로 자연스럽게 연결해 주는 기능입니다.",
+  "when": [
+    "오브젝트가 멀어지거나 가까워질 때 LOD 모델 전환이 눈에 거슬릴 때",
+    "오픈월드 게임에서 나무나 바위 같은 에셋의 전환 부하를 시각적으로 숨기고 싶을 때",
+    "그래픽 품질과 시각적 몰입감을 동시에 유지해야 하는 최적화 작업 시"
+  ],
+  "steps": [
+    "Scene 뷰 또는 Hierarchy에서 LOD Group 컴포넌트가 적용된 GameObject를 선택합니다.",
+    "Inspector 창의 LOD Group 컴포넌트 UI에서 'Fade Mode' 옵션을 'Cross Fade' 또는 'Speed Tree'로 변경합니다.",
+    "LOD 단계별로 전환되는 바(Bar) 영역을 조절하여 Cross Fade가 일어날 임계값(Distance)을 설정합니다.",
+    "Project 창에서 LOD 전환 대상인 Material을 선택하고, Inspector에서 'Enable Instancing' 또는 Shader 설정에서 LOD Cross Fade를 활성화합니다.",
+    "Game 뷰에서 카메라를 앞뒤로 움직이며 LOD 모델이 부드럽게 교차 페이드되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Fade Mode",
+      "desc": "LOD 전환 시 페이드 방식을 설정합니다 (None, Cross Fade, Speed Tree)."
+    },
+    {
+      "name": "Animate Cross-Fading",
+      "desc": "시간 기반으로 교차 페이드를 처리하여 고정된 거리 대신 부드러운 전환을 돕습니다."
+    },
+    {
+      "name": "Screen Relative Transition Height",
+      "desc": "화면에서 차지하는 비율을 기준으로 LOD 단계를 전환할지 결정합니다."
+    },
+    {
+      "name": "LOD Bias",
+      "desc": "Quality 설정에서 전체적인 LOD 전환 시점을 일괄적으로 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "오픈월드 숲 속 나무 최적화",
+      "steps": [
+        "나무 모델에 LOD 0, LOD 1, LOD 2 단계를 구성한 LOD Group을 추가합니다.",
+        "Fade Mode를 Cross Fade로 설정하여 원거리 나무의 모델 교체 흔적을 감춥니다.",
+        "플레이어가 다가갈 때 나뭇잎 디테일이 부드럽게 나타나도록 페이드 구간을 조정합니다."
+      ]
+    },
+    {
+      "title": "대형 건물 및 구조물 팝핑 제거",
+      "steps": [
+        "복잡한 파사드 구조를 가진 빌딩 프리팹에 LOD Group 컴포넌트를 부착합니다.",
+        "카메라가 멀어질 때 벽면 매핑과 지오메트리가 툭 끊기는 현상을 방지하기 위해 Cross Fade를 켭니다.",
+        "전환 거리를 세밀하게 조절하여 성능을 지키면서 시각적 이질감을 없애줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Material에서 페이드 설정을 켜지 않음 → 머티리얼 Shader에 Cross Fade 옵션이 지원되는지 확인하고 활성화하세요.",
+    "페이드 구간이 너무 좁음 → LOD Bar의 전환 영역을 넓혀서 팝핑 현상이 완전히 부드러워지도록 수정하세요."
+  ],
+  "related": [
+    "LOD Group",
+    "Occlusion Culling",
+    "Shader Graph",
+    "Quality Settings"
+  ],
+  "videos": [
+    {
+      "id": "-mE4qreuqJY",
+      "title": "Level of Detail in Unity Using LODGroups, Dithering, and Crossfade! ✔️ 2020.3 | Game Dev Tutorial",
+      "author": "Ned Makes Games"
+    },
+    {
+      "id": "yPENEcpi5Ew",
+      "title": "Custom LOD Cross Fade Dithering Unity3D All Pipelines - Shader Graph And Amplify Shader + Speed Tree",
+      "author": "Game Dev Box"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20LOD%20Cross%20Fade",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Scene",
+    "Hierarchy",
+    "LOD Group",
+    "GameObject"
+  ],
+  "at": "2026-11-27T01:02:29.161072+00:00"
+}

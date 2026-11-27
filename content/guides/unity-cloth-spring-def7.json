@@ -1,0 +1,96 @@
+{
+  "id": "unity-cloth-spring-def7",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리 및 시뮬레이션",
+  "name": "Cloth Spring",
+  "title": "클로스 스프링 — 천 시뮬레이션의 탄성과 복원력을 세부적으로 조절하는 물리 속성",
+  "summary": "Unity Cloth Spring은 천 시뮬레이션에서 스프링 같은 복원력을 부여하여, 의류나 머리카락 등이 원래의 모양으로 돌아가려는 탄성 거동을 제어하는 파라미터입니다.",
+  "when": [
+    "캐릭터의 옷이나 망토가 움직인 후 너무 흐느적거릴 때 탄력을 주어 형태를 유지하고 싶을 때",
+    "머리카락이나 리본처럼 탱탱하게 흔들려야 하는 요소를 시뮬레이션할 때",
+    "천이 과도하게 늘어나거나 찢어지는 듯한 왜곡을 방지하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Cloth 컴포넌트가 추가된 Skinned Mesh 오브젝트를 선택합니다.",
+    "Inspector 패널에서 Cloth 컴포넌트의 설정 항목을 엽니다.",
+    "Constraints 섹션에서 Stretching Stiffness와 Bending Stiffness 값을 조절합니다.",
+    "Scene 뷰에서 물리 움직임을 확인하며 스프링 탄성 관련 파라미터를 미세 조정합니다.",
+    "Play 버튼을 눌러 게임 뷰에서 천의 탄성 반응을 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Stretching Stiffness",
+      "desc": "천이 늘어나는 것에 저항하는 힘으로, 높을수록 천이 잘 늘어나지 않습니다."
+    },
+    {
+      "name": "Bending Stiffness",
+      "desc": "천이 꺾이거나 접히는 것에 저항하는 힘으로, 주름의 부드러움을 결정합니다."
+    },
+    {
+      "name": "Cloth Stretchy",
+      "desc": "천의 전체적인 신축성을 허용하여 탄성 범위를 넓혀줍니다."
+    },
+    {
+      "name": "Use Gravity",
+      "desc": "시뮬레이션에 중력을 적용하여 자연스러운 낙하 운동을 더합니다."
+    },
+    {
+      "name": "Damping",
+      "desc": "천의 진동을 감쇠시켜 떨림을 빠르게 안정시킵니다."
+    },
+    {
+      "name": "Friction",
+      "desc": "다른 오브젝트와 충돌할 때 발생하는 마찰력을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "망토의 탄력 있는 휘날림 구현",
+      "steps": [
+        "망토 메쉬에 Cloth 컴포넌트를 추가합니다.",
+        "Bending Stiffness 값을 높여 망토가 지나치게 꺾이는 것을 방지합니다.",
+        "Stretching Stiffness를 조절해 뛰거나 걸을 때의 복원력을 부여합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 리본 장식의 탄성 조절",
+      "steps": [
+        "리본에 해당하는 Vertex에 Cloth를 설정합니다.",
+        "Damping 값을 낮추어 리본이 생기 있게 흔들리도록 합니다.",
+        "Stretching Stiffness를 높여 리본 길이가 늘어나지 않게 고정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Stretching Stiffness가 너무 낮음 → 천이 고무줄처럼 과도하게 늘어납니다 (해결: Stiffness 값을 높여 형태 유지력을 키웁니다).",
+    "Bending Stiffness가 너무 높음 → 천이 딱딱한 판처럼 꺾이지 않습니다 (해결: 적절한 값으로 낮추어 부드러운 주름을 만듭니다)."
+  ],
+  "related": [
+    "Unity Cloth",
+    "Skinned Mesh Renderer",
+    "Capsule Collider",
+    "Transform"
+  ],
+  "videos": [
+    {
+      "id": "7L8SxkfNpgg",
+      "title": "Cloth Simulation in Unity 6 - Creating a Cape",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "lGD7V09fGUU",
+      "title": "Mass-Spring system for cloth simulation in Unity",
+      "author": "B1ggB0ss"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Cloth%20Spring",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Cloth",
+    "Skinned Mesh"
+  ],
+  "at": "2026-11-27T01:02:25.260331+00:00"
+}
