@@ -1,0 +1,86 @@
+{
+  "id": "davinci-resolve-highlight-mode-e1aa",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러",
+  "name": "Highlight Mode",
+  "title": "하이라이트 모드 — 키어(Qualifier)나 Mask 영역을 흑백 또는 오버레이로 정확히 확인하는 기능",
+  "summary": "DaVinci Resolve의 Highlight Mode(하이라이트 모드)는 컬러 그레이딩 과정에서 현재 선택된 Mask, 키(Qualifier), 또는 Tracking 영역을 화면에 강조하여 정확한 보정 범위를 시각적으로 확인하는 필수 기능입니다.",
+  "when": [
+    "Qualifier로 특정 색상을 추출한 뒤 선택되지 않은 잔여 영역이나 노이즈를 확인할 때",
+    "Power Window로 만든 Mask의 경계면과 페더(Feather) 범위를 정밀하게 조절할 때",
+    "Magic Mask나 Tracker를 활용해 피사체를 분리할 때 Mask가 올바르게 적용되었는지 검증할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Color 탭을 클릭하여 컬러 페이지로 이동합니다.",
+    "Viewport 상단 메뉴 바 또는 뷰어 좌측 상단의 Highlight(H) 아이콘을 클릭하거나 Hotkey Shift + H를 눌러 활성화합니다.",
+    "Qualifier 탭에서 스포이트 도구로 원하는 색상을 선택하거나 Power Window를 그려 Mask를 생성합니다.",
+    "Highlight Mode가 켜진 상태에서 선택된 영역은 원본 컬러로 유지되고, 나머지 배경 영역은 흑백 또는 흐리게 표시되는 것을 확인합니다.",
+    "Inspector 또는 툴바의 파라미터를 조절하여 Mask 경계와 선택 범위를 정밀하게 다듬습니다."
+  ],
+  "params": [
+    {
+      "name": "Highlight",
+      "desc": "마스크나 키로 선택된 영역만 컬러로 보이고 나머지는 흑백/그레이로 처리하여 강조합니다."
+    },
+    {
+      "name": "B/W on Black",
+      "desc": "선택된 영역을 흰색, 나머지를 검은색 매트 형태로 표시하여 알파 채널 상태를 확인합니다."
+    },
+    {
+      "name": "Normal",
+      "desc": "하이라이트 모드를 끄고 일반 Viewport 화면으로 돌아갑니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인물 피부톤 보정 시 배경 분리 확인",
+      "steps": [
+        "Qualifier 툴로 인물의 피부 색상을 선택합니다.",
+        "Shift + H를 눌러 Highlight Mode를 켭니다.",
+        "머리카락이나 의상에 피부 색상이 잘못 포함되었는지 확인하고 Clean Black/White로 제거합니다."
+      ]
+    },
+    {
+      "title": "Power Window Mask 경계 정밀 조정",
+      "steps": [
+        "Power Window 툴로 비네팅 효과나 특정 사각 영역을 지정합니다.",
+        "Highlight Mode를 활성화하여 Mask의 위치와 페더 크기를 시각적으로 확인합니다.",
+        "경계가 너무 딱딱하지 않도록 Feather 값을 조절합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하이라이트 모드가 켜진 상태를 잊고 전체 영상이 흑백으로 변했다고 오해함 → 뷰어 상단의 Highlight 아이콘을 다시 클릭하거나 Shift + H를 눌러 모드를 끕니다.",
+    "Qualifier나 Window가 선택되지 않아 하이라이트 모드를 켰는데도 화면 변화가 없음 → 먼저 Qualifier나 Power Window로 활성화된 Mask 영역을 생성해야 합니다."
+  ],
+  "related": [
+    "Qualifier",
+    "Power Window",
+    "Magic Mask",
+    "HDR Color Grading"
+  ],
+  "videos": [
+    {
+      "id": "ROoZjL_GKMY",
+      "title": "3 Techniques For Better Highlights When Color Grading | DaVinci Resolve Tutorial",
+      "author": "George.Colorist"
+    },
+    {
+      "id": "hby-zG6TqOs",
+      "title": "Highlight Anything in Your Project - DaVinci Resolve for NOOBS! - Tip #20",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Highlight%20Mode",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Color",
+    "Viewport",
+    "Highlight",
+    "Hotkey Shift"
+  ],
+  "at": "2026-11-27T00:32:18.468799+00:00"
+}

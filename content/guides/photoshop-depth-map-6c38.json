@@ -1,0 +1,87 @@
+{
+  "id": "photoshop-depth-map-6c38",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "Depth Map",
+  "title": "깊이 맵 — 이미지의 심도 정보를 활용하여 3D 효과 및 입체감 생성",
+  "summary": "Photoshop의 Generate Depth Map 기능은 2D 이미지의 원근 및 깊이 정보를 분석하여 3D 렌더링과 Compositing에서 활용할 수 있는 흑백 뎁스 맵(Depth Map)을 빠르게 생성합니다.",
+  "when": [
+    "3D 씬의 카메라 안개(Fog)나 피사계 심도(Depth of Field) 효과를 후가공으로 조절할 때",
+    "2D 소스 이미지를 기반으로 3D 지오메트리나 디스플레이스먼트 맵을 빠르게 제작할 때",
+    "애니메이션 및 합성 작업에서 전경과 배경을 분리하는 Mask로 활용할 때"
+  ],
+  "steps": [
+    "Photoshop에 깊이감을 추출할 텍스처나 이미지를 불러옵니다 (RGB Color 모드 확인).",
+    "Layer 패널에서 원본 이미지를 선택한 상태로 레이어를 복제합니다 (Ctrl+J).",
+    "상단 메뉴 바에서 Filter > 3D > Generate Depth Map을 선택합니다.",
+    "열린 대화상자(Properties)에서 깊이감의 강도와 원근감을 조정합니다.",
+    "설정이 완료되면 확인을 눌러 흑백 뎁스 맵 결과를 생성합니다.",
+    "생성된 뎁스 맵을 별도의 이미지 파일(EXR, TIFF 등)로 내보내어 3D 엔진이나 합성 툴에 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Depth Range",
+      "desc": "흑백 명암으로 표현되는 깊이의 전체적인 범위와 민감도를 조절합니다."
+    },
+    {
+      "name": "Blur",
+      "desc": "뎁스 맵의 경계면을 부드럽게 만들어 노이즈를 줄이고 자연스러운 감쇠를 만듭니다."
+    },
+    {
+      "name": "Invert",
+      "desc": "가까운 영역과 먼 영역의 흑백 톤(전경과 배경)을 서로 반전시킵니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Z-Depth 기반 Post 프로덕션 피사계 심도(DoF) 적용",
+      "steps": [
+        "렌더링된 컬러 이미지와 Photoshop에서 생성한 Depth Map을 함께 준비합니다.",
+        "합성 Software(After Effects, Photoshop 등)에서 Lens Blur 효과에 Depth Map 채널을 연결합니다.",
+        "초점 거리(Focal Point)를 조절하여 배경이 자연스럽게 흐려지도록 완성합니다."
+      ]
+    },
+    {
+      "title": "디스플레이스먼트 맵(Displacement Map)으로 활용",
+      "steps": [
+        "Generate Depth Map으로 흑백 높이 정보 이미지를 추출합니다.",
+        "3ds Max 또는 Blender의 디스플레이스먼트 Modifier에 맵을 연결합니다.",
+        "메시 세그먼트를 높이고 융기되는 입체감을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "이미지가 흑백(Grayscale) 모드일 때 필터가 비활성화됨 → RGB Color 모드로 변경 후 적용합니다.",
+    "명암 대비가 부족한 소스 이미지 사용으로 깊이감이 모호함 → Levels(Ctrl+L)나 Curves로 콘트라스트를 높인 뒤 필터를 적용합니다."
+  ],
+  "related": [
+    "Generate Normal Map",
+    "Generate Bump Map",
+    "Lens Blur",
+    "Displacement"
+  ],
+  "videos": [
+    {
+      "id": "SS6wtrVGCxM",
+      "title": "Instant Photoshop Depth Map: Output Depth Map Only Trick",
+      "author": "What Make Art"
+    },
+    {
+      "id": "ljf8IhxqS20",
+      "title": "Photoshop's Hidden Depth Mask: Make Photos Look 3D!",
+      "author": "PiXimperfect"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Depth%20Map",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "RGB Color",
+    "Layer",
+    "Filter",
+    "Generate Depth Map"
+  ],
+  "at": "2026-11-27T00:32:14.341478+00:00"
+}
