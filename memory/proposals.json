@@ -35196,5 +35196,36 @@
     "id": "p-e8ef1ae8ae",
     "verdict": "agent",
     "reason": "백엔드 메타데이터 DB 모델 및 테이블 정의 코드는 SQLAlchemy/SQLite 모델 클래스 추가를 통해 코드로 해결할 수 있는 작업입니다."
+  },
+  {
+    "at": "2026-11-27T07:53:17+00:00",
+    "kind": "proposal",
+    "id": "p-65e7128b30",
+    "title": "실패한 메타데이터 테스트 과제 분할 및 수정",
+    "by": "🧭 🧱 Pix2Poly 관리자",
+    "site": "pix2poly",
+    "category": "운영·비용",
+    "evidence": "backend/tests/test_metadata_db.py 관련 과제들이 패치 적용 실패(변경 없음)로 2회 연속 skipped 처리됨",
+    "proposal": "기존의 복잡한 테스트 한 번에 추가하기 대신, backend/tests/test_metadata_db.py에 기본 DB 연결 및 테이블 스키마 생성 테스트만 포함하는 소규모 패치로 분할하여 등록",
+    "expected": "패치 실패 문제 해소 및 메타데이터 DB 테스트 정상 통과",
+    "effort": "낮음",
+    "source": "",
+    "action": null,
+    "risk": "medium"
+  },
+  {
+    "at": "2026-11-27T07:53:39.551981+00:00",
+    "kind": "decision",
+    "id": "p-65e7128b30",
+    "v": "accepted",
+    "note": "AI 자동 결정: 운영 방향(최소 개입·성장·품질)에 맞아 자동 수락 — 실행은 코딩 에이전트·자동화가 맡음",
+    "auto": true
+  },
+  {
+    "at": "2026-11-27T07:53:41.376098+00:00",
+    "kind": "triage",
+    "id": "p-65e7128b30",
+    "verdict": "agent",
+    "reason": "기존의 복잡한 메타데이터 DB 테스트를 기본 연결 및 테이블 스키마 생성 테스트 중심의 소규모 패치로 분할하여 코드를 수정하는 작업이므로 AI 에이전트가 처리할 수 있습니다."
   }
 ]
