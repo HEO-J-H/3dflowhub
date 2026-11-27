@@ -1,0 +1,95 @@
+{
+  "id": "photoshop-stereoscopic-mpo-e7d9",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "포토샵 3D",
+  "name": "Stereoscopic MPO",
+  "title": "입체음향/입체영상 MPO — 3D 안경용 스테레오스코픽 파일 형식 저장 및 Export",
+  "summary": "Photoshop의 스테레오스코픽 MPO 포맷 편집 기능은 3D 디스플레이나 VR 기기에서 입체감을 느낄 수 있는 좌우 안구용 이미지를 하나의 파일로 관리하고 편집하는 기능입니다.",
+  "when": [
+    "Meta VR 기기나 3D 모니터에서 감상할 입체 사진(Stereoscopic 3D)을 제작할 때",
+    "모바일이나 카메라로 촬영한 MPO 포맷의 3D 이미지를 정밀하게 리터칭할 때",
+    "좌우 시점의 레이어를 분리하여 깊이감을 조절하고 컬러를 보정할 때"
+  ],
+  "steps": [
+    "Photoshop을 실행하고 File → Open 메뉴를 선택하여 MPO 파일 또는 좌우 시점의 이미지를 각각 불러옵니다.",
+    "Layers 패널에서 좌측 눈(Left Eye)과 우측 눈(Right Eye) 이미지가 각각의 레이어로 올바르게 정렬되어 있는지 확인합니다.",
+    "3D 메뉴로 이동하여 New Layer from 3D File 또는 관련 스테레오 옵션을 선택해 3D 공간 구성을 활성화합니다.",
+    "Properties 패널에서 Depth Map 및 Stereoscopic 설정 값을 조절하여 입체감의 강도와 초점 거리를 맞춥니다.",
+    "작업이 완료되면 File → Save As를 선택하고 포맷을 MPO 또는 대상 3D 포맷으로 지정하여 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Depth Map",
+      "desc": "이미지의 픽셀 거리 정보를 흑백 값으로 변환하여 입체 깊이를 제어합니다."
+    },
+    {
+      "name": "Stereo Mode",
+      "desc": "Anaglyph, Side-by-Side 등 모니터와 기기에 맞는 입체 출력 방식을 선택합니다."
+    },
+    {
+      "name": "Parallax",
+      "desc": "좌우 시점의 시차를 조절하여 입체감이 느껴지는 돌출 및 깊이 위치를 변경합니다."
+    },
+    {
+      "name": "Convergence",
+      "desc": "좌우 카메라의 시선이 만나는 초점 거리를 설정하여 눈의 피로도를 줄입니다."
+    },
+    {
+      "name": "Scene Depth",
+      "desc": "전체 3D 공간의 깊이 범위와 압축 비율을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VR 기기용 3D 풍경 사진 보정",
+      "steps": [
+        "MPO 파일을 불러와 좌우 레이어를 분리합니다.",
+        "Adjustment Layer를 추가하여 좌우 시점의 색상과 노출을 일치시킵니다.",
+        "Parallax 옵션을 조절하여 원경과 근경의 입체감을 자연스럽게 맞춥니다."
+      ]
+    },
+    {
+      "title": "입체 오브젝트 깊이감 강조",
+      "steps": [
+        "필요한 피사체를 펜툴 등으로 정교하게 누끼를 땁니다.",
+        "Depth Map을 수동으로 편집해 피사체 영역의 돌출 효과를 높입니다.",
+        "MPO 형식으로 저장해 3D 디스플레이에서 결과물을 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "좌우 레이어가 바뀌어 입체감이 반대로 느껴짐 → Layers 패널에서 좌우 이미지 레이어의 위치를 서로 교체합니다.",
+    "과도한 시차로 인해 눈이 피로함 → Parallax 및 Convergence 값을 낮추어 초점 거리를 재조정합니다."
+  ],
+  "related": [
+    "Depth Map",
+    "3D Layers",
+    "Stereoscopic 3D",
+    "Export As"
+  ],
+  "videos": [
+    {
+      "id": "w_KIgbvM0ZM",
+      "title": "Simple 3D Stereoscopic Effect in Photoshop",
+      "author": "Joseph Brewster"
+    },
+    {
+      "id": "V-Y4IKpV-4g",
+      "title": "Stereoscopic Gif Tutorial in Photoshop CC",
+      "author": "Tom Woodward"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Stereoscopic%20MPO",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Photoshop",
+    "File",
+    "Open",
+    "MPO",
+    "Layers",
+    "Left Eye"
+  ],
+  "at": "2026-11-27T01:22:29.782826+00:00"
+}

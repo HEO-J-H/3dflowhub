@@ -1,0 +1,95 @@
+{
+  "id": "depth-to-gaussian-initialization-dc2d",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "데이터 전처리",
+  "name": "Depth-to-Gaussian Initialization",
+  "title": "Depth-to-Gaussian 초기화 — 깊이 맵을 이용해 Gaussian을 초기화",
+  "summary": "Depth-to-Gaussian Initialization은 다중 시점 이미지와 함께 깊이(Depth) 정보를 활용해 3D Gaussian Splatting의 초기 뼈대를 생성하는 기술입니다. 무작위 포인트 클라우드 대신 정확한 깊이 데이터를 바탕으로 초기 Gaussian을 배치하여 학습 초기 수렴 속도와 품질을 크게 높입니다.",
+  "when": [
+    "일반적인 구조 없는 이미지셋만으로는 3D 공간 복원이 불안정하고 수렴이 느릴 때",
+    "LiDAR 데이터나 모노큘러 딥러닝 Depth 추정 모델을 통해 고품질의 거리 정보가 확보되어 있을 때",
+    "스파스(Sparse) 뷰 환경에서 Gaussian이 허공에 무작위로 떠도는 아티팩트를 줄이고 싶을 때"
+  ],
+  "steps": [
+    "1단계: 대상 오브젝트나 공간을 촬영한 이미지 세트와 이에 대응하는 Depth 맵(또는 COLMAP 포인트 클라우드)을 준비합니다.",
+    "2단계: 학습 설정 파일(Config 또는 Python Script)에서 Initialization 방식을 Depth 기반으로 설정합니다.",
+    "3단계: Terminal이나 학습 인터페이스에서 Depth-to-Gaussian 초기화 파라미터를 활성화하고 데이터 경로를 지정합니다.",
+    "4단계: 학습(Training) 명령어를 실행하여 깊이 기반 포인트로 초기 뼈대가 생성되는지 로그와 Viewport로 확인합니다.",
+    "5단계: 초기 Gaussian 분포가 잡힌 상태에서 Densification과 함께 본격적인 3D Gaussian Splatting 최적화를 진행합니다."
+  ],
+  "params": [
+    {
+      "name": "Depth Map Path",
+      "desc": "입력 이미지와 매칭되는 깊이(Depth) 데이터의 저장 경로를 지정합니다."
+    },
+    {
+      "name": "Depth Scale Factor",
+      "desc": "외부에서 전달된 깊이 값의 단위를 3D 씬의 스케일에 맞게 조절합니다."
+    },
+    {
+      "name": "Initial Opacity",
+      "desc": "깊이 기반으로 생성된 초기 Gaussian의 불투명도 기본값을 설정합니다."
+    },
+    {
+      "name": "Point Density",
+      "desc": "깊이 맵 픽셀당 생성할 초기 Gaussian 포인트의 밀도를 조절합니다."
+    },
+    {
+      "name": "Confidence Threshold",
+      "desc": "신뢰도가 낮은 깊이 정보를 초기화 과정에서 제외하기 위한 임계값입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 빠른 복원",
+      "steps": [
+        "스마트폰의 LiDAR 센서로 취득한 Depth 데이터와 RGB 이미지를 정렬합니다.",
+        "Depth-to-Gaussian 옵션을 켜고 학습을 시작해 벽면과 가구의 초기 위치를 고정합니다.",
+        "불필요한 플로터(Floater) 없이 깨끗한 실내 3D 씬을 빠르게 얻습니다."
+      ]
+    },
+    {
+      "title": "단테스 오브젝트 상세 스캔",
+      "steps": [
+        "모노큘러 뎁스 모델로 추출한 정밀 심도 맵을 데이터셋에 포함합니다.",
+        "초기 포인트 클라우드 분포를 깊이 기준으로 생성하여 디테일 유지력을 높입니다.",
+        "학습 반복(Iteration) 횟수를 줄이면서도 표면 질감을 정확히 복원합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Depth 맵의 스케일이 RGB 카메라와 일치하지 않음 → Depth Scale Factor와 카메라 내부 파라미터(Intrinsics)를 다시 캘리브레이션합니다.",
+    "노이즈가 많은 깊이 정보를 필터링 없이 그대로 사용 → Confidence Threshold를 높여 신뢰도 높은 영역만 초기화에 사용합니다."
+  ],
+  "related": [
+    "Point Cloud Initialization",
+    "COLMAP",
+    "Densification",
+    "RGB-D Sensor Integration"
+  ],
+  "videos": [
+    {
+      "id": "ge4C18Z03Gs",
+      "title": "MVS-Splatting: Fast Multi-View Stereo Depth Fusion for 3D Gaussian Splatting Initialization",
+      "author": "Julie A"
+    },
+    {
+      "id": "OzUxL_UDMTk",
+      "title": "Gaussian Splatting Full Pipeline From Location Scan to Cinema 4D + Octane",
+      "author": "Jörg Kahlhöfer"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20Depth-to-Gaussian%20Initialization",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Depth",
+    "COLMAP",
+    "Config",
+    "Python Script",
+    "Initialization",
+    "Terminal"
+  ],
+  "at": "2026-11-27T01:22:35.390519+00:00"
+}

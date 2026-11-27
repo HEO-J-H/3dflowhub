@@ -1,0 +1,86 @@
+{
+  "id": "v-ray-material-id-8fb8",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질",
+  "name": "Material ID",
+  "title": "Material ID — 각 재질에 고유 ID를 부여해 Mask와 레이어 작업에 활용",
+  "summary": "V-Ray Material ID는 렌더링된 이미지에서 특정 오브젝트나 재질을 색상별로 분리하여 Mask 채널로 추출하는 기능입니다. Photoshop이나 합성 프로그램에서 특정 부분만 쉽게 선택해 보정할 때 사용합니다.",
+  "when": [
+    "렌더링 후 특정 오브젝트나 재질의 색상, 밝기를 개별적으로 수정하고 싶을 때",
+    "합성(Compositing) 과정에서 특정 제품이나 배경 영역을 빠르게 따내야 할 때",
+    "여러 개로 이루어진 복잡한 씬에서 특정 파츠만 골라 리터치 작업을 할 때"
+  ],
+  "steps": [
+    "M 키를 눌러 Material Editor를 엽니다.",
+    "적용하고자 하는 V-Ray 재질(예: VRayMtl)의 속성 패널을 엽니다.",
+    "Material attributes 또는 Options 항목에서 Material ID 값을 원하는 숫자(예: 1, 2, 3...)로 입력합니다.",
+    "Render Setup (F10 키) 창을 엽니다.",
+    "Render Elements 탭으로 이동한 후 Add 버튼을 클릭합니다.",
+    "목록에서 MultiMatteElement (또는 VRayMtlID)를 선택하여 추가합니다.",
+    "추가된 엘리먼트의 속성에서 Material ID 번호를 지정하고 렌더링을 실행합니다."
+  ],
+  "params": [
+    {
+      "name": "Material ID",
+      "desc": "재질에 부여할 고유 번호(정수)로, 렌더 엘리먼트에서 이 번호를 기준으로 Mask를 생성합니다."
+    },
+    {
+      "name": "MultiMatteElement",
+      "desc": "Material ID나 Object ID를 기반으로 컬러 Mask(Red, Green, Blue 채널)를 만들어 주는 렌더 엘리먼트입니다."
+    },
+    {
+      "name": "ID 색상 (Red/Green/Blue)",
+      "desc": "MultiMatteElement에서 각 ID 채널에 매핑할 기본 색상을 지정합니다."
+    },
+    {
+      "name": "ID type",
+      "desc": "Mask를 생성할 기준을 Material ID로 설정할지 Object ID로 설정할지 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 외장 페인트 색상 베리에이션",
+      "steps": [
+        "자동차 외장 재질의 Material ID를 1번으로 지정합니다.",
+        "Render Elements에 MultiMatteElement를 추가하고 MatID 1번에 Red 채널을 할당합니다.",
+        "렌더링 후 Photoshop의 MultiMatte 채널을 이용해 차체 영역만 선택하여 색상을 실시간으로 바꿉니다."
+      ]
+    },
+    {
+      "title": "건축 외관 유리와 프레임 분리 합성",
+      "steps": [
+        "유리 재질에는 Material ID를 1번, 프레임 재질에는 2번을 부여합니다.",
+        "MultiMatteElement를 추가하여 각각 ID 1번과 2번을 채널에 등록합니다.",
+        "렌더링된 Mask 채널을 활용해 유리 부분의 반사율이나 프레임의 노출을 독립적으로 보정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "머티리얼에 ID 번호를 입력했는데 Mask가 안 나옴 → Render Elements에 MultiMatteElement를 추가했는지, ID 번호가 일치하는지 확인합니다.",
+    "서로 다른 재질에 같은 ID 번호를 부여함 → 각각 독립적인 Mask가 필요한 재질은 고유한 숫자로 ID를 다르게 설정해야 합니다."
+  ],
+  "related": [
+    "Multi/Sub-Object",
+    "VRayMtlWrapper",
+    "Render Elements",
+    "Object ID"
+  ],
+  "videos": [
+    {
+      "id": "1peb0Jlahj4",
+      "title": "Material ID Render Element - VRay for Rhino 7 - Tutorial",
+      "author": "Tom Budd"
+    },
+    {
+      "id": "Yu3Kg6KQMHM",
+      "title": "Material ID Color, Material ID Number Render Elements in V-Ray 5 for SketchUp",
+      "author": "S2VR ArchVIZ"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20Material%20ID",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T01:22:39.589759+00:00"
+}
