@@ -1,0 +1,60 @@
+{
+  "title_ko": "Unreal Engine Lumen 실시간 조명 적용 사례 분석",
+  "title": "Lumen Lights up Trojan Arena - The Echo News",
+  "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9ZVmpPQWc5UTFQLWk0dTZyRm5CRGZ5ZXZQNkgwU0JyR2piX1k5S2hzQjFsYmZGMXdUMVlCUnF1RzVJY1pqV3NXS2hDSFVpalBLTFJBR2RneGRZQjhDUk85UzFQeXhVVmtSZExGX2Z0dUF4QkN3a19QZ0xjRjQ?oc=5",
+  "domain": "Game Engine",
+  "category": "Unreal Engine",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Unreal Engine",
+    "Lumen",
+    "실시간 렌더링",
+    "아레나 조명",
+    "언리얼 엔진"
+  ],
+  "summary": "Unreal Engine의 Lumen 실시간 전역 조명 시스템이 Trojan Arena에 적용되어 실제 현장의 조명 환경을 가상 공간에 구현했습니다.",
+  "insight": "Unreal Engine의 Lumen 기능은 실시간 동적 글로벌 Illumination과 반사를 제공하여 대규모 경기장 환경에서도 빠른 렌더링 속도와 정밀한 라이팅 조율을 가능하게 합니다. 아레나처럼 복잡한 반사면과 광원이 많은 공간에서 Baking 과정 없이 빛의 상호작용을 즉시 확인할 수 있습니다. 복잡한 구조물과 관중석이 밀집한 대형 환경에서 라이트맵 계산 대기 시간을 없애고 제작 공정을 간소화합니다.",
+  "try_it": [
+    "Unreal Engine 프로젝트 설정에서 Lumen을 기본 전역 조명 및 반사 메서드로 활성화합니다.",
+    "대형 아레나 씬에서 하드웨어 레이 Tracing과 Software 레이 Tracing 옵션을 전환하며 프레임 레이트를 측정합니다.",
+    "라이트맵 Baking을 생략하고 광원을 이동시키며 실시간 빛의 확산과 반사 변화를 관찰합니다."
+  ],
+  "sections": [
+    {
+      "heading": "Trojan Arena에 도입된 Lumen 기술",
+      "body": "Trojan Arena 내부의 조명 환경을 시각화하기 위해 Unreal Engine의 Lumen 실시간 조명 시스템이 활용되었습니다. 대형 경기장의 복잡한 구조물과 관중석에 미치는 빛의 확산을 실시간으로 계산합니다. 실제 현장의 조명 환경을 가상 공간에 그대로 재현하는 데 중점을 두었습니다."
+    },
+    {
+      "heading": "실시간 조명이 가져오는 작업 변화",
+      "body": "전통적인 라이트맵 Baking 과정을 거치지 않고도 조명의 변화를 즉시 화면에서 확인할 수 있습니다. 빛과 그림자의 상호작용을 실시간으로 확인하므로 전체적인 작업 속도가 빨라집니다. 아레나 내부의 복잡한 광원 배치와 반사 조건을 곧바로 테스트할 수 있습니다."
+    },
+    {
+      "heading": "대규모 공간 렌더링의 특징",
+      "body": "아레나와 같은 넓은 공간에서는 광원과 반사 표면이 많아 성능 최적화가 필수적입니다. Lumen은 하드웨어 레이 Tracing과 Software 레이 Tracing을 유연하게 전환하여 대형 환경에서도 안정적인 프레임을 유지합니다. 복잡한 기하학적 구조를 지닌 관중석과 경기장 바닥의 반사 효과를 실시간으로 처리합니다."
+    },
+    {
+      "heading": "현장 조명 환경의 가상화",
+      "body": "물리적인 경기장의 조명 배치를 디지털 공간에 옮겨와 시각적 정확도를 높였습니다. 다양한 시간대와 조명 조건의 변화를 가상 환경에서 곧바로 시뮬레이션할 수 있습니다. Telemundo 방송국의 월드컵 가상 프로덕션이나 로지텍 G의 360° Racing Studio 사례와 마찬가지로 실시간 렌더링의 강점을 활용합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Lumen을 사용하려면 어떤 하드웨어가 필요한가요?",
+      "a": "하드웨어 레이 Tracing을 지원하는 GPU를 권장하며, Software 레이 Tracing 모드를 통해 사양이 낮은 시스템에서도 구동할 수 있습니다."
+    },
+    {
+      "q": "라이트맵 Baking을 완전히 대체할 수 있나요?",
+      "a": "실시간 조명이 필요한 동적 환경에서는 Baking 없이 Lumen만으로 고품질의 글로벌 Illumination을 얻을 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://i.ytimg.com/vi/ZJ_zjOXzZEM/hqdefault.jpg",
+    "video": "https://www.youtube.com/watch?v=ZJ_zjOXzZEM"
+  },
+  "collected_at": "2026-11-27T18:25:54.549474+00:00",
+  "notion_id": "",
+  "id": "2026-11-27-a8b1619794041936",
+  "img_tried": true,
+  "enriched": "2026-11-27",
+  "enriched_at": "skip"
+}
