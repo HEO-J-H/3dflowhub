@@ -41,6 +41,21 @@
     {
       "heading": "애니메이션 레이어 확장 및 할인 프로모션",
       "body": "애니메이션 레이어는 기존 에디티브(Additive) 방식에 오버라이드(Override) 타입이 추가되어 트랙별 토글과 가중치 조절이 가능해졌습니다. Nekki는 12월 7일까지 인디, 프로, 팀 연간 구독 플랜의 첫해 비용을 40% 할인하는 프로모션을 진행합니다."
+    },
+    {
+      "heading": "Cascadeur 2026.3 MetaHuman 얼굴 애니메이션 및 Live Link 연동 실무 활용",
+      "body": "Nekki의 Cascadeur 2026.3은 MetaHuman DNA 알파 버전을 지원하여 애니메이터가 모델을 가져와 커스텀 얼굴 컨트롤러나 기존 애니메이션 데이터로 구동할 수 있습니다. Unreal Engine과의 Live Link는 바디와 얼굴, 카메라 데이터를 한 번에 전송하도록 개선되어 디지털 휴먼 파이프라인의 효율을 높입니다. 애니메이션 레이어에 오버라이드 타입이 추가되어 트랙별 토글과 가중치 조절이 가능하므로 복잡한 표정과 모션 블렌딩을 정밀하게 제어할 수 있습니다.",
+      "added": true
+    },
+    {
+      "heading": "IK 체인과 로컬 Motion Capture 클리닝으로 크리처 작업 단축",
+      "body": "새로운 IK 체인 툴셋은 거미 다리, 꼬리, 촉수 등 유연한 구조의 크리처 리깅과 포즈 조작을 돕습니다. 긴 체인에 최적화된 제어 기능으로 굽힘과 비틀림 운동을 부드럽게 처리할 수 있습니다. 또한 새로 도입된 Motion Capture 클리닝 툴은 외부 서버 연결 없이 로컬 환경에서 실행되며, 데이터 분석을 통해 지터, 발 미끄러짐, 사지 오배치 등의 캡처 오류를 자동으로 정돈해 줍니다.",
+      "added": true
+    },
+    {
+      "heading": "Python API와 MCP를 통한 AI 어시스턴트 연동 워크플로우",
+      "body": "Cascadeur는 내장된 MCP 서버와 Python API 확장을 통해 Claude Code 같은 외부 AI 어시스턴트와 연동됩니다. 애니메이터는 자연어 명령으로 씬을 조작하고 애니메이션을 생성하거나 편집한 뒤, Cascadeur의 자체 툴을 이용해 결과물을 세밀하게 다듬는 Hybrid 워크플로우를 구성할 수 있습니다.",
+      "added": true
     }
   ],
   "faq": [
@@ -55,6 +70,14 @@
     {
       "q": "외부 AI 어시스턴트로 어떻게 씬을 편집할 수 있나요?",
       "a": "모델 콘텍스트 프로토콜(MCP)과 Cascadeur의 Python API를 통해 Claude Code 같은 외부 AI가 자연어 명령으로 씬 작업을 수행할 수 있습니다."
+    },
+    {
+      "q": "Cascadeur 2026.3에서 MetaHuman 얼굴 애니메이션은 어떻게 연동하나요?",
+      "a": "MetaHuman DNA 알파 버전을 지원하여 모델을 가져온 뒤 자체 얼굴 컨트롤러나 기존 애니메이션 데이터로 구동할 수 있으며, Unreal Engine과의 Live Link를 통해 바디, 얼굴, 카메라 데이터를 통합 전송할 수 있습니다."
+    },
+    {
+      "q": "Motion Capture 클리닝 툴 사용 시 외부 서버가 필요한가요?",
+      "a": "아닙니다. 신규 도입된 Motion Capture 클리닝 툴은 외부 서버 연결 없이 로컬 환경에서 단독으로 실행되어 지터나 미끄러짐 등의 오류를 자동 보정합니다."
     }
   ],
   "media": {
@@ -64,5 +87,23 @@
   "collected_at": "2026-11-27T19:55:36.177634+00:00",
   "notion_id": "",
   "id": "2026-11-27-dedce092e74d8e88",
-  "img_ok": "2026-11-27T19:55:36+00:00"
+  "img_ok": "2026-11-27T19:55:36+00:00",
+  "refs": [],
+  "videos": [
+    {
+      "id": "U-yC7yMJ4wU",
+      "title": "Complete RealityScan to Custom MetaHuman Guide — Real Face Texture, No Third-Party Tools | UE5",
+      "author": "Olar Krjukov"
+    },
+    {
+      "id": "FpOOHNP7oLs",
+      "title": "Facial Animation MetaHuman Animator for Unreal Engine 5.2 ~ This is a game changer!!! ~  #shorts",
+      "author": "Solomon Jagwe"
+    }
+  ],
+  "enriched_at": "2026-11-27T20:36:14+00:00",
+  "quality": {
+    "before": 862,
+    "after": 1529
+  }
 }
