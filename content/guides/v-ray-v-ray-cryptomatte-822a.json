@@ -1,0 +1,85 @@
+{
+  "id": "v-ray-v-ray-cryptomatte-822a",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "렌더링 및 출력",
+  "name": "V-Ray Cryptomatte",
+  "title": "V-Ray Cryptomatte — 오브젝트와 재질 ID를 자동으로 완벽하게 분리하여 합성용 Mask를 생성하",
+  "summary": "V-Ray Cryptomatte는 렌더링된 이미지에서 오브젝트 이름, 재질, 레이어 정보를 바탕으로 완벽한 앨리어싱(Anti-aliasing)이 적용된 ID Mask를 자동으로 생성하는 강력한 합성 도구입니다.",
+  "when": [
+    "Photoshop이나 Nuke에서 특정 오브젝트나 재질만 골라내어 정밀하게 색보정할 때",
+    "머리카락이나 투명한 유리처럼 가장자리가 복잡한 피사체의 Mask를 손쉽게 추출할 때",
+    "별도의 매트(Matte) 채널을 수동으로 일일이 만들 시간이 부족한 Compositing 작업 때"
+  ],
+  "steps": [
+    "Render Setup 창(F10 키)을 엽니다.",
+    "Render Elements 탭으로 이동하여 Add 버튼을 클릭합니다.",
+    "목록에서 VRayCryptomatte를 찾아 추가합니다.",
+    "Render Elements 파라미터에서 ID Type(Node Name, Material 등)을 원하는 방식으로 설정합니다.",
+    "렌더링을 실행하여 EXR 등 멀티채널 형식을 지원하는 포맷으로 이미지를 저장합니다.",
+    "합성 프로그램(Nuke, After Effects, Photoshop)에서 Cryptomatte 플러그인을 이용해 피사체를 클릭하여 Mask를 추출합니다."
+  ],
+  "params": [
+    {
+      "name": "ID Type",
+      "desc": "Mask를 생성할 기준을 설정합니다 (Node Name, Material Name, Asset Name 등)."
+    },
+    {
+      "name": "Level",
+      "desc": "한 픽셀 안에 겹쳐진 오브젝트 레이어의 최대 개수를 지정하여 투명한 영역도 정확히 분리합니다."
+    },
+    {
+      "name": "Premultiply",
+      "desc": "렌더 요소의 알파 채널을 미리 곱해줄지 여부를 결정합니다."
+    },
+    {
+      "name": "Exclude",
+      "desc": "Mask 추출에서 제외할 오브젝트나 재질을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "유리잔 내부의 음료수 색상 변경하기",
+      "steps": [
+        "VRayCryptomatte 렌더 요소를 추가하고 렌더링을 진행합니다.",
+        "합성 프로그램에서 Cryptomatte 피펫 툴로 음료수 재질을 클릭합니다.",
+        "선택된 Mask 영역에만 Hue/Saturation 효과를 주어 색상을 바꿉니다."
+      ]
+    },
+    {
+      "title": "복잡한 배경 속 특정 제품만 강조하기",
+      "steps": [
+        "Node Name 기준으로 Cryptomatte 요소를 활성화합니다.",
+        "합성 툴에서 제품 모델링을 클릭하여 완벽한 모서리 Mask를 얻습니다.",
+        "제품 외곽에 글로우(Glow) 효과나 색보정을 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "멀티채널을 지원하지 않는 포맷으로 저장함 → EXR 또는 TIF 등 채널 정보를 담을 수 있는 포맷으로 저장합니다.",
+    "Mask 외곽에 계단 현상(Aliasing)이 생김 → 렌더 요소 설정에서 Level 값을 높이거나 안티앨리어싱 설정을 확인합니다."
+  ],
+  "related": [
+    "V-Ray Material ID",
+    "VRayMtlWrapper",
+    "V-Ray MultiMatteElement",
+    "Render Setup"
+  ],
+  "videos": [
+    {
+      "id": "BbAhKTWs33o",
+      "title": "V-Ray: Cryptomatte Tutorial (3ds Max)",
+      "author": "Learn V-Ray"
+    },
+    {
+      "id": "634AkXzvHXU",
+      "title": "How to use cryptomatte channel in V-Ray for SketchUp",
+      "author": "Evren Cavusoglu"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Cryptomatte",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-27T02:52:49.759864+00:00"
+}
