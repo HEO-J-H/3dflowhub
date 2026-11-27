@@ -87,5 +87,14 @@
     "Add Splitter",
     "Combiner Node"
   ],
-  "at": "2026-11-25T08:24:51.883580+00:00"
+  "at": "2026-11-25T08:24:51.883580+00:00",
+  "qa_at": "2026-11-27T15:14:40+00:00",
+  "qa": {
+    "score": 8,
+    "defects": [
+      "DaVinci Resolve의 외부 매트 연결 시 'Add Outside'나 'Add Splitter/Combiner Node'가 아닌 노드 그래프 우클릭 메뉴의 'Add Node' -> 'Add External M",
+      "하단 관련 없는 3ds Max 용어(Solid Color, VRayMtlWrapper, Clone Tool, Delta Keyer)가 혼입되어 있습니다."
+    ],
+    "fix_hint": "DaVinci Resolve의 정확한 External Matte 연결 메뉴 경로를 확인하고 타 소프트웨어 용어가 섞이지 않도록 검수하세요."
+  }
 }

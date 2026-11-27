@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-27T09:14:10+00:00",
+  "at": "2026-11-27T15:14:41+00:00",
   "checked": 1987,
   "mechanical_count": 135,
   "mechanical_by_problem": [
@@ -2774,6 +2774,36 @@
       "score": 10,
       "defects": [],
       "fix_hint": "공식 문서의 메뉴 경로, 단축키, 오류 메시지를 정확하게 반영하여 실무 가이드의 신뢰성을 유지합니다."
+    },
+    {
+      "kind": "manual",
+      "id": "blender-dope-sheet-and-action-editor-5a81",
+      "title": "Dope Sheet — 키 시간 조절",
+      "score": 10,
+      "defects": [],
+      "fix_hint": "공식 문서의 Dope Sheet 및 Action Editor 사용법과 단축키를 정확하게 반영하여 작성합니다."
+    },
+    {
+      "kind": "guide",
+      "id": "davinci-resolve-external-matte-27a6",
+      "title": "외장 매트 — 알파 채널 영상이나 별도의 Mask 파일을 컬러 페이지로 불러와 적용하는 방법",
+      "score": 8,
+      "defects": [
+        "DaVinci Resolve의 외부 매트 연결 시 'Add Outside'나 'Add Splitter/Combiner Node'가 아닌 노드 그래프 우클릭 메뉴의 'Add Node' -> 'Add External M",
+        "하단 관련 없는 3ds Max 용어(Solid Color, VRayMtlWrapper, Clone Tool, Delta Keyer)가 혼입되어 있습니다."
+      ],
+      "fix_hint": "DaVinci Resolve의 정확한 External Matte 연결 메뉴 경로를 확인하고 타 소프트웨어 용어가 섞이지 않도록 검수하세요."
+    },
+    {
+      "kind": "fix",
+      "id": "houdini-error-file-cache-sop-failed-to-write-bgeo--50ee1",
+      "title": "Error: File cache sop: Failed to write bgeo sequence because directory does not ",
+      "score": 9,
+      "defects": [
+        "일부 문장이 중간에 끊기거나 조사가 누락된 부분이 있습니다.",
+        "오탈자 수정: '올바르게정한 뒤'는 '올바르게 정한 뒤'로 띄어쓰기가 필요합니다."
+      ],
+      "fix_hint": "작성 완료 후 문장의 연결 상태와 띄어쓰기를 한 번 더 검토하세요."
     }
   ],
   "avg_score": 9.0,
