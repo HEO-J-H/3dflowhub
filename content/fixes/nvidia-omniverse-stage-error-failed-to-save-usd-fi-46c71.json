@@ -1,0 +1,38 @@
+{
+  "id": "nvidia-omniverse-stage-error-failed-to-save-usd-fi-46c71",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Stage Error: Failed to save USD file because layer contains unsaved external references",
+  "title": "Stage Error: Failed to save USD file because layer contains unsaved external ref",
+  "summary": "NVIDIA Omniverse에서 외부 파일(서브레이어나 에셋 등)에 저장되지 않은 변경 사항이나 깨진 참조가 포함되어 있어 현재 USD 파일을 저장하지 못할 때 발생하는 오류입니다.",
+  "causes": [
+    "참조(Reference)되거나 서브레이어(Sublayer)로 추가된 외부 USD 파일에 아직 저장되지 않은(Unsaved) 편집 내용이 존재하는 경우",
+    "외부 파일 경로가 잘못되었거나 로컬 파일 시스템에서 파일이 이동 또는 삭제되어 외부 참조 연결이 끊어진 경우",
+    "권한 문제로 인해 외부 참조된 USD 파일에 쓰기(Write) 작업이 불가능한 경우"
+  ],
+  "steps": [
+    "Stage 패널에서 현재 작업 중인 USD 구조를 확인하고, 외부 참조(References)나 서브레이어가 연결된 하위 레이어들을 찾습니다.",
+    "Unsaved 상태(보통 레이어 이름 옆에 별표(*) 표시)인 외부 레이어들을 개별적으로 선택합니다.",
+    "Layer 패널 또는 메뉴에서 해당 외부 레이어를 우클릭하여 'Save Layer' 또는 'Save As'를 선택해 변경 사항을 먼저 저장합니다.",
+    "외부 파일 경로(Path)가 올바른지 Property 패널에서 확인하고, 필요 시 유효한 경로로 재연결합니다.",
+    "모든 하위 레이어가 정상적으로 저장된 상태에서 메인 USD 파일을 다시 저장합니다."
+  ],
+  "check": [
+    "Stage 및 Layer 패널에서 모든 레이어의 저장 상태 표시(별표 등)가 사라지고 정상적으로 저장되는지 확인합니다.",
+    "오류 메시지 없이 USD 파일이 로컬 디스크나 서버에 성공적으로 저장되는지 확인합니다."
+  ],
+  "prevent": [
+    "외부 참조나 서브레이어를 포함한 복합 USD 프로젝트를 작업할 때는 'Save All Layers' 기능을 사용하여 수시로 전체 레이어를 함께 저장합니다.",
+    "외부 에셋이나 서브레이어 파일을 프로젝트 폴더 내부로 수렴(Package/Collect)하여 상대 경로로 관리합니다."
+  ],
+  "keywords": [
+    "Omniverse 저장 오류",
+    "USD 외부 참조 저장 실패",
+    "Layer contains unsaved external references",
+    "NVIDIA Omniverse 락 해제",
+    "Stage Error save usd"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T02:37:31+00:00"
+}

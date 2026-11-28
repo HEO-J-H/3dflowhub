@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-flag-and-marker-b62d",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "공통",
+  "name": "Flag and Marker",
+  "title": "플래그와 마커 — Timeline의 특정 지점에 메모와 색상별 표식을 남기는 기능",
+  "summary": "DaVinci Resolve의 Flag와 Marker는 Timeline에서 특정 클립이나 프레임을 색상별로 표시하고 메모를 남겨 협업과 컷 편집을 효율화하는 도구입니다.",
+  "when": [
+    "VFX 수정 요청 사항이나 감독의 피드백을 Timeline에 정확히 기록할 때",
+    "대규모 편집본에서 A컷, B컷, 음악 비트 맞춤 지점을 시각적으로 분류할 때",
+    "컬러리스트나 사운드 디자이너에게 특정 구간의 작업을 지시할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Cut Page 또는 Edit Page의 Timeline으로 진입합니다.",
+    "재생 헤드를 Flag 또는 Marker를 추가할 정확한 프레임에 위치시킵니다.",
+    "Hotkey G를 눌러 Flag를 생성하거나, M을 눌러 Marker 생성 창을 엽니다.",
+    "Marker 창에서 Name, Notes, Color를 지정하고 Done을 클릭합니다.",
+    "Timeline 클립 우클릭 후 Flags 메뉴에서 색상을 선택해 클립 단위로 Flag를 지정합니다."
+  ],
+  "params": [
+    {
+      "name": "Marker Color",
+      "desc": "마커의 색상을 분류하여 작업 종류나 중요도를 시각적으로 구분합니다."
+    },
+    {
+      "name": "Duration",
+      "desc": "마커가 특정 프레임이 아닌 특정 구간(길이) 동안 유지되도록 설정합니다."
+    },
+    {
+      "name": "Name",
+      "desc": "마커나 플래그에 간단한 제목을 붙여 인덱스에서 쉽게 검색합니다."
+    },
+    {
+      "name": "Notes",
+      "desc": "수정 사항이나 상세 지시사항을 텍스트로 기록합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "VFX 수정 구간 표시",
+      "steps": [
+        "VFX 합성이 필요한 프레임에 재생 헤드를 놓습니다.",
+        "Hotkey M을 눌러 마커를 열고 색상을 빨간색으로 지정합니다.",
+        "Notes에 합성 오브젝트 누락 수정 요청을 적습니다."
+      ]
+    },
+    {
+      "title": "음악 비트 맞춤 편집",
+      "steps": [
+        "Audio 트랙의 비트가 강하게 치는 지점에 재생 헤드를 놓습니다.",
+        "Hotkey M을 연속으로 눌러 비트마다 마커를 생성합니다.",
+        "마커 위치에 맞춰 영상 클립의 컷 편집점을 스냅시킵니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "마커를 클립이 아니라 Timeline 트랙에 찍어 클립을 이동할 때 마커가 엇갈림 → 클립을 선택한 상태에서 마커를 추가하거나 클립 마커 기능을 확인",
+    "수많은 마커를 색상 분류 없이 생성하여 피드백 내용을 찾지 못함 → 프로젝트 룰에 따라 마커 색상별 의미를 정의하고 사용"
+  ],
+  "related": [
+    "Markers Index",
+    "Cut Page",
+    "Edit Page",
+    "Fast Review"
+  ],
+  "videos": [
+    {
+      "id": "65D36iY7p_Q",
+      "title": "Markers Do WAY More than you Think! - DaVinci Resolve",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "kQzMO8-xLyI",
+      "title": "Color Clips, Flags and Markers in DaVinci Resolve",
+      "author": "C0nti"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Flag%20and%20Marker",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut Page",
+    "Edit Page",
+    "Timeline",
+    "Flag",
+    "Marker"
+  ],
+  "at": "2026-11-28T02:37:21.286336+00:00"
+}

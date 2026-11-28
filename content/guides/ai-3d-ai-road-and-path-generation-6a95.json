@@ -1,0 +1,91 @@
+{
+  "id": "ai-3d-ai-road-and-path-generation-6a95",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 환경 및 월드",
+  "name": "AI Road and Path Generation",
+  "title": "AI 도로 및 경로 생성 — 지형 데이터와 도시 계획에 맞춰 자연스러운 도로망 자동 구축",
+  "summary": "AI Road and Path Generation은 위성 사진, 벡터 데이터 또는 텍스트 Prompt를 활용해 3D 지형 위에 자연스럽고 정교한 도로와 보행자 경로를 자동으로 생성하는 기능입니다. 수동으로 스라인을 그리며 지형에 맞추는 번거로운 작업을 줄여줍니다.",
+  "when": [
+    "대규모 오픈월드 게임 환경에서 도시 간 고속도로나 숲속 오솔길을 빠르게 연결할 때",
+    "건축 시각화(Archviz) 프로젝트에서 단지 내 도로와 인도 레이아웃을 자동 배치할 때",
+    "지형의 기복에 맞춰 자연스럽게 이어지는 산악 도로와 터널 경로를 설계할 때"
+  ],
+  "steps": [
+    "AI 지형(Terrain) 데이터가 로드된 3D 뷰포트나 AI Generator 패널을 엽니다.",
+    "Tool 메뉴 또는 AI Scattering 툴바에서 Path / Road Generation 모드를 선택합니다.",
+    "Prompt 입력란에 원하는 도로 스타일(예: asphalt highway, dirt walking path)을 입력하거나 시작점과 끝점 좌표를 지정합니다.",
+    "Width, Curvature 등의 파라미터를 조절한 뒤 Generate 버튼을 클릭하여 경로를 생성합니다.",
+    "지형과 도로가 만나는 경계면이 자연스럽게 스무딩(Smoothing) 처리되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Width",
+      "desc": "도로 또는 경로의 폭을 결정합니다."
+    },
+    {
+      "name": "Curvature",
+      "desc": "지형 굴곡에 반응하는 경로의 휘어짐 정도를 조절합니다."
+    },
+    {
+      "name": "Elevation Clamp",
+      "desc": "지형 높낮이에 도로가 밀착되거나 평탄화되는 기준을 설정합니다."
+    },
+    {
+      "name": "Shoulder Width",
+      "desc": "도로 양옆의 갓길이나 경사면(Bank) 영역의 넓이를 지정합니다."
+    },
+    {
+      "name": "Surface Material",
+      "desc": "적용할 아스팔트, 흙, 자갈 등의 텍스처 Preset을 선택합니다."
+    },
+    {
+      "name": "Seed",
+      "desc": "자동 생성되는 경로의 세부 형태와 랜덤 변형 값을 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "산악 지형 고속도로 생성",
+      "steps": [
+        "산악 지형 에셋을 불러온 뒤 AI Path 툴을 활성화합니다.",
+        "출발지와 도착지를 지정하고 Curvature를 높여 자연스러운 곡선 도로를 만듭니다.",
+        "Elevation Clamp 값을 조절해 급경사 구간을 완만하게 보정합니다."
+      ]
+    },
+    {
+      "title": "도심 속 보행자 산책로 배치",
+      "steps": [
+        "지면 메쉬를 선택하고 Path 모드에서 Dirt Path 스타일을 선택합니다.",
+        "Width를 좁게 설정하고 지형 표면에 밀착되도록 생성합니다.",
+        "주변에 AI Foliage Scattering을 연동해 길가 풀밭을 자동 채웁니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "지형 데이터의 스케일이 맞지 않아 도로가 공중에 뜨거나 파묻히는 현상 → 지형 오브젝트의 Transform Scale을 1.0으로 Apply(초기화)한 뒤 다시 생성합니다.",
+    "급격한 경사에 도로를 생성하여 메쉬가 깨지는 현상 → Elevation Clamp 값을 조정하여 최대 경사각 제한을 설정합니다."
+  ],
+  "related": [
+    "AI Terrain Generation",
+    "AI Foliage Scattering",
+    "Landscape Splines",
+    "Mesh Projection"
+  ],
+  "videos": [
+    {
+      "id": "L5emNlNYVfY",
+      "title": "AI 3D Models for Games: Full Pipeline from Generation to Engine (2026)",
+      "author": "Jan"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Road%20and%20Path%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "Terrain",
+    "AI Generator"
+  ],
+  "at": "2026-11-28T02:37:26.774747+00:00"
+}

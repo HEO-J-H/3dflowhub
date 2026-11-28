@@ -1,0 +1,34 @@
+{
+  "id": "blender-error-cannot-apply-modifier-for-a-curve-ob-22a97",
+  "kind": "fix",
+  "tool": "Blender",
+  "error": "Error: Cannot apply modifier for a curve object in edit mode",
+  "title": "Error: Cannot apply modifier for a curve object in edit mode 오류 해결 방법",
+  "summary": "Error: Cannot apply modifier for a curve object in edit mode 오류는 Blender에서 커브 오브젝트가 에디트 모드(Edit Mode) 상태일 때 Modifier를 적용(Apply)하려고 하면 발생하는 메시지입니다. Modifier를 적용하려면 반드시 오브젝트 모드(Object Mode)로 전환해야 합니다.",
+  "causes": [
+    "커브 오브젝트가 Edit Mode 상태에서 Properties 패널의 Modifier 탭에서 Apply 버튼을 누른 경우",
+    "Python 스크립트나 애드온이 에디트 모드 상태에서 커브 Modifier를 강제로 적용하려고 시도한 경우"
+  ],
+  "steps": [
+    "키보드의 Tab 키를 눌러 현재의 Edit Mode에서 빠져나와 Object Mode로 전환합니다.",
+    "3D Viewport 상단 왼쪽의 모드 선택 드롭다운 메뉴에서 직접 Object Mode를 선택합니다.",
+    "Properties 패널에서 Modifier 탭을 엽니다.",
+    "적용하려는 Modifier의 드롭다운 메뉴를 열고 Apply를 클릭합니다."
+  ],
+  "check": [
+    "Modifier가 메쉬나 커브 데이터에 영구적으로 반영되어 스택에서 사라진 것을 확인합니다.",
+    "에디트 모드(Tab)로 다시 진입하여 정상적으로 편집이 가능한지 확인합니다."
+  ],
+  "prevent": [
+    "Modifier를 추가하거나 적용(Apply), 삭제 등 구조적인 변경을 할 때는 항상 Object Mode인지 확인하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Blender 커브 Modifier 오류",
+    "Cannot apply modifier curve object",
+    "Blender 에디트모드 Modifier 적용 안됨",
+    "Blender Modifier Apply 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T02:37:32+00:00"
+}

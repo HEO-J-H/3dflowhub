@@ -1,0 +1,39 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-graph-core-failed--be0d8",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.graph.core] Failed to evaluate graph due to infinite recursion loop",
+  "title": "Kit: [Error] [omni.graph.core] Failed to evaluate graph due to infinite recursio",
+  "summary": "NVIDIA Omniverse에서 OmniGraph 실행 중 무한 재귀 루프(Infinite recursion loop)가 발생하여 Graph 평가가 중단되었음을 알리는 오류입니다. 노드 간의 순환 참조로 인해 무한 반복 호출이 일어날 때 발생합니다.",
+  "causes": [
+    "OmniGraph 내부에서 출력 포트가 다시 입력 포트로 직접 또는 간접적으로 연결되어 순환 고리(Loop)가 형성된 경우",
+    "조건문(Condition) 노드나 루프(Loop) 노드의 종료 조건이 잘못 설정되어 빠져나오지 못하는 경우",
+    "이벤트(Event) 노드와 프레임 업데이트 노드가 잘못 물려 매 프레임마다 자신을 트리거하는 경우"
+  ],
+  "steps": [
+    "메뉴 바에서 Window → Visual Scripting → Action Graph (또는 해당 Graph 에디터)를 엽니다.",
+    "오류 로그에 언급된 Graph를 찾아 노드 네트워크 구조를 확인합니다.",
+    "데이터 흐름(파란색/흰색 선 등)을 추적하여 입력과 출력이 서로를 물고 있는 순환 연결(Circular connection)을 찾습니다.",
+    "문제가 되는 연결 선(Edge)을 선택하고 Delete 키를 눌러 순환 고리를 끊습니다.",
+    "필요한 경우 중간에 조건 제어나 프레임 지연(Delay) 노드를 추가하여 무한 호출을 방지합니다.",
+    "Graph 에디터의 상단 재생 또는 재컴파일 버튼을 눌러 Graph를 다시 로드합니다."
+  ],
+  "check": [
+    "Console 창에 [omni.graph.core] 관련 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Stage Viewport에서 애니메이션이나 시뮬레이션이 멈춤 현상 없이 정상적으로 재생되는지 확인합니다."
+  ],
+  "prevent": [
+    "Graph를 복잡하게 연결할 때 데이터의 흐름이 단방향(Feed-forward)으로 흐르도록 설계합니다.",
+    "루프나 반복 작업을 구현할 때는 반드시 명확한 종료 조건(Exit condition)이나 틱 제한을 설정합니다."
+  ],
+  "keywords": [
+    "Omniverse 오류",
+    "omni graph core",
+    "infinite recursion loop",
+    "OmniGraph 무한 루프",
+    "USD Graph 오류"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T02:37:29+00:00"
+}
