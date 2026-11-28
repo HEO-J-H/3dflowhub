@@ -1,0 +1,89 @@
+{
+  "id": "ai-3d-ai-hdri-lighting-generation-5b47",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 조명 및 렌더링",
+  "name": "AI HDRI Lighting Generation",
+  "title": "AI HDRI 조명 생성 — 단일 이미지나 텍스트 Prompt로부터 실내외 환경광 HDRI 맵 자동 생성",
+  "summary": "AI HDRI Lighting Generation은 단일 이미지나 텍스트 Prompt만으로 3D 렌더링에 사용할 수 있는 360도 파노라마 환경 조명(HDRI)을 자동으로 생성하는 기술입니다. 씬의 분위기와 조명, 반사를 단 몇 초 만에 사실적으로 완성할 수 있습니다.",
+  "when": [
+    "특정 시간대나 날씨의 실사 환경 조명을 빠르게 만들고 싶을 때",
+    "기존 HDRI 라이브러리에서 원하는 컨셉의 배경을 찾지 못했을 때",
+    "단일 콘셉트 아트나 레퍼런스 이미지와 완벽히 일치하는 조명 반사를 얻고 싶을 때"
+  ],
+  "steps": [
+    "AI HDRI 생성 웹 플랫폼이나 DCC(Blender, Unreal Engine 등)의 관련 AI 플러그인을 엽니다.",
+    "텍스트 Prompt 창에 원하는 환경(예: 'sunset desert, dramatic lighting')을 입력하거나 소스 이미지를 업로드합니다.",
+    "Resolution 및 Sky Type 등의 기본 옵션을 설정한 뒤 Generate 버튼을 클릭합니다.",
+    "생성된 360도 파노라마 맵을 확인하고 마음에 들면 EXR 또는 HDR 포맷으로 다운로드합니다.",
+    "3ds Max나 Blender의 Environment 슬롯에 해당 HDRI 맵을 불러와 Viewport 배경과 조명으로 적용합니다."
+  ],
+  "params": [
+    {
+      "name": "Prompt",
+      "desc": "생성할 환경과 조명 분위기를 텍스트로 설명합니다."
+    },
+    {
+      "name": "Resolution",
+      "desc": "생성될 HDRI 맵의 Resolution(2K, 4K, 8K 등)를 설정합니다."
+    },
+    {
+      "name": "Sun Intensity",
+      "desc": "환경 내 주광원의 밝기와 그림자 선명도를 조절합니다."
+    },
+    {
+      "name": "Color Temperature",
+      "desc": "조명의 전체적인 색온도(K)를 조절하여 주간이나 야간 분위기를 냅니다."
+    },
+    {
+      "name": "Output Format",
+      "desc": "HDR 또는 EXR 등 고다이내믹레인지 이미지 포맷을 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "제품 광고용 Studio 조명 만들기",
+      "steps": [
+        "소프트박스와 반사판이 배치된 Studio 컨셉의 Prompt를 입력합니다.",
+        "HDRI를 생성한 뒤 제품 렌더링 씬의 Dome Light에 적용합니다.",
+        "조명 회전 값을 조절하여 제품 표면의 하이라이트 위치를 맞춥니다."
+      ]
+    },
+    {
+      "title": "야외 판타지 배경 조명 생성",
+      "steps": [
+        "마법진과 네온사인이 있는 사이버펑크 골목 이미지를 레퍼런스로 업로드합니다.",
+        "생성된 360도 환경 맵을 씬의 배경(Environment)에 연결합니다.",
+        "Lumen 또는 V-Ray 라디오시티를 켜서 주변광 반사를 활성화합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "저해상도 HDRI 사용으로 인한 반사 품질 저하 → 4K 이상의 EXR 포맷으로 다시 생성하여 적용합니다.",
+    "조명 회전(Rotation)을 맞추지 않아 배경과 주광원 방향이 어긋나는 경우 → Environment 맵의 Rotation 값을 조절해 메인 광원과 피사체의 그림자 방향을 일치시킵니다."
+  ],
+  "related": [
+    "V-Ray Dome Light",
+    "AI PBR Material Generation",
+    "Unreal Engine Lumen",
+    "Blender World Shader"
+  ],
+  "videos": [
+    {
+      "id": "3pIttG_shyY",
+      "title": "Insane AI 3D Model Generation + Components Breakdown using Hyper3D Rodin",
+      "author": "Archi Hacks"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20HDRI%20Lighting%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI HDRI",
+    "DCC",
+    "Blender",
+    "Unreal Engine",
+    "AI"
+  ],
+  "at": "2026-11-28T02:57:19.507558+00:00"
+}
