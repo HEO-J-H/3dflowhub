@@ -1,0 +1,60 @@
+{
+  "title_ko": "Blender 5.3 스플래시 화면 OVERGROWN 소스 파일 분석",
+  "title": "Blender 5.3 splash screen study: explore the OVERGROWN production file",
+  "url": "https://www.blendernation.com/2026/11/28/blender-5-3-splash-screen-study-explore-the-overgrown-production-file/",
+  "domain": "3D DCC",
+  "category": "Blender",
+  "topic": "작품·제작 사례",
+  "tags": [
+    "Blender",
+    "Geometry Nodes",
+    "Shader",
+    "Compositing",
+    "CC-BY",
+    "블렌더",
+    "지오메트리 노드"
+  ],
+  "summary": "Blender Studio가 Blender 5.3 스플래시 화면에 사용된 OVERGROWN 제작 파일을 CC-BY 라이선스로 공개하여 구아슈 Shader와 털 셋업 등을 분석합니다.",
+  "insight": "321.4MB 용량의 공식 .blend 파일을 내려받아 Kuwahara 필터 Compositing과 Geometry Nodes 기반 퍼 셋업을 직접 뜯어볼 수 있습니다.",
+  "try_it": [
+    "Blender Studio에서 Blender 5.3 OVERGROWN 예제 .blend 파일을 다운로드합니다.",
+    "셰이더 노드 그룹에서 구아슈 셰이더의 노멀 패싯과 스크래치 텍스처 파라미터를 조절해 봅니다.",
+    "컴포지팅 탭에서 렌더 패스별 Kuwahara 필터 적용 결과와 Toney 노드 컬러 관리 세팅을 비교합니다."
+  ],
+  "sections": [
+    {
+      "heading": "OVERGROWN 스플래시 파일 구성과 다운로드",
+      "body": "Blender 5.3 버전을 실행하면 트레일러 장면에 등장하는 OVERGROWN 씬이 스플래시 화면으로 나타납니다. 321.4MB 크기의 CC-BY 라이선스 .blend 파일에는 프로덕션 씬을 가볍게 간소화한 여러 세팅이 포함되어 있습니다."
+    },
+    {
+      "heading": "Gouache Shader와 회화적 노멀 패싯",
+      "body": "환경 배경은 페인터틱한 노멀 패싯을 구현하는 Shader 노드 그룹을 사용합니다. 효과의 강도와 스케일, 축을 따른 회전뿐만 아니라 무작위 스크래치, 스프링클, 블롭 같은 텍스처 추가 요소를 제어할 수 있습니다."
+    },
+    {
+      "heading": "Geometry Nodes 기반 캐릭터 털과 Shading",
+      "body": "Simon의 캐릭터 세팅에서 페인터틱한 퍼지 느낌을 낸 Geometry Nodes 구조를 살펴볼 수 있습니다. 특히 Hedgehog의 털을 구성하는 노드 트리가 어떻게 연결되어 있는지 직접 뜯어보며 학습이 가능합니다."
+    },
+    {
+      "heading": "Kuwahara 필터 Compositing과 Toney 컬러 관리",
+      "body": "씬은 여러 렌더 패스로 나뉘어 각각 Kuwahara 필터 처리를 거칩니다. Painterly Defocus 노드 그룹은 새로운 Camera Info 노드로 커스텀 심도를 구현하며, 기존 AgX 대신 Nathan Vegdahl의 Toney 노드로 컬러를 관리합니다."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Blender 5.3 OVERGROWN 예제 파일은 어디서 받을 수 있나요?",
+      "a": "Blender Studio 공식 웹사이트의 Blender 5.3 Splash Screen Study 게시글에서 321.4MB 용량의 CC-BY 라이선스 .blend 파일을 다운로드할 수 있습니다."
+    },
+    {
+      "q": "파일 안에서 어떤 기술적 요소를 살펴볼 수 있나요?",
+      "a": "구아슈 Shader 노드 그룹, Geometry Nodes를 활용한 털 제작 구조, Kuwahara 필터 기반의 Compositing 렌더 패스, Toney 노드 컬러 관리 세팅 등을 확인할 수 있습니다."
+    }
+  ],
+  "media": {
+    "image": "https://www.blendernation.com/wp-content/uploads/2026/11/overgrown-splash-5-3-800x450.jpg.webp",
+    "video": ""
+  },
+  "collected_at": "2026-11-28T12:28:34.289198+00:00",
+  "notion_id": "",
+  "id": "2026-11-28-331bc4ae06a42b8b",
+  "img_ok": "2026-11-28T12:28:34+00:00"
+}

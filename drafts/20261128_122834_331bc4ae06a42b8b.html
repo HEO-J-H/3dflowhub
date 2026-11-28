@@ -1,0 +1,21 @@
+<!-- TITLE: Blender 5.3 스플래시 화면 OVERGROWN 소스 파일 분석 | TAGS: Blender,Geometry Nodes,Shader,Compositing,CC-BY,블렌더,지오메트리 노드,작품·제작 사례 | CATEGORY: 3D DCC/Blender | NOTION:  -->
+<figure style="margin:0 0 16px;text-align:center;"><a href="https://www.blendernation.com/2026/11/28/blender-5-3-splash-screen-study-explore-the-overgrown-production-file/" target="_blank" rel="noopener nofollow"><img src="https://www.blendernation.com/wp-content/uploads/2026/11/overgrown-splash-5-3-800x450.jpg.webp" alt="Blender 5.3 스플래시 화면 OVERGROWN 소스 파일 분석" referrerpolicy="no-referrer" style="max-width:100%;height:auto;"/></a><figcaption style="color:#888;font-size:0.85em;margin-top:6px;">이미지 출처: <a href="https://www.blendernation.com/2026/11/28/blender-5-3-splash-screen-study-explore-the-overgrown-production-file/" target="_blank" rel="noopener nofollow">blendernation.com</a> (원저작자에게 저작권이 있습니다)</figcaption></figure>
+<p style="font-size:1.05em;"><b>한 줄 요약</b> — Blender Studio가 Blender 5.3 스플래시 화면에 사용된 OVERGROWN 제작 파일을 CC-BY 라이선스로 공개하여 구아슈 Shader와 털 셋업 등을 분석합니다.</p>
+<p style="color:#888;">분류: 3D DCC › Blender › 작품·제작 사례</p>
+<h2>OVERGROWN 스플래시 파일 구성과 다운로드</h2>
+<p>Blender 5.3 버전을 실행하면 트레일러 장면에 등장하는 OVERGROWN 씬이 스플래시 화면으로 나타납니다. 321.4MB 크기의 CC-BY 라이선스 .blend 파일에는 프로덕션 씬을 가볍게 간소화한 여러 세팅이 포함되어 있습니다.</p>
+<h2>Gouache Shader와 회화적 노멀 패싯</h2>
+<p>환경 배경은 페인터틱한 노멀 패싯을 구현하는 Shader 노드 그룹을 사용합니다. 효과의 강도와 스케일, 축을 따른 회전뿐만 아니라 무작위 스크래치, 스프링클, 블롭 같은 텍스처 추가 요소를 제어할 수 있습니다.</p>
+<h2>Geometry Nodes 기반 캐릭터 털과 Shading</h2>
+<p>Simon의 캐릭터 세팅에서 페인터틱한 퍼지 느낌을 낸 Geometry Nodes 구조를 살펴볼 수 있습니다. 특히 Hedgehog의 털을 구성하는 노드 트리가 어떻게 연결되어 있는지 직접 뜯어보며 학습이 가능합니다.</p>
+<h2>Kuwahara 필터 Compositing과 Toney 컬러 관리</h2>
+<p>씬은 여러 렌더 패스로 나뉘어 각각 Kuwahara 필터 처리를 거칩니다. Painterly Defocus 노드 그룹은 새로운 Camera Info 노드로 커스텀 심도를 구현하며, 기존 AgX 대신 Nathan Vegdahl의 Toney 노드로 컬러를 관리합니다.</p>
+<h2>💡 에디터 코멘트</h2>
+<blockquote style="border-left:4px solid #4a90e2;padding:8px 14px;">321.4MB 용량의 공식 .blend 파일을 내려받아 Kuwahara 필터 Compositing과 Geometry Nodes 기반 퍼 셋업을 직접 뜯어볼 수 있습니다.</blockquote>
+<h2>❓ 자주 묻는 질문</h2>
+<p><b>Q. Blender 5.3 OVERGROWN 예제 파일은 어디서 받을 수 있나요?</b><br/>A. Blender Studio 공식 웹사이트의 Blender 5.3 Splash Screen Study 게시글에서 321.4MB 용량의 CC-BY 라이선스 .blend 파일을 다운로드할 수 있습니다.</p>
+<p><b>Q. 파일 안에서 어떤 기술적 요소를 살펴볼 수 있나요?</b><br/>A. 구아슈 Shader 노드 그룹, Geometry Nodes를 활용한 털 제작 구조, Kuwahara 필터 기반의 Compositing 렌더 패스, Toney 노드 컬러 관리 세팅 등을 확인할 수 있습니다.</p>
+<h2>📚 함께 보면 좋은 글</h2>
+<ul><li><a href="https://3dflowhub.kr/p/2026-11-28-0f36fb6cc4eb1728.html">Blender 커뮤니티 주간 우수 작품 모음 2026-48</a></li><li><a href="https://3dflowhub.kr/p/2026-11-28-568de2841b6cf806.html">Blender 애드온 Audio Lip Sync Pro 출시</a></li><li><a href="https://3dflowhub.kr/p/2026-11-27-ebd670accb8dd60a.html">Blender AutonoMode Procedural 자동차 애니메이션 애드온 출시</a></li></ul>
+<hr/><p>원문:<a href="https://www.blendernation.com/2026/11/28/blender-5-3-splash-screen-study-explore-the-overgrown-production-file/" target="_blank" rel="noopener nofollow">Blender 5.3 splash screen study: explore the OVERGROWN production file</a></p>
+<p style="color:#999;font-size:0.85em;">본 글은 3dflowhub가 원문을 요약·번역한 큐레이션 콘텐츠입니다.</p>
