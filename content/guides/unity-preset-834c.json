@@ -1,0 +1,89 @@
+{
+  "id": "unity-preset-834c",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "에디터 및 워크플로",
+  "name": "Preset",
+  "title": "Preset — 컴포넌트나 Import 설정의 값을 저장해두고 다른 오브젝트에 빠르게 재적용하는 에셋",
+  "summary": "Unity Preset은 에셋의 Import 설정이나 컴포넌트의 기본값을 Template으로 저장하고 자동 적용하여, 팀 작업 시 일관된 규칙을 유지하고 반복 작업을 줄여주는 기능입니다.",
+  "when": [
+    "모든 3D 모델이나 텍스처를 프로젝트 표준에 맞는 동일한 설정으로 가져와야 할 때",
+    "특정 컴포넌트(예: Light, Rigidbody 등)에 매번 같은 값을 수동으로 입력하기 번거로울 때",
+    "여러 팀원이 참여하는 프로젝트에서 에셋 설정 실수를 원천적으로 방지하고 싶을 때"
+  ],
+  "steps": [
+    "Inspector 패널에서 설정을 저장할 에셋이나 컴포넌트의 원하는 상태를 맞춘 후, 우측 상단의 Preset 아이콘(슬라이더 모양)을 클릭합니다.",
+    "대화상자 하단의 Save to... 버튼을 클릭하여 원하는 폴더에 .preset 파일로 저장합니다.",
+    "Edit 메뉴 → Project Settings를 선택하여 프로젝트 설정 창을 엽니다.",
+    "좌측 메뉴에서 Preset Manager를 선택합니다.",
+    "Add Default Preset을 클릭하고 Template을 적용할 대상 타입(예: TextureImporter, Mesh 등)을 지정합니다.",
+    "방금 저장한 .preset 파일을 해당 항목의 Default에 드래그하여 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Target Type",
+      "desc": "Preset이 적용될 대상 에셋 임포터 또는 컴포넌트의 타입을 나타냅니다."
+    },
+    {
+      "name": "Filters",
+      "desc": "이름이나 경로 규칙을 지정하여 특정 조건의 에셋에만 Preset이 자동 적용되도록 걸러냅니다."
+    },
+    {
+      "name": "Preset Selector",
+      "desc": "적용할 .preset 파일을 선택하고 연결하는 필드입니다."
+    },
+    {
+      "name": "Save to...",
+      "desc": "현재 컴포넌트나 에셋의 설정을 새로운 Preset 파일로 저장합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "픽셀 아트 텍스처 일괄 설정",
+      "steps": [
+        "픽셀 아트 텍스처 한 개를 선택하고 Filter Mode를 Point, Compression을 None으로 설정합니다.",
+        "인스펙터 우측 상단 Preset 버튼을 눌러 PixelArt.preset으로 저장합니다.",
+        "Preset Manager에서 TextureImporter 타입의 기본 Preset으로 등록합니다.",
+        "앞으로 가져오는 모든 텍스처에 픽셀 아트 설정이 자동 적용되는지 확인합니다."
+      ]
+    },
+    {
+      "title": "캐릭터 메쉬 공통 Import 설정",
+      "steps": [
+        "FBX 캐릭터 모델의 Rig를 Humanoid로 바꾸고 Normal Generation을 고정합니다.",
+        "해당 설정을 Character.preset 파일로 저장합니다.",
+        "Preset Manager에 ModelImporter 필터를 추가하고 방금 만든 Preset을 연결합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Preset을 수정했는데 기존 에셋에 적용되지 않음 → Preset 파일 자체는 실시간 동기화되지 않으므로, 에셋의 인스펙터에서 Revert to Default를 누르거나 Preset을 재적용해야 합니다.",
+    "Preset Manager에서 필터 순서가 잘못됨 → 위쪽에 있는 규칙이 먼저 적용되므로, 구체적인 필터일수록 목록 위쪽에 배치해야 합니다."
+  ],
+  "related": [
+    "Preset Manager",
+    "Texture Importer",
+    "Model Importer",
+    "ScriptableObject"
+  ],
+  "videos": [
+    {
+      "id": "0ytDMiE19a4",
+      "title": "Unity Preset Manager",
+      "author": "Unity"
+    },
+    {
+      "id": "YtC7VPbD9LU",
+      "title": "Today's Unity Tip: Preset Manager #unitytips",
+      "author": "Obvious Game"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Preset",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Inspector",
+    "Preset"
+  ],
+  "at": "2026-11-28T00:37:21.758634+00:00"
+}
