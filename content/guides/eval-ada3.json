@@ -1,0 +1,93 @@
+{
+  "id": "eval-ada3",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "평가 및 검증",
+  "name": "eval",
+  "title": "Eval — 학습 중 정량적 평가(PSNR 등)를 위한 테스트셋 분할 및 평가 활성화",
+  "summary": "Gaussian Splatting eval(평가)은 학습 완료된 모델의 렌더링 품질을 실제 촬영 사진과 비교하여 객관적인 수치로 검증하는 과정입니다. PSNR, SSIM, LPIPS 등의 지표를 통해 과적합 여부와 모델의 완성도를 파악합니다.",
+  "when": [
+    "학습이 완료된 3DGS 모델의 최종 렌더링 품질을 객관적으로 수치화하고 싶을 때",
+    "학습 과정에서 과적합(Overfitting)이 발생했는지 테스트 셋을 통해 확인할 때",
+    "논문이나 프로젝트 발표를 위해 다른 모델과 정량적인 성능 비교가 필요할 때"
+  ],
+  "steps": [
+    "1. 전체 데이터셋 중 학습에 사용하지 않고 별도로 분리해 둔 Test Split 이미지를 준비합니다.",
+    "2. 학습이 완료된 3D Gaussian 모델 파일(.ply 등)을 로드합니다.",
+    "3. 평가 Script 실행 명령어(예: python evaluate.py 또는 학습 툴의 Evaluation 탭)를 호출합니다.",
+    "4. 테스트 셋의 카메라 포즈에 맞춰 모델을 렌더링하고, 실제 사진과 픽셀 단위로 비교합니다.",
+    "5. 출력된 PSNR, SSIM, LPIPS 평가 지표 결과를 콘솔창이나 리포트 파일에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Test Set",
+      "desc": "학습에 참여하지 않고 모델 검증만을 위해 따로 분리해 둔 이미지 집합입니다."
+    },
+    {
+      "name": "PSNR",
+      "desc": "최대 신호 대 잡음비로, 픽셀 간의 절대적인 오차를 측정하여 화질을 평가합니다."
+    },
+    {
+      "name": "SSIM",
+      "desc": "구조적 유사도 지표로, 사람의 눈이 느끼는 밝기, 대비, 구조의 차이를 반영합니다."
+    },
+    {
+      "name": "LPIPS",
+      "desc": "학습된 Neural Network을 이용해 인간의 시각적 인지 차이를 반영하는 지표입니다."
+    },
+    {
+      "name": "Render Path",
+      "desc": "평가 과정에서 렌더링된 결과물 이미지가 저장될 디렉토리 경로입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "학습 모델 화질 정량 평가",
+      "steps": [
+        "Test Split으로 분리한 이미지 폴더 경로를 설정합니다.",
+        "평가 Script를 실행하여 렌더링 이미지와 원본 사진을 매칭합니다.",
+        "출력된 PSNR 값이 목표 수치(예: 30 dB 이상)를 넘는지 확인합니다."
+      ]
+    },
+    {
+      "title": "과적합(Overfitting) 여부 진단",
+      "steps": [
+        "Train Set에 대한 PSNR과 Test Set에 대한 PSNR 값을 비교합니다.",
+        "Train 지표만 지나치게 높고 Test 지표가 낮다면 과적합으로 판단합니다.",
+        "학습 반복 횟수(Iteration)를 조절하여 최적의 체크포인트를 찾습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Test Split 데이터가 Train 데이터와 겹침 → 데이터셋 분리 과정을 다시 거쳐 독립된 테스트 셋을 구축합니다.",
+    "카메라 파라미터(cameras.json) 경로 오류로 평가가 안 됨 → COLMAP 결과물과 설정 파일 경로를 정확히 재확인합니다."
+  ],
+  "related": [
+    "Test Split",
+    "Evaluation Metrics",
+    "Gaussian Splatting",
+    "COLMAP"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "KaAxGr_xck4",
+      "title": "3D Gaussian Splatting in UNREAL ENGINE 5 is INSANE!",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20eval",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Test Split",
+    "D Gaussian",
+    "Script",
+    "Evaluation"
+  ],
+  "at": "2026-11-28T02:27:13.385653+00:00"
+}

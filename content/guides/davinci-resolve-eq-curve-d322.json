@@ -1,0 +1,99 @@
+{
+  "id": "davinci-resolve-eq-curve-d322",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트 페이지",
+  "name": "EQ Curve",
+  "title": "EQ 커브 — Audio 주파수를 시각적으로 조절하여 사운드를 다듬는 도구",
+  "summary": "DaVinci Resolve Fairlight 페이지의 EQ Curve는 Audio 주파수 대역별 볼륨을 정밀하게 조절하여 목소리의 톤을 다듬고 불필요한 잡음을 제거하는 이펙트입니다.",
+  "when": [
+    "인터뷰나 나레이션 녹음 시 저음역대의 웅웅거리는 잡음(Boominess)을 줄이고 싶을 때",
+    "목소리의 명료도(Clarity)를 높여 배경 음악 위로 뚜렷하게 들리게 만들고 싶을 때",
+    "특정 주파수 대역이 귀에 거슬릴 정도로 쏘거나 벙벙거릴 때 밸런스를 맞출 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 메뉴에서 Fairlight 페이지로 이동합니다.",
+    "Timeline에서 EQ Curve를 적용할 Audio 트랙 또는 클립을 선택합니다.",
+    "화면 우측 상단의 Mixer 패널에서 해당 트랙의 EQ 슬롯(또는 Inspector 패널의 Equalizer)을 더블 클릭하여 EQ 창을 엽니다.",
+    "EQ 활성화 버튼(Bypass 끄기)을 켜고, 1번부터 6번까지의 밴드(Band) 중 사용할 번호(예: High Pass Filter 또는 Parametric EQ)를 활성화합니다.",
+    "Graph 상의 노드(Node)를 Mouse로 드래그하거나 아래 파라미터(Frequency, Gain, Q)를 조절하여 원하는 주파수 대역을 보정합니다.",
+    "Timeline 뷰어의 Play를 눌러 Audio를 들으며 소리의 변화를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Band",
+      "desc": "조절할 주파수 대역의 필터 유형(High Pass, Low Shelf, Bell 등)을 선택합니다."
+    },
+    {
+      "name": "Frequency",
+      "desc": "보정할 주파수의 중심점(Hz)을 설정하여 특정 대역을 지정합니다."
+    },
+    {
+      "name": "Gain",
+      "desc": "선택한 주파수 대역의 볼륨(dB)을 높이거나 낮춥니다."
+    },
+    {
+      "name": "Q Factor",
+      "desc": "영향을 받는 주파수의 대역폭 넓이를 조절하여 좁거나 넓은 범위를 정밀하게 보정합니다."
+    },
+    {
+      "name": "HPF (High Pass Filter)",
+      "desc": "설정된 주파수 이하의 저음역대 잡음과 웅웅거리는 소리를 잘라냅니다."
+    },
+    {
+      "name": "LPF (Low Pass Filter)",
+      "desc": "설정된 주파수 이상의 고음역대 쉭쉭거리는 잡음을 잘라냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "목소리 저음역대 웅웅거림 제거",
+      "steps": [
+        "Fairlight 페이지에서 음성 트랙의 EQ 창을 엽니다.",
+        "1번 밴드를 HPF로 설정하고 Frequency를 약 80Hz~100Hz로 맞춥니다.",
+        "마이크 스탠드 진동이나 에어컨 저주파 소음이 줄어드는지 확인합니다."
+      ]
+    },
+    {
+      "title": "나레이션 목소리 명료도 향상",
+      "steps": [
+        "EQ 창에서 3번 또는 4번 밴드를 Bell 타입으로 활성화합니다.",
+        "Frequency를 2kHz~4kHz 부근으로 맞추고 Gain을 살짝(2~3dB) 올려줍니다.",
+        "목소리가 배경 음악을 뚫고 선명하게 들리는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 Gain 조절로 소리가 찢어짐 → Gain 값을 낮추고 Q Factor를 좁혀 필요한 부분만 정밀하게 보정하세요.",
+    "모든 밴드를 켜서 원음이 왜곡됨 → 꼭 필요한 대역(HPF와 1~2개 밴드)만 최소한으로 사용해 자연스러움을 유지하세요."
+  ],
+  "related": [
+    "Fairlight FX",
+    "Dynamics",
+    "Fairlight Mixer",
+    "Audio2Face"
+  ],
+  "videos": [
+    {
+      "id": "_bzdFlYWh44",
+      "title": "How To EQ Dialogue Like A Pro in DaVinci Resolve",
+      "author": "Thom Lyons | Visual+Aid Productions"
+    },
+    {
+      "id": "4JWvb8mjwY4",
+      "title": "Equalizer EQ - DaVinci Resolve for NOOBS! - Tip #5",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20EQ%20Curve",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Fairlight",
+    "Timeline",
+    "EQ Curve",
+    "Audio"
+  ],
+  "at": "2026-11-28T02:27:17.630127+00:00"
+}

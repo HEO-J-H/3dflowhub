@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-ai-draw-call-batching-6575",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 에셋 최적화",
+  "name": "AI Draw Call Batching",
+  "title": "AI 드로우 콜 배치 — 렌더링 성능 향상을 위해 씬 내 지오메트리를 자동으로 병합 및 최적화",
+  "summary": "AI Draw Call Batching은 AI 기반 Machine Learning 알고리즘을 활용하여 씬 내의 산재된 드로우 콜과 머티리얼을 자동으로 분석하고 병합하는 실시간 성능 최적화 기술입니다.",
+  "when": [
+    "모바일 기기나 VR 환경에서 수많은 소형 오브젝트로 인해 프레임 저하가 발생할 때",
+    "개별 오브젝트의 정점 및 머티리얼 구조를 유지하면서 수동 배칭의 한계를 극복해야 할 때",
+    "실시간 렌더링 시 CPU 오버헤드를 줄이고 드로우 콜을 획기적으로 낮추어야 할 때"
+  ],
+  "steps": [
+    "최적화할 3D 씬 또는 에셋 Package를 Viewport에 불러옵니다.",
+    "상단 메뉴 바에서 Tools 또는 AI Optimization 패널을 엽니다.",
+    "AI Draw Call Batching 메뉴를 클릭하여 분석 창을 활성화합니다.",
+    "Target Threshold 및 머티리얼 그룹화 옵션을 설정합니다.",
+    "Execute 버튼을 눌러 AI 기반 배칭 연산을 실행합니다.",
+    "Viewport와 통계(Statistics) 창에서 드로우 콜 감소 수치를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Batching Threshold",
+      "desc": "AI가 오브젝트와 머티리얼을 하나로 묶을 기준 허용 범위를 결정합니다."
+    },
+    {
+      "name": "Material Merging",
+      "desc": "유사한 텍스처와 Shader를 가진 머티리얼을 자동으로 아틀라스 형태로 결합합니다."
+    },
+    {
+      "name": "Max Vertices per Batch",
+      "desc": "단일 배치 당 허용할 최대 정점(Vertex) 수를 제한합니다."
+    },
+    {
+      "name": "Preserve UVs",
+      "desc": "배칭 과정에서 기존 맵핑 좌표가 왜곡되지 않도록 보호합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "군중 및 Particle 환경 최적화",
+      "steps": [
+        "수많은 군중 캐릭터 오브젝트를 선택합니다.",
+        "AI Draw Call Batching 패널에서 머티리얼 병합 옵션을 활성화합니다.",
+        "Execute를 실행하여 흩어진 드로우 콜을 단일 배치로 통합합니다."
+      ]
+    },
+    {
+      "title": "도시 건축물 씬 렌더링 가속",
+      "steps": [
+        "건물 주변의 소형 프롭과 가로등 메쉬들을 일괄 선택합니다.",
+        "Threshold 값을 조정하여 인접한 구조물들을 그룹화합니다.",
+        "실시간 프레임레이트 변화를 모니터링하며 최적화 결과를 저장합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 다른 Shader가 적용된 오브젝트를 무리하게 병합함 → 머티리얼 인스턴스나 아틀라스 설정을 먼저 통일해야 합니다.",
+    "지나치게 높은 Vertex 제한 설정으로 메모리 부하 발생 → 타겟 플랫폼의 하드웨어 스펙에 맞춰 제한 값을 낮춰야 합니다."
+  ],
+  "related": [
+    "AI Draw Call Reduction",
+    "Dynamic Batching",
+    "Combine Meshes",
+    "LOD Generator"
+  ],
+  "videos": [
+    {
+      "id": "TCwhlBqIyGQ",
+      "title": "Optimizasyon - Draw Call, Batching Nedir? Nasıl Yapılır? Neden Yapılır?",
+      "author": "CG Peace"
+    },
+    {
+      "id": "So528lkaiw4",
+      "title": "1000 Sprites, 1 Draw Call? 🤯 Batching Explained #pixijs #coding #gamedevblog #programming",
+      "author": "Prabhjot Singh"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Draw%20Call%20Batching",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Package",
+    "Viewport",
+    "Tools",
+    "AI Optimization"
+  ],
+  "at": "2026-11-28T02:27:23.548463+00:00"
+}
