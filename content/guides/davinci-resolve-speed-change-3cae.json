@@ -1,0 +1,103 @@
+{
+  "id": "davinci-resolve-speed-change-3cae",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "편집 페이지",
+  "name": "Speed Change",
+  "title": "스피드 체인지 — 클립의 재생 속도를 정밀하게 조절하고 가변 속도를 설정하는 편집 기능",
+  "summary": "DaVinci Resolve의 Speed Change는 영상 클립의 재생 속도를 정밀하게 조절하여 슬로우 모션이나 패스트 모션을 구현하는 핵심 편집 기능입니다.",
+  "when": [
+    "액션 장면에 극적인 긴장감을 더하기 위해 슬로우 모션을 적용할 때",
+    "지루한 이동 구간이나 긴 호흡의 촬영본을 빠르게 압축할 때",
+    "특정 타임코드나 음악 비트에 영상의 전환점을 정확히 맞출 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Edit Page로 진입합니다.",
+    "Timeline에서 속도를 조절할 비디오 또는 Audio 클립을 선택합니다.",
+    "선택한 클립을 Mouse 우클릭하고 컨텍스트 메뉴에서 Change Clip Speed를 선택합니다.",
+    "Speed 대화 상자에서 원하는 Speed 비율(%) 또는 Duration(길이)을 입력합니다.",
+    "Ripple Sequence 옵션을 체크하여 뒷부분 클립들이 자동으로 밀려나거나 당겨지도록 조정합니다.",
+    "Change 버튼을 클릭하여 적용하고 뷰어에서 결과 화면을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Speed",
+      "desc": "클립의 재생 속도를 백분율(%)로 설정합니다."
+    },
+    {
+      "name": "Duration",
+      "desc": "클립이 재생될 총 시간을 프레임 또는 타임코드로 직접 지정합니다."
+    },
+    {
+      "name": "Ripple Sequence",
+      "desc": "속도 변경으로 인해 발생하는 빈 공간을 채우기 위해 뒤쪽 클립들을 자동으로 이동시킵니다."
+    },
+    {
+      "name": "Freeze Frame",
+      "desc": "지정한 프레임에서 화면을 멈춘 상태로 유지합니다."
+    },
+    {
+      "name": "Reverse Speed",
+      "desc": "클립의 재생 방향을 거꾸로 뒤집어 역재생합니다."
+    },
+    {
+      "name": "Pitch Correction",
+      "desc": "속도가 변할 때 Audio의 음높이(Pitch)가 변형되는 것을 방지합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "다이내믹한 3D 렌더링 액션 슬로우 모션",
+      "steps": [
+        "Timeline에 60fps로 촬영 또는 렌더링된 클립을 올립니다.",
+        "클립 우클릭 후 Change Clip Speed를 엽니다.",
+        "Speed 값을 50%로 설정하여 부드러운 2배 슬로우 모션을 만듭니다.",
+        "Pitch Correction을 체크하여 Audio 왜곡을 방지합니다."
+      ]
+    },
+    {
+      "title": "지루한 카메라 패닝 구간 빠르게 압축하기",
+      "steps": [
+        "Timeline에서 빠르게 지나가야 할 빈 공간 클립을 선택합니다.",
+        "Change Clip Speed 대화 상자를 엽니다.",
+        "Speed 값을 300%로 입력해 재생 시간을 단축합니다.",
+        "Ripple Sequence를 체크해 Timeline 공백을 자동으로 없애줍니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "속도를 느리게 했는데 화면이 뚝뚝 끊기는 현상 → 프레임 레이트(fps)가 낮은 소스이므로 Optical Flow 설정으로 보완합니다.",
+    "속도 변경 후 Timeline에 빈 공백이 생기는 현상 → Change Clip Speed 창에서 Ripple Sequence 옵션을 체크하지 않아서 발생합니다.",
+    "슬로우 모션 적용 시 음성이 외계인 목소리처럼 변하는 현상 → Pitch Correction 옵션을 체크하여 음높이를 유지합니다."
+  ],
+  "related": [
+    "Retime Controls",
+    "Keyframe Curve",
+    "Optical Flow",
+    "Elastic Wave"
+  ],
+  "videos": [
+    {
+      "id": "dDhRcdJmo-k",
+      "title": "Speed Up Only Certain Part of Clip: DaVinci Resolve",
+      "author": "Video With Jens"
+    },
+    {
+      "id": "CAPoKh_WvLU",
+      "title": "INSTANTLY Speed Up & Slow Down Video Clips! - DaVinci Resolve",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Speed%20Change",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Edit Page",
+    "Timeline",
+    "Audio",
+    "Mouse",
+    "Change Clip Speed"
+  ],
+  "at": "2026-11-28T03:17:05.307101+00:00"
+}

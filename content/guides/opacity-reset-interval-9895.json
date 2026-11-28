@@ -1,0 +1,85 @@
+{
+  "id": "opacity-reset-interval-9895",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 및 최적화",
+  "name": "opacity reset interval",
+  "title": "opacity reset interval — 투명도가 낮은 Gaussian을 주기적으로 초기화하는 주기 설정",
+  "summary": "Opacity Reset Interval은 3D Gaussian Splatting 학습 중 Gaussian의 불투명도를 주기적으로 초기화하여, 의미 없는 플로터(Floater) 노이즈를 제거하고 효율적인 가지치기를 돕는 핵심 학습 파라미터입니다.",
+  "when": [
+    "학습된 3D 모델 주변에 지저분한 안개나 점 형태의 플로터 노이즈가 과도하게 발생할 때",
+    "트레이닝 과정에서 불필요한 Gaussian 포인트가 늘어나 파일 용량과 렌더링 부하가 커질 때",
+    "디테일이 떨어지는 영역의 수렴을 정돈하고 깔끔한 경계면을 얻고자 할 때"
+  ],
+  "steps": [
+    "Nerfstudio 또는 사용 중인 3D Gaussian Splatting 학습 프로젝트 폴더를 엽니다.",
+    "설정 파일(예: config.yml 또는 train_config.json)을 텍스트 편집기로 실행합니다.",
+    "Training Parameters 또는 Optimization 섹션에서 Opacity Reset Interval 관련 항목을 찾습니다.",
+    "학습 데이터의 복잡도와 총 스텝 수에 맞춰 리셋 주기(예: 3000 스텝)를 입력하고 저장합니다.",
+    "학습을 재시작하여 뷰포트나 렌더 결과물에서 노이즈가 줄어들고 최적화되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Opacity Reset Interval",
+      "desc": "불투명도 값을 강제로 리셋하는 주기(Iteration 간격)를 설정합니다."
+    },
+    {
+      "name": "Densification Interval",
+      "desc": "Gaussian을 복제하고 분할하는 빈도를 조절합니다."
+    },
+    {
+      "name": "Pruning Threshold",
+      "desc": "기여도가 낮아진 Gaussian을 제거하는 기준값입니다."
+    },
+    {
+      "name": "Stop Densify At",
+      "desc": "밀집화(Densification) 과정을 중단할 최종 학습 스텝을 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "공중에 떠 있는 플로터 노이즈 정돈",
+      "steps": [
+        "학습 설정에서 Opacity Reset Interval 값을 기본값보다 짧게 설정합니다.",
+        "학습을 진행하며 주기마다 불필요한 저투명도 포인트가 사라지는지 관찰합니다.",
+        "최종 렌더링에서 피사체 주변의 지저분한 잔여물이 제거되었는지 확인합니다."
+      ]
+    },
+    {
+      "title": "파일 용량 최적화 및 경계선 정리",
+      "steps": [
+        "모델 표면 외부에 불필요하게 퍼진 Gaussian을 타겟으로 잡습니다.",
+        "Opacity Reset과 Gaussian Pruning 주기를 동기화하여 함께 조정합니다.",
+        "파일 크기가 줄어들면서도 주요 형태와 외곽선이 선명하게 유지되는지 검증합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "너무 짧은 주기로 설정함 → 지나친 리셋으로 인해 표현해야 할 미세한 디테일과 투명한 질감이 사라짐 → 데이터 특성에 맞춰 기본값 또는 권장 스텝 수로 조정",
+    "주기를 너무 길게 설정함 → 플로터 노이즈가 제거되지 않고 그대로 굳어져 파일 크기가 비대해짐 → Opacity Reset Interval 값을 줄여 정기적으로 노이즈를 청소하도록 변경"
+  ],
+  "related": [
+    "Gaussian Pruning",
+    "densification interval",
+    "Opacity Reset",
+    "Stop Densify At"
+  ],
+  "videos": [
+    {
+      "id": "j1Oxbs4mR0E",
+      "title": "Hyundai  new creta Service Interval Reset",
+      "author": "MECHANIC TECH 05"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20opacity%20reset%20interval",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Nerfstudio",
+    "D Gaussian Splatting",
+    "Training Parameters",
+    "Optimization",
+    "Opacity Reset Interval"
+  ],
+  "at": "2026-11-28T03:17:01.270875+00:00"
+}
