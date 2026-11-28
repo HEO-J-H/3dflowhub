@@ -1,0 +1,83 @@
+{
+  "id": "davinci-resolve-position-lock-f1a2",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "에디트 페이지",
+  "name": "Position Lock",
+  "title": "위치 잠금 — Timeline에서 클립이 실수로 이동하는 것을 방지하는 기능",
+  "summary": "DaVinci Resolve의 Position Lock은 Edit 페이지의 Timeline에서 클립의 실수로 인한 위치 이동이나 시간축 어긋남을 방지하는 기능입니다. 중요한 컷이나 Audio 싱크가 맞춰진 클립을 타임라인상에 단단히 고정합니다.",
+  "when": [
+    "Audio와 비디오의 싱크를 완벽하게 맞춘 뒤 실수로 클립이 밀려나는 것을 막고 싶을 때",
+    "이미 편집이 완료된 마스터 컷의 Timeline 구조를 보호해야 할 때",
+    "여러 클립을 복잡하게 배치하는 중 특정 기준 클립의 위치를 고정해 두고 작업할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 Edit 페이지로 이동합니다 (단축기 Shift+4).",
+    "Timeline에서 위치를 고정할 비디오 또는 Audio 클립을 Mouse로 선택합니다.",
+    "선택한 클립을 Mouse 우클릭하여 팝업 메뉴를 엽니다.",
+    "메뉴 목록에서 'Lock Clip' (또는 Position Lock 관련 옵션)을 클릭하여 활성화합니다.",
+    "Timeline 뷰어에서 클립 아이콘에 자물쇠 표시가 나타나며 이동 및 변형이 방지되는 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Lock Clip",
+      "desc": "선택한 클립의 Timeline 내 시간 위치와 트랙 이동을 잠그어 편집 실수를 방지합니다."
+    },
+    {
+      "name": "Auto Track Selector",
+      "desc": "특정 트랙 전체의 편집을 보호하여 개별 클립 고정과 함께 안전한 작업 환경을 제공합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Audio 싱크 클립 고정",
+      "steps": [
+        "외부 녹음한 고음질 Audio와 카메라 원본 비디오의 싱크를 맞춥니다.",
+        "Audio와 비디오 클립을 함께 선택하고 우클릭합니다.",
+        "Lock Clip을 적용하여 편집 중 실수로 Audio가 밀리는 현상을 원천 차단합니다."
+      ]
+    },
+    {
+      "title": "완료된 타이틀 시퀀스 보호",
+      "steps": [
+        "인트로 타이틀 애니메이션이 포함된 컷 배치를 완료합니다.",
+        "해당 클립들을 다중 선택 후 Lock Clip을 켭니다.",
+        "이후 후속 컷 편집 과정에서 인트로 영역이 당겨지거나 덮어씌워지는 것을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "잠긴 클립을 편집하려는데 움직이지 않음 → 클립을 우클릭하여 Lock Clip을 해제한 뒤 이동합니다.",
+    "개별 클립이 아니라 전체 트랙을 잠그고 싶음 → Timeline 헤더의 Track Lock(자물쇠 아이콘)을 활용합니다."
+  ],
+  "related": [
+    "Individual Clips",
+    "Data Burn-In",
+    "Auto Track Selector",
+    "Clip Markers"
+  ],
+  "videos": [
+    {
+      "id": "PqzYl5DY_p8",
+      "title": "Stay in SYNC, Position Lock Your Tracks - DaVinci Resolve",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "n-D4XdfJ5f8",
+      "title": "How To Use Position Lock In DaVinci Resolve - Rapid Resolve - Position Lock",
+      "author": "The Efficient Editor"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Position%20Lock",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Edit",
+    "Timeline",
+    "Audio",
+    "Mouse",
+    "Lock Clip"
+  ],
+  "at": "2026-11-28T01:47:05.651101+00:00"
+}

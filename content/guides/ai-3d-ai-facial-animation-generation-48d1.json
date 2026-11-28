@@ -1,0 +1,93 @@
+{
+  "id": "ai-3d-ai-facial-animation-generation-48d1",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 리깅 및 애니메이션",
+  "name": "AI Facial Animation Generation",
+  "title": "AI 얼굴 애니메이션 생성 — 음성 및 텍스트 데이터를 기반으로 한 실시간 얼굴 표정 생성",
+  "summary": "AI Facial Animation Generation은 텍스트 프롬프트나 음성 데이터, 또는 비디오 소스를 활용하여 3D 캐릭터의 얼굴 표정과 립싱크 애니메이션을 자동으로 생성하는 AI 기반 기술입니다.",
+  "when": [
+    "Keyframe을 일일이 잡기 번거로운 대사 중심의 캐릭터 애니메이션을 제작할 때",
+    "웹캠이나 비디오 소스 없이 Audio 파일이나 텍스트만으로 빠르게 얼굴 표정 애니메이션을 만들 때",
+    "게임이나 메타버스 프로젝트에 다량의 NPC 대사 립싱크를 일괄 적용할 때"
+  ],
+  "steps": [
+    "AI 기반 안면 애니메이션 툴 또는 DCC Software의 AI 페이셜 플러그인을 실행합니다.",
+    "File → Import Mesh 또는 Content Browser를 통해 애니메이션을 적용할 3D 캐릭터 메쉬를 불러옵니다.",
+    "File → Import Audio 또는 Input Source 설정에서 음성 파일(.wav/.mp3)이나 텍스트를 입력합니다.",
+    "Generate 또는 Process 버튼을 눌러 AI가 Audio 주파수와 텍스트를 분석하여 립싱크와 표정을 생성하도록 합니다.",
+    "Timeline에서 애니메이션 결과를 확인하고, 필요시 BlendShape Weight나 파라미터를 미세 조정합니다.",
+    "File → Export (FBX/USD)를 통해 애니메이션이 적용된 캐릭터 모델을 내보냅니다."
+  ],
+  "params": [
+    {
+      "name": "Audio Source",
+      "desc": "립싱크와 표정 생성의 기준이 되는 Audio 파일을 지정합니다."
+    },
+    {
+      "name": "Emotion Intensity",
+      "desc": "음성 분석에 따른 얼굴 표정 변화와 감정 표현의 강도를 조절합니다."
+    },
+    {
+      "name": "Lip Smoothing",
+      "desc": "입술 움직임의 떨림을 줄이고 자연스러운 전환을 위해 보정합니다."
+    },
+    {
+      "name": "Max Head Rotation",
+      "desc": "음성 재생 중 캐릭터 머리가 움직이는 회전각의 한도를 설정합니다."
+    },
+    {
+      "name": "Target Mesh",
+      "desc": "애니메이션과 블렌드쉐이프가 적용될 대상 캐릭터 메쉬를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "음성 파일 기반 립싱크 자동 생성",
+      "steps": [
+        "Audio Source에 대사 음성 파일(.wav)을 불러옵니다.",
+        "Target Mesh에 얼굴 뼈대와 BlendShape이 포함된 캐릭터를 지정합니다.",
+        "Generate를 실행하여 입술 움직임과 턱의 개폐 애니메이션을 자동 생성합니다.",
+        "Timeline에서 어색한 발음 구간의 블렌드쉐이프 가중치를 수정합니다."
+      ]
+    },
+    {
+      "title": "텍스트 입력 기반 표정 애니메이션",
+      "steps": [
+        "Text Input 패널에 캐릭터가 말할 대사 텍스트를 입력합니다.",
+        "감정 옵션(기쁨, 슬픔 등)을 선택하여 기본 표정을 지정합니다.",
+        "Process를 눌러 텍스트 감정에 맞춘 표정 변화와 립싱크를 생성합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "BlendShape 이름이 매칭되지 않아 입술이 움직이지 않음 → 대상 메쉬의 BlendShape 네이밍 규칙을 표준 스펙에 맞게 정렬합니다.",
+    "Audio 노이즈로 인해 입술 떨림 현상 발생 → Audio Source 입력 전 Audio 파일의 배경 소음(Noise)을 제거하고 정제합니다."
+  ],
+  "related": [
+    "NVIDIA Omniverse Audio2Face",
+    "AI Face Rigging and Blendshapes",
+    "AI Facial Motion Capture",
+    "ControlNet"
+  ],
+  "videos": [
+    {
+      "id": "7J7hi-Hxpac",
+      "title": "We Built a FREE AI Render Engine for CG & Facial Animation (ComfyUI + Blender)",
+      "author": "Mickmumpitz"
+    },
+    {
+      "id": "FpOOHNP7oLs",
+      "title": "Facial Animation MetaHuman Animator for Unreal Engine 5.2 ~ This is a game changer!!! ~  #shorts",
+      "author": "Solomon Jagwe"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Facial%20Animation%20Generation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "AI",
+    "DCC Software"
+  ],
+  "at": "2026-11-28T01:47:09.920016+00:00"
+}
