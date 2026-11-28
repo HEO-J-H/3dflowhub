@@ -1,0 +1,38 @@
+{
+  "id": "unreal-engine-logtexture-warning-texture-contains--7c6f3",
+  "kind": "fix",
+  "tool": "Unreal Engine",
+  "error": "LogTexture: Warning: Texture contains invalid alpha channel format for compression",
+  "title": "LogTexture: Warning: Texture contains invalid alpha channel format for compressi",
+  "summary": "Unreal Engine에서 텍스처를 압축할 때 알파 채널 포맷이 호환되지 않거나 압축 설정과 맞지 않아 발생하는 경고 메시지입니다. 잘못된 알파 포맷으로 인해 압축 과정에서 에러나 비정상적인 렌더링 결과가 발생할 수 있습니다.",
+  "causes": [
+    "포맷을 지원하지 않는 32비트 이미지(예: 잘못된 알파 채널 구조를 가진 PNG, TGA 등)를 임포트한 경우",
+    "알파 채널이 필요 없는 텍스처인데 압축 설정에서 알파 채널을 포함하도록 지정된 경우",
+    "사용 중인 플랫폼 압축 포맷과 소스 텍스처의 알파 채널 규격이 충돌하는 경우"
+  ],
+  "steps": [
+    "Content Browser에서 문제가 발생하는 텍스처 에셋을 더블 클릭하여 Texture Editor를 엽니다.",
+    "Details 패널에서 Compression 섹션을 찾습니다.",
+    "Texture Group 또는 Compression Settings 옵션을 확인하고, 알파 채널이 필요 없다면 압축 설정에서 알파를 포함하지 않는 포맷(예: Default 대신 No Alpha 설정이 포함된 Preset)으로 변경합니다.",
+    "알파 채널이 반드시 필요한 텍스처라면, 소스 이미지(PSD, TGA, PNG 등)의 알파 채널 구조를 다시 확인하고 정상적인 8비트/16비트 알파 채널로 재저장한 뒤 Reimport 합니다.",
+    "변경 사항을 저장(Save)하고 뷰포트나 머티리얼에서 에러가 사라졌는지 확인합니다."
+  ],
+  "check": [
+    "Output Log에서 해당 텍스처와 관련된 'LogTexture: Warning: Texture contains invalid alpha channel format for compression' 경고가 더 이상 출력되지 않는지 확인합니다.",
+    "Texture Editor의 Viewport에서 알파 채널이 깨지지 않고 정상적으로 표시되는지 확인합니다."
+  ],
+  "prevent": [
+    "알파 채널이 불필요한 텍스처는 원본 소스를 제작할 때부터 알파 채널을 제외하고 저장합니다.",
+    "Unreal Engine에 텍스처를 임포트할 때 압축 설정(Compression Settings)이 용도에 맞게 지정되어 있는지 확인하는 습관을 들입니다."
+  ],
+  "keywords": [
+    "Unreal Engine 알파 채널 경고",
+    "Texture contains invalid alpha channel format",
+    "LogTexture Warning",
+    "Unreal 텍스처 압축 오류",
+    "텍스처 알파 포맷 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T05:37:54+00:00"
+}

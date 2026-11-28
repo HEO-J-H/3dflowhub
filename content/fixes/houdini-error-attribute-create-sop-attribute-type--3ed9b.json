@@ -1,0 +1,37 @@
+{
+  "id": "houdini-error-attribute-create-sop-attribute-type--3ed9b",
+  "kind": "fix",
+  "tool": "Houdini",
+  "error": "Error: Attribute create sop: Attribute type mismatch on merge input",
+  "title": "Error: Attribute create sop: Attribute type mismatch on merge input 오류 해결 방법",
+  "summary": "Houdini에서 Attribute Create SOP나 Merge SOP를 사용할 때, 병합되거나 연결되는 지오메트리 간에 동일한 이름의 어트리뷰트 데이터 타입이 서로 달라 충돌이 발생할 때 나타나는 오류입니다.",
+  "causes": [
+    "병합(Merge)되는 서로 다른 입력 소스에서 같은 이름의 어트리뷰트가 서로 다른 데이터 타입(예: Float과 Vector)으로 정의된 경우",
+    "Attribute Create SOP 내부에서 기존 어트리뷰트의 타입을 변경하려 할 때 상위 스트림의 타입과 충돌하는 경우",
+    "외부 파일(USD, Alembic 등)을 불러올 때 기존 지오메트리와 어트리뷰트 타입이 일치하지 않는 경우"
+  ],
+  "steps": [
+    "네트워크 뷰에서 문제가 발생하는 Merge SOP 또는 Attribute Create SOP 노드를 선택합니다.",
+    "Geometry Spreadsheet 패널을 열어 병합되는 입력 소스들의 어트리뷰트 이름과 타입(Float, Vector, Integer 등)을 확인합니다.",
+    "Attribute Promote SOP나 Attribute Wrangle 노드를 사용하여 충돌하는 어트리뷰트의 데이터 타입을 통일합니다.",
+    "필요 없는 경우 Attribute Delete SOP를 사용하여 충돌을 일으키는 어트리뷰트를 미리 제거합니다."
+  ],
+  "check": [
+    "Geometry Spreadsheet에서 해당 어트리뷰트의 타입이 모든 입력 소스에서 일치하는지 확인합니다.",
+    "Viewport와 노드 상태창(Node Status)에 붉은색 오류 경고가 사라졌는지 확인합니다."
+  ],
+  "prevent": [
+    "서로 다른 지오메트리를 병합하기 전에 공통으로 사용되는 어트리뷰트의 이름을 다르게 지정하거나 타입을 통일합니다.",
+    "파이프라인 표준 어트리뷰트 명명 규칙과 데이터 타입 가이드라인을 준수합니다."
+  ],
+  "keywords": [
+    "Houdini 어트리뷰트 타입 불일치",
+    "Attribute type mismatch on merge input",
+    "Houdini Merge SOP 오류",
+    "어트리뷰트 데이터 타입 충돌",
+    "Attribute Create SOP 에러"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T05:37:56+00:00"
+}

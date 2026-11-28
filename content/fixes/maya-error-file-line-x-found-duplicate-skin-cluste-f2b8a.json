@@ -1,0 +1,38 @@
+{
+  "id": "maya-error-file-line-x-found-duplicate-skin-cluste-f2b8a",
+  "kind": "fix",
+  "tool": "Maya",
+  "error": "# Error: file: line X: Found duplicate skin cluster names in namespace",
+  "title": "# Error: file: line X: Found duplicate skin cluster names in namespace 오류 해결 방법",
+  "summary": "Maya에서 네임스페이스(Namespace)가 포함된 에셋을 참조(Reference)하거나 머지(Merge)할 때, 동일한 이름을 가진 스킨 클러스터(Skin Cluster) 노드가 중복 존재하여 발생하는 오류입니다. 네임스페이스 간 충돌이나 에셋 병합 과정에서 노드 이름이 겹칠 때 발생합니다.",
+  "causes": [
+    "서로 다른 네임스페이스를 가진 두 개 이상의 캐릭터나 에셋을 가져오거나 참조(Reference)할 때 스킨 클러스터 이름이 겹치는 경우",
+    "Import 또는 머지(Merge) 과정에서 네임스페이스가 정리되지 않고 노드 이름이 그대로 충돌하는 경우",
+    "외부 스크립트나 플러그인을 통해 리깅 데이터를 잘못 병합한 경우"
+  ],
+  "steps": [
+    "Script Editor를 열고 MEL 또는 Python 탭으로 이동합니다.",
+    "중복된 스킨 클러스터 이름을 확인하기 위해 다음 MEL 명령어를 실행합니다: ls -type \"skinCluster\";",
+    "네임스페이스 충돌을 해결하기 위해 Namespace Editor (Windows > General Editors > Namespace Editor)를 엽니다.",
+    "충돌이 발생하는 네임스페이스를 정리하거나, Rename 명령어를 사용하여 스킨 클러스터 노드의 이름을 고유하게 변경합니다.",
+    "필요한 경우, Hypergraph 또는 Outliner에서 해당 스킨 클러스터 노드를 선택한 후 멜 창에서 이름을 직접 변경합니다 (예: rename \"oldName\" \"newName\")."
+  ],
+  "check": [
+    "에러가 발생했던 파일이나 에셋을 다시 Import 또는 참조했을 때 Script Editor에 'Found duplicate skin cluster names' 에러가 더 이상 출력되지 않는지 확인합니다.",
+    "캐릭터 애니메이션을 재생하거나 스킨 웨이트를 수정할 때 정상적으로 연산되는지 확인합니다."
+  ],
+  "prevent": [
+    "다른 파일을 참조(Reference)하거나 가져올 때(Import) 네임스페이스 옵션을 올바르게 설정하여 이름 충돌을 방지합니다.",
+    "에셋을 제작할 때 스킨 클러스터 노드 이름에 고유한 접두사나 네임스페이스 규칙을 적용합니다."
+  ],
+  "keywords": [
+    "Maya 스킨클러스터 에러",
+    "Maya duplicate skin cluster",
+    "네임스페이스 충돌",
+    "Skin cluster names in namespace",
+    "Maya 리깅 오류 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T05:37:52+00:00"
+}

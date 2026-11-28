@@ -1,0 +1,38 @@
+{
+  "id": "zbrush-zplugin-dynamesh-failed-because-mesh-volume-d3dbd",
+  "kind": "fix",
+  "tool": "ZBrush",
+  "error": "Zplugin: DynaMesh failed because mesh volume is too low or self-intersecting",
+  "title": "Zplugin: DynaMesh failed because mesh volume is too low or self-intersecting 오류 ",
+  "summary": "ZBrush에서 DynaMesh를 실행할 때 메쉬의 볼륨이 너무 작거나(Too low) 면이 서로 교차하여(Self-intersecting) 볼륨 연산을 수행할 수 없을 때 발생하는 오류입니다. 메쉬의 두께를 확보하거나 겹친 부분을 정리해야 합니다.",
+  "causes": [
+    "메쉬의 두께가 너무 얇거나 볼륨이 부족하여 닫힌 공간을 형성하지 못함",
+    "스스로 교차하는(Self-intersection) 면이 존재하여 내부와 외부를 판별할 수 없음",
+    "GoZ나 외부 파일에서 임포트한 오브젝트에 비정상적인 폴리곤이나 미세한 파편이 포함됨"
+  ],
+  "steps": [
+    "Tool Palette > Geometry > DynaMesh 메뉴에서 Resolution 값을 낮추거나 높여서 다시 시도합니다.",
+    "Tool Palette > Deformation > Inflate 슬라이더를 살짝 올려 메쉬 전체의 두께와 볼륨을 키웁니다.",
+    "Tool Palette > Geometry > Mesh Integrity 메뉴에서 Check Mesh를 눌러 오류가 있는지 확인합니다.",
+    "Fix Mesh 버튼을 눌러 비정상적인 Topology와 열린 면을 자동으로 수정합니다.",
+    "브러시(Standard, Inflate 등)를 사용하여 면이 겹친(Self-intersection) 부위를 부드럽게 다듬습니다."
+  ],
+  "check": [
+    "DynaMesh 버튼을 다시 켰을 때 에러팝업 없이 메쉬의 리메시가 정상적으로 완료되는지 확인합니다.",
+    "Polyframe(Shift+F)을 켜고 메쉬 전체에 고르게 사각형 폴리곤(Quads)이 생성되었는지 확인합니다."
+  ],
+  "prevent": [
+    "지오메트리를 생성하거나 임포트할 때 면이 서로 교차하지 않도록 두께를 충분히 유지합니다.",
+    "복잡한 디테일을 파기 전에 Mesh Integrity 기능을 주기적으로 실행하여 오류를 사전에 방지합니다."
+  ],
+  "keywords": [
+    "ZBrush DynaMesh 오류",
+    "DynaMesh volume is too low",
+    "Zplugin DynaMesh failed",
+    "ZBrush 자가 교차 메쉬",
+    "DynaMesh 안됨 해결"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T05:37:58+00:00"
+}
