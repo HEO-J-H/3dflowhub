@@ -1,0 +1,91 @@
+{
+  "id": "mesh-extraction-c3df",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "내보내기 및 변환",
+  "name": "mesh extraction",
+  "title": "mesh extraction — 3D Gaussian Splatting 결과물로부터 폴리곤 메시를 추출하는 기능",
+  "summary": "Gaussian Splatting 학습 결과물(3D Gaussian 모델)로부터 폴리곤 메시(Mesh)를 추출하여 일반 3D DCC 툴에서 편집 가능한 파일로 변환하는 기능입니다.",
+  "when": [
+    "Gaussian Splatting 결과물을 Blender나 Unreal Engine 등 일반 3D Pipeline 편집하고 싶을 때",
+    "게임 엔진이나 웹 환경에서 Gaussian Splatting 모델을 저사양 폴리곤 모델로 최적화하여 사용하고자 할 때",
+    "3D 프린팅이나 추가 조형 작업을 위해 연속된 포인트 클라우드를 단단한 표면 메시로 변환해야 할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습이 완료된 출력 폴더에서 Mesh Extraction Script 또는 관련 도구를 엽니다.",
+    "포인트 클라우드나 Gaussian 밀도 필터링을 위한 Density Threshold 값을 설정합니다.",
+    "Poisson Reconstruction 또는 Marching Cubes 알고리즘 옵션을 선택하여 표면을 생성합니다.",
+    "추출된 메시의 불필요한 플로팅 노이즈(Floating Noise)를 제거하고 폴리곤 구조를 정돈합니다.",
+    "최종 결과물을 OBJ, PLY 또는 FBX 형식으로 Export 하여 다른 3D Software에서 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Density Threshold",
+      "desc": "메시 추출 시 기준으로 삼을 최소 Gaussian 밀도 값입니다."
+    },
+    {
+      "name": "Voxel Size",
+      "desc": "공간을 나누는 단위 크기로, 작을수록 디테일이 높아지나 연산량이 늘어납니다."
+    },
+    {
+      "name": "Depth",
+      "desc": "Poisson Reconstruction의 옥트리 깊이로 표면의 Resolution를 결정합니다."
+    },
+    {
+      "name": "Trim Threshold",
+      "desc": "샘플링이 부족한 외부 빈 공간의 불필요한 폴리곤을 잘라내는 값입니다."
+    },
+    {
+      "name": "Decimation",
+      "desc": "추출된 메시의 폴리곤 개수를 줄여 용량을 최적화합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Unreal Engine 배경 에셋 변환",
+      "steps": [
+        "Gaussian Splatting으로 촬영한 지형의 메시를 추출합니다.",
+        "Decimation 옵션으로 폴리곤 수를 최적화합니다.",
+        "FBX 형식으로 Export 한 뒤 Unreal Engine Content Browser로 임포트합니다."
+      ]
+    },
+    {
+      "title": "Blender 스컬프팅 및 Retopology",
+      "steps": [
+        "정밀하게 스캔된 오브젝트의 표면 메시를 추출합니다.",
+        "Blender로 가져와서 Sculpt Mode에서 거친 표면을 다듬습니다.",
+        "필요시 Retopology를 거쳐 깨끗한 애니메이션용 모델로 바꿉니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "노이즈가 심한 상태로 메시 추출 → Density Threshold 값을 높이거나 전처리 단계에서 Outlier를 제거해야 합니다.",
+    "메시 표면이 구멍이 뚫리거나 깨짐 → Voxel Size를 너무 작게 설정했거나 샘플링 데이터가 부족한 경우이므로 Voxel 크기를 키워봅니다."
+  ],
+  "related": [
+    "COLMAP",
+    "Video Rendering",
+    "Point Cloud",
+    "Poisson Reconstruction"
+  ],
+  "videos": [
+    {
+      "id": "fCtOUtUCSmM",
+      "title": "3D Gaussian Splatting full tutorial, crop, transform, mesh, import into UE5 & Collision",
+      "author": "Kams1"
+    },
+    {
+      "id": "oTFqhdmBTZ8",
+      "title": "Spirula Studio and Blender - Gaussian Splatting - Fast and Easy",
+      "author": "Nicko16"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20mesh%20extraction",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Gaussian Splatting",
+    "Mesh Extraction Script"
+  ],
+  "at": "2026-11-28T03:26:52.380555+00:00"
+}

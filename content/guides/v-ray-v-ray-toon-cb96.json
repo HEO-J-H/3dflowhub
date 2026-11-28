@@ -1,0 +1,95 @@
+{
+  "id": "v-ray-v-ray-toon-cb96",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "라이팅 및 렌더링",
+  "name": "V-Ray Toon",
+  "title": "V-Ray Toon — 3D 모델에 만화 스타일의 외곽선과 카툰 렌더링 효과를 부여하는 Effect",
+  "summary": "V-Ray Toon은 3D 렌더링 결과물에 만화나 일러스트 스타일의 외곽선(Outline)을 생성해 주는 효과입니다. 실사적인 3D 모델에 손그림 같은 감성과 스타일라이즈드(Stylized) 비주얼을 부여합니다.",
+  "when": [
+    "3D 모델을 웹툰, 애니메이션, 카툰 일러스트 스타일로 렌더링하고 싶을 때",
+    "건축 시각화나 제품 렌더링에 스케치북이나 도면 같은 그래픽적 포인트를 더하고 싶을 때",
+    "복잡한 3D 오브젝트의 실루엣을 명확하게 강조하여 시인성을 높이고 싶을 때"
+  ],
+  "steps": [
+    "렌더 설정 창(Render Setup, F10)을 엽니다.",
+    "V-Ray 탭의 Effects 항목에서 Add 버튼을 누릅니다.",
+    "목록에서 V-Ray Toon을 선택하여 추가합니다.",
+    "V-Ray Toon 파라미터 패널에서 Line Width(외곽선 두께)와 Color를 조절합니다.",
+    "Render(Shift+Q)를 실행하여 Viewport에서 외곽선이 적용된 결과물을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Line Width",
+      "desc": "오브젝트 외곽선의 두께를 픽셀 또는 월드 단위로 설정합니다."
+    },
+    {
+      "name": "Line Color",
+      "desc": "렌더링될 외곽선의 색상을 지정합니다."
+    },
+    {
+      "name": "Normal Threshold",
+      "desc": "인접한 면의 각도 차이를 기준으로 내부 선(Intersection)이 생기는 임계값을 조절합니다."
+    },
+    {
+      "name": "Overlap Threshold",
+      "desc": "오브젝트가 겹치는 부분에 선을 생성할 때의 감도와 범위를 설정합니다."
+    },
+    {
+      "name": "Use Mesh Color",
+      "desc": "오브젝트의 재질 색상을 외곽선 색상에 반영할지 여부를 결정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "카툰 스타일 캐릭터 렌더링",
+      "steps": [
+        "캐릭터 모델링 파일을 불러옵니다.",
+        "Render Setup의 Effects에서 V-Ray Toon을 추가합니다.",
+        "Line Width를 얇게 설정하고 Line Color를 어두운 갈색이나 검정색으로 지정합니다.",
+        "V-Ray Toon Mtl과 조합하여 셀 애니메이션 풍의 렌더링을 완성합니다."
+      ]
+    },
+    {
+      "title": "건축 도면 스타일 일러스트",
+      "steps": [
+        "건축 매스 모델링을 준비합니다.",
+        "V-Ray Toon 효과를 추가하고 배경을 흰색으로 설정합니다.",
+        "Line Width를 조절하여 스케치한 듯한 외곽선을 강조합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "외곽선이 너무 두껍게 나옴 → Line Width 값을 낮추거나 카메라와의 거리에 따른 보정 옵션을 확인합니다.",
+    "원하지 않는 곳에 선이 생김 → Normal Threshold 값을 조절하여 내부 엣지의 민감도를 낮춥니다.",
+    "선이 끊기거나 렌더링되지 않음 → V-Ray Effects 목록에 Toon이 올바르게 추가되었는지 확인하고 렌더 엔진 설정을 점검합니다."
+  ],
+  "related": [
+    "V-Ray Toon Mtl",
+    "V-Ray Frame Buffer",
+    "V-Ray Material",
+    "V-Ray Ambient Occlusion"
+  ],
+  "videos": [
+    {
+      "id": "7IGsTPKtf9Y",
+      "title": "V-Ray 5 for 3ds Max — How to achieve a cartoon style look.",
+      "author": "Chaos V-Ray"
+    },
+    {
+      "id": "SGCSR-QJZps",
+      "title": "V-Ray Next for Maya Courseware – 3.3 New Toon Shader",
+      "author": "Chaos V-Ray"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Toon",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Render Setup",
+    "V-Ray",
+    "Effects",
+    "Add"
+  ],
+  "at": "2026-11-28T03:26:59.877726+00:00"
+}

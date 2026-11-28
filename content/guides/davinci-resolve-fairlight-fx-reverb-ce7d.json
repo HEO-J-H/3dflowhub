@@ -1,0 +1,90 @@
+{
+  "id": "davinci-resolve-fairlight-fx-reverb-ce7d",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "페어라이트",
+  "name": "Fairlight FX Reverb",
+  "title": "페어라이트 FX 리버브 — Audio 트랙에 공간감과 잔향 효과를 더해주는 내장 Audio Effect",
+  "summary": "DaVinci Resolve Fairlight FX Reverb는 Audio 트랙이나 클립에 자연스러운 잔향(공간감)을 더해 소리가 특정 공간에서 울리는 것처럼 만들어 주는 Audio 효과입니다.",
+  "when": [
+    "실내에서 녹음한 대사인데 공간감이 없어 뚝 끊기는 느낌이 들 때",
+    "SF 영화나 애니메이션에서 동굴이나 거대한 홀 같은 공간의 소리를 표현할 때",
+    "배경음악(BGM)이나 효과음에 자연스러운 여운과 깊이감을 주고 싶을 때"
+  ],
+  "steps": [
+    "하단 내비게이션 바에서 Fairlight 페이지 아이콘을 클릭하여 Fairlight 작업 공간으로 이동합니다.",
+    "Timeline에서 잔향을 적용할 Audio 클립 또는 트랙을 선택합니다.",
+    "화면 우측 상단의 Effects Library 패널을 엽니다.",
+    "Audio FX 목록에서 Reverb 효과를 찾습니다.",
+    "선택한 Audio 클립 또는 트랙으로 Reverb 효과를 드래그하여 드롭합니다.",
+    "Inspector 패널의 Effects 탭에서 Reverb 파라미터를 조절하여 원하는 공간감을 설정합니다.",
+    "Timeline 재생 버튼(Space)을 눌러 Audio의 잔향을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Room Size",
+      "desc": "가상 공간의 물리적인 크기를 조절하여 잔향의 길이를 결정합니다."
+    },
+    {
+      "name": "Damping",
+      "desc": "고주파수 대역의 반사음을 흡수하여 소리가 부드럽거나 선명하게 울리도록 조절합니다."
+    },
+    {
+      "name": "Dry/Wet",
+      "desc": "원본 소리(Dry)와 잔향이 포함된 소리(Wet)의 혼합 비율을 조절합니다."
+    },
+    {
+      "name": "Pre-Delay",
+      "desc": "원음이 재생된 후 첫 번째 반사음이 들리기까지의 지연 시간을 설정합니다."
+    },
+    {
+      "name": "Width",
+      "desc": "스테레오 필드에서 잔향의 넓이와 공간감을 확장하거나 축소합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 공간 대사 보정",
+      "steps": [
+        "Timeline에서 대사 클립을 선택합니다.",
+        "Effects Library에서 Reverb를 클립에 드래그합니다.",
+        "Room Size 값을 낮게 설정하고 Dry/Wet 비율을 낮추어 자연스러운 실내 울림을 만듭니다."
+      ]
+    },
+    {
+      "title": "동굴 속 메아리 효과",
+      "steps": [
+        "환상적이거나 깊은 공간감이 필요한 Audio 클립을 선택합니다.",
+        "Reverb 효과를 적용한 뒤 Room Size를 크게 높입니다.",
+        "Pre-Delay 값을 주어 메아리가 지연되어 들리도록 설정합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Dry/Wet 비율을 너무 높게 설정함 → 대사의 명료도가 떨어지고 먹먹해지므로 Wet 값을 낮추고 원본 Dry 소리를 충분히 섞어줍니다.",
+    "모든 트랙에 과도한 Reverb를 적용함 → 믹스가 지저분해지고 공간이 혼란스러워지므로 필요한 트랙에만 적절히 적용합니다."
+  ],
+  "related": [
+    "Fairlight Dialogue Leveler",
+    "Fairlight FX",
+    "Fairlight Timeline",
+    "Fairlight Equalizer"
+  ],
+  "videos": [
+    {
+      "id": "SZXFzacPlWE",
+      "title": "REVERB in DaVinci Resolve 17 Fairlight | Audio Effects Series",
+      "author": "Jason Yadlovski"
+    },
+    {
+      "id": "xQnv8futvgM",
+      "title": "REVERB Effect in Davinci Reaolve | End a Song anywhere! #davinciresolve",
+      "author": " Aparicio Co"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Fairlight%20FX%20Reverb",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-28T03:26:56.102620+00:00"
+}
