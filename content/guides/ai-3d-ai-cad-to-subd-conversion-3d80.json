@@ -1,0 +1,91 @@
+{
+  "id": "ai-3d-ai-cad-to-subd-conversion-3d80",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 3D 데이터 변환",
+  "name": "AI CAD to SubD Conversion",
+  "title": "AI CAD 서브디비전 변환 — 엔지니어링 CAD 데이터를 애니메이션 가능한 서브디비전 메시로 변환",
+  "summary": "AI를 활용해 복잡한 CAD 공학용 데이터를 부드러운 서브디비전(SubD) 폴리곤 메시로 자동 변환하여, 수작업 Retopology 없이 게임 엔진이나 3D DCC에서 매끄럽게 렌더링할 수 있도록 돕는 기능입니다.",
+  "when": [
+    "복잡한 곡면과 필렛이 많은 CAD 데이터를 유기적인 3D 모델로 전환해야 할 때",
+    "수작업 Retopology에 소요되는 시간을 줄이고 싶을 때",
+    "게임 엔진이나 실시간 렌더러에서 부드러운 곡선 형태를 가볍고 깨끗하게 표현해야 할 때"
+  ],
+  "steps": [
+    "1. Pixyz Studio 또는 AI 기반 3D 변환 툴을 실행하고 원본 CAD 파일(STEP, IGES 등)을 불러옵니다.",
+    "2. 왼쪽 Product Structure 패널에서 변환할 CAD 파트나 어셈블리를 선택합니다.",
+    "3. 상단 메뉴 바에서 CAD 또는 Mesh 메뉴를 열고 AI CAD to SubD Conversion(또는 이와 유사한 서브디비전 변환 옵션)을 실행합니다.",
+    "4. 대화 상자에서 곡률 허차(Chord Tol)와 서브디비전 레벨을 설정하고 Execute 버튼을 누릅니다.",
+    "5. Viewport에서 NURBS 표면이 깨끗한 쿼드(Quad) 중심의 서브디비전 메시로 변환되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Chord Tolerance",
+      "desc": "CAD 원본 곡면과 폴리곤 메시 사이의 최대 허용 오차를 설정합니다."
+    },
+    {
+      "name": "Subdivision Level",
+      "desc": "생성되는 서브디비전 메시의 세밀함과 부드러움 정도를 조절합니다."
+    },
+    {
+      "name": "Target Quad Ratio",
+      "desc": "변환 시 사각형(Quad) 폴리곤의 비율을 높여 Topology 품질을 개선합니다."
+    },
+    {
+      "name": "Feature Angle",
+      "desc": "날카로운 모서리와 부드러운 곡면을 구분하는 각도 기준을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 외장 및 곡면 부품 변환",
+      "steps": [
+        "1. 복잡한 곡선이 포함된 자동차 CAD 데이터를 불러옵니다.",
+        "2. AI SubD 변환 옵션을 실행하여 매끄러운 바디 라인을 쿼드 메시로 바꿉니다.",
+        "3. Viewport에서 서브디비전 상태를 확인하고 실시간 렌더링에 적용합니다."
+      ]
+    },
+    {
+      "title": "기계 부품 및 파이프라인 최적화",
+      "steps": [
+        "1. 정밀 CAD 어셈블리 모델을 선택합니다.",
+        "2. 허차와 피처 각도를 조절해 구멍과 모서리 디테일을 유지합니다.",
+        "3. 불필요한 폴리곤이 제거된 가벼운 SubD 메시를 추출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "변환 결과에 폴리곤이 너무 많아지는 현상 → Chord Tolerance 값을 조금 높여 폴리곤 밀도를 낮춥니다.",
+    "모서리가 뭉개지는 현상 → Feature Angle 값을 조정하여 날카로운 엣지 경계를 다시 잡아줍니다.",
+    "일부 면이 깨지거나 구멍이 생기는 현상 → 변환 전 CAD 데이터에 결함이 있는지 검사(Repair Mesh) 후 다시 시도합니다."
+  ],
+  "related": [
+    "Create Subdivision Surfaces",
+    "AI CAD to Polygon Conversion",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "mEATiDgODj4",
+      "title": "Generate 3D CAD from Text | AI Converts Ideas Into Real Models #cad #arcitecture #engineering #ai",
+      "author": "Alamin"
+    },
+    {
+      "id": "0XZnPZIQHlI",
+      "title": "The BEST AI Tool for 3D Modeling? | SpeakCAD",
+      "author": "Print N Repeat"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20CAD%20to%20SubD%20Conversion",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "AI",
+    "CAD",
+    "STEP",
+    "IGES"
+  ],
+  "at": "2026-11-28T02:47:04.583705+00:00"
+}

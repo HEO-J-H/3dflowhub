@@ -1,0 +1,94 @@
+{
+  "id": "davinci-resolve-custom-resolution-b212",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "전달 페이지",
+  "name": "Custom Resolution",
+  "title": "커스텀 Resolution — 렌더링 시 원하는 사용자 정의 Resolution 설정 방법",
+  "summary": "DaVinci Resolve의 Custom Resolution 기능은 3D 렌더링 결과물이나 프로젝트에 맞춰 기본 표준 외의 자유로운 Resolution로 Timeline을 설정할 수 있게 해줍니다.",
+  "when": [
+    "비표준 화면비율의 3D 애니메이션이나 모션 그래픽을 제작할 때",
+    "특정 플랫폼이나 전시용 스크린의 독특한 픽셀 크기에 맞춰 렌더링해야 할 때",
+    "세로형 영상이나 정사각형 포맷 등 SNS 맞춤형 비율로 출력할 때"
+  ],
+  "steps": [
+    "Shift+9 를 눌러 Project Settings 창을 엽니다.",
+    "왼쪽 메뉴에서 Master Settings 를 선택합니다.",
+    "Timeline Resolution 드롭다운 메뉴를 클릭합니다.",
+    "목록 하단의 Custom 을 선택합니다.",
+    "Width 와 Height 입력란에 원하는 픽셀 Resolution를 직접 입력합니다.",
+    "Save 버튼을 눌러 설정을 적용하고 Timeline에 반영되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Timeline Resolution",
+      "desc": "Timeline의 작업 Resolution를 Standard Preset 또는 Custom 크기로 설정합니다."
+    },
+    {
+      "name": "Width",
+      "desc": "Timeline의 가로 픽셀 크기를 사용자 지정 값으로 입력합니다."
+    },
+    {
+      "name": "Height",
+      "desc": "Timeline의 세로 픽셀 크기를 사용자 지정 값으로 입력합니다."
+    },
+    {
+      "name": "Pixel Aspect Ratio",
+      "desc": "픽셀의 종횡비를 Square 또는 아나모픽 비율 등으로 변경합니다."
+    },
+    {
+      "name": "Timecode Rate",
+      "desc": "Timeline의 초당 프레임 수와 타임코드 기준을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "인스타그램 세로형 3D 영상 제작",
+      "steps": [
+        "Project Settings 에서 Timeline Resolution을 Custom으로 설정합니다.",
+        "Width에 1080, Height에 1920을 입력합니다.",
+        "3D 렌더링 결과물을 임포트하여 세로 프레임에 맞게 배치합니다."
+      ]
+    },
+    {
+      "title": "울트라 와이드 Cinematic 3D 쇼릴",
+      "steps": [
+        "Timeline Resolution을 Custom으로 변경합니다.",
+        "Width에 3840, Height에 1600 등 와이드 비율 Resolution를 입력합니다.",
+        "Deliver 페이지에서 해당 비율 그대로 렌더링을 진행합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "홀수 Resolution 입력 → H.264 등 일부 코덱에서 에러 발생 및 렌더링 실패: Width와 Height 값을 반드시 2 또는 4의 배수인 짝수로 입력하세요.",
+    "소스 영상과 Resolution 불일치로 인한 레터박스 발생 → Scaling 설정 누락: Project Settings의 Image Scaling에서 Mismatch resolution behavior를 Scale entire image to fit으로 변경하세요."
+  ],
+  "related": [
+    "Deliver Page Presets",
+    "Proxy Generation",
+    "Optimized Media",
+    "Image Scaling"
+  ],
+  "videos": [
+    {
+      "id": "34gfzWt9Y84",
+      "title": "DaVinci Resolve 21: Create a Custom Aspect Ratio with Manual Width and Height",
+      "author": "Rebecca Sun"
+    },
+    {
+      "id": "Zmzrm-__vzU",
+      "title": "How To Change Aspect Ratio in Davinci Resolve 19",
+      "author": "Molin Guides"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Custom%20Resolution",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project Settings",
+    "Master Settings",
+    "Timeline Resolution",
+    "Custom"
+  ],
+  "at": "2026-11-28T02:46:59.350584+00:00"
+}
