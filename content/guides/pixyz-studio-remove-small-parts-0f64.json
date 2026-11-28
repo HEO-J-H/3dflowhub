@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-remove-small-parts-0f64",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "데이터 최적화",
+  "name": "Remove Small Parts",
+  "title": "Remove Small Parts — 지정된 크기보다 작은 불필요한 세부 부품을 자동으로 찾아 제거하는 기능",
+  "summary": "Pixyz Studio의 Remove Small Parts 기능은 지정된 크기보다 작은 미세한 부품이나 볼트, 너트 같은 작은 디테일을 자동으로 감지하고 제거하여 CAD 모델의 폴리곤 수를 줄여주는 최적화 도구입니다.",
+  "when": [
+    "실시간 렌더링이나 게임 엔진에 CAD 데이터를 올리기 전 불필요한 미세 부품을 정리할 때",
+    "멀리서 보거나 굳이 표현할 필요가 없는 작은 나사, 핀, 클립 등을 일괄 삭제할 때",
+    "CAD 모델의 전체적인 폴리곤 수를 낮추어 Viewport 성능을 최적화할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 최적화할 CAD 모델이 포함된 3D 씬을 엽니다.",
+    "왼쪽 Product Structure(트리) 패널에서 최적화할 파츠나 어셈블리를 선택합니다.",
+    "메뉴 바에서 Optimize Mesh 또는 관련 최적화 메뉴를 엽니다.",
+    "Remove Small Parts 기능을 실행하여 설정 대화 상자를 엽니다.",
+    "제거할 부품의 기준 크기(Size) 임계값을 입력하고 Execute를 누릅니다.",
+    "왼쪽 Product Structure 패널과 Viewport에서 작은 부품들이 정상적으로 제거되었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Size Threshold",
+      "desc": "제거 기준이 되는 부품의 최대 크기 값으로, 이 값보다 작은 부품이 삭제됩니다."
+    },
+    {
+      "name": "Keep Named Parts",
+      "desc": "특정 이름이 지정된 중요한 부품은 크기가 작아도 삭제 대상에서 제외합니다."
+    },
+    {
+      "name": "Recursive",
+      "desc": "하위 어셈블리 내부의 깊은 계층까지 탐색하여 작은 부품을 찾아냅니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "엔진 룸 모델의 볼트 및 너트 일괄 제거",
+      "steps": [
+        "엔진 어셈블리 전체를 Product Structure에서 선택합니다.",
+        "Remove Small Parts를 실행합니다.",
+        "Size Threshold 값을 볼트 크기 이하로 설정하고 Execute를 누릅니다."
+      ]
+    },
+    {
+      "title": "복잡한 기계 장치의 미세 브래킷 정리",
+      "steps": [
+        "최적화할 기계 장치 모델을 불러옵니다.",
+        "Remove Small Parts 대화 상자를 엽니다.",
+        "임계값을 조절하여 시각적으로 중요하지 않은 작은 부품만 선택적으로 제거합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "임계값을 너무 크게 설정함 → 중요한 구조물이나 외형을 이루는 부품까지 삭제됨. Size Threshold 값을 낮게 시작하여 점진적으로 조절하세요.",
+    "이름이 지정된 부품 옵션을 확인하지 않음 → 식별자가 필요한 부품까지 함께 지워짐. Keep Named Parts 옵션을 활성화하세요."
+  ],
+  "related": [
+    "Create Hidden Parts Removal",
+    "Defeaturing",
+    "Remove Internal Voids",
+    "Decimate To Target"
+  ],
+  "videos": [
+    {
+      "id": "MZv3BJrp98g",
+      "title": "Pixyz Studio | Import Formats",
+      "author": "Pixyz"
+    },
+    {
+      "id": "OQNlx13QqTk",
+      "title": "Pixyz Studio | Decimate Target Bake",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Remove%20Small%20Parts",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Optimize Mesh",
+    "Remove Small Parts"
+  ],
+  "at": "2026-11-28T00:56:30.261831+00:00"
+}

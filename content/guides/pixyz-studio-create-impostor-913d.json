@@ -1,0 +1,87 @@
+{
+  "id": "pixyz-studio-create-impostor-913d",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "데이터 최적화",
+  "name": "Create Impostor",
+  "title": "Create Impostor — 2D 텍스처와 평면 메쉬를 이용해 원거리 객체의 폴리곤을 극단적으로 줄이는 ",
+  "summary": "Pixyz Studio의 Create Impostor 기능은 복잡한 3D CAD 어셈블리나 고폴리곤 부품을 텍스처가 포함된 빌보드(Impostor) 평면이나 단순화된 로우 폴리곤 메쉬로 변환하여 실시간 렌더링 성능을 극적으로 높여줍니다.",
+  "when": [
+    "대규모 건축·기계 CAD 모델에서 멀리 있는 복잡한 장비를 가볍게 최적화할 때",
+    "실시간 렌더링이나 AR/VR Application에서 드로우 콜(Draw Call)과 폴리곤 수를 줄여야 할 때",
+    "클로즈업되지 않는 배경 소품(Prop)이나 군집 오브젝트를 대체할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 최적화할 3D CAD 모델이 포함된 씬을 엽니다.",
+    "왼쪽 Product Structure(트리) 패널에서 임포스터로 변환할 부품(Part)이나 어셈블리를 선택합니다.",
+    "상단 메뉴 바에서 Optimize Mesh → Create Impostor 를 클릭합니다.",
+    "열린 대화 상자에서 Resolution, 투영 각도 등 임포스터 생성 옵션을 설정합니다.",
+    "Execute 버튼을 눌러 변환을 실행하고, Viewport에서 결과 메쉬와 텍스처를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Texture Size",
+      "desc": "생성될 텍스처 맵의 Resolution를 지정합니다."
+    },
+    {
+      "name": "View Directions",
+      "desc": "다양한 각도에서 캡처하여 임포스터의 입체감을 표현할 방향의 수를 설정합니다."
+    },
+    {
+      "name": "Alpha Threshold",
+      "desc": "투명 배경을 처리할 알파 채널의 임계값을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "원거리 파이프라인 랙 최적화",
+      "steps": [
+        "Product Structure 패널에서 멀리 배치된 복잡한 파이프 어셈블리를 선택합니다.",
+        "Create Impostor 기능을 실행하고 Texture Size를 적절히 낮게 설정합니다.",
+        "Execute를 눌러 단일 평면 메쉬로 변환하여 씬의 무게를 줄입니다."
+      ]
+    },
+    {
+      "title": "배경 설비 장비 경량화",
+      "steps": [
+        "카메라와 거리가 먼 대형 기계 장비 부품들을 복수 선택합니다.",
+        "Create Impostor 대화 상자에서 View Directions를 조정해 다각도 텍스처를 생성합니다.",
+        "Viewport에서 가벼워진 임포스터 메쉬로 교체되었는지 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "가까운 거리의 오브젝트에 적용함 → 카메라와 가까운 메쉬에는 임포스터 대신 Decimate Mesh나 LOD를 사용하세요.",
+    "텍스처 Resolution를 지나치게 높게 설정함 → 메모리 낭비가 발생하므로 용도에 맞는 적절한 텍스처 크기를 선택하세요."
+  ],
+  "related": [
+    "Decimate To Target",
+    "Generate LOD Chain",
+    "Remove Internal Voids",
+    "Bake Textures"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Create%20Impostor",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "D CAD",
+    "Product Structure",
+    "Part",
+    "Optimize Mesh",
+    "Create Impostor"
+  ],
+  "at": "2026-11-28T00:56:37.649393+00:00"
+}
