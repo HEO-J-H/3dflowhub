@@ -1,0 +1,85 @@
+{
+  "id": "iterations-41ec",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "학습 설정",
+  "name": "iterations",
+  "title": "Iterations — 학습 반복 횟수(Epochs) 설정 명령어",
+  "summary": "Iterations는 3D Gaussian Splatting 학습 과정에서 모델이 데이터를 학습하는 총 반복 횟수를 지정하여 렌더링 품질과 학습 시간을 조절하는 핵심 파라미터입니다.",
+  "when": [
+    "초기 테스트 학습으로 빠른 결과물과 데이터 정합성을 확인할 때",
+    "최종 렌더링 품질을 높이기 위해 충분한 학습 반복을 부여할 때",
+    "학습 시간과 VRAM 성능의 균형을 최적화할 때"
+  ],
+  "steps": [
+    "3D Gaussian Splatting 학습 Software(예: Nerfstudio 또는 공식 GUI)를 실행합니다.",
+    "Training 설정 패널 또는 CLI 인자 입력란에서 Iterations 입력 필드를 찾습니다.",
+    "목표로 하는 총 반복 횟수(예: 표준 30,000회 또는 테스트용 7,000회)를 입력합니다.",
+    "Train 또는 Start 버튼을 눌러 학습 프로세스를 시작합니다.",
+    "뷰포트나 로스(Loss) Graph를 통해 학습 진행 상황과 렌더링 품질을 모니터링합니다."
+  ],
+  "params": [
+    {
+      "name": "Iterations",
+      "desc": "모델 학습을 진행할 총 반복 횟수를 설정합니다."
+    },
+    {
+      "name": "Save Iterations",
+      "desc": "지정한 반복 횟수마다 중간 결과물인 .ply 모델 파일을 자동으로 저장합니다."
+    },
+    {
+      "name": "Start Checkpoint",
+      "desc": "저장된 체크포인트 파일(.pt 또는 .ckpt)을 불러와 중단된 지점부터 학습을 이어갑니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "빠른 테스트 렌더링 검수",
+      "steps": [
+        "Iterations 값을 5,000 ~ 7,000회로 낮게 설정합니다.",
+        "학습을 실행하여 이미지 정렬과 포징이 올바른지 빠르게 확인합니다."
+      ]
+    },
+    {
+      "title": "고품질 최종 모델 학습",
+      "steps": [
+        "Iterations 값을 기본 권장 값인 30,000회 이상으로 설정합니다.",
+        "학습을 완료하여 디테일이 살아있는 최종 .ply Gaussian 모델을 추출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "불필요하게 높은 Iterations 설정 → 테스트 단계에서 시간을 낭비하지 않도록 초기에는 낮은 값(5000~10000)으로 먼저 검증하세요.",
+    "학습 도중 강제 종료로 인한 데이터 손실 → Save Iterations 옵션을 활성화하여 주기적으로 체크포인트를 백업하세요."
+  ],
+  "related": [
+    "Save Iterations",
+    "Iteration Control",
+    "Start Checkpoint",
+    "Viewer"
+  ],
+  "videos": [
+    {
+      "id": "ERuRMOVO58Q",
+      "title": "It's Time For Gaussian Splatting // Tutorial",
+      "author": "Default Cube"
+    },
+    {
+      "id": "U3ipg5pG39k",
+      "title": "3D Gaussian Splatting EASIEST Method (Tutorial)",
+      "author": "Bad Decisions Studio "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20iterations",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "D Gaussian Splatting",
+    "Software",
+    "Nerfstudio",
+    "GUI",
+    "Training",
+    "CLI"
+  ],
+  "at": "2026-11-28T01:37:16.144602+00:00"
+}

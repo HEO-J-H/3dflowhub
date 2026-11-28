@@ -1,0 +1,90 @@
+{
+  "id": "ai-3d-ai-crowd-simulation-dbd9",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 애니메이션",
+  "name": "AI Crowd Simulation",
+  "title": "AI 군중 시뮬레이션 — 대규모 군중 캐릭터의 AI 기반 경로 탐색 및 행동 생성",
+  "summary": "AI 기반 군중 시뮬레이션(AI Crowd Simulation)은 인공지능을 활용해 수많은 캐릭터의 자연스러운 보행, 장애물 회피, 군집 행동을 실시간으로 생성하는 기술입니다.",
+  "when": [
+    "도시 배경이나 광장 신(Scene)에서 수백 명 이상의 군중이 각기 다른 경로로 움직여야 할 때",
+    "게임 배경에서 NPC들이 지형지물을 스스로 피하며 자연스럽게 이동하도록 구현할 때",
+    "영화 VFX에서 대규모 전투나 군중 탈출 장면을 효율적으로 연출할 때"
+  ],
+  "steps": [
+    "AI Crowd Simulation 패널 또는 애드온 설정 창을 엽니다.",
+    "군중이 이동할 바닥 메쉬(NavMesh 또는 Ground Mesh)를 선택하여 영역을 지정합니다.",
+    "캐릭터 에셋(Character Asset)을 등록하고 에이전트(Agent)의 기본 속성을 설정합니다.",
+    "시작 지점(Spawn Point)과 목표 지점(Target Destination)을 설정합니다.",
+    "AI 시뮬레이션 실행(Simulate / Play) 버튼을 눌러 군중의 움직임을 확인합니다.",
+    "충돌 감지 및 회피(Avoidance) 옵션을 조정하여 자연스러운 군집 흐름을 완성합니다."
+  ],
+  "params": [
+    {
+      "name": "Agent Count",
+      "desc": "생성할 캐릭터 에이전트의 총 개수를 조절합니다."
+    },
+    {
+      "name": "Max Speed",
+      "desc": "캐릭터가 이동할 때의 최대 이동 속도를 설정합니다."
+    },
+    {
+      "name": "Collision Avoidance",
+      "desc": "다른 에이전트나 장애물과의 충돌을 피하는 민감도를 조절합니다."
+    },
+    {
+      "name": "Pathfinding Radius",
+      "desc": "에이전트 간의 최소 간격과 경로 탐색 반경을 정의합니다."
+    },
+    {
+      "name": "Random Seed",
+      "desc": "군중의 움직임 패턴과 생성 위치의 무작위성을 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "광장 도심 탈출 숏",
+      "steps": [
+        "건물과 도로 메쉬를 기준으로 NavMesh를 생성합니다.",
+        "Agent Count를 500으로 설정하고 시작 지점에 배치합니다.",
+        "목표 지점을 지정한 뒤 시뮬레이션을 실행해 탈출 흐름을 만듭니다."
+      ]
+    },
+    {
+      "title": "스타디움 관중 응원 연출",
+      "steps": [
+        "좌석 영역에 에이전트 스폰 구역을 지정합니다.",
+        "앉아 있는 상태와 일어나는 애니메이션 클립을 에이전트에 할당합니다.",
+        "랜덤 타이밍 옵션을 켜서 관중이 자연스럽게 분산되어 움직이게 합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "NavMesh가 생성되지 않은 지역으로 에이전트가 이동하려 함 → 바닥 메쉬를 다시 확인하고 NavMesh를 재구축합니다.",
+    "에이전트가 겹치거나 굳어버림 → Collision Avoidance 반경과 값(Radius)을 넓혀줍니다.",
+    "시뮬레이션 속도가 급격히 느려짐 → Agent Count를 낮추거나 LOD(Level of Detail)를 적용합니다."
+  ],
+  "related": [
+    "NavMesh",
+    "Particle Flow",
+    "Geometry Nodes",
+    "Procedural Animation"
+  ],
+  "videos": [
+    {
+      "id": "TgoLW7yYnbM",
+      "title": "Crowd Simulation in Unity | NPC Spawner System + Waypoint AI Tutorial",
+      "author": "Gamesoft Studio"
+    },
+    {
+      "id": "vqB0Dh1ah90",
+      "title": "Simple Crowd Simulation in Unity | Population System",
+      "author": "BudGames"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Crowd%20Simulation",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-28T01:37:23.718959+00:00"
+}
