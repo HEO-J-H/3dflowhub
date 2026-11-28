@@ -1,0 +1,90 @@
+{
+  "id": "pixyz-studio-measure-distance-4c40",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "측정 및 분석",
+  "name": "Measure Distance",
+  "title": "Measure Distance — 두 지점, 면 또는 에지 간의 최단 거리를 정확하게 측정하는 분석 기능",
+  "summary": "Pixyz Studio의 Measure Distance 기능은 3D 씬 내의 두 지점, 정점, 또는 부품 간의 직선 거리를 정밀하게 측정하여 CAD 데이터의 치수를 검토하고 검증할 수 있는 분석 도구입니다.",
+  "when": [
+    "대형 CAD 어셈블리 모델에서 부품 간의 실제 이격 거리나 간격을 확인할 때",
+    "설계 도면과 3D Viewport 상의 모델 크기가 일치하는지 빠르게 교차 검증할 때",
+    "제조 공정이나 조립 시 부품 배치를 위한 정확한 수치를 파악해야 할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 측정할 CAD 모델을 불러옵니다.",
+    "왼쪽 Product Structure 패널에서 측정하고자 하는 대상 부품들을 확인합니다.",
+    "상단 메뉴 바에서 Measure를 선택하거나 측정 툴바 아이콘을 클릭합니다.",
+    "Viewport에서 첫 번째 측정 지점(Vertex, Edge 등)을 클릭합니다.",
+    "두 번째 측정 지점을 클릭하면 Viewport 화면에 직선 거리 측정값이 표시됩니다.",
+    "Inspector 패널에서 계산된 거리 결과(Distance)를 확인하고 필요시 기록합니다."
+  ],
+  "params": [
+    {
+      "name": "Distance",
+      "desc": "선택한 두 지점 또는 부품 사이의 최단 직선 거리를 표시합니다."
+    },
+    {
+      "name": "Point 1",
+      "desc": "측정의 시작점이 되는 첫 번째 위치의 좌표 또는 요소를 지정합니다."
+    },
+    {
+      "name": "Point 2",
+      "desc": "측정의 끝점이 되는 두 번째 위치의 좌표 또는 요소를 지정합니다."
+    },
+    {
+      "name": "Snap",
+      "desc": "측정 시 정점(Vertex)이나 모서리(Edge)에 정확하게 달라붙도록 돕습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "기계 부품 간 이격 거리 확인",
+      "steps": [
+        "Measure 도구를 활성화합니다.",
+        "첫 번째 기계 부품의 표면 모서리를 클릭합니다.",
+        "마주 보는 다른 부품의 표면을 클릭하여 두 부품 사이의 빈 공간 거리를 측정합니다."
+      ]
+    },
+    {
+      "title": "어셈블리 전체 폭 측정",
+      "steps": [
+        "Product Structure에서 전체 어셈블리 모델을 선택합니다.",
+        "Measure 도구로 모델의 가장 좌측 끝점과 우측 끝점을 각각 클릭합니다.",
+        "Inspector 패널에서 가로 총 길이를 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "스냅(Snap) 기능이 꺼져 있어정확한 정점을 찍지 못한 경우 → Viewport 스냅 옵션을 켜고 정점이나 모서리에 정확히 Mouse를 맞춘 뒤 클릭하세요.",
+    "엉뚱한 서브오브젝트나 다른 부품의 면이 선택된 경우 → Product Structure에서 불필요한 부품을 숨기거나(Hide) 격리(Isolate)한 뒤 측정하세요."
+  ],
+  "related": [
+    "Measure",
+    "Check Clash",
+    "Annotations and measure tool",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "l5D_DX2Z0YQ",
+      "title": "How to Measure Size & Length in Maya | Distance Tool & Universal Manipulator #Maya #measure #scale",
+      "author": "FF ART STUDIO "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Measure%20Distance",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "CAD",
+    "Product Structure",
+    "Measure"
+  ],
+  "at": "2026-11-28T01:26:37.040878+00:00"
+}

@@ -1,0 +1,96 @@
+{
+  "id": "davinci-resolve-source-library-6fda",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컷 페이지",
+  "name": "Source Library",
+  "title": "소스 라이브러리 — 미디어 폴더를 빠르게 탐색하고 클립을 미리 보는 영역",
+  "summary": "Source Library는 DaVinci Resolve에서 미디어 파일과 폴더를 탐색하고 클립을 관리하는 기본 저장소입니다. 편집 작업에 필요한 푸티지와 에셋을 빠르게 찾아 Timeline으로 가져올 수 있습니다.",
+  "when": [
+    "프로젝트를 시작하고 편집할 원본 영상과 Audio 파일을 불러올 때",
+    "미디어 폴더를 구조화하여 클립을 정리하고 싶을 때",
+    "Timeline에 올리기 전 미디어의 속성을 확인하고 필요한 구간을 미리 볼 때"
+  ],
+  "steps": [
+    "DaVinci Resolve를 실행하고 하단 내비게이션 바에서 [Cut] 또는 [Edit] 페이지로 이동합니다.",
+    "화면 좌측 상단의 [Effects 라이브러리] 옆에 있는 [Media Pool] 아이콘을 클릭하여 Source Library 패널을 엽니다.",
+    "컴퓨터의 디렉토리나 저장된 미디어 폴더를 찾아 드래그 앤 드롭으로 소스 라이브러리에 추가합니다.",
+    "라이브러리에 등록된 클립을 더블 클릭하여 뷰어 창에서 내용을 확인합니다.",
+    "원하는 클립을 선택하여 하단의 Timeline으로 드래그하여 편집을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Media Pool",
+      "desc": "프로젝트에 사용될 모든 미디어를 담고 관리하는 메인 저장소"
+    },
+    {
+      "name": "Thumbnail View",
+      "desc": "클립을 작은 미리보기 이미지 형태로 표시하여 시각적으로 확인"
+    },
+    {
+      "name": "List View",
+      "desc": "클립 이름, Resolution, 프레임 레이트 등의 세부 메타데이터를 표 형태로 확인"
+    },
+    {
+      "name": "Bin",
+      "desc": "미디어를 주제나 씬별로 분류하기 위해 생성하는 가상의 폴더"
+    },
+    {
+      "name": "Search",
+      "desc": "클립 이름이나 메타데이터 키워드로 원하는 미디어를 빠르게 검색"
+    }
+  ],
+  "examples": [
+    {
+      "title": "씬별 폴더(Bin) 정리하기",
+      "steps": [
+        "Source Library 영역에서 우클릭합니다.",
+        "[New Bin]을 선택하여 폴더를 생성합니다.",
+        "이름을 'Scene_01'로 지정합니다.",
+        "해당 씬에 해당하는 클립들을 드래그하여 Bin 안으로 이동합니다."
+      ]
+    },
+    {
+      "title": "필요한 클립 빠르게 검색하기",
+      "steps": [
+        "Source Library 상단의 검색창을 클릭합니다.",
+        "찾으려는 클립의 파일명이나 키워드를 입력합니다.",
+        "필터링된 결과 클립을 확인하고 Timeline으로 드래그합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "미디어 파일 경로가 변경되어 미디어 오프라인(Media Offline) 에러가 발생함 → Source Library에서 해당 클립 우클릭 후 [Change Source Folder로 경로를 다시 지정합니다.",
+    "너무 많은 파일을 한 번에 불러와 라이브러리가 복잡해짐 → Bin 기능을 활용해 주제별로 폴더를 나누어 정리합니다."
+  ],
+  "related": [
+    "Source Tape",
+    "Disk Database",
+    "Media Pool",
+    "Solid Color"
+  ],
+  "videos": [
+    {
+      "id": "Oj7MZKU00TQ",
+      "title": "DaVinci Resolve  Project Manager Explained (Step by Step Beginner Guide)",
+      "author": "O-Side Media"
+    },
+    {
+      "id": "8S6Dqy3kVWI",
+      "title": "How to Create a SOUND LIBRARY in DaVinci Resolve 18.5 + FREE Sound Library from BlackMagicDesign!",
+      "author": "Jason Yadlovski"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Source%20Library",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Cut",
+    "Edit",
+    "Effects",
+    "Media Pool",
+    "Source Library"
+  ],
+  "at": "2026-11-28T01:26:45.223284+00:00"
+}
