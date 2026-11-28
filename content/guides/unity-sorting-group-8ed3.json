@@ -1,0 +1,81 @@
+{
+  "id": "unity-sorting-group-8ed3",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "UI 및 그래픽",
+  "name": "Sorting Group",
+  "title": "Sorting Group — 렌더러 컴포넌트들을 그룹으로 묶어 렌더링 순서와 정렬 레이어를 일괄 관리하는 컴",
+  "summary": "Unity의 Sorting Group은 2D 스프라이트와 UI 요소들의 렌더링 순서를 계층 구조 단위로 일괄 관리하는 컴포넌트입니다. 복잡한 캐릭터나 UI 프리팹의 겹침 현상을 체계적으로 정리할 수 있습니다.",
+  "when": [
+    "여러 개의 스프라이트로 구성된 2D 캐릭터 프리팹의 앞뒤 관계를 통째로 관리할 때",
+    "UI 패널이나 팝업창 내부에 포함된 여러 요소들이 다른 오브젝트와 꼬이지 않게 렌더링 순서를 묶고 싶을 때",
+    "Particle 효과와 2D 스프라이트가 겹치는 위치에서 정확한 레이어 순서를 보장해야 할 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Sorting Group을 적용할 부모 GameObject를 선택합니다.",
+    "Inspector 창 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 Sorting Group을 입력하고 컴포넌트를 추가합니다.",
+    "Sorting Layer 드롭다운에서 원하는 렌더링 레이어를 선택합니다.",
+    "Order in Layer 값을 조절하여 부모 단위의 전체 렌더링 순서를 결정합니다.",
+    "뷰포트나 Game 뷰에서 하위 스프라이트들이 올바른 순서로 겹쳐지는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Sorting Layer",
+      "desc": "오브젝트가 속할 상위 렌더링 레이어를 지정합니다."
+    },
+    {
+      "name": "Order in Layer",
+      "desc": "같은 Sorting Layer 내에서 렌더링될 세부 순서 번호를 지정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "2D 캐릭터 파츠 묶음 정렬",
+      "steps": [
+        "캐릭터의 루트 GameObject에 Sorting Group을 추가합니다.",
+        "Sorting Layer를 Characters로 설정합니다.",
+        "머리, 몸통, 무기 등의 하위 스프라이트들은 로컬 Order 값만 조정합니다."
+      ]
+    },
+    {
+      "title": "UI 팝업창 레이어 분리",
+      "steps": [
+        "팝업창 루트 오브젝트에 Sorting Group을 추가합니다.",
+        "Order in Layer 값을 배경 UI보다 높은 숫자로 설정합니다.",
+        "팝업 내부의 버튼과 텍스트가 배경 뒤로 파묻히는 현상을 방지합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "하위 스프라이트에만 Order in Layer를 주고 부모에 Sorting Group을 안 쓴 경우 → 루트 GameObject에 Sorting Group 컴포넌트를 추가하세요.",
+    "서로 다른 Sorting Group 간의 순서가 꼬이는 경우 → 각 부모 Sorting Group의 Order in Layer 값을 명확하게 분리하세요."
+  ],
+  "related": [
+    "Sprite Renderer",
+    "Canvas",
+    "Canvas Group",
+    "Sorting Layer"
+  ],
+  "videos": [
+    {
+      "id": "q-r1YJzj28M",
+      "title": "Designing With 2D Game Tools - Sorting Groups and Transparency Sort Axis [4/6] Live 2017/6/ 7",
+      "author": "Unity"
+    },
+    {
+      "id": "9vBbg1-Bxcw",
+      "title": "Unity Sprite Layering - Y Sorting, Sorting Layer and Order in Layer",
+      "author": "ShootingDux"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Sorting%20Group",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Sorting Group",
+    "GameObject"
+  ],
+  "at": "2026-11-28T00:27:26.474404+00:00"
+}

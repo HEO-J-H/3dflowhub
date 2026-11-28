@@ -1,0 +1,96 @@
+{
+  "id": "unity-audio-reverb-zone-c691",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "오디오",
+  "name": "Audio Reverb Zone",
+  "title": "Audio Reverb Zone — 특정 영역에 진입할 때 Audio 소스에 동굴이나 방 같은 반향(리버브) 효",
+  "summary": "Unity의 Audio Reverb Zone은 3D 공간 안에서 플레이어의 위치에 따라 실시간으로 메아리(리버브) 효과를 다르게 적용하여 공간감을 극대화하는 컴포넌트입니다.",
+  "when": [
+    "동굴, 터널, 하수구 같은 밀폐된 실내 공간에 진입했을 때",
+    "거대한 대성당이나 지하 주차장처럼 울림이 큰 장르적 연출이 필요할 때",
+    "플레이어가 방에서 복도로 이동할 때 소리의 잔향 변화를 자연스럽게 표현하고 싶을 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 리버브를 적용할 빈 GameObject를 생성합니다.",
+    "Inspector 패널에서 Add Component 버튼을 클릭합니다.",
+    "Audio Reverb Zone을 검색하여 컴포넌트를 추가합니다.",
+    "Scene 뷰에서 노란색 와이어프레임 구체를 확인하며 Min Distance와 Max Distance를 조절합니다.",
+    "Reverb Preset 드롭다운 메뉴에서 원하는 공간 타입(예: Cave, Hallway, Room 등)을 선택합니다.",
+    "플레이어 오브젝트에 Audio Listener 컴포넌트가 있는지 확인하고 Viewport에서 테스트합니다."
+  ],
+  "params": [
+    {
+      "name": "Reverb Preset",
+      "desc": "동굴, 경기장, 방 등 미리 설정된 공간별 리버브 음향 스타일을 선택합니다."
+    },
+    {
+      "name": "Min Distance",
+      "desc": "리버브 효과가 최대치로 적용되기 시작하는 중심점으로부터의 거리입니다."
+    },
+    {
+      "name": "Max Distance",
+      "desc": "리버브 효과가 완전히 사라지는 가장 먼 거리입니다."
+    },
+    {
+      "name": "Room",
+      "desc": "일반적인 방 크기의 잔향 주파수 레벨을 조절합니다."
+    },
+    {
+      "name": "Decay Time",
+      "desc": "소리가 사라질 때까지 걸리는 잔향 지속 시간(초)을 설정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "지하 동굴 스테이지 제작",
+      "steps": [
+        "동굴 입구 중앙에 Audio Reverb Zone 컴포넌트가 부착된 오브젝트를 배치합니다.",
+        "Reverb Preset을 Cave로 설정합니다.",
+        "Min Distance를 동굴 내부 크기에 맞게 넓힙니다.",
+        "플레이어가 동굴 안으로 걸어 들어갈 때 울림이 깊어지는지 확인합니다."
+      ]
+    },
+    {
+      "title": "실내 복도 메아리 연출",
+      "steps": [
+        "좁은 복도 영역을 감싸도록 Audio Reverb Zone을 배치합니다.",
+        "Reverb Preset을 Hallway로 선택합니다.",
+        "Decay Time을 짧게 조절하여 좁은 공간의 짧은 반사음을 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Audio Listener가 구역 내부에 없음 → 플레이어(또는 Camera)에 Audio Listener 컴포넌트가 부착되어 있는지 확인합니다.",
+    "Min Distance와 Max Distance가 0으로 설정됨 → Scene 뷰에서 와이어프레임 크기가 플레이어를 감싸도록 값을 키웁니다."
+  ],
+  "related": [
+    "Audio Source",
+    "Audio Listener",
+    "Audio Mixer",
+    "Audio Filter"
+  ],
+  "videos": [
+    {
+      "id": "-2Aww2raAws",
+      "title": "Reverb Zones | Audio in Unity Episode6",
+      "author": "SwishSwoosh"
+    },
+    {
+      "id": "IrYMTdJmdy8",
+      "title": "UNITY'S AUDIO REVERB ZONE, VIDEO PLAYER, AND AUDIO SOURCE TUTORIAL",
+      "author": "RoBust Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Audio%20Reverb%20Zone",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "GameObject",
+    "Inspector",
+    "Add Component",
+    "Audio Reverb Zone"
+  ],
+  "at": "2026-11-28T00:27:23.237652+00:00"
+}

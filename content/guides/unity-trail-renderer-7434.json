@@ -1,0 +1,101 @@
+{
+  "id": "unity-trail-renderer-7434",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "이펙트 및 파티클",
+  "name": "Trail Renderer",
+  "title": "Trail Renderer — 이동하는 게임오브젝트 뒤로 궤적이나 잔상을 남기는 렌더러 컴포넌트",
+  "summary": "Unity의 Trail Renderer는 이동하는 오브젝트의 뒤에 실시간으로 궤적(잔상)을 남겨 레이저 빔, 미사일 연기, 검광 등의 효과를 표현하는 컴포넌트입니다.",
+  "when": [
+    "검이나 무기를 휘두를 때 시각적인 궤적(Slash Effect)을 만들 때",
+    "미사일, 투사체, 총알이 날아간 자리에 연기나 빛의 잔상을 표현할 때",
+    "고속으로 이동하는 캐릭터나 차량의 움직임에 속도감을 더할 때"
+  ],
+  "steps": [
+    "Hierarchy 패널에서 궤적을 남길 3D 오브젝트(예: 무기나 투사체)를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "Trail Renderer를 검색하여 컴포넌트를 추가합니다.",
+    "Materials 슬롯에 적절한 Particle 또는 빛 소재의 Material을 연결합니다.",
+    "Time 속성 값을 조절하여 궤적이 유지되는 시간을 설정합니다.",
+    "Scene 뷰에서 오브젝트를 이동시켜 Viewport에 궤적이 그려지는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Time",
+      "desc": "궤적이 화면에 남아있는 시간(초 단위)을 설정합니다."
+    },
+    {
+      "name": "Start Width",
+      "desc": "오브젝트와 가까운 궤적 시작 지점의 두께를 조절합니다."
+    },
+    {
+      "name": "End Width",
+      "desc": "오브젝트와 먼 궤적 끝 지점의 두께를 조절합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "궤적의 시간에 따른 색상 변화와 투명도(Gradient)를 설정합니다."
+    },
+    {
+      "name": "Min Vertex Distance",
+      "desc": "새로운 점을 생성하기 위한 최소 이동 거리를 지정합니다."
+    },
+    {
+      "name": "Autodestruct",
+      "desc": "오브젝트가 파괴될 때 남은 궤적이 사라진 후 컴포넌트를 자동 삭제합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "검기(Sword Slash) 효과 만들기",
+      "steps": [
+        "캐릭터의 검 오브젝트에 Trail Renderer를 추가합니다.",
+        "Time 값을 0.2초 정도로 짧게 설정합니다.",
+        "Color 그라데이션을 푸른빛에서 투명하게 설정합니다.",
+        "검을 휘두르는 애니메이션을 재생해 궤적을 확인합니다."
+      ]
+    },
+    {
+      "title": "미사일 꼬리 연기 표현하기",
+      "steps": [
+        "발사되는 미사일 오브젝트에 Trail Renderer를 추가합니다.",
+        "Time 값을 1.5초로 넉넉하게 설정합니다.",
+        "Start Width를 얇게, End Width를 두껍게 조절하여 퍼지는 연기 형태를 만듭니다.",
+        "연기 질감의 Material을 적용하고 미사일을 발사합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "궤적이 나타나지 않음 → Materials 슬롯에 Material이 지정되지 않았거나 Shader가 올바르지 않은지 확인합니다.",
+    "궤적이 네모낳고 딱딱하게 꺾임 → Min Vertex Distance 값이 너무 크거나 오브젝트의 이동 경로 점이 부족한 경우이므로 값을 낮춰줍니다.",
+    "오브젝트가 가만히 있어도 궤적이 생김 → 스크립트나 물리 이동 없이 제자리에서 멈춰 있을 때 Time 설정으로 인해 잔상이 남는 현상이므로, 이동 중에만 활성화하도록 제어합니다."
+  ],
+  "related": [
+    "Line Renderer",
+    "Particle System",
+    "Animator",
+    "Rigidbody"
+  ],
+  "videos": [
+    {
+      "id": "0smVCDeh4C0",
+      "title": "How to use Trail Renderer in Unity to create contrails",
+      "author": "make100games"
+    },
+    {
+      "id": "1D60xDOJTmU",
+      "title": "Unity 2D TRAIL EFFECT/RENDERER Tutorial | Unity 2D Platformer Tutorial #6",
+      "author": "Rehope Games"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Trail%20Renderer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Inspector",
+    "Add Component",
+    "Trail Renderer"
+  ],
+  "at": "2026-11-28T00:27:30.461855+00:00"
+}
