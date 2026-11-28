@@ -1,0 +1,38 @@
+{
+  "id": "substance-3d-painter-baking-bake-failed-because-hi-853e7",
+  "kind": "fix",
+  "tool": "Substance 3D",
+  "error": "Painter: [Baking] Bake failed because high-poly mesh has zero triangles",
+  "title": "Painter: [Baking] Bake failed because high-poly mesh has zero triangles 오류 해결 방법",
+  "summary": "Substance 3D Painter에서 텍스처 Baking을 진행할 때, 지정된 하이 폴리곤 모델에 삼각형(Triangle) 폴리곤 데이터가 전혀 존재하지 않아(면 수가 0개) Baking 계산을 수행할 수 없을 때 발생하는 오류입니다.",
+  "causes": [
+    "하이 폴리곤으로 선택한 3D 파일이 비어 있거나 지오메트리 데이터가 유효하지 않은 경우",
+    "익스포트 과정에서 메시가 누락되었거나 모든 면이 삭제된 빈 오브젝트가 지정된 경우",
+    "Substance 3D Painter의 Bake Mesh Maps 창에서 잘못된 파일이나 빈 객체를 하이 폴리곤(High Definition Meshes) 슬롯에 등록한 경우"
+  ],
+  "steps": [
+    "Substance 3D Painter의 Bake Mesh Maps 창에서 High Definition Meshes 슬롯에 등록된 하이 폴리곤 모델의 경로와 파일 이름을 확인합니다.",
+    "3D DCC 툴(Blender, 3ds Max, Maya 등)에서 해당 하이 폴리곤 모델을 열어 실제로 폴리곤(삼각형 또는 사각형 면)이 정상적으로 존재하는지 확인합니다.",
+    "모델에 면이 없다면 복원하거나, Viewport에서 오브젝트가 숨겨져(Hidden) 있거나 렌더 불가 상태로 익스포트되지 않았는지 점검합니다.",
+    "3D DCC 툴에서 OBJ, FBX 등의 포맷으로 하이 폴리곤 모델을 다시 올바르게 익스포트합니다.",
+    "Substance 3D Painter에서 기존 하이 폴리곤 파일을 제거하고 새로 익스포트한 파일을 다시 로드한 뒤 Baking을 재시도합니다."
+  ],
+  "check": [
+    "Bake Mesh Maps 창의 High Definition Meshes 목록에 모델이 올바르게 표시되는지 확인합니다.",
+    "Baking을 실행했을 때 'zero triangles' 오류 메시지 없이 정상적으로 맵 추출이 진행되는지 확인합니다."
+  ],
+  "prevent": [
+    "모델을 익스포트하기 전에 Viewport에서 지오메트리(Mesh)가 실제로 선택되고 생성되어 있는지 확인합니다.",
+    "하이 폴리곤과 로우 폴리곤 파일 명칭과 경로를 명확하게 구분하여 관리합니다."
+  ],
+  "keywords": [
+    "Painter Baking 오류",
+    "zero triangles",
+    "Substance 3D Painter 맵 Baking 실패",
+    "하이폴리곤오류",
+    "Bake failed"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T08:38:03+00:00"
+}

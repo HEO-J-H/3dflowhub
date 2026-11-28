@@ -1,0 +1,37 @@
+{
+  "id": "nvidia-omniverse-kit-error-omni-hydra-failed-to-bi-d196a",
+  "kind": "fix",
+  "tool": "NVIDIA Omniverse",
+  "error": "Kit: [Error] [omni.hydra] Failed to bind material because USD shader path is invalid",
+  "title": "Kit: [Error] [omni.hydra] Failed to bind material because USD shader path is inv",
+  "summary": "NVIDIA Omniverse에서 USD 머티리얼을 오브젝트에 바인딩(Bind)할 때, 지정한 USD Shader Primitive의 경로(Path)가 잘못되었거나 존재하지 않아 발생하는 오류입니다.",
+  "causes": [
+    "Stage 내에서 머티리얼 또는 Shader 프라이머의 경로(Path)가 이름 변경이나 이동으로 인해 변경되었음",
+    "USD 파일 외부 참조(Reference)나 서브레이어(Sublayer)에서 대상 Shader 경로를 찾지 못함",
+    "Python 스크립트나 USD API를 통한 바인딩 중 잘못된 문자열 경로(Path)를 입력함"
+  ],
+  "steps": [
+    "Stage 패널을 열어 바인딩하려는 머티리얼과 Shader의 실제 경로(Prim Path)가 올바른지 확인합니다.",
+    "오류 메시지에 언급된 경로와 실제 Stage 계층 구조의 경로가 일치하는지 비교합니다.",
+    "경로가 변경되었다면 Material Binding API 또는 속성(Property) 창에서 올바른 Shader Primitive를 다시 지정합니다.",
+    "외신 참조(Reference)된 파일이라면 레이어(Layers) 패널에서 소스 파일 경로와 내부 프라이브 구조를 점검합니다."
+  ],
+  "check": [
+    "콘솔 창에서 [omni.hydra] 관련 Material Bind 오류 메시지가 더 이상 출력되지 않는지 확인합니다.",
+    "Viewport에서 오브젝트에 머티리얼이 정상적으로 적용되어 렌더링되는지 확인합니다."
+  ],
+  "prevent": [
+    "Stage 내에서 프라이머(Prim)의 이름을 변경할 때는 바인딩된 관계(Relationship)가 끊어지지 않도록 주의합니다.",
+    "상대 경로 또는 USD API를 사용할 때는 경로 유효성 검증 로직을 포함합니다."
+  ],
+  "keywords": [
+    "Omniverse 오류",
+    "USD shader path is invalid",
+    "omni.hydra Material Bind",
+    "USD Shader 경로 오류",
+    "옴니버스 머티리얼 바인딩"
+  ],
+  "repro": null,
+  "verified": null,
+  "at": "2026-11-28T08:38:05+00:00"
+}
