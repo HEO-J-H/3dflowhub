@@ -1,0 +1,97 @@
+{
+  "id": "unity-light-explorer-9661",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "라이팅",
+  "name": "Light Explorer",
+  "title": "Light Explorer — 씬 내의 모든 조명, 반사 프로브, 라이트 맵 설정을 한 곳에서 관리하고 수정",
+  "summary": "Unity의 Light Explorer는 씬 내에 있는 모든 라이트, 라이트 프로브, 리플렉션 프로브, 이미션 소재의 설정을 한눈에 모아서 확인하고 일괄 관리하는 통합 조명 관리 창입니다.",
+  "when": [
+    "프로젝트 전체의 조명 밝기와 컬러를 한 번에 조정하고 싶을 때",
+    "씬에 배치된 수많은 라이트 중 특정 이름을 가진 광원을 빠르게 찾고 싶을 때",
+    "실수로 꺼져 있거나 잘못 설정된 라이트가 있는지 전체 목록을 검수할 때"
+  ],
+  "steps": [
+    "Unity 상단 메뉴 바에서 Window → Rendering → Light Explorer를 클릭합니다.",
+    "Light Explorer 창이 열리면 Lights 탭을 선택하여 씬에 있는 모든 라이트 목록을 확인합니다.",
+    "목록에서 조명을 선택해 Intensity, Color, Range 등의 속성을 개별적으로 수정합니다.",
+    "여러 개의 조명을 다중 선택(Ctrl 클릭 또는 Shift 클릭)한 뒤 속성을 변경해 일괄 적용합니다.",
+    "Reflections 탭이나 Light Probes 탭으로 이동하여 다른 조명 관련 컴포넌트도 같은 방식으로 관리합니다.",
+    "Scene 뷰와 Game 뷰에서 변경된 조명 결과가 올바르게 반영되는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Type",
+      "desc": "라이트의 종류(Directional, Point, Spot 등)를 표시하거나 변경합니다."
+    },
+    {
+      "name": "Color",
+      "desc": "선택한 라이트의 방출 색상을 일괄 혹은 개별 지정합니다."
+    },
+    {
+      "name": "Intensity",
+      "desc": "조명의 밝기 강도를 조절하여 씬 전체의 조명 밀도를 맞춥니다."
+    },
+    {
+      "name": "Range",
+      "desc": "Point 라이트나 Spot 라이트의 영향 거리를 설정합니다."
+    },
+    {
+      "name": "Shadows",
+      "desc": "그림자 생성 여부(Hard, Soft, None)를 한눈에 켜고 끕니다."
+    },
+    {
+      "name": "Bake Mode",
+      "desc": "Realtime, Mixed, Baked 중 조명 모드를 일괄 변경합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "실내 씬 전체 조명 밝기 일괄 하향 조정",
+      "steps": [
+        "Light Explorer의 Lights 탭을 엽니다.",
+        "Ctrl+A를 눌러 모든 라이트를 선택합니다.",
+        "Intensity 값을 낮춰 과도하게 밝은 실내 조명을 일괄 정리합니다."
+      ]
+    },
+    {
+      "title": "꺼진 라이트와 켜진 라이트 상태 한 번에 점검",
+      "steps": [
+        "Light Explorer 목록에서 Enabled 체크박스 열을 확인합니다.",
+        "체크가 해제된 불필요한 라이트를 찾아 일괄 삭제하거나 켭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "라이트가 너무 많아 렉이 걸림 → Light Explorer에서 사용하지 않는 라이트를 한 번에 찾아 삭제하거나 비활성화합니다.",
+    "실수로 모든 조명 색상이 흰색으로 초기화됨 → Ctrl+Z로 되돌린 뒤 개별 라이트의 컬러를 다시 확인합니다."
+  ],
+  "related": [
+    "Light Probes",
+    "Reflection Probe",
+    "Lighting Window",
+    "Directional Light"
+  ],
+  "videos": [
+    {
+      "id": "dy_JRjA16no",
+      "title": "Light Explorer Unity Tutorial",
+      "author": "RoBust Games"
+    },
+    {
+      "id": "VESWhQSNzBA",
+      "title": "UNITY Tutorial Series 8 - Light Explorer",
+      "author": "ToEveryLastOne"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Light%20Explorer",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Unity",
+    "Window",
+    "Rendering",
+    "Light Explorer"
+  ],
+  "at": "2026-11-28T00:10:24.306770+00:00"
+}

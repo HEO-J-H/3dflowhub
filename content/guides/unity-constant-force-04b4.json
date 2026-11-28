@@ -1,0 +1,89 @@
+{
+  "id": "unity-constant-force-04b4",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "물리 및 시뮬레이션",
+  "name": "Constant Force",
+  "title": "Constant Force — 리지드바디에 일정한 힘과 회전력을 지속적으로 가하여 물리 운동을 시뮬레이션하는",
+  "summary": "Unity의 Constant Force는 리지드바디(Rigidbody) 오브젝트에 매 프레임 일정한 힘이나 회전력을 연속으로 가하여 움직임을 제어하는 컴포넌트입니다.",
+  "when": [
+    "바람이나 중력처럼 오브젝트를 일정한 방향으로 계속 밀어내야 할 때",
+    "로켓이나 미사일처럼 지속적인 추력을 표현하고 싶을 때",
+    "지속적인 회전력을 주어 바람개비나 회전하는 장애물을 만들 때"
+  ],
+  "steps": [
+    "Hierarchy 창에서 Constant Force를 적용할 리지드바디가 포함된 게임 오브젝트를 선택합니다.",
+    "Inspector 패널 하단의 Add Component 버튼을 클릭합니다.",
+    "검색창에 Constant Force를 입력하고 선택하여 컴포넌트를 추가합니다.",
+    "Force 항목에 X, Y, Z 방향의 일정한 힘 값을 입력하여 오브젝트를 밀어냅니다.",
+    "Relative Force나 Torque 값을 조절하여 로컬 좌표계 기준의 힘이나 회전력을 부여합니다.",
+    "Scene 뷰에서 오브젝트의 움직임을 Play 버튼으로 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Force",
+      "desc": "월드 좌표계 기준으로 매 프레임 가해지는 일정한 선형 힘입니다."
+    },
+    {
+      "name": "Relative Force",
+      "desc": "오브젝트의 로컬 좌표계 기준으로 가해지는 일정한 선형 힘입니다."
+    },
+    {
+      "name": "Torque",
+      "desc": "월드 좌표계 기준으로 매 프레임 가해지는 회전력(돌림힘)입니다."
+    },
+    {
+      "name": "Relative Torque",
+      "desc": "오브젝트의 로컬 좌표계 기준으로 가해지는 회전력입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "로켓 추진력 표현",
+      "steps": [
+        "로켓 오브젝트에 Rigidbody와 Constant Force 컴포넌트를 추가합니다.",
+        "Relative Force의 Z축(또는 전진 방향)에 양수 값을 입력합니다.",
+        "Play를 눌러 로켓이 앞으로 지속적으로 가속하는지 확인합니다."
+      ]
+    },
+    {
+      "title": "바람에 밀려 날아가는 낙엽",
+      "steps": [
+        "낙엽 오브젝트에 Rigidbody와 Constant Force를 추가합니다.",
+        "Force 항목에 X축 방향으로 바람의 힘을 입력합니다.",
+        "Torque 항목에 회전값을 주어 낙엽이 회전하며 날아가게 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Rigidbody 컴포넌트가 없음 → Constant Force는 리지드바디가 필수이므로 먼저 Add Component로 추가해야 합니다.",
+    "힘의 값이 너무 큼 → 오브젝트가 순식간에 화면 밖으로 날아가므로 아주 작은 값(예: 1~10)부터 테스트하세요.",
+    "Is Kinematic이 켜져 있음 → 물리 연산이 비활성화되면 Constant Force가 작동하지 않으므로 체크를 해제하세요."
+  ],
+  "related": [
+    "Rigidbody",
+    "Configurable Joint",
+    "Cloth Spring",
+    "Collider"
+  ],
+  "videos": [
+    {
+      "id": "6biyV_hQAjc",
+      "title": "Unity Basics - Constant Force Component",
+      "author": "MetalStorm Games"
+    },
+    {
+      "id": "LhybK-61Dmc",
+      "title": "Constant Force 2D - Unity Tutorial",
+      "author": "Keep Learning"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Constant%20Force",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Hierarchy",
+    "Constant Force"
+  ],
+  "at": "2026-11-28T00:10:31.455975+00:00"
+}

@@ -1,0 +1,89 @@
+{
+  "id": "unity-avatar-mask-9ad3",
+  "tool": "Unity",
+  "domain": "Game Engine",
+  "group": "애니메이션",
+  "name": "Avatar Mask",
+  "title": "Avatar Mask — 휴머노이드 Avatar의 특정 신체 부위만 애니메이션이 적용되도록 마스킹하는 에셋",
+  "summary": "Unity의 Avatar Mask는 캐릭터 Avatar의 특정 신체 부위(상체, 하체, 손 등)를 마스킹하여, 해당 부위에만 별도의 애니메이션을 적용하거나 덮어쓸 수 있도록 분리해 주는 기능입니다.",
+  "when": [
+    "달리면서 상체로는 총을 쏘거나 아이템을 사용하는 등 두 가지 애니메이션을 동시에 재생하고 싶을 때",
+    "캐릭터의 하체는 제자리 걸음을 유지하면서 상체만 피격 리액션을 취하게 만들고 싶을 때",
+    "특정 신체 부위(예: 얼굴 표정이나 손가락)에만 애니메이션 레이어를 따로 적용하여 관리하고 싶을 때"
+  ],
+  "steps": [
+    "Project 창 빈 공간을 우클릭하고 Create > Avatar Mask를 선택하여 새 Mask 에셋을 생성합니다.",
+    "생성된 Avatar Mask 에셋을 더블클릭하여 Inspector 패널에서 설정 창을 엽니다.",
+    "Humanoid 탭을 선택하고 상하체 및 신체 부위별 아이콘을 클릭하여 Mask를 활성화하거나 비활성화합니다.",
+    "Animator 창으로 이동하여 새로운 Animation Layer를 추가하고, 설정한 Avatar Mask 에셋을 Layer의 Mask 슬롯에 드래그하여 연결합니다."
+  ],
+  "params": [
+    {
+      "name": "Humanoid",
+      "desc": "휴머노이드 뼈대 구조를 기반으로 신체 부위별 Mask를 시각적으로 켜고 끌 수 있는 탭입니다."
+    },
+    {
+      "name": "Transform",
+      "desc": "Generic 뼈대 구조나 특정 트랜스폼 계층 구조를 직접 지정하여 세밀하게 마스킹할 때 사용합니다."
+    },
+    {
+      "name": "Weight",
+      "desc": "레이어 전체의 영향력 강도를 조절하여 애니메이션이 섞이는 비중을 제어합니다."
+    },
+    {
+      "name": "Avatar Mask Checkbox",
+      "desc": "초록색 체크 표시는 해당 부위의 애니메이션이 재생됨을 의미하고, 빈 칸은 무시됨을 뜻합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "이동 중 상체 사격 모션 적용",
+      "steps": [
+        "Project 창에서 Create > Avatar Mask로 상체 전용 Mask를 생성합니다.",
+        "Avatar Mask 설정에서 하체 부위의 체크를 해제하여 상체만 남깁니다.",
+        "Animator의 Base Layer 위에 새 레이어를 만들고 해당 Mask를 적용합니다.",
+        "새 레이어에 사격 애니메이션 클립을 배치합니다."
+      ]
+    },
+    {
+      "title": "서브 Avatar 부위별 제어",
+      "steps": [
+        "Avatar Mask 에셋을 선택하고 Transform 탭으로 전환합니다.",
+        "캐릭터 뼈대 계층에서 손 부위 노드를 드래그하여 추가합니다.",
+        "손 동작 애니메이션 레이어에 Mask를 연결하여 손만 따로 제어합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Mask를 적용했는데 애니메이션이 섞이지 않음 → Animator 레이어의 Blending 모드가 Override로 되어 있는지 확인하고 Additive나 Mask 설정을 점검하세요.",
+    "일부 뼈대가 움직이지 않고 굳어버림 → Avatar Mask에서 필수 관절 부위의 체크가 실수로 해제되었는지 확인하세요."
+  ],
+  "related": [
+    "Animation Layers",
+    "Animator Controller",
+    "Avatar",
+    "Blend Tree"
+  ],
+  "videos": [
+    {
+      "id": "1dMoRECcstQ",
+      "title": "Avatar Masks - Unity Official Tutorials",
+      "author": "Unity"
+    },
+    {
+      "id": "E8VJ7wm1mcA",
+      "title": "Unity 3D Animation Masks & Avatars (3rdPS/FPS Aiming In 2 Minutes!!!)",
+      "author": "Royal Skies"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Unity%20Avatar%20Mask",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Project",
+    "Create",
+    "Avatar Mask",
+    "Mask"
+  ],
+  "at": "2026-11-28T00:10:28.066234+00:00"
+}
