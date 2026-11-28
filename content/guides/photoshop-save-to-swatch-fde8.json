@@ -1,0 +1,82 @@
+{
+  "id": "photoshop-save-to-swatch-fde8",
+  "tool": "Photoshop",
+  "domain": "3D DCC",
+  "group": "3D 텍스처 및 머티리얼",
+  "name": "Save To Swatch",
+  "title": "견본에 저장 — 3D 머티리얼 색상 및 속성을 견본 패널에 저장",
+  "summary": "Photoshop의 Save To Swatch 기능은 현재 3D 재질이나 텍스처의 색상 및 속성을 스와치(Swatches) 패널에 저장하여, 다른 디자인 작업이나 3D 페인팅 시 동일한 팔레트를 손쉽게 재사용할 수 있게 해줍니다.",
+  "when": [
+    "3D 모델에 적용한 고유한 재질 색상을 2D 그래픽 디자인이나 다른 3D 프로젝트에 그대로 적용하고 싶을 때",
+    "클라이언트나 팀원과 공유할 일관된 컬러 팔레트 및 재질 톤을 정리할 때",
+    "작업 중인 3D 오브젝트의 표면 색상을 견본 패널에 빠르게 등록하여 디자인 일관성을 유지할 때"
+  ],
+  "steps": [
+    "Photoshop에서 3D 파일이나 재질이 포함된 프로젝트를 엽니다.",
+    "Layers 패널에서 3D 레이어를 선택하고 Properties 패널에서 수정할 Material을 클릭합니다.",
+    "색상 영역(Diffuse 또는 Base Color)을 클릭하여 Color Picker를 엽니다.",
+    "Color Picker 창에서 원하는 색상을 선택한 후, Add to Swatches 버튼을 클릭하거나 Swatches 패널로 드래그합니다.",
+    "Swatches 패널에 새로운 색상 견본이 추가된 것을 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Save To Swatch",
+      "desc": "현재 선택된 3D 재질의 색상 속성을 Swatches 패널에 저장합니다."
+    },
+    {
+      "name": "Diffuse / Base Color",
+      "desc": "3D 표면의 기본 색상을 결정하며 스와치에 저장할 주 대상이 됩니다."
+    },
+    {
+      "name": "Swatches Panel",
+      "desc": "저장된 색상 견본들을 관리하고 불러오는 패널입니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "브랜드 컬러 팔레트 구축",
+      "steps": [
+        "브랜드 로고가 적용된 3D 제품 모델을 엽니다.",
+        "제품 표면의 주요 색상을 추출하여 Color Picker를 엽니다.",
+        "Save To Swatch를 통해 Swatches 패널에 등록합니다.",
+        "Package 디자인 및 2D 포스터 작업 시 동일한 스와치를 불러와 사용합니다."
+      ]
+    },
+    {
+      "title": "동일 재질 색상 공유",
+      "steps": [
+        "여러 개의 파츠로 구성된 3D 캐릭터 모델을 불러옵니다.",
+        "첫 번째 파츠의 재질 색상을 설정합니다.",
+        "해당 색상을 Swatches 패널에 저장합니다.",
+        "다른 파츠를 선택하고 저장된 스와치를 적용하여 색상을 통일합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "3D 레이어가 아닌 일반 2D 레이어를 선택함 → Layers 패널에서 반드시 3D 레이어를 선택하고 Properties 패널에서 Material을 활성화하세요.",
+    "스와치 패널이 보이지 않음 → 상단 메뉴의 Window ➔ Swatches를 체크하여 패널을 화면에 띄우세요."
+  ],
+  "related": [
+    "Roughness",
+    "Material Editor",
+    "3D Layers",
+    "Properties Panel"
+  ],
+  "videos": [
+    {
+      "id": "Dk402Y0sXuU",
+      "title": "Saving Swatches Using .ACO Files in Photoshop",
+      "author": "Open Graphic Arts"
+    },
+    {
+      "id": "kw3VHFnhshw",
+      "title": "How To Save Color Swatches in Photoshop (𝟮𝟬𝟮𝟲) | 100% WORKS | NO Yapping, To The Point | FAST & EASY",
+      "author": "Guide Hub (2026 WORKING GUIDES)"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Photoshop%20Save%20To%20Swatch",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-28T03:07:30.356672+00:00"
+}
