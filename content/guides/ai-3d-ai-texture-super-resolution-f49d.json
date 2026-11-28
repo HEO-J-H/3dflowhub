@@ -1,0 +1,88 @@
+{
+  "id": "ai-3d-ai-texture-super-resolution-f49d",
+  "tool": "AI 3D",
+  "domain": "AI 3D",
+  "group": "AI 텍스처 및 머티리얼",
+  "name": "AI Texture Super Resolution",
+  "title": "AI 텍스처 초해상도 — 저해상도 텍스처를 Machine Learning으로 업스케일링하여 디테일 복원",
+  "summary": "AI Texture Super Resolution은 저해상도 텍스처를 인공지능으로 분석하여 선명도와 디테일을 고도화하는 기술입니다. 블러 처리된 표면을 살리면서 4K 이상으로 Resolution를 높여줍니다.",
+  "when": [
+    "오래된 저해상도 텍스처를 최신 4K/8K 실시간 렌더링 환경에 맞게 업그레이드할 때",
+    "포토그래메트리나 AI 3D 생성 결과물의 흐릿한 Albedo와 Normal 맵을 선명하게 만들 때",
+    "게임 배경 및 캐릭터 에셋의 메모리 용량을 줄이면서 표면 디테일을 유지하고 싶을 때"
+  ],
+  "steps": [
+    "Substance Sampler 또는 전용 AI 텍스처 Upscaling Software를 실행합니다.",
+    "File 메뉴에서 저해상도 이미지 파일(PNG, JPG 등)을 Import 합니다.",
+    "Filters 또는 Generator 패널에서 Super Resolution 노드나 AI Upscale 필터를 추가합니다.",
+    "Scale 계수(x2, x4)와 디테일 강도를 설정합니다.",
+    "Preview 창에서 결과물을 확인하고 Export 버튼을 눌러 고해상도 텍스처를 저장합니다."
+  ],
+  "params": [
+    {
+      "name": "Scale Factor",
+      "desc": "원본 텍스처 Resolution를 확대할 배율을 지정합니다 (2x 또는 4x)."
+    },
+    {
+      "name": "Denoise",
+      "desc": "업스케일 과정에서 발생할 수 있는 노이즈와 Artifact를 줄여줍니다."
+    },
+    {
+      "name": "Detail Enhancement",
+      "desc": "표면의 미세한 질감과 에지 선명도를 인공지능으로 증폭합니다."
+    },
+    {
+      "name": "Normal Map Preservation",
+      "desc": "노멀 맵 업스케일 시 벡터 방향이 깨지지 않도록 보정합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "저해상도 게임 텍스처 4K 리마스터",
+      "steps": [
+        "Substance Sampler에 512x512 알베도 맵을 불러옵니다.",
+        "AI Super Resolution 필터를 적용하고 Scale Factor를 4x로 설정합니다.",
+        "Detail Enhancement 값을 조절하여 벽돌 표면의 거친 질감을 살립니다."
+      ]
+    },
+    {
+      "title": "포토그래메트리 노멀 맵 디테일 복원",
+      "steps": [
+        "스캔 데이터에서 얻은 흐릿한 Normal 맵을 AI 업스케일 툴에 로드합니다.",
+        "Normal Map Preservation 옵션을 켜고 업스케일을 실행합니다.",
+        "결과물을 저장하여 Unreal Engine이나 Blender의 Shader에 적용합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "과도한 Detail Enhancement 설정으로 텍스처에 자글거리는 Artifact 발생 → Detail 값을 낮추고 Denoise를 약간 높여 해결합니다.",
+    "노멀 맵에 일반 AI 업스케일을 적용하여 입체감이 반전됨 → 반드시 Normal Map 전용 알고리즘이나 옵션을 켜고 적용합니다."
+  ],
+  "related": [
+    "3D Asset Upscaling",
+    "Substance Sampler",
+    "Neural Rendering",
+    "Gaussian Splatting"
+  ],
+  "videos": [
+    {
+      "id": "_vmgTaV2doc",
+      "title": "Secret Tool-Workflow: ComfyUI-Frame-Interpolation & RTX Video Super Resolution Tutorial",
+      "author": "Murphylanga – AI Art & Tutorials"
+    },
+    {
+      "id": "ljSNFV3MH7Y",
+      "title": "Pixelmator Pro AI Upscale – Super Resolution Tutorial (Free Built-in Tool)",
+      "author": "How To Mark"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=AI%203D%20AI%20Texture%20Super%20Resolution",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Substance Sampler",
+    "AI",
+    "Upscaling Software"
+  ],
+  "at": "2026-11-28T02:16:52.427395+00:00"
+}

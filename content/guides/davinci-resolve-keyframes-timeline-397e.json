@@ -1,0 +1,85 @@
+{
+  "id": "davinci-resolve-keyframes-timeline-397e",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "Keyframes Timeline",
+  "title": "컬러 페이지 Keyframe — 특정 프레임 단위로 그레이딩 변화를 주는 Timeline",
+  "summary": "DaVinci Resolve의 Timeline Keyframes는 클립의 Audio 볼륨, 리타이밍, 효과 등의 파라미터를 Timeline 상에서 시간 흐름에 따라 정밀하게 제어하고 애니메이션하는 기능입니다.",
+  "when": [
+    "클립의 Audio 볼륨을 특정 구간에서 서서히 높이거나 낮추고 싶을 때",
+    "속도 변화(Retime) 구간을 Timeline에서 직관적으로 조절하고 싶을 때",
+    "비디오 효과나 트랜지션의 강도를 시간에 따라 다르게 설정하고 싶을 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Edit 페이지로 이동합니다.",
+    "Timeline에 있는 해당 클립의 왼쪽 하단에 있는 Keyframe 아이콘을 클릭합니다.",
+    "클립 트랙 영역이 확장되면 조절하려는 파라미터(예: Volume)의 선을 확인합니다.",
+    "Alt (Option) 키를 누른 채 파라미터 라인을 클릭하여 새로운 Keyframe(점)을 생성합니다.",
+    "생성된 Keyframe 포인트를 위아래 또는 좌우로 드래그하여 값과 타이밍을 조절합니다.",
+    "Timeline 뷰어에서 재생하여 애니메이션 결과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Keyframe",
+      "desc": "특정 시간대의 파라미터 값(위치, 크기, 볼륨 등)을 고정하거나 기록하는 점입니다."
+    },
+    {
+      "name": "Curve Editor",
+      "desc": "Keyframe 사이의 변화 속도를 부드럽게(Ease-in, Ease-out) 만드는 Graph 편집기입니다."
+    },
+    {
+      "name": "Volume",
+      "desc": "클립의 Audio 크기를 Timeline 라인 조절을 통해 실시간으로 변경합니다."
+    },
+    {
+      "name": "Retime Curve",
+      "desc": "Timeline 클립의 속도 가감속을 Keyframe 곡선 형태로 세밀하게 제어합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Audio 페이드 아웃 설정",
+      "steps": [
+        "Edit 페이지 Timeline의 Audio 클립 볼륨 라인을 확인합니다.",
+        "클립이 끝나는 지점과 그보다 조금 앞선 지점에 Alt 키를 눌러 Keyframe 2개를 생성합니다.",
+        "마지막 Keyframe을 아래로 완전히 내려 볼륨을 0으로 만듭니다."
+      ]
+    },
+    {
+      "title": "클립 투명도(Opacity) 조절",
+      "steps": [
+        "비디오 클립 트랙을 확장하여 Opacity 라인을 표시합니다.",
+        "원하는 구간 시작과 끝에 Keyframe을 추가합니다.",
+        "중간 구간의 투명도 라인을 낮추어 페이드 인/아웃 효과를 만듭니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "Keyframe이 생성되지 않고 전체 클립 값이 변함 → Alt(Option) 키를 누른 상태에서 파라미터 라인을 클릭했는지 확인합니다.",
+    "원하지 않는 곳에 Keyframe이 추가됨 → 불필요한 Keyframe은 해당 점을 선택하고 Delete 키를 눌러 삭제합니다."
+  ],
+  "related": [
+    "Fairlight Page",
+    "Inspector",
+    "Retime Controls",
+    "Dynamic Zoom"
+  ],
+  "videos": [
+    {
+      "id": "p1KRLgHw8LY",
+      "title": "Keyframing Made Easy: A Davinci Resolve Tutorial for Noobs",
+      "author": "Daniel Batal"
+    },
+    {
+      "id": "Y0I6AK6h6ng",
+      "title": "You Can STILL See Keyframes In Your Timeline in DaVinci Resolve 20!",
+      "author": "Daniel Batal"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20Keyframes%20Timeline",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-28T02:16:45.107998+00:00"
+}
