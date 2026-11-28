@@ -1,0 +1,81 @@
+{
+  "id": "pixyz-studio-combine-meshes-c2ff",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "데이터 최적화",
+  "name": "Combine Meshes",
+  "title": "Combine Meshes — 선택한 여러 개의 개별 메쉬를 드로우 콜(Draw Call) 감소를 위해 하나",
+  "summary": "Pixyz Studio의 Combine Meshes는 여러 개의 개별 메쉬를 하나로 합쳐서 씬 내 드로우 콜을 줄이고 최적화하는 기능입니다.",
+  "when": [
+    "수많은 부품으로 이루어진 CAD 조립품의 드로우 콜을 줄여야 할 때",
+    "렌더링 성능 최적화를 위해 불필요하게 나뉜 오브젝트 구조를 정리할 때",
+    "게임 엔진이나 실시간 렌더러로 Export 전 오브젝트 개수를 줄일 때"
+  ],
+  "steps": [
+    "왼쪽 Product Structure(트리)에서 결합할 대상 메쉬들을 다중 선택합니다.",
+    "상단 메뉴 바에서 Mesh를 클릭합니다.",
+    "메뉴 목록에서 Combine Meshes를 선택합니다.",
+    "화면 오른쪽 Inspector 패널의 대화 상자에서 병합 옵션을 설정합니다.",
+    "하단의 Execute 버튼을 눌러 메쉬 결합을 실행합니다.",
+    "Viewport와 Product Structure에서 하나의 메쉬로 합쳐졌는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Keep Hierarchy",
+      "desc": "기존 트리의 계층 구조를 유지할지 여부를 설정합니다."
+    },
+    {
+      "name": "Delete Original",
+      "desc": "병합 완료 후 원본 개별 메쉬들을 삭제할지 선택합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "자동차 차체 부품 합치기",
+      "steps": [
+        "Product Structure에서 차체에 속한 여러 개의 작은 패널 부품들을 선택합니다.",
+        "Mesh > Combine Meshes를 실행합니다.",
+        "오른쪽 Inspector에서 설정을 확인하고 Execute를 누릅니다."
+      ]
+    },
+    {
+      "title": "기계 장치 조립품 단순화",
+      "steps": [
+        "트리에서 볼트와 너트가 포함된 소형 어셈블리 부품들을 선택합니다.",
+        "Combine Meshes를 적용해 하나의 오브젝트로 묶습니다.",
+        "드로우 콜이 감소했는지 씬 통계에서 확인합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "서로 다른 머티리얼이 적용된 부품을 합침 → 머티리얼 속성이 유실되거나 렌더링 오류 발생. 동일한 머티리얼을 가진 부품끼리 먼저 정리하세요.",
+    "원본 백업 없이 병합 실행 → 수정이 필요할 때 되돌리기 어려움. 원본 데이터를 유지하거나 백업 후 실행하세요."
+  ],
+  "related": [
+    "Merge Parts",
+    "AI Draw Call Reduction",
+    "Decimate To Target",
+    "Repair Mesh"
+  ],
+  "videos": [
+    {
+      "id": "hZVIP-vd_nM",
+      "title": "Pixyz Studio -  CAD to Mesh & UV",
+      "author": "Bryan Woodard"
+    },
+    {
+      "id": "3FefRon9UpQ",
+      "title": "Pixyz Studio #20  |   How to reduce a mesh using Pixyz Studio?",
+      "author": "Pixyz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Combine%20Meshes",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Product Structure",
+    "Mesh",
+    "Combine Meshes"
+  ],
+  "at": "2026-11-28T01:07:02.309609+00:00"
+}

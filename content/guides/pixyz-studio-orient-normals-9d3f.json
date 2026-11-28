@@ -1,0 +1,88 @@
+{
+  "id": "pixyz-studio-orient-normals-9d3f",
+  "tool": "Pixyz Studio",
+  "domain": "3D DCC",
+  "group": "CAD 수리 및 준비",
+  "name": "Orient Normals",
+  "title": "Orient Normals — 잘못 뒤집힌 면(Face)의 법선 방향을 일관되게 안팎으로 정렬하는 기능",
+  "summary": "Pixyz Studio의 Orient Normals 기능은 CAD 데이터 변환 시 뒤집히거나 일관성 없이 어긋난 면의 법선(Normal) 방향을 자동으로 정렬하여 올바른 쉐이딩을 만들어 주는 도구입니다.",
+  "when": [
+    "CAD 파일을 불러왔을 때 일부 면이 검게 보이거나 렌더링이 깨질 때",
+    "내외부가 뒤섞인 어셈블리 모델의 법선 방향을 통일해야 할 때",
+    "폴리곤 최적화나 수리 작업 전후로 노멀 방향을 깔끔하게 정돈할 때"
+  ],
+  "steps": [
+    "Pixyz Studio를 실행하고 대상 3D 모델을 불러옵니다.",
+    "왼쪽 Product Structure(트리) 패널에서 노멀을 수정할 파트나 메시를 선택합니다.",
+    "상단 메뉴 바에서 Mesh를 클릭하고 Normals 하위 메뉴로 이동합니다.",
+    "Orient Normals를 선택하여 대화 상자를 엽니다.",
+    "설정 값을 확인한 뒤 Execute 버튼을 눌러 적용합니다.",
+    "오른쪽 Inspector 패널에서 Viewport의 쉐이딩이 올바르게 바뀌었는지 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Consistency",
+      "desc": "선택한 파트 내에서 인접한 면들의 법선 방향이 서로 일치하도록 정렬합니다."
+    },
+    {
+      "name": "Orientation",
+      "desc": "메시의 바깥쪽 또는 안쪽 등 전체적인 법선 기준 방향을 일괄 조정합니다."
+    },
+    {
+      "name": "Reverse",
+      "desc": "현재 설정된 면의 법선 방향을 정반대로 뒤집습니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "CAD 어셈블리 모델 쉐이딩 오류 수정",
+      "steps": [
+        "Product Structure 패널에서 문제가 되는 CAD 파트를 선택합니다.",
+        "Mesh 메뉴에서 Orient Normals를 실행합니다.",
+        "Consistency 옵션을 활성화하여 인접 면의 방향을 맞춥니다.",
+        "Execute를 눌러 검게 깨진 쉐이딩을 정상으로 되돌립니다."
+      ]
+    },
+    {
+      "title": "내부 구조 가시화 전용 노멀 반전",
+      "steps": [
+        "내부 부품이 잘 보이도록 전체 메시를 선택합니다.",
+        "Mesh → Normals 메뉴로 진입합니다.",
+        "Reverse 또는 Orientation 옵션을 적용해 모든 면의 방향을 안쪽으로 뒤집습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "파트를 선택하지 않고 실행해 옵션이 활성화되지 않는 경우 → Product Structure 패널에서 대상 메시를 먼저 선택하세요.",
+    "안팎이 완전히 열린 오픈 메시(Open Mesh)에서 일관성 정렬이 어긋나는 경우 → Repair Mesh 기능을 먼저 실행해 열린 경계를 메운 뒤 노멀을 정렬하세요."
+  ],
+  "related": [
+    "Repair Mesh",
+    "Decimate To Target",
+    "Generate LOD Chain",
+    "Stitch & Sew"
+  ],
+  "videos": [
+    {
+      "id": "MswbKJv_2fo",
+      "title": "PiXYZ Studio - Getting Started and Optimizing Your CAD Workflow",
+      "author": "Cam Ayres"
+    },
+    {
+      "id": "xqd9fZUdNt8",
+      "title": "002. Supported File Formats For Import in pixyz studio",
+      "author": "TutorialCells "
+    }
+  ],
+  "doc": "https://www.google.com/search?q=Pixyz%20Studio%20Orient%20Normals",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Pixyz Studio",
+    "Product Structure",
+    "Mesh",
+    "Normals",
+    "Orient Normals"
+  ],
+  "at": "2026-11-28T01:06:59.407445+00:00"
+}
