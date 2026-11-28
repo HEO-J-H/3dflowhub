@@ -1,0 +1,80 @@
+{
+  "id": "save-ply-1e43",
+  "tool": "가우시안 스플래팅",
+  "domain": "AI 3D",
+  "group": "렌더링 및 출력",
+  "name": "save ply",
+  "title": "save ply — 학습이 완료된 모델을 PLY 파일로 저장하는 기본 옵션",
+  "summary": "Gaussian Splatting(3D Gaussian Splatting) 학습 결과물을 .ply 표준 포인트 클라우드 및 Gaussian 데이터 파일로 저장하여 다른 DCC 툴이나 뷰어에서 활용할 수 있게 출력하는 기능입니다.",
+  "when": [
+    "학습이 완료된 3D Gaussian 모델을 다른 3D Software로 내보내어 편집하거나 확인할 때",
+    "포인트 클라우드 기반의 추가 지오메트리 후가공 및 메시 추출 작업을 진행하기 전",
+    "학습된 씬 데이터를 백업하거나 다른 연구용 뷰어 프로그램과 호환하여 공유할 때"
+  ],
+  "steps": [
+    "Gaussian Splatting 학습용 Python 환경(Terminal 또는 Command Prompt)을 엽니다.",
+    "학습 설정 파일(config.json) 또는 실행 명령어에서 출력 저장 관련 파라미터가 활성화되어 있는지 확인합니다.",
+    "학습 프로세스가 완료되면 지정된 Output 폴더 경로로 이동합니다.",
+    "폴더 내의 point_cloud/iteration_XXXXX/ 디렉토리로 진입합니다.",
+    "해당 경로에 생성된 .ply 파일(예: input.ply 또는 iteration 파일)을 확인하고 복사하여 사용합니다."
+  ],
+  "params": [
+    {
+      "name": "Iteration",
+      "desc": "지정된 학습 반복 횟수(예: iteration 30000)에 도달했을 때의 .ply 파일을 저장합니다."
+    },
+    {
+      "name": "Output Path",
+      "desc": "학습된 .ply 및 카메라 파라미터가 저장될 디렉토리 경로를 지정합니다."
+    },
+    {
+      "name": "Sh Degree",
+      "desc": "구면 조화 함수(Spherical Harmonics) 차수를 설정하여 반사광 및 색상 디테일의 저장 품질을 조절합니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Blender로 .ply 모델 불러오기",
+      "steps": [
+        "Blender를 실행하고 상단 메뉴에서 File → Import → Stanford (.ply)를 선택합니다.",
+        "학습 결과물 폴더에 있는 .ply 파일을 찾아 선택합니다.",
+        "Import PLY 버튼을 눌러 뷰어에 포인트 클라우드 형태로 가져옵니다."
+      ]
+    },
+    {
+      "title": "Mesh Extraction을 위한 원본 데이터 준비",
+      "steps": [
+        "학습이 완료된 포인트 클라우드 .ply 파일의 저장 위치를 확인합니다.",
+        "Poisson Reconstruction 또는 Mesh Extraction Script의 입력 경로(Input)로 .ply 파일을 지정합니다.",
+        "폴리곤 메시 변환을 실행하여 최종 3D 모델을 얻습니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "학습이 완전히 끝나기 전에 프로그램을 종료함 → 최신 iteration 폴더에 .ply 파일이 생성되지 않으므로 학습 완료 메시지를 반드시 확인합니다.",
+    "잘못된 iteration 폴더를 참조함 → 최적화가 완료된 최종 iteration (예: 30000회) 폴더가 아닌 초기 파일(.ply)을 불러와 디테일이 떨어짐"
+  ],
+  "related": [
+    "mesh extraction",
+    "Eval",
+    "Render",
+    "COLMAP"
+  ],
+  "videos": [
+    {
+      "id": "0HgqR2PajII",
+      "title": "Export HTML Gaussian Splatting viewer from Super Splat",
+      "author": "Olli Huttunen"
+    },
+    {
+      "id": "9YyPNiFHwpg",
+      "title": "3D Gaussian Splatting | How to Clean, Export & Share Your 3DGS Model with Clients (Supersplat Guide)",
+      "author": "UFLY UAS"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=%EA%B0%80%EC%9A%B0%EC%8B%9C%EC%95%88%20%EC%8A%A4%ED%94%8C%EB%9E%98%ED%8C%85%20save%20ply",
+  "grounded": false,
+  "images": [],
+  "menu_path": [],
+  "at": "2026-11-28T03:37:44.898441+00:00"
+}

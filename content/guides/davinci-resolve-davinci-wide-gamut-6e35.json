@@ -1,0 +1,91 @@
+{
+  "id": "davinci-resolve-davinci-wide-gamut-6e35",
+  "tool": "DaVinci Resolve",
+  "domain": "VFX",
+  "group": "컬러 페이지",
+  "name": "DaVinci Wide Gamut",
+  "title": "다빈치 와이드 게럿 — 넓은 색공간을 활용하여 색상 클리핑 없이 전문적인 컬러 그레이딩을 돕는 작업 공간",
+  "summary": "DaVinci Wide Gamut(DWG)은 DaVinci Resolve가 제공하는 넓은 색공간으로, 카메라 센서가 포착한 모든 색상 정보를 손실 없이 담아내어 고품질의 HDR 및 SDR 결과물을 만들어내는 색보정 표준 환경입니다.",
+  "when": [
+    "다양한 카메라(Log 포맷 등)로 촬영된 소스를 하나의 Timeline에서 일관되게 보정할 때",
+    "넓은 색영역을 활용해 하이라이트와 섀도우 디테일을 최대한 살리고 싶을 때",
+    "최종 출력물(Rec.709, DCI-P3 등)로 변환하기 전 마스터링 색공간이 필요할 때"
+  ],
+  "steps": [
+    "DaVinci Resolve 하단 내비게이션 바에서 Project Settings(톱니바퀴 아이콘)를 클릭합니다.",
+    "설정 창 왼쪽 메뉴에서 Color Management 탭을 선택합니다.",
+    "Color science 항목을 DaVinci YRGB Color Managed 로 변경합니다.",
+    "Color processing 모드에서 Automatic 혹은 Custom 설정 중 DaVinci Wide Gamut (DWG) / Intermediate를 선택합니다.",
+    "Output color space를 최종 배포할 목적지(예: Rec.709 Gamma 2.4)로 지정하고 Save를 누릅니다.",
+    "Color 페이지에서 넓어진 다이나믹 레인지를 바탕으로 안전하게 컬러 그레이딩을 시작합니다."
+  ],
+  "params": [
+    {
+      "name": "Color science",
+      "desc": "프로젝트 전체의 컬러 관리 파이프라인 방식을 결정합니다"
+    },
+    {
+      "name": "Color processing mode",
+      "desc": "자동 또는 수동으로 작업 색공간과 감마 곡선을 설정합니다"
+    },
+    {
+      "name": "DaVinci Wide Gamut",
+      "desc": "모든 가시광선 영역을 수용하도록 설계된 DaVinci 전용 넓은 색공간입니다"
+    },
+    {
+      "name": "DaVinci Intermediate",
+      "desc": "색상 왜곡 없이 그레이딩 작업을 수행할 수 있도록 만든 고정밀 커스텀 감마 곡선입니다"
+    },
+    {
+      "name": "Output color space",
+      "desc": "모니터나 최종 배포 포맷에 맞게 색공간을 변환해 주는 출력 타겟입니다"
+    }
+  ],
+  "examples": [
+    {
+      "title": "서로 다른 카메라 소스 일치시키기",
+      "steps": [
+        "Project Settings의 Color Management에서 DaVinci Wide Gamut을 활성화합니다.",
+        "각기 다른 로그 포맷의 클립을 Timeline에 올립니다.",
+        "DWG 내부에서 공통된 기준색으로 정렬되어 자동 매칭됩니다."
+      ]
+    },
+    {
+      "title": "HDR 마스터링 및 SDR 동시 제작",
+      "steps": [
+        "DaVinci Wide Gamut 색공간을 기반으로 HDR 그레이딩을 먼저 완성합니다.",
+        "Output color space만 Rec.709로 변경하여 SDR 버전을 손쉽게 파생합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "출력 색공간(Output color space) 설정을 깜빡함 → 화면이 지나치게 채도가 높거나 왜곡되어 보입니다. Output color space를 최종 모니터 환경에 맞게 정확히 설정하세요.",
+    "색공간 변환 노드를 중복으로 생성함 → 이미 Color Managed된 Pipeline 수동 CST(Color Space Transform) 노드를 과도하게 쓰면 색이 틀어집니다. 파이프라인 설정을 먼저 확인하세요."
+  ],
+  "related": [
+    "Color Space Transform",
+    "HDR Color Grading",
+    "Remote Grades",
+    "DaVinci YRGB"
+  ],
+  "videos": [
+    {
+      "id": "4x7xnrRa1Ro",
+      "title": "COMPLETE Tutorial for Davinci Wide Gamut | DaVinci Resolve Tutorial",
+      "author": "Danny Gan"
+    },
+    {
+      "id": "fI5Br9M7ASs",
+      "title": "Davinci Wide Gamut color space the best color space for grading #colorgrading #davinciresolve",
+      "author": "Dynamo Studio"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=DaVinci%20Resolve%20DaVinci%20Wide%20Gamut",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "DaVinci Resolve",
+    "Project Settings"
+  ],
+  "at": "2026-11-28T03:37:49.081918+00:00"
+}

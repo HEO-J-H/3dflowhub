@@ -1,0 +1,99 @@
+{
+  "id": "v-ray-v-ray-car-paint-material-018e",
+  "tool": "V-Ray",
+  "domain": "3D DCC",
+  "group": "재질 및 텍스처",
+  "name": "V-Ray Car Paint Material",
+  "title": "V-Ray Car Paint Material — 자동차 도색 특유의 금속 플레이크와 다층 코팅 효과를 표현하",
+  "summary": "V-Ray Car Paint Material은 자동차 도색 특유의 Base 코트, 미세한 금속 입자(플레이크), 그리고 투명한 클리어 코트 레이어를 조합해 실감나는 반짝임과 광택을 표현하는 전문 셰이더입니다.",
+  "when": [
+    "실사 수준의 자동차 외관 렌더링 작업을 할 때",
+    "화장품 케이스나 가전제품의 메탈릭 도색 표현이 필요할 때",
+    "미세한 금속 입자와 다층 코팅의 반사 효과를 정밀하게 구현하고 싶을 때"
+  ],
+  "steps": [
+    "메인 툴바에서 Material Editor를 엽니다 (Shortcut: M).",
+    "Material / Map Browser에서 V-Ray 탭을 펼칩니다.",
+    "VRayCarPaintMtl을 선택하여 슬롯에 적용하거나 새로 생성합니다.",
+    "원하는 오브젝트를 선택하고 Assign Material to Selection 버튼을 누릅니다.",
+    "Parameters 패널에서 Base color, Flake color, Clear coat 설정을 조정하여 도색 질감을 완성합니다.",
+    "Viewport에서 렌더링을 실행해 반사와 플레이크 효과를 확인합니다."
+  ],
+  "params": [
+    {
+      "name": "Base color",
+      "desc": "자동차 도색의 기본이 되는 하층부의 색상을 결정합니다."
+    },
+    {
+      "name": "Flake color",
+      "desc": "도장면에 반짝이는 금속 입자(플레이크)의 색상을 설정합니다."
+    },
+    {
+      "name": "Flake size",
+      "desc": "금속 입자의 크기를 조절하여 미세하거나 굵은 반짝임을 표현합니다."
+    },
+    {
+      "name": "Flake density",
+      "desc": "표면에 배치되는 금속 입자의 밀도를 조절합니다."
+    },
+    {
+      "name": "Clear coat color",
+      "desc": "최상단 투명 코팅층의 색상과 투명도를 결정합니다."
+    },
+    {
+      "name": "Clear coat glossiness",
+      "desc": "클리어 코트 표면의 거칠기를 조절하여 하이라이트의 선명도를 바꿉니다."
+    }
+  ],
+  "examples": [
+    {
+      "title": "스포츠카 외관 메탈릭 블루 도색",
+      "steps": [
+        "차량 바디 오브젝트에 VRayCarPaintMtl을 적용합니다.",
+        "Base color를 진한 파란색으로 설정합니다.",
+        "Flake color를 밝은 은색으로 설정하고 Flake size를 작게 조절하여 미세한 반짝임을 줍니다."
+      ]
+    },
+    {
+      "title": "펄 효과가 들어간 화장품 용기 제작",
+      "steps": [
+        "용기 모델링을 선택하고 재질 편집기에서 VRayCarPaintMtl을 할당합니다.",
+        "Base color를 펄 핑크 톤으로 맞춥니다.",
+        "Clear coat glossiness를 높여 유리 같은 매끄러운 고광택을 연출합니다."
+      ]
+    }
+  ],
+  "mistakes": [
+    "플레이크가 너무 촘촘하거나 크기가 커서 어색해짐 → Flake size와 Flake density 값을 낮추거나 조절하여 자연스러운 금속 입자 밀도를 맞춥니다.",
+    "클리어 코트 하이라이트가 너무 퍼져 보임 → Clear coat glossiness 값을 1.0에 가깝게 높여 선명한 반사를 얻습니다."
+  ],
+  "related": [
+    "VRayCarPaintMtl2",
+    "VRayFlakesMtl",
+    "VRayBlendMtl",
+    "VRayMtl"
+  ],
+  "videos": [
+    {
+      "id": "3KQyXoDkcVM",
+      "title": "V-Ray | Realistic CARPAINT Shader | In Depth Render Theory, Setup and Final Rendering",
+      "author": "Jonas Noell"
+    },
+    {
+      "id": "1oflL7mtwhA",
+      "title": "Tutorial: Vray - Carbon Fiber / Vray Car Paint Material",
+      "author": "Renderspaz"
+    }
+  ],
+  "doc": "https://www.google.com/search?q=V-Ray%20V-Ray%20Car%20Paint%20Material",
+  "grounded": false,
+  "images": [],
+  "menu_path": [
+    "Material Editor",
+    "Shortcut",
+    "Material",
+    "Map Browser",
+    "V-Ray"
+  ],
+  "at": "2026-11-28T03:37:52.926212+00:00"
+}
